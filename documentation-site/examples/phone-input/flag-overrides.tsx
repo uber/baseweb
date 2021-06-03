@@ -11,7 +11,7 @@ function CustomFlag(props: any) {
   return <StyledFlag iso={props.$iso} {...rest} />;
 }
 
-export default () => {
+export default function Example() {
   const [text, setText] = React.useState('');
   const [country, setCountry] = React.useState(COUNTRIES.US);
   return (
@@ -40,4 +40,4 @@ export default () => {
       }}
     />
   );
-};
+}

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -16,6 +16,8 @@ const selectors = {
   twentyFourHourMoment: '[data-e2e="24-hour-moment"]',
   twelveHourCreatable: '[data-e2e="12-hour-creatable"]',
   twentyFourHourCreatable: '[data-e2e="24-hour-creatable"]',
+  minMaxTime: '[data-e2e="with-min-and-max-time"]',
+  minMaxTimeMoment: '[data-e2e="with-min-and-max-time-moment"]',
   hours: '[data-e2e="hours"]',
   minutes: '[data-e2e="minutes"]',
   input: 'input[role="combobox"]',
@@ -26,17 +28,17 @@ const selectors = {
 
 describe('TimePicker', () => {
   it('passes basic a11y tests', async () => {
-    await mount(page, 'time-picker');
-    await page.waitFor(selectors.twelveHour);
+    await mount(page, 'timepicker--time-picker');
+    await page.waitForSelector(selectors.twelveHour);
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
   it('is renders expected 12 hour format times', async () => {
-    await mount(page, 'time-picker');
-    await page.waitFor(selectors.twelveHour);
+    await mount(page, 'timepicker--time-picker');
+    await page.waitForSelector(selectors.twelveHour);
     await page.click(`${selectors.twelveHour} ${selectors.input}`);
-    await page.waitFor(selectors.dropdown);
+    await page.waitForSelector(selectors.dropdown);
     await page.keyboard.press('ArrowDown');
     await page.keyboard.press('ArrowDown');
     await page.keyboard.press('ArrowDown');
@@ -62,11 +64,38 @@ describe('TimePicker', () => {
     expect(minutes).toBe('minute: 0');
   });
 
+  it('it renders only times within the min/max range', async () => {
+    await mount(page, 'timepicker--time-picker');
+    await page.waitForSelector(selectors.minMaxTime);
+    await page.click(`${selectors.minMaxTime} ${selectors.input}`);
+    await page.waitForSelector(selectors.dropdown);
+    await page.keyboard.press('ArrowDown');
+    await page.keyboard.press('Enter');
+
+    const value = await page.$eval(
+      `${selectors.minMaxTime} ${selectors.value}`,
+      select => select.textContent,
+    );
+    expect(value).toBe('10:00');
+
+    const hours = await page.$eval(
+      `${selectors.minMaxTime} ${selectors.hours}`,
+      select => select.textContent,
+    );
+    expect(hours).toBe('hour: 10');
+
+    const minutes = await page.$eval(
+      `${selectors.minMaxTime} ${selectors.minutes}`,
+      select => select.textContent,
+    );
+    expect(minutes).toBe('minute: 0');
+  });
+
   it('is renders expected 24 hour format times with custom step', async () => {
-    await mount(page, 'time-picker');
-    await page.waitFor(selectors.twentyFourHour);
+    await mount(page, 'timepicker--time-picker');
+    await page.waitForSelector(selectors.twentyFourHour);
     await page.click(`${selectors.twentyFourHour} ${selectors.input}`);
-    await page.waitFor(selectors.dropdown);
+    await page.waitForSelector(selectors.dropdown);
     await page.keyboard.press('ArrowDown');
     await page.keyboard.press('ArrowDown');
     await page.keyboard.press('ArrowDown');
@@ -94,9 +123,9 @@ describe('TimePicker', () => {
   });
 
   it('renders a date that is not one of the steps', async () => {
-    await mount(page, 'time-picker');
-    await page.waitFor(selectors.twelveHourCreatable);
-    await page.waitFor(selectors.twentyFourHourCreatable);
+    await mount(page, 'timepicker--time-picker');
+    await page.waitForSelector(selectors.twelveHourCreatable);
+    await page.waitForSelector(selectors.twentyFourHourCreatable);
 
     const twelveHourValue = await page.$eval(
       `${selectors.twelveHourCreatable} ${selectors.value}`,
@@ -114,10 +143,10 @@ describe('TimePicker', () => {
 
   describe('creatable', () => {
     it('shows both AM and PM options when a 12-hour time without meridiem is entered', async () => {
-      await mount(page, 'time-picker');
-      await page.waitFor(selectors.twelveHourCreatable);
+      await mount(page, 'timepicker--time-picker');
+      await page.waitForSelector(selectors.twelveHourCreatable);
       await page.click(`${selectors.twelveHourCreatable} ${selectors.input}`);
-      await page.waitFor(selectors.dropdown);
+      await page.waitForSelector(selectors.dropdown);
       await page.keyboard.type('3:33');
 
       const options = await page.$$(`${selectors.option}`);
@@ -130,10 +159,10 @@ describe('TimePicker', () => {
     });
 
     it('shows AM option when a 12-hour time with partial meridiem is entered', async () => {
-      await mount(page, 'time-picker');
-      await page.waitFor(selectors.twelveHourCreatable);
+      await mount(page, 'timepicker--time-picker');
+      await page.waitForSelector(selectors.twelveHourCreatable);
       await page.click(`${selectors.twelveHourCreatable} ${selectors.input}`);
-      await page.waitFor(selectors.dropdown);
+      await page.waitForSelector(selectors.dropdown);
       await page.keyboard.type('3:33a');
 
       const options = await page.$$(`${selectors.option}`);
@@ -144,10 +173,10 @@ describe('TimePicker', () => {
     });
 
     it('generates the correct seconds for 12PM', async () => {
-      await mount(page, 'time-picker');
-      await page.waitFor(selectors.twelveHourCreatable);
+      await mount(page, 'timepicker--time-picker');
+      await page.waitForSelector(selectors.twelveHourCreatable);
       await page.click(`${selectors.twelveHourCreatable} ${selectors.input}`);
-      await page.waitFor(selectors.dropdown);
+      await page.waitForSelector(selectors.dropdown);
       await page.keyboard.type('12:11pm');
       await page.keyboard.press('ArrowDown');
       await page.keyboard.press('Enter');
@@ -173,10 +202,10 @@ describe('TimePicker', () => {
     });
 
     it('generates the correct seconds for 12AM', async () => {
-      await mount(page, 'time-picker');
-      await page.waitFor(selectors.twelveHourCreatable);
+      await mount(page, 'timepicker--time-picker');
+      await page.waitForSelector(selectors.twelveHourCreatable);
       await page.click(`${selectors.twelveHourCreatable} ${selectors.input}`);
-      await page.waitFor(selectors.dropdown);
+      await page.waitForSelector(selectors.dropdown);
       await page.keyboard.type('12:22am');
       await page.keyboard.press('ArrowDown');
       await page.keyboard.press('Enter');
@@ -190,12 +219,12 @@ describe('TimePicker', () => {
     });
 
     it('shows an option when a 24 hour time without leading zero is entered', async () => {
-      await mount(page, 'time-picker');
-      await page.waitFor(selectors.twentyFourHourCreatable);
+      await mount(page, 'timepicker--time-picker');
+      await page.waitForSelector(selectors.twentyFourHourCreatable);
       await page.click(
         `${selectors.twentyFourHourCreatable} ${selectors.input}`,
       );
-      await page.waitFor(selectors.dropdown);
+      await page.waitForSelector(selectors.dropdown);
       await page.keyboard.type('3:33');
 
       const options = await page.$$(`${selectors.option}`);
@@ -206,12 +235,12 @@ describe('TimePicker', () => {
     });
 
     it('shows only one option when a time is entered that matches an existing option', async () => {
-      await mount(page, 'time-picker');
-      await page.waitFor(selectors.twentyFourHourCreatable);
+      await mount(page, 'timepicker--time-picker');
+      await page.waitForSelector(selectors.twentyFourHourCreatable);
       await page.click(
         `${selectors.twentyFourHourCreatable} ${selectors.input}`,
       );
-      await page.waitFor(selectors.dropdown);
+      await page.waitForSelector(selectors.dropdown);
       await page.keyboard.type('00:15');
 
       const options = await page.$$(`${selectors.option}`);
@@ -223,10 +252,10 @@ describe('TimePicker', () => {
   });
   describe('when using moment', () => {
     it('is renders expected 24 hour format times with custom step', async () => {
-      await mount(page, 'time-picker');
-      await page.waitFor(selectors.twentyFourHourMoment);
+      await mount(page, 'timepicker--time-picker');
+      await page.waitForSelector(selectors.twentyFourHourMoment);
       await page.click(`${selectors.twentyFourHourMoment} ${selectors.input}`);
-      await page.waitFor(selectors.dropdown);
+      await page.waitForSelector(selectors.dropdown);
       await page.keyboard.press('ArrowDown');
       await page.keyboard.press('ArrowDown');
       await page.keyboard.press('ArrowDown');
@@ -248,6 +277,33 @@ describe('TimePicker', () => {
 
       const minutes = await page.$eval(
         `${selectors.twentyFourHourMoment} ${selectors.minutes}`,
+        select => select.textContent,
+      );
+      expect(minutes).toBe('minute: 0');
+    });
+
+    it('it renders only times within the min/max range', async () => {
+      await mount(page, 'timepicker--time-picker');
+      await page.waitForSelector(selectors.minMaxTimeMoment);
+      await page.click(`${selectors.minMaxTimeMoment} ${selectors.input}`);
+      await page.waitForSelector(selectors.dropdown);
+      await page.keyboard.press('ArrowDown');
+      await page.keyboard.press('Enter');
+
+      const value = await page.$eval(
+        `${selectors.minMaxTimeMoment} ${selectors.value}`,
+        select => select.textContent,
+      );
+      expect(value).toBe('10:00');
+
+      const hours = await page.$eval(
+        `${selectors.minMaxTimeMoment} ${selectors.hours}`,
+        select => select.textContent,
+      );
+      expect(hours).toBe('hour: 10');
+
+      const minutes = await page.$eval(
+        `${selectors.minMaxTimeMoment} ${selectors.minutes}`,
         select => select.textContent,
       );
       expect(minutes).toBe('minute: 0');

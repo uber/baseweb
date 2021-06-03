@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -7,6 +7,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import colorTokens from './color-tokens.js';
 import type {ColorTokensT, ComponentColorTokensT} from '../types.js';
+
+const tagHoverBackground = `rgba(0, 0, 0, 0.08)`;
 
 /* ---- Component colors ---- */
 // TODO(#2318) Make it a plain object in the next v11 major version
@@ -73,16 +75,16 @@ export default (
   calendarBackground: themePrimitives.mono100,
   calendarForeground: themePrimitives.mono1000,
   calendarForegroundDisabled: themePrimitives.mono500,
-  calendarHeaderBackground: themePrimitives.primary,
-  calendarHeaderForeground: themePrimitives.white,
+  calendarHeaderBackground: themePrimitives.white,
+  calendarHeaderForeground: themePrimitives.primary,
   calendarHeaderBackgroundActive: themePrimitives.primary700,
   calendarHeaderForegroundDisabled: themePrimitives.primary500,
   calendarDayBackgroundPseudoSelected: themePrimitives.primary100,
   calendarDayForegroundPseudoSelected: themePrimitives.mono1000,
   calendarDayBackgroundPseudoSelectedHighlighted: themePrimitives.primary200,
   calendarDayForegroundPseudoSelectedHighlighted: themePrimitives.mono1000,
-  calendarDayBackgroundSelected: themePrimitives.white,
-  calendarDayForegroundSelected: themePrimitives.primary,
+  calendarDayBackgroundSelected: themePrimitives.primary,
+  calendarDayForegroundSelected: themePrimitives.white,
   calendarDayBackgroundSelectedHighlighted: themePrimitives.primary,
   calendarDayForegroundSelectedHighlighted: themePrimitives.white,
 
@@ -95,7 +97,7 @@ export default (
   fileUploaderBackgroundColorActive: themePrimitives.primary50,
   fileUploaderBorderColorActive: themePrimitives.primary,
   fileUploaderBorderColorDefault: themePrimitives.mono500,
-  fileUploaderMessageColor: themePrimitives.mono600,
+  fileUploaderMessageColor: themePrimitives.mono800,
 
   // Links
   linkText: themePrimitives.primary,
@@ -224,11 +226,18 @@ export default (
   notificationNegativeText: themePrimitives.negative500,
 
   // Tag
+
+  // Custom ramps
+  tagFontDisabledRampUnit: '100',
+  tagOutlinedDisabledRampUnit: '200',
+  tagSolidFontRampUnit: '0',
   tagSolidRampUnit: '400',
+  tagOutlinedFontRampUnit: '400',
+  tagOutlinedRampUnit: '200',
+  // Deprecated
   tagSolidHoverRampUnit: '50',
   tagSolidActiveRampUnit: '100',
   tagSolidDisabledRampUnit: '50',
-  tagSolidFontRampUnit: '50',
   tagSolidFontHoverRampUnit: '500',
   tagLightRampUnit: '50',
   tagLightHoverRampUnit: '100',
@@ -236,19 +245,21 @@ export default (
   tagLightDisabledRampUnit: '50',
   tagLightFontRampUnit: '500',
   tagLightFontHoverRampUnit: '500',
-  tagOutlinedRampUnit: '400',
-  tagOutlinedHoverRampUnit: '500',
-  tagOutlinedActiveRampUnit: '600',
-  tagOutlinedDisabledRampUnit: '50',
-  tagOutlinedFontRampUnit: '500',
-  tagOutlinedFontHoverRampUnit: '50',
-  tagFontDisabledRampUnit: '200',
+  tagOutlinedHoverRampUnit: '50',
+  tagOutlinedActiveRampUnit: '0',
+  tagOutlinedFontHoverRampUnit: '400',
 
-  tagNeutralSolidBackground: themePrimitives.mono900,
+  // Neutral
+  tagNeutralFontDisabled: themePrimitives.mono600,
+  tagNeutralOutlinedDisabled: themePrimitives.mono400,
+  tagNeutralSolidFont: themePrimitives.white,
+  tagNeutralSolidBackground: themePrimitives.black,
+  tagNeutralOutlinedBackground: themePrimitives.mono600,
+  tagNeutralOutlinedFont: themePrimitives.black,
+  // Deprecated
   tagNeutralSolidHover: themePrimitives.mono300,
   tagNeutralSolidActive: themePrimitives.mono400,
   tagNeutralSolidDisabled: themePrimitives.mono200,
-  tagNeutralSolidFont: themePrimitives.mono100,
   tagNeutralSolidFontHover: themePrimitives.mono900,
   tagNeutralLightBackground: themePrimitives.mono300,
   tagNeutralLightHover: themePrimitives.mono300,
@@ -256,19 +267,21 @@ export default (
   tagNeutralLightDisabled: themePrimitives.mono200,
   tagNeutralLightFont: themePrimitives.mono900,
   tagNeutralLightFontHover: themePrimitives.mono900,
-  tagNeutralOutlinedBackground: themePrimitives.mono900,
-  tagNeutralOutlinedHover: themePrimitives.mono800,
   tagNeutralOutlinedActive: themePrimitives.mono900,
-  tagNeutralOutlinedDisabled: themePrimitives.mono200,
-  tagNeutralOutlinedFont: themePrimitives.mono900,
-  tagNeutralOutlinedFontHover: themePrimitives.mono200,
-  tagNeutralFontDisabled: themePrimitives.mono500,
+  tagNeutralOutlinedFontHover: themePrimitives.mono800,
+  tagNeutralOutlinedHover: tagHoverBackground,
 
+  // Primary
+  tagPrimaryFontDisabled: themePrimitives.primary400,
+  tagPrimaryOutlinedDisabled: themePrimitives.primary200,
+  tagPrimarySolidFont: themePrimitives.white,
   tagPrimarySolidBackground: themePrimitives.primary,
+  tagPrimaryOutlinedFontHover: themePrimitives.primary,
+  tagPrimaryOutlinedFont: themePrimitives.primary,
+  // Deprecated
   tagPrimarySolidHover: themePrimitives.primary100,
   tagPrimarySolidActive: themePrimitives.primary200,
   tagPrimarySolidDisabled: themePrimitives.primary50,
-  tagPrimarySolidFont: themePrimitives.primary50,
   tagPrimarySolidFontHover: themePrimitives.primary700,
   tagPrimaryLightBackground: themePrimitives.primary50,
   tagPrimaryLightHover: themePrimitives.primary100,
@@ -276,19 +289,21 @@ export default (
   tagPrimaryLightDisabled: themePrimitives.primary50,
   tagPrimaryLightFont: themePrimitives.primary500,
   tagPrimaryLightFontHover: themePrimitives.primary500,
-  tagPrimaryOutlinedBackground: themePrimitives.primary,
-  tagPrimaryOutlinedHover: themePrimitives.primary700,
   tagPrimaryOutlinedActive: themePrimitives.primary600,
-  tagPrimaryOutlinedDisabled: themePrimitives.primary50,
-  tagPrimaryOutlinedFont: themePrimitives.primary,
-  tagPrimaryOutlinedFontHover: themePrimitives.primary50,
-  tagPrimaryFontDisabled: themePrimitives.primary400,
+  tagPrimaryOutlinedHover: tagHoverBackground,
+  tagPrimaryOutlinedBackground: themePrimitives.primary400,
 
+  // Accent
+  tagAccentFontDisabled: themePrimitives.accent200,
+  tagAccentOutlinedDisabled: themePrimitives.accent200,
+  tagAccentSolidFont: themePrimitives.white,
   tagAccentSolidBackground: themePrimitives.accent400,
+  tagAccentOutlinedBackground: themePrimitives.accent200,
+  tagAccentOutlinedFont: themePrimitives.accent400,
+  // Deprecated
   tagAccentSolidHover: themePrimitives.accent50,
   tagAccentSolidActive: themePrimitives.accent100,
   tagAccentSolidDisabled: themePrimitives.accent50,
-  tagAccentSolidFont: themePrimitives.accent50,
   tagAccentSolidFontHover: themePrimitives.accent500,
   tagAccentLightBackground: themePrimitives.accent50,
   tagAccentLightHover: themePrimitives.accent100,
@@ -296,19 +311,21 @@ export default (
   tagAccentLightDisabled: themePrimitives.accent50,
   tagAccentLightFont: themePrimitives.accent500,
   tagAccentLightFontHover: themePrimitives.accent500,
-  tagAccentOutlinedBackground: themePrimitives.accent400,
-  tagAccentOutlinedHover: themePrimitives.accent500,
   tagAccentOutlinedActive: themePrimitives.accent600,
-  tagAccentOutlinedDisabled: themePrimitives.accent50,
-  tagAccentOutlinedFont: themePrimitives.accent500,
-  tagAccentOutlinedFontHover: themePrimitives.accent50,
-  tagAccentFontDisabled: themePrimitives.accent200,
+  tagAccentOutlinedFontHover: themePrimitives.accent400,
+  tagAccentOutlinedHover: tagHoverBackground,
 
+  // Positive
+  tagPositiveFontDisabled: themePrimitives.positive200,
+  tagPositiveOutlinedDisabled: themePrimitives.positive200,
+  tagPositiveSolidFont: themePrimitives.white,
   tagPositiveSolidBackground: themePrimitives.positive400,
+  tagPositiveOutlinedBackground: themePrimitives.positive200,
+  tagPositiveOutlinedFont: themePrimitives.positive400,
+  // Deprecated
   tagPositiveSolidHover: themePrimitives.positive50,
   tagPositiveSolidActive: themePrimitives.positive100,
   tagPositiveSolidDisabled: themePrimitives.positive50,
-  tagPositiveSolidFont: themePrimitives.positive50,
   tagPositiveSolidFontHover: themePrimitives.positive500,
   tagPositiveLightBackground: themePrimitives.positive50,
   tagPositiveLightHover: themePrimitives.positive100,
@@ -316,19 +333,21 @@ export default (
   tagPositiveLightDisabled: themePrimitives.positive50,
   tagPositiveLightFont: themePrimitives.positive500,
   tagPositiveLightFontHover: themePrimitives.positive500,
-  tagPositiveOutlinedBackground: themePrimitives.positive400,
-  tagPositiveOutlinedHover: themePrimitives.positive500,
   tagPositiveOutlinedActive: themePrimitives.positive600,
-  tagPositiveOutlinedDisabled: themePrimitives.positive50,
-  tagPositiveOutlinedFont: themePrimitives.positive500,
-  tagPositiveOutlinedFontHover: themePrimitives.positive50,
-  tagPositiveFontDisabled: themePrimitives.positive200,
+  tagPositiveOutlinedFontHover: themePrimitives.positive400,
+  tagPositiveOutlinedHover: tagHoverBackground,
 
+  // Warning
+  tagWarningFontDisabled: themePrimitives.warning300,
+  tagWarningOutlinedDisabled: themePrimitives.warning300,
+  tagWarningSolidFont: themePrimitives.warning700,
   tagWarningSolidBackground: themePrimitives.warning400,
+  tagWarningOutlinedBackground: themePrimitives.warning300,
+  tagWarningOutlinedFont: themePrimitives.warning600,
+  // Deprecated
   tagWarningSolidHover: themePrimitives.warning50,
   tagWarningSolidActive: themePrimitives.warning100,
   tagWarningSolidDisabled: themePrimitives.warning50,
-  tagWarningSolidFont: themePrimitives.warning700,
   tagWarningSolidFontHover: themePrimitives.warning500,
   tagWarningLightBackground: themePrimitives.warning50,
   tagWarningLightHover: themePrimitives.warning100,
@@ -336,35 +355,31 @@ export default (
   tagWarningLightDisabled: themePrimitives.warning50,
   tagWarningLightFont: themePrimitives.warning500,
   tagWarningLightFontHover: themePrimitives.warning500,
-  tagWarningOutlinedBackground: themePrimitives.warning300,
-  tagWarningOutlinedHover: themePrimitives.warning500,
   tagWarningOutlinedActive: themePrimitives.warning600,
-  tagWarningOutlinedDisabled: themePrimitives.warning100,
-  tagWarningOutlinedFont: themePrimitives.warning600,
-  tagWarningOutlinedFontHover: themePrimitives.warning50,
-  tagWarningFontDisabled: themePrimitives.warning300,
+  tagWarningOutlinedFontHover: themePrimitives.warning600,
+  tagWarningOutlinedHover: tagHoverBackground,
 
+  // Negative
+  tagNegativeFontDisabled: themePrimitives.negative200,
+  tagNegativeOutlinedDisabled: themePrimitives.negative200,
+  tagNegativeSolidFont: themePrimitives.white,
   tagNegativeSolidBackground: themePrimitives.negative400,
+  tagNegativeOutlinedBackground: themePrimitives.negative200,
+  tagNegativeOutlinedFont: themePrimitives.negative400,
+  // Deprecated
   tagNegativeSolidHover: themePrimitives.negative50,
   tagNegativeSolidActive: themePrimitives.negative100,
   tagNegativeSolidDisabled: themePrimitives.negative50,
-  tagNegativeSolidFont: themePrimitives.negative50,
   tagNegativeSolidFontHover: themePrimitives.negative500,
-
   tagNegativeLightBackground: themePrimitives.negative50,
   tagNegativeLightHover: themePrimitives.negative100,
   tagNegativeLightActive: themePrimitives.negative100,
   tagNegativeLightDisabled: themePrimitives.negative50,
   tagNegativeLightFont: themePrimitives.negative500,
   tagNegativeLightFontHover: themePrimitives.negative500,
-
-  tagNegativeOutlinedBackground: themePrimitives.negative400,
-  tagNegativeOutlinedHover: themePrimitives.negative500,
   tagNegativeOutlinedActive: themePrimitives.negative600,
-  tagNegativeOutlinedDisabled: themePrimitives.negative50,
-  tagNegativeOutlinedFont: themePrimitives.negative500,
-  tagNegativeOutlinedFontHover: themePrimitives.negative50,
-  tagNegativeFontDisabled: themePrimitives.negative200,
+  tagNegativeOutlinedFontHover: themePrimitives.negative400,
+  tagNegativeOutlinedHover: tagHoverBackground,
 
   // Table
   tableHeadBackgroundColor: themePrimitives.mono100,

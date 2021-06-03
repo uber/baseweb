@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -13,7 +13,7 @@ import {Tag, KIND as TAG_KIND} from '../../tag/index.js';
 import CategoricalColumn from '../column-categorical.js';
 import CustomColumn from '../column-custom.js';
 import StringColumn from '../column-string.js';
-import {Unstable_StatefulDataTable} from '../stateful-data-table.js';
+import {StatefulDataTable} from '../stateful-data-table.js';
 
 import AnimalData from './animal-data.js';
 
@@ -41,7 +41,7 @@ const columns = [
     minWidth: 90,
     mapDataToValue: (data: RowDataT) => data.Phylum,
     textQueryFilter: function(textQuery, data) {
-      return data.toLocaleLowerCase().includes(textQuery.toLowerCase());
+      return data.toLowerCase().includes(textQuery.toLowerCase());
     },
     renderCell: function PhylumnCell(props) {
       return (
@@ -89,7 +89,7 @@ const rows = AnimalData.map(row => {
 export default function Scenario() {
   return (
     <div style={{height: '600px', width: '700px'}}>
-      <Unstable_StatefulDataTable columns={columns} rows={rows} />
+      <StatefulDataTable columns={columns} rows={rows} />
     </div>
   );
 }

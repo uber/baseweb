@@ -163,7 +163,7 @@ const row = [
 
 const data = [row, row, row];
 
-export default function() {
+export default function Example() {
   const {getCellProps} = useCellNavigation();
   const [css] = useStyletron();
   return (
@@ -192,7 +192,9 @@ export default function() {
                 {...getCellProps(0, primaryRowIndex)}
                 $gridRow={`span ${row[2].length}`}
               >
-                <StyledLink href={row[1]}>{row[0]}</StyledLink>
+                <StyledLink href={String(row[1])}>
+                  {row[0]}
+                </StyledLink>
               </StyledBodyCell>
               {events.map(
                 (event: [Date, string], index: number) => {

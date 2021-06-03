@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -29,6 +29,7 @@ function Example() {
     <div className={css({width: '375px', padding: '12px 48px'})}>
       <FormControl label="label" caption="caption">
         <Combobox
+          id="combo"
           value={value}
           onChange={nextValue => setValue(nextValue)}
           mapOptionToString={o => o.label}

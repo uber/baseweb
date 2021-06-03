@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -25,6 +25,7 @@ import {getProvider, getThemeFromContext, TProviderValue} from './provider';
 import {customProps, TCustomPropFields} from './custom-props';
 import ThemeEditor from './theme-editor';
 import Overrides from './overrides';
+import OverridesDescription from './overrides-description';
 import Editor from './editor';
 import ActionButtons from './action-buttons';
 import Knobs from './knobs';
@@ -42,6 +43,7 @@ const Yard: React.FC<TYardProps> = ({
   theme,
   imports,
   mapTokensToProps,
+  initialTab,
 }) => {
   const [css, baseTheme] = useStyletron();
   const componentTheme = getThemeFromContext(baseTheme, theme);
@@ -113,7 +115,7 @@ const Yard: React.FC<TYardProps> = ({
       />
       <Error msg={params.errorProps.msg} isPopup />
       {showOverrides || showTheme ? (
-        <YardTabs>
+        <YardTabs initialTab={initialTab}>
           <YardTab title={`Props${activeProps > 0 ? ` (${activeProps})` : ''}`}>
             <Knobs {...params.knobProps} />
           </YardTab>
@@ -123,6 +125,7 @@ const Yard: React.FC<TYardProps> = ({
                 activeOverrides > 0 ? ` (${activeOverrides})` : ''
               }`}
             >
+              <OverridesDescription componentName={componentName} />
               <Overrides
                 componentName={componentName}
                 componentConfig={props}

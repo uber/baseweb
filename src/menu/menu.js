@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -28,6 +28,7 @@ export default function Menu(props: StatelessMenuPropsT) {
     focusMenu = () => {},
     unfocusMenu = () => {},
     handleMouseLeave = () => {},
+    handleKeyDown = (event: KeyboardEvent) => {},
     renderAll = false,
   } = props;
 
@@ -117,6 +118,11 @@ export default function Menu(props: StatelessMenuPropsT) {
           onMouseOver={focusMenu}
           onFocus={forkFocus({onFocus: focusMenu}, handleFocus)}
           onBlur={forkBlur({onBlur: unfocusMenu}, handleBlur)}
+          onKeyDown={event => {
+            if (props.isFocused) {
+              handleKeyDown(event);
+            }
+          }}
           tabIndex={0}
           data-baseweb="menu"
           $isFocusVisible={focusVisible}

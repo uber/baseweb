@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -36,6 +36,7 @@ class BaseInput<T: EventTarget> extends React.Component<
     'aria-autocomplete': null,
     'aria-controls': null,
     'aria-errormessage': null,
+    'aria-haspopup': null,
     'aria-label': null,
     'aria-labelledby': null,
     'aria-describedby': null,
@@ -60,6 +61,7 @@ class BaseInput<T: EventTarget> extends React.Component<
     pattern: null,
     placeholder: '',
     required: false,
+    role: null,
     size: SIZE.default,
     type: 'text',
   };
@@ -236,9 +238,15 @@ class BaseInput<T: EventTarget> extends React.Component<
 
   renderClear() {
     const {clearable, value, disabled, overrides = {}} = this.props;
-    if (!clearable || !value || !value.length || disabled) {
+    if (
+      disabled ||
+      !clearable ||
+      value == null ||
+      (typeof value === 'string' && value.length === 0)
+    ) {
       return null;
     }
+
     const [ClearIconContainer, clearIconContainerProps] = getOverrides(
       overrides.ClearIconContainer,
       StyledClearIconContainer,
@@ -249,6 +257,12 @@ class BaseInput<T: EventTarget> extends React.Component<
     );
     const ariaLabel = 'Clear value';
     const sharedProps = getSharedProps(this.props, this.state);
+    const iconSize = {
+      [SIZE.mini]: '14px',
+      [SIZE.compact]: '20px',
+      [SIZE.default]: '26px',
+      [SIZE.large]: '32px',
+    }[this.props.size];
     return (
       <ClearIconContainer
         $alignTop={this.props.type === CUSTOM_INPUT_TYPE.textarea}
@@ -256,7 +270,7 @@ class BaseInput<T: EventTarget> extends React.Component<
         {...clearIconContainerProps}
       >
         <ClearIcon
-          size={16}
+          size={iconSize}
           tabIndex={0}
           title={ariaLabel}
           aria-label={ariaLabel}
@@ -319,6 +333,7 @@ class BaseInput<T: EventTarget> extends React.Component<
           aria-autocomplete={this.props['aria-autocomplete']}
           aria-controls={this.props['aria-controls']}
           aria-errormessage={this.props['aria-errormessage']}
+          aria-haspopup={this.props['aria-haspopup']}
           aria-label={this.props['aria-label']}
           aria-labelledby={this.props['aria-labelledby']}
           aria-describedby={this.props['aria-describedby']}
@@ -328,6 +343,7 @@ class BaseInput<T: EventTarget> extends React.Component<
           disabled={this.props.disabled}
           id={this.props.id}
           inputMode={this.props.inputMode}
+          maxLength={this.props.maxLength}
           name={this.props.name}
           onBlur={this.onBlur}
           onChange={this.props.onChange}
@@ -339,9 +355,11 @@ class BaseInput<T: EventTarget> extends React.Component<
           placeholder={this.props.placeholder}
           type={this.getInputType()}
           required={this.props.required}
+          role={this.props.role}
           value={this.props.value}
           min={this.props.min}
           max={this.props.max}
+          step={this.props.step}
           rows={
             this.props.type === CUSTOM_INPUT_TYPE.textarea
               ? this.props.rows

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -166,7 +166,7 @@ const COMPONENTS = {
       Component: thumbnails.SvgTable,
     },
     {
-      href: '/components/unstable-data-table',
+      href: '/components/data-table',
       Component: thumbnails.SvgDataTable,
     },
     {
@@ -314,9 +314,7 @@ function Thumbnail({children, href}) {
     >
       <div
         className={css({
-          ...theme.typography.font100,
-          fontFamily:
-            'SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace',
+          ...theme.typography.MonoParagraphXSmall,
           ...expandBorderStyles(theme.borders.border300),
           borderLeftColor: theme.colors.border,
           borderRightColor: theme.colors.border,

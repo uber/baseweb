@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -34,15 +34,10 @@ export const BaseButton = styled<SharedStylePropsT>(
     borderTopStyle: 'none',
     borderRightStyle: 'none',
     borderBottomStyle: 'none',
-    outline:
-      $isFocusVisible && $shape !== SHAPE.round && $shape !== SHAPE.pill
-        ? `3px solid ${$theme.colors.accent}`
-        : 'none',
-    outlineOffset: '-3px',
-    boxShadow:
-      $isFocusVisible && ($shape === SHAPE.round || $shape === SHAPE.pill)
-        ? `0 0 0 3px ${$theme.colors.accent}`
-        : 'none',
+    outline: 'none',
+    boxShadow: $isFocusVisible
+      ? `inset 0 0 0 3px ${$theme.colors.accent}`
+      : 'none',
     textDecoration: 'none',
     WebkitAppearance: 'none',
     transitionProperty: 'background',
@@ -63,6 +58,7 @@ export const BaseButton = styled<SharedStylePropsT>(
     ...getPaddingStyles({$theme, $size, $shape}),
     // Kind style override
     ...getKindStyles({$theme, $kind, $isLoading, $isSelected, $disabled}),
+    ...getShapeStyles({$theme, $shape, $size}),
   }),
 );
 
@@ -205,7 +201,7 @@ function getBorderRadiiStyles({$theme, $size, $shape}) {
     } else {
       value = '38px';
     }
-  } else if ($shape === SHAPE.round) {
+  } else if ($shape === SHAPE.circle || $shape === SHAPE.round) {
     value = '50%';
   }
 
@@ -231,7 +227,10 @@ function getFontStyles({$theme, $size}) {
 }
 
 function getPaddingStyles({$theme, $size, $shape}) {
-  const iconShape = $shape === SHAPE.square || $shape === SHAPE.round;
+  const iconShape =
+    $shape === SHAPE.square ||
+    $shape === SHAPE.circle ||
+    $shape === SHAPE.round;
   switch ($size) {
     case SIZE.mini:
       return {
@@ -382,5 +381,40 @@ function getKindStyles({
       };
     default:
       return Object.freeze({});
+  }
+}
+
+function getShapeStyles({$theme, $shape, $size}) {
+  if ($shape === SHAPE.circle || $shape === SHAPE.square) {
+    let height, width;
+    switch ($size) {
+      case SIZE.mini:
+        height = '28px';
+        width = '28px';
+        break;
+      case SIZE.compact:
+        height = '36px';
+        width = '36px';
+        break;
+      case SIZE.large:
+        height = '56px';
+        width = '56px';
+        break;
+      case SIZE.default:
+      default:
+        height = '48px';
+        width = '48px';
+        break;
+    }
+    return {
+      height,
+      width,
+      paddingTop: 0,
+      paddingBottom: 0,
+      paddingLeft: 0,
+      paddingRight: 0,
+    };
+  } else {
+    return {};
   }
 }

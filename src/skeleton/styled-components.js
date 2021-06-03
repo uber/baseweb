@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -57,10 +57,9 @@ export const StyledRoot = styled<{
   }
 
   return {
-    background: props.$animation
-      ? getAnimationColor(props)
-      : props.$theme.colors.backgroundTertiary,
-    ...(props.$animation ? animationStyle : {}),
+    ...(props.$animation
+      ? {...animationStyle, backgroundImage: getAnimationColor(props)}
+      : {backgroundColor: props.$theme.colors.backgroundTertiary}),
     height: props.$height,
     width: props.$width,
   };
@@ -70,10 +69,9 @@ export const StyledRow = styled<{$animation?: boolean, $isLastRow: boolean}>(
   'div',
   props => {
     return {
-      background: props.$animation
-        ? getAnimationColor(props)
-        : props.$theme.colors.backgroundTertiary,
-      ...(props.$animation ? animationStyle : {}),
+      ...(props.$animation
+        ? {...animationStyle, backgroundImage: getAnimationColor(props)}
+        : {backgroundColor: props.$theme.colors.backgroundTertiary}),
       width: '100%',
       height: '15px',
       marginBottom: props.$isLastRow ? '0px' : '10px',

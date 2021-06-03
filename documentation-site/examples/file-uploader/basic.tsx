@@ -52,7 +52,7 @@ function useFakeProgress(): [number, () => void, () => void] {
   return [fakeProgress, startFakeProgress, stopFakeProgress];
 }
 
-export default () => {
+export default function Example() {
   const [
     progressAmount,
     startFakeProgress,
@@ -76,4 +76,4 @@ export default () => {
       }
     />
   );
-};
+}

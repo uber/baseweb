@@ -1,11 +1,12 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
 /* eslint-disable react/no-find-dom-node */
+/* eslint-disable cup/no-undef */
 import * as React from 'react';
 import FocusLock from 'react-focus-lock';
 
@@ -17,6 +18,7 @@ import {
   TRIGGER_TYPE,
   ANIMATE_OUT_TIME,
   ANIMATE_IN_TIME,
+  POPOVER_MARGIN,
 } from './constants.js';
 import {Layer, TetherBehavior} from '../layer/index.js';
 import {
@@ -76,6 +78,17 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
       this.popperRef.current.getBoundingClientRect().top > 0
     ) {
       this.setState({autoFocusAfterPositioning: true});
+    }
+
+    if (__DEV__) {
+      if (!this.anchorRef.current) {
+        // eslint-disable-next-line no-console
+        console.warn(
+          `[baseui][Popover] ref has not been passed to the Popper's anchor element.
+              See how to pass the ref to an anchor element in the Popover example
+              http://baseui.design/components/popover#anchor-ref-handling-example`,
+        );
+      }
     }
   }
 
@@ -238,7 +251,8 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
   };
 
   onDocumentClick = (evt: MouseEvent) => {
-    const target = evt.target;
+    //$FlowFixMe
+    const target = evt.composedPath ? evt.composedPath()[0] : evt.target;
     const popper = this.popperRef.current;
     const anchor = this.anchorRef.current;
     // Ignore document click if it came from popover or anchor
@@ -331,7 +345,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
   }
 
   getSharedProps(): $Diff<SharedStylePropsArgT, {children?: React.Node}> {
-    const {isOpen, showArrow} = this.props;
+    const {isOpen, showArrow, popoverMargin = POPOVER_MARGIN} = this.props;
     const {isAnimating, arrowOffset, popoverOffset, placement} = this.state;
     return {
       $showArrow: !!showArrow,
@@ -340,6 +354,8 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
       $placement: placement,
       $isAnimating: isAnimating,
       $isOpen: isOpen,
+      $popoverMargin: popoverMargin,
+      $isHoverTrigger: this.isHoverTrigger(),
     };
   }
 
@@ -456,7 +472,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
                 noFocusGuards={false}
                 // see popover-focus-loop.scenario.js for why hover cannot return focus
                 returnFocus={this.props.returnFocus && !this.isHoverTrigger()}
-                autoFocus={this.state.autoFocusAfterPositioning} // eslint-disable-line jsx-a11y/no-autofocus
+                autoFocus={this.state.autoFocusAfterPositioning}
               >
                 {this.renderPopover(renderedContent)}
               </FocusLock>

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -53,7 +53,7 @@ describe('categorical column', () => {
     });
     const Cell = column.renderCell;
 
-    const {container} = render(<Cell value="A" />);
+    const {container} = render(<Cell value="A" x={0} y={0} />);
     const cell = container.querySelector('div');
     expect(cell.textContent).toBe('A');
   });

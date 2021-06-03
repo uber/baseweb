@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -10,19 +10,14 @@ import * as React from 'react';
 
 import {useStyletron} from '../styles/index.js';
 
-import CellShell from './cell-shell.js';
 import {CategoricalFilter} from './column-categorical.js';
+import Column from './column.js';
 import {COLUMNS} from './constants.js';
-import type {ColumnT} from './types.js';
+import type {ColumnT, SharedColumnOptionsT} from './types.js';
+import {LocaleContext} from '../locale/index.js';
 
 type OptionsT = {|
-  filterable?: boolean,
-  // eslint-disable-next-line flowtype/no-weak-types
-  mapDataToValue: (data: any) => boolean,
-  maxWidth?: number,
-  minWidth?: number,
-  sortable?: boolean,
-  title: string,
+  ...SharedColumnOptionsT<boolean>,
 |};
 
 type FilterParametersT = {|
@@ -40,17 +35,24 @@ function mapSelection<X, Y>(selection: Set<X>, transform: X => Y): Set<Y> {
 }
 
 function BooleanFilter(props) {
+  const locale = React.useContext(LocaleContext);
+
   let selectionString = new Set();
   if (props.filterParams && props.filterParams.selection) {
     selectionString = mapSelection(props.filterParams.selection, i =>
-      String(i),
+      i
+        ? locale.datatable.booleanFilterTrue
+        : locale.datatable.booleanFilterFalse,
     );
   }
 
   return (
     <CategoricalFilter
       close={props.close}
-      data={['true', 'false']}
+      data={[
+        locale.datatable.booleanFilterTrue,
+        locale.datatable.booleanFilterFalse,
+      ]}
       filterParams={
         props.filterParams
           ? {
@@ -64,7 +66,7 @@ function BooleanFilter(props) {
         props.setFilter({
           selection: mapSelection(
             params.selection,
-            i => i.toLowerCase() === 'true',
+            i => i === locale.datatable.booleanFilterTrue,
           ),
           exclude: params.exclude,
           description: params.description,
@@ -74,31 +76,26 @@ function BooleanFilter(props) {
   );
 }
 
-const BooleanCell = React.forwardRef<_, HTMLDivElement>((props, ref) => {
+function BooleanCell(props) {
   const [css, theme] = useStyletron();
+  const locale = React.useContext(LocaleContext);
   return (
-    <CellShell
-      ref={ref}
-      isMeasured={props.isMeasured}
-      isSelected={props.isSelected}
-      onSelect={props.onSelect}
+    <div
+      className={css({
+        textAlign: props.value ? 'right' : 'left',
+        minWidth: theme.sizing.scale1400,
+        width: '100%',
+      })}
     >
-      <div
-        className={css({
-          textAlign: props.value ? 'right' : 'left',
-          minWidth: theme.sizing.scale1400,
-          width: '100%',
-        })}
-      >
-        {props.value ? 'T' : 'F'}
-      </div>
-    </CellShell>
+      {props.value
+        ? locale.datatable.booleanColumnTrueShort
+        : locale.datatable.booleanColumnFalseShort}
+    </div>
   );
-});
-BooleanCell.displayName = 'BooleanCell';
+}
 
 function BooleanColumn(options: OptionsT): BooleanColumnT {
-  return {
+  return Column({
     kind: COLUMNS.BOOLEAN,
     buildFilter: function(params) {
       return function(data) {
@@ -106,6 +103,8 @@ function BooleanColumn(options: OptionsT): BooleanColumnT {
         return params.exclude ? !included : included;
       };
     },
+    cellBlockAlign: options.cellBlockAlign,
+    fillWidth: options.fillWidth,
     filterable: options.filterable === undefined ? true : options.filterable,
     mapDataToValue: options.mapDataToValue,
     maxWidth: options.maxWidth,
@@ -118,7 +117,7 @@ function BooleanColumn(options: OptionsT): BooleanColumnT {
       return a ? -1 : 1;
     },
     title: options.title,
-  };
+  });
 }
 
 export default BooleanColumn;

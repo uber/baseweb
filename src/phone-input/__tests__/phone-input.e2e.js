@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -29,8 +29,8 @@ const unitedKingdom = {iso: 'GB', dialCode: '+44'};
 
 describe('PhoneInput', () => {
   beforeEach(async () => {
-    await mount(page, 'phone-input');
-    await page.waitFor(selectors.phoneInput);
+    await mount(page, 'phone-input--phone-input');
+    await page.waitForSelector(selectors.phoneInput);
   });
 
   it('passes basic a11y tests', async () => {
@@ -56,7 +56,7 @@ describe('PhoneInput', () => {
     // click select
     await page.click(selectors.phoneInputSelect);
     // verify dropdown is open
-    await page.waitFor(selectors.phoneInputSelectDropdown);
+    await page.waitForSelector(selectors.phoneInputSelectDropdown);
     // // verify US option is visible
     await page.waitForSelector(countryListItemForIso(unitedStates.iso), {
       visible: true,
@@ -67,7 +67,7 @@ describe('PhoneInput', () => {
     // click select
     await page.click(selectors.phoneInputSelect);
     // verify dropdown is open
-    await page.waitFor(selectors.phoneInputSelectDropdown);
+    await page.waitForSelector(selectors.phoneInputSelectDropdown);
 
     await page.keyboard.type('United');
     await page.keyboard.press('ArrowDown');
@@ -86,7 +86,7 @@ describe('PhoneInput', () => {
     // click select
     await page.click(selectors.phoneInputSelect);
     // verify dropdown is open
-    await page.waitFor(selectors.phoneInputSelectDropdown);
+    await page.waitForSelector(selectors.phoneInputSelectDropdown);
     // select a new country, United Kingdom
     await page.click(countryListItemForIso(unitedKingdom.iso));
     // verify dropdown has closed

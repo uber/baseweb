@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -12,7 +12,7 @@ import CategoricalColumn from '../column-categorical.js';
 import NumericalColumn from '../column-numerical.js';
 import StringColumn from '../column-string.js';
 import {NUMERICAL_FORMATS} from '../constants.js';
-import {Unstable_StatefulDataTable} from '../stateful-data-table.js';
+import {StatefulDataTable} from '../stateful-data-table.js';
 
 import {ArrowUp} from '../../icon/index.js';
 
@@ -108,7 +108,7 @@ export default function Scenario() {
   return (
     <div>
       <div style={{height: '500px', width: '400px'}}>
-        <Unstable_StatefulDataTable
+        <StatefulDataTable
           columns={columns}
           rows={rows}
           rowActions={rowActions}

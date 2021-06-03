@@ -3,7 +3,7 @@
 import React from 'react';
 import {useStyletron} from 'baseui';
 import {
-  Unstable_StatefulDataTable,
+  StatefulDataTable,
   BooleanColumn,
   CategoricalColumn,
   CustomColumn,
@@ -82,19 +82,19 @@ export const columns = [
   }),
 ];
 
-export default () => {
+export default function Example() {
   const [css] = useStyletron();
   return (
     <React.Fragment>
       <div className={css({height: '400px'})}>
-        <Unstable_StatefulDataTable
+        <StatefulDataTable
           columns={columns}
           rows={[]}
           emptyMessage="custom empty message"
         />
       </div>
       <div className={css({height: '400px'})}>
-        <Unstable_StatefulDataTable
+        <StatefulDataTable
           columns={columns}
           rows={[]}
           emptyMessage={() => <h1>custom empty component</h1>}
@@ -102,4 +102,4 @@ export default () => {
       </div>
     </React.Fragment>
   );
-};
+}

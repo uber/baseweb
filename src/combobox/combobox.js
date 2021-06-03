@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -34,14 +34,18 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
     autocomplete = true,
     disabled = false,
     error = false,
+    onBlur,
     onChange,
+    onFocus,
     onSubmit,
     mapOptionToNode,
     mapOptionToString,
+    id,
     name,
     options,
     overrides = {},
     positive = false,
+    inputRef: forwardInputRef,
     size = SIZE.default,
     value,
   } = props;
@@ -154,10 +158,11 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
     }
   }
 
-  function handleFocus() {
+  function handleFocus(event) {
     if (!isOpen && options.length) {
       handleOpen();
     }
+    if (onFocus) onFocus(event);
   }
 
   function handleBlur(event) {
@@ -172,10 +177,20 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
     ) {
       return;
     }
-
     setIsOpen(false);
     setSelectionIndex(-1);
     setTempValue(value);
+    if (onBlur) onBlur(event);
+  }
+
+  function handleInputClick() {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+
+    if (!isOpen && options.length) {
+      handleOpen();
+    }
   }
 
   function handleInputChange(event) {
@@ -183,6 +198,17 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
     setSelectionIndex(-1);
     onChange(event.target.value, null);
     setTempValue(event.target.value);
+  }
+
+  function handleInputRef(input) {
+    inputRef.current = input;
+    if (forwardInputRef) {
+      if (typeof forwardInputRef === 'function') {
+        forwardInputRef(input);
+      } else {
+        forwardInputRef.current = input;
+      }
+    }
   }
 
   function handleOptionClick(index) {
@@ -234,6 +260,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
         isOpen={isOpen}
         overrides={popoverOverrides}
         placement={PLACEMENT.bottomLeft}
+        onClick={handleInputClick}
         content={
           <ListBox
             // TabIndex attribute exists to exclude option clicks from triggering onBlur event actions.
@@ -288,7 +315,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
           {...inputContainerProps}
         >
           <OverriddenInput
-            inputRef={inputRef}
+            inputRef={handleInputRef}
             aria-activedescendant={
               selectionIndex >= 0 ? activeDescendantId : undefined
             }
@@ -297,6 +324,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
             disabled={disabled}
             error={error}
             name={name}
+            id={id}
             onBlur={handleBlur}
             onChange={handleInputChange}
             onFocus={handleFocus}

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -19,12 +19,10 @@ const {
 const COLUMN_COUNT = 5;
 
 describe('data table columns', () => {
-  jest.retryTimes(3);
-
   it('updates categorical column', async () => {
     const index = 1;
-    await mount(page, 'data-table-columns');
-    await page.waitFor(TABLE_ROOT);
+    await mount(page, 'data-table--columns');
+    await page.waitForSelector(TABLE_ROOT);
     const initial = await getCellContentsAtColumnIndex(
       page,
       COLUMN_COUNT,
@@ -59,7 +57,7 @@ describe('data table columns', () => {
       const button = items.find(item => item.textContent === 'Apply');
       return button.click();
     });
-    await page.waitFor('div[data-baseweb="popover"]', {hidden: true});
+    await page.waitForSelector('div[data-baseweb="popover"]', {hidden: true});
 
     const updated = await getCellContentsAtColumnIndex(
       page,

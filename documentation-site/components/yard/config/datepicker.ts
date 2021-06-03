@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -9,6 +9,12 @@ import {SIZE} from 'baseui/input';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 import inputConfig from './input';
+import menuConfig from './menu';
+import popoverConfig from './popover';
+import iconConfig from './icon';
+import formControlConfig from './form-control';
+import timepickerConfig from './timepicker';
+import selectConfig from './select';
 
 const datepickerProps = require('!!extract-react-types-loader!../../../../src/datepicker/datepicker.js');
 
@@ -111,6 +117,14 @@ const DatepickerConfig: TConfig = {
       type: PropTypes.Function,
       description:
         'A filter function (Date => boolean) that is called to check the disabled state of a day. If false is returned the day is considered to be disabled.',
+      hidden: true,
+    },
+    dateLabel: {
+      value: undefined,
+      type: PropTypes.Function,
+      placeholder: "dateLabel={() => 'Aa'}",
+      description:
+        'A date label function (Date => Node) that is called with the current date to return a label to be used below the date. If a falsy response is returned, no label will be shown but the taller day will be rendered. ',
       hidden: true,
     },
     highlightDate: {
@@ -265,17 +279,28 @@ const DatepickerConfig: TConfig = {
           'CalendarContainer',
           'CalendarHeader',
           'Day',
+          inputConfig,
+          'InputWrapper',
           'Month',
           'MonthContainer',
           'MonthHeader',
           'MonthYearSelectButton',
           'MonthYearSelectIconContainer',
+          {...popoverConfig, componentName: 'MonthYearSelectPopover'},
+          {...menuConfig, componentName: 'MonthYearSelectStatefulMenu'},
           'NextButton',
+          {...iconConfig, componentName: 'NextButtonIcon'},
+          {...popoverConfig, componentName: 'Popover'},
           'PrevButton',
+          {...iconConfig, componentName: 'PrevButtonIcon'},
+          {...selectConfig, componentName: 'QuickSelect'},
+          'QuickSelectContainer',
+          {...formControlConfig, componentName: 'QuickSelectFormControl'},
+          {...timepickerConfig, componentName: 'TimeSelect'},
+          'TimeSelectContainer',
+          {...formControlConfig, componentName: 'TimeSelectFormControl'},
           'Week',
           'WeekdayHeader',
-          'Input',
-          'InputWrapper',
         ],
         sharedProps: {
           $date: 'value',

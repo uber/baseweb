@@ -11,7 +11,7 @@ import {Button, KIND, SIZE} from 'baseui/button';
 import {ButtonGroup} from 'baseui/button-group';
 
 // @ts-ignore
-import {useStackBlitz} from '../../components/hooks.js';
+import {deploy} from '../../components/code-sandboxer.js';
 
 const ActionButtons: React.FC<{
   formatCode: () => void;
@@ -23,10 +23,13 @@ const ActionButtons: React.FC<{
   importsConfig: TImportsConfig;
 }> = ({formatCode, copyCode, reset, code, componentName, importsConfig}) => {
   const [, theme] = useStyletron();
-  const openStackBlitz = useStackBlitz({
-    code,
-    description: `Base Web - ${componentName}`,
-  });
+  async function handleOpenExample() {
+    const url = await deploy(`Base Web - ${componentName}`, code);
+    if (url) {
+      window.open(url, '_blank');
+    }
+  }
+
   return (
     <React.Fragment>
       <ButtonGroup
@@ -60,9 +63,9 @@ const ActionButtons: React.FC<{
         <Button
           kind={KIND.secondary}
           size={SIZE.compact}
-          onClick={openStackBlitz}
+          onClick={handleOpenExample}
         >
-          StackBlitz
+          Try example on CodeSandbox
         </Button>
         <Button
           overrides={{

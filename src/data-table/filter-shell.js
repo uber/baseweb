@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -11,6 +11,7 @@ import * as React from 'react';
 import {Button, SIZE as BUTTON_SIZE} from '../button/index.js';
 import {Checkbox, STYLE_TYPE} from '../checkbox/index.js';
 import {useStyletron} from '../styles/index.js';
+import {LocaleContext} from '../locale/index.js';
 
 type PropsT = {
   children: React.Node,
@@ -21,6 +22,7 @@ type PropsT = {
 
 function FilterShell(props: PropsT) {
   const [css, theme] = useStyletron();
+  const locale = React.useContext(LocaleContext);
   return (
     <form
       className={css({
@@ -51,10 +53,10 @@ function FilterShell(props: PropsT) {
           checkmarkType={STYLE_TYPE.toggle_round}
           labelPlacement="right"
         >
-          Exclude
+          {locale.datatable.filterExclude}
         </Checkbox>
         <Button size={BUTTON_SIZE.compact} type="submit">
-          Apply
+          {locale.datatable.filterApply}
         </Button>
       </div>
     </form>

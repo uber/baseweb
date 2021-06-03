@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -24,15 +24,28 @@ test('Clicking a button should work', () => {
 });
 
 test('Form should submit normally', () => {
+  const consoleError = console.error;
+  // $FlowFixMe
+  console.error = jest.fn();
+
   const onSubmit = jest.fn();
   const utils = render(
     <form onSubmit={onSubmit}>
       <Button data-testid="button">Submit</Button>
     </form>,
   );
+
   const button = utils.getByTestId('button');
   fireEvent.click(button);
   expect(onSubmit).toHaveBeenCalled();
+
+  // JSDOM logs an error due to form submit being not implemented
+  // asserting that it only logs one error here so that we will know
+  // if additional errors come up in the future
+  // $FlowFixMe
+  expect(console.error.mock.calls.length).toBe(1);
+  // $FlowFixMe
+  console.error = consoleError;
 });
 
 test('Form should not submit when button is loading', () => {

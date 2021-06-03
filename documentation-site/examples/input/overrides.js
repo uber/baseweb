@@ -1,9 +1,9 @@
 // @flow
 import React from 'react';
 import {withStyle} from 'baseui';
-import {Input, StyledInputContainer} from 'baseui/input';
+import {Input, StyledRoot} from 'baseui/input';
 
-const RootWithStyle = withStyle(StyledInputContainer, props => {
+const RootWithStyle = withStyle(StyledRoot, props => {
   const {
     $disabled,
     $error,
@@ -34,9 +34,11 @@ const RootWithStyle = withStyle(StyledInputContainer, props => {
   };
 });
 
-export default () => (
-  <Input
-    overrides={{InputContainer: {component: RootWithStyle}}}
-    placeholder="Input with a custom InputContainer override"
-  />
-);
+export default function Example() {
+  return (
+    <Input
+      overrides={{Root: {component: RootWithStyle}}}
+      placeholder="Input with a custom InputContainer override"
+    />
+  );
+}

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -21,8 +21,8 @@ const COLUMN_COUNT = 5;
 describe('data table non-sortable columns', () => {
   it('clicks on column header does not sort', async () => {
     const index = 0;
-    await mount(page, 'data-table-columns-not-sortable');
-    await page.waitFor(TABLE_ROOT);
+    await mount(page, 'data-table--columns-not-sortable');
+    await page.waitForSelector(TABLE_ROOT);
     const before = await getCellContentsAtColumnIndex(
       page,
       COLUMN_COUNT,

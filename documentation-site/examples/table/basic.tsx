@@ -9,4 +9,6 @@ const DATA = [
 
 const COLUMNS = ['Name', 'Age', 'Address'];
 
-export default () => <Table columns={COLUMNS} data={DATA} />;
+export default function Example() {
+  return <Table columns={COLUMNS} data={DATA} />;
+}

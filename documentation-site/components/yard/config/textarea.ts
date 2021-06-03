@@ -1,5 +1,5 @@
 import omit from 'just-omit';
-import {Textarea, SIZE, ADJOINED} from 'baseui/textarea';
+import {Textarea, SIZE} from 'baseui/textarea';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 import {theme, inputProps} from './input';
@@ -14,11 +14,11 @@ const TextareaConfig: TConfig = {
   scope: {
     Textarea,
     SIZE,
-    ADJOINED,
   },
   theme,
   props: {
     ...omit(inputProps, [
+      'adjoined',
       'type',
       'startEnhancer',
       'endEnhancer',

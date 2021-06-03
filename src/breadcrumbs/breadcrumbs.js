@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -14,7 +14,6 @@ import {ThemeContext} from '../styles/theme-provider.js';
 import ChevronRight from '../icon/chevron-right.js';
 import ChevronLeft from '../icon/chevron-left.js';
 import type {BreadcrumbsPropsT} from './types.js';
-import type {BreadcrumbLocaleT} from './locale.js';
 import {
   StyledRoot,
   StyledSeparator,
@@ -23,8 +22,7 @@ import {
 } from './styled-components.js';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 
-type LocaleT = {|locale?: BreadcrumbLocaleT|};
-export function BreadcrumbsRoot(props: {|...BreadcrumbsPropsT, ...LocaleT|}) {
+export function Breadcrumbs(props: BreadcrumbsPropsT) {
   const {overrides = {}, showTrailingSeparator = false} = props;
   const childrenArray = Children.toArray(props.children);
   const childrenWithSeparators = [];
@@ -76,22 +74,16 @@ export function BreadcrumbsRoot(props: {|...BreadcrumbsPropsT, ...LocaleT|}) {
   });
 
   return (
-    <Root
-      aria-label={
-        props.ariaLabel || (props.locale ? props.locale.ariaLabel : '')
-      }
-      data-baseweb="breadcrumbs"
-      {...baseRootProps}
-    >
-      <List {...baseListProps}>{childrenWithSeparators}</List>
-    </Root>
-  );
-}
-
-function Breadcrumbs(props: BreadcrumbsPropsT) {
-  return (
     <LocaleContext.Consumer>
-      {locale => <BreadcrumbsRoot {...props} locale={locale.breadcrumbs} />}
+      {locale => (
+        <Root
+          aria-label={props.ariaLabel || locale.breadcrumbs.ariaLabel}
+          data-baseweb="breadcrumbs"
+          {...baseRootProps}
+        >
+          <List {...baseListProps}>{childrenWithSeparators}</List>
+        </Root>
+      )}
     </LocaleContext.Consumer>
   );
 }

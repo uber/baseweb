@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -7,8 +7,8 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 import * as React from 'react';
-import {mount} from 'enzyme';
-import {StyledListItem} from '../styled-components.js';
+import {render, getByTestId} from '@testing-library/react';
+
 import OptionList from '../option-list.js';
 
 const mockItem = {label: 'item1'};
@@ -21,21 +21,15 @@ function getSharedProps() {
 }
 
 describe('Option List Stateless Component', () => {
-  test('basic renders', () => {
-    const component = mount(<OptionList {...getSharedProps()} />);
+  it('basic renders', () => {
+    const {container} = render(<OptionList {...getSharedProps()} />);
 
-    expect(component.find(StyledListItem)).toExist();
-
-    expect(
-      component
-        .find(StyledListItem)
-        .first()
-        .text(),
-    ).toEqual(mockItem.label);
+    const item = container.querySelector('li');
+    expect(item.textContent).toBe(mockItem.label);
   });
 
-  test('renders with components overrides', () => {
-    const NewListItem = () => <div id="list-item" />;
+  it('renders with components overrides', () => {
+    const NewListItem = () => <div data-testid="list-item" />;
     const props = {
       ...getSharedProps(),
       overrides: {
@@ -47,9 +41,7 @@ describe('Option List Stateless Component', () => {
         },
       },
     };
-    const component = mount(<OptionList {...props} />);
-    expect(component.find(StyledListItem)).not.toExist();
-    expect(component.find(NewListItem)).toExist();
-    expect(component.find(NewListItem).prop('custom')).toEqual('prop');
+    const {container} = render(<OptionList {...props} />);
+    getByTestId(container, 'list-item');
   });
 });

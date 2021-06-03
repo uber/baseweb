@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -26,8 +26,8 @@ function compareElements(page, a, b) {
 
 describe('PinCode', () => {
   beforeEach(async () => {
-    await mount(page, 'pin-code');
-    await page.waitFor(selectors.input);
+    await mount(page, 'pin-code--pin-code');
+    await page.waitForSelector(selectors.input);
   });
 
   it('passes basic a11y tests', async () => {
@@ -108,8 +108,8 @@ describe('PinCode', () => {
 
 describe('PinCodeMask', () => {
   beforeEach(async () => {
-    await mount(page, 'pin-code-mask');
-    await page.waitFor(selectors.input);
+    await mount(page, 'pin-code--mask');
+    await page.waitForSelector(selectors.input);
   });
 
   it('successfully masks', async () => {

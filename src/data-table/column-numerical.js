@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -14,10 +14,11 @@ import {Input, SIZE as INPUT_SIZE} from '../input/index.js';
 import {useStyletron} from '../styles/index.js';
 import {Paragraph4} from '../typography/index.js';
 
-import CellShell from './cell-shell.js';
+import Column from './column.js';
 import {COLUMNS, NUMERICAL_FORMATS, NUMERICAL_OPERATIONS} from './constants.js';
 import FilterShell from './filter-shell.js';
-import type {ColumnT} from './types.js';
+import type {ColumnT, SharedColumnOptionsT} from './types.js';
+import {LocaleContext} from '../locale/index.js';
 
 type NumericalFormats =
   | typeof NUMERICAL_FORMATS.DEFAULT
@@ -32,16 +33,10 @@ type NumericalOperations =
   | typeof NUMERICAL_OPERATIONS.LTE;
 
 type OptionsT = {|
-  filterable?: boolean,
+  ...SharedColumnOptionsT<number>,
   format?: NumericalFormats | ((value: number) => string),
   highlight?: number => boolean,
-  // eslint-disable-next-line flowtype/no-weak-types
-  mapDataToValue: (data: any) => number,
-  maxWidth?: number,
-  minWidth?: number,
   precision?: number,
-  sortable?: boolean,
-  title: string,
 |};
 
 type FilterParametersT = {|
@@ -163,6 +158,7 @@ function filterParamsToInitialState(filterParams) {
 
 function NumericalFilter(props) {
   const [css, theme] = useStyletron();
+  const locale = React.useContext(LocaleContext);
 
   const initialState = filterParamsToInitialState(props.filterParams);
   const [exclude, setExclude] = React.useState(initialState.exclude);
@@ -242,7 +238,7 @@ function NumericalFilter(props) {
               const operation = NUMERICAL_OPERATIONS.LT;
               props.setFilter({
                 comparisons: [{value, operation}],
-                description: `${operation} ${value}`,
+                description: `< ${value}`,
                 exclude,
               });
               break;
@@ -252,7 +248,7 @@ function NumericalFilter(props) {
               const operation = NUMERICAL_OPERATIONS.GT;
               props.setFilter({
                 comparisons: [{value, operation}],
-                description: `${operation} ${value}`,
+                description: `> ${value}`,
                 exclude,
               });
               break;
@@ -262,7 +258,7 @@ function NumericalFilter(props) {
               const operation = NUMERICAL_OPERATIONS.LTE;
               props.setFilter({
                 comparisons: [{value, operation}],
-                description: `${operation} ${value}`,
+                description: `≤ ${value}`,
                 exclude,
               });
               break;
@@ -272,7 +268,7 @@ function NumericalFilter(props) {
               const operation = NUMERICAL_OPERATIONS.GTE;
               props.setFilter({
                 comparisons: [{value, operation}],
-                description: `${operation} ${value}`,
+                description: `≥ ${value}`,
                 exclude,
               });
               break;
@@ -293,7 +289,7 @@ function NumericalFilter(props) {
                     operation: NUMERICAL_OPERATIONS.GT,
                   },
                 ],
-                description: `${NUMERICAL_OPERATIONS.GTE} ${leftValue} & ${NUMERICAL_OPERATIONS.LTE} ${rightValue}`,
+                description: `≥ ${leftValue} & ≤ ${rightValue}`,
                 exclude: !exclude,
               });
               break;
@@ -306,7 +302,7 @@ function NumericalFilter(props) {
           const operation = NUMERICAL_OPERATIONS.EQ;
           props.setFilter({
             comparisons: [{value, operation}],
-            description: `${operation} ${value}`,
+            description: `= ${value}`,
             exclude,
           });
         }
@@ -329,13 +325,13 @@ function NumericalFilter(props) {
           type="button"
           overrides={{BaseButton: {style: {width: '100%'}}}}
         >
-          Range
+          {locale.datatable.numericalFilterRange}
         </Button>
         <Button
           type="button"
           overrides={{BaseButton: {style: {width: '100%'}}}}
         >
-          Single Value
+          {locale.datatable.numericalFilterSingleValue}
         </Button>
       </ButtonGroup>
 
@@ -429,35 +425,27 @@ function NumericalFilter(props) {
   );
 }
 
-const NumericalCell = React.forwardRef<_, HTMLDivElement>((props, ref) => {
+function NumericalCell(props) {
   const [css, theme] = useStyletron();
   return (
-    <CellShell
-      ref={ref}
-      isMeasured={props.isMeasured}
-      isSelected={props.isSelected}
-      onSelect={props.onSelect}
+    <div
+      className={css({
+        ...theme.typography.MonoParagraphXSmall,
+        display: 'flex',
+        justifyContent: theme.direction !== 'rtl' ? 'flex-end' : 'flex-start',
+        color: props.highlight(props.value)
+          ? theme.colors.contentNegative
+          : null,
+        width: '100%',
+      })}
     >
-      <div
-        className={css({
-          display: 'flex',
-          justifyContent: theme.direction !== 'rtl' ? 'flex-end' : 'flex-start',
-          color: props.highlight(props.value)
-            ? theme.colors.contentNegative
-            : null,
-          fontFamily: `"Lucida Console", Monaco, monospace`,
-          width: '100%',
-        })}
-      >
-        {format(props.value, {
-          format: props.format,
-          precision: props.precision,
-        })}
-      </div>
-    </CellShell>
+      {format(props.value, {
+        format: props.format,
+        precision: props.precision,
+      })}
+    </div>
   );
-});
-NumericalCell.displayName = 'NumericalCell';
+}
 
 const defaultOptions = {
   title: '',
@@ -488,7 +476,7 @@ function NumericalColumn(options: OptionsT): NumericalColumnT {
     normalizedOptions.highlight = (n: number) => (n < 0: boolean);
   }
 
-  return {
+  return Column({
     kind: COLUMNS.NUMERICAL,
     buildFilter: function(params) {
       return function(data) {
@@ -513,24 +501,22 @@ function NumericalColumn(options: OptionsT): NumericalColumnT {
         return params.exclude ? !included : included;
       };
     },
+    cellBlockAlign: options.cellBlockAlign,
+    fillWidth: options.fillWidth,
     filterable: normalizedOptions.filterable,
     mapDataToValue: options.mapDataToValue,
     maxWidth: options.maxWidth,
     minWidth: options.minWidth,
-    renderCell: React.forwardRef((props, ref) => {
+    renderCell: function RenderNumericalCell(props) {
       return (
         <NumericalCell
-          ref={ref}
-          isMeasured={props.isMeasured}
-          isSelected={props.isSelected}
-          onSelect={props.onSelect}
-          value={props.value}
+          {...props}
           format={normalizedOptions.format}
           highlight={normalizedOptions.highlight}
           precision={normalizedOptions.precision}
         />
       );
-    }),
+    },
     renderFilter: function RenderNumericalFilter(props) {
       return <NumericalFilter {...props} options={normalizedOptions} />;
     },
@@ -539,7 +525,7 @@ function NumericalColumn(options: OptionsT): NumericalColumnT {
       return a - b;
     },
     title: normalizedOptions.title,
-  };
+  });
 }
 
 export default NumericalColumn;

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -20,7 +20,9 @@ const sizing: SizingT = {
   scale700: '20px',
   scale750: '22px',
   scale800: '24px',
+  scale850: '28px',
   scale900: '32px',
+  scale950: '36px',
   scale1000: '40px',
   scale1200: '48px',
   scale1400: '56px',

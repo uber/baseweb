@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -21,34 +21,31 @@ const selectors = {
 };
 
 describe('popover', () => {
-  jest.setTimeout(10 * 1000);
-  jest.retryTimes(3);
-
   it('closes one popover at a time on esc key press', async () => {
-    await mount(page, 'popover-select');
-    await page.waitFor('button');
+    await mount(page, 'popover--select');
+    await page.waitForSelector('button');
     await page.click('button');
-    await page.waitFor(selectors.tooltip);
-    await page.waitFor(selectors.selectInput);
+    await page.waitForSelector(selectors.tooltip);
+    await page.waitForSelector(selectors.selectInput);
     await page.click(selectors.selectInput);
-    await page.waitFor(selectors.selectDropDown);
+    await page.waitForSelector(selectors.selectDropDown);
 
     await page.keyboard.press('Escape');
-    await page.waitFor(selectors.selectDropDown, {hidden: true});
-    await page.waitFor(selectors.selectInput);
+    await page.waitForSelector(selectors.selectDropDown, {hidden: true});
+    await page.waitForSelector(selectors.selectInput);
 
     await page.keyboard.press('Escape');
-    await page.waitFor(selectors.selectInput, {hidden: true});
+    await page.waitForSelector(selectors.selectInput, {hidden: true});
   });
 
   it('closes one popover at a time on click outside', async () => {
-    await mount(page, 'popover-select');
-    await page.waitFor('button');
+    await mount(page, 'popover--select');
+    await page.waitForSelector('button');
     await page.click('button');
-    await page.waitFor(selectors.tooltip);
-    await page.waitFor(selectors.selectInput);
+    await page.waitForSelector(selectors.tooltip);
+    await page.waitForSelector(selectors.selectInput);
     await page.click(selectors.selectInput);
-    await page.waitFor(selectors.selectDropDown);
+    await page.waitForSelector(selectors.selectDropDown);
     // Both popovers opened at this point.
     // Verify that popovers are not nested but rendered in a flat layers way
     // where every new layer rendered as a sibling to the rest of layers
@@ -66,12 +63,12 @@ describe('popover', () => {
     // First document and outside of the popovers click
     // closes only the top-most popover
     await page.click(selectors.outsideOfPopover);
-    await page.waitFor(selectors.selectDropDown, {hidden: true});
-    await page.waitFor(selectors.selectInput);
+    await page.waitForSelector(selectors.selectDropDown, {hidden: true});
+    await page.waitForSelector(selectors.selectInput);
 
     // Second document and outside of the remaining popover click
     // closes only the that popover
     await page.click(selectors.outsideOfPopover);
-    await page.waitFor(selectors.selectInput, {hidden: true});
+    await page.waitForSelector(selectors.selectInput, {hidden: true});
   });
 });

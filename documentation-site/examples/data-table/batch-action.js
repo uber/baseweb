@@ -6,7 +6,7 @@ import Alert from 'baseui/icon/alert.js';
 import Check from 'baseui/icon/check.js';
 
 import {
-  Unstable_StatefulDataTable,
+  StatefulDataTable,
   BooleanColumn,
   CategoricalColumn,
   NumericalColumn,
@@ -135,7 +135,7 @@ const initialRows = [
   ['Zookeeper', false, 'Romantic Comedy', 80, 170, 2.1, 5.0],
 ].map(r => ({id: r[0], data: r}));
 
-export default () => {
+export default function Example() {
   const [rows, setRows] = React.useState(initialRows);
 
   function flagRows(ids) {
@@ -200,7 +200,7 @@ export default () => {
 
   return (
     <div style={{height: '300px'}}>
-      <Unstable_StatefulDataTable
+      <StatefulDataTable
         batchActions={batchActions}
         rowActions={rowActions}
         columns={columns}
@@ -208,4 +208,4 @@ export default () => {
       />
     </div>
   );
-};
+}

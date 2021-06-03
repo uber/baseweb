@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import StringColumn from '../column-string.js';
-import {Unstable_StatefulDataTable} from '../stateful-data-table.js';
+import {StatefulDataTable} from '../stateful-data-table.js';
 
 import AnimalData from './animal-data.js';
 
@@ -23,8 +23,14 @@ const loremIpsum = `"We went upstairs together, the colonel first with the lamp,
 const columns = [
   StringColumn({
     title: 'Name',
-    minWidth: 300,
+    minWidth: 250,
     mapDataToValue: (data: RowDataT) => data.Name,
+  }),
+  StringColumn({
+    title: 'Vertically Center',
+    minWidth: 250,
+    mapDataToValue: (data: RowDataT) => data.Name,
+    cellBlockAlign: 'center',
   }),
   StringColumn({
     title: 'Long Text',
@@ -51,7 +57,7 @@ const actions = [
 export default function Scenario() {
   return (
     <div style={{height: '600px', width: '700px'}}>
-      <Unstable_StatefulDataTable
+      <StatefulDataTable
         batchActions={actions}
         columns={columns}
         rows={rows}

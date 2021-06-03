@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -29,6 +29,10 @@ class DateHelpers<T> {
           fullOrdinalWeek: 'dddd, MMMM Do YYYY',
           slashDate: 'YYYY/MM/DD',
           weekday: 'dddd',
+          // moment does not have a similar 'single character' weekday format like the other libraries
+          // the format below will only supply two character abbreviations.
+          weekdaymin: 'dd',
+          quarter: '[Q]Q',
         },
       },
       DateFnsUtils: {
@@ -36,8 +40,10 @@ class DateHelpers<T> {
           monthNumber: 'M',
           dayOfMonthNumber: 'd',
           weekday: 'EEEE',
+          weekdaymin: 'EEEEE',
           slashDate: 'yyyy/MM/dd',
           fullOrdinalWeek: 'EEEE, MMMM do yyyy',
+          quarter: 'QQQ',
         },
       },
       LuxonUtils: {
@@ -45,8 +51,10 @@ class DateHelpers<T> {
           monthNumber: 'M',
           dayOfMonthNumber: 'd',
           weekday: 'EEEE',
+          weekdaymin: 'EEEEE',
           slashDate: 'yyyy/MM/dd',
           fullOrdinalWeek: 'EEEE, MMMM dd yyyy',
+          quarter: 'Qq',
         },
       },
     };
@@ -70,9 +78,16 @@ class DateHelpers<T> {
     const {getOptions = defaultGetOptions, formats} =
       adapterMap[className] || adapterMap['DateFnsUtils'];
     const options = getOptions(adapter);
-    return new UtilsClass({
-      ...updateOptions({...options, formats: {...options.formats, ...formats}}),
-    });
+    return new UtilsClass(
+      Object.assign(
+        {},
+        updateOptions(
+          Object.assign({}, options, {
+            formats: Object.assign({}, options.formats, formats),
+          }),
+        ),
+      ),
+    );
   };
   // eslint-disable-next-line flowtype/no-weak-types
   format: (T, string, any) => string = (date, format, locale) => {
@@ -120,9 +135,7 @@ class DateHelpers<T> {
   };
   // eslint-disable-next-line flowtype/no-weak-types
   getWeekdayMinInLocale: (T, any) => string = (date, locale) => {
-    return this.getAdapterWithNewLocale(locale)
-      .format(date, 'weekday')
-      .charAt(0);
+    return this.getAdapterWithNewLocale(locale).format(date, 'weekdaymin');
   };
   // eslint-disable-next-line flowtype/no-weak-types
   getMonthInLocale: (number, any) => string = (monthNumber, locale) => {
@@ -135,6 +148,14 @@ class DateHelpers<T> {
   // eslint-disable-next-line flowtype/no-weak-types
   getWeekdayInLocale: (T, any) => string = (date, locale) => {
     return this.getAdapterWithNewLocale(locale).format(date, 'weekday');
+  };
+  // eslint-disable-next-line flowtype/no-weak-types
+  getQuarterInLocale: (number, any) => string = (quarterNumber, locale) => {
+    const localeAdapter = this.getAdapterWithNewLocale(locale);
+    return localeAdapter.format(
+      localeAdapter.setMonth(localeAdapter.date(), quarterNumber * 3),
+      'quarter',
+    );
   };
   getEndOfWeek: T => T = date => {
     return this.adapter.endOfWeek(date);

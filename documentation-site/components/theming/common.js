@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -15,13 +15,9 @@ import * as React from 'react';
 import {useStyletron, styled} from 'baseui';
 import {LightTheme, DarkTheme} from 'baseui/themes';
 
-const monospaceFontFamily =
-  'SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace';
-
 const SubTitle = styled<{}>('span', ({$theme}) => {
   return {
-    ...$theme.typography.LabelSmall,
-    fontFamily: monospaceFontFamily,
+    ...$theme.typography.MonoLabelSmall,
     fontStyle: 'italic',
     color: $theme.colors.contentSecondary,
   };
@@ -29,15 +25,13 @@ const SubTitle = styled<{}>('span', ({$theme}) => {
 
 export const Title = styled<{}>('div', ({$theme}) => {
   return {
-    ...$theme.typography.HeadingXSmall,
-    fontFamily: monospaceFontFamily,
+    ...$theme.typography.MonoHeadingXSmall,
   };
 });
 
 export const Value = styled<{}>('div', ({$theme}) => {
   return {
-    ...$theme.typography.ParagraphSmall,
-    fontFamily: monospaceFontFamily,
+    ...$theme.typography.MonoParagraphSmall,
   };
 });
 

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -18,6 +18,7 @@ class StarRating extends React.Component<StarRatingPropsT, RatingStateT> {
   static defaultProps = {
     overrides: {},
     numItems: 5,
+    readOnly: false,
   };
 
   state = {isFocusVisible: false, previewIndex: undefined};
@@ -46,7 +47,13 @@ class StarRating extends React.Component<StarRatingPropsT, RatingStateT> {
   };
 
   renderRatingContents = () => {
-    const {overrides = {}, value = -1, numItems, size = 22} = this.props;
+    const {
+      overrides = {},
+      value = -1,
+      numItems,
+      size = 22,
+      readOnly = false,
+    } = this.props;
     const {previewIndex} = this.state;
     const [Star, starProps] = getOverrides(overrides.Item, StyledStar);
 
@@ -66,15 +73,28 @@ class StarRating extends React.Component<StarRatingPropsT, RatingStateT> {
           aria-setsize={numItems}
           aria-checked={x <= value}
           aria-posinset={x}
+          aria-disabled={readOnly}
           $size={size}
           $index={x}
           $isActive={
             previewIndex !== undefined ? x <= previewIndex : x <= value
           }
+          $isPartialActive={
+            previewIndex !== undefined ? false : x <= value + 0.5
+          }
           $isSelected={x === previewIndex}
           $isFocusVisible={this.state.isFocusVisible && isFocusable}
-          onClick={() => this.selectItem(x)}
+          $isReadOnly={readOnly}
+          onClick={() => {
+            if (readOnly) {
+              return;
+            }
+            this.selectItem(x);
+          }}
           onKeyDown={e => {
+            if (readOnly) {
+              return;
+            }
             if (e.keyCode === ARROW_UP || e.keyCode === ARROW_LEFT) {
               e.preventDefault && e.preventDefault();
               const prevIndex = value - 1 < 1 ? numItems : value - 1;
@@ -88,7 +108,12 @@ class StarRating extends React.Component<StarRatingPropsT, RatingStateT> {
               refs[nextIndex].current && refs[nextIndex].current.focus();
             }
           }}
-          onMouseOver={() => this.updatePreview(x)}
+          onMouseOver={() => {
+            if (readOnly) {
+              return;
+            }
+            this.updatePreview(x);
+          }}
           {...starProps}
           onFocus={forkFocus(starProps, this.handleFocus)}
           onBlur={forkBlur(starProps, this.handleBlur)}

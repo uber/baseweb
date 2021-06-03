@@ -2,19 +2,22 @@
 import * as React from 'react';
 import {useStyletron} from 'baseui';
 import {ProgressSteps, Step} from 'baseui/progress-steps';
-import {Button} from 'baseui/button';
+import {Button, SHAPE, KIND, SIZE} from 'baseui/button';
 import {StatefulSelect, TYPE} from 'baseui/select';
 
 function SpacedButton(props) {
   return (
     <Button
       {...props}
+      shape={SHAPE.pill}
+      kind={KIND.secondary}
+      size={SIZE.compact}
       overrides={{
         BaseButton: {
           style: ({$theme}) => ({
             marginLeft: $theme.sizing.scale200,
             marginRight: $theme.sizing.scale200,
-            marginTop: $theme.sizing.scale200,
+            marginTop: $theme.sizing.scale800,
           }),
         },
       }}
@@ -29,7 +32,12 @@ function ProgressStepsContainer() {
   return (
     <ProgressSteps current={current}>
       <Step title="Create Account">
-        <div className={css({...theme.typography.font300})}>
+        <div
+          className={css({
+            ...theme.typography.ParagraphSmall,
+            marginBottom: '24px',
+          })}
+        >
           Here is some step content
         </div>
         <StatefulSelect
@@ -54,7 +62,7 @@ function ProgressStepsContainer() {
         </SpacedButton>
       </Step>
       <Step title="Verify Payment">
-        <div className={css({...theme.typography.font300})}>
+        <div className={css({...theme.typography.ParagraphSmall})}>
           Here is some more content
         </div>
         <SpacedButton onClick={() => setCurrent(0)}>
@@ -65,7 +73,7 @@ function ProgressStepsContainer() {
         </SpacedButton>
       </Step>
       <Step title="Add Payment Method">
-        <div className={css({...theme.typography.font300})}>
+        <div className={css({...theme.typography.ParagraphSmall})}>
           Here too!
         </div>
         <SpacedButton onClick={() => setCurrent(1)}>

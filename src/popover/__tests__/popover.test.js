@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -8,430 +8,267 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env browser */
 
 import * as React from 'react';
-import ReactDOM from 'react-dom';
-import {Layer, TetherBehavior} from '../../layer/index.js';
-import {mount} from 'enzyme';
 import {
-  Popover,
-  StyledBody,
-  ACCESSIBILITY_TYPE,
-  TRIGGER_TYPE,
-} from '../index.js';
+  render,
+  fireEvent,
+  findByText,
+  getByText,
+  getByRole,
+  queryByText,
+  waitForElementToBeRemoved,
+} from '@testing-library/react';
+
+import {TestBaseProvider} from '../../test/test-utils.js';
+import {Popover, ACCESSIBILITY_TYPE, TRIGGER_TYPE} from '../index.js';
 
 import {styled} from '../../styles/index.js';
 
-jest.useFakeTimers();
-
-// Mock Layer and TetherBehavior
-let mockCount = 0;
-jest.mock('../../layer/index.js', () => {
-  return {
-    Layer: jest.fn().mockImplementation(props => {
-      if (props.onMount && !mockCount) {
-        ++mockCount;
-        props.onMount();
-      }
-      return props.children;
-    }),
-    TetherBehavior: jest.fn().mockImplementation(props => {
-      return props.children;
-    }),
-  };
-});
-
-// Mock React 16 portals in a way that makes them easy to test
-const originalCreatePortal = ReactDOM.createPortal;
-
-// Mock document.addEventListener
-const originalDocumentAddListener = document.addEventListener;
-
 describe('Popover', () => {
-  let wrapper;
+  it('handles clicks', () => {
+    const content = 'content';
+    const anchorContent = 'click';
 
-  beforeAll(() => {
-    // $FlowFixMe
-    document.addEventListener = jest.fn();
+    function TestCase() {
+      const [open, setOpen] = React.useState(false);
+      return (
+        <TestBaseProvider>
+          <Popover
+            content={content}
+            isOpen={open}
+            onClick={() => setOpen(true)}
+          >
+            <button type="button">{anchorContent}</button>
+          </Popover>
+        </TestBaseProvider>
+      );
+    }
+
+    const {container} = render(<TestCase />);
+    expect(queryByText(container, content)).toBeNull();
+
+    fireEvent.click(getByText(container, anchorContent));
+    expect(queryByText(container, content)).not.toBeNull();
   });
 
-  afterEach(() => {
-    mockCount = 0;
-    // $FlowFixMe
-    Layer.mockClear();
-    // $FlowFixMe
-    TetherBehavior.mockClear();
-    document.addEventListener.mockClear();
-    wrapper && wrapper.unmount();
+  it('handles mouse enter/leave', async () => {
+    const content = 'content';
+    const anchorContent = 'hover';
+
+    function TestCase() {
+      const [open, setOpen] = React.useState(false);
+      return (
+        <TestBaseProvider>
+          <Popover
+            content={content}
+            isOpen={open}
+            onMouseEnter={() => setOpen(true)}
+            onMouseLeave={() => setOpen(false)}
+            triggerType={TRIGGER_TYPE.hover}
+          >
+            <button>{anchorContent}</button>
+          </Popover>
+        </TestBaseProvider>
+      );
+    }
+
+    const {container} = render(<TestCase />);
+    expect(queryByText(container, content)).toBeNull();
+
+    fireEvent.mouseEnter(getByText(container, anchorContent));
+    await findByText(container, content);
+
+    fireEvent.mouseLeave(getByText(container, anchorContent));
+    await waitForElementToBeRemoved(() => getByText(container, content));
   });
 
-  afterAll(() => {
-    // $FlowFixMe
-    ReactDOM.createPortal = originalCreatePortal;
-    // $FlowFixMe
-    document.addEventListener = originalDocumentAddListener;
-  });
-
-  test('Popover - basic click functionality', () => {
-    const onClick = jest.fn();
-    const onMouseEnter = jest.fn();
-    const content = <strong>Hello world</strong>;
-    const button = <button type="button">Click me</button>;
-    wrapper = mount(
-      <Popover
-        content={content}
-        isOpen={false}
-        onClick={onClick}
-        onMouseEnter={onMouseEnter}
-      >
-        {button}
-      </Popover>,
-    );
-
-    // Should render single button child to begin
-    expect(wrapper.length).toBe(1);
-    expect(wrapper).toHaveDisplayName('Popover');
-    expect(wrapper).toHaveText('Click me');
-
-    // Test click handling (and hover events ignored)
-    wrapper.simulate('mouseenter');
-    expect(onMouseEnter).not.toBeCalled();
-    wrapper.simulate('click');
-    expect(onClick).toBeCalled();
-
-    // Show the popover
-    wrapper.setProps({isOpen: true});
-
-    // Should now have the Layer as the second child
-    expect(wrapper.children().length).toBe(2);
-
-    wrapper.update();
-    // Portal should have the popover body and content
-    let popoverBody = wrapper.find('[data-baseweb="popover"]').first();
-    expect(popoverBody).toExist();
-    expect(popoverBody).toHaveProp({
-      $showArrow: false,
-      $placement: 'auto',
-      $popoverOffset: {top: 0, left: 0},
-      $arrowOffset: {top: 0, left: 0},
-      $isAnimating: false,
-      $isOpen: true,
-    });
-    const renderedContent = popoverBody.find('strong');
-    expect(renderedContent).toExist();
-    expect(popoverBody).toHaveText('Hello world');
-
-    expect(Layer).toHaveBeenCalled();
-    expect(TetherBehavior).toHaveBeenCalled();
-    expect(TetherBehavior).toHaveBeenCalled();
-    // $FlowFixMe
-    const tetherProps = TetherBehavior.mock.calls[1][0];
-    const wrapperInstance = wrapper.instance();
-    expect(tetherProps).toMatchObject({
-      popperOptions: {
-        modifiers: {
-          preventOverflow: {enabled: !wrapper.props().ignoreBoundary},
-        },
-      },
-      onPopperUpdate: wrapperInstance.onPopperUpdate,
-      placement: wrapper.state().placement,
-    });
-
-    expect(tetherProps.anchorRef).toBe(wrapperInstance.anchorRef.current);
-    expect(tetherProps.arrowRef).toBe(wrapperInstance.arrowRef.current);
-    expect(tetherProps.popperRef).toBe(wrapperInstance.popperRef.current);
-
-    // // Manually emit a popper update (normally popper does this by itself)
-    const offsets = {
-      popper: {top: 10, left: 10},
-      arrow: {top: 10, left: 10},
-    };
-    wrapper.instance().onPopperUpdate(offsets, {
-      // $FlowFixMe
-      offsets,
-      placement: 'left-start',
-    });
-    jest.runAllTimers();
-    wrapper.update();
-
-    popoverBody = wrapper.find('[data-baseweb="popover"]').first();
-    expect(popoverBody).toHaveProp({
-      $placement: 'leftTop',
-      $popoverOffset: {top: 10, left: 10},
-      $arrowOffset: {top: 10, left: 10},
-      $isAnimating: true,
-      $isOpen: true,
-    });
-  });
-
-  test('basic mouseenter/mouseleave functionality', () => {
-    const onClickButton = jest.fn();
-    const onClickPopover = jest.fn();
-    const onMouseEnter = jest.fn();
-    const onMouseLeave = jest.fn();
-    const content = <strong>Hello world</strong>;
-    const button = (
-      <button onClick={onClickButton} type="button">
-        Click me
-      </button>
-    );
-    wrapper = mount(
-      <Popover
-        content={content}
-        returnFocus={false}
-        isOpen={false}
-        triggerType="hover"
-        onClick={onClickPopover}
-        onMouseEnter={onMouseEnter}
-        onMouseLeave={onMouseLeave}
-        onMouseLeaveDelay={200}
-      >
-        {button}
-      </Popover>,
-    );
-
-    // Test click handling (and hover events ignored)
-    const renderedButton = wrapper.childAt(0);
-    expect(renderedButton).toHaveDisplayName('button');
-    renderedButton.simulate('mouseenter');
-    jest.runAllTimers();
-    expect(onMouseEnter).toBeCalled();
-    expect(onMouseLeave).not.toBeCalled();
-
-    // Show the popover
-    wrapper.setProps({isOpen: true});
-
-    let popoverBody = wrapper.find('[data-baseweb="popover"]').first();
-    popoverBody.simulate('mouseleave');
-    expect(onMouseLeave).not.toBeCalled();
-    jest.runAllTimers();
-    expect(onMouseLeave).toBeCalled();
-
-    // Click should still work actually
-    renderedButton.simulate('click');
-    expect(onClickButton).toBeCalled();
-    expect(onClickPopover).not.toBeCalled();
-  });
-
-  test('autoFocus and returnFocus', () => {
+  it('autoFocus and returnFocus', async () => {
     const buttonId = 'foo';
     const firstInputId = 'bar';
-    const FocusMe = React.forwardRef(() => {
+    const contentContent = 'content';
+    const anchorContent = 'anchor';
+    const content = (
+      <div>
+        <input id={firstInputId} />
+        <input id="baz" />
+        {contentContent}
+      </div>
+    );
+    const FocusMe = React.forwardRef((props, ref) => {
       const el = React.useRef(null);
       React.useEffect(() => {
         el.current && el.current.focus();
       });
       return (
-        <button id={buttonId} ref={el} type="button">
-          Click me
-        </button>
+        <div ref={ref}>
+          <button {...props} id={buttonId} ref={el} type="button">
+            {anchorContent}
+          </button>
+        </div>
       );
     });
-    const content = (
-      <div>
-        <input id={firstInputId} />
-        <input id="baz" />
-      </div>
-    );
-    wrapper = mount(
-      <Popover content={content} isOpen={false} focusLock>
-        <FocusMe />
-      </Popover>,
-    );
+    function TestCase() {
+      const [open, setOpen] = React.useState(false);
+      return (
+        <TestBaseProvider>
+          <Popover
+            focusLock
+            content={content}
+            isOpen={open}
+            onClick={() => setOpen(prev => !prev)}
+          >
+            <FocusMe />
+          </Popover>
+        </TestBaseProvider>
+      );
+    }
 
-    // Show the popover
-    wrapper.simulate('click');
-    wrapper.setProps({isOpen: true});
-    wrapper.setState({autoFocusAfterPositioning: true});
+    const {container} = render(<TestCase />);
 
-    // focused element (document.activeElement) should be the first input
-    expect(document.activeElement).not.toBeNull();
+    fireEvent.click(getByText(container, anchorContent));
+    await findByText(container, contentContent);
     expect((document.activeElement: any).id).toEqual(firstInputId);
 
-    wrapper.setProps({isOpen: false});
-
-    // focused element (document.activeElement) should return to button
+    fireEvent.click(getByText(container, anchorContent));
     expect(document.activeElement).not.toBeNull();
     expect((document.activeElement: any).id).toEqual(buttonId);
   });
 
-  test('text as anchor', () => {
+  it('text as anchor', () => {
     const onClick = jest.fn();
     const onEsc = jest.fn();
     const content = <strong>Hello world</strong>;
-    wrapper = mount(
-      <Popover isOpen content={content} onClick={onClick} onEsc={onEsc}>
-        Hover me
-      </Popover>,
+    const anchorContent = 'hover';
+    const {container} = render(
+      <TestBaseProvider>
+        <Popover isOpen content={content} onClick={onClick} onEsc={onEsc}>
+          {anchorContent}
+        </Popover>
+      </TestBaseProvider>,
     );
-
-    const anchor = wrapper.childAt(0);
-    expect(anchor).toHaveDisplayName('span');
-    expect(anchor).toHaveText('Hover me');
-
-    anchor.simulate('click');
+    const anchor = getByText(container, anchorContent);
+    expect(anchor.tagName).toBe('SPAN');
+    fireEvent.click(anchor);
     expect(onClick).toHaveBeenCalledTimes(1);
   });
 
-  test('component as anchor', () => {
+  it('component as anchor', () => {
     const onClick = jest.fn();
     const content = <strong>Hello world</strong>;
-
+    const anchorContent = 'hover';
     const CustomComponent = styled('span', {});
-    // const CustomComponent = (jest.fn(): any);
-    // CustomComponent.mockReturnValue(<span>Hover Me</span>);
-
-    wrapper = mount(
-      <Popover isOpen content={content} onClick={onClick}>
-        <CustomComponent />
-      </Popover>,
+    const {container} = render(
+      <TestBaseProvider>
+        <Popover isOpen content={content} onClick={onClick}>
+          <CustomComponent>{anchorContent}</CustomComponent>
+        </Popover>
+      </TestBaseProvider>,
     );
-
-    const childProps = wrapper.find('span').props();
-
-    expect(childProps.onClick).toBe(wrapper.instance().onAnchorClick);
-    expect(childProps['aria-controls']).toBe('bui-mock-id');
-    expect(childProps['aria-haspopup']).toBe('true');
-    expect(childProps['aria-expanded']).toBe('true');
-    expect(wrapper).toMatchSnapshot();
+    const anchor = getByText(container, anchorContent);
+    expect(anchor.tagName).toBe('SPAN');
+    expect(anchor.getAttribute('aria-controls')).toBe('bui-mock-id');
+    expect(anchor.getAttribute('aria-haspopup')).toBe('true');
+    expect(anchor.getAttribute('aria-expanded')).toBe('true');
   });
 
-  test('component overrides', () => {
-    const overrides = {
-      Arrow: styled('div', {color: 'red'}),
-      Body: styled('div', {color: 'green'}),
-      Inner: styled('div', {color: 'blue'}),
-    };
-
-    wrapper = mount(
-      <Popover
-        isOpen
-        content="content"
-        overrides={overrides}
-        showArrow
-        triggerType={TRIGGER_TYPE.hover}
-      >
-        Hover me
-      </Popover>,
-    );
-
-    const body = wrapper.find(overrides.Body);
-    expect(body).toHaveLength(1);
-    expect(body).toMatchSnapshot('custom popover body has correct props');
-
-    const arrow = wrapper.find(overrides.Arrow);
-    expect(arrow).toHaveLength(1);
-    expect(arrow).toMatchSnapshot('custom popover arrow has correct props');
-
-    const inner = wrapper.find(overrides.Inner);
-    expect(inner).toHaveLength(1);
-    expect(inner).toMatchSnapshot('custom popover inner has correct props');
-  });
-
-  test('click accessibility attributes', () => {
+  it('click accessibility attributes', () => {
     const id = 'my-custom-popover';
-    wrapper = mount(
-      <Popover
-        id={id}
-        isOpen={false}
-        content={<span>Hello</span>}
-        accessibilityType={ACCESSIBILITY_TYPE.menu}
-      >
-        Click me
-      </Popover>,
-    );
+    const anchorContent = 'hover';
+    function TestCase() {
+      const [open, setOpen] = React.useState(false);
+      return (
+        <TestBaseProvider>
+          <Popover
+            id={id}
+            isOpen={open}
+            content={<span>Hello</span>}
+            accessibilityType={ACCESSIBILITY_TYPE.menu}
+            onClick={() => setOpen(true)}
+          >
+            {anchorContent}
+          </Popover>
+        </TestBaseProvider>
+      );
+    }
 
-    let anchor = wrapper.childAt(0);
-    expect(anchor).toHaveProp({
-      'aria-haspopup': 'true',
-      'aria-expanded': 'false',
-      'aria-controls': null,
-    });
+    const {container} = render(<TestCase />);
+    const anchor = getByText(container, anchorContent);
+    expect(anchor.getAttribute('aria-haspopup')).toBe('true');
+    expect(anchor.getAttribute('aria-expanded')).toBe('false');
+    expect(anchor.getAttribute('aria-controls')).toBe(null);
+    fireEvent.click(anchor);
 
-    wrapper.setProps({isOpen: true});
-
-    anchor = wrapper.childAt(0);
-    expect(anchor).toHaveProp({
-      'aria-haspopup': 'true',
-      'aria-expanded': 'true',
-      'aria-controls': id,
-    });
-
-    const body = wrapper.find(StyledBody);
-    expect(body).toHaveLength(1);
-    expect(body).toHaveProp({
-      id,
-    });
+    expect(anchor.getAttribute('aria-haspopup')).toBe('true');
+    expect(anchor.getAttribute('aria-expanded')).toBe('true');
+    expect(anchor.getAttribute('aria-controls')).toBe(id);
   });
 
-  test('hover accessibility attributes', () => {
+  it('hover accessibility attributes', async () => {
     const id = 'my-custom-popover';
-    wrapper = mount(
-      <Popover
-        id={id}
-        isOpen={false}
-        content={<span>Hello</span>}
-        accessibilityType={ACCESSIBILITY_TYPE.menu}
-        triggerType={TRIGGER_TYPE.hover}
-      >
-        Hover me
-      </Popover>,
-    );
+    const content = 'content';
+    const anchorContent = 'hover';
+    function TestCase() {
+      const [open, setOpen] = React.useState(false);
+      return (
+        <TestBaseProvider>
+          <Popover
+            id={id}
+            isOpen={open}
+            content={<span>{content}</span>}
+            accessibilityType={ACCESSIBILITY_TYPE.menu}
+            triggerType={TRIGGER_TYPE.hover}
+            onMouseEnter={() => setOpen(true)}
+          >
+            {anchorContent}
+          </Popover>
+        </TestBaseProvider>
+      );
+    }
+    const {container} = render(<TestCase />);
+    const anchor = getByText(container, anchorContent);
+    expect(anchor.getAttribute('aria-haspopup')).toBe('true');
+    expect(anchor.getAttribute('aria-expanded')).toBe('false');
+    expect(anchor.getAttribute('aria-owns')).toBe(null);
+    fireEvent.mouseEnter(anchor);
 
-    let anchor = wrapper.childAt(0);
-    expect(anchor).toHaveProp({
-      'aria-haspopup': 'true',
-      'aria-expanded': 'false',
-      'aria-owns': null,
-    });
-
-    wrapper.setProps({isOpen: true});
-
-    anchor = wrapper.childAt(0);
-    expect(anchor).toHaveProp({
-      'aria-haspopup': 'true',
-      'aria-expanded': 'true',
-      'aria-owns': id,
-    });
-
-    const body = wrapper.find(StyledBody);
-    expect(body).toHaveLength(1);
-    expect(body).toHaveProp({
-      id,
-    });
+    await findByText(container, content);
+    expect(anchor.getAttribute('aria-haspopup')).toBe('true');
+    expect(anchor.getAttribute('aria-expanded')).toBe('true');
+    expect(anchor.getAttribute('aria-owns')).toBe(id);
   });
 
-  test('tooltip accessibility attributes', () => {
+  it('tooltip accessibility attributes', async () => {
     const id = 'my-custom-popover';
-    wrapper = mount(
-      <Popover
-        id={id}
-        isOpen={false}
-        content={<span>Hello</span>}
-        accessibilityType={ACCESSIBILITY_TYPE.tooltip}
-        triggerType={TRIGGER_TYPE.hover}
-      >
-        Hover me
-      </Popover>,
-    );
+    const content = 'content';
+    const anchorContent = 'hover';
+    function TestCase() {
+      const [open, setOpen] = React.useState(false);
+      return (
+        <TestBaseProvider>
+          <Popover
+            id={id}
+            isOpen={open}
+            content={<span>{content}</span>}
+            accessibilityType={ACCESSIBILITY_TYPE.tooltip}
+            triggerType={TRIGGER_TYPE.hover}
+            onMouseEnter={() => setOpen(true)}
+          >
+            {anchorContent}
+          </Popover>
+        </TestBaseProvider>
+      );
+    }
 
-    let anchor = wrapper.childAt(0);
-    expect(anchor).toHaveProp({
-      id: `${id}__anchor`,
-      'aria-describedby': null,
-    });
+    const {container} = render(<TestCase />);
 
-    wrapper.setProps({isOpen: true});
+    const anchor = getByText(container, anchorContent);
+    expect(anchor.getAttribute('id')).toBe(`${id}__anchor`);
+    expect(anchor.getAttribute('aria-describedby')).toBe(null);
 
-    anchor = wrapper.childAt(0);
-    expect(anchor).toHaveProp({
-      id: `${id}__anchor`,
-      'aria-describedby': id,
-    });
+    fireEvent.mouseEnter(anchor);
+    await findByText(container, content);
+    expect(anchor.getAttribute('aria-describedby')).toBe(id);
 
-    const body = wrapper.find(StyledBody);
-    expect(body).toHaveLength(1);
-    expect(body).toHaveProp({
-      id,
-      role: 'tooltip',
-    });
+    const body = getByRole(container, 'tooltip');
+    expect(body.getAttribute('id')).toBe(id);
   });
 });

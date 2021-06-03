@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -12,7 +12,7 @@ import {
   AnchorColumn,
   CategoricalColumn,
   NumericalColumn,
-  Unstable_StatefulDataTable,
+  StatefulDataTable,
 } from '../index.js';
 
 import graphqlArrayData from './graphql-array-data.js';
@@ -38,7 +38,8 @@ const columns = [
   }),
   AnchorColumn({
     // illustrates that this could be provided with a react-router-link
-    elementAs: 'div',
+    // eslint-disable-next-line react/display-name
+    elementAs: ({children}) => <div style={{color: 'green'}}>{children}</div>,
     title: 'User',
     mapDataToValue: (data: RowDataT) => ({
       content: data.realUser,
@@ -75,7 +76,7 @@ const rows = [
 export default function Scenario() {
   return (
     <div style={{height: '600px', width: '700px'}}>
-      <Unstable_StatefulDataTable columns={columns} rows={rows} />
+      <StatefulDataTable columns={columns} rows={rows} />
     </div>
   );
 }

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -19,22 +19,22 @@ const selectors = {
 
 describe('input', () => {
   it('passes basic a11y tests', async () => {
-    await mount(page, 'input');
-    await page.waitFor(selectors.input);
+    await mount(page, 'input--input');
+    await page.waitForSelector(selectors.input);
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
   it('preset value is displayed', async () => {
-    await mount(page, 'input');
-    await page.waitFor(selectors.input);
+    await mount(page, 'input--input');
+    await page.waitForSelector(selectors.input);
     const value = await page.$eval(selectors.input, input => input.value);
     expect(value).toBe('uber');
   });
 
   it('entered value is displayed', async () => {
-    await mount(page, 'input');
-    await page.waitFor(selectors.input);
+    await mount(page, 'input--input');
+    await page.waitForSelector(selectors.input);
 
     await page.keyboard.type('_good');
 
@@ -44,15 +44,15 @@ describe('input', () => {
 
   describe('can clear values', () => {
     it('shows a clear value icon', async () => {
-      await mount(page, 'input-clearable');
-      await page.waitFor(selectors.clearIcon, {
+      await mount(page, 'input--clearable');
+      await page.waitForSelector(selectors.clearIcon, {
         visible: true,
       });
     });
 
     it('with escape key', async () => {
-      await mount(page, 'input-clearable');
-      await page.waitFor(selectors.input);
+      await mount(page, 'input--clearable');
+      await page.waitForSelector(selectors.input);
 
       let inputValue = await page.$eval(selectors.input, input => input.value);
       expect(inputValue).toBe('Thing');
@@ -63,14 +63,14 @@ describe('input', () => {
       inputValue = await page.$eval(selectors.input, input => input.value);
       expect(inputValue).toBe('');
 
-      await page.waitFor(selectors.clearIcon, {
+      await page.waitForSelector(selectors.clearIcon, {
         hidden: true,
       });
     });
 
     it('not with escape key when its disabled', async () => {
-      await mount(page, 'input-clearable-noescape');
-      await page.waitFor(selectors.input);
+      await mount(page, 'input--clearable-noescape');
+      await page.waitForSelector(selectors.input);
 
       let inputValue = await page.$eval(selectors.input, input => input.value);
       expect(inputValue).toBe('Thing');
@@ -83,8 +83,8 @@ describe('input', () => {
     });
 
     it('with delete icon', async () => {
-      await mount(page, 'input-clearable');
-      await page.waitFor(selectors.input);
+      await mount(page, 'input--clearable');
+      await page.waitForSelector(selectors.input);
 
       let inputValue = await page.$eval(selectors.input, input => input.value);
       expect(inputValue).toBe('Thing');
@@ -94,14 +94,14 @@ describe('input', () => {
       inputValue = await page.$eval(selectors.input, input => input.value);
       expect(inputValue).toBe('');
 
-      await page.waitFor(selectors.clearIcon, {
+      await page.waitForSelector(selectors.clearIcon, {
         hidden: true,
       });
     });
 
     it('with delete icon via enter', async () => {
-      await mount(page, 'input-clearable');
-      await page.waitFor(selectors.input);
+      await mount(page, 'input--clearable');
+      await page.waitForSelector(selectors.input);
 
       let inputValue = await page.$eval(selectors.input, input => input.value);
       expect(inputValue).toBe('Thing');
@@ -112,14 +112,14 @@ describe('input', () => {
       inputValue = await page.$eval(selectors.input, input => input.value);
       expect(inputValue).toBe('');
 
-      await page.waitFor(selectors.clearIcon, {
+      await page.waitForSelector(selectors.clearIcon, {
         hidden: true,
       });
     });
 
     it('with delete icon via space', async () => {
-      await mount(page, 'input-clearable');
-      await page.waitFor(selectors.input);
+      await mount(page, 'input--clearable');
+      await page.waitForSelector(selectors.input);
 
       let inputValue = await page.$eval(selectors.input, input => input.value);
       expect(inputValue).toBe('Thing');
@@ -130,7 +130,7 @@ describe('input', () => {
       inputValue = await page.$eval(selectors.input, input => input.value);
       expect(inputValue).toBe('');
 
-      await page.waitFor(selectors.clearIcon, {
+      await page.waitForSelector(selectors.clearIcon, {
         hidden: true,
       });
     });
@@ -138,8 +138,8 @@ describe('input', () => {
     // regression test for https://github.com/uber/baseweb/issues/1643
     // verify that the input receiving the clear event is cleared and not another input
     it('clears the correct input', async () => {
-      await mount(page, 'input-clearable');
-      await page.waitFor(selectors.input);
+      await mount(page, 'input--clearable');
+      await page.waitForSelector(selectors.input);
 
       // verify first input value is "Thing"
       expect(await page.$eval(selectors.input, input => input.value)).toBe(
@@ -166,8 +166,8 @@ describe('input', () => {
     // regression tests for https://github.com/uber/baseweb/issues/1662
     describe('while in a form', () => {
       beforeEach(async () => {
-        await mount(page, 'input-password');
-        await page.waitFor(selectors.input);
+        await mount(page, 'input--password');
+        await page.waitForSelector(selectors.input);
         // set global variable '__e2e__formSubmitted__' to false
         await page.evaluate(() => (window.__e2e__formSubmitted__ = false));
       });

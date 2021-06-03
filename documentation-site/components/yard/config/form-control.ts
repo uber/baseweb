@@ -1,3 +1,9 @@
+/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
 import {FormControl} from 'baseui/form-control';
 import {Input} from 'baseui/input';
 import {PropTypes} from 'react-view';
@@ -49,6 +55,12 @@ const TextareaConfig: TConfig = {
       value: false,
       type: PropTypes.Boolean,
       description: 'Displays label in light gray color if true.',
+    },
+    htmlFor: {
+      value: undefined,
+      type: PropTypes.String,
+      description:
+        'The id of the related form element. Defaults to the id property of the child, if any.',
     },
     overrides: {
       value: undefined,

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -34,17 +34,21 @@ export type PanelStateReducerT = (
 
 export type AccordionOverridesT = {
   Content?: OverrideT,
+  ContentAnimationContainer?: OverrideT,
   Header?: OverrideT,
   PanelContainer?: OverrideT,
   Root?: OverrideT,
   ToggleIcon?: OverrideT,
+  ToggleIconGroup?: OverrideT,
 };
 
 export type PanelOverridesT = {
   PanelContainer?: OverrideT,
   Header?: OverrideT,
   ToggleIcon?: OverrideT,
+  ToggleIconGroup?: OverrideT,
   Content?: OverrideT,
+  ContentAnimationContainer?: OverrideT,
 };
 
 export type OnChangeHandlerT = ({expanded: boolean}) => mixed;

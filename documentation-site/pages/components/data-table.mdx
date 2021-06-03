@@ -1,0 +1,64 @@
+<!--
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import {Notification, KIND} from 'baseui/notification';
+
+import Example from '../../components/example';
+import Layout from '../../components/layout';
+import Exports from '../../components/exports';
+import UnstableWarning from '../../components/unstable-warning';
+import TableGuideNotification from '../../components/table-guide-notification';
+
+import Overrides from '../../components/overrides';
+import * as DataTableExports from 'baseui/data-table';
+
+import Basic from 'examples/data-table/basic.js';
+import BatchAction from 'examples/data-table/batch-action.js';
+import RowHeightLineClamp from 'examples/data-table/row-height-line-clamp.js';
+import CustomizedEmptyState from 'examples/data-table/customized-empty-state.js';
+
+export default Layout;
+
+<TableGuideNotification />
+
+# Data-Table
+
+Displays tabular data for analysis. The component accepts strict column definitions to consistently
+render the following data types: categorical (enum), number, boolean, string, and arbitrary content.
+To facilitate a rich set of analysis features out-of-the-box, DataTable does not allow for overrides.
+If your application relies on rendering a custom table element, you may want to look into Base Web's
+other table options: [Table](/components/table) (uses css-flex) or [TableGrid](/components/table-grid)
+(uses css-grid) depending on your use-case.
+
+# Examples
+
+<Example title="Basic usage" path="data-table/basic.js">
+  <Basic />
+</Example>
+
+<Example title="Batch Actions" path="data-table/batch-action.js">
+  <BatchAction />
+</Example>
+
+<Example title="Custom Line Height" path="data-table/row-height-line-clamp.js">
+  <RowHeightLineClamp />
+</Example>
+
+<Example
+  title="Customized Empty State"
+  path="data-table/customized-empty-state.js"
+>
+  <CustomizedEmptyState />
+</Example>
+
+## API
+
+<Exports
+  component={DataTableExports}
+  title="Data-Table exports"
+  path="baseui/data-table"
+/>

@@ -183,14 +183,26 @@ export const inputProps = {
   },
   min: {
     value: undefined,
-    type: PropTypes.String,
+    type: PropTypes.Number,
     description: 'min value when used as input type=number',
     hidden: true,
   },
   max: {
     value: undefined,
-    type: PropTypes.String,
+    type: PropTypes.Number,
     description: 'max value when used as input type=number',
+    hidden: true,
+  },
+  step: {
+    value: undefined,
+    type: PropTypes.String,
+    description: 'step value when used as input type=number',
+    hidden: true,
+  },
+  maxLength: {
+    value: undefined,
+    type: PropTypes.Number,
+    description: 'max number of characters accepted in the input element',
     hidden: true,
   },
   ...pick(changeHandlers, [

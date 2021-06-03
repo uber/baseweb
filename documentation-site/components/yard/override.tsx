@@ -12,18 +12,18 @@ export const getHighlightStyles = (
   isLightTheme: boolean,
   sharedProps: string[],
 ) =>
-  formatCode(`({ $theme, ${sharedProps.join(',')} }) => { return ({
+  formatCode(`({ $theme, ${sharedProps.join(',')} }) => ({
     outline: \`\${${
       isLightTheme ? '$theme.colors.warning200' : '$theme.colors.warning600'
     }} solid\`,
     backgroundColor: ${
       isLightTheme ? '$theme.colors.warning200' : '$theme.colors.warning600'
     },
-    })}
+    })
   `);
 
 const getEmptyStyles = (sharedProps: string[]) =>
-  formatCode(`({ $theme, ${sharedProps.join(',')} }) => { return ({})}
+  formatCode(`({ $theme, ${sharedProps.join(',')} }) => ({})
 `);
 
 type TProps = {
@@ -97,11 +97,11 @@ const Override: React.FC<TProps> = ({
   componentConfig,
   set,
 }) => {
-  const [, theme] = useStyletron();
+  const [css, theme] = useStyletron();
   const isLightTheme = theme.name.startsWith('light-theme');
   const code = overridesObj[overrideKey] ? overridesObj[overrideKey].style : '';
   return (
-    <React.Fragment>
+    <div className={css({paddingRight: '10px', paddingBottom: '16px'})}>
       <Editor
         onChange={newCode => {
           set({
@@ -110,9 +110,10 @@ const Override: React.FC<TProps> = ({
           });
         }}
         code={code}
+        small
       />
       <ButtonGroup
-        size={SIZE.compact}
+        size={SIZE.mini}
         overrides={{
           Root: {
             style: ({$theme}) => ({
@@ -189,7 +190,7 @@ const Override: React.FC<TProps> = ({
           Reset
         </Button>
       </ButtonGroup>
-    </React.Fragment>
+    </div>
   );
 };
 

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -20,7 +20,7 @@ import {
   StringColumn,
   COLUMNS,
   NUMERICAL_FORMATS,
-  Unstable_StatefulDataTable,
+  StatefulDataTable,
 } from '../index.js';
 
 type RowDataT = [
@@ -242,7 +242,7 @@ export const rows = makeRowsFromColumns(columns, 2000);
 export default function Scenario() {
   return (
     <div style={{height: '800px', width: '900px'}}>
-      <Unstable_StatefulDataTable columns={columns} rows={rows} />
+      <StatefulDataTable columns={columns} rows={rows} />
     </div>
   );
 }

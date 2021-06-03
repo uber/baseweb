@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -142,6 +142,7 @@ export type CoreExtensionSemanticColorTokensT = {|
   contentStateDisabled: string,
   contentAccent: string,
   contentOnColor: string,
+  contentOnColorInverse: string,
   contentNegative: string,
   contentWarning: string,
   contentPositive: string,
@@ -587,6 +588,7 @@ export type TypographyT = {
   font1250: FontT,
   font1350: FontT,
   font1450: FontT,
+
   ParagraphXSmall: FontT,
   ParagraphSmall: FontT,
   ParagraphMedium: FontT,
@@ -605,6 +607,25 @@ export type TypographyT = {
   DisplaySmall: FontT,
   DisplayMedium: FontT,
   DisplayLarge: FontT,
+
+  MonoParagraphXSmall: FontT,
+  MonoParagraphSmall: FontT,
+  MonoParagraphMedium: FontT,
+  MonoParagraphLarge: FontT,
+  MonoLabelXSmall: FontT,
+  MonoLabelSmall: FontT,
+  MonoLabelMedium: FontT,
+  MonoLabelLarge: FontT,
+  MonoHeadingXSmall: FontT,
+  MonoHeadingSmall: FontT,
+  MonoHeadingMedium: FontT,
+  MonoHeadingLarge: FontT,
+  MonoHeadingXLarge: FontT,
+  MonoHeadingXXLarge: FontT,
+  MonoDisplayXSmall: FontT,
+  MonoDisplaySmall: FontT,
+  MonoDisplayMedium: FontT,
+  MonoDisplayLarge: FontT,
 };
 
 export type SizingT = {
@@ -620,7 +641,9 @@ export type SizingT = {
   scale700: string,
   scale750: string,
   scale800: string,
+  scale850: string,
   scale900: string,
+  scale950: string,
   scale1000: string,
   scale1200: string,
   scale1400: string,
@@ -699,6 +722,7 @@ export type BordersT = {
   surfaceBorderRadius: string,
   inputBorderRadius: string,
   popoverBorderRadius: string,
+  tagBorderRadius: string,
 };
 
 export type GridT = {

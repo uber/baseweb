@@ -1,3 +1,12 @@
 import * as React from 'react';
+import {StyletronComponent} from 'styletron-react';
 
-export const StyledLink: React.FC<any>;
+export interface LinkProps
+  extends React.DetailedHTMLProps<
+    React.AnchorHTMLAttributes<HTMLAnchorElement>,
+    HTMLAnchorElement
+  > {
+  target?: '_self' | '_blank' | '_parent' | '_top';
+}
+
+export const StyledLink: StyletronComponent<LinkProps>;

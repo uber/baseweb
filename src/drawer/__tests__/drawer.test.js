@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -8,12 +8,13 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env browser */
 
 import * as React from 'react';
-import ReactDOM from 'react-dom';
-import {mount} from 'enzyme';
-import {Drawer, StyledBackdrop, StyledClose, CLOSE_SOURCE} from '../index.js';
-import {styled} from '../../styles/index.js';
-
-jest.useFakeTimers();
+import {
+  render,
+  fireEvent,
+  getByTestId,
+  queryByText,
+} from '@testing-library/react';
+import {Drawer, CLOSE_SOURCE} from '../index.js';
 
 jest.mock('../../layer/index.js', () => {
   return {
@@ -23,141 +24,114 @@ jest.mock('../../layer/index.js', () => {
   };
 });
 
-// Mock React 16 portals in a way that makes them easy to test
-const originalCreatePortal = ReactDOM.createPortal;
-
-// Mock document.addEventListener
-const originalDocumentAddListener = document.addEventListener;
-
 describe('Drawer', () => {
-  let wrapper;
-
-  beforeAll(() => {
-    // $FlowFixMe
-    ReactDOM.createPortal = jest.fn(e => (
-      <div is-portal="true" key="portal">
-        {e}
-      </div>
-    ));
-    // $FlowFixMe
-    document.addEventListener = jest.fn();
-  });
-
-  afterEach(() => {
-    // $FlowFixMe
-    ReactDOM.createPortal.mockClear();
-    document.addEventListener.mockClear();
-    wrapper && wrapper.unmount();
-  });
-
-  afterAll(() => {
-    // $FlowFixMe
-    ReactDOM.createPortal = originalCreatePortal;
-    // $FlowFixMe
-    document.addEventListener = originalDocumentAddListener;
-  });
-
-  test('renders nothing when closed', () => {
-    wrapper = mount(
+  it('renders nothing when closed', () => {
+    const {container} = render(
       <Drawer isOpen={false} anchor="right">
         Hello world
       </Drawer>,
     );
-
-    expect(wrapper).toBeEmptyRender();
+    const text = queryByText(container, 'Hello world');
+    expect(text).toBeNull();
   });
 
-  test('renders portal when open', () => {
-    wrapper = mount(
+  it('renders content when open', () => {
+    const {container} = render(
       <Drawer isOpen anchor="right">
-        Drawer Body
+        Hello world
       </Drawer>,
     );
-
-    expect(wrapper).toMatchSnapshot('Rendered Drawer');
+    const text = queryByText(container, 'Hello world');
+    expect(text).not.toBeNull();
   });
 
-  test('close button triggers close', () => {
+  it('renders backdrop with opacity 0 when showBackdrop is false', () => {
+    const {container} = render(
+      <Drawer
+        isOpen
+        anchor="right"
+        showBackdrop={false}
+        overrides={{Backdrop: {props: {'data-testid': 'backdrop'}}}}
+      >
+        Hello world
+      </Drawer>,
+    );
+    const backdrop = getByTestId(container, 'backdrop');
+    expect(backdrop).not.toBeNull();
+  });
+
+  it('hides content when close button clicked', () => {
     const onClose = jest.fn();
-    wrapper = mount(
+    const {container} = render(
       <Drawer isOpen onClose={onClose} anchor="right">
         Drawer Body
       </Drawer>,
     );
-
-    wrapper.find(StyledClose).simulate('click');
-
+    fireEvent.click(container.querySelector('button'));
     expect(onClose).toHaveBeenCalledTimes(1);
     expect(onClose).toHaveBeenLastCalledWith({
       closeSource: CLOSE_SOURCE.closeButton,
     });
   });
 
-  test('backdrop triggers close', () => {
+  it('hides content on backdrop click', () => {
     const onClose = jest.fn();
-    wrapper = mount(
-      <Drawer isOpen onClose={onClose} anchor="right">
+    const {container} = render(
+      <Drawer
+        isOpen
+        onClose={onClose}
+        anchor="right"
+        overrides={{Backdrop: {props: {'data-testid': 'backdrop'}}}}
+      >
         Drawer Body
       </Drawer>,
     );
-
-    wrapper.find(StyledBackdrop).simulate('click');
+    fireEvent.click(getByTestId(container, 'backdrop'));
     expect(onClose).toHaveBeenCalledTimes(1);
     expect(onClose).toHaveBeenLastCalledWith({
       closeSource: CLOSE_SOURCE.backdrop,
     });
   });
 
-  test('disable closeable', () => {
+  it('disables close feature', () => {
     const onClose = jest.fn();
-    wrapper = mount(
-      <Drawer isOpen closeable={false} onClose={onClose}>
+    const {container} = render(
+      <Drawer
+        isOpen
+        closeable={false}
+        onClose={onClose}
+        overrides={{Backdrop: {props: {'data-testid': 'backdrop'}}}}
+      >
         Drawer Body
       </Drawer>,
     );
+    expect(queryByText(container, 'Drawer Body')).not.toBeNull();
+    expect(container.querySelector('button')).toBeNull();
 
-    expect(wrapper.find(StyledClose)).not.toExist();
-    wrapper.find(StyledBackdrop).simulate('click');
-    expect(onClose).not.toHaveBeenCalled();
+    fireEvent.click(getByTestId(container, 'backdrop'));
+    expect(queryByText(container, 'Drawer Body')).not.toBeNull();
   });
 
-  test('prevents scroll on mount node', () => {
-    const onClose = jest.fn();
-    wrapper = mount(<Drawer onClose={onClose}>Drawer Body</Drawer>);
-
-    const body = ((document.body: any): HTMLBodyElement);
-    expect(body.style.overflow).toBe('');
-    wrapper.setProps({isOpen: true});
-    expect(body.style.overflow).toBe('hidden');
-    wrapper.setProps({isOpen: false});
-    expect(body.style.overflow).toBe('');
-  });
-
-  test('override components', () => {
-    const Root = styled('div', {});
-    const Backdrop = styled('div', {});
-    const DrawerContainer = styled('div', {});
-    const DrawerBody = styled('div', {});
-    const Close = styled('div', {});
-    wrapper = mount(
+  it('override components', () => {
+    const {container} = render(
       <Drawer
         isOpen
         overrides={{
-          Root,
-          Backdrop,
-          DrawerContainer,
-          DrawerBody,
-          Close,
+          Root: {props: {'data-testid': 'root'}},
+          Backdrop: {props: {'data-testid': 'backdrop'}},
+          DrawerContainer: {props: {'data-testid': 'drawer-container'}},
+          DrawerBody: {props: {'data-testid': 'drawer-body'}},
+          Close: {props: {'data-testid': 'close'}},
         }}
       >
         Drawer Body
       </Drawer>,
     );
 
-    expect(wrapper.find(Root)).toExist();
-    expect(wrapper.find(Backdrop)).toExist();
-    expect(wrapper.find(DrawerContainer)).toExist();
-    expect(wrapper.find(DrawerBody)).toExist();
-    expect(wrapper.find(Close)).toExist();
+    getByTestId(container, 'root');
+    getByTestId(container, 'backdrop');
+    getByTestId(container, 'drawer-container');
+    getByTestId(container, 'drawer-body');
+    getByTestId(container, 'close');
   });
 });

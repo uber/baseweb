@@ -1,9 +1,10 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
+/* global window */
 // @flow
 
 import * as React from 'react';
@@ -17,7 +18,7 @@ import CodeIcon from './code-icon';
 //$FlowFixMe
 import {trackEvent} from '../helpers/ga';
 import {H3} from './markdown-elements';
-import {useStackBlitz} from '../components/hooks.js';
+import {deploy} from '../components/code-sandboxer.js';
 
 function Source(props: {children: ?React.Node}) {
   if (!props.children || typeof props.children !== 'string') return null;
@@ -68,17 +69,25 @@ function Example(props: PropsT) {
           .replace(/^\/\//, '')
           // remove all instances of <{}>
           .replace(/<\{.*\}>/g, '')
+          // remove all instances of <any>
+          .replace(/<any>/g, '')
           .trim(),
       });
     })();
   }, []);
 
-  // Open new StackBlitz project based on example.
-  const openStackBlitz = useStackBlitz({
-    additionalPackages,
-    code: code.js,
-    description: `Base Web - ${title || 'Example'}`,
-  });
+  async function handleOpenExample() {
+    if (code.js) {
+      const url = await deploy(
+        `Base Web - ${title || 'Example'}`,
+        code.js,
+        additionalPackages,
+      );
+      if (url) {
+        window.open(url, '_blank');
+      }
+    }
+  }
 
   return (
     <Card
@@ -159,9 +168,9 @@ function Example(props: PropsT) {
           <Button
             kind={KIND.secondary}
             size={SIZE.compact}
-            onClick={openStackBlitz}
+            onClick={handleOpenExample}
           >
-            Edit on StackBlitz
+            Try example on CodeSandbox
           </Button>
         </React.Fragment>
       )}

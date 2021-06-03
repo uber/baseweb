@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -14,6 +14,7 @@ import DatepickerInPopover from 'examples/datepicker/in-popover.js';
 import DatepickerQuickSelect from 'examples/datepicker/quick-select.js';
 import DatepickerTimeSelect from 'examples/datepicker/calendar-time-select.js';
 import DatepickerMultipleMonths from 'examples/datepicker/calendar-multiple-months.js';
+import DatepickerMultipleMonthsWithLabel from 'examples/datepicker/calendar-multiple-months-with-label.js';
 import DatepickerI18n from 'examples/datepicker/i18n.js';
 import DatepickerWithOverrides from 'examples/datepicker/with-overrides.js';
 import ComposedRangePickers from 'examples/datepicker/composed-range-pickers.js';
@@ -21,6 +22,9 @@ import ComposedSinglePickers from 'examples/datepicker/composed-single-pickers.j
 import DatepickersColorStates from 'examples/datepicker/datepickers-color-states.js';
 import DatepickerTimezone from 'examples/datepicker/datepicker-with-timezone.js';
 import NestedOverride from 'examples/datepicker/nested-override.js';
+import NestedOverridePropMerge from 'examples/datepicker/with-callback-overrides.js';
+import DatepickerWithMask from 'examples/datepicker/with-mask.js';
+import DatepickerNullMask from 'examples/datepicker/null-mask.js';
 
 import {StatefulCalendar} from 'baseui/datepicker';
 import * as DatepickerExports from 'baseui/datepicker';
@@ -74,6 +78,18 @@ Please note, that some of the options require you to pass in the `locale` object
   <DatepickerWithOverrides />
 </Example>
 
+<Example title="Datepicker with custom mask" path="datepicker/with-mask.js">
+  <DatepickerWithMask />
+</Example>
+
+When using a custom mask `formatString` prop should be also set to match the mask format.
+
+<Example title="Datepicker with no mask" path="datepicker/null-mask.js">
+  <DatepickerNullMask />
+</Example>
+
+Some date formats will operate better without a restrictive input mask. You can disable that feature by applying `null` to the mask prop.
+
 <Example
   title="Calendar with time select actions"
   path="datepicker/calendar-time-select.js"
@@ -86,6 +102,13 @@ Please note, that some of the options require you to pass in the `locale` object
   path="datepicker/calendar-multiple-months.js"
 >
   <DatepickerMultipleMonths />
+</Example>
+
+<Example
+  title="Calendar with multiple months and labels"
+  path="datepicker/calendar-multiple-months-with-label.js"
+>
+  <DatepickerMultipleMonthsWithLabel />
 </Example>
 
 <Example
@@ -127,6 +150,15 @@ Please note, that some of the options require you to pass in the `locale` object
 </Example>
 
 In this example we use a [nested override](/guides/understanding-overrides/#override-nested-components) to customize the `ListItem` within the month/year dropdown (`MonthYearSelectStatefulMenu`).
+
+<Example
+  title="Overriding and watching nested component callback"
+  path="datepicker/with-callback-overrides.js"
+>
+  <NestedOverridePropMerge />
+</Example>
+
+Here we use the most flexible and complex [override by component replacement](/guides/understanding-overrides/#override-the-entire-subcomponent) where we wrap a components onChange handler to subscribe to the datepicker event when a quick selection is picked.
 
 ## API
 

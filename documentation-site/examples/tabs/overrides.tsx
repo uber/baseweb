@@ -72,30 +72,16 @@ export default function Example() {
         TabContent: {
           style: tabContentStyle,
         },
+        Tab: {component: TabOverride, style: tabStyle},
       }}
     >
-      <Tab
-        overrides={{
-          Tab: {component: TabOverride, style: tabStyle},
-        }}
-        title="Tab Link 1"
-      >
+      <Tab title="Tab Link 1">
         <div>{content[Number(activeKey)]}</div>
       </Tab>
-      <Tab
-        overrides={{
-          Tab: {component: TabOverride, style: tabStyle},
-        }}
-        title="Tab Link 2"
-      >
+      <Tab title="Tab Link 2">
         <div>{content[Number(activeKey)]}</div>
       </Tab>
-      <Tab
-        overrides={{
-          Tab: {component: TabOverride, style: tabStyle},
-        }}
-        title="Tab Link 3"
-      >
+      <Tab title="Tab Link 3">
         <div>{content[Number(activeKey)]}</div>
       </Tab>
     </StatefulTabs>

@@ -3,18 +3,11 @@ import {StyledFn, StyletronComponent} from 'styletron-react';
 import {SHAPE, SIZE, KIND} from '../button';
 import {Override} from '../overrides';
 
-export {SIZE};
+export {SHAPE, SIZE};
 
 export interface MODE {
   checkbox: 'checkbox';
   radio: 'radio';
-}
-
-export interface SHAPE {
-  default: 'default';
-  pill: 'pill';
-  round: 'round';
-  square: 'square';
 }
 
 export interface STATE_CHANGE_TYPE {
@@ -70,5 +63,4 @@ export class StatefulContainer extends React.Component<
 }
 
 export const MODE: MODE;
-export const SHAPE: SHAPE;
 export const STATE_CHANGE_TYPE: STATE_CHANGE_TYPE;

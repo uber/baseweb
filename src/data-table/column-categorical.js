@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -16,20 +16,15 @@ import {Input, SIZE as INPUT_SIZE} from '../input/index.js';
 import {useStyletron, withStyle} from '../styles/index.js';
 import {Label3} from '../typography/index.js';
 
-import CellShell from './cell-shell.js';
+import Column from './column.js';
 import {COLUMNS} from './constants.js';
-import type {ColumnT} from './types.js';
+import type {ColumnT, SharedColumnOptionsT} from './types.js';
+import {LocaleContext} from '../locale/index.js';
 import FilterShell from './filter-shell.js';
 import {matchesQuery, splitByQuery, HighlightCellText} from './text-search.js';
 
 type OptionsT = {|
-  filterable?: boolean,
-  // eslint-disable-next-line flowtype/no-weak-types
-  mapDataToValue: (data: any) => string,
-  maxWidth?: number,
-  minWidth?: number,
-  sortable?: boolean,
-  title: string,
+  ...SharedColumnOptionsT<string>,
 |};
 
 type FilterParametersT = {|
@@ -59,13 +54,15 @@ function FilterQuickControls(props: {
   onSelectAll: () => void,
   onClearSelection: () => void,
 }) {
+  const locale = React.useContext(LocaleContext);
+
   return (
     <ButtonGroup size={SIZE.mini} kind={KIND.minimal}>
       <Button type="button" onClick={props.onSelectAll}>
-        Select All
+        {locale.datatable.categoricalFilterSelectAll}
       </Button>
       <Button type="button" onClick={props.onClearSelection}>
-        Clear
+        {locale.datatable.categoricalFilterSelectClear}
       </Button>
     </ButtonGroup>
   );
@@ -119,6 +116,7 @@ type CategoricalFilterProps = {
 
 export function CategoricalFilter(props: CategoricalFilterProps) {
   const [css, theme] = useStyletron();
+  const locale = React.useContext(LocaleContext);
   const [selection, setSelection] = React.useState<Set<string>>(
     props.filterParams ? props.filterParams.selection : new Set(),
   );
@@ -185,7 +183,9 @@ export function CategoricalFilter(props: CategoricalFilterProps) {
           marginTop: theme.sizing.scale600,
         })}
       >
-        {!filteredCategories.length && <Label3>No Categories Found</Label3>}
+        {!filteredCategories.length && (
+          <Label3>{locale.datatable.categoricalFilterEmpty}</Label3>
+        )}
 
         {Boolean(filteredCategories.length) &&
           filteredCategories.map((category, i) => (
@@ -213,36 +213,28 @@ export function CategoricalFilter(props: CategoricalFilterProps) {
   );
 }
 
-const CategoricalCell = React.forwardRef<_, HTMLDivElement>((props, ref) => {
+function CategoricalCell(props) {
   const [css] = useStyletron();
   return (
-    <CellShell
-      ref={ref}
-      isMeasured={props.isMeasured}
-      isSelected={props.isSelected}
-      onSelect={props.onSelect}
+    <div
+      className={css({
+        display: '-webkit-box',
+        WebkitLineClamp: 1,
+        WebkitBoxOrient: 'vertical',
+        overflow: 'hidden',
+      })}
     >
-      <div
-        className={css({
-          display: '-webkit-box',
-          WebkitLineClamp: 1,
-          WebkitBoxOrient: 'vertical',
-          overflow: 'hidden',
-        })}
-      >
-        {props.textQuery ? (
-          <HighlightCellText text={props.value} query={props.textQuery} />
-        ) : (
-          props.value
-        )}
-      </div>
-    </CellShell>
+      {props.textQuery ? (
+        <HighlightCellText text={props.value} query={props.textQuery} />
+      ) : (
+        props.value
+      )}
+    </div>
   );
-});
-CategoricalCell.displayName = 'CategoricalCell';
+}
 
 function CategoricalColumn(options: OptionsT): CategoricalColumnT {
-  return {
+  return Column({
     kind: COLUMNS.CATEGORICAL,
     buildFilter: function(params) {
       return function(data) {
@@ -250,9 +242,8 @@ function CategoricalColumn(options: OptionsT): CategoricalColumnT {
         return params.exclude ? !included : included;
       };
     },
-    textQueryFilter: function(textQuery, data) {
-      return data.toLocaleLowerCase().includes(textQuery.toLowerCase());
-    },
+    cellBlockAlign: options.cellBlockAlign,
+    fillWidth: options.fillWidth,
     filterable: options.filterable === undefined ? true : options.filterable,
     mapDataToValue: options.mapDataToValue,
     maxWidth: options.maxWidth,
@@ -263,8 +254,11 @@ function CategoricalColumn(options: OptionsT): CategoricalColumnT {
     sortFn: function(a, b) {
       return a.localeCompare(b);
     },
+    textQueryFilter: function(textQuery, data) {
+      return data.toLowerCase().includes(textQuery.toLowerCase());
+    },
     title: options.title,
-  };
+  });
 }
 
 export default CategoricalColumn;

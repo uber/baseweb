@@ -1,0 +1,61 @@
+<!--
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import Layout from '../../components/layout';
+
+import TableSemantic from 'examples/table-semantic/basic.js';
+import DataTable from 'examples/data-table/batch-action.js';
+import TableGrid from 'examples/table-grid/cell-span.js';
+import Table from 'examples/table/basic.js';
+
+export default Layout;
+
+# Tables
+
+Tables are used to display data organized in rows and columns. Base Web provides a couple different
+table components that are appropriate in various situations.
+
+You should generally default to using the [`table-semantic`](/components/table-semantic) version. This
+component, which uses the standard `<table>` element, will have accessibility ready to go, supports
+row/column spans, and will dynamically size column widths based on content. It will be most appropriate
+when displaying a smaller number of rows or is paginated. It includes sorting and row selection features
+as well.
+
+<Example title="Table Semantic" path="table-semantic/basic.js">
+  <TableSemantic />
+</Example>
+
+If you are rendering many rows, want to support infinite scrolling, or need data-analysis features like
+filtering, sorting, and search you may be looking for the [`data-table`](/components/data-table) version.
+This component does not support overrides like other Base Web components and requires data to align with
+strict column schemas. Unlike other options it does not support cell/column spans or dynamic row heights.
+Think of this as something closer to Excel rather than a standard table.
+
+<Example title="Data Table" path="data-table/batch-action.js">
+  <DataTable />
+</Example>
+
+Base Web publishes two additional tables that are not quite as useful as the above, but may be appropriate
+in niche situtaions.
+
+First is the [`table-grid`](/components/table-grid). This table ustilizes `css-grid`
+for layout which some developers prefer over the semantic table element. It will require a custom
+accessibility solution, but supports some alternative row/column spans.
+
+<Example title="Table Grid" path="table-grid/cell-span.js">
+  <TableGrid />
+</Example>
+
+Last is a div-based [`table`](/components/table). This is only recommended in situations where 'expanding
+rows' is required and your application needs to support browsers without `css-grid`. If you are only
+targeting newer browsers, `table-grid` is better, but even then it doesn't have great accessibility support.
+Please have good reason to use these last two table components.
+
+<Example title="Table" path="table/basic.js">
+  <Table />
+</Example>

@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -11,7 +11,9 @@ import Exports from '../../components/exports';
 
 import Basic from 'examples/tag/basic.js';
 import Variants from 'examples/tag/variants.js';
+import Primitive from 'examples/tag/primitive.js';
 import Kinds from 'examples/tag/kinds.js';
+import Size from 'examples/tag/size.js';
 import NonClickable from 'examples/tag/non-clickable.js';
 import Clickable from 'examples/tag/clickable.js';
 import Disabled from 'examples/tag/disabled.js';
@@ -44,12 +46,24 @@ Compact UI to display a collection of concise information.
   <Basic />
 </Example>
 
-<Example title="Tag Kinds Prop Type" path="tag/kinds.js">
+<Example title="Semantic KIND values" path="tag/kinds.js">
   <Kinds />
 </Example>
 
+You can change the color of the tag by passing a value to the `kind` prop. Here we see the set of "semantic" color options. These will reflect the `negative`, `positive`, etc values that you use in your theme.
+
+<Example title="Primitive KIND values" path="tag/primitive.js">
+  <Primitive />
+</Example>
+
+In addition to the "semantic" `kind` colors, you can also use "primitive" colors such as `blue` or `green`. Some of these simply alias the "semantic" colors (and therefore your theme), but there are also color-ways not contained in the "semantic" set, such as `orange`, `purple`, and `brown`.
+
 <Example title="Tag Variants Prop Type" path="tag/variants.js">
   <Variants />
+</Example>
+
+<Example title="Tag sizing" path="tag/size.js">
+  <Size />
 </Example>
 
 <Example title="Tag closeable/non-clickable" path="tag/non-clickable.js">

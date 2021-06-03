@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -16,8 +16,8 @@ const selectors = {
 
 describe('side navigation', () => {
   it('passes basic a11y tests', async () => {
-    await mount(page, 'nav');
-    await page.waitFor(selectors.root);
+    await mount(page, 'side-navigation--nav');
+    await page.waitForSelector(selectors.root);
     const accessibilityReport = await analyzeAccessibility(page, {
       rules: [
         {

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -54,6 +54,8 @@ const borders: BordersT = {
   popoverBorderRadius: '0px',
   /** Card, Datepicker, Modal, Toast, Notification */
   surfaceBorderRadius: '0px',
+  /** Tag */
+  tagBorderRadius: '24px',
 };
 
 export default borders;

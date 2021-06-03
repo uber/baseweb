@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -10,6 +10,7 @@ import Layout from '../../components/layout';
 import Exports from '../../components/exports';
 
 import Star from 'examples/rating/star.js';
+import StarReadOnly from 'examples/rating/starReadOnly.js';
 import Emoticon from 'examples/rating/emoticon.js';
 
 import {EmoticonRating, StarRating} from 'baseui/rating';
@@ -40,11 +41,16 @@ This component uses the `[role="radiogroup"]` attribute with the following attri
 - `[aria-setsize=5]` - total number of elements within the Rating
 - `[aria-checked]` - if the rating is active
 - `[aria-posinset]` - position within the Rating
+- `[aria-disabled]` - if the rating is read only
 
 ## Examples
 
 <Example title="Rating with stars" path="rating/star.js">
   <Star />
+</Example>
+
+<Example title="Rating with stars read only" path="rating/starReadOnly.js">
+  <StarReadOnly />
 </Example>
 
 <Example title="Rating with emoticons" path="rating/emoticon.js">

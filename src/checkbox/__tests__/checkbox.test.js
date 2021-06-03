@@ -1,144 +1,71 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
 /* eslint-env node */
-import * as React from 'react';
-import {mount, shallow} from 'enzyme';
 
-import {
-  StyledRoot,
-  StyledLabel,
-  StyledCheckmark,
-  StyledInput,
-  Checkbox as StatelessCheckbox,
-} from '../index.js';
+import * as React from 'react';
+import {render, fireEvent, getByText} from '@testing-library/react';
+
+import {Checkbox} from '../index.js';
 
 describe('Stateless checkbox', function() {
-  let wrapper,
-    events = {};
-  let allProps: any = {},
-    overrides,
-    error,
-    mockFn;
-
-  beforeEach(function() {
-    mockFn = jest.fn();
-    overrides = {
-      Root: StyledRoot,
-      Checkmark: StyledCheckmark,
-      Label: StyledLabel,
-      Input: StyledInput,
-    };
-    error = false;
-    events = {
-      onChange: mockFn,
-    };
-    allProps = {
-      overrides,
-      ...events,
-      labelPlacement: 'left',
-      children: 'some',
-      error: error,
-      inputRef: React.createRef(),
-      autoFocus: false,
-      isIndeterminate: false,
-      disabled: false,
-      checked: false,
-    };
+  it('renders provided label', function() {
+    const {container} = render(<Checkbox>label</Checkbox>);
+    getByText(container, 'label');
   });
 
-  afterEach(function() {
-    jest.restoreAllMocks();
-    wrapper && wrapper.unmount();
-  });
+  it('calls provided event handlers', () => {
+    const onMouseEnter = jest.fn();
+    const onMouseLeave = jest.fn();
+    const onMouseUp = jest.fn();
+    const onMouseDown = jest.fn();
+    const onFocus = jest.fn();
+    const onBlur = jest.fn();
 
-  test.each([['Root'], ['Label'], ['Checkmark'], ['Input']])(
-    'should default to standard subcomponent for %s',
-    subcomponent => {
-      wrapper = mount(<StatelessCheckbox {...allProps} />);
-      const expectedProps = {
-        Root: StyledRoot,
-        Label: StyledLabel,
-        Checkmark: StyledCheckmark,
-        Input: StyledInput,
-      };
-      const actualComp = wrapper.find(expectedProps[subcomponent]);
-      expect(actualComp.length).toEqual(1);
-    },
-  );
-
-  test('should show label text in label', function() {
-    const mockComp = jest.fn(() => <div>test</div>);
-    overrides.Label = mockComp;
-    allProps.children = 'super-duper label';
-    wrapper = mount(<StatelessCheckbox {...allProps} />);
-    expect(mockComp.mock.calls[0][0].children).toEqual(allProps.children);
-  });
-
-  test.each([['top', 0], ['left', 0], ['right', 3], ['bottom', 3]])(
-    'should place label according to dock to %s',
-    (labelPlacement, index) => {
-      const mockComp = jest.fn(() => <div>test</div>);
-      overrides.Root = mockComp;
-      allProps.children = 'super-duper label';
-      allProps.labelPlacement = labelPlacement;
-      wrapper = mount(<StatelessCheckbox {...allProps} />);
-      const subComp = mockComp.mock.calls[0][0].children[index];
-      const isLabel = comp => comp.props.children === allProps.children;
-      expect(isLabel(subComp)).toBeTruthy();
-    },
-  );
-
-  test('should focus on element', function() {
-    const mockFocus = jest.fn();
-    const current = global.document.createElement('input');
-    current.focus = mockFocus;
-    allProps.autoFocus = true;
-    allProps.inputRef = {
-      current: current,
-    };
-    wrapper = shallow(<StatelessCheckbox {...allProps} />);
-    expect(mockFocus).toHaveBeenCalled();
-  });
-  describe('Events', function() {
-    let events, instance, event;
-    event = {};
-    const handlers = [
-      ['onMouseEnter', {isHovered: true}, true],
-      ['onMouseLeave', {isHovered: false, isActive: false}, true],
-      ['onMouseUp', {isActive: false}, true],
-      ['onMouseDown', {isActive: true}, true],
-      ['onFocus', {isFocused: true}, false],
-      ['onBlur', {isFocused: false}, false],
-    ];
-    beforeEach(function() {
-      events = {
-        onMouseEnter: jest.fn(),
-        onMouseLeave: jest.fn(),
-        onFocus: jest.fn(),
-        onBlur: jest.fn(),
-      };
-      allProps = {...allProps, ...events};
-      wrapper = mount(<StatelessCheckbox {...allProps} />);
-      instance = wrapper.instance();
-    });
-
-    test.each(handlers)(
-      'should call handler for %s event if it is present',
-      (eventHandler, state, internalEvent) => {
-        const setStateMock = jest.spyOn(instance, 'setState');
-        // $FlowFixMe
-        const handler = instance[eventHandler];
-        handler(event);
-        if (!internalEvent) {
-          expect(events[eventHandler]).toHaveBeenCalledWith(event);
-        }
-        expect(setStateMock).toHaveBeenCalledWith(state);
-      },
+    const {container} = render(
+      <Checkbox
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
+        onMouseUp={onMouseUp}
+        onMouseDown={onMouseDown}
+        onFocus={onFocus}
+        onBlur={onBlur}
+      >
+        label
+      </Checkbox>,
     );
+
+    const input = container.querySelector('input');
+
+    fireEvent.mouseEnter(input);
+    fireEvent.mouseLeave(input);
+    fireEvent.mouseUp(input);
+    fireEvent.mouseDown(input);
+    fireEvent.focus(input);
+    fireEvent.blur(input);
+
+    expect(onMouseEnter.mock.calls.length).toBe(1);
+    expect(onMouseLeave.mock.calls.length).toBe(1);
+    expect(onMouseUp.mock.calls.length).toBe(1);
+    expect(onMouseDown.mock.calls.length).toBe(1);
+    expect(onFocus.mock.calls.length).toBe(1);
+    expect(onBlur.mock.calls.length).toBe(1);
+  });
+
+  it('only fires one click event', () => {
+    const onAncestorClick = jest.fn();
+    const {container} = render(
+      // eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events
+      <div onClick={onAncestorClick}>
+        <Checkbox>label</Checkbox>
+      </div>,
+    );
+    const label = container.querySelector('label');
+    fireEvent.click(label);
+    expect(onAncestorClick.mock.calls.length).toBe(1);
   });
 });

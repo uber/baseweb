@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -19,35 +19,36 @@ import DndListExampleStyle from 'examples/dnd-list/overrides_style.js';
 import DndListExampleStateProps from 'examples/dnd-list/overrides_state_props.js';
 import DndListExampleSubcomponent from 'examples/dnd-list/overrides_whole_subcomponent.js';
 import SelectTagExample from 'examples/select/overridden-tag.js';
+import DatePickerComponentExample from 'examples/datepicker/with-callback-overrides.js';
 
 export default Layout;
 
-# Understanding Overrides
+# Understanding overrides
 
 <Notification
   overrides={{
     Body: {style: {width: 'auto'}},
   }}
 >
-  By the end of this guide, you'll learn the concept of overrides in Base Web,
+  By the end of this guide, you'll learn the concept of overrides in Base Web
   and the ways you can use them to change the look or the behavior of
   components.
 </Notification>
 
-**Base Web is a set of reusable React components that implements the Base Web design language** and can be used in two different ways:
+Base Web is a set of reusable React components that implements the Base Web design language and can be used in 2 ways:
 
-- **To build an application** that fully adopts the Base Web design language, you import and use Base Web components out of the box.
-- **To build a new design system** inherited from the Base, you take Base Web components and customize them through the Overrides mechanism.
+- **To build an application** that fully adopts the Base Web design language, you import and use Base Web components out of the box
+- **To build a new design system** inherited from the Base, you take Base Web components and customize them through the overrides mechanism
 
-If you are building an application using the Base Web design language (the first scenario), you should avoid further customization. This helps to keep the design of your application consistent and makes future upgrades easier. **Overrides is an escape hatch that should be used only with great caution!**
+If you’re building an application using the Base Web design language (the first scenario), you should avoid further customization. This helps to keep the design of your application consistent and makes future upgrades easier. **Overrides is an escape hatch that should be used only with great caution!**
 
 ## Subcomponents
 
-Base Web components typically consist of many **subcomponents**. Let's use `baseui/dnd-list` as an example:
+Base Web components typically consist of many subcomponents. Let's use `baseui/dnd-list` as an example:
 
 <DndListExample />
 
-This component is very self-contained and you can load it through a single import:
+This component is very self-contained, and you can load it through a single import:
 
 ```jsx
 import {StatefulList} from 'baseui/dnd-list';
@@ -61,17 +62,17 @@ export default () => (
 );
 ```
 
-But as you might guess, there are multiple React components under the hood, components like `Item`, `DragHandle` or `Label`. They all come with various styles, behaviors and attributes. **We call them subcomponents**.
+But as you might guess, there are multiple React components under the hood - components like `Item`, `DragHandle` or `Label`. They all come with various styles, behaviors, and attributes. We call them subcomponents.
 
-## Introducing Overrides
+## Introducing overrides
 
-**Overrides** gives you full access to all those subcomponents and lets you to override:
+Overrides gives you full access to all those subcomponents and lets you override these:
 
-- styles of the subcomponent
-- props of the subcomponent
-- the whole subcomponent
+- Styles of the subcomponent
+- Props of the subcomponent
+- The whole subcomponent
 
-**Every Base Web component has a top-level prop called `overrides`**. It accepts a map of subcomponents and desired overrides. For example, if we want to change the `Label`'s color and also add an additional `data-test-id` attribute (props are spread over the subcomponent), we can do:
+**Every Base Web component has a top-level prop called `overrides`**. It accepts a map of subcomponents and desired overrides. For example, if we want to change the `Label`'s color and add a `data-testid` attribute (props are spread over the subcomponent), we can do this:
 
 ```jsx
 <StatefulList
@@ -84,24 +85,24 @@ But as you might guess, there are multiple React components under the hood, comp
         color: '#892C21',
       },
       props: {
-        'data-test-id': 'dnd-list-label',
+        'data-testid': 'dnd-list-label',
       },
     },
   }}
 />
 ```
 
-We defined `overrides.Label.style` and `overrides.Label.props` properties and this is the result (inspect the element to see the `data-test-id` attribute):
+We defined `overrides.Label.style` and `overrides.Label.props` properties, and this is the result (inspect the element to see the `data-testid` attribute):
 
 <DndListExampleStyle />
 
-The `overrides.Label.style` property accepts a [style object](https://www.styletron.org/concepts/#style-object) or [style function](https://www.styletron.org/concepts/#style-function) since [Styletron](https://www.styletron.org) manages all Base Web styles.
+The `overrides.Label.style` property accepts a [style object](https://www.styletron.org/concepts/#style-object) or [style function](https://www.styletron.org/concepts/#style-function)  since [Styletron](https://www.styletron.org) manages all Base Web styles.
 
-> **Caveat:** When using `overrides.foo.style`, you are overriding a set of existing CSS properties. **Our components always use longhand CSS properties and so should yours!** If you [mix shorthand and longhand properties](https://www.styletron.org/concepts/#shorthand-and-longhand-properties), you will see a warning and can run into strange behaviors!
+> Caveat: when using `overrides.foo.style`, you’re overriding a set of existing CSS properties. **Our components always use longhand CSS properties, so should yours.** If you [mix shorthand and longhand properties](https://www.styletron.org/concepts/#shorthand-and-longhand-properties), you’ll see a warning and can run into strange behaviors.
 
 ## `$theme`
 
-If you opt-in for the [style function](https://www.styletron.org/concepts/#style-function), `overrides` provides a special prop called **`$theme`** that you can use. The `$theme` prop includes all Base Web [design constants](/guides/theming/#theme-properties). So instead of the hard-coded value `#892C21`, you can use the theme:
+If you opt in for the [style function](https://www.styletron.org/concepts/#style-function), `overrides` provides a special prop called **`$theme`** that you can use. The `$theme` prop includes all Base Web [design constants](/guides/theming/#theme-properties). So instead of the hard-coded value `#892C21`, you can use the theme:
 
 ```jsx
 <StatefulList
@@ -118,17 +119,17 @@ If you opt-in for the [style function](https://www.styletron.org/concepts/#style
 />
 ```
 
-## State Props
+## State props
 
-The prop `$theme` is not the only variable that you can use in your style function. Most of subcomponents get various state props. For example, **the `Label` comes with**:
+The prop `$theme` is not the only variable that you can use in your style function. Most subcomponents get various state props. For example, the `Label` comes with these:
 
 - `$isDragged: boolean` - `true` if the list item is dragged
 - `$isSelected: boolean` - `true` if the list item is selected (space key-press)
 - `$isRemovable: boolean` - `true` if the list item is removable
-- `$value: React.Node` - item's value
-- `$index: number` - item's index
+- `$value: React.Node` item's value
+- `$index: number` item's index
 
-Let's use `$isDragged` to change the Label color when dragged:
+Let's use `$isDragged` to change the label color when dragged:
 
 ```jsx
 <StatefulList
@@ -145,21 +146,21 @@ Let's use `$isDragged` to change the Label color when dragged:
 />
 ```
 
-The result is that the Label turns blue when it's dragged:
+The result is that the label turns black when it's dragged:
 
 <DndListExampleStateProps />
 
-## Exploring Overrides
+## Exploring overrides
 
-Almost every Base Web component has multiple overrides. **How can you learn what's available to you?** Every component page has the `Style Overrides` section at the top of the page. It lists all overridable subcomponents and highlights each one of them once activated. Using this editor, you can also change the style properties of each override, so you can see instantly how the modified components would look like.
+Almost every Base Web component has multiple overrides. How can you learn what's available to you? Every component page has the `Style Overrides`  section at the top. It lists all overridable subcomponents and highlights each one of them once activated. Using this editor, you can also change the style properties of each override, so you can see instantly how the modified components would look.
 
-If you are interested in **which state props your style functions can use**, you'll find the list of them by clicking the "Toggle shared props" button in the overrides:
+If you’re interested in which state props your style functions can use, click on "Toggle shared props" in the overrides:
 
 <img src="/images/react-view-overrides.png" width="100%" />
 
-## Override Nested Components
+## Override nested components
 
-Every Base Web component exposes the `override` prop. When one Base Web component uses another Base Web component internally we have access to a new, powerful pattern: **Nested Overrides**.
+Every Base Web component exposes the `override` prop. When one Base Web component uses another Base Web component internally, we have access to a new, powerful pattern: **nested overrides**.
 
 The idea is to use a component's `overrides` prop to access a nested component and pass this nested component an `overrides` prop of its own. You end up with a _nested_ structure like so:
 
@@ -205,9 +206,9 @@ This is a very reliable method for customizing deeply nested components. It is p
 />
 ```
 
-In this example, we use four nested overrides to replace the `Goo` component. We do this without affecting the four components above `Goo`. We've avoided having to re-implement layers and layers of logic, and, because the interface is consistent, you can focus on _where_ you want to drop in, rather than _how_ to do it.
+In this example, we use 4 nested overrides to replace the `Goo` component. We do this without affecting the 4 components above `Goo`. We've avoided having to re-implement layers and layers of logic, and, because the interface is consistent, you can focus on _where_ you want to drop in, rather than _how_ to do it.
 
-If you find the exact syntax of this technique a little difficult to recall, try instead to remember that every Base Web component exposes an `overrides` prop and that every nested Base Web component is made accessible as an `overrides` property in the top-level component.
+If you find the exact syntax of this technique a little difficult to recall, try instead to remember that every Base Web component exposes an `overrides` prop and that every nested Base Web component is made accessible as an `overrides`  property in the top-level component.
 
 The path always follows this pattern:
 
@@ -237,7 +238,7 @@ The first step is to identify _what_ we want to override. In this case, we want 
 
 We can [reference the documentation for Tag](/components/tag/#overrides) to see what overrides are available.
 
-We have identified a nested Base Web component that is accessible via overrides. Now we can apply some nested overrides to customize things:
+We’ve identified a nested Base Web component that’s accessible via overrides. Now we can apply some nested overrides to customize things:
 
 <Example path="select/overridden-tag.js">
   <SelectTagExample />
@@ -247,13 +248,13 @@ Notice the nested override pattern here:
 
 > StatefulSelect > overrides > Tag > props > overrides
 
-Once we have access to the nested `Tag`, we can override the styles for the `Root`, `Text`, `Action` & `ActionIcon`, changing the colors to a few lovely shades of purple.
+Once we have access to the nested `Tag`, we can override the styles for the `Root`, `Text`, `Action` and `ActionIcon`, changing the colors to a few lovely shades of purple.
 
-## Override The Entire Subcomponent
+## Override the entire subcomponent
 
-> **This is a very advanced technique and rarely needed**. If you go down this path, you might also need to inspect our source code to fully understand all behaviors that subcomponents should/can implement.
+> This is a very advanced technique and rarely needed. If you go down this path, you might also need to inspect our source code to fully understand all behaviors that subcomponents should/can implement.
 
-So far we demonstrated how to **override styles or add additional props** but you can also **completely replace subcomponents**. This means you can alter the behavior and appearance of all Base Web components. For example, **we can enhance our textual Label and add a cloning functionality**:
+So far we demonstrated how to override styles or add additional props, but you can also completely replace subcomponents. This means you can alter the behavior and appearance of all Base Web components. For example, we can enhance our textual label and add a cloning functionality:
 
 ```jsx
 import * as React from 'react';
@@ -300,13 +301,13 @@ The result:
 
 <DndListExampleSubcomponent />
 
-Note that **we lost the original Label styling** since we replaced the whole Label subcomponent. If you still want to reuse or compose the original subcomponent you can import it:
+Note that we lost the original label styling since we replaced the whole label subcomponent. If you still want to reuse or compose the original subcomponent you can import it:
 
 ```js
 import {StyledLabel} from 'baseui/dnd-list';
 ```
 
-The named import always matches the override key with an addition of `Styled` prefix. Following two examples yield the exactly same result since this is how Base Web components are implemented underneath:
+The named import always matches the override key with an addition of `Styled` prefix. Following 2 examples yield the exact, same result since this is how Base Web components are implemented underneath:
 
 ```jsx
 <StatefulList
@@ -319,7 +320,14 @@ The named import always matches the override key with an addition of `Styled` pr
 />
 ```
 
-**This technique gives you a ridiculous amount of flexibility.** However, with great power comes great responsibility. We might not be able to effectively support you if you run into issues and upgrades to future versions of Base Web can be complicated. If you have a need to change components behavior this way, you should first [ask maintainers](https://github.com/uber/baseweb/issues) of Base Web. We might add your feature through an official API instead so you don't need to use this override.
+### Enhancing and merging component props
 
-To learn more about how overrides work internally, check out the [Better Reusable React Components with the Overrides Pattern](https://medium.com/@dschnr/better-reusable-react-components-with-the-overrides-pattern-9eca2339f646)
-article.
+This example demonstrates a complex scenario where component props are wrapped and enhanced but the original functionality is retained.
+
+<Example path="datepicker/with-callback-overrides.js">
+  <DatePickerComponentExample />
+</Example>
+
+This technique gives you a ridiculous amount of flexibility. However, with great power comes great responsibility. We might not be able to effectively support you if you run into issues, and upgrades to future versions of Base Web can be complicated. If you need to change components behavior this way, you should first [ask the maintainers](https://github.com/uber/baseweb/issues) of Base Web. We might add your feature through an official API instead so you don't need to use this override.
+
+To learn more about how overrides work internally, check out article [Better Reusable React Components with the Overrides Pattern](https://medium.com/@dschnr/better-reusable-react-components-with-the-overrides-pattern-9eca2339f646).

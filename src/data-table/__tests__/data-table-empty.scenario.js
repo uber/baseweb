@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -8,11 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {
-  Unstable_StatefulDataTable,
-  BooleanColumn,
-  CategoricalColumn,
-} from '../index.js';
+import {StatefulDataTable, BooleanColumn, CategoricalColumn} from '../index.js';
 
 type RowDataT = [boolean, string];
 
@@ -31,17 +27,17 @@ export default function Scenario() {
   return (
     <React.Fragment>
       <div style={{height: '200px', width: '800px'}}>
-        <Unstable_StatefulDataTable columns={columns} rows={[]} />
+        <StatefulDataTable columns={columns} rows={[]} />
       </div>
       <div style={{height: '200px', width: '800px'}}>
-        <Unstable_StatefulDataTable
+        <StatefulDataTable
           emptyMessage="string empty message"
           columns={columns}
           rows={[]}
         />
       </div>
       <div style={{height: '200px', width: '800px'}}>
-        <Unstable_StatefulDataTable
+        <StatefulDataTable
           emptyMessage={() => <h1>component empty message</h1>}
           columns={columns}
           rows={[]}

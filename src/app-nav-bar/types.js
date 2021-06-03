@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -9,21 +9,38 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {POSITION} from './constants.js';
 
-// eslint-disable-next-line flowtype/no-weak-types
-type ItemT = any;
-type isNavItemActiveT = (params: {
-  item: MainNavItemT | UserNavItemT,
-}) => boolean;
-type onNavItemSelectT = (params: {item: MainNavItemT | UserNavItemT}) => mixed;
+import type {OverrideT} from '../helpers/overrides.js';
 
-export type MainNavItemT = {|
+export type OverridesT = {|
+  Root?: OverrideT,
+  AppName?: OverrideT,
+  MainMenuItem?: OverrideT,
+  PrimaryMenuContainer?: OverrideT,
+  ProfileTileContainer?: OverrideT,
+  SecondaryMenuContainer?: OverrideT,
+  Spacing?: OverrideT,
+  SubnavContainer?: OverrideT,
+  UserMenuProfileListItem?: OverrideT,
+  UserProfileInfoContainer?: OverrideT,
+  UserProfilePictureContainer?: OverrideT,
+  UserProfileTileContainer?: OverrideT,
+
+  // nested overrides
+  MobileDrawer?: OverrideT,
+  MobileMenu?: OverrideT,
+  SideMenuButton?: OverrideT,
+  UserMenuButton?: OverrideT,
+  UserMenu?: OverrideT,
+|};
+
+export type NavItemT = {|
   active?: boolean,
   // eslint-disable-next-line flowtype/no-weak-types
   icon?: React.AbstractComponent<any>,
-  item: ItemT,
-  mapItemToNode?: ItemT => React.Node,
-  mapItemToString: ItemT => string,
-  nav?: MainNavItemT[],
+  // eslint-disable-next-line flowtype/no-weak-types
+  info?: any,
+  label: string,
+  children?: NavItemT[],
   // eslint-disable-next-line flowtype/no-weak-types
   navExitIcon?: React.AbstractComponent<any>,
   navPosition?: {
@@ -32,35 +49,20 @@ export type MainNavItemT = {|
   },
 |};
 
-export type UserNavItemT = {|
-  active?: boolean,
-  // eslint-disable-next-line flowtype/no-weak-types
-  icon?: React.AbstractComponent<any>,
-  item: ItemT,
-  mapItemToNode?: ItemT => React.Node,
-  mapItemToString: ItemT => string,
-  nav?: UserNavItemT[],
-|};
-
 export type UserMenuPropsT = {|
-  userNav?: UserNavItemT[],
+  userItems?: NavItemT[],
   username?: string,
   usernameSubtitle?: React.Node,
   userImgUrl?: string,
+  onUserItemSelect?: NavItemT => mixed,
 |};
 
 export type AppNavBarPropsT = {|
-  appDisplayName?: React.Node,
-  mainNav?: MainNavItemT[],
-  isNavItemActive?: isNavItemActiveT,
-  onNavItemSelect: onNavItemSelectT,
-  userNav?: UserNavItemT[],
-  username?: string,
-  usernameSubtitle?: React.Node,
-  userImgUrl?: string,
-|};
-export type SecondaryMenuT = {|
-  nav?: MainNavItemT[],
-  isNavItemActive?: isNavItemActiveT,
-  onNavItemSelect: onNavItemSelectT,
+  ...UserMenuPropsT,
+  isMainItemActive?: NavItemT => boolean,
+  mainItems?: NavItemT[],
+  mapItemToNode?: NavItemT => React.Node,
+  onMainItemSelect?: NavItemT => mixed,
+  overrides?: OverridesT,
+  title?: React.Node,
 |};

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -23,6 +23,9 @@ class Tether extends React.Component<TetherPropsT, TetherStateT> {
 
   popper: ?PopperInstance;
   popperHeight = 0;
+  popperWidth = 0;
+  anchorHeight = 0;
+  anchorWidth = 0;
 
   state = {
     isMounted: false,
@@ -37,12 +40,26 @@ class Tether extends React.Component<TetherPropsT, TetherStateT> {
     // the popover. Popper.js only schedules updates on resize and scroll events. In the case of
     // the Select component, when options were filtered in the dropdown menu it creates a gap
     // between it and the input element.
-    if (this.props.popperRef) {
-      const {height} = this.props.popperRef.getBoundingClientRect();
-      if (this.popperHeight !== height) {
-        this.popperHeight = height;
+
+    if (this.props.anchorRef) {
+      const {height, width} = this.props.anchorRef.getBoundingClientRect();
+
+      if (this.anchorHeight !== height || this.anchorWidth !== width) {
+        this.anchorHeight = height;
+        this.anchorWidth = width;
         this.popper && this.popper.scheduleUpdate();
       }
+    }
+
+    if (this.props.popperRef) {
+      const {height, width} = this.props.popperRef.getBoundingClientRect();
+
+      if (this.popperHeight !== height || this.popperWidth !== width) {
+        this.popperHeight = height;
+        this.popperWidth = width;
+        this.popper && this.popper.scheduleUpdate();
+      }
+
       if (this.state.isMounted !== prevState.isMounted) {
         if (!this.props.anchorRef) {
           if (__DEV__) {

@@ -101,6 +101,7 @@ const TabsConfig: TConfig = {
         sharedProps: {
           $orientation: 'orientation',
           $fill: 'fill',
+          $isActive: 'isActive',
         },
       },
     },

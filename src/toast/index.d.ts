@@ -38,7 +38,7 @@ export interface IToaster {
     props: Readonly<ToastProps>,
   ) => React.Key;
   update: (key: React.Key, props: Readonly<ToastProps>) => void;
-  clear: (key: React.Key) => void;
+  clear: (key?: React.Key) => void;
 }
 
 export const toaster: IToaster;
@@ -97,6 +97,7 @@ export interface ToastOverrides {
 }
 export interface ToastProps {
   autoHideDuration?: number;
+  autoFocus?: Boolean;
   children?:
     | ((args: {dismiss: () => void}) => React.ReactNode)
     | React.ReactNode;

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -21,6 +21,9 @@ export const StyledRoot = styled<{}>('div', ({$theme}) => {
     borderTopRightRadius: $theme.borders.radius200,
     borderBottomRightRadius: $theme.borders.radius200,
     borderBottomLeftRadius: $theme.borders.radius200,
+    // Creates a stacking context so we can use z-index on the StyledTableHeadCell
+    // without affecting anything outside of this component.
+    transform: 'scale(1)',
   };
 });
 
@@ -56,6 +59,7 @@ type StyledTableHeadCellPropsT = {
 export const StyledTableHeadCell = styled<StyledTableHeadCellPropsT>(
   'th',
   ({$theme}) => {
+    const borderDir: string = $theme.direction === 'rtl' ? 'left' : 'right';
     return {
       ...$theme.typography.font350,
       position: 'sticky',
@@ -66,9 +70,10 @@ export const StyledTableHeadCell = styled<StyledTableHeadCellPropsT>(
       paddingLeft: $theme.sizing.scale600,
       backgroundColor: $theme.colors.tableHeadBackgroundColor,
       color: $theme.colors.contentPrimary,
-      textAlign: 'left',
+      textAlign: $theme.direction === 'rtl' ? 'right' : 'left',
       verticalAlign: 'top',
       whiteSpace: 'nowrap',
+      zIndex: 1,
 
       // We have to use pseudo elements to add the border for headers
       // because browsers don't properly handle borders on sticky cells.
@@ -77,7 +82,7 @@ export const StyledTableHeadCell = styled<StyledTableHeadCellPropsT>(
         content: '""',
         position: 'absolute',
         top: '0',
-        right: '100%',
+        [borderDir]: '100%',
         bottom: '0',
         borderLeftColor: $theme.borders.border300.borderColor,
         borderLeftStyle: $theme.borders.border300.borderStyle,
@@ -129,8 +134,8 @@ export const StyledTableHeadCellSortable = withStyle<
   };
 });
 
-export const StyledSortAscIcon = styled<typeof ChevronDown, {}>(
-  ChevronDown,
+export const StyledSortAscIcon = styled<typeof ChevronUp, {}>(
+  ChevronUp,
   ({$theme}) => {
     return {
       position: 'absolute',
@@ -141,8 +146,8 @@ export const StyledSortAscIcon = styled<typeof ChevronDown, {}>(
   },
 );
 
-export const StyledSortDescIcon = styled<typeof ChevronUp, {}>(
-  ChevronUp,
+export const StyledSortDescIcon = styled<typeof ChevronDown, {}>(
+  ChevronDown,
   ({$theme}) => {
     return {
       position: 'absolute',
@@ -208,3 +213,13 @@ export const StyledTableBodyCell = styled<StyledTableBodyCellPropsT>(
     };
   },
 );
+
+export const StyledTableLoadingMessage = styled<{}>('div', ({$theme}) => {
+  return {
+    ...$theme.typography.ParagraphSmall,
+    color: $theme.colors.contentPrimary,
+    padding: $theme.sizing.scale600,
+  };
+});
+
+export const StyledTableEmptyMessage = StyledTableLoadingMessage;

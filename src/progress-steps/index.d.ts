@@ -14,6 +14,7 @@ export const ProgressSteps: React.FC<ProgressStepsProps>;
 
 export interface StepOverrides {
   Root?: Override<any>;
+  IconContainer?: Override<any>;
   Icon?: Override<any>;
   InnerIcon?: Override<any>;
   Tail?: Override<any>;
@@ -33,6 +34,7 @@ export const Step: React.FC<StepProps>;
 
 export interface NumberedStepOverrides {
   Root?: Override<any>;
+  IconContainer?: Override<any>;
   Icon?: Override<any>;
   InnerIcon?: Override<any>;
   Tail?: Override<any>;

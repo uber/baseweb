@@ -2,7 +2,7 @@ import * as React from 'react';
 import {ListItem, ListItemLabel} from 'baseui/list';
 import {useStyletron} from 'baseui';
 
-export default () => {
+export default function Example() {
   const [css] = useStyletron();
   return (
     <ul
@@ -30,4 +30,4 @@ export default () => {
       </ListItem>
     </ul>
   );
-};
+}

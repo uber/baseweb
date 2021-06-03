@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -55,14 +55,26 @@ export default class Datepicker<T = Date> extends React.Component<
   }
 
   onChange: ({date: ?T | Array<T>}) => void = data => {
-    const {date} = data;
     let isOpen = false;
     let isPseudoFocused = false;
     let calendarFocused = false;
-    if (Array.isArray(date) && this.props.range && date.length < 2) {
-      isOpen = true;
-      isPseudoFocused = true;
-      calendarFocused = null;
+    let nextDate = data.date;
+
+    if (Array.isArray(nextDate) && this.props.range) {
+      if (nextDate.length < 2) {
+        isOpen = true;
+        isPseudoFocused = true;
+        calendarFocused = null;
+      } else if (nextDate.length === 2) {
+        const [start, end] = nextDate;
+        if (this.dateHelpers.isAfter(start, end)) {
+          nextDate = [start, start];
+        }
+
+        if (this.state.lastActiveElm) {
+          this.state.lastActiveElm.focus();
+        }
+      }
     } else if (this.state.lastActiveElm) {
       this.state.lastActiveElm.focus();
     }
@@ -82,13 +94,14 @@ export default class Datepicker<T = Date> extends React.Component<
       }
       return false;
     };
+
     const prevValue = this.props.value;
-    if (Array.isArray(date) && Array.isArray(prevValue)) {
-      if (date.some((d, i) => onlyTimeChanged(prevValue[i], d))) {
+    if (Array.isArray(nextDate) && Array.isArray(prevValue)) {
+      if (nextDate.some((d, i) => onlyTimeChanged(prevValue[i], d))) {
         isOpen = true;
       }
-    } else if (!Array.isArray(date) && !Array.isArray(prevValue)) {
-      if (onlyTimeChanged(prevValue, date)) {
+    } else if (!Array.isArray(nextDate) && !Array.isArray(prevValue)) {
+      if (onlyTimeChanged(prevValue, nextDate)) {
         isOpen = true;
       }
     }
@@ -97,9 +110,10 @@ export default class Datepicker<T = Date> extends React.Component<
       isOpen,
       isPseudoFocused,
       ...(calendarFocused === null ? {} : {calendarFocused}),
-      inputValue: this.formatDisplayValue(date),
+      inputValue: this.formatDisplayValue(nextDate),
     });
-    this.props.onChange && this.props.onChange(data);
+
+    this.props.onChange && this.props.onChange({date: nextDate});
   };
 
   formatDate(date: ?T | Array<T>, formatString: string) {
@@ -111,7 +125,7 @@ export default class Datepicker<T = Date> extends React.Component<
     };
     if (!date) {
       return '';
-    } else if (Array.isArray(date) && (!date[0] && !date[1])) {
+    } else if (Array.isArray(date) && !date[0] && !date[1]) {
       return '';
     } else if (Array.isArray(date)) {
       return date.map(day => format(day)).join(' – ');
@@ -121,12 +135,8 @@ export default class Datepicker<T = Date> extends React.Component<
   }
 
   formatDisplayValue: (?T | Array<T>) => string = (date: ?T | Array<T>) => {
-    const {
-      displayValueAtRangeIndex,
-      formatDisplayValue,
-      formatString,
-      range,
-    } = this.props;
+    const {displayValueAtRangeIndex, formatDisplayValue, range} = this.props;
+    const formatString = this.normalizeDashes(this.props.formatString);
 
     if (typeof displayValueAtRangeIndex === 'number') {
       if (__DEV__) {
@@ -187,51 +197,56 @@ export default class Datepicker<T = Date> extends React.Component<
   };
 
   getMask = () => {
-    const {formatString} = this.props;
-    let mask = '';
-    if (this.props.mask !== null) {
-      mask =
-        // using the mask provided through the top-level API
-        this.props.mask ||
-        // to make sure it's not a breaking change, we try calculating the input mask
-        // from the formatString, if used by the developer
+    const {formatString, mask, range} = this.props;
 
-        // 1. mask generation from the formatstring if it's a range input
-        (formatString && this.props.range
-          ? `${formatString} – ${formatString}`.replace(/[a-z]/gi, '9')
-          : null) ||
-        // 2. mask generation from the formatstring if it is NOT a range input
-        (formatString ? formatString.replace(/[a-z]/gi, '9') : null) ||
-        // falling back to the default masks
-        (this.props.range ? '9999/99/99 – 9999/99/99' : '9999/99/99');
+    if (mask === null) {
+      return null;
     }
-    return mask;
+
+    if (mask) {
+      return this.normalizeDashes(mask);
+    }
+
+    const normalizedFormatString = this.normalizeDashes(formatString);
+    if (formatString) {
+      if (range) {
+        return `${normalizedFormatString} – ${normalizedFormatString}`.replace(
+          /[a-z]/gi,
+          '9',
+        );
+      } else {
+        return normalizedFormatString.replace(/[a-z]/gi, '9');
+      }
+    }
+
+    if (range) {
+      return '9999/99/99 – 9999/99/99';
+    }
+
+    return '9999/99/99';
   };
 
   handleInputChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
     const inputValue = event.currentTarget.value;
+    const mask = this.getMask();
 
     if (
-      inputValue === this.getMask().replace(/9/g, ' ') ||
+      (typeof mask === 'string' && inputValue === mask.replace(/9/g, ' ')) ||
       inputValue.length === 0
     ) {
-      if (this.props.range) {
-        this.props.onChange &&
-          this.props.onChange({
-            date: [],
-          });
-      } else {
-        this.props.onChange &&
-          this.props.onChange({
-            date: null,
-          });
+      if (this.props.onChange) {
+        if (this.props.range) {
+          this.props.onChange({date: []});
+        } else {
+          this.props.onChange({date: null});
+        }
       }
     }
 
     this.setState({inputValue});
 
+    const formatString = this.normalizeDashes(this.props.formatString);
     const parseDateString = dateString => {
-      const formatString = this.normalizeDashes(this.props.formatString);
       if (formatString === DEFAULT_DATE_FORMAT) {
         return this.dateHelpers.parse(
           dateString,
@@ -255,7 +270,6 @@ export default class Datepicker<T = Date> extends React.Component<
       let startDate = this.dateHelpers.date(left);
       let endDate = this.dateHelpers.date(right);
 
-      const formatString = this.props.formatString;
       if (formatString) {
         startDate = parseDateString(left);
         endDate = parseDateString(right);

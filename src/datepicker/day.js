@@ -1,12 +1,12 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {StyledDay} from './styled-components.js';
+import {StyledDay, StyledDayLabel} from './styled-components.js';
 import dateFnsAdapter from './utils/date-fns-adapter.js';
 import DateHelpers from './utils/date-helpers.js';
 import {getOverrides} from '../helpers/overrides.js';
@@ -150,6 +150,64 @@ export default class Day<T = Date> extends React.Component<
     );
   };
 
+  getOrderedDates: () => T[] = () => {
+    const {highlightedDate, value} = this.props;
+    if (
+      !value ||
+      !Array.isArray(value) ||
+      !value[0] ||
+      (!value[1] && !highlightedDate)
+    ) {
+      return [];
+    }
+    const firstValue = value[0];
+    const secondValue =
+      value.length > 1 && value[1] ? value[1] : highlightedDate;
+    if (!firstValue || !secondValue) {
+      return [];
+    }
+    const firstDate = this.clampToDayStart(firstValue);
+    const secondDate = this.clampToDayStart(secondValue);
+    return this.dateHelpers.isAfter(firstDate, secondDate)
+      ? [secondDate, firstDate]
+      : [firstDate, secondDate];
+  };
+
+  isOutsideOfMonthButWithinRange = () => {
+    const date = this.clampToDayStart(this.getDateProp());
+    const dates = this.getOrderedDates();
+    if (dates.length < 2 || this.dateHelpers.isSameDay(dates[0], dates[1])) {
+      return false;
+    }
+    const day = this.dateHelpers.getDate(date);
+    /**
+     * Empty days (no number label) at the beginning/end of the month should be included
+     * within the range if the last day of a month and the first day of the next month are
+     * within the range.
+     */
+    if (day > 15) {
+      const firstDayOfNextMonth = this.clampToDayStart(
+        this.dateHelpers.addDays(this.dateHelpers.getEndOfMonth(date), 1),
+      );
+      return (
+        this.dateHelpers.isOnOrBeforeDay(
+          dates[0],
+          this.dateHelpers.getEndOfMonth(date),
+        ) && this.dateHelpers.isOnOrAfterDay(dates[1], firstDayOfNextMonth)
+      );
+    } else {
+      const lastDayOfPreviousMonth = this.clampToDayStart(
+        this.dateHelpers.subDays(this.dateHelpers.getStartOfMonth(date), 1),
+      );
+      return (
+        this.dateHelpers.isOnOrAfterDay(
+          dates[1],
+          this.dateHelpers.getStartOfMonth(date),
+        ) && this.dateHelpers.isOnOrBeforeDay(dates[0], lastDayOfPreviousMonth)
+      );
+    }
+  };
+
   isSelected() {
     const date = this.getDateProp();
     const {value} = this.props;
@@ -163,6 +221,11 @@ export default class Day<T = Date> extends React.Component<
     }
   }
 
+  clampToDayStart: T => T = dt => {
+    const {setSeconds, setMinutes, setHours} = this.dateHelpers;
+    return setSeconds(setMinutes(setHours(dt, 0), 0), 0);
+  };
+
   // calculated for range case only
   isPseudoSelected() {
     const date = this.getDateProp();
@@ -172,7 +235,11 @@ export default class Day<T = Date> extends React.Component<
     }
     // fix flow by passing a specific arg type and remove 'Array.isArray(value)'
     if (Array.isArray(value) && value.length > 1) {
-      return this.dateHelpers.isDayInRange(date, value[0], value[1]);
+      return this.dateHelpers.isDayInRange(
+        this.clampToDayStart(date),
+        this.clampToDayStart(value[0]),
+        this.clampToDayStart(value[1]),
+      );
     }
   }
 
@@ -183,12 +250,21 @@ export default class Day<T = Date> extends React.Component<
     if (Array.isArray(value) && !value[0] && !value[1]) {
       return false;
     }
+
     // fix flow by passing a specific arg type and remove 'Array.isArray(value)'
     if (Array.isArray(value) && highlightedDate && value[0] && !value[1]) {
       if (this.dateHelpers.isAfter(highlightedDate, value[0])) {
-        return this.dateHelpers.isDayInRange(date, value[0], highlightedDate);
+        return this.dateHelpers.isDayInRange(
+          this.clampToDayStart(date),
+          this.clampToDayStart(value[0]),
+          this.clampToDayStart(highlightedDate),
+        );
       } else {
-        return this.dateHelpers.isDayInRange(date, highlightedDate, value[0]);
+        return this.dateHelpers.isDayInRange(
+          this.clampToDayStart(date),
+          this.clampToDayStart(highlightedDate),
+          this.clampToDayStart(value[0]),
+        );
       }
     }
   }
@@ -205,6 +281,14 @@ export default class Day<T = Date> extends React.Component<
       highlightedDate &&
       !this.dateHelpers.isSameDay(value[0], highlightedDate)
     );
+    const $outsideMonth = !this.props.peekNextMonth && this.isOutsideMonth();
+    const $outsideMonthWithinRange = !!(
+      Array.isArray(value) &&
+      range &&
+      $outsideMonth &&
+      !this.props.peekNextMonth &&
+      this.isOutsideOfMonthButWithinRange()
+    );
     return {
       $date: date,
       $disabled: this.props.disabled,
@@ -214,11 +298,13 @@ export default class Day<T = Date> extends React.Component<
           $selected &&
           this.dateHelpers.isSameDay(date, value[1])) ||
         false,
+      $hasDateLabel: !!this.props.dateLabel,
       $hasRangeHighlighted,
       $hasRangeOnRight:
         Array.isArray(value) &&
         $hasRangeHighlighted &&
-        (highlightedDate && value[0]) &&
+        highlightedDate &&
+        value[0] &&
         this.dateHelpers.isAfter(highlightedDate, value[0]),
       $hasRangeSelected: Array.isArray(value) ? value.length === 2 : false,
       $highlightedDate: highlightedDate,
@@ -227,7 +313,8 @@ export default class Day<T = Date> extends React.Component<
       $isFocusVisible: this.state.isFocusVisible,
       $startOfMonth: this.dateHelpers.isStartOfMonth(date),
       $endOfMonth: this.dateHelpers.isEndOfMonth(date),
-      $outsideMonth: this.isOutsideMonth(),
+      $outsideMonth,
+      $outsideMonthWithinRange,
       $peekNextMonth: this.props.peekNextMonth,
       $pseudoHighlighted:
         this.props.range && !$isHighlighted && !$selected
@@ -278,6 +365,11 @@ export default class Day<T = Date> extends React.Component<
     const {peekNextMonth, overrides = {}} = this.props;
     const sharedProps = this.getSharedProps();
     const [Day, dayProps] = getOverrides(overrides.Day, StyledDay);
+    const [DayLabel, dayLabelProps] = getOverrides(
+      overrides.DayLabel,
+      StyledDayLabel,
+    );
+    const dateLabel = this.props.dateLabel && this.props.dateLabel(date);
     return !peekNextMonth && sharedProps.$outsideMonth ? (
       <Day
         role="gridcell"
@@ -316,7 +408,12 @@ export default class Day<T = Date> extends React.Component<
             onMouseOver={this.onMouseOver}
             onMouseLeave={this.onMouseLeave}
           >
-            {this.dateHelpers.getDate(date)}
+            <div>{this.dateHelpers.getDate(date)}</div>
+            {dateLabel ? (
+              <DayLabel {...sharedProps} {...dayLabelProps}>
+                {dateLabel}
+              </DayLabel>
+            ) : null}
           </Day>
         )}
       </LocaleContext.Consumer>

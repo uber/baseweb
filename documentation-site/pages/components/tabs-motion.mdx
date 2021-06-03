@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -26,6 +26,7 @@ import RenderAllExample from 'examples/tabs-motion/renderAll.js';
 import AlignmentExample from 'examples/tabs-motion/alignment.js';
 import RefsExample from 'examples/tabs-motion/refs.js';
 import StatefulExample from 'examples/tabs-motion/stateful.js';
+import TabOverrideExample from 'examples/tabs-motion/tab-override.js';
 
 import * as TabsExports from 'baseui/tabs-motion';
 import ApiTable from '../../components/api-table';
@@ -121,7 +122,7 @@ By default, the content within a `TabPanel` will only mount once the correspondi
   <AlignmentExample />
 </Example>
 
-In this example we align the Tabs and TabPanels with our LayoutGrid component. This allows the TabBorder to expand to fill the viewport. You may want to open this example in StackBlitz to get a better sense of the visual effect.
+In this example we align the Tabs and TabPanels with our LayoutGrid component. This allows the TabBorder to expand to fill the viewport. You may want to open this example in CodeSandbox to get a better sense of the visual effect.
 
 <Example title="Refs" path="tabs-motion/refs.js">
   <RefsExample />
@@ -134,6 +135,16 @@ You can pass refs to every internal element within the Tabs component using `ove
 </Example>
 
 If you don't need to control the component yourself you can use the stateful version.
+
+<Example title="Tab Overrides" path="tabs-motion/tab-override.js">
+  <TabOverrideExample />
+</Example>
+
+Overrides can be passed to the root `Tabs` component (check the playground at the top of page). You can also customize each individual tab. You can use these override keys:
+
+- `ArtworkContainer`
+- `Tab`
+- `TabPanel`
 
 ### Resize observer
 

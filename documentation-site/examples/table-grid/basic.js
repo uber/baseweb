@@ -16,19 +16,26 @@ const data = Array(100)
     'Cell three',
   ]);
 
-export default function() {
+export default function Example() {
   const [css] = useStyletron();
   return (
     <div className={css({height: '750px'})}>
-      <StyledTable role='grid' $gridTemplateColumns="minmax(400px, max-content) 200px 200px">
-        <div role='row' className={css({display: 'contents'})}>
+      <StyledTable
+        role="grid"
+        $gridTemplateColumns="minmax(400px, max-content) 200px 200px"
+      >
+        <div role="row" className={css({display: 'contents'})}>
           <StyledHeadCell>Column 1</StyledHeadCell>
           <StyledHeadCell>Column 2</StyledHeadCell>
           <StyledHeadCell>Column 3</StyledHeadCell>
         </div>
         {data.map((row, index) => {
           return (
-            <div role='row' className={css({display: 'contents'})} key={index}>
+            <div
+              role="row"
+              className={css({display: 'contents'})}
+              key={index}
+            >
               <StyledBodyCell>{row[0]}</StyledBodyCell>
               <StyledBodyCell>{row[1]}</StyledBodyCell>
               <StyledBodyCell>{row[2]}</StyledBodyCell>

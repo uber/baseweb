@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {mount} from 'enzyme';
+import {render} from '@testing-library/react';
 
 import FlexGridItem, {
   flexGridItemMediaQueryStyle,
@@ -160,11 +160,36 @@ describe('FlexGridItem', () => {
     );
   });
 
-  it('renders', () => {
-    const wrapper = mount(<FlexGridItem />);
-    expect(wrapper).toMatchSnapshot('with default styles');
+  it('renders with expected styles', () => {
+    const {container} = render(<FlexGridItem />);
+    const style = JSON.parse(
+      container.querySelector('div').getAttribute('test-style'),
+    );
+    expect(style).toMatchInlineSnapshot(`
+Object {
+  "flexGrow": 1,
+  "marginBottom": 0,
+  "marginRight": 0,
+  "width": "calc((100% - 0px) / 1 - .5px)",
+}
+`);
+  });
 
-    wrapper.setProps({overrides: {Block: {style: {color: 'red'}}}});
-    expect(wrapper).toMatchSnapshot('with overridden styles');
+  it('renders with expected style overrides', () => {
+    const {container} = render(
+      <FlexGridItem overrides={{Block: {style: {color: 'red'}}}} />,
+    );
+    const style = JSON.parse(
+      container.querySelector('div').getAttribute('test-style'),
+    );
+    expect(style).toMatchInlineSnapshot(`
+Object {
+  "color": "red",
+  "flexGrow": 1,
+  "marginBottom": 0,
+  "marginRight": 0,
+  "width": "calc((100% - 0px) / 1 - .5px)",
+}
+`);
   });
 });

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -9,8 +9,8 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {getOverrides} from '../helpers/overrides.js';
-import TriangleDown from '../icon/triangle-down.js';
 import TriangleUp from '../icon/triangle-up.js';
+import TriangleDown from '../icon/triangle-down.js';
 
 import {SORT_DIRECTION} from './constants.js';
 import {StyledHeadCell, StyledSortableLabel} from './styled-components.js';
@@ -19,9 +19,9 @@ import type {SortDirectionT, HeadCellPropsT} from './types.js';
 function SortDirectionIcon({direction}: {direction: SortDirectionT}) {
   switch (direction) {
     case SORT_DIRECTION.ASC:
-      return <TriangleDown title="Sort ascending" />;
+      return <TriangleUp title="Sort ascending" />;
     case SORT_DIRECTION.DESC:
-      return <TriangleUp title="Sort descending" />;
+      return <TriangleDown title="Sort descending" />;
     default:
       return null;
   }
@@ -47,6 +47,15 @@ export const SortableHeadCellFactory = (
     };
     const enableHeadClick = fillClickTarget && !disabled;
 
+    let ariaLabel = props.ariaLabel;
+    if (!ariaLabel) {
+      if (typeof props.title === 'string') {
+        ariaLabel = `sorts table by ${props.title} column`;
+      } else {
+        ariaLabel = 'sort table by column';
+      }
+    }
+
     return (
       <HeadCell
         role="columnheader"
@@ -55,7 +64,7 @@ export const SortableHeadCellFactory = (
         onClick={enableHeadClick ? onClick : undefined}
       >
         <SortableLabel
-          aria-label={`sorts table by ${props.title} column`}
+          aria-label={ariaLabel}
           disabled={disabled}
           onClick={!fillClickTarget ? onClick : undefined}
           {...sortableLabelProps}

@@ -24,6 +24,7 @@ export interface TabsOverrides<T> {
   Root?: Override<T>;
   TabBar?: Override<T>;
   TabContent?: Override<T>;
+  Tab?: Override<T>;
 }
 
 export interface TabsProps {

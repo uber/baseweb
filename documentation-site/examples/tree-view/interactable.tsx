@@ -1,14 +1,20 @@
-// @flow
-
 import * as React from 'react';
-import {StatefulTreeView, TreeLabelInteractable} from 'baseui/tree-view';
+import {
+  StatefulTreeView,
+  TreeLabelInteractable,
+} from 'baseui/tree-view';
 import {Checkbox} from 'baseui/checkbox';
 
 const getLabelCheckbox = (label: React.ReactNode) => () => {
-  const [value, setValue] = React.useState();
+  const [value, setValue] = React.useState(false);
   return (
     <TreeLabelInteractable>
-      <Checkbox checked={value} onChange={e => setValue((e.target as HTMLInputElement).checked)}>
+      <Checkbox
+        checked={value}
+        onChange={e =>
+          setValue((e.target as HTMLInputElement).checked)
+        }
+      >
         {label}
       </Checkbox>
     </TreeLabelInteractable>

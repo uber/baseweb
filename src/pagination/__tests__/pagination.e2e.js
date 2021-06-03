@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -17,15 +17,15 @@ const selectors = {
 
 describe('pagination', () => {
   it('passes basic accessibility tests', async () => {
-    await mount(page, 'pagination');
-    await page.waitFor(selectors.prevButton);
+    await mount(page, 'pagination--pagination');
+    await page.waitForSelector(selectors.prevButton);
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
   it('can be navigated using the prev and next buttons', async () => {
-    await mount(page, 'pagination');
-    await page.waitFor(selectors.prevButton);
+    await mount(page, 'pagination--pagination');
+    await page.waitForSelector(selectors.prevButton);
     // assert initial state
     const initialValue = await page.$eval(
       selectors.dropDownButton,
@@ -51,8 +51,8 @@ describe('pagination', () => {
   });
 
   it('can be navigated using the dropdown menu', async () => {
-    await mount(page, 'pagination');
-    await page.waitFor(selectors.prevButton);
+    await mount(page, 'pagination--pagination');
+    await page.waitForSelector(selectors.prevButton);
     // assert initial state
     const initialValue = await page.$eval(
       selectors.dropDownButton,

@@ -1,10 +1,11 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
+/* eslint-disable cup/no-undef */
 import * as React from 'react';
 import {getOverrides} from '../helpers/overrides.js';
 import {Root as StyledRoot} from './styled-components.js';
@@ -77,7 +78,7 @@ export default class Accordion extends React.Component<
       overrides,
     } = this.props;
     // eslint-disable-next-line flowtype/no-weak-types
-    const newChildren = React.Children.map(children, (child: *, index) => {
+    return React.Children.map(children, (child: *, index) => {
       if (!child) return;
       // If there is no key provided use the panel order as a default key
       const key = child.key || String(index);
@@ -101,7 +102,6 @@ export default class Accordion extends React.Component<
       };
       return React.cloneElement(child, props);
     });
-    return newChildren;
   }
 
   componentDidMount() {

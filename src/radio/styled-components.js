@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -12,6 +12,7 @@ const DEFAULT = 0;
 const HOVERED = 1;
 const ACTIVE = 2;
 type State = typeof DEFAULT | typeof HOVERED | typeof ACTIVE;
+
 function getState(props): State {
   if (props.$isActive) return ACTIVE;
   if (props.$isHovered) return HOVERED;
@@ -19,16 +20,21 @@ function getState(props): State {
 }
 
 function getOuterColor(props) {
-  const {colors} = props.$theme;
-
-  if (props.$disabled) return colors.tickFillDisabled;
-  if (!props.$checked) {
-    if (props.$disabled) return colors.tickMarkFillDisabled;
-    if (props.$isFocusVisible) return colors.borderSelected;
-    if (props.$error || props.$isError) return colors.tickBorderError;
+  const {
+    $theme: {colors},
+    $disabled,
+    $checked,
+    $isFocusVisible,
+    $error,
+    $isError,
+  } = props;
+  if ($disabled) return colors.tickFillDisabled;
+  if (!$checked) {
+    if ($isFocusVisible) return colors.borderSelected;
+    if ($error || $isError) return colors.tickBorderError;
     return colors.tickBorder;
   } else {
-    if (props.$error || props.$isError) {
+    if ($error || $isError) {
       switch (getState(props)) {
         case DEFAULT:
           return colors.tickFillErrorSelected;
@@ -115,16 +121,21 @@ function getLabelColor(props) {
   return $disabled ? colors.contentSecondary : colors.contentPrimary;
 }
 
-export const RadioGroupRoot = styled<StylePropsT>('div', props => {
-  const {$disabled, $align} = props;
-  return {
-    display: 'flex',
-    flexWrap: 'wrap',
-    flexDirection: $align === 'horizontal' ? 'row' : 'column',
-    alignItems: $align === 'horizontal' ? 'center' : 'flex-start',
-    cursor: $disabled ? 'not-allowed' : 'pointer',
-  };
-});
+export const RadioGroupRoot = styled<StylePropsT>(
+  'div',
+  // $FlowFixMe - suppressing due to webkit property
+  props => {
+    const {$disabled, $align} = props;
+    return {
+      display: 'flex',
+      flexWrap: 'wrap',
+      flexDirection: $align === 'horizontal' ? 'row' : 'column',
+      alignItems: $align === 'horizontal' ? 'center' : 'flex-start',
+      cursor: $disabled ? 'not-allowed' : 'pointer',
+      '-webkit-tap-highlight-color': 'transparent',
+    };
+  },
+);
 
 export const Root = styled<StylePropsT>('label', props => {
   const {$disabled, $hasDescription, $labelPlacement, $theme, $align} = props;
@@ -206,11 +217,17 @@ export const Label = styled<StylePropsT>('div', props => {
 
 // tricky style for focus event cause display: none doesn't work
 export const Input = styled('input', {
-  opacity: 0,
   width: 0,
-  overflow: 'hidden',
-  margin: 0,
-  padding: 0,
+  height: 0,
+  marginTop: 0,
+  marginRight: 0,
+  marginBottom: 0,
+  marginLeft: 0,
+  paddingTop: 0,
+  paddingRight: 0,
+  paddingBottom: 0,
+  paddingLeft: 0,
+  clip: 'rect(0 0 0 0)',
   position: 'absolute',
 });
 

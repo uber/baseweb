@@ -51,6 +51,7 @@ export class StatefulContainer extends React.Component<
 
 export interface CalendarProps {
   autoFocusCalendar?: boolean;
+  dateLabel?: (day: Date) => React.ReactNode;
   excludeDates?: Date[];
   quickSelect?: boolean;
   quickSelectOptions?: Array<{id: string; beginDate: Date; endDate?: Date}>;
@@ -135,6 +136,7 @@ export interface DatepickerOverrides<T> {
   Month?: Override<T>;
   Week?: Override<T>;
   Day?: Override<T>;
+  DayLabel?: Override<T>;
   Input?: Override<T>;
   InputWrapper?: Override<T>;
   Popover?: Override<T>;
@@ -241,4 +243,5 @@ export type SharedStylePropsT = {
   $hasRangeHighlighted: boolean;
   $hasRangeOnRight: boolean;
   $hasRangeSelected: boolean;
+  $hasDateLabel: boolean;
 };

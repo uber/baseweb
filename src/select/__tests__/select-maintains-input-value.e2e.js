@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -14,9 +14,9 @@ const SELECT_INPUT = 'div[data-baseweb="select"] input';
 
 describe('select option maintains input value after actions', () => {
   it('maintains input value after blur action', async () => {
-    await mount(page, 'select-maintains-input-value');
+    await mount(page, 'select--maintains-input-value');
     const selector = `#maintain-after-blur ${SELECT_INPUT}`;
-    await page.waitFor(selector);
+    await page.waitForSelector(selector);
     const input = await page.$(selector);
     await input.type('a');
     await page.keyboard.press('Tab');
@@ -25,9 +25,9 @@ describe('select option maintains input value after actions', () => {
   });
 
   it('maintains input value after close action', async () => {
-    await mount(page, 'select-maintains-input-value');
+    await mount(page, 'select--maintains-input-value');
     const selector = `#maintain-after-close ${SELECT_INPUT}`;
-    await page.waitFor(selector);
+    await page.waitForSelector(selector);
     const input = await page.$(selector);
     await input.type('a');
     await page.keyboard.press('Escape');
@@ -36,9 +36,9 @@ describe('select option maintains input value after actions', () => {
   });
 
   it('maintains input value after select action', async () => {
-    await mount(page, 'select-maintains-input-value');
+    await mount(page, 'select--maintains-input-value');
     const selector = `#maintain-after-select ${SELECT_INPUT}`;
-    await page.waitFor(selector);
+    await page.waitForSelector(selector);
     const input = await page.$(selector);
     await input.type('a');
     await page.click('li');
@@ -47,9 +47,9 @@ describe('select option maintains input value after actions', () => {
   });
 
   it('maintains input value after any action', async () => {
-    await mount(page, 'select-maintains-input-value');
+    await mount(page, 'select--maintains-input-value');
     const selector = `#maintain-after-all ${SELECT_INPUT}`;
-    await page.waitFor(selector);
+    await page.waitForSelector(selector);
     const input = await page.$(selector);
 
     await input.type('a');

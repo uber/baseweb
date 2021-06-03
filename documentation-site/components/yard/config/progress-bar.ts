@@ -1,4 +1,10 @@
-import {ProgressBar} from 'baseui/progress-bar';
+/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+import {ProgressBar, SIZE} from 'baseui/progress-bar';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 
@@ -11,6 +17,7 @@ const ProgressBarConfig: TConfig = {
   },
   scope: {
     ProgressBar,
+    SIZE,
   },
   theme: ['progressbarTrackFill'],
   props: {
@@ -40,6 +47,24 @@ const ProgressBarConfig: TConfig = {
       type: PropTypes.Boolean,
       description: 'Can be used to show the infinite progress bar.',
     },
+    size: {
+      value: 'SIZE.medium',
+      defaultValue: 'SIZE.medium',
+      options: SIZE,
+      type: PropTypes.Enum,
+      description: 'Renders component in provided size.',
+      imports: {
+        'baseui/progress-bar': {
+          named: ['SIZE'],
+        },
+      },
+    },
+    steps: {
+      value: undefined,
+      type: PropTypes.Number,
+      description:
+        'Defines how many steps the progress bar has. Defaults to 1.',
+    },
     successValue: {
       value: 100,
       type: PropTypes.Number,
@@ -56,7 +81,14 @@ const ProgressBarConfig: TConfig = {
       type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
       custom: {
-        names: ['Bar', 'BarProgress', 'Label', 'Root'],
+        names: [
+          'Bar',
+          'BarProgress',
+          'BarContainer',
+          'InfiniteBar',
+          'Label',
+          'Root',
+        ],
         sharedProps: {
           $successValue: 'successValue',
           $value: 'value',

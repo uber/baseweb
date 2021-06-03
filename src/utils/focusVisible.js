@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -112,13 +112,8 @@ export function teardown(doc) {
 
 //$FlowFixMe
 export function isFocusVisible(event) {
-  const {target, currentTarget} = event;
-
-  // Ensure nested handlers do not all return true
-  if (target !== currentTarget) return false;
-
   try {
-    return target.matches(':focus-visible');
+    return event.target.matches(':focus-visible');
   } catch (error) {
     // browsers not implementing :focus-visible will throw a SyntaxError
     // we use our own heuristic for those browsers
@@ -128,7 +123,7 @@ export function isFocusVisible(event) {
 
   // no need for validFocusTarget check. the user does that by attaching it to
   // focusable events only
-  return hadKeyboardEvent || focusTriggersKeyboardModality(target);
+  return hadKeyboardEvent || focusTriggersKeyboardModality(event.target);
 }
 
 /**

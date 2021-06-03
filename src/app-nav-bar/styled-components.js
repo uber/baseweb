@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -86,7 +86,9 @@ export const StyledAppName = styled<{}>('div', ({$theme}) => ({
 export const StyledSideMenuButton = withStyle<typeof StyledButton, {}>(
   StyledButton,
   ({$theme}) => ({
-    marginRight: $theme.sizing.scale600,
+    ...($theme.direction === 'rtl'
+      ? {marginLeft: $theme.sizing.scale600}
+      : {marginRight: $theme.sizing.scale600}),
     paddingTop: $theme.sizing.scale100,
     paddingBottom: $theme.sizing.scale100,
     paddingLeft: $theme.sizing.scale100,
@@ -115,7 +117,7 @@ export const StyledMainMenuItem = styled<{
     $active,
     $isFocusVisible,
     $kind,
-    $theme: {colors, sizing},
+    $theme: {colors, sizing, direction},
   } = props;
   return {
     boxSizing: 'border-box',
@@ -135,10 +137,10 @@ export const StyledMainMenuItem = styled<{
     cursor: $active ? 'default' : 'pointer',
     whiteSpace: $kind === KIND.secondary ? 'nowrap' : 'initial',
     ':first-child': {
-      marginLeft: '0',
+      ...(direction === 'rtl' ? {marginRight: '0'} : {marginLeft: '0'}),
     },
     ':last-child': {
-      marginRight: '0',
+      ...(direction === 'rtl' ? {marginLeft: '0'} : {marginRight: '0'}),
     },
     ':hover': {
       color: colors.primary,
@@ -155,17 +157,20 @@ export const StyledSecondaryMenuContainer = styled<{}>('div', ({$theme}) => {
     flexWrap: 'nowrap',
     justifyContent: 'flex-start',
     alignItems: 'stretch',
-    overflow: 'scroll',
+    overflow: 'auto',
   };
 });
 
 export const StyledUserMenuButton = StyledButton;
 
-export const StyledUserMenuListItem = withStyle(StyledListItem, {
+export const StyledUserMenuProfileListItem = withStyle<
+  typeof StyledListItem,
+  {},
+>(StyledListItem, ({$theme}) => ({
   paddingTop: '0',
   paddingBottom: '0',
-  paddingRight: '0',
-});
+  ...($theme.direction === 'rtl' ? {paddingLeft: '0'} : {paddingRight: '0'}),
+}));
 
 export const StyledUserProfileTileContainer = styled<{}>('div', ({$theme}) => {
   return {
@@ -184,7 +189,9 @@ export const StyledUserProfilePictureContainer = styled<{}>(
   'div',
   ({$theme}) => {
     return {
-      marginRight: $theme.sizing.scale600,
+      ...($theme.direction === 'rtl'
+        ? {marginLeft: $theme.sizing.scale600}
+        : {marginRight: $theme.sizing.scale600}),
     };
   },
 );

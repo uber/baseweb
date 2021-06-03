@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -57,7 +57,11 @@ describe('anchor column', () => {
     const Cell = column.renderCell;
 
     const {container} = render(
-      <Cell value={{content: 'baseweb', href: 'https://baseweb.design'}} />,
+      <Cell
+        value={{content: 'baseweb', href: 'https://baseweb.design'}}
+        x={0}
+        y={0}
+      />,
     );
     const cell = container.querySelector('a');
     expect(cell.textContent).toBe('baseweb');
@@ -75,7 +79,11 @@ describe('anchor column', () => {
     const Cell = column.renderCell;
 
     const {container} = render(
-      <Cell value={{content: 'baseweb', href: 'https://baseweb.design'}} />,
+      <Cell
+        value={{content: 'baseweb', href: 'https://baseweb.design'}}
+        x={0}
+        y={0}
+      />,
     );
     const cell = container.querySelector('div');
     expect(cell.textContent).toBe('baseweb');

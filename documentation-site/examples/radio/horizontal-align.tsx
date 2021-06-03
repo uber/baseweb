@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Radio, RadioGroup} from 'baseui/radio';
 
-export default () => {
+export default function Example() {
   const [value, setValue] = React.useState('1');
   return (
     <RadioGroup
@@ -15,4 +15,4 @@ export default () => {
       <Radio value="3">Third</Radio>
     </RadioGroup>
   );
-};
+}

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -23,64 +23,62 @@ const selectors = {
 };
 
 describe('Stateful Datepicker', () => {
-  jest.retryTimes(3);
-
   beforeEach(async () => {
     await jestPuppeteer.resetPage();
   });
 
   it('passes basic a11y tests', async () => {
-    await mount(page, 'stateful-datepicker');
-    await page.waitFor(selectors.input);
+    await mount(page, 'datepicker--stateful');
+    await page.waitForSelector(selectors.input);
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
   it('datepicker with min max date allows browsing', async () => {
-    await mount(page, 'stateful-datepicker-min-max-date');
-    await page.waitFor(selectors.input);
+    await mount(page, 'datepicker--stateful-min-max-date');
+    await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
-    await page.waitFor(selectors.calendar);
+    await page.waitForSelector(selectors.calendar);
     await page.click(selectors.day);
-    await page.waitFor(selectors.calendar, {
+    await page.waitForSelector(selectors.calendar, {
       hidden: true,
     });
-    await page.waitFor(selectors.input);
+    await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
-    await page.waitFor(selectors.calendar);
-    await page.waitFor(selectors.leftArrow);
+    await page.waitForSelector(selectors.calendar);
+    await page.waitForSelector(selectors.leftArrow);
     let value = await page.$eval(
       selectors.leftArrow,
       select => select.disabled,
     );
     expect(value).toBe(false);
     await page.click(selectors.leftArrow);
-    await page.waitFor(selectors.day, {
+    await page.waitForSelector(selectors.day, {
       hidden: true,
     });
-    await page.waitFor(selectors.leftArrow);
+    await page.waitForSelector(selectors.leftArrow);
     value = await page.$eval(selectors.leftArrow, select => select.disabled);
     expect(value).toBe(true);
-    await page.waitFor(selectors.selected);
+    await page.waitForSelector(selectors.selected);
     await page.click(selectors.selected);
-    await page.waitFor(selectors.input);
+    await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
-    await page.waitFor(selectors.calendar);
-    await page.waitFor(selectors.leftArrow);
+    await page.waitForSelector(selectors.calendar);
+    await page.waitForSelector(selectors.leftArrow);
     value = await page.$eval(selectors.leftArrow, select => select.disabled);
     expect(value).toBe(true);
-    await page.waitFor(selectors.rightArrow);
+    await page.waitForSelector(selectors.rightArrow);
     value = await page.$eval(selectors.rightArrow, select => select.disabled);
     expect(value).toBe(false);
   });
 
   it('datepicker with min max date shows valid months in header dropdown', async () => {
-    await mount(page, 'stateful-datepicker-min-max-date');
-    await page.waitFor(selectors.input);
+    await mount(page, 'datepicker--stateful-min-max-date');
+    await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
-    await page.waitFor(selectors.calendar);
+    await page.waitForSelector(selectors.calendar);
     await page.click(selectors.monthYearSelectButton);
-    await page.waitFor(selectors.monthYearSelectMenu);
+    await page.waitForSelector(selectors.monthYearSelectMenu);
 
     let value = await page.$$eval('ul[role="listbox"] li', items => {
       // Return the first and last month year option

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -12,8 +12,8 @@ import {useStyletron} from '../../styles/index.js';
 import {Label4} from '../../typography/index.js';
 
 import {
-  Unstable_DataTable,
-  Unstable_StatefulContainer,
+  DataTable,
+  StatefulContainer,
   CategoricalColumn,
   StringColumn,
 } from '../index.js';
@@ -62,7 +62,7 @@ const rows = AnimalData.map(row => {
 export default function Scenario() {
   const [css] = useStyletron();
   return (
-    <Unstable_StatefulContainer columns={columns} rows={rows}>
+    <StatefulContainer columns={columns} rows={rows}>
       {({
         filters,
         onFilterAdd,
@@ -120,7 +120,7 @@ export default function Scenario() {
             })}
           </div>
           <div className={css({width: '700px'})}>
-            <Unstable_DataTable
+            <DataTable
               columns={columns}
               rows={rows}
               filters={filters}
@@ -142,6 +142,6 @@ export default function Scenario() {
           </div>
         </div>
       )}
-    </Unstable_StatefulContainer>
+    </StatefulContainer>
   );
 }

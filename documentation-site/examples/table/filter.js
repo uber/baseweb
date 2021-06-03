@@ -104,7 +104,7 @@ class FilterTable extends React.Component<
   }
 }
 
-export default () => {
+export default function Example() {
   const [css] = useStyletron();
   const FILTER_DATA = Array.from({length: 100}, (_, i) => [
     i,
@@ -115,4 +115,4 @@ export default () => {
       <FilterTable data={FILTER_DATA} />
     </div>
   );
-};
+}

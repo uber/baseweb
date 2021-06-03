@@ -1,22 +1,17 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {shallow} from 'enzyme';
-import {
-  StatefulContainer,
-  PLACEMENT,
-  TRIGGER_TYPE,
-  STATE_CHANGE_TYPE,
-} from '../index.js';
-import type {PopoverPropsWithoutChildrenT} from '../types.js';
+import {render} from '@testing-library/react';
+
+import {StatefulContainer, PLACEMENT, TRIGGER_TYPE} from '../index.js';
 
 describe('StatefulPopoverContainer', () => {
-  test('basic render', () => {
+  it('basic render', () => {
     const props = {
       overrides: {
         Body: function CustomBody() {
@@ -39,215 +34,169 @@ describe('StatefulPopoverContainer', () => {
       onOpen: jest.fn(),
       stateReducer: jest.fn(),
     };
-    const children = jest.fn();
+    const children = jest.fn(() => null);
 
-    shallow(<StatefulContainer {...props}>{children}</StatefulContainer>);
-
+    render(<StatefulContainer {...props}>{children}</StatefulContainer>);
     expect(children).toHaveBeenCalledTimes(1);
-    expect(children.mock.calls[0]).toMatchSnapshot(
-      'function-as-child called with correct args',
-    );
   });
 
-  test('dismissOnClickOutside', () => {
+  it('dismisses on click outside', () => {
     const props = {
       content: jest.fn(),
       initialState: {
         isOpen: true,
       },
     };
-    const children = jest.fn();
+    const children = jest.fn(() => null);
 
-    const component = shallow(
-      <StatefulContainer {...props}>{children}</StatefulContainer>,
-    );
-
-    expect(component).toHaveState('isOpen', true);
+    render(<StatefulContainer {...props}>{children}</StatefulContainer>);
 
     // dismissOnClickOutside should default to true - onClickOutside should be set
-    let propsReceived: PopoverPropsWithoutChildrenT = children.mock.calls[0][0];
-
-    expect(propsReceived.onClickOutside).toBe(
-      component.instance().onClickOutside,
-    );
+    const firstRender = children.mock.calls[0][0];
+    expect(firstRender).toHaveProperty('isOpen', true);
+    expect(firstRender).toHaveProperty('onClickOutside');
 
     // Check that onClickOutside callback properly updates component state
     // $FlowFixMe - Flow can't infer that expect() above ensures non-nullity
-    propsReceived.onClickOutside();
-    expect(component).toHaveState('isOpen', false);
-
-    // onClickOutside should not be passed if dismissOnClickOutside is false
-    component.setProps({dismissOnClickOutside: false});
-    propsReceived = children.mock.calls[2][0];
-    expect(propsReceived.onClickOutside).toBeUndefined();
+    firstRender.onClickOutside();
+    const secondRender = children.mock.calls[1][0];
+    expect(secondRender).toHaveProperty('isOpen', false);
   });
 
-  test('dismissOnEsc', () => {
+  it('disables dismiss on click outside', () => {
+    const props = {
+      dismissOnClickOutside: false,
+      content: jest.fn(),
+      initialState: {
+        isOpen: true,
+      },
+    };
+    const children = jest.fn(() => null);
+
+    render(<StatefulContainer {...props}>{children}</StatefulContainer>);
+
+    // dismissOnClickOutside should default to true - onClickOutside should be set
+    const firstRender = children.mock.calls[0][0];
+    expect(firstRender).not.toHaveProperty('onClickOutside');
+  });
+
+  it('dismiss on escape', () => {
     const props = {
       content: jest.fn(),
       initialState: {
         isOpen: true,
       },
     };
-    const children = jest.fn();
+    const children = jest.fn(() => null);
 
-    const component = shallow(
-      <StatefulContainer {...props}>{children}</StatefulContainer>,
-    );
+    render(<StatefulContainer {...props}>{children}</StatefulContainer>);
 
     // dismissOnEsc should default to true - onEsc should be set
-    let propsReceived: PopoverPropsWithoutChildrenT = children.mock.calls[0][0];
-
-    expect(propsReceived.onEsc).toBe(component.instance().onEsc);
+    const firstRender = children.mock.calls[0][0];
+    expect(firstRender).toHaveProperty('onEsc');
 
     // Check that onEsc callback properly updates component state
     // $FlowFixMe - Flow can't use expect() to refine type to non-null
-    propsReceived.onEsc();
-    expect(component).toHaveState('isOpen', false);
-
-    // onEsc should not be passed if dismissOnEsc is false
-    component.setProps({dismissOnEsc: false});
-    propsReceived = children.mock.calls[2][0];
-    expect(propsReceived.onEsc).toBeUndefined();
+    firstRender.onEsc();
+    const secondRender = children.mock.calls[1][0];
+    expect(secondRender).toHaveProperty('isOpen', false);
   });
 
-  test('triggerType events', () => {
+  it('disables dismiss on escape', () => {
+    const props = {
+      dismissOnEsc: false,
+      content: jest.fn(),
+      initialState: {
+        isOpen: true,
+      },
+    };
+    const children = jest.fn(() => null);
+
+    render(<StatefulContainer {...props}>{children}</StatefulContainer>);
+
+    // dismissOnClickOutside should default to true - onClickOutside should be set
+    const firstRender = children.mock.calls[0][0];
+    expect(firstRender).not.toHaveProperty('onEsc');
+  });
+
+  it('hover trigger type events', () => {
     const props = {
       content: jest.fn(),
       triggerType: TRIGGER_TYPE.hover,
     };
-    const children = jest.fn();
+    const children = jest.fn(() => null);
 
-    const component = shallow(
-      <StatefulContainer {...props}>{children}</StatefulContainer>,
-    );
+    render(<StatefulContainer {...props}>{children}</StatefulContainer>);
 
     // Should have hover-related callbacks
-    let propsReceived: PopoverPropsWithoutChildrenT = children.mock.calls[0][0];
-
-    expect(propsReceived.onMouseEnter).toBe(component.instance().onMouseEnter);
-    expect(propsReceived.onMouseLeave).toBe(component.instance().onMouseLeave);
-    expect(propsReceived.onFocus).toBe(component.instance().onFocus);
-    expect(propsReceived.onBlur).toBe(component.instance().onBlur);
-    expect(propsReceived.onClick).toBeUndefined();
-
-    // $FlowFixMe - Flow can't use expect() to refine type to non-null
-    propsReceived.onMouseEnter();
-    expect(component).toHaveState('isOpen', true);
-    // $FlowFixMe - Flow can't use expect() to refine type to non-null
-    propsReceived.onMouseLeave();
-    expect(component).toHaveState('isOpen', false);
-    // $FlowFixMe - Flow can't use expect() to refine type to non-null
-    propsReceived.onFocus();
-    expect(component).toHaveState('isOpen', true);
-    // $FlowFixMe - Flow can't use expect() to refine type to non-null
-    propsReceived.onBlur();
-    expect(component).toHaveState('isOpen', false);
-
-    // After setting triggerType to click, should have click-related callbacks
-    component.setProps({triggerType: TRIGGER_TYPE.click});
-
-    expect(children.mock.calls).toHaveLength(6);
-    propsReceived = children.mock.calls[5][0];
-    expect(propsReceived.onClick).toBe(component.instance().onClick);
-    expect(propsReceived.onMouseEnter).toBeUndefined();
-    expect(propsReceived.onMouseLeave).toBeUndefined();
-    expect(propsReceived.onFocus).toBeUndefined();
-    expect(propsReceived.onBlur).toBeUndefined();
+    const first = children.mock.calls[0][0];
+    expect(first).toHaveProperty('isOpen', false);
+    expect(first).toHaveProperty('onMouseEnter');
+    expect(first).toHaveProperty('onMouseLeave');
+    expect(first).toHaveProperty('onFocus');
+    expect(first).toHaveProperty('onBlur');
+    expect(first).toHaveProperty('onClick', undefined);
 
     // $FlowFixMe - Flow can't use expect() to refine type to non-null
-    propsReceived.onClick();
-    expect(component).toHaveState('isOpen', true);
+    first.onMouseEnter();
+    const second = children.mock.calls[1][0];
+    expect(second).toHaveProperty('isOpen', true);
+
     // $FlowFixMe - Flow can't use expect() to refine type to non-null
-    propsReceived.onClick();
-    expect(component).toHaveState('isOpen', false);
+    second.onMouseLeave();
+    const third = children.mock.calls[2][0];
+    expect(third).toHaveProperty('isOpen', false);
+
+    // $FlowFixMe - Flow can't use expect() to refine type to non-null
+    third.onFocus();
+    const fourth = children.mock.calls[3][0];
+    expect(fourth).toHaveProperty('isOpen', true);
+
+    // $FlowFixMe - Flow can't use expect() to refine type to non-null
+    fourth.onBlur();
+    const fifth = children.mock.calls[4][0];
+    expect(fifth).toHaveProperty('isOpen', false);
   });
 
-  test('content prop receives close callback', () => {
+  it('click trigger type events', () => {
     const props = {
       content: jest.fn(),
-      initialState: {
-        isOpen: true,
-      },
+      triggerType: TRIGGER_TYPE.click,
     };
-    const children = jest.fn();
+    const children = jest.fn(() => null);
 
-    const component = shallow(
-      <StatefulContainer {...props}>{children}</StatefulContainer>,
-    );
+    render(<StatefulContainer {...props}>{children}</StatefulContainer>);
 
-    expect(children).toHaveBeenCalledTimes(1);
-    const contentProp = children.mock.calls[0][0].content;
+    const first = children.mock.calls[0][0];
+    expect(first).toHaveProperty('isOpen', false);
+    expect(first).toHaveProperty('onClick');
+    expect(first).toHaveProperty('onMouseEnter', undefined);
+    expect(first).toHaveProperty('onMouseLeave', undefined);
+    expect(first).toHaveProperty('onFocus', undefined);
+    expect(first).toHaveProperty('onBlur', undefined);
 
-    expect(contentProp).toBe(component.instance().renderContent);
-    component.instance().renderContent();
+    // $FlowFixMe
+    first.onClick();
+    const second = children.mock.calls[1][0];
+    expect(second).toHaveProperty('isOpen', true);
 
-    expect(props.content).toHaveBeenCalledTimes(1);
-    expect(props.content).toHaveBeenCalledWith({
-      close: component.instance().onContentClose,
-    });
-    props.content.mock.calls[0][0].close();
-
-    expect(component).toHaveState('isOpen', false);
+    // $FlowFixMe
+    second.onClick();
+    const third = children.mock.calls[2][0];
+    expect(third).toHaveProperty('isOpen', false);
   });
 
-  test('stateReducer', () => {
-    const props = {
-      content: jest.fn(),
-      stateReducer: jest.fn(),
-    };
-    const children = jest.fn();
-
-    const component = shallow(
-      <StatefulContainer {...props}>{children}</StatefulContainer>,
-    );
-
-    // Block opening
-    props.stateReducer.mockReturnValueOnce({isOpen: false});
-    // $FlowFixMe
-    component.instance().onClick();
-
-    expect(props.stateReducer).toHaveBeenCalledTimes(1);
-    expect(props.stateReducer).toHaveBeenLastCalledWith(
-      STATE_CHANGE_TYPE.open,
-      {isOpen: true},
-      {isOpen: false},
-    );
-    expect(component).toHaveState('isOpen', false);
-
-    // Open
-    props.stateReducer.mockReturnValueOnce({isOpen: true});
-    // $FlowFixMe
-    component.instance().onClick();
-    expect(component).toHaveState('isOpen', true);
-
-    // Block closing
-    props.stateReducer.mockClear();
-    props.stateReducer.mockReturnValueOnce({isOpen: true});
-    // $FlowFixMe
-    component.instance().onClick();
-
-    expect(props.stateReducer).toHaveBeenCalledTimes(1);
-    expect(props.stateReducer).toHaveBeenLastCalledWith(
-      STATE_CHANGE_TYPE.close,
-      {isOpen: false},
-      {isOpen: true},
-    );
-    expect(component).toHaveState('isOpen', true);
-  });
-
-  test('onOpen/onClose callbacks', () => {
+  it('calls onOpen/onClose callbacks', () => {
     const props = {
       onOpen: jest.fn(),
       onClose: jest.fn(),
     };
-    const children = jest.fn();
+    const children = jest.fn(() => null);
 
-    const component = shallow(
-      <StatefulContainer {...props}>{children}</StatefulContainer>,
-    );
+    render(<StatefulContainer {...props}>{children}</StatefulContainer>);
+
     // $FlowFixMe
-    component.instance().onMouseEnter({});
+    children.mock.calls[0][0].onClick();
     expect(props.onOpen).toHaveBeenCalledTimes(1);
     expect(props.onClose).toHaveBeenCalledTimes(0);
 
@@ -255,25 +204,26 @@ describe('StatefulPopoverContainer', () => {
     props.onClose.mockClear();
 
     // $FlowFixMe
-    component.instance().onMouseLeave({});
+    children.mock.calls[0][0].onClick();
     expect(props.onOpen).toHaveBeenCalledTimes(0);
     expect(props.onClose).toHaveBeenCalledTimes(1);
   });
 
-  test('null stateReducer', () => {
+  it('null stateReducer', () => {
     const props = {
       content: jest.fn(),
       stateReducer: null,
     };
-    const children = jest.fn();
+    const children = jest.fn(() => null);
 
-    const component = shallow(
+    render(
       // $FlowFixMe - Allow null stateReducer for the sake of testing
       <StatefulContainer {...props}>{children}</StatefulContainer>,
     );
 
-    // $FlowFixMe null state reducer shouldn't break component
-    component.instance().onClick();
-    expect(component).toHaveState('isOpen', true);
+    expect(children.mock.calls[0][0]).toHaveProperty('isOpen', false);
+    // $FlowFixMe
+    children.mock.calls[0][0].onClick();
+    expect(children.mock.calls[1][0]).toHaveProperty('isOpen', true);
   });
 });

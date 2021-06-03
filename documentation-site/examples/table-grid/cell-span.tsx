@@ -29,7 +29,7 @@ const row = [
 
 const data = [row, row, row];
 
-export default function() {
+export default function Example() {
   const [css] = useStyletron();
   return (
     <div className={css({height: '600px'})}>
@@ -41,7 +41,9 @@ export default function() {
           return (
             <React.Fragment>
               <StyledBodyCell $gridRow={`span ${row[2].length}`}>
-                <StyledLink href={row[1]}>{row[0]}</StyledLink>
+                <StyledLink href={String(row[1])}>
+                  {row[0]}
+                </StyledLink>
               </StyledBodyCell>
               {(row[2] as Array<any>).map(
                 (event: [Date, string], index: number) => {

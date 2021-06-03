@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -64,6 +64,7 @@ export default (
     contentStateDisabled: colors.gray400,
     contentAccent: foundation.accent,
     contentOnColor: colors.white,
+    contentOnColorInverse: colors.black,
     contentNegative: foundation.negative,
     contentWarning: colors.yellow500,
     contentPositive: foundation.positive,

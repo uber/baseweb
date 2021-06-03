@@ -7,7 +7,7 @@ const CodeBox = ({children}: {children: React.ReactNode}) => {
   return (
     <div
       className={css({
-        overflow: 'scroll',
+        overflow: 'auto',
         borderLeftWidth: '5px',
         borderLeftStyle: 'solid',
         borderLeftColor: isLight

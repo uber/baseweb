@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -8,8 +8,20 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {ProgressBar} from '../index.js';
+import {ProgressBar, SIZE} from '../index.js';
 
 export default function Scenario() {
-  return <ProgressBar value={20} />;
+  return (
+    <>
+      <ProgressBar value={20} showLabel size={SIZE.small} />
+      <br />
+      <ProgressBar value={20} showLabel />
+      <br />
+      <ProgressBar value={20} showLabel size={SIZE.large} />
+      <br />
+      <ProgressBar value={20} showLabel size={SIZE.large} steps={5} />
+      <br />
+      <ProgressBar infinite />
+    </>
+  );
 }

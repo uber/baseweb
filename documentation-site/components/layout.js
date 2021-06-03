@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -125,7 +125,11 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
       isGitHubEditDisabled = true;
     } else {
       isGitHubEditDisabled = route.isGitHubEditDisabled;
-      githubUrl = `${GH_URL}${path}.mdx`;
+      if (route.components) {
+        githubUrl = `${GH_URL}${path}/index.mdx`;
+      } else {
+        githubUrl = `${GH_URL}${path}.mdx`;
+      }
     }
 
     return (

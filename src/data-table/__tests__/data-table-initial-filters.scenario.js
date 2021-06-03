@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Unstable_StatefulDataTable, CategoricalColumn} from '../index.js';
+import {StatefulDataTable, CategoricalColumn} from '../index.js';
 import {useStyletron} from '../../styles/index.js';
 
 export default function Scenario() {
@@ -43,7 +43,7 @@ export default function Scenario() {
   return (
     <React.Fragment>
       <div style={{height: '400px', width: '800px'}}>
-        <Unstable_StatefulDataTable
+        <StatefulDataTable
           initialFilters={initialFilters}
           onFilterAdd={(title, params) =>
             setAddLog([...addLog, [title, params]])

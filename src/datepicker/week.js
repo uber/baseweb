@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -51,6 +51,7 @@ export default class Week<T = Date> extends React.Component<WeekPropsT<T>> {
           <Day
             adapter={this.props.adapter}
             date={day}
+            dateLabel={this.props.dateLabel}
             disabled={this.dateHelpers.isDayDisabled(day, this.props)}
             excludeDates={this.props.excludeDates}
             filterDate={this.props.filterDate}

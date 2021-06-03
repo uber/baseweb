@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -10,6 +10,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import Head from 'next/head';
+import Img from 'next/image';
 import {Block} from 'baseui/block';
 import {StyledLink} from 'baseui/link';
 import Code from './code';
@@ -79,20 +80,21 @@ export const Paragraph = (props: Props) => (
 
 export const UnorderedList = (props: Props) => <ul>{props.children}</ul>;
 
-const InlineCode = themedStyled('code', {
-  backgroundColor: 'rgba(27, 31, 35, 0.05)',
-  borderTopLeftRadius: '3px',
-  borderTopRightRadius: '3px',
-  borderBottomRightRadius: '3px',
-  borderBottomLeftRadius: '3px',
-  fontSize: '85%',
-  marginLeft: 0,
-  marginRight: 0,
-  marginTop: 0,
-  marginBottom: 0,
-  padding: '0.2em 0.4em',
-  fontFamily:
-    'SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;',
+const InlineCode = themedStyled<{}>('code', ({$theme}) => {
+  return {
+    ...$theme.typography.MonoParagraphMedium,
+    backgroundColor: 'rgba(27, 31, 35, 0.05)',
+    borderTopLeftRadius: '3px',
+    borderTopRightRadius: '3px',
+    borderBottomRightRadius: '3px',
+    borderBottomLeftRadius: '3px',
+    fontSize: '85%',
+    marginLeft: 0,
+    marginRight: 0,
+    marginTop: 0,
+    marginBottom: 0,
+    padding: '0.2em 0.4em',
+  };
 });
 
 const Blockquote = themedStyled('blockquote', {
@@ -170,6 +172,24 @@ export const H6 = ({children}: {children: React.Node}) => (
   </Heading>
 );
 
+export const Image = ({
+  alt,
+  src,
+  height,
+  width,
+}: {
+  alt?: string,
+  src: string,
+  height?: string,
+  width?: string,
+}) => {
+  if (height || width) {
+    return <Img src={src} alt={alt} height={height} width={width} />;
+  } else {
+    return <Img src={src} alt={alt} layout="fill" />;
+  }
+};
+
 export default {
   code: Code,
   h1: H1,
@@ -178,6 +198,7 @@ export default {
   h4: H4,
   h5: H5,
   h6: H6,
+  img: Image,
   li: ListItem,
   p: Paragraph,
   ul: UnorderedList,

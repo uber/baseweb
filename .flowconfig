@@ -2,7 +2,7 @@
 <PROJECT_ROOT>/dist/.*
 <PROJECT_ROOT>/packages/.*
 babel
-storybook-static
+build-ladle
 .*/node_modules/.*[^(package)]\.json$
 .*/node_modules/npmconf/.*
 .*examples/fusion/.*
@@ -23,5 +23,5 @@ module.name_mapper='^baseui' ->'<PROJECT_ROOT>/src'
 module.name_mapper='^examples' ->'<PROJECT_ROOT>/documentation-site/examples'
 log.file=.flow.log
 sharedmemory.hash_table_pow=21
-
+merge_timeout=140
 [strict]

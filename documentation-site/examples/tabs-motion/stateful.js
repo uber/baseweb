@@ -3,7 +3,7 @@
 import * as React from 'react';
 import {StatefulTabs, Tab} from 'baseui/tabs-motion';
 
-export default () => {
+export default function Example() {
   return (
     <StatefulTabs>
       <Tab title="First">I must not fear.</Tab>
@@ -13,4 +13,4 @@ export default () => {
       </Tab>
     </StatefulTabs>
   );
-};
+}

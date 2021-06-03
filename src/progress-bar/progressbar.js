@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -7,11 +7,14 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import {getOverrides} from '../helpers/overrides.js';
+import {SIZE} from './constants.js';
 import {
-  Root as StyledRoot,
-  Bar as StyledBar,
-  Label as StyledLabel,
-  BarProgress as StyledBarProgress,
+  StyledRoot,
+  StyledBarContainer,
+  StyledBar,
+  StyledLabel,
+  StyledBarProgress,
+  StyledInfiniteBar,
 } from './styled-components.js';
 
 import type {ProgressBarPropsT} from './types.js';
@@ -20,11 +23,13 @@ class ProgressBar extends React.Component<ProgressBarPropsT> {
   static defaultProps = {
     getProgressLabel: (value: number, successValue: number) =>
       `${Math.round((value / successValue) * 100)}% Loaded`,
-    successValue: 100,
-    value: 0,
+    infinite: false,
     overrides: {},
     showLabel: false,
-    infinite: false,
+    size: SIZE.medium,
+    steps: 1,
+    successValue: 100,
+    value: 0,
   };
 
   render() {
@@ -32,38 +37,72 @@ class ProgressBar extends React.Component<ProgressBarPropsT> {
       overrides = {},
       getProgressLabel,
       value,
+      size,
+      steps,
       successValue,
       showLabel,
       infinite,
       errorMessage,
     } = this.props;
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
+    const [BarContainer, barContainerProps] = getOverrides(
+      overrides.BarContainer,
+      StyledBarContainer,
+    );
     const [Bar, barProps] = getOverrides(overrides.Bar, StyledBar);
     const [BarProgress, barProgressProps] = getOverrides(
       overrides.BarProgress,
       StyledBarProgress,
     );
     const [Label, labelProps] = getOverrides(overrides.Label, StyledLabel);
+    const [InfiniteBar, infiniteBarProps] = getOverrides(
+      overrides.InfiniteBar,
+      StyledInfiniteBar,
+    );
     const sharedProps = {
-      $value: value,
-      $successValue: successValue,
       $infinite: infinite,
+      $size: size,
+      $steps: steps,
+      $successValue: successValue,
+      $value: value,
     };
+    function renderProgressBar() {
+      const children = [];
+      for (let i = 0; i < steps; i++) {
+        children.push(
+          <Bar key={i} {...sharedProps} {...barProps}>
+            <BarProgress $index={i} {...sharedProps} {...barProgressProps} />
+          </Bar>,
+        );
+      }
+      return children;
+    }
     return (
       <Root
         data-baseweb="progress-bar"
         role="progressbar"
         aria-valuenow={infinite ? null : value}
         aria-valuemin={infinite ? null : 0}
-        aria-valuemax={infinite ? null : 100}
+        aria-valuemax={infinite ? null : successValue}
         aria-invalid={errorMessage ? true : null}
         aria-errormessage={errorMessage}
         {...sharedProps}
         {...rootProps}
       >
-        <Bar {...sharedProps} {...barProps}>
-          <BarProgress {...sharedProps} {...barProgressProps} />
-        </Bar>
+        <BarContainer {...sharedProps} {...barContainerProps}>
+          {infinite ? (
+            <React.Fragment>
+              <InfiniteBar
+                $isLeft={true}
+                $size={sharedProps.$size}
+                {...infiniteBarProps}
+              />
+              <InfiniteBar $size={sharedProps.$size} {...infiniteBarProps} />
+            </React.Fragment>
+          ) : (
+            renderProgressBar()
+          )}
+        </BarContainer>
         {showLabel && (
           <Label {...sharedProps} {...labelProps}>
             {getProgressLabel(value, successValue)}

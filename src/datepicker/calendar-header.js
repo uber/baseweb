@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -67,10 +67,14 @@ export default class CalendarHeader<T = Date> extends React.Component<
   };
 
   dateHelpers: DateHelpers<T>;
+  items: Array<{id: string, label: string}>;
+  minYear: number;
+  maxYear: number;
 
   constructor(props: HeaderPropsT<T>) {
     super(props);
     this.dateHelpers = new DateHelpers(props.adapter);
+    this.items = [];
   }
 
   state = {
@@ -208,6 +212,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
         $isFocusVisible={this.state.isFocusVisible}
         type="button"
         $disabled={isDisabled}
+        $order={this.props.order}
         {...prevButtonProps}
       >
         {isHidden ? null : (
@@ -280,6 +285,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
         type="button"
         $disabled={isDisabled}
         $isFocusVisible={this.state.isFocusVisible}
+        $order={this.props.order}
         {...nextButtonProps}
       >
         {isHidden ? null : (
@@ -350,28 +356,31 @@ export default class CalendarHeader<T = Date> extends React.Component<
       (x, i) => i + minDateMonth,
     );
 
-    const items = [];
-
-    for (let i = minYear; i <= maxYear; i++) {
-      let months;
-      if (i === minYear && i === maxYear) {
-        months = maxYearMonths.filter(month => minYearMonths.includes(month));
-      } else if (i === minYear) {
-        months = minYearMonths;
-      } else if (i === maxYear) {
-        months = maxYearMonths;
-      } else {
-        months = defaultMonths;
-      }
-      months.forEach(month => {
-        items.push({
-          id: yearMonthToId(i, month),
-          label: `${this.dateHelpers.getMonthInLocale(month, locale)} ${i}`,
+    if (this.maxYear !== maxYear || this.minYear !== minYear) {
+      this.maxYear = maxYear;
+      this.minYear = minYear;
+      this.items = [];
+      for (let i = minYear; i <= maxYear; i++) {
+        let months;
+        if (i === minYear && i === maxYear) {
+          months = maxYearMonths.filter(month => minYearMonths.includes(month));
+        } else if (i === minYear) {
+          months = minYearMonths;
+        } else if (i === maxYear) {
+          months = maxYearMonths;
+        } else {
+          months = defaultMonths;
+        }
+        months.forEach(month => {
+          this.items.push({
+            id: yearMonthToId(i, month),
+            label: `${this.dateHelpers.getMonthInLocale(month, locale)} ${i}`,
+          });
         });
-      });
+      }
     }
 
-    const initialIndex = items.findIndex(item => {
+    const initialIndex = this.items.findIndex(item => {
       return (
         item.id ===
         yearMonthToId(
@@ -391,7 +400,6 @@ export default class CalendarHeader<T = Date> extends React.Component<
     ) : (
       <OverriddenPopover
         placement="bottom"
-        // eslint-disable-next-line jsx-a11y/no-autofocus
         autoFocus={true}
         focusLock={true}
         isOpen={this.state.isMonthYearDropdownOpen}
@@ -408,7 +416,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
               highlightedIndex: initialIndex,
               isFocused: true,
             }}
-            items={items}
+            items={this.items}
             onItemSelect={({item, event}) => {
               event.preventDefault();
               const [year, month] = idToYearMonth(item.id);

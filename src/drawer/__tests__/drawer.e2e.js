@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -27,15 +27,15 @@ const optionAtPosition = position =>
 jest.setTimeout(60000);
 describe('drawer', () => {
   it('drawer component handles focus changes properly', async () => {
-    await mount(page, 'drawer');
-    await page.waitFor(selectors.closeButton);
+    await mount(page, 'drawer--drawer');
+    await page.waitForSelector(selectors.closeButton);
     // close drawer to start fresh
     await page.click(selectors.closeButton);
-    await page.waitFor(selectors.closeButton, {
+    await page.waitForSelector(selectors.closeButton, {
       hidden: true,
     });
     await page.click(selectors.openDrawer);
-    await page.waitFor(selectors.drawer);
+    await page.waitForSelector(selectors.drawer);
 
     await page.keyboard.down('Shift');
     await page.keyboard.press('Tab');
@@ -57,7 +57,7 @@ describe('drawer', () => {
 
     // close again
     await page.click(selectors.closeButton);
-    await page.waitFor(selectors.closeButton, {
+    await page.waitForSelector(selectors.closeButton, {
       hidden: true,
     });
 
@@ -70,13 +70,13 @@ describe('drawer', () => {
 
   // This is a regression test to verify that elements in a portal will still work.
   it('allows interaction with select', async () => {
-    await mount(page, 'drawer-select');
-    await page.waitFor(selectors.drawer);
+    await mount(page, 'drawer--select');
+    await page.waitForSelector(selectors.drawer);
 
     await page.click(selectors.selectInput);
-    await page.waitFor(selectors.selectDropDown);
+    await page.waitForSelector(selectors.selectDropDown);
     await page.click(optionAtPosition(1));
-    await page.waitFor(selectors.selectDropDown, {
+    await page.waitForSelector(selectors.selectDropDown, {
       hidden: true,
     });
 
@@ -88,36 +88,36 @@ describe('drawer', () => {
   });
 
   it('closes one popover at a time on esc key press', async () => {
-    await mount(page, 'drawer-select');
-    await page.waitFor(selectors.drawer);
+    await mount(page, 'drawer--select');
+    await page.waitForSelector(selectors.drawer);
 
     await page.click(selectors.selectInput);
-    await page.waitFor(selectors.selectDropDown);
+    await page.waitForSelector(selectors.selectDropDown);
 
     await page.keyboard.press('Escape');
-    await page.waitFor(selectors.selectDropDown, {hidden: true});
-    await page.waitFor(selectors.selectInput);
+    await page.waitForSelector(selectors.selectDropDown, {hidden: true});
+    await page.waitForSelector(selectors.selectInput);
 
     await page.keyboard.press('Escape');
-    await page.waitFor(selectors.selectInput, {hidden: true});
+    await page.waitForSelector(selectors.selectInput, {hidden: true});
   });
 
   it('renders content even when hidden: with renderAll prop', async () => {
-    await mount(page, 'drawer-render-all');
+    await mount(page, 'drawer--render-all');
     // check for content while drawer is closed, then open
-    await page.waitFor(selectors.drawerContent);
+    await page.waitForSelector(selectors.drawerContent);
     await page.click(selectors.openDrawer);
-    await page.waitFor(selectors.drawer);
+    await page.waitForSelector(selectors.drawer);
 
     // check for content while drawer is open, then close
-    await page.waitFor(selectors.drawerContent);
-    await page.waitFor(selectors.closeButton);
+    await page.waitForSelector(selectors.drawerContent);
+    await page.waitForSelector(selectors.closeButton);
     await page.click(selectors.closeButton);
-    await page.waitFor(selectors.closeButton, {
+    await page.waitForSelector(selectors.closeButton, {
       hidden: true,
     });
 
     // check for content again
-    await page.waitFor(selectors.drawerContent);
+    await page.waitForSelector(selectors.drawerContent);
   });
 });

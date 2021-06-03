@@ -2,8 +2,8 @@
 import * as React from 'react';
 import {PaymentCard} from 'baseui/payment-card';
 
-export default () => {
-  const [value, setValue] = React.useState();
+export default function Example() {
+  const [value, setValue] = React.useState('');
   return (
     <PaymentCard
       value={value}
@@ -11,4 +11,4 @@ export default () => {
       placeholder="Please enter your credit card number..."
     />
   );
-};
+}

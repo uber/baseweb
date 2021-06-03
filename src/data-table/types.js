@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -24,32 +24,47 @@ export type ColumnsT =
   | typeof COLUMNS.NUMERICAL
   | typeof COLUMNS.STRING;
 
-// eslint-disable-next-line flowtype/no-weak-types
-export type ColumnT<ValueT = any, FilterParamsT = any> = {|
-  kind: ColumnsT,
-  title: string,
-  sortable: boolean,
-  filterable: boolean,
+// These options are available on all column kinds. Most have additional
+// unique options depending on the data visualization requirements.
+export type SharedColumnOptionsT<ValueT> = {|
+  cellBlockAlign?: 'start' | 'center' | 'end',
+  fillWidth?: boolean,
+  filterable?: boolean,
   // eslint-disable-next-line flowtype/no-weak-types
   mapDataToValue: (data: any) => ValueT,
-  renderCell: React.AbstractComponent<{
-    value: ValueT,
-    isMeasured?: boolean,
-    isSelected?: boolean,
-    onSelect?: () => void,
-    textQuery?: string,
-  }>,
-  renderFilter: React.AbstractComponent<{|
-    close: () => void,
-    data: ValueT[],
-    filterParams?: FilterParamsT,
-    setFilter: FilterParamsT => void,
-  |}>,
+  maxWidth?: number,
+  minWidth?: number,
+  sortable?: boolean,
+  title: string,
+|};
+
+export type RenderCellT<ValueT> = React.AbstractComponent<{
+  value: ValueT,
+  isMeasured?: boolean,
+  isSelected?: boolean,
+  onSelect?: () => void,
+  textQuery?: string,
+  x: number,
+  y: number,
+}>;
+
+export type RenderFilterT<ValueT, FilterParamsT> = React.AbstractComponent<{|
+  close: () => void,
+  data: ValueT[],
+  filterParams?: FilterParamsT,
+  setFilter: FilterParamsT => void,
+|}>;
+
+// eslint-disable-next-line flowtype/no-weak-types
+export type ColumnT<ValueT = any, FilterParamsT = any> = {|
+  ...SharedColumnOptionsT<ValueT>,
+  kind: ColumnsT,
+  sortable: boolean,
+  renderCell: RenderCellT<ValueT>,
+  renderFilter: RenderFilterT<ValueT, FilterParamsT>,
   buildFilter: FilterParamsT => ValueT => boolean,
   textQueryFilter?: (string, ValueT) => boolean,
   sortFn: (ValueT, ValueT) => number,
-  maxWidth?: number,
-  minWidth?: number,
 |};
 
 export type RowT = {
@@ -81,6 +96,8 @@ export type StatefulDataTablePropsT = {|
   filterable?: boolean,
   initialFilters?: Map<string, {description: string}>,
   initialSelectedRowIds?: Set<number | string>,
+  initialSortIndex?: number,
+  initialSortDirection?: SortDirectionsT,
   loading?: boolean,
   loadingMessage?: string | React.AbstractComponent<{||}>,
   onFilterAdd?: (string, {description: string}) => mixed,

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -7,7 +7,11 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
+const {
+  mount,
+  analyzeAccessibility,
+  waitForTimeout,
+} = require('../../../e2e/helpers');
 
 const selectors = {
   popover: '[data-baseweb="popover"]',
@@ -22,38 +26,38 @@ const selectors = {
 
 describe('popover', () => {
   it('passes basic a11y tests', async () => {
-    await mount(page, 'popover');
-    await page.waitFor(selectors.tooltip);
+    await mount(page, 'popover--popover');
+    await page.waitForSelector(selectors.tooltip);
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
   it('hover opens the popover', async () => {
-    await mount(page, 'popover-hover');
-    await page.waitFor('button');
+    await mount(page, 'popover--hover');
+    await page.waitForSelector('button');
     await page.hover('button');
-    await page.waitFor(selectors.tooltip);
-    await page.mouse.move(0, 0);
-    await page.waitFor(selectors.tooltip, {hidden: true});
+    await page.waitForSelector(selectors.tooltip);
+    await page.mouse.move(200, 200);
+    await page.waitForSelector(selectors.tooltip, {hidden: true});
   });
 
   it('opened popover can be closed with ESC', async () => {
-    await mount(page, 'popover-click');
-    await page.waitFor('button');
+    await mount(page, 'popover--click');
+    await page.waitForSelector('button');
     await page.click('button');
-    await page.waitFor(selectors.tooltip);
+    await page.waitForSelector(selectors.tooltip);
     await page.keyboard.press('Escape');
-    await page.waitFor(selectors.tooltip, {hidden: true});
+    await page.waitForSelector(selectors.tooltip, {hidden: true});
   });
 
   it('allows interaction with select', async () => {
-    await mount(page, 'popover-select');
-    await page.waitFor('button');
+    await mount(page, 'popover--select');
+    await page.waitForSelector('button');
     await page.click('button');
-    await page.waitFor(selectors.tooltip);
-    await page.waitFor(selectors.selectInput);
+    await page.waitForSelector(selectors.tooltip);
+    await page.waitForSelector(selectors.selectInput);
     await page.click(selectors.selectInput);
-    await page.waitFor(selectors.selectDropDown);
+    await page.waitForSelector(selectors.selectDropDown);
     // Both popovers opened at this point.
     // Make sure that layers rendered flat and not nested.
     const noNestedPopovers = await page.$$eval(selectors.popover, popovers => {
@@ -68,7 +72,7 @@ describe('popover', () => {
     // Select an option from the select dropdown
     const options = await page.$$(selectors.dropDownOption);
     await options[0].click();
-    await page.waitFor(selectors.selectDropDown, {hidden: true});
+    await page.waitForSelector(selectors.selectDropDown, {hidden: true});
 
     const selectedValue = await page.$eval(
       selectors.selectedList,
@@ -77,18 +81,31 @@ describe('popover', () => {
     expect(selectedValue).toBe('AliceBlue');
     // Click outside to close the initial popover
     await page.click(selectors.outsideOfPopover);
-    await page.waitFor(selectors.selectInput, {hidden: true});
+    await page.waitForSelector(selectors.selectInput, {hidden: true});
   });
 
   it('renders content even when hidden: with renderAll prop', async () => {
-    await mount(page, 'popover-render-all');
-    await page.waitFor('button');
-    await page.waitFor(selectors.content);
+    await mount(page, 'popover--render-all');
+    await page.waitForSelector('button');
+    await page.waitForSelector(selectors.content);
     await page.click('button');
-    await page.waitFor(selectors.tooltip);
-    await page.waitFor(selectors.content);
+    await page.waitForSelector(selectors.tooltip);
+    await page.waitForSelector(selectors.content);
     await page.keyboard.press('Escape');
-    await page.waitFor(selectors.tooltip, {hidden: true});
-    await page.waitFor(selectors.content);
+    await page.waitForSelector(selectors.tooltip, {hidden: true});
+    await page.waitForSelector(selectors.content);
+  });
+
+  it('updates position when width of popover changes', async () => {
+    await mount(page, 'popover--reposition');
+    await page.click('#e2e-open');
+    let popover = await page.$('#e2e-popover');
+    const {x: startX, width: startWidth} = await popover.boundingBox();
+    await page.click('#e2e-update');
+    await page.waitForSelector('#e2e-expanded');
+    await waitForTimeout(1000); // wait for animation
+    const {x: endX, width: endWidth} = await popover.boundingBox();
+    expect(endWidth).toBeGreaterThan(startWidth);
+    expect(endX).toBeLessThan(startX);
   });
 });

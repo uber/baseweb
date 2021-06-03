@@ -24,6 +24,7 @@ export interface FormControlProps {
   caption?: React.ReactNode;
   error?: boolean | React.ReactNode;
   positive?: React.ReactNode;
+  htmlFor?: string;
 }
 
 export class FormControl extends React.Component<

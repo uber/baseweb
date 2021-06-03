@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -80,7 +80,6 @@ export default class PinCode extends React.Component<PropsT, StateT> {
               inputMode="numeric"
               inputRef={this._inputRefs.ref(i)}
               key={i}
-              maxLength="1"
               name={this.props.name}
               onBlur={() => this.setState({hasFocus: false})}
               onFocus={() => this.setState({hasFocus: true})}

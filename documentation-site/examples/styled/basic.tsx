@@ -12,6 +12,6 @@ const BlueDiv = styled<
   color: $theme.colors[$color],
 }));
 
-export default () => (
-  <BlueDiv $color="accent">This is a blue div</BlueDiv>
-);
+export default function Example() {
+  return <BlueDiv $color="accent">This is a blue div</BlueDiv>;
+}

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -25,7 +25,7 @@ export const Track = styled<StylePropsT>('div', props => {
     cursor = 'pointer';
   }
   return {
-    paddingTop: sizing.scale1000,
+    paddingTop: sizing.scale600,
     paddingBottom: sizing.scale600,
     paddingRight: sizing.scale600,
     paddingLeft: sizing.scale600,
@@ -37,7 +37,7 @@ Track.displayName = 'StyledTrack';
 
 export const InnerTrack = styled<StylePropsT>('div', props => {
   const {$theme, $value = [], $min, $max, $disabled} = props;
-  const {colors, borders, sizing, direction} = $theme;
+  const {colors, borders, direction} = $theme;
   const borderRadius = $theme.borders.useRoundedCorners ? borders.radius100 : 0;
   return {
     borderTopLeftRadius: borderRadius,
@@ -48,19 +48,36 @@ export const InnerTrack = styled<StylePropsT>('div', props => {
       values: $value,
       colors:
         $value.length === 1
-          ? [colors.primary, colors.mono400]
-          : [colors.mono400, colors.primary, colors.mono400],
+          ? [
+              $disabled ? colors.borderOpaque : colors.primary,
+              $disabled ? colors.backgroundSecondary : colors.borderOpaque,
+            ]
+          : [
+              $disabled ? colors.backgroundSecondary : colors.borderOpaque,
+              $disabled ? colors.borderOpaque : colors.primary,
+              $disabled ? colors.backgroundSecondary : colors.borderOpaque,
+            ],
       min: $min || 0,
       max: $max || 0,
       rtl: direction === 'rtl',
     }),
-    height: sizing.scale100,
+    height: '2px',
     width: '100%',
     alignSelf: 'center',
     cursor: $disabled ? 'not-allowed' : 'inherit',
   };
 });
 InnerTrack.displayName = 'StyledInnerTrack';
+
+export const Mark = styled<StylePropsT>('div', props => {
+  return {
+    width: '4px',
+    height: '2px',
+    backgroundColor: props.$theme.colors.backgroundPrimary,
+    marginLeft: '16px',
+  };
+});
+Mark.displayName = 'StyledMark';
 
 export const Tick = styled<StylePropsT>('div', props => {
   return {
@@ -96,29 +113,18 @@ export const Thumb = styled<StylePropsT>('div', props => {
 
   return {
     height: '24px',
-    width: isLeft || isRight ? '12px' : '24px',
-    borderTopLeftRadius: isRight ? '1px' : '4px',
-    borderTopRightRadius: isLeft ? '1px' : '4px',
-    borderBottomLeftRadius: isRight ? '1px' : '4px',
-    borderBottomRightRadius: isLeft ? '1px' : '4px',
-    backgroundColor: $theme.colors.mono100,
-    color: $theme.colors.contentPrimary,
+    width: '24px',
+    borderTopLeftRadius: '24px',
+    borderTopRightRadius: '24px',
+    borderBottomLeftRadius: '24px',
+    borderBottomRightRadius: '24px',
     display: 'flex',
-    outline: 'none',
     justifyContent: 'center',
     alignItems: 'center',
-    borderLeftWidth: '1px',
-    borderRightWidth: '1px',
-    borderTopWidth: '1px',
-    borderBottomWidth: '1px',
-    borderLeftStyle: 'solid',
-    borderRightStyle: 'solid',
-    borderTopStyle: 'solid',
-    borderBottomStyle: 'solid',
-    borderLeftColor: $theme.colors.mono400,
-    borderRightColor: $theme.colors.mono400,
-    borderTopColor: $theme.colors.mono400,
-    borderBottomColor: $theme.colors.mono400,
+    backgroundColor: $disabled
+      ? $theme.colors.contentInverseTertiary
+      : $theme.colors.contentPrimary,
+    outline: 'none',
     boxShadow: props.$isFocusVisible
       ? `0 0 0 3px ${$theme.colors.accent}`
       : '0 1px 4px rgba(0, 0, 0, 0.12)',
@@ -128,15 +134,13 @@ export const Thumb = styled<StylePropsT>('div', props => {
 Thumb.displayName = 'StyledThumb';
 
 export const InnerThumb = styled<StylePropsT>('div', props => {
-  const {$theme, $isDragged} = props;
+  const {$theme} = props;
   return {
-    height: '8px',
-    width: '2px',
-    borderTopLeftRadius: '2px',
-    borderTopRightRadius: '2px',
-    borderBottomRightRadius: '2px',
-    borderBottomLeftRadius: '2px',
-    backgroundColor: $isDragged ? $theme.colors.primary : $theme.colors.mono600,
+    position: 'absolute',
+    top: '-16px',
+    width: '4px',
+    height: '20px',
+    backgroundColor: $theme.colors.backgroundInversePrimary,
   };
 });
 InnerThumb.displayName = 'StyledInnerThumb';
@@ -145,9 +149,18 @@ export const ThumbValue = styled<{}>('div', props => {
   const {$theme} = props;
   return {
     position: 'absolute',
-    top: `-${$theme.sizing.scale800}`,
+    top: `-${$theme.sizing.scale1400}`,
     ...$theme.typography.font200,
-    backgroundColor: 'transparent',
+    backgroundColor: $theme.colors.backgroundInversePrimary,
+    color: $theme.colors.contentInversePrimary,
+    paddingLeft: $theme.sizing.scale600,
+    paddingRight: $theme.sizing.scale600,
+    paddingTop: $theme.sizing.scale500,
+    paddingBottom: $theme.sizing.scale500,
+    borderBottomLeftRadius: '48px',
+    borderBottomRightRadius: '48px',
+    borderTopLeftRadius: '48px',
+    borderTopRightRadius: '48px',
     whiteSpace: 'nowrap',
   };
 });

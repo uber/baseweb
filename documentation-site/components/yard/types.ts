@@ -15,4 +15,5 @@ export type TYardProps = TConfig & {
   queryStringName?: string;
   mapTokensToProps?: {[key: string]: any};
   compilerStyles: {[key: string]: any};
+  initialTab?: string;
 };

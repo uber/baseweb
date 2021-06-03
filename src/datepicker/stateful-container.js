@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -51,9 +51,6 @@ class StatefulContainer<T = Date> extends React.Component<
 
   render() {
     const {children, initialState, stateReducer, ...restProps} = this.props;
-    // this an error that only shows up in the older version
-    // of flow running on CI
-    // $FlowFixMe
     return this.props.children({
       ...restProps,
       value: this.state.value,

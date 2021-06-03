@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -13,7 +13,6 @@ import BasicControlled from 'examples/input/basic-controlled.js';
 import Sizes from 'examples/input/sizes.js';
 import AvailableStates from 'examples/input/available-states.js';
 import Enhancers from 'examples/input/enhancers.js';
-import BeforeAfter from 'examples/input/before-after.js';
 import Mask from 'examples/input/mask.js';
 import Customization from 'examples/input/overrides.js';
 import Focus from 'examples/input/focus.js';
@@ -21,6 +20,7 @@ import WithTags from 'examples/input/with-tags.js';
 import Clearable from 'examples/input/clearable.js';
 import Password from 'examples/input/password.js';
 import BasicUncontrolled from 'examples/input/basic-uncontrolled.js';
+import WithSelect from 'examples/input/with-select.js';
 
 import {StatefulInput} from 'baseui/input';
 import * as InputExports from 'baseui/input';
@@ -57,10 +57,6 @@ An input enables a person to type in text information.
 
 <Example title="Enhancers" path="input/enhancers.js">
   <Enhancers />
-</Example>
-
-<Example title="Before and After overrides" path="input/before-after.js">
-  <BeforeAfter />
 </Example>
 
 <Example title="MaskedInput" path="input/mask.js">
@@ -126,6 +122,10 @@ Note, if all you want to do is change the icons, you could [update your theme](/
 </Example>
 
 In the example above we use `overrides` to add "tag" functionality to our input. Type a phrase and press enter to create a new tag. Use backspace to remove tags.
+
+<Example title="Combined with a Select component" path="input/with-select.js">
+  <WithSelect />
+</Example>
 
 <Example
   title="Stateful (uncontrolled) usage"

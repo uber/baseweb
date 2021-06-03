@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -30,6 +30,8 @@ class Input extends React.Component<InputPropsT, InternalStateT> {
     size: SIZE.default,
     startEnhancer: null,
     endEnhancer: null,
+    clearable: false,
+    type: 'text',
   };
 
   /**
@@ -85,7 +87,13 @@ class Input extends React.Component<InputPropsT, InternalStateT> {
     }
 
     return (
-      <Root data-baseweb="input" {...sharedProps} {...rootProps}>
+      <Root
+        data-baseweb="input"
+        {...sharedProps}
+        {...rootProps}
+        $adjoined={getAdjoinedProp(startEnhancer, endEnhancer)}
+        $hasIconTrailing={this.props.clearable || this.props.type == 'password'}
+      >
         {startEnhancer && (
           <StartEnhancer
             {...sharedProps}

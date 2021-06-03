@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -12,7 +12,7 @@ import {
   CategoricalColumn,
   StringColumn,
   BooleanColumn,
-  Unstable_StatefulDataTable,
+  StatefulDataTable,
 } from '../index.js';
 
 import AnimalData from './animal-data.js';
@@ -111,7 +111,7 @@ export default function Scenario() {
 
   return (
     <div style={{height: '600px', width: '700px'}}>
-      <Unstable_StatefulDataTable
+      <StatefulDataTable
         rowHighlightIndex={highlightIndex}
         onRowHighlightChange={(rowIndex, row) => {
           setHighlightIndex(rowIndex);

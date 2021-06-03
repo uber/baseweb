@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -122,6 +122,8 @@ export type StatefulContainerPropsT = {
   onItemSelect: OnItemSelectFnT,
   /** Ref for the menu container element. Used to capture key events for navigation */
   rootRef?: RootRefT,
+  /** Node for menu's keyboard listener. Default is null and keyboard handlers will listen on menu root. */
+  keyboardControlNode: React$ElementRef<*>,
   /** whether has keyboard type-ahead function */
   typeAhead: boolean,
   /** Child as function pattern. */
@@ -134,6 +136,7 @@ export type StatefulContainerPropsT = {
   getChildMenu?: (ref: {current: HTMLElement | null}) => ?{
     current: HTMLElement | null,
   },
+  forceHighlight: boolean,
 };
 
 export type MenuPropsT = {
@@ -165,6 +168,7 @@ export type SharedStatelessPropsT = {
    * bindings to work properly. Every rendered item should call this.
    */
   getRequiredItemProps?: GetRequiredItemPropsFnT,
+  isFocused?: boolean,
   handleMouseLeave?: () => mixed,
   /** Index of highlighted menu item. */
   highlightedIndex?: number,
@@ -178,6 +182,7 @@ export type SharedStatelessPropsT = {
   rootRef?: RootRefT,
   focusMenu?: (event: FocusEvent | MouseEvent | KeyboardEvent) => mixed,
   unfocusMenu?: () => mixed,
+  handleKeyDown?: (event: KeyboardEvent) => mixed,
 };
 
 export type StatefulMenuPropsT = {
@@ -225,6 +230,7 @@ export type OptionListPropsT = {
   getItemLabel: GetItemLabelFnT,
   /** Used to render a sub menu at this menu item. You'll often render another menu from this function. */
   getChildMenu?: (item: ItemT) => React.Node,
+  onClick?: (event: MouseEvent) => mixed,
   /** Callback used to change highlighted index in stateful menu. */
   onMouseEnter?: (event: MouseEvent) => mixed,
   /** Renders UI in defined scale. */
@@ -273,3 +279,12 @@ export type OptionProfilePropsT = {
   /** Renders all menu content for SEO purposes regardless of menu  state */
   renderAll?: boolean,
 };
+
+export type NestedMenuRefT = {current: HTMLElement | null};
+export type NestedMenuContextT = {|
+  addMenuToNesting: (ref: NestedMenuRefT) => void,
+  removeMenuFromNesting: (ref: NestedMenuRefT) => void,
+  getParentMenu: (ref: NestedMenuRefT) => ?NestedMenuRefT,
+  getChildMenu: (ref: NestedMenuRefT) => ?NestedMenuRefT,
+  mountRef: NestedMenuRefT,
+|};

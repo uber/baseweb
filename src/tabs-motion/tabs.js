@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -39,17 +39,14 @@ const KEYBOARD_ACTION = {
   previous: 'previous',
 };
 
-const debounce = (fn, wait) => {
-  let timeout;
-  return (...args) => {
-    clearTimeout(timeout);
-    timeout = setTimeout(() => {
-      fn(...args);
-    }, wait);
-  };
-};
+const getLayoutParams = (el, orientation) => {
+  if (!el) {
+    return {
+      length: 0,
+      distance: 0,
+    };
+  }
 
-const getHighlightLayoutParams = (el, orientation) => {
   // Note, we are using clientHeight/Width here, which excludes borders.
   // This means borders won't be taken into account if someone adds borders
   // through overrides. In that case you would use getBoundingClientRect
@@ -68,6 +65,35 @@ const getHighlightLayoutParams = (el, orientation) => {
   }
 };
 
+const scrollParentToCentreTarget = targetNode => {
+  const {
+    x: parentX,
+    y: parentY,
+    width: parentWidth,
+    height: parentHeight,
+  } = targetNode.parentNode.getBoundingClientRect();
+  const {
+    x: childX,
+    y: childY,
+    width: childWidth,
+    height: childHeight,
+  } = targetNode.getBoundingClientRect();
+
+  // get the position of the child centre, relative to parent
+  const childCentre = {
+    x: childX - parentX + childWidth / 2,
+    y: childY - parentY + childHeight / 2,
+  };
+  // aim for the centre of the child to be the centre of the parent
+  const {scrollLeft, scrollTop} = targetNode.parentNode;
+  const target = {
+    x: scrollLeft + childCentre.x - parentWidth / 2,
+    y: scrollTop + childCentre.y - parentHeight / 2,
+  };
+  // ignore out of bounds, the browser will manage this for us
+  targetNode.parentNode.scroll(target.x, target.y);
+};
+
 export function Tabs({
   activeKey = '0',
   disabled = false,
@@ -78,9 +104,11 @@ export function Tabs({
   orientation = ORIENTATION.horizontal,
   overrides = {},
   renderAll = false,
+  uid: customUid = null,
 }: TabsPropsT) {
   // Create unique id prefix for this tabs component
-  const uid = useUID();
+  const generatedUid = useUID();
+  const uid = customUid || generatedUid;
 
   // Unpack overrides
   const {
@@ -116,26 +144,15 @@ export function Tabs({
     distance: 0,
   });
 
-  // Update highlight on key and orientation changes.
-  React.useEffect(() => {
+  // Create a shared, memoized callback for tabs to call on resize.
+  const updateHighlight = React.useCallback(() => {
     if (activeTabRef.current) {
-      setHighlightLayout(
-        getHighlightLayoutParams(activeTabRef.current, orientation),
-      );
+      setHighlightLayout(getLayoutParams(activeTabRef.current, orientation));
     }
-  }, [activeKey, orientation]);
+  }, [activeTabRef.current, orientation]);
 
-  // Create a shared, memoized, debounced callback for tabs to call on resize.
-  const updateHighlight = React.useCallback(
-    debounce(() => {
-      if (activeTabRef.current) {
-        setHighlightLayout(
-          getHighlightLayoutParams(activeTabRef.current, orientation),
-        );
-      }
-    }, 100),
-    [activeKey, orientation],
-  );
+  // Update highlight on key and orientation changes.
+  React.useEffect(updateHighlight, [activeTabRef.current, orientation]);
 
   // Scroll active tab into view when the parent has scrollbar on mount and
   // on key change (smooth scroll). Note, if the active key changes while
@@ -158,14 +175,11 @@ export function Tabs({
             inline: 'nearest',
           });
         } else {
-          activeTabRef.current.scrollIntoView({
-            block: 'center',
-            inline: 'center',
-          });
+          scrollParentToCentreTarget(activeTabRef.current);
         }
       }
     }
-  }, [activeKey]);
+  }, [activeTabRef.current]);
 
   // Collect shared styling props
   const sharedStylingProps = {
@@ -223,146 +237,22 @@ export function Tabs({
       >
         {React.Children.map(children, (child, index) => {
           if (!child) return;
-          const key = child.key || index;
-          const isActive = key == activeKey;
-          const {
-            artwork: Artwork,
-            overrides = {},
-            tabRef,
-            onClick,
-            ...restProps
-          } = child.props;
-
-          // A way to share our internal activeTabRef via the "tabRef" prop.
-          const ref = React.useRef();
-          React.useImperativeHandle(tabRef, () => {
-            return isActive ? activeTabRef.current : ref.current;
-          });
-
-          React.useEffect(() => {
-            if (window.ResizeObserver) {
-              // We need to update the active tab highlight when the width or
-              // placement changes so we listen for resize updates in each tab.
-              const observer = new window.ResizeObserver(updateHighlight);
-              observer.observe(isActive ? activeTabRef.current : ref.current);
-              return () => {
-                observer.disconnect();
-              };
-            }
-          }, [activeKey, orientation]);
-
-          // Collect overrides
-          const {
-            Tab: TabOverrides,
-            ArtworkContainer: ArtworkContainerOverrides,
-          } = overrides;
-          const [Tab, TabProps] = getOverrides(TabOverrides, StyledTab);
-          const [ArtworkContainer, ArtworkContainerProps] = getOverrides(
-            ArtworkContainerOverrides,
-            StyledArtworkContainer,
-          );
-
-          // Keyboard focus styling
-          const [focusVisible, setFocusVisible] = React.useState(false);
-          const handleFocus = React.useCallback((event: SyntheticEvent<>) => {
-            if (isFocusVisible(event)) {
-              setFocusVisible(true);
-            }
-          }, []);
-          const handleBlur = React.useCallback(
-            (event: SyntheticEvent<>) => {
-              if (focusVisible !== false) {
-                setFocusVisible(false);
-              }
-            },
-            [focusVisible],
-          );
-
-          // Keyboard focus management
-          const handleKeyDown = React.useCallback(event => {
-            // WAI-ARIA 1.1
-            // https://www.w3.org/TR/wai-aria-practices-1.1/#tabpanel
-            // We use directional keys to iterate focus through Tabs.
-
-            // Find all tabs eligible for focus
-            const availableTabs = [
-              ...event.target.parentNode.childNodes,
-            ].filter(
-              node => !node.disabled && node.getAttribute('role') === 'tab',
-            );
-
-            // Exit early if there are no other tabs available
-            if (availableTabs.length === 1) return;
-
-            // Find tab to focus, looping to start/end of list if necessary
-            const currentTabIndex = availableTabs.indexOf(event.target);
-            const action = parseKeyDown(event);
-            if (action) {
-              let nextTab: ?HTMLButtonElement;
-              if (action === KEYBOARD_ACTION.previous) {
-                if (availableTabs[currentTabIndex - 1]) {
-                  nextTab = availableTabs[currentTabIndex - 1];
-                } else {
-                  nextTab = availableTabs[availableTabs.length - 1];
-                }
-              } else if (action === KEYBOARD_ACTION.next) {
-                if (availableTabs[currentTabIndex + 1]) {
-                  nextTab = availableTabs[currentTabIndex + 1];
-                } else {
-                  nextTab = availableTabs[0];
-                }
-              }
-              if (nextTab) {
-                // Focus the tab
-                nextTab.focus();
-
-                // Optionally activate the tab
-                if (activateOnFocus) {
-                  nextTab.click();
-                }
-              }
-              // Prevent default page scroll when in vertical orientation
-              if (isVertical(orientation)) {
-                event.preventDefault();
-              }
-            }
-          });
-
           return (
-            <Tab
-              data-baseweb="tab"
-              key={key}
-              id={getTabId(uid, key)}
-              role="tab"
-              onKeyDown={handleKeyDown}
-              aria-selected={isActive}
-              aria-controls={getTabPanelId(uid, key)}
-              tabIndex={isActive ? '0' : '-1'}
-              ref={isActive ? activeTabRef : ref}
-              disabled={!isActive && disabled}
-              type="button" // so it doesn't trigger a submit when used inside forms
-              $focusVisible={focusVisible}
-              {...sharedStylingProps}
-              {...restProps}
-              {...TabProps}
-              onClick={event => {
-                if (typeof onChange === 'function') onChange({activeKey: key});
-                if (typeof onClick === 'function') onClick(event);
-              }}
-              onFocus={forkFocus({...restProps, ...TabProps}, handleFocus)}
-              onBlur={forkBlur({...restProps, ...TabProps}, handleBlur)}
-            >
-              {Artwork ? (
-                <ArtworkContainer
-                  data-baseweb="artwork-container"
-                  {...sharedStylingProps}
-                  {...ArtworkContainerProps}
-                >
-                  <Artwork size={20} color="contentPrimary" />
-                </ArtworkContainer>
-              ) : null}
-              {child.props.title ? child.props.title : key}
-            </Tab>
+            <InternalTab
+              childKey={child.key}
+              childIndex={index}
+              activeKey={activeKey}
+              orientation={orientation}
+              activeTabRef={activeTabRef}
+              updateHighlight={updateHighlight}
+              parseKeyDown={parseKeyDown}
+              activateOnFocus={activateOnFocus}
+              uid={uid}
+              disabled={disabled}
+              sharedStylingProps={sharedStylingProps}
+              onChange={onChange}
+              {...child.props}
+            />
           );
         })}
         <TabHighlight
@@ -386,49 +276,237 @@ export function Tabs({
       />
       {React.Children.map(children, (child, index) => {
         if (!child) return;
-        const key = child.key || index;
-        const isActive = key == activeKey;
-        const {overrides = {}, children} = child.props;
-        const {TabPanel: TabPanelOverrides} = overrides;
-        const [TabPanel, TabPanelProps] = getOverrides(
-          TabPanelOverrides,
-          StyledTabPanel,
-        );
-        // Keyboard focus styling
-        const [focusVisible, setFocusVisible] = React.useState(false);
-        const handleFocus = React.useCallback((event: SyntheticEvent<>) => {
-          if (isFocusVisible(event)) {
-            setFocusVisible(true);
-          }
-        }, []);
-        const handleBlur = React.useCallback(
-          (event: SyntheticEvent<>) => {
-            if (focusVisible !== false) {
-              setFocusVisible(false);
-            }
-          },
-          [focusVisible],
-        );
         return (
-          <TabPanel
-            data-baseweb="tab-panel"
-            key={key}
-            role="tabpanel"
-            id={getTabPanelId(uid, key)}
-            aria-labelledby={getTabId(uid, key)}
-            tabIndex={isActive ? '0' : null}
-            aria-expanded={isActive}
-            hidden={!isActive}
-            $focusVisible={focusVisible}
-            {...sharedStylingProps}
-            {...TabPanelProps}
-            onFocus={forkFocus(TabPanelProps, handleFocus)}
-            onBlur={forkBlur(TabPanelProps, handleBlur)}
-          >
-            {isActive || renderAll ? children : null}
-          </TabPanel>
+          <InternalTabPanel
+            childKey={child.key}
+            childIndex={index}
+            activeKey={activeKey}
+            uid={uid}
+            sharedStylingProps={sharedStylingProps}
+            renderAll={renderAll}
+            {...child.props}
+          />
         );
       })}
     </Root>
+  );
+}
+
+function InternalTab({
+  childKey,
+  childIndex,
+  activeKey,
+  orientation,
+  activeTabRef,
+  updateHighlight,
+  parseKeyDown,
+  activateOnFocus,
+  uid,
+  disabled,
+  sharedStylingProps,
+  onChange,
+  ...props
+}) {
+  const key = childKey || String(childIndex);
+  const isActive = key == activeKey;
+  const {
+    artwork: Artwork,
+    overrides = {},
+    tabRef,
+    onClick,
+    title,
+    ...restProps
+  } = props;
+
+  // A way to share our internal activeTabRef via the "tabRef" prop.
+  const ref = React.useRef();
+  React.useImperativeHandle(tabRef, () => {
+    return isActive ? activeTabRef.current : ref.current;
+  });
+
+  // Track tab dimensions in a ref after each render
+  // This is used to compare params when the resize observer fires
+  const tabLayoutParams = React.useRef({length: 0, distance: 0});
+  React.useEffect(() => {
+    tabLayoutParams.current = getLayoutParams(
+      isActive ? activeTabRef.current : ref.current,
+      orientation,
+    );
+  });
+
+  // We need to potentially update the active tab highlight when the width or
+  // placement changes for a tab so we listen for resize updates in each tab.
+  React.useEffect(() => {
+    if (window.ResizeObserver) {
+      const observer = new window.ResizeObserver(entries => {
+        if (entries[0] && entries[0].target) {
+          const tabLayoutParamsAfterResize = getLayoutParams(
+            entries[0].target,
+            orientation,
+          );
+          if (
+            tabLayoutParamsAfterResize.length !==
+              tabLayoutParams.current.length ||
+            tabLayoutParamsAfterResize.distance !==
+              tabLayoutParams.current.distance
+          ) {
+            updateHighlight();
+          }
+        }
+      });
+      observer.observe(isActive ? activeTabRef.current : ref.current);
+      return () => {
+        observer.disconnect();
+      };
+    }
+  }, [activeKey, orientation]);
+
+  React.useEffect(updateHighlight, [title]);
+
+  // Collect overrides
+  const {
+    Tab: TabOverrides,
+    ArtworkContainer: ArtworkContainerOverrides,
+  } = overrides;
+  const [Tab, TabProps] = getOverrides(TabOverrides, StyledTab);
+  const [ArtworkContainer, ArtworkContainerProps] = getOverrides(
+    ArtworkContainerOverrides,
+    StyledArtworkContainer,
+  );
+
+  // Keyboard focus styling
+  const [focusVisible, setFocusVisible] = React.useState(false);
+  const handleFocus = React.useCallback((event: SyntheticEvent<>) => {
+    if (isFocusVisible(event)) {
+      setFocusVisible(true);
+    }
+  }, []);
+  const handleBlur = React.useCallback(
+    (event: SyntheticEvent<>) => {
+      if (focusVisible !== false) {
+        setFocusVisible(false);
+      }
+    },
+    [focusVisible],
+  );
+
+  // Keyboard focus management
+  const handleKeyDown = React.useCallback(event => {
+    // WAI-ARIA 1.1
+    // https://www.w3.org/TR/wai-aria-practices-1.1/#tabpanel
+    // We use directional keys to iterate focus through Tabs.
+
+    // Find all tabs eligible for focus
+    const availableTabs = [...event.target.parentNode.childNodes].filter(
+      node => !node.disabled && node.getAttribute('role') === 'tab',
+    );
+
+    // Exit early if there are no other tabs available
+    if (availableTabs.length === 1) return;
+
+    // Find tab to focus, looping to start/end of list if necessary
+    const currentTabIndex = availableTabs.indexOf(event.target);
+    const action = parseKeyDown(event);
+    if (action) {
+      let nextTab: ?HTMLButtonElement;
+      if (action === KEYBOARD_ACTION.previous) {
+        if (availableTabs[currentTabIndex - 1]) {
+          nextTab = availableTabs[currentTabIndex - 1];
+        } else {
+          nextTab = availableTabs[availableTabs.length - 1];
+        }
+      } else if (action === KEYBOARD_ACTION.next) {
+        if (availableTabs[currentTabIndex + 1]) {
+          nextTab = availableTabs[currentTabIndex + 1];
+        } else {
+          nextTab = availableTabs[0];
+        }
+      }
+      if (nextTab) {
+        // Focus the tab
+        nextTab.focus();
+
+        // Optionally activate the tab
+        if (activateOnFocus) {
+          nextTab.click();
+        }
+      }
+      // Prevent default page scroll when in vertical orientation
+      if (isVertical(orientation)) {
+        event.preventDefault();
+      }
+    }
+  });
+
+  return (
+    <Tab
+      data-baseweb="tab"
+      key={key}
+      id={getTabId(uid, key)}
+      role="tab"
+      onKeyDown={handleKeyDown}
+      aria-selected={isActive}
+      aria-controls={getTabPanelId(uid, key)}
+      tabIndex={isActive ? '0' : '-1'}
+      ref={isActive ? activeTabRef : ref}
+      disabled={!isActive && disabled}
+      type="button" // so it doesn't trigger a submit when used inside forms
+      $focusVisible={focusVisible}
+      $isActive={isActive}
+      {...sharedStylingProps}
+      {...restProps}
+      {...TabProps}
+      onClick={event => {
+        if (typeof onChange === 'function') onChange({activeKey: key});
+        if (typeof onClick === 'function') onClick(event);
+      }}
+      onFocus={forkFocus({...restProps, ...TabProps}, handleFocus)}
+      onBlur={forkBlur({...restProps, ...TabProps}, handleBlur)}
+    >
+      {Artwork ? (
+        <ArtworkContainer
+          data-baseweb="artwork-container"
+          {...sharedStylingProps}
+          {...ArtworkContainerProps}
+        >
+          <Artwork size={20} color="contentPrimary" />
+        </ArtworkContainer>
+      ) : null}
+      {title ? title : key}
+    </Tab>
+  );
+}
+
+function InternalTabPanel({
+  childKey,
+  childIndex,
+  activeKey,
+  uid,
+  sharedStylingProps,
+  renderAll,
+  ...props
+}) {
+  const key = childKey || String(childIndex);
+  const isActive = key == activeKey;
+  const {overrides = {}, children} = props;
+  const {TabPanel: TabPanelOverrides} = overrides;
+  const [TabPanel, TabPanelProps] = getOverrides(
+    TabPanelOverrides,
+    StyledTabPanel,
+  );
+  return (
+    <TabPanel
+      data-baseweb="tab-panel"
+      key={key}
+      role="tabpanel"
+      id={getTabPanelId(uid, key)}
+      aria-labelledby={getTabId(uid, key)}
+      aria-expanded={isActive}
+      hidden={!isActive}
+      {...sharedStylingProps}
+      {...TabPanelProps}
+    >
+      {isActive || renderAll ? children : null}
+    </TabPanel>
   );
 }

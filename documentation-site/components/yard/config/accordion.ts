@@ -1,3 +1,9 @@
+/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
 import {Accordion, Panel} from 'baseui/accordion';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
@@ -47,7 +53,14 @@ const AccordionConfig: TConfig = {
       type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
       custom: {
-        names: ['Content', 'Header', 'PanelContainer', 'Root', 'ToggleIcon'],
+        names: [
+          'Content',
+          'ContentAnimationContainer',
+          'Header',
+          'PanelContainer',
+          'Root',
+          'ToggleIcon',
+        ],
         sharedProps: {
           $disabled: 'disabled',
         },

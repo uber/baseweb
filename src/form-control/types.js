@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -32,6 +32,8 @@ export type FormControlPropsT = {
   error?: React.Node | ((props: {}) => React.Node),
   /** Positive state of the input. If an error prop passed it will be rendered in place of positive as an error message. */
   positive?: React.Node | ((props: {}) => React.Node),
+  /** The id of the related form element. Defaults to the id property of the child, if any. */
+  htmlFor?: string,
   children: React.Node,
 };
 

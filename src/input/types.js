@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -57,6 +57,8 @@ export type SharedPropsT = {|
   /** Renders UI in 'required' state */
   $required: boolean,
   $position: $Keys<typeof ENHANCER_POSITION>,
+  /** Defines if has a clearable or MaskToggleButton at the end */
+  $hasIconTrailing: boolean,
 |};
 
 export type PropsT = *;
@@ -86,6 +88,8 @@ export type BaseInputPropsT<T> = {|
   'aria-controls'?: string,
   /** Id of element which contains a related error message */
   'aria-errormessage'?: string,
+  /** Sets aria-haspopup attribute. */
+  'aria-haspopup'?: string,
   /** Sets aria-label attribute. */
   'aria-label'?: string,
   /** Sets aria-labelledby attribute. */
@@ -104,7 +108,7 @@ export type BaseInputPropsT<T> = {|
   error: boolean,
   /** Renders component in 'positive' state. */
   positive?: boolean,
-  /** A regex that is used to validate the value of the input on form submission. */
+  /** A regex that is used to validate the value of the input on form submission. The Input component must be wrapped in a form element */
   pattern?: string,
   /** Id attribute value to be added to the input element and as a label's for attribute value. */
   id?: string,
@@ -124,11 +128,14 @@ export type BaseInputPropsT<T> = {|
   clearable?: boolean,
   /** If undefined or true, clears the input when the Escape button is pressed with the input focused. True by default. */
   clearOnEscape?: boolean,
+  maxLength?: number,
   onClear?: (e: SyntheticEvent<T>) => mixed,
   overrides: BaseInputComponentsT,
   placeholder?: string,
   /** Renders component in 'required' state. */
   required: boolean,
+  /** Input role attribute. */
+  role?: string,
   /** Renders component in provided size. */
   size: SizeT,
   /** Input type attribute. */
@@ -140,6 +147,8 @@ export type BaseInputPropsT<T> = {|
   min?: number,
   /** max value when used as input type=number */
   max?: number,
+  /** step value when used as input type=number */
+  step?: number,
 |};
 
 export type InputPropsT = {|
@@ -157,7 +166,7 @@ export type InputPropsT = {|
 
 export type MaskedInputPropsT = $Shape<{|
   ...InputPropsT,
-  /** See pattern examples here: https://github.com/sanniassin/react-input-mask */
+  /** See mask examples here: https://github.com/sanniassin/react-input-mask */
   mask?: string,
   /** Character to render for unfilled mask element. */
   maskChar?: string,

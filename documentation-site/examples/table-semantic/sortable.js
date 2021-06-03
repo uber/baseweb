@@ -6,7 +6,7 @@ import {
   TableBuilderColumn,
 } from 'baseui/table-semantic';
 
-export default () => {
+export default function Example() {
   const [sortColumn, setSortColumn] = useState('bar');
   const [sortAsc, setSortAsc] = useState(true);
   const [data] = useState([
@@ -70,4 +70,4 @@ export default () => {
       </TableBuilderColumn>
     </TableBuilder>
   );
-};
+}

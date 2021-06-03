@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -17,15 +17,15 @@ const selectors = {
 
 describe('Rating', () => {
   it('passes basic a11y tests', async () => {
-    await mount(page, 'rating-star');
-    await page.waitFor(selectors.container);
+    await mount(page, 'rating--star');
+    await page.waitForSelector(selectors.container);
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
   it('for a value of three, three stars are highlighted', async () => {
-    await mount(page, 'rating-star');
-    await page.waitFor(selectors.container);
+    await mount(page, 'rating--star');
+    await page.waitForSelector(selectors.container);
 
     const highlightedStars = await page.$$eval(
       selectors.checked,
@@ -35,8 +35,8 @@ describe('Rating', () => {
   });
 
   it('for a value of three, the third emoticon is highlighted', async () => {
-    await mount(page, 'rating-emoticon');
-    await page.waitFor(selectors.container);
+    await mount(page, 'rating--emoticon');
+    await page.waitForSelector(selectors.container);
 
     const highlightedEmoticons = await page.$$eval(
       selectors.checked,

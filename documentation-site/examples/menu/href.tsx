@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {StatefulMenu} from 'baseui/menu';
 
-export default () => {
+export default function Example() {
   return (
     <StatefulMenu
       items={[
@@ -11,4 +11,4 @@ export default () => {
       ]}
     />
   );
-};
+}

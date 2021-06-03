@@ -1,12 +1,13 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {shallow} from 'enzyme';
+import {render, getByText} from '@testing-library/react';
+
 import StatefulNavigation from '../stateful-nav.js';
 
 const nav = [
@@ -41,10 +42,9 @@ describe('Navigation', () => {
       items: nav,
       onChange: jest.fn(),
     };
-    const component = shallow(<StatefulNavigation {...props} />);
-    expect(component).toMatchSnapshot('renders <StatefulContainer/>');
-    expect(component.dive()).toMatchSnapshot(
-      'renders <Navigation/> as a child',
-    );
+    const {container} = render(<StatefulNavigation {...props} />);
+    getByText(container, 'Colors');
+    getByText(container, 'Sizing');
+    getByText(container, 'Typography');
   });
 });

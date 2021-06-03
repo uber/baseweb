@@ -2,7 +2,7 @@ import * as React from 'react';
 import {StyletronComponent} from 'styletron-react';
 import {Override} from '../overrides';
 
-export interface Overrides {
+export interface TableOverrides {
   Root?: Override<any>;
   Table?: Override<any>;
   TableHead?: Override<any>;
@@ -11,16 +11,21 @@ export interface Overrides {
   TableBody?: Override<any>;
   TableBodyRow?: Override<any>;
   TableBodyCell?: Override<any>;
+  TableLoadingMessage?: Override<any>;
+  TableEmptyMessage?: Override<any>;
 }
 export interface TableProps {
-  overrides?: Overrides;
+  overrides?: TableOverrides;
   columns: Array<React.ReactNode>;
   data: React.ReactNode[][];
   horizontalScrollWidth?: string;
+  isLoading?: boolean;
+  loadingMessage?: React.ReactNode | (() => React.ReactNode);
+  emptyMessage?: React.ReactNode | (() => React.ReactNode);
 }
 export class Table extends React.Component<TableProps> {}
 
-export interface BuilderOverrides extends Overrides {
+export interface BuilderOverrides extends TableOverrides {
   TableHeadCellSortable?: Override<any>;
   SortAscIcon?: Override<any>;
   SortDescIcon?: Override<any>;
@@ -34,6 +39,9 @@ export interface TableBuilderProps<RowT> {
   sortColumn?: string | null;
   sortOrder?: 'ASC' | 'DESC' | null;
   onSort?: (columnId: string) => void;
+  isLoading?: boolean;
+  loadingMessage?: React.ReactNode | (() => React.ReactNode);
+  emptyMessage?: React.ReactNode | (() => React.ReactNode);
 }
 export class TableBuilder<RowT> extends React.Component<
   TableBuilderProps<RowT>
@@ -54,6 +62,7 @@ export interface TableBuilderColumnProps<RowT> {
   header?: React.ReactNode;
   numeric?: boolean;
   sortable?: boolean;
+  tableHeadAriaLabel?: string;
 }
 export class TableBuilderColumn<RowT> extends React.Component<
   TableBuilderColumnProps<RowT>
@@ -68,6 +77,8 @@ export const StyledTableHeadCellSortable: StyletronComponent<any>;
 export const StyledTableBody: StyletronComponent<any>;
 export const StyledTableBodyRow: StyletronComponent<any>;
 export const StyledTableBodyCell: StyletronComponent<any>;
+export const StyledTableLoadingMessage: StyletronComponent<any>;
+export const StyledTableEmptyMessage: StyletronComponent<any>;
 export const StyledSortAscIcon: StyletronComponent<any>;
 export const StyledSortDescIcon: StyletronComponent<any>;
 export const StyledSortNoneIcon: StyletronComponent<any>;

@@ -2,7 +2,7 @@ import * as React from 'react';
 import {Button} from 'baseui/button';
 import {Drawer} from 'baseui/drawer';
 
-export default () => {
+export default function Example() {
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
@@ -21,4 +21,4 @@ export default () => {
       </Drawer>
     </React.Fragment>
   );
-};
+}

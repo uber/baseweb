@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -13,7 +13,7 @@ import Check from '../../icon/check.js';
 
 import BooleanColumn from '../column-boolean.js';
 import NumericalColumn from '../column-numerical.js';
-import {Unstable_StatefulDataTable} from '../stateful-data-table.js';
+import {StatefulDataTable} from '../stateful-data-table.js';
 
 type RowDataT = [number, boolean];
 
@@ -85,7 +85,7 @@ export default function Scenario() {
   return (
     <div>
       <div style={{height: '400px', width: '900px'}}>
-        <Unstable_StatefulDataTable
+        <StatefulDataTable
           batchActions={actions}
           columns={columns}
           onSelectionChange={() => setCount(count + 1)}

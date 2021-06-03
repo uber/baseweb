@@ -1,15 +1,20 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {mount} from 'enzyme';
-import {StyledTreeItem, StyledItemContent} from '../styled-components.js';
+import {
+  render,
+  fireEvent,
+  getAllByTestId,
+  getByText,
+  queryByTestId,
+} from '@testing-library/react';
+
 import TreeView from '../tree-view.js';
-import ChevronDown from '../../icon/chevron-down.js';
 
 const mockData = [
   {
@@ -73,36 +78,34 @@ function getSharedProps() {
 }
 
 describe('TreeView Component', () => {
-  test('basic renders', () => {
-    const component = mount(<TreeView {...getSharedProps()} />);
-    expect(component.find(StyledTreeItem)).toExist();
+  it('basic renders', () => {
+    const {container} = render(<TreeView {...getSharedProps()} />);
+    getByText(container, 'Node 1');
   });
 
-  test('onToggle invoked', () => {
+  it('onToggle invoked', () => {
     const props = {
       ...getSharedProps(),
       onToggle: jest.fn(),
     };
-    const component = mount(<TreeView {...props} />);
-    component
-      .find(StyledItemContent)
-      .first()
-      .simulate('click');
+    const {container} = render(<TreeView {...props} />);
+    fireEvent.click(getByText(container, 'Node 1'));
     expect(props.onToggle).toHaveBeenCalled();
-    expect(component.find(ChevronDown)).toExist();
   });
 
-  test('TreeLabel override should override default icons as well', () => {
+  it('TreeLabel override should override default icons as well', () => {
     const CustomTreeLabel = ({
       hasChildren,
+      isSelected,
       isExpanded,
+      isFocusVisible,
       label,
       overrides,
       node,
       ...props
     }) => {
       return (
-        <div {...props}>
+        <div {...props} data-testid="label">
           {hasChildren && <div>{!isExpanded ? '+' : '-'}</div>}
           {typeof label === 'function' ? label(node) : label}
         </div>
@@ -114,10 +117,11 @@ describe('TreeView Component', () => {
         TreeLabel: {
           component: CustomTreeLabel,
         },
+        ExpandIcon: {props: {'data-testid': 'expand-icon'}},
       },
     };
-    const component = mount(<TreeView {...props} />);
-    expect(component.find(CustomTreeLabel)).toExist();
-    expect(component.find(ChevronDown)).not.toExist();
+    const {container} = render(<TreeView {...props} />);
+    getAllByTestId(container, 'label');
+    expect(queryByTestId(container, 'expand-icon')).toBeNull();
   });
 });

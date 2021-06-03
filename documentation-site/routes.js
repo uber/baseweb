@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -41,6 +41,10 @@ const routes = [
       {
         title: 'Theming',
         itemId: '/guides/theming',
+      },
+      {
+        title: 'Styling',
+        itemId: '/guides/styling',
       },
       {
         title: 'Overrides',
@@ -235,19 +239,19 @@ const routes = [
         subNav: [
           {
             title: 'Table',
-            itemId: '/components/table',
+            itemId: '/components/table-semantic',
           },
           {
             title: 'Data Table',
-            itemId: '/components/unstable-data-table',
+            itemId: '/components/data-table',
           },
           {
             title: 'Grid Table',
             itemId: '/components/table-grid',
           },
           {
-            title: 'Semantic Table',
-            itemId: '/components/table-semantic',
+            title: 'Flex Table',
+            itemId: '/components/table',
           },
         ],
       },
@@ -269,6 +273,10 @@ const routes = [
           {
             title: 'Skeleton',
             itemId: '/components/skeleton',
+          },
+          {
+            title: 'Snackbar',
+            itemId: '/components/snackbar',
           },
           {
             title: 'Spinner',

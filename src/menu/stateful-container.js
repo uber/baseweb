@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -31,6 +31,7 @@ export default class MenuStatefulContainer extends React.Component<
       isFocused: false,
     },
     typeAhead: true,
+    keyboardControlNode: {current: null},
     stateReducer: ((changeType, changes) => changes: StateReducerFnT),
     onItemSelect: () => {},
     getRequiredItemProps: () => ({}),
@@ -40,6 +41,7 @@ export default class MenuStatefulContainer extends React.Component<
     removeMenuFromNesting: () => {},
     getParentMenu: () => {},
     getChildMenu: () => {},
+    forceHighlight: false,
   };
 
   state: StatefulContainerStateT = {
@@ -50,7 +52,7 @@ export default class MenuStatefulContainer extends React.Component<
   // We need to have access to the root component user renders
   // to correctly facilitate keyboard scrolling behavior
   rootRef = (React.createRef(): {current: HTMLElement | null});
-
+  keyboardControlNode = this.props.keyboardControlNode.current;
   getItems() {
     if (Array.isArray(this.props.items)) {
       return this.props.items;
@@ -80,7 +82,9 @@ export default class MenuStatefulContainer extends React.Component<
       }
 
       if (this.state.isFocused) {
-        document.addEventListener('keydown', this.onKeyDown);
+        if (this.keyboardControlNode) {
+          this.keyboardControlNode.addEventListener('keydown', this.onKeyDown);
+        }
       }
     }
     this.props.addMenuToNesting && this.props.addMenuToNesting(rootRef);
@@ -90,7 +94,8 @@ export default class MenuStatefulContainer extends React.Component<
     const rootRef = this.props.rootRef ? this.props.rootRef : this.rootRef;
 
     if (__BROWSER__) {
-      document.removeEventListener('keydown', this.onKeyDown);
+      if (this.keyboardControlNode)
+        this.keyboardControlNode.removeEventListener('keydown', this.onKeyDown);
     }
     this.props.removeMenuFromNesting &&
       this.props.removeMenuFromNesting(rootRef);
@@ -99,10 +104,34 @@ export default class MenuStatefulContainer extends React.Component<
   componentDidUpdate(_: mixed, prevState: StatefulContainerStateT) {
     if (__BROWSER__) {
       if (!prevState.isFocused && this.state.isFocused) {
-        document.addEventListener('keydown', this.onKeyDown);
+        if (this.keyboardControlNode)
+          this.keyboardControlNode.addEventListener('keydown', this.onKeyDown);
       } else if (prevState.isFocused && !this.state.isFocused) {
-        document.removeEventListener('keydown', this.onKeyDown);
+        if (this.keyboardControlNode)
+          this.keyboardControlNode.removeEventListener(
+            'keydown',
+            this.onKeyDown,
+          );
       }
+    }
+    var range = this.getItems().length;
+    if (
+      this.props.forceHighlight &&
+      this.state.highlightedIndex === -1 &&
+      range > 0
+    ) {
+      this.internalSetState(STATE_CHANGE_TYPES.enter, {
+        highlightedIndex: 0,
+      });
+    }
+    if (range === 0 && this.state.highlightedIndex !== -1) {
+      this.internalSetState(STATE_CHANGE_TYPES.enter, {
+        highlightedIndex: -1,
+      });
+    } else if (this.state.highlightedIndex >= range) {
+      this.internalSetState(STATE_CHANGE_TYPES.enter, {
+        highlightedIndex: 0,
+      });
     }
   }
 
@@ -311,7 +340,10 @@ export default class MenuStatefulContainer extends React.Component<
 
   handleMouseLeave = () => {
     const rootRef = this.props.rootRef ? this.props.rootRef : this.rootRef;
-    if (!this.props.getChildMenu || !this.props.getChildMenu(rootRef)) {
+    const childMenu =
+      this.props.getChildMenu && this.props.getChildMenu(rootRef);
+
+    if (!this.props.forceHighlight && !childMenu) {
       this.internalSetState(STATE_CHANGE_TYPES.mouseLeave, {
         highlightedIndex: -1,
       });
@@ -353,11 +385,12 @@ export default class MenuStatefulContainer extends React.Component<
   focusMenu = (event: FocusEvent | MouseEvent | KeyboardEvent) => {
     const rootRef = this.props.rootRef ? this.props.rootRef : this.rootRef;
 
-    if (this.state.isFocused) {
-      return;
-    }
-    // $FlowFixMe
-    if (rootRef.current && rootRef.current.contains(event.target)) {
+    if (
+      !this.state.isFocused &&
+      rootRef.current &&
+      // $FlowFixMe
+      rootRef.current.contains(event.target)
+    ) {
       if (this.state.highlightedIndex < 0) {
         this.internalSetState(STATE_CHANGE_TYPES.focus, {
           isFocused: true,
@@ -386,6 +419,7 @@ export default class MenuStatefulContainer extends React.Component<
   render() {
     // omit the stateful-container's props and don't pass it down
     // to the children (stateless menu)
+
     const {
       initialState,
       stateReducer,
@@ -395,8 +429,10 @@ export default class MenuStatefulContainer extends React.Component<
       removeMenuFromNesting,
       getParentMenu,
       getChildMenu,
+      forceHighlight,
       ...restProps
     } = this.props;
+
     return this.props.children(
       ({
         ...restProps,
@@ -406,6 +442,9 @@ export default class MenuStatefulContainer extends React.Component<
         handleMouseLeave: this.handleMouseLeave,
         highlightedIndex: this.state.highlightedIndex,
         isFocused: this.state.isFocused,
+        handleKeyDown: this.props.keyboardControlNode.current
+          ? event => {}
+          : this.onKeyDown,
         focusMenu: this.focusMenu,
         unfocusMenu: this.unfocusMenu,
       }: RenderPropsT),

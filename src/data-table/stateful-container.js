@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -27,30 +27,35 @@ function useDuplicateColumnTitleWarning(columns: ColumnT<>[]) {
   }, [columns]);
 }
 
-function useSortParameters() {
-  const [sortIndex, setSortIndex] = React.useState(-1);
-  const [sortDirection, setSortDirection] = React.useState(null);
+function useSortParameters(initialSortIndex = -1, initialSortDirection = null) {
+  const [sortIndex, setSortIndex] = React.useState(initialSortIndex);
+  const [sortDirection, setSortDirection] = React.useState(
+    initialSortDirection,
+  );
 
   function handleSort(columnIndex) {
     if (columnIndex === sortIndex) {
-      if (sortDirection === SORT_DIRECTIONS.ASC) {
+      if (sortDirection === SORT_DIRECTIONS.DESC) {
         setSortIndex(-1);
-        setSortDirection(SORT_DIRECTIONS.DESC);
-      } else {
         setSortDirection(SORT_DIRECTIONS.ASC);
+      } else {
+        setSortDirection(SORT_DIRECTIONS.DESC);
       }
     } else {
       setSortIndex(columnIndex);
-      setSortDirection(SORT_DIRECTIONS.DESC);
+      setSortDirection(SORT_DIRECTIONS.ASC);
     }
   }
 
   return [sortIndex, sortDirection, handleSort];
 }
 
-export function Unstable_StatefulContainer(props: StatefulContainerPropsT) {
+export function StatefulContainer(props: StatefulContainerPropsT) {
   useDuplicateColumnTitleWarning(props.columns);
-  const [sortIndex, sortDirection, handleSort] = useSortParameters();
+  const [sortIndex, sortDirection, handleSort] = useSortParameters(
+    props.initialSortIndex,
+    props.initialSortDirection,
+  );
   const [filters, setFilters] = React.useState(
     props.initialFilters || new Map(),
   );

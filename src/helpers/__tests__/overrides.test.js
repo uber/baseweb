@@ -1,10 +1,11 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
+/* eslint-disable cup/no-undef */
 import * as React from 'react';
 import {render} from '@testing-library/react';
 import {
@@ -230,6 +231,10 @@ describe('Helpers - Overrides', () => {
   });
 
   test('dynamic prop overrides', () => {
+    const consoleWarn = console.warn;
+    // $FlowFixMe
+    console.warn = jest.fn();
+
     function DefaultComponent(props) {
       return <div>default {props.count}</div>;
     }
@@ -246,9 +251,18 @@ describe('Helpers - Overrides', () => {
     const {container} = render(<Component count={1} {...componentProps} />);
     const element = container.querySelector('div');
     expect(element.textContent).toBe('default 2');
+
+    // $FlowFixMe
+    expect(console.warn.mock.calls.length).toBe(1);
+    // $FlowFixMe
+    console.warn = consoleWarn;
   });
 
   test('dynamic prop with component overrides', () => {
+    const consoleWarn = console.warn;
+    // $FlowFixMe
+    console.warn = jest.fn();
+
     function DefaultComponent(props) {
       return <div>default {props.count}</div>;
     }
@@ -269,9 +283,18 @@ describe('Helpers - Overrides', () => {
     const {container} = render(<Component count={1} {...componentProps} />);
     const element = container.querySelector('div');
     expect(element.textContent).toBe('custom 3');
+
+    // $FlowFixMe
+    expect(console.warn.mock.calls.length).toBe(1);
+    // $FlowFixMe
+    console.warn = consoleWarn;
   });
 
   test('dynamic prop with style overrides', () => {
+    const consoleWarn = console.warn;
+    // $FlowFixMe
+    console.warn = jest.fn();
+
     function DefaultComponent(props) {
       return (
         <div style={{backgroundColor: 'red', ...props.$style}}>
@@ -301,5 +324,10 @@ describe('Helpers - Overrides', () => {
     const element = container.querySelector('div');
     expect(element.getAttribute('style')).toBe('background-color: blue;');
     expect(element.textContent).toBe('custom 3');
+
+    // $FlowFixMe
+    expect(console.warn.mock.calls.length).toBe(1);
+    // $FlowFixMe
+    console.warn = consoleWarn;
   });
 });

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -109,6 +109,8 @@ export type BasePopoverPropsT = {
   showArrow?: boolean,
   /** Whether to toggle the popover when trigger is clicked or hovered. */
   triggerType: TriggerTypeT,
+  /** Margin of the popover */
+  popoverMargin?: number,
 };
 
 // Props for stateless render logic
@@ -184,10 +186,12 @@ export type ArrowStylePropsArgT = {
 
 export type BodyStylePropsArgT = {
   $isAnimating: boolean,
+  $isHoverTrigger: boolean,
   $isOpen: boolean,
   $popoverOffset: OffsetT,
   $placement: TetherPlacementT,
   $showArrow: boolean,
+  $popoverMargin: number,
 };
 
 export type InnerStylePropsArgT = {};

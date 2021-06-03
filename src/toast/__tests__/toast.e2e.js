@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -27,15 +27,15 @@ const isActiveEl = async (page, selector) => {
 
 describe('toast', () => {
   it('passes basic a11y tests', async () => {
-    await mount(page, 'toast');
-    await page.waitFor(selectors.toast);
+    await mount(page, 'toast--toast');
+    await page.waitForSelector(selectors.toast);
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
   it('the close icon removes the notification', async () => {
-    await mount(page, 'toast');
-    await page.waitFor(selectors.toast);
+    await mount(page, 'toast--toast');
+    await page.waitForSelector(selectors.toast);
 
     const originalNumberOfAlerts = await page.$$eval(
       selectors.toast,
@@ -63,8 +63,8 @@ describe('toast', () => {
   });
 
   it('opens two notifications if triggered twice (auto-generate incrementing keys)', async () => {
-    await mount(page, 'toaster');
-    await page.waitFor(selectors.buttonDefault);
+    await mount(page, 'toast--toaster');
+    await page.waitForSelector(selectors.buttonDefault);
     await page.click(selectors.buttonDefault);
     await page.click(selectors.buttonDefault);
 
@@ -77,8 +77,8 @@ describe('toast', () => {
   });
 
   it('updates existing notification if the same key is provided', async () => {
-    await mount(page, 'toaster');
-    await page.waitFor(selectors.buttonSameKey);
+    await mount(page, 'toast--toaster');
+    await page.waitForSelector(selectors.buttonSameKey);
     await page.click(selectors.buttonSameKey);
     await page.click(selectors.buttonSameKey);
 
@@ -100,9 +100,9 @@ describe('toast', () => {
   });
 
   it('focuses toast dismiss when autofocus is active and refocuses previously focused element on close', async () => {
-    await mount(page, 'toaster-focus');
+    await mount(page, 'toast--toaster-focus');
     await page.click(selectors.buttonDefault);
-    await page.waitFor(selectors.toast);
+    await page.waitForSelector(selectors.toast);
     const isDismissActive = await isActiveEl(page, selectors.dismiss);
     expect(isDismissActive).toBe(true);
     await page.click(selectors.dismiss);

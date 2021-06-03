@@ -1,3 +1,9 @@
+/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
 import pick from 'just-pick';
 import {Checkbox, STYLE_TYPE, LABEL_PLACEMENT} from 'baseui/checkbox';
 import {PropTypes} from 'react-view';
@@ -119,6 +125,13 @@ const CheckboxConfig: TConfig = {
       description: 'If true the component will be focused on the first mount.',
       hidden: true,
     },
+    containsInteractiveElement: {
+      value: false,
+      type: PropTypes.Boolean,
+      description:
+        'Indicates the checkbox label contains an interactive element, and the default label behavior should be prevented for child elements.',
+      hidden: true,
+    },
     name: {
       value: undefined,
       type: PropTypes.String,
@@ -129,6 +142,12 @@ const CheckboxConfig: TConfig = {
       value: undefined,
       type: PropTypes.String,
       description: 'Title attribute.',
+      hidden: true,
+    },
+    ariaLabel: {
+      value: undefined,
+      type: PropTypes.String,
+      description: 'Aria-label attribute',
       hidden: true,
     },
     ...pick(changeHandlers, [

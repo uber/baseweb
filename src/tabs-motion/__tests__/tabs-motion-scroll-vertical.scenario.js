@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -22,8 +22,6 @@ export default function Scenario() {
       overrides={{
         Root: {
           style: ({$theme}) => ({
-            marginTop: '100vh',
-            marginBottom: '100vh',
             height: '250px',
             borderTop: `solid 1px ${$theme.colors.borderOpaque}`,
             borderBottom: `solid 1px ${$theme.colors.borderOpaque}`,

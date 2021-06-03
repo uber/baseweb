@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -13,6 +13,7 @@ import type {OverrideT} from '../helpers/overrides.js';
 export type ProgressStepsOverridesT = {
   Root?: OverrideT,
   StepRoot?: OverrideT,
+  IconContainer?: OverrideT,
   Icon?: OverrideT,
   InnerIcon?: OverrideT,
   Tail?: OverrideT,
@@ -30,6 +31,7 @@ export type ProgressStepsPropsT = {
 
 export type StepOverridesT = {
   Root?: OverrideT,
+  IconContainer?: OverrideT,
   Icon?: OverrideT,
   InnerIcon?: OverrideT,
   Tail?: OverrideT,
@@ -53,6 +55,7 @@ export type StepPropsT = {
 
 export type NumberedStepOverridesT = {
   Root?: OverrideT,
+  IconContainer?: OverrideT,
   Icon?: OverrideT,
   InnerIcon?: OverrideT,
   Tail?: OverrideT,

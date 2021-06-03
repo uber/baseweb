@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -61,31 +61,45 @@ const childMenu = items => (
 );
 
 export default function Scenario() {
-  return (
-    <NestedMenus>
-      <StatefulMenu
-        items={FILE}
-        overrides={{
-          List: {
-            style: {width: '300px', overflow: 'auto'},
-            props: {'data-e2e': 'parent-menu'},
-          },
-          Option: {
-            props: {
-              size: 'compact',
-              getChildMenu: item => {
-                if (item.label === OPEN_RECENT) {
-                  return childMenu(RECENT_FILES);
-                }
+  const [clickLog, setClickLog] = React.useState([]);
 
-                if (item.label === NEW_BREAKPOINT) {
-                  return childMenu(BREAKPOINTS);
-                }
+  function handleClick({item, event}) {
+    setClickLog([...clickLog, item.label]);
+  }
+
+  return (
+    <div>
+      <NestedMenus>
+        <StatefulMenu
+          items={FILE}
+          onItemSelect={handleClick}
+          overrides={{
+            List: {
+              style: {width: '300px', overflow: 'auto'},
+              props: {'data-e2e': 'parent-menu'},
+            },
+            Option: {
+              props: {
+                size: 'compact',
+                getChildMenu: item => {
+                  if (item.label === OPEN_RECENT) {
+                    return childMenu(RECENT_FILES);
+                  }
+
+                  if (item.label === NEW_BREAKPOINT) {
+                    return childMenu(BREAKPOINTS);
+                  }
+                },
               },
             },
-          },
-        }}
-      />
-    </NestedMenus>
+          }}
+        />
+      </NestedMenus>
+      <ul id="menu-child-click-log">
+        {clickLog.map((entry, i) => {
+          return <li key={i}>{entry}</li>;
+        })}
+      </ul>
+    </div>
   );
 }

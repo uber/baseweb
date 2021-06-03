@@ -65,7 +65,7 @@ function useFakeProgress(): [
   ];
 }
 
-export default () => {
+export default function Example() {
   const [
     progressAmount,
     errorMessage,
@@ -92,4 +92,4 @@ export default () => {
       }
     />
   );
-};
+}

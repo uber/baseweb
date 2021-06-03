@@ -163,7 +163,7 @@ const row = [
 
 const data = [row, row, row];
 
-export default function() {
+export default function Example() {
   const {getCellProps} = useCellNavigation();
   const [css] = useStyletron();
   return (

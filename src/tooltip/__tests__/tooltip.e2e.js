@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -15,10 +15,10 @@ const selectors = {
 
 describe('tooltip', () => {
   it('passes basic a11y tests when hovered', async () => {
-    await mount(page, 'tooltip');
-    await page.waitFor('span');
+    await mount(page, 'tooltip--tooltip');
+    await page.waitForSelector('span');
     await page.hover('span');
-    await page.waitFor(selectors.tooltip);
+    await page.waitForSelector(selectors.tooltip);
     const accessibilityReport = await analyzeAccessibility(page);
     // focus locks applies guards with tabIndex=1 to trap the focus on purpose
     accessibilityReport.violations = accessibilityReport.violations.filter(

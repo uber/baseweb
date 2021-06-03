@@ -269,7 +269,7 @@ const DATA = [
   ],
 ];
 
-export default () => {
+export default function Example() {
   const [css] = useStyletron();
   return (
     <div className={css({height: '400px'})}>
@@ -332,4 +332,4 @@ export default () => {
       </StyledTable>
     </div>
   );
-};
+}

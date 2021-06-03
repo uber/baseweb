@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -23,17 +23,17 @@ const labelToShortCode = label => label.split(' ')[0];
 
 describe('TimezonePicker', () => {
   it('passes basic a11y tests', async () => {
-    await mount(page, 'timezone-picker');
-    await page.waitFor(selectors.standard);
+    await mount(page, 'timezonepicker--timezone-picker');
+    await page.waitForSelector(selectors.standard);
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
   it('provides appropriate zone options if standard time', async () => {
-    await mount(page, 'timezone-picker');
-    await page.waitFor(selectors.standard);
+    await mount(page, 'timezonepicker--timezone-picker');
+    await page.waitForSelector(selectors.standard);
     await page.click(`${selectors.standard} ${selectors.input}`);
-    await page.waitFor(selectors.dropdown);
+    await page.waitForSelector(selectors.dropdown);
     await page.keyboard.type('new york');
     await page.keyboard.press('ArrowDown');
     await page.keyboard.press('Enter');
@@ -46,10 +46,10 @@ describe('TimezonePicker', () => {
   });
 
   it('provides appropriate zone options if daylight savings time', async () => {
-    await mount(page, 'timezone-picker');
-    await page.waitFor(selectors.daylight);
+    await mount(page, 'timezonepicker--timezone-picker');
+    await page.waitForSelector(selectors.daylight);
     await page.click(`${selectors.daylight} ${selectors.input}`);
-    await page.waitFor(selectors.dropdown);
+    await page.waitForSelector(selectors.dropdown);
     await page.keyboard.type('new york');
     await page.keyboard.press('ArrowDown');
     await page.keyboard.press('Enter');
@@ -62,8 +62,8 @@ describe('TimezonePicker', () => {
   });
 
   it('prioritizes select with controlled value over browser default', async () => {
-    await mount(page, 'timezone-picker');
-    await page.waitFor(selectors.controlled);
+    await mount(page, 'timezonepicker--timezone-picker');
+    await page.waitForSelector(selectors.controlled);
     const initial = await page.$eval(
       `${selectors.controlled} ${selectors.value}`,
       select => select.textContent,
@@ -72,10 +72,10 @@ describe('TimezonePicker', () => {
   });
 
   it('provides appropriate zone options if no acronym exists', async () => {
-    await mount(page, 'timezone-picker');
-    await page.waitFor(selectors.daylight);
+    await mount(page, 'timezonepicker--timezone-picker');
+    await page.waitForSelector(selectors.daylight);
     await page.click(`${selectors.daylight} ${selectors.input}`);
-    await page.waitFor(selectors.dropdown);
+    await page.waitForSelector(selectors.dropdown);
     await page.keyboard.type('minsk');
     await page.keyboard.press('ArrowDown');
     await page.keyboard.press('Enter');

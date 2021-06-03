@@ -20,6 +20,7 @@ export interface STATE_CHANGE_TYPES {
   focus: 'focus';
   reset: 'reset';
   character: 'character';
+  enter: 'enter';
 }
 
 export interface OPTION_LIST_SIZE {
@@ -27,18 +28,28 @@ export interface OPTION_LIST_SIZE {
   compact: 'compact';
 }
 
+export interface MenuOverrides {
+  EmptyState?: Override<any>;
+  List?: Override<any>;
+  Option?: Override<any>;
+  ListItem?: Override<any>;
+}
+
 export type BaseMenuPropsT = {
   renderAll?: boolean;
 };
 
+export interface MenuOverrides {
+  EmptyState?: Override<any>;
+  List?: Override<any>;
+  Option?: Override<any>;
+  ListItem?: Override<any>;
+  OptgroupHeader?: Override<any>;
+}
+
 export interface MenuProps extends BaseMenuPropsT {
   size?: keyof OPTION_LIST_SIZE;
-  overrides?: {
-    EmptyState?: Override<any>;
-    List?: Override<any>;
-    Option?: Override<any>;
-    ListItem?: Override<any>;
-  };
+  overrides?: MenuOverrides;
 }
 
 export type ItemT = any;
@@ -90,6 +101,7 @@ export interface StatefulContainerProps {
   onActiveDescendantChange?: (id?: string) => void;
   onItemSelect?: OnItemSelect;
   rootRef?: React.Ref<any>;
+  keyboardControlNode?: React.Ref<any>;
   typeAhead?: boolean;
   children?: (args: RenderProps) => React.ReactNode;
   addMenuToNesting?: (ref: React.Ref<HTMLElement>) => void;
@@ -152,12 +164,14 @@ export interface SharedStatelessProps {
   getRequiredItemProps?: (item: any, index: number) => RenderItemProps;
   highlightedIndex?: number;
   items: ItemsT;
+  isFocused?: boolean;
   noResultsMsg?: React.ReactNode;
   onBlur?: (event: React.FocusEvent<HTMLElement>) => any;
   onFocus?: (event: React.FocusEvent<HTMLElement>) => any;
   rootRef?: React.Ref<any>;
   focusMenu?: (event: FocusEvent | MouseEvent | KeyboardEvent) => any;
   unfocusMenu?: () => any;
+  handleKeyDown?: (event: KeyboardEvent) => any;
 }
 
 export type StatelessMenuProps = SharedStatelessProps & MenuProps;

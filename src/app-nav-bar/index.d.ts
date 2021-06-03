@@ -1,43 +1,44 @@
 import * as React from 'react';
 
-type ItemT = any;
-type mapItemToNode = (item: ItemT) => React.ReactNode;
-type mapItemToString = (item: ItemT) => string;
-
-export type MainNavItemT = {
+export type NavItemT = {
   active?: boolean;
   icon?: React.ComponentType<any>;
-  item: ItemT;
-  mapItemToNode?: mapItemToNode;
-  mapItemToString: mapItemToString;
-  nav?: MainNavItemT[];
+  info?: any;
+  label: string;
+  children?: NavItemT[];
   navExitIcon?: React.ComponentType<any>;
+  navPosition?: {
+    desktop?: POSITION[keyof POSITION];
+    mobile?: POSITION[keyof POSITION];
+  };
 };
 
-export type UserNavItemT = {
-  active?: boolean;
-  icon?: React.ComponentType<any>;
-  item: ItemT;
-  mapItemToNode?: mapItemToNode;
-  mapItemToString: mapItemToString;
-};
-
-export interface AppNavBarPropsT {
-  appDisplayName?: React.ReactNode;
-  // eslint-disable-next-line flowtype/no-weak-type;
-  mainNav?: MainNavItemT[];
-  isNavItemActive: (params: {item: MainNavItemT | UserNavItemT}) => boolean;
-  onNavItemSelect: (params: {item: MainNavItemT | UserNavItemT}) => any;
-  userNav?: UserNavItemT[];
+export type UserMenuPropsT = {
+  userItems?: NavItemT[];
   username?: string;
   usernameSubtitle?: React.ReactNode;
   userImgUrl?: string;
-}
+  onUserItemSelect?: (item: NavItemT) => any;
+};
+
+export type AppNavBarPropsT = UserMenuPropsT & {
+  isMainItemActive?: (item: NavItemT) => boolean;
+  mainItems?: NavItemT[];
+  mapItemToNode?: (item: NavItemT) => React.ReactNode;
+  onMainItemSelect?: (item: NavItemT) => any;
+  title?: React.ReactNode;
+};
 
 export interface POSITION {
   horizontal: 'horizontal';
   vertical: 'vertical';
 }
 
-export class Unstable_AppNavBar extends React.Component<AppNavBarPropsT> {}
+export class AppNavBar extends React.Component<AppNavBarPropsT> {}
 export const POSITION: POSITION;
+
+export const setItemActive: (
+  items: NavItemT[],
+  item: NavItemT,
+  getUniqueueIdentifier?: (currentItem: NavItemT) => string | number,
+) => NavItemT[];

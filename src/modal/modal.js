@@ -1,11 +1,12 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
 /* global document */
+/* eslint-disable cup/no-undef */
 import * as React from 'react';
 import FocusLock from 'react-focus-lock';
 
@@ -37,6 +38,8 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     // TODO(v11): remove
     autofocus: null,
     autoFocus: true,
+    focusLock: true,
+    returnFocus: true,
     closeable: true,
     isOpen: false,
     overrides: {},
@@ -266,6 +269,8 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
       unstable_ModalBackdropScroll,
       autofocus,
       autoFocus,
+      focusLock,
+      returnFocus,
     } = this.props;
 
     const {
@@ -314,8 +319,8 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
       <LocaleContext.Consumer>
         {locale => (
           <FocusLock
-            returnFocus
-            // eslint-disable-next-line jsx-a11y/no-autofocus
+            disabled={!focusLock}
+            returnFocus={returnFocus}
             autoFocus={autofocus !== null ? autofocus : autoFocus}
           >
             <Root

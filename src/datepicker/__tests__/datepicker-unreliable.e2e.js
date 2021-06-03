@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -26,43 +26,41 @@ const selectors = {
 };
 
 describe('Datepicker', () => {
-  jest.retryTimes(3);
-
   beforeEach(async () => {
     await jestPuppeteer.resetPage();
   });
 
   it('renders previous month when the left arrow is clicked', async () => {
-    await mount(page, 'datepicker');
-    await page.waitFor(selectors.input);
+    await mount(page, 'datepicker--datepicker');
+    await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
-    await page.waitFor(selectors.leftArrow);
+    await page.waitForSelector(selectors.leftArrow);
     await page.click(selectors.leftArrow);
-    await page.waitFor(selectors.day, {
+    await page.waitForSelector(selectors.day, {
       hidden: true,
     });
-    await page.waitFor(selectors.day3);
+    await page.waitForSelector(selectors.day3);
   });
 
   it('renders next month when the right arrow is clicked', async () => {
-    await mount(page, 'datepicker');
-    await page.waitFor(selectors.input);
+    await mount(page, 'datepicker--datepicker');
+    await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
-    await page.waitFor(selectors.rightArrow);
+    await page.waitForSelector(selectors.rightArrow);
     await page.click(selectors.rightArrow);
-    await page.waitFor(selectors.day, {
+    await page.waitForSelector(selectors.day, {
       hidden: true,
     });
-    await page.waitFor(selectors.day4);
+    await page.waitForSelector(selectors.day4);
   });
 
   it('updates the calendar when a year selected from the dropdown', async () => {
-    await mount(page, 'datepicker');
-    await page.waitFor(selectors.input);
+    await mount(page, 'datepicker--datepicker');
+    await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
-    await page.waitFor(selectors.monthYearSelectButton);
+    await page.waitForSelector(selectors.monthYearSelectButton);
     await page.click(selectors.monthYearSelectButton);
-    await page.waitFor(selectors.monthYearSelectMenu);
+    await page.waitForSelector(selectors.monthYearSelectMenu);
 
     await page.$$eval('ul[role="listbox"] li', items => {
       const option = items.find(item => {
@@ -71,18 +69,18 @@ describe('Datepicker', () => {
       return option.click();
     });
 
-    await page.waitFor(selectors.monthYearSelectMenu, {hidden: true});
-    await page.waitFor(selectors.calendar);
-    await page.waitFor(selectors.day5);
+    await page.waitForSelector(selectors.monthYearSelectMenu, {hidden: true});
+    await page.waitForSelector(selectors.calendar);
+    await page.waitForSelector(selectors.day5);
   });
 
   it('updates the calendar when a month selected from the dropdown', async () => {
-    await mount(page, 'datepicker');
-    await page.waitFor(selectors.input);
+    await mount(page, 'datepicker--datepicker');
+    await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
-    await page.waitFor(selectors.monthYearSelectButton);
+    await page.waitForSelector(selectors.monthYearSelectButton);
     await page.click(selectors.monthYearSelectButton);
-    await page.waitFor(selectors.monthYearSelectMenu);
+    await page.waitForSelector(selectors.monthYearSelectMenu);
 
     await page.$$eval('ul[role="listbox"] li', items => {
       const option = items.find(item => {
@@ -91,18 +89,18 @@ describe('Datepicker', () => {
       return option.click();
     });
 
-    await page.waitFor(selectors.monthYearSelectMenu, {hidden: true});
-    await page.waitFor(selectors.calendar);
-    await page.waitFor(selectors.day6);
+    await page.waitForSelector(selectors.monthYearSelectMenu, {hidden: true});
+    await page.waitForSelector(selectors.calendar);
+    await page.waitForSelector(selectors.day6);
   });
 
   it('disables previous month button if minimum month is selected', async () => {
-    await mount(page, 'datepicker');
-    await page.waitFor(selectors.input);
+    await mount(page, 'datepicker--datepicker');
+    await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
-    await page.waitFor(selectors.monthYearSelectButton);
+    await page.waitForSelector(selectors.monthYearSelectButton);
     await page.click(selectors.monthYearSelectButton);
-    await page.waitFor(selectors.monthYearSelectMenu);
+    await page.waitForSelector(selectors.monthYearSelectMenu);
 
     await page.$$eval('ul[role="listbox"] li', items => {
       const option = items.find(item => {
@@ -118,12 +116,12 @@ describe('Datepicker', () => {
   });
 
   it('disables next month button if maximum month is selected', async () => {
-    await mount(page, 'datepicker');
-    await page.waitFor(selectors.input);
+    await mount(page, 'datepicker--datepicker');
+    await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
-    await page.waitFor(selectors.monthYearSelectButton);
+    await page.waitForSelector(selectors.monthYearSelectButton);
     await page.click(selectors.monthYearSelectButton);
-    await page.waitFor(selectors.monthYearSelectMenu);
+    await page.waitForSelector(selectors.monthYearSelectMenu);
 
     await page.$$eval('ul[role="listbox"] li', items => {
       const option = items.find(item => {
@@ -139,8 +137,8 @@ describe('Datepicker', () => {
   });
 
   it('selects day when typed', async () => {
-    await mount(page, 'datepicker');
-    await page.waitFor(selectors.input);
+    await mount(page, 'datepicker--datepicker');
+    await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
 
     // input mask
@@ -154,13 +152,13 @@ describe('Datepicker', () => {
   });
 
   it('selects range - verifies end of year', async () => {
-    await mount(page, 'datepicker-range');
+    await mount(page, 'datepicker--range');
 
-    await page.waitFor('input');
+    await page.waitForSelector('input');
     await page.click('input');
-    await page.waitFor('[data-baseweb="calendar"]');
+    await page.waitForSelector('[data-baseweb="calendar"]');
     await page.click('[data-id="monthYearSelectButton"]');
-    await page.waitFor('[data-id="monthYearSelectMenu"]');
+    await page.waitForSelector('[data-id="monthYearSelectMenu"]');
 
     await page.$$eval('ul[role="listbox"] li', items => {
       const option = items.find(item => {

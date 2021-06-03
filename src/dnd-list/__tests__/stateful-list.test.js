@@ -1,18 +1,18 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {shallow} from 'enzyme';
+import {render, getByTestId} from '@testing-library/react';
 import {StatefulList} from '../index.js';
 
 describe('StatefulList', () => {
-  test('basic render', () => {
+  it('basic render', () => {
     function CustomRoot() {
-      return <span />;
+      return <span data-testid="root" />;
     }
     const props = {
       overrides: {
@@ -24,7 +24,7 @@ describe('StatefulList', () => {
       onChange: jest.fn(),
       stateReducer: jest.fn(),
     };
-    const component = shallow(<StatefulList {...props} />);
-    expect(component.props()).toMatchObject(props);
+    const {container} = render(<StatefulList {...props} />);
+    getByTestId(container, 'root');
   });
 });

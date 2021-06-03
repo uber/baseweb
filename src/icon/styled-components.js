@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -15,24 +15,32 @@ export function getSvgStyles({
   $size,
   $color,
 }: StyledComponentArgsT & {$theme: ThemeT}) {
+  let size = $theme.sizing.scale600;
   if ($size) {
     if ($theme.sizing[$size]) {
-      $size = $theme.sizing[$size];
+      size = $theme.sizing[$size];
     } else if (typeof $size === 'number') {
-      $size = `${$size}px`;
+      size = `${$size}px`;
+    } else {
+      size = $size;
     }
-  } else {
-    $size = $theme.sizing.scale600;
   }
-  if ($color && $theme.colors[$color]) {
-    $color = $theme.colors[$color];
+
+  let color = 'currentColor';
+  if ($color) {
+    if ($theme.colors[$color]) {
+      color = $theme.colors[$color];
+    } else {
+      color = $color;
+    }
   }
+
   return {
     display: 'inline-block',
-    fill: $color || 'currentColor',
-    color: $color || 'currentColor',
-    height: $size,
-    width: $size,
+    fill: color,
+    color: color,
+    height: size,
+    width: size,
   };
 }
 

@@ -15,10 +15,10 @@ function getFormOverrides(width: string) {
   };
 }
 
-export default () => {
-  const [number, setNumber] = React.useState();
-  const [expiration, setExpiration] = React.useState();
-  const [code, setCode] = React.useState();
+export default function Example() {
+  const [number, setNumber] = React.useState('');
+  const [expiration, setExpiration] = React.useState('');
+  const [code, setCode] = React.useState('');
   const [css] = useStyletron();
 
   const {card} = valid.number(number);
@@ -66,4 +66,4 @@ export default () => {
       </FormControl>
     </div>
   );
-};
+}

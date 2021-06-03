@@ -263,6 +263,7 @@ export interface DropdownProps {
   value?: Value;
   valueKey?: string;
   width?: number;
+  keyboardControlNode?: React.Ref<any>;
 }
 export class SelectDropdown extends React.Component<DropdownProps> {
   getSharedProps(): {

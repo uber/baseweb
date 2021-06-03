@@ -1,13 +1,13 @@
 import * as React from 'react';
 import {Override} from '../overrides';
 
-export type OverridesT = {
+export type SkeletonOverrides = {
   Root?: Override<any>;
   Row?: Override<any>;
 };
 
 export type SkeletonPropsT = {
-  overrides?: OverridesT;
+  overrides?: SkeletonOverrides;
   rows?: number;
   animation?: boolean;
   height?: string;

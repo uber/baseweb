@@ -1,6 +1,10 @@
 import {Combobox, SIZE} from 'baseui/combobox';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
+import inputConfig from './input';
+import popoverConfig from './popover';
+
+popoverConfig.componentName = 'Popover';
 
 const comboboxProps = require('!!extract-react-types-loader!../../../../src/combobox/combobox.js');
 
@@ -21,6 +25,12 @@ const ComboboxConfig: TConfig = {
       description: 'Text displayed in the Input component.',
       stateful: true,
     },
+    onBlur: {
+      value: undefined,
+      placeholder: `() => console.log('blur')`,
+      type: PropTypes.Function,
+      description: 'Callback for when input focus changes.',
+    },
     onChange: {
       value: 'nextValue => setValue(nextValue)',
       type: PropTypes.Function,
@@ -29,6 +39,12 @@ const ComboboxConfig: TConfig = {
         what: 'nextValue',
         into: 'value',
       },
+    },
+    onFocus: {
+      value: undefined,
+      placeholder: `() => console.log('focus')`,
+      type: PropTypes.Function,
+      description: 'Callback for when input focus changes.',
     },
     size: {
       value: 'SIZE.default',
@@ -77,13 +93,37 @@ const ComboboxConfig: TConfig = {
       type: PropTypes.Boolean,
       description: 'Renders component in disabled state.',
     },
+    id: {
+      value: undefined,
+      type: PropTypes.String,
+      description: 'Id attribute.',
+      hidden: true,
+    },
+    name: {
+      value: undefined,
+      type: PropTypes.String,
+      description: 'Name attribute.',
+      hidden: true,
+    },
+    inputRef: {
+      value: undefined,
+      type: PropTypes.Ref,
+      description: 'A ref to access the input element.',
+    },
 
     overrides: {
       value: undefined,
       type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
       custom: {
-        names: ['Root', 'InputContainer', 'ListBox', 'ListItem'],
+        names: [
+          'Root',
+          inputConfig,
+          'InputContainer',
+          'ListBox',
+          'ListItem',
+          popoverConfig,
+        ],
         sharedProps: {
           $isSelected: {
             type: PropTypes.Boolean,

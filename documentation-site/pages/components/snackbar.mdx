@@ -1,0 +1,86 @@
+<!--
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import Layout from '../../components/layout';
+import Exports from '../../components/exports';
+import API from '../../components/api.js';
+
+import LineLengths from 'examples/snackbar/line-lengths.js';
+import InfiniteDuration from 'examples/snackbar/infinite-duration.js';
+import Placement from 'examples/snackbar/placement.js';
+import ActionButtonUsage from 'examples/snackbar/action-button-usage.js';
+
+import * as SnackbarExports from 'baseui/snackbar';
+
+export default Layout;
+
+# Snackbar
+
+A Snackbar is a message used to give users feedback after taking an action. They are ephemeral
+and time out after a few seconds.
+
+Use Snackbars when you need a quick, lightweight way of providing feedback following an action
+they've taken. They're great for confirming an event happened or the user did something
+successfully. They allow a user to continue their tasks with minimal interruption. Think of
+them like a real life subtle nod of the head to acknowledge an action taken.
+
+Snackbars can be queued up easily by using the `useSnackbar` hook. Calling the `enqueue` function
+will display the snackbar and subsequent calls will the snackbar in line to display once the earlier
+one is finished displaying.
+
+## Examples
+
+A snackbar will render at most three lines before truncating the text. Depending on the line
+count, it's recommended to change the display duration so that users can fully read the text
+before exiting. By default it will choose the shortest duration.
+
+<Example title="Line lengths" path="snackbar/line-lengths.js">
+  <LineLengths />
+</Example>
+
+In some circumstances, you will want to not auto-hide the snackbar and wait until a task
+completes. The example below shows `DURATION.inifinite` usage, how to manually dequeue a
+snackbar, as well as demonstrates the `progress` flag that will render a spinner element.
+
+<Example title="Infinite duration" path="snackbar/infinite-duration.js">
+  <InfiniteDuration />
+</Example>
+
+Snackbar elements can be positioned in various places on the page, but defaults to the
+top-center. Snackbars should be placed in a consistent location throughout the application.
+To facilitate consistent placement, this is only configurable from the `SnackbarProvider`.
+
+<Example title="Placement" path="snackbar/placement.js">
+  <Placement />
+</Example>
+
+Snackbars can also offer the ability to perform a single action. Appropriate usecase fort
+his button include: canceling, undoing, retrying, or linking to releated content. Avoid
+using the button to dismiss the snackbar since it will timeout on it's own.
+
+<Example title="Action button usage" path="snackbar/action-button-usage.js">
+  <ActionButtonUsage />
+</Example>
+
+## API
+
+<API
+  heading="SnackbarProvider API"
+  api={require('!!extract-react-types-loader!../../../src/snackbar/snackbar-context.js')}
+/>
+
+<API
+  heading="SnackbarElement API"
+  api={require('!!extract-react-types-loader!../../../src/snackbar/snackbar-element.js')}
+/>
+
+<Exports
+  component={SnackbarExports}
+  title="Snackbar exports"
+  path="baseui/snackbar"
+/>

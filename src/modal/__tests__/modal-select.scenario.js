@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -23,6 +23,7 @@ const Example = () => {
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
         overrides={{Backdrop: {props: {'data-e2e': 'backdrop'}}}}
+        unstable_ModalBackdropScroll
       >
         <ModalHeader>Hello world</ModalHeader>
         <ModalBody>

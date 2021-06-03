@@ -23,7 +23,7 @@ function Negative() {
   );
 }
 
-export default () => {
+export default function Example() {
   const [value, setValue] = React.useState('');
   const [isValid, setIsValid] = React.useState(false);
   const [isVisited, setIsVisited] = React.useState(false);
@@ -57,4 +57,4 @@ export default () => {
       <Button type="submit">Submit email</Button>
     </form>
   );
-};
+}

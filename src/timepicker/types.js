@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -16,7 +16,7 @@ export type TimePickerPropsT<T = Date> = {
   adapter: DateIOAdapter<T>,
   format?: '12' | '24',
   /** Callback for when time selection changes. */
-  onChange?: T => mixed,
+  onChange?: (T | null) => mixed,
   overrides?: {
     Select?: OverrideT,
   },
@@ -35,6 +35,8 @@ export type TimePickerPropsT<T = Date> = {
   nullable?: boolean,
   placeholder?: string,
   size?: SizeT,
+  minTime?: T,
+  maxTime?: T,
 };
 export type TimePickerStateT = {
   /** List of times (in seconds) displayed in the dropdown menu. */

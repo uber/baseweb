@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -17,6 +17,7 @@ import getBuiId from '../utils/get-bui-id.js';
 import {COLUMNS} from './constants.js';
 import {matchesQuery} from './text-search.js';
 import type {ColumnT} from './types.js';
+import {LocaleContext} from '../locale/index.js';
 
 import {isFocusVisible} from '../utils/focusVisible.js';
 
@@ -53,6 +54,7 @@ type OptionsPropsT = {
 
 function Options(props: OptionsPropsT) {
   const [css, theme] = useStyletron();
+  const locale = React.useContext(LocaleContext);
   const inputRef = React.useRef(null);
   React.useEffect(() => {
     if (inputRef.current) {
@@ -78,7 +80,7 @@ function Options(props: OptionsPropsT) {
   return (
     <div
       className={css({
-        backgroundColor: theme.colors.backgroundPrimary,
+        backgroundColor: theme.colors.menuFill,
         minWidth: '320px',
         outline: focusVisible ? `3px solid ${theme.colors.accent}` : 'none',
         paddingTop: theme.sizing.scale600,
@@ -93,7 +95,7 @@ function Options(props: OptionsPropsT) {
           paddingLeft: theme.sizing.scale600,
         })}
       >
-        Select column to filter by
+        {locale.datatable.optionsLabel}
       </p>
 
       {props.searchable && (
@@ -108,7 +110,7 @@ function Options(props: OptionsPropsT) {
             inputRef={inputRef}
             value={props.query}
             onChange={event => props.onQueryChange(event.target.value)}
-            placeholder="Search for a column to filter by..."
+            placeholder={locale.datatable.optionsSearch}
             size={INPUT_SIZE.compact}
             clearable
           />
@@ -123,7 +125,7 @@ function Options(props: OptionsPropsT) {
             paddingLeft: theme.sizing.scale600,
           })}
         >
-          No columns available.
+          {locale.datatable.optionsEmpty}
         </div>
       )}
 
@@ -138,8 +140,10 @@ function Options(props: OptionsPropsT) {
           listStyleType: 'none',
           marginBlockStart: 'unset',
           marginBlockEnd: 'unset',
+          maxHeight: '256px',
           paddingInlineStart: 'unset',
           outline: 'none',
+          overflowY: 'auto',
         })}
       >
         {props.columns.map((column, index) => {
@@ -159,7 +163,7 @@ function Options(props: OptionsPropsT) {
                 ...theme.typography.font100,
                 alignItems: 'center',
                 backgroundColor: isHighlighted
-                  ? theme.colors.backgroundSecondary
+                  ? theme.colors.menuFillHover
                   : null,
                 cursor: 'pointer',
                 display: 'flex',
@@ -208,6 +212,7 @@ type PropsT = {
 
 function FilterMenu(props: PropsT) {
   const [, theme] = useStyletron();
+  const locale = React.useContext(LocaleContext);
   const [isOpen, setIsOpen] = React.useState(false);
   const [highlightIndex, setHighlightIndex] = React.useState(-1);
   const [query, setQuery] = React.useState('');
@@ -319,7 +324,7 @@ function FilterMenu(props: PropsT) {
           },
         }}
       >
-        Add Filter
+        {locale.datatable.filterAdd}
       </Button>
     </Popover>
   );

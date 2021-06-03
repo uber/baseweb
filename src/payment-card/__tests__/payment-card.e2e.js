@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -16,8 +16,8 @@ const selectors = {
 
 describe('PaymentCard', () => {
   beforeEach(async () => {
-    await mount(page, 'stateful-payment-card');
-    await page.waitFor(selectors.input);
+    await mount(page, 'payment-card--stateful');
+    await page.waitForSelector(selectors.input);
   });
 
   it('passes basic a11y tests', async () => {

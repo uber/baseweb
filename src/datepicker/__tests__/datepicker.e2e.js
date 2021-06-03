@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -27,17 +27,17 @@ const selectors = {
 
 describe('Datepicker', () => {
   it('datepicker passes basic a11y tests', async () => {
-    await mount(page, 'datepicker');
-    await page.waitFor(selectors.input);
+    await mount(page, 'datepicker--datepicker');
+    await page.waitForSelector(selectors.input);
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
   it('opens the calendar on click', async () => {
-    await mount(page, 'datepicker');
-    await page.waitFor(selectors.input);
+    await mount(page, 'datepicker--datepicker');
+    await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
-    await page.waitFor(selectors.calendar);
+    await page.waitForSelector(selectors.calendar);
     const calendarCount = await page.$$eval(
       selectors.calendar,
       calendar => calendar.length,
@@ -46,10 +46,10 @@ describe('Datepicker', () => {
   });
 
   it('opens the calendar on input focus', async () => {
-    await mount(page, 'datepicker');
-    await page.waitFor(selectors.input);
+    await mount(page, 'datepicker--datepicker');
+    await page.waitForSelector(selectors.input);
     await page.focus(selectors.input);
-    await page.waitFor(selectors.calendar);
+    await page.waitForSelector(selectors.calendar);
     const calendarCount = await page.$$eval(
       selectors.calendar,
       calendar => calendar.length,
@@ -58,23 +58,23 @@ describe('Datepicker', () => {
   });
 
   it('closes the calendar on esc', async () => {
-    await mount(page, 'datepicker');
-    await page.waitFor(selectors.input);
+    await mount(page, 'datepicker--datepicker');
+    await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
-    await page.waitFor(selectors.calendar);
+    await page.waitForSelector(selectors.calendar);
     await page.keyboard.press('Escape');
-    await page.waitFor(selectors.calendar, {
+    await page.waitForSelector(selectors.calendar, {
       hidden: true,
     });
   });
 
   it('selects day when clicked', async () => {
-    await mount(page, 'datepicker');
-    await page.waitFor(selectors.input);
+    await mount(page, 'datepicker--datepicker');
+    await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
-    await page.waitFor(selectors.calendar);
+    await page.waitForSelector(selectors.calendar);
     await page.click(selectors.day);
-    await page.waitFor(selectors.calendar, {
+    await page.waitForSelector(selectors.calendar, {
       hidden: true,
     });
 
@@ -86,8 +86,8 @@ describe('Datepicker', () => {
   });
 
   it('rerenders input if value is changed', async () => {
-    await mount(page, 'datepicker');
-    await page.waitFor(selectors.input);
+    await mount(page, 'datepicker--datepicker');
+    await page.waitForSelector(selectors.input);
     await page.click('button');
 
     const selectedValue = await page.$eval(
@@ -98,12 +98,12 @@ describe('Datepicker', () => {
   });
 
   it('input causes calendar to switch to appropriate month', async () => {
-    await mount(page, 'datepicker');
-    await page.waitFor(selectors.input);
+    await mount(page, 'datepicker--datepicker');
+    await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
-    await page.waitFor(selectors.calendar);
+    await page.waitForSelector(selectors.calendar);
     // march should be visible
-    await page.waitFor(selectors.day);
+    await page.waitForSelector(selectors.day);
 
     // we want to enter entire date but the onChange functionality only fires on key press so...
     await page.$eval(selectors.input, el => (el.value = '2019/07/0'));
@@ -111,46 +111,46 @@ describe('Datepicker', () => {
     await page.keyboard.press('2');
 
     // make sure march is gone
-    await page.waitFor(selectors.day, {hidden: true});
+    await page.waitForSelector(selectors.day, {hidden: true});
     // and make sure july is now visible
-    await page.waitFor(selectors.day6);
+    await page.waitForSelector(selectors.day6);
   });
 
   it('month year dropdown opens on arrow down', async () => {
-    await mount(page, 'datepicker');
-    await page.waitFor(selectors.input);
+    await mount(page, 'datepicker--datepicker');
+    await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
-    await page.waitFor(selectors.calendar);
-    await page.waitFor(selectors.day);
+    await page.waitForSelector(selectors.calendar);
+    await page.waitForSelector(selectors.day);
     await page.focus(selectors.monthYearSelectButton);
     await page.keyboard.press('ArrowDown');
 
-    await page.waitFor(selectors.monthYearSelectMenu);
+    await page.waitForSelector(selectors.monthYearSelectMenu);
   });
 
   it('month year dropdown opens on arrow up', async () => {
-    await mount(page, 'datepicker');
-    await page.waitFor(selectors.input);
+    await mount(page, 'datepicker--datepicker');
+    await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
-    await page.waitFor(selectors.calendar);
-    await page.waitFor(selectors.day);
+    await page.waitForSelector(selectors.calendar);
+    await page.waitForSelector(selectors.day);
     await page.focus(selectors.monthYearSelectButton);
     await page.keyboard.press('ArrowUp');
 
-    await page.waitFor(selectors.monthYearSelectMenu);
+    await page.waitForSelector(selectors.monthYearSelectMenu);
   });
 
   it('month year dropdown escape does not close calendar', async () => {
-    await mount(page, 'datepicker');
-    await page.waitFor(selectors.input);
+    await mount(page, 'datepicker--datepicker');
+    await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
-    await page.waitFor(selectors.calendar);
-    await page.waitFor(selectors.day);
+    await page.waitForSelector(selectors.calendar);
+    await page.waitForSelector(selectors.day);
     await page.focus(selectors.monthYearSelectButton);
     await page.keyboard.press('ArrowDown');
-    await page.waitFor(selectors.monthYearSelectMenu);
+    await page.waitForSelector(selectors.monthYearSelectMenu);
     await page.keyboard.press('Escape');
-    await page.waitFor(selectors.monthYearSelectMenu, {hidden: true});
-    await page.waitFor(selectors.calendar);
+    await page.waitForSelector(selectors.monthYearSelectMenu, {hidden: true});
+    await page.waitForSelector(selectors.calendar);
   });
 });

@@ -2,7 +2,7 @@
 import React from 'react';
 import {Block} from 'baseui/block';
 
-export default function() {
+export default function Example() {
   return (
     <React.Fragment>
       <Block>first element</Block>

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -71,13 +71,17 @@ const ExpandableCell = withStyle(StyledCell, {
 });
 
 const panelOverrides = {
-  Header: {
-    style: ({$theme: {colors, sizing, typography}, $expanded}) => ({
-      ...typography.font300,
-      color: 'inherit',
+  PanelContainer: {
+    style: ({$theme: {colors}, $expanded}) => ({
       borderBottomWidth: '1px',
       borderBottomStyle: 'solid',
       borderBottomColor: $expanded ? colors.mono500 : 'transparent',
+    }),
+  },
+  Header: {
+    style: ({$theme: {sizing, typography}}) => ({
+      ...typography.font300,
+      color: 'inherit',
       paddingTop: sizing.scale300,
       paddingBottom: sizing.scale300,
       paddingLeft: sizing.scale500,
@@ -91,11 +95,11 @@ const panelOverrides = {
     }),
   },
   Content: {
-    style: ({$theme: {colors, sizing}, $expanded}) => ({
+    style: ({$theme: {colors, sizing}}) => ({
       backgroundColor: colors.mono200,
       color: colors.mono800,
-      paddingTop: $expanded ? sizing.scale300 : 0,
-      paddingBottom: $expanded ? sizing.scale600 : 0,
+      paddingTop: sizing.scale300,
+      paddingBottom: sizing.scale300,
       paddingLeft: sizing.scale1000,
       paddingRight: sizing.scale600,
     }),
