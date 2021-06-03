@@ -30,6 +30,7 @@ const VIEWPORT_WIDTH = {
 configureJest();
 
 describe('visual snapshot tests', () => {
+  page.on('resize', () => console.log('Resize event detected'));
   getAllScenarioNames().forEach(scenarioName => {
     const snapshotConfig = getSnapshotConfig(scenarioName);
 
@@ -93,10 +94,10 @@ async function preparePageForSnapshot(
     height: 800,
   });
 
+  await mount(page, scenarioName, theme);
+
   // disables CSS transitions
   await addTestStyles(page);
-
-  await mount(page, scenarioName, theme);
 
   // Set the viewport to our final screenshot dimensions.
   // When we take a screenshot we do not want any resizing, which can cause flakiness.
