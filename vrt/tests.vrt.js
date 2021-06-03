@@ -67,7 +67,7 @@ describe('visual snapshot tests', () => {
         await interaction.behavior(page);
 
         // Bad, but lets let things settle down after the interaction.
-        await waitForTimeout(250);
+        await waitForTimeout(100);
 
         await snapshot(`${scenarioName}__${interaction.name}`);
       });
@@ -108,7 +108,7 @@ async function preparePageForSnapshot(
   await addTestStyles(page);
 
   // Bad, but lets let things settle down after resizing.
-  await waitForTimeout(300);
+  await waitForTimeout(100);
 }
 
 async function getPageScrollHeight() {
