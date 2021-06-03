@@ -30,7 +30,6 @@ const VIEWPORT_WIDTH = {
 configureJest();
 
 describe('visual snapshot tests', () => {
-  page.on('resize', () => console.log('Resize event detected'));
   getAllScenarioNames().forEach(scenarioName => {
     const snapshotConfig = getSnapshotConfig(scenarioName);
 
