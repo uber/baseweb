@@ -93,6 +93,9 @@ async function preparePageForSnapshot(
     height: 800,
   });
 
+  // disables CSS transitions
+  await addTestStyles(page);
+
   await mount(page, scenarioName, theme);
 
   // Set the viewport to our final screenshot dimensions.
@@ -104,11 +107,8 @@ async function preparePageForSnapshot(
     height: await getPageScrollHeight(),
   });
 
-  // disables CSS transitions
-  await addTestStyles(page);
-
   // Bad, but lets let things settle down after resizing.
-  await waitForTimeout(100);
+  await waitForTimeout(200);
 }
 
 async function getPageScrollHeight() {
