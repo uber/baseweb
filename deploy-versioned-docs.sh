@@ -10,7 +10,6 @@ now --scope=uber-ui-platform --token=$ZEIT_NOW_TOKEN --public --no-clipboard dep
 deployment=`cat deployment.txt`
 version=$(echo $BUILDKITE_MESSAGE | cut -d' ' -f 2)
 cname="${version//./-}"
-echo $deployment
 curl -X POST "https://api.cloudflare.com/client/v4/zones/$CF_ZONE_ID/dns_records" \
     -H "Authorization: Bearer $CF_API_KEY" \
     -H "Content-Type: application/json" \
