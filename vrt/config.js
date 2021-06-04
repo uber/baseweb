@@ -329,6 +329,10 @@ const config = {
       },
     ],
   },
+  'progress-bar--progressbar-rounded-animated': {
+    //Animation is in JS, so it can't be disabled
+    skip: true,
+  },
   'progress-steps--progress-steps': {
     interactions: [
       {
