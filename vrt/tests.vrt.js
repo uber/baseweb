@@ -67,7 +67,7 @@ describe('visual snapshot tests', () => {
         await interaction.behavior(page);
 
         // Bad, but lets let things settle down after the interaction.
-        await waitForTimeout(250);
+        await waitForTimeout(100);
 
         await snapshot(`${scenarioName}__${interaction.name}`);
       });
@@ -76,7 +76,7 @@ describe('visual snapshot tests', () => {
 });
 
 async function snapshot(identifier, viewport = VIEWPORT.desktop) {
-  const image = await page.screenshot();
+  const image = await page.screenshot({captureBeyondViewport: false});
   expect(image).toMatchImageSnapshot({
     customSnapshotIdentifier: identifier,
   });
@@ -95,6 +95,9 @@ async function preparePageForSnapshot(
 
   await mount(page, scenarioName, theme);
 
+  // disables CSS transitions
+  await addTestStyles(page);
+
   // Set the viewport to our final screenshot dimensions.
   // When we take a screenshot we do not want any resizing, which can cause flakiness.
   // We will set the viewport now and take a straight-up screenshot later.
@@ -104,11 +107,8 @@ async function preparePageForSnapshot(
     height: await getPageScrollHeight(),
   });
 
-  // disables CSS transitions
-  await addTestStyles(page);
-
   // Bad, but lets let things settle down after resizing.
-  await waitForTimeout(300);
+  await waitForTimeout(100);
 }
 
 async function getPageScrollHeight() {
