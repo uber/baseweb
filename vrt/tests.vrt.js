@@ -107,6 +107,9 @@ async function preparePageForSnapshot(
     height: await getPageScrollHeight(),
   });
 
+  // eslint-disable-next-line cup/no-undef
+  await page.evaluate(() => window.dispatchEvent(new Event('resize')));
+
   // Bad, but lets let things settle down after resizing.
   await waitForTimeout(300);
 }
@@ -117,7 +120,7 @@ async function getPageScrollHeight() {
   try {
     const client = await page.target().createCDPSession();
     const metrics = await client.send('Page.getLayoutMetrics');
-    return Math.ceil(metrics.contentSize.height + 20);
+    return Math.ceil(metrics.contentSize.height);
   } catch (er) {
     // If something went wrong, just return a decent default height.
     return 800;
