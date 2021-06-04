@@ -30,6 +30,8 @@ const VIEWPORT_WIDTH = {
 configureJest();
 
 describe('visual snapshot tests', () => {
+  page.evaluateOnNewDocument(() => addTestStyles(page));
+
   getAllScenarioNames().forEach(scenarioName => {
     const snapshotConfig = getSnapshotConfig(scenarioName);
 
@@ -103,9 +105,6 @@ async function preparePageForSnapshot(
     width: VIEWPORT_WIDTH[viewport],
     height: await getPageScrollHeight(),
   });
-
-  // disables CSS transitions
-  await addTestStyles(page);
 
   // Bad, but lets let things settle down after resizing.
   await waitForTimeout(200);
