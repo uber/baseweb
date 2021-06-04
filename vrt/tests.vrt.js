@@ -108,7 +108,7 @@ async function preparePageForSnapshot(
   });
 
   // Bad, but lets let things settle down after resizing.
-  await waitForTimeout(100);
+  await waitForTimeout(300);
 }
 
 async function getPageScrollHeight() {
