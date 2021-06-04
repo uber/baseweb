@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -17,7 +17,7 @@ const selectors = {
 
 describe('textarea', () => {
   it('passes basic a11y tests', async () => {
-    await mount(page, 'textarea');
+    await mount(page, 'textarea--textarea');
     await page.waitForSelector(selectors.textarea);
     const accessibilityReport = await analyzeAccessibility(page, {
       rules: [
@@ -31,7 +31,7 @@ describe('textarea', () => {
   });
 
   it('preset value is displayed', async () => {
-    await mount(page, 'textarea');
+    await mount(page, 'textarea--textarea');
     await page.waitForSelector(selectors.textarea);
 
     const value = await page.$eval(selectors.textarea, input => input.value);
@@ -39,7 +39,7 @@ describe('textarea', () => {
   });
 
   it('entered value is displayed', async () => {
-    await mount(page, 'textarea');
+    await mount(page, 'textarea--textarea');
     await page.waitForSelector(selectors.textarea);
     await page.click(selectors.textarea);
     await page.keyboard.type('!');
@@ -49,7 +49,7 @@ describe('textarea', () => {
   });
 
   it('can be cleared with a click', async () => {
-    await mount(page, 'textarea');
+    await mount(page, 'textarea--textarea');
     await page.waitForSelector(selectors.textarea);
     await page.click(selectors.textarea);
     await page.keyboard.type('Something or other');
@@ -59,7 +59,7 @@ describe('textarea', () => {
   });
 
   it('can be cleared with escape', async () => {
-    await mount(page, 'textarea');
+    await mount(page, 'textarea--textarea');
     await page.waitForSelector(selectors.textarea);
     await page.click(selectors.textarea);
     await page.keyboard.type('Something or other');

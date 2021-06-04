@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -41,7 +41,7 @@ const isActiveEl = async (page, selector) => {
 
 describe('Datepicker - keyboard navigation', () => {
   it('calendar is focusable and can be navigated in', async () => {
-    await mount(page, 'datepicker');
+    await mount(page, 'datepicker--datepicker');
     await page.waitForSelector(selectors.input);
     await page.focus(selectors.input);
     const isInputActive = await isActiveEl(page, selectors.input);
@@ -116,7 +116,7 @@ describe('Datepicker - keyboard navigation', () => {
   });
 
   it('calendar sets highlighted date appropriately when selecting a new date or navigating around', async () => {
-    await mount(page, 'datepicker-range-highlight');
+    await mount(page, 'datepicker--range-highlight');
     await page.waitForSelector(selectors.input);
     // open the calendar by moving focus into input
     await page.focus(selectors.input);

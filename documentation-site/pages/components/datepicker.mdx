@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -14,6 +14,7 @@ import DatepickerInPopover from 'examples/datepicker/in-popover.js';
 import DatepickerQuickSelect from 'examples/datepicker/quick-select.js';
 import DatepickerTimeSelect from 'examples/datepicker/calendar-time-select.js';
 import DatepickerMultipleMonths from 'examples/datepicker/calendar-multiple-months.js';
+import DatepickerMultipleMonthsWithLabel from 'examples/datepicker/calendar-multiple-months-with-label.js';
 import DatepickerI18n from 'examples/datepicker/i18n.js';
 import DatepickerWithOverrides from 'examples/datepicker/with-overrides.js';
 import ComposedRangePickers from 'examples/datepicker/composed-range-pickers.js';
@@ -21,6 +22,7 @@ import ComposedSinglePickers from 'examples/datepicker/composed-single-pickers.j
 import DatepickersColorStates from 'examples/datepicker/datepickers-color-states.js';
 import DatepickerTimezone from 'examples/datepicker/datepicker-with-timezone.js';
 import NestedOverride from 'examples/datepicker/nested-override.js';
+import NestedOverridePropMerge from 'examples/datepicker/with-callback-overrides.js';
 import DatepickerWithMask from 'examples/datepicker/with-mask.js';
 import DatepickerNullMask from 'examples/datepicker/null-mask.js';
 
@@ -103,6 +105,13 @@ Some date formats will operate better without a restrictive input mask. You can 
 </Example>
 
 <Example
+  title="Calendar with multiple months and labels"
+  path="datepicker/calendar-multiple-months-with-label.js"
+>
+  <DatepickerMultipleMonthsWithLabel />
+</Example>
+
+<Example
   title="Composed single pickers"
   path="datepicker/composed-single-pickers.js"
 >
@@ -141,6 +150,15 @@ Some date formats will operate better without a restrictive input mask. You can 
 </Example>
 
 In this example we use a [nested override](/guides/understanding-overrides/#override-nested-components) to customize the `ListItem` within the month/year dropdown (`MonthYearSelectStatefulMenu`).
+
+<Example
+  title="Overriding and watching nested component callback"
+  path="datepicker/with-callback-overrides.js"
+>
+  <NestedOverridePropMerge />
+</Example>
+
+Here we use the most flexible and complex [override by component replacement](/guides/understanding-overrides/#override-the-entire-subcomponent) where we wrap a components onChange handler to subscribe to the datepicker event when a quick selection is picked.
 
 ## API
 

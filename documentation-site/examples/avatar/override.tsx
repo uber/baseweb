@@ -3,7 +3,7 @@ import {Avatar} from 'baseui/avatar';
 import {useStyletron} from 'baseui';
 import {expandBorderStyles} from 'baseui/styles';
 
-export default () => {
+export default function Example() {
   const [css] = useStyletron();
   return (
     <React.Fragment>
@@ -18,7 +18,7 @@ export default () => {
           }}
           name="user name #1"
           size="scale1400"
-          src="https://api.adorable.io/avatars/285/11@adorable.io.png"
+          src="https://avatars.dicebear.com/api/human/override.svg?width=285&mood=happy"
         />
 
         <Avatar
@@ -56,7 +56,7 @@ export default () => {
           }}
           name="user name #3"
           size="scale1400"
-          src="https://api.adorable.io/avatars/285/12@adorable.io.png"
+          src="https://avatars.dicebear.com/api/human/override.svg?width=285&mood=happy"
         />
 
         <Avatar
@@ -85,4 +85,4 @@ export default () => {
       </div>
     </React.Fragment>
   );
-};
+}

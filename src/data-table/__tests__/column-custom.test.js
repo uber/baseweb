@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -85,7 +85,7 @@ describe('custom column', () => {
     });
     const Cell = column.renderCell;
 
-    const {container} = render(<Cell value={{color: 'blue'}} />);
+    const {container} = render(<Cell value={{color: 'blue'}} x={0} y={0} />);
     const cell = container.querySelector('div');
     expect(cell.textContent).toBe('blue');
   });

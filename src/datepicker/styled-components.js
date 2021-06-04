@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -216,6 +216,26 @@ function getDayStyles(code, {colors}): any {
     ':before': {content: null},
     ':after': {content: null},
   };
+  const outsideMonthDateStyle = {
+    color: colors.calendarForegroundDisabled,
+    ':before': {
+      borderTopStyle: 'none',
+      borderBottomStyle: 'none',
+      borderLeftStyle: 'none',
+      borderRightStyle: 'none',
+      backgroundColor: 'transparent',
+    },
+    ':after': {
+      borderTopLeftRadius: '0%',
+      borderTopRightRadius: '0%',
+      borderBottomLeftRadius: '0%',
+      borderBottomRightRadius: '0%',
+      borderTopColor: 'transparent',
+      borderBottomColor: 'transparent',
+      borderRightColor: 'transparent',
+      borderLeftColor: 'transparent',
+    },
+  };
   const highlightedStyle = {
     ':before': {content: null},
   };
@@ -226,154 +246,106 @@ function getDayStyles(code, {colors}): any {
   // See the ./utils/day-state.js file for the description of all available states
   // rdhsrSsDeDpSrHpHrRrLsMeMoM
   // '000000000000000'
-  const dayStateStyle = {
+  const dayStateStyle = Object.assign(
+    {},
     // highlighted date
-    ...generateDayStyles('001000000000000', {
+    generateDayStyles('001000000000000', {
       color: colors.calendarDayForegroundPseudoSelected,
     }),
     // selected date
-    ...generateDayStyles('000100000000000', {
+    generateDayStyles('000100000000000', {
       color: colors.calendarDayForegroundSelected,
     }),
     // selected highlighted date
-    ...generateDayStyles('001100000000000', {
+    generateDayStyles('001100000000000', {
       color: colors.calendarDayForegroundSelectedHighlighted,
     }),
     // disabled date
-    '010000000000000': {
-      color: colors.calendarForegroundDisabled,
-      ':after': {content: null},
+    {
+      '010000000000000': {
+        color: colors.calendarForegroundDisabled,
+        ':after': {content: null},
+      },
     },
     // disabled highlighted date
-    '011000000000000': {
-      color: colors.calendarForegroundDisabled,
-      ':after': {content: null},
+    {
+      '011000000000000': {
+        color: colors.calendarForegroundDisabled,
+        ':after': {content: null},
+      },
     },
     // date outside of the currently displayed month (when peekNextMonth is true)
-    '000000000000001': {
-      color: colors.calendarForegroundDisabled,
-    },
+    generateDayStyles('000000000000001', outsideMonthDateStyle),
     // Range Datepicker
     // range: highlighted date outside of a selected range
-    ...generateDayStyles('101000000000000', highlightedStyle),
-    ...generateDayStyles('101010000000000', highlightedStyle),
+    generateDayStyles('101000000000000', highlightedStyle),
+    generateDayStyles('101010000000000', highlightedStyle),
     // range: selected date
-    '100100000000000': {
+    generateDayStyles('100100000000000', {
       color: colors.calendarDayForegroundSelected,
-      ':before': {content: null},
-    },
+    }),
     // range: selected highlighted date
     // when single date selected in a range
-    ...generateDayStyles('101100000000000', {
+    generateDayStyles('101100000000000', {
       color: colors.calendarDayForegroundSelectedHighlighted,
       ':before': {content: null},
     }),
     // range: selected start and end dates are the same
-    ...generateDayStyles('100111100000000', {
+    generateDayStyles('100111100000000', {
       color: colors.calendarDayForegroundSelected,
       ':before': {content: null},
     }),
-    ...generateDayStyles('101111100000000', {
+    generateDayStyles('101111100000000', {
       color: colors.calendarDayForegroundSelectedHighlighted,
       ':before': {content: null},
     }),
     // range: selected start date
-    '100111000000000': {
+    generateDayStyles('100111000000000', {
       color: colors.calendarDayForegroundSelected,
-    },
-    '100111000000100': {
-      color: colors.calendarDayForegroundSelected,
-    },
-    '100111000000010': {
-      color: colors.calendarDayForegroundSelected,
-      ':before': {
-        content: null,
-      },
-    },
+    }),
     // range: selected end date
-    '100110100000000': {
+    generateDayStyles('100110100000000', {
       color: colors.calendarDayForegroundSelected,
       ':before': {left: null, right: '50%'},
-    },
-    '100110100000100': {
-      color: colors.calendarDayForegroundSelected,
-      ':before': {
-        content: null,
-      },
-    },
-    '100110100000010': {
-      color: colors.calendarDayForegroundSelected,
-      ':before': {left: null, right: '50%'},
-    },
+    }),
     // range: first selected date while a range is highlighted but no second date selected yet
     // highlighted range on the right from the selected
-    ...generateDayStyles('100100001010000', {
+    generateDayStyles('100100001010000', {
       color: colors.calendarDayForegroundSelected,
     }),
     // highlighted range on the left from the selected
-    ...generateDayStyles('100100001001000', {
+    generateDayStyles('100100001001000', {
       color: colors.calendarDayForegroundSelected,
       ':before': {left: null, right: '50%'},
     }),
     // range: second date in a range that is highlighted but not selected
-    '101000001010000': {
+    generateDayStyles('101000001010000', {
       ':before': {left: null, right: '50%'},
-    },
-    '101000001010100': {
-      ':before': {
-        content: null,
-      },
-    },
-    '101000001010010': {
-      ':before': {left: null, right: '50%'},
-    },
-    '101000001001000': {},
-    '101000001001100': {},
-    '101000001001010': {
-      ':before': {content: null},
-    },
+    }),
+    {'101000001001000': {}},
+    {'101000001001100': {}},
+    {'101000001001010': {}},
     // range: pseudo-selected date
-    '100010010000000': {
+    generateDayStyles('100010010000000', {
       color: colors.calendarDayForegroundPseudoSelected,
-      ':before': {
-        left: '0',
-        width: '100%',
-      },
-      ':after': {
-        content: null,
-      },
-    },
-    '100010010000100': {
-      color: colors.calendarDayForegroundPseudoSelected,
-      ':before': {
-        left: '0',
-        width: '100%',
-        borderLeftWidth: '2px',
-        borderLeftColor: colors.mono400,
-        borderTopLeftRadius: '100%',
-        borderBottomLeftRadius: '100%',
-      },
-      ':after': {
-        content: null,
-      },
-    },
-    '100010010000010': {
-      color: colors.calendarDayForegroundPseudoSelected,
-      ':before': {
-        left: '0',
-        width: '100%',
-        borderRightWidth: '2px',
-        borderRightColor: colors.mono400,
-        borderTopRightRadius: '100%',
-        borderBottomRightRadius: '100%',
-      },
-      ':after': {
-        content: null,
-      },
-    },
+      ':before': {left: '0', width: '100%'},
+      ':after': {content: null},
+    }),
     // range: pseudo-highlighted date (in a range where only one date is
     // selected and second date is highlighted)
-    '101000001100000': {
+    {
+      '101000001100000': {
+        color: colors.calendarDayForegroundPseudoSelected,
+        ':before': {
+          left: '0',
+          width: '100%',
+        },
+        ':after': {
+          content: null,
+        },
+      },
+    },
+    generateDayStyles('100000001100000', {
       color: colors.calendarDayForegroundPseudoSelected,
       ':before': {
         left: '0',
@@ -382,150 +354,45 @@ function getDayStyles(code, {colors}): any {
       ':after': {
         content: null,
       },
-    },
-    '100000001100000': {
-      color: colors.calendarDayForegroundPseudoSelected,
-      ':before': {
-        left: '0',
-        width: '100%',
-      },
-      ':after': {
-        content: null,
-      },
-    },
-    '100000001100100': {
-      color: colors.calendarDayForegroundPseudoSelected,
-      ':before': {
-        left: '0',
-        width: '100%',
-        borderLeftWidth: '2px',
-        borderLeftColor: colors.mono400,
-        borderTopLeftRadius: '100%',
-        borderBottomLeftRadius: '100%',
-      },
-      ':after': {
-        content: null,
-      },
-    },
-    '100000001100010': {
-      color: colors.calendarDayForegroundPseudoSelected,
-      ':before': {
-        left: '0',
-        width: '100%',
-        borderRightWidth: '2px',
-        borderRightColor: colors.mono400,
-        borderTopRightRadius: '100%',
-        borderBottomRightRadius: '100%',
-      },
-      ':after': {
-        content: null,
-      },
-    },
+    }),
     // highlighted start date in a range
-    '101111000000000': {
+    generateDayStyles('101111000000000', {
       color: colors.calendarDayForegroundSelectedHighlighted,
-    },
-    '101111000000100': {
-      color: colors.calendarDayForegroundSelectedHighlighted,
-    },
-    '101111000000010': {
-      color: colors.calendarDayForegroundSelectedHighlighted,
-      ':before': {content: null},
-    },
+    }),
     // highlighted end date in a range
-    '101110100000000': {
+    generateDayStyles('101110100000000', {
       color: colors.calendarDayForegroundSelectedHighlighted,
       ':before': {left: null, right: '50%'},
-    },
-    '101110100000100': {
-      color: colors.calendarDayForegroundSelectedHighlighted,
-      ':before': {content: null},
-    },
-    '101110100000010': {
-      color: colors.calendarDayForegroundSelectedHighlighted,
-      ':before': {left: null, right: '50%'},
-    },
+    }),
     // range: pseudo-selected date
-    '101010010000000': {
+    generateDayStyles('101010010000000', {
       color: colors.calendarDayForegroundPseudoSelectedHighlighted,
       ':before': {left: '0', width: '100%'},
-    },
-    '101010010000100': {
-      color: colors.calendarDayForegroundPseudoSelectedHighlighted,
-    },
-    '101010010000010': {
-      color: colors.calendarDayForegroundPseudoSelectedHighlighted,
-      ':before': {left: null, right: '50%'},
-    },
-  };
-  return dayStateStyle[code] || defaultDayStyle;
-}
-
-function getEdgeDayBeforeStyle(code, firstChild, peekNextMonth) {
-  const firstChildStyle = firstChild ? {content: 'none'} : {};
-  const lastChildStyle = firstChild ? {} : {content: 'none'};
-  const pseudoSelectedStyle = firstChild
-    ? {
-        borderLeftWidth: '2px',
-        borderTopLeftRadius: '100%',
-        borderBottomLeftRadius: '100%',
-      }
-    : {
-        borderRightWidth: '2px',
-        borderTopRightRadius: '100%',
-        borderBottomRightRadius: '100%',
-      };
-  // See the ./utils/day-state.js file for the description of all available states
-  // rdhsrSsDeDpSrHpHrRrLsMeMoM
-  // '0000000000000000'
-  return (
-    {
-      // selected - hasRangeSelected - startDate
-      '100111000000000': lastChildStyle,
-      // selected - hasRangeSelected - endDate
-      '100110100000000': firstChildStyle,
-      // selected and hasRangeHighlighted on the right from a selected date
-      '100100001010000': lastChildStyle,
-      // selected and hasRangeHighlighted on the left from a selected date
-      '100100001001000': firstChildStyle,
-      // only one date selected in a range
-      // '100100000000000': {content: 'none'},
-      // pseudo-selected date
-      '100010010000000': pseudoSelectedStyle,
-      '100010010000100': pseudoSelectedStyle,
-      '100010010000010': pseudoSelectedStyle,
-      // pseudo-highlighted date
-      '100000001100000': pseudoSelectedStyle,
-      '100000001100100': pseudoSelectedStyle,
-      '100000001100010': pseudoSelectedStyle,
-      // highlighted date and hasRangeHighlighted on the right from a selected date
-      '101000001010000': firstChildStyle,
-      // highlighted date and hasRangeHighlighted on the left from a selected date
-      '101000001001000': lastChildStyle,
-      // highlighted pseudo-selected date
-      '101010010000000': pseudoSelectedStyle,
-      // highlighted pseudo-selected date that is first day of the month
-      '101010010000100':
-        !peekNextMonth && !firstChild ? {content: 'none'} : pseudoSelectedStyle,
-      // highlighted pseudo-selected date that is last day of the month
-      '101010010000010':
-        !peekNextMonth && firstChild ? {content: 'none'} : pseudoSelectedStyle,
-    }[code] || {}
+    }),
+    // Range is true Date outside current month (when peekNextMonth is true)
+    generateDayStyles('100000000000001', outsideMonthDateStyle),
+    // peekNextMonth is true, date is outside month, start date is selected and range is highlighted is on right
+    generateDayStyles('100000001010001', outsideMonthDateStyle),
+    // peekNextMonth is true, date is outside month, start date is selected and range is highlighted is on left
+    generateDayStyles('100000001001001', outsideMonthDateStyle),
+    // peekNextMonth is true, date is outside month, range is selected
+    generateDayStyles('100010000000001', outsideMonthDateStyle),
   );
+  return dayStateStyle[code] || defaultDayStyle;
 }
 
 export const StyledDay = styled<SharedStylePropsT>('div', props => {
   const {
     $disabled,
-    $isHovered,
     $isFocusVisible,
     $isHighlighted,
     $peekNextMonth,
-    $pseudoHighlighted,
     $pseudoSelected,
     $range,
     $selected,
     $outsideMonth,
+    $outsideMonthWithinRange,
+    $hasDateLabel,
     $theme: {colors, sizing},
   } = props;
   const code = getDayStateCode(props);
@@ -537,7 +404,7 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
     color: colors.calendarForeground,
     display: 'inline-block',
     width: sizing.scale1000,
-    height: sizing.scale1000,
+    height: $hasDateLabel ? '60px' : sizing.scale1000,
     lineHeight: sizing.scale800,
     textAlign: 'center',
     paddingTop: sizing.scale300,
@@ -564,16 +431,10 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
       display: 'inline-block',
       boxShadow: $isFocusVisible ? `0 0 0 3px ${colors.accent}` : 'none',
       backgroundColor: $selected
-        ? $isHighlighted
-          ? colors.calendarDayBackgroundSelectedHighlighted
-          : colors.calendarDayBackgroundSelected
-        : $pseudoSelected
-        ? $isHighlighted
-          ? colors.calendarDayBackgroundPseudoSelectedHighlighted
-          : 'transparent'
-        : $isHovered || $isHighlighted || $pseudoHighlighted
-        ? colors.mono200
-        : 'transparent',
+        ? colors.calendarDayBackgroundSelectedHighlighted
+        : $pseudoSelected && $isHighlighted
+        ? colors.calendarDayBackgroundPseudoSelectedHighlighted
+        : colors.calendarBackground,
       height: '100%',
       width: '100%',
       position: 'absolute',
@@ -581,8 +442,6 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
       left: 0,
       paddingTop: sizing.scale200,
       paddingBottom: sizing.scale200,
-      paddingLeft: sizing.scale200,
-      paddingRight: sizing.scale200,
       borderLeftWidth: '2px',
       borderRightWidth: '2px',
       borderTopWidth: '2px',
@@ -591,15 +450,16 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
       borderRightStyle: 'solid',
       borderTopStyle: 'solid',
       borderBottomStyle: 'solid',
-      borderTopColor: colors.mono400,
-      borderBottomColor: colors.mono400,
-      borderRightColor: colors.mono400,
-      borderLeftColor: colors.mono400,
-      borderTopLeftRadius: '100%',
-      borderTopRightRadius: '100%',
-      borderBottomLeftRadius: '100%',
-      borderBottomRightRadius: '100%',
+      borderTopColor: colors.borderSelected,
+      borderBottomColor: colors.borderSelected,
+      borderRightColor: colors.borderSelected,
+      borderLeftColor: colors.borderSelected,
+      borderTopLeftRadius: $hasDateLabel ? sizing.scale700 : '100%',
+      borderTopRightRadius: $hasDateLabel ? sizing.scale700 : '100%',
+      borderBottomLeftRadius: $hasDateLabel ? sizing.scale700 : '100%',
+      borderBottomRightRadius: $hasDateLabel ? sizing.scale700 : '100%',
       ...(getDayStyles(code, props.$theme)[':after'] || {}),
+      ...($outsideMonthWithinRange ? {content: null} : {}),
     },
     ...($range
       ? {
@@ -610,7 +470,7 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
             content: '""',
             boxSizing: 'border-box',
             display: 'inline-block',
-            backgroundColor: colors.mono200,
+            backgroundColor: colors.mono300,
             position: 'absolute',
             height: '100%',
             width: '50%',
@@ -624,48 +484,36 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
             borderBottomStyle: 'solid',
             borderLeftStyle: 'solid',
             borderRightStyle: 'solid',
-            borderTopColor: colors.mono400,
-            borderBottomColor: colors.mono400,
-            borderLeftColor: colors.mono400,
-            borderRightColor: colors.mono400,
+            borderTopColor: 'transparent',
+            borderBottomColor: 'transparent',
+            borderLeftColor: 'transparent',
+            borderRightColor: 'transparent',
             ...(getDayStyles(code, props.$theme)[':before'] || {}),
+            ...($outsideMonthWithinRange
+              ? {
+                  backgroundColor: colors.mono300,
+                  left: '0',
+                  width: '100%',
+                  content: '""',
+                }
+              : {}),
           },
         }
       : // a hack to make flow happy, otherwise it complains about complexity
         // eslint-disable-next-line flowtype/no-weak-types
         ({}: any)),
-    ':first-child': {
-      ...($range
-        ? {
-            ':before': {
-              ...getEdgeDayBeforeStyle(code, true, $peekNextMonth),
-            },
-          }
-        : {}),
-    },
-    ':last-child': {
-      ...($range
-        ? {
-            ':before': {
-              // ...getEdgeBeforeStyles(props, false),
-              ...getEdgeDayBeforeStyle(code, false, $peekNextMonth),
-            },
-          }
-        : {}),
-    },
-    ...(!$peekNextMonth && $outsideMonth
-      ? {
-          ':before': {content: null},
-          ':after': {content: null},
-          ':first-child': {
-            ':before': {content: null},
-          },
-          ':last-child': {
-            ':before': {content: null},
-          },
-        }
-      : {}),
   }: {});
+});
+
+export const StyledDayLabel = styled<SharedStylePropsT>('div', props => {
+  const {
+    $theme: {typography, colors},
+    $selected,
+  } = props;
+  return {
+    ...typography.ParagraphXSmall,
+    color: $selected ? colors.contentInverseTertiary : colors.contentTertiary,
+  };
 });
 
 export const StyledWeekdayHeader = styled<SharedStylePropsT>('div', props => {

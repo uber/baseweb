@@ -1,10 +1,11 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
+/* eslint-disable cup/no-undef */
 import * as React from 'react';
 
 import {getOverrides} from '../helpers/overrides.js';
@@ -149,6 +150,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
   componentWillUnmount() {
     if (__BROWSER__) {
       document.removeEventListener('touchstart', this.handleTouchOutside);
+      document.removeEventListener('click', this.handleClickOutside);
     }
     this.isMounted = false;
   }
@@ -244,6 +246,9 @@ class Select extends React.Component<PropsT, SelectStateT> {
 
       this.focusAfterClear = false;
     } else {
+      // When clear button is clicked, need to click twice to open control container - https://github.com/uber/baseweb/issues/4285
+      // Setting focusAfterClear to false, resolves the issue
+      this.focusAfterClear = false;
       this.openAfterFocus = this.props.openOnClick;
       this.focus();
     }
@@ -289,10 +294,8 @@ class Select extends React.Component<PropsT, SelectStateT> {
       ) {
         return;
       }
-    } else {
-      if (containsNode(this.anchor.current, event.target)) {
-        return;
-      }
+    } else if (containsNode(this.anchor.current, event.target)) {
+      return;
     }
 
     if (this.props.onBlur) {
@@ -306,10 +309,6 @@ class Select extends React.Component<PropsT, SelectStateT> {
         isPseudoFocused: false,
         inputValue: this.props.onBlurResetsInput ? '' : this.state.inputValue,
       });
-    }
-
-    if (__BROWSER__) {
-      document.removeEventListener('click', this.handleClickOutside);
     }
   };
 
@@ -863,16 +862,15 @@ class Select extends React.Component<PropsT, SelectStateT> {
       );
     }
     // can user create a new option + there's no exact match already
+    const filterDoesNotMatchOption = this.props.ignoreCase
+      ? opt =>
+          opt[this.props.labelKey].toLowerCase() !==
+          filterValue.toLowerCase().trim()
+      : opt => opt[this.props.labelKey] !== filterValue.trim();
     if (
       filterValue &&
       this.props.creatable &&
-      this.options
-        .concat(this.props.value)
-        .every(
-          opt =>
-            opt[this.props.labelKey].toLowerCase() !==
-            filterValue.toLowerCase().trim(),
-        )
+      this.options.concat(this.props.value).every(filterDoesNotMatchOption)
     ) {
       // $FlowFixMe - this.options is typed as a read-only array
       this.options.push({

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -75,16 +75,16 @@ export default (
   calendarBackground: themePrimitives.mono100,
   calendarForeground: themePrimitives.mono1000,
   calendarForegroundDisabled: themePrimitives.mono500,
-  calendarHeaderBackground: themePrimitives.primary,
-  calendarHeaderForeground: themePrimitives.white,
+  calendarHeaderBackground: themePrimitives.white,
+  calendarHeaderForeground: themePrimitives.primary,
   calendarHeaderBackgroundActive: themePrimitives.primary700,
   calendarHeaderForegroundDisabled: themePrimitives.primary500,
   calendarDayBackgroundPseudoSelected: themePrimitives.primary100,
   calendarDayForegroundPseudoSelected: themePrimitives.mono1000,
   calendarDayBackgroundPseudoSelectedHighlighted: themePrimitives.primary200,
   calendarDayForegroundPseudoSelectedHighlighted: themePrimitives.mono1000,
-  calendarDayBackgroundSelected: themePrimitives.white,
-  calendarDayForegroundSelected: themePrimitives.primary,
+  calendarDayBackgroundSelected: themePrimitives.primary,
+  calendarDayForegroundSelected: themePrimitives.white,
   calendarDayBackgroundSelectedHighlighted: themePrimitives.primary,
   calendarDayForegroundSelectedHighlighted: themePrimitives.white,
 

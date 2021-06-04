@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -121,16 +121,21 @@ function getLabelColor(props) {
   return $disabled ? colors.contentSecondary : colors.contentPrimary;
 }
 
-export const RadioGroupRoot = styled<StylePropsT>('div', props => {
-  const {$disabled, $align} = props;
-  return {
-    display: 'flex',
-    flexWrap: 'wrap',
-    flexDirection: $align === 'horizontal' ? 'row' : 'column',
-    alignItems: $align === 'horizontal' ? 'center' : 'flex-start',
-    cursor: $disabled ? 'not-allowed' : 'pointer',
-  };
-});
+export const RadioGroupRoot = styled<StylePropsT>(
+  'div',
+  // $FlowFixMe - suppressing due to webkit property
+  props => {
+    const {$disabled, $align} = props;
+    return {
+      display: 'flex',
+      flexWrap: 'wrap',
+      flexDirection: $align === 'horizontal' ? 'row' : 'column',
+      alignItems: $align === 'horizontal' ? 'center' : 'flex-start',
+      cursor: $disabled ? 'not-allowed' : 'pointer',
+      '-webkit-tap-highlight-color': 'transparent',
+    };
+  },
+);
 
 export const Root = styled<StylePropsT>('label', props => {
   const {$disabled, $hasDescription, $labelPlacement, $theme, $align} = props;
@@ -212,9 +217,8 @@ export const Label = styled<StylePropsT>('div', props => {
 
 // tricky style for focus event cause display: none doesn't work
 export const Input = styled('input', {
-  opacity: 0,
   width: 0,
-  overflow: 'hidden',
+  height: 0,
   marginTop: 0,
   marginRight: 0,
   marginBottom: 0,
@@ -223,6 +227,7 @@ export const Input = styled('input', {
   paddingRight: 0,
   paddingBottom: 0,
   paddingLeft: 0,
+  clip: 'rect(0 0 0 0)',
   position: 'absolute',
 });
 

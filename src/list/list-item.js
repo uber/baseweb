@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -41,10 +41,6 @@ const ListItem = React.forwardRef<PropsT, HTMLLIElement>(
     );
 
     const artworkSize = React.useMemo(() => {
-      if (typeof artworkSize === 'number') {
-        return artworkSize;
-      }
-
       if (props.sublist) {
         let size = props.artworkSize || ARTWORK_SIZES.SMALL;
         if (props.artworkSize === ARTWORK_SIZES.MEDIUM) {

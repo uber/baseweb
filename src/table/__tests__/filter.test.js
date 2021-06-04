@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -55,6 +55,33 @@ describe('Table-Filter', () => {
       </TestBaseProvider>,
     );
     fireEvent.click(container.querySelector('button'));
+    expect(queryByTestId(container, 'content')).toBeNull();
+  });
+
+  it('does display close button when enabled', () => {
+    const {container} = render(
+      <TestBaseProvider>
+        <Filter hasCloseButton={true}>hello</Filter>
+      </TestBaseProvider>,
+    );
+    fireEvent.click(container.querySelector('button'));
+    expect(getByText(container, 'Close')).not.toBeNull();
+  });
+
+  it('does close filter when when closed is clicked', () => {
+    const {container} = render(
+      <TestBaseProvider>
+        <Filter
+          hasCloseButton={true}
+          overrides={{Content: {props: {'data-testid': 'content'}}}}
+        >
+          hello
+        </Filter>
+      </TestBaseProvider>,
+    );
+    fireEvent.click(container.querySelector('button'));
+    const close = getByText(container, 'Close');
+    fireEvent.click(close);
     expect(queryByTestId(container, 'content')).toBeNull();
   });
 

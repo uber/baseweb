@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -54,6 +54,12 @@ export type FilterProps = {|
   children: React.Node,
   /** Disables the icon click action. Filter menu does not open when clicked. */
   disabled?: boolean,
+  /** Adds a button to close the filter menu. */
+  hasCloseButton?: boolean,
+  /** Callback for when the filter closes. */
+  onClose?: () => mixed,
+  /** Callback for when the filter opens. */
+  onOpen?: () => mixed,
   /** Callback for when the 'reset' button is clicked. */
   onReset?: () => mixed,
   /** Callback for when the 'select all' button is clicked. */
@@ -64,4 +70,6 @@ export type FilterProps = {|
     Heading?: OverrideT,
     Footer?: OverrideT,
   },
+  /** Determines whether focus is returned to Filter menu button. */
+  returnFocus?: boolean,
 |};

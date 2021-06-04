@@ -1,0 +1,96 @@
+import {Tag} from 'baseui/tag';
+import metadata from './metadata.json';
+import LiveEditorTag from './live-editor-tag';
+import LiveEditor from './live-editor';
+import Layout from '../../../components/layout';
+import {BlogImage, Meta, Caption} from '../../../components/blog';
+
+export default Layout;
+
+<Meta data={metadata} />
+
+<BlogImage
+  src="https://user-images.githubusercontent.com/1387913/100666854-922e5200-330e-11eb-8d90-c7869dbd32bd.jpg"
+  alt="Two Humble Birds building their nest."
+  caption="Nesting."
+/>
+
+One of the most unique aspects of Base Web components is that you can fully customize every single part of them through overrides. If you are not familiar with this important concept, you can learn more in our [guide](/guides/understanding-overrides).
+
+Here's TLDR: Every component has the `overrides` prop that maps sub-components to custom styles, props or even entire components. For example, if you want to change the default color of tag you can do this:
+
+```tsx
+import * as React from 'react';
+import {Tag} from 'baseui/tag';
+
+export default () => (
+  <Tag
+    overrides={{
+      Text: {
+        style: ({$theme}) => ({
+          color: $theme.colors.accent,
+        }),
+      },
+    }}
+  >
+    this is a tag
+  </Tag>
+);
+```
+
+and the tag will have `accent`ed label:
+
+<Tag
+  overrides={{
+    Text: {
+      style: ({$theme}) => ({
+        color: $theme.colors.accent,
+      }),
+    },
+  }}
+>
+  this is a tag
+</Tag>
+
+How can you tell that `Text` is the right override that targets the tag's content? You can see all available overrides by using static types or study the [API cheat sheet](/cheat-sheet). But that's not always convenient and you still have to guess what each override actually maps too.
+
+## Playground
+
+That's where the interactive playground at the top of each component page can greately help! (powered by [react-view](https://github.com/uber/react-view))
+
+<LiveEditorTag />
+
+Once you open the `Style Overrides` tab, you see the list of all available override identifiers. You can toggle them to visually highlight the related component part and change its styles as needed. At the same time, the code snippet is automatically updated so you can copy&paste the resulting output into your project without typing a single line of code.
+
+## Nested Overrides
+
+Most of our compontents represent basic UI pieces: buttons, links, inputs or tags. However, some are more complex like [Date Picker](/components/datepicker) or [Select](/components/select). They provide a rich functionality and compose other existing Base Web components. We say that they have nested components. For example, Select nests these components:
+
+- Icon
+- Spinner
+- Popover
+- Tag
+
+So what if you want to customize Tag's color and corners as a part of the multivalue Select? That's where things get a bit tricky. Again, we go in depth in our [guide](/guides/understanding-overrides/#override-nested-components). Here's the glimpse of nested overrides logic:
+
+```tsx
+<Select
+  overrides={{
+    Tag: {
+      props: {
+        overrides: {
+          // pass "nested" overrides to the inner "Tag" component
+        },
+      },
+    },
+  }}
+/>
+```
+
+While this recursive structure should be logical if you fully understand the concept of overrides, it might be a head scratcher at the beginning. We also did not provide a good individualized documentation for each instance when nested overrides are needed.
+
+This changes today! Our interactive playground now fully supports nested overrides and gets recursive when neccessary. This is a simplified playground for the Select component demonstrating the nested Tag style override:
+
+<LiveEditor />
+
+We have revisited all our components to properly document and represent all nested overrides. We know this has been a source of frustration for many. Hopefully, this will ease any struggles when customizing even the most complex Base Web components.

@@ -2,9 +2,11 @@
 import React from 'react';
 import {StatefulCalendar} from 'baseui/datepicker';
 
-export default () => (
-  <StatefulCalendar
-    onChange={({date}) => console.log(date)}
-    timeSelectStart
-  />
-);
+export default function Example() {
+  return (
+    <StatefulCalendar
+      onChange={({date}) => console.log(date)}
+      timeSelectStart
+    />
+  );
+}

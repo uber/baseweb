@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -294,11 +294,14 @@ export const ActionIcon = styled('svg', {});
 
 // $FlowFixMe https://github.com/facebook/flow/issues/7745
 export const Text = styled<SharedPropsArgT>('span', props => {
+  const {$theme} = props;
+
   return {
     overflow: 'hidden',
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',
     maxWidth: props.$theme.sizing.scale3200,
+    order: $theme.direction === 'rtl' ? 1 : 0,
   };
 });
 
@@ -315,7 +318,7 @@ export const Root = styled<SharedPropsArgT>('span', props => {
     $color,
     $size = SIZE.small,
   } = props;
-  const borderRadius = '24px';
+  const borderRadius = $theme.borders.tagBorderRadius;
   const paddingMagnitude = {
     [SIZE.small]: $theme.sizing.scale300,
     [SIZE.medium]: $theme.sizing.scale500,

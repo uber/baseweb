@@ -4,7 +4,7 @@ import {useStyletron} from 'baseui';
 import {Select} from 'baseui/select';
 import {Button} from 'baseui/button';
 
-export default () => {
+export default function Example() {
   const [css, theme] = useStyletron();
   const [value, setValue] = React.useState([]);
   const controlRef = React.useRef(null);
@@ -42,4 +42,4 @@ export default () => {
       </Button>
     </div>
   );
-};
+}

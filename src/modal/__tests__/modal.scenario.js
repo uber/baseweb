@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -23,7 +23,7 @@ export default function Scenario({closeable = true}) {
   const [isOpen, setIsOpen] = React.useState(false);
 
   // adding mountNode so that rtl vrts work render properly. this is because the portal
-  // is not wrapped in a dir="rtl" attribute at storybook root. ensure that the modal
+  // is not wrapped in a dir="rtl" attribute at ladle root. ensure that the modal
   // mounts into the scenario react tree where we control the dir attr.
   React.useEffect(() => {
     setIsOpen(true);

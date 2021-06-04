@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -134,8 +134,8 @@ export const StyledTableHeadCellSortable = withStyle<
   };
 });
 
-export const StyledSortAscIcon = styled<typeof ChevronDown, {}>(
-  ChevronDown,
+export const StyledSortAscIcon = styled<typeof ChevronUp, {}>(
+  ChevronUp,
   ({$theme}) => {
     return {
       position: 'absolute',
@@ -146,8 +146,8 @@ export const StyledSortAscIcon = styled<typeof ChevronDown, {}>(
   },
 );
 
-export const StyledSortDescIcon = styled<typeof ChevronUp, {}>(
-  ChevronUp,
+export const StyledSortDescIcon = styled<typeof ChevronDown, {}>(
+  ChevronDown,
   ({$theme}) => {
     return {
       position: 'absolute',

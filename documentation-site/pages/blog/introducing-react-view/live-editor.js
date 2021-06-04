@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -13,9 +13,8 @@ import Editor from '../../../components/yard/editor';
 /* eslint-disable */
 
 import presetTypescript from '@babel/preset-typescript';
-/* eslint-enable */
 
-export default ({initialCode}: {initialCode: string}) => {
+function LiveEditor({initialCode}: {initialCode: string}) {
   const params = useView({
     initialCode,
     scope: {},
@@ -36,4 +35,8 @@ export default ({initialCode}: {initialCode: string}) => {
       <Error {...params.errorProps} />
     </React.Fragment>
   );
-};
+}
+
+/* eslint-enable */
+
+export default LiveEditor;

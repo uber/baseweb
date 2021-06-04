@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -186,6 +186,7 @@ export type ArrowStylePropsArgT = {
 
 export type BodyStylePropsArgT = {
   $isAnimating: boolean,
+  $isHoverTrigger: boolean,
   $isOpen: boolean,
   $popoverOffset: OffsetT,
   $placement: TetherPlacementT,

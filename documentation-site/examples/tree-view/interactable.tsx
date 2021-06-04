@@ -6,7 +6,7 @@ import {
 import {Checkbox} from 'baseui/checkbox';
 
 const getLabelCheckbox = (label: React.ReactNode) => () => {
-  const [value, setValue] = React.useState();
+  const [value, setValue] = React.useState(false);
   return (
     <TreeLabelInteractable>
       <Checkbox

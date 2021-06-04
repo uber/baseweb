@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -55,7 +55,7 @@ const activePredicate = (item, location) =>
   (location && removeSlash(location) === removeSlash(item.itemId)) ||
   (!location && item.itemId === '/');
 
-export default ({path}) => {
+function Sidebar({path}) {
   return (
     <Navigation
       activeItemId={path}
@@ -67,4 +67,6 @@ export default ({path}) => {
       }}
     />
   );
-};
+}
+
+export default Sidebar;

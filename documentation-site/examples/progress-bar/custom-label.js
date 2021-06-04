@@ -25,7 +25,7 @@ function useInterval(callback: () => void, delay: number | null) {
   }, [delay]);
 }
 
-export default () => {
+export default function Example() {
   const [value, setValue] = React.useState(0);
   useInterval(() => {
     if (value < 100) {
@@ -45,4 +45,4 @@ export default () => {
       showLabel
     />
   );
-};
+}

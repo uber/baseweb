@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -14,7 +14,8 @@ import {
   getByText,
 } from '@testing-library/react';
 
-import {Radio} from '../index.js';
+import {ALIGN, Radio, StatefulRadioGroup} from '../index.js';
+import {Select} from '../../select/index.js';
 
 describe('Radio', () => {
   it('calls provided handlers', () => {
@@ -48,9 +49,39 @@ describe('Radio', () => {
     expect(spy).toHaveBeenCalledTimes(4);
   });
 
+  it('does not select radio when interactive element is present', () => {
+    const {container} = render(
+      <StatefulRadioGroup name="number" align={ALIGN.vertical}>
+        <Radio value="one" containsInteractiveElement>
+          <Select placeholder="Select color" />
+        </Radio>
+        <Radio value="two">Two</Radio>
+      </StatefulRadioGroup>,
+    );
+
+    const select = container.querySelector('[data-baseweb="select"]');
+    const radio = container.querySelector('input[type="radio"]');
+    expect(radio.checked).toBe(false);
+    fireEvent.click(select);
+    expect(radio.checked).toBe(false);
+  });
+
   it('displays description if provided', () => {
     const description = 'foo';
     const {container} = render(<Radio description={description}>bar</Radio>);
     getByText(container, description);
+  });
+
+  it('only fires one click event', () => {
+    const onAncestorClick = jest.fn();
+    const {container} = render(
+      // eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events
+      <div onClick={onAncestorClick}>
+        <Radio>label</Radio>
+      </div>,
+    );
+    const label = container.querySelector('label');
+    fireEvent.click(label);
+    expect(onAncestorClick.mock.calls.length).toBe(1);
   });
 });

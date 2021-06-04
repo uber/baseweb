@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -42,6 +42,12 @@ export type ModalPropsT = {
   /** If true, focus will be locked to elements within the modal.
    */
   focusLock?: boolean,
+  /**
+   * if true, will return focus to the previous position on trap disable.
+   * Optionally, can pass focus options instead of `true` to control the focus
+   * more precisely (ie. `{ preventScroll: true }`)
+   */
+  returnFocus?: boolean | FocusOptions,
   /** Modal content. The children-as-function API may be preferable
    * for performance reasons (wont render until opened) */
   children?: React.Node | (() => React.Node),

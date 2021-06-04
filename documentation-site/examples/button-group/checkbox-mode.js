@@ -3,7 +3,7 @@ import * as React from 'react';
 import {Button} from 'baseui/button';
 import {ButtonGroup} from 'baseui/button-group';
 
-export default () => {
+export default function Example() {
   const [selected, setSelected] = React.useState([0, 1]);
   return (
     <ButtonGroup
@@ -22,4 +22,4 @@ export default () => {
       <Button>Label</Button>
     </ButtonGroup>
   );
-};
+}

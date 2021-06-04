@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -407,13 +407,14 @@ export const InputContainer = styled<SharedPropsT>(
 
 function getInputColors($disabled, $isFocused, $error, colors) {
   if ($disabled) {
-    return {
+    return ({
       color: colors.inputTextDisabled,
+      '-webkit-text-fill-color': colors.inputTextDisabled,
       caretColor: colors.contentPrimary,
       '::placeholder': {
         color: colors.inputPlaceholderDisabled,
       },
-    };
+    }: {});
   }
 
   return {
@@ -446,6 +447,8 @@ export const getInputStyles = (props: SharedPropsT & {$theme: ThemeT}) => {
     borderBottomStyle: 'none',
     outline: 'none',
     width: '100%',
+    // See https://stackoverflow.com/a/33811151
+    minWidth: 0,
     maxWidth: '100%',
     cursor: $disabled ? 'not-allowed' : 'text',
     margin: '0',

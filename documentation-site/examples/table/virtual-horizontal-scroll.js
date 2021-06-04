@@ -43,7 +43,7 @@ const cache = new CellMeasurerCache({
   fixedHeight: true,
 });
 
-export default () => {
+export default function Example() {
   const [css] = useStyletron();
   return (
     <div className={css({height: '500px'})}>
@@ -93,4 +93,4 @@ export default () => {
       </StyledTable>
     </div>
   );
-};
+}

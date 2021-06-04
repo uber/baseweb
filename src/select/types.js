@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -122,6 +122,8 @@ export type PropsT = {
   getValueLabel: ?({option: OptionT}) => React.Node,
   /** Sets the id attribute of the internal input element. Allows for usage with labels. */
   id?: string,
+  /** Defines if the comparison for a new creatable value should be case-insensitive. */
+  ignoreCase?: boolean,
   /** A ref to access the input element powering the select if it's a search select, or the container div if it isn't. */
   controlRef?: React.ElementRef<*>,
   /** Defines if the select is in a loading (async) state. */

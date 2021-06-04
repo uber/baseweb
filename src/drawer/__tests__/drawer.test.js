@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -43,6 +43,21 @@ describe('Drawer', () => {
     );
     const text = queryByText(container, 'Hello world');
     expect(text).not.toBeNull();
+  });
+
+  it('renders backdrop with opacity 0 when showBackdrop is false', () => {
+    const {container} = render(
+      <Drawer
+        isOpen
+        anchor="right"
+        showBackdrop={false}
+        overrides={{Backdrop: {props: {'data-testid': 'backdrop'}}}}
+      >
+        Hello world
+      </Drawer>,
+    );
+    const backdrop = getByTestId(container, 'backdrop');
+    expect(backdrop).not.toBeNull();
   });
 
   it('hides content when close button clicked', () => {

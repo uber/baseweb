@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -78,9 +78,16 @@ class DateHelpers<T> {
     const {getOptions = defaultGetOptions, formats} =
       adapterMap[className] || adapterMap['DateFnsUtils'];
     const options = getOptions(adapter);
-    return new UtilsClass({
-      ...updateOptions({...options, formats: {...options.formats, ...formats}}),
-    });
+    return new UtilsClass(
+      Object.assign(
+        {},
+        updateOptions(
+          Object.assign({}, options, {
+            formats: Object.assign({}, options.formats, formats),
+          }),
+        ),
+      ),
+    );
   };
   // eslint-disable-next-line flowtype/no-weak-types
   format: (T, string, any) => string = (date, format, locale) => {

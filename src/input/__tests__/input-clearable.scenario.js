@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -38,6 +38,9 @@ export default function Scenario() {
         }}
         size="large"
       />
+      <br />
+      <p>renders clearable if initial value is number type</p>
+      <StatefulInput clearable initialState={{value: 5}} type="number" />
     </>
   );
 }

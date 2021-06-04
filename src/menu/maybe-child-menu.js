@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -21,6 +21,7 @@ type PropsT = {
   item: *,
   resetParentMenu: () => void,
   renderAll?: boolean,
+  onClick?: (event: MouseEvent) => mixed,
   overrides?: {
     ChildMenuPopover?: OverrideT,
   },
@@ -52,6 +53,7 @@ export default function MaybeChildMenu(props: PropsT) {
             content={ChildMenu}
             ignoreBoundary
             mountNode={ctx.mountRef.current ? ctx.mountRef.current : undefined}
+            onClick={props.onClick}
             onMouseEnterDelay={30}
             onMouseLeaveDelay={30}
             onEsc={props.resetParentMenu}

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 
 const config = {
-  'app-nav-bar': {
+  'app-nav-bar--app-nav-bar': {
     interactions: [
       {
         name: 'openedMenu',
@@ -32,7 +32,7 @@ const config = {
       },
     ],
   },
-  'country-select-dropdown': {
+  'phone-input--country-select-dropdown': {
     interactions: [
       {
         name: 'expanded',
@@ -52,7 +52,7 @@ const config = {
       },
     ],
   },
-  'country-select-small-dropdown': {
+  'phone-input--country-select-small-dropdown': {
     interactions: [
       {
         name: 'expanded',
@@ -72,7 +72,7 @@ const config = {
       },
     ],
   },
-  combobox: {
+  'combobox--combobox': {
     interactions: [
       {
         name: 'listboxOpen',
@@ -84,7 +84,7 @@ const config = {
       },
     ],
   },
-  'combobox-overrides': {
+  'combobox--overrides': {
     interactions: [
       {
         name: 'listboxOpen',
@@ -96,7 +96,27 @@ const config = {
       },
     ],
   },
-  'data-table-extracted-highlight': {
+  'data-table--add-remove-columns': {
+    interactions: [
+      {
+        name: 'addColumn',
+        behavior: async page => {
+          const button = '[data-testid="add"]';
+          await page.waitForSelector(button);
+          await page.click(button);
+        },
+      },
+      {
+        name: 'removeColumn',
+        behavior: async page => {
+          const button = '[data-testid="remove"]';
+          await page.waitForSelector(button);
+          await page.click(button);
+        },
+      },
+    ],
+  },
+  'data-table--extracted-highlight': {
     interactions: [
       {
         name: 'controlledRowHighlightIndex',
@@ -127,7 +147,7 @@ const config = {
       },
     ],
   },
-  datepicker: {
+  'datepicker--datepicker': {
     interactions: [
       {
         name: 'setDateHighlighted',
@@ -146,7 +166,7 @@ const config = {
       },
     ],
   },
-  'datepicker-rtl': {
+  'datepicker--rtl': {
     interactions: [
       {
         name: 'calendarOpened',
@@ -162,7 +182,7 @@ const config = {
       },
     ],
   },
-  'datepicker-range': {
+  'datepicker--range': {
     interactions: [
       {
         name: 'selectedRangeHighlighted',
@@ -192,7 +212,7 @@ const config = {
       },
     ],
   },
-  'datepicker-range-highlight': {
+  'datepicker--range-highlight': {
     interactions: [
       {
         name: 'noHighlight',
@@ -213,7 +233,7 @@ const config = {
       },
     ],
   },
-  'input-password': {
+  'input--password': {
     interactions: [
       {
         name: 'togglesMask',
@@ -225,7 +245,7 @@ const config = {
       },
     ],
   },
-  'input-number': {
+  'input--number': {
     interactions: [
       {
         name: 'numberInput',
@@ -237,7 +257,7 @@ const config = {
       },
     ],
   },
-  'layer-z-index': {
+  'layer--z-index': {
     interactions: [
       {
         name: 'withAndWithoutZIndex',
@@ -255,13 +275,28 @@ const config = {
       },
     ],
   },
-  'nav-long': {
+  'side-navigation--nav-long': {
     skip: true,
   },
-  'popover-reposition': {
+  'snackbar--element': {
     skip: true,
   },
-  'phone-input-custom-flags': {
+  'popover--reposition': {
+    skip: true,
+  },
+  'popover--reposition-with-anchor-update': {
+    interactions: [
+      {
+        name: 'addOptions',
+        behavior: async page => {
+          const options = await page.$$('[role="option"]');
+          await options[0].click();
+          await options[1].click();
+        },
+      },
+    ],
+  },
+  'phone-input--custom-flags': {
     interactions: [
       {
         name: 'expandedAndFiltered',
@@ -279,7 +314,7 @@ const config = {
       },
     ],
   },
-  'pin-code-mask': {
+  'pin-code--mask': {
     interactions: [
       {
         name: 'numberInput',
@@ -294,7 +329,11 @@ const config = {
       },
     ],
   },
-  'progress-steps': {
+  'progress-bar--progressbar-rounded-animated': {
+    //Animation is in JS, so it can't be disabled
+    skip: true,
+  },
+  'progress-steps--progress-steps': {
     interactions: [
       {
         name: 'triggerNextStep',
@@ -306,7 +345,7 @@ const config = {
       },
     ],
   },
-  'rating-star': {
+  'rating--star': {
     interactions: [
       {
         name: 'selectFiveStars',
@@ -314,11 +353,12 @@ const config = {
           const selector = `li:nth-child(5)`;
           await page.$(selector);
           await page.click(selector);
+          await page.waitForTimeout(200);
         },
       },
     ],
   },
-  'drawer-select': {
+  'drawer--select': {
     interactions: [
       {
         name: 'selectDropdownVisible',
@@ -334,7 +374,7 @@ const config = {
       },
     ],
   },
-  select: {
+  'select--select': {
     interactions: [
       {
         name: 'typeToFilter',
@@ -345,7 +385,7 @@ const config = {
       },
     ],
   },
-  'select-in-modal': {
+  'select--in-modal': {
     interactions: [
       {
         name: 'selectDropdownVisible',
@@ -366,7 +406,7 @@ const config = {
       },
     ],
   },
-  'select-option-group': {
+  'select--option-group': {
     interactions: [
       {
         name: 'selectGroupDropdownVisible',
@@ -382,7 +422,7 @@ const config = {
       },
     ],
   },
-  'select-search-single': {
+  'select--search-single': {
     interactions: [
       {
         name: 'open',
@@ -398,7 +438,7 @@ const config = {
       },
     ],
   },
-  'select-search-single-fontsize': {
+  'select--search-single-fontsize': {
     interactions: [
       {
         name: 'showsAllText',
@@ -416,25 +456,25 @@ const config = {
       },
     ],
   },
-  'spinner-determinate-animated': {
+  'spinner--determinate-animated': {
     skip: true,
   },
-  'tabs-motion-conditional': {
+  'tabs-motion--conditional': {
     skip: true,
   },
-  'tabs-motion-focus': {
+  'tabs-motion--focus': {
     skip: true,
   },
-  'tabs-motion-manual': {
+  'tabs-motion--manual': {
     skip: true,
   },
-  'tabs-motion-stateful': {
+  'tabs-motion--stateful': {
     skip: true,
   },
-  'tabs-motion-renderAll': {
+  'tabs-motion--render-all': {
     skip: true,
   },
-  'tabs-motion-vertical-pageScroll': {
+  'tabs-motion--vertical-page-scroll': {
     interactions: [
       {
         name: 'ArrowDown',
@@ -446,7 +486,7 @@ const config = {
       },
     ],
   },
-  'tabs-motion': {
+  'tabs-motion--tabs-motion': {
     interactions: [
       {
         name: 'focus',
@@ -457,7 +497,7 @@ const config = {
       },
     ],
   },
-  textarea: {
+  'textarea--textarea': {
     interactions: [
       {
         name: 'focus',
@@ -468,10 +508,10 @@ const config = {
       },
     ],
   },
-  'toaster-focus': {
+  'toast--toaster-focus': {
     skip: true,
   },
-  'tooltip-complex': {
+  'tooltip--complex': {
     interactions: [
       {
         name: 'contrast',
@@ -486,7 +526,7 @@ const config = {
       },
     ],
   },
-  'modal-select': {
+  'modal--select': {
     interactions: [
       {
         name: 'selectOption',

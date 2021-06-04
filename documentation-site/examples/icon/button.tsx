@@ -4,7 +4,7 @@ import {Button} from 'baseui/button';
 
 import {ChevronLeft, ChevronRight, Upload} from 'baseui/icon';
 
-export default () => {
+export default function Example() {
   const [css, theme] = useStyletron();
   return (
     <div>
@@ -23,4 +23,4 @@ export default () => {
       </div>
     </div>
   );
-};
+}

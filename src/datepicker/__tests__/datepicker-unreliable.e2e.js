@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -31,7 +31,7 @@ describe('Datepicker', () => {
   });
 
   it('renders previous month when the left arrow is clicked', async () => {
-    await mount(page, 'datepicker');
+    await mount(page, 'datepicker--datepicker');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
     await page.waitForSelector(selectors.leftArrow);
@@ -43,7 +43,7 @@ describe('Datepicker', () => {
   });
 
   it('renders next month when the right arrow is clicked', async () => {
-    await mount(page, 'datepicker');
+    await mount(page, 'datepicker--datepicker');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
     await page.waitForSelector(selectors.rightArrow);
@@ -55,7 +55,7 @@ describe('Datepicker', () => {
   });
 
   it('updates the calendar when a year selected from the dropdown', async () => {
-    await mount(page, 'datepicker');
+    await mount(page, 'datepicker--datepicker');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
     await page.waitForSelector(selectors.monthYearSelectButton);
@@ -75,7 +75,7 @@ describe('Datepicker', () => {
   });
 
   it('updates the calendar when a month selected from the dropdown', async () => {
-    await mount(page, 'datepicker');
+    await mount(page, 'datepicker--datepicker');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
     await page.waitForSelector(selectors.monthYearSelectButton);
@@ -95,7 +95,7 @@ describe('Datepicker', () => {
   });
 
   it('disables previous month button if minimum month is selected', async () => {
-    await mount(page, 'datepicker');
+    await mount(page, 'datepicker--datepicker');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
     await page.waitForSelector(selectors.monthYearSelectButton);
@@ -116,7 +116,7 @@ describe('Datepicker', () => {
   });
 
   it('disables next month button if maximum month is selected', async () => {
-    await mount(page, 'datepicker');
+    await mount(page, 'datepicker--datepicker');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
     await page.waitForSelector(selectors.monthYearSelectButton);
@@ -137,7 +137,7 @@ describe('Datepicker', () => {
   });
 
   it('selects day when typed', async () => {
-    await mount(page, 'datepicker');
+    await mount(page, 'datepicker--datepicker');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
 
@@ -152,7 +152,7 @@ describe('Datepicker', () => {
   });
 
   it('selects range - verifies end of year', async () => {
-    await mount(page, 'datepicker-range');
+    await mount(page, 'datepicker--range');
 
     await page.waitForSelector('input');
     await page.click('input');

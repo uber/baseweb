@@ -8,7 +8,7 @@ import {TimePicker} from 'baseui/timepicker';
 
 const DATE = new Date(2019, 3, 1, 12, 0, 0);
 
-export default () => {
+export default function Example() {
   const [css, theme] = useStyletron();
   const [date, setDate] = useState(DATE);
   const [zone, setZone] = useState(null);
@@ -56,4 +56,4 @@ export default () => {
       </div>
     </div>
   );
-};
+}

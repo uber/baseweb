@@ -4,24 +4,45 @@ import {toggleOverrideSharedProps} from '../ast';
 describe('parseOverrides', () => {
   test('get overrides active state and value', () => {
     const overrides = `{
-    Root: {
-      style: ({ $theme }) => {
-        return {
+      Root: {
+        style: ({ $theme }) => ({
           outline: \`\${$theme.colors.warning200} solid\`,
           backgroundColor: $theme.colors.warning200
-        };
+        })
+      },
+      Tag: {
+        props: {
+          overrides: {
+            Action: {
+              style: ({ $theme }) => ({
+                outline: \`\${$theme.colors.warning200} dashed\`,
+                backgroundColor:
+                  $theme.colors.warning200
+              })
+            }
+          }
+        }
       }
-    }
-  }`;
-    expect(parseOverrides(overrides, ['Root'])).toEqual({
+    }`;
+    expect(parseOverrides(overrides)).toEqual({
       Root: {
         active: true,
-        style: `({ $theme }) => {
-  return {
-    outline: \`\${\$theme.colors.warning200} solid\`,
-    backgroundColor: $theme.colors.warning200
-  };
-}`,
+        style: `({ $theme }) => ({
+  outline: \`\${\$theme.colors.warning200} solid\`,
+  backgroundColor: $theme.colors.warning200
+})`,
+      },
+      Tag: {
+        active: true,
+        nestedValue: {
+          Action: {
+            active: true,
+            style: `({ $theme }) => ({
+  outline: \`\${\$theme.colors.warning200} dashed\`,
+  backgroundColor: $theme.colors.warning200
+})`,
+          },
+        },
       },
     });
   });

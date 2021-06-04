@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -18,14 +18,14 @@ const selectors = {
 
 describe('progress steps', () => {
   it('passes basic a11y tests', async () => {
-    await mount(page, 'progress-steps');
+    await mount(page, 'progress-steps--progress-steps');
     await page.waitForSelector(selectors.nextButton);
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
   it('can be moved to the next step, and back too', async () => {
-    await mount(page, 'progress-steps');
+    await mount(page, 'progress-steps--progress-steps');
     await page.waitForSelector(selectors.nextButton);
 
     // verifies that the first content block is visible

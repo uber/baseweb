@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -133,6 +133,11 @@ function FilterTag(props) {
                 height: '22px',
               },
             },
+            Text: {
+              style: {
+                maxWidth: '160px',
+              },
+            },
           }}
         >
           {props.title}: {props.filter.description}
@@ -166,6 +171,7 @@ export function StatefulDataTable(props: StatefulDataTablePropsT) {
       onIncludedRowsChange={props.onIncludedRowsChange}
       onRowHighlightChange={props.onRowHighlightChange}
       onSelectionChange={props.onSelectionChange}
+      resizableColumnWidths={props.resizableColumnWidths}
       rows={props.rows}
       rowActions={props.rowActions}
       rowHighlightIndex={props.rowHighlightIndex}
@@ -181,6 +187,7 @@ export function StatefulDataTable(props: StatefulDataTablePropsT) {
         onSelectOne,
         onSort,
         onTextQueryChange,
+        resizableColumnWidths,
         rowHighlightIndex,
         selectedRowIds,
         sortIndex,
@@ -296,6 +303,7 @@ export function StatefulDataTable(props: StatefulDataTablePropsT) {
               onSelectNone={onSelectNone}
               onSelectOne={onSelectOne}
               onSort={onSort}
+              resizableColumnWidths={resizableColumnWidths}
               rowHighlightIndex={rowHighlightIndex}
               rows={props.rows}
               rowActions={props.rowActions}

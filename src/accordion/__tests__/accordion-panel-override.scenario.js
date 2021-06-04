@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -30,20 +30,20 @@ const themeWithIcons = createTheme(
 export default function Scenario() {
   return (
     <ThemeProvider theme={themeWithIcons}>
-      <Accordion>
-        <Panel
-          title="hello"
-          overrides={{
-            // eslint-disable-next-line
-            ToggleIcon: function(props) {
-              if (props.$expanded) {
-                return <div>collapse(override)</div>;
-              }
-              return <div>expand(override)</div>;
-            },
-          }}
-        >
-          hello puppeteer!
+      <Accordion
+        overrides={{
+          // eslint-disable-next-line react/display-name
+          ToggleIcon: function(props) {
+            if (props.$expanded) {
+              return <div>collapse(override)</div>;
+            }
+            return <div>expand(override)</div>;
+          },
+        }}
+      >
+        <Panel title="hello">hello puppeteer!</Panel>
+        <Panel title="hello_world" expanded>
+          hello world!
         </Panel>
       </Accordion>
     </ThemeProvider>

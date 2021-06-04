@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -14,7 +14,7 @@ const SELECT_INPUT = 'div[data-baseweb="select"] input';
 
 describe('select backspace works as expected', () => {
   it('backspace one character', async () => {
-    await mount(page, 'select-backspace-behavior');
+    await mount(page, 'select--backspace-behavior');
     const selector = `#backspace-behavior ${SELECT_INPUT}`;
     await page.waitForSelector(selector);
     const input = await page.$(selector);
@@ -30,7 +30,7 @@ describe('select backspace works as expected', () => {
   });
 
   it('backspace clears input value', async () => {
-    await mount(page, 'select-backspace-behavior');
+    await mount(page, 'select--backspace-behavior');
     const selector = `#backspace-clears-input-value ${SELECT_INPUT}`;
     await page.waitForSelector(selector);
     const input = await page.$(selector);

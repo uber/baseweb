@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -31,6 +31,7 @@ export default class Calendar<T = Date> extends React.Component<
 > {
   static defaultProps: {adapter: DateIOAdapter<Date>} = {
     autoFocusCalendar: false,
+    dateLabel: null,
     excludeDates: null,
     filterDate: null,
     highlightedDate: null,
@@ -443,6 +444,7 @@ export default class Calendar<T = Date> extends React.Component<
           <Month
             adapter={this.props.adapter}
             date={monthDate}
+            dateLabel={this.props.dateLabel}
             excludeDates={this.props.excludeDates}
             filterDate={this.props.filterDate}
             highlightedDate={this.state.highlightedDate}

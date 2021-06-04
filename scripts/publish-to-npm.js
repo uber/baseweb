@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -23,6 +23,7 @@ const ESLINT_PLUGIN_DIR = path.resolve(
 
 const ALPHA_TAG = 'alpha';
 const LATEST_TAG = 'latest';
+const NEXT_TAG = 'next';
 
 function writeNpmTokenFromEnv() {
   const token = process.env.NPM_TOKEN;
@@ -60,7 +61,7 @@ function publishBaseui(tag) {
   console.log('--- Publishing baseui to NPM');
   spawnSync('yarn', ['build'], {stdio: 'inherit', cwd: ROOT_DIR});
   spawnSync('npm', ['publish', 'dist', '--tag', tag], {
-    stdio: ['inherit', 'inherit', 'pipe'],
+    stdio: 'inherit',
     cwd: ROOT_DIR,
   });
 }
@@ -71,7 +72,7 @@ function publishEslintPlugin(tag) {
     path.resolve(ESLINT_PLUGIN_DIR, 'package.json'),
   );
   spawnSync('npm', ['publish', '--tag', tag], {
-    stdio: ['inherit', 'inherit', 'pipe'],
+    stdio: 'inherit',
     cwd: ESLINT_PLUGIN_DIR,
   });
 }
@@ -81,24 +82,24 @@ const rootPackageJSONPath = path.resolve(ROOT_DIR, 'package.json');
 module.exports = function publishToNpm(params /*: any */) {
   const {tag, commit} = params;
 
-  if (tag !== ALPHA_TAG && tag !== LATEST_TAG) {
+  if (tag !== ALPHA_TAG && tag !== LATEST_TAG && tag !== NEXT_TAG) {
     throw new Error(
-      `NPM tag ${tag} must be either ${ALPHA_TAG} or ${LATEST_TAG}.`,
+      `NPM tag ${tag} must be either ${ALPHA_TAG} or ${LATEST_TAG} or ${NEXT_TAG}.`,
     );
   }
 
-  if (tag === ALPHA_TAG) {
-    console.log('+++ Updating package.json version to alpha.');
+  if (tag === ALPHA_TAG || tag === NEXT_TAG) {
+    console.log(`+++ Updating package.json version to ${tag}.`);
     if (!commit) {
       throw new Error(
-        'Must provide a commit param to publish an alpha release.',
+        `Must provide a commit param to publish an ${tag} release.`,
       );
     }
     const packageJSON = readJSONFile(rootPackageJSONPath);
     const shortHash = commit.slice(-7);
-    packageJSON.version = `0.0.0-alpha-${shortHash}`;
+    packageJSON.version = `0.0.0-${tag}-${shortHash}`;
     console.log(
-      `Updated package.json version to ${packageJSON.version} for alpha release.`,
+      `Updated package.json version to ${packageJSON.version} for ${tag} release.`,
     );
     fs.writeFileSync(rootPackageJSONPath, JSON.stringify(packageJSON, null, 2));
   }

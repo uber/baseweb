@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -136,6 +136,7 @@ export type StatefulContainerPropsT = {
   getChildMenu?: (ref: {current: HTMLElement | null}) => ?{
     current: HTMLElement | null,
   },
+  forceHighlight: boolean,
 };
 
 export type MenuPropsT = {
@@ -229,6 +230,7 @@ export type OptionListPropsT = {
   getItemLabel: GetItemLabelFnT,
   /** Used to render a sub menu at this menu item. You'll often render another menu from this function. */
   getChildMenu?: (item: ItemT) => React.Node,
+  onClick?: (event: MouseEvent) => mixed,
   /** Callback used to change highlighted index in stateful menu. */
   onMouseEnter?: (event: MouseEvent) => mixed,
   /** Renders UI in defined scale. */

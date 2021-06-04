@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -78,6 +78,9 @@ class StarRating extends React.Component<StarRatingPropsT, RatingStateT> {
           $index={x}
           $isActive={
             previewIndex !== undefined ? x <= previewIndex : x <= value
+          }
+          $isPartialActive={
+            previewIndex !== undefined ? false : x <= value + 0.5
           }
           $isSelected={x === previewIndex}
           $isFocusVisible={this.state.isFocusVisible && isFocusable}

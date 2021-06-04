@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Skeleton} from 'baseui/skeleton';
 
-export default () => {
+export default function Example() {
   return (
     <Skeleton
       rows={3}
@@ -16,4 +16,4 @@ export default () => {
       }}
     />
   );
-};
+}

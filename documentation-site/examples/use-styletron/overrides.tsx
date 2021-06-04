@@ -2,7 +2,7 @@ import React from 'react';
 import {useStyletron} from 'baseui';
 import {Button} from 'baseui/button';
 
-export default () => {
+export default function Example() {
   const [css, theme] = useStyletron();
   return (
     <Button
@@ -28,4 +28,4 @@ export default () => {
       this is a BaseButton
     </Button>
   );
-};
+}

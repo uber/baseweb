@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -14,6 +14,7 @@ import {
   StyledBar,
   StyledLabel,
   StyledBarProgress,
+  StyledInfiniteBar,
 } from './styled-components.js';
 
 import type {ProgressBarPropsT} from './types.js';
@@ -54,6 +55,10 @@ class ProgressBar extends React.Component<ProgressBarPropsT> {
       StyledBarProgress,
     );
     const [Label, labelProps] = getOverrides(overrides.Label, StyledLabel);
+    const [InfiniteBar, infiniteBarProps] = getOverrides(
+      overrides.InfiniteBar,
+      StyledInfiniteBar,
+    );
     const sharedProps = {
       $infinite: infinite,
       $size: size,
@@ -85,7 +90,18 @@ class ProgressBar extends React.Component<ProgressBarPropsT> {
         {...rootProps}
       >
         <BarContainer {...sharedProps} {...barContainerProps}>
-          {renderProgressBar()}
+          {infinite ? (
+            <React.Fragment>
+              <InfiniteBar
+                $isLeft={true}
+                $size={sharedProps.$size}
+                {...infiniteBarProps}
+              />
+              <InfiniteBar $size={sharedProps.$size} {...infiniteBarProps} />
+            </React.Fragment>
+          ) : (
+            renderProgressBar()
+          )}
         </BarContainer>
         {showLabel && (
           <Label {...sharedProps} {...labelProps}>

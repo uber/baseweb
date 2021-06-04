@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -23,7 +23,7 @@ function getActiveTag(page) {
 
 describe('select option click returns focus', () => {
   it('returns focus to select input after clicking option', async () => {
-    await mount(page, 'select-click-maintains-focus');
+    await mount(page, 'select--click-maintains-focus');
     await page.waitForSelector(SELECT_INPUT);
 
     const input = await page.$(SELECT_INPUT);

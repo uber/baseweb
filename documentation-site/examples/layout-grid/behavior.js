@@ -4,15 +4,17 @@ import * as React from 'react';
 import {useStyletron} from 'baseui';
 import {Grid, Cell, BEHAVIOR} from 'baseui/layout-grid';
 
-export default () => (
-  <Outer>
-    <Grid behavior={BEHAVIOR.fluid}>
-      <Cell span={12}>
-        <Inner>1</Inner>
-      </Cell>
-    </Grid>
-  </Outer>
-);
+export default function Example() {
+  return (
+    <Outer>
+      <Grid behavior={BEHAVIOR.fluid}>
+        <Cell span={12}>
+          <Inner>1</Inner>
+        </Cell>
+      </Grid>
+    </Outer>
+  );
+}
 
 const Outer = ({children}: {children: React.Node}) => {
   const [css, theme] = useStyletron();

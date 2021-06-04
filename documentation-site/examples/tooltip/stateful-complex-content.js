@@ -13,7 +13,7 @@ function ComplexContent() {
   );
 }
 
-export default () => {
+export default function Example() {
   const [css, theme] = useStyletron();
   return (
     <div>
@@ -38,4 +38,4 @@ export default () => {
       tweaks, so you can use all the features that Popover supports.
     </div>
   );
-};
+}

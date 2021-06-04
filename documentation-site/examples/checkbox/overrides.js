@@ -3,7 +3,7 @@ import * as React from 'react';
 import {Checkbox} from 'baseui/checkbox';
 import {expandBorderStyles} from 'baseui/styles';
 
-export default () => {
+export default function Example() {
   const [checked, setChecked] = React.useState(true);
   return (
     <Checkbox
@@ -36,4 +36,4 @@ export default () => {
       With style overrides
     </Checkbox>
   );
-};
+}

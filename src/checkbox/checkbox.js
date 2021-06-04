@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -26,6 +26,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
   static defaultProps: DefaultPropsT = {
     overrides: {},
     checked: false,
+    containsInteractiveElement: false,
     disabled: false,
     autoFocus: false,
     isIndeterminate: false,
@@ -133,6 +134,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
       children,
       required,
       title,
+      ariaLabel,
     } = this.props;
 
     const {
@@ -185,7 +187,13 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
         {...sharedProps}
         {...getOverrideProps(LabelOverride)}
       >
-        {children}
+        {this.props.containsInteractiveElement ? (
+          // Prevents the event from bubbling up to the label and moving focus to the radio button
+          // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
+          <div onClick={e => e.preventDefault()}>{children}</div>
+        ) : (
+          children
+        )}
       </Label>
     );
     return (
@@ -228,6 +236,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
           name={name}
           checked={checked}
           required={required}
+          aria-label={ariaLabel}
           aria-checked={isIndeterminate ? 'mixed' : checked}
           aria-describedby={this.props['aria-describedby']}
           aria-errormessage={this.props['aria-errormessage']}

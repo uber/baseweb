@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -47,6 +47,8 @@ export default function Filter(props: FilterProps) {
 
   return (
     <StatefulPopover
+      onClose={props.onClose}
+      onOpen={props.onOpen}
       placement={PLACEMENT.bottom}
       stateReducer={(_, nextState) => {
         if (props.disabled) {
@@ -54,8 +56,7 @@ export default function Filter(props: FilterProps) {
         }
         return nextState;
       }}
-      content={
-        // eslint-disable-next-line jsx-a11y/no-autofocus
+      content={({close}) => (
         <FocusLock autoFocus={false}>
           <Heading {...headingProps}>Filter Column</Heading>
           <Content {...contentProps}>{props.children}</Content>
@@ -79,9 +80,16 @@ export default function Filter(props: FilterProps) {
             >
               Reset
             </Button>
+
+            {props.hasCloseButton && (
+              <Button kind={KIND.minimal} size={SIZE.compact} onClick={close}>
+                Close
+              </Button>
+            )}
           </Footer>
         </FocusLock>
-      }
+      )}
+      returnFocus={props.returnFocus}
     >
       <MenuButton
         $active={props.active}

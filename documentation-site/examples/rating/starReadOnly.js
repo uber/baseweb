@@ -2,7 +2,7 @@
 import * as React from 'react';
 import {StarRating} from 'baseui/rating';
 
-export default () => {
+export default function Example() {
   const [value, setValue] = React.useState(3);
   return (
     <StarRating
@@ -11,4 +11,4 @@ export default () => {
       readOnly
     />
   );
-};
+}

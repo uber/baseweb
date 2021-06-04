@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -63,31 +63,35 @@ const StyledLink = themedStyled('a', ({$theme}) => ({
   },
 }));
 
-export default () => (
-  <StyledFooter>
-    <Block paddingBottom="scale1000">
-      <StyledLink href="https://github.com/uber/baseweb" target="_blank">
-        GitHub
-      </StyledLink>
-      <StyledLink href="https://twitter.com/BaseWebReact" target="_blank">
-        Twitter
-      </StyledLink>
-      <StyledLink
-        href="https://join.slack.com/t/baseui/shared_invite/zt-5f1s4d10-1D2uywAECAG50m64PTH9cw"
-        target="_blank"
-      >
-        Slack Chat room
-      </StyledLink>
-      <StyledLink
-        href="https://github.com/uber/baseweb/releases"
-        target="_blank"
-      >
-        Changelog
-      </StyledLink>
-      <Link href="/blog">
-        <StyledLink href="/blog">Blog</StyledLink>
-      </Link>
-    </Block>
-    <UberLogo />
-  </StyledFooter>
-);
+function Footer() {
+  return (
+    <StyledFooter>
+      <Block paddingBottom="scale1000">
+        <StyledLink href="https://github.com/uber/baseweb" target="_blank">
+          GitHub
+        </StyledLink>
+        <StyledLink href="https://twitter.com/BaseWebReact" target="_blank">
+          Twitter
+        </StyledLink>
+        <StyledLink
+          href="https://join.slack.com/t/baseui/shared_invite/zt-5f1s4d10-1D2uywAECAG50m64PTH9cw"
+          target="_blank"
+        >
+          Slack Chat room
+        </StyledLink>
+        <StyledLink
+          href="https://github.com/uber/baseweb/releases"
+          target="_blank"
+        >
+          Changelog
+        </StyledLink>
+        <Link href="/blog">
+          <StyledLink href="/blog">Blog</StyledLink>
+        </Link>
+      </Block>
+      <UberLogo />
+    </StyledFooter>
+  );
+}
+
+export default Footer;

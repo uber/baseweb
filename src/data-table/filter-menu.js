@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -80,7 +80,7 @@ function Options(props: OptionsPropsT) {
   return (
     <div
       className={css({
-        backgroundColor: theme.colors.backgroundPrimary,
+        backgroundColor: theme.colors.menuFill,
         minWidth: '320px',
         outline: focusVisible ? `3px solid ${theme.colors.accent}` : 'none',
         paddingTop: theme.sizing.scale600,
@@ -140,8 +140,10 @@ function Options(props: OptionsPropsT) {
           listStyleType: 'none',
           marginBlockStart: 'unset',
           marginBlockEnd: 'unset',
+          maxHeight: '256px',
           paddingInlineStart: 'unset',
           outline: 'none',
+          overflowY: 'auto',
         })}
       >
         {props.columns.map((column, index) => {
@@ -161,7 +163,7 @@ function Options(props: OptionsPropsT) {
                 ...theme.typography.font100,
                 alignItems: 'center',
                 backgroundColor: isHighlighted
-                  ? theme.colors.backgroundSecondary
+                  ? theme.colors.menuFillHover
                   : null,
                 cursor: 'pointer',
                 display: 'flex',

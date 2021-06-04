@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -8,10 +8,9 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 /* eslint-env node */
 
-const globby = require('globby');
 const {configureToMatchImageSnapshot} = require('jest-image-snapshot');
 const {getSnapshotConfig} = require('./config.js');
-const {mount, waitForTimeout} = require('../e2e/helpers');
+const {mount, waitForTimeout, addTestStyles} = require('../e2e/helpers');
 
 const THEME = {
   light: 'light',
@@ -68,7 +67,7 @@ describe('visual snapshot tests', () => {
         await interaction.behavior(page);
 
         // Bad, but lets let things settle down after the interaction.
-        await waitForTimeout(250);
+        await waitForTimeout(100);
 
         await snapshot(`${scenarioName}__${interaction.name}`);
       });
@@ -77,7 +76,7 @@ describe('visual snapshot tests', () => {
 });
 
 async function snapshot(identifier, viewport = VIEWPORT.desktop) {
-  const image = await page.screenshot();
+  const image = await page.screenshot({captureBeyondViewport: false});
   expect(image).toMatchImageSnapshot({
     customSnapshotIdentifier: identifier,
   });
@@ -96,6 +95,9 @@ async function preparePageForSnapshot(
 
   await mount(page, scenarioName, theme);
 
+  // disables CSS transitions
+  await addTestStyles(page);
+
   // Set the viewport to our final screenshot dimensions.
   // When we take a screenshot we do not want any resizing, which can cause flakiness.
   // We will set the viewport now and take a straight-up screenshot later.
@@ -106,7 +108,7 @@ async function preparePageForSnapshot(
   });
 
   // Bad, but lets let things settle down after resizing.
-  await waitForTimeout(250);
+  await waitForTimeout(100);
 }
 
 async function getPageScrollHeight() {
@@ -131,7 +133,12 @@ function configureJest() {
 }
 
 function getAllScenarioNames() {
-  return globby
-    .sync('src/**/*.scenario.js')
-    .map(filePath => filePath.match(/__tests__\/(.*).scenario/)[1]);
+  let names = [];
+  try {
+    const metaFile = require('../build-ladle/meta.json');
+    names = Object.keys(metaFile.stories);
+  } catch (e) {
+    console.log('build-ladle/meta.json not found. Build ladle first.');
+  }
+  return names;
 }

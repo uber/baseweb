@@ -3,7 +3,7 @@ import {ChevronRight, Search} from 'baseui/icon';
 import {ListItem, ListItemLabel, ARTWORK_SIZES} from 'baseui/list';
 import {useStyletron} from 'baseui';
 
-export default () => {
+export default function Example() {
   const [css] = useStyletron();
   return (
     <ul
@@ -77,4 +77,4 @@ export default () => {
       </ListItem>
     </ul>
   );
-};
+}

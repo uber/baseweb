@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -64,11 +64,7 @@ describe('base-input', () => {
     const onFocus = jest.fn();
     render(
       // $FlowFixMe
-      <BaseInput
-        // eslint-disable-next-line jsx-a11y/no-autofocus
-        autoFocus
-        onFocus={onFocus}
-      />,
+      <BaseInput autoFocus onFocus={onFocus} />,
     );
     expect(onFocus).toBeCalledTimes(1);
   });

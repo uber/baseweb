@@ -1,10 +1,11 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
+/* eslint-disable cup/no-undef */
 import * as React from 'react';
 import {isValidElementType} from 'react-is';
 import deepMerge from '../utils/deep-merge.js';
@@ -110,7 +111,8 @@ export function getOverrides(
     // TODO(v11)
     if (__DEV__) {
       console.warn(
-        'baseui:Overrides Props as a function will be removed in the next major version.',
+        'baseui:Overrides Props as a function will be removed in the next major version. Override the whole component instead. ' +
+          'See https://baseweb.design/guides/understanding-overrides/#override-the-entire-subcomponent',
       );
     }
     const DynamicOverride = React.forwardRef((props, ref) => {

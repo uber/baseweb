@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -41,6 +41,7 @@ export default class MenuStatefulContainer extends React.Component<
     removeMenuFromNesting: () => {},
     getParentMenu: () => {},
     getChildMenu: () => {},
+    forceHighlight: false,
   };
 
   state: StatefulContainerStateT = {
@@ -114,6 +115,15 @@ export default class MenuStatefulContainer extends React.Component<
       }
     }
     var range = this.getItems().length;
+    if (
+      this.props.forceHighlight &&
+      this.state.highlightedIndex === -1 &&
+      range > 0
+    ) {
+      this.internalSetState(STATE_CHANGE_TYPES.enter, {
+        highlightedIndex: 0,
+      });
+    }
     if (range === 0 && this.state.highlightedIndex !== -1) {
       this.internalSetState(STATE_CHANGE_TYPES.enter, {
         highlightedIndex: -1,
@@ -330,7 +340,10 @@ export default class MenuStatefulContainer extends React.Component<
 
   handleMouseLeave = () => {
     const rootRef = this.props.rootRef ? this.props.rootRef : this.rootRef;
-    if (!this.props.getChildMenu || !this.props.getChildMenu(rootRef)) {
+    const childMenu =
+      this.props.getChildMenu && this.props.getChildMenu(rootRef);
+
+    if (!this.props.forceHighlight && !childMenu) {
       this.internalSetState(STATE_CHANGE_TYPES.mouseLeave, {
         highlightedIndex: -1,
       });
@@ -416,6 +429,7 @@ export default class MenuStatefulContainer extends React.Component<
       removeMenuFromNesting,
       getParentMenu,
       getChildMenu,
+      forceHighlight,
       ...restProps
     } = this.props;
 

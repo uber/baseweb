@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -106,6 +106,8 @@ export type RadioPropsT = {
   checked?: boolean,
   /** Label of radio. */
   children?: React$Node,
+  /** Indicates if this radio children contain an interactive element (prevents the label from moving focus from the child element to the radio button) */
+  containsInteractiveElement?: boolean,
   /** Add more detail about a radio element. */
   description?: string,
   /** Disable the checkbox from being changed. */

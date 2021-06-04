@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -25,24 +25,5 @@ export type SpinnerPropsT = {
     Svg?: OverrideT,
     ActivePath?: OverrideT,
     TrackPath?: OverrideT,
-  },
-};
-
-export type SpinnerDeterminatePropsT = {
-  /** A number between 0 and 1 inclusive. Example: 0.75. */
-  progress?: number,
-  /** The size of the spinner. */
-  size?: SizeT,
-  /** Toggle animating progress. */
-  animate?: boolean,
-  /** Toggle container rendering as a block or inline. */
-  inline?: boolean,
-  /** Overrides for sub-nodes in the rendering tree. */
-  overrides?: {
-    Root?: OverrideT,
-    Svg?: OverrideT,
-    TrackBackground?: OverrideT,
-    TrackForeground?: OverrideT,
-    Text?: OverrideT,
   },
 };

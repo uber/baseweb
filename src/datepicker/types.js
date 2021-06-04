@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -51,6 +51,7 @@ export type DatepickerOverridesT = {
   Month?: OverrideT,
   Week?: OverrideT,
   Day?: OverrideT,
+  DayLabel?: OverrideT,
   /** Override for reused Input component. Input is **not a styled  element** but a react component that can be replaced */
   Input?: OverrideT,
   InputWrapper?: OverrideT,
@@ -61,6 +62,7 @@ export type DatepickerOverridesT = {
 export type DayPropsT<T = Date> = {
   disabled: boolean,
   date: T,
+  dateLabel: ?(day: T) => React.Node,
   filterDate: ?(day: T) => boolean,
   highlightedDate: ?T,
   includeDates: ?Array<T>,
@@ -90,6 +92,7 @@ export type DayStateT = {
 
 export type WeekPropsT<T = Date> = {
   date: T,
+  dateLabel: ?(date: T) => React.Node,
   excludeDates: ?Array<T>,
   filterDate: ?(day: T) => boolean,
   // highlighted while keyboard navigating or hovered
@@ -139,6 +142,8 @@ export type CalendarPropsT<T = Date> = {
   }>,
   /** A filter function that is called to check the disabled state of a day. If `false` is returned the day is considered to be disabled. */
   filterDate?: ?(day: T) => boolean,
+  /** A function that is called with the current date to render the label text under that day on the calendar. */
+  dateLabel?: ?(day: T) => React.Node,
   /** Indicates a highlighted date on hover and keyboard navigation */
   highlightedDate?: ?T,
   /** A list of selectable dates. */
@@ -220,6 +225,7 @@ export type SharedStylePropsT = {
   $isHovered: ?boolean,
   $isFocusVisible: ?boolean,
   $outsideMonth: ?boolean,
+  $outsideMonthWithinRange: ?boolean,
   $peekNextMonth: ?boolean,
   $pseudoHighlighted: ?boolean,
   $pseudoSelected: ?boolean,
@@ -230,6 +236,8 @@ export type SharedStylePropsT = {
   $hasRangeHighlighted: ?boolean,
   $hasRangeOnRight: ?boolean,
   $hasRangeSelected: ?boolean,
+  $order: ?number,
+  $hasDateLabel: ?boolean,
 };
 
 export type StateChangeTypeT = ?$Values<typeof STATE_CHANGE_TYPE>;

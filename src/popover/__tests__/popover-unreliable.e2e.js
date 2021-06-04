@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -22,7 +22,7 @@ const selectors = {
 
 describe('popover', () => {
   it('closes one popover at a time on esc key press', async () => {
-    await mount(page, 'popover-select');
+    await mount(page, 'popover--select');
     await page.waitForSelector('button');
     await page.click('button');
     await page.waitForSelector(selectors.tooltip);
@@ -39,7 +39,7 @@ describe('popover', () => {
   });
 
   it('closes one popover at a time on click outside', async () => {
-    await mount(page, 'popover-select');
+    await mount(page, 'popover--select');
     await page.waitForSelector('button');
     await page.click('button');
     await page.waitForSelector(selectors.tooltip);

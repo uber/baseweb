@@ -5,7 +5,7 @@ import * as React from 'react';
 import {useStyletron} from 'baseui';
 import {AppNavBar, setItemActive} from 'baseui/app-nav-bar';
 
-export default function Scenario() {
+export default function Example() {
   const [css] = useStyletron();
 
   const [mainItems, setMainItems] = React.useState([

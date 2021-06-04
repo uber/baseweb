@@ -1,6 +1,10 @@
 import {Combobox, SIZE} from 'baseui/combobox';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
+import inputConfig from './input';
+import popoverConfig from './popover';
+
+popoverConfig.componentName = 'Popover';
 
 const comboboxProps = require('!!extract-react-types-loader!../../../../src/combobox/combobox.js');
 
@@ -101,13 +105,25 @@ const ComboboxConfig: TConfig = {
       description: 'Name attribute.',
       hidden: true,
     },
+    inputRef: {
+      value: undefined,
+      type: PropTypes.Ref,
+      description: 'A ref to access the input element.',
+    },
 
     overrides: {
       value: undefined,
       type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
       custom: {
-        names: ['Root', 'InputContainer', 'ListBox', 'ListItem'],
+        names: [
+          'Root',
+          inputConfig,
+          'InputContainer',
+          'ListBox',
+          'ListItem',
+          popoverConfig,
+        ],
         sharedProps: {
           $isSelected: {
             type: PropTypes.Boolean,

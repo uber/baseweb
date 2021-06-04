@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -20,7 +20,12 @@ export default function Scenario() {
   const [activeKey, setActiveKey] = React.useState('8');
   return (
     <React.Fragment>
-      <div style={{height: '100vh'}} />
+      <div style={{marginTop: '200vh'}}>
+        A very large div to cause the the `Tabs` component to be off-screen so
+        we can test that we do not scroll down to them on mount.
+        <br />
+        So the `Tabs` component should _not_ be visible.
+      </div>
       <Tabs
         activeKey={activeKey}
         onChange={({activeKey}) => setActiveKey(activeKey)}
@@ -65,7 +70,6 @@ export default function Scenario() {
           <Button kind={KIND.secondary}>🍉</Button>
         </Tab>
       </Tabs>
-      <div style={{height: '100vh'}} />
     </React.Fragment>
   );
 }

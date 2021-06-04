@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -28,6 +28,8 @@ export type PropsT<OptionT = mixed> = {|
   mapOptionToString: OptionT => string,
   id?: string,
   name?: string,
+  // A ref to access the inner Input component.
+  inputRef?: React.ElementRef<*>,
   // Called when input loses focus.
   onBlur?: (SyntheticInputEvent<HTMLInputElement>) => mixed,
   // Called when input value changes or option is selected. If user selects a

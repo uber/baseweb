@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -35,7 +35,7 @@ export const StyledContent = styled<StyledContentPropsT>(
       borderLeftStyle: 'none',
       display: 'flex',
       flexGrow: 1,
-      height: $sublist ? '48px' : '72px',
+      minHeight: $sublist ? '48px' : '72px',
       justifyContent: 'space-between',
       marginLeft: $mLeft ? $theme.sizing.scale600 : null,
       ...($theme.direction === 'rtl'

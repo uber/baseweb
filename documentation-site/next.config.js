@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -58,10 +58,16 @@ const withTM = require('next-transpile-modules')([
 module.exports = withTM(
   withMDX(
     withImages({
+      images: {
+        loader: 'imgix',
+      },
+      typescript: {
+        ignoreBuildErrors: true,
+      },
       publicRuntimeConfig: {
         loadYard: process.env.LOAD_YARD,
       },
-      exportTrailingSlash: true,
+      trailingSlash: true,
       webpack: (config, {buildId, dev, isServer, defaultLoaders}) => {
         config.resolve.alias.baseui = resolve(__dirname, '../dist');
         config.resolve.alias.examples = resolve(__dirname, 'examples');

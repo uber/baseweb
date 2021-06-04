@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -22,6 +22,10 @@ export default function Scenario() {
       <select value={index} onChange={e => setIndex(Number(e.target.value))}>
         <option value={-1}>Show All</option>
         {Object.keys(PLACEMENT).map((placement, i) => {
+          if (placement === 'auto') {
+            return null;
+          }
+
           return (
             <option key={placement} value={i}>
               {placement}
@@ -42,6 +46,9 @@ export default function Scenario() {
       >
         {Object.keys(PLACEMENT).map((placement, i) => {
           if (index !== i && index !== -1) {
+            return null;
+          }
+          if (placement === 'auto') {
             return null;
           }
           return (

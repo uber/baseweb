@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -8,7 +8,11 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {StatefulDataTable, CategoricalColumn} from '../index.js';
+import {
+  StatefulDataTable,
+  CategoricalColumn,
+  RowIndexColumn,
+} from '../index.js';
 
 import Alert from '../../icon/alert.js';
 import Check from '../../icon/check.js';
@@ -32,6 +36,7 @@ const rowActions = [
 
 export default function Scenario() {
   const columns = [
+    RowIndexColumn(),
     CategoricalColumn({
       title: 'column',
       mapDataToValue: (data: string) => data,

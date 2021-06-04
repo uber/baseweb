@@ -3,7 +3,7 @@ import * as React from 'react';
 import {Paragraph3} from 'baseui/typography';
 import {Radio, RadioGroup} from 'baseui/radio';
 
-export default () => {
+export default function Example() {
   const [value, setValue] = React.useState('1');
   return (
     <RadioGroup
@@ -64,4 +64,4 @@ export default () => {
       </Radio>
     </RadioGroup>
   );
-};
+}

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -20,11 +20,19 @@ export function Type({name}: {name: string}) {
         <div className={css({...theme.typography[name]})}>Example</div>
       )}
       renderValue={() => (
-        <React.Fragment>
-          <div>{theme.typography[name].fontSize}</div>
-          <div>{theme.typography[name].fontWeight}</div>
-          <div>{theme.typography[name].lineHeight}</div>
-        </React.Fragment>
+        <pre
+          className={css({
+            fontSize: '14px',
+            fontFamily:
+              'Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;',
+          })}
+        >
+          {`{
+  fontSize: '${theme.typography[name].fontSize}',
+  fontWeight: '${theme.typography[name].fontWeight}',
+  lineHeight: '${theme.typography[name].lineHeight}'
+}`}
+        </pre>
       )}
     />
   );

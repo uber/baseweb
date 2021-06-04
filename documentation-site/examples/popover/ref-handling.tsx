@@ -23,7 +23,7 @@ const CheckboxWithRef = React.forwardRef((props: any, ref) => {
   );
 });
 
-export default () => {
+export default function Example() {
   const [css] = useStyletron();
   return (
     <div
@@ -67,4 +67,4 @@ export default () => {
       </StatefulPopover>
     </div>
   );
-};
+}

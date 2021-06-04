@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Textarea} from 'baseui/textarea';
 
-export default () => {
+export default function Example() {
   const [value, setValue] = React.useState('');
   return (
     <Textarea
@@ -9,4 +9,4 @@ export default () => {
       onChange={e => setValue(e.currentTarget.value)}
     />
   );
-};
+}

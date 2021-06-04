@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -134,8 +134,7 @@ const HeaderCell = React.forwardRef<HeaderCellPropsT, HTMLDivElement>(
                 right: -4,
               }}
             >
-              {(props.sortDirection === SORT_DIRECTIONS.DESC ||
-                !props.sortDirection) && (
+              {props.sortDirection === SORT_DIRECTIONS.DESC && (
                 <ChevronDown
                   color={
                     props.sortDirection
@@ -144,7 +143,8 @@ const HeaderCell = React.forwardRef<HeaderCellPropsT, HTMLDivElement>(
                   }
                 />
               )}
-              {props.sortDirection === SORT_DIRECTIONS.ASC && (
+              {(props.sortDirection === SORT_DIRECTIONS.ASC ||
+                !props.sortDirection) && (
                 <ChevronUp
                   color={
                     props.sortDirection

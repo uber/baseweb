@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -14,7 +14,7 @@ const {sortColumnAtIndex, matchArrayElements} = require('./utilities.js');
 describe('data table columns', () => {
   it('updates application state when rows change', async () => {
     const index = 0;
-    await mount(page, 'data-table-included-rows-change');
+    await mount(page, 'data-table--included-rows-change');
     await page.waitForSelector('div[data-baseweb="data-table"]');
 
     const initialLi = await page.$$('li');

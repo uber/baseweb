@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -29,7 +29,7 @@ describe('Stateful Datepicker Quick Select', () => {
   });
 
   it('can quick select with keyboard', async () => {
-    await mount(page, 'stateful-datepicker-quick-select');
+    await mount(page, 'datepicker--stateful-quick-select');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
     await page.waitForSelector(selectors.calendar);
@@ -51,7 +51,7 @@ describe('Stateful Datepicker Quick Select', () => {
   });
 
   it('can quick select with mouse', async () => {
-    await mount(page, 'stateful-datepicker-quick-select');
+    await mount(page, 'datepicker--stateful-quick-select');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
     await page.waitForSelector(selectors.calendar);

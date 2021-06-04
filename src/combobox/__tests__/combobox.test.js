@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -377,5 +377,29 @@ describe('combobox', () => {
 
     const closed = container.querySelector('ul');
     expect(closed).toBeNull();
+  });
+
+  it('forwards inputRef from props', () => {
+    const inputRef = React.createRef();
+    let isFocused = false;
+    const onFocus = () => {
+      isFocused = true;
+    };
+    render(
+      <TestBaseProvider>
+        <Combobox
+          mapOptionToString={o => o}
+          onChange={() => {}}
+          options={options}
+          value={''}
+          inputRef={inputRef}
+          onFocus={onFocus}
+        />
+      </TestBaseProvider>,
+    );
+
+    expect(inputRef.current).toBeDefined();
+    if (inputRef.current) inputRef.current.focus();
+    expect(isFocused).toBeTruthy();
   });
 });

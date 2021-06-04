@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -46,8 +46,12 @@ export type PropsT = {
   'aria-describedby'?: string,
   /** Id of element which contains a related error message */
   'aria-errormessage'?: string,
+  /** Passed to the input element aria-label attribute. */
+  ariaLabel?: string,
   /** Component or String value for label of checkbox. */
   children?: React$Node,
+  /** Indicates if this checkbox children contain an interactive element (prevents the label from moving focus from the child element to the radio button) */
+  containsInteractiveElement?: boolean,
   overrides?: OverridesT,
   /** Check or uncheck the control. */
   checked?: boolean,
@@ -149,6 +153,8 @@ export type StatefulCheckboxPropsT = {
   overrides?: OverridesT,
   /** Component or String value for label of checkbox. */
   children?: React$Node,
+  /** Indicates if this checkbox children contain an interactive element (prevents the label from moving focus from the child element to the radio button) */
+  containsInteractiveElement?: boolean,
   /** Defines the components initial state value */
   initialState?: StateT,
   /** Focus the checkbox on initial render. */

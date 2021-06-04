@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -60,5 +60,37 @@ describe('Panel', () => {
     const panel = getByText(container, 'title');
     fireEvent.click(panel);
     expect(onChange.mock.calls.length).toBe(1);
+  });
+
+  it('does not render content when not expanded', () => {
+    const {container} = render(<Panel title="title">content</Panel>);
+    expect(container.textContent).toBe('title');
+  });
+
+  it('does render content when expanded', () => {
+    const {container} = render(
+      <Panel title="title" expanded>
+        content
+      </Panel>,
+    );
+    expect(container.textContent).toBe('titlecontent');
+  });
+
+  it('does render content when not expanded but renderAll is true', () => {
+    const {container} = render(
+      <Panel title="title" renderAll>
+        content
+      </Panel>,
+    );
+    expect(container.textContent).toBe('titlecontent');
+  });
+
+  it('does render content when not expanded but renderPanelContent is true', () => {
+    const {container} = render(
+      <Panel title="title" renderPanelContent>
+        content
+      </Panel>,
+    );
+    expect(container.textContent).toBe('titlecontent');
   });
 });

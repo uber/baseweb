@@ -34,9 +34,11 @@ const RootWithStyle = withStyle(StyledRoot, props => {
   };
 });
 
-export default () => (
-  <Input
-    overrides={{Root: {component: RootWithStyle}}}
-    placeholder="Input with a custom InputContainer override"
-  />
-);
+export default function Example() {
+  return (
+    <Input
+      overrides={{Root: {component: RootWithStyle}}}
+      placeholder="Input with a custom InputContainer override"
+    />
+  );
+}

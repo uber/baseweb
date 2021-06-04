@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -23,7 +23,7 @@ const SET_UNDEFINED_BTN = '[id="set-undefined"]';
 
 describe('datepicker-composed-range', () => {
   it('displaying start date can update value from text input with existing dates', async () => {
-    await mount(page, 'datepickers-composed-range');
+    await mount(page, 'datepicker--stateful-composed-range');
     await page.waitForSelector(START_DATE_INPUT);
 
     const before = await page.$eval(DISPLAY_START_DATE, e => e.textContent);
@@ -38,7 +38,7 @@ describe('datepicker-composed-range', () => {
   });
 
   it('displaying end date can update value from text input with existing dates', async () => {
-    await mount(page, 'datepickers-composed-range');
+    await mount(page, 'datepicker--stateful-composed-range');
     await page.waitForSelector(END_DATE_INPUT);
 
     const before = await page.$eval(DISPLAY_END_DATE, e => e.textContent);
@@ -53,7 +53,7 @@ describe('datepicker-composed-range', () => {
   });
 
   it('displaying start date can update value from text input with undefined dates', async () => {
-    await mount(page, 'datepickers-composed-range');
+    await mount(page, 'datepicker--stateful-composed-range');
     await page.waitForSelector(START_DATE_INPUT);
 
     await page.click(SET_UNDEFINED_BTN);
@@ -69,7 +69,7 @@ describe('datepicker-composed-range', () => {
   });
 
   it('displaying end date can update value from text input with undefined dates', async () => {
-    await mount(page, 'datepickers-composed-range');
+    await mount(page, 'datepicker--stateful-composed-range');
     await page.waitForSelector(END_DATE_INPUT);
 
     await page.click(SET_UNDEFINED_BTN);
@@ -87,7 +87,7 @@ describe('datepicker-composed-range', () => {
   });
 
   it('displaying start date does not update if selection is after end date', async () => {
-    await mount(page, 'datepickers-composed-range');
+    await mount(page, 'datepicker--stateful-composed-range');
     await page.waitForSelector(START_DATE_INPUT);
 
     const before = await page.$eval(DISPLAY_START_DATE, e => e.textContent);
@@ -104,7 +104,7 @@ describe('datepicker-composed-range', () => {
   });
 
   it('displaying end date does not update if selection is before start date', async () => {
-    await mount(page, 'datepickers-composed-range');
+    await mount(page, 'datepicker--stateful-composed-range');
     await page.waitForSelector(END_DATE_INPUT);
 
     const before = await page.$eval(DISPLAY_END_DATE, e => e.textContent);
@@ -123,7 +123,7 @@ describe('datepicker-composed-range', () => {
   });
 
   it('handles time selection after end datetime', async () => {
-    await mount(page, 'datepickers-composed-range');
+    await mount(page, 'datepicker--stateful-composed-range');
     await page.waitForSelector(START_DATE_INPUT);
 
     await page.click(SET_UNDEFINED_BTN);

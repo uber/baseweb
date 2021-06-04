@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -83,8 +83,9 @@ export default function HeaderNavigation({
           >
             <img
               src={theme.name.startsWith('dark') ? LightLogo : DarkLogo}
-              className={css({height: '40px'})}
               alt="Base Web"
+              height="40px"
+              width="97px"
             />
           </a>
         </Link>
@@ -100,27 +101,6 @@ export default function HeaderNavigation({
         >
           <VersionSelector />
         </div>
-
-        {/* Link to Blog */}
-        <Link href="/blog/base-web-v9" passHref>
-          <Button
-            $as="a"
-            size={SIZE.compact}
-            kind={KIND.minimal}
-            overrides={{
-              BaseButton: {
-                style: {
-                  display: 'none',
-                  [mq(875)]: {
-                    display: 'block',
-                  },
-                },
-              },
-            }}
-          >
-            {"What's new in v9?"}
-          </Button>
-        </Link>
 
         {/* Link to component gallery */}
         <Link href="/components" passHref>

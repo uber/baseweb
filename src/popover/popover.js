@@ -1,11 +1,12 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
 /* eslint-disable react/no-find-dom-node */
+/* eslint-disable cup/no-undef */
 import * as React from 'react';
 import FocusLock from 'react-focus-lock';
 
@@ -250,7 +251,8 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
   };
 
   onDocumentClick = (evt: MouseEvent) => {
-    const target = evt.target;
+    //$FlowFixMe
+    const target = evt.composedPath ? evt.composedPath()[0] : evt.target;
     const popper = this.popperRef.current;
     const anchor = this.anchorRef.current;
     // Ignore document click if it came from popover or anchor
@@ -353,6 +355,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
       $isAnimating: isAnimating,
       $isOpen: isOpen,
       $popoverMargin: popoverMargin,
+      $isHoverTrigger: this.isHoverTrigger(),
     };
   }
 
@@ -469,7 +472,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
                 noFocusGuards={false}
                 // see popover-focus-loop.scenario.js for why hover cannot return focus
                 returnFocus={this.props.returnFocus && !this.isHoverTrigger()}
-                autoFocus={this.state.autoFocusAfterPositioning} // eslint-disable-line jsx-a11y/no-autofocus
+                autoFocus={this.state.autoFocusAfterPositioning}
               >
                 {this.renderPopover(renderedContent)}
               </FocusLock>

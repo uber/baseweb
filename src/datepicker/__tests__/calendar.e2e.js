@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -31,7 +31,7 @@ const isActiveEl = async (page, selector) => {
 
 describe('Calendar', () => {
   it('calendar passes basic a11y tests', async () => {
-    await mount(page, 'calendar');
+    await mount(page, 'datepicker--calendar');
     await page.waitForSelector(selectors.calendar);
     const accessibilityReport = await analyzeAccessibility(page, {
       rules: [
@@ -44,7 +44,7 @@ describe('Calendar', () => {
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
   const waitTillDay = async page => {
-    await mount(page, 'calendar');
+    await mount(page, 'datepicker--calendar');
     await page.waitForSelector(selectors.calendar);
     await page.waitForSelector(selectors.day0);
     await page.focus(selectors.day0);

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -29,7 +29,7 @@ const unitedKingdom = {iso: 'GB', dialCode: '+44'};
 
 describe('PhoneInput', () => {
   beforeEach(async () => {
-    await mount(page, 'phone-input');
+    await mount(page, 'phone-input--phone-input');
     await page.waitForSelector(selectors.phoneInput);
   });
 

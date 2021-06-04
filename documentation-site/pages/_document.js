@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 import * as React from 'react';
-import Document, {Head, Main, NextScript} from 'next/document';
+import Document, {Head, Html, Main, NextScript} from 'next/document';
 import {Provider as StyletronProvider} from 'styletron-react';
 
 import Favicons from '../components/meta-favicons';
@@ -50,9 +50,8 @@ export default class MyDocument extends Document {
 
   render() {
     return (
-      <html lang="en">
+      <Html lang="en">
         <Head>
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
           <script
             type="text/javascript"
             src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"
@@ -113,7 +112,7 @@ export default class MyDocument extends Document {
             </React.Fragment>
           )}
         </body>
-      </html>
+      </Html>
     );
   }
 }

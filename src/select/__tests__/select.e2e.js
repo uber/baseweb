@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -32,20 +32,20 @@ function matchArrayElements(a, b) {
 
 describe('select', () => {
   it(`passes basic a11y tests`, async () => {
-    await mount(page, 'select');
+    await mount(page, 'select--select');
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
   it('opens dropdown menu when click on select input', async () => {
-    await mount(page, 'select');
+    await mount(page, 'select--select');
     await page.waitForSelector(selectors.selectInput);
     await page.click(selectors.selectInput);
     await page.waitForSelector(selectors.selectDropDown);
   });
 
   it('opened dropdown can be closed with ESC', async () => {
-    await mount(page, 'select');
+    await mount(page, 'select--select');
     await page.waitForSelector(selectors.selectInput);
     await page.click(selectors.selectInput);
     await page.waitForSelector(selectors.selectDropDown);
@@ -56,7 +56,7 @@ describe('select', () => {
   });
 
   it('selects option when clicked in dropdown', async () => {
-    await mount(page, 'select-search-single');
+    await mount(page, 'select--search-single');
     await page.waitForSelector(selectors.selectInput);
     await page.click(selectors.selectInput);
     await page.waitForSelector(selectors.selectDropDown);
@@ -73,7 +73,7 @@ describe('select', () => {
   });
 
   it('doesnt allow to click and select disabled options', async () => {
-    await mount(page, 'select-search-single');
+    await mount(page, 'select--search-single');
     await page.waitForSelector(selectors.selectInput);
     await page.click(selectors.selectInput);
     await page.waitForSelector(selectors.selectDropDown);
@@ -87,7 +87,7 @@ describe('select', () => {
   });
 
   it('allows left/right arrow keys to navigate search text', async () => {
-    await mount(page, 'select-search-single');
+    await mount(page, 'select--search-single');
     await page.waitForSelector(selectors.selectInput);
     await page.focus(selectors.selectInput);
     await page.keyboard.type('Aqua');
@@ -101,7 +101,7 @@ describe('select', () => {
   });
 
   it('renders clear button after input text is typed in', async () => {
-    await mount(page, 'select-search-single');
+    await mount(page, 'select--search-single');
     await page.waitForSelector(selectors.selectInput);
     await page.focus(selectors.selectInput);
 
@@ -121,7 +121,7 @@ describe('select', () => {
   });
 
   it('does not close dropdown after multiple selections were made', async () => {
-    await mount(page, 'select-search-multi');
+    await mount(page, 'select--search-multi');
     await page.waitForSelector(selectors.selectInput);
     await page.click(selectors.selectInput);
     await page.waitForSelector(selectors.selectDropDown);
@@ -132,7 +132,7 @@ describe('select', () => {
   });
 
   it('selects options when search input successful with results', async () => {
-    await mount(page, 'select-search-multi');
+    await mount(page, 'select--search-multi');
     await page.waitForSelector(selectors.selectInput);
     await page.click(selectors.selectInput);
     await page.type(selectors.selectInput, 'dark');
@@ -147,7 +147,7 @@ describe('select', () => {
   });
 
   it('subsequent multi select dropdown opens highlights first value', async () => {
-    await mount(page, 'select-search-multi');
+    await mount(page, 'select--search-multi');
     await page.waitForSelector(selectors.selectInput);
     await page.click(selectors.selectInput);
     await page.waitForSelector(selectors.selectDropDown);
@@ -168,7 +168,7 @@ describe('select', () => {
   });
 
   it('subsequent multi select dropdown opens highlights first value after keyboard navigation', async () => {
-    await mount(page, 'select-search-multi');
+    await mount(page, 'select--search-multi');
     await page.waitForSelector(selectors.selectInput);
     await page.click(selectors.selectInput);
     await page.waitForSelector(selectors.selectDropDown);
@@ -187,7 +187,7 @@ describe('select', () => {
   });
 
   it('creates and selects a new option', async () => {
-    await mount(page, 'select-creatable');
+    await mount(page, 'select--creatable');
     await page.waitForSelector(selectors.selectInput);
     await page.click(selectors.selectInput);
     await page.waitForSelector(selectors.selectDropDown);
@@ -206,7 +206,7 @@ describe('select', () => {
   });
 
   it('shows the no result msg if there are no options', async () => {
-    await mount(page, 'select-creatable-multi');
+    await mount(page, 'select--creatable-multi');
     await page.waitForSelector(selectors.selectInput);
     await page.click(selectors.selectInput);
     await page.waitForSelector(selectors.selectDropDown);
@@ -223,7 +223,7 @@ describe('select', () => {
   });
 
   it('creates multiple options', async () => {
-    await mount(page, 'select-creatable-multi');
+    await mount(page, 'select--creatable-multi');
     await page.waitForSelector(selectors.selectInput);
     await page.click(selectors.selectInput);
     await page.waitForSelector(selectors.selectDropDown);
@@ -253,7 +253,7 @@ describe('select', () => {
   });
 
   it('selects second option without mouse or arrow keys', async () => {
-    await mount(page, 'select-search-multi');
+    await mount(page, 'select--search-multi');
     await page.waitForSelector(selectors.selectInput);
     await page.click(selectors.selectInput);
     await page.type(selectors.selectInput, 'dark');
@@ -268,7 +268,7 @@ describe('select', () => {
   });
 
   it('renders expected grouped list items', async () => {
-    await mount(page, 'select-option-group');
+    await mount(page, 'select--option-group');
     await page.waitForSelector(selectors.selectInput);
     await page.click(selectors.selectInput);
     const listElements = await page.$$('li');
@@ -293,7 +293,7 @@ describe('select', () => {
   });
 
   it('renders expected grouped list items if filtered', async () => {
-    await mount(page, 'select-option-group');
+    await mount(page, 'select--option-group');
     await page.waitForSelector(selectors.selectInput);
     await page.focus(selectors.selectInput);
     await page.keyboard.type('Aqua');
@@ -309,7 +309,7 @@ describe('select', () => {
   });
 
   it('skips optgroup headers when navigating with keyboard controls', async () => {
-    await mount(page, 'select-option-group');
+    await mount(page, 'select--option-group');
     await page.focus(selectors.selectInput);
     await page.keyboard.press('ArrowDown');
     await page.keyboard.press('ArrowDown');
@@ -325,7 +325,7 @@ describe('select', () => {
   });
 
   it('works with async options', async () => {
-    await mount(page, 'select-async-options');
+    await mount(page, 'select--async-options');
     await page.focus(selectors.selectInput);
     await page.keyboard.type('Aqua');
     const listElements = await page.$$('li');

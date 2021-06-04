@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -22,6 +22,7 @@ export {default as CategoricalColumn} from './column-categorical.js';
 export {default as CustomColumn} from './column-custom.js';
 export {default as DatetimeColumn} from './column-datetime.js';
 export {default as NumericalColumn} from './column-numerical.js';
+export {default as RowIndexColumn} from './column-row-index.js';
 export {default as StringColumn} from './column-string.js';
 
 export {

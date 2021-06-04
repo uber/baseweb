@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -23,7 +23,7 @@ describe('data-table-extracted-filters', () => {
     // to display everything we need to get the column contents
     await page.setViewport({width: 1366, height: 1000});
 
-    await mount(page, 'data-table-extracted-filters');
+    await mount(page, 'data-table--extracted-filters');
     await page.waitForSelector(TABLE_ROOT);
     const phylumFilter = await page.$('#Phylum-filter');
     const checkboxes = await phylumFilter.$$('label[data-baseweb="checkbox"');

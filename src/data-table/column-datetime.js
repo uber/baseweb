@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -34,21 +34,15 @@ import {TimePicker} from '../timepicker/index.js';
 import {useStyletron} from '../styles/index.js';
 import {Select, type ValueT} from '../select/index.js';
 
-import CellShell from './cell-shell.js';
+import Column from './column.js';
 import {COLUMNS, DATETIME_OPERATIONS} from './constants.js';
 import FilterShell from './filter-shell.js';
-import type {ColumnT} from './types.js';
+import type {ColumnT, SharedColumnOptionsT} from './types.js';
 import {LocaleContext} from '../locale/index.js';
 
 type OptionsT = {|
-  filterable?: boolean,
+  ...SharedColumnOptionsT<Date>,
   formatString?: string,
-  // eslint-disable-next-line flowtype/no-weak-types
-  mapDataToValue: (data: any) => Date,
-  maxWidth?: number,
-  minWidth?: number,
-  sortable?: boolean,
-  title: string,
   // eslint-disable-next-line flowtype/no-weak-types
   locale?: any,
 |};
@@ -572,7 +566,10 @@ function DatetimeFilter(props) {
                 <Checks
                   value={years}
                   setValue={setYears}
-                  options={presentYears.map(year => ({label: year, id: year}))}
+                  options={presentYears.map(year => ({
+                    label: year,
+                    id: year,
+                  }))}
                 />
               )}
             </div>
@@ -583,31 +580,22 @@ function DatetimeFilter(props) {
   );
 }
 
-const DatetimeCell = React.forwardRef<_, HTMLDivElement>((props, ref) => {
+function DatetimeCell(props) {
   const [css, theme] = useStyletron();
-
   return (
-    <CellShell
-      ref={ref}
-      isMeasured={props.isMeasured}
-      isSelected={props.isSelected}
-      onSelect={props.onSelect}
+    <div
+      className={css({
+        ...theme.typography.MonoParagraphXSmall,
+        display: 'flex',
+        justifyContent: 'flex-end',
+        width: '100%',
+        whiteSpace: 'nowrap',
+      })}
     >
-      <div
-        className={css({
-          ...theme.typography.MonoParagraphXSmall,
-          display: 'flex',
-          justifyContent: 'flex-end',
-          width: '100%',
-          whiteSpace: 'nowrap',
-        })}
-      >
-        {format(props.value, props.formatString)}
-      </div>
-    </CellShell>
+      {format(props.value, props.formatString)}
+    </div>
   );
-});
-DatetimeCell.displayName = 'DatetimeCell';
+}
 
 const defaultOptions = {
   title: '',
@@ -622,7 +610,7 @@ function DatetimeColumn(options: OptionsT): DatetimeColumnT {
     ...options,
   };
 
-  return {
+  return Column({
     kind: COLUMNS.DATETIME,
     buildFilter: function(params) {
       return function(data) {
@@ -670,22 +658,20 @@ function DatetimeColumn(options: OptionsT): DatetimeColumnT {
         return params.exclude ? !included : included;
       };
     },
+    cellBlockAlign: options.cellBlockAlign,
+    fillWidth: options.fillWidth,
     filterable: normalizedOptions.filterable,
     mapDataToValue: options.mapDataToValue,
     maxWidth: options.maxWidth,
     minWidth: options.minWidth,
-    renderCell: React.forwardRef((props, ref) => {
+    renderCell: function RenderDatetimeCell(props) {
       return (
         <DatetimeCell
-          ref={ref}
-          isMeasured={props.isMeasured}
-          isSelected={props.isSelected}
-          onSelect={props.onSelect}
           value={props.value}
           formatString={normalizedOptions.formatString}
         />
       );
-    }),
+    },
     renderFilter: function RenderDatetimeFilter(props) {
       return <DatetimeFilter {...props} locale={options.locale} />;
     },
@@ -693,7 +679,7 @@ function DatetimeColumn(options: OptionsT): DatetimeColumnT {
     sortFn: sortDates,
 
     title: options.title,
-  };
+  });
 }
 
 export default DatetimeColumn;

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -63,6 +63,8 @@ export default class ButtonGroup extends React.Component<PropsT> {
             aria-label={ariaLabel || locale.buttongroup.ariaLabel}
             data-baseweb="button-group"
             role={isRadio ? 'radiogroup' : 'group'}
+            $shape={shape}
+            $length={children.length}
             {...rootProps}
           >
             {React.Children.map(children, (child, index) => {
@@ -127,36 +129,15 @@ export default class ButtonGroup extends React.Component<PropsT> {
                       }
 
                       if (shape !== SHAPE.default) {
-                        if (index === 0) {
-                          return {};
-                        }
                         return {
-                          marginLeft: $theme.sizing.scale300,
+                          marginLeft: $theme.sizing.scale100,
+                          marginRight: $theme.sizing.scale100,
                         };
                       }
 
-                      // left most button
-                      if (index === 0) {
-                        return {
-                          borderTopRightRadius: 0,
-                          borderBottomRightRadius: 0,
-                        };
-                      }
-                      // right most button
-                      if (index === children.length - 1) {
-                        return {
-                          borderTopLeftRadius: 0,
-                          borderBottomLeftRadius: 0,
-                          marginLeft: '1px',
-                        };
-                      }
-                      // inner button(s)
                       return {
-                        borderTopRightRadius: 0,
-                        borderBottomRightRadius: 0,
-                        borderTopLeftRadius: 0,
-                        borderBottomLeftRadius: 0,
-                        marginLeft: '1px',
+                        marginLeft: '0.5px',
+                        marginRight: '0.5px',
                       };
                     },
                     props: {

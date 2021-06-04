@@ -2,6 +2,7 @@
 
 set -e
 
+yarn global add now@16.5.2
 
 # deploy to now the versioned docs site
 FORCE_EXTRACT_REACT_TYPES=true yarn documentation:build

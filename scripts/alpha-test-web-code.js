@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -20,7 +20,7 @@ const BUILDKITE_TASK_RUNNER_URL =
 function annotateBuild(body, style = 'info') {
   spawnSync(
     'buildkite-agent',
-    ['annotate', body, '--append', '--style', style],
+    ['annotate', `'${body}'`, '--append', '--style', style],
     {stdio: 'inherit'},
   );
 }
@@ -32,7 +32,7 @@ function wait(ms) {
 async function createBuild(token, version) {
   const body = {
     commit: 'HEAD',
-    branch: 'master',
+    branch: 'main',
     message: '[alpha-test-baseui] Triggered from CI',
     meta_data: {task: 'baseui-alpha-test'},
     env: {
@@ -92,7 +92,8 @@ async function main() {
   const {web_url, number} = await createBuild(buildkiteToken, version);
 
   annotateBuild(`View web-code alpha build CI check [here]${web_url}`);
-  console.log(`View alpha build CI checks at ${web_url}.`);
+  console.log('View alpha build CI checks at:');
+  console.log(`\u001B]1339;url="${web_url}"\u0007.`);
 
   // eslint-disable-next-line no-constant-condition
   while (true) {
