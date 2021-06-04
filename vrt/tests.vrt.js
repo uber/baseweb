@@ -117,7 +117,7 @@ async function getPageScrollHeight() {
   try {
     const client = await page.target().createCDPSession();
     const metrics = await client.send('Page.getLayoutMetrics');
-    return Math.ceil(metrics.contentSize.height);
+    return Math.ceil(metrics.contentSize.height + 20);
   } catch (er) {
     // If something went wrong, just return a decent default height.
     return 800;
