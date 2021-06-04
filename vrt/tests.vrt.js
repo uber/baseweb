@@ -76,7 +76,7 @@ describe('visual snapshot tests', () => {
 });
 
 async function snapshot(identifier, viewport = VIEWPORT.desktop) {
-  const image = await page.screenshot();
+  const image = await page.screenshot({captureBeyondViewport: false});
   expect(image).toMatchImageSnapshot({
     customSnapshotIdentifier: identifier,
   });
@@ -106,9 +106,6 @@ async function preparePageForSnapshot(
     width: VIEWPORT_WIDTH[viewport],
     height: await getPageScrollHeight(),
   });
-
-  // eslint-disable-next-line cup/no-undef
-  await page.evaluate(() => window.dispatchEvent(new Event('resize')));
 
   // Bad, but lets let things settle down after resizing.
   await waitForTimeout(300);
