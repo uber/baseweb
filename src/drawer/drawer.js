@@ -265,11 +265,7 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
                   {...sharedProps}
                   {...backdropProps}
                 />
-                <DrawerContainer
-                  aria-label="drawer"
-                  {...sharedProps}
-                  {...drawerContainerProps}
-                >
+                <DrawerContainer {...sharedProps} {...drawerContainerProps}>
                   <DrawerBody {...sharedProps} {...drawerBodyProps}>
                     {renderedContent}
                   </DrawerBody>

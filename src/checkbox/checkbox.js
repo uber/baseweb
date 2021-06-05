@@ -209,7 +209,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
         {this.isToggle() ? (
           <ToggleTrack
             role="checkbox"
-            aria-label="checkbox"
+            aria-label={ariaLabel}
             aria-checked={isIndeterminate ? 'mixed' : checked}
             aria-invalid={error || isError || null}
             {...sharedProps}
@@ -225,6 +225,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
         ) : (
           <Checkmark
             role="checkbox"
+            aria-label={ariaLabel}
             checked={checked}
             aria-checked={isIndeterminate ? 'mixed' : checked}
             aria-invalid={error || isError || null}
