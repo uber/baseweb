@@ -32,6 +32,17 @@ class ProgressBar extends React.Component<ProgressBarPropsT> {
     value: 0,
   };
 
+  componentDidMount() {
+    // TODO(v11): remove warning when switching default Spinner
+    if (__DEV__) {
+      if (!this.props.errorMessage) {
+        console.warn(
+          'baseui:ProgressBar The `errorMessage` prop is deprecated in WAI-ARIA v1.2.',
+        );
+      }
+    }
+  }
+
   render() {
     const {
       overrides = {},
@@ -78,6 +89,7 @@ class ProgressBar extends React.Component<ProgressBarPropsT> {
       return children;
     }
     return (
+      // eslint-disable-next-line jsx-a11y/role-supports-aria-props
       <Root
         data-baseweb="progress-bar"
         role="progressbar"
