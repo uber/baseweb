@@ -32,24 +32,24 @@ function getPuppeteerUrl(name, theme, rtl) {
 }
 
 const addTestStyles = async page => {
-  const styleFn = () => {
-    // eslint-disable-next-line cup/no-undef
-    const styleElement = document.createElement('style');
-    styleElement.innerHTML = `
-  *,
+  await page.addStyleTag({
+    content: `*,
     *::before,
     *::after {
       -moz-transition: none !important;
       transition: none !important;
+      transition-duration: 0s !important;
+      -moz-transition-duration: 0s !important;
+      transition-property: none !important;
+      -moz-transition-property: none !important;
       -moz-animation: none !important;
       animation: none !important;
+      animation-delay: -0.0001s !important;
+      animation-duration: 0s !important;
+      animation-play-state: paused !important;
       caret-color: transparent !important;
-    }
-  `;
-    // eslint-disable-next-line cup/no-undef
-    document.head.appendChild(styleElement);
-  };
-  await page.evaluate(styleFn);
+    }`,
+  });
 };
 
 async function mount(page, scenarioName, theme, rtl) {

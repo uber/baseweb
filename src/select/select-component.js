@@ -249,6 +249,9 @@ class Select extends React.Component<PropsT, SelectStateT> {
 
       this.focusAfterClear = false;
     } else {
+      // When clear button is clicked, need to click twice to open control container - https://github.com/uber/baseweb/issues/4285
+      // Setting focusAfterClear to false, resolves the issue
+      this.focusAfterClear = false;
       this.openAfterFocus = this.props.openOnClick;
       this.focus();
     }
