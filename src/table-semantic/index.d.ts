@@ -2,6 +2,19 @@ import * as React from 'react';
 import {StyletronComponent} from 'styletron-react';
 import {Override} from '../overrides';
 
+export interface DIVIDER {
+  horizontal: 'horizontal';
+  vertical: 'vertical';
+  grid: 'grid';
+  clean: 'clean';
+}
+
+export interface SIZE {
+  compact: 'compact';
+  default: 'default';
+  spacious: 'spacious';
+}
+
 export interface TableOverrides {
   Root?: Override<any>;
   Table?: Override<any>;
