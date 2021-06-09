@@ -31,10 +31,12 @@ export interface TableProps {
   overrides?: TableOverrides;
   columns: Array<React.ReactNode>;
   data: React.ReactNode[][];
+  divider?: DIVIDER[keyof DIVIDER];
   horizontalScrollWidth?: string;
   isLoading?: boolean;
   loadingMessage?: React.ReactNode | (() => React.ReactNode);
   emptyMessage?: React.ReactNode | (() => React.ReactNode);
+  size?: SIZE[keyof SIZE];
 }
 export class Table extends React.Component<TableProps> {}
 
@@ -95,3 +97,6 @@ export const StyledTableEmptyMessage: StyletronComponent<any>;
 export const StyledSortAscIcon: StyletronComponent<any>;
 export const StyledSortDescIcon: StyletronComponent<any>;
 export const StyledSortNoneIcon: StyletronComponent<any>;
+
+export const DIVIDER: DIVIDER;
+export const SIZE: SIZE;
