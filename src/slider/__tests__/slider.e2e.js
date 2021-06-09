@@ -15,6 +15,8 @@ describe('slider', () => {
   it('passes basic a11y tests', async () => {
     await mount(page, 'slider--slider');
     const accessibilityReport = await analyzeAccessibility(page);
-    expect(accessibilityReport).toHaveNoAccessibilityIssues();
+    expect(accessibilityReport).toHaveNoAccessibilityIssues({
+      violationsThreshold: 1, // https://github.com/tajo/react-range/issues/147
+    });
   });
 });

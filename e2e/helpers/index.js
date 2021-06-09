@@ -4,9 +4,11 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-
+//@flow
 /* eslint-disable flowtype/require-valid-file-annotation */
 /* eslint-env node */
+
+import {AxeResults} from 'axe-core';
 
 const config = require('../../jest-puppeteer.config.js');
 
@@ -65,7 +67,7 @@ async function mount(page, scenarioName, theme, rtl) {
   await page.waitForSelector('[data-storyloaded]');
 }
 
-async function analyzeAccessibility(page, options = {rules: []}) {
+async function analyzeAccessibility(page, options = {rules: []}): AxeResults {
   // Inject the axe script in our page
   await page.addScriptTag({path: resolvePath(PATH_TO_AXE)});
   // we make sure that axe is executed in the next tick after
@@ -99,13 +101,19 @@ async function analyzeAccessibility(page, options = {rules: []}) {
 }
 
 // This utility is available in newer versions of puppetteer, but upgrading did not seem worth just for this
-function waitForTimeout(ms) {
+// eslint-disable-next-line flowtype/no-weak-types
+function waitForTimeout(ms: number): Promise<any> {
   return new Promise(res => {
     setTimeout(res, ms);
   });
 }
 
-const defaultOptions = {
+export type AccessibilityDefaultOptions = {
+  violationsThreshold: number,
+  incompleteThreshold: number,
+};
+
+const defaultOptions: AccessibilityDefaultOptions = {
   violationsThreshold: 0,
   incompleteThreshold: 0,
 };
