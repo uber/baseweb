@@ -120,14 +120,16 @@ export default function SnackbarProvider({
   }
 
   React.useEffect(() => {
-    if (__BROWSER__ && window.ResizeObserver) {
-      const observer = new window.ResizeObserver(([entry]) =>
-        setContainerHeight(entry.contentRect.height),
-      );
-      if (containerRef.current) {
-        observer.observe(containerRef.current);
+    if (__BROWSER__) {
+      if (window.ResizeObserver) {
+        const observer = new window.ResizeObserver(([entry]) =>
+          setContainerHeight(entry.contentRect.height),
+        );
+        if (containerRef.current) {
+          observer.observe(containerRef.current);
+        }
+        return () => observer.disconnect();
       }
-      return () => observer.disconnect();
     }
   }, [snackbars.length, animating]);
 
