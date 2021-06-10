@@ -157,7 +157,7 @@ export default function MeasureColumnWidths({
   }
 
   return (
-    <div className={hiddenStyle} aria-hidden>
+    <div className={hiddenStyle}>
       {sampleRowIndicesByColumn.map((rowIndices, columnIndex) => {
         const Cell = columns[columnIndex].renderCell;
         return rowIndices.map(rowIndex => (
