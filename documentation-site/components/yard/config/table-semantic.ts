@@ -1,4 +1,4 @@
-import {Table} from 'baseui/table-semantic';
+import {Table, DIVIDER, SIZE} from 'baseui/table-semantic';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 
@@ -9,7 +9,11 @@ const TableSemanticConfig: TConfig = {
       named: ['Table'],
     },
   },
-  scope: {Table},
+  scope: {
+    Table,
+    DIVIDER,
+    SIZE,
+  },
   theme: [
     'tableHeadBackgroundColor',
     'tableBackground',
@@ -28,6 +32,30 @@ const TableSemanticConfig: TConfig = {
 ]`,
       type: PropTypes.Array,
       description: 'Table rows. Data passed to each row and cell',
+    },
+    size: {
+      value: 'SIZE.default',
+      defaultValue: 'SIZE.default',
+      options: SIZE,
+      type: PropTypes.Enum,
+      description: 'Defines the the cell padding styles.',
+      imports: {
+        'baseui/table-semantic': {
+          named: ['SIZE'],
+        },
+      },
+    },
+    divider: {
+      value: 'DIVIDER.horizontal',
+      defaultValue: 'DIVIDER.horizontal',
+      options: DIVIDER,
+      type: PropTypes.Enum,
+      description: 'Defines the the cell border styles.',
+      imports: {
+        'baseui/table-semantic': {
+          named: ['DIVIDER'],
+        },
+      },
     },
     horizontalScrollWidth: {
       value: undefined,

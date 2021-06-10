@@ -35,10 +35,12 @@ export default class Table extends React.Component<TablePropsT> {
       overrides = {},
       columns,
       data,
+      divider,
       horizontalScrollWidth,
       isLoading,
       loadingMessage,
       emptyMessage,
+      size,
       ...rest
     } = this.props;
 
@@ -90,7 +92,12 @@ export default class Table extends React.Component<TablePropsT> {
     const isRendered = !isLoading && !isEmpty;
 
     return (
-      <Root data-baseweb="table-semantic" {...rootProps} {...rest}>
+      <Root
+        data-baseweb="table-semantic"
+        $divider={divider}
+        {...rootProps}
+        {...rest}
+      >
         <Table $width={horizontalScrollWidth} {...tableProps}>
           <TableHead {...tableHeadProps}>
             <TableHeadRow {...tableHeadRowProps}>
@@ -99,6 +106,8 @@ export default class Table extends React.Component<TablePropsT> {
                   key={colIndex}
                   $col={col}
                   $colIndex={colIndex}
+                  $divider={divider}
+                  $size={size}
                   {...tableHeadCellProps}
                 >
                   {col}
@@ -133,6 +142,7 @@ export default class Table extends React.Component<TablePropsT> {
               data.map((row, rowIndex) => (
                 <TableBodyRow
                   key={rowIndex}
+                  $divider={divider}
                   $row={row}
                   $rowIndex={rowIndex}
                   {...tableBodyRowProps}
@@ -142,8 +152,10 @@ export default class Table extends React.Component<TablePropsT> {
                       key={colIndex}
                       $col={col}
                       $colIndex={colIndex}
+                      $divider={divider}
                       $row={row}
                       $rowIndex={rowIndex}
+                      $size={size}
                       {...tableBodyCellProps}
                     >
                       {row[colIndex]}
