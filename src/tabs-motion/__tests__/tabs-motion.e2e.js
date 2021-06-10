@@ -14,10 +14,6 @@ const getTabs = () => page.$$('[role=tab]');
 
 const getTabPanels = () => page.$$('[role=tabpanel]');
 
-const isExpanded = t => {
-  return page.evaluate(tab => tab.getAttribute('aria-expanded') === 'true', t);
-};
-
 const isHidden = t => {
   return page.evaluate(tab => tab.hidden, t);
 };

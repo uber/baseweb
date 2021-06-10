@@ -23,8 +23,6 @@ import {getOverrides} from '../helpers/overrides.js';
 import type {PaginationPropsT} from './types.js';
 import type {LocaleT} from '../locale/types.js';
 import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
-import MultiValue from '../select/multi-value';
-import SingleValue from '../select/value';
 
 type PageOptionT = {
   label: number,

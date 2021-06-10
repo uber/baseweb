@@ -41,7 +41,6 @@ const limitValue = (value: number[]) => {
 };
 
 function Slider({
-  ariaLabel = 'slider',
   overrides = {},
   disabled = false,
   marks = false,
