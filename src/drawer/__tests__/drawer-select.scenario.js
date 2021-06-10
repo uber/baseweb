@@ -16,7 +16,14 @@ const Example = () => {
   return (
     <div>
       <Button onClick={() => setIsOpen(true)}>Open Drawer</Button>
-      <Drawer animate={false} isOpen={isOpen} onClose={() => setIsOpen(false)}>
+      <Drawer
+        animate={false}
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        overrides={{
+          DrawerContainer: {props: {'data-e2e': 'drawer-container'}},
+        }}
+      >
         <StatefulSelect
           options={[
             {id: 'AliceBlue', color: '#F0F8FF'},
@@ -26,7 +33,9 @@ const Example = () => {
             {id: 'Azure', color: '#F0FFFF'},
             {id: 'Beige', color: '#F5F5DC'},
           ]}
-          overrides={{ValueContainer: {props: {'data-id': 'selected'}}}}
+          overrides={{
+            ValueContainer: {props: {'data-id': 'selected'}},
+          }}
           labelKey="id"
           valueKey="color"
           placeholder="Start searching"

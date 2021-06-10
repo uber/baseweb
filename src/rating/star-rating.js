@@ -67,6 +67,7 @@ class StarRating extends React.Component<StarRatingPropsT, RatingStateT> {
         <Star
           key={x}
           role="radio"
+          title="rating"
           // eslint-disable-next-line flowtype/no-weak-types
           ref={(starRef: any)}
           tabIndex={isFocusable ? '0' : '-1'}

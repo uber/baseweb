@@ -697,8 +697,11 @@ class Select extends React.Component<PropsT, SelectStateT> {
     if (!this.props.searchable) {
       return (
         <InputContainer
+          role="listbox"
           aria-activedescendant={this.state.activeDescendant}
           aria-expanded={isOpen}
+          aria-describedby={this.props['aria-describedby']}
+          aria-errormessage={this.props['aria-errormessage']}
           aria-disabled={this.props.disabled}
           aria-label={label}
           aria-labelledby={this.props['aria-labelledby']}
