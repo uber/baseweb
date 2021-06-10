@@ -120,7 +120,7 @@ export default function SnackbarProvider({
   }
 
   React.useEffect(() => {
-    if (__BROWSER__) {
+    if (__BROWSER__ && window.ResizeObserver) {
       const observer = new window.ResizeObserver(([entry]) =>
         setContainerHeight(entry.contentRect.height),
       );
