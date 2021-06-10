@@ -36,7 +36,8 @@ describe('Calendar', () => {
     const accessibilityReport = await analyzeAccessibility(page, {
       rules: [
         {
-          id: 'aria-valid-attr',
+          //indicates to verify that roledescription is read properly
+          id: 'aria-roledescription',
           enabled: false,
         },
       ],

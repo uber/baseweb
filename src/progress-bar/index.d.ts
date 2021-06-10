@@ -16,6 +16,7 @@ export interface ProgressBarOverrides {
   Label?: Override<any>;
 }
 export interface ProgressBarProps {
+  ariaLabel?: string;
   children?: React.ReactNode;
   getProgressLabel?: (value: number, successValue: number) => React.ReactNode;
   infinite?: boolean;

@@ -19,7 +19,15 @@ describe('pagination', () => {
   it('passes basic accessibility tests', async () => {
     await mount(page, 'pagination--pagination');
     await page.waitForSelector(selectors.prevButton);
-    const accessibilityReport = await analyzeAccessibility(page);
+    const accessibilityReport = await analyzeAccessibility(page, {
+      rules: [
+        {
+          //indicates listbox element should contain option elements (options are hoisted in the popover)
+          id: 'aria-required-children',
+          enabled: false,
+        },
+      ],
+    });
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 

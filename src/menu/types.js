@@ -167,6 +167,8 @@ export type SharedStatelessPropsT = {
   /** Function to get props for each rendered item. This will have some defaults needed for keyboard
    * bindings to work properly. Every rendered item should call this.
    */
+  /** Passed to the top level menu element. */
+  ariaLabel?: string,
   getRequiredItemProps?: GetRequiredItemPropsFnT,
   isFocused?: boolean,
   handleMouseLeave?: () => mixed,

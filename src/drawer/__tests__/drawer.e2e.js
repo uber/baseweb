@@ -15,7 +15,7 @@ const selectors = {
   openDrawer: '[data-e2e="open-drawer-button"]',
   drawerContent: '[data-e2e="drawer-content"]',
   selectInput: 'input[role="combobox"]',
-  drawer: 'div[aria-label="drawer"]',
+  drawer: '[data-e2e="drawer-container"]',
   selectDropDown: '[role="listbox"]',
   selectedList: '[data-id="selected"]',
   dropDownOption: '[role="option"]',
@@ -24,7 +24,6 @@ const selectors = {
 const optionAtPosition = position =>
   `${selectors.selectDropDown} ${selectors.dropDownOption}:nth-child(${position})`;
 
-jest.setTimeout(60000);
 describe('drawer', () => {
   it('drawer component handles focus changes properly', async () => {
     await mount(page, 'drawer--drawer');
