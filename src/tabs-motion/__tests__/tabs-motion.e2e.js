@@ -44,13 +44,10 @@ describe('tabs', () => {
     const tabs = await getTabs();
     const tabPanels = await getTabPanels();
     expect(await isSelected(tabs[0])).toBeTruthy();
-    // expect(await isExpanded(tabPanels[0])).toBeTruthy();
     expect(await isHidden(tabPanels[0])).toBeFalsy();
     expect(await isSelected(tabs[1])).toBeFalsy();
-    // expect(await isExpanded(tabPanels[1])).toBeFalsy();
     expect(await isHidden(tabPanels[1])).toBeTruthy();
     expect(await isSelected(tabs[2])).toBeFalsy();
-    // expect(await isExpanded(tabPanels[2])).toBeFalsy();
     expect(await isHidden(tabPanels[2])).toBeTruthy();
   });
 
