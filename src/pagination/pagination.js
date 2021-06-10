@@ -23,6 +23,8 @@ import {getOverrides} from '../helpers/overrides.js';
 import type {PaginationPropsT} from './types.js';
 import type {LocaleT} from '../locale/types.js';
 import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
+import MultiValue from '../select/multi-value';
+import SingleValue from '../select/value';
 
 type PageOptionT = {
   label: number,
@@ -155,6 +157,10 @@ export default class Pagination extends React.PureComponent<
                   onBlur={forkBlur(dropdownContainerProps, this.handleBlur)}
                 >
                   <Select
+                    aria-label={this.constructAriaWayfinderLabel(
+                      locale,
+                      'page',
+                    )}
                     options={options}
                     labelKey="label"
                     valueKey="label"
@@ -190,9 +196,9 @@ export default class Pagination extends React.PureComponent<
                         },
                       },
                       ValueContainer: {
-                        style: ({$theme}) => ({
+                        style: {
                           flexBasis: 'auto',
-                        }),
+                        },
                       },
                       SingleValue: {
                         style: ({$theme}) => ({
@@ -217,10 +223,7 @@ export default class Pagination extends React.PureComponent<
                     {...selectProps}
                   />
                 </DropdownContainer>
-                <MaxLabel
-                  aria-label={this.constructAriaWayfinderLabel(locale, 'page')}
-                  {...maxLabelProps}
-                >
+                <MaxLabel {...maxLabelProps} aria-hidden={true}>
                   {`${
                     labels && labels.preposition
                       ? labels.preposition

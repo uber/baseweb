@@ -14,9 +14,17 @@ const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 describe('slider', () => {
   it('passes basic a11y tests', async () => {
     await mount(page, 'slider--slider');
-    const accessibilityReport = await analyzeAccessibility(page);
+    const accessibilityReport = await analyzeAccessibility(page, {
+      rules: [
+        {
+          // https://github.com/tajo/react-range/issues/147
+          id: 'aria-input-field-name',
+          enabled: false,
+        },
+      ],
+    });
     expect(accessibilityReport).toHaveNoAccessibilityIssues({
-      violationsThreshold: 1, // https://github.com/tajo/react-range/issues/147
+      knownViolations: ['aria-input-field-name'],
     });
   });
 });
