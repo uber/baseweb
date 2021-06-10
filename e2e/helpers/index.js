@@ -16,6 +16,7 @@ const queryString = require('query-string');
 const {printReceived} = require('jest-matcher-utils');
 const {resolve} = require('path');
 const {realpathSync} = require('fs');
+const React = require('react');
 
 const PATH_TO_AXE = './node_modules/axe-core/axe.min.js';
 const appDirectory = realpathSync(process.cwd());
@@ -131,6 +132,13 @@ const addShadowDomQuerySelector = (page, webComponentTagName) =>
         .shadowRoot.querySelector(selector);
   }, webComponentTagName);
 
+// Conditional "describe" to run tests only for React >= 17.
+// May be useful for tests with Shadow DOM
+// since React < 17 does not support Shadow DOM properly (See https://reactjs.org/blog/2020/08/10/react-v17-rc.html#changes-to-event-delegation)
+const describeIfReact17OrAbove = React.version.startsWith('16')
+  ? describe.skip
+  : describe;
+
 // Add a new method to expect assertions with a very detailed error report
 expect.extend({
   toHaveNoAccessibilityIssues(accessibilityReport, options) {
@@ -174,4 +182,5 @@ module.exports = {
   waitForTimeout,
   addTestStyles,
   addShadowDomQuerySelector,
+  describeIfReact17OrAbove,
 };

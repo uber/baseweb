@@ -13,11 +13,12 @@ const {
   addShadowDomQuerySelector,
   waitForTimeout,
   shadowDomQuerySelector,
+  describeIfReact17OrAbove,
 } = require('../../../e2e/helpers/index.js');
 
 const webComponentTag = 'popover-scenario';
 
-describe('popover in shadow DOM', () => {
+describeIfReact17OrAbove('popover in shadow DOM', () => {
   it('popover should be open by click', async () => {
     await mount(page, 'popover--shadow-dom');
     await page.waitForSelector(webComponentTag);

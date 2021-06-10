@@ -12,11 +12,12 @@ const {
   addShadowDomQuerySelector,
   waitForTimeout,
   shadowDomQuerySelector,
+  describeIfReact17OrAbove,
 } = require('../../../e2e/helpers/index.js');
 
 const webComponentTag = 'select-scenario';
 
-describe('select in shadow DOM', () => {
+describeIfReact17OrAbove('select in shadow DOM', () => {
   it('select should be open by click', async () => {
     await mount(page, 'select--shadow-dom');
     await page.waitForSelector(webComponentTag);

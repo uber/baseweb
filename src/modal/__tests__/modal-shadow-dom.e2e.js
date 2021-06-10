@@ -12,11 +12,12 @@ const {
   addShadowDomQuerySelector,
   waitForTimeout,
   shadowDomQuerySelector,
+  describeIfReact17OrAbove,
 } = require('../../../e2e/helpers/index.js');
 
 const webComponentTag = 'modal-scenario';
 
-describe('modal in shadow DOM', () => {
+describeIfReact17OrAbove('modal in shadow DOM', () => {
   it('modal should be possible to open', async () => {
     await mount(page, 'modal--shadow-dom');
     await page.waitForSelector(webComponentTag);
