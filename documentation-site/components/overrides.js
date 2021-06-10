@@ -52,7 +52,7 @@ class Overrides extends React.Component {
           <DocLink href="/guides/theming">fully customize</DocLink> any part of
           the <strong>{name}</strong> through the <strong>overrides</strong>{' '}
           prop. The {name} consists of multiple subcomponents that are listed
-          bellow and you can override each one of them. To help you identify the
+          below and you can override each one of them. To help you identify the
           names of these subcomponents,{' '}
           <strong>you can highlight them through this selector:</strong>
         </Block>
