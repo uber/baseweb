@@ -24,6 +24,7 @@ import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 export default function Menu(props: StatelessMenuPropsT) {
   const {
     overrides = {},
+    ariaLabel = 'Menu',
     rootRef = React.createRef(),
     focusMenu = () => {},
     unfocusMenu = () => {},
@@ -112,6 +113,7 @@ export default function Menu(props: StatelessMenuPropsT) {
         <List
           aria-activedescendant={props.activedescendantId || null}
           role="listbox"
+          aria-label={ariaLabel}
           ref={rootRef}
           onMouseEnter={focusMenu}
           onMouseLeave={handleMouseLeave}
