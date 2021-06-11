@@ -16,7 +16,12 @@ export default function Scenario() {
       <Table
         columns={[...new Array(10)].map(() => 'Column Name')}
         data={[...new Array(40)].map(() =>
-          [...new Array(10)].map(() => 'Cell Data'),
+          [...new Array(10)].map((val, index) => (
+            // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
+            <div key={index} tabIndex="0">
+              Cell Data
+            </div>
+          )),
         )}
         horizontalScrollWidth="2200px"
       />

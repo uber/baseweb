@@ -31,6 +31,9 @@ function Example() {
         isOpen={isOpen}
         size={SIZE.default}
         anchor={ANCHOR.right}
+        overrides={{
+          DrawerContainer: {props: {'data-e2e': 'drawer-container'}},
+        }}
       >
         Proin ut dui sed metus pharetra hend rerit vel non mi. Nulla ornare
         faucibus ex, non facilisis nisl. Maecenas aliquet mauris ut tempus.
