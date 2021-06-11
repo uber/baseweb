@@ -18,6 +18,11 @@ function triggerLoadError(container) {
   fireEvent.error(img);
 }
 
+function triggerLoad(container) {
+  const img = container.querySelector('img');
+  fireEvent.load(img);
+}
+
 describe('Avatar', () => {
   it('applies expected accessibility attributes to img element', () => {
     const name = 'user name';
@@ -36,14 +41,16 @@ describe('Avatar', () => {
     triggerLoadError(container);
 
     const after = container.querySelector('img');
-    expect(after).toBeNull();
+    const style = JSON.parse(after.getAttribute('test-style'));
+    expect(style.display).toBe('none');
   });
 
-  it('applies expected accessibility attributes to root by default', () => {
+  it('applies expected accessibility attributes to root when loaded', () => {
     const name = 'user name';
     const {container} = render(
       <Avatar name={name} src="invalid-img-src.png" />,
     );
+    triggerLoad(container);
     const root = container.querySelector('div');
     expect(root.getAttribute('aria-label')).toBeNull();
     expect(root.getAttribute('role')).toBeNull();
@@ -114,9 +121,15 @@ describe('Avatar', () => {
     }
     const {container} = render(<TestCase />);
 
-    expect(container.querySelector('img')).toBeNull();
+    triggerLoad(container);
+    const before = container.querySelector('img');
+    const beforeStyle = JSON.parse(before.getAttribute('test-style'));
+    expect(beforeStyle.display).toBe('none');
 
     fireEvent.click(container.querySelector('button'));
-    expect(container.querySelector('img')).not.toBeNull();
+    triggerLoad(container);
+    const after = container.querySelector('img');
+    const afterStyle = JSON.parse(before.getAttribute('test-style'));
+    expect(afterStyle.display).toBe('block');
   });
 });

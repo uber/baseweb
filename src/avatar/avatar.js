@@ -37,24 +37,23 @@ export default function Avatar({
   const imageRef = React.useRef<HTMLImageElement>(null);
   const [imageLoaded, setImageLoaded] = React.useState(false);
 
+  function handleLoad() {
+    setImageLoaded(true);
+  }
+
+  function handleError() {
+    setImageLoaded(false);
+  }
+
   React.useEffect(() => {
     setImageLoaded(false);
 
     if (imageRef.current) {
       if (typeof src === 'string') {
         imageRef.current.src = src;
+        imageRef.current.onload = handleLoad;
+        imageRef.current.onerror = handleError;
       }
-
-      function handleLoad() {
-        setImageLoaded(true);
-      }
-
-      function handleError() {
-        setImageLoaded(false);
-      }
-
-      imageRef.current.onload = handleLoad;
-      imageRef.current.onerror = handleError;
 
       return () => {
         imageRef.current.onload = null;
