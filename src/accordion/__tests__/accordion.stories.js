@@ -11,10 +11,12 @@ import AccordionControlled from './accordion-controlled.scenario.js';
 import AccordionDisabled from './accordion-disabled.scenario.js';
 import AccordionExpanded from './accordion-expanded.scenario.js';
 import AccordionPanelOverride from './accordion-panel-override.scenario.js';
+import AccordionStateless from './accordion-stateless.scenario.js';
 import AccordionDefault from './accordion.scenario.js';
 
 export const Controlled = () => <AccordionControlled />;
 export const Disabled = () => <AccordionDisabled />;
 export const Expanded = () => <AccordionExpanded />;
 export const PanelOverride = () => <AccordionPanelOverride />;
+export const StatelessAccordion = () => <AccordionStateless />;
 export const Accordion = () => <AccordionDefault />;
