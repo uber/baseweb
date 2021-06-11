@@ -32,8 +32,20 @@ class ProgressBar extends React.Component<ProgressBarPropsT> {
     value: 0,
   };
 
+  componentDidMount() {
+    // TODO(v11): remove warning when switching default Spinner
+    if (__DEV__) {
+      if (this.props.errorMessage) {
+        console.warn(
+          'baseui:ProgressBar The `errorMessage` prop is deprecated in WAI-ARIA v1.2.',
+        );
+      }
+    }
+  }
+
   render() {
     const {
+      ariaLabel,
       overrides = {},
       getProgressLabel,
       value,
@@ -78,9 +90,11 @@ class ProgressBar extends React.Component<ProgressBarPropsT> {
       return children;
     }
     return (
+      // eslint-disable-next-line jsx-a11y/role-supports-aria-props
       <Root
         data-baseweb="progress-bar"
         role="progressbar"
+        aria-label={ariaLabel || getProgressLabel(value, successValue)}
         aria-valuenow={infinite ? null : value}
         aria-valuemin={infinite ? null : 0}
         aria-valuemax={infinite ? null : successValue}

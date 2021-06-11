@@ -41,6 +41,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     focusLock: true,
     returnFocus: true,
     closeable: true,
+    name: 'dialog',
     isOpen: false,
     overrides: {},
     role: ROLE.dialog,
@@ -345,12 +346,8 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
               >
                 <Dialog
                   tabIndex={-1}
-                  aria-modal={
-                    // aria-modal replaces the need to apply aria-hidden="true" to all other page
-                    // content underneath the modal.
-                    // https://www.w3.org/TR/wai-aria-practices-1.1/examples/dialog-modal/dialog.html
-                    'true'
-                  }
+                  aria-modal
+                  aria-label="dialog"
                   role={role}
                   ref={this.getRef('Dialog')}
                   {...sharedProps}

@@ -16,6 +16,7 @@ import MenuPropagation from './menu-propagation.scenario.js';
 import MenuStateful from './menu-stateful.scenario.js';
 import MenuVirtualized from './menu-virtualized.scenario.js';
 import MenuDefault from './menu.scenario.js';
+import MenuProfileMenu from './menu-profile-menu.scenario.js';
 
 export const ChildInPopover = () => <MenuChildInPopover />;
 export const ChildRenderAll = () => <MenuChildRenderAll />;
@@ -26,3 +27,4 @@ export const Propagation = () => <MenuPropagation />;
 export const Stateful = () => <MenuStateful />;
 export const Virtualized = () => <MenuVirtualized />;
 export const Menu = () => <MenuDefault />;
+export const ProfileMenu = () => <MenuProfileMenu />;

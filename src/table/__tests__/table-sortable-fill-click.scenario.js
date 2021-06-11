@@ -119,7 +119,9 @@ class SortableTable extends React.Component<any, any> {
             {this.getSortedData().map((row, index) => (
               <StyledRow key={index}>
                 {row.map((cell, cellIndex) => (
-                  <StyledCell key={cellIndex}>{cell}</StyledCell>
+                  <StyledCell key={cellIndex} tabIndex={0}>
+                    {cell}
+                  </StyledCell>
                 ))}
               </StyledRow>
             ))}

@@ -636,6 +636,8 @@ export default class Calendar<T = Date> extends React.Component<
         {locale => (
           <Root
             data-baseweb="calendar"
+            role="application"
+            aria-roledescription="datepicker"
             ref={root => {
               if (
                 root &&
