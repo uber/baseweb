@@ -30,7 +30,7 @@ export const Avatar = styled<AvatarStylePropsT>('img', props => {
     borderBottomRightRadius: '50%',
     borderBottomLeftRadius: '50%',
     boxSizing: 'border-box',
-    display: 'block',
+    display: props.$imageLoaded ? 'block' : 'none',
     height: themedSize,
     width: themedSize,
     objectFit: 'cover',
