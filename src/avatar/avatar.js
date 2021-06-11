@@ -32,9 +32,39 @@ export default class Avatar extends React.Component<PropsT, StateT> {
     size: 'scale1000',
   };
 
+  active: boolean;
+
   constructor(props: PropsT) {
     super(props);
     this.state = {noImageAvailable: !this.props.src};
+  }
+
+  componentDidMount() {
+    // using this approach instead of attaching onError to image to make sure that
+    // it works on server side too.
+    if (!this.props.src) {
+      return;
+    }
+    this.active = true;
+
+    const image = new Image();
+    image.onload = () => {
+      if (!this.active) {
+        return;
+      }
+      this.setState({noImageAvailable: false});
+    };
+    image.onerror = () => {
+      if (!this.active) {
+        return;
+      }
+      this.setState({noImageAvailable: true});
+    };
+    image.src = this.props.src;
+  }
+
+  componentWillUnmount() {
+    this.active = false;
   }
 
   componentDidUpdate(prevProps: PropsT, prevState: StateT) {
@@ -42,10 +72,6 @@ export default class Avatar extends React.Component<PropsT, StateT> {
       this.setState({noImageAvailable: !this.props.src});
     }
   }
-
-  handleError = () => {
-    this.setState({noImageAvailable: true});
-  };
 
   render() {
     const {noImageAvailable} = this.state;
@@ -71,13 +97,7 @@ export default class Avatar extends React.Component<PropsT, StateT> {
             {this.props.initials || getInitials(name)}
           </Initials>
         ) : (
-          <Avatar
-            alt={name}
-            onError={this.handleError}
-            src={src}
-            $size={size}
-            {...avatarProps}
-          />
+          <Avatar alt={name} src={src} $size={size} {...avatarProps} />
         )}
       </Root>
     );
