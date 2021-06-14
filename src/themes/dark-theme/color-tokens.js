@@ -79,6 +79,8 @@ export const darkColorTokens: ColorTokensT = {
   // Rating Palette,
   rating200: colors.yellow200,
   rating400: colors.yellow400,
+  ratingInactiveFill: colors.gray500,
+  ratingStroke: colors.gray700,
 };
 
 export default darkColorTokens;
