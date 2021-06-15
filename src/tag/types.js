@@ -52,7 +52,7 @@ export type PropsT = {
   onClick?: null | ((event: Event) => mixed),
   /** onkeydown handler for the tag. */
   onKeyDown?: null | ((event: Event) => mixed),
-  /** Determines the size of the Tag. */
+  /** Determines the size of the tag. */
   size?: TagSizeT,
 };
 

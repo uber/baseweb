@@ -297,6 +297,8 @@ export const Text = styled<SharedPropsArgT>('span', props => {
   const {$theme} = props;
 
   return {
+    display: 'flex',
+    alignItems: 'center',
     overflow: 'hidden',
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',
@@ -362,10 +364,10 @@ export const Root = styled<SharedPropsArgT>('span', props => {
       [SIZE.large]: '40px',
     }[$size],
     justifyContent: 'space-between',
-    marginTop: '5px',
-    marginBottom: '5px',
-    marginLeft: '5px',
-    marginRight: '5px',
+    // marginTop: '5px',
+    // marginBottom: '5px',
+    // marginLeft: '5px',
+    // marginRight: '5px',
     paddingTop: $theme.sizing.scale0,
     paddingBottom: $theme.sizing.scale0,
     paddingLeft: paddingMagnitude,
