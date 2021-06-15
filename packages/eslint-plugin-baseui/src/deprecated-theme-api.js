@@ -153,6 +153,12 @@ const deprecatedThemeProperties = {
   toastPrimaryBackground: {
     concern: 'colors',
   },
+  rating200: {
+    concern: 'colors',
+  },
+  rating400: {
+    concern: 'colors',
+  },
   // These are marked as deprecated in baseweb:src/theme.ts.
   // Strangely, they are not in baseweb:src/themes/types.js, so I'm not sure where they came from.
   // Adding them here in case someone, somewhere is using them.
