@@ -30,7 +30,7 @@ describe('data table columns', () => {
       rules: [
         {
           id: 'aria-hidden-focus',
-          enabled: 'false,',
+          enabled: false,
         },
       ],
     });
