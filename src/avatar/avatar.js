@@ -54,12 +54,14 @@ export default function Avatar({
         imageRef.current.onload = handleLoad;
         imageRef.current.onerror = handleError;
       }
+    }
 
-      return () => {
+    return () => {
+      if (imageRef.current) {
         imageRef.current.onload = null;
         imageRef.current.onerror = null;
-      };
-    }
+      }
+    };
   }, [src]);
 
   const [Avatar, avatarProps] = getOverrides(overrides.Avatar, StyledAvatar);

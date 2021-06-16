@@ -129,7 +129,7 @@ describe('Avatar', () => {
     fireEvent.click(container.querySelector('button'));
     triggerLoad(container);
     const after = container.querySelector('img');
-    const afterStyle = JSON.parse(before.getAttribute('test-style'));
+    const afterStyle = JSON.parse(after.getAttribute('test-style'));
     expect(afterStyle.display).toBe('block');
   });
 });
