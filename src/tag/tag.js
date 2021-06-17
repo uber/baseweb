@@ -11,6 +11,7 @@ import {
   Action as StyledAction,
   Root as StyledRoot,
   ActionIcon as StyledActionIcon,
+  StartEnhancerContainer as StyledStartEnhancerContainer,
   Text as StyledText,
 } from './styled-components.js';
 import {KIND, VARIANT, SIZE} from './constants.js';
@@ -33,6 +34,7 @@ const Tag = React.forwardRef<PropsT, HTMLSpanElement>((props, ref) => {
     onClick = null,
     onKeyDown = null,
     overrides = {},
+    startEnhancer,
     title,
     variant = VARIANT.light,
   } = props;
@@ -73,6 +75,10 @@ const Tag = React.forwardRef<PropsT, HTMLSpanElement>((props, ref) => {
     overrides.ActionIcon,
     StyledActionIcon,
   );
+  const [StartEnhancerContainer, startEnhancerContainerProps] = getOverrides(
+    overrides.StartEnhancerContainer,
+    StyledStartEnhancerContainer,
+  );
   const [Text, textProps] = getOverrides(overrides.Text, StyledText);
   const clickable = typeof onClick === 'function';
   const rootHandlers = disabled
@@ -109,6 +115,10 @@ const Tag = React.forwardRef<PropsT, HTMLSpanElement>((props, ref) => {
     [SIZE.medium]: '16',
     [SIZE.large]: '20',
   }[size];
+
+  // Capitalize for JSX
+  const StartEnhancer = startEnhancer;
+
   return (
     <Root
       // eslint-disable-next-line flowtype/no-weak-types
@@ -130,6 +140,12 @@ const Tag = React.forwardRef<PropsT, HTMLSpanElement>((props, ref) => {
       onFocus={forkFocus(rootProps, handleFocus)}
       onBlur={forkBlur(rootProps, handleBlur)}
     >
+      {StartEnhancer && (
+        <StartEnhancerContainer {...startEnhancerContainerProps}>
+          <StartEnhancer />
+        </StartEnhancerContainer>
+      )}
+
       <Text title={titleText} {...textProps}>
         {children}
       </Text>

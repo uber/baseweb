@@ -37,6 +37,7 @@ export interface TagOverrides {
   Root?: Override<any>;
   Action?: Override<any>;
   ActionIcon?: Override<any>;
+  StartEnhancerContainer?: Override<any>;
   Text?: Override<any>;
 }
 
@@ -56,6 +57,7 @@ export interface TagProps {
   onActionKeyDown?: (e: Event, children?: React.ReactNode) => any;
   onClick?: (event: Event) => any;
   onKeyDown?: (event: Event) => any;
+  startEnhancer?: () => React.ReactNode;
 }
 
 export class Tag extends React.Component<TagProps> {
