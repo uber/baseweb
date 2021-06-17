@@ -6,6 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
+import * as React from 'react';
+
 import type {OverrideT} from '../helpers/overrides.js';
 import {KIND, VARIANT, SIZE} from './constants.js';
 
@@ -21,6 +23,7 @@ export type OverridesT = {
   Root?: OverrideT,
   Action?: OverrideT,
   ActionIcon?: OverrideT,
+  StartEnhancerContainer?: OverrideT,
   Text?: OverrideT,
 };
 
@@ -54,6 +57,7 @@ export type PropsT = {
   onKeyDown?: null | ((event: Event) => mixed),
   /** Determines the size of the Tag. */
   size?: TagSizeT,
+  startEnhancer?: React.AbstractComponent<{||}>,
 };
 
 export type SharedPropsArgT = {

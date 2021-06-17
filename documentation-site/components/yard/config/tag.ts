@@ -160,6 +160,12 @@ const TagConfig: TConfig = {
       description: `keydown handler for the action button element.`,
       hidden: true,
     },
+    startEnhancer: {
+      value: undefined,
+      placeholder: '() => <span>🦊</span>',
+      type: PropTypes.Function,
+      description: `A component rendered at the start of the tag.`,
+    },
     overrides: {
       value: undefined,
       type: PropTypes.Custom,
