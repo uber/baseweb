@@ -10,6 +10,8 @@ import type {OverrideT} from '../helpers/overrides.js';
 
 export type InitialsStylePropsT = {};
 export type AvatarStylePropsT = {
+  $didImageFailToLoad?: boolean,
+  $imageLoaded?: boolean,
   $size?: string,
 };
 export type RootStylePropsT = {
@@ -24,15 +26,11 @@ export type OverridesT = {|
   Root?: OverrideT,
 |};
 
-export type StateT = {|
-  noImageAvailable: boolean,
-|};
-
 export type PropsT = {|
   /** Bypasses initial generation from provided name with this value. */
   initials?: string,
   /** Defines an alternative text description of the image. */
-  name: string,
+  name?: string,
   overrides?: OverridesT,
   /** Defines the width/height of the image. Accepts labels from theme.sizing, or passes value to height/width. */
   size?: string,
