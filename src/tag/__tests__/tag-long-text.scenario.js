@@ -7,9 +7,15 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-
+import {Upload} from '../../icon/index.js';
 import {Tag} from '../index.js';
 
 export default function Scenario() {
-  return <Tag>Default Color with long text</Tag>;
+  return (
+    <div>
+      <Tag>Default Color with long text</Tag>
+      <br />
+      <Tag startEnhancer={() => <Upload />}>Default Color with long text</Tag>
+    </div>
+  );
 }

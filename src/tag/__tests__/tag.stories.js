@@ -10,7 +10,9 @@ import React from 'react';
 import TagLongText from './tag-long-text.scenario.js';
 import TagSize from './tag-size.scenario.js';
 import TagDefault from './tag.scenario.js';
+import TagStartEnhancer from './tag-start-enhancer.scenario.js';
 
 export const LongText = () => <TagLongText />;
 export const Size = () => <TagSize />;
 export const Tag = () => <TagDefault />;
+export const StartEnhancer = () => <TagStartEnhancer />;
