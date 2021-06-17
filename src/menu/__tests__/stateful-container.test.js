@@ -256,8 +256,8 @@ describe('Menu StatefulContainer', () => {
     };
     render(<StatefulContainer {...props} typeAhead />);
 
-    // $FlowFixMe
     expect(() =>
+      // $FlowFixMe
       mockChildrenFn.mock.calls[0][0].handleKeyDown({
         key: 'z',
         preventDefault: jest.fn(),
