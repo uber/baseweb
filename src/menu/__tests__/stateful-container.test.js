@@ -218,4 +218,50 @@ describe('Menu StatefulContainer', () => {
     });
     expect(mockItemSelect.mock.calls.length).toBe(1);
   });
+
+  it('onKeyDown - type-ahead', () => {
+    const sharedProps = getSharedProps();
+    const props = {
+      ...sharedProps,
+      items: [{label: 'item1'}, {label: 'aardvark'}],
+    };
+    render(<StatefulContainer {...props} typeAhead />);
+    expect(mockChildrenFn.mock.calls[0][0]).toHaveProperty(
+      'highlightedIndex',
+      -1,
+    );
+
+    // $FlowFixMe
+    mockChildrenFn.mock.calls[0][0].handleKeyDown({
+      key: 'a',
+      preventDefault: jest.fn(),
+    });
+    expect(mockItemSelect.mock.calls.length).toBe(0);
+
+    // $FlowFixMe
+    mockChildrenFn.mock.calls[1][0].handleKeyDown({
+      key: KEY_STRINGS.Enter,
+      preventDefault: jest.fn(),
+    });
+    const result = mockChildrenFn.mock.calls[1][0];
+    expect(mockItemSelect.mock.calls.length).toBe(1);
+    expect(result).toHaveProperty('highlightedIndex', 1);
+  });
+
+  it('onKeyDown - type-ahead doesnt throw when label is a component', () => {
+    const sharedProps = getSharedProps();
+    const props = {
+      ...sharedProps,
+      items: [{label: <span>item1</span>}, {label: 'aardvark'}],
+    };
+    render(<StatefulContainer {...props} typeAhead />);
+
+    // $FlowFixMe
+    expect(() =>
+      mockChildrenFn.mock.calls[0][0].handleKeyDown({
+        key: 'z',
+        preventDefault: jest.fn(),
+      }),
+    ).not.toThrow();
+  });
 });
