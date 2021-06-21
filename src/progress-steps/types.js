@@ -43,11 +43,11 @@ export type StepOverridesT = {
 export type StepPropsT = {
   /** The title of the Step. */
   title?: Node,
-  /** Defines if the step is completed. */
+  /** Defines if the step is completed. Overriden by ProgressSteps, if used. */
   isCompleted: boolean,
   /** Defines if the step is currently active. */
   isActive?: boolean,
-  /** Defines if the step is the last item displayed. */
+  /** Defines if the step is the last item displayed. Overriden by ProgressSteps, if used. */
   isLast: boolean,
   overrides?: StepOverridesT,
   children?: Node,
