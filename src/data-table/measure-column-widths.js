@@ -157,7 +157,8 @@ export default function MeasureColumnWidths({
   }
 
   return (
-    <div className={hiddenStyle}>
+    // eslint-disable-next-line jsx-a11y/role-supports-aria-props
+    <div className={hiddenStyle} aria-hidden role="none">
       {sampleRowIndicesByColumn.map((rowIndices, columnIndex) => {
         const Cell = columns[columnIndex].renderCell;
         return rowIndices.map(rowIndex => (
