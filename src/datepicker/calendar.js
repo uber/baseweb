@@ -339,7 +339,9 @@ export default class Calendar<T = Date> extends React.Component<
 
   onDayMouseLeave: ({event: Event, date: T}) => mixed = data => {
     const {date} = data;
-    this.setHighlightedDate(date);
+    const {value} = this.props;
+    const selected = this.getSingleDate(value);
+    this.setState({highlightedDate: selected || date});
     this.props.onDayMouseLeave && this.props.onDayMouseLeave(data);
   };
 
