@@ -13,7 +13,6 @@ const ITEMS = Array.from({length: 4}, () => ({
   title: 'David Smith',
   subtitle: 'Senior Engineering Manager',
   body: 'Uber Everything',
-  imgUrl: 'https://via.placeholder.com/60x60',
 }));
 
 export default function Scenario() {
@@ -34,7 +33,7 @@ export default function Scenario() {
               subtitle,
               body,
             }),
-            getProfileItemImg: item => item.imgUrl,
+            getProfileItemImg: () => {},
             getProfileItemImgText: item => item.title,
           },
         },
