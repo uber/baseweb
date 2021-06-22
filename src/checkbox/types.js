@@ -50,6 +50,8 @@ export type PropsT = {
   ariaLabel?: string,
   /** Component or String value for label of checkbox. */
   children?: React$Node,
+  /** Indicates if this checkbox children contain an interactive element (prevents the label from moving focus from the child element to the radio button) */
+  containsInteractiveElement?: boolean,
   overrides?: OverridesT,
   /** Check or uncheck the control. */
   checked?: boolean,
@@ -151,6 +153,8 @@ export type StatefulCheckboxPropsT = {
   overrides?: OverridesT,
   /** Component or String value for label of checkbox. */
   children?: React$Node,
+  /** Indicates if this checkbox children contain an interactive element (prevents the label from moving focus from the child element to the radio button) */
+  containsInteractiveElement?: boolean,
   /** Defines the components initial state value */
   initialState?: StateT,
   /** Focus the checkbox on initial render. */

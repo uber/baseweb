@@ -46,8 +46,8 @@ export const StyledStar = styled<StyledRatingItemPropsT>(
     $isReadOnly,
     $size,
   }) => {
-    let starStroke = $theme.colors.mono500;
-    let starFill = $theme.colors.mono300;
+    let starStroke = $theme.colors.ratingStroke;
+    let starFill = $theme.colors.ratingInactiveFill;
     let prePartialStarStroke;
     let prePartialStarFill;
 
@@ -122,7 +122,7 @@ export const StyledEmoticon = styled<StyledRatingItemPropsT>(
     $isReadOnly,
     $size,
   }) => {
-    let emoticonFill = $theme.colors.mono500;
+    let emoticonFill = $theme.colors.ratingInactiveFill;
 
     if ($isActive) {
       emoticonFill = $theme.colors.rating400;

@@ -361,6 +361,8 @@ function InternalTab({
     }
   }, [activeKey, orientation]);
 
+  React.useEffect(updateHighlight, [title]);
+
   // Collect overrides
   const {
     Tab: TabOverrides,
@@ -499,7 +501,6 @@ function InternalTabPanel({
       role="tabpanel"
       id={getTabPanelId(uid, key)}
       aria-labelledby={getTabId(uid, key)}
-      aria-expanded={isActive}
       hidden={!isActive}
       {...sharedStylingProps}
       {...TabPanelProps}

@@ -31,6 +31,7 @@ export const Track = styled<StylePropsT>('div', props => {
     paddingLeft: sizing.scale600,
     display: 'flex',
     cursor,
+    backgroundColor: $theme.colors.sliderTrackFill,
   };
 });
 Track.displayName = 'StyledTrack';
@@ -122,8 +123,8 @@ export const Thumb = styled<StylePropsT>('div', props => {
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: $disabled
-      ? $theme.colors.contentInverseTertiary
-      : $theme.colors.contentPrimary,
+      ? $theme.colors.sliderHandleFillDisabled
+      : $theme.colors.sliderHandleFill,
     outline: 'none',
     boxShadow: props.$isFocusVisible
       ? `0 0 0 3px ${$theme.colors.accent}`
@@ -140,7 +141,7 @@ export const InnerThumb = styled<StylePropsT>('div', props => {
     top: '-16px',
     width: '4px',
     height: '20px',
-    backgroundColor: $theme.colors.backgroundInversePrimary,
+    backgroundColor: $theme.colors.sliderHandleInnerFill,
   };
 });
 InnerThumb.displayName = 'StyledInnerThumb';

@@ -16,10 +16,13 @@ export type OverridesT = {
   BarContainer?: OverrideT,
   Bar?: OverrideT,
   BarProgress?: OverrideT,
+  InfiniteBar?: OverrideT,
   Label?: OverrideT,
 };
 
 export type ProgressBarPropsT = {
+  /** The accessible label for the progress bar (getProgressLabel will be used if not provided) */
+  ariaLabel?: string,
   children?: React.Node,
   /** Error message for screen-reader users**/
   errorMessage?: string,

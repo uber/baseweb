@@ -12,9 +12,11 @@ export interface ProgressBarOverrides {
   BarContainer?: Override<any>;
   Bar?: Override<any>;
   BarProgress?: Override<any>;
+  InfiniteBar?: Override<any>;
   Label?: Override<any>;
 }
 export interface ProgressBarProps {
+  ariaLabel?: string;
   children?: React.ReactNode;
   getProgressLabel?: (value: number, successValue: number) => React.ReactNode;
   infinite?: boolean;
@@ -49,4 +51,5 @@ export const StyledRoot: StyletronComponent<any>;
 export const StyledBarContainer: StyletronComponent<any>;
 export const StyledBar: StyletronComponent<any>;
 export const StyledBarProgress: StyletronComponent<any>;
+export const StyledInfiniteBar: StyletronComponent<any>;
 export const StyledLabel: StyletronComponent<any>;

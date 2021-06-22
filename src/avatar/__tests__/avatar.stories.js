@@ -11,8 +11,10 @@ import AvatarCustomInitials from './avatar-custom-initials.scenario.js';
 import AvatarError from './avatar-error.scenario.js';
 import AvatarNoSrc from './avatar-no-src.scenario.js';
 import AvatarDefault from './avatar.scenario.js';
+import AvatarUpdateImage from './avatar-update-image.scenario.js';
 
 export const CustomInitials = () => <AvatarCustomInitials />;
 export const Error = () => <AvatarError />;
 export const NoSrc = () => <AvatarNoSrc />;
 export const Avatar = () => <AvatarDefault />;
+export const UpdateImage = () => <AvatarUpdateImage />;

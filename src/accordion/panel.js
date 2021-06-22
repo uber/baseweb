@@ -39,39 +39,51 @@ const Panel = ({
     elementHeight: 0,
     animationInProgress: false,
   });
-  const handleFocus = React.useCallback((event: SyntheticEvent<>) => {
-    if (isFocusVisible(event)) {
-      setLocalState({...localState, isFocusVisible: true});
-    }
-  }, []);
-  const handleBlur = React.useCallback(() => {
-    if (localState.isFocusVisible !== false) {
-      setLocalState({...localState, isFocusVisible: false});
-    }
-  }, []);
-  const handleClick = React.useCallback((e: Event) => {
-    if (disabled) {
-      return;
-    }
-    typeof onChange === 'function' && onChange({expanded: !expanded});
-    typeof onClick === 'function' && onClick(e);
-  }, []);
-  const handleKeyDown = React.useCallback((e: KeyboardEvent) => {
-    if (disabled) {
-      return;
-    }
-
-    const ENTER = 13;
-    const SPACE = 32;
-
-    if (e.keyCode === ENTER || e.keyCode === SPACE) {
-      typeof onChange === 'function' && onChange({expanded: !expanded});
-      if (e.keyCode === SPACE) {
-        e.preventDefault(); // prevent jumping scroll when using Space
+  const handleFocus = React.useCallback(
+    (event: SyntheticEvent<>) => {
+      if (isFocusVisible(event)) {
+        setLocalState({...localState, isFocusVisible: true});
       }
-    }
-    typeof onKeyDown === 'function' && onKeyDown(e);
-  }, []);
+    },
+    [localState],
+  );
+  const handleBlur = React.useCallback(
+    (event: SyntheticEvent<>) => {
+      if (localState.isFocusVisible) {
+        setLocalState({...localState, isFocusVisible: false});
+      }
+    },
+    [localState],
+  );
+  const handleClick = React.useCallback(
+    (e: Event) => {
+      if (disabled) {
+        return;
+      }
+      typeof onChange === 'function' && onChange({expanded: !expanded});
+      typeof onClick === 'function' && onClick(e);
+    },
+    [expanded, disabled, onChange, onClick],
+  );
+  const handleKeyDown = React.useCallback(
+    (e: KeyboardEvent) => {
+      if (disabled) {
+        return;
+      }
+
+      const ENTER = 13;
+      const SPACE = 32;
+
+      if (e.keyCode === ENTER || e.keyCode === SPACE) {
+        typeof onChange === 'function' && onChange({expanded: !expanded});
+        if (e.keyCode === SPACE) {
+          e.preventDefault(); // prevent jumping scroll when using Space
+        }
+      }
+      typeof onKeyDown === 'function' && onKeyDown(e);
+    },
+    [expanded, disabled, onChange, onKeyDown],
+  );
   // eslint-disable-next-line flowtype/no-weak-types
   const _animateRef = React.useRef<any>(null);
 

@@ -40,7 +40,14 @@ async function getCheckboxValues(element) {
 describe('data-table batch-actions', () => {
   it('passes basic a11y tests', async () => {
     await mount(page, 'data-table--columns');
-    const accessibilityReport = await analyzeAccessibility(page);
+    const accessibilityReport = await analyzeAccessibility(page, {
+      rules: [
+        {
+          id: 'aria-hidden-focus',
+          enabled: false,
+        },
+      ],
+    });
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 

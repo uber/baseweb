@@ -22,7 +22,7 @@ import {getOverrides} from '../helpers/overrides.js';
 // Types
 import type {OptionProfilePropsT} from './types.js';
 
-export default function OptionProfile(props: OptionProfilePropsT) {
+function OptionProfile(props: OptionProfilePropsT, ref: React.ElementRef<*>) {
   const {
     item,
     getChildMenu,
@@ -105,3 +105,10 @@ export default function OptionProfile(props: OptionProfilePropsT) {
     </MaybeChildMenu>
   );
 }
+
+const forwarded = React.forwardRef<OptionProfilePropsT, HTMLElement>(
+  OptionProfile,
+);
+forwarded.displayName = 'OptionProfile';
+
+export default forwarded;

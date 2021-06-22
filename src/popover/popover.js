@@ -252,7 +252,8 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
   };
 
   onDocumentClick = (evt: MouseEvent) => {
-    const target = evt.target;
+    //$FlowFixMe
+    const target = evt.composedPath ? evt.composedPath()[0] : evt.target;
     const popper = this.popperRef.current;
     const anchor = this.anchorRef.current;
     // Ignore document click if it came from popover or anchor

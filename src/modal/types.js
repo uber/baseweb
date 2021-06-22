@@ -42,6 +42,7 @@ export type ModalPropsT = {
   /** If true, focus will be locked to elements within the modal.
    */
   focusLock?: boolean,
+  name?: string,
   /**
    * if true, will return focus to the previous position on trap disable.
    * Optionally, can pass focus options instead of `true` to control the focus

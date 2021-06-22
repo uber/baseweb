@@ -26,6 +26,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
   static defaultProps: DefaultPropsT = {
     overrides: {},
     checked: false,
+    containsInteractiveElement: false,
     disabled: false,
     autoFocus: false,
     isIndeterminate: false,
@@ -186,7 +187,13 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
         {...sharedProps}
         {...getOverrideProps(LabelOverride)}
       >
-        {children}
+        {this.props.containsInteractiveElement ? (
+          // Prevents the event from bubbling up to the label and moving focus to the radio button
+          // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
+          <div onClick={e => e.preventDefault()}>{children}</div>
+        ) : (
+          children
+        )}
       </Label>
     );
     return (
@@ -201,9 +208,6 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
         {(labelPlacement === 'top' || labelPlacement === 'left') && labelComp}
         {this.isToggle() ? (
           <ToggleTrack
-            role="checkbox"
-            aria-checked={isIndeterminate ? 'mixed' : checked}
-            aria-invalid={error || isError || null}
             {...sharedProps}
             {...getOverrideProps(ToggleTrackOverride)}
           >
@@ -216,10 +220,6 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
           </ToggleTrack>
         ) : (
           <Checkmark
-            role="checkbox"
-            checked={checked}
-            aria-checked={isIndeterminate ? 'mixed' : checked}
-            aria-invalid={error || isError || null}
             {...sharedProps}
             {...getOverrideProps(CheckmarkOverride)}
           />
