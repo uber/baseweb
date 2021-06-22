@@ -35,7 +35,9 @@ const Exports = props => {
         {exportNames.map(name => (
           <ListItem key={name}>
             {cheatsheet ? (
-              <DocLink href={`/cheat-sheet#${componentName.toLowerCase()}`}>
+              <DocLink
+                href={`/cheat-sheet?component=${componentName.toLowerCase()}`}
+              >
                 {name}
               </DocLink>
             ) : (
