@@ -109,6 +109,10 @@ async function preparePageForSnapshot(
 
   // Bad, but lets let things settle down after resizing.
   await waitForTimeout(100);
+
+  await page.waitForNavigation({
+    waitUntil: 'networkidle0',
+  });
 }
 
 async function getPageScrollHeight() {
