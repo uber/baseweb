@@ -62,7 +62,7 @@ async function mount(page, scenarioName, theme, rtl) {
   });
 
   await page.goto(getPuppeteerUrl(scenarioName, theme, rtl), {
-    waitUntil: 'networkidle',
+    waitUntil: 'networkidle0',
   });
   await page.waitForSelector('[data-storyloaded]');
 }
