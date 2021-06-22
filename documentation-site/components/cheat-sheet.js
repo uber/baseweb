@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 
 // @flow
-/* global process */
+/* global process document */
 
 import React from 'react';
 import {useRouter} from 'next/router';
@@ -33,12 +33,10 @@ function CheatSheet() {
   const {query} = useRouter();
 
   React.useEffect(() => {
-    if (__BROWSER__) {
-      if (query.component) {
-        const element = document.getElementById(query.component);
-        if (element) {
-          element.scrollIntoView();
-        }
+    if (query.component) {
+      const element = document.getElementById(query.component);
+      if (element) {
+        element.scrollIntoView();
       }
     }
   }, [query]);
