@@ -6,9 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 
 // @flow
-/* global process */
+/* global process document */
 
 import React from 'react';
+import {useRouter} from 'next/router';
 import {useStyletron} from 'baseui';
 import {StyledLink} from 'baseui/link';
 import outlines from '../cheat-sheet.js';
@@ -26,8 +27,20 @@ function buildHref(file, line) {
   }
   return href;
 }
+
 function CheatSheet() {
   const [css, theme] = useStyletron();
+  const {query} = useRouter();
+
+  React.useEffect(() => {
+    if (query.component) {
+      const element = document.getElementById(query.component);
+      if (element) {
+        element.scrollIntoView();
+      }
+    }
+  }, [query]);
+
   return (
     <div>
       {!outlines.length && <p>no data to display</p>}
@@ -57,7 +70,7 @@ function CheatSheet() {
                 <React.Fragment key={t.name}>
                   <li
                     className={css({
-                      ...theme.typography.font400,
+                      ...theme.typography.font200,
                     })}
                   >
                     <StyledLink
