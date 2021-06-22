@@ -10,7 +10,9 @@ import React from 'react';
 import DrawerRenderAll from './drawer-render-all.scenario.js';
 import DrawerSelect from './drawer-select.scenario.js';
 import DrawerDefault from './drawer.scenario.js';
+import DrawerHideBackdrop from './drawer-hide-backdrop.scenario.js';
 
 export const RenderAll = () => <DrawerRenderAll />;
 export const Select = () => <DrawerSelect />;
 export const Drawer = () => <DrawerDefault />;
+export const HideBackdrop = () => <DrawerHideBackdrop />;
