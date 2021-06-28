@@ -168,6 +168,7 @@
     "react-codesandboxer": "^3.1.5",
     "react-compare-image": "^2.0.3",
     "react-dom": "^16.9.0",
+    "react-hook-form": "^7.9.0",
     "react-icons": "^3.8.0",
     "react-markdown": "^4.0.3",
     "react-twitter-embed": "^2.0.8",
