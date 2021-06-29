@@ -37,6 +37,11 @@ const ListItemLabelConfig: TConfig = {
       description: 'Lets you customize all aspects of the component.',
       custom: {
         names: ['LabelContent', 'LabelDescription', 'LabelSublistContent'],
+        sharedProps: {
+          $labelContent: 'LabelContent',
+          $labelDescription: 'LabelDescription',
+          $labelSublistContent: 'LabelSublistContent',
+        },
       },
     },
   },
