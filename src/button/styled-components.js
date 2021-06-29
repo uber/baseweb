@@ -48,6 +48,7 @@ export const BaseButton = styled<SharedStylePropsT>(
       cursor: 'not-allowed',
       backgroundColor: $theme.colors.buttonDisabledFill,
       color: $theme.colors.buttonDisabledText,
+      pointerEvents: 'none',
     },
     marginLeft: 0,
     marginTop: 0,
