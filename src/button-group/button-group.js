@@ -69,7 +69,7 @@ export default class ButtonGroup extends React.Component<PropsT> {
           >
             {React.Children.map(children, (child, index) => {
               const isSelected =
-                child.props.isSelected || isIndexSelected(selected, index);
+                child.props.isSelected ?? isIndexSelected(selected, index);
 
               if (!React.isValidElement(child)) {
                 return null;
