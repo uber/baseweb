@@ -154,6 +154,14 @@ const DatepickerConfig: TConfig = {
     positive: inputConfig.props.positive,
     error: inputConfig.props.error,
     size: inputConfig.props.size,
+    placeholder: {
+      value: undefined,
+      type: PropTypes.String,
+      description:
+        'Specifies a hint that describes the expected value of the date picker',
+      placeholder: 'YYYY/MM/DD',
+      hidden: true,
+    },
     locale: {
       value: undefined,
       type: PropTypes.Object,
@@ -262,6 +270,13 @@ const DatepickerConfig: TConfig = {
         'Determines if TimePicker component will be enabled for end time',
     },
     disabled: inputConfig.props.disabled,
+    displayValueAtRangeIndex: {
+      value: 0,
+      type: PropTypes.Number,
+      description:
+        'Determines whether the datepicker displays the start date or end date of the selected date range. Must be 0 or 1.',
+      hidden: true,
+    },
     trapTabbing: {
       value: undefined,
       type: PropTypes.Boolean,
