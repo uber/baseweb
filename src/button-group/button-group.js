@@ -16,7 +16,7 @@ import {LocaleContext} from '../locale/index.js';
 import {StyledRoot} from './styled-components.js';
 import type {PropsT} from './types.js';
 
-function isSelected(selected, index) {
+function isIndexSelected(selected, index) {
   if (!Array.isArray(selected) && typeof selected !== 'number') {
     return false;
   }
@@ -68,6 +68,9 @@ export default class ButtonGroup extends React.Component<PropsT> {
             {...rootProps}
           >
             {React.Children.map(children, (child, index) => {
+              const isSelected =
+                child.props.isSelected || isIndexSelected(selected, index);
+
               if (!React.isValidElement(child)) {
                 return null;
               }
@@ -76,11 +79,11 @@ export default class ButtonGroup extends React.Component<PropsT> {
               }
               return React.cloneElement(child, {
                 disabled: disabled || child.props.disabled,
-                isSelected: isSelected(selected, index),
+                isSelected,
                 ref: isRadio ? this.childRefs[index] : undefined,
                 tabIndex:
                   !isRadio ||
-                  isSelected(selected, index) ||
+                  isSelected ||
                   (isRadio && (!selected || selected === -1) && index === 0)
                     ? 0
                     : -1,
@@ -141,7 +144,7 @@ export default class ButtonGroup extends React.Component<PropsT> {
                       };
                     },
                     props: {
-                      'aria-checked': isSelected(selected, index),
+                      'aria-checked': isSelected,
                       role: isRadio ? 'radio' : 'checkbox',
                     },
                   },
