@@ -12,6 +12,13 @@ import {Theme, ThemePrimitives} from './theme';
 type UseStyletronFn<Theme> = () => [(arg: StyleObject) => string, Theme];
 export function createThemedUseStyletron<Theme>(): UseStyletronFn<Theme>;
 export const useStyletron: UseStyletronFn<Theme>;
+export function withWrapper<
+  C extends StyletronComponent<any>,
+  P extends object
+>(
+  component: C,
+  wrapper: (component: C) => React.ComponentType<P>,
+): StyletronComponent<React.ComponentProps<C> & P>;
 
 export function createTheme<P extends object>(
   primitives: Partial<ThemePrimitives>,
