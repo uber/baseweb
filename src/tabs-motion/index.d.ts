@@ -69,7 +69,7 @@ interface TabsProps {
   renderAll?: boolean;
   onChange?: (params: {activeKey: React.Key}) => void;
   overrides?: TabsOverrides;
-  uid?: string,
+  uid?: string;
 }
 
 export const Tabs: React.FC<TabsProps>;
@@ -81,6 +81,7 @@ interface TabOverrides {
     $fill?: FILL;
     $orientation?: ORIENTATION;
     $focusVisible?: boolean;
+    $isActive?: boolean;
   }>;
   ArtworkContainer?: Override<{
     $orientation?: ORIENTATION;
@@ -91,12 +92,13 @@ interface TabOverrides {
 }
 
 interface TabProps {
-  title?: React.ReactNode;
-  key?: React.Key;
-  tabRef?: React.MutableRefObject<HTMLButtonElement | undefined>;
-  overrides?: TabOverrides;
   artwork?: React.ReactNode;
   children?: React.ReactNode;
+  title?: React.ReactNode;
+  disabled?: boolean;
+  key?: React.Key;
+  overrides?: TabOverrides;
+  tabRef?: React.MutableRefObject<HTMLButtonElement | undefined>;
 }
 
 export const Tab: React.FC<TabProps>;
