@@ -81,6 +81,7 @@ export default class MyApp extends App {
     this.state = {
       theme: themes.LightTheme,
       direction: 'ltr',
+      themeSet: false,
     };
     // $FlowFixMe
     this.mediaQueryListener = this.mediaQueryListener.bind(this);
@@ -186,6 +187,7 @@ export default class MyApp extends App {
         : 'LightTheme';
 
     this.setState({
+      themeSet: true,
       theme: themes[themeName],
     });
   }
@@ -213,6 +215,7 @@ export default class MyApp extends App {
   toggleDirection() {
     if (this.state.direction === 'rtl') {
       this.setState({
+        themeSet: true,
         direction: 'ltr',
         theme: {...this.state.theme, direction: 'ltr'},
       });
@@ -221,6 +224,7 @@ export default class MyApp extends App {
       }
     } else {
       this.setState({
+        themeSet: true,
         direction: 'rtl',
         theme: {...this.state.theme, direction: 'rtl'},
       });
@@ -241,12 +245,14 @@ export default class MyApp extends App {
           <BaseProvider theme={this.state.theme}>
             <Block {...blockProps}>
               <DirectionContext.Provider value={this.state.direction}>
-                <Component
-                  {...pageProps}
-                  path={path}
-                  toggleTheme={this.toggleTheme.bind(this)}
-                  toggleDirection={this.toggleDirection.bind(this)}
-                />
+                {this.state.themeSet && (
+                  <Component
+                    {...pageProps}
+                    path={path}
+                    toggleTheme={this.toggleTheme.bind(this)}
+                    toggleDirection={this.toggleDirection.bind(this)}
+                  />
+                )}
               </DirectionContext.Provider>
             </Block>
           </BaseProvider>
