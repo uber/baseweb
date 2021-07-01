@@ -21,6 +21,11 @@ export const StyledRoot = styled<{}>('li', ({$theme}) => {
     display: 'flex',
     listStyleType: 'none',
     width: '100%',
+    borderTopLeftRadius: $theme.borders.radius400,
+    borderTopRightRadius: $theme.borders.radius400,
+    borderBottomLeftRadius: $theme.borders.radius400,
+    borderBottomRightRadius: $theme.borders.radius400,
+    overflow: 'hidden',
   };
 });
 
