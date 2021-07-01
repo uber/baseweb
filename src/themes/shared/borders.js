@@ -44,6 +44,7 @@ const borders: BordersT = {
   radius200: '4px',
   radius300: '8px',
   radius400: '12px',
+  radius500: '16px',
   /** Datepicker (Range), Progress Bar, Slider, Tag */
   useRoundedCorners: true,
   /** Button, ButtonGroup */
