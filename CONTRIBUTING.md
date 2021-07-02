@@ -39,7 +39,7 @@ Usually, we reject contributions if they meet any of the following requirements:
 - Each component has a drop-in, stateful, stateless, styled (presentation) components exported
   - When you add examples for the documentation site, try to prioritize stateless examples with hooks
 - Browser accessibility support and aria attributes
-  - A11y rules can be found [here](https://dequeuniversity.com/rules/axe/3.0/),
+  - A11y rules can be found [here](https://dequeuniversity.com/rules/axe/4.2/),
   - Run `yarn lint` , which has eslint-plugin-jsx-a11y running as part of it https://github.com/evcohen/eslint-plugin-jsx-a11y#supported-rules,
   - Check out `TESTING.md` to learn how to run end-to-end tests
 - [Styletron](https://www.styletron.org/) for CSS-in-JS styling
