@@ -210,6 +210,7 @@ export default class TableBuilder<T> extends React.Component<
           key={colIndex}
           $col={col}
           $colIndex={colIndex}
+          $divider={divider}
           role="button"
           tabIndex="0"
           aria-label={`${col.tableHeadAriaLabel || col.header}, ${sortLabel}`}
@@ -260,7 +261,12 @@ export default class TableBuilder<T> extends React.Component<
     const isRendered = !isLoading && !isEmpty;
 
     return (
-      <Root data-baseweb="table-builder-semantic" {...rootProps} {...rest}>
+      <Root
+        data-baseweb="table-builder-semantic"
+        $divider={divider}
+        {...rootProps}
+        {...rest}
+      >
         <Table
           $width={horizontalScrollWidth}
           {...tableProps}
