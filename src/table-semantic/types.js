@@ -50,6 +50,7 @@ export type TableBuilderPropsT<RowT> = {
   overrides?: BuilderOverridesT,
   children?: React.Node,
   data: Array<RowT>,
+  divider?: DividerT,
   horizontalScrollWidth?: string,
   sortColumn?: ?string,
   sortOrder?: 'ASC' | 'DESC' | null,
@@ -57,6 +58,7 @@ export type TableBuilderPropsT<RowT> = {
   isLoading?: boolean,
   loadingMessage?: React.Node | (() => React.Node),
   emptyMessage?: React.Node | (() => React.Node),
+  size?: SizeT,
 };
 
 export type ColumnOverridesT = {
