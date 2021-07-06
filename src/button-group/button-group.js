@@ -68,12 +68,14 @@ export default class ButtonGroup extends React.Component<PropsT> {
             {...rootProps}
           >
             {React.Children.map(children, (child, index) => {
-              const isSelected =
-                child.props.isSelected ?? isIndexSelected(selected, index);
-
               if (!React.isValidElement(child)) {
                 return null;
               }
+
+              const isSelected = child.props.isSelected
+                ? child.props.isSelected
+                : isIndexSelected(selected, index);
+
               if (isRadio) {
                 this.childRefs[index] = React.createRef<HTMLButtonElement>();
               }
