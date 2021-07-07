@@ -1,4 +1,4 @@
-import {ListItem, ListItemLabel, ARTWORK_SIZES} from 'baseui/list';
+import {ListItem, ListItemLabel, ARTWORK_SIZES, SHAPE} from 'baseui/list';
 import {Check} from 'baseui/icon';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
@@ -20,6 +20,7 @@ const ListItemConfig: TConfig = {
     ListItem,
     ListItemLabel,
     ARTWORK_SIZES,
+    SHAPE,
     Check,
   },
   theme: [],
@@ -35,7 +36,8 @@ const ListItemConfig: TConfig = {
       description: 'Left-hand icon to render in the list item.',
     },
     artworkSize: {
-      value: undefined,
+      value: 'ARTWORK_SIZES.MEDIUM',
+      defaultValue: 'ARTWORK_SIZES.MEDIUM',
       options: ARTWORK_SIZES,
       enumName: 'ARTWORK_SIZES',
       type: PropTypes.Enum,
@@ -43,6 +45,19 @@ const ListItemConfig: TConfig = {
       imports: {
         'baseui/list': {
           named: ['ARTWORK_SIZES'],
+        },
+      },
+    },
+    shape: {
+      value: 'SHAPE.DEFAULT',
+      defaultValue: 'SHAPE.DEFAULT',
+      options: SHAPE,
+      enumName: 'SHAPE',
+      type: PropTypes.Enum,
+      description: 'Defines the shape of the item.',
+      imports: {
+        'baseui/list': {
+          named: ['SHAPE'],
         },
       },
     },

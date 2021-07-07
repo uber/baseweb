@@ -11,3 +11,8 @@ export const ARTWORK_SIZES = {
   MEDIUM: 'MEDIUM',
   LARGE: 'LARGE',
 };
+
+export const SHAPE = {
+  DEFAULT: 'DEFAULT',
+  ROUND: 'ROUND',
+};

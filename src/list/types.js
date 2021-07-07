@@ -10,13 +10,18 @@ import * as React from 'react';
 
 import type {OverrideT} from '../helpers/overrides.js';
 import type {IconPropsT} from '../icon/types.js';
-import {ARTWORK_SIZES} from './constants.js';
+import {ARTWORK_SIZES, SHAPE} from './constants.js';
 
 export type ArtworkSizesT =
   | typeof ARTWORK_SIZES.SMALL
   | typeof ARTWORK_SIZES.MEDIUM
   | typeof ARTWORK_SIZES.LARGE;
 
+export type ShapeT = typeof SHAPE.DEFAULT | typeof SHAPE.ROUND;
+
+export type StyledRootPropsT = {
+  $shape: ShapeT,
+};
 export type StyledArtworkContainerPropsT = {
   $artworkSize: ArtworkSizesT | number,
   $sublist?: boolean,
@@ -36,6 +41,7 @@ export type PropsT = {|
     size: $PropertyType<IconPropsT, 'size'>,
   }>,
   artworkSize?: ArtworkSizesT | number,
+  shape?: ShapeT,
   children: React.Node,
   endEnhancer?: React.AbstractComponent<{}>,
   overrides?: OverridesT,
