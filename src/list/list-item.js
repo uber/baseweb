@@ -58,8 +58,8 @@ const ListItem = React.forwardRef<PropsT, HTMLLIElement>(
     }, [props.artworkSize, props.sublist]);
 
     return (
-      // eslint-disable-next-line flowtype/no-weak-types
       <Root
+        // eslint-disable-next-line flowtype/no-weak-types
         ref={(ref: any)}
         $shape={props.shape || SHAPE.DEFAULT}
         {...rootProps}
