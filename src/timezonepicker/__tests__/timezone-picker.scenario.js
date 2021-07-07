@@ -39,6 +39,7 @@ class Controlled extends React.Component<any, any> {
           value={this.state.value && this.state.value.id}
           onChange={value => this.setState({value})}
           overrides={overrides}
+          includeAbbeviations
         />
       </div>
     );
@@ -50,12 +51,20 @@ export default function Scenario() {
     <Block width="400px">
       <div data-e2e="daylight">
         daylight savings time:
-        <TimezonePicker date={daylight} overrides={overrides} />
+        <TimezonePicker
+          date={daylight}
+          overrides={overrides}
+          includeAbbeviations
+        />
       </div>
 
       <div data-e2e="standard">
         standard time:
-        <TimezonePicker date={standard} overrides={overrides} />
+        <TimezonePicker
+          date={standard}
+          overrides={overrides}
+          includeAbbeviations
+        />
       </div>
 
       <Controlled />

@@ -19,7 +19,7 @@ const selectors = {
   value: '[data-id="selected"]',
 };
 
-const labelToShortCode = label => label.split(' ')[0];
+const labelToShortCode = label => label.split(' ').pop();
 
 describe('TimezonePicker', () => {
   it('passes basic a11y tests', async () => {

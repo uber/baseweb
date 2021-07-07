@@ -65,7 +65,10 @@ class TimezonePicker extends React.Component<
         const offsetTime =
           (zonedTime.zone.offset < 0 ? '+' : '-') +
           Math.abs(zonedTime.zone.offset / 60);
-        const formatted = `(GMT ${offsetTime}) ${zone}`.replace('_', ' ');
+        const abbreviation = formatZonedTime(zonedTime, 'z');
+        const formatted = `(GMT ${offsetTime}) ${zone}${
+          this.props.includeAbbeviations ? ` - ${abbreviation}` : ''
+        }`.replace('_', ' ');
 
         const option = {
           id: zone,
@@ -79,11 +82,11 @@ class TimezonePicker extends React.Component<
       })
       // Formats 'noisy' timezones without a letter acronym.
       .map(option => {
-        const rgx = /(^(\+|-)\d+\s- )/;
+        const rgx = /(\s-\s(\+|-)\d\d\d?\d?)$/;
         const matches = option.label.match(rgx);
         if (matches) {
           const prefix = matches[0];
-          option.label = option.label.split(prefix)[1];
+          option.label = option.label.split(prefix)[0];
         }
         return option;
       })
