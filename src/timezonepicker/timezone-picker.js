@@ -64,7 +64,7 @@ class TimezonePicker extends React.Component<
         const zonedTime = getZonedTime(compareDate, timezone);
         const formatted = formatZonedTime(
           zonedTime,
-          `z - [${zone}] ([GMT] Z)`,
+          `([GMT] Z) [${zone}]`,
         ).replace('_', ' ');
 
         const option = {
