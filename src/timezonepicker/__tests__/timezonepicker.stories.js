@@ -8,5 +8,9 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 import TimezonePickerScenario from './timezone-picker.scenario.js';
+import TimezonePickerAbbreviationsScenario from './timezone-picker--abbreviations.scenario.js';
 
 export const TimezonePicker = () => <TimezonePickerScenario />;
+export const TimezonePickerAbbreviations = () => (
+  <TimezonePickerAbbreviationsScenario />
+);
