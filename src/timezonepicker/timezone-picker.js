@@ -57,15 +57,15 @@ class TimezonePicker extends React.Component<
     }
   }
 
-  buildTimezones = (compareDate: Date) => {
-    const timezones = listTimeZones()
+  buildTimezones = (compareDate: Date) =>
+    listTimeZones()
       .map(zone => {
         const timezone = findTimeZone(zone);
         const zonedTime = getZonedTime(compareDate, timezone);
-        const formatted = formatZonedTime(
-          zonedTime,
-          `([GMT] Z) [${zone}]`,
-        ).replace('_', ' ');
+        const offsetTime =
+          (zonedTime.zone.offset < 0 ? '+' : '-') +
+          Math.abs(zonedTime.zone.offset / 60);
+        const formatted = `(GMT ${offsetTime}) ${zone}`.replace('_', ' ');
 
         const option = {
           id: zone,
@@ -96,8 +96,6 @@ class TimezonePicker extends React.Component<
         if (a.label > b.label) return 1;
         return 0;
       });
-    return timezones;
-  };
 
   render() {
     const {overrides = {}} = this.props;
