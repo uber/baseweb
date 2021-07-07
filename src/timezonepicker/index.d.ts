@@ -23,6 +23,7 @@ export interface TimezonePickerProps {
   overrides?: TimezoneOverrides;
   value?: string;
   size?: SIZE[keyof SIZE];
+  includeAbbreviations?: boolean;
 }
 export interface TimezonePickerState {
   timezones: Option[];

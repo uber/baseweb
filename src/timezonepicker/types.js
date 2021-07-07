@@ -50,5 +50,5 @@ export type TimezonePickerPropsT = {
   error?: boolean,
   positive?: boolean,
   size?: SizeT,
-  includeAbbeviations?: boolean,
+  includeAbbreviations?: boolean,
 };

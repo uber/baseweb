@@ -67,7 +67,7 @@ class TimezonePicker extends React.Component<
           Math.abs(zonedTime.zone.offset / 60);
         const abbreviation = formatZonedTime(zonedTime, 'z');
         const formatted = `(GMT ${offsetTime}) ${zone}${
-          this.props.includeAbbeviations ? ` - ${abbreviation}` : ''
+          this.props.includeAbbreviations ? ` - ${abbreviation}` : ''
         }`.replace('_', ' ');
 
         const option = {
