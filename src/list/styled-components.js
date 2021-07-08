@@ -9,18 +9,27 @@ LICENSE file in the root directory of this source tree.
 import {styled, expandBorderStyles} from '../styles/index.js';
 
 import type {
+  StyledRootPropsT,
   StyledContentPropsT,
   StyledArtworkContainerPropsT,
 } from './types.js';
 import {artworkSizeToValue} from './utils.js';
+import {SHAPE} from './constants.js';
 
-export const StyledRoot = styled<{}>('li', ({$theme}) => {
+export const StyledRoot = styled<StyledRootPropsT>('li', ({$theme, $shape}) => {
   return {
     alignItems: 'center',
     backgroundColor: $theme.colors.backgroundPrimary,
     display: 'flex',
     listStyleType: 'none',
     width: '100%',
+    borderTopLeftRadius: $shape === SHAPE.ROUND ? $theme.borders.radius400 : 0,
+    borderTopRightRadius: $shape === SHAPE.ROUND ? $theme.borders.radius400 : 0,
+    borderBottomLeftRadius:
+      $shape === SHAPE.ROUND ? $theme.borders.radius400 : 0,
+    borderBottomRightRadius:
+      $shape === SHAPE.ROUND ? $theme.borders.radius400 : 0,
+    overflow: 'hidden',
   };
 });
 

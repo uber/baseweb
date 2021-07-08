@@ -110,7 +110,7 @@ const BORDERS = [
   'border600',
 ];
 
-const RADII = ['radius100', 'radius200', 'radius300', 'radius400'];
+const RADII = ['radius100', 'radius200', 'radius300', 'radius400', 'radius500'];
 
 const MEDIA = ['small', 'medium', 'large'];
 
