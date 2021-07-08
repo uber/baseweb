@@ -12,7 +12,7 @@ import {Button} from '../../button/index.js';
 import Check from '../../icon/check.js';
 import ChevronRight from '../../icon/chevron-right.js';
 import Search from '../../icon/search.js';
-import {ListItem, ListItemLabel, ARTWORK_SIZES} from '../index.js';
+import {ListItem, ListItemLabel, ARTWORK_SIZES, SHAPE} from '../index.js';
 
 export default function Scenario() {
   return (
@@ -455,6 +455,36 @@ export default function Scenario() {
       </ListItem>
       <ListItem artwork={Search} artworkSize={ARTWORK_SIZES.LARGE} sublist>
         <ListItemLabel sublist>Label</ListItemLabel>
+      </ListItem>
+
+      {/* ---------------------------------------- */}
+      <ListItem
+        artwork={props => <Check {...props} />}
+        endEnhancer={() => <ListItemLabel>Round Shape</ListItemLabel>}
+        shape={SHAPE.ROUND}
+        overrides={{
+          Root: {
+            style: ({$theme}) => ({
+              backgroundColor: $theme.colors.warning200,
+            }),
+          },
+        }}
+      >
+        <ListItemLabel>Label</ListItemLabel>
+      </ListItem>
+
+      <ListItem
+        artwork={props => <Check {...props} />}
+        endEnhancer={() => <ListItemLabel>Default Shape</ListItemLabel>}
+        overrides={{
+          Root: {
+            style: ({$theme}) => ({
+              backgroundColor: $theme.colors.warning200,
+            }),
+          },
+        }}
+      >
+        <ListItemLabel>Label</ListItemLabel>
       </ListItem>
     </div>
   );

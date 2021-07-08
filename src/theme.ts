@@ -749,6 +749,7 @@ export interface Borders {
   radius200: string;
   radius300: string;
   radius400: string;
+  radius500: string;
   buttonBorderRadius: string;
   inputBorderRadius: string;
   popoverBorderRadius: string;

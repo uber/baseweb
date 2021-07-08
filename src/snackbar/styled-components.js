@@ -16,10 +16,10 @@ import type {PlacementT} from './types.js';
 export const StyledRoot = styled<{}>('div', ({$theme}) => {
   return {
     backgroundColor: $theme.colors.backgroundInverseSecondary,
-    borderTopLeftRadius: $theme.sizing.scale600,
-    borderTopRightRadius: $theme.sizing.scale600,
-    borderBottomRightRadius: $theme.sizing.scale600,
-    borderBottomLeftRadius: $theme.sizing.scale600,
+    borderTopLeftRadius: $theme.borders.radius400,
+    borderTopRightRadius: $theme.borders.radius400,
+    borderBottomRightRadius: $theme.borders.radius400,
+    borderBottomLeftRadius: $theme.borders.radius400,
     boxShadow: '0px 16px 48px rgba(0, 0, 0, 0.22)',
     color: $theme.colors.contentInversePrimary,
     display: 'inline-block',

@@ -719,6 +719,7 @@ export type BordersT = {
   radius200: string,
   radius300: string,
   radius400: string,
+  radius500: string,
   useRoundedCorners: boolean,
   buttonBorderRadius: string,
   surfaceBorderRadius: string,
