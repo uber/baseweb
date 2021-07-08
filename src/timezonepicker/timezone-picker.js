@@ -57,15 +57,18 @@ class TimezonePicker extends React.Component<
     }
   }
 
-  buildTimezones = (compareDate: Date) => {
-    const timezones = listTimeZones()
+  buildTimezones = (compareDate: Date) =>
+    listTimeZones()
       .map(zone => {
         const timezone = findTimeZone(zone);
         const zonedTime = getZonedTime(compareDate, timezone);
-        const formatted = formatZonedTime(
-          zonedTime,
-          `z - [${zone}] ([GMT] Z)`,
-        ).replace('_', ' ');
+        const offsetTime =
+          (zonedTime.zone.offset < 0 ? '+' : '-') +
+          Math.abs(zonedTime.zone.offset / 60);
+        const abbreviation = formatZonedTime(zonedTime, 'z');
+        const formatted = `(GMT ${offsetTime}) ${zone}${
+          this.props.includeAbbreviations ? ` - ${abbreviation}` : ''
+        }`.replace('_', ' ');
 
         const option = {
           id: zone,
@@ -79,11 +82,11 @@ class TimezonePicker extends React.Component<
       })
       // Formats 'noisy' timezones without a letter acronym.
       .map(option => {
-        const rgx = /(^(\+|-)\d+\s- )/;
+        const rgx = /(\s-\s(\+|-)\d\d\d?\d?)$/;
         const matches = option.label.match(rgx);
         if (matches) {
           const prefix = matches[0];
-          option.label = option.label.split(prefix)[1];
+          option.label = option.label.split(prefix)[0];
         }
         return option;
       })
@@ -96,8 +99,6 @@ class TimezonePicker extends React.Component<
         if (a.label > b.label) return 1;
         return 0;
       });
-    return timezones;
-  };
 
   render() {
     const {overrides = {}} = this.props;
