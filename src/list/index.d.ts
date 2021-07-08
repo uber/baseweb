@@ -13,6 +13,16 @@ export type ArtworkSizesT =
   | ARTWORK_SIZES['MEDIUM']
   | ARTWORK_SIZES['LARGE'];
 
+export interface SHAPE {
+  DEFAULT: 'DEFAULT';
+  ROUND: 'ROUND';
+}
+export const SHAPE: SHAPE;
+export type ShapeT = SHAPE['DEFAULT'] | SHAPE['ROUND'];
+
+export interface StyledRootPropsT {
+  $shape: ShapeT;
+}
 export interface StyledArtworkContainerPropsT {
   $artworkSize: ArtworkSizesT;
   $sublist?: boolean;
@@ -23,7 +33,7 @@ export interface StyledContentPropsT {
 }
 
 export interface ListOverrides {
-  Root?: Override<{}>;
+  Root?: Override<StyledRootPropsT>;
   ArtworkContainer?: Override<StyledArtworkContainerPropsT>;
   Content?: Override<StyledContentPropsT>;
   EndEnhancerContainer?: Override<{}>;
@@ -32,6 +42,7 @@ export interface ListOverrides {
 export interface PropsT {
   artwork?: React.ReactNode;
   artworkSize?: ArtworkSizesT | number;
+  shape?: ShapeT;
   children: React.ReactNode;
   endEnhancer?: React.ReactNode;
   overrides?: ListOverrides;

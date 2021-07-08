@@ -10,7 +10,7 @@ import React from 'react';
 
 import {getOverrides} from '../helpers/overrides.js';
 
-import {ARTWORK_SIZES} from './constants.js';
+import {ARTWORK_SIZES, SHAPE} from './constants.js';
 import {
   StyledRoot,
   StyledContent,
@@ -58,8 +58,12 @@ const ListItem = React.forwardRef<PropsT, HTMLLIElement>(
     }, [props.artworkSize, props.sublist]);
 
     return (
-      // eslint-disable-next-line flowtype/no-weak-types
-      <Root ref={(ref: any)} {...rootProps}>
+      <Root
+        // eslint-disable-next-line flowtype/no-weak-types
+        ref={(ref: any)}
+        $shape={props.shape || SHAPE.DEFAULT}
+        {...rootProps}
+      >
         {Artwork && (
           <ArtworkContainer
             $artworkSize={artworkSize}

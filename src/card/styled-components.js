@@ -48,11 +48,12 @@ export const Root = styled<{}>('section', ({$theme}) => ({
   borderRightColor: $theme.colors.borderOpaque,
   borderTopColor: $theme.colors.borderOpaque,
   borderBottomColor: $theme.colors.borderOpaque,
-  borderTopLeftRadius: $theme.borders.surfaceBorderRadius,
-  borderTopRightRadius: $theme.borders.surfaceBorderRadius,
-  borderBottomLeftRadius: $theme.borders.surfaceBorderRadius,
-  borderBottomRightRadius: $theme.borders.surfaceBorderRadius,
+  borderTopLeftRadius: $theme.borders.radius400,
+  borderTopRightRadius: $theme.borders.radius400,
+  borderBottomLeftRadius: $theme.borders.radius400,
+  borderBottomRightRadius: $theme.borders.radius400,
   backgroundColor: $theme.colors.backgroundPrimary,
+  overflow: 'hidden',
 }));
 
 export const Thumbnail = styled<{}>('img', ({$theme}) => ({
