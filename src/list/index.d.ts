@@ -39,6 +39,12 @@ export interface ListOverrides {
   EndEnhancerContainer?: Override<{}>;
 }
 
+export interface LabelOverrides {
+  LabelContent?: Override<any>;
+  LabelDescription?: Override<any>;
+  LabelSublistContent?: Override<any>;
+}
+
 export interface PropsT {
   artwork?: React.ReactNode;
   artworkSize?: ArtworkSizesT | number;
@@ -53,6 +59,7 @@ export interface LabelPropsT {
   children: React.ReactNode;
   description?: React.ReactNode;
   sublist?: boolean;
+  overrides?: LabelOverrides;
 }
 
 export interface MenuAdapterPropsT extends PropsT {
