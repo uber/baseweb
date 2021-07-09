@@ -7,7 +7,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import {styled} from '../styles/index.js';
 import getDayStateCode from './utils/day-state.js';
-import type {SharedStylePropsT} from './types.js';
+import type {SharedStylePropsT, CalendarPropsT} from './types.js';
+import {ORIENTATION} from './constants.js';
 
 /**
  * Main component container element
@@ -36,7 +37,15 @@ export const StyledRoot = styled<SharedStylePropsT>('div', props => {
   };
 });
 
-export const StyledMonthContainer = styled('div', {display: 'flex'});
+export const StyledMonthContainer = styled<{
+  $orientation: $PropertyType<CalendarPropsT<Date>, 'orientation'>,
+}>('div', props => {
+  const {$orientation} = props;
+  return {
+    display: 'flex',
+    flexDirection: $orientation === ORIENTATION.vertical ? 'column' : 'row',
+  };
+});
 
 export const StyledCalendarContainer = styled<SharedStylePropsT>(
   'div',
