@@ -7,15 +7,17 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
+import {useStyletron} from 'styletron-react';
 
 import {StatefulCalendar, ORIENTATION} from '../index.js';
 
 export default function Scenario() {
+  const [css] = useStyletron();
   return (
-    <>
+    <div className={css({display: 'flex'})}>
       <StatefulCalendar
         onChange={({date}) => console.log(date)}
-        orientation={ORIENTATION.horizontal}
+        orientation={ORIENTATION.vertical}
         highlightedDate={new Date('March 10, 2019')}
         monthsShown={3}
         range
@@ -32,6 +34,6 @@ export default function Scenario() {
         range
         quickSelect
       />
-    </>
+    </div>
   );
 }
