@@ -14,7 +14,7 @@ import {Block} from '../../block/index.js';
 export default function Scenario() {
   return (
     <Block font="font450">
-      <StyledLink href="#">I am a Link!</StyledLink>
+      <StyledLink href="#">I am a Link! </StyledLink>
       <br />
       <br />
       <StyledLink animateUnderline href="#">
