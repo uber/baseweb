@@ -15,7 +15,7 @@ export default function Scenario() {
     <>
       <StatefulCalendar
         onChange={({date}) => console.log(date)}
-        orientation={ORIENTATION.horizontal}
+        orientation={ORIENTATION.vertical}
         highlightedDate={new Date('March 10, 2019')}
         monthsShown={3}
         range

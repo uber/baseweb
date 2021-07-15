@@ -86,15 +86,6 @@ export default class CalendarHeader<T = Date> extends React.Component<
     return this.props.date || this.dateHelpers.date();
   };
 
-  handleMonthChange = ({value}: {value: Array<{id: number}>}) => {
-    if (this.props.onMonthChange) {
-      // $FlowFixMe
-      this.props.onMonthChange({
-        date: this.dateHelpers.setMonth(this.getDateProp(), value[0].id),
-      });
-    }
-  };
-
   handleYearChange = ({value}: {value: Array<{id: number}>}) => {
     if (this.props.onYearChange) {
       // $FlowFixMe
@@ -108,7 +99,13 @@ export default class CalendarHeader<T = Date> extends React.Component<
     if (this.props.onMonthChange) {
       // $FlowFixMe
       this.props.onMonthChange({
-        date: this.dateHelpers.addMonths(this.getDateProp(), 1),
+        date: this.dateHelpers.addMonths(
+          this.getDateProp(),
+          // in a multi-month context, `order` is the number months ahead of
+          // the root Calendar month that this CalendarHeader displays. We account
+          // for this by incrementing the month by 1, less the value of `order`.
+          1 - this.props.order,
+        ),
       });
     }
   };
