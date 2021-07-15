@@ -18,7 +18,7 @@ export default function Scenario() {
         margin: '64px',
       }}
     >
-      <StatefulSlider />
+      <StatefulSlider persistentThumb />
     </div>
   );
 }

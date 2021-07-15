@@ -1,3 +1,9 @@
+/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
 import {Slider} from 'baseui/slider';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
@@ -69,6 +75,18 @@ const SliderConfig: TConfig = {
       value: false,
       type: PropTypes.Boolean,
       description: 'True when all tabs are disabled.',
+    },
+    persistentThumb: {
+      value: false,
+      type: PropTypes.Boolean,
+      description: 'Causes the value/thumb to always display.',
+    },
+    valueToLabel: {
+      value: undefined,
+      placeholder: '(value) => `${value}:00 AM',
+      type: PropTypes.Function,
+      description:
+        'Used to transform the thumb value/min/max labels into a user-friendly label.',
     },
     overrides: {
       value: undefined,

@@ -49,6 +49,8 @@ function Slider({
   min = 0,
   max = 100,
   step = 1,
+  persistentThumb = false,
+  valueToLabel = label => label,
   value: providedValue,
 }: PropsT) {
   const theme = React.useContext(ThemeContext);
@@ -143,9 +145,10 @@ function Slider({
           </Track>
         )}
         renderThumb={({props, index, isDragged}) => {
-          const displayLabel =
-            ((index && isHovered1) || (!index && isHovered0) || isDragged) &&
-            !disabled;
+          const displayLabel = persistentThumb
+            ? persistentThumb
+            : ((index && isHovered1) || (!index && isHovered0) || isDragged) &&
+              !disabled;
           return (
             <Thumb
               {...props}
@@ -179,7 +182,7 @@ function Slider({
                   {...sharedProps}
                   {...thumbValueProps}
                 >
-                  {value[index]}
+                  {valueToLabel(value[index])}
                 </ThumbValue>
               )}
               {displayLabel && (
@@ -209,10 +212,10 @@ function Slider({
       />
       <TickBar {...sharedProps} {...tickBarProps}>
         <Tick {...sharedProps} {...tickProps}>
-          {min}
+          {valueToLabel(min)}
         </Tick>
         <Tick {...sharedProps} {...tickProps}>
-          {max}
+          {valueToLabel(max)}
         </Tick>
       </TickBar>
     </Root>

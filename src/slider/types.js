@@ -39,6 +39,10 @@ export type PropsT = {
   disabled?: boolean,
   /** Display a mark at each step. */
   marks?: boolean,
+  /** Always display the label */
+  alwaysShowLabel?: boolean,
+  /** Function to change the numeric value to a user friendly value. Also applied to min/max labels. */
+  valueToLabel?: (value: number) => React$Node,
   /** Handler for events on trigger element, each time thumbs change selection, which is passed in `value`. */
   onChange?: ({
     ...ParamsT,
@@ -83,6 +87,10 @@ export type StatefulSliderPropsT = {
   max?: number,
   step?: number,
   marks?: boolean,
+  /** Always display the label */
+  alwaysShowLabel?: boolean,
+  /** Function to change the numeric value to a user friendly value. Also applied to min/max labels. */
+  valueToLabel?: (value: number) => React$Node,
   /** Handler for events on trigger element, each time thumbs change selection, which is passed in `value`. */
   onChange?: ({...ParamsT}) => mixed,
   /** Handler for events on trigger element, each time thumbs finish changing selection, which is passed in `value`. */
