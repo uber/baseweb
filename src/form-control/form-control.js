@@ -61,7 +61,6 @@ export default class FormControl extends React.Component<
     } = this.props;
 
     const onlyChildProps = React.Children.only(children).props;
-    console.log(onlyChildProps);
 
     const sharedProps = {
       $disabled: !!disabled,
@@ -104,11 +103,7 @@ export default class FormControl extends React.Component<
         >
           {React.Children.map(children, (child, index) => {
             if (!child) return;
-            console.log(
-              typeof onlyChildProps.error !== 'undefined'
-                ? onlyChildProps.error
-                : error,
-            );
+
             const key = child.key || String(index);
             return React.cloneElement(child, {
               key,
