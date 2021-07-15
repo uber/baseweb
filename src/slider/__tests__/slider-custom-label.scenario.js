@@ -16,7 +16,6 @@ export default function Scenario() {
   return (
     <div style={{margin: '64px'}}>
       <Slider
-        persistentThumb
         value={rangeValue}
         max={24 * 4 - 1}
         min={0}
