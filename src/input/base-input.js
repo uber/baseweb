@@ -259,9 +259,9 @@ class BaseInput<T: EventTarget> extends React.Component<
     const sharedProps = getSharedProps(this.props, this.state);
     const iconSize = {
       [SIZE.mini]: '14px',
-      [SIZE.compact]: '20px',
-      [SIZE.default]: '26px',
-      [SIZE.large]: '32px',
+      [SIZE.compact]: '14px',
+      [SIZE.default]: '16px',
+      [SIZE.large]: '22px',
     }[this.props.size];
     return (
       <ClearIconContainer
