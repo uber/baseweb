@@ -17,10 +17,10 @@ import {
   StyledInfiniteBar,
 } from './styled-components.js';
 
-import type {ProgressBarPropsT} from './types.js';
+import type {ProgressBarPropsT, ProgressBarPropsDefaultT} from './types.js';
 
 class ProgressBar extends React.Component<ProgressBarPropsT> {
-  static defaultProps = {
+  static defaultProps: ProgressBarPropsDefaultT = {
     getProgressLabel: (value: number, successValue: number) =>
       `${Math.round((value / successValue) * 100)}% Loaded`,
     infinite: false,
@@ -127,7 +127,7 @@ class ProgressBar extends React.Component<ProgressBarPropsT> {
   }
 }
 
-export default withOverrides<ProgressBarPropsT, mixed>(
-  ProgressBar,
-  'ProgressBar',
-);
+export default withOverrides<
+  React.Config<ProgressBarPropsT, ProgressBarPropsDefaultT>,
+  mixed,
+>(ProgressBar, 'ProgressBar');

@@ -175,4 +175,4 @@ const BlockComponent = React.forwardRef<BlockPropsT, HTMLElement>(
 );
 BlockComponent.displayName = 'Block';
 
-export default withOverrides<BlockPropsT, mixed>(BlockComponent, 'Block');
+export default withOverrides<BlockPropsT, HTMLElement>(BlockComponent, 'Block');

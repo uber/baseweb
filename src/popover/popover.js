@@ -39,6 +39,7 @@ import type {
   PopoverPropsT,
   PopoverPrivateStateT,
   SharedStylePropsArgT,
+  BasePopoverDefaultPropsT,
 } from './types.js';
 import type {PopperDataObjectT, NormalizedOffsetsT} from '../layer/types.js';
 
@@ -491,5 +492,8 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
   }
 }
 
-export default withOverrides<PopoverPropsT, mixed>(Popover, 'Popover');
+export default withOverrides<
+  React.Config<PopoverPropsT, BasePopoverDefaultPropsT>,
+  mixed,
+>(Popover, 'Popover');
 /* eslint-enable react/no-find-dom-node */

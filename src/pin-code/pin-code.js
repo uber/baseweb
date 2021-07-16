@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
+import type {Config} from 'react';
 import MultiRef from 'react-multi-ref';
 import defaultProps from './default-props.js';
 import {
@@ -14,7 +15,7 @@ import {
   StyledInputOverrideRoot,
   StyledInputOverrideInput,
 } from './styled-components.js';
-import type {PropsT, StateT} from './types.js';
+import type {PropsT, StateT, PropsDefaultT} from './types.js';
 import {
   getOverrides,
   mergeOverrides,
@@ -23,7 +24,7 @@ import {
 import {Input as DefaultInput} from '../input/index.js';
 
 class PinCode extends React.Component<PropsT, StateT> {
-  static defaultProps = defaultProps;
+  static defaultProps: PropsDefaultT = defaultProps;
 
   _inputRefs = new MultiRef<number, HTMLInputElement>();
 
@@ -157,4 +158,7 @@ class PinCode extends React.Component<PropsT, StateT> {
   }
 }
 
-export default withOverrides<PropsT, mixed>(PinCode, 'PinCode');
+export default withOverrides<Config<PropsT, PropsDefaultT>, mixed>(
+  PinCode,
+  'PinCode',
+);

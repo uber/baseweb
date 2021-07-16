@@ -65,6 +65,6 @@ const AspectRatioBoxComponent = React.forwardRef<
 AspectRatioBoxComponent.displayName = 'AspectRatioBox';
 
 export default withOverrides<AspectRatioBoxPropsT, mixed>(
-  AspectRatioBox,
+  AspectRatioBoxComponent,
   'AspectRatioBox',
 );

@@ -30,11 +30,12 @@ import type {
   SharedStylePropsArgT,
   CloseSourceT,
   ElementRefT,
+  DrawerDefaultPropsT,
 } from './types.js';
 import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 
 class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
-  static defaultProps: $Shape<DrawerPropsT> = {
+  static defaultProps: DrawerDefaultPropsT = {
     animate: true,
     closeable: true,
     isOpen: false,
@@ -312,4 +313,7 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
   }
 }
 
-export default withOverrides<DrawerPropsT, mixed>(Drawer, 'Drawer');
+export default withOverrides<
+  React.Config<DrawerPropsT, DrawerDefaultPropsT>,
+  mixed,
+>(Drawer, 'Drawer');

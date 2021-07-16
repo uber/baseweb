@@ -13,7 +13,7 @@ import {Popover, PLACEMENT} from '../popover/index.js';
 import {mergeOverrides, withOverrides} from '../helpers/overrides.js';
 
 import {StyledArrow, StyledBody} from './styled-components.js';
-import type {PropsT} from './types.js';
+import type {PropsT, PropsDefaultT} from './types.js';
 
 function Helper(props: PropsT) {
   const {overrides = {}, placement, ...restProps} = props;
@@ -41,13 +41,18 @@ function Helper(props: PropsT) {
   );
 }
 
-Helper.defaultProps = {
+const defaultProps: PropsDefaultT = {
   // $FlowFixMe
   ...Popover.defaultProps,
   placement: PLACEMENT.bottom,
   showArrow: true,
 };
 
-let helper = withOverrides<PropsT, mixed>(Helper, 'Helper');
+Helper.defaultProps = defaultProps;
+
+let helper = withOverrides<React.Config<PropsT, PropsDefaultT>, mixed>(
+  Helper,
+  'Helper',
+);
 
 export {helper as Helper};

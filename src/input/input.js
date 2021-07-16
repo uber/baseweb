@@ -7,7 +7,12 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import {getOverrides, withOverrides} from '../helpers/overrides.js';
-import type {InputPropsT, InternalStateT, AdjoinedT} from './types.js';
+import type {
+  InputPropsT,
+  InternalStateT,
+  AdjoinedT,
+  InputDefaultPropsT,
+} from './types.js';
 import {getSharedProps} from './utils.js';
 import BaseInput from './base-input.js';
 import {
@@ -17,7 +22,7 @@ import {
 import {SIZE, ADJOINED, ENHANCER_POSITION} from './constants.js';
 
 class Input extends React.Component<InputPropsT, InternalStateT> {
-  static defaultProps = {
+  static defaultProps: InputDefaultPropsT = {
     autoComplete: 'on',
     autoFocus: false,
     disabled: false,
@@ -138,4 +143,7 @@ function getAdjoinedProp(startEnhancer, endEnhancer): AdjoinedT {
   return ADJOINED.none;
 }
 
-export default withOverrides<InputPropsT, mixed>(Input, 'Input');
+export default withOverrides<
+  React.Config<InputPropsT, InputDefaultPropsT>,
+  mixed,
+>(Input, 'Input');

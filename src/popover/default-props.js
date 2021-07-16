@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import {ACCESSIBILITY_TYPE, PLACEMENT, TRIGGER_TYPE} from './constants.js';
-import type {BasePopoverPropsT} from './types.js';
+import type {BasePopoverDefaultPropsT} from './types.js';
 
-const baseDefaultProps: $Shape<BasePopoverPropsT> = {
+const baseDefaultProps: BasePopoverDefaultPropsT = {
   accessibilityType: ACCESSIBILITY_TYPE.menu,
   focusLock: false,
   autoFocus: true,

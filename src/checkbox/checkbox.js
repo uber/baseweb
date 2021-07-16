@@ -256,4 +256,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
   }
 }
 
-export default withOverrides<PropsT, mixed>(StatelessCheckbox, 'Checkbox');
+export default withOverrides<React.Config<PropsT, DefaultPropsT>, mixed>(
+  StatelessCheckbox,
+  'Checkbox',
+);

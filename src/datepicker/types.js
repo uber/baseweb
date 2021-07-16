@@ -193,7 +193,8 @@ export type HeaderPropsT<T = Date> = CalendarPropsT<T> & {
   order: number,
 };
 
-export type DatepickerPropsT<T = Date> = CalendarPropsT<T> & {
+export type DatepickerPropsT<T = Date> = {
+  ...$Exact<CalendarPropsT<T>>,
   'aria-label'?: string,
   'aria-labelledby'?: string,
   'aria-describedby'?: ?string,
@@ -346,4 +347,13 @@ export type TimezonePickerPropsT = {
   disabled?: boolean,
   error?: boolean,
   positive?: boolean,
+};
+
+export type DatepickerDefaultPropsT<T> = {
+  formatString: string,
+  adapter: DateIOAdapter<T>,
+};
+
+export type CalendarPropsDefaultT<T> = {
+  adapter: DateIOAdapter<T>,
 };

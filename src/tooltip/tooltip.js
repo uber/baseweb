@@ -37,4 +37,7 @@ class Tooltip extends React.Component<TooltipPropsT> {
   }
 }
 
-export default withOverrides<TooltipPropsT, mixed>(Tooltip, 'Tooltip');
+export default withOverrides<
+  React.Config<TooltipPropsT, $Shape<TooltipPropsT>>,
+  mixed,
+>(Tooltip, 'Tooltip');

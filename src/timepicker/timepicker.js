@@ -29,7 +29,6 @@ const HOUR = MINUTE * 60;
 const DAY = HOUR * 24;
 const NOON = DAY / 2;
 
-// $FlowFixMe
 class TimePicker<T = Date> extends React.Component<
   TimePickerPropsT<T>,
   TimePickerStateT,
@@ -347,7 +346,7 @@ class TimePicker<T = Date> extends React.Component<
   }
 }
 
-export default withOverrides<TimePickerPropsT<Date>, mixed>(
-  TimePicker,
-  'TimePicker',
-);
+export default withOverrides<
+  React.Config<TimePickerPropsT<Date>, TimePickerDefaultPropsT>,
+  mixed,
+>(TimePicker, 'TimePicker');

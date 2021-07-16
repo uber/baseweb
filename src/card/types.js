@@ -50,3 +50,8 @@ export type CardsPropsT = {
   /** Content to render above the body content. */
   +title?: Node,
 };
+
+export type CardsDefaultPropsT = {
+  +hasThumbnail: ({+thumbnail?: string}) => boolean,
+  +overrides: CardComponentsT,
+};

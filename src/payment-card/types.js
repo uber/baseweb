@@ -9,6 +9,7 @@ LICENSE file in the root directory of this source tree.
 import type {
   InputComponentsT,
   InputPropsT,
+  InputDefaultPropsT,
   StInputPropsDiffT,
 } from '../input/types.js';
 import type {OverrideT} from '../helpers/overrides.js';
@@ -26,4 +27,9 @@ export type PaymentCardPropsT = {
 export type StatefulPaymentCardPropsT = {
   ...StInputPropsDiffT,
   overrides?: PaymentCardComponentsT,
+};
+
+export type PaymentCardDefaultPropsT = {
+  ...$Exact<InputDefaultPropsT>,
+  overrides: PaymentCardComponentsT,
 };

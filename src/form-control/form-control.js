@@ -18,7 +18,11 @@ import {
   Caption as StyledCaption,
   ControlContainer as StyledControlContainer,
 } from './styled-components.js';
-import type {FormControlPropsT, FormControlStateT} from './types.js';
+import type {
+  FormControlPropsT,
+  FormControlStateT,
+  FormControlDefaultPropsT,
+} from './types.js';
 
 function chooseRenderedHint(caption, error, positive, sharedProps) {
   if (error && typeof error !== 'boolean') {
@@ -40,7 +44,7 @@ class FormControl extends React.Component<
   FormControlPropsT,
   FormControlStateT,
 > {
-  static defaultProps = {
+  static defaultProps: FormControlDefaultPropsT = {
     overrides: {},
     label: null,
     caption: null,
@@ -141,7 +145,7 @@ class FormControl extends React.Component<
   }
 }
 
-export default withOverrides<FormControlPropsT, mixed>(
-  FormControl,
-  'FormControl',
-);
+export default withOverrides<
+  React.Config<FormControlPropsT, FormControlDefaultPropsT>,
+  mixed,
+>(FormControl, 'FormControl');

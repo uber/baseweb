@@ -27,3 +27,14 @@ export type SpinnerPropsT = {
     TrackPath?: OverrideT,
   },
 };
+
+export type SpinnerPropsDefaultT = {
+  color: string,
+  overrides: {
+    Svg?: OverrideT,
+    ActivePath?: OverrideT,
+    TrackPath?: OverrideT,
+  },
+  size: number | string,
+  title: string,
+};

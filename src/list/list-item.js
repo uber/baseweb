@@ -93,4 +93,4 @@ const ListItem = React.forwardRef<PropsT, HTMLLIElement>(
 );
 ListItem.displayName = 'ListItem';
 
-export default withOverrides<PropsT, mixed>(ListItem, 'ListItem');
+export default withOverrides<PropsT, HTMLLIElement>(ListItem, 'ListItem');

@@ -341,4 +341,6 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
   );
 }
 
-export default withOverrides<PropsT<mixed>, mixed>(Combobox, 'Combobox');
+// used any because flow throws error with mixed used in mapOptionToString, may need fix later
+// eslint-disable-next-line flowtype/no-weak-types
+export default withOverrides<PropsT<any>, mixed>(Combobox, 'Combobox');

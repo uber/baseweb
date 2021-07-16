@@ -26,7 +26,11 @@ import {
   withOverrides,
   mergeOverrides,
 } from '../helpers/overrides.js';
-import type {CalendarPropsT, CalendarInternalState} from './types.js';
+import type {
+  CalendarPropsT,
+  CalendarInternalState,
+  CalendarPropsDefaultT,
+} from './types.js';
 import {ORIENTATION} from './constants.js';
 
 class Calendar<T = Date> extends React.Component<
@@ -686,4 +690,8 @@ class Calendar<T = Date> extends React.Component<
   }
 }
 
-export default withOverrides<CalendarPropsT<Date>, mixed>(Calendar, 'Calendar');
+export default withOverrides<
+  // eslint-disable-next-line flowtype/no-weak-types
+  React.Config<CalendarPropsT<any>, CalendarPropsDefaultT<any>>,
+  mixed,
+>(Calendar, 'Calendar');

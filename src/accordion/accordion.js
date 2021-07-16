@@ -14,10 +14,11 @@ import type {
   AccordionPropsT,
   AccordionStateT,
   StateChangeTypeT,
+  AccordionDefaultPropsT,
 } from './types.js';
 
 class Accordion extends React.Component<AccordionPropsT, AccordionStateT> {
-  static defaultProps: $Shape<AccordionPropsT> = {
+  static defaultProps: AccordionDefaultPropsT = {
     accordion: true,
     disabled: false,
     initialState: {
@@ -127,4 +128,7 @@ class Accordion extends React.Component<AccordionPropsT, AccordionStateT> {
   }
 }
 
-export default withOverrides<AccordionPropsT, mixed>(Accordion, 'Accordion');
+export default withOverrides<
+  React.Config<AccordionPropsT, AccordionDefaultPropsT>,
+  mixed,
+>(Accordion, 'Accordion');

@@ -197,3 +197,19 @@ export type StatefulInputPropsT = {
   ...StInputPropsDiffT,
   overrides?: InputComponentsT,
 };
+
+export type InputDefaultPropsT = {
+  autoComplete: string,
+  autoFocus: boolean,
+  disabled: boolean,
+  name: string,
+  onBlur: (e: SyntheticFocusEvent<HTMLInputElement>) => mixed,
+  onFocus: (e: SyntheticFocusEvent<HTMLInputElement>) => mixed,
+  overrides: InputComponentsT,
+  required: boolean,
+  size: SizeT,
+  startEnhancer: ?(React.Node | ((props: PropsT) => React.Node)),
+  endEnhancer: ?(React.Node | ((props: PropsT) => React.Node)),
+  clearable?: boolean,
+  type?: string,
+};

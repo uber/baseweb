@@ -40,6 +40,7 @@ import type {
   ValueT,
   OptionT,
   ChangeActionT,
+  PropsDefaultT,
 } from './types.js';
 import {expandValue, normalizeOptions} from './utils/index.js';
 
@@ -74,7 +75,7 @@ export function isInteractive(rootTarget: EventTarget, rootElement: Element) {
 
 // eslint-disable-next-line flowtype/no-weak-types
 class Select extends React.Component<PropsT, SelectStateT> {
-  static defaultProps = defaultProps;
+  static defaultProps: PropsDefaultT = defaultProps;
 
   // anchor is a ref that refers to the outermost element rendered when the dropdown menu is not
   // open. This is required so that we can check if clicks are on/off the anchor element.
@@ -1084,4 +1085,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
   }
 }
 
-export default withOverrides<PropsT, mixed>(Select, 'Select');
+export default withOverrides<React.Config<PropsT, PropsDefaultT>, mixed>(
+  Select,
+  'Select',
+);

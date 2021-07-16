@@ -214,3 +214,22 @@ export type StylePropsT = {
   $required: boolean,
   $value: string,
 };
+
+export type RadioDefaultPropsT = {
+  overrides: OverridesT,
+  containsInteractiveElement: boolean,
+  checked: boolean,
+  disabled: boolean,
+  autoFocus: boolean,
+  inputRef: React.ElementRef<*>,
+  align: AlignT,
+  isError: boolean,
+  error: boolean,
+  onChange: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
+  onMouseEnter: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
+  onMouseLeave: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
+  onMouseDown: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
+  onMouseUp: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
+  onFocus: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
+  onBlur: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
+};

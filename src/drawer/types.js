@@ -88,3 +88,15 @@ export type SharedStylePropsArgT = {
   $isFocusVisible: boolean,
   $showBackdrop: boolean,
 };
+
+export type DrawerDefaultPropsT = {
+  animate: boolean,
+  closeable: boolean,
+  isOpen: boolean,
+  overrides: OverridesT,
+  size: SizePropT,
+  anchor: AnchorPropT,
+  showBackdrop: boolean,
+  autoFocus: boolean,
+  renderAll: boolean,
+};

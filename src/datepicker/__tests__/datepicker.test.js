@@ -132,7 +132,9 @@ describe('Datepicker', () => {
     const day = getByText(container, '1');
     fireEvent.click(day);
 
+    // $FlowFixMe
     expect(onChange.mock.calls[1][0].date.length).toBe(1);
+    // $FlowFixMe
     expect(onChange.mock.calls[1][0].date[0]).toEqual(new Date('2019/11/1'));
 
     const after = queryByTestId(container, 'calendar');

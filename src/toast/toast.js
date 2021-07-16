@@ -269,4 +269,7 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
   }
 }
 
-export default withOverrides<ToastPropsT, mixed>(Toast, 'Toast');
+export default withOverrides<
+  React.Config<ToastPropsT, ToastPropsShapeT>,
+  mixed,
+>(Toast, 'Toast');

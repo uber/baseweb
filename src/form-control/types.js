@@ -42,3 +42,14 @@ export type StylePropsT = {
   $error?: boolean,
   $positive?: boolean,
 };
+
+export type FormControlDefaultPropsT = {
+  overrides: {
+    Label?: OverrideT,
+    Caption?: OverrideT,
+    ControlContainer?: OverrideT,
+  },
+  label: ?(React.Node | ((props: {}) => React.Node)),
+  caption: ?(React.Node | ((props: {}) => React.Node)),
+  disabled: boolean,
+};

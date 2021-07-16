@@ -70,3 +70,14 @@ export type ProgressBarRoundedPropsT = {
     Text?: OverrideT,
   },
 };
+
+export type ProgressBarPropsDefaultT = {
+  getProgressLabel: (value: number, successValue: number) => React.Node,
+  infinite: boolean,
+  overrides?: OverridesT,
+  showLabel: boolean,
+  size: SizeT,
+  steps: number,
+  successValue: number,
+  value: number,
+};

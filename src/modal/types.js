@@ -96,3 +96,19 @@ export type SharedStylePropsArgT = {
   $unstable_ModalBackdropScroll?: boolean,
   $isFocusVisible: boolean,
 };
+
+export type ModalDefaultPropsT = {
+  animate: boolean,
+  // TODO(v11): remove
+  autofocus: boolean | null,
+  autoFocus: boolean,
+  focusLock: boolean,
+  returnFocus: boolean | FocusOptions,
+  closeable: boolean,
+  name: string,
+  isOpen: boolean,
+  overrides: OverridesT,
+  role: RolePropT,
+  size: SizePropT,
+  unstable_ModalBackdropScroll: boolean,
+};

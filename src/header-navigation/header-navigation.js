@@ -8,11 +8,11 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {getOverrides, withOverrides} from '../helpers/overrides.js';
-import type {PropsT} from './types.js';
+import type {PropsT, PropsDefaultT} from './types.js';
 import {Root as StyledRoot} from './styled-components.js';
 
 class HeaderNavigation extends React.Component<PropsT, {}> {
-  static defaultProps = {
+  static defaultProps: PropsDefaultT = {
     overrides: {},
   };
   render() {
@@ -29,7 +29,7 @@ class HeaderNavigation extends React.Component<PropsT, {}> {
   }
 }
 
-export default withOverrides<PropsT, mixed>(
+export default withOverrides<React.Config<PropsT, PropsDefaultT>, mixed>(
   HeaderNavigation,
   'HeaderNavigation',
 );

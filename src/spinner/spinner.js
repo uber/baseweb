@@ -19,10 +19,10 @@ import {
   StyledActivePath,
   StyledTrackPath,
 } from './styled-components.js';
-import type {SpinnerPropsT} from './types.js';
+import type {SpinnerPropsT, SpinnerPropsDefaultT} from './types.js';
 
 class Spinner extends React.Component<SpinnerPropsT> {
-  static defaultProps: $Shape<SpinnerPropsT> = {
+  static defaultProps: SpinnerPropsDefaultT = {
     color: '',
     size: 44,
     title: 'Loading',
@@ -82,4 +82,7 @@ class Spinner extends React.Component<SpinnerPropsT> {
   }
 }
 
-export default withOverrides<SpinnerPropsT, mixed>(Spinner, 'Spinner');
+export default withOverrides<
+  React.Config<SpinnerPropsT, SpinnerPropsDefaultT>,
+  mixed,
+>(Spinner, 'Spinner');

@@ -14,3 +14,7 @@ export type OverridesT = {
 export type PropsT = {
   overrides: OverridesT,
 };
+
+export type PropsDefaultT = {
+  overrides: OverridesT,
+};

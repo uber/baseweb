@@ -55,3 +55,9 @@ export type StyledRatingItemPropsT = {
   $index: number,
   $size: number,
 };
+
+export type StarRatingPropsDefaultT = {
+  overrides?: RatingOverridesT,
+  numItems: number,
+  readOnly: boolean,
+};

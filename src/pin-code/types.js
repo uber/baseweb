@@ -83,3 +83,27 @@ export type StatefulPinCodeContainerPropsT = PropsT & {
   onChange: (event: ChangeEventT) => mixed,
   stateReducer: StateReducerT,
 };
+
+export type PropsDefaultT = {
+  'aria-label': ?string,
+  'aria-labelledby': ?string,
+  'aria-describedby': ?string,
+  autoComplete: ?string,
+  autoFocus: boolean,
+  disabled: boolean,
+  error: boolean,
+  id: ?string,
+  name: ?string,
+  onChange: ChangeEventT => mixed,
+  overrides: {
+    Root?: OverrideT,
+    Input?: OverrideT,
+  },
+  placeholder: string,
+  positive: boolean,
+  required: boolean,
+  size: $Keys<typeof SIZE>,
+  manageFocus: boolean,
+  values: string[],
+  mask: boolean | string,
+};

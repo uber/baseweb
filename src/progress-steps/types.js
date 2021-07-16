@@ -84,3 +84,8 @@ export type StylePropsT = {
   $isCompleted: boolean,
   $disabled: boolean,
 };
+
+export type StepPropsDefaultT = {
+  isCompleted: boolean,
+  isLast: boolean,
+};

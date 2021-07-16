@@ -19,7 +19,7 @@ import {
 } from './styled-components.js';
 import StyledCheckIcon from '../icon/check.js';
 
-import type {NumberedStepPropsT} from './types.js';
+import type {NumberedStepPropsT, StepPropsDefaultT} from './types.js';
 
 function NumberedStep({
   overrides = {},
@@ -72,12 +72,14 @@ function NumberedStep({
   );
 }
 
-NumberedStep.defaultProps = {
+const defaultProps: StepPropsDefaultT = {
   isCompleted: false,
   isLast: false,
 };
 
-export default withOverrides<NumberedStepPropsT, mixed>(
-  NumberedStep,
-  'NumberedStep',
-);
+NumberedStep.defaultProps = defaultProps;
+
+export default withOverrides<
+  React.Config<NumberedStepPropsT, StepPropsDefaultT>,
+  mixed,
+>(NumberedStep, 'NumberedStep');

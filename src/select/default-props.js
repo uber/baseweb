@@ -7,8 +7,9 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import defaultFilterOptions from './utils/default-filter-options.js';
 import {TYPE, SIZE} from './constants.js';
+import type {PropsDefaultT} from './types.js';
 
-const defaultProps = {
+const defaultProps: PropsDefaultT = {
   'aria-label': null,
   'aria-describedby': null,
   'aria-errormessage': null,

@@ -114,7 +114,8 @@ export type BasePopoverPropsT = {
 };
 
 // Props for stateless render logic
-export type PopoverPropsT = BasePopoverPropsT & {
+export type PopoverPropsT = {
+  ...$Exact<BasePopoverPropsT>,
   /** Content that should trigger the popover to be shown (also acts as the anchor against
    * which the popover will be positioned).
    */
@@ -218,4 +219,19 @@ export type AnchorPropsT = {
   onMouseLeave?: (e: Event) => mixed,
   ref?: React.Ref<*>,
   tabIndex?: number,
+};
+
+export type BasePopoverDefaultPropsT = {
+  accessibilityType: AccessibilityTypeT,
+  focusLock: boolean,
+  autoFocus: boolean,
+  returnFocus: boolean,
+  ignoreBoundary: boolean,
+  overrides: OverridesT,
+  onMouseEnterDelay: number,
+  onMouseLeaveDelay: number,
+  placement: TetherPlacementT,
+  showArrow: boolean,
+  triggerType: TriggerTypeT,
+  renderAll: boolean,
 };

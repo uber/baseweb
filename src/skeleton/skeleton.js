@@ -55,4 +55,7 @@ class Skeleton extends React.Component<SkeletonPropsT> {
   }
 }
 
-export default withOverrides<SkeletonPropsT, mixed>(Skeleton, 'Skeleton');
+export default withOverrides<
+  React.Config<SkeletonPropsT, SkeletonPropsT>,
+  mixed,
+>(Skeleton, 'Skeleton');

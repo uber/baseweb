@@ -152,9 +152,83 @@ export type StatefulPhoneInputContainerPropsT = {
   onCountryChange: (event: OnChangeParamsT) => mixed,
 };
 
-export type StatefulPhoneInputPropsT = PropsT & {
+export type StatefulPhoneInputPropsT = {
+  ...$Exact<PropsT>,
   initialState?: StateT,
   stateReducer?: StateReducerT,
   onTextChange?: (event: SyntheticInputEvent<HTMLInputElement>) => mixed,
   onCountryChange?: (event: OnChangeParamsT) => mixed,
+};
+
+export type PropsDefaultT = {
+  'aria-label': ?string,
+  'aria-describedby': ?string,
+  'aria-labelledby': ?string,
+  clearable?: boolean,
+  focusLock: boolean,
+  country: CountryT,
+  disabled: boolean,
+  error: boolean,
+  id: ?string,
+  maxDropdownHeight: string,
+  maxDropdownWidth: string,
+  name: ?string,
+  onCountryChange: (event: OnChangeParamsT) => mixed,
+  onTextChange: (event: SyntheticInputEvent<HTMLInputElement>) => mixed,
+  overrides: {
+    Root?: OverrideT,
+    Input?: OverrideT,
+    CountrySelectContainer?: OverrideT,
+    CountrySelectDropdown?: OverrideT,
+    CountrySelectDropdownListItem?: OverrideT,
+    CountrySelectDropdownFlagColumn?: OverrideT,
+    CountrySelectDropdownNameColumn?: OverrideT,
+    CountrySelectDropdownDialcodeColumn?: OverrideT,
+    DialCode?: OverrideT,
+    CountrySelect?: OverrideT,
+    FlagContainer?: OverrideT,
+  },
+  positive: boolean,
+  required: boolean,
+  size: SizeT,
+  text: string,
+};
+
+export type LitePropsDefaultT = {
+  'aria-label': ?string,
+  'aria-describedby': ?string,
+  'aria-labelledby': ?string,
+  clearable?: boolean,
+  focusLock: boolean,
+  disabled: boolean,
+  error: boolean,
+  id: ?string,
+  maxDropdownHeight: string,
+  maxDropdownWidth: string,
+  name: ?string,
+  onCountryChange: (event: OnChangeParamsT) => mixed,
+  onTextChange: (event: SyntheticInputEvent<HTMLInputElement>) => mixed,
+  overrides: {
+    Root?: OverrideT,
+    Input?: OverrideT,
+    CountrySelectContainer?: OverrideT,
+    CountrySelectDropdown?: OverrideT,
+    CountrySelectDropdownListItem?: OverrideT,
+    CountrySelectDropdownFlagColumn?: OverrideT,
+    CountrySelectDropdownNameColumn?: OverrideT,
+    CountrySelectDropdownDialcodeColumn?: OverrideT,
+    DialCode?: OverrideT,
+    CountrySelect?: OverrideT,
+    FlagContainer?: OverrideT,
+  },
+  positive: boolean,
+  required: boolean,
+  size: SizeT,
+  text: string,
+};
+
+export type NextInputPropsDefaultT = {
+  ...$Exact<PropsDefaultT>,
+  countries: {[string]: CountryT},
+  clearable: boolean,
 };

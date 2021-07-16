@@ -29,11 +29,12 @@ import type {
   SharedStylePropsArgT,
   CloseSourceT,
   ElementRefT,
+  ModalDefaultPropsT,
 } from './types.js';
 import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 
 class Modal extends React.Component<ModalPropsT, ModalStateT> {
-  static defaultProps: $Shape<ModalPropsT> = {
+  static defaultProps: ModalDefaultPropsT = {
     animate: true,
     // TODO(v11): remove
     autofocus: null,
@@ -396,4 +397,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
   }
 }
 
-export default withOverrides<ModalPropsT, mixed>(Modal, 'Modal');
+export default withOverrides<
+  React.Config<ModalPropsT, ModalDefaultPropsT>,
+  mixed,
+>(Modal, 'Modal');

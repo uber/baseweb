@@ -58,3 +58,22 @@ type OmitPropsT = {
 type FullStPropsT = TextareaPropsT & StatefulContainerPropsT;
 
 export type StatefulTextareaPropsT = $Shape<$Diff<FullStPropsT, OmitPropsT>>;
+
+export type TextareaDefaultPropsT<T> = {
+  autoFocus: boolean,
+  disabled: boolean,
+  error: boolean,
+  name: string,
+  onBlur: (e: SyntheticFocusEvent<T>) => mixed,
+  onChange: (e: SyntheticInputEvent<T>) => mixed,
+  onKeyDown: (e: SyntheticKeyboardEvent<T>) => mixed,
+  onKeyPress: (e: SyntheticKeyboardEvent<T>) => mixed,
+  onKeyUp: (e: SyntheticKeyboardEvent<T>) => mixed,
+  onFocus: (e: SyntheticFocusEvent<T>) => mixed,
+  overrides: TextareaOverridesT,
+  placeholder: string,
+  required: boolean,
+  rows: number,
+  size: SizeT,
+  value: string | number,
+};

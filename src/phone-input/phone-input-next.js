@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import React, {useRef} from 'react';
+import type {Config} from 'react';
 import {COUNTRIES} from './constants.js';
 import CountryPicker from './country-picker.js';
 import defaultProps from './default-props.js';
@@ -16,7 +17,7 @@ import {
   mergeOverrides,
   withOverrides,
 } from '../helpers/overrides.js';
-import type {LitePropsT} from './types.js';
+import type {LitePropsT, NextInputPropsDefaultT} from './types.js';
 
 PhoneInputNext.defaultProps = {
   ...defaultProps,
@@ -123,7 +124,7 @@ function PhoneInputNext(props: LitePropsT) {
   );
 }
 
-export default withOverrides<LitePropsT, mixed>(
+export default withOverrides<Config<LitePropsT, NextInputPropsDefaultT>, mixed>(
   PhoneInputNext,
   'PhoneInputNext',
 );

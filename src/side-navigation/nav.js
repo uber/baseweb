@@ -14,11 +14,11 @@ import {
   StyledNavItemContainer,
   StyledSubNavContainer,
 } from './styled-components.js';
-import type {NavPropsT, Item} from './types.js';
+import type {NavPropsT, Item, NavPropsDefaultT} from './types.js';
 import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 
 class SideNav extends React.Component<NavPropsT, {isFocusVisible: boolean}> {
-  static defaultProps = {
+  static defaultProps: NavPropsDefaultT = {
     activeItemId: '/',
     activePredicate: null,
     items: [],
@@ -130,4 +130,7 @@ class SideNav extends React.Component<NavPropsT, {isFocusVisible: boolean}> {
   }
 }
 
-export default withOverrides<NavPropsT, mixed>(SideNav, 'SideNavigation');
+export default withOverrides<React.Config<NavPropsT, NavPropsDefaultT>, mixed>(
+  SideNav,
+  'SideNavigation',
+);

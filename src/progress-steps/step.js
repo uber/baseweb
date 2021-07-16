@@ -20,7 +20,7 @@ import {
   StyledContentDescription,
 } from './styled-components.js';
 
-import type {StepPropsT} from './types.js';
+import type {StepPropsT, StepPropsDefaultT} from './types.js';
 
 function Step({
   overrides = {},
@@ -74,9 +74,14 @@ function Step({
   );
 }
 
-Step.defaultProps = {
+const defaultProps: StepPropsDefaultT = {
   isCompleted: false,
   isLast: false,
 };
 
-export default withOverrides<StepPropsT, mixed>(Step, 'Step');
+Step.defaultProps = defaultProps;
+
+export default withOverrides<
+  React.Config<StepPropsT, StepPropsDefaultT>,
+  mixed,
+>(Step, 'Step');

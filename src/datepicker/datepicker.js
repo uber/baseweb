@@ -14,7 +14,7 @@ import {getOverrides, withOverrides} from '../helpers/overrides.js';
 import getInterpolatedString from '../helpers/i18n-interpolation.js';
 import {LocaleContext} from '../locale/index.js';
 import {StyledInputWrapper} from './styled-components.js';
-import type {DatepickerPropsT} from './types.js';
+import type {DatepickerPropsT, DatepickerDefaultPropsT} from './types.js';
 import DateHelpers from './utils/date-helpers.js';
 import dateFnsAdapter from './utils/date-fns-adapter.js';
 
@@ -27,12 +27,11 @@ type StateT = {|
 |};
 export const DEFAULT_DATE_FORMAT = 'yyyy/MM/dd';
 
-// $FlowFixMe
 class Datepicker<T = Date> extends React.Component<
   DatepickerPropsT<T>,
   StateT,
 > {
-  static defaultProps = {
+  static defaultProps: DatepickerDefaultPropsT<Date> = {
     'aria-describedby': 'datepicker--screenreader--message--input',
     value: null,
     formatString: DEFAULT_DATE_FORMAT,
@@ -530,7 +529,8 @@ class Datepicker<T = Date> extends React.Component<
   }
 }
 
-export default withOverrides<DatepickerPropsT<Date>, mixed>(
-  Datepicker,
-  'Datepicker',
-);
+export default withOverrides<
+  // eslint-disable-next-line flowtype/no-weak-types
+  React.Config<DatepickerPropsT<any>, DatepickerDefaultPropsT<any>>,
+  mixed,
+>(Datepicker, 'Datepicker');

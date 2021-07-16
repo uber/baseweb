@@ -181,3 +181,14 @@ export type SharedStylePropsArgT = {
   $size?: string | number,
   $isFocusVisible: boolean,
 };
+
+export type AccordionDefaultPropsT = {
+  stateReducer: StateReducerT,
+  accordion: boolean,
+  disabled: boolean,
+  initialState: AccordionStateT,
+  onChange?: AccordionOnChangeHandlerT,
+  overrides?: AccordionOverridesT & PanelOverridesT,
+  renderAll: boolean,
+  renderPanelContent: boolean,
+};

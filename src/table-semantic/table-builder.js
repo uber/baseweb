@@ -28,7 +28,6 @@ import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 
 import type {TableBuilderPropsT} from './types.js';
 
-// $FlowFixMe
 class TableBuilder<T> extends React.Component<
   TableBuilderPropsT<T>,
   {isFocusVisible: boolean},
@@ -325,7 +324,8 @@ class TableBuilder<T> extends React.Component<
   }
 }
 
-export default withOverrides<TableBuilderPropsT<mixed>, mixed>(
+// eslint-disable-next-line flowtype/no-weak-types
+export default withOverrides<TableBuilderPropsT<any>, mixed>(
   TableBuilder,
   'TableBuilder',
 );

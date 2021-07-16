@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import type {TextareaPropsT} from './types.js';
+import type {TextareaPropsT, TextareaDefaultPropsT} from './types.js';
 import {
   mergeOverrides,
   getOverrides,
@@ -20,7 +20,7 @@ import {
 } from './styled-components.js';
 
 class Textarea extends React.Component<TextareaPropsT, {isFocused: boolean}> {
-  static defaultProps = {
+  static defaultProps: TextareaDefaultPropsT<HTMLTextAreaElement> = {
     autoFocus: false,
     disabled: false,
     error: false,
@@ -86,4 +86,7 @@ class Textarea extends React.Component<TextareaPropsT, {isFocused: boolean}> {
   }
 }
 
-export default withOverrides<TextareaPropsT, mixed>(Textarea, 'Textarea');
+export default withOverrides<
+  React.Config<TextareaPropsT, TextareaDefaultPropsT<HTMLTextAreaElement>>,
+  mixed,
+>(Textarea, 'Textarea');

@@ -175,6 +175,7 @@ class ToasterContainer extends React.Component<
       >
         {({dismiss}) => {
           this.dismissHandlers[key] = dismiss;
+          // $FlowFixMe
           return children;
         }}
       </Toast>
@@ -292,10 +293,10 @@ const toaster = {
   },
 };
 
-const toasterContainer = withOverrides<ToasterPropsT, mixed>(
-  ToasterContainer,
-  'ToasterContainer',
-);
+const toasterContainer = withOverrides<
+  React.Config<ToasterPropsT, ToasterPropsT>,
+  mixed,
+>(ToasterContainer, 'ToasterContainer');
 
 export {toasterContainer as ToasterContainer};
 export default toaster;

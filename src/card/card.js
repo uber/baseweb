@@ -24,7 +24,7 @@ import {
   Title as StyledTitle,
 } from './styled-components.js';
 
-import type {CardsPropsT} from './types.js';
+import type {CardsPropsT, CardsDefaultPropsT} from './types.js';
 
 export function hasThumbnail(props: {+thumbnail?: string}) {
   return !!props.thumbnail;
@@ -113,11 +113,16 @@ function Card(props: CardsPropsT) {
   );
 }
 
-Card.defaultProps = {
+const defaultProps: CardsDefaultPropsT = {
   action: null,
   children: null,
   hasThumbnail,
   overrides: {},
 };
 
-export default withOverrides<CardsPropsT, mixed>(Card, 'Card');
+Card.defaultProps = defaultProps;
+
+export default withOverrides<
+  React.Config<CardsPropsT, CardsDefaultPropsT>,
+  mixed,
+>(Card, 'Card');

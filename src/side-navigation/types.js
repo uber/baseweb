@@ -104,3 +104,17 @@ type ExcludeT = {
 };
 
 export type StatefulNavPropsT = $Diff<StatefulContainerPropsT, ExcludeT>;
+
+export type NavPropsDefaultT = {
+  activeItemId: string,
+  activePredicate: ?(item: *, activeItemId: string) => boolean,
+  items: Item[],
+  overrides: {
+    Root?: OverrideT,
+    NavItemContainer?: OverrideT,
+    NavLink?: OverrideT,
+    NavItem?: OverrideT,
+    SubNavContainer?: OverrideT,
+  },
+  mapItem: ?(item: Item) => Item,
+};

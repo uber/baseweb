@@ -27,7 +27,7 @@ import VisaIcon from './icons/visa.js';
 
 import {IconWrapper as StyledIconWrapper} from './styled-components.js';
 
-import type {PaymentCardPropsT} from './types.js';
+import type {PaymentCardPropsT, PaymentCardDefaultPropsT} from './types.js';
 
 const CardTypeToComponent = {
   visa: VisaIcon,
@@ -46,7 +46,7 @@ class PaymentCard extends React.Component<PaymentCardPropsT> {
   caretPosition = 0;
   inRef: ?HTMLInputElement = null;
 
-  static defaultProps = {
+  static defaultProps: PaymentCardDefaultPropsT = {
     autoComplete: 'cc-number',
     autoFocus: false,
     disabled: false,
@@ -141,7 +141,7 @@ class PaymentCard extends React.Component<PaymentCardPropsT> {
   }
 }
 
-export default withOverrides<PaymentCardPropsT, mixed>(
-  PaymentCard,
-  'PaymentCard',
-);
+export default withOverrides<
+  React.Config<PaymentCardPropsT, PaymentCardDefaultPropsT>,
+  mixed,
+>(PaymentCard, 'PaymentCard');

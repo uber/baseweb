@@ -137,4 +137,7 @@ const ForwardedButton = React.forwardRef<ButtonPropsT, HTMLButtonElement>(
   (props: ButtonPropsT, ref) => <Button forwardedRef={ref} {...props} />,
 );
 ForwardedButton.displayName = 'Button';
-export default withOverrides<ButtonPropsT, mixed>(ForwardedButton, 'Button');
+export default withOverrides<ButtonPropsT, HTMLButtonElement>(
+  ForwardedButton,
+  'Button',
+);

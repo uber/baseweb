@@ -18,7 +18,7 @@ import {
   RadioMarkOuter as StyledRadioMarkOuter,
   Description as StyledDescription,
 } from './styled-components.js';
-import type {RadioPropsT, RadioStateT} from './types.js';
+import type {RadioPropsT, RadioStateT, RadioDefaultPropsT} from './types.js';
 
 function isLabelTopLeft(labelPlacement) {
   return labelPlacement === 'top' || labelPlacement === 'left';
@@ -31,7 +31,7 @@ function isLabelBottomRight(labelPlacement) {
 const stopPropagation = e => e.stopPropagation();
 
 class Radio extends React.Component<RadioPropsT, RadioStateT> {
-  static defaultProps: $Shape<RadioPropsT> = {
+  static defaultProps: RadioDefaultPropsT = {
     overrides: {},
     containsInteractiveElement: false,
     checked: false,
@@ -179,4 +179,7 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
   }
 }
 
-export default withOverrides<RadioPropsT, mixed>(Radio, 'Radio');
+export default withOverrides<
+  React.Config<RadioPropsT, RadioDefaultPropsT>,
+  mixed,
+>(Radio, 'Radio');
