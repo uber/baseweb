@@ -93,7 +93,7 @@ describe('FormControl - Label and Caption for controls', () => {
         error={<span>{error}</span>}
         positive={<span>{positive}</span>}
       >
-        <Input />
+        <Textarea />
       </FormControl>,
     );
     expect(queryByText(container, caption)).toBeNull();
