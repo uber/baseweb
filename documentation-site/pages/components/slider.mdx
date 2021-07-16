@@ -29,7 +29,11 @@ export default Layout;
 
 # Slider
 
-<Yard placeholderHeight={90} {...sliderYardConfig} />
+<Yard
+  placeholderHeight={90}
+  compilerStyles={{marginTop: '56px'}}
+  {...sliderYardConfig}
+/>
 
 Control input with sliding axis to choose a single value or range between min and max values.
 
