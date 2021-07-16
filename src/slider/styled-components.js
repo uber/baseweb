@@ -154,7 +154,6 @@ export const ThumbValue = styled<StylePropsT>('div', props => {
     position: 'absolute',
     top: `-${$theme.sizing.scale1400}`,
     ...$theme.typography.font200,
-    // backgroundColor: $theme.colors.backgroundInversePrimary,
     backgroundColor: $disabled
       ? $theme.colors.sliderHandleFillDisabled
       : $theme.colors.sliderHandleInnerFill,
