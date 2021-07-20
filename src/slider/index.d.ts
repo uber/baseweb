@@ -38,6 +38,8 @@ export interface SliderProps {
   marks?: boolean;
   onChange?: (e: State) => any;
   onFinalChange?: (e: State) => any;
+  persistentThumb?: boolean;
+  valueToLabel?: (value: number) => React.ReactNode;
 }
 
 export interface StatefulSliderProps {
@@ -49,6 +51,8 @@ export interface StatefulSliderProps {
   marks?: boolean;
   onChange?: (e: State) => any;
   onFinalChange?: (e: State) => any;
+  persistentThumb?: boolean;
+  valueToLabel?: (value: number) => React.ReactNode;
 }
 
 export interface StatefulContainerProps {

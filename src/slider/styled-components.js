@@ -135,24 +135,28 @@ export const Thumb = styled<StylePropsT>('div', props => {
 Thumb.displayName = 'StyledThumb';
 
 export const InnerThumb = styled<StylePropsT>('div', props => {
-  const {$theme} = props;
+  const {$disabled, $theme} = props;
   return {
     position: 'absolute',
     top: '-16px',
     width: '4px',
     height: '20px',
-    backgroundColor: $theme.colors.sliderHandleInnerFill,
+    backgroundColor: $disabled
+      ? $theme.colors.sliderHandleFillDisabled
+      : $theme.colors.sliderHandleInnerFill,
   };
 });
 InnerThumb.displayName = 'StyledInnerThumb';
 
-export const ThumbValue = styled<{}>('div', props => {
-  const {$theme} = props;
+export const ThumbValue = styled<StylePropsT>('div', props => {
+  const {$disabled, $theme} = props;
   return {
     position: 'absolute',
     top: `-${$theme.sizing.scale1400}`,
     ...$theme.typography.font200,
-    backgroundColor: $theme.colors.backgroundInversePrimary,
+    backgroundColor: $disabled
+      ? $theme.colors.sliderHandleFillDisabled
+      : $theme.colors.sliderHandleInnerFill,
     color: $theme.colors.contentInversePrimary,
     paddingLeft: $theme.sizing.scale600,
     paddingRight: $theme.sizing.scale600,

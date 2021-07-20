@@ -19,7 +19,7 @@ const selectors = {
   value: '[data-id="selected"]',
 };
 
-const labelToShortCode = label => label.split(' ')[0];
+const labelToShortCode = label => label.split(' ').pop();
 
 describe('TimezonePicker', () => {
   it('passes basic a11y tests', async () => {
@@ -42,7 +42,7 @@ describe('TimezonePicker', () => {
       select => select.textContent,
     );
 
-    expect(labelToShortCode(value)).toBe('EST');
+    expect(labelToShortCode(value)).toBe('York');
   });
 
   it('provides appropriate zone options if daylight savings time', async () => {
@@ -58,7 +58,7 @@ describe('TimezonePicker', () => {
       select => select.textContent,
     );
 
-    expect(labelToShortCode(value)).toBe('EDT');
+    expect(labelToShortCode(value)).toBe('York');
   });
 
   it('prioritizes select with controlled value over browser default', async () => {
@@ -68,7 +68,7 @@ describe('TimezonePicker', () => {
       `${selectors.controlled} ${selectors.value}`,
       select => select.textContent,
     );
-    expect(labelToShortCode(initial)).toBe('JST');
+    expect(labelToShortCode(initial)).toBe('Asia/Tokyo');
   });
 
   it('provides appropriate zone options if no acronym exists', async () => {

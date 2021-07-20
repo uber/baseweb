@@ -105,7 +105,7 @@ export type BaseInputPropsT<T> = {|
   /** Renders component in 'disabled' state. */
   disabled: boolean,
   /** Renders component in 'error' state. */
-  error: boolean,
+  error?: boolean,
   /** Renders component in 'positive' state. */
   positive?: boolean,
   /** A regex that is used to validate the value of the input on form submission. The Input component must be wrapped in a form element */
