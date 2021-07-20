@@ -104,6 +104,13 @@ const DrawerConfig: TConfig = {
       description: 'Callback invoked when escape key is pressed.',
       hidden: true,
     },
+    mountNode: {
+      value: undefined,
+      type: PropTypes.Object,
+      description:
+        'Defines where to mount the drawer. It accepts an HTMLElement.',
+      hidden: true,
+    },
     overrides: {
       value: undefined,
       type: PropTypes.Custom,
