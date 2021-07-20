@@ -705,7 +705,14 @@ class Select extends React.Component<PropsT, SelectStateT> {
           tabIndex={0}
           {...sharedProps}
           {...inputContainerProps}
-        />
+        >
+          <input
+            aria-hidden="true"
+            id={this.props.id || null}
+            onFocus={this.handleInputFocus}
+            style={{display: 'none'}}
+          />
+        </InputContainer>
       );
     }
 
