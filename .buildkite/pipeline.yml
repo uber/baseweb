@@ -174,7 +174,7 @@ steps:
     blocked_state: 'passed'
 
   - name: alpha-test-web-code
-    command: 'node scripts/alpha-test-web-code.js'
+    command: 'node --unhandled-rejections=strict scripts/alpha-test-web-code.js'
     plugins:
       'docker-compose#v3.0.3':
         run: baseui
