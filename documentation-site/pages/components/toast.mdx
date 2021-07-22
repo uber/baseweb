@@ -9,7 +9,6 @@ import Example from '../../components/example';
 import Layout from '../../components/layout';
 import Exports from '../../components/exports';
 
-import ToastBasic from 'examples/toast/basic.js';
 import ToastNotification from 'examples/toast/toast-notification.js';
 import ToastSameKeyNotification from 'examples/toast/toast-same-key-notification.js';
 import ToastCloseFromOutside from 'examples/toast/toast-close-from-outside.js';
@@ -45,6 +44,10 @@ If a toast with an identical key already exists, that toast's contents will be u
 - You can force focus to the dismiss button when a Toast mounts with the `autoFocus` prop (on both `Toast` and `Toaster`). Use this with caution and keep in mind that screenreaders may read the Toast's content twice (due to the focus shift and alert role).
 
 ## Examples
+
+<Example title="Toaster Basic Usage" path="toast/basic.js">
+  <ToastBasic />
+</Example>
 
 <Example
   title="Toast Notification Basic Usage"

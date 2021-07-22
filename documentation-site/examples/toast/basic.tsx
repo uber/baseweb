@@ -20,8 +20,9 @@ class ToasterExample extends React.Component {
 export default function Example() {
   return (
     <React.Fragment>
-      <ToasterContainer placement={PLACEMENT.bottomRight} />
-      <ToasterExample />
+      <ToasterContainer placement={PLACEMENT.bottomRight}>
+        <ToasterExample />
+      </ToasterContainer>
     </React.Fragment>
   );
 }
