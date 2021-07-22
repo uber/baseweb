@@ -205,7 +205,6 @@ export class ToasterContainer extends React.Component<
         {toastsToRender}
       </Root>
     );
-    // Only render the portal on the browser, otherwise render children/root.
     if (this.props.usePortal) {
       //Only render the portal in the browser, otherwise just render the children
       return (
