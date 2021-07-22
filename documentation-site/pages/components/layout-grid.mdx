@@ -24,6 +24,7 @@ import OrderExample from 'examples/layout-grid/order.js';
 import BehaviorExample from 'examples/layout-grid/behavior.js';
 import CustomExample from 'examples/layout-grid/custom.js';
 import UnitExample from 'examples/layout-grid/unit.js';
+import CompactExample from 'examples/layout-grid/compact.js';
 import OverridesExample from 'examples/layout-grid/overrides.js';
 
 export default Layout;
@@ -198,6 +199,12 @@ The above change will apply to every grid within the theme's subtree. If you wan
   {/* ... */}
 </Grid>
 ```
+
+<Example title="Compact" path="layout-grid/compact.js">
+  <CompactExample />
+</Example>
+
+If your application has a high density of data or otherwise requires tighter spacing, we provide a compact version of the layout grid, which can be specified with the `gridStyle` prop. This version features smaller gutters and margins, and unlike the default layout grid, it will ignore the grid values provided in your theme. However, you can still override them by manually passing props to `Grid` and `Cell`.
 
 <Example title="Overrides" path="layout-grid/overrides.js">
   <OverridesExample />
