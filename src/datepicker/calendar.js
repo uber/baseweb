@@ -47,7 +47,7 @@ export default class Calendar<T = Date> extends React.Component<
     onMonthChange: () => {},
     onYearChange: () => {},
     onChange: () => {},
-    orientation: ORIENTATION.vertical,
+    orientation: ORIENTATION.horizontal,
     overrides: {},
     peekNextMonth: false,
     adapter: dateFnsAdapter,
@@ -415,7 +415,7 @@ export default class Calendar<T = Date> extends React.Component<
   }
 
   renderMonths = (translations: {ariaRoleDescCalMonth: string}) => {
-    const {overrides = {}} = this.props;
+    const {overrides = {}, orientation} = this.props;
     const monthList = [];
     const [CalendarContainer, calendarContainerProps] = getOverrides(
       overrides.CalendarContainer,
@@ -474,7 +474,9 @@ export default class Calendar<T = Date> extends React.Component<
       );
     }
     return (
-      <MonthContainer {...monthContainerProps}>{monthList}</MonthContainer>
+      <MonthContainer $orientation={orientation} {...monthContainerProps}>
+        {monthList}
+      </MonthContainer>
     );
   };
 
