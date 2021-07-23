@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {ALIGNMENT, BEHAVIOR} from './constants.js';
+import {ALIGNMENT, BEHAVIOR, STYLE} from './constants.js';
 
 import type {OverrideT} from '../helpers/overrides.js';
 
@@ -38,6 +38,8 @@ export type CSSLengthUnitT =
   | 'vmax'
   | '%';
 
+export type GridStyle = $Values<typeof STYLE>;
+
 export type SharedGridPropsT = {
   /** Number of columns at each breakpoint. */
   gridColumns?: ResponsiveT<number>,
@@ -60,6 +62,8 @@ export type GridPropsT = {
   gridMargins?: ResponsiveT<number>,
   /** Maximum width of the grid container. Does not include Margins. Only applies when `behavior` is `fluid`. */
   gridMaxWidth?: number,
+  /** Style for your grid. The `default` style will pull values from the theme, while other styles have preset values that are unaffected by the theme. **/
+  gridStyle?: GridStyle,
   /** Overrides for your grid. */
   overrides?: {
     Grid?: OverrideT,
@@ -79,6 +83,8 @@ export type StyledGridPropsT = {
   $gridMaxWidth?: number,
   /** Modify the CSS length unit used to measure columns and rows. Defaults to theme value. */
   $gridUnit?: CSSLengthUnitT,
+  /** Style for your grid. The `default` style will pull values from the theme, while other styles have preset values that are unaffected by the theme. **/
+  $gridStyle?: GridStyle,
 };
 
 export type CellPropsT = {

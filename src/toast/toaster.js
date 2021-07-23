@@ -44,8 +44,6 @@ export class ToasterContainer extends React.Component<
 
   constructor(props: ToasterPropsT) {
     super(props);
-
-    toasterRef = this;
   }
 
   state = {
@@ -58,6 +56,7 @@ export class ToasterContainer extends React.Component<
   toastId: number = 0;
 
   componentDidMount() {
+    toasterRef = this;
     this.setState({isMounted: true});
   }
 
@@ -205,31 +204,28 @@ export class ToasterContainer extends React.Component<
         {toastsToRender}
       </Root>
     );
-    if (this.state.isMounted) {
-      // Only render on the browser (portals aren't supported server-side)
-      if (this.props.usePortal) {
-        if (__BROWSER__) {
-          return (
-            <>
-              {ReactDOM.createPortal(
+    if (this.props.usePortal) {
+      //Only render the portal in the browser, otherwise just render the children
+      return (
+        <>
+          {__BROWSER__
+            ? ReactDOM.createPortal(
                 root,
                 // $FlowFixMe
                 document.body,
-              )}
-              {this.props.children}
-            </>
-          );
-        }
-      } else {
-        return (
-          <>
-            {root}
-            {this.props.children}
-          </>
-        );
-      }
+              )
+            : null}
+          {this.props.children}
+        </>
+      );
+    } else {
+      return (
+        <>
+          {root}
+          {this.props.children}
+        </>
+      );
     }
-    return null;
   }
 }
 
@@ -248,7 +244,7 @@ const toaster = {
       return toasterInstance.show({...props, children});
     } else if (__DEV__) {
       throw new Error(
-        'Please make sure to add the ToasterContainer to your application before adding toasts! You can find more information here: https://baseweb.design/components/toast',
+        'Please make sure to add the ToasterContainer to your application, and it is mounted, before adding toasts! You can find more information here: https://baseweb.design/components/toast',
       );
     }
   },
