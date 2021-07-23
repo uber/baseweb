@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import {getOverrides} from '../helpers/overrides.js';
+import {STYLE, STYLE_VALUES} from './constants.js';
 import {StyledGrid as DefaultStyledGrid} from './styled-components.js';
 
 import type {GridPropsT, SharedGridPropsT} from './types.js';
@@ -24,6 +25,7 @@ export default function Grid({
   gridGutters,
   gridMargins,
   gridMaxWidth,
+  gridStyle = STYLE.default,
   gridUnit,
   overrides = {},
 }: GridPropsT) {
@@ -31,6 +33,20 @@ export default function Grid({
     overrides.Grid,
     DefaultStyledGrid,
   );
+  const presetStyleValues = STYLE_VALUES[gridStyle];
+  const gridStyleValues = presetStyleValues && {
+    $gridGutters: presetStyleValues.gutters,
+    $gridMargins: presetStyleValues.margins,
+    $gridMaxWidth: presetStyleValues.maxWidth,
+    $gridUnit: presetStyleValues.unit,
+  };
+  const gridContextStyleValues = presetStyleValues && {
+    gridColumns: presetStyleValues.columns,
+    gridGaps: presetStyleValues.gaps,
+    gridGutters: presetStyleValues.gutters,
+    gridUnit: presetStyleValues.unit,
+  };
+
   return (
     <StyledGrid
       $align={align}
@@ -39,10 +55,17 @@ export default function Grid({
       $gridMargins={gridMargins}
       $gridMaxWidth={gridMaxWidth}
       $gridUnit={gridUnit}
+      {...gridStyleValues}
       {...overrideProps}
     >
       <GridContext.Provider
-        value={{gridColumns, gridGaps, gridGutters, gridUnit}}
+        value={{
+          gridColumns,
+          gridGaps,
+          gridGutters,
+          gridUnit,
+          ...gridContextStyleValues,
+        }}
       >
         {children}
       </GridContext.Provider>

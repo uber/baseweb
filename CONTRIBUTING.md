@@ -7,19 +7,73 @@ page: Contributing
 
 ## Getting started
 
-1. Clone the repo locally and run `yarn` to install dependencies from npm.
+To quickly launch a web page to start developing, run the commands below to install dependencies and launch the page.
 
 ```bash
 git clone git@github.com:uber/baseweb.git
 cd baseweb
 yarn
+yarn ladle serve
 ```
 
-2. To start a website to develop against, run `yarn documentation:dev`.
-3. To unit test your changes run `yarn test` or `yarn test --watch` to continuously run the relevant tests.
+## Testing
 
-Do you miss a component? Would you like to extend the featureset of a component?
-This document helps you navigate the process.
+There are a variety of testing strategies included in the project. Unit tests and visual regression tests are the most common. Most bug fixes will begin with a failing test. You also may want to add a new page for prototyping; this is done by creating a new `.scenario.js` file within a component `__tests__` directory. If you add a new file, also add that into the `__tests__/component-name.stories.js` file.
+
+### Unit tests
+
+Unit test files are located in component directories (`src/button/__tests__`) and end with a `.test.js` extension. Create a new file or add to an existing one following [jest](https://jestjs.io/) and [react-testing-library](https://testing-library.com/docs/react-testing-library/intro/) conventions.
+
+```bash
+# to run all unit tests:
+yarn unit-test
+
+# to run a specific unit test:
+yarn unit-test src/button/__tests__/button.test.js
+````
+
+### End-to-end tests
+
+E2E test files end with a `.e2e.js` extension. These tests can launch a web page and interact with it using the [puppeteer](https://pptr.dev/) library. `mount` function calls within those tests reference the names of `.scenario.js` files. These tests require the baseui library to be compiled before running, so will involve a couple more steps than other testing strategies. If you make a change to library code, you will need to recompile before running e2e tests.
+
+```bash
+# in one shell build the library:
+yarn e2e:build
+
+# in a second shell serve the web pages:
+yarn e2e:serve
+
+# in a third shell run the integration tests:
+yarn e2e:test src/button/__tests__/button.e2e.js
+```
+
+### Visual regression tests
+
+VRTs take screenshots of web pages and assert pixel-perfect accuracy between pull-requests. More detailed information can be found [here](https://github.com/uber/baseweb/blob/master/vrt/README.md). If you create a new `.scenario.js` file, the VRT job will take a screenshot of it. Be sure not to add any changing data here like timestamps.
+
+### Type checking
+
+The main baseui code has type-checking with [flow](https://flow.org/). Typescript type definitions are also included in component directories at `src/button/index.d.ts`. Our documentation site has examples in both flow and typescript. You'll want to type-check both.
+
+```bash
+yarn flow
+
+yarn tsc
+```
+
+### Linting
+
+```bash
+yarn lint
+```
+
+## Documentation
+
+The [project documentation](https://baseweb.design/) is built using [next.js](https://nextjs.org/) and is located in the [`documentation-site`](https://github.com/uber/baseweb/tree/master/documentation-site) directory. To start the project, you will want to follow the instructions below.
+
+```bash
+yarn documentation:dev:watch
+```
 
 ## Contributions we won't accept
 

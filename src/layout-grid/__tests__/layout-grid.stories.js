@@ -17,6 +17,7 @@ import LayoutGridSkip from './layout-grid-skip.scenario.js';
 import LayoutGridUnit from './layout-grid-unit.scenario.js';
 import LayoutGridWrap from './layout-grid-wrap.scenario.js';
 import LayoutGridDefault from './layout-grid.scenario.js';
+import LayoutGridCompact from './layout-grid-compact.scenario.js';
 
 export const Align = () => <LayoutGridAlign />;
 export const Custom = () => <LayoutGridCustom />;
@@ -28,3 +29,4 @@ export const Skip = () => <LayoutGridSkip />;
 export const Unit = () => <LayoutGridUnit />;
 export const Wrap = () => <LayoutGridWrap />;
 export const LayoutGrid = () => <LayoutGridDefault />;
+export const Compact = () => <LayoutGridCompact />;

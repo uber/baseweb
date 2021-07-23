@@ -14,6 +14,11 @@ export enum BEHAVIOR {
   fixed = 'fixed',
 }
 
+export enum STYLE {
+  default = 'default',
+  compact = 'compact',
+}
+
 export type Responsive<T> = T | T[];
 
 export interface GridOverrides {
@@ -33,6 +38,7 @@ export interface GridProps {
   gridGutters?: Responsive<number>;
   gridMargins?: Responsive<number>;
   gridMaxWidth?: number;
+  gridStyle?: STYLE;
   gridUnit?: CSSLengthUnitT;
   overrides?: GridOverrides;
 }
@@ -43,6 +49,7 @@ export interface StyledGridProps {
   $gridGutters?: Responsive<number>;
   $gridMargins?: Responsive<number>;
   $gridMaxWidth?: number;
+  $gridStyle?: STYLE;
   $gridUnit?: CSSLengthUnitT;
 }
 
