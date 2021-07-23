@@ -116,9 +116,9 @@ class Button extends React.Component<
         {isLoading ? (
           <React.Fragment>
             {/* This is not meant to be overridable by users */}
-            <div style={{opacity: 0, display: 'flex', height: '0px'}}>
+            <span style={{opacity: 0, display: 'flex', height: '0px'}}>
               <ButtonInternals {...this.props} />
-            </div>
+            </span>
             <LoadingSpinnerContainer
               {...sharedProps}
               {...loadingSpinnerContainerProps}
@@ -127,7 +127,9 @@ class Button extends React.Component<
             </LoadingSpinnerContainer>
           </React.Fragment>
         ) : (
-          <ButtonInternals {...this.props} />
+          <span>
+            <ButtonInternals {...this.props} />
+          </span>
         )}
       </BaseButton>
     );
