@@ -127,7 +127,12 @@ class Button extends React.Component<
             </LoadingSpinnerContainer>
           </React.Fragment>
         ) : (
-          <span>
+          <span
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+            }}
+          >
             <ButtonInternals {...this.props} />
           </span>
         )}
