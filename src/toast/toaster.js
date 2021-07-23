@@ -208,7 +208,7 @@ export class ToasterContainer extends React.Component<
       //Only render the portal in the browser, otherwise just render the children
       return (
         <>
-          {__BROWSER__
+          {this.state.isMounted && __BROWSER__
             ? ReactDOM.createPortal(
                 root,
                 // $FlowFixMe
