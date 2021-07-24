@@ -204,28 +204,20 @@ export class ToasterContainer extends React.Component<
         {toastsToRender}
       </Root>
     );
-    if (this.props.usePortal) {
-      //Only render the portal in the browser, otherwise just render the children
-      return (
-        <>
-          {this.state.isMounted && __BROWSER__
-            ? ReactDOM.createPortal(
-                root,
-                // $FlowFixMe
-                document.body,
-              )
-            : null}
-          {this.props.children}
-        </>
-      );
-    } else {
-      return (
-        <>
-          {root}
-          {this.props.children}
-        </>
-      );
-    }
+
+    //Only render the portal in the browser, otherwise render the toasts and children
+    return (
+      <>
+        {this.props.usePortal && this.state.isMounted && __BROWSER__
+          ? ReactDOM.createPortal(
+              root,
+              // $FlowFixMe
+              document.body,
+            )
+          : root}
+        {this.props.children}
+      </>
+    );
   }
 }
 
