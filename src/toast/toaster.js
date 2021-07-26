@@ -44,6 +44,8 @@ export class ToasterContainer extends React.Component<
 
   constructor(props: ToasterPropsT) {
     super(props);
+
+    toasterRef = this;
   }
 
   state = {
@@ -56,7 +58,6 @@ export class ToasterContainer extends React.Component<
   toastId: number = 0;
 
   componentDidMount() {
-    toasterRef = this;
     this.setState({isMounted: true});
   }
 
@@ -204,27 +205,23 @@ export class ToasterContainer extends React.Component<
         {toastsToRender}
       </Root>
     );
-    if (this.props.usePortal) {
-      //Only render the portal in the browser, otherwise just render the children
+
+    //Only render the portal in the browser, otherwise render the toasts and children
+    if (this.state.isMounted) {
       return (
         <>
-          {__BROWSER__
+          {this.props.usePortal && __BROWSER__
             ? ReactDOM.createPortal(
                 root,
                 // $FlowFixMe
                 document.body,
               )
-            : null}
+            : root}
           {this.props.children}
         </>
       );
     } else {
-      return (
-        <>
-          {root}
-          {this.props.children}
-        </>
-      );
+      return <>{this.props.children}</>;
     }
   }
 }
