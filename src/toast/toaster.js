@@ -44,6 +44,8 @@ export class ToasterContainer extends React.Component<
 
   constructor(props: ToasterPropsT) {
     super(props);
+
+    toasterRef = this;
   }
 
   state = {
@@ -56,7 +58,6 @@ export class ToasterContainer extends React.Component<
   toastId: number = 0;
 
   componentDidMount() {
-    toasterRef = this;
     this.setState({isMounted: true});
   }
 
