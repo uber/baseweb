@@ -9,6 +9,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import {getOverride, getOverrideProps} from '../helpers/overrides.js';
+import {LevelContext} from '../heading/index.js';
 import {
   Action as StyledAction,
   Body as StyledBody,
@@ -24,6 +25,20 @@ import type {CardsPropsT} from './types.js';
 export function hasThumbnail(props: {+thumbnail?: string}) {
   return !!props.thumbnail;
 }
+
+const SemanticTitle = ({children, ...restProps}) => {
+  const levels = ['', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
+
+  return (
+    <LevelContext.Consumer>
+      {level => (
+        <StyledTitle $as={levels[level]} {...restProps}>
+          {children}
+        </StyledTitle>
+      )}
+    </LevelContext.Consumer>
+  );
+};
 
 function Card(props: CardsPropsT) {
   const {
@@ -53,7 +68,7 @@ function Card(props: CardsPropsT) {
   const HeaderImage = getOverride(HeaderImageOverride) || StyledHeaderImage;
   const Root = getOverride(RootOverride) || StyledRoot;
   const Thumbnail = getOverride(ThumbnailOverride) || StyledThumbnail;
-  const Title = getOverride(TitleOverride) || StyledTitle;
+  const Title = getOverride(TitleOverride) || SemanticTitle;
 
   const headerImageProps =
     typeof headerImage === 'string' ? {src: headerImage} : headerImage;

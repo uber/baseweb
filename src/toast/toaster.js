@@ -205,27 +205,23 @@ export class ToasterContainer extends React.Component<
         {toastsToRender}
       </Root>
     );
-    if (this.props.usePortal) {
-      //Only render the portal in the browser, otherwise just render the children
+
+    //Only render the portal in the browser, otherwise render the toasts and children
+    if (this.state.isMounted) {
       return (
         <>
-          {__BROWSER__
+          {this.props.usePortal && __BROWSER__
             ? ReactDOM.createPortal(
                 root,
                 // $FlowFixMe
                 document.body,
               )
-            : null}
+            : root}
           {this.props.children}
         </>
       );
     } else {
-      return (
-        <>
-          {root}
-          {this.props.children}
-        </>
-      );
+      return <>{this.props.children}</>;
     }
   }
 }
@@ -245,7 +241,7 @@ const toaster = {
       return toasterInstance.show({...props, children});
     } else if (__DEV__) {
       throw new Error(
-        'Please make sure to add the ToasterContainer to your application before adding toasts! You can find more information here: https://baseweb.design/components/toast',
+        'Please make sure to add the ToasterContainer to your application, and it is mounted, before adding toasts! You can find more information here: https://baseweb.design/components/toast',
       );
     }
   },
