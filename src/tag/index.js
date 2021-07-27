@@ -10,7 +10,6 @@ export {default as Tag} from './tag.js';
 export {
   Root as StyledRoot,
   Action as StyledAction,
-  ActionIcon as StyledActionIcon,
   Text as StyledText,
 } from './styled-components.js';
 export {KIND, VARIANT, SIZE} from './constants.js';
