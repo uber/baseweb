@@ -29,7 +29,7 @@ export type PropsT<OptionT = unknown> = {
   onChange?: (value: string, option: OptionT | null) => any;
   onFocus?: (event: React.FocusEvent<HTMLInputElement>) => any;
   onSubmit?: (params: {closeListbox: () => void; value: string}) => any;
-  options: OptionT;
+  options: OptionT[];
   overrides?: ComboboxOverrides;
   size?: SIZE[keyof SIZE];
   value: string;
