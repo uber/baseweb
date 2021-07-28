@@ -54,6 +54,7 @@ export interface ToasterOverrides {
   Root?: Override<ToasterSharedStylePropsArg>;
   ToastBody?: Override<SharedStylePropsArg>;
   ToastCloseIcon?: Override<SharedStylePropsArg>;
+  ToastInnerContainer?: Override<SharedStylePropsArg>;
 }
 export interface ToasterProps {
   overrides?: ToasterOverrides;
