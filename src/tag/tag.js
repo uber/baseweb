@@ -111,9 +111,9 @@ const Tag = React.forwardRef<PropsT, HTMLSpanElement>((props, ref) => {
   const titleText = title || getTextFromChildren(children);
   const isButton = (clickable || closeable) && !disabled;
   const actionSize = {
-    [SIZE.small]: 12,
-    [SIZE.medium]: 16,
-    [SIZE.large]: 20,
+    [SIZE.small]: 21.85,
+    [SIZE.medium]: 29.54,
+    [SIZE.large]: 36.42,
   }[size];
 
   // Capitalize for JSX
