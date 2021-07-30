@@ -1,12 +1,11 @@
 // @flow
 import * as React from 'react';
-import {Toast, KIND} from 'baseui/toast';
+import {Toast, KIND, ToasterContainer} from 'baseui/toast';
 import {
   Button,
   SIZE as BUTTON_SIZE,
   KIND as BUTTON_KIND,
 } from 'baseui/button';
-import {ToasterContainer} from '../../../src/toast';
 
 export default function Example() {
   return (

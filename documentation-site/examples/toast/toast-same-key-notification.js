@@ -1,9 +1,8 @@
 // @flow
 import * as React from 'react';
-import {toaster} from 'baseui/toast';
+import {toaster, ToasterContainer} from 'baseui/toast';
 import {Button, SIZE} from 'baseui/button';
 import {Block} from 'baseui/block';
-import {ToasterContainer} from '../../../src/toast';
 
 export default function Example() {
   const [count, setCount] = React.useState(0);
