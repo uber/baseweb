@@ -1,4 +1,27 @@
 import * as React from 'react';
+import {Override} from '../overrides';
+
+export interface AppNavBarOverridesT {
+  Root?: Override<any>;
+  AppName?: Override<any>;
+  MainMenuItem?: Override<any>;
+  PrimaryMenuContainer?: Override<any>;
+  ProfileTileContainer?: Override<any>;
+  SecondaryMenuContainer?: Override<any>;
+  Spacing?: Override<any>;
+  SubnavContainer?: Override<any>;
+  UserMenuProfileListItem?: Override<any>;
+  UserProfileInfoContainer?: Override<any>;
+  UserProfilePictureContainer?: Override<any>;
+  UserProfileTileContainer?: Override<any>;
+
+  // nested overrides
+  MobileDrawer?: Override<any>;
+  MobileMenu?: Override<any>;
+  SideMenuButton?: Override<any>;
+  UserMenuButton?: Override<any>;
+  UserMenu?: Override<any>;
+}
 
 export type NavItemT = {
   active?: boolean;
@@ -26,6 +49,7 @@ export type AppNavBarPropsT = UserMenuPropsT & {
   mainItems?: NavItemT[];
   mapItemToNode?: (item: NavItemT) => React.ReactNode;
   onMainItemSelect?: (item: NavItemT) => any;
+  overrides?: AppNavBarOverridesT;
   title?: React.ReactNode;
 };
 
