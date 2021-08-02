@@ -126,7 +126,7 @@ class Button extends React.Component<
               <LoadingSpinner {...sharedProps} {...loadingSpinnerProps} />
             </LoadingSpinnerContainer>
           </React.Fragment>
-        ) : (
+        ) : typeof this.props.children === 'string' ? (
           <span
             style={{
               display: 'flex',
@@ -135,6 +135,8 @@ class Button extends React.Component<
           >
             <ButtonInternals {...this.props} />
           </span>
+        ) : (
+          <ButtonInternals {...this.props} />
         )}
       </BaseButton>
     );
