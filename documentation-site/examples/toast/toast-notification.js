@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import {Toast, KIND} from 'baseui/toast';
+import {Toast, KIND, ToasterContainer} from 'baseui/toast';
 import {
   Button,
   SIZE as BUTTON_SIZE,
@@ -10,6 +10,7 @@ import {
 export default function Example() {
   return (
     <React.Fragment>
+      <ToasterContainer />
       <Toast>Default info notification</Toast>
       <Toast kind={KIND.positive}>Positive notification</Toast>
       <Toast kind={KIND.warning}>Warning notification</Toast>

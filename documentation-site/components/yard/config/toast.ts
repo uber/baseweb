@@ -1,3 +1,9 @@
+/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
 import {toaster, ToasterContainer, PLACEMENT} from 'baseui/toast';
 import {Button, SIZE} from 'baseui/button';
 import {Block} from 'baseui/block';
@@ -9,7 +15,7 @@ const buttonProps = require('!!extract-react-types-loader!../../../../src/button
 const blockProps = require('!!extract-react-types-loader!../../../../src/block/block.js');
 
 const toastConfig: TConfig = {
-  componentName: 'ToasterContainer',
+  componentName: 'React.Fragment',
   imports: {
     'baseui/toast': {
       named: ['toaster', 'ToasterContainer'],
@@ -50,7 +56,8 @@ const toastConfig: TConfig = {
       },
     },
     children: {
-      value: `<Button onClick={()=>{
+      value: `<ToasterContainer />
+        <Button onClick={()=>{
           let toastKey;
           const msg = 'Use toaster.info(), toaster.positive(), toaster.warning(), or toaster.negative()';
           const ok = (
