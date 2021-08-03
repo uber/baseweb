@@ -16,11 +16,12 @@ export default function Example() {
   };
 
   return (
-    <ToasterContainer>
+    <React.Fragment>
+      <ToasterContainer />
       <Button onClick={showToast}>Show notification</Button>
       <Button disabled={!toastKey} onClick={closeToast}>
         Close notification
       </Button>
-    </ToasterContainer>
+    </React.Fragment>
   );
 }
