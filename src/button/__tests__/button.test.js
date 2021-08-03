@@ -61,23 +61,28 @@ describe('Button Component', () => {
 
   test('simulate isLoading with google translate does not throw with string child', () => {
     const {rerender, container} = render(
-      <Button isLoading={false}>This is not ok</Button>,
+      <Button isLoading={false}>Lorem ipsum</Button>,
     );
-    container.querySelector('button').innerHTML = '<span>This is not ok</span>';
+    container.querySelector('button').innerHTML = '<font>Hello world</font>';
     expect(() =>
-      rerender(<Button isLoading={true}>This is not ok</Button>),
+      rerender(<Button isLoading={true}>Lorem ipsum</Button>),
     ).not.toThrow();
   });
 
   test('simulate isLoading with google translate does not throw with element child', () => {
     const {rerender, container} = render(
       <Button isLoading={false}>
-        <span>This is not ok</span>
+        <span>This is ok</span>
       </Button>,
     );
-    container.querySelector('button').innerHTML = '<span>This is not ok</span>';
+    container.querySelector('button>span').innerHTML =
+      '<font>This is not ok</font>';
     expect(() =>
-      rerender(<Button isLoading={true}>This is not ok</Button>),
+      rerender(
+        <Button isLoading={true}>
+          <span>This is ok</span>
+        </Button>,
+      ),
     ).not.toThrow();
   });
 });
