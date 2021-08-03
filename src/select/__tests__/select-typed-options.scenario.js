@@ -1,0 +1,32 @@
+// @flow
+
+import * as React from 'react';
+
+import SelectFunctional from '../select-component-functional.js';
+
+type OptionT = {title: string, hex: string};
+
+const options: OptionT[] = [
+  {title: 'AliceBlue', hex: '#F0F8FF'},
+  {title: 'AntiqueWhite', hex: '#FAEBD7'},
+  {title: 'Aqua', hex: '#00FFFF'},
+  {title: 'Aquamarine', hex: '#7FFFD4'},
+  {title: 'Azure', hex: '#F0FFFF'},
+  {title: 'Beige', hex: '#F5F5DC'},
+];
+
+export default function Scenario() {
+  const [value, setValue] = React.useState([]);
+  return (
+    <SelectFunctional
+      options={options}
+      onChange={({value}) => {
+        console.log(value[0].title);
+        setValue(value);
+      }}
+      value={value}
+      labelKey="title"
+      valueKey="hex"
+    />
+  );
+}
