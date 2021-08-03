@@ -20,8 +20,14 @@ export default function Scenario() {
   return (
     <SelectFunctional
       options={options}
+      // inspecting 'value' below in IDE shows a ValueT<empty> type
       onChange={({value}) => {
+        // passes flow check
         console.log(value[0].title);
+
+        // passes flow check, but should not
+        console.log(value[0].does_not_exist);
+
         setValue(value);
       }}
       value={value}
