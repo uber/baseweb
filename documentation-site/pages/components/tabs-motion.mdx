@@ -152,6 +152,10 @@ The animated highlight that slides to the active tab is absolutely positioned an
 
 To get around this potential issue we use a [`ResizeObserver`](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver), which watches each tab for sizing updates and does a highlight re-layout as needed. The `ResizeObserver` has full support across modern browsers but doesn't exist in any version of Internet Explorer. If you need this behavior in IE, we suggest using a polyfill for the `ResizeObserver` such as [this one](https://github.com/juggle/resize-observer). We do not include the polyfill by default to avoid adding a few KB to the bundle size of the Tabs component.
 
+### Server Side Rendering
+
+The Tabs component set the id values of the individual Tab components it controls in order to update aria attributes for accessibility. To do this, [`react-uid`](https://www.npmjs.com/package/react-uid) is used to generate a unique ID value when constructed but is not SSR friendly. To get around this, you can set the `uid` property of the Tabs component which will be used as to generate the Tab and id values.
+
 ## API
 
 <ApiTable
