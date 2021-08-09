@@ -1,3 +1,9 @@
+/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
 import {ButtonGroup, MODE, SIZE, SHAPE} from 'baseui/button-group';
 import {Button} from 'baseui/button';
 import {PropTypes} from 'react-view';
@@ -61,7 +67,7 @@ const ButtonGroupConfig: TConfig = {
     onClick: {
       value: undefined,
       type: PropTypes.Function,
-      description: `Function called when any button is clicked.`,
+      description: `Function called when any button is clicked. The index of the clicked button is provided as second parameter.`,
       hidden: true,
     },
     selected: {
