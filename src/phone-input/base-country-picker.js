@@ -84,6 +84,8 @@ export default function CountryPicker(props: CountrySelectPropsT) {
         width: 0,
       },
       props: {
+        // https://github.com/uber/baseweb/issues/3846
+        autocomplete: 'chrome-off',
         'aria-label': 'Select country',
       },
     },
