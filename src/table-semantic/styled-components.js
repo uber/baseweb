@@ -214,6 +214,7 @@ type StyledTableBodyCellPropsT = {
   $rowIndex?: ?number,
   $size?: SizeT,
   $isNumeric?: ?boolean,
+  $isLastRow: ?boolean,
 };
 
 export const StyledTableBodyCell = styled<StyledTableBodyCellPropsT>(
