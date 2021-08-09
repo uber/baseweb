@@ -218,7 +218,7 @@ type StyledTableBodyCellPropsT = {
 
 export const StyledTableBodyCell = styled<StyledTableBodyCellPropsT>(
   'td',
-  ({$theme, $size, $divider, $isNumeric}) => {
+  ({$theme, $size, $divider, $isNumeric, $isLastRow}) => {
     const borderDir: string = $theme.direction === 'rtl' ? 'Left' : 'Right';
     const borderVertical =
       $divider === DIVIDER.vertical || $divider === DIVIDER.grid;
@@ -237,15 +237,18 @@ export const StyledTableBodyCell = styled<StyledTableBodyCellPropsT>(
       color: $theme.colors.contentPrimary,
       textAlign: $isNumeric ? 'right' : null,
       verticalAlign: 'top',
-      borderBottomColor: borderHorizontal
-        ? $theme.borders.border300.borderColor
-        : null,
-      borderBottomStyle: borderHorizontal
-        ? $theme.borders.border300.borderStyle
-        : null,
-      borderBottomWidth: borderHorizontal
-        ? $theme.borders.border300.borderWidth
-        : null,
+      borderBottomColor:
+        !$isLastRow && borderHorizontal
+          ? $theme.borders.border300.borderColor
+          : null,
+      borderBottomStyle:
+        !$isLastRow && borderHorizontal
+          ? $theme.borders.border300.borderStyle
+          : null,
+      borderBottomWidth:
+        !$isLastRow && borderHorizontal
+          ? $theme.borders.border300.borderWidth
+          : null,
       ':not(:last-child)': {
         [`border${borderDir}Color`]: borderVertical
           ? $theme.borders.border300.borderColor
