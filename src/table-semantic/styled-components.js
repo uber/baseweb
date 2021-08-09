@@ -197,24 +197,8 @@ type StyledTableBodyRowPropsT = {
 
 export const StyledTableBodyRow = styled<StyledTableBodyRowPropsT>(
   'tr',
-  ({$theme, $divider}) => {
-    const borderHorizontal =
-      $divider === undefined ||
-      $divider === DIVIDER.horizontal ||
-      $divider === DIVIDER.grid;
-
+  ({$theme}) => {
     return {
-      ':not(:last-child)': {
-        borderBottomColor: borderHorizontal
-          ? $theme.borders.border300.borderColor
-          : null,
-        borderBottomStyle: borderHorizontal
-          ? $theme.borders.border300.borderStyle
-          : null,
-        borderBottomWidth: borderHorizontal
-          ? $theme.borders.border300.borderWidth
-          : null,
-      },
       ':hover': {
         backgroundColor: $theme.colors.tableStripedBackground,
       },
@@ -238,6 +222,10 @@ export const StyledTableBodyCell = styled<StyledTableBodyCellPropsT>(
     const borderDir: string = $theme.direction === 'rtl' ? 'Left' : 'Right';
     const borderVertical =
       $divider === DIVIDER.vertical || $divider === DIVIDER.grid;
+    const borderHorizontal =
+      $divider === undefined ||
+      $divider === DIVIDER.horizontal ||
+      $divider === DIVIDER.grid;
     const padding = sizeToCellPadding($theme, $size);
 
     return {
@@ -249,7 +237,15 @@ export const StyledTableBodyCell = styled<StyledTableBodyCellPropsT>(
       color: $theme.colors.contentPrimary,
       textAlign: $isNumeric ? 'right' : null,
       verticalAlign: 'top',
-
+      borderBottomColor: borderHorizontal
+        ? $theme.borders.border300.borderColor
+        : null,
+      borderBottomStyle: borderHorizontal
+        ? $theme.borders.border300.borderStyle
+        : null,
+      borderBottomWidth: borderHorizontal
+        ? $theme.borders.border300.borderWidth
+        : null,
       ':not(:last-child)': {
         [`border${borderDir}Color`]: borderVertical
           ? $theme.borders.border300.borderColor
