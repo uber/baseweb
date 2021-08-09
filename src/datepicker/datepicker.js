@@ -407,8 +407,11 @@ export default class Datepicker<T = Date> extends React.Component<
     );
 
     const placeholder =
-      this.props.placeholder ||
-      (this.props.range ? 'YYYY/MM/DD – YYYY/MM/DD' : 'YYYY/MM/DD');
+      this.props.placeholder || this.props.placeholder === ''
+        ? this.props.placeholder
+        : this.props.range
+        ? 'YYYY/MM/DD – YYYY/MM/DD'
+        : 'YYYY/MM/DD';
 
     return (
       <LocaleContext.Consumer>
