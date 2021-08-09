@@ -58,7 +58,7 @@ export const StyledTable = styled<StyledTablePropsT>(
   'table',
   ({$theme, $width}) => {
     return {
-      borderCollapse: 'collapse',
+      borderSpacing: '0',
       boxSizing: 'border-box',
       minWidth: '100%',
       width: $width || null,
