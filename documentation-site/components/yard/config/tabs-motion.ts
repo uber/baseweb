@@ -1,3 +1,9 @@
+/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
 import {Tabs, Tab, ORIENTATION, FILL} from 'baseui/tabs-motion';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
@@ -104,6 +110,12 @@ const TabsConfig: TConfig = {
           $isActive: 'isActive',
         },
       },
+    },
+    uid: {
+      value: undefined,
+      type: PropTypes.String,
+      description:
+        'Unique id supplied to the Tabs component, and a prefix for the individual Tab components, to ensure both accessibility and SSR safety.',
     },
   },
   mapTokensToProps: {

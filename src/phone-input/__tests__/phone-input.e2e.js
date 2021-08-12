@@ -34,7 +34,14 @@ describe('PhoneInput', () => {
   });
 
   it('passes basic a11y tests', async () => {
-    const accessibilityReport = await analyzeAccessibility(page);
+    const accessibilityReport = await analyzeAccessibility(page, {
+      rules: [
+        {
+          id: 'autocomplete-valid',
+          enabled: false,
+        },
+      ],
+    });
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 

@@ -231,7 +231,7 @@ class TableBuilder<T> extends React.Component<
       );
     }
 
-    function renderCell(col, colIndex, row, rowIndex) {
+    function renderCell(col, colIndex, row, rowIndex, lastRowindex) {
       const colOverrides = col.overrides || {};
 
       const [ColTableBodyCell, colTableBodyCellProps] = getOverrides(
@@ -248,6 +248,7 @@ class TableBuilder<T> extends React.Component<
           $row={row}
           $rowIndex={rowIndex}
           $isNumeric={col.numeric}
+          $isLastRow={rowIndex === lastRowindex}
           $size={size}
           {...tableBodyCellProps}
           {...colTableBodyCellProps}
@@ -313,7 +314,7 @@ class TableBuilder<T> extends React.Component<
                   {...tableBodyRowProps}
                 >
                   {columns.map((col, colIndex) =>
-                    renderCell(col, colIndex, row, rowIndex),
+                    renderCell(col, colIndex, row, rowIndex, data.length - 1),
                   )}
                 </TableBodyRow>
               ))}

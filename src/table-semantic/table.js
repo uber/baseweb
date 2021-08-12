@@ -155,6 +155,7 @@ class Table extends React.Component<TablePropsT> {
                       $divider={divider}
                       $row={row}
                       $rowIndex={rowIndex}
+                      $isLastRow={rowIndex === data.length - 1}
                       $size={size}
                       {...tableBodyCellProps}
                     >
