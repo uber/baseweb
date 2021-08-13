@@ -26,7 +26,7 @@ function Delete(props: IconPropsT, ref) {
   );
   return (
     <Icon
-      viewBox="0 0 24 24"
+      viewBox="5 5 13.186 13.186"
       ref={ref}
       title={title}
       size={size}
