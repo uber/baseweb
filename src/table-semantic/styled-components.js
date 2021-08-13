@@ -58,7 +58,7 @@ export const StyledTable = styled<StyledTablePropsT>(
   'table',
   ({$theme, $width}) => {
     return {
-      borderCollapse: 'collapse',
+      borderSpacing: '0',
       boxSizing: 'border-box',
       minWidth: '100%',
       width: $width || null,
@@ -197,24 +197,8 @@ type StyledTableBodyRowPropsT = {
 
 export const StyledTableBodyRow = styled<StyledTableBodyRowPropsT>(
   'tr',
-  ({$theme, $divider}) => {
-    const borderHorizontal =
-      $divider === undefined ||
-      $divider === DIVIDER.horizontal ||
-      $divider === DIVIDER.grid;
-
+  ({$theme}) => {
     return {
-      ':not(:last-child)': {
-        borderBottomColor: borderHorizontal
-          ? $theme.borders.border300.borderColor
-          : null,
-        borderBottomStyle: borderHorizontal
-          ? $theme.borders.border300.borderStyle
-          : null,
-        borderBottomWidth: borderHorizontal
-          ? $theme.borders.border300.borderWidth
-          : null,
-      },
       ':hover': {
         backgroundColor: $theme.colors.tableStripedBackground,
       },
@@ -230,14 +214,19 @@ type StyledTableBodyCellPropsT = {
   $rowIndex?: ?number,
   $size?: SizeT,
   $isNumeric?: ?boolean,
+  $isLastRow?: ?boolean,
 };
 
 export const StyledTableBodyCell = styled<StyledTableBodyCellPropsT>(
   'td',
-  ({$theme, $size, $divider, $isNumeric}) => {
+  ({$theme, $size, $divider, $isNumeric, $isLastRow}) => {
     const borderDir: string = $theme.direction === 'rtl' ? 'Left' : 'Right';
     const borderVertical =
       $divider === DIVIDER.vertical || $divider === DIVIDER.grid;
+    const borderHorizontal =
+      $divider === undefined ||
+      $divider === DIVIDER.horizontal ||
+      $divider === DIVIDER.grid;
     const padding = sizeToCellPadding($theme, $size);
 
     return {
@@ -249,7 +238,18 @@ export const StyledTableBodyCell = styled<StyledTableBodyCellPropsT>(
       color: $theme.colors.contentPrimary,
       textAlign: $isNumeric ? 'right' : null,
       verticalAlign: 'top',
-
+      borderBottomColor:
+        !$isLastRow && borderHorizontal
+          ? $theme.borders.border300.borderColor
+          : null,
+      borderBottomStyle:
+        !$isLastRow && borderHorizontal
+          ? $theme.borders.border300.borderStyle
+          : null,
+      borderBottomWidth:
+        !$isLastRow && borderHorizontal
+          ? $theme.borders.border300.borderWidth
+          : null,
       ':not(:last-child)': {
         [`border${borderDir}Color`]: borderVertical
           ? $theme.borders.border300.borderColor
