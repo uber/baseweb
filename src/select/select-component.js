@@ -16,7 +16,7 @@ import {LocaleContext} from '../locale/index.js';
 import type {LocaleT} from '../locale/types.js';
 import {Popover, PLACEMENT} from '../popover/index.js';
 import {Spinner} from '../spinner/index.js';
-import getBuiId from '../utils/get-bui-id.js';
+import {uid} from 'react-uid';
 
 import AutosizeInput from './autosize-input.js';
 import {TYPE, STATE_CHANGE_TYPE} from './constants.js';
@@ -105,11 +105,12 @@ class Select extends React.Component<PropsT, SelectStateT> {
   options: ValueT = [];
 
   // id generated for the listbox. used by screenreaders to associate the input with the menu it controls
-  listboxId: string = getBuiId();
+  listboxId: string;
 
   constructor(props: PropsT) {
     super(props);
     this.options = normalizeOptions(props.options);
+    this.listboxId = uid(this);
   }
 
   state = {

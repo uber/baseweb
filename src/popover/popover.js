@@ -11,7 +11,7 @@ import * as React from 'react';
 import FocusLock from 'react-focus-lock';
 
 import {getOverride, getOverrideProps} from '../helpers/overrides.js';
-import getBuiId from '../utils/get-bui-id.js';
+import {uid} from 'react-uid';
 import {
   ACCESSIBILITY_TYPE,
   PLACEMENT,
@@ -61,7 +61,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
   state = this.getDefaultState(this.props);
 
   componentDidMount() {
-    this.generatedId = getBuiId();
+    this.generatedId = uid(this);
     this.setState({isMounted: true});
   }
 

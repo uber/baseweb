@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import {getOverride, getOverrideProps} from '../helpers/overrides.js';
-import getBuiId from '../utils/get-bui-id.js';
+import {uid} from 'react-uid';
 import {
   Label as StyledLabel,
   Caption as StyledCaption,
@@ -42,7 +42,7 @@ export default class FormControl extends React.Component<
     caption: null,
     disabled: false,
   };
-  state = {captionId: getBuiId()};
+  state = {captionId: uid(this)};
 
   render() {
     const {

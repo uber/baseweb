@@ -12,7 +12,7 @@ import {Input, SIZE} from '../input/index.js';
 import {scrollItemIntoView} from '../menu/utils.js';
 import {getOverrides} from '../helpers/overrides.js';
 import {Popover, PLACEMENT} from '../popover/index.js';
-import getBuiId from '../utils/get-bui-id.js';
+import {useUID} from 'react-uid';
 
 import {
   StyledRoot,
@@ -59,8 +59,8 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
   const listboxRef = React.useRef(null);
   const selectedOptionRef = React.useRef(null);
 
-  const activeDescendantId = React.useMemo(() => getBuiId(), []);
-  const listboxId = React.useMemo(() => getBuiId(), []);
+  const activeDescendantId = useUID();
+  const listboxId = useUID();
 
   // Handles case where an application wants to update the value in the input element
   // from outside of the combobox component.

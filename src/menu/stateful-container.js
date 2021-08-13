@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 // Files
-import getBuiId from '../utils/get-bui-id.js';
+import {uid} from 'react-uid';
 import {STATE_CHANGE_TYPES, KEY_STRINGS} from './constants.js';
 import {scrollItemIntoView} from './utils.js';
 // Types
@@ -357,7 +357,7 @@ export default class MenuStatefulContainer extends React.Component<
     if (!itemRef) {
       itemRef = React.createRef();
       this.refList[index] = itemRef;
-      this.optionIds[index] = getBuiId();
+      this.optionIds[index] = uid(itemRef);
     }
     const {
       disabled: disabledVal,
