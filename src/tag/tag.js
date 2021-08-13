@@ -19,6 +19,12 @@ import type {PropsT, SharedPropsArgT} from './types.js';
 import DeleteIcon from '../icon/delete.js';
 import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 
+// Previously, Tag used a hardcoded SVG as its 'close' icon. Replacing it with
+// Delete requires modifying Delete's viewbox to prevent visual regressions.
+const ModifiedViewBoxDeleteIcon = props => (
+  <DeleteIcon viewBox="5 5 13.186 13.186" {...props} />
+);
+
 const Tag = React.forwardRef<PropsT, HTMLSpanElement>((props, ref) => {
   const {
     children,
@@ -73,7 +79,7 @@ const Tag = React.forwardRef<PropsT, HTMLSpanElement>((props, ref) => {
   const [Action, actionProps] = getOverrides(overrides.Action, StyledAction);
   const [ActionIcon, actionIconProps] = getOverrides(
     overrides.ActionIcon,
-    DeleteIcon,
+    ModifiedViewBoxDeleteIcon,
   );
   const [StartEnhancerContainer, startEnhancerContainerProps] = getOverrides(
     overrides.StartEnhancerContainer,
@@ -111,9 +117,9 @@ const Tag = React.forwardRef<PropsT, HTMLSpanElement>((props, ref) => {
   const titleText = title || getTextFromChildren(children);
   const isButton = (clickable || closeable) && !disabled;
   const actionSize = {
-    [SIZE.small]: 21.85,
-    [SIZE.medium]: 29.54,
-    [SIZE.large]: 36.42,
+    [SIZE.small]: 12,
+    [SIZE.medium]: 16,
+    [SIZE.large]: 20,
   }[size];
 
   // Capitalize for JSX
