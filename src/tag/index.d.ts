@@ -67,7 +67,6 @@ export class Tag extends React.Component<TagProps> {
 
 export const StyledRoot: StyletronComponent<any>;
 export const StyledAction: StyletronComponent<any>;
-export const StyledActionIcon: StyletronComponent<any>;
 export const StyledText: StyletronComponent<any>;
 
 export const KIND: KIND;

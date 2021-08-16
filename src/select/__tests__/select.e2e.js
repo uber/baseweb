@@ -143,7 +143,7 @@ describe('select', () => {
       selectors.selectedList,
       select => select.textContent,
     );
-    expect(selectedValue).toBe('DarkBlue');
+    expect(selectedValue).toBe('DarkBlueDelete');
   });
 
   it('subsequent multi select dropdown opens highlights first value', async () => {
@@ -157,14 +157,14 @@ describe('select', () => {
       selectors.selectedList,
       select => select.textContent,
     );
-    expect(first).toBe('AliceBlue');
+    expect(first).toBe('AliceBlueDelete');
 
     await page.keyboard.press('Enter');
     const second = await page.$eval(
       selectors.selectedList,
       select => select.textContent,
     );
-    expect(second).toBe('AliceBlueAntiqueWhite');
+    expect(second).toBe('AliceBlueDeleteAntiqueWhiteDelete');
   });
 
   it('subsequent multi select dropdown opens highlights first value after keyboard navigation', async () => {
@@ -183,7 +183,7 @@ describe('select', () => {
       selectors.selectedList,
       select => select.textContent,
     );
-    expect(text).toBe('AzureBeige');
+    expect(text).toBe('AzureDeleteBeigeDelete');
   });
 
   it('creates and selects a new option', async () => {
@@ -264,7 +264,7 @@ describe('select', () => {
       selectors.selectedList,
       select => select.textContent,
     );
-    expect(selectedValue).toBe('DarkBlueAzure');
+    expect(selectedValue).toBe('DarkBlueDeleteAzureDelete');
   });
 
   it('renders expected grouped list items', async () => {
