@@ -11,7 +11,7 @@ import * as React from 'react';
 import FocusLock from 'react-focus-lock';
 
 import {getOverride, getOverrideProps} from '../helpers/overrides.js';
-import {uid} from 'react-uid';
+import {UIDConsumer} from 'react-uid';
 import {
   ACCESSIBILITY_TYPE,
   PLACEMENT,
@@ -47,7 +47,6 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
   animateOutCompleteTimer: ?TimeoutID;
   onMouseEnterTimer: ?TimeoutID;
   onMouseLeaveTimer: ?TimeoutID;
-  generatedId: string = '';
   anchorRef = (React.createRef(): {current: *});
   popperRef = (React.createRef(): {current: *});
   arrowRef = (React.createRef(): {current: *});
@@ -61,7 +60,6 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
   state = this.getDefaultState(this.props);
 
   componentDidMount() {
-    this.generatedId = uid(this);
     this.setState({isMounted: true});
   }
 
@@ -283,16 +281,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     return this.props.accessibilityType === ACCESSIBILITY_TYPE.tooltip;
   }
 
-  getAnchorIdAttr() {
-    const popoverId = this.getPopoverIdAttr();
-    return popoverId ? `${popoverId}__anchor` : null;
-  }
-
-  getPopoverIdAttr() {
-    return this.props.id || this.generatedId || null;
-  }
-
-  getAnchorProps() {
+  getAnchorProps(popoverId: string) {
     const {isOpen} = this.props;
 
     const anchorProps: AnchorPropsT = {
@@ -302,14 +291,14 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
       ref: this.anchorRef,
     };
 
-    const popoverId = this.getPopoverIdAttr();
     if (this.isAccessibilityTypeMenu()) {
       const relationAttr = this.isClickTrigger()
         ? 'aria-controls'
         : 'aria-owns';
       anchorProps[relationAttr] = isOpen ? popoverId : null;
     } else if (this.isAccessibilityTypeTooltip()) {
-      anchorProps.id = this.getAnchorIdAttr();
+      anchorProps.id =
+        popoverId && popoverId !== '' ? `${popoverId}__anchor` : null;
       anchorProps['aria-describedby'] = isOpen ? popoverId : null;
     }
 
@@ -326,10 +315,9 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     return anchorProps;
   }
 
-  getPopoverBodyProps() {
+  getPopoverBodyProps(popoverId: string) {
     const bodyProps = {};
 
-    const popoverId = this.getPopoverIdAttr();
     if (this.isAccessibilityTypeMenu()) {
       bodyProps.id = popoverId;
     } else if (this.isAccessibilityTypeTooltip()) {
@@ -371,14 +359,14 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     return childArray[0];
   }
 
-  renderAnchor() {
+  renderAnchor(popoverId: string) {
     const anchor = this.getAnchorFromChildren();
     if (!anchor) {
       return null;
     }
 
     const isValidElement = React.isValidElement(anchor);
-    const anchorProps = this.getAnchorProps();
+    const anchorProps = this.getAnchorProps(popoverId);
 
     if (typeof anchor === 'object' && isValidElement) {
       return React.cloneElement(anchor, anchorProps);
@@ -386,7 +374,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     return <span {...anchorProps}>{anchor}</span>;
   }
 
-  renderPopover(renderedContent: React.Node) {
+  renderPopover(renderedContent: React.Node, popoverId: string) {
     const {showArrow, overrides = {}} = this.props;
 
     const {
@@ -400,7 +388,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     const Inner = getOverride(InnerOverride) || StyledInner;
 
     const sharedProps = this.getSharedProps();
-    const bodyProps = this.getPopoverBodyProps();
+    const bodyProps = this.getPopoverBodyProps(popoverId);
 
     return (
       <Body
@@ -431,9 +419,9 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     return typeof content === 'function' ? content() : content;
   }
 
-  render() {
+  getContent(popoverId: string) {
     const mountedAndOpen = this.state.isMounted && this.props.isOpen;
-    const rendered = [this.renderAnchor()];
+    const rendered = [this.renderAnchor(popoverId)];
     const renderedContent =
       mountedAndOpen || this.props.renderAll ? this.renderContent() : null;
 
@@ -445,7 +433,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     // Only render popover on the browser (portals aren't supported server-side)
     if (renderedContent) {
       if (mountedAndOpen) {
-        rendered.push(
+        [this.renderAnchor(popoverId)].push(
           <Layer
             key="new-layer"
             mountNode={this.props.mountNode}
@@ -474,7 +462,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
                 returnFocus={this.props.returnFocus && !this.isHoverTrigger()}
                 autoFocus={this.state.autoFocusAfterPositioning}
               >
-                {this.renderPopover(renderedContent)}
+                {this.renderPopover(renderedContent, popoverId)}
               </FocusLock>
             </TetherBehavior>
           </Layer>,
@@ -484,6 +472,10 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
       }
     }
     return rendered;
+  }
+
+  render() {
+    return <UIDConsumer>{popoverId => this.getContent(popoverId)}</UIDConsumer>;
   }
 }
 

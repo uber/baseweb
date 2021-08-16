@@ -16,7 +16,7 @@ import {LocaleContext} from '../locale/index.js';
 import type {LocaleT} from '../locale/types.js';
 import {Popover, PLACEMENT} from '../popover/index.js';
 import {Spinner} from '../spinner/index.js';
-import {uid} from 'react-uid';
+import {UIDConsumer} from 'react-uid';
 
 import AutosizeInput from './autosize-input.js';
 import {TYPE, STATE_CHANGE_TYPE} from './constants.js';
@@ -103,9 +103,6 @@ class Select extends React.Component<PropsT, SelectStateT> {
   // and values are arrays of options. this class property is constructed and updated in a normalized
   // shape where optgroup titles are stored on the option in the __optgroup field.
   options: ValueT = [];
-
-  // id generated for the listbox. used by screenreaders to associate the input with the menu it controls
-  listboxId: string = uid(this);
 
   constructor(props: PropsT) {
     super(props);
@@ -673,7 +670,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     }
   }
 
-  renderInput() {
+  renderInput(listboxId: string) {
     const {overrides = {}} = this.props;
     const [InputContainer, inputContainerProps] = getOverrides(
       overrides.InputContainer,
@@ -698,7 +695,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
           aria-disabled={this.props.disabled}
           aria-label={label}
           aria-labelledby={this.props['aria-labelledby']}
-          aria-owns={this.state.isOpen ? this.listboxId : null}
+          aria-owns={this.state.isOpen ? listboxId : null}
           aria-required={this.props.required || null}
           onFocus={this.handleInputFocus}
           ref={this.handleInputRef}
@@ -721,7 +718,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
         <AutosizeInput
           aria-activedescendant={this.state.activeDescendant}
           aria-autocomplete="list"
-          aria-controls={this.state.isOpen ? this.listboxId : null}
+          aria-controls={this.state.isOpen ? listboxId : null}
           aria-describedby={this.props['aria-describedby']}
           aria-errormessage={this.props['aria-errormessage']}
           aria-disabled={this.props.disabled || null}
@@ -989,96 +986,103 @@ class Select extends React.Component<PropsT, SelectStateT> {
     }
 
     return (
-      <LocaleContext.Consumer>
-        {locale => (
-          <PopoverOverride
-            // Popover does not provide ability to forward refs through, and if we were to simply
-            // apply the ref to the Root component below it would be overwritten before the popover
-            // renders it. Using this strategy, we will get a ref to the popover, then reuse its
-            // anchorRef so we can check if clicks are on the select component or not.
-            // eslint-disable-next-line flowtype/no-weak-types
-            ref={(ref: any) => {
-              if (!ref) return;
-              this.anchor = ref.anchorRef;
-            }}
-            focusLock={false}
-            mountNode={this.props.mountNode}
-            onEsc={() => this.closeMenu()}
-            isOpen={isOpen}
-            popoverMargin={0}
-            content={() => {
-              const dropdownProps = {
-                error: this.props.error,
-                positive: this.props.positive,
-                getOptionLabel:
-                  this.props.getOptionLabel ||
-                  this.getOptionLabel.bind(this, locale),
-                id: this.listboxId,
-                isLoading: this.props.isLoading,
-                labelKey: this.props.labelKey,
-                maxDropdownHeight: this.props.maxDropdownHeight,
-                multi,
-                noResultsMsg,
-                onActiveDescendantChange: this.handleActiveDescendantChange,
-                onItemSelect: this.selectValue,
-                options,
-                overrides,
-                required: this.props.required,
-                searchable: this.props.searchable,
-                size: this.props.size,
-                type,
-                value: valueArray,
-                valueKey: this.props.valueKey,
-                width: this.anchor.current
-                  ? this.anchor.current.clientWidth
-                  : null,
-                keyboardControlNode: this.anchor,
-              };
+      <UIDConsumer>
+        {listboxId => (
+          <LocaleContext.Consumer>
+            {locale => (
+              <PopoverOverride
+                // Popover does not provide ability to forward refs through, and if we were to simply
+                // apply the ref to the Root component below it would be overwritten before the popover
+                // renders it. Using this strategy, we will get a ref to the popover, then reuse its
+                // anchorRef so we can check if clicks are on the select component or not.
+                // eslint-disable-next-line flowtype/no-weak-types
+                ref={(ref: any) => {
+                  if (!ref) return;
+                  this.anchor = ref.anchorRef;
+                }}
+                focusLock={false}
+                mountNode={this.props.mountNode}
+                onEsc={() => this.closeMenu()}
+                isOpen={isOpen}
+                popoverMargin={0}
+                content={() => {
+                  const dropdownProps = {
+                    error: this.props.error,
+                    positive: this.props.positive,
+                    getOptionLabel:
+                      this.props.getOptionLabel ||
+                      this.getOptionLabel.bind(this, locale),
+                    id: listboxId,
+                    isLoading: this.props.isLoading,
+                    labelKey: this.props.labelKey,
+                    maxDropdownHeight: this.props.maxDropdownHeight,
+                    multi,
+                    noResultsMsg,
+                    onActiveDescendantChange: this.handleActiveDescendantChange,
+                    onItemSelect: this.selectValue,
+                    options,
+                    overrides,
+                    required: this.props.required,
+                    searchable: this.props.searchable,
+                    size: this.props.size,
+                    type,
+                    value: valueArray,
+                    valueKey: this.props.valueKey,
+                    width: this.anchor.current
+                      ? this.anchor.current.clientWidth
+                      : null,
+                    keyboardControlNode: this.anchor,
+                  };
 
-              return (
-                <SelectDropdown innerRef={this.dropdown} {...dropdownProps} />
-              );
-            }}
-            placement={PLACEMENT.bottom}
-            {...popoverProps}
-          >
-            <Root
-              onBlur={this.handleBlur}
-              data-baseweb="select"
-              {...sharedProps}
-              {...rootProps}
-            >
-              <ControlContainer
-                onKeyDown={this.handleKeyDown}
-                onClick={this.handleClick}
-                onTouchEnd={this.handleTouchEnd}
-                onTouchMove={this.handleTouchMove}
-                onTouchStart={this.handleTouchStart}
-                {...sharedProps}
-                {...controlContainerProps}
+                  return (
+                    <SelectDropdown
+                      innerRef={this.dropdown}
+                      {...dropdownProps}
+                    />
+                  );
+                }}
+                placement={PLACEMENT.bottom}
+                {...popoverProps}
               >
-                {type === TYPE.search ? this.renderSearch() : null}
-                <ValueContainer {...sharedProps} {...valueContainerProps}>
-                  {this.renderValue(valueArray, isOpen, locale)}
-                  {this.renderInput()}
-                  {this.shouldShowPlaceholder() ? (
-                    <Placeholder {...sharedProps} {...placeholderProps}>
-                      {typeof this.props.placeholder !== 'undefined'
-                        ? this.props.placeholder
-                        : locale.select.placeholder}
-                    </Placeholder>
-                  ) : null}
-                </ValueContainer>
-                <IconsContainer {...sharedProps} {...iconsContainerProps}>
-                  {this.renderLoading()}
-                  {this.renderClear()}
-                  {type === TYPE.select ? this.renderArrow() : null}
-                </IconsContainer>
-              </ControlContainer>
-            </Root>
-          </PopoverOverride>
+                <Root
+                  onBlur={this.handleBlur}
+                  data-baseweb="select"
+                  {...sharedProps}
+                  {...rootProps}
+                >
+                  <ControlContainer
+                    onKeyDown={this.handleKeyDown}
+                    onClick={this.handleClick}
+                    onTouchEnd={this.handleTouchEnd}
+                    onTouchMove={this.handleTouchMove}
+                    onTouchStart={this.handleTouchStart}
+                    {...sharedProps}
+                    {...controlContainerProps}
+                  >
+                    {type === TYPE.search ? this.renderSearch() : null}
+                    <ValueContainer {...sharedProps} {...valueContainerProps}>
+                      {this.renderValue(valueArray, isOpen, locale)}
+                      {this.renderInput(listboxId)}
+                      {this.shouldShowPlaceholder() ? (
+                        <Placeholder {...sharedProps} {...placeholderProps}>
+                          {typeof this.props.placeholder !== 'undefined'
+                            ? this.props.placeholder
+                            : locale.select.placeholder}
+                        </Placeholder>
+                      ) : null}
+                    </ValueContainer>
+                    <IconsContainer {...sharedProps} {...iconsContainerProps}>
+                      {this.renderLoading()}
+                      {this.renderClear()}
+                      {type === TYPE.select ? this.renderArrow() : null}
+                    </IconsContainer>
+                  </ControlContainer>
+                </Root>
+              </PopoverOverride>
+            )}
+          </LocaleContext.Consumer>
         )}
-      </LocaleContext.Consumer>
+      </UIDConsumer>
     );
   }
 }
