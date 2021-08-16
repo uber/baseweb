@@ -15,7 +15,7 @@ const BaseProvider = (props: BaseProviderPropsT) => {
   const {children, overrides, theme, zIndex} = props;
   return (
     <LayersManager zIndex={zIndex} overrides={overrides}>
-      <UIDReset>
+      <UIDReset prefix="bui">
         <ThemeProvider theme={theme}>{children}</ThemeProvider>
       </UIDReset>
     </LayersManager>

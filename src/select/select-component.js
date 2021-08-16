@@ -105,12 +105,11 @@ class Select extends React.Component<PropsT, SelectStateT> {
   options: ValueT = [];
 
   // id generated for the listbox. used by screenreaders to associate the input with the menu it controls
-  listboxId: string;
+  listboxId: string = uid(this);
 
   constructor(props: PropsT) {
     super(props);
     this.options = normalizeOptions(props.options);
-    this.listboxId = uid(this);
   }
 
   state = {
