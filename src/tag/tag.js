@@ -10,14 +10,20 @@ import {getOverrides} from '../helpers/overrides.js';
 import {
   Action as StyledAction,
   Root as StyledRoot,
-  ActionIcon as StyledActionIcon,
   StartEnhancerContainer as StyledStartEnhancerContainer,
   Text as StyledText,
 } from './styled-components.js';
 import {KIND, VARIANT, SIZE} from './constants.js';
 import {getTextFromChildren} from './utils.js';
 import type {PropsT, SharedPropsArgT} from './types.js';
+import DeleteIcon from '../icon/delete.js';
 import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
+
+// Previously, Tag used a hardcoded SVG as its 'close' icon. Replacing it with
+// Delete requires modifying Delete's viewbox to prevent visual regressions.
+const ModifiedViewBoxDeleteIcon = props => (
+  <DeleteIcon viewBox="5 5 13.186 13.186" {...props} />
+);
 
 const Tag = React.forwardRef<PropsT, HTMLSpanElement>((props, ref) => {
   const {
@@ -73,7 +79,7 @@ const Tag = React.forwardRef<PropsT, HTMLSpanElement>((props, ref) => {
   const [Action, actionProps] = getOverrides(overrides.Action, StyledAction);
   const [ActionIcon, actionIconProps] = getOverrides(
     overrides.ActionIcon,
-    StyledActionIcon,
+    ModifiedViewBoxDeleteIcon,
   );
   const [StartEnhancerContainer, startEnhancerContainerProps] = getOverrides(
     overrides.StartEnhancerContainer,
@@ -111,9 +117,9 @@ const Tag = React.forwardRef<PropsT, HTMLSpanElement>((props, ref) => {
   const titleText = title || getTextFromChildren(children);
   const isButton = (clickable || closeable) && !disabled;
   const actionSize = {
-    [SIZE.small]: '12',
-    [SIZE.medium]: '16',
-    [SIZE.large]: '20',
+    [SIZE.small]: 12,
+    [SIZE.medium]: 16,
+    [SIZE.large]: 20,
   }[size];
 
   // Capitalize for JSX
@@ -157,19 +163,7 @@ const Tag = React.forwardRef<PropsT, HTMLSpanElement>((props, ref) => {
           {...sharedProps}
           {...actionProps}
         >
-          <ActionIcon
-            width={actionSize}
-            height={actionSize}
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            {...actionIconProps}
-          >
-            <path
-              fill="currentColor"
-              d="M21.0999 5.09998L18.8999 2.90002L11.9999 9.90002L5.09985 2.90002L2.8999 5.09998L9.8999 12L2.8999 18.9L5.09985 21.1L11.9999 14.1L18.8999 21.1L21.0999 18.9L14.0999 12L21.0999 5.09998Z"
-            />
-          </ActionIcon>
+          <ActionIcon size={actionSize} {...actionIconProps} />
         </Action>
       ) : null}
     </Root>
