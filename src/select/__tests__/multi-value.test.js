@@ -22,7 +22,7 @@ describe('Multi Value component', function() {
       </MultiValue>,
     );
     const tag = getByTestId(container, 'tag');
-    expect(tag.textContent).toBe('test');
+    expect(tag.textContent).toBe('testDelete');
   });
 
   it('clicking tag action calls removeValue', () => {

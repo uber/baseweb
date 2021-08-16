@@ -290,8 +290,6 @@ export const Action = styled<SharedPropsArgT>('span', props => {
   }: {});
 });
 
-export const ActionIcon = styled('svg', {});
-
 // $FlowFixMe https://github.com/facebook/flow/issues/7745
 export const StartEnhancerContainer = styled<SharedPropsArgT>(
   'div',
