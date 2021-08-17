@@ -66,7 +66,6 @@ export type RenderItemPropsT = {
 export type GetRequiredItemPropsFnT = (
   item: ItemT,
   index: number,
-  uid: (item: any, index?: number) => string,
 ) => $Shape<RenderItemPropsT>;
 
 export type StateReducerFnT = (

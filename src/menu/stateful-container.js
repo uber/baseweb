@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 // Files
-import {UIDConsumer} from 'react-uid';
+import getBuiId from '../utils/get-bui-id.js';
 import {STATE_CHANGE_TYPES, KEY_STRINGS} from './constants.js';
 import {scrollItemIntoView} from './utils.js';
 // Types
@@ -352,22 +352,17 @@ export default class MenuStatefulContainer extends React.Component<
     }
   };
 
-  getRequiredItemProps: GetRequiredItemPropsFnT = (
-    item,
-    index,
-    // eslint-disable-next-line flowtype/no-weak-types
-    uid: (item: any, index?: number) => string,
-  ) => {
+  getRequiredItemProps: GetRequiredItemPropsFnT = (item, index) => {
     let itemRef = this.refList[index];
     if (!itemRef) {
       itemRef = React.createRef();
       this.refList[index] = itemRef;
-      this.optionIds[index] = uid(itemRef, index);
+      this.optionIds[index] = getBuiId();
     }
     const {
       disabled: disabledVal,
       ...requiredItemProps
-    } = this.props.getRequiredItemProps(item, index, uid);
+    } = this.props.getRequiredItemProps(item, index);
     const disabled =
       typeof disabledVal === 'boolean' ? disabledVal : !!item.disabled;
     return {
@@ -440,29 +435,22 @@ export default class MenuStatefulContainer extends React.Component<
       ...restProps
     } = this.props;
 
-    return (
-      <UIDConsumer>
-        {(_, uid) => {
-          this.props.children(
-            ({
-              ...restProps,
-              rootRef: this.props.rootRef ? this.props.rootRef : this.rootRef,
-              activedescendantId: this.optionIds[this.state.highlightedIndex],
-              getRequiredItemProps: (item, index) =>
-                this.getRequiredItemProps(item, index, uid),
-              handleMouseLeave: this.handleMouseLeave,
-              highlightedIndex: this.state.highlightedIndex,
-              isFocused: this.state.isFocused,
-              handleKeyDown: this.props.keyboardControlNode.current
-                ? event => {}
-                : this.onKeyDown,
-              focusMenu: this.focusMenu,
-              unfocusMenu: this.unfocusMenu,
-            }: RenderPropsT),
-          );
-        }}
-        ;
-      </UIDConsumer>
+    return this.props.children(
+      ({
+        ...restProps,
+        rootRef: this.props.rootRef ? this.props.rootRef : this.rootRef,
+        activedescendantId: this.optionIds[this.state.highlightedIndex],
+        getRequiredItemProps: (item, index) =>
+          this.getRequiredItemProps(item, index),
+        handleMouseLeave: this.handleMouseLeave,
+        highlightedIndex: this.state.highlightedIndex,
+        isFocused: this.state.isFocused,
+        handleKeyDown: this.props.keyboardControlNode.current
+          ? event => {}
+          : this.onKeyDown,
+        focusMenu: this.focusMenu,
+        unfocusMenu: this.unfocusMenu,
+      }: RenderPropsT),
     );
   }
 }
