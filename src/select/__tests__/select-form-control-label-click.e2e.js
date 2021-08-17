@@ -18,7 +18,7 @@ describe('select unmount blur', () => {
     expect(label).toBe('not searchable');
 
     await labels[0].click();
-    await page.waitForSelector('[role="listbox"]');
+    await page.waitForSelector('ul[role="listbox"]');
   });
 
   it('opens searchable listbox when label is clicked', async () => {
@@ -29,6 +29,36 @@ describe('select unmount blur', () => {
     expect(label).toBe('searchable');
 
     await labels[1].click();
-    await page.waitForSelector('[role="listbox"]');
+    await page.waitForSelector('ul[role="listbox"]');
+  });
+
+  it('opens non-searchable listbox when native label is clicked', async () => {
+    await mount(page, 'select--searchable-form-control');
+    const labels = await page.$$('label');
+    await labels[2].click();
+    await page.waitForSelector('ul[role="listbox"]');
+  });
+
+  it('opens non-searchable listbox when input clicked wrapped with native select', async () => {
+    await mount(page, 'select--searchable-form-control');
+    const labels = await page.$$('label');
+    const select = await labels[2].$('div[data-baseweb="select"]');
+    await select.click();
+    await page.waitForSelector('ul[role="listbox"]');
+  });
+
+  it('opens non-searchable listbox when native label is clicked', async () => {
+    await mount(page, 'select--searchable-form-control');
+    const labels = await page.$$('label');
+    await labels[3].click();
+    await page.waitForSelector('ul[role="listbox"]');
+  });
+
+  it('opens non-searchable listbox when input clicked wrapped with native select', async () => {
+    await mount(page, 'select--searchable-form-control');
+    const labels = await page.$$('label');
+    const select = await labels[3].$('div[data-baseweb="select"]');
+    await select.click();
+    await page.waitForSelector('ul[role="listbox"]');
   });
 });

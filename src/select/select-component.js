@@ -198,7 +198,6 @@ class Select extends React.Component<PropsT, SelectStateT> {
       if (!this.state.isFocused) {
         this.openAfterFocus = this.props.openOnClick;
         this.focus();
-        return;
       }
 
       if (!this.state.isOpen) {
@@ -206,8 +205,9 @@ class Select extends React.Component<PropsT, SelectStateT> {
           isOpen: true,
           isPseudoFocused: false,
         });
-        return;
       }
+
+      return;
     }
 
     // Ensures that interactive elements within the Select component do not trigger the outer click
@@ -707,6 +707,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
           {...inputContainerProps}
         >
           <input
+            ref={r => this.handleInputRef(r)}
             aria-hidden="true"
             id={this.props.id || null}
             onFocus={this.handleInputFocus}

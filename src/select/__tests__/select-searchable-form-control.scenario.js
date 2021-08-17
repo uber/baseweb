@@ -23,6 +23,8 @@ const options = [
 export default function Scenario() {
   const [notSearchable, setNotSearchable] = React.useState([]);
   const [searchable, setSearchable] = React.useState([]);
+  const [nativeNotSearchable, setNativeNotSearchable] = React.useState([]);
+  const [nativeSearchable, setNativeSearchable] = React.useState([]);
 
   return (
     <div>
@@ -48,6 +50,32 @@ export default function Scenario() {
           onChange={params => setSearchable(params.value)}
         />
       </FormControl>
+
+      <label htmlFor="not-searchable-native-label">
+        Native not searchable
+        <Select
+          id="not-searchable-native-label"
+          clearable={false}
+          searchable={false}
+          placeholder="Select color"
+          value={nativeNotSearchable}
+          options={options}
+          onChange={params => setNativeNotSearchable(params.value)}
+        />
+      </label>
+
+      <label htmlFor="searchable-native-label">
+        Native searchable
+        <Select
+          id="searchable-native-label"
+          clearable={false}
+          searchable={true}
+          placeholder="Select color"
+          value={nativeSearchable}
+          options={options}
+          onChange={params => setNativeSearchable(params.value)}
+        />
+      </label>
     </div>
   );
 }
