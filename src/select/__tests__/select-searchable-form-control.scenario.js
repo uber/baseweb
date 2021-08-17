@@ -64,10 +64,9 @@ export default function Scenario() {
         />
       </label>
 
-      <label htmlFor="searchable-native-label">
+      <label>
         Native searchable
         <Select
-          id="searchable-native-label"
           clearable={false}
           searchable={true}
           placeholder="Select color"
