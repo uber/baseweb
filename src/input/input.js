@@ -138,8 +138,8 @@ function getAdjoinedProp(startEnhancer, endEnhancer): AdjoinedT {
   return ADJOINED.none;
 }
 
-function isEnhancer(enhancer): Boolean {
-  return enhancer || enhancer === 0;
+function isEnhancer(enhancer): boolean {
+  return Boolean(enhancer || enhancer === 0);
 }
 
 export default Input;
