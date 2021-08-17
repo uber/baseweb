@@ -93,7 +93,7 @@ class Input extends React.Component<InputPropsT, InternalStateT> {
         $adjoined={getAdjoinedProp(startEnhancer, endEnhancer)}
         $hasIconTrailing={this.props.clearable || this.props.type == 'password'}
       >
-        {startEnhancer && (
+        {isEnhancer(startEnhancer) && (
           <StartEnhancer
             {...sharedProps}
             {...startEnhancerProps}
@@ -111,7 +111,7 @@ class Input extends React.Component<InputPropsT, InternalStateT> {
           onFocus={this.onFocus}
           onBlur={this.onBlur}
         />
-        {endEnhancer && (
+        {isEnhancer(endEnhancer) && (
           <EndEnhancer
             {...sharedProps}
             {...endEnhancerProps}
@@ -128,14 +128,18 @@ class Input extends React.Component<InputPropsT, InternalStateT> {
 }
 
 function getAdjoinedProp(startEnhancer, endEnhancer): AdjoinedT {
-  if (startEnhancer && endEnhancer) {
+  if (isEnhancer(startEnhancer) && isEnhancer(endEnhancer)) {
     return ADJOINED.both;
-  } else if (startEnhancer) {
+  } else if (isEnhancer(startEnhancer)) {
     return ADJOINED.left;
-  } else if (endEnhancer) {
+  } else if (isEnhancer(endEnhancer)) {
     return ADJOINED.right;
   }
   return ADJOINED.none;
+}
+
+function isEnhancer(enhancer): Boolean {
+  return enhancer || enhancer === 0;
 }
 
 export default Input;

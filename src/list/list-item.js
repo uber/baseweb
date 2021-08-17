@@ -81,7 +81,7 @@ const ListItem = React.forwardRef<PropsT, HTMLLIElement>(
         )}
         <Content $mLeft={!Artwork} $sublist={!!props.sublist} {...contentProps}>
           {props.children}
-          {EndEnhancer && (
+          {Boolean(EndEnhancer) && (
             <EndEnhancerContainer {...endEnhancerContainerProps}>
               <EndEnhancer />
             </EndEnhancerContainer>
