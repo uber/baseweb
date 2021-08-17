@@ -64,6 +64,7 @@ export default function Scenario() {
         />
       </label>
 
+      {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
       <label>
         Native searchable
         <Select
