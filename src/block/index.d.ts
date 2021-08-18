@@ -219,7 +219,14 @@ export interface BlockProps {
   $style?: $StyleProp<BlockProps>;
   overrides?: BlockOverrides;
   color?: Responsive<string>;
+  backgroundAttachment?: Responsive<string>;
+  backgroundClip: Responsive<string>;
   backgroundColor?: Responsive<string>;
+  backgroundImage: Responsive<string>;
+  backgroundOrigin: Responsive<string>;
+  backgroundPosition: Responsive<string>;
+  backgroundRepeat: Responsive<string>;
+  backgroundSize: Responsive<string>;
   font?: string | string[];
   src?: string;
   ref?: React.Ref<any>;
