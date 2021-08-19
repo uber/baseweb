@@ -489,9 +489,7 @@ class PopoverInner extends React.Component<
 }
 
 // Remove when Popover is converted to a functional component.
-const Popover = (
-  props: $Shape<PopoverPropsT & {innerRef: React$ElementRef<*>}>,
-) => {
+const Popover = (props: PopoverPropsT & {innerRef?: React$ElementRef<*>}) => {
   const {innerRef} = props;
   return <PopoverInner id={props.id || useUID()} ref={innerRef} {...props} />;
 };
