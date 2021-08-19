@@ -40,7 +40,7 @@ const DEFAULT_PROPS = {
   forceHighlight: false,
 };
 
-class MenuStatefulContainer extends React.Component<
+class MenuStatefulContainerInner extends React.Component<
   StatefulContainerPropsT & {uidSeed: (item: number) => string},
   StatefulContainerStateT,
 > {
@@ -458,11 +458,10 @@ class MenuStatefulContainer extends React.Component<
 }
 
 // Remove when MenuStatefulContainer is converted to a functional component.
-const MenuStatefulContainerIdWrapper = (props: StatefulContainerPropsT) => {
-  return <MenuStatefulContainer uidSeed={useUIDSeed()} {...props} />;
+const MenuStatefulContainer = (props: StatefulContainerPropsT) => {
+  return <MenuStatefulContainerInner uidSeed={useUIDSeed()} {...props} />;
 };
 
-MenuStatefulContainerIdWrapper.defaultProps = DEFAULT_PROPS;
-MenuStatefulContainerIdWrapper.displayName = 'MenuStatefulContainer';
+MenuStatefulContainer.defaultProps = DEFAULT_PROPS;
 
-export default MenuStatefulContainerIdWrapper;
+export default MenuStatefulContainer;

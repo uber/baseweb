@@ -38,7 +38,10 @@ import type {
 } from './types.js';
 import type {PopperDataObjectT, NormalizedOffsetsT} from '../layer/types.js';
 
-class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
+class PopoverInner extends React.Component<
+  PopoverPropsT,
+  PopoverPrivateStateT,
+> {
   static defaultProps: $Shape<PopoverPropsT> = defaultProps;
 
   /* eslint-disable react/sort-comp */
@@ -486,15 +489,14 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
 }
 
 // Remove when Popover is converted to a functional component.
-const PopoverIdWrapper = (
+const Popover = (
   props: $Shape<PopoverPropsT & {innerRef: React$ElementRef<*>}>,
 ) => {
   const {innerRef} = props;
-  return <Popover id={props.id || useUID()} ref={innerRef} {...props} />;
+  return <PopoverInner id={props.id || useUID()} ref={innerRef} {...props} />;
 };
 
-PopoverIdWrapper.defaultProps = defaultProps;
-PopoverIdWrapper.displayName = 'Popover';
+Popover.defaultProps = defaultProps;
 
-export default PopoverIdWrapper;
+export default Popover;
 /* eslint-enable react/no-find-dom-node */
