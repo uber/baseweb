@@ -153,6 +153,7 @@ const RadioGroupConfig: TConfig = {
           'Root',
           'Input',
           'Label',
+          'Description',
           'RadioGroupRoot',
           'RadioMarkInner',
           'RadioMarkOuter',
