@@ -44,7 +44,7 @@ export const StyledContent = styled<StyledContentPropsT>(
       borderLeftStyle: 'none',
       display: 'flex',
       flexGrow: 1,
-      minHeight: $sublist ? '48px' : '72px',
+      minHeight: $sublist ? 'initial' : '64px',
       justifyContent: 'space-between',
       ...($theme.direction === 'rtl'
         ? {
@@ -110,7 +110,9 @@ export const StyledLabelDescription = styled<{||}>('p', ({$theme}) => {
 
 export const StyledLabelSublistContent = styled<{||}>('p', ({$theme}) => {
   return {
-    ...$theme.typography.ParagraphMedium,
+    ...$theme.typography.LabelMedium,
     color: $theme.colors.contentPrimary,
+    marginTop: '12px',
+    marginBottom: '12px',
   };
 });
