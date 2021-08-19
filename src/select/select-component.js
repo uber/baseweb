@@ -996,7 +996,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
                 // renders it. Using this strategy, we will get a ref to the popover, then reuse its
                 // anchorRef so we can check if clicks are on the select component or not.
                 // eslint-disable-next-line flowtype/no-weak-types
-                ref={(ref: any) => {
+                innerRef={(ref: any) => {
                   if (!ref) return;
                   this.anchor = ref.anchorRef;
                 }}

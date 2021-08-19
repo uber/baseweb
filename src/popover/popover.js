@@ -11,7 +11,6 @@ import * as React from 'react';
 import FocusLock from 'react-focus-lock';
 
 import {getOverride, getOverrideProps} from '../helpers/overrides.js';
-import getBuiId from '../utils/get-bui-id.js';
 import {
   ACCESSIBILITY_TYPE,
   PLACEMENT,
@@ -29,6 +28,7 @@ import {
 } from './styled-components.js';
 import {fromPopperPlacement} from './utils.js';
 import defaultProps from './default-props.js';
+import {useUID} from 'react-uid';
 
 import type {
   AnchorPropsT,
@@ -47,7 +47,6 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
   animateOutCompleteTimer: ?TimeoutID;
   onMouseEnterTimer: ?TimeoutID;
   onMouseLeaveTimer: ?TimeoutID;
-  generatedId: string = '';
   anchorRef = (React.createRef(): {current: *});
   popperRef = (React.createRef(): {current: *});
   arrowRef = (React.createRef(): {current: *});
@@ -61,7 +60,6 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
   state = this.getDefaultState(this.props);
 
   componentDidMount() {
-    this.generatedId = getBuiId();
     this.setState({isMounted: true});
   }
 
@@ -289,7 +287,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
   }
 
   getPopoverIdAttr() {
-    return this.props.id || this.generatedId || null;
+    return this.props.id || null;
   }
 
   getAnchorProps() {
@@ -487,5 +485,15 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
   }
 }
 
-export default Popover;
+// Remove when Popover is converted to a functional component.
+const PopoverIdWrapper = (
+  props: $Shape<PopoverPropsT & {innerRef: React$ElementRef<*>}>,
+) => {
+  const {innerRef} = props;
+  return <Popover id={props.id || useUID()} ref={innerRef} {...props} />;
+};
+
+PopoverIdWrapper.defaultProps = defaultProps;
+
+export default PopoverIdWrapper;
 /* eslint-enable react/no-find-dom-node */
