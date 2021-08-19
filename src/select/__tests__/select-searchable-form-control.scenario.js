@@ -21,22 +21,21 @@ const options = [
 ];
 
 export default function Scenario() {
-  const [notSearchable, setNotSearchable] = React.useState([]);
-  const [searchable, setSearchable] = React.useState([]);
-  const [nativeNotSearchable, setNativeNotSearchable] = React.useState([]);
-  const [nativeSearchable, setNativeSearchable] = React.useState([]);
+  const [value, setValue] = React.useState([]);
 
   return (
     <div>
+      <div id="click-outside">click outside element</div>
+
       <FormControl label="not searchable">
         <Select
           id="colors-not-searchable"
           clearable={false}
           searchable={false}
           placeholder="Select color"
-          value={notSearchable}
+          value={value}
           options={options}
-          onChange={params => setNotSearchable(params.value)}
+          onChange={params => setValue(params.value)}
         />
       </FormControl>
 
@@ -45,9 +44,9 @@ export default function Scenario() {
           id="colors-searchable"
           clearable={false}
           placeholder="Select color"
-          value={searchable}
+          value={value}
           options={options}
-          onChange={params => setSearchable(params.value)}
+          onChange={params => setValue(params.value)}
         />
       </FormControl>
 
@@ -58,9 +57,9 @@ export default function Scenario() {
           clearable={false}
           searchable={false}
           placeholder="Select color"
-          value={nativeNotSearchable}
+          value={value}
           options={options}
-          onChange={params => setNativeNotSearchable(params.value)}
+          onChange={params => setValue(params.value)}
         />
       </label>
 
@@ -71,11 +70,35 @@ export default function Scenario() {
           clearable={false}
           searchable={true}
           placeholder="Select color"
-          value={nativeSearchable}
+          value={value}
           options={options}
-          onChange={params => setNativeSearchable(params.value)}
+          onChange={params => setValue(params.value)}
         />
       </label>
+
+      <div id="no-label-not-searchable">
+        <p>no label not searchable</p>
+        <Select
+          clearable={false}
+          searchable={false}
+          placeholder="Select color"
+          value={value}
+          options={options}
+          onChange={params => setValue(params.value)}
+        />
+      </div>
+
+      <div id="no-label-searchable">
+        <p>no label</p>
+        <Select
+          clearable={false}
+          searchable={true}
+          placeholder="Select color"
+          value={value}
+          options={options}
+          onChange={params => setValue(params.value)}
+        />
+      </div>
     </div>
   );
 }

@@ -203,6 +203,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
       if (!this.state.isOpen) {
         this.setState({
           isOpen: true,
+          isFocused: true,
           isPseudoFocused: false,
         });
       }
@@ -222,7 +223,12 @@ class Select extends React.Component<PropsT, SelectStateT> {
     // text input to filter the dropdown options.
     if (!this.props.searchable) {
       this.focus();
-      this.setState(prev => ({isOpen: !prev.isOpen}));
+      if (this.state.isOpen) {
+        this.setState({isOpen: false, isFocused: false});
+      } else {
+        this.setState({isOpen: true, isFocused: true});
+      }
+
       return;
     }
 
