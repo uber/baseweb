@@ -146,7 +146,7 @@ const Tag = React.forwardRef<PropsT, HTMLSpanElement>((props, ref) => {
       onFocus={forkFocus(rootProps, handleFocus)}
       onBlur={forkBlur(rootProps, handleBlur)}
     >
-      {StartEnhancer && (
+      {StartEnhancer && StartEnhancer !== 0 && (
         <StartEnhancerContainer {...startEnhancerContainerProps}>
           <StartEnhancer />
         </StartEnhancerContainer>
