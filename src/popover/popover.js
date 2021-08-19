@@ -494,6 +494,7 @@ const PopoverIdWrapper = (
 };
 
 PopoverIdWrapper.defaultProps = defaultProps;
+PopoverIdWrapper.displayName = 'Popover';
 
 export default PopoverIdWrapper;
 /* eslint-enable react/no-find-dom-node */

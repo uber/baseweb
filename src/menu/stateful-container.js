@@ -463,5 +463,6 @@ const MenuStatefulContainerIdWrapper = (props: StatefulContainerPropsT) => {
 };
 
 MenuStatefulContainerIdWrapper.defaultProps = DEFAULT_PROPS;
+MenuStatefulContainerIdWrapper.displayName = 'MenuStatefulContainer';
 
 export default MenuStatefulContainerIdWrapper;
