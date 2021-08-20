@@ -66,6 +66,7 @@ function OptionList(props: OptionListPropsT, ref: React.ElementRef<*>) {
           overrides={overrides}
         >
           <ListItem
+            ref={ref}
             aria-label={
               getChildMenu && getChildMenu(item)
                 ? locale.menu.parentMenuItemAriaLabel

@@ -94,14 +94,15 @@ export default function UserMenuComponent(props: {|
         )),
         style: {width: MENU_ITEM_WIDTH},
       },
-      ListItem(listItemProps) {
+      ListItem: React.forwardRef((listItemProps, ref) => {
         return (
           <UserMenuListItem
+            ref={ref}
             {...listItemProps}
             mapItemToNode={props.mapItemToNode}
           />
         );
-      },
+      }),
     },
     // $FlowFixMe
     userMenuProps.overrides,
