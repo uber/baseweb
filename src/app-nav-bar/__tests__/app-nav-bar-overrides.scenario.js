@@ -15,6 +15,24 @@ import Overflow from '../../icon/overflow.js';
 
 import {AppNavBar, setItemActive} from '../index.js';
 
+const expandBorderStyles = str => {
+  const val = str.split(' ');
+  return {
+    borderTopColor: val[2],
+    borderRightColor: val[2],
+    borderBottomColor: val[2],
+    borderLeftColor: val[2],
+    borderTopStyle: val[0],
+    borderRightStyle: val[0],
+    borderBottomStyle: val[0],
+    borderLeftStyle: val[0],
+    borderTopWidth: val[1],
+    borderRightWidth: val[1],
+    borderBottomWidth: val[1],
+    borderLeftWidth: val[1],
+  };
+};
+
 export default function Scenario() {
   const [mainItems, setMainItems] = React.useState([
     {icon: Upload, label: 'Primary A'},
@@ -69,26 +87,39 @@ export default function Scenario() {
       usernameSubtitle="5.0"
       userImgUrl=""
       overrides={{
-        Root: {style: {border: 'dashed 2px red'}},
-        Spacing: {style: {border: 'dashed 2px orange'}},
-        AppName: {style: {border: 'dashed 2px yellow'}},
-        PrimaryMenuContainer: {style: {border: 'dashed 2px green'}},
-        MainMenuItem: {style: {border: 'dashed 2px blue'}},
-        SubnavContainer: {style: {border: 'dashed 2px purple'}},
-        SecondaryMenuContainer: {style: {border: 'dashed 2px lightskyblue'}},
+        Root: {style: {...expandBorderStyles('dashed 2px red')}},
+        Spacing: {style: {...expandBorderStyles('dashed 2px orange')}},
+        AppName: {style: {...expandBorderStyles('dashed 2px yellow')}},
+        PrimaryMenuContainer: {
+          style: {...expandBorderStyles('dashed 2px green')},
+        },
+        MainMenuItem: {style: {...expandBorderStyles('dashed 2px blue')}},
+        SubnavContainer: {style: {...expandBorderStyles('dashed 2px purple')}},
+        SecondaryMenuContainer: {
+          style: {...expandBorderStyles('dashed 2px lightskyblue')},
+        },
         SideMenuButton: {
           props: {
             overrides: {
               BaseButton(props) {
-                return <button {...props}>menu</button>;
+                console.log(props);
+                return <button onClick={props.onClick}>menu</button>;
               },
             },
           },
         },
-        UserMenuProfileListItem: {style: {border: 'solid 2px red'}},
-        UserProfileInfoContainer: {style: {border: 'solid 2px blue'}},
-        UserProfilePictureContainer: {style: {border: 'solid 2px green'}},
-        UserProfileTileContainer: {style: {border: 'solid 2px purple'}},
+        UserMenuProfileListItem: {
+          style: {...expandBorderStyles('solid 2px red')},
+        },
+        UserProfileInfoContainer: {
+          style: {...expandBorderStyles('solid 2px blue')},
+        },
+        UserProfilePictureContainer: {
+          style: {...expandBorderStyles('solid 2px green')},
+        },
+        UserProfileTileContainer: {
+          style: {...expandBorderStyles('solid 2px purple')},
+        },
       }}
     />
   );

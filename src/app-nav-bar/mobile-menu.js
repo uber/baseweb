@@ -164,15 +164,16 @@ export default function MobileMenu(props: AppNavBarPropsT) {
           boxShadow: 'none',
         },
       },
-      ListItem(listItemProps) {
+      ListItem: React.forwardRef((listItemProps, ref) => {
         return (
           <MobileNavMenuItem
+            ref={ref}
             {...listItemProps}
             mapItemToNode={mapItemToNode}
             overrides={overrides}
           />
         );
-      },
+      }),
     },
     // $FlowFixMe
     menuProps.overrides,
