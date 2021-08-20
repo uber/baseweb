@@ -706,13 +706,14 @@ class Select extends React.Component<PropsT, SelectStateT> {
           aria-labelledby={this.props['aria-labelledby']}
           aria-owns={this.state.isOpen ? this.listboxId : null}
           aria-required={this.props.required || null}
+          onFocus={this.handleInputFocus}
           tabIndex={0}
           {...sharedProps}
           {...inputContainerProps}
         >
           <input
+            aria-hidden
             id={this.props.id || null}
-            onFocus={this.handleInputFocus}
             ref={this.handleInputRef}
             style={{
               opacity: 0,
@@ -721,6 +722,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
               border: 'none',
               padding: 0,
             }}
+            tabIndex={-1}
           />
         </InputContainer>
       );
