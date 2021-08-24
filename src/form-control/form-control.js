@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import {getOverride, getOverrideProps} from '../helpers/overrides.js';
-import getBuiId from '../utils/get-bui-id.js';
+import {UIDConsumer} from 'react-uid';
 import {
   Label as StyledLabel,
   Caption as StyledCaption,
@@ -42,7 +42,6 @@ export default class FormControl extends React.Component<
     caption: null,
     disabled: false,
   };
-  state = {captionId: getBuiId()};
 
   render() {
     const {
@@ -96,42 +95,45 @@ export default class FormControl extends React.Component<
             {typeof label === 'function' ? label(sharedProps) : label}
           </Label>
         )}
-        <ControlContainer
-          data-baseweb="form-control-container"
-          {...sharedProps}
-          {...getOverrideProps(ControlContainerOverride)}
-        >
-          {React.Children.map(children, (child, index) => {
-            if (!child) return;
-
-            const key = child.key || String(index);
-            return React.cloneElement(child, {
-              key,
-              'aria-errormessage': error ? this.state.captionId : null,
-              'aria-describedby':
-                caption || positive ? this.state.captionId : null,
-              disabled: onlyChildProps.disabled || disabled,
-              error:
-                typeof onlyChildProps.error !== 'undefined'
-                  ? onlyChildProps.error
-                  : error,
-              positive:
-                typeof onlyChildProps.positive !== 'undefined'
-                  ? onlyChildProps.positive
-                  : positive,
-            });
-          })}
-          {(caption || error || positive) && (
-            <Caption
-              data-baseweb="form-control-caption"
-              id={this.state.captionId}
+        <UIDConsumer>
+          {captionId => (
+            <ControlContainer
+              data-baseweb="form-control-container"
               {...sharedProps}
-              {...getOverrideProps(CaptionOverride)}
+              {...getOverrideProps(ControlContainerOverride)}
             >
-              {hint}
-            </Caption>
+              {React.Children.map(children, (child, index) => {
+                if (!child) return;
+
+                const key = child.key || String(index);
+                return React.cloneElement(child, {
+                  key,
+                  'aria-errormessage': error ? captionId : null,
+                  'aria-describedby': caption || positive ? captionId : null,
+                  disabled: onlyChildProps.disabled || disabled,
+                  error:
+                    typeof onlyChildProps.error !== 'undefined'
+                      ? onlyChildProps.error
+                      : error,
+                  positive:
+                    typeof onlyChildProps.positive !== 'undefined'
+                      ? onlyChildProps.positive
+                      : positive,
+                });
+              })}
+              {(caption || error || positive) && (
+                <Caption
+                  data-baseweb="form-control-caption"
+                  id={captionId}
+                  {...sharedProps}
+                  {...getOverrideProps(CaptionOverride)}
+                >
+                  {hint}
+                </Caption>
+              )}
+            </ControlContainer>
           )}
-        </ControlContainer>
+        </UIDConsumer>
       </React.Fragment>
     );
   }

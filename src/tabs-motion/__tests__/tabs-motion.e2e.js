@@ -84,10 +84,10 @@ describe('tabs', () => {
   it('{regression} conditional tab does not throw error', async () => {
     await mount(page, 'tabs-motion--conditional');
     const button = await page.$('#toggle-robot-tab');
-    let firstTab = await page.$('#tabs-1-tab-robot');
+    let firstTab = await page.$('#tabs-conditional-tab-robot');
     expect(firstTab).toBeFalsy();
     await button.click();
-    firstTab = await page.$('#tabs-1-tab-robot');
+    firstTab = await page.$('#tabs-conditional-tab-robot');
     expect(firstTab).toBeTruthy();
     expect(await page.evaluate(`window.__e2e__error`)).toBe(false);
   });

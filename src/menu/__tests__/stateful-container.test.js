@@ -85,6 +85,7 @@ describe('Menu StatefulContainer', () => {
     render(<StatefulContainer {...getSharedProps()} />);
     const item = mockItems[0];
     const result = mockChildrenFn.mock.calls[0][0];
+    // $FlowFixMe
     const props = result.getRequiredItemProps(item, 0);
 
     expect(props).toHaveProperty('disabled', false);
@@ -96,7 +97,6 @@ describe('Menu StatefulContainer', () => {
     expect(props).toHaveProperty('resetMenu');
 
     const event = {preventDefault: jest.fn()};
-    // $FlowFixMe
     props.onClick(event);
     expect(mockItemSelect.mock.calls[0][0]).toEqual({
       item,

@@ -22,8 +22,17 @@ import {TestBaseProvider} from '../../test/test-utils.js';
 import {Popover, ACCESSIBILITY_TYPE, TRIGGER_TYPE} from '../index.js';
 
 import {styled} from '../../styles/index.js';
+import * as reactuid from 'react-uid';
 
 describe('Popover', () => {
+  beforeAll(() => {
+    jest.spyOn(reactuid, 'useUID').mockImplementation(() => 'bui-mock-id');
+  });
+
+  afterAll(() => {
+    jest.clearAllMocks();
+  });
+
   it('handles clicks', () => {
     const content = 'content';
     const anchorContent = 'click';
