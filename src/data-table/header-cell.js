@@ -62,7 +62,7 @@ const HeaderCell = React.forwardRef<HeaderCellPropsT, HTMLDivElement>(
         role="button"
         tabIndex="0"
         className={css({
-          ...theme.typography.font150,
+          ...theme.typography.font350,
           alignItems: 'center',
           backgroundColor,
           boxSizing: 'border-box',
