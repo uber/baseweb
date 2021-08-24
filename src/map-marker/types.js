@@ -33,6 +33,7 @@ export type FloatingMarkerSizeT = $Values<typeof FLOATING_MARKER_SIZES>;
 export type FloatingMarkerAnchorTypeT = $Values<
   typeof FLOATING_MARKER_ANCHOR_TYPES,
 >;
+
 export type NeedlePropsT = {
   size?: NeedleSizeT,
   background?: ResponsiveT<string>,

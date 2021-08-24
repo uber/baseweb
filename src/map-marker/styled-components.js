@@ -56,6 +56,29 @@ export const StyledNeedle = styled('div', ({$theme, background, height}) => {
   };
 });
 
+export const StyledFloatingMarkerRoot = styled('div', () => {
+  return {
+    position: 'relative',
+  };
+});
+
+export const StyledFloatingMarkerPinHeadContainer = styled(
+  'div',
+  ({$theme, anchor, anchorSize}) => {
+    return {
+      position: 'absolute',
+      transition: `${$theme.animation.timing300} ${$theme.animation.easeOutCurve} all`,
+      transform: getAnchorTransform(anchor, anchorSize),
+    };
+  },
+);
+
+export const StyledFloatingMarkerAnchorContainer = styled('div', () => {
+  return {
+    position: 'absolute',
+  };
+});
+
 export const StyledFixedMarkerRoot = styled('div', () => {
   return {
     display: 'flex',
