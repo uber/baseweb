@@ -32,6 +32,7 @@ export function Helper(props: PropsT) {
   );
 
   return (
+    //$FlowFixMe
     <Popover
       data-baseweb="helper"
       {...restProps}
