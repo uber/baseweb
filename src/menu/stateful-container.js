@@ -7,7 +7,6 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 // Files
-import getBuiId from '../utils/get-bui-id.js';
 import {STATE_CHANGE_TYPES, KEY_STRINGS} from './constants.js';
 import {scrollItemIntoView} from './utils.js';
 // Types
@@ -18,31 +17,34 @@ import type {
   RenderPropsT,
   StateReducerFnT,
 } from './types.js';
+import {useUIDSeed} from 'react-uid';
 
-export default class MenuStatefulContainer extends React.Component<
-  StatefulContainerPropsT,
+const DEFAULT_PROPS = {
+  // keeping it in defaultProps to satisfy Flow
+  initialState: {
+    // We start the index at -1 to indicate that no highlighting exists initially
+    highlightedIndex: -1,
+    isFocused: false,
+  },
+  typeAhead: true,
+  keyboardControlNode: {current: null},
+  stateReducer: ((changeType, changes) => changes: StateReducerFnT),
+  onItemSelect: () => {},
+  getRequiredItemProps: () => ({}),
+  children: () => null,
+  // from nested-menus context
+  addMenuToNesting: () => {},
+  removeMenuFromNesting: () => {},
+  getParentMenu: () => {},
+  getChildMenu: () => {},
+  forceHighlight: false,
+};
+
+class MenuStatefulContainerInner extends React.Component<
+  StatefulContainerPropsT & {uidSeed: (item: number) => string},
   StatefulContainerStateT,
 > {
-  static defaultProps = {
-    // keeping it in defaultProps to satisfy Flow
-    initialState: {
-      // We start the index at -1 to indicate that no highlighting exists initially
-      highlightedIndex: -1,
-      isFocused: false,
-    },
-    typeAhead: true,
-    keyboardControlNode: {current: null},
-    stateReducer: ((changeType, changes) => changes: StateReducerFnT),
-    onItemSelect: () => {},
-    getRequiredItemProps: () => ({}),
-    children: () => null,
-    // from nested-menus context
-    addMenuToNesting: () => {},
-    removeMenuFromNesting: () => {},
-    getParentMenu: () => {},
-    getChildMenu: () => {},
-    forceHighlight: false,
-  };
+  static defaultProps = DEFAULT_PROPS;
 
   state: StatefulContainerStateT = {
     ...this.constructor.defaultProps.initialState,
@@ -357,7 +359,7 @@ export default class MenuStatefulContainer extends React.Component<
     if (!itemRef) {
       itemRef = React.createRef();
       this.refList[index] = itemRef;
-      this.optionIds[index] = getBuiId();
+      this.optionIds[index] = this.props.uidSeed(index);
     }
     const {
       disabled: disabledVal,
@@ -440,7 +442,8 @@ export default class MenuStatefulContainer extends React.Component<
         ...restProps,
         rootRef: this.props.rootRef ? this.props.rootRef : this.rootRef,
         activedescendantId: this.optionIds[this.state.highlightedIndex],
-        getRequiredItemProps: this.getRequiredItemProps,
+        getRequiredItemProps: (item, index) =>
+          this.getRequiredItemProps(item, index),
         handleMouseLeave: this.handleMouseLeave,
         highlightedIndex: this.state.highlightedIndex,
         isFocused: this.state.isFocused,
@@ -453,3 +456,12 @@ export default class MenuStatefulContainer extends React.Component<
     );
   }
 }
+
+// Remove when MenuStatefulContainer is converted to a functional component.
+const MenuStatefulContainer = (props: StatefulContainerPropsT) => {
+  return <MenuStatefulContainerInner uidSeed={useUIDSeed()} {...props} />;
+};
+
+MenuStatefulContainer.defaultProps = DEFAULT_PROPS;
+
+export default MenuStatefulContainer;

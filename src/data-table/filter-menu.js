@@ -12,7 +12,7 @@ import {Filter as FilterIcon} from '../icon/index.js';
 import {Input, SIZE as INPUT_SIZE} from '../input/index.js';
 import {Popover, PLACEMENT} from '../popover/index.js';
 import {useStyletron} from '../styles/index.js';
-import getBuiId from '../utils/get-bui-id.js';
+import {useUIDSeed} from 'react-uid';
 
 import {COLUMNS} from './constants.js';
 import {matchesQuery} from './text-search.js';
@@ -63,7 +63,8 @@ function Options(props: OptionsPropsT) {
   }, [inputRef.current]);
 
   const [focusVisible, setFocusVisible] = React.useState(false);
-  const buiRef = React.useRef(props.columns.map((_, index) => getBuiId()));
+  const seed = useUIDSeed();
+  const buiRef = React.useRef(props.columns.map(col => seed(col)));
 
   const handleFocus = (event: SyntheticEvent<>) => {
     if (isFocusVisible(event)) {
