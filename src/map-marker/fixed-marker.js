@@ -7,13 +7,16 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import {useStyletron} from '../styles/index.js';
-import {Block} from '../block/index.js';
 import Needle from './needle.js';
 import {NEEDLE_SIZES, PINHEAD_SIZES} from './constants.js';
 import PinHead from './pin-head.js';
 import DragShadow from './drag-shadow.js';
 import type {FixedMarkerPropsT} from './types.js';
 import {PINHEAD_TYPES} from './constants.js';
+import {
+  StyledFixedMarkerDragContainer,
+  StyledFixedMarkerRoot,
+} from './styled-components.js';
 
 const FixedMarker = ({
   size = PINHEAD_SIZES.medium,
@@ -25,10 +28,9 @@ const FixedMarker = ({
   background,
   dragging,
 }: FixedMarkerPropsT) => {
-  const [css, theme] = useStyletron();
+  const [, theme] = useStyletron();
   const {
     colors: {backgroundInversePrimary, primaryB},
-    animation: {timing300, easeOutCurve},
   } = theme;
 
   color = color || primaryB;
@@ -41,25 +43,10 @@ const FixedMarker = ({
   const dragShadowHeight = 4;
   const dragShadowMarginTop = 6;
   return (
-    <Block
-      className={css({
-        display: 'flex',
-        alignItems: 'center',
-        flexDirection: 'column',
-      })}
-    >
-      <Block
-        className={css({
-          transform: `translateY(${
-            pinHeadTransformOnDrag && dragging
-              ? '0px'
-              : `${dragShadowMarginTop + dragShadowHeight}px`
-          })`,
-          transition: `${timing300} ${easeOutCurve} all`,
-          display: 'flex',
-          alignItems: 'center',
-          flexDirection: 'column',
-        })}
+    <StyledFixedMarkerRoot>
+      <StyledFixedMarkerDragContainer
+        translateAmount={dragShadowMarginTop + dragShadowHeight}
+        performTranslate={pinHeadTransformOnDrag && dragging}
       >
         <PinHead
           size={size}
@@ -71,7 +58,7 @@ const FixedMarker = ({
           type={PINHEAD_TYPES.fixed}
         />
         <Needle size={needle} background={background} />
-      </Block>
+      </StyledFixedMarkerDragContainer>
       {pinHeadTransformOnDrag && (
         <DragShadow
           background={background}
@@ -79,7 +66,7 @@ const FixedMarker = ({
           height={dragShadowMarginTop + dragShadowHeight}
         />
       )}
-    </Block>
+    </StyledFixedMarkerRoot>
   );
 };
 
