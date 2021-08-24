@@ -195,16 +195,17 @@ class Select extends React.Component<PropsT, SelectStateT> {
       if (!this.state.isFocused) {
         this.openAfterFocus = this.props.openOnClick;
         this.focus();
-        return;
       }
 
       if (!this.state.isOpen) {
         this.setState({
           isOpen: true,
+          isFocused: true,
           isPseudoFocused: false,
         });
-        return;
       }
+
+      return;
     }
 
     // Ensures that interactive elements within the Select component do not trigger the outer click
@@ -219,7 +220,12 @@ class Select extends React.Component<PropsT, SelectStateT> {
     // text input to filter the dropdown options.
     if (!this.props.searchable) {
       this.focus();
-      this.setState(prev => ({isOpen: !prev.isOpen}));
+      if (this.state.isOpen) {
+        this.setState({isOpen: false, isFocused: false});
+      } else {
+        this.setState({isOpen: true, isFocused: true});
+      }
+
       return;
     }
 
@@ -698,16 +704,22 @@ class Select extends React.Component<PropsT, SelectStateT> {
           aria-owns={this.state.isOpen ? listboxId : null}
           aria-required={this.props.required || null}
           onFocus={this.handleInputFocus}
-          ref={this.handleInputRef}
           tabIndex={0}
           {...sharedProps}
           {...inputContainerProps}
         >
           <input
-            aria-hidden="true"
+            aria-hidden
             id={this.props.id || null}
-            onFocus={this.handleInputFocus}
-            style={{display: 'none'}}
+            ref={this.handleInputRef}
+            style={{
+              opacity: 0,
+              width: 0,
+              overflow: 'hidden',
+              border: 'none',
+              padding: 0,
+            }}
+            tabIndex={-1}
           />
         </InputContainer>
       );
