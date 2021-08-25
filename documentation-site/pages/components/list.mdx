@@ -35,7 +35,9 @@ export default Layout;
 
 <Yard placeholderHeight={52} {...listItemLabelYardConfig} />
 
-List items best used in mobile applications.
+## Performance Considerations
+
+If your app renders hundreds of `ListItem`s at a time, it may be desirable to avoid unnecessary re-renders when using artwork and endEnhancer. This can be achieved with [React.memo](https://reactjs.org/docs/react-api.html#reactmemo), which you should use to memoize a component before passing it as the artwork or endEnhancer prop.
 
 ## Examples
 
