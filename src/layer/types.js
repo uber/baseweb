@@ -47,6 +47,9 @@ export type LayerPropsT = {
   /** Defines the location (child order) at which the layer will be inserted in
    the `host` element. */
   index?: number,
+  /** Identifies if this layer is a hover layer (and subsequent document clicks
+   should be triggered on the last registered non-hover layer. */
+  isHoverLayer?: boolean,
   /** A custom DOM element where the layer is inserted to as a child.
    Note that the `index` prop does not work with a custom `mountNode`. */
   mountNode?: HTMLElement,
@@ -69,6 +72,7 @@ export type LayerComponentPropsT = {
   children: React.Node,
   host: ?HTMLElement,
   index?: number,
+  isHoverLayer?: boolean,
   mountNode?: HTMLElement,
   onEscape?: () => mixed,
   onDocumentClick?: (event: MouseEvent) => mixed,
