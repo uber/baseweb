@@ -7,4 +7,3 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 jest.mock('../styles/styled.js');
-jest.mock('../utils/get-bui-id.js');

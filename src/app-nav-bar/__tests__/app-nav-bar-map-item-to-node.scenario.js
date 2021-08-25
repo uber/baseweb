@@ -39,13 +39,13 @@ export default function Scenario() {
       mainItems={mainItems}
       userItems={userItems}
       mapItemToNode={item => (
-        <div
+        <span
           className={css({
             border: `dashed 2px ${item.info ? item.info.color : 'green'}`,
           })}
         >
           {item.info ? `color: ${item.info.color}` : item.label}
-        </div>
+        </span>
       )}
       onMainItemSelect={handleMainItemSelect}
     />

@@ -56,6 +56,7 @@ export default function Scenario() {
         <Tabs
           activeKey={activeKey}
           onChange={({activeKey}) => setActiveKey(activeKey)}
+          uid="conditional"
         >
           {show && (
             <Tab title="Robot" key="robot">
