@@ -75,12 +75,7 @@ export default class LayersManager extends React.Component<
   }
 
   onDocumentClick = (event: MouseEvent) => {
-    const docClickHandler = this.state.docClickHandlers[
-      this.state.docClickHandlers.length - 1
-    ];
-    if (docClickHandler) {
-      docClickHandler(event);
-    }
+    this.state.docClickHandlers.forEach(handler => handler(event));
   };
 
   onKeyUp = (event: KeyboardEvent) => {
