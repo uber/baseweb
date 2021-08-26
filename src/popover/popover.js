@@ -451,7 +451,10 @@ class PopoverInner extends React.Component<
             key="new-layer"
             mountNode={this.props.mountNode}
             onEscape={this.props.onEsc}
-            onDocumentClick={this.onDocumentClick}
+            onDocumentClick={
+              this.isHoverTrigger() ? undefined : this.onDocumentClick
+            }
+            isHoverLayer={this.isHoverTrigger()}
             onMount={() => this.setState({isLayerMounted: true})}
             onUnmount={() => this.setState({isLayerMounted: false})}
           >
