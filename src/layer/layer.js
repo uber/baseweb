@@ -30,7 +30,9 @@ class LayerComponent extends React.Component<
 
   componentDidMount() {
     this.context.addEscapeHandler(this.onEscape);
-    this.context.addDocClickHandler(this.onDocumentClick);
+    if (!this.props.isHoverLayer) {
+      this.context.addDocClickHandler(this.onDocumentClick);
+    }
 
     const {onMount, mountNode, host: layersManagerHost} = this.props;
     if (mountNode) {
