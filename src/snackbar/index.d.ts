@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import {Override} from './overrides';
+import {Override} from '../overrides';
 import {DURATION, PLACEMENT} from './constants.js';
 export {DURATION, PLACEMENT} from './constants.js';
 
@@ -39,7 +39,7 @@ export type SnackbarElementPropsT = {
 };
 
 export type SnackbarProviderPropsT = {
-  children?: React.Node;
+  children?: React.ReactNode;
   overrides?: SnackbarElementOverridesT & {
     PlacementContainer?: Override<any>;
   };
