@@ -9,7 +9,10 @@ import * as React from 'react';
 import {useStyletron} from '../../styles/index.js';
 import {Label3} from '../../typography/index.js';
 import {Block} from '../../block/index.js';
-const TileGrid = ({children, customizerOptions}) => {
+
+import type {TileGridPropsT} from '../types.js';
+
+const TileGrid = ({children, customizerOptions}: TileGridPropsT) => {
   const [, theme] = useStyletron();
   const {
     colors: {contentSecondary},

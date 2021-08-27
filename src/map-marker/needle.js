@@ -6,18 +6,12 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
+import {NEEDLE_HEIGHTS} from './constants.js';
 import {StyledNeedle} from './styled-components.js';
 import type {NeedlePropsT} from './types.js';
 
-const heights = {
-  none: 0,
-  short: 4,
-  medium: 12,
-  tall: 20,
-};
-
-const Needle = ({size, background}: NeedlePropsT) => {
-  return <StyledNeedle background={background} height={heights[size]} />;
-};
+const Needle = ({size, background}: NeedlePropsT) => (
+  <StyledNeedle background={background} height={NEEDLE_HEIGHTS[size]} />
+);
 
 export default Needle;

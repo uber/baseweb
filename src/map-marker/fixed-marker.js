@@ -7,16 +7,15 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import {useStyletron} from '../styles/index.js';
+import {PINHEAD_TYPES, NEEDLE_SIZES, PINHEAD_SIZES} from './constants.js';
 import Needle from './needle.js';
-import {NEEDLE_SIZES, PINHEAD_SIZES} from './constants.js';
 import PinHead from './pin-head.js';
 import DragShadow from './drag-shadow.js';
-import type {FixedMarkerPropsT} from './types.js';
-import {PINHEAD_TYPES} from './constants.js';
 import {
   StyledFixedMarkerDragContainer,
   StyledFixedMarkerRoot,
 } from './styled-components.js';
+import type {FixedMarkerPropsT} from './types.js';
 
 const FixedMarker = ({
   size = PINHEAD_SIZES.medium,
@@ -26,7 +25,7 @@ const FixedMarker = ({
   endEnhancer,
   color,
   background,
-  dragging,
+  dragging = false,
 }: FixedMarkerPropsT) => {
   const [, theme] = useStyletron();
   const {

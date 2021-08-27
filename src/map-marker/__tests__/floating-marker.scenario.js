@@ -16,8 +16,9 @@ import {Input} from '../../input/index.js';
 import Upload from '../../icon/upload.js';
 import Search from '../../icon/search.js';
 
+import type {FloatingMarkerSizeT} from '../types.js';
+
 export default function Scenario() {
-  const markers = [];
   const [label, setLabel] = React.useState('Uber HQ');
   const [startEnhancer, setStartEnhancer] = React.useState(true);
   const [endEnhancer, setEndEnhancer] = React.useState(false);
@@ -25,34 +26,39 @@ export default function Scenario() {
     {id: 'top-left', label: 'top-left'},
   ]);
 
-  Object.values(FLOATING_MARKER_SIZES).forEach((size, i) => {
-    markers.push({
+  const markers = Object.values(FLOATING_MARKER_SIZES).map(
+    //$FlowFixMe
+    (size: FloatingMarkerSizeT, i: number) => ({
       id: `floating / ${size}`,
       content: (
         <FloatingMarker
           size={size}
           key={i}
           label={label}
-          anchor={floatingAnchorPosition[0]?.id}
+          anchor={floatingAnchorPosition[0].id}
           startEnhancer={startEnhancer && <Upload />}
           endEnhancer={endEnhancer && <Search />}
         />
       ),
-    });
-  });
+    }),
+  );
+  //$FlowFixMe
+  const options = Object.values(ANCHOR_POSITIONS).map((x: string) => ({
+    label: x,
+    id: x,
+  }));
 
   return (
     <TileGrid
+      // TODO: pass as children, make a separate component called "customization header"
       customizerOptions={[
         <Select
-          options={Object.values(ANCHOR_POSITIONS).map(x => ({
-            label: x,
-            id: x,
-          }))}
+          options={options}
           key={'anchor-position'}
           labelKey="id"
           valueKey="label"
           placeholder="Label position"
+          //$FlowFixMe
           onChange={({value}) => setFloatingAnchorPosition(value)}
           value={floatingAnchorPosition}
         />,

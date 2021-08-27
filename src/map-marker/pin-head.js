@@ -7,41 +7,15 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import {useStyletron} from '../styles/index.js';
-import {Label1, Label2, Label3} from '../typography/index.js';
-import type {ItemPropsT, PinHeadPropsT} from './types.js';
-import {PINHEAD_SIZES, PINHEAD_TYPES} from './constants.js';
+import {PINHEAD_SIZES, PINHEAD_TYPES, PINHEAD_SIZE} from './constants.js';
+import Item from './pin-head-item.js';
 import {
   StyledInnerXSmallAnchor,
   StyledOuterXSmallAnchor,
   StyledPinHead,
 } from './styled-components.js';
-const sizes = {
-  small: {height: 24, icon: 16},
-  medium: {height: 36, icon: 16},
-  large: {height: 48, icon: 24},
-};
 
-const Item = ({children, color, size}: ItemPropsT) => {
-  const [css] = useStyletron();
-  const props = {
-    color,
-    className: css({
-      display: 'flex',
-      alignItems: 'center',
-      textAlign: 'center',
-      lineheight: size,
-      height: size,
-      color,
-    }),
-  };
-  if (size === 24) {
-    return <Label3 {...props}>{children}</Label3>;
-  } else if (size === 36) {
-    return <Label2 {...props}>{children}</Label2>;
-  } else {
-    return <Label1 {...props}>{children}</Label1>;
-  }
-};
+import type {PinHeadPropsT} from './types.js';
 
 const PinHead = ({
   size = PINHEAD_SIZES.medium,
@@ -63,6 +37,8 @@ const PinHead = ({
   const activeElements = [label, startEnhancer, endEnhancer].filter(x => x);
   const gridTemplateColumns = activeElements.map(() => 'auto').join(' ');
   const forceCircle = activeElements.length === 1 && !label;
+  //$FlowFixMe
+  const {height, icon} = PINHEAD_SIZE[size];
 
   if (type === 'fixed' && size.includes('x-small')) {
     const round = size.includes('round');
@@ -72,8 +48,6 @@ const PinHead = ({
       </StyledOuterXSmallAnchor>
     );
   }
-
-  const {height, icon} = sizes[size];
 
   return (
     <StyledPinHead

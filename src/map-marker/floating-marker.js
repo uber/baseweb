@@ -58,6 +58,8 @@ const FloatingMarker = ({
       {anchor !== 'none' && (
         <StyledFloatingMarkerAnchorContainer>
           <PinHead
+            // TODO: have pinhead accept size and type (round/square) instead of combining it in size
+            // $FlowFixMe
             size={`x-small-${anchorType}`}
             color={primaryB}
             background={backgroundInversePrimary}

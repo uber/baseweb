@@ -11,7 +11,9 @@ import {
   StyledDragShadowContainer,
 } from './styled-components.js';
 
-const DragShadow = ({background, dragging, height}) => {
+import type {DragShadowPropsT} from './types.js';
+
+const DragShadow = ({background, dragging, height}: DragShadowPropsT) => {
   const width = 6;
   return (
     <StyledDragShadowContainer

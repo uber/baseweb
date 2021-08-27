@@ -15,6 +15,7 @@ import {
   PINHEAD_TYPES,
   FLOATING_MARKER_ANCHOR_TYPES,
 } from './constants.js';
+import type {IconPropsT} from '../icon/types.js';
 
 export type PinHeadT = $Values<typeof PINHEAD_TYPES>;
 
@@ -30,13 +31,14 @@ export type ResponsiveT<T> = T | Array<T>;
 
 export type FloatingMarkerSizeT = $Values<typeof FLOATING_MARKER_SIZES>;
 
+/* eslint-disable flowtype/generic-spacing*/
 export type FloatingMarkerAnchorTypeT = $Values<
   typeof FLOATING_MARKER_ANCHOR_TYPES,
 >;
 
 export type NeedlePropsT = {
-  size?: NeedleSizeT,
-  background?: ResponsiveT<string>,
+  size: NeedleSizeT,
+  background?: string,
 };
 
 export type ItemPropsT = {
@@ -46,29 +48,32 @@ export type ItemPropsT = {
 };
 
 export type PinHeadPropsT = {
-  size?: PinSizeT,
+  size?: PinHeadSizeT,
   label?: string,
-  startEnhancer?: React.Node,
-  endEnhancer?: React.Node,
+  // eslint-disable-next-line flowtype/no-weak-types
+  startEnhancer?: any,
+  // eslint-disable-next-line flowtype/no-weak-types
+  endEnhancer?: any,
   color?: string,
-  background?: ResponsiveT<string>,
+  // background?: ResponsiveT<string>,
+  background?: string,
   type?: string,
 };
 
 export type FixedMarkerPropsT = {
   size?: PinHeadSizeT,
-  needle?: React.Node,
+  needle?: NeedleSizeT,
   label?: string,
   startEnhancer?: React.Node,
   endEnhancer?: React.Node,
   color?: string,
-  background?: ResponsiveT<string>,
+  background?: string,
   dragging?: boolean,
 };
 
 export type FloatingMarkerPropsT = {
   color?: string,
-  background?: ResponseT<string>,
+  background?: string,
   label?: string,
   anchor?: AnchorPositionsT,
   endEnhancer?: React.Node,
@@ -93,4 +98,16 @@ export type DestinationMarkerPropsT = {
 export type OriginMarkerPropsT = {
   label?: string,
   anchor?: AnchorPositionsT,
+};
+
+export type DragShadowPropsT = {
+  background: string,
+  dragging: boolean,
+  height: number,
+};
+
+export type TileGridPropsT = {
+  // eslint-disable-next-line flowtype/no-weak-types
+  children: Array<any>,
+  customizerOptions: Array<React.Node>,
 };

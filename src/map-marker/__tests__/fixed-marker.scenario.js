@@ -15,6 +15,8 @@ import {Input} from '../../input/index.js';
 import Upload from '../../icon/upload.js';
 import Search from '../../icon/search.js';
 
+import type {PinHeadSizeT, NeedleSizeT} from '../types.js';
+
 export default function Scenario() {
   const markers = [];
   const [dragging, setDragging] = React.useState(false);
@@ -22,24 +24,30 @@ export default function Scenario() {
   const [startEnhancer, setStartEnhancer] = React.useState(true);
   const [endEnhancer, setEndEnhancer] = React.useState(false);
 
-  Object.values(PINHEAD_SIZES).forEach((pinheadSize, i) => {
-    Object.values(NEEDLE_SIZES).forEach((needleSize, z) => {
-      markers.push({
-        id: `fixed / ${pinheadSize} / ${needleSize}`,
-        content: (
-          <FixedMarker
-            size={pinheadSize}
-            needle={needleSize}
-            key={i}
-            label={label}
-            dragging={dragging}
-            startEnhancer={startEnhancer && <Upload />}
-            endEnhancer={endEnhancer && <Search />}
-          />
-        ),
-      });
-    });
-  });
+  Object.values(PINHEAD_SIZES).forEach(
+    // $FlowFixMe
+    (pinheadSize: PinHeadSizeT, i: number) => {
+      Object.values(NEEDLE_SIZES).forEach(
+        // $FlowFixMe
+        (needleSize: NeedleSizeT, z: number) => {
+          markers.push({
+            id: `fixed / ${pinheadSize} / ${needleSize}`,
+            content: (
+              <FixedMarker
+                size={pinheadSize}
+                needle={needleSize}
+                key={i}
+                label={label}
+                dragging={dragging}
+                startEnhancer={startEnhancer && <Upload />}
+                endEnhancer={endEnhancer && <Search />}
+              />
+            ),
+          });
+        },
+      );
+    },
+  );
 
   return (
     <TileGrid

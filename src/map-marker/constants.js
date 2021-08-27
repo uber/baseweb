@@ -21,6 +21,13 @@ export const NEEDLE_SIZES = Object.freeze({
   tall: 'tall',
 });
 
+export const NEEDLE_HEIGHTS = Object.freeze({
+  [NEEDLE_SIZES.none]: 0,
+  [NEEDLE_SIZES.short]: 4,
+  [NEEDLE_SIZES.medium]: 12,
+  [NEEDLE_SIZES.tall]: 20,
+});
+
 export const PIN_SIZES = Object.freeze({
   small: 'small',
   medium: 'medium',
@@ -33,6 +40,13 @@ export const PINHEAD_SIZES = Object.freeze({
   small: 'small',
   medium: 'medium',
   large: 'large',
+});
+
+export const PINHEAD_SIZE = Object.freeze({
+  //TODO: add xsmall round , xsmall square to pinhead size
+  [PINHEAD_SIZES.small]: {height: 24, icon: 16},
+  [PINHEAD_SIZES.medium]: {height: 36, icon: 16},
+  [PINHEAD_SIZES.large]: {height: 48, icon: 24},
 });
 
 export const FLOATING_MARKER_SIZES = Object.freeze({
