@@ -440,7 +440,7 @@ class PopoverInner extends React.Component<
 
     const defaultPopperOptions = {
       modifiers: {
-        preventOverflow: {enabled: !this.props.ignoreBoundary},
+        preventOverflow: {enabled: !this.props.ignoreBoundary, padding: 0},
       },
     };
     // Only render popover on the browser (portals aren't supported server-side)
