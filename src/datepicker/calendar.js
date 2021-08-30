@@ -47,6 +47,7 @@ export default class Calendar<T = Date> extends React.Component<
     onMonthChange: () => {},
     onYearChange: () => {},
     onChange: () => {},
+    onQuickSelectChange: () => {},
     orientation: ORIENTATION.horizontal,
     overrides: {},
     peekNextMonth: false,
@@ -578,6 +579,9 @@ export default class Calendar<T = Date> extends React.Component<
                         });
                       }
                     }
+                  }
+                  if (this.props.onQuickSelectChange) {
+                    this.props.onQuickSelectChange(params.option);
                   }
                 }}
                 options={

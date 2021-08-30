@@ -49,12 +49,18 @@ export class StatefulContainer extends React.Component<
   ): void;
 }
 
+export interface QuickSelectOption {
+  id: string;
+  beginDate: Date;
+  endDate?: Date;
+}
+
 export interface CalendarProps {
   autoFocusCalendar?: boolean;
   dateLabel?: (day: Date) => React.ReactNode;
   excludeDates?: Date[];
   quickSelect?: boolean;
-  quickSelectOptions?: Array<{id: string; beginDate: Date; endDate?: Date}>;
+  quickSelectOptions?: Array<QuickSelectOption>;
   filterDate?: (day: Date) => boolean;
   highlightedDate?: Date;
   includeDates?: Date[];
@@ -70,6 +76,7 @@ export interface CalendarProps {
   onMonthChange?: (args: {date: Date}) => any;
   onYearChange?: (args: {date: Date}) => any;
   onChange?: onChange;
+  onQuickSelectChange?: (option?: QuickSelectOption) => any;
   orientation?: ORIENTATION[keyof ORIENTATION];
   overrides?: DatepickerOverrides<SharedStylePropsT>;
   peekNextMonth?: boolean;
