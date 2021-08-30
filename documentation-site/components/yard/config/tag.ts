@@ -1,3 +1,9 @@
+/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
 import {Tag, KIND, VARIANT, SIZE} from 'baseui/tag';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
@@ -171,7 +177,13 @@ const TagConfig: TConfig = {
       type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
       custom: {
-        names: ['Root', 'Action', 'ActionIcon', 'Text'],
+        names: [
+          'Root',
+          'Action',
+          'ActionIcon',
+          'StartEnhancerContainer',
+          'Text',
+        ],
         sharedProps: {
           $kind: 'kind',
           $variant: 'variant',
