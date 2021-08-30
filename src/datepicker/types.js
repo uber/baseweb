@@ -116,7 +116,9 @@ export type WeekPropsT<T = Date> = {
   value: ?T | Array<T>,
 };
 
-export type MonthPropsT<T = Date> = WeekPropsT<T>;
+export type MonthPropsT<T = Date> = WeekPropsT<T> & {
+  fixedHeight?: boolean,
+};
 
 export type CalendarInternalState<T = Date> = {
   highlightedDate: T,
@@ -186,6 +188,7 @@ export type CalendarPropsT<T = Date> = {
   trapTabbing?: boolean,
   /** Currently selected date. */
   value?: ?T | Array<T>,
+  fixedHeight?: boolean,
 };
 
 export type HeaderPropsT<T = Date> = CalendarPropsT<T> & {

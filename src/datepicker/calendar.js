@@ -466,6 +466,7 @@ export default class Calendar<T = Date> extends React.Component<
             overrides={overrides}
             value={this.props.value}
             peekNextMonth={this.props.peekNextMonth}
+            fixedHeight={this.props.fixedHeight}
           />
         </CalendarContainer>,
       );
