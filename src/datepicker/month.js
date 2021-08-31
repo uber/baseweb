@@ -34,6 +34,8 @@ const defaultProps = {
   value: null,
 };
 
+const CALENDAR_MAX_ROWS = 6;
+
 export default class CalendarMonth<T = Date> extends React.Component<
   MonthPropsT<T>,
 > {
@@ -68,7 +70,12 @@ export default class CalendarMonth<T = Date> extends React.Component<
     let i = 0;
     let isWithinMonth = true;
 
-    while (isWithinMonth) {
+    while (
+      isWithinMonth ||
+      (this.props.fixedHeight &&
+        this.props.peekNextMonth &&
+        i < CALENDAR_MAX_ROWS)
+    ) {
       weeks.push(
         <Week
           adapter={this.props.adapter}
