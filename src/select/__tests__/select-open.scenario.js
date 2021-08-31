@@ -12,13 +12,25 @@ import {StatefulSelect} from '../index.js';
 
 export default function Scenario() {
   return (
-    <StatefulSelect
-      startOpen
-      options={[
-        {id: 'a', label: 'hey!'},
-        {id: 'b', label: 'are you listening?'},
-        {id: 'c', label: 'look at me!'},
-      ]}
-    />
+    <div>
+      <StatefulSelect
+        startOpen
+        options={[
+          {id: 'a', label: 'hey!'},
+          {id: 'b', label: 'are you listening?'},
+          {id: 'c', label: 'look at me!'},
+        ]}
+      />
+      <div style={{overflow: 'auto', marginTop: '200px', height: '100%'}}>
+        <StatefulSelect
+          startOpen
+          options={[
+            {id: 'a', label: 'hey!'},
+            {id: 'b', label: 'are you listening?'},
+            {id: 'c', label: 'look at me!'},
+          ]}
+        />
+      </div>
+    </div>
   );
 }
