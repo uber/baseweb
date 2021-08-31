@@ -257,6 +257,13 @@ const DatepickerConfig: TConfig = {
         'Defines if dates outside of the range of the current month are displayed.',
       hidden: true,
     },
+    fixedHeight: {
+      value: undefined,
+      type: PropTypes.Boolean,
+      description:
+        'Defines if 6 rows should always be displayed for all the months.',
+      hidden: true,
+    },
     timeSelectStart: {
       value: undefined,
       type: PropTypes.Boolean,

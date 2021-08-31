@@ -77,6 +77,7 @@ export interface CalendarProps {
   timeSelectEnd?: boolean;
   trapTabbing?: boolean;
   value?: Date | Date[] | null;
+  fixedHeight?: boolean;
 }
 export interface CalendarState {
   highlightedDate: Date;
