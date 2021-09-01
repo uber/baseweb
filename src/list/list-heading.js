@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
+import ReactIs from 'react-is';
 
 import {getOverrides} from '../helpers/overrides.js';
 
@@ -21,22 +22,47 @@ import {
 } from './styled-components.js';
 import type {HeadingPropsT} from './types.js';
 
+function RenderNode(props) {
+  const {component, ...restProps} = props;
+  const Component = component;
+  if (!Component) {
+    return null;
+  }
+  if (typeof Component === 'string') {
+    return Component;
+  }
+  if (ReactIs.isValidElementType(Component)) {
+    // $FlowFixMe
+    return <Component {...restProps} />;
+  }
+  // $FlowFixMe
+  return Component;
+}
+
 const ListHeading = React.forwardRef<HeadingPropsT, HTMLLIElement>(
   (props: HeadingPropsT, ref) => {
     const {overrides = {}} = props;
     const EndEnhancer = props.endEnhancer;
-    const endEnhancerIsString = typeof EndEnhancer === 'string';
+    const EndEnhancerDescription = props.endEnhancerDescription;
+    const SubHeading = props.subHeading;
 
     const [Root, rootProps] = getOverrides(overrides.Root, StyledHeadingRoot);
     const [Content, contentProps] = getOverrides(
       overrides.Content,
       StyledHeadingContent,
     );
+    const [HeadingContainer, headingContainerProps] = getOverrides(
+      overrides.HeadingContainer,
+      StyledHeadingMainHeading,
+    );
+    const [SubHeadingContainer, subHeadingContainerProps] = getOverrides(
+      overrides.SubHeadingContainer,
+      StyledHeadingSubHeading,
+    );
     const [EndEnhancerContainer, endEnhancerContainerProps] = getOverrides(
       overrides.EndEnhancerContainer,
       StyledHeadingEndEnhancerContainer,
     );
-
     const [
       EndEnhancerDescriptionContainer,
       endEnhancerDescriptionContainerProps,
@@ -45,14 +71,13 @@ const ListHeading = React.forwardRef<HeadingPropsT, HTMLLIElement>(
       StyledHeadingEndEnhancerDescriptionContainer,
     );
 
-    const [Heading, labelContentProps] = getOverrides(
-      overrides.HeadingContainer,
-      StyledHeadingMainHeading,
-    );
-    const [SubHeading, labelDescriptionProps] = getOverrides(
-      overrides.SubHeadingContainer,
-      StyledHeadingSubHeading,
-    );
+    const isEndEnhancerString = typeof EndEnhancer === 'string';
+
+    if (isEndEnhancerString && EndEnhancerDescription) {
+      console.warn(
+        'endEnhancerDescription will not be rendered if endEnhancer is not a string',
+      );
+    }
 
     return (
       <Root
@@ -61,34 +86,41 @@ const ListHeading = React.forwardRef<HeadingPropsT, HTMLLIElement>(
         {...rootProps}
       >
         <Content {...contentProps}>
+          {/* ----- Top Row -------------------------- */}
           <StyledHeadingContentRow>
-            <Heading $maxLines={props.maxLines} {...labelContentProps}>
-              {props.heading}
-            </Heading>
+            <HeadingContainer
+              $maxLines={props.maxLines}
+              {...headingContainerProps}
+            >
+              <RenderNode component={props.heading} />
+            </HeadingContainer>
 
-            {EndEnhancer && EndEnhancer !== 0 && (
+            {EndEnhancer && (
               <EndEnhancerContainer
-                $isText={endEnhancerIsString}
+                $isText={isEndEnhancerString}
                 {...endEnhancerContainerProps}
               >
-                {endEnhancerIsString ? EndEnhancer : <EndEnhancer />}
+                <RenderNode component={EndEnhancer} />
               </EndEnhancerContainer>
             )}
           </StyledHeadingContentRow>
 
-          <StyledHeadingContentRow>
-            <SubHeading {...labelDescriptionProps}>
-              {props.subHeading}
-            </SubHeading>
+          {/* ----- Bottom Row ----------------------- */}
+          {(SubHeading || EndEnhancerDescription) && (
+            <StyledHeadingContentRow>
+              <SubHeadingContainer {...subHeadingContainerProps}>
+                <RenderNode component={SubHeading} />
+              </SubHeadingContainer>
 
-            {EndEnhancer && EndEnhancer !== 0 && (
-              <EndEnhancerDescriptionContainer
-                {...endEnhancerDescriptionContainerProps}
-              >
-                {props.endEnhancerDescription}
-              </EndEnhancerDescriptionContainer>
-            )}
-          </StyledHeadingContentRow>
+              {EndEnhancerDescription && isEndEnhancerString && (
+                <EndEnhancerDescriptionContainer
+                  {...endEnhancerDescriptionContainerProps}
+                >
+                  <RenderNode component={EndEnhancerDescription} />
+                </EndEnhancerDescriptionContainer>
+              )}
+            </StyledHeadingContentRow>
+          )}
         </Content>
       </Root>
     );

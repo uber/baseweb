@@ -29,46 +29,55 @@ export default function Scenario() {
       <ListHeading
         heading="Heading"
         endEnhancer="Enhancer Text"
-        endEnhancerDescription="Paragraph"
+        endEnhancerDescription="Description"
       />
       <ListHeading
         heading="Heading"
         subHeading="Sub heading"
         endEnhancer="Enhancer Text"
-        endEnhancerDescription="Paragraph"
+        endEnhancerDescription="Description"
       />
 
       {/* ---------------------------------------- */}
 
       <ListHeading
-        heading="Overflow 1 line content that is too long"
+        heading="Overflow 1 line content is too long"
         endEnhancer="Enhancer Text"
-        endEnhancerDescription="Paragraph"
+        endEnhancerDescription="Description"
       />
       <ListHeading
-        heading="Overflow 2 line content that is too long"
+        heading="Overflow 2 lines content is too long"
         endEnhancer="Enhancer Text"
-        endEnhancerDescription="Paragraph"
+        endEnhancerDescription="Description"
         maxLines={2}
       />
       <ListHeading
-        heading="Overflow 1 line content that is too long"
+        heading="Overflow 1 line content is too long"
         subHeading="Sub heading"
         endEnhancer="Enhancer Text"
-        endEnhancerDescription="Paragraph"
+        endEnhancerDescription="Description"
       />
       <ListHeading
-        heading="Overflow 2 line content that is too long"
+        heading="Overflow 2 lines content is too long"
         subHeading="Sub heading"
         endEnhancer="Enhancer Text"
-        endEnhancerDescription="Paragraph"
+        endEnhancerDescription="Description"
         maxLines={2}
       />
 
       {/* ---------------------------------------- */}
 
       <ListHeading
-        heading="Overflow 2 line content that is too long"
+        heading="Heading"
+        subHeading="Sub heading"
+        endEnhancer={() => (
+          <Button size="compact" kind="secondary" shape="pill">
+            Action
+          </Button>
+        )}
+      />
+      <ListHeading
+        heading="Overflow 2 lines content is too long"
         subHeading="Sub heading"
         endEnhancer={() => (
           <Button size="compact" kind="secondary" shape="pill">
@@ -77,25 +86,31 @@ export default function Scenario() {
         )}
         maxLines={2}
       />
+      <ListHeading
+        heading="Heading"
+        subHeading="Description not rendered"
+        endEnhancer={() => (
+          <Button size="compact" kind="secondary" shape="pill">
+            Action
+          </Button>
+        )}
+        endEnhancerDescription="Description"
+      />
+
+      {/* ---------------------------------------- */}
 
       <ListHeading
-        heading="Heading"
-        subHeading="Sub heading"
-        endEnhancer={() => (
+        heading={<span>Heading in Span</span>}
+        subHeading={<span>Sub heading in Span</span>}
+        endEnhancer={
           <Button size="compact" kind="secondary" shape="pill">
             Action
           </Button>
-        )}
+        }
       />
       <ListHeading
-        heading="Heading"
-        subHeading="Sub heading"
-        endEnhancer={() => (
-          <Button size="compact" kind="secondary" shape="pill">
-            Action
-          </Button>
-        )}
-        endEnhancerDescription="Paragraph"
+        heading={() => <span>Heading component</span>}
+        subHeading={() => <span>Sub heading component</span>}
       />
     </div>
   );

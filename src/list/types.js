@@ -69,10 +69,10 @@ export type HeadingOverridesT = {|
 |};
 
 export type HeadingPropsT = {|
-  heading: string,
-  subHeading?: string,
-  endEnhancer?: string | React.AbstractComponent<{}>,
-  endEnhancerDescription?: string,
+  heading: React.Node | React.AbstractComponent<{}>,
+  subHeading?: React.Node | React.AbstractComponent<{}>,
+  endEnhancer?: React.Node | React.AbstractComponent<{}>,
+  endEnhancerDescription?: React.Node | React.AbstractComponent<{}>,
   overrides?: HeadingOverridesT,
   maxLines?: 1 | 2,
 |};
