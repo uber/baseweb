@@ -201,9 +201,11 @@ export const StyledHeadingEndEnhancerContainer = styled<{$isText: boolean}>(
 );
 
 export const StyledHeadingEndEnhancerDescriptionContainer = styled<{}>(
-  'div',
+  'p',
   ({$theme}) => ({
     ...$theme.typography.ParagraphMedium,
+    marginTop: 0,
+    marginBottom: 0,
     display: 'flex',
     alignItems: 'flex-start',
     textOverflow: 'ellipsis',
