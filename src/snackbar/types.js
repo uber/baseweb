@@ -45,7 +45,7 @@ export type SnackbarElementPropsT = {|
   // if action button preset focus it, defaults to true
   focus?: boolean,
   // primary message displayed in snackbar
-  message: string,
+  message: React.Node,
   overrides?: SnackbarElementOverridesT,
   // renders spinner in start enhancer position
   progress?: boolean,
