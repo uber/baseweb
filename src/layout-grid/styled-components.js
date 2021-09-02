@@ -28,23 +28,21 @@ export const StyledGrid = styled<StyledGridPropsT>(
         return {
           ...acc,
           [cur]: {
-            paddingLeft: `${getResponsiveNumber($gridMargins, idx) -
-              getResponsiveNumber($gridGutters, idx) / 2 -
-              0.5}${$gridUnit}`,
-            paddingRight: `${getResponsiveNumber($gridMargins, idx) -
-              getResponsiveNumber($gridGutters, idx) / 2 -
-              0.5}${$gridUnit}`,
+            paddingLeft: `${getResponsiveNumber(
+              $gridMargins,
+              idx,
+            )}${$gridUnit}`,
+            paddingRight: `${getResponsiveNumber(
+              $gridMargins,
+              idx,
+            )}${$gridUnit}`,
             alignItems: getResponsiveValue($align, idx),
           },
         };
       },
       {
-        paddingLeft: `${getResponsiveNumber($gridMargins, 0) -
-          getResponsiveNumber($gridGutters, 0) / 2 -
-          0.5}${$gridUnit}`,
-        paddingRight: `${getResponsiveNumber($gridMargins, 0) -
-          getResponsiveNumber($gridGutters, 0) / 2 -
-          0.5}${$gridUnit}`,
+        paddingLeft: `${getResponsiveNumber($gridMargins, 0)}${$gridUnit}`,
+        paddingRight: `${getResponsiveNumber($gridMargins, 0)}${$gridUnit}`,
         alignItems: getResponsiveValue($align, 0),
       },
     );
@@ -81,7 +79,8 @@ export const StyledCell = styled<StyledCellPropsT>(
     const mediaQueries = getMediaQueries($theme.breakpoints);
     const cellStyles = mediaQueries.reduce(
       (acc, cur, idx) => {
-        if (getResponsiveNumber($span, idx) === 0) {
+        const span = getResponsiveNumber($span, idx);
+        if (span === 0) {
           return {
             ...acc,
             [cur]: {
@@ -94,27 +93,33 @@ export const StyledCell = styled<StyledCellPropsT>(
             },
           };
         }
+        const columns = getResponsiveNumber($gridColumns, idx);
+        const baseWidth = (100 / columns) * Math.min(span, columns);
+        const gutters = getResponsiveNumber($gridGutters, idx);
+        const padding = gutters / 2;
         return {
           ...acc,
           [cur]: {
             display: 'block',
-            width: `${(100 / getResponsiveNumber($gridColumns, idx)) *
-              Math.min(
-                getResponsiveNumber($span, idx),
-                getResponsiveNumber($gridColumns, idx),
-              )}%`,
-            marginLeft: `${(100 / getResponsiveNumber($gridColumns, idx)) *
-              Math.min(
-                getResponsiveNumber($skip, idx),
-                getResponsiveNumber($gridColumns, idx) - 1,
-              )}%`,
-            paddingLeft: `${getResponsiveNumber($gridGutters, idx) /
-              2}${$gridUnit}`,
-            paddingRight: `${getResponsiveNumber($gridGutters, idx) /
-              2}${$gridUnit}`,
+            width: `calc(${baseWidth}% + ${(gutters * span) /
+              columns}${$gridUnit})`,
+            marginLeft: `${(100 / columns) *
+              Math.min(getResponsiveNumber($skip, idx), columns - 1)}%`,
+            paddingLeft: `${padding}${$gridUnit}`,
+            paddingRight: `${padding}${$gridUnit}`,
             marginBottom: `${getResponsiveNumber($gridGaps, idx)}${$gridUnit}`,
             alignSelf: getResponsiveValue($align, idx),
             order: getResponsiveNumber($order, idx),
+            ':first-child': {
+              paddingLeft: '0',
+              width: `calc(${baseWidth}% + ${(gutters * span) /
+                columns}${$gridUnit} - ${padding}${$gridUnit})`,
+            },
+            ':last-child': {
+              paddingRight: '0',
+              width: `calc(${baseWidth}% + ${(gutters * span) /
+                columns}${$gridUnit} - ${padding}${$gridUnit})`,
+            },
           },
         };
       },
@@ -125,6 +130,12 @@ export const StyledCell = styled<StyledCellPropsT>(
         marginBottom: `${getResponsiveNumber($gridGaps, 0)}${$gridUnit}`,
         alignSelf: getResponsiveValue($align, 0),
         order: getResponsiveNumber($order, 0),
+        ':first-child': {
+          paddingLeft: '0',
+        },
+        ':last-child': {
+          paddingRight: '0',
+        },
       },
     );
     return {
