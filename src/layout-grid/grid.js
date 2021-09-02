@@ -34,12 +34,14 @@ export default function Grid({
     DefaultStyledGrid,
   );
   const presetStyleValues = STYLE_VALUES[gridStyle];
-  const gridStyleValues = presetStyleValues && {
-    $gridGutters: presetStyleValues.gutters,
-    $gridMargins: presetStyleValues.margins,
-    $gridMaxWidth: presetStyleValues.maxWidth,
-    $gridUnit: presetStyleValues.unit,
-  };
+  const gridStyleValues = presetStyleValues
+    ? {
+        $gridGutters: presetStyleValues.gutters,
+        $gridMargins: presetStyleValues.margins,
+        $gridMaxWidth: presetStyleValues.maxWidth,
+        $gridUnit: presetStyleValues.unit,
+      }
+    : {};
   const gridContextStyleValues = presetStyleValues && {
     gridColumns: presetStyleValues.columns,
     gridGaps: presetStyleValues.gaps,
@@ -51,11 +53,10 @@ export default function Grid({
     <StyledGrid
       $align={align}
       $behavior={behavior}
-      $gridGutters={gridGutters}
-      $gridMargins={gridMargins}
-      $gridMaxWidth={gridMaxWidth}
-      $gridUnit={gridUnit}
-      {...gridStyleValues}
+      $gridGutters={gridGutters || gridStyleValues.$gridGutters}
+      $gridMargins={gridMargins || gridStyleValues.$gridMargins}
+      $gridMaxWidth={gridMaxWidth || gridStyleValues.$gridMaxWidth}
+      $gridUnit={gridUnit || gridStyleValues.$gridUnit}
       {...overrideProps}
     >
       <GridContext.Provider
