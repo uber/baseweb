@@ -8,7 +8,10 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {getOverrides} from '../helpers/overrides.js';
 import {STYLE, STYLE_VALUES} from './constants.js';
-import {StyledGrid as DefaultStyledGrid} from './styled-components.js';
+import {
+  StyledGrid as DefaultStyledGrid,
+  StyledGridWrapper,
+} from './styled-components.js';
 
 import type {GridPropsT, SharedGridPropsT} from './types.js';
 
@@ -50,26 +53,43 @@ export default function Grid({
   };
 
   return (
-    <StyledGrid
-      $align={align}
+    <StyledGridWrapper
       $behavior={behavior}
-      $gridGutters={gridGutters || gridStyleValues.$gridGutters}
-      $gridMargins={gridMargins || gridStyleValues.$gridMargins}
-      $gridMaxWidth={gridMaxWidth || gridStyleValues.$gridMaxWidth}
-      $gridUnit={gridUnit || gridStyleValues.$gridUnit}
-      {...overrideProps}
+      $gridMargins={
+        gridMargins != null ? gridMargins : gridStyleValues.$gridMargins
+      }
+      $gridMaxWidth={
+        gridMaxWidth != null ? gridMaxWidth : gridStyleValues.$gridMaxWidth
+      }
+      $gridUnit={gridUnit != null ? gridUnit : gridStyleValues.$gridUnit}
     >
-      <GridContext.Provider
-        value={{
-          gridColumns,
-          gridGaps,
-          gridGutters,
-          gridUnit,
-          ...gridContextStyleValues,
-        }}
+      <StyledGrid
+        $align={align}
+        $behavior={behavior}
+        $gridGutters={
+          gridGutters != null ? gridGutters : gridStyleValues.$gridGutters
+        }
+        $gridMargins={
+          gridMargins != null ? gridMargins : gridStyleValues.$gridMargins
+        }
+        $gridMaxWidth={
+          gridMaxWidth != null ? gridMaxWidth : gridStyleValues.$gridMaxWidth
+        }
+        $gridUnit={gridUnit != null ? gridUnit : gridStyleValues.$gridUnit}
+        {...overrideProps}
       >
-        {children}
-      </GridContext.Provider>
-    </StyledGrid>
+        <GridContext.Provider
+          value={{
+            gridColumns,
+            gridGaps,
+            gridGutters,
+            gridUnit,
+            ...gridContextStyleValues,
+          }}
+        >
+          {children}
+        </GridContext.Provider>
+      </StyledGrid>
+    </StyledGridWrapper>
   );
 }
