@@ -2,7 +2,6 @@ import * as React from 'react';
 
 import {Override} from '../overrides';
 import {DURATION, PLACEMENT} from './constants.js';
-export {DURATION, PLACEMENT} from './constants.js';
 
 export type DurationT =
   | typeof DURATION.infinite
