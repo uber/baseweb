@@ -70,6 +70,17 @@ export type GridPropsT = {
   },
 };
 
+export type StyledGridWrapperPropsT = {
+  /** Grid container behavior beyond max width. Fluid will continue to expand. Fixed will limit grid container to max width and center the container horizontally within parent element. */
+  $behavior?: BehaviorT,
+  /** Gap on either side of grid container at each breakpoint. */
+  $gridMargins?: ResponsiveT<number>,
+  /** Maximum width of the grid container. Does not include Margins. Only applies when `behavior` is `fluid`. */
+  $gridMaxWidth?: number,
+  /** Modify the CSS length unit used to measure columns and rows. Defaults to theme value. */
+  $gridUnit?: CSSLengthUnitT,
+};
+
 export type StyledGridPropsT = {
   /** Control vertical alignment of cells at each breakpoint. */
   $align?: ResponsiveT<AlignmentT>,
