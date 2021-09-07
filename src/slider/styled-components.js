@@ -103,7 +103,7 @@ export const TickBar = styled<StylePropsT>('div', props => {
 TickBar.displayName = 'StyledTickBar';
 
 export const Thumb = styled<StylePropsT>('div', props => {
-  const {$theme, $value = [], $thumbIndex, $disabled} = props;
+  const {$theme, $value = [], $thumbIndex, $disabled, $isDragged} = props;
   let isLeft = $value.length === 2 && $thumbIndex === 0;
   let isRight = $value.length === 2 && $thumbIndex === 1;
 
@@ -113,8 +113,8 @@ export const Thumb = styled<StylePropsT>('div', props => {
   }
 
   return {
-    height: '24px',
-    width: '24px',
+    height: '28px',
+    width: '28px',
     borderTopLeftRadius: '24px',
     borderTopRightRadius: '24px',
     borderBottomLeftRadius: '24px',
@@ -124,11 +124,13 @@ export const Thumb = styled<StylePropsT>('div', props => {
     alignItems: 'center',
     backgroundColor: $disabled
       ? $theme.colors.sliderHandleFillDisabled
+      : $isDragged
+      ? $theme.colors.sliderHandleFillActive
       : $theme.colors.sliderHandleFill,
     outline: 'none',
     boxShadow: props.$isFocusVisible
       ? `0 0 0 3px ${$theme.colors.accent}`
-      : '0 1px 4px rgba(0, 0, 0, 0.12)',
+      : '0px 3px 8px rgba(0, 0, 0, 0.15), 0px 1px 1px rgba(0, 0, 0, 0.16), 0px 3px 1px rgba(0, 0, 0, 0.1)',
     cursor: $disabled ? 'not-allowed' : 'inherit',
   };
 });

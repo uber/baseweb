@@ -152,7 +152,7 @@ export default (
 
   // Slider/Toggle
   sliderTrackFill: 'transparent',
-  sliderHandleFill: themePrimitives.primaryA,
+  sliderHandleFill: themePrimitives.white,
   sliderHandleFillDisabled: themePrimitives.primary400,
   sliderHandleInnerFill: themePrimitives.primaryA,
 
@@ -163,7 +163,7 @@ export default (
   sliderTrackFillSelectedActive: themePrimitives.primary500,
   sliderTrackFillDisabled: themePrimitives.mono300,
   sliderHandleFillHover: themePrimitives.white,
-  sliderHandleFillActive: themePrimitives.white,
+  sliderHandleFillActive: themePrimitives.primaryA,
   sliderHandleFillSelected: themePrimitives.white,
   sliderHandleFillSelectedHover: themePrimitives.white,
   sliderHandleFillSelectedActive: themePrimitives.white,
