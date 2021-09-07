@@ -12,14 +12,12 @@ import {Grid, Cell} from '../index.js';
 export default function Scenario() {
   return (
     <Grid
+      gridMaxWidth={800}
       overrides={{
         Grid: {
           style: {
             backgroundColor: `skyblue`,
             marginTop: '12px',
-          },
-          props: {
-            $gridMaxWidth: 800,
           },
         },
       }}
