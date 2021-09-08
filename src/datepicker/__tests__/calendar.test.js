@@ -7,12 +7,30 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {render, getByTestId} from '@testing-library/react';
+import {
+  render,
+  getByTestId,
+  fireEvent,
+  queryByTestId,
+  getByText,
+} from '@testing-library/react';
+import {TestBaseProvider} from '../../test/test-utils.js';
 
 import {Calendar} from '../index.js';
 
 describe('Component', () => {
-  it('displays quick select if quickSelect is false', () => {
+  it('does not display quick select if quickSelect is false', () => {
+    const {container} = render(
+      <Calendar
+        overrides={{
+          QuickSelectContainer: {props: {'data-testid': 'quick-select'}},
+        }}
+      />,
+    );
+    expect(queryByTestId(container, 'quick-select')).toBeNull();
+  });
+
+  it('displays quick select if quickSelect is true', () => {
     const {container} = render(
       <Calendar
         overrides={{
@@ -21,7 +39,7 @@ describe('Component', () => {
         quickSelect
       />,
     );
-    getByTestId(container, 'quick-select');
+    expect(getByTestId(container, 'quick-select')).not.toBeNull();
   });
 
   it('displays quick select if range and quickSelect is false', () => {
@@ -34,6 +52,22 @@ describe('Component', () => {
         range
       />,
     );
-    getByTestId(container, 'quick-select');
+    expect(getByTestId(container, 'quick-select')).not.toBeNull();
+  });
+
+  it('emits a quick select event if quick select is used to select a date', async () => {
+    const onQuickSelectChange = jest.fn();
+    const {container} = render(
+      <TestBaseProvider>
+        <Calendar quickSelect range onQuickSelectChange={onQuickSelectChange} />
+      </TestBaseProvider>,
+    );
+    const quickSelect = container.querySelector('[data-baseweb="select"]')
+      .firstChild;
+    fireEvent.click(quickSelect);
+    fireEvent.click(await getByText(container.parentElement, 'Past Week'));
+    expect(onQuickSelectChange).toHaveBeenCalledWith(
+      expect.objectContaining({id: 'Past Week'}),
+    );
   });
 });

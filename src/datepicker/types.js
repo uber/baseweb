@@ -137,11 +137,7 @@ export type CalendarPropsT<T = Date> = {
   /** Display select for quickly choosing date ranges. `range` must be true as well. */
   quickSelect?: boolean,
   /** Array of custom options displayed in the quick select. Overrides default options if provided. */
-  quickSelectOptions?: Array<{
-    id: string,
-    beginDate: T,
-    endDate?: T,
-  }>,
+  quickSelectOptions?: Array<QuickSelectOption<T>>,
   /** A filter function that is called to check the disabled state of a day. If `false` is returned the day is considered to be disabled. */
   filterDate?: ?(day: T) => boolean,
   /** A function that is called with the current date to render the label text under that day on the calendar. */
@@ -175,6 +171,8 @@ export type CalendarPropsT<T = Date> = {
   onYearChange?: ({date: T}) => mixed,
   /** Event handler that is called when a new date is selected. */
   onChange?: onChangeT<T>,
+  /** Event handler that is called when a selection is made using the quick select menu. */
+  onQuickSelectChange?: (option?: QuickSelectOption<T>) => mixed,
   /** Sets the orientation of the calendar when multiple months are displayed */
   orientation?: $Values<typeof ORIENTATION>,
   overrides?: DatepickerOverridesT,
@@ -194,6 +192,12 @@ export type CalendarPropsT<T = Date> = {
 export type HeaderPropsT<T = Date> = CalendarPropsT<T> & {
   date: T,
   order: number,
+};
+
+export type QuickSelectOption<T> = {
+  id: string,
+  beginDate: T,
+  endDate?: T,
 };
 
 export type DatepickerPropsT<T = Date> = CalendarPropsT<T> & {

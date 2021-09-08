@@ -579,6 +579,9 @@ export default class Calendar<T = Date> extends React.Component<
                       }
                     }
                   }
+                  if (this.props.onQuickSelectChange) {
+                    this.props.onQuickSelectChange(params.option);
+                  }
                 }}
                 options={
                   this.props.quickSelectOptions || [
