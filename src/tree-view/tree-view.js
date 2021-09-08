@@ -113,7 +113,6 @@ export default function TreeView(props: TreeViewPropsT) {
         );
         break;
       default:
-        e.preventDefault();
         if (timeOutRef.current !== null) {
           clearTimeout(timeOutRef.current);
         }
