@@ -47,7 +47,6 @@ export default class Calendar<T = Date> extends React.Component<
     onMonthChange: () => {},
     onYearChange: () => {},
     onChange: () => {},
-    onQuickSelectChange: () => {},
     orientation: ORIENTATION.horizontal,
     overrides: {},
     peekNextMonth: false,
