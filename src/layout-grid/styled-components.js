@@ -9,7 +9,31 @@ LICENSE file in the root directory of this source tree.
 import {styled} from '../styles/index.js';
 import {getMediaQueries} from '../helpers/responsive-helpers.js';
 import {BEHAVIOR} from './constants.js';
-import type {ResponsiveT, StyledGridPropsT, StyledCellPropsT} from './types.js';
+import type {
+  ResponsiveT,
+  StyledGridPropsT,
+  StyledGridWrapperPropsT,
+  StyledCellPropsT,
+} from './types.js';
+
+export const StyledGridWrapper = styled<StyledGridWrapperPropsT>(
+  'div',
+  ({
+    $theme,
+    $behavior = BEHAVIOR.fixed,
+    $gridMargins = $theme.grid.margins,
+    $gridMaxWidth = $theme.grid.maxWidth,
+    $gridUnit = $theme.grid.unit,
+  }) => ({
+    margin: 'auto',
+    maxWidth:
+      $behavior === BEHAVIOR.fixed
+        ? `${$gridMaxWidth +
+            2 * getResponsiveNumber($gridMargins, Infinity) -
+            1}${$gridUnit}`
+        : null,
+  }),
+);
 
 export const StyledGrid = styled<StyledGridPropsT>(
   'div',
@@ -36,6 +60,10 @@ export const StyledGrid = styled<StyledGridPropsT>(
               $gridMargins,
               idx,
             )}${$gridUnit}`,
+            marginLeft: `-${getResponsiveNumber($gridGutters, idx) /
+              2}${$gridUnit}`,
+            marginRight: `-${getResponsiveNumber($gridGutters, idx) /
+              2}${$gridUnit}`,
             alignItems: getResponsiveValue($align, idx),
           },
         };
@@ -43,6 +71,8 @@ export const StyledGrid = styled<StyledGridPropsT>(
       {
         paddingLeft: `${getResponsiveNumber($gridMargins, 0)}${$gridUnit}`,
         paddingRight: `${getResponsiveNumber($gridMargins, 0)}${$gridUnit}`,
+        marginLeft: `-${getResponsiveNumber($gridGutters, 0) / 2}${$gridUnit}`,
+        marginRight: `-${getResponsiveNumber($gridGutters, 0) / 2}${$gridUnit}`,
         alignItems: getResponsiveValue($align, 0),
       },
     );
@@ -50,8 +80,6 @@ export const StyledGrid = styled<StyledGridPropsT>(
       boxSizing: 'border-box',
       display: 'flex',
       flexWrap: 'wrap',
-      marginLeft: 'auto',
-      marginRight: 'auto',
       maxWidth:
         $behavior === BEHAVIOR.fixed
           ? `${$gridMaxWidth +
@@ -79,8 +107,7 @@ export const StyledCell = styled<StyledCellPropsT>(
     const mediaQueries = getMediaQueries($theme.breakpoints);
     const cellStyles = mediaQueries.reduce(
       (acc, cur, idx) => {
-        const span = getResponsiveNumber($span, idx);
-        if (span === 0) {
+        if (getResponsiveNumber($span, idx) === 0) {
           return {
             ...acc,
             [cur]: {
@@ -93,49 +120,35 @@ export const StyledCell = styled<StyledCellPropsT>(
             },
           };
         }
-        const columns = getResponsiveNumber($gridColumns, idx);
-        const baseWidth = (100 / columns) * Math.min(span, columns);
-        const gutters = getResponsiveNumber($gridGutters, idx);
-        const padding = gutters / 2;
         return {
           ...acc,
           [cur]: {
             display: 'block',
-            width: `calc(${baseWidth}% + ${(gutters * span) /
-              columns}${$gridUnit})`,
-            marginLeft: `${(100 / columns) *
-              Math.min(getResponsiveNumber($skip, idx), columns - 1)}%`,
-            paddingLeft: `${padding}${$gridUnit}`,
-            paddingRight: `${padding}${$gridUnit}`,
+            width: `calc(${(100 / getResponsiveNumber($gridColumns, idx)) *
+              Math.min(
+                getResponsiveNumber($span, idx),
+                getResponsiveNumber($gridColumns, idx),
+              )}% - ${getResponsiveNumber($gridGutters, idx)}${$gridUnit})`,
+            marginLeft: `calc(${(100 / getResponsiveNumber($gridColumns, idx)) *
+              Math.min(
+                getResponsiveNumber($skip, idx),
+                getResponsiveNumber($gridColumns, idx) - 1,
+              )}% + ${getResponsiveNumber($gridGutters, idx) / 2}${$gridUnit})`,
+            marginRight: `${getResponsiveNumber($gridGutters, idx) /
+              2}${$gridUnit}`,
             marginBottom: `${getResponsiveNumber($gridGaps, idx)}${$gridUnit}`,
             alignSelf: getResponsiveValue($align, idx),
             order: getResponsiveNumber($order, idx),
-            ':first-child': {
-              paddingLeft: '0',
-              width: `calc(${baseWidth}% + ${(gutters * span) /
-                columns}${$gridUnit} - ${padding}${$gridUnit})`,
-            },
-            ':last-child': {
-              paddingRight: '0',
-              width: `calc(${baseWidth}% + ${(gutters * span) /
-                columns}${$gridUnit} - ${padding}${$gridUnit})`,
-            },
           },
         };
       },
       {
         width: '100%',
-        paddingLeft: `${getResponsiveNumber($gridGutters, 0) / 2}${$gridUnit}`,
-        paddingRight: `${getResponsiveNumber($gridGutters, 0) / 2}${$gridUnit}`,
+        marginLeft: `${getResponsiveNumber($gridGutters, 0) / 2}${$gridUnit}`,
+        marginRight: `${getResponsiveNumber($gridGutters, 0) / 2}${$gridUnit}`,
         marginBottom: `${getResponsiveNumber($gridGaps, 0)}${$gridUnit}`,
         alignSelf: getResponsiveValue($align, 0),
         order: getResponsiveNumber($order, 0),
-        ':first-child': {
-          paddingLeft: '0',
-        },
-        ':last-child': {
-          paddingRight: '0',
-        },
       },
     );
     return {
