@@ -11,6 +11,7 @@ import {
   render,
   getByTestId,
   fireEvent,
+  queryByTestId,
   getByText,
 } from '@testing-library/react';
 import {TestBaseProvider} from '../../test/test-utils.js';
@@ -24,11 +25,11 @@ describe('Component', () => {
         overrides={{
           QuickSelectContainer: {props: {'data-testid': 'quick-select'}},
         }}
-        quickSelect
       />,
     );
-    expect(getByTestId(container, 'quick-select')).toBeNull();
+    expect(queryByTestId(container, 'quick-select')).toBeNull();
   });
+
   it('displays quick select if quickSelect is true', () => {
     const {container} = render(
       <Calendar
@@ -53,26 +54,20 @@ describe('Component', () => {
     );
     expect(getByTestId(container, 'quick-select')).not.toBeNull();
   });
+
   it('emits a quick select event if quick select is used to select a date', async () => {
     const onQuickSelectChange = jest.fn();
-    const selectedOption = {id: 'today', beginDate: new Date()};
     const {container} = render(
       <TestBaseProvider>
-        <Calendar
-          overrides={{
-            QuickSelectContainer: {props: {'data-testid': 'quick-select'}},
-          }}
-          quickSelect
-          quickSelectOptions={[selectedOption]}
-          range
-          onQuickSelectChange={onQuickSelectChange}
-        />
+        <Calendar quickSelect range onQuickSelectChange={onQuickSelectChange} />
       </TestBaseProvider>,
     );
-    const quickSelect = await getByTestId(container, 'quick-select');
+    const quickSelect = container.querySelector('[data-baseweb="select"]')
+      .firstChild;
     fireEvent.click(quickSelect);
-    const items = container.querySelectorAll('li');
-    fireEvent.click(items[1]);
-    expect(onQuickSelectChange).toHaveBeenCalledWith(selectedOption);
+    fireEvent.click(await getByText(container.parentElement, 'Past Week'));
+    expect(onQuickSelectChange).toHaveBeenCalledWith(
+      expect.objectContaining({id: 'Past Week'}),
+    );
   });
 });
