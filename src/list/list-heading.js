@@ -108,7 +108,10 @@ const ListHeading = React.forwardRef<HeadingPropsT, HTMLLIElement>(
           {/* ----- Bottom Row ----------------------- */}
           {(SubHeading || EndEnhancerDescription) && (
             <StyledHeadingContentRow>
-              <SubHeadingContainer {...subHeadingContainerProps}>
+              <SubHeadingContainer
+                $maxLines={props.maxLines}
+                {...subHeadingContainerProps}
+              >
                 <RenderNode component={SubHeading} />
               </SubHeadingContainer>
 

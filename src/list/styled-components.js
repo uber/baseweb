@@ -132,6 +132,8 @@ export const StyledHeadingRoot = styled<StyledRootPropsT>('div', ({$theme}) => {
 export const StyledHeadingContent = styled<{}>('div', ({$theme}) => {
   return {
     flexGrow: 1,
+    width: '100%',
+    minWidth: 0,
     paddingTop: '16px',
     paddingBottom: '8px',
     ...($theme.direction === 'rtl'
@@ -149,6 +151,7 @@ export const StyledHeadingContent = styled<{}>('div', ({$theme}) => {
 export const StyledHeadingContentRow = styled('div', {
   display: 'flex',
   justifyContent: 'space-between',
+  width: '100%',
 });
 
 export const StyledHeadingMainHeading = styled<StyledHeadingHeadingPropsT>(
@@ -172,7 +175,7 @@ export const StyledHeadingMainHeading = styled<StyledHeadingHeadingPropsT>(
 export const StyledHeadingSubHeading = styled<StyledHeadingHeadingPropsT>(
   'p',
   // $FlowFixMe - suppressing due to webkit properties
-  ({$maxLines, $theme}) => {
+  ({$maxLines = 1, $theme}) => {
     return {
       ...$theme.typography.ParagraphLarge,
       color: $theme.colors.contentPrimary,
@@ -191,12 +194,11 @@ export const StyledHeadingEndEnhancerContainer = styled<{$isText: boolean}>(
   'div',
   ({$isText, $theme}) => ({
     ...$theme.typography.LabelMedium,
-    flex: '0 0 auto',
     display: 'flex',
     alignItems: $isText ? 'flex-end' : 'center',
-    textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
     overflow: 'hidden',
+    textOverflow: 'ellipsis',
   }),
 );
 
@@ -208,8 +210,8 @@ export const StyledHeadingEndEnhancerDescriptionContainer = styled<{}>(
     marginBottom: 0,
     display: 'flex',
     alignItems: 'flex-start',
-    textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
     overflow: 'hidden',
+    textOverflow: 'ellipsis',
   }),
 );
