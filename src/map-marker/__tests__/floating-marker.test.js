@@ -10,15 +10,20 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {render} from '@testing-library/react';
 import {FloatingMarker} from '../index.js';
-import {PINHEAD_SIZES} from '../constants.js';
+import {FLOATING_MARKER_SIZES} from '../constants.js';
 
 describe('Floating Marker', () => {
-  it('renders a marker with size', () => {
-    const label = 'Test';
-    const size = PINHEAD_SIZES.small;
-
-    const {container} = render(<FloatingMarker label={label} size={size} />);
-    const pinhead = container.querySelector("[aria-label='Test map pin head']");
-    expect(pinhead.getAttribute('size')).toBe(size);
-  });
+  const label = 'test';
+  Object.values(FLOATING_MARKER_SIZES).forEach(
+    //$FlowFixMe
+    (size: FloatingMarkerSizeT) => {
+      test(`renders floating marker with size ${size}`, () => {
+        const {container} = render(
+          <FloatingMarker label={label} size={size} />,
+        );
+        const marker = container.querySelector('[data-baseweb="icon"]');
+        expect(marker).not.toBeNull();
+      });
+    },
+  );
 });

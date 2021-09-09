@@ -10,20 +10,32 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {render} from '@testing-library/react';
 import {FixedMarker} from '../index.js';
-import Pinhead from '../pin-head.js';
-import Needle from '../needle.js';
 import {PINHEAD_SIZES, NEEDLE_SIZES} from '../constants.js';
 
-describe('Fixed Marker', () => {
-  it('renders a marker with size and needle', () => {
-    const label = 'Test';
-    const size = PINHEAD_SIZES.small;
-    const needle = NEEDLE_SIZES.short;
+import type {PinHeadSizeT, NeedleSizeT} from '../types.js';
 
-    const {container} = render(
-      <FixedMarker size={size} needle={needle} label={label} />,
-    );
-    const pinhead = container.querySelector("[aria-label='Test map pin head']");
-    expect(pinhead).not.toBeNull();
-  });
+describe('Fixed Marker', () => {
+  const label = 'test';
+  // Test that all sizes/needles render
+  Object.values(PINHEAD_SIZES).forEach(
+    // $FlowFixMe
+    (pinheadSize: PinHeadSizeT, i: number) => {
+      Object.values(NEEDLE_SIZES).forEach(
+        // $FlowFixMe
+        (needleSize: NeedleSizeT, z: number) => {
+          test(`renders fixed marker with needle: ${needleSize} and size: ${pinheadSize}`, () => {
+            const {container} = render(
+              <FixedMarker
+                size={pinheadSize}
+                needle={needleSize}
+                label={label}
+              />,
+            );
+            const marker = container.querySelector('[data-baseweb="icon"]');
+            expect(marker).not.toBeNull();
+          });
+        },
+      );
+    },
+  );
 });

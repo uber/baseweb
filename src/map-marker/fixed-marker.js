@@ -42,7 +42,7 @@ const FixedMarker = ({
   const dragShadowHeight = 4;
   const dragShadowMarginTop = 6;
   return (
-    <StyledFixedMarkerRoot>
+    <StyledFixedMarkerRoot data-baseweb="icon">
       <StyledFixedMarkerDragContainer
         $translateAmount={dragShadowMarginTop + dragShadowHeight}
         $performTranslate={pinHeadTransformOnDrag && dragging}

@@ -40,7 +40,7 @@ const FloatingMarker = ({
   const anchorSize = 16;
 
   return (
-    <StyledFloatingMarkerRoot>
+    <StyledFloatingMarkerRoot data-baseweb="icon">
       <StyledFloatingMarkerPinHeadContainer
         $anchor={anchor}
         $anchorSize={anchorSize}
