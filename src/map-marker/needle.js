@@ -11,7 +11,7 @@ import {StyledNeedle} from './styled-components.js';
 import type {NeedlePropsT} from './types.js';
 
 const Needle = ({size, background}: NeedlePropsT) => (
-  <StyledNeedle background={background} height={NEEDLE_HEIGHTS[size]} />
+  <StyledNeedle $background={background} $height={NEEDLE_HEIGHTS[size]} />
 );
 
 export default Needle;

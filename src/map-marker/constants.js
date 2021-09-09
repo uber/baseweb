@@ -43,7 +43,9 @@ export const PINHEAD_SIZES = Object.freeze({
 });
 
 export const PINHEAD_SIZE = Object.freeze({
-  //TODO: add xsmall round , xsmall square to pinhead size
+  //TODO: adjust xsmall round , xsmall square sizes
+  [PINHEAD_SIZES.xSmallSquare]: {height: 18, icon: 12},
+  [PINHEAD_SIZES.xSmallRound]: {height: 18, icon: 12},
   [PINHEAD_SIZES.small]: {height: 24, icon: 16},
   [PINHEAD_SIZES.medium]: {height: 36, icon: 16},
   [PINHEAD_SIZES.large]: {height: 48, icon: 24},

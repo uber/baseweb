@@ -44,8 +44,8 @@ const FixedMarker = ({
   return (
     <StyledFixedMarkerRoot>
       <StyledFixedMarkerDragContainer
-        translateAmount={dragShadowMarginTop + dragShadowHeight}
-        performTranslate={pinHeadTransformOnDrag && dragging}
+        $translateAmount={dragShadowMarginTop + dragShadowHeight}
+        $performTranslate={pinHeadTransformOnDrag && dragging}
       >
         <PinHead
           size={size}

@@ -17,11 +17,11 @@ const DragShadow = ({background, dragging, height}: DragShadowPropsT) => {
   const width = 6;
   return (
     <StyledDragShadowContainer
-      width={width}
-      height={height}
-      dragging={dragging}
+      $width={width}
+      $height={height}
+      $dragging={dragging}
     >
-      <StyledDragShadow width={width} background={background} />
+      <StyledDragShadow $width={width} $background={background} />
     </StyledDragShadowContainer>
   );
 };

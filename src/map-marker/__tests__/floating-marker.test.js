@@ -10,7 +10,6 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {render} from '@testing-library/react';
 import {FloatingMarker} from '../index.js';
-import Pinhead from '../pin-head.js';
 import {PINHEAD_SIZES} from '../constants.js';
 
 describe('Floating Marker', () => {
@@ -19,8 +18,7 @@ describe('Floating Marker', () => {
     const size = PINHEAD_SIZES.small;
 
     const {container} = render(<FloatingMarker label={label} size={size} />);
-    const pinhead = container.querySelector(Pinhead);
-    console.log(pinhead);
+    const pinhead = container.querySelector("[aria-label='Test map pin head']");
     expect(pinhead.getAttribute('size')).toBe(size);
   });
 });

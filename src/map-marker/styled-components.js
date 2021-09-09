@@ -23,38 +23,38 @@ export const getAnchorTransform = (
   }[anchor]);
 
 export const StyledDragShadowContainer = styled<{
-  height: number,
-  width: number,
-  dragging: boolean,
-}>('div', ({$theme, height, width, dragging}) => ({
-  width: `${width}px`,
-  height: `${height}px`,
-  opacity: dragging ? 1 : 0,
-  visibility: dragging ? 'visible' : 'hidden',
+  $height: number,
+  $width: number,
+  $dragging: boolean,
+}>('div', ({$theme, $height, $width, $dragging}) => ({
+  width: `${$width}px`,
+  height: `${$height}px`,
+  opacity: $dragging ? 1 : 0,
+  visibility: $dragging ? 'visible' : 'hidden',
   transition: `${$theme.animation.timing300} ${$theme.animation.easeOutCurve} all`,
   position: 'relative',
   boxShadow: $theme.lighting.shadow600,
 }));
 
 export const StyledDragShadow = styled<{
-  background: string,
-  width: number,
-}>('div', ({$theme, background, width}) => ({
-  background,
+  $background: string,
+  $width: number,
+}>('div', ({$theme, $background, $width}) => ({
+  background: $background,
   borderRadius: '50%',
-  width: `${width}px`,
+  width: `${$width}px`,
   height: `${4}px`,
   position: 'absolute',
   bottom: 0,
 }));
 
 export const StyledNeedle = styled<{
-  background?: string,
-  height: number,
-}>('div', ({$theme, background, height}) => ({
-  background,
+  $background?: string,
+  $height: number,
+}>('div', ({$theme, $background, $height}) => ({
+  background: $background,
   width: '4px',
-  height: `${height}px`,
+  height: `${$height}px`,
   boxShadow: $theme.lighting.shadow600,
 }));
 
@@ -63,12 +63,12 @@ export const StyledFloatingMarkerRoot = styled<{}>('div', () => ({
 }));
 
 export const StyledFloatingMarkerPinHeadContainer = styled<{
-  anchor: AnchorPositionsT,
-  anchorSize: number,
-}>('div', ({$theme, anchor, anchorSize}) => ({
+  $anchor: AnchorPositionsT,
+  $anchorSize: number,
+}>('div', ({$theme, $anchor, $anchorSize}) => ({
   position: 'absolute',
   transition: `${$theme.animation.timing300} ${$theme.animation.easeOutCurve} all`,
-  transform: getAnchorTransform(anchor, anchorSize),
+  transform: getAnchorTransform($anchor, $anchorSize),
 }));
 
 export const StyledFloatingMarkerAnchorContainer = styled<{}>('div', () => ({
@@ -82,12 +82,12 @@ export const StyledFixedMarkerRoot = styled<{}>('div', () => ({
 }));
 
 export const StyledFixedMarkerDragContainer = styled<{
-  translateAmount: number,
-  performTranslate: boolean,
-}>('div', ({$theme, translateAmount, performTranslate}) => {
+  $translateAmount: number,
+  $performTranslate: boolean,
+}>('div', ({$theme, $translateAmount, $performTranslate}) => {
   return {
     transform: `translateY(${
-      performTranslate ? '0px' : `${translateAmount}px`
+      $performTranslate ? '0px' : `${$translateAmount}px`
     })`,
     transition: `${$theme.animation.timing300} ${$theme.animation.easeOutCurve} all`,
     display: 'flex',
@@ -97,42 +97,49 @@ export const StyledFixedMarkerDragContainer = styled<{
 });
 
 export const StyledOuterXSmallAnchor = styled<{
-  round: boolean,
-  background: string,
-}>('div', ({$theme, round, background}) => ({
-  background,
+  $round: boolean,
+  $background: string,
+}>('div', ({$theme, $round, $background}) => ({
+  background: $background,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
   height: '16px',
   width: '16px',
-  borderRadius: round ? '50%' : 0,
+  borderRadius: $round ? '50%' : 0,
   boxShadow: $theme.lighting.shadow600,
 }));
 
-export const StyledInnerXSmallAnchor = styled<{round: boolean, color: string}>(
-  'div',
-  ({round, color}) => ({
-    background: color,
-    height: '4px',
-    width: '4px',
-    borderRadius: round ? '50%' : 0,
-  }),
-);
+export const StyledInnerXSmallAnchor = styled<{
+  $round: boolean,
+  $color: string,
+}>('div', ({$round, $color}) => ({
+  background: $color,
+  height: '4px',
+  width: '4px',
+  borderRadius: $round ? '50%' : 0,
+}));
 
 export const StyledPinHead = styled<{
-  height: number,
-  background: ResponsiveT<string>,
-  gridTemplateColumns: string,
-  type: string,
-  forceCircle: boolean,
+  $height: number,
+  $background: ResponsiveT<string>,
+  $gridTemplateColumns: string,
+  $type: string,
+  $forceCircle: boolean,
 }>(
   'div',
-  ({$theme, height, background, gridTemplateColumns, type, forceCircle}) => {
+  ({
+    $theme,
+    $height,
+    $background,
+    $gridTemplateColumns,
+    $type,
+    $forceCircle,
+  }) => {
     const sharedStyles = {
       fixed: {
         padding: '0px 12px',
-        borderRadius: `${height}px`,
+        borderRadius: `${$height}px`,
       },
       floating: {
         padding: '0px 8px',
@@ -140,16 +147,16 @@ export const StyledPinHead = styled<{
     };
 
     return {
-      background,
-      height: `${height}px`,
+      background: $background,
+      height: `${$height}px`,
       display: 'grid',
-      gridTemplateColumns,
+      gridTemplateColumns: $gridTemplateColumns,
       gap: '8px',
       boxShadow: $theme.lighting.shadow600,
       whiteSpace: 'nowrap',
-      ...sharedStyles[type],
-      ...(forceCircle && {
-        width: `${height}px`,
+      ...sharedStyles[$type],
+      ...($forceCircle && {
+        width: `${$height}px`,
         display: 'flex',
         justifyContent: 'center',
         boxSizing: 'border-box',

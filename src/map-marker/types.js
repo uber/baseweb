@@ -15,7 +15,6 @@ import {
   PINHEAD_TYPES,
   FLOATING_MARKER_ANCHOR_TYPES,
 } from './constants.js';
-import type {IconPropsT} from '../icon/types.js';
 
 export type PinHeadT = $Values<typeof PINHEAD_TYPES>;
 
@@ -55,7 +54,6 @@ export type PinHeadPropsT = {
   // eslint-disable-next-line flowtype/no-weak-types
   endEnhancer?: any,
   color?: string,
-  // background?: ResponsiveT<string>,
   background?: string,
   type?: string,
 };

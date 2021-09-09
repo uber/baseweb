@@ -23,9 +23,7 @@ describe('Fixed Marker', () => {
     const {container} = render(
       <FixedMarker size={size} needle={needle} label={label} />,
     );
-    const pinhead = container.querySelector(Pinhead);
-    expect(pinhead.getAttribute('size')).toBe(size);
-    const pinNeedle = container.querySelector(Needle);
-    expect(pinNeedle.getAttribute('size')).toBe(needle);
+    const pinhead = container.querySelector("[aria-label='Test map pin head']");
+    expect(pinhead).not.toBeNull();
   });
 });

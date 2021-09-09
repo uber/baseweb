@@ -37,25 +37,24 @@ const PinHead = ({
   const activeElements = [label, startEnhancer, endEnhancer].filter(x => x);
   const gridTemplateColumns = activeElements.map(() => 'auto').join(' ');
   const forceCircle = activeElements.length === 1 && !label;
-  //$FlowFixMe
   const {height, icon} = PINHEAD_SIZE[size];
 
   if (type === 'fixed' && size.includes('x-small')) {
     const round = size.includes('round');
     return (
-      <StyledOuterXSmallAnchor round={round} background={background}>
-        <StyledInnerXSmallAnchor color={color} round={round} />
+      <StyledOuterXSmallAnchor $round={round} $background={background}>
+        <StyledInnerXSmallAnchor $color={color} $round={round} />
       </StyledOuterXSmallAnchor>
     );
   }
 
   return (
     <StyledPinHead
-      background={background}
-      height={height}
-      gridTemplateColumns={gridTemplateColumns}
-      forceCircle={forceCircle}
-      type={type}
+      $background={background}
+      $height={height}
+      $gridTemplateColumns={gridTemplateColumns}
+      $forceCircle={forceCircle}
+      $type={type}
     >
       {startEnhancer && (
         <Item size={height} color={color}>

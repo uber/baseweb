@@ -42,8 +42,8 @@ const FloatingMarker = ({
   return (
     <StyledFloatingMarkerRoot>
       <StyledFloatingMarkerPinHeadContainer
-        anchor={anchor}
-        anchorSize={anchorSize}
+        $anchor={anchor}
+        $anchorSize={anchorSize}
       >
         <PinHead
           size={size}
