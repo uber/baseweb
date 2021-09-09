@@ -32,7 +32,7 @@ export type SnackbarElementPropsT = {
   actionMessage?: string;
   actionOnClick?: (event: React.MouseEvent<HTMLButtonElement>) => any;
   focus?: boolean;
-  message: string;
+  message: React.ReactNode;
   overrides?: SnackbarElementOverridesT;
   progress?: boolean;
   startEnhancer?: React.FC<{size: number}>;
