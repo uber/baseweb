@@ -29,5 +29,5 @@ export const StyledTextareaContainer = styled<SharedStylePropsT>(
 // $FlowFixMe https://github.com/facebook/flow/issues/7745
 export const StyledTextarea = styled<SharedStylePropsT>('textarea', props => ({
   ...getInputStyles(props),
-  resize: 'none',
+  resize: 'vertical',
 }));
