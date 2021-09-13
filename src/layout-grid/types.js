@@ -67,6 +67,7 @@ export type GridPropsT = {
   /** Overrides for your grid. */
   overrides?: {
     Grid?: OverrideT,
+    GridWrapper?: OverrideT,
   },
 };
 
