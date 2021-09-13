@@ -23,6 +23,7 @@ export type Responsive<T> = T | T[];
 
 export interface GridOverrides {
   Grid?: Override<any>;
+  GridWrapper?: Override<any>;
 }
 
 export interface CellOverrides {
