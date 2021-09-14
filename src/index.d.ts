@@ -51,6 +51,7 @@ export function styled<
     P
 >;
 
+export { Theme } from './theme';
 export const LightTheme: Theme;
 export const LightThemeMove: Theme;
 export const lightThemePrimitives: ThemePrimitives;
