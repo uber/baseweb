@@ -52,7 +52,7 @@ export default (
     backgroundAccent: foundation.accent,
     backgroundNegative: foundation.negative,
     backgroundWarning: foundation.warning,
-    backgroundPositive: foundation.positive,
+    backgroundPositive: colors.green400,
     backgroundLightAccent: colors.blue50,
     backgroundLightNegative: colors.red50,
     backgroundLightWarning: colors.yellow50,
@@ -67,7 +67,7 @@ export default (
     contentOnColorInverse: colors.black,
     contentNegative: foundation.negative,
     contentWarning: colors.yellow700,
-    contentPositive: foundation.positive,
+    contentPositive: colors.green400,
 
     // Border
     borderStateDisabled: colors.gray50,
@@ -76,6 +76,9 @@ export default (
     borderNegative: colors.red200,
     borderWarning: colors.yellow200,
     borderPositive: colors.green200,
+
+    // Programs
+    safety: colors.blue400,
   };
   return {
     ...core,

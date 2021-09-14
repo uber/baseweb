@@ -52,7 +52,7 @@ export default (
     backgroundAccent: foundation.accent,
     backgroundNegative: foundation.negative,
     backgroundWarning: foundation.warning,
-    backgroundPositive: foundation.positive,
+    backgroundPositive: colors.green500,
     backgroundLightAccent: colors.blue700,
     backgroundLightPositive: colors.green700,
     backgroundLightNegative: colors.red700,
