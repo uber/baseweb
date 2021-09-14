@@ -162,6 +162,7 @@ export interface Colors {
   backgroundNegative: string;
   backgroundWarning: string;
   backgroundPositive: string;
+  backgroundMembership: string;
   backgroundLightAccent: string;
   backgroundLightPositive: string;
   backgroundLightNegative: string;
@@ -177,6 +178,7 @@ export interface Colors {
   contentNegative: string;
   contentWarning: string;
   contentPositive: string;
+  contentMembership: string;
 
   // Border
   borderStateDisabled: string;
