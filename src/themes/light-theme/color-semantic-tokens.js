@@ -53,6 +53,7 @@ export default (
     backgroundNegative: foundation.negative,
     backgroundWarning: foundation.warning,
     backgroundPositive: foundation.positive,
+    backgroundMembership: colors.yellow600,
     backgroundLightAccent: colors.blue50,
     backgroundLightNegative: colors.red50,
     backgroundLightWarning: colors.yellow50,
@@ -66,8 +67,9 @@ export default (
     contentOnColor: colors.white,
     contentOnColorInverse: colors.black,
     contentNegative: foundation.negative,
-    contentWarning: colors.yellow700,
+    contentWarning: colors.yellow600,
     contentPositive: foundation.positive,
+    contentMembership: colors.yellow600,
 
     // Border
     borderStateDisabled: colors.gray50,

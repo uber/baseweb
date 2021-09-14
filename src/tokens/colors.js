@@ -14,7 +14,7 @@ const colors: ColorTokensT = {
   gray200: '#E2E2E2',
   gray300: '#CBCBCB',
   gray400: '#AFAFAF',
-  gray500: '#757575',
+  gray500: '#6B6B6B',
   gray600: '#545454',
   gray700: '#333333',
   gray800: '#1F1F1F',
@@ -55,7 +55,7 @@ const colors: ColorTokensT = {
   yellow300: '#FFCF70',
   yellow400: '#FFC043',
   yellow500: '#BC8B2C',
-  yellow600: '#997328',
+  yellow600: '#996F00',
   yellow700: '#674D1B',
 
   green50: '#E6F2ED',
