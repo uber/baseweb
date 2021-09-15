@@ -81,6 +81,7 @@ export default (
     safety: colors.blue400,
     eatsGreen400: colors.green400,
     freightBlue400: colors.cobalt400,
+    jumpRed400: colors.red400,
     rewardsTier1: colors.blue400,
     rewardsTier2: colors.yellow400,
     rewardsTier3: colors.platinum400,
