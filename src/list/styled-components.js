@@ -12,6 +12,7 @@ import type {
   StyledRootPropsT,
   StyledContentPropsT,
   StyledArtworkContainerPropsT,
+  StyledHeadingHeadingPropsT,
 } from './types.js';
 import {artworkSizeToValue} from './utils.js';
 import {SHAPE} from './constants.js';
@@ -44,7 +45,7 @@ export const StyledContent = styled<StyledContentPropsT>(
       borderLeftStyle: 'none',
       display: 'flex',
       flexGrow: 1,
-      minHeight: $sublist ? 'initial' : '64px',
+      minHeight: $sublist ? 'initial' : $theme.sizing.scale1600,
       justifyContent: 'space-between',
       ...($theme.direction === 'rtl'
         ? {
@@ -112,7 +113,105 @@ export const StyledLabelSublistContent = styled<{||}>('p', ({$theme}) => {
   return {
     ...$theme.typography.LabelMedium,
     color: $theme.colors.contentPrimary,
-    marginTop: '12px',
-    marginBottom: '12px',
+    marginTop: $theme.sizing.scale500,
+    marginBottom: $theme.sizing.scale500,
   };
 });
+
+export const StyledHeadingRoot = styled<StyledRootPropsT>('div', ({$theme}) => {
+  return {
+    display: 'flex',
+    alignItems: 'center',
+    width: '100%',
+    backgroundColor: $theme.colors.backgroundPrimary,
+    overflow: 'hidden',
+    minHeight: $theme.sizing.scale1600,
+  };
+});
+
+export const StyledHeadingContent = styled<{}>('div', ({$theme}) => {
+  return {
+    flexGrow: 1,
+    width: '100%',
+    minWidth: 0,
+    paddingTop: $theme.sizing.scale600,
+    paddingBottom: $theme.sizing.scale300,
+    ...($theme.direction === 'rtl'
+      ? {
+          paddingLeft: $theme.sizing.scale600,
+          marginRight: $theme.sizing.scale600,
+        }
+      : {
+          paddingRight: $theme.sizing.scale600,
+          marginLeft: $theme.sizing.scale600,
+        }),
+  };
+});
+
+export const StyledHeadingContentRow = styled('div', {
+  display: 'flex',
+  justifyContent: 'space-between',
+  width: '100%',
+});
+
+export const StyledHeadingMainHeading = styled<StyledHeadingHeadingPropsT>(
+  'p',
+  // $FlowFixMe - suppressing due to webkit properties
+  ({$maxLines = 1, $theme}) => {
+    return {
+      ...$theme.typography.HeadingSmall,
+      color: $theme.colors.contentPrimary,
+      marginTop: 0,
+      marginBottom: 0,
+      marginRight: $theme.sizing.scale600,
+      display: '-webkit-box',
+      '-webkit-line-clamp': $maxLines,
+      '-webkit-box-orient': 'vertical',
+      overflow: 'hidden',
+    };
+  },
+);
+
+export const StyledHeadingSubHeading = styled<StyledHeadingHeadingPropsT>(
+  'p',
+  // $FlowFixMe - suppressing due to webkit properties
+  ({$maxLines = 1, $theme}) => {
+    return {
+      ...$theme.typography.ParagraphLarge,
+      color: $theme.colors.contentPrimary,
+      marginTop: 0,
+      marginBottom: 0,
+      marginRight: $theme.sizing.scale600,
+      display: '-webkit-box',
+      '-webkit-line-clamp': $maxLines,
+      '-webkit-box-orient': 'vertical',
+      overflow: 'hidden',
+    };
+  },
+);
+
+export const StyledHeadingEndEnhancerContainer = styled<{$isText: boolean}>(
+  'div',
+  ({$isText, $theme}) => ({
+    ...$theme.typography.LabelMedium,
+    display: 'flex',
+    alignItems: $isText ? 'flex-end' : 'center',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+  }),
+);
+
+export const StyledHeadingEndEnhancerDescriptionContainer = styled<{}>(
+  'p',
+  ({$theme}) => ({
+    ...$theme.typography.ParagraphMedium,
+    marginTop: 0,
+    marginBottom: 0,
+    display: 'flex',
+    alignItems: 'flex-start',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+  }),
+);

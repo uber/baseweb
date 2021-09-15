@@ -59,6 +59,28 @@ export type LabelPropsT = {|
   |},
 |};
 
+export type HeadingOverridesT = {|
+  Root?: OverrideT,
+  Content?: OverrideT,
+  HeadingContainer?: OverrideT,
+  SubHeadingContainer?: OverrideT,
+  EndEnhancerContainer?: OverrideT,
+  EndEnhancerDescriptionContainer?: OverrideT,
+|};
+
+export type HeadingPropsT = {|
+  heading: React.Node | React.AbstractComponent<{}>,
+  subHeading?: React.Node | React.AbstractComponent<{}>,
+  endEnhancer?: React.Node | React.AbstractComponent<{}>,
+  endEnhancerDescription?: React.Node | React.AbstractComponent<{}>,
+  overrides?: HeadingOverridesT,
+  maxLines?: 1 | 2,
+|};
+
+export type StyledHeadingHeadingPropsT = {|
+  $maxLines: number,
+|};
+
 export type MenuAdapterPropsT = {
   ...PropsT,
   // eslint-disable-next-line flowtype/no-weak-types
