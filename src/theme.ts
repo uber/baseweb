@@ -190,6 +190,7 @@ export interface Colors {
   safety: string;
   eatsGreen400: string;
   freightBlue400: string;
+  jumpRed400: string;
   rewardsTier1: string;
   rewardsTier2: string;
   rewardsTier3: string;

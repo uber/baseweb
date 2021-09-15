@@ -81,6 +81,7 @@ const COLORS = [
   'safety',
   'eatsGreen400',
   'freightBlue400',
+  'jumpRed400',
   'rewardsTier1',
   'rewardsTier2',
   'rewardsTier3',
