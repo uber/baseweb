@@ -12,9 +12,11 @@ import ListItemMenuAdapter from './list-item-menu-adapter.scenario.js';
 import ListItemOverrides from './list-item-overrides.scenario.js';
 import ListItemRtl from './list-item-rtl.scenario.js';
 import ListItem from './list-item.scenario.js';
+import ListHeading from './list-heading.scenario.js';
 
 export const ItemArtworkSizes = () => <ListItemArtworkSizes />;
 export const ItemMenuAdapter = () => <ListItemMenuAdapter />;
 export const ItemOverrides = () => <ListItemOverrides />;
 export const ItemRtl = () => <ListItemRtl />;
 export const Item = () => <ListItem />;
+export const Heading = () => <ListHeading />;
