@@ -10,7 +10,7 @@ import {getOverrides} from '../helpers/overrides.js';
 import {STYLE, STYLE_VALUES} from './constants.js';
 import {
   StyledGrid as DefaultStyledGrid,
-  StyledGridWrapper,
+  StyledGridWrapper as DefaultStyledGridWrapper,
 } from './styled-components.js';
 
 import type {GridPropsT, SharedGridPropsT} from './types.js';
@@ -35,6 +35,10 @@ export default function Grid({
   const [StyledGrid, overrideProps] = getOverrides(
     overrides.Grid,
     DefaultStyledGrid,
+  );
+  const [StyledGridWrapper, wrapperProps] = getOverrides(
+    overrides.GridWrapper,
+    DefaultStyledGridWrapper,
   );
   const presetStyleValues = STYLE_VALUES[gridStyle];
   const gridStyleValues = presetStyleValues
@@ -62,6 +66,7 @@ export default function Grid({
         gridMaxWidth != null ? gridMaxWidth : gridStyleValues.$gridMaxWidth
       }
       $gridUnit={gridUnit != null ? gridUnit : gridStyleValues.$gridUnit}
+      {...wrapperProps}
     >
       <StyledGrid
         $align={align}
