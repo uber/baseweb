@@ -67,6 +67,7 @@ export interface BaseInputProps<T> {
   type?: string;
   value?: string | number;
   rows?: number;
+  resize?: boolean;
   min?: number;
   max?: number;
   step?: number;

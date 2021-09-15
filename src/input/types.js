@@ -142,7 +142,10 @@ export type BaseInputPropsT<T> = {|
   type?: string,
   /** Input value attribute. */
   value?: string | number,
+  /** Textarea rows attribute */
   rows?: number,
+  /** vertical resizing in textarea */
+  resize?: boolean,
   /** min value when used as input type=number */
   min?: number,
   /** max value when used as input type=number */

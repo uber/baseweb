@@ -365,6 +365,11 @@ class BaseInput<T: EventTarget> extends React.Component<
               ? this.props.rows
               : null
           }
+          $resize={
+            this.props.type === CUSTOM_INPUT_TYPE.textarea
+              ? this.props.resize
+              : null
+          }
           {...sharedProps}
           {...inputProps}
         >
