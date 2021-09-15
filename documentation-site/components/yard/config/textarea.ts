@@ -27,6 +27,11 @@ const TextareaConfig: TConfig = {
       'inputMode',
       'autoComplete',
     ]),
+    resize: {
+      value: false,
+      type: PropTypes.Boolean,
+      description: 'If true, adds vertical resizability to textarea component.',
+    },
     overrides: {
       value: undefined,
       type: PropTypes.Custom,
