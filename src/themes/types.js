@@ -156,6 +156,15 @@ export type CoreExtensionSemanticColorTokensT = {|
   borderNegative: string,
   borderWarning: string,
   borderPositive: string,
+
+  // Programs
+  safety: string,
+  eatsGreen400: string,
+  freightBlue400: string,
+  rewardsTier1: string,
+  rewardsTier2: string,
+  rewardsTier3: string,
+  rewardsTier4: string,
 |};
 
 export type SemanticColorTokensT = {|

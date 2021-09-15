@@ -76,6 +76,15 @@ export default (
     borderNegative: colors.red500,
     borderWarning: colors.yellow500,
     borderPositive: colors.green500,
+
+    // Programs
+    safety: colors.blue400,
+    eatsGreen400: colors.green400,
+    freightBlue400: colors.cobalt400,
+    rewardsTier1: colors.blue400,
+    rewardsTier2: colors.yellow400,
+    rewardsTier3: colors.platinum400,
+    rewardsTier4: colors.gray200,
   };
 
   return {

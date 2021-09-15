@@ -79,6 +79,12 @@ export default (
 
     // Programs
     safety: colors.blue400,
+    eatsGreen400: colors.green400,
+    freightBlue400: colors.cobalt400,
+    rewardsTier1: colors.blue400,
+    rewardsTier2: colors.yellow400,
+    rewardsTier3: colors.platinum400,
+    rewardsTier4: colors.black,
   };
   return {
     ...core,
