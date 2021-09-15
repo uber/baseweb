@@ -45,7 +45,7 @@ export const StyledContent = styled<StyledContentPropsT>(
       borderLeftStyle: 'none',
       display: 'flex',
       flexGrow: 1,
-      minHeight: $sublist ? 'initial' : '64px',
+      minHeight: $sublist ? 'initial' : $theme.sizing.scale1600,
       justifyContent: 'space-between',
       ...($theme.direction === 'rtl'
         ? {
@@ -163,7 +163,7 @@ export const StyledHeadingMainHeading = styled<StyledHeadingHeadingPropsT>(
       color: $theme.colors.contentPrimary,
       marginTop: 0,
       marginBottom: 0,
-      marginRight: '16px',
+      marginRight: $theme.sizing.scale600,
       display: '-webkit-box',
       '-webkit-line-clamp': $maxLines,
       '-webkit-box-orient': 'vertical',
@@ -181,7 +181,7 @@ export const StyledHeadingSubHeading = styled<StyledHeadingHeadingPropsT>(
       color: $theme.colors.contentPrimary,
       marginTop: 0,
       marginBottom: 0,
-      marginRight: '16px',
+      marginRight: $theme.sizing.scale600,
       display: '-webkit-box',
       '-webkit-line-clamp': $maxLines,
       '-webkit-box-orient': 'vertical',
