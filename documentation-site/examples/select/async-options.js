@@ -74,12 +74,12 @@ function debounce(fn, delay) {
 
 export default function Example() {
   const [value, setValue] = React.useState([]);
-  const [options, setOptions] = React.useState([]);
+  const [options, setOptions] = React.useState(OPTIONS);
   const [isLoading, setIsLoading] = React.useState(false);
 
   const handleInputChange = debounce(function(term) {
     if (!term) {
-      setOptions([]);
+      setOptions(OPTIONS);
       return;
     }
     setIsLoading(true);
