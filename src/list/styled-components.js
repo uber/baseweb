@@ -113,8 +113,8 @@ export const StyledLabelSublistContent = styled<{||}>('p', ({$theme}) => {
   return {
     ...$theme.typography.LabelMedium,
     color: $theme.colors.contentPrimary,
-    marginTop: '12px',
-    marginBottom: '12px',
+    marginTop: $theme.sizing.scale500,
+    marginBottom: $theme.sizing.scale500,
   };
 });
 
@@ -125,7 +125,7 @@ export const StyledHeadingRoot = styled<StyledRootPropsT>('div', ({$theme}) => {
     width: '100%',
     backgroundColor: $theme.colors.backgroundPrimary,
     overflow: 'hidden',
-    minHeight: '64px',
+    minHeight: $theme.sizing.scale1600,
   };
 });
 
@@ -134,8 +134,8 @@ export const StyledHeadingContent = styled<{}>('div', ({$theme}) => {
     flexGrow: 1,
     width: '100%',
     minWidth: 0,
-    paddingTop: '16px',
-    paddingBottom: '8px',
+    paddingTop: $theme.sizing.scale600,
+    paddingBottom: $theme.sizing.scale300,
     ...($theme.direction === 'rtl'
       ? {
           paddingLeft: $theme.sizing.scale600,
