@@ -62,7 +62,7 @@ const colors: ColorTokensT = {
   green100: '#ADDEC9',
   green200: '#66D19E',
   green300: '#06C167',
-  green400: '#05944F',
+  green400: '#048848',
   green500: '#03703C',
   green600: '#03582F',
   green700: '#10462D',

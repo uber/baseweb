@@ -52,7 +52,7 @@ export default (
     backgroundAccent: foundation.accent,
     backgroundNegative: foundation.negative,
     backgroundWarning: foundation.warning,
-    backgroundPositive: foundation.positive,
+    backgroundPositive: colors.green500,
     backgroundLightAccent: colors.blue700,
     backgroundLightPositive: colors.green700,
     backgroundLightNegative: colors.red700,
@@ -76,6 +76,16 @@ export default (
     borderNegative: colors.red500,
     borderWarning: colors.yellow500,
     borderPositive: colors.green500,
+
+    // Programs
+    safety: colors.blue400,
+    eatsGreen400: colors.green400,
+    freightBlue400: colors.cobalt400,
+    jumpRed400: colors.red400,
+    rewardsTier1: colors.blue400,
+    rewardsTier2: colors.yellow400,
+    rewardsTier3: colors.platinum400,
+    rewardsTier4: colors.gray200,
   };
 
   return {
