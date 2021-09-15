@@ -38,6 +38,7 @@ export type TextareaPropsT = {
   /** Sets the size and number of visible text lines
    of the textarea element. */
   rows?: number,
+  resize?: boolean,
   maxLength?: number,
 };
 

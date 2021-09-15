@@ -31,6 +31,7 @@ class Textarea extends React.Component<TextareaPropsT, {isFocused: boolean}> {
     placeholder: '',
     required: false,
     rows: 3,
+    resize: false,
     size: SIZE.default,
   };
 
