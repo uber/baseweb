@@ -86,6 +86,7 @@ const COLORS = [
   'rewardsTier2',
   'rewardsTier3',
   'rewardsTier4',
+  'membership',
 ];
 
 const TYPO = [

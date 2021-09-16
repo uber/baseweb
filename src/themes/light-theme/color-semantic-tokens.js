@@ -86,6 +86,7 @@ export default (
     rewardsTier2: colors.yellow400,
     rewardsTier3: colors.platinum400,
     rewardsTier4: colors.black,
+    membership: colors.yellow600,
   };
   return {
     ...core,
