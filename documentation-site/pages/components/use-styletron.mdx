@@ -79,7 +79,7 @@ Doing so saves you from needing to import the custom theme type around. See belo
 
 // you'll likely want to import these functions from a relative path in your application
 +const styledThemed = createStyledThemed<CustomThemeT>();
-+const themedWithStyle = createThemedWithStyle<CustomThemeT>();
++const withStyleThemed = createThemedWithStyle<CustomThemeT>();
 +const themedUseStyletron = createThemedUseStyletron<CustomThemeT>();
 
  type PropsT = {
@@ -95,7 +95,7 @@ Doing so saves you from needing to import the custom theme type around. See belo
  });
 
 -const Second = withStyle<PropsT>('div', props => {
-+const Second = themedWithStyle<PropsT>(First, props => {
++const Second = withStyleThemed<PropsT>(First, props => {
    return {
      color: props.$active ? props.$theme.colors.myBlue : props.$theme.colors.myRed,
    };
