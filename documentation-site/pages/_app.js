@@ -11,7 +11,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {
   createStyledThemed,
-  createThemedUseStyletron,
+  createUseStyletronThemed,
   createWithStyleThemed,
   BaseProvider,
   DarkTheme,
@@ -62,7 +62,7 @@ const themes = {
 
 export const styledThemed = createStyledThemed<ThemeT>();
 export const withStyleThemed = createWithStyleThemed<ThemeT>();
-export const useStyletronThemed = createThemedUseStyletron<ThemeT>();
+export const useStyletronThemed = createUseStyletronThemed<ThemeT>();
 
 const DARK_MEDIA_QUERY = '(prefers-color-scheme: dark)';
 const LIGHT_MEDIA_QUERY = '(prefers-color-scheme: light)';

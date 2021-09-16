@@ -156,15 +156,15 @@ function ComponentA() {
 }
 ```
 
-As we've seen before, `useStyletron` also has a related `createThemedUseStyletron` function.
+As we've seen before, `useStyletron` also has a related `createUseStyletronThemed` function.
 
 ```js
 // @flow
-import {createThemedUseStyletron} from 'baseui';
+import {createUseStyletronThemed} from 'baseui';
 
 type CustomTheme = {customColor: string};
 
-const useStyletronThemed = createThemedUseStyletron<CustomTheme>();
+const useStyletronThemed = createUseStyletronThemed<CustomTheme>();
 
 function ComponentA() {
   const [css, theme] = useStyletronThemed();

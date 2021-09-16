@@ -11,7 +11,7 @@ import {ThemeContext} from './theme-provider.js';
 export {
   createStyledThemed,
   createWithStyleThemed,
-  createThemedUseStyletron,
+  createUseStyletronThemed,
   styled,
   withStyle,
   useStyletron,

@@ -72,7 +72,7 @@ Doing so saves you from needing to import the custom theme type around. See belo
 -  useStyletron,
 +  createStyledThemed,
 +  createWithStyleThemed,
-+  createThemedUseStyletron,
++  createUseStyletronThemed,
  } from 'baseui';
 
  type CustomThemeT = {myBlue: string, myRed: string};
@@ -80,7 +80,7 @@ Doing so saves you from needing to import the custom theme type around. See belo
 // you'll likely want to import these functions from a relative path in your application
 +const styledThemed = createStyledThemed<CustomThemeT>();
 +const withStyleThemed = createWithStyleThemed<CustomThemeT>();
-+const useStyletronThemed = createThemedUseStyletron<CustomThemeT>();
++const useStyletronThemed = createUseStyletronThemed<CustomThemeT>();
 
  type PropsT = {
    $active: boolean

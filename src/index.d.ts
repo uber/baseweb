@@ -10,7 +10,7 @@ import {Locale} from './locale';
 import {Theme, ThemePrimitives} from './theme';
 
 type UseStyletronFn<Theme> = () => [(arg: StyleObject) => string, Theme];
-export function createThemedUseStyletron<Theme>(): UseStyletronFn<Theme>;
+export function createUseStyletronThemed<Theme>(): UseStyletronFn<Theme>;
 export const useStyletron: UseStyletronFn<Theme>;
 export function withWrapper<
   C extends StyletronComponent<any>,

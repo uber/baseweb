@@ -21,7 +21,7 @@ import {
   withStyle,
   createWithStyleThemed,
   useStyletron,
-  createThemedUseStyletron,
+  createUseStyletronThemed,
   withWrapper,
 } from '../styled.js';
 
@@ -312,7 +312,7 @@ describe('useStyletron flow', () => {
 describe('useStyletronThemed flow', () => {
   test('it provides flow error if argument is not a StyleObject', () => {
     type T = {colors: {custom400: string}};
-    const useStyletronThemed = createThemedUseStyletron<T>();
+    const useStyletronThemed = createUseStyletronThemed<T>();
 
     function A() {
       const [css] = useStyletronThemed();
@@ -324,7 +324,7 @@ describe('useStyletronThemed flow', () => {
   test('it provides flow error if accessing property not defined in default theme type', () => {
     function A() {
       type T = {colors: {custom400: string}};
-      const useStyletronThemed = createThemedUseStyletron<T>();
+      const useStyletronThemed = createUseStyletronThemed<T>();
 
       const [css, theme] = useStyletronThemed();
       return (

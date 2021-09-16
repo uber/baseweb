@@ -12,7 +12,7 @@ export {
   useStyletron,
   createStyledThemed,
   createWithStyleThemed,
-  createThemedUseStyletron,
+  createUseStyletronThemed,
   ThemeProvider,
   ThemeConsumer,
 } from './styles/index.js';

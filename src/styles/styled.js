@@ -92,7 +92,7 @@ export const withStyle = createWithStyleThemed<ThemeT>();
 
 type UseStyletronFn<Theme> = () => [(StyleObject) => string, Theme];
 
-export function createThemedUseStyletron<Theme>(): UseStyletronFn<Theme> {
+export function createUseStyletronThemed<Theme>(): UseStyletronFn<Theme> {
   return function() {
     // eslint-disable-next-line flowtype/no-weak-types
     const theme = ((React.useContext(ThemeContext): any): Theme);
@@ -101,7 +101,7 @@ export function createThemedUseStyletron<Theme>(): UseStyletronFn<Theme> {
   };
 }
 
-export const useStyletron = createThemedUseStyletron<ThemeT>();
+export const useStyletron = createUseStyletronThemed<ThemeT>();
 
 export function withWrapper(
   // eslint-disable-next-line flowtype/no-weak-types
