@@ -66,7 +66,7 @@ export default (
     contentOnColor: colors.white,
     contentOnColorInverse: colors.black,
     contentNegative: foundation.negative,
-    contentWarning: colors.yellow700,
+    contentWarning: colors.yellow600,
     contentPositive: colors.green400,
 
     // Border
