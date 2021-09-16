@@ -174,12 +174,12 @@ describe('styled flow', () => {
   });
 });
 
-describe('themedStyled flow', () => {
+describe('styledThemed flow', () => {
   test('it provides flow error if accessing property not defined in custom theme type', () => {
     type T = {colors: {custom400: string}};
-    const themedStyled = createThemedStyled<T>();
+    const styledThemed = createThemedStyled<T>();
 
-    const a = themedStyled<{}>('div', props => {
+    const a = styledThemed<{}>('div', props => {
       console.log(props.$theme.colors.custom400);
       // $FlowFixMe
       console.log(props.$theme.colors.custom9000);
@@ -189,10 +189,10 @@ describe('themedStyled flow', () => {
 
   test('it provides props flow error using createThemedStyled', () => {
     type T = {colors: {custom400: string}};
-    const themedStyled = createThemedStyled<T>();
+    const styledThemed = createThemedStyled<T>();
 
     type P = {hello: string};
-    const a = themedStyled<P>('div', props => {
+    const a = styledThemed<P>('div', props => {
       console.log(props.hello);
       // $FlowFixMe
       console.log(props.world);
@@ -248,10 +248,10 @@ describe('withStyle flow', () => {
 describe('themedWithStyle flow', () => {
   test('it provides flow error if accessing property not defined in custom theme type', () => {
     type T = {colors: {custom400: string}};
-    const themedStyled = createThemedStyled<T>();
+    const styledThemed = createThemedStyled<T>();
     const themedWithStyle = createThemedWithStyle<T>();
 
-    const a = themedStyled<{}>('div', props => {
+    const a = styledThemed<{}>('div', props => {
       return {color: 'blue'};
     });
 
@@ -265,10 +265,10 @@ describe('themedWithStyle flow', () => {
 
   test('it provides props flow error using createThemedStyled', () => {
     type T = {colors: {custom400: string}};
-    const themedStyled = createThemedStyled<T>();
+    const styledThemed = createThemedStyled<T>();
     const themedWithStyle = createThemedWithStyle<T>();
 
-    const a = themedStyled<{}>('div', props => {
+    const a = styledThemed<{}>('div', props => {
       return {color: 'blue'};
     });
 

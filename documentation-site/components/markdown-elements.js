@@ -14,7 +14,7 @@ import Img from 'next/image';
 import {Block} from 'baseui/block';
 import {StyledLink} from 'baseui/link';
 import Code from './code';
-import {themedStyled} from '../pages/_app';
+import {styledThemed} from '../pages/_app';
 import Link from 'next/link';
 import Anchor from './anchor';
 import slugify from '../helpers/slugify';
@@ -80,7 +80,7 @@ export const Paragraph = (props: Props) => (
 
 export const UnorderedList = (props: Props) => <ul>{props.children}</ul>;
 
-const InlineCode = themedStyled<{}>('code', ({$theme}) => {
+const InlineCode = styledThemed<{}>('code', ({$theme}) => {
   return {
     ...$theme.typography.MonoParagraphMedium,
     backgroundColor: 'rgba(27, 31, 35, 0.05)',
@@ -97,7 +97,7 @@ const InlineCode = themedStyled<{}>('code', ({$theme}) => {
   };
 });
 
-const Blockquote = themedStyled('blockquote', {
+const Blockquote = styledThemed('blockquote', {
   backgroundColor: 'rgba(27, 31, 35, 0.03)',
   borderTopLeftRadius: '3px',
   borderTopRightRadius: '3px',

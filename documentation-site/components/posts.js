@@ -11,10 +11,10 @@ import {Block} from 'baseui/block';
 import Link from 'next/link';
 import {Card, StyledBody, StyledAction, StyledTitle} from 'baseui/card';
 import {Button, KIND} from 'baseui/button';
-import {themedStyled} from '../pages/_app';
+import {styledThemed} from '../pages/_app';
 import posts from '../posts';
 
-const MetaData = themedStyled('h2', ({$theme}) => ({
+const MetaData = styledThemed('h2', ({$theme}) => ({
   color: $theme.colors.contentSecondary,
   fontFamily: $theme.typography.font100.fontFamily,
   fontSize: $theme.sizing.scale500,

@@ -7,10 +7,10 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-import codemod from './styled-v8-themedStyled.js';
+import codemod from './styled-v8-styledThemed.js';
 import {Fixture} from './test-utilities.js';
 
-describe('shift styled with theme generic to themedStyled', () => {
+describe('shift styled with theme generic to styledThemed', () => {
   it('applies if styled base is component', async () => {
     const content = `
 // @flow
@@ -43,9 +43,9 @@ function A(props) {
   return <div className={props.className}>abcd</div>;
 }
 
-const themedStyled = createThemedStyled<CustomTheme>();
+const styledThemed = createThemedStyled<CustomTheme>();
 
-const B = themedStyled<typeof A, {}>(A, props => {
+const B = styledThemed<typeof A, {}>(A, props => {
   return {color: props.$theme.color};
 });"
 `);
@@ -75,9 +75,9 @@ import { styled, createThemedStyled } from 'baseui';
 
 type CustomTheme = {color: string};
 
-const themedStyled = createThemedStyled<CustomTheme>();
+const styledThemed = createThemedStyled<CustomTheme>();
 
-const Component = themedStyled<{}>('div', props => {
+const Component = styledThemed<{}>('div', props => {
   return {color: props.$theme.color};
 });"
 `);
@@ -103,9 +103,9 @@ const Component = styled<{}, {color: string}>('div', props => {
 // @flow
 import { styled, createThemedStyled } from 'baseui';
 
-const themedStyled = createThemedStyled<{color: string}>();
+const styledThemed = createThemedStyled<{color: string}>();
 
-const Component = themedStyled<{}>('div', props => {
+const Component = styledThemed<{}>('div', props => {
   return {color: props.$theme.color};
 });"
 `);
@@ -153,31 +153,31 @@ import { styled, createThemedStyled } from 'baseui';
 type CustomTheme1 = {height: string};
 type CustomTheme2 = {width: string};
 
-const themedStyled = createThemedStyled<CustomTheme1>();
+const styledThemed = createThemedStyled<CustomTheme1>();
 
-const A = themedStyled<{}>('div', props => {
+const A = styledThemed<{}>('div', props => {
   return {height: props.$theme.height};
 });
 
-const themedStyled2 = createThemedStyled<{color: string}>();
+const styledThemed2 = createThemedStyled<{color: string}>();
 
-const B = themedStyled2<{}>('div', props => {
+const B = styledThemed2<{}>('div', props => {
   return {color: props.$theme.color};
 });
 
-const themedStyled3 = createThemedStyled<CustomTheme2>();
+const styledThemed3 = createThemedStyled<CustomTheme2>();
 
-const C = themedStyled3<{}>('div', props => {
+const C = styledThemed3<{}>('div', props => {
   return {width: props.$theme.width};
 });
 
-const themedStyled4 = createThemedStyled<{color: string}>();
+const styledThemed4 = createThemedStyled<{color: string}>();
 
-const D = themedStyled4<{}>('div', props => {
+const D = styledThemed4<{}>('div', props => {
   return {color: props.$theme.color};
 });
 
-const E = themedStyled3<{}>('div', props => {
+const E = styledThemed3<{}>('div', props => {
   return {width: props.$theme.width};
 });"
 `);
@@ -213,15 +213,15 @@ import { styled, createThemedStyled } from 'baseui';
 type CustomTheme1 = {color: string};
 type CustomTheme2 = {size: string};
 
-const themedStyled = createThemedStyled<CustomTheme1>();
+const styledThemed = createThemedStyled<CustomTheme1>();
 
-const A = themedStyled<{}>('div', props => {
+const A = styledThemed<{}>('div', props => {
   return {color: props.$theme.color};
 });
 
-const themedStyled2 = createThemedStyled<CustomTheme2>();
+const styledThemed2 = createThemedStyled<CustomTheme2>();
 
-const B = themedStyled2<{}>('div', props => {
+const B = styledThemed2<{}>('div', props => {
   return {color: props.$theme.color};
 });"
 `);
@@ -255,13 +255,13 @@ import { styled, createThemedStyled } from 'baseui';
 
 type CustomTheme = {color: string};
 
-const themedStyled = createThemedStyled<CustomTheme>();
+const styledThemed = createThemedStyled<CustomTheme>();
 
-const A = themedStyled<{}>('div', props => {
+const A = styledThemed<{}>('div', props => {
   return {color: props.$theme.color};
 });
 
-const B = themedStyled<{}>('div', props => {
+const B = styledThemed<{}>('div', props => {
   return {color: props.$theme.color};
 });"
 `);

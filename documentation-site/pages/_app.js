@@ -60,7 +60,7 @@ const themes = {
   DarkThemeMove: {...DarkThemeMove, ...ResponsiveTheme},
 };
 
-export const themedStyled = createThemedStyled<ThemeT>();
+export const styledThemed = createThemedStyled<ThemeT>();
 export const themedWithStyle = createThemedWithStyle<ThemeT>();
 export const themedUseStyletron = createThemedUseStyletron<ThemeT>();
 

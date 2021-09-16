@@ -8,9 +8,9 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {themedStyled} from '../pages/_app';
+import {styledThemed} from '../pages/_app';
 
-const Wrapper = themedStyled('a', ({$isVisible, $theme}) => ({
+const Wrapper = styledThemed('a', ({$isVisible, $theme}) => ({
   visibility: $isVisible ? 'visible' : 'hidden',
   color: $theme.colors.primary,
   ':focus': {

@@ -91,9 +91,9 @@ class ThemeCache {
 
 function buildThemedStyledXName(position) {
   if (position <= 1) {
-    return 'themedStyled';
+    return 'styledThemed';
   }
-  return `themedStyled${position}`;
+  return `styledThemed${position}`;
 }
 
 function visitStyledCall(path, themes) {

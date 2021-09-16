@@ -12,7 +12,7 @@ import {Block} from 'baseui/block';
 import {Button, KIND, SIZE} from 'baseui/button';
 
 import TableOfContents from './table-of-contents';
-import {themedStyled} from '../pages/_app';
+import {styledThemed} from '../pages/_app';
 import MarkdownElements from './markdown-elements';
 import Sidebar from './sidebar';
 import HeaderNavigation from './header-navigation';
@@ -52,7 +52,7 @@ type PropsT = {
   maxContentWidth?: string,
 };
 
-const TOCWrapper = themedStyled<{}>('div', ({$theme}) => ({
+const TOCWrapper = styledThemed<{}>('div', ({$theme}) => ({
   display: 'none',
   '@media screen and (min-width: 1340px)': {
     display: 'block',
@@ -60,7 +60,7 @@ const TOCWrapper = themedStyled<{}>('div', ({$theme}) => ({
   },
 }));
 
-const SidebarWrapper = themedStyled<{
+const SidebarWrapper = styledThemed<{
   $isOpen: boolean,
   $hideSideNavigation: boolean,
 }>('nav', ({$theme, $isOpen, $hideSideNavigation}) => ({
@@ -74,7 +74,7 @@ const SidebarWrapper = themedStyled<{
   },
 }));
 
-const ContentWrapper = themedStyled<{
+const ContentWrapper = styledThemed<{
   $isSidebarOpen: boolean,
   $maxWidth?: string,
 }>('main', ({$theme, $isSidebarOpen, $maxWidth}) => ({

@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 //@flow
 import * as React from 'react';
 import SearchIcon from 'baseui/icon/search';
-import {themedStyled} from '../pages/_app';
+import {styledThemed} from '../pages/_app';
 //$FlowFixMe
 import {trackEvent} from '../helpers/ga';
 
@@ -19,7 +19,7 @@ type State = {
 
 // can't really use baseui/input because algolia injects its
 // own markdown and breaks our component (that's fairly complex)
-const PlainInput = themedStyled<{}>(
+const PlainInput = styledThemed<{}>(
   'input',
   ({$theme}) =>
     ({
@@ -57,7 +57,7 @@ const PlainInput = themedStyled<{}>(
     }: {}),
 );
 
-const SearchContainer = themedStyled<{}>(
+const SearchContainer = styledThemed<{}>(
   'div',
   ({$theme}) =>
     ({
@@ -68,7 +68,7 @@ const SearchContainer = themedStyled<{}>(
     }: {}),
 );
 
-const IconWrapper = themedStyled<{}>('div', ({$theme}) => ({
+const IconWrapper = styledThemed<{}>('div', ({$theme}) => ({
   position: 'absolute',
   height: '100%',
   display: 'flex',

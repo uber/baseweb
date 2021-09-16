@@ -14,7 +14,7 @@ import chalk from 'chalk';
 import {Stepper, step} from '@dubstep/core';
 
 import styledV7TypeArguments from './styled-v7-type-arguments.js';
-import styledV8ToThemedStyled from './styled-v8-themedStyled.js';
+import styledV8ToThemedStyled from './styled-v8-styledThemed.js';
 import v9ThemeScale from './v9-theme-scale.js';
 
 // Each mod or script is an array of dubstep steps

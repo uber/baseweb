@@ -114,7 +114,7 @@ Another benefit with this approach is the consistency with how Base Web componen
 Now that our theme is set up with media queries, we can start using them to create responsively-styled components using `themeStyled()`:
 
 ```js
-const LoadStatus = themedStyled('span', ({$theme}) => ({
+const LoadStatus = styledThemed('span', ({$theme}) => ({
   ...$theme.typography.font250,
   color: $theme.colors.mono800,
   [$theme.mediaQuery.small]: {
@@ -150,7 +150,7 @@ const NavBar = props => (
 
 // is equivalent to
 
-const NavBar = themedStyled('div', ({$theme}) => ({
+const NavBar = styledThemed('div', ({$theme}) => ({
   height: $theme.sizing.scale1400,
   paddingRight: $theme.sizing.scale800,
   paddingLeft: $theme.sizing.scale800,

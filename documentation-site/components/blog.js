@@ -10,9 +10,9 @@ import * as React from 'react';
 import {Block} from 'baseui/block';
 import Head from 'next/head';
 import {H1} from './markdown-elements';
-import {themedStyled} from '../pages/_app';
+import {styledThemed} from '../pages/_app';
 
-const Image = themedStyled('img', props => ({
+const Image = styledThemed('img', props => ({
   display: 'block',
   margin: '0 auto',
   maxWidth: '100%',
@@ -20,7 +20,7 @@ const Image = themedStyled('img', props => ({
   width: props.$full ? '100%' : 'auto',
 }));
 
-export const Caption = themedStyled<{}>('figcaption', ({$theme}) => ({
+export const Caption = styledThemed<{}>('figcaption', ({$theme}) => ({
   color: $theme.colors.contentSecondary,
   fontFamily: $theme.typography.font100.fontFamily,
   fontSize: $theme.sizing.scale500,
@@ -36,7 +36,7 @@ export const BlogImage = ({full, alt, caption, src, style}) => (
   </figure>
 );
 
-export const Demo = themedStyled('iframe', {
+export const Demo = styledThemed('iframe', {
   borderLeftWidth: 0,
   borderRightWidth: 0,
   borderTopWidth: 0,
@@ -50,14 +50,14 @@ export const Demo = themedStyled('iframe', {
   width: '100%',
 });
 
-const Tagline = themedStyled('span', ({$theme}) => ({
+const Tagline = styledThemed('span', ({$theme}) => ({
   color: $theme.colors.contentSecondary,
   fontFamily: $theme.typography.font100.fontFamily,
   fontSize: $theme.sizing.scale800,
   fontWeight: 300,
 }));
 
-const AuthorLink = themedStyled('a', ({$theme}) => ({
+const AuthorLink = styledThemed('a', ({$theme}) => ({
   color: $theme.colors.contentSecondary,
   fontFamily: $theme.typography.font100.fontFamily,
   ':hover': {
@@ -70,7 +70,7 @@ const AuthorLink = themedStyled('a', ({$theme}) => ({
   },
 }));
 
-const ArticleDate = themedStyled('span', ({$theme}) => ({
+const ArticleDate = styledThemed('span', ({$theme}) => ({
   color: $theme.colors.contentSecondary,
 }));
 
