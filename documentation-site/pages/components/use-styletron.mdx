@@ -80,7 +80,7 @@ Doing so saves you from needing to import the custom theme type around. See belo
 // you'll likely want to import these functions from a relative path in your application
 +const styledThemed = createStyledThemed<CustomThemeT>();
 +const withStyleThemed = createWithStyleThemed<CustomThemeT>();
-+const themedUseStyletron = createThemedUseStyletron<CustomThemeT>();
++const useStyletronThemed = createThemedUseStyletron<CustomThemeT>();
 
  type PropsT = {
    $active: boolean
@@ -103,7 +103,7 @@ Doing so saves you from needing to import the custom theme type around. See belo
 
 const Third = () => {
 - const [css, theme] = useStyletron();
-+ const [css, theme] = themedUseStyletron();
++ const [css, theme] = useStyletronThemed();
 
 return (
 - <div className={css({color: theme.colors.primary})}>

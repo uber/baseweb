@@ -62,7 +62,7 @@ const themes = {
 
 export const styledThemed = createStyledThemed<ThemeT>();
 export const withStyleThemed = createWithStyleThemed<ThemeT>();
-export const themedUseStyletron = createThemedUseStyletron<ThemeT>();
+export const useStyletronThemed = createThemedUseStyletron<ThemeT>();
 
 const DARK_MEDIA_QUERY = '(prefers-color-scheme: dark)';
 const LIGHT_MEDIA_QUERY = '(prefers-color-scheme: light)';

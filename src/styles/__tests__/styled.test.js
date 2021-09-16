@@ -309,13 +309,13 @@ describe('useStyletron flow', () => {
   });
 });
 
-describe('themedUseStyletron flow', () => {
+describe('useStyletronThemed flow', () => {
   test('it provides flow error if argument is not a StyleObject', () => {
     type T = {colors: {custom400: string}};
-    const themedUseStyletron = createThemedUseStyletron<T>();
+    const useStyletronThemed = createThemedUseStyletron<T>();
 
     function A() {
-      const [css] = themedUseStyletron();
+      const [css] = useStyletronThemed();
       // $FlowFixMe
       return <div className={css(false)}>hello</div>;
     }
@@ -324,9 +324,9 @@ describe('themedUseStyletron flow', () => {
   test('it provides flow error if accessing property not defined in default theme type', () => {
     function A() {
       type T = {colors: {custom400: string}};
-      const themedUseStyletron = createThemedUseStyletron<T>();
+      const useStyletronThemed = createThemedUseStyletron<T>();
 
-      const [css, theme] = themedUseStyletron();
+      const [css, theme] = useStyletronThemed();
       return (
         <div
           className={css({

@@ -164,10 +164,10 @@ import {createThemedUseStyletron} from 'baseui';
 
 type CustomTheme = {customColor: string};
 
-const themedUseStyletron = createThemedUseStyletron<CustomTheme>();
+const useStyletronThemed = createThemedUseStyletron<CustomTheme>();
 
 function ComponentA() {
-  const [css, theme] = themedUseStyletron();
+  const [css, theme] = useStyletronThemed();
   return <div className={css({color: theme.customColor})}>test</div>;
 }
 ```

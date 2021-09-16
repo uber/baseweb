@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import Link from 'next/link';
-import {themedUseStyletron as useStyletron} from '../pages/_app';
+import {useStyletronThemed as useStyletron} from '../pages/_app';
 import Menu from 'baseui/icon/menu';
 import DarkLogo from '../images/base-web.svg';
 import LightLogo from '../images/base-web-white.svg';

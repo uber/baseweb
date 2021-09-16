@@ -429,13 +429,13 @@ import {
 
 export const styledThemed = createStyledThemed<CustomThemeT>();
 export const withStyleThemed = createWithStyleThemed<CustomThemeT>();
-export const themedUseStyletron = createThemedUseStyletron<CustomThemeT>();
+export const useStyletronThemed = createThemedUseStyletron<CustomThemeT>();
 ```
 
 You can import these custom themed utilities wherever you want access to your custom theme.
 
 ```js
-import {themedUseStyletron as useStyletron} from 'path/to/my-style-utils.js';
+import {useStyletronThemed as useStyletron} from 'path/to/my-style-utils.js';
 
 function Foo() {
   const [css, theme] = useStyletron();
