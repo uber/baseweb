@@ -61,7 +61,7 @@ To understand overrides better, go [here](/guides/understanding-overrides/).
 
 The `styled` and `withStyle` functions imported from `baseui` provide flow type support for the
 default [theme shape](/guides/theming/#theme-properties). However, if you create a custom theme with additional fields,
-flow will show an error. To help, baseui exports two utility functions `createThemedStyled` and
+flow will show an error. To help, baseui exports two utility functions `createStyledThemed` and
 `createThemedWithStyle`. These will return their respective functions with a provided theme type.
 Doing so saves you from needing to import the custom theme type around. See below for an example.
 
@@ -70,7 +70,7 @@ Doing so saves you from needing to import the custom theme type around. See belo
 -  styled,
 -  withStyle,
 -  useStyletron,
-+  createThemedStyled,
++  createStyledThemed,
 +  createThemedWithStyle,
 +  createThemedUseStyletron,
  } from 'baseui';
@@ -78,7 +78,7 @@ Doing so saves you from needing to import the custom theme type around. See belo
  type CustomThemeT = {myBlue: string, myRed: string};
 
 // you'll likely want to import these functions from a relative path in your application
-+const styledThemed = createThemedStyled<CustomThemeT>();
++const styledThemed = createStyledThemed<CustomThemeT>();
 +const themedWithStyle = createThemedWithStyle<CustomThemeT>();
 +const themedUseStyletron = createThemedUseStyletron<CustomThemeT>();
 

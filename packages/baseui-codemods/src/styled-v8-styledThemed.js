@@ -107,19 +107,19 @@ function visitStyledCall(path, themes) {
     const nextCalleeName = buildThemedStyledXName(themes.position(theme));
     path.node.callee.name = nextCalleeName;
 
-    const createThemedStyled = t.variableDeclaration('const', [
+    const createStyledThemed = t.variableDeclaration('const', [
       t.variableDeclarator(
         t.identifier(nextCalleeName),
-        t.callExpression(t.identifier('createThemedStyled'), []),
+        t.callExpression(t.identifier('createStyledThemed'), []),
       ),
     ]);
 
-    createThemedStyled.declarations[0].init.callee.typeAnnotation = t.typeParameterInstantiation(
+    createStyledThemed.declarations[0].init.callee.typeAnnotation = t.typeParameterInstantiation(
       [themes.read(theme) || theme],
     );
 
     const parent = path.findParent(n => n.isVariableDeclaration());
-    parent.insertBefore(createThemedStyled);
+    parent.insertBefore(createStyledThemed);
   }
 }
 
@@ -136,21 +136,21 @@ async function styledV8ToThemedStyled(options: {dir: string}) {
       if (styledElements.length || styledComponents.length) {
         p.traverse({
           ImportDeclaration(path) {
-            let shouldImportCreateThemedStyled = true;
+            let shouldImportcreateStyledThemed = true;
             if (path.node.source.value === 'baseui') {
               for (const specifier of path.node.specifiers) {
-                if (specifier.imported.name === 'createThemedStyled') {
-                  shouldImportCreateThemedStyled = false;
+                if (specifier.imported.name === 'createStyledThemed') {
+                  shouldImportcreateStyledThemed = false;
                   break;
                 }
               }
 
-              if (shouldImportCreateThemedStyled) {
-                const createThemedStyledSpecifier = t.importSpecifier(
-                  t.identifier('createThemedStyled'),
-                  t.identifier('createThemedStyled'),
+              if (shouldImportcreateStyledThemed) {
+                const createStyledThemedSpecifier = t.importSpecifier(
+                  t.identifier('createStyledThemed'),
+                  t.identifier('createStyledThemed'),
                 );
-                path.node.specifiers.push(createThemedStyledSpecifier);
+                path.node.specifiers.push(createStyledThemedSpecifier);
               }
             }
           },

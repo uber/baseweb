@@ -10,7 +10,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import {
-  createThemedStyled,
+  createStyledThemed,
   createThemedUseStyletron,
   createThemedWithStyle,
   BaseProvider,
@@ -60,7 +60,7 @@ const themes = {
   DarkThemeMove: {...DarkThemeMove, ...ResponsiveTheme},
 };
 
-export const styledThemed = createThemedStyled<ThemeT>();
+export const styledThemed = createStyledThemed<ThemeT>();
 export const themedWithStyle = createThemedWithStyle<ThemeT>();
 export const themedUseStyletron = createThemedUseStyletron<ThemeT>();
 

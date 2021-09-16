@@ -23,13 +23,13 @@ previous context. We've heard your feedback on the v7 `styled` function and have
 usability when working with custom themes. Previously, developers using custom theme types must
 import the type in each file using the function. This introduced additional boilerplate and
 increased the barrier of entry to statically typing your code; doing so should be as simple as
-possible. A new function called `createThemedStyled` is now exported from the `baseui` package.
+possible. A new function called `createStyledThemed` is now exported from the `baseui` package.
 This function will provide a custom type that you supply in the `$theme` field in `styled`'s
 callback. Take a look at the example below.
 
 ```js
 // @flow
-import {styled, createThemedStyled} from 'baseui';
+import {styled, createStyledThemed} from 'baseui';
 
 type PropsT = {};
 
@@ -42,7 +42,7 @@ function StyledA = styled<PropsT>('div', props => {
 
 // Supplying a custom theme.
 type CustomTheme = {customColor: string};
-const styledThemed = createThemedStyled<CustomTheme>();
+const styledThemed = createStyledThemed<CustomTheme>();
 function StyledB = styledThemed<PropsT>('div', props => {
   return {
     backgroundColor: props.$theme.customColor,
@@ -76,15 +76,15 @@ function StyledB = withStyle<typeof StyledA, PropsT>(StyledA, props => {
 });
 ```
 
-Similar to how `styled` has a related `createThemedStyled` function, `withStyle` has
+Similar to how `styled` has a related `createStyledThemed` function, `withStyle` has
 `createThemedWithStyle`.
 
 ```js
 // @flow
-import {createThemedStyled, createThemedWithStyle} from 'baseui';
+import {createStyledThemed, createThemedWithStyle} from 'baseui';
 
 type CustomTheme = {customColor: string};
-const styledThemed = createThemedStyled<CustomTheme>();
+const styledThemed = createStyledThemed<CustomTheme>();
 const themedWithStyle = createThemedWithStyle<CustomTheme>();
 
 type PropsT = {};
@@ -110,10 +110,10 @@ themed-styled.js
 
 ```js
 // @flow
-import {createThemedStyled, createThemedWithStyle} from 'baseui';
+import {createStyledThemed, createThemedWithStyle} from 'baseui';
 
 type CustomTheme = {customColor: string};
-export const styled = createThemedStyled<CustomTheme>();
+export const styled = createStyledThemed<CustomTheme>();
 export const withStyle = createThemedWithStyle<CustomTheme>();
 ```
 
@@ -180,12 +180,12 @@ A simple scenario:
 
 ```diff
 -import {styled} from 'baseui';
-+import {createThemedStyled} from 'baseui';
++import {createStyledThemed} from 'baseui';
 
 type CustomTheme = {customColor: string};
 type PropsT = {};
 
-+const styledThemed = createThemedStyled<CustomTheme>();
++const styledThemed = createStyledThemed<CustomTheme>();
 
 -const StyledA = styled<PropsT, CustomTheme>('div', props => {
 +const StyledA = styledThemed<PropsT>('div', props => {
@@ -197,12 +197,12 @@ A more complex scenario:
 
 ```diff
 -import {styled} from 'baseui';
-+import {createThemedStyled} from 'baseui';
++import {createStyledThemed} from 'baseui';
 
 type CustomTheme = {customColor: string};
 type PropsT = {};
 
-+const styledThemed = createThemedStyled<CustomTheme>();
++const styledThemed = createStyledThemed<CustomTheme>();
 
 function ComponentA(props: {className: string}) {
   return <div className={props.className}>test</div>;

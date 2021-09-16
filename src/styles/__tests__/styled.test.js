@@ -17,7 +17,7 @@ import {LightTheme} from '../../themes/index.js';
 
 import {
   styled,
-  createThemedStyled,
+  createStyledThemed,
   withStyle,
   createThemedWithStyle,
   useStyletron,
@@ -177,7 +177,7 @@ describe('styled flow', () => {
 describe('styledThemed flow', () => {
   test('it provides flow error if accessing property not defined in custom theme type', () => {
     type T = {colors: {custom400: string}};
-    const styledThemed = createThemedStyled<T>();
+    const styledThemed = createStyledThemed<T>();
 
     const a = styledThemed<{}>('div', props => {
       console.log(props.$theme.colors.custom400);
@@ -187,9 +187,9 @@ describe('styledThemed flow', () => {
     });
   });
 
-  test('it provides props flow error using createThemedStyled', () => {
+  test('it provides props flow error using createStyledThemed', () => {
     type T = {colors: {custom400: string}};
-    const styledThemed = createThemedStyled<T>();
+    const styledThemed = createStyledThemed<T>();
 
     type P = {hello: string};
     const a = styledThemed<P>('div', props => {
@@ -248,7 +248,7 @@ describe('withStyle flow', () => {
 describe('themedWithStyle flow', () => {
   test('it provides flow error if accessing property not defined in custom theme type', () => {
     type T = {colors: {custom400: string}};
-    const styledThemed = createThemedStyled<T>();
+    const styledThemed = createStyledThemed<T>();
     const themedWithStyle = createThemedWithStyle<T>();
 
     const a = styledThemed<{}>('div', props => {
@@ -263,9 +263,9 @@ describe('themedWithStyle flow', () => {
     });
   });
 
-  test('it provides props flow error using createThemedStyled', () => {
+  test('it provides props flow error using createStyledThemed', () => {
     type T = {colors: {custom400: string}};
-    const styledThemed = createThemedStyled<T>();
+    const styledThemed = createStyledThemed<T>();
     const themedWithStyle = createThemedWithStyle<T>();
 
     const a = styledThemed<{}>('div', props => {

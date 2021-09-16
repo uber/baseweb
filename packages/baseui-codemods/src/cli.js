@@ -26,7 +26,7 @@ const MODS = {
       styledV7TypeArguments,
     ),
     _step(
-      'Migrate styled theme generic to "createThemedStyled".',
+      'Migrate styled theme generic to "createStyledThemed".',
       styledV8ToThemedStyled,
     ),
   ],

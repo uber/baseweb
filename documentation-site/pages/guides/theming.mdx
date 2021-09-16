@@ -422,12 +422,12 @@ If you’re using Flow and want to use a custom theme shape with our various sty
 // my-style-utils.js
 
 import {
- createThemedStyled,
+ createStyledThemed,
  createThemedWithStyle,
  createThemedUseStyletron
 } from 'baseui';
 
-export const styledThemed = createThemedStyled<CustomThemeT>();
+export const styledThemed = createStyledThemed<CustomThemeT>();
 export const themedWithStyle = createThemedWithStyle<CustomThemeT>();
 export const themedUseStyletron = createThemedUseStyletron<CustomThemeT>();
 ```

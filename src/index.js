@@ -10,7 +10,7 @@ export {
   withStyle,
   withWrapper,
   useStyletron,
-  createThemedStyled,
+  createStyledThemed,
   createThemedWithStyle,
   createThemedUseStyletron,
   ThemeProvider,

@@ -35,7 +35,7 @@ const B = styled<typeof A, {}, CustomTheme>(A, props => {
     expect(transformed).toMatchInlineSnapshot(`
 "
 // @flow
-import { styled, createThemedStyled } from 'baseui';
+import { styled, createStyledThemed } from 'baseui';
 
 type CustomTheme = {color: string};
 
@@ -43,7 +43,7 @@ function A(props) {
   return <div className={props.className}>abcd</div>;
 }
 
-const styledThemed = createThemedStyled<CustomTheme>();
+const styledThemed = createStyledThemed<CustomTheme>();
 
 const B = styledThemed<typeof A, {}>(A, props => {
   return {color: props.$theme.color};
@@ -71,11 +71,11 @@ const Component = styled<{}, CustomTheme>('div', props => {
     expect(transformed).toMatchInlineSnapshot(`
 "
 // @flow
-import { styled, createThemedStyled } from 'baseui';
+import { styled, createStyledThemed } from 'baseui';
 
 type CustomTheme = {color: string};
 
-const styledThemed = createThemedStyled<CustomTheme>();
+const styledThemed = createStyledThemed<CustomTheme>();
 
 const Component = styledThemed<{}>('div', props => {
   return {color: props.$theme.color};
@@ -101,9 +101,9 @@ const Component = styled<{}, {color: string}>('div', props => {
     expect(transformed).toMatchInlineSnapshot(`
 "
 // @flow
-import { styled, createThemedStyled } from 'baseui';
+import { styled, createStyledThemed } from 'baseui';
 
-const styledThemed = createThemedStyled<{color: string}>();
+const styledThemed = createStyledThemed<{color: string}>();
 
 const Component = styledThemed<{}>('div', props => {
   return {color: props.$theme.color};
@@ -111,7 +111,7 @@ const Component = styledThemed<{}>('div', props => {
 `);
   });
 
-  it('handles duplicated themes, deduplicates createThemedStyled calls', async () => {
+  it('handles duplicated themes, deduplicates createStyledThemed calls', async () => {
     const content = `
 // @flow
 import {styled} from 'baseui';
@@ -148,30 +148,30 @@ const E = styled<{}, CustomTheme2>('div', props => {
     expect(transformed).toMatchInlineSnapshot(`
 "
 // @flow
-import { styled, createThemedStyled } from 'baseui';
+import { styled, createStyledThemed } from 'baseui';
 
 type CustomTheme1 = {height: string};
 type CustomTheme2 = {width: string};
 
-const styledThemed = createThemedStyled<CustomTheme1>();
+const styledThemed = createStyledThemed<CustomTheme1>();
 
 const A = styledThemed<{}>('div', props => {
   return {height: props.$theme.height};
 });
 
-const styledThemed2 = createThemedStyled<{color: string}>();
+const styledThemed2 = createStyledThemed<{color: string}>();
 
 const B = styledThemed2<{}>('div', props => {
   return {color: props.$theme.color};
 });
 
-const styledThemed3 = createThemedStyled<CustomTheme2>();
+const styledThemed3 = createStyledThemed<CustomTheme2>();
 
 const C = styledThemed3<{}>('div', props => {
   return {width: props.$theme.width};
 });
 
-const styledThemed4 = createThemedStyled<{color: string}>();
+const styledThemed4 = createStyledThemed<{color: string}>();
 
 const D = styledThemed4<{}>('div', props => {
   return {color: props.$theme.color};
@@ -208,18 +208,18 @@ const B = styled<{}, CustomTheme2>('div', props => {
     expect(transformed).toMatchInlineSnapshot(`
 "
 // @flow
-import { styled, createThemedStyled } from 'baseui';
+import { styled, createStyledThemed } from 'baseui';
 
 type CustomTheme1 = {color: string};
 type CustomTheme2 = {size: string};
 
-const styledThemed = createThemedStyled<CustomTheme1>();
+const styledThemed = createStyledThemed<CustomTheme1>();
 
 const A = styledThemed<{}>('div', props => {
   return {color: props.$theme.color};
 });
 
-const styledThemed2 = createThemedStyled<CustomTheme2>();
+const styledThemed2 = createStyledThemed<CustomTheme2>();
 
 const B = styledThemed2<{}>('div', props => {
   return {color: props.$theme.color};
@@ -251,11 +251,11 @@ const B = styled<{}, CustomTheme>('div', props => {
     expect(transformed).toMatchInlineSnapshot(`
 "
 // @flow
-import { styled, createThemedStyled } from 'baseui';
+import { styled, createStyledThemed } from 'baseui';
 
 type CustomTheme = {color: string};
 
-const styledThemed = createThemedStyled<CustomTheme>();
+const styledThemed = createStyledThemed<CustomTheme>();
 
 const A = styledThemed<{}>('div', props => {
   return {color: props.$theme.color};

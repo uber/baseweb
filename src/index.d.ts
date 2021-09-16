@@ -100,7 +100,7 @@ export interface StyledFn<T> extends StyletronStyledFn {
   >;
 }
 
-export function createThemedStyled<Theme>(): StyledFn<Theme>;
+export function createStyledThemed<Theme>(): StyledFn<Theme>;
 
 export interface WithStyleFn<T = Theme> extends StyletronWithStyleFn {
   <C extends StyletronComponent<any>, P extends object, T1 = T>(

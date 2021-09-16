@@ -72,7 +72,7 @@ type WithStyleFn<Theme> = {
 /* eslint-enable flowtype/generic-spacing */
 /* eslint-enable flowtype/no-weak-types */
 
-export function createThemedStyled<Theme>(): StyleFn<Theme> {
+export function createStyledThemed<Theme>(): StyleFn<Theme> {
   return ((createStyled({
     wrapper,
     getInitialStyle,
@@ -81,7 +81,7 @@ export function createThemedStyled<Theme>(): StyleFn<Theme> {
   }): any): StyleFn<Theme>);
 }
 
-export const styled = createThemedStyled<ThemeT>();
+export const styled = createStyledThemed<ThemeT>();
 
 export function createThemedWithStyle<Theme>(): WithStyleFn<Theme> {
   // eslint-disable-next-line flowtype/no-weak-types

@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import {ThemeContext} from './theme-provider.js';
 
 export {
-  createThemedStyled,
+  createStyledThemed,
   createThemedWithStyle,
   createThemedUseStyletron,
   styled,
