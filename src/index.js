@@ -11,7 +11,7 @@ export {
   withWrapper,
   useStyletron,
   createStyledThemed,
-  createThemedWithStyle,
+  createWithStyleThemed,
   createThemedUseStyletron,
   ThemeProvider,
   ThemeConsumer,

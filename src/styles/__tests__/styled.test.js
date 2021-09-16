@@ -19,7 +19,7 @@ import {
   styled,
   createStyledThemed,
   withStyle,
-  createThemedWithStyle,
+  createWithStyleThemed,
   useStyletron,
   createThemedUseStyletron,
   withWrapper,
@@ -249,7 +249,7 @@ describe('withStyleThemed flow', () => {
   test('it provides flow error if accessing property not defined in custom theme type', () => {
     type T = {colors: {custom400: string}};
     const styledThemed = createStyledThemed<T>();
-    const withStyleThemed = createThemedWithStyle<T>();
+    const withStyleThemed = createWithStyleThemed<T>();
 
     const a = styledThemed<{}>('div', props => {
       return {color: 'blue'};
@@ -266,7 +266,7 @@ describe('withStyleThemed flow', () => {
   test('it provides props flow error using createStyledThemed', () => {
     type T = {colors: {custom400: string}};
     const styledThemed = createStyledThemed<T>();
-    const withStyleThemed = createThemedWithStyle<T>();
+    const withStyleThemed = createWithStyleThemed<T>();
 
     const a = styledThemed<{}>('div', props => {
       return {color: 'blue'};

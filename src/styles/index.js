@@ -10,7 +10,7 @@ import {ThemeContext} from './theme-provider.js';
 
 export {
   createStyledThemed,
-  createThemedWithStyle,
+  createWithStyleThemed,
   createThemedUseStyletron,
   styled,
   withStyle,

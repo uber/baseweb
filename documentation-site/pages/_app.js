@@ -12,7 +12,7 @@ import * as React from 'react';
 import {
   createStyledThemed,
   createThemedUseStyletron,
-  createThemedWithStyle,
+  createWithStyleThemed,
   BaseProvider,
   DarkTheme,
   DarkThemeMove,
@@ -61,7 +61,7 @@ const themes = {
 };
 
 export const styledThemed = createStyledThemed<ThemeT>();
-export const withStyleThemed = createThemedWithStyle<ThemeT>();
+export const withStyleThemed = createWithStyleThemed<ThemeT>();
 export const themedUseStyletron = createThemedUseStyletron<ThemeT>();
 
 const DARK_MEDIA_QUERY = '(prefers-color-scheme: dark)';

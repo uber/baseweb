@@ -83,12 +83,12 @@ export function createStyledThemed<Theme>(): StyleFn<Theme> {
 
 export const styled = createStyledThemed<ThemeT>();
 
-export function createThemedWithStyle<Theme>(): WithStyleFn<Theme> {
+export function createWithStyleThemed<Theme>(): WithStyleFn<Theme> {
   // eslint-disable-next-line flowtype/no-weak-types
   return ((styletronWithStyle: any): WithStyleFn<Theme>);
 }
 
-export const withStyle = createThemedWithStyle<ThemeT>();
+export const withStyle = createWithStyleThemed<ThemeT>();
 
 type UseStyletronFn<Theme> = () => [(StyleObject) => string, Theme];
 
