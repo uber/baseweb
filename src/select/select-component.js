@@ -867,7 +867,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
   }
 
   filterOptions(excludeOptions: ?ValueT) {
-    const filterValue = this.state.inputValue;
+    const filterValue = this.state.inputValue.trim();
     // apply filter function
     if (this.props.filterOptions) {
       this.options = this.props.filterOptions(
