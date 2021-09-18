@@ -195,6 +195,7 @@ export interface Colors {
   rewardsTier2: string;
   rewardsTier3: string;
   rewardsTier4: string;
+  membership: string;
 
   /* ---- End of Semantic Colors ---- */
 

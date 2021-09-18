@@ -66,7 +66,7 @@ export default (
     contentOnColor: colors.white,
     contentOnColorInverse: colors.black,
     contentNegative: foundation.negative,
-    contentWarning: colors.yellow700,
+    contentWarning: colors.yellow600,
     contentPositive: colors.green400,
 
     // Border
@@ -86,6 +86,7 @@ export default (
     rewardsTier2: colors.yellow400,
     rewardsTier3: colors.platinum400,
     rewardsTier4: colors.black,
+    membership: colors.yellow600,
   };
   return {
     ...core,

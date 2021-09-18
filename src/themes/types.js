@@ -166,6 +166,7 @@ export type CoreExtensionSemanticColorTokensT = {|
   rewardsTier2: string,
   rewardsTier3: string,
   rewardsTier4: string,
+  membership: string,
 |};
 
 export type SemanticColorTokensT = {|

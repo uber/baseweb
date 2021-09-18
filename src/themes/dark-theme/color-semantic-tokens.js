@@ -28,12 +28,12 @@ export default (
     backgroundInverseSecondary: colors.gray300,
 
     // Content
-    contentPrimary: foundation.primaryA,
-    contentSecondary: colors.gray400,
-    contentTertiary: colors.gray500,
-    contentInversePrimary: foundation.primaryB,
-    contentInverseSecondary: colors.gray600,
-    contentInverseTertiary: colors.gray500,
+    contentPrimary: colors.white,
+    contentSecondary: colors.gray300,
+    contentTertiary: colors.gray400,
+    contentInversePrimary: colors.black,
+    contentInverseSecondary: colors.gray700,
+    contentInverseTertiary: colors.gray600,
 
     // Border
     borderOpaque: colors.gray700,
@@ -86,6 +86,7 @@ export default (
     rewardsTier2: colors.yellow400,
     rewardsTier3: colors.platinum400,
     rewardsTier4: colors.gray200,
+    membership: colors.yellow600,
   };
 
   return {
