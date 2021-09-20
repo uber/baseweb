@@ -39,9 +39,13 @@ function RenderNode(props) {
   return Component;
 }
 
+function isMaxLinesValid(maxLines) {
+  return maxLines === 1 || maxLines === 2;
+}
+
 const ListHeading = React.forwardRef<HeadingPropsT, HTMLLIElement>(
   (props: HeadingPropsT, ref) => {
-    const {overrides = {}} = props;
+    const {overrides = {}, maxLines} = props;
     const EndEnhancer = props.endEnhancer;
     const EndEnhancerDescription = props.endEnhancerDescription;
     const SubHeading = props.subHeading;
@@ -78,6 +82,9 @@ const ListHeading = React.forwardRef<HeadingPropsT, HTMLLIElement>(
         'endEnhancerDescription will not be rendered if endEnhancer is not a string',
       );
     }
+    if (maxLines && !isMaxLinesValid(maxLines)) {
+      console.warn('maxLines must be 1 or 2.');
+    }
 
     return (
       <Root
@@ -89,7 +96,7 @@ const ListHeading = React.forwardRef<HeadingPropsT, HTMLLIElement>(
           {/* ----- Top Row -------------------------- */}
           <StyledHeadingContentRow>
             <HeadingContainer
-              $maxLines={props.maxLines}
+              $maxLines={isMaxLinesValid(maxLines) ? maxLines : 1}
               {...headingContainerProps}
             >
               <RenderNode component={props.heading} />
@@ -109,7 +116,7 @@ const ListHeading = React.forwardRef<HeadingPropsT, HTMLLIElement>(
           {(SubHeading || EndEnhancerDescription) && (
             <StyledHeadingContentRow>
               <SubHeadingContainer
-                $maxLines={props.maxLines}
+                $maxLines={isMaxLinesValid(maxLines) ? maxLines : 1}
                 {...subHeadingContainerProps}
               >
                 <RenderNode component={SubHeading} />
