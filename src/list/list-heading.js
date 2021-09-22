@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import ReactIs from 'react-is';
+import * as ReactIs from 'react-is';
 
 import {getOverrides} from '../helpers/overrides.js';
 
