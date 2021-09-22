@@ -78,6 +78,15 @@ const COLORS = [
   'borderNegative',
   'borderWarning',
   'borderPositive',
+  'safety',
+  'eatsGreen400',
+  'freightBlue400',
+  'jumpRed400',
+  'rewardsTier1',
+  'rewardsTier2',
+  'rewardsTier3',
+  'rewardsTier4',
+  'membership',
 ];
 
 const TYPO = [

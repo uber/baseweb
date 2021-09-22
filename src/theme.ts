@@ -186,6 +186,17 @@ export interface Colors {
   borderWarning: string;
   borderPositive: string;
 
+  // Programs
+  safety: string;
+  eatsGreen400: string;
+  freightBlue400: string;
+  jumpRed400: string;
+  rewardsTier1: string;
+  rewardsTier2: string;
+  rewardsTier3: string;
+  rewardsTier4: string;
+  membership: string;
+
   /* ---- End of Semantic Colors ---- */
 
   /* ---- Deprecated Semantic Colors ---- */
