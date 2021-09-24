@@ -4,7 +4,6 @@ import React from 'react';
 import {useStyletron} from 'baseui';
 import {
   StatefulDataTable,
-  BooleanColumn,
   CategoricalColumn,
   CustomColumn,
   NumericalColumn,
@@ -61,8 +60,6 @@ function makeRowsFromColumns(columns: any, rowCount: number) {
             }
           case COLUMNS.NUMERICAL:
             return i % 2 ? i - 1 : i + 3;
-          case COLUMNS.BOOLEAN:
-            return i % 2 === 0;
           case COLUMNS.STRING:
             return pseudoRandomString(i, j);
           case COLUMNS.CUSTOM:
@@ -88,49 +85,22 @@ function makeRowsFromColumns(columns: any, rowCount: number) {
   return rows;
 }
 
-type RowDataT = [
-  string,
-  string,
-  number,
-  number,
-  number,
-  {color: string},
-  boolean,
-  string,
-];
+type RowDataT = [string, {color: string}, string, number];
 
 const columns = [
   CategoricalColumn({
     title: 'categorical',
     mapDataToValue: (data: RowDataT) => data[0],
   }),
-  StringColumn({
-    title: 'string',
-    mapDataToValue: (data: RowDataT) => data[1],
-  }),
-  NumericalColumn({
-    title: 'three',
-    mapDataToValue: (data: RowDataT) => data[2],
-  }),
-  NumericalColumn({
-    title: 'neg std',
-    highlight: (n: number) => n < 0,
-    mapDataToValue: (data: RowDataT) => data[3],
-  }),
-  NumericalColumn({
-    title: 'accounting',
-    format: NUMERICAL_FORMATS.ACCOUNTING,
-    mapDataToValue: (data: RowDataT) => data[4],
-  }),
   CustomColumn<
     {color: string},
     {selection: Set<string>; exclude: boolean; description: string}
   >({
-    title: 'custom color',
+    title: 'custom color (sortable)',
     filterable: true,
     sortable: true,
     minWidth: 120,
-    mapDataToValue: (data: RowDataT) => data[5],
+    mapDataToValue: (data: RowDataT) => data[1],
     renderCell: function Cell(props: any) {
       const [css] = useStyletron();
       return (
@@ -214,17 +184,18 @@ const columns = [
       return a.color.localeCompare(b.color);
     },
   }),
-  BooleanColumn({
-    title: 'boolean',
-    mapDataToValue: (data: RowDataT) => data[6],
+  StringColumn({
+    title: 'string',
+    mapDataToValue: (data: RowDataT) => data[2],
   }),
-  CategoricalColumn({
-    title: 'second category',
-    mapDataToValue: (data: RowDataT) => data[7],
+  NumericalColumn({
+    title: 'accounting',
+    format: NUMERICAL_FORMATS.ACCOUNTING,
+    mapDataToValue: (data: RowDataT) => data[3],
   }),
 ];
 
-const rows = makeRowsFromColumns(columns, 2000);
+const rows = makeRowsFromColumns(columns, 100);
 
 export default function Example() {
   const [css] = useStyletron();
