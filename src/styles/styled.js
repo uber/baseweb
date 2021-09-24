@@ -72,7 +72,7 @@ type WithStyleFn<Theme> = {
 /* eslint-enable flowtype/generic-spacing */
 /* eslint-enable flowtype/no-weak-types */
 
-export function createStyledThemed<Theme>(): StyleFn<Theme> {
+export function createThemedStyled<Theme>(): StyleFn<Theme> {
   return ((createStyled({
     wrapper,
     getInitialStyle,
@@ -81,18 +81,18 @@ export function createStyledThemed<Theme>(): StyleFn<Theme> {
   }): any): StyleFn<Theme>);
 }
 
-export const styled = createStyledThemed<ThemeT>();
+export const styled = createThemedStyled<ThemeT>();
 
-export function createWithStyleThemed<Theme>(): WithStyleFn<Theme> {
+export function createThemedWithStyle<Theme>(): WithStyleFn<Theme> {
   // eslint-disable-next-line flowtype/no-weak-types
   return ((styletronWithStyle: any): WithStyleFn<Theme>);
 }
 
-export const withStyle = createWithStyleThemed<ThemeT>();
+export const withStyle = createThemedWithStyle<ThemeT>();
 
 type UseStyletronFn<Theme> = () => [(StyleObject) => string, Theme];
 
-export function createUseStyletronThemed<Theme>(): UseStyletronFn<Theme> {
+export function createThemedUseStyletron<Theme>(): UseStyletronFn<Theme> {
   return function() {
     // eslint-disable-next-line flowtype/no-weak-types
     const theme = ((React.useContext(ThemeContext): any): Theme);
@@ -101,7 +101,7 @@ export function createUseStyletronThemed<Theme>(): UseStyletronFn<Theme> {
   };
 }
 
-export const useStyletron = createUseStyletronThemed<ThemeT>();
+export const useStyletron = createThemedUseStyletron<ThemeT>();
 
 export function withWrapper(
   // eslint-disable-next-line flowtype/no-weak-types

@@ -10,9 +10,9 @@ export {
   withStyle,
   withWrapper,
   useStyletron,
-  createStyledThemed,
-  createWithStyleThemed,
-  createUseStyletronThemed,
+  createThemedStyled,
+  createThemedWithStyle,
+  createThemedUseStyletron,
   ThemeProvider,
   ThemeConsumer,
 } from './styles/index.js';
