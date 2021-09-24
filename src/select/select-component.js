@@ -124,6 +124,13 @@ class Select extends React.Component<PropsT, SelectStateT> {
       this.focus();
     }
     this.isMounted = true;
+
+    if (this.props.methods) {
+      // $FlowFixMe "Cannot assign ... to `this.props.setDropdownOpen.current` because property `current` is missing in  undefined"
+      this.props.methods.current = {
+        setDropdownOpen: this.handleDropdownOpen.bind(this),
+      };
+    }
   }
 
   componentDidUpdate(prevProps: PropsT, prevState: SelectStateT) {
@@ -155,6 +162,12 @@ class Select extends React.Component<PropsT, SelectStateT> {
   focus() {
     if (!this.input) return;
     this.input.focus();
+  }
+
+  handleDropdownOpen(nextOpenState: boolean) {
+    this.setState({
+      isOpen: nextOpenState,
+    });
   }
 
   // Handle touch outside on mobile to dismiss menu, ensures that the

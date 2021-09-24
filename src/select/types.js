@@ -134,6 +134,8 @@ export type PropsT = {
   maxDropdownHeight: string,
   /** Defines if multiple options can be selected. */
   multi: boolean,
+  /** Handle for accessing internal methods. */
+  methods?: React.ElementRef<*>,
   /** Message to be displayed if no options is found for a search query. */
   noResultsMsg?: React.Node,
   onBlur: (e: Event) => mixed,
