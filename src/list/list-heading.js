@@ -77,13 +77,15 @@ const ListHeading = React.forwardRef<HeadingPropsT, HTMLLIElement>(
 
     const isEndEnhancerString = typeof EndEnhancer === 'string';
 
-    if (isEndEnhancerString && EndEnhancerDescription) {
-      console.warn(
-        'endEnhancerDescription will not be rendered if endEnhancer is not a string',
-      );
-    }
-    if (maxLines && !isMaxLinesValid(maxLines)) {
-      console.warn('maxLines must be 1 or 2.');
+    if (__DEV__) {
+      if (isEndEnhancerString && EndEnhancerDescription) {
+        console.warn(
+          'endEnhancerDescription will not be rendered if endEnhancer is not a string',
+        );
+      }
+      if (maxLines && !isMaxLinesValid(maxLines)) {
+        console.warn('maxLines must be 1 or 2.');
+      }
     }
 
     return (
