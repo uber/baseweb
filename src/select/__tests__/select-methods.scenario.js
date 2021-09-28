@@ -12,7 +12,7 @@ import {StatefulSelect} from '../index.js';
 import {Button} from '../../button/index.js';
 
 export default function Scenario() {
-  const methods = React.useRef();
+  const methodsRef = React.useRef();
 
   return (
     <div style={{width: '360px'}}>
@@ -25,21 +25,21 @@ export default function Scenario() {
       >
         <Button
           onClick={() => {
-            methods.current && methods.current.setDropdownOpen(true);
+            methodsRef.current && methodsRef.current.setDropdownOpen(true);
           }}
         >
           Open Dropdown
         </Button>
         <Button
           onClick={() => {
-            methods.current && methods.current.setDropdownOpen(false);
+            methodsRef.current && methodsRef.current.setDropdownOpen(false);
           }}
         >
           Close Dropdown
         </Button>
       </div>
       <StatefulSelect
-        methods={methods}
+        methodsRef={methodsRef}
         options={[
           {id: 'a', label: 'hey!'},
           {id: 'b', label: 'are you listening?'},
