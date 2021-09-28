@@ -72,6 +72,10 @@ export type OverridesDropdownT = {
   StatefulMenu?: OverrideT,
 };
 
+type ImperativeFnsT = {|
+  setDropdownOpen: boolean => mixed,
+|};
+
 export type PropsT = {
   'aria-label': ?string,
   'aria-describedby': ?string,
@@ -135,7 +139,7 @@ export type PropsT = {
   /** Defines if multiple options can be selected. */
   multi: boolean,
   /** Handle for accessing internal methods. */
-  methodsRef?: React.ElementRef<*>,
+  methodsRef?: {current?: ImperativeFnsT},
   /** Message to be displayed if no options is found for a search query. */
   noResultsMsg?: React.Node,
   onBlur: (e: Event) => mixed,
