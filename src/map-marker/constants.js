@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
+//TODO: consider renaming this to FLOATING_ANCHOR_POSITIONS
 export const ANCHOR_POSITIONS = Object.freeze({
   none: 'none',
   topLeft: 'top-left',

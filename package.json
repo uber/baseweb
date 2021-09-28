@@ -202,6 +202,7 @@
     "react-focus-lock": "^2.2.1",
     "react-input-mask": "^2.0.4",
     "react-is": "^16.8.6",
+    "react-map-gl": "^6.1.17",
     "react-movable": "^2.5.4",
     "react-multi-ref": "^1.0.0",
     "react-range": "^1.8.0",
