@@ -11,7 +11,7 @@ import {Label1, Label2, Label3} from '../typography/index.js';
 
 import type {ItemPropsT} from './types.js';
 
-const Item = ({children, color, size = 12}: ItemPropsT) => {
+const Item = ({children, color, size = 48}: ItemPropsT) => {
   const [css] = useStyletron();
   const props = {
     color,
