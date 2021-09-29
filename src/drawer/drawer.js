@@ -278,7 +278,7 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
                       onFocus={forkFocus(closeProps, this.handleFocus)}
                       onBlur={forkBlur(closeProps, this.handleBlur)}
                     >
-                      <CloseIcon />
+                      <CloseIcon title={locale.drawer.close} />
                     </Close>
                   ) : null}
                 </DrawerContainer>
