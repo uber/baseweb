@@ -7,12 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import {useStyletron} from '../styles/index.js';
-import {
-  PINHEAD_SIZES,
-  PINHEAD_TYPES,
-  PINHEAD_SIZE,
-  FLOATING_MARKER_ANCHOR_TYPES,
-} from './constants.js';
+import {PINHEAD_SIZES, PINHEAD_TYPES, PINHEAD_DIMENSIONS} from './constants.js';
 import Item from './pin-head-item.js';
 import {
   StyledInnerXSmallAnchor,
@@ -43,16 +38,19 @@ const PinHead = ({
   const activeElements = [label, startEnhancer, endEnhancer].filter(x => x);
   const gridTemplateColumns = activeElements.map(() => 'auto').join(' ');
   const forceCircle = activeElements.length === 1 && !label;
-  const {height, icon} = PINHEAD_SIZE[size];
 
-  if (type === PINHEAD_TYPES.fixed && size === PINHEAD_SIZES.xSmall) {
-    const round = anchorType === FLOATING_MARKER_ANCHOR_TYPES.round;
+  if (
+    type === PINHEAD_TYPES.fixed &&
+    (size === PINHEAD_SIZES.xSmallSquare || size === PINHEAD_SIZES.xSmallCircle)
+  ) {
+    const round = size === PINHEAD_SIZES.xSmallCircle;
     return (
       <StyledOuterXSmallAnchor $round={round} $background={background}>
         <StyledInnerXSmallAnchor $color={color} $round={round} />
       </StyledOuterXSmallAnchor>
     );
   }
+  const {height, icon} = PINHEAD_DIMENSIONS[size];
 
   return (
     <StyledPinHead
