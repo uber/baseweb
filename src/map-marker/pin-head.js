@@ -38,44 +38,47 @@ const PinHead = ({
   const activeElements = [label, startEnhancer, endEnhancer].filter(x => x);
   const gridTemplateColumns = activeElements.map(() => 'auto').join(' ');
   const forceCircle = activeElements.length === 1 && !label;
-
+  const {height, icon} = PINHEAD_DIMENSIONS[size];
   if (
     type === PINHEAD_TYPES.fixed &&
     (size === PINHEAD_SIZES.xSmallSquare || size === PINHEAD_SIZES.xSmallCircle)
   ) {
     const round = size === PINHEAD_SIZES.xSmallCircle;
     return (
-      <StyledOuterXSmallAnchor $round={round} $background={background}>
-        <StyledInnerXSmallAnchor $color={color} $round={round} />
+      <StyledOuterXSmallAnchor
+        $round={round}
+        $background={background}
+        $size={height}
+      >
+        <StyledInnerXSmallAnchor $color={color} $round={round} $size={icon} />
       </StyledOuterXSmallAnchor>
     );
+  } else {
+    return (
+      <StyledPinHead
+        $background={background}
+        $height={height}
+        $gridTemplateColumns={gridTemplateColumns}
+        $forceCircle={forceCircle}
+        $type={type}
+      >
+        {startEnhancer && (
+          <Item size={height} color={color}>
+            {React.cloneElement(startEnhancer, {size: `${icon}px`}, null)}
+          </Item>
+        )}
+        {label && (
+          <Item size={height} color={color}>
+            {label}
+          </Item>
+        )}
+        {endEnhancer && (
+          <Item size={height} color={color}>
+            {React.cloneElement(endEnhancer, {size: `${icon}px`}, null)}
+          </Item>
+        )}
+      </StyledPinHead>
+    );
   }
-  const {height, icon} = PINHEAD_DIMENSIONS[size];
-
-  return (
-    <StyledPinHead
-      $background={background}
-      $height={height}
-      $gridTemplateColumns={gridTemplateColumns}
-      $forceCircle={forceCircle}
-      $type={type}
-    >
-      {startEnhancer && (
-        <Item size={height} color={color}>
-          {React.cloneElement(startEnhancer, {size: `${icon}px`}, null)}
-        </Item>
-      )}
-      {label && (
-        <Item size={height} color={color}>
-          {label}
-        </Item>
-      )}
-      {endEnhancer && (
-        <Item size={height} color={color}>
-          {React.cloneElement(endEnhancer, {size: `${icon}px`}, null)}
-        </Item>
-      )}
-    </StyledPinHead>
-  );
 };
 export default PinHead;

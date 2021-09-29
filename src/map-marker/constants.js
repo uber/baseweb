@@ -34,7 +34,13 @@ export const PINHEAD_SIZES = Object.freeze({
   large: 'large',
 });
 
+const xSmallPinheadDimension = {
+  height: 16,
+  icon: 4,
+};
 export const PINHEAD_DIMENSIONS = Object.freeze({
+  [PINHEAD_SIZES.xSmallSquare]: xSmallPinheadDimension,
+  [PINHEAD_SIZES.xSmallCircle]: xSmallPinheadDimension,
   [PINHEAD_SIZES.small]: {height: 24, icon: 16},
   [PINHEAD_SIZES.medium]: {height: 36, icon: 16},
   [PINHEAD_SIZES.large]: {height: 48, icon: 24},
@@ -60,7 +66,7 @@ export const FLOATING_MARKER_ANCHOR_POSITIONS = Object.freeze({
 });
 
 export const FLOATING_MARKER_ANCHOR_TYPES = Object.freeze({
-  round: 'round',
+  circle: 'circle',
   square: 'square',
 });
 

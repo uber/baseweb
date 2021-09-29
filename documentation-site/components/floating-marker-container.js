@@ -5,8 +5,8 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import React from 'react';
-const FloatingMarkerContainer = ({children}) => {
+import * as React from 'react';
+const FloatingMarkerContainer = ({children}: {children: React.Node}) => {
   return (
     <div
       style={{

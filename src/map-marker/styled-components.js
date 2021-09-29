@@ -99,13 +99,14 @@ export const StyledFixedMarkerDragContainer = styled<{
 export const StyledOuterXSmallAnchor = styled<{
   $round: boolean,
   $background: string,
-}>('div', ({$theme, $round, $background}) => ({
+  $size: number,
+}>('div', ({$theme, $round, $background, $size}) => ({
   background: $background,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  height: '16px',
-  width: '16px',
+  height: `${$size}px`,
+  width: `${$size}px`,
   borderRadius: $round ? '50%' : 0,
   boxShadow: $theme.lighting.shadow600,
 }));
@@ -113,10 +114,11 @@ export const StyledOuterXSmallAnchor = styled<{
 export const StyledInnerXSmallAnchor = styled<{
   $round: boolean,
   $color: string,
-}>('div', ({$round, $color}) => ({
+  $size: number,
+}>('div', ({$round, $color, $size}) => ({
   background: $color,
-  height: '4px',
-  width: '4px',
+  height: `${$size}px`,
+  width: `${$size}px`,
   borderRadius: $round ? '50%' : 0,
 }));
 

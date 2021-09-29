@@ -29,7 +29,7 @@ const FloatingMarker = ({
   anchor = FLOATING_MARKER_ANCHOR_POSITIONS.bottomLeft,
   endEnhancer,
   startEnhancer,
-  anchorType = FLOATING_MARKER_ANCHOR_TYPES.round,
+  anchorType = FLOATING_MARKER_ANCHOR_TYPES.circle,
 }: FloatingMarkerPropsT) => {
   const [, theme] = useStyletron();
   const {
@@ -39,7 +39,7 @@ const FloatingMarker = ({
   background = background || backgroundPrimary;
 
   const anchorPinHeadSize =
-    anchorType === FLOATING_MARKER_ANCHOR_TYPES.round
+    anchorType === FLOATING_MARKER_ANCHOR_TYPES.circle
       ? PINHEAD_SIZES.xSmallCircle
       : PINHEAD_SIZES.xSmallSquare;
   return (

@@ -46,8 +46,9 @@ export default function Scenario() {
       ),
     }),
   );
-  //$FlowFixMe
+
   const options = Object.values(FLOATING_MARKER_ANCHOR_POSITIONS).map(
+    //$FlowFixMe
     (x: string) => ({
       label: x,
       id: x,
@@ -56,7 +57,6 @@ export default function Scenario() {
 
   return (
     <TileGrid
-      // TODO: pass as children, make a separate component called "customization header"
       customizerOptions={[
         <Select
           options={options}
