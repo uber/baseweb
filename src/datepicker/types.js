@@ -231,6 +231,7 @@ export type SharedStylePropsT = {
   $isHighlighted: ?boolean,
   $isHovered: ?boolean,
   $isFocusVisible: ?boolean,
+  $month: ?boolean,
   $outsideMonth: ?boolean,
   $outsideMonthWithinRange: ?boolean,
   $peekNextMonth: ?boolean,
