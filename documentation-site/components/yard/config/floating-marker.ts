@@ -31,9 +31,9 @@ export const fixedMarkerProps = {
     },
   },
   anchorType: {
-    value: 'FLOATING_MARKER_ANCHOR_TYPES.round',
+    value: 'FLOATING_MARKER_ANCHOR_TYPES.circle',
     type: PropTypes.Enum,
-    defaultValue: 'FLOATING_MARKER_ANCHOR_TYPES.round',
+    defaultValue: 'FLOATING_MARKER_ANCHOR_TYPES.circle',
     options: FLOATING_MARKER_ANCHOR_TYPES,
     description: 'Type of anchor to render around the marker.',
     imports: {

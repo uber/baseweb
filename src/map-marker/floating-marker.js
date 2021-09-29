@@ -19,6 +19,7 @@ import {
   PINHEAD_SIZES,
   PINHEAD_TYPES,
   FLOATING_MARKER_ANCHOR_TYPES,
+  anchorSize,
 } from './constants.js';
 const FloatingMarker = ({
   color,
@@ -28,7 +29,7 @@ const FloatingMarker = ({
   anchor = FLOATING_MARKER_ANCHOR_POSITIONS.bottomLeft,
   endEnhancer,
   startEnhancer,
-  anchorType = FLOATING_MARKER_ANCHOR_TYPES.round,
+  anchorType = FLOATING_MARKER_ANCHOR_TYPES.circle,
 }: FloatingMarkerPropsT) => {
   const [, theme] = useStyletron();
   const {
@@ -37,8 +38,10 @@ const FloatingMarker = ({
   color = color || primaryA;
   background = background || backgroundPrimary;
 
-  const anchorSize = 16;
-
+  const anchorPinHeadSize =
+    anchorType === FLOATING_MARKER_ANCHOR_TYPES.circle
+      ? PINHEAD_SIZES.xSmallCircle
+      : PINHEAD_SIZES.xSmallSquare;
   return (
     <StyledFloatingMarkerRoot data-baseweb="map-marker">
       <StyledFloatingMarkerPinHeadContainer
@@ -58,8 +61,7 @@ const FloatingMarker = ({
       {anchor !== FLOATING_MARKER_ANCHOR_POSITIONS.none && (
         <StyledFloatingMarkerAnchorContainer>
           <PinHead
-            size={PINHEAD_SIZES.xSmall}
-            anchorType={anchorType}
+            size={anchorPinHeadSize}
             color={primaryB}
             background={backgroundInversePrimary}
             type={PINHEAD_TYPES.fixed}

@@ -9,7 +9,7 @@ import {
 export default function Example() {
   return (
     <FixedMarker
-      size={PINHEAD_SIZES.xSmall}
+      size={PINHEAD_SIZES.xSmallCircle}
       needle={NEEDLE_SIZES.tall}
     />
   );
