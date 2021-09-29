@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import {
-  ANCHOR_POSITIONS,
+  FLOATING_MARKER_ANCHOR_POSITIONS,
   PIN_SIZES,
   NEEDLE_SIZES,
   PINHEAD_SIZES,
@@ -18,7 +18,7 @@ import {
 
 export type PinHeadT = $Values<typeof PINHEAD_TYPES>;
 
-export type AnchorPositionsT = $Values<typeof ANCHOR_POSITIONS>;
+export type AnchorPositionsT = $Values<typeof FLOATING_MARKER_ANCHOR_POSITIONS>;
 
 export type NeedleSizeT = $Values<typeof NEEDLE_SIZES>;
 

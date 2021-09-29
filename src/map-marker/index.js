@@ -9,7 +9,7 @@ export {default as FixedMarker} from './fixed-marker.js';
 export {default as FloatingMarker} from './floating-marker.js';
 
 export {
-  ANCHOR_POSITIONS,
+  FLOATING_MARKER_ANCHOR_POSITIONS,
   FLOATING_MARKER_SIZES,
   FLOATING_MARKER_ANCHOR_TYPES,
   NEEDLE_SIZES,

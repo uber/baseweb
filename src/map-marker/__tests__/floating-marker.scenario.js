@@ -9,7 +9,10 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {Select} from '../../select/index.js';
 import {FloatingMarker} from '../index.js';
-import {ANCHOR_POSITIONS, FLOATING_MARKER_SIZES} from '../constants.js';
+import {
+  FLOATING_MARKER_ANCHOR_POSITIONS,
+  FLOATING_MARKER_SIZES,
+} from '../constants.js';
 import TileGrid from './tile-grid.js';
 import {Checkbox, LABEL_PLACEMENT} from '../../checkbox/index.js';
 import {Input} from '../../input/index.js';
@@ -44,10 +47,12 @@ export default function Scenario() {
     }),
   );
   //$FlowFixMe
-  const options = Object.values(ANCHOR_POSITIONS).map((x: string) => ({
-    label: x,
-    id: x,
-  }));
+  const options = Object.values(FLOATING_MARKER_ANCHOR_POSITIONS).map(
+    (x: string) => ({
+      label: x,
+      id: x,
+    }),
+  );
 
   return (
     <TileGrid

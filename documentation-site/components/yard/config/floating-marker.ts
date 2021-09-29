@@ -1,7 +1,7 @@
 import {
   FixedMarker,
   PINHEAD_SIZES,
-  ANCHOR_POSITIONS,
+  FLOATING_MARKER_ANCHOR_POSITIONS,
   FLOATING_MARKER_ANCHOR_TYPES,
 } from 'baseui/map-marker';
 import {PropTypes} from 'react-view';
@@ -19,14 +19,14 @@ export const fixedMarkerProps = {
   },
   //TODO: should this be renamed to anchorPosition?
   anchor: {
-    value: 'ANCHOR_POSITIONS.bottomLeft',
+    value: 'FLOATING_MARKER_ANCHOR_POSITIONS.bottomLeft',
     type: PropTypes.Enum,
-    defaultValue: 'ANCHOR_POSITIONS.bottomLeft',
-    options: ANCHOR_POSITIONS,
+    defaultValue: 'FLOATING_MARKER_ANCHOR_POSITIONS.bottomLeft',
+    options: FLOATING_MARKER_ANCHOR_POSITIONS,
     description: 'Position to render the anchor around the marker.',
     imports: {
       'baseui/map-marker': {
-        named: ['ANCHOR_POSITIONS'],
+        named: ['FLOATING_MARKER_ANCHOR_POSITIONS'],
       },
     },
   },

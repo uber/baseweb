@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import {styled} from '../styles/index.js';
-import {ANCHOR_POSITIONS} from './constants.js';
+import {FLOATING_MARKER_ANCHOR_POSITIONS} from './constants.js';
 
 import type {AnchorPositionsT, ResponsiveT} from './types.js';
 
@@ -15,11 +15,11 @@ export const getAnchorTransform = (
   anchorSize: number,
 ) =>
   ({
-    [ANCHOR_POSITIONS.none]: ``,
-    [ANCHOR_POSITIONS.topLeft]: `translate(${anchorSize}px, ${anchorSize}px)`,
-    [ANCHOR_POSITIONS.topRight]: `translate(-100%, ${anchorSize}px)`,
-    [ANCHOR_POSITIONS.bottomLeft]: `translate(${anchorSize}px, -100%)`,
-    [ANCHOR_POSITIONS.bottomRight]: `translate(${anchorSize}px, ${anchorSize}px)`,
+    [FLOATING_MARKER_ANCHOR_POSITIONS.none]: ``,
+    [FLOATING_MARKER_ANCHOR_POSITIONS.topLeft]: `translate(${anchorSize}px, ${anchorSize}px)`,
+    [FLOATING_MARKER_ANCHOR_POSITIONS.topRight]: `translate(-100%, ${anchorSize}px)`,
+    [FLOATING_MARKER_ANCHOR_POSITIONS.bottomLeft]: `translate(${anchorSize}px, -100%)`,
+    [FLOATING_MARKER_ANCHOR_POSITIONS.bottomRight]: `translate(-100%, -100%)`,
   }[anchor]);
 
 export const StyledDragShadowContainer = styled<{

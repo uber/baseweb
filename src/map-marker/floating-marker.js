@@ -15,7 +15,7 @@ import {
 } from './styled-components.js';
 import type {FloatingMarkerPropsT} from './types.js';
 import {
-  ANCHOR_POSITIONS,
+  FLOATING_MARKER_ANCHOR_POSITIONS,
   PINHEAD_SIZES,
   PINHEAD_TYPES,
   FLOATING_MARKER_ANCHOR_TYPES,
@@ -25,7 +25,7 @@ const FloatingMarker = ({
   background,
   label,
   size = PINHEAD_SIZES.medium,
-  anchor = ANCHOR_POSITIONS.bottomLeft,
+  anchor = FLOATING_MARKER_ANCHOR_POSITIONS.bottomLeft,
   endEnhancer,
   startEnhancer,
   anchorType = FLOATING_MARKER_ANCHOR_TYPES.round,
@@ -55,7 +55,7 @@ const FloatingMarker = ({
           endEnhancer={endEnhancer}
         />
       </StyledFloatingMarkerPinHeadContainer>
-      {anchor !== ANCHOR_POSITIONS.none && (
+      {anchor !== FLOATING_MARKER_ANCHOR_POSITIONS.none && (
         <StyledFloatingMarkerAnchorContainer>
           <PinHead
             size={PINHEAD_SIZES.xSmall}

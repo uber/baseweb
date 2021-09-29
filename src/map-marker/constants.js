@@ -6,15 +6,6 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-//TODO: consider renaming this to FLOATING_ANCHOR_POSITIONS
-export const ANCHOR_POSITIONS = Object.freeze({
-  none: 'none',
-  topLeft: 'top-left',
-  topRight: 'top-right',
-  bottomRight: 'bottom-right',
-  bottomLeft: 'bottom-left',
-});
-
 export const NEEDLE_SIZES = Object.freeze({
   none: 'none',
   short: 'short',
@@ -49,15 +40,23 @@ export const PINHEAD_SIZE = Object.freeze({
   [PINHEAD_SIZES.large]: {height: 48, icon: 24},
 });
 
+export const PINHEAD_TYPES = Object.freeze({
+  floating: 'floating',
+  fixed: 'fixed',
+});
+
 export const FLOATING_MARKER_SIZES = Object.freeze({
   small: 'small',
   medium: 'medium',
   large: 'large',
 });
 
-export const PINHEAD_TYPES = Object.freeze({
-  floating: 'floating',
-  fixed: 'fixed',
+export const FLOATING_MARKER_ANCHOR_POSITIONS = Object.freeze({
+  none: 'none',
+  topLeft: 'top-left',
+  topRight: 'top-right',
+  bottomRight: 'bottom-right',
+  bottomLeft: 'bottom-left',
 });
 
 export const FLOATING_MARKER_ANCHOR_TYPES = Object.freeze({

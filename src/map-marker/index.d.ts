@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export interface ANCHOR_POSITIONS {
+export interface FLOATING_MARKER_ANCHOR_POSITIONS {
   none: 'none';
   topLeft: 'top-left';
   topRight: 'top-right';
@@ -48,7 +48,7 @@ export type NeedleSizeT = ValueOf<NEEDLE_SIZES>;
 export type PinHeadT = ValueOf<PINHEAD_TYPES>;
 export type PinHeadSizeT = ValueOf<PINHEAD_SIZES>;
 export type PinSizeT = ValueOf<PIN_SIZES>;
-export type AnchorPositionsT = ValueOf<ANCHOR_POSITIONS>;
+export type AnchorPositionsT = ValueOf<FLOATING_MARKER_ANCHOR_POSITIONS>;
 export type FloatingMarkerSizeT = ValueOf<FLOATING_MARKER_SIZES>;
 
 export type FixedMarkerPropsT = {
@@ -73,7 +73,7 @@ export type FloatingMarkerPropsT = {
   size?: FloatingMarkerSizeT;
 };
 
-export const ANCHOR_POSITIONS: ANCHOR_POSITIONS;
+export const FLOATING_MARKER_ANCHOR_POSITIONS: FLOATING_MARKER_ANCHOR_POSITIONS;
 export const PIN_SIZES: PIN_SIZES;
 export const NEEDLE_SIZES: NEEDLE_SIZES;
 export const PINHEAD_SIZES: PINHEAD_SIZES;
