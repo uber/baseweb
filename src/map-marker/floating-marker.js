@@ -62,7 +62,6 @@ const FloatingMarker = ({
         <StyledFloatingMarkerAnchorContainer>
           <PinHead
             size={anchorPinHeadSize}
-            // anchorType={anchorType}
             color={primaryB}
             background={backgroundInversePrimary}
             type={PINHEAD_TYPES.fixed}
