@@ -36,7 +36,7 @@ function CheatSheet() {
     if (query.component) {
       const element = document.getElementById(query.component);
       if (element) {
-        element.scrollIntoView();
+        setTimeout(el => el.scrollIntoView(), 0, element);
       }
     }
   }, [query]);
@@ -86,9 +86,9 @@ function CheatSheet() {
                       {t.name}
                     </StyledLink>
                   </li>
-                  {t.children.map(c => (
+                  {t.children.map((c, idx) => (
                     <li
-                      key={c.name}
+                      key={idx}
                       className={css({
                         ...theme.typography.font300,
                         paddingLeft: '12px',

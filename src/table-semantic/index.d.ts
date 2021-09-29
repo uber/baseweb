@@ -57,6 +57,7 @@ export interface TableBuilderProps<RowT> {
   isLoading?: boolean;
   loadingMessage?: React.ReactNode | (() => React.ReactNode);
   emptyMessage?: React.ReactNode | (() => React.ReactNode);
+  size?: SIZE[keyof SIZE];
 }
 export class TableBuilder<RowT> extends React.Component<
   TableBuilderProps<RowT>

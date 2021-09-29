@@ -1,3 +1,4 @@
+import {HeaderNavigationOverrides} from 'baseui/header-navigation';
 import * as React from 'react';
 import {StyletronComponent} from 'styletron-react';
 import {Override} from '../overrides';
@@ -84,3 +85,38 @@ export const StyledEndEnhancerContainer: StyletronComponent<{}>;
 export const StyledArtworkContainer: StyletronComponent<
   StyledArtworkContainerPropsT
 >;
+
+export interface HeadingPropsT {
+  heading: React.ReactNode;
+  subHeading?: React.ReactNode;
+  endEnhancer?: React.ReactNode;
+  endEnhancerDescription?: React.ReactNode;
+  overrides?: HeaderNavigationOverrides;
+  maxLines?: number;
+}
+
+export interface StyledHeadingEndEnhancerContainerPropsT {
+  $isText: boolean;
+}
+
+export type StyledHeadingHeadingPropsT = {
+  $maxLines: 1 | 2;
+};
+
+export const ListHeading: React.ForwardRefExoticComponent<
+  HeadingPropsT & React.RefAttributes<HTMLLIElement>
+>;
+
+export const StyledHeadingRoot: StyletronComponent<{}>;
+export const StyledHeadingContent: StyletronComponent<{}>;
+export const StyledHeadingContentRow: StyletronComponent<{}>;
+export const StyledHeadingMainHeading: StyletronComponent<
+  StyledHeadingHeadingPropsT
+>;
+export const StyledHeadingSubHeading: StyletronComponent<
+  StyledHeadingHeadingPropsT
+>;
+export const StyledHeadingEndEnhancerContainer: StyletronComponent<
+  StyledHeadingEndEnhancerContainerPropsT
+>;
+export const StyledHeadingEndEnhancerDescriptionContainer: StyletronComponent<{}>;
