@@ -1,5 +1,5 @@
 import {
-  FixedMarker,
+  FloatingMarker,
   PINHEAD_SIZES,
   FLOATING_MARKER_ANCHOR_POSITIONS,
   FLOATING_MARKER_ANCHOR_TYPES,
@@ -11,13 +11,12 @@ const inputPropsType = require('!!extract-react-types-loader!../../../../src/map
 
 export const theme = [];
 
-export const fixedMarkerProps = {
+export const floatingMarkerProps = {
   label: {
     value: 'Hello',
     type: PropTypes.String,
     description: 'Text to display inside of the marker.',
   },
-  //TODO: should this be renamed to anchorPosition?
   anchor: {
     value: 'FLOATING_MARKER_ANCHOR_POSITIONS.bottomLeft',
     type: PropTypes.Enum,
@@ -42,7 +41,6 @@ export const fixedMarkerProps = {
       },
     },
   },
-
   size: {
     value: 'PINHEAD_SIZES.medium',
     defaultValue: 'PINHEAD_SIZES.medium',
@@ -55,7 +53,6 @@ export const fixedMarkerProps = {
       },
     },
   },
-
   startEnhancer: {
     value: undefined,
     placeholder: '() => <span>$</span>',
@@ -84,23 +81,23 @@ export const fixedMarkerProps = {
   },
 };
 
-const FixedMarkerConfig: TConfig = {
-  componentName: 'FixedMarker',
+const FloatingMarkerConfig: TConfig = {
+  componentName: 'FloatingMarker',
   imports: {
     'baseui/map-marker': {
-      named: ['FixedMarker'],
+      named: ['FloatingMarker'],
     },
   },
   scope: {
-    FixedMarker,
+    FloatingMarker,
   },
   theme,
   props: {
-    ...fixedMarkerProps,
+    ...floatingMarkerProps,
   },
   mapTokensToProps: {
     Input: inputPropsType,
   },
 };
 
-export default FixedMarkerConfig;
+export default FloatingMarkerConfig;
