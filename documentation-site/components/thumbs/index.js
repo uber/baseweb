@@ -68,6 +68,10 @@ export {default as SvgModal} from './components/Modal.js';
 export {default as SvgPopover} from './components/Popover.js';
 export {default as SvgTooltip} from './components/Tooltip.js';
 
+//Map Marker
+export {default as SvgFixedMarker} from './components/FixedMarker.js';
+export {default as SvgFloatingMarker} from './components/FloatingMarker.js';
+
 // Utility
 export {default as SvgAspectRatioBox} from './components/AspectRatioBox.js';
 export {default as SvgBaseProvider} from './components/BaseProvider.js';
