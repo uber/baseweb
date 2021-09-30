@@ -13,7 +13,6 @@ export {
   FLOATING_MARKER_SIZES,
   FLOATING_MARKER_ANCHOR_TYPES,
   NEEDLE_SIZES,
-  PIN_SIZES,
   PINHEAD_SIZES,
 } from './constants.js';
 

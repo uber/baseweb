@@ -20,12 +20,6 @@ export const NEEDLE_HEIGHTS = Object.freeze({
   [NEEDLE_SIZES.tall]: 20,
 });
 
-export const PIN_SIZES = Object.freeze({
-  small: 'small',
-  medium: 'medium',
-  large: 'large',
-});
-
 export const PINHEAD_SIZES = Object.freeze({
   xSmallCircle: 'x-small-circle',
   xSmallSquare: 'x-small-square',

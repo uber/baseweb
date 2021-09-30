@@ -8,7 +8,6 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {
   FLOATING_MARKER_ANCHOR_POSITIONS,
-  PIN_SIZES,
   NEEDLE_SIZES,
   PINHEAD_SIZES,
   FLOATING_MARKER_SIZES,
@@ -21,8 +20,6 @@ export type PinHeadT = $Values<typeof PINHEAD_TYPES>;
 export type AnchorPositionsT = $Values<typeof FLOATING_MARKER_ANCHOR_POSITIONS>;
 
 export type NeedleSizeT = $Values<typeof NEEDLE_SIZES>;
-
-export type PinSizeT = $Values<typeof PIN_SIZES>;
 
 export type PinHeadSizeT = $Values<typeof PINHEAD_SIZES>;
 
