@@ -16,7 +16,8 @@ export interface NEEDLE_SIZES {
 }
 
 export interface PINHEAD_SIZES {
-  xSmall: 'x-small';
+  xSmallCircle: 'x-small-circle';
+  xSmallSquare: 'x-small-square';
   small: 'small';
   medium: 'medium';
   large: 'large';
@@ -72,3 +73,6 @@ export const PINHEAD_SIZES: PINHEAD_SIZES;
 export const PINHEAD_TYPES: PINHEAD_TYPES;
 export const FLOATING_MARKER_ANCHOR_TYPES: FLOATING_MARKER_ANCHOR_TYPES;
 export const FLOATING_MARKER_SIZES: FLOATING_MARKER_SIZES;
+
+export const FixedMarker: React.FC<FixedMarkerPropsT>;
+export const FloatingMarker: React.FC<FloatingMarkerPropsT>;

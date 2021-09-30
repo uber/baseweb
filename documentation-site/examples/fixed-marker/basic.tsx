@@ -1,4 +1,3 @@
-// @flow
 import * as React from 'react';
 import {FixedMarker} from 'baseui/map-marker';
 
