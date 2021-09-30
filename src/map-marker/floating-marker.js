@@ -21,6 +21,7 @@ import {
   FLOATING_MARKER_ANCHOR_TYPES,
   anchorSize,
 } from './constants.js';
+
 const FloatingMarker = ({
   color,
   background,
