@@ -52,6 +52,7 @@ export default function Scenario() {
 
   return (
     <TileGrid
+      cols={4}
       customizerOptions={[
         <Checkbox
           checked={dragging}

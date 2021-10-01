@@ -7,7 +7,6 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {Select} from '../../select/index.js';
 import {FloatingMarker} from '../index.js';
 import {
   FLOATING_MARKER_ANCHOR_POSITIONS,
@@ -25,50 +24,36 @@ export default function Scenario() {
   const [label, setLabel] = React.useState('Uber HQ');
   const [startEnhancer, setStartEnhancer] = React.useState(true);
   const [endEnhancer, setEndEnhancer] = React.useState(false);
-  const [floatingAnchorPosition, setFloatingAnchorPosition] = React.useState([
-    {id: 'top-left', label: 'top-left'},
-  ]);
 
-  const markers = Object.values(FLOATING_MARKER_SIZES).map(
+  const markers = [];
+  Object.values(FLOATING_MARKER_SIZES).forEach(
     //$FlowFixMe
-    (size: FloatingMarkerSizeT, i: number) => ({
-      id: `floating / ${size}`,
-      content: (
-        <FloatingMarker
-          title="map marker"
-          size={size}
-          key={i}
-          label={label}
-          anchor={floatingAnchorPosition[0].id}
-          startEnhancer={startEnhancer && <Upload />}
-          endEnhancer={endEnhancer && <Search />}
-        />
-      ),
-    }),
-  );
-
-  const options = Object.values(FLOATING_MARKER_ANCHOR_POSITIONS).map(
-    //$FlowFixMe
-    (x: string) => ({
-      label: x,
-      id: x,
-    }),
+    (size: FloatingMarkerSizeT, i: number) => {
+      Object.values(FLOATING_MARKER_ANCHOR_POSITIONS).forEach(
+        (position: AnchorPositionsT, x: number) => {
+          markers.push({
+            id: `floating / ${size} / ${position}`,
+            content: (
+              <FloatingMarker
+                title="map marker"
+                size={size}
+                key={i}
+                label={label}
+                anchor={position}
+                startEnhancer={startEnhancer && <Upload />}
+                endEnhancer={endEnhancer && <Search />}
+              />
+            ),
+          });
+        },
+      );
+    },
   );
 
   return (
     <TileGrid
+      cols={5}
       customizerOptions={[
-        <Select
-          options={options}
-          key={'anchor-position'}
-          labelKey="id"
-          valueKey="label"
-          placeholder="Label position"
-          //$FlowFixMe
-          onChange={({value}) => setFloatingAnchorPosition(value)}
-          value={floatingAnchorPosition}
-        />,
-
         <Input
           value={label}
           onChange={e => setLabel(e.target.value)}

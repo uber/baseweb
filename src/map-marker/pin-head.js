@@ -6,16 +6,38 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
+import {Label1, Label2, Label3} from '../typography/index.js';
 import {useStyletron} from '../styles/index.js';
-import {PINHEAD_SIZES, PINHEAD_TYPES, PINHEAD_DIMENSIONS} from './constants.js';
-import Item from './pin-head-item.js';
 import {
   StyledInnerXSmallAnchor,
   StyledOuterXSmallAnchor,
   StyledPinHead,
 } from './styled-components.js';
+import {PINHEAD_DIMENSIONS, PINHEAD_TYPES, PINHEAD_SIZES} from './constants.js';
+import type {PinHeadPropsT, ItemPropsT} from './types.js';
 
-import type {PinHeadPropsT} from './types.js';
+const Item = ({children, color, size = 48}: ItemPropsT) => {
+  const [css] = useStyletron();
+  const props = {
+    color,
+    className: css({
+      display: 'flex',
+      alignItems: 'center',
+      textAlign: 'center',
+      lineHeight: `${size}px`,
+      height: `${size}px`,
+      color,
+    }),
+  };
+  switch (size) {
+    case 24:
+      return <Label3 {...props}>{children}</Label3>;
+    case 36:
+      return <Label2 {...props}>{children}</Label2>;
+    default:
+      return <Label1 {...props}>{children}</Label1>;
+  }
+};
 
 const PinHead = ({
   size = PINHEAD_SIZES.medium,
@@ -53,32 +75,31 @@ const PinHead = ({
         <StyledInnerXSmallAnchor $color={color} $round={round} $size={icon} />
       </StyledOuterXSmallAnchor>
     );
-  } else {
-    return (
-      <StyledPinHead
-        $background={background}
-        $height={height}
-        $gridTemplateColumns={gridTemplateColumns}
-        $forceCircle={forceCircle}
-        $type={type}
-      >
-        {startEnhancer && (
-          <Item size={height} color={color}>
-            {React.cloneElement(startEnhancer, {size: `${icon}px`}, null)}
-          </Item>
-        )}
-        {label && (
-          <Item size={height} color={color}>
-            {label}
-          </Item>
-        )}
-        {endEnhancer && (
-          <Item size={height} color={color}>
-            {React.cloneElement(endEnhancer, {size: `${icon}px`}, null)}
-          </Item>
-        )}
-      </StyledPinHead>
-    );
   }
+  return (
+    <StyledPinHead
+      $background={background}
+      $height={height}
+      $gridTemplateColumns={gridTemplateColumns}
+      $forceCircle={forceCircle}
+      $type={type}
+    >
+      {startEnhancer && (
+        <Item size={height} color={color}>
+          {React.cloneElement(startEnhancer, {size: `${icon}px`}, null)}
+        </Item>
+      )}
+      {label && (
+        <Item size={height} color={color}>
+          {label}
+        </Item>
+      )}
+      {endEnhancer && (
+        <Item size={height} color={color}>
+          {React.cloneElement(endEnhancer, {size: `${icon}px`}, null)}
+        </Item>
+      )}
+    </StyledPinHead>
+  );
 };
 export default PinHead;

@@ -44,7 +44,7 @@ const FloatingMarker = ({
       ? PINHEAD_SIZES.xSmallCircle
       : PINHEAD_SIZES.xSmallSquare;
   return (
-    <StyledFloatingMarkerRoot data-baseweb="map-marker">
+    <StyledFloatingMarkerRoot data-baseweb="floating-map-marker">
       <StyledFloatingMarkerPinHeadContainer
         $anchor={anchor}
         $anchorSize={anchorSize}

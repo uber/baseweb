@@ -10,18 +10,41 @@ import {useStyletron} from '../styles/index.js';
 import {
   PINHEAD_TYPES,
   NEEDLE_SIZES,
+  NEEDLE_HEIGHTS,
   PINHEAD_SIZES,
   dragShadowHeight,
   dragShadowMarginTop,
+  dragShadowWidth,
 } from './constants.js';
-import Needle from './needle.js';
 import PinHead from './pin-head.js';
-import DragShadow from './drag-shadow.js';
 import {
   StyledFixedMarkerDragContainer,
   StyledFixedMarkerRoot,
+  StyledNeedle,
+  StyledDragShadow,
+  StyledDragShadowContainer,
 } from './styled-components.js';
-import type {FixedMarkerPropsT} from './types.js';
+import type {
+  FixedMarkerPropsT,
+  NeedlePropsT,
+  DragShadowPropsT,
+} from './types.js';
+
+const Needle = ({size, background}: NeedlePropsT) => (
+  <StyledNeedle $background={background} $height={NEEDLE_HEIGHTS[size]} />
+);
+
+const DragShadow = ({background, dragging, height}: DragShadowPropsT) => {
+  return (
+    <StyledDragShadowContainer
+      $width={dragShadowWidth}
+      $height={height}
+      $dragging={dragging}
+    >
+      <StyledDragShadow $width={dragShadowWidth} $background={background} />
+    </StyledDragShadowContainer>
+  );
+};
 
 const FixedMarker = ({
   size = PINHEAD_SIZES.medium,
@@ -41,15 +64,13 @@ const FixedMarker = ({
   color = color || primaryB;
   background = background || backgroundInversePrimary;
 
-  const pinHeadTransformOnDrag = Object.keys(NEEDLE_SIZES)
-    .filter(x => x !== 'none')
-    .includes(needle);
+  const doesPinHeadTransformOnDrag = needle !== NEEDLE_SIZES.none;
 
   return (
-    <StyledFixedMarkerRoot data-baseweb="map-marker">
+    <StyledFixedMarkerRoot data-baseweb="fixed-map-marker">
       <StyledFixedMarkerDragContainer
         $translateAmount={dragShadowMarginTop + dragShadowHeight}
-        $performTranslate={pinHeadTransformOnDrag && dragging}
+        $performTranslate={doesPinHeadTransformOnDrag && dragging}
       >
         <PinHead
           size={size}
@@ -62,7 +83,7 @@ const FixedMarker = ({
         />
         <Needle size={needle} background={background} />
       </StyledFixedMarkerDragContainer>
-      {pinHeadTransformOnDrag && (
+      {doesPinHeadTransformOnDrag && (
         <DragShadow
           background={background}
           dragging={dragging}

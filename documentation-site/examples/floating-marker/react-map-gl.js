@@ -21,7 +21,7 @@ export default function Example() {
       width="100%"
       height="500px"
       onViewportChange={viewport => setViewport(viewport)}
-      mapboxApiAccessToken="pk.eyJ1IjoiYmFiYnMiLCJhIjoiY2s1b2JoMjZvMGYydzNmbXAxMXp1NWZhZyJ9.LEHmtAFLAij67eF-54FjxA"
+      mapboxApiAccessToken="pk.eyJ1IjoiYmFiYnN1YmVyIiwiYSI6ImNrdThqeGkxZTVwb3kyd3BpZGRlc2NlOXUifQ.qh-EtXm2DJQZVprWUJ-GFQ"
     >
       <Marker {...uberHq} offsetLeft={-8} offsetTop={-8}>
         <FloatingMarker label="Uber HQ" />

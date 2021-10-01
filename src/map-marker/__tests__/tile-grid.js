@@ -10,9 +10,13 @@ import {useStyletron} from '../../styles/index.js';
 import {Label3} from '../../typography/index.js';
 import {Block} from '../../block/index.js';
 
-import type {TileGridPropsT} from '../types.js';
+type TileGridPropsT = {
+  children: React.Node,
+  customizerOptions: Array<React.Node>,
+  cols: number,
+};
 
-const TileGrid = ({children, customizerOptions}: TileGridPropsT) => {
+const TileGrid = ({children, customizerOptions, cols}: TileGridPropsT) => {
   const [, theme] = useStyletron();
   const {
     colors: {contentSecondary},
@@ -31,7 +35,11 @@ const TileGrid = ({children, customizerOptions}: TileGridPropsT) => {
         </Block>
       )}
 
-      <Block display="grid" gridTemplateColumns="repeat(4, 1fr)" gridGap="20px">
+      <Block
+        display="grid"
+        gridTemplateColumns={`repeat(${cols}, 1fr)`}
+        gridGap="20px"
+      >
         {children.map((node, index) => {
           const {id: label, content} = node;
           return (

@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 import {styled} from '../styles/index.js';
 import {FLOATING_MARKER_ANCHOR_POSITIONS} from './constants.js';
 
-import type {AnchorPositionsT, ResponsiveT} from './types.js';
+import type {AnchorPositionsT} from './types.js';
 
 export const getAnchorTransform = (
   anchor: AnchorPositionsT,
@@ -124,7 +124,7 @@ export const StyledInnerXSmallAnchor = styled<{
 
 export const StyledPinHead = styled<{
   $height: number,
-  $background: ResponsiveT<string>,
+  $background: string,
   $gridTemplateColumns: string,
   $type: string,
   $forceCircle: boolean,

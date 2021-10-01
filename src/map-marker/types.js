@@ -23,8 +23,6 @@ export type NeedleSizeT = $Values<typeof NEEDLE_SIZES>;
 
 export type PinHeadSizeT = $Values<typeof PINHEAD_SIZES>;
 
-export type ResponsiveT<T> = T | Array<T>;
-
 export type FloatingMarkerSizeT = $Values<typeof FLOATING_MARKER_SIZES>;
 
 /* eslint-disable flowtype/generic-spacing*/
@@ -47,9 +45,9 @@ export type PinHeadPropsT = {
   size?: PinHeadSizeT,
   label?: string,
   // eslint-disable-next-line flowtype/no-weak-types
-  startEnhancer?: any,
+  startEnhancer?: React.Node | React.AbstractComponent<{}>,
   // eslint-disable-next-line flowtype/no-weak-types
-  endEnhancer?: any,
+  endEnhancer?: React.Node | React.AbstractComponent<{}>,
   color?: string,
   background?: string,
   type?: PinHeadT,
@@ -60,8 +58,8 @@ export type FixedMarkerPropsT = {
   size?: PinHeadSizeT,
   needle?: NeedleSizeT,
   label?: string,
-  startEnhancer?: React.Node,
-  endEnhancer?: React.Node,
+  startEnhancer?: React.Node | React.AbstractComponent<{}>,
+  endEnhancer?: React.Node | React.AbstractComponent<{}>,
   color?: string,
   background?: string,
   dragging?: boolean,
@@ -72,38 +70,14 @@ export type FloatingMarkerPropsT = {
   background?: string,
   label?: string,
   anchor?: AnchorPositionsT,
-  endEnhancer?: React.Node,
-  startEnhancer?: React.Node,
+  endEnhancer?: React.Node | React.AbstractComponent<{}>,
+  startEnhancer?: React.Node | React.AbstractComponent<{}>,
   anchorType?: FloatingMarkerAnchorTypeT,
   size?: FloatingMarkerSizeT,
-};
-
-export type EnhancerOptionT = {
-  id?: string,
-  label?: string,
-  content?: React.Node,
-};
-
-export type EnhancerOptionsT = Array<EnhancerOptionT>;
-
-export type DestinationMarkerPropsT = {
-  label?: string,
-  anchor?: AnchorPositionsT,
-};
-
-export type OriginMarkerPropsT = {
-  label?: string,
-  anchor?: AnchorPositionsT,
 };
 
 export type DragShadowPropsT = {
   background: string,
   dragging: boolean,
   height: number,
-};
-
-export type TileGridPropsT = {
-  // eslint-disable-next-line flowtype/no-weak-types
-  children: Array<any>,
-  customizerOptions: Array<React.Node>,
 };
