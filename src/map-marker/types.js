@@ -44,9 +44,7 @@ export type ItemPropsT = {
 export type PinHeadPropsT = {
   size?: PinHeadSizeT,
   label?: string,
-  // eslint-disable-next-line flowtype/no-weak-types
   startEnhancer?: React.Node | React.AbstractComponent<{}>,
-  // eslint-disable-next-line flowtype/no-weak-types
   endEnhancer?: React.Node | React.AbstractComponent<{}>,
   color?: string,
   background?: string,

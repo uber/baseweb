@@ -18,7 +18,7 @@ import {Input} from '../../input/index.js';
 import Upload from '../../icon/upload.js';
 import Search from '../../icon/search.js';
 
-import type {FloatingMarkerSizeT} from '../types.js';
+import type {FloatingMarkerSizeT, AnchorPositionsT} from '../types.js';
 
 export default function Scenario() {
   const [label, setLabel] = React.useState('Uber HQ');

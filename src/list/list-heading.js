@@ -22,7 +22,7 @@ import {
 } from './styled-components.js';
 import type {HeadingPropsT} from './types.js';
 
-function RenderNode(props) {
+export function RenderNode(props) {
   const {component, ...restProps} = props;
   const Component = component;
   if (!Component) {
