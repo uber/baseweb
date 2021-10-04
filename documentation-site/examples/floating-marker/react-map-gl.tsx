@@ -27,7 +27,7 @@ export default function Example() {
       }
       mapboxApiAccessToken="pk.eyJ1IjoiYmFiYnN1YmVyIiwiYSI6ImNrdThqeGkxZTVwb3kyd3BpZGRlc2NlOXUifQ.qh-EtXm2DJQZVprWUJ-GFQ"
     >
-      <Marker {...uberHq} offsetLeft={-8} offsetTop={-8}>
+      <Marker {...uberHq}>
         <FloatingMarker label="Uber HQ" />
       </Marker>
     </ReactMapGL>

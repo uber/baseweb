@@ -27,8 +27,17 @@ export default function Example() {
       }
       mapboxApiAccessToken="pk.eyJ1IjoiYmFiYnN1YmVyIiwiYSI6ImNrdThqeGkxZTVwb3kyd3BpZGRlc2NlOXUifQ.qh-EtXm2DJQZVprWUJ-GFQ"
     >
-      <Marker {...uberHq} offsetLeft={-89 / 2} offsetTop={-48}>
-        <FixedMarker label="Uber HQ" />
+      <Marker {...uberHq}>
+        <FixedMarker
+          label="Uber HQ"
+          overrides={{
+            Root: {
+              style: () => ({
+                transform: `translate(-50%, 0)`,
+              }),
+            },
+          }}
+        />
       </Marker>
     </ReactMapGL>
   );

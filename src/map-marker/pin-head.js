@@ -8,10 +8,11 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {Label1, Label2, Label3} from '../typography/index.js';
 import {useStyletron, styled} from '../styles/index.js';
+import {getOverrides} from '../helpers/overrides.js';
 import {
-  StyledInnerXSmallAnchor,
-  StyledOuterXSmallAnchor,
-  StyledPinHead,
+  InnerXSmallAnchor as StyledInnerXSmallAnchor,
+  OuterXSmallAnchor as StyledOuterXSmallAnchor,
+  PinHead as StyledPinHead,
 } from './styled-components.js';
 import {PINHEAD_DIMENSIONS, PINHEAD_TYPES, PINHEAD_SIZES} from './constants.js';
 import type {PinHeadPropsT, ItemPropsT, PinHeadSizeT} from './types.js';
@@ -47,6 +48,7 @@ const PinHead = ({
   background,
   type = PINHEAD_TYPES.fixed,
   anchorType,
+  overrides = {},
 }: PinHeadPropsT) => {
   const [, theme] = useStyletron();
   const {
@@ -64,28 +66,49 @@ const PinHead = ({
   const StartEnhancer = startEnhancer;
   const EndEnhancer = endEnhancer;
 
+  const [PinHead, pinHeadProps] = getOverrides(
+    overrides.PinHead,
+    StyledPinHead,
+  );
+  const [InnerXSmallAnchor, innerXSmallAnchorProps] = getOverrides(
+    overrides.InnerAnchor,
+    StyledInnerXSmallAnchor,
+  );
+  const [OuterXSmallAnchor, outerXSmallAnchorProps] = getOverrides(
+    overrides.OuterAnchor,
+    StyledOuterXSmallAnchor,
+  );
+
   if (
     type === PINHEAD_TYPES.fixed &&
     (size === PINHEAD_SIZES.xSmallSquare || size === PINHEAD_SIZES.xSmallCircle)
   ) {
     const round = size === PINHEAD_SIZES.xSmallCircle;
     return (
-      <StyledOuterXSmallAnchor
+      <OuterXSmallAnchor
         $round={round}
         $background={background}
         $size={height}
+        {...innerXSmallAnchorProps}
       >
-        <StyledInnerXSmallAnchor $color={color} $round={round} $size={icon} />
-      </StyledOuterXSmallAnchor>
+        <InnerXSmallAnchor
+          $color={color}
+          $round={round}
+          $size={icon}
+          {...outerXSmallAnchorProps}
+        />
+      </OuterXSmallAnchor>
     );
   }
+
   return (
-    <StyledPinHead
+    <PinHead
       $background={background}
       $height={height}
       $gridTemplateColumns={gridTemplateColumns}
       $forceCircle={forceCircle}
       $type={type}
+      {...pinHeadProps}
     >
       {StartEnhancer && (
         <Item $height={height} $color={color} $size={size}>
@@ -106,7 +129,7 @@ const PinHead = ({
           {/* {React.cloneElement(endEnhancer, {size: `${icon}px`}, null)} */}
         </Item>
       )}
-    </StyledPinHead>
+    </PinHead>
   );
 };
 export default PinHead;

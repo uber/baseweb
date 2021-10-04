@@ -6,7 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import {styled} from '../styles/index.js';
-import {FLOATING_MARKER_ANCHOR_POSITIONS} from './constants.js';
+import {
+  FLOATING_MARKER_ANCHOR_POSITIONS,
+  xSmallPinheadDimension,
+} from './constants.js';
 
 import type {AnchorPositionsT} from './types.js';
 
@@ -22,7 +25,7 @@ export const getAnchorTransform = (
     [FLOATING_MARKER_ANCHOR_POSITIONS.bottomRight]: `translate(-100%, -100%)`,
   }[anchor]);
 
-export const StyledDragShadowContainer = styled<{
+export const DragShadowContainer = styled<{
   $height: number,
   $width: number,
   $dragging: boolean,
@@ -36,7 +39,7 @@ export const StyledDragShadowContainer = styled<{
   boxShadow: $theme.lighting.shadow600,
 }));
 
-export const StyledDragShadow = styled<{
+export const DragShadow = styled<{
   $background: string,
   $width: number,
 }>('div', ({$theme, $background, $width}) => ({
@@ -48,7 +51,7 @@ export const StyledDragShadow = styled<{
   bottom: 0,
 }));
 
-export const StyledNeedle = styled<{
+export const Needle = styled<{
   $background?: string,
   $height: number,
 }>('div', ({$theme, $background, $height}) => ({
@@ -58,11 +61,13 @@ export const StyledNeedle = styled<{
   boxShadow: $theme.lighting.shadow600,
 }));
 
-export const StyledFloatingMarkerRoot = styled<{}>('div', () => ({
+export const FloatingMarkerRoot = styled<{}>('div', () => ({
   position: 'relative',
+  height: `${xSmallPinheadDimension.height}px`,
+  width: `${xSmallPinheadDimension.height}px`,
 }));
 
-export const StyledFloatingMarkerPinHeadContainer = styled<{
+export const FloatingMarkerPinHeadContainer = styled<{
   $anchor: AnchorPositionsT,
   $anchorSize: number,
 }>('div', ({$theme, $anchor, $anchorSize}) => ({
@@ -71,17 +76,17 @@ export const StyledFloatingMarkerPinHeadContainer = styled<{
   transform: getAnchorTransform($anchor, $anchorSize),
 }));
 
-export const StyledFloatingMarkerAnchorContainer = styled<{}>('div', () => ({
+export const FloatingMarkerAnchorContainer = styled<{}>('div', () => ({
   position: 'absolute',
 }));
 
-export const StyledFixedMarkerRoot = styled<{}>('div', () => ({
+export const FixedMarkerRoot = styled<{}>('div', () => ({
   display: 'flex',
   alignItems: 'center',
   flexDirection: 'column',
 }));
 
-export const StyledFixedMarkerDragContainer = styled<{
+export const FixedMarkerDragContainer = styled<{
   $translateAmount: number,
   $performTranslate: boolean,
 }>('div', ({$theme, $translateAmount, $performTranslate}) => {
@@ -96,7 +101,7 @@ export const StyledFixedMarkerDragContainer = styled<{
   };
 });
 
-export const StyledOuterXSmallAnchor = styled<{
+export const OuterXSmallAnchor = styled<{
   $round: boolean,
   $background: string,
   $size: number,
@@ -111,7 +116,7 @@ export const StyledOuterXSmallAnchor = styled<{
   boxShadow: $theme.lighting.shadow600,
 }));
 
-export const StyledInnerXSmallAnchor = styled<{
+export const InnerXSmallAnchor = styled<{
   $round: boolean,
   $color: string,
   $size: number,
@@ -122,7 +127,7 @@ export const StyledInnerXSmallAnchor = styled<{
   borderRadius: $round ? '50%' : 0,
 }));
 
-export const StyledPinHead = styled<{
+export const PinHead = styled<{
   $height: number,
   $background: string,
   $gridTemplateColumns: string,

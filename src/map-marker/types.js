@@ -14,6 +14,7 @@ import {
   PINHEAD_TYPES,
   FLOATING_MARKER_ANCHOR_TYPES,
 } from './constants.js';
+import type {OverrideT} from '../helpers/overrides.js';
 
 export type PinHeadT = $Values<typeof PINHEAD_TYPES>;
 
@@ -33,6 +34,7 @@ export type FloatingMarkerAnchorTypeT = $Values<
 export type NeedlePropsT = {
   size: NeedleSizeT,
   background?: string,
+  overrides: FixedMarkerOverridesT,
 };
 
 export type ItemPropsT = {
@@ -41,15 +43,14 @@ export type ItemPropsT = {
   size?: number,
 };
 
-export type PinHeadPropsT = {
-  size?: PinHeadSizeT,
-  label?: string,
-  startEnhancer?: React.Node | React.AbstractComponent<{}>,
-  endEnhancer?: React.Node | React.AbstractComponent<{}>,
-  color?: string,
-  background?: string,
-  type?: PinHeadT,
-  anchorType?: FloatingMarkerAnchorTypeT,
+export type FixedMarkerOverridesT = {
+  Root?: OverrideT,
+  PinHead?: OverrideT,
+  PinHeadContainer?: OverrideT,
+  Needle?: OverrideT,
+  DragShadow?: OverrideT,
+  DragShadowContainer?: OverrideT,
+  DragContainer?: OverrideT,
 };
 
 export type FixedMarkerPropsT = {
@@ -61,6 +62,16 @@ export type FixedMarkerPropsT = {
   color?: string,
   background?: string,
   dragging?: boolean,
+  overrides?: FixedMarkerOverridesT,
+};
+
+export type FloatingMarkerOverridesT = {
+  Root?: OverrideT,
+  InnerAnchor?: OverrideT,
+  OuterAnchor?: OverrideT,
+  PinHead?: OverrideT,
+  PinHeadContainer?: OverrideT,
+  AnchorContainer?: OverrideT,
 };
 
 export type FloatingMarkerPropsT = {
@@ -72,10 +83,24 @@ export type FloatingMarkerPropsT = {
   startEnhancer?: React.Node | React.AbstractComponent<{}>,
   anchorType?: FloatingMarkerAnchorTypeT,
   size?: FloatingMarkerSizeT,
+  overrides?: FloatingMarkerOverridesT,
+};
+
+export type PinHeadPropsT = {
+  size?: PinHeadSizeT,
+  label?: string,
+  startEnhancer?: React.Node | React.AbstractComponent<{}>,
+  endEnhancer?: React.Node | React.AbstractComponent<{}>,
+  color?: string,
+  background?: string,
+  type?: PinHeadT,
+  anchorType?: FloatingMarkerAnchorTypeT,
+  overrides?: FloatingMarkerOverridesT | FixedMarkerOverridesT,
 };
 
 export type DragShadowPropsT = {
   background: string,
   dragging: boolean,
   height: number,
+  overrides: FixedMarkerOverridesT,
 };

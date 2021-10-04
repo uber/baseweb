@@ -8,10 +8,11 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {useStyletron} from '../styles/index.js';
 import PinHead from './pin-head.js';
+import {getOverrides} from '../helpers/overrides.js';
 import {
-  StyledFloatingMarkerRoot,
-  StyledFloatingMarkerAnchorContainer,
-  StyledFloatingMarkerPinHeadContainer,
+  FloatingMarkerRoot as StyledRoot,
+  FloatingMarkerAnchorContainer as StyledFloatingMarkerAnchorContainer,
+  FloatingMarkerPinHeadContainer as StyledFloatingMarkerPinHeadContainer,
 } from './styled-components.js';
 import type {FloatingMarkerPropsT} from './types.js';
 import {
@@ -31,6 +32,7 @@ const FloatingMarker = ({
   endEnhancer,
   startEnhancer,
   anchorType = FLOATING_MARKER_ANCHOR_TYPES.circle,
+  overrides = {},
 }: FloatingMarkerPropsT) => {
   const [, theme] = useStyletron();
   const {
@@ -43,11 +45,29 @@ const FloatingMarker = ({
     anchorType === FLOATING_MARKER_ANCHOR_TYPES.circle
       ? PINHEAD_SIZES.xSmallCircle
       : PINHEAD_SIZES.xSmallSquare;
+
+  const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
+  const [
+    FloatingMarkerPinHeadContainer,
+    floatingMarkerPinHeadContainerProps,
+  ] = getOverrides(
+    overrides.PinHeadContainer,
+    StyledFloatingMarkerPinHeadContainer,
+  );
+
+  const [
+    FloatingMarkerAnchorContainer,
+    floatingMarkerAnchorContainerProps,
+  ] = getOverrides(
+    overrides.AnchorContainer,
+    StyledFloatingMarkerAnchorContainer,
+  );
   return (
-    <StyledFloatingMarkerRoot data-baseweb="floating-map-marker">
-      <StyledFloatingMarkerPinHeadContainer
+    <Root data-baseweb="floating-map-marker" {...rootProps}>
+      <FloatingMarkerPinHeadContainer
         $anchor={anchor}
         $anchorSize={anchorSize}
+        {...floatingMarkerPinHeadContainerProps}
       >
         <PinHead
           size={size}
@@ -57,19 +77,21 @@ const FloatingMarker = ({
           label={label}
           startEnhancer={startEnhancer}
           endEnhancer={endEnhancer}
+          overrides={overrides}
         />
-      </StyledFloatingMarkerPinHeadContainer>
+      </FloatingMarkerPinHeadContainer>
       {anchor !== FLOATING_MARKER_ANCHOR_POSITIONS.none && (
-        <StyledFloatingMarkerAnchorContainer>
+        <FloatingMarkerAnchorContainer {...floatingMarkerAnchorContainerProps}>
           <PinHead
             size={anchorPinHeadSize}
             color={primaryB}
             background={backgroundInversePrimary}
             type={PINHEAD_TYPES.fixed}
+            overrides={overrides}
           />
-        </StyledFloatingMarkerAnchorContainer>
+        </FloatingMarkerAnchorContainer>
       )}
-    </StyledFloatingMarkerRoot>
+    </Root>
   );
 };
 

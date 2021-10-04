@@ -28,7 +28,7 @@ export const PINHEAD_SIZES = Object.freeze({
   large: 'large',
 });
 
-const xSmallPinheadDimension = {
+export const xSmallPinheadDimension = {
   height: 16,
   icon: 4,
 };

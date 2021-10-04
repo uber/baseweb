@@ -7,7 +7,7 @@ import {
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 
-const inputPropsType = require('!!extract-react-types-loader!../../../../src/map-marker/floating-marker.js');
+const floatingMarkerPropsType = require('!!extract-react-types-loader!../../../../src/map-marker/floating-marker.js');
 
 export const theme = [];
 
@@ -94,9 +94,25 @@ const FloatingMarkerConfig: TConfig = {
   theme,
   props: {
     ...floatingMarkerProps,
+    overrides: {
+      value: undefined,
+      type: PropTypes.Custom,
+      description: 'Lets you customize all aspects of the component.',
+      custom: {
+        names: [
+          'Root',
+          'InnerAnchor',
+          'OuterAnchor',
+          'PinHead',
+          'PinHeadContainer',
+          'AnchorContainer',
+        ],
+        sharedProps: {},
+      },
+    },
   },
   mapTokensToProps: {
-    Input: inputPropsType,
+    FloatingMarker: floatingMarkerPropsType,
   },
 };
 

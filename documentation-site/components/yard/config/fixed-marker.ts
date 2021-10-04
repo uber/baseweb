@@ -2,7 +2,7 @@ import {FixedMarker, PINHEAD_SIZES, NEEDLE_SIZES} from 'baseui/map-marker';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 
-const inputPropsType = require('!!extract-react-types-loader!../../../../src/map-marker/fixed-marker.js');
+const fixedMarkerPropsType = require('!!extract-react-types-loader!../../../../src/map-marker/fixed-marker.js');
 
 export const theme = [];
 
@@ -43,7 +43,6 @@ export const fixedMarkerProps = {
       },
     },
   },
-
   startEnhancer: {
     value: undefined,
     placeholder: '() => <span>$</span>',
@@ -85,9 +84,26 @@ const FixedMarkerConfig: TConfig = {
   theme,
   props: {
     ...fixedMarkerProps,
+    overrides: {
+      value: undefined,
+      type: PropTypes.Custom,
+      description: 'Lets you customize all aspects of the component.',
+      custom: {
+        names: [
+          'Root',
+          'PinHead',
+          'PinHeadContainer',
+          'Needle',
+          'DragShadow',
+          'DragShadowContainer',
+          'DragContainer',
+        ],
+        sharedProps: {},
+      },
+    },
   },
   mapTokensToProps: {
-    Input: inputPropsType,
+    FixedMarker: fixedMarkerPropsType,
   },
 };
 
