@@ -121,9 +121,14 @@ const PinHead = ({
           $size={size}
           {...contentItemProps}
         >
-          {/* TODO: Fix me, size prop is not being passed to the element. All icons are 16px */}
-          <RenderNode component={StartEnhancer} size={`${icon}px`} />
-          {/* {React.cloneElement(startEnhancer, {size: `${icon}px`}, null)} */}
+          {/* TODO: this can be improved... */}
+          <RenderNode
+            component={React.cloneElement(
+              StartEnhancer,
+              {size: `${icon}px`},
+              null,
+            )}
+          />
         </ContentItem>
       )}
       {label && (
@@ -143,9 +148,14 @@ const PinHead = ({
           $size={size}
           {...contentItemProps}
         >
-          {/* TODO: Fix me, size prop is not being passed to the element. All icons are 16px */}
-          <RenderNode component={EndEnhancer} size={`${icon}px`} />
-          {/* {React.cloneElement(endEnhancer, {size: `${icon}px`}, null)} */}
+          {/* TODO: this can be improved... */}
+          <RenderNode
+            component={React.cloneElement(
+              EndEnhancer,
+              {size: `${icon}px`},
+              null,
+            )}
+          />
         </ContentItem>
       )}
     </PinHead>
