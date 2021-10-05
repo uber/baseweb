@@ -46,6 +46,7 @@ export type ItemPropsT = {
 export type FixedMarkerOverridesT = {
   Root?: OverrideT,
   PinHead?: OverrideT,
+  PinHeadContent?: OverrideT,
   PinHeadContainer?: OverrideT,
   Needle?: OverrideT,
   DragShadow?: OverrideT,
@@ -70,6 +71,7 @@ export type FloatingMarkerOverridesT = {
   InnerAnchor?: OverrideT,
   OuterAnchor?: OverrideT,
   PinHead?: OverrideT,
+  PinHeadContent?: OverrideT,
   PinHeadContainer?: OverrideT,
   AnchorContainer?: OverrideT,
 };

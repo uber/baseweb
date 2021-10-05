@@ -18,7 +18,7 @@ import {PINHEAD_DIMENSIONS, PINHEAD_TYPES, PINHEAD_SIZES} from './constants.js';
 import type {PinHeadPropsT, ItemPropsT, PinHeadSizeT} from './types.js';
 import {RenderNode} from '../list/list-heading.js';
 
-export const Item = styled<{
+export const _ContentItem = styled<{
   $color: string,
   $height: number,
   $size: PinHeadSizeT,
@@ -70,6 +70,10 @@ const PinHead = ({
     overrides.PinHead,
     StyledPinHead,
   );
+  const [ContentItem, contentItemProps] = getOverrides(
+    overrides.PinHeadContent,
+    _ContentItem,
+  );
   const [InnerXSmallAnchor, innerXSmallAnchorProps] = getOverrides(
     overrides.InnerAnchor,
     StyledInnerXSmallAnchor,
@@ -89,13 +93,13 @@ const PinHead = ({
         $round={round}
         $background={background}
         $size={height}
-        {...innerXSmallAnchorProps}
+        {...outerXSmallAnchorProps}
       >
         <InnerXSmallAnchor
           $color={color}
           $round={round}
           $size={icon}
-          {...outerXSmallAnchorProps}
+          {...innerXSmallAnchorProps}
         />
       </OuterXSmallAnchor>
     );
@@ -111,23 +115,38 @@ const PinHead = ({
       {...pinHeadProps}
     >
       {StartEnhancer && (
-        <Item $height={height} $color={color} $size={size}>
+        <ContentItem
+          $height={height}
+          $color={color}
+          $size={size}
+          {...contentItemProps}
+        >
           {/* TODO: Fix me, size prop is not being passed to the element. All icons are 16px */}
           <RenderNode component={StartEnhancer} size={`${icon}px`} />
           {/* {React.cloneElement(startEnhancer, {size: `${icon}px`}, null)} */}
-        </Item>
+        </ContentItem>
       )}
       {label && (
-        <Item $height={height} $color={color} $size={size}>
+        <ContentItem
+          $height={height}
+          $color={color}
+          $size={size}
+          {...contentItemProps}
+        >
           {label}
-        </Item>
+        </ContentItem>
       )}
       {EndEnhancer && (
-        <Item $height={height} $color={color} $size={size}>
+        <ContentItem
+          $height={height}
+          $color={color}
+          $size={size}
+          {...contentItemProps}
+        >
           {/* TODO: Fix me, size prop is not being passed to the element. All icons are 16px */}
           <RenderNode component={EndEnhancer} size={`${icon}px`} />
           {/* {React.cloneElement(endEnhancer, {size: `${icon}px`}, null)} */}
-        </Item>
+        </ContentItem>
       )}
     </PinHead>
   );

@@ -104,6 +104,7 @@ const FloatingMarkerConfig: TConfig = {
           'InnerAnchor',
           'OuterAnchor',
           'PinHead',
+          'PinHeadContent',
           'PinHeadContainer',
           'AnchorContainer',
         ],
