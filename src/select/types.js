@@ -139,7 +139,7 @@ export type PropsT = {
   /** Defines if multiple options can be selected. */
   multi: boolean,
   /** Handle for accessing internal methods. */
-  methodsRef?: {current?: ImperativeFnsT},
+  methodsRef?: {current?: ImperativeFnsT | null},
   /** Message to be displayed if no options is found for a search query. */
   noResultsMsg?: React.Node,
   onBlur: (e: Event) => mixed,

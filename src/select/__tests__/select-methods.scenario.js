@@ -27,6 +27,7 @@ export default function Scenario() {
           onClick={() => {
             methodsRef.current && methodsRef.current.setDropdownOpen(true);
           }}
+          id={'open'}
         >
           Open Dropdown
         </Button>
@@ -34,6 +35,7 @@ export default function Scenario() {
           onClick={() => {
             methodsRef.current && methodsRef.current.setDropdownOpen(false);
           }}
+          id={'close'}
         >
           Close Dropdown
         </Button>
