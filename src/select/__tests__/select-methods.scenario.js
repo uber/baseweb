@@ -12,7 +12,7 @@ import {StatefulSelect} from '../index.js';
 import {Button} from '../../button/index.js';
 
 export default function Scenario() {
-  const methodsRef = React.useRef();
+  const methodsRef = React.useRef(null);
 
   return (
     <div style={{width: '360px'}}>
