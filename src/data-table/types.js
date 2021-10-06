@@ -107,7 +107,7 @@ export type StatefulDataTablePropsT = {|
   onSelectionChange?: (RowT[]) => mixed,
   resizableColumnWidths?: boolean,
   rows: RowT[],
-  rowActions?: RowActionT[],
+  rowActions?: RowActionT[] | (RowT => RowActionT[]),
   rowHeight?: number,
   rowHighlightIndex?: number,
   searchable?: boolean,
