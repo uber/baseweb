@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import ArrowRight from '../icon/arrow-right.js';
-import ArrowLeft from '../icon/arrow-left.js';
-import TriangleDown from '../icon/triangle-down.js';
+import ChevronRight from '../icon/chevron-right.js';
+import ChevronLeft from '../icon/chevron-left.js';
+import ChevronDown from '../icon/chevron-down.js';
 import dateFnsAdapter from './utils/date-fns-adapter.js';
 import DateHelpers from './utils/date-helpers.js';
 import {StatefulMenu} from '../menu/index.js';
@@ -194,7 +194,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
     );
     const [PrevButtonIcon, prevButtonIconProps] = getOverrides(
       overrides.PrevButtonIcon,
-      theme.direction === 'rtl' ? ArrowRight : ArrowLeft,
+      theme.direction === 'rtl' ? ChevronRight : ChevronLeft,
     );
     let clickHandler = this.decreaseMonth;
     if (allPrevDaysDisabled) {
@@ -260,7 +260,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
     );
     const [NextButtonIcon, nextButtonIconProps] = getOverrides(
       overrides.NextButtonIcon,
-      theme.direction === 'rtl' ? ArrowLeft : ArrowRight,
+      theme.direction === 'rtl' ? ChevronLeft : ChevronRight,
     );
 
     let clickHandler = this.increaseMonth;
@@ -455,7 +455,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
         >
           {monthYearTitle}
           <MonthYearSelectIconContainer {...monthYearSelectIconContainerProps}>
-            <TriangleDown
+            <ChevronDown
               title=""
               overrides={{Svg: {props: {role: 'presentation'}}}}
             />
