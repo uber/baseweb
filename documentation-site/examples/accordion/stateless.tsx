@@ -3,8 +3,8 @@ import {StatelessAccordion, Panel} from 'baseui/accordion';
 
 export default function Example() {
   const [expanded, setExpanded] = React.useState<React.Key[]>([
-    'L1',
-    'L2',
+    'P1',
+    'P2',
   ]);
   return (
     <StatelessAccordion
