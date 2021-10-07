@@ -9,11 +9,7 @@ LICENSE file in the root directory of this source tree.
 
 const {mount} = require('../../../e2e/helpers');
 
-const {sortColumnAtIndex} = require('./utilities.js');
-
-function getActionButtonByLabel(parent, label) {
-  return parent.$(`button[alt="${label}"]`);
-}
+const {sortColumnAtIndex, getActionButtonByLabel} = require('./utilities.js');
 
 describe('data-table-row-actions', () => {
   it('renders provided row action buttons', async () => {

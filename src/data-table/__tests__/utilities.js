@@ -60,6 +60,11 @@ async function getCellContentsAtColumnIndex(
 }
 
 // eslint-disable-next-line flowtype/no-weak-types
+function getActionButtonByLabel(parent: any, label: string) {
+  return parent.$(`button[alt="${label}"]`);
+}
+
+// eslint-disable-next-line flowtype/no-weak-types
 async function sortColumnAtIndex(page: any, index: number) {
   const headerCell = await getHeaderCellAtIndex(page, index);
   const sortButton = await headerCell.$('div[role="button"]');
@@ -84,6 +89,7 @@ function matchArrayElements(a: string[], b: string[]) {
 
 module.exports = {
   TABLE_ROOT,
+  getActionButtonByLabel,
   getCellContentsAtColumnIndex,
   getTable,
   sortColumnAtIndex,
