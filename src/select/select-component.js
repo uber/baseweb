@@ -128,11 +128,9 @@ class Select extends React.Component<PropsT, SelectStateT> {
     if (this.props.methodsRef) {
       const {methodsRef} = this.props;
 
-      if (methodsRef.current) {
-        methodsRef.current = {
-          setDropdownOpen: this.handleDropdownOpen.bind(this),
-        };
-      }
+      methodsRef.current = {
+        setDropdownOpen: this.handleDropdownOpen.bind(this),
+      };
     }
   }
 
