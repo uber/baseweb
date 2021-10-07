@@ -1,6 +1,6 @@
 import {
   FloatingMarker,
-  PINHEAD_SIZES,
+  FLOATING_MARKER_SIZES,
   FLOATING_MARKER_ANCHOR_POSITIONS,
   FLOATING_MARKER_ANCHOR_TYPES,
 } from 'baseui/map-marker';
@@ -13,7 +13,7 @@ export const theme = [];
 
 export const floatingMarkerProps = {
   label: {
-    value: 'Hello',
+    value: 'Uber HQ',
     type: PropTypes.String,
     description: 'Text to display inside of the marker.',
   },
@@ -42,14 +42,14 @@ export const floatingMarkerProps = {
     },
   },
   size: {
-    value: 'PINHEAD_SIZES.medium',
-    defaultValue: 'PINHEAD_SIZES.medium',
-    options: PINHEAD_SIZES,
+    value: 'FLOATING_MARKER_SIZES.medium',
+    defaultValue: 'FLOATING_MARKER_SIZES.medium',
+    options: FLOATING_MARKER_SIZES,
     type: PropTypes.Enum,
     description: 'Size of the marker.',
     imports: {
       'baseui/map-marker': {
-        named: ['PINHEAD_SIZES'],
+        named: ['FLOATING_MARKER_SIZES'],
       },
     },
   },

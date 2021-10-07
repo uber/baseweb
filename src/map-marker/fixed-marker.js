@@ -12,7 +12,7 @@ import {
   PINHEAD_TYPES,
   NEEDLE_SIZES,
   NEEDLE_HEIGHTS,
-  PINHEAD_SIZES,
+  PINHEAD_SIZES_SHAPES,
   dragShadowHeight,
   dragShadowMarginTop,
   dragShadowWidth,
@@ -74,7 +74,7 @@ const DragShadow = ({
 };
 
 const FixedMarker = ({
-  size = PINHEAD_SIZES.medium,
+  size = PINHEAD_SIZES_SHAPES.medium,
   needle = NEEDLE_SIZES.medium,
   label,
   startEnhancer,

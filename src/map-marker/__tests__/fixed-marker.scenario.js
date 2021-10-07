@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {FixedMarker} from '../index.js';
 import {Checkbox, LABEL_PLACEMENT} from '../../checkbox/index.js';
-import {PINHEAD_SIZES, NEEDLE_SIZES} from '../constants.js';
+import {PINHEAD_SIZES_SHAPES, NEEDLE_SIZES} from '../constants.js';
 import TileGrid from './tile-grid.js';
 import {Input} from '../../input/index.js';
 import Upload from '../../icon/upload.js';
@@ -24,7 +24,7 @@ export default function Scenario() {
   const [startEnhancer, setStartEnhancer] = React.useState(true);
   const [endEnhancer, setEndEnhancer] = React.useState(false);
 
-  Object.values(PINHEAD_SIZES).forEach(
+  Object.values(PINHEAD_SIZES_SHAPES).forEach(
     // $FlowFixMe
     (pinheadSize: PinHeadSizeT, i: number) => {
       Object.values(NEEDLE_SIZES).forEach(

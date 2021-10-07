@@ -13,7 +13,11 @@ import {
   OuterXSmallAnchor as StyledOuterXSmallAnchor,
   PinHead as StyledPinHead,
 } from './styled-components.js';
-import {PINHEAD_DIMENSIONS, PINHEAD_TYPES, PINHEAD_SIZES} from './constants.js';
+import {
+  PINHEAD_DIMENSIONS,
+  PINHEAD_TYPES,
+  PINHEAD_SIZES_SHAPES,
+} from './constants.js';
 import type {PinHeadPropsT, PinHeadSizeT} from './types.js';
 import {RenderNode} from '../list/list-heading.js';
 
@@ -23,12 +27,11 @@ export const _ContentItem = styled<{
   $size: PinHeadSizeT,
 }>('div', ({$theme, $color, $height, $size}) => {
   const match = {
-    // TODO: fix sizes what happens when pinhead size is xsmall?
-    [PINHEAD_SIZES.xSmallCircle]: 'LabelSmall',
-    [PINHEAD_SIZES.xSmallSquare]: 'LabelSmall',
-    [PINHEAD_SIZES.small]: 'LabelSmall',
-    [PINHEAD_SIZES.medium]: 'LabelMedium',
-    [PINHEAD_SIZES.large]: 'LabelLarge',
+    [PINHEAD_SIZES_SHAPES.xSmallCircle]: 'LabelSmall',
+    [PINHEAD_SIZES_SHAPES.xSmallSquare]: 'LabelSmall',
+    [PINHEAD_SIZES_SHAPES.small]: 'LabelSmall',
+    [PINHEAD_SIZES_SHAPES.medium]: 'LabelMedium',
+    [PINHEAD_SIZES_SHAPES.large]: 'LabelLarge',
   };
   return {
     ...$theme.typography[match[$size]],
@@ -42,7 +45,7 @@ export const _ContentItem = styled<{
 });
 
 const PinHead = ({
-  size = PINHEAD_SIZES.medium,
+  size = PINHEAD_SIZES_SHAPES.medium,
   label = '',
   startEnhancer: StartEnhancer,
   endEnhancer: EndEnhancer,
@@ -84,9 +87,10 @@ const PinHead = ({
 
   if (
     type === PINHEAD_TYPES.fixed &&
-    (size === PINHEAD_SIZES.xSmallSquare || size === PINHEAD_SIZES.xSmallCircle)
+    (size === PINHEAD_SIZES_SHAPES.xSmallSquare ||
+      size === PINHEAD_SIZES_SHAPES.xSmallCircle)
   ) {
-    const round = size === PINHEAD_SIZES.xSmallCircle;
+    const round = size === PINHEAD_SIZES_SHAPES.xSmallCircle;
     return (
       <OuterXSmallAnchor
         $round={round}

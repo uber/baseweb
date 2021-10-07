@@ -1,4 +1,8 @@
-import {FixedMarker, PINHEAD_SIZES, NEEDLE_SIZES} from 'baseui/map-marker';
+import {
+  FixedMarker,
+  PINHEAD_SIZES_SHAPES,
+  NEEDLE_SIZES,
+} from 'baseui/map-marker';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 
@@ -8,7 +12,7 @@ export const theme = [];
 
 export const fixedMarkerProps = {
   label: {
-    value: 'Hello',
+    value: 'Uber HQ',
     type: PropTypes.String,
     description: 'Text to display inside of the marker.',
     stateful: true,
@@ -20,14 +24,14 @@ export const fixedMarkerProps = {
     defaultValue: false,
   },
   size: {
-    value: 'PINHEAD_SIZES.medium',
-    defaultValue: 'PINHEAD_SIZES.medium',
-    options: PINHEAD_SIZES,
+    value: 'PINHEAD_SIZES_SHAPES.medium',
+    defaultValue: 'PINHEAD_SIZES_SHAPES.medium',
+    options: PINHEAD_SIZES_SHAPES,
     type: PropTypes.Enum,
     description: 'Size of the pinhead (top container) of the marker.',
     imports: {
       'baseui/map-marker': {
-        named: ['PINHEAD_SIZES'],
+        named: ['PINHEAD_SIZES_SHAPES'],
       },
     },
   },

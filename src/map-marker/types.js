@@ -9,7 +9,7 @@ import * as React from 'react';
 import {
   FLOATING_MARKER_ANCHOR_POSITIONS,
   NEEDLE_SIZES,
-  PINHEAD_SIZES,
+  PINHEAD_SIZES_SHAPES,
   FLOATING_MARKER_SIZES,
   PINHEAD_TYPES,
   FLOATING_MARKER_ANCHOR_TYPES,
@@ -22,7 +22,7 @@ export type AnchorPositionsT = $Values<typeof FLOATING_MARKER_ANCHOR_POSITIONS>;
 
 export type NeedleSizeT = $Values<typeof NEEDLE_SIZES>;
 
-export type PinHeadSizeT = $Values<typeof PINHEAD_SIZES>;
+export type PinHeadSizeT = $Values<typeof PINHEAD_SIZES_SHAPES>;
 
 export type FloatingMarkerSizeT = $Values<typeof FLOATING_MARKER_SIZES>;
 

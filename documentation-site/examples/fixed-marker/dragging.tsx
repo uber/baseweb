@@ -2,7 +2,7 @@ import * as React from 'react';
 import {
   FixedMarker,
   NEEDLE_SIZES,
-  PINHEAD_SIZES,
+  PINHEAD_SIZES_SHAPES,
 } from 'baseui/map-marker';
 import {Search} from 'baseui/icon';
 
@@ -15,7 +15,7 @@ export default function Example() {
     >
       <FixedMarker
         startEnhancer={<Search />}
-        size={PINHEAD_SIZES.large}
+        size={PINHEAD_SIZES_SHAPES.large}
         needle={NEEDLE_SIZES.short}
         label="Hover over me to view dragging state"
         dragging={dragging}

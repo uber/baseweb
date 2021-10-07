@@ -20,7 +20,7 @@ export const NEEDLE_HEIGHTS = Object.freeze({
   [NEEDLE_SIZES.tall]: 20,
 });
 
-export const PINHEAD_SIZES = Object.freeze({
+export const PINHEAD_SIZES_SHAPES = Object.freeze({
   xSmallCircle: 'x-small-circle',
   xSmallSquare: 'x-small-square',
   small: 'small',
@@ -33,11 +33,11 @@ export const xSmallPinheadDimension = {
   icon: 4,
 };
 export const PINHEAD_DIMENSIONS = Object.freeze({
-  [PINHEAD_SIZES.xSmallSquare]: xSmallPinheadDimension,
-  [PINHEAD_SIZES.xSmallCircle]: xSmallPinheadDimension,
-  [PINHEAD_SIZES.small]: {height: 24, icon: 16},
-  [PINHEAD_SIZES.medium]: {height: 36, icon: 16},
-  [PINHEAD_SIZES.large]: {height: 48, icon: 24},
+  [PINHEAD_SIZES_SHAPES.xSmallSquare]: xSmallPinheadDimension,
+  [PINHEAD_SIZES_SHAPES.xSmallCircle]: xSmallPinheadDimension,
+  [PINHEAD_SIZES_SHAPES.small]: {height: 24, icon: 16},
+  [PINHEAD_SIZES_SHAPES.medium]: {height: 36, icon: 16},
+  [PINHEAD_SIZES_SHAPES.large]: {height: 48, icon: 24},
 });
 
 export const PINHEAD_TYPES = Object.freeze({

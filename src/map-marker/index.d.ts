@@ -16,7 +16,7 @@ export interface NEEDLE_SIZES {
   tall: 'tall';
 }
 
-export interface PINHEAD_SIZES {
+export interface PINHEAD_SIZES_SHAPES {
   xSmallCircle: 'x-small-circle';
   xSmallSquare: 'x-small-square';
   small: 'small';
@@ -42,7 +42,7 @@ export interface FLOATING_MARKER_ANCHOR_TYPES {
 
 export type NeedleSizeT = ValueOf<NEEDLE_SIZES>;
 export type PinHeadT = ValueOf<PINHEAD_TYPES>;
-export type PinHeadSizeT = ValueOf<PINHEAD_SIZES>;
+export type PinHeadSizeT = ValueOf<PINHEAD_SIZES_SHAPES>;
 export type AnchorPositionsT = ValueOf<FLOATING_MARKER_ANCHOR_POSITIONS>;
 export type FloatingMarkerSizeT = ValueOf<FLOATING_MARKER_SIZES>;
 
@@ -95,7 +95,7 @@ export type FloatingMarkerPropsT = {
 
 export const FLOATING_MARKER_ANCHOR_POSITIONS: FLOATING_MARKER_ANCHOR_POSITIONS;
 export const NEEDLE_SIZES: NEEDLE_SIZES;
-export const PINHEAD_SIZES: PINHEAD_SIZES;
+export const PINHEAD_SIZES_SHAPES: PINHEAD_SIZES_SHAPES;
 export const PINHEAD_TYPES: PINHEAD_TYPES;
 export const FLOATING_MARKER_ANCHOR_TYPES: FLOATING_MARKER_ANCHOR_TYPES;
 export const FLOATING_MARKER_SIZES: FLOATING_MARKER_SIZES;

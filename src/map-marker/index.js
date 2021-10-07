@@ -13,7 +13,7 @@ export {
   FLOATING_MARKER_SIZES,
   FLOATING_MARKER_ANCHOR_TYPES,
   NEEDLE_SIZES,
-  PINHEAD_SIZES,
+  PINHEAD_SIZES_SHAPES,
 } from './constants.js';
 
 export type * from './types.js';

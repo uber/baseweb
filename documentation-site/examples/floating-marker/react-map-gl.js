@@ -13,7 +13,6 @@ export default function Example() {
     ...uberHq,
     zoom: 14,
   });
-
   return (
     <ReactMapGL
       {...viewport}
@@ -23,7 +22,16 @@ export default function Example() {
       mapboxApiAccessToken="pk.eyJ1IjoiYmFiYnN1YmVyIiwiYSI6ImNrdThqeGkxZTVwb3kyd3BpZGRlc2NlOXUifQ.qh-EtXm2DJQZVprWUJ-GFQ"
     >
       <Marker {...uberHq}>
-        <FloatingMarker label="Uber HQ" />
+        <FloatingMarker
+          label="Uber HQ"
+          overrides={{
+            Root: {
+              style: () => ({
+                transform: `translate(-50%, -50%)`,
+              }),
+            },
+          }}
+        />
       </Marker>
     </ReactMapGL>
   );

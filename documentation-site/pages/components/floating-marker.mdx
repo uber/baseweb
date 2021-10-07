@@ -20,14 +20,13 @@ import ReactMapGL from 'examples/floating-marker/react-map-gl.js';
 import floatingMarkerYardConfig from '../../components/yard/config/floating-marker';
 import ApiTable from '../../components/api-table';
 
-import Yard from '../../components/yard/index';
 import * as FloatingMarkerExports from 'baseui/map-marker';
 
 export default Layout;
 
 # Floating Marker
 
-<Yard placeholderHeight={90} {...floatingMarkerYardConfig} />
+<!-- TODO: Add Yard back in when it supports different prop names <> enum names -->
 
 A floating map marker is used to mark a location on a map with content.
 
@@ -98,7 +97,7 @@ A floating marker with a square anchor.
   <ReactMapGL />
 </Example>
 
-A floating map marker rendered inside of a [react-map-gl](https://visgl.github.io/react-map-gl/) view. In order to use a floating map marker in react-map-gl, wrap the floating marker with a [`<Marker/>`](https://visgl.github.io/react-map-gl/docs/api-reference/marker) component.
+A floating map marker rendered inside of a [react-map-gl](https://visgl.github.io/react-map-gl/) view. In order to use a floating map marker in react-map-gl, wrap the floating marker with a [`<Marker/>`](https://visgl.github.io/react-map-gl/docs/api-reference/marker) component. In order to properly center the marker on the intended position, translate the marker using an override on the `Root`.
 
 ## API
 

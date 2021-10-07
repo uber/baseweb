@@ -17,7 +17,7 @@ import {
 import type {FloatingMarkerPropsT} from './types.js';
 import {
   FLOATING_MARKER_ANCHOR_POSITIONS,
-  PINHEAD_SIZES,
+  PINHEAD_SIZES_SHAPES,
   PINHEAD_TYPES,
   FLOATING_MARKER_ANCHOR_TYPES,
   anchorSize,
@@ -27,7 +27,7 @@ const FloatingMarker = ({
   color,
   background,
   label,
-  size = PINHEAD_SIZES.medium,
+  size = PINHEAD_SIZES_SHAPES.medium,
   anchor = FLOATING_MARKER_ANCHOR_POSITIONS.bottomLeft,
   endEnhancer,
   startEnhancer,
@@ -43,8 +43,8 @@ const FloatingMarker = ({
 
   const anchorPinHeadSize =
     anchorType === FLOATING_MARKER_ANCHOR_TYPES.circle
-      ? PINHEAD_SIZES.xSmallCircle
-      : PINHEAD_SIZES.xSmallSquare;
+      ? PINHEAD_SIZES_SHAPES.xSmallCircle
+      : PINHEAD_SIZES_SHAPES.xSmallSquare;
 
   const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
   const [
