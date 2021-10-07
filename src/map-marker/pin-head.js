@@ -120,7 +120,6 @@ const PinHead = ({
           $size={size}
           {...contentItemProps}
         >
-          {/* TODO: this can be improved... */}
           <RenderNode
             component={React.cloneElement(
               StartEnhancer,
@@ -147,7 +146,6 @@ const PinHead = ({
           $size={size}
           {...contentItemProps}
         >
-          {/* TODO: this can be improved... */}
           <RenderNode
             component={React.cloneElement(
               EndEnhancer,
