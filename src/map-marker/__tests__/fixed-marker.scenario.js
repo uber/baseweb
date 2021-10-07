@@ -40,8 +40,8 @@ export default function Scenario() {
                 key={i}
                 label={label}
                 dragging={dragging}
-                startEnhancer={startEnhancer && <Upload />}
-                endEnhancer={endEnhancer && <Search />}
+                {...(startEnhancer ? {startEnhancer: <Upload />} : {})}
+                {...(endEnhancer ? {endEnhancer: <Search />} : {})}
               />
             ),
           });
@@ -71,7 +71,7 @@ export default function Scenario() {
         />,
         <Checkbox
           checked={startEnhancer}
-          onChange={e => setStartEnhancer(e.target.checked)}
+          onChange={e => setStartEnhancer(Boolean(e.target.checked))}
           labelPlacement={LABEL_PLACEMENT.right}
           key="start-enhancer"
         >
@@ -79,7 +79,7 @@ export default function Scenario() {
         </Checkbox>,
         <Checkbox
           checked={endEnhancer}
-          onChange={e => setEndEnhancer(e.target.checked)}
+          onChange={e => setEndEnhancer(Boolean(e.target.checked))}
           labelPlacement={LABEL_PLACEMENT.right}
           key="end-enhancer"
         >

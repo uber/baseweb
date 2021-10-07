@@ -109,8 +109,8 @@ const FixedMarker = ({
         <PinHead
           size={size}
           label={label}
-          startEnhancer={startEnhancer}
-          endEnhancer={endEnhancer}
+          {...(startEnhancer ? {startEnhancer} : {})}
+          {...(endEnhancer ? {endEnhancer} : {})}
           color={color}
           background={background}
           type={PINHEAD_TYPES.fixed}

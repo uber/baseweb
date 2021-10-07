@@ -6,7 +6,6 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {Label1, Label2, Label3} from '../typography/index.js';
 import {useStyletron, styled} from '../styles/index.js';
 import {getOverrides} from '../helpers/overrides.js';
 import {
@@ -15,7 +14,7 @@ import {
   PinHead as StyledPinHead,
 } from './styled-components.js';
 import {PINHEAD_DIMENSIONS, PINHEAD_TYPES, PINHEAD_SIZES} from './constants.js';
-import type {PinHeadPropsT, ItemPropsT, PinHeadSizeT} from './types.js';
+import type {PinHeadPropsT, PinHeadSizeT} from './types.js';
 import {RenderNode} from '../list/list-heading.js';
 
 export const _ContentItem = styled<{
@@ -24,6 +23,9 @@ export const _ContentItem = styled<{
   $size: PinHeadSizeT,
 }>('div', ({$theme, $color, $height, $size}) => {
   const match = {
+    // TODO: fix sizes what happens when pinhead size is xsmall?
+    [PINHEAD_SIZES.xSmallCircle]: 'LabelSmall',
+    [PINHEAD_SIZES.xSmallSquare]: 'LabelSmall',
     [PINHEAD_SIZES.small]: 'LabelSmall',
     [PINHEAD_SIZES.medium]: 'LabelMedium',
     [PINHEAD_SIZES.large]: 'LabelLarge',
@@ -42,8 +44,8 @@ export const _ContentItem = styled<{
 const PinHead = ({
   size = PINHEAD_SIZES.medium,
   label = '',
-  startEnhancer = null,
-  endEnhancer = null,
+  startEnhancer: StartEnhancer,
+  endEnhancer: EndEnhancer,
   color,
   background,
   type = PINHEAD_TYPES.fixed,
@@ -58,13 +60,10 @@ const PinHead = ({
   color = color || backgroundPrimary;
   background = background || primaryA;
 
-  const activeElements = [label, startEnhancer, endEnhancer].filter(x => x);
+  const activeElements = [label, StartEnhancer, EndEnhancer].filter(x => x);
   const gridTemplateColumns = activeElements.map(() => 'auto').join(' ');
   const forceCircle = activeElements.length === 1 && !label;
   const {height, icon} = PINHEAD_DIMENSIONS[size];
-
-  const StartEnhancer = startEnhancer;
-  const EndEnhancer = endEnhancer;
 
   const [PinHead, pinHeadProps] = getOverrides(
     overrides.PinHead,

@@ -30,6 +30,7 @@ export default function Scenario() {
     //$FlowFixMe
     (size: FloatingMarkerSizeT, i: number) => {
       Object.values(FLOATING_MARKER_ANCHOR_POSITIONS).forEach(
+        //$FlowFixMe
         (position: AnchorPositionsT, x: number) => {
           markers.push({
             id: `floating / ${size} / ${position}`,
@@ -40,8 +41,8 @@ export default function Scenario() {
                 key={i}
                 label={label}
                 anchor={position}
-                startEnhancer={startEnhancer && <Upload />}
-                endEnhancer={endEnhancer && <Search />}
+                {...(startEnhancer ? {startEnhancer: <Upload />} : {})}
+                {...(endEnhancer ? {endEnhancer: <Search />} : {})}
               />
             ),
           });

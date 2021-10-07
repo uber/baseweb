@@ -11,7 +11,8 @@ import {Label3} from '../../typography/index.js';
 import {Block} from '../../block/index.js';
 
 type TileGridPropsT = {
-  children: React.Node,
+  // eslint-disable-next-line flowtype/no-weak-types
+  children: Array<any>,
   customizerOptions: Array<React.Node>,
   cols: number,
 };
