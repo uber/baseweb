@@ -11,7 +11,34 @@ LICENSE file in the root directory of this source tree.
 const {mount} = require('../../../e2e/helpers');
 
 describe('setDropdownOpen', () => {
-  it('opens and closes dropdown', async () => {
+  it('opens and closes dropdown with StatefulSelect', async () => {
+    await mount(page, 'select--methods');
+    const openBtn = `#open`;
+    const closeBtn = `#close`;
+
+    await page.waitForSelector(openBtn);
+    await page.waitForSelector(closeBtn);
+
+    await page.click(openBtn);
+    const listElems1 = await page.$$('li');
+    expect(listElems1.length).toBe(3);
+
+    // clicking 'open' a second time shouldn't change anything
+    await page.click(openBtn);
+    const listElems2 = await page.$$('li');
+    expect(listElems2.length).toBe(3);
+
+    await page.click(closeBtn);
+    const listElems3 = await page.$$('li');
+    expect(listElems3.length).toBe(0);
+
+    await page.click(openBtn);
+    await page.keyboard.press('Escape');
+    await page.click(closeBtn);
+    expect(listElems3.length).toBe(0);
+  });
+
+  it('opens and closes dropdown with Select', async () => {
     await mount(page, 'select--methods');
     const openBtn = `#open`;
     const closeBtn = `#close`;

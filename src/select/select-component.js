@@ -126,10 +126,13 @@ class Select extends React.Component<PropsT, SelectStateT> {
     this.isMounted = true;
 
     if (this.props.methodsRef) {
-      // $FlowFixMe "Cannot assign ... to `this.props.setDropdownOpen.current` because property `current` is missing in  undefined"
-      this.props.methodsRef.current = {
-        setDropdownOpen: this.handleDropdownOpen.bind(this),
-      };
+      const {methodsRef} = this.props;
+
+      if (methodsRef.current) {
+        methodsRef.current = {
+          setDropdownOpen: this.handleDropdownOpen.bind(this),
+        };
+      }
     }
   }
 

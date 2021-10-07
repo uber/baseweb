@@ -8,11 +8,18 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
-import {StatefulSelect} from '../index.js';
+import {Select} from '../index.js';
 import {Button} from '../../button/index.js';
 
 export default function Scenario() {
   const methodsRef = React.useRef(null);
+  const [value, setValue] = React.useState([]);
+
+  const options = [
+    {id: 'a', label: 'apples'},
+    {id: 'b', label: 'bananas'},
+    {id: 'c', label: 'dragon fruit'},
+  ];
 
   return (
     <div style={{width: '360px'}}>
@@ -40,13 +47,11 @@ export default function Scenario() {
           Close Dropdown
         </Button>
       </div>
-      <StatefulSelect
+      <Select
         methodsRef={methodsRef}
-        options={[
-          {id: 'a', label: 'hey!'},
-          {id: 'b', label: 'are you listening?'},
-          {id: 'c', label: 'look at me!'},
-        ]}
+        options={options}
+        value={value}
+        onChange={params => setValue(params.value)}
       />
     </div>
   );

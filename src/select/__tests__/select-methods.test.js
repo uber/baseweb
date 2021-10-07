@@ -10,10 +10,10 @@ import {render, fireEvent, screen} from '@testing-library/react';
 import BaseProvider from '../../helpers/base-provider.js';
 import {LightTheme} from '../../themes/index.js';
 
-import {StatefulSelect} from '../index.js';
+import {StatefulSelect, Select} from '../index.js';
 
 describe('setDropdownOpen', function() {
-  it('opens and closes dropdown', () => {
+  it('opens and closes dropdown with StatefulSelect', () => {
     const options = [
       {id: 'a', label: 'a'},
       {id: 'b', label: 'b'},
@@ -44,6 +44,51 @@ describe('setDropdownOpen', function() {
       expect(container.querySelectorAll('li').length).toBe(3);
 
       methodsRef.current.setDropdownOpen(false);
+      expect(container.querySelectorAll('li').length).toBe(0);
+    }
+  });
+
+  it('opens and closes dropdown with Select', () => {
+    const options = [
+      {id: 'a', label: 'a'},
+      {id: 'b', label: 'b'},
+      {id: 'c', label: 'c'},
+    ];
+    const methodsRef = React.createRef();
+
+    const TestCase = () => {
+      const [value, setValue] = React.useState([]);
+
+      return (
+        <BaseProvider theme={LightTheme}>
+          <Select
+            value={value}
+            onChange={params => setValue(params.value)}
+            options={options}
+            methodsRef={methodsRef}
+          />
+        </BaseProvider>
+      );
+    };
+
+    const {container} = render(<TestCase />);
+
+    expect(container.querySelectorAll('li').length).toBe(0);
+
+    if (methodsRef.current !== null && methodsRef.current.setDropdownOpen) {
+      methodsRef.current.setDropdownOpen(true);
+      expect(container.querySelectorAll('li').length).toBe(3);
+
+      methodsRef.current && methodsRef.current.setDropdownOpen(false);
+      expect(container.querySelectorAll('li').length).toBe(0);
+
+      methodsRef.current && methodsRef.current.setDropdownOpen(false);
+      expect(container.querySelectorAll('li').length).toBe(0);
+
+      fireEvent.click(screen.getByText('Select...'));
+      expect(container.querySelectorAll('li').length).toBe(3);
+
+      methodsRef.current && methodsRef.current.setDropdownOpen(false);
       expect(container.querySelectorAll('li').length).toBe(0);
     }
   });
