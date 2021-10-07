@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {FixedMarker} from 'baseui/map-marker';
-// @ts-ignore
-import DeleteAlt from 'baseui/icon/delete-alt';
+import {DeleteAlt} from 'baseui/icon';
 
 export default function Example() {
   return (

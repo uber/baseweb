@@ -1,7 +1,6 @@
 // @flow
 import * as React from 'react';
 import {FloatingMarker} from 'baseui/map-marker';
-//$FlowFixMe
 import ReactMapGL, {Marker} from 'react-map-gl';
 
 const uberHq = {

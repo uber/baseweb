@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {Override} from '../overrides';
 
 export interface FLOATING_MARKER_ANCHOR_POSITIONS {
   none: 'none';
@@ -45,6 +46,19 @@ export type PinHeadSizeT = ValueOf<PINHEAD_SIZES>;
 export type AnchorPositionsT = ValueOf<FLOATING_MARKER_ANCHOR_POSITIONS>;
 export type FloatingMarkerSizeT = ValueOf<FLOATING_MARKER_SIZES>;
 
+export type FixedMarkerOverridesT = {
+  Root?: Override<any>;
+  InnerAnchor?: Override<any>;
+  OuterAnchor?: Override<any>;
+  PinHead?: Override<any>;
+  PinHeadContent?: Override<any>;
+  PinHeadContainer?: Override<any>;
+  Needle?: Override<any>;
+  DragShadow?: Override<any>;
+  DragShadowContainer?: Override<any>;
+  DragContainer?: Override<any>;
+};
+
 export type FixedMarkerPropsT = {
   size?: PinHeadSizeT;
   needle?: NeedleSizeT;
@@ -54,6 +68,17 @@ export type FixedMarkerPropsT = {
   color?: string;
   background?: string;
   dragging?: boolean;
+  overrides?: FixedMarkerOverridesT;
+};
+
+export type FloatingMarkerOverridesT = {
+  Root?: Override<any>;
+  InnerAnchor?: Override<any>;
+  OuterAnchor?: Override<any>;
+  PinHead?: Override<any>;
+  PinHeadContent?: Override<any>;
+  PinHeadContainer?: Override<any>;
+  AnchorContainer?: Override<any>;
 };
 
 export type FloatingMarkerPropsT = {
@@ -65,6 +90,7 @@ export type FloatingMarkerPropsT = {
   startEnhancer?: React.Node;
   anchorType?: FloatingMarkerAnchorTypeT;
   size?: FloatingMarkerSizeT;
+  overrides?: FloatingMarkerOverridesT;
 };
 
 export const FLOATING_MARKER_ANCHOR_POSITIONS: FLOATING_MARKER_ANCHOR_POSITIONS;

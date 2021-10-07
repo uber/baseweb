@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {FixedMarker} from 'baseui/map-marker';
-// @ts-ignore
 import ReactMapGL, {Marker} from 'react-map-gl';
 
 const uberHq = {
