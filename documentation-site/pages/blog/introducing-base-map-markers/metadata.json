@@ -1,0 +1,11 @@
+{
+  "author": "Dylan Babbs",
+  "authorLink": "https://twitter.com/dbabbs",
+  "title": "Introducing the Map Marker Component",
+  "tagline": "Bringing geospatial components to Base Web",
+  "date": "13 October 2021",
+  "coverImage": "https://i.imgur.com/K5jPixm.png",
+  "coverImageWidth": 1600,
+  "coverImageHeight": 800,
+  "keyWords": ["React", "Map", "Mapbox GL", "react-map-gl", "Map marker"]
+}
