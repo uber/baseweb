@@ -11,6 +11,7 @@ import BaseProvider from '../../helpers/base-provider.js';
 import {LightTheme} from '../../themes/index.js';
 
 import {StatefulSelect, Select} from '../index.js';
+import type {MethodsRefT} from '../types.js';
 
 describe('setDropdownOpen', function() {
   it('opens and closes dropdown with StatefulSelect', () => {
@@ -19,33 +20,30 @@ describe('setDropdownOpen', function() {
       {id: 'b', label: 'b'},
       {id: 'c', label: 'c'},
     ];
-    const methodsRef = React.createRef();
+    const methodsRef: MethodsRefT = React.createRef();
 
     const {container} = render(
       <BaseProvider theme={LightTheme}>
-        {/* $FlowFixMe ...cannot call `methodsRef.current.setDropdownOpen` because property `setDropdownOpen` is missing in  null */}
         <StatefulSelect methodsRef={methodsRef} options={options} />
       </BaseProvider>,
     );
 
     expect(container.querySelectorAll('li').length).toBe(0);
 
-    if (methodsRef.current && methodsRef.current.setDropdownOpen) {
-      methodsRef.current.setDropdownOpen(true);
-      expect(container.querySelectorAll('li').length).toBe(3);
+    methodsRef.current && methodsRef.current.setDropdownOpen(true);
+    expect(container.querySelectorAll('li').length).toBe(3);
 
-      methodsRef.current.setDropdownOpen(false);
-      expect(container.querySelectorAll('li').length).toBe(0);
+    methodsRef.current && methodsRef.current.setDropdownOpen(false);
+    expect(container.querySelectorAll('li').length).toBe(0);
 
-      methodsRef.current.setDropdownOpen(false);
-      expect(container.querySelectorAll('li').length).toBe(0);
+    methodsRef.current && methodsRef.current.setDropdownOpen(false);
+    expect(container.querySelectorAll('li').length).toBe(0);
 
-      fireEvent.click(screen.getByText('Select...'));
-      expect(container.querySelectorAll('li').length).toBe(3);
+    fireEvent.click(screen.getByText('Select...'));
+    expect(container.querySelectorAll('li').length).toBe(3);
 
-      methodsRef.current.setDropdownOpen(false);
-      expect(container.querySelectorAll('li').length).toBe(0);
-    }
+    methodsRef.current && methodsRef.current.setDropdownOpen(false);
+    expect(container.querySelectorAll('li').length).toBe(0);
   });
 
   it('opens and closes dropdown with Select', () => {
