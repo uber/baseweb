@@ -87,6 +87,7 @@ export type RowActionT = {|
   label: string,
   onClick: ({event: SyntheticEvent<HTMLButtonElement>, row: RowT}) => mixed,
   renderIcon: React.AbstractComponent<{|size: number|}>,
+  renderButton?: React.AbstractComponent<{||}>,
 |};
 
 export type StatefulDataTablePropsT = {|

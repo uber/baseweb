@@ -595,6 +595,11 @@ const InnerTableElement = React.forwardRef<
               ? ctx.rowActions(highlightedRow)
               : ctx.rowActions
             ).map(rowAction => {
+              if (rowAction.renderButton) {
+                const RowActionButton = rowAction.renderButton;
+                return <RowActionButton />;
+              }
+
               const RowActionIcon = rowAction.renderIcon;
               return (
                 <Button
