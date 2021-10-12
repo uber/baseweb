@@ -140,7 +140,6 @@ const PinHead = ({
           $size={size}
           {...contentItemProps}
         >
-          {/* <StartEnhancer /> */}
           <RenderNode component={StartEnhancer} size={`${icon}px`} />
         </ContentItem>
       )}
@@ -161,7 +160,6 @@ const PinHead = ({
           $size={size}
           {...contentItemProps}
         >
-          {/* <EndEnhancer /> */}
           <RenderNode component={EndEnhancer} size={`${icon}px`} />
         </ContentItem>
       )}
