@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
+import * as ReactIs from 'react-is';
 import {useStyletron, styled} from '../styles/index.js';
 import {getOverrides} from '../helpers/overrides.js';
 import {
@@ -19,7 +20,6 @@ import {
   PINHEAD_SIZES_SHAPES,
 } from './constants.js';
 import type {PinHeadPropsT, PinHeadSizeT} from './types.js';
-import {RenderNode} from '../list/list-heading.js';
 
 export const _ContentItem = styled<{
   $color: string,
@@ -43,6 +43,22 @@ export const _ContentItem = styled<{
     color: $color,
   };
 });
+
+function RenderNode(props) {
+  const {component, ...restProps} = props;
+  const Component = component;
+  if (!Component) {
+    return null;
+  }
+  if (typeof Component === 'string') {
+    return Component;
+  }
+  if (ReactIs.isValidElementType(Component)) {
+    // $FlowFixMe
+    return <Component {...restProps} />;
+  }
+  return React.cloneElement(Component, restProps);
+}
 
 const PinHead = ({
   size = PINHEAD_SIZES_SHAPES.medium,
@@ -124,13 +140,8 @@ const PinHead = ({
           $size={size}
           {...contentItemProps}
         >
-          <RenderNode
-            component={React.cloneElement(
-              StartEnhancer,
-              {size: `${icon}px`},
-              null,
-            )}
-          />
+          {/* <StartEnhancer /> */}
+          <RenderNode component={StartEnhancer} size={`${icon}px`} />
         </ContentItem>
       )}
       {label && (
@@ -150,13 +161,8 @@ const PinHead = ({
           $size={size}
           {...contentItemProps}
         >
-          <RenderNode
-            component={React.cloneElement(
-              EndEnhancer,
-              {size: `${icon}px`},
-              null,
-            )}
-          />
+          {/* <EndEnhancer /> */}
+          <RenderNode component={EndEnhancer} size={`${icon}px`} />
         </ContentItem>
       )}
     </PinHead>

@@ -22,8 +22,7 @@ import {
 } from './styled-components.js';
 import type {HeadingPropsT} from './types.js';
 
-//$FlowFixMe
-export function RenderNode(props) {
+function RenderNode(props) {
   const {component, ...restProps} = props;
   const Component = component;
   if (!Component) {
