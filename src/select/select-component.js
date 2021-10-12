@@ -124,6 +124,14 @@ class Select extends React.Component<PropsT, SelectStateT> {
       this.focus();
     }
     this.isMounted = true;
+
+    if (this.props.methodsRef) {
+      const {methodsRef} = this.props;
+
+      methodsRef.current = {
+        setDropdownOpen: this.handleDropdownOpen.bind(this),
+      };
+    }
   }
 
   componentDidUpdate(prevProps: PropsT, prevState: SelectStateT) {
@@ -155,6 +163,12 @@ class Select extends React.Component<PropsT, SelectStateT> {
   focus() {
     if (!this.input) return;
     this.input.focus();
+  }
+
+  handleDropdownOpen(nextOpenState: boolean) {
+    this.setState({
+      isOpen: nextOpenState,
+    });
   }
 
   // Handle touch outside on mobile to dismiss menu, ensures that the
