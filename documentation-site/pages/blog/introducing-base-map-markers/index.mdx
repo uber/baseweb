@@ -12,6 +12,7 @@ import coverImg from './cover.png';
 import rendezvousImg from './rendezvous.png';
 import BasicFloating from '../../../examples/floating-marker/basic';
 import BasicFixed from '../../../examples/fixed-marker/basic';
+import AnchorPositionExample from './anchor-position-example.js';
 
 export default Layout;
 
@@ -66,6 +67,10 @@ The floating marker can be customized with:
 - 5 different anchor positions
 - 2 different anchor types
 - start and end enhancers to display icons or symbols
+
+The position of the label can be animated around the marker. This is helpful for when the map data or the viewport is changing dynamically in the application and you need to reposition the floating marker label.
+
+<AnchorPositionExample />
 
 # How to use
 
