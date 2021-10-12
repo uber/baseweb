@@ -87,6 +87,7 @@ export type RowActionT = {|
   label: string,
   onClick: ({event: SyntheticEvent<HTMLButtonElement>, row: RowT}) => mixed,
   renderIcon: React.AbstractComponent<{|size: number|}>,
+  renderButton?: React.AbstractComponent<{||}>,
 |};
 
 export type StatefulDataTablePropsT = {|
@@ -107,7 +108,7 @@ export type StatefulDataTablePropsT = {|
   onSelectionChange?: (RowT[]) => mixed,
   resizableColumnWidths?: boolean,
   rows: RowT[],
-  rowActions?: RowActionT[],
+  rowActions?: RowActionT[] | (RowT => RowActionT[]),
   rowHeight?: number,
   rowHighlightIndex?: number,
   searchable?: boolean,
