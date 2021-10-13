@@ -80,7 +80,7 @@ export const Paragraph = (props: Props) => (
 
 export const UnorderedList = (props: Props) => <ul>{props.children}</ul>;
 
-const InlineCode = themedStyled<{}>('code', ({$theme}) => {
+export const InlineCode = themedStyled<{}>('code', ({$theme}) => {
   return {
     ...$theme.typography.MonoParagraphMedium,
     backgroundColor: 'rgba(27, 31, 35, 0.05)',

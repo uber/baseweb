@@ -14,8 +14,9 @@ import Basic from 'examples/floating-marker/basic.js';
 import LargeTopRight from 'examples/floating-marker/large-top-right.js';
 import StartEnhancer from 'examples/floating-marker/start-enhancer.js';
 import SmallNoAnchor from 'examples/floating-marker/small-no-anchor.js';
-import SquareAnchor from 'examples/floating-marker/square-anchor.js';
+import LargeSquareAnchorStartEnhancer from 'examples/floating-marker/large-square-anchor-start-enhancer.js';
 import ReactMapGL from 'examples/floating-marker/react-map-gl.js';
+import {FloatingMarkerSizingTable} from '../../components/map-marker-sizing-table.js';
 
 import floatingMarkerYardConfig from '../../components/yard/config/floating-marker';
 import ApiTable from '../../components/api-table';
@@ -40,10 +41,18 @@ For more information on the design principles behind the Base map markers, pleas
 
 ## Guidelines
 
+### General
+
 - A floating marker's background or color should not be customized beyond the default light and dark theme.
 - A floating marker may either have no anchor, a circular anchor, or a small anchor.
 - The anchor of a floating marker can be attached to any of the four corners of the marker.
 - A floating marker without a label can only have one icon. Do not use both a `startEnhancer` and an `endEnhancer` if there is no label.
+
+### Enhancer sizing
+
+- The size of an enhancer depends on the marker size you are using. Refer to the table below for the proper enhancer sizes.
+
+<FloatingMarkerSizingTable />
 
 ## Examples
 
@@ -85,13 +94,16 @@ A floating map marker with a label and start enhancer. Anchor is rendered on the
 
 A small floating marker without an anchor.
 
-<Example title="Square anchor" path="floating-marker/square-anchor.js">
+<Example
+  title="Large square anchor with start enhancer"
+  path="floating-marker/large-square-anchor-start-enhancer.js"
+>
   <FloatingMarkerContainer>
-    <SquareAnchor />
+    <LargeSquareAnchorStartEnhancer />
   </FloatingMarkerContainer>
 </Example>
 
-A floating marker with a square anchor.
+A large floating marker with a square anchor and start enhancer. Because the floating marker is size large, make sure to update the enhancer icon size: `<Search size="24px" />`.
 
 <Example title="Usage with react-map-gl" path="floating-marker/react-map-gl.js">
   <ReactMapGL />

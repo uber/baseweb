@@ -16,6 +16,7 @@ import StartEnhancerLarge from 'examples/fixed-marker/start-enhancer-large.js';
 import Dragging from 'examples/fixed-marker/dragging.js';
 import XSmall from 'examples/fixed-marker/x-small.js';
 import ReactMapGL from 'examples/fixed-marker/react-map-gl.js';
+import {FixedMarkerSizingTable} from '../../components/map-marker-sizing-table.js';
 
 import fixedMarkerYardConfig from '../../components/yard/config/fixed-marker';
 import ApiTable from '../../components/api-table';
@@ -40,10 +41,18 @@ For more information on the design principles behind the Base map markers, pleas
 
 ## Guidelines
 
+### General
+
 - A fixed marker pinhead may have up to 4 sizes: `xSmall`, `small`, `medium`, and `large`.
   - The `xSmall` pinhead size cannot contain any content.
 - A fixed marker may have either no needle or a choice of 3 different sizes: `short`, `medium`, or `tall`.
 - A fixed marker without a label can only have one icon. As such, do not use both a `startEnhancer` and an `endEnhancer` if there is no label.
+
+### Enhancer sizing
+
+- The size of an enhancer depends on the pinhead size you are using. Refer to the table below for the proper enhancer sizes.
+
+<FixedMarkerSizingTable />
 
 ## Examples
 
@@ -78,7 +87,7 @@ A fixed map marker with an end enhancer icon, a label, and custom styling. Backg
   <StartEnhancerLarge />
 </Example>
 
-A large fixed marker with a start enhancer.
+A large fixed marker with a start enhancer. Because the pinhead is size large, make sure to update the enhancer icon size: `<Search size="24px" />`.
 
 <Example title="Dragging state" path="fixed-marker/dragging.js">
   <Dragging />

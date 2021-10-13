@@ -11,6 +11,7 @@ import {FloatingMarker} from '../index.js';
 import {
   FLOATING_MARKER_ANCHOR_POSITIONS,
   FLOATING_MARKER_SIZES,
+  PINHEAD_DIMENSIONS,
 } from '../constants.js';
 import TileGrid from './tile-grid.js';
 import {Checkbox, LABEL_PLACEMENT} from '../../checkbox/index.js';
@@ -41,8 +42,16 @@ export default function Scenario() {
                 key={i}
                 label={label}
                 anchor={position}
-                {...(startEnhancer ? {startEnhancer: <Upload />} : {})}
-                {...(endEnhancer ? {endEnhancer: <Search />} : {})}
+                {...(startEnhancer
+                  ? {
+                      startEnhancer: <Upload />,
+                    }
+                  : {})}
+                {...(endEnhancer
+                  ? {
+                      endEnhancer: <Search />,
+                    }
+                  : {})}
               />
             ),
           });

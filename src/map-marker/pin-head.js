@@ -107,7 +107,6 @@ const PinHead = ({
       </OuterXSmallAnchor>
     );
   }
-
   return (
     <PinHead
       $background={background}
@@ -124,13 +123,7 @@ const PinHead = ({
           $size={size}
           {...contentItemProps}
         >
-          <RenderNode
-            component={React.cloneElement(
-              StartEnhancer,
-              {size: `${icon}px`},
-              null,
-            )}
-          />
+          <RenderNode component={StartEnhancer} />
         </ContentItem>
       )}
       {label && (
@@ -150,13 +143,7 @@ const PinHead = ({
           $size={size}
           {...contentItemProps}
         >
-          <RenderNode
-            component={React.cloneElement(
-              EndEnhancer,
-              {size: `${icon}px`},
-              null,
-            )}
-          />
+          <RenderNode component={EndEnhancer} />
         </ContentItem>
       )}
     </PinHead>

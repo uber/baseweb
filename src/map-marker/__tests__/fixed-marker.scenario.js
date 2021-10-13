@@ -9,7 +9,11 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {FixedMarker} from '../index.js';
 import {Checkbox, LABEL_PLACEMENT} from '../../checkbox/index.js';
-import {PINHEAD_SIZES_SHAPES, NEEDLE_SIZES} from '../constants.js';
+import {
+  PINHEAD_SIZES_SHAPES,
+  NEEDLE_SIZES,
+  PINHEAD_DIMENSIONS,
+} from '../constants.js';
 import TileGrid from './tile-grid.js';
 import {Input} from '../../input/index.js';
 import Upload from '../../icon/upload.js';
@@ -40,8 +44,24 @@ export default function Scenario() {
                 key={i}
                 label={label}
                 dragging={dragging}
-                {...(startEnhancer ? {startEnhancer: <Upload />} : {})}
-                {...(endEnhancer ? {endEnhancer: <Search />} : {})}
+                {...(startEnhancer
+                  ? {
+                      startEnhancer: (
+                        <Upload
+                        // size={`${PINHEAD_DIMENSIONS[pinheadSize].icon}px`}
+                        />
+                      ),
+                    }
+                  : {})}
+                {...(endEnhancer
+                  ? {
+                      endEnhancer: (
+                        <Search
+                        // size={`${PINHEAD_DIMENSIONS[pinheadSize].icon}px`}
+                        />
+                      ),
+                    }
+                  : {})}
               />
             ),
           });
