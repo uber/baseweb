@@ -10,6 +10,7 @@ import {
   render,
   fireEvent,
   getByTestId,
+  getAllByTestId,
   queryByTestId,
   queryAllByTestId,
   getByText,
@@ -82,7 +83,7 @@ describe('Datepicker', () => {
               props: {overrides: {Input: {props: {'data-testid': 'input'}}}},
             },
             MonthYearSelectButton: {
-              props: {'data-testid': 'month-year-select-button'},
+              props: {'data-testid': 'month-year-select-buttons'},
             },
             CalendarContainer: {props: {'data-testid': 'calendar'}},
           }}
@@ -91,8 +92,14 @@ describe('Datepicker', () => {
     );
 
     fireEvent.focus(getByTestId(container, 'input'));
-    fireEvent.click(getByTestId(container, 'month-year-select-button'));
-    fireEvent.click(getByText(container, 'November 2019'));
+    const [month, year] = getAllByTestId(
+      container,
+      'month-year-select-buttons',
+    );
+    fireEvent.click(month);
+    fireEvent.click(getByText(container, 'November'));
+    fireEvent.click(year);
+    fireEvent.click(getByText(container, '2019'));
     fireEvent.click(getByText(container, '1'));
 
     expect(onChange.mock.calls[1][0].date).toEqual(new Date('2019/11/1'));
@@ -111,7 +118,7 @@ describe('Datepicker', () => {
               props: {overrides: {Input: {props: {'data-testid': 'input'}}}},
             },
             MonthYearSelectButton: {
-              props: {'data-testid': 'month-year-select-button'},
+              props: {'data-testid': 'month-year-select-buttons'},
             },
             CalendarContainer: {props: {'data-testid': 'calendar'}},
           }}
@@ -125,9 +132,14 @@ describe('Datepicker', () => {
     const before = queryByTestId(container, 'calendar');
     expect(before).not.toBeNull();
 
-    fireEvent.click(getByTestId(container, 'month-year-select-button'));
-    const month = getByText(container, 'November 2019');
+    const [month, year] = getAllByTestId(
+      container,
+      'month-year-select-buttons',
+    );
     fireEvent.click(month);
+    fireEvent.click(getByText(container, 'November'));
+    fireEvent.click(year);
+    fireEvent.click(getByText(container, '2019'));
 
     const day = getByText(container, '1');
     fireEvent.click(day);
@@ -155,7 +167,7 @@ describe('Datepicker', () => {
                 props: {overrides: {Input: {props: {'data-testid': 'input'}}}},
               },
               MonthYearSelectButton: {
-                props: {'data-testid': 'month-year-select-button'},
+                props: {'data-testid': 'month-year-select-buttons'},
               },
               CalendarContainer: {props: {'data-testid': 'calendar'}},
             }}
@@ -172,8 +184,14 @@ describe('Datepicker', () => {
     const before = queryByTestId(container, 'calendar');
     expect(before).not.toBeNull();
 
-    fireEvent.click(getByTestId(container, 'month-year-select-button'));
-    fireEvent.click(getByText(container, 'November 2019'));
+    const [month, year] = getAllByTestId(
+      container,
+      'month-year-select-buttons',
+    );
+    fireEvent.click(month);
+    fireEvent.click(getByText(container, 'November'));
+    fireEvent.click(year);
+    fireEvent.click(getByText(container, '2019'));
     fireEvent.click(getByText(container, '1'));
     fireEvent.click(getByText(container, '2'));
 
@@ -256,7 +274,7 @@ describe('Datepicker', () => {
             PrevButton: {props: {'data-testid': 'prev-button'}},
             NextButton: {props: {'data-testid': 'next-button'}},
             MonthYearSelectButton: {
-              props: {'data-testid': 'month-year-select-button'},
+              props: {'data-testid': 'month-year-select-buttons'},
             },
           }}
         />
@@ -281,7 +299,7 @@ describe('Datepicker', () => {
 
     const selectButton = queryAllByTestId(
       container,
-      'month-year-select-button',
+      'month-year-select-buttons',
     );
     expect(selectButton.length).toBe(0);
   });
