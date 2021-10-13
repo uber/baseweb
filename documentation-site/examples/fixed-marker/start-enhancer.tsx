@@ -4,6 +4,11 @@ import {Upload} from 'baseui/icon';
 
 export default function Example() {
   return (
-    <FixedMarker label="Cloud Center" startEnhancer={<Upload />} />
+    <FixedMarker
+      label="Cloud Center"
+      startEnhancer={({size}: {size: number}) => (
+        <Upload size={size} />
+      )}
+    />
   );
 }

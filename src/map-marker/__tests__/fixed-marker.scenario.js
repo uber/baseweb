@@ -44,24 +44,12 @@ export default function Scenario() {
                 key={i}
                 label={label}
                 dragging={dragging}
-                {...(startEnhancer
-                  ? {
-                      startEnhancer: (
-                        <Upload
-                        // size={`${PINHEAD_DIMENSIONS[pinheadSize].icon}px`}
-                        />
-                      ),
-                    }
-                  : {})}
-                {...(endEnhancer
-                  ? {
-                      endEnhancer: (
-                        <Search
-                        // size={`${PINHEAD_DIMENSIONS[pinheadSize].icon}px`}
-                        />
-                      ),
-                    }
-                  : {})}
+                startEnhancer={
+                  startEnhancer ? ({size}) => <Upload size={size} /> : null
+                }
+                endEnhancer={
+                  endEnhancer ? ({size}) => <Upload size={size} /> : null
+                }
               />
             ),
           });

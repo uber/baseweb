@@ -60,8 +60,14 @@ export type FixedMarkerPropsT = {
   size?: PinHeadSizeT,
   needle?: NeedleSizeT,
   label?: string,
-  startEnhancer?: React.Element<*>,
-  endEnhancer?: React.Element<*>,
+  startEnhancer?:
+    | React.Element<*>
+    | React.AbstractComponent<{|size: number|}>
+    | null,
+  endEnhancer?:
+    | React.Element<*>
+    | React.AbstractComponent<{|size: number|}>
+    | null,
   color?: string,
   background?: string,
   dragging?: boolean,
@@ -83,8 +89,14 @@ export type FloatingMarkerPropsT = {
   background?: string,
   label?: string,
   anchor?: AnchorPositionsT,
-  endEnhancer?: React.Element<*>,
-  startEnhancer?: React.Element<*>,
+  endEnhancer?:
+    | React.Element<*>
+    | React.AbstractComponent<{|size: number|}>
+    | null,
+  startEnhancer?:
+    | React.Element<*>
+    | React.AbstractComponent<{|size: number|}>
+    | null,
   anchorType?: FloatingMarkerAnchorTypeT,
   size?: FloatingMarkerSizeT,
   overrides?: FloatingMarkerOverridesT,
@@ -93,8 +105,14 @@ export type FloatingMarkerPropsT = {
 export type PinHeadPropsT = {
   size?: PinHeadSizeT,
   label?: string,
-  startEnhancer?: React.Element<*>,
-  endEnhancer?: React.Element<*>,
+  endEnhancer?:
+    | React.Element<*>
+    | React.AbstractComponent<{|size: number|}>
+    | null,
+  startEnhancer?:
+    | React.Element<*>
+    | React.AbstractComponent<{|size: number|}>
+    | null,
   color?: string,
   background?: string,
   type?: PinHeadT,

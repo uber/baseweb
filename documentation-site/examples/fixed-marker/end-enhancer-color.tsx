@@ -6,7 +6,9 @@ export default function Example() {
   return (
     <FixedMarker
       label="Illegal Dropoff"
-      endEnhancer={<DeleteAlt />}
+      endEnhancer={({size}: {size: number}) => (
+        <DeleteAlt size={size} />
+      )}
       color="white"
       background="#E11900"
     />

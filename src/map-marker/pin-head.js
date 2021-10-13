@@ -19,7 +19,6 @@ import {
   PINHEAD_SIZES_SHAPES,
 } from './constants.js';
 import type {PinHeadPropsT, PinHeadSizeT} from './types.js';
-import {RenderNode} from '../list/list-heading.js';
 
 export const _ContentItem = styled<{
   $color: string,
@@ -123,7 +122,8 @@ const PinHead = ({
           $size={size}
           {...contentItemProps}
         >
-          <RenderNode component={StartEnhancer} />
+          {/* $FlowFixMe */}
+          <StartEnhancer size={icon} />
         </ContentItem>
       )}
       {label && (
@@ -143,7 +143,8 @@ const PinHead = ({
           $size={size}
           {...contentItemProps}
         >
-          <RenderNode component={EndEnhancer} />
+          {/* $FlowFixMe */}
+          <EndEnhancer size={icon} />
         </ContentItem>
       )}
     </PinHead>

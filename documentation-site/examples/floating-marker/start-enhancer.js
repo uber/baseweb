@@ -11,7 +11,7 @@ export default function Example() {
     <FloatingMarker
       label="Uber Cafe"
       anchor={FLOATING_MARKER_ANCHOR_POSITIONS.bottomRight}
-      startEnhancer={<Search />}
+      startEnhancer={({size}) => <Search size={size} />}
     />
   );
 }
