@@ -84,3 +84,9 @@ export type DateIOAdapter<T> = {
   /** Allow to customize displaying "am/pm" strings */
   getMeridiemText(ampm: 'am' | 'pm'): string,
 };
+
+export type OptionT = {
+  id: string,
+  label: string,
+  disabled?: boolean,
+};
