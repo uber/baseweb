@@ -122,7 +122,6 @@ const PinHead = ({
           $size={size}
           {...contentItemProps}
         >
-          {/* $FlowFixMe */}
           <StartEnhancer size={icon} />
         </ContentItem>
       )}
@@ -143,7 +142,6 @@ const PinHead = ({
           $size={size}
           {...contentItemProps}
         >
-          {/* $FlowFixMe */}
           <EndEnhancer size={icon} />
         </ContentItem>
       )}

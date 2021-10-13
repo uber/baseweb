@@ -63,8 +63,8 @@ export type FixedMarkerPropsT = {
   size?: PinHeadSizeT;
   needle?: NeedleSizeT;
   label?: string;
-  startEnhancer?: React.Node;
-  endEnhancer?: React.Node;
+  startEnhancer?: (props: {size: number}) => React.ReactNode;
+  endEnhancer?: (props: {size: number}) => React.ReactNode;
   color?: string;
   background?: string;
   dragging?: boolean;
@@ -86,8 +86,8 @@ export type FloatingMarkerPropsT = {
   background?: string;
   label?: string;
   anchor?: AnchorPositionsT;
-  endEnhancer?: React.Node;
-  startEnhancer?: React.Node;
+  endEnhancer?: (props: {size: number}) => React.ReactNode;
+  startEnhancer?: (props: {size: number}) => React.ReactNode;
   anchorType?: FloatingMarkerAnchorTypeT;
   size?: FloatingMarkerSizeT;
   overrides?: FloatingMarkerOverridesT;
