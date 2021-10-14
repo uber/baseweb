@@ -11,7 +11,7 @@ import ChevronLeft from '../icon/chevron-left.js';
 import ChevronDown from '../icon/chevron-down.js';
 import dateFnsAdapter from './utils/date-fns-adapter.js';
 import DateHelpers from './utils/date-helpers.js';
-import {getMonthItems} from './utils/calender-header-helpers.js';
+import {getMonthItems} from './utils/calendar-header-helpers.js';
 import {StatefulMenu} from '../menu/index.js';
 import {Popover} from '../popover/index.js';
 import {LocaleContext} from '../locale/index.js';
