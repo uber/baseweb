@@ -351,8 +351,14 @@ export default class CalendarHeader<T = Date> extends React.Component<
       (x, i) => i + monthOfMinDate,
     );
 
+    const maxMinYearMonthsIntersection = maxYearMonths.filter(year =>
+      minYearMonths.includes(year),
+    );
+
     const filterMonthsList =
-      year === maxYear
+      year === maxYear && year === minYear
+        ? maxMinYearMonthsIntersection
+        : year === maxYear
         ? maxYearMonths
         : year === minYear
         ? minYearMonths
