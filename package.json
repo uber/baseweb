@@ -170,6 +170,7 @@
     "react-dom": "^16.9.0",
     "react-hook-form": "^7.9.0",
     "react-icons": "^3.8.0",
+    "react-map-gl": "^6.1.17",
     "react-markdown": "^4.0.3",
     "react-twitter-embed": "^2.0.8",
     "react-view": "^2.3.3",

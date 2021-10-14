@@ -1,0 +1,126 @@
+<!--
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import Layout from '../../components/layout';
+import Exports from '../../components/exports';
+import FloatingMarkerContainer from '../../components/floating-marker-container';
+
+import Basic from 'examples/floating-marker/basic.js';
+import LargeTopRight from 'examples/floating-marker/large-top-right.js';
+import StartEnhancer from 'examples/floating-marker/start-enhancer.js';
+import SmallNoAnchor from 'examples/floating-marker/small-no-anchor.js';
+import LargeSquareAnchorStartEnhancer from 'examples/floating-marker/large-square-anchor-start-enhancer.js';
+import ReactMapGL from 'examples/floating-marker/react-map-gl.js';
+import {FloatingMarkerSizingTable} from '../../components/map-marker-sizing-table.js';
+
+import floatingMarkerYardConfig from '../../components/yard/config/floating-marker';
+import ApiTable from '../../components/api-table';
+
+import * as FloatingMarkerExports from 'baseui/map-marker';
+
+export default Layout;
+
+# Floating Marker
+
+<!-- TODO: Add Yard back in when it supports different prop names <> enum names -->
+
+A floating map marker is used to mark a location on a map with content.
+
+## When to use
+
+Use a floating marker when showcasing ambient, moving, intermediary, or unpredictable content. Floating markers can move around easily to fit a frame, they can move around easily if the element they are attached to is moving, and they can reposition themselves as needed.
+
+Markers on a route line or pickup points are frequently floating markers.
+
+For more information on the design principles behind the Base map markers, please visit the official [Base design website documentation](https://base.uber.com/map-usage-markers).
+
+## Guidelines
+
+### General
+
+- A floating marker's background or color should not be customized beyond the default light and dark theme.
+- A floating marker may either have no anchor, a circular anchor, or a small anchor.
+- The anchor of a floating marker can be attached to any of the four corners of the marker.
+- A floating marker without a label can only have one icon. Do not use both a `startEnhancer` and an `endEnhancer` if there is no label.
+
+### Enhancer sizing
+
+- The size of an enhancer depends on the marker size you are using. Refer to the table below for the proper enhancer sizes.
+
+<FloatingMarkerSizingTable />
+
+## Examples
+
+<Example title="Basic usage with label" path="floating-marker/basic.js">
+  <FloatingMarkerContainer>
+    <Basic />
+  </FloatingMarkerContainer>
+</Example>
+
+A floating map marker with only a label. Default size is medium.
+
+<Example
+  title="Large marker with top right anchor position"
+  path="floating-marker/large-top-right.js"
+>
+  <FloatingMarkerContainer>
+    <LargeTopRight />
+  </FloatingMarkerContainer>
+</Example>
+
+A large floating map marker with only a label. Anchor is rendered on the top right of the marker.
+
+<Example title="Start enhancer" path="floating-marker/start-enhancer.js">
+  <FloatingMarkerContainer>
+    <StartEnhancer />
+  </FloatingMarkerContainer>
+</Example>
+
+A floating map marker with a label and start enhancer. Anchor is rendered on the bottom right of the marker.
+
+<Example
+  title="Small marker with no anchor"
+  path="floating-marker/small-no-anchor.js"
+>
+  <FloatingMarkerContainer>
+    <SmallNoAnchor />
+  </FloatingMarkerContainer>
+</Example>
+
+A small floating marker without an anchor.
+
+<Example
+  title="Large square anchor with start enhancer"
+  path="floating-marker/large-square-anchor-start-enhancer.js"
+>
+  <FloatingMarkerContainer>
+    <LargeSquareAnchorStartEnhancer />
+  </FloatingMarkerContainer>
+</Example>
+
+A large floating marker with a square anchor and start enhancer. Because the floating marker is size large, make sure to pass the `size` parameter as prop to ensure the icon receives the proper size.
+
+<Example title="Usage with react-map-gl" path="floating-marker/react-map-gl.js">
+  <ReactMapGL />
+</Example>
+
+A floating map marker rendered inside of a [react-map-gl](https://visgl.github.io/react-map-gl/) view. In order to use a floating map marker in react-map-gl, wrap the floating marker with a [`<Marker/>`](https://visgl.github.io/react-map-gl/docs/api-reference/marker) component. In order to properly center the marker on the intended position, translate the marker using an override on the `Root`.
+
+## API
+
+<ApiTable
+  title="Input props"
+  config={floatingMarkerYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/map-marker/floating-marker.js')}
+/>
+
+<Exports
+  component={FloatingMarkerExports}
+  title="Floating Marker exports"
+  path="baseui/map-marker"
+/>
