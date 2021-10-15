@@ -51,7 +51,7 @@ export const StyledActivePath = styled<StylePropsT>('path', props => ({
 
 // TODO(v11): Replace Spinner with SpinnerNext
 export const StyledSpinnerNext = styled<{$size?: SizeT}>(
-  'div',
+  'i',
   ({$theme, $size = SIZE.medium}) => {
     const borderWidth = {
       large: $theme.sizing.scale300,

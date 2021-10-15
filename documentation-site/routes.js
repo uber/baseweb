@@ -314,6 +314,19 @@ const routes = [
         ],
       },
       {
+        title: 'Map marker',
+        subNav: [
+          {
+            title: 'Fixed Marker',
+            itemId: '/components/fixed-marker',
+          },
+          {
+            title: 'Floating Marker',
+            itemId: '/components/floating-marker',
+          },
+        ],
+      },
+      {
         title: 'Utility',
         subNav: [
           {

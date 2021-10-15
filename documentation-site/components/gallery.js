@@ -222,6 +222,16 @@ const COMPONENTS = {
       Component: thumbnails.SvgTooltip,
     },
   ],
+  'Map Marker': [
+    {
+      href: '/components/fixed-marker',
+      Component: thumbnails.SvgFixedMarker,
+    },
+    {
+      href: '/components/floating-marker',
+      Component: thumbnails.SvgFloatingMarker,
+    },
+  ],
   Utility: [
     {
       href: '/components/aspect-ratio-box',

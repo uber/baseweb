@@ -53,7 +53,7 @@ type HeaderContextT = {|
   onSelectNone: () => void,
   onSort: number => void,
   resizableColumnWidths: boolean,
-  rowActions: RowActionT[],
+  rowActions: RowActionT[] | (RowT => RowActionT[]),
   rowHeight: number,
   rowHighlightIndex: number,
   rows: RowT[],
@@ -554,6 +554,8 @@ const InnerTableElement = React.forwardRef<
     viewState = EMPTY;
   }
 
+  const highlightedRow = ctx.rows[ctx.rowHighlightIndex - 1];
+
   return (
     <div ref={ref} data-baseweb="data-table" style={props.style}>
       <Headers />
@@ -571,7 +573,7 @@ const InnerTableElement = React.forwardRef<
       {ctx.rowActions &&
         Boolean(ctx.rowActions.length) &&
         ctx.rowHighlightIndex > 0 &&
-        Boolean(ctx.rows[ctx.rowHighlightIndex - 1]) &&
+        Boolean(highlightedRow) &&
         !ctx.isScrollingX && (
           <div
             style={{
@@ -589,7 +591,15 @@ const InnerTableElement = React.forwardRef<
                 (ctx.rowHighlightIndex - 1) * ctx.rowHeight + HEADER_ROW_HEIGHT,
             }}
           >
-            {ctx.rowActions.map(rowAction => {
+            {(typeof ctx.rowActions === 'function'
+              ? ctx.rowActions(highlightedRow)
+              : ctx.rowActions
+            ).map(rowAction => {
+              if (rowAction.renderButton) {
+                const RowActionButton = rowAction.renderButton;
+                return <RowActionButton />;
+              }
+
               const RowActionIcon = rowAction.renderIcon;
               return (
                 <Button
@@ -606,7 +616,13 @@ const InnerTableElement = React.forwardRef<
                   shape={BUTTON_SHAPES.round}
                   overrides={{
                     BaseButton: {
-                      style: {marginLeft: theme.sizing.scale300},
+                      style: {
+                        marginLeft: theme.sizing.scale300,
+                        paddingTop: theme.sizing.scale100,
+                        paddingRight: theme.sizing.scale100,
+                        paddingBottom: theme.sizing.scale100,
+                        paddingLeft: theme.sizing.scale100,
+                      },
                     },
                   }}
                 >
