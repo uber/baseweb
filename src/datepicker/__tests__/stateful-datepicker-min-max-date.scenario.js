@@ -12,20 +12,17 @@ import {StatefulDatepicker} from '../index.js';
 
 export default function Scenario() {
   return (
-    <div>
-      <p>Available dates: May 15, 2019 - August 15, 2024</p>
-      <StatefulDatepicker
-        minDate={new Date(2019, 4, 15)}
-        maxDate={new Date(2024, 7, 15)}
-        overrides={{
-          MonthYearSelectButton: {props: {'data-id': 'monthYearSelectButton'}},
-          MonthYearSelectStatefulMenu: {
-            props: {
-              overrides: {List: {props: {'data-id': 'monthYearSelectMenu'}}},
-            },
+    <StatefulDatepicker
+      minDate={new Date(2019, 1, 15)}
+      maxDate={new Date(2019, 2, 15)}
+      overrides={{
+        MonthYearSelectButton: {props: {'data-id': 'monthYearSelectButton'}},
+        MonthYearSelectStatefulMenu: {
+          props: {
+            overrides: {List: {props: {'data-id': 'monthYearSelectMenu'}}},
           },
-        }}
-      />
-    </div>
+        },
+      }}
+    />
   );
 }
