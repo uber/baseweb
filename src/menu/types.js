@@ -251,6 +251,16 @@ export type OptionListPropsT = {
   $isFocused?: boolean,
   /** Renders all menu content for SEO purposes regardless of menu  state */
   renderAll?: boolean,
+  /** Is the item disabled */
+  $disabled?: boolean,
+  /** Is the item disabled */
+  'aria-disabled'?: boolean,
+  /** Is the item selected */
+  'aria-selected'?: boolean,
+  /** Id of the item */
+  id?: string,
+  /** Accessibility role of the item */
+  role?: string,
 };
 
 export type OptionProfilePropsT = {
