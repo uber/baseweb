@@ -26,6 +26,7 @@ import SelectSearchSingleFontsize from './select-search-single-fontsize.scenario
 import SelectSearchSingle from './select-search-single.scenario.js';
 import SelectSearcableFormControl from './select-searchable-form-control.scenario.js';
 import SelectSizes from './select-sizes.scenario.js';
+import SelectSizesSelectedValue from './select-sizes-selected-value.scenario.js';
 import SelectStates from './select-states.scenario.js';
 import SelectUnmountBlur from './select-unmount-blur.scenario.js';
 import SelectDefault from './select.scenario.js';
@@ -50,6 +51,7 @@ export const SearchSingleFontsize = () => <SelectSearchSingleFontsize />;
 export const SearchSingle = () => <SelectSearchSingle />;
 export const SearchableFormControl = () => <SelectSearcableFormControl />;
 export const Sizes = () => <SelectSizes />;
+export const SizesSelectedValue = () => <SelectSizesSelectedValue />;
 export const States = () => <SelectStates />;
 export const UnmountBlur = () => <SelectUnmountBlur />;
 export const Select = () => <SelectDefault />;
