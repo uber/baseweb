@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import type {OptionT} from './types.js';
+import {DEFAULT_MONTHS} from '../constants.js';
 
 type GetMonthItemsArgsT = {
-  defaultMonths: number[],
   filterMonthsList: number[] | null,
   formatMonthLabel: number => string,
 };
@@ -34,11 +34,10 @@ const filterMonthItems = (monthItems: OptionT[], filterList: number[]) =>
   });
 
 export const getMonthItems = ({
-  defaultMonths,
   filterMonthsList,
   formatMonthLabel,
 }: GetMonthItemsArgsT) => {
-  let monthItems = getDefaultMonthItems(defaultMonths, formatMonthLabel);
+  let monthItems = getDefaultMonthItems(DEFAULT_MONTHS, formatMonthLabel);
 
   if (filterMonthsList) {
     monthItems = filterMonthItems(monthItems, filterMonthsList);

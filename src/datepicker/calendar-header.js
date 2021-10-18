@@ -331,8 +331,6 @@ export default class CalendarHeader<T = Date> extends React.Component<
     // $FlowFixMe
     menuProps.overrides = menuOverrides;
 
-    const defaultMonths = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
-
     const maxYear = maxDate ? this.dateHelpers.getYear(maxDate) : MAX_YEAR;
     const monthOfMaxDate = maxDate
       ? this.dateHelpers.getMonth(maxDate)
@@ -364,7 +362,6 @@ export default class CalendarHeader<T = Date> extends React.Component<
         : null;
 
     this.monthItems = getMonthItems({
-      defaultMonths,
       filterMonthsList,
       formatMonthLabel: month =>
         this.dateHelpers.getMonthInLocale(month, locale),
