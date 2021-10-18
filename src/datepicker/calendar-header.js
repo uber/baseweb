@@ -290,7 +290,6 @@ export default class CalendarHeader<T = Date> extends React.Component<
   };
 
   canArrowsOpenDropdown = (event: KeyboardEvent) => {
-    // TODO(LUKE): think about how you want this to work
     if (!this.state.isMonthDropdownOpen && !this.state.isYearDropdownOpen) {
       if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
         return true;
@@ -371,7 +370,6 @@ export default class CalendarHeader<T = Date> extends React.Component<
         this.dateHelpers.getMonthInLocale(month, locale),
     });
 
-    // TODO(LUKE): encapsulate this logic into a util?
     this.yearItems = Array.from(
       {length: maxYear - minYear + 1},
       (_, i) => minYear + i,
@@ -473,7 +471,6 @@ export default class CalendarHeader<T = Date> extends React.Component<
         {/* Year Selection */}
         <OverriddenPopover
           placement="bottom"
-          // autoFocus={true}
           focusLock={true}
           isOpen={this.state.isYearDropdownOpen}
           onClick={() => {
