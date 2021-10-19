@@ -153,6 +153,7 @@ export default class TableBuilder<T> extends React.Component<
             $col={col}
             $colIndex={colIndex}
             $divider={divider}
+            $isNumeric={col.numeric}
             $size={size}
             {...tableHeadCellProps}
             {...colTableHeadCellProps}
@@ -179,6 +180,7 @@ export default class TableBuilder<T> extends React.Component<
             <SortAscIcon
               aria-hidden={true}
               role="presentation"
+              $isNumeric={col.numeric}
               {...sortAscIconProps}
             />
           );
@@ -189,6 +191,7 @@ export default class TableBuilder<T> extends React.Component<
             <SortDescIcon
               aria-hidden={true}
               role="presentation"
+              $isNumeric={col.numeric}
               {...sortDescIconProps}
             />
           );
@@ -199,6 +202,7 @@ export default class TableBuilder<T> extends React.Component<
             <SortNoneIcon
               aria-hidden={true}
               role="presentation"
+              $isNumeric={col.numeric}
               {...sortNoneIconProps}
             />
           );
@@ -211,6 +215,7 @@ export default class TableBuilder<T> extends React.Component<
           $col={col}
           $colIndex={colIndex}
           $divider={divider}
+          $isNumeric={col.numeric}
           role="button"
           tabIndex="0"
           aria-label={`${col.tableHeadAriaLabel || col.header}, ${sortLabel}`}
