@@ -5,12 +5,17 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import type {OptionT} from './types.js';
 import {DEFAULT_MONTHS} from '../constants.js';
 
 type GetMonthItemsArgsT = {
   filterMonthsList: number[] | null,
   formatMonthLabel: number => string,
+};
+
+export type OptionT = {
+  id: string,
+  label: string,
+  disabled?: boolean,
 };
 
 const getDefaultMonthItems = (
