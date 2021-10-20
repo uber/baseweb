@@ -1,0 +1,90 @@
+import metadata from './metadata.json';
+import Layout from '../../../components/layout';
+import Yard from '../../../components/yard/index';
+import FloatingMarkerContainer from '../../../components/floating-marker-container';
+
+import {BlogImage, Meta, Caption} from '../../../components/blog';
+import {View, PropTypes} from 'react-view';
+import {Button, SIZE} from 'baseui/button';
+import Example from '../../../components/example';
+import ReactMapGL from '../../../examples/floating-marker/react-map-gl';
+import coverImg from './cover.png';
+import rendezvousImg from './rendezvous.png';
+import BasicFloating from '../../../examples/floating-marker/basic';
+import BasicFixed from '../../../examples/fixed-marker/basic';
+import AnchorPositionExample from './anchor-position-example.js';
+
+export default Layout;
+
+<Meta data={metadata} />
+
+<BlogImage src={coverImg} alt="cover image of the base map markers" />
+
+We're happy to share that the Base map markers have landed in Base Web! These map markers have been an integral part of our products and our design system at Uber and we're excited to release this component to the open-source community.
+
+Map markers can be used to mark a specific location on a map with content, such as an UberX pickup spot, an UberEats restaurant, or a nearby Lime bike.
+
+<BlogImage
+  src={rendezvousImg}
+  alt="Map markers being displayed in Uber pickup situation"
+  caption="Two floating map markers being used during an Uber pickup."
+/>
+
+The map markers come in two different flavors:
+
+- [Fixed marker](../components/fixed-marker)
+- [Floating marker](../components/fixed-marker)
+
+# Fixed marker
+
+The [fixed marker](../components/fixed-marker) is a marker with a pinhead and an optional needle.
+
+<BasicFixed />
+
+It's recommended to use a fixed marker when you are showcasing specific points or areas. Think of it like a pin pushed into a wallmap. The content won’t move around or adjust, it’s not travelling around, and it’s not attached to something dynamic.
+
+The fixed marker can be customized with:
+
+- 5 different pinhead configurations (size + shape)
+- 4 different needle configurations
+- start and end enhancers to display icons or symbols
+
+# Floating marker
+
+The [floating marker](../components/floating-marker) is a marker with a floating label and an optional attached anchor.
+
+<FloatingMarkerContainer>
+  <BasicFloating />
+</FloatingMarkerContainer>
+
+Use a floating marker when showcasing ambient, moving, intermediary, or unpredictable content. Floating markers can move around easily to fit a frame, they can move around easily if the element they are attached to is moving, and they can reposition themselves as needed.
+
+Markers on a route line or pickup points are frequently floating markers.
+
+The floating marker can be customized with:
+
+- 4 different label sizes
+- 5 different anchor positions
+- 2 different anchor types
+- start and end enhancers to display icons or symbols
+
+The position of the label can be animated around the marker. This is helpful for when the map data or the viewport is changing dynamically in the application and you need to reposition the floating marker label.
+
+<AnchorPositionExample />
+
+# How to use
+
+The map marker components are normal React components that can be rendered on the DOM like any other HTML element. However, you can fully take advantage of the map markers by rendering them in a web maps SDK like [Mapbox GL JS](https://docs.mapbox.com/mapbox-gl-js/guides/), [deck.gl](http://deck.gl/), or [Leaflet](https://leafletjs.com/). This way, the map markers can be properly positioned on a map.
+
+The recommended SDK for working with these markers is [react-map-gl](https://visgl.github.io/react-map-gl/). react-map-gl is a library to interact with Mapbox GL JS while using React. However, you are welcome to use any maps SDK of your choice with the map markers.
+
+<Example title="Usage with react-map-gl" path="floating-marker/react-map-gl.js">
+  <ReactMapGL />
+</Example>
+
+Interested in learning more about the Base map marker? Check out these resources:
+
+- [How I programmatically built 256 new design system components in Figma](https://medium.com/uber-design/how-i-programmatically-built-256-new-design-system-components-in-figma-84ee26d119c1)
+- [Usage rules for Base map markers at Uber](https://base.uber.com/map-usage-markers)
+
+Thanks to Kelly Hudiono for the help developing this component.
