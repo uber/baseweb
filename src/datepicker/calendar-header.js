@@ -380,10 +380,10 @@ export default class CalendarHeader<T = Date> extends React.Component<
     }
 
     const initialMonthIndex = this.monthItems.findIndex(
-      month => month.id === this.dateHelpers.getMonth(date),
+      month => month.id === this.dateHelpers.getMonth(date).toString(),
     );
     const initialYearIndex = this.yearItems.findIndex(
-      year => year.id === this.dateHelpers.getYear(date),
+      year => year.id === this.dateHelpers.getYear(date).toString(),
     );
 
     const monthTitle = `${this.dateHelpers.getMonthInLocale(
