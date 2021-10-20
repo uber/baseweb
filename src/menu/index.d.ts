@@ -133,6 +133,12 @@ export interface OptionListProps extends BaseMenuPropsT {
   resetMenu?: () => void;
   $isHighlighted?: boolean;
   $isFocused?: boolean;
+  renderAll?: boolean;
+  $disabled?: boolean;
+  'aria-disabled'?: boolean;
+  'aria-selected'?: boolean;
+  id?: string;
+  role?: string;
 }
 export const OptionList: React.FC<OptionListProps>;
 
