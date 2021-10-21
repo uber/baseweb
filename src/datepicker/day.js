@@ -313,6 +313,7 @@ export default class Day<T = Date> extends React.Component<
       $isFocusVisible: this.state.isFocusVisible,
       $startOfMonth: this.dateHelpers.isStartOfMonth(date),
       $endOfMonth: this.dateHelpers.isEndOfMonth(date),
+      $month: this.getMonthProp(),
       $outsideMonth,
       $outsideMonthWithinRange,
       $peekNextMonth: this.props.peekNextMonth,
