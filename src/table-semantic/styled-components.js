@@ -135,12 +135,10 @@ type StyledTableHeadCellSortablePropsT = {
 export const StyledTableHeadCellSortable = withStyle<
   typeof StyledTableHeadCell,
   StyledTableHeadCellSortablePropsT,
->(StyledTableHeadCell, ({$theme, $isFocusVisible, $isNumeric}) => {
+>(StyledTableHeadCell, ({$theme, $isFocusVisible}) => {
   return {
     cursor: 'pointer',
-    [$theme.direction === 'rtl' || $isNumeric
-      ? 'paddingLeft'
-      : 'paddingRight']: $theme.sizing.scale1000,
+    paddingRight: $theme.sizing.scale1000,
     outline: 'none',
     ':focus': {
       outline: $isFocusVisible ? `3px solid ${$theme.colors.accent}` : 'none',
@@ -152,40 +150,37 @@ export const StyledTableHeadCellSortable = withStyle<
   };
 });
 
-export const StyledSortAscIcon = styled<
-  typeof ChevronUp,
-  {$isNumeric?: ?boolean},
->(ChevronUp, ({$theme, $isNumeric}) => {
-  return {
-    position: 'absolute',
-    top: '50%',
-    [$theme.direction === 'rtl' || $isNumeric ? 'left' : 'right']: $theme.sizing
-      .scale500,
-    transform: 'translateY(-50%)',
-  };
-});
-
-export const StyledSortDescIcon = styled<
-  typeof ChevronDown,
-  {$isNumeric?: ?boolean},
->(ChevronDown, ({$theme, $isNumeric}) => {
-  return {
-    position: 'absolute',
-    top: '50%',
-    [$theme.direction === 'rtl' || $isNumeric ? 'left' : 'right']: $theme.sizing
-      .scale500,
-    transform: 'translateY(-50%)',
-  };
-});
-
-export const StyledSortNoneIcon = styled<typeof Blank, {$isNumeric?: ?boolean}>(
-  Blank,
-  ({$theme, $isNumeric}) => {
+export const StyledSortAscIcon = styled<typeof ChevronUp, {}>(
+  ChevronUp,
+  ({$theme}) => {
     return {
       position: 'absolute',
       top: '50%',
-      [$theme.direction === 'rtl' || $isNumeric ? 'left' : 'right']: $theme
-        .sizing.scale500,
+      right: $theme.sizing.scale500,
+      transform: 'translateY(-50%)',
+    };
+  },
+);
+
+export const StyledSortDescIcon = styled<typeof ChevronDown, {}>(
+  ChevronDown,
+  ({$theme}) => {
+    return {
+      position: 'absolute',
+      top: '50%',
+      right: $theme.sizing.scale500,
+      transform: 'translateY(-50%)',
+    };
+  },
+);
+
+export const StyledSortNoneIcon = styled<typeof Blank, {}>(
+  Blank,
+  ({$theme}) => {
+    return {
+      position: 'absolute',
+      top: '50%',
+      right: $theme.sizing.scale500,
       transform: 'translateY(-50%)',
     };
   },
@@ -221,11 +216,12 @@ type StyledTableBodyCellPropsT = {
   $size?: SizeT,
   $isNumeric?: ?boolean,
   $isLastRow?: ?boolean,
+  $isSortable?: ?boolean,
 };
 
 export const StyledTableBodyCell = styled<StyledTableBodyCellPropsT>(
   'td',
-  ({$theme, $size, $divider, $isNumeric, $isLastRow}) => {
+  ({$theme, $size, $divider, $isNumeric, $isLastRow, $isSortable}) => {
     const borderDir: string = $theme.direction === 'rtl' ? 'Left' : 'Right';
     const borderVertical =
       $divider === DIVIDER.vertical || $divider === DIVIDER.grid;
@@ -238,7 +234,7 @@ export const StyledTableBodyCell = styled<StyledTableBodyCellPropsT>(
     return {
       ...$theme.typography.font200,
       paddingTop: padding,
-      paddingRight: padding,
+      paddingRight: !$isSortable ? padding : $theme.sizing.scale1000,
       paddingBottom: padding,
       paddingLeft: padding,
       color: $theme.colors.contentPrimary,
