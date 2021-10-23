@@ -234,6 +234,8 @@ export type OptionListPropsT = {
   getChildMenu?: (item: ItemT) => React.Node,
   onClick?: (event: MouseEvent) => mixed,
   /** Callback used to change highlighted index in stateful menu. */
+  onMouseDown?: (event: MouseEvent) => mixed,
+  /** Callback used to change highlighted index in stateful menu. */
   onMouseEnter?: (event: MouseEvent) => mixed,
   /** Renders UI in defined scale. */
   size?: $Keys<typeof OPTION_LIST_SIZE>,
