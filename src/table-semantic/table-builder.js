@@ -153,6 +153,7 @@ export default class TableBuilder<T> extends React.Component<
             $col={col}
             $colIndex={colIndex}
             $divider={divider}
+            $isNumeric={col.numeric}
             $size={size}
             {...tableHeadCellProps}
             {...colTableHeadCellProps}
@@ -211,6 +212,7 @@ export default class TableBuilder<T> extends React.Component<
           $col={col}
           $colIndex={colIndex}
           $divider={divider}
+          $isNumeric={col.numeric}
           role="button"
           tabIndex="0"
           aria-label={`${col.tableHeadAriaLabel || col.header}, ${sortLabel}`}
@@ -249,6 +251,7 @@ export default class TableBuilder<T> extends React.Component<
           $rowIndex={rowIndex}
           $isNumeric={col.numeric}
           $isLastRow={rowIndex === lastRowindex}
+          $isSortable={col.sortable}
           $size={size}
           {...tableBodyCellProps}
           {...colTableBodyCellProps}
