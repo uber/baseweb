@@ -11,10 +11,7 @@ import ChevronLeft from '../icon/chevron-left.js';
 import ChevronDown from '../icon/chevron-down.js';
 import dateFnsAdapter from './utils/date-fns-adapter.js';
 import DateHelpers from './utils/date-helpers.js';
-import {
-  getDefaultMonthItems,
-  filterMonthItems,
-} from './utils/calendar-header-helpers.js';
+import {getFilteredMonthItems} from './utils/calendar-header-helpers.js';
 import {StatefulMenu} from '../menu/index.js';
 import {Popover} from '../popover/index.js';
 import {LocaleContext} from '../locale/index.js';
@@ -193,13 +190,10 @@ export default class CalendarHeader<T = Date> extends React.Component<
     const formatMonthLabel = month =>
       this.dateHelpers.getMonthInLocale(month, this.props.locale);
 
-    let newMonthItems = getDefaultMonthItems(formatMonthLabel);
-
-    if (filterMonthsList) {
-      newMonthItems = filterMonthItems(newMonthItems, filterMonthsList);
-    }
-
-    this.monthItems = newMonthItems;
+    this.monthItems = getFilteredMonthItems({
+      filterMonthsList,
+      formatMonthLabel,
+    });
   };
 
   increaseMonth = () => {

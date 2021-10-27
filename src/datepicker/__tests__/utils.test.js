@@ -11,7 +11,7 @@ import * as utilsHelpers from '../utils/index';
 import {formatDate} from '../utils';
 import DateHelpers from '../utils/date-helpers';
 import adapter from '../utils/date-fns-adapter';
-import {getMonthItems} from '../utils/calendar-header-helpers';
+import {getFilteredMonthItems} from '../utils/calendar-header-helpers';
 import MomentUtils from '@date-io/moment';
 import moment from 'moment';
 const momentAdapter = new MomentUtils({instance: moment});
@@ -210,7 +210,7 @@ const helpers: DateHelpers<Date> = Object.keys(dateHelpers).reduce(
 
 const MIDNIGHT = new Date(2019, 3, 19);
 describe('Datepicker utils', () => {
-  describe('getMonthItems', () => {
+  describe('getFilteredMonthItems', () => {
     const monthLabels = [
       'January',
       'February',
@@ -228,7 +228,7 @@ describe('Datepicker utils', () => {
 
     test('correctly filters when date === startDate', () => {
       const filterMonthsList = [9, 10, 11];
-      const monthItems = getMonthItems({
+      const monthItems = getFilteredMonthItems({
         filterMonthsList,
         formatMonthLabel: month => monthLabels[month],
       });
@@ -250,7 +250,7 @@ describe('Datepicker utils', () => {
     });
     test('correctly filters when startDate === endDate', () => {
       const filterMonthsList = [6, 7, 8, 9];
-      const monthItems = getMonthItems({
+      const monthItems = getFilteredMonthItems({
         filterMonthsList,
         formatMonthLabel: month => monthLabels[month],
       });
