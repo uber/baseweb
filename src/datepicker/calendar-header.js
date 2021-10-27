@@ -11,7 +11,10 @@ import ChevronLeft from '../icon/chevron-left.js';
 import ChevronDown from '../icon/chevron-down.js';
 import dateFnsAdapter from './utils/date-fns-adapter.js';
 import DateHelpers from './utils/date-helpers.js';
-import {getMonthItems} from './utils/calendar-header-helpers.js';
+import {
+  getDefaultMonthItems,
+  filterMonthItems,
+} from './utils/calendar-header-helpers.js';
 import {StatefulMenu} from '../menu/index.js';
 import {Popover} from '../popover/index.js';
 import {LocaleContext} from '../locale/index.js';
@@ -84,8 +87,119 @@ export default class CalendarHeader<T = Date> extends React.Component<
     isFocusVisible: false,
   };
 
+  componentDidMount() {
+    this.getYearItems();
+    this.getMonthItems();
+  }
+
+  componentDidUpdate(prevProps: HeaderPropsT<T>) {
+    const selectedMonthDidChange =
+      this.dateHelpers.getMonth(this.props.date) !==
+      this.dateHelpers.getMonth(prevProps.date);
+
+    const selectedYearDidChange =
+      this.dateHelpers.getYear(this.props.date) !==
+      this.dateHelpers.getYear(prevProps.date);
+
+    if (selectedMonthDidChange) {
+      // re-calculate yearItems
+      this.getYearItems();
+    }
+
+    if (selectedYearDidChange) {
+      // re-calculate monthItems
+      this.getMonthItems();
+    }
+  }
+
   getDateProp: () => T = () => {
     return this.props.date || this.dateHelpers.date();
+  };
+
+  getYearItems = () => {
+    const date = this.getDateProp();
+    const maxDate = this.props.maxDate;
+    const minDate = this.props.minDate;
+    const maxYear = maxDate ? this.dateHelpers.getYear(maxDate) : MAX_YEAR;
+    const minYear = minDate ? this.dateHelpers.getYear(minDate) : MIN_YEAR;
+    const selectedMonth = this.dateHelpers.getMonth(date);
+
+    // TODO: this logic can be optimized to only run when minDate / maxDate change
+    this.yearItems = Array.from(
+      {length: maxYear - minYear + 1},
+      (_, i) => minYear + i,
+    ).map(year => ({id: year.toString(), label: year.toString()}));
+    const monthOfMaxDate = maxDate
+      ? this.dateHelpers.getMonth(maxDate)
+      : MAX_MONTH;
+    const monthOfMinDate = minDate
+      ? this.dateHelpers.getMonth(minDate)
+      : MIN_MONTH;
+    // Generates array like [0,1,.... monthOfMaxDate]
+    const maxYearMonths = Array.from({length: monthOfMaxDate + 1}, (x, i) => i);
+    // Generates array like [monthOfMinDate, ...., 10, 11]
+    const minYearMonths = Array.from(
+      {length: 12 - monthOfMinDate},
+      (x, i) => i + monthOfMinDate,
+    );
+
+    if (selectedMonth > maxYearMonths[maxYearMonths.length - 1]) {
+      const lastIdx = this.yearItems.length - 1;
+      this.yearItems[lastIdx] = {...this.yearItems[lastIdx], disabled: true};
+    }
+
+    if (selectedMonth < minYearMonths[0]) {
+      this.yearItems[0] = {...this.yearItems[0], disabled: true};
+    }
+  };
+
+  getMonthItems = () => {
+    const date = this.getDateProp();
+    const year = this.dateHelpers.getYear(date);
+    const maxDate = this.props.maxDate;
+    const minDate = this.props.minDate;
+    const maxYear = maxDate ? this.dateHelpers.getYear(maxDate) : MAX_YEAR;
+    const minYear = minDate ? this.dateHelpers.getYear(minDate) : MIN_YEAR;
+
+    const monthOfMaxDate = maxDate
+      ? this.dateHelpers.getMonth(maxDate)
+      : MAX_MONTH;
+    // Generates array like [0,1,.... monthOfMaxDate]
+    const maxYearMonths = Array.from({length: monthOfMaxDate + 1}, (x, i) => i);
+
+    const monthOfMinDate = minDate
+      ? this.dateHelpers.getMonth(minDate)
+      : MIN_MONTH;
+
+    // Generates array like [monthOfMinDate, ...., 10, 11]
+    const minYearMonths = Array.from(
+      {length: 12 - monthOfMinDate},
+      (x, i) => i + monthOfMinDate,
+    );
+
+    const maxMinYearMonthsIntersection = maxYearMonths.filter(year =>
+      minYearMonths.includes(year),
+    );
+
+    const filterMonthsList =
+      year === maxYear && year === minYear
+        ? maxMinYearMonthsIntersection
+        : year === maxYear
+        ? maxYearMonths
+        : year === minYear
+        ? minYearMonths
+        : null;
+
+    const formatMonthLabel = month =>
+      this.dateHelpers.getMonthInLocale(month, this.props.locale);
+
+    let newMonthItems = getDefaultMonthItems(formatMonthLabel);
+
+    if (filterMonthsList) {
+      newMonthItems = filterMonthItems(newMonthItems, filterMonthsList);
+    }
+
+    this.monthItems = newMonthItems;
   };
 
   increaseMonth = () => {
@@ -303,7 +417,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
     const month = this.dateHelpers.getMonth(date);
     const year = this.dateHelpers.getYear(date);
 
-    const {locale, maxDate, minDate, overrides = {}} = this.props;
+    const {locale, overrides = {}} = this.props;
     const [MonthYearSelectButton, monthYearSelectButtonProps] = getOverrides(
       overrides.MonthYearSelectButton,
       StyledMonthYearSelectButton,
@@ -330,54 +444,6 @@ export default class CalendarHeader<T = Date> extends React.Component<
     );
     // $FlowFixMe
     menuProps.overrides = menuOverrides;
-
-    const maxYear = maxDate ? this.dateHelpers.getYear(maxDate) : MAX_YEAR;
-    const monthOfMaxDate = maxDate
-      ? this.dateHelpers.getMonth(maxDate)
-      : MAX_MONTH;
-    // Generates array like [0,1,.... monthOfMaxDate]
-    const maxYearMonths = Array.from({length: monthOfMaxDate + 1}, (x, i) => i);
-
-    const minYear = minDate ? this.dateHelpers.getYear(minDate) : MIN_YEAR;
-    const monthOfMinDate = minDate
-      ? this.dateHelpers.getMonth(minDate)
-      : MIN_MONTH;
-    // Generates array like [monthOfMinDate, ...., 10, 11]
-    const minYearMonths = Array.from(
-      {length: 12 - monthOfMinDate},
-      (x, i) => i + monthOfMinDate,
-    );
-
-    const maxMinYearMonthsIntersection = maxYearMonths.filter(year =>
-      minYearMonths.includes(year),
-    );
-
-    const filterMonthsList =
-      year === maxYear && year === minYear
-        ? maxMinYearMonthsIntersection
-        : year === maxYear
-        ? maxYearMonths
-        : year === minYear
-        ? minYearMonths
-        : null;
-
-    this.monthItems = getMonthItems({
-      filterMonthsList,
-      formatMonthLabel: month =>
-        this.dateHelpers.getMonthInLocale(month, locale),
-    });
-
-    this.yearItems = Array.from(
-      {length: maxYear - minYear + 1},
-      (_, i) => minYear + i,
-    ).map(year => ({id: year.toString(), label: year.toString()}));
-    if (month > maxYearMonths[maxYearMonths.length - 1]) {
-      const lastIdx = this.yearItems.length - 1;
-      this.yearItems[lastIdx] = {...this.yearItems[lastIdx], disabled: true};
-    }
-    if (month < minYearMonths[0]) {
-      this.yearItems[0] = {...this.yearItems[0], disabled: true};
-    }
 
     const initialMonthIndex = this.monthItems.findIndex(
       month => month.id === this.dateHelpers.getMonth(date).toString(),
