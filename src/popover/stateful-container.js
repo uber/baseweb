@@ -49,6 +49,12 @@ class StatefulContainer extends React.Component<
   };
 
   onBlur = (e: Event) => {
+    if (
+      this.props.triggerType === 'hover' &&
+      (this.props.focusLock || this.props.autoFocus)
+    ) {
+      return;
+    }
     if (this.props.onBlur) {
       this.props.onBlur(e);
     }
