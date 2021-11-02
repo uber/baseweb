@@ -34,7 +34,6 @@ export default function Scenario() {
         autoFocus
         focusLock
       >
-        {/* eslint-disable jsx-a11y/no-noninteractive-tabindex */}
         <span
           className={css({
             borderBottomWidth: '1px',
@@ -42,7 +41,6 @@ export default function Scenario() {
             borderBottomColor: `${theme.colors.primary500}`,
             color: theme.colors.primary500,
           })}
-          tabIndex="0"
         >
           commit
         </span>
