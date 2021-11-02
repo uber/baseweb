@@ -242,6 +242,7 @@ export type SharedStylePropsT = {
   $isHeader: boolean;
   $isHighlighted: boolean;
   $isHovered: boolean;
+  $month: number;
   $outsideMonth: boolean;
   $pseudoHighlighted: boolean;
   $pseudoSelected: boolean;

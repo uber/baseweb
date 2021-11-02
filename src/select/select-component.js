@@ -793,7 +793,6 @@ class Select extends React.Component<PropsT, SelectStateT> {
 
     return (
       <ClearIcon
-        size={16}
         title={ariaLabel}
         aria-label={ariaLabel}
         onClick={this.clearValue}

@@ -46,7 +46,10 @@ export const BaseButton = styled<SharedStylePropsT>(
     cursor: 'pointer',
     ':disabled': {
       cursor: 'not-allowed',
-      backgroundColor: $theme.colors.buttonDisabledFill,
+      backgroundColor:
+        $kind === KIND.minimal || $kind === KIND.tertiary
+          ? 'transparent'
+          : $theme.colors.buttonDisabledFill,
       color: $theme.colors.buttonDisabledText,
     },
     marginLeft: 0,

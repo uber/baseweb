@@ -123,6 +123,7 @@ export interface OptionListProps extends BaseMenuPropsT {
   item: any;
   getItemLabel: (item: any) => React.ReactNode;
   getChildMenu?: (item: any) => React.ReactNode;
+  onMouseDown?: (event: MouseEvent) => any;
   onMouseEnter?: (event: MouseEvent) => any;
   size?: OPTION_LIST_SIZE[keyof OPTION_LIST_SIZE];
   overrides?: {

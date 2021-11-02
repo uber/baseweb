@@ -425,22 +425,50 @@ function getSvgStyles({$theme}) {
 }
 
 export const StyledSelectArrow = styled<SharedStylePropsArgT>('svg', props => {
-  const {$theme, $disabled} = props;
+  const {$theme, $disabled, $size} = props;
   const {colors} = $theme;
+
+  const sizes = {
+    [SIZE.mini]: 16,
+    [SIZE.compact]: 16,
+    [SIZE.default]: 20,
+    [SIZE.large]: 24,
+  };
+  let size = sizes[SIZE.default];
+  if ($size) {
+    size = sizes[$size];
+  }
+
   return {
     ...getSvgStyles({$theme}),
     color: $disabled ? colors.inputTextDisabled : colors.contentPrimary,
     cursor: $disabled ? 'not-allowed' : 'pointer',
+    height: `${size}px`,
+    width: `${size}px`,
   };
 });
 
 export const StyledClearIcon = styled<SharedStylePropsArgT>('svg', props => {
-  const {$theme} = props;
+  const {$theme, $size} = props;
   const {colors} = $theme;
+
+  const sizes = {
+    [SIZE.mini]: 15,
+    [SIZE.compact]: 15,
+    [SIZE.default]: 18,
+    [SIZE.large]: 22,
+  };
+  let size = sizes[SIZE.default];
+  if ($size) {
+    size = sizes[$size];
+  }
+
   return {
     ...getSvgStyles({$theme}),
     color: colors.contentPrimary,
     cursor: 'pointer',
+    height: `${size}px`,
+    width: `${size}px`,
   };
 });
 
