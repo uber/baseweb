@@ -3,5 +3,6 @@
   "publishDirectory": {
     "baseui": "dist"
   },
-  "sandboxes": ["basic-usage-9olot"]
+  "sandboxes": ["basic-usage-9olot"],
+  "node": "16"
 }
