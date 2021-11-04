@@ -3180,10 +3180,10 @@
     "@types/yargs" "^16.0.0"
     chalk "^4.0.0"
 
-"@ladle/react@^0.2.3":
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/@ladle/react/-/react-0.2.3.tgz#0c7e20604cbe023bdd332d13efb82268d42760e2"
-  integrity sha512-kYyQifOeBsRa4Grue2nu2lB1kvGpggEN6Vj5PZIvMpPik/noLvf7GfdQWqPc/jPqcYFs/jjqcuZe9AEGIM0Vzw==
+"@ladle/react@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@ladle/react/-/react-0.3.0.tgz#c027094304f2c003a8ae53cd0b834172c06ea0d2"
+  integrity sha512-TVMhtB9iLp5AlcCwNznhiwqH1R97u7LHUTgz25GHH5+yERkouDcEZ7qlYFpD4giwZKkJzCb5WEt4Z9UiBMu7bg==
   dependencies:
     "@babel/code-frame" "^7.15.8"
     "@babel/core" "^7.15.8"
@@ -5495,11 +5495,6 @@ babel-plugin-transform-class-properties@^6.24.1:
     babel-plugin-syntax-class-properties "^6.8.0"
     babel-runtime "^6.22.0"
     babel-template "^6.24.1"
-
-babel-plugin-transform-cup-globals@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/babel-plugin-transform-cup-globals/-/babel-plugin-transform-cup-globals-1.0.2.tgz#e0b9a7207cceb87603085a6889314e1377ee7ae4"
-  integrity sha512-BAZw2zrPvcAXvsnSa0nDuSyUoAQu7mwgiBQpLy00+1xLe4D+nannQIGyChcKFBPBGxw0aeP1C6LSo7tIdRPNXg==
 
 babel-plugin-transform-decorators@^6.24.1:
   version "6.24.1"
@@ -14866,10 +14861,10 @@ react-motion@^0.5.2:
     prop-types "^15.5.8"
     raf "^3.1.0"
 
-react-movable@^2.5.4:
-  version "2.5.4"
-  resolved "https://registry.yarnpkg.com/react-movable/-/react-movable-2.5.4.tgz#1c28e8291476ab19b8625d06b60f97a89dd85a45"
-  integrity sha512-F+Ml4Il9S7uyY2Nr/UzwnXxWewwsHdQkmwgzAjk+Dsz73sy2yCJk7GkQkdqmh8W6XXTlviepz1VA0eHUWh9MZQ==
+react-movable@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/react-movable/-/react-movable-3.0.0.tgz#4c8146ba771e9bf1bd262b6cb2db046f64bbb283"
+  integrity sha512-KJ206g2jgtJhadVOSKn+huLqDfyNTUrswcWk5U76CI5ryHxUwvfKR2mRFcYKcSTqklVjn9YU4BQGTeogFQUBXg==
 
 react-multi-ref@^1.0.0:
   version "1.0.0"

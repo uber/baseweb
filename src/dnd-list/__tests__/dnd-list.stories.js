@@ -8,5 +8,15 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 import DndListDefault from './dnd-list.scenario.js';
+import {Layer} from '../../layer/index.js';
 
 export const DndList = () => <DndListDefault />;
+
+export const TestLayer = () => (
+  <div>
+    Something
+    <Layer>
+      <div>Inside Layer</div>
+    </Layer>
+  </div>
+);
