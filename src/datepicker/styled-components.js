@@ -21,7 +21,9 @@ export const StyledInputWrapper = styled<{
 
   return {
     width: '100%',
-    ...($separateRangeInputs ? {display: 'flex'} : {}),
+    ...($separateRangeInputs
+      ? {display: 'flex', justifyContent: 'center'}
+      : {}),
   };
 });
 
