@@ -13,10 +13,33 @@ import Calendar from './calendar.js';
 import {getOverrides} from '../helpers/overrides.js';
 import getInterpolatedString from '../helpers/i18n-interpolation.js';
 import {LocaleContext} from '../locale/index.js';
-import {StyledInputWrapper} from './styled-components.js';
+import {StyledInputWrapper, StyledInputLabel} from './styled-components.js';
 import type {DatepickerPropsT} from './types.js';
 import DateHelpers from './utils/date-helpers.js';
 import dateFnsAdapter from './utils/date-fns-adapter.js';
+import type {LocaleT} from '../locale/types.js';
+
+export const DEFAULT_DATE_FORMAT = 'yyyy/MM/dd';
+
+const INPUT_DELIMITER = ' – ';
+
+const combineSeparatedInputs = (
+  newInputValue,
+  prevInputValue = '',
+  separatedInput,
+) => {
+  let inputValue = newInputValue;
+  const [prevStartDate = '', prevEndDate = ''] = prevInputValue.split(
+    INPUT_DELIMITER,
+  );
+  if (separatedInput === 'startDate' && prevEndDate) {
+    inputValue = `${inputValue} – ${prevEndDate}`;
+  }
+  if (separatedInput === 'endDate') {
+    inputValue = `${prevStartDate} – ${inputValue}`;
+  }
+  return inputValue;
+};
 
 type StateT = {|
   calendarFocused: boolean,
@@ -25,7 +48,6 @@ type StateT = {|
   lastActiveElm: ?HTMLElement,
   inputValue?: string,
 |};
-export const DEFAULT_DATE_FORMAT = 'yyyy/MM/dd';
 
 export default class Datepicker<T = Date> extends React.Component<
   DatepickerPropsT<T>,
@@ -128,7 +150,7 @@ export default class Datepicker<T = Date> extends React.Component<
     } else if (Array.isArray(date) && !date[0] && !date[1]) {
       return '';
     } else if (Array.isArray(date)) {
-      return date.map(day => format(day)).join(' – ');
+      return date.map(day => format(day)).join(INPUT_DELIMITER);
     } else {
       return format(date);
     }
@@ -197,7 +219,7 @@ export default class Datepicker<T = Date> extends React.Component<
   };
 
   getMask = () => {
-    const {formatString, mask, range} = this.props;
+    const {formatString, mask, range, separateRangeInputs} = this.props;
 
     if (mask === null) {
       return null;
@@ -208,7 +230,7 @@ export default class Datepicker<T = Date> extends React.Component<
     }
 
     const normalizedFormatString = this.normalizeDashes(formatString);
-    if (formatString) {
+    if (formatString && !separateRangeInputs) {
       if (range) {
         return `${normalizedFormatString} – ${normalizedFormatString}`.replace(
           /[a-z]/gi,
@@ -219,15 +241,25 @@ export default class Datepicker<T = Date> extends React.Component<
       }
     }
 
-    if (range) {
+    if (range && !separateRangeInputs) {
       return '9999/99/99 – 9999/99/99';
     }
 
     return '9999/99/99';
   };
 
-  handleInputChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
-    const inputValue = event.currentTarget.value;
+  handleInputChange = (
+    event: SyntheticInputEvent<HTMLInputElement>,
+    separatedInput?: 'startDate' | 'endDate',
+  ) => {
+    const inputValue =
+      this.props.range && this.props.separateRangeInputs
+        ? combineSeparatedInputs(
+            event.currentTarget.value,
+            this.state.inputValue,
+          )
+        : event.currentTarget.value;
+
     const mask = this.getMask();
 
     if (
@@ -265,7 +297,9 @@ export default class Datepicker<T = Date> extends React.Component<
       this.props.range &&
       typeof this.props.displayValueAtRangeIndex !== 'number'
     ) {
-      const [left, right] = this.normalizeDashes(inputValue).split(' – ');
+      const [left, right] = this.normalizeDashes(inputValue).split(
+        INPUT_DELIMITER,
+      );
 
       let startDate = this.dateHelpers.date(left);
       let endDate = this.dateHelpers.date(right);
@@ -391,12 +425,69 @@ export default class Datepicker<T = Date> extends React.Component<
     }
   }
 
-  render() {
+  renderInputComponent(
+    locale: LocaleT,
+    separatedInput?: 'startDate' | 'endDate',
+  ) {
     const {overrides = {}} = this.props;
+
     const [InputComponent, inputProps] = getOverrides(
       overrides.Input,
       MaskedInput,
     );
+
+    const placeholder =
+      this.props.placeholder || this.props.placeholder === ''
+        ? this.props.placeholder
+        : this.props.range && !this.props.separateRangeInputs
+        ? 'YYYY/MM/DD – YYYY/MM/DD'
+        : 'YYYY/MM/DD';
+
+    const [startDate = '', endDate = ''] = (this.state.inputValue || '').split(
+      INPUT_DELIMITER,
+    );
+
+    const value =
+      separatedInput === 'startDate'
+        ? startDate
+        : separatedInput === 'endDate'
+        ? endDate
+        : this.state.inputValue;
+
+    const onChange = event => this.handleInputChange(event, separatedInput);
+
+    return (
+      <InputComponent
+        aria-disabled={this.props.disabled}
+        aria-label={
+          this.props['aria-label'] ||
+          (this.props.range
+            ? locale.datepicker.ariaLabelRange
+            : locale.datepicker.ariaLabel)
+        }
+        error={this.props.error}
+        positive={this.props.positive}
+        aria-describedby={this.props['aria-describedby']}
+        aria-labelledby={this.props['aria-labelledby']}
+        aria-required={this.props.required || null}
+        disabled={this.props.disabled}
+        size={this.props.size}
+        value={value}
+        onFocus={this.open}
+        onBlur={this.handleInputBlur}
+        onKeyDown={this.handleKeyDown}
+        onChange={onChange}
+        placeholder={placeholder}
+        mask={this.getMask()}
+        required={this.props.required}
+        clearable={this.props.clearable}
+        {...inputProps}
+      />
+    );
+  }
+
+  render() {
+    const {overrides = {}} = this.props;
     const [PopoverComponent, popoverProps] = getOverrides(
       overrides.Popover,
       Popover,
@@ -405,13 +496,6 @@ export default class Datepicker<T = Date> extends React.Component<
       overrides.InputWrapper,
       StyledInputWrapper,
     );
-
-    const placeholder =
-      this.props.placeholder || this.props.placeholder === ''
-        ? this.props.placeholder
-        : this.props.range
-        ? 'YYYY/MM/DD – YYYY/MM/DD'
-        : 'YYYY/MM/DD';
 
     return (
       <LocaleContext.Consumer>
@@ -436,33 +520,27 @@ export default class Datepicker<T = Date> extends React.Component<
               }
               {...popoverProps}
             >
-              <InputWrapper {...inputWrapperProps}>
-                <InputComponent
-                  aria-disabled={this.props.disabled}
-                  aria-label={
-                    this.props['aria-label'] ||
-                    (this.props.range
-                      ? locale.datepicker.ariaLabelRange
-                      : locale.datepicker.ariaLabel)
-                  }
-                  error={this.props.error}
-                  positive={this.props.positive}
-                  aria-describedby={this.props['aria-describedby']}
-                  aria-labelledby={this.props['aria-labelledby']}
-                  aria-required={this.props.required || null}
-                  disabled={this.props.disabled}
-                  size={this.props.size}
-                  value={this.state.inputValue}
-                  onFocus={this.open}
-                  onBlur={this.handleInputBlur}
-                  onKeyDown={this.handleKeyDown}
-                  onChange={this.handleInputChange}
-                  placeholder={placeholder}
-                  mask={this.getMask()}
-                  required={this.props.required}
-                  clearable={this.props.clearable}
-                  {...inputProps}
-                />
+              {}
+              <InputWrapper
+                {...inputWrapperProps}
+                $separateRangeInputs={
+                  this.props.range && this.props.separateRangeInputs
+                }
+              >
+                {this.props.range && this.props.separateRangeInputs ? (
+                  <>
+                    <div style={{marginRight: '8px'}}>
+                      <StyledInputLabel>Start Date</StyledInputLabel>
+                      <>{this.renderInputComponent(locale, 'startDate')}</>
+                    </div>
+                    <div>
+                      <StyledInputLabel>End Date</StyledInputLabel>
+                      {this.renderInputComponent(locale, 'endDate')}
+                    </div>
+                  </>
+                ) : (
+                  <>{this.renderInputComponent(locale)}</>
+                )}
               </InputWrapper>
             </PopoverComponent>
             <p

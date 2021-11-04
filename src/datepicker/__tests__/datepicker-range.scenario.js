@@ -12,46 +12,90 @@ import {StyledDay, StatefulDatepicker} from '../index.js';
 
 export default function Scenario() {
   return (
-    <StatefulDatepicker
-      aria-label="Select a date"
-      clearable={true}
-      initialState={{value: []}}
-      highlightedDate={new Date('March 10, 2019')}
-      range
-      timeSelectEnd
-      timeSelectStart
-      overrides={{
-        Day: {
-          // eslint-disable-next-line react/display-name
-          component: React.forwardRef((props, ref) => (
-            <StyledDay
-              data-highlighted={props.$isHighlighted}
-              {...props}
-              ref={ref}
-            />
-          )),
-        },
-        MonthYearSelectButton: {props: {'data-id': 'monthYearSelectButton'}},
-        MonthYearSelectStatefulMenu: {
-          props: {
-            overrides: {List: {props: {'data-id': 'monthYearSelectMenu'}}},
+    <div>
+      <StatefulDatepicker
+        aria-label="Select a date"
+        clearable={true}
+        initialState={{value: []}}
+        highlightedDate={new Date('March 10, 2019')}
+        range
+        timeSelectEnd
+        timeSelectStart
+        overrides={{
+          Day: {
+            // eslint-disable-next-line react/display-name
+            component: React.forwardRef((props, ref) => (
+              <StyledDay
+                data-highlighted={props.$isHighlighted}
+                {...props}
+                ref={ref}
+              />
+            )),
           },
-        },
-        TimeSelect: {
-          props: {
-            overrides: {
-              Select: {
-                props: {
-                  overrides: {
-                    Root: {props: {'data-id': 'time-select'}},
-                    ValueContainer: {props: {'data-id': 'selected'}},
+          MonthYearSelectButton: {props: {'data-id': 'monthYearSelectButton'}},
+          MonthYearSelectStatefulMenu: {
+            props: {
+              overrides: {List: {props: {'data-id': 'monthYearSelectMenu'}}},
+            },
+          },
+          TimeSelect: {
+            props: {
+              overrides: {
+                Select: {
+                  props: {
+                    overrides: {
+                      Root: {props: {'data-id': 'time-select'}},
+                      ValueContainer: {props: {'data-id': 'selected'}},
+                    },
                   },
                 },
               },
             },
           },
-        },
-      }}
-    />
+        }}
+      />
+      <StatefulDatepicker
+        aria-label="Select a date"
+        clearable={true}
+        initialState={{value: []}}
+        highlightedDate={new Date('March 10, 2019')}
+        range
+        separateRangeInputs
+        timeSelectEnd
+        timeSelectStart
+        overrides={{
+          Day: {
+            // eslint-disable-next-line react/display-name
+            component: React.forwardRef((props, ref) => (
+              <StyledDay
+                data-highlighted={props.$isHighlighted}
+                {...props}
+                ref={ref}
+              />
+            )),
+          },
+          MonthYearSelectButton: {props: {'data-id': 'monthYearSelectButton'}},
+          MonthYearSelectStatefulMenu: {
+            props: {
+              overrides: {List: {props: {'data-id': 'monthYearSelectMenu'}}},
+            },
+          },
+          TimeSelect: {
+            props: {
+              overrides: {
+                Select: {
+                  props: {
+                    overrides: {
+                      Root: {props: {'data-id': 'time-select'}},
+                      ValueContainer: {props: {'data-id': 'selected'}},
+                    },
+                  },
+                },
+              },
+            },
+          },
+        }}
+      />
+    </div>
   );
 }
