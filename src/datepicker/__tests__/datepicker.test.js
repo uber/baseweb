@@ -136,6 +136,7 @@ describe('Datepicker', () => {
       container,
       'month-year-select-buttons',
     );
+
     fireEvent.click(month);
     fireEvent.click(getByText(container, 'November'));
     fireEvent.click(year);
