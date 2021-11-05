@@ -7,12 +7,14 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
+import SnackbarAsync from './snackbar-async.scenario.js';
 import SnackbarElementOverrides from './snackbar-element-overrides.scenario.js';
 import SnackbarElement from './snackbar-element.scenario.js';
 import SnackbarPlacement from './snackbar-placement.scenario.js';
 import SnackbarProviderOverrides from './snackbar-provider-overrides.scenario.js';
 import SnackbarProvider from './snackbar-provider.scenario.js';
 
+export const Async = () => <SnackbarAsync />;
 export const ElementOverrides = () => <SnackbarElementOverrides />;
 export const Element = () => <SnackbarElement />;
 export const Placement = () => <SnackbarPlacement />;
