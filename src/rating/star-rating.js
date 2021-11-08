@@ -133,7 +133,10 @@ class StarRating extends React.Component<StarRatingPropsT, RatingStateT> {
       <Root
         data-baseweb="star-rating"
         role="radiogroup"
-        onBlur={() => this.updatePreview(undefined)}
+        onBlur={e => {
+          if (!e.currentTarget.contains(e.relatedTarget))
+            this.updatePreview(undefined);
+        }}
         onMouseLeave={() => this.updatePreview(undefined)}
         {...rootProps}
       >
