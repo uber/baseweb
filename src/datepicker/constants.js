@@ -25,3 +25,5 @@ export const STATE_CHANGE_TYPE = Object.freeze({
 });
 
 export const WEEKDAYS = [0, 1, 2, 3, 4, 5, 6];
+
+export const DEFAULT_MONTHS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
