@@ -25,11 +25,11 @@ const INPUT_DELIMITER = ' – ';
 
 const combineSeparatedInputs = (
   newInputValue,
-  prevInputValue = '',
+  prevCombinedInputValue = '',
   separatedInput,
 ) => {
   let inputValue = newInputValue;
-  const [prevStartDate = '', prevEndDate = ''] = prevInputValue.split(
+  const [prevStartDate = '', prevEndDate = ''] = prevCombinedInputValue.split(
     INPUT_DELIMITER,
   );
   if (separatedInput === 'startDate' && prevEndDate) {
@@ -257,6 +257,7 @@ export default class Datepicker<T = Date> extends React.Component<
         ? combineSeparatedInputs(
             event.currentTarget.value,
             this.state.inputValue,
+            separatedInput,
           )
         : event.currentTarget.value;
 

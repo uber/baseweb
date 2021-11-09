@@ -42,10 +42,10 @@ export default function Scenario() {
       <StatefulDatepicker
         aria-label="Select a date"
         initialState={{value: []}}
+        highlightedDate={new Date('March 10, 2019')}
         range
         separateRangeInputs
         monthsShown={2}
-        highlightedDate={new Date('March 10, 2019')}
         clearable={true}
         overrides={{
           Day: {
