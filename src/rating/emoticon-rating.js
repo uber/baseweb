@@ -135,7 +135,10 @@ class EmoticonRating extends React.Component<
       <Root
         data-baseweb="emoticon-rating"
         role="radiogroup"
-        onBlur={() => this.updatePreview(undefined)}
+        onBlur={e => {
+          if (!e.currentTarget.contains(e.relatedTarget))
+            this.updatePreview(undefined);
+        }}
         onMouseLeave={() => this.updatePreview(undefined)}
         {...rootProps}
       >
