@@ -97,7 +97,7 @@ describe('Datepicker', () => {
       'month-year-select-buttons',
     );
     fireEvent.click(month);
-    fireEvent.click(getByText(container, 'November'));
+    fireEvent.click(getByText(month, 'November'));
     fireEvent.click(year);
     fireEvent.click(getByText(container, '2019'));
     fireEvent.click(getByText(container, '1'));
@@ -138,7 +138,7 @@ describe('Datepicker', () => {
     );
 
     fireEvent.click(month);
-    fireEvent.click(getByText(container, 'November'));
+    fireEvent.click(getByText(month, 'November'));
     fireEvent.click(year);
     fireEvent.click(getByText(container, '2019'));
 
@@ -190,7 +190,7 @@ describe('Datepicker', () => {
       'month-year-select-buttons',
     );
     fireEvent.click(month);
-    fireEvent.click(getByText(container, 'November'));
+    fireEvent.click(getByText(month, 'November'));
     fireEvent.click(year);
     fireEvent.click(getByText(container, '2019'));
     fireEvent.click(getByText(container, '1'));
