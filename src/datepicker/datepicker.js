@@ -530,11 +530,11 @@ export default class Datepicker<T = Date> extends React.Component<
               >
                 {this.props.range && this.props.separateRangeInputs ? (
                   <>
-                    <div style={{marginRight: '8px'}}>
+                    <div style={{width: '100%', marginRight: '8px'}}>
                       <StyledInputLabel>Start Date</StyledInputLabel>
-                      <>{this.renderInputComponent(locale, 'startDate')}</>
+                      {this.renderInputComponent(locale, 'startDate')}
                     </div>
-                    <div>
+                    <div style={{width: '100%'}}>
                       <StyledInputLabel>End Date</StyledInputLabel>
                       {this.renderInputComponent(locale, 'endDate')}
                     </div>
