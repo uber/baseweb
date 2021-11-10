@@ -77,14 +77,19 @@ describe('Stateful Datepicker', () => {
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
     await page.waitForSelector(selectors.calendar);
-    await page.click(selectors.monthYearSelectButton);
+    const [month] = await page.$$(selectors.monthYearSelectButton);
+    await month.click();
     await page.waitForSelector(selectors.monthYearSelectMenu);
 
-    let value = await page.$$eval('ul[role="listbox"] li', items => {
-      // Return the first and last month year option
-      return [items[0].textContent, items[items.length - 1].textContent];
-    });
-    expect(value[0]).toEqual('February 2019');
-    expect(value[1]).toEqual('March 2019');
+    const monthOptions = await page.$$eval(
+      'ul[role="listbox"] li[aria-disabled="false"]',
+      items => {
+        // Return the first and last month year option
+        return [items[0].textContent, items[items.length - 1].textContent];
+      },
+    );
+
+    expect(monthOptions[0]).toEqual('February');
+    expect(monthOptions[1]).toEqual('March');
   });
 });

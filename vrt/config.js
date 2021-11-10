@@ -227,7 +227,7 @@ const config = {
           });
           await page.click(rightArrow);
           await page.waitForFunction(
-            `document.querySelector("button[aria-haspopup]").innerText === 'April 2019'`,
+            `document.querySelector("button[aria-haspopup]").innerText === 'April'`,
           );
         },
       },
