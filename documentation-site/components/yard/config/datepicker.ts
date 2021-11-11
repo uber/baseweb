@@ -145,6 +145,13 @@ const DatepickerConfig: TConfig = {
       type: PropTypes.Boolean,
       description: 'Defines if a range of dates can be selected.',
     },
+    separateRangeInputs: {
+      value: undefined,
+      type: PropTypes.Boolean,
+      description:
+        'Determines if startDate and endDate should be separated into two input fields. Ignored if `range` is not true.',
+      hidden: true,
+    },
     clearable: {
       value: undefined,
       type: PropTypes.Boolean,
