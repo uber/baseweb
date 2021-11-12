@@ -166,6 +166,7 @@ export type DatepickerProps = CalendarProps & {
   mask?: string | null;
   mountNode?: HTMLElement;
   onClose?: () => any;
+  separateRangeInputs?: boolean;
 };
 export interface DatepickerState {
   calendarFocused: boolean;
