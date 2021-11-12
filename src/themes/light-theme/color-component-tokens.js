@@ -107,7 +107,7 @@ export default (
 
   // List
   listHeaderFill: themePrimitives.white,
-  listBodyFill: themePrimitives.mono200,
+  listBodyFill: themePrimitives.white,
   listIconFill: themePrimitives.mono500,
   listBorder: themePrimitives.mono500,
 
