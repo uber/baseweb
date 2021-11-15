@@ -178,8 +178,6 @@ export type CalendarPropsT<T = Date> = {
   overrides?: DatepickerOverridesT,
   /** Defines if dates outside of the range of the current month are displayed. */
   peekNextMonth?: boolean,
-  /** Determines if startDate and endDate should be separated into two input fields. Ignored if `range` is not true. */
-  separateRangeInputs?: boolean,
   /** Determines if `TimePicker` component will be enabled for start time */
   timeSelectStart?: boolean,
   /** Determines if `TimePicker` component will be enabled for end time */
@@ -222,6 +220,10 @@ export type DatepickerPropsT<T = Date> = CalendarPropsT<T> & {
   /** Called when calendar is closed */
   onClose?: () => mixed,
   mask?: string | null,
+  /** Determines if startDate and endDate should be separated into two input fields. Ignored if `range` is not true. */
+  separateRangeInputs?: boolean,
+  startDateLabel?: string,
+  endDateLabel?: string,
 };
 
 export type SharedStylePropsT = {

@@ -493,7 +493,11 @@ export default class Datepicker<T = Date> extends React.Component<
   }
 
   render() {
-    const {overrides = {}} = this.props;
+    const {
+      overrides = {},
+      startDateLabel = 'Start Date',
+      endDateLabel = 'End Date',
+    } = this.props;
     const [PopoverComponent, popoverProps] = getOverrides(
       overrides.Popover,
       Popover,
@@ -536,11 +540,11 @@ export default class Datepicker<T = Date> extends React.Component<
                 {this.props.range && this.props.separateRangeInputs ? (
                   <>
                     <StyledStartDate>
-                      <StyledInputLabel>Start Date</StyledInputLabel>
+                      <StyledInputLabel>{startDateLabel}</StyledInputLabel>
                       {this.renderInputComponent(locale, 'startDate')}
                     </StyledStartDate>
                     <StyledEndDate>
-                      <StyledInputLabel>End Date</StyledInputLabel>
+                      <StyledInputLabel>{endDateLabel}</StyledInputLabel>
                       {this.renderInputComponent(locale, 'endDate')}
                     </StyledEndDate>
                   </>
