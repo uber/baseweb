@@ -25,8 +25,8 @@ export default (
   buttonPrimaryActive: themePrimitives.primary600,
   buttonPrimarySelectedFill: themePrimitives.primary600,
   buttonPrimarySelectedText: themePrimitives.white,
-  buttonPrimarySpinnerForeground: themePrimitives.primary50,
-  buttonPrimarySpinnerBackground: themePrimitives.primary500,
+  buttonPrimarySpinnerForeground: themePrimitives.accent,
+  buttonPrimarySpinnerBackground: themePrimitives.primaryB,
 
   buttonSecondaryFill: themePrimitives.primary100,
   buttonSecondaryText: themePrimitives.primary,
@@ -34,8 +34,8 @@ export default (
   buttonSecondaryActive: themePrimitives.primary300,
   buttonSecondarySelectedFill: themePrimitives.primary300,
   buttonSecondarySelectedText: themePrimitives.primary,
-  buttonSecondarySpinnerForeground: themePrimitives.primary700,
-  buttonSecondarySpinnerBackground: themePrimitives.primary300,
+  buttonSecondarySpinnerForeground: themePrimitives.accent,
+  buttonSecondarySpinnerBackground: themePrimitives.primaryB,
 
   buttonTertiaryFill: 'transparent',
   buttonTertiaryText: themePrimitives.primary,
@@ -43,8 +43,8 @@ export default (
   buttonTertiaryActive: themePrimitives.primary100,
   buttonTertiarySelectedFill: themePrimitives.primary100,
   buttonTertiarySelectedText: themePrimitives.primary,
-  buttonTertiarySpinnerForeground: themePrimitives.primary700,
-  buttonTertiarySpinnerBackground: themePrimitives.primary300,
+  buttonTertiarySpinnerForeground: themePrimitives.accent,
+  buttonTertiarySpinnerBackground: themePrimitives.primary100,
 
   buttonMinimalFill: 'transparent',
   buttonMinimalText: themePrimitives.primary,
@@ -52,8 +52,8 @@ export default (
   buttonMinimalActive: themePrimitives.primary100,
   buttonMinimalSelectedFill: themePrimitives.primary100,
   buttonMinimalSelectedText: themePrimitives.primary,
-  buttonMinimalSpinnerForeground: themePrimitives.primary700,
-  buttonMinimalSpinnerBackground: themePrimitives.primary300,
+  buttonMinimalSpinnerForeground: themePrimitives.accent,
+  buttonMinimalSpinnerBackground: themePrimitives.primary100,
 
   buttonDisabledFill: themePrimitives.mono200,
   buttonDisabledText: themePrimitives.mono600,
@@ -107,7 +107,7 @@ export default (
 
   // List
   listHeaderFill: themePrimitives.white,
-  listBodyFill: themePrimitives.mono200,
+  listBodyFill: themePrimitives.white,
   listIconFill: themePrimitives.mono500,
   listBorder: themePrimitives.mono500,
 

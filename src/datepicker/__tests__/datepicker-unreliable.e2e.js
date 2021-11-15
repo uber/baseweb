@@ -58,13 +58,13 @@ describe('Datepicker', () => {
     await mount(page, 'datepicker--datepicker');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
-    await page.waitForSelector(selectors.monthYearSelectButton);
-    await page.click(selectors.monthYearSelectButton);
-    await page.waitForSelector(selectors.monthYearSelectMenu);
+    const [, year] = await page.$$(selectors.monthYearSelectButton);
 
+    await year.click();
+    await page.waitForSelector(selectors.monthYearSelectMenu);
     await page.$$eval('ul[role="listbox"] li', items => {
       const option = items.find(item => {
-        return item.textContent === 'March 2018';
+        return item.textContent === '2018';
       });
       return option.click();
     });
@@ -78,13 +78,13 @@ describe('Datepicker', () => {
     await mount(page, 'datepicker--datepicker');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
-    await page.waitForSelector(selectors.monthYearSelectButton);
-    await page.click(selectors.monthYearSelectButton);
-    await page.waitForSelector(selectors.monthYearSelectMenu);
+    const [month] = await page.$$(selectors.monthYearSelectButton);
 
+    await month.click();
+    await page.waitForSelector(selectors.monthYearSelectMenu);
     await page.$$eval('ul[role="listbox"] li', items => {
       const option = items.find(item => {
-        return item.textContent === 'July 2019';
+        return item.textContent === 'July';
       });
       return option.click();
     });
@@ -98,13 +98,22 @@ describe('Datepicker', () => {
     await mount(page, 'datepicker--datepicker');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
-    await page.waitForSelector(selectors.monthYearSelectButton);
-    await page.click(selectors.monthYearSelectButton);
-    await page.waitForSelector(selectors.monthYearSelectMenu);
+    const [month, year] = await page.$$(selectors.monthYearSelectButton);
 
+    await year.click();
+    await page.waitForSelector(selectors.monthYearSelectMenu);
     await page.$$eval('ul[role="listbox"] li', items => {
       const option = items.find(item => {
-        return item.textContent === 'January 2000';
+        return item.textContent === '2000';
+      });
+      return option.click();
+    });
+
+    await month.click();
+    await page.waitForSelector(selectors.monthYearSelectMenu);
+    await page.$$eval('ul[role="listbox"] li', items => {
+      const option = items.find(item => {
+        return item.textContent === 'January';
       });
       return option.click();
     });
@@ -112,20 +121,29 @@ describe('Datepicker', () => {
     await page.click(selectors.leftArrow);
     const value = await page.$(selectors.monthYearSelectButton);
     const text = await page.evaluate(element => element.textContent, value);
-    expect(text).toBe('January 2000');
+    expect(text).toBe('January');
   });
 
   it('disables next month button if maximum month is selected', async () => {
     await mount(page, 'datepicker--datepicker');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
-    await page.waitForSelector(selectors.monthYearSelectButton);
-    await page.click(selectors.monthYearSelectButton);
-    await page.waitForSelector(selectors.monthYearSelectMenu);
+    const [month, year] = await page.$$(selectors.monthYearSelectButton);
 
+    await year.click();
+    await page.waitForSelector(selectors.monthYearSelectMenu);
     await page.$$eval('ul[role="listbox"] li', items => {
       const option = items.find(item => {
-        return item.textContent === 'December 2030';
+        return item.textContent === '2030';
+      });
+      return option.click();
+    });
+
+    await month.click();
+    await page.waitForSelector(selectors.monthYearSelectMenu);
+    await page.$$eval('ul[role="listbox"] li', items => {
+      const option = items.find(item => {
+        return item.textContent === 'December';
       });
       return option.click();
     });
@@ -133,7 +151,7 @@ describe('Datepicker', () => {
     await page.click(selectors.rightArrow);
     const value = await page.$(selectors.monthYearSelectButton);
     const text = await page.evaluate(element => element.textContent, value);
-    expect(text).toBe('December 2030');
+    expect(text).toBe('December');
   });
 
   it('selects day when typed', async () => {
