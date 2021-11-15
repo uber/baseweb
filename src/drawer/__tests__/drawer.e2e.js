@@ -48,10 +48,7 @@ describe('drawer', () => {
     expect(closeButtonIsFocused).toBe(true);
 
     // drawer should be accessible
-    const accessibilityReport = await analyzeAccessibility(page, {
-      // disable tabindex rule because react-focus-lock uses tabindex to trap focus
-      rules: [{id: 'tabindex', enabled: false}],
-    });
+    const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
 
     // close again
