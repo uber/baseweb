@@ -13,7 +13,12 @@ import Calendar from './calendar.js';
 import {getOverrides} from '../helpers/overrides.js';
 import getInterpolatedString from '../helpers/i18n-interpolation.js';
 import {LocaleContext} from '../locale/index.js';
-import {StyledInputWrapper, StyledInputLabel} from './styled-components.js';
+import {
+  StyledInputWrapper,
+  StyledInputLabel,
+  StyledStartDate,
+  StyledEndDate,
+} from './styled-components.js';
 import type {DatepickerPropsT} from './types.js';
 import DateHelpers from './utils/date-helpers.js';
 import dateFnsAdapter from './utils/date-fns-adapter.js';
@@ -530,14 +535,14 @@ export default class Datepicker<T = Date> extends React.Component<
               >
                 {this.props.range && this.props.separateRangeInputs ? (
                   <>
-                    <div style={{width: '100%', marginRight: '8px'}}>
+                    <StyledStartDate>
                       <StyledInputLabel>Start Date</StyledInputLabel>
                       {this.renderInputComponent(locale, 'startDate')}
-                    </div>
-                    <div style={{width: '100%'}}>
+                    </StyledStartDate>
+                    <StyledEndDate>
                       <StyledInputLabel>End Date</StyledInputLabel>
                       {this.renderInputComponent(locale, 'endDate')}
-                    </div>
+                    </StyledEndDate>
                   </>
                 ) : (
                   <>{this.renderInputComponent(locale)}</>

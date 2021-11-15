@@ -32,6 +32,15 @@ export const StyledInputLabel = styled<{}>('div', ({$theme}) => ({
   marginBottom: $theme.sizing.scale300,
 }));
 
+export const StyledStartDate = styled<{}>('div', ({$theme}) => ({
+  width: '100%',
+  marginRight: $theme.sizing.scale300,
+}));
+
+export const StyledEndDate = styled<{}>('div', ({$theme}) => ({
+  width: '100%',
+}));
+
 /**
  * Main component container element
  */
