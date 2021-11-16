@@ -122,6 +122,27 @@ export default function HeaderNavigation({
             Components
           </Button>
         </Link>
+
+        {/* Link to blog */}
+        <Link href="/blog" passHref>
+          <Button
+            $as="a"
+            size={SIZE.compact}
+            kind={KIND.minimal}
+            overrides={{
+              BaseButton: {
+                style: {
+                  display: 'none',
+                  [mq(1000)]: {
+                    display: 'block',
+                  },
+                },
+              },
+            }}
+          >
+            Blog
+          </Button>
+        </Link>
       </div>
 
       {/* Search */}
