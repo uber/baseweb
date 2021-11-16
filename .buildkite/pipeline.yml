@@ -157,6 +157,7 @@ steps:
           - e2e-server-healthy
     agents:
       queue: workers
+
   - name: vrt
     command: yarn vrt:ci
     artifact_paths:
@@ -167,6 +168,14 @@ steps:
         pull:
           - e2e-server
           - e2e-server-healthy
+    agents:
+      queue: workers
+
+  - name: 'Bundle size'
+    command: 'node --unhandled-rejections=strict scripts/collect-bundle-sizes.js'
+    plugins:
+      'docker-compose#v3.0.3':
+        run: baseui
     agents:
       queue: workers
 
