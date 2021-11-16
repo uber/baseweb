@@ -20,6 +20,7 @@ export default function Example() {
       <StatefulTooltip
         accessibilityType={'tooltip'}
         content={ComplexContent}
+        autoFocus
       >
         <span
           className={css({
@@ -35,6 +36,9 @@ export default function Example() {
       </StatefulTooltip>
       . Tooltips are essentially just a Popover with a few style
       tweaks, so you can use all the features that Popover supports.
+      Tooltips with interactive content, such as links or buttons,
+      should use the autoFocus or focusLock props. This ensures the
+      content is within the keyboard tab order of the page.
     </div>
   );
 }

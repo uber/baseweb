@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 
 /* eslint-env node */
+/* global document */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
@@ -23,7 +24,7 @@ function wait(ms) {
 }
 
 describe('snackbar', () => {
-  jest.setTimeout(10 * 1000);
+  jest.setTimeout(50 * 1000);
 
   it('passes basic a11y tests', async () => {
     await mount(page, 'snackbar--provider');
@@ -76,5 +77,35 @@ describe('snackbar', () => {
 
     const snackbar = await page.$(selectors.root);
     expect(snackbar).toBeNull();
+  });
+
+  it('handles asynchronous enqueue', async () => {
+    await mount(page, 'snackbar--async');
+    await page.click(selectors.enqueueOne);
+
+    await page.waitForFunction(() => {
+      const el = document.querySelector('div[data-testid="snackbar-root"]');
+      return el && el.textContent === '1';
+    });
+
+    await page.waitForFunction(() => {
+      const el = document.querySelector('div[data-testid="snackbar-root"]');
+      return el && el.textContent === '2';
+    });
+
+    await page.waitForFunction(() => {
+      const el = document.querySelector('div[data-testid="snackbar-root"]');
+      return el && el.textContent === '3';
+    });
+
+    await page.waitForFunction(() => {
+      const el = document.querySelector('div[data-testid="snackbar-root"]');
+      return el && el.textContent === '4';
+    });
+
+    await page.waitForFunction(() => {
+      const el = document.querySelector('div[data-testid="snackbar-root"]');
+      return el && el.textContent === '5';
+    });
   });
 });
