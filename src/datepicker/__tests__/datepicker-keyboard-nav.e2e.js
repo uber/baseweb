@@ -153,7 +153,7 @@ describe('Datepicker - keyboard navigation', () => {
     // check that selected date shows up in the input
     let inputValue = await page.$eval(selectors.input, input => input.value);
     // get rid of any whitespaces in the value to compare
-    expect(inputValue.replace(/\s/g, '')).toBe('2019/03/12–//');
+    expect(inputValue.replace(/\s/g, '')).toBe('2019/03/12');
 
     // navigate to the Mar 16 and select the second date
     await page.keyboard.press('ArrowRight');
