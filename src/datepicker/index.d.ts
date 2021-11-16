@@ -148,6 +148,9 @@ export interface DatepickerOverrides<T> {
   Input?: Override<T>;
   InputWrapper?: Override<T>;
   Popover?: Override<T>;
+  StartDate?: Override<T>;
+  EndDate?: Override<T>;
+  InputLabel?: Override<T>;
 }
 export type DatepickerProps = CalendarProps & {
   'aria-label'?: string;

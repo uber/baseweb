@@ -506,6 +506,18 @@ export default class Datepicker<T = Date> extends React.Component<
       overrides.InputWrapper,
       StyledInputWrapper,
     );
+    const [StartDate, startDateProps] = getOverrides(
+      overrides.StartDate,
+      StyledStartDate,
+    );
+    const [EndDate, endDateProps] = getOverrides(
+      overrides.EndDate,
+      StyledEndDate,
+    );
+    const [InputLabel, inputLabelProps] = getOverrides(
+      overrides.InputLabel,
+      StyledInputLabel,
+    );
 
     return (
       <LocaleContext.Consumer>
@@ -539,14 +551,18 @@ export default class Datepicker<T = Date> extends React.Component<
               >
                 {this.props.range && this.props.separateRangeInputs ? (
                   <>
-                    <StyledStartDate>
-                      <StyledInputLabel>{startDateLabel}</StyledInputLabel>
+                    <StartDate {...startDateProps}>
+                      <InputLabel {...inputLabelProps}>
+                        {startDateLabel}
+                      </InputLabel>
                       {this.renderInputComponent(locale, 'startDate')}
-                    </StyledStartDate>
-                    <StyledEndDate>
-                      <StyledInputLabel>{endDateLabel}</StyledInputLabel>
+                    </StartDate>
+                    <EndDate {...endDateProps}>
+                      <InputLabel {...inputLabelProps}>
+                        {endDateLabel}
+                      </InputLabel>
                       {this.renderInputComponent(locale, 'endDate')}
-                    </StyledEndDate>
+                    </EndDate>
                   </>
                 ) : (
                   <>{this.renderInputComponent(locale)}</>
