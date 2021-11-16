@@ -43,6 +43,14 @@ export function useSnackbar() {
   return {enqueue: context.enqueue, dequeue: context.dequeue};
 }
 
+function usePrevious(value) {
+  const ref = React.useRef();
+  React.useEffect(() => {
+    ref.current = value;
+  });
+  return ref.current;
+}
+
 export default function SnackbarProvider({
   children,
   overrides = {},
@@ -61,12 +69,16 @@ export default function SnackbarProvider({
 
   function enqueue(elementProps, duration = defaultDuration) {
     setSnackbars(prev => {
-      if (prev.length === 0) {
-        enter(duration);
-      }
       return [...prev, {elementProps, duration}];
     });
   }
+
+  const prevSnackbars = usePrevious(snackbars) || [];
+  React.useEffect(() => {
+    if (prevSnackbars.length === 0 && snackbars.length >= 1) {
+      enter(snackbars[0].duration);
+    }
+  }, [snackbars, prevSnackbars]);
 
   function dequeue() {
     setContainerHeight(0);
