@@ -215,7 +215,7 @@ export default class Datepicker<T = Date> extends React.Component<
           '9',
         );
       } else {
-        return normalizedFormatString.replace(/[a-z]/gi, '9');
+        return null;
       }
     }
 
@@ -229,6 +229,7 @@ export default class Datepicker<T = Date> extends React.Component<
   handleInputChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
     const inputValue = event.currentTarget.value;
     const mask = this.getMask();
+    const formatString = this.normalizeDashes(this.props.formatString);
 
     if (
       (typeof mask === 'string' && inputValue === mask.replace(/9/g, ' ')) ||
@@ -245,7 +246,6 @@ export default class Datepicker<T = Date> extends React.Component<
 
     this.setState({inputValue});
 
-    const formatString = this.normalizeDashes(this.props.formatString);
     const parseDateString = dateString => {
       if (formatString === DEFAULT_DATE_FORMAT) {
         return this.dateHelpers.parse(
