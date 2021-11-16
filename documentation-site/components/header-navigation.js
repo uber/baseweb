@@ -89,7 +89,6 @@ export default function HeaderNavigation({
             />
           </a>
         </Link>
-
         {/* Version Selector */}
         <div
           className={css({
@@ -101,7 +100,6 @@ export default function HeaderNavigation({
         >
           <VersionSelector />
         </div>
-
         {/* Link to blog */}
         <Link href="/blog" passHref>
           <Button
@@ -122,28 +120,27 @@ export default function HeaderNavigation({
             Blog
           </Button>
         </Link>
-      </div>
-
-      {/* Link to component gallery */}
-      <Link href="/components" passHref>
-        <Button
-          $as="a"
-          size={SIZE.compact}
-          kind={KIND.minimal}
-          overrides={{
-            BaseButton: {
-              style: {
-                display: 'none',
-                [mq(1000)]: {
-                  display: 'block',
+        {/* Link to component gallery */}
+        <Link href="/components" passHref>
+          <Button
+            $as="a"
+            size={SIZE.compact}
+            kind={KIND.minimal}
+            overrides={{
+              BaseButton: {
+                style: {
+                  display: 'none',
+                  [mq(1000)]: {
+                    display: 'block',
+                  },
                 },
               },
-            },
-          }}
-        >
-          Components
-        </Button>
-      </Link>
+            }}
+          >
+            Components
+          </Button>
+        </Link>
+      </div>
 
       {/* Search */}
       <div
