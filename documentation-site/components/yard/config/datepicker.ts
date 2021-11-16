@@ -127,6 +127,18 @@ const DatepickerConfig: TConfig = {
         'A date label function (Date => Node) that is called with the current date to return a label to be used below the date. If a falsy response is returned, no label will be shown but the taller day will be rendered. ',
       hidden: true,
     },
+    startDateLabel: {
+      type: PropTypes.String,
+      hidden: true,
+      placeholder: 'Start Date',
+      description: '',
+    },
+    endDateLabel: {
+      type: PropTypes.String,
+      placeholder: 'End Date',
+      hidden: true,
+      description: '',
+    },
     highlightDate: {
       value: undefined,
       type: PropTypes.Date,
