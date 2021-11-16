@@ -8,8 +8,8 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import Component from './modal.scenario.js';
+import {Scenario as Component} from './modal.scenario.js';
 
-export default function Scenario() {
+export function Scenario() {
   return <Component closeable={false} />;
 }

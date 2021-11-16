@@ -11,7 +11,7 @@ import * as React from 'react';
 import Search from '../../icon/search.js';
 import {ListItem, ListItemLabel, ARTWORK_SIZES} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <div
       style={{width: '375px', padding: '24px', backgroundColor: 'lightgreen'}}

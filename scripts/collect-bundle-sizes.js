@@ -43,9 +43,10 @@ async function main() {
   // save the data to buildkite artifacts
   // if current data is substantially larger then fail the job
 
-  execSync('yarn ladle build --out build-ladle', {
-    stdio: 'inherit',
-  });
+  execSync(
+    'yarn ladle build --out build-ladle --stories src/**/*.scenario.js',
+    {stdio: 'inherit'},
+  );
   const ladle = spawn('yarn', ['static-server', 'build-ladle', '--port', PORT]);
   ladle.stderr.on('data', data => console.error(`ladle error: ${data}`));
   await waitForPort(PORT);

@@ -10,7 +10,7 @@ import React from 'react';
 
 import {StatefulPinCode} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <>
       <StatefulPinCode size="compact" />

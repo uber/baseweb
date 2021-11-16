@@ -12,7 +12,7 @@ import {StatefulInput} from '../index.js';
 import {Block} from '../../block/index.js';
 import {Search} from '../../icon/index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <>
       <StatefulInput
@@ -27,6 +27,7 @@ export default function Scenario() {
           ),
         }}
       />
+
       <br />
       <StatefulInput
         initialState={{value: 'Active'}}
@@ -41,6 +42,7 @@ export default function Scenario() {
           ),
         }}
       />
+
       <br />
       <StatefulInput
         initialState={{value: 'Positive'}}
@@ -55,6 +57,7 @@ export default function Scenario() {
           ),
         }}
       />
+
       <br />
       <StatefulInput
         initialState={{value: 'Error'}}
@@ -69,6 +72,7 @@ export default function Scenario() {
           ),
         }}
       />
+
       <br />
       <StatefulInput
         initialState={{value: 'Disabled'}}

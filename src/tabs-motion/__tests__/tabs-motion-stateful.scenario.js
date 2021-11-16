@@ -13,7 +13,7 @@ import * as React from 'react';
 import {Tab, StatefulTabs} from '../index.js';
 import {Button, KIND} from '../../button/index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <StatefulTabs>
       <Tab title="Robot">

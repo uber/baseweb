@@ -26,7 +26,7 @@ const data = Array(100)
     'Cell six',
   ]);
 
-export default function Scenario() {
+export function Scenario() {
   const {getCellProps} = useCellNavigation();
   const [css] = useStyletron();
   return (

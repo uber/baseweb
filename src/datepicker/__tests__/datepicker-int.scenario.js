@@ -11,7 +11,7 @@ import * as React from 'react';
 import {StatefulDatepicker} from '../index.js';
 import {hu} from 'date-fns/locale/index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <StatefulDatepicker
       aria-label="Select a date"

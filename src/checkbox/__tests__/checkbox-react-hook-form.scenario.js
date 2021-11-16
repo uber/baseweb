@@ -106,6 +106,6 @@ const Example = () => {
   );
 };
 
-export default function Scenario() {
+export function Scenario() {
   return <Example />;
 }

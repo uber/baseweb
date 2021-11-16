@@ -10,7 +10,7 @@ import React from 'react';
 import {Grid, Cell, ALIGNMENT} from '../index.js';
 import Inner from './inner.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <>
       {/* No alignment specified. (defaults to `normal`) */}

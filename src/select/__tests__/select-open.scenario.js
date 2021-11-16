@@ -10,7 +10,7 @@ import React from 'react';
 
 import {StatefulSelect} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <div>
       <StatefulSelect
@@ -21,6 +21,7 @@ export default function Scenario() {
           {id: 'c', label: 'look at me!'},
         ]}
       />
+
       <div style={{overflow: 'auto', marginTop: '200px', height: '100%'}}>
         <StatefulSelect
           startOpen

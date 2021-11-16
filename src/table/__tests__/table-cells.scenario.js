@@ -78,6 +78,7 @@ const panelOverrides = {
       borderBottomColor: $expanded ? colors.mono500 : 'transparent',
     }),
   },
+
   Header: {
     style: ({$theme: {sizing, typography}}) => ({
       ...typography.font300,
@@ -94,6 +95,7 @@ const panelOverrides = {
       },
     }),
   },
+
   Content: {
     style: ({$theme: {colors, sizing}}) => ({
       backgroundColor: colors.mono200,
@@ -104,6 +106,7 @@ const panelOverrides = {
       paddingRight: sizing.scale600,
     }),
   },
+
   ToggleIcon: {
     style: ({$theme: {colors, sizing}}) => ({
       color: colors.mono600,
@@ -121,6 +124,7 @@ const DATA = [
     1234.5,
     {title: 'New York', data: '100 Broadway st. New York City, New York'},
   ],
+
   [
     'Luther',
     'Marketing',
@@ -129,6 +133,7 @@ const DATA = [
     2435.2,
     {title: 'California', data: '100 Market st. San Francisco, California'},
   ],
+
   [
     'Kiera',
     'Operations',
@@ -137,6 +142,7 @@ const DATA = [
     8348.1,
     {title: 'Australia', data: '100 Macquarie st. Sydney, Australia'},
   ],
+
   [
     'Edna',
     'Design',
@@ -145,6 +151,7 @@ const DATA = [
     2893.4,
     {title: 'New York', data: '100 Broadway st. New York City, New York'},
   ],
+
   [
     'Soraya',
     'Finance',
@@ -153,6 +160,7 @@ const DATA = [
     8787.3,
     {title: 'California', data: '100 Market st. San Francisco, California'},
   ],
+
   [
     'Dorris',
     'Legal',
@@ -161,6 +169,7 @@ const DATA = [
     6325.2,
     {title: 'Australia', data: '100 Macquarie st. Sydney, Australia'},
   ],
+
   [
     'Astrid',
     'Product',
@@ -169,6 +178,7 @@ const DATA = [
     7392.7,
     {title: 'New York', data: '100 Broadway st. New York City, New York'},
   ],
+
   [
     'Wendie',
     'Engineering',
@@ -177,6 +187,7 @@ const DATA = [
     9283.1,
     {title: 'California', data: '100 Market st. San Francisco, California'},
   ],
+
   [
     'Marna',
     'Marketing',
@@ -185,6 +196,7 @@ const DATA = [
     7720.9,
     {title: 'Australia', data: '100 Macquarie st. Sydney, Australia'},
   ],
+
   [
     'Malka',
     'Operations',
@@ -193,6 +205,7 @@ const DATA = [
     6273.3,
     {title: 'New York', data: '100 Broadway st. New York City, New York'},
   ],
+
   [
     'Jospeh',
     'Design',
@@ -201,6 +214,7 @@ const DATA = [
     8837.4,
     {title: 'California', data: '100 Market st. San Francisco, California'},
   ],
+
   [
     'Roselee',
     'Finance',
@@ -209,6 +223,7 @@ const DATA = [
     9277.9,
     {title: 'Australia', data: '100 Macquarie st. Sydney, Australia'},
   ],
+
   [
     'Justine',
     'Legal',
@@ -217,6 +232,7 @@ const DATA = [
     7737.2,
     {title: 'New York', data: '100 Broadway st. New York City, New York'},
   ],
+
   [
     'Marlon',
     'Engineering',
@@ -225,6 +241,7 @@ const DATA = [
     2330.3,
     {title: 'California', data: '100 Market st. San Francisco, California'},
   ],
+
   [
     'Mellissa',
     'Marketing',
@@ -233,6 +250,7 @@ const DATA = [
     4458.8,
     {title: 'Australia', data: '100 Macquarie st. Sydney, Australia'},
   ],
+
   [
     'Fausto',
     'Operations',
@@ -241,6 +259,7 @@ const DATA = [
     6363.9,
     {title: 'New York', data: '100 Broadway st. New York City, New York'},
   ],
+
   [
     'Alfredia',
     'Design',
@@ -249,6 +268,7 @@ const DATA = [
     2235.2,
     {title: 'California', data: '100 Market st. San Francisco, California'},
   ],
+
   [
     'Abel',
     'Finance',
@@ -257,6 +277,7 @@ const DATA = [
     9882.3,
     {title: 'Australia', data: '100 Macquarie st. Sydney, Australia'},
   ],
+
   [
     'Winford',
     'Legal',
@@ -265,6 +286,7 @@ const DATA = [
     8774.7,
     {title: 'New York', data: '100 Broadway st. New York City, New York'},
   ],
+
   [
     'Neil',
     'Product',
@@ -275,7 +297,7 @@ const DATA = [
   ],
 ];
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <div style={{height: '500px', width: '900px'}}>
       <StyledTable>

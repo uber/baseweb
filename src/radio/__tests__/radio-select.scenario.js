@@ -13,7 +13,7 @@ import {StatefulRadioGroup, Radio, ALIGN} from '../index.js';
 import {FormControl} from '../../form-control/index.js';
 import {Select} from '../../select/index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <FormControl label="Test-label">
       <StatefulRadioGroup name="number" align={ALIGN.vertical}>

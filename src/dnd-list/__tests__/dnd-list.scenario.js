@@ -10,7 +10,7 @@ import * as React from 'react';
 
 import {StatefulList} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <StatefulList
       initialState={{

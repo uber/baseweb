@@ -10,7 +10,7 @@ import React from 'react';
 import {Grid, Cell, STYLE} from '../index.js';
 import Inner from './inner.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <>
       <Grid gridStyle={STYLE.compact}>

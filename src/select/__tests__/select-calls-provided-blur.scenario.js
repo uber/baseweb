@@ -10,7 +10,7 @@ import React from 'react';
 
 import {StatefulSelect} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   const [blurCount, setBlurCount] = React.useState(0);
   return (
     <React.Fragment>
@@ -23,6 +23,7 @@ export default function Scenario() {
           {id: 'c', label: 'look at me!'},
         ]}
       />
+
       <button>focus target</button>
       <p>{blurCount}</p>
     </React.Fragment>

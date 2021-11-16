@@ -10,6 +10,6 @@ import * as React from 'react';
 
 import {StatefulDatepicker} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return <StatefulDatepicker range />;
 }

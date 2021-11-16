@@ -11,7 +11,7 @@ import {Button} from '../../button/index.js';
 import {StatefulSelect} from '../../select/index.js';
 import {Drawer} from '../index.js';
 
-const Example = () => {
+export function Scenario() {
   const [isOpen, setIsOpen] = React.useState(true);
   return (
     <div>
@@ -43,6 +43,4 @@ const Example = () => {
       </Drawer>
     </div>
   );
-};
-
-export default Example;
+}

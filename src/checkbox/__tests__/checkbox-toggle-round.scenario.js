@@ -10,7 +10,7 @@ import * as React from 'react';
 
 import {Checkbox, STYLE_TYPE} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <div style={{width: '200px'}}>
       <Checkbox checkmarkType={STYLE_TYPE.toggle_round}>

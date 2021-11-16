@@ -14,7 +14,7 @@ import {useStyletron} from '../../styles/index.js';
 
 import {SnackbarElement} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   const [css] = useStyletron();
   return (
     <div style={{margin: '16px'}}>

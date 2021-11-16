@@ -20,7 +20,7 @@ function getColumn(index) {
 
 const rows = new Array(5).fill().map((_, i) => ({id: i, data: {}}));
 
-export default function Scenario() {
+export function Scenario() {
   const [columns, setColumns] = React.useState([getColumn(0), getColumn(1)]);
   return (
     <div>

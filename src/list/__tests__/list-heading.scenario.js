@@ -11,7 +11,7 @@ import * as React from 'react';
 import {Button} from '../../button/index.js';
 import {ListHeading} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <div
       style={{
@@ -31,6 +31,7 @@ export default function Scenario() {
         endEnhancer="Enhancer Text"
         endEnhancerDescription="Description"
       />
+
       <ListHeading
         heading="Heading"
         subHeading="Sub heading"
@@ -45,18 +46,21 @@ export default function Scenario() {
         endEnhancer="Enhancer Text"
         endEnhancerDescription="Description"
       />
+
       <ListHeading
         heading="Overflow 2 lines content is too long"
         endEnhancer="Enhancer Text"
         endEnhancerDescription="Description"
         maxLines={2}
       />
+
       <ListHeading
         heading="Overflow 1 line content is too long"
         subHeading="Sub heading"
         endEnhancer="Enhancer Text"
         endEnhancerDescription="Description"
       />
+
       <ListHeading
         heading="Overflow 2 lines content is too long shoo deee booo ooop"
         subHeading="Sub heading"
@@ -64,6 +68,7 @@ export default function Scenario() {
         endEnhancerDescription="Description"
         maxLines={2}
       />
+
       <ListHeading
         heading="Overflow 2 lines content is far too long basically a full paragraph"
         subHeading="Sub heading content is also too long ya da da da doop be doo"
@@ -83,6 +88,7 @@ export default function Scenario() {
           </Button>
         )}
       />
+
       <ListHeading
         heading="Overflow 2 lines content is too long"
         subHeading="Sub heading"
@@ -93,6 +99,7 @@ export default function Scenario() {
         )}
         maxLines={2}
       />
+
       <ListHeading
         heading="Overflow 2 lines content is too long"
         subHeading="Style overrides for endEnhancer"
@@ -110,6 +117,7 @@ export default function Scenario() {
           },
         }}
       />
+
       <ListHeading
         heading="Heading"
         subHeading="Description not rendered"
@@ -132,10 +140,12 @@ export default function Scenario() {
           </Button>
         }
       />
+
       <ListHeading
         heading={() => <span>Heading component</span>}
         subHeading={() => <span>Sub heading component</span>}
       />
+
       <ListHeading
         heading="Short"
         subHeading="Short"

@@ -10,7 +10,7 @@ import * as React from 'react';
 
 import {ProgressBar} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <ProgressBar
       value={20}

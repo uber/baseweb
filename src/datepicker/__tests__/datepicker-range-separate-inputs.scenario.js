@@ -10,7 +10,7 @@ import * as React from 'react';
 
 import {StyledDay, StatefulDatepicker} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <div>
       <StatefulDatepicker
@@ -50,7 +50,7 @@ export default function Scenario() {
         overrides={{
           Day: {
             // eslint-disable-next-line react/display-name
-            component: props => (
+            component: (props) => (
               <StyledDay data-highlighted={props.$isHighlighted} {...props} />
             ),
           },

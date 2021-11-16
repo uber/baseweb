@@ -10,7 +10,7 @@ import * as React from 'react';
 
 import {Button, KIND} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <table>
       <tbody>

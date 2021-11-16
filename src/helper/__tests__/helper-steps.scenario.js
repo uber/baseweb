@@ -14,7 +14,7 @@ import {Unstable_HelperSteps as HelperSteps} from '../index.js';
 
 const LENGTH = 5;
 
-export default function Scenario() {
+export function Scenario() {
   const [css, theme] = useStyletron();
   const [index, setIndex] = React.useState(0);
   const [finished, setFinished] = React.useState(false);
@@ -40,6 +40,7 @@ export default function Scenario() {
         onPrev={handlePrev}
         onNext={handleNext}
       />
+
       <div className={css({color: theme.colors.contentPrimary})}>
         <p>current step index: {index}</p>
         <p>is finished: {String(finished)}</p>

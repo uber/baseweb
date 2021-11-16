@@ -10,7 +10,7 @@ import * as React from 'react';
 import {Upload} from '../../icon/index.js';
 import {Tag} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <div>
       <Tag>Default Color with long text</Tag>

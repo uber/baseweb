@@ -22,13 +22,14 @@ const columns = [
     title: 'row-id',
     mapDataToValue: (data: RowDataT) => data[0],
   }),
+
   BooleanColumn({
     title: 'is-it-flagged',
     mapDataToValue: (data: RowDataT) => data[1],
   }),
 ];
 
-export default function Scenario() {
+export function Scenario() {
   const [count, setCount] = React.useState(0);
   const [rows, setRows] = React.useState([
     {id: 1, data: [1, false]},
@@ -66,6 +67,7 @@ export default function Scenario() {
         return <Alert size={size} />;
       },
     },
+
     {
       label: 'Approve',
       onClick: ({selection, clearSelection}) => {
@@ -76,6 +78,7 @@ export default function Scenario() {
         return <Check size={size} />;
       },
     },
+
     {
       label: 'Download',
       onClick: ({clearSelection}) => clearSelection(),

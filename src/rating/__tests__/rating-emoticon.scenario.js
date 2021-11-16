@@ -10,7 +10,7 @@ import * as React from 'react';
 
 import {EmoticonRating} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   const [value, setValue] = React.useState(3);
   return (
     <EmoticonRating value={value} onChange={({value: v}) => setValue(v)} />

@@ -11,7 +11,7 @@ import * as React from 'react';
 import {Avatar} from '../index.js';
 import imageFile from './static/adorable.png';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <React.Fragment>
       {['scale800', 'scale1000', 'scale1200', 'scale1400', '64px'].map(

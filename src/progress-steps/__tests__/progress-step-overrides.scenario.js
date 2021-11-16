@@ -11,7 +11,7 @@ import * as React from 'react';
 import {ProgressSteps, Step} from '../index.js';
 import {useStyletron} from '../../styles/index.js';
 
-function ProgressStepsContainer() {
+export function Scenario() {
   const [current] = React.useState(0);
   const [useCss, theme] = useStyletron();
   return (
@@ -33,5 +33,3 @@ function ProgressStepsContainer() {
     </ProgressSteps>
   );
 }
-
-export default ProgressStepsContainer;

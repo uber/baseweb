@@ -9,7 +9,7 @@ import * as React from 'react';
 import {Button} from '../../button/index.js';
 import {toaster, ToasterContainer, PLACEMENT} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <React.Fragment>
       <ToasterContainer placement={PLACEMENT.bottomRight} autoFocus />

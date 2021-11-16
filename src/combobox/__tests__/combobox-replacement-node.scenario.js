@@ -39,12 +39,13 @@ function ReplacementNode({isSelected, option}) {
           width: '12px',
         })}
       />
+
       {option.label}
     </div>
   );
 }
 
-function Example() {
+export function Scenario() {
   const [css] = useStyletron();
   const [value, setValue] = React.useState('');
   return (
@@ -59,5 +60,3 @@ function Example() {
     </div>
   );
 }
-
-export default Example;

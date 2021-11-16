@@ -7,11 +7,11 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import CardImageLink from './card-image-link.scenario.js';
-import CardImageObject from './card-image-object.scenario.js';
-import CardTextOnly from './card-text-only.scenario.js';
-import CardDefault from './card.scenario.js';
-import CardHeaderLevel from './card-header-level.scenario.js';
+import {Scenario as CardImageLink} from './card-image-link.scenario.js';
+import {Scenario as CardImageObject} from './card-image-object.scenario.js';
+import {Scenario as CardTextOnly} from './card-text-only.scenario.js';
+import {Scenario as CardDefault} from './card.scenario.js';
+import {Scenario as CardHeaderLevel} from './card-header-level.scenario.js';
 
 export const ImageLink = () => <CardImageLink />;
 export const ImageObject = () => <CardImageObject />;

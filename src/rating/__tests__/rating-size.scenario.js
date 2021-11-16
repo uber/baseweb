@@ -10,7 +10,7 @@ import * as React from 'react';
 
 import {EmoticonRating, StarRating} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   const [value, setValue] = React.useState(3);
   return (
     <div>
@@ -19,6 +19,7 @@ export default function Scenario() {
         value={value}
         onChange={({value: v}) => setValue(v)}
       />
+
       <br />
 
       <EmoticonRating value={value} onChange={({value: v}) => setValue(v)} />
@@ -29,6 +30,7 @@ export default function Scenario() {
         value={value}
         onChange={({value: v}) => setValue(v)}
       />
+
       <br />
 
       <StarRating value={value} onChange={({value: v}) => setValue(v)} />

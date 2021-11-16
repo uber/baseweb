@@ -31,6 +31,7 @@ const childMenu = items => (
         style: {width: '300px'},
         props: {'data-e2e': 'child-menu'},
       },
+
       Option: {
         props: {
           size: 'compact',
@@ -40,7 +41,7 @@ const childMenu = items => (
   />
 );
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <NestedMenus>
       <StatefulMenu
@@ -51,6 +52,7 @@ export default function Scenario() {
             style: {width: '300px', overflow: 'auto'},
             props: {'data-e2e': 'parent-menu'},
           },
+
           Option: {
             props: {
               size: 'compact',

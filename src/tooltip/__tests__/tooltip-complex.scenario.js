@@ -22,7 +22,7 @@ function ComplexContent() {
   );
 }
 
-export default function Scenario() {
+export function Scenario() {
   const [css, theme] = useStyletron();
   return (
     <React.Fragment>

@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import {SIZE, PhoneInputNext, StatefulPhoneInputNext} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <React.Fragment>
       <p>Uncontrolled (Stateful)</p>
@@ -17,11 +17,13 @@ export default function Scenario() {
         onCountryChange={e => console.log('COUNTRY_CHANGED_1:', e)}
         onTextChange={e => console.log('NUMBER_CHANGED_1:', e)}
       />
+
       <p>Controlled (Stateless)</p>
       <PhoneInputNext
         onCountryChange={e => console.log('COUNTRY_CHANGED:', e)}
         onTextChange={e => console.log('NUMBER_CHANGED:', e)}
       />
+
       <p>Sizes</p>
       <StatefulPhoneInputNext size={SIZE.mini} />
       <br />

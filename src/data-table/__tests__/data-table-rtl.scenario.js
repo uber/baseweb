@@ -30,7 +30,7 @@ const rowActions = [
   },
 ];
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <div style={{height: '800px', width: '900px'}}>
       <DataTable columns={columns} rows={rows} rowActions={rowActions} />

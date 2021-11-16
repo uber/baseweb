@@ -11,7 +11,7 @@ import * as React from 'react';
 import {Button} from '../../button/index.js';
 import {StatefulButtonGroup, MODE, SHAPE} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <StatefulButtonGroup
       shape={SHAPE.pill}

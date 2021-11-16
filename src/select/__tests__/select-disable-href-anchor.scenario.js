@@ -13,7 +13,7 @@ import {StatefulSelect} from '../index.js';
 // Menu component will render items with an href prop as an anchor.
 // This does not make sense for Select, so ensure that it does not work.
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <StatefulSelect
       startOpen

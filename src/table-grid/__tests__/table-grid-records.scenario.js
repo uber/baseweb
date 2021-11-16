@@ -42,7 +42,7 @@ const row = [
 
 const data: RowT[] = [row, row, row, row, row, row, row];
 
-export default function Scenario() {
+export function Scenario() {
   const [css] = useStyletron();
   const {getCellProps} = useCellNavigation();
   return (

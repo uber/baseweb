@@ -39,7 +39,7 @@ const DATA = [
   ['Neil', 27],
 ];
 
-function SortableTable() {
+export function Scenario() {
   const {getCellProps} = useCellNavigation();
   const [nameDirection, setNameDirection] = React.useState(null);
   const [ageDirection, setAgeDirection] = React.useState(null);
@@ -101,6 +101,7 @@ function SortableTable() {
           },
         }}
       />
+
       <SortableHeadCell
         disabled
         title="Age"
@@ -110,6 +111,7 @@ function SortableTable() {
           HeadCell: {props: getCellProps(1, 0), style: {color: 'blue'}},
         }}
       />
+
       {sortedData.map((row, rowIndex) => (
         <React.Fragment key={rowIndex}>
           {row.map((cell, columnIndex) => (
@@ -125,5 +127,3 @@ function SortableTable() {
     </StyledTable>
   );
 }
-
-export default SortableTable;
