@@ -128,12 +128,14 @@ const DatepickerConfig: TConfig = {
       hidden: true,
     },
     startDateLabel: {
+      value: undefined,
       type: PropTypes.String,
       hidden: true,
       placeholder: 'Start Date',
       description: '',
     },
     endDateLabel: {
+      value: undefined,
       type: PropTypes.String,
       placeholder: 'End Date',
       hidden: true,
