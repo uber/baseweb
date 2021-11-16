@@ -16,6 +16,10 @@ import {StatefulPopover} from '../index.js';
 // anchor click focuses it, thus opening the popover and focusing popover content
 // content focus causes the anchor to blur, which causes the popover to close
 // because of how the focus lock was configured it refocused the anchor which restarts the loop
+
+// 11/01/21 - To address https://github.com/uber/baseweb/issues/4557, the anchor is updated to not allow a blur
+// event (popover to close) if focusLock or autoFocus are true since they immediately take focus away from the
+// anchor element.
 export default function Scenario() {
   return (
     <StatefulPopover
