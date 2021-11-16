@@ -52,6 +52,9 @@ class StatefulContainer extends React.Component<
     if (this.props.onBlur) {
       this.props.onBlur(e);
     }
+    if (this.props.focusLock || this.props.autoFocus) {
+      return;
+    }
     this.close();
   };
 
