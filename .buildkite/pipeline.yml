@@ -171,10 +171,10 @@ steps:
     agents:
       queue: workers
 
-  - name: 'Bundle size'
+  - name: 'bundle size'
     command: 'node --unhandled-rejections=strict scripts/collect-bundle-sizes.js'
     artifact_paths:
-      - '__artifacts__/bundle-size.json'
+      - '__artifacts__/bundle-size/*'
     plugins:
       'docker-compose#v3.0.3':
         run: baseui

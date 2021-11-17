@@ -97,12 +97,9 @@ async function main() {
   }
 
   await browser.close();
-  console.log('browser closed');
-
   ladle.kill();
-  console.log('stopped ladle server');
 
-  const artifactsDir = resolve(__dirname, '../__artifacts__');
+  const artifactsDir = resolve(__dirname, '../__artifacts__/bundle-size');
   const bundleSizeJsonPath = resolve(artifactsDir, 'bundle-size.json');
   try {
     mkdirSync(artifactsDir);
