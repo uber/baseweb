@@ -94,8 +94,6 @@ async function main() {
     console.log(storyTitle, `${bytesReceived / 1000}kb`);
     sizes[storyTitle] = bytesReceived;
     await page.close();
-
-    break;
   }
 
   await browser.close();
