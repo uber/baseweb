@@ -55,6 +55,8 @@ services:
 
   baseui:
     build: .
+    volumes:
+      - ./__artifacts__:/baseui/__artifacts__:delegated
     environment:
       - CODECOV_TOKEN
       - CI=true
