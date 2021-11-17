@@ -9,6 +9,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 const {spawn, execSync} = require('child_process');
+const {mkdirSync, writeFileSync} = require('fs');
 const {resolve} = require('path');
 const fetch = require('node-fetch').default;
 const puppeteer = require('puppeteer');
@@ -60,6 +61,7 @@ async function main() {
 
   const metadata = await metaResponse.json();
   const browser = await puppeteer.launch();
+  const sizes = {};
 
   for (const storyTitle in metadata.stories) {
     const page = await browser.newPage();
@@ -87,11 +89,27 @@ async function main() {
     });
 
     console.log(storyTitle, `${bytesReceived / 1000}kb`);
+    sizes[storyTitle] = bytesReceived;
     await page.close();
+
+    break;
   }
 
   await browser.close();
   ladle.kill();
+
+  const artifactsDir = resolve(__dirname, '../__artifacts__');
+  try {
+    mkdirSync(artifactsDir);
+  } catch (error) {
+    if (error.code !== 'EEXIST') {
+      throw error;
+    }
+  }
+  writeFileSync(
+    resolve(artifactsDir, 'bundle-size.json'),
+    JSON.stringify(sizes),
+  );
 }
 
 main();

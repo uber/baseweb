@@ -173,6 +173,8 @@ steps:
 
   - name: 'Bundle size'
     command: 'node --unhandled-rejections=strict scripts/collect-bundle-sizes.js'
+    artifact_paths:
+      - '__artifacts__/bundle-size.json'
     plugins:
       'docker-compose#v3.0.3':
         run: baseui
