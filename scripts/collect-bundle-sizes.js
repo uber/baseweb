@@ -97,9 +97,13 @@ async function main() {
   }
 
   await browser.close();
+  console.log('browser closed');
+
   ladle.kill();
+  console.log('stopped ladle server');
 
   const artifactsDir = resolve(__dirname, '../__artifacts__');
+  const bundleSizeJsonPath = resolve(artifactsDir, 'bundle-size.json');
   try {
     mkdirSync(artifactsDir);
   } catch (error) {
@@ -107,10 +111,10 @@ async function main() {
       throw error;
     }
   }
-  writeFileSync(
-    resolve(artifactsDir, 'bundle-size.json'),
-    JSON.stringify(sizes),
-  );
+  writeFileSync(bundleSizeJsonPath, JSON.stringify(sizes));
+  console.log(`bundle-size data written to ${bundleSizeJsonPath}`);
+
+  process.exit(0);
 }
 
 main();
