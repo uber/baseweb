@@ -102,7 +102,7 @@ async function main() {
   const artifactsDir = resolve(__dirname, '../__artifacts__/bundle-size');
   const bundleSizeJsonPath = resolve(artifactsDir, 'bundle-size.json');
   try {
-    mkdirSync(artifactsDir);
+    mkdirSync(artifactsDir, {recursive: true});
   } catch (error) {
     if (error.code !== 'EEXIST') {
       throw error;
