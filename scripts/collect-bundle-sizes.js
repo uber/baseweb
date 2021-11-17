@@ -99,7 +99,11 @@ async function main() {
   await browser.close();
   ladle.kill();
 
-  const artifactsDir = resolve(__dirname, '../__artifacts__/bundle-size');
+  let artifactsDir = resolve(__dirname, '../__artifacts__/bundle-size');
+  if (process.env.BUILDKITE) {
+    artifactsDir = '/__artifacts__/bundle-size';
+  }
+
   const bundleSizeJsonPath = resolve(artifactsDir, 'bundle-size.json');
   try {
     mkdirSync(artifactsDir, {recursive: true});
