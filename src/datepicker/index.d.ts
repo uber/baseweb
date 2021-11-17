@@ -148,6 +148,9 @@ export interface DatepickerOverrides<T> {
   Input?: Override<T>;
   InputWrapper?: Override<T>;
   Popover?: Override<T>;
+  StartDate?: Override<T>;
+  EndDate?: Override<T>;
+  InputLabel?: Override<T>;
 }
 export type DatepickerProps = CalendarProps & {
   'aria-label'?: string;
@@ -166,6 +169,9 @@ export type DatepickerProps = CalendarProps & {
   mask?: string | null;
   mountNode?: HTMLElement;
   onClose?: () => any;
+  separateRangeInputs?: boolean;
+  startDateLabel?: string;
+  endDateLabel?: string;
 };
 export interface DatepickerState {
   calendarFocused: boolean;
