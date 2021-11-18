@@ -49,7 +49,7 @@ const AccordionConfig: TConfig = {
       description: 'Renders component in disabled state.',
     },
     accordion: {
-      value: false,
+      value: true,
       type: PropTypes.Boolean,
       description:
         'When false, allows multiple panels to be open at once. When true, a panel will be closed when a new panel is opened.',
