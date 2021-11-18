@@ -44,7 +44,7 @@ function pragmaticCompare(prevProps, nextProps) {
   );
 }
 
-export default function Scenario() {
+export function Scenario() {
   const [location, setLocation] = React.useState('0');
   const [floor, setFloor] = React.useState(0);
   const [items, setItems] = React.useState([]);

@@ -18,9 +18,10 @@ const options = [
   {id: 'Azure', color: '#F0FFFF'},
   {id: 'Beige', color: '#F5F5DC'},
 ];
+
 const value = [{color: '#F0FFFF'}];
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <div style={{width: '400px'}}>
       <Select
@@ -30,6 +31,7 @@ export default function Scenario() {
         labelKey="id"
         valueKey="color"
       />
+
       <br />
       <Select
         size={SIZE.compact}
@@ -38,6 +40,7 @@ export default function Scenario() {
         labelKey="id"
         valueKey="color"
       />
+
       <br />
       <Select
         size={SIZE.default}
@@ -46,6 +49,7 @@ export default function Scenario() {
         labelKey="id"
         valueKey="color"
       />
+
       <br />
       <Select
         size={SIZE.large}

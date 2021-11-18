@@ -10,7 +10,7 @@ import * as React from 'react';
 
 import {Avatar} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <React.Fragment>
       {['scale800', 'scale1000', 'scale1200', 'scale1400', '64px'].map(

@@ -61,6 +61,7 @@ const ProgressStepsConfig: TConfig = {
           'Content',
           'Description',
           'Icon',
+          'IconContainer',
           'InnerIcon',
           'Root',
           'StepRoot',

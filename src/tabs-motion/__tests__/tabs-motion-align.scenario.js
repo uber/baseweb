@@ -42,7 +42,7 @@ const TabOverrides = {
   },
 };
 
-export default function Scenario() {
+export function Scenario() {
   const [activeKey, setActiveKey] = React.useState('0');
   return (
     <React.Fragment>

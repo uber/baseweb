@@ -10,7 +10,7 @@ import React from 'react';
 
 import {StatefulPinCode} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <>
       <StatefulPinCode
@@ -21,6 +21,7 @@ export default function Scenario() {
               backgroundColor: 'orange',
             },
           },
+
           Input: {
             props: {
               overrides: {
@@ -32,6 +33,7 @@ export default function Scenario() {
                     borderBottomColor: 'turquoise',
                   },
                 },
+
                 Input: {
                   style: {
                     backgroundColor: 'pink',

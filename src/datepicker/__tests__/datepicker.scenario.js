@@ -14,7 +14,7 @@ import MomentUtils from '@date-io/moment';
 const adapter = new MomentUtils({});
 import moment from 'moment';
 
-export default function Scenario() {
+export function Scenario() {
   const [date, setDate] = React.useState(null);
   const [momentDate, setMomentDate] = React.useState(null);
 
@@ -42,6 +42,7 @@ export default function Scenario() {
           },
         }}
       />
+
       <span>Large</span>
       <Datepicker
         aria-label="Select a date"
@@ -57,6 +58,7 @@ export default function Scenario() {
           },
         }}
       />
+
       <span>Compact</span>
       <Datepicker
         aria-label="Select a date"
@@ -72,6 +74,7 @@ export default function Scenario() {
           },
         }}
       />
+
       <span>Moment</span>
       <Datepicker
         adapter={adapter}

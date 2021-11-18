@@ -16,7 +16,7 @@ import {Button, KIND} from '../../button/index.js';
 // This scenario ensures the up/down directional keys do not move the page
 // scroll position.
 
-export default function Scenario() {
+export function Scenario() {
   const [activeKey, setActiveKey] = React.useState('0');
   return (
     <React.Fragment>

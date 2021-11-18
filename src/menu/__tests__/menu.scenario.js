@@ -25,7 +25,7 @@ const ITEMS = [
   {label: 'Item Twelve'},
 ];
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <Menu
       items={ITEMS}
@@ -36,6 +36,7 @@ export default function Scenario() {
             width: '200px',
           },
         },
+
         Option: {
           props: {
             getItemLabel: item => item.label,

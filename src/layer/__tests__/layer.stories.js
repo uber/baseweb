@@ -7,6 +7,6 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import LayerZIndex from './layer-z-index.scenario.js';
+import {Scenario as LayerZIndex} from './layer-z-index.scenario.js';
 
 export const ZIndex = () => <LayerZIndex />;

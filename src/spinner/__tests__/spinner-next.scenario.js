@@ -10,7 +10,7 @@ import * as React from 'react';
 
 import {StyledSpinnerNext, SIZE} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <React.Fragment>
       <StyledSpinnerNext $size={SIZE.small} />

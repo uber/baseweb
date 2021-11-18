@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {Menu} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <Menu
       items={[]}

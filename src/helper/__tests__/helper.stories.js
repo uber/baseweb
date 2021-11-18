@@ -7,9 +7,9 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import HelperPosition from './helper-position.scenario.js';
-import HelperSteps from './helper-steps.scenario.js';
-import HelperWithSteps from './helper-with-steps.scenario.js';
+import {Scenario as HelperPosition} from './helper-position.scenario.js';
+import {Scenario as HelperSteps} from './helper-steps.scenario.js';
+import {Scenario as HelperWithSteps} from './helper-with-steps.scenario.js';
 
 export const Position = () => <HelperPosition />;
 export const Steps = () => <HelperSteps />;

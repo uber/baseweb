@@ -10,7 +10,7 @@ import * as React from 'react';
 
 import {Datepicker} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   const [date, setDate] = React.useState(new Date('2020/01/10'));
   const [range, setRange] = React.useState([
     new Date('2020/10/10'),

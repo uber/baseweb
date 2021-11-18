@@ -12,7 +12,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {StatefulSelect} from '../index.js';
 
-export default function SelectComponent() {
+export function Scenario() {
   return (
     <StatefulSelect
       clearable={false}
@@ -32,6 +32,7 @@ export default function SelectComponent() {
             lineHeight: '38px',
           },
         },
+
         SingleValue: {
           style: {
             fontSize: '28px',

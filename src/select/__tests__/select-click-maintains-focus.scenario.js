@@ -10,7 +10,7 @@ import React from 'react';
 
 import {StatefulSelect} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <React.Fragment>
       <button>before</button>
@@ -21,6 +21,7 @@ export default function Scenario() {
           {id: 'c', label: 'look at me!'},
         ]}
       />
+
       <button>after</button>
     </React.Fragment>
   );

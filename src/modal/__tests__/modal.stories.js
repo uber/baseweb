@@ -7,9 +7,9 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import ModalSelect from './modal-select.scenario.js';
-import ModalUncloseable from './modal-uncloseable.scenario.js';
-import ModalDefault from './modal.scenario.js';
+import {Scenario as ModalSelect} from './modal-select.scenario.js';
+import {Scenario as ModalUncloseable} from './modal-uncloseable.scenario.js';
+import {Scenario as ModalDefault} from './modal.scenario.js';
 
 export const Select = () => <ModalSelect />;
 export const Uncloseable = () => <ModalUncloseable />;

@@ -7,6 +7,6 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import PaginationDefault from './pagination.scenario.js';
+import {Scenario as PaginationDefault} from './pagination.scenario.js';
 
 export const Pagination = () => <PaginationDefault />;

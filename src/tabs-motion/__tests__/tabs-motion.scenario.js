@@ -20,7 +20,7 @@ const Mounty = () => {
   return null;
 };
 
-export default function Scenario() {
+export function Scenario() {
   const [activeKey, setActiveKey] = React.useState(0);
   return (
     <form>

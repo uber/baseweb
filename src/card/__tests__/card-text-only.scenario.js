@@ -13,7 +13,7 @@ import {styled} from '../../styles/index.js';
 
 const Container = styled('div', {width: '328px'});
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <Container>
       <Card>

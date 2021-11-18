@@ -11,7 +11,7 @@ import * as React from 'react';
 import {Button} from '../index.js';
 import ArrowRight from '../../icon/arrow-right.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <React.Fragment>
       <Button>Primary</Button>

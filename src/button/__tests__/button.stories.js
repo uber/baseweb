@@ -7,13 +7,13 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import ButtonCircle from './button-circle.scenario.js';
-import ButtonEnhancersCompact from './button-enhancers-compact.scenario.js';
-import ButtonEnhancers from './button-enhancers.scenario.js';
-import ButtonShapes from './button-shapes.scenario.js';
-import ButtonSizesLoading from './button-sizes-loading.scenario.js';
-import ButtonSizes from './button-sizes.scenario.js';
-import ButtonDefault from './button.scenario.js';
+import {Scenario as ButtonCircle} from './button-circle.scenario.js';
+import {Scenario as ButtonEnhancersCompact} from './button-enhancers-compact.scenario.js';
+import {Scenario as ButtonEnhancers} from './button-enhancers.scenario.js';
+import {Scenario as ButtonShapes} from './button-shapes.scenario.js';
+import {Scenario as ButtonSizesLoading} from './button-sizes-loading.scenario.js';
+import {Scenario as ButtonSizes} from './button-sizes.scenario.js';
+import {Scenario as ButtonDefault} from './button.scenario.js';
 
 export const Circle = () => <ButtonCircle />;
 export const EnhancersCompact = () => <ButtonEnhancersCompact />;

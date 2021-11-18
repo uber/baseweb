@@ -27,7 +27,7 @@ function BaseOverride(props: any) {
   return <input onChange={props.onChange} value={props.value} />;
 }
 
-export default function Parent() {
+export function Scenario() {
   const [value, setValue] = React.useState('');
   return (
     <div>

@@ -11,7 +11,7 @@ import * as React from 'react';
 import {Block} from '../../block/index.js';
 import {ProgressSteps, Step} from '../index.js';
 
-const ProgressStepsIsActive = () => {
+export function Scenario() {
   return (
     <ProgressSteps current={1}>
       <Step title="Step 1" isActive>
@@ -31,6 +31,4 @@ const ProgressStepsIsActive = () => {
       </Step>
     </ProgressSteps>
   );
-};
-
-export default ProgressStepsIsActive;
+}

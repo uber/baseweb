@@ -10,7 +10,7 @@ import * as React from 'react';
 
 import {StatefulPagination} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <>
       <StatefulPagination
@@ -21,6 +21,7 @@ export default function Scenario() {
         size="mini"
         numPages={10}
       />
+
       <StatefulPagination
         overrides={{
           NextButton: {props: {'data-test': 'next-button'}},
@@ -29,6 +30,7 @@ export default function Scenario() {
         size="compact"
         numPages={10}
       />
+
       <StatefulPagination
         overrides={{
           NextButton: {props: {'data-test': 'next-button'}},
@@ -36,6 +38,7 @@ export default function Scenario() {
         }}
         numPages={10}
       />
+
       <StatefulPagination
         overrides={{
           NextButton: {props: {'data-test': 'next-button'}},

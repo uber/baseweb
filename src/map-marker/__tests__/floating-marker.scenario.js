@@ -20,7 +20,7 @@ import Search from '../../icon/search.js';
 
 import type {FloatingMarkerSizeT, AnchorPositionsT} from '../types.js';
 
-export default function Scenario() {
+export function Scenario() {
   const [label, setLabel] = React.useState('Uber HQ');
   const [startEnhancer, setStartEnhancer] = React.useState(true);
   const [endEnhancer, setEndEnhancer] = React.useState(false);

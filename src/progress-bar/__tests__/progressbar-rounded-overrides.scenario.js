@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {ProgressBarRounded} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <React.Fragment>
       <ProgressBarRounded
@@ -21,22 +21,26 @@ export default function Scenario() {
               width: '433.33px',
             },
           },
+
           Svg: {
             style: {
               height: '200px',
               width: '433.33px',
             },
           },
+
           TrackBackground: {
             style: {
               stroke: 'pink',
             },
           },
+
           TrackForeground: {
             style: {
               stroke: 'red',
             },
           },
+
           Text: {
             style: {
               color: 'red',

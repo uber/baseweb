@@ -40,7 +40,7 @@ const theme = createLightTheme(lightThemePrimitives, {
 // Verify that we are not applying extraneous attributes (color/width/height)
 // to our default icons. Also verify that custom icons do not recieve dollar prefixed
 // props, either from Icon or from directly passing them.
-export default function Scenario() {
+export function Scenario() {
   return (
     <ThemeProvider theme={theme}>
       {/* A default icon */}
@@ -55,6 +55,7 @@ export default function Scenario() {
           },
         }}
       />
+
       {/* A custom implementation */}
       <Upload size={100} color="red" $testing="123" data-testing="123" />
     </ThemeProvider>

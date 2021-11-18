@@ -26,12 +26,14 @@ const columns = [
     minWidth: 250,
     mapDataToValue: (data: RowDataT) => data.Name,
   }),
+
   StringColumn({
     title: 'Vertically Center',
     minWidth: 250,
     mapDataToValue: (data: RowDataT) => data.Name,
     cellBlockAlign: 'center',
   }),
+
   StringColumn({
     title: 'Long Text',
     maxWidth: 300,
@@ -54,7 +56,7 @@ const actions = [
   },
 ];
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <div style={{height: '600px', width: '700px'}}>
       <StatefulDataTable

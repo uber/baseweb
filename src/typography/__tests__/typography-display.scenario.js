@@ -11,7 +11,7 @@ import * as React from 'react';
 
 import {Display} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <Display>We ignite opportunity by setting the world in motion.</Display>
   );

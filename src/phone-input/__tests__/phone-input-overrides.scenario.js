@@ -10,7 +10,7 @@ import React from 'react';
 
 import {StatefulPhoneInput} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <StatefulPhoneInput
       overrides={{
@@ -25,6 +25,7 @@ export default function Scenario() {
             },
           },
         },
+
         CountrySelect: {
           props: {
             overrides: {

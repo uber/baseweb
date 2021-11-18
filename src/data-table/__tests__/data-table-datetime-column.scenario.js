@@ -22,7 +22,7 @@ const data = [1, 2, 3, 4, 5, 6, 7, 7, 8, 8, 9].map(i => {
   return new Date(`201${i}-04-${padZero(i)}T10:${10 + i}:30Z`);
 });
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <div style={{backgroundColor: '#FFD700', padding: '24px'}}>
       <div>

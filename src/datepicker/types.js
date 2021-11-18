@@ -57,6 +57,9 @@ export type DatepickerOverridesT = {
   InputWrapper?: OverrideT,
   /** Override for reused Popover component. Popover is **not a styled  element** but a react component that can be replaced */
   Popover?: OverrideT,
+  StartDate?: OverrideT,
+  EndDate?: OverrideT,
+  InputLabel?: OverrideT,
 };
 
 export type DayPropsT<T = Date> = {
@@ -220,6 +223,10 @@ export type DatepickerPropsT<T = Date> = CalendarPropsT<T> & {
   /** Called when calendar is closed */
   onClose?: () => mixed,
   mask?: string | null,
+  /** Determines if startDate and endDate should be separated into two input fields. Ignored if `range` is not true. */
+  separateRangeInputs?: boolean,
+  startDateLabel?: string,
+  endDateLabel?: string,
 };
 
 export type SharedStylePropsT = {

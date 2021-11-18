@@ -17,7 +17,7 @@ import {
   ModalButton,
 } from '../../modal/index.js';
 
-export default function SelectInModal() {
+export function Scenario() {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>

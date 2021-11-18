@@ -6,6 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
+import * as React from 'react';
 import {StatefulPaymentCard} from '../index.js';
 
-export default StatefulPaymentCard;
+export function Scenario() {
+  return <StatefulPaymentCard />;
+}

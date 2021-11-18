@@ -49,7 +49,7 @@ const DATA = [
 ];
 
 // eslint-disable-next-line flowtype/no-weak-types
-class SortableTable extends React.Component<any, any> {
+export class Scenario extends React.Component<any, any> {
   render() {
     return (
       <div style={{height: '500px', width: '400px'}}>
@@ -72,5 +72,3 @@ class SortableTable extends React.Component<any, any> {
     );
   }
 }
-
-export default SortableTable;

@@ -14,7 +14,7 @@ import {Tab, Tabs} from '../index.js';
 import {Button, KIND} from '../../button/index.js';
 import {ArrowUp, ArrowRight, ArrowDown, ArrowLeft} from '../../icon/index.js';
 
-export default function Scenario() {
+export function Scenario() {
   const [activeKey, setActiveKey] = React.useState('0');
   return (
     <Tabs

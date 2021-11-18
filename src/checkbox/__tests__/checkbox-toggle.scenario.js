@@ -10,7 +10,7 @@ import * as React from 'react';
 
 import {StatefulCheckbox, STYLE_TYPE} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <div style={{width: '200px'}}>
       <StatefulCheckbox checkmarkType={STYLE_TYPE.toggle}>

@@ -45,7 +45,7 @@ const dataShort = [
   'UberX',
 ];
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <div style={{backgroundColor: 'lightgreen', padding: '24px'}}>
       <div id="many-categories">

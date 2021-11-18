@@ -46,7 +46,7 @@ class Controlled extends React.Component<any, any> {
   }
 }
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <Block width="400px">
       <div data-e2e="daylight">

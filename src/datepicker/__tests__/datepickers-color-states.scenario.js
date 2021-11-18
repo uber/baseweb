@@ -14,7 +14,7 @@ import {Datepicker, TimePicker, TimezonePicker} from '../index.js';
 
 const DATE = new Date('2019-07-03T12:00:00Z');
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <Block display="flex" height="300px">
       <Block

@@ -10,7 +10,7 @@ import React from 'react';
 
 import {StatefulPinCode} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   const [values, setValues] = React.useState(['', '', '', '']);
   return (
     <div>
@@ -20,6 +20,7 @@ export default function Scenario() {
         clearOnEscape
         mask="*"
       />
+
       <p data-testid="pinCodeValue">password:{values.join(' ')} </p>
     </div>
   );

@@ -18,20 +18,23 @@ import {
 
 type RowDataT = [boolean, string, number, string];
 
-export default function Scenario() {
+export function Scenario() {
   const columns = [
     BooleanColumn({
       title: 'boolean-column',
       mapDataToValue: (data: RowDataT) => data[0],
     }),
+
     CategoricalColumn({
       title: 'categorical-column',
       mapDataToValue: (data: RowDataT) => data[1],
     }),
+
     NumericalColumn({
       title: 'numerical-column',
       mapDataToValue: (data: RowDataT) => data[2],
     }),
+
     StringColumn({
       title: 'string-column',
       mapDataToValue: (data: RowDataT) => data[3],
