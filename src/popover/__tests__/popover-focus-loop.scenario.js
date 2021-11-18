@@ -32,7 +32,7 @@ export function Scenario() {
         </div>
       )}
     >
-      <button>click</button>
+      <button>hover</button>
     </StatefulPopover>
   );
 }

@@ -18,6 +18,7 @@ export function Scenario() {
     <div className={css({backgroundColor: 'lightskyblue'})}>
       <div>
         <Popover
+          autoFocus={false}
           accessibilityType={'tooltip'}
           isOpen
           content={<div>content</div>}
@@ -29,6 +30,7 @@ export function Scenario() {
 
       <div>
         <Popover
+          autoFocus={false}
           accessibilityType={'tooltip'}
           isOpen
           content={<div>content</div>}

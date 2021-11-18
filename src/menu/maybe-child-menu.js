@@ -48,6 +48,7 @@ export default function MaybeChildMenu(props: PropsT) {
         return (
           <PopoverOverride
             focusLock={false}
+            autoFocus={false}
             isOpen={props.isOpen}
             renderAll={props.renderAll}
             content={ChildMenu}
