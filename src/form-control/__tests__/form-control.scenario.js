@@ -15,7 +15,7 @@ import {StatefulRadioGroup, Radio} from '../../radio/index.js';
 import {StatefulTextarea} from '../../textarea/index.js';
 import {StatefulSelect} from '../../select/index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <div>
       <FormControl label="Input label" caption="Input caption">

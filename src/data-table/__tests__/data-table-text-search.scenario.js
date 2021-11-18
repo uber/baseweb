@@ -32,10 +32,12 @@ const columns = [
     minWidth: 300,
     mapDataToValue: (data: RowDataT) => data.Name,
   }),
+
   CategoricalColumn({
     title: 'Kingdom',
     mapDataToValue: (data: RowDataT) => data.Kingdom,
   }),
+
   CustomColumn({
     title: 'Phylum',
     minWidth: 90,
@@ -64,15 +66,18 @@ const columns = [
       );
     },
   }),
+
   CategoricalColumn({
     title: 'Class',
     minWidth: 120,
     mapDataToValue: (data: RowDataT) => data.Class,
   }),
+
   CategoricalColumn({
     title: 'Order',
     mapDataToValue: (data: RowDataT) => data.Order,
   }),
+
   CategoricalColumn({
     title: 'Family',
     mapDataToValue: (data: RowDataT) => data.Family,
@@ -86,7 +91,7 @@ const rows = AnimalData.map(row => {
   };
 });
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <div style={{height: '600px', width: '700px'}}>
       <StatefulDataTable columns={columns} rows={rows} />

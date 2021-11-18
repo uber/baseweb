@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {AppNavBar, setItemActive} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   const [mainItems, setMainItems] = React.useState([
     {label: 'label', info: {id: 1}},
     {label: 'label', info: {id: 2}},

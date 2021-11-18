@@ -13,7 +13,7 @@ import {Avatar} from '../index.js';
 const src =
   'https://avatars.dicebear.com/api/human/yard.svg?width=285&mood=happy';
 
-export default function Scenario() {
+export function Scenario() {
   const [displayImage, setDisplayImage] = React.useState(false);
   return (
     <div>

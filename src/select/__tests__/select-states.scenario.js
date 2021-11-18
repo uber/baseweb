@@ -10,7 +10,7 @@ import React from 'react';
 
 import {StatefulSelect} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <>
       <StatefulSelect
@@ -27,6 +27,7 @@ export default function Scenario() {
         labelKey="id"
         valueKey="color"
       />
+
       <br />
       <StatefulSelect
         aria-label="Select a color"
@@ -43,6 +44,7 @@ export default function Scenario() {
         valueKey="color"
         autoFocus
       />
+
       <br />
       <StatefulSelect
         aria-label="Select a color"
@@ -59,6 +61,7 @@ export default function Scenario() {
         valueKey="color"
         positive
       />
+
       <br />
       <StatefulSelect
         aria-label="Select a color"
@@ -75,6 +78,7 @@ export default function Scenario() {
         valueKey="color"
         error
       />
+
       <br />
       <StatefulSelect
         aria-label="Select a color"

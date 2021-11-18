@@ -10,7 +10,7 @@ import * as React from 'react';
 import {Heading, HeadingLevel} from '../index.js';
 import {Paragraph1} from '../../typography/index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <HeadingLevel>
       <Heading>Base Web [L1]</Heading>

@@ -12,7 +12,7 @@ import {useStyletron} from '../../styles/index.js';
 
 import {Popover, PLACEMENT} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   const [css] = useStyletron();
   const [index, setIndex] = React.useState(-1);
   return (

@@ -25,7 +25,7 @@ const ITEMS = [
   {label: 'Item Twelve'},
 ];
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <StatefulMenu
       initialState={{
@@ -39,6 +39,7 @@ export default function Scenario() {
             width: '350px',
           },
         },
+
         Option: {
           props: {
             getItemLabel: item => item.label,

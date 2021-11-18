@@ -11,7 +11,7 @@ import {useStyletron} from '../../index.js';
 import {Button, SHAPE, SIZE, KIND} from '../index.js';
 import Upload from '../../icon/upload.js';
 
-export default function Scenario() {
+export function Scenario() {
   const [css] = useStyletron();
   return (
     <React.Fragment>

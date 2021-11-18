@@ -34,7 +34,7 @@ const StyledCloseIcon = styled('svg', props => {
 });
 
 // This scenario proves that local icon overrides take precedence over theme icons
-export default function Scenario() {
+export function Scenario() {
   const closeRef = React.useRef();
   return (
     <div>

@@ -11,7 +11,7 @@ import * as React from 'react';
 
 import {Slider, StatefulSlider} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   const [rangeValue, setRangeValue] = React.useState([10, 70]);
   return (
     <div>
@@ -27,6 +27,7 @@ export default function Scenario() {
               minimumIntegerDigits: 2,
               useGrouping: false,
             });
+
             const meridiem = value > 95 / 2 ? 'PM' : 'AM';
             return `${hour === 0 ? '12' : hour}:${minute}  ${meridiem}`;
           }}

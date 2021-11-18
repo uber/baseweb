@@ -14,7 +14,7 @@ import ChevronRight from '../../icon/chevron-right.js';
 import Search from '../../icon/search.js';
 import {ListItem, ListItemLabel, ARTWORK_SIZES} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <div
       style={{

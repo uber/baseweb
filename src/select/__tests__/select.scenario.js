@@ -19,7 +19,7 @@ const options = [
   {id: 'Beige', color: '#F5F5DC'},
 ];
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <>
       <StatefulSelect
@@ -29,6 +29,7 @@ export default function Scenario() {
         labelKey="id"
         valueKey="color"
       />
+
       <br />
       <SingleSelect
         aria-label="Select a color"
@@ -37,6 +38,7 @@ export default function Scenario() {
         valueKey="color"
         value={[{color: '#00FFFF'}]}
       />
+
       <br />
       <MultiSelect
         aria-label="Select a color"

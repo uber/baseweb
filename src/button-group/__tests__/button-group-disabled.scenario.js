@@ -11,7 +11,7 @@ import * as React from 'react';
 import {Button} from '../../button/index.js';
 import {ButtonGroup} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <ButtonGroup>
       <Button disabled>Label</Button>

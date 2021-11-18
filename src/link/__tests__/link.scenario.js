@@ -11,7 +11,7 @@ import * as React from 'react';
 import {StyledLink} from '../index.js';
 import {Block} from '../../block/index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <Block font="font450">
       <StyledLink href="#">I am a Link!</StyledLink>

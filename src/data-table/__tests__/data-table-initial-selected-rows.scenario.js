@@ -25,6 +25,7 @@ const rowActions = [
       return <Check size={size} />;
     },
   },
+
   {
     label: 'Remove',
     onClick: () => {},
@@ -34,7 +35,7 @@ const rowActions = [
   },
 ];
 
-export default function Scenario() {
+export function Scenario() {
   const columns = [
     RowIndexColumn(),
     CategoricalColumn({

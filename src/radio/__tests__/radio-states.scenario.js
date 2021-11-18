@@ -10,7 +10,7 @@ import * as React from 'react';
 
 import {Radio, RadioGroup} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <React.Fragment>
       <RadioGroup name="example1" value="1">

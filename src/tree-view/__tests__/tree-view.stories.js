@@ -7,10 +7,10 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import TreeViewInteractable from './tree-view-interactable.scenario.js';
-import TreeViewRenderAll from './tree-view-render-all.scenario.js';
-import TreeViewSingleExpanded from './tree-view-single-expanded.scenario.js';
-import TreeViewDefault from './tree-view.scenario.js';
+import {Scenario as TreeViewInteractable} from './tree-view-interactable.scenario.js';
+import {Scenario as TreeViewRenderAll} from './tree-view-render-all.scenario.js';
+import {Scenario as TreeViewSingleExpanded} from './tree-view-single-expanded.scenario.js';
+import {Scenario as TreeViewDefault} from './tree-view.scenario.js';
 
 export const Interactable = () => <TreeViewInteractable />;
 export const RenderAll = () => <TreeViewRenderAll />;

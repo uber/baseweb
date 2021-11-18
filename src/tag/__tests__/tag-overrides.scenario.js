@@ -16,6 +16,7 @@ const themeWithIcons = createTheme(
   {
     ...lightThemePrimitives,
   },
+
   {
     icons: {
       Delete: ArrowLeft,
@@ -23,7 +24,7 @@ const themeWithIcons = createTheme(
   },
 );
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <React.Fragment>
       <h2>No override</h2>

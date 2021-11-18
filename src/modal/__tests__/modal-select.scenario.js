@@ -12,7 +12,7 @@ import {Button} from '../../button/index.js';
 import {StatefulSelect} from '../../select/index.js';
 import {Modal, ModalBody, ModalHeader} from '../index.js';
 
-const Example = () => {
+export function Scenario() {
   const [isOpen, setIsOpen] = React.useState(true);
   return (
     <div>
@@ -45,6 +45,4 @@ const Example = () => {
       </Modal>
     </div>
   );
-};
-
-export default Example;
+}

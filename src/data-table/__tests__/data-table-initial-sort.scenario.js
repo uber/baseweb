@@ -14,7 +14,7 @@ import {
   SORT_DIRECTIONS,
 } from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   const columns = [
     CategoricalColumn({
       title: 'column',

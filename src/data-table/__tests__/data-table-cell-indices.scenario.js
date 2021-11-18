@@ -25,7 +25,7 @@ const columns = new Array(30).fill(undefined).map((_, index) =>
   }),
 );
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <div style={{height: '500px', width: '800px'}}>
       <StatefulDataTable columns={[RowIndexColumn(), ...columns]} rows={rows} />

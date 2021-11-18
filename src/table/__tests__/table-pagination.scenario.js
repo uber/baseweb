@@ -106,6 +106,6 @@ class PaginatedTable extends React.Component<any, any> {
   }
 }
 
-export default function Scenario() {
+export function Scenario() {
   return <PaginatedTable columns={COLUMNS} data={DATA} />;
 }

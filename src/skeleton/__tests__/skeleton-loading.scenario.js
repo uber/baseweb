@@ -11,7 +11,7 @@ import {useStyletron} from '../../styles/index.js';
 import imageFile from './static/adorable.png';
 import {Avatar} from '../../avatar/index.js';
 
-export default function Scenario() {
+export function Scenario() {
   const [loading, setLoading] = React.useState(true);
   React.useEffect(() => {
     setTimeout(() => {
@@ -33,6 +33,7 @@ export default function Scenario() {
             },
           }}
         />
+
         <div
           className={css({
             alignItems: 'center',
@@ -52,6 +53,7 @@ export default function Scenario() {
               },
             }}
           />
+
           <Skeleton rows={2} width="220px" />
         </div>
       </div>
@@ -68,6 +70,7 @@ export default function Scenario() {
         alt=""
         src={imageFile}
       />
+
       <div
         className={css({
           alignItems: 'center',

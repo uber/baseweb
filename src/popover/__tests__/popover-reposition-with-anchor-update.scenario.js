@@ -10,7 +10,7 @@ import * as React from 'react';
 
 import {Select} from '../../select/index.js';
 
-export default function Scenario() {
+export function Scenario() {
   const [value, setValue] = React.useState([]);
   return (
     <div style={{width: '200px'}}>

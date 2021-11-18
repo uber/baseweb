@@ -13,7 +13,7 @@ import Upload from '../../icon/upload.js';
 
 import {SnackbarElement} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <div style={{margin: '16px'}}>
       <SnackbarElement

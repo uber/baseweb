@@ -15,7 +15,7 @@ const TIME = new Date(DATE);
 TIME.setHours(12, 0, 0);
 
 // eslint-disable-next-line flowtype/no-weak-types
-class Controlled extends React.Component<any, any> {
+export class Scenario extends React.Component<any, any> {
   state = {date: DATE, time: TIME};
 
   render() {
@@ -40,5 +40,3 @@ class Controlled extends React.Component<any, any> {
     );
   }
 }
-
-export default Controlled;

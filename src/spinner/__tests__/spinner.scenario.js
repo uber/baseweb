@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import {Spinner} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <React.Fragment>
       <Spinner />

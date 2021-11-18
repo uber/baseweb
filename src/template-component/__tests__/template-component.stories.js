@@ -7,6 +7,6 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import TemplateComponentDefault from './template-component.scenario.js';
+import {Scenario as TemplateComponentDefault} from './template-component.scenario.js';
 
 export const TemplateComponent = () => <TemplateComponentDefault />;

@@ -14,7 +14,7 @@ import {Tab, Tabs, ORIENTATION} from '../index.js';
 import {Button, KIND} from '../../button/index.js';
 import {ThemeProvider, LightTheme} from '../../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   const [activeKey, setActiveKey] = React.useState('0');
   return (
     <ThemeProvider theme={{...LightTheme, direction: 'rtl'}}>

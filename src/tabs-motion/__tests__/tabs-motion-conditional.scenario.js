@@ -40,7 +40,7 @@ class ErrorBoundary extends React.Component<
   }
 }
 
-export default function Scenario() {
+export function Scenario() {
   const [activeKey, setActiveKey] = React.useState('monster');
   const [show, setShow] = React.useState(false);
   return (
@@ -63,6 +63,7 @@ export default function Scenario() {
               <Button kind={KIND.secondary}>🤖</Button>
             </Tab>
           )}
+
           <Tab title="Monster" key="monster">
             <Button kind={KIND.secondary}>👺</Button>
           </Tab>

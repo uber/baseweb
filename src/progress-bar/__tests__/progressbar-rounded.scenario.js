@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {ProgressBarRounded, SIZE} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <React.Fragment>
       <ProgressBarRounded
@@ -17,12 +17,14 @@ export default function Scenario() {
         animate={false}
         inline
       />
+
       <ProgressBarRounded
         progress={0.5}
         size={SIZE.medium}
         animate={false}
         inline
       />
+
       <ProgressBarRounded
         progress={0.5}
         size={SIZE.large}

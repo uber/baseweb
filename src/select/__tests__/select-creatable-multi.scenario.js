@@ -10,7 +10,7 @@ import * as React from 'react';
 
 import {StatefulSelect} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <StatefulSelect
       creatable

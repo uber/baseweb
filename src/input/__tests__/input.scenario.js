@@ -10,7 +10,7 @@ import * as React from 'react';
 
 import {StatefulInput, SIZE} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <StatefulInput
       aria-label="stateful input example"

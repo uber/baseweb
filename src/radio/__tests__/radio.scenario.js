@@ -12,7 +12,7 @@ import {StatefulRadioGroup, Radio} from '../index.js';
 
 import {FormControl} from '../../form-control/index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <FormControl label="Test-label">
       <StatefulRadioGroup

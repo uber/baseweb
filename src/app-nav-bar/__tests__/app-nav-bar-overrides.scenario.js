@@ -33,7 +33,7 @@ const expandBorderStyles = str => {
   };
 };
 
-export default function Scenario() {
+export function Scenario() {
   const [mainItems, setMainItems] = React.useState([
     {icon: Upload, label: 'Primary A'},
     {icon: Upload, label: 'Primary B'},
@@ -48,6 +48,7 @@ export default function Scenario() {
         {icon: Upload, label: 'Secondary D'},
       ],
     },
+
     {
       icon: ChevronDown,
       label: 'Primary D',
@@ -61,10 +62,12 @@ export default function Scenario() {
             {icon: Upload, label: 'Tertiary B'},
           ],
         },
+
         {icon: Upload, label: 'Secondary F'},
       ],
     },
   ]);
+
   const userItems = [
     {icon: Overflow, label: 'Account item1'},
     {icon: Overflow, label: 'Account item2'},
@@ -93,11 +96,13 @@ export default function Scenario() {
         PrimaryMenuContainer: {
           style: {...expandBorderStyles('dashed 2px green')},
         },
+
         MainMenuItem: {style: {...expandBorderStyles('dashed 2px blue')}},
         SubnavContainer: {style: {...expandBorderStyles('dashed 2px purple')}},
         SecondaryMenuContainer: {
           style: {...expandBorderStyles('dashed 2px lightskyblue')},
         },
+
         SideMenuButton: {
           props: {
             overrides: {
@@ -108,15 +113,19 @@ export default function Scenario() {
             },
           },
         },
+
         UserMenuProfileListItem: {
           style: {...expandBorderStyles('solid 2px red')},
         },
+
         UserProfileInfoContainer: {
           style: {...expandBorderStyles('solid 2px blue')},
         },
+
         UserProfilePictureContainer: {
           style: {...expandBorderStyles('solid 2px green')},
         },
+
         UserProfileTileContainer: {
           style: {...expandBorderStyles('solid 2px purple')},
         },

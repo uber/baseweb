@@ -43,7 +43,7 @@ function Instance({size}: any) {
   );
 }
 
-function Example() {
+export function Scenario() {
   const [css] = useStyletron();
   return (
     <div className={css({padding: '12px 48px'})}>
@@ -55,5 +55,3 @@ function Example() {
     </div>
   );
 }
-
-export default Example;

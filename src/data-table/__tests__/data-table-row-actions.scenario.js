@@ -24,21 +24,25 @@ const columns = [
     title: 'Genre',
     mapDataToValue: (data: RowDataT) => data[1],
   }),
+
   NumericalColumn({
     title: 'Production Budget (millions)',
     format: NUMERICAL_FORMATS.ACCOUNTING,
     mapDataToValue: (data: RowDataT) => data[2],
   }),
+
   NumericalColumn({
     title: 'Box Office (millions)',
     format: NUMERICAL_FORMATS.ACCOUNTING,
     mapDataToValue: (data: RowDataT) => data[3],
   }),
+
   NumericalColumn({
     title: 'ROI',
     precision: 2,
     mapDataToValue: (data: RowDataT) => data[4],
   }),
+
   NumericalColumn({
     title: 'Rating IMDB',
     precision: 2,
@@ -69,6 +73,7 @@ const rows = [
     4.7,
     7.3,
   ],
+
   ['Quantum of Solace', 'Action', 200, 586, 2.9, 6.7],
   ['Raiders of the Lost Ark', 'Adventure', 18, 390, 21.7, 8.7],
   ['Star Wars Ep. I: The Phantom Menace', 'Adventure', 115, 1027, 8.9, 6.5],
@@ -81,7 +86,7 @@ const rows = [
   ['Zookeeper', 'Romantic Comedy', 80, 170, 2.1, 5.0],
 ].map(r => ({id: r[0], data: r}));
 
-export default function Scenario() {
+export function Scenario() {
   const [selected, setSelected] = React.useState([]);
 
   const rowActions = [
@@ -94,6 +99,7 @@ export default function Scenario() {
         return <ArrowUp size={size} />;
       },
     },
+
     {
       label: 'row-action-label-two',
       onClick: ({row}) => {

@@ -13,7 +13,7 @@ import {StatefulCheckbox} from '../index.js';
 import {FormControl} from '../../form-control/index.js';
 import {Select} from '../../select/index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <FormControl label="Test-label">
       <StatefulCheckbox containsInteractiveElement>

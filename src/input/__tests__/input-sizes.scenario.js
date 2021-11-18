@@ -10,7 +10,7 @@ import React from 'react';
 
 import {StatefulInput, SIZE} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <>
       <StatefulInput
@@ -18,12 +18,14 @@ export default function Scenario() {
         initialState={{value: 'Mini'}}
         endEnhancer=".com"
       />
+
       <br />
       <StatefulInput
         size={SIZE.compact}
         initialState={{value: 'Compact'}}
         endEnhancer=".com"
       />
+
       <br />
       <StatefulInput initialState={{value: 'Default'}} endEnhancer=".com" />
       <br />

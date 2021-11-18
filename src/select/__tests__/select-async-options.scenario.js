@@ -18,7 +18,7 @@ const COLORS = [
   {label: 'Beige', id: '#F5F5DC'},
 ];
 
-export default function Scenario() {
+export function Scenario() {
   const [value, setValue] = React.useState([]);
   const [searchResults, setSearchResults] = React.useState([]);
   return (

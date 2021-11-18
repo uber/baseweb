@@ -10,7 +10,7 @@ import * as React from 'react';
 
 import {StatelessAccordion, Panel} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   const [expanded, setExpanded] = React.useState(['P1', 'P2']);
   return (
     <StatelessAccordion

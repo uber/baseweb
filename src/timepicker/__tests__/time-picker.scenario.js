@@ -45,6 +45,7 @@ const Controlled = ({
         size={size}
         {...restProps}
       />
+
       <p data-e2e="hours">hour: {time ? time.getHours() : 'null'}</p>
       <p data-e2e="minutes">minute: {time ? time.getMinutes() : 'null'}</p>
     </React.Fragment>
@@ -74,13 +75,14 @@ const MomentControlled = ({
         size={size}
         {...restProps}
       />
+
       <p data-e2e="hours">hour: {time ? getHours(time) : 'null'}</p>
       <p data-e2e="minutes">minute: {time ? getMinutes(time) : 'null'}</p>
     </React.Fragment>
   );
 };
 
-export default function Scenario() {
+export function Scenario() {
   const [value, setValue] = React.useState(null);
   const minTime = new Date(MIDNIGHT);
   minTime.setHours(9, 30, 0, 0);

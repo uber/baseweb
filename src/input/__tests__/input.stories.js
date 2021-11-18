@@ -7,19 +7,19 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import InputBeforeAfter from './input-before-after.scenario.js';
-import InputClearableNoescape from './input-clearable-noescape.scenario.js';
-import InputClearable from './input-clearable.scenario.js';
-import InputDisabledMatchesSelect from './input-disabled-matches-select.scenario.js';
-import InputFormControlStates from './input-form-control-states.scenario.js';
-import InputMask from './input-mask.scenario.js';
-import InputNumber from './input-number.scenario.js';
-import InputPassword from './input-password.scenario.js';
-import InputSelector from './input-selector.scenario.js';
-import InputSizes from './input-sizes.scenario.js';
-import InputStates from './input-states.scenario.js';
-import InputWithButton from './input-with-button.scenario.js';
-import InputDefault from './input.scenario.js';
+import {Scenario as InputBeforeAfter} from './input-before-after.scenario.js';
+import {Scenario as InputClearableNoescape} from './input-clearable-noescape.scenario.js';
+import {Scenario as InputClearable} from './input-clearable.scenario.js';
+import {Scenario as InputDisabledMatchesSelect} from './input-disabled-matches-select.scenario.js';
+import {Scenario as InputFormControlStates} from './input-form-control-states.scenario.js';
+import {Scenario as InputMask} from './input-mask.scenario.js';
+import {Scenario as InputNumber} from './input-number.scenario.js';
+import {Scenario as InputPassword} from './input-password.scenario.js';
+import {Scenario as InputSelector} from './input-selector.scenario.js';
+import {Scenario as InputSizes} from './input-sizes.scenario.js';
+import {Scenario as InputStates} from './input-states.scenario.js';
+import {Scenario as InputWithButton} from './input-with-button.scenario.js';
+import {Scenario as InputDefault} from './input.scenario.js';
 
 export const BeforeAfter = () => <InputBeforeAfter />;
 export const ClearableNoescape = () => <InputClearableNoescape />;

@@ -8,10 +8,10 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import {ThemeProvider, LightTheme} from '../../index.js';
-import MenuScenario from './menu.scenario.js';
-import MenuNestedScenario from './menu-child.scenario.js';
+import {Scenario as MenuScenario} from './menu.scenario.js';
+import {Scenario as MenuNestedScenario} from './menu-child.scenario.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <ThemeProvider theme={{...LightTheme, direction: 'rtl'}}>
       <div dir="rtl">

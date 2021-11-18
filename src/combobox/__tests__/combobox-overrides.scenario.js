@@ -21,7 +21,7 @@ const options: OptionT[] = [
   {label: 'Beige', id: '#F5F5DC'},
 ];
 
-function Example() {
+export function Scenario() {
   const [css] = useStyletron();
   const [value, setValue] = React.useState('');
   return (
@@ -36,6 +36,7 @@ function Example() {
           InputContainer: {
             style: {padding: '10px', backgroundColor: 'lightgreen'},
           },
+
           Input: {
             props: {
               overrides: {
@@ -45,6 +46,7 @@ function Example() {
               },
             },
           },
+
           Popover: {
             props: {
               overrides: {
@@ -54,9 +56,11 @@ function Example() {
               },
             },
           },
+
           ListBox: {
             style: {padding: '10px', backgroundColor: 'blue'},
           },
+
           ListItem: {
             style: {padding: '10px', backgroundColor: 'orange'},
           },
@@ -65,5 +69,3 @@ function Example() {
     </div>
   );
 }
-
-export default Example;

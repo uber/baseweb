@@ -20,7 +20,7 @@ import {StatefulPopover} from '../index.js';
 // 11/01/21 - To address https://github.com/uber/baseweb/issues/4557, the anchor is updated to not allow a blur
 // event (popover to close) if focusLock or autoFocus are true since they immediately take focus away from the
 // anchor element.
-export default function Scenario() {
+export function Scenario() {
   return (
     <StatefulPopover
       focusLock

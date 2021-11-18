@@ -10,7 +10,7 @@ import * as React from 'react';
 
 import {Accordion, Panel} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <Accordion disabled>
       <Panel title="Default panel">stateless panel</Panel>

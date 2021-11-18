@@ -19,28 +19,32 @@ import {
 
 type RowDataT = [boolean, string, number, string, Date];
 
-export default function Scenario() {
+export function Scenario() {
   const columns = [
     BooleanColumn({
       title: 'boolean-column',
       mapDataToValue: (data: RowDataT) => data[0],
       sortable: false,
     }),
+
     CategoricalColumn({
       title: 'categorical-column',
       mapDataToValue: (data: RowDataT) => data[1],
       sortable: false,
     }),
+
     NumericalColumn({
       title: 'numerical-column',
       mapDataToValue: (data: RowDataT) => data[2],
       sortable: false,
     }),
+
     StringColumn({
       title: 'string-column',
       mapDataToValue: (data: RowDataT) => data[3],
       sortable: false,
     }),
+
     DatetimeColumn({
       title: 'datetime-column',
       mapDataToValue: (data: RowDataT) => data[4],

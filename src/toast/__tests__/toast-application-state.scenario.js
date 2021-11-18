@@ -10,7 +10,7 @@ import * as React from 'react';
 
 import {Toast} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   const [values, setValues] = React.useState([0, 1, 2]);
 
   function handleClose(idx) {

@@ -21,6 +21,7 @@ const columns = [
     title: 'boolean value',
     mapDataToValue: (data: RowDataT) => data[0],
   }),
+
   NumericalColumn({
     title: 'numerical value',
     mapDataToValue: (data: RowDataT) => data[1],
@@ -32,7 +33,7 @@ for (let i = 0; i < 100; i++) {
   rows.push({id: i, data: [i % 2 ? true : false, i + 1]});
 }
 
-export default function Scenario() {
+export function Scenario() {
   const rowActions = React.useCallback(row => {
     const actions = [
       {

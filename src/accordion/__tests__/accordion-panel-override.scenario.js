@@ -17,6 +17,7 @@ const themeWithIcons = createTheme(
   {
     ...lightThemePrimitives,
   },
+
   {
     icons: {
       // eslint-disable-next-line
@@ -27,7 +28,7 @@ const themeWithIcons = createTheme(
   },
 );
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <ThemeProvider theme={themeWithIcons}>
       <Accordion

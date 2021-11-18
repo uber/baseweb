@@ -17,7 +17,7 @@ import Search from '../../icon/search.js';
 
 import type {PinHeadSizeT, NeedleSizeT} from '../types.js';
 
-export default function Scenario() {
+export function Scenario() {
   const markers = [];
   const [dragging, setDragging] = React.useState(false);
   const [label, setLabel] = React.useState('Uber HQ');
@@ -81,6 +81,7 @@ export default function Scenario() {
           clearOnEscape
           key="label"
         />,
+
         <Checkbox
           checked={startEnhancer}
           onChange={e => setStartEnhancer(Boolean(e.target.checked))}

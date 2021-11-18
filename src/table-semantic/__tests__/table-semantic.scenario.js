@@ -17,6 +17,6 @@ const DATA = [
   ['Joe Black', 33, '100 Macquarie St., Sydney, Australia'],
 ];
 
-export default function Scenario() {
+export function Scenario() {
   return <Table columns={COLUMNS} data={DATA} />;
 }

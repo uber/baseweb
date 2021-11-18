@@ -7,10 +7,10 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import TableGridJobs from './table-grid-jobs.scenario.js';
-import TableGridRecords from './table-grid-records.scenario.js';
-import TableGridSortable from './table-grid-sortable.scenario.js';
-import TableGridDefault from './table-grid.scenario.js';
+import {Scenario as TableGridJobs} from './table-grid-jobs.scenario.js';
+import {Scenario as TableGridRecords} from './table-grid-records.scenario.js';
+import {Scenario as TableGridSortable} from './table-grid-sortable.scenario.js';
+import {Scenario as TableGridDefault} from './table-grid.scenario.js';
 
 export const Jobs = () => <TableGridJobs />;
 export const Records = () => <TableGridRecords />;

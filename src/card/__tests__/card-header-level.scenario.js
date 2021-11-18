@@ -16,7 +16,7 @@ import {header} from '../images.js';
 const Container = styled('div', {width: '328px'});
 export const titleText = 'Card Title Should be H3';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <div>
       <HeadingLevel>
