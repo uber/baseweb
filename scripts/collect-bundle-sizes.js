@@ -38,13 +38,23 @@ async function waitForPort(port) {
   }
 }
 
-async function main() {
-  // serve ladle and wait for it to begin running
-  // find stories from http://localhost:61000/meta.json
-  // for each story load it up in puppeteer and get the download size
-  // save the data to buildkite artifacts
-  // if current data is substantially larger then fail the job
+async function measurePageBytesReceived(browser, url) {
+  const page = await browser.newPage();
+  const client = await page.target().createCDPSession();
+  await client.send('Network.enable');
 
+  let bytesReceived = 0;
+  client.on('Network.dataReceived', event => {
+    bytesReceived += event.dataLength;
+  });
+
+  await page.goto(url, {waitUntil: 'networkidle0'});
+  await page.close();
+
+  return bytesReceived;
+}
+
+async function main() {
   execSync(
     'yarn ladle build --out build-ladle --stories src/**/*.scenario.js',
     {stdio: 'inherit'},
@@ -66,44 +76,26 @@ async function main() {
   });
   const sizes = {};
 
+  const baselineSize = await measurePageBytesReceived(
+    browser,
+    `${LADLE_URL}/?mode=preview&story=__story-not-found__`,
+  );
+  console.log(`baseline size ${baselineSize / 1000}kb`);
+
   for (const storyTitle in metadata.stories) {
-    const page = await browser.newPage();
-    const client = await page.target().createCDPSession();
-    await client.send('Network.enable');
-
-    let bytesReceived = 0;
-    const requests = new Map();
-
-    client.on('Network.requestWillBeSent', event => {
-      requests.set(event.requestId, event.request.url);
-    });
-
-    client.on('Network.dataReceived', event => {
-      const url = requests.get(event.requestId);
-      if (!url) {
-        console.log(`no url recorded for requestId: ${event.requestId}`);
-        return;
-      }
-      bytesReceived += event.dataLength;
-    });
-
-    await page.goto(`${LADLE_URL}?mode=preview&story=${storyTitle}`, {
-      waitUntil: 'networkidle0',
-    });
-
-    console.log(storyTitle, `${bytesReceived / 1000}kb`);
-    sizes[storyTitle] = bytesReceived;
-    await page.close();
+    const pageSize = await measurePageBytesReceived(
+      browser,
+      `${LADLE_URL}?mode=preview&story=${storyTitle}`,
+    );
+    const deltaSize = pageSize - baselineSize;
+    console.log(storyTitle, `${deltaSize / 1000}kb`);
+    sizes[storyTitle] = deltaSize;
   }
 
   await browser.close();
   ladle.kill();
 
   const artifactsDir = resolve(__dirname, '../__artifacts__/bundle-size');
-  // if (process.env.BUILDKITE) {
-  //   artifactsDir = '/__artifacts__/bundle-size';
-  // }
-
   const bundleSizeJsonPath = resolve(artifactsDir, 'bundle-size.json');
   try {
     mkdirSync(artifactsDir, {recursive: true});
