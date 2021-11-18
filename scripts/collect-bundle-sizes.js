@@ -73,6 +73,7 @@ async function downloadMasterBundleSizeData() {
   const buildsResponse = await bkfetch(
     `${BK_BASEWEB_URL}/builds?branch=master`,
   );
+  console.log(buildsResponse);
   if (buildsResponse.status !== 200) {
     throw new Error('failed to list buildkite builds');
   }
@@ -115,6 +116,9 @@ async function downloadMasterBundleSizeData() {
 }
 
 async function main() {
+  const x = await downloadMasterBundleSizeData();
+  console.log(x);
+
   execSync(
     'yarn ladle build --out build-ladle --stories src/**/*.scenario.js',
     {stdio: 'inherit'},
