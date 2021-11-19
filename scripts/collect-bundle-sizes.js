@@ -58,9 +58,9 @@ async function downloadMasterBundleSizeData() {
   const BK_API_URL = 'https://api.buildkite.com/v2';
   const BK_BASEWEB_URL = `${BK_API_URL}/organizations/uberopensource/pipelines/baseweb`;
 
-  const buildkiteToken = process.env.BUILDKITE_API_TOKEN;
+  const buildkiteToken = process.env.BUILDKITE_UBEROPENSOURCE_API_TOKEN;
   if (!buildkiteToken) {
-    throw new Error('BUILDKITE_API_TOKEN env var not set');
+    throw new Error('BUILDKITE_UBEROPENSOURCE_API_TOKEN env var not set');
   }
 
   function bkfetch(url, options = {}) {
