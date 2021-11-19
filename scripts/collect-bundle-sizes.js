@@ -167,25 +167,8 @@ async function main() {
   writeFileSync(bundleSizeJsonPath, JSON.stringify(sizes));
   console.log(`bundle-size data written to ${bundleSizeJsonPath}`);
 
-  const masterBundleSizes = {
-    'accordion-controlled--scenario': 100,
-    'accordion-disabled--scenario': 100,
-    'accordion-expanded--scenario': 100,
-    'accordion-panel-override--scenario': 100,
-    'accordion-stateless--scenario': 100,
-    'accordion--scenario': 100,
-    'app-nav-bar-get-unique-identifier--scenario': 100,
-    'app-nav-bar-is-main-item-active--scenario': 100,
-    'app-nav-bar-map-item-to-node--scenario': 100,
-    'app-nav-bar-overrides--scenario': 100,
-    'app-nav-bar-title-node--scenario': 100,
-    'app-nav-bar--scenario': 100,
-    'aspect-ratio-box--scenario': 100,
-    'avatar-custom-initials--scenario': 100,
-  };
-
   const significantDeltas = {};
-  // const masterBundleSizes = await downloadMasterBundleSizeData();
+  const masterBundleSizes = await downloadMasterBundleSizeData();
   for (const storyTitle in sizes) {
     const masterSize = masterBundleSizes[storyTitle];
     const currentSize = sizes[storyTitle];
