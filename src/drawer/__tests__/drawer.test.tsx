@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import { render, fireEvent, getByTestId, queryByText } from '@testing-library/react';
-import { Drawer, CLOSE_SOURCE } from '../index';
+import { Drawer, CLOSE_SOURCE } from '..';
 
 jest.mock('../../layer/index', () => {
   return {

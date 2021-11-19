@@ -6,10 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Input, SIZE } from '../input/index';
+import { Input, SIZE } from '../input';
 import { scrollItemIntoView } from '../menu/utils';
 import { getOverrides } from '../helpers/overrides';
-import { Popover, PLACEMENT } from '../popover/index';
+import { Popover, PLACEMENT } from '../popover';
 import { useUIDSeed } from 'react-uid';
 
 import {

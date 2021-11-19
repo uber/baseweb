@@ -5,8 +5,8 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
-import { Skeleton } from '../index';
-import { useStyletron } from '../../styles/index';
+import { Skeleton } from '..';
+import { useStyletron } from '../../styles';
 
 export function Scenario() {
   const [css] = useStyletron();

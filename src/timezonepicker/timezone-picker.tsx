@@ -9,8 +9,8 @@ import * as React from 'react';
 import { format, getTimezoneOffset } from 'date-fns-tz';
 
 import { getOverrides, mergeOverrides } from '../helpers/overrides';
-import { LocaleContext } from '../locale/index';
-import { Select } from '../select/index';
+import { LocaleContext } from '../locale';
+import { Select } from '../select';
 
 import type { TimezonePickerPropsT, TimezonePickerStateT, TimezoneT } from './types';
 import { zones } from './tzdata';

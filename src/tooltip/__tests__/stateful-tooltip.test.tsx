@@ -8,7 +8,7 @@ import * as React from 'react';
 import { render, fireEvent, findByText, getByText } from '@testing-library/react';
 
 import { TestBaseProvider } from '../../test/test-utils';
-import { StatefulTooltip, PLACEMENT, TRIGGER_TYPE } from '../index';
+import { StatefulTooltip, PLACEMENT, TRIGGER_TYPE } from '..';
 
 describe('StatefulTooltip', () => {
   it('basic render', async () => {

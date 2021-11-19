@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Checkbox } from '../checkbox/index';
-import { useStyletron } from '../styles/index';
+import { Checkbox } from '../checkbox';
+import { useStyletron } from '../styles';
 
 import type { ColumnT } from './types';
 

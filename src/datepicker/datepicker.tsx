@@ -6,12 +6,12 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { MaskedInput } from '../input/index';
-import { Popover, PLACEMENT } from '../popover/index';
+import { MaskedInput } from '../input';
+import { Popover, PLACEMENT } from '../popover';
 import Calendar from './calendar';
 import { getOverrides } from '../helpers/overrides';
 import getInterpolatedString from '../helpers/i18n-interpolation';
-import { LocaleContext } from '../locale/index';
+import { LocaleContext } from '../locale';
 import {
   StyledInputWrapper,
   StyledInputLabel,

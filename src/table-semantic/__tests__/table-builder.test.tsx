@@ -14,7 +14,7 @@ import {
   queryByText,
 } from '@testing-library/react';
 
-import { TableBuilder, TableBuilderColumn } from '../index';
+import { TableBuilder, TableBuilderColumn } from '..';
 
 const DATA = [
   {

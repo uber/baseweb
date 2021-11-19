@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 /* eslint-disable */
 import * as React from 'react';
-import { StyledInitials, StyledRoot, Avatar } from '../index';
+import { StyledInitials, StyledRoot, Avatar } from '..';
 
 describe('Avatar styled Components flow', () => {
   test('it runs without flow error when we override Initials', () => {

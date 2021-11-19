@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import { StatefulInput } from '../index';
+import { StatefulInput } from '..';
 
 describe('stateful-input', () => {
   it('renders input', () => {

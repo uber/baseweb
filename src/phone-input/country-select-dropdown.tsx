@@ -15,7 +15,7 @@ import {
   StyledCountrySelectDropdownNameColumn as DefaultNameColumn,
   StyledCountrySelectDropdownDialcodeColumn as DefaultDialcodeColumn,
 } from './styled-components';
-import { LocaleContext } from '../locale/index';
+import { LocaleContext } from '../locale';
 import { StyledEmptyState } from '../menu/styled-components';
 import { getOverrides } from '../helpers/overrides';
 import { iso2FlagEmoji } from './utils';

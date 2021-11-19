@@ -21,7 +21,7 @@ import {
   StyledClearIcon,
   StyledSearchIconContainer,
   StyledOptionContent,
-} from '../index';
+} from '..';
 import SearchIconComponent from '../../icon/search';
 import Select from '../select';
 

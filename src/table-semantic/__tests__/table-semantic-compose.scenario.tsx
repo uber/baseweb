@@ -12,7 +12,7 @@ import {
   StyledTableHeadCell,
   StyledTableBodyRow,
   StyledTableBodyCell,
-} from '../index';
+} from '..';
 
 export function Scenario() {
   return (

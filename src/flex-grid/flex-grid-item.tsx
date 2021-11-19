@@ -6,13 +6,13 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Block } from '../block/index';
+import { Block } from '../block';
 import { mergeOverrides } from '../helpers/overrides';
 import { getMediaQueries, getMediaQuery } from '../helpers/responsive-helpers';
 import type { FlexGridItemPropsT } from './types';
-import type { ResponsiveT, ScaleT } from '../block/index';
+import type { ResponsiveT, ScaleT } from '../block';
 import type { StyleOverrideT } from '../helpers/overrides';
-import type { ThemeT } from '../styles/index';
+import type { ThemeT } from '../styles';
 
 export const flexGridItemMediaQueryStyle = ({
   $theme,

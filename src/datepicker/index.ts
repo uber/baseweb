@@ -15,7 +15,7 @@ export {
 export { default as TimePicker } from '../timepicker/timepicker';
 export { default as TimezonePicker } from '../timezonepicker/timezone-picker';
 // Util functions
-export { formatDate } from './utils/index';
+export { formatDate } from './utils';
 // Constants
 export { ORIENTATION, STATE_CHANGE_TYPE } from './constants';
 // Styled elements

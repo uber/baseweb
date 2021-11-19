@@ -8,7 +8,7 @@ import * as React from 'react';
 import { render, getByTestId, fireEvent, queryByTestId, getByText } from '@testing-library/react';
 import { TestBaseProvider } from '../../test/test-utils';
 
-import { Calendar } from '../index';
+import { Calendar } from '..';
 
 describe('Component', () => {
   it('does not display quick select if quickSelect is false', () => {

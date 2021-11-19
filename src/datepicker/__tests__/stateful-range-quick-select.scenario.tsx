@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { StatefulCalendar } from '../index';
+import { StatefulCalendar } from '..';
 
 export function Scenario() {
   return <StatefulCalendar range quickSelect highlightedDate={new Date('2019-02-14T10:00:00Z')} />;

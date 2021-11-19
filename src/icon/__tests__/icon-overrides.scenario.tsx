@@ -8,7 +8,7 @@ import * as React from 'react';
 
 import DeleteIcon from '../delete';
 import PlusIcon from '../plus';
-import { ThemeProvider, LightTheme, styled } from '../../index';
+import { ThemeProvider, LightTheme, styled } from '../..';
 import { getSvgStyles } from '../../icon/styled-components';
 
 const XSmallFilled = ({ title, ...props }) => {

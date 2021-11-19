@@ -4,7 +4,7 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import { styled, type ThemeT } from '../styles/index';
+import { styled, type ThemeT } from '../styles';
 import { getInputStyles, getInputContainerStyles, getRootStyles } from '../input/styled-components';
 import type { SharedStylePropsT } from './types';
 

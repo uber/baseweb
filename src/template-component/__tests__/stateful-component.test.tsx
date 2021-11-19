@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { render, getByText } from '@testing-library/react';
 
-import { StatefulComponent } from '../index';
+import { StatefulComponent } from '..';
 
 describe('StatefulComponent', () => {
   it('renders the content', () => {

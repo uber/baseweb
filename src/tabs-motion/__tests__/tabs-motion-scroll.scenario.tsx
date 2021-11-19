@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable jsx-a11y/accessible-emoji */
 
 import * as React from 'react';
-import { Tab, Tabs } from '../index';
+import { Tab, Tabs } from '..';
 
 export function Scenario() {
   const [activeKey, setActiveKey] = React.useState('8');

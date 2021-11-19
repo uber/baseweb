@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { render, fireEvent, getByRole } from '@testing-library/react';
 
-import { SortableHeadCell } from '../index';
+import { SortableHeadCell } from '..';
 
 describe('sortable-head-cell', () => {
   it('displays triangle down when direction is ASC', () => {

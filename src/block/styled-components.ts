@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 
 import { getMediaQueries } from '../helpers/responsive-helpers';
-import { styled } from '../styles/index';
+import { styled } from '../styles';
 import type { BreakpointsT } from '../styles/types';
 import type { StyledBlockPropsT } from './types';
 

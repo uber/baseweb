@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { act } from 'react-dom/test-utils';
 import { render } from '@testing-library/react';
-import { StatefulContainer } from '../index';
+import { StatefulContainer } from '..';
 
 describe('stateful-container', () => {
   it('renders children fn', () => {

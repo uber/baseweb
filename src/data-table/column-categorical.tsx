@@ -6,18 +6,18 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Button, SIZE, KIND } from '../button/index';
-import { ButtonGroup } from '../button-group/index';
-import { Checkbox, StyledLabel } from '../checkbox/index';
+import { Button, SIZE, KIND } from '../button';
+import { ButtonGroup } from '../button-group';
+import { Checkbox, StyledLabel } from '../checkbox';
 import Search from '../icon/search';
-import { Input, SIZE as INPUT_SIZE } from '../input/index';
-import { useStyletron, withStyle } from '../styles/index';
-import { LabelSmall } from '../typography/index';
+import { Input, SIZE as INPUT_SIZE } from '../input';
+import { useStyletron, withStyle } from '../styles';
+import { LabelSmall } from '../typography';
 
 import Column from './column';
 import { COLUMNS } from './constants';
 import type { ColumnT, SharedColumnOptionsT } from './types';
-import { LocaleContext } from '../locale/index';
+import { LocaleContext } from '../locale';
 import FilterShell from './filter-shell';
 import { matchesQuery, splitByQuery, HighlightCellText } from './text-search';
 import type { StyleObject } from 'styletron-standard';

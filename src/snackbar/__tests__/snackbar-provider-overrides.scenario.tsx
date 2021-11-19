@@ -9,7 +9,7 @@ import * as React from 'react';
 
 import Upload from '../../icon/upload';
 
-import { SnackbarProvider, useSnackbar } from '../index';
+import { SnackbarProvider, useSnackbar } from '..';
 
 function Child() {
   const { enqueue } = useSnackbar();

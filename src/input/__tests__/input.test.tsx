@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { render, fireEvent, getByText } from '@testing-library/react';
 
-import { Input } from '../index';
+import { Input } from '..';
 
 describe('input', () => {
   it('renders input element', () => {

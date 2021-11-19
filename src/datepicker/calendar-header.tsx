@@ -11,9 +11,9 @@ import ChevronDown from '../icon/chevron-down';
 import dateFnsAdapter from './utils/date-fns-adapter';
 import DateHelpers from './utils/date-helpers';
 import { getFilteredMonthItems } from './utils/calendar-header-helpers';
-import { StatefulMenu } from '../menu/index';
-import { Popover } from '../popover/index';
-import { LocaleContext } from '../locale/index';
+import { StatefulMenu } from '../menu';
+import { Popover } from '../popover';
+import { LocaleContext } from '../locale';
 import { ThemeContext } from '../styles/theme-provider';
 import {
   StyledCalendarHeader,

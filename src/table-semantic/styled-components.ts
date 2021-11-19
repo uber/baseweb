@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import Blank from '../icon/blank';
 import ChevronDown from '../icon/chevron-down';
 import ChevronUp from '../icon/chevron-up';
-import { styled, withStyle, expandBorderStyles } from '../styles/index';
+import { styled, withStyle, expandBorderStyles } from '../styles';
 import { SIZE, DIVIDER } from './constants';
 import type { SizeT, DividerT } from './types';
 

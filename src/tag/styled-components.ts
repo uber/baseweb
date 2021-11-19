@@ -7,10 +7,10 @@ LICENSE file in the root directory of this source tree.
 import tint from 'polished/lib/color/tint.js';
 import shade from 'polished/lib/color/shade.js';
 
-import { styled, type ThemeT } from '../styles/index';
+import { styled, type ThemeT } from '../styles';
 import { KIND, VARIANT, SIZE } from './constants';
 import type { SharedPropsArgT } from './types';
-import { colors as colorTokens } from '../tokens/index';
+import { colors as colorTokens } from '../tokens';
 
 export function customOnRamp(color?: string, unit?: string) {
   switch (unit) {

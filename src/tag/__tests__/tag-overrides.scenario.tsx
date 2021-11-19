@@ -5,11 +5,11 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
-import { Tag, SIZE } from '../index';
+import { Tag, SIZE } from '..';
 import Alert from '../../icon/alert';
 import ArrowLeft from '../../icon/arrow-left';
 import ThemeProvider from '../../styles/theme-provider';
-import { createTheme, lightThemePrimitives } from '../../index';
+import { createTheme, lightThemePrimitives } from '../..';
 
 const themeWithIcons = createTheme(
   {

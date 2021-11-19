@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Calendar } from '../index';
+import { Calendar } from '..';
 
 const DATE = new Date('2019-02-22T10:00:00Z');
 const TIME = new Date(DATE);

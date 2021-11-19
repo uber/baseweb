@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { StyledLink as Link } from '../../link/index';
-import { Breadcrumbs } from '../index';
+import { StyledLink as Link } from '../../link';
+import { Breadcrumbs } from '..';
 
 export function Scenario() {
   return (

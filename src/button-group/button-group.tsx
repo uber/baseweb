@@ -6,10 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { KIND, SIZE, SHAPE } from '../button/index';
+import { KIND, SIZE, SHAPE } from '../button';
 import { MODE } from './constants';
 import { getOverrides } from '../helpers/overrides';
-import { LocaleContext } from '../locale/index';
+import { LocaleContext } from '../locale';
 
 import { StyledRoot } from './styled-components';
 import type { PropsT } from './types';

@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Card, StyledBody } from '../index';
-import { styled } from '../../styles/index';
+import { Card, StyledBody } from '..';
+import { styled } from '../../styles';
 
 const Container = styled('div', { width: '328px' });
 

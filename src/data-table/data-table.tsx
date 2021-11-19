@@ -13,15 +13,15 @@ import {
   SHAPE as BUTTON_SHAPES,
   SIZE as BUTTON_SIZES,
   KIND as BUTTON_KINDS,
-} from '../button/index';
-import { useStyletron } from '../styles/index';
-import { Tooltip, PLACEMENT } from '../tooltip/index';
+} from '../button';
+import { useStyletron } from '../styles';
+import { Tooltip, PLACEMENT } from '../tooltip';
 
 import { SORT_DIRECTIONS } from './constants';
 import HeaderCell from './header-cell';
 import MeasureColumnWidths from './measure-column-widths';
 import type { ColumnT, DataTablePropsT, RowT, SortDirectionsT, RowActionT } from './types';
-import { LocaleContext } from '../locale/index';
+import { LocaleContext } from '../locale';
 
 // consider pulling this out to a prop if useful.
 const HEADER_ROW_HEIGHT = 48;

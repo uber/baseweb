@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 /* global document */
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import { styled } from '../styles/index';
+import { styled } from '../styles';
 import { LayersContext, Consumer } from './layers-manager';
 import type { LayerPropsT, LayerComponentPropsT, LayerStateT } from './types';
 

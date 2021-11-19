@@ -9,7 +9,7 @@ import * as React from 'react';
 import { render, getByTestId } from '@testing-library/react';
 
 import { withStyletronProvider, withThemeProvider } from '../../test/test-utils';
-import { LightTheme } from '../../themes/index';
+import { LightTheme } from '../../themes';
 
 import {
   styled,

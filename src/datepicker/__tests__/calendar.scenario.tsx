@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { DENSITY } from '../constants';
 
-import { Calendar } from '../index';
+import { Calendar } from '..';
 
 export function Scenario() {
   return (

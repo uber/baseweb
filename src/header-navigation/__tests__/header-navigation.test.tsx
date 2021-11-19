@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { render, getByTestId, getByText } from '@testing-library/react';
 
-import { HeaderNavigation } from '../index';
+import { HeaderNavigation } from '..';
 
 describe('Stateless header navigation', function () {
   it('should render component', function () {

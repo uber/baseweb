@@ -9,9 +9,9 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import FocusLock from 'react-focus-lock';
 
-import { LocaleContext } from '../locale/index';
+import { LocaleContext } from '../locale';
 import { getOverrides } from '../helpers/overrides';
-import { Layer } from '../layer/index';
+import { Layer } from '../layer';
 import { SIZE, CLOSE_SOURCE, ANCHOR } from './constants';
 import {
   StyledRoot,

@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 
 import * as React from 'react';
-import { ThemeProvider, LightTheme } from '../../index';
+import { ThemeProvider, LightTheme } from '../..';
 import { Scenario as SnackbarScenario } from './snackbar-element.scenario';
 
 export function Scenario() {

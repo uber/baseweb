@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { render, fireEvent, getByText } from '@testing-library/react';
 
-import { Panel } from '../index';
+import { Panel } from '..';
 
 describe('Panel', () => {
   it('applies aria-controls when provided', () => {

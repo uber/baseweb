@@ -22,7 +22,7 @@ import {
   LabelMedium,
   ParagraphLarge,
   ParagraphMedium,
-} from '../index';
+} from '..';
 
 function getStyle(element) {
   return JSON.parse(element.getAttribute('test-style') || '');

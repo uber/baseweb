@@ -18,9 +18,9 @@ import {
 } from '@testing-library/react';
 
 import { TestBaseProvider } from '../../test/test-utils';
-import { Popover, ACCESSIBILITY_TYPE, TRIGGER_TYPE } from '../index';
+import { Popover, ACCESSIBILITY_TYPE, TRIGGER_TYPE } from '..';
 
-import { styled } from '../../styles/index';
+import { styled } from '../../styles';
 
 jest.mock('react-uid', () => ({
   ...jest.requireActual('react-uid'),

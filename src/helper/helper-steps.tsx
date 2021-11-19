@@ -10,8 +10,8 @@ import * as React from 'react';
 import ArrowLeft from '../icon/arrow-left';
 import ArrowRight from '../icon/arrow-right';
 import Check from '../icon/check';
-import { Button, KIND, SHAPE } from '../button/index';
-import { useStyletron } from '../styles/index';
+import { Button, KIND, SHAPE } from '../button';
+import { useStyletron } from '../styles';
 
 import type { HelperStepsPropsT } from './types';
 

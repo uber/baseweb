@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { render, fireEvent, getByText, getByTestId, queryAllByText } from '@testing-library/react';
 
-import { Accordion, Panel } from '../index';
+import { Accordion, Panel } from '..';
 
 describe('Accordion', () => {
   it('renders basic configuration', () => {

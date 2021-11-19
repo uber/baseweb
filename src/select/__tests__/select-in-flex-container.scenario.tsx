@@ -5,9 +5,9 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
-import { styled } from '../../styles/index';
-import { Block } from '../../block/index';
-import { StatefulSelect, SingleSelect, MultiSelect } from '../index';
+import { styled } from '../../styles';
+import { Block } from '../../block';
+import { StatefulSelect, SingleSelect, MultiSelect } from '..';
 
 const options = [
   { id: 'AliceBlue', color: '#F0F8FF' },

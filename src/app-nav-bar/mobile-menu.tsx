@@ -6,13 +6,13 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Button } from '../button/index';
-import { Drawer, ANCHOR } from '../drawer/index';
+import { Button } from '../button';
+import { Drawer, ANCHOR } from '../drawer';
 import { getOverrides, mergeOverrides } from '../helpers/overrides';
 import ArrowLeft from '../icon/arrow-left';
 import MenuIcon from '../icon/menu';
-import { MenuAdapter, ListItemLabel, ARTWORK_SIZES, MenuAdapterPropsT } from '../list/index';
-import { StatefulMenu } from '../menu/index';
+import { MenuAdapter, ListItemLabel, ARTWORK_SIZES, MenuAdapterPropsT } from '../list';
+import { StatefulMenu } from '../menu';
 
 import { StyledSideMenuButton, StyledUserMenuProfileListItem } from './styled-components';
 import type { AppNavBarPropsT } from './types';

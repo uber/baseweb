@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import { getOverride, getOverrideProps } from '../helpers/overrides';
-import { LevelContext } from '../heading/index';
+import { LevelContext } from '../heading';
 import {
   Action as StyledAction,
   Body as StyledBody,

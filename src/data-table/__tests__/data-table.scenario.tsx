@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { useStyletron } from '../../styles/index';
+import { useStyletron } from '../../styles';
 
 import {
   AnchorColumn,
@@ -19,7 +19,7 @@ import {
   COLUMNS,
   NUMERICAL_FORMATS,
   StatefulDataTable,
-} from '../index';
+} from '..';
 
 type RowDataT = [
   string,

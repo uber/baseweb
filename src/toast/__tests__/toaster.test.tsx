@@ -17,7 +17,7 @@ import {
   waitForElementToBeRemoved,
 } from '@testing-library/react';
 
-import { toaster, ToasterContainer } from '../index';
+import { toaster, ToasterContainer } from '..';
 
 const getBody = (): HTMLBodyElement => {
   //flowlint-next-line unclear-type:off

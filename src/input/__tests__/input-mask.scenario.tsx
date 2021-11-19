@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 
 import React from 'react';
-import { MaskedInput } from '../index';
+import { MaskedInput } from '..';
 
 export function Scenario() {
   const [value, setValue] = React.useState('20000101');

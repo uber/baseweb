@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { StatefulMenu } from '../index';
+import { StatefulMenu } from '..';
 
 export function Scenario() {
   function handleParentKeyDown(event) {

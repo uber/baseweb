@@ -11,7 +11,7 @@ import Delete from '../../icon/delete';
 import Upload from '../../icon/upload';
 import Overflow from '../../icon/overflow';
 
-import { AppNavBar, setItemActive } from '../index';
+import { AppNavBar, setItemActive } from '..';
 
 const expandBorderStyles = (str) => {
   const val = str.split(' ');

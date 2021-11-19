@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { NUMERICAL_FORMATS, NumericalColumn } from '../index';
+import { NUMERICAL_FORMATS, NumericalColumn } from '..';
 import { randomLcg, randomBinomial, randomLogNormal, randomInt } from 'd3';
 
 import { precisionData } from './precision-data';

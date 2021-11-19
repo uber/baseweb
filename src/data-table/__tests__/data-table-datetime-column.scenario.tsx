@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { DatetimeColumn } from '../index';
+import { DatetimeColumn } from '..';
 
 const Column = DatetimeColumn({
   title: 'categorical-column',

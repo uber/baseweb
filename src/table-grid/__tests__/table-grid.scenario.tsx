@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 import React from 'react';
 
-import { useStyletron } from '../../styles/index';
+import { useStyletron } from '../../styles';
 
-import { StyledTable, StyledHeadCell, StyledBodyCell } from '../index';
+import { StyledTable, StyledHeadCell, StyledBodyCell } from '..';
 
 import { useCellNavigation } from './shared';
 

@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 // with new styles the autosizer logic does not cut off any text.
 
 import * as React from 'react';
-import { StatefulSelect } from '../index';
+import { StatefulSelect } from '..';
 
 export function Scenario() {
   return (

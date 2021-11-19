@@ -8,9 +8,9 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable jsx-a11y/accessible-emoji */
 
 import * as React from 'react';
-import { Tab, Tabs, StyledTabList, StyledTabPanel } from '../index';
-import { Button, KIND } from '../../button/index';
-import { Grid, Cell } from '../../layout-grid/index';
+import { Tab, Tabs, StyledTabList, StyledTabPanel } from '..';
+import { Button, KIND } from '../../button';
+import { Grid, Cell } from '../../layout-grid';
 
 const TabsOverrides = {
   TabList: {

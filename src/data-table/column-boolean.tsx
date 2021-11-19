@@ -6,13 +6,13 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { useStyletron } from '../styles/index';
+import { useStyletron } from '../styles';
 
 import { CategoricalFilter } from './column-categorical';
 import Column from './column';
 import { COLUMNS } from './constants';
 import type { ColumnT, SharedColumnOptionsT } from './types';
-import { LocaleContext } from '../locale/index';
+import { LocaleContext } from '../locale';
 
 type OptionsT = {} & SharedColumnOptionsT<boolean>;
 

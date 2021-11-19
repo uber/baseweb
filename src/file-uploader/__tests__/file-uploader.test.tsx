@@ -14,7 +14,7 @@ import {
   queryByTestId,
 } from '@testing-library/react';
 
-import { FileUploader } from '../index';
+import { FileUploader } from '..';
 
 describe('FileUploader', () => {
   it('applies expected accessibility attributes to button', () => {

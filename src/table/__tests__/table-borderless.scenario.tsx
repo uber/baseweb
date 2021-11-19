@@ -7,14 +7,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { withStyle } from 'styletron-react';
 
-import {
-  StyledTable,
-  StyledHead,
-  StyledBody,
-  StyledRow,
-  StyledCell,
-  StyledHeadCell,
-} from '../index';
+import { StyledTable, StyledHead, StyledBody, StyledRow, StyledCell, StyledHeadCell } from '..';
 
 const BorderlessTable = withStyle(StyledTable, {
   borderLeftWidth: 0,

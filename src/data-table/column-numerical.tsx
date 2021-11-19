@@ -6,18 +6,18 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Button, SIZE } from '../button/index';
-import { ButtonGroup, MODE } from '../button-group/index';
-import { Input, SIZE as INPUT_SIZE } from '../input/index';
-import { useStyletron } from '../styles/index';
+import { Button, SIZE } from '../button';
+import { ButtonGroup, MODE } from '../button-group';
+import { Input, SIZE as INPUT_SIZE } from '../input';
+import { useStyletron } from '../styles';
 
 import Column from './column';
 import { COLUMNS, NUMERICAL_FORMATS, MAX_BIN_COUNT, HISTOGRAM_SIZE } from './constants';
 import FilterShell, { type ExcludeKind } from './filter-shell';
 import type { ColumnT, SharedColumnOptionsT } from './types';
-import { LocaleContext } from '../locale/index';
+import { LocaleContext } from '../locale';
 import { bin, max as maxFunc, extent, scaleLinear, median, bisector } from 'd3';
-import { Slider } from '../slider/index';
+import { Slider } from '../slider';
 
 type NumericalFormats =
   | typeof NUMERICAL_FORMATS.DEFAULT

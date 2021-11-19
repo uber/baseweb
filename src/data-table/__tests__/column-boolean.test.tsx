@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 
-import { BooleanColumn } from '../index';
+import { BooleanColumn } from '..';
 
 describe('boolean column', () => {
   it('is sortable by default', () => {

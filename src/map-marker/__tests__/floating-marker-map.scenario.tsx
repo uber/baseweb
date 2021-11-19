@@ -5,17 +5,17 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
-import { FloatingMarker } from '../index';
+import { FloatingMarker } from '..';
 import { FLOATING_MARKER_ANCHOR_POSITIONS, FLOATING_MARKER_ANCHOR_TYPES } from '../constants';
 import TileGrid from './tile-grid';
-import { Checkbox, LABEL_PLACEMENT } from '../../checkbox/index';
-import { Input } from '../../input/index';
+import { Checkbox, LABEL_PLACEMENT } from '../../checkbox';
+import { Input } from '../../input';
 import Upload from '../../icon/upload';
 import Search from '../../icon/search';
-import { Select } from '../../select/index';
+import { Select } from '../../select';
 import ReactMapGL, { Marker } from 'react-map-gl';
-import { Button } from '../../button/index';
-import { useStyletron } from '../../styles/index';
+import { Button } from '../../button';
+import { useStyletron } from '../../styles';
 import { getMapStyle } from './map-style';
 
 const floatingMarkerAnchorTypes = Object.keys(FLOATING_MARKER_ANCHOR_TYPES)

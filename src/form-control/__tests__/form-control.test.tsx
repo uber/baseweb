@@ -8,10 +8,10 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { render, getByTestId, getByText, queryByText } from '@testing-library/react';
 import FormControl from '../form-control';
-import { Input } from '../../input/index';
-import { Textarea } from '../../textarea/index';
-import { Checkbox } from '../../checkbox/index';
-import { RadioGroup, Radio } from '../../radio/index';
+import { Input } from '../../input';
+import { Textarea } from '../../textarea';
+import { Checkbox } from '../../checkbox';
+import { RadioGroup, Radio } from '../../radio';
 
 describe('FormControl - Label and Caption for controls', () => {
   it('Renders label, caption, and error for the Input component', () => {

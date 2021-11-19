@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // Styled elements
 import * as React from 'react';
 import { Link } from './styled-components';
-import { withWrapper } from '../styles/index';
+import { withWrapper } from '../styles';
 import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible';
 
 import type { SyntheticEvent } from 'react';

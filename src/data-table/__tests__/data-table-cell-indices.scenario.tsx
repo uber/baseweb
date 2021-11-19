@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import RowIndexColumn from '../column-row-index';
-import { CustomColumn, StatefulDataTable } from '../index';
+import { CustomColumn, StatefulDataTable } from '..';
 
 const rows = new Array(100).fill(undefined).map((_, index) => ({ id: index, data: null }));
 

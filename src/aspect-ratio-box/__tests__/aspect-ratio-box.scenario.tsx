@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import React from 'react';
 
-import { AspectRatioBox, AspectRatioBoxBody } from '../index';
+import { AspectRatioBox, AspectRatioBoxBody } from '..';
 
 const bodyProps = {
   display: 'flex',

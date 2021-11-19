@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Card, StyledAction, StyledBody, StyledThumbnail, StyledTitle } from '../index';
-import { Button } from '../../button/index';
-import { styled } from '../../styles/index';
+import { Card, StyledAction, StyledBody, StyledThumbnail, StyledTitle } from '..';
+import { Button } from '../../button';
+import { styled } from '../../styles';
 
 import { thumbnail } from '../images';
 

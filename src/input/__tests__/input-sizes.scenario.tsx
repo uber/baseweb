@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import React from 'react';
 
-import { StatefulInput, SIZE } from '../index';
+import { StatefulInput, SIZE } from '..';
 
 export function Scenario() {
   return (

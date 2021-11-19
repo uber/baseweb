@@ -5,8 +5,8 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
-import { FixedMarker } from '../index';
-import { Checkbox, LABEL_PLACEMENT } from '../../checkbox/index';
+import { FixedMarker } from '..';
+import { Checkbox, LABEL_PLACEMENT } from '../../checkbox';
 import {
   PINHEAD_SIZES_SHAPES,
   NEEDLE_SIZES,
@@ -14,13 +14,13 @@ import {
   LABEL_ENHANCER_POSITIONS,
 } from '../constants';
 import TileGrid from './tile-grid';
-import { Input } from '../../input/index';
+import { Input } from '../../input';
 import Upload from '../../icon/upload';
 import Search from '../../icon/search';
-import { Select } from '../../select/index';
+import { Select } from '../../select';
 import ReactMapGL, { Marker } from 'react-map-gl';
-import { Button } from '../../button/index';
-import { useStyletron } from '../../styles/index';
+import { Button } from '../../button';
+import { useStyletron } from '../../styles';
 import { getMapStyle } from './map-style';
 
 const uberHq = {

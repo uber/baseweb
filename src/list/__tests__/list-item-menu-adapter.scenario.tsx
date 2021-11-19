@@ -8,8 +8,8 @@ import * as React from 'react';
 
 import ChevronRight from '../../icon/chevron-right';
 import Search from '../../icon/search';
-import { StatefulMenu } from '../../menu/index';
-import { ListItemLabel, MenuAdapter, ARTWORK_SIZES } from '../index';
+import { StatefulMenu } from '../../menu';
+import { ListItemLabel, MenuAdapter, ARTWORK_SIZES } from '..';
 
 const ITEMS = [...new Array(10)].map(() => ({
   title: 'Jane Smith',

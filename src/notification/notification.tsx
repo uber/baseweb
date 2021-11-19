@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Toast, TYPE } from '../toast/index';
+import { Toast, TYPE } from '../toast';
 import type { ToastPropsT, ToastPropsShapeT } from '../toast/types';
 import { mergeOverrides } from '../helpers/overrides';
 

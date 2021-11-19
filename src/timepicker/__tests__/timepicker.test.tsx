@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 
-import { TimePicker } from '../index';
+import { TimePicker } from '..';
 
 const TIME = new Date(2019, 3, 19, 1, 30);
 const overrides = {

@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Accordion, StatefulPanel, Panel } from '../index';
+import { Accordion, StatefulPanel, Panel } from '..';
 
 export function Scenario() {
   return (

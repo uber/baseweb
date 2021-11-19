@@ -7,9 +7,9 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 
-import { Button } from '../../button/index';
+import { Button } from '../../button';
 
-import { ButtonGroup } from '../index';
+import { ButtonGroup } from '..';
 import type { PropsT } from '../types';
 
 function buildSimpleWrapper(props: Partial<PropsT> = {}) {

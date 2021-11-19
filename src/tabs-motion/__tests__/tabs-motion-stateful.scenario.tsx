@@ -8,8 +8,8 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable jsx-a11y/accessible-emoji */
 
 import * as React from 'react';
-import { Tab, StatefulTabs } from '../index';
-import { Button, KIND } from '../../button/index';
+import { Tab, StatefulTabs } from '..';
+import { Button, KIND } from '../../button';
 
 export function Scenario() {
   return (

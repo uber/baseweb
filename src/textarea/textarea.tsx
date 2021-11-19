@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import type { TextareaPropsT } from './types';
 import { mergeOverrides, getOverrides } from '../helpers/overrides';
-import { BaseInput, SIZE, CUSTOM_INPUT_TYPE } from '../input/index';
+import { BaseInput, SIZE, CUSTOM_INPUT_TYPE } from '../input';
 import { StyledTextAreaRoot, StyledTextarea, StyledTextareaContainer } from './styled-components';
 
 import type { FocusEvent } from 'react';

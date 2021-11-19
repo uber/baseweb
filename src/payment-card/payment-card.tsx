@@ -10,7 +10,7 @@ import * as valid from 'card-validator';
 import { addGaps, getCaretPosition } from './utils';
 
 import { getOverrides } from '../helpers/overrides';
-import { Input, SIZE } from '../input/index';
+import { Input, SIZE } from '../input';
 import { ThemeContext } from '../styles/theme-provider';
 
 import AmexIcon from './icons/amex';

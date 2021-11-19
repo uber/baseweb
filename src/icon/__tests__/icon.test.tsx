@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import { render } from '@testing-library/react';
-import { Icon } from '../index';
+import { Icon } from '..';
 import * as Icons from '../icon-exports';
 
 describe('Icon', () => {

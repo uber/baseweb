@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
-import { styled, hexToRgb, withWrapper } from '../styles/index';
+import { styled, hexToRgb, withWrapper } from '../styles';
 import type { SharedPropsT } from './types';
 
 export const StyledRoot = styled<'nav', SharedPropsT>('nav', (props) => {

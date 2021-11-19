@@ -18,7 +18,7 @@ import {
 
 import { TestBaseProvider } from '../../test/test-utils';
 import { addDays } from 'date-fns';
-import { Datepicker, ORIENTATION } from '../index';
+import { Datepicker, ORIENTATION } from '..';
 
 describe('Datepicker', () => {
   beforeEach(() => {

@@ -5,9 +5,9 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
-import { Layer, LayersManager, TetherBehavior, TETHER_PLACEMENT } from '../index';
-import { Block } from '../../block/index';
-import { Button } from '../../button/index';
+import { Layer, LayersManager, TetherBehavior, TETHER_PLACEMENT } from '..';
+import { Block } from '../../block';
+import { Button } from '../../button';
 import type { NormalizedOffsetsT } from '../../layer/types';
 
 function BlockComponent(props) {

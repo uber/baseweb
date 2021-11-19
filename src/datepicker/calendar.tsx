@@ -5,9 +5,9 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
-import { FormControl } from '../form-control/index';
-import { LocaleContext } from '../locale/index';
-import { Select } from '../select/index';
+import { FormControl } from '../form-control';
+import { LocaleContext } from '../locale';
+import { Select } from '../select';
 import CalendarHeader from './calendar-header';
 import Month from './month';
 import TimePicker from '../timepicker/timepicker';

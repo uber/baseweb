@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Datepicker } from '../index';
-import { Button } from '../../button/index';
+import { Datepicker } from '..';
+import { Button } from '../../button';
 import MomentUtils from '@date-io/moment';
 import moment from 'moment';
 

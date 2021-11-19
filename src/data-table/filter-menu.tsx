@@ -5,17 +5,17 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import React from 'react';
-import { Button, SHAPE, SIZE } from '../button/index';
-import { Filter as FilterIcon } from '../icon/index';
-import { Input, SIZE as INPUT_SIZE } from '../input/index';
-import { Popover, PLACEMENT } from '../popover/index';
-import { useStyletron } from '../styles/index';
+import { Button, SHAPE, SIZE } from '../button';
+import { Filter as FilterIcon } from '../icon';
+import { Input, SIZE as INPUT_SIZE } from '../input';
+import { Popover, PLACEMENT } from '../popover';
+import { useStyletron } from '../styles';
 import { useUIDSeed } from 'react-uid';
 
 import { COLUMNS } from './constants';
 import { matchesQuery } from './text-search';
 import type { ColumnT } from './types';
-import { LocaleContext } from '../locale/index';
+import { LocaleContext } from '../locale';
 
 import { isFocusVisible } from '../utils/focusVisible';
 

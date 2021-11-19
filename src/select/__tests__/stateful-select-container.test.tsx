@@ -8,7 +8,7 @@ import * as React from 'react';
 import { act } from 'react-dom/test-utils';
 import { render } from '@testing-library/react';
 
-import { StatefulSelectContainer } from '../index';
+import { StatefulSelectContainer } from '..';
 import { STATE_CHANGE_TYPE } from '../constants';
 
 describe('StatefulSelectContainer', function () {

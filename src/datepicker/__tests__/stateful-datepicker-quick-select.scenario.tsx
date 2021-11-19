@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { StatefulDatepicker } from '../index';
-import { addDays } from '../utils/index';
+import { StatefulDatepicker } from '..';
+import { addDays } from '../utils';
 
 const now = new Date('2019-02-14T10:00:00Z');
 

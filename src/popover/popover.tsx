@@ -16,7 +16,7 @@ import {
   ANIMATE_IN_TIME,
   POPOVER_MARGIN,
 } from './constants';
-import { Layer, TetherBehavior } from '../layer/index';
+import { Layer, TetherBehavior } from '../layer';
 import {
   Arrow as StyledArrow,
   Body as StyledBody,

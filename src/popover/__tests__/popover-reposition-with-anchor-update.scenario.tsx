@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Select } from '../../select/index';
+import { Select } from '../../select';
 
 export function Scenario() {
   const [value, setValue] = React.useState([]);

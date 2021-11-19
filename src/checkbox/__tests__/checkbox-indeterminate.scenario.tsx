@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Block } from '../../block/index';
-import { Checkbox } from '../index';
+import { Block } from '../../block';
+import { Checkbox } from '..';
 
 class GroupList extends React.Component<
   {},

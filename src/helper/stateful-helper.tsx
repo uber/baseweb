@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import { StatefulContainer, ACCESSIBILITY_TYPE, PLACEMENT, TRIGGER_TYPE } from '../popover/index';
+import { StatefulContainer, ACCESSIBILITY_TYPE, PLACEMENT, TRIGGER_TYPE } from '../popover';
 import { POPOVER_MARGIN } from '../popover/constants';
 
 import { Helper } from './helper';

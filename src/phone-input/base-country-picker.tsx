@@ -14,8 +14,8 @@ import {
   StyledCountrySelectDropdownNameColumn as DefaultNameColumn,
   StyledCountrySelectDropdownDialcodeColumn as DefaultDialcodeColumn,
 } from './styled-components';
-import { SingleSelect as DefaultSelect } from '../select/index';
-import { PLACEMENT } from '../popover/index';
+import { SingleSelect as DefaultSelect } from '../select';
+import { PLACEMENT } from '../popover';
 import { getOverrides, mergeOverrides } from '../helpers/overrides';
 import defaultProps from './default-props';
 import { iso2FlagEmoji } from './utils';

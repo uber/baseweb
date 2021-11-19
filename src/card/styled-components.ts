@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-import { styled, expandBorderStyles } from '../styles/index';
+import { styled, expandBorderStyles } from '../styles';
 import type { StyleObject } from 'styletron-standard';
 
 export const Action = styled('div', ({ $theme }) => ({

@@ -13,7 +13,7 @@ import {
   DatetimeColumn,
   NumericalColumn,
   StringColumn,
-} from '../index';
+} from '..';
 
 type RowDataT = [boolean, string, number, string, Date];
 

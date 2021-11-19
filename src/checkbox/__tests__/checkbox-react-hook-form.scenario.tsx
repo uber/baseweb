@@ -7,8 +7,8 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import { FormProvider, useForm, Controller } from 'react-hook-form';
-import { StatefulCheckbox, Checkbox, LABEL_PLACEMENT } from '../index';
-import { Heading, HeadingLevel } from '../../heading/index';
+import { StatefulCheckbox, Checkbox, LABEL_PLACEMENT } from '..';
+import { Heading, HeadingLevel } from '../../heading';
 
 const StatefulCheckboxExample = () => {
   const form = useForm({

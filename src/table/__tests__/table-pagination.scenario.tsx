@@ -6,14 +6,14 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Block } from '../../block/index';
-import { Button, KIND } from '../../button/index';
+import { Block } from '../../block';
+import { Button, KIND } from '../../button';
 import TriangleDown from '../../icon/triangle-down';
-import { StatefulMenu } from '../../menu/index';
-import { Pagination } from '../../pagination/index';
-import { StatefulPopover, PLACEMENT } from '../../popover/index';
+import { StatefulMenu } from '../../menu';
+import { Pagination } from '../../pagination';
+import { StatefulPopover, PLACEMENT } from '../../popover';
 
-import { Table } from '../index';
+import { Table } from '..';
 
 const COLUMNS = [...new Array(5)].map(() => 'Label');
 const DATA = [...new Array(45)].map((_, i) => [...new Array(5)].map(() => `row: ${i + 1}`));

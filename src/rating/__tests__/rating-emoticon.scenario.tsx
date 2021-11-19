@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { EmoticonRating } from '../index';
+import { EmoticonRating } from '..';
 
 export function Scenario() {
   const [value, setValue] = React.useState(3);

@@ -15,9 +15,9 @@ import isBefore from 'date-fns/isBefore/index.js';
 import isEqual from 'date-fns/isEqual/index.js';
 import set from 'date-fns/set/index.js';
 
-import { Button, SIZE } from '../button/index';
-import { ButtonGroup, MODE } from '../button-group/index';
-import { Checkbox } from '../checkbox/index';
+import { Button, SIZE } from '../button';
+import { ButtonGroup, MODE } from '../button-group';
+import { Checkbox } from '../checkbox';
 import {
   applyDateToTime,
   applyTimeToDate,
@@ -26,17 +26,17 @@ import {
   getQuarterInLocale,
   getStartOfWeek,
   addDays,
-} from '../datepicker/utils/index';
-import { Datepicker } from '../datepicker/index';
-import { TimePicker } from '../timepicker/index';
-import { useStyletron } from '../styles/index';
-import { Select, type ValueT } from '../select/index';
+} from '../datepicker/utils';
+import { Datepicker } from '../datepicker';
+import { TimePicker } from '../timepicker';
+import { useStyletron } from '../styles';
+import { Select, type ValueT } from '../select';
 
 import Column from './column';
 import { COLUMNS, DATETIME_OPERATIONS } from './constants';
 import FilterShell from './filter-shell';
 import type { ColumnT, SharedColumnOptionsT } from './types';
-import { LocaleContext } from '../locale/index';
+import { LocaleContext } from '../locale';
 import type { ComponentProps } from 'react';
 
 type OptionsT = {

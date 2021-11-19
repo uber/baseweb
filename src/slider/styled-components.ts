@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import { getTrackBackground } from 'react-range';
 
-import { styled } from '../styles/index';
+import { styled } from '../styles';
 import type { StylePropsT } from './types';
 
 export const Root = styled('div', { position: 'relative', width: '100%' });

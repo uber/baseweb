@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 
-import { CategoricalColumn } from '../index';
+import { CategoricalColumn } from '..';
 
 describe('categorical column', () => {
   it('is sortable by default', () => {

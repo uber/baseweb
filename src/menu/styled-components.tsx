@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
-import { styled, withWrapper } from '../styles/index';
+import { styled, withWrapper } from '../styles';
 import { OPTION_LIST_SIZE } from './constants';
 
 type StyledPropsT = {

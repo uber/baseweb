@@ -4,10 +4,10 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import { styled, withStyle } from '../styles/index';
+import { styled, withStyle } from '../styles';
 import { TYPE, SIZE } from './constants';
-import { StyledList, StyledListItem } from '../menu/index';
-import { Spinner } from '../spinner/index';
+import { StyledList, StyledListItem } from '../menu';
+import { Spinner } from '../spinner';
 
 import type { SharedStylePropsArgT } from './types';
 import { ellipsisText } from '../styles/util';

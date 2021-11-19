@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { render, getByText, queryByText } from '@testing-library/react';
 
-import { Table } from '../index';
+import { Table } from '..';
 
 const COLUMNS = ['ID', 'First Name', 'Last Name', 'Age', 'Address'];
 

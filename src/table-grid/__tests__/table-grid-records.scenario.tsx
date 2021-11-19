@@ -7,10 +7,10 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import { format } from 'date-fns';
 
-import { StyledLink } from '../../link/index';
-import { useStyletron } from '../../styles/index';
+import { StyledLink } from '../../link';
+import { useStyletron } from '../../styles';
 
-import { StyledTable, StyledHeadCell, StyledBodyCell } from '../index';
+import { StyledTable, StyledHeadCell, StyledBodyCell } from '..';
 import { useCellNavigation } from './shared';
 
 // [date, event description]

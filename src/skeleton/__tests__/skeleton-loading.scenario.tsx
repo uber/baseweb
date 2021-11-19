@@ -5,11 +5,11 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
-import { Skeleton } from '../index';
-import { useStyletron } from '../../styles/index';
+import { Skeleton } from '..';
+import { useStyletron } from '../../styles';
 // $FlowFixMe
 import imageFile from './static/adorable.png';
-import { Avatar } from '../../avatar/index';
+import { Avatar } from '../../avatar';
 
 export function Scenario() {
   const [loading, setLoading] = React.useState(true);

@@ -10,7 +10,7 @@ import dateFnsAdapter from './utils/date-fns-adapter';
 import DateHelpers from './utils/date-helpers';
 import { getOverrides } from '../helpers/overrides';
 import type { DayPropsT, DayStateT } from './types';
-import { LocaleContext } from '../locale/index';
+import { LocaleContext } from '../locale';
 import type { LocaleT } from '../locale/types';
 import { isFocusVisible } from '../utils/focusVisible';
 import { INPUT_ROLE } from './constants';

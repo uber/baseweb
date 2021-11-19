@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { act } from 'react-dom/test-utils';
 import { render } from '@testing-library/react';
-import { StatefulListContainer, STATE_CHANGE_TYPE } from '../index';
+import { StatefulListContainer, STATE_CHANGE_TYPE } from '..';
 
 describe('StatefulListContainer', () => {
   it('basic render', () => {

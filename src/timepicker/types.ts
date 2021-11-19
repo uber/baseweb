@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 /* eslint-disable flowtype/generic-spacing */
 import type { OverrideT } from '../helpers/overrides';
-import type { OptionT } from '../select/index';
+import type { OptionT } from '../select';
 import type { SizeT } from '../input/types';
 import type { DateIOAdapter } from '../datepicker/utils/types';
 

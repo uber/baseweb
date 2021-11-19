@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Button } from '../../button/index';
-import { StatefulSelect } from '../../select/index';
-import { Modal, ModalBody, ModalHeader } from '../index';
+import { Button } from '../../button';
+import { StatefulSelect } from '../../select';
+import { Modal, ModalBody, ModalHeader } from '..';
 
 export function Scenario() {
   const [isOpen, setIsOpen] = React.useState(true);

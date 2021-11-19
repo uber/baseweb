@@ -11,7 +11,7 @@ import {
   StyledDropdownListItem,
   StyledOptionContent,
 } from './styled-components';
-import { StatefulMenu } from '../menu/index';
+import { StatefulMenu } from '../menu';
 import type { DropdownPropsT, OptionT, ValueT } from './types';
 import { getOverrides, mergeOverrides } from '../helpers/overrides';
 

@@ -8,8 +8,8 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable jsx-a11y/accessible-emoji */
 
 import * as React from 'react';
-import { Tab, Tabs } from '../index';
-import { Button, KIND } from '../../button/index';
+import { Tab, Tabs } from '..';
+import { Button, KIND } from '../../button';
 
 // This scenario tests to make sure that the page does not scroll to the
 // component on initial mount.

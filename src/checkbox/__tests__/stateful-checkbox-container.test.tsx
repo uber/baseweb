@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 
-import { StatefulContainer } from '../index';
+import { StatefulContainer } from '..';
 
 describe('Stateful container', function () {
   it('should provide all needed props to children render func', function () {

@@ -6,15 +6,15 @@ LICENSE file in the root directory of this source tree.
 */
 import React from 'react';
 
-import { Block } from '../../block/index';
+import { Block } from '../../block';
 import ArrowDown from '../../icon/arrow-down';
 import ArrowUp from '../../icon/arrow-up';
 import Search from '../../icon/search';
 import Plus from '../../icon/plus';
 import Delete from '../../icon/delete';
 import Overflow from '../../icon/overflow';
-import { StatefulPanel } from '../../accordion/index';
-import { withStyle } from '../../styles/index';
+import { StatefulPanel } from '../../accordion';
+import { withStyle } from '../../styles';
 
 import {
   StyledTable,
@@ -24,7 +24,7 @@ import {
   StyledRow,
   StyledCell,
   StyledAction,
-} from '../index';
+} from '..';
 
 const StyledHeadingCell = withStyle(StyledCell, {
   paddingTop: 0,

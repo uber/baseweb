@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Block } from '../block/index';
+import { Block } from '../block';
 import { mergeOverrides } from '../helpers/overrides';
 import type { AspectRatioBoxPropsT } from './types';
 

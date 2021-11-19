@@ -9,9 +9,9 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import axe from 'axe-core';
 
-import { Layer, TetherBehavior, TETHER_PLACEMENT } from '../layer/index';
-import { ParagraphSmall, ParagraphXSmall } from '../typography/index';
-import { styled } from '../styles/index';
+import { Layer, TetherBehavior, TETHER_PLACEMENT } from '../layer';
+import { ParagraphSmall, ParagraphXSmall } from '../typography';
+import { styled } from '../styles';
 import { ThemeContext } from '../styles/theme-provider';
 
 import type { ViolationPropsT } from './types';

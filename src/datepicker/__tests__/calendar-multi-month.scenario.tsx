@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { DENSITY } from '../constants';
 
-import { StatefulCalendar, ORIENTATION } from '../index';
+import { StatefulCalendar, ORIENTATION } from '..';
 
 export function Scenario() {
   return (

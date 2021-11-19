@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 import { SIZE } from './constants';
-import { styled, withStyle, withWrapper } from '../styles/index';
-import { StyledList } from '../menu/index';
-import { StyledDropdownListItem, StyledRoot as SelectStyledRoot } from '../select/index';
+import { styled, withStyle, withWrapper } from '../styles';
+import { StyledList } from '../menu';
+import { StyledDropdownListItem, StyledRoot as SelectStyledRoot } from '../select';
 import defaultProps from '../select/default-props';
 import type { SizeT } from './types';
 

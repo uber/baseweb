@@ -13,7 +13,7 @@ import type {
   StateReducerT,
 } from './types';
 import defaultProps from './default-props';
-import { STATE_CHANGE_TYPE } from '../input/index';
+import { STATE_CHANGE_TYPE } from '../input';
 
 const stateReducer: StateReducerT = (type, nextState) => nextState;
 

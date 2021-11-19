@@ -26,9 +26,9 @@ import {
   MonoDisplaySmall,
   MonoDisplayMedium,
   MonoDisplayLarge,
-} from '../index';
+} from '..';
 
-import { useStyletron } from '../../styles/index';
+import { useStyletron } from '../../styles';
 
 export function Scenario() {
   const [css, theme] = useStyletron();

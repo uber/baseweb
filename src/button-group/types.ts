@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { SIZE, SHAPE, KIND } from '../button/index';
+import { SIZE, SHAPE, KIND } from '../button';
 import type { OverrideT } from '../helpers/overrides';
 import { MODE, STATE_CHANGE_TYPE } from './constants';
 

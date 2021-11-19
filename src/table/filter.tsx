@@ -7,10 +7,10 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import FocusLock from 'react-focus-lock';
 
-import { Button, KIND, SIZE } from '../button/index';
+import { Button, KIND, SIZE } from '../button';
 import { getOverrides } from '../helpers/overrides';
 import FilterIcon from '../icon/filter';
-import { StatefulPopover, PLACEMENT } from '../popover/index';
+import { StatefulPopover, PLACEMENT } from '../popover';
 
 import {
   StyledFilterButton,

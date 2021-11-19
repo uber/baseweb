@@ -5,8 +5,8 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-import { Spinner } from '../spinner/index';
-import { styled, withStyle } from '../styles/index';
+import { Spinner } from '../spinner';
+import { styled, withStyle } from '../styles';
 
 import { PLACEMENT } from './constants';
 import type { PlacementT } from './types';

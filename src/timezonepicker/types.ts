@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import type { OverrideT } from '../helpers/overrides';
 
-import type { OptionT } from '../select/index';
+import type { OptionT } from '../select';
 import type { SizeT } from '../input/types';
 
 export type TimezonePickerStateT = {

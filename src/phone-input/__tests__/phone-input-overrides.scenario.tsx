@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import React from 'react';
 
-import { StatefulPhoneInput } from '../index';
+import { StatefulPhoneInput } from '..';
 
 export function Scenario() {
   return (

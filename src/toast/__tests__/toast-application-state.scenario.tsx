@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Toast } from '../index';
+import { Toast } from '..';
 
 export function Scenario() {
   const [values, setValues] = React.useState([0, 1, 2]);

@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 // pushing a change that would break applications using this example would be quite painful
 import React from 'react';
 import { withStyle } from 'styletron-react';
-import { StatefulMenu, OptionList, StyledList } from '../index';
+import { StatefulMenu, OptionList, StyledList } from '..';
 //flowlint-next-line untyped-import:off
 import List from 'react-virtualized/dist/commonjs/List';
 //flowlint-next-line untyped-import:off

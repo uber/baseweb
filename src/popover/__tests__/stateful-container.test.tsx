@@ -8,7 +8,7 @@ import * as React from 'react';
 import { act } from 'react-dom/test-utils';
 import { render } from '@testing-library/react';
 
-import { StatefulContainer, PLACEMENT, TRIGGER_TYPE } from '../index';
+import { StatefulContainer, PLACEMENT, TRIGGER_TYPE } from '..';
 
 describe('StatefulPopoverContainer', () => {
   it('basic render', () => {

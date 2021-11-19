@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Block, BlockPropsT } from '../block/index';
+import { Block } from '../block/index';
 import { flattenFragments } from '../helpers/react-helpers';
 import { getOverrides } from '../helpers/overrides';
 import type { FlexGridPropsT } from './types';

@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import type { OverrideT } from '../helpers/overrides';
-import { SIZE } from '../input/index';
+import { SIZE } from '../input';
 
 import type { ChangeEvent } from 'react';
 

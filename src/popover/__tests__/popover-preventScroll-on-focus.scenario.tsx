@@ -5,15 +5,15 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
-import { Button } from '../../button/index';
-import { Block } from '../../block/index';
+import { Button } from '../../button';
+import { Block } from '../../block';
 import {
   HeaderNavigation,
   ALIGN,
   StyledNavigationList,
   StyledNavigationItem,
-} from '../../header-navigation/index';
-import { StatefulPopover } from '../index';
+} from '../../header-navigation';
+import { StatefulPopover } from '..';
 
 const Header = ({ children }) => {
   return (

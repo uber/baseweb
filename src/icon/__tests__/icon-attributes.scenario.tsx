@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { ThemeProvider } from '../../styles/index';
-import { createLightTheme, lightThemePrimitives } from '../../themes/index';
+import { ThemeProvider } from '../../styles';
+import { createLightTheme, lightThemePrimitives } from '../../themes';
 import Upload from '../upload';
 import Check from '../check';
 

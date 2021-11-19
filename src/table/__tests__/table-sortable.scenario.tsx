@@ -14,7 +14,7 @@ import {
   StyledCell,
   SortableHeadCell,
   SORT_DIRECTION,
-} from '../index';
+} from '..';
 
 const DATA = [
   ['Marlyn', 10],

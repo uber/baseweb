@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 /* eslint-disable import/extensions */
 import { es } from 'date-fns/locale/index.js';
-import * as utilsHelpers from '../utils/index';
+import * as utilsHelpers from '../utils';
 import { formatDate } from '../utils';
 import DateHelpers from '../utils/date-helpers';
 import adapter from '../utils/date-fns-adapter';

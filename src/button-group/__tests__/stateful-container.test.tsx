@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 
-import { StatefulContainer, MODE } from '../index';
+import { StatefulContainer, MODE } from '..';
 
 describe('ButtonGroup StatefulContainer', () => {
   it('provides expected props to children render function', () => {

@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 
-import { StatefulTextarea } from '../index';
+import { StatefulTextarea } from '..';
 
 describe('StatefulTextarea', () => {
   it('basic render', () => {

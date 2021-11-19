@@ -9,8 +9,8 @@ LICENSE file in the root directory of this source tree.
 /* global window */
 
 import * as React from 'react';
-import { Tab, Tabs } from '../index';
-import { Button, KIND } from '../../button/index';
+import { Tab, Tabs } from '..';
+import { Button, KIND } from '../../button';
 
 window.__e2e__mounted = false;
 const Mounty = () => {

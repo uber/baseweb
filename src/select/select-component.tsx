@@ -11,9 +11,9 @@ import { getOverrides, mergeOverrides } from '../helpers/overrides';
 import DeleteAlt from '../icon/delete-alt';
 import TriangleDownIcon from '../icon/triangle-down';
 import SearchIconComponent from '../icon/search';
-import { LocaleContext } from '../locale/index';
+import { LocaleContext } from '../locale';
 import type { LocaleT } from '../locale/types';
-import { Popover, PLACEMENT } from '../popover/index';
+import { Popover, PLACEMENT } from '../popover';
 import { UIDConsumer } from 'react-uid';
 
 import AutosizeInput from './autosize-input';
@@ -31,7 +31,7 @@ import {
   StyledLoadingIndicator,
 } from './styled-components';
 import type { PropsT, SelectStateT, ValueT, OptionT, ChangeActionT } from './types';
-import { expandValue, normalizeOptions } from './utils/index';
+import { expandValue, normalizeOptions } from './utils';
 
 import type { SyntheticEvent, ChangeEvent } from 'react';
 

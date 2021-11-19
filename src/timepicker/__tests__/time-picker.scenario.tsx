@@ -8,8 +8,8 @@ import React, { useState } from 'react';
 // eslint-disable-next-line import/extensions
 import { startOfDay } from 'date-fns';
 
-import { TimePicker } from '../index';
-import { SIZE } from '../../input/index';
+import { TimePicker } from '..';
+import { SIZE } from '../../input';
 import MomentUtils from '@date-io/moment';
 
 const momentAdapter = new MomentUtils({});

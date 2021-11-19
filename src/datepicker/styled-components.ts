@@ -4,7 +4,7 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import { styled } from '../styles/index';
+import { styled } from '../styles';
 import getDayStateCode from './utils/day-state';
 import type { SharedStylePropsT, CalendarPropsT } from './types';
 import { ORIENTATION, DENSITY, INPUT_ROLE } from './constants';
