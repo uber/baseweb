@@ -36,7 +36,7 @@ describe('Datepicker, Range', () => {
       selectors.input,
       input => input.value,
     );
-    expect(selectedValue1).toBe('2019/03/10');
+    expect(selectedValue1).toBe('2019/03/10 –     /  /  ');
     await page.click(selectors.day2);
     await page.waitForSelector(selectors.calendar, {
       hidden: true,
@@ -58,7 +58,7 @@ describe('Datepicker, Range', () => {
       selectors.input,
       input => input.value,
     );
-    expect(selectedValue1).toBe('2019/03/10');
+    expect(selectedValue1).toBe('2019/03/10 –     /  /  ');
     await page.click(selectors.day4);
     await page.waitForSelector(selectors.calendar, {
       hidden: true,
@@ -83,7 +83,7 @@ describe('Datepicker, Range', () => {
       selectors.input,
       input => input.value,
     );
-    expect(selectedValue1).toBe('2019/04/01');
+    expect(selectedValue1).toBe('2019/04/01 –     /  /  ');
     // after clicking on a date in April, in the second month, the months should NOT change at all. March should still be visible, and May should not be rendered
     // we finish off the test by clicking on a day in March (simulating clicking the "end" of the range first, then the "beginning" of the range last)
     // await page.waitForSelector(selectors.day5, {hidden: true});
@@ -135,7 +135,7 @@ describe('Datepicker, Range', () => {
       selectors.input,
       input => input.value,
     );
-    expect(selectedValue1).toBe('2019/03/10');
+    expect(selectedValue1).toBe('2019/03/10 –     /  /  ');
     // Select the start day
     await page.waitForSelector(selectors.day2);
     await page.click(selectors.day2);

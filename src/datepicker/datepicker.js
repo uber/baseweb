@@ -226,7 +226,10 @@ export default class Datepicker<T = Date> extends React.Component<
   getMask = () => {
     const {formatString, mask, range, separateRangeInputs} = this.props;
 
-    if (mask === null || (mask === undefined && formatString)) {
+    if (
+      mask === null ||
+      (mask === undefined && formatString !== DEFAULT_DATE_FORMAT)
+    ) {
       return null;
     }
 
@@ -234,7 +237,7 @@ export default class Datepicker<T = Date> extends React.Component<
       return this.normalizeDashes(mask);
     }
 
-    if (range  && !separateRangeInputs) {
+    if (range && !separateRangeInputs) {
       return '9999/99/99 – 9999/99/99';
     }
 

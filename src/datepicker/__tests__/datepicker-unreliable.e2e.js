@@ -161,7 +161,7 @@ describe('Datepicker', () => {
 
     // input mask
     let selectedValue = await page.$eval(selectors.input, input => input.value);
-    expect(selectedValue).toBe('');
+    expect(selectedValue).toBe('    /  /  ');
 
     // actual value
     await page.type(selectors.input, '2019/03/10');

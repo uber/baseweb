@@ -102,7 +102,7 @@ describe('Datepicker', () => {
     fireEvent.click(getByText(container, '2019'));
     fireEvent.click(getByText(container, '1'));
 
-    expect(onChange.mock.calls[0][0].date).toEqual(new Date('2019/11/1'));
+    expect(onChange.mock.calls[1][0].date).toEqual(new Date('2019/11/1'));
   });
 
   it('does not close calendar if single date from range is selected', () => {
@@ -146,9 +146,9 @@ describe('Datepicker', () => {
     fireEvent.click(day);
 
     // $FlowFixMe
-    expect(onChange.mock.calls[0][0].date.length).toBe(1);
+    expect(onChange.mock.calls[1][0].date.length).toBe(1);
     // $FlowFixMe
-    expect(onChange.mock.calls[0][0].date[0]).toEqual(new Date('2019/11/1'));
+    expect(onChange.mock.calls[1][0].date[0]).toEqual(new Date('2019/11/1'));
 
     const after = queryByTestId(container, 'calendar');
     expect(after).not.toBeNull();
