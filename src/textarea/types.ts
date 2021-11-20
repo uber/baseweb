@@ -7,8 +7,8 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import type { OverrideT } from '../helpers/overrides';
-import type { BaseInputPropsT, StateReducerT, StateT } from '../input/types';
-import { ADJOINED, SIZE } from '../input/constants';
+import type { BaseInputPropsT, StateReducerT, StateT } from '../input';
+import { ADJOINED, SIZE } from '../input';
 
 import type { SyntheticEvent } from 'react';
 

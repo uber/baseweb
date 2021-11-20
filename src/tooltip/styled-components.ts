@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import { styled } from '../styles';
 import { getBodyStyles, getArrowStyles, getInnerStyles } from '../popover/styled-components';
 import { getEndPosition } from '../popover/utils';
-import type { SharedStylePropsArgT } from '../popover/types';
+import type { SharedStylePropsArgT } from '../popover';
 
 /**
  * We want to reuse the default Popover styles and add our overrides

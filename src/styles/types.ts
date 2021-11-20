@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import type { ComponentType } from 'react';
-import type { IconPropsT } from '../icon/types';
+import type { IconPropsT } from '../icon';
 
 import type {
   ColorTokensT,
@@ -22,7 +22,7 @@ import type {
   SizingT,
   TypographyT,
   ZIndexT,
-} from '../themes/types';
+} from '../themes';
 
 export type {
   AnimationT,

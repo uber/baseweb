@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import type { OverrideT } from '../helpers/overrides';
-import type { IconPropsT } from '../icon/types';
+import type { IconPropsT } from '../icon';
 import { ARTWORK_SIZES, SHAPE } from './constants';
 
 export type ArtworkSizesT =

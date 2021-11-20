@@ -6,8 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import Block from '../block/block';
-import type { BlockPropsT } from '../block/types';
+import { Block } from '../block';
 
 export const AspectRatioBoxBody: React.FC<React.ComponentProps<typeof Block>> = ({
   position,

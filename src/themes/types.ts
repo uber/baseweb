@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import type { Properties } from 'csstype';
 
-import type { ResponsiveT, CSSLengthUnitT } from '../layout-grid/types';
+import type { ResponsiveT, CSSLengthUnitT } from '../layout-grid';
 
 export type Globals = '-moz-initial' | 'inherit' | 'initial' | 'revert' | 'unset';
 export type LineStyle =

@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 import { styled } from '../styles';
 
-import { PLACEMENT } from '../popover/constants';
+import { PLACEMENT } from '../popover';
 import type { OffsetT, PopoverPlacementT, SharedStylePropsArgT } from '../popover/types';
 import { getBodyStyles } from '../popover/styled-components';
 import { getPopoverMarginStyles, splitPlacement } from '../popover/utils';

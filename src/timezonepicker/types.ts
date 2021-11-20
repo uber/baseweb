@@ -9,7 +9,7 @@ import * as React from 'react';
 import type { OverrideT } from '../helpers/overrides';
 
 import type { OptionT } from '../select';
-import type { SizeT } from '../input/types';
+import type { SizeT } from '../input';
 
 export type TimezonePickerStateT = {
   /** List of timezones from the IANA database. */

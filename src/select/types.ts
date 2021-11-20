@@ -8,7 +8,7 @@ import * as React from 'react';
 
 import type { OverrideT } from '../helpers/overrides';
 import { STATE_CHANGE_TYPE, SIZE, TYPE } from './constants';
-import type { OnItemSelectFnT } from '../menu/types';
+import type { OnItemSelectFnT } from '../menu';
 
 import type { ReactNode, SyntheticEvent, ChangeEvent } from 'react';
 

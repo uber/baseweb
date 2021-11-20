@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import type { OverrideT } from '../helpers/overrides';
 import { STATE_CHANGE_TYPE } from './constants';
-import { SIZE } from '../input/constants';
+import { SIZE } from '../input';
 
 export type LabelsT = {
   prevButton?: string;

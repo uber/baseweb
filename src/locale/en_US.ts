@@ -16,7 +16,7 @@ import drawer from '../drawer/locale';
 import pagination from '../pagination/locale';
 import select from '../select/locale';
 import toast from '../toast/locale';
-import {LocaleT} from './types';
+import { LocaleT } from './types';
 
 const en_US: LocaleT = {
   accordion,

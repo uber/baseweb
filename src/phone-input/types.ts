@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { STATE_CHANGE_TYPE, SIZE, COUNTRIES } from './constants';
 import type { OverrideT } from '../helpers/overrides';
-import type { OnChangeParamsT } from '../select/types';
+import type { OnChangeParamsT } from '../select';
 
 import type { ChangeEvent } from 'react';
 

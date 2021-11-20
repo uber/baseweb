@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/generic-spacing */
 import * as React from 'react';
 import type { OverrideT } from '../helpers/overrides';
-import type { SizeT } from '../input/types';
+import type { SizeT } from '../input';
 import {
   INPUT_ROLE,
   ORIENTATION,

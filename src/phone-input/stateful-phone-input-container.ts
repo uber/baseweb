@@ -14,7 +14,7 @@ import type {
   StateChangeT,
 } from './types';
 import defaultProps from './default-props';
-import type { OnChangeParamsT } from '../select/types';
+import type { OnChangeParamsT } from '../select';
 
 import type { ChangeEvent } from 'react';
 

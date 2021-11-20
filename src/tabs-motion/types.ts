@@ -9,7 +9,7 @@ import * as React from 'react';
 import { ORIENTATION, FILL, STATE_CHANGE_TYPE } from './constants';
 
 import type { OverrideT } from '../helpers/overrides';
-import type { IconPropsT } from '../icon/types';
+import type { IconPropsT } from '../icon';
 
 export type OrientationT = typeof ORIENTATION[keyof typeof ORIENTATION];
 export type FillT = typeof FILL[keyof typeof FILL];

@@ -4,7 +4,7 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import type { BlockPropsT, ResponsiveT, ScaleT } from '../block/types';
+import type { BlockPropsT, ResponsiveT, ScaleT } from '../block';
 
 export type FlexGridPropsT = {
   /** Number of equal-width columns to allow for */

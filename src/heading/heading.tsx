@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
-import Block from '../block/block';
+import { Block } from '../block';
 import { LevelContext } from './heading-level';
 import type { HeadingPropsT } from './types';
 import type { ComponentProps, ElementType } from 'react';

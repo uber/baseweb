@@ -7,10 +7,10 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/generic-spacing */
 import * as React from 'react';
 import type { OverrideT } from '../helpers/overrides';
-import type { TetherPlacementT } from '../layer/types';
+import type { TetherPlacementT } from '../layer';
 import { ACCESSIBILITY_TYPE, STATE_CHANGE_TYPE, TRIGGER_TYPE } from './constants';
 
-export type { PopperDataObjectT, PopperOffsetT, PopperOptionsT } from '../layer/types';
+export type { PopperDataObjectT, PopperOffsetT, PopperOptionsT } from '../layer';
 
 export type PopoverPlacementT = TetherPlacementT;
 export type TriggerTypeT = keyof typeof TRIGGER_TYPE;

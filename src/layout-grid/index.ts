@@ -18,3 +18,5 @@ export const Unstable_StyledGrid = DeprecatedHOC(StyledGrid, componentName);
 export const Unstable_StyledCell = DeprecatedHOC(StyledCell, componentName);
 export const Unstable_Grid = DeprecatedHOC(Grid, componentName);
 export const Unstable_Cell = DeprecatedHOC(Cell, componentName);
+
+export * from './types';
