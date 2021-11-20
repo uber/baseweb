@@ -175,6 +175,8 @@ steps:
     command: 'node --unhandled-rejections=strict scripts/collect-bundle-sizes.js'
     artifact_paths:
       - '__artifacts__/bundle-size/*'
+    soft_fail:
+      - exit_status: 2
     plugins:
       'docker-compose#v3.0.3':
         run: baseui
