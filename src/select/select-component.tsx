@@ -12,7 +12,7 @@ import DeleteAlt from '../icon/delete-alt';
 import TriangleDownIcon from '../icon/triangle-down';
 import SearchIconComponent from '../icon/search';
 import { LocaleContext } from '../locale';
-import type { LocaleT } from '../locale/types';
+import type { LocaleT } from '../locale';
 import { Popover, PLACEMENT } from '../popover';
 import { UIDConsumer } from 'react-uid';
 

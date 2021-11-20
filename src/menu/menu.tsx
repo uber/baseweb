@@ -12,7 +12,7 @@ import OptionList from './option-list';
 import { getOverrides } from '../helpers/overrides';
 // Types
 import type { RenderItemPropsT, StatelessMenuPropsT } from './types';
-import type { LocaleT } from '../locale/types';
+import type { LocaleT } from '../locale';
 
 import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible';
 

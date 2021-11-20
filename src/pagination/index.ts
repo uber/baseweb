@@ -15,3 +15,4 @@ export { StyledRoot, StyledMaxLabel, StyledDropdownContainer } from './styled-co
 export { STATE_CHANGE_TYPE } from './constants';
 // Flow
 export * from './types';
+export type { PaginationLocaleT } from './locale';

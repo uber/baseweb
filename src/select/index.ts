@@ -35,3 +35,4 @@ export {
 export { default as filterOptions } from './utils/default-filter-options';
 export { SIZE, TYPE, STATE_CHANGE_TYPE } from './constants';
 export * from './types';
+export type { SelectLocaleT } from './locale';

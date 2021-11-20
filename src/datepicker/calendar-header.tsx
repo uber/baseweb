@@ -27,7 +27,7 @@ import {
 import { DENSITY, ORIENTATION, WEEKDAYS } from './constants';
 import { getOverrides, mergeOverrides } from '../helpers/overrides';
 import type { HeaderPropsT } from './types';
-import type { LocaleT } from '../locale/types';
+import type { LocaleT } from '../locale';
 import type { ThemeT } from '../styles/types';
 import { forkBlur, forkFocus, isFocusVisible } from '../utils/focusVisible';
 

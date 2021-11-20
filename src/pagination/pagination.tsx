@@ -16,7 +16,7 @@ import ChevronLeft from '../icon/chevron-left';
 import ChevronRight from '../icon/chevron-right';
 import { getOverrides } from '../helpers/overrides';
 import type { PaginationPropsT } from './types';
-import type { LocaleT } from '../locale/types';
+import type { LocaleT } from '../locale';
 import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible';
 
 import type { SyntheticEvent } from 'react';

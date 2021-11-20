@@ -21,7 +21,7 @@ import {
 import type { DatepickerPropsT, InputRoleT } from './types';
 import DateHelpers from './utils/date-helpers';
 import dateFnsAdapter from './utils/date-fns-adapter';
-import type { LocaleT } from '../locale/types';
+import type { LocaleT } from '../locale';
 import { INPUT_ROLE, RANGED_CALENDAR_BEHAVIOR } from './constants';
 
 import type { ChangeEvent } from 'react';

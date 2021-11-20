@@ -21,7 +21,7 @@ import { getOverrides } from '../helpers/overrides';
 import { iso2FlagEmoji } from './utils';
 
 import type { CountrySelectDropdownPropsT } from './types';
-import type { LocaleT } from '../locale/types';
+import type { LocaleT } from '../locale';
 import type { ComponentProps } from 'react';
 
 CountrySelectDropdown.defaultProps = {

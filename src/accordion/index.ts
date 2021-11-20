@@ -23,3 +23,4 @@ export {
 } from './styled-components';
 // Flow
 export * from './types';
+export type { AccordionLocaleT } from './locale';

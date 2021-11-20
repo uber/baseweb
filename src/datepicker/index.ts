@@ -22,3 +22,4 @@ export { ORIENTATION, STATE_CHANGE_TYPE } from './constants';
 export * from './styled-components';
 // Flow
 export * from './types';
+export type { DatepickerLocaleT } from './locale';
