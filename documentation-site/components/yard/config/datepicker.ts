@@ -251,6 +251,13 @@ const DatepickerConfig: TConfig = {
       description: `Event handler that is called when the calendar is closed.`,
       hidden: true,
     },
+    onOpen: {
+      value: undefined,
+      type: PropTypes.Function,
+      placeholder: '() => {}',
+      description: `Event handler that is called when the calendar is opened.`,
+      hidden: true,
+    },
     orientation: {
       value: 'ORIENTATION.vertical',
       defaultValue: 'ORIENTATION.vertical',

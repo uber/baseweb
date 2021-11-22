@@ -169,6 +169,7 @@ export type DatepickerProps = CalendarProps & {
   mask?: string | null;
   mountNode?: HTMLElement;
   onClose?: () => any;
+  onOpen?: () => any;
   separateRangeInputs?: boolean;
   startDateLabel?: string;
   endDateLabel?: string;
