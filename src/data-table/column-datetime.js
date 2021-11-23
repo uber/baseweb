@@ -68,6 +68,7 @@ type FilterParametersT = {|
 type DatetimeColumnT = ColumnT<Date, FilterParametersT>;
 
 const DATE_FORMAT = 'MM-dd-yyyy';
+const MASK = '99-99-9999';
 const TIME_FORMAT = 'HH:mm ss:SS';
 const FORMAT_STRING = `${DATE_FORMAT} ${TIME_FORMAT}`;
 
@@ -415,6 +416,7 @@ function DatetimeFilter(props) {
                     }
                   }}
                   formatString={DATE_FORMAT}
+                  mask={MASK}
                   placeholder="MM-DD-YYYY - MM-DD-YYYY"
                   minDate={datesSorted[0]}
                   maxDate={datesSorted[datesSorted.length - 1]}
