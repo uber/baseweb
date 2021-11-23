@@ -191,11 +191,14 @@ export default class Datepicker<T = Date> extends React.Component<
   };
 
   open = () => {
-    this.setState({
-      isOpen: true,
-      isPseudoFocused: true,
-      calendarFocused: false,
-    });
+    this.setState(
+      {
+        isOpen: true,
+        isPseudoFocused: true,
+        calendarFocused: false,
+      },
+      this.props.onOpen,
+    );
   };
 
   close = () => {
