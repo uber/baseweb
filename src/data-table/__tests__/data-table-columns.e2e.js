@@ -487,8 +487,7 @@ describe('data table columns', () => {
 
     await datepicker.click({clickCount: 3});
     await page.keyboard.press('Backspace');
-    await datepicker.type('07132014');
-    await datepicker.type('07132014');
+    await datepicker.type('07–13–2014 – 07–13–2014');
 
     await popover.$$eval('button', items => {
       const button = items.find(item => item.textContent === 'Apply');

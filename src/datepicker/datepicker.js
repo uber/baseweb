@@ -229,24 +229,15 @@ export default class Datepicker<T = Date> extends React.Component<
   getMask = () => {
     const {formatString, mask, range, separateRangeInputs} = this.props;
 
-    if (mask === null) {
+    if (
+      mask === null ||
+      (mask === undefined && formatString !== DEFAULT_DATE_FORMAT)
+    ) {
       return null;
     }
 
     if (mask) {
       return this.normalizeDashes(mask);
-    }
-
-    const normalizedFormatString = this.normalizeDashes(formatString);
-    if (formatString && !separateRangeInputs) {
-      if (range) {
-        return `${normalizedFormatString} – ${normalizedFormatString}`.replace(
-          /[a-z]/gi,
-          '9',
-        );
-      } else {
-        return normalizedFormatString.replace(/[a-z]/gi, '9');
-      }
     }
 
     if (range && !separateRangeInputs) {
@@ -270,6 +261,7 @@ export default class Datepicker<T = Date> extends React.Component<
         : event.currentTarget.value;
 
     const mask = this.getMask();
+    const formatString = this.normalizeDashes(this.props.formatString);
 
     if (
       (typeof mask === 'string' && inputValue === mask.replace(/9/g, ' ')) ||
@@ -286,7 +278,6 @@ export default class Datepicker<T = Date> extends React.Component<
 
     this.setState({inputValue});
 
-    const formatString = this.normalizeDashes(this.props.formatString);
     const parseDateString = dateString => {
       if (formatString === DEFAULT_DATE_FORMAT) {
         return this.dateHelpers.parse(

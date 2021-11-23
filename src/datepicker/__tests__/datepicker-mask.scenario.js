@@ -36,6 +36,15 @@ export function Scenario() {
         placeholder="dd mm yyyy"
       />
 
+      <p>mask from a different formatString</p>
+      <Datepicker
+        aria-label="Select a date"
+        value={date}
+        onChange={({date}) => setDate(date)}
+        formatString="EEEE, MMMM dd yyyy"
+        placeholder="EEEE, MMMM dd yyyy"
+      />
+
       <p>null mask and custom formatString</p>
       <Datepicker
         aria-label="Select a date"
