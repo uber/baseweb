@@ -17,11 +17,14 @@ export interface ComboboxOverrides {
   ListItem?: Override<any>;
 }
 
-export type PropsT<OptionT = unknown> = {
+export type PropsT<OptionT = any> = {
   autocomplete?: boolean;
   disabled?: boolean;
-  mapOptionToNode?: ({isSelected: boolean, option: OptionT}) => React.ReactNode;
-  mapOptionToString: (OptionT) => string;
+  mapOptionToNode?: (option: {
+    isSelected: boolean;
+    option: OptionT;
+  }) => React.ReactNode;
+  mapOptionToString: (option: OptionT) => string;
   id?: string;
   name?: string;
   inputRef?: React.Ref<HTMLInputElement>;
