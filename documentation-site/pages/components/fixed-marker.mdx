@@ -18,6 +18,7 @@ import XSmall from 'examples/fixed-marker/x-small.js';
 import ReactMapGL from 'examples/fixed-marker/react-map-gl.js';
 import {FixedMarkerSizingTable} from '../../components/map-marker-sizing-table.js';
 
+import Yard from '../../components/yard/index';
 import fixedMarkerYardConfig from '../../components/yard/config/fixed-marker';
 import ApiTable from '../../components/api-table';
 
@@ -27,7 +28,7 @@ export default Layout;
 
 # Fixed Marker
 
-<!-- TODO: Add Yard back in when it supports different prop names <> enum names -->
+<Yard placeholderHeight={48} {...fixedMarkerYardConfig} />
 
 A fixed map marker is used to mark a location on a map with content.
 
