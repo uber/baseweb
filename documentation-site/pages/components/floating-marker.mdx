@@ -18,6 +18,7 @@ import LargeSquareAnchorStartEnhancer from 'examples/floating-marker/large-squar
 import ReactMapGL from 'examples/floating-marker/react-map-gl.js';
 import {FloatingMarkerSizingTable} from '../../components/map-marker-sizing-table.js';
 
+import Yard from '../../components/yard/index';
 import floatingMarkerYardConfig from '../../components/yard/config/floating-marker';
 import ApiTable from '../../components/api-table';
 
@@ -27,7 +28,16 @@ export default Layout;
 
 # Floating Marker
 
-<!-- TODO: Add Yard back in when it supports different prop names <> enum names -->
+<Yard
+  {...floatingMarkerYardConfig}
+  compilerStyles={{
+    paddingTop: '64px',
+    paddingBottom: '64px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  }}
+/>
 
 A floating map marker is used to mark a location on a map with content.
 
