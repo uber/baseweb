@@ -20,11 +20,13 @@ export const fixedMarkerProps = {
   dragging: {
     value: false,
     type: PropTypes.Boolean,
-    description: 'Renders the component with circular shadow.',
+    description:
+      'Renders the component with circular shadow to represent dragging.',
     defaultValue: false,
   },
   size: {
     value: 'PINHEAD_SIZES_SHAPES.medium',
+    enumName: 'PINHEAD_SIZES_SHAPES',
     defaultValue: 'PINHEAD_SIZES_SHAPES.medium',
     options: PINHEAD_SIZES_SHAPES,
     type: PropTypes.Enum,
@@ -37,6 +39,7 @@ export const fixedMarkerProps = {
   },
   needle: {
     value: 'NEEDLE_SIZES.medium',
+    enumName: 'NEEDLE_SIZES',
     defaultValue: 'NEEDLE_SIZES.medium',
     options: NEEDLE_SIZES,
     type: PropTypes.Enum,
@@ -84,6 +87,8 @@ const FixedMarkerConfig: TConfig = {
   },
   scope: {
     FixedMarker,
+    NEEDLE_SIZES,
+    PINHEAD_SIZES_SHAPES,
   },
   theme,
   props: {
