@@ -19,6 +19,7 @@ export const floatingMarkerProps = {
   },
   anchor: {
     value: 'FLOATING_MARKER_ANCHOR_POSITIONS.bottomLeft',
+    enumName: 'FLOATING_MARKER_ANCHOR_POSITIONS',
     type: PropTypes.Enum,
     defaultValue: 'FLOATING_MARKER_ANCHOR_POSITIONS.bottomLeft',
     options: FLOATING_MARKER_ANCHOR_POSITIONS,
@@ -31,6 +32,7 @@ export const floatingMarkerProps = {
   },
   anchorType: {
     value: 'FLOATING_MARKER_ANCHOR_TYPES.circle',
+    enumName: 'FLOATING_MARKER_ANCHOR_TYPES',
     type: PropTypes.Enum,
     defaultValue: 'FLOATING_MARKER_ANCHOR_TYPES.circle',
     options: FLOATING_MARKER_ANCHOR_TYPES,
@@ -43,6 +45,7 @@ export const floatingMarkerProps = {
   },
   size: {
     value: 'FLOATING_MARKER_SIZES.medium',
+    enumName: 'FLOATING_MARKER_SIZES',
     defaultValue: 'FLOATING_MARKER_SIZES.medium',
     options: FLOATING_MARKER_SIZES,
     type: PropTypes.Enum,
@@ -90,6 +93,9 @@ const FloatingMarkerConfig: TConfig = {
   },
   scope: {
     FloatingMarker,
+    FLOATING_MARKER_ANCHOR_POSITIONS,
+    FLOATING_MARKER_SIZES,
+    FLOATING_MARKER_ANCHOR_TYPES,
   },
   theme,
   props: {
