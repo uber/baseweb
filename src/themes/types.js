@@ -690,6 +690,10 @@ export type LightingT = {
   overlay400: string,
   overlay500: string,
   overlay600: string,
+  shallowAbove: string,
+  shallowBelow: string,
+  deepAbove: string,
+  deepBelow: string,
 };
 
 export type AnimationT = {

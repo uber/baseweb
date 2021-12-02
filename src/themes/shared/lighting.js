@@ -19,6 +19,10 @@ const lighting: LightingT = {
   overlay400: 'inset 0 0 0 1000px hsla(0, 0%, 0%, 0.16)',
   overlay500: 'inset 0 0 0 1000px hsla(0, 0%, 0%, 0.2)',
   overlay600: 'inset 0 0 0 1000px hsla(0, 0%, 0%, 0.24)',
+  shallowAbove: '0px -4px 16px rgba(0, 0, 0, 0.12)',
+  shallowBelow: '0px 4px 16px rgba(0, 0, 0, 0.12)',
+  deepAbove: '0px -16px 48px rgba(0, 0, 0, 0.22)',
+  deepBelow: '0px 16px 48px rgba(0, 0, 0, 0.22)',
 };
 
 export default lighting;
