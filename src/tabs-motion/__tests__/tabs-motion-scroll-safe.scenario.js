@@ -16,7 +16,7 @@ import {Button, KIND} from '../../button/index.js';
 // This scenario tests to make sure that the page does not scroll to the
 // component on initial mount.
 
-export default function Scenario() {
+export function Scenario() {
   const [activeKey, setActiveKey] = React.useState('8');
   return (
     <React.Fragment>

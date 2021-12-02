@@ -37,7 +37,7 @@ function Content({index, length, onPrev, onNext, onFinish}) {
 
 const LENGTH = 5;
 
-export default function Scenario() {
+export function Scenario() {
   const [css] = useStyletron();
   const [index, setIndex] = React.useState(0);
 

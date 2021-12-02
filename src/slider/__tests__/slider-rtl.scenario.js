@@ -8,9 +8,9 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import {ThemeProvider, LightTheme} from '../../index.js';
-import SliderScenario from './slider.scenario.js';
+import {Scenario as SliderScenario} from './slider.scenario.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <ThemeProvider theme={{...LightTheme, direction: 'rtl'}}>
       <div dir="rtl" style={{margin: '64px'}}>

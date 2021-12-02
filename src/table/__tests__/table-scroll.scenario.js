@@ -10,7 +10,7 @@ import * as React from 'react';
 
 import {Table} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <div style={{height: '500px', maxWidth: '1200px'}}>
       <Table

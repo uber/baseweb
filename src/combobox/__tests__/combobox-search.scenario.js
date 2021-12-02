@@ -72,7 +72,7 @@ const options: OptionT[] = [
 ];
 
 // TODO(chase): Need to configure this example to better mirror a server fetch.
-function Example() {
+export function Scenario() {
   const [css] = useStyletron();
   const [value, setValue] = React.useState('');
 
@@ -98,5 +98,3 @@ function Example() {
     </div>
   );
 }
-
-export default Example;

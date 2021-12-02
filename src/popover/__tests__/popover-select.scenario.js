@@ -11,7 +11,7 @@ import {Button} from '../../button/index.js';
 import {StatefulSelect} from '../../select/index.js';
 import {StatefulPopover} from '../index.js';
 
-const SelectInPopover = () => {
+export function Scenario() {
   const contentRef = React.useRef();
   return (
     <>
@@ -45,6 +45,4 @@ const SelectInPopover = () => {
       </StatefulPopover>
     </>
   );
-};
-
-export default SelectInPopover;
+}

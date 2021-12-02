@@ -11,7 +11,7 @@ import * as React from 'react';
 import {Button} from '../../button/index.js';
 import {StatefulPopover} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <StatefulPopover accessibilityType={'tooltip'} content={<div>content</div>}>
       <Button>Open</Button>

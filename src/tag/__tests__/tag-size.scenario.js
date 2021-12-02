@@ -10,7 +10,7 @@ import * as React from 'react';
 
 import {Tag, SIZE} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <React.Fragment>
       <Tag size={SIZE.small} closeable={false}>

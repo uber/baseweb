@@ -10,7 +10,7 @@ import * as React from 'react';
 
 import {StyledDay, StatefulDatepicker} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <StatefulDatepicker
       aria-label="Select a date"
@@ -26,6 +26,7 @@ export default function Scenario() {
             <StyledDay data-highlighted={props.$isHighlighted} {...props} />
           ),
         },
+
         MonthYearSelectButton: {props: {'data-id': 'monthYearSelectButton'}},
         MonthYearSelectStatefulMenu: {
           props: {

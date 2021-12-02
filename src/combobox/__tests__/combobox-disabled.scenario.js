@@ -21,7 +21,7 @@ const options: OptionT[] = [
   {label: 'Beige', id: '#F5F5DC'},
 ];
 
-function Example() {
+export function Scenario() {
   const [css] = useStyletron();
   const [value, setValue] = React.useState('');
   return (
@@ -36,5 +36,3 @@ function Example() {
     </div>
   );
 }
-
-export default Example;

@@ -10,7 +10,7 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import {StatefulInput, SIZE} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <React.Fragment>
       <StatefulInput
@@ -18,12 +18,14 @@ export default function Scenario() {
         type="password"
         initialState={{value: '1234'}}
       />
+
       <br />
       <StatefulInput
         size={SIZE.compact}
         type="password"
         initialState={{value: '1234'}}
       />
+
       <br />
       <form
         onSubmit={event => {
@@ -41,6 +43,7 @@ export default function Scenario() {
                 'data-e2e': 'input',
               },
             },
+
             MaskToggleButton: {
               props: {
                 'data-e2e': 'mask-toggle',

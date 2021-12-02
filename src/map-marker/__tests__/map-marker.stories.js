@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import FixedMarkerStory from './fixed-marker.scenario.js';
-import FloatingMarkerDefault from './floating-marker.scenario.js';
+import {Scenario as FixedMarkerStory} from './fixed-marker.scenario.js';
+import {Scenario as FloatingMarkerDefault} from './floating-marker.scenario.js';
 
 export const FixedMarker = () => <FixedMarkerStory />;
 export const FloatingMarker = () => <FloatingMarkerDefault />;

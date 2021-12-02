@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import {Grid, Cell} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <Grid
       gridMaxWidth={800}
@@ -32,6 +32,7 @@ export default function Scenario() {
             style: {
               backgroundColor: `cornflowerblue`,
             },
+
             props: {
               $span: [1, 5, 8],
             },

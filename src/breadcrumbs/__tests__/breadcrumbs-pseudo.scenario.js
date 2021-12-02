@@ -11,7 +11,7 @@ import * as React from 'react';
 import {StyledLink as Link} from '../../link/index.js';
 import {Breadcrumbs} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <Breadcrumbs
       overrides={{
@@ -29,6 +29,7 @@ export default function Scenario() {
             };
           },
         },
+
         Separator: {
           component: () => null,
         },

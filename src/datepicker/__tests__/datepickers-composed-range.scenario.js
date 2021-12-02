@@ -27,7 +27,7 @@ function printTime(dt) {
   return dt.toLocaleTimeString();
 }
 
-export default function Controlled() {
+export function Scenario() {
   const [css, theme] = useStyletron();
   const [dates, setDates] = useState<Array<Date>>([START_DATE, END_DATE]);
 

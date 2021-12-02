@@ -20,12 +20,13 @@ const options = [
   {id: 'Beige', color: '#F5F5DC'},
 ];
 
-export default function Scenario() {
+export function Scenario() {
   const Inner = styled('div', () => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
   }));
+
   return (
     <Block display="grid" gridTemplateColumns="repeat(3,1fr)">
       <Inner>

@@ -12,7 +12,7 @@ import * as React from 'react';
 import {Input} from '../../input/index.js';
 import {Select} from '../../select/index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <div>
       <Select
@@ -29,6 +29,7 @@ export default function Scenario() {
         valueKey="color"
         disabled
       />
+
       <Input
         value="Hello"
         placeholder="Controlled Input"

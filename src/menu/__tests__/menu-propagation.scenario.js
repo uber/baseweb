@@ -10,7 +10,7 @@ import * as React from 'react';
 
 import {StatefulMenu} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   function handleParentKeyDown(event) {
     event.stopPropagation();
   }

@@ -18,7 +18,7 @@ const DATA = [
   ['Joe Black', 33, '100 Macquarie St., Sydney, Australia'],
 ];
 
-export default function Scenario() {
+export function Scenario() {
   const [css, theme] = useStyletron();
 
   const title = css({

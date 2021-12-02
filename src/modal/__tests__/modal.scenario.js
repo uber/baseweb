@@ -19,7 +19,7 @@ import {
 } from '../index.js';
 
 // $FlowFixMe
-export default function Scenario({closeable = true}) {
+export function Scenario({closeable = true}) {
   const [isOpen, setIsOpen] = React.useState(false);
 
   // adding mountNode so that rtl vrts work render properly. this is because the portal

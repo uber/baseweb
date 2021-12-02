@@ -9,7 +9,7 @@ import * as React from 'react';
 import {Skeleton} from '../index.js';
 import {useStyletron} from '../../styles/index.js';
 
-export default function Scenario() {
+export function Scenario() {
   const [css] = useStyletron();
   return (
     <div className={css({width: '1000px', display: 'flex', flexWrap: 'wrap'})}>
@@ -28,6 +28,7 @@ export default function Scenario() {
                 },
               }}
             />
+
             <div
               className={css({
                 alignItems: 'center',
@@ -47,6 +48,7 @@ export default function Scenario() {
                   },
                 }}
               />
+
               <Skeleton rows={2} width="220px" />
             </div>
           </div>

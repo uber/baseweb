@@ -9,7 +9,7 @@ import * as React from 'react';
 import {Button} from '../../button/index.js';
 import {Drawer, SIZE, ANCHOR} from '../index.js';
 
-function Example() {
+export function Scenario() {
   const [isOpen, setIsOpen] = React.useState(false);
   return (
     <React.Fragment>
@@ -44,5 +44,3 @@ function Example() {
     </React.Fragment>
   );
 }
-
-export default Example;

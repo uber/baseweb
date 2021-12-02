@@ -8,9 +8,9 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import {ThemeProvider, LightTheme} from '../../index.js';
-import ModalScenario from './modal.scenario.js';
+import {Scenario as ModalScenario} from './modal.scenario.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <ThemeProvider theme={{...LightTheme, direction: 'rtl'}}>
       <div dir="rtl">

@@ -11,7 +11,7 @@ import * as React from 'react';
 import {StatefulTooltip} from '../index.js';
 import {Button} from '../../button/index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <div>
       <StatefulTooltip

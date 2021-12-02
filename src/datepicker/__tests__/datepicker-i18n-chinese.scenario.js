@@ -11,7 +11,7 @@ import * as React from 'react';
 import {StatefulCalendar} from '../index.js';
 import {zhCN} from 'date-fns/locale/index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <StatefulCalendar
       highlightedDate={new Date('2019-02-14T10:00:00Z')}

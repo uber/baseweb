@@ -10,7 +10,7 @@ import React from 'react';
 
 import {PaymentCard} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <React.Fragment>
       <PaymentCard value="378282246310005" />

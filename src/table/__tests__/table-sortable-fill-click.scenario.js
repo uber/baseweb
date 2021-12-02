@@ -42,7 +42,7 @@ const DATA = [
 ];
 
 // eslint-disable-next-line flowtype/no-weak-types
-class SortableTable extends React.Component<any, any> {
+export class Scenario extends React.Component<any, any> {
   state = {nameDirection: null, ageDirection: null};
 
   handleSort = (title: string, prevDirection: ?string) => {
@@ -107,6 +107,7 @@ class SortableTable extends React.Component<any, any> {
               onSort={() => this.handleSort('name', this.state.nameDirection)}
               fillClickTarget
             />
+
             <SortableHeadCell
               disabled
               title="Age"
@@ -131,5 +132,3 @@ class SortableTable extends React.Component<any, any> {
     );
   }
 }
-
-export default SortableTable;

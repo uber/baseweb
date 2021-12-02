@@ -32,7 +32,7 @@ import {
 
 import {useStyletron} from '../../styles/index.js';
 
-export default function Scenario() {
+export function Scenario() {
   const [css, theme] = useStyletron();
   return (
     <div className={css({width: '800px', color: theme.colors.contentPrimary})}>

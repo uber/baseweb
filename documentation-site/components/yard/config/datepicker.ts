@@ -101,7 +101,8 @@ const DatepickerConfig: TConfig = {
     mask: {
       value: undefined,
       type: PropTypes.String,
-      description: 'Mask used for the text input. Passed to react-input-mask.',
+      description:
+        'Mask used for the text input. Passed to react-input-mask. Disabled when formatString is provided and mask is undefined. Can also be disabled by applying `null`.',
       placeholder: '9999/99/99',
       hidden: true,
     },
@@ -249,6 +250,13 @@ const DatepickerConfig: TConfig = {
       type: PropTypes.Function,
       placeholder: '() => {}',
       description: `Event handler that is called when the calendar is closed.`,
+      hidden: true,
+    },
+    onOpen: {
+      value: undefined,
+      type: PropTypes.Function,
+      placeholder: '() => {}',
+      description: `Event handler that is called when the calendar is opened.`,
       hidden: true,
     },
     orientation: {

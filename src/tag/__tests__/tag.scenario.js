@@ -12,7 +12,7 @@ import {Tag, KIND, VARIANT} from '../index.js';
 
 const customColor = '#26c6da';
 
-export default function Scenario() {
+export function Scenario() {
   const [css] = useStyletron();
   return (
     <React.Fragment>
@@ -65,6 +65,7 @@ export default function Scenario() {
           </div>
         </div>
       ))}
+
       <br />
       {/* PRIMITIVE TAGS */}
       {[
@@ -116,6 +117,7 @@ export default function Scenario() {
           </div>
         </div>
       ))}
+
       <br />
       {/* CUSTOM TAG */}
       <div

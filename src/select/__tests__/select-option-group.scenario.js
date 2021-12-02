@@ -17,6 +17,7 @@ const options = {
     {id: 'Aqua', color: '#00FFFF'},
     {id: 'Aquamarine', color: '#7FFFD4'},
   ],
+
   Whiteish: [
     {id: 'AntiqueWhite', color: '#FAEBD7'},
     {id: 'Azure', color: '#F0FFFF'},
@@ -24,7 +25,7 @@ const options = {
   ],
 };
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <StatefulSelect
       aria-label="Select a color"

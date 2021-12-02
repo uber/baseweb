@@ -11,7 +11,7 @@ import React from 'react';
 import {Select} from '../index.js';
 import {Button} from '../../button/index.js';
 
-export default function Scenario() {
+export function Scenario() {
   const methodsRef = React.useRef(null);
   const [value, setValue] = React.useState([]);
 

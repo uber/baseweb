@@ -34,8 +34,10 @@ const columns = [
       content: data.name,
       href: `#id=${data.id}`,
     }),
+
     minWidth: 130,
   }),
+
   AnchorColumn({
     // illustrates that this could be provided with a react-router-link
     // eslint-disable-next-line react/display-name
@@ -45,17 +47,21 @@ const columns = [
       content: data.realUser,
       href: `#id=${data.realUser}`,
     }),
+
     minWidth: 80,
   }),
+
   CategoricalColumn({
     title: 'Source',
     minWidth: 90,
     mapDataToValue: (data: RowDataT) => data.source,
   }),
+
   NumericalColumn({
     title: 'CPU vCores',
     mapDataToValue: (data: RowDataT) => data.allocatedVCores,
   }),
+
   NumericalColumn({
     title: 'Memory GB',
     mapDataToValue: (data: RowDataT) => data.allocatedGB,
@@ -73,7 +79,7 @@ const rows = [
   data: row,
 }));
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <div style={{height: '600px', width: '700px'}}>
       <StatefulDataTable columns={columns} rows={rows} />

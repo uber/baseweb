@@ -10,6 +10,6 @@ import * as React from 'react';
 
 import {Avatar} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return <Avatar name="Product - Marketplace" initials="PM" />;
 }

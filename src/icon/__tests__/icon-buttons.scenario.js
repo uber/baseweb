@@ -11,7 +11,7 @@ import * as React from 'react';
 import {Button} from '../../button/index.js';
 import Upload from '../upload.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <div>
       <Button startEnhancer={Upload}>Start Enhancer</Button>

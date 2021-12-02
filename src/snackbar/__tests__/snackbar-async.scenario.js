@@ -34,7 +34,7 @@ function Child() {
   );
 }
 
-export default function Parent() {
+export function Scenario() {
   return (
     <SnackbarProvider
       overrides={{

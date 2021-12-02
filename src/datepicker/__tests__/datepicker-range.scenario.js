@@ -10,7 +10,7 @@ import * as React from 'react';
 
 import {StyledDay, StatefulDatepicker} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <StatefulDatepicker
       aria-label="Select a date"
@@ -31,12 +31,14 @@ export default function Scenario() {
             />
           )),
         },
+
         MonthYearSelectButton: {props: {'data-id': 'monthYearSelectButton'}},
         MonthYearSelectStatefulMenu: {
           props: {
             overrides: {List: {props: {'data-id': 'monthYearSelectMenu'}}},
           },
         },
+
         TimeSelect: {
           props: {
             overrides: {

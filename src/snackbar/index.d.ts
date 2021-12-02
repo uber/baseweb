@@ -1,22 +1,27 @@
 import * as React from 'react';
 
 import {Override} from '../overrides';
-import {DURATION, PLACEMENT} from './constants.js';
-export {DURATION, PLACEMENT} from './constants.js';
 
-export type DurationT =
-  | typeof DURATION.infinite
-  | typeof DURATION.short
-  | typeof DURATION.medium
-  | typeof DURATION.long;
+declare const DURATION: {
+  infinite: number;
+  short: number;
+  medium: number;
+  long: number;
+};
 
-export type PlacementT =
-  | typeof PLACEMENT.topLeft
-  | typeof PLACEMENT.top
-  | typeof PLACEMENT.topRight
-  | typeof PLACEMENT.bottomLeft
-  | typeof PLACEMENT.bottom
-  | typeof PLACEMENT.bottomRight;
+declare const PLACEMENT: {
+  topLeft: 'topLeft';
+  top: 'top';
+  topRight: 'topRight';
+  bottomRight: 'bottomRight';
+  bottom: 'bottom';
+  bottomLeft: 'bottomLeft';
+};
+export {DURATION, PLACEMENT};
+
+export type DurationT = (typeof DURATION)[keyof typeof DURATION];
+
+export type PlacementT = (typeof PLACEMENT)[keyof typeof PLACEMENT];
 
 export type SnackbarElementOverridesT = {
   Root?: Override<any>;

@@ -30,6 +30,7 @@ const FilterCheckbox = props => (
           marginBottom: $theme.sizing.scale400,
         }),
       },
+
       Checkmark: {style: {marginLeft: 0}},
     }}
   >
@@ -110,7 +111,7 @@ const Container = styled('div', {
   height: '500px',
 });
 
-export default function Scenario() {
+export function Scenario() {
   const FILTER_DATA = [...new Array(100)].map((_, i) => [i, 'row title']);
   return (
     <Container>

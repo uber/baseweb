@@ -33,28 +33,34 @@ const columns = [
     minWidth: 300,
     mapDataToValue: (data: RowDataT) => data.Name,
   }),
+
   BooleanColumn({
     title: 'Is Selected',
     mapDataToValue: (data: RowDataT) => data.isSelected,
   }),
+
   CategoricalColumn({
     title: 'Kingdom',
     mapDataToValue: (data: RowDataT) => data.Kingdom,
   }),
+
   CategoricalColumn({
     title: 'Phylum',
     minWidth: 90,
     mapDataToValue: (data: RowDataT) => data.Phylum,
   }),
+
   CategoricalColumn({
     title: 'Class',
     minWidth: 120,
     mapDataToValue: (data: RowDataT) => data.Class,
   }),
+
   CategoricalColumn({
     title: 'Order',
     mapDataToValue: (data: RowDataT) => data.Order,
   }),
+
   CategoricalColumn({
     title: 'Family',
     mapDataToValue: (data: RowDataT) => data.Family,
@@ -68,7 +74,7 @@ const initialRows = AnimalData.map(row => {
   };
 });
 
-export default function Scenario() {
+export function Scenario() {
   const [highlightIndex, setHighlightIndex] = React.useState(-1);
   const [highlightedRow, setHighlightedRow] = React.useState(null);
   const [rows, setRows] = React.useState(initialRows);

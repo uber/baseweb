@@ -10,6 +10,6 @@ import * as React from 'react';
 
 import {Calendar} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return <Calendar highlightedDate={new Date('2019-02-22T10:00:00Z')} />;
 }

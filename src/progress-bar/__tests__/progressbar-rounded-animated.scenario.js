@@ -10,7 +10,7 @@ import {ProgressBarRounded, SIZE} from '../index.js';
 
 const FAKE_RANDOM = 0.5;
 
-export default function Scenario() {
+export function Scenario() {
   // Mimic some loading
   const [progress, setProgress] = React.useState(0);
   const tracker = React.useRef(0);

@@ -15,7 +15,7 @@ const ITEMS = Array.from({length: 4}, () => ({
   body: 'Uber Everything',
 }));
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <StatefulMenu
       items={ITEMS}
@@ -25,6 +25,7 @@ export default function Scenario() {
             width: '350px',
           },
         },
+
         Option: {
           component: OptionProfile,
           props: {
@@ -33,6 +34,7 @@ export default function Scenario() {
               subtitle,
               body,
             }),
+
             getProfileItemImg: () => {},
             getProfileItemImgText: item => item.title,
           },

@@ -26,7 +26,7 @@ const rows = [
   {id: 4, data: [false]},
 ];
 
-export default function Scenario() {
+export function Scenario() {
   const [includedRows, setIncludedRows] = React.useState([]);
   const handleIncludedRowsChange = React.useCallback(
     included => {

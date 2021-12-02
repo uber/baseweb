@@ -19,7 +19,7 @@ const ITEMS = [...new Array(10)].map(() => ({
   icon: Search,
 }));
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <StatefulMenu
       items={ITEMS}
@@ -31,6 +31,7 @@ export default function Scenario() {
             width: '450px',
           },
         },
+
         Option: {
           props: {
             overrides: {

@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import {StatefulInput} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <StatefulInput initialState={{value: 10}} type="number" min={0} max={100} />
   );

@@ -18,7 +18,7 @@ import {Button} from '../../button/index.js';
 import {StyledLink as Link} from '../../link/index.js';
 import Menu from '../../icon/menu.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <HeaderNavigation>
       <NavigationList $align={ALIGN.left}>

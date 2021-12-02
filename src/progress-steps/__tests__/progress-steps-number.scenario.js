@@ -12,10 +12,7 @@ import {Block} from '../../block/index.js';
 import {Button} from '../../button/index.js';
 import {ProgressSteps, NumberedStep} from '../index.js';
 
-class ProgressStepsNumberContainer extends React.Component<
-  {},
-  {current: number},
-> {
+export class Scenario extends React.Component<{}, {current: number}> {
   state = {current: 0};
 
   render() {
@@ -54,5 +51,3 @@ class ProgressStepsNumberContainer extends React.Component<
     );
   }
 }
-
-export default ProgressStepsNumberContainer;

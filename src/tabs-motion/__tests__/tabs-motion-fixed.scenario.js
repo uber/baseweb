@@ -13,7 +13,7 @@ import * as React from 'react';
 import {Tab, Tabs, FILL} from '../index.js';
 import {Button, KIND} from '../../button/index.js';
 
-export default function Scenario() {
+export function Scenario() {
   const [activeKey, setActiveKey] = React.useState('0');
   return (
     <Tabs

@@ -222,6 +222,8 @@ export type DatepickerPropsT<T = Date> = CalendarPropsT<T> & {
   mountNode?: HTMLElement,
   /** Called when calendar is closed */
   onClose?: () => mixed,
+  /** Called when calendar is opened */
+  onOpen?: () => mixed,
   mask?: string | null,
   /** Determines if startDate and endDate should be separated into two input fields. Ignored if `range` is not true. */
   separateRangeInputs?: boolean,

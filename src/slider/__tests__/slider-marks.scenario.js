@@ -11,7 +11,7 @@ import * as React from 'react';
 
 import {StatefulSlider} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <div
       style={{

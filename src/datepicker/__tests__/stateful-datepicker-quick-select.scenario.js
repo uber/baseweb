@@ -13,7 +13,7 @@ import {addDays} from '../utils/index.js';
 
 const now = new Date('2019-02-14T10:00:00Z');
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <StatefulDatepicker
       range

@@ -55,11 +55,14 @@ services:
 
   baseui:
     build: .
+    volumes:
+      - ./__artifacts__:/baseui/__artifacts__:delegated
     environment:
       - CODECOV_TOKEN
       - CI=true
       - BUILDKITE
       - BUILDKITE_API_TOKEN
+      - BUILDKITE_UBEROPENSOURCE_API_TOKEN
       - BUILDKITE_BRANCH
       - BUILDKITE_BUILD_NUMBER
       - BUILDKITE_JOB_ID

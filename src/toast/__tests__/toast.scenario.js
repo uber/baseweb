@@ -11,7 +11,7 @@ import * as React from 'react';
 import {Button, KIND as BUTTON_KIND, SIZE} from '../../button/index.js';
 import {Toast, KIND} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <React.Fragment>
       <Toast autoFocus>Default info notification</Toast>

@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import React, {useState, useMemo} from 'react';
 import {TableBuilder, TableBuilderColumn} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   const [sortColumn, setSortColumn] = useState('bar');
   const [sortAsc, setSortAsc] = useState(true);
   const [data] = useState([
@@ -19,102 +19,119 @@ export default function Scenario() {
       url: 'https://example.com/b',
       selected: true,
     },
+
     {
       foo: 1,
       bar: 'carrot',
       url: 'https://example.com/c',
       selected: false,
     },
+
     {
       foo: 2,
       bar: 'apple',
       url: 'https://example.com/a',
       selected: false,
     },
+
     {
       foo: 10,
       bar: 'banana',
       url: 'https://example.com/b',
       selected: true,
     },
+
     {
       foo: 1,
       bar: 'carrot',
       url: 'https://example.com/c',
       selected: false,
     },
+
     {
       foo: 2,
       bar: 'apple',
       url: 'https://example.com/a',
       selected: false,
     },
+
     {
       foo: 10,
       bar: 'banana',
       url: 'https://example.com/b',
       selected: true,
     },
+
     {
       foo: 1,
       bar: 'carrot',
       url: 'https://example.com/c',
       selected: false,
     },
+
     {
       foo: 2,
       bar: 'apple',
       url: 'https://example.com/a',
       selected: false,
     },
+
     {
       foo: 10,
       bar: 'banana',
       url: 'https://example.com/b',
       selected: true,
     },
+
     {
       foo: 1,
       bar: 'carrot',
       url: 'https://example.com/c',
       selected: false,
     },
+
     {
       foo: 2,
       bar: 'apple',
       url: 'https://example.com/a',
       selected: false,
     },
+
     {
       foo: 10,
       bar: 'banana',
       url: 'https://example.com/b',
       selected: true,
     },
+
     {
       foo: 1,
       bar: 'carrot',
       url: 'https://example.com/c',
       selected: false,
     },
+
     {
       foo: 2,
       bar: 'apple',
       url: 'https://example.com/a',
       selected: false,
     },
+
     {
       foo: 10,
       bar: 'banana',
       url: 'https://example.com/b',
       selected: true,
     },
+
     {
       foo: 1,
       bar: 'carrot',
       url: 'https://example.com/c',
       selected: false,
     },
+
     {
       foo: 2,
       bar: 'apple',

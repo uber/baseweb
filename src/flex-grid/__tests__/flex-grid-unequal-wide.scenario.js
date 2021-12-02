@@ -29,7 +29,7 @@ const wideItemProps = {
   },
 };
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <FlexGrid
       flexGridColumnCount={3}

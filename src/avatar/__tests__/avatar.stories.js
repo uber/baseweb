@@ -7,11 +7,11 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import AvatarCustomInitials from './avatar-custom-initials.scenario.js';
-import AvatarError from './avatar-error.scenario.js';
-import AvatarNoSrc from './avatar-no-src.scenario.js';
-import AvatarDefault from './avatar.scenario.js';
-import AvatarUpdateImage from './avatar-update-image.scenario.js';
+import {Scenario as AvatarCustomInitials} from './avatar-custom-initials.scenario.js';
+import {Scenario as AvatarError} from './avatar-error.scenario.js';
+import {Scenario as AvatarNoSrc} from './avatar-no-src.scenario.js';
+import {Scenario as AvatarDefault} from './avatar.scenario.js';
+import {Scenario as AvatarUpdateImage} from './avatar-update-image.scenario.js';
 
 export const CustomInitials = () => <AvatarCustomInitials />;
 export const Error = () => <AvatarError />;
