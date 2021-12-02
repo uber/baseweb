@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
+import MockDate from 'mockdate';
 import {
   render,
   fireEvent,
@@ -21,6 +22,14 @@ import {addDays} from 'date-fns';
 import {Datepicker, ORIENTATION} from '../index.js';
 
 describe('Datepicker', () => {
+  beforeEach(() => {
+    MockDate.set('2021-11-25 10:30');
+  });
+
+  afterEach(() => {
+    MockDate.reset();
+  });
+
   it('opens calendar on down arrow press', () => {
     const {container} = render(
       <TestBaseProvider>
