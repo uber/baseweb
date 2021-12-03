@@ -32,7 +32,12 @@ class Tooltip extends React.Component<TooltipPropsT> {
       this.props.overrides,
     );
     return (
-      <Popover data-baseweb="tooltip" {...this.props} overrides={overrides} />
+      <Popover
+        autoFocus={false}
+        data-baseweb="tooltip"
+        {...this.props}
+        overrides={overrides}
+      />
     );
   }
 }

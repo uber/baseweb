@@ -36,6 +36,7 @@ export function Helper(props: PropsT) {
     <Popover
       data-baseweb="helper"
       {...restProps}
+      autoFocus={false}
       placement={placement}
       overrides={mergedOverrides}
     />
