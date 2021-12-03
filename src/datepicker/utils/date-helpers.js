@@ -40,7 +40,7 @@ class DateHelpers<T> {
           monthNumber: 'M',
           dayOfMonthNumber: 'd',
           weekday: 'EEEE',
-          weekdaymin: 'EEEEE',
+          weekdaymin: 'EEEEEE',
           slashDate: 'yyyy/MM/dd',
           fullOrdinalWeek: 'EEEE, MMMM do yyyy',
           quarter: 'QQQ',
