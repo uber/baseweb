@@ -519,6 +519,7 @@ export default class Datepicker<T = Date> extends React.Component<
           <React.Fragment>
             <PopoverComponent
               focusLock={false}
+              autoFocus={false}
               mountNode={this.props.mountNode}
               placement={PLACEMENT.bottom}
               isOpen={this.state.isOpen}
