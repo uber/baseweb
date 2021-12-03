@@ -436,7 +436,7 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
       $disabled || (!$peekNextMonth && $outsideMonth) ? 'default' : 'pointer',
     color: colors.calendarForeground,
     display: 'inline-block',
-    width: sizing.scale1200,
+    width: '50px',
     height: $hasDateLabel ? '70px' : sizing.scale1200,
     // setting lineHeight equal to the contents height to vertically center the text
     lineHeight: sizing.scale900,
@@ -447,8 +447,8 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
     paddingRight: sizing.scale300,
     marginTop: 0,
     marginBottom: 0,
-    marginLeft: '1px',
-    marginRight: '1px',
+    marginLeft: 0,
+    marginRight: 0,
     outline: 'none',
     backgroundColor: 'transparent',
     // `transform` creates a stacking context so
@@ -561,7 +561,7 @@ export const StyledWeekdayHeader = styled<SharedStylePropsT>('div', props => {
     position: 'relative',
     cursor: 'default',
     display: 'inline-block',
-    width: sizing.scale1200,
+    width: '50px',
     height: sizing.scale1200,
     textAlign: 'center',
     // setting lineHeight equal to the contents height to vertically center the text
@@ -572,8 +572,8 @@ export const StyledWeekdayHeader = styled<SharedStylePropsT>('div', props => {
     paddingRight: sizing.scale200,
     marginTop: 0,
     marginBottom: 0,
-    marginLeft: '1px',
-    marginRight: '1px',
+    marginLeft: 0,
+    marginRight: 0,
     backgroundColor: 'transparent',
   }: {});
 });
