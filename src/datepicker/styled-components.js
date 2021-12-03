@@ -108,8 +108,8 @@ export const StyledCalendarHeader = styled<SharedStylePropsT>('div', props => {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingTop: sizing.scale500,
-    paddingBottom: sizing.scale500,
+    paddingTop: sizing.scale600,
+    paddingBottom: sizing.scale300,
     paddingLeft: sizing.scale600,
     paddingRight: sizing.scale600,
     backgroundColor: colors.calendarHeaderBackground,
@@ -469,10 +469,10 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
         : $pseudoSelected && $isHighlighted
         ? colors.calendarDayBackgroundPseudoSelectedHighlighted
         : colors.calendarBackground,
-      height: '100%',
+      height: $hasDateLabel ? '100%' : '50px',
       width: '100%',
       position: 'absolute',
-      top: 0,
+      top: $hasDateLabel ? 0 : '-1px',
       left: 0,
       paddingTop: sizing.scale200,
       paddingBottom: sizing.scale200,
