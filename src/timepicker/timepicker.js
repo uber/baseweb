@@ -205,8 +205,9 @@ class TimePicker<T = Date> extends React.Component<
     if (!min) {
       min = midnight;
     }
+    const maxDateforCurrentDay = this.setTime(this.props.value, 24, 0, 0);
     if (!max) {
-      max = this.setTime(this.props.value, 24, 0, 0);
+      max = maxDateforCurrentDay;
     } else {
       // maxTime (if provided) should be inclusive, so add an extra step here
       max = this.props.adapter.setSeconds(
@@ -218,9 +219,15 @@ class TimePicker<T = Date> extends React.Component<
     const minDate = this.props.adapter.toJsDate(min);
     const maxDate = this.props.adapter.toJsDate(max);
     const midnightDate = this.props.adapter.toJsDate(midnight);
+    const start = this.props.adapter.isBefore(minDate, midnightDate)
+      ? 0
+      : (minDate - midnightDate) / 1000;
+    const end = this.props.adapter.isAfter(maxDate, maxDateforCurrentDay)
+      ? (maxDateforCurrentDay - midnightDate) / 1000
+      : (maxDate - midnightDate) / 1000;
     return {
-      start: (minDate - midnightDate) / 1000,
-      end: (maxDate - midnightDate) / 1000,
+      start,
+      end,
     };
   };
 
