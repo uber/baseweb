@@ -54,6 +54,7 @@ export function Scenario() {
               })}
             >
               <Popover
+                autoFocus={false}
                 placement={PLACEMENT[placement]}
                 content={() => (
                   <div className={css({padding: '12px'})}>content</div>

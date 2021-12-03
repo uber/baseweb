@@ -1025,6 +1025,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
                   if (!ref) return;
                   this.anchor = ref.anchorRef;
                 }}
+                autoFocus={false}
                 focusLock={false}
                 mountNode={this.props.mountNode}
                 onEsc={() => this.closeMenu()}

@@ -17,6 +17,7 @@ import {Scenario as PopoverReposition} from './popover-reposition.scenario.js';
 import {Scenario as PopoverSelect} from './popover-select.scenario.js';
 import {Scenario as PopoverDefault} from './popover.scenario.js';
 import {Scenario as PopoverRepositionWithAnchorUpdate} from './popover-reposition-with-anchor-update.scenario.js';
+import {Scenario as PopoverAutoFocusWithoutFocusLock} from './popover-autofocus.scenario.js';
 
 export const Click = () => <PopoverClick />;
 export const FocusLoop = () => <PopoverFocusLoop />;
@@ -29,4 +30,7 @@ export const Select = () => <PopoverSelect />;
 export const Popover = () => <PopoverDefault />;
 export const RepositionWithAnchorUpdate = () => (
   <PopoverRepositionWithAnchorUpdate />
+);
+export const AutoFocusWithoutFocusLock = () => (
+  <PopoverAutoFocusWithoutFocusLock />
 );
