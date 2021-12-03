@@ -78,10 +78,10 @@ export const StyledCalendarContainer = styled<SharedStylePropsT>(
       $theme: {sizing},
     } = props;
     return {
-      paddingTop: sizing.scale400,
-      paddingBottom: sizing.scale500,
-      paddingLeft: sizing.scale600,
-      paddingRight: sizing.scale600,
+      paddingTop: sizing.scale300,
+      paddingBottom: sizing.scale300,
+      paddingLeft: sizing.scale500,
+      paddingRight: sizing.scale500,
     };
   },
 );
@@ -134,7 +134,7 @@ export const StyledMonthYearSelectButton = styled<{$isFocusVisible: boolean}>(
   'button',
   props => {
     return {
-      ...props.$theme.typography.font200,
+      ...props.$theme.typography.LabelLarge,
       alignItems: 'center',
       backgroundColor: 'transparent',
       borderLeftWidth: 0,
@@ -167,6 +167,7 @@ export const StyledMonthYearSelectIconContainer = styled<{}>('span', props => {
 function getArrowBtnStyle({$theme, $disabled, $isFocusVisible}) {
   return {
     boxSizing: 'border-box',
+    display: 'flex',
     color: $disabled
       ? $theme.colors.calendarHeaderForegroundDisabled
       : $theme.colors.calendarHeaderForeground,
@@ -180,8 +181,6 @@ function getArrowBtnStyle({$theme, $disabled, $isFocusVisible}) {
     paddingBottom: '0',
     paddingLeft: '0',
     paddingRight: '0',
-    marginLeft: '6px',
-    marginRight: '6px',
     marginBottom: 0,
     marginTop: 0,
     outline: 'none',
@@ -221,7 +220,7 @@ export const StyledWeek = styled<SharedStylePropsT>('div', props => {
   return {
     whiteSpace: 'nowrap',
     display: 'flex',
-    marginBottom: sizing.scale100,
+    marginBottom: sizing.scale0,
   };
 });
 
@@ -426,28 +425,30 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
     $outsideMonth,
     $outsideMonthWithinRange,
     $hasDateLabel,
-    $theme: {colors, sizing},
+    $theme: {colors, typography, sizing},
   } = props;
   const code = getDayStateCode(props);
   return ({
+    ...typography.ParagraphMedium,
     boxSizing: 'border-box',
     position: 'relative',
     cursor:
       $disabled || (!$peekNextMonth && $outsideMonth) ? 'default' : 'pointer',
     color: colors.calendarForeground,
     display: 'inline-block',
-    width: sizing.scale1000,
-    height: $hasDateLabel ? '60px' : sizing.scale1000,
-    lineHeight: sizing.scale800,
+    width: sizing.scale1200,
+    height: $hasDateLabel ? '60px' : sizing.scale1200,
+    // setting lineHeight equal to the contents height to vertically center the text
+    lineHeight: sizing.scale900,
     textAlign: 'center',
     paddingTop: sizing.scale300,
     paddingBottom: sizing.scale300,
-    paddingLeft: sizing.scale200,
-    paddingRight: sizing.scale200,
+    paddingLeft: sizing.scale300,
+    paddingRight: sizing.scale300,
     marginTop: 0,
     marginBottom: 0,
-    marginLeft: 0,
-    marginRight: 0,
+    marginLeft: '1px',
+    marginRight: '1px',
     outline: 'none',
     backgroundColor: 'transparent',
     // `transform` creates a stacking context so
@@ -551,26 +552,28 @@ export const StyledDayLabel = styled<SharedStylePropsT>('div', props => {
 
 export const StyledWeekdayHeader = styled<SharedStylePropsT>('div', props => {
   const {
-    $theme: {sizing},
+    $theme: {typography, colors, sizing},
   } = props;
   return ({
+    ...typography.LabelMedium,
+    color: colors.contentTertiary,
     boxSizing: 'border-box',
     position: 'relative',
     cursor: 'default',
     display: 'inline-block',
-    width: sizing.scale1000,
-    height: sizing.scale1000,
-    lineHeight: sizing.scale800,
+    width: sizing.scale1200,
+    height: sizing.scale1200,
     textAlign: 'center',
+    // setting lineHeight equal to the contents height to vertically center the text
+    lineHeight: sizing.scale900,
     paddingTop: sizing.scale300,
     paddingBottom: sizing.scale300,
     paddingLeft: sizing.scale200,
     paddingRight: sizing.scale200,
     marginTop: 0,
     marginBottom: 0,
-    marginLeft: 0,
-    marginRight: 0,
-    color: 'inherit',
+    marginLeft: '1px',
+    marginRight: '1px',
     backgroundColor: 'transparent',
   }: {});
 });
