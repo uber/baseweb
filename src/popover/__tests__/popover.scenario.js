@@ -13,7 +13,12 @@ import {Popover} from '../index.js';
 
 export function Scenario() {
   return (
-    <Popover accessibilityType={'tooltip'} isOpen content={<div>content</div>}>
+    <Popover
+      autoFocus={false}
+      accessibilityType={'tooltip'}
+      isOpen
+      content={<div>content</div>}
+    >
       <Button>Open</Button>
     </Popover>
   );

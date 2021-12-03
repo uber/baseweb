@@ -120,6 +120,7 @@ export default function UserMenuComponent(props: {|
           {...userMenuProps}
         />
       )}
+      autoFocus={false}
       dismissOnEsc={true}
       dismissOnClickOutside={true}
       onOpen={() => setIsOpen(true)}

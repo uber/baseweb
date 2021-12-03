@@ -20,6 +20,7 @@ export function Scenario() {
       <div className={css({display: 'flex', justifyContent: 'center'})}>
         <StatefulPopover
           accessibilityType={'tooltip'}
+          autoFocus={false}
           content={() => (
             <div id="e2e-popover">
               <button
