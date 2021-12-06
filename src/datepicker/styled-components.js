@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 import {styled} from '../styles/index.js';
 import getDayStateCode from './utils/day-state.js';
 import type {SharedStylePropsT, CalendarPropsT} from './types.js';
-import {ORIENTATION} from './constants.js';
+import {ORIENTATION, DENSITY} from './constants.js';
 
 /**
  * Main component container element
@@ -76,10 +76,12 @@ export const StyledCalendarContainer = styled<SharedStylePropsT>(
   props => {
     const {
       $theme: {sizing},
+      $density,
     } = props;
     return {
       paddingTop: sizing.scale300,
-      paddingBottom: sizing.scale300,
+      paddingBottom:
+        $density === DENSITY.high ? sizing.scale400 : sizing.scale300,
       paddingLeft: sizing.scale500,
       paddingRight: sizing.scale500,
     };
@@ -130,25 +132,30 @@ export const StyledMonthHeader = styled<SharedStylePropsT>('div', props => {
   };
 });
 
-export const StyledMonthYearSelectButton = styled<{$isFocusVisible: boolean}>(
+export const StyledMonthYearSelectButton = styled<SharedStylePropsT>(
   'button',
   props => {
+    const {
+      $theme: {typography, colors},
+      $isFocusVisible,
+      $density,
+    } = props;
     return {
-      ...props.$theme.typography.LabelLarge,
+      ...($density === DENSITY.high
+        ? typography.LabelMedium
+        : typography.LabelLarge),
       alignItems: 'center',
       backgroundColor: 'transparent',
       borderLeftWidth: 0,
       borderRightWidth: 0,
       borderTopWidth: 0,
       borderBottomWidth: 0,
-      color: props.$theme.colors.calendarHeaderForeground,
+      color: colors.calendarHeaderForeground,
       cursor: 'pointer',
       display: 'flex',
       outline: 'none',
       ':focus': {
-        boxShadow: props.$isFocusVisible
-          ? `0 0 0 3px ${props.$theme.colors.accent}`
-          : 'none',
+        boxShadow: $isFocusVisible ? `0 0 0 3px ${colors.accent}` : 'none',
       },
     };
   },
@@ -425,21 +432,40 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
     $outsideMonth,
     $outsideMonthWithinRange,
     $hasDateLabel,
+    $density,
     $theme: {colors, typography, sizing},
   } = props;
   const code = getDayStateCode(props);
+
+  let height;
+  if ($hasDateLabel) {
+    if ($density === DENSITY.high) {
+      height = '60px';
+    } else {
+      height = '70px';
+    }
+  } else {
+    if ($density === DENSITY.high) {
+      height = '40px';
+    } else {
+      height = '48px';
+    }
+  }
+
   return ({
-    ...typography.ParagraphMedium,
+    ...($density === DENSITY.high
+      ? typography.ParagraphSmall
+      : typography.ParagraphMedium),
     boxSizing: 'border-box',
     position: 'relative',
     cursor:
       $disabled || (!$peekNextMonth && $outsideMonth) ? 'default' : 'pointer',
     color: colors.calendarForeground,
     display: 'inline-block',
-    width: '50px',
-    height: $hasDateLabel ? '70px' : sizing.scale1200,
+    width: $density === DENSITY.high ? '42px' : '50px',
+    height: height,
     // setting lineHeight equal to the contents height to vertically center the text
-    lineHeight: sizing.scale900,
+    lineHeight: $density === DENSITY.high ? sizing.scale700 : sizing.scale900,
     textAlign: 'center',
     paddingTop: sizing.scale300,
     paddingBottom: sizing.scale300,
@@ -469,7 +495,11 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
         : $pseudoSelected && $isHighlighted
         ? colors.calendarDayBackgroundPseudoSelectedHighlighted
         : colors.calendarBackground,
-      height: $hasDateLabel ? '100%' : '50px',
+      height: $hasDateLabel
+        ? '100%'
+        : $density === DENSITY.high
+        ? '42px'
+        : '50px',
       width: '100%',
       position: 'absolute',
       top: $hasDateLabel ? 0 : '-1px',
@@ -553,6 +583,7 @@ export const StyledDayLabel = styled<SharedStylePropsT>('div', props => {
 export const StyledWeekdayHeader = styled<SharedStylePropsT>('div', props => {
   const {
     $theme: {typography, colors, sizing},
+    $density,
   } = props;
   return ({
     ...typography.LabelMedium,
@@ -561,8 +592,8 @@ export const StyledWeekdayHeader = styled<SharedStylePropsT>('div', props => {
     position: 'relative',
     cursor: 'default',
     display: 'inline-block',
-    width: '50px',
-    height: sizing.scale1200,
+    width: $density === DENSITY.high ? '42px' : '50px',
+    height: $density === DENSITY.high ? '40px' : '48px',
     textAlign: 'center',
     // setting lineHeight equal to the contents height to vertically center the text
     lineHeight: sizing.scale900,

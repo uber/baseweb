@@ -291,6 +291,7 @@ export default class Day<T = Date> extends React.Component<
     );
     return {
       $date: date,
+      $density: this.props.density,
       $disabled: this.props.disabled,
       $endDate:
         (Array.isArray(value) &&
