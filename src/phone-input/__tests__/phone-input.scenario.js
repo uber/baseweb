@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import {StatefulPhoneInput, PhoneInputLite} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <>
       <StatefulPhoneInput
@@ -17,9 +17,11 @@ export default function Scenario() {
           CountrySelectDropdownListItem: {
             props: {'data-e2e': 'country-select-list-item'},
           },
+
           FlagContainer: {
             props: {'data-e2e': 'country-flag'},
           },
+
           DialCode: {
             props: {'data-e2e': 'phone-input-dialcode'},
           },

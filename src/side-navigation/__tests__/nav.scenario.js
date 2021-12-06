@@ -26,18 +26,20 @@ const nav = [
       },
     ],
   },
+
   {
     title: 'Sizing',
     itemId: '#level1.2',
     disabled: true,
   },
+
   {
     title: 'Typography',
     itemId: '#level1.3',
   },
 ];
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <Navigation items={nav} overrides={{Root: {props: {'data-test': 'e2e'}}}} />
   );

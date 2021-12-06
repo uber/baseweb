@@ -27,7 +27,7 @@ const getLabel = ({option}) => {
 };
 
 function CustomLabel() {
-  const [value, setValue] = React.useState<ValueT>([]);
+  const [value, setValue] = React.useState([]);
   return (
     <Select
       options={[

@@ -11,7 +11,7 @@ import * as React from 'react';
 import {Table} from '../index.js';
 import {ThemeProvider, LightTheme} from '../../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <ThemeProvider theme={{...LightTheme, direction: 'rtl'}}>
       <div dir="rtl" style={{height: '400px', width: '800px'}}>

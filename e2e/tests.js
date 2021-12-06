@@ -60,7 +60,7 @@ export default function showTestcase() {
     return <A11yFail message={message} />;
   }
 
-  const Component = scenario.result.default;
+  const Component = scenario.result.Scenario;
 
   return (
     <div>

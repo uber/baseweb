@@ -18,7 +18,7 @@ const DATA = [
   ['Joe Black', 33, '100 Macquarie St., Sydney, Australia'],
 ];
 
-export default function Scenario() {
+export function Scenario() {
   const [css, theme] = useStyletron();
 
   const title = css({
@@ -35,6 +35,7 @@ export default function Scenario() {
         columns={COLUMNS}
         data={DATA}
       />
+
       <p className={title}>vertical</p>
       <Table
         divider={DIVIDER.vertical}
@@ -42,6 +43,7 @@ export default function Scenario() {
         columns={COLUMNS}
         data={DATA}
       />
+
       <p className={title}>grid</p>
       <Table
         divider={DIVIDER.grid}
@@ -49,6 +51,7 @@ export default function Scenario() {
         columns={COLUMNS}
         data={DATA}
       />
+
       <p className={title}>clean</p>
       <Table
         divider={DIVIDER.clean}

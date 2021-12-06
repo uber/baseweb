@@ -12,7 +12,7 @@ import {useStyletron} from '../../styles/index.js';
 
 import {AppNavBar, setItemActive} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   const [css] = useStyletron();
 
   const [mainItems, setMainItems] = React.useState([{label: 'label'}]);

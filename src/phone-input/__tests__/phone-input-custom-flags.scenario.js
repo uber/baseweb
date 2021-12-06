@@ -21,7 +21,7 @@ function CustomFlag(props: {children: React.Node, $iso: CountryIsoT}) {
   return <StyledFlag iso={props.$iso} {...rest} />;
 }
 
-export default function Scenario() {
+export function Scenario() {
   const [text, setText] = React.useState('');
   const [country, setCountry] = React.useState(COUNTRIES.US);
   return (
@@ -39,6 +39,7 @@ export default function Scenario() {
         FlagContainer: {
           component: CustomFlag,
         },
+
         CountrySelect: {
           props: {
             overrides: {

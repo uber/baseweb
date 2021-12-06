@@ -12,7 +12,7 @@ import {useStyletron} from '../../styles/index.js';
 import {Button} from '../../button/index.js';
 import {StatefulPopover, TRIGGER_TYPE, PLACEMENT} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   const [css] = useStyletron();
   const [expanded, setExpanded] = React.useState(false);
   return (
@@ -20,6 +20,7 @@ export default function Scenario() {
       <div className={css({display: 'flex', justifyContent: 'center'})}>
         <StatefulPopover
           accessibilityType={'tooltip'}
+          autoFocus={false}
           content={() => (
             <div id="e2e-popover">
               <button

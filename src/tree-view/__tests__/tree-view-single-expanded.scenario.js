@@ -31,16 +31,19 @@ const initialData = [
                 label: 'Greatgrandchild 1.1.1.1',
                 isExpanded: true,
               },
+
               {
                 id: 5,
                 label: 'Greatgrandchild 1.1.1.2',
               },
+
               {
                 id: 6,
                 label: 'Greatgrandchild 1.1.1.3',
               },
             ],
           },
+
           {
             id: 7,
             label: 'Grandchild 1.1.2',
@@ -49,16 +52,19 @@ const initialData = [
                 id: 8,
                 label: 'Greatgrandchild 1.1.2.1',
               },
+
               {
                 id: 9,
                 label: 'Greatgrandchild 1.1.2.2',
               },
+
               {
                 id: 10,
                 label: 'Greatgrandchild 1.1.2.3',
               },
             ],
           },
+
           {
             id: 11,
             label: 'Grandchild 1.1.3',
@@ -67,10 +73,12 @@ const initialData = [
                 id: 12,
                 label: 'Greatgrandchild 1.1.3.1',
               },
+
               {
                 id: 13,
                 label: 'Greatgrandchild 1.1.3.2',
               },
+
               {
                 id: 14,
                 label: 'Greatgrandchild 1.1.3.3',
@@ -79,6 +87,7 @@ const initialData = [
           },
         ],
       },
+
       {
         id: 15,
         label: 'Child 1.2',
@@ -93,16 +102,19 @@ const initialData = [
                 label: 'Greatgrandchild 1.2.1.1',
                 isExpanded: true,
               },
+
               {
                 id: 18,
                 label: 'Greatgrandchild 1.2.1.2',
               },
+
               {
                 id: 19,
                 label: 'Greatgrandchild 1.2.1.3',
               },
             ],
           },
+
           {
             id: 20,
             label: 'Grandchild 1.2.2',
@@ -111,16 +123,19 @@ const initialData = [
                 id: 21,
                 label: 'Greatgrandchild 1.2.2.1',
               },
+
               {
                 id: 22,
                 label: 'Greatgrandchild 1.2.2.2',
               },
+
               {
                 id: 23,
                 label: 'Greatgrandchild 1.2.2.3',
               },
             ],
           },
+
           {
             id: 24,
             label: 'Grandchild 1.2.3',
@@ -129,10 +144,12 @@ const initialData = [
                 id: 25,
                 label: 'Greatgrandchild 1.2.3.1',
               },
+
               {
                 id: 26,
                 label: 'Greatgrandchild 1.2.3.2',
               },
+
               {
                 id: 27,
                 label: 'Greatgrandchild 1.2.3.3',
@@ -141,6 +158,7 @@ const initialData = [
           },
         ],
       },
+
       {
         id: 28,
         label: 'Child 1.3',
@@ -155,16 +173,19 @@ const initialData = [
                 label: 'Greatgrandchild 1.3.1.1',
                 isExpanded: true,
               },
+
               {
                 id: 31,
                 label: 'Greatgrandchild 1.3.1.2',
               },
+
               {
                 id: 32,
                 label: 'Greatgrandchild 1.3.1.3',
               },
             ],
           },
+
           {
             id: 33,
             label: 'Grandchild 1.3.2',
@@ -173,16 +194,19 @@ const initialData = [
                 id: 34,
                 label: 'Greatgrandchild 1.3.2.1',
               },
+
               {
                 id: 35,
                 label: 'Greatgrandchild 1.3.2.2',
               },
+
               {
                 id: 36,
                 label: 'Greatgrandchild 1.3.2.3',
               },
             ],
           },
+
           {
             id: 37,
             label: 'Grandchild 1.3.3',
@@ -191,10 +215,12 @@ const initialData = [
                 id: 38,
                 label: 'Greatgrandchild 1.3.3.1',
               },
+
               {
                 id: 39,
                 label: 'Greatgrandchild 1.3.3.2',
               },
+
               {
                 id: 40,
                 label: 'Greatgrandchild 1.3.3.3',
@@ -205,6 +231,7 @@ const initialData = [
       },
     ],
   },
+
   {
     id: 41,
     label: 'Node 2',
@@ -217,16 +244,19 @@ const initialData = [
             id: 43,
             label: 'Grandchild 2.1.1',
           },
+
           {
             id: 44,
             label: 'Grandchild 2.1.2',
           },
+
           {
             id: 45,
             label: 'Grandchild 2.1.3',
           },
         ],
       },
+
       {
         id: 46,
         label: 'Child 2.2',
@@ -235,16 +265,19 @@ const initialData = [
             id: 47,
             label: 'Grandchild 2.2.1',
           },
+
           {
             id: 48,
             label: 'Grandchild 2.2.2',
           },
+
           {
             id: 49,
             label: 'Grandchild 2.2.3',
           },
         ],
       },
+
       {
         id: 50,
         label: 'Child 2.3',
@@ -253,10 +286,12 @@ const initialData = [
             id: 51,
             label: 'Grandchild 2.3.1',
           },
+
           {
             id: 52,
             label: 'Grandchild 2.3.2',
           },
+
           {
             id: 53,
             label: 'Grandchild 2.3.3',
@@ -267,6 +302,6 @@ const initialData = [
   },
 ];
 
-export default function Scenario() {
+export function Scenario() {
   return <StatefulTreeView singleExpanded={true} data={initialData} />;
 }

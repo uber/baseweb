@@ -22,7 +22,7 @@ const availableChannels = [
   'friends',
 ];
 
-function Example() {
+export function Scenario() {
   const [css] = useStyletron();
   const [value, setValue] = React.useState('');
   const [options, setOptions] = React.useState([]);
@@ -92,5 +92,3 @@ function Example() {
     </div>
   );
 }
-
-export default Example;

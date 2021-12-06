@@ -6,11 +6,12 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import ArrowRight from '../icon/arrow-right.js';
-import ArrowLeft from '../icon/arrow-left.js';
-import TriangleDown from '../icon/triangle-down.js';
+import ChevronRight from '../icon/chevron-right.js';
+import ChevronLeft from '../icon/chevron-left.js';
+import ChevronDown from '../icon/chevron-down.js';
 import dateFnsAdapter from './utils/date-fns-adapter.js';
 import DateHelpers from './utils/date-helpers.js';
+import {getFilteredMonthItems} from './utils/calendar-header-helpers.js';
 import {StatefulMenu} from '../menu/index.js';
 import {Popover} from '../popover/index.js';
 import {LocaleContext} from '../locale/index.js';
@@ -45,17 +46,17 @@ const DIRECTION = {
   PREVIOUS: 'previous',
 };
 
-function yearMonthToId(year, month) {
-  return `${year}-${month}`;
-}
-
 function idToYearMonth(id) {
   return id.split('-').map(Number);
 }
 
 export default class CalendarHeader<T = Date> extends React.Component<
   HeaderPropsT<T>,
-  {isMonthYearDropdownOpen: boolean, isFocusVisible: boolean},
+  {
+    isMonthDropdownOpen: boolean,
+    isYearDropdownOpen: boolean,
+    isFocusVisible: boolean,
+  },
 > {
   static defaultProps = {
     adapter: dateFnsAdapter,
@@ -67,32 +68,132 @@ export default class CalendarHeader<T = Date> extends React.Component<
   };
 
   dateHelpers: DateHelpers<T>;
-  items: Array<{id: string, label: string}>;
-  minYear: number;
-  maxYear: number;
+  monthItems: Array<{id: string, label: string, disabled?: boolean}>;
+  yearItems: Array<{id: string, label: string, disabled?: boolean}>;
 
   constructor(props: HeaderPropsT<T>) {
     super(props);
     this.dateHelpers = new DateHelpers(props.adapter);
-    this.items = [];
+    this.monthItems = [];
+    this.yearItems = [];
   }
 
   state = {
-    isMonthYearDropdownOpen: false,
+    isMonthDropdownOpen: false,
+    isYearDropdownOpen: false,
     isFocusVisible: false,
   };
+
+  componentDidMount() {
+    this.getYearItems();
+    this.getMonthItems();
+  }
+
+  componentDidUpdate(prevProps: HeaderPropsT<T>) {
+    const selectedMonthDidChange =
+      this.dateHelpers.getMonth(this.props.date) !==
+      this.dateHelpers.getMonth(prevProps.date);
+
+    const selectedYearDidChange =
+      this.dateHelpers.getYear(this.props.date) !==
+      this.dateHelpers.getYear(prevProps.date);
+
+    if (selectedMonthDidChange) {
+      // re-calculate yearItems
+      this.getYearItems();
+    }
+
+    if (selectedYearDidChange) {
+      // re-calculate monthItems
+      this.getMonthItems();
+    }
+  }
 
   getDateProp: () => T = () => {
     return this.props.date || this.dateHelpers.date();
   };
 
-  handleYearChange = ({value}: {value: Array<{id: number}>}) => {
-    if (this.props.onYearChange) {
-      // $FlowFixMe
-      this.props.onYearChange({
-        date: this.dateHelpers.setYear(this.getDateProp(), value[0].id),
-      });
+  getYearItems = () => {
+    const date = this.getDateProp();
+    const maxDate = this.props.maxDate;
+    const minDate = this.props.minDate;
+    const maxYear = maxDate ? this.dateHelpers.getYear(maxDate) : MAX_YEAR;
+    const minYear = minDate ? this.dateHelpers.getYear(minDate) : MIN_YEAR;
+    const selectedMonth = this.dateHelpers.getMonth(date);
+
+    // TODO: this logic can be optimized to only run when minDate / maxDate change
+    this.yearItems = Array.from(
+      {length: maxYear - minYear + 1},
+      (_, i) => minYear + i,
+    ).map(year => ({id: year.toString(), label: year.toString()}));
+    const monthOfMaxDate = maxDate
+      ? this.dateHelpers.getMonth(maxDate)
+      : MAX_MONTH;
+    const monthOfMinDate = minDate
+      ? this.dateHelpers.getMonth(minDate)
+      : MIN_MONTH;
+    // Generates array like [0,1,.... monthOfMaxDate]
+    const maxYearMonths = Array.from({length: monthOfMaxDate + 1}, (x, i) => i);
+    // Generates array like [monthOfMinDate, ...., 10, 11]
+    const minYearMonths = Array.from(
+      {length: 12 - monthOfMinDate},
+      (x, i) => i + monthOfMinDate,
+    );
+
+    if (selectedMonth > maxYearMonths[maxYearMonths.length - 1]) {
+      const lastIdx = this.yearItems.length - 1;
+      this.yearItems[lastIdx] = {...this.yearItems[lastIdx], disabled: true};
     }
+
+    if (selectedMonth < minYearMonths[0]) {
+      this.yearItems[0] = {...this.yearItems[0], disabled: true};
+    }
+  };
+
+  getMonthItems = () => {
+    const date = this.getDateProp();
+    const year = this.dateHelpers.getYear(date);
+    const maxDate = this.props.maxDate;
+    const minDate = this.props.minDate;
+    const maxYear = maxDate ? this.dateHelpers.getYear(maxDate) : MAX_YEAR;
+    const minYear = minDate ? this.dateHelpers.getYear(minDate) : MIN_YEAR;
+
+    const monthOfMaxDate = maxDate
+      ? this.dateHelpers.getMonth(maxDate)
+      : MAX_MONTH;
+    // Generates array like [0,1,.... monthOfMaxDate]
+    const maxYearMonths = Array.from({length: monthOfMaxDate + 1}, (x, i) => i);
+
+    const monthOfMinDate = minDate
+      ? this.dateHelpers.getMonth(minDate)
+      : MIN_MONTH;
+
+    // Generates array like [monthOfMinDate, ...., 10, 11]
+    const minYearMonths = Array.from(
+      {length: 12 - monthOfMinDate},
+      (x, i) => i + monthOfMinDate,
+    );
+
+    const maxMinYearMonthsIntersection = maxYearMonths.filter(year =>
+      minYearMonths.includes(year),
+    );
+
+    const filterMonthsList =
+      year === maxYear && year === minYear
+        ? maxMinYearMonthsIntersection
+        : year === maxYear
+        ? maxYearMonths
+        : year === minYear
+        ? minYearMonths
+        : null;
+
+    const formatMonthLabel = month =>
+      this.dateHelpers.getMonthInLocale(month, this.props.locale);
+
+    this.monthItems = getFilteredMonthItems({
+      filterMonthsList,
+      formatMonthLabel,
+    });
   };
 
   increaseMonth = () => {
@@ -194,7 +295,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
     );
     const [PrevButtonIcon, prevButtonIconProps] = getOverrides(
       overrides.PrevButtonIcon,
-      theme.direction === 'rtl' ? ArrowRight : ArrowLeft,
+      theme.direction === 'rtl' ? ChevronRight : ChevronLeft,
     );
     let clickHandler = this.decreaseMonth;
     if (allPrevDaysDisabled) {
@@ -260,7 +361,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
     );
     const [NextButtonIcon, nextButtonIconProps] = getOverrides(
       overrides.NextButtonIcon,
-      theme.direction === 'rtl' ? ArrowLeft : ArrowRight,
+      theme.direction === 'rtl' ? ChevronLeft : ChevronRight,
     );
 
     let clickHandler = this.increaseMonth;
@@ -297,7 +398,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
   };
 
   canArrowsOpenDropdown = (event: KeyboardEvent) => {
-    if (!this.state.isMonthYearDropdownOpen) {
+    if (!this.state.isMonthDropdownOpen && !this.state.isYearDropdownOpen) {
       if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
         return true;
       }
@@ -307,7 +408,10 @@ export default class CalendarHeader<T = Date> extends React.Component<
 
   renderMonthYearDropdown = () => {
     const date = this.getDateProp();
-    const {locale, maxDate, minDate, overrides = {}} = this.props;
+    const month = this.dateHelpers.getMonth(date);
+    const year = this.dateHelpers.getYear(date);
+
+    const {locale, overrides = {}} = this.props;
     const [MonthYearSelectButton, monthYearSelectButtonProps] = getOverrides(
       overrides.MonthYearSelectButton,
       StyledMonthYearSelectButton,
@@ -335,133 +439,160 @@ export default class CalendarHeader<T = Date> extends React.Component<
     // $FlowFixMe
     menuProps.overrides = menuOverrides;
 
-    const defaultMonths = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
-    const maxYear = maxDate ? this.dateHelpers.getYear(maxDate) : MAX_YEAR;
-    const minYear = minDate ? this.dateHelpers.getYear(minDate) : MIN_YEAR;
-    const maxDateMonth = maxDate
-      ? this.dateHelpers.getMonth(maxDate)
-      : MAX_MONTH;
-    // Generates array like [0,1,.... maxDateMonth]
-    const maxYearMonths = Array.from({length: maxDateMonth + 1}, (x, i) => i);
-
-    const minDateMonth = minDate
-      ? this.dateHelpers.getMonth(minDate)
-      : MIN_MONTH;
-    // Generates array like [minDateMonth, ...., 10, 11]
-    const minYearMonths = Array.from(
-      {length: 12 - minDateMonth},
-      (x, i) => i + minDateMonth,
+    const initialMonthIndex = this.monthItems.findIndex(
+      month => month.id === this.dateHelpers.getMonth(date).toString(),
+    );
+    const initialYearIndex = this.yearItems.findIndex(
+      year => year.id === this.dateHelpers.getYear(date).toString(),
     );
 
-    if (this.maxYear !== maxYear || this.minYear !== minYear) {
-      this.maxYear = maxYear;
-      this.minYear = minYear;
-      this.items = [];
-      for (let i = minYear; i <= maxYear; i++) {
-        let months;
-        if (i === minYear && i === maxYear) {
-          months = maxYearMonths.filter(month => minYearMonths.includes(month));
-        } else if (i === minYear) {
-          months = minYearMonths;
-        } else if (i === maxYear) {
-          months = maxYearMonths;
-        } else {
-          months = defaultMonths;
-        }
-        months.forEach(month => {
-          this.items.push({
-            id: yearMonthToId(i, month),
-            label: `${this.dateHelpers.getMonthInLocale(month, locale)} ${i}`,
-          });
-        });
-      }
-    }
-
-    const initialIndex = this.items.findIndex(item => {
-      return (
-        item.id ===
-        yearMonthToId(
-          this.dateHelpers.getYear(date),
-          this.dateHelpers.getMonth(date),
-        )
-      );
-    });
-
-    const monthYearTitle = `${this.dateHelpers.getMonthInLocale(
+    const monthTitle = `${this.dateHelpers.getMonthInLocale(
       this.dateHelpers.getMonth(date),
       locale,
-    )} ${this.dateHelpers.getYear(date)}`;
+    )}`;
+    const yearTitle = `${this.dateHelpers.getYear(date)}`;
 
     return this.isMultiMonthHorizontal() ? (
-      <div>{monthYearTitle}</div>
+      <div>{`${monthTitle} ${yearTitle}`}</div>
     ) : (
-      <OverriddenPopover
-        placement="bottom"
-        autoFocus={true}
-        focusLock={true}
-        isOpen={this.state.isMonthYearDropdownOpen}
-        onClick={() => {
-          this.setState(prev => ({
-            isMonthYearDropdownOpen: !prev.isMonthYearDropdownOpen,
-          }));
-        }}
-        onClickOutside={() => this.setState({isMonthYearDropdownOpen: false})}
-        onEsc={() => this.setState({isMonthYearDropdownOpen: false})}
-        content={() => (
-          <OverriddenStatefulMenu
-            initialState={{
-              highlightedIndex: initialIndex,
-              isFocused: true,
-            }}
-            items={this.items}
-            onItemSelect={({item, event}) => {
-              event.preventDefault();
-              const [year, month] = idToYearMonth(item.id);
-              const updatedDate = this.dateHelpers.set(date, {
-                year,
-                month,
-              });
-              this.props.onMonthChange &&
-                this.props.onMonthChange({date: updatedDate});
-              this.props.onYearChange &&
-                this.props.onYearChange({date: updatedDate});
-              this.setState({isMonthYearDropdownOpen: false});
-            }}
-            {...menuProps}
-          />
-        )}
-        {...popoverProps}
-      >
-        <MonthYearSelectButton
-          aria-live="polite"
-          type="button"
-          $isFocusVisible={this.state.isFocusVisible}
-          onKeyUp={event => {
-            if (this.canArrowsOpenDropdown(event)) {
-              this.setState({isMonthYearDropdownOpen: true});
-            }
+      <>
+        {/* Month Selection */}
+        <OverriddenPopover
+          placement="bottom"
+          autoFocus={true}
+          focusLock={true}
+          isOpen={this.state.isMonthDropdownOpen}
+          onClick={() => {
+            this.setState(prev => ({
+              isMonthDropdownOpen: !prev.isMonthDropdownOpen,
+            }));
           }}
-          onKeyDown={event => {
-            if (this.canArrowsOpenDropdown(event)) {
-              // disables page scroll
-              event.preventDefault();
-            }
-
-            if (event.key === 'Tab') {
-              this.setState({isMonthYearDropdownOpen: false});
-            }
-          }}
-          {...monthYearSelectButtonProps}
-        >
-          {monthYearTitle}
-          <MonthYearSelectIconContainer {...monthYearSelectIconContainerProps}>
-            <TriangleDown
-              title=""
-              overrides={{Svg: {props: {role: 'presentation'}}}}
+          onClickOutside={() => this.setState({isMonthDropdownOpen: false})}
+          onEsc={() => this.setState({isMonthDropdownOpen: false})}
+          content={() => (
+            <OverriddenStatefulMenu
+              initialState={{
+                highlightedIndex: initialMonthIndex,
+                isFocused: true,
+              }}
+              items={this.monthItems}
+              onItemSelect={({item, event}) => {
+                event.preventDefault();
+                const month = idToYearMonth(item.id);
+                const updatedDate = this.dateHelpers.set(date, {
+                  year,
+                  month,
+                });
+                this.props.onMonthChange &&
+                  this.props.onMonthChange({date: updatedDate});
+                this.setState({isMonthDropdownOpen: false});
+              }}
+              {...menuProps}
             />
-          </MonthYearSelectIconContainer>
-        </MonthYearSelectButton>
-      </OverriddenPopover>
+          )}
+          {...popoverProps}
+        >
+          <MonthYearSelectButton
+            aria-live="polite"
+            type="button"
+            $isFocusVisible={this.state.isFocusVisible}
+            onKeyUp={event => {
+              if (this.canArrowsOpenDropdown(event)) {
+                this.setState({isMonthDropdownOpen: true});
+              }
+            }}
+            onKeyDown={event => {
+              if (this.canArrowsOpenDropdown(event)) {
+                // disables page scroll
+                event.preventDefault();
+              }
+
+              if (event.key === 'Tab') {
+                this.setState({isMonthDropdownOpen: false});
+              }
+            }}
+            {...monthYearSelectButtonProps}
+          >
+            {monthTitle}
+            <MonthYearSelectIconContainer
+              {...monthYearSelectIconContainerProps}
+            >
+              <ChevronDown
+                title=""
+                overrides={{Svg: {props: {role: 'presentation'}}}}
+              />
+            </MonthYearSelectIconContainer>
+          </MonthYearSelectButton>
+        </OverriddenPopover>
+
+        {/* Year Selection */}
+        <OverriddenPopover
+          placement="bottom"
+          focusLock={true}
+          isOpen={this.state.isYearDropdownOpen}
+          onClick={() => {
+            this.setState(prev => ({
+              isYearDropdownOpen: !prev.isYearDropdownOpen,
+            }));
+          }}
+          onClickOutside={() => this.setState({isYearDropdownOpen: false})}
+          onEsc={() => this.setState({isYearDropdownOpen: false})}
+          content={() => (
+            <OverriddenStatefulMenu
+              initialState={{
+                highlightedIndex: initialYearIndex,
+                isFocused: true,
+              }}
+              items={this.yearItems}
+              onItemSelect={({item, event}) => {
+                event.preventDefault();
+                const year = idToYearMonth(item.id);
+                const updatedDate = this.dateHelpers.set(date, {
+                  year,
+                  month,
+                });
+                this.props.onYearChange &&
+                  this.props.onYearChange({date: updatedDate});
+                this.setState({isYearDropdownOpen: false});
+              }}
+              {...menuProps}
+            />
+          )}
+          {...popoverProps}
+        >
+          <MonthYearSelectButton
+            aria-live="polite"
+            type="button"
+            $isFocusVisible={this.state.isFocusVisible}
+            onKeyUp={event => {
+              if (this.canArrowsOpenDropdown(event)) {
+                this.setState({isYearDropdownOpen: true});
+              }
+            }}
+            onKeyDown={event => {
+              if (this.canArrowsOpenDropdown(event)) {
+                // disables page scroll
+                event.preventDefault();
+              }
+
+              if (event.key === 'Tab') {
+                this.setState({isYearDropdownOpen: false});
+              }
+            }}
+            {...monthYearSelectButtonProps}
+          >
+            {yearTitle}
+            <MonthYearSelectIconContainer
+              {...monthYearSelectIconContainerProps}
+            >
+              <ChevronDown
+                title=""
+                overrides={{Svg: {props: {role: 'presentation'}}}}
+              />
+            </MonthYearSelectIconContainer>
+          </MonthYearSelectButton>
+        </OverriddenPopover>
+      </>
     );
   };
 

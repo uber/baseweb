@@ -10,7 +10,7 @@ import * as React from 'react';
 
 import {StatefulTabs, Tab} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <StatefulTabs>
       <Tab title="Tab Link 1">Tab 1 content</Tab>

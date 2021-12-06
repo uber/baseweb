@@ -12,12 +12,13 @@ import {Button} from '../../button/index.js';
 import {useStyletron} from '../../styles/index.js';
 import {Popover} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   const [css] = useStyletron();
   return (
     <div className={css({backgroundColor: 'lightskyblue'})}>
       <div>
         <Popover
+          autoFocus={false}
           accessibilityType={'tooltip'}
           isOpen
           content={<div>content</div>}
@@ -29,6 +30,7 @@ export default function Scenario() {
 
       <div>
         <Popover
+          autoFocus={false}
           accessibilityType={'tooltip'}
           isOpen
           content={<div>content</div>}

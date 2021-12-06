@@ -11,9 +11,14 @@ import * as React from 'react';
 import {Button} from '../../button/index.js';
 import {Popover} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
-    <Popover accessibilityType={'tooltip'} isOpen content={<div>content</div>}>
+    <Popover
+      autoFocus={false}
+      accessibilityType={'tooltip'}
+      isOpen
+      content={<div>content</div>}
+    >
       <Button>Open</Button>
     </Popover>
   );

@@ -40,11 +40,12 @@ export interface FLOATING_MARKER_ANCHOR_TYPES {
   square: 'square';
 }
 
-export type NeedleSizeT = ValueOf<NEEDLE_SIZES>;
-export type PinHeadT = ValueOf<PINHEAD_TYPES>;
-export type PinHeadSizeT = ValueOf<PINHEAD_SIZES_SHAPES>;
-export type AnchorPositionsT = ValueOf<FLOATING_MARKER_ANCHOR_POSITIONS>;
-export type FloatingMarkerSizeT = ValueOf<FLOATING_MARKER_SIZES>;
+export type NeedleSizeT = NEEDLE_SIZES[keyof NEEDLE_SIZES];
+export type PinHeadT = PINHEAD_TYPES[keyof PINHEAD_TYPES];
+export type PinHeadSizeT = PINHEAD_SIZES_SHAPES[keyof PINHEAD_SIZES_SHAPES];
+export type AnchorPositionsT = FLOATING_MARKER_ANCHOR_POSITIONS[keyof FLOATING_MARKER_ANCHOR_POSITIONS];
+export type FloatingMarkerSizeT = FLOATING_MARKER_SIZES[keyof FLOATING_MARKER_SIZES];
+export type FloatingMarkerAnchorTypeT = FLOATING_MARKER_ANCHOR_TYPES[keyof FLOATING_MARKER_ANCHOR_TYPES];
 
 export type FixedMarkerOverridesT = {
   Root?: Override<any>;

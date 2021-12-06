@@ -117,13 +117,13 @@ class Select extends React.Component<PropsT, SelectStateT> {
     isPseudoFocused: false,
   };
 
-  isMounted: boolean = false;
+  isItMounted: boolean = false;
 
   componentDidMount() {
     if (this.props.autoFocus) {
       this.focus();
     }
-    this.isMounted = true;
+    this.isItMounted = true;
 
     if (this.props.methodsRef) {
       const {methodsRef} = this.props;
@@ -157,7 +157,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
       document.removeEventListener('touchstart', this.handleTouchOutside);
       document.removeEventListener('click', this.handleClickOutside);
     }
-    this.isMounted = false;
+    this.isItMounted = false;
   }
 
   focus() {
@@ -319,7 +319,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
       this.props.onBlur(event);
     }
 
-    if (this.isMounted) {
+    if (this.isItMounted) {
       this.setState({
         isFocused: false,
         isOpen: false,
@@ -793,7 +793,6 @@ class Select extends React.Component<PropsT, SelectStateT> {
 
     return (
       <ClearIcon
-        size={16}
         title={ariaLabel}
         aria-label={ariaLabel}
         onClick={this.clearValue}
@@ -1026,6 +1025,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
                   if (!ref) return;
                   this.anchor = ref.anchorRef;
                 }}
+                autoFocus={false}
                 focusLock={false}
                 mountNode={this.props.mountNode}
                 onEsc={() => this.closeMenu()}

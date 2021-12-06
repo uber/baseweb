@@ -11,6 +11,7 @@ import * as utilsHelpers from '../utils/index';
 import {formatDate} from '../utils';
 import DateHelpers from '../utils/date-helpers';
 import adapter from '../utils/date-fns-adapter';
+import {getFilteredMonthItems} from '../utils/calendar-header-helpers';
 import MomentUtils from '@date-io/moment';
 import moment from 'moment';
 const momentAdapter = new MomentUtils({instance: moment});
@@ -209,6 +210,67 @@ const helpers: DateHelpers<Date> = Object.keys(dateHelpers).reduce(
 
 const MIDNIGHT = new Date(2019, 3, 19);
 describe('Datepicker utils', () => {
+  describe('getFilteredMonthItems', () => {
+    const monthLabels = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
+    ];
+
+    test('correctly filters when date === startDate', () => {
+      const filterMonthsList = [9, 10, 11];
+      const monthItems = getFilteredMonthItems({
+        filterMonthsList,
+        formatMonthLabel: month => monthLabels[month],
+      });
+
+      expect(monthItems).toEqual([
+        {id: '0', label: 'January', disabled: true},
+        {id: '1', label: 'February', disabled: true},
+        {id: '2', label: 'March', disabled: true},
+        {id: '3', label: 'April', disabled: true},
+        {id: '4', label: 'May', disabled: true},
+        {id: '5', label: 'June', disabled: true},
+        {id: '6', label: 'July', disabled: true},
+        {id: '7', label: 'August', disabled: true},
+        {id: '8', label: 'September', disabled: true},
+        {id: '9', label: 'October'},
+        {id: '10', label: 'November'},
+        {id: '11', label: 'December'},
+      ]);
+    });
+    test('correctly filters when startDate === endDate', () => {
+      const filterMonthsList = [6, 7, 8, 9];
+      const monthItems = getFilteredMonthItems({
+        filterMonthsList,
+        formatMonthLabel: month => monthLabels[month],
+      });
+
+      expect(monthItems).toEqual([
+        {id: '0', label: 'January', disabled: true},
+        {id: '1', label: 'February', disabled: true},
+        {id: '2', label: 'March', disabled: true},
+        {id: '3', label: 'April', disabled: true},
+        {id: '4', label: 'May', disabled: true},
+        {id: '5', label: 'June', disabled: true},
+        {id: '6', label: 'July'},
+        {id: '7', label: 'August'},
+        {id: '8', label: 'September'},
+        {id: '9', label: 'October'},
+        {id: '10', label: 'November', disabled: true},
+        {id: '11', label: 'December', disabled: true},
+      ]);
+    });
+  });
   describe('if using destructured utils function', () => {
     test('should behave the same as date-helpers version', () => {
       const destructuredReturn = formatDate(MIDNIGHT, 'yyyy-MM-dd');

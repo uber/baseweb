@@ -101,7 +101,8 @@ const DatepickerConfig: TConfig = {
     mask: {
       value: undefined,
       type: PropTypes.String,
-      description: 'Mask used for the text input. Passed to react-input-mask.',
+      description:
+        'Mask used for the text input. Passed to react-input-mask. Disabled when formatString is provided and mask is undefined. Can also be disabled by applying `null`.',
       placeholder: '9999/99/99',
       hidden: true,
     },
@@ -127,6 +128,20 @@ const DatepickerConfig: TConfig = {
         'A date label function (Date => Node) that is called with the current date to return a label to be used below the date. If a falsy response is returned, no label will be shown but the taller day will be rendered. ',
       hidden: true,
     },
+    startDateLabel: {
+      value: undefined,
+      type: PropTypes.String,
+      hidden: true,
+      placeholder: 'Start Date',
+      description: '',
+    },
+    endDateLabel: {
+      value: undefined,
+      type: PropTypes.String,
+      placeholder: 'End Date',
+      hidden: true,
+      description: '',
+    },
     highlightDate: {
       value: undefined,
       type: PropTypes.Date,
@@ -144,6 +159,13 @@ const DatepickerConfig: TConfig = {
       value: undefined,
       type: PropTypes.Boolean,
       description: 'Defines if a range of dates can be selected.',
+    },
+    separateRangeInputs: {
+      value: undefined,
+      type: PropTypes.Boolean,
+      description:
+        'Determines if startDate and endDate should be separated into two input fields. Ignored if `range` is not true.',
+      hidden: true,
     },
     clearable: {
       value: undefined,
@@ -228,6 +250,13 @@ const DatepickerConfig: TConfig = {
       type: PropTypes.Function,
       placeholder: '() => {}',
       description: `Event handler that is called when the calendar is closed.`,
+      hidden: true,
+    },
+    onOpen: {
+      value: undefined,
+      type: PropTypes.Function,
+      placeholder: '() => {}',
+      description: `Event handler that is called when the calendar is opened.`,
       hidden: true,
     },
     orientation: {

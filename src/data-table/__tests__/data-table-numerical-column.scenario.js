@@ -19,7 +19,7 @@ const Filter = Column.renderFilter;
 
 const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <div style={{backgroundColor: 'lightskyblue', padding: '24px'}}>
       <div id="many-categories">

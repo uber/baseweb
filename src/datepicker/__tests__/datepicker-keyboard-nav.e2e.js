@@ -80,6 +80,7 @@ describe('Datepicker - keyboard navigation', () => {
 
     // tab again - next month button is focused
     await page.keyboard.press('Tab');
+    await page.keyboard.press('Tab');
     const isNextMonthActive = await isActiveEl(page, selectors.rightArrow);
     expect(isNextMonthActive).toBe(true);
 

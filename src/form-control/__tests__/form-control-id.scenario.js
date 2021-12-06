@@ -11,7 +11,7 @@ import * as React from 'react';
 import {FormControl} from '../index.js';
 import {StatefulInput} from '../../input/index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <div>
       <FormControl label="Input label" caption="Input caption">

@@ -10,7 +10,7 @@ import * as React from 'react';
 import Accordion from '../stateless-accordion.js';
 import Panel from '../panel.js';
 
-export default function Scenario() {
+export function Scenario() {
   const [expanded, setExpanded] = React.useState(['L1', 'L2']);
   return (
     <Accordion

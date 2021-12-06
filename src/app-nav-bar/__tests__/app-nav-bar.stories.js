@@ -7,12 +7,12 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import AppNavBarGetUniqueIdentifier from './app-nav-bar-get-unique-identifier.scenario.js';
-import AppNavBarIsMainItemActive from './app-nav-bar-is-main-item-active.scenario.js';
-import AppNavBarMapItemToNode from './app-nav-bar-map-item-to-node.scenario.js';
-import AppNavBarOverrides from './app-nav-bar-overrides.scenario.js';
-import AppNavBarTitleNode from './app-nav-bar-title-node.scenario.js';
-import AppNavBarDefault from './app-nav-bar.scenario.js';
+import {Scenario as AppNavBarGetUniqueIdentifier} from './app-nav-bar-get-unique-identifier.scenario.js';
+import {Scenario as AppNavBarIsMainItemActive} from './app-nav-bar-is-main-item-active.scenario.js';
+import {Scenario as AppNavBarMapItemToNode} from './app-nav-bar-map-item-to-node.scenario.js';
+import {Scenario as AppNavBarOverrides} from './app-nav-bar-overrides.scenario.js';
+import {Scenario as AppNavBarTitleNode} from './app-nav-bar-title-node.scenario.js';
+import {Scenario as AppNavBarDefault} from './app-nav-bar.scenario.js';
 
 export const GetUniqueIdentifier = () => <AppNavBarGetUniqueIdentifier />;
 export const IsMainItemActive = () => <AppNavBarIsMainItemActive />;

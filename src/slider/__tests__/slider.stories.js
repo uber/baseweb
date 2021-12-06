@@ -7,14 +7,14 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import SliderCustomLabel from './slider-custom-label.scenario.js';
-import SliderDisabled from './slider-disabled.scenario.js';
-import SliderMarks from './slider-marks.scenario.js';
-import SliderRange from './slider-range.scenario.js';
-import SliderStep from './slider-step.scenario.js';
-import SliderAlwaysShowLabel from './slider-always-show-label.scenario.js';
-import SliderRtl from './slider-rtl.scenario.js';
-import SliderDefault from './slider.scenario.js';
+import {Scenario as SliderCustomLabel} from './slider-custom-label.scenario.js';
+import {Scenario as SliderDisabled} from './slider-disabled.scenario.js';
+import {Scenario as SliderMarks} from './slider-marks.scenario.js';
+import {Scenario as SliderRange} from './slider-range.scenario.js';
+import {Scenario as SliderStep} from './slider-step.scenario.js';
+import {Scenario as SliderAlwaysShowLabel} from './slider-always-show-label.scenario.js';
+import {Scenario as SliderRtl} from './slider-rtl.scenario.js';
+import {Scenario as SliderDefault} from './slider.scenario.js';
 
 export const CustomLabel = () => <SliderCustomLabel />;
 export const Disabled = () => <SliderDisabled />;

@@ -6,6 +6,7 @@ export interface LinkProps
     React.AnchorHTMLAttributes<HTMLAnchorElement>,
     HTMLAnchorElement
   > {
+  animateUnderline?: boolean;
   target?: '_self' | '_blank' | '_parent' | '_top';
 }
 

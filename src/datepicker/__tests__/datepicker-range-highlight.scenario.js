@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import {StatefulDatepicker} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <StatefulDatepicker
       aria-label="Select a date"

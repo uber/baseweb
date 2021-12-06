@@ -17,6 +17,7 @@ const ITEMS = {
     {id: 'Aqua', color: '#00FFFF'},
     {id: 'Aquamarine', color: '#7FFFD4'},
   ],
+
   Whiteish: [
     {id: 'AntiqueWhite', color: '#FAEBD7'},
     {id: 'Azure', color: '#F0FFFF'},
@@ -24,7 +25,7 @@ const ITEMS = {
   ],
 };
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <StatefulMenu
       items={ITEMS}
@@ -35,6 +36,7 @@ export default function Scenario() {
             width: '200px',
           },
         },
+
         Option: {
           props: {
             getItemLabel: item => item.id,

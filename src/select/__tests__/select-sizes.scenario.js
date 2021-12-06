@@ -10,7 +10,7 @@ import React from 'react';
 
 import {StatefulSelect} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <>
       <StatefulSelect
@@ -27,6 +27,7 @@ export default function Scenario() {
         valueKey="color"
         size="mini"
       />
+
       <br />
       <StatefulSelect
         aria-label="Select a color"
@@ -42,6 +43,7 @@ export default function Scenario() {
         valueKey="color"
         size="compact"
       />
+
       <br />
       <StatefulSelect
         aria-label="Select a color"
@@ -57,6 +59,7 @@ export default function Scenario() {
         valueKey="color"
         size="default"
       />
+
       <br />
       <StatefulSelect
         aria-label="Select a color"
@@ -72,6 +75,7 @@ export default function Scenario() {
         valueKey="color"
         size="large"
       />
+
       <br />
     </>
   );

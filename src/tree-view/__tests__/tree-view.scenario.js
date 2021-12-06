@@ -29,6 +29,7 @@ const initialData = [
       },
     ],
   },
+
   {
     id: 4,
     label: 'Node 2',
@@ -49,6 +50,6 @@ const initialData = [
   },
 ];
 
-export default function Scenario() {
+export function Scenario() {
   return <StatefulTreeView data={initialData} />;
 }

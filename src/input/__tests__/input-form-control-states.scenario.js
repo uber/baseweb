@@ -11,7 +11,7 @@ import * as React from 'react';
 import {FormControl} from '../../form-control/index.js';
 import Input from '../input.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <>
       <FormControl
@@ -28,6 +28,7 @@ export default function Scenario() {
                     $positive ? 'positive' : 'error'
                   } value: ${$positive || $error}`,
                 );
+
                 return {};
               },
             },
@@ -45,6 +46,7 @@ export default function Scenario() {
                     $positive ? 'positive' : 'error'
                   } value: ${$positive || $error}`,
                 );
+
                 console.log($error);
                 return {};
               },

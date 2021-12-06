@@ -12,7 +12,7 @@ import {Button} from '../../button/index.js';
 import {StatefulButtonGroup, MODE} from '../index.js';
 import {SIZE} from '../../button/index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <React.Fragment>
       <StatefulButtonGroup mode={MODE.radio} size={SIZE.compact}>

@@ -10,7 +10,7 @@ import * as React from 'react';
 
 import {Datepicker} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   const [date, setDate] = React.useState(new Date('2020/01/10'));
   const [range, setRange] = React.useState([
     new Date('2020/10/10'),
@@ -34,6 +34,15 @@ export default function Scenario() {
         onChange={({date}) => setDate(date)}
         formatString="dd MM yyyy"
         placeholder="dd mm yyyy"
+      />
+
+      <p>mask from a different formatString</p>
+      <Datepicker
+        aria-label="Select a date"
+        value={date}
+        onChange={({date}) => setDate(date)}
+        formatString="EEEE, MMMM dd yyyy"
+        placeholder="EEEE, MMMM dd yyyy"
       />
 
       <p>null mask and custom formatString</p>

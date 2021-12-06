@@ -11,7 +11,7 @@ import * as React from 'react';
 import {StatefulDataTable, CategoricalColumn} from '../index.js';
 import {useStyletron} from '../../styles/index.js';
 
-export default function Scenario() {
+export function Scenario() {
   const [css, theme] = useStyletron();
   const [addLog, setAddLog] = React.useState([]);
   const [removeLog, setRemoveLog] = React.useState([]);
@@ -37,6 +37,7 @@ export default function Scenario() {
       selection: new Set(['a']),
       exclude: false,
     });
+
     return filters;
   }, []);
 

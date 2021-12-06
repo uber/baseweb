@@ -17,12 +17,14 @@ const data = [
     url: 'https://example.com/b',
     selected: true,
   },
+
   {
     foo: 1,
     bar: 'carrot',
     url: 'https://example.com/c',
     selected: false,
   },
+
   {
     foo: 2,
     bar: 'apple',
@@ -44,7 +46,7 @@ function Instance({size}) {
   );
 }
 
-export default function Scenario() {
+export function Scenario() {
   const [css, theme] = useStyletron();
   const title = css({
     ...theme.typography.ParagraphMedium,

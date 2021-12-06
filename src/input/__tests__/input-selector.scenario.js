@@ -45,6 +45,7 @@ function SelectAtEnd(props) {
         value={props.inputValue}
         id={props.id}
       />
+
       <div className={css({width: '200px', paddingLeft: '8px'})}>
         <Select
           options={props.options}
@@ -58,7 +59,7 @@ function SelectAtEnd(props) {
   );
 }
 
-export default function Scenario() {
+export function Scenario() {
   const [css] = useStyletron();
   const [startInputValue, setStartInputValue] = React.useState('');
   const [startSelectValue, setStartSelectValue] = React.useState([]);

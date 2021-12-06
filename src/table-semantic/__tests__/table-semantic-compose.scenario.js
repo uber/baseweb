@@ -16,7 +16,7 @@ import {
   StyledTableBodyCell,
 } from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <StyledRoot>
       <StyledTable>

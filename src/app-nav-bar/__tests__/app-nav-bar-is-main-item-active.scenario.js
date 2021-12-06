@@ -31,7 +31,7 @@ const userItems = [
   {label: 'Account item4'},
 ];
 
-export default function Scenario() {
+export function Scenario() {
   const [activeLabel, setActiveLabel] = React.useState('Secondary A');
 
   const handleMainItemSelect = React.useCallback(

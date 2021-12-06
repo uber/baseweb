@@ -13,7 +13,7 @@ import {H6, H5, H4, H3, H2, H1} from '../index.js';
 
 const textString = 'We ignite opportunity by setting the world in motion.';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <React.Fragment>
       <H6>{`H6 - ${textString}`}</H6>

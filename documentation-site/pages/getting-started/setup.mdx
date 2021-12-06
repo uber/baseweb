@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 -->
 
 import Layout from '../../components/layout';
+import {Notification} from 'baseui/notification';
 
 export default Layout;
 
@@ -125,10 +126,20 @@ export default function Hello() {
 }
 ```
 
-There are detailed guides for Styletron setup for the following frameworks:
+<Notification
+  overrides={{
+    Body: {style: {width: 'auto'}},
+  }}
+>
+  Your application might be wrapping the root only with ThemeProvider. You
+  should use BaseProvider instead to support correct layering. Please note that
+  this component adds an <b>additional div</b> that could impact your layout.
+</Notification>
+
+There are detailed guides for Styletron/Base Web setup for the following frameworks:
 
 - [Fusion.js](https://www.styletron.org/getting-started/#with-fusionjs)
-- [Next.js](https://www.styletron.org/getting-started/#with-nextjs)
+- [Next.js](https://github.com/tajo/nextjs-baseweb)
 - [Gatsby](https://www.styletron.org/getting-started/#with-gatsby)
 - [Other React applications](https://www.styletron.org/getting-started/#with-react)
 

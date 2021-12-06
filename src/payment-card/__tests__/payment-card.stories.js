@@ -7,8 +7,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import PaymentCardDefault from './payment-card.scenario.js';
-import StatefulPaymentCard from './stateful-payment-card.scenario.js';
+import {Scenario as PaymentCardDefault} from './payment-card.scenario.js';
+import {Scenario as StatefulPaymentCard} from './stateful-payment-card.scenario.js';
 
 export const PaymentCard = () => <PaymentCardDefault />;
 export const Stateful = () => <StatefulPaymentCard />;

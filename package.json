@@ -1,6 +1,6 @@
 {
   "name": "baseui",
-  "version": "10.5.0",
+  "version": "10.6.0",
   "description": "A React Component library implementing the Base design language",
   "keywords": [
     "react",
@@ -81,7 +81,7 @@
     "@commitlint/config-conventional": "^8.0.0",
     "@date-io/luxon": "^2.7.0",
     "@date-io/moment": "^2.7.0",
-    "@ladle/react": "^0.2.0",
+    "@ladle/react": "^0.3.0",
     "@mdx-js/tag": "^0.20.0",
     "@octokit/rest": "^16.33.1",
     "@svgr/cli": "^4.3.2",
@@ -197,6 +197,7 @@
     "glob": "^7.1.6",
     "just-extend": "^4.0.2",
     "memoize-one": "^5.1.1",
+    "mockdate": "^3.0.5",
     "polished": "^3.2.0",
     "popper.js": "^1.16.0",
     "react-dropzone": "^9.0.0",

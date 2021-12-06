@@ -12,7 +12,7 @@ import {useStyletron} from '../../styles/index.js';
 
 import {Popover, PLACEMENT} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   const [css] = useStyletron();
   const [index, setIndex] = React.useState(-1);
   return (
@@ -54,6 +54,7 @@ export default function Scenario() {
               })}
             >
               <Popover
+                autoFocus={false}
                 placement={PLACEMENT[placement]}
                 content={() => (
                   <div className={css({padding: '12px'})}>content</div>

@@ -13,7 +13,31 @@ import {ORIENTATION} from './constants.js';
 /**
  * Main component container element
  */
-export const StyledInputWrapper = styled<SharedStylePropsT>('div', () => ({
+export const StyledInputWrapper = styled<{
+  ...SharedStylePropsT,
+  $separateRangeInputs: boolean,
+}>('div', props => {
+  const {$separateRangeInputs} = props;
+
+  return {
+    width: '100%',
+    ...($separateRangeInputs
+      ? {display: 'flex', justifyContent: 'center'}
+      : {}),
+  };
+});
+
+export const StyledInputLabel = styled<{}>('div', ({$theme}) => ({
+  ...$theme.typography.LabelMedium,
+  marginBottom: $theme.sizing.scale300,
+}));
+
+export const StyledStartDate = styled<{}>('div', ({$theme}) => ({
+  width: '100%',
+  marginRight: $theme.sizing.scale300,
+}));
+
+export const StyledEndDate = styled<{}>('div', ({$theme}) => ({
   width: '100%',
 }));
 

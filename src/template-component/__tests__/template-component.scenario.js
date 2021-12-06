@@ -10,6 +10,6 @@ import * as React from 'react';
 
 import {Component} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return <Component>Component</Component>;
 }

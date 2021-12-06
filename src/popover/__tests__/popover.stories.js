@@ -7,16 +7,17 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import PopoverClick from './popover-click.scenario.js';
-import PopoverFocusLoop from './popover-focus-loop.scenario.js';
-import PopoverHover from './popover-hover.scenario.js';
-import PopoverLargeMargin from './popover-large-margin.scenario.js';
-import PopoverPosition from './popover-position.scenario.js';
-import PopoverRenderAll from './popover-render-all.scenario.js';
-import PopoverReposition from './popover-reposition.scenario.js';
-import PopoverSelect from './popover-select.scenario.js';
-import PopoverDefault from './popover.scenario.js';
-import PopoverRepositionWithAnchorUpdate from './popover-reposition-with-anchor-update.scenario.js';
+import {Scenario as PopoverClick} from './popover-click.scenario.js';
+import {Scenario as PopoverFocusLoop} from './popover-focus-loop.scenario.js';
+import {Scenario as PopoverHover} from './popover-hover.scenario.js';
+import {Scenario as PopoverLargeMargin} from './popover-large-margin.scenario.js';
+import {Scenario as PopoverPosition} from './popover-position.scenario.js';
+import {Scenario as PopoverRenderAll} from './popover-render-all.scenario.js';
+import {Scenario as PopoverReposition} from './popover-reposition.scenario.js';
+import {Scenario as PopoverSelect} from './popover-select.scenario.js';
+import {Scenario as PopoverDefault} from './popover.scenario.js';
+import {Scenario as PopoverRepositionWithAnchorUpdate} from './popover-reposition-with-anchor-update.scenario.js';
+import {Scenario as PopoverAutoFocusWithoutFocusLock} from './popover-autofocus.scenario.js';
 
 export const Click = () => <PopoverClick />;
 export const FocusLoop = () => <PopoverFocusLoop />;
@@ -29,4 +30,7 @@ export const Select = () => <PopoverSelect />;
 export const Popover = () => <PopoverDefault />;
 export const RepositionWithAnchorUpdate = () => (
   <PopoverRepositionWithAnchorUpdate />
+);
+export const AutoFocusWithoutFocusLock = () => (
+  <PopoverAutoFocusWithoutFocusLock />
 );

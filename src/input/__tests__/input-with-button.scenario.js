@@ -12,7 +12,7 @@ import {StatefulInput, SIZE} from '../index.js';
 import {Block} from '../../block/index.js';
 import {Button} from '../../button/index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <React.Fragment>
       <Block display="flex" marginBottom="8px">
@@ -21,6 +21,7 @@ export default function Scenario() {
           size={SIZE.compact}
           overrides={{Root: {style: {marginRight: '8px'}}}}
         />
+
         <Button size={SIZE.compact}>Move</Button>
       </Block>
       <Block display="flex" marginBottom="8px">
@@ -29,6 +30,7 @@ export default function Scenario() {
           size={SIZE.default}
           overrides={{Root: {style: {marginRight: '8px'}}}}
         />
+
         <Button size={SIZE.default}>Move</Button>
       </Block>
       <Block display="flex" marginBottom="8px">
@@ -37,6 +39,7 @@ export default function Scenario() {
           size={SIZE.large}
           overrides={{Root: {style: {marginRight: '8px'}}}}
         />
+
         <Button size={SIZE.large}>Move</Button>
       </Block>
     </React.Fragment>

@@ -12,12 +12,13 @@ import {StatefulDataTable, BooleanColumn, CategoricalColumn} from '../index.js';
 
 type RowDataT = [boolean, string];
 
-export default function Scenario() {
+export function Scenario() {
   const columns = [
     BooleanColumn({
       title: 'first',
       mapDataToValue: (data: RowDataT) => data[0],
     }),
+
     CategoricalColumn({
       title: 'second',
       mapDataToValue: (data: RowDataT) => data[1],

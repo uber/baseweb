@@ -15,7 +15,7 @@ import {Datepicker, TimePicker, TimezonePicker} from '../index.js';
 const DATE = new Date(2019, 3, 1);
 
 // eslint-disable-next-line flowtype/no-weak-types
-class Controlled extends React.Component<any, any> {
+export class Scenario extends React.Component<any, any> {
   state = {
     date: DATE,
     zone: null,
@@ -56,5 +56,3 @@ class Controlled extends React.Component<any, any> {
     );
   }
 }
-
-export default Controlled;

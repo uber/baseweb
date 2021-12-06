@@ -18,7 +18,7 @@ const arrowBtnOverrides = ({$theme}) => {
   };
 };
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <StatefulCalendar
       initialState={{value: new Date('2019-02-14T10:00:00Z')}}
@@ -28,11 +28,13 @@ export default function Scenario() {
             backgroundColor: $theme.colors.positive,
           }),
         },
+
         MonthHeader: {
           style: ({$theme}) => ({
             backgroundColor: $theme.colors.positive,
           }),
         },
+
         MonthYearSelectButton: {
           style: ({$theme}) => ({
             ':focus': {
@@ -41,12 +43,15 @@ export default function Scenario() {
             },
           }),
         },
+
         PrevButton: {
           style: arrowBtnOverrides,
         },
+
         NextButton: {
           style: arrowBtnOverrides,
         },
+
         Day: {
           style: ({$theme, $selected, $isHovered, $isHighlighted}) => ({
             ':after': {

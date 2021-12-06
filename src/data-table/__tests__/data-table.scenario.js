@@ -70,6 +70,7 @@ function makeRowsFromColumns(columns, rowCount) {
               default:
                 return 'F';
             }
+
           case COLUMNS.DATETIME:
             return new Date('2011-04-11T10:20:30Z');
           case COLUMNS.NUMERICAL:
@@ -93,6 +94,7 @@ function makeRowsFromColumns(columns, rowCount) {
               default:
                 return {color: 'red'};
             }
+
           default:
             return 'default' + pseudoRandomString(i, j);
         }
@@ -107,33 +109,39 @@ export const columns = [
     title: 'categorical',
     mapDataToValue: (data: RowDataT) => data[0],
   }),
+
   NumericalColumn({
     title: 'numerical',
     minWidth: 90,
     mapDataToValue: (data: RowDataT) => data[1],
   }),
+
   NumericalColumn({
     title: 'neg std',
     highlight: n => n < 0,
     minWidth: 90,
     mapDataToValue: (data: RowDataT) => data[2],
   }),
+
   NumericalColumn({
     title: 'accounting',
     format: NUMERICAL_FORMATS.ACCOUNTING,
     minWidth: 120,
     mapDataToValue: (data: RowDataT) => data[3],
   }),
+
   NumericalColumn({
     title: 'percent',
     format: NUMERICAL_FORMATS.PERCENTAGE,
     minWidth: 120,
     mapDataToValue: (data: RowDataT) => data[4],
   }),
+
   DatetimeColumn({
     title: 'datetime',
     mapDataToValue: (data: RowDataT) => data[5],
   }),
+
   CustomColumn<
     {color: string},
     {selection: Set<string>, exclude: boolean, description: string},
@@ -161,6 +169,7 @@ export const columns = [
               width: '12px',
             })}
           />
+
           <div>{props.value.color}</div>
         </div>
       );
@@ -189,6 +198,7 @@ export const columns = [
                       setSelection(selection);
                     }}
                   />
+
                   <span className={css({paddingLeft: '8px'})}>{color}</span>
                 </li>
               );
@@ -201,6 +211,7 @@ export const columns = [
                 description: Array.from(selection).join(', '),
                 exclude: false,
               });
+
               props.close();
             }}
           >
@@ -218,19 +229,23 @@ export const columns = [
       return a.color.localeCompare(b.color);
     },
   }),
+
   StringColumn({
     title: 'string',
     minWidth: 148,
     mapDataToValue: (data: RowDataT) => data[7],
   }),
+
   BooleanColumn({
     title: 'boolean',
     mapDataToValue: (data: RowDataT) => data[8],
   }),
+
   CategoricalColumn({
     title: 'second category',
     mapDataToValue: (data: RowDataT) => data[9],
   }),
+
   AnchorColumn({
     title: 'anchor',
     mapDataToValue: (data: RowDataT) => data[10],
@@ -239,7 +254,7 @@ export const columns = [
 
 export const rows = makeRowsFromColumns(columns, 2000);
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <div style={{height: '800px', width: '900px'}}>
       <StatefulDataTable columns={columns} rows={rows} />

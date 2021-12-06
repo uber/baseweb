@@ -227,7 +227,7 @@ const config = {
           });
           await page.click(rightArrow);
           await page.waitForFunction(
-            `document.querySelector("button[aria-haspopup]").innerText === 'April 2019'`,
+            `document.querySelector("button[aria-haspopup]").innerText === 'April'`,
           );
         },
       },
@@ -280,6 +280,17 @@ const config = {
   },
   'snackbar--element': {
     skip: true,
+  },
+  //Ref: https://github.com/uber/baseweb/issues/4557
+  'popover--focus-loop': {
+    interactions: [
+      {
+        name: 'keyboardNav',
+        behavior: async page => {
+          await page.keyboard.press('Tab');
+        },
+      },
+    ],
   },
   'popover--reposition': {
     skip: true,

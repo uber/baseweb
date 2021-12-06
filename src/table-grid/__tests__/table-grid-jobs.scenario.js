@@ -42,6 +42,7 @@ function buildRow(status: StatusT): RowT {
         'Build #7728 passed (20 minutes, 1 second)',
         'https://buildkite.com/uberopensource/baseui/builds/7728',
       ],
+
       [
         'buildkite/baseui/docker-package-e2e',
         'running',
@@ -49,6 +50,7 @@ function buildRow(status: StatusT): RowT {
         'Passed (6 minutes, 44 seconds)',
         'https://buildkite.com/uberopensource/baseui/builds/7728#54927bc9-88e0-4d0b-80b0-f60b8a2298e4',
       ],
+
       [
         'buildkite/baseui/docker-package-unit',
         'passed',
@@ -56,6 +58,7 @@ function buildRow(status: StatusT): RowT {
         'Passed (7 minutes)',
         'https://buildkite.com/uberopensource/baseui/builds/7728#fea8c317-b65b-4c5f-9fad-b7a329a26237',
       ],
+
       [
         'buildkite/baseui/documentation-site-link-checker',
         'failed',
@@ -63,6 +66,7 @@ function buildRow(status: StatusT): RowT {
         'Passed (1 minute, 33 seconds)',
         'https://buildkite.com/uberopensource/baseui/builds/7728#eaa5998f-69a4-4b94-9a9b-4dd2bbd8c985',
       ],
+
       [
         'buildkite/baseui/eslint',
         'passed',
@@ -70,6 +74,7 @@ function buildRow(status: StatusT): RowT {
         'Passed (1 minute, 34 seconds)',
         'https://buildkite.com/uberopensource/baseui/builds/7728#a658a503-472f-43aa-80b5-708d39951cf7',
       ],
+
       [
         'buildkite/baseui/flowtype',
         'passed',
@@ -77,6 +82,7 @@ function buildRow(status: StatusT): RowT {
         'Passed (1 minute, 33 seconds)',
         'https://buildkite.com/uberopensource/baseui/builds/7728',
       ],
+
       [
         'buildkite/baseui/jest',
         'running',
@@ -84,6 +90,7 @@ function buildRow(status: StatusT): RowT {
         'Passed (1 minute, 33 seconds)',
         'https://buildkite.com/uberopensource/baseui/builds/7728',
       ],
+
       [
         'buildkite/baseui/pipeline',
         'running',
@@ -188,6 +195,7 @@ type RowPropsT = {|
   striped: boolean,
   row: RowT,
 |};
+
 function Row(props: RowPropsT) {
   const [expanded, setExpanded] = React.useState(false);
   return (
@@ -245,7 +253,7 @@ function Row(props: RowPropsT) {
   );
 }
 
-export default function Scenario() {
+export function Scenario() {
   const [css] = useStyletron();
   const {getCellProps} = useCellNavigation();
 

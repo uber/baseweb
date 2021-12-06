@@ -7,17 +7,17 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import ComboboxAsync from './combobox-async.scenario.js';
-import ComboboxAutocompleteFalse from './combobox-autocomplete-false.scenario.js';
-import ComboboxDisabled from './combobox-disabled.scenario.js';
-import ComboboxFormControl from './combobox-form-control.scenario.js';
-import ComboboxForm from './combobox-form.scenario.js';
-import ComboboxInlineTextSearch from './combobox-inline-text-search.scenario.js';
-import ComboboxOverrides from './combobox-overrides.scenario.js';
-import ComboboxReplacementNode from './combobox-replacement-node.scenario.js';
-import ComboboxSearch from './combobox-search.scenario.js';
-import ComboboxSizes from './combobox-sizes.scenario.js';
-import ComboboxDefault from './combobox.scenario.js';
+import {Scenario as ComboboxAsync} from './combobox-async.scenario.js';
+import {Scenario as ComboboxAutocompleteFalse} from './combobox-autocomplete-false.scenario.js';
+import {Scenario as ComboboxDisabled} from './combobox-disabled.scenario.js';
+import {Scenario as ComboboxFormControl} from './combobox-form-control.scenario.js';
+import {Scenario as ComboboxForm} from './combobox-form.scenario.js';
+import {Scenario as ComboboxInlineTextSearch} from './combobox-inline-text-search.scenario.js';
+import {Scenario as ComboboxOverrides} from './combobox-overrides.scenario.js';
+import {Scenario as ComboboxReplacementNode} from './combobox-replacement-node.scenario.js';
+import {Scenario as ComboboxSearch} from './combobox-search.scenario.js';
+import {Scenario as ComboboxSizes} from './combobox-sizes.scenario.js';
+import {Scenario as ComboboxDefault} from './combobox.scenario.js';
 
 export const Async = () => <ComboboxAsync />;
 export const AutocompleteFalse = () => <ComboboxAutocompleteFalse />;

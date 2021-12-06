@@ -7,9 +7,9 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import RatingEmoticon from './rating-emoticon.scenario.js';
-import RatingSize from './rating-size.scenario.js';
-import RatingStar from './rating-star.scenario.js';
+import {Scenario as RatingEmoticon} from './rating-emoticon.scenario.js';
+import {Scenario as RatingSize} from './rating-size.scenario.js';
+import {Scenario as RatingStar} from './rating-star.scenario.js';
 
 export const Emoticon = () => <RatingEmoticon />;
 export const Size = () => <RatingSize />;

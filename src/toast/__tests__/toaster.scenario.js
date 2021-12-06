@@ -11,7 +11,7 @@ import * as React from 'react';
 import {Button} from '../../button/index.js';
 import {toaster, ToasterContainer, PLACEMENT} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   const [text, setText] = React.useState('not updated');
   return (
     <React.Fragment>

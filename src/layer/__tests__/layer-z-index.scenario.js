@@ -43,7 +43,8 @@ function BlockComponent(props) {
     </Block>
   );
 }
-class Example extends React.Component<
+
+export class Scenario extends React.Component<
   {},
   {
     isFirstOpen: boolean,
@@ -183,5 +184,3 @@ class Example extends React.Component<
     );
   }
 }
-
-export default Example;

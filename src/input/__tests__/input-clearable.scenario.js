@@ -10,7 +10,7 @@ import React from 'react';
 
 import {StatefulInput} from '../index.js';
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <>
       <StatefulInput clearable initialState={{value: 'Some'}} size="compact" />
@@ -22,11 +22,13 @@ export default function Scenario() {
           Input: {
             props: {'data-e2e': 'input'},
           },
+
           ClearIcon: {
             props: {'data-e2e': 'clear-icon'},
           },
         }}
       />
+
       <br />
       <StatefulInput
         clearable
@@ -38,6 +40,7 @@ export default function Scenario() {
         }}
         size="large"
       />
+
       <br />
       <p>renders clearable if initial value is number type</p>
       <StatefulInput clearable initialState={{value: 5}} type="number" />

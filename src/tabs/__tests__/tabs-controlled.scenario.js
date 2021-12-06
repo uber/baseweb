@@ -14,7 +14,7 @@ type StateT = {
   activeKey: string,
 };
 
-class Example extends React.Component<{}, StateT> {
+export class Scenario extends React.Component<{}, StateT> {
   state = {
     activeKey: '0',
   };
@@ -42,5 +42,3 @@ class Example extends React.Component<{}, StateT> {
     );
   }
 }
-
-export default Example;

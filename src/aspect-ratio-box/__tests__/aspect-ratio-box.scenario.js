@@ -34,7 +34,7 @@ const bodyProps = {
   },
 };
 
-export default function Scenario() {
+export function Scenario() {
   return (
     <React.Fragment>
       <AspectRatioBox>
