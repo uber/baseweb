@@ -72,7 +72,6 @@ export const Thumbnail = styled<{}>('img', ({$theme}) => ({
 export const Title = styled<{}>('h1', ({$theme}) => ({
   ...$theme.typography.HeadingSmall,
   color: $theme.colors.contentPrimary,
-  fontWeight: 500,
   marginLeft: 0,
   marginTop: 0,
   marginRight: 0,
