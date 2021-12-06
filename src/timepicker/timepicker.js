@@ -66,7 +66,7 @@ class TimePicker<T = Date> extends React.Component<
           ? undefined
           : {
               id: closestStep,
-              label: this.secondsToLabel(closestStep, undefined),
+              label: this.secondsToLabel(closestStep, this.props.format),
             },
       });
       if (this.props.value || (!this.props.nullable && !this.props.value)) {
@@ -202,15 +202,26 @@ class TimePicker<T = Date> extends React.Component<
   getTimeWindowInSeconds = (step: number): {start: number, end: number} => {
     let {minTime: min, maxTime: max} = this.props;
     let midnight = this.setTime(this.props.value, 0, 0, 0);
+
     if (!min) {
       min = midnight;
+    } else {
+      min = this.setTime(
+        this.props.value,
+        this.props.adapter.getHours(min),
+        this.props.adapter.getMinutes(min),
+        this.props.adapter.getSeconds(min),
+      );
     }
+
     if (!max) {
       max = this.setTime(this.props.value, 24, 0, 0);
     } else {
-      // maxTime (if provided) should be inclusive, so add an extra step here
-      max = this.props.adapter.setSeconds(
-        this.props.adapter.date(max),
+      max = this.setTime(
+        this.props.value,
+        this.props.adapter.getHours(max),
+        this.props.adapter.getMinutes(max),
+        // maxTime (if provided) should be inclusive, so add an extra step here
         this.props.adapter.getSeconds(max) + step,
       );
     }
