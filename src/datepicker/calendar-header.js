@@ -315,7 +315,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
       >
         {isHidden ? null : (
           <PrevButtonIcon
-            size={'24px'}
+            size={36}
             overrides={{Svg: {style: navBtnStyle}}}
             {...prevButtonIconProps}
           />
@@ -388,7 +388,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
       >
         {isHidden ? null : (
           <NextButtonIcon
-            size={'24px'}
+            size={36}
             overrides={{Svg: {style: navBtnStyle}}}
             {...nextButtonIconProps}
           />
@@ -520,6 +520,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
               <ChevronDown
                 title=""
                 overrides={{Svg: {props: {role: 'presentation'}}}}
+                size={24}
               />
             </MonthYearSelectIconContainer>
           </MonthYearSelectButton>
@@ -588,6 +589,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
               <ChevronDown
                 title=""
                 overrides={{Svg: {props: {role: 'presentation'}}}}
+                size={24}
               />
             </MonthYearSelectIconContainer>
           </MonthYearSelectButton>
