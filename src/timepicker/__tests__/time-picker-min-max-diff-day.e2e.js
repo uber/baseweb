@@ -14,13 +14,68 @@ const COMBOBOX = 'input[role="combobox"]';
 const LISTBOX = '[role="listbox"]';
 
 describe('TimePicker min/max times', () => {
-  it('handles min/max datetimes with different date than value datetime', async () => {
+  it('handles min max datetimes with different date than value datetime clamping to current date start and end', async () => {
     await mount(page, 'timepicker--time-picker-min-max-diff-day');
-    await page.waitForSelector(COMBOBOX);
-    await page.click(COMBOBOX);
-    await page.waitForSelector(LISTBOX);
 
-    const listItems = await page.$$(`${LISTBOX} li`);
+    const parent = await page.$('#default');
+    await parent.click(COMBOBOX);
+    const listbox = await page.$(LISTBOX);
+
+    const listItems = await listbox.$$(`${LISTBOX} li`);
+    const min = await page.evaluate(el => el.textContent, listItems[0]);
+    const max = await page.evaluate(
+      el => el.textContent,
+      listItems[listItems.length - 1],
+    );
+
+    expect(min).toBe('12:00 AM');
+    expect(max).toBe('11:45 PM');
+  });
+
+  it('handles max date after current', async () => {
+    await mount(page, 'timepicker--time-picker-min-max-diff-day');
+
+    const parent = await page.$('#max-after-current');
+    await parent.click(COMBOBOX);
+    const listbox = await page.$(LISTBOX);
+
+    const listItems = await listbox.$$(`${LISTBOX} li`);
+    const min = await page.evaluate(el => el.textContent, listItems[0]);
+    const max = await page.evaluate(
+      el => el.textContent,
+      listItems[listItems.length - 1],
+    );
+
+    expect(min).toBe('8:02 AM');
+    expect(max).toBe('11:47 PM');
+  });
+
+  it('handles min date before current', async () => {
+    await mount(page, 'timepicker--time-picker-min-max-diff-day');
+
+    const parent = await page.$('#min-before-current');
+    await parent.click(COMBOBOX);
+    const listbox = await page.$(LISTBOX);
+
+    const listItems = await listbox.$$(`${LISTBOX} li`);
+    const min = await page.evaluate(el => el.textContent, listItems[0]);
+    const max = await page.evaluate(
+      el => el.textContent,
+      listItems[listItems.length - 1],
+    );
+
+    expect(min).toBe('12:00 AM');
+    expect(max).toBe('6:00 PM');
+  });
+
+  it('handles min max datetimes with different date than value datetime ignoring min max date', async () => {
+    await mount(page, 'timepicker--time-picker-min-max-diff-day');
+
+    const parent = await page.$('#ignore-min-max-date');
+    await parent.click(COMBOBOX);
+    const listbox = await page.$(LISTBOX);
+
+    const listItems = await listbox.$$(`${LISTBOX} li`);
     const min = await page.evaluate(el => el.textContent, listItems[0]);
     const max = await page.evaluate(
       el => el.textContent,
@@ -29,5 +84,23 @@ describe('TimePicker min/max times', () => {
 
     expect(min).toBe('8:02 AM');
     expect(max).toBe('6:02 PM');
+  });
+
+  it('handles min max datetimes with different date than value datetime ignoring min max date', async () => {
+    await mount(page, 'timepicker--time-picker-min-max-diff-day');
+
+    const parent = await page.$('#max-time-lands-on-step');
+    await parent.click(COMBOBOX);
+    const listbox = await page.$(LISTBOX);
+
+    const listItems = await listbox.$$(`${LISTBOX} li`);
+    const min = await page.evaluate(el => el.textContent, listItems[0]);
+    const max = await page.evaluate(
+      el => el.textContent,
+      listItems[listItems.length - 1],
+    );
+
+    expect(min).toBe('8:00 AM');
+    expect(max).toBe('10:00 AM');
   });
 });

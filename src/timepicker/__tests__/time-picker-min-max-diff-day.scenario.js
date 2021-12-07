@@ -10,16 +10,50 @@ import React from 'react';
 
 import {TimePicker} from '../index.js';
 
-const value = new Date('December 6, 2021 11:02:00');
-const min = new Date('December 4, 2021 8:02:00');
-const max = new Date('December 8, 2021 18:02:00');
-
 export function Scenario() {
   return (
     <div>
-      <p>min date: {min.toString()}</p>
-      <p>max date: {max.toString()}</p>
-      <TimePicker minTime={min} maxTime={max} value={value} />
+      <div id="default">
+        <TimePicker
+          minTime={new Date('December 4, 2021 8:02:00')}
+          maxTime={new Date('December 8, 2021 18:02:00')}
+          value={new Date('December 6, 2021 11:02:00')}
+        />
+      </div>
+
+      <div id="max-after-current">
+        <TimePicker
+          minTime={new Date('December 6, 2021 8:02:00')}
+          maxTime={new Date('December 8, 2021 18:02:00')}
+          value={new Date('December 6, 2021 11:02:00')}
+        />
+      </div>
+
+      <div id="min-before-current">
+        <TimePicker
+          minTime={new Date('December 4, 2021 8:02:00')}
+          maxTime={new Date('December 6, 2021 18:02:00')}
+          value={new Date('December 6, 2021 11:02:00')}
+        />
+      </div>
+
+      <div id="ignore-min-max-date">
+        <TimePicker
+          ignoreMinMaxDateComponent
+          minTime={new Date('December 4, 2021 8:02:00')}
+          maxTime={new Date('December 8, 2021 18:02:00')}
+          value={new Date('December 6, 2021 11:02:00')}
+        />
+      </div>
+
+      <div id="max-time-lands-on-step">
+        <TimePicker
+          ignoreMinMaxDateComponent
+          minTime={new Date('December 4, 2021 8:00:00')}
+          maxTime={new Date('December 8, 2021 10:00:00')}
+          value={new Date('December 6, 2021 9:02:00')}
+        />
+      </div>
     </div>
   );
 }
