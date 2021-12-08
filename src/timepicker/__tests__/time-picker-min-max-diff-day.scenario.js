@@ -54,6 +54,15 @@ export function Scenario() {
           value={new Date('December 6, 2021 9:02:00')}
         />
       </div>
+
+      <div id="test">
+        <TimePicker
+          ignoreMinMaxDateComponent
+          minTime={new Date('December 4, 2021 8:00:00')}
+          maxTime={new Date('December 8, 2021 10:00:00')}
+          value={new Date('December 6, 2021 9:00:00')}
+        />
+      </div>
     </div>
   );
 }
