@@ -207,9 +207,7 @@ class TimePicker<T = Date> extends React.Component<
 
     if (
       !min ||
-      (this.props.adapter.toJsDate(min) <
-        this.props.adapter.toJsDate(dayStart) &&
-        !ignoreMinMaxDateComponent)
+      (this.props.adapter.isBefore(min, dayStart) && !ignoreMinMaxDateComponent)
     ) {
       min = dayStart;
     } else {
@@ -223,8 +221,7 @@ class TimePicker<T = Date> extends React.Component<
 
     if (
       !max ||
-      (this.props.adapter.toJsDate(max) > this.props.adapter.toJsDate(dayEnd) &&
-        !ignoreMinMaxDateComponent)
+      (this.props.adapter.isAfter(max, dayEnd) && !ignoreMinMaxDateComponent)
     ) {
       max = dayEnd;
     } else {
