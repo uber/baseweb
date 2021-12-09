@@ -103,9 +103,13 @@ export const StyledSelectorContainer = styled<SharedStylePropsT>(
 
 export const StyledCalendarHeader = styled<SharedStylePropsT>('div', props => {
   const {
-    $theme: {borders, colors, sizing},
+    $theme: {typography, borders, colors, sizing},
+    $density,
   } = props;
   return {
+    ...($density === DENSITY.high
+      ? typography.LabelMedium
+      : typography.LabelLarge),
     color: colors.calendarHeaderForeground,
     display: 'flex',
     justifyContent: 'space-between',
@@ -120,7 +124,10 @@ export const StyledCalendarHeader = styled<SharedStylePropsT>('div', props => {
     borderBottomRightRadius: 0,
     borderBottomLeftRadius: 0,
     // account for the left/right arrow heights
-    minHeight: `calc(${sizing.scale800} + ${sizing.scale0})`,
+    minHeight:
+      $density === DENSITY.high
+        ? `calc(${sizing.scale800} + ${sizing.scale0})`
+        : sizing.scale950,
   };
 });
 
