@@ -22,6 +22,7 @@ export interface TimePickerProps {
   size?: SIZE[keyof SIZE];
   minTime?: Date;
   maxTime?: Date;
+  ignoreMinMaxDateComponent?: boolean;
 }
 export interface TimePickerState {
   steps: number[];

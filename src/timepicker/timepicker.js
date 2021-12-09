@@ -34,6 +34,7 @@ class TimePicker<T = Date> extends React.Component<
     step: 900,
     creatable: false,
     adapter: dateFnsAdapter,
+    ignoreMinMaxDateComponent: false,
   };
   dateHelpers: DateHelpers<T>;
 
@@ -66,7 +67,7 @@ class TimePicker<T = Date> extends React.Component<
           ? undefined
           : {
               id: closestStep,
-              label: this.secondsToLabel(closestStep, undefined),
+              label: this.secondsToLabel(closestStep, this.props.format),
             },
       });
       if (this.props.value || (!this.props.nullable && !this.props.value)) {
@@ -200,24 +201,42 @@ class TimePicker<T = Date> extends React.Component<
   };
 
   getTimeWindowInSeconds = (step: number): {start: number, end: number} => {
-    let {minTime: min, maxTime: max} = this.props;
-    let midnight = this.setTime(this.props.value, 0, 0, 0);
-    if (!min) {
-      min = midnight;
-    }
-    if (!max) {
-      max = this.setTime(this.props.value, 24, 0, 0);
+    let {minTime: min, maxTime: max, ignoreMinMaxDateComponent} = this.props;
+    const dayStart = this.setTime(this.props.value, 0, 0, 0);
+    const dayEnd = this.setTime(this.props.value, 24, 0, 0);
+
+    if (
+      !min ||
+      (this.props.adapter.isBefore(min, dayStart) && !ignoreMinMaxDateComponent)
+    ) {
+      min = dayStart;
     } else {
-      // maxTime (if provided) should be inclusive, so add an extra step here
-      max = this.props.adapter.setSeconds(
-        this.props.adapter.date(max),
-        this.props.adapter.getSeconds(max) + step,
+      min = this.setTime(
+        this.props.value,
+        this.props.adapter.getHours(min),
+        this.props.adapter.getMinutes(min),
+        this.props.adapter.getSeconds(min),
+      );
+    }
+
+    if (
+      !max ||
+      (this.props.adapter.isAfter(max, dayEnd) && !ignoreMinMaxDateComponent)
+    ) {
+      max = dayEnd;
+    } else {
+      max = this.setTime(
+        this.props.value,
+        this.props.adapter.getHours(max),
+        this.props.adapter.getMinutes(max),
+        // maxTime (if provided) should be inclusive, so add an extra second here
+        this.props.adapter.getSeconds(max) + 1,
       );
     }
 
     const minDate = this.props.adapter.toJsDate(min);
     const maxDate = this.props.adapter.toJsDate(max);
-    const midnightDate = this.props.adapter.toJsDate(midnight);
+    const midnightDate = this.props.adapter.toJsDate(dayStart);
     return {
       start: (minDate - midnightDate) / 1000,
       end: (maxDate - midnightDate) / 1000,
