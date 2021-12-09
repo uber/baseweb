@@ -23,7 +23,7 @@ import dateFnsAdapter from './utils/date-fns-adapter.js';
 import DateHelpers from './utils/date-helpers.js';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import type {CalendarPropsT, CalendarInternalState} from './types.js';
-import {ORIENTATION} from './constants.js';
+import {DENSITY, ORIENTATION} from './constants.js';
 
 export default class Calendar<T = Date> extends React.Component<
   CalendarPropsT<T>,
@@ -32,6 +32,7 @@ export default class Calendar<T = Date> extends React.Component<
   static defaultProps: {adapter: DateIOAdapter<Date>} = {
     autoFocusCalendar: false,
     dateLabel: null,
+    density: DENSITY.default,
     excludeDates: null,
     filterDate: null,
     highlightedDate: null,
@@ -442,11 +443,13 @@ export default class Calendar<T = Date> extends React.Component<
           aria-multiselectable={this.props.range || null}
           onKeyDown={this.onKeyDown}
           {...calendarContainerProps}
+          $density={this.props.density}
         >
           <Month
             adapter={this.props.adapter}
             date={monthDate}
             dateLabel={this.props.dateLabel}
+            density={this.props.density}
             excludeDates={this.props.excludeDates}
             filterDate={this.props.filterDate}
             highlightedDate={this.state.highlightedDate}
@@ -643,6 +646,7 @@ export default class Calendar<T = Date> extends React.Component<
       <LocaleContext.Consumer>
         {locale => (
           <Root
+            $density={this.props.density}
             data-baseweb="calendar"
             role="application"
             aria-roledescription="datepicker"
