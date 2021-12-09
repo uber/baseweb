@@ -84,6 +84,16 @@ const TimepickerConfig: TConfig = {
     },
     error: inputConfig.props.error,
     positive: inputConfig.props.positive,
+    ignoreMinMaxDateComponent: {
+      value: undefined,
+      type: PropTypes.Boolean,
+      description: `Component will ignore date components of provided min/max datetime values.
+When true, it will not be necessary to perform date arithmetic if date component is not relevant
+to the business logic. By default, if a min/max value is before/after the value date, available
+options will clamp to the date start and date end.
+      `,
+      hidden: true,
+    },
     overrides: {
       value: undefined,
       type: PropTypes.Custom,

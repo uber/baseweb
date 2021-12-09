@@ -37,6 +37,15 @@ export type TimePickerPropsT<T = Date> = {
   size?: SizeT,
   minTime?: T,
   maxTime?: T,
+  /**
+   * There are two strategies available for setting min/max times. If the min/max datetimes are
+   * beyond the start/end times of the current value's date, Timepicker could either clamp the
+   * min/max time of the start/end of the day or it can ignore the min/max date components and
+   * only apply the time components. Each strategy has the potential to save developer time in
+   * avoiding the need to perform conversion before providing min/max datetimes to the component.
+   * By default the component will clamp the time window and setting this flag will ignore dates.
+   */
+  ignoreMinMaxDateComponent?: boolean,
 };
 export type TimePickerStateT = {
   /** List of times (in seconds) displayed in the dropdown menu. */
@@ -50,4 +59,5 @@ export type TimePickerDefaultPropsT = {
   step: 900,
   creatable: false,
   adapter: DateIOAdapter<Date>,
+  ignoreMinMaxDateComponent: false,
 };
