@@ -17,7 +17,7 @@ export function Scenario() {
   return (
     <Datepicker
       value={value}
-      onChange={({date}) => setValue(Array.isArray(date) ? date : [date])}
+      onChange={({date}) => setValue(date)}
       formatString="yyyy/MM/dd h:mm aa"
       range
       timeSelectStart
