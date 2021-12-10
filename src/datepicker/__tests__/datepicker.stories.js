@@ -19,6 +19,7 @@ import {Scenario as DatepickerRangeMultiMonth} from './datepicker-range-multi-mo
 import {Scenario as DatepickerRange} from './datepicker-range.scenario.js';
 import {Scenario as DatepickerRangeSeparateInputs} from './datepicker-range-separate-inputs.scenario.js';
 import {Scenario as DatepickerDefault} from './datepicker.scenario.js';
+import {Scenario as DatepickerTimeScenario} from './datepicker-time.scenario.js';
 import {Scenario as DatepickersColorStates} from './datepickers-color-states.scenario.js';
 import {Scenario as DatepickersComposedRange} from './datepickers-composed-range.scenario.js';
 import {Scenario as DatepickersComposedSingle} from './datepickers-composed-single.scenario.js';
@@ -42,6 +43,7 @@ export const RangeMultiMonth = () => <DatepickerRangeMultiMonth />;
 export const Range = () => <DatepickerRange />;
 export const RangeSeparateInputs = () => <DatepickerRangeSeparateInputs />;
 export const Datepicker = () => <DatepickerDefault />;
+export const DatepickerTime = () => <DatepickerTimeScenario />;
 export const StatefulColorStates = () => <DatepickersColorStates />;
 export const StatefulComposedRange = () => <DatepickersComposedRange />;
 export const StatefulComposedSingle = () => <DatepickersComposedSingle />;
