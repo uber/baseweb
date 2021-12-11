@@ -627,6 +627,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
               <>
                 <CalendarHeader
                   {...calendarHeaderProps}
+                  $density={this.props.density}
                   onFocus={forkFocus(calendarHeaderProps, this.handleFocus)}
                   onBlur={forkBlur(calendarHeaderProps, this.handleBlur)}
                 >
