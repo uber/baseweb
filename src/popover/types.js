@@ -106,7 +106,10 @@ export type BasePopoverPropsT = {
   /** If true, focus will shift back to the original element that triggered the popover
    * Be careful with elements that open the popover on focus (e.g. input) this will cause the popover to reopen on close!
    */
-  returnFocus?: boolean | FocusOptions | ((returnTo: Element) => (boolean | FocusOptions)),
+  returnFocus?:
+    | boolean
+    | FocusOptions
+    | ((returnTo: Element) => boolean | FocusOptions),
   /** Whether or not to show the arrow pointing from the popover to the trigger. */
   showArrow?: boolean,
   /** Whether to toggle the popover when trigger is clicked or hovered. */
