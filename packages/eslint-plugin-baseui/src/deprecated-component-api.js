@@ -9,6 +9,30 @@ LICENSE file in the root directory of this source tree.
 
 const MESSAGES = require('./messages.js');
 
+const deprecatedTypographyComponents = [
+  {oldName: 'Display', newName: 'DisplayLarge'},
+  {oldName: 'Display1', newName: 'DisplayLarge'},
+  {oldName: 'Display2', newName: 'DisplayMedium'},
+  {oldName: 'Display3', newName: 'DisplaySmall'},
+  {oldName: 'Display4', newName: 'DisplayXSmall'},
+  {oldName: 'H1', newName: 'HeadingXXLarge'},
+  {oldName: 'H2', newName: 'HeadingXLarge'},
+  {oldName: 'H3', newName: 'HeadingLarge'},
+  {oldName: 'H4', newName: 'HeadingMedium'},
+  {oldName: 'H5', newName: 'HeadingSmall'},
+  {oldName: 'H6', newName: 'HeadingXSmall'},
+  {oldName: 'Paragraph1', newName: 'ParagraphLarge'},
+  {oldName: 'Paragraph2', newName: 'ParagraphMedium'},
+  {oldName: 'Paragraph3', newName: 'ParagraphSmall'},
+  {oldName: 'Paragraph4', newName: 'ParagraphXSmall'},
+  {oldName: 'Label1', newName: 'LabelLarge'},
+  {oldName: 'Label2', newName: 'LabelMedium'},
+  {oldName: 'Label3', newName: 'LabelSmall'},
+  {oldName: 'Label4', newName: 'LabelXSmall'},
+  {oldName: 'Caption1', newName: 'ParagraphXSmall'},
+  {oldName: 'Caption2', newName: 'LabelXSmall'},
+];
+
 module.exports = {
   meta: {
     fixable: 'code',
@@ -35,6 +59,19 @@ module.exports = {
             return false;
           }
         }
+        const fixImport = (oldComponent, newComponent) => {
+          context.report({
+            node: node.imported,
+            messageId: MESSAGES.replace.id,
+            data: {
+              old: oldComponent,
+              new: newComponent,
+            },
+            fix: function(fixer) {
+              return [fixer.replaceText(node.imported, newComponent)];
+            },
+          });
+        };
 
         // Spinner
         // Ex: import {Spinner} from "baseui/spinner";
@@ -57,35 +94,11 @@ module.exports = {
         // the import and instance separately if resolving lint warnings
         // manually.
 
-        if (isImporting('Caption1', 'baseui/typography')) {
-          context.report({
-            node: node.imported,
-            messageId: MESSAGES.replace.id,
-            data: {
-              old: 'Caption1',
-              new: 'ParagraphXSmall',
-            },
-            fix: function(fixer) {
-              return [fixer.replaceText(node.imported, 'ParagraphXSmall')];
-            },
-          });
-          return;
-        }
-
-        if (isImporting('Caption2', 'baseui/typography')) {
-          context.report({
-            node: node.imported,
-            messageId: MESSAGES.replace.id,
-            data: {
-              old: 'Caption2',
-              new: 'LabelXSmall',
-            },
-            fix: function(fixer) {
-              return [fixer.replaceText(node.imported, 'LabelXSmall')];
-            },
-          });
-          return;
-        }
+        deprecatedTypographyComponents.forEach(deprecatedApi => {
+          if (isImporting(deprecatedApi.oldName, 'baseui/typography')) {
+            fixImport(deprecatedApi.oldName, deprecatedApi.newName);
+          }
+        });
 
         // These can be referenced later on by instances of components.
         if (isImporting('Accordion', 'baseui/accordion')) return;
@@ -182,6 +195,23 @@ module.exports = {
             node,
             messageId: MESSAGES.styleOnBlock.id,
           });
+          return;
+        }
+
+        // label timePickerAriaLabel deprecated
+        if (
+          importState.Label &&
+          isProp('timePickerAriaLabel', importState.Label)
+        ) {
+          context.report({
+            node: node,
+            messageId: MESSAGES.replace.id,
+            data: {
+              old: `timePickerAriaLabel`,
+              new: `timePickerAriaLabel12Hour or timePickerAriaLabel24Hour`,
+            },
+          });
+          return;
         }
 
         // ======================
@@ -305,53 +335,34 @@ module.exports = {
         // See @ImportSpecifier function for how this importState.Caption1
         // stuff works.
 
+        // Replace deprecated component usage.
         // Caption1
         // Ex: <Caption1 />
         // Replacement: ParagraphXSmall
-        if (importState.Caption1 && isComponent('Caption1')) {
-          context.report({
-            node,
-            messageId: MESSAGES.replace.id,
-            data: {
-              old: 'Caption1',
-              new: 'ParagraphXSmall',
-            },
-            fix: function(fixer) {
-              return [
-                fixer.replaceText(node, 'ParagraphXSmall'),
-                fixer.replaceText(
-                  node.parent.parent.closingElement.name,
-                  'ParagraphXSmall',
-                ),
-              ];
-            },
-          });
-          return;
-        }
-
-        // Caption2
-        // Ex: <Caption2 />
-        // Replacement: LabelXSmall
-        if (importState.Caption2 && isComponent('Caption2')) {
-          context.report({
-            node,
-            messageId: MESSAGES.replace.id,
-            data: {
-              old: 'Caption2',
-              new: 'LabelXSmall',
-            },
-            fix: function(fixer) {
-              return [
-                fixer.replaceText(node, 'LabelXSmall'),
-                fixer.replaceText(
-                  node.parent.parent.closingElement.name,
-                  'LabelXSmall',
-                ),
-              ];
-            },
-          });
-          return;
-        }
+        deprecatedTypographyComponents.forEach(deprecatedApi => {
+          if (
+            importState[deprecatedApi.oldName] &&
+            isComponent(deprecatedApi.oldName)
+          ) {
+            context.report({
+              node,
+              messageId: MESSAGES.replace.id,
+              data: {
+                old: deprecatedApi.oldName,
+                new: deprecatedApi.newName,
+              },
+              fix: function(fixer) {
+                return [
+                  fixer.replaceText(node, deprecatedApi.newName),
+                  fixer.replaceText(
+                    node.parent.parent.closingElement.name,
+                    deprecatedApi.newName,
+                  ),
+                ];
+              },
+            });
+          }
+        });
       },
     };
   },

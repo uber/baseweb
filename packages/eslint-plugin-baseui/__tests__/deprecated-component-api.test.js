@@ -112,6 +112,16 @@ const tests = {
         }
       `,
     },
+
+    // TiemPicker - timePickerAriaLabel
+    {
+      code: `
+        import {TimePicker} from "baseui/timepicker"
+        export default function(props) {
+          return <TimePicker timePickerAriaLabel="hello world" />
+        }
+      `,
+    },
   ],
   invalid: [
     // Accordion - renderPanelContent
