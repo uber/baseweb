@@ -11,4 +11,7 @@ module.exports = {
   env: {
     node: true,
   },
+  rules: {
+    'header/header': [2, '../../LICENSE-HEAD'],
+  },
 };

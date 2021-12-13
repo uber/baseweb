@@ -198,22 +198,6 @@ module.exports = {
           return;
         }
 
-        // label timePickerAriaLabel deprecated
-        if (
-          importState.Label &&
-          isProp('timePickerAriaLabel', importState.Label)
-        ) {
-          context.report({
-            node: node,
-            messageId: MESSAGES.replace.id,
-            data: {
-              old: `timePickerAriaLabel`,
-              new: `timePickerAriaLabel12Hour or timePickerAriaLabel24Hour`,
-            },
-          });
-          return;
-        }
-
         // ======================
         // Deprecated Prop Values
         // ======================
