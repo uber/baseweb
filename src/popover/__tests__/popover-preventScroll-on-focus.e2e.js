@@ -14,8 +14,20 @@ describe('popover', () => {
     await page.waitForSelector('div[data-e2e="content"]', {hidden: true});
 
     // Scroll to the last div
+    await page.evaluate(() => document.querySelector('div[data-e2e-spacer="1"]').scrollIntoView());
+
+    // Listening to Scroll Event to determine if the page is still scrolling
+    // Could wait for few seconds but that would be unreliable
     await page.evaluate(() => {
-      document.querySelector('div[data-e2e-spacer="8"]').scrollIntoView();
+      function scrollHandler() {
+        window.isPageScrolling = true;
+        clearTimeout(window.scrollTimer)
+        window.scrollTimer = setTimeout(() => {
+          window.isPageScrolling = false;
+          window.removeEventListener('scroll', scrollHandler);
+        }, 100);
+      }
+      window.addEventListener('scroll', scrollHandler);
     });
 
     // Add an Event Listener for page scroll so that we know if the page is scrolled or not
@@ -25,13 +37,20 @@ describe('popover', () => {
       }, { once: true });
     });
 
-    // We keep a flag to see if the page is scrolled or not.
+    // Waiting for scroll to end
+    await page.waitForFunction('window.isPageScrolling === false');
+
+    // We keep a flag to see if the page is scrolled or not after this point in the test.
     let pageScrolled = false;
     page.once('console', (msg) => {
       pageScrolled = msg.text() === '__PopOver_preventScroll_Page_Scrolled__';
     });
+
+    // Clicking on button to show Popover
     await page.click('button');
     await page.waitForSelector('div[data-e2e="content"]');
+
+    // Showing Popover should not trigger a page scroll
     expect(pageScrolled).toBe(false);
   });
 });

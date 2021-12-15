@@ -53,6 +53,7 @@ const Instructions = () => {
       flexDirection="column"
       backgroundColor="whitesmoke"
     >
+      <h3>It is only possible to reproduce this in preview mode where the entire page scrolls. Hence, the scenario component goes beyond the page</h3>
       <h3>Steps to Reproduce error if {'(focusOptions={{ preventScroll: true }})'} is not passed as a prop to Popover</h3>
       <ol>
         <li>Click on `Show Menu` on center</li>
@@ -74,6 +75,7 @@ export function Scenario() {
           dismissOnEsc={true}
           dismissOnClickOutside={true}
           content={
+            // Setting tabIndex to div so that we can focus on the div
             <div data-e2e="content" tabIndex={0}>
               <h1>hello</h1>
             </div>}
@@ -87,14 +89,8 @@ export function Scenario() {
         </StatefulPopover>
       </Header>
       <Instructions />
+      <Block height="100vh" width="100%" />
       <Spacer num={1} />
-      <Spacer num={2} />
-      <Spacer num={3} />
-      <Spacer num={4} />
-      <Spacer num={5} />
-      <Spacer num={6} />
-      <Spacer num={7} />
-      <Spacer num={8} />
     </div>
   );
 }
