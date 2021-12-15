@@ -96,7 +96,7 @@ export interface BasePopoverProps {
   accessibilityType?: ACCESSIBILITY_TYPE[keyof ACCESSIBILITY_TYPE];
   focusLock?: boolean;
   autoFocus?: boolean;
-  autoFocusOptions?: FocusOptions;
+  focusOptions?: FocusOptions;
   returnFocus?: boolean | FocusOptions | ((returnTo: Element) => (boolean | FocusOptions));
   'data-baseweb'?: string;
   id?: string;

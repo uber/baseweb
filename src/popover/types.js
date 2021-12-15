@@ -83,8 +83,8 @@ export type BasePopoverPropsT = {
   onClick?: (e: Event) => mixed,
   /** Handler for 'Esc' keypress events */
   onFocus?: (e: Event) => mixed,
-  /** Pass FocusOptions to autoFocus */
-  autoFocusOptions?: FocusOptions,
+  /** Pass FocusOptions for focusing (used as `HtmlElement.focus(focusOptions)`) */
+  focusOptions?: FocusOptions,
   /** Handler for mouseenter events on trigger element. */
   onMouseEnter?: (e: Event) => mixed,
   /** Number of milliseconds to wait before showing the popover after mouse enters the trigger element (for triggerType `hover`). */
