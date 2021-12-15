@@ -25,7 +25,7 @@ import {
   StyledMonthYearSelectButton,
   StyledMonthYearSelectIconContainer,
 } from './styled-components.js';
-import {ORIENTATION, WEEKDAYS} from './constants.js';
+import {ORIENTATION, WEEKDAYS, DENSITY} from './constants.js';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import type {HeaderPropsT} from './types.js';
 import type {LocaleT} from '../locale/types.js';
@@ -266,7 +266,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
     theme: ThemeT,
   }) => {
     const date = this.getDateProp();
-    const {overrides = {}} = this.props;
+    const {overrides = {}, density} = this.props;
     const allPrevDaysDisabled = this.dateHelpers.monthDisabledBefore(
       date,
       this.props,
@@ -315,7 +315,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
       >
         {isHidden ? null : (
           <PrevButtonIcon
-            size={36}
+            size={density === DENSITY.high ? 24 : 36}
             overrides={{Svg: {style: navBtnStyle}}}
             {...prevButtonIconProps}
           />
@@ -332,7 +332,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
     theme: ThemeT,
   }) => {
     const date = this.getDateProp();
-    const {overrides = {}} = this.props;
+    const {overrides = {}, density} = this.props;
     const allNextDaysDisabled = this.dateHelpers.monthDisabledAfter(
       date,
       this.props,
@@ -388,7 +388,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
       >
         {isHidden ? null : (
           <NextButtonIcon
-            size={36}
+            size={density === DENSITY.high ? 24 : 36}
             overrides={{Svg: {style: navBtnStyle}}}
             {...nextButtonIconProps}
           />
@@ -411,7 +411,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
     const month = this.dateHelpers.getMonth(date);
     const year = this.dateHelpers.getYear(date);
 
-    const {locale, overrides = {}} = this.props;
+    const {locale, overrides = {}, density} = this.props;
     const [MonthYearSelectButton, monthYearSelectButtonProps] = getOverrides(
       overrides.MonthYearSelectButton,
       StyledMonthYearSelectButton,
@@ -496,6 +496,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
             aria-live="polite"
             type="button"
             $isFocusVisible={this.state.isFocusVisible}
+            $density={density}
             onKeyUp={event => {
               if (this.canArrowsOpenDropdown(event)) {
                 this.setState({isMonthDropdownOpen: true});
@@ -520,7 +521,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
               <ChevronDown
                 title=""
                 overrides={{Svg: {props: {role: 'presentation'}}}}
-                size={24}
+                size={density === DENSITY.high ? 16 : 24}
               />
             </MonthYearSelectIconContainer>
           </MonthYearSelectButton>
@@ -565,6 +566,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
             aria-live="polite"
             type="button"
             $isFocusVisible={this.state.isFocusVisible}
+            $density={density}
             onKeyUp={event => {
               if (this.canArrowsOpenDropdown(event)) {
                 this.setState({isYearDropdownOpen: true});
@@ -589,7 +591,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
               <ChevronDown
                 title=""
                 overrides={{Svg: {props: {role: 'presentation'}}}}
-                size={24}
+                size={density === DENSITY.high ? 16 : 24}
               />
             </MonthYearSelectIconContainer>
           </MonthYearSelectButton>
@@ -599,7 +601,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
   };
 
   render() {
-    const {overrides = {}} = this.props;
+    const {overrides = {}, density} = this.props;
     const [CalendarHeader, calendarHeaderProps] = getOverrides(
       overrides.CalendarHeader,
       StyledCalendarHeader,
@@ -625,6 +627,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
               <>
                 <CalendarHeader
                   {...calendarHeaderProps}
+                  $density={this.props.density}
                   onFocus={forkFocus(calendarHeaderProps, this.handleFocus)}
                   onBlur={forkBlur(calendarHeaderProps, this.handleBlur)}
                 >
@@ -646,6 +649,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
                           this.props.locale,
                         )}
                         {...weekdayHeaderProps}
+                        $density={density}
                       >
                         {this.dateHelpers.getWeekdayMinInLocale(
                           day,

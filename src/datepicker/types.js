@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import type {OverrideT} from '../helpers/overrides.js';
 import type {SizeT} from '../input/types.js';
-import {ORIENTATION, STATE_CHANGE_TYPE} from './constants.js';
+import {ORIENTATION, STATE_CHANGE_TYPE, DENSITY} from './constants.js';
 import type {DateIOAdapter} from './utils/types.js';
 import type {
   TimePickerPropsT as TimePickerPropsTBase,
@@ -22,6 +22,8 @@ import type {OptionT} from '../select/index.js';
 type LocaleT = any; // see https://github.com/date-fns/date-fns/blob/master/src/locale/index.js.flow
 
 type onChangeT<T> = ({date: ?T | Array<T>}) => mixed;
+
+export type DensityT = $Keys<typeof DENSITY>;
 
 export type DatepickerOverridesT = {
   Root?: OverrideT,
@@ -66,6 +68,7 @@ export type DayPropsT<T = Date> = {
   disabled: boolean,
   date: T,
   dateLabel: ?(day: T) => React.Node,
+  density: DensityT,
   filterDate: ?(day: T) => boolean,
   highlightedDate: ?T,
   includeDates: ?Array<T>,
@@ -96,6 +99,7 @@ export type DayStateT = {
 export type WeekPropsT<T = Date> = {
   date: T,
   dateLabel: ?(date: T) => React.Node,
+  density: DensityT,
   excludeDates: ?Array<T>,
   filterDate: ?(day: T) => boolean,
   // highlighted while keyboard navigating or hovered
@@ -135,6 +139,8 @@ export type CalendarInternalState<T = Date> = {
 export type CalendarPropsT<T = Date> = {
   /** Defines if the calendar is set to be focused on an initial render. */
   autoFocusCalendar?: boolean,
+  /** Determines the density of the calendar */
+  density?: DensityT,
   /** A list of dates to disable. */
   excludeDates?: ?Array<T>,
   /** Display select for quickly choosing date ranges. `range` must be true as well. */
@@ -235,6 +241,7 @@ export type SharedStylePropsT = {
   // eslint-disable-next-line flowtype/no-weak-types
   $date: any,
   $disabled: ?boolean,
+  $density: DensityT,
   $endDate: ?boolean,
   $endOfMonth: ?boolean,
   $isHighlighted: ?boolean,

@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
+import {DENSITY} from '../constants.js';
 
 import {StatefulCalendar, ORIENTATION} from '../index.js';
 
@@ -25,6 +26,18 @@ export function Scenario() {
 
       <StatefulCalendar
         onChange={({date}) => console.log(date)}
+        orientation={ORIENTATION.horizontal}
+        highlightedDate={new Date('March 10, 2019')}
+        monthsShown={3}
+        peekNextMonth
+        range
+        quickSelect
+      />
+      <p>Dense Horizontal Calendar</p>
+
+      <StatefulCalendar
+        onChange={({date}) => console.log(date)}
+        density={DENSITY.high}
         orientation={ORIENTATION.horizontal}
         highlightedDate={new Date('March 10, 2019')}
         monthsShown={3}

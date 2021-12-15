@@ -12,9 +12,11 @@ import dateFnsAdapter from './utils/date-fns-adapter.js';
 import DateHelpers from './utils/date-helpers.js';
 import {getOverrides} from '../helpers/overrides.js';
 import type {MonthPropsT} from './types.js';
+import {DENSITY} from './constants.js';
 
 const defaultProps = {
   dateLabel: null,
+  density: DENSITY.high,
   excludeDates: null,
   filterDate: null,
   highlightDates: null,
@@ -81,6 +83,7 @@ export default class CalendarMonth<T = Date> extends React.Component<
           adapter={this.props.adapter}
           date={currentWeekStart}
           dateLabel={this.props.dateLabel}
+          density={this.props.density}
           excludeDates={this.props.excludeDates}
           filterDate={this.props.filterDate}
           highlightedDate={this.props.highlightedDate}
