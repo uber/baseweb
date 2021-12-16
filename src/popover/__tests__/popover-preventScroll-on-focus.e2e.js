@@ -4,9 +4,7 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-
-// @flow
-/* eslint-env browser */
+/* eslint-disable flowtype/require-valid-file-annotation */
 const {mount} = require('../../../e2e/helpers');
 
 describe('popover', () => {
@@ -24,6 +22,7 @@ describe('popover', () => {
 
     // Scroll to the last div
     await page.evaluate(() =>
+      // eslint-disable-next-line cup/no-undef
       document.querySelector('div[data-e2e-spacer="1"]').scrollIntoView(),
     );
 
@@ -31,6 +30,7 @@ describe('popover', () => {
     // Could wait for few seconds but that would be unreliable
     await page.evaluate(() => {
       function scrollHandler() {
+        /* eslint-disable cup/no-undef */
         window.isPageScrolling = true;
         clearTimeout(window.scrollTimer);
         window.scrollTimer = setTimeout(() => {
@@ -39,10 +39,12 @@ describe('popover', () => {
         }, 100);
       }
       window.addEventListener('scroll', scrollHandler);
+      /* eslint-enable cup/no-undef */
     });
 
     // Add an Event Listener for page scroll so that we know if the page is scrolled or not
     await page.evaluate(() => {
+      // eslint-disable-next-line cup/no-undef
       document.addEventListener(
         'scroll',
         () => {
