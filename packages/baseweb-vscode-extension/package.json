@@ -142,6 +142,11 @@
     ],
     "commands": [
       {
+        "command": "extension.baseAccordion",
+        "title": "Insert <Accordion>",
+        "category": "Base Web"
+      },
+      {
         "command": "extension.baseweb.theme",
         "title": "Open theme cheat sheet",
         "category": "Base Web"

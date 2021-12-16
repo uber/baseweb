@@ -20,7 +20,7 @@ yarn add eslint-plugin-baseui --dev
 
 Then add it to your ESLint configuration:
 
-```js
+```json5
 {
   "plugins": [
     // ...
@@ -37,9 +37,9 @@ Then add it to your ESLint configuration:
 
 Or extend the recommended config
 
-```js
+```json
 {
-  "extends": ['plugin:baseui/recommended']
+  "extends": ["plugin:baseui/recommended"]
 }
 ```
 
@@ -50,15 +50,15 @@ To get linting specific to your version of `baseui`, simply install the matching
 ```json
 {
   "dependencies": {
-    "baseui": "9.41.0",
+    "baseui": "10.0.0"
   },
   "devDependencies": {
-    "eslint-plugin-baseui": "9.41.0",
+    "eslint-plugin-baseui": "10.0.0"
   }
 }
 ```
 
-We sync the the versions for each package so you shouldn't have to worry about it.
+We sync the versions for each package, so you shouldn't have to worry about it.
 
 **ℹ️ Note that the first available version of this package is `9.41.0`.**
 
