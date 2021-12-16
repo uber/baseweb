@@ -1,3 +1,12 @@
+/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+
+// @flow
+/* eslint-env browser */
 const {mount} = require('../../../e2e/helpers');
 
 describe('popover', () => {
@@ -14,14 +23,16 @@ describe('popover', () => {
     await page.waitForSelector('div[data-e2e="content"]', {hidden: true});
 
     // Scroll to the last div
-    await page.evaluate(() => document.querySelector('div[data-e2e-spacer="1"]').scrollIntoView());
+    await page.evaluate(() =>
+      document.querySelector('div[data-e2e-spacer="1"]').scrollIntoView(),
+    );
 
     // Listening to Scroll Event to determine if the page is still scrolling
     // Could wait for few seconds but that would be unreliable
     await page.evaluate(() => {
       function scrollHandler() {
         window.isPageScrolling = true;
-        clearTimeout(window.scrollTimer)
+        clearTimeout(window.scrollTimer);
         window.scrollTimer = setTimeout(() => {
           window.isPageScrolling = false;
           window.removeEventListener('scroll', scrollHandler);
@@ -32,9 +43,13 @@ describe('popover', () => {
 
     // Add an Event Listener for page scroll so that we know if the page is scrolled or not
     await page.evaluate(() => {
-      document.addEventListener('scroll', () => {
-        console.log('__PopOver_preventScroll_Page_Scrolled__');
-      }, { once: true });
+      document.addEventListener(
+        'scroll',
+        () => {
+          console.log('__PopOver_preventScroll_Page_Scrolled__');
+        },
+        {once: true},
+      );
     });
 
     // Waiting for scroll to end
@@ -42,7 +57,7 @@ describe('popover', () => {
 
     // We keep a flag to see if the page is scrolled or not after this point in the test.
     let pageScrolled = false;
-    page.once('console', (msg) => {
+    page.once('console', msg => {
       pageScrolled = msg.text() === '__PopOver_preventScroll_Page_Scrolled__';
     });
 
