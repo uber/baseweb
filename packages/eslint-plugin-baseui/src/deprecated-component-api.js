@@ -361,7 +361,7 @@ module.exports = {
             'RadioMarkInner',
             'RadioMarkOuter',
           ];
-          properties.map((val: string) => {
+          properties.map(val => {
             const property = getOverrideIfExists(val, node);
             if (property) {
               context.report({
