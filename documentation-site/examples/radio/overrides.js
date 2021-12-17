@@ -1,11 +1,15 @@
 // @flow
 import * as React from 'react';
 import {Paragraph3} from 'baseui/typography';
-import {Radio, RadioGroup, type RadioOverrides} from 'baseui/radio';
+import {
+  Radio,
+  RadioGroup,
+  type RadioOverridesT,
+} from 'baseui/radio';
 
 export default function Example() {
   const [value, setValue] = React.useState('1');
-  const radioOverrides: RadioOverrides = {
+  const radioOverrides: RadioOverridesT = {
     Label: ({$value}) => (
       <Paragraph3>Custom label for value: {$value}</Paragraph3>
     ),
