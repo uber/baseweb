@@ -18,6 +18,7 @@ import {Scenario as PopoverSelect} from './popover-select.scenario.js';
 import {Scenario as PopoverDefault} from './popover.scenario.js';
 import {Scenario as PopoverRepositionWithAnchorUpdate} from './popover-reposition-with-anchor-update.scenario.js';
 import {Scenario as PopoverAutoFocusWithoutFocusLock} from './popover-autofocus.scenario.js';
+import {Scenario as PopoverPreventScrollOnFocus} from './popover-preventScroll-on-focus.scenario.js';
 
 export const Click = () => <PopoverClick />;
 export const FocusLoop = () => <PopoverFocusLoop />;
@@ -28,6 +29,7 @@ export const RenderAll = () => <PopoverRenderAll />;
 export const Reposition = () => <PopoverReposition />;
 export const Select = () => <PopoverSelect />;
 export const Popover = () => <PopoverDefault />;
+export const PreventScrollOnFocus = () => <PopoverPreventScrollOnFocus />;
 export const RepositionWithAnchorUpdate = () => (
   <PopoverRepositionWithAnchorUpdate />
 );

@@ -474,8 +474,9 @@ class PopoverInner extends React.Component<
                 disabled={!this.props.focusLock}
                 noFocusGuards={false}
                 // see popover-focus-loop.scenario.js for why hover cannot return focus
-                returnFocus={this.props.returnFocus && !this.isHoverTrigger()}
+                returnFocus={!this.isHoverTrigger() && this.props.returnFocus}
                 autoFocus={this.state.autoFocusAfterPositioning}
+                focusOptions={this.props.focusOptions}
               >
                 {!this.props.focusLock &&
                 this.state.autoFocusAfterPositioning ? (

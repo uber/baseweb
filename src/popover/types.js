@@ -83,6 +83,8 @@ export type BasePopoverPropsT = {
   onClick?: (e: Event) => mixed,
   /** Handler for 'Esc' keypress events */
   onFocus?: (e: Event) => mixed,
+  /** Pass FocusOptions for focusing (used as `HtmlElement.focus(focusOptions)`) */
+  focusOptions?: FocusOptions,
   /** Handler for mouseenter events on trigger element. */
   onMouseEnter?: (e: Event) => mixed,
   /** Number of milliseconds to wait before showing the popover after mouse enters the trigger element (for triggerType `hover`). */
@@ -104,7 +106,10 @@ export type BasePopoverPropsT = {
   /** If true, focus will shift back to the original element that triggered the popover
    * Be careful with elements that open the popover on focus (e.g. input) this will cause the popover to reopen on close!
    */
-  returnFocus?: boolean,
+  returnFocus?:
+    | boolean
+    | FocusOptions
+    | ((returnTo: Element) => boolean | FocusOptions),
   /** Whether or not to show the arrow pointing from the popover to the trigger. */
   showArrow?: boolean,
   /** Whether to toggle the popover when trigger is clicked or hovered. */
