@@ -94,6 +94,7 @@ export const DragHandle = styled<SharedStylePropsArgT>('div', ({$theme}) => {
   return {
     [marginDir]: $theme.sizing.scale600,
     width: $theme.sizing.scale800,
+    color: '#CCC',
     display: 'flex',
     alignItems: 'center',
   };
