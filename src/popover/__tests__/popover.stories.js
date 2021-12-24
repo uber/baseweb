@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 import {Scenario as PopoverClick} from './popover-click.scenario.js';
+import {Scenario as PopoverDynamicTriggerType} from './popover-dynamic-triggertype.scenario.js';
 import {Scenario as PopoverFocusLoop} from './popover-focus-loop.scenario.js';
 import {Scenario as PopoverHover} from './popover-hover.scenario.js';
 import {Scenario as PopoverLargeMargin} from './popover-large-margin.scenario.js';
@@ -21,6 +22,7 @@ import {Scenario as PopoverAutoFocusWithoutFocusLock} from './popover-autofocus.
 import {Scenario as PopoverPreventScrollOnFocus} from './popover-preventScroll-on-focus.scenario.js';
 
 export const Click = () => <PopoverClick />;
+export const DynamicTriggerType = () => <PopoverDynamicTriggerType />;
 export const FocusLoop = () => <PopoverFocusLoop />;
 export const Hover = () => <PopoverHover />;
 export const LargeMargin = () => <PopoverLargeMargin />;

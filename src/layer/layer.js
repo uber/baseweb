@@ -61,8 +61,17 @@ class LayerComponent extends React.Component<
     if (mountNode) {
       return;
     }
+
     if (host && host !== prevProps.host && prevProps.host === null) {
       this.addContainer(host);
+    }
+
+    if (prevProps.isHoverLayer != this.props.isHoverLayer) {
+      if (this.props.isHoverLayer) {
+        this.context.removeDocClickHandler(this.onDocumentClick);
+      } else {
+        this.context.addDocClickHandler(this.onDocumentClick);
+      }
     }
   }
 
