@@ -143,45 +143,47 @@ const PinHead = ({
     );
   }
   return (
-    <PinHead
-      $background={background}
-      $height={height}
-      $gridTemplateColumns={gridTemplateColumns}
-      $forceCircle={forceCircle}
-      $type={type}
-      {...pinHeadProps}
-    >
-      {StartEnhancer && (
-        <ContentItem
-          $height={height}
-          $color={color}
-          $size={size}
-          {...contentItemProps}
-        >
-          <StartEnhancer size={icon} />
-        </ContentItem>
-      )}
-      {label && (
-        <ContentItem
-          $height={height}
-          $color={color}
-          $size={size}
-          {...contentItemProps}
-        >
-          {label}
-        </ContentItem>
-      )}
-      {EndEnhancer && (
-        <ContentItem
-          $height={height}
-          $color={color}
-          $size={size}
-          {...contentItemProps}
-        >
-          <EndEnhancer size={icon} />
-        </ContentItem>
-      )}
-    </PinHead>
+    <div style={{position: 'relative'}}>
+      <PinHead
+        $background={background}
+        $height={height}
+        $gridTemplateColumns={gridTemplateColumns}
+        $forceCircle={forceCircle}
+        $type={type}
+        {...pinHeadProps}
+      >
+        {StartEnhancer && (
+          <ContentItem
+            $height={height}
+            $color={color}
+            $size={size}
+            {...contentItemProps}
+          >
+            <StartEnhancer size={icon} />
+          </ContentItem>
+        )}
+        {label && (
+          <ContentItem
+            $height={height}
+            $color={color}
+            $size={size}
+            {...contentItemProps}
+          >
+            {label}
+          </ContentItem>
+        )}
+        {EndEnhancer && (
+          <ContentItem
+            $height={height}
+            $color={color}
+            $size={size}
+            {...contentItemProps}
+          >
+            <EndEnhancer size={icon} />
+          </ContentItem>
+        )}
+      </PinHead>
+    </div>
   );
 };
 export default PinHead;

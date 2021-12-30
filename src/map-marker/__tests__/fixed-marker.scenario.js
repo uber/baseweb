@@ -14,8 +14,15 @@ import TileGrid from './tile-grid.js';
 import {Input} from '../../input/index.js';
 import Upload from '../../icon/upload.js';
 import Search from '../../icon/search.js';
+import {Select} from '../../select/index.js';
 
 import type {PinHeadSizeT, NeedleSizeT} from '../types.js';
+
+const labelEnhancerPositions = ['top', 'left', 'bottom', 'right'].map(x => ({
+  id: x,
+  label: x,
+}));
+console.log(labelEnhancerPositions);
 
 export function Scenario() {
   const markers = [];
@@ -23,6 +30,14 @@ export function Scenario() {
   const [label, setLabel] = React.useState('Uber HQ');
   const [startEnhancer, setStartEnhancer] = React.useState(true);
   const [endEnhancer, setEndEnhancer] = React.useState(false);
+
+  const [labelEnhancerText, setLabelEnhancerText] = React.useState('');
+
+  const [labelEnhancerPosition, setLabelEnhancerPosition] = React.useState([
+    labelEnhancerPositions[0],
+  ]);
+
+  console.log(labelEnhancerPosition[0].id);
 
   Object.values(PINHEAD_SIZES_SHAPES).forEach(
     // $FlowFixMe
@@ -54,6 +69,8 @@ export function Scenario() {
                       }
                     : undefined
                 }
+                labelEnhancer={labelEnhancerText}
+                labelEnhancerPosition={labelEnhancerPosition[0].id}
               />
             ),
           });
@@ -64,7 +81,7 @@ export function Scenario() {
 
   return (
     <TileGrid
-      cols={4}
+      cols={6}
       customizerOptions={[
         <Checkbox
           checked={dragging}
@@ -80,6 +97,20 @@ export function Scenario() {
           placeholder="Label"
           clearOnEscape
           key="label"
+        />,
+        <Input
+          value={labelEnhancerText}
+          onChange={e => setLabelEnhancerText(e.target.value)}
+          placeholder="Label enhancer"
+          clearOnEscape
+          key="label-enhancer-text"
+        />,
+        <Select
+          options={labelEnhancerPositions}
+          value={labelEnhancerPosition}
+          placeholder="Select an anchor position"
+          onChange={params => setLabelEnhancerPosition(params.value)}
+          key="anchor-position"
         />,
 
         <Checkbox

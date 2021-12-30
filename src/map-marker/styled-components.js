@@ -197,3 +197,71 @@ export const PinHead = styled<{
     };
   },
 );
+
+export const LabelEnhancerContainer = styled<{
+  $label: string,
+}>('div', ({$label, $theme}) => {
+  return {
+    position: 'relative',
+  };
+});
+
+// const positionLookup = {
+//   top: {
+//     bottom: `calc(100% + 4px)`,
+
+//   },
+//   bottom: {
+//     top: `calc(100% + 4px)`,
+//   },
+//   right: {
+//     left: `calc(100% + 4px)`,
+//   },
+//   left: {
+//     right: `calc(100% + 4px)`,
+//     textAlign: 'right',
+//   },
+// };
+
+const positionLookup = {
+  top: {
+    transform: `translateY(calc(-100% - 4px))`,
+  },
+  bottom: {
+    transform: `translateY(calc(100% + 4px))`,
+  },
+  right: {
+    transform: `translateX(calc(100% + 4px))`,
+  },
+  left: {
+    transform: `translateX(calc(-100% - 4px))`,
+    textAlign: 'right',
+  },
+};
+
+export const StrokedLabel = styled<{
+  $label: string,
+}>('div', ({$label, $theme, $labelEnhancerPosition, $color, $strokeColor}) => {
+  return {
+    position: 'absolute',
+    ...positionLookup[$labelEnhancerPosition],
+    ...$theme.typography.LabelMedium,
+    color: $color,
+    '-webkit-text-stroke-width': '3px',
+    '-webkit-text-stroke-color': $strokeColor,
+    transition: '0.3s all',
+    // border: '2px solid red',
+  };
+});
+
+export const StandardLabel = styled<{
+  $label: string,
+}>('div', ({$label, $theme, $labelEnhancerPosition, $color, $strokeColor}) => {
+  return {
+    position: 'absolute',
+    ...positionLookup[$labelEnhancerPosition],
+    ...$theme.typography.LabelMedium,
+    color: $color,
+    transition: '0.3s all',
+  };
+});

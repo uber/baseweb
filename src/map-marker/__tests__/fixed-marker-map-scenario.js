@@ -50,7 +50,7 @@ export function Scenario() {
     zoom: 14,
   });
 
-  const [pinheadSize, setPinheadSize] = React.useState([pinheadSizes[3]]);
+  const [pinheadSize, setPinheadSize] = React.useState([pinheadSizes[5]]);
   const [needleSize, setNeedleSize] = React.useState([needleSizes[3]]);
 
   const onMarkerDragStart = React.useCallback(index => {
