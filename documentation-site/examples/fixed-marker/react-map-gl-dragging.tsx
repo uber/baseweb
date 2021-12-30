@@ -1,3 +1,4 @@
+// @flow
 import * as React from 'react';
 import {FixedMarker} from 'baseui/map-marker';
 import ReactMapGL, {Marker} from 'react-map-gl';
@@ -15,6 +16,20 @@ type Viewport = typeof initialViewport;
 
 export default function Example() {
   const [viewport, setViewport] = React.useState(initialViewport);
+  const [position, setPosition] = React.useState(uberHq);
+  const [dragging, setDragging] = React.useState(false);
+
+  const onMarkerDragStart = React.useCallback(() => {
+    setDragging(true);
+  }, []);
+
+  const onMarkerDragEnd = React.useCallback(event => {
+    setPosition({
+      latitude: event.lngLat[1],
+      longitude: event.lngLat[0],
+    });
+    setDragging(false);
+  }, []);
 
   return (
     <ReactMapGL
@@ -26,9 +41,15 @@ export default function Example() {
       }
       mapboxApiAccessToken="pk.eyJ1IjoiYmFiYnN1YmVyIiwiYSI6ImNrdThqeGkxZTVwb3kyd3BpZGRlc2NlOXUifQ.qh-EtXm2DJQZVprWUJ-GFQ"
     >
-      <Marker {...uberHq}>
+      <Marker
+        {...position}
+        draggable
+        onDragStart={onMarkerDragStart}
+        onDragEnd={onMarkerDragEnd}
+      >
         <FixedMarker
           label="Uber HQ"
+          dragging={dragging}
           overrides={{
             Root: {
               style: () => ({

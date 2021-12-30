@@ -21,6 +21,8 @@ export const NEEDLE_HEIGHTS = Object.freeze({
 });
 
 export const PINHEAD_SIZES_SHAPES = Object.freeze({
+  xxSmallCircle: 'xx-small-circle',
+  xxSmallSquare: 'xx-small-square',
   xSmallCircle: 'x-small-circle',
   xSmallSquare: 'x-small-square',
   small: 'small',
@@ -32,7 +34,14 @@ export const xSmallPinheadDimension = {
   height: 16,
   icon: 4,
 };
+
+export const xxSmallPinheadDimension = {
+  height: 8,
+  icon: 4,
+};
 export const PINHEAD_DIMENSIONS = Object.freeze({
+  [PINHEAD_SIZES_SHAPES.xxSmallSquare]: xxSmallPinheadDimension,
+  [PINHEAD_SIZES_SHAPES.xxSmallCircle]: xxSmallPinheadDimension,
   [PINHEAD_SIZES_SHAPES.xSmallSquare]: xSmallPinheadDimension,
   [PINHEAD_SIZES_SHAPES.xSmallCircle]: xSmallPinheadDimension,
   [PINHEAD_SIZES_SHAPES.small]: {height: 24, icon: 16},
@@ -62,6 +71,8 @@ export const FLOATING_MARKER_ANCHOR_POSITIONS = Object.freeze({
 export const FLOATING_MARKER_ANCHOR_TYPES = Object.freeze({
   circle: 'circle',
   square: 'square',
+  xxSmallCircle: 'xx-small-circle',
+  xxSmallSquare: 'xx-small-square',
 });
 
 export const dragShadowHeight = 4;

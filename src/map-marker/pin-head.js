@@ -9,6 +9,8 @@ import * as React from 'react';
 import {useStyletron, styled} from '../styles/index.js';
 import {getOverrides} from '../helpers/overrides.js';
 import {
+  InnerXXSmallAnchor as StyledInnerXXSmallAnchor,
+  OuterXXSmallAnchor as StyledOuterXXSmallAnchor,
   InnerXSmallAnchor as StyledInnerXSmallAnchor,
   OuterXSmallAnchor as StyledOuterXSmallAnchor,
   PinHead as StyledPinHead,
@@ -26,6 +28,7 @@ export const _ContentItem = styled<{
   $size: PinHeadSizeT,
 }>('div', ({$theme, $color, $height, $size}) => {
   const match = {
+    [PINHEAD_SIZES_SHAPES.xxSmallSquare]: 'LabelSmall',
     [PINHEAD_SIZES_SHAPES.xSmallCircle]: 'LabelSmall',
     [PINHEAD_SIZES_SHAPES.xSmallSquare]: 'LabelSmall',
     [PINHEAD_SIZES_SHAPES.small]: 'LabelSmall',
@@ -75,6 +78,16 @@ const PinHead = ({
     overrides.PinHeadContent,
     _ContentItem,
   );
+
+  const [InnerXXSmallAnchor, innerXXSmallAnchorProps] = getOverrides(
+    overrides.InnerAnchor,
+    StyledInnerXXSmallAnchor,
+  );
+  const [OuterXXSmallAnchor, outerXXSmallAnchorProps] = getOverrides(
+    overrides.OuterAnchor,
+    StyledOuterXXSmallAnchor,
+  );
+
   const [InnerXSmallAnchor, innerXSmallAnchorProps] = getOverrides(
     overrides.InnerAnchor,
     StyledInnerXSmallAnchor,
@@ -83,6 +96,29 @@ const PinHead = ({
     overrides.OuterAnchor,
     StyledOuterXSmallAnchor,
   );
+
+  if (
+    type === PINHEAD_TYPES.fixed &&
+    (size === PINHEAD_SIZES_SHAPES.xxSmallCircle ||
+      size === PINHEAD_SIZES_SHAPES.xxSmallSquare)
+  ) {
+    const round = size === PINHEAD_SIZES_SHAPES.xxSmallCircle;
+    return (
+      <OuterXXSmallAnchor
+        $round={round}
+        $background={background}
+        $size={height}
+        {...outerXXSmallAnchorProps}
+      >
+        <InnerXXSmallAnchor
+          $color={color}
+          $round={round}
+          $size={icon}
+          {...innerXXSmallAnchorProps}
+        />
+      </OuterXXSmallAnchor>
+    );
+  }
 
   if (
     type === PINHEAD_TYPES.fixed &&

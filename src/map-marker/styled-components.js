@@ -101,6 +101,32 @@ export const FixedMarkerDragContainer = styled<{
   };
 });
 
+export const OuterXXSmallAnchor = styled<{
+  $round: boolean,
+  $background: string,
+  $size: number,
+}>('div', ({$theme, $round, $background, $size}) => ({
+  background: $background,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  height: `${$size}px`,
+  width: `${$size}px`,
+  borderRadius: $round ? '50%' : 0,
+  boxShadow: $theme.lighting.shadow600,
+}));
+
+export const InnerXXSmallAnchor = styled<{
+  $round: boolean,
+  $color: string,
+  $size: number,
+}>('div', ({$round, $color, $size}) => ({
+  background: $color,
+  height: `${$size}px`,
+  width: `${$size}px`,
+  borderRadius: $round ? '50%' : 0,
+}));
+
 export const OuterXSmallAnchor = styled<{
   $round: boolean,
   $background: string,

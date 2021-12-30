@@ -16,6 +16,7 @@ import StartEnhancerLarge from 'examples/fixed-marker/start-enhancer-large.js';
 import Dragging from 'examples/fixed-marker/dragging.js';
 import XSmall from 'examples/fixed-marker/x-small.js';
 import ReactMapGL from 'examples/fixed-marker/react-map-gl.js';
+import ReactMapGLDragging from 'examples/fixed-marker/react-map-gl-dragging.js';
 import {FixedMarkerSizingTable} from '../../components/map-marker-sizing-table.js';
 
 import Yard from '../../components/yard/index';
@@ -44,8 +45,8 @@ For more information on the design principles behind the Base map markers, pleas
 
 ### General
 
-- A fixed marker pinhead may have up to 4 sizes: `xSmall`, `small`, `medium`, and `large`.
-  - The `xSmall` pinhead size cannot contain any content.
+- A fixed marker pinhead may have up to 5 sizes: `xxSmall`, `xSmall`, `small`, `medium`, and `large`.
+  - The `xxSmall` or `xSmall` pinhead sizes cannot contain any content.
 - A fixed marker may have either no needle or a choice of 3 different sizes: `short`, `medium`, or `tall`.
 - A fixed marker without a label can only have one icon. As such, do not use both a `startEnhancer` and an `endEnhancer` if there is no label.
 
@@ -107,6 +108,15 @@ An extra small marker with a tall needle. The X small marker is the same anchor 
 </Example>
 
 A fixed map marker rendered inside of a [react-map-gl](https://visgl.github.io/react-map-gl/) view. In order to use a fixed map marker in react-map-gl, wrap the fixed marker with a [`<Marker/>`](https://visgl.github.io/react-map-gl/docs/api-reference/marker) component. In order to properly center the marker on the intended position, translate the marker using an override on the `Root`.
+
+<Example
+  title="Draggable marker with react-map-gl"
+  path="fixed-marker/react-map-gl-dragging.js"
+>
+  <ReactMapGLDragging />
+</Example>
+
+A draggable fixed map marker rendered inside of a [react-map-gl](https://visgl.github.io/react-map-gl/) view. Everytime the marker is dragged, the `dragging` prop is updated and the marker position is updated.
 
 ## API
 
