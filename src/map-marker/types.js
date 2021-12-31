@@ -62,6 +62,13 @@ export type FixedMarkerOverridesT = {
   DragContainer?: OverrideT,
 };
 
+export type LabelEnhancerT = {
+  labelEnhancerContent?: string,
+  labelEnhancerPosition?: LabelEnhancerPositionT,
+  labelEnhancerColor?: string,
+  labelEnhancerStrokeColor?: string,
+};
+
 export type BadgeEnhancerT = {
   badgeEnhancerSize?: BadgeEnhancerSizeT | null,
   badgeEnhancerColor?: string | null,
@@ -90,6 +97,7 @@ export type FixedMarkerPropsT = {
   dragging?: boolean,
   overrides?: FixedMarkerOverridesT,
   ...BadgeEnhancerT,
+  ...LabelEnhancerT,
 };
 
 export type FloatingMarkerOverridesT = {
@@ -125,6 +133,7 @@ export type PinHeadPropsT = {
   anchorType?: FloatingMarkerAnchorTypeT,
   overrides?: FloatingMarkerOverridesT | FixedMarkerOverridesT,
   ...badgeEnhancerT,
+  ...LabelEnhancerT,
 };
 
 export type DragShadowPropsT = {

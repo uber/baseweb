@@ -26,8 +26,6 @@ import {
   DragShadowContainer as StyledDragShadowContainer,
   // LabelEnhancer as StyledLabelEnhancer,
   LabelEnhancerContainer,
-  StrokedLabel,
-  StandardLabel,
 } from './styled-components.js';
 import type {
   FixedMarkerPropsT,
@@ -77,32 +75,6 @@ const DragShadow = ({
   );
 };
 
-const LabelEnhancer = ({
-  children,
-  labelEnhancerPosition,
-  color,
-  strokeColor,
-}) => {
-  return (
-    <>
-      <StrokedLabel
-        $labelEnhancerPosition={labelEnhancerPosition}
-        $color={color}
-        $strokeColor={strokeColor}
-      >
-        {children}
-      </StrokedLabel>
-      <StandardLabel
-        $labelEnhancerPosition={labelEnhancerPosition}
-        $color={color}
-        $strokeColor={strokeColor}
-      >
-        {children}
-      </StandardLabel>
-    </>
-  );
-};
-
 const FixedMarker = ({
   size = PINHEAD_SIZES_SHAPES.medium,
   needle = NEEDLE_SIZES.medium,
@@ -113,7 +85,7 @@ const FixedMarker = ({
   background,
   dragging = false,
   overrides = {},
-  labelEnhancer = null,
+  labelEnhancerContent = null,
   labelEnhancerPosition = 'bottom',
   labelEnhancerColor,
   labelEnhancerStrokeColor,
@@ -129,8 +101,6 @@ const FixedMarker = ({
 
   color = color || primaryB;
   background = background || backgroundInversePrimary;
-  labelEnhancerColor = labelEnhancerColor || primaryA;
-  labelEnhancerStrokeColor = labelEnhancerStrokeColor || backgroundPrimary;
 
   const doesPinHeadTransformOnDrag = needle !== NEEDLE_SIZES.none;
 
@@ -155,23 +125,6 @@ const FixedMarker = ({
     );
   }
 
-  const pinhead = (
-    <PinHead
-      size={size}
-      label={label}
-      {...(startEnhancer ? {startEnhancer} : {})}
-      {...(endEnhancer ? {endEnhancer} : {})}
-      color={color}
-      background={background}
-      type={PINHEAD_TYPES.fixed}
-      overrides={overrides}
-      badgeEnhancerSize={badgeEnhancerSize}
-      badgeEnhancerColor={badgeEnhancerColor}
-      badgeEnhancerBackground={badgeEnhancerBackground}
-      badgeEnhancerContent={badgeEnhancerContent}
-    />
-  );
-
   return (
     <Root data-baseweb="fixed-map-marker" {...rootProps}>
       <FixedMarkerDragContainer
@@ -179,23 +132,24 @@ const FixedMarker = ({
         $performTranslate={doesPinHeadTransformOnDrag && dragging}
         {...fixedMarkerDragContainerProps}
       >
-        {labelEnhancer ? (
-          <LabelEnhancerContainer
-            $labelEnhancerPosition={labelEnhancerPosition}
-          >
-            {pinhead}
-            <LabelEnhancer
-              labelEnhancerPosition={labelEnhancerPosition}
-              color={labelEnhancerColor}
-              strokeColor={labelEnhancerStrokeColor}
-              // {...labelEnhancerProps}
-            >
-              {labelEnhancer}
-            </LabelEnhancer>
-          </LabelEnhancerContainer>
-        ) : (
-          pinhead
-        )}
+        <PinHead
+          size={size}
+          label={label}
+          {...(startEnhancer ? {startEnhancer} : {})}
+          {...(endEnhancer ? {endEnhancer} : {})}
+          color={color}
+          background={background}
+          type={PINHEAD_TYPES.fixed}
+          overrides={overrides}
+          badgeEnhancerSize={badgeEnhancerSize}
+          badgeEnhancerColor={badgeEnhancerColor}
+          badgeEnhancerBackground={badgeEnhancerBackground}
+          badgeEnhancerContent={badgeEnhancerContent}
+          labelEnhancerContent={labelEnhancerContent}
+          labelEnhancerPosition={labelEnhancerPosition}
+          labelEnhancerColor={labelEnhancerColor}
+          labelEnhancerStrokeColor={labelEnhancerStrokeColor}
+        />
         {renderNeedle && (
           <Needle size={needle} background={background} overrides={overrides} />
         )}

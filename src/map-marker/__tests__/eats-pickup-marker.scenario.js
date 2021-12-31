@@ -54,7 +54,13 @@ export function Scenario() {
                   transform: `translate(-50%, -100%)`,
                 }),
               },
+              BadgeEnhancer: {
+                style: () => ({
+                  boxShadow: theme.lighting.shadow600,
+                }),
+              },
             }}
+            labelEnhancerContent="Uber Eats"
             badgeEnhancerSize={BADGE_ENHANCER_SIZES.medium}
             badgeEnhancerBackground={theme.colors.backgroundPrimary}
             badgeEnhancerContent={({size}) => (
@@ -69,6 +75,7 @@ export function Scenario() {
           <FixedMarker
             size={PINHEAD_SIZES_SHAPES.large}
             needle={NEEDLE_SIZES.short}
+            labelEnhancerContent="Uber Eats"
             startEnhancer={({size}) => <Upload size={size} />}
             overrides={{
               Root: {

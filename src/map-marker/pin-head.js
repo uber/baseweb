@@ -14,8 +14,10 @@ import {
   InnerXSmallAnchor as StyledInnerXSmallAnchor,
   OuterXSmallAnchor as StyledOuterXSmallAnchor,
   PinHead as StyledPinHead,
-  BadgeEnhancer,
+  BadgeEnhancer as StyledBadgeEnhancer,
   RelativeContainer,
+  StrokedLabel,
+  StrokedLabelContainer,
 } from './styled-components.js';
 import {
   PINHEAD_DIMENSIONS,
@@ -53,6 +55,41 @@ export const _ContentItem = styled<{
   };
 });
 
+const LabelEnhancer = ({
+  labelEnhancerContent,
+  labelEnhancerPosition,
+  labelEnhancerColor,
+  labelEnhancerStrokeColor,
+}) => {
+  const [, theme] = useStyletron();
+  const {
+    colors: {backgroundPrimary, primaryA},
+  } = theme;
+
+  labelEnhancerColor = labelEnhancerColor || primaryA;
+  labelEnhancerStrokeColor = labelEnhancerStrokeColor || backgroundPrimary;
+  console.log(labelEnhancerContent);
+  return (
+    <StrokedLabelContainer $position={labelEnhancerPosition}>
+      <StrokedLabel
+        $color={labelEnhancerColor}
+        $strokeColor={labelEnhancerStrokeColor}
+        $stroked={false}
+        $position={labelEnhancerPosition}
+      >
+        {labelEnhancerContent}
+      </StrokedLabel>
+      {/* <StrokedLabel
+          $color={labelEnhancerColor}
+          $strokeColor={labelEnhancerStrokeColor}
+          $stroked={false}
+        >
+          {labelEnhancerContent}
+        </StrokedLabel> */}
+    </StrokedLabelContainer>
+  );
+};
+
 const Badge = ({
   pinHeadSize,
   markerType,
@@ -60,6 +97,7 @@ const Badge = ({
   badgeEnhancerColor = null,
   badgeEnhancerBackground = null,
   badgeEnhancerContent = null,
+  overrides = {},
 }: BadgeComponentT) => {
   const [, theme] = useStyletron();
   const {
@@ -114,12 +152,18 @@ const Badge = ({
     console.log(<BadgeEnhancerContent />);
   }
 
+  const [BadgeEnhancer, badgeEnhancerProps] = getOverrides(
+    overrides.BadgeEnhancer,
+    StyledBadgeEnhancer,
+  );
+
   return (
     <BadgeEnhancer
       $size={badgeEnhancerSize}
       $position={position}
       $color={badgeEnhancerColor}
       $background={badgeEnhancerBackground}
+      {...badgeEnhancerProps}
     >
       {badgeEnhancerSize !== BADGE_ENHANCER_SIZES.xSmall && (
         <BadgeEnhancerContent
@@ -140,6 +184,10 @@ const PinHead = ({
   type = PINHEAD_TYPES.fixed,
   anchorType,
   overrides = {},
+  labelEnhancerContent = null,
+  labelEnhancerPosition = 'bottom',
+  labelEnhancerColor,
+  labelEnhancerStrokeColor,
   badgeEnhancerSize = null,
   badgeEnhancerColor = null,
   badgeEnhancerBackground = null,
@@ -185,6 +233,17 @@ const PinHead = ({
     StyledOuterXSmallAnchor,
   );
 
+  const badge = (
+    <Badge
+      markerType={type}
+      pinHeadSize={size}
+      badgeEnhancerSize={badgeEnhancerSize}
+      badgeEnhancerColor={badgeEnhancerColor}
+      badgeEnhancerBackground={badgeEnhancerBackground}
+      badgeEnhancerContent={badgeEnhancerContent}
+      overrides={overrides}
+    />
+  );
   if (
     type === PINHEAD_TYPES.fixed &&
     (size === PINHEAD_SIZES_SHAPES.xxSmallCircle ||
@@ -216,14 +275,7 @@ const PinHead = ({
     const round = size === PINHEAD_SIZES_SHAPES.xSmallCircle;
     return (
       <RelativeContainer>
-        <Badge
-          markerType={type}
-          pinHeadSize={size}
-          badgeEnhancerSize={badgeEnhancerSize}
-          badgeEnhancerColor={badgeEnhancerColor}
-          badgeEnhancerBackground={badgeEnhancerBackground}
-          badgeEnhancerContent={badgeEnhancerContent}
-        />
+        {badge}
         <OuterXSmallAnchor
           $round={round}
           $background={background}
@@ -243,14 +295,13 @@ const PinHead = ({
   // console.log(badgeEnhancer);
   return (
     <RelativeContainer>
-      <Badge
-        markerType={type}
-        pinHeadSize={size}
-        badgeEnhancerSize={badgeEnhancerSize}
-        badgeEnhancerColor={badgeEnhancerColor}
-        badgeEnhancerBackground={badgeEnhancerBackground}
-        badgeEnhancerContent={badgeEnhancerContent}
+      <LabelEnhancer
+        labelEnhancerContent={labelEnhancerContent}
+        labelEnhancerPosition={labelEnhancerPosition}
+        labelEnhancerColor={labelEnhancerColor}
+        labelEnhancerStrokeColor={labelEnhancerStrokeColor}
       />
+      {badge}
       <PinHead
         $background={background}
         $height={height}

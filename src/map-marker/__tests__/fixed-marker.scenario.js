@@ -39,14 +39,14 @@ export function Scenario() {
   const [startEnhancer, setStartEnhancer] = React.useState(true);
   const [endEnhancer, setEndEnhancer] = React.useState(false);
 
-  const [labelEnhancerText, setLabelEnhancerText] = React.useState('');
+  const [labelEnhancerText, setLabelEnhancerText] = React.useState('Uber Eats');
 
   const [labelEnhancerPosition, setLabelEnhancerPosition] = React.useState([
     labelEnhancerPositions[0],
   ]);
 
   const [badgeEnhancerSize, setBadgeEnhancerSize] = React.useState([
-    badgeEnhancerSizes[2],
+    badgeEnhancerSizes[0],
   ]);
 
   Object.values(PINHEAD_SIZES_SHAPES).forEach(
@@ -78,7 +78,7 @@ export function Scenario() {
                       }
                     : undefined
                 }
-                labelEnhancer={labelEnhancerText}
+                labelEnhancerContent={labelEnhancerText}
                 labelEnhancerPosition={labelEnhancerPosition[0].id}
                 badgeEnhancerSize={badgeEnhancerSize[0].id}
                 badgeEnhancerColor={null}
