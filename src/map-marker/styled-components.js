@@ -7,11 +7,17 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import {styled} from '../styles/index.js';
 import {
+  BADGE_ENHANCER_STYLES,
   FLOATING_MARKER_ANCHOR_POSITIONS,
   xSmallPinheadDimension,
 } from './constants.js';
 
-import type {AnchorPositionsT} from './types.js';
+import type {
+  AnchorPositionsT,
+  LabelEnhancerPositionT,
+  BadgeEnhancerSizeT,
+  BadgePositionT,
+} from './types.js';
 
 export const getAnchorTransform = (
   anchor: AnchorPositionsT,
@@ -206,23 +212,6 @@ export const LabelEnhancerContainer = styled<{
   };
 });
 
-// const positionLookup = {
-//   top: {
-//     bottom: `calc(100% + 4px)`,
-
-//   },
-//   bottom: {
-//     top: `calc(100% + 4px)`,
-//   },
-//   right: {
-//     left: `calc(100% + 4px)`,
-//   },
-//   left: {
-//     right: `calc(100% + 4px)`,
-//     textAlign: 'right',
-//   },
-// };
-
 const positionLookup = {
   top: {
     transform: `translateY(calc(-100% - 4px))`,
@@ -241,7 +230,10 @@ const positionLookup = {
 
 export const StrokedLabel = styled<{
   $label: string,
-}>('div', ({$label, $theme, $labelEnhancerPosition, $color, $strokeColor}) => {
+  $labelEnhancerPosition: LabelEnhancerPositionT,
+  $color: string,
+  $strokeColor: string,
+}>('div', ({$theme, $label, $labelEnhancerPosition, $color, $strokeColor}) => {
   return {
     position: 'absolute',
     ...positionLookup[$labelEnhancerPosition],
@@ -249,19 +241,46 @@ export const StrokedLabel = styled<{
     color: $color,
     '-webkit-text-stroke-width': '3px',
     '-webkit-text-stroke-color': $strokeColor,
-    transition: '0.3s all',
-    // border: '2px solid red',
+    transition: `${$theme.animation.timing300} ${$theme.animation.easeOutCurve} all`,
   };
 });
 
 export const StandardLabel = styled<{
   $label: string,
-}>('div', ({$label, $theme, $labelEnhancerPosition, $color, $strokeColor}) => {
+  $labelEnhancerPosition: LabelEnhancerPositionT,
+  $color: string,
+  $strokeColor: string,
+}>('div', ({$theme, $label, $labelEnhancerPosition, $color, $strokeColor}) => {
   return {
     position: 'absolute',
     ...positionLookup[$labelEnhancerPosition],
     ...$theme.typography.LabelMedium,
     color: $color,
-    transition: '0.3s all',
+    transition: `${$theme.animation.timing300} ${$theme.animation.easeOutCurve} all`,
+  };
+});
+
+export const BadgeEnhancer = styled<{
+  $badgeSize: BadgeEnhancerSizeT,
+  $badgePosition: BadgePositionT,
+  $background: string,
+  $color: string,
+}>('div', ({$theme, $badgeSize, $badgePosition, $background, $color}) => {
+  const {x, y} = $badgePosition;
+  return {
+    position: 'absolute',
+    ...$theme.typography.LabelSmall,
+    background: $background,
+    color: $color,
+    boxSizing: 'border-box',
+    right: 0,
+    transform: `translate(calc(100% + ${x}px), ${y}px)`,
+    ...BADGE_ENHANCER_STYLES[$badgeSize],
+  };
+});
+
+export const RelativeContainer = styled<{}>('div', () => {
+  return {
+    position: 'relative',
   };
 });

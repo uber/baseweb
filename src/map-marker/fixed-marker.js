@@ -77,22 +77,6 @@ const DragShadow = ({
   );
 };
 
-// const StrokedLabelEnhancer = ({ children, stroke }) => {
-//   return (
-//      <>
-//         <div
-//            style={{
-//               position: 'absolute',
-//               WebkitTextStroke: stroke,
-//            }}
-//         >
-//            {children}
-//         </div>
-//         <div style={{ position: 'absolute' }}>{children}</div>
-//      </>
-//   );
-// };
-
 const LabelEnhancer = ({
   children,
   labelEnhancerPosition,
@@ -133,6 +117,7 @@ const FixedMarker = ({
   labelEnhancerPosition = 'bottom',
   labelEnhancerColor,
   labelEnhancerStrokeColor,
+  badgeEnhancer = null,
 }: FixedMarkerPropsT) => {
   const [, theme] = useStyletron();
   const {
@@ -157,6 +142,16 @@ const FixedMarker = ({
   //   StyledLabelEnhancer,
   // );
 
+  const renderNeedle =
+    needle !== NEEDLE_SIZES.none &&
+    size !== PINHEAD_SIZES_SHAPES.xxSmallCircle &&
+    size !== PINHEAD_SIZES_SHAPES.xxSmallSquare;
+  if (!renderNeedle) {
+    console.warn(
+      `Needles cannot be rendered with ${PINHEAD_SIZES_SHAPES.xxSmallCircle} or ${PINHEAD_SIZES_SHAPES.xxSmallSquare} pin heads`,
+    );
+  }
+
   const pinhead = (
     <PinHead
       size={size}
@@ -167,6 +162,7 @@ const FixedMarker = ({
       background={background}
       type={PINHEAD_TYPES.fixed}
       overrides={overrides}
+      badgeEnhancer={badgeEnhancer}
     />
   );
 
@@ -194,7 +190,9 @@ const FixedMarker = ({
         ) : (
           pinhead
         )}
-        <Needle size={needle} background={background} overrides={overrides} />
+        {renderNeedle && (
+          <Needle size={needle} background={background} overrides={overrides} />
+        )}
       </FixedMarkerDragContainer>
       {doesPinHeadTransformOnDrag && (
         <DragShadow

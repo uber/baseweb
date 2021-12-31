@@ -13,6 +13,8 @@ import {
   FLOATING_MARKER_SIZES,
   PINHEAD_TYPES,
   FLOATING_MARKER_ANCHOR_TYPES,
+  BADGE_ENHANCER_SIZES,
+  LABEL_ENHANCER_POSITIONS,
 } from './constants.js';
 import type {OverrideT} from '../helpers/overrides.js';
 
@@ -25,6 +27,10 @@ export type NeedleSizeT = $Values<typeof NEEDLE_SIZES>;
 export type PinHeadSizeT = $Values<typeof PINHEAD_SIZES_SHAPES>;
 
 export type FloatingMarkerSizeT = $Values<typeof FLOATING_MARKER_SIZES>;
+
+export type BadgeEnhancerSizeT = $Values<typeof BADGE_ENHANCER_SIZES>;
+
+export type LabelEnhancerPositionT = $Values<typeof LABEL_ENHANCER_POSITIONS>;
 
 /* eslint-disable flowtype/generic-spacing*/
 export type FloatingMarkerAnchorTypeT = $Values<
@@ -56,6 +62,23 @@ export type FixedMarkerOverridesT = {
   DragContainer?: OverrideT,
 };
 
+export type BadgeEnhancerT = {
+  size: BadgeEnhancerSizeT,
+  color?: string,
+  background?: string,
+  content?: React.AbstractComponent<{|size: number|}> | string,
+};
+
+export type BadgeComponentT = {
+  ...BadgeEnhancerSizeT,
+  pinHeadSize: PinHeadSizeT,
+  markerType: PinHeadT,
+};
+export type BadgePositionT = null | {
+  x: number,
+  y: number,
+};
+
 export type FixedMarkerPropsT = {
   size?: PinHeadSizeT,
   needle?: NeedleSizeT,
@@ -66,6 +89,7 @@ export type FixedMarkerPropsT = {
   background?: string,
   dragging?: boolean,
   overrides?: FixedMarkerOverridesT,
+  badgeEnhancer?: BadgeEnhancerT,
 };
 
 export type FloatingMarkerOverridesT = {
@@ -100,6 +124,7 @@ export type PinHeadPropsT = {
   type?: PinHeadT,
   anchorType?: FloatingMarkerAnchorTypeT,
   overrides?: FloatingMarkerOverridesT | FixedMarkerOverridesT,
+  badgeEnhancer?: BadgeEnhancerT,
 };
 
 export type DragShadowPropsT = {

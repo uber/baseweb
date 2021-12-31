@@ -24,7 +24,7 @@ const TileGrid = ({children, customizerOptions, cols}: TileGridPropsT) => {
   } = theme;
 
   return (
-    <Block backgroundColor="lightgray">
+    <Block>
       {customizerOptions && (
         <Block
           display="grid"

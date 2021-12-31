@@ -43,7 +43,7 @@ export default function Example() {
         onDragEnd={onMarkerDragEnd}
       >
         <FixedMarker
-          label="Uber HQ"
+          label="Drag me!"
           dragging={dragging}
           overrides={{
             Root: {

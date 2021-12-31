@@ -9,7 +9,11 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {FixedMarker} from '../index.js';
 import {Checkbox, LABEL_PLACEMENT} from '../../checkbox/index.js';
-import {PINHEAD_SIZES_SHAPES, NEEDLE_SIZES} from '../constants.js';
+import {
+  PINHEAD_SIZES_SHAPES,
+  NEEDLE_SIZES,
+  BADGE_ENHANCER_SIZES,
+} from '../constants.js';
 import TileGrid from './tile-grid.js';
 
 import {Input} from '../../input/index.js';
@@ -50,9 +54,8 @@ export function Scenario() {
     zoom: 14,
   });
 
-  const [pinheadSize, setPinheadSize] = React.useState([pinheadSizes[5]]);
+  const [pinheadSize, setPinheadSize] = React.useState([pinheadSizes[6]]);
   const [needleSize, setNeedleSize] = React.useState([needleSizes[3]]);
-
   const onMarkerDragStart = React.useCallback(index => {
     setLocations(l => {
       const copy = JSON.parse(JSON.stringify(l));
@@ -149,7 +152,6 @@ export function Scenario() {
             key={i}
           >
             <FixedMarker
-              title="map marker"
               size={pinheadSize[0].id}
               needle={needleSize[0].id}
               key={i}
@@ -175,6 +177,12 @@ export function Scenario() {
                     transform: `translate(-50%, -100%)`,
                   }),
                 },
+              }}
+              badgeEnhancer={{
+                size: BADGE_ENHANCER_SIZES.xSmall,
+                color: 'white',
+                background: 'green',
+                content: 'hello',
               }}
             />
           </Marker>

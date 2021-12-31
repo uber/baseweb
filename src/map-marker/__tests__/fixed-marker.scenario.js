@@ -9,7 +9,11 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {FixedMarker} from '../index.js';
 import {Checkbox, LABEL_PLACEMENT} from '../../checkbox/index.js';
-import {PINHEAD_SIZES_SHAPES, NEEDLE_SIZES} from '../constants.js';
+import {
+  PINHEAD_SIZES_SHAPES,
+  NEEDLE_SIZES,
+  BADGE_ENHANCER_SIZES,
+} from '../constants.js';
 import TileGrid from './tile-grid.js';
 import {Input} from '../../input/index.js';
 import Upload from '../../icon/upload.js';
@@ -22,7 +26,11 @@ const labelEnhancerPositions = ['top', 'left', 'bottom', 'right'].map(x => ({
   id: x,
   label: x,
 }));
-console.log(labelEnhancerPositions);
+
+const badgeEnhancerSizes = Object.values(BADGE_ENHANCER_SIZES).map(x => ({
+  label: x,
+  id: x,
+}));
 
 export function Scenario() {
   const markers = [];
@@ -37,7 +45,9 @@ export function Scenario() {
     labelEnhancerPositions[0],
   ]);
 
-  console.log(labelEnhancerPosition[0].id);
+  const [badgeEnhancerSize, setBadgeEnhancerSize] = React.useState([
+    badgeEnhancerSizes[2],
+  ]);
 
   Object.values(PINHEAD_SIZES_SHAPES).forEach(
     // $FlowFixMe
@@ -49,7 +59,6 @@ export function Scenario() {
             id: `fixed / ${pinheadSize} / ${needleSize}`,
             content: (
               <FixedMarker
-                title="map marker"
                 size={pinheadSize}
                 needle={needleSize}
                 key={i}
@@ -71,6 +80,12 @@ export function Scenario() {
                 }
                 labelEnhancer={labelEnhancerText}
                 labelEnhancerPosition={labelEnhancerPosition[0].id}
+                badgeEnhancer={{
+                  size: badgeEnhancerSize[0].id,
+                  // color: 'white',
+                  // background: 'green',
+                  content: '•',
+                }}
               />
             ),
           });
@@ -129,6 +144,13 @@ export function Scenario() {
         >
           End enhancer
         </Checkbox>,
+        <Select
+          options={badgeEnhancerSizes}
+          value={badgeEnhancerSize}
+          placeholder="Select an anchor position"
+          onChange={params => setBadgeEnhancerSize(params.value)}
+          key="badge-enhancer-size"
+        />,
       ]}
     >
       {markers}
