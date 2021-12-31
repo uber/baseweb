@@ -14,6 +14,7 @@ export {
   FLOATING_MARKER_ANCHOR_TYPES,
   NEEDLE_SIZES,
   PINHEAD_SIZES_SHAPES,
+  BADGE_ENHANCER_SIZES,
 } from './constants.js';
 
 export type * from './types.js';

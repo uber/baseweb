@@ -80,12 +80,15 @@ export function Scenario() {
                 }
                 labelEnhancer={labelEnhancerText}
                 labelEnhancerPosition={labelEnhancerPosition[0].id}
-                badgeEnhancer={{
-                  size: badgeEnhancerSize[0].id,
-                  // color: 'white',
-                  // background: 'green',
-                  content: '•',
-                }}
+                badgeEnhancerSize={badgeEnhancerSize[0].id}
+                badgeEnhancerColor={null}
+                badgeEnhancerBackground={null}
+                badgeEnhancerContent={({size}) => (
+                  <>
+                    <Search size={size} />
+                    Search
+                  </>
+                )}
               />
             ),
           });

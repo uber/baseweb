@@ -88,6 +88,7 @@ export const LABEL_ENHANCER_POSITIONS = {
 };
 
 export const BADGE_ENHANCER_SIZES = Object.freeze({
+  none: 'none',
   xSmall: 'x-small',
   small: 'small',
   medium: 'medium',
@@ -168,4 +169,10 @@ export const BADGE_ENHANCER_STYLES = {
     alignItems: 'center',
     boxSizing: 'border-box',
   },
+};
+
+export const BADGE_ENHANCER_CONTENT_SIZE = {
+  [BADGE_ENHANCER_SIZES.xSmall]: null,
+  [BADGE_ENHANCER_SIZES.small]: 10,
+  [BADGE_ENHANCER_SIZES.medium]: 12,
 };

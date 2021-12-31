@@ -229,11 +229,10 @@ const positionLookup = {
 };
 
 export const StrokedLabel = styled<{
-  $label: string,
   $labelEnhancerPosition: LabelEnhancerPositionT,
   $color: string,
   $strokeColor: string,
-}>('div', ({$theme, $label, $labelEnhancerPosition, $color, $strokeColor}) => {
+}>('div', ({$theme, $labelEnhancerPosition, $color, $strokeColor}) => {
   return {
     position: 'absolute',
     ...positionLookup[$labelEnhancerPosition],
@@ -246,11 +245,10 @@ export const StrokedLabel = styled<{
 });
 
 export const StandardLabel = styled<{
-  $label: string,
   $labelEnhancerPosition: LabelEnhancerPositionT,
   $color: string,
   $strokeColor: string,
-}>('div', ({$theme, $label, $labelEnhancerPosition, $color, $strokeColor}) => {
+}>('div', ({$theme, $labelEnhancerPosition, $color, $strokeColor}) => {
   return {
     position: 'absolute',
     ...positionLookup[$labelEnhancerPosition],
@@ -261,12 +259,12 @@ export const StandardLabel = styled<{
 });
 
 export const BadgeEnhancer = styled<{
-  $badgeSize: BadgeEnhancerSizeT,
-  $badgePosition: BadgePositionT,
+  $size: BadgeEnhancerSizeT,
+  $psition: BadgePositionT,
   $background: string,
   $color: string,
-}>('div', ({$theme, $badgeSize, $badgePosition, $background, $color}) => {
-  const {x, y} = $badgePosition;
+}>('div', ({$theme, $size, $position, $background, $color}) => {
+  const {x, y} = $position;
   return {
     position: 'absolute',
     ...$theme.typography.LabelSmall,
@@ -275,7 +273,8 @@ export const BadgeEnhancer = styled<{
     boxSizing: 'border-box',
     right: 0,
     transform: `translate(calc(100% + ${x}px), ${y}px)`,
-    ...BADGE_ENHANCER_STYLES[$badgeSize],
+    ...BADGE_ENHANCER_STYLES[$size],
+    transition: `${$theme.animation.timing300} ${$theme.animation.easeOutCurve} all`,
   };
 });
 

@@ -117,7 +117,10 @@ const FixedMarker = ({
   labelEnhancerPosition = 'bottom',
   labelEnhancerColor,
   labelEnhancerStrokeColor,
-  badgeEnhancer = null,
+  badgeEnhancerSize = null,
+  badgeEnhancerColor = null,
+  badgeEnhancerBackground = null,
+  badgeEnhancerContent = null,
 }: FixedMarkerPropsT) => {
   const [, theme] = useStyletron();
   const {
@@ -162,7 +165,10 @@ const FixedMarker = ({
       background={background}
       type={PINHEAD_TYPES.fixed}
       overrides={overrides}
-      badgeEnhancer={badgeEnhancer}
+      badgeEnhancerSize={badgeEnhancerSize}
+      badgeEnhancerColor={badgeEnhancerColor}
+      badgeEnhancerBackground={badgeEnhancerBackground}
+      badgeEnhancerContent={badgeEnhancerContent}
     />
   );
 

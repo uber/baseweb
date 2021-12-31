@@ -23,6 +23,7 @@ import {
   PINHEAD_SIZES_SHAPES,
   BADGE_ENHANCER_SIZES,
   BADGE_ENHANCER_POSITIONS,
+  BADGE_ENHANCER_CONTENT_SIZE,
 } from './constants.js';
 import type {PinHeadPropsT, PinHeadSizeT, BadgeComponentT} from './types.js';
 
@@ -55,19 +56,28 @@ export const _ContentItem = styled<{
 const Badge = ({
   pinHeadSize,
   markerType,
-  size: badgeSize,
-  content,
-  background = null,
-  color = null,
+  badgeEnhancerSize = null,
+  badgeEnhancerColor = null,
+  badgeEnhancerBackground = null,
+  badgeEnhancerContent = null,
 }: BadgeComponentT) => {
   const [, theme] = useStyletron();
   const {
-    colors: {backgroundAccent, primaryA},
+    colors: {backgroundAccent, primaryB},
   } = theme;
 
-  if (badgeSize !== BADGE_ENHANCER_SIZES.xSmall && !content) {
+  if (
+    badgeEnhancerSize === null ||
+    badgeEnhancerSize == BADGE_ENHANCER_SIZES.none
+  ) {
+    return null;
+  }
+  if (
+    badgeEnhancerSize !== BADGE_ENHANCER_SIZES.xSmall &&
+    !badgeEnhancerContent
+  ) {
     console.warn(
-      `Badges (except for size ${badgeSize !==
+      `Badges (except for size ${badgeEnhancerSize !==
         BADGE_ENHANCER_SIZES.xSmall} must contain content`,
     );
     return null;
@@ -76,33 +86,46 @@ const Badge = ({
     console.warn(`Badges can only be rendered on fixed markers`);
     return null;
   }
-  const position = BADGE_ENHANCER_POSITIONS[pinHeadSize][badgeSize];
+  const position = BADGE_ENHANCER_POSITIONS[pinHeadSize][badgeEnhancerSize];
   if (!position) {
     console.warn(
-      `Badge size ${badgeSize} cannot be rendered with pinhead size ${pinHeadSize}`,
+      `Badge size ${badgeEnhancerSize} cannot be rendered with pinhead size ${pinHeadSize}`,
     );
     return null;
   }
   //TODO: force circle on large badges with only 1 item / content
 
   //TODO: set rules here that badge enhancer small must only include 1 icon and be size 10
-  if (badgeSize === BADGE_ENHANCER_SIZES.small && content.length > 1) {
-    console.warn(
-      `Badge size ${BADGE_ENHANCER_SIZES.small} can only render an icon`,
-    );
-    return null;
+  // if (
+  //   badgeEnhancerSize === BADGE_ENHANCER_SIZES.small &&
+  //   badgeEnhancerContent.length > 1
+  // ) {
+  //   console.warn(
+  //     `Badge size ${BADGE_ENHANCER_SIZES.small} can only render an icon`,
+  //   );
+  //   return null;
+  // }
+
+  badgeEnhancerBackground = badgeEnhancerBackground || backgroundAccent;
+  badgeEnhancerColor = badgeEnhancerColor || primaryB;
+  const BadgeEnhancerContent = badgeEnhancerContent;
+
+  if (badgeEnhancerSize === BADGE_ENHANCER_SIZES.medium) {
+    console.log(<BadgeEnhancerContent />);
   }
 
-  background = background || backgroundAccent;
-  color = color || primaryA;
   return (
     <BadgeEnhancer
-      $badgeSize={badgeSize}
-      $badgePosition={position}
-      $color={color}
-      $background={background}
+      $size={badgeEnhancerSize}
+      $position={position}
+      $color={badgeEnhancerColor}
+      $background={badgeEnhancerBackground}
     >
-      {badgeSize !== BADGE_ENHANCER_SIZES.xSmall && content}
+      {badgeEnhancerSize !== BADGE_ENHANCER_SIZES.xSmall && (
+        <BadgeEnhancerContent
+          size={BADGE_ENHANCER_CONTENT_SIZE[badgeEnhancerSize]}
+        />
+      )}
     </BadgeEnhancer>
   );
 };
@@ -117,7 +140,10 @@ const PinHead = ({
   type = PINHEAD_TYPES.fixed,
   anchorType,
   overrides = {},
-  badgeEnhancer,
+  badgeEnhancerSize = null,
+  badgeEnhancerColor = null,
+  badgeEnhancerBackground = null,
+  badgeEnhancerContent = null,
 }: PinHeadPropsT) => {
   const [, theme] = useStyletron();
   const {
@@ -190,7 +216,14 @@ const PinHead = ({
     const round = size === PINHEAD_SIZES_SHAPES.xSmallCircle;
     return (
       <RelativeContainer>
-        <Badge markerType={type} pinHeadSize={size} {...{...badgeEnhancer}} />
+        <Badge
+          markerType={type}
+          pinHeadSize={size}
+          badgeEnhancerSize={badgeEnhancerSize}
+          badgeEnhancerColor={badgeEnhancerColor}
+          badgeEnhancerBackground={badgeEnhancerBackground}
+          badgeEnhancerContent={badgeEnhancerContent}
+        />
         <OuterXSmallAnchor
           $round={round}
           $background={background}
@@ -210,7 +243,14 @@ const PinHead = ({
   // console.log(badgeEnhancer);
   return (
     <RelativeContainer>
-      <Badge markerType={type} pinHeadSize={size} {...{...badgeEnhancer}} />
+      <Badge
+        markerType={type}
+        pinHeadSize={size}
+        badgeEnhancerSize={badgeEnhancerSize}
+        badgeEnhancerColor={badgeEnhancerColor}
+        badgeEnhancerBackground={badgeEnhancerBackground}
+        badgeEnhancerContent={badgeEnhancerContent}
+      />
       <PinHead
         $background={background}
         $height={height}

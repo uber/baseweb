@@ -63,14 +63,14 @@ export type FixedMarkerOverridesT = {
 };
 
 export type BadgeEnhancerT = {
-  size: BadgeEnhancerSizeT,
-  color?: string,
-  background?: string,
-  content?: React.AbstractComponent<{|size: number|}> | string,
+  badgeEnhancerSize?: BadgeEnhancerSizeT | null,
+  badgeEnhancerColor?: string | null,
+  badgeEnhancerBackground?: string | null,
+  badgeEnhancerContent?: React.AbstractComponent<{|size: number|}>,
 };
 
 export type BadgeComponentT = {
-  ...BadgeEnhancerSizeT,
+  ...BadgeEnhancerT,
   pinHeadSize: PinHeadSizeT,
   markerType: PinHeadT,
 };
@@ -89,7 +89,7 @@ export type FixedMarkerPropsT = {
   background?: string,
   dragging?: boolean,
   overrides?: FixedMarkerOverridesT,
-  badgeEnhancer?: BadgeEnhancerT,
+  ...BadgeEnhancerT,
 };
 
 export type FloatingMarkerOverridesT = {
@@ -124,7 +124,7 @@ export type PinHeadPropsT = {
   type?: PinHeadT,
   anchorType?: FloatingMarkerAnchorTypeT,
   overrides?: FloatingMarkerOverridesT | FixedMarkerOverridesT,
-  badgeEnhancer?: BadgeEnhancerT,
+  ...badgeEnhancerT,
 };
 
 export type DragShadowPropsT = {

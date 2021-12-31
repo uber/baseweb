@@ -2,9 +2,11 @@ import {
   FixedMarker,
   PINHEAD_SIZES_SHAPES,
   NEEDLE_SIZES,
+  BADGE_ENHANCER_SIZES,
 } from 'baseui/map-marker';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
+import Check from 'baseui/icon/check';
 
 const fixedMarkerPropsType = require('!!extract-react-types-loader!../../../../src/map-marker/fixed-marker.js');
 
@@ -15,7 +17,6 @@ export const fixedMarkerProps = {
     value: 'Uber HQ',
     type: PropTypes.String,
     description: 'Text to display inside of the marker.',
-    stateful: true,
   },
   dragging: {
     value: false,
@@ -76,6 +77,42 @@ export const fixedMarkerProps = {
     type: PropTypes.String,
     description: 'Color to render for content.',
   },
+  badgeEnhancerSize: {
+    value: 'BADGE_ENHANCER_SIZES.none',
+    enumName: 'BADGE_ENHANCER_SIZES',
+    defaultValue: 'BADGE_ENHANCER_SIZES.none',
+    options: BADGE_ENHANCER_SIZES,
+    type: PropTypes.Enum,
+    description: 'Size of the badge enhancer',
+    imports: {
+      'baseui/map-marker': {
+        named: ['BADGE_ENHANCER_SIZES'],
+      },
+    },
+  },
+  badgeEnhancerColor: {
+    value: undefined,
+    placeholder: '#fff',
+    type: PropTypes.String,
+    description: 'Color to render for badge.',
+  },
+  badgeEnhancerBackground: {
+    value: undefined,
+    placeholder: '#276EF1',
+    type: PropTypes.String,
+    description: 'Background color to render for badge.',
+  },
+  badgeEnhancerContent: {
+    value: '({size}) => <Check size={size}/>',
+    placeholder: '({size}) => <Check size={size}/>',
+    type: PropTypes.Function,
+    description: 'Content to render inside of the badge enhancer',
+    imports: {
+      'baseui/icon': {
+        named: ['Check'],
+      },
+    },
+  },
 };
 
 const FixedMarkerConfig: TConfig = {
@@ -84,11 +121,16 @@ const FixedMarkerConfig: TConfig = {
     'baseui/map-marker': {
       named: ['FixedMarker'],
     },
+    'baseui/icon': {
+      named: ['Check'],
+    },
   },
   scope: {
     FixedMarker,
     NEEDLE_SIZES,
     PINHEAD_SIZES_SHAPES,
+    BADGE_ENHANCER_SIZES,
+    Check,
   },
   theme,
   props: {
