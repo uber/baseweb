@@ -33,6 +33,18 @@ const deprecatedTypographyComponents = [
   {oldName: 'Caption2', newName: 'LabelXSmall'},
 ];
 
+const getOverrideIfExists = (name, node) => {
+  // Verify that an object is passed to overrides.
+  if (node.parent.value.expression.type === 'ObjectExpression') {
+    // Find property name
+    return node.parent.value.expression.properties.find(
+      property =>
+        property.key && property.key.name && property.key.name === name,
+    );
+  }
+  return null;
+};
+
 module.exports = {
   meta: {
     fixable: 'code',
@@ -198,6 +210,21 @@ module.exports = {
           return;
         }
 
+        // successValue
+        // Ex: <Checkbox successValue={1} />
+        // Replacement: None
+        if (
+          importState.ProgressBar &&
+          isProp('successValue', importState.ProgressBar)
+        ) {
+          // The prop will be completely removed.
+          context.report({
+            node: node.parent.value.expression.property,
+            messageId: MESSAGES.progressBarSuccessValue.id,
+          });
+          return;
+        }
+
         // ======================
         // Deprecated Prop Values
         // ======================
@@ -293,23 +320,56 @@ module.exports = {
         // Ex: <Modal overrides={{ Backdrop: {}}} />
         // Replacement: DialogContainer
         if (importState.Modal && isProp('overrides', importState.Modal)) {
-          // Verify that an object is passed to overrides.
-          if (node.parent.value.expression.type === 'ObjectExpression') {
-            // Find object property with "Backdrop" as key.
-            const property = node.parent.value.expression.properties.find(
-              property =>
-                property.key &&
-                property.key.name &&
-                property.key.name === 'Backdrop',
-            );
+          const property = getOverrideIfExists('Backdrop', node);
+          if (property) {
+            context.report({
+              node: property,
+              messageId: MESSAGES.modalBackdrop.id,
+            });
+            return;
+          }
+        }
+
+        // Select
+        // Ex: <Select overrides={{ SearchIcon: {}}} />
+        // Replacement: SearchIconContainer
+        if (importState.Select && isProp('overrides', importState.Select)) {
+          const property = getOverrideIfExists('SearchIcon', node);
+          if (property) {
+            context.report({
+              node: property,
+              messageId: MESSAGES.selectSearchIcon.id,
+            });
+            return;
+          }
+        }
+
+        // RadioGroup - All overrides are deprecated except for RadioGroupRoot
+        // Ex: <RadioGroup overrides={{ RadioMarkInner: {}}} />
+        // Ex: <RadioGroup overrides={{ Description: {}}} />
+        // Ex: <RadioGroup overrides={{ Root: {}}} />
+        // Replacement: None
+        if (
+          importState.RadioGroup &&
+          isProp('overrides', importState.RadioGroup)
+        ) {
+          const properties = [
+            'Root',
+            'Input',
+            'Label',
+            'Description',
+            'RadioMarkInner',
+            'RadioMarkOuter',
+          ];
+          properties.map(val => {
+            const property = getOverrideIfExists(val, node);
             if (property) {
               context.report({
                 node: property,
-                messageId: MESSAGES.modalBackdrop.id,
+                messageId: MESSAGES.radioGroupOverrides.id,
               });
-              return;
             }
-          }
+          });
         }
 
         // =====================
