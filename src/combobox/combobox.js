@@ -258,6 +258,10 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
       {...rootProps}
     >
       <OverriddenPopover
+        // React-focus-lock used in Popover used to skip non-tabbable elements (`tabIndex=-1`) elements for focus, we had ListBox with tabIndex to disable focus on
+        // the ListBox, but we can just disable autoFocus (as ListBox / ListItem should not be focusable) (and input is also not autoFocused).
+        // Select Component does the same thing
+        autoFocus={false}
         isOpen={isOpen}
         overrides={popoverOverrides}
         placement={PLACEMENT.bottomLeft}
