@@ -136,7 +136,7 @@ class StatelessList extends React.Component<
                   style={{...props.style, display: 'flex'}}
                 >
                   <DragHandle {...sharedProps} {...dragHandleProps}>
-                    <Grab size={24} color="#CCC" />
+                    <Grab size={24} />
                   </DragHandle>
                   <Label {...sharedProps} {...labelProps}>
                     {value}
