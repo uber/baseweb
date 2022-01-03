@@ -259,15 +259,9 @@ export const StrokedLabelContainer = styled<{
   return {
     position: 'absolute',
     ...positionLookup[$position].outer,
-    // border: '1px solid red',
     width: '100%',
     height: '100%',
     transition: `${$theme.animation.timing300} ${$theme.animation.easeOutCurve} all`,
-
-    // display: 'flex',
-
-    // alignItems: 'center',
-    // justifyContent: 'center',
   };
 });
 
@@ -277,23 +271,24 @@ export const StrokedLabel = styled<{
   $stroked: boolean,
   $position: LabelEnhancerPositionT,
 }>('div', ({$theme, $color, $strokeColor, $stroked, $position}) => {
+  const strokeWidth = 1.5;
   return {
     display: 'flex',
     ...positionLookup[$position].inner,
     ...$theme.typography.LabelMedium,
     color: $color,
-    // border: '1px solid green',
     height: 'auto',
     height: '100%',
-    // left: 0,
-    // top: 0,
-    ...($stroked
-      ? {
-          '-webkit-text-stroke-width': '3px',
-          '-webkit-text-stroke-color': $strokeColor,
-        }
-      : {}),
     transition: `${$theme.animation.timing300} ${$theme.animation.easeOutCurve} all`,
+    textShadow: `-${strokeWidth}px -${strokeWidth}px 0 ${$strokeColor},
+    0 -${strokeWidth}px 0 ${$strokeColor},
+    ${strokeWidth}px -${strokeWidth}px 0 ${$strokeColor},
+    ${strokeWidth}px 0 0 ${$strokeColor},
+    ${strokeWidth}px ${strokeWidth}px 0 ${$strokeColor},
+    0 ${strokeWidth}px 0 ${$strokeColor},
+   -${strokeWidth}px ${strokeWidth}px 0 ${$strokeColor},
+   -${strokeWidth}px 0 0 ${$strokeColor}`,
+    '-webkit-font-smoothing': 'antialiased',
   };
 });
 
