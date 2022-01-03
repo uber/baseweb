@@ -5,11 +5,14 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
+import {number} from 'card-validator';
 import {styled} from '../styles/index.js';
 import {
   BADGE_ENHANCER_STYLES,
   FLOATING_MARKER_ANCHOR_POSITIONS,
   xSmallPinheadDimension,
+  LABEL_SIZES,
+  PINHEAD_SIZES_SHAPES,
 } from './constants.js';
 
 import type {
@@ -212,56 +215,61 @@ export const LabelEnhancerContainer = styled<{
   };
 });
 
-const positionLookup = {
-  top: {
-    outer: {
-      transform: `translateY(calc(-100% - 4px))`,
+function positionLookup(position, container, needleHeight) {
+  const labelOffset = 4;
+  const positions = {
+    top: {
+      outer: {
+        transform: `translateY(calc(-100% - ${labelOffset}px))`,
+      },
+      inner: {
+        alignItems: 'flex-end',
+        justifyContent: 'center',
+      },
     },
-    inner: {
-      alignItems: 'flex-end',
-      justifyContent: 'center',
+    bottom: {
+      outer: {
+        transform: `translateY(calc(100% + ${labelOffset}px + ${needleHeight}px))`,
+      },
+      inner: {
+        alignItems: 'flex-start',
+        justifyContent: 'center',
+      },
     },
-  },
-  bottom: {
-    outer: {
-      transform: `translateY(calc(100% + 4px))`,
+    right: {
+      outer: {
+        transform: `translateX(calc(100% + ${labelOffset}px))`,
+      },
+      inner: {
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+      },
     },
-    inner: {
-      alignItems: 'flex-start',
-      justifyContent: 'center',
+    left: {
+      outer: {
+        transform: `translateX(calc(-100% - ${labelOffset}px))`,
+        textAlign: 'right',
+      },
+      inner: {
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+      },
     },
-  },
-  right: {
-    outer: {
-      transform: `translateX(calc(100% + 4px))`,
-    },
-    inner: {
-      alignItems: 'center',
-      justifyContent: 'flex-start',
-    },
-  },
-  left: {
-    outer: {
-      transform: `translateX(calc(-100% - 4px))`,
-      textAlign: 'right',
-    },
-
-    inner: {
-      alignItems: 'center',
-      justifyContent: 'flex-end',
-    },
-  },
-};
+  };
+  return positions[position][container];
+}
 
 export const StrokedLabelContainer = styled<{
   $position: LabelEnhancerPositionT,
-}>('div', ({$position, $theme}) => {
+  $labelOffset: number,
+}>('div', ({$position, $theme, $labelOffset}) => {
   return {
     position: 'absolute',
-    ...positionLookup[$position].outer,
+    ...positionLookup($position, 'outer', $labelOffset),
     width: '100%',
     height: '100%',
     transition: `${$theme.animation.timing300} ${$theme.animation.easeOutCurve} all`,
+    pointerEvents: 'none',
   };
 });
 
@@ -270,27 +278,42 @@ export const StrokedLabel = styled<{
   $strokeColor: string,
   $stroked: boolean,
   $position: LabelEnhancerPositionT,
-}>('div', ({$theme, $color, $strokeColor, $stroked, $position}) => {
-  const strokeWidth = 1.5;
-  return {
-    display: 'flex',
-    ...positionLookup[$position].inner,
-    ...$theme.typography.LabelMedium,
-    color: $color,
-    height: 'auto',
-    height: '100%',
-    transition: `${$theme.animation.timing300} ${$theme.animation.easeOutCurve} all`,
-    textShadow: `-${strokeWidth}px -${strokeWidth}px 0 ${$strokeColor},
+  $size: PINHEAD_SIZES_SHAPES,
+}>(
+  'div',
+  ({
+    $theme,
+    $color,
+    $strokeColor,
+    $stroked,
+    $position,
+    $labelOffset,
+    $size,
+  }) => {
+    const strokeWidth = 1.5;
+
+    const textShadow = `-${strokeWidth}px -${strokeWidth}px 0 ${$strokeColor},
     0 -${strokeWidth}px 0 ${$strokeColor},
     ${strokeWidth}px -${strokeWidth}px 0 ${$strokeColor},
     ${strokeWidth}px 0 0 ${$strokeColor},
     ${strokeWidth}px ${strokeWidth}px 0 ${$strokeColor},
     0 ${strokeWidth}px 0 ${$strokeColor},
    -${strokeWidth}px ${strokeWidth}px 0 ${$strokeColor},
-   -${strokeWidth}px 0 0 ${$strokeColor}`,
-    '-webkit-font-smoothing': 'antialiased',
-  };
-});
+   -${strokeWidth}px 0 0 ${$strokeColor}`;
+    return {
+      display: 'flex',
+      ...positionLookup($position, 'inner', $labelOffset),
+      ...$theme.typography[LABEL_SIZES[$size]],
+      color: $color,
+      // height: 'auto',
+      height: '100%',
+      transition: `${$theme.animation.timing300} ${$theme.animation.easeOutCurve} all`,
+      textShadow,
+      pointerEvents: 'auto',
+      position: 'relative',
+    };
+  },
+);
 
 export const BadgeEnhancer = styled<{
   $size: BadgeEnhancerSizeT,

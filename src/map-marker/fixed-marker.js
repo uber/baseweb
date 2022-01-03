@@ -149,6 +149,7 @@ const FixedMarker = ({
           labelEnhancerPosition={labelEnhancerPosition}
           labelEnhancerColor={labelEnhancerColor}
           labelEnhancerStrokeColor={labelEnhancerStrokeColor}
+          needle={needle}
         />
         {renderNeedle && (
           <Needle size={needle} background={background} overrides={overrides} />

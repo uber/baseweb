@@ -26,6 +26,8 @@ import {
   BADGE_ENHANCER_SIZES,
   BADGE_ENHANCER_POSITIONS,
   BADGE_ENHANCER_CONTENT_SIZE,
+  NEEDLE_HEIGHTS,
+  LABEL_SIZES,
 } from './constants.js';
 import type {PinHeadPropsT, PinHeadSizeT, BadgeComponentT} from './types.js';
 
@@ -34,18 +36,8 @@ export const _ContentItem = styled<{
   $height: number,
   $size: PinHeadSizeT,
 }>('div', ({$theme, $color, $height, $size}) => {
-  const labelSmall = 'LabelSmall';
-  const match = {
-    [PINHEAD_SIZES_SHAPES.xxSmallCircle]: labelSmall,
-    [PINHEAD_SIZES_SHAPES.xxSmallSquare]: labelSmall,
-    [PINHEAD_SIZES_SHAPES.xSmallCircle]: labelSmall,
-    [PINHEAD_SIZES_SHAPES.xSmallSquare]: labelSmall,
-    [PINHEAD_SIZES_SHAPES.small]: labelSmall,
-    [PINHEAD_SIZES_SHAPES.medium]: 'LabelMedium',
-    [PINHEAD_SIZES_SHAPES.large]: 'LabelLarge',
-  };
   return {
-    ...$theme.typography[match[$size]],
+    ...$theme.typography[LABEL_SIZES[$size]],
     display: 'flex',
     alignItems: 'center',
     textAlign: 'center',
@@ -60,6 +52,8 @@ const LabelEnhancer = ({
   labelEnhancerPosition,
   labelEnhancerColor,
   labelEnhancerStrokeColor,
+  needleHeight,
+  size,
 }) => {
   const [, theme] = useStyletron();
   const {
@@ -68,24 +62,21 @@ const LabelEnhancer = ({
 
   labelEnhancerColor = labelEnhancerColor || primaryA;
   labelEnhancerStrokeColor = labelEnhancerStrokeColor || backgroundPrimary;
-  console.log(labelEnhancerContent);
   return (
-    <StrokedLabelContainer $position={labelEnhancerPosition}>
+    <StrokedLabelContainer
+      $position={labelEnhancerPosition}
+      $labelOffset={needleHeight}
+    >
       <StrokedLabel
         $color={labelEnhancerColor}
         $strokeColor={labelEnhancerStrokeColor}
         $stroked={false}
         $position={labelEnhancerPosition}
+        $labelOffset={needleHeight}
+        $size={size}
       >
         {labelEnhancerContent}
       </StrokedLabel>
-      {/* <StrokedLabel
-          $color={labelEnhancerColor}
-          $strokeColor={labelEnhancerStrokeColor}
-          $stroked={false}
-        >
-          {labelEnhancerContent}
-        </StrokedLabel> */}
     </StrokedLabelContainer>
   );
 };
@@ -192,6 +183,7 @@ const PinHead = ({
   badgeEnhancerColor = null,
   badgeEnhancerBackground = null,
   badgeEnhancerContent = null,
+  needle,
 }: PinHeadPropsT) => {
   const [, theme] = useStyletron();
   const {
@@ -292,7 +284,7 @@ const PinHead = ({
       </RelativeContainer>
     );
   }
-  // console.log(badgeEnhancer);
+
   return (
     <RelativeContainer>
       <LabelEnhancer
@@ -300,6 +292,8 @@ const PinHead = ({
         labelEnhancerPosition={labelEnhancerPosition}
         labelEnhancerColor={labelEnhancerColor}
         labelEnhancerStrokeColor={labelEnhancerStrokeColor}
+        needleHeight={NEEDLE_HEIGHTS[needle]}
+        size={size}
       />
       {badge}
       <PinHead

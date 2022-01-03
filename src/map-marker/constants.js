@@ -80,6 +80,17 @@ export const dragShadowMarginTop = 6;
 export const dragShadowWidth = 6;
 export const anchorSize = 16;
 
+const labelSmall = 'LabelSmall';
+export const LABEL_SIZES = {
+  [PINHEAD_SIZES_SHAPES.xxSmallCircle]: labelSmall,
+  [PINHEAD_SIZES_SHAPES.xxSmallSquare]: labelSmall,
+  [PINHEAD_SIZES_SHAPES.xSmallCircle]: labelSmall,
+  [PINHEAD_SIZES_SHAPES.xSmallSquare]: labelSmall,
+  [PINHEAD_SIZES_SHAPES.small]: labelSmall,
+  [PINHEAD_SIZES_SHAPES.medium]: 'LabelMedium',
+  [PINHEAD_SIZES_SHAPES.large]: 'LabelLarge',
+};
+
 export const LABEL_ENHANCER_POSITIONS = {
   top: 'top',
   left: 'left',
@@ -103,7 +114,6 @@ const xSmallPinheadBadge = {
   [BADGE_ENHANCER_SIZES.medium]: null,
 };
 export const BADGE_ENHANCER_POSITIONS = {
-  //First level is fixed marker size
   [PINHEAD_SIZES_SHAPES.xxSmallSquare]: null,
   [PINHEAD_SIZES_SHAPES.xxSmallCircle]: null,
   [PINHEAD_SIZES_SHAPES.xSmallSquare]: xSmallPinheadBadge,

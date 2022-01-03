@@ -13,6 +13,7 @@ import {
   PINHEAD_SIZES_SHAPES,
   NEEDLE_SIZES,
   BADGE_ENHANCER_SIZES,
+  LABEL_ENHANCER_POSITIONS,
 } from '../constants.js';
 import TileGrid from './tile-grid.js';
 
@@ -27,7 +28,12 @@ const uberHq = {
   latitude: 37.768495131168336,
   longitude: -122.38856031220648,
 };
-
+const labelEnhancerPositions = Object.values(LABEL_ENHANCER_POSITIONS).map(
+  x => ({
+    id: x,
+    label: x,
+  }),
+);
 const pinheadSizes = Object.values(PINHEAD_SIZES_SHAPES).map(x => ({
   label: x,
   id: x,
@@ -48,6 +54,12 @@ export function Scenario() {
   ]);
 
   const [showPointDebug, setShowPointDebug] = React.useState(true);
+
+  const [labelEnhancerText, setLabelEnhancerText] = React.useState('Uber Eats');
+
+  const [labelEnhancerPosition, setLabelEnhancerPosition] = React.useState([
+    labelEnhancerPositions[0],
+  ]);
 
   const [viewport, setViewport] = React.useState({
     ...uberHq,
@@ -83,6 +95,20 @@ export function Scenario() {
             placeholder="Label"
             clearOnEscape
             key="label"
+          />,
+          <Input
+            value={labelEnhancerText}
+            onChange={e => setLabelEnhancerText(e.target.value)}
+            placeholder="Label enhancer"
+            clearOnEscape
+            key="label-enhancer-text"
+          />,
+          <Select
+            options={labelEnhancerPositions}
+            value={labelEnhancerPosition}
+            placeholder="Select an anchor position"
+            onChange={params => setLabelEnhancerPosition(params.value)}
+            key="anchor-position"
           />,
 
           <Checkbox
@@ -184,6 +210,8 @@ export function Scenario() {
                 background: 'green',
                 content: 'hello',
               }}
+              labelEnhancerContent={labelEnhancerText}
+              labelEnhancerPosition={labelEnhancerPosition[0].id}
             />
           </Marker>
         ))}

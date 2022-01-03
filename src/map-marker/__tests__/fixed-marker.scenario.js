@@ -13,6 +13,7 @@ import {
   PINHEAD_SIZES_SHAPES,
   NEEDLE_SIZES,
   BADGE_ENHANCER_SIZES,
+  LABEL_ENHANCER_POSITIONS,
 } from '../constants.js';
 import TileGrid from './tile-grid.js';
 import {Input} from '../../input/index.js';
@@ -22,10 +23,12 @@ import {Select} from '../../select/index.js';
 
 import type {PinHeadSizeT, NeedleSizeT} from '../types.js';
 
-const labelEnhancerPositions = ['top', 'left', 'bottom', 'right'].map(x => ({
-  id: x,
-  label: x,
-}));
+const labelEnhancerPositions = Object.values(LABEL_ENHANCER_POSITIONS).map(
+  x => ({
+    id: x,
+    label: x,
+  }),
+);
 
 const badgeEnhancerSizes = Object.values(BADGE_ENHANCER_SIZES).map(x => ({
   label: x,
