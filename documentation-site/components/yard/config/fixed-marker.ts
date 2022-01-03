@@ -3,10 +3,13 @@ import {
   PINHEAD_SIZES_SHAPES,
   NEEDLE_SIZES,
   BADGE_ENHANCER_SIZES,
+  LABEL_ENHANCER_POSITIONS,
 } from 'baseui/map-marker';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 import Check from 'baseui/icon/check';
+import Upload from 'baseui/icon/upload';
+import Search from 'baseui/icon/search';
 
 const fixedMarkerPropsType = require('!!extract-react-types-loader!../../../../src/map-marker/fixed-marker.js');
 
@@ -52,18 +55,28 @@ export const fixedMarkerProps = {
     },
   },
   startEnhancer: {
-    value: undefined,
-    placeholder: '() => <span>$</span>',
+    value: '({size}) => <Upload size={size}/>',
+    placeholder: '({size}) => <Upload size={size}/>',
     type: PropTypes.Function,
     description:
       'Icon or element to render in the leading slot (before the label).',
+    imports: {
+      'baseui/icon': {
+        named: ['Upload'],
+      },
+    },
   },
   endEnhancer: {
     value: undefined,
-    placeholder: '() => <span>?</span>',
+    placeholder: '({size}) => <Search size={size}/>',
     type: PropTypes.Function,
     description:
       'Icon or element to render in the trailing slot (after the label).',
+    imports: {
+      'baseui/icon': {
+        named: ['Search'],
+      },
+    },
   },
   background: {
     value: undefined,
@@ -113,6 +126,36 @@ export const fixedMarkerProps = {
       },
     },
   },
+  labelEnhancerContent: {
+    value: 'Uber Eats',
+    type: PropTypes.String,
+    description: 'Text to display as the optional label enhancer',
+  },
+  labelEnhancerPosition: {
+    value: 'LABEL_ENHANCER_POSITIONS.none',
+    enumName: 'LABEL_ENHANCER_POSITIONS',
+    defaultValue: 'LABEL_ENHANCER_POSITIONS.none',
+    options: LABEL_ENHANCER_POSITIONS,
+    type: PropTypes.Enum,
+    description: 'Position of the label enhancer.',
+    imports: {
+      'baseui/map-marker': {
+        named: ['LABEL_ENHANCER_POSITIONS'],
+      },
+    },
+  },
+  labelEnhancerColor: {
+    value: undefined,
+    placeholder: '#000',
+    type: PropTypes.String,
+    description: 'Color for the label enhancer.',
+  },
+  labelEnhancerStrokeColor: {
+    value: undefined,
+    placeholder: '#fff',
+    type: PropTypes.String,
+    description: 'Stroke color for the label enhancer.',
+  },
 };
 
 const FixedMarkerConfig: TConfig = {
@@ -131,6 +174,9 @@ const FixedMarkerConfig: TConfig = {
     PINHEAD_SIZES_SHAPES,
     BADGE_ENHANCER_SIZES,
     Check,
+    Upload,
+    LABEL_ENHANCER_POSITIONS,
+    Search,
   },
   theme,
   props: {

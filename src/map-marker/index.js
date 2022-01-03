@@ -15,6 +15,7 @@ export {
   NEEDLE_SIZES,
   PINHEAD_SIZES_SHAPES,
   BADGE_ENHANCER_SIZES,
+  LABEL_ENHANCER_POSITIONS,
 } from './constants.js';
 
 export type * from './types.js';

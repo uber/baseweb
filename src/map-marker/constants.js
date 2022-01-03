@@ -92,6 +92,7 @@ export const LABEL_SIZES = {
 };
 
 export const LABEL_ENHANCER_POSITIONS = {
+  none: 'none',
   top: 'top',
   left: 'left',
   right: 'right',

@@ -28,6 +28,7 @@ import {
   BADGE_ENHANCER_CONTENT_SIZE,
   NEEDLE_HEIGHTS,
   LABEL_SIZES,
+  LABEL_ENHANCER_POSITIONS,
 } from './constants.js';
 import type {PinHeadPropsT, PinHeadSizeT, BadgeComponentT} from './types.js';
 
@@ -60,6 +61,17 @@ const LabelEnhancer = ({
     colors: {backgroundPrimary, primaryA},
   } = theme;
 
+  if (
+    !labelEnhancerPosition ||
+    labelEnhancerPosition === LABEL_ENHANCER_POSITIONS.none
+  ) {
+    return null;
+  }
+
+  if (!labelEnhancerContent) {
+    return null;
+  }
+
   labelEnhancerColor = labelEnhancerColor || primaryA;
   labelEnhancerStrokeColor = labelEnhancerStrokeColor || backgroundPrimary;
   return (
@@ -67,16 +79,15 @@ const LabelEnhancer = ({
       $position={labelEnhancerPosition}
       $labelOffset={needleHeight}
     >
-      <StrokedLabel
-        $color={labelEnhancerColor}
-        $strokeColor={labelEnhancerStrokeColor}
-        $stroked={false}
-        $position={labelEnhancerPosition}
-        $labelOffset={needleHeight}
-        $size={size}
-      >
-        {labelEnhancerContent}
-      </StrokedLabel>
+      <RelativeContainer>
+        <StrokedLabel
+          $color={labelEnhancerColor}
+          $strokeColor={labelEnhancerStrokeColor}
+          $size={size}
+        >
+          {labelEnhancerContent}
+        </StrokedLabel>
+      </RelativeContainer>
     </StrokedLabelContainer>
   );
 };

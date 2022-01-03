@@ -215,61 +215,47 @@ export const LabelEnhancerContainer = styled<{
   };
 });
 
-function positionLookup(position, container, needleHeight) {
-  const labelOffset = 4;
-  const positions = {
-    top: {
-      outer: {
-        transform: `translateY(calc(-100% - ${labelOffset}px))`,
-      },
-      inner: {
-        alignItems: 'flex-end',
-        justifyContent: 'center',
-      },
-    },
-    bottom: {
-      outer: {
-        transform: `translateY(calc(100% + ${labelOffset}px + ${needleHeight}px))`,
-      },
-      inner: {
-        alignItems: 'flex-start',
-        justifyContent: 'center',
-      },
-    },
-    right: {
-      outer: {
-        transform: `translateX(calc(100% + ${labelOffset}px))`,
-      },
-      inner: {
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-      },
-    },
-    left: {
-      outer: {
-        transform: `translateX(calc(-100% - ${labelOffset}px))`,
-        textAlign: 'right',
-      },
-      inner: {
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-      },
-    },
-  };
-  return positions[position][container];
-}
-
 export const StrokedLabelContainer = styled<{
   $position: LabelEnhancerPositionT,
   $labelOffset: number,
 }>('div', ({$position, $theme, $labelOffset}) => {
+  const staticLabelOffset = 4;
+  const positions = {
+    top: {
+      left: `calc(50% + ${staticLabelOffset}px)`,
+      bottom: '100%',
+      alignItems: 'flex-end',
+      justifyContent: 'center',
+      textAlign: 'center',
+    },
+    bottom: {
+      left: '50%',
+      top: `calc(100% + ${staticLabelOffset}px + ${$labelOffset}px)`,
+      alignItems: 'flex-start',
+      justifyContent: 'center',
+      textAlign: 'center',
+    },
+    right: {
+      left: `calc(100% + ${staticLabelOffset}px)`,
+      top: '50%',
+      alignItems: 'center',
+      justifyContent: 'flex-start',
+    },
+    left: {
+      right: `calc(100% + ${staticLabelOffset}px)`,
+      top: '50%',
+      alignItems: 'center',
+      justifyContent: 'flex-end',
+      textAlign: 'right',
+    },
+  };
   return {
     position: 'absolute',
-    ...positionLookup($position, 'outer', $labelOffset),
-    width: '100%',
-    height: '100%',
-    transition: `${$theme.animation.timing300} ${$theme.animation.easeOutCurve} all`,
+    width: '0px',
+    height: '0px',
     pointerEvents: 'none',
+    display: 'flex',
+    ...positions[$position],
   };
 });
 
@@ -279,20 +265,10 @@ export const StrokedLabel = styled<{
   $stroked: boolean,
   $position: LabelEnhancerPositionT,
   $size: PINHEAD_SIZES_SHAPES,
-}>(
-  'div',
-  ({
-    $theme,
-    $color,
-    $strokeColor,
-    $stroked,
-    $position,
-    $labelOffset,
-    $size,
-  }) => {
-    const strokeWidth = 1.5;
+}>('div', ({$theme, $color, $strokeColor, $size}) => {
+  const strokeWidth = 1.5;
 
-    const textShadow = `-${strokeWidth}px -${strokeWidth}px 0 ${$strokeColor},
+  const textShadow = `-${strokeWidth}px -${strokeWidth}px 0 ${$strokeColor},
     0 -${strokeWidth}px 0 ${$strokeColor},
     ${strokeWidth}px -${strokeWidth}px 0 ${$strokeColor},
     ${strokeWidth}px 0 0 ${$strokeColor},
@@ -300,20 +276,18 @@ export const StrokedLabel = styled<{
     0 ${strokeWidth}px 0 ${$strokeColor},
    -${strokeWidth}px ${strokeWidth}px 0 ${$strokeColor},
    -${strokeWidth}px 0 0 ${$strokeColor}`;
-    return {
-      display: 'flex',
-      ...positionLookup($position, 'inner', $labelOffset),
-      ...$theme.typography[LABEL_SIZES[$size]],
-      color: $color,
-      // height: 'auto',
-      height: '100%',
-      transition: `${$theme.animation.timing300} ${$theme.animation.easeOutCurve} all`,
-      textShadow,
-      pointerEvents: 'auto',
-      position: 'relative',
-    };
-  },
-);
+
+  return {
+    display: 'flex',
+    ...$theme.typography[LABEL_SIZES[$size]],
+    color: $color,
+    transition: `${$theme.animation.timing300} ${$theme.animation.easeOutCurve} all`,
+    textShadow,
+    pointerEvents: 'auto',
+    width: 'max-content',
+    maxWidth: '200px',
+  };
+});
 
 export const BadgeEnhancer = styled<{
   $size: BadgeEnhancerSizeT,
