@@ -132,7 +132,7 @@ export type PinHeadPropsT = {
   type?: PinHeadT,
   anchorType?: FloatingMarkerAnchorTypeT,
   overrides?: FloatingMarkerOverridesT | FixedMarkerOverridesT,
-  ...badgeEnhancerT,
+  ...BadgeEnhancerT,
   ...LabelEnhancerT,
 };
 
