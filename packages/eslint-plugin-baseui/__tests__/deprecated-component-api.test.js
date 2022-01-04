@@ -324,6 +324,26 @@ const tests = {
       `,
     },
 
+    // Caption1 no closing tag
+    {
+      code: `
+        import { Caption1 } from "baseui/typography"
+        export default () => {
+          return <div><Caption1 /></div>
+        }
+      `,
+      errors: [
+        {messageId: MESSAGES.replace.id},
+        {messageId: MESSAGES.replace.id},
+      ],
+      output: `
+        import { ParagraphXSmall } from "baseui/typography"
+        export default () => {
+          return <div><ParagraphXSmall /></div>
+        }
+      `,
+    },
+
     // Caption2
     {
       code: `
