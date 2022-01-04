@@ -31,7 +31,7 @@ export function Scenario() {
     zoom: 14,
   });
 
-  const [css, theme] = useStyletron();
+  const [, theme] = useStyletron();
 
   return (
     <>

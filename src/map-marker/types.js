@@ -69,6 +69,13 @@ export type LabelEnhancerT = {
   labelEnhancerStrokeColor?: string,
 };
 
+export type LabelEhancerComponentT = {
+  ...LabelEnhancerT,
+  needleHeight: number,
+  size: PinHeadSizeT,
+  overrides?: FixedMarkerOverridesT,
+};
+
 export type BadgeEnhancerT = {
   badgeEnhancerSize?: BadgeEnhancerSizeT | null,
   badgeEnhancerColor?: string | null,
@@ -76,10 +83,11 @@ export type BadgeEnhancerT = {
   badgeEnhancerContent?: React.AbstractComponent<{|size: number|}>,
 };
 
-export type BadgeComponentT = {
+export type BadgeEnhancerComponentT = {
   ...BadgeEnhancerT,
   pinHeadSize: PinHeadSizeT,
   markerType: PinHeadT,
+  overrides: FixedMarkerOverridesT,
 };
 export type BadgePositionT = null | {
   x: number,

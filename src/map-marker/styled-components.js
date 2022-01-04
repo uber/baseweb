@@ -11,7 +11,6 @@ import {
   FLOATING_MARKER_ANCHOR_POSITIONS,
   xSmallPinheadDimension,
   LABEL_SIZES,
-  PINHEAD_SIZES_SHAPES,
 } from './constants.js';
 
 import type {
@@ -19,6 +18,7 @@ import type {
   LabelEnhancerPositionT,
   BadgeEnhancerSizeT,
   BadgePositionT,
+  PinHeadSizeT,
 } from './types.js';
 
 export const getAnchorTransform = (
@@ -51,7 +51,7 @@ export const DragShadow = styled<{
   $background: string,
   $width: number,
 }>('div', ({$theme, $background, $width}) => ({
-  background: $background,
+  backgroundColor: $background,
   borderRadius: '50%',
   width: `${$width}px`,
   height: `${4}px`,
@@ -63,7 +63,7 @@ export const Needle = styled<{
   $background?: string,
   $height: number,
 }>('div', ({$theme, $background, $height}) => ({
-  background: $background,
+  backgroundColor: $background,
   width: '4px',
   height: `${$height}px`,
   boxShadow: $theme.lighting.shadow600,
@@ -114,7 +114,7 @@ export const OuterXXSmallAnchor = styled<{
   $background: string,
   $size: number,
 }>('div', ({$theme, $round, $background, $size}) => ({
-  background: $background,
+  backgroundColor: $background,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -129,7 +129,7 @@ export const InnerXXSmallAnchor = styled<{
   $color: string,
   $size: number,
 }>('div', ({$round, $color, $size}) => ({
-  background: $color,
+  backgroundColor: $color,
   height: `${$size}px`,
   width: `${$size}px`,
   borderRadius: $round ? '50%' : 0,
@@ -140,7 +140,7 @@ export const OuterXSmallAnchor = styled<{
   $background: string,
   $size: number,
 }>('div', ({$theme, $round, $background, $size}) => ({
-  background: $background,
+  backgroundColor: $background,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -155,7 +155,7 @@ export const InnerXSmallAnchor = styled<{
   $color: string,
   $size: number,
 }>('div', ({$round, $color, $size}) => ({
-  background: $color,
+  backgroundColor: $color,
   height: `${$size}px`,
   width: `${$size}px`,
   borderRadius: $round ? '50%' : 0,
@@ -188,7 +188,7 @@ export const PinHead = styled<{
     };
 
     return {
-      background: $background,
+      backgroundColor: $background,
       height: `${$height}px`,
       display: 'grid',
       gridTemplateColumns: $gridTemplateColumns,
@@ -263,7 +263,7 @@ export const StrokedLabel = styled<{
   $strokeColor: string,
   $stroked: boolean,
   $position: LabelEnhancerPositionT,
-  $size: PINHEAD_SIZES_SHAPES,
+  $size: PinHeadSizeT,
 }>('div', ({$theme, $color, $strokeColor, $size}) => {
   const strokeWidth = 1.5;
 
@@ -298,13 +298,14 @@ export const BadgeEnhancer = styled<{
   return {
     position: 'absolute',
     ...$theme.typography.LabelSmall,
-    background: $background,
+    backgroundColor: $background,
     color: $color,
     boxSizing: 'border-box',
     right: 0,
     transform: `translate(calc(100% + ${x}px), ${y}px)`,
-    ...BADGE_ENHANCER_STYLES[$size],
+
     transition: `${$theme.animation.timing300} ${$theme.animation.easeOutCurve} all`,
+    ...BADGE_ENHANCER_STYLES[$size],
   };
 });
 

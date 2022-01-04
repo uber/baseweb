@@ -96,7 +96,7 @@ export const fixedMarkerProps = {
     defaultValue: 'BADGE_ENHANCER_SIZES.none',
     options: BADGE_ENHANCER_SIZES,
     type: PropTypes.Enum,
-    description: 'Size of the badge enhancer',
+    description: 'Size of the badge enhancer.',
     imports: {
       'baseui/map-marker': {
         named: ['BADGE_ENHANCER_SIZES'],
@@ -119,7 +119,7 @@ export const fixedMarkerProps = {
     value: '({size}) => <Check size={size}/>',
     placeholder: '({size}) => <Check size={size}/>',
     type: PropTypes.Function,
-    description: 'Content to render inside of the badge enhancer',
+    description: 'Content to render inside of the badge enhancer.',
     imports: {
       'baseui/icon': {
         named: ['Check'],
@@ -129,7 +129,7 @@ export const fixedMarkerProps = {
   labelEnhancerContent: {
     value: 'Uber Eats',
     type: PropTypes.String,
-    description: 'Text to display as the optional label enhancer',
+    description: 'Text to display as the optional label enhancer.',
   },
   labelEnhancerPosition: {
     value: 'LABEL_ENHANCER_POSITIONS.none',
@@ -195,6 +195,9 @@ const FixedMarkerConfig: TConfig = {
           'DragShadow',
           'DragShadowContainer',
           'DragContainer',
+          'BadgeEnhancer',
+          'LabelEnhancerContainer',
+          'LabelEnhancer',
         ],
         sharedProps: {},
       },

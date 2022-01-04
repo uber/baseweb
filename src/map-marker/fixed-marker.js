@@ -24,8 +24,6 @@ import {
   Needle as StyledNeedle,
   DragShadow as StyledDragShadow,
   DragShadowContainer as StyledDragShadowContainer,
-  // LabelEnhancer as StyledLabelEnhancer,
-  LabelEnhancerContainer,
 } from './styled-components.js';
 import type {
   FixedMarkerPropsT,
@@ -96,7 +94,7 @@ const FixedMarker = ({
 }: FixedMarkerPropsT) => {
   const [, theme] = useStyletron();
   const {
-    colors: {backgroundPrimary, backgroundInversePrimary, primaryB, primaryA},
+    colors: {backgroundInversePrimary, primaryB},
   } = theme;
 
   color = color || primaryB;

@@ -107,6 +107,7 @@ export const BADGE_ENHANCER_SIZES = Object.freeze({
 });
 
 const xSmallPinheadBadge = {
+  [BADGE_ENHANCER_SIZES.none]: null,
   [BADGE_ENHANCER_SIZES.xSmall]: {
     x: -5,
     y: -3,
@@ -120,6 +121,7 @@ export const BADGE_ENHANCER_POSITIONS = {
   [PINHEAD_SIZES_SHAPES.xSmallSquare]: xSmallPinheadBadge,
   [PINHEAD_SIZES_SHAPES.xSmallCircle]: xSmallPinheadBadge,
   [PINHEAD_SIZES_SHAPES.small]: {
+    [BADGE_ENHANCER_SIZES.none]: null,
     [BADGE_ENHANCER_SIZES.xSmall]: {
       x: -7,
       y: -1,
@@ -131,6 +133,7 @@ export const BADGE_ENHANCER_POSITIONS = {
     [BADGE_ENHANCER_SIZES.medium]: null,
   },
   [PINHEAD_SIZES_SHAPES.medium]: {
+    [BADGE_ENHANCER_SIZES.none]: null,
     [BADGE_ENHANCER_SIZES.xSmall]: {
       x: -9,
       y: 1,
@@ -145,6 +148,7 @@ export const BADGE_ENHANCER_POSITIONS = {
     },
   },
   [PINHEAD_SIZES_SHAPES.large]: {
+    [BADGE_ENHANCER_SIZES.none]: null,
     [BADGE_ENHANCER_SIZES.xSmall]: {
       x: -11,
       y: 3,
@@ -158,6 +162,7 @@ export const BADGE_ENHANCER_POSITIONS = {
 };
 
 export const BADGE_ENHANCER_STYLES = {
+  [BADGE_ENHANCER_SIZES.none]: {},
   [BADGE_ENHANCER_SIZES.xSmall]: {
     height: '8px',
     width: '8px',
@@ -183,7 +188,8 @@ export const BADGE_ENHANCER_STYLES = {
 };
 
 export const BADGE_ENHANCER_CONTENT_SIZE = {
-  [BADGE_ENHANCER_SIZES.xSmall]: null,
+  [BADGE_ENHANCER_SIZES.none]: 0,
+  [BADGE_ENHANCER_SIZES.xSmall]: 0,
   [BADGE_ENHANCER_SIZES.small]: 10,
   [BADGE_ENHANCER_SIZES.medium]: 12,
 };
