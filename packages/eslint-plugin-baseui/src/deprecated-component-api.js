@@ -396,13 +396,16 @@ module.exports = {
                 new: deprecatedApi.newName,
               },
               fix: function(fixer) {
-                return [
-                  fixer.replaceText(node, deprecatedApi.newName),
-                  fixer.replaceText(
-                    node.parent.parent.closingElement.name,
-                    deprecatedApi.newName,
-                  ),
-                ];
+                const tags = [fixer.replaceText(node, deprecatedApi.newName)];
+                if (node.parent.parent.closingElement) {
+                  tags.push(
+                    fixer.replaceText(
+                      node.parent.parent.closingElement.name,
+                      deprecatedApi.newName,
+                    ),
+                  );
+                }
+                return tags;
               },
             });
           }
