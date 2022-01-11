@@ -373,6 +373,7 @@ export default class Calendar<T = Date> extends React.Component<
       );
       updatedDate = newTimeState[0];
     }
+
     // Update the date in time values of internal state
     this.setState({time: newTimeState});
     onChange({date: updatedDate});
