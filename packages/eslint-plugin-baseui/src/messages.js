@@ -36,4 +36,19 @@ module.exports = {
     id: 'modalBackdrop',
     message: `"Backdrop" has been deprecated as an override property. In v11 of baseui, "Backdrop" will be removed in favor of "DialogContainer".`,
   },
+  progressBarSuccessValue: {
+    id: 'progressBarSuccessValue',
+    message:
+      'The "successValue" prop has been deprecated. The "value" prop should be normalized as though "successValue" was always set to 100.',
+  },
+  selectSearchIcon: {
+    id: 'selectSearchIcon',
+    message:
+      'The "SearchIcon" override will be removed in favor of "StyledSearchIconContainer".',
+  },
+  radioGroupOverrides: {
+    id: 'radioGroupOverrides',
+    message:
+      'All overrides on RadioGroup except RadioGroupRoot are deprecated. Please apply overrides to individual radio buttons',
+  },
 };

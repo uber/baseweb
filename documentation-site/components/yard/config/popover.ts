@@ -119,6 +119,13 @@ const PopoverConfig: TConfig = {
         "If true, focus will shift to the first interactive element within the popover. Avoid adding autofocus directly to the popover's contents, as this will cause unexpected behavior.",
       hidden: true,
     },
+    focusOptions: {
+      value: undefined,
+      type: PropTypes.Object,
+      description:
+        "The FocusOption passed to documentElement.focus function. For Example, value = {preventScroll: true} | {preventScroll: false}. It works only if autoFocus is true.",
+      hidden: true,
+    },
     accessibilityType: {
       value: 'ACCESSIBILITY_TYPE.menu',
       defaultValue: 'ACCESSIBILITY_TYPE.menu',
