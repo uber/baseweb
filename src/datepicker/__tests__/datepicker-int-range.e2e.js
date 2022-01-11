@@ -31,7 +31,7 @@ describe('Datepicker, Int', () => {
       selectors.input,
       input => input.value,
     );
-    expect(selectedValue1).toBe('2019 vasárnap 10');
+    expect(selectedValue1).toBe('2019 vasárnap 10 – ');
     await page.click(selectors.day2);
     await page.waitForSelector(selectors.calendar, {
       hidden: true,

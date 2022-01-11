@@ -22,7 +22,11 @@ import {
 import dateFnsAdapter from './utils/date-fns-adapter.js';
 import DateHelpers from './utils/date-helpers.js';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
-import type {CalendarPropsT, CalendarInternalState} from './types.js';
+import type {
+  CalendarPropsT,
+  CalendarInternalState,
+  DateValueT,
+} from './types.js';
 import {DENSITY, ORIENTATION} from './constants.js';
 
 export default class Calendar<T = Date> extends React.Component<
@@ -140,7 +144,7 @@ export default class Calendar<T = Date> extends React.Component<
     return monthDelta >= 0 && monthDelta < (this.props.monthsShown || 1);
   }
 
-  getSingleDate(value: ?T | Array<T>): ?T {
+  getSingleDate(value: DateValueT<T>): ?T {
     // need to check this.props.range but flow would complain
     // at the return value in the else clause
     if (Array.isArray(value)) {
@@ -346,20 +350,22 @@ export default class Calendar<T = Date> extends React.Component<
     this.props.onDayMouseLeave && this.props.onDayMouseLeave(data);
   };
 
-  handleDateChange: ({date: ?T | Array<T>}) => void = data => {
+  handleDateChange: ({date: DateValueT<T>}) => void = data => {
     const {onChange = params => {}} = this.props;
     let updatedDate = data.date;
     // We'll need to update the date in time values of internal state
     const newTimeState = [...this.state.time];
     // Apply the currently selected time values (saved in state) to the updated date
     if (Array.isArray(data.date)) {
-      updatedDate = data.date.map((date, index) => {
-        newTimeState[index] = this.dateHelpers.applyDateToTime(
-          newTimeState[index],
-          date,
-        );
-        return newTimeState[index];
-      });
+      const start = data.date[0]
+        ? this.dateHelpers.applyDateToTime(newTimeState[0], data.date[0])
+        : null;
+      const end = data.date[1]
+        ? this.dateHelpers.applyDateToTime(newTimeState[1], data.date[1])
+        : null;
+      newTimeState[0] = start;
+      newTimeState[1] = end ? end : newTimeState[1];
+      updatedDate = [start, end];
     } else if (!Array.isArray(this.props.value) && data.date) {
       newTimeState[0] = this.dateHelpers.applyDateToTime(
         newTimeState[0],
@@ -385,12 +391,12 @@ export default class Calendar<T = Date> extends React.Component<
     // with the date value set to the date with updated time
     if (Array.isArray(this.props.value)) {
       const dates = this.props.value.map((date, i) => {
-        if (index === i) {
+        if (date && index === i) {
           return this.dateHelpers.applyTimeToDate(date, time);
         }
         return date;
       });
-      onChange({date: dates});
+      onChange({date: [dates[0], dates[1]]});
     } else {
       const date = this.dateHelpers.applyTimeToDate(this.props.value, time);
       onChange({date});
@@ -562,7 +568,8 @@ export default class Calendar<T = Date> extends React.Component<
                 onChange={params => {
                   if (!params.option) {
                     this.setState({quickSelectId: null});
-                    this.props.onChange && this.props.onChange({date: []});
+                    this.props.onChange &&
+                      this.props.onChange({date: [null, null]});
                   } else {
                     this.setState({
                       quickSelectId: params.option.id,

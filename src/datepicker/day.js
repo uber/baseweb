@@ -87,9 +87,20 @@ export default class Day<T = Date> extends React.Component<
     const {range, value} = this.props;
     let date;
     if (Array.isArray(value) && range) {
-      if (!value.length || value.length > 1) {
-        date = [selectedDate];
-      } else if (this.dateHelpers.isAfter(selectedDate, value[0])) {
+      if ((!value[0] && !value[1]) || (value[0] && value[1])) {
+        date = [selectedDate, null];
+      } else if (
+        !value[0] &&
+        value[1] &&
+        this.dateHelpers.isAfter(value[1], selectedDate)
+      ) {
+        // if startDate === null && endDate is populated, the next selected day should become the startDate
+        date = [selectedDate, value[1]];
+      } else if (
+        value[0] &&
+        !value[1] &&
+        this.dateHelpers.isAfter(selectedDate, value[0])
+      ) {
         date = [value[0], selectedDate];
       } else {
         date = [selectedDate, value[0]];
@@ -234,10 +245,12 @@ export default class Day<T = Date> extends React.Component<
       return false;
     }
     // fix flow by passing a specific arg type and remove 'Array.isArray(value)'
-    if (Array.isArray(value) && value.length > 1) {
+    if (Array.isArray(value) && value[0] && value[1]) {
       return this.dateHelpers.isDayInRange(
         this.clampToDayStart(date),
+        // $FlowFixMe -- value[0] can't be null or undefined
         this.clampToDayStart(value[0]),
+        // $FlowFixMe -- value[1] can't be null or undefined
         this.clampToDayStart(value[1]),
       );
     }
@@ -256,6 +269,7 @@ export default class Day<T = Date> extends React.Component<
       if (this.dateHelpers.isAfter(highlightedDate, value[0])) {
         return this.dateHelpers.isDayInRange(
           this.clampToDayStart(date),
+          // $FlowFixMe -- value[0] can't be null or undefined
           this.clampToDayStart(value[0]),
           this.clampToDayStart(highlightedDate),
         );
@@ -263,6 +277,7 @@ export default class Day<T = Date> extends React.Component<
         return this.dateHelpers.isDayInRange(
           this.clampToDayStart(date),
           this.clampToDayStart(highlightedDate),
+          // $FlowFixMe -- value[0] can't be null or undefined
           this.clampToDayStart(value[0]),
         );
       }
@@ -271,22 +286,29 @@ export default class Day<T = Date> extends React.Component<
 
   getSharedProps() {
     const date = this.getDateProp();
-    const {value, highlightedDate, range, highlighted} = this.props;
+    const {
+      value,
+      highlightedDate,
+      range,
+      highlighted,
+      peekNextMonth,
+    } = this.props;
     const $isHighlighted = highlighted;
     const $selected = this.isSelected();
     const $hasRangeHighlighted = !!(
       Array.isArray(value) &&
       range &&
-      value.length === 1 &&
+      value[0] &&
+      !value[1] &&
       highlightedDate &&
       !this.dateHelpers.isSameDay(value[0], highlightedDate)
     );
-    const $outsideMonth = !this.props.peekNextMonth && this.isOutsideMonth();
+    const $outsideMonth = !peekNextMonth && this.isOutsideMonth();
     const $outsideMonthWithinRange = !!(
       Array.isArray(value) &&
       range &&
       $outsideMonth &&
-      !this.props.peekNextMonth &&
+      !peekNextMonth &&
       this.isOutsideOfMonthButWithinRange()
     );
     return {
@@ -295,7 +317,7 @@ export default class Day<T = Date> extends React.Component<
       $disabled: this.props.disabled,
       $endDate:
         (Array.isArray(value) &&
-          this.props.range &&
+          range &&
           $selected &&
           this.dateHelpers.isSameDay(date, value[1])) ||
         false,
@@ -307,7 +329,9 @@ export default class Day<T = Date> extends React.Component<
         highlightedDate &&
         value[0] &&
         this.dateHelpers.isAfter(highlightedDate, value[0]),
-      $hasRangeSelected: Array.isArray(value) ? value.length === 2 : false,
+      $hasRangeSelected: Array.isArray(value)
+        ? !!(value[0] && value[1])
+        : false,
       $highlightedDate: highlightedDate,
       $isHighlighted,
       $isHovered: this.state.isHovered,
@@ -317,21 +341,17 @@ export default class Day<T = Date> extends React.Component<
       $month: this.getMonthProp(),
       $outsideMonth,
       $outsideMonthWithinRange,
-      $peekNextMonth: this.props.peekNextMonth,
+      $peekNextMonth: peekNextMonth,
       $pseudoHighlighted:
-        this.props.range && !$isHighlighted && !$selected
+        range && !$isHighlighted && !$selected
           ? this.isPseudoHighlighted()
           : false,
-      $pseudoSelected:
-        this.props.range && !$selected ? this.isPseudoSelected() : false,
-      $range: this.props.range,
+      $pseudoSelected: range && !$selected ? this.isPseudoSelected() : false,
+      $range: range,
       $selected,
       $startDate:
-        Array.isArray(this.props.value) &&
-        this.props.value.length > 1 &&
-        this.props.range &&
-        $selected
-          ? this.dateHelpers.isSameDay(date, this.props.value[0])
+        Array.isArray(value) && value[0] && value[1] && range && $selected
+          ? this.dateHelpers.isSameDay(date, value[0])
           : false,
     };
   }

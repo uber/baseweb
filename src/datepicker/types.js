@@ -21,7 +21,9 @@ import type {OptionT} from '../select/index.js';
 // eslint-disable-next-line flowtype/no-weak-types
 type LocaleT = any; // see https://github.com/date-fns/date-fns/blob/master/src/locale/index.js.flow
 
-type onChangeT<T> = ({date: ?T | Array<T>}) => mixed;
+export type DateValueT<T> = ?T | [?T, ?T];
+
+type onChangeT<T> = ({date: DateValueT<T>}) => mixed;
 
 export type DensityT = $Keys<typeof DENSITY>;
 
@@ -82,13 +84,13 @@ export type DayPropsT<T = Date> = {
   month: ?number,
   onBlur: ({event: Event, date: T}) => mixed,
   onFocus: ({event: Event, date: T}) => mixed,
-  onSelect: ({date: ?T | Array<T>}) => mixed,
+  onSelect: ({date: DateValueT<T>}) => mixed,
   onClick: ({event: Event, date: T}) => mixed,
   onMouseOver: ({event: Event, date: T}) => mixed,
   onMouseLeave: ({event: Event, date: T}) => mixed,
   overrides?: DatepickerOverridesT,
   peekNextMonth: boolean,
-  value: ?T | Array<T>,
+  value: DateValueT<T>,
 };
 
 export type DayStateT = {
@@ -120,7 +122,7 @@ export type WeekPropsT<T = Date> = {
   onChange?: onChangeT<T>,
   overrides?: DatepickerOverridesT,
   peekNextMonth: boolean,
-  value: ?T | Array<T>,
+  value: DateValueT<T>,
 };
 
 export type MonthPropsT<T = Date> = WeekPropsT<T> & {
@@ -133,7 +135,7 @@ export type CalendarInternalState<T = Date> = {
   date: T,
   quickSelectId: ?string,
   rootElement: ?HTMLElement,
-  time: Array<T>,
+  time: Array<?T>,
 };
 
 export type CalendarPropsT<T = Date> = {
@@ -194,7 +196,7 @@ export type CalendarPropsT<T = Date> = {
   /** Defines if tabbing inside the calendar is circled within it. */
   trapTabbing?: boolean,
   /** Currently selected date. */
-  value?: ?T | Array<T>,
+  value?: DateValueT<T>,
   fixedHeight?: boolean,
 };
 
@@ -222,7 +224,7 @@ export type DatepickerPropsT<T = Date> = CalendarPropsT<T> & {
   required?: boolean,
   clearable?: boolean,
   displayValueAtRangeIndex?: number,
-  formatDisplayValue?: (date: ?T | Array<T>, formatString: string) => string,
+  formatDisplayValue?: (date: DateValueT<T>, formatString: string) => string,
   formatString: string,
   /** Where to mount the popover */
   mountNode?: HTMLElement,
@@ -268,7 +270,7 @@ export type StateChangeTypeT = ?$Values<typeof STATE_CHANGE_TYPE>;
 
 export type ContainerStateT<T = Date> = {
   /** Selected `Date`. If `range` is set, `value` is an array of 2 values. */
-  value?: ?T | Array<T>,
+  value?: DateValueT<T>,
 };
 
 export type NavigationContainerStateT<T = Date> = {
@@ -324,7 +326,7 @@ export type NavigationContainerPropsT<T = Date> = {
   /** Event handler that is called when the current rendered year is changed. */
   onYearChange?: ({date: T}) => mixed,
   /** Selected `Date`. If `range` is set, `value` is an array of 2 values. */
-  value?: ?T | Array<T>,
+  value?: DateValueT<T>,
   stateReducer: NavigationContainerStateReducerT<T>,
   trapTabbing: boolean,
 };

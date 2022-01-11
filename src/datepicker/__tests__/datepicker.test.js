@@ -121,7 +121,7 @@ describe('Datepicker', () => {
         <Datepicker
           range
           onChange={onChange}
-          value={[]}
+          value={[null, null]}
           overrides={{
             Input: {
               props: {overrides: {Input: {props: {'data-testid': 'input'}}}},
@@ -165,7 +165,7 @@ describe('Datepicker', () => {
 
   it('closes calendar if both dates from range are selected', () => {
     function TestCase() {
-      const [value, setValue] = React.useState([]);
+      const [value, setValue] = React.useState([null, null]);
       return (
         <TestBaseProvider>
           <Datepicker

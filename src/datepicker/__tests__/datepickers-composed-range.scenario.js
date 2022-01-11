@@ -29,7 +29,7 @@ function printTime(dt) {
 
 export function Scenario() {
   const [css, theme] = useStyletron();
-  const [dates, setDates] = useState<Array<Date>>([START_DATE, END_DATE]);
+  const [dates, setDates] = useState<[?Date, ?Date]>([START_DATE, END_DATE]);
 
   const inputGap = theme.sizing.scale300;
 
@@ -76,7 +76,7 @@ export function Scenario() {
               <TimePicker
                 value={dates[0]}
                 onChange={time => {
-                  if (time) {
+                  if (time && dates[1]) {
                     if (isAfter(time, dates[1])) {
                       setDates([time, time]);
                     } else {
@@ -126,7 +126,7 @@ export function Scenario() {
               <TimePicker
                 value={dates[1]}
                 onChange={time => {
-                  if (time) {
+                  if (time && dates[0]) {
                     if (isBefore(time, dates[0])) {
                       setDates([time, time]);
                     } else {
@@ -140,7 +140,7 @@ export function Scenario() {
         </div>
       </div>
 
-      <button id="set-undefined" onClick={() => setDates([])}>
+      <button id="set-undefined" onClick={() => setDates([null, null])}>
         set undefined
       </button>
 
