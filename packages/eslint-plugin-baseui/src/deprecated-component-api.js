@@ -429,6 +429,7 @@ module.exports = {
           return (
             node.name === name &&
             node.type === 'Identifier' &&
+            importState[name] === node.name &&
             !['ImportSpecifier', 'JSXIdentifier'].includes(node.parent.type)
           );
         }

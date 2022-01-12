@@ -422,6 +422,26 @@ const tests = {
         }));
       `,
     },
+    // Label3, renamed with same name import
+    {
+      code: `
+        import { Label3 as Foo } from "baseui/typography"
+        import { Label3 } from "hello/world"
+        
+        const VersionHistoryLabel = styled<typeof Label3, any>(Label3, ({ $theme }: TStyledFnArgs) => ({
+          marginBottom: $theme.sizing.scale600,
+        }));
+      `,
+      errors: [{messageId: MESSAGES.replace.id}],
+      output: `
+        import { LabelSmall as Foo } from "baseui/typography"
+        import { Label3 } from "hello/world"
+        
+        const VersionHistoryLabel = styled<typeof Label3, any>(Label3, ({ $theme }: TStyledFnArgs) => ({
+          marginBottom: $theme.sizing.scale600,
+        }));
+      `,
+    },
 
     // Block - $style
     {
