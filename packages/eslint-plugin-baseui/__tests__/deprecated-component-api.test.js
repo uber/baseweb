@@ -381,6 +381,48 @@ const tests = {
       `,
     },
 
+    // Label3, styled type extension
+    {
+      code: `
+        import { Label3 } from "baseui/typography"
+        
+        const VersionHistoryLabel = styled<typeof Label3, any>(Label3, ({ $theme }: TStyledFnArgs) => ({
+          marginBottom: $theme.sizing.scale600,
+        }));
+      `,
+      errors: [
+        {messageId: MESSAGES.replace.id},
+        {messageId: MESSAGES.replace.id},
+        {messageId: MESSAGES.replace.id},
+      ],
+      output: `
+        import { LabelSmall } from "baseui/typography"
+        
+        const VersionHistoryLabel = styled<typeof LabelSmall, any>(LabelSmall, ({ $theme }: TStyledFnArgs) => ({
+          marginBottom: $theme.sizing.scale600,
+        }));
+      `,
+    },
+
+    // Label3, styled type extension, renamed
+    {
+      code: `
+        import { Label3 as Foo } from "baseui/typography"
+        
+        const VersionHistoryLabel = styled<typeof Foo, any>(Foo, ({ $theme }: TStyledFnArgs) => ({
+          marginBottom: $theme.sizing.scale600,
+        }));
+      `,
+      errors: [{messageId: MESSAGES.replace.id}],
+      output: `
+        import { LabelSmall as Foo } from "baseui/typography"
+        
+        const VersionHistoryLabel = styled<typeof Foo, any>(Foo, ({ $theme }: TStyledFnArgs) => ({
+          marginBottom: $theme.sizing.scale600,
+        }));
+      `,
+    },
+
     // Block - $style
     {
       code: `
