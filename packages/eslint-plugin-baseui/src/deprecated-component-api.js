@@ -411,6 +411,38 @@ module.exports = {
           }
         });
       },
+      Identifier(node) {
+        const fixIdentifier = (oldComponent, newComponent) => {
+          context.report({
+            node,
+            messageId: MESSAGES.replace.id,
+            data: {
+              old: oldComponent,
+              new: newComponent,
+            },
+            fix: function(fixer) {
+              return [fixer.replaceText(node, newComponent)];
+            },
+          });
+        };
+        function isIdentifier(name) {
+          return (
+            node.name === name &&
+            node.type === 'Identifier' &&
+            importState[name] === node.name &&
+            !['ImportSpecifier', 'JSXIdentifier'].includes(node.parent.type)
+          );
+        }
+
+        deprecatedTypographyComponents.forEach(deprecatedApi => {
+          if (
+            importState[deprecatedApi.oldName] &&
+            isIdentifier(deprecatedApi.oldName)
+          ) {
+            fixIdentifier(deprecatedApi.oldName, deprecatedApi.newName);
+          }
+        });
+      },
     };
   },
 };
