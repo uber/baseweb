@@ -29,7 +29,7 @@ function printTime(dt) {
 
 export function Scenario() {
   const [css, theme] = useStyletron();
-  const [dates, setDates] = useState<[?Date, ?Date]>([START_DATE, END_DATE]);
+  const [dates, setDates] = useState<Array<?Date>>([START_DATE, END_DATE]);
 
   const inputGap = theme.sizing.scale300;
 

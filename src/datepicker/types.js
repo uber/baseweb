@@ -21,7 +21,7 @@ import type {OptionT} from '../select/index.js';
 // eslint-disable-next-line flowtype/no-weak-types
 type LocaleT = any; // see https://github.com/date-fns/date-fns/blob/master/src/locale/index.js.flow
 
-export type DateValueT<T> = ?T | [?T, ?T];
+export type DateValueT<T> = ?T | Array<?T>;
 
 type onChangeT<T> = ({date: DateValueT<T>}) => mixed;
 
