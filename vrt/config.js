@@ -299,6 +299,7 @@ const config = {
         name: 'positions-content-correctly-on-first-render',
         behavior: async page => {
           await page.hover('button');
+          await page.waitForSelector('#content');
         },
       },
     ],

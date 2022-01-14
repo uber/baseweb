@@ -15,7 +15,7 @@ export function Scenario() {
   return (
     <StatefulPopover
       accessibilityType={'tooltip'}
-      content={<div>content</div>}
+      content={<div id="content">content</div>}
       triggerType={TRIGGER_TYPE.hover}
     >
       <Button>Open</Button>
