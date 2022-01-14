@@ -9,16 +9,19 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {Button} from '../../button/index.js';
-import {StatefulPopover, TRIGGER_TYPE} from '../index.js';
+import {StatefulPopover, TRIGGER_TYPE, PLACEMENT} from '../index.js';
 
 export function Scenario() {
   return (
-    <StatefulPopover
-      accessibilityType={'tooltip'}
-      content={<div id="content">content</div>}
-      triggerType={TRIGGER_TYPE.hover}
-    >
-      <Button>Open</Button>
-    </StatefulPopover>
+    <div style={{padding: '36px'}}>
+      <StatefulPopover
+        accessibilityType={'tooltip'}
+        content={<div id="content">content</div>}
+        placement={PLACEMENT.right}
+        triggerType={TRIGGER_TYPE.hover}
+      >
+        <Button>Open</Button>
+      </StatefulPopover>
+    </div>
   );
 }
