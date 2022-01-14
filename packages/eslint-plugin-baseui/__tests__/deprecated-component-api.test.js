@@ -442,6 +442,38 @@ const tests = {
         }));
       `,
     },
+    // H1, renamed with a different component using same name
+    {
+      code: `
+        import { H1 as StyledH1 } from "baseui/typography"
+        import ReactMarkdown from 'react-markdown';
+        import { getOverrides } from 'baseui/helpers/overrides';
+
+        const MarkdownRender = ({ overrides = {}, text }: Props) => {
+           const [H1, h1Props] = getOverrides(overrides.H1, StyledH1);
+        
+          return <ReactMarkdown
+            components={{
+              h1: ({ node, ...rest }) => <H1 {...h1Props} {...rest} />
+            }}/>;
+          }
+      `,
+      errors: [{messageId: MESSAGES.replace.id}],
+      output: `
+        import { HeadingXXLarge as StyledH1 } from "baseui/typography"
+        import ReactMarkdown from 'react-markdown';
+        import { getOverrides } from 'baseui/helpers/overrides';
+
+        const MarkdownRender = ({ overrides = {}, text }: Props) => {
+           const [H1, h1Props] = getOverrides(overrides.H1, StyledH1);
+        
+          return <ReactMarkdown
+            components={{
+              h1: ({ node, ...rest }) => <H1 {...h1Props} {...rest} />
+            }}/>;
+          }
+      `,
+    },
 
     // Block - $style
     {

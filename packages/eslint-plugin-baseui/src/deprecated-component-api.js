@@ -386,6 +386,7 @@ module.exports = {
         deprecatedTypographyComponents.forEach(deprecatedApi => {
           if (
             importState[deprecatedApi.oldName] &&
+            importState[deprecatedApi.oldName] === deprecatedApi.oldName &&
             isComponent(deprecatedApi.oldName)
           ) {
             context.report({
