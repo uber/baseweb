@@ -292,6 +292,17 @@ const config = {
       },
     ],
   },
+  // Ref: https://github.com/uber/baseweb/issues/4693
+  'popover--hover': {
+    interactions: [
+      {
+        name: 'positions-content-correctly-on-first-render',
+        behavior: async page => {
+          await page.hover('button');
+        },
+      },
+    ],
+  },
   'popover--reposition': {
     skip: true,
   },
