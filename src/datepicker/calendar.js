@@ -365,7 +365,11 @@ export default class Calendar<T = Date> extends React.Component<
         : null;
       newTimeState[0] = start;
       newTimeState[1] = end ? end : newTimeState[1];
-      updatedDate = [start, end];
+      if (end) {
+        updatedDate = [start, end];
+      } else {
+        updatedDate = [start];
+      }
     } else if (!Array.isArray(this.props.value) && data.date) {
       newTimeState[0] = this.dateHelpers.applyDateToTime(
         newTimeState[0],
@@ -569,8 +573,7 @@ export default class Calendar<T = Date> extends React.Component<
                 onChange={params => {
                   if (!params.option) {
                     this.setState({quickSelectId: null});
-                    this.props.onChange &&
-                      this.props.onChange({date: [null, null]});
+                    this.props.onChange && this.props.onChange({date: []});
                   } else {
                     this.setState({
                       quickSelectId: params.option.id,
