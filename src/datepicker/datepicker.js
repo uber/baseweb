@@ -269,7 +269,7 @@ export default class Datepicker<T = Date> extends React.Component<
     ) {
       if (this.props.onChange) {
         if (this.props.range) {
-          this.props.onChange({date: [null, null]});
+          this.props.onChange({date: []});
         } else {
           this.props.onChange({date: null});
         }

@@ -140,7 +140,7 @@ export function Scenario() {
         </div>
       </div>
 
-      <button id="set-undefined" onClick={() => setDates([null, null])}>
+      <button id="set-undefined" onClick={() => setDates([])}>
         set undefined
       </button>
 
