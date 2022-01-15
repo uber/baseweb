@@ -475,6 +475,49 @@ const tests = {
       `,
     },
 
+    // oldName and newName imported and used
+    {
+      code: `
+        import { HeadingXXLarge, H1 } from "baseui/typography"
+
+        const MarkdownRender = () => {
+          return <div><H1>Large</H1><HeadingXXLarge>Large</HeadingXXLarge></div>
+          }
+      `,
+      errors: [
+        {messageId: MESSAGES.remove.id},
+        {messageId: MESSAGES.replace.id},
+      ],
+      output: `
+        import { HeadingXXLarge, H1 } from "baseui/typography"
+
+        const MarkdownRender = () => {
+          return <div><HeadingXXLarge>Large</HeadingXXLarge><HeadingXXLarge>Large</HeadingXXLarge></div>
+          }
+      `,
+    },
+    // oldName and newName imported and used
+    {
+      code: `
+        import { HeadingXXLarge as Hello, H1 } from "baseui/typography"
+
+        const MarkdownRender = () => {
+          return <div><H1>Large</H1><Hello>Large</Hello></div>
+          }
+      `,
+      errors: [
+        {messageId: MESSAGES.remove.id},
+        {messageId: MESSAGES.replace.id},
+      ],
+      output: `
+        import { HeadingXXLarge as Hello, H1 } from "baseui/typography"
+
+        const MarkdownRender = () => {
+          return <div><Hello>Large</Hello><Hello>Large</Hello></div>
+          }
+      `,
+    },
+
     // Block - $style
     {
       code: `

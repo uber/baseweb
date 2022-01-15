@@ -9,29 +9,29 @@ LICENSE file in the root directory of this source tree.
 
 const MESSAGES = require('./messages.js');
 
-const deprecatedTypographyComponents = [
-  {oldName: 'Display', newName: 'DisplayLarge'},
-  {oldName: 'Display1', newName: 'DisplayLarge'},
-  {oldName: 'Display2', newName: 'DisplayMedium'},
-  {oldName: 'Display3', newName: 'DisplaySmall'},
-  {oldName: 'Display4', newName: 'DisplayXSmall'},
-  {oldName: 'H1', newName: 'HeadingXXLarge'},
-  {oldName: 'H2', newName: 'HeadingXLarge'},
-  {oldName: 'H3', newName: 'HeadingLarge'},
-  {oldName: 'H4', newName: 'HeadingMedium'},
-  {oldName: 'H5', newName: 'HeadingSmall'},
-  {oldName: 'H6', newName: 'HeadingXSmall'},
-  {oldName: 'Paragraph1', newName: 'ParagraphLarge'},
-  {oldName: 'Paragraph2', newName: 'ParagraphMedium'},
-  {oldName: 'Paragraph3', newName: 'ParagraphSmall'},
-  {oldName: 'Paragraph4', newName: 'ParagraphXSmall'},
-  {oldName: 'Label1', newName: 'LabelLarge'},
-  {oldName: 'Label2', newName: 'LabelMedium'},
-  {oldName: 'Label3', newName: 'LabelSmall'},
-  {oldName: 'Label4', newName: 'LabelXSmall'},
-  {oldName: 'Caption1', newName: 'ParagraphXSmall'},
-  {oldName: 'Caption2', newName: 'LabelXSmall'},
-];
+const mapDeprecatedTypographyComponents = {
+  Display: 'DisplayLarge',
+  Display1: 'DisplayLarge',
+  Display2: 'DisplayMedium',
+  Display3: 'DisplaySmall',
+  Display4: 'DisplayXSmall',
+  H1: 'HeadingXXLarge',
+  H2: 'HeadingXLarge',
+  H3: 'HeadingLarge',
+  H4: 'HeadingMedium',
+  H5: 'HeadingSmall',
+  H6: 'HeadingXSmall',
+  Paragraph1: 'ParagraphLarge',
+  Paragraph2: 'ParagraphMedium',
+  Paragraph3: 'ParagraphSmall',
+  Paragraph4: 'ParagraphXSmall',
+  Label1: 'LabelLarge',
+  Label2: 'LabelMedium',
+  Label3: 'LabelSmall',
+  Label4: 'LabelXSmall',
+  Caption1: 'ParagraphXSmall',
+  Caption2: 'LabelXSmall',
+};
 
 const getOverrideIfExists = (name, node) => {
   // Verify that an object is passed to overrides.
@@ -49,6 +49,7 @@ module.exports = {
   meta: {
     fixable: 'code',
     messages: {
+      [MESSAGES.remove.id]: MESSAGES.remove.message,
       [MESSAGES.replace.id]: MESSAGES.replace.message,
       [MESSAGES.deprecateSpinner.id]: MESSAGES.deprecateSpinner.message,
       [MESSAGES.styleOnBlock.id]: MESSAGES.styleOnBlock.message,
@@ -58,38 +59,83 @@ module.exports = {
   },
   create(context) {
     let importState = {};
-    return {
-      ImportSpecifier(node) {
-        function isImporting(importName, importPath) {
-          if (
-            node.imported.name === importName &&
-            node.parent.source.value === importPath
-          ) {
-            importState[importName] = node.local.name;
-            return true;
-          } else {
-            return false;
-          }
-        }
-        const fixImport = (oldComponent, newComponent) => {
-          context.report({
-            node: node.imported,
-            messageId: MESSAGES.replace.id,
-            data: {
-              old: oldComponent,
-              new: newComponent,
-            },
-            fix: function(fixer) {
-              return [fixer.replaceText(node.imported, newComponent)];
-            },
-          });
-        };
+    const identifiersToRename = {};
+    function isImporting(node, importName, importPath) {
+      if (
+        node.imported.name === importName &&
+        node.parent.source.value === importPath
+      ) {
+        importState[importName] = node.local.name;
+        return true;
+      } else {
+        return false;
+      }
+    }
 
+    const fixImport = (node, oldComponent, newComponent) => {
+      context.report({
+        node: node.imported,
+        messageId: MESSAGES.replace.id,
+        data: {
+          old: oldComponent,
+          new: newComponent,
+        },
+        fix: function(fixer) {
+          return [fixer.replaceText(node.imported, newComponent)];
+        },
+      });
+    };
+
+    const removeImport = (node, oldName, newName) => {
+      context.report({
+        node,
+        messageId: MESSAGES.remove.id,
+        data: {
+          old: oldName,
+          new: newName,
+        },
+      });
+    };
+
+    return {
+      ImportDeclaration(node) {
+        if (node.source.value !== 'baseui/typography') {
+          return;
+        }
+        const existingImports = {};
+        const specifiers = node.specifiers || [];
+        specifiers.forEach(specifier => {
+          const deprecatedComponent = specifier.imported.name;
+          const newComponent =
+            mapDeprecatedTypographyComponents[deprecatedComponent];
+
+          if (newComponent) {
+            const isAlreadyImported = Boolean(existingImports[newComponent]);
+            const isRenamed = deprecatedComponent !== specifier.local.name;
+            if (!isRenamed) {
+              identifiersToRename[
+                isRenamed ? specifier.local.name : deprecatedComponent
+              ] = existingImports[newComponent] || newComponent;
+            }
+            if (isAlreadyImported) {
+              removeImport(specifier, deprecatedComponent, newComponent);
+            } else {
+              fixImport(specifier, deprecatedComponent, newComponent);
+            }
+          } else {
+            existingImports[deprecatedComponent] = specifier.local.name;
+          }
+        });
+      },
+      ImportSpecifier(node) {
+        if (!node.parent.source.value.startsWith('baseui/')) {
+          return;
+        }
         // Spinner
         // Ex: import {Spinner} from "baseui/spinner";
         // Note, we are not replacing Spinner because the new API
         // is not compatible.
-        if (isImporting('Spinner', 'baseui/spinner')) {
+        if (isImporting(node, 'Spinner', 'baseui/spinner')) {
           context.report({
             node: node.imported,
             messageId: MESSAGES.deprecateSpinner.id,
@@ -97,27 +143,12 @@ module.exports = {
           return;
         }
 
-        // For Caption1 and Caption2, we want to potentially replace instances
-        // of the component. We need to consider imports as well as instances
-        // so that if people use the autofix flag, they don't end up with a
-        // weird half-way fix. If we find a valid import here, we capture in
-        // `importState` what the `new` value to use when we rename instances
-        // later on. One consequence of this approach is that you have to fix
-        // the import and instance separately if resolving lint warnings
-        // manually.
-
-        deprecatedTypographyComponents.forEach(deprecatedApi => {
-          if (isImporting(deprecatedApi.oldName, 'baseui/typography')) {
-            fixImport(deprecatedApi.oldName, deprecatedApi.newName);
-          }
-        });
-
         // These can be referenced later on by instances of components.
-        if (isImporting('Accordion', 'baseui/accordion')) return;
-        if (isImporting('Modal', 'baseui/modal')) return;
-        if (isImporting('Block', 'baseui/block')) return;
-        if (isImporting('Checkbox', 'baseui/checkbox')) return;
-        if (isImporting('Button', 'baseui/button')) return;
+        if (isImporting(node, 'Accordion', 'baseui/accordion')) return;
+        if (isImporting(node, 'Modal', 'baseui/modal')) return;
+        if (isImporting(node, 'Block', 'baseui/block')) return;
+        if (isImporting(node, 'Checkbox', 'baseui/checkbox')) return;
+        if (isImporting(node, 'Button', 'baseui/button')) return;
       },
       JSXIdentifier(node) {
         // =======
@@ -143,9 +174,9 @@ module.exports = {
 
         // isComponent
         // Check if identifier is a component matching "name".
-        // Ex: isComponent("Boo") with <Boo foo={} /> => true
-        function isComponent(name) {
-          return node.name === name && node.parent.type === 'JSXOpeningElement';
+        // Ex: isComponent(") with <Boo foo={} /> => true
+        function isComponent() {
+          return node.parent.type === 'JSXOpeningElement';
         }
 
         // ================
@@ -383,34 +414,30 @@ module.exports = {
         // Caption1
         // Ex: <Caption1 />
         // Replacement: ParagraphXSmall
-        deprecatedTypographyComponents.forEach(deprecatedApi => {
-          if (
-            importState[deprecatedApi.oldName] &&
-            importState[deprecatedApi.oldName] === deprecatedApi.oldName &&
-            isComponent(deprecatedApi.oldName)
-          ) {
-            context.report({
-              node,
-              messageId: MESSAGES.replace.id,
-              data: {
-                old: deprecatedApi.oldName,
-                new: deprecatedApi.newName,
-              },
-              fix: function(fixer) {
-                const tags = [fixer.replaceText(node, deprecatedApi.newName)];
-                if (node.parent.parent.closingElement) {
-                  tags.push(
-                    fixer.replaceText(
-                      node.parent.parent.closingElement.name,
-                      deprecatedApi.newName,
-                    ),
-                  );
-                }
-                return tags;
-              },
-            });
-          }
-        });
+        if (identifiersToRename[node.name] && isComponent()) {
+          const oldName = node.name;
+          const newName = identifiersToRename[node.name];
+          context.report({
+            node,
+            messageId: MESSAGES.replace.id,
+            data: {
+              old: oldName,
+              new: newName,
+            },
+            fix: function(fixer) {
+              const tags = [fixer.replaceText(node, newName)];
+              if (node.parent.parent.closingElement) {
+                tags.push(
+                  fixer.replaceText(
+                    node.parent.parent.closingElement.name,
+                    newName,
+                  ),
+                );
+              }
+              return tags;
+            },
+          });
+        }
       },
       Identifier(node) {
         const fixIdentifier = (oldComponent, newComponent) => {
@@ -430,17 +457,13 @@ module.exports = {
           return (
             node.name === name &&
             node.type === 'Identifier' &&
-            importState[name] === node.name &&
             !['ImportSpecifier', 'JSXIdentifier'].includes(node.parent.type)
           );
         }
 
-        deprecatedTypographyComponents.forEach(deprecatedApi => {
-          if (
-            importState[deprecatedApi.oldName] &&
-            isIdentifier(deprecatedApi.oldName)
-          ) {
-            fixIdentifier(deprecatedApi.oldName, deprecatedApi.newName);
+        Object.keys(identifiersToRename).forEach(oldName => {
+          if (identifiersToRename[oldName] && isIdentifier(oldName)) {
+            fixIdentifier(oldName, identifiersToRename[oldName]);
           }
         });
       },

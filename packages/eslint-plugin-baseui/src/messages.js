@@ -8,6 +8,10 @@ LICENSE file in the root directory of this source tree.
 'use strict';
 
 module.exports = {
+  remove: {
+    id: 'remove',
+    message: `"{{ old }}" is deprecated and should be manually removed in favor of "{{ new }}", which is already imported.`,
+  },
   replace: {
     id: 'replace',
     message: `"{{ old }}" is deprecated and can be replaced with "{{ new }}".`,
