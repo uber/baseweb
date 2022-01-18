@@ -49,7 +49,6 @@ module.exports = {
   meta: {
     fixable: 'code',
     messages: {
-      [MESSAGES.remove.id]: MESSAGES.remove.message,
       [MESSAGES.replace.id]: MESSAGES.replace.message,
       [MESSAGES.deprecateSpinner.id]: MESSAGES.deprecateSpinner.message,
       [MESSAGES.styleOnBlock.id]: MESSAGES.styleOnBlock.message,
@@ -73,13 +72,24 @@ module.exports = {
         },
       });
     };
-    const removeImport = (node, oldName, newName) => {
+    const removeImport = (node, specifierIndex, oldName, newName) => {
       context.report({
         node,
-        messageId: MESSAGES.remove.id,
+        messageId: MESSAGES.replace.id,
         data: {
           old: oldName,
           new: newName,
+        },
+        fix: function(fixer) {
+          return [
+            fixer.replaceTextRange(
+              [
+                node.specifiers[specifierIndex - 1].range[1],
+                node.specifiers[specifierIndex].range[1],
+              ],
+              '',
+            ),
+          ];
         },
       });
     };
@@ -91,7 +101,7 @@ module.exports = {
         }
         const existingImports = {};
         const specifiers = node.specifiers || [];
-        specifiers.forEach(specifier => {
+        specifiers.forEach((specifier, specifierIndex) => {
           const deprecatedComponent = specifier.imported.name;
           const newComponent =
             mapDeprecatedTypographyComponents[deprecatedComponent];
@@ -105,7 +115,12 @@ module.exports = {
               ] = existingImports[newComponent] || newComponent;
             }
             if (isAlreadyImported) {
-              removeImport(specifier, deprecatedComponent, newComponent);
+              removeImport(
+                node,
+                specifierIndex,
+                deprecatedComponent,
+                newComponent,
+              );
             } else {
               fixImport(specifier, deprecatedComponent, newComponent);
             }
