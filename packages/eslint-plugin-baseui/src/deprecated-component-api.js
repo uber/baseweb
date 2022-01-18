@@ -81,15 +81,13 @@ module.exports = {
           new: newName,
         },
         fix: function(fixer) {
-          return [
-            fixer.replaceTextRange(
-              [
-                node.specifiers[specifierIndex - 1].range[1],
-                node.specifiers[specifierIndex].range[1],
-              ],
-              '',
-            ),
-          ];
+          const isAtStart = specifierIndex === 0;
+          const startIndex = isAtStart ? specifierIndex : specifierIndex - 1;
+          const endIndex = isAtStart ? specifierIndex + 1 : specifierIndex;
+          return fixer.removeRange([
+            node.specifiers[startIndex].range[isAtStart ? 0 : 1],
+            node.specifiers[endIndex].range[isAtStart ? 0 : 1],
+          ]);
         },
       });
     };
@@ -99,7 +97,24 @@ module.exports = {
         if (node.source.value !== 'baseui/typography') {
           return;
         }
+
         const existingImports = {};
+
+        // Map existing imports (newName: localName), preference given to first renamed import.
+        node.specifiers.forEach(specifier => {
+          const currentImportedName = specifier.imported.name;
+          if (existingImports[currentImportedName]) {
+            if (
+              currentImportedName !== specifier.local.name &&
+              existingImports[currentImportedName] === currentImportedName
+            ) {
+              existingImports[currentImportedName] = specifier.local.name;
+            }
+          } else {
+            existingImports[currentImportedName] = specifier.local.name;
+          }
+        });
+
         const specifiers = node.specifiers || [];
         specifiers.forEach((specifier, specifierIndex) => {
           const deprecatedComponent = specifier.imported.name;
@@ -108,12 +123,8 @@ module.exports = {
 
           if (newComponent) {
             const isAlreadyImported = Boolean(existingImports[newComponent]);
-            const isRenamed = deprecatedComponent !== specifier.local.name;
-            if (!isRenamed) {
-              identifiersToRename[
-                isRenamed ? specifier.local.name : deprecatedComponent
-              ] = existingImports[newComponent] || newComponent;
-            }
+            const isRenamed = specifier.local.name !== specifier.imported.name;
+
             if (isAlreadyImported) {
               removeImport(
                 node,
@@ -121,11 +132,14 @@ module.exports = {
                 deprecatedComponent,
                 newComponent,
               );
+              identifiersToRename[specifier.local.name] =
+                existingImports[newComponent];
             } else {
               fixImport(specifier, deprecatedComponent, newComponent);
+              if (!isRenamed) {
+                identifiersToRename[specifier.local.name] = newComponent;
+              }
             }
-          } else {
-            existingImports[deprecatedComponent] = specifier.local.name;
           }
         });
       },

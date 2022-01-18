@@ -540,6 +540,26 @@ const tests = {
           }
       `,
     },
+    {
+      code: `
+        import { H1, HeadingXXLarge as Hello, HeadingXLarge } from "baseui/typography"
+
+        const MarkdownRender = () => {
+          return <div><H1>Large</H1><HeadingXXLarge>H2</HeadingXXLarge><HeadingXLarge>HeadingXLarge</HeadingXLarge><Hello>Large</Hello></div>
+          }
+      `,
+      errors: [
+        {messageId: MESSAGES.replace.id},
+        {messageId: MESSAGES.replace.id},
+      ],
+      output: `
+        import { HeadingXXLarge as Hello, HeadingXLarge } from "baseui/typography"
+
+        const MarkdownRender = () => {
+          return <div><Hello>Large</Hello><HeadingXXLarge>H2</HeadingXXLarge><HeadingXLarge>HeadingXLarge</HeadingXLarge><Hello>Large</Hello></div>
+          }
+      `,
+    },
 
     // Block - $style
     {
