@@ -60,18 +60,6 @@ module.exports = {
   create(context) {
     let importState = {};
     const identifiersToRename = {};
-    function isImporting(node, importName, importPath) {
-      if (
-        node.imported.name === importName &&
-        node.parent.source.value === importPath
-      ) {
-        importState[importName] = node.local.name;
-        return true;
-      } else {
-        return false;
-      }
-    }
-
     const fixImport = (node, oldComponent, newComponent) => {
       context.report({
         node: node.imported,
@@ -85,7 +73,6 @@ module.exports = {
         },
       });
     };
-
     const removeImport = (node, oldName, newName) => {
       context.report({
         node,
@@ -128,6 +115,18 @@ module.exports = {
         });
       },
       ImportSpecifier(node) {
+        function isImporting(importName, importPath) {
+          if (
+            node.imported.name === importName &&
+            node.parent.source.value === importPath
+          ) {
+            importState[importName] = node.local.name;
+            return true;
+          } else {
+            return false;
+          }
+        }
+
         if (!node.parent.source.value.startsWith('baseui/')) {
           return;
         }
@@ -135,7 +134,7 @@ module.exports = {
         // Ex: import {Spinner} from "baseui/spinner";
         // Note, we are not replacing Spinner because the new API
         // is not compatible.
-        if (isImporting(node, 'Spinner', 'baseui/spinner')) {
+        if (isImporting('Spinner', 'baseui/spinner')) {
           context.report({
             node: node.imported,
             messageId: MESSAGES.deprecateSpinner.id,
@@ -144,11 +143,11 @@ module.exports = {
         }
 
         // These can be referenced later on by instances of components.
-        if (isImporting(node, 'Accordion', 'baseui/accordion')) return;
-        if (isImporting(node, 'Modal', 'baseui/modal')) return;
-        if (isImporting(node, 'Block', 'baseui/block')) return;
-        if (isImporting(node, 'Checkbox', 'baseui/checkbox')) return;
-        if (isImporting(node, 'Button', 'baseui/button')) return;
+        if (isImporting('Accordion', 'baseui/accordion')) return;
+        if (isImporting('Modal', 'baseui/modal')) return;
+        if (isImporting('Block', 'baseui/block')) return;
+        if (isImporting('Checkbox', 'baseui/checkbox')) return;
+        if (isImporting('Button', 'baseui/button')) return;
       },
       JSXIdentifier(node) {
         // =======
@@ -173,8 +172,8 @@ module.exports = {
         }
 
         // isComponent
-        // Check if identifier is a component matching "name".
-        // Ex: isComponent(") with <Boo foo={} /> => true
+        // Check if identifier is a component.
+        // Ex: isComponent() with <Boo foo={} /> => true
         function isComponent() {
           return node.parent.type === 'JSXOpeningElement';
         }

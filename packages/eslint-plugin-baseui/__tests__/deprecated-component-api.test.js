@@ -496,7 +496,7 @@ const tests = {
           }
       `,
     },
-    // oldName and newName imported and used
+    // oldName imported and renamed, and newName imported and used
     {
       code: `
         import { HeadingXXLarge as Hello, H1 } from "baseui/typography"
