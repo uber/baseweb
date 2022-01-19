@@ -16,6 +16,7 @@ import {
 } from './styled-components.js';
 import {LABEL_ENHANCER_POSITIONS} from './constants.js';
 import type {LabelEhancerComponentT} from './types.js';
+
 const LabelEnhancer = ({
   labelEnhancerContent,
   labelEnhancerPosition,
@@ -23,7 +24,7 @@ const LabelEnhancer = ({
   labelEnhancerStrokeColor,
   needleHeight,
   size,
-  overrides,
+  overrides = {},
 }: LabelEhancerComponentT) => {
   const [, theme] = useStyletron();
   const {

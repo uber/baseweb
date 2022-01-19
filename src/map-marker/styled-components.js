@@ -54,7 +54,7 @@ export const DragShadow = styled<{
   backgroundColor: $background,
   borderRadius: '50%',
   width: `${$width}px`,
-  height: `${4}px`,
+  height: '4px',
   position: 'absolute',
   bottom: 0,
 }));

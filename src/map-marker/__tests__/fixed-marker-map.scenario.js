@@ -28,21 +28,25 @@ const uberHq = {
   latitude: 37.768495131168336,
   longitude: -122.38856031220648,
 };
-const labelEnhancerPositions = Object.values(LABEL_ENHANCER_POSITIONS).map(
-  x => ({
+const labelEnhancerPositions = Object.keys(LABEL_ENHANCER_POSITIONS)
+  .map(key => LABEL_ENHANCER_POSITIONS[key])
+  .map(x => ({
     id: x,
     label: x,
-  }),
-);
-const pinheadSizes = Object.values(PINHEAD_SIZES_SHAPES).map(x => ({
-  label: x,
-  id: x,
-}));
+  }));
+const pinheadSizes = Object.keys(PINHEAD_SIZES_SHAPES)
+  .map(key => PINHEAD_SIZES_SHAPES[key])
+  .map(x => ({
+    label: x,
+    id: x,
+  }));
 
-const needleSizes = Object.values(NEEDLE_SIZES).map(x => ({
-  label: x,
-  id: x,
-}));
+const needleSizes = Object.keys(NEEDLE_SIZES)
+  .map(key => NEEDLE_SIZES[key])
+  .map(x => ({
+    label: x,
+    id: x,
+  }));
 
 export function Scenario() {
   const [label, setLabel] = React.useState('Uber HQ');

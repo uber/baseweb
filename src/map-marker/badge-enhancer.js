@@ -44,8 +44,7 @@ const BadgeEnhancer = ({
     !BadgeEnhancerContent
   ) {
     console.warn(
-      `Badges (except for size ${badgeEnhancerSize !==
-        BADGE_ENHANCER_SIZES.xSmall} must contain content`,
+      `Badges (except for size ${BADGE_ENHANCER_SIZES.xSmall}) must contain content`,
     );
     return null;
   }
@@ -53,7 +52,8 @@ const BadgeEnhancer = ({
     console.warn(`Badges can only be rendered on fixed markers`);
     return null;
   }
-  const position = BADGE_ENHANCER_POSITIONS[pinHeadSize][badgeEnhancerSize];
+  const positions = BADGE_ENHANCER_POSITIONS[pinHeadSize];
+  const position = positions ? positions[badgeEnhancerSize] : null;
   if (!position) {
     console.warn(
       `Badge size ${badgeEnhancerSize} cannot be rendered with pinhead size ${pinHeadSize}`,
