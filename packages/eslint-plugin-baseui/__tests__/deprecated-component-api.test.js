@@ -560,6 +560,24 @@ const tests = {
           }
       `,
     },
+    // Should not error on ImportNamespaceSpecifiers
+    {
+      code: `
+import * as Typography from "baseui/typography";
+
+const Example = () => {
+  return <div></div>
+}
+      `,
+      errors: [],
+      output: `
+import * as Typography from "baseui/typography";
+
+const Example = () => {
+  return <div></div>
+}
+      `,
+    },
 
     // Block - $style
     {
