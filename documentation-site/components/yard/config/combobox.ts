@@ -4,8 +4,6 @@ import {TConfig} from '../types';
 import inputConfig from './input';
 import popoverConfig from './popover';
 
-popoverConfig.componentName = 'Popover';
-
 const comboboxProps = require('!!extract-react-types-loader!../../../../src/combobox/combobox.js');
 
 const ComboboxConfig: TConfig = {
@@ -122,7 +120,7 @@ const ComboboxConfig: TConfig = {
           'InputContainer',
           'ListBox',
           'ListItem',
-          popoverConfig,
+          {...popoverConfig, componentName: 'Popover'},
         ],
         sharedProps: {
           $isSelected: {
