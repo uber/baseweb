@@ -448,7 +448,7 @@ module.exports = {
         // Caption1
         // Ex: <Caption1 />
         // Replacement: ParagraphXSmall
-        if (identifiersToRename[node.name] && isComponent()) {
+        if (identifiersToRename.hasOwnProperty(node.name) && isComponent()) {
           const oldName = node.name;
           const newName = identifiersToRename[node.name];
           context.report({
@@ -494,7 +494,7 @@ module.exports = {
           );
         }
 
-        if (identifiersToRename[node.name] && isIdentifier()) {
+        if (identifiersToRename.hasOwnProperty(node.name) && isIdentifier()) {
           fixIdentifier(node.name, identifiersToRename[node.name]);
         }
       },

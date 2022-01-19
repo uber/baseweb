@@ -578,6 +578,22 @@ const Example = () => {
 }
       `,
     },
+    // Should not error
+    {
+      code: `import * as Typography from "baseui/typography";
+
+const Example = () => {
+  const hello = {}.toString();
+  return <div></div>
+}`,
+      errors: [],
+      output: `import * as Typography from "baseui/typography";
+
+const Example = () => {
+  const hello = {}.toString();
+  return <div></div>
+}`,
+    },
 
     // Block - $style
     {
