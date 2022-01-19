@@ -40,12 +40,22 @@ function getBackgroundColor(
   }[kind];
 }
 
-function getFontColor(kind: KindTypeT, theme: ThemeT) {
+function getFontColor(kind: KindTypeT, type: NotificationTypeT, theme: ThemeT) {
+  const isInline = type === TYPE.inline;
+  if (isInline) {
+    return {
+      [KIND.info]: theme.colors.notificationInfoText,
+      [KIND.positive]: theme.colors.notificationPositiveText,
+      [KIND.warning]: theme.colors.notificationWarningText,
+      [KIND.negative]: theme.colors.notificationNegativeText,
+    }[kind];
+  }
+
   return {
-    [KIND.info]: theme.colors.notificationInfoText,
-    [KIND.positive]: theme.colors.notificationPositiveText,
-    [KIND.warning]: theme.colors.notificationWarningText,
-    [KIND.negative]: theme.colors.notificationNegativeText,
+    [KIND.info]: theme.colors.toastInfoText,
+    [KIND.positive]: theme.colors.toastPositiveText,
+    [KIND.warning]: theme.colors.toastWarningText,
+    [KIND.negative]: theme.colors.toastNegativeText,
   }[kind];
 }
 
@@ -115,9 +125,9 @@ export const Body = styled<SharedStylePropsArgT>('div', props => {
   const {$isVisible, $kind, $type, $theme} = props;
   const isInline = $type === TYPE.inline;
   return {
-    ...$theme.typography.font250,
+    ...$theme.typography.font300,
     pointerEvents: 'auto',
-    color: isInline ? getFontColor($kind, $theme) : $theme.colors.toastText,
+    color: getFontColor($kind, $type, $theme),
     height: 'auto',
     width: '288px',
     paddingTop: $theme.sizing.scale600,

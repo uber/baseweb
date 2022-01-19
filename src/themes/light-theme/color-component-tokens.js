@@ -215,15 +215,15 @@ export default (
 
   // Notification
   notificationPrimaryBackground: themePrimitives.primary50,
-  notificationPrimaryText: themePrimitives.primary500,
+  notificationPrimaryText: themePrimitives.primaryA,
   notificationInfoBackground: themePrimitives.accent50,
-  notificationInfoText: themePrimitives.accent500,
+  notificationInfoText: themePrimitives.primaryA,
   notificationPositiveBackground: themePrimitives.positive50,
-  notificationPositiveText: themePrimitives.positive500,
+  notificationPositiveText: themePrimitives.primaryA,
   notificationWarningBackground: themePrimitives.warning50,
-  notificationWarningText: themePrimitives.warning500,
+  notificationWarningText: themePrimitives.primaryA,
   notificationNegativeBackground: themePrimitives.negative50,
-  notificationNegativeText: themePrimitives.negative500,
+  notificationNegativeText: themePrimitives.primaryA,
 
   // Tag
 
@@ -392,11 +392,16 @@ export default (
 
   // Toast
   toastText: themePrimitives.white,
-  toastPrimaryBackground: themePrimitives.primary500,
-  toastInfoBackground: themePrimitives.accent500,
-  toastPositiveBackground: themePrimitives.positive500,
-  toastWarningBackground: themePrimitives.warning500,
-  toastNegativeBackground: themePrimitives.negative500,
+  toastPrimaryBackground: themePrimitives.primary400,
+  toastPrimaryText: themePrimitives.white,
+  toastInfoBackground: themePrimitives.accent400,
+  toastInfoText: themePrimitives.white,
+  toastPositiveBackground: themePrimitives.positive400,
+  toastPositiveText: themePrimitives.white,
+  toastWarningBackground: themePrimitives.warning400,
+  toastWarningText: themePrimitives.black,
+  toastNegativeBackground: themePrimitives.negative400,
+  toastNegativeText: themePrimitives.white,
 
   // Spinner
   spinnerTrackFill: themePrimitives.mono900,
