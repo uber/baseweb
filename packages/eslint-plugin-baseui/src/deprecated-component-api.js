@@ -448,7 +448,13 @@ module.exports = {
         // Caption1
         // Ex: <Caption1 />
         // Replacement: ParagraphXSmall
-        if (identifiersToRename[node.name] && isComponent()) {
+        if (
+          Object.prototype.hasOwnProperty.call(
+            identifiersToRename,
+            node.name,
+          ) &&
+          isComponent()
+        ) {
           const oldName = node.name;
           const newName = identifiersToRename[node.name];
           context.report({
@@ -494,7 +500,13 @@ module.exports = {
           );
         }
 
-        if (identifiersToRename[node.name] && isIdentifier()) {
+        if (
+          Object.prototype.hasOwnProperty.call(
+            identifiersToRename,
+            node.name,
+          ) &&
+          isIdentifier()
+        ) {
           fixIdentifier(node.name, identifiersToRename[node.name]);
         }
       },
