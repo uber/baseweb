@@ -475,6 +475,92 @@ const tests = {
       `,
     },
 
+    // oldName and newName imported and used
+    {
+      code: `
+        import { HeadingXXLarge, H1 } from "baseui/typography"
+
+        const MarkdownRender = () => {
+          return <div><H1>Large</H1><HeadingXXLarge>Large</HeadingXXLarge></div>
+          }
+      `,
+      errors: [
+        {messageId: MESSAGES.replace.id},
+        {messageId: MESSAGES.replace.id},
+      ],
+      output: `
+        import { HeadingXXLarge } from "baseui/typography"
+
+        const MarkdownRender = () => {
+          return <div><HeadingXXLarge>Large</HeadingXXLarge><HeadingXXLarge>Large</HeadingXXLarge></div>
+          }
+      `,
+    },
+    // oldName imported and renamed, and newName imported and used
+    {
+      code: `
+        import { HeadingXXLarge as Hello, H1 } from "baseui/typography"
+
+        const MarkdownRender = () => {
+          return <div><H1>Large</H1><Hello>Large</Hello></div>
+          }
+      `,
+      errors: [
+        {messageId: MESSAGES.replace.id},
+        {messageId: MESSAGES.replace.id},
+      ],
+      output: `
+        import { HeadingXXLarge as Hello } from "baseui/typography"
+
+        const MarkdownRender = () => {
+          return <div><Hello>Large</Hello><Hello>Large</Hello></div>
+          }
+      `,
+    },
+    // Multiple imports removed
+    {
+      code: `
+        import { HeadingXXLarge as Hello, H1, HeadingXLarge, H2 } from "baseui/typography"
+
+        const MarkdownRender = () => {
+          return <div><H1>Large</H1><H2>H2</H2><HeadingXLarge>HeadingXLarge</HeadingXLarge><Hello>Large</Hello></div>
+          }
+      `,
+      errors: [
+        {messageId: MESSAGES.replace.id},
+        {messageId: MESSAGES.replace.id},
+        {messageId: MESSAGES.replace.id},
+        {messageId: MESSAGES.replace.id},
+      ],
+      output: `
+        import { HeadingXXLarge as Hello, HeadingXLarge } from "baseui/typography"
+
+        const MarkdownRender = () => {
+          return <div><Hello>Large</Hello><HeadingXLarge>H2</HeadingXLarge><HeadingXLarge>HeadingXLarge</HeadingXLarge><Hello>Large</Hello></div>
+          }
+      `,
+    },
+    {
+      code: `
+        import { H1, HeadingXXLarge as Hello, HeadingXLarge } from "baseui/typography"
+
+        const MarkdownRender = () => {
+          return <div><H1>Large</H1><HeadingXXLarge>H2</HeadingXXLarge><HeadingXLarge>HeadingXLarge</HeadingXLarge><Hello>Large</Hello></div>
+          }
+      `,
+      errors: [
+        {messageId: MESSAGES.replace.id},
+        {messageId: MESSAGES.replace.id},
+      ],
+      output: `
+        import { HeadingXXLarge as Hello, HeadingXLarge } from "baseui/typography"
+
+        const MarkdownRender = () => {
+          return <div><Hello>Large</Hello><HeadingXXLarge>H2</HeadingXXLarge><HeadingXLarge>HeadingXLarge</HeadingXLarge><Hello>Large</Hello></div>
+          }
+      `,
+    },
+
     // Block - $style
     {
       code: `
