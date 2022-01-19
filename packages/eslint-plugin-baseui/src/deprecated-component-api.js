@@ -481,19 +481,16 @@ module.exports = {
             },
           });
         };
-        function isIdentifier(name) {
+        function isIdentifier() {
           return (
-            node.name === name &&
             node.type === 'Identifier' &&
             !['ImportSpecifier', 'JSXIdentifier'].includes(node.parent.type)
           );
         }
 
-        Object.keys(identifiersToRename).forEach(oldName => {
-          if (identifiersToRename[oldName] && isIdentifier(oldName)) {
-            fixIdentifier(oldName, identifiersToRename[oldName]);
-          }
-        });
+        if (identifiersToRename[node.name] && isIdentifier()) {
+          fixIdentifier(node.name, identifiersToRename[node.name]);
+        }
       },
     };
   },
