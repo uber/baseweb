@@ -102,6 +102,9 @@ module.exports = {
 
         // Map existing imports (newName: localName), preference given to first renamed import.
         node.specifiers.forEach(specifier => {
+          if (specifier.type === 'ImportNamespaceSpecifier') {
+            return;
+          }
           const currentImportedName = specifier.imported.name;
           if (existingImports[currentImportedName]) {
             if (
@@ -117,6 +120,9 @@ module.exports = {
 
         const specifiers = node.specifiers || [];
         specifiers.forEach((specifier, specifierIndex) => {
+          if (specifier.type === 'ImportNamespaceSpecifier') {
+            return;
+          }
           const deprecatedComponent = specifier.imported.name;
           const newComponent =
             mapDeprecatedTypographyComponents[deprecatedComponent];
