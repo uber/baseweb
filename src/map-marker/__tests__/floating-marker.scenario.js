@@ -22,12 +22,12 @@ import {Select} from '../../select/index.js';
 
 import type {FloatingMarkerSizeT, AnchorPositionsT} from '../types.js';
 
-const floatingMarkerAnchorTypes = Object.values(
-  FLOATING_MARKER_ANCHOR_TYPES,
-).map(x => ({
-  label: x,
-  id: x,
-}));
+const floatingMarkerAnchorTypes = Object.keys(FLOATING_MARKER_ANCHOR_TYPES)
+  .map(key => FLOATING_MARKER_ANCHOR_TYPES[key])
+  .map(x => ({
+    label: x,
+    id: x,
+  }));
 
 export function Scenario() {
   const [label, setLabel] = React.useState('Uber HQ');

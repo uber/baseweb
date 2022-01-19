@@ -21,19 +21,21 @@ import {Select} from '../../select/index.js';
 import ReactMapGL, {Marker, Layer, Source} from 'react-map-gl';
 import {Button} from '../../button/index.js';
 
-const floatingMarkerAnchorTypes = Object.values(
-  FLOATING_MARKER_ANCHOR_TYPES,
-).map(x => ({
-  label: x,
-  id: x,
-}));
+const floatingMarkerAnchorTypes = Object.keys(FLOATING_MARKER_ANCHOR_TYPES)
+  .map(key => FLOATING_MARKER_ANCHOR_TYPES[key])
+  .map(x => ({
+    label: x,
+    id: x,
+  }));
 
-const floatingMarkerAnchorPositions = Object.values(
+const floatingMarkerAnchorPositions = Object.keys(
   FLOATING_MARKER_ANCHOR_POSITIONS,
-).map(x => ({
-  label: x,
-  id: x,
-}));
+)
+  .map(key => FLOATING_MARKER_ANCHOR_POSITIONS[key])
+  .map(x => ({
+    label: x,
+    id: x,
+  }));
 
 const uberHq = {
   latitude: 37.768495131168336,

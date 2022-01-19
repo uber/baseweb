@@ -21,6 +21,7 @@ import {
   PINHEAD_TYPES,
   PINHEAD_SIZES_SHAPES,
   NEEDLE_HEIGHTS,
+  NEEDLE_SIZES,
   LABEL_SIZES,
 } from './constants.js';
 import BadgeEnhancer from './badge-enhancer.js';
@@ -52,7 +53,7 @@ const PinHead = ({
   background,
   type = PINHEAD_TYPES.fixed,
   anchorType,
-  needle,
+  needle = NEEDLE_SIZES.none,
   labelEnhancerContent,
   labelEnhancerPosition,
   labelEnhancerColor,

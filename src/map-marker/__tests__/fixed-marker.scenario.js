@@ -23,17 +23,19 @@ import {Select} from '../../select/index.js';
 
 import type {PinHeadSizeT, NeedleSizeT} from '../types.js';
 
-const labelEnhancerPositions = Object.values(LABEL_ENHANCER_POSITIONS).map(
-  x => ({
+const labelEnhancerPositions = Object.keys(LABEL_ENHANCER_POSITIONS)
+  .map(key => LABEL_ENHANCER_POSITIONS[key])
+  .map(x => ({
     id: x,
     label: x,
-  }),
-);
+  }));
 
-const badgeEnhancerSizes = Object.values(BADGE_ENHANCER_SIZES).map(x => ({
-  label: x,
-  id: x,
-}));
+const badgeEnhancerSizes = Object.keys(BADGE_ENHANCER_SIZES)
+  .map(key => BADGE_ENHANCER_SIZES[key])
+  .map(x => ({
+    label: x,
+    id: x,
+  }));
 
 export function Scenario() {
   const markers = [];
