@@ -60,14 +60,17 @@ export type FixedMarkerOverridesT = {
   DragShadow?: OverrideT,
   DragShadowContainer?: OverrideT,
   DragContainer?: OverrideT,
+  BadgeEnhancer?: OverrideT,
+  LabelEnhancer?: OverrideT,
+  LabelEnhancerContainer?: OverrideT,
 };
 
-export type LabelEnhancerT = {
+export type LabelEnhancerT = {|
   labelEnhancerContent?: string,
   labelEnhancerPosition?: LabelEnhancerPositionT,
   labelEnhancerColor?: string,
   labelEnhancerStrokeColor?: string,
-};
+|};
 
 export type LabelEhancerComponentT = {
   ...LabelEnhancerT,
@@ -76,12 +79,12 @@ export type LabelEhancerComponentT = {
   overrides?: FixedMarkerOverridesT,
 };
 
-export type BadgeEnhancerT = {
+export type BadgeEnhancerT = {|
   badgeEnhancerSize?: BadgeEnhancerSizeT | null,
   badgeEnhancerColor?: string | null,
   badgeEnhancerBackground?: string | null,
   badgeEnhancerContent?: React.AbstractComponent<{|size: number|}>,
-};
+|};
 
 export type BadgeEnhancerComponentT = {
   ...BadgeEnhancerT,
@@ -89,7 +92,7 @@ export type BadgeEnhancerComponentT = {
   markerType: PinHeadT,
   overrides: FixedMarkerOverridesT,
 };
-export type BadgePositionT = null | {
+export type BadgePositionT = {
   x: number,
   y: number,
 };
@@ -116,6 +119,13 @@ export type FloatingMarkerOverridesT = {
   PinHeadContent?: OverrideT,
   PinHeadContainer?: OverrideT,
   AnchorContainer?: OverrideT,
+  Needle?: OverrideT,
+  DragShadow?: OverrideT,
+  DragShadowContainer?: OverrideT,
+  DragContainer?: OverrideT,
+  BadgeEnhancer?: OverrideT,
+  LabelEnhancer?: OverrideT,
+  LabelEnhancerContainer?: OverrideT,
 };
 
 export type FloatingMarkerPropsT = {
@@ -139,6 +149,7 @@ export type PinHeadPropsT = {
   background?: string,
   type?: PinHeadT,
   anchorType?: FloatingMarkerAnchorTypeT,
+  needle?: NeedleSizeT,
   overrides?: FloatingMarkerOverridesT | FixedMarkerOverridesT,
   ...BadgeEnhancerT,
   ...LabelEnhancerT,

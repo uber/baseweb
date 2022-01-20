@@ -91,13 +91,13 @@ export const LABEL_SIZES = {
   [PINHEAD_SIZES_SHAPES.large]: 'LabelLarge',
 };
 
-export const LABEL_ENHANCER_POSITIONS = {
+export const LABEL_ENHANCER_POSITIONS = Object.freeze({
   none: 'none',
   top: 'top',
   left: 'left',
   right: 'right',
   bottom: 'bottom',
-};
+});
 
 export const BADGE_ENHANCER_SIZES = Object.freeze({
   none: 'none',

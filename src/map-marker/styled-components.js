@@ -247,6 +247,7 @@ export const StrokedLabelContainer = styled<{
       justifyContent: 'flex-end',
       textAlign: 'right',
     },
+    none: {},
   };
   return {
     position: 'absolute',

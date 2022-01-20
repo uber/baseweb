@@ -182,7 +182,9 @@ export function Scenario() {
             key={i}
           >
             <FixedMarker
+              // $FlowFixMe Mismatch between general type and enum
               size={pinheadSize[0].id}
+              // $FlowFixMe Mismatch between general type and enum
               needle={needleSize[0].id}
               key={i}
               label={label}
@@ -215,6 +217,7 @@ export function Scenario() {
                 content: 'hello',
               }}
               labelEnhancerContent={labelEnhancerText}
+              // $FlowFixMe Mismatch between general type and enum
               labelEnhancerPosition={labelEnhancerPosition[0].id}
             />
           </Marker>

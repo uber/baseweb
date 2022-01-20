@@ -142,6 +142,7 @@ export function Scenario() {
                   }),
                 },
               }}
+              // $FlowFixMe Mismatch between general type and enum
               anchorType={floatingMarkerAnchorType[0].id}
               label={label}
               startEnhancer={
@@ -158,6 +159,7 @@ export function Scenario() {
                     }
                   : undefined
               }
+              // $FlowFixMe Mismatch between general type and enum
               anchor={floatingMarkerAnchorPosition[0].id}
             />
           </Marker>

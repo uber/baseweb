@@ -39,12 +39,12 @@ export function Scenario() {
   ] = React.useState([floatingMarkerAnchorTypes[0]]);
 
   const markers = [];
-  Object.values(FLOATING_MARKER_SIZES).forEach(
-    //$FlowFixMe
-    (size: FloatingMarkerSizeT, i: number) => {
-      Object.values(FLOATING_MARKER_ANCHOR_POSITIONS).forEach(
-        //$FlowFixMe
-        (position: AnchorPositionsT, x: number) => {
+  Object.keys(FLOATING_MARKER_SIZES)
+    .map(key => FLOATING_MARKER_SIZES[key])
+    .forEach((size: FloatingMarkerSizeT, i: number) => {
+      Object.keys(FLOATING_MARKER_ANCHOR_POSITIONS)
+        .map(key => FLOATING_MARKER_ANCHOR_POSITIONS[key])
+        .forEach((position: AnchorPositionsT, x: number) => {
           markers.push({
             id: `floating / ${size} / ${position}`,
             content: (
@@ -72,10 +72,8 @@ export function Scenario() {
               />
             ),
           });
-        },
-      );
-    },
-  );
+        });
+    });
 
   return (
     <TileGrid
@@ -109,6 +107,7 @@ export function Scenario() {
           options={floatingMarkerAnchorTypes}
           value={floatingMarkerAnchorType}
           placeholder="Select an anchor type"
+          // $FlowFixMe Mismatch between general type and enum
           onChange={params => setFloatingMarkerAnchorType(params.value)}
           key="anchor-type"
         />,

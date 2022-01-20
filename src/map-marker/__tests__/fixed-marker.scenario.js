@@ -54,12 +54,12 @@ export function Scenario() {
     badgeEnhancerSizes[0],
   ]);
 
-  Object.values(PINHEAD_SIZES_SHAPES).forEach(
-    // $FlowFixMe
-    (pinheadSize: PinHeadSizeT, i: number) => {
-      Object.values(NEEDLE_SIZES).forEach(
-        // $FlowFixMe
-        (needleSize: NeedleSizeT, z: number) => {
+  Object.keys(PINHEAD_SIZES_SHAPES)
+    .map(key => PINHEAD_SIZES_SHAPES[key])
+    .forEach((pinheadSize: PinHeadSizeT, i: number) => {
+      Object.keys(NEEDLE_SIZES)
+        .map(key => NEEDLE_SIZES[key])
+        .forEach((needleSize: NeedleSizeT, z: number) => {
           markers.push({
             id: `fixed / ${pinheadSize} / ${needleSize}`,
             content: (
@@ -97,10 +97,8 @@ export function Scenario() {
               />
             ),
           });
-        },
-      );
-    },
-  );
+        });
+    });
 
   return (
     <TileGrid
@@ -132,6 +130,7 @@ export function Scenario() {
           options={labelEnhancerPositions}
           value={labelEnhancerPosition}
           placeholder="Select an anchor position"
+          // $FlowFixMe Mismatch between general type and enum
           onChange={params => setLabelEnhancerPosition(params.value)}
           key="anchor-position"
         />,
@@ -156,6 +155,7 @@ export function Scenario() {
           options={badgeEnhancerSizes}
           value={badgeEnhancerSize}
           placeholder="Select an anchor position"
+          // $FlowFixMe Mismatch between general type and enum
           onChange={params => setBadgeEnhancerSize(params.value)}
           key="badge-enhancer-size"
         />,
