@@ -188,10 +188,6 @@ class Select extends React.Component<PropsT, SelectStateT> {
     if (this.dragging) return;
     this.handleClick(event);
   };
-  handleTouchEndClearValue = (event: TouchEvent) => {
-    if (this.dragging) return;
-    this.clearValue(event);
-  };
 
   handleClick = (event: MouseEvent | TouchEvent) => {
     if (this.props.disabled || (!isClick(event) && !isLeftClick(event))) {
@@ -796,9 +792,6 @@ class Select extends React.Component<PropsT, SelectStateT> {
         title={ariaLabel}
         aria-label={ariaLabel}
         onClick={this.clearValue}
-        onTouchEnd={this.handleTouchEndClearValue}
-        onTouchMove={this.handleTouchMove}
-        onTouchStart={this.handleTouchStart}
         role="button"
         overrides={{
           Svg: {
