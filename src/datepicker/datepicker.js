@@ -351,7 +351,7 @@ export default class Datepicker<T = Date> extends React.Component<
           if (displayValueAtRangeIndex === 0) {
             left = date;
             if (!right) {
-              onChange({date: [left, null]});
+              onChange({date: [left]});
             } else {
               if (
                 this.dateHelpers.isAfter(right, left) ||

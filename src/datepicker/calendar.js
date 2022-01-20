@@ -364,9 +364,9 @@ export default class Calendar<T = Date> extends React.Component<
         ? this.dateHelpers.applyDateToTime(newTimeState[1], data.date[1])
         : null;
       newTimeState[0] = start;
-      newTimeState[1] = end ? end : newTimeState[1];
       if (end) {
         updatedDate = [start, end];
+        newTimeState[1] = end;
       } else {
         updatedDate = [start];
       }

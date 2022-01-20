@@ -33,7 +33,7 @@ class StatefulContainer<T = Date> extends React.Component<
 
   constructor(props: PropsT<T>) {
     super(props);
-    const value = props.range ? [null, null] : (null: ?T);
+    const value = props.range ? [] : (null: ?T);
     this.state = {value, ...props.initialState};
   }
 

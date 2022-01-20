@@ -87,27 +87,26 @@ export default class Day<T = Date> extends React.Component<
     const {range, value} = this.props;
     let date;
     if (Array.isArray(value) && range) {
-      if ((!value[0] && !value[1]) || (value[0] && value[1])) {
+      const [start, end] = value;
+
+      if ((!start && !end) || (start && end)) {
         date = [selectedDate, null];
-      } else if (
-        !value[0] &&
-        value[1] &&
-        this.dateHelpers.isAfter(value[1], selectedDate)
-      ) {
+      } else if (!start && end && this.dateHelpers.isAfter(end, selectedDate)) {
         // if startDate === null && endDate is populated, the next selected day should become the startDate
-        date = [selectedDate, value[1]];
+        date = [selectedDate, end];
       } else if (
-        value[0] &&
-        !value[1] &&
-        this.dateHelpers.isAfter(selectedDate, value[0])
+        start &&
+        !end &&
+        this.dateHelpers.isAfter(selectedDate, start)
       ) {
-        date = [value[0], selectedDate];
+        date = [start, selectedDate];
       } else {
-        date = [selectedDate, value[0]];
+        date = [selectedDate, start];
       }
     } else {
       date = selectedDate;
     }
+
     this.props.onSelect({date});
   };
 
@@ -241,18 +240,21 @@ export default class Day<T = Date> extends React.Component<
   isPseudoSelected() {
     const date = this.getDateProp();
     const {value} = this.props;
-    if (Array.isArray(value) && !value[0] && !value[1]) {
-      return false;
-    }
-    // fix flow by passing a specific arg type and remove 'Array.isArray(value)'
-    if (Array.isArray(value) && value[0] && value[1]) {
-      return this.dateHelpers.isDayInRange(
-        this.clampToDayStart(date),
-        // $FlowFixMe -- value[0] can't be null or undefined
-        this.clampToDayStart(value[0]),
-        // $FlowFixMe -- value[1] can't be null or undefined
-        this.clampToDayStart(value[1]),
-      );
+
+    if (Array.isArray(value)) {
+      const [start, end] = value;
+
+      if (!start && !end) {
+        return false;
+      }
+
+      if (start && end) {
+        return this.dateHelpers.isDayInRange(
+          this.clampToDayStart(date),
+          this.clampToDayStart(start),
+          this.clampToDayStart(end),
+        );
+      }
     }
   }
 
@@ -260,26 +262,28 @@ export default class Day<T = Date> extends React.Component<
   isPseudoHighlighted() {
     const date = this.getDateProp();
     const {value, highlightedDate} = this.props;
-    if (Array.isArray(value) && !value[0] && !value[1]) {
-      return false;
-    }
 
-    // fix flow by passing a specific arg type and remove 'Array.isArray(value)'
-    if (Array.isArray(value) && highlightedDate && value[0] && !value[1]) {
-      if (this.dateHelpers.isAfter(highlightedDate, value[0])) {
-        return this.dateHelpers.isDayInRange(
-          this.clampToDayStart(date),
-          // $FlowFixMe -- value[0] can't be null or undefined
-          this.clampToDayStart(value[0]),
-          this.clampToDayStart(highlightedDate),
-        );
-      } else {
-        return this.dateHelpers.isDayInRange(
-          this.clampToDayStart(date),
-          this.clampToDayStart(highlightedDate),
-          // $FlowFixMe -- value[0] can't be null or undefined
-          this.clampToDayStart(value[0]),
-        );
+    if (Array.isArray(value)) {
+      const [start, end] = value;
+
+      if (!start && !end) {
+        return false;
+      }
+
+      if (highlightedDate && start && !end) {
+        if (this.dateHelpers.isAfter(highlightedDate, start)) {
+          return this.dateHelpers.isDayInRange(
+            this.clampToDayStart(date),
+            this.clampToDayStart(start),
+            this.clampToDayStart(highlightedDate),
+          );
+        } else {
+          return this.dateHelpers.isDayInRange(
+            this.clampToDayStart(date),
+            this.clampToDayStart(highlightedDate),
+            this.clampToDayStart(start),
+          );
+        }
       }
     }
   }
