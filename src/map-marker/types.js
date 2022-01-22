@@ -18,36 +18,24 @@ import {
 } from './constants.js';
 import type {OverrideT} from '../helpers/overrides.js';
 
-export type PinHeadT = $Values<typeof PINHEAD_TYPES>;
-
 export type AnchorPositionsT = $Values<typeof FLOATING_MARKER_ANCHOR_POSITIONS>;
 
 export type NeedleSizeT = $Values<typeof NEEDLE_SIZES>;
 
+export type PinHeadT = $Values<typeof PINHEAD_TYPES>;
+
 export type PinHeadSizeT = $Values<typeof PINHEAD_SIZES_SHAPES>;
 
 export type FloatingMarkerSizeT = $Values<typeof FLOATING_MARKER_SIZES>;
-
-export type BadgeEnhancerSizeT = $Values<typeof BADGE_ENHANCER_SIZES>;
-
-export type LabelEnhancerPositionT = $Values<typeof LABEL_ENHANCER_POSITIONS>;
 
 /* eslint-disable flowtype/generic-spacing*/
 export type FloatingMarkerAnchorTypeT = $Values<
   typeof FLOATING_MARKER_ANCHOR_TYPES,
 >;
 
-export type NeedlePropsT = {
-  size: NeedleSizeT,
-  background?: string,
-  overrides: FixedMarkerOverridesT,
-};
+export type BadgeEnhancerSizeT = $Values<typeof BADGE_ENHANCER_SIZES>;
 
-export type ItemPropsT = {
-  children?: React.Node,
-  color?: string,
-  size?: number,
-};
+export type LabelEnhancerPositionT = $Values<typeof LABEL_ENHANCER_POSITIONS>;
 
 export type FixedMarkerOverridesT = {
   Root?: OverrideT,
@@ -63,6 +51,18 @@ export type FixedMarkerOverridesT = {
   BadgeEnhancer?: OverrideT,
   LabelEnhancer?: OverrideT,
   LabelEnhancerContainer?: OverrideT,
+};
+
+export type NeedlePropsT = {
+  size: NeedleSizeT,
+  background?: string,
+  overrides: FixedMarkerOverridesT,
+};
+
+export type ItemPropsT = {
+  children?: React.Node,
+  color?: string,
+  size?: number,
 };
 
 export type LabelEnhancerT = {|
