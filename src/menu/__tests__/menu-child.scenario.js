@@ -12,6 +12,7 @@ import {StatefulMenu, NestedMenus} from '../index.js';
 
 const OPEN_RECENT = 'Open Recent ->';
 const NEW_BREAKPOINT = 'New Breakpoint ->';
+const SWITCH_EDITOR = 'Switch Editor ->';
 const FILE = [
   {label: 'New File'},
   {label: 'New Window'},
@@ -39,8 +40,16 @@ const RECENT_FILES = [
 const BREAKPOINTS = [
   {label: 'Conditional Breakpoint...'},
   {label: 'Inline Breakpoint'},
+  {label: SWITCH_EDITOR},
   {label: 'Function Breakpoint...'},
   {label: 'Logpoint...'},
+];
+
+const SWITCH_EDITOR_OPTIONS = [
+  {label: 'Next Editor'},
+  {label: 'Previous Editor'},
+  {label: 'Next Used Editor'},
+  {label: 'Previous Used Editor'},
 ];
 
 const childMenu = items => (
@@ -55,6 +64,11 @@ const childMenu = items => (
       Option: {
         props: {
           size: 'compact',
+          getChildMenu: item => {
+            if (item.label === SWITCH_EDITOR) {
+              return childMenu(SWITCH_EDITOR_OPTIONS);
+            }
+          },
         },
       },
     }}
@@ -69,7 +83,7 @@ export function Scenario() {
   }
 
   return (
-    <div>
+    <div style={{margin: '20px'}}>
       <NestedMenus>
         <StatefulMenu
           items={FILE}
