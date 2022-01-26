@@ -9,10 +9,24 @@ LICENSE file in the root directory of this source tree.
 
 const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 
-describe('input', () => {
-  it('passes basic a11y tests', async () => {
+const selectors = {
+  combobox: '[role="combobox"]',
+  listbox: '[role="listbox"]',
+};
+
+describe('combobox', () => {
+  it('passes on initial render', async () => {
     await mount(page, 'combobox--combobox');
-    await page.waitForSelector('[role="combobox"]');
+    await page.waitForSelector(selectors.combobox);
+    const accessibilityReport = await analyzeAccessibility(page);
+    expect(accessibilityReport).toHaveNoAccessibilityIssues();
+  });
+
+  it('passes when listbox is open', async () => {
+    await mount(page, 'combobox--combobox');
+    await page.waitForSelector(selectors.combobox);
+    await page.click(selectors.combobox);
+    await page.waitForSelector(selectors.listbox);
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
