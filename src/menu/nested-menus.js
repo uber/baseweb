@@ -12,6 +12,7 @@ import * as React from 'react';
 import type {NestedMenuRefT, NestedMenuContextT} from './types.js';
 
 type StateT = {
+  nestedMenuHoverIndex: number,
   menus: NestedMenuRefT[],
 };
 type PropsT = {
@@ -24,6 +25,8 @@ export const NestedMenuContext: React.Context<NestedMenuContextT> = React.create
     removeMenuFromNesting: () => {},
     getParentMenu: () => {},
     getChildMenu: () => {},
+    nestedMenuHoverIndex: -1,
+    isNestedMenuVisible: () => false,
     mountRef: {current: null},
   },
 );
@@ -37,14 +40,40 @@ function isSame(a: ?HTMLElement, b: ?HTMLElement) {
 }
 
 export default class NestedMenus extends React.Component<PropsT, StateT> {
-  state = {menus: []};
+  state = {menus: [], nestedMenuHoverIndex: -1};
   mountRef = (React.createRef(): {current: HTMLElement | null});
+  mouseLeaveTimeoueId = null;
+
+  handleMenuMouseLeave = (event: MouseEvent) => {
+    this.mouseLeaveTimeoueId = setTimeout(() => {
+      this.setState({nestedMenuHoverIndex: -1});
+    }, 200);
+  };
+
+  handleMenuMouseEnter = (event: MouseEvent) => {
+    if (__BROWSER__) {
+      clearTimeout(this.mouseLeaveTimeoueId);
+      const index = this.state.menus.findIndex(m => {
+        return (
+          m.current &&
+          event.currentTarget instanceof Node &&
+          m.current.contains(event.currentTarget)
+        );
+      });
+
+      this.setState({nestedMenuHoverIndex: index});
+    }
+  };
 
   addMenuToNesting = (ref: NestedMenuRefT) => {
     // check offsetHeight to determine if component is visible in the dom (0 means hidden)
     // we need to do this so that when we renderAll, the hidden seo-only child-menus don't
     // register themselves which would break the nesting logic
-    if (ref.current && ref.current.offsetHeight) {
+    const element = ref.current;
+    if (element && element.offsetHeight) {
+      element.addEventListener('mouseenter', this.handleMenuMouseEnter);
+      element.addEventListener('mouseleave', this.handleMenuMouseLeave);
+
       this.setState(state => {
         return {menus: [...state.menus, ref]};
       });
@@ -53,9 +82,18 @@ export default class NestedMenus extends React.Component<PropsT, StateT> {
 
   removeMenuFromNesting = (ref: NestedMenuRefT) => {
     this.setState(state => {
-      const nextMenus = state.menus
-        .filter(r => r.current)
-        .filter(r => !isSame(r.current, ref.current));
+      for (const r of this.state.menus) {
+        if (r.current && isSame(r.current, ref.current)) {
+          const element = r.current;
+          element.removeEventListener('mouseenter', this.handleMenuMouseEnter);
+          element.removeEventListener('mouseleave', this.handleMenuMouseLeave);
+        }
+      }
+
+      const nextMenus = state.menus.filter(r => {
+        return r.current && !isSame(r.current, ref.current);
+      });
+
       return {menus: nextMenus};
     });
   };
@@ -74,6 +112,11 @@ export default class NestedMenus extends React.Component<PropsT, StateT> {
     return this.state.menus[index];
   };
 
+  isNestedMenuVisible = (ref: NestedMenuRefT): boolean => {
+    const index = this.findMenuIndexByRef(ref);
+    return index <= this.state.nestedMenuHoverIndex;
+  };
+
   render() {
     return (
       <NestedMenuContext.Provider
@@ -82,6 +125,8 @@ export default class NestedMenus extends React.Component<PropsT, StateT> {
           removeMenuFromNesting: this.removeMenuFromNesting,
           getParentMenu: this.getParentMenu,
           getChildMenu: this.getChildMenu,
+          isNestedMenuVisible: this.isNestedMenuVisible,
+          nestedMenuHoverIndex: this.state.nestedMenuHoverIndex,
           mountRef: this.mountRef,
         }}
       >
