@@ -325,7 +325,6 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
               selectionIndex >= 0 ? activeDescendantId : undefined
             }
             aria-autocomplete="list"
-            aria-controls={listboxId}
             disabled={disabled}
             error={error}
             name={name}
@@ -338,6 +337,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
             positive={positive}
             size={size}
             value={tempValue ? tempValue : value}
+            {...(isOpen ? {'aria-controls': listboxId} : {})}
             {...restInputProps}
           />
         </InputContainer>

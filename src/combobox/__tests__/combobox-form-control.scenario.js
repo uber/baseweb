@@ -38,6 +38,7 @@ export function Scenario() {
       </FormControl>
       <FormControl label="label" caption="caption" positive="positive message">
         <Combobox
+          id="combobox_positive"
           value={value}
           onChange={nextValue => setValue(nextValue)}
           mapOptionToString={o => o.label}
@@ -46,6 +47,7 @@ export function Scenario() {
       </FormControl>
       <FormControl label="label" caption="caption" error="error message">
         <Combobox
+          id="combobox_error"
           value={value}
           onChange={nextValue => setValue(nextValue)}
           mapOptionToString={o => o.label}
