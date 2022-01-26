@@ -730,6 +730,11 @@ class Select extends React.Component<PropsT, SelectStateT> {
               padding: 0,
             }}
             tabIndex={-1}
+            {...(overrides.Input
+              ? overrides.Input.props
+                ? overrides.Input.props
+                : {}
+              : {})}
           />
         </InputContainer>
       );
