@@ -24,6 +24,7 @@ const childSelector = '[data-e2e="child-menu"]';
 const highlightedSelector = '[aria-selected="true"]';
 
 function position(x, y) {
+  const PAGE_MARGIN = 20;
   const MENU_MARGIN_TOP = 16;
   const MENU_ITEM_HEIGHT = 26;
 
@@ -31,8 +32,8 @@ function position(x, y) {
   const MENU_WIDTH_OFFSET = MENU_WIDTH / 2;
 
   return [
-    MENU_WIDTH_OFFSET + MENU_WIDTH * x,
-    MENU_MARGIN_TOP + MENU_ITEM_HEIGHT * y,
+    PAGE_MARGIN + MENU_WIDTH_OFFSET + MENU_WIDTH * x,
+    PAGE_MARGIN + MENU_MARGIN_TOP + MENU_ITEM_HEIGHT * y,
   ];
 }
 
@@ -102,11 +103,15 @@ describe('menu-child', () => {
 
   it('unhighlights item on mouse leave', async () => {
     await mount(page, 'menu--child');
+
     await hoverItem(page, 0, 0);
+    await page.waitForSelector(highlightedSelector);
     const before = await findHighlightedLabel(page);
     expect(before).toBe('New File');
 
     await hoverItem(page, 1, 0);
+    await page.waitForSelector(highlightedSelector, {hidden: true});
+
     const after = await findHighlightedLabel(page);
     expect(after).toBe('NOT_FOUND');
   });
@@ -168,6 +173,16 @@ describe('menu-child', () => {
     await hoverItem(page, 1, 5);
     const text = await findHighlightedLabel(page);
     expect(text).toBe('Reopen Closed Editor');
+  });
+
+  it('closes child menu on parent mouse out from option with child content', async () => {
+    await mount(page, 'menu--child');
+    await page.waitForSelector(parentSelector);
+    const [x, y] = position(0, 5);
+    await page.mouse.move(x, y);
+    await page.waitForSelector(childSelector);
+    await page.mouse.move(0, y);
+    await page.waitForSelector(childSelector, {hidden: true});
   });
 
   it('item with child menu triggers click handler', async () => {
