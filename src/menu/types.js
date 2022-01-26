@@ -136,6 +136,8 @@ export type StatefulContainerPropsT = {
   getChildMenu?: (ref: {current: HTMLElement | null}) => ?{
     current: HTMLElement | null,
   },
+  nestedMenuHoverIndex?: number,
+  isNestedMenuVisible?: (ref: {current: HTMLElement | null}) => boolean,
   forceHighlight: boolean,
 };
 
@@ -171,7 +173,7 @@ export type SharedStatelessPropsT = {
   ariaLabel?: string,
   getRequiredItemProps?: GetRequiredItemPropsFnT,
   isFocused?: boolean,
-  handleMouseLeave?: () => mixed,
+  handleMouseLeave?: (event: SyntheticMouseEvent<HTMLElement>) => mixed,
   /** Index of highlighted menu item. */
   highlightedIndex?: number,
   /** List of menu items. */
@@ -215,6 +217,8 @@ export type StatefulMenuPropsT = {
   getChildMenu?: (ref: {current: HTMLElement | null}) => ?{
     current: HTMLElement | null,
   },
+  nestedMenuHoverIndex?: number,
+  isNestedMenuVisible?: (ref: {current: HTMLElement | null}) => boolean,
 } & MenuPropsT;
 
 export type StatefulMenuProfilePropsT = StatefulContainerPropsT &
@@ -300,5 +304,7 @@ export type NestedMenuContextT = {|
   removeMenuFromNesting: (ref: NestedMenuRefT) => void,
   getParentMenu: (ref: NestedMenuRefT) => ?NestedMenuRefT,
   getChildMenu: (ref: NestedMenuRefT) => ?NestedMenuRefT,
+  nestedMenuHoverIndex: number,
+  isNestedMenuVisible: (ref: NestedMenuRefT) => boolean,
   mountRef: NestedMenuRefT,
 |};
