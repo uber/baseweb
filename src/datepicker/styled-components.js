@@ -573,6 +573,18 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
       : // a hack to make flow happy, otherwise it complains about complexity
         // eslint-disable-next-line flowtype/no-weak-types
         ({}: any)),
+    ...(!$peekNextMonth && $outsideMonth
+      ? {
+          ':before': {content: null},
+          ':after': {content: null},
+          ':first-child': {
+            ':before': {content: null},
+          },
+          ':last-child': {
+            ':before': {content: null},
+          },
+        }
+      : {}),
   }: {});
 });
 
