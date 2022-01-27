@@ -496,7 +496,10 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
       content: '""',
       boxSizing: 'border-box',
       display: 'inline-block',
-      boxShadow: $isFocusVisible ? `0 0 0 3px ${colors.accent}` : 'none',
+      boxShadow:
+        $isFocusVisible && (!$outsideMonth || $peekNextMonth)
+          ? `0 0 0 3px ${colors.accent}`
+          : 'none',
       backgroundColor: $selected
         ? colors.calendarDayBackgroundSelectedHighlighted
         : $pseudoSelected && $isHighlighted
@@ -573,18 +576,6 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
       : // a hack to make flow happy, otherwise it complains about complexity
         // eslint-disable-next-line flowtype/no-weak-types
         ({}: any)),
-    ...(!$peekNextMonth && $outsideMonth
-      ? {
-          ':before': {content: null},
-          ':after': {content: null},
-          ':first-child': {
-            ':before': {content: null},
-          },
-          ':last-child': {
-            ':before': {content: null},
-          },
-        }
-      : {}),
   }: {});
 });
 
