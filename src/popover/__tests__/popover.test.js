@@ -83,10 +83,10 @@ describe('Popover', () => {
     const {container} = render(<TestCase />);
     expect(queryByText(container, content)).toBeNull();
 
-    fireEvent.mouseEnter(getByText(container, anchorContent));
+    fireEvent.pointerEnter(getByText(container, anchorContent));
     await findByText(container, content);
 
-    fireEvent.mouseLeave(getByText(container, anchorContent));
+    fireEvent.pointerLeave(getByText(container, anchorContent));
     await waitForElementToBeRemoved(() => getByText(container, content));
   });
 
@@ -237,7 +237,7 @@ describe('Popover', () => {
     expect(anchor.getAttribute('aria-haspopup')).toBe('true');
     expect(anchor.getAttribute('aria-expanded')).toBe('false');
     expect(anchor.getAttribute('aria-owns')).toBe(null);
-    fireEvent.mouseEnter(anchor);
+    fireEvent.pointerEnter(anchor);
 
     await findByText(container, content);
     expect(anchor.getAttribute('aria-haspopup')).toBe('true');
@@ -273,7 +273,7 @@ describe('Popover', () => {
     expect(anchor.getAttribute('id')).toBe(`${id}__anchor`);
     expect(anchor.getAttribute('aria-describedby')).toBe(null);
 
-    fireEvent.mouseEnter(anchor);
+    fireEvent.pointerEnter(anchor);
     await findByText(container, content);
     expect(anchor.getAttribute('aria-describedby')).toBe(id);
 

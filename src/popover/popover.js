@@ -314,8 +314,8 @@ class PopoverInner extends React.Component<
     }
 
     if (this.isHoverTrigger()) {
-      anchorProps.onMouseEnter = this.onAnchorMouseEnter;
-      anchorProps.onMouseLeave = this.onAnchorMouseLeave;
+      anchorProps.onPointerEnter = this.onAnchorMouseEnter;
+      anchorProps.onPointerLeave = this.onAnchorMouseLeave;
 
       // Make it focusable too
       anchorProps.onBlur = this.props.onBlur;
