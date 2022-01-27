@@ -12,6 +12,7 @@ const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 const selectors = {
   combobox: '[role="combobox"]',
   listbox: '[role="listbox"]',
+  firstOption: '[role="option"]',
 };
 
 describe('combobox', () => {
@@ -27,6 +28,17 @@ describe('combobox', () => {
     await page.waitForSelector(selectors.combobox);
     await page.click(selectors.combobox);
     await page.waitForSelector(selectors.listbox);
+    const accessibilityReport = await analyzeAccessibility(page);
+    expect(accessibilityReport).toHaveNoAccessibilityIssues();
+  });
+
+  it('passes when listbox is open, and an option is selected', async () => {
+    await mount(page, 'combobox--combobox');
+    await page.waitForSelector(selectors.combobox);
+    await page.click(selectors.combobox);
+    await page.waitForSelector(selectors.listbox);
+    await page.click(selectors.firstOption);
+    await page.waitForSelector(selectors.listbox, {hidden: true});
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });

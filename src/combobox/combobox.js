@@ -38,6 +38,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
     onChange,
     onFocus,
     onSubmit,
+    listBoxLabel,
     mapOptionToNode,
     mapOptionToString,
     id,
@@ -274,6 +275,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
             // eslint-disable-next-line flowtype/no-weak-types
             ref={(listboxRef: any)}
             role="listbox"
+            aria-label={listBoxLabel}
             $width={listboxWidth}
             {...listBoxProps}
           >
@@ -322,7 +324,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
           <OverriddenInput
             inputRef={handleInputRef}
             aria-activedescendant={
-              selectionIndex >= 0 ? activeDescendantId : undefined
+              isOpen && selectionIndex >= 0 ? activeDescendantId : undefined
             }
             aria-autocomplete="list"
             disabled={disabled}

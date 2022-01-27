@@ -30,6 +30,7 @@ export function Scenario() {
       <FormControl label="label" caption="caption">
         <Combobox
           id="combobox"
+          listBoxLabel="Color list"
           value={value}
           onChange={nextValue => setValue(nextValue)}
           mapOptionToString={o => o.label}
