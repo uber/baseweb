@@ -210,7 +210,10 @@ module.exports = {
         // Check if identifier is a component.
         // Ex: isComponent() with <Boo foo={} /> => true
         function isComponent() {
-          return node.parent.type === 'JSXOpeningElement';
+          return (
+            node.parent.type === 'JSXOpeningElement' ||
+            node.parent.type === 'JSXClosingElement'
+          );
         }
 
         // ================
@@ -465,16 +468,7 @@ module.exports = {
               new: newName,
             },
             fix: function(fixer) {
-              const tags = [fixer.replaceText(node, newName)];
-              if (node.parent.parent.closingElement) {
-                tags.push(
-                  fixer.replaceText(
-                    node.parent.parent.closingElement.name,
-                    newName,
-                  ),
-                );
-              }
-              return tags;
+              return [fixer.replaceText(node, newName)];
             },
           });
         }
