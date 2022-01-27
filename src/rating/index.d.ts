@@ -50,6 +50,8 @@ export interface StyledRatingItemProps {
   $isActive: boolean;
   $isSelected: boolean;
   $index: number;
+  $value: number;
+  $numItems: number;
 }
 export const StyledRoot: StyletronComponent<StyledRootProps>;
 export const StyledStar: StyletronComponent<StyledRatingItemProps>;

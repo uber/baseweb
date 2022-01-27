@@ -17,6 +17,7 @@ import {
   happyRatingSVG,
   veryHappyRatingSVG,
 } from './svg-icons.js';
+import {KIND} from './constants.js';
 
 export const StyledRoot = styled<StyledRootPropsT>('ul', ({$theme}) => {
   return {
@@ -45,17 +46,45 @@ export const StyledStar = styled<StyledRatingItemPropsT>(
     $isFocusVisible,
     $isReadOnly,
     $size,
+    $numItems,
+    $value,
+    $kind,
   }) => {
     let starStroke = $theme.colors.ratingStroke;
     let starFill = $theme.colors.ratingInactiveFill;
     let prePartialStarStroke;
     let prePartialStarFill;
 
-    if ($isActive) {
-      starStroke = starFill = $theme.colors.rating400;
-    }
-    if ($isPartialActive && !$isActive) {
-      prePartialStarStroke = prePartialStarFill = $theme.colors.rating400;
+    const isFilled = $value === $numItems;
+    switch ($kind) {
+      case KIND.secondary:
+        if ($isActive) {
+          starStroke = starFill = isFilled
+            ? $theme.colors.rating400
+            : $theme.colors.contentPrimary;
+        }
+        if ($isPartialActive && !$isActive) {
+          prePartialStarStroke = prePartialStarFill = isFilled
+            ? $theme.colors.rating400
+            : $theme.colors.contentPrimary;
+        }
+        break;
+      case KIND.primary:
+        if ($isActive) {
+          starStroke = starFill = $theme.colors.rating400;
+        }
+        if ($isPartialActive && !$isActive) {
+          prePartialStarStroke = prePartialStarFill = $theme.colors.rating400;
+        }
+        break;
+      default:
+        if ($isActive) {
+          starStroke = starFill = $theme.colors.rating400;
+        }
+        if ($isPartialActive && !$isActive) {
+          prePartialStarStroke = prePartialStarFill = $theme.colors.rating400;
+        }
+        break;
     }
 
     const styles = {

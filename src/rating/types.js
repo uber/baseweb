@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-
+import {KIND} from './constants.js';
 import type {ThemeT} from '../styles/types.js';
 import type {OverrideT} from '../helpers/overrides.js';
 
@@ -24,6 +24,8 @@ export type StarRatingPropsT = {
   /** Callback that's called with the newly selected value. */
   onChange?: ({value: number}) => mixed,
   size?: number,
+  /** Defines the kind (purpose) of a rating */
+  kind?: $Values<typeof KIND>,
 };
 
 export type EmoticonRatingPropsT = {
@@ -54,4 +56,7 @@ export type StyledRatingItemPropsT = {
   $isReadOnly: boolean,
   $index: number,
   $size: number,
+  $value: number,
+  $numItems: number,
+  $kind: $Values<typeof KIND>,
 };

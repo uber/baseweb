@@ -10,6 +10,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import type {StarRatingPropsT, RatingStateT} from './types.js';
 import {StyledRoot, StyledStar} from './styled-components.js';
+import {KIND} from './constants.js';
 import {getOverrides} from '../helpers/overrides.js';
 import {ARROW_UP, ARROW_DOWN, ARROW_LEFT, ARROW_RIGHT} from './utils.js';
 import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
@@ -19,6 +20,7 @@ class StarRating extends React.Component<StarRatingPropsT, RatingStateT> {
     overrides: {},
     numItems: 5,
     readOnly: false,
+    kind: KIND.primary,
   };
 
   state = {isFocusVisible: false, previewIndex: undefined};
@@ -53,6 +55,7 @@ class StarRating extends React.Component<StarRatingPropsT, RatingStateT> {
       numItems,
       size = 22,
       readOnly = false,
+      kind = KIND.primary,
     } = this.props;
     const {previewIndex} = this.state;
     const [Star, starProps] = getOverrides(overrides.Item, StyledStar);
@@ -86,6 +89,9 @@ class StarRating extends React.Component<StarRatingPropsT, RatingStateT> {
           $isSelected={x === previewIndex}
           $isFocusVisible={this.state.isFocusVisible && isFocusable}
           $isReadOnly={readOnly}
+          $value={previewIndex ?? value}
+          $numItems={numItems}
+          $kind={kind}
           onClick={() => {
             if (readOnly) {
               return;

@@ -21,6 +21,11 @@ describe('Rating', () => {
     await page.waitForSelector(selectors.container);
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
+
+    await mount(page, 'rating--kind');
+    await page.waitForSelector(selectors.container);
+    const accessibilityReportKind = await analyzeAccessibility(page);
+    expect(accessibilityReportKind).toHaveNoAccessibilityIssues();
   });
 
   it('for a value of three, three stars are highlighted', async () => {

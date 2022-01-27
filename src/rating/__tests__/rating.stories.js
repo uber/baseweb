@@ -10,7 +10,9 @@ import React from 'react';
 import {Scenario as RatingEmoticon} from './rating-emoticon.scenario.js';
 import {Scenario as RatingSize} from './rating-size.scenario.js';
 import {Scenario as RatingStar} from './rating-star.scenario.js';
+import {Scenario as KindStar} from './rating-kind.scenario.js';
 
 export const Emoticon = () => <RatingEmoticon />;
 export const Size = () => <RatingSize />;
 export const Star = () => <RatingStar />;
+export const Kind = () => <KindStar />;
