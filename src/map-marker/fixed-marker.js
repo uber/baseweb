@@ -101,7 +101,10 @@ const FixedMarker = ({
   color = color || primaryB;
   background = background || backgroundInversePrimary;
 
-  const doesPinHeadTransformOnDrag = needle !== NEEDLE_SIZES.none;
+  const doesPinHeadTransformOnDrag =
+    needle !== NEEDLE_SIZES.none &&
+    size !== PINHEAD_SIZES_SHAPES.xxSmallCircle &&
+    size !== PINHEAD_SIZES_SHAPES.xxSmallSquare;
 
   const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
   const [
@@ -125,10 +128,17 @@ const FixedMarker = ({
   }
 
   return (
-    <Root data-baseweb="fixed-map-marker" {...rootProps}>
+    <Root
+      data-baseweb="fixed-map-marker"
+      $isCentered={
+        size === PINHEAD_SIZES_SHAPES.xxSmallCircle ||
+        size === PINHEAD_SIZES_SHAPES.xxSmallSquare
+      }
+      {...rootProps}
+    >
       <FixedMarkerDragContainer
         $translateAmount={dragShadowMarginTop + dragShadowHeight}
-        $performTranslate={doesPinHeadTransformOnDrag && dragging}
+        $performTranslate={doesPinHeadTransformOnDrag && !dragging}
         {...fixedMarkerDragContainerProps}
       >
         <PinHead

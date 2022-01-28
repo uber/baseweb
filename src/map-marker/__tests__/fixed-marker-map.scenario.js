@@ -88,6 +88,12 @@ export function Scenario() {
       return copy;
     });
   }, []);
+
+  const isMarkerCentered = [
+    PINHEAD_SIZES_SHAPES.xxSmallCircle,
+    PINHEAD_SIZES_SHAPES.xxSmallSquare,
+  ].includes(pinheadSize[0].id);
+
   return (
     <>
       <TileGrid
@@ -206,7 +212,9 @@ export function Scenario() {
               overrides={{
                 Root: {
                   style: () => ({
-                    transform: `translate(-50%, -100%)`,
+                    transform: `translate(-50%, ${
+                      isMarkerCentered ? '-50%' : '-100%'
+                    })`,
                   }),
                 },
               }}

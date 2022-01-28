@@ -14,7 +14,7 @@ import {
   BADGE_ENHANCER_SIZES,
 } from '../index.js';
 import TileGrid from './tile-grid.js';
-import ReactMapGL, {Marker} from 'react-map-gl';
+import ReactMapGL, {Marker, Layer, Source} from 'react-map-gl';
 import Upload from '../../icon/upload.js';
 import Search from '../../icon/search.js';
 
@@ -86,6 +86,31 @@ export function Scenario() {
             }}
           />
         </Marker>
+        <Source
+          id="my-data"
+          type="geojson"
+          data={{
+            type: 'FeatureCollection',
+            features: [
+              [uberHq.longitude, uberHq.latitude],
+              [uberHq.longitude + 0.006, uberHq.latitude],
+            ].map(coordinates => ({
+              type: 'Feature',
+              geometry: {type: 'Point', coordinates},
+            })),
+          }}
+        >
+          <Layer
+            {...{
+              id: 'point',
+              type: 'circle',
+              paint: {
+                'circle-radius': 12,
+                'circle-color': 'red',
+              },
+            }}
+          />
+        </Source>
       </ReactMapGL>
     </>
   );

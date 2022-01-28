@@ -73,7 +73,11 @@ const FloatingMarker = ({
   );
 
   return (
-    <Root data-baseweb="floating-map-marker" {...rootProps}>
+    <Root
+      data-baseweb="floating-map-marker"
+      $size={PINHEAD_DIMENSIONS[anchorPinHeadSize].height}
+      {...rootProps}
+    >
       <FloatingMarkerPinHeadContainer
         $anchor={anchor}
         $anchorSize={PINHEAD_DIMENSIONS[anchorPinHeadSize].height}
