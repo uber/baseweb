@@ -9,6 +9,7 @@ import {styled} from '../styles/index.js';
 import {getSvgStyles} from '../icon/styled-components.js';
 import {SIZE} from './constants.js';
 import type {StyledSpinnerNextPropsT} from './types.js';
+
 type StylePropsT = {
   $size?: number | string,
   $color?: string,
@@ -57,10 +58,12 @@ export const StyledSpinnerNext = styled<StyledSpinnerNextPropsT>(
     $borderWidth,
     $size = SIZE.medium,
   }) => {
+    //$FlowFixMe
     let borderSize = {
       large: $theme.sizing.scale300,
       medium: $theme.sizing.scale100,
       small: $theme.sizing.scale0,
+      //$FlowFixMe
     }[$borderWidth || $size];
     let boxSize = {
       large: $theme.sizing.scale1000,
@@ -75,6 +78,7 @@ export const StyledSpinnerNext = styled<StyledSpinnerNextPropsT>(
       }
     }
     if (!boxSize) {
+      //$FlowFixMe
       boxSize = $theme.sizing[$size];
       if (!boxSize) {
         boxSize = `${parseInt($size)}px`;
