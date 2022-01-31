@@ -63,7 +63,6 @@ export const StyledSpinnerNext = styled<StyledSpinnerNextPropsT>(
       large: $theme.sizing.scale300,
       medium: $theme.sizing.scale100,
       small: $theme.sizing.scale0,
-      //$FlowFixMe
     }[$borderWidth || $size];
     let boxSize = {
       large: $theme.sizing.scale1000,
