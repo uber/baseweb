@@ -304,6 +304,17 @@ const config = {
       },
     ],
   },
+  'popover--progress-bar': {
+    interactions: [
+      {
+        name: 'popover-shows-when-progress-bar-is-hovered',
+        behavior: async page => {
+          await page.hover('[data-baseweb="progress-bar"]');
+          await page.waitForSelector('[data-baseweb="typo-paragraphsmall"]');
+        },
+      },
+    ],
+  },
   'popover--reposition': {
     skip: true,
   },
