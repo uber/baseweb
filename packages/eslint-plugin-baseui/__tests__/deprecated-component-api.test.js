@@ -112,6 +112,26 @@ const tests = {
         }
       `,
     },
+    // Should not error on ImportNamespaceSpecifiers
+    {
+      code: `
+        import * as Typography from "baseui/typography";
+        
+        const Example = () => {
+          return <div></div>
+        }
+      `,
+    },
+    // Should not error
+    {
+      code: `
+        import * as Typography from "baseui/typography";
+
+        const Example = () => {
+          const hello = {}.toString();
+          return <div></div>
+        }`,
+    },
   ],
   invalid: [
     // Accordion - renderPanelContent
@@ -566,40 +586,6 @@ const tests = {
           return <div><Hello>Large</Hello><HeadingXXLarge>H2</HeadingXXLarge><HeadingXLarge>HeadingXLarge</HeadingXLarge><Hello>Large</Hello></div>
           }
       `,
-    },
-    // Should not error on ImportNamespaceSpecifiers
-    {
-      code: `
-import * as Typography from "baseui/typography";
-
-const Example = () => {
-  return <div></div>
-}
-      `,
-      errors: [],
-      output: `
-import * as Typography from "baseui/typography";
-
-const Example = () => {
-  return <div></div>
-}
-      `,
-    },
-    // Should not error
-    {
-      code: `import * as Typography from "baseui/typography";
-
-const Example = () => {
-  const hello = {}.toString();
-  return <div></div>
-}`,
-      errors: [],
-      output: `import * as Typography from "baseui/typography";
-
-const Example = () => {
-  const hello = {}.toString();
-  return <div></div>
-}`,
     },
 
     // Block - $style
