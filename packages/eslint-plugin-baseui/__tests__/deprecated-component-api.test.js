@@ -112,6 +112,26 @@ const tests = {
         }
       `,
     },
+    // Should not error on ImportNamespaceSpecifiers
+    {
+      code: `
+        import * as Typography from "baseui/typography";
+        
+        const Example = () => {
+          return <div></div>
+        }
+      `,
+    },
+    // Should not error
+    {
+      code: `
+        import * as Typography from "baseui/typography";
+
+        const Example = () => {
+          const hello = {}.toString();
+          return <div></div>
+        }`,
+    },
   ],
   invalid: [
     // Accordion - renderPanelContent
@@ -298,6 +318,7 @@ const tests = {
       errors: [
         {messageId: MESSAGES.replace.id},
         {messageId: MESSAGES.replace.id},
+        {messageId: MESSAGES.replace.id},
       ],
       output: `
         import { ParagraphXSmall } from "baseui/typography"
@@ -353,6 +374,7 @@ const tests = {
         }
       `,
       errors: [
+        {messageId: MESSAGES.replace.id},
         {messageId: MESSAGES.replace.id},
         {messageId: MESSAGES.replace.id},
       ],
@@ -487,6 +509,7 @@ const tests = {
       errors: [
         {messageId: MESSAGES.replace.id},
         {messageId: MESSAGES.replace.id},
+        {messageId: MESSAGES.replace.id},
       ],
       output: `
         import { HeadingXXLarge } from "baseui/typography"
@@ -506,6 +529,7 @@ const tests = {
           }
       `,
       errors: [
+        {messageId: MESSAGES.replace.id},
         {messageId: MESSAGES.replace.id},
         {messageId: MESSAGES.replace.id},
       ],
@@ -531,6 +555,8 @@ const tests = {
         {messageId: MESSAGES.replace.id},
         {messageId: MESSAGES.replace.id},
         {messageId: MESSAGES.replace.id},
+        {messageId: MESSAGES.replace.id},
+        {messageId: MESSAGES.replace.id},
       ],
       output: `
         import { HeadingXXLarge as Hello, HeadingXLarge } from "baseui/typography"
@@ -551,6 +577,7 @@ const tests = {
       errors: [
         {messageId: MESSAGES.replace.id},
         {messageId: MESSAGES.replace.id},
+        {messageId: MESSAGES.replace.id},
       ],
       output: `
         import { HeadingXXLarge as Hello, HeadingXLarge } from "baseui/typography"
@@ -559,40 +586,6 @@ const tests = {
           return <div><Hello>Large</Hello><HeadingXXLarge>H2</HeadingXXLarge><HeadingXLarge>HeadingXLarge</HeadingXLarge><Hello>Large</Hello></div>
           }
       `,
-    },
-    // Should not error on ImportNamespaceSpecifiers
-    {
-      code: `
-import * as Typography from "baseui/typography";
-
-const Example = () => {
-  return <div></div>
-}
-      `,
-      errors: [],
-      output: `
-import * as Typography from "baseui/typography";
-
-const Example = () => {
-  return <div></div>
-}
-      `,
-    },
-    // Should not error
-    {
-      code: `import * as Typography from "baseui/typography";
-
-const Example = () => {
-  const hello = {}.toString();
-  return <div></div>
-}`,
-      errors: [],
-      output: `import * as Typography from "baseui/typography";
-
-const Example = () => {
-  const hello = {}.toString();
-  return <div></div>
-}`,
     },
 
     // Block - $style
@@ -615,6 +608,27 @@ const Example = () => {
         }
       `,
       errors: [{messageId: MESSAGES.styleOnBlock.id}],
+    },
+    {
+      code: `
+        import { Paragraph3 } from "baseui/typography"
+        export default () => {
+          return <Paragraph3><Paragraph3>Hello</Paragraph3>World</Paragraph3>
+        }
+      `,
+      errors: [
+        {messageId: MESSAGES.replace.id},
+        {messageId: MESSAGES.replace.id},
+        {messageId: MESSAGES.replace.id},
+        {messageId: MESSAGES.replace.id},
+        {messageId: MESSAGES.replace.id},
+      ],
+      output: `
+        import { ParagraphSmall } from "baseui/typography"
+        export default () => {
+          return <ParagraphSmall><ParagraphSmall>Hello</ParagraphSmall>World</ParagraphSmall>
+        }
+      `,
     },
   ],
 };
