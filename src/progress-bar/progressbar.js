@@ -19,7 +19,10 @@ import {
 
 import type {ProgressBarPropsT} from './types.js';
 
-class ProgressBar extends React.Component<ProgressBarPropsT> {
+class ProgressBar extends React.Component<
+  // eslint-disable-next-line flowtype/no-weak-types
+  ProgressBarPropsT & {forwardedRef: any},
+> {
   static defaultProps = {
     getProgressLabel: (value: number, successValue: number) =>
       `${Math.round((value / successValue) * 100)}% Loaded`,
@@ -55,6 +58,8 @@ class ProgressBar extends React.Component<ProgressBarPropsT> {
       showLabel,
       infinite,
       errorMessage,
+      forwardedRef,
+      ...restProps
     } = this.props;
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
     const [BarContainer, barContainerProps] = getOverrides(
@@ -92,6 +97,7 @@ class ProgressBar extends React.Component<ProgressBarPropsT> {
     return (
       // eslint-disable-next-line jsx-a11y/role-supports-aria-props
       <Root
+        ref={forwardedRef}
         data-baseweb="progress-bar"
         role="progressbar"
         aria-label={ariaLabel || getProgressLabel(value, successValue)}
@@ -100,6 +106,7 @@ class ProgressBar extends React.Component<ProgressBarPropsT> {
         aria-valuemax={infinite ? null : successValue}
         aria-invalid={errorMessage ? true : null}
         aria-errormessage={errorMessage}
+        {...restProps}
         {...sharedProps}
         {...rootProps}
       >
@@ -127,4 +134,11 @@ class ProgressBar extends React.Component<ProgressBarPropsT> {
   }
 }
 
-export default ProgressBar;
+const ForwardedProgressBar = React.forwardRef<
+  $Shape<ProgressBarPropsT>,
+  HTMLDivElement,
+>((props: ProgressBarPropsT, ref) => (
+  <ProgressBar forwardedRef={ref} {...props} />
+));
+ForwardedProgressBar.displayName = 'ProgressBar';
+export default ForwardedProgressBar;
