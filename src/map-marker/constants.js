@@ -103,7 +103,8 @@ export const BADGE_ENHANCER_SIZES = Object.freeze({
   none: 'none',
   xSmall: 'x-small',
   small: 'small',
-  medium: 'medium',
+  mediumText: 'medium-text',
+  mediumIcon: 'medium-icon',
 });
 
 const xSmallPinheadBadge = {
@@ -113,7 +114,8 @@ const xSmallPinheadBadge = {
     y: -3,
   },
   [BADGE_ENHANCER_SIZES.small]: null,
-  [BADGE_ENHANCER_SIZES.medium]: null,
+  [BADGE_ENHANCER_SIZES.mediumText]: null,
+  [BADGE_ENHANCER_SIZES.mediumIcon]: null,
 };
 export const BADGE_ENHANCER_POSITIONS = {
   [PINHEAD_SIZES_SHAPES.xxSmallSquare]: null,
@@ -130,7 +132,8 @@ export const BADGE_ENHANCER_POSITIONS = {
       x: -8,
       y: -8,
     },
-    [BADGE_ENHANCER_SIZES.medium]: null,
+    [BADGE_ENHANCER_SIZES.mediumText]: null,
+    [BADGE_ENHANCER_SIZES.mediumIcon]: null,
   },
   [PINHEAD_SIZES_SHAPES.medium]: {
     [BADGE_ENHANCER_SIZES.none]: null,
@@ -142,7 +145,11 @@ export const BADGE_ENHANCER_POSITIONS = {
       x: -10,
       y: -4,
     },
-    [BADGE_ENHANCER_SIZES.medium]: {
+    [BADGE_ENHANCER_SIZES.mediumText]: {
+      x: -12,
+      y: -8,
+    },
+    [BADGE_ENHANCER_SIZES.mediumIcon]: {
       x: -12,
       y: -8,
     },
@@ -154,7 +161,11 @@ export const BADGE_ENHANCER_POSITIONS = {
       y: 3,
     },
     [BADGE_ENHANCER_SIZES.small]: null,
-    [BADGE_ENHANCER_SIZES.medium]: {
+    [BADGE_ENHANCER_SIZES.mediumText]: {
+      x: -14,
+      y: -6,
+    },
+    [BADGE_ENHANCER_SIZES.mediumIcon]: {
       x: -14,
       y: -6,
     },
@@ -177,12 +188,21 @@ export const BADGE_ENHANCER_STYLES = {
     justifyContent: 'center',
     fontSize: '10px',
   },
-  [BADGE_ENHANCER_SIZES.medium]: {
+  [BADGE_ENHANCER_SIZES.mediumText]: {
     borderRadius: '10px',
     height: '20px',
     padding: '0px 8px',
     display: 'flex',
     alignItems: 'center',
+    boxSizing: 'border-box',
+  },
+  [BADGE_ENHANCER_SIZES.mediumIcon]: {
+    height: '20px',
+    width: '20px',
+    borderRadius: '50%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     boxSizing: 'border-box',
   },
 };
@@ -191,5 +211,6 @@ export const BADGE_ENHANCER_CONTENT_SIZE = {
   [BADGE_ENHANCER_SIZES.none]: 0,
   [BADGE_ENHANCER_SIZES.xSmall]: 0,
   [BADGE_ENHANCER_SIZES.small]: 10,
-  [BADGE_ENHANCER_SIZES.medium]: 12,
+  [BADGE_ENHANCER_SIZES.mediumText]: 12,
+  [BADGE_ENHANCER_SIZES.mediumIcon]: 12,
 };

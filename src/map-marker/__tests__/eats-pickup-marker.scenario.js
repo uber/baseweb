@@ -61,7 +61,7 @@ export function Scenario() {
               },
             }}
             labelEnhancerContent="Uber Eats"
-            badgeEnhancerSize={BADGE_ENHANCER_SIZES.medium}
+            badgeEnhancerSize={BADGE_ENHANCER_SIZES.mediumIcon}
             badgeEnhancerBackground={theme.colors.backgroundPrimary}
             badgeEnhancerContent={({size}) => (
               <Search size={16} color="green" />

@@ -128,14 +128,7 @@ const FixedMarker = ({
   }
 
   return (
-    <Root
-      data-baseweb="fixed-map-marker"
-      $isCentered={
-        size === PINHEAD_SIZES_SHAPES.xxSmallCircle ||
-        size === PINHEAD_SIZES_SHAPES.xxSmallSquare
-      }
-      {...rootProps}
-    >
+    <Root data-baseweb="fixed-map-marker" {...rootProps}>
       <FixedMarkerDragContainer
         $translateAmount={dragShadowMarginTop + dragShadowHeight}
         $performTranslate={doesPinHeadTransformOnDrag && !dragging}
