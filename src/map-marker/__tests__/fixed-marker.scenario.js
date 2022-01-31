@@ -37,6 +37,9 @@ const badgeEnhancerSizes = Object.keys(BADGE_ENHANCER_SIZES)
     id: x,
   }));
 
+const BadgeEnhancerIcon = ({size}) => <Search size={size} />;
+const BadgeEnhancerText = ({size}) => 'Search';
+
 export function Scenario() {
   const markers = [];
   const [dragging, setDragging] = React.useState(false);
@@ -53,6 +56,11 @@ export function Scenario() {
   const [badgeEnhancerSize, setBadgeEnhancerSize] = React.useState([
     badgeEnhancerSizes[0],
   ]);
+
+  const BadgeEnhancerContent =
+    badgeEnhancerSize[0].id === BADGE_ENHANCER_SIZES.mediumText
+      ? BadgeEnhancerText
+      : BadgeEnhancerIcon;
 
   Object.keys(PINHEAD_SIZES_SHAPES)
     .map(key => PINHEAD_SIZES_SHAPES[key])
@@ -88,12 +96,7 @@ export function Scenario() {
                 badgeEnhancerSize={badgeEnhancerSize[0].id}
                 badgeEnhancerColor={null}
                 badgeEnhancerBackground={null}
-                badgeEnhancerContent={({size}) => (
-                  <>
-                    <Search size={size} />
-                    Search
-                  </>
-                )}
+                badgeEnhancerContent={BadgeEnhancerContent}
               />
             ),
           });
