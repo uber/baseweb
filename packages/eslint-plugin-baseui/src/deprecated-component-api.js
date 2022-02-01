@@ -9,29 +9,41 @@ LICENSE file in the root directory of this source tree.
 
 const MESSAGES = require('./messages.js');
 
-const deprecatedTypographyComponents = [
-  {oldName: 'Display', newName: 'DisplayLarge'},
-  {oldName: 'Display1', newName: 'DisplayLarge'},
-  {oldName: 'Display2', newName: 'DisplayMedium'},
-  {oldName: 'Display3', newName: 'DisplaySmall'},
-  {oldName: 'Display4', newName: 'DisplayXSmall'},
-  {oldName: 'H1', newName: 'HeadingXXLarge'},
-  {oldName: 'H2', newName: 'HeadingXLarge'},
-  {oldName: 'H3', newName: 'HeadingLarge'},
-  {oldName: 'H4', newName: 'HeadingMedium'},
-  {oldName: 'H5', newName: 'HeadingSmall'},
-  {oldName: 'H6', newName: 'HeadingXSmall'},
-  {oldName: 'Paragraph1', newName: 'ParagraphLarge'},
-  {oldName: 'Paragraph2', newName: 'ParagraphMedium'},
-  {oldName: 'Paragraph3', newName: 'ParagraphSmall'},
-  {oldName: 'Paragraph4', newName: 'ParagraphXSmall'},
-  {oldName: 'Label1', newName: 'LabelLarge'},
-  {oldName: 'Label2', newName: 'LabelMedium'},
-  {oldName: 'Label3', newName: 'LabelSmall'},
-  {oldName: 'Label4', newName: 'LabelXSmall'},
-  {oldName: 'Caption1', newName: 'ParagraphXSmall'},
-  {oldName: 'Caption2', newName: 'LabelXSmall'},
-];
+const mapDeprecatedTypographyComponents = {
+  Display: 'DisplayLarge',
+  Display1: 'DisplayLarge',
+  Display2: 'DisplayMedium',
+  Display3: 'DisplaySmall',
+  Display4: 'DisplayXSmall',
+  H1: 'HeadingXXLarge',
+  H2: 'HeadingXLarge',
+  H3: 'HeadingLarge',
+  H4: 'HeadingMedium',
+  H5: 'HeadingSmall',
+  H6: 'HeadingXSmall',
+  Paragraph1: 'ParagraphLarge',
+  Paragraph2: 'ParagraphMedium',
+  Paragraph3: 'ParagraphSmall',
+  Paragraph4: 'ParagraphXSmall',
+  Label1: 'LabelLarge',
+  Label2: 'LabelMedium',
+  Label3: 'LabelSmall',
+  Label4: 'LabelXSmall',
+  Caption1: 'ParagraphXSmall',
+  Caption2: 'LabelXSmall',
+};
+
+const getOverrideIfExists = (name, node) => {
+  // Verify that an object is passed to overrides.
+  if (node.parent.value.expression.type === 'ObjectExpression') {
+    // Find property name
+    return node.parent.value.expression.properties.find(
+      property =>
+        property.key && property.key.name && property.key.name === name,
+    );
+  }
+  return null;
+};
 
 module.exports = {
   meta: {
@@ -46,7 +58,97 @@ module.exports = {
   },
   create(context) {
     let importState = {};
+    const identifiersToRename = {};
+    const fixImport = (node, oldComponent, newComponent) => {
+      context.report({
+        node: node.imported,
+        messageId: MESSAGES.replace.id,
+        data: {
+          old: oldComponent,
+          new: newComponent,
+        },
+        fix: function(fixer) {
+          return [fixer.replaceText(node.imported, newComponent)];
+        },
+      });
+    };
+    const removeImport = (node, specifierIndex, oldName, newName) => {
+      context.report({
+        node,
+        messageId: MESSAGES.replace.id,
+        data: {
+          old: oldName,
+          new: newName,
+        },
+        fix: function(fixer) {
+          const isAtStart = specifierIndex === 0;
+          const startIndex = isAtStart ? specifierIndex : specifierIndex - 1;
+          const endIndex = isAtStart ? specifierIndex + 1 : specifierIndex;
+          return fixer.removeRange([
+            node.specifiers[startIndex].range[isAtStart ? 0 : 1],
+            node.specifiers[endIndex].range[isAtStart ? 0 : 1],
+          ]);
+        },
+      });
+    };
+
     return {
+      ImportDeclaration(node) {
+        if (node.source.value !== 'baseui/typography') {
+          return;
+        }
+
+        const existingImports = {};
+
+        // Map existing imports (newName: localName), preference given to first renamed import.
+        node.specifiers.forEach(specifier => {
+          if (specifier.type === 'ImportNamespaceSpecifier') {
+            return;
+          }
+          const currentImportedName = specifier.imported.name;
+          if (existingImports[currentImportedName]) {
+            if (
+              currentImportedName !== specifier.local.name &&
+              existingImports[currentImportedName] === currentImportedName
+            ) {
+              existingImports[currentImportedName] = specifier.local.name;
+            }
+          } else {
+            existingImports[currentImportedName] = specifier.local.name;
+          }
+        });
+
+        const specifiers = node.specifiers || [];
+        specifiers.forEach((specifier, specifierIndex) => {
+          if (specifier.type === 'ImportNamespaceSpecifier') {
+            return;
+          }
+          const deprecatedComponent = specifier.imported.name;
+          const newComponent =
+            mapDeprecatedTypographyComponents[deprecatedComponent];
+
+          if (newComponent) {
+            const isAlreadyImported = Boolean(existingImports[newComponent]);
+            const isRenamed = specifier.local.name !== specifier.imported.name;
+
+            if (isAlreadyImported) {
+              removeImport(
+                node,
+                specifierIndex,
+                deprecatedComponent,
+                newComponent,
+              );
+              identifiersToRename[specifier.local.name] =
+                existingImports[newComponent];
+            } else {
+              fixImport(specifier, deprecatedComponent, newComponent);
+              if (!isRenamed) {
+                identifiersToRename[specifier.local.name] = newComponent;
+              }
+            }
+          }
+        });
+      },
       ImportSpecifier(node) {
         function isImporting(importName, importPath) {
           if (
@@ -59,20 +161,10 @@ module.exports = {
             return false;
           }
         }
-        const fixImport = (oldComponent, newComponent) => {
-          context.report({
-            node: node.imported,
-            messageId: MESSAGES.replace.id,
-            data: {
-              old: oldComponent,
-              new: newComponent,
-            },
-            fix: function(fixer) {
-              return [fixer.replaceText(node.imported, newComponent)];
-            },
-          });
-        };
 
+        if (!node.parent.source.value.startsWith('baseui/')) {
+          return;
+        }
         // Spinner
         // Ex: import {Spinner} from "baseui/spinner";
         // Note, we are not replacing Spinner because the new API
@@ -84,21 +176,6 @@ module.exports = {
           });
           return;
         }
-
-        // For Caption1 and Caption2, we want to potentially replace instances
-        // of the component. We need to consider imports as well as instances
-        // so that if people use the autofix flag, they don't end up with a
-        // weird half-way fix. If we find a valid import here, we capture in
-        // `importState` what the `new` value to use when we rename instances
-        // later on. One consequence of this approach is that you have to fix
-        // the import and instance separately if resolving lint warnings
-        // manually.
-
-        deprecatedTypographyComponents.forEach(deprecatedApi => {
-          if (isImporting(deprecatedApi.oldName, 'baseui/typography')) {
-            fixImport(deprecatedApi.oldName, deprecatedApi.newName);
-          }
-        });
 
         // These can be referenced later on by instances of components.
         if (isImporting('Accordion', 'baseui/accordion')) return;
@@ -130,10 +207,13 @@ module.exports = {
         }
 
         // isComponent
-        // Check if identifier is a component matching "name".
-        // Ex: isComponent("Boo") with <Boo foo={} /> => true
-        function isComponent(name) {
-          return node.name === name && node.parent.type === 'JSXOpeningElement';
+        // Check if identifier is a component.
+        // Ex: isComponent() with <Boo foo={} /> => true
+        function isComponent() {
+          return (
+            node.parent.type === 'JSXOpeningElement' ||
+            node.parent.type === 'JSXClosingElement'
+          );
         }
 
         // ================
@@ -194,6 +274,21 @@ module.exports = {
           context.report({
             node,
             messageId: MESSAGES.styleOnBlock.id,
+          });
+          return;
+        }
+
+        // successValue
+        // Ex: <Checkbox successValue={1} />
+        // Replacement: None
+        if (
+          importState.ProgressBar &&
+          isProp('successValue', importState.ProgressBar)
+        ) {
+          // The prop will be completely removed.
+          context.report({
+            node: node.parent.value.expression.property,
+            messageId: MESSAGES.progressBarSuccessValue.id,
           });
           return;
         }
@@ -293,23 +388,56 @@ module.exports = {
         // Ex: <Modal overrides={{ Backdrop: {}}} />
         // Replacement: DialogContainer
         if (importState.Modal && isProp('overrides', importState.Modal)) {
-          // Verify that an object is passed to overrides.
-          if (node.parent.value.expression.type === 'ObjectExpression') {
-            // Find object property with "Backdrop" as key.
-            const property = node.parent.value.expression.properties.find(
-              property =>
-                property.key &&
-                property.key.name &&
-                property.key.name === 'Backdrop',
-            );
+          const property = getOverrideIfExists('Backdrop', node);
+          if (property) {
+            context.report({
+              node: property,
+              messageId: MESSAGES.modalBackdrop.id,
+            });
+            return;
+          }
+        }
+
+        // Select
+        // Ex: <Select overrides={{ SearchIcon: {}}} />
+        // Replacement: SearchIconContainer
+        if (importState.Select && isProp('overrides', importState.Select)) {
+          const property = getOverrideIfExists('SearchIcon', node);
+          if (property) {
+            context.report({
+              node: property,
+              messageId: MESSAGES.selectSearchIcon.id,
+            });
+            return;
+          }
+        }
+
+        // RadioGroup - All overrides are deprecated except for RadioGroupRoot
+        // Ex: <RadioGroup overrides={{ RadioMarkInner: {}}} />
+        // Ex: <RadioGroup overrides={{ Description: {}}} />
+        // Ex: <RadioGroup overrides={{ Root: {}}} />
+        // Replacement: None
+        if (
+          importState.RadioGroup &&
+          isProp('overrides', importState.RadioGroup)
+        ) {
+          const properties = [
+            'Root',
+            'Input',
+            'Label',
+            'Description',
+            'RadioMarkInner',
+            'RadioMarkOuter',
+          ];
+          properties.map(val => {
+            const property = getOverrideIfExists(val, node);
             if (property) {
               context.report({
                 node: property,
-                messageId: MESSAGES.modalBackdrop.id,
+                messageId: MESSAGES.radioGroupOverrides.id,
               });
-              return;
             }
-          }
+          });
         }
 
         // =====================
@@ -323,30 +451,58 @@ module.exports = {
         // Caption1
         // Ex: <Caption1 />
         // Replacement: ParagraphXSmall
-        deprecatedTypographyComponents.forEach(deprecatedApi => {
-          if (
-            importState[deprecatedApi.oldName] &&
-            isComponent(deprecatedApi.oldName)
-          ) {
-            context.report({
-              node,
-              messageId: MESSAGES.replace.id,
-              data: {
-                old: deprecatedApi.oldName,
-                new: deprecatedApi.newName,
-              },
-              fix: function(fixer) {
-                return [
-                  fixer.replaceText(node, deprecatedApi.newName),
-                  fixer.replaceText(
-                    node.parent.parent.closingElement.name,
-                    deprecatedApi.newName,
-                  ),
-                ];
-              },
-            });
-          }
-        });
+        if (
+          Object.prototype.hasOwnProperty.call(
+            identifiersToRename,
+            node.name,
+          ) &&
+          isComponent()
+        ) {
+          const oldName = node.name;
+          const newName = identifiersToRename[node.name];
+          context.report({
+            node,
+            messageId: MESSAGES.replace.id,
+            data: {
+              old: oldName,
+              new: newName,
+            },
+            fix: function(fixer) {
+              return [fixer.replaceText(node, newName)];
+            },
+          });
+        }
+      },
+      Identifier(node) {
+        const fixIdentifier = (oldComponent, newComponent) => {
+          context.report({
+            node,
+            messageId: MESSAGES.replace.id,
+            data: {
+              old: oldComponent,
+              new: newComponent,
+            },
+            fix: function(fixer) {
+              return [fixer.replaceText(node, newComponent)];
+            },
+          });
+        };
+        function isIdentifier() {
+          return (
+            node.type === 'Identifier' &&
+            !['ImportSpecifier', 'JSXIdentifier'].includes(node.parent.type)
+          );
+        }
+
+        if (
+          Object.prototype.hasOwnProperty.call(
+            identifiersToRename,
+            node.name,
+          ) &&
+          isIdentifier()
+        ) {
+          fixIdentifier(node.name, identifiersToRename[node.name]);
+        }
       },
     };
   },

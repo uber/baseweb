@@ -69,7 +69,6 @@ export interface RenderItemProps {
   id?: string;
   isFocused?: boolean;
   isHighlighted?: boolean;
-  resetMenu?: () => any;
 }
 
 export type OnItemSelect = (args: {
@@ -108,6 +107,8 @@ export interface StatefulContainerProps {
   removeMenuFromNesting?: (ref: React.Ref<HTMLElement>) => void;
   getParentMenu?: (ref: React.Ref<HTMLElement>) => void;
   getChildMenu?: (ref: React.Ref<HTMLElement>) => void;
+  nestedMenuHoverIndex?: nubmer;
+  isNestedMenuVisible?: (ref: React.Ref<HTMLElement>) => boolean;
 }
 export interface StatefulContainerState {
   activedescendantId?: string;
@@ -131,7 +132,6 @@ export interface OptionListProps extends BaseMenuPropsT {
     ChildMenuPopover?: Override<any>;
   };
   renderHrefAsAnchor?: boolean;
-  resetMenu?: () => void;
   $isHighlighted?: boolean;
   $isFocused?: boolean;
   renderAll?: boolean;
@@ -148,7 +148,11 @@ export interface OptionProfileProps extends BaseMenuPropsT {
   getChildMenu?: (item: any) => React.ReactNode;
   getProfileItemLabels: (
     item: any,
-  ) => {title?: string; subtitle?: string; body?: string};
+  ) => {
+    title?: string;
+    subtitle?: string;
+    body?: string;
+  };
   getProfileItemImg: (item: any) => string | React.ComponentType<any>;
   getProfileItemImgText: (item: any) => string;
   overrides?: {
@@ -161,7 +165,6 @@ export interface OptionProfileProps extends BaseMenuPropsT {
     ProfileBody?: Override<any>;
     ChildMenuPopover?: Override<any>;
   };
-  resetMenu?: () => void;
   $isHighlighted?: boolean;
 }
 export const OptionProfile: React.FC<OptionProfileProps>;
@@ -200,6 +203,8 @@ export class NestedMenus extends React.Component<
   findMenuIndexByRef(ref: React.Ref<HTMLElement>): number;
   getParentMenu(ref: React.Ref<HTMLElement>): React.Ref<HTMLElement>;
   getChildMenu(ref: React.Ref<HTMLElement>): React.Ref<HTMLElement>;
+  nestedMenuHoverIndex: number;
+  isNestedMenuVisible(ref: React.Ref<HTMLElement>): boolean;
 }
 
 export const StyledEmptyState: StyletronComponent<any>;
