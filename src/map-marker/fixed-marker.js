@@ -92,6 +92,7 @@ const FixedMarker = ({
   badgeEnhancerColor = null,
   badgeEnhancerBackground = null,
   badgeEnhancerContent = null,
+  ...restProps
 }: FixedMarkerPropsT) => {
   const [, theme] = useStyletron();
   const {
@@ -112,11 +113,6 @@ const FixedMarker = ({
     fixedMarkerDragContainerProps,
   ] = getOverrides(overrides.DragContainer, StyledFixedMarkerDragContainer);
 
-  // const [LabelEnhancer, labelEnhancerProps] = getOverrides(
-  //   overrides.LabelEnhancer,
-  //   StyledLabelEnhancer,
-  // );
-
   const renderNeedle =
     needle !== NEEDLE_SIZES.none &&
     size !== PINHEAD_SIZES_SHAPES.xxSmallCircle &&
@@ -128,7 +124,7 @@ const FixedMarker = ({
   }
 
   return (
-    <Root data-baseweb="fixed-map-marker" {...rootProps}>
+    <Root data-baseweb="fixed-map-marker" {...restProps} {...rootProps}>
       <FixedMarkerDragContainer
         $translateAmount={dragShadowMarginTop + dragShadowHeight}
         $performTranslate={doesPinHeadTransformOnDrag && !dragging}
