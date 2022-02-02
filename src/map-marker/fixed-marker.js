@@ -85,7 +85,7 @@ const FixedMarker = ({
   dragging = false,
   overrides = {},
   labelEnhancerContent = null,
-  labelEnhancerPosition = LABEL_ENHANCER_POSITIONS.none,
+  labelEnhancerPosition = LABEL_ENHANCER_POSITIONS.bottom,
   labelEnhancerColor,
   labelEnhancerStrokeColor,
   badgeEnhancerSize = null,

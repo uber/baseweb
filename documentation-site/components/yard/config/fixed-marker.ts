@@ -130,9 +130,9 @@ export const fixedMarkerProps = {
     description: 'Text to display as the optional label enhancer.',
   },
   labelEnhancerPosition: {
-    value: 'LABEL_ENHANCER_POSITIONS.none',
+    value: 'LABEL_ENHANCER_POSITIONS.bottom',
     enumName: 'LABEL_ENHANCER_POSITIONS',
-    defaultValue: 'LABEL_ENHANCER_POSITIONS.none',
+    defaultValue: 'LABEL_ENHANCER_POSITIONS.bottom',
     options: LABEL_ENHANCER_POSITIONS,
     type: PropTypes.Enum,
     description: 'Position of the label enhancer.',
