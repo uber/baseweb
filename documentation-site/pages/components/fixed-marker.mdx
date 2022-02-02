@@ -17,6 +17,8 @@ import Dragging from 'examples/fixed-marker/dragging.js';
 import XSmall from 'examples/fixed-marker/x-small.js';
 import ReactMapGL from 'examples/fixed-marker/react-map-gl.js';
 import ReactMapGLDragging from 'examples/fixed-marker/react-map-gl-dragging.js';
+import BadgeEnhancerText from 'examples/fixed-marker/badge-enhancer-text.js';
+import BadgeAndLabelEnhancers from 'examples/fixed-marker/badge-and-label-enhancers.js';
 import {FixedMarkerSizingTable} from '../../components/map-marker-sizing-table.js';
 
 import Yard from '../../components/yard/index';
@@ -49,8 +51,14 @@ For more information on the design principles behind the Base map markers, pleas
   - The `xxSmall` or `xSmall` pinhead sizes cannot contain any content.
 - A fixed marker may have either no needle or a choice of 3 different sizes: `short`, `medium`, or `tall`.
 - A fixed marker without a label can only have one icon. As such, do not use both a `startEnhancer` and an `endEnhancer` if there is no label.
+- A fixed marker can have a badge enhancer of the following sizes: `xSmall`, `small`, `mediumText`, `mediumIcon`.
+  - The `xSmall` cannot have any content.
+  - The `small` can only have an icon as a content.
+  - The `mediumText` can have a text content. It adds padding to the sides.
+  - The `mediumIcon` can have an icon as a content. Displayed as a circle.
+- A fixed marker can have a label enhancer that can be poistioned at the `top`, `bottom`, `left`, `right` of the marker.
 
-### Enhancer sizing
+### Start/End Enhancer sizing
 
 - The size of an enhancer depends on the pinhead size you are using. Refer to the table below for the proper enhancer sizes.
 
@@ -117,6 +125,24 @@ A fixed map marker rendered inside of a [react-map-gl](https://visgl.github.io/r
 </Example>
 
 A draggable fixed map marker rendered inside of a [react-map-gl](https://visgl.github.io/react-map-gl/) view. Everytime the marker is dragged, the `dragging` prop is updated and the marker position is updated.
+
+<Example
+  title="Marker with a badge enhancer with text"
+  path="fixed-marker/badge-enhancer-text"
+>
+  <BadgeEnhancerText />
+</Example>
+
+A fixed map marker with a badge enhancer that contains text and has a green background color.
+
+<Example
+  title="Marker with a small badge enhancer and a label enhancer"
+  path="fixed-marker/badge-and-label-enhancers"
+>
+  <BadgeAndLabelEnhancers />
+</Example>
+
+A fixed map marker with a small badge enhancer that contains an icon and a label enhancer placed at the bottom.
 
 ## API
 
