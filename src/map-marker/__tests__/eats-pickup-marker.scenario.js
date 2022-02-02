@@ -71,7 +71,9 @@ export function Scenario() {
             overrides={{
               Root: {
                 style: () => ({
-                  transform: `translate(-50%, -100%)`,
+                  transform: `translate(-50%, ${
+                    selectedLocationIndex === 0 ? '-100%' : '-50%'
+                  })`,
                   cursor: 'pointer',
                 }),
               },
@@ -153,7 +155,9 @@ export function Scenario() {
             overrides={{
               Root: {
                 style: () => ({
-                  transform: `translate(-50%, -100%)`,
+                  transform: `translate(-50%, ${
+                    selectedLocationIndex === 2 ? '-100%' : '-50%'
+                  })`,
                   cursor: 'pointer',
                 }),
               },
