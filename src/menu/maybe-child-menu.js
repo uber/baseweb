@@ -64,8 +64,6 @@ export default function MaybeChildMenu(props: PropsT) {
               {
                 Body: {
                   props: {
-                    // Adds mouseleave to popover body so that child menu closes when user mouses out.
-                    onMouseLeave: props.resetParentMenu,
                     // Trap tabbing when focused on a child menu. Popover mounts the element at the end of
                     // the html body by default. If a user was to tab to the next element it would navigate
                     // to elements not within the immediate area surrounding the menu.

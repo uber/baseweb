@@ -470,22 +470,27 @@ class PopoverInner extends React.Component<
               onPopperUpdate={this.onPopperUpdate}
               placement={this.state.placement}
             >
-              <FocusLock
-                disabled={!this.props.focusLock}
-                noFocusGuards={false}
-                // see popover-focus-loop.scenario.js for why hover cannot return focus
-                returnFocus={this.props.returnFocus && !this.isHoverTrigger()}
-                autoFocus={this.state.autoFocusAfterPositioning}
-              >
-                {!this.props.focusLock &&
-                this.state.autoFocusAfterPositioning ? (
-                  <MoveFocusInside>
-                    {this.renderPopover(renderedContent)}
-                  </MoveFocusInside>
-                ) : (
-                  this.renderPopover(renderedContent)
-                )}
-              </FocusLock>
+              {this.props.focusLock ? (
+                <FocusLock
+                  disabled={!this.props.focusLock}
+                  noFocusGuards={false}
+                  // see popover-focus-loop.scenario.js for why hover cannot return focus
+                  returnFocus={!this.isHoverTrigger() && this.props.returnFocus}
+                  autoFocus={this.state.autoFocusAfterPositioning}
+                  focusOptions={this.props.focusOptions}
+                >
+                  {this.renderPopover(renderedContent)}
+                </FocusLock>
+              ) : (
+                <MoveFocusInside
+                  disabled={
+                    !this.props.autoFocus &&
+                    !this.state.autoFocusAfterPositioning
+                  }
+                >
+                  {this.renderPopover(renderedContent)}
+                </MoveFocusInside>
+              )}
             </TetherBehavior>
           </Layer>,
         );

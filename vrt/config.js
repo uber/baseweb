@@ -292,8 +292,79 @@ const config = {
       },
     ],
   },
+  // Ref: https://github.com/uber/baseweb/issues/4693
+  'popover--hover': {
+    interactions: [
+      {
+        name: 'positions-content-correctly-on-first-render',
+        behavior: async page => {
+          await page.hover('button');
+          await page.waitForSelector('#content');
+        },
+      },
+    ],
+  },
+  'popover--progress-bar': {
+    interactions: [
+      {
+        name: 'popover-shows-when-progress-bar-is-hovered',
+        behavior: async page => {
+          await page.hover('[data-baseweb="progress-bar"]');
+          await page.waitForSelector('[data-baseweb="typo-paragraphsmall"]');
+        },
+      },
+    ],
+  },
   'popover--reposition': {
     skip: true,
+  },
+  'popover--prevent-scroll-on-focus': {
+    interactions: [
+      {
+        name: 'scrollDownAndCheckIfPreventScrollPreventsReScrollOnPopover',
+        behavior: async page => {
+          await page.waitForSelector('button');
+
+          // Open Popover
+          await page.click('button');
+          await page.waitForSelector('div[data-e2e="content"]');
+
+          // Close Popover
+          await page.click('button');
+          await page.waitForSelector('div[data-e2e="content"]', {hidden: true});
+
+          // Scroll to the last div
+          await page.evaluate(() =>
+            // eslint-disable-next-line cup/no-undef
+            document.querySelector('div[data-e2e-spacer="1"]').scrollIntoView(),
+          );
+
+          // Listening to Scroll Event to determine if the page is still scrolling
+          // Could wait for few seconds but that would be unreliable
+          await page.evaluate(() => {
+            function scrollHandler() {
+              // Disabling eslint checks on window / document as they would be executed in puppeteer
+              /* eslint-disable cup/no-undef */
+              window.isPageScrolling = true;
+              clearTimeout(window.scrollTimer);
+              window.scrollTimer = setTimeout(() => {
+                window.isPageScrolling = false;
+                window.removeEventListener('scroll', scrollHandler);
+              }, 100);
+            }
+            window.addEventListener('scroll', scrollHandler);
+            /* eslint-enable cup/no-undef */
+          });
+
+          // Waiting for scroll to end
+          await page.waitForFunction('window.isPageScrolling === false');
+
+          // Clicking on button to show Popover
+          await page.click('button');
+          await page.waitForSelector('div[data-e2e="content"]');
+        },
+      },
+    ],
   },
   'popover--reposition-with-anchor-update': {
     interactions: [

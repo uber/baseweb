@@ -524,10 +524,15 @@ export type ComponentColorTokensT = {|
   // Toast
   toastText: string,
   toastPrimaryBackground: string,
+  toastPrimaryText: string,
   toastInfoBackground: string,
+  toastInfoText: string,
   toastPositiveBackground: string,
+  toastPositiveText: string,
   toastWarningBackground: string,
+  toastWarningText: string,
   toastNegativeBackground: string,
+  toastNegativeText: string,
 
   // Spinner
   spinnerTrackFill: string,
