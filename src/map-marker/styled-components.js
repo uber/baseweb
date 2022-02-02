@@ -9,7 +9,6 @@ import {styled} from '../styles/index.js';
 import {
   BADGE_ENHANCER_STYLES,
   FLOATING_MARKER_ANCHOR_POSITIONS,
-  xSmallPinheadDimension,
   LABEL_SIZES,
 } from './constants.js';
 
@@ -69,10 +68,12 @@ export const Needle = styled<{
   boxShadow: $theme.lighting.shadow600,
 }));
 
-export const FloatingMarkerRoot = styled<{}>('div', () => ({
+export const FloatingMarkerRoot = styled<{
+  $size: number,
+}>('div', ({$size}) => ({
   position: 'relative',
-  height: `${xSmallPinheadDimension.height}px`,
-  width: `${xSmallPinheadDimension.height}px`,
+  height: `${$size}px`,
+  width: `${$size}px`,
 }));
 
 export const FloatingMarkerPinHeadContainer = styled<{
@@ -100,7 +101,7 @@ export const FixedMarkerDragContainer = styled<{
 }>('div', ({$theme, $translateAmount, $performTranslate}) => {
   return {
     transform: `translateY(${
-      $performTranslate ? '0px' : `${$translateAmount}px`
+      $performTranslate ? `${$translateAmount}px` : '0px'
     })`,
     transition: `${$theme.animation.timing300} ${$theme.animation.easeOutCurve} all`,
     display: 'flex',
@@ -247,6 +248,7 @@ export const StrokedLabelContainer = styled<{
       justifyContent: 'flex-end',
       textAlign: 'right',
     },
+    none: {},
   };
   return {
     position: 'absolute',

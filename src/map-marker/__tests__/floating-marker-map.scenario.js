@@ -67,7 +67,10 @@ export function Scenario() {
     zoom: 14,
   });
 
-  console.log(floatingMarkerAnchorPosition);
+  const requiresAlignment =
+    floatingMarkerAnchorPosition[0].id !==
+    FLOATING_MARKER_ANCHOR_POSITIONS.none;
+
   return (
     <>
       <TileGrid
@@ -137,11 +140,15 @@ export function Scenario() {
             <FloatingMarker
               overrides={{
                 Root: {
-                  style: () => ({
-                    transform: `translate(-50%, -50%)`,
-                  }),
+                  style: () =>
+                    requiresAlignment
+                      ? {
+                          transform: `translate(-50%, -50%)`,
+                        }
+                      : {},
                 },
               }}
+              // $FlowFixMe Mismatch between general type and enum
               anchorType={floatingMarkerAnchorType[0].id}
               label={label}
               startEnhancer={
@@ -158,6 +165,7 @@ export function Scenario() {
                     }
                   : undefined
               }
+              // $FlowFixMe Mismatch between general type and enum
               anchor={floatingMarkerAnchorPosition[0].id}
             />
           </Marker>

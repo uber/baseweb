@@ -88,6 +88,12 @@ export function Scenario() {
       return copy;
     });
   }, []);
+
+  const isMarkerCentered = [
+    PINHEAD_SIZES_SHAPES.xxSmallCircle,
+    PINHEAD_SIZES_SHAPES.xxSmallSquare,
+  ].includes(pinheadSize[0].id);
+
   return (
     <>
       <TileGrid
@@ -182,7 +188,9 @@ export function Scenario() {
             key={i}
           >
             <FixedMarker
+              // $FlowFixMe Mismatch between general type and enum
               size={pinheadSize[0].id}
+              // $FlowFixMe Mismatch between general type and enum
               needle={needleSize[0].id}
               key={i}
               label={label}
@@ -204,7 +212,9 @@ export function Scenario() {
               overrides={{
                 Root: {
                   style: () => ({
-                    transform: `translate(-50%, -100%)`,
+                    transform: `translate(-50%, ${
+                      isMarkerCentered ? '-50%' : '-100%'
+                    })`,
                   }),
                 },
               }}
@@ -215,6 +225,7 @@ export function Scenario() {
                 content: 'hello',
               }}
               labelEnhancerContent={labelEnhancerText}
+              // $FlowFixMe Mismatch between general type and enum
               labelEnhancerPosition={labelEnhancerPosition[0].id}
             />
           </Marker>

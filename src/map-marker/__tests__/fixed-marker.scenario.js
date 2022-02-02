@@ -37,6 +37,9 @@ const badgeEnhancerSizes = Object.keys(BADGE_ENHANCER_SIZES)
     id: x,
   }));
 
+const BadgeEnhancerIcon = ({size}) => <Search size={size} />;
+const BadgeEnhancerText = ({size}) => 'Search';
+
 export function Scenario() {
   const markers = [];
   const [dragging, setDragging] = React.useState(false);
@@ -54,12 +57,17 @@ export function Scenario() {
     badgeEnhancerSizes[0],
   ]);
 
-  Object.values(PINHEAD_SIZES_SHAPES).forEach(
-    // $FlowFixMe
-    (pinheadSize: PinHeadSizeT, i: number) => {
-      Object.values(NEEDLE_SIZES).forEach(
-        // $FlowFixMe
-        (needleSize: NeedleSizeT, z: number) => {
+  const BadgeEnhancerContent =
+    badgeEnhancerSize[0].id === BADGE_ENHANCER_SIZES.mediumText
+      ? BadgeEnhancerText
+      : BadgeEnhancerIcon;
+
+  Object.keys(PINHEAD_SIZES_SHAPES)
+    .map(key => PINHEAD_SIZES_SHAPES[key])
+    .forEach((pinheadSize: PinHeadSizeT, i: number) => {
+      Object.keys(NEEDLE_SIZES)
+        .map(key => NEEDLE_SIZES[key])
+        .forEach((needleSize: NeedleSizeT, z: number) => {
           markers.push({
             id: `fixed / ${pinheadSize} / ${needleSize}`,
             content: (
@@ -88,19 +96,12 @@ export function Scenario() {
                 badgeEnhancerSize={badgeEnhancerSize[0].id}
                 badgeEnhancerColor={null}
                 badgeEnhancerBackground={null}
-                badgeEnhancerContent={({size}) => (
-                  <>
-                    <Search size={size} />
-                    Search
-                  </>
-                )}
+                badgeEnhancerContent={BadgeEnhancerContent}
               />
             ),
           });
-        },
-      );
-    },
-  );
+        });
+    });
 
   return (
     <TileGrid
@@ -132,6 +133,7 @@ export function Scenario() {
           options={labelEnhancerPositions}
           value={labelEnhancerPosition}
           placeholder="Select an anchor position"
+          // $FlowFixMe Mismatch between general type and enum
           onChange={params => setLabelEnhancerPosition(params.value)}
           key="anchor-position"
         />,
@@ -156,6 +158,7 @@ export function Scenario() {
           options={badgeEnhancerSizes}
           value={badgeEnhancerSize}
           placeholder="Select an anchor position"
+          // $FlowFixMe Mismatch between general type and enum
           onChange={params => setBadgeEnhancerSize(params.value)}
           key="badge-enhancer-size"
         />,

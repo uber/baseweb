@@ -7,9 +7,7 @@ import {
 } from 'baseui/map-marker';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
-import Check from 'baseui/icon/check';
-import Upload from 'baseui/icon/upload';
-import Search from 'baseui/icon/search';
+import {Check, Upload, Search} from 'baseui/icon';
 
 const fixedMarkerPropsType = require('!!extract-react-types-loader!../../../../src/map-marker/fixed-marker.js');
 
@@ -132,9 +130,9 @@ export const fixedMarkerProps = {
     description: 'Text to display as the optional label enhancer.',
   },
   labelEnhancerPosition: {
-    value: 'LABEL_ENHANCER_POSITIONS.none',
+    value: 'LABEL_ENHANCER_POSITIONS.bottom',
     enumName: 'LABEL_ENHANCER_POSITIONS',
-    defaultValue: 'LABEL_ENHANCER_POSITIONS.none',
+    defaultValue: 'LABEL_ENHANCER_POSITIONS.bottom',
     options: LABEL_ENHANCER_POSITIONS,
     type: PropTypes.Enum,
     description: 'Position of the label enhancer.',
