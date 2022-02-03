@@ -11,10 +11,16 @@ import {getOverride, getOverrideProps} from '../helpers/overrides.js';
 import {UIDConsumer} from 'react-uid';
 import {
   Label as StyledLabel,
+  LabelEndEnhancer as StyledLabelEndEnhancer,
+  LabelContainer as StyledLabelContainer,
   Caption as StyledCaption,
   ControlContainer as StyledControlContainer,
 } from './styled-components.js';
-import type {FormControlPropsT, FormControlStateT} from './types.js';
+import type {
+  FormControlPropsT,
+  FormControlStateT,
+  StylePropsT,
+} from './types.js';
 
 function chooseRenderedHint(caption, error, positive, sharedProps) {
   if (error && typeof error !== 'boolean') {
@@ -41,12 +47,15 @@ export default class FormControl extends React.Component<
     label: null,
     caption: null,
     disabled: false,
+    counter: false,
   };
 
   render() {
     const {
       overrides: {
         Label: LabelOverride,
+        LabelEndEnhancer: LabelEndEnhancerOverride,
+        LabelContainer: LabelContainerOverride,
         Caption: CaptionOverride,
         ControlContainer: ControlContainerOverride,
       },
@@ -57,17 +66,22 @@ export default class FormControl extends React.Component<
       positive,
       htmlFor,
       children,
+      counter,
     } = this.props;
 
     const onlyChildProps = React.Children.only(children).props;
 
-    const sharedProps = {
+    const sharedProps: StylePropsT = {
       $disabled: !!disabled,
       $error: !!error,
       $positive: !!positive,
     };
 
     const Label = getOverride(LabelOverride) || StyledLabel;
+    const LabelEndEnhancer =
+      getOverride(LabelEndEnhancerOverride) || StyledLabelEndEnhancer;
+    const LabelContainer =
+      getOverride(LabelContainerOverride) || StyledLabelContainer;
     const Caption = getOverride(CaptionOverride) || StyledCaption;
     const ControlContainer =
       getOverride(ControlContainerOverride) || StyledControlContainer;
@@ -83,17 +97,82 @@ export default class FormControl extends React.Component<
       }
     }
 
+    let labelEndEnhancer = this.props.labelEndEnhancer;
+    if (counter) {
+      // inferred values are preferred but if the user specifies the value
+      // that is then used as the default.
+      let maxLength: ?number = null;
+      let length: ?number = null;
+      let counterError: ?boolean = null;
+
+      if (typeof counter === 'object') {
+        length = counter.length;
+        maxLength = counter.maxLength;
+        counterError = counter.error;
+      }
+
+      maxLength = maxLength ? maxLength : onlyChildProps.maxLength;
+      if (length == null && typeof onlyChildProps.value === 'string') {
+        length = onlyChildProps.value.length;
+      }
+
+      if (length == null) {
+        length = 0;
+        if (__DEV__) {
+          console.warn(
+            `[FromControl] \`length\` must either be explicitly set via \`counter\` object property, or \`value\` string property on the child component.`,
+          );
+        }
+      }
+
+      sharedProps.$length = length;
+      if (maxLength == null) {
+        if (!labelEndEnhancer) labelEndEnhancer = `${length}`;
+      } else {
+        sharedProps.$maxLength = length;
+        if (!labelEndEnhancer) labelEndEnhancer = `${length}/${maxLength}`;
+        if (length > maxLength && counterError == null) counterError = true;
+      }
+
+      if (counterError) {
+        sharedProps.$error = true;
+        sharedProps.$counterError = true;
+      }
+      console.log(
+        sharedProps,
+        children,
+        typeof onlyChildProps.error !== 'undefined'
+          ? onlyChildProps.error
+          : sharedProps.$error,
+      );
+    }
+
     return (
       <React.Fragment>
         {label && (
-          <Label
-            data-baseweb="form-control-label"
-            htmlFor={htmlFor || onlyChildProps.id}
+          <LabelContainer
             {...sharedProps}
-            {...getOverrideProps(LabelOverride)}
+            {...getOverrideProps(LabelContainerOverride)}
           >
-            {typeof label === 'function' ? label(sharedProps) : label}
-          </Label>
+            <Label
+              data-baseweb="form-control-label"
+              htmlFor={htmlFor || onlyChildProps.id}
+              {...sharedProps}
+              {...getOverrideProps(LabelOverride)}
+            >
+              {typeof label === 'function' ? label(sharedProps) : label}
+            </Label>
+            {labelEndEnhancer && (
+              <LabelEndEnhancer
+                {...sharedProps}
+                {...getOverrideProps(LabelEndEnhancerOverride)}
+              >
+                {typeof labelEndEnhancer === 'function'
+                  ? labelEndEnhancer(sharedProps)
+                  : labelEndEnhancer}
+              </LabelEndEnhancer>
+            )}
+          </LabelContainer>
         )}
         <UIDConsumer>
           {captionId => (
@@ -114,11 +193,11 @@ export default class FormControl extends React.Component<
                   error:
                     typeof onlyChildProps.error !== 'undefined'
                       ? onlyChildProps.error
-                      : error,
+                      : sharedProps.$error,
                   positive:
                     typeof onlyChildProps.positive !== 'undefined'
                       ? onlyChildProps.positive
-                      : positive,
+                      : sharedProps.$positive,
                 });
               })}
               {(caption || error || positive) && (
