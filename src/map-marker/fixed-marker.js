@@ -115,12 +115,23 @@ const FixedMarker = ({
 
   const renderNeedle =
     needle !== NEEDLE_SIZES.none &&
-    size !== PINHEAD_SIZES_SHAPES.xxSmallCircle &&
-    size !== PINHEAD_SIZES_SHAPES.xxSmallSquare;
-  if (!renderNeedle) {
-    console.warn(
-      `Needles cannot be rendered with ${PINHEAD_SIZES_SHAPES.xxSmallCircle} or ${PINHEAD_SIZES_SHAPES.xxSmallSquare} pin heads`,
-    );
+    ![
+      PINHEAD_SIZES_SHAPES.xxSmallCircle,
+      PINHEAD_SIZES_SHAPES.xxSmallSquare,
+    ].includes(size);
+
+  if (__DEV__) {
+    if (
+      needle !== NEEDLE_SIZES.none &&
+      [
+        PINHEAD_SIZES_SHAPES.xxSmallCircle,
+        PINHEAD_SIZES_SHAPES.xxSmallSquare,
+      ].includes(size)
+    ) {
+      console.warn(
+        `Needles cannot be rendered with ${PINHEAD_SIZES_SHAPES.xxSmallCircle} or ${PINHEAD_SIZES_SHAPES.xxSmallSquare} pin heads`,
+      );
+    }
   }
 
   return (
