@@ -496,7 +496,10 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
       content: '""',
       boxSizing: 'border-box',
       display: 'inline-block',
-      boxShadow: $isFocusVisible ? `0 0 0 3px ${colors.accent}` : 'none',
+      boxShadow:
+        $isFocusVisible && (!$outsideMonth || $peekNextMonth)
+          ? `0 0 0 3px ${colors.accent}`
+          : 'none',
       backgroundColor: $selected
         ? colors.calendarDayBackgroundSelectedHighlighted
         : $pseudoSelected && $isHighlighted
