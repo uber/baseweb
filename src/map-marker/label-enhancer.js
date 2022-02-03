@@ -6,13 +6,11 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-
-import {useStyletron} from '../styles/index.js';
 import {getOverrides} from '../helpers/overrides.js';
 import {
   RelativeContainer,
-  StrokedLabel as StyledStrokedLabel,
-  StrokedLabelContainer as StyledStrokedLabelContainer,
+  StyledStrokedLabel,
+  StyledStrokedLabelContainer,
 } from './styled-components.js';
 import {LABEL_ENHANCER_POSITIONS} from './constants.js';
 import type {LabelEhancerComponentT} from './types.js';
@@ -26,11 +24,6 @@ const LabelEnhancer = ({
   size,
   overrides = {},
 }: LabelEhancerComponentT) => {
-  const [, theme] = useStyletron();
-  const {
-    colors: {backgroundPrimary, primaryA},
-  } = theme;
-
   if (
     !labelEnhancerPosition ||
     labelEnhancerPosition === LABEL_ENHANCER_POSITIONS.none
@@ -40,9 +33,6 @@ const LabelEnhancer = ({
   if (!labelEnhancerContent) {
     return null;
   }
-
-  labelEnhancerColor = labelEnhancerColor || primaryA;
-  labelEnhancerStrokeColor = labelEnhancerStrokeColor || backgroundPrimary;
 
   const [StrokedLabelContainer, strokedLabelContainerProps] = getOverrides(
     overrides.LabelEnhancerContainer,

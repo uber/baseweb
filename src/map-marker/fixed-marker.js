@@ -20,11 +20,11 @@ import {
 } from './constants.js';
 import PinHead from './pin-head.js';
 import {
-  FixedMarkerDragContainer as StyledFixedMarkerDragContainer,
-  FixedMarkerRoot as StyledRoot,
-  Needle as StyledNeedle,
-  DragShadow as StyledDragShadow,
-  DragShadowContainer as StyledDragShadowContainer,
+  StyledFixedMarkerDragContainer,
+  StyledFixedMarkerRoot,
+  StyledNeedle,
+  StyledDragShadow,
+  StyledDragShadowContainer,
 } from './styled-components.js';
 import type {
   FixedMarkerPropsT,
@@ -107,7 +107,7 @@ const FixedMarker = ({
     size !== PINHEAD_SIZES_SHAPES.xxSmallCircle &&
     size !== PINHEAD_SIZES_SHAPES.xxSmallSquare;
 
-  const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
+  const [Root, rootProps] = getOverrides(overrides.Root, StyledFixedMarkerRoot);
   const [
     FixedMarkerDragContainer,
     fixedMarkerDragContainerProps,
