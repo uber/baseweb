@@ -16,13 +16,14 @@ import {
   LABEL_ENHANCER_POSITIONS,
 } from '../constants.js';
 import TileGrid from './tile-grid.js';
-
 import {Input} from '../../input/index.js';
 import Upload from '../../icon/upload.js';
 import Search from '../../icon/search.js';
 import {Select} from '../../select/index.js';
-import ReactMapGL, {Marker, Layer, Source} from 'react-map-gl';
+import ReactMapGL, {Marker} from 'react-map-gl';
 import {Button} from '../../button/index.js';
+import {useStyletron} from '../../styles/index.js';
+import {getMapStyle} from './map-style.js';
 
 const uberHq = {
   latitude: 37.768495131168336,
@@ -93,6 +94,12 @@ export function Scenario() {
     PINHEAD_SIZES_SHAPES.xxSmallCircle,
     PINHEAD_SIZES_SHAPES.xxSmallSquare,
   ].includes(pinheadSize[0].id);
+
+  const [css, theme] = useStyletron();
+
+  const mapStyle = getMapStyle(locations.map(loc => loc.position), {
+    showPointDebug,
+  });
 
   return (
     <>
@@ -165,96 +172,76 @@ export function Scenario() {
           </Checkbox>,
         ]}
       ></TileGrid>
-      <ReactMapGL
-        {...viewport}
-        width="100%"
-        height="760px"
-        onViewportChange={viewport => setViewport(viewport)}
-        mapboxApiAccessToken="pk.eyJ1IjoiYmFiYnN1YmVyIiwiYSI6ImNrdThqeGkxZTVwb3kyd3BpZGRlc2NlOXUifQ.qh-EtXm2DJQZVprWUJ-GFQ"
-        onClick={({lngLat}) =>
-          setLocations(existing => [
-            ...existing,
-            {position: lngLat, dragging: false},
-          ])
-        }
+      <div
+        className={css({backgroundColor: theme.colors.backgroundLightAccent})}
       >
-        {locations.map((x, i) => (
-          <Marker
-            latitude={x.position[1]}
-            longitude={x.position[0]}
-            draggable
-            onDragStart={() => onMarkerDragStart(i)}
-            onDragEnd={evt => onMarkerDragEnd(evt, i)}
-            key={i}
-          >
-            <FixedMarker
-              // $FlowFixMe Mismatch between general type and enum
-              size={pinheadSize[0].id}
-              // $FlowFixMe Mismatch between general type and enum
-              needle={needleSize[0].id}
+        <ReactMapGL
+          {...viewport}
+          width="100%"
+          height="760px"
+          onViewportChange={viewport => setViewport(viewport)}
+          mapStyle={mapStyle}
+          onClick={({lngLat}) =>
+            setLocations(existing => [
+              ...existing,
+              {position: lngLat, dragging: false},
+            ])
+          }
+        >
+          {locations.map((x, i) => (
+            <Marker
+              latitude={x.position[1]}
+              longitude={x.position[0]}
+              draggable
+              onDragStart={() => onMarkerDragStart(i)}
+              onDragEnd={evt => onMarkerDragEnd(evt, i)}
               key={i}
-              label={label}
-              dragging={x.dragging}
-              startEnhancer={
-                startEnhancer
-                  ? function renderEnhancer({size}) {
-                      return <Upload size={size} />;
-                    }
-                  : undefined
-              }
-              endEnhancer={
-                endEnhancer
-                  ? function renderEnhancer({size}) {
-                      return <Search size={size} />;
-                    }
-                  : undefined
-              }
-              overrides={{
-                Root: {
-                  style: () => ({
-                    transform: `translate(-50%, ${
-                      isMarkerCentered ? '-50%' : '-100%'
-                    })`,
-                  }),
-                },
-              }}
-              badgeEnhancer={{
-                size: BADGE_ENHANCER_SIZES.xSmall,
-                color: 'white',
-                background: 'green',
-                content: 'hello',
-              }}
-              labelEnhancerContent={labelEnhancerText}
-              // $FlowFixMe Mismatch between general type and enum
-              labelEnhancerPosition={labelEnhancerPosition[0].id}
-            />
-          </Marker>
-        ))}
-        {showPointDebug && (
-          <Source
-            id="my-data"
-            type="geojson"
-            data={{
-              type: 'FeatureCollection',
-              features: locations.map(x => ({
-                type: 'Feature',
-                geometry: {type: 'Point', coordinates: x.position},
-              })),
-            }}
-          >
-            <Layer
-              {...{
-                id: 'point',
-                type: 'circle',
-                paint: {
-                  'circle-radius': 12,
-                  'circle-color': 'red',
-                },
-              }}
-            />
-          </Source>
-        )}
-      </ReactMapGL>
+            >
+              <FixedMarker
+                // $FlowFixMe Mismatch between general type and enum
+                size={pinheadSize[0].id}
+                // $FlowFixMe Mismatch between general type and enum
+                needle={needleSize[0].id}
+                key={i}
+                label={label}
+                dragging={x.dragging}
+                startEnhancer={
+                  startEnhancer
+                    ? function renderEnhancer({size}) {
+                        return <Upload size={size} />;
+                      }
+                    : undefined
+                }
+                endEnhancer={
+                  endEnhancer
+                    ? function renderEnhancer({size}) {
+                        return <Search size={size} />;
+                      }
+                    : undefined
+                }
+                overrides={{
+                  Root: {
+                    style: () => ({
+                      transform: `translate(-50%, ${
+                        isMarkerCentered ? '-50%' : '-100%'
+                      })`,
+                    }),
+                  },
+                }}
+                badgeEnhancer={{
+                  size: BADGE_ENHANCER_SIZES.xSmall,
+                  color: 'white',
+                  background: 'green',
+                  content: 'hello',
+                }}
+                labelEnhancerContent={labelEnhancerText}
+                // $FlowFixMe Mismatch between general type and enum
+                labelEnhancerPosition={labelEnhancerPosition[0].id}
+              />
+            </Marker>
+          ))}
+        </ReactMapGL>
+      </div>
     </>
   );
 }
