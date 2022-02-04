@@ -94,6 +94,46 @@ module.exports = {
 
     return {
       ImportDeclaration(node) {
+        if (!node.source.value.startsWith('baseui/')) {
+          return;
+        }
+
+        function isImporting(node, importName, importPath) {
+          if (
+            node.imported.name === importName &&
+            node.parent.source.value === importPath
+          ) {
+            importState[importName] = node.local.name;
+            return true;
+          } else {
+            return false;
+          }
+        }
+
+        for (let x = 0; x < node.specifiers.length; x++) {
+          const specifier = node.specifiers[x];
+          if (specifier.type !== 'ImportNamespaceSpecifier') {
+            // Spinner
+            // Ex: import {Spinner} from "baseui/spinner";
+            // Note, we are not replacing Spinner because the new API
+            // is not compatible.
+            if (isImporting(specifier, 'Spinner', 'baseui/spinner')) {
+              context.report({
+                node: specifier.imported,
+                messageId: MESSAGES.deprecateSpinner.id,
+              });
+              return;
+            }
+
+            // These can be referenced later on by instances of components.
+            if (isImporting(specifier, 'Accordion', 'baseui/accordion')) return;
+            if (isImporting(specifier, 'Modal', 'baseui/modal')) return;
+            if (isImporting(specifier, 'Block', 'baseui/block')) return;
+            if (isImporting(specifier, 'Checkbox', 'baseui/checkbox')) return;
+            if (isImporting(specifier, 'Button', 'baseui/button')) return;
+          }
+        }
+
         if (node.source.value !== 'baseui/typography') {
           return;
         }
@@ -148,41 +188,6 @@ module.exports = {
             }
           }
         });
-      },
-      ImportSpecifier(node) {
-        function isImporting(importName, importPath) {
-          if (
-            node.imported.name === importName &&
-            node.parent.source.value === importPath
-          ) {
-            importState[importName] = node.local.name;
-            return true;
-          } else {
-            return false;
-          }
-        }
-
-        if (!node.parent.source.value.startsWith('baseui/')) {
-          return;
-        }
-        // Spinner
-        // Ex: import {Spinner} from "baseui/spinner";
-        // Note, we are not replacing Spinner because the new API
-        // is not compatible.
-        if (isImporting('Spinner', 'baseui/spinner')) {
-          context.report({
-            node: node.imported,
-            messageId: MESSAGES.deprecateSpinner.id,
-          });
-          return;
-        }
-
-        // These can be referenced later on by instances of components.
-        if (isImporting('Accordion', 'baseui/accordion')) return;
-        if (isImporting('Modal', 'baseui/modal')) return;
-        if (isImporting('Block', 'baseui/block')) return;
-        if (isImporting('Checkbox', 'baseui/checkbox')) return;
-        if (isImporting('Button', 'baseui/button')) return;
       },
       JSXIdentifier(node) {
         // =======
