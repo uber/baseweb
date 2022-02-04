@@ -112,7 +112,10 @@ module.exports = {
 
         for (let x = 0; x < node.specifiers.length; x++) {
           const specifier = node.specifiers[x];
-          if (specifier.type !== 'ImportNamespaceSpecifier') {
+          if (
+            specifier.type !== 'ImportNamespaceSpecifier' &&
+            specifier.type !== 'ImportDefaultSpecifier'
+          ) {
             // Spinner
             // Ex: import {Spinner} from "baseui/spinner";
             // Note, we are not replacing Spinner because the new API
