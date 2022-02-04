@@ -8,10 +8,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import type {BadgeEnhancerComponentT} from './types.js';
-import {useStyletron} from '../styles/index.js';
 import {getOverrides} from '../helpers/overrides.js';
-
-import {BadgeEnhancer as StyledBadgeEnhancer} from './styled-components.js';
+import {StyledBadgeEnhancerRoot} from './styled-components.js';
 import {
   PINHEAD_TYPES,
   BADGE_ENHANCER_SIZES,
@@ -28,11 +26,6 @@ const BadgeEnhancer = ({
   badgeEnhancerContent: BadgeEnhancerContent,
   overrides = {},
 }: BadgeEnhancerComponentT) => {
-  const [, theme] = useStyletron();
-  const {
-    colors: {backgroundAccent, primaryB},
-  } = theme;
-
   if (
     badgeEnhancerSize === null ||
     badgeEnhancerSize == BADGE_ENHANCER_SIZES.none
@@ -43,39 +36,42 @@ const BadgeEnhancer = ({
     badgeEnhancerSize !== BADGE_ENHANCER_SIZES.xSmall &&
     !BadgeEnhancerContent
   ) {
-    console.warn(
-      `Badges (except for size ${BADGE_ENHANCER_SIZES.xSmall}) must contain content`,
-    );
+    if (__DEV__) {
+      console.warn(
+        `Badges (except for size ${BADGE_ENHANCER_SIZES.xSmall}) must contain content`,
+      );
+    }
     return null;
   }
   if (markerType === PINHEAD_TYPES.floating) {
-    console.warn(`Badges can only be rendered on fixed markers`);
+    if (__DEV__) {
+      console.warn(`Badges can only be rendered on fixed markers`);
+    }
     return null;
   }
   const positions = BADGE_ENHANCER_POSITIONS[pinHeadSize];
   const position = positions ? positions[badgeEnhancerSize] : null;
   if (!position) {
-    console.warn(
-      `Badge size ${badgeEnhancerSize} cannot be rendered with pinhead size ${pinHeadSize}`,
-    );
+    if (__DEV__) {
+      console.warn(
+        `Badge size ${badgeEnhancerSize} cannot be rendered with pinhead size ${pinHeadSize}`,
+      );
+    }
     return null;
   }
 
-  badgeEnhancerBackground = badgeEnhancerBackground || backgroundAccent;
-  badgeEnhancerColor = badgeEnhancerColor || primaryB;
-
-  const [_BadgeEnhancer, badgeEnhancerProps] = getOverrides(
+  const [BadgeEnhancerRoot, badgeEnhancerRootProps] = getOverrides(
     overrides.BadgeEnhancer,
-    StyledBadgeEnhancer,
+    StyledBadgeEnhancerRoot,
   );
 
   return (
-    <_BadgeEnhancer
+    <BadgeEnhancerRoot
       $size={badgeEnhancerSize}
       $position={position}
       $color={badgeEnhancerColor}
       $background={badgeEnhancerBackground}
-      {...badgeEnhancerProps}
+      {...badgeEnhancerRootProps}
     >
       {BadgeEnhancerContent &&
         badgeEnhancerSize !== BADGE_ENHANCER_SIZES.xSmall && (
@@ -83,7 +79,7 @@ const BadgeEnhancer = ({
             size={BADGE_ENHANCER_CONTENT_SIZE[badgeEnhancerSize]}
           />
         )}
-    </_BadgeEnhancer>
+    </BadgeEnhancerRoot>
   );
 };
 

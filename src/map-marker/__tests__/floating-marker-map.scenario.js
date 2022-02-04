@@ -18,8 +18,10 @@ import {Input} from '../../input/index.js';
 import Upload from '../../icon/upload.js';
 import Search from '../../icon/search.js';
 import {Select} from '../../select/index.js';
-import ReactMapGL, {Marker, Layer, Source} from 'react-map-gl';
+import ReactMapGL, {Marker} from 'react-map-gl';
 import {Button} from '../../button/index.js';
+import {useStyletron} from '../../styles/index.js';
+import {getMapStyle} from './map-style.js';
 
 const floatingMarkerAnchorTypes = Object.keys(FLOATING_MARKER_ANCHOR_TYPES)
   .map(key => FLOATING_MARKER_ANCHOR_TYPES[key])
@@ -42,6 +44,8 @@ const uberHq = {
   longitude: -122.38856031220648,
 };
 
+const defaultLocation = [uberHq.longitude, uberHq.latitude];
+
 export function Scenario() {
   const [label, setLabel] = React.useState('Uber HQ');
   const [startEnhancer, setStartEnhancer] = React.useState(true);
@@ -56,9 +60,7 @@ export function Scenario() {
     setFloatingMarkerAnchorPosition,
   ] = React.useState([floatingMarkerAnchorPositions[0]]);
 
-  const [locations, setLocations] = React.useState([
-    [uberHq.longitude, uberHq.latitude],
-  ]);
+  const [locations, setLocations] = React.useState([defaultLocation]);
 
   const [showPointDebug, setShowPointDebug] = React.useState(true);
 
@@ -70,6 +72,10 @@ export function Scenario() {
   const requiresAlignment =
     floatingMarkerAnchorPosition[0].id !==
     FLOATING_MARKER_ANCHOR_POSITIONS.none;
+
+  const [css, theme] = useStyletron();
+
+  const mapStyle = getMapStyle(locations, {showPointDebug});
 
   return (
     <>
@@ -127,74 +133,56 @@ export function Scenario() {
           </Checkbox>,
         ]}
       />
-      <ReactMapGL
-        {...viewport}
-        width="100%"
-        height="760px"
-        onViewportChange={viewport => setViewport(viewport)}
-        mapboxApiAccessToken="pk.eyJ1IjoiYmFiYnN1YmVyIiwiYSI6ImNrdThqeGkxZTVwb3kyd3BpZGRlc2NlOXUifQ.qh-EtXm2DJQZVprWUJ-GFQ"
-        onClick={({lngLat}) => setLocations(existing => [...existing, lngLat])}
+      <div
+        className={css({backgroundColor: theme.colors.backgroundLightAccent})}
       >
-        {locations.map((x, i) => (
-          <Marker latitude={x[1]} longitude={x[0]} key={i}>
-            <FloatingMarker
-              overrides={{
-                Root: {
-                  style: () =>
-                    requiresAlignment
-                      ? {
-                          transform: `translate(-50%, -50%)`,
-                        }
-                      : {},
-                },
-              }}
-              // $FlowFixMe Mismatch between general type and enum
-              anchorType={floatingMarkerAnchorType[0].id}
-              label={label}
-              startEnhancer={
-                startEnhancer
-                  ? function renderEnhancer({size}) {
-                      return <Upload size={size} />;
-                    }
-                  : undefined
-              }
-              endEnhancer={
-                endEnhancer
-                  ? function renderEnhancer({size}) {
-                      return <Search size={size} />;
-                    }
-                  : undefined
-              }
-              // $FlowFixMe Mismatch between general type and enum
-              anchor={floatingMarkerAnchorPosition[0].id}
-            />
-          </Marker>
-        ))}
-        {showPointDebug && (
-          <Source
-            id="my-data"
-            type="geojson"
-            data={{
-              type: 'FeatureCollection',
-              features: locations.map(x => ({
-                type: 'Feature',
-                geometry: {type: 'Point', coordinates: x},
-              })),
-            }}
-          >
-            <Layer
-              {...{
-                id: 'point',
-                type: 'circle',
-                paint: {
-                  'circle-radius': 12,
-                  'circle-color': 'red',
-                },
-              }}
-            />
-          </Source>
-        )}
-      </ReactMapGL>
+        <ReactMapGL
+          {...viewport}
+          width="100%"
+          height="760px"
+          onViewportChange={viewport => setViewport(viewport)}
+          mapStyle={mapStyle}
+          onClick={({lngLat}) =>
+            setLocations(existing => [...existing, lngLat])
+          }
+        >
+          {locations.map((x, i) => (
+            <Marker latitude={x[1]} longitude={x[0]} key={i}>
+              <FloatingMarker
+                overrides={{
+                  Root: {
+                    style: () =>
+                      requiresAlignment
+                        ? {
+                            transform: `translate(-50%, -50%)`,
+                          }
+                        : {},
+                  },
+                }}
+                // $FlowFixMe Mismatch between general type and enum
+                anchorType={floatingMarkerAnchorType[0].id}
+                label={label}
+                startEnhancer={
+                  startEnhancer
+                    ? function renderEnhancer({size}) {
+                        return <Upload size={size} />;
+                      }
+                    : undefined
+                }
+                endEnhancer={
+                  endEnhancer
+                    ? function renderEnhancer({size}) {
+                        return <Search size={size} />;
+                      }
+                    : undefined
+                }
+                // $FlowFixMe Mismatch between general type and enum
+                anchor={floatingMarkerAnchorPosition[0].id}
+              />
+            </Marker>
+          ))}
+        </ReactMapGL>
+      </div>
     </>
   );
 }

@@ -10,9 +10,9 @@ import {useStyletron} from '../styles/index.js';
 import PinHead from './pin-head.js';
 import {getOverrides} from '../helpers/overrides.js';
 import {
-  FloatingMarkerRoot as StyledRoot,
-  FloatingMarkerAnchorContainer as StyledFloatingMarkerAnchorContainer,
-  FloatingMarkerPinHeadContainer as StyledFloatingMarkerPinHeadContainer,
+  StyledFloatingMarkerRoot,
+  StyledFloatingMarkerAnchorContainer,
+  StyledFloatingMarkerPinHeadContainer,
 } from './styled-components.js';
 import type {FloatingMarkerPropsT} from './types.js';
 import {
@@ -55,7 +55,10 @@ const FloatingMarker = ({
 
   const anchorPinHeadSize = getAnchorPinHeadSize(anchorType);
 
-  const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
+  const [Root, rootProps] = getOverrides(
+    overrides.Root,
+    StyledFloatingMarkerRoot,
+  );
   const [
     FloatingMarkerPinHeadContainer,
     floatingMarkerPinHeadContainerProps,

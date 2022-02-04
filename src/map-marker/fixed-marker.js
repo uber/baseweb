@@ -20,11 +20,11 @@ import {
 } from './constants.js';
 import PinHead from './pin-head.js';
 import {
-  FixedMarkerDragContainer as StyledFixedMarkerDragContainer,
-  FixedMarkerRoot as StyledRoot,
-  Needle as StyledNeedle,
-  DragShadow as StyledDragShadow,
-  DragShadowContainer as StyledDragShadowContainer,
+  StyledFixedMarkerDragContainer,
+  StyledFixedMarkerRoot,
+  StyledNeedle,
+  StyledDragShadow,
+  StyledDragShadowContainer,
 } from './styled-components.js';
 import type {
   FixedMarkerPropsT,
@@ -107,7 +107,7 @@ const FixedMarker = ({
     size !== PINHEAD_SIZES_SHAPES.xxSmallCircle &&
     size !== PINHEAD_SIZES_SHAPES.xxSmallSquare;
 
-  const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
+  const [Root, rootProps] = getOverrides(overrides.Root, StyledFixedMarkerRoot);
   const [
     FixedMarkerDragContainer,
     fixedMarkerDragContainerProps,
@@ -115,16 +115,27 @@ const FixedMarker = ({
 
   const renderNeedle =
     needle !== NEEDLE_SIZES.none &&
-    size !== PINHEAD_SIZES_SHAPES.xxSmallCircle &&
-    size !== PINHEAD_SIZES_SHAPES.xxSmallSquare;
-  if (!renderNeedle) {
-    console.warn(
-      `Needles cannot be rendered with ${PINHEAD_SIZES_SHAPES.xxSmallCircle} or ${PINHEAD_SIZES_SHAPES.xxSmallSquare} pin heads`,
-    );
+    ![
+      PINHEAD_SIZES_SHAPES.xxSmallCircle,
+      PINHEAD_SIZES_SHAPES.xxSmallSquare,
+    ].includes(size);
+
+  if (__DEV__) {
+    if (
+      needle !== NEEDLE_SIZES.none &&
+      [
+        PINHEAD_SIZES_SHAPES.xxSmallCircle,
+        PINHEAD_SIZES_SHAPES.xxSmallSquare,
+      ].includes(size)
+    ) {
+      console.warn(
+        `Needles cannot be rendered with ${PINHEAD_SIZES_SHAPES.xxSmallCircle} or ${PINHEAD_SIZES_SHAPES.xxSmallSquare} pin heads`,
+      );
+    }
   }
 
   return (
-    <Root data-baseweb="fixed-map-marker" {...restProps} {...rootProps}>
+    <Root data-baseweb="fixed-map-marker" {...rootProps}>
       <FixedMarkerDragContainer
         $translateAmount={dragShadowMarginTop + dragShadowHeight}
         $performTranslate={doesPinHeadTransformOnDrag && !dragging}

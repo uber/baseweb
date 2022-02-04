@@ -6,15 +6,15 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {useStyletron, styled} from '../styles/index.js';
 import {getOverrides} from '../helpers/overrides.js';
 import {
-  InnerXXSmallAnchor as StyledInnerXXSmallAnchor,
-  OuterXXSmallAnchor as StyledOuterXXSmallAnchor,
-  InnerXSmallAnchor as StyledInnerXSmallAnchor,
-  OuterXSmallAnchor as StyledOuterXSmallAnchor,
-  PinHead as StyledPinHead,
+  StyledInnerXXSmallAnchor,
+  StyledOuterXXSmallAnchor,
+  StyledInnerXSmallAnchor,
+  StyledOuterXSmallAnchor,
+  StyledPinHead,
   RelativeContainer,
+  StyledContentItem,
 } from './styled-components.js';
 import {
   PINHEAD_DIMENSIONS,
@@ -22,27 +22,10 @@ import {
   PINHEAD_SIZES_SHAPES,
   NEEDLE_HEIGHTS,
   NEEDLE_SIZES,
-  LABEL_SIZES,
 } from './constants.js';
 import BadgeEnhancer from './badge-enhancer.js';
 import LabelEnhancer from './label-enhancer.js';
-import type {PinHeadPropsT, PinHeadSizeT} from './types.js';
-
-export const _ContentItem = styled<{
-  $color: string,
-  $height: number,
-  $size: PinHeadSizeT,
-}>('div', ({$theme, $color, $height, $size}) => {
-  return {
-    ...$theme.typography[LABEL_SIZES[$size]],
-    display: 'flex',
-    alignItems: 'center',
-    textAlign: 'center',
-    lineHeight: `${$height}px`,
-    height: `${$height}px`,
-    color: $color,
-  };
-});
+import type {PinHeadPropsT} from './types.js';
 
 const PinHead = ({
   size = PINHEAD_SIZES_SHAPES.medium,
@@ -65,14 +48,6 @@ const PinHead = ({
 
   overrides = {},
 }: PinHeadPropsT) => {
-  const [, theme] = useStyletron();
-  const {
-    colors: {backgroundPrimary, primaryA},
-  } = theme;
-
-  color = color || backgroundPrimary;
-  background = background || primaryA;
-
   const activeElements = [label, StartEnhancer, EndEnhancer].filter(x => x);
   const gridTemplateColumns = activeElements.map(() => 'auto').join(' ');
   const forceCircle = activeElements.length === 1 && !label;
@@ -84,7 +59,7 @@ const PinHead = ({
   );
   const [ContentItem, contentItemProps] = getOverrides(
     overrides.PinHeadContent,
-    _ContentItem,
+    StyledContentItem,
   );
 
   const [InnerXXSmallAnchor, innerXXSmallAnchorProps] = getOverrides(
