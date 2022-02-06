@@ -43,11 +43,11 @@ type StyleFn<DefaultTheme> = {
             $theme: Theme;
           }
         ) => StyleObject)
-  ): StyletronComponent<Omit<React.ComponentProps<C>, 'className'> & P>;
+  ): StyletronComponent<React.ComponentProps<C> & P>;
   <C extends keyof JSX.IntrinsicElements | React.ComponentType<any>>(
     component: C,
     style: StyleObject
-  ): StyletronComponent<Omit<React.ComponentProps<C>, 'className'>>;
+  ): StyletronComponent<React.ComponentProps<C>>;
 };
 
 type WithStyleFn<DefaultTheme> = {
