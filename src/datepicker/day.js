@@ -89,11 +89,19 @@ export default class Day<T = Date> extends React.Component<
     if (Array.isArray(value) && range) {
       const [start, end] = value;
 
+      // Starting a new range
       if ((!start && !end) || (start && end)) {
         date = [selectedDate, null];
+
+        // EndDate needs a StartDate, SelectedDate comes before EndDate
       } else if (!start && end && this.dateHelpers.isAfter(end, selectedDate)) {
-        // if startDate === null && endDate is populated, the next selected day should become the startDate
         date = [selectedDate, end];
+
+        // EndDate needs a StartDate, but SelectedDate comes after EndDate
+      } else if (!start && end && this.dateHelpers.isAfter(selectedDate, end)) {
+        date = [end, selectedDate];
+
+        // StartDate needs an EndDate, SelectedDate comes after StartDate
       } else if (
         start &&
         !end &&
@@ -285,6 +293,22 @@ export default class Day<T = Date> extends React.Component<
           );
         }
       }
+
+      if (highlightedDate && !start && end) {
+        if (this.dateHelpers.isAfter(highlightedDate, end)) {
+          return this.dateHelpers.isDayInRange(
+            this.clampToDayStart(date),
+            this.clampToDayStart(end),
+            this.clampToDayStart(highlightedDate),
+          );
+        } else {
+          return this.dateHelpers.isDayInRange(
+            this.clampToDayStart(date),
+            this.clampToDayStart(highlightedDate),
+            this.clampToDayStart(end),
+          );
+        }
+      }
     }
   }
 
@@ -302,10 +326,13 @@ export default class Day<T = Date> extends React.Component<
     const $hasRangeHighlighted = !!(
       Array.isArray(value) &&
       range &&
-      value[0] &&
-      !value[1] &&
       highlightedDate &&
-      !this.dateHelpers.isSameDay(value[0], highlightedDate)
+      ((value[0] &&
+        !value[1] &&
+        !this.dateHelpers.isSameDay(value[0], highlightedDate)) ||
+        (!value[0] &&
+          value[1] &&
+          !this.dateHelpers.isSameDay(value[1], highlightedDate)))
     );
     const $outsideMonth = !peekNextMonth && this.isOutsideMonth();
     const $outsideMonthWithinRange = !!(
@@ -321,6 +348,7 @@ export default class Day<T = Date> extends React.Component<
       $disabled: this.props.disabled,
       $endDate:
         (Array.isArray(value) &&
+          !!(value[0] && value[1]) &&
           range &&
           $selected &&
           this.dateHelpers.isSameDay(date, value[1])) ||
@@ -331,8 +359,8 @@ export default class Day<T = Date> extends React.Component<
         Array.isArray(value) &&
         $hasRangeHighlighted &&
         highlightedDate &&
-        value[0] &&
-        this.dateHelpers.isAfter(highlightedDate, value[0]),
+        ((value[0] && this.dateHelpers.isAfter(highlightedDate, value[0])) ||
+          (value[1] && this.dateHelpers.isAfter(highlightedDate, value[1]))),
       $hasRangeSelected: Array.isArray(value)
         ? !!(value[0] && value[1])
         : false,
