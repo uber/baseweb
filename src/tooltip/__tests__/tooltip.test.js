@@ -54,7 +54,7 @@ describe('Tooltip', () => {
 
     const {container} = render(<TestCase />);
     const anchorElement = getByText(container, anchor);
-    fireEvent.mouseEnter(anchorElement);
+    fireEvent.pointerEnter(anchorElement);
     await findByText(container, content);
   });
 });
