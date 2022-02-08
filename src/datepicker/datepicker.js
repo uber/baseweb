@@ -38,6 +38,7 @@ const combineSeparatedInputs = (
     INPUT_DELIMITER,
   );
   if (separatedInput === 'startDate' && prevEndDate) {
+    // TODO(LUKE): use INPUT_DELIMITER below
     inputValue = `${inputValue} – ${prevEndDate}`;
   }
   if (separatedInput === 'endDate') {
@@ -143,6 +144,12 @@ export default class Datepicker<T = Date> extends React.Component<
     this.props.onChange && this.props.onChange({date: nextDate});
   };
 
+  getNullDatePlaceholder(formatString: string) {
+    return (this.getMask() || formatString)
+      .split('–')[0]
+      .replace(/[0-9]|[a-z]/g, ' ');
+  }
+
   formatDate(date: DateValueT<T>, formatString: string) {
     const format = (date: T) => {
       if (formatString === DEFAULT_DATE_FORMAT) {
@@ -150,10 +157,15 @@ export default class Datepicker<T = Date> extends React.Component<
       }
       return this.dateHelpers.formatDate(date, formatString, this.props.locale);
     };
+
     if (!date) {
       return '';
     } else if (Array.isArray(date) && !date[0] && !date[1]) {
       return '';
+    } else if (Array.isArray(date) && !date[0] && date[1]) {
+      const endDate = format(date[1]);
+      const startDate = this.getNullDatePlaceholder(formatString);
+      return [startDate, endDate].join(INPUT_DELIMITER);
     } else if (Array.isArray(date)) {
       return date.map(day => (day ? format(day) : '')).join(INPUT_DELIMITER);
     } else {
@@ -241,6 +253,7 @@ export default class Datepicker<T = Date> extends React.Component<
     }
 
     if (range && !separateRangeInputs) {
+      // TODO(LUKE): use INPUT_DELIMITER below
       return '9999/99/99 – 9999/99/99';
     }
 
