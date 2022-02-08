@@ -112,6 +112,26 @@ const tests = {
         }
       `,
     },
+    // Should not error on ImportNamespaceSpecifiers
+    {
+      code: `
+        import * as Typography from "baseui/typography";
+        
+        const Example = () => {
+          return <div></div>
+        }
+      `,
+    },
+    // Should not error
+    {
+      code: `
+        import * as Typography from "baseui/typography";
+
+        const Example = () => {
+          const hello = {}.toString();
+          return <div></div>
+        }`,
+    },
   ],
   invalid: [
     // Accordion - renderPanelContent
@@ -180,18 +200,18 @@ const tests = {
     // Modal - autofocus
     {
       code: `
-        import { Modal } from "baseui/modal"
+        import {Modal} from 'baseui/modal';
+        import Overflow from 'baseui/icon/overflow';
         export default function() {
-          return <Modal autofocus />
-        }
-      `,
+          return <Modal autofocus>Hello</Modal>;
+        }`,
       errors: [{messageId: MESSAGES.replace.id}],
       output: `
-        import { Modal } from "baseui/modal"
+        import {Modal} from 'baseui/modal';
+        import Overflow from 'baseui/icon/overflow';
         export default function() {
-          return <Modal autoFocus />
-        }
-      `,
+          return <Modal autoFocus>Hello</Modal>;
+        }`,
     },
 
     // Modal - Backdrop
@@ -298,6 +318,7 @@ const tests = {
       errors: [
         {messageId: MESSAGES.replace.id},
         {messageId: MESSAGES.replace.id},
+        {messageId: MESSAGES.replace.id},
       ],
       output: `
         import { ParagraphXSmall } from "baseui/typography"
@@ -353,6 +374,7 @@ const tests = {
         }
       `,
       errors: [
+        {messageId: MESSAGES.replace.id},
         {messageId: MESSAGES.replace.id},
         {messageId: MESSAGES.replace.id},
       ],
@@ -442,6 +464,129 @@ const tests = {
         }));
       `,
     },
+    // H1, renamed with a different component using same name
+    {
+      code: `
+        import { H1 as StyledH1 } from "baseui/typography"
+        import ReactMarkdown from 'react-markdown';
+        import { getOverrides } from 'baseui/helpers/overrides';
+
+        const MarkdownRender = ({ overrides = {}, text }: Props) => {
+           const [H1, h1Props] = getOverrides(overrides.H1, StyledH1);
+        
+          return <ReactMarkdown
+            components={{
+              h1: ({ node, ...rest }) => <H1 {...h1Props} {...rest} />
+            }}/>;
+          }
+      `,
+      errors: [{messageId: MESSAGES.replace.id}],
+      output: `
+        import { HeadingXXLarge as StyledH1 } from "baseui/typography"
+        import ReactMarkdown from 'react-markdown';
+        import { getOverrides } from 'baseui/helpers/overrides';
+
+        const MarkdownRender = ({ overrides = {}, text }: Props) => {
+           const [H1, h1Props] = getOverrides(overrides.H1, StyledH1);
+        
+          return <ReactMarkdown
+            components={{
+              h1: ({ node, ...rest }) => <H1 {...h1Props} {...rest} />
+            }}/>;
+          }
+      `,
+    },
+
+    // oldName and newName imported and used
+    {
+      code: `
+        import { HeadingXXLarge, H1 } from "baseui/typography"
+
+        const MarkdownRender = () => {
+          return <div><H1>Large</H1><HeadingXXLarge>Large</HeadingXXLarge></div>
+          }
+      `,
+      errors: [
+        {messageId: MESSAGES.replace.id},
+        {messageId: MESSAGES.replace.id},
+        {messageId: MESSAGES.replace.id},
+      ],
+      output: `
+        import { HeadingXXLarge } from "baseui/typography"
+
+        const MarkdownRender = () => {
+          return <div><HeadingXXLarge>Large</HeadingXXLarge><HeadingXXLarge>Large</HeadingXXLarge></div>
+          }
+      `,
+    },
+    // oldName imported and renamed, and newName imported and used
+    {
+      code: `
+        import { HeadingXXLarge as Hello, H1 } from "baseui/typography"
+
+        const MarkdownRender = () => {
+          return <div><H1>Large</H1><Hello>Large</Hello></div>
+          }
+      `,
+      errors: [
+        {messageId: MESSAGES.replace.id},
+        {messageId: MESSAGES.replace.id},
+        {messageId: MESSAGES.replace.id},
+      ],
+      output: `
+        import { HeadingXXLarge as Hello } from "baseui/typography"
+
+        const MarkdownRender = () => {
+          return <div><Hello>Large</Hello><Hello>Large</Hello></div>
+          }
+      `,
+    },
+    // Multiple imports removed
+    {
+      code: `
+        import { HeadingXXLarge as Hello, H1, HeadingXLarge, H2 } from "baseui/typography"
+
+        const MarkdownRender = () => {
+          return <div><H1>Large</H1><H2>H2</H2><HeadingXLarge>HeadingXLarge</HeadingXLarge><Hello>Large</Hello></div>
+          }
+      `,
+      errors: [
+        {messageId: MESSAGES.replace.id},
+        {messageId: MESSAGES.replace.id},
+        {messageId: MESSAGES.replace.id},
+        {messageId: MESSAGES.replace.id},
+        {messageId: MESSAGES.replace.id},
+        {messageId: MESSAGES.replace.id},
+      ],
+      output: `
+        import { HeadingXXLarge as Hello, HeadingXLarge } from "baseui/typography"
+
+        const MarkdownRender = () => {
+          return <div><Hello>Large</Hello><HeadingXLarge>H2</HeadingXLarge><HeadingXLarge>HeadingXLarge</HeadingXLarge><Hello>Large</Hello></div>
+          }
+      `,
+    },
+    {
+      code: `
+        import { H1, HeadingXXLarge as Hello, HeadingXLarge } from "baseui/typography"
+
+        const MarkdownRender = () => {
+          return <div><H1>Large</H1><HeadingXXLarge>H2</HeadingXXLarge><HeadingXLarge>HeadingXLarge</HeadingXLarge><Hello>Large</Hello></div>
+          }
+      `,
+      errors: [
+        {messageId: MESSAGES.replace.id},
+        {messageId: MESSAGES.replace.id},
+        {messageId: MESSAGES.replace.id},
+      ],
+      output: `
+        import { HeadingXXLarge as Hello, HeadingXLarge } from "baseui/typography"
+
+        const MarkdownRender = () => {
+          return <div><Hello>Large</Hello><HeadingXXLarge>H2</HeadingXXLarge><HeadingXLarge>HeadingXLarge</HeadingXLarge><Hello>Large</Hello></div>
+          }
+      `,
+    },
 
     // Block - $style
     {
@@ -463,6 +608,27 @@ const tests = {
         }
       `,
       errors: [{messageId: MESSAGES.styleOnBlock.id}],
+    },
+    {
+      code: `
+        import { Paragraph3 } from "baseui/typography"
+        export default () => {
+          return <Paragraph3><Paragraph3>Hello</Paragraph3>World</Paragraph3>
+        }
+      `,
+      errors: [
+        {messageId: MESSAGES.replace.id},
+        {messageId: MESSAGES.replace.id},
+        {messageId: MESSAGES.replace.id},
+        {messageId: MESSAGES.replace.id},
+        {messageId: MESSAGES.replace.id},
+      ],
+      output: `
+        import { ParagraphSmall } from "baseui/typography"
+        export default () => {
+          return <ParagraphSmall><ParagraphSmall>Hello</ParagraphSmall>World</ParagraphSmall>
+        }
+      `,
     },
   ],
 };

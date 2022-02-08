@@ -37,6 +37,8 @@ const DEFAULT_PROPS = {
   removeMenuFromNesting: () => {},
   getParentMenu: () => {},
   getChildMenu: () => {},
+  nestedMenuHoverIndex: -1,
+  isNestedMenuVisible: () => false,
   forceHighlight: false,
 };
 
@@ -99,11 +101,16 @@ class MenuStatefulContainerInner extends React.Component<
       if (this.keyboardControlNode)
         this.keyboardControlNode.removeEventListener('keydown', this.onKeyDown);
     }
-    this.props.removeMenuFromNesting &&
+
+    if (this.props.removeMenuFromNesting) {
       this.props.removeMenuFromNesting(rootRef);
+    }
   }
 
-  componentDidUpdate(_: mixed, prevState: StatefulContainerStateT) {
+  componentDidUpdate(
+    prevProps: StatefulContainerPropsT,
+    prevState: StatefulContainerStateT,
+  ) {
     if (__BROWSER__) {
       if (!prevState.isFocused && this.state.isFocused) {
         if (this.keyboardControlNode)
@@ -134,6 +141,15 @@ class MenuStatefulContainerInner extends React.Component<
       this.internalSetState(STATE_CHANGE_TYPES.enter, {
         highlightedIndex: 0,
       });
+    }
+
+    if (
+      this.props.isNestedMenuVisible &&
+      this.props.nestedMenuHoverIndex !== prevProps.nestedMenuHoverIndex &&
+      !this.props.isNestedMenuVisible(this.rootRef) &&
+      !this.props.forceHighlight
+    ) {
+      this.setState({highlightedIndex: -1});
     }
   }
 
@@ -342,17 +358,7 @@ class MenuStatefulContainerInner extends React.Component<
     });
   };
 
-  handleMouseLeave = () => {
-    const rootRef = this.props.rootRef ? this.props.rootRef : this.rootRef;
-    const childMenu =
-      this.props.getChildMenu && this.props.getChildMenu(rootRef);
-
-    if (!this.props.forceHighlight && !childMenu) {
-      this.internalSetState(STATE_CHANGE_TYPES.mouseLeave, {
-        highlightedIndex: -1,
-      });
-    }
-  };
+  handleMouseLeave = (event: SyntheticMouseEvent<HTMLElement>) => {};
 
   getRequiredItemProps: GetRequiredItemPropsFnT = (item, index) => {
     let itemRef = this.refList[index];
