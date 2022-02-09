@@ -169,7 +169,7 @@ describe('Datepicker, Range', () => {
 });
 
 describe('Datepicker, Range, null StartDate with valid EndDate', () => {
-  it('displays the null date placeholder in the input field', async () => {
+  it('displays NullDatePlaceholder in the input field', async () => {
     await mount(page, 'datepicker--range-null-start-date');
     const selectedValue1 = await page.$eval(
       selectors.input,
