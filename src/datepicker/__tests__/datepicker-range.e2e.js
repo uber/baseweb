@@ -17,6 +17,8 @@ const selectors = {
   day2: '[aria-label="Choose Thursday, March 28th 2019. It\'s available."]',
   day4: '[aria-label="Choose Monday, April 1st 2019. It\'s available."]',
   day5: '[aria-label="Choose Wednesday, May 1st 2019. It\'s available."]',
+  day6: '[aria-label="Choose Sunday, June 6th 2021. It\'s available."]',
+  day7: '[aria-label="Choose Monday, June 14th 2021. It\'s available."]',
   rightArrow: '[aria-label="Next month."]',
   timeSelect: '[data-id="time-select"]',
   timeSelectDropdown: '[role="listbox"]',
@@ -163,5 +165,40 @@ describe('Datepicker, Range', () => {
       selects => selects[1].textContent,
     );
     expect(timeSelectValue2).toBe('4:30 AM');
+  });
+});
+
+describe('Datepicker, Range, null StartDate with valid EndDate', () => {
+  it('displays the null date placeholder in the input field', async () => {
+    await mount(page, 'datepicker--range-null-start-date');
+    const selectedValue1 = await page.$eval(
+      selectors.input,
+      input => input.value,
+    );
+    expect(selectedValue1).toBe('    /  /   – 2021/06/10');
+  });
+  it('selects range when selected date is before EndDate', async () => {
+    await mount(page, 'datepicker--range-null-start-date');
+    await page.waitForSelector(selectors.input);
+    await page.click(selectors.input);
+    await page.waitForSelector(selectors.calendar);
+    await page.click(selectors.day6);
+    const selectedValue1 = await page.$eval(
+      selectors.input,
+      input => input.value,
+    );
+    expect(selectedValue1).toBe('2021/06/06 – 2021/06/10');
+  });
+  it('selects range when selected date is after EndDate', async () => {
+    await mount(page, 'datepicker--range-null-start-date');
+    await page.waitForSelector(selectors.input);
+    await page.click(selectors.input);
+    await page.waitForSelector(selectors.calendar);
+    await page.click(selectors.day7);
+    const selectedValue1 = await page.$eval(
+      selectors.input,
+      input => input.value,
+    );
+    expect(selectedValue1).toBe('2021/06/10 – 2021/06/14');
   });
 });
