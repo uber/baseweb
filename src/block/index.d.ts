@@ -242,6 +242,16 @@ export interface BlockProps {
   display?: Responsive<Display>;
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/flex */
   flex?: Responsive<Flex>;
+  /** Number of equal-width columns to allow for */
+  flexGridColumnCount?: ResponsiveT<number>;
+  /** Grid gap between columns */
+  flexGridColumnGap?: ResponsiveT<ScaleT>;
+  /** Grid gap between rows */
+  flexGridRowGap?: ResponsiveT<ScaleT>;
+  /** Index of item in FlexGrid, used to determine gaps **/
+  flexGridItemIndex?: number;
+  /** Total count of items in FlexGrid, used to determine gaps **/
+  flexGridItemCount?: number;
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid */
   grid?: Responsive<string>;
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-area */
