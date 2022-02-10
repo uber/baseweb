@@ -268,6 +268,16 @@ export type BlockPropsT = {
   display?: ResponsiveT<DisplayT>,
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/flex */
   flex?: ResponsiveT<FlexT>,
+  /** Number of equal-width columns to allow for */
+  flexGridColumnCount?: ResponsiveT<number>,
+  /** Grid gap between columns */
+  flexGridColumnGap?: ResponsiveT<ScaleT>,
+  /** Grid gap between rows */
+  flexGridRowGap?: ResponsiveT<ScaleT>,
+  /** Index of item in FlexGrid, used to determine gaps **/
+  flexGridItemIndex?: number,
+  /** Total count of items in FlexGrid, used to determine gaps **/
+  flexGridItemCount?: number,
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid */
   grid?: ResponsiveT<string>,
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-area */
