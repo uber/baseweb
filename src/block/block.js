@@ -31,6 +31,11 @@ function Block({
   alignItems,
   alignSelf,
   flexDirection,
+  flexGridColumnCount,
+  flexGridColumnGap,
+  flexGridItemCount,
+  flexGridItemIndex,
+  flexGridRowGap,
   display,
   flex,
   grid,
@@ -112,6 +117,11 @@ function Block({
       $flexDirection={flexDirection}
       $display={display}
       $flex={flex}
+      $flexGridColumnCount={flexGridColumnCount}
+      $flexGridColumnGap={flexGridColumnGap}
+      $flexGridRowGap={flexGridRowGap}
+      $flexGridItemIndex={flexGridItemIndex}
+      $flexGridItemCount={$flexGridItemCount}
       $grid={grid}
       $gridArea={gridArea}
       $gridAutoColumns={gridAutoColumns}
