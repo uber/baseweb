@@ -29,6 +29,7 @@ export function Scenario() {
     <div className={css({width: '375px', padding: '12px 48px'})}>
       <FormControl label="label" caption="caption">
         <Combobox
+          id="combobox"
           autocomplete={false}
           value={value}
           onChange={nextValue => setValue(nextValue)}

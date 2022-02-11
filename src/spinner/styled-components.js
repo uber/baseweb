@@ -7,8 +7,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import {styled} from '../styles/index.js';
 import {getSvgStyles} from '../icon/styled-components.js';
-import type {SizeT} from './types.js';
 import {SIZE} from './constants.js';
+import type {StyledSpinnerNextPropsT} from './types.js';
 
 type StylePropsT = {
   $size?: number | string,
@@ -50,14 +50,40 @@ export const StyledActivePath = styled<StylePropsT>('path', props => ({
 }));
 
 // TODO(v11): Replace Spinner with SpinnerNext
-export const StyledSpinnerNext = styled<{$size?: SizeT}>(
+export const StyledSpinnerNext = styled<StyledSpinnerNextPropsT>(
   'i',
-  ({$theme, $size = SIZE.medium}) => {
-    const borderWidth = {
+  ({
+    $theme,
+    $color = $theme.colors.contentAccent,
+    $borderWidth,
+    $size = SIZE.medium,
+  }) => {
+    //$FlowFixMe
+    let borderSize = {
       large: $theme.sizing.scale300,
       medium: $theme.sizing.scale100,
       small: $theme.sizing.scale0,
+    }[$borderWidth || $size];
+    let boxSize = {
+      large: $theme.sizing.scale1000,
+      medium: $theme.sizing.scale900,
+      small: $theme.sizing.scale800,
     }[$size];
+
+    if (!borderSize) {
+      borderSize = $theme.sizing[$borderWidth];
+      if (!borderSize) {
+        borderSize = `${parseInt($borderWidth)}px`;
+      }
+    }
+    if (!boxSize) {
+      //$FlowFixMe
+      boxSize = $theme.sizing[$size];
+      if (!boxSize) {
+        boxSize = `${parseInt($size)}px`;
+      }
+    }
+
     return {
       display: 'block',
       animationName: spin,
@@ -69,24 +95,16 @@ export const StyledSpinnerNext = styled<{$size?: SizeT}>(
       borderTopStyle: 'solid',
       borderBottomStyle: 'solid',
       borderRadius: '50%',
-      borderTopColor: $theme.colors.contentAccent,
+      borderTopColor: $color,
       borderRightColor: $theme.colors.backgroundTertiary,
       borderBottomColor: $theme.colors.backgroundTertiary,
       borderLeftColor: $theme.colors.backgroundTertiary,
-      borderLeftWidth: borderWidth,
-      borderRightWidth: borderWidth,
-      borderTopWidth: borderWidth,
-      borderBottomWidth: borderWidth,
-      width: {
-        large: $theme.sizing.scale1000,
-        medium: $theme.sizing.scale900,
-        small: $theme.sizing.scale800,
-      }[$size],
-      height: {
-        large: $theme.sizing.scale1000,
-        medium: $theme.sizing.scale900,
-        small: $theme.sizing.scale800,
-      }[$size],
+      borderLeftWidth: borderSize,
+      borderRightWidth: borderSize,
+      borderTopWidth: borderSize,
+      borderBottomWidth: borderSize,
+      width: boxSize,
+      height: boxSize,
       cursor: 'wait',
     };
   },

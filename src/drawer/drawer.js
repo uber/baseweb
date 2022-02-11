@@ -253,7 +253,13 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
       <LocaleContext.Consumer>
         {locale => {
           return (
-            <FocusLock returnFocus autoFocus={autoFocus} noFocusGuards={true}>
+            <FocusLock
+              // Allow focus to escape when UI is within an iframe
+              crossFrame={false}
+              returnFocus
+              autoFocus={autoFocus}
+              noFocusGuards={true}
+            >
               <Root
                 data-baseweb="drawer"
                 ref={this.getRef('Root')}
