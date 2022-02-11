@@ -1,6 +1,6 @@
 {
   "name": "baseui",
-  "version": "10.8.0",
+  "version": "11.0.0",
   "description": "A React Component library implementing the Base design language",
   "keywords": [
     "react",
