@@ -94,6 +94,49 @@ module.exports = {
 
     return {
       ImportDeclaration(node) {
+        if (!node.source.value.startsWith('baseui/')) {
+          return;
+        }
+
+        function isImporting(node, importName, importPath) {
+          if (
+            node.imported.name === importName &&
+            node.parent.source.value === importPath
+          ) {
+            importState[importName] = node.local.name;
+            return true;
+          } else {
+            return false;
+          }
+        }
+
+        for (let x = 0; x < node.specifiers.length; x++) {
+          const specifier = node.specifiers[x];
+          if (
+            specifier.type !== 'ImportNamespaceSpecifier' &&
+            specifier.type !== 'ImportDefaultSpecifier'
+          ) {
+            // Spinner
+            // Ex: import {Spinner} from "baseui/spinner";
+            // Note, we are not replacing Spinner because the new API
+            // is not compatible.
+            if (isImporting(specifier, 'Spinner', 'baseui/spinner')) {
+              context.report({
+                node: specifier.imported,
+                messageId: MESSAGES.deprecateSpinner.id,
+              });
+              return;
+            }
+
+            // These can be referenced later on by instances of components.
+            if (isImporting(specifier, 'Accordion', 'baseui/accordion')) return;
+            if (isImporting(specifier, 'Modal', 'baseui/modal')) return;
+            if (isImporting(specifier, 'Block', 'baseui/block')) return;
+            if (isImporting(specifier, 'Checkbox', 'baseui/checkbox')) return;
+            if (isImporting(specifier, 'Button', 'baseui/button')) return;
+          }
+        }
+
         if (node.source.value !== 'baseui/typography') {
           return;
         }
@@ -102,6 +145,9 @@ module.exports = {
 
         // Map existing imports (newName: localName), preference given to first renamed import.
         node.specifiers.forEach(specifier => {
+          if (specifier.type === 'ImportNamespaceSpecifier') {
+            return;
+          }
           const currentImportedName = specifier.imported.name;
           if (existingImports[currentImportedName]) {
             if (
@@ -117,6 +163,9 @@ module.exports = {
 
         const specifiers = node.specifiers || [];
         specifiers.forEach((specifier, specifierIndex) => {
+          if (specifier.type === 'ImportNamespaceSpecifier') {
+            return;
+          }
           const deprecatedComponent = specifier.imported.name;
           const newComponent =
             mapDeprecatedTypographyComponents[deprecatedComponent];
@@ -142,41 +191,6 @@ module.exports = {
             }
           }
         });
-      },
-      ImportSpecifier(node) {
-        function isImporting(importName, importPath) {
-          if (
-            node.imported.name === importName &&
-            node.parent.source.value === importPath
-          ) {
-            importState[importName] = node.local.name;
-            return true;
-          } else {
-            return false;
-          }
-        }
-
-        if (!node.parent.source.value.startsWith('baseui/')) {
-          return;
-        }
-        // Spinner
-        // Ex: import {Spinner} from "baseui/spinner";
-        // Note, we are not replacing Spinner because the new API
-        // is not compatible.
-        if (isImporting('Spinner', 'baseui/spinner')) {
-          context.report({
-            node: node.imported,
-            messageId: MESSAGES.deprecateSpinner.id,
-          });
-          return;
-        }
-
-        // These can be referenced later on by instances of components.
-        if (isImporting('Accordion', 'baseui/accordion')) return;
-        if (isImporting('Modal', 'baseui/modal')) return;
-        if (isImporting('Block', 'baseui/block')) return;
-        if (isImporting('Checkbox', 'baseui/checkbox')) return;
-        if (isImporting('Button', 'baseui/button')) return;
       },
       JSXIdentifier(node) {
         // =======
@@ -204,7 +218,10 @@ module.exports = {
         // Check if identifier is a component.
         // Ex: isComponent() with <Boo foo={} /> => true
         function isComponent() {
-          return node.parent.type === 'JSXOpeningElement';
+          return (
+            node.parent.type === 'JSXOpeningElement' ||
+            node.parent.type === 'JSXClosingElement'
+          );
         }
 
         // ================
@@ -442,7 +459,13 @@ module.exports = {
         // Caption1
         // Ex: <Caption1 />
         // Replacement: ParagraphXSmall
-        if (identifiersToRename[node.name] && isComponent()) {
+        if (
+          Object.prototype.hasOwnProperty.call(
+            identifiersToRename,
+            node.name,
+          ) &&
+          isComponent()
+        ) {
           const oldName = node.name;
           const newName = identifiersToRename[node.name];
           context.report({
@@ -453,16 +476,7 @@ module.exports = {
               new: newName,
             },
             fix: function(fixer) {
-              const tags = [fixer.replaceText(node, newName)];
-              if (node.parent.parent.closingElement) {
-                tags.push(
-                  fixer.replaceText(
-                    node.parent.parent.closingElement.name,
-                    newName,
-                  ),
-                );
-              }
-              return tags;
+              return [fixer.replaceText(node, newName)];
             },
           });
         }
@@ -488,7 +502,13 @@ module.exports = {
           );
         }
 
-        if (identifiersToRename[node.name] && isIdentifier()) {
+        if (
+          Object.prototype.hasOwnProperty.call(
+            identifiersToRename,
+            node.name,
+          ) &&
+          isIdentifier()
+        ) {
           fixIdentifier(node.name, identifiersToRename[node.name]);
         }
       },

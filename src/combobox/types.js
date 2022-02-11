@@ -18,6 +18,8 @@ export type PropsT<OptionT = mixed> = {|
   disabled?: boolean,
   // Proxies value through to Input component.
   error?: boolean,
+  // Label used for the listbox/popup with options
+  listBoxLabel?: string,
   // Used to render a custom node besides the default.
   mapOptionToNode?: React.AbstractComponent<{|
     isSelected: boolean,
