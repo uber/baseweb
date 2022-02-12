@@ -46,11 +46,7 @@ export const BaseButton = styled<SharedStylePropsT>(
     cursor: 'pointer',
     ':disabled': {
       cursor: 'not-allowed',
-      backgroundColor:
-        $kind === KIND.minimal || $kind === KIND.tertiary
-          ? 'transparent'
-          : $theme.colors.buttonDisabledFill,
-      color: $theme.colors.buttonDisabledText,
+      ...getDisabledStyles({$theme, $kind, $disabled, $isSelected}),
     },
     marginLeft: 0,
     marginTop: 0,
@@ -227,6 +223,30 @@ function getFontStyles({$theme, $size}) {
     default:
       return $theme.typography.font350;
   }
+}
+
+function getDisabledStyles({$theme, $kind, $isSelected, $disabled}) {
+  if ($disabled && $isSelected) {
+    if ($kind === KIND.primary || $kind === KIND.secondary) {
+      return {
+        color: $theme.colors.buttonDisabledActiveText,
+        backgroundColor: $theme.colors.buttonDisabledActiveFill,
+      };
+    } else if ($kind === KIND.minimal || $kind === KIND.tertiary) {
+      return {
+        backgroundColor: $theme.colors.buttonTertiaryDisabledActiveFill,
+        color: $theme.colors.buttonTertiaryDisabledActiveText,
+      };
+    }
+  }
+
+  return {
+    backgroundColor:
+      $kind === KIND.minimal || $kind === KIND.tertiary
+        ? 'transparent'
+        : $theme.colors.buttonDisabledFill,
+    color: $theme.colors.buttonDisabledText,
+  };
 }
 
 function getPaddingStyles({$theme, $size, $shape}) {

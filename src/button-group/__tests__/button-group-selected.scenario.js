@@ -14,17 +14,17 @@ import {ButtonGroup} from '../index.js';
 export function Scenario() {
   return (
     <>
-      <ButtonGroup kind={KIND.primary} disabled>
+      <ButtonGroup kind={KIND.primary} selected={0}>
         <Button>Label</Button>
         <Button>Label</Button>
         <Button>Label</Button>
       </ButtonGroup>
-      <ButtonGroup kind={KIND.secondary} disabled>
+      <ButtonGroup kind={KIND.secondary} selected={0}>
         <Button>Label</Button>
         <Button>Label</Button>
         <Button>Label</Button>
       </ButtonGroup>
-      <ButtonGroup kind={KIND.tertiary} disabled>
+      <ButtonGroup kind={KIND.tertiary} selected={0}>
         <Button>Label</Button>
         <Button>Label</Button>
         <Button>Label</Button>
