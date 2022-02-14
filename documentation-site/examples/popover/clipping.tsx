@@ -2,7 +2,7 @@ import * as React from 'react';
 import {useStyletron} from 'baseui';
 import {Button} from 'baseui/button';
 import {StatefulPopover, PLACEMENT} from 'baseui/popover';
-import {ParagraphSmall, Label3} from 'baseui/typography';
+import {ParagraphSmall, LabelSmall} from 'baseui/typography';
 
 export default function Example() {
   const [css] = useStyletron();

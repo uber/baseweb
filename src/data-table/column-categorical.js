@@ -184,7 +184,7 @@ export function CategoricalFilter(props: CategoricalFilterProps) {
         })}
       >
         {!filteredCategories.length && (
-          <Label3>{locale.datatable.categoricalFilterEmpty}</Label3>
+          <LabelSmall>{locale.datatable.categoricalFilterEmpty}</LabelSmall>
         )}
 
         {Boolean(filteredCategories.length) &&
