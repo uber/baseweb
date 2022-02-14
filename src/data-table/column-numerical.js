@@ -12,7 +12,7 @@ import {Button, SIZE} from '../button/index.js';
 import {ButtonGroup, MODE} from '../button-group/index.js';
 import {Input, SIZE as INPUT_SIZE} from '../input/index.js';
 import {useStyletron} from '../styles/index.js';
-import {Paragraph4} from '../typography/index.js';
+import {ParagraphXSmall} from '../typography/index.js';
 
 import Column from './column.js';
 import {COLUMNS, NUMERICAL_FORMATS, NUMERICAL_OPERATIONS} from './constants.js';
@@ -388,8 +388,8 @@ function NumericalFilter(props) {
           marginRight: theme.sizing.scale300,
         })}
       >
-        <Paragraph4>{format(min, props.options)}</Paragraph4>{' '}
-        <Paragraph4>{format(max, props.options)}</Paragraph4>
+        <ParagraphXSmall>{format(min, props.options)}</ParagraphXSmall>{' '}
+        <ParagraphXSmall>{format(max, props.options)}</ParagraphXSmall>
       </div>
 
       <div className={css({display: 'flex', justifyContent: 'space-between'})}>
