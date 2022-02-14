@@ -14,6 +14,7 @@ import type {
   StatefulContainerPropsT,
   StateChangeTypeT,
   StateReducerT,
+  DateValueT,
 } from './types.js';
 
 type InputProps<T> = CalendarPropsT<T> | DatepickerPropsT<T>;

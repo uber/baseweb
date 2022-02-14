@@ -41,6 +41,7 @@ export const Mask = () => <DatepickerMask />;
 export const RangeHighlight = () => <DatepickerRangeHighlight />;
 export const RangeMultiMonth = () => <DatepickerRangeMultiMonth />;
 export const Range = () => <DatepickerRange />;
+export const RangeNullStartDate = () => <DatepickerRangeNullStartDate />;
 export const RangeSeparateInputs = () => <DatepickerRangeSeparateInputs />;
 export const Datepicker = () => <DatepickerDefault />;
 export const DatepickerTime = () => <DatepickerTimeScenario />;

@@ -76,12 +76,29 @@ export default class Day<T = Date> extends React.Component<DayPropsT<T>, DayStat
     const { range, value } = this.props;
     let date;
     if (Array.isArray(value) && range) {
-      if (!value.length || value.length > 1) {
-        date = [selectedDate];
-      } else if (this.dateHelpers.isAfter(selectedDate, value[0])) {
-        date = [value[0], selectedDate];
+      const [start, end] = value;
+
+      // Starting a new range
+      if ((!start && !end) || (start && end)) {
+        date = [selectedDate, null];
+
+        // EndDate needs a StartDate, SelectedDate comes before EndDate
+      } else if (!start && end && this.dateHelpers.isAfter(end, selectedDate)) {
+        date = [selectedDate, end];
+
+        // EndDate needs a StartDate, but SelectedDate comes after EndDate
+      } else if (!start && end && this.dateHelpers.isAfter(selectedDate, end)) {
+        date = [end, selectedDate];
+
+        // StartDate needs an EndDate, SelectedDate comes after StartDate
+      } else if (
+        start &&
+        !end &&
+        this.dateHelpers.isAfter(selectedDate, start)
+      ) {
+        date = [start, selectedDate];
       } else {
-        date = [selectedDate, value[0]];
+        date = [selectedDate, start];
       }
     } else {
       date = selectedDate;
@@ -252,16 +269,20 @@ export default class Day<T = Date> extends React.Component<DayPropsT<T>, DayStat
     const $hasRangeHighlighted = !!(
       Array.isArray(value) &&
       range &&
-      value.length === 1 &&
       highlightedDate &&
-      !this.dateHelpers.isSameDay(value[0], highlightedDate)
+      ((value[0] &&
+        !value[1] &&
+        !this.dateHelpers.isSameDay(value[0], highlightedDate)) ||
+        (!value[0] &&
+          value[1] &&
+          !this.dateHelpers.isSameDay(value[1], highlightedDate)))
     );
-    const $outsideMonth = !this.props.peekNextMonth && this.isOutsideMonth();
+    const $outsideMonth = !peekNextMonth && this.isOutsideMonth();
     const $outsideMonthWithinRange = !!(
       Array.isArray(value) &&
       range &&
       $outsideMonth &&
-      !this.props.peekNextMonth &&
+      !peekNextMonth &&
       this.isOutsideOfMonthButWithinRange()
     );
     return {
@@ -270,7 +291,8 @@ export default class Day<T = Date> extends React.Component<DayPropsT<T>, DayStat
       $disabled: this.props.disabled,
       $endDate:
         (Array.isArray(value) &&
-          this.props.range &&
+          !!(value[0] && value[1]) &&
+          range &&
           $selected &&
           this.dateHelpers.isSameDay(date, value[1])) ||
         false,
@@ -280,9 +302,11 @@ export default class Day<T = Date> extends React.Component<DayPropsT<T>, DayStat
         Array.isArray(value) &&
         $hasRangeHighlighted &&
         highlightedDate &&
-        value[0] &&
-        this.dateHelpers.isAfter(highlightedDate, value[0]),
-      $hasRangeSelected: Array.isArray(value) ? value.length === 2 : false,
+        ((value[0] && this.dateHelpers.isAfter(highlightedDate, value[0])) ||
+          (value[1] && this.dateHelpers.isAfter(highlightedDate, value[1]))),
+      $hasRangeSelected: Array.isArray(value)
+        ? !!(value[0] && value[1])
+        : false,
       $highlightedDate: highlightedDate,
       $isHighlighted,
       $isHovered: this.state.isHovered,
@@ -292,18 +316,15 @@ export default class Day<T = Date> extends React.Component<DayPropsT<T>, DayStat
       $month: this.getMonthProp(),
       $outsideMonth,
       $outsideMonthWithinRange,
-      $peekNextMonth: this.props.peekNextMonth,
+      $peekNextMonth: peekNextMonth,
       $pseudoHighlighted:
         this.props.range && !$isHighlighted && !$selected ? this.isPseudoHighlighted() : false,
       $pseudoSelected: this.props.range && !$selected ? this.isPseudoSelected() : false,
       $range: this.props.range,
       $selected,
       $startDate:
-        Array.isArray(this.props.value) &&
-        this.props.value.length > 1 &&
-        this.props.range &&
-        $selected
-          ? this.dateHelpers.isSameDay(date, this.props.value[0])
+        Array.isArray(value) && value[0] && value[1] && range && $selected
+          ? this.dateHelpers.isSameDay(date, value[0])
           : false,
     };
   }

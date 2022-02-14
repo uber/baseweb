@@ -32,6 +32,7 @@ const combineSeparatedInputs = (newInputValue, prevCombinedInputValue = '', sepa
   let inputValue = newInputValue;
   const [prevStartDate = '', prevEndDate = ''] = prevCombinedInputValue.split(INPUT_DELIMITER);
   if (separatedInput === 'startDate' && prevEndDate) {
+    // TODO(LUKE): use INPUT_DELIMITER below
     inputValue = `${inputValue} – ${prevEndDate}`;
   }
   if (separatedInput === 'endDate') {
@@ -80,11 +81,11 @@ export default class Datepicker<T = Date> extends React.Component<DatepickerProp
     let nextDate = data.date;
 
     if (Array.isArray(nextDate) && this.props.range) {
-      if (nextDate.length < 2) {
+      if (!nextDate[0] || !nextDate[1]) {
         isOpen = true;
         isPseudoFocused = true;
         calendarFocused = null;
-      } else if (nextDate.length === 2) {
+      } else if (nextDate[0] && nextDate[1]) {
         const [start, end] = nextDate;
         if (this.dateHelpers.isAfter(start, end)) {
           nextDate = [start, start];
@@ -141,10 +142,15 @@ export default class Datepicker<T = Date> extends React.Component<DatepickerProp
       }
       return this.dateHelpers.formatDate(date, formatString, this.props.locale);
     };
+
     if (!date) {
       return '';
     } else if (Array.isArray(date) && !date[0] && !date[1]) {
       return '';
+    } else if (Array.isArray(date) && !date[0] && date[1]) {
+      const endDate = format(date[1]);
+      const startDate = this.getNullDatePlaceholder(formatString);
+      return [startDate, endDate].join(INPUT_DELIMITER);
     } else if (Array.isArray(date)) {
       return date.map((day) => format(day)).join(INPUT_DELIMITER);
     } else {
@@ -229,6 +235,7 @@ export default class Datepicker<T = Date> extends React.Component<DatepickerProp
     }
 
     if (range && !separateRangeInputs) {
+      // TODO(LUKE): use INPUT_DELIMITER below
       return '9999/99/99 – 9999/99/99';
     }
 

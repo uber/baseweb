@@ -134,7 +134,7 @@ export default class Calendar<T = Date> extends React.Component<
     return monthDelta >= 0 && monthDelta < (this.props.monthsShown || 1);
   }
 
-  getSingleDate(value: ?T | Array<T>): ?T {
+  getSingleDate(value: DateValueT<T>): ?T {
     // need to check this.props.range but flow would complain
     // at the return value in the else clause
     if (Array.isArray(value)) {
@@ -352,6 +352,7 @@ export default class Calendar<T = Date> extends React.Component<
       newTimeState[0] = this.dateHelpers.applyDateToTime(newTimeState[0], data.date);
       updatedDate = newTimeState[0];
     }
+
     // Update the date in time values of internal state
     this.setState({ time: newTimeState });
     onChange({ date: updatedDate });
@@ -367,7 +368,7 @@ export default class Calendar<T = Date> extends React.Component<
     // with the date value set to the date with updated time
     if (Array.isArray(this.props.value)) {
       const dates = this.props.value.map((date, i) => {
-        if (index === i) {
+        if (date && index === i) {
           return this.dateHelpers.applyTimeToDate(date, time);
         }
         return date;
