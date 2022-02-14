@@ -19,7 +19,7 @@ import {
   StyledStartDate,
   StyledEndDate,
 } from './styled-components.js';
-import type {DatepickerPropsT} from './types.js';
+import type {DatepickerPropsT, DateValueT} from './types.js';
 import DateHelpers from './utils/date-helpers.js';
 import dateFnsAdapter from './utils/date-fns-adapter.js';
 import type {LocaleT} from '../locale/types.js';
@@ -38,6 +38,7 @@ const combineSeparatedInputs = (
     INPUT_DELIMITER,
   );
   if (separatedInput === 'startDate' && prevEndDate) {
+    // TODO(LUKE): use INPUT_DELIMITER below
     inputValue = `${inputValue} – ${prevEndDate}`;
   }
   if (separatedInput === 'endDate') {
@@ -81,18 +82,18 @@ export default class Datepicker<T = Date> extends React.Component<
     };
   }
 
-  onChange: ({date: ?T | Array<T>}) => void = data => {
+  onChange: ({date: DateValueT<T>}) => void = data => {
     let isOpen = false;
     let isPseudoFocused = false;
     let calendarFocused = false;
     let nextDate = data.date;
 
     if (Array.isArray(nextDate) && this.props.range) {
-      if (nextDate.length < 2) {
+      if (!nextDate[0] || !nextDate[1]) {
         isOpen = true;
         isPseudoFocused = true;
         calendarFocused = null;
-      } else if (nextDate.length === 2) {
+      } else if (nextDate[0] && nextDate[1]) {
         const [start, end] = nextDate;
         if (this.dateHelpers.isAfter(start, end)) {
           nextDate = [start, start];
@@ -143,25 +144,36 @@ export default class Datepicker<T = Date> extends React.Component<
     this.props.onChange && this.props.onChange({date: nextDate});
   };
 
-  formatDate(date: ?T | Array<T>, formatString: string) {
-    const format = date => {
+  getNullDatePlaceholder(formatString: string) {
+    return (this.getMask() || formatString)
+      .split('–')[0]
+      .replace(/[0-9]|[a-z]/g, ' ');
+  }
+
+  formatDate(date: DateValueT<T>, formatString: string) {
+    const format = (date: T) => {
       if (formatString === DEFAULT_DATE_FORMAT) {
         return this.dateHelpers.format(date, 'slashDate', this.props.locale);
       }
       return this.dateHelpers.formatDate(date, formatString, this.props.locale);
     };
+
     if (!date) {
       return '';
     } else if (Array.isArray(date) && !date[0] && !date[1]) {
       return '';
+    } else if (Array.isArray(date) && !date[0] && date[1]) {
+      const endDate = format(date[1]);
+      const startDate = this.getNullDatePlaceholder(formatString);
+      return [startDate, endDate].join(INPUT_DELIMITER);
     } else if (Array.isArray(date)) {
-      return date.map(day => format(day)).join(INPUT_DELIMITER);
+      return date.map(day => (day ? format(day) : '')).join(INPUT_DELIMITER);
     } else {
       return format(date);
     }
   }
 
-  formatDisplayValue: (?T | Array<T>) => string = (date: ?T | Array<T>) => {
+  formatDisplayValue: (DateValueT<T>) => string = (date: DateValueT<T>) => {
     const {displayValueAtRangeIndex, formatDisplayValue, range} = this.props;
     const formatString = this.normalizeDashes(this.props.formatString);
 
@@ -241,6 +253,7 @@ export default class Datepicker<T = Date> extends React.Component<
     }
 
     if (range && !separateRangeInputs) {
+      // TODO(LUKE): use INPUT_DELIMITER below
       return '9999/99/99 – 9999/99/99';
     }
 
@@ -600,7 +613,9 @@ export default class Datepicker<T = Date> extends React.Component<
             >
               {// No date selected
               !this.props.value ||
-              (Array.isArray(this.props.value) && !this.props.value.length)
+              (Array.isArray(this.props.value) &&
+                !this.props.value[0] &&
+                !this.props.value[1])
                 ? ''
                 : // Date selected in a non-range picker
                 !Array.isArray(this.props.value)
@@ -608,7 +623,7 @@ export default class Datepicker<T = Date> extends React.Component<
                     date: this.state.inputValue || '',
                   })
                 : // Start and end dates are selected in a range picker
-                this.props.value.length > 1
+                this.props.value[0] && this.props.value[1]
                 ? getInterpolatedString(locale.datepicker.selectedDateRange, {
                     startDate: this.formatDisplayValue(this.props.value[0]),
                     endDate: this.formatDisplayValue(
