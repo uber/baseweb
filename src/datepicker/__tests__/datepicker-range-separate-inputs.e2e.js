@@ -138,7 +138,7 @@ describe('Datepicker, Range', () => {
       input => input.value,
     );
     expect(startDateValue1).toBe('2019/03/10');
-    // Select the start day
+    // Select the end day
     await page.waitForSelector(selectors.day2);
     await page.click(selectors.day2);
     await page.waitForSelector(selectors.calendar, {
@@ -160,7 +160,6 @@ describe('Datepicker, Range', () => {
       selects => selects[0].textContent,
     );
     expect(timeSelectValue).toBe('12:30 AM');
-    // Set the end time
     timeSelectValue2 = await page.$$eval(
       `${selectors.timeSelect} ${selectors.timeSelectValue}`,
       selects => selects[1].textContent,
