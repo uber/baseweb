@@ -17,6 +17,7 @@ import {Scenario as DatepickerMask} from './datepicker-mask.scenario.js';
 import {Scenario as DatepickerRangeHighlight} from './datepicker-range-highlight.scenario.js';
 import {Scenario as DatepickerRangeMultiMonth} from './datepicker-range-multi-month.scenario.js';
 import {Scenario as DatepickerRange} from './datepicker-range.scenario.js';
+import {Scenario as DatepickerRangeNullStartDate} from './datepicker-range-null-start-date.scenario.js';
 import {Scenario as DatepickerRangeSeparateInputs} from './datepicker-range-separate-inputs.scenario.js';
 import {Scenario as DatepickerDefault} from './datepicker.scenario.js';
 import {Scenario as DatepickerTimeScenario} from './datepicker-time.scenario.js';
@@ -41,6 +42,7 @@ export const Mask = () => <DatepickerMask />;
 export const RangeHighlight = () => <DatepickerRangeHighlight />;
 export const RangeMultiMonth = () => <DatepickerRangeMultiMonth />;
 export const Range = () => <DatepickerRange />;
+export const RangeNullStartDate = () => <DatepickerRangeNullStartDate />;
 export const RangeSeparateInputs = () => <DatepickerRangeSeparateInputs />;
 export const Datepicker = () => <DatepickerDefault />;
 export const DatepickerTime = () => <DatepickerTimeScenario />;
@@ -50,7 +52,6 @@ export const StatefulComposedSingle = () => <DatepickersComposedSingle />;
 export const StatefulCalendarOverrides = () => (
   <StatefulCalendarOverridesScenario />
 );
-
 export const StatefulCalendar = () => <StatefulCalendarScenario />;
 export const StatefulMinMaxDate = () => <StatefulDatepickerMinMaxDate />;
 export const StatefulQuickSelect = () => <StatefulDatepickerQuickSelect />;
