@@ -9,19 +9,26 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {H6, H5, H4, H3, H2, H1} from '../index.js';
+import {
+  HeadingXXLarge,
+  HeadingXLarge,
+  HeadingLarge,
+  HeadingMedium,
+  HeadingSmall,
+  HeadingXSmall,
+} from '../index.js';
 
 const textString = 'We ignite opportunity by setting the world in motion.';
 
 export function Scenario() {
   return (
     <React.Fragment>
-      <H6>{`H6 - ${textString}`}</H6>
-      <H5>{`H5 - ${textString}`}</H5>
-      <H4>{`H4 - ${textString}`}</H4>
-      <H3>{`H3 - ${textString}`}</H3>
-      <H2>{`H2 - ${textString}`}</H2>
-      <H1>{`H1 - ${textString}`}</H1>
+      <HeadingXSmall>{`HeadingXSmall - ${textString}`}</HeadingXSmall>
+      <HeadingSmall>{`HeadingSmall - ${textString}`}</HeadingSmall>
+      <HeadingMedium>{`HeadingMedium - ${textString}`}</HeadingMedium>
+      <HeadingLarge>{`HeadingLarge - ${textString}`}</HeadingLarge>
+      <HeadingXLarge>{`HeadingXLarge - ${textString}`}</HeadingXLarge>
+      <HeadingXXLarge>{`HeadingXXLarge - ${textString}`}</HeadingXXLarge>
     </React.Fragment>
   );
 }
