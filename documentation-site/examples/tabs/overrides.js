@@ -1,12 +1,12 @@
 // @flow
 import * as React from 'react';
 import {StatefulTabs, Tab, StyledTab} from 'baseui/tabs';
-import {Label2} from 'baseui/typography';
+import {LabelMedium} from 'baseui/typography';
 
 function TabOverride({children, ...rest}) {
   return (
     <StyledTab {...rest}>
-      <Label2
+      <LabelMedium
         overrides={{
           Block: {
             style: {color: 'inherit', ':hover': {color: 'inherit'}},
@@ -14,7 +14,7 @@ function TabOverride({children, ...rest}) {
         }}
       >
         {children}
-      </Label2>
+      </LabelMedium>
     </StyledTab>
   );
 }
