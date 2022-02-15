@@ -174,6 +174,7 @@ export const StyledBody = styled<SharedStylePropsArgT>('div', props => {
       props.$placement,
       props.$popoverMargin,
     ),
+    color: props.$theme.colors.contentPrimary,
     backgroundColor: props.$theme.colors.backgroundPrimary,
   };
 });
