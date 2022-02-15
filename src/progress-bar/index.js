@@ -14,6 +14,7 @@ export {
   StyledBarContainer,
   StyledBar,
   StyledBarProgress,
+  StyledInfiniteBar,
   StyledLabel,
   StyledProgressBarRoundedRoot,
   StyledProgressBarRoundedSvg,

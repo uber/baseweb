@@ -30,6 +30,6 @@ export {
 } from './themes/index.js';
 export {default as LocaleProvider} from './locale/index.js';
 export {default as BaseProvider} from './helpers/base-provider.js';
-export {mergeOverrides} from './helpers/overrides.js';
+export {getOverrides, mergeOverrides} from './helpers/overrides.js';
 export type {PrimitivesT} from './themes/types.js';
 export type {ThemeT} from './styles/types.js';

@@ -10,7 +10,7 @@ import {
   FloatingMarker,
   FLOATING_MARKER_ANCHOR_POSITIONS,
 } from 'baseui/map-marker';
-import {Label3} from 'baseui/typography';
+import {LabelSmall} from 'baseui/typography';
 import {useStyletron} from 'baseui';
 
 const anchors = [
@@ -46,7 +46,7 @@ const AnchorPositionExample = () => {
         position: 'relative',
       })}
     >
-      <Label3
+      <LabelSmall
         className={css({
           position: 'absolute',
           bottom: 0,
@@ -54,7 +54,7 @@ const AnchorPositionExample = () => {
         })}
       >
         Anchor position: {anchors[index]}
-      </Label3>
+      </LabelSmall>
       <FloatingMarker label="Uber HQ" anchor={anchors[index]} />
     </div>
   );
