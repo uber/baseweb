@@ -68,8 +68,6 @@ export type ItemPropsT = {
 export type LabelEnhancerT = {|
   labelEnhancerContent?: string,
   labelEnhancerPosition?: LabelEnhancerPositionT,
-  labelEnhancerColor?: string,
-  labelEnhancerStrokeColor?: string,
 |};
 
 export type LabelEhancerComponentT = {
@@ -81,8 +79,6 @@ export type LabelEhancerComponentT = {
 
 export type BadgeEnhancerT = {|
   badgeEnhancerSize?: BadgeEnhancerSizeT | null,
-  badgeEnhancerColor?: string | null,
-  badgeEnhancerBackground?: string | null,
   badgeEnhancerContent?: React.AbstractComponent<{|size: number|}>,
 |};
 
@@ -97,7 +93,7 @@ export type BadgePositionT = {
   y: number,
 };
 
-export type FixedMarkerPropsT = {
+export type FixedMarkerPropsT = {|
   size?: PinHeadSizeT,
   needle?: NeedleSizeT,
   label?: string,
@@ -109,7 +105,7 @@ export type FixedMarkerPropsT = {
   overrides?: FixedMarkerOverridesT,
   ...BadgeEnhancerT,
   ...LabelEnhancerT,
-};
+|};
 
 export type FloatingMarkerOverridesT = {
   Root?: OverrideT,

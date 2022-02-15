@@ -21,8 +21,6 @@ const BadgeEnhancer = ({
   pinHeadSize,
   markerType,
   badgeEnhancerSize = BADGE_ENHANCER_SIZES.none,
-  badgeEnhancerColor,
-  badgeEnhancerBackground,
   badgeEnhancerContent: BadgeEnhancerContent,
   overrides = {},
 }: BadgeEnhancerComponentT) => {
@@ -69,8 +67,6 @@ const BadgeEnhancer = ({
     <BadgeEnhancerRoot
       $size={badgeEnhancerSize}
       $position={position}
-      $color={badgeEnhancerColor}
-      $background={badgeEnhancerBackground}
       {...badgeEnhancerRootProps}
     >
       {BadgeEnhancerContent &&

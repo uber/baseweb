@@ -227,13 +227,15 @@ export function Scenario() {
                       })`,
                     }),
                   },
+                  BadgeEnhancer: {
+                    style: {
+                      color: 'white',
+                      backgroundColor: 'green',
+                    },
+                  },
                 }}
-                badgeEnhancer={{
-                  size: BADGE_ENHANCER_SIZES.xSmall,
-                  color: 'white',
-                  background: 'green',
-                  content: 'hello',
-                }}
+                badgeEnhancerSize={BADGE_ENHANCER_SIZES.mediumText}
+                badgeEnhancerContent={() => 'hello'}
                 labelEnhancerContent={labelEnhancerText}
                 // $FlowFixMe Mismatch between general type and enum
                 labelEnhancerPosition={labelEnhancerPosition[0].id}

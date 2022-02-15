@@ -9,7 +9,13 @@ export default function Example() {
         startEnhancer={({size}) => <Show size={size} />}
         badgeEnhancerSize={BADGE_ENHANCER_SIZES.mediumText}
         badgeEnhancerContent={({size}) => 'New'}
-        badgeEnhancerBackground="green"
+        overrides={{
+          BadgeEnhancer: {
+            style: {
+              backgroundColor: 'green',
+            },
+          },
+        }}
       />
     </div>
   );

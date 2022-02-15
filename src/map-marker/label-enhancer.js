@@ -18,8 +18,6 @@ import type {LabelEhancerComponentT} from './types.js';
 const LabelEnhancer = ({
   labelEnhancerContent,
   labelEnhancerPosition,
-  labelEnhancerColor,
-  labelEnhancerStrokeColor,
   needleHeight,
   size,
   overrides = {},
@@ -50,12 +48,7 @@ const LabelEnhancer = ({
       {...strokedLabelContainerProps}
     >
       <RelativeContainer>
-        <StrokedLabel
-          $color={labelEnhancerColor}
-          $strokeColor={labelEnhancerStrokeColor}
-          $size={size}
-          {...strokedLabelProps}
-        >
+        <StrokedLabel $size={size} {...strokedLabelProps}>
           {labelEnhancerContent}
         </StrokedLabel>
       </RelativeContainer>

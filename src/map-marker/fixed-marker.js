@@ -86,11 +86,7 @@ const FixedMarker = ({
   overrides = {},
   labelEnhancerContent = null,
   labelEnhancerPosition = LABEL_ENHANCER_POSITIONS.bottom,
-  labelEnhancerColor,
-  labelEnhancerStrokeColor,
   badgeEnhancerSize = null,
-  badgeEnhancerColor = null,
-  badgeEnhancerBackground = null,
   badgeEnhancerContent = null,
   ...restProps
 }: FixedMarkerPropsT) => {
@@ -151,13 +147,9 @@ const FixedMarker = ({
           type={PINHEAD_TYPES.fixed}
           overrides={overrides}
           badgeEnhancerSize={badgeEnhancerSize}
-          badgeEnhancerColor={badgeEnhancerColor}
-          badgeEnhancerBackground={badgeEnhancerBackground}
           badgeEnhancerContent={badgeEnhancerContent}
           labelEnhancerContent={labelEnhancerContent}
           labelEnhancerPosition={labelEnhancerPosition}
-          labelEnhancerColor={labelEnhancerColor}
-          labelEnhancerStrokeColor={labelEnhancerStrokeColor}
           needle={needle}
         />
         {renderNeedle && (

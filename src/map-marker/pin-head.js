@@ -39,11 +39,7 @@ const PinHead = ({
   needle = NEEDLE_SIZES.none,
   labelEnhancerContent,
   labelEnhancerPosition,
-  labelEnhancerColor,
-  labelEnhancerStrokeColor,
   badgeEnhancerSize,
-  badgeEnhancerColor,
-  badgeEnhancerBackground,
   badgeEnhancerContent,
 
   overrides = {},
@@ -85,8 +81,6 @@ const PinHead = ({
       markerType={type}
       pinHeadSize={size}
       badgeEnhancerSize={badgeEnhancerSize}
-      badgeEnhancerColor={badgeEnhancerColor}
-      badgeEnhancerBackground={badgeEnhancerBackground}
       badgeEnhancerContent={badgeEnhancerContent}
       overrides={overrides}
     />
@@ -145,8 +139,6 @@ const PinHead = ({
       <LabelEnhancer
         labelEnhancerContent={labelEnhancerContent}
         labelEnhancerPosition={labelEnhancerPosition}
-        labelEnhancerColor={labelEnhancerColor}
-        labelEnhancerStrokeColor={labelEnhancerStrokeColor}
         needleHeight={NEEDLE_HEIGHTS[needle]}
         size={size}
         overrides={overrides}

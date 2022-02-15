@@ -253,15 +253,12 @@ export const StyledStrokedLabelContainer = styled<{
 });
 
 export const StyledStrokedLabel = styled<{
-  $color: string,
-  $strokeColor: string,
   $stroked: boolean,
   $position: LabelEnhancerPositionT,
   $size: PinHeadSizeT,
-}>('div', ({$theme, $color, $strokeColor, $size}) => {
+}>('div', ({$theme, $size}) => {
   const strokeWidth = 1.5;
-  const strokeColor = $strokeColor || $theme.colors.backgroundPrimary;
-  const color = $color || $theme.colors.primaryA;
+  const strokeColor = $theme.colors.backgroundPrimary;
 
   const textShadow = `-${strokeWidth}px -${strokeWidth}px 0 ${strokeColor},
     0 -${strokeWidth}px 0 ${strokeColor},
@@ -275,7 +272,7 @@ export const StyledStrokedLabel = styled<{
   return {
     display: 'flex',
     ...$theme.typography[LABEL_SIZES[$size]],
-    color,
+    color: $theme.colors.primaryA,
     transition: `${$theme.animation.timing300} ${$theme.animation.easeOutCurve} all`,
     textShadow,
     pointerEvents: 'auto',
@@ -287,15 +284,13 @@ export const StyledStrokedLabel = styled<{
 export const StyledBadgeEnhancerRoot = styled<{
   $size: BadgeEnhancerSizeT,
   $position: BadgePositionT,
-  $background: string,
-  $color: string,
-}>('div', ({$theme, $size, $position, $background, $color}) => {
+}>('div', ({$theme, $size, $position}) => {
   const {x, y} = $position;
   return {
     position: 'absolute',
     ...$theme.typography.LabelSmall,
-    backgroundColor: $background || $theme.colors.backgroundAccent,
-    color: $color || $theme.colors.primaryB,
+    backgroundColor: $theme.colors.backgroundAccent,
+    color: $theme.colors.primaryB,
     boxSizing: 'border-box',
     right: 0,
     transform: `translate(calc(100% + ${x}px), ${y}px)`,

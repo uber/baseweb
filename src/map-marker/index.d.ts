@@ -96,8 +96,6 @@ export type ItemPropsT = {
 export type LabelEnhancerT = {
   labelEnhancerContent?: string;
   labelEnhancerPosition?: LabelEnhancerPositionT;
-  labelEnhancerColor?: string;
-  labelEnhancerStrokeColor?: string;
 };
 
 export type LabelEhancerComponentT = LabelEnhancerT & {
@@ -108,8 +106,6 @@ export type LabelEhancerComponentT = LabelEnhancerT & {
 
 export type BadgeEnhancerT = {
   badgeEnhancerSize?: BadgeEnhancerSizeT | null;
-  badgeEnhancerColor?: string | null;
-  badgeEnhancerBackground?: string | null;
   badgeEnhancerContent?: (props: {size: number}) => React.ReactNode;
 };
 
