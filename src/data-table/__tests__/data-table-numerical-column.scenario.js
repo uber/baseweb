@@ -9,6 +9,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {NumericalColumn} from '../index.js';
+import {randomLcg, randomBinomial} from 'd3';
 
 const Column = NumericalColumn({
   title: 'categorical-column',
@@ -16,8 +17,9 @@ const Column = NumericalColumn({
 });
 
 const Filter = Column.renderFilter;
+const randGen = randomLcg(42);
 
-const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const data = Array.from({length: 300}, randomBinomial.source(randGen)(80, 0.8));
 
 export function Scenario() {
   return (

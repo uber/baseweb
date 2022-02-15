@@ -41,20 +41,29 @@ function FilterShell(props: PropsT) {
       {props.children}
       <div
         className={css({
-          alignItems: 'center',
           display: 'flex',
+          flexDirection: 'column',
           justifyContent: 'space-between',
+          alignItems: 'flex-end',
           marginTop: theme.sizing.scale600,
+          gap: theme.sizing.scale200,
         })}
       >
-        <Checkbox
-          checked={props.exclude}
-          onChange={props.onExcludeChange}
-          checkmarkType={STYLE_TYPE.toggle_round}
-          labelPlacement="right"
+        <div
+          className={css({
+            alignSelf: 'flex-start',
+          })}
         >
-          {locale.datatable.filterExclude}
-        </Checkbox>
+          <Checkbox
+            checked={props.exclude}
+            onChange={props.onExcludeChange}
+            checkmarkType={STYLE_TYPE.toggle_round}
+            labelPlacement="right"
+          >
+            {locale.datatable.filterExclude}
+          </Checkbox>
+        </div>
+
         <Button size={BUTTON_SIZE.compact} type="submit">
           {locale.datatable.filterApply}
         </Button>
