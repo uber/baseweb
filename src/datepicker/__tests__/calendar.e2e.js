@@ -29,20 +29,23 @@ const isActiveEl = async (page, selector) => {
   return equal;
 };
 
+const checkAccessibility = async page => {
+  return await analyzeAccessibility(page, {
+    rules: [
+      {
+        //indicates to verify that roledescription is read properly
+        id: 'aria-roledescription',
+        enabled: false,
+      },
+    ],
+  });
+};
+
 describe('Calendar', () => {
   it('calendar passes basic a11y tests', async () => {
     await mount(page, 'datepicker--calendar');
     await page.waitForSelector(selectors.calendar);
-    const accessibilityReport = await analyzeAccessibility(page, {
-      rules: [
-        {
-          //indicates to verify that roledescription is read properly
-          id: 'aria-roledescription',
-          enabled: false,
-        },
-      ],
-    });
-    expect(accessibilityReport).toHaveNoAccessibilityIssues();
+    expect(await checkAccessibility(page)).toHaveNoAccessibilityIssues();
   });
   const waitTillDay = async page => {
     await mount(page, 'datepicker--calendar');
@@ -56,12 +59,14 @@ describe('Calendar', () => {
     await page.keyboard.press('ArrowRight');
     const isDayActive = await isActiveEl(page, selectors.day);
     expect(isDayActive).toBe(true);
+    expect(await checkAccessibility(page)).toHaveNoAccessibilityIssues();
   });
   it('navigates to prev day on ArrowLeft key press', async () => {
     await waitTillDay(page);
     await page.keyboard.press('ArrowLeft');
     const isDay1Active = await isActiveEl(page, selectors.day1);
     expect(isDay1Active).toBe(true);
+    expect(await checkAccessibility(page)).toHaveNoAccessibilityIssues();
   });
 
   it('navigates to prev week on ArrowUp key press', async () => {
@@ -69,6 +74,7 @@ describe('Calendar', () => {
     await page.keyboard.press('ArrowUp');
     const isDay2Active = await isActiveEl(page, selectors.day2);
     expect(isDay2Active).toBe(true);
+    expect(await checkAccessibility(page)).toHaveNoAccessibilityIssues();
   });
 
   it('navigates to prev week on ArrowDown key press', async () => {
@@ -76,6 +82,7 @@ describe('Calendar', () => {
     await page.keyboard.press('ArrowDown');
     const isDay3Active = await isActiveEl(page, selectors.day3);
     expect(isDay3Active).toBe(true);
+    expect(await checkAccessibility(page)).toHaveNoAccessibilityIssues();
   });
 
   it('navigates to start of week on Home key press', async () => {
@@ -83,23 +90,27 @@ describe('Calendar', () => {
     await page.keyboard.press('Home');
     const isDay4Active = await isActiveEl(page, selectors.day4);
     expect(isDay4Active).toBe(true);
+    expect(await checkAccessibility(page)).toHaveNoAccessibilityIssues();
   });
   it('navigates to end of week on End key press', async () => {
     await waitTillDay(page);
     await page.keyboard.press('End');
     const isDayActive = await isActiveEl(page, selectors.day);
     expect(isDayActive).toBe(true);
+    expect(await checkAccessibility(page)).toHaveNoAccessibilityIssues();
   });
   it('navigates to prev month on PageUp key press', async () => {
     await waitTillDay(page);
     await page.keyboard.press('PageUp');
     const isDay6Active = await isActiveEl(page, selectors.day6);
     expect(isDay6Active).toBe(true);
+    expect(await checkAccessibility(page)).toHaveNoAccessibilityIssues();
   });
   it('navigates to next month on PageDown key press', async () => {
     await waitTillDay(page);
     await page.keyboard.press('PageDown');
     const isDay5Active = await isActiveEl(page, selectors.day5);
     expect(isDay5Active).toBe(true);
+    expect(await checkAccessibility(page)).toHaveNoAccessibilityIssues();
   });
 });
