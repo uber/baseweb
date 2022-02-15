@@ -27,7 +27,11 @@ export type ProgressBarPropsT = {
   /** Error message for screen-reader users**/
   errorMessage?: string,
   /** The function that returns a progress bar label to display. */
-  getProgressLabel: (value: number, successValue: number) => React.Node,
+  getProgressLabel: (
+    value: number,
+    maxValue: number,
+    minValue: number,
+  ) => React.Node,
   /** If set to true, there’s and infinite loading animation. */
   infinite: boolean,
   overrides?: OverridesT,
@@ -37,8 +41,12 @@ export type ProgressBarPropsT = {
   size: SizeT,
   /** Renders a sectional progress bar. Value should be set to a positive number larger than one. */
   steps: number,
-  /** A custom completion value. Should be deleted in v11. */
+  /** A custom completion value. Should be replaced by maxValue prop. */
   successValue: number,
+  /** Maximum possible value. */
+  maxValue: number,
+  /** Minimum possible value. */
+  minValue: number,
   /** The value between `0` and `100 | successValue` of the progress indicator. */
   value: number,
 };
@@ -49,6 +57,8 @@ export type StylePropsT = {
   $size: SizeT,
   $steps: number,
   $successValue: number,
+  $minValue: number,
+  $maxValue: number,
   $value: number,
 };
 
