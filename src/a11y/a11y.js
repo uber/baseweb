@@ -11,7 +11,7 @@ import * as React from 'react';
 import axe from 'axe-core';
 
 import {Layer, TetherBehavior, TETHER_PLACEMENT} from '../layer/index.js';
-import {Paragraph3, Caption1} from '../typography/index.js';
+import {ParagraphSmall, ParagraphXSmall} from '../typography/index.js';
 import {styled} from '../styles/index.js';
 import {ThemeContext} from '../styles/theme-provider.js';
 
@@ -101,9 +101,9 @@ function Violation(props: ViolationPropsT) {
           $top={`${offset.top}px` || '0px'}
           $left={`${offset.left}px` || '0px'}
         >
-          <Caption1>{props.target}</Caption1>
+          <ParagraphXSmall>{props.target}</ParagraphXSmall>
           {props.violations.map((violation, index) => (
-            <Paragraph3 key={index}>{violation.description}</Paragraph3>
+            <ParagraphSmall key={index}>{violation.description}</ParagraphSmall>
           ))}
         </ViolationContainer>
       </TetherBehavior>
