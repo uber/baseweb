@@ -99,7 +99,7 @@ const Histogram = React.memo(function Histogram({
   const [css, theme] = useStyletron();
 
   const {bins, xScale, yScale} = React.useMemo(() => {
-    const bins = bin().thresholds(MAX_BIN_COUNT)(data);
+    const bins = bin().thresholds(Math.min(data.length, MAX_BIN_COUNT))(data);
 
     const xScale = scaleLinear()
       .domain([bins[0].x0, bins[bins.length - 1].x1])
@@ -141,15 +141,15 @@ const Histogram = React.memo(function Histogram({
 
           let included;
           if (singleIndexNearest != null) {
-            included = exclude
-              ? index !== singleIndexNearest
-              : index === singleIndexNearest;
+            included = index === singleIndexNearest;
           } else {
             const withinLower = d.x1 >= lower;
             const withinUpper = d.x0 <= upper;
-            included = exclude
-              ? !withinLower || !withinUpper
-              : withinLower && withinUpper;
+            included = withinLower && withinUpper;
+          }
+
+          if (exclude) {
+            included = !included;
           }
 
           return (
@@ -221,17 +221,24 @@ function NumericalFilter(props) {
       return [isRange ? lv : sv, uv];
     }
 
-    // once the user is done inputting we format to the given precision
-    return [
-      roundToFixed(isRange ? lv : sv, precision),
-      roundToFixed(uv, precision),
-    ];
+    // once the user is done inputting.
+    // we validate then format to the given precision
+    let l = isRange ? lv : sv;
+    l = validateInput(l) ? l : min;
+    let h = validateInput(uv) ? uv : max;
+
+    return [roundToFixed(l, precision), roundToFixed(h, precision)];
   }, [isRange, focused, sv, lv, uv, precision]);
 
   // We bound the values within our min and max even if a user enters a huge number
-  const sliderValue = isRange
-    ? [Math.max(+inputValueLower, min), Math.min(+inputValueUpper, max)]
-    : [Math.min(Math.max(+inputValueLower, min), max)];
+  let sliderValue = isRange
+    ? [Math.max(inputValueLower, min), Math.min(inputValueUpper, max)]
+    : [Math.min(Math.max(inputValueLower, min), max)];
+
+  // keep the slider happy by sorting the two values
+  if (isRange && sliderValue[0] > sliderValue[1]) {
+    sliderValue = [sliderValue[1], sliderValue[0]];
+  }
 
   return (
     <FilterShell
@@ -297,7 +304,9 @@ function NumericalFilter(props) {
 
       <div className={css({display: 'flex', justifyContent: 'space-between'})}>
         <Slider
-          allowOverlap={true}
+          // The slider throws errors when switching between single and two values
+          // when it tries to read getThumbDistance on a thumb which is not there anymore
+          // if we create a new instance these errors are prevented.
           key={isRange.toString()}
           min={min}
           max={max}
@@ -319,7 +328,7 @@ function NumericalFilter(props) {
             InnerThumb: function InnerThumb({$value, $thumbIndex}) {
               return <React.Fragment>{$value[$thumbIndex]}</React.Fragment>;
             },
-            TickBar: ({$min, $max}) => null,
+            TickBar: ({$min, $max}) => null, // we don't want the ticks
             ThumbValue: () => null,
             Root: {
               style: () => ({
@@ -343,6 +352,7 @@ function NumericalFilter(props) {
         className={css({
           display: 'flex',
           marginTop: theme.sizing.scale400,
+          // This % gap is visually appealing given the filter box width
           gap: '15%',
           justifyContent: 'space-between',
         })}
@@ -443,9 +453,9 @@ function NumericalColumn(options: OptionsT): NumericalColumnT {
     buildFilter: function(params) {
       return function(data) {
         const value = roundToFixed(data, normalizedOptions.precision);
-        return params.exclude
-          ? !(value >= params.lowerValue) || !(value <= params.upperValue)
-          : value >= params.lowerValue && value <= params.upperValue;
+        const included =
+          value >= params.lowerValue && value <= params.upperValue;
+        return params.exclude ? !included : included;
       };
     },
     cellBlockAlign: options.cellBlockAlign,
