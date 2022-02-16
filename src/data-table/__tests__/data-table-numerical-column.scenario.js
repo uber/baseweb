@@ -57,9 +57,6 @@ export function Scenario() {
         flexDirection: 'column',
       }}
     >
-      <div id="small">
-        <Filter close={() => {}} setFilter={() => {}} data={smallData} />
-      </div>
       <div id="default">
         <Filter close={() => {}} setFilter={() => {}} data={defaultData} />
       </div>
@@ -76,6 +73,9 @@ export function Scenario() {
           setFilter={() => {}}
           data={probabilityData}
         />
+      </div>
+      <div id="small">
+        <Filter close={() => {}} setFilter={() => {}} data={smallData} />
       </div>
     </div>
   );

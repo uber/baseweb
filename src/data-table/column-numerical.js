@@ -81,7 +81,7 @@ function validateInput(input) {
 const bisect = bisector(d => d.x0);
 
 // Depends on FILTER_SHELL_WIDTH
-const HISTOGRAM_SIZE = {width: 300, height: 120};
+const HISTOGRAM_SIZE = {width: 308, height: 120};
 
 // Arguably visually appealing within the given width.
 // Smaller and we don't have enough detail per bar.
@@ -126,10 +126,11 @@ const Histogram = React.memo(function Histogram({
       className={css({
         display: 'flex',
         marginTop: theme.sizing.scale600,
-        marginLeft: theme.sizing.scale400,
-        marginRight: theme.sizing.scale400,
+        marginLeft: theme.sizing.scale200,
+        marginRight: 0,
         marginBottom: theme.sizing.scale400,
         justifyContent: 'space-between',
+        overflow: 'visible',
       })}
     >
       <svg {...HISTOGRAM_SIZE}>
@@ -333,8 +334,8 @@ function NumericalFilter(props) {
             Root: {
               style: () => ({
                 // Aligns the center of the slider handles with the histogram bars
-                width: 'calc(100% + 4px)',
-                margin: '0 -2px',
+                width: 'calc(100% + 14px)',
+                margin: '0 -7px',
               }),
             },
             Thumb: {

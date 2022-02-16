@@ -152,7 +152,7 @@ describe('numerical column', () => {
       <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
     );
 
-    fireEvent.click(getByText('Exclude Range'));
+    fireEvent.click(getByText('Exclude range'));
     fireEvent.click(getByText('Apply'));
 
     expect(mockSetFilter.mock.calls.length).toBe(1);
