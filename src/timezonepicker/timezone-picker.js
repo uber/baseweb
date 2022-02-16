@@ -13,7 +13,7 @@ import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import {LocaleContext} from '../locale/index.js';
 import {Select} from '../select/index.js';
 
-import {zones} from './tzdata.json';
+import {zones} from './tzdata.js';
 import type {TimezonePickerPropsT, TimezonePickerStateT} from './types.js';
 
 class TimezonePicker extends React.Component<
