@@ -8,17 +8,12 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {
-  findTimeZone,
-  getZonedTime,
-  listTimeZones,
-} from 'timezone-support/dist/index-1900-2050.js';
-import {formatZonedTime} from 'timezone-support/dist/parse-format.js';
 
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import {LocaleContext} from '../locale/index.js';
 import {Select} from '../select/index.js';
 
+import {zones} from './tzdata.json';
 import type {TimezonePickerPropsT, TimezonePickerStateT} from './types.js';
 
 class TimezonePicker extends React.Component<
@@ -57,48 +52,83 @@ class TimezonePicker extends React.Component<
     }
   }
 
-  buildTimezones = (compareDate: Date) =>
-    listTimeZones()
-      .map(zone => {
-        const timezone = findTimeZone(zone);
-        const zonedTime = getZonedTime(compareDate, timezone);
-        const offsetTime =
-          (zonedTime.zone.offset < 0 ? '+' : '-') +
-          Math.abs(zonedTime.zone.offset / 60);
-        const abbreviation = formatZonedTime(zonedTime, 'z');
-        const formatted = `(GMT ${offsetTime}) ${zone}${
-          this.props.includeAbbreviations ? ` - ${abbreviation}` : ''
-        }`.replace('_', ' ');
+  buildTimezones = (compareDate: Date) => {
+    function zonedTime(date, zoneName) {
+      return new Date(
+        // eslint-disable-next-line cup/no-undef
+        new Intl.DateTimeFormat('en', {
+          timeZone: zoneName,
+          year: 'numeric',
+          month: 'numeric',
+          day: 'numeric',
+          hour: 'numeric',
+          minute: 'numeric',
+          hourCycle: 'h23',
+        }).format(date),
+      );
+    }
+
+    function zoneAbbreviation(date, zoneName) {
+      // eslint-disable-next-line cup/no-undef
+      const parts = Intl.DateTimeFormat('en', {
+        timeZone: zoneName,
+        timeZoneName: 'short',
+      }).formatToParts(date);
+
+      for (const part of parts) {
+        if (part.type === 'timeZoneName') {
+          return part.value;
+        }
+      }
+
+      console.warn(`No abbreviation found for time zone ${zoneName}`);
+
+      return '';
+    }
+
+    const utc = zonedTime(compareDate, 'UTC');
+    const timezones = zones.map(zoneName => {
+      try {
+        const zoned = zonedTime(compareDate, zoneName);
+        const offset = (zoned - utc) / 3_600_000;
+
+        const offsetFormatted = `${offset >= 0 ? '+' : '-'}${Math.abs(offset)}`;
+        let label = `(GMT${offsetFormatted}) ${zoneName.replace('_', ' ')}`;
+
+        if (this.props.includeAbbreviations) {
+          const abbreviation = zoneAbbreviation(compareDate, zoneName);
+          if (abbreviation) {
+            label += ` - ${abbreviation}`;
+          }
+        }
 
         const option = {
-          id: zone,
-          label: formatted,
-          offset: zonedTime.zone.offset,
+          id: zoneName,
+          label,
+          offset,
         };
+
         if (this.props.mapLabels) {
           option.label = this.props.mapLabels(option);
         }
-        return option;
-      })
-      // Formats 'noisy' timezones without a letter acronym.
-      .map(option => {
-        const rgx = /(\s-\s(\+|-)\d\d\d?\d?)$/;
-        const matches = option.label.match(rgx);
-        if (matches) {
-          const prefix = matches[0];
-          option.label = option.label.split(prefix)[0];
-        }
-        return option;
-      })
-      // Sorts W -> E, prioritizes america. could be more nuanced based on system tz but simple for now
-      .sort((a, b) => {
-        const offsetDelta = b.offset - a.offset;
-        if (offsetDelta !== 0) return offsetDelta;
 
-        if (a.label < b.label) return -1;
-        if (a.label > b.label) return 1;
-        return 0;
-      });
+        return option;
+      } catch (error) {
+        return null;
+      }
+    });
+
+    // Filters any timezones that are not available within a user's browser/operating system
+    // Sorts W -> E, prioritizes america. could be more nuanced based on system tz but simple for now
+    return timezones.filter(Boolean).sort((a, b) => {
+      const offsetDelta = b.offset - a.offset;
+      if (offsetDelta !== 0) return offsetDelta;
+
+      if (a.label < b.label) return -1;
+      if (a.label > b.label) return 1;
+      return 0;
+    });
+  };
 
   render() {
     const {overrides = {}} = this.props;
