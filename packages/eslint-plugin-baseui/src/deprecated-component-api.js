@@ -286,21 +286,6 @@ module.exports = {
           return;
         }
 
-        // successValue
-        // Ex: <Checkbox successValue={1} />
-        // Replacement: None
-        if (
-          importState.ProgressBar &&
-          isProp('successValue', importState.ProgressBar)
-        ) {
-          // The prop will be completely removed.
-          context.report({
-            node: node.parent.value.expression.property,
-            messageId: MESSAGES.progressBarSuccessValue.id,
-          });
-          return;
-        }
-
         // ======================
         // Deprecated Prop Values
         // ======================
