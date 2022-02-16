@@ -18,7 +18,7 @@ import {COLUMNS, NUMERICAL_FORMATS} from './constants.js';
 import FilterShell from './filter-shell.js';
 import type {ColumnT, SharedColumnOptionsT} from './types.js';
 import {LocaleContext} from '../locale/index.js';
-import {bin, max as maxFunc, extent, scaleLinear, median} from 'd3';
+import {bin, max as maxFunc, extent, scaleLinear, median, bisector} from 'd3';
 import {Slider} from '../slider/index.js';
 
 type NumericalFormats =
@@ -78,6 +78,8 @@ function validateInput(input) {
   return Boolean(parseFloat(input)) || input === '' || input === '-';
 }
 
+const bisect = bisector(d => d.x0);
+
 // Depends on FILTER_SHELL_WIDTH
 const HISTOGRAM_SIZE = {width: 300, height: 120};
 
@@ -90,6 +92,7 @@ const Histogram = React.memo(function Histogram({
   data,
   lower,
   upper,
+  isRange,
   exclude,
   precision,
 }) {
@@ -110,6 +113,14 @@ const Histogram = React.memo(function Histogram({
     return {bins, xScale, yScale};
   }, [data]);
 
+  // We need to find the index of bar which is nearest to the given single value
+  const singleIndexNearest = React.useMemo(() => {
+    if (isRange) {
+      return null;
+    }
+    return bisect.center(bins, lower);
+  }, [isRange, data, lower, upper]);
+
   return (
     <div
       className={css({
@@ -128,18 +139,23 @@ const Histogram = React.memo(function Histogram({
           const width = Math.max(0, xScale(d.x1) - xScale(d.x0) - 1);
           const height = yScale(0) - yScale(d.length);
 
-          const withinLower = d.x0 >= roundToFixed(lower, precision);
-          const withinUpper = d.x0 <= roundToFixed(upper, precision);
+          let included;
+          if (singleIndexNearest != null) {
+            included = exclude
+              ? index !== singleIndexNearest
+              : index === singleIndexNearest;
+          } else {
+            const withinLower = d.x1 >= lower;
+            const withinUpper = d.x0 <= upper;
+            included = exclude
+              ? !withinLower || !withinUpper
+              : withinLower && withinUpper;
+          }
 
-          const included = exclude
-            ? !withinLower || !withinUpper
-            : withinLower && withinUpper;
-
-          const fill = included ? theme.colors.primary : theme.colors.mono400;
           return (
             <rect
               key={`bar-${index}`}
-              fill={fill}
+              fill={included ? theme.colors.primary : theme.colors.mono400}
               x={x}
               y={y}
               width={width}
@@ -156,7 +172,9 @@ function NumericalFilter(props) {
   const [css, theme] = useStyletron();
   const locale = React.useContext(LocaleContext);
 
-  // The state handling of this component could be refactored and clean up if we used useReducer.
+  const precision = props.options.precision;
+
+  // The state handling of this component could be refactored and cleaned up if we used useReducer.
   const initialState = React.useMemo(() => {
     return (
       props.filterParams || {
@@ -174,32 +192,46 @@ function NumericalFilter(props) {
   // TODO look into allowing semantic names, similar to the radio component. Tricky part would be backwards compat
   const [comparatorIndex, setComparatorIndex] = React.useState(0);
 
-  // We use the d3 function to get the extent as it's a little more robust to null's, -Infinity, etc.
+  // We use the d3 function to get the extent as it's a little more robust to null, -Infinity, etc.
   const [min, max] = React.useMemo(() => extent(props.data), [props.data]);
 
-  const [lowerValue, setLower] = React.useState<number>(
-    () => initialState.lowerValue || min,
+  const [lv, setLower] = React.useState<number>(() =>
+    roundToFixed(initialState.lowerValue || min, precision),
   );
-  const [upperValue, setUpper] = React.useState<number>(
-    () => initialState.upperValue || max,
-  );
-
-  const [singleValue, setSingle] = React.useState<number>(() =>
-    roundToFixed(
-      initialState.lowerValue || median(props.data),
-      props.options.precision,
-    ),
+  const [uv, setUpper] = React.useState<number>(() =>
+    roundToFixed(initialState.upperValue || max, precision),
   );
 
+  // We keep a separate value for the single select, to give a user the ability to toggle between
+  // the range and single values without losing their previous input.
+  const [sv, setSingle] = React.useState<number>(() =>
+    roundToFixed(initialState.lowerValue || median(props.data), precision),
+  );
+
+  // This is the only conditional which we want to use to determine
+  // if we are in range or single value mode.
+  // Don't derive it via something else, e.g. lowerValue === upperValue, etc.
   const isRange = comparatorIndex === 0;
 
-  const leftInputRef = React.useRef(null);
-  const rightInputRef = React.useRef(null);
+  // while the user is inputting values, we take their input at face value,
+  // if we don't do this, a user can't input partial numbers, e.g. "-", or "3."
+  const [focused, setFocus] = React.useState(false);
+  const [inputValueLower, inputValueUpper] = React.useMemo(() => {
+    if (focused) {
+      return [isRange ? lv : sv, uv];
+    }
 
+    // once the user is done inputting we format to the given precision
+    return [
+      roundToFixed(isRange ? lv : sv, precision),
+      roundToFixed(uv, precision),
+    ];
+  }, [isRange, focused, sv, lv, uv, precision]);
+
+  // We bound the values within our min and max even if a user enters a huge number
   const sliderValue = isRange
-    ? // Bound the values within our min and max even if a user enters a huge number
-      [Math.max(+lowerValue, min), Math.min(+upperValue, max)]
-    : [Math.min(Math.max(+singleValue, min), max)];
+    ? [Math.max(+inputValueLower, min), Math.min(+inputValueUpper, max)]
+    : [Math.min(Math.max(+inputValueLower, min), max)];
 
   return (
     <FilterShell
@@ -208,21 +240,21 @@ function NumericalFilter(props) {
       excludeKind={isRange ? 'range' : 'value'}
       onApply={() => {
         if (isRange) {
-          const leftValue = parseFloat(lowerValue);
-          const rightValue = parseFloat(upperValue);
+          const lowerValue = parseFloat(inputValueLower);
+          const upperValue = parseFloat(inputValueUpper);
           props.setFilter({
-            description: `≥ ${leftValue} and ≤ ${rightValue}`,
+            description: `≥ ${lowerValue} and ≤ ${upperValue}`,
             exclude: exclude,
             lowerValue,
             upperValue,
           });
         } else {
-          const value = parseFloat(singleValue);
+          const value = parseFloat(inputValueLower);
           props.setFilter({
             description: `= ${value}`,
             exclude: exclude,
-            lowerValue: singleValue,
-            upperValue: singleValue,
+            lowerValue: inputValueLower,
+            upperValue: inputValueLower,
           });
         }
 
@@ -256,8 +288,9 @@ function NumericalFilter(props) {
 
       <Histogram
         data={props.data}
-        lower={isRange ? lowerValue : singleValue}
-        upper={isRange ? upperValue : singleValue}
+        lower={inputValueLower}
+        upper={inputValueUpper}
+        isRange={isRange}
         exclude={exclude}
         precision={props.options.precision}
       />
@@ -319,13 +352,15 @@ function NumericalFilter(props) {
           max={max}
           size={INPUT_SIZE.mini}
           overrides={{Root: {style: {width: '100%'}}}}
-          inputRef={leftInputRef}
-          value={isRange ? lowerValue : singleValue}
+          value={inputValueLower}
           onChange={event => {
             if (validateInput(event.target.value)) {
-              setLower(+event.target.value);
+              // $FlowFixMe - we know it is a number by now
+              setLower(event.target.value);
             }
           }}
+          onFocus={() => setFocus(true)}
+          onBlur={() => setFocus(false)}
         />
         {isRange && (
           <Input
@@ -336,13 +371,15 @@ function NumericalFilter(props) {
               Input: {style: {textAlign: 'right'}},
               Root: {style: {width: '100%'}},
             }}
-            inputRef={rightInputRef}
-            value={upperValue}
+            value={inputValueUpper}
             onChange={event => {
               if (validateInput(event.target.value)) {
-                setUpper(+event.target.value);
+                // $FlowFixMe - we know it is a number by now
+                setUpper(event.target.value);
               }
             }}
+            onFocus={() => setFocus(true)}
+            onBlur={() => setFocus(false)}
           />
         )}
       </div>
