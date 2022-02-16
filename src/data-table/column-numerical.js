@@ -18,7 +18,7 @@ import {COLUMNS, NUMERICAL_FORMATS} from './constants.js';
 import FilterShell from './filter-shell.js';
 import type {ColumnT, SharedColumnOptionsT} from './types.js';
 import {LocaleContext} from '../locale/index.js';
-import {bin, max as maxFunc, scaleLinear, median} from 'd3';
+import {bin, max as maxFunc, extent, scaleLinear, median} from 'd3';
 import {Slider} from '../slider/index.js';
 
 type NumericalFormats =
@@ -78,24 +78,35 @@ function validateInput(input) {
   return Boolean(parseFloat(input)) || input === '' || input === '-';
 }
 
-const MAX_BIN_COUNT = 30;
-const Histogram = React.memo(function Histogram({data, lower, upper, exclude}) {
-  const [css, theme] = useStyletron();
+// Depends on FILTER_SHELL_WIDTH
+const HISTOGRAM_SIZE = {width: 300, height: 120};
 
-  const size = {width: 300, height: 120};
+// Arguably visually appealing within the given width.
+// Smaller and we don't have enough detail per bar.
+// Larger and the bars are too granular and don't align well with the slider steps
+const MAX_BIN_COUNT = 50;
+
+const Histogram = React.memo(function Histogram({
+  data,
+  lower,
+  upper,
+  exclude,
+  precision,
+}) {
+  const [css, theme] = useStyletron();
 
   const {bins, xScale, yScale} = React.useMemo(() => {
     const bins = bin().thresholds(MAX_BIN_COUNT)(data);
 
     const xScale = scaleLinear()
       .domain([bins[0].x0, bins[bins.length - 1].x1])
-      .range([0, size.width])
+      .range([0, HISTOGRAM_SIZE.width])
       .clamp(true);
 
     const yScale = scaleLinear()
       .domain([0, maxFunc(bins, d => d.length)])
       .nice()
-      .range([size.height, 0]);
+      .range([HISTOGRAM_SIZE.height, 0]);
     return {bins, xScale, yScale};
   }, [data]);
 
@@ -110,15 +121,15 @@ const Histogram = React.memo(function Histogram({data, lower, upper, exclude}) {
         justifyContent: 'space-between',
       })}
     >
-      <svg {...size}>
+      <svg {...HISTOGRAM_SIZE}>
         {bins.map((d, index) => {
           const x = xScale(d.x0) + 1;
           const y = yScale(d.length);
           const width = Math.max(0, xScale(d.x1) - xScale(d.x0) - 1);
           const height = yScale(0) - yScale(d.length);
 
-          const withinLower = d[0] >= lower;
-          const withinUpper = d[0] <= upper;
+          const withinLower = d.x0 >= roundToFixed(lower, precision);
+          const withinUpper = d.x0 <= roundToFixed(upper, precision);
 
           const included = exclude
             ? !withinLower || !withinUpper
@@ -145,6 +156,7 @@ function NumericalFilter(props) {
   const [css, theme] = useStyletron();
   const locale = React.useContext(LocaleContext);
 
+  // The state handling of this component could be refactored and clean up if we used useReducer.
   const initialState = React.useMemo(() => {
     return (
       props.filterParams || {
@@ -155,11 +167,15 @@ function NumericalFilter(props) {
       }
     );
   }, [props.filterParams]);
+
   const [exclude, setExclude] = React.useState(initialState.exclude);
+
+  // the api of our ButtonGroup forces these numerical indexes...
+  // TODO look into allowing semantic names, similar to the radio component. Tricky part would be backwards compat
   const [comparatorIndex, setComparatorIndex] = React.useState(0);
 
-  const min = React.useMemo(() => Math.min(...props.data), [props.data]);
-  const max = React.useMemo(() => Math.max(...props.data), [props.data]);
+  // We use the d3 function to get the extent as it's a little more robust to null's, -Infinity, etc.
+  const [min, max] = React.useMemo(() => extent(props.data), [props.data]);
 
   const [lowerValue, setLower] = React.useState<number>(
     () => initialState.lowerValue || min,
@@ -168,8 +184,11 @@ function NumericalFilter(props) {
     () => initialState.upperValue || max,
   );
 
-  const [singleValue, setSingle] = React.useState<number>(
-    () => initialState.lowerValue || median(props.data),
+  const [singleValue, setSingle] = React.useState<number>(() =>
+    roundToFixed(
+      initialState.lowerValue || median(props.data),
+      props.options.precision,
+    ),
   );
 
   const isRange = comparatorIndex === 0;
@@ -182,18 +201,17 @@ function NumericalFilter(props) {
       [Math.max(+lowerValue, min), Math.min(+upperValue, max)]
     : [Math.min(Math.max(+singleValue, min), max)];
 
-  const inputWidth = isRange ? '206px' : '100%';
-
   return (
     <FilterShell
       exclude={exclude}
       onExcludeChange={() => setExclude(!exclude)}
+      excludeKind={isRange ? 'range' : 'value'}
       onApply={() => {
         if (isRange) {
           const leftValue = parseFloat(lowerValue);
           const rightValue = parseFloat(upperValue);
           props.setFilter({
-            description: `≥' ${leftValue} & ≤ ${rightValue}`,
+            description: `≥ ${leftValue} and ≤ ${rightValue}`,
             exclude: exclude,
             lowerValue,
             upperValue,
@@ -238,9 +256,10 @@ function NumericalFilter(props) {
 
       <Histogram
         data={props.data}
-        lower={isRange ? +lowerValue : singleValue}
-        upper={isRange ? +upperValue : singleValue}
+        lower={isRange ? lowerValue : singleValue}
+        upper={isRange ? upperValue : singleValue}
         exclude={exclude}
+        precision={props.options.precision}
       />
 
       <div className={css({display: 'flex', justifyContent: 'space-between'})}>
@@ -269,8 +288,16 @@ function NumericalFilter(props) {
             },
             TickBar: ({$min, $max}) => null,
             ThumbValue: () => null,
+            Root: {
+              style: () => ({
+                // Aligns the center of the slider handles with the histogram bars
+                width: 'calc(100% + 4px)',
+                margin: '0 -2px',
+              }),
+            },
             Thumb: {
               style: () => ({
+                // Slider handles are small enough to visually be centered within each histogram bar
                 height: '18px',
                 width: '18px',
                 fontSize: '0px',
@@ -291,13 +318,10 @@ function NumericalFilter(props) {
           min={min}
           max={max}
           size={INPUT_SIZE.mini}
-          overrides={{Root: {style: {width: inputWidth}}}}
+          overrides={{Root: {style: {width: '100%'}}}}
           inputRef={leftInputRef}
           value={isRange ? lowerValue : singleValue}
           onChange={event => {
-            if (isNaN(event.target.value)) {
-              return;
-            }
             if (validateInput(event.target.value)) {
               setLower(+event.target.value);
             }
@@ -308,14 +332,14 @@ function NumericalFilter(props) {
             min={min}
             max={max}
             size={INPUT_SIZE.mini}
-            overrides={{Root: {style: {width: inputWidth}}}}
+            overrides={{
+              Input: {style: {textAlign: 'right'}},
+              Root: {style: {width: '100%'}},
+            }}
             inputRef={rightInputRef}
             value={upperValue}
             onChange={event => {
               if (validateInput(event.target.value)) {
-                if (isNaN(event.target.value)) {
-                  return;
-                }
                 setUpper(+event.target.value);
               }
             }}
@@ -381,9 +405,10 @@ function NumericalColumn(options: OptionsT): NumericalColumnT {
     kind: COLUMNS.NUMERICAL,
     buildFilter: function(params) {
       return function(data) {
+        const value = roundToFixed(data, normalizedOptions.precision);
         return params.exclude
-          ? !(data >= params.lowerValue) || !(data <= params.upperValue)
-          : data >= params.lowerValue && data <= params.upperValue;
+          ? !(value >= params.lowerValue) || !(value <= params.upperValue)
+          : value >= params.lowerValue && value <= params.upperValue;
       };
     },
     cellBlockAlign: options.cellBlockAlign,
@@ -405,7 +430,6 @@ function NumericalColumn(options: OptionsT): NumericalColumnT {
     renderFilter: function RenderNumericalFilter(props) {
       return <NumericalFilter {...props} options={normalizedOptions} />;
     },
-    // $FlowFixMe - we spread the defaults already
     sortable: normalizedOptions.sortable,
     sortFn: function(a, b) {
       return a - b;

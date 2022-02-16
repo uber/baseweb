@@ -19,7 +19,7 @@ const Column = NumericalColumn({
 const Filter = Column.renderFilter;
 const randGen = randomLcg(42);
 
-const data = Array.from({length: 300}, randomBinomial.source(randGen)(80, 0.8));
+const data = Array.from({length: 300}, randomBinomial.source(randGen)(80, 0.9));
 
 export function Scenario() {
   return (

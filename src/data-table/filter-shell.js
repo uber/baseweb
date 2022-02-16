@@ -13,9 +13,15 @@ import {Checkbox, STYLE_TYPE} from '../checkbox/index.js';
 import {useStyletron} from '../styles/index.js';
 import {LocaleContext} from '../locale/index.js';
 
+type ExcludeKind = 'value' | 'range';
+
+// If modifying this, take a look at the histogram and adjust. see HISTOGRAM_SIZE
+const FILTER_SHELL_WIDTH = '320px';
+
 type PropsT = {
   children: React.Node,
   exclude: boolean,
+  excludeKind?: ExcludeKind,
   onExcludeChange: () => void,
   onApply: () => void,
 };
@@ -23,6 +29,17 @@ type PropsT = {
 function FilterShell(props: PropsT) {
   const [css, theme] = useStyletron();
   const locale = React.useContext(LocaleContext);
+  let excludeText;
+  switch (props.excludeKind) {
+    case 'value':
+      excludeText = locale.datatable.filterExcludeValue;
+      break;
+    case 'range':
+      excludeText = locale.datatable.filterExcludeRange;
+      break;
+    default:
+      excludeText = locale.datatable.filterExclude;
+  }
   return (
     <form
       className={css({
@@ -31,7 +48,7 @@ function FilterShell(props: PropsT) {
         paddingRight: theme.sizing.scale600,
         paddingBottom: theme.sizing.scale600,
         paddingLeft: theme.sizing.scale600,
-        width: '320px',
+        width: FILTER_SHELL_WIDTH,
       })}
       onSubmit={event => {
         event.preventDefault();
@@ -60,7 +77,7 @@ function FilterShell(props: PropsT) {
             checkmarkType={STYLE_TYPE.toggle_round}
             labelPlacement="right"
           >
-            {locale.datatable.filterExclude}
+            {excludeText}
           </Checkbox>
         </div>
 
