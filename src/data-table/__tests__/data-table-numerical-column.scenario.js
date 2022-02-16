@@ -30,6 +30,8 @@ const PercentageFilter = NumericalColumn({
 
 const randGen = randomLcg(42);
 
+const smallData = [1, 2, 2, 3, 4, 4, 4];
+
 const defaultData = Array.from(
   {length: 300},
   randomBinomial.source(randGen)(80, 0.9),
@@ -55,6 +57,9 @@ export function Scenario() {
         flexDirection: 'column',
       }}
     >
+      <div id="small">
+        <Filter close={() => {}} setFilter={() => {}} data={smallData} />
+      </div>
       <div id="default">
         <Filter close={() => {}} setFilter={() => {}} data={defaultData} />
       </div>

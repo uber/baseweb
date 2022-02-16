@@ -143,7 +143,7 @@ const Histogram = React.memo(function Histogram({
           if (singleIndexNearest != null) {
             included = index === singleIndexNearest;
           } else {
-            const withinLower = d.x1 >= lower;
+            const withinLower = d.x1 > lower;
             const withinUpper = d.x0 <= upper;
             included = withinLower && withinUpper;
           }
@@ -353,7 +353,7 @@ function NumericalFilter(props) {
           display: 'flex',
           marginTop: theme.sizing.scale400,
           // This % gap is visually appealing given the filter box width
-          gap: '15%',
+          gap: '30%',
           justifyContent: 'space-between',
         })}
       >
