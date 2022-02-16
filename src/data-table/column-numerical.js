@@ -353,11 +353,15 @@ function NumericalFilter(props) {
               }),
             },
             InnerTrack: {
-              style: ({$theme}) => ({
-                // For range selection we use the color as is, but when selecting the single value,
-                // we don't  want the track to standout so we mute its color
-                background: isRange ? undefined : theme.colors.mono400,
-              }),
+              style: ({$theme}) => {
+                if (!isRange) {
+                  return {
+                    // For range selection we use the color as is, but when selecting the single value,
+                    // we don't want the track standing out, so mute its color
+                    background: theme.colors.mono400,
+                  };
+                }
+              },
             },
             Thumb: {
               style: () => ({

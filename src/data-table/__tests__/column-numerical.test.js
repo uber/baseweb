@@ -161,7 +161,7 @@ describe('numerical column', () => {
     expect(filterParams.description).toBe('≥ 1 and ≤ 4');
 
     fireEvent.click(getByText('Single Value'));
-    fireEvent.click(getByText('Exclude Value'));
+    fireEvent.click(getByText('Exclude value'));
     fireEvent.click(getByText('Apply'));
 
     const [filterParamsSecond] = mockSetFilter.mock.calls[1];
@@ -176,6 +176,7 @@ describe('numerical column', () => {
       upperValue: 2,
       description: '',
       exclude: false,
+      excludeKind: 'range',
     });
     expect(eq(3)).toBe(false);
     expect(eq(2)).toBe(true);
@@ -187,6 +188,7 @@ describe('numerical column', () => {
       upperValue: 2,
       description: '',
       exclude: true,
+      excludeKind: 'range',
     });
 
     expect(eqE(3)).toBe(true);
@@ -203,6 +205,7 @@ describe('numerical column', () => {
       upperValue: 2.2,
       description: '',
       exclude: false,
+      excludeKind: 'range',
     });
     expect(eq(1)).toBe(false);
     expect(eq(1.1)).toBe(false);
@@ -215,6 +218,7 @@ describe('numerical column', () => {
       upperValue: 2.2,
       description: '',
       exclude: true,
+      excludeKind: 'range',
     });
     expect(eqE(1)).toBe(true);
     expect(eqE(1.1)).toBe(true);
@@ -235,6 +239,7 @@ describe('numerical column', () => {
       upperValue: 2.95,
       description: '',
       exclude: false,
+      excludeKind: 'value',
     });
     expect(eq(3)).toBe(false);
     expect(eq(2.95)).toBe(true);
@@ -253,6 +258,7 @@ describe('numerical column', () => {
       upperValue: 2.954,
       description: '',
       exclude: false,
+      excludeKind: 'value',
     });
     expect(eq(3)).toBe(false);
     expect(eq(2.954)).toBe(true);
