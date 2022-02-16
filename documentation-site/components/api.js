@@ -11,7 +11,7 @@ import Props from 'pretty-proptypes';
 
 import {Block} from 'baseui/block';
 import {Button, SIZE as ButtonSize, KIND as ButtonKind} from 'baseui/button';
-import {Paragraph3} from 'baseui/typography';
+import {ParagraphSmall} from 'baseui/typography';
 import {H3} from './markdown-elements';
 
 const API = props => {
@@ -26,7 +26,9 @@ const API = props => {
           shouldCollapseProps={true}
           components={{
             Description: props => {
-              return <Paragraph3 $as="div">{props.children}</Paragraph3>;
+              return (
+                <ParagraphSmall $as="div">{props.children}</ParagraphSmall>
+              );
             },
             Button: props => {
               return (
