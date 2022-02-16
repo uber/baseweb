@@ -43,8 +43,18 @@ async function main() {
       }
     }
 
-    const tzdataPath = path.join(__dirname, 'tzdata.json');
-    await fs.promises.writeFile(tzdataPath, JSON.stringify({zones}));
+    const file = [];
+    file.push('/* eslint-disable header/header */');
+    file.push('// @flow');
+    file.push('');
+    file.push('export const zones = [');
+    for (const zone of zones) {
+      file.push(`  '${zone}',`);
+    }
+    file.push('];');
+
+    const tzdataPath = path.join(__dirname, 'tzdata.js');
+    await fs.promises.writeFile(tzdataPath, file.join('\n'));
 
     // $FlowFixMe - flow is not aware of recursive option
     await fs.promises.rmdir(tmpDir, {recursive: true});
