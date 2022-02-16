@@ -94,8 +94,6 @@ export function Scenario() {
                 labelEnhancerContent={labelEnhancerText}
                 labelEnhancerPosition={labelEnhancerPosition[0].id}
                 badgeEnhancerSize={badgeEnhancerSize[0].id}
-                badgeEnhancerColor={null}
-                badgeEnhancerBackground={null}
                 badgeEnhancerContent={BadgeEnhancerContent}
               />
             ),

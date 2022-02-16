@@ -11,68 +11,19 @@ import {getOverrides} from '../helpers/overrides.js';
 import {
   PINHEAD_TYPES,
   NEEDLE_SIZES,
-  NEEDLE_HEIGHTS,
   PINHEAD_SIZES_SHAPES,
   LABEL_ENHANCER_POSITIONS,
   dragShadowHeight,
   dragShadowMarginTop,
-  dragShadowWidth,
 } from './constants.js';
 import PinHead from './pin-head.js';
+import Needle from './needle.js';
+import DragShadow from './drag-shadow.js';
 import {
   StyledFixedMarkerDragContainer,
   StyledFixedMarkerRoot,
-  StyledNeedle,
-  StyledDragShadow,
-  StyledDragShadowContainer,
 } from './styled-components.js';
-import type {
-  FixedMarkerPropsT,
-  NeedlePropsT,
-  DragShadowPropsT,
-} from './types.js';
-
-const Needle = ({size, background, overrides = {}}: NeedlePropsT) => {
-  const [Needle, needleProps] = getOverrides(overrides.Needle, StyledNeedle);
-  return (
-    <Needle
-      $background={background}
-      $height={NEEDLE_HEIGHTS[size]}
-      {...needleProps}
-    />
-  );
-};
-
-const DragShadow = ({
-  background,
-  dragging,
-  height,
-  overrides = {},
-}: DragShadowPropsT) => {
-  const [DragShadowContainer, dragShadowContainerProps] = getOverrides(
-    overrides.DragShadowContainer,
-    StyledDragShadowContainer,
-  );
-  const [DragShadow, dragShadowProps] = getOverrides(
-    overrides.DragShadow,
-    StyledDragShadow,
-  );
-
-  return (
-    <DragShadowContainer
-      $width={dragShadowWidth}
-      $height={height}
-      $dragging={dragging}
-      {...dragShadowContainerProps}
-    >
-      <DragShadow
-        $width={dragShadowWidth}
-        $background={background}
-        {...dragShadowProps}
-      />
-    </DragShadowContainer>
-  );
-};
+import type {FixedMarkerPropsT} from './types.js';
 
 const FixedMarker = ({
   size = PINHEAD_SIZES_SHAPES.medium,
@@ -86,11 +37,7 @@ const FixedMarker = ({
   overrides = {},
   labelEnhancerContent = null,
   labelEnhancerPosition = LABEL_ENHANCER_POSITIONS.bottom,
-  labelEnhancerColor,
-  labelEnhancerStrokeColor,
   badgeEnhancerSize = null,
-  badgeEnhancerColor = null,
-  badgeEnhancerBackground = null,
   badgeEnhancerContent = null,
   ...restProps
 }: FixedMarkerPropsT) => {
@@ -151,13 +98,9 @@ const FixedMarker = ({
           type={PINHEAD_TYPES.fixed}
           overrides={overrides}
           badgeEnhancerSize={badgeEnhancerSize}
-          badgeEnhancerColor={badgeEnhancerColor}
-          badgeEnhancerBackground={badgeEnhancerBackground}
           badgeEnhancerContent={badgeEnhancerContent}
           labelEnhancerContent={labelEnhancerContent}
           labelEnhancerPosition={labelEnhancerPosition}
-          labelEnhancerColor={labelEnhancerColor}
-          labelEnhancerStrokeColor={labelEnhancerStrokeColor}
           needle={needle}
         />
         {renderNeedle && (

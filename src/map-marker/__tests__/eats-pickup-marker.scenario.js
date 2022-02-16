@@ -96,6 +96,14 @@ export function Scenario() {
                 BadgeEnhancer: {
                   style: () => ({
                     boxShadow: theme.lighting.shadow600,
+                    color:
+                      hoveredLocationIndex === 0 || selectedLocationIndex === 0
+                        ? theme.colors.contentInversePrimary
+                        : theme.colors.contentPositive,
+                    backgroundColor:
+                      hoveredLocationIndex === 0 || selectedLocationIndex === 0
+                        ? theme.colors.backgroundPositive
+                        : theme.colors.backgroundPrimary,
                   }),
                 },
               }}
@@ -106,16 +114,6 @@ export function Scenario() {
                   : LABEL_ENHANCER_POSITIONS.none
               }
               badgeEnhancerSize={BADGE_ENHANCER_SIZES.mediumIcon}
-              badgeEnhancerBackground={
-                hoveredLocationIndex === 0 || selectedLocationIndex === 0
-                  ? theme.colors.backgroundPositive
-                  : theme.colors.backgroundPrimary
-              }
-              badgeEnhancerColor={
-                hoveredLocationIndex === 0 || selectedLocationIndex === 0
-                  ? theme.colors.contentInversePrimary
-                  : theme.colors.contentPositive
-              }
               badgeEnhancerContent={({size}) => <Search size={size} />}
               background={
                 hoveredLocationIndex === 0 || selectedLocationIndex === 0
@@ -181,6 +179,14 @@ export function Scenario() {
                 BadgeEnhancer: {
                   style: () => ({
                     boxShadow: theme.lighting.shadow600,
+                    color:
+                      hoveredLocationIndex === 2 || selectedLocationIndex === 2
+                        ? theme.colors.contentInversePrimary
+                        : theme.colors.contentPositive,
+                    backgroundColor:
+                      hoveredLocationIndex === 2 || selectedLocationIndex === 2
+                        ? theme.colors.backgroundPositive
+                        : theme.colors.backgroundPrimary,
                   }),
                 },
               }}
@@ -191,16 +197,6 @@ export function Scenario() {
                   : LABEL_ENHANCER_POSITIONS.none
               }
               badgeEnhancerSize={BADGE_ENHANCER_SIZES.mediumText}
-              badgeEnhancerBackground={
-                hoveredLocationIndex === 2 || selectedLocationIndex === 2
-                  ? theme.colors.backgroundPositive
-                  : theme.colors.backgroundPrimary
-              }
-              badgeEnhancerColor={
-                hoveredLocationIndex === 2 || selectedLocationIndex === 2
-                  ? theme.colors.contentInversePrimary
-                  : theme.colors.contentPositive
-              }
               badgeEnhancerContent={() => 'New'}
               background={
                 hoveredLocationIndex === 2 || selectedLocationIndex === 2

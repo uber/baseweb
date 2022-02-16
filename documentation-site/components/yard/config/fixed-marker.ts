@@ -101,18 +101,6 @@ export const fixedMarkerProps = {
       },
     },
   },
-  badgeEnhancerColor: {
-    value: undefined,
-    placeholder: '#fff',
-    type: PropTypes.String,
-    description: 'Color to render for badge.',
-  },
-  badgeEnhancerBackground: {
-    value: undefined,
-    placeholder: '#276EF1',
-    type: PropTypes.String,
-    description: 'Background color to render for badge.',
-  },
   badgeEnhancerContent: {
     value: '({size}) => <Check size={size}/>',
     placeholder: '({size}) => <Check size={size}/>',
@@ -141,18 +129,6 @@ export const fixedMarkerProps = {
         named: ['LABEL_ENHANCER_POSITIONS'],
       },
     },
-  },
-  labelEnhancerColor: {
-    value: undefined,
-    placeholder: '#000',
-    type: PropTypes.String,
-    description: 'Color for the label enhancer.',
-  },
-  labelEnhancerStrokeColor: {
-    value: undefined,
-    placeholder: '#fff',
-    type: PropTypes.String,
-    description: 'Stroke color for the label enhancer.',
   },
 };
 
