@@ -12,11 +12,9 @@ import {Button, SIZE as BUTTON_SIZE} from '../button/index.js';
 import {Checkbox, STYLE_TYPE} from '../checkbox/index.js';
 import {useStyletron} from '../styles/index.js';
 import {LocaleContext} from '../locale/index.js';
+import {FILTER_SHELL_WIDTH} from './constants.js';
 
-type ExcludeKind = 'value' | 'range';
-
-// If modifying this, take a look at the histogram and adjust. see HISTOGRAM_SIZE
-const FILTER_SHELL_WIDTH = '320px';
+export type ExcludeKind = 'value' | 'range';
 
 type PropsT = {
   children: React.Node,

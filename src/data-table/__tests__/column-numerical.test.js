@@ -169,26 +169,6 @@ describe('numerical column', () => {
     expect(filterParamsSecond.description).toBe('= 3');
   });
 
-  it.skip('hides 2nd input if filtering single value', () => {
-    const column = NumericalColumn({title: 'column', mapDataToValue: () => 0});
-    const Filter = column.renderFilter;
-
-    const mockSetFilter = jest.fn();
-    const data = [1, 2, 3, 4];
-    const {container, getByText} = render(
-      <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
-    );
-
-    const before = container.querySelectorAll(
-      'div[data-baseweb="input"] input',
-    );
-    expect(before.length).toBe(2);
-
-    fireEvent.click(getByText('Single Value'));
-    const after = container.querySelectorAll('div[data-baseweb="input"] input');
-    expect(after.length).toBe(1);
-  });
-
   it('builds default filter function for integers', () => {
     const column = NumericalColumn({title: 'column', mapDataToValue: () => 0});
     const eq = column.buildFilter({

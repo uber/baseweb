@@ -14,8 +14,13 @@ import {Input, SIZE as INPUT_SIZE} from '../input/index.js';
 import {useStyletron} from '../styles/index.js';
 
 import Column from './column.js';
-import {COLUMNS, NUMERICAL_FORMATS} from './constants.js';
-import FilterShell from './filter-shell.js';
+import {
+  COLUMNS,
+  NUMERICAL_FORMATS,
+  MAX_BIN_COUNT,
+  HISTOGRAM_SIZE,
+} from './constants.js';
+import FilterShell, {type ExcludeKind} from './filter-shell.js';
 import type {ColumnT, SharedColumnOptionsT} from './types.js';
 import {LocaleContext} from '../locale/index.js';
 import {bin, max as maxFunc, extent, scaleLinear, median, bisector} from 'd3';
@@ -38,6 +43,7 @@ type FilterParametersT = {|
   upperValue: number,
   description: string,
   exclude: boolean,
+  excludeKind: ExcludeKind,
 |};
 
 type NumericalColumnT = ColumnT<number, FilterParametersT>;
@@ -79,14 +85,6 @@ function validateInput(input) {
 }
 
 const bisect = bisector(d => d.x0);
-
-// Depends on FILTER_SHELL_WIDTH
-const HISTOGRAM_SIZE = {width: 308, height: 120};
-
-// Arguably visually appealing within the given width.
-// Smaller and we don't have enough detail per bar.
-// Larger and the bars are too granular and don't align well with the slider steps
-const MAX_BIN_COUNT = 50;
 
 const Histogram = React.memo(function Histogram({
   data,
@@ -180,6 +178,7 @@ function NumericalFilter(props) {
     return (
       props.filterParams || {
         exclude: false,
+        excludeKind: 'range',
         comparatorIndex: 0,
         lowerValue: null,
         upperValue: null,
@@ -191,7 +190,16 @@ function NumericalFilter(props) {
 
   // the api of our ButtonGroup forces these numerical indexes...
   // TODO look into allowing semantic names, similar to the radio component. Tricky part would be backwards compat
-  const [comparatorIndex, setComparatorIndex] = React.useState(0);
+  const [comparatorIndex, setComparatorIndex] = React.useState(() => {
+    switch (initialState.excludeKind) {
+      case 'value':
+        return 1;
+      case 'range':
+      default:
+        // fallthrough
+        return 0;
+    }
+  });
 
   // We use the d3 function to get the extent as it's a little more robust to null, -Infinity, etc.
   const [min, max] = React.useMemo(() => extent(props.data), [props.data]);
@@ -213,6 +221,8 @@ function NumericalFilter(props) {
   // if we are in range or single value mode.
   // Don't derive it via something else, e.g. lowerValue === upperValue, etc.
   const isRange = comparatorIndex === 0;
+
+  const excludeKind = isRange ? 'range' : 'value';
 
   // while the user is inputting values, we take their input at face value,
   // if we don't do this, a user can't input partial numbers, e.g. "-", or "3."
@@ -245,7 +255,7 @@ function NumericalFilter(props) {
     <FilterShell
       exclude={exclude}
       onExcludeChange={() => setExclude(!exclude)}
-      excludeKind={isRange ? 'range' : 'value'}
+      excludeKind={excludeKind}
       onApply={() => {
         if (isRange) {
           const lowerValue = parseFloat(inputValueLower);
@@ -255,6 +265,7 @@ function NumericalFilter(props) {
             exclude: exclude,
             lowerValue,
             upperValue,
+            excludeKind,
           });
         } else {
           const value = parseFloat(inputValueLower);
@@ -263,6 +274,7 @@ function NumericalFilter(props) {
             exclude: exclude,
             lowerValue: inputValueLower,
             upperValue: inputValueLower,
+            excludeKind,
           });
         }
 
@@ -283,12 +295,14 @@ function NumericalFilter(props) {
         <Button
           type="button"
           overrides={{BaseButton: {style: {width: '100%'}}}}
+          aria-label={locale.datatable.numericalFilterRange}
         >
           {locale.datatable.numericalFilterRange}
         </Button>
         <Button
           type="button"
           overrides={{BaseButton: {style: {width: '100%'}}}}
+          aria-label={locale.datatable.numericalFilterSingleValue}
         >
           {locale.datatable.numericalFilterSingleValue}
         </Button>
@@ -338,6 +352,13 @@ function NumericalFilter(props) {
                 margin: '0 -7px',
               }),
             },
+            InnerTrack: {
+              style: ({$theme}) => ({
+                // For range selection we use the color as is, but when selecting the single value,
+                // we don't  want the track to standout so we mute its color
+                background: isRange ? undefined : theme.colors.mono400,
+              }),
+            },
             Thumb: {
               style: () => ({
                 // Slider handles are small enough to visually be centered within each histogram bar
@@ -366,8 +387,11 @@ function NumericalFilter(props) {
           value={inputValueLower}
           onChange={event => {
             if (validateInput(event.target.value)) {
-              // $FlowFixMe - we know it is a number by now
-              setLower(event.target.value);
+              isRange
+                ? // $FlowFixMe - we know it is a number by now
+                  setLower(event.target.value)
+                : // $FlowFixMe - we know it is a number by now
+                  setSingle(event.target.value);
             }
           }}
           onFocus={() => setFocus(true)}
