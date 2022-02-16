@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {Block} from '../../block/index.js';
-import {Label2} from '../../typography/index.js';
+import {LabelMedium} from '../../typography/index.js';
 import {Datepicker, TimePicker, TimezonePicker} from '../index.js';
 
 const DATE = new Date('2019-07-03T12:00:00Z');
@@ -23,7 +23,7 @@ export function Scenario() {
         flexDirection="column"
         justifyContent="space-between"
       >
-        <Label2>Datepicker</Label2>
+        <LabelMedium>Datepicker</LabelMedium>
         <Datepicker value={DATE} />
         <Datepicker value={DATE} disabled />
         <Datepicker value={DATE} positive />
@@ -36,7 +36,7 @@ export function Scenario() {
         flexDirection="column"
         justifyContent="space-between"
       >
-        <Label2>TimePicker</Label2>
+        <LabelMedium>TimePicker</LabelMedium>
         <TimePicker value={DATE} />
         <TimePicker value={DATE} disabled />
         <TimePicker value={DATE} positive />
@@ -49,7 +49,7 @@ export function Scenario() {
         flexDirection="column"
         justifyContent="space-between"
       >
-        <Label2>TimezonePicker</Label2>
+        <LabelMedium>TimezonePicker</LabelMedium>
         <TimezonePicker />
         <TimezonePicker disabled />
         <TimezonePicker positive />

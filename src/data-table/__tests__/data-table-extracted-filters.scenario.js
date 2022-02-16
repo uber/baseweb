@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {useStyletron} from '../../styles/index.js';
-import {Label4} from '../../typography/index.js';
+import {LabelXSmall} from '../../typography/index.js';
 
 import {
   DataTable,
@@ -101,9 +101,9 @@ export function Scenario() {
                         paddingRight: '16px',
                       })}
                     >
-                      <Label4>
+                      <LabelXSmall>
                         {column.title}:{activeFilter.description}
-                      </Label4>
+                      </LabelXSmall>
                       <button onClick={() => onFilterRemove(column.title)}>
                         x
                       </button>

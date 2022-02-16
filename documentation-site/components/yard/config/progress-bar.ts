@@ -65,11 +65,17 @@ const ProgressBarConfig: TConfig = {
       description:
         'Defines how many steps the progress bar has. Defaults to 1.',
     },
-    successValue: {
-      value: 100,
+    minValue: {
+      value: '0',
+      defaultValue: '0',
       type: PropTypes.Number,
-      description: 'A custom completion value. Will be removed in v11.',
-      hidden: true,
+      description: 'The smallest value allowed.',
+    },
+    maxValue: {
+      value: '100',
+      defaultValue: '100',
+      type: PropTypes.Number,
+      description: 'The biggest value allowed.',
     },
     errorMessage: {
       value: undefined,
