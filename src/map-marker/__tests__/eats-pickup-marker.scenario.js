@@ -93,6 +93,22 @@ export function Scenario() {
                       ),
                   },
                 },
+                PinHead: {
+                  style: {
+                    backgroundColor:
+                      hoveredLocationIndex === 0 || selectedLocationIndex === 0
+                        ? theme.colors.backgroundInverseSecondary
+                        : theme.colors.backgroundPrimary,
+                  },
+                },
+                PinHeadContent: {
+                  style: {
+                    color:
+                      hoveredLocationIndex === 0 || selectedLocationIndex === 0
+                        ? theme.colors.primaryB
+                        : theme.colors.primaryA,
+                  },
+                },
                 BadgeEnhancer: {
                   style: () => ({
                     boxShadow: theme.lighting.shadow600,
@@ -115,16 +131,6 @@ export function Scenario() {
               }
               badgeEnhancerSize={BADGE_ENHANCER_SIZES.mediumIcon}
               badgeEnhancerContent={({size}) => <Search size={size} />}
-              background={
-                hoveredLocationIndex === 0 || selectedLocationIndex === 0
-                  ? theme.colors.backgroundInverseSecondary
-                  : theme.colors.backgroundPrimary
-              }
-              color={
-                hoveredLocationIndex === 0 || selectedLocationIndex === 0
-                  ? theme.colors.primaryB
-                  : theme.colors.primaryA
-              }
             />
           </Marker>
 
@@ -176,6 +182,22 @@ export function Scenario() {
                       ),
                   },
                 },
+                PinHead: {
+                  style: {
+                    backgroundColor:
+                      hoveredLocationIndex === 2 || selectedLocationIndex === 2
+                        ? theme.colors.backgroundInverseSecondary
+                        : theme.colors.backgroundPrimary,
+                  },
+                },
+                PinHeadContent: {
+                  style: {
+                    color:
+                      hoveredLocationIndex === 2 || selectedLocationIndex === 2
+                        ? theme.colors.primaryB
+                        : theme.colors.primaryA,
+                  },
+                },
                 BadgeEnhancer: {
                   style: () => ({
                     boxShadow: theme.lighting.shadow600,
@@ -198,16 +220,6 @@ export function Scenario() {
               }
               badgeEnhancerSize={BADGE_ENHANCER_SIZES.mediumText}
               badgeEnhancerContent={() => 'New'}
-              background={
-                hoveredLocationIndex === 2 || selectedLocationIndex === 2
-                  ? theme.colors.backgroundInverseSecondary
-                  : theme.colors.backgroundPrimary
-              }
-              color={
-                hoveredLocationIndex === 2 || selectedLocationIndex === 2
-                  ? theme.colors.primaryB
-                  : theme.colors.primaryA
-              }
             />
           </Marker>
         </ReactMapGL>

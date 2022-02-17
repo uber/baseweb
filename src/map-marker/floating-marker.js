@@ -36,8 +36,6 @@ function getAnchorPinHeadSize(anchorType) {
 }
 
 const FloatingMarker = ({
-  color,
-  background,
   label,
   size = PINHEAD_SIZES_SHAPES.medium,
   anchor = FLOATING_MARKER_ANCHOR_POSITIONS.bottomLeft,
@@ -50,8 +48,6 @@ const FloatingMarker = ({
   const {
     colors: {backgroundPrimary, backgroundInversePrimary, primaryA, primaryB},
   } = theme;
-  color = color || primaryA;
-  background = background || backgroundPrimary;
 
   const anchorPinHeadSize = getAnchorPinHeadSize(anchorType);
 
@@ -88,8 +84,8 @@ const FloatingMarker = ({
       >
         <PinHead
           size={size}
-          color={color}
-          background={background}
+          color={primaryA}
+          background={backgroundPrimary}
           type={PINHEAD_TYPES.floating}
           label={label}
           startEnhancer={startEnhancer}

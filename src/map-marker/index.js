@@ -16,6 +16,7 @@ export {
   PINHEAD_SIZES_SHAPES,
   BADGE_ENHANCER_SIZES,
   LABEL_ENHANCER_POSITIONS,
+  KIND,
 } from './constants.js';
 
 export type * from './types.js';

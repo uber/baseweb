@@ -54,6 +54,12 @@ export interface LABEL_ENHANCER_POSITIONS {
   bottom: 'bottom';
 }
 
+export interface KIND {
+  default: 'default';
+  accent: 'accent';
+  negative: 'negative';
+}
+
 interface PINHEAD_TYPES {
   floating: 'floating';
   fixed: 'fixed';
@@ -67,6 +73,7 @@ export type FloatingMarkerSizeT = FLOATING_MARKER_SIZES[keyof FLOATING_MARKER_SI
 export type FloatingMarkerAnchorTypeT = FLOATING_MARKER_ANCHOR_TYPES[keyof FLOATING_MARKER_ANCHOR_TYPES];
 export type BadgeEnhancerSizeT = BADGE_ENHANCER_SIZES[keyof BADGE_ENHANCER_SIZES];
 export type LabelEnhancerPositionT = LABEL_ENHANCER_POSITIONS[keyof LABEL_ENHANCER_POSITIONS];
+export type KindT = KIND[keyof KIND];
 
 export type FixedMarkerOverridesT = {
   Root?: Override<any>;
@@ -127,6 +134,7 @@ export type FixedMarkerPropsT = BadgeEnhancerT &
     label?: string;
     startEnhancer?: (props: {size: number}) => React.ReactNode;
     endEnhancer?: (props: {size: number}) => React.ReactNode;
+    kind?: KindT;
     color?: string;
     background?: string;
     dragging?: boolean;
@@ -151,8 +159,6 @@ export type FloatingMarkerOverridesT = {
 };
 
 export type FloatingMarkerPropsT = {
-  color?: string;
-  background?: string;
   label?: string;
   anchor?: AnchorPositionsT;
   endEnhancer?: (props: {size: number}) => React.ReactNode;
@@ -190,6 +196,7 @@ export const NEEDLE_SIZES: NEEDLE_SIZES;
 export const PINHEAD_SIZES_SHAPES: PINHEAD_SIZES_SHAPES;
 export const BADGE_ENHANCER_SIZES: BADGE_ENHANCER_SIZES;
 export const LABEL_ENHANCER_POSITIONS: LABEL_ENHANCER_POSITIONS;
+export const KIND: KIND;
 
 export const FixedMarker: React.FC<FixedMarkerPropsT>;
 export const FloatingMarker: React.FC<FloatingMarkerPropsT>;

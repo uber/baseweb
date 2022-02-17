@@ -2,6 +2,7 @@ import {
   FixedMarker,
   PINHEAD_SIZES_SHAPES,
   NEEDLE_SIZES,
+  KIND,
   BADGE_ENHANCER_SIZES,
   LABEL_ENHANCER_POSITIONS,
 } from 'baseui/map-marker';
@@ -76,17 +77,18 @@ export const fixedMarkerProps = {
       },
     },
   },
-  background: {
-    value: undefined,
-    placeholder: '#000',
-    type: PropTypes.String,
-    description: 'Color to render for background.',
-  },
-  color: {
-    value: undefined,
-    placeholder: '#fff',
-    type: PropTypes.String,
-    description: 'Color to render for content.',
+  kind: {
+    value: 'KIND.default',
+    enumName: 'KIND',
+    defaultValue: 'KIND.default',
+    options: KIND,
+    type: PropTypes.Enum,
+    description: 'Kind changes colors of the PinHead, Needle and DragShadow.',
+    imports: {
+      'baseui/map-marker': {
+        named: ['KIND'],
+      },
+    },
   },
   badgeEnhancerSize: {
     value: 'BADGE_ENHANCER_SIZES.none',
@@ -145,6 +147,7 @@ const FixedMarkerConfig: TConfig = {
   scope: {
     FixedMarker,
     NEEDLE_SIZES,
+    KIND,
     PINHEAD_SIZES_SHAPES,
     BADGE_ENHANCER_SIZES,
     Check,
