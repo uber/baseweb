@@ -69,7 +69,6 @@ export default function SnackbarProvider({
 
   function enqueue(elementProps, duration = defaultDuration) {
     setSnackbars(prev => {
-      console.log('enqueue');
       return [...prev, {elementProps, duration}];
     });
   }
