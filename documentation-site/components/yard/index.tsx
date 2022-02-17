@@ -16,7 +16,7 @@ import {
   ThemeProvider,
 } from 'baseui';
 import {Card} from 'baseui/card';
-import {StyledSpinnerNext as Spinner} from 'baseui/spinner';
+import {Spinner} from 'baseui/spinner';
 
 import {useView, Compiler, Error} from 'react-view';
 
@@ -109,7 +109,7 @@ const Yard: React.FC<TYardProps> = ({
               alignItems: 'center',
             })}
           >
-            <Spinner size={placeholderHeight > 50 ? 50 : placeholderHeight} />
+            <Spinner $size={placeholderHeight > 50 ? 50 : placeholderHeight} />
           </div>
         )}
       />
