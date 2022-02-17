@@ -20,7 +20,6 @@ import Footer from './footer';
 import PencilIcon from './pencil-icon';
 import Routes from '../routes';
 import DirectionContext from '../components/direction-context';
-import ComponentSizes from '../../component-sizes.json';
 import SkipToContent from './skip-to-content';
 
 const GH_URL =
@@ -115,8 +114,6 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
     if (path.includes('/components')) {
       component = path.replace('/components/', '');
     }
-    const componentStats = ComponentSizes[component] || {};
-    const componentSizeKb = Math.floor(componentStats.gzip / 1000);
 
     const route = findByPath(Routes, path);
     let isGitHubEditDisabled;
@@ -199,11 +196,6 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
                     </Button>
                   </Block>
                 )}
-                {componentSizeKb ? (
-                  <Block font="font100">
-                    Component size, gzipped: {componentSizeKb}kb
-                  </Block>
-                ) : null}
                 <MDXProvider components={MarkdownElements}>
                   {children}
                 </MDXProvider>
