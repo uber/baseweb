@@ -53,6 +53,7 @@ const withTM = require('next-transpile-modules')([
   'gensync',
   'string-width',
   'jsesc',
+  'd3',
 ]);
 
 module.exports = withTM(
@@ -71,6 +72,12 @@ module.exports = withTM(
       webpack: (config, {buildId, dev, isServer, defaultLoaders}) => {
         config.resolve.alias.baseui = resolve(__dirname, '../dist');
         config.resolve.alias.examples = resolve(__dirname, 'examples');
+        // Force a non esm bundle of d3.
+        // Can remove once we upgrade to next 11 or 12 which has support for es modules.
+        config.resolve.alias.d3 = resolve(
+          __dirname,
+          '../node_modules/d3/dist/d3.min.js',
+        );
         // references next polyfills example: https://github.com/zeit/next.js/tree/canary/examples/with-polyfills
         const originalEntry = config.entry;
         config['node'] = {fs: 'empty'};
