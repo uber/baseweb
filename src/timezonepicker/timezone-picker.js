@@ -13,8 +13,12 @@ import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import {LocaleContext} from '../locale/index.js';
 import {Select} from '../select/index.js';
 
+import type {
+  TimezonePickerPropsT,
+  TimezonePickerStateT,
+  TimezoneT,
+} from './types.js';
 import {zones} from './tzdata.js';
-import type {TimezonePickerPropsT, TimezonePickerStateT} from './types.js';
 
 class TimezonePicker extends React.Component<
   TimezonePickerPropsT,
@@ -52,7 +56,7 @@ class TimezonePicker extends React.Component<
     }
   }
 
-  buildTimezones = (compareDate: Date) => {
+  buildTimezones = (compareDate: Date): TimezoneT[] => {
     function zonedTime(date, zoneName) {
       return new Date(
         // eslint-disable-next-line cup/no-undef
@@ -87,7 +91,8 @@ class TimezonePicker extends React.Component<
     }
 
     const utc = zonedTime(compareDate, 'UTC');
-    const timezones = zones.map(zoneName => {
+    const timezones: TimezoneT[] = [];
+    for (const zoneName of zones) {
       try {
         const zoned = zonedTime(compareDate, zoneName);
         const offset = (zoned - utc) / 3_600_000;
@@ -102,30 +107,26 @@ class TimezonePicker extends React.Component<
           }
         }
 
-        const option = {
+        timezones.push({
           id: zoneName,
           label,
           offset,
-        };
-
-        if (this.props.mapLabels) {
-          option.label = this.props.mapLabels(option);
-        }
-
-        return option;
+        });
       } catch (error) {
-        return null;
+        // Ignores timezones that are not available within a user's browser/operating system
+        console.error(`failed to format zone name ${zoneName}`);
       }
-    });
+    }
 
-    // Filters any timezones that are not available within a user's browser/operating system
     // Sorts W -> E, prioritizes america. could be more nuanced based on system tz but simple for now
-    return timezones.filter(Boolean).sort((a, b) => {
+    return timezones.sort((a, b) => {
       const offsetDelta = b.offset - a.offset;
       if (offsetDelta !== 0) return offsetDelta;
 
-      if (a.label < b.label) return -1;
-      if (a.label > b.label) return 1;
+      if (typeof a.label === 'string' && typeof b.label === 'string') {
+        if (a.label < b.label) return -1;
+        if (a.label > b.label) return 1;
+      }
       return 0;
     });
   };
@@ -146,12 +147,21 @@ class TimezonePicker extends React.Component<
     // $FlowFixMe
     selectProps.overrides = selectOverrides;
 
+    let options = this.state.timezones;
+    if (this.props.mapLabels) {
+      options = options.map(option => {
+        // $FlowFixMe - TimezoneT.label is a string, but mapLabels can return a React.Node
+        option.label = this.props.mapLabels(option);
+        return option;
+      });
+    }
+
     return (
       <LocaleContext.Consumer>
         {locale => (
           <OverriddenSelect
             aria-label={locale.datepicker.timezonePickerAriaLabel}
-            options={this.state.timezones}
+            options={options}
             clearable={false}
             disabled={this.props.disabled}
             error={this.props.error}
