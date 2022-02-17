@@ -69,6 +69,7 @@ export default function SnackbarProvider({
 
   function enqueue(elementProps, duration = defaultDuration) {
     setSnackbars(prev => {
+      console.log('enqueue');
       return [...prev, {elementProps, duration}];
     });
   }
@@ -93,10 +94,11 @@ export default function SnackbarProvider({
   }
 
   function enter(duration) {
+    console.log('enter');
     setAnimating(true);
     setTimeout(() => {
-      setAnimating(false);
       display(duration);
+      setAnimating(false);
     }, 1000);
   }
 

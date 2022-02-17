@@ -102,17 +102,12 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
     const {sidebarOpen} = this.state;
     const {toggleTheme, toggleDirection, children} = this.props;
     let {path = ''} = this.props;
-    let component;
 
     // strip the query string
     path = path.split('?')[0];
 
     if (path && path.endsWith('/')) {
       path = path.slice(0, -1);
-    }
-
-    if (path.includes('/components')) {
-      component = path.replace('/components/', '');
     }
 
     const route = findByPath(Routes, path);
