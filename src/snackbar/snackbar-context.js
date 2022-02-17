@@ -95,8 +95,8 @@ export default function SnackbarProvider({
   function enter(duration) {
     setAnimating(true);
     setTimeout(() => {
-      display(duration);
       setAnimating(false);
+      display(duration);
     }, 1000);
   }
 
