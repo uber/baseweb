@@ -51,6 +51,7 @@ For more information on the design principles behind the Base map markers, pleas
   - The `xxSmall` or `xSmall` pinhead sizes cannot contain any content.
 - A fixed marker may have either no needle or a choice of 3 different sizes: `short`, `medium`, or `tall`.
 - A fixed marker without a label can only have one icon. As such, do not use both a `startEnhancer` and an `endEnhancer` if there is no label.
+- A fixed marker can have a kind property that changes the colors of PinHead, PinHeadContent, Needle and DragShadow.
 - A fixed marker can have a badge enhancer of the following sizes: `xSmall`, `small`, `mediumText`, `mediumIcon`.
   - The `xSmall` cannot have any content.
   - The `small` can only have an icon as a content.
@@ -88,7 +89,7 @@ A fixed map marker with a start enhancer icon and a label. Icons can be passed t
   <EndEnhancerColor />
 </Example>
 
-A fixed map marker with an end enhancer icon, a label, and custom styling. Background and color properties can be modified.
+A fixed map marker with an end enhancer icon, a label, and custom styling.
 
 <Example
   title="Large size with only an icon"

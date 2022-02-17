@@ -6,13 +6,14 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {useStyletron} from '../styles/index.js';
+import {useStyletron, type ThemeT} from '../styles/index.js';
 import {getOverrides} from '../helpers/overrides.js';
 import {
   PINHEAD_TYPES,
   NEEDLE_SIZES,
   PINHEAD_SIZES_SHAPES,
   LABEL_ENHANCER_POSITIONS,
+  KIND,
   dragShadowHeight,
   dragShadowMarginTop,
 } from './constants.js';
@@ -23,7 +24,31 @@ import {
   StyledFixedMarkerDragContainer,
   StyledFixedMarkerRoot,
 } from './styled-components.js';
-import type {FixedMarkerPropsT} from './types.js';
+import type {FixedMarkerPropsT, KindT} from './types.js';
+
+type Colors = {
+  color: string,
+  backgroundColor: string,
+};
+
+function getColors(kind: KindT, theme: ThemeT): Colors {
+  if (kind === KIND.accent) {
+    return {
+      color: theme.colors.contentInversePrimary,
+      backgroundColor: theme.colors.backgroundAccent,
+    };
+  }
+  if (kind === KIND.negative) {
+    return {
+      color: theme.colors.contentInversePrimary,
+      backgroundColor: theme.colors.backgroundNegative,
+    };
+  }
+  return {
+    color: theme.colors.contentInversePrimary,
+    backgroundColor: theme.colors.backgroundInversePrimary,
+  };
+}
 
 const FixedMarker = ({
   size = PINHEAD_SIZES_SHAPES.medium,
@@ -31,8 +56,7 @@ const FixedMarker = ({
   label,
   startEnhancer,
   endEnhancer,
-  color,
-  background,
+  kind = KIND.default,
   dragging = false,
   overrides = {},
   labelEnhancerContent = null,
@@ -42,12 +66,7 @@ const FixedMarker = ({
   ...restProps
 }: FixedMarkerPropsT) => {
   const [, theme] = useStyletron();
-  const {
-    colors: {backgroundInversePrimary, primaryB},
-  } = theme;
-
-  color = color || primaryB;
-  background = background || backgroundInversePrimary;
+  const {color, backgroundColor} = getColors(kind, theme);
 
   const doesPinHeadTransformOnDrag =
     needle !== NEEDLE_SIZES.none &&
@@ -94,7 +113,7 @@ const FixedMarker = ({
           {...(startEnhancer ? {startEnhancer} : {})}
           {...(endEnhancer ? {endEnhancer} : {})}
           color={color}
-          background={background}
+          background={backgroundColor}
           type={PINHEAD_TYPES.fixed}
           overrides={overrides}
           badgeEnhancerSize={badgeEnhancerSize}
@@ -104,12 +123,16 @@ const FixedMarker = ({
           needle={needle}
         />
         {renderNeedle && (
-          <Needle size={needle} background={background} overrides={overrides} />
+          <Needle
+            size={needle}
+            background={backgroundColor}
+            overrides={overrides}
+          />
         )}
       </FixedMarkerDragContainer>
       {doesPinHeadTransformOnDrag && (
         <DragShadow
-          background={background}
+          background={backgroundColor}
           dragging={dragging}
           height={dragShadowMarginTop + dragShadowHeight}
           overrides={overrides}

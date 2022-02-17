@@ -214,3 +214,9 @@ export const BADGE_ENHANCER_CONTENT_SIZE = {
   [BADGE_ENHANCER_SIZES.mediumText]: 12,
   [BADGE_ENHANCER_SIZES.mediumIcon]: 12,
 };
+
+export const KIND = Object.freeze({
+  default: 'default',
+  accent: 'accent',
+  negative: 'negative',
+});

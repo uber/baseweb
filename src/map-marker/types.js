@@ -15,6 +15,7 @@ import {
   FLOATING_MARKER_ANCHOR_TYPES,
   BADGE_ENHANCER_SIZES,
   LABEL_ENHANCER_POSITIONS,
+  KIND,
 } from './constants.js';
 import type {OverrideT} from '../helpers/overrides.js';
 
@@ -36,6 +37,8 @@ export type FloatingMarkerAnchorTypeT = $Values<
 export type BadgeEnhancerSizeT = $Values<typeof BADGE_ENHANCER_SIZES>;
 
 export type LabelEnhancerPositionT = $Values<typeof LABEL_ENHANCER_POSITIONS>;
+
+export type KindT = $Values<typeof KIND>;
 
 export type FixedMarkerOverridesT = {
   Root?: OverrideT,
@@ -99,8 +102,7 @@ export type FixedMarkerPropsT = {|
   label?: string,
   startEnhancer?: React.AbstractComponent<{|size: number|}>,
   endEnhancer?: React.AbstractComponent<{|size: number|}>,
-  color?: string,
-  background?: string,
+  kind?: KindT,
   dragging?: boolean,
   overrides?: FixedMarkerOverridesT,
   ...BadgeEnhancerT,
@@ -125,8 +127,6 @@ export type FloatingMarkerOverridesT = {
 };
 
 export type FloatingMarkerPropsT = {
-  color?: string,
-  background?: string,
   label?: string,
   anchor?: AnchorPositionsT,
   endEnhancer?: React.AbstractComponent<{|size: number|}>,
