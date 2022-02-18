@@ -6,8 +6,7 @@ import {
   BADGE_ENHANCER_SIZES,
   LABEL_ENHANCER_POSITIONS,
 } from 'baseui/map-marker';
-import Show from 'baseui/icon/show';
-import Search from 'baseui/icon/search';
+import {Show, Search} from 'baseui/icon';
 import {useStyletron} from 'baseui';
 
 export default function Example() {

@@ -43,7 +43,8 @@ export interface BADGE_ENHANCER_SIZES {
   none: 'none';
   xSmall: 'x-small';
   small: 'small';
-  medium: 'medium';
+  mediumText: 'medium-text';
+  mediumIcon: 'medium-icon';
 }
 
 export interface LABEL_ENHANCER_POSITIONS {
@@ -86,6 +87,9 @@ export type FixedMarkerOverridesT = {
   DragShadow?: Override<any>;
   DragShadowContainer?: Override<any>;
   DragContainer?: Override<any>;
+  BadgeEnhancer?: Override<any>;
+  LabelEnhancer?: Override<any>;
+  LabelEnhancerContainer?: Override<any>;
 };
 
 export type NeedlePropsT = {

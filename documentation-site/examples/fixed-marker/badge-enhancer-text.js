@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
 import {FixedMarker, BADGE_ENHANCER_SIZES} from 'baseui/map-marker';
-import Show from 'baseui/icon/show';
+import {Show} from 'baseui/icon';
 
 export default function Example() {
   return (
@@ -9,7 +9,7 @@ export default function Example() {
       <FixedMarker
         startEnhancer={({size}) => <Show size={size} />}
         badgeEnhancerSize={BADGE_ENHANCER_SIZES.mediumText}
-        badgeEnhancerContent={({size}) => 'New'}
+        badgeEnhancerContent={() => 'New'}
         overrides={{
           BadgeEnhancer: {
             style: {
