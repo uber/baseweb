@@ -22,13 +22,13 @@ export default function Example() {
       onViewportChange={viewport => setViewport(viewport)}
       mapboxApiAccessToken="pk.eyJ1IjoiYmFiYnN1YmVyIiwiYSI6ImNrdThqeGkxZTVwb3kyd3BpZGRlc2NlOXUifQ.qh-EtXm2DJQZVprWUJ-GFQ"
     >
-      <Marker {...uberHq} offsetTop={-48}>
+      <Marker {...uberHq}>
         <FixedMarker
           label="Uber HQ"
           overrides={{
             Root: {
               style: () => ({
-                transform: `translate(-50%, 0)`,
+                transform: `translate(-50%, -100%)`,
               }),
             },
           }}

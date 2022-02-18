@@ -6,72 +6,49 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {useStyletron} from '../styles/index.js';
+import {useStyletron, type ThemeT} from '../styles/index.js';
 import {getOverrides} from '../helpers/overrides.js';
 import {
   PINHEAD_TYPES,
   NEEDLE_SIZES,
-  NEEDLE_HEIGHTS,
   PINHEAD_SIZES_SHAPES,
+  LABEL_ENHANCER_POSITIONS,
+  KIND,
   dragShadowHeight,
   dragShadowMarginTop,
-  dragShadowWidth,
 } from './constants.js';
 import PinHead from './pin-head.js';
+import Needle from './needle.js';
+import DragShadow from './drag-shadow.js';
 import {
-  FixedMarkerDragContainer as StyledFixedMarkerDragContainer,
-  FixedMarkerRoot as StyledRoot,
-  Needle as StyledNeedle,
-  DragShadow as StyledDragShadow,
-  DragShadowContainer as StyledDragShadowContainer,
+  StyledFixedMarkerDragContainer,
+  StyledFixedMarkerRoot,
 } from './styled-components.js';
-import type {
-  FixedMarkerPropsT,
-  NeedlePropsT,
-  DragShadowPropsT,
-} from './types.js';
+import type {FixedMarkerPropsT, KindT} from './types.js';
 
-const Needle = ({size, background, overrides = {}}: NeedlePropsT) => {
-  const [Needle, needleProps] = getOverrides(overrides.Needle, StyledNeedle);
-  return (
-    <Needle
-      $background={background}
-      $height={NEEDLE_HEIGHTS[size]}
-      {...needleProps}
-    />
-  );
+type Colors = {
+  color: string,
+  backgroundColor: string,
 };
 
-const DragShadow = ({
-  background,
-  dragging,
-  height,
-  overrides = {},
-}: DragShadowPropsT) => {
-  const [DragShadowContainer, dragShadowContainerProps] = getOverrides(
-    overrides.DragShadowContainer,
-    StyledDragShadowContainer,
-  );
-  const [DragShadow, dragShadowProps] = getOverrides(
-    overrides.DragShadow,
-    StyledDragShadow,
-  );
-
-  return (
-    <DragShadowContainer
-      $width={dragShadowWidth}
-      $height={height}
-      $dragging={dragging}
-      {...dragShadowContainerProps}
-    >
-      <DragShadow
-        $width={dragShadowWidth}
-        $background={background}
-        {...dragShadowProps}
-      />
-    </DragShadowContainer>
-  );
-};
+function getColors(kind: KindT, theme: ThemeT): Colors {
+  if (kind === KIND.accent) {
+    return {
+      color: theme.colors.contentInversePrimary,
+      backgroundColor: theme.colors.backgroundAccent,
+    };
+  }
+  if (kind === KIND.negative) {
+    return {
+      color: theme.colors.contentInversePrimary,
+      backgroundColor: theme.colors.backgroundNegative,
+    };
+  }
+  return {
+    color: theme.colors.contentInversePrimary,
+    backgroundColor: theme.colors.backgroundInversePrimary,
+  };
+}
 
 const FixedMarker = ({
   size = PINHEAD_SIZES_SHAPES.medium,
@@ -79,31 +56,55 @@ const FixedMarker = ({
   label,
   startEnhancer,
   endEnhancer,
-  color,
-  background,
+  kind = KIND.default,
   dragging = false,
   overrides = {},
+  labelEnhancerContent = null,
+  labelEnhancerPosition = LABEL_ENHANCER_POSITIONS.bottom,
+  badgeEnhancerSize = null,
+  badgeEnhancerContent = null,
+  ...restProps
 }: FixedMarkerPropsT) => {
   const [, theme] = useStyletron();
-  const {
-    colors: {backgroundInversePrimary, primaryB},
-  } = theme;
+  const {color, backgroundColor} = getColors(kind, theme);
 
-  color = color || primaryB;
-  background = background || backgroundInversePrimary;
+  const doesPinHeadTransformOnDrag =
+    needle !== NEEDLE_SIZES.none &&
+    size !== PINHEAD_SIZES_SHAPES.xxSmallCircle &&
+    size !== PINHEAD_SIZES_SHAPES.xxSmallSquare;
 
-  const doesPinHeadTransformOnDrag = needle !== NEEDLE_SIZES.none;
-
-  const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
+  const [Root, rootProps] = getOverrides(overrides.Root, StyledFixedMarkerRoot);
   const [
     FixedMarkerDragContainer,
     fixedMarkerDragContainerProps,
   ] = getOverrides(overrides.DragContainer, StyledFixedMarkerDragContainer);
+
+  const renderNeedle =
+    needle !== NEEDLE_SIZES.none &&
+    ![
+      PINHEAD_SIZES_SHAPES.xxSmallCircle,
+      PINHEAD_SIZES_SHAPES.xxSmallSquare,
+    ].includes(size);
+
+  if (__DEV__) {
+    if (
+      needle !== NEEDLE_SIZES.none &&
+      [
+        PINHEAD_SIZES_SHAPES.xxSmallCircle,
+        PINHEAD_SIZES_SHAPES.xxSmallSquare,
+      ].includes(size)
+    ) {
+      console.warn(
+        `Needles cannot be rendered with ${PINHEAD_SIZES_SHAPES.xxSmallCircle} or ${PINHEAD_SIZES_SHAPES.xxSmallSquare} pin heads`,
+      );
+    }
+  }
+
   return (
     <Root data-baseweb="fixed-map-marker" {...rootProps}>
       <FixedMarkerDragContainer
         $translateAmount={dragShadowMarginTop + dragShadowHeight}
-        $performTranslate={doesPinHeadTransformOnDrag && dragging}
+        $performTranslate={doesPinHeadTransformOnDrag && !dragging}
         {...fixedMarkerDragContainerProps}
       >
         <PinHead
@@ -112,15 +113,26 @@ const FixedMarker = ({
           {...(startEnhancer ? {startEnhancer} : {})}
           {...(endEnhancer ? {endEnhancer} : {})}
           color={color}
-          background={background}
+          background={backgroundColor}
           type={PINHEAD_TYPES.fixed}
           overrides={overrides}
+          badgeEnhancerSize={badgeEnhancerSize}
+          badgeEnhancerContent={badgeEnhancerContent}
+          labelEnhancerContent={labelEnhancerContent}
+          labelEnhancerPosition={labelEnhancerPosition}
+          needle={needle}
         />
-        <Needle size={needle} background={background} overrides={overrides} />
+        {renderNeedle && (
+          <Needle
+            size={needle}
+            background={backgroundColor}
+            overrides={overrides}
+          />
+        )}
       </FixedMarkerDragContainer>
       {doesPinHeadTransformOnDrag && (
         <DragShadow
-          background={background}
+          background={backgroundColor}
           dragging={dragging}
           height={dragShadowMarginTop + dragShadowHeight}
           overrides={overrides}

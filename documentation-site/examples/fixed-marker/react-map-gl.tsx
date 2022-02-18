@@ -32,7 +32,7 @@ export default function Example() {
           overrides={{
             Root: {
               style: () => ({
-                transform: `translate(-50%, 0)`,
+                transform: `translate(-50%, -100%)`,
               }),
             },
           }}

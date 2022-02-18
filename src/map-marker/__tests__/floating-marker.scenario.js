@@ -11,27 +11,40 @@ import {FloatingMarker} from '../index.js';
 import {
   FLOATING_MARKER_ANCHOR_POSITIONS,
   FLOATING_MARKER_SIZES,
+  FLOATING_MARKER_ANCHOR_TYPES,
 } from '../constants.js';
 import TileGrid from './tile-grid.js';
 import {Checkbox, LABEL_PLACEMENT} from '../../checkbox/index.js';
 import {Input} from '../../input/index.js';
 import Upload from '../../icon/upload.js';
 import Search from '../../icon/search.js';
+import {Select} from '../../select/index.js';
 
 import type {FloatingMarkerSizeT, AnchorPositionsT} from '../types.js';
+
+const floatingMarkerAnchorTypes = Object.keys(FLOATING_MARKER_ANCHOR_TYPES)
+  .map(key => FLOATING_MARKER_ANCHOR_TYPES[key])
+  .map(x => ({
+    label: x,
+    id: x,
+  }));
 
 export function Scenario() {
   const [label, setLabel] = React.useState('Uber HQ');
   const [startEnhancer, setStartEnhancer] = React.useState(true);
   const [endEnhancer, setEndEnhancer] = React.useState(false);
+  const [
+    floatingMarkerAnchorType,
+    setFloatingMarkerAnchorType,
+  ] = React.useState([floatingMarkerAnchorTypes[0]]);
 
   const markers = [];
-  Object.values(FLOATING_MARKER_SIZES).forEach(
-    //$FlowFixMe
-    (size: FloatingMarkerSizeT, i: number) => {
-      Object.values(FLOATING_MARKER_ANCHOR_POSITIONS).forEach(
-        //$FlowFixMe
-        (position: AnchorPositionsT, x: number) => {
+  Object.keys(FLOATING_MARKER_SIZES)
+    .map(key => FLOATING_MARKER_SIZES[key])
+    .forEach((size: FloatingMarkerSizeT, i: number) => {
+      Object.keys(FLOATING_MARKER_ANCHOR_POSITIONS)
+        .map(key => FLOATING_MARKER_ANCHOR_POSITIONS[key])
+        .forEach((position: AnchorPositionsT, x: number) => {
           markers.push({
             id: `floating / ${size} / ${position}`,
             content: (
@@ -41,6 +54,7 @@ export function Scenario() {
                 key={i}
                 label={label}
                 anchor={position}
+                anchorType={floatingMarkerAnchorType[0].id}
                 startEnhancer={
                   startEnhancer
                     ? function renderEnhancer({size}) {
@@ -58,10 +72,8 @@ export function Scenario() {
               />
             ),
           });
-        },
-      );
-    },
-  );
+        });
+    });
 
   return (
     <TileGrid
@@ -91,6 +103,14 @@ export function Scenario() {
         >
           End enhancer
         </Checkbox>,
+        <Select
+          options={floatingMarkerAnchorTypes}
+          value={floatingMarkerAnchorType}
+          placeholder="Select an anchor type"
+          // $FlowFixMe Mismatch between general type and enum
+          onChange={params => setFloatingMarkerAnchorType(params.value)}
+          key="anchor-type"
+        />,
       ]}
     >
       {markers}
