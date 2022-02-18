@@ -24,14 +24,18 @@ class ProgressBar extends React.Component<
   ProgressBarPropsT & {forwardedRef: any},
 > {
   static defaultProps = {
-    getProgressLabel: (value: number, successValue: number) =>
-      `${Math.round((value / successValue) * 100)}% Loaded`,
+    getProgressLabel: (value: number, maxValue: number, minValue: number) =>
+      `${Math.round(
+        ((value - minValue) / (maxValue - minValue)) * 100,
+      )}% Loaded`,
     infinite: false,
     overrides: {},
     showLabel: false,
     size: SIZE.medium,
     steps: 1,
     successValue: 100,
+    minValue: 0,
+    maxValue: 100,
     value: 0,
   };
 
@@ -55,12 +59,16 @@ class ProgressBar extends React.Component<
       size,
       steps,
       successValue,
+      minValue,
+      maxValue,
       showLabel,
       infinite,
       errorMessage,
       forwardedRef,
       ...restProps
     } = this.props;
+    // fallback on successValue (and it's default) if maxValue is not set by user
+    const maximumValue = maxValue !== 100 ? maxValue : successValue;
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
     const [BarContainer, barContainerProps] = getOverrides(
       overrides.BarContainer,
@@ -80,7 +88,9 @@ class ProgressBar extends React.Component<
       $infinite: infinite,
       $size: size,
       $steps: steps,
-      $successValue: successValue,
+      $successValue: maximumValue,
+      $minValue: minValue,
+      $maxValue: maximumValue,
       $value: value,
     };
     function renderProgressBar() {
@@ -100,10 +110,12 @@ class ProgressBar extends React.Component<
         ref={forwardedRef}
         data-baseweb="progress-bar"
         role="progressbar"
-        aria-label={ariaLabel || getProgressLabel(value, successValue)}
+        aria-label={
+          ariaLabel || getProgressLabel(value, maximumValue, minValue)
+        }
         aria-valuenow={infinite ? null : value}
-        aria-valuemin={infinite ? null : 0}
-        aria-valuemax={infinite ? null : successValue}
+        aria-valuemin={infinite ? null : minValue}
+        aria-valuemax={infinite ? null : maximumValue}
         aria-invalid={errorMessage ? true : null}
         aria-errormessage={errorMessage}
         {...restProps}
@@ -126,7 +138,7 @@ class ProgressBar extends React.Component<
         </BarContainer>
         {showLabel && (
           <Label {...sharedProps} {...labelProps}>
-            {getProgressLabel(value, successValue)}
+            {getProgressLabel(value, maximumValue, minValue)}
           </Label>
         )}
       </Root>
