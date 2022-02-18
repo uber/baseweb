@@ -14,7 +14,7 @@ import type {SizeT} from '../input/types.js';
 
 export type TimezonePickerStateT = {
   /** List of timezones from the IANA database. */
-  timezones: OptionT[],
+  timezones: TimezoneT[],
   /** Value provided to the select component. */
   value: ?string,
 };
