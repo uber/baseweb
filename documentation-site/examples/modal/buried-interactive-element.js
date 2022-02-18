@@ -15,11 +15,7 @@ export default function Example() {
   return (
     <React.Fragment>
       <Button onClick={() => setOpen(s => !s)}>Open Modal</Button>
-      <Modal
-        onClose={() => setOpen(false)}
-        isOpen={isOpen}
-        unstable_ModalBackdropScroll
-      >
+      <Modal onClose={() => setOpen(false)} isOpen={isOpen}>
         <FocusOnce>
           <ModalHeader>Some Header</ModalHeader>
         </FocusOnce>

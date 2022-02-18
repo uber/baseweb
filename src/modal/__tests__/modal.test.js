@@ -101,7 +101,6 @@ describe('Modal', () => {
           isOpen
           overrides={{
             Root: {props: {'data-testid': 'root'}},
-            Backdrop: {props: {'data-testid': 'backdrop'}},
             DialogContainer: {props: {'data-testid': 'dialog-container'}},
             Dialog: {props: {'data-testid': 'dialog'}},
             Close: {props: {'data-testid': 'close'}},
@@ -113,7 +112,6 @@ describe('Modal', () => {
     );
 
     getByTestId(container, 'root');
-    getByTestId(container, 'backdrop');
     getByTestId(container, 'dialog-container');
     getByTestId(container, 'dialog');
     getByTestId(container, 'close');
@@ -150,7 +148,7 @@ describe('Modal', () => {
   it('raises no errors when operating on select in modal', () => {
     const {container} = render(
       <TestBaseProvider>
-        <Modal isOpen unstable_ModalBackdropScroll>
+        <Modal isOpen>
           <StatefulSelect
             options={[
               {id: 'AliceBlue', color: '#F0F8FF'},

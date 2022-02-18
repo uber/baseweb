@@ -127,19 +127,12 @@ const ModalConfig: TConfig = {
         },
       },
     },
-    unstable_ModalBackdropScroll: {
-      value: false,
-      type: PropTypes.Boolean,
-      description: `Makes modal scrollable while cursor is over the modal's backdrop.
-        Will be removed and implemented as the default behavior in the next major version.`,
-      hidden: true,
-    },
     overrides: {
       value: undefined,
       type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
       custom: {
-        names: ['Root', 'Backdrop', 'Dialog', 'DialogContainer', 'Close'],
+        names: ['Root', 'Dialog', 'DialogContainer', 'Close'],
         sharedProps: {
           $animate: 'animate',
           $isVisible: {
