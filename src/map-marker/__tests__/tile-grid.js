@@ -40,27 +40,29 @@ const TileGrid = ({children, customizerOptions, cols}: TileGridPropsT) => {
         gridTemplateColumns={`repeat(${cols}, 1fr)`}
         gridGap="20px"
       >
-        {React.Children.map(children, (node, index) => {
-          const {id: label, content} = node;
-          return (
-            <Block
-              display="flex"
-              flexDirection="column"
-              height="150px"
-              key={index}
-            >
-              <LabelSmall color={contentSecondary}>{label}</LabelSmall>
-              <Block
-                alignItems="center"
-                justifyContent="center"
-                flex="1"
-                display="flex"
-              >
-                {content}
-              </Block>
-            </Block>
-          );
-        })}
+        {Array.isArray(children)
+          ? children.map((node, index) => {
+              const {id: label, content} = node;
+              return (
+                <Block
+                  display="flex"
+                  flexDirection="column"
+                  height="150px"
+                  key={index}
+                >
+                  <LabelSmall color={contentSecondary}>{label}</LabelSmall>
+                  <Block
+                    alignItems="center"
+                    justifyContent="center"
+                    flex="1"
+                    display="flex"
+                  >
+                    {content}
+                  </Block>
+                </Block>
+              );
+            })
+          : null}
       </Block>
     </Block>
   );
