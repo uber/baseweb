@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import {useStyletron} from '../../styles/index.js';
-import {Label3} from '../../typography/index.js';
+import {LabelSmall} from '../../typography/index.js';
 import {Block} from '../../block/index.js';
 
 type TileGridPropsT = {
@@ -51,16 +51,23 @@ const TileGrid = ({children, customizerOptions, cols}: TileGridPropsT) => {
                 height="150px"
                 key={index}
               >
-                <Label3 color={contentSecondary}>{label}</Label3>
+                <LabelSmall color={contentSecondary}>{label}</LabelSmall>
                 <Block
-                  alignItems="center"
-                  justifyContent="center"
-                  flex="1"
                   display="flex"
+                  flexDirection="column"
+                  height="150px"
+                  key={index}
                 >
-                  {content}
+                  <Label3 color={contentSecondary}>{label}</Label3>
+                  <Block
+                    alignItems="center"
+                    justifyContent="center"
+                    flex="1"
+                    display="flex"
+                  >
+                    {content}
+                  </Block>
                 </Block>
-              </Block>
             );
           })}
       </Block>

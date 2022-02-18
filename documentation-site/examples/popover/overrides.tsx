@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Button} from 'baseui/button';
 import {StatefulPopover} from 'baseui/popover';
-import {Paragraph3} from 'baseui/typography';
+import {ParagraphSmall} from 'baseui/typography';
 
 export default function Example() {
   return (
@@ -35,7 +35,9 @@ export default function Example() {
         },
       }}
       content={
-        <Paragraph3 padding="scale500">hello world</Paragraph3>
+        <ParagraphSmall padding="scale500">
+          hello world
+        </ParagraphSmall>
       }
     >
       <Button>Click Me</Button>

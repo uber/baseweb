@@ -53,13 +53,14 @@ const addTestStyles = async page => {
 
 async function mount(page, scenarioName, theme, rtl) {
   // replicate console events into terminal
-  page.on('console', msg => {
-    if (msg.type() === 'warning') return;
-    for (let i = 0; i < msg.args().length; ++i) {
-      // eslint-disable-next-line no-console
-      console.log(`${msg.args()[i]}`);
-    }
-  });
+  // it's just spamming logs with no useful info right now
+  // page.on('console', msg => {
+  //   if (msg.type() === 'warning') return;
+  //   for (let i = 0; i < msg.args().length; ++i) {
+  //     // eslint-disable-next-line no-console
+  //     console.log(`${msg.args()[i]}`);
+  //   }
+  // });
 
   await page.goto(getPuppeteerUrl(scenarioName, theme, rtl));
   await page.waitForSelector('[data-storyloaded]');

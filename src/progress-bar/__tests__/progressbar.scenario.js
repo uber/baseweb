@@ -15,11 +15,22 @@ export function Scenario() {
     <>
       <ProgressBar value={20} showLabel size={SIZE.small} />
       <br />
+      <ProgressBar value={120} minValue={100} maxValue={200} showLabel />
+      <br />
       <ProgressBar value={20} showLabel />
       <br />
       <ProgressBar value={20} showLabel size={SIZE.large} />
       <br />
       <ProgressBar value={20} showLabel size={SIZE.large} steps={5} />
+      <br />
+      <ProgressBar
+        value={120}
+        minValue={100}
+        maxValue={200}
+        showLabel
+        size={SIZE.large}
+        steps={10}
+      />
       <br />
       <ProgressBar infinite />
     </>
