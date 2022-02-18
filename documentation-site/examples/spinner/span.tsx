@@ -1,12 +1,10 @@
-// @flow
-
 import * as React from 'react';
-import {StyledSpinnerNext} from 'baseui/spinner';
+import {Spinner} from 'baseui/spinner';
 
 export default function Example() {
   return (
     <p>
-      <StyledSpinnerNext $as="span" />
+      <Spinner $as="span" />
     </p>
   );
 }

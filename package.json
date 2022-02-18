@@ -170,7 +170,7 @@
     "react-dom": "^16.9.0",
     "react-hook-form": "^7.9.0",
     "react-icons": "^3.8.0",
-    "react-map-gl": "^6.1.17",
+    "react-map-gl": "^5.3.19",
     "react-markdown": "^4.0.3",
     "react-twitter-embed": "^2.0.8",
     "react-view": "^2.3.3",
@@ -193,7 +193,9 @@
   "dependencies": {
     "@date-io/date-fns": "^2.6.2",
     "card-validator": "^6.2.0",
+    "d3": "^7.3.0",
     "date-fns": "^2.6.0",
+    "date-fns-tz": "^1.2.2",
     "glob": "^7.1.6",
     "just-extend": "^4.0.2",
     "memoize-one": "^5.1.1",

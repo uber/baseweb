@@ -14,7 +14,7 @@ import {useStyletron} from '../styles/index.js';
 import {Button, KIND, SHAPE, SIZE as BUTTON_SIZE} from '../button/index.js';
 import {getOverrides} from '../helpers/overrides.js';
 import {ProgressBar} from '../progress-bar/index.js';
-import {StyledSpinnerNext, SIZE as SPINNER_SIZE} from '../spinner/index.js';
+import {Spinner, SIZE as SPINNER_SIZE} from '../spinner/index.js';
 
 import {
   StyledRoot,
@@ -66,7 +66,7 @@ function FileUploader(props: PropsT) {
 
   const [SpinnerComponent, spinnerProps] = getOverrides(
     overrides.Spinner,
-    StyledSpinnerNext,
+    Spinner,
   );
 
   const afterFileDrop = !!(

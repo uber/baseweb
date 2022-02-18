@@ -1,9 +1,7 @@
-// @flow
-
 import {withStyle} from 'baseui';
-import {StyledSpinnerNext} from 'baseui/spinner';
+import {Spinner} from 'baseui/spinner';
 
-const ExtraLargeSpinner = withStyle(StyledSpinnerNext, {
+const ExtraLargeSpinner = withStyle(Spinner, {
   width: '96px',
   height: '96px',
   borderLeftWidth: '12px',
