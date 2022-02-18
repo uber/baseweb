@@ -7,11 +7,18 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import {styled} from '../styles/index.js';
 import {
+  BADGE_ENHANCER_STYLES,
   FLOATING_MARKER_ANCHOR_POSITIONS,
-  xSmallPinheadDimension,
+  LABEL_SIZES,
 } from './constants.js';
 
-import type {AnchorPositionsT} from './types.js';
+import type {
+  AnchorPositionsT,
+  LabelEnhancerPositionT,
+  BadgeEnhancerSizeT,
+  BadgePositionT,
+  PinHeadSizeT,
+} from './types.js';
 
 export const getAnchorTransform = (
   anchor: AnchorPositionsT,
@@ -25,7 +32,7 @@ export const getAnchorTransform = (
     [FLOATING_MARKER_ANCHOR_POSITIONS.bottomRight]: `translate(-100%, -100%)`,
   }[anchor]);
 
-export const DragShadowContainer = styled<{
+export const StyledDragShadowContainer = styled<{
   $height: number,
   $width: number,
   $dragging: boolean,
@@ -39,35 +46,37 @@ export const DragShadowContainer = styled<{
   boxShadow: $theme.lighting.shadow600,
 }));
 
-export const DragShadow = styled<{
+export const StyledDragShadow = styled<{
   $background: string,
   $width: number,
 }>('div', ({$theme, $background, $width}) => ({
-  background: $background,
+  backgroundColor: $background,
   borderRadius: '50%',
   width: `${$width}px`,
-  height: `${4}px`,
+  height: '4px',
   position: 'absolute',
   bottom: 0,
 }));
 
-export const Needle = styled<{
+export const StyledNeedle = styled<{
   $background?: string,
   $height: number,
 }>('div', ({$theme, $background, $height}) => ({
-  background: $background,
+  backgroundColor: $background,
   width: '4px',
   height: `${$height}px`,
   boxShadow: $theme.lighting.shadow600,
 }));
 
-export const FloatingMarkerRoot = styled<{}>('div', () => ({
+export const StyledFloatingMarkerRoot = styled<{
+  $size: number,
+}>('div', ({$size}) => ({
   position: 'relative',
-  height: `${xSmallPinheadDimension.height}px`,
-  width: `${xSmallPinheadDimension.height}px`,
+  height: `${$size}px`,
+  width: `${$size}px`,
 }));
 
-export const FloatingMarkerPinHeadContainer = styled<{
+export const StyledFloatingMarkerPinHeadContainer = styled<{
   $anchor: AnchorPositionsT,
   $anchorSize: number,
 }>('div', ({$theme, $anchor, $anchorSize}) => ({
@@ -76,23 +85,23 @@ export const FloatingMarkerPinHeadContainer = styled<{
   transform: getAnchorTransform($anchor, $anchorSize),
 }));
 
-export const FloatingMarkerAnchorContainer = styled<{}>('div', () => ({
+export const StyledFloatingMarkerAnchorContainer = styled<{}>('div', () => ({
   position: 'absolute',
 }));
 
-export const FixedMarkerRoot = styled<{}>('div', () => ({
+export const StyledFixedMarkerRoot = styled<{}>('div', () => ({
   display: 'flex',
   alignItems: 'center',
   flexDirection: 'column',
 }));
 
-export const FixedMarkerDragContainer = styled<{
+export const StyledFixedMarkerDragContainer = styled<{
   $translateAmount: number,
   $performTranslate: boolean,
 }>('div', ({$theme, $translateAmount, $performTranslate}) => {
   return {
     transform: `translateY(${
-      $performTranslate ? '0px' : `${$translateAmount}px`
+      $performTranslate ? `${$translateAmount}px` : '0px'
     })`,
     transition: `${$theme.animation.timing300} ${$theme.animation.easeOutCurve} all`,
     display: 'flex',
@@ -101,12 +110,12 @@ export const FixedMarkerDragContainer = styled<{
   };
 });
 
-export const OuterXSmallAnchor = styled<{
+export const StyledOuterXXSmallAnchor = styled<{
   $round: boolean,
   $background: string,
   $size: number,
 }>('div', ({$theme, $round, $background, $size}) => ({
-  background: $background,
+  backgroundColor: $background,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -116,18 +125,44 @@ export const OuterXSmallAnchor = styled<{
   boxShadow: $theme.lighting.shadow600,
 }));
 
-export const InnerXSmallAnchor = styled<{
+export const StyledInnerXXSmallAnchor = styled<{
   $round: boolean,
   $color: string,
   $size: number,
 }>('div', ({$round, $color, $size}) => ({
-  background: $color,
+  backgroundColor: $color,
   height: `${$size}px`,
   width: `${$size}px`,
   borderRadius: $round ? '50%' : 0,
 }));
 
-export const PinHead = styled<{
+export const StyledOuterXSmallAnchor = styled<{
+  $round: boolean,
+  $background: string,
+  $size: number,
+}>('div', ({$theme, $round, $background, $size}) => ({
+  backgroundColor: $background,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  height: `${$size}px`,
+  width: `${$size}px`,
+  borderRadius: $round ? '50%' : 0,
+  boxShadow: $theme.lighting.shadow600,
+}));
+
+export const StyledInnerXSmallAnchor = styled<{
+  $round: boolean,
+  $color: string,
+  $size: number,
+}>('div', ({$round, $color, $size}) => ({
+  backgroundColor: $color,
+  height: `${$size}px`,
+  width: `${$size}px`,
+  borderRadius: $round ? '50%' : 0,
+}));
+
+export const StyledPinHead = styled<{
   $height: number,
   $background: string,
   $gridTemplateColumns: string,
@@ -154,7 +189,7 @@ export const PinHead = styled<{
     };
 
     return {
-      background: $background,
+      backgroundColor: $background,
       height: `${$height}px`,
       display: 'grid',
       gridTemplateColumns: $gridTemplateColumns,
@@ -171,3 +206,118 @@ export const PinHead = styled<{
     };
   },
 );
+
+export const StyledStrokedLabelContainer = styled<{
+  $position: LabelEnhancerPositionT,
+  $labelOffset: number,
+}>('div', ({$position, $theme, $labelOffset}) => {
+  const staticLabelOffset = 4;
+  const positions = {
+    top: {
+      left: `calc(50% + ${staticLabelOffset}px)`,
+      bottom: '100%',
+      alignItems: 'flex-end',
+      justifyContent: 'center',
+      textAlign: 'center',
+    },
+    bottom: {
+      left: '50%',
+      top: `calc(100% + ${staticLabelOffset}px + ${$labelOffset}px)`,
+      alignItems: 'flex-start',
+      justifyContent: 'center',
+      textAlign: 'center',
+    },
+    right: {
+      left: `calc(100% + ${staticLabelOffset}px)`,
+      top: '50%',
+      alignItems: 'center',
+      justifyContent: 'flex-start',
+    },
+    left: {
+      right: `calc(100% + ${staticLabelOffset}px)`,
+      top: '50%',
+      alignItems: 'center',
+      justifyContent: 'flex-end',
+      textAlign: 'right',
+    },
+    none: {},
+  };
+  return {
+    position: 'absolute',
+    width: '0px',
+    height: '0px',
+    pointerEvents: 'none',
+    display: 'flex',
+    ...positions[$position],
+  };
+});
+
+export const StyledStrokedLabel = styled<{
+  $stroked: boolean,
+  $position: LabelEnhancerPositionT,
+  $size: PinHeadSizeT,
+}>('div', ({$theme, $size}) => {
+  const strokeWidth = 1.5;
+  const strokeColor = $theme.colors.backgroundPrimary;
+
+  const textShadow = `-${strokeWidth}px -${strokeWidth}px 0 ${strokeColor},
+    0 -${strokeWidth}px 0 ${strokeColor},
+    ${strokeWidth}px -${strokeWidth}px 0 ${strokeColor},
+    ${strokeWidth}px 0 0 ${strokeColor},
+    ${strokeWidth}px ${strokeWidth}px 0 ${strokeColor},
+    0 ${strokeWidth}px 0 ${strokeColor},
+   -${strokeWidth}px ${strokeWidth}px 0 ${strokeColor},
+   -${strokeWidth}px 0 0 ${strokeColor}`;
+
+  return {
+    display: 'flex',
+    ...$theme.typography[LABEL_SIZES[$size]],
+    color: $theme.colors.primaryA,
+    transition: `${$theme.animation.timing300} ${$theme.animation.easeOutCurve} all`,
+    textShadow,
+    pointerEvents: 'auto',
+    width: 'max-content',
+    maxWidth: '200px',
+  };
+});
+
+export const StyledBadgeEnhancerRoot = styled<{
+  $size: BadgeEnhancerSizeT,
+  $position: BadgePositionT,
+}>('div', ({$theme, $size, $position}) => {
+  const {x, y} = $position;
+  return {
+    position: 'absolute',
+    ...$theme.typography.LabelSmall,
+    backgroundColor: $theme.colors.backgroundAccent,
+    color: $theme.colors.primaryB,
+    boxSizing: 'border-box',
+    right: 0,
+    transform: `translate(calc(100% + ${x}px), ${y}px)`,
+
+    transition: `${$theme.animation.timing300} ${$theme.animation.easeOutCurve} all`,
+    ...BADGE_ENHANCER_STYLES[$size],
+  };
+});
+
+export const RelativeContainer = styled<{}>('div', () => {
+  return {
+    position: 'relative',
+  };
+});
+
+export const StyledContentItem = styled<{
+  $color: string,
+  $height: number,
+  $size: PinHeadSizeT,
+}>('div', ({$theme, $color, $height, $size}) => {
+  return {
+    ...$theme.typography[LABEL_SIZES[$size]],
+    display: 'flex',
+    alignItems: 'center',
+    textAlign: 'center',
+    lineHeight: `${$height}px`,
+    height: `${$height}px`,
+    color: $color,
+  };
+});

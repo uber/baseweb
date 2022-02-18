@@ -16,6 +16,9 @@ import StartEnhancerLarge from 'examples/fixed-marker/start-enhancer-large.js';
 import Dragging from 'examples/fixed-marker/dragging.js';
 import XSmall from 'examples/fixed-marker/x-small.js';
 import ReactMapGL from 'examples/fixed-marker/react-map-gl.js';
+import ReactMapGLDragging from 'examples/fixed-marker/react-map-gl-dragging.js';
+import BadgeEnhancerText from 'examples/fixed-marker/badge-enhancer-text.js';
+import BadgeAndLabelEnhancers from 'examples/fixed-marker/badge-and-label-enhancers.js';
 import {FixedMarkerSizingTable} from '../../components/map-marker-sizing-table.js';
 
 import Yard from '../../components/yard/index';
@@ -44,12 +47,19 @@ For more information on the design principles behind the Base map markers, pleas
 
 ### General
 
-- A fixed marker pinhead may have up to 4 sizes: `xSmall`, `small`, `medium`, and `large`.
-  - The `xSmall` pinhead size cannot contain any content.
+- A fixed marker pinhead may have up to 5 sizes: `xxSmall`, `xSmall`, `small`, `medium`, and `large`.
+  - The `xxSmall` or `xSmall` pinhead sizes cannot contain any content.
 - A fixed marker may have either no needle or a choice of 3 different sizes: `short`, `medium`, or `tall`.
 - A fixed marker without a label can only have one icon. As such, do not use both a `startEnhancer` and an `endEnhancer` if there is no label.
+- A fixed marker can have a kind property that changes the colors of PinHead, PinHeadContent, Needle and DragShadow.
+- A fixed marker can have a badge enhancer of the following sizes: `xSmall`, `small`, `mediumText`, `mediumIcon`.
+  - The `xSmall` cannot have any content.
+  - The `small` can only have an icon as a content.
+  - The `mediumText` can have a text content. It adds padding to the sides.
+  - The `mediumIcon` can have an icon as a content. Displayed as a circle.
+- A fixed marker can have a label enhancer that can be poistioned at the `top`, `bottom`, `left`, `right` of the marker.
 
-### Enhancer sizing
+### Start/End Enhancer sizing
 
 - The size of an enhancer depends on the pinhead size you are using. Refer to the table below for the proper enhancer sizes.
 
@@ -79,7 +89,7 @@ A fixed map marker with a start enhancer icon and a label. Icons can be passed t
   <EndEnhancerColor />
 </Example>
 
-A fixed map marker with an end enhancer icon, a label, and custom styling. Background and color properties can be modified.
+A fixed map marker with an end enhancer icon, a label, and custom styling.
 
 <Example
   title="Large size with only an icon"
@@ -102,11 +112,38 @@ A fixed marker with the dragging decoration enabled.
 
 An extra small marker with a tall needle. The X small marker is the same anchor used by the [Floating Marker](../floating-marker).
 
+<Example
+  title="Marker with a badge enhancer with text"
+  path="fixed-marker/badge-enhancer-text"
+>
+  <BadgeEnhancerText />
+</Example>
+
+A fixed map marker with a badge enhancer that contains text and has a green background color.
+
+<Example
+  title="Marker with a small badge enhancer and a label enhancer"
+  path="fixed-marker/badge-and-label-enhancers"
+>
+  <BadgeAndLabelEnhancers />
+</Example>
+
+A fixed map marker with a small badge enhancer that contains an icon and a label enhancer placed at the bottom.
+
 <Example title="Usage with react-map-gl" path="fixed-marker/react-map-gl.js">
   <ReactMapGL />
 </Example>
 
 A fixed map marker rendered inside of a [react-map-gl](https://visgl.github.io/react-map-gl/) view. In order to use a fixed map marker in react-map-gl, wrap the fixed marker with a [`<Marker/>`](https://visgl.github.io/react-map-gl/docs/api-reference/marker) component. In order to properly center the marker on the intended position, translate the marker using an override on the `Root`.
+
+<Example
+  title="Draggable marker with react-map-gl"
+  path="fixed-marker/react-map-gl-dragging.js"
+>
+  <ReactMapGLDragging />
+</Example>
+
+A draggable fixed map marker rendered inside of a [react-map-gl](https://visgl.github.io/react-map-gl/) view. Everytime the marker is dragged, the `dragging` prop is updated and the marker position is updated.
 
 ## API
 

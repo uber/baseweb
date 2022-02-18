@@ -10,9 +10,9 @@ import {useStyletron} from '../styles/index.js';
 import PinHead from './pin-head.js';
 import {getOverrides} from '../helpers/overrides.js';
 import {
-  FloatingMarkerRoot as StyledRoot,
-  FloatingMarkerAnchorContainer as StyledFloatingMarkerAnchorContainer,
-  FloatingMarkerPinHeadContainer as StyledFloatingMarkerPinHeadContainer,
+  StyledFloatingMarkerRoot,
+  StyledFloatingMarkerAnchorContainer,
+  StyledFloatingMarkerPinHeadContainer,
 } from './styled-components.js';
 import type {FloatingMarkerPropsT} from './types.js';
 import {
@@ -20,12 +20,22 @@ import {
   PINHEAD_SIZES_SHAPES,
   PINHEAD_TYPES,
   FLOATING_MARKER_ANCHOR_TYPES,
-  anchorSize,
+  PINHEAD_DIMENSIONS,
 } from './constants.js';
 
+function getAnchorPinHeadSize(anchorType) {
+  if (anchorType === FLOATING_MARKER_ANCHOR_TYPES.circle) {
+    return PINHEAD_SIZES_SHAPES.xSmallCircle;
+  } else if (anchorType === FLOATING_MARKER_ANCHOR_TYPES.square) {
+    return PINHEAD_SIZES_SHAPES.xSmallSquare;
+  } else if (anchorType === FLOATING_MARKER_ANCHOR_TYPES.xxSmallSquare) {
+    return PINHEAD_SIZES_SHAPES.xxSmallSquare;
+  } else {
+    return PINHEAD_SIZES_SHAPES.xxSmallCircle;
+  }
+}
+
 const FloatingMarker = ({
-  color,
-  background,
   label,
   size = PINHEAD_SIZES_SHAPES.medium,
   anchor = FLOATING_MARKER_ANCHOR_POSITIONS.bottomLeft,
@@ -38,15 +48,13 @@ const FloatingMarker = ({
   const {
     colors: {backgroundPrimary, backgroundInversePrimary, primaryA, primaryB},
   } = theme;
-  color = color || primaryA;
-  background = background || backgroundPrimary;
 
-  const anchorPinHeadSize =
-    anchorType === FLOATING_MARKER_ANCHOR_TYPES.circle
-      ? PINHEAD_SIZES_SHAPES.xSmallCircle
-      : PINHEAD_SIZES_SHAPES.xSmallSquare;
+  const anchorPinHeadSize = getAnchorPinHeadSize(anchorType);
 
-  const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
+  const [Root, rootProps] = getOverrides(
+    overrides.Root,
+    StyledFloatingMarkerRoot,
+  );
   const [
     FloatingMarkerPinHeadContainer,
     floatingMarkerPinHeadContainerProps,
@@ -62,17 +70,22 @@ const FloatingMarker = ({
     overrides.AnchorContainer,
     StyledFloatingMarkerAnchorContainer,
   );
+
   return (
-    <Root data-baseweb="floating-map-marker" {...rootProps}>
+    <Root
+      data-baseweb="floating-map-marker"
+      $size={PINHEAD_DIMENSIONS[anchorPinHeadSize].height}
+      {...rootProps}
+    >
       <FloatingMarkerPinHeadContainer
         $anchor={anchor}
-        $anchorSize={anchorSize}
+        $anchorSize={PINHEAD_DIMENSIONS[anchorPinHeadSize].height}
         {...floatingMarkerPinHeadContainerProps}
       >
         <PinHead
           size={size}
-          color={color}
-          background={background}
+          color={primaryA}
+          background={backgroundPrimary}
           type={PINHEAD_TYPES.floating}
           label={label}
           startEnhancer={startEnhancer}

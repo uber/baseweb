@@ -13,6 +13,20 @@ export default function Example() {
     ...uberHq,
     zoom: 14,
   });
+  const [position, setPosition] = React.useState({...uberHq});
+  const [dragging, setDragging] = React.useState(false);
+
+  const onMarkerDragStart = React.useCallback(() => {
+    setDragging(true);
+  }, []);
+
+  const onMarkerDragEnd = React.useCallback(event => {
+    setPosition({
+      latitude: event.lngLat[1],
+      longitude: event.lngLat[0],
+    });
+    setDragging(false);
+  }, []);
 
   return (
     <ReactMapGL
@@ -22,9 +36,15 @@ export default function Example() {
       onViewportChange={viewport => setViewport(viewport)}
       mapboxApiAccessToken="pk.eyJ1IjoiYmFiYnN1YmVyIiwiYSI6ImNrdThqeGkxZTVwb3kyd3BpZGRlc2NlOXUifQ.qh-EtXm2DJQZVprWUJ-GFQ"
     >
-      <Marker {...uberHq}>
+      <Marker
+        {...position}
+        draggable
+        onDragStart={onMarkerDragStart}
+        onDragEnd={onMarkerDragEnd}
+      >
         <FixedMarker
-          label="Uber HQ"
+          label="Drag me!"
+          dragging={dragging}
           overrides={{
             Root: {
               style: () => ({
