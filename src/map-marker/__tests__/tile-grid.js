@@ -12,7 +12,7 @@ import {Block} from '../../block/index.js';
 
 type TileGridPropsT = {
   // eslint-disable-next-line flowtype/no-weak-types
-  children: Array<any>,
+  children?: Array<any>,
   customizerOptions: Array<React.Node>,
   cols: number,
 };
@@ -41,27 +41,28 @@ const TileGrid = ({children, customizerOptions, cols}: TileGridPropsT) => {
         gridTemplateColumns={`repeat(${cols}, 1fr)`}
         gridGap="20px"
       >
-        {children.map((node, index) => {
-          const {id: label, content} = node;
-          return (
-            <Block
-              display="flex"
-              flexDirection="column"
-              height="150px"
-              key={index}
-            >
-              <LabelSmall color={contentSecondary}>{label}</LabelSmall>
+        {children &&
+          children.map((node, index) => {
+            const {id: label, content} = node;
+            return (
               <Block
-                alignItems="center"
-                justifyContent="center"
-                flex="1"
                 display="flex"
+                flexDirection="column"
+                height="150px"
+                key={index}
               >
-                {content}
+                <LabelSmall color={contentSecondary}>{label}</LabelSmall>
+                <Block
+                  alignItems="center"
+                  justifyContent="center"
+                  flex="1"
+                  display="flex"
+                >
+                  {content}
+                </Block>
               </Block>
-            </Block>
-          );
-        })}
+            );
+          })}
       </Block>
     </Block>
   );
