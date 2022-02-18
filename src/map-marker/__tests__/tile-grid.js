@@ -53,21 +53,14 @@ const TileGrid = ({children, customizerOptions, cols}: TileGridPropsT) => {
               >
                 <LabelSmall color={contentSecondary}>{label}</LabelSmall>
                 <Block
+                  alignItems="center"
+                  justifyContent="center"
+                  flex="1"
                   display="flex"
-                  flexDirection="column"
-                  height="150px"
-                  key={index}
                 >
-                  <Label3 color={contentSecondary}>{label}</Label3>
-                  <Block
-                    alignItems="center"
-                    justifyContent="center"
-                    flex="1"
-                    display="flex"
-                  >
-                    {content}
-                  </Block>
+                  {content}
                 </Block>
+              </Block>
             );
           })}
       </Block>
