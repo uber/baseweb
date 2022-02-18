@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
+import {format, getTimezoneOffset} from 'date-fns-tz';
 
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import {LocaleContext} from '../locale/index.js';
@@ -57,51 +58,16 @@ class TimezonePicker extends React.Component<
   }
 
   buildTimezones = (compareDate: Date): TimezoneT[] => {
-    function zonedTime(date, zoneName) {
-      return new Date(
-        // eslint-disable-next-line cup/no-undef
-        new Intl.DateTimeFormat('en', {
-          timeZone: zoneName,
-          year: 'numeric',
-          month: 'numeric',
-          day: 'numeric',
-          hour: 'numeric',
-          minute: 'numeric',
-          hourCycle: 'h23',
-        }).format(date),
-      );
-    }
-
-    function zoneAbbreviation(date, zoneName) {
-      // eslint-disable-next-line cup/no-undef
-      const parts = Intl.DateTimeFormat('en', {
-        timeZone: zoneName,
-        timeZoneName: 'short',
-      }).formatToParts(date);
-
-      for (const part of parts) {
-        if (part.type === 'timeZoneName') {
-          return part.value;
-        }
-      }
-
-      console.warn(`No abbreviation found for time zone ${zoneName}`);
-
-      return '';
-    }
-
-    const utc = zonedTime(compareDate, 'UTC');
     const timezones: TimezoneT[] = [];
     for (const zoneName of zones) {
       try {
-        const zoned = zonedTime(compareDate, zoneName);
-        const offset = (zoned - utc) / 3_600_000;
+        const offset = getTimezoneOffset(zoneName, compareDate) / 3_600_000;
 
         const offsetFormatted = `${offset >= 0 ? '+' : '-'}${Math.abs(offset)}`;
         let label = `(GMT${offsetFormatted}) ${zoneName.replace('_', ' ')}`;
 
         if (this.props.includeAbbreviations) {
-          const abbreviation = zoneAbbreviation(compareDate, zoneName);
+          const abbreviation = format(compareDate, 'zzz', {timeZone: zoneName});
           if (abbreviation) {
             label += ` - ${abbreviation}`;
           }
