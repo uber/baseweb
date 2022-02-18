@@ -120,14 +120,6 @@ steps:
     agents:
       queue: workers
 
-  - name: guard-component-sizes
-    command: './scripts/component-sizes.js'
-    plugins:
-      'docker-compose#v3.0.3':
-        run: baseui
-    agents:
-      queue: workers
-
   - name: e2e
     # we have to install puppeteer here to trigger the install.js script
     # and also to make sure we do not add this to the released build artifact

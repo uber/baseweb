@@ -57,7 +57,11 @@ export default function Filter(props: FilterProps) {
         return nextState;
       }}
       content={({close}) => (
-        <FocusLock autoFocus={false}>
+        <FocusLock
+          autoFocus={false}
+          // Allow focus to escape when UI is within an iframe
+          crossFrame={false}
+        >
           <Heading {...headingProps}>Filter Column</Heading>
           <Content {...contentProps}>{props.children}</Content>
           <Footer {...footerProps}>

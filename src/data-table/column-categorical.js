@@ -14,7 +14,7 @@ import {Checkbox, StyledLabel} from '../checkbox/index.js';
 import Search from '../icon/search.js';
 import {Input, SIZE as INPUT_SIZE} from '../input/index.js';
 import {useStyletron, withStyle} from '../styles/index.js';
-import {Label3} from '../typography/index.js';
+import {LabelSmall} from '../typography/index.js';
 
 import Column from './column.js';
 import {COLUMNS} from './constants.js';
@@ -184,7 +184,7 @@ export function CategoricalFilter(props: CategoricalFilterProps) {
         })}
       >
         {!filteredCategories.length && (
-          <Label3>{locale.datatable.categoricalFilterEmpty}</Label3>
+          <LabelSmall>{locale.datatable.categoricalFilterEmpty}</LabelSmall>
         )}
 
         {Boolean(filteredCategories.length) &&

@@ -10,12 +10,12 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {
-  Caption1,
-  Caption2,
-  Label1,
-  Label2,
-  Paragraph1,
-  Paragraph2,
+  ParagraphXSmall,
+  LabelXSmall,
+  LabelLarge,
+  LabelMedium,
+  ParagraphLarge,
+  ParagraphMedium,
 } from '../index.js';
 
 const bodyString =
@@ -24,14 +24,14 @@ const bodyString =
 export function Scenario() {
   return (
     <React.Fragment>
-      <Label2>Label2</Label2>
-      <Paragraph2>{`Paragraph2 - ${bodyString}`}</Paragraph2>
-      <Label1>Label1</Label1>
-      <Paragraph1>{`Paragraph1 - ${bodyString}`}</Paragraph1>
-      <Caption2>Caption2</Caption2>
-      <Paragraph2>{`Paragraph2 - ${bodyString}`}</Paragraph2>
-      <Caption1>Caption1</Caption1>
-      <Paragraph1>{`Paragraph1 - ${bodyString}`}</Paragraph1>
+      <LabelMedium>LabelMedium</LabelMedium>
+      <ParagraphMedium>{`ParagraphMedium - ${bodyString}`}</ParagraphMedium>
+      <LabelLarge>LabelLarge</LabelLarge>
+      <ParagraphLarge>{`ParagraphLarge - ${bodyString}`}</ParagraphLarge>
+      <LabelXSmall>LabelXSmall</LabelXSmall>
+      <ParagraphMedium>{`ParagraphMedium - ${bodyString}`}</ParagraphMedium>
+      <ParagraphXSmall>ParagraphXSmall</ParagraphXSmall>
+      <ParagraphLarge>{`ParagraphLarge - ${bodyString}`}</ParagraphLarge>
     </React.Fragment>
   );
 }

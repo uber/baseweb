@@ -1,12 +1,18 @@
+/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
 import * as React from 'react';
-import {Caption1} from 'baseui/typography';
+import {ParagraphXSmall} from 'baseui/typography';
 import Link from 'next/link';
 import {StyledLink} from 'baseui/link';
 
 const OverridesDescription: React.FC<{componentName: string}> = ({
   componentName,
 }) => (
-  <Caption1
+  <ParagraphXSmall
     marginLeft="scale200"
     marginRight="scale200"
     marginBottom="scale400"
@@ -17,7 +23,7 @@ const OverridesDescription: React.FC<{componentName: string}> = ({
       <StyledLink href="/guides/understanding-overrides">learn more</StyledLink>
     </Link>
     ). Try to update different <b>style overrides</b> in the explorer bellow:
-  </Caption1>
+  </ParagraphXSmall>
 );
 
 export default OverridesDescription;

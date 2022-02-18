@@ -62,9 +62,20 @@ export const StyledBar = styled<StylePropsT>('div', props => {
 });
 
 export const StyledBarProgress = styled<StylePropsT>('div', props => {
-  const {$theme, $value, $successValue, $steps, $index} = props;
+  const {
+    $theme,
+    $value,
+    $successValue,
+    $steps,
+    $index,
+    $maxValue,
+    $minValue = 0,
+  } = props;
+  // making sure this doesn't break existing use that use StyledBarProgress directly
+  const maxValue = $maxValue ? $maxValue : $successValue;
   const {colors, sizing, borders} = $theme;
-  const width = `${100 - ($value / $successValue) * 100}%`;
+  const width = `${100 -
+    (($value - $minValue) * 100) / (maxValue - $minValue)}%`;
 
   const stepStates = {
     default: 'default',
@@ -74,8 +85,8 @@ export const StyledBarProgress = styled<StylePropsT>('div', props => {
   };
   let stepState = stepStates.default;
   if ($steps > 1) {
-    const stepValue = $successValue / $steps;
-    const currentValue = ($value / $successValue) * 100;
+    const stepValue = (maxValue - $minValue) / $steps;
+    const currentValue = (($value - $minValue) / (maxValue - $minValue)) * 100;
     const completedSteps = Math.floor(currentValue / stepValue);
     if ($index < completedSteps) {
       stepState = stepStates.completed;

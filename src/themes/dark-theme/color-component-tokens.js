@@ -43,6 +43,8 @@ export default (
   buttonTertiaryActive: themePrimitives.primary600,
   buttonTertiarySelectedText: themePrimitives.primary,
   buttonTertiarySelectedFill: themePrimitives.primary600,
+  buttonTertiaryDisabledActiveFill: themePrimitives.primary700,
+  buttonTertiaryDisabledActiveText: themePrimitives.mono300,
   buttonTertiarySpinnerForeground: themePrimitives.primary50,
   buttonTertiarySpinnerBackground: themePrimitives.primary500,
 
@@ -57,6 +59,8 @@ export default (
 
   buttonDisabledFill: themePrimitives.mono600,
   buttonDisabledText: themePrimitives.mono300,
+  buttonDisabledActiveFill: themePrimitives.mono200,
+  buttonDisabledActiveText: themePrimitives.primary500,
   buttonDisabledSpinnerForeground: themePrimitives.mono200,
   buttonDisabledSpinnerBackground: themePrimitives.mono400,
 
