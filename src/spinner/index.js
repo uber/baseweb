@@ -25,14 +25,3 @@ export {
 export { SIZE } from './constants.js';
 // Flow
 export type * from './types.js';
-
-// Backward compatibility with SpinnerDeterminate
-// Deprecated
-export {
-  ProgressBarRounded as SpinnerDeterminate,
-  StyledProgressBarRoundedRoot as StyledSpinnerDeterminateRoot,
-  StyledProgressBarRoundedSvg as StyledSpinnerDeterminateSvg,
-  StyledProgressBarRoundedTrackBackground as StyledSpinnerDeterminateTrackBackground,
-  StyledProgressBarRoundedTrackForeground as StyledSpinnerDeterminateTrackForeground,
-  StyledProgressBarRoundedText as StyledSpinnerDeterminateText,
-};
