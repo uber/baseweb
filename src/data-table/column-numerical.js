@@ -247,7 +247,7 @@ function NumericalFilter(props) {
     () =>
       scaleLinear()
         .domain([min, max])
-        .range([1, MAX_BIN_COUNT])
+        .rangeRound([1, MAX_BIN_COUNT])
         // We clamp the values within our min and max even if a user enters a huge number
         .clamp(true),
     [min, max],

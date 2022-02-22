@@ -142,7 +142,7 @@ describe('numerical column', () => {
     expect(filterParams.description).toBe('≥ 1 and ≤ 2');
   });
 
-  it('can exclude the range ', () => {
+  it('can exclude the range', () => {
     const column = NumericalColumn({title: 'column', mapDataToValue: () => 0});
     const Filter = column.renderFilter;
 
