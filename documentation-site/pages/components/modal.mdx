@@ -45,7 +45,7 @@ of bounds dismissal. The primary action is always a system red with a grey cance
 
 We have built in functionality based on the recommendations for dialogs and modals in [WAI-ARIA Authoring Practices 1.1](https://www.w3.org/TR/wai-aria-practices/#dialog_modal).
 
-- Upon opening, focus will be transferred to the first interactive element (unless `autofocus` is set to false)
+- Upon opening, focus will be transferred to the first interactive element (unless `autoFocus` is set to false)
 - Dialog element has `aria-modal="true"`
 - Explicitly exposes a `role` prop to control whether `dialog` or `alertdialog` is used.
 - `Tab` key moves between focusable items (form inputs, footer buttons, etc). User should not be able to tab to items outside of modal.
@@ -88,7 +88,7 @@ Ideally, we want to avoid an abrupt shift in context both visually and for scree
 
 You can achieve this with the `FocusOnce` utility component included in `baseui/modal`.
 To use it, wrap a non interactive element at the top of the modal in `FocusOnce`.
-This will allow the element to be targeted by `autofocus`.
+This will allow the element to be targeted by `autoFocus`.
 Once the user tabs away, the element will be removed from the tab ordering.
 
 <Example title="Adding nested modals" path="modal/nested.js">

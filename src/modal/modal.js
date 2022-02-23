@@ -35,8 +35,6 @@ import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 class Modal extends React.Component<ModalPropsT, ModalStateT> {
   static defaultProps: $Shape<ModalPropsT> = {
     animate: true,
-    // TODO(v11): remove
-    autofocus: null,
     autoFocus: true,
     focusLock: true,
     returnFocus: true,
@@ -268,7 +266,6 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
       closeable,
       role,
       unstable_ModalBackdropScroll,
-      autofocus,
       autoFocus,
       focusLock,
       returnFocus,
@@ -297,13 +294,6 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     const sharedProps = this.getSharedProps();
     const children = this.getChildren();
 
-    if (autofocus === false && __DEV__) {
-      console.warn(
-        `The prop "autofocus" is deprecated in favor of "autoFocus" to be consistent across the project.
-        The property "autofocus" will be removed in a future major version.`,
-      );
-    }
-
     // Handles backdrop click when `unstable_ModalBackdropScroll` is set to true
     // $FlowFixMe
     if (dialogContainerProps.ref) {
@@ -324,7 +314,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
             // Allow focus to escape when UI is within an iframe
             crossFrame={false}
             returnFocus={returnFocus}
-            autoFocus={autofocus !== null ? autofocus : autoFocus}
+            autoFocus={autoFocus}
           >
             <Root
               data-baseweb="modal"
