@@ -241,21 +241,10 @@ function NumericalFilter(props) {
     return [roundToFixed(l, precision), roundToFixed(h, precision)];
   }, [isRange, focused, sv, lv, uv, precision]);
 
-  // We have our slider values range from 1 to the bin size, so we have a scale which
-  // takes in the data driven range and maps it to values the scale can always handle
-  const sliderScale = React.useMemo(
-    () =>
-      scaleLinear()
-        .domain([min, max])
-        .rangeRound([1, MAX_BIN_COUNT])
-        // We clamp the values within our min and max even if a user enters a huge number
-        .clamp(true),
-    [min, max],
-  );
-
+  // We bound the values within our min and max even if a user enters a huge number
   let sliderValue = isRange
-    ? [sliderScale(inputValueLower), sliderScale(inputValueUpper)]
-    : [sliderScale(inputValueLower)];
+    ? [Math.max(inputValueLower, min), Math.min(inputValueUpper, max)]
+    : [Math.min(Math.max(inputValueLower, min), max)];
 
   // keep the slider happy by sorting the two values
   if (isRange && sliderValue[0] > sliderValue[1]) {
@@ -334,21 +323,20 @@ function NumericalFilter(props) {
           // when it tries to read getThumbDistance on a thumb which is not there anymore
           // if we create a new instance these errors are prevented.
           key={isRange.toString()}
-          min={1}
-          max={MAX_BIN_COUNT}
+          min={min}
+          max={max}
           value={sliderValue}
           onChange={({value}) => {
             if (!value) {
               return;
             }
-            // we convert back from the slider scale to the actual data's scale
             if (isRange) {
               const [lowerValue, upperValue] = value;
-              setLower(sliderScale.invert(lowerValue));
-              setUpper(sliderScale.invert(upperValue));
+              setLower(lowerValue);
+              setUpper(upperValue);
             } else {
               const [singleValue] = value;
-              setSingle(sliderScale.invert(singleValue));
+              setSingle(singleValue);
             }
           }}
           overrides={{

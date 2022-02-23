@@ -11,7 +11,6 @@ import * as React from 'react';
 import {NUMERICAL_FORMATS, NumericalColumn} from '../index.js';
 import {randomLcg, randomBinomial, randomLogNormal, randomInt} from 'd3';
 
-import {precisionData} from './precision-data.js';
 const Filter = NumericalColumn({
   title: 'categorical-column',
   mapDataToValue: () => 0,
@@ -29,12 +28,6 @@ const PercentageFilter = NumericalColumn({
   format: NUMERICAL_FORMATS.PERCENTAGE,
 }).renderFilter;
 
-const HighPrecisionFilter = NumericalColumn({
-  title: 'categorical-column',
-  mapDataToValue: () => 0,
-  format: NUMERICAL_FORMATS.DEFAULT,
-  precision: 4,
-}).renderFilter;
 const randGen = randomLcg(42);
 
 const smallData = [1, 2, 2, 3, 4, 4, 4];
@@ -83,14 +76,6 @@ export function Scenario() {
       </div>
       <div id="small">
         <Filter close={() => {}} setFilter={() => {}} data={smallData} />
-      </div>
-
-      <div id="ts">
-        <HighPrecisionFilter
-          close={() => {}}
-          setFilter={() => {}}
-          data={precisionData}
-        />
       </div>
     </div>
   );
