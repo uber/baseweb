@@ -9,11 +9,11 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {StatefulDataTable, NumericalColumn, StringColumn} from '../index.js';
-import lcg from '../../utils/lcg.js';
+import {randomLcg} from 'd3';
 
 type RowDataT = [string, number];
 
-const randGen = lcg(42);
+const randGen = randomLcg(42);
 
 const genColumns = count => {
   return new Array(count).fill(false).map((x, i) => {
