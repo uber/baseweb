@@ -39,11 +39,10 @@ const combineSeparatedInputs = (
     INPUT_DELIMITER,
   );
   if (inputRole === INPUT_ROLE.startDate && prevEndDate) {
-    // TODO(LUKE): use INPUT_DELIMITER below
-    inputValue = `${inputValue} – ${prevEndDate}`;
+    inputValue = `${inputValue}${INPUT_DELIMITER}${prevEndDate}`;
   }
   if (inputRole === INPUT_ROLE.endDate) {
-    inputValue = `${prevStartDate} – ${inputValue}`;
+    inputValue = `${prevStartDate}${INPUT_DELIMITER}${inputValue}`;
   }
   return inputValue;
 };
@@ -263,7 +262,6 @@ export default class Datepicker<T = Date> extends React.Component<
     }
 
     if (range && !separateRangeInputs) {
-      // TODO(LUKE): use INPUT_DELIMITER below
       return '9999/99/99 – 9999/99/99';
     }
 

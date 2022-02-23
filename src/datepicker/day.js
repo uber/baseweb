@@ -92,9 +92,9 @@ export default class Day<T = Date> extends React.Component<
   onSelect: T => void = selectedDate => {
     const {range, value} = this.props;
 
-    let date; // TODO(LUKE): rename this to nextDateValue
+    let nextDate;
     if (Array.isArray(value) && range && this.props.hasLockedBehavior) {
-      const currentDate = this.props.value; // TODO(LUKE): rename this to currDateValue
+      const currentDate = this.props.value;
       let nextStartDate = null;
       let nextEndDate = null;
 
@@ -108,24 +108,24 @@ export default class Day<T = Date> extends React.Component<
         nextEndDate = selectedDate;
       }
 
-      date = [nextStartDate];
+      nextDate = [nextStartDate];
       if (nextEndDate) {
-        date.push(nextEndDate);
+        nextDate.push(nextEndDate);
       }
     } else if (Array.isArray(value) && range && !this.props.hasLockedBehavior) {
       const [start, end] = value;
 
       // Starting a new range
       if ((!start && !end) || (start && end)) {
-        date = [selectedDate, null];
+        nextDate = [selectedDate, null];
 
         // EndDate needs a StartDate, SelectedDate comes before EndDate
       } else if (!start && end && this.dateHelpers.isAfter(end, selectedDate)) {
-        date = [selectedDate, end];
+        nextDate = [selectedDate, end];
 
         // EndDate needs a StartDate, but SelectedDate comes after EndDate
       } else if (!start && end && this.dateHelpers.isAfter(selectedDate, end)) {
-        date = [end, selectedDate];
+        nextDate = [end, selectedDate];
 
         // StartDate needs an EndDate, SelectedDate comes after StartDate
       } else if (
@@ -133,15 +133,15 @@ export default class Day<T = Date> extends React.Component<
         !end &&
         this.dateHelpers.isAfter(selectedDate, start)
       ) {
-        date = [start, selectedDate];
+        nextDate = [start, selectedDate];
       } else {
-        date = [selectedDate, start];
+        nextDate = [selectedDate, start];
       }
     } else {
-      date = selectedDate;
+      nextDate = selectedDate;
     }
 
-    this.props.onSelect({date});
+    this.props.onSelect({date: nextDate});
   };
 
   onKeyDown = (event: KeyboardEvent) => {
