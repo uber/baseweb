@@ -164,4 +164,75 @@ describe('FormControl - Label and Caption for controls', () => {
     getByTestId(container, 'label');
     getByTestId(container, 'caption');
   });
+
+  it('counter is visible', () => {
+    const label = 'Label test';
+    const caption = 'Caption test';
+    const value = 'example';
+    const maxLength = 50;
+
+    const {container} = render(
+      <FormControl label={label} caption={caption} counter>
+        <Input value={value} maxLength={maxLength} />
+      </FormControl>,
+    );
+
+    getByText(container, label);
+    getByText(container, caption);
+    getByText(container, `${value.length}/${maxLength}`);
+  });
+
+  it('counter is zero', () => {
+    const label = 'Label test';
+    const caption = 'Caption test';
+    const value = '';
+    const maxLength = 50;
+
+    const {container} = render(
+      <FormControl label={label} caption={caption} counter>
+        <Input value={value} maxLength={maxLength} />
+      </FormControl>,
+    );
+
+    getByText(container, label);
+    getByText(container, caption);
+    getByText(container, `${value.length}/${maxLength}`);
+  });
+
+  it('counter is hidden', () => {
+    const label = 'Label test';
+    const caption = 'Caption test';
+    const value = 'example 2';
+    const maxLength = 50;
+
+    const {container} = render(
+      <FormControl label={label} caption={caption}>
+        <Input value={value} maxLength={maxLength} />
+      </FormControl>,
+    );
+
+    getByText(container, label);
+    getByText(container, caption);
+    expect(queryByText(container, `${value.length}/${maxLength}`)).toBeNull();
+  });
+
+  it('override counter', () => {
+    const label = 'Label test';
+    const caption = 'Caption test';
+    const maxLength = 50;
+
+    const {container} = render(
+      <FormControl
+        label={label}
+        caption={caption}
+        counter={{length: 50, maxLength: 100}}
+      >
+        <Input value={'example'} maxLength={maxLength} />
+      </FormControl>,
+    );
+
+    getByText(container, label);
+    getByText(container, caption);
+    getByText(container, '50/100');
+  });
 });

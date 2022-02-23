@@ -486,7 +486,7 @@ class PopoverInner extends React.Component<
               ) : (
                 <MoveFocusInside
                   disabled={
-                    !this.props.autoFocus &&
+                    !this.props.autoFocus ||
                     !this.state.autoFocusAfterPositioning
                   }
                 >
