@@ -147,20 +147,6 @@ const config = {
       },
     ],
   },
-  'data-table--numerical-column': {
-    interactions: [
-      {
-        name: 'single',
-        behavior: async page => {
-          const button = '[aria-label="Single Value"]';
-          await page.waitForSelector(button, {
-            visible: true,
-          });
-          await page.click(button);
-        },
-      },
-    ],
-  },
   'datepicker--datepicker': {
     interactions: [
       {
