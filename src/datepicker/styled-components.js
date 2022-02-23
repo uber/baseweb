@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 import {styled} from '../styles/index.js';
 import getDayStateCode from './utils/day-state.js';
 import type {SharedStylePropsT, CalendarPropsT} from './types.js';
-import {ORIENTATION, DENSITY} from './constants.js';
+import {ORIENTATION, DENSITY, INPUT_ROLE} from './constants.js';
 
 /**
  * Main component container element
@@ -440,6 +440,9 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
     $outsideMonthWithinRange,
     $hasDateLabel,
     $density,
+    $hasLockedBehavior,
+    $selectedInput,
+    $value,
     $theme: {colors, typography, sizing},
   } = props;
   const code = getDayStateCode(props);
@@ -458,6 +461,14 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
       height = '48px';
     }
   }
+
+  const [startDate, endDate] = Array.isArray($value) ? $value : [$value, null];
+  const oppositeInputIsPopulated =
+    $selectedInput === INPUT_ROLE.startDate
+      ? endDate !== null && typeof endDate !== 'undefined'
+      : startDate !== null && typeof startDate !== 'undefined';
+  const shouldHighlightRange =
+    $range && !($hasLockedBehavior && !oppositeInputIsPopulated);
 
   return ({
     ...($density === DENSITY.high
@@ -535,7 +546,7 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
       ...(getDayStyles(code, props.$theme)[':after'] || {}),
       ...($outsideMonthWithinRange ? {content: null} : {}),
     },
-    ...($range
+    ...(shouldHighlightRange
       ? {
           // :before pseudo element defines a grey background style that extends
           // the selected/highlighted day's circle and spans through a range
