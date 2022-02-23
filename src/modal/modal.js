@@ -16,7 +16,6 @@ import { Layer } from '../layer/index.js';
 import { SIZE, ROLE, CLOSE_SOURCE } from './constants.js';
 import {
   Root as StyledRoot,
-  Backdrop as StyledBackdrop,
   Dialog as StyledDialog,
   DialogContainer as StyledDialogContainer,
   Close as StyledClose,
@@ -28,7 +27,6 @@ import type {
   ModalStateT,
   SharedStylePropsArgT,
   CloseSourceT,
-  ElementRefT,
 } from './types.js';
 import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible.js';
 
@@ -46,11 +44,11 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     overrides: {},
     role: ROLE.dialog,
     size: SIZE.default,
-    unstable_ModalBackdropScroll: false,
   };
 
   animateOutTimer: ?TimeoutID;
   animateStartTimer: ?AnimationFrameID;
+  dialogContainerRef = React.createRef<HTMLElement>();
   lastFocus: ?HTMLElement = null;
   lastMountNodeOverflowStyle: ?string = null;
   _refs: { [string]: ElementRefT } = {};
@@ -65,19 +63,6 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     this.setState({ mounted: true });
     // TODO(v11)
     if (__DEV__) {
-      if (!this.props.unstable_ModalBackdropScroll) {
-        console.warn(`Consider setting 'unstable_ModalBackdropScroll' prop to true
-        to prepare for the next major version upgrade. 'unstable_ModalBackdropScroll'
-        prop will be removed in the next major version but implemented as the default behavior.`);
-      }
-      if (this.props.overrides && this.props.overrides.Backdrop) {
-        console.warn(`Backdrop element will be removed in the next major version in favor of
-        DialogContainer element that will have the backdrop styles and backdrop click handle.
-        Consider setting 'unstable_ModalBackdropScroll' prop to true that will apply backdrop
-        styles to DialogContainer enable modal scrolling while cursor in over the backdrop.
-        Then pass backdrop overrides to DialogContainer instead. Tha will help you with
-        the next major version upgrade.`);
-      }
       // $FlowFixMe: flow complains that this prop doesn't exist
       if (this.props.closable) {
         console.warn(
@@ -149,11 +134,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     if (
       e.target &&
       e.target instanceof HTMLElement &&
-      // Handles modal closure when unstable_ModalBackdropScroll is set to true
-      (e.target.contains(this.getRef('DialogContainer').current) ||
-        // Handles modal closure when unstable_ModalBackdropScroll is set to false
-        // $FlowFixMe
-        e.target.contains(this.getRef('DeprecatedBackdrop').current))
+      e.target.contains(this.dialogContainerRef.current)
     ) {
       this.onBackdropClick();
     }
@@ -183,7 +164,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
   didOpen() {
     // Sometimes scroll starts past zero, possibly due to animation
     // Reset scroll to 0 (other libraries do this as well)
-    const rootRef = this.getRef('Root').current;
+    const rootRef = this.rootRef.current;
     if (rootRef) {
       rootRef.scrollTop = 0;
     }
@@ -228,7 +209,6 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
       $size: size,
       $role: role,
       $closeable: !!closeable,
-      $unstable_ModalBackdropScroll: unstable_ModalBackdropScroll,
       $isFocusVisible: this.state.isFocusVisible,
     };
   }
@@ -248,19 +228,11 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     return typeof children === 'function' ? children() : children;
   }
 
-  getRef(component: string): ElementRefT {
-    if (!this._refs[component]) {
-      this._refs[component] = React.createRef();
-    }
-    return this._refs[component];
-  }
-
   renderModal() {
     const {
       overrides = {},
       closeable,
       role,
-      unstable_ModalBackdropScroll,
       autofocus,
       autoFocus,
       focusLock,
@@ -271,7 +243,6 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
       Root: RootOverride,
       Dialog: DialogOverride,
       DialogContainer: DialogContainerOverride,
-      Backdrop: BackdropOverride,
       Close: CloseOverride,
     } = overrides;
 
@@ -325,7 +296,8 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
                 {...backdropProps}
               />
               <DialogContainer
-                {...dialogContainerConditionalProps}
+                // eslint-disable-next-line flowtype/no-weak-types
+                ref={(this.dialogContainerRef: any)}
                 {...sharedProps}
                 {...dialogContainerProps}
               >
@@ -334,7 +306,6 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
                   aria-modal
                   aria-label="dialog"
                   role={role}
-                  ref={this.getRef('Dialog')}
                   {...sharedProps}
                   {...dialogProps}
                 >
