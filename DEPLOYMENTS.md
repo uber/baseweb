@@ -20,6 +20,6 @@ This flow is implemented in [this deploy script](https://github.com/uber/baseweb
 
 ## Latest
 
-Whenever a new commit lands on master, we deploy the doc site to https://baseweb.design. Because of this, there may be times when a new feature is already shown on the doc site, but it's not avialable in the latest npm package. Usually, we cut releases every day, so it shouldn't be a big issue.
+Whenever a new commit lands on master, we deploy the doc site to https://baseweb.design. Because of this, there may be times when a new feature is already shown on the doc site, but it's not available in the latest npm package. Usually, we cut releases every day, so it shouldn't be a big issue.
 
 The configuration for this [lives here](https://github.com/uber/baseweb/blob/master/now.json).
