@@ -12,69 +12,46 @@ import {useStyletron} from '../styles/index.js';
 
 import HeaderCell from './header-cell.js';
 import type {ColumnT, RowT} from './types.js';
-import {useRef} from 'react';
 
-// Measures the column header + sampled data
-function MeasureColumn({
-  sampleIndexes,
-  column,
-  columnIndex,
-  rows,
-  isSelectable,
-  onLayout,
-}) {
-  const [css] = useStyletron();
+// https://github.com/Swizec/useDimensions
+function useDimensions() {
+  const [dimensions, setDimensions] = React.useState({});
+  const [node, setNode] = React.useState(null);
 
-  const ref = useRef();
-
-  React.useEffect(() => {
-    if (ref.current) {
-      onLayout(columnIndex, ref.current.getBoundingClientRect());
-    }
+  const ref = React.useCallback(node => {
+    setNode(node);
   }, []);
 
-  return (
-    <div
-      ref={ref}
-      className={css({
-        display: 'flex',
-        flexDirection: 'column',
-        width: 'fit-content',
-      })}
-    >
-      <HeaderCell
-        index={columnIndex}
-        isHovered
-        isMeasured
-        isSelectedAll={false}
-        isSelectedIndeterminate={false}
-        onMouseEnter={() => {}}
-        onMouseLeave={() => {}}
-        onSelectAll={() => {}}
-        onSelectNone={() => {}}
-        onSort={i => {}}
-        sortable={column.sortable}
-        sortDirection={null}
-        title={column.title}
-        isSelectable={isSelectable}
-      />
-      {sampleIndexes.map((rowIndex, i) => {
-        const Cell = column.renderCell;
-        return (
-          <Cell
-            key={`measure-${i}`}
-            value={column.mapDataToValue(rows[rowIndex].data)}
-            isSelectable={isSelectable}
-            isMeasured
-            sortable={column.sortable}
-            x={0}
-            y={rowIndex}
-          />
-        );
-      })}
-    </div>
-  );
+  React.useEffect(() => {
+    if (__BROWSER__) {
+      if (node) {
+        window.requestAnimationFrame(() => {
+          setDimensions(node.getBoundingClientRect());
+        });
+      }
+    }
+  }, [node]);
+
+  return [ref, dimensions];
 }
+
+type ElementMeasurerPropsT = {
+  onDimensionsChange: (dimensions: {width: number}) => void,
+  // eslint-disable-next-line flowtype/no-weak-types
+  item: React.Element<any>,
+};
+
+function ElementMeasurer(props: ElementMeasurerPropsT) {
+  const {onDimensionsChange} = props;
+  const [ref, dimensions] = useDimensions();
+
+  React.useEffect(() => {
+    onDimensionsChange(dimensions);
+  }, [dimensions, onDimensionsChange]);
+
+  return React.cloneElement(props.item, {ref});
+}
+
 type MeasureColumnWidthsPropsT = {
   columns: ColumnT<>[],
   // if selectable, measure the first column with checkbox included
@@ -84,6 +61,7 @@ type MeasureColumnWidthsPropsT = {
   widths: number[],
 };
 
+// sample size could likely be generated based on row count, to have higher confidence
 const MAX_SAMPLE_SIZE = 50;
 
 function generateSampleIndices(inputMin, inputMax, maxSamples) {
@@ -118,41 +96,51 @@ export default function MeasureColumnWidths({
 }: MeasureColumnWidthsPropsT) {
   const [css] = useStyletron();
 
-  const widthMap = React.useMemo(() => {
-    return new Map();
-  }, []);
+  const measurementCount = React.useRef(0);
+  const dimensionsCache = React.useRef(widths);
 
   const sampleSize =
     rows.length < MAX_SAMPLE_SIZE ? rows.length : MAX_SAMPLE_SIZE;
   const finishedMeasurementCount = (sampleSize + 1) * columns.length;
 
-  const sampleIndexes = React.useMemo<number[]>(() => {
-    return generateSampleIndices(0, rows.length - 1, sampleSize);
+  const sampleRowIndicesByColumn = React.useMemo<number[][]>(() => {
+    measurementCount.current = 0;
+    dimensionsCache.current = widths;
+
+    const indices = generateSampleIndices(0, rows.length - 1, sampleSize);
+    return columns.map(() => indices);
   }, [columns, rows, widths, sampleSize]);
 
   const handleDimensionsChange = React.useCallback(
-    (columnIndex, dimensions) => {
+    (columnIndex, rowIndex, dimensions) => {
+      if (dimensions.width === undefined) return;
+
+      if (
+        columns[columnIndex] === undefined ||
+        dimensionsCache.current[columnIndex] === undefined
+      ) {
+        return;
+      }
+
+      measurementCount.current += 1;
+
       const nextWidth = Math.min(
         Math.max(
           columns[columnIndex].minWidth || 0,
-          widthMap.get(columnIndex) || 0,
+          dimensionsCache.current[columnIndex],
           dimensions.width + 1,
         ),
         columns[columnIndex].maxWidth || Infinity,
       );
 
-      if (nextWidth !== widthMap.get(columnIndex)) {
-        widthMap.set(columnIndex, nextWidth);
+      if (nextWidth !== dimensionsCache.current[columnIndex]) {
+        const nextWidths = [...dimensionsCache.current];
+        nextWidths[columnIndex] = nextWidth;
+        dimensionsCache.current = nextWidths;
       }
-      if (
-        // Refresh at 100% of done
-        widthMap.size === columns.length ||
-        // ...50%
-        widthMap.size === Math.floor(columns.length / 2) ||
-        // ...25%
-        widthMap.size === Math.floor(columns.length / 4)
-      ) {
-        onWidthsChange(Array.from(widthMap.values()));
+
+      if (measurementCount.current >= finishedMeasurementCount) {
+        onWidthsChange(dimensionsCache.current);
       }
     },
     [columns, finishedMeasurementCount, onWidthsChange],
@@ -164,27 +152,61 @@ export default function MeasureColumnWidths({
     height: 0,
   });
 
-  // Remove the measurement nodes after we are done updating our column width
-  if (widthMap.size === columns.length) {
+  if (measurementCount.current >= finishedMeasurementCount) {
     return null;
   }
 
   return (
     // eslint-disable-next-line jsx-a11y/role-supports-aria-props
     <div className={hiddenStyle} aria-hidden role="none">
-      {columns.map((column, i) => {
-        return (
-          <MeasureColumn
-            key={column.title + i}
-            column={column}
-            rows={rows}
-            isSelectable={isSelectable}
-            onLayout={handleDimensionsChange}
-            columnIndex={i}
-            sampleIndexes={sampleIndexes}
+      {sampleRowIndicesByColumn.map((rowIndices, columnIndex) => {
+        const Cell = columns[columnIndex].renderCell;
+        return rowIndices.map(rowIndex => (
+          <ElementMeasurer
+            key={`measure-${columnIndex}-${rowIndex}`}
+            onDimensionsChange={dimensions =>
+              handleDimensionsChange(columnIndex, rowIndex, dimensions)
+            }
+            item={
+              <Cell
+                value={columns[columnIndex].mapDataToValue(rows[rowIndex].data)}
+                isMeasured
+                onSelect={
+                  isSelectable && columnIndex === 0 ? () => {} : undefined
+                }
+                x={columnIndex}
+                y={rowIndex}
+              />
+            }
           />
-        );
+        ));
       })}
+      {columns.map((column, columnIndex) => (
+        <ElementMeasurer
+          key={`measure-column-${columnIndex}`}
+          onDimensionsChange={dimensions =>
+            handleDimensionsChange(columnIndex, -1, dimensions)
+          }
+          item={
+            <HeaderCell
+              index={columnIndex}
+              isHovered
+              isMeasured
+              isSelectable={isSelectable && columnIndex === 0}
+              isSelectedAll={false}
+              isSelectedIndeterminate={false}
+              onMouseEnter={() => {}}
+              onMouseLeave={() => {}}
+              onSelectAll={() => {}}
+              onSelectNone={() => {}}
+              onSort={i => {}}
+              sortable={column.sortable}
+              sortDirection={null}
+              title={column.title}
+            />
+          }
+        />
+      ))}
     </div>
   );
 }

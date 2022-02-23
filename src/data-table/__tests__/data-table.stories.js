@@ -35,7 +35,6 @@ import {Scenario as DataTableRowHeight} from './data-table-row-height.scenario.j
 import {Scenario as DataTableTextSearch} from './data-table-text-search.scenario.js';
 import {Scenario as DataTableDefault} from './data-table.scenario.js';
 import {Scenario as DataTableRtl} from './data-table-rtl.scenario.js';
-import {Scenario as DataTableLargeData} from './data-table-large-column-data.scenario.js';
 
 export const AddRemoveColumns = () => <DataTableAddRemoveColumns />;
 export const BatchAction = () => <DataTableBatchAction />;
@@ -65,4 +64,3 @@ export const RowHeight = () => <DataTableRowHeight />;
 export const TextSearch = () => <DataTableTextSearch />;
 export const DataTable = () => <DataTableDefault />;
 export const TestRtl = () => <DataTableRtl />;
-export const LargeData = () => <DataTableLargeData />;
