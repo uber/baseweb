@@ -32,12 +32,10 @@ export interface SharedStylePropsArg {
   $size?: SIZE[keyof SIZE];
   $role?: ROLE[keyof ROLE];
   $closeable?: boolean;
-  $unstable_ModalBackdropScroll?: boolean;
 }
 
 export interface ModalOverrides {
   Root?: Override<SharedStylePropsArg>;
-  Backdrop?: Override<SharedStylePropsArg>;
   Dialog?: Override<SharedStylePropsArg>;
   DialogContainer?: Override<SharedStylePropsArg>;
   Close?: Override<SharedStylePropsArg>;
@@ -58,7 +56,6 @@ export interface ModalProps {
   overrides?: ModalOverrides;
   role?: ROLE[keyof ROLE];
   size?: SIZE[keyof SIZE];
-  unstable_ModalBackdropScroll?: boolean;
 }
 export interface ModalState {
   isVisible: boolean;
@@ -94,7 +91,6 @@ export class ModalButton extends React.Component<
 export class FocusOnce extends React.Component<{children: React.ReactNode}> {}
 
 export const StyledRoot: StyletronComponent<any>;
-export const StyledBackdrop: StyletronComponent<any>;
 export const StyledDialog: StyletronComponent<any>;
 export const StyledDialogContainer: StyletronComponent<any>;
 export const StyledClose: StyletronComponent<any>;
