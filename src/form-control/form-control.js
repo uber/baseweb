@@ -138,13 +138,6 @@ export default class FormControl extends React.Component<
         sharedProps.$error = true;
         sharedProps.$counterError = true;
       }
-      console.log(
-        sharedProps,
-        children,
-        typeof onlyChildProps.error !== 'undefined'
-          ? onlyChildProps.error
-          : sharedProps.$error,
-      );
     }
 
     return (
