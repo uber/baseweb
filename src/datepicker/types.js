@@ -9,7 +9,13 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import type {OverrideT} from '../helpers/overrides.js';
 import type {SizeT} from '../input/types.js';
-import {ORIENTATION, STATE_CHANGE_TYPE, DENSITY} from './constants.js';
+import {
+  INPUT_ROLE,
+  ORIENTATION,
+  RANGED_CALENDAR_BEHAVIOR,
+  STATE_CHANGE_TYPE,
+  DENSITY,
+} from './constants.js';
 import type {DateIOAdapter} from './utils/types.js';
 import type {
   TimePickerPropsT as TimePickerPropsTBase,
@@ -76,6 +82,8 @@ export type DayPropsT<T = Date> = {
   includeDates: ?Array<T>,
   highlighted: boolean,
   range: boolean,
+  hasLockedBehavior: boolean,
+  selectedInput: InputRoleT,
   focusedCalendar: boolean,
   locale: ?LocaleT,
   maxDate: ?T,
@@ -123,6 +131,8 @@ export type WeekPropsT<T = Date> = {
   overrides?: DatepickerOverridesT,
   peekNextMonth: boolean,
   value: DateValueT<T>,
+  hasLockedBehavior: boolean,
+  selectedInput?: InputRoleT,
 };
 
 export type MonthPropsT<T = Date> = WeekPropsT<T> & {
@@ -159,6 +169,8 @@ export type CalendarPropsT<T = Date> = {
   includeDates?: ?Array<T>,
   /** Defines if a range of dates can be selected. */
   range?: boolean,
+  /** Determines whether startDate and endDate should be updated independently of eachother */
+  hasLockedBehavior?: boolean,
   /** A locale object. See `date-fns` for more details https://github.com/date-fns/date-fns/tree/master/src/locale. */
   locale?: ?LocaleT,
   /** A max date that is selectable. */
@@ -198,6 +210,8 @@ export type CalendarPropsT<T = Date> = {
   /** Currently selected date. */
   value?: DateValueT<T>,
   fixedHeight?: boolean,
+  /** Determines whether user clicked startDate or endDate input to trigger calendar open */
+  selectedInput?: InputRoleT,
 };
 
 export type HeaderPropsT<T = Date> = CalendarPropsT<T> & {
@@ -233,6 +247,8 @@ export type DatepickerPropsT<T = Date> = CalendarPropsT<T> & {
   /** Called when calendar is opened */
   onOpen?: () => mixed,
   mask?: string | null,
+  /** Determines whether startDate and endDate should be updated independently of eachother */
+  rangedCalendarBehavior?: RangedCalendarBehaviorT,
   /** Determines if startDate and endDate should be separated into two input fields. Ignored if `range` is not true. */
   separateRangeInputs?: boolean,
   startDateLabel?: string,
@@ -262,6 +278,9 @@ export type SharedStylePropsT = {
   $hasRangeHighlighted: ?boolean,
   $hasRangeOnRight: ?boolean,
   $hasRangeSelected: ?boolean,
+  $hasLockedBehavior: boolean,
+  $selectedInput: InputRoleT,
+  $value: Date | Array<Date>,
   $order: ?number,
   $hasDateLabel: ?boolean,
 };
@@ -373,3 +392,7 @@ export type TimezonePickerPropsT = {
   error?: boolean,
   positive?: boolean,
 };
+
+export type InputRoleT = ?$Values<typeof INPUT_ROLE>;
+
+export type RangedCalendarBehaviorT = ?$Values<typeof RANGED_CALENDAR_BEHAVIOR>;

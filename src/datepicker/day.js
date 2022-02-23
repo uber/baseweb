@@ -14,6 +14,7 @@ import type {DayPropsT, DayStateT} from './types.js';
 import {LocaleContext} from '../locale/index.js';
 import type {LocaleT} from '../locale/types.js';
 import {isFocusVisible} from '../utils/focusVisible.js';
+import {INPUT_ROLE} from './constants.js';
 
 export default class Day<T = Date> extends React.Component<
   DayPropsT<T>,
@@ -83,10 +84,35 @@ export default class Day<T = Date> extends React.Component<
       : this.props.month;
   };
 
+  /**
+   * Determines how the day value(s) should be updated when a new day is selected.
+   * Note: time values are incorporated into new day/date values downstream in `Calendar`.
+   * Note: Situations where Start Dates are after End Dates are handled downstream in `Datepicker`.
+   * */
   onSelect: T => void = selectedDate => {
     const {range, value} = this.props;
-    let date;
-    if (Array.isArray(value) && range) {
+
+    let date; // TODO(LUKE): rename this to nextDateValue
+    if (Array.isArray(value) && range && this.props.hasLockedBehavior) {
+      const currentDate = this.props.value; // TODO(LUKE): rename this to currDateValue
+      let nextStartDate = null;
+      let nextEndDate = null;
+
+      if (this.props.selectedInput === INPUT_ROLE.startDate) {
+        nextStartDate = selectedDate;
+        nextEndDate =
+          Array.isArray(currentDate) && currentDate[1] ? currentDate[1] : null;
+      } else if (this.props.selectedInput === INPUT_ROLE.endDate) {
+        nextStartDate =
+          Array.isArray(currentDate) && currentDate[0] ? currentDate[0] : null;
+        nextEndDate = selectedDate;
+      }
+
+      date = [nextStartDate];
+      if (nextEndDate) {
+        date.push(nextEndDate);
+      }
+    } else if (Array.isArray(value) && range && !this.props.hasLockedBehavior) {
       const [start, end] = value;
 
       // Starting a new range
@@ -385,6 +411,9 @@ export default class Day<T = Date> extends React.Component<
         Array.isArray(value) && value[0] && value[1] && range && $selected
           ? this.dateHelpers.isSameDay(date, value[0])
           : false,
+      $hasLockedBehavior: this.props.hasLockedBehavior,
+      $selectedInput: this.props.selectedInput,
+      $value: this.props.value,
     };
   }
 
