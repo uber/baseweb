@@ -104,6 +104,16 @@ export default class Datepicker<T = Date> extends React.Component<
           } else {
             nextDate = [start, start];
           }
+        } else if (
+          this.dateHelpers.dateRangeIncludesDates(
+            // $FlowFixMe Cannot call `this.dateHelpers.dateRangeIncludesDates` with `nextDate` bound to the first parameter because  read-only array type [1] is incompatible with  array type [2]
+            nextDate,
+            this.props.excludeDates,
+          )
+        ) {
+          nextDate = this.props.value;
+          console.warn('Selected date range includes excluded dates');
+          isOpen = true;
         }
 
         if (this.state.lastActiveElm) {
