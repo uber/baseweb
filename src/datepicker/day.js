@@ -80,15 +80,15 @@ export default class Day<T = Date> extends React.Component<DayPropsT<T>, DayStat
 
       // Starting a new range
       if ((!start && !end) || (start && end)) {
-        date = [selectedDate, null];
+        nextDate = [selectedDate, null];
 
         // EndDate needs a StartDate, SelectedDate comes before EndDate
       } else if (!start && end && this.dateHelpers.isAfter(end, selectedDate)) {
-        date = [selectedDate, end];
+        nextDate = [selectedDate, end];
 
         // EndDate needs a StartDate, but SelectedDate comes after EndDate
       } else if (!start && end && this.dateHelpers.isAfter(selectedDate, end)) {
-        date = [end, selectedDate];
+        nextDate = [end, selectedDate];
 
         // StartDate needs an EndDate, SelectedDate comes after StartDate
       } else if (
@@ -96,12 +96,12 @@ export default class Day<T = Date> extends React.Component<DayPropsT<T>, DayStat
         !end &&
         this.dateHelpers.isAfter(selectedDate, start)
       ) {
-        date = [start, selectedDate];
+        nextDate = [start, selectedDate];
       } else {
-        date = [selectedDate, start];
+        nextDate = [selectedDate, start];
       }
     } else {
-      date = selectedDate;
+      nextDate = selectedDate;
     }
     this.props.onSelect({ date });
   };
@@ -326,6 +326,9 @@ export default class Day<T = Date> extends React.Component<DayPropsT<T>, DayStat
         Array.isArray(value) && value[0] && value[1] && range && $selected
           ? this.dateHelpers.isSameDay(date, value[0])
           : false,
+      $hasLockedBehavior: this.props.hasLockedBehavior,
+      $selectedInput: this.props.selectedInput,
+      $value: this.props.value,
     };
   }
 

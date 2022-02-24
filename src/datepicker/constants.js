@@ -32,3 +32,13 @@ export const DENSITY = {
   high: 'high',
   default: 'default',
 };
+
+export const INPUT_ROLE = {
+  startDate: 'startDate',
+  endDate: 'endDate',
+};
+
+export const RANGED_CALENDAR_BEHAVIOR = {
+  default: 'default',
+  locked: 'locked',
+};

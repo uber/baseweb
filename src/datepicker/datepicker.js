@@ -26,7 +26,7 @@ import type { LocaleT } from '../locale/types.js';
 
 export const DEFAULT_DATE_FORMAT = 'yyyy/MM/dd';
 
-const INPUT_DELIMITER = ' – ';
+const INPUT_DELIMITER = '–';
 
 const combineSeparatedInputs = (newInputValue, prevCombinedInputValue = '', separatedInput) => {
   let inputValue = newInputValue;
@@ -35,8 +35,8 @@ const combineSeparatedInputs = (newInputValue, prevCombinedInputValue = '', sepa
     // TODO(LUKE): use INPUT_DELIMITER below
     inputValue = `${inputValue} – ${prevEndDate}`;
   }
-  if (separatedInput === 'endDate') {
-    inputValue = `${prevStartDate} – ${inputValue}`;
+  if (inputRole === INPUT_ROLE.endDate) {
+    inputValue = `${prevStartDate} ${INPUT_DELIMITER} ${inputValue}`;
   }
   return inputValue;
 };
@@ -44,6 +44,7 @@ const combineSeparatedInputs = (newInputValue, prevCombinedInputValue = '', sepa
 type StateT = {|
   calendarFocused: boolean,
   isOpen: boolean,
+  selectedInput: ?InputRoleT,
   isPseudoFocused: boolean,
   lastActiveElm: ?HTMLElement,
   inputValue?: string,
@@ -68,6 +69,7 @@ export default class Datepicker<T = Date> extends React.Component<DatepickerProp
     this.state = {
       calendarFocused: false,
       isOpen: false,
+      selectedInput: null,
       isPseudoFocused: false,
       lastActiveElm: null,
       inputValue: this.formatDisplayValue(props.value) || '',
@@ -88,7 +90,12 @@ export default class Datepicker<T = Date> extends React.Component<DatepickerProp
       } else if (nextDate[0] && nextDate[1]) {
         const [start, end] = nextDate;
         if (this.dateHelpers.isAfter(start, end)) {
-          nextDate = [start, start];
+          if (this.hasLockedBehavior()) {
+            nextDate = this.props.value;
+            isOpen = true;
+          } else {
+            nextDate = [start, start];
+          }
         }
 
         if (this.state.lastActiveElm) {
@@ -150,7 +157,7 @@ export default class Datepicker<T = Date> extends React.Component<DatepickerProp
     } else if (Array.isArray(date) && !date[0] && date[1]) {
       const endDate = format(date[1]);
       const startDate = this.getNullDatePlaceholder(formatString);
-      return [startDate, endDate].join(INPUT_DELIMITER);
+      return [startDate, endDate].join(` ${INPUT_DELIMITER} `);
     } else if (Array.isArray(date)) {
       return date.map((day) => format(day)).join(INPUT_DELIMITER);
     } else {
@@ -187,12 +194,13 @@ export default class Datepicker<T = Date> extends React.Component<DatepickerProp
     return this.formatDate(date, formatString);
   };
 
-  open = () => {
+  open = (inputRole?: InputRoleT) => {
     this.setState(
       {
         isOpen: true,
         isPseudoFocused: true,
         calendarFocused: false,
+        selectedInput: inputRole,
       },
       this.props.onOpen
     );
@@ -203,6 +211,7 @@ export default class Datepicker<T = Date> extends React.Component<DatepickerProp
     this.setState(
       {
         isOpen: false,
+        selectedInput: null,
         isPseudoFocused,
         calendarFocused: false,
       },
@@ -235,8 +244,7 @@ export default class Datepicker<T = Date> extends React.Component<DatepickerProp
     }
 
     if (range && !separateRangeInputs) {
-      // TODO(LUKE): use INPUT_DELIMITER below
-      return '9999/99/99 – 9999/99/99';
+      return `9999/99/99 ${INPUT_DELIMITER} 9999/99/99`;
     }
 
     return '9999/99/99';
@@ -377,7 +385,17 @@ export default class Datepicker<T = Date> extends React.Component<DatepickerProp
 
   normalizeDashes = (inputValue: string) => {
     // replacing both hyphens and em-dashes with en-dashes
-    return inputValue.replace(/-/g, '–').replace(/—/g, '–');
+    return inputValue
+      .replace(/-/g, INPUT_DELIMITER)
+      .replace(/—/g, INPUT_DELIMITER);
+  };
+
+  hasLockedBehavior = () => {
+    return (
+      this.props.rangedCalendarBehavior === RANGED_CALENDAR_BEHAVIOR.locked &&
+      this.props.range &&
+      this.props.separateRangeInputs
+    );
   };
 
   componentDidUpdate(prevProps: DatepickerPropsT<T>) {
@@ -397,15 +415,15 @@ export default class Datepicker<T = Date> extends React.Component<DatepickerProp
       this.props.placeholder || this.props.placeholder === ''
         ? this.props.placeholder
         : this.props.range && !this.props.separateRangeInputs
-        ? 'YYYY/MM/DD – YYYY/MM/DD'
+        ? `YYYY/MM/DD ${INPUT_DELIMITER} YYYY/MM/DD`
         : 'YYYY/MM/DD';
 
     const [startDate = '', endDate = ''] = (this.state.inputValue || '').split(INPUT_DELIMITER);
 
     const value =
-      separatedInput === 'startDate'
+      inputRole === INPUT_ROLE.startDate
         ? startDate
-        : separatedInput === 'endDate'
+        : inputRole === INPUT_ROLE.endDate
         ? endDate
         : this.state.inputValue;
 
@@ -426,7 +444,7 @@ export default class Datepicker<T = Date> extends React.Component<DatepickerProp
         disabled={this.props.disabled}
         size={this.props.size}
         value={value}
-        onFocus={this.open}
+        onFocus={() => this.open(inputRole)}
         onBlur={this.handleInputBlur}
         onKeyDown={this.handleKeyDown}
         onChange={onChange}
@@ -470,6 +488,8 @@ export default class Datepicker<T = Date> extends React.Component<DatepickerProp
                   value={this.props.value}
                   {...this.props}
                   onChange={this.onChange}
+                  selectedInput={this.state.selectedInput}
+                  hasLockedBehavior={this.hasLockedBehavior()}
                 />
               }
               {...popoverProps}

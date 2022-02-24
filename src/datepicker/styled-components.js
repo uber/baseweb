@@ -427,6 +427,14 @@ export const StyledDay = styled<SharedStylePropsT>('div', (props) => {
     }
   }
 
+  const [startDate, endDate] = Array.isArray($value) ? $value : [$value, null];
+  const oppositeInputIsPopulated =
+    $selectedInput === INPUT_ROLE.startDate
+      ? endDate !== null && typeof endDate !== 'undefined'
+      : startDate !== null && typeof startDate !== 'undefined';
+  const shouldHighlightRange =
+    $range && !($hasLockedBehavior && !oppositeInputIsPopulated);
+
   return ({
     ...($density === DENSITY.high ? typography.ParagraphSmall : typography.ParagraphMedium),
     boxSizing: 'border-box',
@@ -496,7 +504,7 @@ export const StyledDay = styled<SharedStylePropsT>('div', (props) => {
       ...(getDayStyles(code, props.$theme)[':after'] || {}),
       ...($outsideMonthWithinRange ? { content: null } : {}),
     },
-    ...($range
+    ...(shouldHighlightRange
       ? {
           // :before pseudo element defines a grey background style that extends
           // the selected/highlighted day's circle and spans through a range

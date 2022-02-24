@@ -43,6 +43,7 @@ export const RangeMultiMonth = () => <DatepickerRangeMultiMonth />;
 export const Range = () => <DatepickerRange />;
 export const RangeNullStartDate = () => <DatepickerRangeNullStartDate />;
 export const RangeSeparateInputs = () => <DatepickerRangeSeparateInputs />;
+export const RangeLockedBehavior = () => <DatepickerRangeLockedBehavior />;
 export const Datepicker = () => <DatepickerDefault />;
 export const DatepickerTime = () => <DatepickerTimeScenario />;
 export const StatefulColorStates = () => <DatepickersColorStates />;

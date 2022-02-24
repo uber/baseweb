@@ -453,6 +453,8 @@ export default class Calendar<T = Date> extends React.Component<
             value={this.props.value}
             peekNextMonth={this.props.peekNextMonth}
             fixedHeight={this.props.fixedHeight}
+            hasLockedBehavior={!!this.props.hasLockedBehavior}
+            selectedInput={this.props.selectedInput}
           />
         </CalendarContainer>
       );
