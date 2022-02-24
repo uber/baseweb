@@ -350,6 +350,8 @@ export default class Calendar<T = Date> extends React.Component<
     this.props.onDayMouseLeave && this.props.onDayMouseLeave(data);
   };
 
+  /** Responsible for merging time values into date values. Note: the 'Day' component
+   * determines how the days themselves change when a new day is selected. */
   handleDateChange: ({date: DateValueT<T>}) => void = data => {
     const {onChange = params => {}} = this.props;
     let updatedDate = data.date;
@@ -481,6 +483,8 @@ export default class Calendar<T = Date> extends React.Component<
             value={this.props.value}
             peekNextMonth={this.props.peekNextMonth}
             fixedHeight={this.props.fixedHeight}
+            hasLockedBehavior={!!this.props.hasLockedBehavior}
+            selectedInput={this.props.selectedInput}
           />
         </CalendarContainer>,
       );
