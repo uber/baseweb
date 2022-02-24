@@ -314,8 +314,8 @@ class PopoverInner extends React.Component<
     }
 
     if (this.isHoverTrigger()) {
-      anchorProps.onPointerEnter = this.onAnchorMouseEnter;
-      anchorProps.onPointerLeave = this.onAnchorMouseLeave;
+      anchorProps.onMouseEnter = this.onAnchorMouseEnter;
+      anchorProps.onMouseLeave = this.onAnchorMouseLeave;
 
       // Make it focusable too
       anchorProps.onBlur = this.props.onBlur;
@@ -378,7 +378,13 @@ class PopoverInner extends React.Component<
     }
 
     const isValidElement = React.isValidElement(anchor);
-    const anchorProps = this.getAnchorProps();
+    const {onMouseEnter, onMouseLeave, ...restProps} = this.getAnchorProps();
+
+    const anchorProps = {
+      ...restProps,
+      onPointerEnter: onMouseEnter,
+      onPointerLeave: onMouseLeave,
+    };
 
     if (typeof anchor === 'object' && isValidElement) {
       return React.cloneElement(anchor, anchorProps);

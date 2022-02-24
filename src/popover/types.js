@@ -219,8 +219,8 @@ export type AnchorPropsT = {
   onBlur?: (e: Event) => mixed,
   onClick?: (e: Event) => mixed,
   onFocus?: (e: Event) => mixed,
-  onPointerEnter?: (e: Event) => mixed,
-  onPointerLeave?: (e: Event) => mixed,
+  onMouseEnter?: (e: Event) => mixed,
+  onMouseLeave?: (e: Event) => mixed,
   ref?: React.Ref<*>,
   tabIndex?: number,
 };
