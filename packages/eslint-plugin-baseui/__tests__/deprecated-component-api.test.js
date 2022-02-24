@@ -200,18 +200,18 @@ const tests = {
     // Modal - autofocus
     {
       code: `
-        import { Modal } from "baseui/modal"
+        import {Modal} from 'baseui/modal';
+        import Overflow from 'baseui/icon/overflow';
         export default function() {
-          return <Modal autofocus />
-        }
-      `,
+          return <Modal autofocus>Hello</Modal>;
+        }`,
       errors: [{messageId: MESSAGES.replace.id}],
       output: `
-        import { Modal } from "baseui/modal"
+        import {Modal} from 'baseui/modal';
+        import Overflow from 'baseui/icon/overflow';
         export default function() {
-          return <Modal autoFocus />
-        }
-      `,
+          return <Modal autoFocus>Hello</Modal>;
+        }`,
     },
 
     // Modal - Backdrop

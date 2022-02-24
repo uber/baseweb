@@ -12,7 +12,7 @@ import type {StylePropsT} from './types.js';
 export const Label = styled<StylePropsT>('label', props => {
   const {
     $disabled,
-    $theme: {colors, sizing, typography},
+    $theme: {colors, typography},
   } = props;
   return {
     ...typography.font250,
@@ -24,12 +24,34 @@ export const Label = styled<StylePropsT>('label', props => {
     paddingRight: 0,
     paddingBottom: 0,
     paddingLeft: 0,
+  };
+});
+
+export const LabelContainer = styled<StylePropsT>(
+  'span',
+  ({$theme: {sizing}}) => ({
+    display: 'flex',
+    width: '100%',
     marginTop: sizing.scale300,
     marginRight: 0,
     marginBottom: sizing.scale300,
     marginLeft: 0,
-  };
-});
+  }),
+);
+
+export const LabelEndEnhancer = styled<StylePropsT>(
+  'span',
+  ({$disabled, $counterError, $theme: {colors, typography}}) => ({
+    ...typography.font100,
+    flex: 0,
+    width: '100%',
+    color: $counterError
+      ? colors.negative400
+      : $disabled
+      ? colors.contentSecondary
+      : colors.contentPrimary,
+  }),
+);
 
 export const Caption = styled<StylePropsT>('div', props => {
   const {

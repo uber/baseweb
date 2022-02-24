@@ -6,42 +6,26 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {useStyletron, styled} from '../styles/index.js';
 import {getOverrides} from '../helpers/overrides.js';
 import {
-  InnerXSmallAnchor as StyledInnerXSmallAnchor,
-  OuterXSmallAnchor as StyledOuterXSmallAnchor,
-  PinHead as StyledPinHead,
+  StyledInnerXXSmallAnchor,
+  StyledOuterXXSmallAnchor,
+  StyledInnerXSmallAnchor,
+  StyledOuterXSmallAnchor,
+  StyledPinHead,
+  RelativeContainer,
+  StyledContentItem,
 } from './styled-components.js';
 import {
   PINHEAD_DIMENSIONS,
   PINHEAD_TYPES,
   PINHEAD_SIZES_SHAPES,
+  NEEDLE_HEIGHTS,
+  NEEDLE_SIZES,
 } from './constants.js';
-import type {PinHeadPropsT, PinHeadSizeT} from './types.js';
-
-export const _ContentItem = styled<{
-  $color: string,
-  $height: number,
-  $size: PinHeadSizeT,
-}>('div', ({$theme, $color, $height, $size}) => {
-  const match = {
-    [PINHEAD_SIZES_SHAPES.xSmallCircle]: 'LabelSmall',
-    [PINHEAD_SIZES_SHAPES.xSmallSquare]: 'LabelSmall',
-    [PINHEAD_SIZES_SHAPES.small]: 'LabelSmall',
-    [PINHEAD_SIZES_SHAPES.medium]: 'LabelMedium',
-    [PINHEAD_SIZES_SHAPES.large]: 'LabelLarge',
-  };
-  return {
-    ...$theme.typography[match[$size]],
-    display: 'flex',
-    alignItems: 'center',
-    textAlign: 'center',
-    lineHeight: `${$height}px`,
-    height: `${$height}px`,
-    color: $color,
-  };
-});
+import BadgeEnhancer from './badge-enhancer.js';
+import LabelEnhancer from './label-enhancer.js';
+import type {PinHeadPropsT} from './types.js';
 
 const PinHead = ({
   size = PINHEAD_SIZES_SHAPES.medium,
@@ -52,16 +36,14 @@ const PinHead = ({
   background,
   type = PINHEAD_TYPES.fixed,
   anchorType,
+  needle = NEEDLE_SIZES.none,
+  labelEnhancerContent,
+  labelEnhancerPosition,
+  badgeEnhancerSize,
+  badgeEnhancerContent,
+
   overrides = {},
 }: PinHeadPropsT) => {
-  const [, theme] = useStyletron();
-  const {
-    colors: {backgroundPrimary, primaryA},
-  } = theme;
-
-  color = color || backgroundPrimary;
-  background = background || primaryA;
-
   const activeElements = [label, StartEnhancer, EndEnhancer].filter(x => x);
   const gridTemplateColumns = activeElements.map(() => 'auto').join(' ');
   const forceCircle = activeElements.length === 1 && !label;
@@ -73,8 +55,18 @@ const PinHead = ({
   );
   const [ContentItem, contentItemProps] = getOverrides(
     overrides.PinHeadContent,
-    _ContentItem,
+    StyledContentItem,
   );
+
+  const [InnerXXSmallAnchor, innerXXSmallAnchorProps] = getOverrides(
+    overrides.InnerAnchor,
+    StyledInnerXXSmallAnchor,
+  );
+  const [OuterXXSmallAnchor, outerXXSmallAnchorProps] = getOverrides(
+    overrides.OuterAnchor,
+    StyledOuterXXSmallAnchor,
+  );
+
   const [InnerXSmallAnchor, innerXSmallAnchorProps] = getOverrides(
     overrides.InnerAnchor,
     StyledInnerXSmallAnchor,
@@ -84,6 +76,38 @@ const PinHead = ({
     StyledOuterXSmallAnchor,
   );
 
+  const badge = (
+    <BadgeEnhancer
+      markerType={type}
+      pinHeadSize={size}
+      badgeEnhancerSize={badgeEnhancerSize}
+      badgeEnhancerContent={badgeEnhancerContent}
+      overrides={overrides}
+    />
+  );
+  if (
+    type === PINHEAD_TYPES.fixed &&
+    (size === PINHEAD_SIZES_SHAPES.xxSmallCircle ||
+      size === PINHEAD_SIZES_SHAPES.xxSmallSquare)
+  ) {
+    const round = size === PINHEAD_SIZES_SHAPES.xxSmallCircle;
+    return (
+      <OuterXXSmallAnchor
+        $round={round}
+        $background={background}
+        $size={height}
+        {...outerXXSmallAnchorProps}
+      >
+        <InnerXXSmallAnchor
+          $color={color}
+          $round={round}
+          $size={icon}
+          {...innerXXSmallAnchorProps}
+        />
+      </OuterXXSmallAnchor>
+    );
+  }
+
   if (
     type === PINHEAD_TYPES.fixed &&
     (size === PINHEAD_SIZES_SHAPES.xSmallSquare ||
@@ -91,61 +115,75 @@ const PinHead = ({
   ) {
     const round = size === PINHEAD_SIZES_SHAPES.xSmallCircle;
     return (
-      <OuterXSmallAnchor
-        $round={round}
-        $background={background}
-        $size={height}
-        {...outerXSmallAnchorProps}
-      >
-        <InnerXSmallAnchor
-          $color={color}
+      <RelativeContainer>
+        {badge}
+        <OuterXSmallAnchor
           $round={round}
-          $size={icon}
-          {...innerXSmallAnchorProps}
-        />
-      </OuterXSmallAnchor>
+          $background={background}
+          $size={height}
+          {...outerXSmallAnchorProps}
+        >
+          <InnerXSmallAnchor
+            $color={color}
+            $round={round}
+            $size={icon}
+            {...innerXSmallAnchorProps}
+          />
+        </OuterXSmallAnchor>
+      </RelativeContainer>
     );
   }
+
   return (
-    <PinHead
-      $background={background}
-      $height={height}
-      $gridTemplateColumns={gridTemplateColumns}
-      $forceCircle={forceCircle}
-      $type={type}
-      {...pinHeadProps}
-    >
-      {StartEnhancer && (
-        <ContentItem
-          $height={height}
-          $color={color}
-          $size={size}
-          {...contentItemProps}
-        >
-          <StartEnhancer size={icon} />
-        </ContentItem>
-      )}
-      {label && (
-        <ContentItem
-          $height={height}
-          $color={color}
-          $size={size}
-          {...contentItemProps}
-        >
-          {label}
-        </ContentItem>
-      )}
-      {EndEnhancer && (
-        <ContentItem
-          $height={height}
-          $color={color}
-          $size={size}
-          {...contentItemProps}
-        >
-          <EndEnhancer size={icon} />
-        </ContentItem>
-      )}
-    </PinHead>
+    <RelativeContainer>
+      <LabelEnhancer
+        labelEnhancerContent={labelEnhancerContent}
+        labelEnhancerPosition={labelEnhancerPosition}
+        needleHeight={NEEDLE_HEIGHTS[needle]}
+        size={size}
+        overrides={overrides}
+      />
+      {badge}
+      <PinHead
+        $background={background}
+        $height={height}
+        $gridTemplateColumns={gridTemplateColumns}
+        $forceCircle={forceCircle}
+        $type={type}
+        {...pinHeadProps}
+      >
+        {StartEnhancer && (
+          <ContentItem
+            $height={height}
+            $color={color}
+            $size={size}
+            {...contentItemProps}
+          >
+            <StartEnhancer size={icon} />
+          </ContentItem>
+        )}
+        {label && (
+          <ContentItem
+            $height={height}
+            $color={color}
+            $size={size}
+            {...contentItemProps}
+          >
+            {label}
+          </ContentItem>
+        )}
+        {EndEnhancer && (
+          <ContentItem
+            $height={height}
+            $color={color}
+            $size={size}
+            {...contentItemProps}
+          >
+            <EndEnhancer size={icon} />
+          </ContentItem>
+        )}
+      </PinHead>
+    </RelativeContainer>
   );
 };
 export default PinHead;

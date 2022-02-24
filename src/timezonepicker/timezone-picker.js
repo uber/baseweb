@@ -8,18 +8,18 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {
-  findTimeZone,
-  getZonedTime,
-  listTimeZones,
-} from 'timezone-support/dist/index-1900-2050.js';
-import {formatZonedTime} from 'timezone-support/dist/parse-format.js';
+import {format, getTimezoneOffset} from 'date-fns-tz';
 
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import {LocaleContext} from '../locale/index.js';
 import {Select} from '../select/index.js';
 
-import type {TimezonePickerPropsT, TimezonePickerStateT} from './types.js';
+import type {
+  TimezonePickerPropsT,
+  TimezonePickerStateT,
+  TimezoneT,
+} from './types.js';
+import {zones} from './tzdata.js';
 
 class TimezonePicker extends React.Component<
   TimezonePickerPropsT,
@@ -57,48 +57,48 @@ class TimezonePicker extends React.Component<
     }
   }
 
-  buildTimezones = (compareDate: Date) =>
-    listTimeZones()
-      .map(zone => {
-        const timezone = findTimeZone(zone);
-        const zonedTime = getZonedTime(compareDate, timezone);
-        const offsetTime =
-          (zonedTime.zone.offset < 0 ? '+' : '-') +
-          Math.abs(zonedTime.zone.offset / 60);
-        const abbreviation = formatZonedTime(zonedTime, 'z');
-        const formatted = `(GMT ${offsetTime}) ${zone}${
-          this.props.includeAbbreviations ? ` - ${abbreviation}` : ''
-        }`.replace('_', ' ');
+  buildTimezones = (compareDate: Date): TimezoneT[] => {
+    const timezones: TimezoneT[] = [];
+    for (const zoneName of zones) {
+      try {
+        const offset = getTimezoneOffset(zoneName, compareDate) / 3_600_000;
 
-        const option = {
-          id: zone,
-          label: formatted,
-          offset: zonedTime.zone.offset,
-        };
-        if (this.props.mapLabels) {
-          option.label = this.props.mapLabels(option);
-        }
-        return option;
-      })
-      // Formats 'noisy' timezones without a letter acronym.
-      .map(option => {
-        const rgx = /(\s-\s(\+|-)\d\d\d?\d?)$/;
-        const matches = option.label.match(rgx);
-        if (matches) {
-          const prefix = matches[0];
-          option.label = option.label.split(prefix)[0];
-        }
-        return option;
-      })
-      // Sorts W -> E, prioritizes america. could be more nuanced based on system tz but simple for now
-      .sort((a, b) => {
-        const offsetDelta = b.offset - a.offset;
-        if (offsetDelta !== 0) return offsetDelta;
+        const offsetFormatted = `${offset >= 0 ? '+' : '-'}${Math.abs(offset)}`;
+        let label = `(GMT${offsetFormatted}) ${zoneName.replace('_', ' ')}`;
 
+        if (this.props.includeAbbreviations) {
+          const abbreviation = format(compareDate, 'zzz', {timeZone: zoneName});
+          if (abbreviation) {
+            label += ` - ${abbreviation}`;
+          }
+        }
+
+        const offsetMinutes = offset * 60;
+
+        timezones.push({
+          id: zoneName,
+          label,
+          // offset output is in minutes, difference of UTC and this zone (negative for hours ahead of UTC, positive for hours behind)
+          offset: offsetMinutes === 0 ? 0 : offsetMinutes * -1,
+        });
+      } catch (error) {
+        // Ignores timezones that are not available within a user's browser/operating system
+        console.error(`failed to format zone name ${zoneName}`);
+      }
+    }
+
+    // Sorts W -> E, prioritizes america. could be more nuanced based on system tz but simple for now
+    return timezones.sort((a, b) => {
+      const offsetDelta = b.offset - a.offset;
+      if (offsetDelta !== 0) return offsetDelta;
+
+      if (typeof a.label === 'string' && typeof b.label === 'string') {
         if (a.label < b.label) return -1;
         if (a.label > b.label) return 1;
-        return 0;
-      });
+      }
+      return 0;
+    });
+  };
 
   render() {
     const {overrides = {}} = this.props;
@@ -116,12 +116,21 @@ class TimezonePicker extends React.Component<
     // $FlowFixMe
     selectProps.overrides = selectOverrides;
 
+    let options = this.state.timezones;
+    if (this.props.mapLabels) {
+      options = options.map(option => {
+        // $FlowFixMe - TimezoneT.label is a string, but mapLabels can return a React.Node
+        option.label = this.props.mapLabels(option);
+        return option;
+      });
+    }
+
     return (
       <LocaleContext.Consumer>
         {locale => (
           <OverriddenSelect
             aria-label={locale.datepicker.timezonePickerAriaLabel}
-            options={this.state.timezones}
+            options={options}
             clearable={false}
             disabled={this.props.disabled}
             error={this.props.error}

@@ -4,7 +4,7 @@ import {Input, SIZE} from 'baseui/input';
 import {useStyletron} from 'baseui';
 import Link from 'next/link';
 import {StyledLink} from 'baseui/link';
-import {Caption1} from 'baseui/typography';
+import {ParagraphXSmall} from 'baseui/typography';
 import {getActiveTheme, getThemeDiff} from './provider';
 
 type ThemeEditorProps = {
@@ -121,7 +121,7 @@ const ThemeEditor: React.FC<ThemeEditorProps> = ({
 
   return (
     <React.Fragment>
-      <Caption1
+      <ParagraphXSmall
         marginLeft="scale200"
         marginRight="scale200"
         marginBottom="scale400"
@@ -134,7 +134,7 @@ const ThemeEditor: React.FC<ThemeEditorProps> = ({
           </StyledLink>
         </Link>
         . Try different values:
-      </Caption1>
+      </ParagraphXSmall>
       <div
         className={css({
           display: 'flex',

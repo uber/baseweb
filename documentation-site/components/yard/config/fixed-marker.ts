@@ -2,9 +2,13 @@ import {
   FixedMarker,
   PINHEAD_SIZES_SHAPES,
   NEEDLE_SIZES,
+  KIND,
+  BADGE_ENHANCER_SIZES,
+  LABEL_ENHANCER_POSITIONS,
 } from 'baseui/map-marker';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
+import {Check, Upload, Search} from 'baseui/icon';
 
 const fixedMarkerPropsType = require('!!extract-react-types-loader!../../../../src/map-marker/fixed-marker.js');
 
@@ -15,7 +19,6 @@ export const fixedMarkerProps = {
     value: 'Uber HQ',
     type: PropTypes.String,
     description: 'Text to display inside of the marker.',
-    stateful: true,
   },
   dragging: {
     value: false,
@@ -51,30 +54,83 @@ export const fixedMarkerProps = {
     },
   },
   startEnhancer: {
-    value: undefined,
-    placeholder: '() => <span>$</span>',
+    value: '({size}) => <Upload size={size}/>',
+    placeholder: '({size}) => <Upload size={size}/>',
     type: PropTypes.Function,
     description:
       'Icon or element to render in the leading slot (before the label).',
+    imports: {
+      'baseui/icon': {
+        named: ['Upload'],
+      },
+    },
   },
   endEnhancer: {
     value: undefined,
-    placeholder: '() => <span>?</span>',
+    placeholder: '({size}) => <Search size={size}/>',
     type: PropTypes.Function,
     description:
       'Icon or element to render in the trailing slot (after the label).',
+    imports: {
+      'baseui/icon': {
+        named: ['Search'],
+      },
+    },
   },
-  background: {
-    value: undefined,
-    placeholder: '#000',
-    type: PropTypes.String,
-    description: 'Color to render for background.',
+  kind: {
+    value: 'KIND.default',
+    enumName: 'KIND',
+    defaultValue: 'KIND.default',
+    options: KIND,
+    type: PropTypes.Enum,
+    description: 'Kind changes colors of the PinHead, Needle and DragShadow.',
+    imports: {
+      'baseui/map-marker': {
+        named: ['KIND'],
+      },
+    },
   },
-  color: {
-    value: undefined,
-    placeholder: '#fff',
+  badgeEnhancerSize: {
+    value: 'BADGE_ENHANCER_SIZES.none',
+    enumName: 'BADGE_ENHANCER_SIZES',
+    defaultValue: 'BADGE_ENHANCER_SIZES.none',
+    options: BADGE_ENHANCER_SIZES,
+    type: PropTypes.Enum,
+    description: 'Size of the badge enhancer.',
+    imports: {
+      'baseui/map-marker': {
+        named: ['BADGE_ENHANCER_SIZES'],
+      },
+    },
+  },
+  badgeEnhancerContent: {
+    value: '({size}) => <Check size={size}/>',
+    placeholder: '({size}) => <Check size={size}/>',
+    type: PropTypes.Function,
+    description: 'Content to render inside of the badge enhancer.',
+    imports: {
+      'baseui/icon': {
+        named: ['Check'],
+      },
+    },
+  },
+  labelEnhancerContent: {
+    value: 'Uber Eats',
     type: PropTypes.String,
-    description: 'Color to render for content.',
+    description: 'Text to display as the optional label enhancer.',
+  },
+  labelEnhancerPosition: {
+    value: 'LABEL_ENHANCER_POSITIONS.bottom',
+    enumName: 'LABEL_ENHANCER_POSITIONS',
+    defaultValue: 'LABEL_ENHANCER_POSITIONS.bottom',
+    options: LABEL_ENHANCER_POSITIONS,
+    type: PropTypes.Enum,
+    description: 'Position of the label enhancer.',
+    imports: {
+      'baseui/map-marker': {
+        named: ['LABEL_ENHANCER_POSITIONS'],
+      },
+    },
   },
 };
 
@@ -84,11 +140,20 @@ const FixedMarkerConfig: TConfig = {
     'baseui/map-marker': {
       named: ['FixedMarker'],
     },
+    'baseui/icon': {
+      named: ['Check'],
+    },
   },
   scope: {
     FixedMarker,
     NEEDLE_SIZES,
+    KIND,
     PINHEAD_SIZES_SHAPES,
+    BADGE_ENHANCER_SIZES,
+    Check,
+    Upload,
+    LABEL_ENHANCER_POSITIONS,
+    Search,
   },
   theme,
   props: {
@@ -107,6 +172,9 @@ const FixedMarkerConfig: TConfig = {
           'DragShadow',
           'DragShadowContainer',
           'DragContainer',
+          'BadgeEnhancer',
+          'LabelEnhancerContainer',
+          'LabelEnhancer',
         ],
         sharedProps: {},
       },

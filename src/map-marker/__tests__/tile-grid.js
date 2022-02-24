@@ -7,12 +7,12 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import {useStyletron} from '../../styles/index.js';
-import {Label3} from '../../typography/index.js';
+import {LabelSmall} from '../../typography/index.js';
 import {Block} from '../../block/index.js';
 
 type TileGridPropsT = {
   // eslint-disable-next-line flowtype/no-weak-types
-  children: Array<any>,
+  children?: Array<any>,
   customizerOptions: Array<React.Node>,
   cols: number,
 };
@@ -41,27 +41,28 @@ const TileGrid = ({children, customizerOptions, cols}: TileGridPropsT) => {
         gridTemplateColumns={`repeat(${cols}, 1fr)`}
         gridGap="20px"
       >
-        {children.map((node, index) => {
-          const {id: label, content} = node;
-          return (
-            <Block
-              display="flex"
-              flexDirection="column"
-              height="150px"
-              key={index}
-            >
-              <Label3 color={contentSecondary}>{label}</Label3>
+        {children &&
+          children.map((node, index) => {
+            const {id: label, content} = node;
+            return (
               <Block
-                alignItems="center"
-                justifyContent="center"
-                flex="1"
                 display="flex"
+                flexDirection="column"
+                height="150px"
+                key={index}
               >
-                {content}
+                <LabelSmall color={contentSecondary}>{label}</LabelSmall>
+                <Block
+                  alignItems="center"
+                  justifyContent="center"
+                  flex="1"
+                  display="flex"
+                >
+                  {content}
+                </Block>
               </Block>
-            </Block>
-          );
-        })}
+            );
+          })}
       </Block>
     </Block>
   );

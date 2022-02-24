@@ -19,8 +19,6 @@ const selectors = {
   value: '[data-id="selected"]',
 };
 
-const labelToShortCode = label => label.split(' ').pop();
-
 describe('TimezonePicker', () => {
   it('passes basic a11y tests', async () => {
     await mount(page, 'timezonepicker--timezone-picker');
@@ -42,7 +40,7 @@ describe('TimezonePicker', () => {
       select => select.textContent,
     );
 
-    expect(labelToShortCode(value)).toBe('York');
+    expect(value).toBe('(GMT-5) America/New York');
   });
 
   it('provides appropriate zone options if daylight savings time', async () => {
@@ -58,7 +56,7 @@ describe('TimezonePicker', () => {
       select => select.textContent,
     );
 
-    expect(labelToShortCode(value)).toBe('York');
+    expect(value).toBe('(GMT-4) America/New York');
   });
 
   it('prioritizes select with controlled value over browser default', async () => {
@@ -68,7 +66,7 @@ describe('TimezonePicker', () => {
       `${selectors.controlled} ${selectors.value}`,
       select => select.textContent,
     );
-    expect(labelToShortCode(initial)).toBe('Asia/Tokyo');
+    expect(initial).toBe('(GMT+9) Asia/Tokyo');
   });
 
   it('provides appropriate zone options if no acronym exists', async () => {
@@ -84,6 +82,6 @@ describe('TimezonePicker', () => {
       select => select.textContent,
     );
 
-    expect(labelToShortCode(value)).toBe('Europe/Minsk');
+    expect(value).toBe('(GMT+3) Europe/Minsk');
   });
 });

@@ -13,15 +13,20 @@ export type FormControlStateT = {|
   captionId: string,
 |};
 
+export type OverridesT = {
+  /** Customizes the label element. */
+  Label?: OverrideT,
+  /** Customizes the label end enhancer element. */
+  LabelEndEnhancer?: OverrideT,
+  /** Customizes the label container element. */
+  LabelContainer?: OverrideT,
+  /** Customizes the caption element. */
+  Caption?: OverrideT,
+  /** Customizes the container element. */
+  ControlContainer?: OverrideT,
+};
 export type FormControlPropsT = {
-  overrides: {
-    /** Customizes the label element. */
-    Label?: OverrideT,
-    /** Customizes the caption element. */
-    Caption?: OverrideT,
-    /** Customizes the container element. */
-    ControlContainer?: OverrideT,
-  },
+  overrides: OverridesT,
   /** A label rendered above the input field. */
   label: ?(React.Node | ((props: {}) => React.Node)),
   /** A caption rendered below the input field. */
@@ -34,6 +39,10 @@ export type FormControlPropsT = {
   positive?: React.Node | ((props: {}) => React.Node),
   /** The id of the related form element. Defaults to the id property of the child, if any. */
   htmlFor?: string,
+  /** Adds a label end enhancer to the label */
+  labelEndEnhancer?: ?(React.Node | ((props: {}) => React.Node)),
+  /** Adds a length counter to the form control. If your input does not have a "string" value exposed as a prop, you provide the length as an object.*/
+  counter?: boolean | {|length?: number, maxLength?: number, error?: boolean|},
   children: React.Node,
 };
 
@@ -41,4 +50,7 @@ export type StylePropsT = {
   $disabled?: boolean,
   $error?: boolean,
   $positive?: boolean,
+  $length?: number,
+  $maxLength?: number,
+  $counterError?: boolean,
 };

@@ -70,18 +70,6 @@ export const floatingMarkerProps = {
     description:
       'Icon or element to render in the trailing slot (after the label).',
   },
-  background: {
-    value: undefined,
-    placeholder: '#000',
-    type: PropTypes.String,
-    description: 'Color to render for background.',
-  },
-  color: {
-    value: undefined,
-    placeholder: '#fff',
-    type: PropTypes.String,
-    description: 'Color to render for content.',
-  },
 };
 
 const FloatingMarkerConfig: TConfig = {

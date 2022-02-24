@@ -14,7 +14,7 @@ import type {SizeT} from '../input/types.js';
 
 export type TimezonePickerStateT = {
   /** List of timezones from the IANA database. */
-  timezones: OptionT[],
+  timezones: TimezoneT[],
   /** Value provided to the select component. */
   value: ?string,
 };
@@ -22,6 +22,11 @@ export type TimezonePickerStateT = {
 export type TimezoneT = {
   id: string,
   label: string,
+  /**
+   * The difference, in minutes, between a UTC date, and a date in the indicated time zone.
+   * Positive values indicate hours behind UTC, negative values indicate hours ahead.
+   * This aligns with Date.getTimezoneOffset()
+   */
   offset: number,
 };
 export type TimezonePickerPropsT = {

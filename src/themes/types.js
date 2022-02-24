@@ -198,6 +198,8 @@ export type ComponentColorTokensT = {|
   buttonTertiaryActive: string,
   buttonTertiarySelectedText: string,
   buttonTertiarySelectedFill: string,
+  buttonTertiaryDisabledActiveFill: string,
+  buttonTertiaryDisabledActiveText: string,
   buttonTertiarySpinnerForeground: string,
   buttonTertiarySpinnerBackground: string,
   buttonMinimalFill: string,
@@ -210,6 +212,8 @@ export type ComponentColorTokensT = {|
   buttonMinimalSpinnerBackground: string,
   buttonDisabledFill: string,
   buttonDisabledText: string,
+  buttonDisabledActiveFill: string,
+  buttonDisabledActiveText: string,
   buttonDisabledSpinnerForeground: string,
   buttonDisabledSpinnerBackground: string,
 
