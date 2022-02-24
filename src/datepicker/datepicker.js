@@ -27,7 +27,7 @@ import {INPUT_ROLE, RANGED_CALENDAR_BEHAVIOR} from './constants.js';
 
 export const DEFAULT_DATE_FORMAT = 'yyyy/MM/dd';
 
-const INPUT_DELIMITER = ' – ';
+const INPUT_DELIMITER = '–';
 
 const combineSeparatedInputs = (
   newInputValue,
@@ -36,13 +36,13 @@ const combineSeparatedInputs = (
 ) => {
   let inputValue = newInputValue;
   const [prevStartDate = '', prevEndDate = ''] = prevCombinedInputValue.split(
-    INPUT_DELIMITER,
+    ` ${INPUT_DELIMITER} `,
   );
   if (inputRole === INPUT_ROLE.startDate && prevEndDate) {
-    inputValue = `${inputValue}${INPUT_DELIMITER}${prevEndDate}`;
+    inputValue = `${inputValue} ${INPUT_DELIMITER} ${prevEndDate}`;
   }
   if (inputRole === INPUT_ROLE.endDate) {
-    inputValue = `${prevStartDate}${INPUT_DELIMITER}${inputValue}`;
+    inputValue = `${prevStartDate} ${INPUT_DELIMITER} ${inputValue}`;
   }
   return inputValue;
 };
@@ -153,7 +153,7 @@ export default class Datepicker<T = Date> extends React.Component<
 
   getNullDatePlaceholder(formatString: string) {
     return (this.getMask() || formatString)
-      .split('–')[0]
+      .split(INPUT_DELIMITER)[0]
       .replace(/[0-9]|[a-z]/g, ' ');
   }
 
@@ -172,9 +172,11 @@ export default class Datepicker<T = Date> extends React.Component<
     } else if (Array.isArray(date) && !date[0] && date[1]) {
       const endDate = format(date[1]);
       const startDate = this.getNullDatePlaceholder(formatString);
-      return [startDate, endDate].join(INPUT_DELIMITER);
+      return [startDate, endDate].join(` ${INPUT_DELIMITER} `);
     } else if (Array.isArray(date)) {
-      return date.map(day => (day ? format(day) : '')).join(INPUT_DELIMITER);
+      return date
+        .map(day => (day ? format(day) : ''))
+        .join(` ${INPUT_DELIMITER} `);
     } else {
       return format(date);
     }
@@ -262,7 +264,7 @@ export default class Datepicker<T = Date> extends React.Component<
     }
 
     if (range && !separateRangeInputs) {
-      return '9999/99/99 – 9999/99/99';
+      return `9999/99/99 ${INPUT_DELIMITER} 9999/99/99`;
     }
 
     return '9999/99/99';
@@ -319,7 +321,7 @@ export default class Datepicker<T = Date> extends React.Component<
       typeof this.props.displayValueAtRangeIndex !== 'number'
     ) {
       const [left, right] = this.normalizeDashes(inputValue).split(
-        INPUT_DELIMITER,
+        ` ${INPUT_DELIMITER} `,
       );
 
       let startDate = this.dateHelpers.date(left);
@@ -435,7 +437,9 @@ export default class Datepicker<T = Date> extends React.Component<
 
   normalizeDashes = (inputValue: string) => {
     // replacing both hyphens and em-dashes with en-dashes
-    return inputValue.replace(/-/g, '–').replace(/—/g, '–');
+    return inputValue
+      .replace(/-/g, INPUT_DELIMITER)
+      .replace(/—/g, INPUT_DELIMITER);
   };
 
   hasLockedBehavior = () => {
@@ -466,11 +470,11 @@ export default class Datepicker<T = Date> extends React.Component<
       this.props.placeholder || this.props.placeholder === ''
         ? this.props.placeholder
         : this.props.range && !this.props.separateRangeInputs
-        ? 'YYYY/MM/DD – YYYY/MM/DD'
+        ? `YYYY/MM/DD ${INPUT_DELIMITER} YYYY/MM/DD`
         : 'YYYY/MM/DD';
 
     const [startDate = '', endDate = ''] = (this.state.inputValue || '').split(
-      INPUT_DELIMITER,
+      ` ${INPUT_DELIMITER} `,
     );
 
     const value =
