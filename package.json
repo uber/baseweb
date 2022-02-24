@@ -193,7 +193,6 @@
   "dependencies": {
     "@date-io/date-fns": "^2.6.2",
     "card-validator": "^6.2.0",
-    "d3": "^7.3.0",
     "date-fns": "^2.6.0",
     "date-fns-tz": "^1.2.2",
     "glob": "^7.1.6",

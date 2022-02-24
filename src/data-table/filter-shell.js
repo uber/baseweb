@@ -12,14 +12,10 @@ import {Button, SIZE as BUTTON_SIZE} from '../button/index.js';
 import {Checkbox, STYLE_TYPE} from '../checkbox/index.js';
 import {useStyletron} from '../styles/index.js';
 import {LocaleContext} from '../locale/index.js';
-import {FILTER_SHELL_WIDTH} from './constants.js';
-
-export type ExcludeKind = 'value' | 'range';
 
 type PropsT = {
   children: React.Node,
   exclude: boolean,
-  excludeKind?: ExcludeKind,
   onExcludeChange: () => void,
   onApply: () => void,
 };
@@ -27,17 +23,6 @@ type PropsT = {
 function FilterShell(props: PropsT) {
   const [css, theme] = useStyletron();
   const locale = React.useContext(LocaleContext);
-  let excludeText;
-  switch (props.excludeKind) {
-    case 'value':
-      excludeText = locale.datatable.filterExcludeValue;
-      break;
-    case 'range':
-      excludeText = locale.datatable.filterExcludeRange;
-      break;
-    default:
-      excludeText = locale.datatable.filterExclude;
-  }
   return (
     <form
       className={css({
@@ -46,7 +31,7 @@ function FilterShell(props: PropsT) {
         paddingRight: theme.sizing.scale600,
         paddingBottom: theme.sizing.scale600,
         paddingLeft: theme.sizing.scale600,
-        width: FILTER_SHELL_WIDTH,
+        width: '320px',
       })}
       onSubmit={event => {
         event.preventDefault();
@@ -56,29 +41,20 @@ function FilterShell(props: PropsT) {
       {props.children}
       <div
         className={css({
+          alignItems: 'center',
           display: 'flex',
-          flexDirection: 'column',
           justifyContent: 'space-between',
-          alignItems: 'flex-end',
           marginTop: theme.sizing.scale600,
-          gap: theme.sizing.scale200,
         })}
       >
-        <div
-          className={css({
-            alignSelf: 'flex-start',
-          })}
+        <Checkbox
+          checked={props.exclude}
+          onChange={props.onExcludeChange}
+          checkmarkType={STYLE_TYPE.toggle_round}
+          labelPlacement="right"
         >
-          <Checkbox
-            checked={props.exclude}
-            onChange={props.onExcludeChange}
-            checkmarkType={STYLE_TYPE.toggle_round}
-            labelPlacement="right"
-          >
-            {excludeText}
-          </Checkbox>
-        </div>
-
+          {locale.datatable.filterExclude}
+        </Checkbox>
         <Button size={BUTTON_SIZE.compact} type="submit">
           {locale.datatable.filterApply}
         </Button>

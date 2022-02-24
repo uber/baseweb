@@ -299,10 +299,8 @@ describe('data table columns', () => {
       return button.click();
     });
 
-    const input = await popover.$('input');
-    await input.click();
     await page.keyboard.press('Backspace');
-    await input.type('2');
+    await page.type('div[data-baseweb="popover"] input', '2');
     await popover.$$eval('button', items => {
       const button = items.find(item => item.textContent === 'Apply');
       return button.click();
@@ -327,7 +325,7 @@ describe('data table columns', () => {
     expect(matchArrayElements(restored, ['2', '1', '4', '3'])).toBe(true);
   });
 
-  it('filters numerical column range', async () => {
+  it('filters numerical column between case', async () => {
     const index = 2;
     await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
@@ -339,17 +337,16 @@ describe('data table columns', () => {
     expect(matchArrayElements(initial, ['2', '1', '4', '3'])).toBe(true);
 
     const popover = await openFilterAtIndex(page, index);
-    await popover.$$eval('button', items => {
-      const button = items.find(item => item.textContent === 'Range');
-      return button.click();
-    });
+    const buttons = await popover.$$('button');
+    const betweenButton = buttons[6];
+    await betweenButton.click();
 
-    const inputs = await popover.$$('input');
+    const inputs = await popover.$$('div[data-baseweb="popover"] input');
     await inputs[0].click();
     await page.keyboard.press('Backspace');
     await inputs[0].type('2');
 
-    await inputs[1].click({clickCount: 3});
+    await inputs[1].click();
     await page.keyboard.press('Backspace');
     await inputs[1].type('3');
 
@@ -364,6 +361,47 @@ describe('data table columns', () => {
       index,
     );
     expect(matchArrayElements(filtered, ['2', '3'])).toBe(true);
+  });
+
+  it('filters numerical column excludes between case', async () => {
+    const index = 2;
+    await mount(page, 'data-table--columns');
+    await page.waitForSelector(TABLE_ROOT);
+    const initial = await getCellContentsAtColumnIndex(
+      page,
+      COLUMN_COUNT,
+      index,
+    );
+    expect(matchArrayElements(initial, ['2', '1', '4', '3'])).toBe(true);
+
+    const popover = await openFilterAtIndex(page, index);
+    const buttons = await popover.$$('button');
+    const betweenButton = buttons[6];
+    await betweenButton.click();
+
+    const inputs = await popover.$$('div[data-baseweb="popover"] input');
+    await inputs[0].click();
+    await page.keyboard.press('Backspace');
+    await inputs[0].type('2');
+
+    await inputs[1].click();
+    await page.keyboard.press('Backspace');
+    await inputs[1].type('3');
+
+    const exclude = await popover.$('label[data-baseweb="checkbox"]');
+    await exclude.click();
+
+    await popover.$$eval('button', items => {
+      const button = items.find(item => item.textContent === 'Apply');
+      return button.click();
+    });
+
+    const filtered = await getCellContentsAtColumnIndex(
+      page,
+      COLUMN_COUNT,
+      index,
+    );
+    expect(matchArrayElements(filtered, ['1', '4'])).toBe(true);
   });
 
   it('filters datetime column - datetime range', async () => {

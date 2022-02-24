@@ -22,9 +22,4 @@ module.exports = {
   modulePathIgnorePatterns: ['<rootDir>/dist/'],
   testRegex: '(.|-)test\\.(js|ts|tsx|jsx)$',
   testURL: 'http://localhost/',
-  // d3 uses esm, so we have to manually map to the dist
-  // see https://github.com/facebook/jest/issues/12036
-  moduleNameMapper: {
-    d3: '<rootDir>/node_modules/d3/dist/d3.min.js',
-  },
 };
