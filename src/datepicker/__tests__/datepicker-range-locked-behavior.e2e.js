@@ -34,11 +34,12 @@ describe('Datepicker, Range with Locked Behavior', () => {
     await page.waitForSelector(selectors.calendar);
     await page.click(selectors.day);
     await page.keyboard.press('Escape');
-    const endDateValue = await page.$$eval(
+    const [startDateValue, endDateValue] = await page.$$eval(
       selectors.input,
-      inputs => inputs[1].value,
+      inputs => inputs.map(input => input.value),
     );
     expect(endDateValue).toBe('2019/03/28');
+    expect(startDateValue).toBe('    /  /  ');
 
     // select a day for the Start Date
     startDateInput.click();
@@ -98,11 +99,12 @@ describe('Datepicker, Range with Locked Behavior', () => {
     await page.waitForSelector(selectors.calendar);
     await page.click(selectors.day2);
     await page.keyboard.press('Escape');
-    const startDateValue2 = await page.$eval(
+    const [startDateValue2, endDateValue2] = await page.$$eval(
       selectors.multiMonthInputs,
-      input => input.value,
+      inputs => inputs.map(input => input.value),
     );
     expect(startDateValue2).toBe('2019/03/10');
+    expect(endDateValue2).toBe('');
 
     // attempt to select an invalid day for End Date
     endDateInput.click();
