@@ -9,6 +9,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 const childProcess = require('child_process');
+const path = require('path');
 const publishToNpm = require('./publish-to-npm.js');
 
 const hash = childProcess.execSync('git rev-parse HEAD', {encoding: 'utf-8'});
@@ -16,5 +17,14 @@ const version = publishToNpm({
   tag: 'alpha',
   commit: hash.trim(),
 });
+
+// resets package.jsons so that development can continue locally without needing to
+// do this manually
+const ROOT_DIR = path.join(__dirname, '..');
+spawnSync('git', [
+  'checkout',
+  path.join(ROOT_DIR, 'packages/eslint-plugin-baseui/package.json'),
+]);
+spawnSync('git', ['checkout', path.join(ROOT_DIR, 'package.json')]);
 
 console.log(version);
