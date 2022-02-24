@@ -21,10 +21,12 @@ const version = publishToNpm({
 // resets package.jsons so that development can continue locally without needing to
 // do this manually
 const ROOT_DIR = path.join(__dirname, '..');
-spawnSync('git', [
-  'checkout',
-  path.join(ROOT_DIR, 'packages/eslint-plugin-baseui/package.json'),
-]);
-spawnSync('git', ['checkout', path.join(ROOT_DIR, 'package.json')]);
+const rootPkg = path.join(ROOT_DIR, 'package.json');
+const eslintPkg = path.join(
+  ROOT_DIR,
+  'packages/eslint-plugin-baseui/package.json',
+);
+childProcess.execSync(`git checkout ${rootPkg}`);
+childProcess.execSync(`git checkout ${eslintPkg}`);
 
 console.log(version);
