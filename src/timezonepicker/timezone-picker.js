@@ -73,10 +73,13 @@ class TimezonePicker extends React.Component<
           }
         }
 
+        const offsetMinutes = offset * 60;
+
         timezones.push({
           id: zoneName,
           label,
-          offset,
+          // offset output is in minutes, difference of UTC and this zone (negative for hours ahead of UTC, positive for hours behind)
+          offset: offsetMinutes === 0 ? 0 : offsetMinutes * -1,
         });
       } catch (error) {
         // Ignores timezones that are not available within a user's browser/operating system
