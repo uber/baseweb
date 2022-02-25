@@ -42,7 +42,6 @@ export interface ModalOverrides {
 }
 export interface ModalProps {
   animate?: boolean;
-  autofocus?: boolean;
   autoFocus?: boolean;
   focusLock?: boolean;
   returnFocus?:
