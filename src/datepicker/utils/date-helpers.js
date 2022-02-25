@@ -206,10 +206,10 @@ class DateHelpers<T> {
     dateRange,
     dates,
   ) => {
-    if (dateRange[0] && dateRange[1] && Array.isArray(dates) && dates.length) {
+    const [startDate, endDate] = dateRange;
+    if (startDate && endDate && Array.isArray(dates) && dates.length) {
       for (let i = 0; i < dates.length; i++) {
         const day = dates[i];
-        const [startDate, endDate] = dateRange;
         if (this.isDayInRange(day, startDate, endDate)) {
           return true;
         }
