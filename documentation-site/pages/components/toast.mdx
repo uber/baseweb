@@ -30,6 +30,10 @@ top/left, bottom/right, bottom/center, bottom/left. Toasts are intended to provi
 and self-dismiss after a short time with an option to self-dismiss. Each toast can be colored to fit
 it’s status type of neutral, positive, warning and alert.
 
+The above example, where the ToasterContainer wraps the child elements, is not SSR safe. The code
+examples below, which show the ToasterContainer as a self closing tag alongside other elements, is SSR
+safe.
+
 **Using the `toaster` utility:**
 
 Toasts can be created easily with some of the helper functions on `toaster`, as seen in the code sample above. If a key isn't provided, it will auto-generate a unique key for you which will be returned in the instantiation functions (`info, positive, warning, negative`).
