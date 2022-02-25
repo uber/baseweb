@@ -15,7 +15,7 @@ const buttonProps = require('!!extract-react-types-loader!../../../../src/button
 const blockProps = require('!!extract-react-types-loader!../../../../src/block/block.js');
 
 const toastConfig: TConfig = {
-  componentName: 'React.Fragment',
+  componentName: 'ToasterContainer',
   imports: {
     'baseui/toast': {
       named: ['toaster', 'ToasterContainer'],
@@ -56,8 +56,7 @@ const toastConfig: TConfig = {
       },
     },
     children: {
-      value: `<ToasterContainer />
-        <Button onClick={()=>{
+      value: `<Button onClick={()=>{
           let toastKey;
           const msg = 'Use toaster.info(), toaster.positive(), toaster.warning(), or toaster.negative()';
           const ok = (
