@@ -202,6 +202,21 @@ class DateHelpers<T> {
     }
     return false;
   };
+  dateRangeIncludesDates: (Array<?T>, ?Array<T>) => boolean = (
+    dateRange,
+    dates,
+  ) => {
+    const [startDate, endDate] = dateRange;
+    if (startDate && endDate && Array.isArray(dates) && dates.length) {
+      for (let i = 0; i < dates.length; i++) {
+        const day = dates[i];
+        if (this.isDayInRange(day, startDate, endDate)) {
+          return true;
+        }
+      }
+    }
+    return false;
+  };
   subDays: (T, number) => T = (date, days) => {
     return this.adapter.addDays(date, days * -1);
   };
