@@ -28,8 +28,10 @@ function MeasureColumn({
   const ref = useRef();
 
   React.useEffect(() => {
-    if (ref.current) {
-      onLayout(columnIndex, ref.current.getBoundingClientRect());
+    if (__BROWSER__) {
+      if (ref.current) {
+        onLayout(columnIndex, ref.current.getBoundingClientRect());
+      }
     }
   }, []);
 
