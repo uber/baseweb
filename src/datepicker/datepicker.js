@@ -112,7 +112,6 @@ export default class Datepicker<T = Date> extends React.Component<
           )
         ) {
           nextDate = this.props.value;
-          console.warn('Selected date range includes excluded dates');
           isOpen = true;
         }
 
