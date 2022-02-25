@@ -33,7 +33,6 @@ export type ModalPropsT = {
    * If false, the modal container itself will receive focus.
    * Moving focus into a newly opened modal is important for accessibility purposes, so please be careful!
    */
-  autofocus: boolean | null,
   autoFocus: boolean,
   /** If true, focus will be locked to elements within the modal.
    */
