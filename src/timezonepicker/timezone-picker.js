@@ -64,7 +64,7 @@ class TimezonePicker extends React.Component<
         const offset = getTimezoneOffset(zoneName, compareDate) / 3_600_000;
 
         const offsetFormatted = `${offset >= 0 ? '+' : '-'}${Math.abs(offset)}`;
-        let label = `(GMT${offsetFormatted}) ${zoneName.replace('_', ' ')}`;
+        let label = `(GMT${offsetFormatted}) ${zoneName.replace(/_/g, ' ')}`;
 
         if (this.props.includeAbbreviations) {
           const abbreviation = format(compareDate, 'zzz', {timeZone: zoneName});
