@@ -17,7 +17,7 @@ describe('Breadcrumbs', () => {
   it('applies correct accessibility attributes to root element', () => {
     const ariaLabel = 'Breadcrumbs navigation';
     const {container} = render(
-      <Breadcrumbs ariaLabel={ariaLabel}>
+      <Breadcrumbs aria-label={ariaLabel}>
         <StyledLink href="#">Parent Page</StyledLink>
         <StyledLink href="#">Sub-Parent Page</StyledLink>
 

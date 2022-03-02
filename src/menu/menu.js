@@ -24,7 +24,7 @@ import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 export default function Menu(props: StatelessMenuPropsT) {
   const {
     overrides = {},
-    ariaLabel = 'Menu',
+    'aria-label': ariaLabel = 'Menu',
     rootRef = React.createRef(),
     focusMenu = () => {},
     unfocusMenu = () => {},

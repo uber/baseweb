@@ -43,7 +43,6 @@ export default class ButtonGroup extends React.Component<PropsT> {
       overrides = {},
       mode = MODE.checkbox,
       children,
-      ariaLabel,
       selected,
       disabled,
       onClick,
@@ -52,6 +51,7 @@ export default class ButtonGroup extends React.Component<PropsT> {
       size,
     } = this.props;
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
+    const ariaLabel = this.props['aria-label'] || this.props.ariaLabel;
     const isRadio = mode === MODE.radio;
 
     const numItems = React.Children.count(children);
