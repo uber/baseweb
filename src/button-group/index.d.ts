@@ -22,6 +22,7 @@ export interface ButtonGroupOverrides {
 
 export interface ButtonGroupProps {
   ariaLabel?: string;
+  'aria-label'?: string;
   children: React.ReactNode;
   disabled?: boolean;
   mode?: MODE[keyof MODE];
