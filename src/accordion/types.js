@@ -80,11 +80,6 @@ export type AccordionPropsT = {
    * Allows users to render all child content whether a panel is expanded or not
    * for SEO purposed
    */
-  renderPanelContent?: boolean,
-  /**
-   * Allows users to render all child content whether a panel is expanded or not
-   * for SEO purposed
-   */
   renderAll?: boolean,
 };
 

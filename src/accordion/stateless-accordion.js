@@ -18,7 +18,6 @@ function StatelessAccordion({
   onChange,
   overrides = {},
   renderAll,
-  renderPanelContent,
 }: StatelessAccordionPropsT) {
   const {Root: RootOverrides, ...PanelOverrides} = overrides;
   const [Root, rootProps] = getOverrides(RootOverrides, StyledRoot);
@@ -53,7 +52,6 @@ function StatelessAccordion({
               : onChange,
           overrides: child.props.overrides || PanelOverrides,
           renderAll,
-          renderPanelContent,
         });
       })}
     </Root>
