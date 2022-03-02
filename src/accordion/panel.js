@@ -30,7 +30,6 @@ const Panel = ({
   onKeyDown = () => {},
   overrides = {},
   title = '',
-  renderPanelContent = false,
   renderAll = false,
 }: PanelPropsT) => {
   const [localState, setLocalState] = React.useState({
@@ -217,7 +216,6 @@ const Panel = ({
             >
               {localState.expanded ||
               renderAll ||
-              renderPanelContent ||
               localState.animationInProgress
                 ? children
                 : null}

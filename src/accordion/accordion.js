@@ -22,7 +22,6 @@ export default class Accordion extends React.Component<AccordionPropsT, Accordio
     onChange: () => {},
     overrides: {},
     renderAll: false,
-    renderPanelContent: false,
     stateReducer: (type, newState) => newState,
   };
 
@@ -80,7 +79,6 @@ export default class Accordion extends React.Component<AccordionPropsT, Accordio
         key,
         expanded: isExpanded || child.props.expanded,
         accordion,
-        renderPanelContent,
         renderAll,
         overrides: child.props.overrides || overrides,
         disabled: child.props.disabled || disabled,
