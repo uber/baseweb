@@ -51,4 +51,9 @@ module.exports = {
     message:
       'All overrides on RadioGroup except RadioGroupRoot are deprecated. Please apply overrides to individual radio buttons',
   },
+  noClassName: {
+    id: 'noClassName',
+    message:
+      'Base web components should only be styled using `styled`, `withStyle`, or `overrides`. {{ component }} is using className, which can cause unintended styling issues. See https://baseweb.design/guides/styling/ for recommended styling patterns.',
+  },
 };

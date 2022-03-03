@@ -6,12 +6,12 @@ LICENSE file in the root directory of this source tree.
 */
 
 'use strict';
-
+const {hasAnyProp} = require('jsx-ast-utils');
 const MESSAGES = require('./messages.js');
 
 module.exports = {
   meta: {
-    type: 'suggestion',
+    fixable: 'code',
     messages: {
       [MESSAGES.styleOnBlock.id]: MESSAGES.styleOnBlock.message,
     },
@@ -47,28 +47,7 @@ module.exports = {
           }
         }
       },
-      JSXIdentifier(node) {
-        // =======
-        // Helpers
-        // =======
-
-        // isProp
-        // Check if identifier is a prop with matching "name" and is used with
-        // "component".
-        // Ex: isProp("foo", "Boo") with <Boo foo={} /> => true
-        function isProp(name, component) {
-          return (
-            node.name === name &&
-            context
-              .getAncestors()
-              .some(
-                ancestor =>
-                  ancestor.type === 'JSXOpeningElement' &&
-                  ancestor.name.name === component,
-              )
-          );
-        }
-
+      JSXOpeningElement(node) {
         // style and $style
         // Ex: <Block style={{ ... }} />
         // Ex: <Block $style={{ ... }} />
@@ -78,14 +57,13 @@ module.exports = {
         // as expected.
         if (
           importState.Block &&
-          (isProp('$style', importState.Block) ||
-            isProp('style', importState.Block))
+          node.name.name === importState.Block &&
+          hasAnyProp(node.attributes, ['$style', 'style'])
         ) {
           context.report({
             node,
             messageId: MESSAGES.styleOnBlock.id,
           });
-          return;
         }
       },
     };

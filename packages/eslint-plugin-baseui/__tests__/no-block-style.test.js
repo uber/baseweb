@@ -26,18 +26,47 @@ const tests = {
       code: `
         import {Block} from "baseui/block"
         export default () => {
+          return <Block overrides={{ Block: {style: {color: "red" }}}} />
+        }
+      `,
+    },
+    // Non-baseui Block - $style
+    {
+      code: `
+        const Block = () => <div>Not block</div>;
+        export default () => {
+          return <Block overrides={{ Block: {style: {color: "red" }}}} />
+        }
+      `,
+    },
+  ],
+  invalid: [
+    // Block - $style
+    {
+      code: `
+        import {Block} from "baseui/block"
+        export default () => {
           return <Block $style={{ color: "red" }} />
         }
       `,
       errors: [{messageId: MESSAGES.styleOnBlock.id}],
     },
-
     // Block - style
     {
       code: `
         import {Block} from "baseui/block"
         export default () => {
           return <Block style={{ color: "red" }} />
+        }
+      `,
+      errors: [{messageId: MESSAGES.styleOnBlock.id}],
+    },
+    // Block - renamed - style
+    {
+      code: `
+        import {Block as Div} from "baseui/block"
+        export default () => {
+          return <Div style={{ color: "red" }} />
         }
       `,
       errors: [{messageId: MESSAGES.styleOnBlock.id}],
