@@ -144,7 +144,7 @@ const CheckboxConfig: TConfig = {
       description: 'Title attribute.',
       hidden: true,
     },
-    ariaLabel: {
+    'aria-label': {
       value: undefined,
       type: PropTypes.String,
       description: 'Aria-label attribute',
