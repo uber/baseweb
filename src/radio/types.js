@@ -28,11 +28,6 @@ export type RadioGroupOverridesT = {
   RadioGroupRoot?: OverrideT,
 };
 
-export type OverridesT = {
-  ...$Exact<RadioOverridesT>,
-  ...$Exact<RadioGroupOverridesT>,
-};
-
 export type DefaultPropsT = {
   value: string,
   disabled: boolean,
@@ -59,7 +54,7 @@ export type PropsT = {
    */
   'aria-labelledby'?: string,
   // This prop will be deprecated in the next major update. Pass overrides to the 'Radio' component instead.
-  overrides?: OverridesT,
+  overrides?: RadioGroupOverridesT,
   /** As `children` in React native approach represents radio buttons inside of Radio Group. Can use `Radio` from this package. */
   children?: Array<React.Node>,
   /** The value of radio button, which is preselected. */
@@ -141,7 +136,7 @@ export type RadioPropsT = {
   onMouseDown?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
   /** Handler for mouseup events on trigger element. */
   onMouseUp?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
-  overrides?: OverridesT,
+  overrides?: RadioOverridesT,
   /** Marks the checkbox as required. */
   required?: boolean,
   /** Passed to the input element value attribute */
@@ -175,7 +170,7 @@ export type DefaultStatefulPropsT = {
 };
 
 export type StatefulContainerPropsT = {
-  overrides?: OverridesT,
+  overrides?: RadioGroupOverridesT,
   /** Should return `RadioGroup` instance with standard or customized inner elements. */
   children?: (props: PropsT) => React.Node,
   /** Initial state populated into the component */
@@ -189,7 +184,7 @@ export type StatefulContainerPropsT = {
 };
 
 export type StatefulRadioGroupPropsT = {
-  overrides?: OverridesT,
+  overrides?: RadioGroupOverridesT,
   /** A list of `Radio` components. */
   children?: Array<React.Node>,
   /** Initial state populated into the component */
