@@ -71,17 +71,6 @@ class StatelessRadioGroup extends React.Component<PropsT, StatelessStateT> {
       StyledRadioGroupRoot,
     );
 
-    if (__DEV__) {
-      const overrideKeys = Object.keys(overrides);
-      // TODO(v11)
-      if (overrideKeys.length && !overrideKeys.includes('RadioGroupRoot')) {
-        // eslint-disable-next-line no-console
-        console.warn(`All overrides beside 'RadioGroupRoot' will be deprecated in the next major version update.
-          Pass other overrides to the 'Radio' children instead.
-        `);
-      }
-    }
-
     return (
       <RadioGroupRoot
         id={this.props.id}
@@ -123,8 +112,6 @@ class StatelessRadioGroup extends React.Component<PropsT, StatelessStateT> {
             onChange: this.props.onChange,
             onMouseEnter: this.props.onMouseEnter,
             onMouseLeave: this.props.onMouseLeave,
-            // will need to remove overrides pass-through on next major version
-            overrides: {...this.props.overrides, ...child.props.overrides},
           });
         })}
       </RadioGroupRoot>
