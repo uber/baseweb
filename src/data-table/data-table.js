@@ -87,6 +87,8 @@ type CellPlacementPropsT = {
   },
 };
 
+const sum = ns => ns.reduce((s, n) => s + n, 0);
+
 function CellPlacement({columnIndex, rowIndex, data, style}) {
   const [css, theme] = useStyletron();
 
@@ -411,7 +413,7 @@ function Header(props: HeaderProps) {
   );
 }
 
-function Headers(props: {||}) {
+function Headers() {
   const [css, theme] = useStyletron();
   const locale = React.useContext(LocaleContext);
   const ctx = React.useContext(HeaderContext);
@@ -423,7 +425,7 @@ function Headers(props: {||}) {
         position: 'sticky',
         top: 0,
         left: 0,
-        width: `${ctx.widths.reduce((sum, w) => sum + w, 0)}px`,
+        width: `${sum(ctx.widths)}px`,
         height: `${HEADER_ROW_HEIGHT}px`,
         display: 'flex',
         // this feels bad.. the absolutely positioned children elements
@@ -696,7 +698,10 @@ export function DataTable({
     },
     [rowHeight],
   );
-  const gridRef = React.useRef<typeof VariableSizeGrid | null>(null);
+
+  // We use state for our ref, to allow hooks to  update when the ref changes.
+  // eslint-disable-next-line flowtype/no-weak-types
+  const [gridRef, setGridRef] = React.useState<?VariableSizeGrid<any>>(null);
   const [measuredWidths, setMeasuredWidths] = React.useState(
     columns.map(() => 0),
   );
@@ -712,12 +717,12 @@ export function DataTable({
 
   const resetAfterColumnIndex = React.useCallback(
     columnIndex => {
-      if (gridRef.current) {
+      if (gridRef) {
         // $FlowFixMe trigger react-window to layout the elements again
-        gridRef.current.resetAfterColumnIndex(columnIndex, true);
+        gridRef.resetAfterColumnIndex(columnIndex, true);
       }
     },
-    [gridRef.current],
+    [gridRef],
   );
   const handleWidthsChange = React.useCallback(
     nextWidths => {
@@ -843,13 +848,11 @@ export function DataTable({
 
   const [browserScrollbarWidth, setBrowserScrollbarWidth] = React.useState(0);
   const normalizedWidths = React.useMemo(() => {
-    const sum = ns => ns.reduce((s, n) => s + n, 0);
     const resizedWidths = measuredWidths.map(
       (w, i) => Math.floor(w) + Math.floor(resizeDeltas[i]),
     );
-    if (gridRef.current) {
-      // $FlowFixMe
-      const gridProps = gridRef.current.props;
+    if (gridRef) {
+      const gridProps = gridRef.props;
 
       let isContentTallerThanContainer = false;
       let visibleRowHeight = 0;
@@ -886,6 +889,7 @@ export function DataTable({
     }
     return resizedWidths;
   }, [
+    gridRef,
     measuredWidths,
     resizeDeltas,
     browserScrollbarWidth,
@@ -948,10 +952,10 @@ export function DataTable({
 
   function handleRowHighlightIndexChange(nextIndex) {
     setRowHighlightIndex(nextIndex);
-    if (gridRef.current) {
+    if (gridRef) {
       if (nextIndex >= 0) {
         // $FlowFixMe - unable to get react-window types
-        gridRef.current.scrollToItem({rowIndex: nextIndex});
+        gridRef.scrollToItem({rowIndex: nextIndex});
       }
       if (onRowHighlightChange) {
         onRowHighlightChange(nextIndex, rows[nextIndex - 1]);
@@ -1051,8 +1055,9 @@ export function DataTable({
           >
             <VariableSizeGrid
               // eslint-disable-next-line flowtype/no-weak-types
-              ref={(gridRef: any)}
+              ref={(setGridRef: any)}
               overscanRowCount={10}
+              overscanColumnCount={5}
               innerElementType={InnerTableElement}
               columnCount={columns.length}
               columnWidth={columnIndex => normalizedWidths[columnIndex]}
