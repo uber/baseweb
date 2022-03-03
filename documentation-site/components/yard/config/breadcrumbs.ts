@@ -31,9 +31,9 @@ const BreadcrumbsConfig: TConfig = {
         'baseui/link': {named: ['StyledLink']},
       },
     },
-    ariaLabel: {
+    'aria-label': {
       value: undefined,
-      description: 'Elements separated by divider',
+      description: 'Aria-label attribute',
       type: PropTypes.String,
     },
     showTrailingSeparator: {

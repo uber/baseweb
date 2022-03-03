@@ -47,7 +47,7 @@ export const SortableHeadCellFactory = (
     };
     const enableHeadClick = fillClickTarget && !disabled;
 
-    let ariaLabel = props.ariaLabel;
+    let ariaLabel = props['aria-label'] || props.ariaLabel;
     if (!ariaLabel) {
       if (typeof props.title === 'string') {
         ariaLabel = `sorts table by ${props.title} column`;

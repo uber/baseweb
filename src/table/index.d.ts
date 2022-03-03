@@ -14,6 +14,7 @@ export interface SortableHeadCellOverrides {
 
 export interface SortableHeadCellProps {
   ariaLabel?: string;
+  'aria-label'?: string;
   children?: React.ReactNode;
   direction: 'ASC' | 'DESC' | null;
   disabled?: boolean;

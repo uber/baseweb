@@ -35,6 +35,12 @@ const TableConfig: TConfig = {
       type: PropTypes.Array,
       description: 'Table rows. Data passed to each row and cell',
     },
+    'aria-label': {
+      value: undefined,
+      type: PropTypes.String,
+      description: 'Aria-label attribute',
+      hidden: true,
+    },
     horizontalScrollWidth: {
       value: undefined,
       type: PropTypes.String,

@@ -17,6 +17,7 @@ import {MODE, STATE_CHANGE_TYPE} from './constants.js';
 export type PropsT = {|
   /** Accessible label. */
   ariaLabel?: string,
+  'aria-label'?: string,
   /** Set of more than one `Button` components */
   children: Array<React.Node>,
   /** Defines if the button group is disabled. */
