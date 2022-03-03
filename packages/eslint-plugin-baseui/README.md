@@ -5,6 +5,7 @@ This ESLint plugin is for developers using the Base Web component library. Mainl
 - Identify usage of deprecated APIs
 - Identify usage of unsupported exports
 - Identify improper usage of components
+- Identify improper styling on Block elements
 
 ## Installation
 
@@ -31,6 +32,7 @@ Then add it to your ESLint configuration:
     'baseui/deprecated-theme-api': "warn",
     'baseui/deprecated-component-api': "warn",
     'baseui/no-deep-imports': "warn",
+    'baseui/no-block-style': "warn",
   }
 }
 ```
@@ -64,11 +66,12 @@ We sync the versions for each package, so you shouldn't have to worry about it.
 
 ## Rules
 
-| Rule | Responsibility |
-| --- | --- |
-| `deprecated-theme-api` | Identify theme properties that are deprecated. |
-| `deprecated-component-api` | Identify components and props that are deprecated. |
-| `no-deep-imports` | Identify importing unsupported modules from `baseui` source code. |
+| Rule                       | Responsibility                                                                                 |
+|----------------------------|------------------------------------------------------------------------------------------------|
+| `deprecated-theme-api`     | Identify theme properties that are deprecated.                                                 |
+| `deprecated-component-api` | Identify components and props that are deprecated.                                             |
+| `no-deep-imports`          | Identify importing unsupported modules from `baseui` source code.                              |
+| `no-block-style`           | Identify instances of Block being used with style/$style instead of overrides. (not supported) |
 
 ## Contributing
 
