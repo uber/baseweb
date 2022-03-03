@@ -588,27 +588,6 @@ const tests = {
       `,
     },
 
-    // Block - $style
-    {
-      code: `
-        import {Block} from "baseui/block"
-        export default () => {
-          return <Block $style={{ color: "red" }} />
-        }
-      `,
-      errors: [{messageId: MESSAGES.styleOnBlock.id}],
-    },
-
-    // Block - style
-    {
-      code: `
-        import {Block} from "baseui/block"
-        export default () => {
-          return <Block style={{ color: "red" }} />
-        }
-      `,
-      errors: [{messageId: MESSAGES.styleOnBlock.id}],
-    },
     {
       code: `
         import { Paragraph3 } from "baseui/typography"
