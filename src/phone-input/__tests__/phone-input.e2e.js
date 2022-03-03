@@ -7,13 +7,12 @@ LICENSE file in the root directory of this source tree.
 
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
-/* global document */
 
 const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 
 const selectors = {
   phoneInput: `[data-baseweb="phone-input"]`,
-  phoneInputInput: `[data-baseweb="phone-input"] > input`,
+  phoneInputInput: `[data-e2e="phone-input-input"]`,
   phoneInputFlag: `[data-e2e="country-flag"]`,
   phoneInputDialcode: `[data-e2e="phone-input-dialcode"]`,
   phoneInputSelect: `[data-baseweb="select"]`,
@@ -29,7 +28,7 @@ const unitedKingdom = {iso: 'GB', dialCode: '+44'};
 
 describe('PhoneInput', () => {
   beforeEach(async () => {
-    await mount(page, 'phone-input--phone-input');
+    await mount(page, 'phone-input--lite');
     await page.waitForSelector(selectors.phoneInput);
   });
 
@@ -88,8 +87,7 @@ describe('PhoneInput', () => {
     expect(dialcode).toEqual(unitedKingdom.dialCode);
   });
 
-  it('allows a user to select a country from the dropdown, \
-  which populates a dial code', async () => {
+  it('allows a user to select a country from the dropdown, which populates a dial code', async () => {
     // click select
     await page.click(selectors.phoneInputSelect);
     // verify dropdown is open
@@ -111,11 +109,5 @@ describe('PhoneInput', () => {
       block => block.innerText,
     );
     expect(dialcode).toEqual(unitedKingdom.dialCode);
-    // verify input has focus
-    const inputIsFocused = await page.$eval(
-      selectors.phoneInputInput,
-      input => input === document.activeElement,
-    );
-    expect(inputIsFocused).toBe(true);
   });
 });

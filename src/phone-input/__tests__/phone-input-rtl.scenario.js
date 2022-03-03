@@ -8,13 +8,13 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import {ThemeProvider, LightTheme} from '../../index.js';
-import {Scenario as PhoneInputNextScenario} from './phone-input-next.scenario.js';
+import {Scenario as PhoneInputScenario} from './phone-input.scenario.js';
 
 export function Scenario() {
   return (
     <ThemeProvider theme={{...LightTheme, direction: 'rtl'}}>
       <div dir="rtl">
-        <PhoneInputNextScenario />
+        <PhoneInputScenario />
       </div>
     </ThemeProvider>
   );
