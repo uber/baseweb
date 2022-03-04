@@ -7,6 +7,7 @@ build-ladle
 .*/node_modules/npmconf/.*
 .*examples/fusion/.*
 documentation-site/.next/.*
+.*/node_modules/.*vite.*
 
 [include]
 ./src/

@@ -1,4 +1,3 @@
-// @flow
 import * as React from 'react';
 import {Provider as StyletronProvider} from 'styletron-react';
 import {Client as Styletron} from 'styletron-engine-atomic';
@@ -7,7 +6,12 @@ import BaseProvider from '../src/helpers/base-provider.js';
 
 const engine = new Styletron();
 
-export const Provider = ({children, globalState}) => {
+export const Provider: React.FC<{
+  globalState: {
+    theme: string;
+    rtl: string;
+  };
+}> = ({children, globalState}) => {
   return (
     <StyletronProvider value={engine}>
       <BaseProvider
