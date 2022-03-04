@@ -11,7 +11,7 @@ import { StatefulPhoneInputNext } from '../index.js';
 
 export function Scenario() {
   return (
-    <StatefulPhoneInputNext
+    <StatefulPhoneInput
       overrides={{
         CountrySelectDropdownListItem: {
           props: { 'data-e2e': 'country-picker-list-item' },

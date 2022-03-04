@@ -40,16 +40,6 @@ export function Scenario() {
         FlagContainer: {
           component: CustomFlag,
         },
-
-        CountrySelect: {
-          props: {
-            overrides: {
-              Dropdown: {
-                component: CountrySelectDropdown,
-              },
-            },
-          },
-        },
       }}
     />
   );

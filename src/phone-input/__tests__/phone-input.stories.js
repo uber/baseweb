@@ -19,7 +19,7 @@ export const CountrySelectDropdown = () => <CountrySelectDropdownScenario />;
 export const CountrySelectSmallDropdown = () => <CountrySelectSmallDropdownScenario />;
 
 export const CustomFlags = () => <PhoneInputCustomFlags />;
-export const NextDropdown = () => <PhoneInputNextDropdown />;
-export const Next = () => <PhoneInputNext />;
+export const Dropdown = () => <PhoneInputDropdown />;
 export const Overrides = () => <PhoneInputOverrides />;
 export const PhoneInput = () => <PhoneInputDefault />;
+export const Lite = () => <PhoneInputLite />;

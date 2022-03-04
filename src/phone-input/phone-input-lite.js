@@ -21,6 +21,7 @@ export default function PhoneInputLite(props: LitePropsT) {
     'aria-label': ariaLabel,
     'aria-labelledby': ariaLabelledBy,
     'aria-describedby': ariaDescribedBy,
+    clearable,
     countries,
     country,
     disabled,
@@ -41,6 +42,22 @@ export default function PhoneInputLite(props: LitePropsT) {
     ...restProps
   } = props;
   const inputRef = useRef(null);
+
+  const baseDialCodeOverride = {
+    component: StyledDialCode,
+    style: ({$theme: {direction, sizing}}) => {
+      const marginDir = direction === 'rtl' ? 'marginRight' : 'marginLeft';
+      return {
+        [marginDir]: sizing.scale600,
+      };
+    },
+    props: {children: country.dialCode},
+  };
+  const mergedDialCodeOverride = mergeOverrides(
+    {DialCode: baseDialCodeOverride},
+    {DialCode: overrides.DialCode || {}},
+  );
+
   const baseOverrides = {
     Input: {
       style: ({ $theme: { sizing } }) => ({ paddingLeft: sizing.scale100 }),
@@ -63,30 +80,49 @@ export default function PhoneInputLite(props: LitePropsT) {
         size,
       },
     },
+    Before: mergedDialCodeOverride.DialCode,
   };
+  const [Root, rootProps] = getOverrides(overrides.Root, StyledPhoneInputRoot);
   const [Input, inputProps] = getOverrides(overrides.Input, DefaultInput);
   inputProps.overrides = mergeOverrides(baseOverrides, inputProps.overrides);
   return (
-    <Input
-      aria-label={ariaLabel}
-      aria-labelledby={ariaLabelledBy}
-      aria-describedby={ariaDescribedBy}
-      autoComplete="tel-national"
-      data-baseweb="phone-input"
-      disabled={disabled}
-      error={error}
-      id={id}
-      inputMode="tel"
-      inputRef={inputRef}
-      name={name}
-      onChange={onTextChange}
-      positive={positive}
-      placeholder={placeholder}
-      size={size}
-      type="text"
-      value={text}
-      {...restProps}
-      {...inputProps}
-    />
+    <Root {...rootProps} data-baseweb="phone-input">
+      <CountryPicker
+        country={country}
+        countries={countries}
+        disabled={disabled}
+        error={error}
+        mapIsoToLabel={mapIsoToLabel}
+        maxDropdownHeight={maxDropdownHeight}
+        maxDropdownWidth={maxDropdownWidth}
+        onCountryChange={onCountryChange}
+        overrides={overrides}
+        positive={positive}
+        required={required}
+        size={size}
+      />
+      <Input
+        aria-label={ariaLabel}
+        aria-labelledby={ariaLabelledBy}
+        aria-describedby={ariaDescribedBy}
+        autoComplete="tel-national"
+        data-baseweb="phone-input"
+        disabled={disabled}
+        error={error}
+        id={id}
+        inputMode="tel"
+        inputRef={inputRef}
+        name={name}
+        onChange={onTextChange}
+        positive={positive}
+        placeholder={placeholder}
+        size={size}
+        type="text"
+        value={text}
+        clearable={clearable}
+        {...restProps}
+        {...inputProps}
+      />
+    </Root>
   );
 }

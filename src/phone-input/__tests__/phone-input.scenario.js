@@ -11,7 +11,8 @@ import { StatefulPhoneInput, PhoneInputLite } from '../index.js';
 
 export function Scenario() {
   return (
-    <>
+    <React.Fragment>
+      <p>Uncontrolled (Stateful)</p>
       <StatefulPhoneInput
         overrides={{
           CountrySelectDropdownListItem: {
@@ -28,6 +29,14 @@ export function Scenario() {
         }}
       />
 
+      <p>Controlled (Stateless)</p>
+      <PhoneInput
+        onCountryChange={e => console.log('COUNTRY_CHANGED:', e)}
+        onTextChange={e => console.log('NUMBER_CHANGED:', e)}
+      />
+
+      <p>Sizes</p>
+      <StatefulPhoneInput size={SIZE.mini} />
       <br />
       <p>Phone input lite</p>
       <PhoneInputLite

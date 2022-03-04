@@ -14,7 +14,7 @@ export function Scenario() {
   return (
     <ThemeProvider theme={{ ...LightTheme, direction: 'rtl' }}>
       <div dir="rtl">
-        <PhoneInputNextScenario />
+        <PhoneInputScenario />
       </div>
     </ThemeProvider>
   );
