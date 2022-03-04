@@ -19,8 +19,14 @@ export type OverridesT = {
   LoadingSpinner?: OverrideT,
 };
 
+export type CustomColorT = {|
+  background: string,
+  text: string,
+|};
+
 export type ButtonPropsT = {
   children?: React$Node,
+  color?: CustomColorT,
   disabled?: boolean,
   /** A helper rendered at the end of the button. */
   // eslint-disable-next-line flowtype/no-weak-types
@@ -44,6 +50,7 @@ export type ButtonPropsT = {
 };
 
 export type SharedStylePropsT = {
+  $color?: CustomColorT,
   $kind?: $Keys<typeof KIND>,
   $isSelected?: boolean,
   $shape?: $Keys<typeof SHAPE>,
