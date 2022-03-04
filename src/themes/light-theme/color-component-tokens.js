@@ -48,15 +48,6 @@ export default (
   buttonTertiarySpinnerForeground: themePrimitives.accent,
   buttonTertiarySpinnerBackground: themePrimitives.primary100,
 
-  buttonMinimalFill: 'transparent',
-  buttonMinimalText: themePrimitives.primary,
-  buttonMinimalHover: themePrimitives.primary50,
-  buttonMinimalActive: themePrimitives.primary100,
-  buttonMinimalSelectedFill: themePrimitives.primary100,
-  buttonMinimalSelectedText: themePrimitives.primary,
-  buttonMinimalSpinnerForeground: themePrimitives.accent,
-  buttonMinimalSpinnerBackground: themePrimitives.primary100,
-
   buttonDisabledFill: themePrimitives.mono200,
   buttonDisabledText: themePrimitives.mono600,
   buttonDisabledActiveFill: themePrimitives.mono700,
