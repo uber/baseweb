@@ -250,14 +250,6 @@ export interface Colors {
   buttonTertiarySelectedFill: string;
   buttonTertiarySpinnerForeground: string;
   buttonTertiarySpinnerBackground: string;
-  buttonMinimalFill: string;
-  buttonMinimalText: string;
-  buttonMinimalHover: string;
-  buttonMinimalActive: string;
-  buttonMinimalSelectedText: string;
-  buttonMinimalSelectedFill: string;
-  buttonMinimalSpinnerForeground: string;
-  buttonMinimalSpinnerBackground: string;
   buttonDisabledFill: string;
   buttonDisabledText: string;
   buttonDisabledSpinnerForeground: string;

@@ -183,7 +183,7 @@ class Layout extends React.Component<PropsT, { sidebarOpen: boolean }> {
                       href={githubUrl}
                       target="_blank"
                       size={SIZE.compact}
-                      kind={KIND.minimal}
+                      kind={KIND.tertiary}
                     >
                       Edit this page
                     </Button>

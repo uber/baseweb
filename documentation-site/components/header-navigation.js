@@ -103,7 +103,7 @@ export default function HeaderNavigation({
           <Button
             $as="a"
             size={SIZE.compact}
-            kind={KIND.minimal}
+            kind={KIND.tertiary}
             overrides={{
               BaseButton: {
                 style: {
@@ -123,7 +123,7 @@ export default function HeaderNavigation({
           <Button
             $as="a"
             size={SIZE.compact}
-            kind={KIND.minimal}
+            kind={KIND.tertiary}
             overrides={{
               BaseButton: {
                 style: {

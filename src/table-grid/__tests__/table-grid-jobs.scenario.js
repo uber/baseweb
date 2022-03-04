@@ -228,7 +228,7 @@ function Row(props: RowPropsT) {
             />
           )}
         >
-          <Button shape="square" kind="minimal" size="compact">
+          <Button shape="square" kind="tertiary" size="compact">
             <Overflow size={18} />
           </Button>
         </StatefulPopover>
