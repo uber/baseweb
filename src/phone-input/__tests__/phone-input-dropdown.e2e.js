@@ -11,7 +11,7 @@ LICENSE file in the root directory of this source tree.
 const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 
 const selectors = {
-  phoneInput: `[data-baseweb="phone-input-next"]`,
+  phoneInput: `[data-baseweb="phone-input"]`,
   phoneInputDialcode: `[data-e2e="phone-input-dialcode"]`,
   countryPicker: `[data-baseweb="select"]`,
   countryPickerFlag: `[data-e2e="country-flag"]`,
@@ -26,7 +26,7 @@ const UK = {iso: 'GB', dialCode: '+44'};
 
 describe('PhoneInput', () => {
   beforeEach(async () => {
-    await mount(page, 'phone-input--next-dropdown');
+    await mount(page, 'phone-input--dropdown');
     await page.waitForSelector(selectors.phoneInput);
   });
 

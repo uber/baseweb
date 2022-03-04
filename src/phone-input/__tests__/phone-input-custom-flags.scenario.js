@@ -8,12 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {
-  PhoneInput,
-  COUNTRIES,
-  CountrySelectDropdown,
-  StyledFlag,
-} from '../../phone-input/index.js';
+import {PhoneInput, COUNTRIES, StyledFlag} from '../../phone-input/index.js';
 import type {CountryIsoT} from '../../phone-input/index.js';
 
 function CustomFlag(props: {children: React.Node, $iso: CountryIsoT}) {
@@ -38,16 +33,6 @@ export function Scenario() {
       overrides={{
         FlagContainer: {
           component: CustomFlag,
-        },
-
-        CountrySelect: {
-          props: {
-            overrides: {
-              Dropdown: {
-                component: CountrySelectDropdown,
-              },
-            },
-          },
         },
       }}
     />
