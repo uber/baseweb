@@ -30,5 +30,8 @@
   },
   "bugs": {
     "url": "https://github.com/uber/baseweb/issues"
+  },
+  "dependencies": {
+    "jsx-ast-utils": "^3.2.1"
   }
 }
