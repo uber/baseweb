@@ -31,7 +31,7 @@ export function Scenario() {
       <Container backgroundColor="#eff3fe">
         <Button
           shape={SHAPE.pill}
-          color={{backgroundColor: '#d4e2fc', color: 'block'}}
+          colors={{backgroundColor: '#d4e2fc', color: 'block'}}
         >
           Label
         </Button>
@@ -40,7 +40,7 @@ export function Scenario() {
       <Container backgroundColor="#048848">
         <Button
           shape={SHAPE.pill}
-          color={{backgroundColor: '#03703c', color: 'white'}}
+          colors={{backgroundColor: '#03703c', color: 'white'}}
         >
           Label
         </Button>
@@ -48,7 +48,7 @@ export function Scenario() {
       <Container backgroundColor="#e6f2ed">
         <Button
           shape={SHAPE.pill}
-          color={{backgroundColor: '#addec9', color: 'black'}}
+          colors={{backgroundColor: '#addec9', color: 'black'}}
         >
           Label
         </Button>
@@ -57,7 +57,7 @@ export function Scenario() {
       <Container backgroundColor="#ffc043">
         <Button
           shape={SHAPE.pill}
-          color={{backgroundColor: '#ffe3ac', color: 'black'}}
+          colors={{backgroundColor: '#ffe3ac', color: 'black'}}
         >
           Label
         </Button>
@@ -65,7 +65,7 @@ export function Scenario() {
       <Container backgroundColor="#fffaf0">
         <Button
           shape={SHAPE.pill}
-          color={{backgroundColor: '#ffe3ac', color: 'black'}}
+          colors={{backgroundColor: '#ffe3ac', color: 'black'}}
         >
           Label
         </Button>
@@ -74,7 +74,7 @@ export function Scenario() {
       <Container backgroundColor="#e11900">
         <Button
           shape={SHAPE.pill}
-          color={{backgroundColor: '#ab1300', color: 'white'}}
+          colors={{backgroundColor: '#ab1300', color: 'white'}}
         >
           Label
         </Button>
@@ -82,7 +82,7 @@ export function Scenario() {
       <Container backgroundColor="#ffefed">
         <Button
           shape={SHAPE.pill}
-          color={{backgroundColor: '#fed7d2', color: 'black'}}
+          colors={{backgroundColor: '#fed7d2', color: 'black'}}
         >
           Label
         </Button>
