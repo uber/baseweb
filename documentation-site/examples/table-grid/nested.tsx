@@ -177,7 +177,7 @@ function Row({striped, row}: any) {
       <CenteredBodyCell $striped={striped}>
         <Button
           size="compact"
-          kind="minimal"
+          kind="tertiary"
           onClick={() => setExpanded(!expanded)}
           shape="square"
         >
@@ -232,7 +232,7 @@ function Row({striped, row}: any) {
             />
           )}
         >
-          <Button shape="square" kind="minimal" size="compact">
+          <Button shape="square" kind="tertiary" size="compact">
             <Overflow size={18} />
           </Button>
         </StatefulPopover>

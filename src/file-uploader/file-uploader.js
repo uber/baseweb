@@ -190,7 +190,7 @@ function FileUploader(props: PropsT) {
                       )}
                       {props.errorMessage ? (
                         <ButtonComponent
-                          kind={KIND.minimal}
+                          kind={KIND.tertiary}
                           onClick={() => {
                             props.onRetry && props.onRetry();
                           }}
@@ -202,7 +202,7 @@ function FileUploader(props: PropsT) {
                         </ButtonComponent>
                       ) : (
                         <ButtonComponent
-                          kind={KIND.minimal}
+                          kind={KIND.tertiary}
                           onClick={() => {
                             props.onCancel && props.onCancel();
                           }}

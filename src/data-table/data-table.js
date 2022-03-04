@@ -612,7 +612,7 @@ const InnerTableElement = React.forwardRef<
                     })
                   }
                   size={BUTTON_SIZES.compact}
-                  kind={BUTTON_KINDS.minimal}
+                  kind={BUTTON_KINDS.tertiary}
                   shape={BUTTON_SHAPES.round}
                   overrides={{
                     BaseButton: {

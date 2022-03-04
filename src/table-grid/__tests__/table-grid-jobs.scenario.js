@@ -203,7 +203,7 @@ function Row(props: RowPropsT) {
       <CenteredBodyCell {...props.getCellProps(0)} $striped={props.striped}>
         <Button
           size="compact"
-          kind="minimal"
+          kind="tertiary"
           onClick={() => setExpanded(!expanded)}
           shape="square"
         >
@@ -243,7 +243,7 @@ function Row(props: RowPropsT) {
             />
           )}
         >
-          <Button shape="square" kind="minimal" size="compact">
+          <Button shape="square" kind="tertiary" size="compact">
             <Overflow size={18} />
           </Button>
         </StatefulPopover>

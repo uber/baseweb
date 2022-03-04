@@ -11,7 +11,7 @@ export default function Example() {
       <Block marginBottom="scale300" />
       <Button kind={KIND.tertiary}>Tertiary</Button>
       <Block marginBottom="scale300" />
-      <Button kind={KIND.minimal}>Minimal</Button>
+      <Button kind={KIND.tertiary}>Minimal</Button>
     </React.Fragment>
   );
 }

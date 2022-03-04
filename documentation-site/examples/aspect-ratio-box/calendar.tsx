@@ -8,7 +8,7 @@ import {useStyletron} from 'baseui';
 
 const CalendarButton = (props: {children: React.ReactNode}) => (
   <Button
-    kind={KIND.minimal}
+    kind={KIND.tertiary}
     overrides={{
       BaseButton: {
         style: {
