@@ -66,7 +66,7 @@ export default function Filter(props: FilterProps) {
           <Content {...contentProps}>{props.children}</Content>
           <Footer {...footerProps}>
             <Button
-              kind={KIND.minimal}
+              kind={KIND.tertiary}
               size={SIZE.compact}
               onClick={() => {
                 onSelectAll();
@@ -76,7 +76,7 @@ export default function Filter(props: FilterProps) {
             </Button>
 
             <Button
-              kind={KIND.minimal}
+              kind={KIND.tertiary}
               size={SIZE.compact}
               onClick={() => {
                 onReset();
@@ -86,7 +86,7 @@ export default function Filter(props: FilterProps) {
             </Button>
 
             {props.hasCloseButton && (
-              <Button kind={KIND.minimal} size={SIZE.compact} onClick={close}>
+              <Button kind={KIND.tertiary} size={SIZE.compact} onClick={close}>
                 Close
               </Button>
             )}

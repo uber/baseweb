@@ -57,7 +57,7 @@ function FilterQuickControls(props: {
   const locale = React.useContext(LocaleContext);
 
   return (
-    <ButtonGroup size={SIZE.mini} kind={KIND.minimal}>
+    <ButtonGroup size={SIZE.mini} kind={KIND.tertiary}>
       <Button type="button" onClick={props.onSelectAll}>
         {locale.datatable.categoricalFilterSelectAll}
       </Button>

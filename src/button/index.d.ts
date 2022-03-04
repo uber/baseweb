@@ -10,7 +10,6 @@ export interface KIND {
   primary: 'primary';
   secondary: 'secondary';
   tertiary: 'tertiary';
-  minimal: 'minimal';
 }
 
 export interface SIZE {
