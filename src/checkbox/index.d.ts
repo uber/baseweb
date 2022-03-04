@@ -106,6 +106,7 @@ export interface CheckboxProps {
   checkmarkType?: STYLE_TYPE[keyof STYLE_TYPE];
   title?: string;
   ariaLabel?: string;
+  'aria-label'?: string;
   onChange?: React.FormEventHandler<HTMLInputElement>;
   onMouseEnter?: React.MouseEventHandler<HTMLInputElement>;
   onMouseLeave?: React.MouseEventHandler<HTMLInputElement>;

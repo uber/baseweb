@@ -172,6 +172,7 @@ export const OptionProfile: React.FC<OptionProfileProps>;
 export interface SharedStatelessProps {
   activedescendantId?: string;
   ariaLabel?: string;
+  'aria-label'?: string;
   getRequiredItemProps?: (item: any, index: number) => RenderItemProps;
   highlightedIndex?: number;
   items: ItemsT;

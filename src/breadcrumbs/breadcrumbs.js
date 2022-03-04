@@ -77,7 +77,11 @@ export function Breadcrumbs(props: BreadcrumbsPropsT) {
     <LocaleContext.Consumer>
       {locale => (
         <Root
-          aria-label={props.ariaLabel || locale.breadcrumbs.ariaLabel}
+          aria-label={
+            props['aria-label'] ||
+            props.ariaLabel ||
+            locale.breadcrumbs.ariaLabel
+          }
           data-baseweb="breadcrumbs"
           {...baseRootProps}
         >

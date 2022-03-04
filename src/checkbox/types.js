@@ -48,6 +48,7 @@ export type PropsT = {
   'aria-errormessage'?: string,
   /** Passed to the input element aria-label attribute. */
   ariaLabel?: string,
+  'aria-label'?: string,
   /** Component or String value for label of checkbox. */
   children?: React$Node,
   /** Indicates if this checkbox children contain an interactive element (prevents the label from moving focus from the child element to the radio button) */

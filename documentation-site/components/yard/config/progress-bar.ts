@@ -28,6 +28,12 @@ const ProgressBarConfig: TConfig = {
         'Progress bar value attribute normalized in the 0 to 100 range.',
       stateful: true,
     },
+    'aria-label': {
+      value: undefined,
+      type: PropTypes.String,
+      description: 'Aria-label attribute',
+      hidden: true,
+    },
     getProgressLabel: {
       placeholder: '(value) => `${10 * value}mb out of 1000mb downloaded` ',
       value: '',

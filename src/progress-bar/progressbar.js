@@ -52,7 +52,6 @@ class ProgressBar extends React.Component<
 
   render() {
     const {
-      ariaLabel,
       overrides = {},
       getProgressLabel,
       value,
@@ -67,6 +66,7 @@ class ProgressBar extends React.Component<
       forwardedRef,
       ...restProps
     } = this.props;
+    const ariaLabel = this.props['aria-label'] || this.props.ariaLabel;
     // fallback on successValue (and it's default) if maxValue is not set by user
     const maximumValue = maxValue !== 100 ? maxValue : successValue;
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
