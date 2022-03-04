@@ -18,14 +18,12 @@ function Container({backgroundColor, children}) {
 }
 
 export function Scenario() {
-  const [css] = useStyletron();
-
   return (
     <div>
       <Container backgroundColor="#276ef1">
         <Button
           shape={SHAPE.pill}
-          color={{background: '#1e54b7', text: 'white'}}
+          colors={{backgroundColor: '#1e54b7', color: 'white'}}
         >
           Label
         </Button>
@@ -33,7 +31,7 @@ export function Scenario() {
       <Container backgroundColor="#eff3fe">
         <Button
           shape={SHAPE.pill}
-          color={{background: '#d4e2fc', text: 'block'}}
+          color={{backgroundColor: '#d4e2fc', color: 'block'}}
         >
           Label
         </Button>
@@ -42,7 +40,7 @@ export function Scenario() {
       <Container backgroundColor="#048848">
         <Button
           shape={SHAPE.pill}
-          color={{background: '#03703c', text: 'white'}}
+          color={{backgroundColor: '#03703c', color: 'white'}}
         >
           Label
         </Button>
@@ -50,7 +48,7 @@ export function Scenario() {
       <Container backgroundColor="#e6f2ed">
         <Button
           shape={SHAPE.pill}
-          color={{background: '#addec9', text: 'black'}}
+          color={{backgroundColor: '#addec9', color: 'black'}}
         >
           Label
         </Button>
@@ -59,7 +57,7 @@ export function Scenario() {
       <Container backgroundColor="#ffc043">
         <Button
           shape={SHAPE.pill}
-          color={{background: '#ffe3ac', text: 'black'}}
+          color={{backgroundColor: '#ffe3ac', color: 'black'}}
         >
           Label
         </Button>
@@ -67,7 +65,7 @@ export function Scenario() {
       <Container backgroundColor="#fffaf0">
         <Button
           shape={SHAPE.pill}
-          color={{background: '#ffe3ac', text: 'black'}}
+          color={{backgroundColor: '#ffe3ac', color: 'black'}}
         >
           Label
         </Button>
@@ -76,7 +74,7 @@ export function Scenario() {
       <Container backgroundColor="#e11900">
         <Button
           shape={SHAPE.pill}
-          color={{background: '#ab1300', text: 'white'}}
+          color={{backgroundColor: '#ab1300', color: 'white'}}
         >
           Label
         </Button>
@@ -84,7 +82,7 @@ export function Scenario() {
       <Container backgroundColor="#ffefed">
         <Button
           shape={SHAPE.pill}
-          color={{background: '#fed7d2', text: 'black'}}
+          color={{backgroundColor: '#fed7d2', color: 'black'}}
         >
           Label
         </Button>

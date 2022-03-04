@@ -14,7 +14,7 @@ export const BaseButton = styled<SharedStylePropsT>(
   ({
     $theme,
     $size,
-    $color,
+    $colors,
     $kind,
     $shape,
     $isLoading,
@@ -58,7 +58,7 @@ export const BaseButton = styled<SharedStylePropsT>(
     ...getPaddingStyles({$theme, $size, $shape}),
     ...getColorStyles({
       $theme,
-      $color,
+      $colors,
       $kind,
       $isLoading,
       $isSelected,
@@ -327,16 +327,16 @@ type ColorStylesT = {|
 |};
 function getColorStyles({
   $theme,
-  $color,
+  $colors,
   $isLoading,
   $isSelected,
   $kind,
   $disabled,
 }): ColorStylesT {
-  if ($color) {
+  if ($colors) {
     return {
-      color: $color.text,
-      backgroundColor: $color.background,
+      color: $colors.color,
+      backgroundColor: $colors.backgroundColor,
       ':hover': {
         boxShadow: 'inset 999px 999px 0px rgba(0, 0, 0, 0.04)',
       },
