@@ -12,25 +12,24 @@ import {Button, SIZE} from '../button/index.js';
 import {ButtonGroup, MODE} from '../button-group/index.js';
 import {Input, SIZE as INPUT_SIZE} from '../input/index.js';
 import {useStyletron} from '../styles/index.js';
-import {ParagraphXSmall} from '../typography/index.js';
 
 import Column from './column.js';
-import {COLUMNS, NUMERICAL_FORMATS, NUMERICAL_OPERATIONS} from './constants.js';
-import FilterShell from './filter-shell.js';
+import {
+  COLUMNS,
+  NUMERICAL_FORMATS,
+  MAX_BIN_COUNT,
+  HISTOGRAM_SIZE,
+} from './constants.js';
+import FilterShell, {type ExcludeKind} from './filter-shell.js';
 import type {ColumnT, SharedColumnOptionsT} from './types.js';
 import {LocaleContext} from '../locale/index.js';
+import {bin, max as maxFunc, extent, scaleLinear, median, bisector} from 'd3';
+import {Slider} from '../slider/index.js';
 
 type NumericalFormats =
   | typeof NUMERICAL_FORMATS.DEFAULT
   | typeof NUMERICAL_FORMATS.ACCOUNTING
   | typeof NUMERICAL_FORMATS.PERCENTAGE;
-
-type NumericalOperations =
-  | typeof NUMERICAL_OPERATIONS.EQ
-  | typeof NUMERICAL_OPERATIONS.GT
-  | typeof NUMERICAL_OPERATIONS.GTE
-  | typeof NUMERICAL_OPERATIONS.LT
-  | typeof NUMERICAL_OPERATIONS.LTE;
 
 type OptionsT = {|
   ...SharedColumnOptionsT<number>,
@@ -40,12 +39,11 @@ type OptionsT = {|
 |};
 
 type FilterParametersT = {|
-  comparisons: Array<{|
-    value: number,
-    operation: NumericalOperations,
-  |}>,
+  lowerValue: number,
+  upperValue: number,
   description: string,
   exclude: boolean,
+  excludeKind: ExcludeKind,
 |};
 
 type NumericalColumnT = ColumnT<number, FilterParametersT>;
@@ -86,224 +84,208 @@ function validateInput(input) {
   return Boolean(parseFloat(input)) || input === '' || input === '-';
 }
 
-function filterParamsToInitialState(filterParams) {
-  if (filterParams) {
-    if (filterParams.comparisons.length > 1) {
-      if (
-        filterParams.comparisons[0].operation === NUMERICAL_OPERATIONS.LT &&
-        filterParams.comparisons[1].operation === NUMERICAL_OPERATIONS.GT
-      ) {
-        return {
-          exclude: !filterParams.exclude,
-          comparatorIndex: 0,
-          operatorIndex: 4,
-          right: filterParams.comparisons[1].value.toString(),
-          left: filterParams.comparisons[0].value.toString(),
-        };
-      }
-    } else {
-      const comparison = filterParams.comparisons[0];
-      if (comparison.operation === NUMERICAL_OPERATIONS.LT) {
-        return {
-          exclude: filterParams.exclude,
-          comparatorIndex: 0,
-          operatorIndex: 0,
-          left: '',
-          right: comparison.value.toString(),
-        };
-      } else if (comparison.operation === NUMERICAL_OPERATIONS.GT) {
-        return {
-          exclude: filterParams.exclude,
-          comparatorIndex: 0,
-          operatorIndex: 1,
-          left: comparison.value.toString(),
-          right: '',
-        };
-      } else if (comparison.operation === NUMERICAL_OPERATIONS.LTE) {
-        return {
-          exclude: filterParams.exclude,
-          comparatorIndex: 0,
-          operatorIndex: 2,
-          left: '',
-          right: comparison.value.toString(),
-        };
-      } else if (comparison.operation === NUMERICAL_OPERATIONS.GTE) {
-        return {
-          exclude: filterParams.exclude,
-          comparatorIndex: 0,
-          operatorIndex: 3,
-          left: comparison.value.toString(),
-          right: '',
-        };
-      } else if (comparison.operation === NUMERICAL_OPERATIONS.EQ) {
-        return {
-          exclude: filterParams.exclude,
-          comparatorIndex: 1,
-          operatorIndex: 0,
-          left: comparison.value.toString(),
-          right: '',
-        };
-      }
-    }
-  }
+const bisect = bisector(d => d.x0);
 
-  return {
-    exclude: false,
-    comparatorIndex: 0,
-    operatorIndex: 0,
-    left: '',
-    right: '',
-  };
-}
+const Histogram = React.memo(function Histogram({
+  data,
+  lower,
+  upper,
+  isRange,
+  exclude,
+  precision,
+}) {
+  const [css, theme] = useStyletron();
+
+  const {bins, xScale, yScale} = React.useMemo(() => {
+    const bins = bin().thresholds(Math.min(data.length, MAX_BIN_COUNT))(data);
+
+    const xScale = scaleLinear()
+      .domain([bins[0].x0, bins[bins.length - 1].x1])
+      .range([0, HISTOGRAM_SIZE.width])
+      .clamp(true);
+
+    const yScale = scaleLinear()
+      .domain([0, maxFunc(bins, d => d.length)])
+      .nice()
+      .range([HISTOGRAM_SIZE.height, 0]);
+    return {bins, xScale, yScale};
+  }, [data]);
+
+  // We need to find the index of bar which is nearest to the given single value
+  const singleIndexNearest = React.useMemo(() => {
+    if (isRange) {
+      return null;
+    }
+    return bisect.center(bins, lower);
+  }, [isRange, data, lower, upper]);
+
+  return (
+    <div
+      className={css({
+        display: 'flex',
+        marginTop: theme.sizing.scale600,
+        marginLeft: theme.sizing.scale200,
+        marginRight: 0,
+        marginBottom: theme.sizing.scale400,
+        justifyContent: 'space-between',
+        overflow: 'visible',
+      })}
+    >
+      <svg {...HISTOGRAM_SIZE}>
+        {bins.map((d, index) => {
+          const x = xScale(d.x0) + 1;
+          const y = yScale(d.length);
+          const width = Math.max(0, xScale(d.x1) - xScale(d.x0) - 1);
+          const height = yScale(0) - yScale(d.length);
+
+          let included;
+          if (singleIndexNearest != null) {
+            included = index === singleIndexNearest;
+          } else {
+            const withinLower = d.x1 > lower;
+            const withinUpper = d.x0 <= upper;
+            included = withinLower && withinUpper;
+          }
+
+          if (exclude) {
+            included = !included;
+          }
+
+          return (
+            <rect
+              key={`bar-${index}`}
+              fill={included ? theme.colors.primary : theme.colors.mono400}
+              x={x}
+              y={y}
+              width={width}
+              height={height}
+            />
+          );
+        })}
+      </svg>
+    </div>
+  );
+});
 
 function NumericalFilter(props) {
   const [css, theme] = useStyletron();
   const locale = React.useContext(LocaleContext);
 
-  const initialState = filterParamsToInitialState(props.filterParams);
+  const precision = props.options.precision;
+
+  // The state handling of this component could be refactored and cleaned up if we used useReducer.
+  const initialState = React.useMemo(() => {
+    return (
+      props.filterParams || {
+        exclude: false,
+        excludeKind: 'range',
+        comparatorIndex: 0,
+        lowerValue: null,
+        upperValue: null,
+      }
+    );
+  }, [props.filterParams]);
+
   const [exclude, setExclude] = React.useState(initialState.exclude);
-  const [comparatorIndex, setComparatorIndex] = React.useState(
-    initialState.comparatorIndex,
-  );
-  const [operatorIndex, setOperatorIndex] = React.useState(
-    initialState.operatorIndex,
-  );
-  const [left, setLeft] = React.useState(initialState.left);
-  const [right, setRight] = React.useState(initialState.right);
 
+  // the api of our ButtonGroup forces these numerical indexes...
+  // TODO look into allowing semantic names, similar to the radio component. Tricky part would be backwards compat
+  const [comparatorIndex, setComparatorIndex] = React.useState(() => {
+    switch (initialState.excludeKind) {
+      case 'value':
+        return 1;
+      case 'range':
+      default:
+        // fallthrough
+        return 0;
+    }
+  });
+
+  // We use the d3 function to get the extent as it's a little more robust to null, -Infinity, etc.
+  const [min, max] = React.useMemo(() => extent(props.data), [props.data]);
+
+  const [lv, setLower] = React.useState<number>(() =>
+    roundToFixed(initialState.lowerValue || min, precision),
+  );
+  const [uv, setUpper] = React.useState<number>(() =>
+    roundToFixed(initialState.upperValue || max, precision),
+  );
+
+  // We keep a separate value for the single select, to give a user the ability to toggle between
+  // the range and single values without losing their previous input.
+  const [sv, setSingle] = React.useState<number>(() =>
+    roundToFixed(initialState.lowerValue || median(props.data), precision),
+  );
+
+  // This is the only conditional which we want to use to determine
+  // if we are in range or single value mode.
+  // Don't derive it via something else, e.g. lowerValue === upperValue, etc.
   const isRange = comparatorIndex === 0;
-  const min = React.useMemo(() => Math.min(...props.data), [props.data]);
-  const max = React.useMemo(() => Math.max(...props.data), [props.data]);
 
-  React.useEffect(() => {
-    if (!left) {
-      setLeft(min.toString());
-    }
-    if (!right) {
-      setRight(max.toString());
-    }
-  }, []);
+  const excludeKind = isRange ? 'range' : 'value';
 
-  const [leftDisabled, rightDisabled] = React.useMemo(() => {
-    if (!isRange) return [false, false];
-    switch (operatorIndex) {
-      case 4:
-        return [false, false];
-      case 0:
-      case 2:
-        return [true, false];
-      case 1:
-      case 3:
-        return [false, true];
-      default:
-        return [true, true];
+  // while the user is inputting values, we take their input at face value,
+  // if we don't do this, a user can't input partial numbers, e.g. "-", or "3."
+  const [focused, setFocus] = React.useState(false);
+  const [inputValueLower, inputValueUpper] = React.useMemo(() => {
+    if (focused) {
+      return [isRange ? lv : sv, uv];
     }
-  }, [operatorIndex, isRange]);
 
-  const leftInputRef = React.useRef(null);
-  const rightInputRef = React.useRef(null);
-  React.useEffect(() => {
-    if (!leftDisabled && leftInputRef.current) {
-      leftInputRef.current.focus({preventScroll: true});
-    } else if (!rightDisabled && rightInputRef.current) {
-      rightInputRef.current.focus({preventScroll: true});
-    }
-  }, [leftDisabled, rightDisabled, comparatorIndex]);
+    // once the user is done inputting.
+    // we validate then format to the given precision
+    let l = isRange ? lv : sv;
+    l = validateInput(l) ? l : min;
+    let h = validateInput(uv) ? uv : max;
 
-  React.useEffect(() => {
-    switch (operatorIndex) {
-      case 4:
-      default:
-        break;
-      case 1:
-      case 3:
-        setRight(max.toString());
-        break;
-      case 0:
-      case 2:
-        setLeft(min.toString());
-        break;
-    }
-  }, [operatorIndex]);
+    return [roundToFixed(l, precision), roundToFixed(h, precision)];
+  }, [isRange, focused, sv, lv, uv, precision]);
+
+  // We have our slider values range from 1 to the bin size, so we have a scale which
+  // takes in the data driven range and maps it to values the scale can always handle
+  const sliderScale = React.useMemo(
+    () =>
+      scaleLinear()
+        .domain([min, max])
+        .rangeRound([1, MAX_BIN_COUNT])
+        // We clamp the values within our min and max even if a user enters a huge number
+        .clamp(true),
+    [min, max],
+  );
+
+  let sliderValue = isRange
+    ? [sliderScale(inputValueLower), sliderScale(inputValueUpper)]
+    : [sliderScale(inputValueLower)];
+
+  // keep the slider happy by sorting the two values
+  if (isRange && sliderValue[0] > sliderValue[1]) {
+    sliderValue = [sliderValue[1], sliderValue[0]];
+  }
 
   return (
     <FilterShell
       exclude={exclude}
       onExcludeChange={() => setExclude(!exclude)}
+      excludeKind={excludeKind}
       onApply={() => {
         if (isRange) {
-          switch (operatorIndex) {
-            case 0: {
-              const value = parseFloat(right);
-              const operation = NUMERICAL_OPERATIONS.LT;
-              props.setFilter({
-                comparisons: [{value, operation}],
-                description: `< ${value}`,
-                exclude,
-              });
-              break;
-            }
-            case 1: {
-              const value = parseFloat(left);
-              const operation = NUMERICAL_OPERATIONS.GT;
-              props.setFilter({
-                comparisons: [{value, operation}],
-                description: `> ${value}`,
-                exclude,
-              });
-              break;
-            }
-            case 2: {
-              const value = parseFloat(right);
-              const operation = NUMERICAL_OPERATIONS.LTE;
-              props.setFilter({
-                comparisons: [{value, operation}],
-                description: `≤ ${value}`,
-                exclude,
-              });
-              break;
-            }
-            case 3: {
-              const value = parseFloat(left);
-              const operation = NUMERICAL_OPERATIONS.GTE;
-              props.setFilter({
-                comparisons: [{value, operation}],
-                description: `≥ ${value}`,
-                exclude,
-              });
-              break;
-            }
-            case 4: {
-              // 'between' case is interesting since if we want less than 10 plus greater than 5
-              // comparators, the filter will include _all_ numbers.
-              const leftValue = parseFloat(left);
-              const rightValue = parseFloat(right);
-              props.setFilter({
-                comparisons: [
-                  {
-                    value: leftValue,
-                    operation: NUMERICAL_OPERATIONS.LT,
-                  },
-                  {
-                    value: rightValue,
-                    operation: NUMERICAL_OPERATIONS.GT,
-                  },
-                ],
-                description: `≥ ${leftValue} & ≤ ${rightValue}`,
-                exclude: !exclude,
-              });
-              break;
-            }
-            default:
-              break;
-          }
-        } else {
-          const value = parseFloat(left);
-          const operation = NUMERICAL_OPERATIONS.EQ;
+          const lowerValue = parseFloat(inputValueLower);
+          const upperValue = parseFloat(inputValueUpper);
           props.setFilter({
-            comparisons: [{value, operation}],
+            description: `≥ ${lowerValue} and ≤ ${upperValue}`,
+            exclude: exclude,
+            lowerValue,
+            upperValue,
+            excludeKind,
+          });
+        } else {
+          const value = parseFloat(inputValueLower);
+          props.setFilter({
             description: `= ${value}`,
-            exclude,
+            exclude: exclude,
+            lowerValue: inputValueLower,
+            upperValue: inputValueLower,
+            excludeKind,
           });
         }
 
@@ -311,7 +293,7 @@ function NumericalFilter(props) {
       }}
     >
       <ButtonGroup
-        size={SIZE.compact}
+        size={SIZE.mini}
         mode={MODE.radio}
         selected={comparatorIndex}
         onClick={(_, index) => setComparatorIndex(index)}
@@ -324,100 +306,131 @@ function NumericalFilter(props) {
         <Button
           type="button"
           overrides={{BaseButton: {style: {width: '100%'}}}}
+          aria-label={locale.datatable.numericalFilterRange}
         >
           {locale.datatable.numericalFilterRange}
         </Button>
         <Button
           type="button"
           overrides={{BaseButton: {style: {width: '100%'}}}}
+          aria-label={locale.datatable.numericalFilterSingleValue}
         >
           {locale.datatable.numericalFilterSingleValue}
         </Button>
       </ButtonGroup>
 
-      {isRange && (
-        <ButtonGroup
-          size={SIZE.compact}
-          mode={MODE.radio}
-          selected={operatorIndex}
-          onClick={(_, index) => setOperatorIndex(index)}
+      <Histogram
+        data={props.data}
+        lower={inputValueLower}
+        upper={inputValueUpper}
+        isRange={isRange}
+        exclude={exclude}
+        precision={props.options.precision}
+      />
+
+      <div className={css({display: 'flex', justifyContent: 'space-between'})}>
+        <Slider
+          // The slider throws errors when switching between single and two values
+          // when it tries to read getThumbDistance on a thumb which is not there anymore
+          // if we create a new instance these errors are prevented.
+          key={isRange.toString()}
+          min={1}
+          max={MAX_BIN_COUNT}
+          value={sliderValue}
+          onChange={({value}) => {
+            if (!value) {
+              return;
+            }
+            // we convert back from the slider scale to the actual data's scale
+            if (isRange) {
+              const [lowerValue, upperValue] = value;
+              setLower(sliderScale.invert(lowerValue));
+              setUpper(sliderScale.invert(upperValue));
+            } else {
+              const [singleValue] = value;
+              setSingle(sliderScale.invert(singleValue));
+            }
+          }}
           overrides={{
+            InnerThumb: function InnerThumb({$value, $thumbIndex}) {
+              return <React.Fragment>{$value[$thumbIndex]}</React.Fragment>;
+            },
+            TickBar: ({$min, $max}) => null, // we don't want the ticks
+            ThumbValue: () => null,
             Root: {
-              style: ({$theme}) => ({marginBottom: $theme.sizing.scale500}),
+              style: () => ({
+                // Aligns the center of the slider handles with the histogram bars
+                width: 'calc(100% + 14px)',
+                margin: '0 -7px',
+              }),
+            },
+            InnerTrack: {
+              style: ({$theme}) => {
+                if (!isRange) {
+                  return {
+                    // For range selection we use the color as is, but when selecting the single value,
+                    // we don't want the track standing out, so mute its color
+                    background: theme.colors.mono400,
+                  };
+                }
+              },
+            },
+            Thumb: {
+              style: () => ({
+                // Slider handles are small enough to visually be centered within each histogram bar
+                height: '18px',
+                width: '18px',
+                fontSize: '0px',
+              }),
             },
           }}
-        >
-          <Button
-            type="button"
-            overrides={{BaseButton: {style: {width: '100%'}}}}
-          >
-            &#60;
-          </Button>
-          <Button
-            type="button"
-            overrides={{BaseButton: {style: {width: '100%'}}}}
-          >
-            &#62;
-          </Button>
-          <Button
-            type="button"
-            overrides={{BaseButton: {style: {width: '100%'}}}}
-          >
-            &#8804;
-          </Button>
-          <Button
-            type="button"
-            overrides={{BaseButton: {style: {width: '100%'}}}}
-          >
-            &#8805;
-          </Button>
-          <Button
-            type="button"
-            overrides={{BaseButton: {style: {width: '100%'}}}}
-          >
-            &#61;
-          </Button>
-        </ButtonGroup>
-      )}
-
+        />
+      </div>
       <div
         className={css({
           display: 'flex',
+          marginTop: theme.sizing.scale400,
+          // This % gap is visually appealing given the filter box width
+          gap: '30%',
           justifyContent: 'space-between',
-          marginLeft: theme.sizing.scale300,
-          marginRight: theme.sizing.scale300,
         })}
       >
-        <ParagraphXSmall>{format(min, props.options)}</ParagraphXSmall>{' '}
-        <ParagraphXSmall>{format(max, props.options)}</ParagraphXSmall>
-      </div>
-
-      <div className={css({display: 'flex', justifyContent: 'space-between'})}>
         <Input
-          size={INPUT_SIZE.compact}
-          overrides={{Root: {style: {width: isRange ? '152px' : '100%'}}}}
-          disabled={leftDisabled}
-          inputRef={leftInputRef}
-          value={left}
+          min={min}
+          max={max}
+          size={INPUT_SIZE.mini}
+          overrides={{Root: {style: {width: '100%'}}}}
+          value={inputValueLower}
           onChange={event => {
             if (validateInput(event.target.value)) {
-              setLeft(event.target.value);
+              isRange
+                ? // $FlowFixMe - we know it is a number by now
+                  setLower(event.target.value)
+                : // $FlowFixMe - we know it is a number by now
+                  setSingle(event.target.value);
             }
           }}
+          onFocus={() => setFocus(true)}
+          onBlur={() => setFocus(false)}
         />
-
         {isRange && (
           <Input
-            size={INPUT_SIZE.compact}
-            overrides={{Root: {style: {width: '152px'}}}}
-            disabled={rightDisabled}
-            inputRef={rightInputRef}
-            value={right}
+            min={min}
+            max={max}
+            size={INPUT_SIZE.mini}
+            overrides={{
+              Input: {style: {textAlign: 'right'}},
+              Root: {style: {width: '100%'}},
+            }}
+            value={inputValueUpper}
             onChange={event => {
               if (validateInput(event.target.value)) {
-                setRight(event.target.value);
+                // $FlowFixMe - we know it is a number by now
+                setUpper(event.target.value);
               }
             }}
+            onFocus={() => setFocus(true)}
+            onBlur={() => setFocus(false)}
           />
         )}
       </div>
@@ -480,24 +493,9 @@ function NumericalColumn(options: OptionsT): NumericalColumnT {
     kind: COLUMNS.NUMERICAL,
     buildFilter: function(params) {
       return function(data) {
-        const included = params.comparisons.some(c => {
-          const left = roundToFixed(data, normalizedOptions.precision);
-          const right = roundToFixed(c.value, normalizedOptions.precision);
-          switch (c.operation) {
-            case NUMERICAL_OPERATIONS.EQ:
-              return left === right;
-            case NUMERICAL_OPERATIONS.GT:
-              return left > right;
-            case NUMERICAL_OPERATIONS.GTE:
-              return left >= right;
-            case NUMERICAL_OPERATIONS.LT:
-              return left < right;
-            case NUMERICAL_OPERATIONS.LTE:
-              return left <= right;
-            default:
-              return true;
-          }
-        });
+        const value = roundToFixed(data, normalizedOptions.precision);
+        const included =
+          value >= params.lowerValue && value <= params.upperValue;
         return params.exclude ? !included : included;
       };
     },

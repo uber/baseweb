@@ -1,5 +1,16 @@
 export default {
+  define: {
+    __BROWSER__: true,
+    __NODE__: false,
+  },
   build: {
-    sourcemap: true,
+    define: {
+      __DEV__: false,
+    },
+  },
+  serve: {
+    define: {
+      __DEV__: true,
+    },
   },
 };

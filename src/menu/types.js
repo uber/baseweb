@@ -170,7 +170,7 @@ export type SharedStatelessPropsT = {
    * bindings to work properly. Every rendered item should call this.
    */
   /** Passed to the top level menu element. */
-  ariaLabel?: string,
+  'aria-label'?: string,
   getRequiredItemProps?: GetRequiredItemPropsFnT,
   isFocused?: boolean,
   handleMouseLeave?: (event: SyntheticMouseEvent<HTMLElement>) => mixed,

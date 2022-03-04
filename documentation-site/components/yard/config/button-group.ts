@@ -64,6 +64,12 @@ const ButtonGroupConfig: TConfig = {
         },
       },
     },
+    'aria-label': {
+      value: undefined,
+      type: PropTypes.String,
+      description: 'Aria-label attribute',
+      hidden: true,
+    },
     onClick: {
       value: undefined,
       type: PropTypes.Function,

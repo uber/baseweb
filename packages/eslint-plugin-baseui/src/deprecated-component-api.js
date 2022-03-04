@@ -4,6 +4,7 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
+/* eslint-env node */
 
 'use strict';
 
@@ -34,7 +35,7 @@ const mapDeprecatedTypographyComponents = {
 };
 
 const getOverrideIfExists = (name, node) => {
-  // Verify that an object is passed to overrides.
+  // Verify that an object is passed into overrides.
   if (node.parent.value.expression.type === 'ObjectExpression') {
     // Find property name
     return node.parent.value.expression.properties.find(
@@ -51,7 +52,6 @@ module.exports = {
     messages: {
       [MESSAGES.replace.id]: MESSAGES.replace.message,
       [MESSAGES.deprecateSpinner.id]: MESSAGES.deprecateSpinner.message,
-      [MESSAGES.styleOnBlock.id]: MESSAGES.styleOnBlock.message,
       [MESSAGES.buttonKindMinimal.id]: MESSAGES.buttonKindMinimal.message,
       [MESSAGES.modalBackdrop.id]: MESSAGES.modalBackdrop.message,
     },
@@ -131,7 +131,6 @@ module.exports = {
             // These can be referenced later on by instances of components.
             if (isImporting(specifier, 'Accordion', 'baseui/accordion')) return;
             if (isImporting(specifier, 'Modal', 'baseui/modal')) return;
-            if (isImporting(specifier, 'Block', 'baseui/block')) return;
             if (isImporting(specifier, 'Checkbox', 'baseui/checkbox')) return;
             if (isImporting(specifier, 'Button', 'baseui/button')) return;
           }
@@ -263,25 +262,6 @@ module.exports = {
             fix: function(fixer) {
               return fixer.replaceText(node, 'autoFocus');
             },
-          });
-          return;
-        }
-
-        // style and $style
-        // Ex: <Block style={{ ... }} />
-        // Ex: <Block $style={{ ... }} />
-        // The "$style" and "style" props are not supported.
-        // It works because Block spreads props down to the base
-        // styled component, but styles are not guaranteed to be applied
-        // as expected.
-        if (
-          importState.Block &&
-          (isProp('$style', importState.Block) ||
-            isProp('style', importState.Block))
-        ) {
-          context.report({
-            node,
-            messageId: MESSAGES.styleOnBlock.id,
           });
           return;
         }

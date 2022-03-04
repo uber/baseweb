@@ -23,6 +23,7 @@ export type OverridesT = {
 export type ProgressBarPropsT = {
   /** The accessible label for the progress bar (getProgressLabel will be used if not provided) */
   ariaLabel?: string,
+  'aria-label'?: string,
   children?: React.Node,
   /** Error message for screen-reader users**/
   errorMessage?: string,

@@ -10,12 +10,14 @@ LICENSE file in the root directory of this source tree.
 const DeprecatedThemeAPI = require('./deprecated-theme-api.js');
 const DeprecatedComponentAPI = require('./deprecated-component-api.js');
 const NoDeepImports = require('./no-deep-imports.js');
+const NoBlockStyle = require('./no-block-style.js');
 
 module.exports = {
   rules: {
     'deprecated-theme-api': DeprecatedThemeAPI,
     'deprecated-component-api': DeprecatedComponentAPI,
     'no-deep-imports': NoDeepImports,
+    'no-block-style': NoBlockStyle,
   },
   configs: {
     recommended: {
@@ -24,6 +26,7 @@ module.exports = {
         'baseui/deprecated-theme-api': ['warn'],
         'baseui/deprecated-component-api': ['warn'],
         'baseui/no-deep-imports': ['warn'],
+        'baseui/no-block-style': ['warn'],
       },
     },
   },

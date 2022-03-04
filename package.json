@@ -81,7 +81,7 @@
     "@commitlint/config-conventional": "^8.0.0",
     "@date-io/luxon": "^2.7.0",
     "@date-io/moment": "^2.7.0",
-    "@ladle/react": "^0.3.0",
+    "@ladle/react": "^0.8.0",
     "@mdx-js/tag": "^0.20.0",
     "@octokit/rest": "^16.33.1",
     "@svgr/cli": "^4.3.2",
@@ -193,6 +193,7 @@
   "dependencies": {
     "@date-io/date-fns": "^2.6.2",
     "card-validator": "^6.2.0",
+    "d3": "^6.7.0",
     "date-fns": "^2.6.0",
     "date-fns-tz": "^1.2.2",
     "glob": "^7.1.6",

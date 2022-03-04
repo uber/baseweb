@@ -25,19 +25,26 @@ const ALPHA_TAG = 'alpha';
 const LATEST_TAG = 'latest';
 const NEXT_TAG = 'next';
 
+const npmrcPath = path.resolve(ROOT_DIR, '.npmrc');
+const eslintPluginNpmrcPath = path.resolve(ESLINT_PLUGIN_DIR, '.npmrc');
 function writeNpmTokenFromEnv() {
   const token = process.env.NPM_TOKEN;
   if (!token) {
     throw new Error('NPM_TOKEN not found.');
   }
-  const filepath = path.resolve(ROOT_DIR, '.npmrc');
-  const filePathEslintPlugin = path.resolve(ESLINT_PLUGIN_DIR, '.npmrc');
-  fs.unlinkSync(filepath);
-  fs.writeFileSync(filepath, `//registry.npmjs.org/:_authToken=${token}`);
+  fs.unlinkSync(npmrcPath);
+  fs.writeFileSync(npmrcPath, `//registry.npmjs.org/:_authToken=${token}`);
   fs.writeFileSync(
-    filePathEslintPlugin,
+    eslintPluginNpmrcPath,
     `//registry.npmjs.org/:_authToken=${token}`,
   );
+}
+function cleanup() {
+  fs.writeFileSync(
+    npmrcPath,
+    'registry=https://registry.yarnpkg.com\n_auth=\n',
+  );
+  fs.unlinkSync(eslintPluginNpmrcPath);
 }
 
 function readJSONFile(filepath) {
@@ -60,10 +67,21 @@ function copyPackageJSONVersionFromRoot(filepath) {
 function publishBaseui(tag) {
   console.log('--- Publishing baseui to NPM');
   spawnSync('yarn', ['build'], {stdio: 'inherit', cwd: ROOT_DIR});
-  spawnSync('npm', ['publish', 'dist', '--tag', tag], {
-    stdio: 'inherit',
-    cwd: ROOT_DIR,
-  });
+  spawnSync(
+    'npm',
+    [
+      'publish',
+      'dist',
+      '--registry',
+      'https://registry.npmjs.org',
+      '--tag',
+      tag,
+    ],
+    {
+      stdio: 'inherit',
+      cwd: ROOT_DIR,
+    },
+  );
 }
 
 function publishEslintPlugin(tag) {
@@ -71,10 +89,14 @@ function publishEslintPlugin(tag) {
   copyPackageJSONVersionFromRoot(
     path.resolve(ESLINT_PLUGIN_DIR, 'package.json'),
   );
-  spawnSync('npm', ['publish', '--tag', tag], {
-    stdio: 'inherit',
-    cwd: ESLINT_PLUGIN_DIR,
-  });
+  spawnSync(
+    'npm',
+    ['publish', '--registry', 'https://registry.npmjs.org', '--tag', tag],
+    {
+      stdio: 'inherit',
+      cwd: ESLINT_PLUGIN_DIR,
+    },
+  );
 }
 
 const rootPackageJSONPath = path.resolve(ROOT_DIR, 'package.json');
@@ -107,6 +129,7 @@ module.exports = function publishToNpm(params /*: any */) {
   writeNpmTokenFromEnv();
   publishBaseui(tag);
   publishEslintPlugin(tag);
+  cleanup();
 
   // returns the final version so that alpha-test-web-code script can kick off a test with the release
   const packageJSON = readJSONFile(rootPackageJSONPath);
