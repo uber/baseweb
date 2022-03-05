@@ -109,6 +109,12 @@ const ButtonConfig: TConfig = {
         },
       },
     },
+    colors: {
+      value: undefined,
+      defaultValue: '{backgroundColor: "#03703c", color: "white"}',
+      type: PropTypes.Object,
+      description: 'Lets you customize the background and text color.',
+    },
     isLoading: {
       value: false,
       type: PropTypes.Boolean,

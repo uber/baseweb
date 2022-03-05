@@ -37,8 +37,14 @@ export interface ButtonOverrides {
   LoadingSpinner?: Override<any>;
 }
 
+export interface CustomColorsT {
+  backgroundColor: string;
+  color: string;
+}
+
 export interface ButtonProps
   extends StyletronComponentInjectedProps<ButtonProps> {
+  colors?: CustomColorsT;
   href?: string;
   target?: string;
   children?: React.ReactNode;

@@ -14,6 +14,7 @@ export const BaseButton = styled<SharedStylePropsT>(
   ({
     $theme,
     $size,
+    $colors,
     $kind,
     $shape,
     $isLoading,
@@ -55,8 +56,14 @@ export const BaseButton = styled<SharedStylePropsT>(
     ...getFontStyles({$theme, $size}),
     ...getBorderRadiiStyles({$theme, $size, $shape}),
     ...getPaddingStyles({$theme, $size, $shape}),
-    // Kind style override
-    ...getKindStyles({$theme, $kind, $isLoading, $isSelected, $disabled}),
+    ...getColorStyles({
+      $theme,
+      $colors,
+      $kind,
+      $isLoading,
+      $isSelected,
+      $disabled,
+    }),
     ...getShapeStyles({$theme, $shape, $size}),
   }),
 );
@@ -302,26 +309,43 @@ function getPaddingStyles({$theme, $size, $shape}) {
   }
 }
 
-type KindStylesT = {|
+type ColorStylesT = {|
   color?: string,
   backgroundColor?: string,
   ':hover'?: {
-    backgroundColor: string,
+    boxShadow?: string,
+    backgroundColor?: string,
   },
   ':focus'?: {
-    backgroundColor: string,
+    boxShadow?: string,
+    backgroundColor?: string,
   },
   ':active'?: {
-    backgroundColor: string,
+    boxShadow?: string,
+    backgroundColor?: string,
   },
 |};
-function getKindStyles({
+function getColorStyles({
   $theme,
+  $colors,
   $isLoading,
   $isSelected,
   $kind,
   $disabled,
-}): KindStylesT {
+}): ColorStylesT {
+  if ($colors) {
+    return {
+      color: $colors.color,
+      backgroundColor: $colors.backgroundColor,
+      ':hover': {
+        boxShadow: 'inset 999px 999px 0px rgba(0, 0, 0, 0.04)',
+      },
+      ':active': {
+        boxShadow: 'inset 999px 999px 0px rgba(0, 0, 0, 0.08)',
+      },
+    };
+  }
+
   if ($disabled) {
     return Object.freeze({});
   }
