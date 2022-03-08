@@ -391,20 +391,6 @@ module.exports = {
           }
         }
 
-        // Select
-        // Ex: <Select overrides={{ SearchIcon: {}}} />
-        // Replacement: SearchIconContainer
-        if (importState.Select && isProp('overrides', importState.Select)) {
-          const property = getOverrideIfExists('SearchIcon', node);
-          if (property) {
-            context.report({
-              node: property,
-              messageId: MESSAGES.selectSearchIcon.id,
-            });
-            return;
-          }
-        }
-
         // RadioGroup - All overrides are deprecated except for RadioGroupRoot
         // Ex: <RadioGroup overrides={{ RadioMarkInner: {}}} />
         // Ex: <RadioGroup overrides={{ Description: {}}} />

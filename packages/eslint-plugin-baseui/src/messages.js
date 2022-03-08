@@ -41,11 +41,6 @@ module.exports = {
     message:
       'The "successValue" prop has been deprecated. The "value" prop should be normalized as though "successValue" was always set to 100.',
   },
-  selectSearchIcon: {
-    id: 'selectSearchIcon',
-    message:
-      'The "SearchIcon" override will be removed in favor of "StyledSearchIconContainer".',
-  },
   radioGroupOverrides: {
     id: 'radioGroupOverrides',
     message:
