@@ -107,7 +107,7 @@ export interface StatefulContainerProps {
   removeMenuFromNesting?: (ref: React.Ref<HTMLElement>) => void;
   getParentMenu?: (ref: React.Ref<HTMLElement>) => void;
   getChildMenu?: (ref: React.Ref<HTMLElement>) => void;
-  nestedMenuHoverIndex?: nubmer;
+  nestedMenuHoverIndex?: number;
   isNestedMenuVisible?: (ref: React.Ref<HTMLElement>) => boolean;
 }
 export interface StatefulContainerState {
