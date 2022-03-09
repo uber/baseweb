@@ -3240,10 +3240,10 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
-"@ladle/react@^0.8.0":
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/@ladle/react/-/react-0.8.0.tgz#5bc096c5e0724204dba6caf91554f2e20b518d7d"
-  integrity sha512-+UUObQRpUkl2DLEkhPPL/3Fmp0l3KTIdwCCgNXB1vEqWYz8OxAi+wQcR7cs0QO3m0MfFGkqTgkql+09k/YRSoA==
+"@ladle/react@^0.8.1":
+  version "0.8.1"
+  resolved "https://registry.yarnpkg.com/@ladle/react/-/react-0.8.1.tgz#bfec49842160457e5124711e1cd8d1554cc9d23d"
+  integrity sha512-Zc4CHNlba3i5HZ6Rh6vwzKtXGILwa5/6wwQT2jaIvTQK70ypS6HQNcDA0vhCIt9Q+kw0LLckTpewnM3xY/sM5A==
   dependencies:
     "@babel/code-frame" "^7.16.7"
     "@babel/core" "^7.17.5"
@@ -3257,7 +3257,6 @@
     "@babel/template" "^7.16.7"
     "@babel/traverse" "^7.17.3"
     "@babel/types" "^7.17.0"
-    "@miksu/vite" "^0.0.2"
     "@reach/dialog" "^0.16.2"
     "@vitejs/plugin-react" "^1.2.0"
     boxen "^5.1.2"
@@ -3275,7 +3274,7 @@
     open "^8.4.0"
     query-string "^7.1.1"
     rollup-pluginutils "^2.8.2"
-    vite "^2.8.6"
+    vite "^2.9.0-beta.0"
 
 "@mapbox/geojson-rewind@^0.5.0":
   version "0.5.1"
@@ -3442,18 +3441,6 @@
   dependencies:
     "@types/underscore" "^1.8.13"
     underscore "^1.9.1"
-
-"@miksu/vite@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@miksu/vite/-/vite-0.0.2.tgz#51a0d7025944d65544e9fb3ab94bba33d2b33add"
-  integrity sha512-QZ/5gGuxk8ooR5J68Byh+CsEvO4pLpRC+mj4bnpSm05DKXeZPIWOHU27l2HZkbHyW8RNjZDhS9vwQqdtKK6W8Q==
-  dependencies:
-    esbuild "^0.14.14"
-    postcss "^8.4.6"
-    resolve "^1.22.0"
-    rollup "^2.59.0"
-  optionalDependencies:
-    fsevents "~2.3.2"
 
 "@next/env@10.0.3":
   version "10.0.3"
@@ -18453,10 +18440,10 @@ viewport-mercator-project@^7.0.4:
   dependencies:
     "@math.gl/web-mercator" "^3.5.5"
 
-vite@^2.8.6:
-  version "2.8.6"
-  resolved "https://registry.yarnpkg.com/vite/-/vite-2.8.6.tgz#32d50e23c99ca31b26b8ccdc78b1d72d4d7323d3"
-  integrity sha512-e4H0QpludOVKkmOsRyqQ7LTcMUDF3mcgyNU4lmi0B5JUbe0ZxeBBl8VoZ8Y6Rfn9eFKYtdXNPcYK97ZwH+K2ug==
+vite@^2.9.0-beta.0:
+  version "2.9.0-beta.0"
+  resolved "https://registry.yarnpkg.com/vite/-/vite-2.9.0-beta.0.tgz#e299ee78429581b4b3932e27ba711a20ccb939af"
+  integrity sha512-X3NCoHvxieh2UJJuRAQ7IzsYUmo+IKdmtgczXti9/tfbEwtW6EcLbvwTPOXlVX8fsV/MJTbhHb7G8NE/am1L2w==
   dependencies:
     esbuild "^0.14.14"
     postcss "^8.4.6"
