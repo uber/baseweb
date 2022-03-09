@@ -31,13 +31,16 @@ describe('accordion', () => {
   it('collapses once expanded title is clicked', async () => {
     await mount(page, 'accordion--accordion');
 
-    const initialCount = await page.$$eval(collapsed, panels => panels.length);
+    const initialCount = await page.$$eval(
+      collapsed,
+      (panels) => panels.length,
+    );
 
     await page.click(collapsed);
     await page.waitForSelector(expanded);
 
     await page.click(expanded);
-    const count = await page.$$eval(collapsed, panels => panels.length);
+    const count = await page.$$eval(collapsed, (panels) => panels.length);
     expect(count).toBe(initialCount);
   });
 });

@@ -29,8 +29,8 @@ export function Scenario() {
       <Combobox
         disabled
         value={value}
-        onChange={nextValue => setValue(nextValue)}
-        mapOptionToString={o => o.label}
+        onChange={(nextValue) => setValue(nextValue)}
+        mapOptionToString={(o) => o.label}
         options={options}
       />
     </div>

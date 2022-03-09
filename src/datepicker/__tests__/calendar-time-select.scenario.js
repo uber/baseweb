@@ -24,8 +24,8 @@ export class Scenario extends React.Component<any, any> {
         <Calendar
           value={this.state.date}
           time={this.state.time}
-          onChange={data => this.setState({date: data.date})}
-          onTimeChange={data => this.setState({time: data.time})}
+          onChange={(data) => this.setState({date: data.date})}
+          onTimeChange={(data) => this.setState({time: data.time})}
           timeSelect
         />
 

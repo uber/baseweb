@@ -28,6 +28,7 @@ function Column<ValueT, FilterParamsT>(
     mapDataToValue: options.mapDataToValue,
     maxWidth: options.maxWidth,
     minWidth: options.minWidth,
+    // eslint-disable-next-line react/display-name
     renderCell: React.forwardRef((props, ref) => {
       const [css, theme] = useStyletron();
       const ProvidedCell = options.renderCell;

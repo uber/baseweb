@@ -15,7 +15,7 @@ const defaultStateReducer: StateReducerT = (type, nextState) => nextState;
 function StatefulList(props: StatefulListPropsT) {
   return (
     <StatefulListContainer {...props}>
-      {componentProps => <List {...componentProps} />}
+      {(componentProps) => <List {...componentProps} />}
     </StatefulListContainer>
   );
 }

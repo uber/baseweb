@@ -19,7 +19,7 @@ const selectors = {
   countryPickerListItem: `[data-e2e="country-picker-list-item"]`,
 };
 
-const countryListItemForIso = iso =>
+const countryListItemForIso = (iso) =>
   `${selectors.countryPickerListItem} [data-iso="${iso}"]`;
 
 const UK = {iso: 'GB', dialCode: '+44'};
@@ -56,14 +56,14 @@ describe('PhoneInput', () => {
       hidden: true,
     });
     // verify correct flag and dial code shows up
-    const iso = await page.$eval(selectors.countryPickerFlag, flag =>
+    const iso = await page.$eval(selectors.countryPickerFlag, (flag) =>
       flag.getAttribute('data-iso'),
     );
     expect(iso).toEqual(UK.iso);
     // verify correct dial code shows up
     const dialcode = await page.$eval(
       selectors.phoneInputDialcode,
-      block => block.innerText,
+      (block) => block.innerText,
     );
     expect(dialcode).toEqual(UK.dialCode);
   });

@@ -39,7 +39,7 @@ describe('toast', () => {
 
     const originalNumberOfAlerts = await page.$$eval(
       selectors.toast,
-      toasts => toasts.length,
+      (toasts) => toasts.length,
     );
 
     // close one toast with mouse click
@@ -50,13 +50,13 @@ describe('toast', () => {
     await page.keyboard.press('Enter');
 
     // we animate out the component
-    await new Promise(resolve => {
+    await new Promise((resolve) => {
       setTimeout(resolve, 1000);
     });
 
     const updatedNumberOfAlerts = await page.$$eval(
       selectors.toast,
-      toasts => toasts.length,
+      (toasts) => toasts.length,
     );
 
     expect(updatedNumberOfAlerts).toBe(originalNumberOfAlerts - 2);
@@ -70,7 +70,7 @@ describe('toast', () => {
 
     const numberOfAlerts = await page.$$eval(
       selectors.toast,
-      toasts => toasts.length,
+      (toasts) => toasts.length,
     );
 
     expect(numberOfAlerts).toBe(2);
@@ -82,13 +82,13 @@ describe('toast', () => {
     await page.click(selectors.buttonSameKey);
     await page.click(selectors.buttonSameKey);
 
-    const numberOfAlerts = await page.$$eval(selectors.toast, toasts => {
+    const numberOfAlerts = await page.$$eval(selectors.toast, (toasts) => {
       return toasts.length;
     });
 
     expect(numberOfAlerts).toBe(1);
 
-    const toastContent = await page.$eval(selectors.toast, toast => {
+    const toastContent = await page.$eval(selectors.toast, (toast) => {
       return toast && toast.innerText;
     });
 

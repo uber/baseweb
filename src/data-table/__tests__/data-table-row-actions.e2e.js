@@ -39,7 +39,7 @@ describe('data-table-row-actions', () => {
     const listItems = await page.$$('li');
     expect(listItems.length).toBe(1);
 
-    const title = await page.evaluate(item => item.textContent, listItems[0]);
+    const title = await page.evaluate((item) => item.textContent, listItems[0]);
     expect(title).toBe('Finding Nemo');
   });
 
@@ -54,7 +54,7 @@ describe('data-table-row-actions', () => {
     );
     await actionButton.click();
     const listItem = await page.$('li');
-    const title = await page.evaluate(item => item.textContent, listItem);
+    const title = await page.evaluate((item) => item.textContent, listItem);
     expect(title).toBe('Iron Man 3');
   });
 });

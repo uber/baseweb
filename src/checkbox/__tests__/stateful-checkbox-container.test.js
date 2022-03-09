@@ -11,15 +11,15 @@ import {render, fireEvent} from '@testing-library/react';
 
 import {StatefulContainer} from '../index.js';
 
-describe('Stateful container', function() {
-  it('should provide all needed props to children render func', function() {
+describe('Stateful container', function () {
+  it('should provide all needed props to children render func', function () {
     const children = jest.fn(() => null);
     render(<StatefulContainer foo="bar">{children}</StatefulContainer>);
     const props = children.mock.calls[0][0];
     expect(props.foo).toBe('bar');
   });
 
-  it('should provide initial state as part of state', function() {
+  it('should provide initial state as part of state', function () {
     const children = jest.fn(() => null);
     render(
       <StatefulContainer initialState={{checked: true}}>

@@ -156,7 +156,7 @@ class PopoverInner extends React.Component<
       this.animateOutCompleteTimer,
       this.onMouseEnterTimer,
       this.onMouseLeaveTimer,
-    ].forEach(timerId => {
+    ].forEach((timerId) => {
       if (timerId) {
         clearTimeout(timerId);
       }

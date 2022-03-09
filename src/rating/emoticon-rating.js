@@ -93,7 +93,7 @@ class EmoticonRating extends React.Component<
             }
             this.selectItem(x);
           }}
-          onKeyDown={e => {
+          onKeyDown={(e) => {
             if (readOnly) {
               return;
             }
@@ -135,7 +135,7 @@ class EmoticonRating extends React.Component<
       <Root
         data-baseweb="emoticon-rating"
         role="radiogroup"
-        onBlur={e => {
+        onBlur={(e) => {
           if (!e.currentTarget.contains(e.relatedTarget))
             this.updatePreview(undefined);
         }}

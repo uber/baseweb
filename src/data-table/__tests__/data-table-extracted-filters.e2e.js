@@ -28,8 +28,8 @@ describe('data-table-extracted-filters', () => {
     const phylumFilter = await page.$('#Phylum-filter');
     const checkboxes = await phylumFilter.$$('label[data-baseweb="checkbox"');
     await checkboxes[1].click();
-    await phylumFilter.$$eval('button', items => {
-      const button = items.find(item => item.textContent === 'Apply');
+    await phylumFilter.$$eval('button', (items) => {
+      const button = items.find((item) => item.textContent === 'Apply');
       return button.click();
     });
 

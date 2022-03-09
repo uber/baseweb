@@ -102,7 +102,7 @@ export default class MyApp extends App {
   }
 
   componentDidMount() {
-    Router.onRouteChangeComplete = url => {
+    Router.onRouteChangeComplete = (url) => {
       trackPageView(url.split('?')[0]);
     };
     if (window.matchMedia) {

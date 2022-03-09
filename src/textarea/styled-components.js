@@ -14,20 +14,23 @@ import {
 import type {SharedStylePropsT} from './types.js';
 
 // $FlowFixMe https://github.com/facebook/flow/issues/7745
-export const StyledTextAreaRoot = styled<SharedStylePropsT>('div', props => {
+export const StyledTextAreaRoot = styled<SharedStylePropsT>('div', (props) => {
   return getRootStyles({...props, $hasIconTrailing: false});
 });
 
 // $FlowFixMe https://github.com/facebook/flow/issues/7745
 export const StyledTextareaContainer = styled<SharedStylePropsT>(
   'div',
-  props => ({
+  (props) => ({
     ...getInputContainerStyles(props),
   }),
 );
 
 // $FlowFixMe https://github.com/facebook/flow/issues/7745
-export const StyledTextarea = styled<SharedStylePropsT>('textarea', props => ({
-  ...getInputStyles(props),
-  resize: 'none',
-}));
+export const StyledTextarea = styled<SharedStylePropsT>(
+  'textarea',
+  (props) => ({
+    ...getInputStyles(props),
+    resize: 'none',
+  }),
+);

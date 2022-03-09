@@ -13,19 +13,19 @@ import {StatefulPopover, PLACEMENT, TRIGGER_TYPE} from 'baseui/popover';
 import {H3} from './markdown-elements';
 import {convert} from './yard/type-definition';
 
-const ApiTable = props => {
+const ApiTable = (props) => {
   const {title, config, types} = props;
   const [css, theme] = useStyletron();
   const flowTypes = {};
   try {
-    types.component.value.members.forEach(member => {
+    types.component.value.members.forEach((member) => {
       flowTypes[member.key.name] = convert(member, true);
     });
     // eslint-disable-next-line no-empty
   } catch (e) {}
   const data = Object.keys(config.props)
     .sort()
-    .map(prop => {
+    .map((prop) => {
       return [
         <div
           key={prop}

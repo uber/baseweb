@@ -81,7 +81,7 @@ export function Scenario() {
   }
 
   const filteredOptions = React.useMemo(() => {
-    return options.filter(option => {
+    return options.filter((option) => {
       const optionAsString = mapOptionToString(option);
       return optionAsString.toLowerCase().includes(value.toLowerCase());
     });
@@ -91,7 +91,7 @@ export function Scenario() {
     <div className={css({width: '375px', padding: '12px 48px'})}>
       <Combobox
         value={value}
-        onChange={nextValue => setValue(nextValue)}
+        onChange={(nextValue) => setValue(nextValue)}
         mapOptionToString={mapOptionToString}
         options={filteredOptions}
       />

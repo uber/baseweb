@@ -50,14 +50,17 @@ describe('popover', () => {
     // Verify that popovers are not nested but rendered in a flat layers way
     // where every new layer rendered as a sibling to the rest of layers
     // and not uses other layers rendered elements as a mount node.
-    const noNestedPopovers = await page.$$eval(selectors.popover, popovers => {
-      let notNested = true;
-      for (let i = 0; i < popovers.length; i++) {
-        notNested =
-          notNested && !popovers[i].querySelector('[data-baseweb="popover"]');
-      }
-      return notNested;
-    });
+    const noNestedPopovers = await page.$$eval(
+      selectors.popover,
+      (popovers) => {
+        let notNested = true;
+        for (let i = 0; i < popovers.length; i++) {
+          notNested =
+            notNested && !popovers[i].querySelector('[data-baseweb="popover"]');
+        }
+        return notNested;
+      },
+    );
     expect(noNestedPopovers).toBe(true);
 
     // First document and outside of the popovers click

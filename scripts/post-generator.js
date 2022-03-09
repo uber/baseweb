@@ -23,8 +23,8 @@ const source = resolve(__dirname, '../documentation-site/pages/blog');
 module.exports = function generatePosts() {
   let posts = [];
   const postDirs = readdirSync(source)
-    .map(name => join(source, name))
-    .filter(a => lstatSync(a).isDirectory());
+    .map((name) => join(source, name))
+    .filter((a) => lstatSync(a).isDirectory());
 
   for (let postDir of postDirs) {
     const content = readFileSync(`${postDir}/metadata.json`, 'utf-8');

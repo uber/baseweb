@@ -121,7 +121,7 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
       this.autoHideTimeout,
       this.animateInTimer,
       this.animateOutCompleteTimer,
-    ].forEach(timerId => {
+    ].forEach((timerId) => {
       if (timerId) {
         clearTimeout(timerId);
       }
@@ -221,7 +221,7 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
     }
     return (
       <LocaleContext.Consumer>
-        {locale => (
+        {(locale) => (
           <Body
             role="alert"
             data-baseweb={this.props['data-baseweb'] || 'toast'}
@@ -245,7 +245,7 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
                 tabIndex={0}
                 $isFocusVisible={this.state.isFocusVisible}
                 onClick={this.dismiss}
-                onKeyPress={event => {
+                onKeyPress={(event) => {
                   if (event.key === 'Enter') {
                     this.dismiss();
                   }

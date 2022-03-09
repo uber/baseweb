@@ -47,7 +47,7 @@ export function Scenario() {
     <React.Fragment>
       <button
         type="button"
-        onClick={() => setShow(s => !s)}
+        onClick={() => setShow((s) => !s)}
         id="toggle-robot-tab"
       >
         Toggle Robot Tab

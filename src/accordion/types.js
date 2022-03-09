@@ -166,9 +166,10 @@ type SharedStatefulPanelContainerPropsT = {
   onChange?: OnChangeHandlerT,
   stateReducer?: PanelStateReducerT,
 };
-export type StatefulPanelContainerPropsT = SharedStatefulPanelContainerPropsT & {
-  children: (props: $Diff<PanelPropsT, {children: React.Node}>) => React.Node,
-};
+export type StatefulPanelContainerPropsT =
+  SharedStatefulPanelContainerPropsT & {
+    children: (props: $Diff<PanelPropsT, {children: React.Node}>) => React.Node,
+  };
 
 // Props for stateful panel
 export type StatefulPanelPropsT = SharedStatefulPanelContainerPropsT &

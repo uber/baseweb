@@ -56,7 +56,7 @@ describe('Tag', () => {
     expect(actionClickMock.mock.calls.length).toBe(1);
   });
 
-  it('passes flow check with tag enum', function() {
+  it('passes flow check with tag enum', function () {
     // https://github.com/uber/baseweb/issues/1910
     // eslint-disable-next-line no-unused-vars
     function TagWrapper(props: {kind: TagKindT}) {

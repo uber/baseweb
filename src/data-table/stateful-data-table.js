@@ -72,7 +72,7 @@ function QueryInput(props) {
           },
         }}
         size={INPUT_SIZES.compact}
-        onChange={event => setValue(event.target.value)}
+        onChange={(event) => setValue(event.target.value)}
         value={value}
         clearable
       />
@@ -83,13 +83,13 @@ function QueryInput(props) {
 function FilterTag(props) {
   const [, theme] = useStyletron();
   const [isOpen, setIsOpen] = React.useState(false);
-  const columnIndex = props.columns.findIndex(c => c.title === props.title);
+  const columnIndex = props.columns.findIndex((c) => c.title === props.title);
   const column = props.columns[columnIndex];
   if (!column) {
     return null;
   }
 
-  const data = props.rows.map(r => column.mapDataToValue(r.data));
+  const data = props.rows.map((r) => column.mapDataToValue(r.data));
   const Filter = column.renderFilter;
 
   return (
@@ -104,7 +104,7 @@ function FilterTag(props) {
           close={() => setIsOpen(false)}
           data={data}
           filterParams={props.filter}
-          setFilter={filterParams =>
+          setFilter={(filterParams) =>
             props.onFilterAdd(props.title, filterParams)
           }
         />
@@ -151,7 +151,7 @@ export function StatefulDataTable(props: StatefulDataTablePropsT) {
   const [css, theme] = useStyletron();
   const headlineRef = React.useRef(null);
   const [headlineHeight, setHeadlineHeight] = React.useState(64);
-  useResizeObserver(headlineRef, entries => {
+  useResizeObserver(headlineRef, (entries) => {
     setHeadlineHeight(entries[0].contentRect.height);
   });
 
@@ -242,12 +242,12 @@ export function StatefulDataTable(props: StatefulDataTablePropsT) {
                     paddingBottom: theme.sizing.scale400,
                   }}
                 >
-                  {props.batchActions.map(action => {
+                  {props.batchActions.map((action) => {
                     function onClick(event) {
                       action.onClick({
                         clearSelection: onSelectNone,
                         event,
-                        selection: props.rows.filter(r =>
+                        selection: props.rows.filter((r) =>
                           selectedRowIds.has(r.id),
                         ),
                       });

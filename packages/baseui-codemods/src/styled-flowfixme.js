@@ -14,7 +14,7 @@ import {containsFlowComment, getStyledLocalImportName} from './shared.js';
 const FLOW_IGNORE = '$FlowFixMe';
 
 async function styledV7FlowFixme(options: {dir: string}) {
-  await withJsFiles(`${options.dir}/**/*.js`, async p => {
+  await withJsFiles(`${options.dir}/**/*.js`, async (p) => {
     if (containsFlowComment(p)) {
       const styledLocalImportName = getStyledLocalImportName(p);
       if (styledLocalImportName) {
@@ -24,10 +24,10 @@ async function styledV7FlowFixme(options: {dir: string}) {
               path.node.callee.name === styledLocalImportName &&
               !path.node.typeArguments
             ) {
-              const parent = path.findParent(n => n.isVariableDeclaration());
+              const parent = path.findParent((n) => n.isVariableDeclaration());
               if (parent) {
                 const comments = parent.node.comments || [];
-                if (comments.every(c => !c.value.includes(FLOW_IGNORE))) {
+                if (comments.every((c) => !c.value.includes(FLOW_IGNORE))) {
                   comments.push({
                     type: 'CommentLine',
                     value: ' $FlowFixMe',

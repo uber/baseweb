@@ -37,8 +37,9 @@ export const flexGridItemMediaQueryStyle = ({
   const colGapUnit = colGap.match(/[a-zA-Z]+/)[0];
   const rowGap = $theme.sizing[flexGridRowGap] || flexGridRowGap || '0px';
   const rowGapQuantity = parseFloat(rowGap);
-  const widthCalc = `(100% - ${(colCount - 1) *
-    colGapQuantity}${colGapUnit}) / ${colCount}`;
+  const widthCalc = `(100% - ${
+    (colCount - 1) * colGapQuantity
+  }${colGapUnit}) / ${colCount}`;
   const marginDirection: string =
     $theme.direction === 'rtl' ? 'marginLeft' : 'marginRight';
   return Object.freeze({
@@ -57,9 +58,9 @@ export const flexGridItemMediaQueryStyle = ({
     // Add space to make up for missing columns if last row ends early
     ...(itemIndex === itemCount - 1 && (itemIndex + 1) % colCount !== 0
       ? {
-          [marginDirection]: `calc(${colCount -
-            (itemIndex % colCount) -
-            1} * (${colGap} + ${widthCalc}))`,
+          [marginDirection]: `calc(${
+            colCount - (itemIndex % colCount) - 1
+          } * (${colGap} + ${widthCalc}))`,
         }
       : {}),
   });
@@ -98,7 +99,7 @@ export const flexGridItemStyle = ({
 
   // Get the length of the longest responsive array
   const maxResponsiveLength = Math.max(
-    ...[$flexGridColumnCount, $flexGridColumnGap, $flexGridRowGap].map(r =>
+    ...[$flexGridColumnCount, $flexGridColumnGap, $flexGridRowGap].map((r) =>
       Array.isArray(r) ? r.length : 0,
     ),
   );
@@ -129,7 +130,7 @@ export const flexGridItemStyle = ({
       flexGridColumnCountValue,
       flexGridColumnGapValue,
       flexGridRowGapValue,
-    ] = [$flexGridColumnCount, $flexGridColumnGap, $flexGridRowGap].map(r =>
+    ] = [$flexGridColumnCount, $flexGridColumnGap, $flexGridRowGap].map((r) =>
       getResponsiveValue(r, i),
     );
     const mediaQuery =

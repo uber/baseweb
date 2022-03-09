@@ -35,13 +35,13 @@ const CustomStyledNavItem = withStyle(
   }),
 );
 
-const removeSlash = path => path && path.replace(/\/$/, '');
+const removeSlash = (path) => path && path.replace(/\/$/, '');
 
 const CustomNavItem = ({item, onSelect, onClick, onKeyDown, ...restProps}) => (
   <CustomStyledNavItem $hasItemId={!!item.itemId} {...restProps} />
 );
 
-const CustomNavLink = props => {
+const CustomNavLink = (props) => {
   return props.href ? (
     <Link href={props.href}>
       <StyledNavLink {...props} />

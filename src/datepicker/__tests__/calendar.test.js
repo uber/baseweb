@@ -62,8 +62,9 @@ describe('Component', () => {
         <Calendar quickSelect range onQuickSelectChange={onQuickSelectChange} />
       </TestBaseProvider>,
     );
-    const quickSelect = container.querySelector('[data-baseweb="select"]')
-      .firstChild;
+    const quickSelect = container.querySelector(
+      '[data-baseweb="select"]',
+    ).firstChild;
     fireEvent.click(quickSelect);
     fireEvent.click(await getByText(container.parentElement, 'Past Week'));
     expect(onQuickSelectChange).toHaveBeenCalledWith(

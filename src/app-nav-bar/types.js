@@ -54,15 +54,15 @@ export type UserMenuPropsT = {|
   username?: string,
   usernameSubtitle?: React.Node,
   userImgUrl?: string,
-  onUserItemSelect?: NavItemT => mixed,
+  onUserItemSelect?: (NavItemT) => mixed,
 |};
 
 export type AppNavBarPropsT = {|
   ...UserMenuPropsT,
-  isMainItemActive?: NavItemT => boolean,
+  isMainItemActive?: (NavItemT) => boolean,
   mainItems?: NavItemT[],
-  mapItemToNode?: NavItemT => React.Node,
-  onMainItemSelect?: NavItemT => mixed,
+  mapItemToNode?: (NavItemT) => React.Node,
+  onMainItemSelect?: (NavItemT) => mixed,
   overrides?: OverridesT,
   title?: React.Node,
 |};

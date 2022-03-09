@@ -31,7 +31,7 @@ export function Scenario() {
         setTimeout(() => {
           setSearchResults(
             COLORS.filter(
-              color =>
+              (color) =>
                 color.label.toLowerCase().indexOf(value.toLowerCase()) > -1,
             ),
           );

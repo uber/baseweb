@@ -39,7 +39,7 @@ const getOverrideIfExists = (name, node) => {
   if (node.parent.value.expression.type === 'ObjectExpression') {
     // Find property name
     return node.parent.value.expression.properties.find(
-      property =>
+      (property) =>
         property.key && property.key.name && property.key.name === name,
     );
   }
@@ -67,7 +67,7 @@ module.exports = {
           old: oldComponent,
           new: newComponent,
         },
-        fix: function(fixer) {
+        fix: function (fixer) {
           return [fixer.replaceText(node.imported, newComponent)];
         },
       });
@@ -80,7 +80,7 @@ module.exports = {
           old: oldName,
           new: newName,
         },
-        fix: function(fixer) {
+        fix: function (fixer) {
           const isAtStart = specifierIndex === 0;
           const startIndex = isAtStart ? specifierIndex : specifierIndex - 1;
           const endIndex = isAtStart ? specifierIndex + 1 : specifierIndex;
@@ -143,7 +143,7 @@ module.exports = {
         const existingImports = {};
 
         // Map existing imports (newName: localName), preference given to first renamed import.
-        node.specifiers.forEach(specifier => {
+        node.specifiers.forEach((specifier) => {
           if (specifier.type === 'ImportNamespaceSpecifier') {
             return;
           }
@@ -206,7 +206,7 @@ module.exports = {
             context
               .getAncestors()
               .some(
-                ancestor =>
+                (ancestor) =>
                   ancestor.type === 'JSXOpeningElement' &&
                   ancestor.name.name === component,
               )
@@ -241,7 +241,7 @@ module.exports = {
               old: 'renderPanelContent',
               new: 'renderAll',
             },
-            fix: function(fixer) {
+            fix: function (fixer) {
               return fixer.replaceText(node, 'renderAll');
             },
           });
@@ -259,7 +259,7 @@ module.exports = {
               old: `autofocus`,
               new: `autoFocus`,
             },
-            fix: function(fixer) {
+            fix: function (fixer) {
               return fixer.replaceText(node, 'autoFocus');
             },
           });
@@ -292,7 +292,7 @@ module.exports = {
                 old: `toggle`,
                 new: `toggle_round`,
               },
-              fix: function(fixer) {
+              fix: function (fixer) {
                 return fixer.replaceText(node.parent.value, `"toggle_round"`);
               },
             });
@@ -310,7 +310,7 @@ module.exports = {
                 old: `STYLE_TYPE.toggle`,
                 new: `STYLE_TYPE.toggle_round`,
               },
-              fix: function(fixer) {
+              fix: function (fixer) {
                 return fixer.replaceText(
                   node.parent.value.expression.property,
                   'toggle_round',
@@ -402,7 +402,7 @@ module.exports = {
             'RadioMarkInner',
             'RadioMarkOuter',
           ];
-          properties.map(val => {
+          properties.map((val) => {
             const property = getOverrideIfExists(val, node);
             if (property) {
               context.report({
@@ -440,7 +440,7 @@ module.exports = {
               old: oldName,
               new: newName,
             },
-            fix: function(fixer) {
+            fix: function (fixer) {
               return [fixer.replaceText(node, newName)];
             },
           });
@@ -455,7 +455,7 @@ module.exports = {
               old: oldComponent,
               new: newComponent,
             },
-            fix: function(fixer) {
+            fix: function (fixer) {
               return [fixer.replaceText(node, newComponent)];
             },
           });

@@ -13,7 +13,7 @@ const mkdirp = require('mkdirp');
 jest.setTimeout(20 * 1000);
 jest.retryTimes(10);
 
-global.it = async function(name, func, timeout) {
+global.it = async function (name, func, timeout) {
   return await test(
     name,
     async () => {

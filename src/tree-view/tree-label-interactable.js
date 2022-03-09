@@ -17,8 +17,8 @@ const TreeLabelInteractable: React$ComponentType<{
     getOverride(overrides.LabelInteractable) || StyledLabelInteractable;
   return (
     <LabelInteractable
-      onClick={e => e.stopPropagation()}
-      onKeyDown={e => e.stopPropagation()}
+      onClick={(e) => e.stopPropagation()}
+      onKeyDown={(e) => e.stopPropagation()}
       {...props}
     />
   );

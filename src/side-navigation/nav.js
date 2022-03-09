@@ -45,14 +45,8 @@ export default class SideNav extends React.Component<
   activePredicate = (item: Item) => item.itemId === this.props.activeItemId;
 
   render() {
-    const {
-      activeItemId,
-      activePredicate,
-      items,
-      onChange,
-      overrides,
-      mapItem,
-    } = this.props;
+    const {activeItemId, activePredicate, items, onChange, overrides, mapItem} =
+      this.props;
     const navLevel = 1;
 
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
@@ -67,7 +61,7 @@ export default class SideNav extends React.Component<
 
     const renderNavItem = (item: Item, level: number, index, mapItem) => {
       if (typeof mapItem === 'function') {
-        const recMapItem = item => {
+        const recMapItem = (item) => {
           let subNav = [];
           if (item.subNav) {
             subNav = item.subNav.map(recMapItem);

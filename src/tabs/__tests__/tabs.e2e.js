@@ -27,7 +27,7 @@ describe('tabs', () => {
     for (let i = 0; i < states.length; i++) {
       let visible = await page.$eval(
         `[aria-labelledby="${i}"]`,
-        input => !!input.offsetParent,
+        (input) => !!input.offsetParent,
       );
       await expect(visible).toBe(states[i]);
     }
@@ -38,7 +38,7 @@ describe('tabs', () => {
     for (let i = 0; i < states.length; i++) {
       let visible = await page.$eval(
         `[aria-labelledby="${i}"]`,
-        input => !!input.offsetParent,
+        (input) => !!input.offsetParent,
       );
       await expect(visible).toBe(states[i]);
     }

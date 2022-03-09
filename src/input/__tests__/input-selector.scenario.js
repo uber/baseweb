@@ -29,7 +29,7 @@ function SelectAtStart(props) {
         />
       </div>
       <Input
-        onChange={e => props.onInputChange(e.target.value)}
+        onChange={(e) => props.onInputChange(e.target.value)}
         value={props.inputValue}
       />
     </div>
@@ -41,7 +41,7 @@ function SelectAtEnd(props) {
   return (
     <div className={css({display: 'flex'})}>
       <Input
-        onChange={e => props.onInputChange(e.target.value)}
+        onChange={(e) => props.onInputChange(e.target.value)}
         value={props.inputValue}
         id={props.id}
       />
@@ -71,9 +71,9 @@ export function Scenario() {
       <FormControl label="input with start select" caption="caption">
         <SelectAtStart
           inputValue={startInputValue}
-          onInputChange={v => setStartInputValue(v)}
+          onInputChange={(v) => setStartInputValue(v)}
           selectValue={startSelectValue}
-          onSelectChange={v => setStartSelectValue(v)}
+          onSelectChange={(v) => setStartSelectValue(v)}
           options={[
             {id: 'AliceBlue', color: '#F0F8FF'},
             {id: 'AntiqueWhite', color: '#FAEBD7'},
@@ -86,9 +86,9 @@ export function Scenario() {
       <FormControl label="input with end select" caption="caption">
         <SelectAtEnd
           inputValue={endInputValue}
-          onInputChange={v => setEndInputValue(v)}
+          onInputChange={(v) => setEndInputValue(v)}
           selectValue={endSelectValue}
-          onSelectChange={v => setEndSelectValue(v)}
+          onSelectChange={(v) => setEndSelectValue(v)}
           options={[
             {id: 'AliceBlue', color: '#F0F8FF'},
             {id: 'AntiqueWhite', color: '#FAEBD7'},

@@ -29,7 +29,7 @@ function isStyledComponent(path) {
 }
 
 async function styledV7TypeArguments(options: {dir: string}) {
-  await withJsFiles(`${options.dir}/**/*.js`, async p => {
+  await withJsFiles(`${options.dir}/**/*.js`, async (p) => {
     if (containsFlowComment(p)) {
       const styledLocalImportName = getStyledLocalImportName(p);
       if (styledLocalImportName) {
@@ -45,23 +45,22 @@ async function styledV7TypeArguments(options: {dir: string}) {
 
               if (isStyledElement(path)) {
                 if (!t.isObjectExpression(path.node.arguments[1])) {
-                  path.node.callee.typeAnnotation = t.typeParameterInstantiation(
-                    [t.anyTypeAnnotation()],
-                  );
+                  path.node.callee.typeAnnotation =
+                    t.typeParameterInstantiation([t.anyTypeAnnotation()]);
                 }
               } else if (isStyledComponent(path)) {
                 const base = path.node.arguments[0];
                 if (!t.isObjectExpression(path.node.arguments[1])) {
-                  path.node.callee.typeAnnotation = t.typeParameterInstantiation(
-                    [
+                  path.node.callee.typeAnnotation =
+                    t.typeParameterInstantiation([
                       t.typeofTypeAnnotation(t.genericTypeAnnotation(base)),
                       t.anyTypeAnnotation(),
-                    ],
-                  );
+                    ]);
                 } else {
-                  path.node.callee.typeAnnotation = t.typeParameterInstantiation(
-                    [t.typeofTypeAnnotation(t.genericTypeAnnotation(base))],
-                  );
+                  path.node.callee.typeAnnotation =
+                    t.typeParameterInstantiation([
+                      t.typeofTypeAnnotation(t.genericTypeAnnotation(base)),
+                    ]);
                 }
               }
             }

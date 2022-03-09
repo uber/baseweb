@@ -39,7 +39,7 @@ export function Scenario() {
         KIND.positive,
         KIND.negative,
         KIND.warning,
-      ].map(kind => (
+      ].map((kind) => (
         <div key={kind} className={css({display: 'flex'})}>
           <div className={css({marginRight: '20px'})}>
             <Tag
@@ -109,7 +109,7 @@ export function Scenario() {
         KIND.orange,
         KIND.purple,
         KIND.brown,
-      ].map(kind => (
+      ].map((kind) => (
         <div key={kind} className={css({display: 'flex'})}>
           <div className={css({marginRight: '20px'})}>
             <Tag

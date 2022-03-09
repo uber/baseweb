@@ -28,6 +28,7 @@ const USER_TITLE_ITEM = 'USER_TITLE_ITEM';
 const USER_MENU_ITEM = 'USER_MENU_ITEM';
 const PARENT_MENU_ITEM = 'PARENT_MENU_ITEM';
 
+// eslint-disable-next-line react/display-name
 const MobileNavMenuItem = React.forwardRef((props, ref) => {
   const {
     item,
@@ -94,7 +95,7 @@ export default function MobileMenu(props: AppNavBarPropsT) {
             item: {...rest},
             label: props.username,
             [USER_TITLE_ITEM]: true,
-            children: userItems.map(item => {
+            children: userItems.map((item) => {
               return {
                 ...item,
                 [USER_MENU_ITEM]: true,
@@ -164,6 +165,7 @@ export default function MobileMenu(props: AppNavBarPropsT) {
           boxShadow: 'none',
         },
       },
+      // eslint-disable-next-line react/display-name
       ListItem: React.forwardRef((listItemProps, ref) => {
         return (
           <MobileNavMenuItem

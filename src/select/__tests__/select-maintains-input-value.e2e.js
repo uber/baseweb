@@ -20,7 +20,7 @@ describe('select option maintains input value after actions', () => {
     const input = await page.$(selector);
     await input.type('a');
     await page.keyboard.press('Tab');
-    const value = await page.$eval(selector, i => i.value);
+    const value = await page.$eval(selector, (i) => i.value);
     expect(value).toBe('a');
   });
 
@@ -31,7 +31,7 @@ describe('select option maintains input value after actions', () => {
     const input = await page.$(selector);
     await input.type('a');
     await page.keyboard.press('Escape');
-    const value = await page.$eval(selector, i => i.value);
+    const value = await page.$eval(selector, (i) => i.value);
     expect(value).toBe('a');
   });
 
@@ -42,7 +42,7 @@ describe('select option maintains input value after actions', () => {
     const input = await page.$(selector);
     await input.type('a');
     await page.click('li');
-    const value = await page.$eval(selector, i => i.value);
+    const value = await page.$eval(selector, (i) => i.value);
     expect(value).toBe('a');
   });
 
@@ -54,19 +54,19 @@ describe('select option maintains input value after actions', () => {
 
     await input.type('a');
     await page.keyboard.press('Tab');
-    const blur = await page.$eval(selector, i => i.value);
+    const blur = await page.$eval(selector, (i) => i.value);
     expect(blur).toBe('a');
 
     await input.focus();
     await input.type('b');
     await page.keyboard.press('Escape');
-    const close = await page.$eval(selector, i => i.value);
+    const close = await page.$eval(selector, (i) => i.value);
     expect(close).toBe('ab');
 
     await page.keyboard.press('Backspace');
     await input.type('q');
     await page.click('li');
-    const select = await page.$eval(selector, i => i.value);
+    const select = await page.$eval(selector, (i) => i.value);
     expect(select).toBe('aq');
   });
 });

@@ -136,7 +136,7 @@ export default class TableBuilder<T> extends React.Component<
 
     const columns = React.Children.toArray(children)
       .filter(Boolean)
-      .map(child => child.props);
+      .map((child) => child.props);
 
     function renderHeader(col, colIndex, isFocusVisible) {
       const colOverrides = col.overrides || {};
@@ -163,13 +163,8 @@ export default class TableBuilder<T> extends React.Component<
         );
       }
 
-      const [
-        ColTableHeadCellSortable,
-        colTableHeadCellSortableProps,
-      ] = getOverrides(
-        colOverrides.TableHeadCellSortable,
-        TableHeadCellSortable,
-      );
+      const [ColTableHeadCellSortable, colTableHeadCellSortableProps] =
+        getOverrides(colOverrides.TableHeadCellSortable, TableHeadCellSortable);
 
       let sortIcon = null;
       let sortLabel = 'not sorted';

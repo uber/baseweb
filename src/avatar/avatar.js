@@ -19,11 +19,8 @@ import type {PropsT} from './types.js';
 
 function getInitials(name) {
   const words = name.split(' ');
-  const initials = words.map(word => word[0]);
-  return initials
-    .slice(0, 2)
-    .join('')
-    .toUpperCase();
+  const initials = words.map((word) => word[0]);
+  return initials.slice(0, 2).join('').toUpperCase();
 }
 
 export default function Avatar({

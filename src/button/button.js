@@ -75,13 +75,11 @@ class Button extends React.Component<
       overrides.LoadingSpinner,
       StyledLoadingSpinner,
     );
-    const [
-      LoadingSpinnerContainer,
-      loadingSpinnerContainerProps,
-    ] = getOverrides(
-      overrides.LoadingSpinnerContainer,
-      StyledLoadingSpinnerContainer,
-    );
+    const [LoadingSpinnerContainer, loadingSpinnerContainerProps] =
+      getOverrides(
+        overrides.LoadingSpinnerContainer,
+        StyledLoadingSpinnerContainer,
+      );
     const sharedProps = {
       ...getSharedProps(this.props),
       $isFocusVisible: this.state.isFocusVisible,

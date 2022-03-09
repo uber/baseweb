@@ -251,14 +251,14 @@ const colorMap = {
   [KIND.custom]: customColorStates,
 };
 
-const getColorStateFromProps = props => {
+const getColorStateFromProps = (props) => {
   if (props.$disabled) return COLOR_STATE.disabled;
   if (props.$variant === VARIANT.solid) return COLOR_STATE.solid;
   return COLOR_STATE.outline;
 };
 
 // $FlowFixMe https://github.com/facebook/flow/issues/7745
-export const Action = styled<SharedPropsArgT>('span', props => {
+export const Action = styled<SharedPropsArgT>('span', (props) => {
   const {$theme, $disabled, $size = SIZE.small} = props;
   const bottomRadiusDir: string =
     $theme.direction === 'rtl'
@@ -313,7 +313,7 @@ export const StartEnhancerContainer = styled<SharedPropsArgT>(
 );
 
 // $FlowFixMe https://github.com/facebook/flow/issues/7745
-export const Text = styled<SharedPropsArgT>('span', props => {
+export const Text = styled<SharedPropsArgT>('span', (props) => {
   const {$theme} = props;
 
   return {
@@ -326,7 +326,7 @@ export const Text = styled<SharedPropsArgT>('span', props => {
 });
 
 // $FlowFixMe https://github.com/facebook/flow/issues/7745
-export const Root = styled<SharedPropsArgT>('span', props => {
+export const Root = styled<SharedPropsArgT>('span', (props) => {
   const {
     $theme,
     $kind = KIND.primary,

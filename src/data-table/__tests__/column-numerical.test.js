@@ -95,7 +95,7 @@ describe('numerical column', () => {
     const value = 1999.888;
     const column = NumericalColumn({
       title: 'column',
-      format: value => `EUR ${value}`,
+      format: (value) => `EUR ${value}`,
       mapDataToValue: () => value,
     });
     const Cell = column.renderCell;

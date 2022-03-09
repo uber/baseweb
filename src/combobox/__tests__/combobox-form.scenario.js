@@ -38,9 +38,9 @@ export function Scenario() {
         <div className={css({width: '375px'})}>
           <Combobox
             value={value}
-            onChange={nextValue => setValue(nextValue)}
+            onChange={(nextValue) => setValue(nextValue)}
             onSubmit={({closeListbox}) => closeListbox()}
-            mapOptionToString={o => o.label}
+            mapOptionToString={(o) => o.label}
             options={options}
           />
         </div>

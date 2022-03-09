@@ -46,11 +46,11 @@ export function Scenario() {
   }
 
   function handlePrev() {
-    setIndex(prev => Math.max(prev - 1, 0));
+    setIndex((prev) => Math.max(prev - 1, 0));
   }
 
   function handleNext() {
-    setIndex(prev => Math.min(prev + 1, LENGTH - 1));
+    setIndex((prev) => Math.min(prev + 1, LENGTH - 1));
   }
 
   return (

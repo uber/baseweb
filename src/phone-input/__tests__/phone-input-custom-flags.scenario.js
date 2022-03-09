@@ -28,7 +28,7 @@ export function Scenario() {
     <PhoneInput
       text={text}
       country={country}
-      onTextChange={event => {
+      onTextChange={(event) => {
         setText(event.currentTarget.value);
       }}
       // eslint-disable-next-line flowtype/no-weak-types

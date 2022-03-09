@@ -43,7 +43,7 @@ function StatelessAccordion({
                     }
                   } else {
                     if (expanded.includes(key)) {
-                      next = expanded.filter(k => k !== key);
+                      next = expanded.filter((k) => k !== key);
                     } else {
                       next = [...expanded, key];
                     }

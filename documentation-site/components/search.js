@@ -120,7 +120,7 @@ class DocSearch extends React.Component<{}, State> {
             type="search"
             placeholder="Search documentation"
             aria-label="Search documentation"
-            onChange={e => trackEvent('algolia_search', e.target.value)}
+            onChange={(e) => trackEvent('algolia_search', e.target.value)}
           />
         </SearchContainer>
       </React.Fragment>

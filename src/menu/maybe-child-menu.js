@@ -44,7 +44,7 @@ export default function MaybeChildMenu(props: PropsT) {
 
   return (
     <NestedMenuContext.Consumer>
-      {ctx => {
+      {(ctx) => {
         return (
           <PopoverOverride
             focusLock={false}

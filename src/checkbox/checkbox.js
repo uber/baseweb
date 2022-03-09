@@ -20,7 +20,7 @@ import {
 import {STYLE_TYPE} from './constants.js';
 import {isFocusVisible} from '../utils/focusVisible.js';
 
-const stopPropagation = e => e.stopPropagation();
+const stopPropagation = (e) => e.stopPropagation();
 
 class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
   static defaultProps: DefaultPropsT = {
@@ -189,7 +189,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
         {this.props.containsInteractiveElement ? (
           // Prevents the event from bubbling up to the label and moving focus to the radio button
           // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
-          <div onClick={e => e.preventDefault()}>{children}</div>
+          <div onClick={(e) => e.preventDefault()}>{children}</div>
         ) : (
           children
         )}

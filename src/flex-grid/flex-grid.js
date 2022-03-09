@@ -14,6 +14,7 @@ import {getOverrides} from '../helpers/overrides.js';
 import type {BlockPropsT} from '../block/types.js';
 import type {FlexGridPropsT} from './types.js';
 
+// eslint-disable-next-line react/display-name
 export const BaseFlexGrid = React.forwardRef<BlockPropsT, HTMLElement>(
   ({display, flexWrap, ...restProps}, ref) => (
     <Block
@@ -50,23 +51,25 @@ const FlexGrid = ({
       {...restProps}
       {...flexGridProps}
     >
-      {// flatten fragments so FlexGrid correctly iterates over fragments’ children
-      flattenFragments(children).map(
-        (
-          child: React.Node,
-          flexGridItemIndex: number,
-          {length: flexGridItemCount}: React.Node[],
-        ) => {
-          // $FlowFixMe https://github.com/facebook/flow/issues/4864
-          return React.cloneElement(child, {
-            flexGridColumnCount,
-            flexGridColumnGap,
-            flexGridRowGap,
-            flexGridItemIndex,
-            flexGridItemCount,
-          });
-        },
-      )}
+      {
+        // flatten fragments so FlexGrid correctly iterates over fragments’ children
+        flattenFragments(children).map(
+          (
+            child: React.Node,
+            flexGridItemIndex: number,
+            {length: flexGridItemCount}: React.Node[],
+          ) => {
+            // $FlowFixMe https://github.com/facebook/flow/issues/4864
+            return React.cloneElement(child, {
+              flexGridColumnCount,
+              flexGridColumnGap,
+              flexGridRowGap,
+              flexGridItemIndex,
+              flexGridItemCount,
+            });
+          },
+        )
+      }
     </FlexGrid>
   );
 };

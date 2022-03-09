@@ -44,7 +44,7 @@ const createDirtySetter = (setter: (Date, number) => Date) => {
     setter(wrapDate(dirtyDate), number);
 };
 
-const createDirtyGetter = (getter: Date => number) => {
+const createDirtyGetter = (getter: (Date) => number) => {
   return (dirtyDate: DirtyDate) => getter(wrapDate(dirtyDate));
 };
 

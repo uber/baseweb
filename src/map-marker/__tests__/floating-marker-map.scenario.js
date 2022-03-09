@@ -24,8 +24,8 @@ import {useStyletron} from '../../styles/index.js';
 import {getMapStyle} from './map-style.js';
 
 const floatingMarkerAnchorTypes = Object.keys(FLOATING_MARKER_ANCHOR_TYPES)
-  .map(key => FLOATING_MARKER_ANCHOR_TYPES[key])
-  .map(x => ({
+  .map((key) => FLOATING_MARKER_ANCHOR_TYPES[key])
+  .map((x) => ({
     label: x,
     id: x,
   }));
@@ -33,8 +33,8 @@ const floatingMarkerAnchorTypes = Object.keys(FLOATING_MARKER_ANCHOR_TYPES)
 const floatingMarkerAnchorPositions = Object.keys(
   FLOATING_MARKER_ANCHOR_POSITIONS,
 )
-  .map(key => FLOATING_MARKER_ANCHOR_POSITIONS[key])
-  .map(x => ({
+  .map((key) => FLOATING_MARKER_ANCHOR_POSITIONS[key])
+  .map((x) => ({
     label: x,
     id: x,
   }));
@@ -50,15 +50,11 @@ export function Scenario() {
   const [label, setLabel] = React.useState('Uber HQ');
   const [startEnhancer, setStartEnhancer] = React.useState(true);
   const [endEnhancer, setEndEnhancer] = React.useState(false);
-  const [
-    floatingMarkerAnchorType,
-    setFloatingMarkerAnchorType,
-  ] = React.useState([floatingMarkerAnchorTypes[0]]);
+  const [floatingMarkerAnchorType, setFloatingMarkerAnchorType] =
+    React.useState([floatingMarkerAnchorTypes[0]]);
 
-  const [
-    floatingMarkerAnchorPosition,
-    setFloatingMarkerAnchorPosition,
-  ] = React.useState([floatingMarkerAnchorPositions[0]]);
+  const [floatingMarkerAnchorPosition, setFloatingMarkerAnchorPosition] =
+    React.useState([floatingMarkerAnchorPositions[0]]);
 
   const [locations, setLocations] = React.useState([defaultLocation]);
 
@@ -84,7 +80,7 @@ export function Scenario() {
         customizerOptions={[
           <Input
             value={label}
-            onChange={e => setLabel(e.target.value)}
+            onChange={(e) => setLabel(e.target.value)}
             placeholder="Label"
             clearOnEscape
             key="label"
@@ -92,7 +88,7 @@ export function Scenario() {
 
           <Checkbox
             checked={startEnhancer}
-            onChange={e => setStartEnhancer(e.target.checked)}
+            onChange={(e) => setStartEnhancer(e.target.checked)}
             labelPlacement={LABEL_PLACEMENT.right}
             key="start-endhancer"
           >
@@ -100,7 +96,7 @@ export function Scenario() {
           </Checkbox>,
           <Checkbox
             checked={endEnhancer}
-            onChange={e => setEndEnhancer(e.target.checked)}
+            onChange={(e) => setEndEnhancer(e.target.checked)}
             labelPlacement={LABEL_PLACEMENT.right}
             key="end-enhancer"
           >
@@ -110,14 +106,14 @@ export function Scenario() {
             options={floatingMarkerAnchorTypes}
             value={floatingMarkerAnchorType}
             placeholder="Select an anchor type"
-            onChange={params => setFloatingMarkerAnchorType(params.value)}
+            onChange={(params) => setFloatingMarkerAnchorType(params.value)}
             key="anchor-type"
           />,
           <Select
             options={floatingMarkerAnchorPositions}
             value={floatingMarkerAnchorPosition}
             placeholder="Select an anchor position"
-            onChange={params => setFloatingMarkerAnchorPosition(params.value)}
+            onChange={(params) => setFloatingMarkerAnchorPosition(params.value)}
             key="anchor-position"
           />,
           <Button onClick={() => setLocations([])} key="clear-markers">
@@ -125,7 +121,7 @@ export function Scenario() {
           </Button>,
           <Checkbox
             checked={showPointDebug}
-            onChange={e => setShowPointDebug(e.target.checked)}
+            onChange={(e) => setShowPointDebug(e.target.checked)}
             labelPlacement={LABEL_PLACEMENT.right}
             key="point-debug"
           >
@@ -140,10 +136,10 @@ export function Scenario() {
           {...viewport}
           width="100%"
           height="760px"
-          onViewportChange={viewport => setViewport(viewport)}
+          onViewportChange={(viewport) => setViewport(viewport)}
           mapStyle={mapStyle}
           onClick={({lngLat}) =>
-            setLocations(existing => [...existing, lngLat])
+            setLocations((existing) => [...existing, lngLat])
           }
         >
           {locations.map((x, i) => (

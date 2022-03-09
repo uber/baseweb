@@ -40,7 +40,7 @@ describe('Datepicker', () => {
     await page.waitForSelector(selectors.calendar);
     const calendarCount = await page.$$eval(
       selectors.calendar,
-      calendar => calendar.length,
+      (calendar) => calendar.length,
     );
     expect(calendarCount).toEqual(1);
   });
@@ -52,7 +52,7 @@ describe('Datepicker', () => {
     await page.waitForSelector(selectors.calendar);
     const calendarCount = await page.$$eval(
       selectors.calendar,
-      calendar => calendar.length,
+      (calendar) => calendar.length,
     );
     expect(calendarCount).toEqual(1);
   });
@@ -80,7 +80,7 @@ describe('Datepicker', () => {
 
     const selectedValue = await page.$eval(
       selectors.input,
-      input => input.value,
+      (input) => input.value,
     );
     expect(selectedValue).toBe('2019/03/10');
   });
@@ -92,7 +92,7 @@ describe('Datepicker', () => {
 
     const selectedValue = await page.$eval(
       selectors.input,
-      input => input.value,
+      (input) => input.value,
     );
     expect(selectedValue).toBe('2019/07/01');
   });
@@ -106,7 +106,7 @@ describe('Datepicker', () => {
     await page.waitForSelector(selectors.day);
 
     // we want to enter entire date but the onChange functionality only fires on key press so...
-    await page.$eval(selectors.input, el => (el.value = '2019/07/0'));
+    await page.$eval(selectors.input, (el) => (el.value = '2019/07/0'));
     // also make sure the selected date isn't the date we're testing - selected/non-selected dates have different aria-labels
     await page.keyboard.press('2');
 

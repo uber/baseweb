@@ -75,7 +75,7 @@ export function Scenario() {
             <FormControl label="Start Time" caption="HH:MM">
               <TimePicker
                 value={dates[0]}
-                onChange={time => {
+                onChange={(time) => {
                   if (time) {
                     if (isAfter(time, dates[1])) {
                       setDates([time, time]);
@@ -125,7 +125,7 @@ export function Scenario() {
             <FormControl label="End Time" caption="HH:MM">
               <TimePicker
                 value={dates[1]}
-                onChange={time => {
+                onChange={(time) => {
                   if (time) {
                     if (isBefore(time, dates[0])) {
                       setDates([time, time]);

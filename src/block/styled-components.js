@@ -32,7 +32,7 @@ function build(breakpoints: BreakpointsT) {
   const mediaQueries = getMediaQueries(breakpoints);
 
   return {
-    apply: ({property, transform = x => x, value}: ApplyParams) => {
+    apply: ({property, transform = (x) => x, value}: ApplyParams) => {
       if (value === null || value === undefined) {
         return;
       }
@@ -65,17 +65,17 @@ function getFontValue(obj, key) {
   return obj[key];
 }
 
-export const StyledBlock = styled<StyledBlockPropsT>('div', props => {
+export const StyledBlock = styled<StyledBlockPropsT>('div', (props) => {
   const {breakpoints, colors, typography, sizing} = props.$theme;
 
   const get = (obj, key) => obj[key];
-  const getScale = size => sizing[size] || size;
+  const getScale = (size) => sizing[size] || size;
 
   const styles = build(breakpoints);
   styles.apply({
     property: 'color',
     value: get(props, '$color'),
-    transform: color => colors[color] || color,
+    transform: (color) => colors[color] || color,
   });
   styles.apply({
     property: 'backgroundAttachment',
@@ -88,7 +88,7 @@ export const StyledBlock = styled<StyledBlockPropsT>('div', props => {
   styles.apply({
     property: 'backgroundColor',
     value: get(props, '$backgroundColor'),
-    transform: backgroundColor => colors[backgroundColor] || backgroundColor,
+    transform: (backgroundColor) => colors[backgroundColor] || backgroundColor,
   });
   styles.apply({
     property: 'backgroundImage',
@@ -113,22 +113,22 @@ export const StyledBlock = styled<StyledBlockPropsT>('div', props => {
   styles.apply({
     property: 'fontFamily',
     value: get(props, '$font'),
-    transform: font => getFontValue(typography[font], 'fontFamily'),
+    transform: (font) => getFontValue(typography[font], 'fontFamily'),
   });
   styles.apply({
     property: 'fontWeight',
     value: get(props, '$font'),
-    transform: font => getFontValue(typography[font], 'fontWeight'),
+    transform: (font) => getFontValue(typography[font], 'fontWeight'),
   });
   styles.apply({
     property: 'fontSize',
     value: get(props, '$font'),
-    transform: font => getFontValue(typography[font], 'fontSize'),
+    transform: (font) => getFontValue(typography[font], 'fontSize'),
   });
   styles.apply({
     property: 'lineHeight',
     value: get(props, '$font'),
-    transform: font => getFontValue(typography[font], 'lineHeight'),
+    transform: (font) => getFontValue(typography[font], 'lineHeight'),
   });
 
   styles.apply({
@@ -240,7 +240,7 @@ export const StyledBlock = styled<StyledBlockPropsT>('div', props => {
   styles.apply({
     property: 'overflowX',
     value: get(props, '$overflow'),
-    transform: overflow => {
+    transform: (overflow) => {
       if (overflow === 'scrollX') {
         return 'scroll';
       }
@@ -250,7 +250,7 @@ export const StyledBlock = styled<StyledBlockPropsT>('div', props => {
   styles.apply({
     property: 'overflowY',
     value: get(props, '$overflow'),
-    transform: overflow => {
+    transform: (overflow) => {
       if (overflow === 'scrollY') {
         return 'scroll';
       }
@@ -260,7 +260,7 @@ export const StyledBlock = styled<StyledBlockPropsT>('div', props => {
   styles.apply({
     property: 'overflow',
     value: get(props, '$overflow'),
-    transform: overflow => {
+    transform: (overflow) => {
       if (overflow !== 'scrollX' && overflow !== 'scrollY') {
         return overflow;
       }

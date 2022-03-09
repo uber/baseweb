@@ -19,7 +19,7 @@ export function Scenario() {
         value={rangeValue}
         max={24 * 4 - 1}
         min={0}
-        valueToLabel={value => {
+        valueToLabel={(value) => {
           const hour = Math.floor((value > 52 ? value - 48 : value) / 4);
           const minute = ((value % 4) * 15).toLocaleString('en-US', {
             minimumIntegerDigits: 2,

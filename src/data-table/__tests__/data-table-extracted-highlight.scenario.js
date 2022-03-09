@@ -67,7 +67,7 @@ const columns = [
   }),
 ];
 
-const initialRows = AnimalData.map(row => {
+const initialRows = AnimalData.map((row) => {
   return {
     id: row.Name,
     data: {...row, isSelected: false},
@@ -82,14 +82,14 @@ export function Scenario() {
   React.useLayoutEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
       if (event.keyCode === 74) {
-        setHighlightIndex(prev => Math.min(prev + 1, rows.length));
+        setHighlightIndex((prev) => Math.min(prev + 1, rows.length));
       }
       if (event.keyCode === 75) {
-        setHighlightIndex(prev => Math.max(prev - 1, 0));
+        setHighlightIndex((prev) => Math.max(prev - 1, 0));
       }
       if (event.keyCode === 79) {
-        setRows(prevRows => {
-          return prevRows.map(row => {
+        setRows((prevRows) => {
+          return prevRows.map((row) => {
             if (highlightedRow && row.id === highlightedRow.id) {
               return {
                 ...row,

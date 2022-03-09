@@ -28,12 +28,12 @@ import Select from '../select.js';
 
 jest.mock('../select', () => jest.fn(() => null));
 
-describe('Stateful select', function() {
-  afterAll(function() {
+describe('Stateful select', function () {
+  afterAll(function () {
     jest.restoreAllMocks();
   });
 
-  it('should provide default styled components to render', function() {
+  it('should provide default styled components to render', function () {
     const props = {
       overrides: {
         Root: StyledRoot,

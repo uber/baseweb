@@ -36,7 +36,7 @@ class StatefulContainer<T = Date> extends React.Component<
     this.state = {value, ...props.initialState};
   }
 
-  onChange: ({date: ?T | Array<T>}) => mixed = data => {
+  onChange: ({date: ?T | Array<T>}) => mixed = (data) => {
     const {date} = data;
     this.internalSetState(STATE_CHANGE_TYPE.change, {value: date});
     if (typeof this.props.onChange === 'function') {
@@ -46,7 +46,7 @@ class StatefulContainer<T = Date> extends React.Component<
 
   internalSetState(type: StateChangeTypeT, changes: ContainerStateT<T>) {
     const {stateReducer} = this.props;
-    this.setState(prevState => stateReducer(type, changes, prevState));
+    this.setState((prevState) => stateReducer(type, changes, prevState));
   }
 
   render() {

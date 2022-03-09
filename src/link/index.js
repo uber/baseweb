@@ -28,11 +28,11 @@ function LinkFocus(props) {
 
 export const StyledLink = withWrapper(
   Link,
-  Styled =>
+  (Styled) =>
     function StyledLink({animateUnderline, ...restProps}) {
       return (
         <LinkFocus>
-          {focusProps => (
+          {(focusProps) => (
             <Styled
               data-baseweb="link"
               $isAnimateUnderline={animateUnderline}

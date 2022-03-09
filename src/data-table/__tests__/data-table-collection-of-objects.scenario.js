@@ -74,7 +74,7 @@ const rows = [
   ...graphqlArrayData,
   ...graphqlArrayData,
   ...graphqlArrayData,
-].map(row => ({
+].map((row) => ({
   id: row.id,
   data: row,
 }));

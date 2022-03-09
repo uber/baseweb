@@ -24,15 +24,15 @@ import {Select} from '../../select/index.js';
 import type {PinHeadSizeT, NeedleSizeT} from '../types.js';
 
 const labelEnhancerPositions = Object.keys(LABEL_ENHANCER_POSITIONS)
-  .map(key => LABEL_ENHANCER_POSITIONS[key])
-  .map(x => ({
+  .map((key) => LABEL_ENHANCER_POSITIONS[key])
+  .map((x) => ({
     id: x,
     label: x,
   }));
 
 const badgeEnhancerSizes = Object.keys(BADGE_ENHANCER_SIZES)
-  .map(key => BADGE_ENHANCER_SIZES[key])
-  .map(x => ({
+  .map((key) => BADGE_ENHANCER_SIZES[key])
+  .map((x) => ({
     label: x,
     id: x,
   }));
@@ -63,10 +63,10 @@ export function Scenario() {
       : BadgeEnhancerIcon;
 
   Object.keys(PINHEAD_SIZES_SHAPES)
-    .map(key => PINHEAD_SIZES_SHAPES[key])
+    .map((key) => PINHEAD_SIZES_SHAPES[key])
     .forEach((pinheadSize: PinHeadSizeT, i: number) => {
       Object.keys(NEEDLE_SIZES)
-        .map(key => NEEDLE_SIZES[key])
+        .map((key) => NEEDLE_SIZES[key])
         .forEach((needleSize: NeedleSizeT, z: number) => {
           markers.push({
             id: `fixed / ${pinheadSize} / ${needleSize}`,
@@ -107,7 +107,7 @@ export function Scenario() {
       customizerOptions={[
         <Checkbox
           checked={dragging}
-          onChange={e => setDragging(e.target.checked)}
+          onChange={(e) => setDragging(e.target.checked)}
           labelPlacement={LABEL_PLACEMENT.right}
           key="dragging"
         >
@@ -115,14 +115,14 @@ export function Scenario() {
         </Checkbox>,
         <Input
           value={label}
-          onChange={e => setLabel(e.target.value)}
+          onChange={(e) => setLabel(e.target.value)}
           placeholder="Label"
           clearOnEscape
           key="label"
         />,
         <Input
           value={labelEnhancerText}
-          onChange={e => setLabelEnhancerText(e.target.value)}
+          onChange={(e) => setLabelEnhancerText(e.target.value)}
           placeholder="Label enhancer"
           clearOnEscape
           key="label-enhancer-text"
@@ -132,13 +132,13 @@ export function Scenario() {
           value={labelEnhancerPosition}
           placeholder="Select an anchor position"
           // $FlowFixMe Mismatch between general type and enum
-          onChange={params => setLabelEnhancerPosition(params.value)}
+          onChange={(params) => setLabelEnhancerPosition(params.value)}
           key="anchor-position"
         />,
 
         <Checkbox
           checked={startEnhancer}
-          onChange={e => setStartEnhancer(Boolean(e.target.checked))}
+          onChange={(e) => setStartEnhancer(Boolean(e.target.checked))}
           labelPlacement={LABEL_PLACEMENT.right}
           key="start-enhancer"
         >
@@ -146,7 +146,7 @@ export function Scenario() {
         </Checkbox>,
         <Checkbox
           checked={endEnhancer}
-          onChange={e => setEndEnhancer(Boolean(e.target.checked))}
+          onChange={(e) => setEndEnhancer(Boolean(e.target.checked))}
           labelPlacement={LABEL_PLACEMENT.right}
           key="end-enhancer"
         >
@@ -157,7 +157,7 @@ export function Scenario() {
           value={badgeEnhancerSize}
           placeholder="Select an anchor position"
           // $FlowFixMe Mismatch between general type and enum
-          onChange={params => setBadgeEnhancerSize(params.value)}
+          onChange={(params) => setBadgeEnhancerSize(params.value)}
           key="badge-enhancer-size"
         />,
       ]}

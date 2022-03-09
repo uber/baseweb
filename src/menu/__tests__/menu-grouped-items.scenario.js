@@ -39,7 +39,7 @@ export function Scenario() {
 
         Option: {
           props: {
-            getItemLabel: item => item.id,
+            getItemLabel: (item) => item.id,
           },
         },
       }}

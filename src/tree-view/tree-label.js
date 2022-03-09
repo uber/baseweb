@@ -62,7 +62,7 @@ const TreeLabel: React$ComponentType<TreeLabelT> = ({
         >
           {!isExpanded ? (
             <ThemeContext.Consumer>
-              {theme =>
+              {(theme) =>
                 theme.direction === 'rtl' ? (
                   <Left {...sharedProps} {...LeftProps} />
                 ) : (

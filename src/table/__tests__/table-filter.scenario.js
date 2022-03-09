@@ -19,7 +19,7 @@ import {
   StyledCell,
 } from '../index.js';
 
-const FilterCheckbox = props => (
+const FilterCheckbox = (props) => (
   <Checkbox
     checked={props.checked}
     onChange={props.onChange}
@@ -44,11 +44,11 @@ class FilterTable extends React.Component<any, any> {
     filters: [],
   };
 
-  FILTER_FUNCTIONS = [...new Array(10)].map((_, i) => row =>
-    row[0] % (i + 1) === 0,
+  FILTER_FUNCTIONS = [...new Array(10)].map(
+    (_, i) => (row) => row[0] % (i + 1) === 0,
   );
 
-  onFilter = index => {
+  onFilter = (index) => {
     const isActive = !!this.state.filters[index];
 
     const filters = [...this.state.filters];

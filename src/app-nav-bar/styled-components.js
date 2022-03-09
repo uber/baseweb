@@ -40,7 +40,7 @@ const StyledButton = styled<{$isFocusVisible: boolean}>(
   }),
 );
 
-export const StyledRoot = styled<{}>('div', props => {
+export const StyledRoot = styled<{}>('div', (props) => {
   const {$theme} = props;
   return {
     ...$theme.typography.font300,
@@ -58,7 +58,7 @@ export const StyledSubnavContainer = styled<{}>('div', ({$theme}) => {
   };
 });
 
-export const StyledSpacing = styled<{}>('div', props => {
+export const StyledSpacing = styled<{}>('div', (props) => {
   const {$theme} = props;
   return {
     boxSizing: 'border-box',
@@ -112,7 +112,7 @@ export const StyledMainMenuItem = styled<{
   $active?: boolean,
   $isFocusVisible: boolean,
   $kind: $Values<typeof KIND>,
-}>('div', props => {
+}>('div', (props) => {
   const {
     $active,
     $isFocusVisible,

@@ -10,15 +10,15 @@ import {render, getByTestId, getByText} from '@testing-library/react';
 
 import {HeaderNavigation} from '../index.js';
 
-describe('Stateless header navigation', function() {
-  it('should render component', function() {
+describe('Stateless header navigation', function () {
+  it('should render component', function () {
     const {container} = render(
       <HeaderNavigation>hello world</HeaderNavigation>,
     );
     getByText(container, 'hello world');
   });
 
-  it('applies root overrides', function() {
+  it('applies root overrides', function () {
     const {container} = render(
       <HeaderNavigation overrides={{Root: {props: {'data-testid': 'root'}}}}>
         hello world

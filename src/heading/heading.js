@@ -23,7 +23,7 @@ const FONTS = [
 
 const Heading = ({styleLevel, ...restProps}: HeadingPropsT) => (
   <LevelContext.Consumer>
-    {level => {
+    {(level) => {
       if (level === 0) {
         throw new Error(
           'Heading component must be a descendant of HeadingLevel component.',

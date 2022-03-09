@@ -85,8 +85,8 @@ export type MenuAdapterPropsT = {
   ...PropsT,
   // eslint-disable-next-line flowtype/no-weak-types
   item?: any,
-  onMouseEnter?: MouseEvent => mixed,
-  onClick?: MouseEvent => mixed,
+  onMouseEnter?: (MouseEvent) => mixed,
+  onClick?: (MouseEvent) => mixed,
   $size?: string,
   $isHighlighted?: boolean,
   $disabled?: boolean,

@@ -22,7 +22,7 @@ export function getStyledLocalImportName(program: any) {
   program.traverse({
     ImportDeclaration(path) {
       if (path.get('source').node.value === 'baseui') {
-        path.get('specifiers').forEach(specifier => {
+        path.get('specifiers').forEach((specifier) => {
           if (specifier.get('imported').node.name === 'styled') {
             localStyledName = specifier.get('local').node.name;
           }

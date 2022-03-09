@@ -37,7 +37,7 @@ const excludedFromChecks = [
   'isValid',
 ];
 
-const getHelpersForDateObject = date => {
+const getHelpersForDateObject = (date) => {
   if (date instanceof Date) {
     return dateHelpers;
   }
@@ -50,24 +50,24 @@ const getHelpersForDateObject = date => {
   return dateHelpers;
 };
 
-const getYearForDate = date => {
+const getYearForDate = (date) => {
   const currentHelpers = getHelpersForDateObject(date);
   return currentHelpers.getYear(date);
 };
 
-const defaultGetComparisonValue = value => {
+const defaultGetComparisonValue = (value) => {
   if (value instanceof Date) {
     return dateHelpers.format(value, 'fullDateTime');
   }
   return value;
 };
-const isLocale = val => {
+const isLocale = (val) => {
   return val && val.code && val.match;
 };
 
 const convertValue = ({value, convertDate, convertLocale}) => {
   if (Array.isArray(value)) {
-    return value.map(childValue =>
+    return value.map((childValue) =>
       convertValue({value: childValue, convertDate, convertLocale}),
     );
   }
@@ -98,9 +98,9 @@ const adapterVersions = [
   {
     name: 'moment',
     helpers: momentHelpers,
-    convertDate: date => moment(date),
-    convertLocale: locale => locale.code,
-    getComparisonValue: value => {
+    convertDate: (date) => moment(date),
+    convertLocale: (locale) => locale.code,
+    getComparisonValue: (value) => {
       if (moment.isMoment(value)) {
         return momentHelpers.format(value, 'fullDateTime', 'en');
       }
@@ -127,12 +127,12 @@ const getDiffereningAdapterMap = (runAdapter, value) => {
     const {
       helpers,
       getComparisonValue,
-      convertDate = value => value,
-      convertLocale = value => value,
+      convertDate = (value) => value,
+      convertLocale = (value) => value,
       name,
     } = version;
-    const convertArgs = args =>
-      args.map(arg => convertValue({value: arg, convertDate, convertLocale}));
+    const convertArgs = (args) =>
+      args.map((arg) => convertValue({value: arg, convertDate, convertLocale}));
     const currentValue = getComparisonValue(runAdapter(helpers, convertArgs));
     if (currentValue !== comparisonValue) {
       return {
@@ -230,7 +230,7 @@ describe('Datepicker utils', () => {
       const filterMonthsList = [9, 10, 11];
       const monthItems = getFilteredMonthItems({
         filterMonthsList,
-        formatMonthLabel: month => monthLabels[month],
+        formatMonthLabel: (month) => monthLabels[month],
       });
 
       expect(monthItems).toEqual([
@@ -252,7 +252,7 @@ describe('Datepicker utils', () => {
       const filterMonthsList = [6, 7, 8, 9];
       const monthItems = getFilteredMonthItems({
         filterMonthsList,
-        formatMonthLabel: month => monthLabels[month],
+        formatMonthLabel: (month) => monthLabels[month],
       });
 
       expect(monthItems).toEqual([
@@ -593,7 +593,7 @@ describe('Datepicker utils', () => {
             maxDate: undefined,
             excludeDates: undefined,
             includeDates: undefined,
-            filterDate: date => {
+            filterDate: (date) => {
               return getYearForDate(date) === 2019;
             },
           }),
@@ -604,7 +604,7 @@ describe('Datepicker utils', () => {
             maxDate: undefined,
             excludeDates: undefined,
             includeDates: undefined,
-            filterDate: date => {
+            filterDate: (date) => {
               return getYearForDate(date) === 2020;
             },
           }),

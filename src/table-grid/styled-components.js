@@ -17,7 +17,7 @@ import {
 const StyledTableElement = withStyle<
   typeof FlexStyledTable,
   {$gridTemplateColumns: string},
->(FlexStyledTable, props => {
+>(FlexStyledTable, (props) => {
   return {
     display: 'grid',
     gridTemplateColumns: props.$gridTemplateColumns,
@@ -30,7 +30,7 @@ const StyledTableElement = withStyle<
 
 export const StyledTable = withWrapper(
   StyledTableElement,
-  StyledComponent =>
+  (StyledComponent) =>
     function StyledTable(props) {
       return <StyledComponent data-baseweb="table-grid" {...props} />;
     },
@@ -57,7 +57,7 @@ export const StyledHeadCell = withStyle<
 export const StyledBodyCell = withStyle<
   typeof FlexStyledBodyCell,
   {$gridColumn?: string, $gridRow?: string, $isFocusVisible?: boolean},
->(FlexStyledBodyCell, props => {
+>(FlexStyledBodyCell, (props) => {
   return {
     display: 'block',
     flex: 'unset',

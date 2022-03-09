@@ -43,7 +43,7 @@ export function Scenario() {
         message="09.06.2020.CSV was uploaded"
         startEnhancer={({size}) => <Upload size={size} />}
         actionMessage="Show in Finder"
-        actionOnClick={event => console.log(event)}
+        actionOnClick={(event) => console.log(event)}
         focus={false}
       />
 

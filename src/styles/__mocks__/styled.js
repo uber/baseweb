@@ -24,7 +24,7 @@ type PropsT = {
 type StateT = {styles?: {}};
 
 const MOCK_THEME = createMockTheme(LightTheme);
-const IDENTITY = x => x;
+const IDENTITY = (x) => x;
 
 export function useStyletron() {
   function css(styles: Object) {
@@ -106,8 +106,9 @@ export const withStyle = styled;
 
 export function withWrapper(
   StyledElement: StyletronComponent<any>,
-  wrapperFn: (StyletronComponent<any>) => any => any,
+  wrapperFn: (StyletronComponent<any>) => (any) => any,
 ) {
+  // eslint-disable-next-line react/display-name
   return React.forwardRef<any, any>((props, ref) =>
     wrapperFn(StyledElement)({ref: ref, ...props, $theme: MOCK_THEME}),
   );

@@ -83,7 +83,7 @@ export default class Day<T = Date> extends React.Component<
       : this.props.month;
   };
 
-  onSelect: T => void = selectedDate => {
+  onSelect: (T) => void = (selectedDate) => {
     const {range, value} = this.props;
     let date;
     if (Array.isArray(value) && range) {
@@ -221,7 +221,7 @@ export default class Day<T = Date> extends React.Component<
     }
   }
 
-  clampToDayStart: T => T = dt => {
+  clampToDayStart: (T) => T = (dt) => {
     const {setSeconds, setMinutes, setHours} = this.dateHelpers;
     return setSeconds(setMinutes(setHours(dt, 0), 0), 0);
   };
@@ -386,7 +386,7 @@ export default class Day<T = Date> extends React.Component<
         {(locale: LocaleT) => (
           <Day
             aria-label={this.getAriaLabel(sharedProps, locale)}
-            ref={dayElm => {
+            ref={(dayElm) => {
               this.dayElm = dayElm;
             }}
             role="gridcell"

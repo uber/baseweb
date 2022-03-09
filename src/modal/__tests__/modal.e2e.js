@@ -22,7 +22,7 @@ const selectors = {
   backdrop: '[data-e2e="backdrop"]',
 };
 
-const optionAtPosition = position =>
+const optionAtPosition = (position) =>
   `${selectors.selectDropDown} ${selectors.dropDownOption}:nth-child(${position})`;
 
 describe('modal', () => {
@@ -39,7 +39,7 @@ describe('modal', () => {
 
     const cancelButtonIsFocused = await page.$eval(
       selectors.cancelButton,
-      cancelButton => cancelButton === document.activeElement,
+      (cancelButton) => cancelButton === document.activeElement,
     );
 
     // first focusable element (cancel button) should be focused
@@ -50,7 +50,7 @@ describe('modal', () => {
 
     const closeButtonIsFocused = await page.$eval(
       selectors.closeButton,
-      closeButton => closeButton === document.activeElement,
+      (closeButton) => closeButton === document.activeElement,
     );
 
     // focus should be trapped in modal and go to close button
@@ -71,7 +71,7 @@ describe('modal', () => {
 
     const openIsFocused = await page.$eval(
       selectors.openModal,
-      button => button === document.activeElement,
+      (button) => button === document.activeElement,
     );
     expect(openIsFocused).toBe(true);
   });
@@ -90,7 +90,7 @@ describe('modal', () => {
 
     const selectedValue = await page.$eval(
       selectors.selectedList,
-      select => select.textContent,
+      (select) => select.textContent,
     );
     expect(selectedValue).toBe('AliceBlue');
   });

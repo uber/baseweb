@@ -367,10 +367,8 @@ class MenuStatefulContainerInner extends React.Component<
       this.refList[index] = itemRef;
       this.optionIds[index] = this.props.uidSeed(index);
     }
-    const {
-      disabled: disabledVal,
-      ...requiredItemProps
-    } = this.props.getRequiredItemProps(item, index);
+    const {disabled: disabledVal, ...requiredItemProps} =
+      this.props.getRequiredItemProps(item, index);
     const disabled =
       typeof disabledVal === 'boolean' ? disabledVal : !!item.disabled;
     return {
@@ -454,7 +452,7 @@ class MenuStatefulContainerInner extends React.Component<
         highlightedIndex: this.state.highlightedIndex,
         isFocused: this.state.isFocused,
         handleKeyDown: this.props.keyboardControlNode.current
-          ? event => {}
+          ? (event) => {}
           : this.onKeyDown,
         focusMenu: this.focusMenu,
         unfocusMenu: this.unfocusMenu,

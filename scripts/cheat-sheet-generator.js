@@ -63,7 +63,7 @@ function parseFileToOutline(code) {
 
         if (t.isObjectTypeAnnotation(path.node.declaration.right)) {
           typeNode.children = path.node.declaration.right.properties.map(
-            property => {
+            (property) => {
               if (t.isObjectTypeProperty(property)) {
                 if (t.isLiteral(property.key)) {
                   return {
@@ -97,7 +97,7 @@ function generateCheatSheet() {
   const outlines = [];
 
   const filepaths = globby.sync(['src/**/types.js']);
-  filepaths.map(file => {
+  filepaths.map((file) => {
     const from = path.join(__dirname, '../', file);
     const source = fs.readFileSync(from, 'utf-8');
     const definitions = parseFileToOutline(source);

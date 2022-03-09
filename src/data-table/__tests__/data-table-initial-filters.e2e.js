@@ -54,8 +54,8 @@ describe('data table initial filters', () => {
     const popover = await openFilterAtIndex(page, 0);
     const checkboxes = await popover.$$('label[data-baseweb="checkbox"]');
     await checkboxes[1].click();
-    await popover.$$eval('button', items => {
-      const button = items.find(item => item.textContent === 'Apply');
+    await popover.$$eval('button', (items) => {
+      const button = items.find((item) => item.textContent === 'Apply');
       return button.click();
     });
 

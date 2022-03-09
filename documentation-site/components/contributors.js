@@ -18,7 +18,7 @@ type Contributor = {
   type: 'Bot' | 'User',
 };
 
-const isUser = user => user.type === 'User';
+const isUser = (user) => user.type === 'User';
 
 function Contributors(props: {contributors: Contributor[]}) {
   if (!props.contributors.length) {
@@ -31,7 +31,7 @@ function Contributors(props: {contributors: Contributor[]}) {
     <React.Fragment>
       <H2>Thanks to our {users.length} contributors</H2>
       <Block display="flex" flexWrap>
-        {users.map(contributor => (
+        {users.map((contributor) => (
           <Block
             as="a"
             href={contributor.html_url}

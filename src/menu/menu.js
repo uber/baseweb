@@ -105,7 +105,7 @@ export default function Menu(props: StatelessMenuPropsT) {
     [[], -1],
   );
 
-  const isEmpty = optgroups.every(optgroup => !groupedItems[optgroup].length);
+  const isEmpty = optgroups.every((optgroup) => !groupedItems[optgroup].length);
 
   return (
     <LocaleContext.Consumer>
@@ -120,7 +120,7 @@ export default function Menu(props: StatelessMenuPropsT) {
           onMouseOver={focusMenu}
           onFocus={forkFocus({onFocus: focusMenu}, handleFocus)}
           onBlur={forkBlur({onBlur: unfocusMenu}, handleBlur)}
-          onKeyDown={event => {
+          onKeyDown={(event) => {
             if (props.isFocused) {
               handleKeyDown(event);
             }

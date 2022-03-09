@@ -17,7 +17,7 @@ export function Scenario() {
       autoFocus
       mask="9999/99/99"
       value={value}
-      onChange={e => setValue(e.target.value)}
+      onChange={(e) => setValue(e.target.value)}
     />
   );
 }

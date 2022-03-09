@@ -191,7 +191,7 @@ const Truncate = styled('div', {
 });
 
 type RowPropsT = {|
-  getCellProps: number => {},
+  getCellProps: (number) => {},
   striped: boolean,
   row: RowT,
 |};
@@ -287,7 +287,7 @@ export function Scenario() {
           const striped = rowIndex % 2 === 0;
           return (
             <Row
-              getCellProps={columnIndex =>
+              getCellProps={(columnIndex) =>
                 getCellProps(columnIndex, rowIndex + 1)
               }
               key={rowIndex}

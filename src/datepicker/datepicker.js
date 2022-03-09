@@ -34,9 +34,8 @@ const combineSeparatedInputs = (
   separatedInput,
 ) => {
   let inputValue = newInputValue;
-  const [prevStartDate = '', prevEndDate = ''] = prevCombinedInputValue.split(
-    INPUT_DELIMITER,
-  );
+  const [prevStartDate = '', prevEndDate = ''] =
+    prevCombinedInputValue.split(INPUT_DELIMITER);
   if (separatedInput === 'startDate' && prevEndDate) {
     inputValue = `${inputValue} – ${prevEndDate}`;
   }
@@ -81,7 +80,7 @@ export default class Datepicker<T = Date> extends React.Component<
     };
   }
 
-  onChange: ({date: ?T | Array<T>}) => void = data => {
+  onChange: ({date: ?T | Array<T>}) => void = (data) => {
     let isOpen = false;
     let isPseudoFocused = false;
     let calendarFocused = false;
@@ -144,7 +143,7 @@ export default class Datepicker<T = Date> extends React.Component<
   };
 
   formatDate(date: ?T | Array<T>, formatString: string) {
-    const format = date => {
+    const format = (date) => {
       if (formatString === DEFAULT_DATE_FORMAT) {
         return this.dateHelpers.format(date, 'slashDate', this.props.locale);
       }
@@ -155,7 +154,7 @@ export default class Datepicker<T = Date> extends React.Component<
     } else if (Array.isArray(date) && !date[0] && !date[1]) {
       return '';
     } else if (Array.isArray(date)) {
-      return date.map(day => format(day)).join(INPUT_DELIMITER);
+      return date.map((day) => format(day)).join(INPUT_DELIMITER);
     } else {
       return format(date);
     }
@@ -278,7 +277,7 @@ export default class Datepicker<T = Date> extends React.Component<
 
     this.setState({inputValue});
 
-    const parseDateString = dateString => {
+    const parseDateString = (dateString) => {
       if (formatString === DEFAULT_DATE_FORMAT) {
         return this.dateHelpers.parse(
           dateString,
@@ -297,9 +296,8 @@ export default class Datepicker<T = Date> extends React.Component<
       this.props.range &&
       typeof this.props.displayValueAtRangeIndex !== 'number'
     ) {
-      const [left, right] = this.normalizeDashes(inputValue).split(
-        INPUT_DELIMITER,
-      );
+      const [left, right] =
+        this.normalizeDashes(inputValue).split(INPUT_DELIMITER);
 
       let startDate = this.dateHelpers.date(left);
       let endDate = this.dateHelpers.date(right);
@@ -454,7 +452,7 @@ export default class Datepicker<T = Date> extends React.Component<
         ? endDate
         : this.state.inputValue;
 
-    const onChange = event => this.handleInputChange(event, separatedInput);
+    const onChange = (event) => this.handleInputChange(event, separatedInput);
 
     return (
       <InputComponent
@@ -515,7 +513,7 @@ export default class Datepicker<T = Date> extends React.Component<
 
     return (
       <LocaleContext.Consumer>
-        {locale => (
+        {(locale) => (
           <React.Fragment>
             <PopoverComponent
               focusLock={false}
@@ -598,28 +596,30 @@ export default class Datepicker<T = Date> extends React.Component<
                 clipPath: 'inset(100%)',
               }}
             >
-              {// No date selected
-              !this.props.value ||
-              (Array.isArray(this.props.value) && !this.props.value.length)
-                ? ''
-                : // Date selected in a non-range picker
-                !Array.isArray(this.props.value)
-                ? getInterpolatedString(locale.datepicker.selectedDate, {
-                    date: this.state.inputValue || '',
-                  })
-                : // Start and end dates are selected in a range picker
-                this.props.value.length > 1
-                ? getInterpolatedString(locale.datepicker.selectedDateRange, {
-                    startDate: this.formatDisplayValue(this.props.value[0]),
-                    endDate: this.formatDisplayValue(
-                      // $FlowFixMe
-                      this.props.value[1],
-                    ),
-                  })
-                : // A single date selected in a range picker
-                  `${getInterpolatedString(locale.datepicker.selectedDate, {
-                    date: this.formatDisplayValue(this.props.value[0]),
-                  })} ${locale.datepicker.selectSecondDatePrompt}`}
+              {
+                // No date selected
+                !this.props.value ||
+                (Array.isArray(this.props.value) && !this.props.value.length)
+                  ? ''
+                  : // Date selected in a non-range picker
+                  !Array.isArray(this.props.value)
+                  ? getInterpolatedString(locale.datepicker.selectedDate, {
+                      date: this.state.inputValue || '',
+                    })
+                  : // Start and end dates are selected in a range picker
+                  this.props.value.length > 1
+                  ? getInterpolatedString(locale.datepicker.selectedDateRange, {
+                      startDate: this.formatDisplayValue(this.props.value[0]),
+                      endDate: this.formatDisplayValue(
+                        // $FlowFixMe
+                        this.props.value[1],
+                      ),
+                    })
+                  : // A single date selected in a range picker
+                    `${getInterpolatedString(locale.datepicker.selectedDate, {
+                      date: this.formatDisplayValue(this.props.value[0]),
+                    })} ${locale.datepicker.selectSecondDatePrompt}`
+              }
             </p>
           </React.Fragment>
         )}

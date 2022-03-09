@@ -14,7 +14,7 @@ const globby = require('globby');
 const path = require('path');
 
 const files = globby.sync(['src/**/*.ts']);
-files.forEach(file => {
+files.forEach((file) => {
   const from = path.join(__dirname, '../', file);
   const to = path.join(__dirname, '../', file.replace('src', 'dist'));
   fs.copyFileSync(from, to);

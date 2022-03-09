@@ -49,10 +49,10 @@ describe('PinCode', () => {
     await page.keyboard.press('2');
     await page.keyboard.press('3');
     await page.keyboard.press('4');
-    expect(await page.evaluate(el => el.value, inputs[0])).toBe('1');
-    expect(await page.evaluate(el => el.value, inputs[1])).toBe('2');
-    expect(await page.evaluate(el => el.value, inputs[2])).toBe('3');
-    expect(await page.evaluate(el => el.value, inputs[3])).toBe('4');
+    expect(await page.evaluate((el) => el.value, inputs[0])).toBe('1');
+    expect(await page.evaluate((el) => el.value, inputs[1])).toBe('2');
+    expect(await page.evaluate((el) => el.value, inputs[2])).toBe('3');
+    expect(await page.evaluate((el) => el.value, inputs[3])).toBe('4');
   });
 
   it('transfers focus to next input when a digit is entered', async () => {
@@ -68,18 +68,18 @@ describe('PinCode', () => {
     const input = await page.$(selectors.input);
     await page.focus(selectors.input);
     await page.keyboard.press('a');
-    expect(await page.evaluate(el => el.value, input)).toBe('');
+    expect(await page.evaluate((el) => el.value, input)).toBe('');
     await page.keyboard.press('1');
-    expect(await page.evaluate(el => el.value, input)).toBe('1');
+    expect(await page.evaluate((el) => el.value, input)).toBe('1');
   });
 
   it('deleting empty input transfers focus to previous input & clears that input', async () => {
     const inputs = await page.$$(selectors.input);
     await page.focus(selectors.input);
     await page.keyboard.press('1');
-    expect(await page.evaluate(el => el.value, inputs[0])).toBe('1');
+    expect(await page.evaluate((el) => el.value, inputs[0])).toBe('1');
     await page.keyboard.press('Backspace');
-    expect(await page.evaluate(el => el.value, inputs[0])).toBe('');
+    expect(await page.evaluate((el) => el.value, inputs[0])).toBe('');
     let activeElement = await findActiveElement(page);
     let isEqual = await compareElements(page, inputs[0], activeElement);
     expect(isEqual).toBe(true);
@@ -97,12 +97,12 @@ describe('PinCode', () => {
     // verify that cursor position does not matter by entering text on left side
     await page.keyboard.press('ArrowLeft'); // ensures no text is selected
     await page.keyboard.press('2');
-    expect(await page.evaluate(el => el.value, input)).toBe('2');
+    expect(await page.evaluate((el) => el.value, input)).toBe('2');
     // verify that cursor position does not matter by entering text on right side
     await page.focus(selectors.input);
     await page.keyboard.press('ArrowRight'); // ensures no text is selected
     await page.keyboard.press('3');
-    expect(await page.evaluate(el => el.value, input)).toBe('3');
+    expect(await page.evaluate((el) => el.value, input)).toBe('3');
   });
 });
 
@@ -119,13 +119,13 @@ describe('PinCodeMask', () => {
     await page.keyboard.press('2');
     await page.keyboard.press('3');
     await page.keyboard.press('4');
-    expect(await page.evaluate(el => el.value, inputs[0])).toBe('*');
-    expect(await page.evaluate(el => el.value, inputs[1])).toBe('*');
-    expect(await page.evaluate(el => el.value, inputs[2])).toBe('*');
-    expect(await page.evaluate(el => el.value, inputs[3])).toBe('*');
+    expect(await page.evaluate((el) => el.value, inputs[0])).toBe('*');
+    expect(await page.evaluate((el) => el.value, inputs[1])).toBe('*');
+    expect(await page.evaluate((el) => el.value, inputs[2])).toBe('*');
+    expect(await page.evaluate((el) => el.value, inputs[3])).toBe('*');
 
     const pinCodeValue = await page.$(selectors.pinCodeValue);
-    expect(await page.evaluate(el => el.textContent, pinCodeValue)).toBe(
+    expect(await page.evaluate((el) => el.textContent, pinCodeValue)).toBe(
       'password:1 2 3 4 ',
     );
   });

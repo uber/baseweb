@@ -26,7 +26,7 @@ function annotateBuild(body, style = 'info') {
 }
 
 function wait(ms) {
-  return new Promise(res => setTimeout(res, ms));
+  return new Promise((res) => setTimeout(res, ms));
 }
 
 async function createBuild(token, version) {

@@ -17,7 +17,7 @@ import {StatefulTabs, Tab} from '../index.js';
 import {STATE_CHANGE_TYPE} from '../constants.js';
 
 describe('StatefulTabs', () => {
-  const Component = props => (
+  const Component = (props) => (
     <StatefulTabs {...props}>
       <Tab title="Tab Link 1">Tab 1 content</Tab>
       <Tab title="Tab Link 2">Tab 2 content</Tab>

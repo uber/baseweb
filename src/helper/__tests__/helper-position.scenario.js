@@ -19,7 +19,7 @@ export function Scenario() {
   return (
     <div>
       {/* eslint-disable-next-line jsx-a11y/no-onchange */}
-      <select value={index} onChange={e => setIndex(Number(e.target.value))}>
+      <select value={index} onChange={(e) => setIndex(Number(e.target.value))}>
         <option value={-1}>Show All</option>
         {Object.keys(PLACEMENT).map((placement, i) => {
           if (placement === 'auto') {

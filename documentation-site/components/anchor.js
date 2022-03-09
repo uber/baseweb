@@ -19,7 +19,7 @@ const Wrapper = themedStyled('a', ({$isVisible, $theme}) => ({
   },
 }));
 
-const elementToSize = element => {
+const elementToSize = (element) => {
   switch (element) {
     case 'h1':
       return 22;

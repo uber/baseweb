@@ -64,6 +64,7 @@ const ActionButton = React.forwardRef(
     );
   },
 );
+ActionButton.displayName = 'ActionButton';
 
 export default function SnackbarElement({
   actionMessage,
@@ -127,13 +128,11 @@ export default function SnackbarElement({
     overrides.Message,
     StyledMessage,
   );
-  const [
-    WrapActionButtonContainer,
-    wrapActionButtonContainerProps,
-  ] = getOverrides(
-    overrides.WrapActionButtonContainer,
-    StyledWrapActionButtonContainer,
-  );
+  const [WrapActionButtonContainer, wrapActionButtonContainerProps] =
+    getOverrides(
+      overrides.WrapActionButtonContainer,
+      StyledWrapActionButtonContainer,
+    );
 
   const prevFocusRef = React.useRef(null);
   const actionButtonRef = React.useRef(null);

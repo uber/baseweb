@@ -14,7 +14,7 @@ function StatefulTooltip(props: StatefulTooltipPropsT) {
   const {children, ...restProps} = props;
   return (
     <StatefulContainer {...restProps}>
-      {tooltipProps => <Tooltip {...tooltipProps}>{children}</Tooltip>}
+      {(tooltipProps) => <Tooltip {...tooltipProps}>{children}</Tooltip>}
     </StatefulContainer>
   );
 }
