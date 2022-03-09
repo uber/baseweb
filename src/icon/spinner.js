@@ -26,7 +26,7 @@ function Spinner(props: IconPropsT, ref) {
     overrides && overrides.Svg ? toObjectOverride(overrides.Svg) : {},
   );
   return (
-    // $FlowFixMe[cannot-spread-inexact]
+    // $FlowExpectedError[cannot-spread-inexact]
     <Icon
       viewBox="0 0 24 24"
       ref={ref}

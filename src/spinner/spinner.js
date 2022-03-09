@@ -50,7 +50,7 @@ class Spinner extends React.Component<SpinnerPropsT> {
       StyledActivePath,
     );
     return (
-      // $FlowFixMe[cannot-spread-inexact]
+      // $FlowExpectedError[cannot-spread-inexact]
       <Icon
         aria-label={'Loading'}
         data-baseweb="spinner"

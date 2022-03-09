@@ -10,7 +10,7 @@ import * as React from 'react';
 
 import {MODE, STATE_CHANGE_TYPE} from './constants.js';
 
-import type {StatefulContainerPropsT, StateT, PropsT} from './types.js';
+import type {StatefulContainerPropsT, StateT} from './types.js';
 
 // handles the case where selected = 0
 function isSelectedDefined(selected) {

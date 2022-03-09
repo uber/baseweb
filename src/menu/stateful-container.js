@@ -43,7 +43,9 @@ const DEFAULT_PROPS = {
 };
 
 class MenuStatefulContainerInner extends React.Component<
-  StatefulContainerPropsT & {uidSeed: (item: number) => string},
+  StatefulContainerPropsT & {uidSeed: (item: number) => string} & {
+    getRequiredItemProps: GetRequiredItemPropsFnT,
+  },
   StatefulContainerStateT,
 > {
   static defaultProps = DEFAULT_PROPS;
@@ -368,10 +370,9 @@ class MenuStatefulContainerInner extends React.Component<
       this.optionIds[index] = this.props.uidSeed(index);
     }
     const {disabled: disabledVal, ...requiredItemProps} =
-      this.getRequiredItemProps(item, index);
+      this.props.getRequiredItemProps(item, index);
     const disabled =
       typeof disabledVal === 'boolean' ? disabledVal : !!item.disabled;
-    //$FlowFixMe[cannot-spread-inexact]
     return {
       id: requiredItemProps.id || this.optionIds[index],
       disabled,
