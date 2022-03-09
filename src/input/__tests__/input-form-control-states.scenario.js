@@ -24,9 +24,9 @@ export function Scenario() {
             Root: {
               style: ({$positive, $error}) => {
                 console.log(
-                  `Example 1 ${
-                    $positive ? 'positive' : 'error'
-                  } value: ${$positive || $error}`,
+                  `Example 1 ${$positive ? 'positive' : 'error'} value: ${
+                    $positive || $error
+                  }`,
                 );
 
                 return {};
@@ -42,9 +42,9 @@ export function Scenario() {
             Root: {
               style: ({$positive, $error}) => {
                 console.log(
-                  `Example 1 ${
-                    $positive ? 'positive' : 'error'
-                  } value: ${$positive || $error}`,
+                  `Example 1 ${$positive ? 'positive' : 'error'} value: ${
+                    $positive || $error
+                  }`,
                 );
 
                 console.log($error);

@@ -14,7 +14,7 @@ export default function StatefulPanel(props: StatefulPanelPropsT) {
   const {children, ...restProps} = props;
   return (
     <StatefulContainer {...restProps}>
-      {componentProps => <Panel {...componentProps}>{children}</Panel>}
+      {(componentProps) => <Panel {...componentProps}>{children}</Panel>}
     </StatefulContainer>
   );
 }

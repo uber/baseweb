@@ -24,10 +24,8 @@ const {
 
 // Derive some useful constants
 const ORIGINAL_BRANCH_NAME = getOriginalBranchName();
-const [
-  ORIGINAL_REPOSITORY_OWNER,
-  ORIGINAL_REPOSITORY_NAME,
-] = getRepositoryOwnerAndNameFromURL(BUILDKITE_PULL_REQUEST_REPO);
+const [ORIGINAL_REPOSITORY_OWNER, ORIGINAL_REPOSITORY_NAME] =
+  getRepositoryOwnerAndNameFromURL(BUILDKITE_PULL_REQUEST_REPO);
 const ORIGINAL_COMMIT_SHORT_HASH = BUILDKITE_COMMIT.substring(0, 7); // First 7 chars makes it linkable in GitHub
 
 // Derive a consistent and unique snapshot branch name
@@ -38,7 +36,7 @@ const octokit = Octokit({
   auth: GITHUB_BOT_AUTH_TOKEN,
 });
 
-process.on('unhandledRejection', function(err) {
+process.on('unhandledRejection', function (err) {
   log(`The job has failed, but it is not a failure.`);
   throw err;
 });
@@ -331,7 +329,7 @@ function pushChangesToGitHub() {
 function someSnapshotsWereUpdated() {
   const stdout = execSync(`git status --porcelain`).toString();
   const changedFiles = stdout.split(`\n`);
-  const updatedSnapshots = changedFiles.filter(s =>
+  const updatedSnapshots = changedFiles.filter((s) =>
     s.match(/vrt\/__image_snapshots__\//),
   );
   const result = updatedSnapshots.length > 0;

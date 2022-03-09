@@ -11,7 +11,7 @@ function groupedOptionsToArray(groupedOptions: OptgroupsT): ValueT {
   return Object.keys(groupedOptions).reduce((arr, optgroup) => {
     const optgroupOptions = groupedOptions[optgroup];
     return arr.concat(
-      optgroupOptions.map(option => {
+      optgroupOptions.map((option) => {
         return {
           ...option,
           __optgroup: optgroup,

@@ -21,7 +21,7 @@ const selectors = {
   dropDownOption: '[role="option"]',
 };
 
-const optionAtPosition = position =>
+const optionAtPosition = (position) =>
   `${selectors.selectDropDown} ${selectors.dropDownOption}:nth-child(${position})`;
 
 describe('drawer', () => {
@@ -41,7 +41,7 @@ describe('drawer', () => {
 
     const closeButtonIsFocused = await page.$eval(
       selectors.closeButton,
-      closeButton => closeButton === document.activeElement,
+      (closeButton) => closeButton === document.activeElement,
     );
 
     // focus should be trapped in drawer and go to close button
@@ -59,7 +59,7 @@ describe('drawer', () => {
 
     const openIsFocused = await page.$eval(
       selectors.openDrawer,
-      button => button === document.activeElement,
+      (button) => button === document.activeElement,
     );
     expect(openIsFocused).toBe(true);
   });
@@ -78,7 +78,7 @@ describe('drawer', () => {
 
     const selectedValue = await page.$eval(
       selectors.selectedList,
-      select => select.textContent,
+      (select) => select.textContent,
     );
     expect(selectedValue).toBe('AliceBlue');
   });

@@ -21,7 +21,7 @@ import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 
 // Previously, Tag used a hardcoded SVG as its 'close' icon. Replacing it with
 // Delete requires modifying Delete's viewbox to prevent visual regressions.
-const ModifiedViewBoxDeleteIcon = props => (
+const ModifiedViewBoxDeleteIcon = (props) => (
   <DeleteIcon viewBox="5 5 13.186 13.186" {...props} />
 );
 
@@ -35,8 +35,8 @@ const Tag = React.forwardRef<PropsT, HTMLSpanElement>((props, ref) => {
     isFocused = false,
     isHovered = false,
     kind = KIND.primary,
-    onActionClick = event => {},
-    onActionKeyDown = event => {},
+    onActionClick = (event) => {},
+    onActionKeyDown = (event) => {},
     onClick = null,
     onKeyDown = null,
     overrides = {},
@@ -96,7 +96,7 @@ const Tag = React.forwardRef<PropsT, HTMLSpanElement>((props, ref) => {
   const actionHandlers = disabled
     ? {}
     : {
-        onClick: event => {
+        onClick: (event) => {
           // we don't want onClick to be called when the close icon is clicked
           event.stopPropagation();
           onActionClick(event);

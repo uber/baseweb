@@ -37,7 +37,7 @@ describe('EmoticonRating', () => {
   it('sets correct accessibility attributes to radio elements when read only', () => {
     const {container} = render(<EmoticonRating value={2} readOnly />);
     const items = getAllByRole(container, 'radio');
-    items.forEach(item => {
+    items.forEach((item) => {
       expect(item.getAttribute('aria-disabled')).toBe('true');
     });
   });

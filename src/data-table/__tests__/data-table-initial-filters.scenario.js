@@ -49,7 +49,7 @@ export function Scenario() {
           onFilterAdd={(title, params) =>
             setAddLog([...addLog, [title, params]])
           }
-          onFilterRemove={title => setRemoveLog([...removeLog, title])}
+          onFilterRemove={(title) => setRemoveLog([...removeLog, title])}
           columns={columns}
           rows={rows}
         />
@@ -70,7 +70,7 @@ export function Scenario() {
         </ul>
         remove log
         <ul>
-          {removeLog.map(title => (
+          {removeLog.map((title) => (
             <li data-log="remove" key={title}>
               remove {title}
             </li>

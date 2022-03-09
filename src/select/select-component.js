@@ -47,8 +47,8 @@ function Noop() {
   return null;
 }
 
-const isClick = event => event.type === 'click';
-const isLeftClick = event =>
+const isClick = (event) => event.type === 'click';
+const isLeftClick = (event) =>
   event.button !== null && event.button !== undefined && event.button === 0;
 
 const containsNode = (parent, child) => {
@@ -252,7 +252,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
       // the provided text highlights rather than position's the cursor at the end of the input.
       if (this.input) this.input.value = '';
 
-      this.setState(prev => ({
+      this.setState((prev) => ({
         isOpen: !this.focusAfterClear && !prev.isOpen,
         isPseudoFocused: false,
       }));
@@ -360,7 +360,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
         }
         break;
       case 9: // tab
-        this.setState(prevState => ({
+        this.setState((prevState) => ({
           isPseudoFocused: false,
           isFocused: false,
           isOpen: false,
@@ -469,7 +469,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
       if (value === null || value === undefined) return [];
       value = [value];
     }
-    return value.map(value => expandValue(value, this.props));
+    return value.map((value) => expandValue(value, this.props));
   }
 
   setValue(value: ValueT, option: ?OptionT, type: ChangeActionT) {
@@ -521,7 +521,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
           const valueArray = this.props.value;
           if (
             valueArray.some(
-              i => i[this.props.valueKey] === item[this.props.valueKey],
+              (i) => i[this.props.valueKey] === item[this.props.valueKey],
             )
           ) {
             this.removeValue(item);
@@ -586,7 +586,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     const valueArray = [...this.props.value];
     this.setValue(
       valueArray.filter(
-        i => i[this.props.valueKey] !== item[this.props.valueKey],
+        (i) => i[this.props.valueKey] !== item[this.props.valueKey],
       ),
       item,
       STATE_CHANGE_TYPE.remove,
@@ -599,7 +599,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
 
     if (this.props.value) {
       const resetValue = this.props.value.filter(
-        item => item.clearableValue === false,
+        (item) => item.clearableValue === false,
       );
       this.setValue(resetValue, null, STATE_CHANGE_TYPE.clear);
     }
@@ -695,7 +695,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     const sharedProps = this.getSharedProps();
     const isOpen = this.state.isOpen;
     const selected = this.getValueArray(this.props.value)
-      .map(v => v[this.props.labelKey])
+      .map((v) => v[this.props.labelKey])
       .join(', ');
     const selectedLabel = selected.length ? `Selected ${selected}. ` : '';
     const label = `${selectedLabel}${this.props['aria-label'] || ''}`;
@@ -893,10 +893,10 @@ class Select extends React.Component<PropsT, SelectStateT> {
     }
     // can user create a new option + there's no exact match already
     const filterDoesNotMatchOption = this.props.ignoreCase
-      ? opt =>
+      ? (opt) =>
           opt[this.props.labelKey].toLowerCase() !==
           filterValue.toLowerCase().trim()
-      : opt => opt[this.props.labelKey] !== filterValue.trim();
+      : (opt) => opt[this.props.labelKey] !== filterValue.trim();
     if (
       filterValue &&
       this.props.creatable &&
@@ -1010,9 +1010,9 @@ class Select extends React.Component<PropsT, SelectStateT> {
 
     return (
       <UIDConsumer>
-        {listboxId => (
+        {(listboxId) => (
           <LocaleContext.Consumer>
-            {locale => (
+            {(locale) => (
               <PopoverOverride
                 // Popover does not provide ability to forward refs through, and if we were to simply
                 // apply the ref to the Root component below it would be overwritten before the popover

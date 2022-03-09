@@ -36,6 +36,7 @@ export function Scenario() {
           props: {
             overrides: {
               ListItem: {
+                // eslint-disable-next-line react/display-name
                 component: React.forwardRef((props, ref) => (
                   <MenuAdapter
                     {...props}

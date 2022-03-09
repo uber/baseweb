@@ -106,7 +106,7 @@ function getControlPadding(props) {
 
 export const StyledDropdownContainer = styled<SharedStylePropsArgT>(
   'div',
-  props => {
+  (props) => {
     return {
       width: `${String(props.$width)}px`,
     };
@@ -119,7 +119,7 @@ export const StyledDropdownListItem = StyledListItem;
 
 export const StyledOptionContent = styled<SharedStylePropsArgT>(
   'div',
-  props => {
+  (props) => {
     const {$isHighlighted, $selected, $disabled, $theme} = props;
 
     return ({
@@ -131,7 +131,7 @@ export const StyledOptionContent = styled<SharedStylePropsArgT>(
   },
 );
 
-export const StyledRoot = styled<SharedStylePropsArgT>('div', props => {
+export const StyledRoot = styled<SharedStylePropsArgT>('div', (props) => {
   const {
     $theme: {typography},
     $size,
@@ -208,7 +208,7 @@ function getControlContainerColors(
 
 export const StyledControlContainer = styled<SharedStylePropsArgT>(
   'div',
-  props => {
+  (props) => {
     const {
       $disabled,
       $error,
@@ -259,7 +259,7 @@ export const StyledControlContainer = styled<SharedStylePropsArgT>(
 
 export const StyledValueContainer = styled<SharedStylePropsArgT>(
   'div',
-  props => {
+  (props) => {
     const padding = getControlPadding(props);
     return {
       boxSizing: 'border-box',
@@ -276,45 +276,51 @@ export const StyledValueContainer = styled<SharedStylePropsArgT>(
   },
 );
 
-export const StyledPlaceholder = styled<SharedStylePropsArgT>('div', props => {
-  const {
-    $disabled,
-    $theme: {colors},
-  } = props;
-  return {
-    color: $disabled
-      ? colors.inputPlaceholderDisabled
-      : colors.inputPlaceholder,
-    maxWidth: '100%',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap',
-  };
-});
+export const StyledPlaceholder = styled<SharedStylePropsArgT>(
+  'div',
+  (props) => {
+    const {
+      $disabled,
+      $theme: {colors},
+    } = props;
+    return {
+      color: $disabled
+        ? colors.inputPlaceholderDisabled
+        : colors.inputPlaceholder,
+      maxWidth: '100%',
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+      whiteSpace: 'nowrap',
+    };
+  },
+);
 
-export const StyledSingleValue = styled<SharedStylePropsArgT>('div', props => {
-  const {
-    $searchable,
-    $size,
-    $theme,
-    $theme: {typography},
-  } = props;
-  const font = getFont($size, typography);
-  const marginDir: string =
-    $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
-  return {
-    lineHeight: !$searchable ? font.lineHeight : 'inherit',
-    boxSizing: 'border-box',
-    [marginDir]: $theme.sizing.scale0,
-    height: '100%',
-    maxWidth: '100%',
-    ...ellipsisText,
-  };
-});
+export const StyledSingleValue = styled<SharedStylePropsArgT>(
+  'div',
+  (props) => {
+    const {
+      $searchable,
+      $size,
+      $theme,
+      $theme: {typography},
+    } = props;
+    const font = getFont($size, typography);
+    const marginDir: string =
+      $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
+    return {
+      lineHeight: !$searchable ? font.lineHeight : 'inherit',
+      boxSizing: 'border-box',
+      [marginDir]: $theme.sizing.scale0,
+      height: '100%',
+      maxWidth: '100%',
+      ...ellipsisText,
+    };
+  },
+);
 
 export const StyledInputContainer = styled<SharedStylePropsArgT>(
   'div',
-  props => {
+  (props) => {
     const {
       $size,
       $searchable,
@@ -348,7 +354,7 @@ export const StyledInputContainer = styled<SharedStylePropsArgT>(
   },
 );
 
-export const StyledInput = styled<SharedStylePropsArgT>('input', props => {
+export const StyledInput = styled<SharedStylePropsArgT>('input', (props) => {
   const {
     $theme: {colors, typography},
     $size,
@@ -424,31 +430,34 @@ function getSvgStyles({$theme}) {
   };
 }
 
-export const StyledSelectArrow = styled<SharedStylePropsArgT>('svg', props => {
-  const {$theme, $disabled, $size} = props;
-  const {colors} = $theme;
+export const StyledSelectArrow = styled<SharedStylePropsArgT>(
+  'svg',
+  (props) => {
+    const {$theme, $disabled, $size} = props;
+    const {colors} = $theme;
 
-  const sizes = {
-    [SIZE.mini]: 16,
-    [SIZE.compact]: 16,
-    [SIZE.default]: 20,
-    [SIZE.large]: 24,
-  };
-  let size = sizes[SIZE.default];
-  if ($size) {
-    size = sizes[$size];
-  }
+    const sizes = {
+      [SIZE.mini]: 16,
+      [SIZE.compact]: 16,
+      [SIZE.default]: 20,
+      [SIZE.large]: 24,
+    };
+    let size = sizes[SIZE.default];
+    if ($size) {
+      size = sizes[$size];
+    }
 
-  return {
-    ...getSvgStyles({$theme}),
-    color: $disabled ? colors.inputTextDisabled : colors.contentPrimary,
-    cursor: $disabled ? 'not-allowed' : 'pointer',
-    height: `${size}px`,
-    width: `${size}px`,
-  };
-});
+    return {
+      ...getSvgStyles({$theme}),
+      color: $disabled ? colors.inputTextDisabled : colors.contentPrimary,
+      cursor: $disabled ? 'not-allowed' : 'pointer',
+      height: `${size}px`,
+      width: `${size}px`,
+    };
+  },
+);
 
-export const StyledClearIcon = styled<SharedStylePropsArgT>('svg', props => {
+export const StyledClearIcon = styled<SharedStylePropsArgT>('svg', (props) => {
   const {$theme, $size} = props;
   const {colors} = $theme;
 
@@ -483,7 +492,7 @@ export const getLoadingIconStyles = (props: {$theme: ThemeT}) => {
 
 export const StyledSearchIconContainer = styled<SharedStylePropsArgT>(
   'div',
-  props => {
+  (props) => {
     const {$disabled, $theme} = props;
     const {colors, sizing} = $theme;
     const dir: string = $theme.direction === 'rtl' ? 'right' : 'left';

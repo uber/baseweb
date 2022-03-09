@@ -19,7 +19,7 @@ import type {OptionListPropsT} from './types.js';
 function OptionList(props: OptionListPropsT, ref: React.ElementRef<*>) {
   const {
     getChildMenu,
-    getItemLabel = item => (item ? item.label : ''),
+    getItemLabel = (item) => (item ? item.label : ''),
     item,
     onClick = () => {},
     onMouseEnter = () => {},
@@ -41,7 +41,7 @@ function OptionList(props: OptionListPropsT, ref: React.ElementRef<*>) {
     StyledListItemAnchor,
   );
 
-  const getItem = item => {
+  const getItem = (item) => {
     if (item.href && renderHrefAsAnchor) {
       return (
         <ListItemAnchor $item={item} href={item.href} {...listItemAnchorProps}>
@@ -55,7 +55,7 @@ function OptionList(props: OptionListPropsT, ref: React.ElementRef<*>) {
 
   return (
     <LocaleContext.Consumer>
-      {locale => (
+      {(locale) => (
         <MaybeChildMenu
           getChildMenu={getChildMenu}
           isOpen={!!$isHighlighted}

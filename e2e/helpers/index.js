@@ -19,7 +19,7 @@ const {realpathSync} = require('fs');
 const PATH_TO_AXE = './node_modules/axe-core/axe.min.js';
 const appDirectory = realpathSync(process.cwd());
 
-const resolvePath = relativePath => resolve(appDirectory, relativePath);
+const resolvePath = (relativePath) => resolve(appDirectory, relativePath);
 
 function getPuppeteerUrl(name, theme, rtl) {
   return `${config.tests.url}?${queryString.stringify({
@@ -30,7 +30,7 @@ function getPuppeteerUrl(name, theme, rtl) {
   })}`;
 }
 
-const addTestStyles = async page => {
+const addTestStyles = async (page) => {
   await page.addStyleTag({
     content: `*,
     *::before,
@@ -72,8 +72,8 @@ async function analyzeAccessibility(page, options = {rules: []}) {
   // we make sure that axe is executed in the next tick after
   // the page emits the load event, giving priority for the
   // original JS to be evaluated
-  const accessibilityReport = await page.evaluate(axeOptions => {
-    return new Promise(resolve => {
+  const accessibilityReport = await page.evaluate((axeOptions) => {
+    return new Promise((resolve) => {
       setTimeout(resolve, 0);
     }).then(() => {
       axe.configure({
@@ -101,7 +101,7 @@ async function analyzeAccessibility(page, options = {rules: []}) {
 
 // This utility is available in newer versions of puppetteer, but upgrading did not seem worth just for this
 function waitForTimeout(ms) {
-  return new Promise(res => {
+  return new Promise((res) => {
     setTimeout(res, ms);
   });
 }
@@ -111,12 +111,12 @@ const defaultOptions = {
   incompleteThreshold: 0,
 };
 
-const printInvalidNode = node =>
+const printInvalidNode = (node) =>
   `- ${printReceived(node.html)}\n\t${node.any
-    .map(check => check.message)
+    .map((check) => check.message)
     .join('\n\t')}`;
 
-const printInvalidRule = rule =>
+const printInvalidRule = (rule) =>
   `Violated rule: ${printReceived(rule.id)}\nReasoning: ${printReceived(
     rule.help,
   )}\n${rule.nodes.length} nodes involved:\n\n${rule.nodes

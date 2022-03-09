@@ -27,13 +27,13 @@ async function clickCheckboxAtRowIndex(parent, index) {
 }
 
 function wait(ms) {
-  return new Promise(res => setTimeout(res, ms));
+  return new Promise((res) => setTimeout(res, ms));
 }
 
 async function getCheckboxValues(element) {
   await wait(50); // briefly wait to give table state chance to update
-  return element.$$eval('label[data-baseweb="checkbox"] input', elements =>
-    elements.map(el => el.checked),
+  return element.$$eval('label[data-baseweb="checkbox"] input', (elements) =>
+    elements.map((el) => el.checked),
   );
 }
 
@@ -127,7 +127,7 @@ describe('data-table batch-actions', () => {
     await clickCheckboxAtRowIndex(table, 3);
     const count = await page.$eval(
       '#selection-change-count',
-      el => el.textContent,
+      (el) => el.textContent,
     );
     expect(count).toBe('selection change count: 3');
   });

@@ -15,17 +15,17 @@ export type OptionT = {
 
 type GetMonthItemsArgsT = {
   filterMonthsList: number[] | null,
-  formatMonthLabel: number => string,
+  formatMonthLabel: (number) => string,
 };
 
-const getDefaultMonthItems = (formatMonthLabel: number => string) =>
-  DEFAULT_MONTHS.map<OptionT>(month => ({
+const getDefaultMonthItems = (formatMonthLabel: (number) => string) =>
+  DEFAULT_MONTHS.map<OptionT>((month) => ({
     id: month.toString(),
     label: formatMonthLabel(month),
   }));
 
 export const filterMonthItems = (monthItems: OptionT[], filterList: number[]) =>
-  monthItems.map<OptionT>(month => {
+  monthItems.map<OptionT>((month) => {
     if (!filterList.includes(Number(month.id))) {
       return {
         ...month,

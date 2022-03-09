@@ -34,7 +34,7 @@ for (let i = 0; i < 100; i++) {
 }
 
 export function Scenario() {
-  const rowActions = React.useCallback(row => {
+  const rowActions = React.useCallback((row) => {
     const actions = [
       {
         label: 'stable-action-icon',

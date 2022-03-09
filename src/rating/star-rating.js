@@ -92,7 +92,7 @@ class StarRating extends React.Component<StarRatingPropsT, RatingStateT> {
             }
             this.selectItem(x);
           }}
-          onKeyDown={e => {
+          onKeyDown={(e) => {
             if (readOnly) {
               return;
             }
@@ -133,7 +133,7 @@ class StarRating extends React.Component<StarRatingPropsT, RatingStateT> {
       <Root
         data-baseweb="star-rating"
         role="radiogroup"
-        onBlur={e => {
+        onBlur={(e) => {
           if (!e.currentTarget.contains(e.relatedTarget))
             this.updatePreview(undefined);
         }}

@@ -44,6 +44,7 @@ const DropdownListItem = React.forwardRef((props, ref) => {
     </DefaultListItem>
   );
 });
+DropdownListItem.displayName = 'DropdownListItem';
 
 function DropdownOptionContent(props) {
   return <>{props.children}</>;
@@ -74,7 +75,7 @@ export default function CountryPicker(props: CountrySelectPropsT) {
   };
   const options = Object.values(props.countries);
   // $FlowFixMe
-  const scrollIndex = options.findIndex(opt => opt.id === country.id);
+  const scrollIndex = options.findIndex((opt) => opt.id === country.id);
   const baseSelectOverrides = {
     Root: {
       component: StyledRoot,
@@ -223,7 +224,7 @@ export default function CountryPicker(props: CountrySelectPropsT) {
       }}
       error={error}
       maxDropdownHeight={maxDropdownHeight}
-      onChange={event => {
+      onChange={(event) => {
         if (typeof onCountryChange === 'function') {
           onCountryChange(event);
         } else if (__DEV__) {

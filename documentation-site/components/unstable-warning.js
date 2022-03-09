@@ -18,9 +18,11 @@ export default function UnstableWarning() {
       kind={KIND.warning}
     >
       <>
+        {/* eslint-disable-next-line react/no-unescaped-entities */}
         This component is currently 'Unstable', which means that the
         functionality and API is subject to change in any version release. We
         publish unstable components so that feedback can be presented before
+        {/* eslint-disable-next-line react/no-unescaped-entities */}
         aligning on a consistent design. Please see baseui's{' '}
         <Link href="/discover-more/versioning-policy">
           <StyledLink href="/discover-more/versioning-policy">

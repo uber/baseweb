@@ -59,7 +59,7 @@ export function Breadcrumbs(props: BreadcrumbsPropsT) {
         {(showTrailingSeparator || index !== childrenArray.length - 1) && (
           <Separator {...baseSeparatorProps} key={`separator-${index}`}>
             <ThemeContext.Consumer>
-              {theme =>
+              {(theme) =>
                 theme.direction === 'rtl' ? (
                   <Left {...baseIconProps} />
                 ) : (
@@ -75,7 +75,7 @@ export function Breadcrumbs(props: BreadcrumbsPropsT) {
 
   return (
     <LocaleContext.Consumer>
-      {locale => (
+      {(locale) => (
         <Root
           aria-label={
             props['aria-label'] ||

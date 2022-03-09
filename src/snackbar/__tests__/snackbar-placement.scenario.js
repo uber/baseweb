@@ -61,10 +61,10 @@ export function Scenario() {
         <Child placement={placement} />
         {/* eslint-disable-next-line jsx-a11y/no-onchange */}
         <select
-          onChange={event => setPlacement(event.target.value)}
+          onChange={(event) => setPlacement(event.target.value)}
           value={placement}
         >
-          {Object.values(PLACEMENT).map(p => (
+          {Object.values(PLACEMENT).map((p) => (
             <option key={String(p)} value={p}>
               {String(p)}
             </option>

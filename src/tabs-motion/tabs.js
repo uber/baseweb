@@ -65,7 +65,7 @@ const getLayoutParams = (el, orientation) => {
   }
 };
 
-const scrollParentToCentreTarget = targetNode => {
+const scrollParentToCentreTarget = (targetNode) => {
   const {
     x: parentX,
     y: parentY,
@@ -191,7 +191,7 @@ export function Tabs({
   // TODO(WPT-6473): move to universal keycode aliases
   const [, theme] = useStyletron();
   const parseKeyDown = React.useCallback(
-    event => {
+    (event) => {
       if (isHorizontal(orientation)) {
         if (isRTL(theme.direction)) {
           switch (event.keyCode) {
@@ -338,7 +338,7 @@ function InternalTab({
   // placement changes for a tab so we listen for resize updates in each tab.
   React.useEffect(() => {
     if (window.ResizeObserver) {
-      const observer = new window.ResizeObserver(entries => {
+      const observer = new window.ResizeObserver((entries) => {
         if (entries[0] && entries[0].target) {
           const tabLayoutParamsAfterResize = getLayoutParams(
             entries[0].target,
@@ -364,10 +364,8 @@ function InternalTab({
   React.useEffect(updateHighlight, [title]);
 
   // Collect overrides
-  const {
-    Tab: TabOverrides,
-    ArtworkContainer: ArtworkContainerOverrides,
-  } = overrides;
+  const {Tab: TabOverrides, ArtworkContainer: ArtworkContainerOverrides} =
+    overrides;
   const [Tab, TabProps] = getOverrides(TabOverrides, StyledTab);
   const [ArtworkContainer, ArtworkContainerProps] = getOverrides(
     ArtworkContainerOverrides,
@@ -391,14 +389,14 @@ function InternalTab({
   );
 
   // Keyboard focus management
-  const handleKeyDown = React.useCallback(event => {
+  const handleKeyDown = React.useCallback((event) => {
     // WAI-ARIA 1.1
     // https://www.w3.org/TR/wai-aria-practices-1.1/#tabpanel
     // We use directional keys to iterate focus through Tabs.
 
     // Find all tabs eligible for focus
     const availableTabs = [...event.target.parentNode.childNodes].filter(
-      node => !node.disabled && node.getAttribute('role') === 'tab',
+      (node) => !node.disabled && node.getAttribute('role') === 'tab',
     );
 
     // Exit early if there are no other tabs available
@@ -456,7 +454,7 @@ function InternalTab({
       {...sharedStylingProps}
       {...restProps}
       {...TabProps}
-      onClick={event => {
+      onClick={(event) => {
         if (typeof onChange === 'function') onChange({activeKey: key});
         if (typeof onClick === 'function') onClick(event);
       }}

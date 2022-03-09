@@ -34,7 +34,7 @@ function getSizeStyles($size: SizePropT): SizeStyleT {
   return styles;
 }
 
-export const Root = styled<SharedStylePropsArgT>('div', props => {
+export const Root = styled<SharedStylePropsArgT>('div', (props) => {
   const {$isOpen} = props;
   return {
     position: 'fixed',
@@ -47,14 +47,9 @@ export const Root = styled<SharedStylePropsArgT>('div', props => {
   };
 });
 
-export const Backdrop = styled<SharedStylePropsArgT>('div', props => {
-  const {
-    $animate,
-    $isOpen,
-    $isVisible,
-    $theme,
-    $unstable_ModalBackdropScroll,
-  } = props;
+export const Backdrop = styled<SharedStylePropsArgT>('div', (props) => {
+  const {$animate, $isOpen, $isVisible, $theme, $unstable_ModalBackdropScroll} =
+    props;
   if ($unstable_ModalBackdropScroll) {
     return {};
   }
@@ -80,14 +75,9 @@ export const Backdrop = styled<SharedStylePropsArgT>('div', props => {
   };
 });
 
-export const DialogContainer = styled<SharedStylePropsArgT>('div', props => {
-  const {
-    $animate,
-    $isOpen,
-    $isVisible,
-    $theme,
-    $unstable_ModalBackdropScroll,
-  } = props;
+export const DialogContainer = styled<SharedStylePropsArgT>('div', (props) => {
+  const {$animate, $isOpen, $isVisible, $theme, $unstable_ModalBackdropScroll} =
+    props;
   return {
     display: 'flex',
     alignItems: 'center',
@@ -115,7 +105,7 @@ export const DialogContainer = styled<SharedStylePropsArgT>('div', props => {
   };
 });
 
-export const Dialog = styled<SharedStylePropsArgT>('div', props => {
+export const Dialog = styled<SharedStylePropsArgT>('div', (props) => {
   const {$animate, $isOpen, $isVisible, $size, $theme} = props;
   return ({
     position: 'relative',
@@ -151,7 +141,7 @@ export const Dialog = styled<SharedStylePropsArgT>('div', props => {
   }: {});
 });
 
-export const Close = styled<SharedStylePropsArgT>('button', props => {
+export const Close = styled<SharedStylePropsArgT>('button', (props) => {
   const {$theme, $isFocusVisible} = props;
   const dir: string = $theme.direction === 'rtl' ? 'left' : 'right';
   return {

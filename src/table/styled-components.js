@@ -26,7 +26,7 @@ const StyledTableElement = styled<{}>('div', ({$theme}) => {
 
 export const StyledTable = withWrapper(
   StyledTableElement,
-  StyledComponent =>
+  (StyledComponent) =>
     function StyledTable(props) {
       return (
         <StyledComponent data-baseweb="table-custom" role="grid" {...props} />
@@ -54,7 +54,7 @@ const StyledHeadElement = styled<HorizontalStyleProps>(
 
 export const StyledHead = withWrapper(
   StyledHeadElement,
-  StyledComponent =>
+  (StyledComponent) =>
     function StyledHead(props) {
       return <StyledComponent role="row" {...props} />;
     },
@@ -89,7 +89,7 @@ const StyledHeadCellElement = styled<HorizontalStyleProps>(
 
 export const StyledHeadCell = withWrapper(
   StyledHeadCellElement,
-  StyledComponent =>
+  (StyledComponent) =>
     function StyledHeadCell(props) {
       return <StyledComponent role="columnheader" {...props} />;
     },
@@ -127,7 +127,7 @@ const StyledBodyElement = styled<HorizontalStyleProps>('div', ({$width}) => {
 
 export const StyledBody = withWrapper(
   StyledBodyElement,
-  StyledComponent =>
+  (StyledComponent) =>
     function StyledBody(props) {
       return <StyledComponent role="rowgroup" {...props} />;
     },
@@ -140,7 +140,7 @@ const StyledRowElement = styled('div', {
 
 export const StyledRow = withWrapper(
   StyledRowElement,
-  StyledComponent =>
+  (StyledComponent) =>
     function StyledRow(props) {
       return <StyledComponent role="row" {...props} />;
     },
@@ -167,7 +167,7 @@ const StyledCellElement = styled<CellStyledProps>(
 
 export const StyledCell = withWrapper(
   StyledCellElement,
-  StyledComponent =>
+  (StyledComponent) =>
     function StyledCell(props) {
       return <StyledComponent role="gridcell" {...props} />;
     },
@@ -176,7 +176,7 @@ export const StyledCell = withWrapper(
 export const StyledFilterButton = styled<{
   $disabled?: boolean,
   $active?: boolean,
-}>('button', props => {
+}>('button', (props) => {
   function getIconColor() {
     if (props.$disabled) {
       return props.$theme.colors.mono500;

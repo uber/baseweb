@@ -11,10 +11,10 @@ import {render} from '@testing-library/react';
 import {StatefulSelectContainer} from '../index.js';
 import {STATE_CHANGE_TYPE} from '../constants.js';
 
-describe('StatefulSelectContainer', function() {
+describe('StatefulSelectContainer', function () {
   let props = {};
 
-  beforeEach(function() {
+  beforeEach(function () {
     props = {
       children: jest.fn(() => <div>test</div>),
       initialState: {value: [{id: 'id', label: 'label'}]},
@@ -24,13 +24,13 @@ describe('StatefulSelectContainer', function() {
     };
   });
 
-  it('provides props to children render func', function() {
+  it('provides props to children render func', function () {
     render(<StatefulSelectContainer {...props} />);
     const actualProps = props.children.mock.calls[0][0];
     expect(actualProps).toHaveProperty('value', props.initialState.value);
   });
 
-  it('calls onChange handler with correct params', function() {
+  it('calls onChange handler with correct params', function () {
     render(<StatefulSelectContainer {...props} />);
     const newValue = {id: 'id2', label: 'label2'};
     const params = {

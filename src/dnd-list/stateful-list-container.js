@@ -55,7 +55,7 @@ class StatefulListContainer extends React.Component<
 
   internalSetState(type: StateChangeTypeT, changes: StateT) {
     const {stateReducer} = this.props;
-    this.setState(prevState => stateReducer(type, changes, prevState));
+    this.setState((prevState) => stateReducer(type, changes, prevState));
   }
 
   render() {

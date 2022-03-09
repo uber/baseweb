@@ -28,7 +28,7 @@ describe('select unmount blur', () => {
 
     const value = await page.$eval(
       '[data-testid="selected"]',
-      select => select.textContent,
+      (select) => select.textContent,
     );
     expect(value).toBe('AliceBlue');
   });

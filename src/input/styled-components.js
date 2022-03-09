@@ -302,7 +302,7 @@ function getInputEnhancerColors(
   };
 }
 
-export const InputEnhancer = styled<SharedPropsT>('div', props => {
+export const InputEnhancer = styled<SharedPropsT>('div', (props) => {
   const {
     $size,
     $disabled,

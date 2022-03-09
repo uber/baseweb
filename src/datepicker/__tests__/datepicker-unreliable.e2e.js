@@ -62,8 +62,8 @@ describe('Datepicker', () => {
 
     await year.click();
     await page.waitForSelector(selectors.monthYearSelectMenu);
-    await page.$$eval('ul[role="listbox"] li', items => {
-      const option = items.find(item => {
+    await page.$$eval('ul[role="listbox"] li', (items) => {
+      const option = items.find((item) => {
         return item.textContent === '2018';
       });
       return option.click();
@@ -82,8 +82,8 @@ describe('Datepicker', () => {
 
     await month.click();
     await page.waitForSelector(selectors.monthYearSelectMenu);
-    await page.$$eval('ul[role="listbox"] li', items => {
-      const option = items.find(item => {
+    await page.$$eval('ul[role="listbox"] li', (items) => {
+      const option = items.find((item) => {
         return item.textContent === 'July';
       });
       return option.click();
@@ -102,8 +102,8 @@ describe('Datepicker', () => {
 
     await year.click();
     await page.waitForSelector(selectors.monthYearSelectMenu);
-    await page.$$eval('ul[role="listbox"] li', items => {
-      const option = items.find(item => {
+    await page.$$eval('ul[role="listbox"] li', (items) => {
+      const option = items.find((item) => {
         return item.textContent === '2000';
       });
       return option.click();
@@ -111,8 +111,8 @@ describe('Datepicker', () => {
 
     await month.click();
     await page.waitForSelector(selectors.monthYearSelectMenu);
-    await page.$$eval('ul[role="listbox"] li', items => {
-      const option = items.find(item => {
+    await page.$$eval('ul[role="listbox"] li', (items) => {
+      const option = items.find((item) => {
         return item.textContent === 'January';
       });
       return option.click();
@@ -120,7 +120,7 @@ describe('Datepicker', () => {
 
     await page.click(selectors.leftArrow);
     const value = await page.$(selectors.monthYearSelectButton);
-    const text = await page.evaluate(element => element.textContent, value);
+    const text = await page.evaluate((element) => element.textContent, value);
     expect(text).toBe('January');
   });
 
@@ -132,8 +132,8 @@ describe('Datepicker', () => {
 
     await year.click();
     await page.waitForSelector(selectors.monthYearSelectMenu);
-    await page.$$eval('ul[role="listbox"] li', items => {
-      const option = items.find(item => {
+    await page.$$eval('ul[role="listbox"] li', (items) => {
+      const option = items.find((item) => {
         return item.textContent === '2030';
       });
       return option.click();
@@ -141,8 +141,8 @@ describe('Datepicker', () => {
 
     await month.click();
     await page.waitForSelector(selectors.monthYearSelectMenu);
-    await page.$$eval('ul[role="listbox"] li', items => {
-      const option = items.find(item => {
+    await page.$$eval('ul[role="listbox"] li', (items) => {
+      const option = items.find((item) => {
         return item.textContent === 'December';
       });
       return option.click();
@@ -150,7 +150,7 @@ describe('Datepicker', () => {
 
     await page.click(selectors.rightArrow);
     const value = await page.$(selectors.monthYearSelectButton);
-    const text = await page.evaluate(element => element.textContent, value);
+    const text = await page.evaluate((element) => element.textContent, value);
     expect(text).toBe('December');
   });
 
@@ -160,12 +160,15 @@ describe('Datepicker', () => {
     await page.click(selectors.input);
 
     // input mask
-    let selectedValue = await page.$eval(selectors.input, input => input.value);
+    let selectedValue = await page.$eval(
+      selectors.input,
+      (input) => input.value,
+    );
     expect(selectedValue).toBe('    /  /  ');
 
     // actual value
     await page.type(selectors.input, '2019/03/10');
-    selectedValue = await page.$eval(selectors.input, input => input.value);
+    selectedValue = await page.$eval(selectors.input, (input) => input.value);
     expect(selectedValue).toBe('2019/03/10');
   });
 

@@ -178,7 +178,7 @@ export const toggleIsExpanded = (
   getId?: (node: TreeNodeT<>) => TreeNodeIdT = (node: TreeNodeT<>) =>
     node.id ? node.id : '',
 ): TreeNodeT<>[] => {
-  return arr.map<TreeNodeT<>>(node => {
+  return arr.map<TreeNodeT<>>((node) => {
     const newNode = {...node};
     if (getId(newNode) === getId(toggledNode)) {
       newNode.isExpanded = !newNode.isExpanded;

@@ -29,7 +29,7 @@ describe('ProgressSteps', () => {
             <Step title="step 2">step 2 content</Step>
             <Step title="step 3">step 3 content</Step>
           </ProgressSteps>
-          <button onClick={() => setCurrent(prev => prev + 1)}>next</button>
+          <button onClick={() => setCurrent((prev) => prev + 1)}>next</button>
         </div>
       );
     }

@@ -56,7 +56,7 @@ class TimePicker<T = Date> extends React.Component<
     } else {
       const seconds = this.dateHelpers.dateToSeconds(this.props.adapter.date());
       let closestStep = NOON;
-      steps.forEach(step => {
+      steps.forEach((step) => {
         if (Math.abs(step - seconds) < Math.abs(closestStep - seconds)) {
           closestStep = step;
         }
@@ -111,7 +111,7 @@ class TimePicker<T = Date> extends React.Component<
 
   secondsToLabel = (seconds: number, format?: '12' | '24') => {
     let [hours, minutes] = this.dateHelpers.secondsToHourMinute(seconds);
-    const zeroPrefix = n => (n < 10 ? `0${n}` : n);
+    const zeroPrefix = (n) => (n < 10 ? `0${n}` : n);
 
     if (format === '12') {
       const isAfterNoon = seconds >= NOON;
@@ -319,7 +319,7 @@ class TimePicker<T = Date> extends React.Component<
 
     return (
       <LocaleContext.Consumer>
-        {locale => {
+        {(locale) => {
           let ariaLabel;
 
           if (locale.datepicker.timePickerAriaLabel) {
@@ -339,7 +339,7 @@ class TimePicker<T = Date> extends React.Component<
               positive={this.props.positive}
               size={this.props.size}
               placeholder={this.props.placeholder || 'HH:mm'}
-              options={this.state.steps.map(n => ({
+              options={this.state.steps.map((n) => ({
                 id: n,
                 label: this.secondsToLabel(n, this.props.format),
               }))}

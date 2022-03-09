@@ -60,14 +60,17 @@ describe('popover', () => {
     await page.waitForSelector(selectors.selectDropDown);
     // Both popovers opened at this point.
     // Make sure that layers rendered flat and not nested.
-    const noNestedPopovers = await page.$$eval(selectors.popover, popovers => {
-      let notNested = true;
-      for (let i = 0; i < popovers.length; i++) {
-        notNested =
-          notNested && !popovers[i].querySelector('[data-baseweb="popover"]');
-      }
-      return notNested;
-    });
+    const noNestedPopovers = await page.$$eval(
+      selectors.popover,
+      (popovers) => {
+        let notNested = true;
+        for (let i = 0; i < popovers.length; i++) {
+          notNested =
+            notNested && !popovers[i].querySelector('[data-baseweb="popover"]');
+        }
+        return notNested;
+      },
+    );
     expect(noNestedPopovers).toBe(true);
     // Select an option from the select dropdown
     const options = await page.$$(selectors.dropDownOption);
@@ -76,7 +79,7 @@ describe('popover', () => {
 
     const selectedValue = await page.$eval(
       selectors.selectedList,
-      select => select.textContent,
+      (select) => select.textContent,
     );
     expect(selectedValue).toBe('AliceBlue');
     // Click outside to close the initial popover

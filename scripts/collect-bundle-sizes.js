@@ -24,7 +24,7 @@ async function waitForPort(port) {
   let totalWait = 0;
   // eslint-disable-next-line no-constant-condition
   while (true) {
-    await new Promise(resolve => setTimeout(resolve, singleWait));
+    await new Promise((resolve) => setTimeout(resolve, singleWait));
     totalWait += 1;
     if (totalWait > maxWait) {
       throw new Error(
@@ -44,7 +44,7 @@ async function measurePageBytesReceived(browser, url) {
   await client.send('Network.enable');
 
   let bytesReceived = 0;
-  client.on('Network.dataReceived', event => {
+  client.on('Network.dataReceived', (event) => {
     bytesReceived += event.dataLength;
   });
 
@@ -120,7 +120,7 @@ async function main() {
     {stdio: 'inherit'},
   );
   const ladle = spawn('yarn', ['static-server', 'build-ladle', '--port', PORT]);
-  ladle.stderr.on('data', data => console.error(`ladle error: ${data}`));
+  ladle.stderr.on('data', (data) => console.error(`ladle error: ${data}`));
   await waitForPort(PORT);
   console.log(`ladle server available at ${LADLE_URL}`);
 

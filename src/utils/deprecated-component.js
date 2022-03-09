@@ -8,8 +8,8 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 // eslint-disable-next-line flowtype/no-weak-types
-export default function(Component: any, displayName: string) {
-  // eslint-disable-next-line flowtype/no-weak-types
+export default function (Component: any, displayName: string) {
+  // eslint-disable-next-line flowtype/no-weak-types,react/display-name
   return React.forwardRef<any, any>((props, ref) => {
     if (__DEV__) {
       console.warn(

@@ -52,7 +52,7 @@ function findActiveElement(page) {
 async function findHighlightedLabel(page) {
   const highlightedItem = await page.$(highlightedSelector);
   return await page.evaluate(
-    item => (item ? item.textContent : 'NOT_FOUND'),
+    (item) => (item ? item.textContent : 'NOT_FOUND'),
     highlightedItem,
   );
 }

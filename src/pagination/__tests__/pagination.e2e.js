@@ -37,7 +37,7 @@ describe('pagination', () => {
     // assert initial state
     const initialValue = await page.$eval(
       selectors.dropDownButton,
-      input => input.textContent,
+      (input) => input.textContent,
     );
     expect(initialValue).toBe('1');
 
@@ -45,7 +45,7 @@ describe('pagination', () => {
     await page.click(selectors.nextButton);
     let value = await page.$eval(
       selectors.dropDownButton,
-      input => input.textContent,
+      (input) => input.textContent,
     );
     expect(value).toBe('2');
 
@@ -53,7 +53,7 @@ describe('pagination', () => {
     await page.click(selectors.prevButton);
     value = await page.$eval(
       selectors.dropDownButton,
-      input => input.textContent,
+      (input) => input.textContent,
     );
     expect(value).toBe('1');
   });
@@ -64,7 +64,7 @@ describe('pagination', () => {
     // assert initial state
     const initialValue = await page.$eval(
       selectors.dropDownButton,
-      input => input.textContent,
+      (input) => input.textContent,
     );
     expect(initialValue).toBe('1');
 
@@ -74,7 +74,7 @@ describe('pagination', () => {
 
     let value = await page.$eval(
       selectors.dropDownButton,
-      input => input.textContent,
+      (input) => input.textContent,
     );
     expect(value).toBe('3');
   });

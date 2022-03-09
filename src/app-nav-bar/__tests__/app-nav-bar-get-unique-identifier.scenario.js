@@ -25,7 +25,7 @@ export function Scenario() {
   }
 
   function handleMainItemSelect(item) {
-    setMainItems(prev => setItemActive(prev, item, getUniqueIdentifier));
+    setMainItems((prev) => setItemActive(prev, item, getUniqueIdentifier));
   }
 
   return (

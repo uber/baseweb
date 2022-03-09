@@ -19,14 +19,14 @@ describe('data table columns', () => {
 
     const initialLi = await page.$$('li');
     const initial = await Promise.all(
-      initialLi.map(li => page.evaluate(e => e.textContent, li)),
+      initialLi.map((li) => page.evaluate((e) => e.textContent, li)),
     );
     expect(matchArrayElements(initial, ['1', '2', '3', '4'])).toBe(true);
 
     await sortColumnAtIndex(page, index);
     const afterLi = await page.$$('li');
     const after = await Promise.all(
-      afterLi.map(li => page.evaluate(e => e.textContent, li)),
+      afterLi.map((li) => page.evaluate((e) => e.textContent, li)),
     );
     expect(matchArrayElements(after, ['1', '3', '2', '4'])).toBe(true);
   });

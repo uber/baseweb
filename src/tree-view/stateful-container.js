@@ -44,12 +44,12 @@ export default class StatefulContainer extends React.Component<
   onToggle = (node: TreeNodeT<>) => {
     const {onToggle, singleExpanded} = this.props;
     this.setState(
-      prevState => {
+      (prevState) => {
         const shouldExpand = !node.isExpanded;
         if (singleExpanded && shouldExpand) {
           const siblings = findSiblings(node, prevState.data);
           if (siblings != null) {
-            siblings.forEach(sibling => {
+            siblings.forEach((sibling) => {
               if (sibling !== node) {
                 sibling.isExpanded = false;
               }

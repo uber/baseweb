@@ -29,7 +29,7 @@ describe('Rating', () => {
 
     const highlightedStars = await page.$$eval(
       selectors.checked,
-      stars => stars.length,
+      (stars) => stars.length,
     );
     expect(highlightedStars).toBe(3);
   });
@@ -40,13 +40,13 @@ describe('Rating', () => {
 
     const highlightedEmoticons = await page.$$eval(
       selectors.checked,
-      stars => stars.length,
+      (stars) => stars.length,
     );
     expect(highlightedEmoticons).toBe(1);
 
     const indexOfHighlighted = await page.$eval(
       selectors.checked,
-      star => +star.getAttribute('aria-posinset'),
+      (star) => +star.getAttribute('aria-posinset'),
     );
     expect(indexOfHighlighted).toBe(3);
   });

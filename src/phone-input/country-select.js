@@ -46,7 +46,7 @@ export default function CountrySelect(props: CountrySelectPropsT) {
   };
   const baseSelectOverrides = {
     ControlContainer: {
-      style: props => {
+      style: (props) => {
         if (!props.$isFocused && !props.$isPseudoFocused) {
           return {
             backgroundColor: 'transparent',

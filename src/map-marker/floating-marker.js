@@ -55,21 +55,17 @@ const FloatingMarker = ({
     overrides.Root,
     StyledFloatingMarkerRoot,
   );
-  const [
-    FloatingMarkerPinHeadContainer,
-    floatingMarkerPinHeadContainerProps,
-  ] = getOverrides(
-    overrides.PinHeadContainer,
-    StyledFloatingMarkerPinHeadContainer,
-  );
+  const [FloatingMarkerPinHeadContainer, floatingMarkerPinHeadContainerProps] =
+    getOverrides(
+      overrides.PinHeadContainer,
+      StyledFloatingMarkerPinHeadContainer,
+    );
 
-  const [
-    FloatingMarkerAnchorContainer,
-    floatingMarkerAnchorContainerProps,
-  ] = getOverrides(
-    overrides.AnchorContainer,
-    StyledFloatingMarkerAnchorContainer,
-  );
+  const [FloatingMarkerAnchorContainer, floatingMarkerAnchorContainerProps] =
+    getOverrides(
+      overrides.AnchorContainer,
+      StyledFloatingMarkerAnchorContainer,
+    );
 
   return (
     <Root

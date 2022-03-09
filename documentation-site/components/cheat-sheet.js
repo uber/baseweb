@@ -36,7 +36,7 @@ function CheatSheet() {
     if (query.component) {
       const element = document.getElementById(query.component);
       if (element) {
-        setTimeout(el => el.scrollIntoView(), 0, element);
+        setTimeout((el) => el.scrollIntoView(), 0, element);
       }
     }
   }, [query]);
@@ -44,7 +44,7 @@ function CheatSheet() {
   return (
     <div>
       {!outlines.length && <p>no data to display</p>}
-      {outlines.map(outline => {
+      {outlines.map((outline) => {
         const componentName = outline.file.split('/')[1];
         return (
           <div key={outline.file}>
@@ -66,7 +66,7 @@ function CheatSheet() {
                 },
               })}
             >
-              {outline.definitions.map(t => (
+              {outline.definitions.map((t) => (
                 <React.Fragment key={t.name}>
                   <li
                     className={css({

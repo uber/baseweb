@@ -120,9 +120,9 @@ export default class Pagination extends React.PureComponent<
 
     return (
       <ThemeContext.Consumer>
-        {theme => (
+        {(theme) => (
           <LocaleContext.Consumer>
-            {locale => (
+            {(locale) => (
               <Root data-baseweb="pagination" {...rootProps}>
                 <Button
                   aria-label={this.constructAriaWayfinderLabel(

@@ -40,12 +40,12 @@ describe('Stateful Datepicker Quick Select', () => {
 
     const selectedValue = await page.$eval(
       selectors.input,
-      input => input.value,
+      (input) => input.value,
     );
 
     expect(selectedValue).toBe(
       [subMonths(NOW, 1), NOW]
-        .map(d => formatDate(d, FORMAT_STRING))
+        .map((d) => formatDate(d, FORMAT_STRING))
         .join(' – '),
     );
   });
@@ -61,12 +61,12 @@ describe('Stateful Datepicker Quick Select', () => {
 
     const selectedValue = await page.$eval(
       selectors.input,
-      input => input.value,
+      (input) => input.value,
     );
 
     expect(selectedValue).toBe(
       [subMonths(NOW, 1), NOW]
-        .map(d => formatDate(d, FORMAT_STRING))
+        .map((d) => formatDate(d, FORMAT_STRING))
         .join(' – '),
     );
   });

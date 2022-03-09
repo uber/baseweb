@@ -38,7 +38,7 @@ export class Scenario extends React.Component<any, any> {
           <FormControl label="Time" caption="HH:MM">
             <TimePicker
               value={this.state.date}
-              onChange={date => this.setState({date})}
+              onChange={(date) => this.setState({date})}
             />
           </FormControl>
         </Block>
@@ -48,7 +48,7 @@ export class Scenario extends React.Component<any, any> {
             <TimezonePicker
               date={this.state.date}
               value={this.state.zone && this.state.zone.id}
-              onChange={zone => this.setState({zone})}
+              onChange={(zone) => this.setState({zone})}
             />
           </FormControl>
         </Block>

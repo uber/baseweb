@@ -77,7 +77,7 @@ function FileUploader(props: PropsT) {
 
   return (
     <Dropzone {...props} disabled={props.disabled || afterFileDrop}>
-      {renderProps => {
+      {(renderProps) => {
         const {getRootProps, getInputProps, open, ...styleProps} = renderProps;
 
         const prefixedStyledProps = prependStyleProps({
@@ -90,13 +90,15 @@ function FileUploader(props: PropsT) {
           onClick?: (SyntheticEvent<HTMLElement>) => void,
           tabIndex: string,
         } = {
-          ...(props.disableClick ? {onClick: evt => evt.preventDefault()} : {}),
+          ...(props.disableClick
+            ? {onClick: (evt) => evt.preventDefault()}
+            : {}),
           tabIndex: '-1',
         };
 
         return (
           <LocaleContext.Consumer>
-            {locale => (
+            {(locale) => (
               <Root
                 data-baseweb="file-uploader"
                 {...prefixedStyledProps}

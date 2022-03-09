@@ -28,7 +28,7 @@ function validateNode(node) {
 
 function segmentViolationsByNode(violations) {
   const nodes = violations.reduce((map, violation) => {
-    violation.nodes.forEach(node => {
+    violation.nodes.forEach((node) => {
       if (!map[node.target]) {
         map[node.target] = [violation];
       } else {
@@ -93,7 +93,7 @@ function Violation(props: ViolationPropsT) {
       <TetherBehavior
         anchorRef={anchor}
         popperRef={popper}
-        onPopperUpdate={update => setOffset(update.popper)}
+        onPopperUpdate={(update) => setOffset(update.popper)}
         placement={TETHER_PLACEMENT.bottom}
       >
         <ViolationContainer

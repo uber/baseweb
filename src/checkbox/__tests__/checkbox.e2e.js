@@ -29,7 +29,7 @@ describe('checkbox', () => {
     await mount(page, 'checkbox--indeterminate');
     await page.waitForSelector(childLabel2);
     await page.click(childLabel2);
-    const checked = await page.$eval(parentCheckbox, input => input.checked);
+    const checked = await page.$eval(parentCheckbox, (input) => input.checked);
     expect(checked).toBe(true);
   });
 });

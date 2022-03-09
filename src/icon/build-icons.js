@@ -18,17 +18,11 @@ function capitalize(str) {
 }
 
 function pascalCase(str) {
-  return str
-    .split('-')
-    .map(capitalize)
-    .join('');
+  return str.split('-').map(capitalize).join('');
 }
 
 function titleCase(str) {
-  return str
-    .split('-')
-    .map(capitalize)
-    .join(' ');
+  return str.split('-').map(capitalize).join(' ');
 }
 
 // handle the exception from Chevrons, where we do not want the word Chevron in the title
@@ -53,8 +47,8 @@ function reactify(svgString) {
 function cleanOldIcons() {
   const allJsFiles = fs
     .readdirSync(path.resolve(__dirname))
-    .filter(f => f.endsWith('.js'));
-  allJsFiles.forEach(f => {
+    .filter((f) => f.endsWith('.js'));
+  allJsFiles.forEach((f) => {
     if (
       fs
         .readFileSync(path.resolve(__dirname, f), 'utf8')
@@ -72,12 +66,12 @@ async function generateNewIcons() {
   );
   const svgs = fs
     .readdirSync(path.resolve(__dirname, './svg'))
-    .filter(f => f.endsWith('.svg'));
+    .filter((f) => f.endsWith('.svg'));
 
   const prettierOptions = (await prettier.resolveConfig(__dirname)) || {};
   const iconExports = [];
 
-  svgs.forEach(async svgFilename => {
+  svgs.forEach(async (svgFilename) => {
     const svgFile = svgFilename.split('.')[0];
     const componentName = pascalCase(svgFile);
     iconExports.push(

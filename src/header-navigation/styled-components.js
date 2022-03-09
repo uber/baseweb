@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 import {styled} from '../styles/index.js';
 import {ALIGN} from './constants.js';
 
-export const Root = styled<{}>('nav', props => {
+export const Root = styled<{}>('nav', (props) => {
   const {$theme} = props;
   const {
     sizing: {scale500},
@@ -27,7 +27,7 @@ export const Root = styled<{}>('nav', props => {
   };
 });
 
-export const NavigationItem = styled<{}>('li', props => {
+export const NavigationItem = styled<{}>('li', (props) => {
   const {$theme} = props;
   const {
     sizing: {scale800},
@@ -40,7 +40,7 @@ export const NavigationItem = styled<{}>('li', props => {
 
 export const NavigationList = styled<{$align: $Values<typeof ALIGN>}>(
   'ul',
-  props => {
+  (props) => {
     const {$align, $theme} = props;
     const aligned = $align === ALIGN.right || $align === ALIGN.left;
     const {

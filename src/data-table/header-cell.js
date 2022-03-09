@@ -24,11 +24,11 @@ type HeaderCellPropsT = {|
   isSelectable: boolean,
   isSelectedAll: boolean,
   isSelectedIndeterminate: boolean,
-  onMouseEnter: number => void,
-  onMouseLeave: number => void,
+  onMouseEnter: (number) => void,
+  onMouseLeave: (number) => void,
   onSelectAll: () => void,
   onSelectNone: () => void,
-  onSort: number => void,
+  onSort: (number) => void,
   sortable: boolean,
   sortDirection: SortDirectionsT,
   title: string,
@@ -80,12 +80,12 @@ const HeaderCell = React.forwardRef<HeaderCellPropsT, HTMLDivElement>(
         })}
         onMouseEnter={props.onMouseEnter}
         onMouseLeave={props.onMouseLeave}
-        onKeyUp={event => {
+        onKeyUp={(event) => {
           if (event.key === 'Enter') {
             props.onSort(props.index);
           }
         }}
-        onClick={event => {
+        onClick={(event) => {
           // Avoid column sort if select-all checkbox click.
           if (
             checkboxRef.current &&
@@ -103,7 +103,7 @@ const HeaderCell = React.forwardRef<HeaderCellPropsT, HTMLDivElement>(
         {props.isSelectable && (
           <span ref={checkboxRef}>
             <Checkbox
-              onChange={e => {
+              onChange={(e) => {
                 if (props.isSelectedAll || props.isSelectedIndeterminate) {
                   props.onSelectNone();
                 } else {

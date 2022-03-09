@@ -26,8 +26,8 @@ function getSharedProps() {
       subtitle,
       body,
     }),
-    getProfileItemImg: item => item.imgUrl,
-    getProfileItemImgText: item => item.title,
+    getProfileItemImg: (item) => item.imgUrl,
+    getProfileItemImgText: (item) => item.title,
   };
 }
 
@@ -48,7 +48,7 @@ describe('Option Profile Stateless Component', () => {
     }
     const props = {
       ...getSharedProps(),
-      getProfileItemImg: item => MockComponent,
+      getProfileItemImg: (item) => MockComponent,
     };
     const {container} = render(<OptionProfile {...props} />);
     getByTestId(container, 'mock-image-element');

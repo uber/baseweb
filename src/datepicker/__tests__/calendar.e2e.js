@@ -29,7 +29,7 @@ const isActiveEl = async (page, selector) => {
   return equal;
 };
 
-const checkAccessibility = async page => {
+const checkAccessibility = async (page) => {
   return await analyzeAccessibility(page, {
     rules: [
       {
@@ -47,7 +47,7 @@ describe('Calendar', () => {
     await page.waitForSelector(selectors.calendar);
     expect(await checkAccessibility(page)).toHaveNoAccessibilityIssues();
   });
-  const waitTillDay = async page => {
+  const waitTillDay = async (page) => {
     await mount(page, 'datepicker--calendar');
     await page.waitForSelector(selectors.calendar);
     await page.waitForSelector(selectors.day0);

@@ -10,10 +10,10 @@ import {render} from '@testing-library/react';
 
 import {StatefulContainer as StatefulSliderContainer} from '../index.js';
 
-describe('Stateful Slider Container', function() {
+describe('Stateful Slider Container', function () {
   let allProps: any, childFn;
 
-  beforeEach(function() {
+  beforeEach(function () {
     const stateReducer = (type, nextState) => nextState;
     childFn = jest.fn(() => null);
     allProps = {
@@ -24,11 +24,11 @@ describe('Stateful Slider Container', function() {
     };
   });
 
-  afterEach(function() {
+  afterEach(function () {
     jest.restoreAllMocks();
   });
 
-  it('passes additional props to child fn', function() {
+  it('passes additional props to child fn', function () {
     render(<StatefulSliderContainer {...allProps} />);
     expect(childFn.mock.calls[0][0]).toHaveProperty('foo', 'bar');
     expect(childFn.mock.calls[0][0]).toHaveProperty(

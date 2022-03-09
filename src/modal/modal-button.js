@@ -34,5 +34,6 @@ const ModalButton = React.forwardRef<ButtonPropsT, HTMLElement>(
     />
   ),
 );
+ModalButton.displayName = 'ModalButton';
 
 export default ModalButton;

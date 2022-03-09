@@ -32,7 +32,7 @@ export type PropsT = {
   /** Sets the name attribute of each input element. */
   name: ?string,
   /** A handler for when any pin code input changes value. */
-  onChange: ChangeEventT => mixed,
+  onChange: (ChangeEventT) => mixed,
   overrides: {
     Root?: OverrideT,
     Input?: OverrideT,
@@ -78,7 +78,7 @@ export type StatefulPinCodePropsT = PropsT & {
 };
 
 export type StatefulPinCodeContainerPropsT = PropsT & {
-  children: PropsT => React.Node,
+  children: (PropsT) => React.Node,
   initialState: StatefulPinCodeContainerStateT,
   onChange: (event: ChangeEventT) => mixed,
   stateReducer: StateReducerT,

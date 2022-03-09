@@ -21,16 +21,16 @@ export function Scenario() {
       activeKey={activeKey}
       onChange={({activeKey}) => setActiveKey(activeKey)}
     >
-      <Tab title="Robot" artwork={props => <ArrowUp {...props} />}>
+      <Tab title="Robot" artwork={(props) => <ArrowUp {...props} />}>
         <Button kind={KIND.secondary}>🤖</Button>
       </Tab>
-      <Tab title="Monster" artwork={props => <ArrowRight {...props} />}>
+      <Tab title="Monster" artwork={(props) => <ArrowRight {...props} />}>
         <Button kind={KIND.secondary}>👺</Button>
       </Tab>
-      <Tab title="Watermelon" artwork={props => <ArrowDown {...props} />}>
+      <Tab title="Watermelon" artwork={(props) => <ArrowDown {...props} />}>
         <Button kind={KIND.secondary}>🍉</Button>
       </Tab>
-      <Tab title="Dragon" artwork={props => <ArrowLeft {...props} />}>
+      <Tab title="Dragon" artwork={(props) => <ArrowLeft {...props} />}>
         <Button kind={KIND.secondary}>🐲</Button>
       </Tab>
     </Tabs>

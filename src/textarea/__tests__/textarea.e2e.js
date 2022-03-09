@@ -34,7 +34,7 @@ describe('textarea', () => {
     await mount(page, 'textarea--textarea');
     await page.waitForSelector(selectors.textarea);
 
-    const value = await page.$eval(selectors.textarea, input => input.value);
+    const value = await page.$eval(selectors.textarea, (input) => input.value);
     expect(value).toBe('initial value');
   });
 
@@ -44,7 +44,7 @@ describe('textarea', () => {
     await page.click(selectors.textarea);
     await page.keyboard.type('!');
 
-    const value = await page.$eval(selectors.textarea, input => input.value);
+    const value = await page.$eval(selectors.textarea, (input) => input.value);
     expect(value).toBe('initial value!');
   });
 
@@ -54,7 +54,7 @@ describe('textarea', () => {
     await page.click(selectors.textarea);
     await page.keyboard.type('Something or other');
     await page.click(selectors.clearIcon);
-    const value = await page.$eval(selectors.textarea, input => input.value);
+    const value = await page.$eval(selectors.textarea, (input) => input.value);
     expect(value).toBe('');
   });
 
@@ -64,7 +64,7 @@ describe('textarea', () => {
     await page.click(selectors.textarea);
     await page.keyboard.type('Something or other');
     await page.keyboard.press('Escape');
-    const value = await page.$eval(selectors.textarea, input => input.value);
+    const value = await page.$eval(selectors.textarea, (input) => input.value);
     expect(value).toBe('');
   });
 });

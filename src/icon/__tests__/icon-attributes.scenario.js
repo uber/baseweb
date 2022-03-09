@@ -30,6 +30,7 @@ const Triangle = React.forwardRef((props, ref) => {
     </svg>
   );
 });
+Triangle.displayName = 'Triangle';
 
 const theme = createLightTheme(lightThemePrimitives, {
   icons: {

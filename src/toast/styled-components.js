@@ -101,7 +101,7 @@ export function getPlacement(placement: PlacementTypeT) {
 }
 
 // $FlowFixMe https://github.com/facebook/flow/issues/7745
-export const Root = styled<ToasterSharedStylePropsArgT>('div', props => {
+export const Root = styled<ToasterSharedStylePropsArgT>('div', (props) => {
   const {$placement, $theme} = props;
   return {
     pointerEvents: 'none',
@@ -121,7 +121,7 @@ export const Root = styled<ToasterSharedStylePropsArgT>('div', props => {
 export const InnerContainer = styled<SharedStylePropsArgT>('div', {});
 
 // $FlowFixMe https://github.com/facebook/flow/issues/7745
-export const Body = styled<SharedStylePropsArgT>('div', props => {
+export const Body = styled<SharedStylePropsArgT>('div', (props) => {
   const {$isVisible, $kind, $type, $theme} = props;
   const isInline = $type === TYPE.inline;
   return {
@@ -153,7 +153,7 @@ export const Body = styled<SharedStylePropsArgT>('div', props => {
 });
 
 // $FlowFixMe https://github.com/facebook/flow/issues/7745
-export const CloseIconSvg = styled<SharedStylePropsArgT>('svg', props => {
+export const CloseIconSvg = styled<SharedStylePropsArgT>('svg', (props) => {
   return {
     ...getSvgStyles(props),
     cursor: 'pointer',

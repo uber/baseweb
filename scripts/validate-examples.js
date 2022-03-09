@@ -14,7 +14,7 @@ const globby = require('globby');
 const path = require('path');
 
 const files = globby.sync(['documentation-site/examples/**/*.js']);
-files.forEach(file => {
+files.forEach((file) => {
   const from = path.join(__dirname, '../', file);
   const data = fs.readFileSync(from, 'utf-8');
   const lines = data.split(/\r?\n/g);

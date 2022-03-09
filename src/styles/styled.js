@@ -18,21 +18,21 @@ import type {ThemeT} from './types.js';
 
 import {ThemeContext} from './theme-provider.js';
 
-const wrapper = StyledComponent => {
+const wrapper = (StyledComponent) => {
+  // eslint-disable-next-line react/display-name
   return React.forwardRef((props, ref) => (
     <ThemeContext.Consumer>
-      {theme => <StyledComponent ref={ref} {...props} $theme={theme} />}
+      {(theme) => <StyledComponent ref={ref} {...props} $theme={theme} />}
     </ThemeContext.Consumer>
   ));
 };
 
 /* eslint-disable flowtype/generic-spacing */
 /* eslint-disable flowtype/no-weak-types */
-export type StyletronComponent<
-  Props,
-> = React.StatelessFunctionalComponent<Props> & {
-  __STYLETRON__: any,
-};
+export type StyletronComponent<Props> =
+  React.StatelessFunctionalComponent<Props> & {
+    __STYLETRON__: any,
+  };
 
 type StyleFn<Theme> = {
   (string): StyletronComponent<{}>,
@@ -93,7 +93,7 @@ export const withStyle = createThemedWithStyle<ThemeT>();
 type UseStyletronFn<Theme> = () => [(StyleObject) => string, Theme];
 
 export function createThemedUseStyletron<Theme>(): UseStyletronFn<Theme> {
-  return function() {
+  return function () {
     // eslint-disable-next-line flowtype/no-weak-types
     const theme = ((React.useContext(ThemeContext): any): Theme);
     const [css] = styletronUseStyletron();
@@ -110,15 +110,16 @@ export function withWrapper(
     // eslint-disable-next-line flowtype/no-weak-types
     StyletronComponent<any>,
     // eslint-disable-next-line flowtype/no-weak-types
-  ) => any => any,
+  ) => (any) => any,
 ) {
   // eslint-disable-next-line flowtype/no-weak-types
   return styletronWithWrapper<StyletronComponent<any>, any>(
     StyledElement,
-    Styled => {
+    (Styled) => {
+      // eslint-disable-next-line react/display-name
       return React.forwardRef((props, ref) => (
         <ThemeContext.Consumer>
-          {theme => wrapperFn(Styled)({ref: ref, ...props, $theme: theme})}
+          {(theme) => wrapperFn(Styled)({ref: ref, ...props, $theme: theme})}
         </ThemeContext.Consumer>
       ));
     },

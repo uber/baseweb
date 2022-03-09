@@ -45,7 +45,7 @@ export function Scenario() {
   const [css, theme] = useStyletron();
 
   const mapStyle = getMapStyle(
-    locations.map(loc => [loc.longitude, loc.latitude]),
+    locations.map((loc) => [loc.longitude, loc.latitude]),
     {showPointDebug: true},
   );
 
@@ -59,7 +59,7 @@ export function Scenario() {
           {...viewport}
           width="100%"
           height="760px"
-          onViewportChange={viewport => setViewport(viewport)}
+          onViewportChange={(viewport) => setViewport(viewport)}
           mapStyle={mapStyle}
         >
           <Marker

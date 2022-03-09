@@ -49,7 +49,7 @@ describe('anchor column', () => {
   it('cell renders provided value', () => {
     const column = AnchorColumn({
       title: 'column',
-      mapDataToValue: data => ({
+      mapDataToValue: (data) => ({
         content: data.content,
         href: data.href,
       }),
@@ -71,7 +71,7 @@ describe('anchor column', () => {
     const column = AnchorColumn({
       title: 'column',
       elementAs: 'div',
-      mapDataToValue: data => ({
+      mapDataToValue: (data) => ({
         content: data.content,
         href: data.href,
       }),
@@ -92,7 +92,7 @@ describe('anchor column', () => {
   it('builds expected sort function', () => {
     const column = AnchorColumn({
       title: 'column',
-      mapDataToValue: data => ({
+      mapDataToValue: (data) => ({
         content: data.content,
         href: data.href,
       }),

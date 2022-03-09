@@ -58,7 +58,7 @@ export default class ButtonGroup extends React.Component<PropsT> {
 
     return (
       <LocaleContext.Consumer>
-        {locale => (
+        {(locale) => (
           <Root
             aria-label={ariaLabel || locale.buttongroup.ariaLabel}
             data-baseweb="button-group"
@@ -89,7 +89,7 @@ export default class ButtonGroup extends React.Component<PropsT> {
                   (isRadio && (!selected || selected === -1) && index === 0)
                     ? 0
                     : -1,
-                onKeyDown: e => {
+                onKeyDown: (e) => {
                   if (!isRadio) return;
                   const value = Number(selected) ? Number(selected) : 0;
                   if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
@@ -108,7 +108,7 @@ export default class ButtonGroup extends React.Component<PropsT> {
                   }
                 },
                 kind,
-                onClick: event => {
+                onClick: (event) => {
                   if (disabled) {
                     return;
                   }

@@ -124,7 +124,7 @@ function getLabelColor(props) {
 export const RadioGroupRoot = styled<StylePropsT>(
   'div',
   // $FlowFixMe - suppressing due to webkit property
-  props => {
+  (props) => {
     const {$disabled, $align} = props;
     return {
       display: 'flex',
@@ -137,7 +137,7 @@ export const RadioGroupRoot = styled<StylePropsT>(
   },
 );
 
-export const Root = styled<StylePropsT>('label', props => {
+export const Root = styled<StylePropsT>('label', (props) => {
   const {$disabled, $hasDescription, $labelPlacement, $theme, $align} = props;
   const {sizing} = $theme;
   const isHorizontal = $align === 'horizontal';
@@ -157,7 +157,7 @@ export const Root = styled<StylePropsT>('label', props => {
   }: {});
 });
 
-export const RadioMarkInner = styled<StylePropsT>('div', props => {
+export const RadioMarkInner = styled<StylePropsT>('div', (props) => {
   const {animation, sizing} = props.$theme;
 
   return {
@@ -173,7 +173,7 @@ export const RadioMarkInner = styled<StylePropsT>('div', props => {
   };
 });
 
-export const RadioMarkOuter = styled<StylePropsT>('div', props => {
+export const RadioMarkOuter = styled<StylePropsT>('div', (props) => {
   const {animation, sizing} = props.$theme;
 
   return ({
@@ -203,7 +203,7 @@ export const RadioMarkOuter = styled<StylePropsT>('div', props => {
   }: {});
 });
 
-export const Label = styled<StylePropsT>('div', props => {
+export const Label = styled<StylePropsT>('div', (props) => {
   const {
     $theme: {typography},
   } = props;
@@ -231,7 +231,7 @@ export const Input = styled('input', {
   position: 'absolute',
 });
 
-export const Description = styled<StylePropsT>('div', props => {
+export const Description = styled<StylePropsT>('div', (props) => {
   const {$theme, $align} = props;
   const isHorizontal = $align === 'horizontal';
   const marginBefore = $theme.direction === 'rtl' ? 'Right' : 'Left';

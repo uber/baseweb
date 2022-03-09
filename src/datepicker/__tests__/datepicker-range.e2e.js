@@ -34,7 +34,7 @@ describe('Datepicker, Range', () => {
     await page.waitForSelector(selectors.calendar);
     const selectedValue1 = await page.$eval(
       selectors.input,
-      input => input.value,
+      (input) => input.value,
     );
     expect(selectedValue1).toBe('2019/03/10 –     /  /  ');
     await page.click(selectors.day2);
@@ -43,7 +43,7 @@ describe('Datepicker, Range', () => {
     });
     const selectedValue2 = await page.$eval(
       selectors.input,
-      input => input.value,
+      (input) => input.value,
     );
     expect(selectedValue2).toBe('2019/03/10 – 2019/03/28');
   });
@@ -56,7 +56,7 @@ describe('Datepicker, Range', () => {
     await page.waitForSelector(selectors.calendar);
     const selectedValue1 = await page.$eval(
       selectors.input,
-      input => input.value,
+      (input) => input.value,
     );
     expect(selectedValue1).toBe('2019/03/10 –     /  /  ');
     await page.click(selectors.day4);
@@ -65,7 +65,7 @@ describe('Datepicker, Range', () => {
     });
     const selectedValue2 = await page.$eval(
       selectors.input,
-      input => input.value,
+      (input) => input.value,
     );
     expect(selectedValue2).toBe('2019/03/10 – 2019/04/01');
   });
@@ -81,7 +81,7 @@ describe('Datepicker, Range', () => {
     await page.waitForSelector(selectors.calendar);
     const selectedValue1 = await page.$eval(
       selectors.input,
-      input => input.value,
+      (input) => input.value,
     );
     expect(selectedValue1).toBe('2019/04/01 –     /  /  ');
     // after clicking on a date in April, in the second month, the months should NOT change at all. March should still be visible, and May should not be rendered
@@ -94,7 +94,7 @@ describe('Datepicker, Range', () => {
     });
     const selectedValue2 = await page.$eval(
       selectors.input,
-      input => input.value,
+      (input) => input.value,
     );
     expect(selectedValue2).toBe('2019/03/10 – 2019/04/01');
   });
@@ -113,7 +113,7 @@ describe('Datepicker, Range', () => {
     await page.keyboard.press('Enter');
     let timeSelectValue = await page.$$eval(
       `${selectors.timeSelect} ${selectors.timeSelectValue}`,
-      selects => selects[0].textContent,
+      (selects) => selects[0].textContent,
     );
     expect(timeSelectValue).toBe('12:30 AM');
     // Set the end time
@@ -124,7 +124,7 @@ describe('Datepicker, Range', () => {
     await page.keyboard.press('Enter');
     let timeSelectValue2 = await page.$$eval(
       `${selectors.timeSelect} ${selectors.timeSelectValue}`,
-      selects => selects[1].textContent,
+      (selects) => selects[1].textContent,
     );
     expect(timeSelectValue2).toBe('4:30 AM');
     // Select the start day
@@ -133,7 +133,7 @@ describe('Datepicker, Range', () => {
     await page.click(selectors.day);
     const selectedValue1 = await page.$eval(
       selectors.input,
-      input => input.value,
+      (input) => input.value,
     );
     expect(selectedValue1).toBe('2019/03/10 –     /  /  ');
     // Select the start day
@@ -144,7 +144,7 @@ describe('Datepicker, Range', () => {
     });
     const selectedValue2 = await page.$eval(
       selectors.input,
-      input => input.value,
+      (input) => input.value,
     );
     expect(selectedValue2).toBe('2019/03/10 – 2019/03/28');
     await page.waitForSelector(selectors.calendar, {hidden: true});
@@ -154,13 +154,13 @@ describe('Datepicker, Range', () => {
     await page.waitForSelector(selectors.timeSelect);
     timeSelectValue = await page.$$eval(
       `${selectors.timeSelect} ${selectors.timeSelectValue}`,
-      selects => selects[0].textContent,
+      (selects) => selects[0].textContent,
     );
     expect(timeSelectValue).toBe('12:30 AM');
     // Set the end time
     timeSelectValue2 = await page.$$eval(
       `${selectors.timeSelect} ${selectors.timeSelectValue}`,
-      selects => selects[1].textContent,
+      (selects) => selects[1].textContent,
     );
     expect(timeSelectValue2).toBe('4:30 AM');
   });

@@ -19,7 +19,7 @@ function applyErrorDetails(message) {
 
 let error = console.error;
 // $FlowFixMe
-console.error = function(message) {
+console.error = function (message) {
   error.apply(console, arguments);
   throw new Error(applyErrorDetails(message));
 };
@@ -30,7 +30,7 @@ function applyWarningDetails(message) {
 
 let warn = console.warn;
 // $FlowFixMe
-console.warn = function(message) {
+console.warn = function (message) {
   warn.apply(console, arguments);
   throw new Error(applyWarningDetails(message));
 };

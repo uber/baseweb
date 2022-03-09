@@ -24,29 +24,23 @@ export default function UserProfileTile(props: {|
 |}) {
   const {overrides = {}, username, usernameSubtitle, userImgUrl} = props;
 
-  const [
-    UserProfileTileContainer,
-    userProfileTileContainerProps,
-  ] = getOverrides(
-    overrides.UserProfileTileContainer,
-    StyledUserProfileTileContainer,
-  );
+  const [UserProfileTileContainer, userProfileTileContainerProps] =
+    getOverrides(
+      overrides.UserProfileTileContainer,
+      StyledUserProfileTileContainer,
+    );
 
-  const [
-    UserProfilePictureContainer,
-    userProfilePictureContainerProps,
-  ] = getOverrides(
-    overrides.UserProfilePictureContainer,
-    StyledUserProfilePictureContainer,
-  );
+  const [UserProfilePictureContainer, userProfilePictureContainerProps] =
+    getOverrides(
+      overrides.UserProfilePictureContainer,
+      StyledUserProfilePictureContainer,
+    );
 
-  const [
-    UserProfileInfoContainer,
-    userProfileInfoContainerProps,
-  ] = getOverrides(
-    overrides.UserProfileInfoContainer,
-    StyledUserProfileInfoContainer,
-  );
+  const [UserProfileInfoContainer, userProfileInfoContainerProps] =
+    getOverrides(
+      overrides.UserProfileInfoContainer,
+      StyledUserProfileInfoContainer,
+    );
 
   return (
     // Replace with a  profile tile renderer: renderUserProfileTile()

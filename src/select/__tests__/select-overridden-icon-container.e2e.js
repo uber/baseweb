@@ -18,7 +18,7 @@ describe('select overridden icon container', () => {
     const countSelector = '[data-testId="click-count"]';
 
     async function getCount() {
-      return page.evaluate(el => el.textContent, await page.$(countSelector));
+      return page.evaluate((el) => el.textContent, await page.$(countSelector));
     }
 
     await page.waitForSelector(customIconSelector);

@@ -86,7 +86,7 @@ function CountrySelectDropdown(
 
   const children = React.Children.toArray(props.children);
   const scrollIndex = Math.min(
-    children.findIndex(opt => opt.props.item.id === country.id) + 5,
+    children.findIndex((opt) => opt.props.item.id === country.id) + 5,
     children.length - 1,
   );
   return (
@@ -107,9 +107,8 @@ function CountrySelectDropdown(
               scrollToIndex={scrollIndex}
               rowRenderer={({index, key, style}) => {
                 // resetMenu and getItemLabel should not end up on native html elements
-                const {item, resetMenu, getItemLabel, ...rest} = children[
-                  index
-                ].props;
+                const {item, resetMenu, getItemLabel, ...rest} =
+                  children[index].props;
                 const {id: iso, label, dialCode} = item;
                 return (
                   <ListItem
@@ -144,6 +143,7 @@ function CountrySelectDropdown(
   );
 }
 
+// eslint-disable-next-line react/display-name
 export default React.forwardRef<
   CountrySelectDropdownPropsT,
   typeof CountrySelectDropdown,

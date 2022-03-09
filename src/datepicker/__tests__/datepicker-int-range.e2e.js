@@ -29,7 +29,7 @@ describe('Datepicker, Int', () => {
     await page.waitForSelector(selectors.calendar);
     const selectedValue1 = await page.$eval(
       selectors.input,
-      input => input.value,
+      (input) => input.value,
     );
     expect(selectedValue1).toBe('2019 vasárnap 10');
     await page.click(selectors.day2);
@@ -38,7 +38,7 @@ describe('Datepicker, Int', () => {
     });
     const selectedValue2 = await page.$eval(
       selectors.input,
-      input => input.value,
+      (input) => input.value,
     );
     expect(selectedValue2).toBe('2019 vasárnap 10 – 2019 csütörtök 28');
   });

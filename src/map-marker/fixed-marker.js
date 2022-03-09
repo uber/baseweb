@@ -74,10 +74,8 @@ const FixedMarker = ({
     size !== PINHEAD_SIZES_SHAPES.xxSmallSquare;
 
   const [Root, rootProps] = getOverrides(overrides.Root, StyledFixedMarkerRoot);
-  const [
-    FixedMarkerDragContainer,
-    fixedMarkerDragContainerProps,
-  ] = getOverrides(overrides.DragContainer, StyledFixedMarkerDragContainer);
+  const [FixedMarkerDragContainer, fixedMarkerDragContainerProps] =
+    getOverrides(overrides.DragContainer, StyledFixedMarkerDragContainer);
 
   const renderNeedle =
     needle !== NEEDLE_SIZES.none &&

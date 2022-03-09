@@ -28,8 +28,8 @@ export function Scenario() {
     <div className={css({width: '375px', padding: '12px 48px'})}>
       <Combobox
         value={value}
-        mapOptionToString={o => o.label}
-        onChange={nextValue => setValue(nextValue)}
+        mapOptionToString={(o) => o.label}
+        onChange={(nextValue) => setValue(nextValue)}
         options={options}
         overrides={{
           Root: {style: {padding: '10px', backgroundColor: 'lightskyblue'}},

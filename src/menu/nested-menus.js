@@ -19,8 +19,8 @@ type PropsT = {
   children: React.Node,
 };
 
-export const NestedMenuContext: React.Context<NestedMenuContextT> = React.createContext(
-  {
+export const NestedMenuContext: React.Context<NestedMenuContextT> =
+  React.createContext({
     addMenuToNesting: () => {},
     removeMenuFromNesting: () => {},
     getParentMenu: () => {},
@@ -28,8 +28,7 @@ export const NestedMenuContext: React.Context<NestedMenuContextT> = React.create
     nestedMenuHoverIndex: -1,
     isNestedMenuVisible: () => false,
     mountRef: {current: null},
-  },
-);
+  });
 
 function isSame(a: ?HTMLElement, b: ?HTMLElement) {
   if (!a || !b) {
@@ -53,7 +52,7 @@ export default class NestedMenus extends React.Component<PropsT, StateT> {
   handleMenuMouseEnter = (event: MouseEvent) => {
     if (__BROWSER__) {
       clearTimeout(this.mouseLeaveTimeoueId);
-      const index = this.state.menus.findIndex(m => {
+      const index = this.state.menus.findIndex((m) => {
         return (
           m.current &&
           event.currentTarget instanceof Node &&
@@ -74,14 +73,14 @@ export default class NestedMenus extends React.Component<PropsT, StateT> {
       element.addEventListener('mouseenter', this.handleMenuMouseEnter);
       element.addEventListener('mouseleave', this.handleMenuMouseLeave);
 
-      this.setState(state => {
+      this.setState((state) => {
         return {menus: [...state.menus, ref]};
       });
     }
   };
 
   removeMenuFromNesting = (ref: NestedMenuRefT) => {
-    this.setState(state => {
+    this.setState((state) => {
       for (const r of this.state.menus) {
         if (r.current && isSame(r.current, ref.current)) {
           const element = r.current;
@@ -90,7 +89,7 @@ export default class NestedMenus extends React.Component<PropsT, StateT> {
         }
       }
 
-      const nextMenus = state.menus.filter(r => {
+      const nextMenus = state.menus.filter((r) => {
         return r.current && !isSame(r.current, ref.current);
       });
 
@@ -99,7 +98,7 @@ export default class NestedMenus extends React.Component<PropsT, StateT> {
   };
 
   findMenuIndexByRef = (ref: NestedMenuRefT) => {
-    return this.state.menus.findIndex(r => isSame(r.current, ref.current));
+    return this.state.menus.findIndex((r) => isSame(r.current, ref.current));
   };
 
   getParentMenu = (ref: NestedMenuRefT): ?NestedMenuRefT => {

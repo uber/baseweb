@@ -39,7 +39,7 @@ export function Scenario() {
   const [count, setCount] = React.useState(0);
 
   const onCustomClick = React.useCallback(() => {
-    setCount(prev => prev + 1);
+    setCount((prev) => prev + 1);
   }, []);
 
   return (

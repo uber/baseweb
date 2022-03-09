@@ -15,7 +15,7 @@ const highlightedSelector = '[aria-selected="true"]';
 async function findHighlightedLabel(page) {
   const highlightedItem = await page.$(highlightedSelector);
   return await page.evaluate(
-    highlightedItem => highlightedItem.textContent,
+    (highlightedItem) => highlightedItem.textContent,
     highlightedItem,
   );
 }
@@ -33,8 +33,8 @@ describe('menu-grouped-items', () => {
     await mount(page, 'menu--grouped-items');
     const listElements = await page.$$('li');
     const actual = await Promise.all(
-      listElements.map(listElement => {
-        return page.evaluate(li => li.textContent, listElement);
+      listElements.map((listElement) => {
+        return page.evaluate((li) => li.textContent, listElement);
       }),
     );
     const expected = [

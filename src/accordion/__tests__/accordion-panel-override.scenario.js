@@ -34,7 +34,7 @@ export function Scenario() {
       <Accordion
         overrides={{
           // eslint-disable-next-line react/display-name
-          ToggleIcon: function(props) {
+          ToggleIcon: function (props) {
             if (props.$expanded) {
               return <div>collapse(override)</div>;
             }

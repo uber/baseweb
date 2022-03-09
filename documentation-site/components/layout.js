@@ -126,12 +126,12 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
 
     return (
       <DirectionContext.Consumer>
-        {direction => (
+        {(direction) => (
           <React.Fragment>
             <SkipToContent />
             <HeaderNavigation
               toggleSidebar={() =>
-                this.setState(prevState => ({
+                this.setState((prevState) => ({
                   sidebarOpen: !prevState.sidebarOpen,
                 }))
               }

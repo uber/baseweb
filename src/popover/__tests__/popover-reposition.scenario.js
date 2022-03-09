@@ -27,7 +27,7 @@ export function Scenario() {
                 id="e2e-update"
                 className={css({marginRight: '8px'})}
                 type="button"
-                onClick={() => setExpanded(s => !s)}
+                onClick={() => setExpanded((s) => !s)}
               >
                 update
               </button>

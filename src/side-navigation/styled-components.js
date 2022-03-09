@@ -9,7 +9,7 @@ import * as React from 'react';
 import {styled, hexToRgb, withWrapper} from '../styles/index.js';
 import type {SharedPropsT} from './types.js';
 
-export const StyledRoot = styled<SharedPropsT>('nav', props => {
+export const StyledRoot = styled<SharedPropsT>('nav', (props) => {
   const {
     $theme: {colors, typography},
   } = props;
@@ -49,7 +49,7 @@ export const StyledNavLink = styled<{$isFocusVisible: boolean}>(
   }),
 );
 
-export const StyledNavItemElement = styled<SharedPropsT>('div', props => {
+export const StyledNavItemElement = styled<SharedPropsT>('div', (props) => {
   const {
     $active,
     $selectable,
@@ -107,7 +107,7 @@ export const StyledNavItemElement = styled<SharedPropsT>('div', props => {
 
 export const StyledNavItem = withWrapper(
   StyledNavItemElement,
-  Styled =>
+  (Styled) =>
     function StyledNav({item, ...restProps}) {
       return <Styled {...restProps} />;
     },

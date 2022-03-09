@@ -52,8 +52,8 @@ export function Scenario() {
     <div className={css({width: '375px', padding: '12px 48px'})}>
       <Combobox
         value={value}
-        onChange={nextValue => setValue(nextValue)}
-        mapOptionToString={o => o.label}
+        onChange={(nextValue) => setValue(nextValue)}
+        mapOptionToString={(o) => o.label}
         mapOptionToNode={ReplacementNode}
         options={options}
       />

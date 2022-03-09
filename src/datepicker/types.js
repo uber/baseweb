@@ -296,7 +296,7 @@ export type NavigationContainerStateReducerT<T = Date> = (
 ) => NavigationContainerStateT<T>;
 
 export type StatefulContainerPropsT<PropsT, T = Date> = {
-  children: PropsT => React.Node,
+  children: (PropsT) => React.Node,
   /** Initial state of an uncontrolled datepicker component. */
   initialState: ContainerStateT<T>,
   /** A state change handler. */
@@ -332,7 +332,7 @@ export type NavigationContainerPropsT<T = Date> = {
 export type StatefulDatepickerPropsT<PropsT, T = Date> = $Diff<
   StatefulContainerPropsT<PropsT, T>,
   {
-    children: PropsT => React.Node,
+    children: (PropsT) => React.Node,
   },
 >;
 
@@ -358,7 +358,7 @@ export type TimezonePickerPropsT = {
    * Customize the option's label. Useful for translations and optionally mapping from
    * 'America/Los_Angeles' to 'Pacific Time'.
    */
-  mapLabels?: OptionT => React.Node,
+  mapLabels?: (OptionT) => React.Node,
   /** Callback for when the timezone selection changes. */
   onChange?: (value: ?{id: string, label: string, offset: number}) => mixed,
   overrides?: {Select?: OverrideT},

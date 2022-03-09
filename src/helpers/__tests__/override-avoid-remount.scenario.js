@@ -36,7 +36,7 @@ export function Scenario() {
           Base: {
             component: BaseOverride,
             props: {
-              onChange: event => setValue(event.target.value),
+              onChange: (event) => setValue(event.target.value),
               value,
             },
           },

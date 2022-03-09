@@ -17,9 +17,7 @@ export type ItemsT = ArrayItemsT | GroupedItemsT;
 
 export type GetItemLabelFnT = (item: ItemT) => React.Node;
 
-export type GetProfileItemLabelsFnT = (
-  item: ItemT,
-) => {
+export type GetProfileItemLabelsFnT = (item: ItemT) => {
   title?: string,
   subtitle?: string,
   body?: string,
@@ -127,7 +125,7 @@ export type StatefulContainerPropsT = {
   /** whether has keyboard type-ahead function */
   typeAhead: boolean,
   /** Child as function pattern. */
-  children: RenderPropsT => React.Node,
+  children: (RenderPropsT) => React.Node,
   addMenuToNesting?: (ref: {current: HTMLElement | null}) => void,
   removeMenuFromNesting?: (ref: {current: HTMLElement | null}) => void,
   getParentMenu?: (ref: {current: HTMLElement | null}) => ?{
@@ -206,7 +204,7 @@ export type StatefulMenuPropsT = {
   /** Ref for the menu container element. Used to capture key events for navigation */
   rootRef?: RootRefT,
   /** Child as function pattern. */
-  children?: RenderPropsT => React.Node,
+  children?: (RenderPropsT) => React.Node,
   /** whether has keyboard type-ahead function */
   typeAhead?: boolean,
   addMenuToNesting?: (ref: {current: HTMLElement | null}) => void,

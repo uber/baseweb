@@ -54,7 +54,7 @@ function MeasureColumn({
         onMouseLeave={() => {}}
         onSelectAll={() => {}}
         onSelectNone={() => {}}
-        onSort={i => {}}
+        onSort={(i) => {}}
         sortable={column.sortable}
         sortDirection={null}
         title={column.title}

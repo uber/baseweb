@@ -42,7 +42,7 @@ export const StyledFlagContainer = styled<SizeStyleProps>(
 // An override component for the Select's Root styled element
 export const StyledRoot = withStyle<typeof SelectStyledRoot, SizeStyleProps>(
   SelectStyledRoot,
-  props => {
+  (props) => {
     // hard coded widths for the flag dropdown anchor
     const sizeToWidth = {
       [SIZE.mini]: '50px',
@@ -78,7 +78,7 @@ export const StyledCountrySelectContainer = styled('div', {
 export const StyledCountrySelectDropdownContainer = withStyle<
   typeof StyledList,
   HeightStyleProps,
->(StyledList, props => {
+>(StyledList, (props) => {
   const {$height = defaultProps.maxDropdownHeight} = props;
   return {
     height: $height,
@@ -101,7 +101,7 @@ export const StyledCountrySelectDropdownListItemElement = withStyle<
 
 export const StyledCountrySelectDropdownListItem = withWrapper(
   StyledCountrySelectDropdownListItemElement,
-  Styled =>
+  (Styled) =>
     function StyledCountrySelectDropdownListItem({item, ...restProps}) {
       return <Styled {...restProps} />;
     },

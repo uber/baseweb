@@ -29,9 +29,8 @@ function useDuplicateColumnTitleWarning(columns: ColumnT<>[]) {
 
 function useSortParameters(initialSortIndex = -1, initialSortDirection = null) {
   const [sortIndex, setSortIndex] = React.useState(initialSortIndex);
-  const [sortDirection, setSortDirection] = React.useState(
-    initialSortDirection,
-  );
+  const [sortDirection, setSortDirection] =
+    React.useState(initialSortDirection);
 
   function handleSort(columnIndex) {
     if (columnIndex === sortIndex) {
@@ -84,13 +83,13 @@ export function StatefulContainer(props: StatefulContainerPropsT) {
 
     const selectionCallback = props.onSelectionChange;
     if (selectionCallback) {
-      selectionCallback(props.rows.filter(r => next.has(r.id)));
+      selectionCallback(props.rows.filter((r) => next.has(r.id)));
     }
   }
   function handleSelectMany(incomingRows) {
     // only adds rows that are visible in the table
     handleSelectChange(
-      new Set([...selectedRowIds, ...incomingRows.map(r => r.id)]),
+      new Set([...selectedRowIds, ...incomingRows.map((r) => r.id)]),
     );
   }
   function handleSelectNone() {
@@ -106,7 +105,7 @@ export function StatefulContainer(props: StatefulContainerPropsT) {
   }
 
   const handleIncludedRowsChange = React.useCallback(
-    rows => {
+    (rows) => {
       if (props.onIncludedRowsChange) {
         props.onIncludedRowsChange(rows);
       }

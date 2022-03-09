@@ -25,7 +25,7 @@ describe('select backspace works as expected', () => {
 
     // Backspace on AliceBlue
     await page.keyboard.press('Backspace');
-    const backspaced = await page.$eval(selector, i => i.value);
+    const backspaced = await page.$eval(selector, (i) => i.value);
     expect(backspaced).toBe('AliceBlu');
   });
 
@@ -41,7 +41,7 @@ describe('select backspace works as expected', () => {
 
     // Backspace on AliceBlue
     await page.keyboard.press('Backspace');
-    const backspaced = await page.$eval(selector, i => i.value);
+    const backspaced = await page.$eval(selector, (i) => i.value);
     expect(backspaced).toBe('');
   });
 });

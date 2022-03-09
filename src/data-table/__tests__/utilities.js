@@ -37,7 +37,7 @@ function getCellsAtColumnIndex(page: any, columnCount: number, index: number) {
     return page.$(`${TABLE_ROOT} > div:nth-child(${index + 2})`);
   }
 
-  return Promise.all(indices.map(i => getCellAtIndex(page, i)));
+  return Promise.all(indices.map((i) => getCellAtIndex(page, i)));
 }
 
 async function getCellContentsAtColumnIndex(
@@ -50,8 +50,8 @@ async function getCellContentsAtColumnIndex(
 
   function getTextContentFromElements(page, elements) {
     return Promise.all(
-      elements.map(element => {
-        return page.evaluate(e => e.textContent, element);
+      elements.map((element) => {
+        return page.evaluate((e) => e.textContent, element);
       }),
     );
   }

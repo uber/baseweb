@@ -24,7 +24,7 @@ export function StatefulHelper(props: StatefulPropsT) {
   const {children, ...restProps} = props;
   return (
     <StatefulContainer {...restProps}>
-      {helperProps => <Helper {...helperProps}>{children}</Helper>}
+      {(helperProps) => <Helper {...helperProps}>{children}</Helper>}
     </StatefulContainer>
   );
 }

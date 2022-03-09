@@ -16,7 +16,7 @@ import {ORIENTATION, DENSITY} from './constants.js';
 export const StyledInputWrapper = styled<{
   ...SharedStylePropsT,
   $separateRangeInputs: boolean,
-}>('div', props => {
+}>('div', (props) => {
   const {$separateRangeInputs} = props;
 
   return {
@@ -44,7 +44,7 @@ export const StyledEndDate = styled<{}>('div', ({$theme}) => ({
 /**
  * Main component container element
  */
-export const StyledRoot = styled<SharedStylePropsT>('div', props => {
+export const StyledRoot = styled<SharedStylePropsT>('div', (props) => {
   const {
     $theme: {typography, colors, borders},
   } = props;
@@ -63,7 +63,7 @@ export const StyledRoot = styled<SharedStylePropsT>('div', props => {
 
 export const StyledMonthContainer = styled<{
   $orientation: $PropertyType<CalendarPropsT<Date>, 'orientation'>,
-}>('div', props => {
+}>('div', (props) => {
   const {$orientation} = props;
   return {
     display: 'flex',
@@ -73,7 +73,7 @@ export const StyledMonthContainer = styled<{
 
 export const StyledCalendarContainer = styled<SharedStylePropsT>(
   'div',
-  props => {
+  (props) => {
     const {
       $theme: {sizing},
       $density,
@@ -101,37 +101,40 @@ export const StyledSelectorContainer = styled<SharedStylePropsT>(
   },
 );
 
-export const StyledCalendarHeader = styled<SharedStylePropsT>('div', props => {
-  const {
-    $theme: {typography, borders, colors, sizing},
-    $density,
-  } = props;
-  return {
-    ...($density === DENSITY.high
-      ? typography.LabelMedium
-      : typography.LabelLarge),
-    color: colors.calendarHeaderForeground,
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingTop: sizing.scale600,
-    paddingBottom: sizing.scale300,
-    paddingLeft: sizing.scale600,
-    paddingRight: sizing.scale600,
-    backgroundColor: colors.calendarHeaderBackground,
-    borderTopLeftRadius: borders.surfaceBorderRadius,
-    borderTopRightRadius: borders.surfaceBorderRadius,
-    borderBottomRightRadius: 0,
-    borderBottomLeftRadius: 0,
-    // account for the left/right arrow heights
-    minHeight:
-      $density === DENSITY.high
-        ? `calc(${sizing.scale800} + ${sizing.scale0})`
-        : sizing.scale950,
-  };
-});
+export const StyledCalendarHeader = styled<SharedStylePropsT>(
+  'div',
+  (props) => {
+    const {
+      $theme: {typography, borders, colors, sizing},
+      $density,
+    } = props;
+    return {
+      ...($density === DENSITY.high
+        ? typography.LabelMedium
+        : typography.LabelLarge),
+      color: colors.calendarHeaderForeground,
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      paddingTop: sizing.scale600,
+      paddingBottom: sizing.scale300,
+      paddingLeft: sizing.scale600,
+      paddingRight: sizing.scale600,
+      backgroundColor: colors.calendarHeaderBackground,
+      borderTopLeftRadius: borders.surfaceBorderRadius,
+      borderTopRightRadius: borders.surfaceBorderRadius,
+      borderBottomRightRadius: 0,
+      borderBottomLeftRadius: 0,
+      // account for the left/right arrow heights
+      minHeight:
+        $density === DENSITY.high
+          ? `calc(${sizing.scale800} + ${sizing.scale0})`
+          : sizing.scale950,
+    };
+  },
+);
 
-export const StyledMonthHeader = styled<SharedStylePropsT>('div', props => {
+export const StyledMonthHeader = styled<SharedStylePropsT>('div', (props) => {
   return {
     color: props.$theme.colors.calendarHeaderForeground,
     backgroundColor: props.$theme.colors.calendarHeaderBackground,
@@ -141,7 +144,7 @@ export const StyledMonthHeader = styled<SharedStylePropsT>('div', props => {
 
 export const StyledMonthYearSelectButton = styled<SharedStylePropsT>(
   'button',
-  props => {
+  (props) => {
     const {
       $theme: {typography, colors},
       $isFocusVisible,
@@ -168,15 +171,18 @@ export const StyledMonthYearSelectButton = styled<SharedStylePropsT>(
   },
 );
 
-export const StyledMonthYearSelectIconContainer = styled<{}>('span', props => {
-  const marginDirection: string =
-    props.$theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
-  return {
-    alignItems: 'center',
-    display: 'flex',
-    [marginDirection]: props.$theme.sizing.scale500,
-  };
-});
+export const StyledMonthYearSelectIconContainer = styled<{}>(
+  'span',
+  (props) => {
+    const marginDirection: string =
+      props.$theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
+    return {
+      alignItems: 'center',
+      display: 'flex',
+      [marginDirection]: props.$theme.sizing.scale500,
+    };
+  },
+);
 
 function getArrowBtnStyle({$theme, $disabled, $isFocusVisible}) {
   return {
@@ -227,7 +233,7 @@ export const StyledMonth = styled<SharedStylePropsT>(
   },
 );
 
-export const StyledWeek = styled<SharedStylePropsT>('div', props => {
+export const StyledWeek = styled<SharedStylePropsT>('div', (props) => {
   const {
     $theme: {sizing},
   } = props;
@@ -427,7 +433,7 @@ function getDayStyles(code, {colors}): any {
   return dayStateStyle[code] || defaultDayStyle;
 }
 
-export const StyledDay = styled<SharedStylePropsT>('div', props => {
+export const StyledDay = styled<SharedStylePropsT>('div', (props) => {
   const {
     $disabled,
     $isFocusVisible,
@@ -579,7 +585,7 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
   }: {});
 });
 
-export const StyledDayLabel = styled<SharedStylePropsT>('div', props => {
+export const StyledDayLabel = styled<SharedStylePropsT>('div', (props) => {
   const {
     $theme: {typography, colors},
     $selected,
@@ -590,7 +596,7 @@ export const StyledDayLabel = styled<SharedStylePropsT>('div', props => {
   };
 });
 
-export const StyledWeekdayHeader = styled<SharedStylePropsT>('div', props => {
+export const StyledWeekdayHeader = styled<SharedStylePropsT>('div', (props) => {
   const {
     $theme: {typography, colors, sizing},
     $density,

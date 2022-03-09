@@ -46,14 +46,14 @@ type HeaderContextT = {|
   isSelectedAll: boolean,
   isSelectedIndeterminate: boolean,
   measuredWidths: number[],
-  onMouseEnter: number => void,
+  onMouseEnter: (number) => void,
   onMouseLeave: () => void,
   onResize: (columnIndex: number, delta: number) => void,
   onSelectMany: () => void,
   onSelectNone: () => void,
-  onSort: number => void,
+  onSort: (number) => void,
   resizableColumnWidths: boolean,
-  rowActions: RowActionT[] | (RowT => RowActionT[]),
+  rowActions: RowActionT[] | ((RowT) => RowActionT[]),
   rowHeight: number,
   rowHighlightIndex: number,
   rows: RowT[],
@@ -80,14 +80,14 @@ type CellPlacementPropsT = {
     isSelectable: boolean,
     isRowSelected: (string | number) => boolean,
     onRowMouseEnter: (number, RowT) => void,
-    onSelectOne: RowT => void,
+    onSelectOne: (RowT) => void,
     rowHighlightIndex: number,
     rows: RowT[],
     textQuery: string,
   },
 };
 
-const sum = ns => ns.reduce((s, n) => s + n, 0);
+const sum = (ns) => ns.reduce((s, n) => s + n, 0);
 
 function CellPlacement({columnIndex, rowIndex, data, style}) {
   const [css, theme] = useStyletron();
@@ -241,7 +241,7 @@ type HeaderProps = {|
   isSelectable: boolean,
   isSelectedAll: boolean,
   isSelectedIndeterminate: boolean,
-  onMouseEnter: number => void,
+  onMouseEnter: (number) => void,
   onMouseLeave: () => void,
   onResize: (columnIndex: number, delta: number) => void,
   onResizeIndexChange: (columnIndex: number) => void,
@@ -373,7 +373,7 @@ function Header(props: HeaderProps) {
         >
           <div
             role="presentation"
-            onMouseDown={event => {
+            onMouseDown={(event) => {
               props.onResizeIndexChange(props.index);
               const x = getPositionX(event.target);
               setStartResizePos(x);
@@ -596,7 +596,7 @@ const InnerTableElement = React.forwardRef<
             {(typeof ctx.rowActions === 'function'
               ? ctx.rowActions(highlightedRow)
               : ctx.rowActions
-            ).map(rowAction => {
+            ).map((rowAction) => {
               if (rowAction.renderButton) {
                 const RowActionButton = rowAction.renderButton;
                 return <RowActionButton />;
@@ -607,7 +607,7 @@ const InnerTableElement = React.forwardRef<
                 <Button
                   alt={rowAction.label}
                   key={rowAction.label}
-                  onClick={event =>
+                  onClick={(event) =>
                     rowAction.onClick({
                       event,
                       row: ctx.rows[ctx.rowHighlightIndex - 1],
@@ -690,7 +690,7 @@ export function DataTable({
   const locale = React.useContext(LocaleContext);
 
   const rowHeightAtIndex = React.useCallback(
-    index => {
+    (index) => {
       if (index === 0) {
         return HEADER_ROW_HEIGHT;
       }
@@ -707,16 +707,16 @@ export function DataTable({
   );
   const [resizeDeltas, setResizeDeltas] = React.useState(columns.map(() => 0));
   React.useEffect(() => {
-    setMeasuredWidths(prev => {
+    setMeasuredWidths((prev) => {
       return columns.map((v, index) => prev[index] || 0);
     });
-    setResizeDeltas(prev => {
+    setResizeDeltas((prev) => {
       return columns.map((v, index) => prev[index] || 0);
     });
   }, [columns]);
 
   const resetAfterColumnIndex = React.useCallback(
-    columnIndex => {
+    (columnIndex) => {
       if (gridRef) {
         // $FlowFixMe trigger react-window to layout the elements again
         gridRef.resetAfterColumnIndex(columnIndex, true);
@@ -725,7 +725,7 @@ export function DataTable({
     [gridRef],
   );
   const handleWidthsChange = React.useCallback(
-    nextWidths => {
+    (nextWidths) => {
       setMeasuredWidths(nextWidths);
       resetAfterColumnIndex(0);
     },
@@ -733,7 +733,7 @@ export function DataTable({
   );
   const handleColumnResize = React.useCallback(
     (columnIndex, delta) => {
-      setResizeDeltas(prev => {
+      setResizeDeltas((prev) => {
         prev[columnIndex] = Math.max(prev[columnIndex] + delta, 0);
         return [...prev];
       });
@@ -758,7 +758,7 @@ export function DataTable({
     }
   }, [recentlyScrolledX]);
   const handleScroll = React.useCallback(
-    params => {
+    (params) => {
       setScrollLeft(params.scrollLeft);
       if (params.scrollLeft !== scrollLeft) {
         setRecentlyScrolledX(true);
@@ -778,7 +778,7 @@ export function DataTable({
       columns[index]
     ) {
       const sortFn = columns[index].sortFn;
-      const getValue = row => columns[index].mapDataToValue(row.data);
+      const getValue = (row) => columns[index].mapDataToValue(row.data);
       if (sortDirection === SORT_DIRECTIONS.ASC) {
         toSort.sort((a, b) => sortFn(getValue(a[0]), getValue(b[0])));
       } else if (sortDirection === SORT_DIRECTIONS.DESC) {
@@ -786,20 +786,20 @@ export function DataTable({
       }
     }
 
-    return toSort.map(el => el[1]);
+    return toSort.map((el) => el[1]);
   }, [sortIndex, sortDirection, columns, allRows]);
 
   const filteredIndices = React.useMemo(() => {
     const set = new Set(allRows.map((_, idx) => idx));
-    Array.from(filters || new Set(), f => f).forEach(([title, filter]) => {
-      const columnIndex = columns.findIndex(c => c.title === title);
+    Array.from(filters || new Set(), (f) => f).forEach(([title, filter]) => {
+      const columnIndex = columns.findIndex((c) => c.title === title);
       const column = columns[columnIndex];
       if (!column) {
         return;
       }
 
       const filterFn = column.buildFilter(filter);
-      Array.from(set).forEach(idx => {
+      Array.from(set).forEach((idx) => {
         if (!filterFn(column.mapDataToValue(allRows[idx].data))) {
           set.delete(idx);
         }
@@ -813,8 +813,8 @@ export function DataTable({
           stringishColumnIndices.push(i);
         }
       }
-      Array.from(set).forEach(idx => {
-        const matches = stringishColumnIndices.some(cdx => {
+      Array.from(set).forEach((idx) => {
+        const matches = stringishColumnIndices.some((cdx) => {
           const column = columns[cdx];
           const textQueryFilter = column.textQueryFilter;
           if (textQueryFilter) {
@@ -837,8 +837,8 @@ export function DataTable({
 
   const rows = React.useMemo(() => {
     const result = sortedIndices
-      .filter(idx => filteredIndices.has(idx))
-      .map(idx => allRows[idx]);
+      .filter((idx) => filteredIndices.has(idx))
+      .map((idx) => allRows[idx]);
 
     if (onIncludedRowsChange) {
       onIncludedRowsChange(result);
@@ -870,7 +870,7 @@ export function DataTable({
 
       const remainder = gridProps.width - sum(resizedWidths) - scrollbarWidth;
       const padding = Math.floor(
-        remainder / columns.filter(c => (c ? c.fillWidth : true)).length,
+        remainder / columns.filter((c) => (c ? c.fillWidth : true)).length,
       );
       if (padding > 0) {
         const result = [];
@@ -911,7 +911,7 @@ export function DataTable({
     return !!selectedRowIds.size && selectedRowIds.size < rows.length;
   }, [selectedRowIds, rows.length]);
   const isRowSelected = React.useCallback(
-    id => {
+    (id) => {
       if (selectedRowIds) {
         return selectedRowIds.has(id);
       }
@@ -930,7 +930,7 @@ export function DataTable({
     }
   }, [onSelectNone]);
   const handleSelectOne = React.useCallback(
-    row => {
+    (row) => {
       if (onSelectOne) {
         onSelectOne(row);
       }
@@ -939,7 +939,7 @@ export function DataTable({
   );
 
   const handleSort = React.useCallback(
-    columnIndex => {
+    (columnIndex) => {
       if (onSort) {
         onSort(columnIndex);
       }
@@ -964,7 +964,7 @@ export function DataTable({
   }
 
   const handleRowMouseEnter = React.useCallback(
-    nextIndex => {
+    (nextIndex) => {
       setColumnHighlightIndex(-1);
       if (nextIndex !== rowHighlightIndex) {
         handleRowHighlightIndexChange(nextIndex);
@@ -1019,7 +1019,9 @@ export function DataTable({
         isSelectable={isSelectable}
         onWidthsChange={handleWidthsChange}
       />
-      <MeasureScrollbarWidth onWidthChange={w => setBrowserScrollbarWidth(w)} />
+      <MeasureScrollbarWidth
+        onWidthChange={(w) => setBrowserScrollbarWidth(w)}
+      />
       <AutoSizer>
         {({height, width}) => (
           <HeaderContext.Provider
@@ -1060,7 +1062,7 @@ export function DataTable({
               overscanColumnCount={5}
               innerElementType={InnerTableElement}
               columnCount={columns.length}
-              columnWidth={columnIndex => normalizedWidths[columnIndex]}
+              columnWidth={(columnIndex) => normalizedWidths[columnIndex]}
               height={height - 2}
               // plus one to account for additional header row
               rowCount={rows.length + 1}
