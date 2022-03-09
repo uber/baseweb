@@ -8,6 +8,7 @@ build-ladle
 .*examples/fusion/.*
 documentation-site/.next/.*
 .*/node_modules/.*vite.*
+.*/node_modules/resolve/test/.*
 
 [include]
 ./src/
