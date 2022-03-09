@@ -18,19 +18,19 @@ import {LocaleContext} from '../locale/index.js';
 import {ThemeContext} from '../styles/theme-provider.js';
 import {
   StyledCalendarHeader,
-  StyledPrevButton,
-  StyledNextButton,
   StyledMonthHeader,
-  StyledWeekdayHeader,
   StyledMonthYearSelectButton,
   StyledMonthYearSelectIconContainer,
+  StyledNextButton,
+  StyledPrevButton,
+  StyledWeekdayHeader,
 } from './styled-components.js';
-import {ORIENTATION, WEEKDAYS, DENSITY} from './constants.js';
+import {DENSITY, ORIENTATION, WEEKDAYS} from './constants.js';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import type {HeaderPropsT} from './types.js';
 import type {LocaleT} from '../locale/types.js';
 import type {ThemeT} from '../styles/types.js';
-import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
+import {forkBlur, forkFocus, isFocusVisible} from '../utils/focusVisible.js';
 
 const navBtnStyle = ({$theme}) => ({
   cursor: 'pointer',
@@ -73,6 +73,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
 
   constructor(props: HeaderPropsT<T>) {
     super(props);
+    //$FlowFixMe
     this.dateHelpers = new DateHelpers(props.adapter);
     this.monthItems = [];
     this.yearItems = [];
@@ -429,13 +430,10 @@ export default class CalendarHeader<T = Date> extends React.Component<
       overrides.MonthYearSelectStatefulMenu,
       StatefulMenu,
     );
-    const menuOverrides = mergeOverrides(
+    menuProps.overrides = mergeOverrides(
       {List: {style: {height: 'auto', maxHeight: '257px'}}},
-      // $FlowFixMe
       menuProps && menuProps.overrides,
     );
-    // $FlowFixMe
-    menuProps.overrides = menuOverrides;
 
     const initialMonthIndex = this.monthItems.findIndex(
       (month) => month.id === this.dateHelpers.getMonth(date).toString(),

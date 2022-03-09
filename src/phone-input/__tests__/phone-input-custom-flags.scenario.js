@@ -18,6 +18,7 @@ import type {CountryIsoT} from '../../phone-input/index.js';
 
 function CustomFlag(props: {children: React.Node, $iso: CountryIsoT}) {
   const {children, ...rest} = props;
+  //$FlowExpectedError[cannot-spread-inexact]
   return <StyledFlag iso={props.$iso} {...rest} />;
 }
 

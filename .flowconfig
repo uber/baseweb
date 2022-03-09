@@ -8,7 +8,6 @@ build-ladle
 .*examples/fusion/.*
 documentation-site/.next/.*
 .*/node_modules/.*vite.*
-.*/node_modules/resolve/test/.*
 
 [include]
 ./src/
@@ -17,6 +16,9 @@ documentation-site/examples/.*
 [libs]
 
 [lints]
+
+[declarations]
+<PROJECT_ROOT>/node_modules/.*
 
 [options]
 module.ignore_non_literal_requires=true

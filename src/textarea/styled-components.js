@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import {styled} from '../styles/index.js';
+import {styled, type ThemeT} from '../styles/index.js';
 import {
   getInputStyles,
   getInputContainerStyles,
@@ -13,23 +13,23 @@ import {
 } from '../input/styled-components.js';
 import type {SharedStylePropsT} from './types.js';
 
-// $FlowFixMe https://github.com/facebook/flow/issues/7745
-export const StyledTextAreaRoot = styled<SharedStylePropsT>('div', (props) => {
-  return getRootStyles({...props, $hasIconTrailing: false});
-});
+export const StyledTextAreaRoot = styled<SharedStylePropsT>(
+  'div',
+  (props: SharedStylePropsT & {$theme: ThemeT}) => {
+    return getRootStyles({$positive: false, ...props, $hasIconTrailing: false});
+  },
+);
 
-// $FlowFixMe https://github.com/facebook/flow/issues/7745
 export const StyledTextareaContainer = styled<SharedStylePropsT>(
   'div',
-  (props) => ({
-    ...getInputContainerStyles(props),
+  (props: SharedStylePropsT & {$theme: ThemeT}) => ({
+    ...getInputContainerStyles({$positive: false, ...props}),
   }),
 );
 
-// $FlowFixMe https://github.com/facebook/flow/issues/7745
 export const StyledTextarea = styled<SharedStylePropsT>(
   'textarea',
-  (props) => ({
+  (props: SharedStylePropsT & {$theme: ThemeT}) => ({
     ...getInputStyles(props),
     resize: 'none',
   }),

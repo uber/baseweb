@@ -150,6 +150,7 @@ const ForwardedProgressBar = React.forwardRef<
   $Shape<ProgressBarPropsT>,
   HTMLDivElement,
 >((props: ProgressBarPropsT, ref) => (
+  //$FlowExpectedError[cannot-spread-inexact]
   <ProgressBar forwardedRef={ref} {...props} />
 ));
 ForwardedProgressBar.displayName = 'ProgressBar';

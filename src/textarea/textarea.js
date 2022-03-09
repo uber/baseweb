@@ -73,6 +73,7 @@ class Textarea extends React.Component<TextareaPropsT, {isFocused: boolean}> {
         <BaseInput
           {...this.props}
           type={CUSTOM_INPUT_TYPE.textarea}
+          // $FlowFixMe[incompatible-indexer]
           overrides={inputOverrides}
           onFocus={this.onFocus}
           onBlur={this.onBlur}

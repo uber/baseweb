@@ -305,9 +305,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     }
 
     // Handles backdrop click when `unstable_ModalBackdropScroll` is set to true
-    // $FlowFixMe
     if (dialogContainerProps.ref) {
-      // $FlowFixMe
       this._refs.DialogContainer = dialogContainerProps.ref;
     }
     const dialogContainerConditionalProps = unstable_ModalBackdropScroll

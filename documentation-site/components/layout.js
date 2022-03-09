@@ -171,8 +171,11 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
                     overrides={{
                       Block: {
                         style: {
-                          [direction === 'rtl' ? 'left' : 'right']: 0,
-                          [direction === 'rtl' ? 'right' : 'left']: 'auto',
+                          [((direction === 'rtl'
+                            ? 'left'
+                            : 'right'): string)]: 0,
+                          [((direction === 'rtl' ? 'right' : 'left'): string)]:
+                            'auto',
                         },
                       },
                     }}

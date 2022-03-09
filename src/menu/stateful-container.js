@@ -43,7 +43,9 @@ const DEFAULT_PROPS = {
 };
 
 class MenuStatefulContainerInner extends React.Component<
-  StatefulContainerPropsT & {uidSeed: (item: number) => string},
+  StatefulContainerPropsT & {uidSeed: (item: number) => string} & {
+    getRequiredItemProps: GetRequiredItemPropsFnT,
+  },
   StatefulContainerStateT,
 > {
   static defaultProps = DEFAULT_PROPS;
@@ -463,6 +465,7 @@ class MenuStatefulContainerInner extends React.Component<
 
 // Remove when MenuStatefulContainer is converted to a functional component.
 const MenuStatefulContainer = (props: StatefulContainerPropsT) => {
+  //$FlowExpectedError[cannot-spread-inexact]
   return <MenuStatefulContainerInner uidSeed={useUIDSeed()} {...props} />;
 };
 

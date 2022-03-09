@@ -241,14 +241,10 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
     overrides.ListItem,
     StyledListItem,
   );
-  const [
-    OverriddenInput,
-    // $FlowFixMe
-    {overrides: inputOverrides = {}, ...restInputProps},
-  ] = getOverrides(overrides.Input, Input);
+  const [OverriddenInput, {overrides: inputOverrides = {}, ...restInputProps}] =
+    getOverrides(overrides.Input, Input);
   const [
     OverriddenPopover,
-    // $FlowFixMe
     {overrides: popoverOverrides = {}, ...restPopoverProps},
   ] = getOverrides(overrides.Popover, Popover);
 

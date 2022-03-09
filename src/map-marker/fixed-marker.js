@@ -97,7 +97,13 @@ const FixedMarker = ({
       );
     }
   }
-
+  const enhancers = {};
+  if (startEnhancer) {
+    enhancers['startEnhancer'] = startEnhancer;
+  }
+  if (endEnhancer) {
+    enhancers['endEnhancer'] = endEnhancer;
+  }
   return (
     <Root data-baseweb="fixed-map-marker" {...rootProps}>
       <FixedMarkerDragContainer
@@ -108,8 +114,7 @@ const FixedMarker = ({
         <PinHead
           size={size}
           label={label}
-          {...(startEnhancer ? {startEnhancer} : {})}
-          {...(endEnhancer ? {endEnhancer} : {})}
+          {...enhancers}
           color={color}
           background={backgroundColor}
           type={PINHEAD_TYPES.fixed}

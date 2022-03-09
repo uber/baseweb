@@ -31,7 +31,8 @@ export default function CountryPicker(props: CountrySelectPropsT) {
   const baseSelectOverrides = {
     Root: {
       style: ({$theme: {direction, sizing}}) => {
-        const marginDir = direction === 'rtl' ? 'marginLeft' : 'marginRight';
+        const marginDir: string =
+          direction === 'rtl' ? 'marginLeft' : 'marginRight';
         return {
           [marginDir]: sizing.scale300,
           width: 'auto',
@@ -52,9 +53,10 @@ export default function CountryPicker(props: CountrySelectPropsT) {
           [SIZE.default]: sizing.scale600,
           [SIZE.large]: sizing.scale700,
         };
-        const padStartDir =
+        const padStartDir: string =
           direction === 'rtl' ? 'paddingRight' : 'paddingLeft';
-        const padEndDir = direction === 'rtl' ? 'paddingLeft' : 'paddingRight';
+        const padEndDir: string =
+          direction === 'rtl' ? 'paddingLeft' : 'paddingRight';
         const styleOverride = {
           [padStartDir]: sizeToLeftPadding[props.$size || SIZE.default],
           [padEndDir]: sizeToRightPadding[props.$size || SIZE.default],
@@ -78,15 +80,12 @@ export default function CountryPicker(props: CountrySelectPropsT) {
     overrides.CountrySelect,
     DefaultSelect,
   );
-  // $FlowFixMe
   const selectOverrides = mergeOverrides(baseSelectOverrides, {
-    Dropdown: overrides.CountrySelectDropdown,
-    DropdownListItem: overrides.CountrySelectDropdownListItem,
+    Dropdown: overrides.CountrySelectDropdown || {},
+    DropdownListItem: overrides.CountrySelectDropdownListItem || {},
   });
-  // $FlowFixMe
   selectProps.overrides = mergeOverrides(
     selectOverrides,
-    // $FlowFixMe
     selectProps.overrides,
   );
 
@@ -99,7 +98,8 @@ export default function CountryPicker(props: CountrySelectPropsT) {
           [SIZE.default]: sizing.scale400,
           [SIZE.large]: sizing.scale500,
         };
-        const marginDir = direction === 'rtl' ? 'marginLeft' : 'marginRight';
+        const marginDir: string =
+          direction === 'rtl' ? 'marginLeft' : 'marginRight';
         return {
           [marginDir]: sizeToMargin[props.$size || SIZE.default],
         };
@@ -107,7 +107,8 @@ export default function CountryPicker(props: CountrySelectPropsT) {
     },
     DialCode: {
       style: ({$theme: {direction, sizing}}) => {
-        const marginDir = direction === 'rtl' ? 'marginRight' : 'marginLeft';
+        const marginDir: string =
+          direction === 'rtl' ? 'marginRight' : 'marginLeft';
         return {
           [marginDir]: sizing.scale600,
         };

@@ -65,7 +65,6 @@ export default function PhoneInputLite(props: LitePropsT) {
     },
   };
   const [Input, inputProps] = getOverrides(overrides.Input, DefaultInput);
-  // $FlowFixMe
   inputProps.overrides = mergeOverrides(baseOverrides, inputProps.overrides);
   return (
     <Input

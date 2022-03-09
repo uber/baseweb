@@ -95,6 +95,7 @@ function ProgressBarRounded({
   }, [progress]); // We want *only* `progress` to trigger this effect
 
   return (
+    // $FlowExpectedError[cannot-spread-inexact]
     <Root
       data-baseweb="progressbar-rounded"
       role="progressbar"
@@ -106,10 +107,12 @@ function ProgressBarRounded({
       {...restProps}
       {...rootProps}
     >
+      {/* $FlowExpectedError[cannot-spread-inexact] */}
       <Svg $size={size} {...restProps} {...svgProps}>
+        {/* $FlowExpectedError[cannot-spread-inexact] */}
         <TrackBackground $size={size} {...trackBackgroundProps} />
+        {/* $FlowExpectedError[cannot-spread-inexact] */}
         <TrackForeground
-          // $FlowFixMe
           ref={pathRef}
           $size={size}
           $visible={!!pathRef.current}
@@ -118,6 +121,7 @@ function ProgressBarRounded({
           {...trackForegroundProps}
         />
       </Svg>
+      {/* $FlowExpectedError[cannot-spread-inexact] */}
       <Text $size={size} {...textProps}>
         {roundTo(Math.min(progress * 100, 100))}%
       </Text>

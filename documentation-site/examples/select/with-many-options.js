@@ -29,8 +29,10 @@ const FixedSizeListItem = ({
 }) => {
   const {item, overrides, ...restChildProps} = data[index].props;
   return (
+    //$FlowExpectedError[cannot-spread-inexact]
     <ListItem
       key={item.id}
+      //$FlowExpectedError[cannot-spread-inexact]
       style={{
         boxSizing: 'border-box',
         ...style,

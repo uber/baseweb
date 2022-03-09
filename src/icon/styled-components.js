@@ -14,7 +14,16 @@ export function getSvgStyles({
   $theme,
   $size,
   $color,
-}: StyledComponentArgsT & {$theme: ThemeT}) {
+}: {
+  ...StyledComponentArgsT,
+  $theme: ThemeT,
+}): {|
+  display: string,
+  fill: string,
+  color: string,
+  height: string,
+  width: string,
+|} {
   let size = $theme.sizing.scale600;
   if ($size) {
     if ($theme.sizing[$size]) {

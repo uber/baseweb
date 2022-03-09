@@ -70,6 +70,7 @@ export default class Datepicker<T = Date> extends React.Component<
 
   constructor(props: DatepickerPropsT<T>) {
     super(props);
+    //$FlowFixMe
     this.dateHelpers = new DateHelpers(props.adapter);
     this.state = {
       calendarFocused: false,

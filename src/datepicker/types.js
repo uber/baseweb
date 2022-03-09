@@ -163,7 +163,7 @@ export type CalendarPropsT<T = Date> = {
   maxDate?: ?T,
   /** A min date that is selectable. */
   minDate?: ?T,
-  adapter: DateIOAdapter<T>,
+  adapter?: DateIOAdapter<T>,
   /** A number of months rendered in the calendar. */
   monthsShown?: number,
   /** Day's `click` event handler. */
