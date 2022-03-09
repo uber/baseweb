@@ -64,10 +64,8 @@ export default function UserMenuComponent(props: {|
     overrides.UserMenuButton,
     Button,
   );
-  // $FlowFixMe
   userMenuButtonProps.overrides = mergeOverrides(
     {BaseButton: {component: StyledUserMenuButton}},
-    // $FlowFixMe
     userMenuButtonProps.overrides,
   );
 
@@ -75,7 +73,6 @@ export default function UserMenuComponent(props: {|
     overrides.UserMenu,
     StatefulMenu,
   );
-  // $FlowFixMe
   userMenuProps.overrides = mergeOverrides(
     {
       List: {
@@ -107,7 +104,6 @@ export default function UserMenuComponent(props: {|
         );
       }),
     },
-    // $FlowFixMe
     userMenuProps.overrides,
   );
 

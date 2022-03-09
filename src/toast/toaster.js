@@ -150,11 +150,10 @@ export class ToasterContainer extends React.Component<
         CloseIcon: StyledCloseIcon,
         InnerContainer: StyledInnerContainer,
       },
-      // $FlowFixMe
       {
-        Body: BodyOverride,
-        CloseIcon: CloseIconOverride,
-        InnerContainer: InnerContainerOverride,
+        Body: BodyOverride || {},
+        CloseIcon: CloseIconOverride || {},
+        InnerContainer: InnerContainerOverride || {},
       },
     );
     const toastOverrides = mergeOverrides(
@@ -211,11 +210,7 @@ export class ToasterContainer extends React.Component<
       return (
         <>
           {this.props.usePortal && __BROWSER__
-            ? ReactDOM.createPortal(
-                root,
-                // $FlowFixMe
-                document.body,
-              )
+            ? ReactDOM.createPortal(root, document.body)
             : root}
           {this.props.children}
         </>

@@ -58,19 +58,22 @@ export function getOverride(override: any): any {
  * Given an override argument, returns the override props that should be passed
  * to the component when rendering it.
  */
-export function getOverrideProps(override: ?OverrideT) {
+export function getOverrideProps<T>(override: ?OverrideT): T {
   if (override && typeof override === 'object') {
     if (typeof override.props === 'object') {
+      //$FlowFixMe
       return {
         ...override.props,
         $style: override.style,
       };
     } else {
+      //$FlowFixMe
       return {
         $style: override.style,
       };
     }
   }
+  //$FlowFixMe
   return {};
 }
 
@@ -97,10 +100,10 @@ export function toObjectOverride<T>(override: OverrideT): OverrideObjectT {
  * Get a convenient override array that will always have [component, props]
  */
 /* eslint-disable flowtype/no-weak-types */
-export function getOverrides(
-  override: any,
+export function getOverrides<T>(
+  override: Object,
   defaultComponent: React.ComponentType<any>,
-): [React.ComponentType<any>, {}] {
+): [React.ComponentType<any>, T] {
   const Component = getOverride(override) || defaultComponent;
 
   if (
@@ -117,14 +120,18 @@ export function getOverrides(
     }
     const DynamicOverride = React.forwardRef((props, ref) => {
       const mappedProps = override.props(props);
-      const nextProps = getOverrideProps({...override, props: mappedProps});
+      const nextProps: T = getOverrideProps<T>({
+        ...override,
+        props: mappedProps,
+      });
       return <Component ref={ref} {...nextProps} />;
     });
     DynamicOverride.displayName = Component.displayName;
+    //$FlowFixMe
     return [DynamicOverride, {}];
   }
 
-  const props = getOverrideProps(override);
+  const props = getOverrideProps<T>(override);
   return [Component, props];
 }
 /* eslint-enable flowtype/no-weak-types */

@@ -15,6 +15,7 @@ import FlexGridItem, {
   getResponsiveValue,
 } from '../flex-grid-item.js';
 import {LightTheme} from '../../themes/index.js';
+import type {ResponsiveT, ScaleT} from '../../block/index.js';
 
 describe('FlexGridItem', () => {
   test('flexGridItemMediaQueryStyle', () => {
@@ -108,7 +109,6 @@ describe('FlexGridItem', () => {
 
   test('flexGridItemStyle', () => {
     const snapshotProps = [
-      // $FlowFixMe - intentionally missing props
       {
         snapshotName: 'no props',
       },
@@ -145,6 +145,13 @@ describe('FlexGridItem', () => {
         $flexGridItemIndex,
         $flexGridItemCount,
         snapshotName,
+      }: {
+        $flexGridColumnCount?: ResponsiveT<number>,
+        $flexGridColumnGap?: ResponsiveT<ScaleT>,
+        $flexGridRowGap?: ResponsiveT<ScaleT>,
+        $flexGridItemIndex?: number,
+        $flexGridItemCount?: number,
+        snapshotName: string,
       }) => {
         expect(
           flexGridItemStyle({

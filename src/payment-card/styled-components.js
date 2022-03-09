@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import {styled} from '../styles/index.js';
-import {SIZE} from '../input/index.js';
+import {SIZE, type SizeT} from '../input/index.js';
 
-export const IconWrapper = styled<{$size: typeof SIZE}>('div', (props) => {
+export const IconWrapper = styled<{$size: SizeT}>('div', (props) => {
   const {$size, $theme} = props;
   const margin = {
     [SIZE.mini]: $theme.sizing.scale300,
@@ -17,8 +17,8 @@ export const IconWrapper = styled<{$size: typeof SIZE}>('div', (props) => {
     [SIZE.large]: $theme.sizing.scale700,
   };
   return {
-    //$FlowFixMe
-    [$theme.direction === 'rtl' ? 'marginRight' : 'marginLeft']: margin[$size],
+    [(($theme.direction === 'rtl' ? 'marginRight' : 'marginLeft'): string)]:
+      margin[$size],
     height: '100%',
     display: 'flex',
     alignItems: 'center',

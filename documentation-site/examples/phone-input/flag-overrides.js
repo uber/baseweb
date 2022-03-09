@@ -13,6 +13,7 @@ function CustomFlag(props: {
   $iso: CountryIsoT,
 }) {
   const {children, ...rest} = props;
+  //$FlowExpectedError[cannot-spread-inexact]
   return <StyledFlag iso={props.$iso} {...rest} />;
 }
 
@@ -23,7 +24,7 @@ export default function Example() {
     <PhoneInput
       text={text}
       country={country}
-      onTextChange={event => {
+      onTextChange={(event) => {
         setText(event.currentTarget.value);
       }}
       onCountryChange={(event: any) => {

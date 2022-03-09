@@ -1,10 +1,15 @@
 // @flow
 import * as React from 'react';
 import {Button} from 'baseui/button';
-import {Drawer, ANCHOR} from 'baseui/drawer';
+import {
+  Drawer,
+  ANCHOR,
+  type AnchorPropT,
+  type AnchorT,
+} from 'baseui/drawer';
 
 export default function Example() {
-  let initialState = {};
+  let initialState: {[key: AnchorT]: boolean} = {};
   for (let anchor in ANCHOR) {
     initialState[anchor] = false;
   }
@@ -16,7 +21,7 @@ export default function Example() {
 
   return (
     <React.Fragment>
-      {Object.keys(ANCHOR).map(eachAnchor => (
+      {Object.keys(ANCHOR).map((eachAnchor: AnchorT) => (
         <React.Fragment>
           <Button
             onClick={() =>

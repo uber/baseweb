@@ -14,9 +14,9 @@ import {getOverrides} from '../helpers/overrides.js';
 import type {BlockPropsT} from '../block/types.js';
 import type {FlexGridPropsT} from './types.js';
 
-// eslint-disable-next-line react/display-name
 export const BaseFlexGrid = React.forwardRef<BlockPropsT, HTMLElement>(
   ({display, flexWrap, ...restProps}, ref) => (
+    //$FlowFixMe
     <Block
       display={display || 'flex'}
       flexWrap={flexWrap || flexWrap === false ? flexWrap : true}
@@ -26,6 +26,7 @@ export const BaseFlexGrid = React.forwardRef<BlockPropsT, HTMLElement>(
     />
   ),
 );
+BaseFlexGrid.displayName = 'BaseFlexGrid';
 
 const FlexGrid = ({
   forwardedRef,
@@ -43,7 +44,7 @@ const FlexGrid = ({
   );
   return (
     <FlexGrid
-      // coerced to any because because of how react components are typed.
+      // coerced to any because of how react components are typed.
       // cannot guarantee an html element
       // eslint-disable-next-line flowtype/no-weak-types
       ref={(forwardedRef: any)}

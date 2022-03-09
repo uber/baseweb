@@ -53,12 +53,14 @@ export const StyledActivePath = styled<StylePropsT>('path', (props) => ({
 export const StyledSpinnerNext = styled<StyledSpinnerNextPropsT>(
   'i',
   ({
+    //$FlowFixMe
     $theme,
     $color = $theme.colors.contentAccent,
+    //$FlowFixMe
     $borderWidth,
+    //$FlowFixMe
     $size = SIZE.medium,
   }) => {
-    //$FlowFixMe
     let borderSize = {
       large: $theme.sizing.scale300,
       medium: $theme.sizing.scale100,
@@ -77,7 +79,6 @@ export const StyledSpinnerNext = styled<StyledSpinnerNextPropsT>(
       }
     }
     if (!boxSize) {
-      //$FlowFixMe
       boxSize = $theme.sizing[$size];
       if (!boxSize) {
         boxSize = `${parseInt($size)}px`;

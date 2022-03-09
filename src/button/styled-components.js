@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 import {styled} from '../styles/index.js';
 import {KIND, SIZE, SHAPE} from './constants.js';
 import type {SharedStylePropsT} from './types.js';
+import type {FontT} from '../themes/types.js';
 
 export const BaseButton = styled<SharedStylePropsT>(
   'button',
@@ -21,6 +22,7 @@ export const BaseButton = styled<SharedStylePropsT>(
     $isSelected,
     $disabled,
     $isFocusVisible,
+    //$FlowFixMe
   }) => ({
     display: 'inline-flex',
     // need to maintain button width while showing loading spinner
@@ -64,7 +66,7 @@ export const BaseButton = styled<SharedStylePropsT>(
       $isSelected,
       $disabled,
     }),
-    ...getShapeStyles({$theme, $shape, $size}),
+    ...getShapeStyles({$shape, $size}),
   }),
 );
 
@@ -219,7 +221,7 @@ function getBorderRadiiStyles({$theme, $size, $shape}) {
   };
 }
 
-function getFontStyles({$theme, $size}) {
+function getFontStyles({$theme, $size}): FontT {
   switch ($size) {
     case SIZE.mini:
       return $theme.typography.font150;
@@ -431,7 +433,14 @@ function getColorStyles({
   }
 }
 
-function getShapeStyles({$theme, $shape, $size}) {
+function getShapeStyles({$shape, $size}): {
+  height?: string,
+  width?: string,
+  paddingTop?: number,
+  paddingBottom?: number,
+  paddingLeft?: number,
+  paddingRight?: number,
+} {
   if ($shape === SHAPE.circle || $shape === SHAPE.square) {
     let height, width;
     switch ($size) {

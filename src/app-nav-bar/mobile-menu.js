@@ -119,10 +119,8 @@ export default function MobileMenu(props: AppNavBarPropsT) {
     overrides.SideMenuButton,
     Button,
   );
-  // $FlowFixMe
   sideMenuButtonProps.overrides = mergeOverrides(
     {BaseButton: {component: StyledSideMenuButton}},
-    // $FlowFixMe
     sideMenuButtonProps.overrides,
   );
 
@@ -130,7 +128,6 @@ export default function MobileMenu(props: AppNavBarPropsT) {
     overrides.MobileDrawer,
     Drawer,
   );
-  // $FlowFixMe
   drawerProps.overrides = mergeOverrides(
     {
       DrawerBody: {
@@ -146,7 +143,6 @@ export default function MobileMenu(props: AppNavBarPropsT) {
       // Removes the close icon from the drawer
       Close: () => null,
     },
-    // $FlowFixMe
     drawerProps.overrides,
   );
 
@@ -154,7 +150,6 @@ export default function MobileMenu(props: AppNavBarPropsT) {
     overrides.MobileMenu,
     StatefulMenu,
   );
-  // $FlowFixMe
   menuProps.overrides = mergeOverrides(
     {
       List: {
@@ -177,7 +172,6 @@ export default function MobileMenu(props: AppNavBarPropsT) {
         );
       }),
     },
-    // $FlowFixMe
     menuProps.overrides,
   );
 

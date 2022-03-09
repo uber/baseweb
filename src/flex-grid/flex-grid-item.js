@@ -163,7 +163,8 @@ const FlexGridItem = ({
   flexGridItemIndex,
   flexGridItemCount,
   ...restProps
-}): React.Node => {
+}: // eslint-disable-next-line flowtype/no-weak-types
+FlexGridItemPropsT & {forwardedRef: any}): React.Node => {
   const flexGridItemOverrides = {
     Block: {
       style: flexGridItemStyle,
@@ -174,7 +175,7 @@ const FlexGridItem = ({
     : flexGridItemOverrides;
   return (
     <Block
-      // coerced to any because because of how react components are typed.
+      // coerced to any because of how react components are typed.
       // cannot guarantee an html element
       // eslint-disable-next-line flowtype/no-weak-types
       ref={(forwardedRef: any)}

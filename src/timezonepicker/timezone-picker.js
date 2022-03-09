@@ -106,15 +106,12 @@ class TimezonePicker extends React.Component<
       overrides.Select,
       Select,
     );
-    const selectOverrides = mergeOverrides(
+    selectProps.overrides = mergeOverrides(
       {
         Dropdown: {style: {maxHeight: '360px'}},
       },
-      // $FlowFixMe
       selectProps.overrides,
     );
-    // $FlowFixMe
-    selectProps.overrides = selectOverrides;
 
     let options = this.state.timezones;
     if (this.props.mapLabels) {

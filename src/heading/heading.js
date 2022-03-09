@@ -21,6 +21,7 @@ const FONTS = [
   'font550',
 ];
 
+//$FlowFixMe
 const Heading = ({styleLevel, ...restProps}: HeadingPropsT) => (
   <LevelContext.Consumer>
     {(level) => {

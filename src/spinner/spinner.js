@@ -49,10 +49,10 @@ class Spinner extends React.Component<SpinnerPropsT> {
       overrides.ActivePath,
       StyledActivePath,
     );
-
     return (
+      // $FlowFixMe[cannot-spread-inexact]
       <Icon
-        aria-label={this.props['aria-label'] || 'Loading'}
+        aria-label={'Loading'}
         data-baseweb="spinner"
         title="Spinner"
         viewBox="3 3 18 18"

@@ -9,6 +9,7 @@ import * as React from 'react';
 
 import {KIND, SIZE, SHAPE} from './constants.js';
 import type {OverrideT} from '../helpers/overrides.js';
+import type {ThemeT} from '../styles/types.js';
 
 export type OverridesT = {
   Root?: OverrideT,

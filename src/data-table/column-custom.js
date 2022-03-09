@@ -29,6 +29,7 @@ type OptionsT<ValueT, FilterParamsT> = {|
 function CustomColumn<ValueT, FilterParamsT>(
   options: OptionsT<ValueT, FilterParamsT>,
 ): ColumnT<ValueT, FilterParamsT> {
+  //$FlowFixMe
   return Column({kind: COLUMNS.CUSTOM, ...options});
 }
 

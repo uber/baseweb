@@ -25,7 +25,8 @@ import {
 import type {SnackbarElementPropsT} from './types.js';
 
 const ActionButton = React.forwardRef(
-  ({onClick, message, overrides = {}}, ref) => {
+  // eslint-disable-next-line flowtype/no-weak-types
+  ({onClick, message, overrides = {}}, ref: any) => {
     const [, theme] = useStyletron();
     const [ActionButtonContainer, actionButtonContainerProps] = getOverrides(
       overrides.ActionButtonContainer,
@@ -140,7 +141,6 @@ export default function SnackbarElement({
     if (__BROWSER__) {
       if (focus && actionButtonRef.current) {
         prevFocusRef.current = document.activeElement;
-        // $FlowFixMe
         actionButtonRef.current.focus();
       }
       return () => {

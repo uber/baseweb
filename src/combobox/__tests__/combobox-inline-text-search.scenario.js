@@ -34,6 +34,7 @@ export function Scenario() {
         return i;
       }
     }
+    return -1;
   }
 
   function handleChange(nextInputValue, nextSelectedValue) {

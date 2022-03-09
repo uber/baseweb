@@ -75,7 +75,6 @@ export default function MaybeChildMenu(props: PropsT) {
                   },
                 },
               },
-              // $FlowFixMe - getOverrides' return type for props is {}
               popoverProps.overrides,
             )}
           >

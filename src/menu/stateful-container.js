@@ -368,9 +368,10 @@ class MenuStatefulContainerInner extends React.Component<
       this.optionIds[index] = this.props.uidSeed(index);
     }
     const {disabled: disabledVal, ...requiredItemProps} =
-      this.props.getRequiredItemProps(item, index);
+      this.getRequiredItemProps(item, index);
     const disabled =
       typeof disabledVal === 'boolean' ? disabledVal : !!item.disabled;
+    //$FlowFixMe[cannot-spread-inexact]
     return {
       id: requiredItemProps.id || this.optionIds[index],
       disabled,
@@ -463,6 +464,7 @@ class MenuStatefulContainerInner extends React.Component<
 
 // Remove when MenuStatefulContainer is converted to a functional component.
 const MenuStatefulContainer = (props: StatefulContainerPropsT) => {
+  //$FlowExpectedError[cannot-spread-inexact]
   return <MenuStatefulContainerInner uidSeed={useUIDSeed()} {...props} />;
 };
 

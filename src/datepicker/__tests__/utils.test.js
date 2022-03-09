@@ -136,7 +136,9 @@ const getDiffereningAdapterMap = (runAdapter, value) => {
     const currentValue = getComparisonValue(runAdapter(helpers, convertArgs));
     if (currentValue !== comparisonValue) {
       return {
+        //$FlowFixMe
         ...memo,
+        //$FlowFixMe
         [name]: currentValue,
       };
     }
@@ -158,11 +160,12 @@ const helpers: DateHelpers<Date> = Object.keys(dateHelpers).reduce(
   (memo, methodName) => {
     return {
       ...memo,
+      //$FlowFixMe
       [methodName]: (...args) => {
         //$FlowFixMe
         const dateHelpersReturn = dateHelpers[methodName](...args);
         if (
-          // //$FlowFixMe
+          //$FlowFixMe
           !utilsHelpers[methodName] &&
           excludedFromChecks.includes(methodName)
         ) {
