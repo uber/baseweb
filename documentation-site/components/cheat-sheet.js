@@ -12,7 +12,6 @@ import React from 'react';
 import {useRouter} from 'next/router';
 import {useStyletron} from 'baseui';
 import {StyledLink} from 'baseui/link';
-// $FlowFixMe[cannot-resolve-module]
 import outlines from '../cheat-sheet.js';
 import {H2} from './markdown-elements.js';
 // $FlowFixMe - because this is a .ts file
