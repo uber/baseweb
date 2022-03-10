@@ -30,5 +30,7 @@ merge_timeout=140
 [lints]
 unclear-type=error
 unsafe-getters-setters=error
-
+deprecated-type=error
+deprecated-utility=error
+unnecessary-optional-chain=error
 [strict]

@@ -22,7 +22,8 @@ function constrainToNull(value) {
 
 type ApplyParams = {
   property: string,
-  value?: * | Array<*>,
+  // flowlint-next-line unclear-type:off
+  value?: any | Array<any>,
   // flowlint-next-line unclear-type:off
   transform?: Function,
 };
