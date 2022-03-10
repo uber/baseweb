@@ -75,8 +75,7 @@ class MenuStatefulContainerInner extends React.Component<
     const rootRef = this.props.rootRef ? this.props.rootRef : this.rootRef;
     if (__BROWSER__) {
       if (
-        rootRef &&
-        rootRef.current /** This condition added to satisfy Flow */ &&
+        rootRef.current &&
         this.state.highlightedIndex > -1 &&
         this.refList[this.state.highlightedIndex]
       ) {
@@ -206,7 +205,7 @@ class MenuStatefulContainerInner extends React.Component<
         this.handleEnterKey(event);
         break;
       default:
-        if (this.props.typeAhead && this.typeAheadTimeOut !== null) {
+        if (this.props.typeAhead) {
           clearTimeout(this.typeAheadTimeOut);
           this.handleAlphaDown(event);
         }

@@ -48,13 +48,13 @@ export default function TreeView(props: TreeViewPropsT) {
   const [focusVisible, setFocusVisible] = React.useState(false);
   const [typeAheadChars, setTypeAheadChars] = React.useState('');
   const timeOutRef = React.useRef(null);
-  const treeItemRefs: {[key: string]: ReactRefT<HTMLLIElement>} = {};
+  const treeItemRefs: {[key: TreeNodeIdT]: ReactRefT<HTMLLIElement>} = {};
 
   const focusTreeItem = (id: TreeNodeIdT | null) => {
     if (!id) return;
     setSelectedNodeId(id);
 
-    const refs = treeItemRefs[`${id}`];
+    const refs = treeItemRefs[id];
     const node = refs && refs.current;
     if (node) node.focus();
   };
@@ -170,10 +170,10 @@ export default function TreeView(props: TreeViewPropsT) {
           onFocus={onFocus}
           onBlur={onBlur}
           addRef={(id, ref) => {
-            treeItemRefs.current[`${id}`] = ref;
+            treeItemRefs[id] = ref;
           }}
           removeRef={(id: TreeNodeIdT) => {
-            delete treeItemRefs.current[`${id}`];
+            delete treeItemRefs[id];
           }}
           isFocusVisible={focusVisible}
         />
