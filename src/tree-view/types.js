@@ -27,14 +27,14 @@ export type TreeViewOverridesT = {
 
 export type TreeNodeIdT = number | string;
 
-// eslint-disable-next-line flowtype/no-weak-types
+// flowlint-next-line unclear-type:off
 export type TreeNodeT<T = any> = {
   id?: TreeNodeIdT,
   children?: TreeNodeT<>[],
   isExpanded?: boolean,
   label: ((node: TreeNodeT<>) => React.Node) | string,
   info?: T,
-  // eslint-disable-next-line flowtype/no-weak-types
+  // flowlint-next-line unclear-type:off
   [key: string]: any,
 };
 

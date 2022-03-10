@@ -91,6 +91,7 @@ describe('categorical column', () => {
 
     const checkboxes = container.querySelectorAll('input[type="checkbox"]');
     fireEvent.click(checkboxes[0]);
+    // flowlint-next-line unclear-type:off
     expect(((checkboxes[0]: any): HTMLInputElement).checked).toBe(true);
 
     fireEvent.click(getByText('Apply'));
@@ -120,8 +121,11 @@ describe('categorical column', () => {
     fireEvent.click(getByText('Select All'));
 
     const checkboxes = container.querySelectorAll('input[type="checkbox"]');
+    // flowlint-next-line unclear-type:off
     expect(((checkboxes[0]: any): HTMLInputElement).checked).toBe(true);
+    // flowlint-next-line unclear-type:off
     expect(((checkboxes[1]: any): HTMLInputElement).checked).toBe(true);
+    // flowlint-next-line unclear-type:off
     expect(((checkboxes[2]: any): HTMLInputElement).checked).toBe(true);
   });
 
@@ -142,8 +146,11 @@ describe('categorical column', () => {
     fireEvent.click(checkboxes[0]);
     fireEvent.click(getByText('Clear'));
 
+    // flowlint-next-line unclear-type:off
     expect(((checkboxes[0]: any): HTMLInputElement).checked).toBe(false);
+    // flowlint-next-line unclear-type:off
     expect(((checkboxes[1]: any): HTMLInputElement).checked).toBe(false);
+    // flowlint-next-line unclear-type:off
     expect(((checkboxes[2]: any): HTMLInputElement).checked).toBe(false);
   });
 

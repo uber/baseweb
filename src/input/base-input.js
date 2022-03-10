@@ -66,7 +66,7 @@ class BaseInput<T: EventTarget> extends React.Component<
     type: 'text',
   };
 
-  // eslint-disable-next-line flowtype/no-weak-types
+  // flowlint-next-line unclear-type:off
   inputRef = this.props.inputRef || React.createRef<any>();
 
   state = {

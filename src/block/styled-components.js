@@ -23,7 +23,7 @@ function constrainToNull(value) {
 type ApplyParams = {
   property: string,
   value?: * | Array<*>,
-  // eslint-disable-next-line flowtype/no-weak-types
+  // flowlint-next-line unclear-type:off
   transform?: Function,
 };
 

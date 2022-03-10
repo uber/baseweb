@@ -27,6 +27,7 @@ export default function Example() {
       onTextChange={(event) => {
         setText(event.currentTarget.value);
       }}
+      // flowlint-next-line unclear-type:off
       onCountryChange={(event: any) => {
         setCountry(event.option);
       }}

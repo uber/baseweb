@@ -90,7 +90,7 @@ const ListHeading = React.forwardRef<HeadingPropsT, HTMLLIElement>(
 
     return (
       <Root
-        // eslint-disable-next-line flowtype/no-weak-types
+        // flowlint-next-line unclear-type:off
         ref={(ref: any)}
         {...rootProps}
       >

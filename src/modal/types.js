@@ -26,7 +26,7 @@ export type OverridesT = {
   Close?: OverrideT,
 };
 
-// eslint-disable-next-line flowtype/no-weak-types
+// flowlint-next-line unclear-type:off
 export type ElementRefT = {current: React.ElementRef<any> | null};
 
 // Props shared by all flavors of modal

@@ -53,7 +53,7 @@ const isLeftClick = (event) =>
 
 const containsNode = (parent, child) => {
   if (__BROWSER__) {
-    // eslint-disable-next-line flowtype/no-weak-types
+    // flowlint-next-line unclear-type:off
     return child && parent && parent.contains((child: any));
   }
 };
@@ -72,7 +72,6 @@ export function isInteractive(rootTarget: EventTarget, rootElement: Element) {
   return false;
 }
 
-// eslint-disable-next-line flowtype/no-weak-types
 class Select extends React.Component<PropsT, SelectStateT> {
   static defaultProps = defaultProps;
 
@@ -1020,7 +1019,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
                 // apply the ref to the Root component below it would be overwritten before the popover
                 // renders it. Using this strategy, we will get a ref to the popover, then reuse its
                 // anchorRef so we can check if clicks are on the select component or not.
-                // eslint-disable-next-line flowtype/no-weak-types
+                // flowlint-next-line unclear-type:off
                 innerRef={(ref: any) => {
                   if (!ref) return;
                   this.anchor = ref.anchorRef;

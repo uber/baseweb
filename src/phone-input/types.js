@@ -40,7 +40,7 @@ export type mapIsoToLabelT = (iso: string) => string;
 // Props
 
 export type CountrySelectDropdownPropsT = {
-  // eslint-disable-next-line flowtype/no-weak-types
+  // flowlint-next-line unclear-type:off
   children: $ReadOnlyArray<React.Element<any>>,
   $country: CountryT,
   $mapIsoToLabel?: mapIsoToLabelT,

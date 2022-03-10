@@ -44,7 +44,7 @@ export type OnChangeHandlerT = ({activeKey: React.Key}) => mixed;
 
 export type TabsPropsT = {
   /** An array of Tab components. */
-  // eslint-disable-next-line flowtype/no-weak-types
+  // flowlint-next-line unclear-type:off
   children: React.ChildrenArray<React.Element<any>>,
   /**  Key of the the tab to be selected. */
   activeKey: React.Key,

@@ -44,7 +44,7 @@ export default function TreeView(props: TreeViewPropsT) {
   const [typeAheadChars, setTypeAheadChars] = React.useState('');
   const timeOutRef = React.useRef(null);
   const treeItemRefs: {
-    // eslint-disable-next-line flowtype/no-weak-types
+    // flowlint-next-line unclear-type:off
     current: {[key: TreeNodeIdT]: React.ElementRef<any>},
   } = React.useRef({});
 
@@ -58,7 +58,7 @@ export default function TreeView(props: TreeViewPropsT) {
   };
 
   const onKeyDown = (e: KeyboardEvent, node: TreeNodeT<>) => {
-    // eslint-disable-next-line flowtype/no-weak-types
+    // flowlint-next-line unclear-type:off
     const elementId = ((e.target: any): HTMLLIElement).getAttribute(
       'data-nodeid',
     );

@@ -15,8 +15,6 @@ documentation-site/examples/.*
 
 [libs]
 
-[lints]
-
 [declarations]
 <PROJECT_ROOT>/node_modules/.*
 
@@ -28,4 +26,9 @@ module.name_mapper='^examples' ->'<PROJECT_ROOT>/documentation-site/examples'
 log.file=.flow.log
 sharedmemory.hash_table_pow=21
 merge_timeout=140
+
+[lints]
+unclear-type=error
+unsafe-getters-setters=error
+
 [strict]

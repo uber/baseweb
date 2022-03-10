@@ -1,5 +1,6 @@
 // @flow
 /* global document */
+// flowlint unclear-type:off
 import * as React from 'react';
 import {
   Layer,

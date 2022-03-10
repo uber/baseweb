@@ -20,7 +20,7 @@ import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 import type {ButtonPropsT, SharedStylePropsT} from './types.js';
 
 class Button extends React.Component<
-  // eslint-disable-next-line flowtype/no-weak-types
+  // flowlint-next-line unclear-type:off
   ButtonPropsT & {forwardedRef: any},
   {isFocusVisible: boolean},
 > {

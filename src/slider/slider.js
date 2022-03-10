@@ -65,7 +65,7 @@ function Slider({
       setIsFocusVisible(true);
     }
     const index =
-      // eslint-disable-next-line flowtype/no-weak-types
+      // flowlint-next-line unclear-type:off
       (event.target: any).parentNode.firstChild === event.target ? 0 : 1;
     setFocusedThumbIndex(index);
   }, []);

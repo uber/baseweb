@@ -85,6 +85,7 @@ describe('boolean column', () => {
 
     const checkboxes = container.querySelectorAll('input[type="checkbox"]');
     fireEvent.click(checkboxes[0]);
+    // flowlint-next-line unclear-type:off
     expect(((checkboxes[0]: any): HTMLInputElement).checked).toBe(true);
 
     fireEvent.click(getByText('Apply'));

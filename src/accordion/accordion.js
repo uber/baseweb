@@ -77,8 +77,8 @@ export default class Accordion extends React.Component<
       renderAll,
       overrides,
     } = this.props;
-    // eslint-disable-next-line flowtype/no-weak-types
-    return React.Children.map(children, (child: *, index) => {
+    // flowlint-next-line unclear-type:off
+    return React.Children.map(children, (child: any, index) => {
       if (!child) return;
       // If there is no key provided use the panel order as a default key
       const key = child.key || String(index);

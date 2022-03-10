@@ -17,7 +17,7 @@ import {Card, StyledBody} from 'baseui/card';
 import {Tag} from 'baseui/tag';
 import {withStyle} from 'baseui';
 import Octokit from '@octokit/rest';
-
+// $FlowFixMe[cannot-resolve-module]
 import BlogPosts from '../posts.js';
 
 import Layout from '../components/layout';

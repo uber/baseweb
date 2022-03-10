@@ -29,7 +29,8 @@ const StyledHeadingCell = withStyle(StyledCell, {
   paddingBottom: 0,
 });
 
-const StyledDeltaCell: any = withStyle(StyledCell, props => ({
+// flowlint-next-line unclear-type:off
+const StyledDeltaCell: any = withStyle(StyledCell, (props) => ({
   ...props.$theme.typography.font550,
   alignItems: 'center',
   backgroundColor: props.$isNegative

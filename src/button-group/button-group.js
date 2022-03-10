@@ -29,7 +29,7 @@ function isIndexSelected(selected, index) {
 }
 
 export default class ButtonGroup extends React.Component<PropsT> {
-  childRefs: // eslint-disable-next-line flowtype/no-weak-types
+  childRefs: // flowlint-next-line unclear-type:off
   {[key: number]: React.ElementRef<any>} = {};
   static defaultProps = {
     disabled: false,

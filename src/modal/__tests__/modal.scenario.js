@@ -28,7 +28,7 @@ export function Scenario({closeable = true}) {
   React.useEffect(() => {
     setIsOpen(true);
   }, []);
-  // eslint-disable-next-line flowtype/no-weak-types
+  // flowlint-next-line unclear-type:off
   const modalRoot = React.useRef<any>(null);
 
   return (

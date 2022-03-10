@@ -29,7 +29,7 @@ export type ButtonPropsT = {
   colors?: CustomColorsT,
   disabled?: boolean,
   /** A helper rendered at the end of the button. */
-  // eslint-disable-next-line flowtype/no-weak-types
+  // flowlint-next-line unclear-type:off
   endEnhancer?: React.Node | React.AbstractComponent<any>,
   /** Show loading button style and spinner. */
   isLoading?: boolean,
@@ -44,7 +44,7 @@ export type ButtonPropsT = {
   /** Defines the size of the button */
   size?: $Keys<typeof SIZE>,
   /** A helper rendered at the start of the button. */
-  // eslint-disable-next-line flowtype/no-weak-types
+  // flowlint-next-line unclear-type:off
   startEnhancer?: React.Node | React.AbstractComponent<any>,
   type?: 'submit' | 'reset' | 'button',
 };

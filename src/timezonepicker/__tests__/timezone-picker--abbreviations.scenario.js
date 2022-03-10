@@ -19,7 +19,7 @@ const overrides = {
   },
 };
 
-// eslint-disable-next-line flowtype/no-weak-types
+// flowlint-next-line unclear-type:off
 class Controlled extends React.Component<any, any> {
   state = {value: {id: 'Asia/Tokyo'}};
 

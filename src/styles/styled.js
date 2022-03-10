@@ -28,7 +28,7 @@ const wrapper = (StyledComponent) => {
 };
 
 /* eslint-disable flowtype/generic-spacing */
-/* eslint-disable flowtype/no-weak-types */
+/* flowlint unclear-type:off */
 export type StyletronComponent<Props> =
   React.StatelessFunctionalComponent<Props> & {
     __STYLETRON__: any,
@@ -70,21 +70,21 @@ type WithStyleFn<Theme> = {
   ): StyletronComponent<$Call<ExtractPropTypes, Base>>,
 };
 /* eslint-enable flowtype/generic-spacing */
-/* eslint-enable flowtype/no-weak-types */
+/* flowlint unclear-type:error */
 
 export function createThemedStyled<Theme>(): StyleFn<Theme> {
   return ((createStyled({
     wrapper,
     getInitialStyle,
     driver,
-    // eslint-disable-next-line flowtype/no-weak-types
+    // flowlint-next-line unclear-type:off
   }): any): StyleFn<Theme>);
 }
 
 export const styled = createThemedStyled<ThemeT>();
 
 export function createThemedWithStyle<Theme>(): WithStyleFn<Theme> {
-  // eslint-disable-next-line flowtype/no-weak-types
+  // flowlint-next-line unclear-type:off
   return ((styletronWithStyle: any): WithStyleFn<Theme>);
 }
 
@@ -94,7 +94,7 @@ type UseStyletronFn<Theme> = () => [(StyleObject) => string, Theme];
 
 export function createThemedUseStyletron<Theme>(): UseStyletronFn<Theme> {
   return function () {
-    // eslint-disable-next-line flowtype/no-weak-types
+    // flowlint-next-line unclear-type:off
     const theme = ((React.useContext(ThemeContext): any): Theme);
     const [css] = styletronUseStyletron();
     return [css, theme];
@@ -104,15 +104,15 @@ export function createThemedUseStyletron<Theme>(): UseStyletronFn<Theme> {
 export const useStyletron = createThemedUseStyletron<ThemeT>();
 
 export function withWrapper(
-  // eslint-disable-next-line flowtype/no-weak-types
+  // flowlint-next-line unclear-type:off
   StyledElement: StyletronComponent<any>,
   wrapperFn: (
-    // eslint-disable-next-line flowtype/no-weak-types
+    // flowlint-next-line unclear-type:off
     StyletronComponent<any>,
-    // eslint-disable-next-line flowtype/no-weak-types
+    // flowlint-next-line unclear-type:off
   ) => (any) => any,
 ) {
-  // eslint-disable-next-line flowtype/no-weak-types
+  // flowlint-next-line unclear-type:off
   return styletronWithWrapper<StyletronComponent<any>, any>(
     StyledElement,
     (Styled) => {
