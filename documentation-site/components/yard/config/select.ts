@@ -350,6 +350,13 @@ const SelectConfig: TConfig = {
         'Message to be displayed if no options is found for a search query.',
       hidden: true,
     },
+    controlRef: {
+      value: undefined,
+      type: PropTypes.Ref,
+      description:
+        'An imperative handle offering access to methods that control the internals of `Select`',
+      hidden: true,
+    },
     overrides: {
       value: undefined,
       type: PropTypes.Custom,

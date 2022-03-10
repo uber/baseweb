@@ -25,6 +25,8 @@ import SelectOverriddenDropdown from 'examples/select/overridden-dropdown.js';
 import SelectGrouped from 'examples/select/grouped.js';
 import SelectAsyncOptions from 'examples/select/async-options.js';
 import SelectFocus from 'examples/select/focus.js';
+import SelectDropdown from 'examples/select/control-ref-dropdown.js';
+import SelectInputValue from 'examples/select/control-ref-input-value.js';
 
 import {StatefulSelect, TYPE} from 'baseui/select';
 import * as SelectExports from 'baseui/select';
@@ -100,9 +102,26 @@ existing options.
   <SelectNative />
 </Example>
 
-<Example title="Focus and ref" path="select/focus.js">
+<Example title="Imperatively control input focus" path="select/focus.js">
   <SelectFocus />
 </Example>
+
+<Example
+  title="Imperatively control dropdown"
+  path="select/control-ref-dropdown.js"
+>
+  <SelectDropdown />
+</Example>
+
+<Example
+  title="Imperatively control input value"
+  path="select/control-ref-input-value.js"
+>
+  <SelectInputValue />
+</Example>
+
+The `controlRef` prop gives developers imperative control over internal behavior via the
+following methods: `setInputFocus`, `setInputBlur`, `setDropdownOpen`, and `setInputValue`.
 
 <Example title="Select uncontrolled example" path="select/uncontrolled.js">
   <SelectUncontrolled />

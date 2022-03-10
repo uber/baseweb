@@ -31,7 +31,8 @@ import { Scenario as SelectSizesSelectedValue } from './select-sizes-selected-va
 import { Scenario as SelectStates } from './select-states.scenario.js';
 import { Scenario as SelectUnmountBlur } from './select-unmount-blur.scenario.js';
 import { Scenario as SelectDefault } from './select.scenario.js';
-import { Scenario as SelectMethods } from './select-methods.scenario.js';
+import { Scenario as SelectControlRefSetDropdownOpen } from './select-controlref-set-dropdown-open.scenario.js';
+import { Scenario as SelectControlRefSetInputValue } from './select-controlref-set-input-value.scenario.js';
 
 export const AsyncOptions = () => <SelectAsyncOptions />;
 export const BackspaceBehavior = () => <SelectBackspaceBehavior />;
@@ -57,4 +58,7 @@ export const SizesSelectedValue = () => <SelectSizesSelectedValue />;
 export const States = () => <SelectStates />;
 export const UnmountBlur = () => <SelectUnmountBlur />;
 export const Select = () => <SelectDefault />;
-export const Methods = () => <SelectMethods />;
+export const ControlRefSetDropdownOpen = () => (
+  <SelectControlRefSetDropdownOpen />
+);
+export const ControlRefSetInputValue = () => <SelectControlRefSetInputValue />;

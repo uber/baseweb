@@ -47,6 +47,13 @@ export type filterOptions = (
   },
 ) => Value;
 
+export interface ControlRef {
+  setInputFocus: () => void;
+  setInputBlur: () => void;
+  setDropdownOpen: (d: boolean) => void;
+  setInputValue: (s: string) => void;
+}
+
 export interface SelectOverrides {
   Root?: Override<any>;
   ControlContainer?: Override<any>;
@@ -104,7 +111,7 @@ export interface SelectProps {
   }) => React.ReactNode;
   getValueLabel?: (args: {option: Option}) => React.ReactNode;
   id?: string;
-  controlRef?: React.Ref<HTMLInputElement | HTMLDivElement>;
+  controlRef?: ControlRef;
   isLoading?: boolean;
   labelKey?: string;
   startOpen?: boolean;

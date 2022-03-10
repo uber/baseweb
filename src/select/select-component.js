@@ -118,11 +118,16 @@ class Select extends React.Component<PropsT, SelectStateT> {
     }
     this.isItMounted = true;
 
-    if (this.props.methodsRef) {
-      const { methodsRef } = this.props;
-
-      methodsRef.current = {
+    if (this.props.controlRef) {
+      const { controlRef } = this.props;
+      controlRef.current = {
         setDropdownOpen: this.handleDropdownOpen.bind(this),
+        setInputValue: this.handleSetInputValue.bind(this),
+        setInputFocus: this.handleSetInputFocus.bind(this),
+        setInputBlur: this.handleSetInputBlur.bind(this),
+        // `focus` & `blur` below are for backwards compatibility and may be removed. Don't use them.
+        focus: this.handleSetInputFocus.bind(this),
+        blur: this.handleSetInputBlur.bind(this),
       };
     }
   }
@@ -162,6 +167,20 @@ class Select extends React.Component<PropsT, SelectStateT> {
     this.setState({
       isOpen: nextOpenState,
     });
+  }
+
+  handleSetInputValue(newInputValue: string) {
+    this.setState({
+      inputValue: newInputValue,
+    });
+  }
+
+  handleSetInputFocus() {
+    this.input.focus();
+  }
+
+  handleSetInputBlur() {
+    this.input.blur();
   }
 
   // Handle touch outside on mobile to dismiss menu, ensures that the
@@ -482,12 +501,8 @@ class Select extends React.Component<PropsT, SelectStateT> {
   //flowlint-next-line unclear-type:off
   handleInputRef = (input: React.ElementRef<any>) => {
     this.input = input;
-    if (this.props.controlRef) {
-      if (typeof this.props.controlRef === 'function') {
-        this.props.controlRef(input);
-      } else {
-        this.props.controlRef.current = input;
-      }
+    if (this.props.controlRef && typeof this.props.controlRef === 'function') {
+      this.props.controlRef(input);
     }
   };
 
