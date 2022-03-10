@@ -73,6 +73,7 @@ export default class Datepicker<T = Date> extends React.Component<
 
   constructor(props: DatepickerPropsT<T>) {
     super(props);
+    //$FlowFixMe[incompatible-call]
     this.dateHelpers = new DateHelpers(props.adapter);
     this.state = {
       calendarFocused: false,
@@ -84,7 +85,7 @@ export default class Datepicker<T = Date> extends React.Component<
     };
   }
 
-  onChange: ({date: DateValueT<T>}) => void = data => {
+  onChange: ({date: DateValueT<T>}) => void = (data) => {
     let isOpen = false;
     let isPseudoFocused = false;
     let calendarFocused = false;
@@ -184,7 +185,7 @@ export default class Datepicker<T = Date> extends React.Component<
       return [startDate, endDate].join(` ${INPUT_DELIMITER} `);
     } else if (Array.isArray(date)) {
       return date
-        .map(day => (day ? format(day) : ''))
+        .map((day) => (day ? format(day) : ''))
         .join(` ${INPUT_DELIMITER} `);
     } else {
       return format(date);
@@ -310,7 +311,7 @@ export default class Datepicker<T = Date> extends React.Component<
 
     this.setState({inputValue});
 
-    const parseDateString = dateString => {
+    const parseDateString = (dateString) => {
       if (formatString === DEFAULT_DATE_FORMAT) {
         return this.dateHelpers.parse(
           dateString,
@@ -493,7 +494,7 @@ export default class Datepicker<T = Date> extends React.Component<
         ? endDate
         : this.state.inputValue;
 
-    const onChange = event => this.handleInputChange(event, inputRole);
+    const onChange = (event) => this.handleInputChange(event, inputRole);
 
     return (
       <InputComponent
@@ -554,7 +555,7 @@ export default class Datepicker<T = Date> extends React.Component<
 
     return (
       <LocaleContext.Consumer>
-        {locale => (
+        {(locale) => (
           <React.Fragment>
             <PopoverComponent
               focusLock={false}
@@ -639,30 +640,32 @@ export default class Datepicker<T = Date> extends React.Component<
                 clipPath: 'inset(100%)',
               }}
             >
-              {// No date selected
-              !this.props.value ||
-              (Array.isArray(this.props.value) &&
-                !this.props.value[0] &&
-                !this.props.value[1])
-                ? ''
-                : // Date selected in a non-range picker
-                !Array.isArray(this.props.value)
-                ? getInterpolatedString(locale.datepicker.selectedDate, {
-                    date: this.state.inputValue || '',
-                  })
-                : // Start and end dates are selected in a range picker
-                this.props.value[0] && this.props.value[1]
-                ? getInterpolatedString(locale.datepicker.selectedDateRange, {
-                    startDate: this.formatDisplayValue(this.props.value[0]),
-                    endDate: this.formatDisplayValue(
-                      // $FlowFixMe
-                      this.props.value[1],
-                    ),
-                  })
-                : // A single date selected in a range picker
-                  `${getInterpolatedString(locale.datepicker.selectedDate, {
-                    date: this.formatDisplayValue(this.props.value[0]),
-                  })} ${locale.datepicker.selectSecondDatePrompt}`}
+              {
+                // No date selected
+                !this.props.value ||
+                (Array.isArray(this.props.value) &&
+                  !this.props.value[0] &&
+                  !this.props.value[1])
+                  ? ''
+                  : // Date selected in a non-range picker
+                  !Array.isArray(this.props.value)
+                  ? getInterpolatedString(locale.datepicker.selectedDate, {
+                      date: this.state.inputValue || '',
+                    })
+                  : // Start and end dates are selected in a range picker
+                  this.props.value[0] && this.props.value[1]
+                  ? getInterpolatedString(locale.datepicker.selectedDateRange, {
+                      startDate: this.formatDisplayValue(this.props.value[0]),
+                      endDate: this.formatDisplayValue(
+                        // $FlowFixMe
+                        this.props.value[1],
+                      ),
+                    })
+                  : // A single date selected in a range picker
+                    `${getInterpolatedString(locale.datepicker.selectedDate, {
+                      date: this.formatDisplayValue(this.props.value[0]),
+                    })} ${locale.datepicker.selectSecondDatePrompt}`
+              }
             </p>
           </React.Fragment>
         )}

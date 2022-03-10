@@ -220,8 +220,8 @@ describe('data table columns', () => {
     const popover = await openFilterAtIndex(page, index);
     const checkbox = await popover.$('label[data-baseweb="checkbox"]');
     await checkbox.click();
-    await popover.$$eval('button', items => {
-      const button = items.find(item => item.textContent === 'Apply');
+    await popover.$$eval('button', (items) => {
+      const button = items.find((item) => item.textContent === 'Apply');
       return button.click();
     });
 
@@ -258,8 +258,8 @@ describe('data table columns', () => {
     const popover = await openFilterAtIndex(page, index);
     const checkbox = await popover.$('label[data-baseweb="checkbox"]');
     await checkbox.click();
-    await popover.$$eval('button', items => {
-      const button = items.find(item => item.textContent === 'Apply');
+    await popover.$$eval('button', (items) => {
+      const button = items.find((item) => item.textContent === 'Apply');
       return button.click();
     });
 
@@ -294,8 +294,8 @@ describe('data table columns', () => {
     expect(matchArrayElements(initial, ['2', '1', '4', '3'])).toBe(true);
 
     const popover = await openFilterAtIndex(page, index);
-    await popover.$$eval('button', items => {
-      const button = items.find(item => item.textContent === 'Single Value');
+    await popover.$$eval('button', (items) => {
+      const button = items.find((item) => item.textContent === 'Single Value');
       return button.click();
     });
 
@@ -303,8 +303,8 @@ describe('data table columns', () => {
     await input.click();
     await page.keyboard.press('Backspace');
     await input.type('2');
-    await popover.$$eval('button', items => {
-      const button = items.find(item => item.textContent === 'Apply');
+    await popover.$$eval('button', (items) => {
+      const button = items.find((item) => item.textContent === 'Apply');
       return button.click();
     });
 
@@ -339,8 +339,8 @@ describe('data table columns', () => {
     expect(matchArrayElements(initial, ['2', '1', '4', '3'])).toBe(true);
 
     const popover = await openFilterAtIndex(page, index);
-    await popover.$$eval('button', items => {
-      const button = items.find(item => item.textContent === 'Range');
+    await popover.$$eval('button', (items) => {
+      const button = items.find((item) => item.textContent === 'Range');
       return button.click();
     });
 
@@ -353,8 +353,8 @@ describe('data table columns', () => {
     await page.keyboard.press('Backspace');
     await inputs[1].type('3');
 
-    await popover.$$eval('button', items => {
-      const button = items.find(item => item.textContent === 'Apply');
+    await popover.$$eval('button', (items) => {
+      const button = items.find((item) => item.textContent === 'Apply');
       return button.click();
     });
 
@@ -452,8 +452,8 @@ describe('data table columns', () => {
     await datepicker.type('07132014');
     await datepicker.type('07132014');
 
-    await popover.$$eval('button', items => {
-      const button = items.find(item => item.textContent === 'Apply');
+    await popover.$$eval('button', (items) => {
+      const button = items.find((item) => item.textContent === 'Apply');
       return button.click();
     });
 
@@ -490,8 +490,8 @@ describe('data table columns', () => {
     const [, dateop] = await page.$$('li');
     await dateop.click();
 
-    await popover.$$eval('button', items => {
-      const button = items.find(item => item.textContent === 'Apply');
+    await popover.$$eval('button', (items) => {
+      const button = items.find((item) => item.textContent === 'Apply');
       return button.click();
     });
 
@@ -548,8 +548,8 @@ describe('data table columns', () => {
     await page.keyboard.press('ArrowDown');
     await page.keyboard.press('Enter');
 
-    await popover.$$eval('button', items => {
-      const button = items.find(item => item.textContent === 'Apply');
+    await popover.$$eval('button', (items) => {
+      const button = items.find((item) => item.textContent === 'Apply');
       return button.click();
     });
 
@@ -587,8 +587,8 @@ describe('data table columns', () => {
     const [sunday] = await popover.$$('label[data-baseweb="checkbox"]');
     await sunday.click();
 
-    await popover.$$eval('button', items => {
-      const button = items.find(item => item.textContent === 'Apply');
+    await popover.$$eval('button', (items) => {
+      const button = items.find((item) => item.textContent === 'Apply');
       return button.click();
     });
 
@@ -633,8 +633,8 @@ describe('data table columns', () => {
     const months = await popover.$$('label[data-baseweb="checkbox"]');
     await months[4].click();
 
-    await popover.$$eval('button', items => {
-      const button = items.find(item => item.textContent === 'Apply');
+    await popover.$$eval('button', (items) => {
+      const button = items.find((item) => item.textContent === 'Apply');
       return button.click();
     });
 
@@ -679,8 +679,8 @@ describe('data table columns', () => {
     const quarters = await popover.$$('label[data-baseweb="checkbox"]');
     await quarters[2].click();
 
-    await popover.$$eval('button', items => {
-      const button = items.find(item => item.textContent === 'Apply');
+    await popover.$$eval('button', (items) => {
+      const button = items.find((item) => item.textContent === 'Apply');
       return button.click();
     });
 
@@ -725,8 +725,8 @@ describe('data table columns', () => {
     const halves = await popover.$$('label[data-baseweb="checkbox"]');
     await halves[1].click();
 
-    await popover.$$eval('button', items => {
-      const button = items.find(item => item.textContent === 'Apply');
+    await popover.$$eval('button', (items) => {
+      const button = items.find((item) => item.textContent === 'Apply');
       return button.click();
     });
 
@@ -771,8 +771,8 @@ describe('data table columns', () => {
     const [, twentytwelve] = await popover.$$('label[data-baseweb="checkbox"]');
     await twentytwelve.click();
 
-    await popover.$$eval('button', items => {
-      const button = items.find(item => item.textContent === 'Apply');
+    await popover.$$eval('button', (items) => {
+      const button = items.find((item) => item.textContent === 'Apply');
       return button.click();
     });
 

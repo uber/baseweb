@@ -44,7 +44,7 @@ export default function MaybeChildMenu(props: PropsT) {
 
   return (
     <NestedMenuContext.Consumer>
-      {ctx => {
+      {(ctx) => {
         return (
           <PopoverOverride
             focusLock={false}
@@ -75,7 +75,6 @@ export default function MaybeChildMenu(props: PropsT) {
                   },
                 },
               },
-              // $FlowFixMe - getOverrides' return type for props is {}
               popoverProps.overrides,
             )}
           >

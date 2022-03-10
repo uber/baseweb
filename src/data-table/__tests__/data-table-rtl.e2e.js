@@ -16,7 +16,7 @@ describe('data-table-rtl', () => {
     const cell1x1 = await page.$(
       '[data-baseweb="data-table"] > div:nth-child(2)',
     );
-    expect(await cell1x1.evaluate(node => node.style.right)).toBe('0px');
+    expect(await cell1x1.evaluate((node) => node.style.right)).toBe('0px');
   });
 
   it('action row in RTL order', async () => {
@@ -31,7 +31,9 @@ describe('data-table-rtl', () => {
       '[data-baseweb="data-table"] > div:last-child',
     );
     //Action row should be in RTL order
-    expect(await actionRow.evaluate(node => node.style.right)).toBe('initial');
-    expect(await actionRow.evaluate(node => node.style.left)).toBe('0px');
+    expect(await actionRow.evaluate((node) => node.style.right)).toBe(
+      'initial',
+    );
+    expect(await actionRow.evaluate((node) => node.style.left)).toBe('0px');
   });
 });

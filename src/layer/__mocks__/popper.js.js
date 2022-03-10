@@ -17,7 +17,7 @@ const mock = jest
       return {
         options,
         destroy,
-        _callOnPopperUpdate: function() {
+        _callOnPopperUpdate: function () {
           onPopperUpdate({
             offsets: {
               popper: {

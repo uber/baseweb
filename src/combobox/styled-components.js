@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import {SIZE} from '../input/index.js';
 import {styled} from '../styles/index.js';
+import type {FontT} from '../themes/types.js';
 
 export const StyledRoot = styled('div', {});
 
@@ -29,8 +30,14 @@ export const StyledListBox = styled<{|$width: string|}>(
   },
 );
 
-function buildStylesForSize(size, theme) {
-  const paddingDir = theme.direction === 'rtl' ? 'paddingRight' : 'paddingLeft';
+function buildStylesForSize(
+  size,
+  theme,
+):
+  | {|...FontT, height: string, paddingLeft?: string|}
+  | {|...FontT, height: string, paddingRight?: string|} {
+  const paddingDir: string =
+    theme.direction === 'rtl' ? 'paddingRight' : 'paddingLeft';
   switch (size) {
     case SIZE.mini:
       return {

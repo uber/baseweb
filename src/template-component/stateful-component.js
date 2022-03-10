@@ -14,7 +14,9 @@ function StatefulComponent(props: StatefulComponentPropsT) {
   const {children, ...restProps} = props;
   return (
     <StatefulContainer {...restProps}>
-      {componentProps => <Component {...componentProps}>{children}</Component>}
+      {(componentProps) => (
+        <Component {...componentProps}>{children}</Component>
+      )}
     </StatefulContainer>
   );
 }

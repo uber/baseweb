@@ -122,7 +122,7 @@ describe('Menu StatefulContainer', () => {
   it('getRequiredItemProps does not return onClick and onMouseEnter props for item set to disabled through getRequiredItemProps', () => {
     const getRequiredItemProps = jest
       .fn()
-      .mockImplementation(item => ({disabled: true}));
+      .mockImplementation((item) => ({disabled: true}));
     render(
       <StatefulContainer
         {...getSharedProps()}
@@ -140,7 +140,7 @@ describe('Menu StatefulContainer', () => {
   it('disabled prop value returned from getRequiredItemProps takes precedence over the one defined on item', () => {
     const getRequiredItemProps = jest
       .fn()
-      .mockImplementation(item => ({disabled: false}));
+      .mockImplementation((item) => ({disabled: false}));
     render(
       <StatefulContainer
         {...getSharedProps()}

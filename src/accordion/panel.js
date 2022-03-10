@@ -175,7 +175,7 @@ const Panel = ({
 
   return (
     <LocaleContext.Consumer>
-      {locale => (
+      {(locale) => (
         <PanelContainer {...sharedProps} {...panelContainerProps}>
           <Header
             tabIndex={0}

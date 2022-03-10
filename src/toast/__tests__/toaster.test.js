@@ -21,7 +21,7 @@ import {
 import {toaster, ToasterContainer} from '../index.js';
 
 function wait(ms) {
-  return new Promise(res => {
+  return new Promise((res) => {
     setTimeout(res, ms);
   });
 }

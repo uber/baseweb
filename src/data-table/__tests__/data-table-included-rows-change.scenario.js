@@ -29,7 +29,7 @@ const rows = [
 export function Scenario() {
   const [includedRows, setIncludedRows] = React.useState([]);
   const handleIncludedRowsChange = React.useCallback(
-    included => {
+    (included) => {
       setIncludedRows(included);
     },
     [setIncludedRows],
@@ -45,7 +45,7 @@ export function Scenario() {
         />
       </div>
       <ul>
-        {includedRows.map(row => (
+        {includedRows.map((row) => (
           <li key={row.id}>{row.id}</li>
         ))}
       </ul>

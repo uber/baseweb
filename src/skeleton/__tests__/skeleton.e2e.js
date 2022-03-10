@@ -19,7 +19,7 @@ describe('skeleton-loading', () => {
 
   it('if loads component correctly', async () => {
     await mount(page, 'skeleton--loading');
-    const haveSkeleton = await page.$$eval('div[testid="loader"]', divs => {
+    const haveSkeleton = await page.$$eval('div[testid="loader"]', (divs) => {
       if (divs.length > 0) {
         return true;
       }
@@ -27,7 +27,7 @@ describe('skeleton-loading', () => {
     });
     expect(haveSkeleton).toBe(true);
     await page.waitForSelector('div[testid="loader"]', {hidden: true});
-    const haveContent = await page.$$eval('div[id="content"]', divs => {
+    const haveContent = await page.$$eval('div[id="content"]', (divs) => {
       if (divs.length > 0) {
         return true;
       }

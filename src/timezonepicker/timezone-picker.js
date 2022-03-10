@@ -35,7 +35,7 @@ class TimezonePicker extends React.Component<
         const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
         this.setState({timezones, value: tz});
 
-        const option = timezones.find(o => o.id === tz);
+        const option = timezones.find((o) => o.id === tz);
         option && this.props.onChange && this.props.onChange(option);
       } else {
         this.setState({timezones});
@@ -52,7 +52,7 @@ class TimezonePicker extends React.Component<
       const timezones = this.buildTimezones(this.props.date || new Date());
       this.setState({timezones});
 
-      const option = timezones.find(o => o.id === this.state.value);
+      const option = timezones.find((o) => o.id === this.state.value);
       option && this.props.onChange && this.props.onChange(option);
     }
   }
@@ -106,19 +106,16 @@ class TimezonePicker extends React.Component<
       overrides.Select,
       Select,
     );
-    const selectOverrides = mergeOverrides(
+    selectProps.overrides = mergeOverrides(
       {
         Dropdown: {style: {maxHeight: '360px'}},
       },
-      // $FlowFixMe
       selectProps.overrides,
     );
-    // $FlowFixMe
-    selectProps.overrides = selectOverrides;
 
     let options = this.state.timezones;
     if (this.props.mapLabels) {
-      options = options.map(option => {
+      options = options.map((option) => {
         // $FlowFixMe - TimezoneT.label is a string, but mapLabels can return a React.Node
         option.label = this.props.mapLabels(option);
         return option;
@@ -127,7 +124,7 @@ class TimezonePicker extends React.Component<
 
     return (
       <LocaleContext.Consumer>
-        {locale => (
+        {(locale) => (
           <OverriddenSelect
             aria-label={locale.datepicker.timezonePickerAriaLabel}
             options={options}
@@ -136,7 +133,7 @@ class TimezonePicker extends React.Component<
             error={this.props.error}
             positive={this.props.positive}
             size={this.props.size}
-            onChange={params => {
+            onChange={(params) => {
               if (params.type === 'clear') {
                 this.setState({value: ''});
                 this.props.onChange && this.props.onChange(null);

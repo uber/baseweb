@@ -28,10 +28,12 @@ type StyledRootPropsT = {
 export const StyledRoot = styled<StyledRootPropsT>(
   'div',
   ({$theme, $divider}) => {
-    return {
-      ...($divider === DIVIDER.grid || $divider === DIVIDER.vertical
+    const borderStyles: {} =
+      $divider === DIVIDER.grid || $divider === DIVIDER.vertical
         ? expandBorderStyles($theme.borders.border300)
-        : {}),
+        : {};
+    return {
+      ...borderStyles,
       ...($divider === DIVIDER.horizontal
         ? {
             borderBottomWidth: $theme.borders.border300.borderWidth,
@@ -39,6 +41,7 @@ export const StyledRoot = styled<StyledRootPropsT>(
             borderBottomColor: $theme.borders.border300.borderColor,
           }
         : {}),
+
       position: 'relative',
       overflow: 'auto',
       WebkitOverflowScrolling: 'touch',

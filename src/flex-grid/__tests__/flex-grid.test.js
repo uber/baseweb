@@ -14,7 +14,7 @@ import {camelToKebab} from '../../helpers/strings.js';
 
 describe('FlexGrid', () => {
   it('passes FlexGrid props to children', () => {
-    const MockFlexGridItem = props => (
+    const MockFlexGridItem = (props) => (
       <div
         {...Object.keys(props).reduce((acc, key) => {
           // Convert to kebab to avoid React warnings

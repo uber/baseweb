@@ -22,9 +22,9 @@ describe('TimePicker min/max times', () => {
     const listbox = await page.$(LISTBOX);
 
     const listItems = await listbox.$$(`${LISTBOX} li`);
-    const min = await page.evaluate(el => el.textContent, listItems[0]);
+    const min = await page.evaluate((el) => el.textContent, listItems[0]);
     const max = await page.evaluate(
-      el => el.textContent,
+      (el) => el.textContent,
       listItems[listItems.length - 1],
     );
 
@@ -40,9 +40,9 @@ describe('TimePicker min/max times', () => {
     const listbox = await page.$(LISTBOX);
 
     const listItems = await listbox.$$(`${LISTBOX} li`);
-    const min = await page.evaluate(el => el.textContent, listItems[0]);
+    const min = await page.evaluate((el) => el.textContent, listItems[0]);
     const max = await page.evaluate(
-      el => el.textContent,
+      (el) => el.textContent,
       listItems[listItems.length - 1],
     );
 
@@ -58,9 +58,9 @@ describe('TimePicker min/max times', () => {
     const listbox = await page.$(LISTBOX);
 
     const listItems = await listbox.$$(`${LISTBOX} li`);
-    const min = await page.evaluate(el => el.textContent, listItems[0]);
+    const min = await page.evaluate((el) => el.textContent, listItems[0]);
     const max = await page.evaluate(
-      el => el.textContent,
+      (el) => el.textContent,
       listItems[listItems.length - 1],
     );
 
@@ -76,9 +76,9 @@ describe('TimePicker min/max times', () => {
     const listbox = await page.$(LISTBOX);
 
     const listItems = await listbox.$$(`${LISTBOX} li`);
-    const min = await page.evaluate(el => el.textContent, listItems[0]);
+    const min = await page.evaluate((el) => el.textContent, listItems[0]);
     const max = await page.evaluate(
-      el => el.textContent,
+      (el) => el.textContent,
       listItems[listItems.length - 1],
     );
 
@@ -94,9 +94,9 @@ describe('TimePicker min/max times', () => {
     const listbox = await page.$(LISTBOX);
 
     const listItems = await listbox.$$(`${LISTBOX} li`);
-    const min = await page.evaluate(el => el.textContent, listItems[0]);
+    const min = await page.evaluate((el) => el.textContent, listItems[0]);
     const max = await page.evaluate(
-      el => el.textContent,
+      (el) => el.textContent,
       listItems[listItems.length - 1],
     );
 

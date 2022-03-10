@@ -27,7 +27,7 @@ export type PropsT<OptionT = mixed> = {|
   |}>,
   // Options are often fetched from remote server, provides a simple way to
   // map whatever value the client gets into a visible string in the list item.
-  mapOptionToString: OptionT => string,
+  mapOptionToString: (OptionT) => string,
   id?: string,
   name?: string,
   // A ref to access the inner Input component.

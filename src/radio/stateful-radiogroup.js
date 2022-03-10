@@ -13,7 +13,7 @@ import RadioGroup from './radiogroup.js';
 import type {PropsT, StatefulRadioGroupPropsT} from './types.js';
 // Styled elements
 
-const StatefulRadioGroup = function(props: StatefulRadioGroupPropsT) {
+const StatefulRadioGroup = function (props: StatefulRadioGroupPropsT) {
   const {children, ...restProps} = props;
   return (
     <StatefulContainer {...restProps}>

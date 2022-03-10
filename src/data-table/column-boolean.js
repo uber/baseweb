@@ -28,9 +28,9 @@ type FilterParametersT = {|
 
 type BooleanColumnT = ColumnT<boolean, FilterParametersT>;
 
-function mapSelection<X, Y>(selection: Set<X>, transform: X => Y): Set<Y> {
+function mapSelection<X, Y>(selection: Set<X>, transform: (X) => Y): Set<Y> {
   const coercedSelection = new Set<Y>();
-  selection.forEach(item => coercedSelection.add(transform(item)));
+  selection.forEach((item) => coercedSelection.add(transform(item)));
   return coercedSelection;
 }
 
@@ -39,7 +39,7 @@ function BooleanFilter(props) {
 
   let selectionString = new Set();
   if (props.filterParams && props.filterParams.selection) {
-    selectionString = mapSelection(props.filterParams.selection, i =>
+    selectionString = mapSelection(props.filterParams.selection, (i) =>
       i
         ? locale.datatable.booleanFilterTrue
         : locale.datatable.booleanFilterFalse,
@@ -62,11 +62,11 @@ function BooleanFilter(props) {
             }
           : undefined
       }
-      setFilter={params => {
+      setFilter={(params) => {
         props.setFilter({
           selection: mapSelection(
             params.selection,
-            i => i === locale.datatable.booleanFilterTrue,
+            (i) => i === locale.datatable.booleanFilterTrue,
           ),
           exclude: params.exclude,
           description: params.description,
@@ -97,8 +97,8 @@ function BooleanCell(props) {
 function BooleanColumn(options: OptionsT): BooleanColumnT {
   return Column({
     kind: COLUMNS.BOOLEAN,
-    buildFilter: function(params) {
-      return function(data) {
+    buildFilter: function (params) {
+      return function (data) {
         const included = params.selection.has(data);
         return params.exclude ? !included : included;
       };
@@ -112,7 +112,7 @@ function BooleanColumn(options: OptionsT): BooleanColumnT {
     renderCell: BooleanCell,
     renderFilter: BooleanFilter,
     sortable: options.sortable === undefined ? true : options.sortable,
-    sortFn: function(a, b) {
+    sortFn: function (a, b) {
       if (a === b) return 0;
       return a ? -1 : 1;
     },

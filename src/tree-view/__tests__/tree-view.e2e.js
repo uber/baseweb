@@ -47,10 +47,10 @@ describe('tree view', () => {
     const checkboxInput = '[data-baseweb="checkbox"] input';
     await mount(page, 'tree-view--interactable');
     await page.waitForSelector(checkbox);
-    let isChecked = await page.$eval(checkboxInput, i => i.checked);
+    let isChecked = await page.$eval(checkboxInput, (i) => i.checked);
     expect(isChecked).toBe(false);
     await page.click(checkbox);
-    isChecked = await page.$eval(checkboxInput, i => i.checked);
+    isChecked = await page.$eval(checkboxInput, (i) => i.checked);
     expect(isChecked).toBe(true);
   });
 
@@ -62,7 +62,7 @@ describe('tree view', () => {
     const highlightedSelector = '[tabindex="0"]';
     const highlightedItem = await page.$(highlightedSelector);
     const text = await page.evaluate(
-      item => (item ? item.textContent : 'NOT_FOUND'),
+      (item) => (item ? item.textContent : 'NOT_FOUND'),
       highlightedItem,
     );
     expect(text).toBe('BlankGrandchild 1');

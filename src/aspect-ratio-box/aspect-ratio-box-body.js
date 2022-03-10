@@ -17,7 +17,7 @@ export const AspectRatioBoxBody = ({
   bottom,
   width,
   ...restProps
-}: BlockPropsT): React.Node => (
+}: $Exact<BlockPropsT>): React.Node => (
   <Block
     data-baseweb="aspect-ratio-box-body"
     position={position || 'absolute'}

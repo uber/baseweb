@@ -26,7 +26,10 @@ describe('Datepicker, Int', () => {
     await page.waitForSelector(selectors.day, {hidden: true});
 
     await page.keyboard.type('0');
-    const inputValue = await page.$eval(selectors.input, input => input.value);
+    const inputValue = await page.$eval(
+      selectors.input,
+      (input) => input.value,
+    );
 
     expect(inputValue).toBe('31.03.2020');
 

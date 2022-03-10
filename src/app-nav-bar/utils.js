@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 
 import type {NavItemT} from './types.js';
 
-type GetUniqueIdentifierT = NavItemT => string | number;
+type GetUniqueIdentifierT = (NavItemT) => string | number;
 
 export function defaultMapItemToNode(item: NavItemT) {
   if (__DEV__) {
@@ -35,9 +35,9 @@ function defaultGetUniqueIdentifier(item: NavItemT) {
 
 export function mapItemsActive(
   items: NavItemT[],
-  predicate: NavItemT => boolean,
+  predicate: (NavItemT) => boolean,
 ) {
-  return items.map<NavItemT>(current => {
+  return items.map<NavItemT>((current) => {
     if (predicate(current)) {
       current.active = true;
     } else {
@@ -46,7 +46,7 @@ export function mapItemsActive(
 
     if (current.children) {
       current.children = mapItemsActive(current.children, predicate);
-      if (current.children.some(child => child.active)) {
+      if (current.children.some((child) => child.active)) {
         current.active = true;
       }
     }
@@ -62,6 +62,6 @@ export function setItemActive(
 ) {
   return mapItemsActive(
     items,
-    current => getUniqueIdentifier(current) === getUniqueIdentifier(item),
+    (current) => getUniqueIdentifier(current) === getUniqueIdentifier(item),
   );
 }

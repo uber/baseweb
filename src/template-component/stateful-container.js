@@ -42,7 +42,7 @@ class StatefulContainer extends React.Component<
       this.setState(changes);
       return;
     }
-    this.setState(prevState => stateReducer(type, changes, prevState));
+    this.setState((prevState) => stateReducer(type, changes, prevState));
   }
 
   render() {

@@ -27,6 +27,7 @@ const overrides = {
 
 const ModalButton = React.forwardRef<ButtonPropsT, HTMLElement>(
   (props, ref) => (
+    //$FlowExpectedError[cannot-spread-inexact]
     <Button
       ref={ref}
       {...props}
@@ -34,5 +35,6 @@ const ModalButton = React.forwardRef<ButtonPropsT, HTMLElement>(
     />
   ),
 );
+ModalButton.displayName = 'ModalButton';
 
 export default ModalButton;

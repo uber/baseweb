@@ -21,7 +21,7 @@ export const Root = styled('ul', {
   width: '100%',
 });
 
-export const PanelContainer = styled<SharedStylePropsArgT>('li', props => {
+export const PanelContainer = styled<SharedStylePropsArgT>('li', (props) => {
   const {
     $expanded,
     $theme: {colors},
@@ -35,7 +35,7 @@ export const PanelContainer = styled<SharedStylePropsArgT>('li', props => {
   };
 });
 
-export const Header = styled<SharedStylePropsArgT>('div', props => {
+export const Header = styled<SharedStylePropsArgT>('div', (props) => {
   const {
     $disabled,
     $isFocusVisible,
@@ -65,7 +65,7 @@ export const Header = styled<SharedStylePropsArgT>('div', props => {
   };
 });
 
-export const ToggleIcon = styled<SharedStylePropsArgT>('svg', props => {
+export const ToggleIcon = styled<SharedStylePropsArgT>('svg', (props) => {
   const {$theme, $disabled, $color} = props;
   return {
     ...getSvgStyles(props),
@@ -75,7 +75,7 @@ export const ToggleIcon = styled<SharedStylePropsArgT>('svg', props => {
   };
 });
 
-export const ToggleIconGroup = styled<SharedStylePropsArgT>('g', props => {
+export const ToggleIconGroup = styled<SharedStylePropsArgT>('g', (props) => {
   const {$theme, $expanded} = props;
   return {
     transform: $expanded ? 'rotate(0)' : 'rotate(-90deg)',
@@ -86,7 +86,7 @@ export const ToggleIconGroup = styled<SharedStylePropsArgT>('g', props => {
   };
 });
 
-export const Content = styled<SharedStylePropsArgT>('div', props => {
+export const Content = styled<SharedStylePropsArgT>('div', (props) => {
   const {
     $theme: {animation, colors, sizing, typography},
     $expanded,
@@ -116,7 +116,7 @@ export const Content = styled<SharedStylePropsArgT>('div', props => {
 
 export const ContentAnimationContainer = styled<
   {$height: string | number} & SharedStylePropsArgT,
->('div', props => {
+>('div', (props) => {
   const {
     $height,
     $theme: {animation},

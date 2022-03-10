@@ -73,7 +73,7 @@ export type OverridesDropdownT = {
 };
 
 type ImperativeFnsT = {|
-  setDropdownOpen: boolean => mixed,
+  setDropdownOpen: (boolean) => mixed,
 |};
 export type MethodsRefT = {
   current: ImperativeFnsT | null,
@@ -214,7 +214,7 @@ export type StateReducerT = (
 
 export type StatefulContainerPropsT = {
   overrides: OverridesT,
-  children: PropsT => React$Node,
+  children: (PropsT) => React$Node,
   initialState: StateT,
   stateReducer: StateReducerT,
   onChange: (params: OnChangeParamsT) => mixed,

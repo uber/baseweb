@@ -30,7 +30,7 @@ export function Scenario() {
   ];
 
   function handleMainItemSelect(item) {
-    setMainItems(prev => setItemActive(prev, item));
+    setMainItems((prev) => setItemActive(prev, item));
   }
 
   return (
@@ -38,7 +38,7 @@ export function Scenario() {
       title="map item to node"
       mainItems={mainItems}
       userItems={userItems}
-      mapItemToNode={item => (
+      mapItemToNode={(item) => (
         <span
           className={css({
             border: `dashed 2px ${item.info ? item.info.color : 'green'}`,

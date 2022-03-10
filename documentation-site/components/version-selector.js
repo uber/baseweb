@@ -51,11 +51,11 @@ const majorVersions = Array.from(
     }
     return set.add(semver.major(semver.coerce(version.tag_name)));
   }, new Set()),
-).map(version => ({
+).map((version) => ({
   label: `v${version}`,
 }));
 
-const majorVersionsToDisplay = majorVersions.map(version => {
+const majorVersionsToDisplay = majorVersions.map((version) => {
   const {label} = version;
 
   return {
@@ -67,7 +67,7 @@ const majorVersionsToDisplay = majorVersions.map(version => {
 });
 
 const versionsToShowPerMajor = versions
-  .filter(releaseVersion => {
+  .filter((releaseVersion) => {
     // we have "now" deployments since v8.1.0
     return semver.satisfies(releaseVersion.name, '>=8.1.0');
   })
@@ -106,7 +106,7 @@ const VersionSelector = () => {
               Option: {
                 props: {
                   size: 'compact',
-                  getChildMenu: item => {
+                  getChildMenu: (item) => {
                     if (
                       semver.satisfies(semver.coerce(item.label), '>=8.0.0')
                     ) {

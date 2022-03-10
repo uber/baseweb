@@ -107,7 +107,7 @@ export interface StatefulContainerProps {
   removeMenuFromNesting?: (ref: React.Ref<HTMLElement>) => void;
   getParentMenu?: (ref: React.Ref<HTMLElement>) => void;
   getChildMenu?: (ref: React.Ref<HTMLElement>) => void;
-  nestedMenuHoverIndex?: nubmer;
+  nestedMenuHoverIndex?: number;
   isNestedMenuVisible?: (ref: React.Ref<HTMLElement>) => boolean;
 }
 export interface StatefulContainerState {
@@ -146,9 +146,7 @@ export const OptionList: React.FC<OptionListProps>;
 export interface OptionProfileProps extends BaseMenuPropsT {
   item: any;
   getChildMenu?: (item: any) => React.ReactNode;
-  getProfileItemLabels: (
-    item: any,
-  ) => {
+  getProfileItemLabels: (item: any) => {
     title?: string;
     subtitle?: string;
     body?: string;

@@ -46,7 +46,7 @@ export const StyledRoot = styled<{
   $animation?: boolean,
   $height?: string,
   $width?: string,
-}>('div', props => {
+}>('div', (props) => {
   if (typeof props.$rows === 'number' && props.$rows !== 0) {
     return {
       display: 'flex',
@@ -67,7 +67,7 @@ export const StyledRoot = styled<{
 
 export const StyledRow = styled<{$animation?: boolean, $isLastRow: boolean}>(
   'div',
-  props => {
+  (props) => {
     return {
       ...(props.$animation
         ? {...animationStyle, backgroundImage: getAnimationColor(props)}

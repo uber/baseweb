@@ -7,9 +7,9 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import type {OptionT, ValueT} from '../types.js';
 
-const escapeRegExp = str => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+const escapeRegExp = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
-const isValid = value => {
+const isValid = (value) => {
   return typeof value !== 'undefined' && value !== null && value !== '';
 };
 
@@ -63,7 +63,7 @@ const filterOptions = (
   );
 
   // $FlowFixMe
-  return options.filter(option => {
+  return options.filter((option) => {
     if (excludeValues.has(option[props.valueKey])) return false;
     if (props.filterOption)
       return props.filterOption.call(undefined, option, filterValue);

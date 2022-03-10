@@ -151,24 +151,28 @@ export function initFocusVisible(node) {
   }
 }
 
-export const forkFocus = (
-  // eslint-disable-next-line flowtype/no-weak-types
-  rootProps: any,
-  handler: (e: SyntheticEvent<>) => void,
-) => (e: SyntheticEvent<>) => {
-  if (typeof rootProps.onFocus === 'function') {
-    rootProps.onFocus(e);
-  }
-  handler(e);
-};
+export const forkFocus =
+  (
+    // eslint-disable-next-line flowtype/no-weak-types
+    rootProps: any,
+    handler: (e: SyntheticEvent<>) => void,
+  ) =>
+  (e: SyntheticEvent<>) => {
+    if (typeof rootProps.onFocus === 'function') {
+      rootProps.onFocus(e);
+    }
+    handler(e);
+  };
 
-export const forkBlur = (
-  // eslint-disable-next-line flowtype/no-weak-types
-  rootProps: any,
-  handler: (e: SyntheticEvent<>) => void,
-) => (e: SyntheticEvent<>) => {
-  if (typeof rootProps.onBlur === 'function') {
-    rootProps.onBlur(e);
-  }
-  handler(e);
-};
+export const forkBlur =
+  (
+    // eslint-disable-next-line flowtype/no-weak-types
+    rootProps: any,
+    handler: (e: SyntheticEvent<>) => void,
+  ) =>
+  (e: SyntheticEvent<>) => {
+    if (typeof rootProps.onBlur === 'function') {
+      rootProps.onBlur(e);
+    }
+    handler(e);
+  };

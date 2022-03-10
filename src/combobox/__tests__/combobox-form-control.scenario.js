@@ -31,8 +31,8 @@ export function Scenario() {
         <Combobox
           id="combo"
           value={value}
-          onChange={nextValue => setValue(nextValue)}
-          mapOptionToString={o => o.label}
+          onChange={(nextValue) => setValue(nextValue)}
+          mapOptionToString={(o) => o.label}
           options={options}
         />
       </FormControl>
@@ -40,8 +40,8 @@ export function Scenario() {
         <Combobox
           id="combobox_positive"
           value={value}
-          onChange={nextValue => setValue(nextValue)}
-          mapOptionToString={o => o.label}
+          onChange={(nextValue) => setValue(nextValue)}
+          mapOptionToString={(o) => o.label}
           options={options}
         />
       </FormControl>
@@ -49,8 +49,8 @@ export function Scenario() {
         <Combobox
           id="combobox_error"
           value={value}
-          onChange={nextValue => setValue(nextValue)}
-          mapOptionToString={o => o.label}
+          onChange={(nextValue) => setValue(nextValue)}
+          mapOptionToString={(o) => o.label}
           options={options}
         />
       </FormControl>

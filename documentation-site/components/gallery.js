@@ -383,7 +383,7 @@ function Section({category}) {
 function Gallery() {
   return (
     <React.Fragment>
-      {Object.keys(COMPONENTS).map(category => (
+      {Object.keys(COMPONENTS).map((category) => (
         <Section key={category} category={category} />
       ))}
     </React.Fragment>

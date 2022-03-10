@@ -15,7 +15,7 @@ import type {TreeViewPropsT} from './types.js';
 export default function StatefulTreeView(props: TreeViewPropsT) {
   return (
     <StatefulContainer {...props}>
-      {treeViewProps => <TreeView {...treeViewProps} />}
+      {(treeViewProps) => <TreeView {...treeViewProps} />}
     </StatefulContainer>
   );
 }

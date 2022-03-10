@@ -10,14 +10,14 @@ import {render, getByTestId, getByText} from '@testing-library/react';
 
 import SingleValue from '../value.js';
 
-describe('Single Value component', function() {
-  it('renders StyledSingleValue', function() {
+describe('Single Value component', function () {
+  it('renders StyledSingleValue', function () {
     const {container} = render(<SingleValue>test</SingleValue>);
     const element = getByText(container, 'test');
     expect(element.getAttribute('aria-selected')).toBe('true');
   });
 
-  it('renders custom SingleValue', function() {
+  it('renders custom SingleValue', function () {
     const {container} = render(
       <SingleValue
         overrides={{SingleValue: {props: {'data-testid': 'single-value'}}}}

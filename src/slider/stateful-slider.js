@@ -13,7 +13,7 @@ import type {StatefulSliderPropsT} from './types.js';
 export default function StatefulSlider(props: StatefulSliderPropsT) {
   return (
     <StatefulSliderContainer {...props}>
-      {childrenProps => <Slider {...childrenProps} />}
+      {(childrenProps) => <Slider {...childrenProps} />}
     </StatefulSliderContainer>
   );
 }

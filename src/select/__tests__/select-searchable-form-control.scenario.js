@@ -35,7 +35,7 @@ export function Scenario() {
           placeholder="Select color"
           value={value}
           options={options}
-          onChange={params => setValue(params.value)}
+          onChange={(params) => setValue(params.value)}
         />
       </FormControl>
 
@@ -46,7 +46,7 @@ export function Scenario() {
           placeholder="Select color"
           value={value}
           options={options}
-          onChange={params => setValue(params.value)}
+          onChange={(params) => setValue(params.value)}
         />
       </FormControl>
 
@@ -59,7 +59,7 @@ export function Scenario() {
           placeholder="Select color"
           value={value}
           options={options}
-          onChange={params => setValue(params.value)}
+          onChange={(params) => setValue(params.value)}
         />
       </label>
 
@@ -72,7 +72,7 @@ export function Scenario() {
           placeholder="Select color"
           value={value}
           options={options}
-          onChange={params => setValue(params.value)}
+          onChange={(params) => setValue(params.value)}
         />
       </label>
 
@@ -84,7 +84,7 @@ export function Scenario() {
           placeholder="Select color"
           value={value}
           options={options}
-          onChange={params => setValue(params.value)}
+          onChange={(params) => setValue(params.value)}
         />
       </div>
 
@@ -96,7 +96,7 @@ export function Scenario() {
           placeholder="Select color"
           value={value}
           options={options}
-          onChange={params => setValue(params.value)}
+          onChange={(params) => setValue(params.value)}
         />
       </div>
     </div>

@@ -68,7 +68,7 @@ export default function SnackbarProvider({
   const containerRef = React.useRef(null);
 
   function enqueue(elementProps, duration = defaultDuration) {
-    setSnackbars(prev => {
+    setSnackbars((prev) => {
       return [...prev, {elementProps, duration}];
     });
   }
@@ -83,7 +83,7 @@ export default function SnackbarProvider({
   function dequeue() {
     setContainerHeight(0);
 
-    setSnackbars(prev => {
+    setSnackbars((prev) => {
       const next = prev.slice(1);
       if (next.length > 0) {
         enter(next[0].duration);
@@ -206,7 +206,7 @@ export default function SnackbarProvider({
             >
               <SnackbarElement
                 {...snackbars[0].elementProps}
-                actionOnClick={event => {
+                actionOnClick={(event) => {
                   if (snackbars[0].elementProps.actionOnClick) {
                     snackbars[0].elementProps.actionOnClick(event);
                   }

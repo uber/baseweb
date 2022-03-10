@@ -116,7 +116,7 @@ export function useCellNavigation() {
   }
 
   const getCellProps = React.useMemo(() => {
-    return function(column: number, row: number) {
+    return function (column: number, row: number) {
       const isAddressable = column === columnIndex && row === rowIndex;
       return {
         ref: (r: ?HTMLElement) => register(r, column, row),

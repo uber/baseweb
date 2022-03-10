@@ -21,7 +21,7 @@ class StatefulComponent<T = Date> extends React.Component<PropsT<T>> {
   render() {
     return (
       <StatefulContainer {...this.props}>
-        {extendedProps => <Datepicker {...extendedProps} />}
+        {(extendedProps) => <Datepicker {...extendedProps} />}
       </StatefulContainer>
     );
   }

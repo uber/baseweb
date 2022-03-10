@@ -25,7 +25,7 @@ export default function StatefulPagination({
       stateReducer={stateReducer}
       onPageChange={onPageChange}
     >
-      {renderProps => (
+      {(renderProps) => (
         <Pagination numPages={numPages} {...renderProps} {...props} />
       )}
     </StatefulContainer>

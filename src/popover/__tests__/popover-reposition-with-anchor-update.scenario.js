@@ -24,7 +24,7 @@ export function Scenario() {
         ]}
         value={value}
         placeholder="Select color"
-        onChange={params => setValue(params.value)}
+        onChange={(params) => setValue(params.value)}
         closeOnSelect={false}
         startOpen
       />

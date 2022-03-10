@@ -25,7 +25,7 @@ const XSmallFilled = ({title, ...props}) => {
 };
 
 const StyledBody = styled('div', {display: 'flex'});
-const StyledCloseIcon = styled('svg', props => {
+const StyledCloseIcon = styled('svg', (props) => {
   return {
     ...getSvgStyles(props),
     color: 'pink',

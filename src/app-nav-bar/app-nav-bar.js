@@ -129,8 +129,8 @@ export default function AppNavBar(props: AppNavBarPropsT) {
   const {
     title,
     mapItemToNode = defaultMapItemToNode,
-    onMainItemSelect = item => {},
-    onUserItemSelect = item => {},
+    onMainItemSelect = (item) => {},
+    onUserItemSelect = (item) => {},
     overrides = {},
     userItems = [],
     username,

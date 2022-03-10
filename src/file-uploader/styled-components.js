@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import {styled} from '../styles/index.js';
 import type {StylePropsT} from './types.js';
 
-export const StyledFileDragAndDrop = styled<StylePropsT>('div', props => {
+export const StyledFileDragAndDrop = styled<StylePropsT>('div', (props) => {
   const borderColor = props.$isDragActive
     ? props.$theme.colors.borderAccent
     : props.$theme.colors.fileUploaderBorderColorDefault;
@@ -70,7 +70,7 @@ export const StyledContentSeparator = StyledContentMessage;
 
 export const StyledErrorMessage = styled<StylePropsT>(
   'div',
-  props =>
+  (props) =>
     ({
       ...props.$theme.typography.LabelMedium,
       color: props.$theme.colors.negative,
@@ -79,7 +79,7 @@ export const StyledErrorMessage = styled<StylePropsT>(
     }: {}),
 );
 
-export const StyledRoot = styled<StylePropsT>('div', props => ({
+export const StyledRoot = styled<StylePropsT>('div', (props) => ({
   ...props.$theme.typography.font300,
   color: props.$theme.colors.fileUploaderMessageColor,
 }));

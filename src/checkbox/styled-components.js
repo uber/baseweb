@@ -132,7 +132,7 @@ function getLabelColor(props) {
   return $disabled ? colors.contentSecondary : colors.contentPrimary;
 }
 
-export const Root = styled<SharedStylePropsT>('label', props => {
+export const Root = styled<SharedStylePropsT>('label', (props) => {
   const {$disabled, $labelPlacement} = props;
   return {
     flexDirection:
@@ -149,7 +149,7 @@ export const Root = styled<SharedStylePropsT>('label', props => {
   };
 });
 
-export const Checkmark = styled<SharedStylePropsT>('span', props => {
+export const Checkmark = styled<SharedStylePropsT>('span', (props) => {
   const {
     $checked,
     $disabled,
@@ -230,7 +230,7 @@ export const Checkmark = styled<SharedStylePropsT>('span', props => {
   }: {});
 });
 
-export const Label = styled<SharedStylePropsT>('div', props => {
+export const Label = styled<SharedStylePropsT>('div', (props) => {
   const {$theme, $checkmarkType} = props;
   const {typography} = $theme;
   return ({
@@ -254,7 +254,7 @@ export const Input = styled('input', {
   position: 'absolute',
 });
 
-export const Toggle = styled<SharedStylePropsT>('div', props => {
+export const Toggle = styled<SharedStylePropsT>('div', (props) => {
   if (props.$checkmarkType === STYLE_TYPE.toggle) {
     const borderRadius = props.$theme.borders.useRoundedCorners
       ? props.$theme.borders.radius200
@@ -311,7 +311,7 @@ export const Toggle = styled<SharedStylePropsT>('div', props => {
   return {};
 });
 
-export const ToggleInner = styled<SharedStylePropsT>('div', props => {
+export const ToggleInner = styled<SharedStylePropsT>('div', (props) => {
   if (props.$checkmarkType === STYLE_TYPE.toggle) {
     // eslint-disable-next-line no-inner-declarations
     const backgroundColor = () => {
@@ -347,7 +347,7 @@ export const ToggleInner = styled<SharedStylePropsT>('div', props => {
   return {};
 });
 
-export const ToggleTrack = styled<SharedStylePropsT>('div', props => {
+export const ToggleTrack = styled<SharedStylePropsT>('div', (props) => {
   if (props.$checkmarkType === STYLE_TYPE.toggle) {
     const borderRadius = props.$theme.borders.useRoundedCorners
       ? props.$theme.borders.radius200

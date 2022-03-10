@@ -22,7 +22,7 @@ describe('tooltip', () => {
     const accessibilityReport = await analyzeAccessibility(page);
     // focus locks applies guards with tabIndex=1 to trap the focus on purpose
     accessibilityReport.violations = accessibilityReport.violations.filter(
-      v => v.id !== 'tabindex',
+      (v) => v.id !== 'tabindex',
     );
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });

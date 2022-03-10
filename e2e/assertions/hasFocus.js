@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 /* global exports document */
 
-exports.assertion = function(selector, msg) {
+exports.assertion = function (selector, msg) {
   const ancestors = selector;
 
   // If the selector comes from a section of a page object
@@ -29,17 +29,17 @@ exports.assertion = function(selector, msg) {
   this.message = msg || `Testing if element ${selector} has focus`;
   this.expected = true;
 
-  this.pass = function(value) {
+  this.pass = function (value) {
     return value === this.expected;
   };
 
-  this.value = function(result) {
+  this.value = function (result) {
     return result.value;
   };
 
-  this.command = function(callback) {
+  this.command = function (callback) {
     this.api.execute(
-      function(selector) {
+      function (selector) {
         return document.activeElement === document.querySelector(selector);
       },
       [selector],

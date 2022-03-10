@@ -35,7 +35,7 @@ export const StyledContent = styled('div', {
 });
 
 export const StyledStartEnhancerContainer = styled<{}>('span', ({$theme}) => {
-  const paddingDir =
+  const paddingDir: string =
     $theme.direction === 'rtl' ? 'paddingRight' : 'paddingLeft';
   return {
     alignItems: 'center',
@@ -57,11 +57,11 @@ export const StyledSpinner = withStyle<
 
 export const StyledMessage = styled<{$hasSuffix: boolean}>(
   'p',
-  // $FlowFixMe - suppressing due to webkit properties
+  //$FlowExpectedError[incompatible-shape]
   ({$theme, $hasSuffix}) => {
-    const prefixPadding =
+    const prefixPadding: string =
       $theme.direction === 'rtl' ? 'paddingRight' : 'paddingLeft';
-    const suffixPadding =
+    const suffixPadding: string =
       $theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight';
     return {
       ...$theme.typography.ParagraphMedium,
@@ -85,7 +85,8 @@ export const StyledWrapActionButtonContainer = styled('div', {
 });
 
 export const StyledActionButtonContainer = styled<{}>('div', ({$theme}) => {
-  const marginDir = $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
+  const marginDir: string =
+    $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
   return {
     [marginDir]: 'auto',
   };

@@ -156,7 +156,7 @@ class PopoverInner extends React.Component<
       this.animateOutCompleteTimer,
       this.onMouseEnterTimer,
       this.onMouseLeaveTimer,
-    ].forEach(timerId => {
+    ].forEach((timerId) => {
       if (timerId) {
         clearTimeout(timerId);
       }
@@ -507,6 +507,7 @@ class PopoverInner extends React.Component<
 // Remove when Popover is converted to a functional component.
 const Popover = (props: PopoverPropsT & {innerRef?: React$ElementRef<*>}) => {
   const {innerRef} = props;
+  //$FlowExpectedError[cannot-spread-inexact]
   return <PopoverInner id={props.id || useUID()} ref={innerRef} {...props} />;
 };
 

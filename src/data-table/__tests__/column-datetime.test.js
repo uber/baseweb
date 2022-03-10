@@ -17,7 +17,7 @@ import {TestBaseProvider} from '../../test/test-utils.js';
 
 import {DatetimeColumn, DATETIME_OPERATIONS} from '../index.js';
 
-const padZero = n => (n < 10 ? `0${n}` : n);
+const padZero = (n) => (n < 10 ? `0${n}` : n);
 
 describe('datetime column', () => {
   it('is sortable by default', () => {
@@ -71,7 +71,7 @@ describe('datetime column', () => {
   });
 
   it('sets filter params for range of datetimes', () => {
-    const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(i => {
+    const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => {
       return new Date(`2011-04-${padZero(i)}T10:${10 + i}:30`);
     });
     const column = DatetimeColumn({
@@ -94,7 +94,7 @@ describe('datetime column', () => {
   });
 
   it('sets filter params for range of dates', () => {
-    const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(i => {
+    const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => {
       return new Date(`2011-04-${padZero(i)}T10:${10 + i}:30`);
     });
     const column = DatetimeColumn({
@@ -124,7 +124,7 @@ describe('datetime column', () => {
   });
 
   it('sets filter params for range of times', () => {
-    const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(i => {
+    const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => {
       return new Date(`2011-04-${padZero(i)}T10:${10 + i}:30`);
     });
     const column = DatetimeColumn({
@@ -156,7 +156,7 @@ describe('datetime column', () => {
   });
 
   it('sets filter params for selected weekdays', () => {
-    const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(i => {
+    const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => {
       return new Date(`2011-04-${padZero(i)}T10:${10 + i}:30`);
     });
     const column = DatetimeColumn({
@@ -186,7 +186,7 @@ describe('datetime column', () => {
   });
 
   it('sets filter params for selected months', () => {
-    const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(i => {
+    const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => {
       return new Date(`2011-04-${padZero(i)}T10:${10 + i}:30`);
     });
     const column = DatetimeColumn({
@@ -223,7 +223,7 @@ describe('datetime column', () => {
   });
 
   it('sets filter params for selected quarters', () => {
-    const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(i => {
+    const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => {
       return new Date(`2011-04-${padZero(i)}T10:${10 + i}:30`);
     });
     const column = DatetimeColumn({
@@ -260,7 +260,7 @@ describe('datetime column', () => {
   });
 
   it('sets filter params for selected halves', () => {
-    const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(i => {
+    const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => {
       return new Date(`2011-04-${padZero(i)}T10:${10 + i}:30`);
     });
     const column = DatetimeColumn({
@@ -295,7 +295,7 @@ describe('datetime column', () => {
   });
 
   it('sets filter params for selected years', () => {
-    const data = [1, 2, 3, 4, 5, 6, 6, 7, 7, 8, 8, 9].map(i => {
+    const data = [1, 2, 3, 4, 5, 6, 6, 7, 7, 8, 8, 9].map((i) => {
       return new Date(`200${i}-04-10T10:${10 + i}:30`);
     });
     const column = DatetimeColumn({

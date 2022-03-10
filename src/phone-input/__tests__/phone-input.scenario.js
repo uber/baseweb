@@ -14,14 +14,14 @@ export function Scenario() {
     <React.Fragment>
       <p>Uncontrolled (Stateful)</p>
       <StatefulPhoneInput
-        onCountryChange={e => console.log('COUNTRY_CHANGED_1:', e)}
-        onTextChange={e => console.log('NUMBER_CHANGED_1:', e)}
+        onCountryChange={(e) => console.log('COUNTRY_CHANGED_1:', e)}
+        onTextChange={(e) => console.log('NUMBER_CHANGED_1:', e)}
       />
 
       <p>Controlled (Stateless)</p>
       <PhoneInput
-        onCountryChange={e => console.log('COUNTRY_CHANGED:', e)}
-        onTextChange={e => console.log('NUMBER_CHANGED:', e)}
+        onCountryChange={(e) => console.log('COUNTRY_CHANGED:', e)}
+        onTextChange={(e) => console.log('NUMBER_CHANGED:', e)}
       />
 
       <p>Sizes</p>

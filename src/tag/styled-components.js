@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import tint from 'polished/lib/color/tint.js';
 import shade from 'polished/lib/color/shade.js';
 
-import {styled} from '../styles/index.js';
+import {styled, type ThemeT} from '../styles/index.js';
 import {KIND, VARIANT, SIZE} from './constants.js';
 import type {SharedPropsArgT} from './types.js';
 import {colors as colorTokens} from '../tokens/index.js';
@@ -251,49 +251,52 @@ const colorMap = {
   [KIND.custom]: customColorStates,
 };
 
-const getColorStateFromProps = props => {
+const getColorStateFromProps = (props) => {
   if (props.$disabled) return COLOR_STATE.disabled;
   if (props.$variant === VARIANT.solid) return COLOR_STATE.solid;
   return COLOR_STATE.outline;
 };
 
-// $FlowFixMe https://github.com/facebook/flow/issues/7745
-export const Action = styled<SharedPropsArgT>('span', props => {
-  const {$theme, $disabled, $size = SIZE.small} = props;
-  const bottomRadiusDir: string =
-    $theme.direction === 'rtl'
-      ? 'borderBottomLeftRadius'
-      : 'borderBottomRightRadius';
-  const topRadiusDir: string =
-    $theme.direction === 'rtl' ? 'borderTopLeftRadius' : 'borderTopRightRadius';
-  const marginDir: string =
-    $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
-  return ({
-    alignItems: 'center',
-    [bottomRadiusDir]: $theme.borders.useRoundedCorners
-      ? $theme.borders.radius400
-      : 0,
-    [topRadiusDir]: $theme.borders.useRoundedCorners
-      ? $theme.borders.radius400
-      : 0,
-    cursor: $disabled ? 'not-allowed' : 'pointer',
-    display: 'flex',
-    [marginDir]: {
-      [SIZE.small]: '8px',
-      [SIZE.medium]: '12px',
-      [SIZE.large]: '16px',
-    }[$size],
-    outline: 'none',
-    transitionProperty: 'all',
-    transitionDuration: 'background-color',
-    transitionTimingFunction: $theme.animation.easeOutCurve,
-  }: {});
-});
+export const Action = styled<SharedPropsArgT>(
+  'span',
+  (props: SharedPropsArgT & {$theme: ThemeT}) => {
+    const {$theme, $disabled, $size = SIZE.small} = props;
+    const bottomRadiusDir: string =
+      $theme.direction === 'rtl'
+        ? 'borderBottomLeftRadius'
+        : 'borderBottomRightRadius';
+    const topRadiusDir: string =
+      $theme.direction === 'rtl'
+        ? 'borderTopLeftRadius'
+        : 'borderTopRightRadius';
+    const marginDir: string =
+      $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
+    return ({
+      alignItems: 'center',
+      [bottomRadiusDir]: $theme.borders.useRoundedCorners
+        ? $theme.borders.radius400
+        : 0,
+      [topRadiusDir]: $theme.borders.useRoundedCorners
+        ? $theme.borders.radius400
+        : 0,
+      cursor: $disabled ? 'not-allowed' : 'pointer',
+      display: 'flex',
+      [marginDir]: {
+        [SIZE.small]: '8px',
+        [SIZE.medium]: '12px',
+        [SIZE.large]: '16px',
+      }[$size],
+      outline: 'none',
+      transitionProperty: 'all',
+      transitionDuration: 'background-color',
+      transitionTimingFunction: $theme.animation.easeOutCurve,
+    }: {});
+  },
+);
 
-// $FlowFixMe https://github.com/facebook/flow/issues/7745
 export const StartEnhancerContainer = styled<SharedPropsArgT>(
   'div',
-  ({$theme, $size = SIZE.small}) => {
+  ({$theme, $size = SIZE.small}: SharedPropsArgT & {$theme: ThemeT}) => {
     let paddingMagnitude = $theme.sizing.scale300;
     if ($size === SIZE.medium) {
       paddingMagnitude = $theme.sizing.scale400;
@@ -312,106 +315,110 @@ export const StartEnhancerContainer = styled<SharedPropsArgT>(
   },
 );
 
-// $FlowFixMe https://github.com/facebook/flow/issues/7745
-export const Text = styled<SharedPropsArgT>('span', props => {
-  const {$theme} = props;
+export const Text = styled<SharedPropsArgT>(
+  'span',
+  (props: SharedPropsArgT & {$theme: ThemeT}) => {
+    const {$theme} = props;
 
-  return {
-    overflow: 'hidden',
-    whiteSpace: 'nowrap',
-    textOverflow: 'ellipsis',
-    maxWidth: props.$theme.sizing.scale3200,
-    order: $theme.direction === 'rtl' ? 1 : 0,
-  };
-});
+    return {
+      overflow: 'hidden',
+      whiteSpace: 'nowrap',
+      textOverflow: 'ellipsis',
+      maxWidth: props.$theme.sizing.scale3200,
+      order: $theme.direction === 'rtl' ? 1 : 0,
+    };
+  },
+);
 
-// $FlowFixMe https://github.com/facebook/flow/issues/7745
-export const Root = styled<SharedPropsArgT>('span', props => {
-  const {
-    $theme,
-    $kind = KIND.primary,
-    $clickable,
-    $variant,
-    $disabled,
-    $closeable,
-    $isFocusVisible,
-    $color,
-    $size = SIZE.small,
-  } = props;
-  const borderRadius = $theme.borders.tagBorderRadius;
-  const paddingMagnitude = {
-    [SIZE.small]: $theme.sizing.scale300,
-    [SIZE.medium]: $theme.sizing.scale500,
-    [SIZE.large]: $theme.sizing.scale600,
-  }[$size];
-  const borderWidth = !$disabled && $variant === VARIANT.solid ? 0 : '2px';
-  const {color, backgroundColor, borderColor} = colorMap[$kind][
-    getColorStateFromProps(props)
-  ]($theme, $color);
-  return ({
-    ...{
-      [SIZE.small]: $theme.typography.LabelSmall,
-      [SIZE.medium]: $theme.typography.LabelMedium,
-      [SIZE.large]: $theme.typography.LabelLarge,
-    }[$size],
-    alignItems: 'center',
-    color,
-    backgroundColor,
-    borderLeftColor: borderColor,
-    borderRightColor: borderColor,
-    borderTopColor: borderColor,
-    borderBottomColor: borderColor,
-    borderLeftStyle: 'solid',
-    borderRightStyle: 'solid',
-    borderTopStyle: 'solid',
-    borderBottomStyle: 'solid',
-    borderLeftWidth: borderWidth,
-    borderRightWidth: borderWidth,
-    borderTopWidth: borderWidth,
-    borderBottomWidth: borderWidth,
-    borderTopLeftRadius: borderRadius,
-    borderTopRightRadius: borderRadius,
-    borderBottomRightRadius: borderRadius,
-    borderBottomLeftRadius: borderRadius,
-    boxSizing: 'border-box',
-    cursor: $disabled ? 'not-allowed' : $clickable ? 'pointer' : 'default',
-    display: 'inline-flex',
-    height: {
-      [SIZE.small]: '24px',
-      [SIZE.medium]: '32px',
-      [SIZE.large]: '40px',
-    }[$size],
-    justifyContent: 'space-between',
-    marginTop: '5px',
-    marginBottom: '5px',
-    marginLeft: '5px',
-    marginRight: '5px',
-    paddingTop: $theme.sizing.scale0,
-    paddingBottom: $theme.sizing.scale0,
-    paddingLeft: paddingMagnitude,
-    paddingRight: paddingMagnitude,
-    outline: 'none',
-    ':hover':
-      $disabled || !$clickable
-        ? {}
-        : {
-            boxShadow: `inset 0px 0px 100px ${pick(
-              $theme,
-              `rgba(0, 0, 0, 0.08)`,
-              `rgba(255, 255, 255, 0.2)`,
-            )}`,
-          },
-    ':focus':
-      $disabled || (!$clickable && !$closeable)
-        ? {}
-        : {
-            boxShadow: $isFocusVisible
-              ? `0 0 0 3px ${
-                  $kind === KIND.accent
-                    ? $theme.colors.primaryA
-                    : $theme.colors.accent
-                }`
-              : 'none',
-          },
-  }: {});
-});
+export const Root = styled<SharedPropsArgT>(
+  'span',
+  (props: SharedPropsArgT & {$theme: ThemeT}) => {
+    const {
+      $theme,
+      $kind = KIND.primary,
+      $clickable,
+      $variant,
+      $disabled,
+      $closeable,
+      $isFocusVisible,
+      $color,
+      $size = SIZE.small,
+    } = props;
+    const borderRadius = $theme.borders.tagBorderRadius;
+    const paddingMagnitude = {
+      [SIZE.small]: $theme.sizing.scale300,
+      [SIZE.medium]: $theme.sizing.scale500,
+      [SIZE.large]: $theme.sizing.scale600,
+    }[$size];
+    const borderWidth = !$disabled && $variant === VARIANT.solid ? 0 : '2px';
+    const {color, backgroundColor, borderColor} = colorMap[$kind][
+      getColorStateFromProps(props)
+    ]($theme, $color);
+    return ({
+      ...{
+        [SIZE.small]: $theme.typography.LabelSmall,
+        [SIZE.medium]: $theme.typography.LabelMedium,
+        [SIZE.large]: $theme.typography.LabelLarge,
+      }[$size],
+      alignItems: 'center',
+      color,
+      backgroundColor,
+      borderLeftColor: borderColor,
+      borderRightColor: borderColor,
+      borderTopColor: borderColor,
+      borderBottomColor: borderColor,
+      borderLeftStyle: 'solid',
+      borderRightStyle: 'solid',
+      borderTopStyle: 'solid',
+      borderBottomStyle: 'solid',
+      borderLeftWidth: borderWidth,
+      borderRightWidth: borderWidth,
+      borderTopWidth: borderWidth,
+      borderBottomWidth: borderWidth,
+      borderTopLeftRadius: borderRadius,
+      borderTopRightRadius: borderRadius,
+      borderBottomRightRadius: borderRadius,
+      borderBottomLeftRadius: borderRadius,
+      boxSizing: 'border-box',
+      cursor: $disabled ? 'not-allowed' : $clickable ? 'pointer' : 'default',
+      display: 'inline-flex',
+      height: {
+        [SIZE.small]: '24px',
+        [SIZE.medium]: '32px',
+        [SIZE.large]: '40px',
+      }[$size],
+      justifyContent: 'space-between',
+      marginTop: '5px',
+      marginBottom: '5px',
+      marginLeft: '5px',
+      marginRight: '5px',
+      paddingTop: $theme.sizing.scale0,
+      paddingBottom: $theme.sizing.scale0,
+      paddingLeft: paddingMagnitude,
+      paddingRight: paddingMagnitude,
+      outline: 'none',
+      ':hover':
+        $disabled || !$clickable
+          ? {}
+          : {
+              boxShadow: `inset 0px 0px 100px ${pick(
+                $theme,
+                `rgba(0, 0, 0, 0.08)`,
+                `rgba(255, 255, 255, 0.2)`,
+              )}`,
+            },
+      ':focus':
+        $disabled || (!$clickable && !$closeable)
+          ? {}
+          : {
+              boxShadow: $isFocusVisible
+                ? `0 0 0 3px ${
+                    $kind === KIND.accent
+                      ? $theme.colors.primaryA
+                      : $theme.colors.accent
+                  }`
+                : 'none',
+            },
+    }: {});
+  },
+);

@@ -9,14 +9,15 @@ LICENSE file in the root directory of this source tree.
 import {styled} from '../styles/index.js';
 import {getSvgStyles} from '../icon/styled-components.js';
 import {KIND, PLACEMENT, TYPE} from './constants.js';
-import type {
-  SharedStylePropsArgT,
-  ToasterSharedStylePropsArgT,
-  KindTypeT,
-  NotificationTypeT,
-  PlacementTypeT,
+import {
+  type SharedStylePropsArgT,
+  type ToasterSharedStylePropsArgT,
+  type KindTypeT,
+  type NotificationTypeT,
+  type PlacementTypeT,
 } from './types.js';
 import type {ThemeT} from '../styles/types.js';
+import type {StyleObject} from 'styletron-standard';
 
 function getBackgroundColor(
   kind: KindTypeT,
@@ -100,67 +101,89 @@ export function getPlacement(placement: PlacementTypeT) {
   }[placement];
 }
 
-// $FlowFixMe https://github.com/facebook/flow/issues/7745
-export const Root = styled<ToasterSharedStylePropsArgT>('div', props => {
-  const {$placement, $theme} = props;
-  return {
-    pointerEvents: 'none',
-    position: 'fixed',
-    right: 0,
-    left: 0,
-    display: 'flex',
-    marginTop: $theme.sizing.scale300,
-    marginBottom: $theme.sizing.scale300,
-    marginLeft: $theme.sizing.scale600,
-    marginRight: $theme.sizing.scale600,
-    ...getPlacement($placement),
-  };
-});
+export const Root = styled<ToasterSharedStylePropsArgT>(
+  'div',
+  ({$placement, $theme}: ToasterSharedStylePropsArgT & {$theme: ThemeT}) => {
+    return {
+      pointerEvents: 'none',
+      position: 'fixed',
+      right: 0,
+      left: 0,
+      display: 'flex',
+      marginTop: $theme.sizing.scale300,
+      marginBottom: $theme.sizing.scale300,
+      marginLeft: $theme.sizing.scale600,
+      marginRight: $theme.sizing.scale600,
+      ...getPlacement($placement),
+    };
+  },
+);
 
-// $FlowFixMe https://github.com/facebook/flow/issues/7745
-export const InnerContainer = styled<SharedStylePropsArgT>('div', {});
+export const InnerContainer = styled<SharedStylePropsArgT>(
+  'div',
+  // eslint-disable-next-line no-empty-pattern
+  ({}: SharedStylePropsArgT & {$theme: ThemeT}) => ({}),
+);
 
-// $FlowFixMe https://github.com/facebook/flow/issues/7745
-export const Body = styled<SharedStylePropsArgT>('div', props => {
-  const {$isVisible, $kind, $type, $theme} = props;
-  const isInline = $type === TYPE.inline;
-  return {
-    ...$theme.typography.font300,
-    pointerEvents: 'auto',
-    color: getFontColor($kind, $type, $theme),
-    height: 'auto',
-    width: '288px',
-    paddingTop: $theme.sizing.scale600,
-    paddingRight: $theme.sizing.scale600,
-    paddingBottom: $theme.sizing.scale600,
-    paddingLeft: $theme.sizing.scale600,
-    marginTop: $theme.sizing.scale300,
-    marginBottom: $theme.sizing.scale300,
-    backgroundColor:
-      getBackgroundColor($kind, $type, $theme) || $theme.colors.accent,
-    borderTopLeftRadius: $theme.borders.radius400,
-    borderTopRightRadius: $theme.borders.radius400,
-    borderBottomRightRadius: $theme.borders.radius400,
-    borderBottomLeftRadius: $theme.borders.radius400,
-    boxShadow: isInline ? 'none' : $theme.lighting.shadow600,
-    opacity: $isVisible ? 1 : 0,
-    transitionProperty: 'all',
-    transitionDuration: $theme.animation.timing200,
-    transitionTimingFunction: $theme.animation.easeInOutCurve,
-    display: 'flex',
-    justifyContent: 'space-between',
-  };
-});
+export const Body = styled<SharedStylePropsArgT>(
+  'div',
+  ({
+    $isVisible,
+    $kind,
+    $type,
+    $theme,
+  }: SharedStylePropsArgT & {$theme: ThemeT}) => {
+    const isInline = $type === TYPE.inline;
+    return {
+      ...$theme.typography.font300,
+      pointerEvents: 'auto',
+      color: getFontColor($kind, $type, $theme),
+      height: 'auto',
+      width: '288px',
+      paddingTop: $theme.sizing.scale600,
+      paddingRight: $theme.sizing.scale600,
+      paddingBottom: $theme.sizing.scale600,
+      paddingLeft: $theme.sizing.scale600,
+      marginTop: $theme.sizing.scale300,
+      marginBottom: $theme.sizing.scale300,
+      backgroundColor:
+        getBackgroundColor($kind, $type, $theme) || $theme.colors.accent,
+      borderTopLeftRadius: $theme.borders.radius400,
+      borderTopRightRadius: $theme.borders.radius400,
+      borderBottomRightRadius: $theme.borders.radius400,
+      borderBottomLeftRadius: $theme.borders.radius400,
+      boxShadow: isInline ? 'none' : $theme.lighting.shadow600,
+      opacity: $isVisible ? 1 : 0,
+      transitionProperty: 'all',
+      transitionDuration: $theme.animation.timing200,
+      transitionTimingFunction: $theme.animation.easeInOutCurve,
+      display: 'flex',
+      justifyContent: 'space-between',
+    };
+  },
+);
 
-// $FlowFixMe https://github.com/facebook/flow/issues/7745
-export const CloseIconSvg = styled<SharedStylePropsArgT>('svg', props => {
-  return {
-    ...getSvgStyles(props),
+export const CloseIconSvg = styled<{
+  ...SharedStylePropsArgT,
+  $size: number | string,
+  $color: string,
+}>(
+  'svg',
+  ({
+    $theme,
+    $size,
+    $color,
+    $isFocusVisible,
+  }: SharedStylePropsArgT & {
+    // eslint-disable-next-line flowtype/no-weak-types
+    $size: any,
+    $color: string,
+    $theme: ThemeT,
+  }): StyleObject => ({
+    ...getSvgStyles({$theme, $size, $color}),
     cursor: 'pointer',
-    width: props.$size || '16px',
+    width: $size || '16px',
     flexShrink: 0,
-    outline: props.$isFocusVisible
-      ? `3px solid ${props.$theme.colors.accent}`
-      : 'none',
-  };
-});
+    outline: $isFocusVisible ? `3px solid ${$theme.colors.accent}` : 'none',
+  }),
+);

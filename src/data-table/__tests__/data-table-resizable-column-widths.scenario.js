@@ -42,7 +42,7 @@ const columns = [
     title: 'Phylum',
     minWidth: 90,
     mapDataToValue: (data: RowDataT) => data.Phylum,
-    textQueryFilter: function(textQuery, data) {
+    textQueryFilter: function (textQuery, data) {
       return data.toLowerCase().includes(textQuery.toLowerCase());
     },
     renderCell: function PhylumnCell(props) {
@@ -84,7 +84,7 @@ const columns = [
   }),
 ];
 
-const rows = AnimalData.map(row => {
+const rows = AnimalData.map((row) => {
   return {
     id: row.Name,
     data: row,

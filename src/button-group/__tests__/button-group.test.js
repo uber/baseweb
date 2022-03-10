@@ -12,8 +12,9 @@ import {render, fireEvent} from '@testing-library/react';
 import {Button} from '../../button/index.js';
 
 import {ButtonGroup} from '../index.js';
+import type {PropsT} from '../types.js';
 
-function buildSimpleWrapper(props = {}) {
+function buildSimpleWrapper(props: $Shape<PropsT> = {}) {
   return render(
     <ButtonGroup {...props}>
       <Button />
@@ -63,6 +64,7 @@ describe('ButtonGroup', () => {
   });
 
   it('sets no children as selected if selected prop is null value', () => {
+    //$FlowFixMe
     const {container} = buildSimpleWrapper({selected: null});
     const buttons = container.querySelectorAll('button');
     for (let button of buttons) {

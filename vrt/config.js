@@ -13,7 +13,7 @@ const config = {
     interactions: [
       {
         name: 'openedMenu',
-        behavior: async page => {
+        behavior: async (page) => {
           const drawerMenuSelector = `[data-baseweb="button"] [data-baseweb="icon"]`;
           const userMenuSelector = `[data-baseweb="button"] [data-baseweb="avatar"]`;
           const menuSelector = `[data-baseweb="menu"]`;
@@ -36,7 +36,7 @@ const config = {
     interactions: [
       {
         name: 'expanded',
-        behavior: async page => {
+        behavior: async (page) => {
           const selectSelector = `[data-baseweb="select"]`;
           const dropdownSelector = `[data-baseweb="menu"]`;
           const flagOptionSelector = `li[role="option"] [data-iso="US"]`;
@@ -56,7 +56,7 @@ const config = {
     interactions: [
       {
         name: 'expanded',
-        behavior: async page => {
+        behavior: async (page) => {
           const selectSelector = `[data-baseweb="select"]`;
           const dropdownSelector = `[data-baseweb="menu"]`;
           const flagOptionSelector = `li[role="option"] [data-iso="US"]`;
@@ -76,7 +76,7 @@ const config = {
     interactions: [
       {
         name: 'listboxOpen',
-        behavior: async page => {
+        behavior: async (page) => {
           const input = await page.$('input');
           await input.focus();
           await page.keyboard.press('a');
@@ -88,7 +88,7 @@ const config = {
     interactions: [
       {
         name: 'listboxOpen',
-        behavior: async page => {
+        behavior: async (page) => {
           const input = await page.$('input');
           await input.focus();
           await page.keyboard.press('a');
@@ -100,7 +100,7 @@ const config = {
     interactions: [
       {
         name: 'addColumn',
-        behavior: async page => {
+        behavior: async (page) => {
           const button = '[data-testid="add"]';
           await page.waitForSelector(button);
           await page.click(button);
@@ -108,7 +108,7 @@ const config = {
       },
       {
         name: 'removeColumn',
-        behavior: async page => {
+        behavior: async (page) => {
           const button = '[data-testid="remove"]';
           await page.waitForSelector(button);
           await page.click(button);
@@ -120,7 +120,7 @@ const config = {
     interactions: [
       {
         name: 'controlledRowHighlightIndex',
-        behavior: async page => {
+        behavior: async (page) => {
           await Promise.all(
             Array.from({length: 4}).map(() => page.keyboard.press('j')),
           );
@@ -128,7 +128,7 @@ const config = {
       },
       {
         name: 'rowHighlightScrollsTableDown',
-        behavior: async page => {
+        behavior: async (page) => {
           await Promise.all(
             Array.from({length: 20}).map(() => page.keyboard.press('j')),
           );
@@ -136,7 +136,7 @@ const config = {
       },
       {
         name: 'rowHighlightScrollsTableUp',
-        behavior: async page => {
+        behavior: async (page) => {
           await Promise.all(
             Array.from({length: 20}).map(() => page.keyboard.press('j')),
           );
@@ -151,7 +151,7 @@ const config = {
     interactions: [
       {
         name: 'single',
-        behavior: async page => {
+        behavior: async (page) => {
           const button = '[aria-label="Single Value"]';
           await page.waitForSelector(button, {
             visible: true,
@@ -165,7 +165,7 @@ const config = {
     interactions: [
       {
         name: 'setDateHighlighted',
-        behavior: async page => {
+        behavior: async (page) => {
           const button = '[data-baseweb="button"]';
           const input = 'input';
           const calendar = '[data-baseweb="calendar"]';
@@ -184,7 +184,7 @@ const config = {
     interactions: [
       {
         name: 'calendarOpened',
-        behavior: async page => {
+        behavior: async (page) => {
           const input = 'input';
           const calendar = '[data-baseweb="calendar"]';
           await page.waitForSelector(input);
@@ -200,7 +200,7 @@ const config = {
     interactions: [
       {
         name: 'selectedRangeHighlighted',
-        behavior: async page => {
+        behavior: async (page) => {
           const input = 'input';
           const calendar = '[data-baseweb="calendar"]';
           const startDay =
@@ -230,7 +230,7 @@ const config = {
     interactions: [
       {
         name: 'noHighlight',
-        behavior: async page => {
+        behavior: async (page) => {
           const input = `input`;
           const calendar = '[data-baseweb="calendar"]';
           const rightArrow = `[aria-label="Next month."]`;
@@ -251,7 +251,7 @@ const config = {
     interactions: [
       {
         name: 'togglesMask',
-        behavior: async page => {
+        behavior: async (page) => {
           const toggleSelector = `[data-e2e="mask-toggle"]`;
           await page.$(toggleSelector);
           await page.click(toggleSelector);
@@ -263,7 +263,7 @@ const config = {
     interactions: [
       {
         name: 'numberInput',
-        behavior: async page => {
+        behavior: async (page) => {
           const toggleSelector = `input`;
           await page.$(toggleSelector);
           await page.click(toggleSelector);
@@ -275,7 +275,7 @@ const config = {
     interactions: [
       {
         name: 'withAndWithoutZIndex',
-        behavior: async page => {
+        behavior: async (page) => {
           const btnZIndex = `[data-test="zindex-btn"]`;
           const btnNoZIndex = `[data-test="no-zindex-btn"]`;
           const layerZIndex = `[data-test="zindex-layer"]`;
@@ -300,7 +300,7 @@ const config = {
     interactions: [
       {
         name: 'keyboardNav',
-        behavior: async page => {
+        behavior: async (page) => {
           await page.keyboard.press('Tab');
         },
       },
@@ -311,7 +311,7 @@ const config = {
     interactions: [
       {
         name: 'positions-content-correctly-on-first-render',
-        behavior: async page => {
+        behavior: async (page) => {
           await page.hover('button');
           await page.waitForSelector('#content');
         },
@@ -322,7 +322,7 @@ const config = {
     interactions: [
       {
         name: 'popover-shows-when-progress-bar-is-hovered',
-        behavior: async page => {
+        behavior: async (page) => {
           await page.hover('[data-baseweb="progress-bar"]');
           await page.waitForSelector('[data-baseweb="typo-paragraphsmall"]');
         },
@@ -336,7 +336,7 @@ const config = {
     interactions: [
       {
         name: 'scrollDownAndCheckIfPreventScrollPreventsReScrollOnPopover',
-        behavior: async page => {
+        behavior: async (page) => {
           await page.waitForSelector('button');
 
           // Open Popover
@@ -384,7 +384,7 @@ const config = {
     interactions: [
       {
         name: 'addOptions',
-        behavior: async page => {
+        behavior: async (page) => {
           const options = await page.$$('[role="option"]');
           await options[0].click();
           await options[1].click();
@@ -396,7 +396,7 @@ const config = {
     interactions: [
       {
         name: 'expandedAndFiltered',
-        behavior: async page => {
+        behavior: async (page) => {
           const selectSelector = `[data-baseweb="select"]`;
           const selectInputSelector = `input[role="combobox"]`;
           const dropdownSelector = `[role="listbox"]`;
@@ -414,7 +414,7 @@ const config = {
     interactions: [
       {
         name: 'numberInput',
-        behavior: async page => {
+        behavior: async (page) => {
           const inputSelector = 'input';
           await page.focus(inputSelector);
           await page.keyboard.press('1');
@@ -433,7 +433,7 @@ const config = {
     interactions: [
       {
         name: 'triggerNextStep',
-        behavior: async page => {
+        behavior: async (page) => {
           const selector = `button:enabled`;
           await page.$(selector);
           await page.click(selector);
@@ -445,7 +445,7 @@ const config = {
     interactions: [
       {
         name: 'selectFiveStars',
-        behavior: async page => {
+        behavior: async (page) => {
           const selector = `li:nth-child(5)`;
           await page.$(selector);
           await page.click(selector);
@@ -458,7 +458,7 @@ const config = {
     interactions: [
       {
         name: 'selectDropdownVisible',
-        behavior: async page => {
+        behavior: async (page) => {
           const selectSelector = `[data-baseweb="select"] input`;
           const dropdownSelector = `[role="listbox"]`;
           await page.waitForSelector(selectSelector);
@@ -474,7 +474,7 @@ const config = {
     interactions: [
       {
         name: 'typeToFilter',
-        behavior: async page => {
+        behavior: async (page) => {
           const selectSelector = `[data-baseweb="select"] input`;
           await page.type(selectSelector, 'aq');
         },
@@ -485,7 +485,7 @@ const config = {
     interactions: [
       {
         name: 'selectDropdownVisible',
-        behavior: async page => {
+        behavior: async (page) => {
           const buttonSelector = `[data-baseweb="button"]`;
           const selectSelector = `[data-baseweb="select"] input`;
           const dropdownSelector = `[role="listbox"]`;
@@ -506,7 +506,7 @@ const config = {
     interactions: [
       {
         name: 'selectGroupDropdownVisible',
-        behavior: async page => {
+        behavior: async (page) => {
           const inputSelector = `[data-baseweb="select"]`;
           const dropdownSelector = `[role="listbox"]`;
           await page.waitForSelector(inputSelector);
@@ -522,7 +522,7 @@ const config = {
     interactions: [
       {
         name: 'open',
-        behavior: async page => {
+        behavior: async (page) => {
           const inputSelector = `[data-baseweb="select"]`;
           const dropdownSelector = `[role="listbox"]`;
           await page.waitForSelector(inputSelector);
@@ -538,7 +538,7 @@ const config = {
     interactions: [
       {
         name: 'showsAllText',
-        behavior: async page => {
+        behavior: async (page) => {
           const inputSelector = `[data-baseweb="select"]`;
           const selectInputSelector = `input[role="combobox"]`;
           const dropdownSelector = `[role="listbox"]`;
@@ -574,7 +574,7 @@ const config = {
     interactions: [
       {
         name: 'ArrowDown',
-        behavior: async page => {
+        behavior: async (page) => {
           const tab = await page.$('[role=tab]');
           await tab.focus();
           await page.keyboard.press('ArrowDown');
@@ -586,7 +586,7 @@ const config = {
     interactions: [
       {
         name: 'focus',
-        behavior: async page => {
+        behavior: async (page) => {
           const tab = await page.$('[role=tab]');
           await tab.focus();
         },
@@ -597,7 +597,7 @@ const config = {
     interactions: [
       {
         name: 'focus',
-        behavior: async page => {
+        behavior: async (page) => {
           const element = await page.$('textarea');
           await element.focus();
         },
@@ -611,7 +611,7 @@ const config = {
     interactions: [
       {
         name: 'contrast',
-        behavior: async page => {
+        behavior: async (page) => {
           const tooltipSelector = 'span';
           const tooltipPopoverSelector = '[data-baseweb="tooltip"]';
           await page.hover(tooltipSelector);
@@ -626,7 +626,7 @@ const config = {
     interactions: [
       {
         name: 'selectOption',
-        behavior: async page => {
+        behavior: async (page) => {
           const selectSelector = '[data-baseweb="select"] input';
           const dropdownSelector = '[role="listbox"]';
           const dropdownOptionSelector = '[role="option"]';

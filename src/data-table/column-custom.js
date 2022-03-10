@@ -21,7 +21,7 @@ type OptionsT<ValueT, FilterParamsT> = {|
   ...SharedColumnOptionsT<ValueT>,
   renderCell: RenderCellT<ValueT>,
   renderFilter?: RenderFilterT<ValueT, FilterParamsT>,
-  buildFilter?: FilterParamsT => ValueT => boolean,
+  buildFilter?: (FilterParamsT) => (ValueT) => boolean,
   textQueryFilter?: (string, ValueT) => boolean,
   sortFn?: (ValueT, ValueT) => number,
 |};
@@ -29,6 +29,7 @@ type OptionsT<ValueT, FilterParamsT> = {|
 function CustomColumn<ValueT, FilterParamsT>(
   options: OptionsT<ValueT, FilterParamsT>,
 ): ColumnT<ValueT, FilterParamsT> {
+  //$FlowFixMe
   return Column({kind: COLUMNS.CUSTOM, ...options});
 }
 

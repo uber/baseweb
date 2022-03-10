@@ -28,7 +28,7 @@ export function Scenario() {
 
       <br />
       <form
-        onSubmit={event => {
+        onSubmit={(event) => {
           event.preventDefault();
           window.__e2e__formSubmitted__ = true;
           return false;

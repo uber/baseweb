@@ -14,17 +14,20 @@ const getTabs = () => page.$$('[role=tab]');
 
 const getTabPanels = () => page.$$('[role=tabpanel]');
 
-const isHidden = t => {
-  return page.evaluate(tab => tab.hidden, t);
+const isHidden = (t) => {
+  return page.evaluate((tab) => tab.hidden, t);
 };
 
-const isSelected = t => {
-  return page.evaluate(tab => tab.getAttribute('aria-selected') === 'true', t);
+const isSelected = (t) => {
+  return page.evaluate(
+    (tab) => tab.getAttribute('aria-selected') === 'true',
+    t,
+  );
 };
 
 const isEqual = (e1, e2) => page.evaluate((e1, e2) => e1 === e2, e1, e2);
 
-const isActiveEl = async el => {
+const isActiveEl = async (el) => {
   const activeEl = await page.evaluateHandle(`document.activeElement`);
   const result = await isEqual(activeEl, el);
   activeEl.dispose();

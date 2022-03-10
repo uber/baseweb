@@ -26,18 +26,47 @@ const tests = {
       code: `
         import {Block} from "baseui/block"
         export default () => {
+          return <Block overrides={{ Block: {style: {color: "red" }}}} />
+        }
+      `,
+    },
+    // Non-baseui Block - $style
+    {
+      code: `
+        const Block = () => <div>Not block</div>;
+        export default () => {
+          return <Block overrides={{ Block: {style: {color: "red" }}}} />
+        }
+      `,
+    },
+  ],
+  invalid: [
+    // Block - $style
+    {
+      code: `
+        import {Block} from "baseui/block"
+        export default () => {
           return <Block $style={{ color: "red" }} />
         }
       `,
       errors: [{messageId: MESSAGES.styleOnBlock.id}],
     },
-
     // Block - style
     {
       code: `
         import {Block} from "baseui/block"
         export default () => {
           return <Block style={{ color: "red" }} />
+        }
+      `,
+      errors: [{messageId: MESSAGES.styleOnBlock.id}],
+    },
+    // Block - renamed - style
+    {
+      code: `
+        import {Block as Div} from "baseui/block"
+        export default () => {
+          return <Div style={{ color: "red" }} />
         }
       `,
       errors: [{messageId: MESSAGES.styleOnBlock.id}],
@@ -49,7 +78,7 @@ const tests = {
 if (!process.env.CI) {
   let only = [];
   let skipped = [];
-  [...tests.valid, ...tests.invalid].forEach(t => {
+  [...tests.valid, ...tests.invalid].forEach((t) => {
     if (t.skip) {
       delete t.skip;
       skipped.push(t);
@@ -59,7 +88,7 @@ if (!process.env.CI) {
       only.push(t);
     }
   });
-  const predicate = t => {
+  const predicate = (t) => {
     if (only.length > 0) {
       return only.indexOf(t) !== -1;
     }

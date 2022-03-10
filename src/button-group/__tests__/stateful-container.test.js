@@ -25,7 +25,7 @@ describe('ButtonGroup StatefulContainer', () => {
     const onClick = jest.fn();
     const {container} = render(
       <StatefulContainer onClick={onClick}>
-        {childProps => <div {...childProps}>children</div>}
+        {(childProps) => <div {...childProps}>children</div>}
       </StatefulContainer>,
     );
 
@@ -38,7 +38,7 @@ describe('ButtonGroup StatefulContainer', () => {
     const stateReducer = jest.fn();
     const {container} = render(
       <StatefulContainer onClick={onClick} stateReducer={stateReducer}>
-        {childProps => <div {...childProps}>children</div>}
+        {(childProps) => <div {...childProps}>children</div>}
       </StatefulContainer>,
     );
 
@@ -55,7 +55,7 @@ describe('ButtonGroup StatefulContainer', () => {
         onClick={onClick}
         stateReducer={stateReducer}
       >
-        {childProps => <div {...childProps}>children</div>}
+        {(childProps) => <div {...childProps}>children</div>}
       </StatefulContainer>,
     );
 

@@ -35,7 +35,8 @@ const AspectRatioBox = ({
   aspectRatio = 1,
   overrides = {},
   ...restProps
-}): React.Node => {
+}: // eslint-disable-next-line flowtype/no-weak-types
+AspectRatioBoxPropsT & {forwardedRef: any}): React.Node => {
   const aspectRatioBoxOverrides = {
     Block: {
       style: aspectRatioBoxStyle,
@@ -44,7 +45,7 @@ const AspectRatioBox = ({
   const blockOverrides = mergeOverrides(aspectRatioBoxOverrides, overrides);
   return (
     <Block
-      // coerced to any because because of how react components are typed.
+      // coerced to any because of how react components are typed.
       // cannot guarantee an html element
       // eslint-disable-next-line flowtype/no-weak-types
       ref={(forwardedRef: any)}

@@ -57,7 +57,7 @@ const columns = [
   }),
 ];
 
-const rows = AnimalData.map(row => {
+const rows = AnimalData.map((row) => {
   return {
     id: row.Name,
     data: [row.Name, row.Kingdom, row.Phylum, row.Class, row.Order, row.Family],
@@ -112,8 +112,8 @@ export function Scenario() {
 
                   <Filter
                     close={() => {}}
-                    data={rows.map(r => r.data[index])}
-                    setFilter={params => onFilterAdd(column.title, params)}
+                    data={rows.map((r) => r.data[index])}
+                    setFilter={(params) => onFilterAdd(column.title, params)}
                   />
 
                   <div

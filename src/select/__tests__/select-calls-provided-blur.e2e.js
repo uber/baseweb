@@ -38,7 +38,7 @@ describe('select option click returns focus', () => {
     expect(afterActiveTag).toBe('BUTTON');
 
     const p = await page.$('p');
-    const blurCount = await page.evaluate(el => el.textContent, p);
+    const blurCount = await page.evaluate((el) => el.textContent, p);
     expect(blurCount).toBe('1');
   });
 });

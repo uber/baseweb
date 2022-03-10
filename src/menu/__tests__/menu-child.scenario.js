@@ -52,7 +52,7 @@ const SWITCH_EDITOR_OPTIONS = [
   {label: 'Previous Used Editor'},
 ];
 
-const childMenu = items => (
+const childMenu = (items) => (
   <StatefulMenu
     items={items}
     overrides={{
@@ -64,7 +64,7 @@ const childMenu = items => (
       Option: {
         props: {
           size: 'compact',
-          getChildMenu: item => {
+          getChildMenu: (item) => {
             if (item.label === SWITCH_EDITOR) {
               return childMenu(SWITCH_EDITOR_OPTIONS);
             }
@@ -97,7 +97,7 @@ export function Scenario() {
             Option: {
               props: {
                 size: 'compact',
-                getChildMenu: item => {
+                getChildMenu: (item) => {
                   if (item.label === OPEN_RECENT) {
                     return childMenu(RECENT_FILES);
                   }

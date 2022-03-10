@@ -62,7 +62,7 @@ const Overlay = () => {
   );
 };
 
-const childMenu = items => (
+const childMenu = (items) => (
   <StatefulMenu
     items={items}
     overrides={{
@@ -102,7 +102,7 @@ export function Scenario() {
                 Option: {
                   props: {
                     size: 'compact',
-                    getChildMenu: item => {
+                    getChildMenu: (item) => {
                       if (item.label === OPEN_RECENT) {
                         return childMenu(RECENT_FILES);
                       }

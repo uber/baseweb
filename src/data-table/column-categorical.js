@@ -68,7 +68,7 @@ function FilterQuickControls(props: {
   );
 }
 
-const StyledHighlightLabel = withStyle(StyledLabel, props => {
+const StyledHighlightLabel = withStyle(StyledLabel, (props) => {
   const style = {
     whiteSpace: 'pre',
     color: props.$isActive
@@ -110,7 +110,7 @@ function HighlightCheckboxLabel(props) {
 type CategoricalFilterProps = {
   data: string[],
   close: () => void,
-  setFilter: FilterParametersT => void,
+  setFilter: (FilterParametersT) => void,
   filterParams?: FilterParametersT,
 };
 
@@ -131,7 +131,7 @@ export function CategoricalFilter(props: CategoricalFilterProps) {
   const checkboxStyles = css({marginBottom: theme.sizing.scale200});
 
   const showQuery = Boolean(categories.size >= 10);
-  const filteredCategories = Array.from(categories, c => c).filter(c =>
+  const filteredCategories = Array.from(categories, (c) => c).filter((c) =>
     matchesQuery(c, query),
   );
 
@@ -153,7 +153,7 @@ export function CategoricalFilter(props: CategoricalFilterProps) {
           size={INPUT_SIZE.compact}
           overrides={{Before: InputBefore}}
           value={query}
-          onChange={event => setQuery(event.target.value)}
+          onChange={(event) => setQuery(event.target.value)}
           clearable
         />
       )}
@@ -166,7 +166,7 @@ export function CategoricalFilter(props: CategoricalFilterProps) {
         >
           <FilterQuickControls
             onSelectAll={() => {
-              categories.forEach(c => selection.add(c));
+              categories.forEach((c) => selection.add(c));
               setSelection(new Set(selection));
             }}
             onClearSelection={() => {
@@ -236,8 +236,8 @@ function CategoricalCell(props) {
 function CategoricalColumn(options: OptionsT): CategoricalColumnT {
   return Column({
     kind: COLUMNS.CATEGORICAL,
-    buildFilter: function(params) {
-      return function(data) {
+    buildFilter: function (params) {
+      return function (data) {
         const included = params.selection.has(data);
         return params.exclude ? !included : included;
       };
@@ -251,10 +251,10 @@ function CategoricalColumn(options: OptionsT): CategoricalColumnT {
     renderCell: CategoricalCell,
     renderFilter: CategoricalFilter,
     sortable: options.sortable === undefined ? true : options.sortable,
-    sortFn: function(a, b) {
+    sortFn: function (a, b) {
       return a.localeCompare(b);
     },
-    textQueryFilter: function(textQuery, data) {
+    textQueryFilter: function (textQuery, data) {
       return data.toLowerCase().includes(textQuery.toLowerCase());
     },
     title: options.title,

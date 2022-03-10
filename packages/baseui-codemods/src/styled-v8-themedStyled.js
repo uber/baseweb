@@ -29,7 +29,7 @@ function findTypedStyledCalls(p) {
 }
 
 function findStyledElementsWithTheme(p) {
-  return findTypedStyledCalls(p).filter(path => {
+  return findTypedStyledCalls(p).filter((path) => {
     return (
       path.node.typeArguments.params.length === 2 &&
       path.node.arguments.length &&
@@ -39,7 +39,7 @@ function findStyledElementsWithTheme(p) {
 }
 
 function findStyledComponentsWithTheme(p) {
-  return findTypedStyledCalls(p).filter(path => {
+  return findTypedStyledCalls(p).filter((path) => {
     return (
       path.node.typeArguments.params.length === 3 &&
       path.node.typeArguments.params[0].type === 'TypeofTypeAnnotation' &&
@@ -114,24 +114,23 @@ function visitStyledCall(path, themes) {
       ),
     ]);
 
-    createThemedStyled.declarations[0].init.callee.typeAnnotation = t.typeParameterInstantiation(
-      [themes.read(theme) || theme],
-    );
+    createThemedStyled.declarations[0].init.callee.typeAnnotation =
+      t.typeParameterInstantiation([themes.read(theme) || theme]);
 
-    const parent = path.findParent(n => n.isVariableDeclaration());
+    const parent = path.findParent((n) => n.isVariableDeclaration());
     parent.insertBefore(createThemedStyled);
   }
 }
 
 async function styledV8ToThemedStyled(options: {dir: string}) {
-  await withJsFiles(`${options.dir}/**/*.js`, async p => {
+  await withJsFiles(`${options.dir}/**/*.js`, async (p) => {
     if (containsFlowComment(p)) {
       const themes = new ThemeCache();
       const styledElements = findStyledElementsWithTheme(p);
-      styledElements.forEach(path => visitStyledCall(path, themes));
+      styledElements.forEach((path) => visitStyledCall(path, themes));
 
       const styledComponents = findStyledComponentsWithTheme(p);
-      styledComponents.forEach(path => visitStyledCall(path, themes));
+      styledComponents.forEach((path) => visitStyledCall(path, themes));
 
       if (styledElements.length || styledComponents.length) {
         p.traverse({

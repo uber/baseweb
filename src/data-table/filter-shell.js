@@ -48,7 +48,7 @@ function FilterShell(props: PropsT) {
         paddingLeft: theme.sizing.scale600,
         width: FILTER_SHELL_WIDTH,
       })}
-      onSubmit={event => {
+      onSubmit={(event) => {
         event.preventDefault();
         props.onApply();
       }}

@@ -124,7 +124,7 @@ function Checks(props) {
   const [css, theme] = useStyletron();
   return (
     <div className={css({maxHeight: '256px', overflowY: 'auto'})}>
-      {props.options.map(item => {
+      {props.options.map((item) => {
         const checked = props.value.includes(item.id);
         return (
           <div
@@ -135,9 +135,9 @@ function Checks(props) {
               checked={checked}
               onChange={() => {
                 if (checked) {
-                  props.setValue(prev => prev.filter(i => i !== item.id));
+                  props.setValue((prev) => prev.filter((i) => i !== item.id));
                 } else {
-                  props.setValue(prev => [...prev, item.id]);
+                  props.setValue((prev) => [...prev, item.id]);
                 }
               }}
             >
@@ -216,10 +216,10 @@ function DatetimeFilter(props) {
   }, [props.data]);
   const presentYears = React.useMemo(() => {
     const dict = {};
-    props.data.forEach(date => {
+    props.data.forEach((date) => {
       dict[getYear(date)] = true;
     });
-    return Object.keys(dict).map(n => parseInt(n));
+    return Object.keys(dict).map((n) => parseInt(n));
   }, [props.data]);
   const startOfWeek = React.useMemo(() => {
     return getStartOfWeek(new Date(), props.locale);
@@ -308,7 +308,7 @@ function DatetimeFilter(props) {
             selection = weekdays;
             operatorLocaleLabelKey = CATEGORICAL_OPERATIONS[0].localeLabelKey;
             description = weekdays
-              .map(w => {
+              .map((w) => {
                 const day = addDays(startOfWeek, localizedWeekdays.indexOf(w));
 
                 return getWeekdayInLocale(day, props.locale);
@@ -318,19 +318,19 @@ function DatetimeFilter(props) {
             selection = months;
             operatorLocaleLabelKey = CATEGORICAL_OPERATIONS[1].localeLabelKey;
             description = months
-              .map(m => getMonthInLocale(m, props.locale))
+              .map((m) => getMonthInLocale(m, props.locale))
               .join(', ');
           } else if (op === DATETIME_OPERATIONS.QUARTER) {
             selection = quarters;
             operatorLocaleLabelKey = CATEGORICAL_OPERATIONS[2].localeLabelKey;
             description = quarters
-              .map(q => getQuarterInLocale(q, props.locale))
+              .map((q) => getQuarterInLocale(q, props.locale))
               .join(', ');
           } else if (op === DATETIME_OPERATIONS.HALF) {
             selection = halves;
             operatorLocaleLabelKey = CATEGORICAL_OPERATIONS[3].localeLabelKey;
             description = halves
-              .map(h =>
+              .map((h) =>
                 h === 0
                   ? locale.datatable.datetimeFilterCategoricalFirstHalf
                   : locale.datatable.datetimeFilterCategoricalSecondHalf,
@@ -388,10 +388,10 @@ function DatetimeFilter(props) {
           <div>
             <Select
               value={rangeOperator}
-              onChange={params => setRangeOperator(params.value)}
+              onChange={(params) => setRangeOperator(params.value)}
               // eslint-disable-next-line flowtype/no-weak-types
               mountNode={(mountNode.current: any)}
-              options={RANGE_OPERATIONS.map(op => ({
+              options={RANGE_OPERATIONS.map((op) => ({
                 label: locale.datatable[op.localeLabelKey],
                 id: op.id,
               }))}
@@ -451,7 +451,7 @@ function DatetimeFilter(props) {
                   <TimePicker
                     format="24"
                     value={rangeDates[0]}
-                    onChange={time =>
+                    onChange={(time) =>
                       time &&
                       setRangeDates([
                         applyTimeToDate(rangeDates[0], time),
@@ -471,7 +471,7 @@ function DatetimeFilter(props) {
                   <TimePicker
                     format="24"
                     value={rangeDates[1]}
-                    onChange={time =>
+                    onChange={(time) =>
                       time &&
                       setRangeDates([
                         rangeDates[0],
@@ -491,8 +491,8 @@ function DatetimeFilter(props) {
           <div>
             <Select
               value={categoricalOperator}
-              onChange={params => setCategoricalOperator(params.value)}
-              options={CATEGORICAL_OPERATIONS.map(op => ({
+              onChange={(params) => setCategoricalOperator(params.value)}
+              options={CATEGORICAL_OPERATIONS.map((op) => ({
                 label: locale.datatable[op.localeLabelKey],
                 id: op.id,
               }))}
@@ -527,7 +527,7 @@ function DatetimeFilter(props) {
                 <Checks
                   value={months}
                   setValue={setMonths}
-                  options={MONTHS.map(m => ({
+                  options={MONTHS.map((m) => ({
                     label: getMonthInLocale(m, props.locale),
                     id: m,
                   }))}
@@ -538,7 +538,7 @@ function DatetimeFilter(props) {
                 <Checks
                   value={quarters}
                   setValue={setQuarters}
-                  options={QUARTERS.map(q => ({
+                  options={QUARTERS.map((q) => ({
                     label: getQuarterInLocale(q, props.locale),
                     id: q,
                   }))}
@@ -568,7 +568,7 @@ function DatetimeFilter(props) {
                 <Checks
                   value={years}
                   setValue={setYears}
-                  options={presentYears.map(year => ({
+                  options={presentYears.map((year) => ({
                     label: year,
                     id: year,
                   }))}
@@ -614,8 +614,8 @@ function DatetimeColumn(options: OptionsT): DatetimeColumnT {
 
   return Column({
     kind: COLUMNS.DATETIME,
-    buildFilter: function(params) {
-      return function(data) {
+    buildFilter: function (params) {
+      return function (data) {
         let included = true;
         if (params.operation === DATETIME_OPERATIONS.YEAR) {
           included = params.selection.includes(getYear(data));

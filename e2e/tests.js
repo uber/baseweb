@@ -30,7 +30,7 @@ if (collisions.length >= 1) {
   `);
 }
 
-const A11yFail = props => (
+const A11yFail = (props) => (
   <div style={{backgroundColor: 'red', color: 'white'}} role={props.message}>
     {props.message}
   </div>
@@ -47,7 +47,7 @@ export default function showTestcase() {
     return <A11yFail message={message} />;
   }
 
-  const scenario = scenarios.find(s => {
+  const scenario = scenarios.find((s) => {
     if (!s) return false;
     const fileName = s.fileName.split('/').pop();
     const [scenarioName] = fileName.split('.scenario.js');

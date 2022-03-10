@@ -23,8 +23,8 @@ import {Select} from '../../select/index.js';
 import type {FloatingMarkerSizeT, AnchorPositionsT} from '../types.js';
 
 const floatingMarkerAnchorTypes = Object.keys(FLOATING_MARKER_ANCHOR_TYPES)
-  .map(key => FLOATING_MARKER_ANCHOR_TYPES[key])
-  .map(x => ({
+  .map((key) => FLOATING_MARKER_ANCHOR_TYPES[key])
+  .map((x) => ({
     label: x,
     id: x,
   }));
@@ -33,17 +33,15 @@ export function Scenario() {
   const [label, setLabel] = React.useState('Uber HQ');
   const [startEnhancer, setStartEnhancer] = React.useState(true);
   const [endEnhancer, setEndEnhancer] = React.useState(false);
-  const [
-    floatingMarkerAnchorType,
-    setFloatingMarkerAnchorType,
-  ] = React.useState([floatingMarkerAnchorTypes[0]]);
+  const [floatingMarkerAnchorType, setFloatingMarkerAnchorType] =
+    React.useState([floatingMarkerAnchorTypes[0]]);
 
   const markers = [];
   Object.keys(FLOATING_MARKER_SIZES)
-    .map(key => FLOATING_MARKER_SIZES[key])
+    .map((key) => FLOATING_MARKER_SIZES[key])
     .forEach((size: FloatingMarkerSizeT, i: number) => {
       Object.keys(FLOATING_MARKER_ANCHOR_POSITIONS)
-        .map(key => FLOATING_MARKER_ANCHOR_POSITIONS[key])
+        .map((key) => FLOATING_MARKER_ANCHOR_POSITIONS[key])
         .forEach((position: AnchorPositionsT, x: number) => {
           markers.push({
             id: `floating / ${size} / ${position}`,
@@ -81,7 +79,7 @@ export function Scenario() {
       customizerOptions={[
         <Input
           value={label}
-          onChange={e => setLabel(e.target.value)}
+          onChange={(e) => setLabel(e.target.value)}
           placeholder="Label"
           clearOnEscape
           key="label"
@@ -89,7 +87,7 @@ export function Scenario() {
 
         <Checkbox
           checked={startEnhancer}
-          onChange={e => setStartEnhancer(e.target.checked)}
+          onChange={(e) => setStartEnhancer(e.target.checked)}
           labelPlacement={LABEL_PLACEMENT.right}
           key="start-endhancer"
         >
@@ -97,7 +95,7 @@ export function Scenario() {
         </Checkbox>,
         <Checkbox
           checked={endEnhancer}
-          onChange={e => setEndEnhancer(e.target.checked)}
+          onChange={(e) => setEndEnhancer(e.target.checked)}
           labelPlacement={LABEL_PLACEMENT.right}
           key="end-enhancer"
         >
@@ -108,7 +106,7 @@ export function Scenario() {
           value={floatingMarkerAnchorType}
           placeholder="Select an anchor type"
           // $FlowFixMe Mismatch between general type and enum
-          onChange={params => setFloatingMarkerAnchorType(params.value)}
+          onChange={(params) => setFloatingMarkerAnchorType(params.value)}
           key="anchor-type"
         />,
       ]}

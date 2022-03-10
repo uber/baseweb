@@ -30,7 +30,7 @@ const VIEWPORT_WIDTH = {
 configureJest();
 
 describe('visual snapshot tests', () => {
-  getAllScenarioNames().forEach(scenarioName => {
+  getAllScenarioNames().forEach((scenarioName) => {
     const snapshotConfig = getSnapshotConfig(scenarioName);
 
     if (snapshotConfig.skip) return;
@@ -56,7 +56,7 @@ describe('visual snapshot tests', () => {
       });
     }
 
-    snapshotConfig.interactions.forEach(interaction => {
+    snapshotConfig.interactions.forEach((interaction) => {
       it(`${scenarioName}__${interaction.name}`, async () => {
         await preparePageForSnapshot(
           scenarioName,

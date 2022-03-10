@@ -134,7 +134,6 @@ class LayerComponent extends React.Component<
     );
     if (__BROWSER__) {
       if (mountNode || container) {
-        // $FlowFixMe
         return ReactDOM.createPortal(childrenToRender, mountNode || container);
       }
       return null;

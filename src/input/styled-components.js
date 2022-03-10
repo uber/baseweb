@@ -6,9 +6,11 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import {styled} from '../styles/index.js';
-import type {ThemeT} from '../styles/types.js';
+import type {ThemeT, Font} from '../styles/types.js';
+import type {StyleObject} from 'styletron-standard';
 import {ADJOINED, SIZE} from './constants.js';
 import type {SharedPropsT, SizeT} from './types.js';
+import type {SharedStylePropsT} from '../textarea/types.js';
 import DeleteAlt from '../icon/delete-alt.js';
 
 export const StyledMaskToggleButton = styled<{
@@ -68,7 +70,15 @@ export const StyledClearIcon = styled<
   outline: $isFocusVisible ? `solid 3px ${$theme.colors.accent}` : 'none',
 }));
 
-function getInputPadding(size, sizing) {
+function getInputPadding(
+  size,
+  sizing,
+): {|
+  paddingTop: string,
+  paddingBottom: string,
+  paddingLeft: string,
+  paddingRight: string,
+|} {
   return {
     [SIZE.mini]: {
       paddingTop: sizing.scale100,
@@ -97,7 +107,13 @@ function getInputPadding(size, sizing) {
   }[size];
 }
 
-function getRootPadding(adjoined, size, sizing, direction, hasIconTrailing) {
+function getRootPadding(
+  adjoined,
+  size,
+  sizing,
+  direction,
+  hasIconTrailing,
+): {|paddingLeft: string, paddingRight: string|} {
   let ifLeftPad =
     adjoined === ADJOINED.both ||
     (adjoined === ADJOINED.left && direction !== 'rtl') ||
@@ -114,7 +130,7 @@ function getRootPadding(adjoined, size, sizing, direction, hasIconTrailing) {
   };
 }
 
-function getFont(size, typography) {
+function getFont(size, typography): Font {
   return {
     [SIZE.mini]: typography.font100,
     [SIZE.compact]: typography.font200,
@@ -123,7 +139,19 @@ function getFont(size, typography) {
   }[size];
 }
 
-function getRootColors($disabled, $isFocused, $error, $positive, colors) {
+function getRootColors(
+  $disabled,
+  $isFocused,
+  $error,
+  $positive = false,
+  colors,
+): {|
+  borderLeftColor: string,
+  borderRightColor: string,
+  borderTopColor: string,
+  borderBottomColor: string,
+  backgroundColor: string,
+|} {
   if ($disabled) {
     return {
       borderLeftColor: colors.inputFillDisabled,
@@ -173,7 +201,12 @@ function getRootColors($disabled, $isFocused, $error, $positive, colors) {
   };
 }
 
-function getRootBorderRadius(radius) {
+function getRootBorderRadius(radius): {|
+  borderTopLeftRadius: string,
+  borderBottomLeftRadius: string,
+  borderTopRightRadius: string,
+  borderBottomRightRadius: string,
+|} {
   return {
     borderTopLeftRadius: radius,
     borderBottomLeftRadius: radius,
@@ -302,7 +335,7 @@ function getInputEnhancerColors(
   };
 }
 
-export const InputEnhancer = styled<SharedPropsT>('div', props => {
+export const InputEnhancer = styled<SharedPropsT>('div', (props) => {
   const {
     $size,
     $disabled,
@@ -405,16 +438,26 @@ export const InputContainer = styled<SharedPropsT>(
   getInputContainerStyles,
 );
 
-function getInputColors($disabled, $isFocused, $error, colors) {
+function getInputColors(
+  $disabled,
+  $isFocused,
+  $error,
+  colors,
+): {|
+  color: string,
+  '-webkit-text-fill-color'?: string,
+  caretColor: string,
+  '::placeholder': {|color: string|},
+|} {
   if ($disabled) {
-    return ({
+    return {
       color: colors.inputTextDisabled,
       '-webkit-text-fill-color': colors.inputTextDisabled,
       caretColor: colors.contentPrimary,
       '::placeholder': {
         color: colors.inputPlaceholderDisabled,
       },
-    }: {});
+    };
   }
 
   return {
@@ -426,7 +469,11 @@ function getInputColors($disabled, $isFocused, $error, colors) {
   };
 }
 
-export const getInputStyles = (props: SharedPropsT & {$theme: ThemeT}) => {
+export const getInputStyles = (
+  props:
+    | (SharedPropsT & {$theme: ThemeT})
+    | (SharedStylePropsT & {$theme: ThemeT}),
+): StyleObject => {
   const {
     $disabled,
     $isFocused,
@@ -434,6 +481,7 @@ export const getInputStyles = (props: SharedPropsT & {$theme: ThemeT}) => {
     $size,
     $theme: {colors, sizing, typography},
   } = props;
+  //$FlowFixMe
   return {
     boxSizing: 'border-box',
     backgroundColor: 'transparent',

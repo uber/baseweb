@@ -16,6 +16,7 @@ import type {FlexGridPropsT} from './types.js';
 
 export const BaseFlexGrid = React.forwardRef<BlockPropsT, HTMLElement>(
   ({display, flexWrap, ...restProps}, ref) => (
+    //$FlowFixMe
     <Block
       display={display || 'flex'}
       flexWrap={flexWrap || flexWrap === false ? flexWrap : true}
@@ -25,6 +26,7 @@ export const BaseFlexGrid = React.forwardRef<BlockPropsT, HTMLElement>(
     />
   ),
 );
+BaseFlexGrid.displayName = 'BaseFlexGrid';
 
 const FlexGrid = ({
   forwardedRef,
@@ -42,7 +44,7 @@ const FlexGrid = ({
   );
   return (
     <FlexGrid
-      // coerced to any because because of how react components are typed.
+      // coerced to any because of how react components are typed.
       // cannot guarantee an html element
       // eslint-disable-next-line flowtype/no-weak-types
       ref={(forwardedRef: any)}
@@ -50,23 +52,25 @@ const FlexGrid = ({
       {...restProps}
       {...flexGridProps}
     >
-      {// flatten fragments so FlexGrid correctly iterates over fragments’ children
-      flattenFragments(children).map(
-        (
-          child: React.Node,
-          flexGridItemIndex: number,
-          {length: flexGridItemCount}: React.Node[],
-        ) => {
-          // $FlowFixMe https://github.com/facebook/flow/issues/4864
-          return React.cloneElement(child, {
-            flexGridColumnCount,
-            flexGridColumnGap,
-            flexGridRowGap,
-            flexGridItemIndex,
-            flexGridItemCount,
-          });
-        },
-      )}
+      {
+        // flatten fragments so FlexGrid correctly iterates over fragments’ children
+        flattenFragments(children).map(
+          (
+            child: React.Node,
+            flexGridItemIndex: number,
+            {length: flexGridItemCount}: React.Node[],
+          ) => {
+            // $FlowFixMe https://github.com/facebook/flow/issues/4864
+            return React.cloneElement(child, {
+              flexGridColumnCount,
+              flexGridColumnGap,
+              flexGridRowGap,
+              flexGridItemIndex,
+              flexGridItemCount,
+            });
+          },
+        )
+      }
     </FlexGrid>
   );
 };

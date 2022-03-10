@@ -251,7 +251,7 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
 
     return (
       <LocaleContext.Consumer>
-        {locale => {
+        {(locale) => {
           return (
             <FocusLock
               // Allow focus to escape when UI is within an iframe

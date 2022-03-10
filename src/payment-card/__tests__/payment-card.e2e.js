@@ -28,7 +28,7 @@ describe('PaymentCard', () => {
   it('enter full credit card number', async () => {
     const input = await page.$(selectors.input);
     await input.type('4111222233334444');
-    const value = await page.evaluate(element => element.value, input);
+    const value = await page.evaluate((element) => element.value, input);
     expect(value).toBe('4111 2222 3333 4444');
   });
 
@@ -39,18 +39,18 @@ describe('PaymentCard', () => {
     await page.keyboard.press('ArrowLeft');
     await page.keyboard.press('ArrowLeft');
     await page.keyboard.press('5');
-    expect(await page.evaluate(el => el.value, input)).toBe('4115 12');
+    expect(await page.evaluate((el) => el.value, input)).toBe('4115 12');
     await page.keyboard.press('6');
-    expect(await page.evaluate(el => el.value, input)).toBe('4115 612');
+    expect(await page.evaluate((el) => el.value, input)).toBe('4115 612');
   });
 
   it('delete digits from the end of input', async () => {
     const input = await page.$(selectors.input);
     await input.type('4111 2');
     await page.keyboard.press('Backspace');
-    expect(await page.evaluate(el => el.value, input)).toBe('4111');
+    expect(await page.evaluate((el) => el.value, input)).toBe('4111');
     await page.keyboard.press('Backspace');
-    expect(await page.evaluate(el => el.value, input)).toBe('411');
+    expect(await page.evaluate((el) => el.value, input)).toBe('411');
   });
 
   it('delete digits in the middle of input', async () => {
@@ -59,8 +59,8 @@ describe('PaymentCard', () => {
     await page.keyboard.press('ArrowLeft');
     await page.keyboard.press('ArrowLeft');
     await page.keyboard.press('Backspace');
-    expect(await page.evaluate(el => el.value, input)).toBe('4111 35');
+    expect(await page.evaluate((el) => el.value, input)).toBe('4111 35');
     await page.keyboard.press('Backspace');
-    expect(await page.evaluate(el => el.value, input)).toBe('4113 5');
+    expect(await page.evaluate((el) => el.value, input)).toBe('4113 5');
   });
 });
