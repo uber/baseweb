@@ -12,7 +12,7 @@ import { Select } from '../index.js';
 import { Button } from '../../button/index.js';
 
 export function Scenario() {
-  const methodsRef = React.useRef(null);
+  const controlRef = React.useRef(null);
   const [value, setValue] = React.useState([]);
 
   const options = [
@@ -32,7 +32,7 @@ export function Scenario() {
       >
         <Button
           onClick={() => {
-            methodsRef.current && methodsRef.current.setDropdownOpen(true);
+            controlRef.current && controlRef.current.setDropdownOpen(true);
           }}
           id={'open'}
         >
@@ -40,7 +40,7 @@ export function Scenario() {
         </Button>
         <Button
           onClick={() => {
-            methodsRef.current && methodsRef.current.setDropdownOpen(false);
+            controlRef.current && controlRef.current.setDropdownOpen(false);
           }}
           id={'close'}
         >
@@ -48,7 +48,7 @@ export function Scenario() {
         </Button>
       </div>
       <Select
-        methodsRef={methodsRef}
+        controlRef={controlRef}
         options={options}
         value={value}
         onChange={(params) => setValue(params.value)}
