@@ -20,6 +20,9 @@ documentation-site/examples/.*
 <PROJECT_ROOT>/node_modules/.*
 .*/flow-typed/.*
 
+[declarations]
+<PROJECT_ROOT>/node_modules/.*
+
 [options]
 module.ignore_non_literal_requires=true
 module.name_mapper.extension='md' -> '<PROJECT_ROOT>/flow/WebpackAsset.js.flow'

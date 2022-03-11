@@ -46,7 +46,8 @@ export default function PhoneInputLite(props: LitePropsT) {
   const baseDialCodeOverride = {
     component: StyledDialCode,
     style: ({$theme: {direction, sizing}}) => {
-      const marginDir = direction === 'rtl' ? 'marginRight' : 'marginLeft';
+      const marginDir: string =
+        direction === 'rtl' ? 'marginRight' : 'marginLeft';
       return {
         [marginDir]: sizing.scale600,
       };

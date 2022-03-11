@@ -380,16 +380,16 @@ export const StyledSelectArrow = styled<SharedStylePropsArgT>('svg', (props) => 
   const { $theme, $disabled, $size } = props;
   const { colors } = $theme;
 
-  const sizes = {
-    [SIZE.mini]: 16,
-    [SIZE.compact]: 16,
-    [SIZE.default]: 20,
-    [SIZE.large]: 24,
-  };
-  let size = sizes[SIZE.default];
-  if ($size) {
-    size = sizes[$size];
-  }
+    const sizes = {
+      [SIZE.mini]: 16,
+      [SIZE.compact]: 16,
+      [SIZE.default]: 20,
+      [SIZE.large]: 24,
+    };
+    let size = sizes[SIZE.default];
+    if ($size) {
+      size = sizes[$size];
+    }
 
   return {
     ...getSvgStyles({ $theme }),

@@ -32,13 +32,13 @@ describe('Datepicker, Range', () => {
     await page.waitForSelector(selectors.calendar);
     const selectedValue1 = await page.$eval(
       selectors.input,
-      input => input.value,
+      (input) => input.value,
     );
     expect(selectedValue1).toBe('2022/03/14 –     /  /  ');
     await page.click(selectors.day2);
     const selectedValue2 = await page.$eval(
       selectors.input,
-      input => input.value,
+      (input) => input.value,
     );
     expect(selectedValue2).toBe('2022/03/14 –     /  /  ');
     await page.click(selectors.day3);
@@ -47,7 +47,7 @@ describe('Datepicker, Range', () => {
     });
     const selectedValue3 = await page.$eval(
       selectors.input,
-      input => input.value,
+      (input) => input.value,
     );
     expect(selectedValue3).toBe('2022/03/14 – 2022/03/22');
   });
@@ -60,13 +60,13 @@ describe('Datepicker, Range', () => {
     await page.waitForSelector(selectors.calendar);
     const selectedValue1 = await page.$eval(
       selectors.input,
-      input => input.value,
+      (input) => input.value,
     );
     expect(selectedValue1).toBe('2022/03/31 –     /  /  ');
     await page.click(selectors.day3);
     const selectedValue2 = await page.$eval(
       selectors.input,
-      input => input.value,
+      (input) => input.value,
     );
     expect(selectedValue2).toBe('2022/03/31 –     /  /  ');
     await page.click(selectors.rightArrow);
@@ -74,7 +74,7 @@ describe('Datepicker, Range', () => {
     await page.click(selectors.day5);
     const selectedValue3 = await page.$eval(
       selectors.input,
-      input => input.value,
+      (input) => input.value,
     );
     expect(selectedValue3).toBe('2022/03/31 –     /  /  ');
     await page.click(selectors.day6);
@@ -83,7 +83,7 @@ describe('Datepicker, Range', () => {
     });
     const selectedValue4 = await page.$eval(
       selectors.input,
-      input => input.value,
+      (input) => input.value,
     );
     expect(selectedValue4).toBe('2022/03/31 – 2022/04/01');
   });

@@ -71,6 +71,16 @@ const tests = {
       `,
       errors: [{ messageId: MESSAGES.styleOnBlock.id }],
     },
+    // Block - renamed - style
+    {
+      code: `
+        import {Block as Div} from "baseui/block"
+        export default () => {
+          return <Div style={{ color: "red" }} />
+        }
+      `,
+      errors: [{messageId: MESSAGES.styleOnBlock.id}],
+    },
   ],
 };
 

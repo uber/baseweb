@@ -149,7 +149,7 @@ describe('Datepicker, Range, null StartDate with valid EndDate', () => {
     await mount(page, 'datepicker--range-null-start-date');
     const selectedValue1 = await page.$eval(
       selectors.input,
-      input => input.value,
+      (input) => input.value,
     );
     expect(selectedValue1).toBe('    /  /   – 2021/06/10');
   });
@@ -161,7 +161,7 @@ describe('Datepicker, Range, null StartDate with valid EndDate', () => {
     await page.click(selectors.day6);
     const selectedValue1 = await page.$eval(
       selectors.input,
-      input => input.value,
+      (input) => input.value,
     );
     expect(selectedValue1).toBe('2021/06/06 – 2021/06/10');
   });
@@ -173,7 +173,7 @@ describe('Datepicker, Range, null StartDate with valid EndDate', () => {
     await page.click(selectors.day7);
     const selectedValue1 = await page.$eval(
       selectors.input,
-      input => input.value,
+      (input) => input.value,
     );
     expect(selectedValue1).toBe('2021/06/10 – 2021/06/14');
   });
