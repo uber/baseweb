@@ -27,6 +27,7 @@ import {defaultMapItemToNode} from './utils.js';
 
 const MENU_ITEM_WIDTH = '275px';
 
+// eslint-disable-next-line react/display-name
 const UserMenuListItem = React.forwardRef((props, ref) => {
   const {item, mapItemToNode = defaultMapItemToNode} = props;
   // Replace with a user menu item renderer
@@ -46,8 +47,8 @@ const svgStyleOverride = ({$theme}) => ({paddingLeft: $theme.sizing.scale200});
 
 export default function UserMenuComponent(props: {|
   ...UserMenuPropsT,
-  mapItemToNode: NavItemT => React.Node,
-  onItemSelect: NavItemT => mixed,
+  mapItemToNode: (NavItemT) => React.Node,
+  onItemSelect: (NavItemT) => mixed,
   overrides: OverridesT,
 |}) {
   // isOpen is used for displaying different arrow icons in open or closed state
@@ -63,10 +64,8 @@ export default function UserMenuComponent(props: {|
     overrides.UserMenuButton,
     Button,
   );
-  // $FlowFixMe
   userMenuButtonProps.overrides = mergeOverrides(
     {BaseButton: {component: StyledUserMenuButton}},
-    // $FlowFixMe
     userMenuButtonProps.overrides,
   );
 
@@ -74,10 +73,10 @@ export default function UserMenuComponent(props: {|
     overrides.UserMenu,
     StatefulMenu,
   );
-  // $FlowFixMe
   userMenuProps.overrides = mergeOverrides(
     {
       List: {
+        // eslint-disable-next-line react/display-name
         component: React.forwardRef(({children, ...restProps}, ref) => (
           <StyledList {...restProps} ref={ref}>
             <UserMenuProfileListItem {...userMenuProfileListItemProps}>
@@ -94,6 +93,7 @@ export default function UserMenuComponent(props: {|
         )),
         style: {width: MENU_ITEM_WIDTH},
       },
+      // eslint-disable-next-line react/display-name
       ListItem: React.forwardRef((listItemProps, ref) => {
         return (
           <UserMenuListItem
@@ -104,7 +104,6 @@ export default function UserMenuComponent(props: {|
         );
       }),
     },
-    // $FlowFixMe
     userMenuProps.overrides,
   );
 

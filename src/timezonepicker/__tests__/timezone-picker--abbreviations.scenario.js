@@ -37,7 +37,7 @@ class Controlled extends React.Component<any, any> {
         <TimezonePicker
           date={daylight}
           value={this.state.value && this.state.value.id}
-          onChange={value => this.setState({value})}
+          onChange={(value) => this.setState({value})}
           overrides={overrides}
           includeAbbreviations
         />

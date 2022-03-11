@@ -91,7 +91,7 @@ export type NavItemPropsT = SharedPropsT & {
 };
 
 export type StatefulContainerPropsT = {
-  children: NavPropsT => React.Node,
+  children: (NavPropsT) => React.Node,
   /** Initial state of an uncontrolled component. */
   initialState?: StateT,
   /** A state change handler. Used to override default state transitions. */
@@ -100,7 +100,7 @@ export type StatefulContainerPropsT = {
 };
 
 type ExcludeT = {
-  children: NavPropsT => React.Node,
+  children: (NavPropsT) => React.Node,
 };
 
 export type StatefulNavPropsT = $Diff<StatefulContainerPropsT, ExcludeT>;

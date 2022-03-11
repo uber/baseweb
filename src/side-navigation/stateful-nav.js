@@ -13,7 +13,7 @@ import type {StatefulNavPropsT} from './types.js';
 export default function StatefulNavigation(props: StatefulNavPropsT) {
   return (
     <StatefulContainer {...props}>
-      {childrenProps => <Navigation {...childrenProps} />}
+      {(childrenProps) => <Navigation {...childrenProps} />}
     </StatefulContainer>
   );
 }

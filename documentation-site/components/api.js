@@ -14,7 +14,7 @@ import {Button, SIZE as ButtonSize, KIND as ButtonKind} from 'baseui/button';
 import {ParagraphSmall} from 'baseui/typography';
 import {H3} from './markdown-elements';
 
-const API = props => {
+const API = (props) => {
   const {heading, api} = props;
   return (
     <React.Fragment>
@@ -25,12 +25,12 @@ const API = props => {
           heading={' '}
           shouldCollapseProps={true}
           components={{
-            Description: props => {
+            Description: (props) => {
               return (
                 <ParagraphSmall $as="div">{props.children}</ParagraphSmall>
               );
             },
-            Button: props => {
+            Button: (props) => {
               return (
                 <Button
                   {...props}
@@ -41,7 +41,7 @@ const API = props => {
                 </Button>
               );
             },
-            Indent: props => {
+            Indent: (props) => {
               return (
                 <Block
                   overrides={{
@@ -56,35 +56,35 @@ const API = props => {
                 </Block>
               );
             },
-            Required: props => {
+            Required: (props) => {
               return (
                 <Block as="span" color="negative">
                   {props.children}
                 </Block>
               );
             },
-            Type: props => {
+            Type: (props) => {
               return (
                 <Block as="span" color="primary">
                   {props.children}
                 </Block>
               );
             },
-            TypeMeta: props => {
+            TypeMeta: (props) => {
               return (
                 <Block as="span" color="warning400">
                   {props.children}
                 </Block>
               );
             },
-            FunctionType: props => {
+            FunctionType: (props) => {
               return (
                 <Block as="span" color="positive700">
                   {props.children}
                 </Block>
               );
             },
-            StringType: props => {
+            StringType: (props) => {
               return (
                 <Block as="span" color="positive">
                   {props.children}

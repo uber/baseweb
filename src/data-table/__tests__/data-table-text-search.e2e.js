@@ -16,7 +16,7 @@ const {
 } = require('./utilities.js');
 
 function wait(ms) {
-  return new Promise(res => setTimeout(res, ms));
+  return new Promise((res) => setTimeout(res, ms));
 }
 
 const COLUMN_COUNT = 6;

@@ -6,11 +6,11 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import type {BorderT} from '../themes/types.js';
+import type {BorderT, Globals, LineStyle} from '../themes/types.js';
 
 export function hexToRgb(hex: string = '', alpha: string = '1') {
   const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-  hex = hex.replace(shorthandRegex, function(m, r, g, b) {
+  hex = hex.replace(shorthandRegex, function (m, r, g, b) {
     return r + r + g + g + b + b;
   });
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
@@ -29,7 +29,20 @@ export const ellipsisText = {
   wordWrap: 'normal',
 };
 
-export function expandBorderStyles(borderStyles: BorderT) {
+export function expandBorderStyles(borderStyles: BorderT): {|
+  borderTopStyle: Globals | LineStyle,
+  borderTopWidth: string,
+  borderTopColor: string,
+  borderBottomWidth: string,
+  borderBottomStyle: Globals | LineStyle,
+  borderBottomColor: string,
+  borderLeftWidth: string,
+  borderLeftStyle: Globals | LineStyle,
+  borderLeftColor: string,
+  borderRightWidth: string,
+  borderRightStyle: Globals | LineStyle,
+  borderRightColor: string,
+|} {
   return {
     borderTopWidth: borderStyles.borderWidth,
     borderTopStyle: borderStyles.borderStyle,

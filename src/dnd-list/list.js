@@ -144,7 +144,7 @@ class StatelessList extends React.Component<
                   {removable && (
                     <CloseHandle
                       {...sharedProps}
-                      onClick={evt => {
+                      onClick={(evt) => {
                         evt.preventDefault();
                         onChange &&
                           onChange({

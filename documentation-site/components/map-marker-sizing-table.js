@@ -15,11 +15,11 @@ export const FixedMarkerSizingTable = () => {
   const PinheadShapeKeys = Object.keys(PINHEAD_SIZES_SHAPES);
   const columns = ['PINHEAD_SIZE_SHAPE', 'Enhancer size'];
   const data = [
-    ...PinheadShapeKeys.filter(x => x.includes('xSmall')).map((key, i) => [
+    ...PinheadShapeKeys.filter((x) => x.includes('xSmall')).map((key, i) => [
       <InlineCode key={i}>{key}</InlineCode>,
       `n/a, enhancer cannot be provided on this shape/size`,
     ]),
-    ...PinheadShapeKeys.filter(x => !x.includes('xSmall')).map((key, i) => [
+    ...PinheadShapeKeys.filter((x) => !x.includes('xSmall')).map((key, i) => [
       <InlineCode key={i}>{key}</InlineCode>,
       // $FlowFixMe
       `${PINHEAD_DIMENSIONS[key].icon}px`,

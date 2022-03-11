@@ -22,7 +22,7 @@ const SSR_SUB_MENU = [
   {label: 'Closed'},
 ];
 
-const childMenu = items => (
+const childMenu = (items) => (
   <StatefulMenu
     renderAll
     items={items}
@@ -56,7 +56,7 @@ export function Scenario() {
           Option: {
             props: {
               size: 'compact',
-              getChildMenu: item => {
+              getChildMenu: (item) => {
                 if (item.label === SSR) {
                   return childMenu(SSR_SUB_MENU);
                 }

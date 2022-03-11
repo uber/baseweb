@@ -13,7 +13,7 @@ import {default as Checkbox} from './checkbox.js';
 import type {PropsT, StatefulCheckboxPropsT} from './types.js';
 // Styled elements
 
-const StatefulCheckbox = function(props: StatefulCheckboxPropsT) {
+const StatefulCheckbox = function (props: StatefulCheckboxPropsT) {
   return (
     <StatefulContainer {...props}>
       {(childrenProps: PropsT) => (

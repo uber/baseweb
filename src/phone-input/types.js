@@ -145,7 +145,7 @@ export type LitePropsT = {
 
 export type StatefulPhoneInputContainerPropsT = {
   ...$Exact<PropsT>,
-  children: PropsT => React.Node,
+  children: (PropsT) => React.Node,
   initialState: StateT,
   stateReducer: StateReducerT,
   onTextChange: (event: SyntheticInputEvent<HTMLInputElement>) => mixed,

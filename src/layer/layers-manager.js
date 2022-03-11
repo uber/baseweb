@@ -75,9 +75,8 @@ export default class LayersManager extends React.Component<
   }
 
   onDocumentClick = (event: MouseEvent) => {
-    const docClickHandler = this.state.docClickHandlers[
-      this.state.docClickHandlers.length - 1
-    ];
+    const docClickHandler =
+      this.state.docClickHandlers[this.state.docClickHandlers.length - 1];
     if (docClickHandler) {
       docClickHandler(event);
     }
@@ -85,9 +84,8 @@ export default class LayersManager extends React.Component<
 
   onKeyUp = (event: KeyboardEvent) => {
     if (event.key === 'Escape') {
-      const escapeKeyHandler = this.state.escapeKeyHandlers[
-        this.state.escapeKeyHandlers.length - 1
-      ];
+      const escapeKeyHandler =
+        this.state.escapeKeyHandlers[this.state.escapeKeyHandlers.length - 1];
       if (escapeKeyHandler) {
         escapeKeyHandler();
       }
@@ -95,32 +93,32 @@ export default class LayersManager extends React.Component<
   };
 
   onAddEscapeHandler = (escapeKeyHandler: () => mixed) => {
-    this.setState(prev => {
+    this.setState((prev) => {
       return {escapeKeyHandlers: [...prev.escapeKeyHandlers, escapeKeyHandler]};
     });
   };
 
   onRemoveEscapeHandler = (escapeKeyHandler: () => mixed) => {
-    this.setState(prev => {
+    this.setState((prev) => {
       return {
         escapeKeyHandlers: prev.escapeKeyHandlers.filter(
-          handler => handler !== escapeKeyHandler,
+          (handler) => handler !== escapeKeyHandler,
         ),
       };
     });
   };
 
   onAddDocClickHandler = (docClickHandler: (event: MouseEvent) => mixed) => {
-    this.setState(prev => {
+    this.setState((prev) => {
       return {docClickHandlers: [...prev.docClickHandlers, docClickHandler]};
     });
   };
 
   onRemoveDocClickHandler = (docClickHandler: (event: MouseEvent) => mixed) => {
-    this.setState(prev => {
+    this.setState((prev) => {
       return {
         docClickHandlers: prev.docClickHandlers.filter(
-          handler => handler !== docClickHandler,
+          (handler) => handler !== docClickHandler,
         ),
       };
     });

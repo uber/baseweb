@@ -21,7 +21,7 @@ describe('combobox', () => {
     const {container} = render(
       <TestBaseProvider>
         <Combobox
-          mapOptionToString={o => o}
+          mapOptionToString={(o) => o}
           onChange={handleChange}
           options={options}
           value={''}
@@ -41,7 +41,7 @@ describe('combobox', () => {
     const {container} = render(
       <TestBaseProvider>
         <Combobox
-          mapOptionToString={o => o}
+          mapOptionToString={(o) => o}
           onBlur={handleBlur}
           onChange={() => {}}
           options={options}
@@ -61,7 +61,7 @@ describe('combobox', () => {
     const {container} = render(
       <TestBaseProvider>
         <Combobox
-          mapOptionToString={o => o}
+          mapOptionToString={(o) => o}
           onChange={() => {}}
           onFocus={handleFocus}
           options={options}
@@ -80,7 +80,7 @@ describe('combobox', () => {
     const {container} = render(
       <TestBaseProvider>
         <Combobox
-          mapOptionToString={o => o}
+          mapOptionToString={(o) => o}
           onChange={() => {}}
           options={options}
           value={''}
@@ -101,7 +101,7 @@ describe('combobox', () => {
     const {container} = render(
       <TestBaseProvider>
         <Combobox
-          mapOptionToString={o => o}
+          mapOptionToString={(o) => o}
           onChange={() => {}}
           options={options}
           value={''}
@@ -123,7 +123,7 @@ describe('combobox', () => {
     const {container} = render(
       <TestBaseProvider>
         <Combobox
-          mapOptionToString={o => o}
+          mapOptionToString={(o) => o}
           onChange={handleChange}
           options={options}
           value={''}
@@ -143,7 +143,7 @@ describe('combobox', () => {
     const {container} = render(
       <TestBaseProvider>
         <Combobox
-          mapOptionToString={o => o}
+          mapOptionToString={(o) => o}
           onChange={handleChange}
           options={options}
           value={''}
@@ -165,7 +165,7 @@ describe('combobox', () => {
     const {container} = render(
       <TestBaseProvider>
         <Combobox
-          mapOptionToString={o => o}
+          mapOptionToString={(o) => o}
           onChange={handleChange}
           options={options}
           value={''}
@@ -189,7 +189,7 @@ describe('combobox', () => {
     const {container} = render(
       <TestBaseProvider>
         <Combobox
-          mapOptionToString={o => o}
+          mapOptionToString={(o) => o}
           onChange={() => {}}
           options={options}
           value={''}
@@ -210,7 +210,7 @@ describe('combobox', () => {
     const {container} = render(
       <TestBaseProvider>
         <Combobox
-          mapOptionToString={o => o}
+          mapOptionToString={(o) => o}
           onChange={() => {}}
           options={[]}
           value={''}
@@ -231,7 +231,7 @@ describe('combobox', () => {
     const {container} = render(
       <TestBaseProvider>
         <Combobox
-          mapOptionToString={o => o}
+          mapOptionToString={(o) => o}
           onChange={() => {}}
           options={options}
           value={''}
@@ -258,7 +258,7 @@ describe('combobox', () => {
     const {container} = render(
       <TestBaseProvider>
         <Combobox
-          mapOptionToString={o => o}
+          mapOptionToString={(o) => o}
           onChange={() => {}}
           options={options}
           value={''}
@@ -286,8 +286,8 @@ describe('combobox', () => {
       return (
         <TestBaseProvider>
           <Combobox
-            mapOptionToString={o => o}
-            onChange={v => setValue(v)}
+            mapOptionToString={(o) => o}
+            onChange={(v) => setValue(v)}
             options={options}
             value={value}
           />
@@ -315,8 +315,8 @@ describe('combobox', () => {
       return (
         <TestBaseProvider>
           <Combobox
-            mapOptionToString={o => o}
-            onChange={v => setValue(v)}
+            mapOptionToString={(o) => o}
+            onChange={(v) => setValue(v)}
             options={options}
             value={value}
           />
@@ -342,7 +342,7 @@ describe('combobox', () => {
       <TestBaseProvider>
         <Combobox
           autocomplete={false}
-          mapOptionToString={o => o}
+          mapOptionToString={(o) => o}
           onChange={() => {}}
           options={options}
           value={''}
@@ -358,7 +358,7 @@ describe('combobox', () => {
     const {container} = render(
       <TestBaseProvider>
         <Combobox
-          mapOptionToString={o => o}
+          mapOptionToString={(o) => o}
           onChange={() => {}}
           onSubmit={({closeListbox}) => closeListbox()}
           options={options}
@@ -388,7 +388,7 @@ describe('combobox', () => {
     render(
       <TestBaseProvider>
         <Combobox
-          mapOptionToString={o => o}
+          mapOptionToString={(o) => o}
           onChange={() => {}}
           options={options}
           value={''}

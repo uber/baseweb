@@ -28,6 +28,7 @@ const USER_TITLE_ITEM = 'USER_TITLE_ITEM';
 const USER_MENU_ITEM = 'USER_MENU_ITEM';
 const PARENT_MENU_ITEM = 'PARENT_MENU_ITEM';
 
+// eslint-disable-next-line react/display-name
 const MobileNavMenuItem = React.forwardRef((props, ref) => {
   const {
     item,
@@ -94,7 +95,7 @@ export default function MobileMenu(props: AppNavBarPropsT) {
             item: {...rest},
             label: props.username,
             [USER_TITLE_ITEM]: true,
-            children: userItems.map(item => {
+            children: userItems.map((item) => {
               return {
                 ...item,
                 [USER_MENU_ITEM]: true,
@@ -118,10 +119,8 @@ export default function MobileMenu(props: AppNavBarPropsT) {
     overrides.SideMenuButton,
     Button,
   );
-  // $FlowFixMe
   sideMenuButtonProps.overrides = mergeOverrides(
     {BaseButton: {component: StyledSideMenuButton}},
-    // $FlowFixMe
     sideMenuButtonProps.overrides,
   );
 
@@ -129,7 +128,6 @@ export default function MobileMenu(props: AppNavBarPropsT) {
     overrides.MobileDrawer,
     Drawer,
   );
-  // $FlowFixMe
   drawerProps.overrides = mergeOverrides(
     {
       DrawerBody: {
@@ -145,7 +143,6 @@ export default function MobileMenu(props: AppNavBarPropsT) {
       // Removes the close icon from the drawer
       Close: () => null,
     },
-    // $FlowFixMe
     drawerProps.overrides,
   );
 
@@ -153,7 +150,6 @@ export default function MobileMenu(props: AppNavBarPropsT) {
     overrides.MobileMenu,
     StatefulMenu,
   );
-  // $FlowFixMe
   menuProps.overrides = mergeOverrides(
     {
       List: {
@@ -164,6 +160,7 @@ export default function MobileMenu(props: AppNavBarPropsT) {
           boxShadow: 'none',
         },
       },
+      // eslint-disable-next-line react/display-name
       ListItem: React.forwardRef((listItemProps, ref) => {
         return (
           <MobileNavMenuItem
@@ -175,7 +172,6 @@ export default function MobileMenu(props: AppNavBarPropsT) {
         );
       }),
     },
-    // $FlowFixMe
     menuProps.overrides,
   );
 

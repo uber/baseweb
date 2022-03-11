@@ -16,7 +16,7 @@ export function Scenario() {
   const tracker = React.useRef(0);
   React.useEffect(() => {
     function tick() {
-      setProgress(progress => progress + FAKE_RANDOM * 0.33);
+      setProgress((progress) => progress + FAKE_RANDOM * 0.33);
       if (tracker.current < 1) {
         setTimeout(tick, FAKE_RANDOM * 1000);
       }

@@ -13,7 +13,7 @@ const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 const selectors = {
   nextButton: '[data-e2e=button-next]',
   previousButton: '[data-e2e=button-previous]',
-  contentAtPosition: position => `[data-e2e="content-${position}"]`,
+  contentAtPosition: (position) => `[data-e2e="content-${position}"]`,
 };
 
 describe('progress steps', () => {
@@ -31,7 +31,7 @@ describe('progress steps', () => {
     // verifies that the first content block is visible
     let firstContent = await page.$eval(
       selectors.contentAtPosition(1),
-      input => input.textContent,
+      (input) => input.textContent,
     );
     expect(firstContent).toBe('Here is some step content');
 
@@ -39,7 +39,7 @@ describe('progress steps', () => {
     await page.click(selectors.nextButton);
     const secondContent = await page.$eval(
       selectors.contentAtPosition(2),
-      input => input.textContent,
+      (input) => input.textContent,
     );
     expect(secondContent.startsWith('Here is some more content')).toBeTruthy();
 
@@ -47,7 +47,7 @@ describe('progress steps', () => {
     await page.click(selectors.previousButton);
     firstContent = await page.$eval(
       selectors.contentAtPosition(1),
-      input => input.textContent,
+      (input) => input.textContent,
     );
     expect(firstContent).toBe('Here is some step content');
   });

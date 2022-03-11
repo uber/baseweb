@@ -28,7 +28,7 @@ function isLabelBottomRight(labelPlacement) {
   return labelPlacement === 'bottom' || labelPlacement === 'right';
 }
 
-const stopPropagation = e => e.stopPropagation();
+const stopPropagation = (e) => e.stopPropagation();
 
 class Radio extends React.Component<RadioPropsT, RadioStateT> {
   static defaultProps: $Shape<RadioPropsT> = {
@@ -125,7 +125,7 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
         {this.props.containsInteractiveElement ? (
           // Prevents the event from bubbling up to the label and moving focus to the radio button
           // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
-          <div onClick={e => e.preventDefault()}>{this.props.children}</div>
+          <div onClick={(e) => e.preventDefault()}>{this.props.children}</div>
         ) : (
           this.props.children
         )}

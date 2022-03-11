@@ -46,7 +46,7 @@ describe('Side navigation', () => {
 
   it('renders titles correctly modified by mapItem', () => {
     const Title = ({item}) => <span>New {item.title}</span>;
-    const mapItem = item => ({
+    const mapItem = (item) => ({
       ...item,
       title: <Title item={item} />,
     });
@@ -58,7 +58,7 @@ describe('Side navigation', () => {
 
   it('calls mapItem exactly once for each item', () => {
     const mapItem = jest.fn();
-    mapItem.mockImplementation(item => item);
+    mapItem.mockImplementation((item) => item);
     render(<Navigation items={nav} mapItem={mapItem} />);
     expect(mapItem).toHaveBeenCalledTimes(5);
   });

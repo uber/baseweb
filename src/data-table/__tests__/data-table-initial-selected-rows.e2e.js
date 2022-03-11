@@ -19,6 +19,6 @@ describe('data table initial filters', () => {
     const cell1x1 = await page.$(
       `${TABLE_ROOT} > div:nth-child(2) label > input`,
     );
-    expect(await cell1x1.evaluate(node => node.checked)).toBe(true);
+    expect(await cell1x1.evaluate((node) => node.checked)).toBe(true);
   });
 });

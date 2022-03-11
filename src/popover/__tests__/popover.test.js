@@ -102,6 +102,7 @@ describe('Popover', () => {
         {contentContent}
       </div>
     );
+    // eslint-disable-next-line react/display-name
     const FocusMe = React.forwardRef((props, ref) => {
       const el = React.useRef(null);
       React.useEffect(() => {
@@ -123,7 +124,7 @@ describe('Popover', () => {
             focusLock
             content={content}
             isOpen={open}
-            onClick={() => setOpen(prev => !prev)}
+            onClick={() => setOpen((prev) => !prev)}
           >
             <FocusMe />
           </Popover>

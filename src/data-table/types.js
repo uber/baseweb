@@ -52,7 +52,7 @@ export type RenderFilterT<ValueT, FilterParamsT> = React.AbstractComponent<{|
   close: () => void,
   data: ValueT[],
   filterParams?: FilterParamsT,
-  setFilter: FilterParamsT => void,
+  setFilter: (FilterParamsT) => void,
 |}>;
 
 // eslint-disable-next-line flowtype/no-weak-types
@@ -62,7 +62,7 @@ export type ColumnT<ValueT = any, FilterParamsT = any> = {|
   sortable: boolean,
   renderCell: RenderCellT<ValueT>,
   renderFilter: RenderFilterT<ValueT, FilterParamsT>,
-  buildFilter: FilterParamsT => ValueT => boolean,
+  buildFilter: (FilterParamsT) => (ValueT) => boolean,
   textQueryFilter?: (string, ValueT) => boolean,
   sortFn: (ValueT, ValueT) => number,
 |};
@@ -102,13 +102,13 @@ export type StatefulDataTablePropsT = {|
   loading?: boolean,
   loadingMessage?: string | React.AbstractComponent<{||}>,
   onFilterAdd?: (string, {description: string}) => mixed,
-  onFilterRemove?: string => mixed,
+  onFilterRemove?: (string) => mixed,
   onIncludedRowsChange?: (rows: RowT[]) => void,
   onRowHighlightChange?: (rowIndex: number, row: RowT) => void,
   onSelectionChange?: (RowT[]) => mixed,
   resizableColumnWidths?: boolean,
   rows: RowT[],
-  rowActions?: RowActionT[] | (RowT => RowActionT[]),
+  rowActions?: RowActionT[] | ((RowT) => RowActionT[]),
   rowHeight?: number,
   rowHighlightIndex?: number,
   searchable?: boolean,

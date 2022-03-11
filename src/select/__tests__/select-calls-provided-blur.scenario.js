@@ -16,7 +16,7 @@ export function Scenario() {
     <React.Fragment>
       <StatefulSelect
         closeOnSelect={false}
-        onBlur={() => setBlurCount(prev => prev + 1)}
+        onBlur={() => setBlurCount((prev) => prev + 1)}
         options={[
           {id: 'a', label: 'hey!'},
           {id: 'b', label: 'are you listening?'},

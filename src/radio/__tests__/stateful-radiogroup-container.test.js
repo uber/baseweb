@@ -10,7 +10,7 @@ import {render} from '@testing-library/react';
 
 import {StatefulContainer} from '../index.js';
 
-describe('Stateful container', function() {
+describe('Stateful container', function () {
   it('passes additional props to children', () => {
     const children = jest.fn(() => null);
     render(<StatefulContainer foo="bar">{children}</StatefulContainer>);

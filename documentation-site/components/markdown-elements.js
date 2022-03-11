@@ -23,9 +23,9 @@ type Props = {
   children: string | React.Node,
 };
 
-const getText = children => {
+const getText = (children) => {
   let label = '';
-  React.Children.forEach(children, child => {
+  React.Children.forEach(children, (child) => {
     if (typeof child === 'string') {
       label += child;
     }

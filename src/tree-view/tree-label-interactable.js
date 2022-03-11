@@ -16,9 +16,10 @@ const TreeLabelInteractable: React$ComponentType<{
   const LabelInteractable =
     getOverride(overrides.LabelInteractable) || StyledLabelInteractable;
   return (
+    // $FlowExpectedError[cannot-spread-inexact]
     <LabelInteractable
-      onClick={e => e.stopPropagation()}
-      onKeyDown={e => e.stopPropagation()}
+      onClick={(e) => e.stopPropagation()}
+      onKeyDown={(e) => e.stopPropagation()}
       {...props}
     />
   );

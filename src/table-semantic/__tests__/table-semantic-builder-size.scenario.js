@@ -37,10 +37,10 @@ function Instance({size}) {
   return (
     <TableBuilder data={data} size={size}>
       <TableBuilderColumn id="bar" header="Produce" sortable>
-        {row => <a href={row.url}>{row.bar}</a>}
+        {(row) => <a href={row.url}>{row.bar}</a>}
       </TableBuilderColumn>
       <TableBuilderColumn id="foo" header="Quantity" numeric sortable>
-        {row => row.foo}
+        {(row) => row.foo}
       </TableBuilderColumn>
     </TableBuilder>
   );

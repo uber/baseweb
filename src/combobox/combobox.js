@@ -118,7 +118,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
     if (event.keyCode === ARROW_DOWN) {
       event.preventDefault();
       handleOpen();
-      setSelectionIndex(prev => {
+      setSelectionIndex((prev) => {
         let next = prev + 1;
         if (next > options.length - 1) {
           next = -1;
@@ -128,7 +128,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
     }
     if (event.keyCode === ARROW_UP) {
       event.preventDefault();
-      setSelectionIndex(prev => {
+      setSelectionIndex((prev) => {
         let next = prev - 1;
         if (next < -1) {
           next = options.length - 1;
@@ -241,14 +241,10 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
     overrides.ListItem,
     StyledListItem,
   );
-  const [
-    OverriddenInput,
-    // $FlowFixMe
-    {overrides: inputOverrides = {}, ...restInputProps},
-  ] = getOverrides(overrides.Input, Input);
+  const [OverriddenInput, {overrides: inputOverrides = {}, ...restInputProps}] =
+    getOverrides(overrides.Input, Input);
   const [
     OverriddenPopover,
-    // $FlowFixMe
     {overrides: popoverOverrides = {}, ...restPopoverProps},
   ] = getOverrides(overrides.Popover, Popover);
 

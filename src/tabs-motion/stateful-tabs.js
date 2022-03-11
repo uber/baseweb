@@ -51,7 +51,7 @@ export function StatefulTabs(props: StatefulTabsPropsT) {
     stateReducer,
     getInitialState(children, initialState),
   );
-  const handleChange = React.useCallback(params => {
+  const handleChange = React.useCallback((params) => {
     const {activeKey} = params;
     dispatch({type: STATE_CHANGE_TYPE.change, payload: activeKey});
     if (typeof onChange === 'function') onChange(params);

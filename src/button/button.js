@@ -17,7 +17,7 @@ import {defaultProps} from './default-props.js';
 import {getOverrides} from '../helpers/overrides.js';
 import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 
-import type {ButtonPropsT} from './types.js';
+import type {ButtonPropsT, SharedStylePropsT} from './types.js';
 
 class Button extends React.Component<
   // eslint-disable-next-line flowtype/no-weak-types
@@ -71,18 +71,17 @@ class Button extends React.Component<
       overrides.BaseButton || overrides.Root,
       StyledBaseButton,
     );
-    const [LoadingSpinner, loadingSpinnerProps] = getOverrides(
-      overrides.LoadingSpinner,
-      StyledLoadingSpinner,
-    );
-    const [
-      LoadingSpinnerContainer,
-      loadingSpinnerContainerProps,
-    ] = getOverrides(
-      overrides.LoadingSpinnerContainer,
-      StyledLoadingSpinnerContainer,
-    );
-    const sharedProps = {
+    const [LoadingSpinner, loadingSpinnerProps] =
+      getOverrides<SharedStylePropsT>(
+        overrides.LoadingSpinner,
+        StyledLoadingSpinner,
+      );
+    const [LoadingSpinnerContainer, loadingSpinnerContainerProps] =
+      getOverrides<SharedStylePropsT>(
+        overrides.LoadingSpinnerContainer,
+        StyledLoadingSpinnerContainer,
+      );
+    const sharedProps: SharedStylePropsT = {
       ...getSharedProps(this.props),
       $isFocusVisible: this.state.isFocusVisible,
     };
@@ -135,6 +134,7 @@ class Button extends React.Component<
 }
 
 const ForwardedButton = React.forwardRef<ButtonPropsT, HTMLButtonElement>(
+  //$FlowFixMe
   (props: ButtonPropsT, ref) => <Button forwardedRef={ref} {...props} />,
 );
 ForwardedButton.displayName = 'Button';

@@ -109,7 +109,7 @@ export default function TreeView(props: TreeViewPropsT) {
       case '*':
         e.preventDefault();
         getExpandableSiblings(data, selectedNodeId, getId).forEach(
-          node => onToggle && onToggle(node),
+          (node) => onToggle && onToggle(node),
         );
         break;
       default:
@@ -151,13 +151,13 @@ export default function TreeView(props: TreeViewPropsT) {
 
   return (
     <Root role="tree" {...getOverrideProps(RootOverride)}>
-      {data.map(node => (
+      {data.map((node) => (
         <TreeNode
           indentGuides={indentGuides}
           key={getId(node)}
           node={node}
           getId={getId}
-          onToggle={node => {
+          onToggle={(node) => {
             onToggle && onToggle(node);
             focusTreeItem(getId(node));
           }}

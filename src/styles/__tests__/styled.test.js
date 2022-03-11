@@ -32,8 +32,8 @@ describe('withWrapper', () => {
     const StyledComponentElement = styled('div', {color: 'pink'});
     const StyledComponent = withWrapper(
       StyledComponentElement,
-      Styled =>
-        function(props) {
+      (Styled) =>
+        function (props) {
           return (
             <Styled
               data-testid="test"
@@ -79,7 +79,7 @@ test('styled override prop', () => {
     color: 'red',
   });
 
-  const styleFn = props => {
+  const styleFn = (props) => {
     return {color: props.$color};
   };
 
@@ -135,7 +135,7 @@ test('styled override prop', () => {
 describe('styled flow', () => {
   test('it provides flow error if accessing property not defined in props type', () => {
     type P = {hello: string};
-    const a = styled<P>('div', props => {
+    const a = styled<P>('div', (props) => {
       console.log(props.hello);
       // $FlowFixMe
       console.log(props.world);
@@ -144,7 +144,7 @@ describe('styled flow', () => {
   });
 
   test('it provides flow error if accessing property not defined in default theme type', () => {
-    const a = styled<{}>('div', props => {
+    const a = styled<{}>('div', (props) => {
       console.log(props.$theme.colors.primary400);
       // $FlowFixMe
       console.log(props.$theme.colors.primary9000);
@@ -153,8 +153,8 @@ describe('styled flow', () => {
   });
 
   test('it provides flow error if returning invalid style object', () => {
-    const a = styled<{}>('div', props => {
-      // $FlowFixMe
+    // $FlowFixMe
+    const a = styled<{}>('div', (props) => {
       return {invalid: 'true'};
     });
   });
@@ -165,7 +165,7 @@ describe('styled flow', () => {
     }
 
     type P = {hello: string};
-    const a = styled<typeof C, P>(C, props => {
+    const a = styled<typeof C, P>(C, (props) => {
       console.log(props.hello);
       // $FlowFixMe
       console.log(props.world);
@@ -179,7 +179,7 @@ describe('themedStyled flow', () => {
     type T = {colors: {custom400: string}};
     const themedStyled = createThemedStyled<T>();
 
-    const a = themedStyled<{}>('div', props => {
+    const a = themedStyled<{}>('div', (props) => {
       console.log(props.$theme.colors.custom400);
       // $FlowFixMe
       console.log(props.$theme.colors.custom9000);
@@ -192,7 +192,7 @@ describe('themedStyled flow', () => {
     const themedStyled = createThemedStyled<T>();
 
     type P = {hello: string};
-    const a = themedStyled<P>('div', props => {
+    const a = themedStyled<P>('div', (props) => {
       console.log(props.hello);
       // $FlowFixMe
       console.log(props.world);
@@ -204,12 +204,12 @@ describe('themedStyled flow', () => {
 describe('withStyle flow', () => {
   test('it provides flow error if accessing property not defined in props type', () => {
     type P = {hello: string};
-    const a = styled<P>('div', props => {
+    const a = styled<P>('div', (props) => {
       return {color: 'blue'};
     });
 
     type Q = {world: string};
-    const b = withStyle<typeof a, Q>(a, props => {
+    const b = withStyle<typeof a, Q>(a, (props) => {
       console.log(props.world);
       // $FlowFixMe
       console.log(props.hello);
@@ -218,14 +218,14 @@ describe('withStyle flow', () => {
   });
 
   test('it provides flow error if accessing property not defined in default theme type', () => {
-    const a = styled<{}>('div', props => {
+    const a = styled<{}>('div', (props) => {
       console.log(props.$theme.colors.primary400);
       // $FlowFixMe
       console.log(props.$theme.colors.primary9000);
       return {color: 'blue'};
     });
 
-    const b = withStyle<typeof a, {}>(a, props => {
+    const b = withStyle<typeof a, {}>(a, (props) => {
       console.log(props.$theme.colors.primary400);
       // $FlowFixMe
       console.log(props.$theme.colors.primary9000);
@@ -234,12 +234,11 @@ describe('withStyle flow', () => {
   });
 
   test('it provides flow error if returning invalid style object', () => {
-    const a = styled<{}>('div', props => {
+    const a = styled<{}>('div', (props) => {
       return {color: 'red'};
     });
-
-    const b = withStyle<typeof a, {}>(a, props => {
-      // $FlowFixMe
+    // $FlowFixMe
+    const b = withStyle<typeof a, {}>(a, (props) => {
       return {invalid: 'true'};
     });
   });
@@ -251,11 +250,11 @@ describe('themedWithStyle flow', () => {
     const themedStyled = createThemedStyled<T>();
     const themedWithStyle = createThemedWithStyle<T>();
 
-    const a = themedStyled<{}>('div', props => {
+    const a = themedStyled<{}>('div', (props) => {
       return {color: 'blue'};
     });
 
-    const b = themedWithStyle<typeof a, {}>(a, props => {
+    const b = themedWithStyle<typeof a, {}>(a, (props) => {
       console.log(props.$theme.colors.custom400);
       // $FlowFixMe
       console.log(props.$theme.colors.custom9000);
@@ -268,12 +267,12 @@ describe('themedWithStyle flow', () => {
     const themedStyled = createThemedStyled<T>();
     const themedWithStyle = createThemedWithStyle<T>();
 
-    const a = themedStyled<{}>('div', props => {
+    const a = themedStyled<{}>('div', (props) => {
       return {color: 'blue'};
     });
 
     type P = {hello: string};
-    const b = themedWithStyle<typeof a, P>(a, props => {
+    const b = themedWithStyle<typeof a, P>(a, (props) => {
       console.log(props.hello);
       // $FlowFixMe
       console.log(props.world);

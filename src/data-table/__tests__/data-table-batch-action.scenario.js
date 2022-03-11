@@ -40,7 +40,7 @@ export function Scenario() {
   ]);
 
   function flagRows(ids) {
-    const nextRows = rows.map(row => {
+    const nextRows = rows.map((row) => {
       if (ids.includes(row.id)) {
         const nextData = [row.data[0], true];
         return {...row, data: nextData};
@@ -52,7 +52,7 @@ export function Scenario() {
   }
 
   function removeRows(ids) {
-    const nextRows = rows.filter(row => !ids.includes(row.id));
+    const nextRows = rows.filter((row) => !ids.includes(row.id));
     setRows(nextRows);
   }
 
@@ -60,7 +60,7 @@ export function Scenario() {
     {
       label: 'Flag',
       onClick: ({selection, clearSelection}) => {
-        flagRows(selection.map(r => r.id));
+        flagRows(selection.map((r) => r.id));
         clearSelection();
       },
       renderIcon: function RenderAlert({size}) {
@@ -71,7 +71,7 @@ export function Scenario() {
     {
       label: 'Approve',
       onClick: ({selection, clearSelection}) => {
-        removeRows(selection.map(r => r.id));
+        removeRows(selection.map((r) => r.id));
         clearSelection();
       },
       renderIcon: function RenderCheck({size}) {

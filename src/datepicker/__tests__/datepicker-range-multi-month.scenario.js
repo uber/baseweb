@@ -22,7 +22,7 @@ export function Scenario() {
       overrides={{
         Day: {
           // eslint-disable-next-line react/display-name
-          component: props => (
+          component: (props) => (
             <StyledDay data-highlighted={props.$isHighlighted} {...props} />
           ),
         },

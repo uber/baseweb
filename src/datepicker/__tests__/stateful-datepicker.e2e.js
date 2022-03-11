@@ -49,7 +49,7 @@ describe('Stateful Datepicker', () => {
     await page.waitForSelector(selectors.leftArrow);
     let value = await page.$eval(
       selectors.leftArrow,
-      select => select.disabled,
+      (select) => select.disabled,
     );
     expect(value).toBe(false);
     await page.click(selectors.leftArrow);
@@ -57,7 +57,7 @@ describe('Stateful Datepicker', () => {
       hidden: true,
     });
     await page.waitForSelector(selectors.leftArrow);
-    value = await page.$eval(selectors.leftArrow, select => select.disabled);
+    value = await page.$eval(selectors.leftArrow, (select) => select.disabled);
     expect(value).toBe(true);
     await page.waitForSelector(selectors.selected);
     await page.click(selectors.selected);
@@ -65,10 +65,10 @@ describe('Stateful Datepicker', () => {
     await page.click(selectors.input);
     await page.waitForSelector(selectors.calendar);
     await page.waitForSelector(selectors.leftArrow);
-    value = await page.$eval(selectors.leftArrow, select => select.disabled);
+    value = await page.$eval(selectors.leftArrow, (select) => select.disabled);
     expect(value).toBe(true);
     await page.waitForSelector(selectors.rightArrow);
-    value = await page.$eval(selectors.rightArrow, select => select.disabled);
+    value = await page.$eval(selectors.rightArrow, (select) => select.disabled);
     expect(value).toBe(false);
   });
 
@@ -83,7 +83,7 @@ describe('Stateful Datepicker', () => {
 
     const monthOptions = await page.$$eval(
       'ul[role="listbox"] li[aria-disabled="false"]',
-      items => {
+      (items) => {
         // Return the first and last month year option
         return [items[0].textContent, items[items.length - 1].textContent];
       },

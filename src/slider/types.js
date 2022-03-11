@@ -70,7 +70,7 @@ export type StatefulContainerPropsT = {
   max: number,
   step: number,
   /** Initial state populated into the component */
-  initialState: StateT,
+  initialState?: StateT,
   /** Reducer function to manipulate internal state updates. */
   stateReducer: StateReducerT,
   /** Handler for events on trigger element, each time thumbs change selection, which is passed in `value`. */

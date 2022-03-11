@@ -168,7 +168,7 @@ export default class FormControl extends React.Component<
           </LabelContainer>
         )}
         <UIDConsumer>
-          {captionId => (
+          {(captionId) => (
             <ControlContainer
               data-baseweb="form-control-container"
               {...sharedProps}

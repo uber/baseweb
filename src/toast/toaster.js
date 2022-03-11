@@ -68,7 +68,7 @@ export class ToasterContainer extends React.Component<
   };
 
   show = (props: ToastPropsT = {}): React.Key => {
-    if (this.state.toasts.map(t => t.key).includes(props.key)) {
+    if (this.state.toasts.map((t) => t.key).includes(props.key)) {
       this.update(props.key, props);
       return props.key;
     }
@@ -81,7 +81,7 @@ export class ToasterContainer extends React.Component<
 
   update = (key: React.Key, props: ToastPropsT): void => {
     this.setState(({toasts}) => {
-      const updatedToasts = toasts.map(toast => {
+      const updatedToasts = toasts.map((toast) => {
         if (toast.key === key) {
           const updatedToastProps = {
             ...toast,
@@ -111,7 +111,7 @@ export class ToasterContainer extends React.Component<
   };
 
   clearAll = () => {
-    Object.keys(this.dismissHandlers).forEach(key => {
+    Object.keys(this.dismissHandlers).forEach((key) => {
       this.dismissHandlers[key]();
     });
   };
@@ -123,7 +123,7 @@ export class ToasterContainer extends React.Component<
   internalOnClose = (key: React.Key) => {
     delete this.dismissHandlers[key];
     this.setState(({toasts}) => ({
-      toasts: toasts.filter(t => {
+      toasts: toasts.filter((t) => {
         return !(t.key === key);
       }),
     }));
@@ -150,11 +150,10 @@ export class ToasterContainer extends React.Component<
         CloseIcon: StyledCloseIcon,
         InnerContainer: StyledInnerContainer,
       },
-      // $FlowFixMe
       {
-        Body: BodyOverride,
-        CloseIcon: CloseIconOverride,
-        InnerContainer: InnerContainerOverride,
+        Body: BodyOverride || {},
+        CloseIcon: CloseIconOverride || {},
+        InnerContainer: InnerContainerOverride || {},
       },
     );
     const toastOverrides = mergeOverrides(
@@ -211,11 +210,7 @@ export class ToasterContainer extends React.Component<
       return (
         <>
           {this.props.usePortal && __BROWSER__
-            ? ReactDOM.createPortal(
-                root,
-                // $FlowFixMe
-                document.body,
-              )
+            ? ReactDOM.createPortal(root, document.body)
             : root}
           {this.props.children}
         </>
@@ -227,10 +222,10 @@ export class ToasterContainer extends React.Component<
 }
 
 const toaster = {
-  getRef: function(): ?React.ElementRef<typeof ToasterContainer> {
+  getRef: function (): ?React.ElementRef<typeof ToasterContainer> {
     return toasterRef;
   },
-  show: function(
+  show: function (
     children: React.Node,
     props: ToastPropsShapeT = {},
   ): ?React.Key {
@@ -245,31 +240,31 @@ const toaster = {
       );
     }
   },
-  info: function(
+  info: function (
     children: React.Node,
     props: ToastPropsShapeT = {},
   ): React.Key {
     return this.show(children, {...props, kind: KIND.info});
   },
-  positive: function(
+  positive: function (
     children: React.Node,
     props: ToastPropsShapeT = {},
   ): React.Key {
     return this.show(children, {...props, kind: KIND.positive});
   },
-  warning: function(
+  warning: function (
     children: React.Node,
     props: ToastPropsShapeT = {},
   ): React.Key {
     return this.show(children, {...props, kind: KIND.warning});
   },
-  negative: function(
+  negative: function (
     children: React.Node,
     props: ToastPropsShapeT = {},
   ): React.Key {
     return this.show(children, {...props, kind: KIND.negative});
   },
-  update: function(key: React.Key, props: $Shape<ToastPropsT>): void {
+  update: function (key: React.Key, props: $Shape<ToastPropsT>): void {
     const toasterInstance = this.getRef();
     if (toasterInstance) {
       toasterInstance.update(key, props);
@@ -278,7 +273,7 @@ const toaster = {
       console.error('No ToasterContainer is mounted yet.');
     }
   },
-  clear: function(key?: ?React.Key): void {
+  clear: function (key?: ?React.Key): void {
     const toasterInstance = this.getRef();
     if (toasterInstance) {
       toasterInstance.clear(key);

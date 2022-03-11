@@ -43,7 +43,9 @@ const DEFAULT_PROPS = {
 };
 
 class MenuStatefulContainerInner extends React.Component<
-  StatefulContainerPropsT & {uidSeed: (item: number) => string},
+  StatefulContainerPropsT & {uidSeed: (item: number) => string} & {
+    getRequiredItemProps: GetRequiredItemPropsFnT,
+  },
   StatefulContainerStateT,
 > {
   static defaultProps = DEFAULT_PROPS;
@@ -367,10 +369,8 @@ class MenuStatefulContainerInner extends React.Component<
       this.refList[index] = itemRef;
       this.optionIds[index] = this.props.uidSeed(index);
     }
-    const {
-      disabled: disabledVal,
-      ...requiredItemProps
-    } = this.props.getRequiredItemProps(item, index);
+    const {disabled: disabledVal, ...requiredItemProps} =
+      this.props.getRequiredItemProps(item, index);
     const disabled =
       typeof disabledVal === 'boolean' ? disabledVal : !!item.disabled;
     return {
@@ -454,7 +454,7 @@ class MenuStatefulContainerInner extends React.Component<
         highlightedIndex: this.state.highlightedIndex,
         isFocused: this.state.isFocused,
         handleKeyDown: this.props.keyboardControlNode.current
-          ? event => {}
+          ? (event) => {}
           : this.onKeyDown,
         focusMenu: this.focusMenu,
         unfocusMenu: this.unfocusMenu,
@@ -465,6 +465,7 @@ class MenuStatefulContainerInner extends React.Component<
 
 // Remove when MenuStatefulContainer is converted to a functional component.
 const MenuStatefulContainer = (props: StatefulContainerPropsT) => {
+  //$FlowExpectedError[cannot-spread-inexact]
   return <MenuStatefulContainerInner uidSeed={useUIDSeed()} {...props} />;
 };
 

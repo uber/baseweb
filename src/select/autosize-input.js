@@ -80,7 +80,6 @@ export default class AutosizeInput extends React.Component<
         <StyledInputSizer
           $size={this.props.$size}
           ref={this.sizerRef}
-          // $FlowFixMe checking for $style before use
           $style={inputProps.$style ? inputProps.$style : null}
         >
           {sizerValue}

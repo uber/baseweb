@@ -25,7 +25,8 @@ import {
 import type {SnackbarElementPropsT} from './types.js';
 
 const ActionButton = React.forwardRef(
-  ({onClick, message, overrides = {}}, ref) => {
+  // eslint-disable-next-line flowtype/no-weak-types
+  ({onClick, message, overrides = {}}, ref: any) => {
     const [, theme] = useStyletron();
     const [ActionButtonContainer, actionButtonContainerProps] = getOverrides(
       overrides.ActionButtonContainer,
@@ -64,6 +65,7 @@ const ActionButton = React.forwardRef(
     );
   },
 );
+ActionButton.displayName = 'ActionButton';
 
 export default function SnackbarElement({
   actionMessage,
@@ -127,13 +129,11 @@ export default function SnackbarElement({
     overrides.Message,
     StyledMessage,
   );
-  const [
-    WrapActionButtonContainer,
-    wrapActionButtonContainerProps,
-  ] = getOverrides(
-    overrides.WrapActionButtonContainer,
-    StyledWrapActionButtonContainer,
-  );
+  const [WrapActionButtonContainer, wrapActionButtonContainerProps] =
+    getOverrides(
+      overrides.WrapActionButtonContainer,
+      StyledWrapActionButtonContainer,
+    );
 
   const prevFocusRef = React.useRef(null);
   const actionButtonRef = React.useRef(null);
@@ -141,7 +141,6 @@ export default function SnackbarElement({
     if (__BROWSER__) {
       if (focus && actionButtonRef.current) {
         prevFocusRef.current = document.activeElement;
-        // $FlowFixMe
         actionButtonRef.current.focus();
       }
       return () => {

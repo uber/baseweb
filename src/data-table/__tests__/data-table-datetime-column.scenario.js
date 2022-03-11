@@ -17,8 +17,8 @@ const Column = DatetimeColumn({
 
 const Filter = Column.renderFilter;
 
-const padZero = n => (n < 10 ? `0${n}` : n);
-const data = [1, 2, 3, 4, 5, 6, 7, 7, 8, 8, 9].map(i => {
+const padZero = (n) => (n < 10 ? `0${n}` : n);
+const data = [1, 2, 3, 4, 5, 6, 7, 7, 8, 8, 9].map((i) => {
   return new Date(`201${i}-04-${padZero(i)}T10:${10 + i}:30Z`);
 });
 

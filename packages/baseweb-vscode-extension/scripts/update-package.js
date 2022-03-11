@@ -13,7 +13,7 @@ const path = require('path');
 const {components} = require(path.resolve(__dirname, '../ext-src/components'));
 const packageJson = require(path.resolve(__dirname, '../package.json'));
 
-components.forEach(component => {
+components.forEach((component) => {
   // making sure there are no duplicates
   const command = `extension.baseweb.docs.${component}`;
   if (!packageJson.activationEvents.includes(`onCommand:${command}`)) {
@@ -21,7 +21,7 @@ components.forEach(component => {
   }
 
   const hasCommand =
-    packageJson.contributes.commands.filter(cmd => {
+    packageJson.contributes.commands.filter((cmd) => {
       return cmd.command === command;
     }).length !== 0;
 

@@ -25,7 +25,7 @@ export function getMapStyle(
         type: 'geojson',
         data: {
           type: 'FeatureCollection',
-          features: locations.map<GeoJSONPointFeature>(coordinates => ({
+          features: locations.map<GeoJSONPointFeature>((coordinates) => ({
             type: 'Feature',
             geometry: {type: 'Point', coordinates},
           })),

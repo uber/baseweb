@@ -8,18 +8,21 @@ LICENSE file in the root directory of this source tree.
 import {styled} from '../styles/index.js';
 import {KIND, SIZE, SHAPE} from './constants.js';
 import type {SharedStylePropsT} from './types.js';
+import type {FontT} from '../themes/types.js';
 
 export const BaseButton = styled<SharedStylePropsT>(
   'button',
   ({
     $theme,
     $size,
+    $colors,
     $kind,
     $shape,
     $isLoading,
     $isSelected,
     $disabled,
     $isFocusVisible,
+    //$FlowFixMe
   }) => ({
     display: 'inline-flex',
     // need to maintain button width while showing loading spinner
@@ -55,9 +58,15 @@ export const BaseButton = styled<SharedStylePropsT>(
     ...getFontStyles({$theme, $size}),
     ...getBorderRadiiStyles({$theme, $size, $shape}),
     ...getPaddingStyles({$theme, $size, $shape}),
-    // Kind style override
-    ...getKindStyles({$theme, $kind, $isLoading, $isSelected, $disabled}),
-    ...getShapeStyles({$theme, $shape, $size}),
+    ...getColorStyles({
+      $theme,
+      $colors,
+      $kind,
+      $isLoading,
+      $isSelected,
+      $disabled,
+    }),
+    ...getShapeStyles({$shape, $size}),
   }),
 );
 
@@ -206,7 +215,7 @@ function getBorderRadiiStyles({$theme, $size, $shape}) {
   };
 }
 
-function getFontStyles({$theme, $size}) {
+function getFontStyles({$theme, $size}): FontT {
   switch ($size) {
     case SIZE.mini:
       return $theme.typography.font150;
@@ -296,26 +305,43 @@ function getPaddingStyles({$theme, $size, $shape}) {
   }
 }
 
-type KindStylesT = {|
+type ColorStylesT = {|
   color?: string,
   backgroundColor?: string,
   ':hover'?: {
-    backgroundColor: string,
+    boxShadow?: string,
+    backgroundColor?: string,
   },
   ':focus'?: {
-    backgroundColor: string,
+    boxShadow?: string,
+    backgroundColor?: string,
   },
   ':active'?: {
-    backgroundColor: string,
+    boxShadow?: string,
+    backgroundColor?: string,
   },
 |};
-function getKindStyles({
+function getColorStyles({
   $theme,
+  $colors,
   $isLoading,
   $isSelected,
   $kind,
   $disabled,
-}): KindStylesT {
+}): ColorStylesT {
+  if ($colors) {
+    return {
+      color: $colors.color,
+      backgroundColor: $colors.backgroundColor,
+      ':hover': {
+        boxShadow: 'inset 999px 999px 0px rgba(0, 0, 0, 0.04)',
+      },
+      ':active': {
+        boxShadow: 'inset 999px 999px 0px rgba(0, 0, 0, 0.08)',
+      },
+    };
+  }
+
   if ($disabled) {
     return Object.freeze({});
   }
@@ -382,7 +408,14 @@ function getKindStyles({
   }
 }
 
-function getShapeStyles({$theme, $shape, $size}) {
+function getShapeStyles({$shape, $size}): {
+  height?: string,
+  width?: string,
+  paddingTop?: number,
+  paddingBottom?: number,
+  paddingLeft?: number,
+  paddingRight?: number,
+} {
   if ($shape === SHAPE.circle || $shape === SHAPE.square) {
     let height, width;
     switch ($size) {

@@ -8,8 +8,13 @@ LICENSE file in the root directory of this source tree.
 
 import type {ResponsiveT, CSSLengthUnitT} from '../layout-grid/types.js';
 
-type Globals = '-moz-initial' | 'inherit' | 'initial' | 'revert' | 'unset';
-type LineStyle =
+export type Globals =
+  | '-moz-initial'
+  | 'inherit'
+  | 'initial'
+  | 'revert'
+  | 'unset';
+export type LineStyle =
   | 'dashed'
   | 'dotted'
   | 'double'

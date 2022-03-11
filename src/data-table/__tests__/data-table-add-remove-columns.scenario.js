@@ -26,13 +26,13 @@ export function Scenario() {
     <div>
       <button
         data-testid="add"
-        onClick={() => setColumns(prev => [...prev, getColumn(prev.length)])}
+        onClick={() => setColumns((prev) => [...prev, getColumn(prev.length)])}
       >
         Add Column
       </button>
       <button
         data-testid="remove"
-        onClick={() => setColumns(prev => prev.slice(0, -1))}
+        onClick={() => setColumns((prev) => prev.slice(0, -1))}
       >
         Remove Column
       </button>

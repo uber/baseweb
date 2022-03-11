@@ -10,7 +10,7 @@ import {render, getByRole, getByText} from '@testing-library/react';
 
 import {ProgressBar} from '../index.js';
 
-describe('Stateless progress bar', function() {
+describe('Stateless progress bar', function () {
   it('should render component', () => {
     const {container} = render(<ProgressBar value={75} />);
     getByRole(container, 'progressbar');

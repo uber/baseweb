@@ -81,7 +81,7 @@ describe('setItemActive', () => {
       {label: 'two', info: {id: 2}},
     ];
     const nextActive = items[0];
-    const getId = item => (item.info ? item.info.id : item.label);
+    const getId = (item) => (item.info ? item.info.id : item.label);
     const nextItems = setItemActive(items, nextActive, getId);
 
     expect(nextItems[0].active).toBe(true);

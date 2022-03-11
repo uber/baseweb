@@ -36,7 +36,7 @@ async function run() {
   const filepaths = glob.sync('**/*.js', {cwd: src, ignore});
 
   const sourceCodes = await Promise.all(
-    filepaths.map(async filepath => {
+    filepaths.map(async (filepath) => {
       const fullPath = path.resolve(src, filepath);
       const sourceCode = await fs.readFile(fullPath, 'utf-8');
       return `${sourceCode}

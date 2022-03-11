@@ -18,7 +18,7 @@ import {Drawer, CLOSE_SOURCE} from '../index.js';
 
 jest.mock('../../layer/index.js', () => {
   return {
-    Layer: jest.fn().mockImplementation(props => {
+    Layer: jest.fn().mockImplementation((props) => {
       return props.children;
     }),
   };

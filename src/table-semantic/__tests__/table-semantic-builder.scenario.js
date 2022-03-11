@@ -156,7 +156,7 @@ export function Scenario() {
 
   function handleSort(id) {
     if (id === sortColumn) {
-      setSortAsc(asc => !asc);
+      setSortAsc((asc) => !asc);
     } else {
       setSortColumn(id);
       setSortAsc(true);
@@ -171,10 +171,10 @@ export function Scenario() {
       onSort={handleSort}
     >
       <TableBuilderColumn id="bar" header="Produce" sortable>
-        {row => <a href={row.url}>{row.bar}</a>}
+        {(row) => <a href={row.url}>{row.bar}</a>}
       </TableBuilderColumn>
       <TableBuilderColumn id="foo" header="Quantity" numeric sortable>
-        {row => row.foo}
+        {(row) => row.foo}
       </TableBuilderColumn>
     </TableBuilder>
   );

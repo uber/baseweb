@@ -18,7 +18,7 @@ export function Scenario() {
   return (
     <div>
       <div>
-        <button onClick={() => setDisplayImage(prev => !prev)}>
+        <button onClick={() => setDisplayImage((prev) => !prev)}>
           toggle image
         </button>
       </div>

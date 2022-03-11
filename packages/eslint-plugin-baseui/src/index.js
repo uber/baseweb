@@ -11,6 +11,7 @@ const DeprecatedThemeAPI = require('./deprecated-theme-api.js');
 const DeprecatedComponentAPI = require('./deprecated-component-api.js');
 const NoDeepImports = require('./no-deep-imports.js');
 const NoBlockStyle = require('./no-block-style.js');
+const NoComponentClassname = require('./no-component-classname.js');
 
 module.exports = {
   rules: {
@@ -18,6 +19,7 @@ module.exports = {
     'deprecated-component-api': DeprecatedComponentAPI,
     'no-deep-imports': NoDeepImports,
     'no-block-style': NoBlockStyle,
+    'no-component-classname': NoComponentClassname,
   },
   configs: {
     recommended: {
@@ -27,6 +29,7 @@ module.exports = {
         'baseui/deprecated-component-api': ['warn'],
         'baseui/no-deep-imports': ['warn'],
         'baseui/no-block-style': ['warn'],
+        'baseui/no-component-classname': ['warn'],
       },
     },
   },

@@ -148,7 +148,7 @@ function updateTypographyComponentImports(path) {
 }
 
 async function codemod(options: {dir: string}) {
-  await withJsFiles(`${options.dir}/**/*.js`, async path => {
+  await withJsFiles(`${options.dir}/**/*.js`, async (path) => {
     updateCaptionColorAttributes(path);
     updateFontAttributes(path);
     updateTypographyComponents(path);

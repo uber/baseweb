@@ -56,8 +56,8 @@ function AnchorCell(props) {
 function AnchorColumn(options: OptionsT): AnchorColumnT {
   return Column({
     kind: COLUMNS.ANCHOR,
-    buildFilter: function(params) {
-      return function(data) {
+    buildFilter: function (params) {
+      return function (data) {
         return true;
       };
     },
@@ -72,7 +72,7 @@ function AnchorColumn(options: OptionsT): AnchorColumnT {
     },
     renderFilter: AnchorFilter,
     sortable: options.sortable === undefined ? true : options.sortable,
-    sortFn: function(a, b) {
+    sortFn: function (a, b) {
       return a.content.localeCompare(b.content);
     },
     title: options.title,

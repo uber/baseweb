@@ -10,8 +10,8 @@ import {render} from '@testing-library/react';
 
 import AutosizeInput from '../autosize-input.js';
 
-describe('AutosizeInput component', function() {
-  it('renders correctly', function() {
+describe('AutosizeInput component', function () {
+  it('renders correctly', function () {
     const {container} = render(
       // $FlowFixMe
       <AutosizeInput value="test" onChange={jest.fn()} />,

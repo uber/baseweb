@@ -36,7 +36,7 @@ describe('Datepicker, Range with Locked Behavior', () => {
     await page.keyboard.press('Escape');
     const [startDateValue, endDateValue] = await page.$$eval(
       selectors.input,
-      inputs => inputs.map(input => input.value),
+      (inputs) => inputs.map((input) => input.value),
     );
     expect(endDateValue).toBe('2019/03/28');
     expect(startDateValue).toBe('    /  /  ');
@@ -48,7 +48,7 @@ describe('Datepicker, Range with Locked Behavior', () => {
     await page.keyboard.press('Escape');
     const [startDateValue2, endDateValue2] = await page.$$eval(
       selectors.input,
-      inputs => inputs.map(input => input.value),
+      (inputs) => inputs.map((input) => input.value),
     );
     expect(startDateValue2).toBe('2019/03/10');
     expect(endDateValue2).toBe('2019/03/28');
@@ -60,7 +60,7 @@ describe('Datepicker, Range with Locked Behavior', () => {
     await page.keyboard.press('Escape');
     const [startDateValue3, endDateValue3] = await page.$$eval(
       selectors.input,
-      inputs => inputs.map(input => input.value),
+      (inputs) => inputs.map((input) => input.value),
     );
     expect(startDateValue3).toBe('2019/03/10');
     expect(endDateValue3).toBe('2019/03/28');
@@ -72,7 +72,7 @@ describe('Datepicker, Range with Locked Behavior', () => {
     await page.keyboard.press('Escape');
     const [startDateValue4, endDateValue4] = await page.$$eval(
       selectors.input,
-      inputs => inputs.map(input => input.value),
+      (inputs) => inputs.map((input) => input.value),
     );
     expect(startDateValue4).toBe('2019/03/10');
     expect(endDateValue4).toBe('2019/03/26');
@@ -90,7 +90,7 @@ describe('Datepicker, Range with Locked Behavior', () => {
     await page.keyboard.press('Escape');
     const startDateValue1 = await page.$eval(
       selectors.multiMonthInputs,
-      input => input.value,
+      (input) => input.value,
     );
     expect(startDateValue1).toBe('2019/03/08');
 
@@ -101,7 +101,7 @@ describe('Datepicker, Range with Locked Behavior', () => {
     await page.keyboard.press('Escape');
     const [startDateValue2, endDateValue2] = await page.$$eval(
       selectors.multiMonthInputs,
-      inputs => inputs.map(input => input.value),
+      (inputs) => inputs.map((input) => input.value),
     );
     expect(startDateValue2).toBe('2019/03/10');
     expect(endDateValue2).toBe('');
@@ -113,7 +113,7 @@ describe('Datepicker, Range with Locked Behavior', () => {
     await page.keyboard.press('Escape');
     const [startDateValue3, endDateValue3] = await page.$$eval(
       selectors.multiMonthInputs,
-      inputs => inputs.map(input => input.value),
+      (inputs) => inputs.map((input) => input.value),
     );
     expect(startDateValue3).toBe('2019/03/10');
     expect(endDateValue3).toBe('');
@@ -125,7 +125,7 @@ describe('Datepicker, Range with Locked Behavior', () => {
     await page.keyboard.press('Escape');
     const [startDateValue4, endDateValue4] = await page.$$eval(
       selectors.multiMonthInputs,
-      inputs => inputs.map(input => input.value),
+      (inputs) => inputs.map((input) => input.value),
     );
     expect(startDateValue4).toBe('2019/03/10');
     expect(endDateValue4).toBe('2019/04/01');
@@ -147,7 +147,7 @@ describe('Datepicker, Range with Locked Behavior', () => {
     await page.keyboard.press('Enter');
     let startTimeValue1 = await page.$$eval(
       `${selectors.timeSelect} ${selectors.timeSelectValue}`,
-      selects => selects[0].textContent,
+      (selects) => selects[0].textContent,
     );
     expect(startTimeValue1).toBe('12:30 AM');
 
@@ -158,7 +158,7 @@ describe('Datepicker, Range with Locked Behavior', () => {
     await page.keyboard.press('Escape');
     const startDateValue1 = await page.$eval(
       selectors.input,
-      input => input.value,
+      (input) => input.value,
     );
     expect(startDateValue1).toBe('2019/03/10');
 
@@ -169,7 +169,7 @@ describe('Datepicker, Range with Locked Behavior', () => {
     await page.keyboard.press('Escape');
     const [startDateValue2, endDateValue2] = await page.$$eval(
       selectors.input,
-      inputs => inputs.map(input => input.value),
+      (inputs) => inputs.map((input) => input.value),
     );
     expect(startDateValue2).toBe('2019/03/10');
     expect(endDateValue2).toBe('2019/03/28');
@@ -196,12 +196,12 @@ describe('Datepicker, Range with Locked Behavior', () => {
     await page.waitForSelector(selectors.timeSelect);
     const startTimeValue2 = await page.$$eval(
       `${selectors.timeSelect} ${selectors.timeSelectValue}`,
-      selects => selects[0].textContent,
+      (selects) => selects[0].textContent,
     );
     expect(startTimeValue2).toBe('12:30 AM');
     const endTimeValue = await page.$$eval(
       `${selectors.timeSelect} ${selectors.timeSelectValue}`,
-      selects => selects[1].textContent,
+      (selects) => selects[1].textContent,
     );
     expect(endTimeValue).toBe('4:30 AM');
   });

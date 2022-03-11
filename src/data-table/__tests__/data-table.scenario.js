@@ -40,10 +40,8 @@ type RowDataT = [
 // https://gist.github.com/6174/6062387
 function pseudoRandomString(rowIdx, columnIdx) {
   return (
-    (0.88 * rowIdx)
-      .toString(36)
-      .replace('.', '')
-      .substring(2) + (0.99 * columnIdx).toString(36).replace('.', '')
+    (0.88 * rowIdx).toString(36).replace('.', '').substring(2) +
+    (0.99 * columnIdx).toString(36).replace('.', '')
   ).slice(0, 10);
 }
 
@@ -118,7 +116,7 @@ export const columns = [
 
   NumericalColumn({
     title: 'neg std',
-    highlight: n => n < 0,
+    highlight: (n) => n < 0,
     minWidth: 90,
     mapDataToValue: (data: RowDataT) => data[2],
   }),
@@ -184,7 +182,7 @@ export const columns = [
       return (
         <div>
           <ul>
-            {Array.from(colors).map(color => {
+            {Array.from(colors).map((color) => {
               return (
                 <li key={color} className={css({backgroundColor: color})}>
                   <input
@@ -220,12 +218,12 @@ export const columns = [
         </div>
       );
     },
-    buildFilter: function(params) {
-      return function(data) {
+    buildFilter: function (params) {
+      return function (data) {
         return params.selection.has(data.color);
       };
     },
-    sortFn: function(a, b) {
+    sortFn: function (a, b) {
       return a.color.localeCompare(b.color);
     },
   }),

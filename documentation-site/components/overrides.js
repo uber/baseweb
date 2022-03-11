@@ -13,15 +13,15 @@ import {Radio, RadioGroup} from 'baseui/radio';
 import {DocLink} from './markdown-elements';
 import {trackEvent} from '../helpers/ga';
 
-const isStyledExport = exportName => exportName.startsWith('Styled');
-const getOverrideName = exportName => exportName.replace('Styled', '');
+const isStyledExport = (exportName) => exportName.startsWith('Styled');
+const getOverrideName = (exportName) => exportName.replace('Styled', '');
 const getOverrides = (component, blacklisted, whitelisted) => {
   if (whitelisted) return whitelisted.sort();
   return component
     ? Object.keys(component)
         .filter(isStyledExport)
         .map(getOverrideName)
-        .filter(key => !blacklisted.includes(key))
+        .filter((key) => !blacklisted.includes(key))
         .sort()
     : [];
 };
@@ -59,12 +59,12 @@ class Overrides extends React.Component {
         <RadioGroup
           name="highlight an override"
           value={this.state.highlighted}
-          onChange={e => {
+          onChange={(e) => {
             this.setState({highlighted: e.target.value});
             trackEvent('overrides_inspector', `${name}:${e.target.value}`);
           }}
         >
-          {overrides.map(override => (
+          {overrides.map((override) => (
             <Radio key={override} value={override}>
               {override}
             </Radio>

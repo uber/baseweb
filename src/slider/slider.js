@@ -50,7 +50,7 @@ function Slider({
   max = 100,
   step = 1,
   persistentThumb = false,
-  valueToLabel = label => label,
+  valueToLabel = (label) => label,
   value: providedValue,
 }: PropsT) {
   const theme = React.useContext(ThemeContext);
@@ -123,8 +123,8 @@ function Slider({
         max={max}
         values={value}
         disabled={disabled}
-        onChange={value => onChange({value})}
-        onFinalChange={value => onFinalChange({value})}
+        onChange={(value) => onChange({value})}
+        onFinalChange={(value) => onFinalChange({value})}
         rtl={theme.direction === 'rtl'}
         renderTrack={({props, children, isDragged}) => (
           <Track

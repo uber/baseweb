@@ -15,7 +15,7 @@ type RowDataT = [string, number];
 
 const randGen = randomLcg(42);
 
-const genColumns = count => {
+const genColumns = (count) => {
   return new Array(count).fill(false).map((x, i) => {
     const index = i % 2;
     return index === 0
@@ -34,7 +34,7 @@ const genColumns = count => {
   });
 };
 
-const genRows = count => {
+const genRows = (count) => {
   return new Array(count).fill(false).map((x, i) => {
     return {
       id: i,

@@ -15,10 +15,10 @@ import ChevronRight from '../icon/chevron-right.js';
 import ChevronLeft from '../icon/chevron-left.js';
 import type {BreadcrumbsPropsT} from './types.js';
 import {
-  StyledRoot,
-  StyledSeparator,
   StyledList,
   StyledListItem,
+  StyledRoot,
+  StyledSeparator,
 } from './styled-components.js';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 
@@ -40,13 +40,10 @@ export function Breadcrumbs(props: BreadcrumbsPropsT) {
     StyledSeparator,
   );
 
-  const iconOverrides = mergeOverrides(
+  baseIconProps.overrides = mergeOverrides(
     {Svg: {style: {verticalAlign: 'text-bottom'}}},
-    // $FlowFixMe
     baseIconProps && baseIconProps.overrides,
   );
-  // $FlowFixMe
-  baseIconProps.overrides = iconOverrides;
 
   childrenArray.forEach((child, index) => {
     childrenWithSeparators.push(
@@ -59,7 +56,7 @@ export function Breadcrumbs(props: BreadcrumbsPropsT) {
         {(showTrailingSeparator || index !== childrenArray.length - 1) && (
           <Separator {...baseSeparatorProps} key={`separator-${index}`}>
             <ThemeContext.Consumer>
-              {theme =>
+              {(theme) =>
                 theme.direction === 'rtl' ? (
                   <Left {...baseIconProps} />
                 ) : (
@@ -75,7 +72,7 @@ export function Breadcrumbs(props: BreadcrumbsPropsT) {
 
   return (
     <LocaleContext.Consumer>
-      {locale => (
+      {(locale) => (
         <Root
           aria-label={
             props['aria-label'] ||

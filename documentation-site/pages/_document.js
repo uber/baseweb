@@ -17,7 +17,7 @@ import {GA_ID} from '../helpers/ga';
 
 export default class MyDocument extends Document {
   static getInitialProps(props) {
-    const page = props.renderPage(App => props => (
+    const page = props.renderPage((App) => (props) => (
       <StyletronProvider value={styletron}>
         <App {...props} />
       </StyletronProvider>

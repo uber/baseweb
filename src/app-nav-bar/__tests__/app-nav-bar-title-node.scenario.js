@@ -18,7 +18,7 @@ export function Scenario() {
   const [mainItems, setMainItems] = React.useState([{label: 'label'}]);
 
   function handleMainItemSelect(item) {
-    setMainItems(prev => setItemActive(prev, item));
+    setMainItems((prev) => setItemActive(prev, item));
   }
 
   return (

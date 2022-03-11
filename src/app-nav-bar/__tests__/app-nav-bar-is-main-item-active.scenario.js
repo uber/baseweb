@@ -35,12 +35,12 @@ export function Scenario() {
   const [activeLabel, setActiveLabel] = React.useState('Secondary A');
 
   const handleMainItemSelect = React.useCallback(
-    item => setActiveLabel(item.label),
+    (item) => setActiveLabel(item.label),
     [],
   );
 
   const isMainItemActive = React.useCallback(
-    item => item.label === activeLabel,
+    (item) => item.label === activeLabel,
     [activeLabel],
   );
 
@@ -50,7 +50,7 @@ export function Scenario() {
       mainItems={mainItems}
       userItems={userItems}
       onMainItemSelect={handleMainItemSelect}
-      onUserItemSelect={item => console.log('user', item)}
+      onUserItemSelect={(item) => console.log('user', item)}
       username="Umka Marshmallow"
       usernameSubtitle="5.0"
       userImgUrl=""

@@ -166,7 +166,7 @@ function clampArrowStyle(
   }
 }
 
-export const StyledBody = styled<SharedStylePropsArgT>('div', props => {
+export const StyledBody = styled<SharedStylePropsArgT>('div', (props) => {
   return {
     ...getBodyStyles(props),
     ...getPopoverMarginStyles(
@@ -178,7 +178,7 @@ export const StyledBody = styled<SharedStylePropsArgT>('div', props => {
   };
 });
 
-export const StyledArrow = styled<SharedStylePropsArgT>('div', props => {
+export const StyledArrow = styled<SharedStylePropsArgT>('div', (props) => {
   return {
     ...clampArrowStyle(
       props.$arrowOffset,

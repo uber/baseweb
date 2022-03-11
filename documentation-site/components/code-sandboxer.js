@@ -55,6 +55,7 @@ export async function deploy(
           'src/index.js': {content: index},
           'src/example.js': {content: source},
         },
+        //$FlowExpectedError[cannot-spread-indexer]
         deps: {
           baseui: 'latest',
           react: 'latest',

@@ -36,7 +36,7 @@ export function Scenario() {
             }),
 
             getProfileItemImg: () => {},
-            getProfileItemImgText: item => item.title,
+            getProfileItemImgText: (item) => item.title,
           },
         },
       }}

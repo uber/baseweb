@@ -197,7 +197,7 @@ class BaseInput<T: EventTarget> extends React.Component<
         $size={this.props.size}
         $isFocusVisible={this.state.isFocusVisibleForMaskToggle}
         aria-label={label}
-        onClick={() => this.setState(state => ({isMasked: !state.isMasked}))}
+        onClick={() => this.setState((state) => ({isMasked: !state.isMasked}))}
         title={label}
         type="button"
         {...maskToggleButtonProps}
@@ -275,7 +275,7 @@ class BaseInput<T: EventTarget> extends React.Component<
           title={ariaLabel}
           aria-label={ariaLabel}
           onClick={this.onClearIconClick}
-          onKeyDown={event => {
+          onKeyDown={(event) => {
             if (event.key && (event.key === 'Enter' || event.key === ' ')) {
               event.preventDefault();
               this.onClearIconClick();

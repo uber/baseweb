@@ -11,7 +11,7 @@ import {StatefulTreeView, TreeLabelInteractable} from '../index.js';
 import {Select} from '../../select/index.js';
 import {Checkbox} from '../../checkbox/index.js';
 
-const LabelSelect = node => {
+const LabelSelect = (node) => {
   const [value, setValue] = React.useState();
   return (
     <TreeLabelInteractable>
@@ -34,11 +34,11 @@ const LabelSelect = node => {
   );
 };
 
-const LabelCheckbox = node => {
+const LabelCheckbox = (node) => {
   const [value, setValue] = React.useState();
   return (
     <TreeLabelInteractable>
-      <Checkbox checked={value} onChange={e => setValue(e.target.checked)}>
+      <Checkbox checked={value} onChange={(e) => setValue(e.target.checked)}>
         Grandchild 2
       </Checkbox>
     </TreeLabelInteractable>

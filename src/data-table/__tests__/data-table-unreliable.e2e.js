@@ -33,8 +33,8 @@ describe('data table columns', () => {
     let popover = await openFilterAtIndex(page, index);
     const checkbox = await popover.$('label[data-baseweb="checkbox"]');
     await checkbox.click();
-    await popover.$$eval('button', items => {
-      const button = items.find(item => item.textContent === 'Apply');
+    await popover.$$eval('button', (items) => {
+      const button = items.find((item) => item.textContent === 'Apply');
       return button.click();
     });
 
@@ -53,8 +53,8 @@ describe('data table columns', () => {
     // filter to be applied with both categories. added to separate suite with retries
     await checkboxes[0].click();
     await checkboxes[1].click();
-    await popover.$$eval('button', items => {
-      const button = items.find(item => item.textContent === 'Apply');
+    await popover.$$eval('button', (items) => {
+      const button = items.find((item) => item.textContent === 'Apply');
       return button.click();
     });
     await page.waitForSelector('div[data-baseweb="popover"]', {hidden: true});

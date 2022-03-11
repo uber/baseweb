@@ -44,7 +44,7 @@ const PinHead = ({
 
   overrides = {},
 }: PinHeadPropsT) => {
-  const activeElements = [label, StartEnhancer, EndEnhancer].filter(x => x);
+  const activeElements = [label, StartEnhancer, EndEnhancer].filter((x) => x);
   const gridTemplateColumns = activeElements.map(() => 'auto').join(' ');
   const forceCircle = activeElements.length === 1 && !label;
   const {height, icon} = PINHEAD_DIMENSIONS[size];

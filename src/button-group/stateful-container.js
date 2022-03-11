@@ -76,7 +76,7 @@ export default class StatefulContainer extends React.Component<
         this.changeState({selected: [...this.state.selected, index]});
       } else {
         this.changeState({
-          selected: this.state.selected.filter(value => value !== index),
+          selected: this.state.selected.filter((value) => value !== index),
         });
       }
     }

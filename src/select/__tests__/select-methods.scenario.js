@@ -51,7 +51,7 @@ export function Scenario() {
         methodsRef={methodsRef}
         options={options}
         value={value}
-        onChange={params => setValue(params.value)}
+        onChange={(params) => setValue(params.value)}
       />
     </div>
   );

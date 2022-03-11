@@ -63,7 +63,7 @@ Example:
 
 Codemods:
 ${Object.keys(MODS)
-  .map(m => `  ${m}`)
+  .map((m) => `  ${m}`)
   .join(`\n`)}`,
   )
   .epilogue(
@@ -106,7 +106,7 @@ if (!mod || !Object.keys(MODS).includes(mod)) {
     )} Must specify a valid codemod to run with the "--mod" argument. Here are the currently available mods:${Object.keys(
       MODS,
     )
-      .map(m => `\n  --mod=${m}`)
+      .map((m) => `\n  --mod=${m}`)
       .join('')}`,
   );
   process.exit(1);

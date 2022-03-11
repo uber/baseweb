@@ -28,9 +28,9 @@ export const StyledGridWrapper = styled<StyledGridWrapperPropsT>(
     margin: 'auto',
     maxWidth:
       $behavior === BEHAVIOR.fixed
-        ? `${$gridMaxWidth +
-            2 * getResponsiveNumber($gridMargins, Infinity) -
-            1}${$gridUnit}`
+        ? `${
+            $gridMaxWidth + 2 * getResponsiveNumber($gridMargins, Infinity) - 1
+          }${$gridUnit}`
         : null,
   }),
 );
@@ -60,10 +60,12 @@ export const StyledGrid = styled<StyledGridPropsT>(
               $gridMargins,
               idx,
             )}${$gridUnit}`,
-            marginLeft: `-${getResponsiveNumber($gridGutters, idx) /
-              2}${$gridUnit}`,
-            marginRight: `-${getResponsiveNumber($gridGutters, idx) /
-              2}${$gridUnit}`,
+            marginLeft: `-${
+              getResponsiveNumber($gridGutters, idx) / 2
+            }${$gridUnit}`,
+            marginRight: `-${
+              getResponsiveNumber($gridGutters, idx) / 2
+            }${$gridUnit}`,
             alignItems: getResponsiveValue($align, idx),
           },
         };
@@ -82,9 +84,11 @@ export const StyledGrid = styled<StyledGridPropsT>(
       flexWrap: 'wrap',
       maxWidth:
         $behavior === BEHAVIOR.fixed
-          ? `${$gridMaxWidth +
+          ? `${
+              $gridMaxWidth +
               2 * getResponsiveNumber($gridMargins, Infinity) -
-              1}${$gridUnit}`
+              1
+            }${$gridUnit}`
           : null,
       ...gridStyles,
     };
@@ -124,18 +128,23 @@ export const StyledCell = styled<StyledCellPropsT>(
           ...acc,
           [cur]: {
             display: 'block',
-            width: `calc(${(100 / getResponsiveNumber($gridColumns, idx)) *
+            width: `calc(${
+              (100 / getResponsiveNumber($gridColumns, idx)) *
               Math.min(
                 getResponsiveNumber($span, idx),
                 getResponsiveNumber($gridColumns, idx),
-              )}% - ${getResponsiveNumber($gridGutters, idx)}${$gridUnit})`,
-            marginLeft: `calc(${(100 / getResponsiveNumber($gridColumns, idx)) *
+              )
+            }% - ${getResponsiveNumber($gridGutters, idx)}${$gridUnit})`,
+            marginLeft: `calc(${
+              (100 / getResponsiveNumber($gridColumns, idx)) *
               Math.min(
                 getResponsiveNumber($skip, idx),
                 getResponsiveNumber($gridColumns, idx) - 1,
-              )}% + ${getResponsiveNumber($gridGutters, idx) / 2}${$gridUnit})`,
-            marginRight: `${getResponsiveNumber($gridGutters, idx) /
-              2}${$gridUnit}`,
+              )
+            }% + ${getResponsiveNumber($gridGutters, idx) / 2}${$gridUnit})`,
+            marginRight: `${
+              getResponsiveNumber($gridGutters, idx) / 2
+            }${$gridUnit}`,
             marginBottom: `${getResponsiveNumber($gridGaps, idx)}${$gridUnit}`,
             alignSelf: getResponsiveValue($align, idx),
             order: getResponsiveNumber($order, idx),

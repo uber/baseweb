@@ -343,6 +343,7 @@ export type BlockPropsT = {
   textOverflow?: ResponsiveT<string>,
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/white-space */
   whiteSpace?: ResponsiveT<WhiteSpaceT>,
+  src?: string,
 };
 
 export type StyledBlockPropsT = {

@@ -34,12 +34,8 @@ class NavItem extends React.Component<NavItemPropsT> {
   };
 
   render() {
-    const {
-      item,
-      overrides,
-      itemMemoizationComparator,
-      ...sharedProps
-    } = this.props;
+    const {item, overrides, itemMemoizationComparator, ...sharedProps} =
+      this.props;
 
     const [NavItem, itemProps] = getOverrides(overrides.NavItem, StyledNavItem);
     const [NavLink, linkProps] = getOverrides(overrides.NavLink, StyledNavLink);

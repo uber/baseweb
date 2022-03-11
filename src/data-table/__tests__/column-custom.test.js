@@ -68,7 +68,7 @@ describe('custom column', () => {
       title: 'column',
       filterable: true,
       renderFilter: () => null,
-      buildFilter: params => value => true,
+      buildFilter: (params) => (value) => true,
       renderCell: () => null,
       mapDataToValue: () => null,
     });

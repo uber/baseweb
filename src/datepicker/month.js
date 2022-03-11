@@ -54,7 +54,7 @@ export default class CalendarMonth<T = Date> extends React.Component<
     return this.props.date || this.dateHelpers.date();
   };
 
-  isWeekInMonth: T => boolean = startOfWeek => {
+  isWeekInMonth: (T) => boolean = (startOfWeek) => {
     const date = this.getDateProp();
     const endOfWeek = this.dateHelpers.addDays(startOfWeek, 6);
     return (

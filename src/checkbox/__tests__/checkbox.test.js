@@ -12,8 +12,8 @@ import {render, fireEvent, getByText} from '@testing-library/react';
 
 import {Checkbox} from '../index.js';
 
-describe('Stateless checkbox', function() {
-  it('renders provided label', function() {
+describe('Stateless checkbox', function () {
+  it('renders provided label', function () {
     const {container} = render(<Checkbox>label</Checkbox>);
     getByText(container, 'label');
   });

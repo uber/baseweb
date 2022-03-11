@@ -45,7 +45,8 @@ export default function PhoneInputLite(props: LitePropsT) {
   const baseDialCodeOverride = {
     component: StyledDialCode,
     style: ({$theme: {direction, sizing}}) => {
-      const marginDir = direction === 'rtl' ? 'marginRight' : 'marginLeft';
+      const marginDir: string =
+        direction === 'rtl' ? 'marginRight' : 'marginLeft';
       return {
         [marginDir]: sizing.scale600,
       };
@@ -60,7 +61,8 @@ export default function PhoneInputLite(props: LitePropsT) {
   const baseOverrides = {
     Input: {
       style: ({$theme: {direction, sizing}}) => {
-        const paddingDir = direction === 'rtl' ? 'paddingRight' : 'paddingLeft';
+        const paddingDir: string =
+          direction === 'rtl' ? 'paddingRight' : 'paddingLeft';
         return {
           [paddingDir]: sizing.scale100,
         };
@@ -70,7 +72,6 @@ export default function PhoneInputLite(props: LitePropsT) {
   };
   const [Root, rootProps] = getOverrides(overrides.Root, StyledPhoneInputRoot);
   const [Input, inputProps] = getOverrides(overrides.Input, DefaultInput);
-  // $FlowFixMe
   inputProps.overrides = mergeOverrides(baseOverrides, inputProps.overrides);
   return (
     <Root {...rootProps} data-baseweb="phone-input">

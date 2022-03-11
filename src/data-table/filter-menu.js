@@ -45,9 +45,9 @@ type OptionsPropsT = {
   columns: ColumnT<>[],
   highlightIndex: number,
   onClick: (ColumnT<>) => void,
-  onKeyDown: KeyboardEvent => void,
-  onMouseEnter: number => void,
-  onQueryChange: string => void,
+  onKeyDown: (KeyboardEvent) => void,
+  onMouseEnter: (number) => void,
+  onQueryChange: (string) => void,
   query: string,
   searchable: boolean,
 };
@@ -64,7 +64,7 @@ function Options(props: OptionsPropsT) {
 
   const [focusVisible, setFocusVisible] = React.useState(false);
   const seed = useUIDSeed();
-  const buiRef = React.useRef(props.columns.map(col => seed(col)));
+  const buiRef = React.useRef(props.columns.map((col) => seed(col)));
 
   const handleFocus = (event: SyntheticEvent<>) => {
     if (isFocusVisible(event)) {
@@ -110,7 +110,7 @@ function Options(props: OptionsPropsT) {
           <Input
             inputRef={inputRef}
             value={props.query}
-            onChange={event => props.onQueryChange(event.target.value)}
+            onChange={(event) => props.onQueryChange(event.target.value)}
             placeholder={locale.datatable.optionsSearch}
             size={INPUT_SIZE.compact}
             clearable
@@ -228,13 +228,13 @@ function FilterMenu(props: PropsT) {
   }, []);
 
   const filterableColumns = React.useMemo(() => {
-    return props.columns.filter(column => {
+    return props.columns.filter((column) => {
       return column.filterable && !props.filters.has(column.title);
     });
   }, [props.columns, props.filters]);
 
   const columns = React.useMemo(() => {
-    return filterableColumns.filter(column =>
+    return filterableColumns.filter((column) =>
       matchesQuery(column.title, query),
     );
   }, [filterableColumns, query]);
@@ -245,9 +245,9 @@ function FilterMenu(props: PropsT) {
   }, [activeColumn]);
 
   const activeColumnData = React.useMemo(() => {
-    const columnIndex = props.columns.findIndex(c => c === activeColumn);
+    const columnIndex = props.columns.findIndex((c) => c === activeColumn);
     if (columnIndex < 0) return [];
-    return props.rows.map(row =>
+    return props.rows.map((row) =>
       props.columns[columnIndex].mapDataToValue(row.data),
     );
   }, [props.columns, props.rows, activeColumn]);
@@ -282,7 +282,7 @@ function FilterMenu(props: PropsT) {
             <Filter
               data={activeColumnData}
               close={handleClose}
-              setFilter={filterParams =>
+              setFilter={(filterParams) =>
                 props.onSetFilter(activeColumn.title, filterParams)
               }
             />

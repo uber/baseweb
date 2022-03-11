@@ -20,7 +20,7 @@ function StatefulPopover(props: StatefulPopoverPropsT) {
   const {children, ...restProps} = props;
   return (
     <StatefulContainer {...restProps}>
-      {popoverProps => <Popover {...popoverProps}>{children}</Popover>}
+      {(popoverProps) => <Popover {...popoverProps}>{children}</Popover>}
     </StatefulContainer>
   );
 }

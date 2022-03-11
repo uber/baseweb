@@ -90,7 +90,7 @@ class PaymentCard extends React.Component<PaymentCardPropsT> {
       type = validatedValue.card.type;
     }
 
-    const getBeforeComponent = theme => {
+    const getBeforeComponent = (theme) => {
       const iconSize = {
         [SIZE.mini]: theme.sizing.scale600,
         [SIZE.compact]: theme.sizing.scale800,
@@ -111,7 +111,8 @@ class PaymentCard extends React.Component<PaymentCardPropsT> {
 
     return (
       <ThemeContext.Consumer>
-        {theme => (
+        {(theme) => (
+          //$FlowExpectedError[cannot-spread-inexact]
           <Input
             size={size}
             aria-label={ariaLabel}
@@ -121,7 +122,7 @@ class PaymentCard extends React.Component<PaymentCardPropsT> {
               ...restOverrides,
               Before: getBeforeComponent(theme),
             })}
-            onChange={e => {
+            onChange={(e) => {
               const [position, value] = getCaretPosition(
                 e.target.value,
                 this.props.value ? String(this.props.value) : '',

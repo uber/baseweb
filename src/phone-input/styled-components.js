@@ -42,7 +42,7 @@ export const StyledFlagContainer = styled<SizeStyleProps>(
 // An override component for the Select's Root styled element
 export const StyledRoot = withStyle<typeof SelectStyledRoot, SizeStyleProps>(
   SelectStyledRoot,
-  props => {
+  (props) => {
     // hard coded widths for the flag dropdown anchor
     const sizeToWidth = {
       [SIZE.mini]: '50px',
@@ -61,7 +61,8 @@ export const StyledRoot = withStyle<typeof SelectStyledRoot, SizeStyleProps>(
 export const StyledDialCode = styled<{}>(
   'div',
   ({$theme: {direction, sizing}}) => {
-    const marginDir = direction === 'rtl' ? 'marginRight' : 'marginLeft';
+    const marginDir: string =
+      direction === 'rtl' ? 'marginRight' : 'marginLeft';
     return {
       [marginDir]: sizing.scale100,
       display: 'flex',
@@ -78,7 +79,7 @@ export const StyledCountrySelectContainer = styled('div', {
 export const StyledCountrySelectDropdownContainer = withStyle<
   typeof StyledList,
   HeightStyleProps,
->(StyledList, props => {
+>(StyledList, (props) => {
   const {$height = defaultProps.maxDropdownHeight} = props;
   return {
     height: $height,
@@ -101,7 +102,7 @@ export const StyledCountrySelectDropdownListItemElement = withStyle<
 
 export const StyledCountrySelectDropdownListItem = withWrapper(
   StyledCountrySelectDropdownListItemElement,
-  Styled =>
+  (Styled) =>
     function StyledCountrySelectDropdownListItem({item, ...restProps}) {
       return <Styled {...restProps} />;
     },
@@ -110,7 +111,8 @@ export const StyledCountrySelectDropdownListItem = withWrapper(
 export const StyledCountrySelectDropdownFlagColumn = styled<{}>(
   'div',
   ({$theme: {direction, sizing}}) => {
-    const paddingDir = direction === 'rtl' ? 'paddingRight' : 'paddingLeft';
+    const paddingDir: string =
+      direction === 'rtl' ? 'paddingRight' : 'paddingLeft';
     return {
       [paddingDir]: sizing.scale600,
       display: 'flex',
@@ -122,7 +124,8 @@ export const StyledCountrySelectDropdownFlagColumn = styled<{}>(
 export const StyledCountrySelectDropdownNameColumn = styled<{}>(
   'div',
   ({$theme: {direction, sizing}}) => {
-    const paddingDir = direction === 'rtl' ? 'paddingRight' : 'paddingLeft';
+    const paddingDir: string =
+      direction === 'rtl' ? 'paddingRight' : 'paddingLeft';
     return {
       [paddingDir]: sizing.scale600,
     };
@@ -132,8 +135,10 @@ export const StyledCountrySelectDropdownNameColumn = styled<{}>(
 export const StyledCountrySelectDropdownDialcodeColumn = styled<{}>(
   'div',
   ({$theme: {direction, sizing}}) => {
-    const paddingDir = direction === 'rtl' ? 'paddingLeft' : 'paddingRight';
-    const marginDir = direction === 'rtl' ? 'marginRight' : 'marginLeft';
+    const paddingDir: string =
+      direction === 'rtl' ? 'paddingLeft' : 'paddingRight';
+    const marginDir: string =
+      direction === 'rtl' ? 'marginRight' : 'marginLeft';
     return {
       [paddingDir]: sizing.scale600,
       [marginDir]: 'auto',

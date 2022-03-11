@@ -21,7 +21,7 @@ export function Scenario() {
         <Input
           size={SIZE.compact}
           value={value}
-          onChange={e => setValue(e.target.value)}
+          onChange={(e) => setValue(e.target.value)}
         />
       </FormControl>
       <FormControl
@@ -33,7 +33,7 @@ export function Scenario() {
           size={SIZE.compact}
           value={value}
           maxLength={40}
-          onChange={e => setValue(e.target.value)}
+          onChange={(e) => setValue(e.target.value)}
         />
       </FormControl>
       <FormControl
@@ -44,7 +44,7 @@ export function Scenario() {
         <Textarea
           value={value}
           maxLength={40}
-          onChange={e => setValue(e.target.value)}
+          onChange={(e) => setValue(e.target.value)}
         />
       </FormControl>
       <FormControl
@@ -55,7 +55,7 @@ export function Scenario() {
         <Input
           size={SIZE.compact}
           value={value}
-          onChange={e => setValue(e.target.value)}
+          onChange={(e) => setValue(e.target.value)}
         />
       </FormControl>
       <FormControl
@@ -66,7 +66,7 @@ export function Scenario() {
         <StatefulInput
           size={SIZE.compact}
           maxLength={50}
-          onChange={e => setValue(e.target.value)}
+          onChange={(e) => setValue(e.target.value)}
         />
       </FormControl>
       <FormControl
@@ -77,7 +77,7 @@ export function Scenario() {
         <StatefulInput
           size={SIZE.compact}
           maxLength={50}
-          onChange={e => setValue(e.target.value)}
+          onChange={(e) => setValue(e.target.value)}
         />
       </FormControl>
     </div>

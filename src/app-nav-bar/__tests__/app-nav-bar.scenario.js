@@ -58,7 +58,7 @@ export function Scenario() {
   ];
 
   function handleMainItemSelect(item) {
-    setMainItems(prev => setItemActive(prev, item));
+    setMainItems((prev) => setItemActive(prev, item));
   }
 
   return (
@@ -67,7 +67,7 @@ export function Scenario() {
       mainItems={mainItems}
       userItems={userItems}
       onMainItemSelect={handleMainItemSelect}
-      onUserItemSelect={item => console.log('user', item)}
+      onUserItemSelect={(item) => console.log('user', item)}
       username="Umka Marshmallow"
       usernameSubtitle="5.0"
       userImgUrl=""

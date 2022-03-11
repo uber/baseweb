@@ -11,10 +11,13 @@ import {render, getByText} from '@testing-library/react';
 import SelectDropdown from '../dropdown.js';
 import {SIZE, TYPE} from '../constants.js';
 
-const options = [{id: '1', label: 'label1'}, {id: '2', label: 'label2'}];
+const options = [
+  {id: '1', label: 'label1'},
+  {id: '2', label: 'label2'},
+];
 const value = [options[1]];
 
-describe('SelectDropdown', function() {
+describe('SelectDropdown', function () {
   it('renders provided options', () => {
     function TestCase() {
       const ref = React.useRef();

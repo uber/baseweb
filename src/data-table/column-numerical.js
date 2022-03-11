@@ -34,7 +34,7 @@ type NumericalFormats =
 type OptionsT = {|
   ...SharedColumnOptionsT<number>,
   format?: NumericalFormats | ((value: number) => string),
-  highlight?: number => boolean,
+  highlight?: (number) => boolean,
   precision?: number,
 |};
 
@@ -84,7 +84,7 @@ function validateInput(input) {
   return Boolean(parseFloat(input)) || input === '' || input === '-';
 }
 
-const bisect = bisector(d => d.x0);
+const bisect = bisector((d) => d.x0);
 
 const Histogram = React.memo(function Histogram({
   data,
@@ -105,7 +105,7 @@ const Histogram = React.memo(function Histogram({
       .clamp(true);
 
     const yScale = scaleLinear()
-      .domain([0, maxFunc(bins, d => d.length)])
+      .domain([0, maxFunc(bins, (d) => d.length)])
       .nice()
       .range([HISTOGRAM_SIZE.height, 0]);
     return {bins, xScale, yScale};
@@ -401,7 +401,7 @@ function NumericalFilter(props) {
           size={INPUT_SIZE.mini}
           overrides={{Root: {style: {width: '100%'}}}}
           value={inputValueLower}
-          onChange={event => {
+          onChange={(event) => {
             if (validateInput(event.target.value)) {
               isRange
                 ? // $FlowFixMe - we know it is a number by now
@@ -423,7 +423,7 @@ function NumericalFilter(props) {
               Root: {style: {width: '100%'}},
             }}
             value={inputValueUpper}
-            onChange={event => {
+            onChange={(event) => {
               if (validateInput(event.target.value)) {
                 // $FlowFixMe - we know it is a number by now
                 setUpper(event.target.value);
@@ -465,7 +465,7 @@ const defaultOptions = {
   sortable: true,
   filterable: true,
   format: NUMERICAL_FORMATS.DEFAULT,
-  highlight: (n => false: number => boolean),
+  highlight: ((n) => false: (number) => boolean),
   precision: 0,
 };
 
@@ -491,8 +491,8 @@ function NumericalColumn(options: OptionsT): NumericalColumnT {
 
   return Column({
     kind: COLUMNS.NUMERICAL,
-    buildFilter: function(params) {
-      return function(data) {
+    buildFilter: function (params) {
+      return function (data) {
         const value = roundToFixed(data, normalizedOptions.precision);
         const included =
           value >= params.lowerValue && value <= params.upperValue;
@@ -519,7 +519,7 @@ function NumericalColumn(options: OptionsT): NumericalColumnT {
       return <NumericalFilter {...props} options={normalizedOptions} />;
     },
     sortable: normalizedOptions.sortable,
-    sortFn: function(a, b) {
+    sortFn: function (a, b) {
       return a - b;
     },
     title: normalizedOptions.title,

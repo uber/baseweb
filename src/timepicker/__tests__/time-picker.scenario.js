@@ -36,7 +36,7 @@ const Controlled = ({
     <React.Fragment>
       <TimePicker
         value={time}
-        onChange={time => {
+        onChange={(time) => {
           setTime(time);
           onChange();
         }}
@@ -66,7 +66,7 @@ const MomentControlled = ({
       <TimePicker
         adapter={momentAdapter}
         value={time}
-        onChange={time => {
+        onChange={(time) => {
           setTime(time);
           onChange();
         }}
@@ -124,7 +124,7 @@ export function Scenario() {
         Without a value
         <TimePicker
           value={value}
-          onChange={date => setValue(date)}
+          onChange={(date) => setValue(date)}
           nullable
           placeholder="XX:YY"
         />

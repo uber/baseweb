@@ -25,7 +25,7 @@ const AnchorPositionExample = () => {
   const [index, setIndex] = React.useState(0);
   React.useEffect(() => {
     setInterval(() => {
-      setIndex(t => {
+      setIndex((t) => {
         if (t >= anchors.length - 1) {
           return 0;
         } else {

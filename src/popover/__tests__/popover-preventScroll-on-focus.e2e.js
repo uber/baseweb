@@ -59,7 +59,7 @@ describe('popover', () => {
 
     // We keep a flag to see if the page is scrolled or not after this point in the test.
     let pageScrolled = false;
-    page.once('console', msg => {
+    page.once('console', (msg) => {
       pageScrolled = msg.text() === '__PopOver_preventScroll_Page_Scrolled__';
     });
 

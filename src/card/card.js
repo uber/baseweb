@@ -31,7 +31,7 @@ const SemanticTitle = ({children, ...restProps}) => {
 
   return (
     <LevelContext.Consumer>
-      {level => (
+      {(level) => (
         <StyledTitle $as={levels[level]} {...restProps}>
           {children}
         </StyledTitle>

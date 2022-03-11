@@ -68,6 +68,7 @@ export default class Calendar<T = Date> extends React.Component<
     super(props);
 
     const {highlightedDate, value, adapter} = this.props;
+    //$FlowFixMe
     this.dateHelpers = new DateHelpers(adapter);
     const dateInView = this.getDateInView();
     let time = [];
@@ -171,14 +172,14 @@ export default class Calendar<T = Date> extends React.Component<
     return current;
   };
 
-  handleMonthChange: T => void = date => {
+  handleMonthChange: (T) => void = (date) => {
     this.setHighlightedDate(this.dateHelpers.getStartOfMonth(date));
     if (this.props.onMonthChange) {
       this.props.onMonthChange({date});
     }
   };
 
-  handleYearChange: T => void = date => {
+  handleYearChange: (T) => void = (date) => {
     this.setHighlightedDate(date);
     if (this.props.onYearChange) {
       this.props.onYearChange({date});
@@ -329,20 +330,20 @@ export default class Calendar<T = Date> extends React.Component<
     }
   };
 
-  onDayFocus: ({event: Event, date: T}) => mixed = data => {
+  onDayFocus: ({event: Event, date: T}) => mixed = (data) => {
     const {date} = data;
     this.setState({highlightedDate: date});
     this.focusCalendar();
     this.props.onDayFocus && this.props.onDayFocus(data);
   };
 
-  onDayMouseOver: ({event: Event, date: T}) => mixed = data => {
+  onDayMouseOver: ({event: Event, date: T}) => mixed = (data) => {
     const {date} = data;
     this.setState({highlightedDate: date});
     this.props.onDayMouseOver && this.props.onDayMouseOver(data);
   };
 
-  onDayMouseLeave: ({event: Event, date: T}) => mixed = data => {
+  onDayMouseLeave: ({event: Event, date: T}) => mixed = (data) => {
     const {date} = data;
     const {value} = this.props;
     const selected = this.getSingleDate(value);
@@ -352,8 +353,8 @@ export default class Calendar<T = Date> extends React.Component<
 
   /** Responsible for merging time values into date values. Note: the 'Day' component
    * determines how the days themselves change when a new day is selected. */
-  handleDateChange: ({date: DateValueT<T>}) => void = data => {
-    const {onChange = params => {}} = this.props;
+  handleDateChange: ({date: DateValueT<T>}) => void = (data) => {
+    const {onChange = (params) => {}} = this.props;
     let updatedDate = data.date;
     // We'll need to update the date in time values of internal state
     const newTimeState = [...this.state.time];
@@ -386,7 +387,7 @@ export default class Calendar<T = Date> extends React.Component<
   };
 
   handleTimeChange = (time: T, index: number) => {
-    const {onChange = params => {}} = this.props;
+    const {onChange = (params) => {}} = this.props;
     // Save/update the time value in internal state
     const newTimeState = [...this.state.time];
     newTimeState[index] = this.dateHelpers.applyTimeToDate(
@@ -448,7 +449,7 @@ export default class Calendar<T = Date> extends React.Component<
       monthSubComponents.push(
         <CalendarContainer
           key={monthKey}
-          ref={calendar => {
+          ref={(calendar) => {
             this.calendar = calendar;
           }}
           role="grid"
@@ -545,7 +546,6 @@ export default class Calendar<T = Date> extends React.Component<
     );
     const [
       QuickSelect,
-      // $FlowFixMe
       {overrides: quickSelectOverrides, ...restQuickSelectProps},
     ] = getOverrides(
       //
@@ -565,7 +565,7 @@ export default class Calendar<T = Date> extends React.Component<
 
     return (
       <LocaleContext.Consumer>
-        {locale => (
+        {(locale) => (
           <QuickSelectContainer {...quickSelectContainerProps}>
             <QuickSelectFormControl
               label={locale.datepicker.quickSelectLabel}
@@ -574,7 +574,7 @@ export default class Calendar<T = Date> extends React.Component<
               <QuickSelect
                 aria-label={locale.datepicker.quickSelectAriaLabel}
                 labelKey="id"
-                onChange={params => {
+                onChange={(params) => {
                   if (!params.option) {
                     this.setState({quickSelectId: null});
                     this.props.onChange && this.props.onChange({date: []});
@@ -659,13 +659,13 @@ export default class Calendar<T = Date> extends React.Component<
 
     return (
       <LocaleContext.Consumer>
-        {locale => (
+        {(locale) => (
           <Root
             $density={this.props.density}
             data-baseweb="calendar"
             role="application"
             aria-roledescription="datepicker"
-            ref={root => {
+            ref={(root) => {
               if (
                 root &&
                 root instanceof HTMLElement &&
@@ -687,14 +687,14 @@ export default class Calendar<T = Date> extends React.Component<
             {this.props.timeSelectStart &&
               this.renderTimeSelect(
                 startDate,
-                time => this.handleTimeChange(time, 0),
+                (time) => this.handleTimeChange(time, 0),
                 locale.datepicker.timeSelectStartLabel,
               )}
             {this.props.timeSelectEnd &&
               this.props.range &&
               this.renderTimeSelect(
                 endDate,
-                time => this.handleTimeChange(time, 1),
+                (time) => this.handleTimeChange(time, 1),
                 locale.datepicker.timeSelectEndLabel,
               )}
             {this.renderQuickSelect()}

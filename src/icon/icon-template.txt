@@ -26,6 +26,7 @@ function %%ICON_NAME%%(props: IconPropsT, ref) {
     overrides && overrides.Svg ? toObjectOverride(overrides.Svg) : {},
   );
   return (
+    // $FlowFixMe[cannot-spread-inexact]
     <Icon
       %%SVG_VIEWBOX%%
       ref={ref}

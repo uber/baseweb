@@ -74,10 +74,8 @@ const FixedMarker = ({
     size !== PINHEAD_SIZES_SHAPES.xxSmallSquare;
 
   const [Root, rootProps] = getOverrides(overrides.Root, StyledFixedMarkerRoot);
-  const [
-    FixedMarkerDragContainer,
-    fixedMarkerDragContainerProps,
-  ] = getOverrides(overrides.DragContainer, StyledFixedMarkerDragContainer);
+  const [FixedMarkerDragContainer, fixedMarkerDragContainerProps] =
+    getOverrides(overrides.DragContainer, StyledFixedMarkerDragContainer);
 
   const renderNeedle =
     needle !== NEEDLE_SIZES.none &&
@@ -99,7 +97,13 @@ const FixedMarker = ({
       );
     }
   }
-
+  const enhancers = {};
+  if (startEnhancer) {
+    enhancers['startEnhancer'] = startEnhancer;
+  }
+  if (endEnhancer) {
+    enhancers['endEnhancer'] = endEnhancer;
+  }
   return (
     <Root data-baseweb="fixed-map-marker" {...rootProps}>
       <FixedMarkerDragContainer
@@ -110,8 +114,7 @@ const FixedMarker = ({
         <PinHead
           size={size}
           label={label}
-          {...(startEnhancer ? {startEnhancer} : {})}
-          {...(endEnhancer ? {endEnhancer} : {})}
+          {...enhancers}
           color={color}
           background={backgroundColor}
           type={PINHEAD_TYPES.fixed}

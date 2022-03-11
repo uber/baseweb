@@ -17,13 +17,13 @@ function getPadding(componentType) {
   return `${multiplier * 8}px`;
 }
 
-const TableOfContents = props => {
+const TableOfContents = (props) => {
   const [css, theme] = useStyletron();
   const TOC = [];
   const content = props.content[0].props.children;
   content &&
     content.forEach &&
-    content.forEach(element => {
+    content.forEach((element) => {
       if (
         element.props &&
         element.props.name &&
@@ -66,8 +66,8 @@ const TableOfContents = props => {
           ? 'borderRight'
           : 'borderLeft']: `1px solid ${theme.colors.mono400}`,
         listStyle: 'none',
-        [theme.direction === 'rtl' ? 'marginRight' : 'marginLeft']: theme.sizing
-          .scale400,
+        [theme.direction === 'rtl' ? 'marginRight' : 'marginLeft']:
+          theme.sizing.scale400,
         paddingLeft: 0,
         paddingRight: 0,
         // to make sure we align vertically with the edit on github button
@@ -79,14 +79,13 @@ const TableOfContents = props => {
         top: '100px',
       })}
     >
-      {TOC.map(header => (
+      {TOC.map((header) => (
         <li
           key={header.name}
           className={css({
             ...theme.typography.font100,
-            [theme.direction === 'rtl'
-              ? 'paddingRight'
-              : 'paddingLeft']: getPadding(header.component),
+            [theme.direction === 'rtl' ? 'paddingRight' : 'paddingLeft']:
+              getPadding(header.component),
           })}
         >
           <a

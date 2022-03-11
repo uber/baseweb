@@ -15,7 +15,7 @@ import Overflow from '../../icon/overflow.js';
 
 import {AppNavBar, setItemActive} from '../index.js';
 
-const expandBorderStyles = str => {
+const expandBorderStyles = (str) => {
   const val = str.split(' ');
   return {
     borderTopColor: val[2],
@@ -76,7 +76,7 @@ export function Scenario() {
   ];
 
   function handleMainItemSelect(item) {
-    setMainItems(prev => setItemActive(prev, item));
+    setMainItems((prev) => setItemActive(prev, item));
   }
 
   return (
@@ -85,7 +85,7 @@ export function Scenario() {
       mainItems={mainItems}
       userItems={userItems}
       onMainItemSelect={handleMainItemSelect}
-      onUserItemSelect={item => console.log('user', item)}
+      onUserItemSelect={(item) => console.log('user', item)}
       username="Umka Marshmallow"
       usernameSubtitle="5.0"
       userImgUrl=""

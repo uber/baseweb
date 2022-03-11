@@ -72,7 +72,7 @@ function getBackgroundColor(props) {
   return 'transparent';
 }
 
-export const StyledEmptyState = styled<StyledPropsT>('li', props => {
+export const StyledEmptyState = styled<StyledPropsT>('li', (props) => {
   const {$theme, $size} = props;
   return {
     ...($size === OPTION_LIST_SIZE.compact
@@ -92,7 +92,7 @@ export const StyledEmptyState = styled<StyledPropsT>('li', props => {
   };
 });
 
-export const StyledOptgroupHeader = styled<{}>('li', props => {
+export const StyledOptgroupHeader = styled<{}>('li', (props) => {
   const paddingX = props.$theme.sizing.scale300;
   const paddingY = props.$theme.sizing.scale200;
   return {
@@ -104,13 +104,13 @@ export const StyledOptgroupHeader = styled<{}>('li', props => {
     paddingLeft: paddingX,
   };
 });
-export const StyledListItemAnchor = styled<StyledPropsT>('a', props => {
+export const StyledListItemAnchor = styled<StyledPropsT>('a', (props) => {
   return {
     display: 'block',
     color: getFontColor(props),
   };
 });
-export const StyledListItemElement = styled<StyledPropsT>('li', props => {
+export const StyledListItemElement = styled<StyledPropsT>('li', (props) => {
   const {$disabled, $theme, $size} = props;
   return {
     ...($size === OPTION_LIST_SIZE.compact
@@ -149,7 +149,7 @@ export const StyledListItemElement = styled<StyledPropsT>('li', props => {
 
 export const StyledListItem = withWrapper(
   StyledListItemElement,
-  Styled =>
+  (Styled) =>
     function StyledListItem({item, ...restProps}) {
       return <Styled {...restProps} />;
     },

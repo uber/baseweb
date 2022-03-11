@@ -32,8 +32,8 @@ export function Scenario() {
           id="combobox"
           autocomplete={false}
           value={value}
-          onChange={nextValue => setValue(nextValue)}
-          mapOptionToString={o => o.label}
+          onChange={(nextValue) => setValue(nextValue)}
+          mapOptionToString={(o) => o.label}
           options={options}
         />
       </FormControl>

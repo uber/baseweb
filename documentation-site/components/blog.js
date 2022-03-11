@@ -12,7 +12,7 @@ import Head from 'next/head';
 import {H1} from './markdown-elements';
 import {themedStyled} from '../pages/_app';
 
-const Image = themedStyled('img', props => ({
+const Image = themedStyled('img', (props) => ({
   display: 'block',
   margin: '0 auto',
   maxWidth: '100%',
@@ -98,7 +98,7 @@ export const Meta = ({
         name="description"
       />
       <meta property="article:author" content={author} name="author" />
-      {keyWords.map(kw => (
+      {keyWords.map((kw) => (
         <meta property="article:tag" content={kw} key={`article:tag:${kw}`} />
       ))}
       <meta

@@ -20,7 +20,7 @@ const selectors = {
   phoneInputSelectListItem: `[data-e2e="country-select-list-item"]`,
 };
 
-const countryListItemForIso = iso =>
+const countryListItemForIso = (iso) =>
   `${selectors.phoneInputSelectListItem} [data-iso="${iso}"]`;
 
 const unitedStates = {iso: 'US', dialCode: '+1'};
@@ -46,14 +46,14 @@ describe('PhoneInput', () => {
 
   it('displays a selected country flag and dial code by default', async () => {
     // verify correct default flag shows up
-    const iso = await page.$eval(selectors.phoneInputFlag, flag =>
+    const iso = await page.$eval(selectors.phoneInputFlag, (flag) =>
       flag.getAttribute(`data-iso`),
     );
     expect(iso).toEqual(unitedStates.iso);
     // verify correct default dialcode shows up
     const dialcode = await page.$eval(
       selectors.phoneInputDialcode,
-      block => block.innerText,
+      (block) => block.innerText,
     );
     expect(dialcode).toEqual(unitedStates.dialCode);
   });
@@ -82,7 +82,7 @@ describe('PhoneInput', () => {
 
     const dialcode = await page.$eval(
       selectors.phoneInputDialcode,
-      block => block.innerText,
+      (block) => block.innerText,
     );
     expect(dialcode).toEqual(unitedKingdom.dialCode);
   });
@@ -99,14 +99,14 @@ describe('PhoneInput', () => {
       hidden: true,
     });
     // verify correct flag and dial code shows up
-    const iso = await page.$eval(selectors.phoneInputFlag, flag =>
+    const iso = await page.$eval(selectors.phoneInputFlag, (flag) =>
       flag.getAttribute('data-iso'),
     );
     expect(iso).toEqual(unitedKingdom.iso);
     // verify correct dial code shows up
     const dialcode = await page.$eval(
       selectors.phoneInputDialcode,
-      block => block.innerText,
+      (block) => block.innerText,
     );
     expect(dialcode).toEqual(unitedKingdom.dialCode);
   });

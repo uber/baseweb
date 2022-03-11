@@ -35,16 +35,8 @@ function groupOptions(options: ValueT) {
 
 export default class SelectDropdown extends React.Component<DropdownPropsT> {
   getSharedProps() {
-    const {
-      error,
-      isLoading,
-      multi,
-      required,
-      size,
-      searchable,
-      type,
-      width,
-    } = this.props;
+    const {error, isLoading, multi, required, size, searchable, type, width} =
+      this.props;
     return {
       $error: error,
       $isLoading: isLoading,
@@ -68,7 +60,7 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
     let $selected;
     if (Array.isArray(value)) {
       $selected = !!value.find(
-        selected => selected && selected[valueKey] === option[valueKey],
+        (selected) => selected && selected[valueKey] === option[valueKey],
       );
     } else {
       $selected = value[valueKey] === option[valueKey];
@@ -110,7 +102,7 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
 
     if (Object.keys(firstValue).length > 0) {
       const a = options.findIndex(
-        option => option && option[valueKey] === firstValue[valueKey],
+        (option) => option && option[valueKey] === firstValue[valueKey],
       );
       return a === -1 ? 0 : a;
     }
@@ -138,7 +130,6 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
     );
     const [
       OverriddenStatefulMenu,
-      // $FlowFixMe
       {overrides: statefulMenuOverrides = {}, ...restStatefulMenuProps},
     ] = getOverrides(overrides.StatefulMenu, StatefulMenu);
     const highlightedIndex = this.getHighlightedIndex();
@@ -152,7 +143,7 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
       >
         <OverriddenStatefulMenu
           noResultsMsg={noResultsMsg}
-          onActiveDescendantChange={id => {
+          onActiveDescendantChange={(id) => {
             if (this.props.onActiveDescendantChange) {
               this.props.onActiveDescendantChange(id);
             }
@@ -171,7 +162,7 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
             {
               List: {
                 component: StyledDropdown,
-                style: p => ({
+                style: (p) => ({
                   maxHeight: p.$maxHeight || null,
                 }),
                 props: {
@@ -192,7 +183,6 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
                       props: {...listItemProps, role: 'option'},
                       // slightly hacky way to handle the list item style overrides
                       // since the menu component doesn't provide a top level overrides for it
-                      // $FlowFixMe
                       style: listItemProps.$style,
                     },
                   },

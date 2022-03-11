@@ -34,11 +34,12 @@ export function Scenario() {
         return i;
       }
     }
+    return -1;
   }
 
   function handleChange(nextInputValue, nextSelectedValue) {
     if (nextSelectedValue) {
-      setValue(prevInputValue => {
+      setValue((prevInputValue) => {
         const index = searchIndex(prevInputValue);
         const prefix = prevInputValue.substring(0, index + 1);
         return prefix + nextSelectedValue;
@@ -67,8 +68,8 @@ export function Scenario() {
     if (isSearching) {
       const index = searchIndex(nextInputValue);
       const query = nextInputValue.substring(index + 1);
-      setOptions(prevOptions => {
-        return prevOptions.filter(option =>
+      setOptions((prevOptions) => {
+        return prevOptions.filter((option) =>
           option.toLowerCase().includes(query.toLowerCase()),
         );
       });
@@ -86,7 +87,7 @@ export function Scenario() {
         autocomplete={false}
         value={value}
         onChange={handleChange}
-        mapOptionToString={o => o}
+        mapOptionToString={(o) => o}
         options={options}
       />
     </div>

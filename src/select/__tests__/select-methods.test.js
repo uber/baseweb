@@ -13,7 +13,7 @@ import {LightTheme} from '../../themes/index.js';
 import {StatefulSelect, Select} from '../index.js';
 import type {MethodsRefT} from '../types.js';
 
-describe('setDropdownOpen', function() {
+describe('setDropdownOpen', function () {
   it('opens and closes dropdown with StatefulSelect', () => {
     const options = [
       {id: 'a', label: 'a'},
@@ -61,7 +61,7 @@ describe('setDropdownOpen', function() {
         <BaseProvider theme={LightTheme}>
           <Select
             value={value}
-            onChange={params => setValue(params.value)}
+            onChange={(params) => setValue(params.value)}
             options={options}
             methodsRef={methodsRef}
           />

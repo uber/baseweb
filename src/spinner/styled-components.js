@@ -21,12 +21,14 @@ const spin = {
 export const StyledSpinner = styled<SpinnerPropsT>(
   'i',
   ({
+    //$FlowFixMe
     $theme,
     $color = $theme.colors.contentAccent,
+    //$FlowFixMe
     $borderWidth,
+    //$FlowFixMe
     $size = SIZE.medium,
   }) => {
-    //$FlowFixMe
     let borderSize = {
       large: $theme.sizing.scale300,
       medium: $theme.sizing.scale100,
@@ -45,7 +47,6 @@ export const StyledSpinner = styled<SpinnerPropsT>(
       }
     }
     if (!boxSize) {
-      //$FlowFixMe
       boxSize = $theme.sizing[$size];
       if (!boxSize) {
         boxSize = `${parseInt($size)}px`;

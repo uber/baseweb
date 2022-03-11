@@ -17,7 +17,7 @@ import {
 } from './markdown-elements';
 import Code from './code';
 
-const Exports = props => {
+const Exports = (props) => {
   const {component, path, title, cheatsheet = true} = props;
   const componentName = path.split('/')[1];
 
@@ -32,7 +32,7 @@ const Exports = props => {
         It exports the following components or utility functions:
       </Paragraph>
       <UnorderedList>
-        {exportNames.map(name => (
+        {exportNames.map((name) => (
           <ListItem key={name}>
             {cheatsheet ? (
               <DocLink

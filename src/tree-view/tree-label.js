@@ -54,6 +54,7 @@ const TreeLabel: React$ComponentType<TreeLabelT> = ({
   const TreeItemContent =
     getOverride(TreeItemContentOverride) || StyledItemContent;
   return (
+    // $FlowExpectedError[cannot-spread-inexact]
     <TreeItemContent {...sharedProps} {...props}>
       {hasChildren && (
         <IconContainer
@@ -62,7 +63,7 @@ const TreeLabel: React$ComponentType<TreeLabelT> = ({
         >
           {!isExpanded ? (
             <ThemeContext.Consumer>
-              {theme =>
+              {(theme) =>
                 theme.direction === 'rtl' ? (
                   <Left {...sharedProps} {...LeftProps} />
                 ) : (

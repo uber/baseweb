@@ -64,7 +64,7 @@ export function splitPlacement(placement: PopoverPlacementT): string[] {
   return (matches: string[])
     .slice(1, 3)
     .filter(Boolean)
-    .map(s => s.toLowerCase());
+    .map((s) => s.toLowerCase());
 }
 
 /**

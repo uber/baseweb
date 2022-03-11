@@ -255,7 +255,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
 
     return (
       <LocaleContext.Consumer>
-        {locale => (
+        {(locale) => (
           <FocusLock
             disabled={!focusLock}
             // Allow focus to escape when UI is within an iframe

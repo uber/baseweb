@@ -459,7 +459,7 @@ export function Scenario() {
 
       {/* ---------------------------------------- */}
       <ListItem
-        artwork={props => <Check {...props} />}
+        artwork={(props) => <Check {...props} />}
         endEnhancer={() => <ListItemLabel>Round Shape</ListItemLabel>}
         shape={SHAPE.ROUND}
         overrides={{
@@ -474,7 +474,7 @@ export function Scenario() {
       </ListItem>
 
       <ListItem
-        artwork={props => <Check {...props} />}
+        artwork={(props) => <Check {...props} />}
         endEnhancer={() => <ListItemLabel>Default Shape</ListItemLabel>}
         overrides={{
           Root: {

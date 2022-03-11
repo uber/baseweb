@@ -26,14 +26,14 @@ describe('datepicker-composed-range', () => {
     await mount(page, 'datepicker--stateful-composed-range');
     await page.waitForSelector(START_DATE_INPUT);
 
-    const before = await page.$eval(DISPLAY_START_DATE, e => e.textContent);
+    const before = await page.$eval(DISPLAY_START_DATE, (e) => e.textContent);
     expect(before).toBe('2019/4/1');
 
     await page.focus(START_DATE_INPUT);
     await page.keyboard.press('Backspace');
     await page.keyboard.press('2');
 
-    const after = await page.$eval(DISPLAY_START_DATE, e => e.textContent);
+    const after = await page.$eval(DISPLAY_START_DATE, (e) => e.textContent);
     expect(after).toBe('2019/4/2');
   });
 
@@ -41,14 +41,14 @@ describe('datepicker-composed-range', () => {
     await mount(page, 'datepicker--stateful-composed-range');
     await page.waitForSelector(END_DATE_INPUT);
 
-    const before = await page.$eval(DISPLAY_END_DATE, e => e.textContent);
+    const before = await page.$eval(DISPLAY_END_DATE, (e) => e.textContent);
     expect(before).toBe('2019/4/10');
 
     await page.focus(END_DATE_INPUT);
     await page.keyboard.press('Backspace');
     await page.keyboard.press('1');
 
-    const after = await page.$eval(DISPLAY_END_DATE, e => e.textContent);
+    const after = await page.$eval(DISPLAY_END_DATE, (e) => e.textContent);
     expect(after).toBe('2019/4/11');
   });
 
@@ -58,13 +58,13 @@ describe('datepicker-composed-range', () => {
 
     await page.click(SET_UNDEFINED_BTN);
 
-    const before = await page.$eval(DISPLAY_START_DATE, e => e.textContent);
+    const before = await page.$eval(DISPLAY_START_DATE, (e) => e.textContent);
     expect(before).toBe('undefined');
 
     await page.focus(START_DATE_INPUT);
     await page.keyboard.type('20201010');
 
-    const after = await page.$eval(DISPLAY_START_DATE, e => e.textContent);
+    const after = await page.$eval(DISPLAY_START_DATE, (e) => e.textContent);
     expect(after).toBe('2020/10/10');
   });
 
@@ -74,14 +74,14 @@ describe('datepicker-composed-range', () => {
 
     await page.click(SET_UNDEFINED_BTN);
 
-    const before = await page.$eval(DISPLAY_END_DATE, e => e.textContent);
+    const before = await page.$eval(DISPLAY_END_DATE, (e) => e.textContent);
     expect(before).toBe('undefined');
 
     await page.focus(END_DATE_INPUT);
     await page.keyboard.type('20201010');
 
-    const start = await page.$eval(DISPLAY_START_DATE, e => e.textContent);
-    const end = await page.$eval(DISPLAY_END_DATE, e => e.textContent);
+    const start = await page.$eval(DISPLAY_START_DATE, (e) => e.textContent);
+    const end = await page.$eval(DISPLAY_END_DATE, (e) => e.textContent);
     expect(start).toBe('2020/10/10');
     expect(end).toBe('2020/10/10');
   });
@@ -90,7 +90,7 @@ describe('datepicker-composed-range', () => {
     await mount(page, 'datepicker--stateful-composed-range');
     await page.waitForSelector(START_DATE_INPUT);
 
-    const before = await page.$eval(DISPLAY_START_DATE, e => e.textContent);
+    const before = await page.$eval(DISPLAY_START_DATE, (e) => e.textContent);
     expect(before).toBe('2019/4/1');
 
     await page.focus(START_DATE_INPUT);
@@ -99,7 +99,7 @@ describe('datepicker-composed-range', () => {
     await page.keyboard.press('1');
     await page.keyboard.press('2');
 
-    const after = await page.$eval(DISPLAY_START_DATE, e => e.textContent);
+    const after = await page.$eval(DISPLAY_START_DATE, (e) => e.textContent);
     expect(after).toBe('2019/4/1');
   });
 
@@ -107,7 +107,7 @@ describe('datepicker-composed-range', () => {
     await mount(page, 'datepicker--stateful-composed-range');
     await page.waitForSelector(END_DATE_INPUT);
 
-    const before = await page.$eval(DISPLAY_END_DATE, e => e.textContent);
+    const before = await page.$eval(DISPLAY_END_DATE, (e) => e.textContent);
     expect(before).toBe('2019/4/10');
 
     await page.focus(END_DATE_INPUT);
@@ -118,7 +118,7 @@ describe('datepicker-composed-range', () => {
     await page.keyboard.press('1');
     await page.keyboard.press('2');
 
-    const after = await page.$eval(DISPLAY_END_DATE, e => e.textContent);
+    const after = await page.$eval(DISPLAY_END_DATE, (e) => e.textContent);
     expect(after).toBe('2019/4/10');
   });
 
@@ -139,10 +139,16 @@ describe('datepicker-composed-range', () => {
     await page.keyboard.press('ArrowDown');
     await page.keyboard.press('Enter');
 
-    const startDate = await page.$eval(DISPLAY_START_DATE, e => e.textContent);
-    const endDate = await page.$eval(DISPLAY_END_DATE, e => e.textContent);
-    const startTime = await page.$eval(DISPLAY_START_TIME, e => e.textContent);
-    const endTime = await page.$eval(DISPLAY_END_TIME, e => e.textContent);
+    const startDate = await page.$eval(
+      DISPLAY_START_DATE,
+      (e) => e.textContent,
+    );
+    const endDate = await page.$eval(DISPLAY_END_DATE, (e) => e.textContent);
+    const startTime = await page.$eval(
+      DISPLAY_START_TIME,
+      (e) => e.textContent,
+    );
+    const endTime = await page.$eval(DISPLAY_END_TIME, (e) => e.textContent);
 
     expect(startDate).toBe('2020/10/10');
     expect(startTime).toBe('12:00:00 PM');

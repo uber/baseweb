@@ -21,7 +21,7 @@ export function Scenario() {
         monthsShown={3}
         range
         quickSelect
-        dateLabel={date => (date.getDay() <= 3 ? 'Aa' : null)}
+        dateLabel={(date) => (date.getDay() <= 3 ? 'Aa' : null)}
       />
 
       <StatefulCalendar
