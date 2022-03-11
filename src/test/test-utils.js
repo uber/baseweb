@@ -15,7 +15,7 @@ import {LightTheme} from '../themes/index.js';
 
 const engine = new Styletron();
 
-export const withStyletronProvider = (Component: React.ComponentType<*>) =>
+export const withStyletronProvider = (Component: React.ComponentType<{}>) =>
   function withStyletronProviderHOC(props: {}) {
     return (
       <StyletronProvider value={engine}>
@@ -24,7 +24,7 @@ export const withStyletronProvider = (Component: React.ComponentType<*>) =>
     );
   };
 
-export const withThemeProvider = (Component: React.ComponentType<*>) =>
+export const withThemeProvider = (Component: React.ComponentType<{}>) =>
   function withThemeProviderHOC(props: {}) {
     return (
       <ThemeProvider theme={LightTheme}>
@@ -33,7 +33,8 @@ export const withThemeProvider = (Component: React.ComponentType<*>) =>
     );
   };
 
-export const withAll = (Component: () => React.Element<*>) => {
+// flowlint-next-line unclear-type:off
+export const withAll = (Component: () => React.Element<any>) => {
   return (
     <StyletronProvider value={engine}>
       <ThemeProvider theme={LightTheme}>{Component()}</ThemeProvider>

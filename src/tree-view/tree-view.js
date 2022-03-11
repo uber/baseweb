@@ -21,7 +21,12 @@ import {
   defaultGetId,
   getCharMatchId,
 } from './utils.js';
-import type {TreeViewPropsT, TreeNodeT, TreeNodeIdT} from './types.js';
+import type {
+  TreeViewPropsT,
+  TreeNodeT,
+  TreeNodeIdT,
+  ReactRefT,
+} from './types.js';
 import {isFocusVisible} from '../utils/focusVisible.js';
 
 import {getOverride, getOverrideProps} from '../helpers/overrides.js';
@@ -43,16 +48,13 @@ export default function TreeView(props: TreeViewPropsT) {
   const [focusVisible, setFocusVisible] = React.useState(false);
   const [typeAheadChars, setTypeAheadChars] = React.useState('');
   const timeOutRef = React.useRef(null);
-  const treeItemRefs: {
-    // flowlint-next-line unclear-type:off
-    current: {[key: TreeNodeIdT]: React.ElementRef<any>},
-  } = React.useRef({});
+  const treeItemRefs: {[key: string]: ReactRefT<HTMLLIElement>} = {};
 
   const focusTreeItem = (id: TreeNodeIdT | null) => {
     if (!id) return;
     setSelectedNodeId(id);
 
-    const refs = treeItemRefs.current[id];
+    const refs = treeItemRefs[`${id}`];
     const node = refs && refs.current;
     if (node) node.focus();
   };
@@ -167,11 +169,11 @@ export default function TreeView(props: TreeViewPropsT) {
           onKeyDown={onKeyDown}
           onFocus={onFocus}
           onBlur={onBlur}
-          addRef={(id: TreeNodeIdT, ref: React.ElementRef<HTMLLIElement>) => {
-            treeItemRefs.current[id] = ref;
+          addRef={(id, ref) => {
+            treeItemRefs.current[`${id}`] = ref;
           }}
           removeRef={(id: TreeNodeIdT) => {
-            delete treeItemRefs.current[id];
+            delete treeItemRefs.current[`${id}`];
           }}
           isFocusVisible={focusVisible}
         />

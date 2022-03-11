@@ -10,6 +10,7 @@ import {render, getByText} from '@testing-library/react';
 
 import SelectDropdown from '../dropdown.js';
 import {SIZE, TYPE} from '../constants.js';
+import type {ReactRefT} from '../types.js';
 
 const options = [
   {id: '1', label: 'label1'},
@@ -20,7 +21,7 @@ const value = [options[1]];
 describe('SelectDropdown', function () {
   it('renders provided options', () => {
     function TestCase() {
-      const ref = React.useRef();
+      const ref: ReactRefT<HTMLElement> = React.createRef<HTMLElement>();
       const props = {
         value,
         valueKey: 'id',
@@ -54,7 +55,7 @@ describe('SelectDropdown', function () {
 
   it('renders default highlighted option', () => {
     function TestCase() {
-      const ref = React.useRef();
+      const ref: ReactRefT<HTMLElement> = React.createRef<HTMLElement>();
       const props = {
         value: [],
         valueKey: 'id',

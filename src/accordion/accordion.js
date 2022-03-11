@@ -38,7 +38,8 @@ export default class Accordion extends React.Component<
     ...this.props.initialState,
   };
 
-  onPanelChange(key: React.Key, onChange: () => {}, ...args: *) {
+  //flowlint-next-line unclear-type:off
+  onPanelChange(key: React.Key, onChange: () => {}, ...args: Array<any>) {
     let activeKeys = this.state.expanded;
     const {accordion} = this.props;
     if (accordion) {

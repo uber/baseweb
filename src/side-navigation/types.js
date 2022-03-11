@@ -40,7 +40,7 @@ export type NavPropsT = {
     Is called on the nav item render to test if the item is currently selected.
     If returns true the item will be rendered as an active one
     */
-  activePredicate: ?(item: *, activeItemId: string) => boolean,
+  activePredicate: ?(item: Item, activeItemId: string) => boolean,
   /** List of navigation items */
   items: Item[],
   /** Used as a performance optimization if many nav items are rendered. Function provided to
@@ -48,7 +48,7 @@ export type NavPropsT = {
    */
   itemMemoizationComparator?: (NavItemPropsT, NavItemPropsT) => boolean,
   /** onChange handler that is called when a nav item is selected */
-  onChange?: ({item: *, event: Event | KeyboardEvent}) => mixed,
+  onChange?: ({item: Item, event: Event | KeyboardEvent}) => mixed,
   /** Overrides for the internal elements and components */
   overrides: {
     Root?: OverrideT,
@@ -83,7 +83,7 @@ export type NavItemPropsT = SharedPropsT & {
    *  NavItem component's React.memo call.
    */
   itemMemoizationComparator?: (NavItemPropsT, NavItemPropsT) => boolean,
-  onSelect?: ({item: *, event: Event | KeyboardEvent}) => mixed,
+  onSelect?: ({item: Item, event: Event | KeyboardEvent}) => mixed,
   overrides: {
     NavLink?: OverrideT,
     NavItem?: OverrideT,
@@ -96,7 +96,7 @@ export type StatefulContainerPropsT = {
   initialState?: StateT,
   /** A state change handler. Used to override default state transitions. */
   stateReducer?: StateReducerT,
-  onChange?: ({item: *, event: Event | KeyboardEvent}) => mixed,
+  onChange?: ({item: Item, event: Event | KeyboardEvent}) => mixed,
 };
 
 type ExcludeT = {

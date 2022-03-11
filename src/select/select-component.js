@@ -42,6 +42,7 @@ import type {
   ChangeActionT,
 } from './types.js';
 import {expandValue, normalizeOptions} from './utils/index.js';
+import type {ReactRefT} from './types.js';
 
 function Noop() {
   return null;
@@ -77,11 +78,11 @@ class Select extends React.Component<PropsT, SelectStateT> {
 
   // anchor is a ref that refers to the outermost element rendered when the dropdown menu is not
   // open. This is required so that we can check if clicks are on/off the anchor element.
-  anchor: {current: HTMLElement | null} = React.createRef();
+  anchor: ReactRefT<HTMLElement> = React.createRef<HTMLElement>();
   // dropdown is a ref that refers to the popover element. This is required so that we can check if
   // clicks are on/off the dropdown element.
-  dropdown: {current: HTMLElement | null} = React.createRef();
-  input: React.ElementRef<*>;
+  dropdown: ReactRefT<HTMLElement> = React.createRef<HTMLElement>();
+  input: React.ElementRef<typeof HTMLInputElement>;
   // dragging is a flag to track whether a mobile device is currently scrolling versus clicking.
   dragging: boolean;
   // focusAfterClear is a flag to indicate that the dropdowm menu should open after a selected
@@ -489,7 +490,8 @@ class Select extends React.Component<PropsT, SelectStateT> {
     }
   };
 
-  handleInputRef = (input: React.ElementRef<*>) => {
+  //flowlint-next-line unclear-type:off
+  handleInputRef = (input: React.ElementRef<any>) => {
     this.input = input;
     if (this.props.controlRef) {
       if (typeof this.props.controlRef === 'function') {

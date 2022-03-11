@@ -22,7 +22,7 @@ import {StyledEmptyState} from '../menu/styled-components.js';
 import {getOverrides} from '../helpers/overrides.js';
 import {iso2FlagEmoji} from './utils.js';
 
-import type {CountrySelectDropdownPropsT} from './types.js';
+import type {CountrySelectDropdownPropsT, ReactRefT} from './types.js';
 import type {LocaleT} from '../locale/types.js';
 
 CountrySelectDropdown.defaultProps = {
@@ -31,7 +31,9 @@ CountrySelectDropdown.defaultProps = {
 };
 
 function CountrySelectDropdown(
-  props: CountrySelectDropdownPropsT & {$forwardedRef: React.ElementRef<*>},
+  props: CountrySelectDropdownPropsT & {
+    $forwardedRef: ReactRefT<HTMLElement> | ((null | HTMLElement) => mixed),
+  },
 ) {
   const {
     $country: country,
@@ -143,8 +145,9 @@ function CountrySelectDropdown(
   );
 }
 
-// eslint-disable-next-line react/display-name
-export default React.forwardRef<
+const CountrySelectDropdownFwd = React.forwardRef<
   CountrySelectDropdownPropsT,
-  typeof CountrySelectDropdown,
+  HTMLElement,
 >((props, ref) => <CountrySelectDropdown {...props} $forwardedRef={ref} />);
+CountrySelectDropdownFwd.displayName = 'CountrySelectDropdownFwd';
+export default CountrySelectDropdownFwd;

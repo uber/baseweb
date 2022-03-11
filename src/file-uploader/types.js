@@ -78,8 +78,8 @@ type DropFileEventHandlerT = (
 type DataTransferEventT =
   | SyntheticDragEvent<HTMLElement>
   | SyntheticInputEvent<HTMLInputElement>
-  | SyntheticDragEvent<*>
-  | SyntheticEvent<*>;
+  | SyntheticDragEvent<any> //flowlint-line unclear-type:off
+  | SyntheticEvent<any>; //flowlint-line unclear-type:off
 type GetDataTransferItemsT = (
   event: DataTransferEventT,
 ) => Promise<Array<File | DataTransferItem>>;

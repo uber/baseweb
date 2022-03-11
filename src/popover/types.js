@@ -22,10 +22,9 @@ export type {
 } from '../layer/types.js';
 
 export type PopoverPlacementT = TetherPlacementT;
-
 export type TriggerTypeT = $Keys<typeof TRIGGER_TYPE>;
-
 export type AccessibilityTypeT = $Keys<typeof ACCESSIBILITY_TYPE>;
+export type ReactRefT<T> = {|current: null | T|};
 
 export type StateT = {
   isOpen: boolean,
@@ -221,6 +220,6 @@ export type AnchorPropsT = {
   onFocus?: (e: Event) => mixed,
   onMouseEnter?: (e: Event) => mixed,
   onMouseLeave?: (e: Event) => mixed,
-  ref?: React.Ref<*>,
+  ref?: ReactRefT<HTMLElement>,
   tabIndex?: number,
 };

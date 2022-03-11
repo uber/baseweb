@@ -65,7 +65,7 @@ export type StateReducerT = (
 
 export type StatefulContainerPropsT = {
   overrides?: OverridesT,
-  children: (*) => React$Node,
+  children: (PropsT) => React$Node,
   min: number,
   max: number,
   step: number,

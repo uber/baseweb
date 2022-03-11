@@ -42,7 +42,8 @@ export type TextareaPropsT = {
 };
 
 export type StatefulContainerPropsT = {
-  children: (props: *) => React.Node,
+  // flowlint-next-line unclear-type:off
+  children: (props: any) => React.Node,
   initialState?: StateT,
   stateReducer?: StateReducerT,
   onChange?: (e: SyntheticTextareaEvent) => mixed,
@@ -52,7 +53,8 @@ export type StatefulContainerPropsT = {
 };
 
 type OmitPropsT = {
-  children: (props: *) => React.Node,
+  // flowlint-next-line unclear-type:off
+  children: (props: any) => React.Node,
 };
 
 type FullStPropsT = TextareaPropsT & StatefulContainerPropsT;

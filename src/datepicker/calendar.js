@@ -58,7 +58,7 @@ export default class Calendar<T = Date> extends React.Component<
 
   dateHelpers: DateHelpers<T>;
 
-  calendar: React.ElementRef<*>;
+  calendar: React.ElementRef<typeof HTMLElement>;
 
   constructor(props: CalendarPropsT<T>) {
     super(props);

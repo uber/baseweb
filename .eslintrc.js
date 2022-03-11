@@ -25,6 +25,11 @@ module.exports = {
     context: true,
     jestPuppeteer: true,
   },
+  settings: {
+    react: {
+      version: 'detect',
+    },
+  },
   extends: [
     'plugin:flowtype/recommended',
     'plugin:react/recommended',

@@ -11,16 +11,15 @@ import {render} from '@testing-library/react';
 import {
   getOverride,
   getOverrideProps,
-  toObjectOverride,
-  mergeOverrides,
-  mergeOverride,
-  mergeConfigurationOverrides,
   getOverrides,
+  mergeConfigurationOverrides,
+  mergeOverride,
+  mergeOverrides,
+  toObjectOverride,
 } from '../overrides.js';
 
-function getMockComponent(): React.ComponentType<*> {
-  const mock: React.ComponentType<*> = () => null;
-  return mock;
+function getMockComponent(): React.ComponentType<{}> {
+  return () => null;
 }
 
 describe('Helpers - Overrides', () => {
@@ -66,7 +65,7 @@ describe('Helpers - Overrides', () => {
     });
     expect(
       toObjectOverride({
-        component: (CustomComponent: React.ComponentType<*>),
+        component: (CustomComponent: React.ComponentType<{}>),
         style: {width: '300px'},
       }),
     ).toEqual({
@@ -86,7 +85,7 @@ describe('Helpers - Overrides', () => {
 
     const overrides2 = {
       Root: {
-        component: (CustomFoo: React.ComponentType<*>),
+        component: (CustomFoo: React.ComponentType<{}>),
       },
       Bar: CustomBar,
     };

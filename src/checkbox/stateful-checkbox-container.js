@@ -81,9 +81,9 @@ class StatefulCheckboxContainer extends React.Component<
 
   render() {
     const {
-      children = (childProps: {}) => null, // eslint-disable-line no-unused-vars
-      initialState, // eslint-disable-line no-unused-vars
-      stateReducer, // eslint-disable-line no-unused-vars
+      children = (childProps: {}) => null,
+      initialState,
+      stateReducer,
       ...restProps
     } = this.props;
     const {onChange, onMouseEnter, onMouseLeave, onFocus, onBlur} = this;

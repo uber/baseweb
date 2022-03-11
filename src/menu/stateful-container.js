@@ -16,6 +16,7 @@ import type {
   GetRequiredItemPropsFnT,
   RenderPropsT,
   StateReducerFnT,
+  ItemT,
 } from './types.js';
 import {useUIDSeed} from 'react-uid';
 
@@ -27,7 +28,7 @@ const DEFAULT_PROPS = {
     isFocused: false,
   },
   typeAhead: true,
-  keyboardControlNode: {current: null},
+  keyboardControlNode: ({current: null}: {current: null | HTMLElement}),
   stateReducer: ((changeType, changes) => changes: StateReducerFnT),
   onItemSelect: () => {},
   getRequiredItemProps: () => ({}),
@@ -57,7 +58,7 @@ class MenuStatefulContainerInner extends React.Component<
 
   // We need to have access to the root component user renders
   // to correctly facilitate keyboard scrolling behavior
-  rootRef = (React.createRef(): {current: HTMLElement | null});
+  rootRef = (React.createRef<HTMLElement>(): {current: null | HTMLElement});
   keyboardControlNode = this.props.keyboardControlNode.current;
   getItems() {
     if (Array.isArray(this.props.items)) {
@@ -74,6 +75,7 @@ class MenuStatefulContainerInner extends React.Component<
     const rootRef = this.props.rootRef ? this.props.rootRef : this.rootRef;
     if (__BROWSER__) {
       if (
+        rootRef &&
         rootRef.current /** This condition added to satisfy Flow */ &&
         this.state.highlightedIndex > -1 &&
         this.refList[this.state.highlightedIndex]
@@ -155,14 +157,14 @@ class MenuStatefulContainerInner extends React.Component<
     }
   }
 
-  // One array to hold all of list item refs
-  refList: Array<React$ElementRef<*>> = [];
+  // One array to hold all list item refs
+  refList: Array<{current: null | HTMLElement}> = [];
   // list of ids applied to list items. used to set aria-activedescendant
   optionIds: string[] = [];
   //characters input from keyboard, will automatically be clear after some time
   typeAheadChars: string = '';
-  //count time for each continous keyboard input
-  typeAheadTimeOut: * = null;
+  //count time for each continuous keyboard input
+  typeAheadTimeOut: null | TimeoutID = null;
 
   // Internal set state function that will also invoke stateReducer
 
@@ -204,7 +206,7 @@ class MenuStatefulContainerInner extends React.Component<
         this.handleEnterKey(event);
         break;
       default:
-        if (this.props.typeAhead) {
+        if (this.props.typeAhead && this.typeAheadTimeOut !== null) {
           clearTimeout(this.typeAheadTimeOut);
           this.handleAlphaDown(event);
         }
@@ -341,7 +343,7 @@ class MenuStatefulContainerInner extends React.Component<
 
   handleItemClick = (
     index: number,
-    item: *,
+    item: ItemT,
     event: SyntheticMouseEvent<HTMLElement>,
   ) => {
     if (this.props.onItemSelect && !item.disabled) {
