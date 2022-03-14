@@ -16,6 +16,7 @@ import GithubLogo from './github-logo';
 import SlackLogo from './slack-logo';
 import AlignLeftIcon from './align-left-icon';
 import AlignRightIcon from './align-right-icon';
+//$FlowFixMe
 import VersionSelector from './version-selector.js';
 import Search from './search';
 import Bulb from './bulb';

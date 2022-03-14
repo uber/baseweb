@@ -5,6 +5,7 @@ import {Input} from 'baseui/input';
 import {useStyletron} from 'baseui';
 import {Alert} from 'baseui/icon';
 import {Button} from 'baseui/button';
+//$FlowFixMe
 import {validate as validateEmail} from 'email-validator'; // add this package to your repo with `$ yarn add email-validator`
 
 function Negative() {
@@ -34,7 +35,7 @@ export default function Example() {
   };
 
   return (
-    <form onSubmit={e => e.preventDefault()}>
+    <form onSubmit={(e) => e.preventDefault()}>
       <FormControl
         label="Your email"
         error={

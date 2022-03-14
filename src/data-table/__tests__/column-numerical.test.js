@@ -46,7 +46,7 @@ describe('numerical column', () => {
 
     const {container} = render(<Cell value={1999.888} x={0} y={0} />);
     const cell = container.querySelector('div');
-    expect(cell.textContent).toBe('2000');
+    expect(cell?.textContent).toBe('2000');
   });
 
   it('cell renders positive value according to accounting format', () => {
@@ -60,7 +60,7 @@ describe('numerical column', () => {
 
     const {container} = render(<Cell value={value} x={0} y={0} />);
     const cell = container.querySelector('div');
-    expect(cell.textContent).toBe('$1999.89');
+    expect(cell?.textContent).toBe('$1999.89');
   });
 
   it('cell renders negative value according to accounting format', () => {
@@ -74,7 +74,7 @@ describe('numerical column', () => {
 
     const {container} = render(<Cell value={value} x={0} y={0} />);
     const cell = container.querySelector('div');
-    expect(cell.textContent).toBe('($1999.89)');
+    expect(cell?.textContent).toBe('($1999.89)');
   });
 
   it('cell renders value according to percentage format', () => {
@@ -88,7 +88,7 @@ describe('numerical column', () => {
 
     const {container} = render(<Cell value={value} x={0} y={0} />);
     const cell = container.querySelector('div');
-    expect(cell.textContent).toBe('1999.89%');
+    expect(cell?.textContent).toBe('1999.89%');
   });
 
   it('cell renders value formatted by passed format function', () => {
@@ -102,7 +102,7 @@ describe('numerical column', () => {
 
     const {container} = render(<Cell value={value} x={0} y={0} />);
     const cell = container.querySelector('div');
-    expect(cell.textContent).toBe('EUR 1999.888');
+    expect(cell?.textContent).toBe('EUR 1999.888');
   });
 
   it('cell renders value according to provided precision', () => {
@@ -116,7 +116,7 @@ describe('numerical column', () => {
 
     const {container} = render(<Cell value={value} x={0} y={0} />);
     const cell = container.querySelector('div');
-    expect(cell.textContent).toBe('1999.888');
+    expect(cell?.textContent).toBe('1999.888');
   });
 
   it('can call setFilter with expected selection', () => {

@@ -19,9 +19,9 @@ describe('stateful-input', () => {
   it('handles change events', () => {
     const {container} = render(<StatefulInput />);
     const input = container.querySelector('input');
-    expect(input.value).toBe('');
+    expect(input?.value).toBe('');
 
-    fireEvent.change(input, {target: {value: 'a'}});
-    expect(input.value).toBe('a');
+    if (input) fireEvent.change(input, {target: {value: 'a'}});
+    expect(input?.value).toBe('a');
   });
 });

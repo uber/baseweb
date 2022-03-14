@@ -9,6 +9,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-env node */
 
+//$FlowFixMe
 const Octokit = require('@octokit/rest');
 
 if (!process.env.GITHUB_AUTH_TOKEN) {

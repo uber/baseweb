@@ -55,7 +55,7 @@ describe('categorical column', () => {
 
     const {container} = render(<Cell value="A" x={0} y={0} />);
     const cell = container.querySelector('div');
-    expect(cell.textContent).toBe('A');
+    expect(cell?.textContent).toBe('A');
   });
 
   it('renders expected number of checkboxes in filter component', () => {
@@ -185,7 +185,7 @@ describe('categorical column', () => {
     );
 
     const input = container.querySelector('[data-baseweb="input"] input');
-    fireEvent.change(input, {target: {value: 'a'}});
+    if (input) fireEvent.change(input, {target: {value: 'a'}});
 
     const checkboxes = container.querySelectorAll('input[type="checkbox"]');
     expect(checkboxes.length).toBe(2);
@@ -208,7 +208,7 @@ describe('categorical column', () => {
     expect(queryByText('Clear')).toBeTruthy();
 
     const input = container.querySelector('[data-baseweb="input"] input');
-    fireEvent.change(input, {target: {value: 'a'}});
+    if (input) fireEvent.change(input, {target: {value: 'a'}});
 
     expect(queryByText('Select All')).toBeFalsy();
     expect(queryByText('Clear')).toBeFalsy();

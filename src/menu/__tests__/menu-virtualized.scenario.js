@@ -12,9 +12,9 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import {withStyle} from 'styletron-react';
 import {StatefulMenu, OptionList, StyledList} from '../index.js';
-// eslint-disable-next-line import/extensions
+//flowlint-next-line untyped-import:off
 import List from 'react-virtualized/dist/commonjs/List';
-// eslint-disable-next-line import/extensions
+//flowlint-next-line untyped-import:off
 import AutoSizer from 'react-virtualized/dist/commonjs/AutoSizer';
 
 const ITEMS = [...new Array(1500)].map((_, index) => ({

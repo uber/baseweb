@@ -42,7 +42,7 @@ describe('Select component', function () {
     );
 
     const input = container.querySelector('input');
-    fireEvent.change(input, {target: {value: 'test'}});
+    if (input) fireEvent.change(input, {target: {value: 'test'}});
     expect(props.onInputChange).toHaveBeenCalledTimes(1);
   });
 

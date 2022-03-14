@@ -40,13 +40,14 @@ describe('Stateless checkbox', function () {
     );
 
     const input = container.querySelector('input');
-
-    fireEvent.mouseEnter(input);
-    fireEvent.mouseLeave(input);
-    fireEvent.mouseUp(input);
-    fireEvent.mouseDown(input);
-    fireEvent.focus(input);
-    fireEvent.blur(input);
+    if (input) {
+      fireEvent.mouseEnter(input);
+      fireEvent.mouseLeave(input);
+      fireEvent.mouseUp(input);
+      fireEvent.mouseDown(input);
+      fireEvent.focus(input);
+      fireEvent.blur(input);
+    }
 
     expect(onMouseEnter.mock.calls.length).toBe(1);
     expect(onMouseLeave.mock.calls.length).toBe(1);
@@ -65,7 +66,9 @@ describe('Stateless checkbox', function () {
       </div>,
     );
     const label = container.querySelector('label');
-    fireEvent.click(label);
+    if (label) {
+      fireEvent.click(label);
+    }
     expect(onAncestorClick.mock.calls.length).toBe(1);
   });
 });

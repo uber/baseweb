@@ -29,7 +29,9 @@ describe('combobox', () => {
       </TestBaseProvider>,
     );
     const input = container.querySelector('input');
-    fireEvent.change(input, {target: {value: 'x'}});
+    if (input) {
+      fireEvent.change(input, {target: {value: 'x'}});
+    }
 
     expect(handleChange.mock.calls.length).toBe(1);
     expect(handleChange.mock.calls[0][0]).toBe('x');
@@ -50,9 +52,10 @@ describe('combobox', () => {
       </TestBaseProvider>,
     );
     const input = container.querySelector('input');
-    fireEvent.change(input, {target: {value: 'x'}});
-    fireEvent.blur(input);
-
+    if (input) {
+      fireEvent.change(input, {target: {value: 'x'}});
+      fireEvent.blur(input);
+    }
     expect(handleBlur.mock.calls.length).toBe(1);
   });
 
@@ -70,9 +73,10 @@ describe('combobox', () => {
       </TestBaseProvider>,
     );
     const input = container.querySelector('input');
-    fireEvent.change(input, {target: {value: 'x'}});
-    fireEvent.focus(input);
-
+    if (input) {
+      fireEvent.change(input, {target: {value: 'x'}});
+      fireEvent.focus(input);
+    }
     expect(handleFocus.mock.calls.length).toBe(1);
   });
 
@@ -91,8 +95,9 @@ describe('combobox', () => {
     expect(before).toBeNull();
 
     const input = container.querySelector('input');
-    fireEvent.change(input, {target: {value: 'x'}});
-
+    if (input) {
+      fireEvent.change(input, {target: {value: 'x'}});
+    }
     const after = container.querySelector('ul');
     expect(after).not.toBeNull();
   });
@@ -112,8 +117,9 @@ describe('combobox', () => {
     expect(before).toBeNull();
 
     const input = container.querySelector('input');
-    fireEvent.keyDown(input, {keyCode: 40});
-
+    if (input) {
+      fireEvent.keyDown(input, {keyCode: 40});
+    }
     const after = container.querySelector('ul');
     expect(after).not.toBeNull();
   });
@@ -131,10 +137,11 @@ describe('combobox', () => {
       </TestBaseProvider>,
     );
     const input = container.querySelector('input');
-    fireEvent.keyDown(input, {keyCode: 40});
-    fireEvent.keyDown(input, {keyCode: 40});
-    fireEvent.keyDown(input, {keyCode: 40});
-
+    if (input) {
+      fireEvent.keyDown(input, {keyCode: 40});
+      fireEvent.keyDown(input, {keyCode: 40});
+      fireEvent.keyDown(input, {keyCode: 40});
+    }
     expect(handleChange.mock.calls.length).toBe(0);
   });
 
@@ -151,10 +158,11 @@ describe('combobox', () => {
       </TestBaseProvider>,
     );
     const input = container.querySelector('input');
-    fireEvent.keyDown(input, {keyCode: 40});
-    fireEvent.keyDown(input, {keyCode: 40});
-    fireEvent.keyDown(input, {keyCode: 13});
-
+    if (input) {
+      fireEvent.keyDown(input, {keyCode: 40});
+      fireEvent.keyDown(input, {keyCode: 40});
+      fireEvent.keyDown(input, {keyCode: 13});
+    }
     expect(handleChange.mock.calls.length).toBe(1);
     expect(handleChange.mock.calls[0][0]).toBe(options[1]);
     expect(handleChange.mock.calls[0][1]).toBe(options[1]);
@@ -173,13 +181,15 @@ describe('combobox', () => {
       </TestBaseProvider>,
     );
     const input = container.querySelector('input');
-    fireEvent.keyDown(input, {keyCode: 40});
-    fireEvent.keyDown(input, {keyCode: 40});
-    fireEvent.keyDown(input, {keyCode: 40});
-
+    if (input) {
+      fireEvent.keyDown(input, {keyCode: 40});
+      fireEvent.keyDown(input, {keyCode: 40});
+      fireEvent.keyDown(input, {keyCode: 40});
+    }
     const selectedItem = container.querySelector('li[aria-selected="true"]');
-    fireEvent.click(selectedItem);
-
+    if (selectedItem) {
+      fireEvent.click(selectedItem);
+    }
     expect(handleChange.mock.calls.length).toBe(1);
     expect(handleChange.mock.calls[0][0]).toBe(options[2]);
     expect(handleChange.mock.calls[0][1]).toBe(options[2]);
@@ -200,8 +210,9 @@ describe('combobox', () => {
     expect(initial).toBeNull();
 
     const input = container.querySelector('input');
-    fireEvent.focus(input);
-
+    if (input) {
+      fireEvent.focus(input);
+    }
     const open = container.querySelector('ul');
     expect(open).not.toBeNull();
   });
@@ -221,8 +232,9 @@ describe('combobox', () => {
     expect(initial).toBeNull();
 
     const input = container.querySelector('input');
-    fireEvent.focus(input);
-
+    if (input) {
+      fireEvent.focus(input);
+    }
     const closed = container.querySelector('ul');
     expect(closed).toBeNull();
   });
@@ -242,14 +254,16 @@ describe('combobox', () => {
     expect(initial).toBeNull();
 
     const input = container.querySelector('input');
-    fireEvent.focus(input);
-
+    if (input) {
+      fireEvent.focus(input);
+    }
     const open = container.querySelector('ul');
     expect(open).not.toBeNull();
 
     const option = container.querySelector('li');
-    fireEvent.click(option);
-
+    if (option) {
+      fireEvent.click(option);
+    }
     const closed = container.querySelector('ul');
     expect(closed).toBeNull();
   });
@@ -269,13 +283,15 @@ describe('combobox', () => {
     expect(initial).toBeNull();
 
     const input = container.querySelector('input');
-    fireEvent.keyDown(input, {keyCode: 40});
-
+    if (input) {
+      fireEvent.keyDown(input, {keyCode: 40});
+    }
     const open = container.querySelector('ul');
     expect(open).not.toBeNull();
 
-    fireEvent.blur(input, {});
-
+    if (input) {
+      fireEvent.blur(input, {});
+    }
     const closed = container.querySelector('ul');
     expect(closed).toBeNull();
   });
@@ -298,14 +314,18 @@ describe('combobox', () => {
     const {container} = render(<TestCase />);
 
     const input = container.querySelector('input');
-    fireEvent.keyDown(input, {keyCode: 40});
-    fireEvent.keyDown(input, {keyCode: 40});
-    fireEvent.keyDown(input, {keyCode: 13});
-    expect(input.getAttribute('value')).toBe(options[1]);
+    if (input) {
+      fireEvent.keyDown(input, {keyCode: 40});
+      fireEvent.keyDown(input, {keyCode: 40});
+      fireEvent.keyDown(input, {keyCode: 13});
+    }
+    expect(input?.getAttribute('value')).toBe(options[1]);
 
     const button = container.querySelector('button');
-    fireEvent.click(button);
-    expect(input.getAttribute('value')).toBe('');
+    if (button) {
+      fireEvent.click(button);
+    }
+    expect(input?.getAttribute('value')).toBe('');
   });
 
   it('clears input on value state set to arbitrary string', () => {
@@ -327,14 +347,18 @@ describe('combobox', () => {
     const {container} = render(<TestCase />);
 
     const input = container.querySelector('input');
-    fireEvent.keyDown(input, {keyCode: 40});
-    fireEvent.keyDown(input, {keyCode: 40});
-    fireEvent.keyDown(input, {keyCode: 13});
-    expect(input.getAttribute('value')).toBe(options[1]);
+    if (input) {
+      fireEvent.keyDown(input, {keyCode: 40});
+      fireEvent.keyDown(input, {keyCode: 40});
+      fireEvent.keyDown(input, {keyCode: 13});
+    }
+    expect(input?.getAttribute('value')).toBe(options[1]);
 
     const button = container.querySelector('button');
-    fireEvent.click(button);
-    expect(input.getAttribute('value')).toBe(updateValue);
+    if (button) {
+      fireEvent.click(button);
+    }
+    expect(input?.getAttribute('value')).toBe(updateValue);
   });
 
   it('does not change input value while keyboard nav if autocomplete is false', () => {
@@ -350,8 +374,10 @@ describe('combobox', () => {
       </TestBaseProvider>,
     );
     const input = container.querySelector('input');
-    fireEvent.keyDown(input, {keyCode: 40});
-    expect(input.getAttribute('value')).toBe('');
+    if (input) {
+      fireEvent.keyDown(input, {keyCode: 40});
+    }
+    expect(input?.getAttribute('value')).toBe('');
   });
 
   it('can close listbox on submission', () => {
@@ -368,13 +394,15 @@ describe('combobox', () => {
     );
 
     const input = container.querySelector('input');
-    fireEvent.change(input, {target: {value: 'x'}});
-
+    if (input) {
+      fireEvent.change(input, {target: {value: 'x'}});
+    }
     const open = container.querySelector('ul');
     expect(open).not.toBeNull();
 
-    fireEvent.keyDown(input, {keyCode: 13});
-
+    if (input) {
+      fireEvent.keyDown(input, {keyCode: 13});
+    }
     const closed = container.querySelector('ul');
     expect(closed).toBeNull();
   });

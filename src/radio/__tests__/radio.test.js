@@ -35,8 +35,10 @@ describe('Radio', () => {
     );
 
     const input = container.querySelector('input');
-    fireEvent.blur(input);
-    fireEvent.focus(input);
+    if (input) {
+      fireEvent.blur(input);
+      fireEvent.focus(input);
+    }
     expect(spy).toHaveBeenCalledTimes(2);
 
     spy.mockClear();
@@ -60,9 +62,11 @@ describe('Radio', () => {
     );
 
     const select = container.querySelector('[data-baseweb="select"]');
-    const radio = container.querySelector('input[type="radio"]');
+    const radio = ((container.querySelector(
+      'input[type="radio"]',
+    ): any): HTMLInputElement); //flowlint-line unclear-type:off
     expect(radio.checked).toBe(false);
-    fireEvent.click(select);
+    if (select) fireEvent.click(select);
     expect(radio.checked).toBe(false);
   });
 
@@ -81,7 +85,7 @@ describe('Radio', () => {
       </div>,
     );
     const label = container.querySelector('label');
-    fireEvent.click(label);
+    if (label) fireEvent.click(label);
     expect(onAncestorClick.mock.calls.length).toBe(1);
   });
 });

@@ -48,14 +48,16 @@ describe('Button Component', () => {
   test('onClick called with event', () => {
     const onClick = jest.fn();
     const {container} = render(<Button onClick={onClick} />);
-    fireEvent.click(container.querySelector('button'));
+    const button = container.querySelector('button');
+    if (button) fireEvent.click(button);
     expect(onClick).toHaveBeenCalledTimes(1);
   });
 
   test("onClick doesn't fire while loading", () => {
     const onClick = jest.fn();
     const {container} = render(<Button onClick={onClick} isLoading />);
-    fireEvent.click(container.querySelector('button'));
+    const button = container.querySelector('button');
+    if (button) fireEvent.click(button);
     expect(onClick.mock.calls.length).toBe(0);
   });
 });

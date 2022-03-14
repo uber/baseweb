@@ -99,7 +99,7 @@ function CellPlacement({columnIndex, rowIndex, data, style}) {
 
   let backgroundColor = theme.colors.backgroundPrimary;
   if (
-    (rowIndex % 2 && columnIndex === data.columnHighlightIndex) ||
+    (Boolean(rowIndex % 2) && columnIndex === data.columnHighlightIndex) ||
     rowIndex === data.rowHighlightIndex
   ) {
     backgroundColor = theme.colors.backgroundTertiary;

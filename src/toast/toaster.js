@@ -209,7 +209,7 @@ export class ToasterContainer extends React.Component<
     if (this.state.isMounted) {
       return (
         <>
-          {this.props.usePortal && __BROWSER__
+          {this.props.usePortal && __BROWSER__ && document.body
             ? ReactDOM.createPortal(root, document.body)
             : root}
           {this.props.children}

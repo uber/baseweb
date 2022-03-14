@@ -55,7 +55,7 @@ describe('boolean column', () => {
 
     const {container} = render(<Cell value={true} x={0} y={0} />);
     const cell = container.querySelector('div');
-    expect(cell.textContent).toBe('T');
+    expect(cell?.textContent).toBe('T');
   });
 
   it('cell renders F if false value provided', () => {
@@ -67,7 +67,7 @@ describe('boolean column', () => {
 
     const {container} = render(<Cell value={false} x={0} y={0} />);
     const cell = container.querySelector('div');
-    expect(cell.textContent).toBe('F');
+    expect(cell?.textContent).toBe('F');
   });
 
   it('applies filter with expected selection', () => {

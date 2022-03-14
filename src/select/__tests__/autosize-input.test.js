@@ -18,6 +18,6 @@ describe('AutosizeInput component', function () {
     );
     const input = container.querySelector('input');
     expect(input).not.toBeNull();
-    expect(input.getAttribute('value')).toBe('test');
+    expect(input?.getAttribute('value')).toBe('test');
   });
 });

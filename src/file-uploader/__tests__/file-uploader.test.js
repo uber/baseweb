@@ -22,7 +22,7 @@ describe('FileUploader', () => {
   it('applies expected accessibility attributes to button', () => {
     const {container} = render(<FileUploader />);
     const button = container.querySelector('button');
-    expect(button.getAttribute('role')).toBe('button');
+    expect(button?.getAttribute('role')).toBe('button');
   });
 
   it('renders progress bar if progressAmount provided', () => {

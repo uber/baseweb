@@ -43,7 +43,7 @@ export default function TreeView(props: TreeViewPropsT) {
   const {Root: RootOverride} = overrides;
 
   const Root = getOverride(RootOverride) || StyledTreeItemList;
-  const firstId = data.length && getId(data[0]);
+  const firstId = data.length > 0 ? getId(data[0]) : 0;
   const [selectedNodeId, setSelectedNodeId] = React.useState(firstId);
   const [focusVisible, setFocusVisible] = React.useState(false);
   const [typeAheadChars, setTypeAheadChars] = React.useState('');

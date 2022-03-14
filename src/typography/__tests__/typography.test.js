@@ -27,7 +27,7 @@ import {
 } from '../index.js';
 
 function getStyle(element) {
-  return JSON.parse(element.getAttribute('test-style'));
+  return JSON.parse(element.getAttribute('test-style') || '');
 }
 
 describe('Typography', () => {

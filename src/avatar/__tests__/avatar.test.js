@@ -15,20 +15,20 @@ import {Avatar} from '../index.js';
 // https://github.com/jsdom/jsdom/issues/1816#issuecomment-310106280
 function triggerLoadError(container) {
   const img = container.querySelector('img');
-  fireEvent.error(img);
+  if (img) fireEvent.error(img);
 }
 
 function triggerLoad(container) {
   const img = container.querySelector('img');
-  fireEvent.load(img);
+  if (img) fireEvent.load(img);
 }
 
 describe('Avatar', () => {
   it('applies expected accessibility attributes to img element', () => {
     const name = 'user name';
     const {container} = render(<Avatar name={name} src="valid-img-src.png" />);
-    const image = container.querySelector('img');
-    expect(image.getAttribute('alt')).toBe(name);
+    const image = container.querySelector('img')?.getAttribute('alt');
+    expect(image).toBe(name);
   });
 
   it('does not render img element if image fails to load', () => {
@@ -40,8 +40,8 @@ describe('Avatar', () => {
     expect(before).not.toBeNull();
     triggerLoadError(container);
 
-    const after = container.querySelector('img');
-    const style = JSON.parse(after.getAttribute('test-style'));
+    const after = container.querySelector('img')?.getAttribute('test-style');
+    const style = JSON.parse(after || '');
     expect(style.display).toBe('none');
   });
 
@@ -52,8 +52,8 @@ describe('Avatar', () => {
     );
     triggerLoad(container);
     const root = container.querySelector('div');
-    expect(root.getAttribute('aria-label')).toBeNull();
-    expect(root.getAttribute('role')).toBeNull();
+    expect(root?.getAttribute('aria-label')).toBeNull();
+    expect(root?.getAttribute('role')).toBeNull();
   });
 
   it('applies expected accessibility attributes to root if image fails to load', () => {
@@ -65,8 +65,8 @@ describe('Avatar', () => {
     triggerLoadError(container);
 
     const root = container.querySelector('div');
-    expect(root.getAttribute('aria-label')).toBe(name);
-    expect(root.getAttribute('role')).toBe('img');
+    expect(root?.getAttribute('aria-label')).toBe(name);
+    expect(root?.getAttribute('role')).toBe('img');
   });
 
   it('renders user first 2 initials when image fails to load', () => {
@@ -122,14 +122,14 @@ describe('Avatar', () => {
     const {container} = render(<TestCase />);
 
     triggerLoad(container);
-    const before = container.querySelector('img');
-    const beforeStyle = JSON.parse(before.getAttribute('test-style'));
+    const before = container.querySelector('img')?.getAttribute('test-style');
+    const beforeStyle = JSON.parse(before || '');
     expect(beforeStyle.display).toBe('none');
-
-    fireEvent.click(container.querySelector('button'));
+    const button = container.querySelector('button');
+    if (button) fireEvent.click(button);
     triggerLoad(container);
-    const after = container.querySelector('img');
-    const afterStyle = JSON.parse(after.getAttribute('test-style'));
+    const after = container.querySelector('img')?.getAttribute('test-style');
+    const afterStyle = JSON.parse(after || '');
     expect(afterStyle.display).toBe('block');
   });
 });

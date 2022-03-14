@@ -56,8 +56,8 @@ describe('Modal', () => {
         </Modal>
       </TestBaseProvider>,
     );
-
-    fireEvent.click(container.querySelector('button'));
+    const button = container.querySelector('button');
+    if (button) fireEvent.click(button);
     expect(onClose).toHaveBeenCalledTimes(1);
     expect(onClose).toHaveBeenLastCalledWith({
       closeSource: CLOSE_SOURCE.closeButton,
@@ -167,8 +167,8 @@ describe('Modal', () => {
         </Modal>
       </TestBaseProvider>,
     );
-
-    fireEvent.click(container.querySelector('input'));
+    const input = container.querySelector('input');
+    if (input) fireEvent.click(input);
     fireEvent.click(getByText(container, 'AliceBlue'));
     expect(getByTestId(container, 'selected').textContent).toBe('AliceBlue');
   });

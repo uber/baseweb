@@ -169,9 +169,10 @@ describe('FlexGridItem', () => {
 
   it('renders with expected styles', () => {
     const {container} = render(<FlexGridItem />);
-    const style = JSON.parse(
-      container.querySelector('div').getAttribute('test-style'),
-    );
+    const testStyle = container
+      .querySelector('div')
+      ?.getAttribute('test-style');
+    const style = JSON.parse(testStyle || '');
     expect(style).toMatchInlineSnapshot(`
 Object {
   "flexGrow": 1,
@@ -186,9 +187,10 @@ Object {
     const {container} = render(
       <FlexGridItem overrides={{Block: {style: {color: 'red'}}}} />,
     );
-    const style = JSON.parse(
-      container.querySelector('div').getAttribute('test-style'),
-    );
+    const testStyle = container
+      .querySelector('div')
+      ?.getAttribute('test-style');
+    const style = JSON.parse(testStyle || '');
     expect(style).toMatchInlineSnapshot(`
 Object {
   "color": "red",

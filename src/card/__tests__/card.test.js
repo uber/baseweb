@@ -34,9 +34,9 @@ test('Card - header image object', () => {
   const {container} = render(<Card {...props}>Card body</Card>);
 
   const img = container.querySelector('img');
-  expect(img.getAttribute('src')).toBe(headerImg);
-  expect(img.getAttribute('alt')).toBe(alt);
-  expect(img.getAttribute('srcSet')).toEqual(srcSet);
+  expect(img?.getAttribute('src')).toBe(headerImg);
+  expect(img?.getAttribute('alt')).toBe(alt);
+  expect(img?.getAttribute('srcSet')).toEqual(srcSet);
 });
 
 test('Card - no images', () => {

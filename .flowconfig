@@ -8,6 +8,7 @@ build-ladle
 .*examples/fusion/.*
 documentation-site/.next/.*
 .*/node_modules/.*vite.*
+.*\.png$
 
 [include]
 ./src/
@@ -17,6 +18,7 @@ documentation-site/examples/.*
 
 [declarations]
 <PROJECT_ROOT>/node_modules/.*
+.*/flow-typed/.*
 
 [options]
 module.ignore_non_literal_requires=true
@@ -26,11 +28,26 @@ module.name_mapper='^examples' ->'<PROJECT_ROOT>/documentation-site/examples'
 log.file=.flow.log
 sharedmemory.hash_table_pow=21
 merge_timeout=140
+esproposal.optional_chaining=enable
+esproposal.decorators=warn
+include_warnings=false
+module.use_strict=true
 
 [lints]
 unclear-type=error
 unsafe-getters-setters=error
+untyped-import=error
+untyped-type-import=error
+sketchy-number=error
 deprecated-type=error
 deprecated-utility=error
 unnecessary-optional-chain=error
+
 [strict]
+unclear-type
+unsafe-getters-setters
+untyped-import
+untyped-type-import
+
+[version]
+0.131.0
