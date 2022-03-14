@@ -293,7 +293,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
                 {...backdropProps}
               />
               <DialogContainer
-                // eslint-disable-next-line flowtype/no-weak-types
+                // flowlint-next-line unclear-type:off
                 ref={(this.dialogContainerRef: any)}
                 {...sharedProps}
                 {...dialogContainerProps}

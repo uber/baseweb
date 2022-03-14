@@ -25,6 +25,11 @@ const getBody = (): HTMLBodyElement => {
   return ((document.body: any): HTMLBodyElement);
 };
 
+const getBody = (): HTMLBodyElement => {
+  //flowlint-next-line unclear-type:off
+  return ((document.body: any): HTMLBodyElement);
+};
+
 function wait(ms) {
   return new Promise((res) => {
     setTimeout(res, ms);

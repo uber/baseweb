@@ -12,6 +12,8 @@ import type { OverrideT } from '../helpers/overrides.js';
 
 export type ReactRefT<T> = {| current: null | T |};
 
+export type ReactRefT<T> = {|current: null | T|};
+
 export type OverridesT = {
   Root?: OverrideT,
   BaseButton?: OverrideT,

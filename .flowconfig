@@ -22,6 +22,7 @@ documentation-site/examples/.*
 
 [declarations]
 <PROJECT_ROOT>/node_modules/.*
+.*/flow-typed/.*
 
 [options]
 module.ignore_non_literal_requires=true
