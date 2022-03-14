@@ -201,9 +201,9 @@ function Options(props: OptionsPropsT) {
 
 type PropsT = {
   columns: ColumnT<>[],
-  // eslint-disable-next-line flowtype/no-weak-types
+  // flowlint-next-line unclear-type:off
   filters: Map<string, any>,
-  // eslint-disable-next-line flowtype/no-weak-types
+  // flowlint-next-line unclear-type:off
   rows: any[],
   onSetFilter: (
     columnTitle: string,

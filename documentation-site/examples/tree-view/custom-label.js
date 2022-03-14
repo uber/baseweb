@@ -55,14 +55,17 @@ const initialData = [
 
 export default function CustomLabelledTreeView() {
   const [data, setData] = React.useState(initialData);
-  const getId = node => (node: any).info.name;
+  // flowlint-next-line unclear-type:off
+  const getId = (node) => (node: any).info.name;
 
   return (
     <TreeView
       data={data}
       getId={getId}
-      onToggle={node =>
-        setData(prevData => toggleIsExpanded(prevData, node, getId))
+      onToggle={(node) =>
+        setData((prevData) =>
+          toggleIsExpanded(prevData, node, getId),
+        )
       }
     />
   );

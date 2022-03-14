@@ -11,6 +11,7 @@ import {STYLE_TYPE} from './constants.js';
 
 export type LabelPlacementT = 'top' | 'right' | 'bottom' | 'left';
 export type StyleTypeT = $Keys<typeof STYLE_TYPE>;
+export type ReactRefT<T> = {|current: null | T|};
 
 export type OverridesT = {
   Checkmark?: OverrideT,
@@ -30,7 +31,7 @@ export type DefaultPropsT = {
   error: boolean,
   autoFocus: boolean,
   isIndeterminate: boolean,
-  inputRef: {current: HTMLInputElement | null},
+  inputRef: ReactRefT<HTMLInputElement>,
   checkmarkType: StyleTypeT,
   onChange: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
   onMouseEnter: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
@@ -65,7 +66,7 @@ export type PropsT = {
   /** You should use error instead. */
   isError?: boolean,
   /** Used to get a ref to the input element. Useful for programmatically focusing the input */
-  inputRef: {current: HTMLInputElement | null},
+  inputRef: ReactRefT<HTMLInputElement>,
   /** Focus the checkbox on initial render. */
   autoFocus?: boolean,
   /** Passed to the input element type attribute */
@@ -117,9 +118,26 @@ export type StateReducerT = (
   event: SyntheticInputEvent<HTMLInputElement>,
 ) => StateT;
 
+export type StatefulContainerChildPropsT = {
+  ...StateT,
+  overrides?: OverridesT,
+  /** Handler for change events on trigger element. */
+  onChange?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
+  /** Handler for mouseenter events on trigger element. */
+  onMouseEnter?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
+  /** Handler for mouseleave events on trigger element. */
+  onMouseLeave?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
+  /** Handler for focus events on trigger element. */
+  onFocus?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
+  /** Handler for blur events on trigger element. */
+  onBlur?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
+  /** Focus the checkbox on initial render. */
+  autoFocus?: boolean,
+};
+
 export type DefaultStatefulPropsT = {
   initialState: StateT,
-  children?: (*) => React$Node,
+  children?: (StatefulContainerChildPropsT) => React$Node,
   stateReducer: StateReducerT,
   onChange: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
   onMouseEnter: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
@@ -131,7 +149,7 @@ export type DefaultStatefulPropsT = {
 export type StatefulContainerPropsT = {
   overrides?: OverridesT,
   /** Component or String value for label of checkbox. */
-  children?: (*) => React$Node,
+  children?: (StatefulContainerChildPropsT) => React$Node,
   /** Defines the components initial state value */
   initialState?: StateT,
   /** A state change handler. Used to override default state transitions. */

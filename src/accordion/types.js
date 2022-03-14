@@ -57,7 +57,8 @@ export type AccordionOnChangeHandlerT = ({
   expanded: Array<React.Key>,
 }) => mixed;
 
-type ChildrenT = React.ChildrenArray<React.Element<*>>;
+//flowlint-next-line unclear-type:off
+type ChildrenT = React.ChildrenArray<React.Element<any>>;
 
 export type AccordionPropsT = {
   /** Determines how many panels may be expanded at a time. If set to

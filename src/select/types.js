@@ -15,6 +15,7 @@ import type {OnItemSelectFnT} from '../menu/types.js';
 export type ChangeActionT = $Keys<typeof STATE_CHANGE_TYPE>;
 export type SizeT = $Keys<typeof SIZE>;
 export type TypeT = $Keys<typeof TYPE>;
+export type ReactRefT<T> = {|current: null | T|};
 
 export type OptionT = $ReadOnly<{
   id?: string | number,
@@ -23,7 +24,7 @@ export type OptionT = $ReadOnly<{
   clearableValue?: boolean,
   isCreatable?: boolean,
   __optgroup?: string,
-  // eslint-disable-next-line flowtype/no-weak-types
+  // flowlint-next-line unclear-type:off
   [string]: any,
 }>;
 
@@ -132,7 +133,7 @@ export type PropsT = {
   /** Defines if the comparison for a new creatable value should be case-insensitive. */
   ignoreCase?: boolean,
   /** A ref to access the input element powering the select if it's a search select, or the container div if it isn't. */
-  controlRef?: React.ElementRef<*>,
+  controlRef?: ReactRefT<HTMLElement>,
   /** Defines if the select is in a loading (async) state. */
   isLoading: boolean,
   /** Defines an option key for a default label value. */
@@ -183,7 +184,7 @@ export type PropsT = {
   /** A current selected value(s). If a selected value has a clearableValue
    * prop set to true it will be rendered as a disabled selected option that can't be cleared. */
   value: ValueT,
-  // eslint-disable-next-line flowtype/no-weak-types
+  // flowlint-next-line unclear-type:off
   valueComponent?: React.ComponentType<any>,
   /** Defines a key name for an option's unique identifier value.
    * The value of the `valueKey` prop is used to identify what options are selected
@@ -238,7 +239,7 @@ export type DropdownPropsT = {
     },
   }) => React.Node,
   id?: string,
-  innerRef: React.ElementRef<*>,
+  innerRef: ReactRefT<HTMLElement>,
   isLoading: boolean,
   labelKey: string,
   maxDropdownHeight: string,
@@ -255,7 +256,7 @@ export type DropdownPropsT = {
   value: ValueT,
   valueKey: string,
   width: ?number,
-  keyboardControlNode?: React.ElementRef<*>,
+  keyboardControlNode?: ReactRefT<HTMLElement>,
 };
 
 export type AutosizeInputOverridesT = {

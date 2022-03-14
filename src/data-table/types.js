@@ -30,7 +30,7 @@ export type SharedColumnOptionsT<ValueT> = {|
   cellBlockAlign?: 'start' | 'center' | 'end',
   fillWidth?: boolean,
   filterable?: boolean,
-  // eslint-disable-next-line flowtype/no-weak-types
+  // flowlint-next-line unclear-type:off
   mapDataToValue: (data: any) => ValueT,
   maxWidth?: number,
   minWidth?: number,
@@ -55,7 +55,7 @@ export type RenderFilterT<ValueT, FilterParamsT> = React.AbstractComponent<{|
   setFilter: (FilterParamsT) => void,
 |}>;
 
-// eslint-disable-next-line flowtype/no-weak-types
+// flowlint-next-line unclear-type:off
 export type ColumnT<ValueT = any, FilterParamsT = any> = {|
   ...SharedColumnOptionsT<ValueT>,
   kind: ColumnsT,
@@ -69,7 +69,7 @@ export type ColumnT<ValueT = any, FilterParamsT = any> = {|
 
 export type RowT = {
   id: number | string,
-  // eslint-disable-next-line flowtype/no-weak-types
+  // flowlint-next-line unclear-type:off
   data: any,
 };
 

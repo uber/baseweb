@@ -23,11 +23,11 @@ import type {
 } from './types.js';
 
 function chooseRenderedHint(caption, error, positive, sharedProps) {
-  if (error && typeof error !== 'boolean') {
+  if (!!error && typeof error !== 'boolean') {
     return typeof error === 'function' ? error(sharedProps) : error;
   }
 
-  if (positive && typeof positive !== 'boolean') {
+  if (!!positive && typeof positive !== 'boolean') {
     return typeof positive === 'function' ? positive(sharedProps) : positive;
   }
 
@@ -155,7 +155,7 @@ export default class FormControl extends React.Component<
             >
               {typeof label === 'function' ? label(sharedProps) : label}
             </Label>
-            {labelEndEnhancer && (
+            {!!labelEndEnhancer && (
               <LabelEndEnhancer
                 {...sharedProps}
                 {...getOverrideProps(LabelEndEnhancerOverride)}
@@ -193,7 +193,7 @@ export default class FormControl extends React.Component<
                       : sharedProps.$positive,
                 });
               })}
-              {(caption || error || positive) && (
+              {(!!caption || !!error || positive) && (
                 <Caption
                   data-baseweb="form-control-caption"
                   id={captionId}

@@ -140,7 +140,7 @@ export type TetherPropsT = {
   /** Options to be passes to the Popper on its initialization.
    Refer to the [Popper documentation](https://github.com/popperjs/popper.js/blob/v1.x/docs/_includes/popper-documentation.md)
    for the full list of available options. */
-  // eslint-disable-next-line flowtype/no-weak-types
+  // flowlint-next-line unclear-type:off
   popperOptions: any,
 };
 

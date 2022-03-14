@@ -39,7 +39,8 @@ describe('Table-Filter', () => {
         </Filter>
       </TestBaseProvider>,
     );
-    fireEvent.click(container.querySelector('button'));
+    const button = container.querySelector('button');
+    if (button) fireEvent.click(button);
     expect(queryByTestId(container, 'content')).not.toBeNull();
   });
 
@@ -54,7 +55,8 @@ describe('Table-Filter', () => {
         </Filter>
       </TestBaseProvider>,
     );
-    fireEvent.click(container.querySelector('button'));
+    const button = container.querySelector('button');
+    if (button) fireEvent.click(button);
     expect(queryByTestId(container, 'content')).toBeNull();
   });
 
@@ -64,7 +66,8 @@ describe('Table-Filter', () => {
         <Filter hasCloseButton={true}>hello</Filter>
       </TestBaseProvider>,
     );
-    fireEvent.click(container.querySelector('button'));
+    const button = container.querySelector('button');
+    if (button) fireEvent.click(button);
     expect(getByText(container, 'Close')).not.toBeNull();
   });
 
@@ -79,7 +82,8 @@ describe('Table-Filter', () => {
         </Filter>
       </TestBaseProvider>,
     );
-    fireEvent.click(container.querySelector('button'));
+    const button = container.querySelector('button');
+    if (button) fireEvent.click(button);
     const close = getByText(container, 'Close');
     fireEvent.click(close);
     expect(queryByTestId(container, 'content')).toBeNull();
@@ -92,7 +96,8 @@ describe('Table-Filter', () => {
         <Filter onSelectAll={spy}>hello</Filter>
       </TestBaseProvider>,
     );
-    fireEvent.click(container.querySelector('button'));
+    const button = container.querySelector('button');
+    if (button) fireEvent.click(button);
     const selectAll = getByText(container, 'Select All');
     fireEvent.click(selectAll);
     expect(spy).toHaveBeenCalled();
@@ -105,7 +110,8 @@ describe('Table-Filter', () => {
         <Filter onReset={spy}>hello</Filter>
       </TestBaseProvider>,
     );
-    fireEvent.click(container.querySelector('button'));
+    const button = container.querySelector('button');
+    if (button) fireEvent.click(button);
     const reset = getByText(container, 'Reset');
     fireEvent.click(reset);
     expect(spy).toHaveBeenCalled();

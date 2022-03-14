@@ -25,6 +25,11 @@ module.exports = {
     context: true,
     jestPuppeteer: true,
   },
+  settings: {
+    react: {
+      version: 'detect',
+    },
+  },
   extends: [
     'plugin:flowtype/recommended',
     'plugin:react/recommended',
@@ -34,7 +39,6 @@ module.exports = {
   rules: {
     // Enforce flow file declarations
     'flowtype/require-valid-file-annotation': ['error', 'always'],
-    'flowtype/no-weak-types': ['error'],
     'flowtype/space-after-type-colon': 'off',
     'react/jsx-filename-extension': 0,
     'react/prop-types': 0,

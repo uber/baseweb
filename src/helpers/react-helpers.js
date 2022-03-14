@@ -11,7 +11,7 @@ import {isFragment} from 'react-is';
 
 export const flattenFragments = (
   children?: React.Node,
-  ChildWrapper?: React.ComponentType<*>,
+  ChildWrapper?: React.ComponentType<{}>,
   depth: number = 0,
 ): React.Node[] =>
   React.Children.toArray(children).reduce(

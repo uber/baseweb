@@ -13,12 +13,13 @@ import {NestedMenuContext} from './nested-menus.js';
 import {Popover} from '../popover/index.js';
 import type {OverrideT} from '../helpers/overrides.js';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
+import type {ItemT} from './types.js';
 
 type PropsT = {
   children: React.Node,
-  getChildMenu: ?(item: *) => React.Node,
+  getChildMenu: ?(item: ItemT) => React.Node,
   isOpen: boolean,
-  item: *,
+  item: ItemT,
   resetParentMenu: () => void,
   renderAll?: boolean,
   onClick?: (event: MouseEvent) => mixed,

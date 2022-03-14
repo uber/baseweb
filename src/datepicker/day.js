@@ -36,7 +36,7 @@ export default class Day<T = Date> extends React.Component<
     value: null,
   };
 
-  dayElm: React.ElementRef<*>;
+  dayElm: React.ElementRef<typeof HTMLElement>;
 
   state = {
     isHovered: false,

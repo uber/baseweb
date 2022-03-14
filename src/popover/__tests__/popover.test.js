@@ -136,10 +136,12 @@ describe('Popover', () => {
 
     fireEvent.click(getByText(container, anchorContent));
     await findByText(container, contentContent);
+    // flowlint-next-line unclear-type:off
     expect((document.activeElement: any).id).toEqual(firstInputId);
 
     fireEvent.click(getByText(container, anchorContent));
     expect(document.activeElement).not.toBeNull();
+    // flowlint-next-line unclear-type:off
     expect((document.activeElement: any).id).toEqual(buttonId);
   });
 

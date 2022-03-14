@@ -64,7 +64,6 @@ export interface LabelPropsT {
 }
 
 export interface MenuAdapterPropsT extends PropsT {
-  // eslint-disable-next-line flowtype/no-weak-types
   item: any;
   onMouseEnter: (event: React.MouseEvent<HTMLLIElement>) => any;
   onClick: (event: React.MouseEvent<HTMLLIElement>) => any;
@@ -82,9 +81,7 @@ export const MenuAdapter: React.FC<MenuAdapterPropsT>;
 export const StyledRoot: StyletronComponent<{}>;
 export const StyledContent: StyletronComponent<StyledContentPropsT>;
 export const StyledEndEnhancerContainer: StyletronComponent<{}>;
-export const StyledArtworkContainer: StyletronComponent<
-  StyledArtworkContainerPropsT
->;
+export const StyledArtworkContainer: StyletronComponent<StyledArtworkContainerPropsT>;
 
 export interface HeadingPropsT {
   heading: React.ReactNode;
@@ -110,13 +107,7 @@ export const ListHeading: React.ForwardRefExoticComponent<
 export const StyledHeadingRoot: StyletronComponent<{}>;
 export const StyledHeadingContent: StyletronComponent<{}>;
 export const StyledHeadingContentRow: StyletronComponent<{}>;
-export const StyledHeadingMainHeading: StyletronComponent<
-  StyledHeadingHeadingPropsT
->;
-export const StyledHeadingSubHeading: StyletronComponent<
-  StyledHeadingHeadingPropsT
->;
-export const StyledHeadingEndEnhancerContainer: StyletronComponent<
-  StyledHeadingEndEnhancerContainerPropsT
->;
+export const StyledHeadingMainHeading: StyletronComponent<StyledHeadingHeadingPropsT>;
+export const StyledHeadingSubHeading: StyletronComponent<StyledHeadingHeadingPropsT>;
+export const StyledHeadingEndEnhancerContainer: StyletronComponent<StyledHeadingEndEnhancerContainerPropsT>;
 export const StyledHeadingEndEnhancerDescriptionContainer: StyletronComponent<{}>;

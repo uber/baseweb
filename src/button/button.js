@@ -17,17 +17,16 @@ import {defaultProps} from './default-props.js';
 import {getOverrides} from '../helpers/overrides.js';
 import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 
-import type {ButtonPropsT, SharedStylePropsT} from './types.js';
+import type {ButtonPropsT, SharedStylePropsT, ReactRefT} from './types.js';
 
 class Button extends React.Component<
-  // eslint-disable-next-line flowtype/no-weak-types
-  ButtonPropsT & {forwardedRef: any},
+  ButtonPropsT & {forwardedRef: ReactRefT<HTMLElement>},
   {isFocusVisible: boolean},
 > {
   static defaultProps = defaultProps;
   state = {isFocusVisible: false};
 
-  internalOnClick = (...args: *) => {
+  internalOnClick = (...args) => {
     const {isLoading, onClick} = this.props;
     if (isLoading) {
       args[0].preventDefault();

@@ -153,7 +153,7 @@ export function initFocusVisible(node) {
 
 export const forkFocus =
   (
-    // eslint-disable-next-line flowtype/no-weak-types
+    // flowlint-next-line unclear-type:off
     rootProps: any,
     handler: (e: SyntheticEvent<>) => void,
   ) =>
@@ -166,7 +166,7 @@ export const forkFocus =
 
 export const forkBlur =
   (
-    // eslint-disable-next-line flowtype/no-weak-types
+    // flowlint-next-line unclear-type:off
     rootProps: any,
     handler: (e: SyntheticEvent<>) => void,
   ) =>

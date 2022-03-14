@@ -174,7 +174,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
       // NOTE(chase): Contains method expects a Node type, but relatedTarget is
       // EventTarget which is a super type of Node. Passing an EventTarget seems
       // to work fine, assuming the flow type is too strict.
-      // eslint-disable-next-line flowtype/no-weak-types
+      // flowlint-next-line unclear-type:off
       listboxRef.current.contains((event.relatedTarget: any))
     ) {
       return;
@@ -250,7 +250,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
 
   return (
     <Root
-      // eslint-disable-next-line flowtype/no-weak-types
+      // flowlint-next-line unclear-type:off
       ref={(rootRef: any)}
       {...rootProps}
     >
@@ -268,7 +268,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
             // TabIndex attribute exists to exclude option clicks from triggering onBlur event actions.
             tabIndex="-1"
             id={listboxId}
-            // eslint-disable-next-line flowtype/no-weak-types
+            // flowlint-next-line unclear-type:off
             ref={(listboxRef: any)}
             role="listbox"
             aria-label={listBoxLabel}
@@ -287,7 +287,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
                   id={isSelected ? activeDescendantId : null}
                   key={index}
                   onClick={() => handleOptionClick(index)}
-                  // eslint-disable-next-line flowtype/no-weak-types
+                  // flowlint-next-line unclear-type:off
                   ref={isSelected ? (selectedOptionRef: any) : null}
                   role="option"
                   $isSelected={isSelected}

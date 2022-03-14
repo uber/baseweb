@@ -9,10 +9,14 @@ import {
   StyledCell,
 } from 'baseui/table';
 
+//$FlowFixMe
 import List from 'react-virtualized/dist/commonjs/List';
+//$FlowFixMe
 import AutoSizer from 'react-virtualized/dist/commonjs/AutoSizer';
 import {
+  //$FlowFixMe
   CellMeasurer,
+  //$FlowFixMe
   CellMeasurerCache,
 } from 'react-virtualized/dist/commonjs/CellMeasurer';
 

@@ -15,6 +15,7 @@ import Select from '../select.js';
 import {STATE_CHANGE_TYPE} from '../constants.js';
 
 describe('Select component', function () {
+  // flowlint-next-line unclear-type:off
   let props: any = {};
   const item = {id: 'id1', label: 'label1'};
   const options = [
@@ -41,7 +42,7 @@ describe('Select component', function () {
     );
 
     const input = container.querySelector('input');
-    fireEvent.change(input, {target: {value: 'test'}});
+    if (input) fireEvent.change(input, {target: {value: 'test'}});
     expect(props.onInputChange).toHaveBeenCalledTimes(1);
   });
 

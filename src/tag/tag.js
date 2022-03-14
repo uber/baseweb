@@ -127,7 +127,7 @@ const Tag = React.forwardRef<PropsT, HTMLSpanElement>((props, ref) => {
 
   return (
     <Root
-      // eslint-disable-next-line flowtype/no-weak-types
+      // flowlint-next-line unclear-type:off
       ref={(ref: any)}
       data-baseweb="tag"
       aria-label={

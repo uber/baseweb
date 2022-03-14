@@ -21,7 +21,12 @@ import {
   defaultGetId,
   getCharMatchId,
 } from './utils.js';
-import type {TreeViewPropsT, TreeNodeT, TreeNodeIdT} from './types.js';
+import type {
+  TreeViewPropsT,
+  TreeNodeT,
+  TreeNodeIdT,
+  ReactRefT,
+} from './types.js';
 import {isFocusVisible} from '../utils/focusVisible.js';
 
 import {getOverride, getOverrideProps} from '../helpers/overrides.js';
@@ -38,27 +43,24 @@ export default function TreeView(props: TreeViewPropsT) {
   const {Root: RootOverride} = overrides;
 
   const Root = getOverride(RootOverride) || StyledTreeItemList;
-  const firstId = data.length && getId(data[0]);
+  const firstId = data.length > 0 ? getId(data[0]) : 0;
   const [selectedNodeId, setSelectedNodeId] = React.useState(firstId);
   const [focusVisible, setFocusVisible] = React.useState(false);
   const [typeAheadChars, setTypeAheadChars] = React.useState('');
   const timeOutRef = React.useRef(null);
-  const treeItemRefs: {
-    // eslint-disable-next-line flowtype/no-weak-types
-    current: {[key: TreeNodeIdT]: React.ElementRef<any>},
-  } = React.useRef({});
+  const treeItemRefs: {[key: TreeNodeIdT]: ReactRefT<HTMLLIElement>} = {};
 
   const focusTreeItem = (id: TreeNodeIdT | null) => {
     if (!id) return;
     setSelectedNodeId(id);
 
-    const refs = treeItemRefs.current[id];
+    const refs = treeItemRefs[id];
     const node = refs && refs.current;
     if (node) node.focus();
   };
 
   const onKeyDown = (e: KeyboardEvent, node: TreeNodeT<>) => {
-    // eslint-disable-next-line flowtype/no-weak-types
+    // flowlint-next-line unclear-type:off
     const elementId = ((e.target: any): HTMLLIElement).getAttribute(
       'data-nodeid',
     );
@@ -167,11 +169,11 @@ export default function TreeView(props: TreeViewPropsT) {
           onKeyDown={onKeyDown}
           onFocus={onFocus}
           onBlur={onBlur}
-          addRef={(id: TreeNodeIdT, ref: React.ElementRef<HTMLLIElement>) => {
-            treeItemRefs.current[id] = ref;
+          addRef={(id, ref) => {
+            treeItemRefs[id] = ref;
           }}
           removeRef={(id: TreeNodeIdT) => {
-            delete treeItemRefs.current[id];
+            delete treeItemRefs[id];
           }}
           isFocusVisible={focusVisible}
         />

@@ -72,7 +72,7 @@ class EmoticonRating extends React.Component<
         <Emoticon
           key={x}
           role="radio"
-          // eslint-disable-next-line flowtype/no-weak-types
+          // flowlint-next-line unclear-type:off
           ref={(starRef: any)}
           tabIndex={isFocusable ? '0' : '-1'}
           aria-setsize={5}

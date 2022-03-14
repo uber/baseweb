@@ -89,7 +89,7 @@ class DateHelpers<T> {
       ),
     );
   };
-  // eslint-disable-next-line flowtype/no-weak-types
+  // flowlint-next-line unclear-type:off
   format: (T, string, any) => string = (date, format, locale) => {
     const adapter = locale
       ? this.getAdapterWithNewLocale(locale)
@@ -118,7 +118,7 @@ class DateHelpers<T> {
       this.adapter.getMonth(fromDate) - this.adapter.getMonth(toDate);
     return yearDiff * 12 + monthDiff;
   };
-  // eslint-disable-next-line flowtype/no-weak-types
+  // flowlint-next-line unclear-type:off
   getStartOfWeek: (T, any) => T = (date, locale) => {
     const adapter = locale
       ? this.getAdapterWithNewLocale(locale)
@@ -126,18 +126,18 @@ class DateHelpers<T> {
     // rewrapping this date here ensures that the locale will be taken into account in all adapters
     return adapter.startOfWeek(adapter.date(date));
   };
-  // eslint-disable-next-line flowtype/no-weak-types
+  // flowlint-next-line unclear-type:off
   formatDate: (T, string, any) => string = (date, formatString, locale) => {
     const adapter = locale
       ? this.getAdapterWithNewLocale(locale)
       : this.adapter;
     return adapter.formatByString(date, formatString);
   };
-  // eslint-disable-next-line flowtype/no-weak-types
+  // flowlint-next-line unclear-type:off
   getWeekdayMinInLocale: (T, any) => string = (date, locale) => {
     return this.getAdapterWithNewLocale(locale).format(date, 'weekdaymin');
   };
-  // eslint-disable-next-line flowtype/no-weak-types
+  // flowlint-next-line unclear-type:off
   getMonthInLocale: (number, any) => string = (monthNumber, locale) => {
     const localeAdapter = this.getAdapterWithNewLocale(locale);
     return localeAdapter.format(
@@ -145,11 +145,11 @@ class DateHelpers<T> {
       'month',
     );
   };
-  // eslint-disable-next-line flowtype/no-weak-types
+  // flowlint-next-line unclear-type:off
   getWeekdayInLocale: (T, any) => string = (date, locale) => {
     return this.getAdapterWithNewLocale(locale).format(date, 'weekday');
   };
-  // eslint-disable-next-line flowtype/no-weak-types
+  // flowlint-next-line unclear-type:off
   getQuarterInLocale: (number, any) => string = (quarterNumber, locale) => {
     const localeAdapter = this.getAdapterWithNewLocale(locale);
     return localeAdapter.format(
@@ -377,7 +377,7 @@ class DateHelpers<T> {
       (!!maxDate && !this.isOnOrBeforeDay(day, maxDate))
     );
   };
-  // eslint-disable-next-line flowtype/no-weak-types
+  // flowlint-next-line unclear-type:off
   parseString: (string, string, ?any) => T = (string, formatString, locale) => {
     const adapter = locale
       ? this.getAdapterWithNewLocale(locale)
@@ -385,7 +385,7 @@ class DateHelpers<T> {
 
     return adapter.parse(string, formatString);
   };
-  // eslint-disable-next-line flowtype/no-weak-types
+  // flowlint-next-line unclear-type:off
   parse: (string, string, ?any) => T = (string, format, locale) => {
     const adapter = locale
       ? this.getAdapterWithNewLocale(locale)

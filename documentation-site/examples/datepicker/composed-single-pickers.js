@@ -11,6 +11,7 @@ const DATE = new Date(2019, 3, 1, 12, 0, 0);
 
 export default function Example() {
   const [css, theme] = useStyletron();
+  // flowlint-next-line unclear-type:off
   const [date, setDate] = useState<any>(DATE);
   const [zone, setZone] = useState(null);
 

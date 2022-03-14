@@ -59,7 +59,10 @@ describe('ButtonGroup', () => {
   it('if disabled, click events do not call provided handler', () => {
     const handler = jest.fn();
     const {container} = buildSimpleWrapper({disabled: true, onClick: handler});
-    fireEvent.click(container.querySelector('button'));
+    const button = container.querySelector('button');
+    if (button) {
+      fireEvent.click(button);
+    }
     expect(handler).toHaveBeenCalledTimes(0);
   });
 
@@ -126,7 +129,7 @@ describe('ButtonGroup', () => {
     );
 
     expect(
-      queryByTitle('testButton').getAttribute('aria-checked'),
+      queryByTitle('testButton')?.getAttribute('aria-checked'),
     ).toBeTruthy();
   });
 

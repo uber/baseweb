@@ -55,7 +55,7 @@ describe('categorical column', () => {
 
     const {container} = render(<Cell value="A" x={0} y={0} />);
     const cell = container.querySelector('div');
-    expect(cell.textContent).toBe('A');
+    expect(cell?.textContent).toBe('A');
   });
 
   it('renders expected number of checkboxes in filter component', () => {
@@ -91,6 +91,7 @@ describe('categorical column', () => {
 
     const checkboxes = container.querySelectorAll('input[type="checkbox"]');
     fireEvent.click(checkboxes[0]);
+    // flowlint-next-line unclear-type:off
     expect(((checkboxes[0]: any): HTMLInputElement).checked).toBe(true);
 
     fireEvent.click(getByText('Apply'));
@@ -120,8 +121,11 @@ describe('categorical column', () => {
     fireEvent.click(getByText('Select All'));
 
     const checkboxes = container.querySelectorAll('input[type="checkbox"]');
+    // flowlint-next-line unclear-type:off
     expect(((checkboxes[0]: any): HTMLInputElement).checked).toBe(true);
+    // flowlint-next-line unclear-type:off
     expect(((checkboxes[1]: any): HTMLInputElement).checked).toBe(true);
+    // flowlint-next-line unclear-type:off
     expect(((checkboxes[2]: any): HTMLInputElement).checked).toBe(true);
   });
 
@@ -142,8 +146,11 @@ describe('categorical column', () => {
     fireEvent.click(checkboxes[0]);
     fireEvent.click(getByText('Clear'));
 
+    // flowlint-next-line unclear-type:off
     expect(((checkboxes[0]: any): HTMLInputElement).checked).toBe(false);
+    // flowlint-next-line unclear-type:off
     expect(((checkboxes[1]: any): HTMLInputElement).checked).toBe(false);
+    // flowlint-next-line unclear-type:off
     expect(((checkboxes[2]: any): HTMLInputElement).checked).toBe(false);
   });
 
@@ -178,7 +185,7 @@ describe('categorical column', () => {
     );
 
     const input = container.querySelector('[data-baseweb="input"] input');
-    fireEvent.change(input, {target: {value: 'a'}});
+    if (input) fireEvent.change(input, {target: {value: 'a'}});
 
     const checkboxes = container.querySelectorAll('input[type="checkbox"]');
     expect(checkboxes.length).toBe(2);
@@ -201,7 +208,7 @@ describe('categorical column', () => {
     expect(queryByText('Clear')).toBeTruthy();
 
     const input = container.querySelector('[data-baseweb="input"] input');
-    fireEvent.change(input, {target: {value: 'a'}});
+    if (input) fireEvent.change(input, {target: {value: 'a'}});
 
     expect(queryByText('Select All')).toBeFalsy();
     expect(queryByText('Clear')).toBeFalsy();

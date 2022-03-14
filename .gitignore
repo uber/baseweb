@@ -22,8 +22,6 @@ vrt/latest
 vrt/diff
 .cache
 documentation-site/.next
-documentation-site/posts.js
-documentation-site/cheat-sheet.js
 public
 !documentation-site/public
 versions.json

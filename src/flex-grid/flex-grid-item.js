@@ -48,10 +48,11 @@ export const flexGridItemMediaQueryStyle = ({
     width: `calc(${widthCalc} - .5px)`,
     // Add colGap except at end of row
     [marginDirection]:
-      colGapQuantity && ((itemIndex + 1) % colCount !== 0 ? colGap : 0),
+      colGapQuantity && //flowlint-line sketchy-number-and:off
+      ((itemIndex + 1) % colCount !== 0 ? colGap : 0),
     // Add rowGap except at end of column
     marginBottom:
-      rowGapQuantity &&
+      rowGapQuantity && //flowlint-line sketchy-number-and:off
       (~~(itemIndex / colCount) !== ~~((itemCount - 1) / colCount)
         ? rowGap
         : 0),
@@ -163,7 +164,7 @@ const FlexGridItem = ({
   flexGridItemIndex,
   flexGridItemCount,
   ...restProps
-}: // eslint-disable-next-line flowtype/no-weak-types
+}: // flowlint-next-line unclear-type:off
 FlexGridItemPropsT & {forwardedRef: any}): React.Node => {
   const flexGridItemOverrides = {
     Block: {
@@ -177,7 +178,7 @@ FlexGridItemPropsT & {forwardedRef: any}): React.Node => {
     <Block
       // coerced to any because of how react components are typed.
       // cannot guarantee an html element
-      // eslint-disable-next-line flowtype/no-weak-types
+      // flowlint-next-line unclear-type:off
       ref={(forwardedRef: any)}
       as={as}
       overrides={blockOverrides}

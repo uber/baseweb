@@ -26,16 +26,16 @@ describe('Textarea', () => {
     const textarea = container.querySelector('textarea');
     expect(textarea).not.toBeNull();
 
-    expect(textarea.value).toBe(props.value);
-    expect(textarea.placeholder).toBe(props.placeholder);
+    expect(textarea?.value).toBe(props.value);
+    expect(textarea?.placeholder).toBe(props.placeholder);
 
-    fireEvent.focus(textarea);
+    if (textarea) fireEvent.focus(textarea);
     expect(props.onFocus).toHaveBeenCalled();
 
-    fireEvent.blur(textarea);
+    if (textarea) fireEvent.blur(textarea);
     expect(props.onBlur).toHaveBeenCalled();
 
-    fireEvent.change(textarea, {target: {value: 'a'}});
+    if (textarea) fireEvent.change(textarea, {target: {value: 'a'}});
     expect(props.onChange).toHaveBeenCalled();
   });
 

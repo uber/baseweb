@@ -16,6 +16,7 @@ describe('Stateful container', function () {
     const children = jest.fn(() => null);
     render(<StatefulContainer foo="bar">{children}</StatefulContainer>);
     const props = children.mock.calls[0][0];
+    //$FlowExpectedError[prop-missing] - Point of this test is to check a missing prop
     expect(props.foo).toBe('bar');
   });
 
@@ -50,7 +51,9 @@ describe('Stateful container', function () {
         {({
           onMouseEnter,
           onMouseLeave,
+          //$FlowExpectedError[prop-missing] - Point of this test is to check a missing prop
           onMouseUp,
+          //$FlowExpectedError[prop-missing] - Point of this test is to check a missing prop
           onMouseDown,
           onFocus,
           onBlur,
@@ -70,14 +73,14 @@ describe('Stateful container', function () {
     );
 
     const input = container.querySelector('input');
-
-    fireEvent.mouseEnter(input);
-    fireEvent.mouseLeave(input);
-    fireEvent.mouseUp(input);
-    fireEvent.mouseDown(input);
-    fireEvent.focus(input);
-    fireEvent.blur(input);
-
+    if (input) {
+      fireEvent.mouseEnter(input);
+      fireEvent.mouseLeave(input);
+      fireEvent.mouseUp(input);
+      fireEvent.mouseDown(input);
+      fireEvent.focus(input);
+      fireEvent.blur(input);
+    }
     expect(onMouseEnter.mock.calls.length).toBe(1);
     expect(onMouseLeave.mock.calls.length).toBe(1);
     expect(onMouseUp.mock.calls.length).toBe(1);

@@ -37,7 +37,7 @@ export default function Example() {
       >
         <PaymentCard
           value={number}
-          onChange={event => setNumber(event.currentTarget.value)}
+          onChange={(event) => setNumber(event.currentTarget.value)}
           placeholder="Card number"
         />
       </FormControl>
@@ -48,11 +48,11 @@ export default function Example() {
         <MaskedInput
           error={Boolean(
             expiration &&
-              expiration.length &&
+              Boolean(expiration.length) &&
               !valid.expirationDate(expiration).isPotentiallyValid,
           )}
           value={expiration}
-          onChange={event =>
+          onChange={(event) =>
             setExpiration(event.currentTarget.value)
           }
           placeholder="MM/YY"
@@ -66,11 +66,11 @@ export default function Example() {
         <MaskedInput
           error={Boolean(
             code &&
-              code.trim().length &&
+              Boolean(code.trim().length) &&
               !valid.cvv(code, codeLength).isPotentiallyValid,
           )}
           value={code}
-          onChange={event => setCode(event.currentTarget.value)}
+          onChange={(event) => setCode(event.currentTarget.value)}
           placeholder="CVC"
           mask={codeLength ? '9'.repeat(codeLength) : '999'}
         />

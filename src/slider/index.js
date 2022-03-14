@@ -20,4 +20,5 @@ export {
   ThumbValue as StyledThumbValue,
   Mark as StyledMark,
 } from './styled-components.js';
+
 export type * from './types.js';

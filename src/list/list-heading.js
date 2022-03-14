@@ -90,7 +90,7 @@ const ListHeading = React.forwardRef<HeadingPropsT, HTMLLIElement>(
 
     return (
       <Root
-        // eslint-disable-next-line flowtype/no-weak-types
+        // flowlint-next-line unclear-type:off
         ref={(ref: any)}
         {...rootProps}
       >
@@ -115,7 +115,7 @@ const ListHeading = React.forwardRef<HeadingPropsT, HTMLLIElement>(
           </StyledHeadingContentRow>
 
           {/* ----- Bottom Row ----------------------- */}
-          {(SubHeading || EndEnhancerDescription) && (
+          {(Boolean(SubHeading) || EndEnhancerDescription) && (
             <StyledHeadingContentRow>
               <SubHeadingContainer
                 $maxLines={isMaxLinesValid(maxLines) ? maxLines : 1}
@@ -124,7 +124,7 @@ const ListHeading = React.forwardRef<HeadingPropsT, HTMLLIElement>(
                 <RenderNode component={SubHeading} />
               </SubHeadingContainer>
 
-              {EndEnhancerDescription && isEndEnhancerString && (
+              {Boolean(EndEnhancerDescription) && isEndEnhancerString && (
                 <EndEnhancerDescriptionContainer
                   {...endEnhancerDescriptionContainerProps}
                 >

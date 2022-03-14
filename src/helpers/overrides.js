@@ -20,13 +20,13 @@ export type ConfigurationOverrideT =
 export type StyleOverrideT = ConfigurationOverrideT;
 
 export type OverrideObjectT = {|
-  // eslint-disable-next-line flowtype/no-weak-types
+  // flowlint-next-line unclear-type:off
   component?: ?React.ComponentType<any>,
   props?: ?ConfigurationOverrideT,
   style?: ?ConfigurationOverrideT,
 |};
 
-// eslint-disable-next-line flowtype/no-weak-types
+// flowlint-next-line unclear-type:off
 export type OverrideT = OverrideObjectT | React.ComponentType<any>;
 
 export type OverridesT = {
@@ -36,7 +36,7 @@ export type OverridesT = {
 /**
  * Given an override argument, returns the component implementation override if it exists
  */
-// eslint-disable-next-line flowtype/no-weak-types
+// flowlint-next-line unclear-type:off
 export function getOverride(override: any): any {
   if (isValidElementType(override)) {
     return override;
@@ -46,7 +46,7 @@ export function getOverride(override: any): any {
   if (override && typeof override === 'object') {
     // Remove this 'any' once this flow issue is fixed:
     // https://github.com/facebook/flow/issues/6666
-    // eslint-disable-next-line flowtype/no-weak-types
+    // flowlint-next-line unclear-type:off
     return (override: any).component;
   }
 
@@ -84,7 +84,7 @@ export function getOverrideProps<T>(override: ?OverrideT): T {
 export function toObjectOverride<T>(override: OverrideT): OverrideObjectT {
   if (isValidElementType(override)) {
     return {
-      // eslint-disable-next-line flowtype/no-weak-types
+      // flowlint-next-line unclear-type:off
       component: ((override: any): React.ComponentType<T>),
     };
   }
@@ -92,14 +92,14 @@ export function toObjectOverride<T>(override: OverrideT): OverrideObjectT {
   // Flow can't figure out that typeof 'function' above will
   // catch React.StatelessFunctionalComponent
   // (probably related to https://github.com/facebook/flow/issues/6666)
-  // eslint-disable-next-line flowtype/no-weak-types
+  // flowlint-next-line unclear-type:off
   return ((override || {}: any): OverrideObjectT);
 }
 
 /**
  * Get a convenient override array that will always have [component, props]
  */
-/* eslint-disable flowtype/no-weak-types */
+// flowlint unclear-type:off
 export function getOverrides<T>(
   override: Object,
   defaultComponent: React.ComponentType<any>,
@@ -134,7 +134,7 @@ export function getOverrides<T>(
   const props = getOverrideProps<T>(override);
   return [Component, props];
 }
-/* eslint-enable flowtype/no-weak-types */
+/* flowlint unclear-type:error */
 
 /**
  * Merges two overrides objects – this is useful if you want to inject your own
@@ -205,14 +205,14 @@ export function mergeConfigurationOverrides(
 // Lil' hook for memoized unpacking of overrides
 export function useOverrides(
   defaults: {
-    // eslint-disable-next-line flowtype/no-weak-types
+    // flowlint-next-line unclear-type:off
     [string]: React.ComponentType<any>,
   },
   overrides?: OverridesT = {},
 ) {
   return React.useMemo(
     () =>
-      // eslint-disable-next-line flowtype/no-weak-types
+      // flowlint-next-line unclear-type:off
       Object.keys(defaults).reduce<{[string]: [React.ComponentType<any>, {}]}>(
         (obj, key) => {
           obj[key] = getOverrides(overrides[key], defaults[key]);

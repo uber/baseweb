@@ -42,12 +42,12 @@ export default class LayersManager extends React.Component<
   LayersManagerStateT,
 > {
   host: {
-    // eslint-disable-next-line flowtype/no-weak-types
+    // flowlint-next-line unclear-type:off
     current: React.ElementRef<any> | null,
   } = React.createRef();
 
   containerRef: {
-    // eslint-disable-next-line flowtype/no-weak-types
+    // flowlint-next-line unclear-type:off
     current: React.ElementRef<any> | null,
   } = React.createRef();
 

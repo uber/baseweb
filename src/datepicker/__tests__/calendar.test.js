@@ -64,9 +64,18 @@ describe('Component', () => {
     );
     const quickSelect = container.querySelector(
       '[data-baseweb="select"]',
-    ).firstChild;
-    fireEvent.click(quickSelect);
-    fireEvent.click(await getByText(container.parentElement, 'Past Week'));
+    )?.firstChild;
+    if (quickSelect) {
+      //flowlint-next-line unclear-type:off
+      fireEvent.click(((quickSelect: any): HTMLElement));
+    }
+    fireEvent.click(
+      await getByText(
+        //flowlint-next-line unclear-type:off
+        ((container.parentElement: any): HTMLElement),
+        'Past Week',
+      ),
+    );
     expect(onQuickSelectChange).toHaveBeenCalledWith(
       expect.objectContaining({id: 'Past Week'}),
     );

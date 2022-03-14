@@ -29,9 +29,11 @@ import Router from 'next/router';
 import type {AppProps} from 'next/app';
 import type {NextPage, NextPageContext} from 'next';
 
+//$FlowFixMe
 import {styletron, debug} from '../helpers/styletron';
 // $FlowFixMe
 import {trackPageView} from '../helpers/ga';
+//$FlowFixMe
 import DirectionContext from '../components/direction-context';
 
 const breakpoints: BreakpointsT = {

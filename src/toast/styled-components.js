@@ -175,7 +175,7 @@ export const CloseIconSvg = styled<{
     $color,
     $isFocusVisible,
   }: SharedStylePropsArgT & {
-    // eslint-disable-next-line flowtype/no-weak-types
+    // flowlint-next-line unclear-type:off
     $size: any,
     $color: string,
     $theme: ThemeT,
