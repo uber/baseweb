@@ -8,11 +8,11 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Block} from '../block/index.js';
-import {mergeOverrides} from '../helpers/overrides.js';
-import type {AspectRatioBoxPropsT} from './types.js';
+import { Block } from '../block/index.js';
+import { mergeOverrides } from '../helpers/overrides.js';
+import type { AspectRatioBoxPropsT } from './types.js';
 
-const aspectRatioBoxStyle = ({$aspectRatio}) => ({
+const aspectRatioBoxStyle = ({ $aspectRatio }) => ({
   position: 'relative',
   '::before': {
     content: '""',
@@ -36,7 +36,7 @@ const AspectRatioBox = ({
   overrides = {},
   ...restProps
 }: // flowlint-next-line unclear-type:off
-AspectRatioBoxPropsT & {forwardedRef: any}): React.Node => {
+AspectRatioBoxPropsT & { forwardedRef: any }): React.Node => {
   const aspectRatioBoxOverrides = {
     Block: {
       style: aspectRatioBoxStyle,
@@ -57,11 +57,8 @@ AspectRatioBoxPropsT & {forwardedRef: any}): React.Node => {
   );
 };
 
-const AspectRatioBoxComponent = React.forwardRef<
-  AspectRatioBoxPropsT,
-  HTMLElement,
->((props: AspectRatioBoxPropsT, ref) => (
-  <AspectRatioBox {...props} forwardedRef={ref} />
-));
+const AspectRatioBoxComponent = React.forwardRef<AspectRatioBoxPropsT, HTMLElement>(
+  (props: AspectRatioBoxPropsT, ref) => <AspectRatioBox {...props} forwardedRef={ref} />
+);
 AspectRatioBoxComponent.displayName = 'AspectRatioBox';
 export default AspectRatioBoxComponent;

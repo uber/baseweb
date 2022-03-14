@@ -8,12 +8,12 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import codemod from './v9-theme-scale.js';
-import {Fixture} from './test-utilities.js';
+import { Fixture } from './test-utilities.js';
 
 async function transform(content) {
   const fixture = new Fixture();
   await fixture.write(content);
-  await codemod({dir: fixture.dir});
+  await codemod({ dir: fixture.dir });
   const transformed = await fixture.read();
   await fixture.remove();
   return transformed;
@@ -118,14 +118,14 @@ describe('shift theme usage for fonts', () => {
     it('override style function', async () => {
       const content = `const Foo = <Block overrides={{ Block: { style: ({$theme}) => ({ ...$theme.typography.font200 })}}} />`;
       expect(await transform(content)).toMatchInlineSnapshot(
-        `"const Foo = <Block overrides={{ Block: { style: ({$theme}) => ({ ...$theme.typography.font100 })}}} />"`,
+        `"const Foo = <Block overrides={{ Block: { style: ({$theme}) => ({ ...$theme.typography.font100 })}}} />"`
       );
     });
 
     it('override style function', async () => {
       const content = `const Foo = <Button overrides={{ BaseButton: { style: ({$theme}) => ({ ...$theme.typography.font200 })}}}>Foo</Button>`;
       expect(await transform(content)).toMatchInlineSnapshot(
-        `"const Foo = <Button overrides={{ BaseButton: { style: ({$theme}) => ({ ...$theme.typography.font100 })}}}>Foo</Button>"`,
+        `"const Foo = <Button overrides={{ BaseButton: { style: ({$theme}) => ({ ...$theme.typography.font100 })}}}>Foo</Button>"`
       );
     });
 
@@ -261,21 +261,21 @@ export default Foo;"
     it('similarly named variables', async () => {
       const content = `const font100 = "foo"; const Foo = <div>{font100}</div>;`;
       expect(await transform(content)).toMatchInlineSnapshot(
-        `"const font100 = \\"foo\\"; const Foo = <div>{font100}</div>;"`,
+        `"const font100 = \\"foo\\"; const Foo = <div>{font100}</div>;"`
       );
     });
 
     it('similarly named object properties', async () => {
       const content = `const typography = { font100: { fontSize: '12px' } };`;
       expect(await transform(content)).toMatchInlineSnapshot(
-        `"const typography = { font100: { fontSize: '12px' } };"`,
+        `"const typography = { font100: { fontSize: '12px' } };"`
       );
     });
 
     it('similarly named object assignments', async () => {
       const content = `const $theme = {typography: {font100: {}}};`;
       expect(await transform(content)).toMatchInlineSnapshot(
-        `"const $theme = {typography: {font100: {}}};"`,
+        `"const $theme = {typography: {font100: {}}};"`
       );
     });
   });

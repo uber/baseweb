@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {render, getByText} from '@testing-library/react';
+import { render, getByText } from '@testing-library/react';
 
-import {Navigation} from '../index.js';
+import { Navigation } from '../index.js';
 
 const nav = [
   {
@@ -38,19 +38,19 @@ const nav = [
 
 describe('Side navigation', () => {
   it('renders expected nav items', () => {
-    const {container} = render(<Navigation items={nav} />);
+    const { container } = render(<Navigation items={nav} />);
     getByText(container, 'Colors');
     getByText(container, 'Sizing');
     getByText(container, 'Typography');
   });
 
   it('renders titles correctly modified by mapItem', () => {
-    const Title = ({item}) => <span>New {item.title}</span>;
+    const Title = ({ item }) => <span>New {item.title}</span>;
     const mapItem = (item) => ({
       ...item,
       title: <Title item={item} />,
     });
-    const {container} = render(<Navigation items={nav} mapItem={mapItem} />);
+    const { container } = render(<Navigation items={nav} mapItem={mapItem} />);
     getByText(container, 'New Colors');
     getByText(container, 'New Sizing');
     getByText(container, 'New Typography');

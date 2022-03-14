@@ -8,25 +8,25 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {useStyletron} from '../../styles/index.js';
+import { useStyletron } from '../../styles/index.js';
 
-import {AppNavBar, setItemActive} from '../index.js';
+import { AppNavBar, setItemActive } from '../index.js';
 
 export function Scenario() {
   const [css] = useStyletron();
 
   const [mainItems, setMainItems] = React.useState([
-    {label: 'main one', info: {color: 'blue'}},
-    {label: 'main two', info: {color: 'red'}},
-    {label: 'main three', info: {color: 'purple'}},
-    {label: 'main four', info: {color: 'orange'}},
+    { label: 'main one', info: { color: 'blue' } },
+    { label: 'main two', info: { color: 'red' } },
+    { label: 'main three', info: { color: 'purple' } },
+    { label: 'main four', info: { color: 'orange' } },
   ]);
 
   const userItems = [
-    {label: 'user one', info: {color: 'green'}},
-    {label: 'user two', info: {color: 'yellow'}},
-    {label: 'user three', info: {color: 'lightskyblue'}},
-    {label: 'user four', info: {color: 'lightgreen'}},
+    { label: 'user one', info: { color: 'green' } },
+    { label: 'user two', info: { color: 'yellow' } },
+    { label: 'user three', info: { color: 'lightskyblue' } },
+    { label: 'user four', info: { color: 'lightgreen' } },
   ];
 
   function handleMainItemSelect(item) {

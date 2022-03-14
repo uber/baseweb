@@ -9,13 +9,11 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import Search from '../../icon/search.js';
-import {ListItem, ListItemLabel, ARTWORK_SIZES} from '../index.js';
+import { ListItem, ListItemLabel, ARTWORK_SIZES } from '../index.js';
 
 export function Scenario() {
   return (
-    <div
-      style={{width: '375px', padding: '24px', backgroundColor: 'lightgreen'}}
-    >
+    <div style={{ width: '375px', padding: '24px', backgroundColor: 'lightgreen' }}>
       <ListItem>
         <ListItemLabel>No Artwork</ListItemLabel>
       </ListItem>

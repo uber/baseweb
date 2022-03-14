@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 import * as React from 'react';
-import {useStyletron} from 'baseui';
+import { useStyletron } from 'baseui';
 import slugify from '../helpers/slugify';
 
 function getPadding(componentType) {
@@ -66,8 +66,7 @@ const TableOfContents = (props) => {
           ? 'borderRight'
           : 'borderLeft']: `1px solid ${theme.colors.mono400}`,
         listStyle: 'none',
-        [theme.direction === 'rtl' ? 'marginRight' : 'marginLeft']:
-          theme.sizing.scale400,
+        [theme.direction === 'rtl' ? 'marginRight' : 'marginLeft']: theme.sizing.scale400,
         paddingLeft: 0,
         paddingRight: 0,
         // to make sure we align vertically with the edit on github button
@@ -84,14 +83,12 @@ const TableOfContents = (props) => {
           key={header.name}
           className={css({
             ...theme.typography.font100,
-            [theme.direction === 'rtl' ? 'paddingRight' : 'paddingLeft']:
-              getPadding(header.component),
+            [theme.direction === 'rtl' ? 'paddingRight' : 'paddingLeft']: getPadding(
+              header.component
+            ),
           })}
         >
-          <a
-            className={css({color: theme.colors.contentSecondary})}
-            href={header.anchor}
-          >
+          <a className={css({ color: theme.colors.contentSecondary })} href={header.anchor}>
             {header.name}
           </a>
         </li>

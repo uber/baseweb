@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   FixedMarker,
   PINHEAD_SIZES_SHAPES,
@@ -15,12 +15,12 @@ import {
   LABEL_ENHANCER_POSITIONS,
 } from '../index.js';
 import TileGrid from './tile-grid.js';
-import ReactMapGL, {Marker} from 'react-map-gl';
+import ReactMapGL, { Marker } from 'react-map-gl';
 import Upload from '../../icon/upload.js';
 import Search from '../../icon/search.js';
 import Show from '../../icon/show.js';
-import {useStyletron} from '../../styles/index.js';
-import {getMapStyle} from './map-style.js';
+import { useStyletron } from '../../styles/index.js';
+import { getMapStyle } from './map-style.js';
 
 const uberHq = {
   latitude: 37.768495131168336,
@@ -29,8 +29,8 @@ const uberHq = {
 
 const locations = [
   uberHq,
-  {latitude: uberHq.latitude, longitude: uberHq.longitude + 0.006},
-  {latitude: uberHq.latitude + 0.006, longitude: uberHq.longitude},
+  { latitude: uberHq.latitude, longitude: uberHq.longitude + 0.006 },
+  { latitude: uberHq.latitude + 0.006, longitude: uberHq.longitude },
 ];
 
 export function Scenario() {
@@ -46,15 +46,13 @@ export function Scenario() {
 
   const mapStyle = getMapStyle(
     locations.map((loc) => [loc.longitude, loc.latitude]),
-    {showPointDebug: true},
+    { showPointDebug: true }
   );
 
   return (
     <>
       <TileGrid cols={6} customizerOptions={[]}></TileGrid>
-      <div
-        className={css({backgroundColor: theme.colors.backgroundLightAccent})}
-      >
+      <div className={css({ backgroundColor: theme.colors.backgroundLightAccent })}>
         <ReactMapGL
           {...viewport}
           width="100%"
@@ -62,35 +60,21 @@ export function Scenario() {
           onViewportChange={(viewport) => setViewport(viewport)}
           mapStyle={mapStyle}
         >
-          <Marker
-            latitude={locations[0].latitude}
-            longitude={locations[0].longitude}
-          >
+          <Marker latitude={locations[0].latitude} longitude={locations[0].longitude}>
             <FixedMarker
               size={PINHEAD_SIZES_SHAPES.medium}
-              needle={
-                selectedLocationIndex === 0
-                  ? NEEDLE_SIZES.short
-                  : NEEDLE_SIZES.none
-              }
-              startEnhancer={() => (
-                <span className={css({fontSize: '12px'})}>3.9</span>
-              )}
+              needle={selectedLocationIndex === 0 ? NEEDLE_SIZES.short : NEEDLE_SIZES.none}
+              startEnhancer={() => <span className={css({ fontSize: '12px' })}>3.9</span>}
               overrides={{
                 Root: {
                   style: () => ({
-                    transform: `translate(-50%, ${
-                      selectedLocationIndex === 0 ? '-100%' : '-50%'
-                    })`,
+                    transform: `translate(-50%, ${selectedLocationIndex === 0 ? '-100%' : '-50%'})`,
                     cursor: 'pointer',
                   }),
                   props: {
                     onMouseEnter: () => setHoveredLocationIndex(0),
                     onMouseLeave: () => setHoveredLocationIndex(null),
-                    onClick: () =>
-                      setSelectedLocationIndex(
-                        selectedLocationIndex === 0 ? null : 0,
-                      ),
+                    onClick: () => setSelectedLocationIndex(selectedLocationIndex === 0 ? null : 0),
                   },
                 },
                 PinHead: {
@@ -130,19 +114,16 @@ export function Scenario() {
                   : LABEL_ENHANCER_POSITIONS.none
               }
               badgeEnhancerSize={BADGE_ENHANCER_SIZES.mediumIcon}
-              badgeEnhancerContent={({size}) => <Search size={size} />}
+              badgeEnhancerContent={({ size }) => <Search size={size} />}
             />
           </Marker>
 
-          <Marker
-            latitude={locations[1].latitude}
-            longitude={locations[1].longitude}
-          >
+          <Marker latitude={locations[1].latitude} longitude={locations[1].longitude}>
             <FixedMarker
               size={PINHEAD_SIZES_SHAPES.medium}
               needle={NEEDLE_SIZES.short}
               labelEnhancerContent="My Location"
-              startEnhancer={({size}) => <Upload size={size} />}
+              startEnhancer={({ size }) => <Upload size={size} />}
               overrides={{
                 Root: {
                   style: () => ({
@@ -153,33 +134,21 @@ export function Scenario() {
             />
           </Marker>
 
-          <Marker
-            latitude={locations[2].latitude}
-            longitude={locations[2].longitude}
-          >
+          <Marker latitude={locations[2].latitude} longitude={locations[2].longitude}>
             <FixedMarker
               size={PINHEAD_SIZES_SHAPES.medium}
-              needle={
-                selectedLocationIndex === 2
-                  ? NEEDLE_SIZES.short
-                  : NEEDLE_SIZES.none
-              }
-              startEnhancer={({size}) => <Show size={size} />}
+              needle={selectedLocationIndex === 2 ? NEEDLE_SIZES.short : NEEDLE_SIZES.none}
+              startEnhancer={({ size }) => <Show size={size} />}
               overrides={{
                 Root: {
                   style: () => ({
-                    transform: `translate(-50%, ${
-                      selectedLocationIndex === 2 ? '-100%' : '-50%'
-                    })`,
+                    transform: `translate(-50%, ${selectedLocationIndex === 2 ? '-100%' : '-50%'})`,
                     cursor: 'pointer',
                   }),
                   props: {
                     onMouseEnter: () => setHoveredLocationIndex(2),
                     onMouseLeave: () => setHoveredLocationIndex(null),
-                    onClick: () =>
-                      setSelectedLocationIndex(
-                        selectedLocationIndex === 2 ? null : 2,
-                      ),
+                    onClick: () => setSelectedLocationIndex(selectedLocationIndex === 2 ? null : 2),
                   },
                 },
                 PinHead: {

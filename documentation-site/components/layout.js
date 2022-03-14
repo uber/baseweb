@@ -7,12 +7,12 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {MDXProvider} from '@mdx-js/tag';
-import {Block} from 'baseui/block';
-import {Button, KIND, SIZE} from 'baseui/button';
+import { MDXProvider } from '@mdx-js/tag';
+import { Block } from 'baseui/block';
+import { Button, KIND, SIZE } from 'baseui/button';
 //$FlowFixMe
 import TableOfContents from './table-of-contents';
-import {themedStyled} from '../pages/_app';
+import { themedStyled } from '../pages/_app';
 import MarkdownElements from './markdown-elements';
 //$FlowFixMe
 import Sidebar from './sidebar';
@@ -25,8 +25,7 @@ import Routes from '../routes';
 import DirectionContext from '../components/direction-context';
 import SkipToContent from './skip-to-content';
 
-const GH_URL =
-  'https://github.com/uber/baseweb/edit/master/documentation-site/pages';
+const GH_URL = 'https://github.com/uber/baseweb/edit/master/documentation-site/pages';
 
 function findByPath(o, path) {
   if (!path) return;
@@ -54,7 +53,7 @@ type PropsT = {
   maxContentWidth?: string,
 };
 
-const TOCWrapper = themedStyled<{}>('div', ({$theme}) => ({
+const TOCWrapper = themedStyled<{}>('div', ({ $theme }) => ({
   display: 'none',
   '@media screen and (min-width: 1340px)': {
     display: 'block',
@@ -65,7 +64,7 @@ const TOCWrapper = themedStyled<{}>('div', ({$theme}) => ({
 const SidebarWrapper = themedStyled<{
   $isOpen: boolean,
   $hideSideNavigation: boolean,
-}>('nav', ({$theme, $isOpen, $hideSideNavigation}) => ({
+}>('nav', ({ $theme, $isOpen, $hideSideNavigation }) => ({
   display: $isOpen ? 'block' : 'none',
   paddingTop: $theme.sizing.scale700,
   marginLeft: $theme.sizing.scale800,
@@ -79,7 +78,7 @@ const SidebarWrapper = themedStyled<{
 const ContentWrapper = themedStyled<{
   $isSidebarOpen: boolean,
   $maxWidth?: string,
-}>('main', ({$theme, $isSidebarOpen, $maxWidth}) => ({
+}>('main', ({ $theme, $isSidebarOpen, $maxWidth }) => ({
   position: 'relative',
   boxSizing: 'border-box',
   display: $isSidebarOpen ? 'none' : 'block',
@@ -94,7 +93,7 @@ const ContentWrapper = themedStyled<{
   },
 }));
 
-class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
+class Layout extends React.Component<PropsT, { sidebarOpen: boolean }> {
   constructor(props: PropsT) {
     super(props);
     this.state = {
@@ -102,9 +101,9 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
     };
   }
   render() {
-    const {sidebarOpen} = this.state;
-    const {toggleTheme, toggleDirection, children} = this.props;
-    let {path = ''} = this.props;
+    const { sidebarOpen } = this.state;
+    const { toggleTheme, toggleDirection, children } = this.props;
+    let { path = '' } = this.props;
 
     // strip the query string
     path = path.split('?')[0];
@@ -153,9 +152,7 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
                 aria-label="primary"
                 $isOpen={sidebarOpen}
                 $hideSideNavigation={!!this.props.hideSideNavigation}
-                onClick={() =>
-                  sidebarOpen && this.setState({sidebarOpen: false})
-                }
+                onClick={() => sidebarOpen && this.setState({ sidebarOpen: false })}
               >
                 <Sidebar path={path} />
               </SidebarWrapper>
@@ -174,19 +171,14 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
                     overrides={{
                       Block: {
                         style: {
-                          [((direction === 'rtl'
-                            ? 'left'
-                            : 'right'): string)]: 0,
-                          [((direction === 'rtl' ? 'right' : 'left'): string)]:
-                            'auto',
+                          [((direction === 'rtl' ? 'left' : 'right'): string)]: 0,
+                          [((direction === 'rtl' ? 'right' : 'left'): string)]: 'auto',
                         },
                       },
                     }}
                   >
                     <Button
-                      startEnhancer={() => (
-                        <PencilIcon size={16} color="#666666" />
-                      )}
+                      startEnhancer={() => <PencilIcon size={16} color="#666666" />}
                       $as="a"
                       href={githubUrl}
                       target="_blank"
@@ -197,9 +189,7 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
                     </Button>
                   </Block>
                 )}
-                <MDXProvider components={MarkdownElements}>
-                  {children}
-                </MDXProvider>
+                <MDXProvider components={MarkdownElements}>{children}</MDXProvider>
               </ContentWrapper>
               <TOCWrapper>
                 <TableOfContents content={React.Children.toArray(children)} />

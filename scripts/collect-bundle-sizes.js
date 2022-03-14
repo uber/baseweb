@@ -8,9 +8,9 @@ LICENSE file in the root directory of this source tree.
 
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
-const {spawn, execSync} = require('child_process');
-const {mkdirSync, writeFileSync} = require('fs');
-const {resolve} = require('path');
+const { spawn, execSync } = require('child_process');
+const { mkdirSync, writeFileSync } = require('fs');
+const { resolve } = require('path');
 const fetch = require('node-fetch').default;
 const puppeteer = require('puppeteer');
 
@@ -27,9 +27,7 @@ async function waitForPort(port) {
     await new Promise((resolve) => setTimeout(resolve, singleWait));
     totalWait += 1;
     if (totalWait > maxWait) {
-      throw new Error(
-        `wait for port exceeded timeout ${maxWait / 1000} seconds`,
-      );
+      throw new Error(`wait for port exceeded timeout ${maxWait / 1000} seconds`);
     }
     const response = await fetch(`http://localhost:${port}`);
     if (response.status === 200) {
@@ -48,7 +46,7 @@ async function measurePageBytesReceived(browser, url) {
     bytesReceived += event.dataLength;
   });
 
-  await page.goto(url, {waitUntil: 'networkidle0'});
+  await page.goto(url, { waitUntil: 'networkidle0' });
   await page.close();
 
   return bytesReceived;
@@ -65,22 +63,18 @@ async function downloadMasterBundleSizeData() {
 
   function bkfetch(url, options = {}) {
     return fetch(url, {
-      headers: {Authorization: `Bearer ${buildkiteToken}`},
+      headers: { Authorization: `Bearer ${buildkiteToken}` },
       ...options,
     });
   }
 
-  const buildsResponse = await bkfetch(
-    `${BK_BASEWEB_URL}/builds?branch=master`,
-  );
+  const buildsResponse = await bkfetch(`${BK_BASEWEB_URL}/builds?branch=master`);
   if (buildsResponse.status !== 200) {
     throw new Error('failed to list buildkite builds');
   }
   const builds = await buildsResponse.json();
   for (const build of builds) {
-    const artifactsResponse = await bkfetch(
-      `${BK_BASEWEB_URL}/builds/${build.number}/artifacts`,
-    );
+    const artifactsResponse = await bkfetch(`${BK_BASEWEB_URL}/builds/${build.number}/artifacts`);
     if (artifactsResponse.status !== 200) {
       throw new Error('failed to list artifacts');
     }
@@ -115,10 +109,9 @@ async function downloadMasterBundleSizeData() {
 }
 
 async function main() {
-  execSync(
-    'yarn ladle build --out build-ladle --stories src/**/*.scenario.js',
-    {stdio: 'inherit'},
-  );
+  execSync('yarn ladle build --out build-ladle --stories src/**/*.scenario.js', {
+    stdio: 'inherit',
+  });
   const ladle = spawn('yarn', ['static-server', 'build-ladle', '--port', PORT]);
   ladle.stderr.on('data', (data) => console.error(`ladle error: ${data}`));
   await waitForPort(PORT);
@@ -138,14 +131,14 @@ async function main() {
 
   const baselineSize = await measurePageBytesReceived(
     browser,
-    `${LADLE_URL}/?mode=preview&story=__story-not-found__`,
+    `${LADLE_URL}/?mode=preview&story=__story-not-found__`
   );
   console.log(`baseline size ${baselineSize / 1000}kb`);
 
   for (const storyTitle in metadata.stories) {
     const pageSize = await measurePageBytesReceived(
       browser,
-      `${LADLE_URL}?mode=preview&story=${storyTitle}`,
+      `${LADLE_URL}?mode=preview&story=${storyTitle}`
     );
     const deltaSize = pageSize - baselineSize;
     console.log(storyTitle, `${deltaSize / 1000}kb`);
@@ -158,7 +151,7 @@ async function main() {
   const artifactsDir = resolve(__dirname, '../__artifacts__/bundle-size');
   const bundleSizeJsonPath = resolve(artifactsDir, 'bundle-size.json');
   try {
-    mkdirSync(artifactsDir, {recursive: true});
+    mkdirSync(artifactsDir, { recursive: true });
   } catch (error) {
     if (error.code !== 'EEXIST') {
       throw error;
@@ -181,12 +174,10 @@ async function main() {
   }
 
   if (Object.keys(significantDeltas).length) {
-    console.log(
-      'The following stories had bundle size changes greater than 1%',
-    );
+    console.log('The following stories had bundle size changes greater than 1%');
     for (const storyTitle in significantDeltas) {
       console.log(
-        `${storyTitle} master: ${masterBundleSizes[storyTitle]}b, current: ${sizes[storyTitle]}b, delta: ${significantDeltas[storyTitle]}b`,
+        `${storyTitle} master: ${masterBundleSizes[storyTitle]}b, current: ${sizes[storyTitle]}b, delta: ${significantDeltas[storyTitle]}b`
       );
     }
 

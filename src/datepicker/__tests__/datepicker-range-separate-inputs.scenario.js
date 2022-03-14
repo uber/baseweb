@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {StyledDay, StatefulDatepicker} from '../index.js';
+import { StyledDay, StatefulDatepicker } from '../index.js';
 
 export function Scenario() {
   return (
@@ -16,7 +16,7 @@ export function Scenario() {
       <StatefulDatepicker
         aria-label="Select a date"
         clearable={true}
-        initialState={{value: []}}
+        initialState={{ value: [] }}
         highlightedDate={new Date('March 10, 2019')}
         range
         separateRangeInputs
@@ -29,8 +29,8 @@ export function Scenario() {
                 Select: {
                   props: {
                     overrides: {
-                      Root: {props: {'data-id': 'time-select'}},
-                      ValueContainer: {props: {'data-id': 'selected'}},
+                      Root: { props: { 'data-id': 'time-select' } },
+                      ValueContainer: { props: { 'data-id': 'selected' } },
                     },
                   },
                 },
@@ -41,7 +41,7 @@ export function Scenario() {
       />
       <StatefulDatepicker
         aria-label="Select a date"
-        initialState={{value: []}}
+        initialState={{ value: [] }}
         highlightedDate={new Date('March 10, 2019')}
         range
         separateRangeInputs
@@ -50,21 +50,19 @@ export function Scenario() {
         overrides={{
           Day: {
             // eslint-disable-next-line react/display-name
-            component: (props) => (
-              <StyledDay data-highlighted={props.$isHighlighted} {...props} />
-            ),
+            component: (props) => <StyledDay data-highlighted={props.$isHighlighted} {...props} />,
           },
-          MonthYearSelectButton: {props: {'data-id': 'monthYearSelectButton'}},
+          MonthYearSelectButton: { props: { 'data-id': 'monthYearSelectButton' } },
           MonthYearSelectStatefulMenu: {
             props: {
-              overrides: {List: {props: {'data-id': 'monthYearSelectMenu'}}},
+              overrides: { List: { props: { 'data-id': 'monthYearSelectMenu' } } },
             },
           },
           Input: {
             props: {
               overrides: {
                 Input: {
-                  props: {'data-id': 'multiMonthInputs'},
+                  props: { 'data-id': 'multiMonthInputs' },
                 },
               },
             },

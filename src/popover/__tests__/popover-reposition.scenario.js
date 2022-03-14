@@ -8,16 +8,16 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {useStyletron} from '../../styles/index.js';
-import {Button} from '../../button/index.js';
-import {StatefulPopover, TRIGGER_TYPE, PLACEMENT} from '../index.js';
+import { useStyletron } from '../../styles/index.js';
+import { Button } from '../../button/index.js';
+import { StatefulPopover, TRIGGER_TYPE, PLACEMENT } from '../index.js';
 
 export function Scenario() {
   const [css] = useStyletron();
   const [expanded, setExpanded] = React.useState(false);
   return (
     <React.Fragment>
-      <div className={css({display: 'flex', justifyContent: 'center'})}>
+      <div className={css({ display: 'flex', justifyContent: 'center' })}>
         <StatefulPopover
           accessibilityType={'tooltip'}
           autoFocus={false}
@@ -25,7 +25,7 @@ export function Scenario() {
             <div id="e2e-popover">
               <button
                 id="e2e-update"
-                className={css({marginRight: '8px'})}
+                className={css({ marginRight: '8px' })}
                 type="button"
                 onClick={() => setExpanded((s) => !s)}
               >
@@ -40,7 +40,7 @@ export function Scenario() {
           <Button
             overrides={{
               BaseButton: {
-                props: {id: 'e2e-open'},
+                props: { id: 'e2e-open' },
               },
             }}
           >

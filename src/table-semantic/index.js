@@ -5,10 +5,10 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-export {default as Table} from './table.js';
-export {default as TableBuilder} from './table-builder.js';
-export {default as TableBuilderColumn} from './table-builder-column.js';
-export {DIVIDER, SIZE} from './constants.js';
+export { default as Table } from './table.js';
+export { default as TableBuilder } from './table-builder.js';
+export { default as TableBuilderColumn } from './table-builder-column.js';
+export { DIVIDER, SIZE } from './constants.js';
 // Styled elements
 export {
   StyledRoot,

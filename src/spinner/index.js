@@ -13,7 +13,7 @@ import {
   StyledProgressBarRoundedTrackBackground,
   StyledProgressBarRoundedTrackForeground,
 } from '../progress-bar/index.js';
-export {default as Spinner} from './spinner.js';
+export { default as Spinner } from './spinner.js';
 // Styled elements
 export {
   Svg as StyledSvg,
@@ -21,7 +21,7 @@ export {
   StyledActivePath,
   StyledSpinnerNext,
 } from './styled-components.js';
-export {SIZE} from './constants.js';
+export { SIZE } from './constants.js';
 // Flow
 export type * from './types.js';
 

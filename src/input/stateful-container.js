@@ -6,19 +6,14 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {STATE_CHANGE_TYPE} from './constants.js';
-import type {
-  StatefulContainerPropsT,
-  StateT,
-  StateReducerT,
-  StateTypeT,
-} from './types.js';
+import { STATE_CHANGE_TYPE } from './constants.js';
+import type { StatefulContainerPropsT, StateT, StateReducerT, StateTypeT } from './types.js';
 
 const defaultStateReducer: StateReducerT = (type, nextState) => nextState;
 
 class StatefulContainer<T: EventTarget> extends React.Component<
   StatefulContainerPropsT<T>,
-  StateT,
+  StateT
 > {
   static defaultProps = {
     initialState: {},
@@ -33,7 +28,7 @@ class StatefulContainer<T: EventTarget> extends React.Component<
   };
 
   onChange = (e: SyntheticInputEvent<T>) => {
-    const nextState = {value: e.target.value};
+    const nextState = { value: e.target.value };
     this.internalSetState(STATE_CHANGE_TYPE.change, nextState);
     this.props.onChange(e);
   };
@@ -44,8 +39,8 @@ class StatefulContainer<T: EventTarget> extends React.Component<
   };
 
   render() {
-    const {children, initialState, stateReducer, ...restProps} = this.props;
-    const {onChange} = this;
+    const { children, initialState, stateReducer, ...restProps } = this.props;
+    const { onChange } = this;
     return children({
       ...restProps,
       ...this.state,

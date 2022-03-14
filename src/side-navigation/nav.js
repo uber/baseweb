@@ -7,20 +7,13 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {getOverrides} from '../helpers/overrides.js';
+import { getOverrides } from '../helpers/overrides.js';
 import NavItem from './nav-item.js';
-import {
-  StyledRoot,
-  StyledNavItemContainer,
-  StyledSubNavContainer,
-} from './styled-components.js';
-import type {NavPropsT, Item} from './types.js';
-import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
+import { StyledRoot, StyledNavItemContainer, StyledSubNavContainer } from './styled-components.js';
+import type { NavPropsT, Item } from './types.js';
+import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible.js';
 
-export default class SideNav extends React.Component<
-  NavPropsT,
-  {isFocusVisible: boolean},
-> {
+export default class SideNav extends React.Component<NavPropsT, { isFocusVisible: boolean }> {
   static defaultProps = {
     activeItemId: '/',
     activePredicate: null,
@@ -28,35 +21,34 @@ export default class SideNav extends React.Component<
     overrides: {},
     mapItem: null,
   };
-  state = {isFocusVisible: false};
+  state = { isFocusVisible: false };
 
   handleFocus = (event: SyntheticEvent<>) => {
     if (isFocusVisible(event)) {
-      this.setState({isFocusVisible: true});
+      this.setState({ isFocusVisible: true });
     }
   };
 
   handleBlur = (event: SyntheticEvent<>) => {
     if (this.state.isFocusVisible !== false) {
-      this.setState({isFocusVisible: false});
+      this.setState({ isFocusVisible: false });
     }
   };
 
   activePredicate = (item: Item) => item.itemId === this.props.activeItemId;
 
   render() {
-    const {activeItemId, activePredicate, items, onChange, overrides, mapItem} =
-      this.props;
+    const { activeItemId, activePredicate, items, onChange, overrides, mapItem } = this.props;
     const navLevel = 1;
 
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
     const [NavItemContainer, itemContainerProps] = getOverrides(
       overrides.NavItemContainer,
-      StyledNavItemContainer,
+      StyledNavItemContainer
     );
     const [SubNavContainer, subNavContainerProps] = getOverrides(
       overrides.SubNavContainer,
-      StyledSubNavContainer,
+      StyledSubNavContainer
     );
 
     const renderNavItem = (item: Item, level: number, index, mapItem) => {
@@ -66,15 +58,13 @@ export default class SideNav extends React.Component<
           if (item.subNav) {
             subNav = item.subNav.map(recMapItem);
           }
-          return mapItem({...item, subNav});
+          return mapItem({ ...item, subNav });
         };
         item = recMapItem(item);
       }
 
       const sharedProps = {
-        $active: activePredicate
-          ? activePredicate(item, activeItemId)
-          : this.activePredicate(item),
+        $active: activePredicate ? activePredicate(item, activeItemId) : this.activePredicate(item),
         $level: level,
         $selectable: !!item.itemId,
         $disabled: item.disabled || false,
@@ -100,11 +90,7 @@ export default class SideNav extends React.Component<
               {...sharedProps}
             />
             {item.subNav ? (
-              <SubNavContainer
-                role="list"
-                {...sharedProps}
-                {...subNavContainerProps}
-              >
+              <SubNavContainer role="list" {...sharedProps} {...subNavContainerProps}>
                 {item.subNav.map((subitem, idx) => {
                   return renderNavItem(subitem, level + 1, index);
                 })}

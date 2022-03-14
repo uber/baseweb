@@ -7,17 +7,13 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {mount} = require('../../../e2e/helpers');
+const { mount } = require('../../../e2e/helpers');
 
 const isActiveEl = async (page, selector) => {
   // eslint-disable-next-line cup/no-undef
   const activeEl = await page.evaluateHandle(() => document.activeElement);
   const selectedEl = await page.$(selector);
-  const equal = await page.evaluate(
-    (e1, e2) => e1 === e2,
-    activeEl,
-    selectedEl,
-  );
+  const equal = await page.evaluate((e1, e2) => e1 === e2, activeEl, selectedEl);
   activeEl.dispose();
   return equal;
 };

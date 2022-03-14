@@ -5,14 +5,14 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import React, {useRef} from 'react';
-import {COUNTRIES} from './constants.js';
+import React, { useRef } from 'react';
+import { COUNTRIES } from './constants.js';
 import CountryPicker from './country-picker.js';
 import defaultProps from './default-props.js';
-import {StyledPhoneInputRoot, StyledDialCode} from './styled-components.js';
-import {Input as DefaultInput} from '../input/index.js';
-import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
-import type {LitePropsT} from './types.js';
+import { StyledPhoneInputRoot, StyledDialCode } from './styled-components.js';
+import { Input as DefaultInput } from '../input/index.js';
+import { getOverrides, mergeOverrides } from '../helpers/overrides.js';
+import type { LitePropsT } from './types.js';
 
 PhoneInputNext.defaultProps = {
   ...defaultProps,
@@ -49,25 +49,23 @@ export default function PhoneInputNext(props: LitePropsT) {
 
   const baseDialCodeOverride = {
     component: StyledDialCode,
-    style: ({$theme: {direction, sizing}}) => {
-      const marginDir: string =
-        direction === 'rtl' ? 'marginRight' : 'marginLeft';
+    style: ({ $theme: { direction, sizing } }) => {
+      const marginDir: string = direction === 'rtl' ? 'marginRight' : 'marginLeft';
       return {
         [marginDir]: sizing.scale600,
       };
     },
-    props: {children: country.dialCode},
+    props: { children: country.dialCode },
   };
   const mergedDialCodeOverride = mergeOverrides(
-    {DialCode: baseDialCodeOverride},
-    {DialCode: overrides.DialCode || {}},
+    { DialCode: baseDialCodeOverride },
+    { DialCode: overrides.DialCode || {} }
   );
 
   const baseOverrides = {
     Input: {
-      style: ({$theme: {direction, sizing}}) => {
-        const paddingDir: string =
-          direction === 'rtl' ? 'paddingRight' : 'paddingLeft';
+      style: ({ $theme: { direction, sizing } }) => {
+        const paddingDir: string = direction === 'rtl' ? 'paddingRight' : 'paddingLeft';
         return {
           [paddingDir]: sizing.scale100,
         };

@@ -9,8 +9,8 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {getOverrides} from '../helpers/overrides.js';
-import {ADJOINED, SIZE, CUSTOM_INPUT_TYPE} from './constants.js';
+import { getOverrides } from '../helpers/overrides.js';
+import { ADJOINED, SIZE, CUSTOM_INPUT_TYPE } from './constants.js';
 import {
   InputContainer as StyledInputContainer,
   Input as StyledInput,
@@ -18,19 +18,16 @@ import {
   StyledClearIconContainer,
   StyledMaskToggleButton,
 } from './styled-components.js';
-import type {BaseInputPropsT, InternalStateT} from './types.js';
-import {getSharedProps} from './utils.js';
+import type { BaseInputPropsT, InternalStateT } from './types.js';
+import { getSharedProps } from './utils.js';
 import Hide from '../icon/hide.js';
 import Show from '../icon/show.js';
 import createEvent from '../utils/create-event.js';
-import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
+import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible.js';
 
 const NullComponent = () => null;
 
-class BaseInput<T: EventTarget> extends React.Component<
-  BaseInputPropsT<T>,
-  InternalStateT,
-> {
+class BaseInput<T: EventTarget> extends React.Component<BaseInputPropsT<T>, InternalStateT> {
   static defaultProps = {
     'aria-activedescendant': null,
     'aria-autocomplete': null,
@@ -78,7 +75,7 @@ class BaseInput<T: EventTarget> extends React.Component<
   };
 
   componentDidMount() {
-    const {autoFocus, clearable} = this.props;
+    const { autoFocus, clearable } = this.props;
     if (this.inputRef.current) {
       if (autoFocus) {
         this.inputRef.current.focus();
@@ -90,7 +87,7 @@ class BaseInput<T: EventTarget> extends React.Component<
   }
 
   componentWillUnmount() {
-    const {clearable} = this.props;
+    const { clearable } = this.props;
     if (clearable && this.inputRef.current) {
       this.inputRef.current.removeEventListener('keydown', this.onInputKeyDown);
     }
@@ -104,7 +101,7 @@ class BaseInput<T: EventTarget> extends React.Component<
         this.props.type === CUSTOM_INPUT_TYPE.textarea
           ? window.HTMLTextAreaElement.prototype
           : window.HTMLInputElement.prototype,
-        'value',
+        'value'
       );
       if (nativeInputValue) {
         const nativeInputValueSetter = nativeInputValue.set;
@@ -118,11 +115,7 @@ class BaseInput<T: EventTarget> extends React.Component<
   }
 
   onInputKeyDown = (e: KeyboardEvent) => {
-    if (
-      this.props.clearOnEscape &&
-      e.key === 'Escape' &&
-      this.inputRef.current
-    ) {
+    if (this.props.clearOnEscape && e.key === 'Escape' && this.inputRef.current) {
       this.clearValue();
       // prevent event from closing modal or doing something unexpected
       e.stopPropagation();
@@ -136,12 +129,12 @@ class BaseInput<T: EventTarget> extends React.Component<
   };
 
   onFocus = (e: SyntheticFocusEvent<T>) => {
-    this.setState({isFocused: true});
+    this.setState({ isFocused: true });
     this.props.onFocus(e);
   };
 
   onBlur = (e: SyntheticFocusEvent<T>) => {
-    this.setState({isFocused: false});
+    this.setState({ isFocused: false });
     this.props.onBlur(e);
   };
 
@@ -158,13 +151,13 @@ class BaseInput<T: EventTarget> extends React.Component<
 
   handleFocusForMaskToggle = (event: SyntheticEvent<>) => {
     if (isFocusVisible(event)) {
-      this.setState({isFocusVisibleForMaskToggle: true});
+      this.setState({ isFocusVisibleForMaskToggle: true });
     }
   };
 
   handleBlurForMaskToggle = (event: SyntheticEvent<>) => {
     if (this.state.isFocusVisibleForMaskToggle !== false) {
-      this.setState({isFocusVisibleForMaskToggle: false});
+      this.setState({ isFocusVisibleForMaskToggle: false });
     }
   };
 
@@ -173,19 +166,17 @@ class BaseInput<T: EventTarget> extends React.Component<
 
     const [MaskToggleButton, maskToggleButtonProps] = getOverrides(
       this.props.overrides.MaskToggleButton,
-      StyledMaskToggleButton,
+      StyledMaskToggleButton
     );
     const [MaskToggleShowIcon, maskToggleIconShowProps] = getOverrides(
       this.props.overrides.MaskToggleShowIcon,
-      Show,
+      Show
     );
     const [MaskToggleHideIcon, maskToggleIconHideProps] = getOverrides(
       this.props.overrides.MaskToggleHideIcon,
-      Hide,
+      Hide
     );
-    const label = this.state.isMasked
-      ? 'Show password text'
-      : 'Hide password text';
+    const label = this.state.isMasked ? 'Show password text' : 'Hide password text';
     const iconSize = {
       [SIZE.mini]: '12px',
       [SIZE.compact]: '16px',
@@ -197,28 +188,17 @@ class BaseInput<T: EventTarget> extends React.Component<
         $size={this.props.size}
         $isFocusVisible={this.state.isFocusVisibleForMaskToggle}
         aria-label={label}
-        onClick={() => this.setState((state) => ({isMasked: !state.isMasked}))}
+        onClick={() => this.setState((state) => ({ isMasked: !state.isMasked }))}
         title={label}
         type="button"
         {...maskToggleButtonProps}
-        onFocus={forkFocus(
-          maskToggleButtonProps,
-          this.handleFocusForMaskToggle,
-        )}
+        onFocus={forkFocus(maskToggleButtonProps, this.handleFocusForMaskToggle)}
         onBlur={forkBlur(maskToggleButtonProps, this.handleBlurForMaskToggle)}
       >
         {this.state.isMasked ? (
-          <MaskToggleShowIcon
-            size={iconSize}
-            title={label}
-            {...maskToggleIconShowProps}
-          />
+          <MaskToggleShowIcon size={iconSize} title={label} {...maskToggleIconShowProps} />
         ) : (
-          <MaskToggleHideIcon
-            size={iconSize}
-            title={label}
-            {...maskToggleIconHideProps}
-          />
+          <MaskToggleHideIcon size={iconSize} title={label} {...maskToggleIconHideProps} />
         )}
       </MaskToggleButton>
     );
@@ -226,18 +206,18 @@ class BaseInput<T: EventTarget> extends React.Component<
 
   handleFocusForClear = (event: SyntheticEvent<>) => {
     if (isFocusVisible(event)) {
-      this.setState({isFocusVisibleForClear: true});
+      this.setState({ isFocusVisibleForClear: true });
     }
   };
 
   handleBlurForClear = (event: SyntheticEvent<>) => {
     if (this.state.isFocusVisibleForClear !== false) {
-      this.setState({isFocusVisibleForClear: false});
+      this.setState({ isFocusVisibleForClear: false });
     }
   };
 
   renderClear() {
-    const {clearable, value, disabled, overrides = {}} = this.props;
+    const { clearable, value, disabled, overrides = {} } = this.props;
     if (
       disabled ||
       !clearable ||
@@ -249,12 +229,9 @@ class BaseInput<T: EventTarget> extends React.Component<
 
     const [ClearIconContainer, clearIconContainerProps] = getOverrides(
       overrides.ClearIconContainer,
-      StyledClearIconContainer,
+      StyledClearIconContainer
     );
-    const [ClearIcon, clearIconProps] = getOverrides(
-      overrides.ClearIcon,
-      StyledClearIcon,
-    );
+    const [ClearIcon, clearIconProps] = getOverrides(overrides.ClearIcon, StyledClearIcon);
     const ariaLabel = 'Clear value';
     const sharedProps = getSharedProps(this.props, this.state);
     const iconSize = {
@@ -315,7 +292,7 @@ class BaseInput<T: EventTarget> extends React.Component<
 
     const [InputContainer, inputContainerProps] = getOverrides(
       InputContainerOverride,
-      StyledInputContainer,
+      StyledInputContainer
     );
     const [Input, inputProps] = getOverrides(InputOverride, StyledInput);
     const [Before, beforeProps] = getOverrides(BeforeOverride, NullComponent);
@@ -360,11 +337,7 @@ class BaseInput<T: EventTarget> extends React.Component<
           min={this.props.min}
           max={this.props.max}
           step={this.props.step}
-          rows={
-            this.props.type === CUSTOM_INPUT_TYPE.textarea
-              ? this.props.rows
-              : null
-          }
+          rows={this.props.type === CUSTOM_INPUT_TYPE.textarea ? this.props.rows : null}
           {...sharedProps}
           {...inputProps}
         >

@@ -6,18 +6,18 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {render, getByTestId} from '@testing-library/react';
-import {StatefulDatepicker} from '../index.js';
+import { render, getByTestId } from '@testing-library/react';
+import { StatefulDatepicker } from '../index.js';
 
 describe('StatefulDatepicker', () => {
   it('basic render', () => {
-    const {container} = render(
+    const { container } = render(
       <StatefulDatepicker
-        initialState={{value: new Date()}}
+        initialState={{ value: new Date() }}
         overrides={{
-          Input: {props: {overrides: {Root: {props: {'data-testid': 'root'}}}}},
+          Input: { props: { overrides: { Root: { props: { 'data-testid': 'root' } } } } },
         }}
-      />,
+      />
     );
     getByTestId(container, 'root');
   });

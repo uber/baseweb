@@ -8,14 +8,14 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import type {OverrideT} from '../helpers/overrides.js';
-import {STATE_CHANGE_TYPE, SIZE, TYPE} from './constants.js';
-import type {OnItemSelectFnT} from '../menu/types.js';
+import type { OverrideT } from '../helpers/overrides.js';
+import { STATE_CHANGE_TYPE, SIZE, TYPE } from './constants.js';
+import type { OnItemSelectFnT } from '../menu/types.js';
 
 export type ChangeActionT = $Keys<typeof STATE_CHANGE_TYPE>;
 export type SizeT = $Keys<typeof SIZE>;
 export type TypeT = $Keys<typeof TYPE>;
-export type ReactRefT<T> = {|current: null | T|};
+export type ReactRefT<T> = {| current: null | T |};
 
 export type OptionT = $ReadOnly<{
   id?: string | number,
@@ -29,7 +29,7 @@ export type OptionT = $ReadOnly<{
 }>;
 
 export type ValueT = $ReadOnlyArray<OptionT>;
-export type OptgroupsT = {__ungrouped: ValueT, [string]: ValueT};
+export type OptgroupsT = { __ungrouped: ValueT, [string]: ValueT };
 export type OptionsT = ?ValueT | OptgroupsT;
 
 export type OnChangeParamsT = {
@@ -113,7 +113,7 @@ export type PropsT = {
     options: ValueT,
     filterValue: string,
     excludeOptions: ?ValueT,
-    {valueKey: string, labelKey: string},
+    { valueKey: string, labelKey: string }
   ) => ValueT,
   /** Defines if currently selected options are filtered out in the dropdown options. */
   filterOutSelected: boolean,
@@ -127,7 +127,7 @@ export type PropsT = {
     },
   }) => React.Node,
   /** A custom method to get a display value for a selected option. */
-  getValueLabel: ?({option: OptionT}) => React.Node,
+  getValueLabel: ?({ option: OptionT }) => React.Node,
   /** Sets the id attribute of the internal input element. Allows for usage with labels. */
   id?: string,
   /** Defines if the comparison for a new creatable value should be case-insensitive. */
@@ -207,11 +207,7 @@ export type StateT = {
   value: ValueT,
 };
 
-export type StateReducerT = (
-  stateType: string,
-  nextState: StateT,
-  currentState: StateT,
-) => StateT;
+export type StateReducerT = (stateType: string, nextState: StateT, currentState: StateT) => StateT;
 
 export type StatefulContainerPropsT = {
   overrides: OverridesT,

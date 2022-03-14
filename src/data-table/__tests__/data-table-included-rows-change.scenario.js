@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {StatefulDataTable, BooleanColumn} from '../index.js';
+import { StatefulDataTable, BooleanColumn } from '../index.js';
 
 type RowDataT = [boolean, string, number, string, Date];
 
@@ -20,10 +20,10 @@ const columns = [
 ];
 
 const rows = [
-  {id: 1, data: [true]},
-  {id: 2, data: [false]},
-  {id: 3, data: [true]},
-  {id: 4, data: [false]},
+  { id: 1, data: [true] },
+  { id: 2, data: [false] },
+  { id: 3, data: [true] },
+  { id: 4, data: [false] },
 ];
 
 export function Scenario() {
@@ -32,12 +32,12 @@ export function Scenario() {
     (included) => {
       setIncludedRows(included);
     },
-    [setIncludedRows],
+    [setIncludedRows]
   );
 
   return (
     <React.Fragment>
-      <div style={{height: '400px', width: '600px', marginBottom: '10px'}}>
+      <div style={{ height: '400px', width: '600px', marginBottom: '10px' }}>
         <StatefulDataTable
           columns={columns}
           rows={rows}

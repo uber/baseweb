@@ -8,12 +8,12 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import type {OverrideT} from '../helpers/overrides.js';
-import {ALIGN} from './constants.js';
+import type { OverrideT } from '../helpers/overrides.js';
+import { ALIGN } from './constants.js';
 
 export type LabelPlacementT = 'top' | 'right' | 'bottom' | 'left';
 export type AlignT = $Keys<typeof ALIGN>;
-export type ReactRefT<T> = {|current: null | T|};
+export type ReactRefT<T> = {| current: null | T |};
 
 export type RadioOverridesT = {
   RadioMarkInner?: OverrideT,
@@ -159,7 +159,7 @@ export type StateReducerT = (
   stateType: string,
   nextState: StateT,
   currentState: StateT,
-  event: SyntheticInputEvent<HTMLInputElement>,
+  event: SyntheticInputEvent<HTMLInputElement>
 ) => StateT;
 
 export type StatelessStateT = {

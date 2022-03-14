@@ -7,9 +7,9 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 import * as React from 'react';
-import type {BadgeEnhancerComponentT} from './types.js';
-import {getOverrides} from '../helpers/overrides.js';
-import {StyledBadgeEnhancerRoot} from './styled-components.js';
+import type { BadgeEnhancerComponentT } from './types.js';
+import { getOverrides } from '../helpers/overrides.js';
+import { StyledBadgeEnhancerRoot } from './styled-components.js';
 import {
   PINHEAD_TYPES,
   BADGE_ENHANCER_SIZES,
@@ -24,20 +24,12 @@ const BadgeEnhancer = ({
   badgeEnhancerContent: BadgeEnhancerContent,
   overrides = {},
 }: BadgeEnhancerComponentT) => {
-  if (
-    badgeEnhancerSize === null ||
-    badgeEnhancerSize == BADGE_ENHANCER_SIZES.none
-  ) {
+  if (badgeEnhancerSize === null || badgeEnhancerSize == BADGE_ENHANCER_SIZES.none) {
     return null;
   }
-  if (
-    badgeEnhancerSize !== BADGE_ENHANCER_SIZES.xSmall &&
-    !BadgeEnhancerContent
-  ) {
+  if (badgeEnhancerSize !== BADGE_ENHANCER_SIZES.xSmall && !BadgeEnhancerContent) {
     if (__DEV__) {
-      console.warn(
-        `Badges (except for size ${BADGE_ENHANCER_SIZES.xSmall}) must contain content`,
-      );
+      console.warn(`Badges (except for size ${BADGE_ENHANCER_SIZES.xSmall}) must contain content`);
     }
     return null;
   }
@@ -52,7 +44,7 @@ const BadgeEnhancer = ({
   if (!position) {
     if (__DEV__) {
       console.warn(
-        `Badge size ${badgeEnhancerSize} cannot be rendered with pinhead size ${pinHeadSize}`,
+        `Badge size ${badgeEnhancerSize} cannot be rendered with pinhead size ${pinHeadSize}`
       );
     }
     return null;
@@ -60,21 +52,14 @@ const BadgeEnhancer = ({
 
   const [BadgeEnhancerRoot, badgeEnhancerRootProps] = getOverrides(
     overrides.BadgeEnhancer,
-    StyledBadgeEnhancerRoot,
+    StyledBadgeEnhancerRoot
   );
 
   return (
-    <BadgeEnhancerRoot
-      $size={badgeEnhancerSize}
-      $position={position}
-      {...badgeEnhancerRootProps}
-    >
-      {BadgeEnhancerContent &&
-        badgeEnhancerSize !== BADGE_ENHANCER_SIZES.xSmall && (
-          <BadgeEnhancerContent
-            size={BADGE_ENHANCER_CONTENT_SIZE[badgeEnhancerSize]}
-          />
-        )}
+    <BadgeEnhancerRoot $size={badgeEnhancerSize} $position={position} {...badgeEnhancerRootProps}>
+      {BadgeEnhancerContent && badgeEnhancerSize !== BADGE_ENHANCER_SIZES.xSmall && (
+        <BadgeEnhancerContent size={BADGE_ENHANCER_CONTENT_SIZE[badgeEnhancerSize]} />
+      )}
     </BadgeEnhancerRoot>
   );
 };

@@ -8,13 +8,8 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {
-  StyledTable,
-  StyledBodyCell,
-  SortableHeadCell,
-  SORT_DIRECTION,
-} from '../index.js';
-import {useCellNavigation} from './shared.js';
+import { StyledTable, StyledBodyCell, SortableHeadCell, SORT_DIRECTION } from '../index.js';
+import { useCellNavigation } from './shared.js';
 
 const DATA = [
   ['Marlyn', 10],
@@ -40,7 +35,7 @@ const DATA = [
 ];
 
 export function Scenario() {
-  const {getCellProps} = useCellNavigation();
+  const { getCellProps } = useCellNavigation();
   const [nameDirection, setNameDirection] = React.useState(null);
   const [ageDirection, setAgeDirection] = React.useState(null);
 
@@ -108,17 +103,14 @@ export function Scenario() {
         direction={ageDirection}
         onSort={() => handleSort('age', ageDirection)}
         overrides={{
-          HeadCell: {props: getCellProps(1, 0), style: {color: 'blue'}},
+          HeadCell: { props: getCellProps(1, 0), style: { color: 'blue' } },
         }}
       />
 
       {sortedData.map((row, rowIndex) => (
         <React.Fragment key={rowIndex}>
           {row.map((cell, columnIndex) => (
-            <StyledBodyCell
-              {...getCellProps(columnIndex, rowIndex + 1)}
-              key={columnIndex}
-            >
+            <StyledBodyCell {...getCellProps(columnIndex, rowIndex + 1)} key={columnIndex}>
               {cell}
             </StyledBodyCell>
           ))}

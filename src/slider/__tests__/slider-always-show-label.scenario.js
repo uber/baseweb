@@ -9,13 +9,13 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Slider, StatefulSlider} from '../index.js';
+import { Slider, StatefulSlider } from '../index.js';
 
 export function Scenario() {
   const [rangeValue, setRangeValue] = React.useState([10, 70]);
   return (
     <div>
-      <div style={{margin: '64px'}}>
+      <div style={{ margin: '64px' }}>
         <Slider
           persistentThumb
           value={rangeValue}
@@ -31,7 +31,7 @@ export function Scenario() {
             const meridiem = value > 95 / 2 ? 'PM' : 'AM';
             return `${hour === 0 ? '12' : hour}:${minute}  ${meridiem}`;
           }}
-          onChange={({value}) => value && setRangeValue(value)}
+          onChange={({ value }) => value && setRangeValue(value)}
           overrides={{
             ThumbValue: {
               style: {
@@ -43,12 +43,12 @@ export function Scenario() {
           }}
         />
       </div>
-      <div style={{margin: '64px'}}>
-        <StatefulSlider initialState={{value: [50]}} disabled persistentThumb />
+      <div style={{ margin: '64px' }}>
+        <StatefulSlider initialState={{ value: [50] }} disabled persistentThumb />
       </div>
-      <div style={{margin: '64px'}}>
+      <div style={{ margin: '64px' }}>
         <StatefulSlider
-          initialState={{value: [20]}}
+          initialState={{ value: [20] }}
           step={10}
           min={0}
           max={100}
@@ -56,12 +56,12 @@ export function Scenario() {
           persistentThumb
         />
       </div>
-      <div style={{margin: '64px'}}>
-        <StatefulSlider initialState={{value: [25, 60]}} persistentThumb />
+      <div style={{ margin: '64px' }}>
+        <StatefulSlider initialState={{ value: [25, 60] }} persistentThumb />
       </div>
-      <div style={{margin: '64px'}}>
+      <div style={{ margin: '64px' }}>
         <StatefulSlider
-          initialState={{value: [0]}}
+          initialState={{ value: [0] }}
           step={5}
           min={-300}
           max={300}

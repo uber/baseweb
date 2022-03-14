@@ -5,19 +5,19 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import {styled} from '../styles/index.js';
-import type {ThemeT, Font} from '../styles/types.js';
-import type {StyleObject} from 'styletron-standard';
-import {ADJOINED, SIZE} from './constants.js';
-import type {SharedPropsT, SizeT} from './types.js';
-import type {SharedStylePropsT} from '../textarea/types.js';
+import { styled } from '../styles/index.js';
+import type { ThemeT, Font } from '../styles/types.js';
+import type { StyleObject } from 'styletron-standard';
+import { ADJOINED, SIZE } from './constants.js';
+import type { SharedPropsT, SizeT } from './types.js';
+import type { SharedStylePropsT } from '../textarea/types.js';
 import DeleteAlt from '../icon/delete-alt.js';
 
 export const StyledMaskToggleButton = styled<{
   $size: SizeT,
   $isFocusVisible: boolean,
   $theme: ThemeT,
-}>('button', ({$theme, $size, $isFocusVisible}) => {
+}>('button', ({ $theme, $size, $isFocusVisible }) => {
   const pad = {
     [SIZE.mini]: $theme.sizing.scale400,
     [SIZE.compact]: $theme.sizing.scale400,
@@ -44,7 +44,7 @@ export const StyledClearIconContainer = styled<{
   $size: SizeT,
   $alignTop: boolean,
   $theme: ThemeT,
-}>('div', ({$alignTop = false, $size, $theme}) => {
+}>('div', ({ $alignTop = false, $size, $theme }) => {
   const pad = {
     [SIZE.mini]: $theme.sizing.scale200,
     [SIZE.compact]: $theme.sizing.scale200,
@@ -62,17 +62,17 @@ export const StyledClearIconContainer = styled<{
   };
 });
 
-export const StyledClearIcon = styled<
-  typeof DeleteAlt,
-  {$isFocusVisible: boolean},
->(DeleteAlt, ({$theme, $isFocusVisible}) => ({
-  cursor: 'pointer',
-  outline: $isFocusVisible ? `solid 3px ${$theme.colors.accent}` : 'none',
-}));
+export const StyledClearIcon = styled<typeof DeleteAlt, { $isFocusVisible: boolean }>(
+  DeleteAlt,
+  ({ $theme, $isFocusVisible }) => ({
+    cursor: 'pointer',
+    outline: $isFocusVisible ? `solid 3px ${$theme.colors.accent}` : 'none',
+  })
+);
 
 function getInputPadding(
   size,
-  sizing,
+  sizing
 ): {|
   paddingTop: string,
   paddingBottom: string,
@@ -112,8 +112,8 @@ function getRootPadding(
   size,
   sizing,
   direction,
-  hasIconTrailing,
-): {|paddingLeft: string, paddingRight: string|} {
+  hasIconTrailing
+): {| paddingLeft: string, paddingRight: string |} {
   let ifLeftPad =
     adjoined === ADJOINED.both ||
     (adjoined === ADJOINED.left && direction !== 'rtl') ||
@@ -144,7 +144,7 @@ function getRootColors(
   $isFocused,
   $error,
   $positive = false,
-  colors,
+  colors
 ): {|
   borderLeftColor: string,
   borderRightColor: string,
@@ -233,7 +233,7 @@ export const getRootStyles = (props: {
     $positive,
     $size,
     $theme,
-    $theme: {borders, colors, sizing, typography, animation},
+    $theme: { borders, colors, sizing, typography, animation },
     $hasIconTrailing,
   } = props;
   return {
@@ -255,13 +255,7 @@ export const getRootStyles = (props: {
     ...getRootBorderRadius(borders.inputBorderRadius),
     ...getFont($size, typography),
     ...getRootColors($disabled, $isFocused, $error, $positive, colors),
-    ...getRootPadding(
-      $adjoined,
-      $size,
-      sizing,
-      $theme.direction,
-      $hasIconTrailing,
-    ),
+    ...getRootPadding($adjoined, $size, sizing, $theme.direction, $hasIconTrailing),
   };
 };
 
@@ -294,13 +288,7 @@ function getInputEnhancerPadding($size, sizing): InputEnhancerStyles {
   }[$size];
 }
 
-function getInputEnhancerColors(
-  $disabled,
-  $isFocused,
-  $error,
-  $positive,
-  colors,
-) {
+function getInputEnhancerColors($disabled, $isFocused, $error, $positive, colors) {
   if ($disabled) {
     return {
       color: colors.inputEnhancerTextDisabled,
@@ -342,7 +330,7 @@ export const InputEnhancer = styled<SharedPropsT>('div', (props) => {
     $isFocused,
     $error,
     $positive,
-    $theme: {colors, sizing, typography, animation},
+    $theme: { colors, sizing, typography, animation },
   } = props;
   return {
     display: 'flex',
@@ -359,13 +347,7 @@ export const InputEnhancer = styled<SharedPropsT>('div', (props) => {
 
 // InputContainer
 
-function getInputContainerColors(
-  $disabled,
-  $isFocused,
-  $error,
-  $positive,
-  colors,
-) {
+function getInputContainerColors($disabled, $isFocused, $error, $positive, colors) {
   if ($disabled) {
     return {
       color: colors.inputTextDisabled,
@@ -414,7 +396,7 @@ export const getInputContainerStyles = (props: {
     $disabled,
     $positive,
     $size,
-    $theme: {colors, typography, animation},
+    $theme: { colors, typography, animation },
   } = props;
   return {
     display: 'flex',
@@ -423,31 +405,22 @@ export const getInputContainerStyles = (props: {
     transitionDuration: animation.timing200,
     transitionTimingFunction: animation.easeOutCurve,
     ...getFont($size, typography),
-    ...getInputContainerColors(
-      $disabled,
-      $isFocused,
-      $error,
-      $positive,
-      colors,
-    ),
+    ...getInputContainerColors($disabled, $isFocused, $error, $positive, colors),
   };
 };
 
-export const InputContainer = styled<SharedPropsT>(
-  'div',
-  getInputContainerStyles,
-);
+export const InputContainer = styled<SharedPropsT>('div', getInputContainerStyles);
 
 function getInputColors(
   $disabled,
   $isFocused,
   $error,
-  colors,
+  colors
 ): {|
   color: string,
   '-webkit-text-fill-color'?: string,
   caretColor: string,
-  '::placeholder': {|color: string|},
+  '::placeholder': {| color: string |},
 |} {
   if ($disabled) {
     return {
@@ -470,16 +443,14 @@ function getInputColors(
 }
 
 export const getInputStyles = (
-  props:
-    | (SharedPropsT & {$theme: ThemeT})
-    | (SharedStylePropsT & {$theme: ThemeT}),
+  props: (SharedPropsT & { $theme: ThemeT }) | (SharedStylePropsT & { $theme: ThemeT })
 ): StyleObject => {
   const {
     $disabled,
     $isFocused,
     $error,
     $size,
-    $theme: {colors, sizing, typography},
+    $theme: { colors, sizing, typography },
   } = props;
   //$FlowFixMe
   return {

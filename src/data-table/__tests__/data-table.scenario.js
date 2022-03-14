@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {useStyletron} from '../../styles/index.js';
+import { useStyletron } from '../../styles/index.js';
 
 import {
   AnchorColumn,
@@ -30,11 +30,11 @@ type RowDataT = [
   number,
   number,
   Date,
-  {color: string},
+  { color: string },
   string,
   boolean,
   string,
-  {content: string, href: string},
+  { content: string, href: string }
 ];
 
 // https://gist.github.com/6174/6062387
@@ -53,7 +53,7 @@ function makeRowsFromColumns(columns, rowCount) {
       data: columns.map((column, j) => {
         switch (column.kind) {
           case COLUMNS.ANCHOR:
-            return {content: 'hello', href: 'https://google.com'};
+            return { content: 'hello', href: 'https://google.com' };
           case COLUMNS.CATEGORICAL:
             switch (i % 5) {
               case 4:
@@ -83,14 +83,14 @@ function makeRowsFromColumns(columns, rowCount) {
           case COLUMNS.CUSTOM:
             switch (i % 4) {
               case 3:
-                return {color: 'green'};
+                return { color: 'green' };
               case 2:
-                return {color: 'blue'};
+                return { color: 'blue' };
               case 1:
-                return {color: 'purple'};
+                return { color: 'purple' };
               case 0:
               default:
-                return {color: 'red'};
+                return { color: 'red' };
             }
 
           default:
@@ -141,8 +141,8 @@ export const columns = [
   }),
 
   CustomColumn<
-    {color: string},
-    {selection: Set<string>, exclude: boolean, description: string},
+    { color: string },
+    { selection: Set<string>, exclude: boolean, description: string }
   >({
     title: 'custom color',
     filterable: true,
@@ -184,7 +184,7 @@ export const columns = [
           <ul>
             {Array.from(colors).map((color) => {
               return (
-                <li key={color} className={css({backgroundColor: color})}>
+                <li key={color} className={css({ backgroundColor: color })}>
                   <input
                     type="checkbox"
                     onChange={() => {
@@ -197,7 +197,7 @@ export const columns = [
                     }}
                   />
 
-                  <span className={css({paddingLeft: '8px'})}>{color}</span>
+                  <span className={css({ paddingLeft: '8px' })}>{color}</span>
                 </li>
               );
             })}
@@ -254,7 +254,7 @@ export const rows = makeRowsFromColumns(columns, 2000);
 
 export function Scenario() {
   return (
-    <div style={{height: '800px', width: '900px'}}>
+    <div style={{ height: '800px', width: '900px' }}>
       <StatefulDataTable columns={columns} rows={rows} />
     </div>
   );

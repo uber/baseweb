@@ -15,9 +15,7 @@ test('Recommended config', () => {
     configFile: path.resolve(__dirname, 'example-config/.eslintrc.js'),
     resolvePluginsRelativeTo: path.resolve(__dirname, 'example-config'),
   });
-  const config = cli.getConfigForFile(
-    path.resolve(__dirname, 'example-config/fixture.js'),
-  );
+  const config = cli.getConfigForFile(path.resolve(__dirname, 'example-config/fixture.js'));
   expect(config.rules).toMatchObject(Plugin.configs.recommended.rules);
   expect(config.plugins).toMatchObject(Plugin.configs.recommended.plugins);
 });

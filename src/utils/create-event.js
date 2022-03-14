@@ -11,7 +11,7 @@ LICENSE file in the root directory of this source tree.
 export default function createEvent(eventName: string) {
   let event;
   if (typeof window.Event === 'function') {
-    event = new window.Event(eventName, {bubbles: true, cancelable: true});
+    event = new window.Event(eventName, { bubbles: true, cancelable: true });
   } else {
     event = document.createEvent('Event');
     event.initEvent(eventName, true, true);

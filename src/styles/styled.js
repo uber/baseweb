@@ -12,11 +12,11 @@ import {
   useStyletron as styletronUseStyletron,
   withWrapper as styletronWithWrapper,
 } from 'styletron-react';
-import {driver, getInitialStyle} from 'styletron-standard';
-import type {StyleObject} from 'styletron-standard';
-import type {ThemeT} from './types.js';
+import { driver, getInitialStyle } from 'styletron-standard';
+import type { StyleObject } from 'styletron-standard';
+import type { ThemeT } from './types.js';
 
-import {ThemeContext} from './theme-provider.js';
+import { ThemeContext } from './theme-provider.js';
 
 const wrapper = (StyledComponent) => {
   // eslint-disable-next-line react/display-name
@@ -29,44 +29,38 @@ const wrapper = (StyledComponent) => {
 
 /* eslint-disable flowtype/generic-spacing */
 /* flowlint unclear-type:off */
-export type StyletronComponent<Props> =
-  React.StatelessFunctionalComponent<Props> & {
-    __STYLETRON__: any,
-  };
+export type StyletronComponent<Props> = React.StatelessFunctionalComponent<Props> & {
+  __STYLETRON__: any,
+};
 
 type StyleFn<Theme> = {
   (string): StyletronComponent<{}>,
 
   (string, StyleObject): StyletronComponent<{}>,
 
-  <Props>(
-    string,
-    ({$theme: Theme} & Props) => StyleObject,
-  ): StyletronComponent<Props>,
+  <Props>(string, ({ $theme: Theme } & Props) => StyleObject): StyletronComponent<Props>,
 
   <Base: React.ComponentType<any>>(
     Base,
-    StyleObject,
-  ): StyletronComponent<$Diff<React.ElementConfig<Base>, {className: any}>>,
+    StyleObject
+  ): StyletronComponent<$Diff<React.ElementConfig<Base>, { className: any }>>,
 
   <Base: React.ComponentType<any>, Props>(
     Base,
-    ({$theme: Theme} & Props) => StyleObject,
-  ): StyletronComponent<
-    $Diff<React.ElementConfig<Base>, {className: any}> & Props,
-  >,
+    ({ $theme: Theme } & Props) => StyleObject
+  ): StyletronComponent<$Diff<React.ElementConfig<Base>, { className: any }> & Props>,
 };
 
 type ExtractPropTypes = <T>(StyletronComponent<T>) => T;
 type WithStyleFn<Theme> = {
   <Base: StyletronComponent<any>, Props>(
     Base,
-    (Props & {$theme: Theme}) => StyleObject,
+    (Props & { $theme: Theme }) => StyleObject
   ): StyletronComponent<$Call<ExtractPropTypes, Base> & Props>,
 
   <Base: StyletronComponent<any>>(
     Base,
-    StyleObject,
+    StyleObject
   ): StyletronComponent<$Call<ExtractPropTypes, Base>>,
 };
 /* eslint-enable flowtype/generic-spacing */
@@ -108,20 +102,17 @@ export function withWrapper(
   StyledElement: StyletronComponent<any>,
   wrapperFn: (
     // flowlint-next-line unclear-type:off
-    StyletronComponent<any>,
+    StyletronComponent<any>
     // flowlint-next-line unclear-type:off
-  ) => (any) => any,
+  ) => (any) => any
 ) {
   // flowlint-next-line unclear-type:off
-  return styletronWithWrapper<StyletronComponent<any>, any>(
-    StyledElement,
-    (Styled) => {
-      // eslint-disable-next-line react/display-name
-      return React.forwardRef((props, ref) => (
-        <ThemeContext.Consumer>
-          {(theme) => wrapperFn(Styled)({ref: ref, ...props, $theme: theme})}
-        </ThemeContext.Consumer>
-      ));
-    },
-  );
+  return styletronWithWrapper<StyletronComponent<any>, any>(StyledElement, (Styled) => {
+    // eslint-disable-next-line react/display-name
+    return React.forwardRef((props, ref) => (
+      <ThemeContext.Consumer>
+        {(theme) => wrapperFn(Styled)({ ref: ref, ...props, $theme: theme })}
+      </ThemeContext.Consumer>
+    ));
+  });
 }

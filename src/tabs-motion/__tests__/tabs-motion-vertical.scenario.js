@@ -10,19 +10,19 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable jsx-a11y/accessible-emoji */
 
 import * as React from 'react';
-import {Tab, Tabs, ORIENTATION} from '../index.js';
-import {Button, KIND} from '../../button/index.js';
+import { Tab, Tabs, ORIENTATION } from '../index.js';
+import { Button, KIND } from '../../button/index.js';
 
 export function Scenario() {
   const [activeKey, setActiveKey] = React.useState('0');
   return (
     <Tabs
       activeKey={activeKey}
-      onChange={({activeKey}) => setActiveKey(activeKey)}
+      onChange={({ activeKey }) => setActiveKey(activeKey)}
       orientation={ORIENTATION.vertical}
       overrides={{
         Root: {
-          style: ({$theme}) => ({
+          style: ({ $theme }) => ({
             borderTop: `solid 1px ${$theme.colors.borderOpaque}`,
             borderBottom: `solid 1px ${$theme.colors.borderOpaque}`,
           }),

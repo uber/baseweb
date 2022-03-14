@@ -8,18 +8,18 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Select, StyledIconsContainer, TYPE} from '../index.js';
+import { Select, StyledIconsContainer, TYPE } from '../index.js';
 
 const options = [
-  {label: 'AliceBlue', id: '#F0F8FF'},
-  {label: 'AntiqueWhite', id: '#FAEBD7'},
-  {label: 'Aqua', id: '#00FFFF'},
-  {label: 'Aquamarine', id: '#7FFFD4'},
-  {label: 'Azure', id: '#F0FFFF'},
-  {label: 'Beige', id: '#F5F5DC'},
+  { label: 'AliceBlue', id: '#F0F8FF' },
+  { label: 'AntiqueWhite', id: '#FAEBD7' },
+  { label: 'Aqua', id: '#00FFFF' },
+  { label: 'Aquamarine', id: '#7FFFD4' },
+  { label: 'Azure', id: '#F0FFFF' },
+  { label: 'Beige', id: '#F5F5DC' },
 ];
 
-function IconsContainerOverride({children, onCustomClick, ...props}) {
+function IconsContainerOverride({ children, onCustomClick, ...props }) {
   const isIconShowing = React.Children.toArray(children).length;
 
   return (
@@ -46,19 +46,18 @@ export function Scenario() {
     <div>
       <Select
         options={options}
-        onChange={({value}) => setValue(value)}
+        onChange={({ value }) => setValue(value)}
         overrides={{
           IconsContainer: {
             component: IconsContainerOverride,
-            props: {onCustomClick},
+            props: { onCustomClick },
           },
         }}
         type={TYPE.search}
         value={value}
       />
       <p>
-        custom element click count{' '}
-        <span data-testId="click-count">{count}</span>
+        custom element click count <span data-testId="click-count">{count}</span>
       </p>
     </div>
   );

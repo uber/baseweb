@@ -9,13 +9,13 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import Props from 'pretty-proptypes';
 
-import {Block} from 'baseui/block';
-import {Button, SIZE as ButtonSize, KIND as ButtonKind} from 'baseui/button';
-import {ParagraphSmall} from 'baseui/typography';
-import {H3} from './markdown-elements';
+import { Block } from 'baseui/block';
+import { Button, SIZE as ButtonSize, KIND as ButtonKind } from 'baseui/button';
+import { ParagraphSmall } from 'baseui/typography';
+import { H3 } from './markdown-elements';
 
 const API = (props) => {
-  const {heading, api} = props;
+  const { heading, api } = props;
   return (
     <React.Fragment>
       <H3>{heading}</H3>
@@ -26,17 +26,11 @@ const API = (props) => {
           shouldCollapseProps={true}
           components={{
             Description: (props) => {
-              return (
-                <ParagraphSmall $as="div">{props.children}</ParagraphSmall>
-              );
+              return <ParagraphSmall $as="div">{props.children}</ParagraphSmall>;
             },
             Button: (props) => {
               return (
-                <Button
-                  {...props}
-                  size={ButtonSize.compact}
-                  kind={ButtonKind.secondary}
-                >
+                <Button {...props} size={ButtonSize.compact} kind={ButtonKind.secondary}>
                   {props.children}
                 </Button>
               );
@@ -46,7 +40,7 @@ const API = (props) => {
                 <Block
                   overrides={{
                     Block: {
-                      style: ({$theme}) => ({
+                      style: ({ $theme }) => ({
                         paddingLeft: $theme.sizing.scale600,
                       }),
                     },

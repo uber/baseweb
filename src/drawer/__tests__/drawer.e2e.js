@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 /* global document */
 
-const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
+const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
 
 const selectors = {
   closeButton: 'button[aria-label="Close"]',
@@ -41,7 +41,7 @@ describe('drawer', () => {
 
     const closeButtonIsFocused = await page.$eval(
       selectors.closeButton,
-      (closeButton) => closeButton === document.activeElement,
+      (closeButton) => closeButton === document.activeElement
     );
 
     // focus should be trapped in drawer and go to close button
@@ -59,7 +59,7 @@ describe('drawer', () => {
 
     const openIsFocused = await page.$eval(
       selectors.openDrawer,
-      (button) => button === document.activeElement,
+      (button) => button === document.activeElement
     );
     expect(openIsFocused).toBe(true);
   });
@@ -76,10 +76,7 @@ describe('drawer', () => {
       hidden: true,
     });
 
-    const selectedValue = await page.$eval(
-      selectors.selectedList,
-      (select) => select.textContent,
-    );
+    const selectedValue = await page.$eval(selectors.selectedList, (select) => select.textContent);
     expect(selectedValue).toBe('AliceBlue');
   });
 
@@ -91,11 +88,11 @@ describe('drawer', () => {
     await page.waitForSelector(selectors.selectDropDown);
 
     await page.keyboard.press('Escape');
-    await page.waitForSelector(selectors.selectDropDown, {hidden: true});
+    await page.waitForSelector(selectors.selectDropDown, { hidden: true });
     await page.waitForSelector(selectors.selectInput);
 
     await page.keyboard.press('Escape');
-    await page.waitForSelector(selectors.selectInput, {hidden: true});
+    await page.waitForSelector(selectors.selectInput, { hidden: true });
   });
 
   it('renders content even when hidden: with renderAll prop', async () => {

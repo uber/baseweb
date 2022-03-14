@@ -7,15 +7,11 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 
-import {mergeOverrides, getOverrides} from '../helpers/overrides.js';
+import { mergeOverrides, getOverrides } from '../helpers/overrides.js';
 import Icon from '../icon/icon.js';
 
-import {
-  Svg as StyledSvg,
-  StyledActivePath,
-  StyledTrackPath,
-} from './styled-components.js';
-import type {SpinnerPropsT} from './types.js';
+import { Svg as StyledSvg, StyledActivePath, StyledTrackPath } from './styled-components.js';
+import type { SpinnerPropsT } from './types.js';
 
 class Spinner extends React.Component<SpinnerPropsT> {
   static defaultProps: $Shape<SpinnerPropsT> = {
@@ -32,23 +28,17 @@ class Spinner extends React.Component<SpinnerPropsT> {
         console.warn(
           `❖ [baseui] Please consider using "StyledSpinnerNext" instead of "Spinner". ` +
             `In v11, "StyledSpinnerNext" will become the default "Spinner"` +
-            ` and the current SVG based implementation will be deprecated.`,
+            ` and the current SVG based implementation will be deprecated.`
         );
       }
     }
   }
 
   render() {
-    const {overrides = {}} = this.props;
-    const mergedOverrides = mergeOverrides({Svg: StyledSvg}, overrides);
-    const [TrackPath, trackPathProps] = getOverrides(
-      overrides.TrackPath,
-      StyledTrackPath,
-    );
-    const [ActivePath, activePathProps] = getOverrides(
-      overrides.ActivePath,
-      StyledActivePath,
-    );
+    const { overrides = {} } = this.props;
+    const mergedOverrides = mergeOverrides({ Svg: StyledSvg }, overrides);
+    const [TrackPath, trackPathProps] = getOverrides(overrides.TrackPath, StyledTrackPath);
+    const [ActivePath, activePathProps] = getOverrides(overrides.ActivePath, StyledActivePath);
     return (
       // $FlowExpectedError[cannot-spread-inexact]
       <Icon

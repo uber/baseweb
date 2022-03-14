@@ -8,16 +8,13 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {mount} = require('../../../e2e/helpers');
+const { mount } = require('../../../e2e/helpers');
 
 const highlightedSelector = '[aria-selected="true"]';
 
 async function findHighlightedLabel(page) {
   const highlightedItem = await page.$(highlightedSelector);
-  return await page.evaluate(
-    (highlightedItem) => highlightedItem.textContent,
-    highlightedItem,
-  );
+  return await page.evaluate((highlightedItem) => highlightedItem.textContent, highlightedItem);
 }
 
 function matchArrayElements(a, b) {
@@ -35,7 +32,7 @@ describe('menu-grouped-items', () => {
     const actual = await Promise.all(
       listElements.map((listElement) => {
         return page.evaluate((li) => li.textContent, listElement);
-      }),
+      })
     );
     const expected = [
       'Black',

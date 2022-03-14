@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 
 'use strict';
-const {hasAnyProp} = require('jsx-ast-utils');
+const { hasAnyProp } = require('jsx-ast-utils');
 const MESSAGES = require('./messages.js');
 
 module.exports = {
@@ -26,10 +26,7 @@ module.exports = {
         }
 
         function isImporting(node, importName, importPath) {
-          if (
-            node.imported.name === importName &&
-            node.parent.source.value === importPath
-          ) {
+          if (node.imported.name === importName && node.parent.source.value === importPath) {
             importState[importName] = node.local.name;
             return true;
           } else {

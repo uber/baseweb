@@ -5,9 +5,9 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import {styled} from '../styles/index.js';
-import {SIZE, SIZE_WIDTHS} from './constants.js';
-import type {SharedStylePropsArgT, SizePropT} from './types.js';
+import { styled } from '../styles/index.js';
+import { SIZE, SIZE_WIDTHS } from './constants.js';
+import type { SharedStylePropsArgT, SizePropT } from './types.js';
 
 type SizeStyleT = {|
   maxWidth: string | number,
@@ -35,7 +35,7 @@ function getSizeStyles($size: SizePropT): SizeStyleT {
 }
 
 export const Root = styled<SharedStylePropsArgT>('div', (props) => {
-  const {$isOpen} = props;
+  const { $isOpen } = props;
   return {
     position: 'fixed',
     overflow: 'auto',
@@ -48,8 +48,7 @@ export const Root = styled<SharedStylePropsArgT>('div', (props) => {
 });
 
 export const Backdrop = styled<SharedStylePropsArgT>('div', (props) => {
-  const {$animate, $isOpen, $isVisible, $theme, $unstable_ModalBackdropScroll} =
-    props;
+  const { $animate, $isOpen, $isVisible, $theme, $unstable_ModalBackdropScroll } = props;
   if ($unstable_ModalBackdropScroll) {
     return {};
   }
@@ -76,8 +75,7 @@ export const Backdrop = styled<SharedStylePropsArgT>('div', (props) => {
 });
 
 export const DialogContainer = styled<SharedStylePropsArgT>('div', (props) => {
-  const {$animate, $isOpen, $isVisible, $theme, $unstable_ModalBackdropScroll} =
-    props;
+  const { $animate, $isOpen, $isVisible, $theme, $unstable_ModalBackdropScroll } = props;
   return {
     display: 'flex',
     alignItems: 'center',
@@ -106,7 +104,7 @@ export const DialogContainer = styled<SharedStylePropsArgT>('div', (props) => {
 });
 
 export const Dialog = styled<SharedStylePropsArgT>('div', (props) => {
-  const {$animate, $isOpen, $isVisible, $size, $theme} = props;
+  const { $animate, $isOpen, $isVisible, $size, $theme } = props;
   return ({
     position: 'relative',
     backgroundColor: $theme.colors.backgroundPrimary,
@@ -142,7 +140,7 @@ export const Dialog = styled<SharedStylePropsArgT>('div', (props) => {
 });
 
 export const Close = styled<SharedStylePropsArgT>('button', (props) => {
-  const {$theme, $isFocusVisible} = props;
+  const { $theme, $isFocusVisible } = props;
   const dir: string = $theme.direction === 'rtl' ? 'left' : 'right';
   return {
     // Reset button styles
@@ -189,11 +187,9 @@ export const Close = styled<SharedStylePropsArgT>('button', (props) => {
   };
 });
 
-export const ModalHeader = styled<{}>('div', ({$theme}) => {
-  const marginStartDir: string =
-    $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
-  const marginEndDir: string =
-    $theme.direction === 'rtl' ? 'marginLeft' : 'marginRight';
+export const ModalHeader = styled<{}>('div', ({ $theme }) => {
+  const marginStartDir: string = $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
+  const marginEndDir: string = $theme.direction === 'rtl' ? 'marginLeft' : 'marginRight';
 
   return {
     ...$theme.typography.font550,
@@ -206,7 +202,7 @@ export const ModalHeader = styled<{}>('div', ({$theme}) => {
   };
 });
 
-export const ModalBody = styled<{}>('div', ({$theme}) => ({
+export const ModalBody = styled<{}>('div', ({ $theme }) => ({
   ...$theme.typography.font200,
   color: $theme.colors.contentSecondary,
   marginTop: $theme.sizing.scale600,
@@ -215,7 +211,7 @@ export const ModalBody = styled<{}>('div', ({$theme}) => ({
   marginBottom: $theme.sizing.scale700,
 }));
 
-export const ModalFooter = styled<{}>('div', ({$theme}) => ({
+export const ModalFooter = styled<{}>('div', ({ $theme }) => ({
   ...$theme.typography.font200,
   marginTop: $theme.sizing.scale700,
   marginLeft: $theme.sizing.scale800,

@@ -12,9 +12,9 @@ import {
   StyledDropdownListItem,
   StyledOptionContent,
 } from './styled-components.js';
-import {StatefulMenu} from '../menu/index.js';
-import type {DropdownPropsT, OptionT, ValueT} from './types.js';
-import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
+import { StatefulMenu } from '../menu/index.js';
+import type { DropdownPropsT, OptionT, ValueT } from './types.js';
+import { getOverrides, mergeOverrides } from '../helpers/overrides.js';
 
 function groupOptions(options: ValueT) {
   return options.reduce(
@@ -29,14 +29,13 @@ function groupOptions(options: ValueT) {
       }
       return groups;
     },
-    {__ungrouped: []},
+    { __ungrouped: [] }
   );
 }
 
 export default class SelectDropdown extends React.Component<DropdownPropsT> {
   getSharedProps() {
-    const {error, isLoading, multi, required, size, searchable, type, width} =
-      this.props;
+    const { error, isLoading, multi, required, size, searchable, type, width } = this.props;
     return {
       $error: error,
       $isLoading: isLoading,
@@ -49,19 +48,17 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
     };
   }
   // flowlint-next-line unclear-type:off
-  getItemLabel = (option: {[string]: any}) => {
-    const {getOptionLabel, overrides = {}, value, valueKey} = this.props;
+  getItemLabel = (option: { [string]: any }) => {
+    const { getOptionLabel, overrides = {}, value, valueKey } = this.props;
 
     const [OptionContent, optionContentProps] = getOverrides(
       overrides.OptionContent,
-      StyledOptionContent,
+      StyledOptionContent
     );
 
     let $selected;
     if (Array.isArray(value)) {
-      $selected = !!value.find(
-        (selected) => selected && selected[valueKey] === option[valueKey],
-      );
+      $selected = !!value.find((selected) => selected && selected[valueKey] === option[valueKey]);
     } else {
       $selected = value[valueKey] === option[valueKey];
     }
@@ -80,7 +77,7 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
         {...optionSharedProps}
         {...optionContentProps}
       >
-        {getOptionLabel({option, optionState: optionSharedProps})}
+        {getOptionLabel({ option, optionState: optionSharedProps })}
       </OptionContent>
     );
   };
@@ -90,7 +87,7 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
   };
 
   getHighlightedIndex = () => {
-    const {value, options, valueKey} = this.props;
+    const { value, options, valueKey } = this.props;
     // Highlight only first value as menu supports only a single highlight index
     let firstValue: OptionT = {};
 
@@ -101,9 +98,7 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
     }
 
     if (Object.keys(firstValue).length > 0) {
-      const a = options.findIndex(
-        (option) => option && option[valueKey] === firstValue[valueKey],
-      );
+      const a = options.findIndex((option) => option && option[valueKey] === firstValue[valueKey]);
       return a === -1 ? 0 : a;
     }
     return 0;
@@ -122,15 +117,15 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
     } = this.props;
     const [DropdownContainer, dropdownContainerProps] = getOverrides(
       overrides.DropdownContainer,
-      StyledDropdownContainer,
+      StyledDropdownContainer
     );
     const [ListItem, listItemProps] = getOverrides(
       overrides.DropdownListItem,
-      StyledDropdownListItem,
+      StyledDropdownListItem
     );
     const [
       OverriddenStatefulMenu,
-      {overrides: statefulMenuOverrides = {}, ...restStatefulMenuProps},
+      { overrides: statefulMenuOverrides = {}, ...restStatefulMenuProps },
     ] = getOverrides(overrides.StatefulMenu, StatefulMenu);
     const highlightedIndex = this.getHighlightedIndex();
     const groupedOptions = groupOptions(options);
@@ -180,7 +175,7 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
                   overrides: {
                     ListItem: {
                       component: ListItem,
-                      props: {...listItemProps, role: 'option'},
+                      props: { ...listItemProps, role: 'option' },
                       // slightly hacky way to handle the list item style overrides
                       // since the menu component doesn't provide a top level overrides for it
                       style: listItemProps.$style,
@@ -194,7 +189,7 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
               List: overrides.Dropdown || {},
               Option: overrides.DropdownOption || {},
               ...statefulMenuOverrides,
-            },
+            }
           )}
           {...restStatefulMenuProps}
         />

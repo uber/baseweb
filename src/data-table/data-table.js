@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {VariableSizeGrid} from 'react-window';
+import { VariableSizeGrid } from 'react-window';
 import AutoSizer from 'react-virtualized-auto-sizer';
 
 import {
@@ -16,20 +16,14 @@ import {
   SIZE as BUTTON_SIZES,
   KIND as BUTTON_KINDS,
 } from '../button/index.js';
-import {useStyletron} from '../styles/index.js';
-import {Tooltip, PLACEMENT} from '../tooltip/index.js';
+import { useStyletron } from '../styles/index.js';
+import { Tooltip, PLACEMENT } from '../tooltip/index.js';
 
-import {SORT_DIRECTIONS} from './constants.js';
+import { SORT_DIRECTIONS } from './constants.js';
 import HeaderCell from './header-cell.js';
 import MeasureColumnWidths from './measure-column-widths.js';
-import type {
-  ColumnT,
-  DataTablePropsT,
-  RowT,
-  SortDirectionsT,
-  RowActionT,
-} from './types.js';
-import {LocaleContext} from '../locale/index.js';
+import type { ColumnT, DataTablePropsT, RowT, SortDirectionsT, RowActionT } from './types.js';
+import { LocaleContext } from '../locale/index.js';
 
 // consider pulling this out to a prop if useful.
 const HEADER_ROW_HEIGHT = 48;
@@ -89,7 +83,7 @@ type CellPlacementPropsT = {
 
 const sum = (ns) => ns.reduce((s, n) => s + n, 0);
 
-function CellPlacement({columnIndex, rowIndex, data, style}) {
+function CellPlacement({ columnIndex, rowIndex, data, style }) {
   const [css, theme] = useStyletron();
 
   // ignores the table header row
@@ -108,9 +102,7 @@ function CellPlacement({columnIndex, rowIndex, data, style}) {
   }
 
   const Cell = data.columns[columnIndex].renderCell;
-  const value = data.columns[columnIndex].mapDataToValue(
-    data.rows[rowIndex - 1].data,
-  );
+  const value = data.columns[columnIndex].mapDataToValue(data.rows[rowIndex - 1].data);
 
   return (
     <div
@@ -125,9 +117,7 @@ function CellPlacement({columnIndex, rowIndex, data, style}) {
         boxSizing: 'border-box',
       })}
       style={style}
-      onMouseEnter={() =>
-        data.onRowMouseEnter(rowIndex, data.rows[rowIndex - 1])
-      }
+      onMouseEnter={() => data.onRowMouseEnter(rowIndex, data.rows[rowIndex - 1])}
     >
       <Cell
         value={value}
@@ -161,8 +151,7 @@ function compareCellPlacement(prevProps, nextProps) {
 
   if (
     prevProps.data.isSelectable === nextProps.data.isSelectable &&
-    prevProps.data.columnHighlightIndex ===
-      nextProps.data.columnHighlightIndex &&
+    prevProps.data.columnHighlightIndex === nextProps.data.columnHighlightIndex &&
     prevProps.data.rowHighlightIndex === nextProps.data.rowHighlightIndex &&
     prevProps.data.textQuery === nextProps.data.textQuery &&
     prevProps.data.isRowSelected === nextProps.data.isRowSelected
@@ -176,8 +165,7 @@ function compareCellPlacement(prevProps, nextProps) {
   if (
     prevProps.rowIndex !== prevProps.data.rowHighlightIndex &&
     prevProps.rowIndex !== nextProps.data.rowHighlightIndex &&
-    prevProps.data.columnHighlightIndex ===
-      nextProps.data.columnHighlightIndex &&
+    prevProps.data.columnHighlightIndex === nextProps.data.columnHighlightIndex &&
     prevProps.data.isRowSelected === nextProps.data.isRowSelected
   ) {
     return true;
@@ -198,7 +186,7 @@ function compareCellPlacement(prevProps, nextProps) {
 }
 const CellPlacementMemo = React.memo<CellPlacementPropsT, mixed>(
   CellPlacement,
-  compareCellPlacement,
+  compareCellPlacement
 );
 CellPlacementMemo.displayName = 'CellPlacement';
 
@@ -358,9 +346,7 @@ function Header(props: HeaderProps) {
         onSelectAll={props.onSelectMany}
         onSelectNone={props.onSelectNone}
         onSort={props.onSort}
-        sortDirection={
-          props.sortIndex === props.index ? props.sortDirection : null
-        }
+        sortDirection={props.sortIndex === props.index ? props.sortDirection : null}
         title={props.columnTitle}
       />
       {props.resizableColumnWidths && (
@@ -380,9 +366,7 @@ function Header(props: HeaderProps) {
               setEndResizePos(x);
             }}
             className={css({
-              backgroundColor: isResizingThisColumn
-                ? theme.colors.contentPrimary
-                : null,
+              backgroundColor: isResizingThisColumn ? theme.colors.contentPrimary : null,
               cursor: 'ew-resize',
               position: 'absolute',
               height: '100%',
@@ -441,10 +425,7 @@ function Headers() {
             <Tooltip
               key={columnIndex}
               placement={PLACEMENT.bottomLeft}
-              isOpen={
-                ctx.columnHighlightIndex === columnIndex &&
-                Boolean(activeFilter)
-              }
+              isOpen={ctx.columnHighlightIndex === columnIndex && Boolean(activeFilter)}
               content={() => {
                 return (
                   <div>
@@ -476,12 +457,11 @@ function Headers() {
                   backgroundColor: theme.colors.backgroundPrimary,
                   borderTop: 'none',
                   borderLeft: 'none',
-                  borderRight:
-                    columnIndex === ctx.columns.length - 1 ? 'none' : null,
+                  borderRight: columnIndex === ctx.columns.length - 1 ? 'none' : null,
                   boxSizing: 'border-box',
                   display: 'flex',
                 })}
-                style={{width: ctx.widths[columnIndex]}}
+                style={{ width: ctx.widths[columnIndex] }}
               >
                 <Header
                   columnTitle={column.title}
@@ -525,9 +505,7 @@ function LoadingOrEmptyMessage(props) {
         marginLeft: theme.sizing.scale500,
       })}
     >
-      {typeof props.children === 'function'
-        ? props.children()
-        : String(props.children)}
+      {typeof props.children === 'function' ? props.children() : String(props.children)}
     </p>
   );
 }
@@ -535,8 +513,8 @@ function LoadingOrEmptyMessage(props) {
 // replaces the content of the virtualized window with contents. in this case,
 // we are prepending a table header row before the table rows (children to the fn).
 const InnerTableElement = React.forwardRef<
-  {|children: React.Node, style: {[string]: mixed}|},
-  HTMLDivElement,
+  {| children: React.Node, style: { [string]: mixed } |},
+  HTMLDivElement
 >((props, ref) => {
   const [, theme] = useStyletron();
   const ctx = React.useContext(HeaderContext);
@@ -562,13 +540,9 @@ const InnerTableElement = React.forwardRef<
     <div ref={ref} data-baseweb="data-table" style={props.style}>
       <Headers />
 
-      {viewState === LOADING && (
-        <LoadingOrEmptyMessage>{ctx.loadingMessage}</LoadingOrEmptyMessage>
-      )}
+      {viewState === LOADING && <LoadingOrEmptyMessage>{ctx.loadingMessage}</LoadingOrEmptyMessage>}
 
-      {viewState === EMPTY && (
-        <LoadingOrEmptyMessage>{ctx.emptyMessage}</LoadingOrEmptyMessage>
-      )}
+      {viewState === EMPTY && <LoadingOrEmptyMessage>{ctx.emptyMessage}</LoadingOrEmptyMessage>}
 
       {viewState === RENDERING && props.children}
 
@@ -589,8 +563,7 @@ const InnerTableElement = React.forwardRef<
               position: 'absolute',
               right: theme.direction !== 'rtl' ? 0 - ctx.scrollLeft : 'initial',
               left: theme.direction === 'rtl' ? 0 : 'initial',
-              top:
-                (ctx.rowHighlightIndex - 1) * ctx.rowHeight + HEADER_ROW_HEIGHT,
+              top: (ctx.rowHighlightIndex - 1) * ctx.rowHeight + HEADER_ROW_HEIGHT,
             }}
           >
             {(typeof ctx.rowActions === 'function'
@@ -696,15 +669,13 @@ export function DataTable({
       }
       return rowHeight;
     },
-    [rowHeight],
+    [rowHeight]
   );
 
   // We use state for our ref, to allow hooks to  update when the ref changes.
   // flowlint-next-line unclear-type:off
   const [gridRef, setGridRef] = React.useState<?VariableSizeGrid<any>>(null);
-  const [measuredWidths, setMeasuredWidths] = React.useState(
-    columns.map(() => 0),
-  );
+  const [measuredWidths, setMeasuredWidths] = React.useState(columns.map(() => 0));
   const [resizeDeltas, setResizeDeltas] = React.useState(columns.map(() => 0));
   React.useEffect(() => {
     setMeasuredWidths((prev) => {
@@ -722,14 +693,14 @@ export function DataTable({
         gridRef.resetAfterColumnIndex(columnIndex, true);
       }
     },
-    [gridRef],
+    [gridRef]
   );
   const handleWidthsChange = React.useCallback(
     (nextWidths) => {
       setMeasuredWidths(nextWidths);
       resetAfterColumnIndex(0);
     },
-    [setMeasuredWidths, resetAfterColumnIndex],
+    [setMeasuredWidths, resetAfterColumnIndex]
   );
   const handleColumnResize = React.useCallback(
     (columnIndex, delta) => {
@@ -739,7 +710,7 @@ export function DataTable({
       });
       resetAfterColumnIndex(columnIndex);
     },
-    [setResizeDeltas, resetAfterColumnIndex],
+    [setResizeDeltas, resetAfterColumnIndex]
   );
 
   const [scrollLeft, setScrollLeft] = React.useState(0);
@@ -764,19 +735,14 @@ export function DataTable({
         setRecentlyScrolledX(true);
       }
     },
-    [scrollLeft, setScrollLeft, setRecentlyScrolledX],
+    [scrollLeft, setScrollLeft, setRecentlyScrolledX]
   );
 
   const sortedIndices = React.useMemo(() => {
     let toSort = allRows.map((r, i) => [r, i]);
     const index = sortIndex;
 
-    if (
-      index !== null &&
-      index !== undefined &&
-      index !== -1 &&
-      columns[index]
-    ) {
+    if (index !== null && index !== undefined && index !== -1 && columns[index]) {
       const sortFn = columns[index].sortFn;
       const getValue = (row) => columns[index].mapDataToValue(row.data);
       if (sortDirection === SORT_DIRECTIONS.ASC) {
@@ -818,10 +784,7 @@ export function DataTable({
           const column = columns[cdx];
           const textQueryFilter = column.textQueryFilter;
           if (textQueryFilter) {
-            return textQueryFilter(
-              textQuery,
-              column.mapDataToValue(allRows[idx].data),
-            );
+            return textQueryFilter(textQuery, column.mapDataToValue(allRows[idx].data));
           }
           return false;
         });
@@ -848,9 +811,7 @@ export function DataTable({
 
   const [browserScrollbarWidth, setBrowserScrollbarWidth] = React.useState(0);
   const normalizedWidths = React.useMemo(() => {
-    const resizedWidths = measuredWidths.map(
-      (w, i) => Math.floor(w) + Math.floor(resizeDeltas[i]),
-    );
+    const resizedWidths = measuredWidths.map((w, i) => Math.floor(w) + Math.floor(resizeDeltas[i]));
     if (gridRef) {
       const gridProps = gridRef.props;
 
@@ -864,13 +825,11 @@ export function DataTable({
         }
       }
 
-      const scrollbarWidth = isContentTallerThanContainer
-        ? browserScrollbarWidth
-        : 0;
+      const scrollbarWidth = isContentTallerThanContainer ? browserScrollbarWidth : 0;
 
       const remainder = gridProps.width - sum(resizedWidths) - scrollbarWidth;
       const padding = Math.floor(
-        remainder / columns.filter((c) => (c ? c.fillWidth : true)).length,
+        remainder / columns.filter((c) => (c ? c.fillWidth : true)).length
       );
       if (padding > 0) {
         const result = [];
@@ -888,14 +847,7 @@ export function DataTable({
       }
     }
     return resizedWidths;
-  }, [
-    gridRef,
-    measuredWidths,
-    resizeDeltas,
-    browserScrollbarWidth,
-    rows.length,
-    columns,
-  ]);
+  }, [gridRef, measuredWidths, resizeDeltas, browserScrollbarWidth, rows.length, columns]);
 
   const isSelectable = batchActions ? !!batchActions.length : false;
   const isSelectedAll = React.useMemo(() => {
@@ -917,7 +869,7 @@ export function DataTable({
       }
       return false;
     },
-    [selectedRowIds],
+    [selectedRowIds]
   );
   const handleSelectMany = React.useCallback(() => {
     if (onSelectMany) {
@@ -935,7 +887,7 @@ export function DataTable({
         onSelectOne(row);
       }
     },
-    [onSelectOne],
+    [onSelectOne]
   );
 
   const handleSort = React.useCallback(
@@ -944,7 +896,7 @@ export function DataTable({
         onSort(columnIndex);
       }
     },
-    [onSort],
+    [onSort]
   );
 
   const [columnHighlightIndex, setColumnHighlightIndex] = React.useState(-1);
@@ -955,7 +907,7 @@ export function DataTable({
     if (gridRef) {
       if (nextIndex >= 0) {
         // $FlowFixMe - unable to get react-window types
-        gridRef.scrollToItem({rowIndex: nextIndex});
+        gridRef.scrollToItem({ rowIndex: nextIndex });
       }
       if (onRowHighlightChange) {
         onRowHighlightChange(nextIndex, rows[nextIndex - 1]);
@@ -970,7 +922,7 @@ export function DataTable({
         handleRowHighlightIndexChange(nextIndex);
       }
     },
-    [rowHighlightIndex],
+    [rowHighlightIndex]
   );
   function handleColumnHeaderMouseEnter(columnIndex) {
     setColumnHighlightIndex(columnIndex);
@@ -1019,11 +971,9 @@ export function DataTable({
         isSelectable={isSelectable}
         onWidthsChange={handleWidthsChange}
       />
-      <MeasureScrollbarWidth
-        onWidthChange={(w) => setBrowserScrollbarWidth(w)}
-      />
+      <MeasureScrollbarWidth onWidthChange={(w) => setBrowserScrollbarWidth(w)} />
       <AutoSizer>
-        {({height, width}) => (
+        {({ height, width }) => (
           <HeaderContext.Provider
             value={{
               columns: columns,

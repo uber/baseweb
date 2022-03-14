@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import StatefulListContainer from './stateful-list-container.js';
 import List from './list.js';
-import type {StatefulListPropsT, StateReducerT} from './types.js';
+import type { StatefulListPropsT, StateReducerT } from './types.js';
 
 const defaultStateReducer: StateReducerT = (type, nextState) => nextState;
 
@@ -21,7 +21,7 @@ function StatefulList(props: StatefulListPropsT) {
 }
 
 StatefulList.defaultProps = {
-  initialState: {items: []},
+  initialState: { items: [] },
   stateReducer: defaultStateReducer,
 };
 

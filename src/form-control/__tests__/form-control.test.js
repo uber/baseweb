@@ -7,26 +7,21 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 import * as React from 'react';
-import {
-  render,
-  getByTestId,
-  getByText,
-  queryByText,
-} from '@testing-library/react';
+import { render, getByTestId, getByText, queryByText } from '@testing-library/react';
 import FormControl from '../form-control.js';
-import {Input} from '../../input/index.js';
-import {Textarea} from '../../textarea/index.js';
-import {Checkbox} from '../../checkbox/index.js';
-import {RadioGroup, Radio} from '../../radio/index.js';
+import { Input } from '../../input/index.js';
+import { Textarea } from '../../textarea/index.js';
+import { Checkbox } from '../../checkbox/index.js';
+import { RadioGroup, Radio } from '../../radio/index.js';
 
 describe('FormControl - Label and Caption for controls', () => {
   it('Renders label, caption, and error for the Input component', () => {
     const label = 'Label test';
     const caption = 'Caption test';
-    const {container} = render(
+    const { container } = render(
       <FormControl label={label} caption={caption}>
         <Input />
-      </FormControl>,
+      </FormControl>
     );
     getByText(container, label);
     getByText(container, caption);
@@ -36,10 +31,10 @@ describe('FormControl - Label and Caption for controls', () => {
     const label = 'Label test';
     const caption = 'Caption test';
     const error = 'Error test';
-    const {container} = render(
+    const { container } = render(
       <FormControl label={label} caption={caption} error={error}>
         <Input />
-      </FormControl>,
+      </FormControl>
     );
     expect(queryByText(container, caption)).toBeNull();
     getByText(container, error);
@@ -48,13 +43,10 @@ describe('FormControl - Label and Caption for controls', () => {
   it('accepts node for label and caption', () => {
     const label = 'Label test';
     const caption = 'Caption test';
-    const {container} = render(
-      <FormControl
-        label={<span>{label}</span>}
-        caption={<span>{caption}</span>}
-      >
+    const { container } = render(
+      <FormControl label={<span>{label}</span>} caption={<span>{caption}</span>}>
         <Input />
-      </FormControl>,
+      </FormControl>
     );
     getByText(container, label);
     getByText(container, caption);
@@ -64,14 +56,14 @@ describe('FormControl - Label and Caption for controls', () => {
     const label = 'Label test';
     const caption = 'Caption test';
     const error = 'Error test';
-    const {container} = render(
+    const { container } = render(
       <FormControl
         label={<span>{label}</span>}
         caption={<span>{caption}</span>}
         error={<span>{error}</span>}
       >
         <Input />
-      </FormControl>,
+      </FormControl>
     );
     expect(queryByText(container, caption)).toBeNull();
     getByText(container, error);
@@ -86,7 +78,7 @@ describe('FormControl - Label and Caption for controls', () => {
     const caption = 'Caption test';
     const error = 'Error test';
     const positive = 'Positive test';
-    const {container} = render(
+    const { container } = render(
       <FormControl
         label={<span>{label}</span>}
         caption={<span>{caption}</span>}
@@ -94,7 +86,7 @@ describe('FormControl - Label and Caption for controls', () => {
         positive={<span>{positive}</span>}
       >
         <Textarea />
-      </FormControl>,
+      </FormControl>
     );
     expect(queryByText(container, caption)).toBeNull();
     expect(queryByText(container, positive)).toBeNull();
@@ -109,10 +101,10 @@ describe('FormControl - Label and Caption for controls', () => {
   it('Renders label and caption for the Textarea component', () => {
     const label = 'Label test';
     const caption = 'Caption test';
-    const {container} = render(
+    const { container } = render(
       <FormControl label="Label test" caption="Caption test">
         <Textarea required />
-      </FormControl>,
+      </FormControl>
     );
     getByText(container, label);
     getByText(container, caption);
@@ -121,10 +113,10 @@ describe('FormControl - Label and Caption for controls', () => {
   it('Renders label and caption for the Checkbox component', () => {
     const label = 'Label test';
     const caption = 'Caption test';
-    const {container} = render(
+    const { container } = render(
       <FormControl label={label} caption={caption}>
         <Checkbox required />
-      </FormControl>,
+      </FormControl>
     );
     getByText(container, label);
     getByText(container, caption);
@@ -133,32 +125,32 @@ describe('FormControl - Label and Caption for controls', () => {
   it('Renders label and caption for the RadioGroup component', () => {
     const label = 'Label test';
     const caption = 'Caption test';
-    const {container} = render(
+    const { container } = render(
       <FormControl label={label} caption={caption}>
         <RadioGroup required>
           <Radio value="1">First</Radio>
           <Radio value="2">Second</Radio>
           <Radio value="3">Third</Radio>
         </RadioGroup>
-      </FormControl>,
+      </FormControl>
     );
     getByText(container, label);
     getByText(container, caption);
   });
 
   it('renders provided overrides', () => {
-    const {container} = render(
+    const { container } = render(
       <FormControl
         overrides={{
-          ControlContainer: {props: {'data-testid': 'control-container'}},
-          Label: {props: {'data-testid': 'label'}},
-          Caption: {props: {'data-testid': 'caption'}},
+          ControlContainer: { props: { 'data-testid': 'control-container' } },
+          Label: { props: { 'data-testid': 'label' } },
+          Caption: { props: { 'data-testid': 'caption' } },
         }}
         label="label"
         caption="caption"
       >
         <Input />
-      </FormControl>,
+      </FormControl>
     );
     getByTestId(container, 'control-container');
     getByTestId(container, 'label');
@@ -171,10 +163,10 @@ describe('FormControl - Label and Caption for controls', () => {
     const value = 'example';
     const maxLength = 50;
 
-    const {container} = render(
+    const { container } = render(
       <FormControl label={label} caption={caption} counter>
         <Input value={value} maxLength={maxLength} />
-      </FormControl>,
+      </FormControl>
     );
 
     getByText(container, label);
@@ -188,10 +180,10 @@ describe('FormControl - Label and Caption for controls', () => {
     const value = '';
     const maxLength = 50;
 
-    const {container} = render(
+    const { container } = render(
       <FormControl label={label} caption={caption} counter>
         <Input value={value} maxLength={maxLength} />
-      </FormControl>,
+      </FormControl>
     );
 
     getByText(container, label);
@@ -205,10 +197,10 @@ describe('FormControl - Label and Caption for controls', () => {
     const value = 'example 2';
     const maxLength = 50;
 
-    const {container} = render(
+    const { container } = render(
       <FormControl label={label} caption={caption}>
         <Input value={value} maxLength={maxLength} />
-      </FormControl>,
+      </FormControl>
     );
 
     getByText(container, label);
@@ -221,14 +213,10 @@ describe('FormControl - Label and Caption for controls', () => {
     const caption = 'Caption test';
     const maxLength = 50;
 
-    const {container} = render(
-      <FormControl
-        label={label}
-        caption={caption}
-        counter={{length: 50, maxLength: 100}}
-      >
+    const { container } = render(
+      <FormControl label={label} caption={caption} counter={{ length: 50, maxLength: 100 }}>
         <Input value={'example'} maxLength={maxLength} />
-      </FormControl>,
+      </FormControl>
     );
 
     getByText(container, label);

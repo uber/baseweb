@@ -8,14 +8,14 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {StyledLink} from '../link/index.js';
-import {useStyletron} from '../styles/index.js';
+import { StyledLink } from '../link/index.js';
+import { useStyletron } from '../styles/index.js';
 
 import Column from './column.js';
-import {COLUMNS} from './constants.js';
-import type {ColumnT, SharedColumnOptionsT} from './types.js';
+import { COLUMNS } from './constants.js';
+import type { ColumnT, SharedColumnOptionsT } from './types.js';
 
-type ValueT = {content: string, href: string};
+type ValueT = { content: string, href: string };
 
 type ReplacementElementAs = React.AbstractComponent<{|
   href: string,

@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
+const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
 
 const selectors = {
   tooltip: '[role="tooltip"]',
@@ -22,7 +22,7 @@ describe('tooltip', () => {
     const accessibilityReport = await analyzeAccessibility(page);
     // focus locks applies guards with tabIndex=1 to trap the focus on purpose
     accessibilityReport.violations = accessibilityReport.violations.filter(
-      (v) => v.id !== 'tabindex',
+      (v) => v.id !== 'tabindex'
     );
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });

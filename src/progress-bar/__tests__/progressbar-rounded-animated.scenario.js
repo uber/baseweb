@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {ProgressBarRounded, SIZE} from '../index.js';
+import { ProgressBarRounded, SIZE } from '../index.js';
 
 const FAKE_RANDOM = 0.5;
 

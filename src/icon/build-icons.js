@@ -45,9 +45,7 @@ function reactify(svgString) {
 }
 
 function cleanOldIcons() {
-  const allJsFiles = fs
-    .readdirSync(path.resolve(__dirname))
-    .filter((f) => f.endsWith('.js'));
+  const allJsFiles = fs.readdirSync(path.resolve(__dirname)).filter((f) => f.endsWith('.js'));
   allJsFiles.forEach((f) => {
     if (
       fs
@@ -60,13 +58,8 @@ function cleanOldIcons() {
 }
 
 async function generateNewIcons() {
-  const iconTemplate = fs.readFileSync(
-    path.resolve(__dirname, './icon-template.txt'),
-    'utf8',
-  );
-  const svgs = fs
-    .readdirSync(path.resolve(__dirname, './svg'))
-    .filter((f) => f.endsWith('.svg'));
+  const iconTemplate = fs.readFileSync(path.resolve(__dirname, './icon-template.txt'), 'utf8');
+  const svgs = fs.readdirSync(path.resolve(__dirname, './svg')).filter((f) => f.endsWith('.svg'));
 
   const prettierOptions = (await prettier.resolveConfig(__dirname)) || {};
   const iconExports = [];
@@ -74,13 +67,11 @@ async function generateNewIcons() {
   svgs.forEach(async (svgFilename) => {
     const svgFile = svgFilename.split('.')[0];
     const componentName = pascalCase(svgFile);
-    iconExports.push(
-      `export {default as ${componentName}} from './${svgFile}.js';`,
-    );
+    iconExports.push(`export {default as ${componentName}} from './${svgFile}.js';`);
 
     const svgFileContents = fs.readFileSync(
       path.resolve(__dirname, `./svg/${svgFilename}`),
-      'utf8',
+      'utf8'
     );
 
     const title = removeChevronFromTitle(titleCase(svgFile));
@@ -96,20 +87,20 @@ async function generateNewIcons() {
       .replace(new RegExp('%%SVG_TITLE%%', 'g'), title)
       .replace(
         new RegExp('%%SVG_VIEWBOX%%', 'g'),
-        viewBox && viewboxRegex[1] ? `viewBox="${viewBox}"` : '',
+        viewBox && viewboxRegex[1] ? `viewBox="${viewBox}"` : ''
       );
 
     fs.writeFileSync(
       path.resolve(__dirname, `./${svgFile}.js`),
-      prettier.format(result, {parser: 'flow', ...prettierOptions}),
+      prettier.format(result, { parser: 'flow', ...prettierOptions })
     );
   });
 
   fs.writeFileSync(
     path.resolve(__dirname, `./icon-exports.js`),
     `/*\nCopyright (c) Uber Technologies, Inc.\n\nThis source code is licensed under the MIT license found in the\nLICENSE file in the root directory of this source tree.\n*/\n// @flow\n${iconExports.join(
-      '\n',
-    )}\n`,
+      '\n'
+    )}\n`
   );
 
   // eslint-disable-next-line no-console

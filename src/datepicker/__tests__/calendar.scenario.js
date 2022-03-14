@@ -7,9 +7,9 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {DENSITY} from '../constants.js';
+import { DENSITY } from '../constants.js';
 
-import {Calendar} from '../index.js';
+import { Calendar } from '../index.js';
 
 export function Scenario() {
   return (
@@ -17,10 +17,7 @@ export function Scenario() {
       <p>Default</p>
       <Calendar highlightedDate={new Date('2019-02-22T10:00:00Z')} />
       <p>Dense</p>
-      <Calendar
-        density={DENSITY.high}
-        highlightedDate={new Date('2019-02-22T10:00:00Z')}
-      />
+      <Calendar density={DENSITY.high} highlightedDate={new Date('2019-02-22T10:00:00Z')} />
     </div>
   );
 }

@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {mount} = require('../../../e2e/helpers');
+const { mount } = require('../../../e2e/helpers');
 
 async function clickOutside(page) {
   const el = await page.$('#click-outside');
@@ -29,7 +29,7 @@ async function isListboxOpen(page) {
 }
 
 async function isListboxClosed(page) {
-  await page.waitForSelector('ul[role="listbox"]', {hidden: true});
+  await page.waitForSelector('ul[role="listbox"]', { hidden: true });
 }
 
 describe('select click open/close', () => {

@@ -8,8 +8,8 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {ProgressSteps, Step} from '../index.js';
-import {useStyletron} from '../../styles/index.js';
+import { ProgressSteps, Step } from '../index.js';
+import { useStyletron } from '../../styles/index.js';
 
 export function Scenario() {
   const [current] = React.useState(0);
@@ -26,9 +26,7 @@ export function Scenario() {
           },
         }}
       >
-        <div className={useCss({...theme.typography.font400})}>
-          Here is some step content
-        </div>
+        <div className={useCss({ ...theme.typography.font400 })}>Here is some step content</div>
       </Step>
     </ProgressSteps>
   );

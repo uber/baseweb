@@ -8,11 +8,11 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import * as valid from 'card-validator';
 
-import {addGaps, getCaretPosition} from './utils.js';
+import { addGaps, getCaretPosition } from './utils.js';
 
-import {getOverrides} from '../helpers/overrides.js';
-import {Input, SIZE} from '../input/index.js';
-import {ThemeContext} from '../styles/theme-provider.js';
+import { getOverrides } from '../helpers/overrides.js';
+import { Input, SIZE } from '../input/index.js';
+import { ThemeContext } from '../styles/theme-provider.js';
 
 import AmexIcon from './icons/amex.js';
 import DinersClubIcon from './icons/dinersclub.js';
@@ -25,9 +25,9 @@ import MastercardIcon from './icons/mastercard.js';
 import UnionPayIcon from './icons/unionpay.js';
 import VisaIcon from './icons/visa.js';
 
-import {IconWrapper as StyledIconWrapper} from './styled-components.js';
+import { IconWrapper as StyledIconWrapper } from './styled-components.js';
 
-import type {PaymentCardPropsT} from './types.js';
+import type { PaymentCardPropsT } from './types.js';
 
 const CardTypeToComponent = {
   visa: VisaIcon,
@@ -76,11 +76,8 @@ class PaymentCard extends React.Component<PaymentCardPropsT> {
       ...restProps
     } = this.props;
 
-    const {IconWrapper: IconWrapperOverride, ...restOverrides} = overrides;
-    const [IconWrapper, iconWrapperProps] = getOverrides(
-      IconWrapperOverride,
-      StyledIconWrapper,
-    );
+    const { IconWrapper: IconWrapperOverride, ...restOverrides } = overrides;
+    const [IconWrapper, iconWrapperProps] = getOverrides(IconWrapperOverride, StyledIconWrapper);
 
     const validatedValue = valid.number(value);
     let gaps: number[] = [];
@@ -99,12 +96,9 @@ class PaymentCard extends React.Component<PaymentCardPropsT> {
       };
       return () => (
         <IconWrapper $size={size} {...iconWrapperProps}>
-          {React.createElement(
-            CardTypeToComponent[type || 'generic'] || GenericIcon,
-            {
-              size: iconSize[size],
-            },
-          )}
+          {React.createElement(CardTypeToComponent[type || 'generic'] || GenericIcon, {
+            size: iconSize[size],
+          })}
         </IconWrapper>
       );
     };
@@ -126,7 +120,7 @@ class PaymentCard extends React.Component<PaymentCardPropsT> {
               const [position, value] = getCaretPosition(
                 e.target.value,
                 this.props.value ? String(this.props.value) : '',
-                e.target.selectionStart,
+                e.target.selectionStart
               );
               this.caretPosition = position;
               this.inRef = e.target;

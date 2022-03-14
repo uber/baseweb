@@ -7,9 +7,9 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {getOverrides} from '../helpers/overrides.js';
-import {StyledNavLink, StyledNavItem} from './styled-components.js';
-import type {NavItemPropsT} from './types.js';
+import { getOverrides } from '../helpers/overrides.js';
+import { StyledNavLink, StyledNavItem } from './styled-components.js';
+import type { NavItemPropsT } from './types.js';
 
 class NavItem extends React.Component<NavItemPropsT> {
   static defaultProps = {
@@ -18,24 +18,23 @@ class NavItem extends React.Component<NavItemPropsT> {
   };
 
   handleClick = (event: Event) => {
-    const {item, onSelect} = this.props;
+    const { item, onSelect } = this.props;
     if (typeof onSelect === 'function') {
-      onSelect({item, event});
+      onSelect({ item, event });
     }
   };
 
   handleKeyDown = (event: KeyboardEvent) => {
-    const {item, onSelect} = this.props;
+    const { item, onSelect } = this.props;
     if (event.key === 'Enter') {
       if (typeof onSelect === 'function') {
-        onSelect({item, event});
+        onSelect({ item, event });
       }
     }
   };
 
   render() {
-    const {item, overrides, itemMemoizationComparator, ...sharedProps} =
-      this.props;
+    const { item, overrides, itemMemoizationComparator, ...sharedProps } = this.props;
 
     const [NavItem, itemProps] = getOverrides(overrides.NavItem, StyledNavItem);
     const [NavLink, linkProps] = getOverrides(overrides.NavLink, StyledNavLink);

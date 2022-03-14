@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {getOverrides} from '../helpers/overrides.js';
+import { getOverrides } from '../helpers/overrides.js';
 import {
   StyledInnerXXSmallAnchor,
   StyledOuterXXSmallAnchor,
@@ -25,7 +25,7 @@ import {
 } from './constants.js';
 import BadgeEnhancer from './badge-enhancer.js';
 import LabelEnhancer from './label-enhancer.js';
-import type {PinHeadPropsT} from './types.js';
+import type { PinHeadPropsT } from './types.js';
 
 const PinHead = ({
   size = PINHEAD_SIZES_SHAPES.medium,
@@ -47,33 +47,27 @@ const PinHead = ({
   const activeElements = [label, StartEnhancer, EndEnhancer].filter((x) => x);
   const gridTemplateColumns = activeElements.map(() => 'auto').join(' ');
   const forceCircle = activeElements.length === 1 && !label;
-  const {height, icon} = PINHEAD_DIMENSIONS[size];
+  const { height, icon } = PINHEAD_DIMENSIONS[size];
 
-  const [PinHead, pinHeadProps] = getOverrides(
-    overrides.PinHead,
-    StyledPinHead,
-  );
-  const [ContentItem, contentItemProps] = getOverrides(
-    overrides.PinHeadContent,
-    StyledContentItem,
-  );
+  const [PinHead, pinHeadProps] = getOverrides(overrides.PinHead, StyledPinHead);
+  const [ContentItem, contentItemProps] = getOverrides(overrides.PinHeadContent, StyledContentItem);
 
   const [InnerXXSmallAnchor, innerXXSmallAnchorProps] = getOverrides(
     overrides.InnerAnchor,
-    StyledInnerXXSmallAnchor,
+    StyledInnerXXSmallAnchor
   );
   const [OuterXXSmallAnchor, outerXXSmallAnchorProps] = getOverrides(
     overrides.OuterAnchor,
-    StyledOuterXXSmallAnchor,
+    StyledOuterXXSmallAnchor
   );
 
   const [InnerXSmallAnchor, innerXSmallAnchorProps] = getOverrides(
     overrides.InnerAnchor,
-    StyledInnerXSmallAnchor,
+    StyledInnerXSmallAnchor
   );
   const [OuterXSmallAnchor, outerXSmallAnchorProps] = getOverrides(
     overrides.OuterAnchor,
-    StyledOuterXSmallAnchor,
+    StyledOuterXSmallAnchor
   );
 
   const badge = (
@@ -87,8 +81,7 @@ const PinHead = ({
   );
   if (
     type === PINHEAD_TYPES.fixed &&
-    (size === PINHEAD_SIZES_SHAPES.xxSmallCircle ||
-      size === PINHEAD_SIZES_SHAPES.xxSmallSquare)
+    (size === PINHEAD_SIZES_SHAPES.xxSmallCircle || size === PINHEAD_SIZES_SHAPES.xxSmallSquare)
   ) {
     const round = size === PINHEAD_SIZES_SHAPES.xxSmallCircle;
     return (
@@ -110,8 +103,7 @@ const PinHead = ({
 
   if (
     type === PINHEAD_TYPES.fixed &&
-    (size === PINHEAD_SIZES_SHAPES.xSmallSquare ||
-      size === PINHEAD_SIZES_SHAPES.xSmallCircle)
+    (size === PINHEAD_SIZES_SHAPES.xSmallSquare || size === PINHEAD_SIZES_SHAPES.xSmallCircle)
   ) {
     const round = size === PINHEAD_SIZES_SHAPES.xSmallCircle;
     return (
@@ -153,32 +145,17 @@ const PinHead = ({
         {...pinHeadProps}
       >
         {StartEnhancer && (
-          <ContentItem
-            $height={height}
-            $color={color}
-            $size={size}
-            {...contentItemProps}
-          >
+          <ContentItem $height={height} $color={color} $size={size} {...contentItemProps}>
             <StartEnhancer size={icon} />
           </ContentItem>
         )}
         {label && (
-          <ContentItem
-            $height={height}
-            $color={color}
-            $size={size}
-            {...contentItemProps}
-          >
+          <ContentItem $height={height} $color={color} $size={size} {...contentItemProps}>
             {label}
           </ContentItem>
         )}
         {EndEnhancer && (
-          <ContentItem
-            $height={height}
-            $color={color}
-            $size={size}
-            {...contentItemProps}
-          >
+          <ContentItem $height={height} $color={color} $size={size} {...contentItemProps}>
             <EndEnhancer size={icon} />
           </ContentItem>
         )}

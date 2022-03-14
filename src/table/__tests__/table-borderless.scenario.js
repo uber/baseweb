@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {withStyle} from 'styletron-react';
+import { withStyle } from 'styletron-react';
 
 import {
   StyledTable,
@@ -52,7 +52,7 @@ const DATA = [
 export class Scenario extends React.Component<any, any> {
   render() {
     return (
-      <div style={{height: '500px', width: '400px'}}>
+      <div style={{ height: '500px', width: '400px' }}>
         <BorderlessTable>
           <StyledHead>
             <StyledHeadCell>Name</StyledHeadCell>

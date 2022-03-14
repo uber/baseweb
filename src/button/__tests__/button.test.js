@@ -8,16 +8,16 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {render, fireEvent, getByText} from '@testing-library/react';
+import { render, fireEvent, getByText } from '@testing-library/react';
 
-import {Button} from '../index.js';
+import { Button } from '../index.js';
 
 describe('Button Component', () => {
   test('basic render', () => {
-    const {container} = render(
+    const { container } = render(
       <Button startEnhancer="start" endEnhancer="end">
         content
-      </Button>,
+      </Button>
     );
     getByText(container, 'start');
     getByText(container, 'end');
@@ -28,26 +28,23 @@ describe('Button Component', () => {
       return <p>start</p>;
     }
 
-    const {container} = render(
-      <Button
-        startEnhancer={() => null}
-        overrides={{StartEnhancer: NewStartEnhancer}}
-      >
+    const { container } = render(
+      <Button startEnhancer={() => null} overrides={{ StartEnhancer: NewStartEnhancer }}>
         content
-      </Button>,
+      </Button>
     );
 
     getByText(container, 'start');
   });
 
   test('renders with loading spinner', () => {
-    const {container} = render(<Button isLoading />);
+    const { container } = render(<Button isLoading />);
     expect(container.querySelector('[aria-busy="true"]')).not.toBeNull();
   });
 
   test('onClick called with event', () => {
     const onClick = jest.fn();
-    const {container} = render(<Button onClick={onClick} />);
+    const { container } = render(<Button onClick={onClick} />);
     const button = container.querySelector('button');
     if (button) fireEvent.click(button);
     expect(onClick).toHaveBeenCalledTimes(1);
@@ -55,7 +52,7 @@ describe('Button Component', () => {
 
   test("onClick doesn't fire while loading", () => {
     const onClick = jest.fn();
-    const {container} = render(<Button onClick={onClick} isLoading />);
+    const { container } = render(<Button onClick={onClick} isLoading />);
     const button = container.querySelector('button');
     if (button) fireEvent.click(button);
     expect(onClick.mock.calls.length).toBe(0);

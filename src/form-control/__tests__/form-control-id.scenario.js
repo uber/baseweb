@@ -8,8 +8,8 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {FormControl} from '../index.js';
-import {StatefulInput} from '../../input/index.js';
+import { FormControl } from '../index.js';
+import { StatefulInput } from '../../input/index.js';
 
 export function Scenario() {
   return (

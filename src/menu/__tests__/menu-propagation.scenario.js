@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {StatefulMenu} from '../index.js';
+import { StatefulMenu } from '../index.js';
 
 export function Scenario() {
   function handleParentKeyDown(event) {
@@ -18,10 +18,10 @@ export function Scenario() {
     <div role="button" tabIndex="0" onKeyDown={handleParentKeyDown}>
       <StatefulMenu
         items={[
-          {label: 'Item One'},
-          {label: 'Item Two'},
-          {label: 'Item Three'},
-          {label: 'Item Four'},
+          { label: 'Item One' },
+          { label: 'Item Two' },
+          { label: 'Item Three' },
+          { label: 'Item Four' },
         ]}
       />
     </div>

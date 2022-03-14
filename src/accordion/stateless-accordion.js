@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {getOverrides} from '../helpers/overrides.js';
-import {Root as StyledRoot} from './styled-components.js';
-import type {StatelessAccordionPropsT} from './types.js';
+import { getOverrides } from '../helpers/overrides.js';
+import { Root as StyledRoot } from './styled-components.js';
+import type { StatelessAccordionPropsT } from './types.js';
 
 function StatelessAccordion({
   accordion = true,
@@ -20,7 +20,7 @@ function StatelessAccordion({
   renderAll,
   renderPanelContent,
 }: StatelessAccordionPropsT) {
-  const {Root: RootOverrides, ...PanelOverrides} = overrides;
+  const { Root: RootOverrides, ...PanelOverrides } = overrides;
   const [Root, rootProps] = getOverrides(RootOverrides, StyledRoot);
   return (
     <Root data-baseweb="accordion" {...rootProps}>
@@ -48,7 +48,7 @@ function StatelessAccordion({
                       next = [...expanded, key];
                     }
                   }
-                  onChange({key, expanded: next});
+                  onChange({ key, expanded: next });
                 }
               : onChange,
           overrides: child.props.overrides || PanelOverrides,

@@ -7,24 +7,24 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {Scenario as TabsMotionAlign} from './tabs-motion-align.scenario.js';
-import {Scenario as TabsMotionArtwork} from './tabs-motion-artwork.scenario.js';
-import {Scenario as TabsMotionConditional} from './tabs-motion-conditional.scenario.js';
-import {Scenario as TabsMotionDisabled} from './tabs-motion-disabled.scenario.js';
-import {Scenario as TabsMotionFixedVertical} from './tabs-motion-fixed-vertical.scenario.js';
-import {Scenario as TabsMotionFixed} from './tabs-motion-fixed.scenario.js';
-import {Scenario as TabsMotionFocus} from './tabs-motion-focus.scenario.js';
-import {Scenario as TabsMotionManual} from './tabs-motion-manual.scenario.js';
-import {Scenario as TabsMotionOverrides} from './tabs-motion-overrides.scenario.js';
-import {Scenario as TabsMotionRefs} from './tabs-motion-refs.scenario.js';
-import {Scenario as TabsMotionRenderAll} from './tabs-motion-renderAll.scenario.js';
-import {Scenario as TabsMotionScrollSafe} from './tabs-motion-scroll-safe.scenario.js';
-import {Scenario as TabsMotionScrollVertical} from './tabs-motion-scroll-vertical.scenario.js';
-import {Scenario as TabsMotionScroll} from './tabs-motion-scroll.scenario.js';
-import {Scenario as TabsMotionStateful} from './tabs-motion-stateful.scenario.js';
-import {Scenario as TabsMotionVerticalPageScroll} from './tabs-motion-vertical-pageScroll.scenario.js';
-import {Scenario as TabsMotionVertical} from './tabs-motion-vertical.scenario.js';
-import {Scenario as TabsMotionDefault} from './tabs-motion.scenario.js';
+import { Scenario as TabsMotionAlign } from './tabs-motion-align.scenario.js';
+import { Scenario as TabsMotionArtwork } from './tabs-motion-artwork.scenario.js';
+import { Scenario as TabsMotionConditional } from './tabs-motion-conditional.scenario.js';
+import { Scenario as TabsMotionDisabled } from './tabs-motion-disabled.scenario.js';
+import { Scenario as TabsMotionFixedVertical } from './tabs-motion-fixed-vertical.scenario.js';
+import { Scenario as TabsMotionFixed } from './tabs-motion-fixed.scenario.js';
+import { Scenario as TabsMotionFocus } from './tabs-motion-focus.scenario.js';
+import { Scenario as TabsMotionManual } from './tabs-motion-manual.scenario.js';
+import { Scenario as TabsMotionOverrides } from './tabs-motion-overrides.scenario.js';
+import { Scenario as TabsMotionRefs } from './tabs-motion-refs.scenario.js';
+import { Scenario as TabsMotionRenderAll } from './tabs-motion-renderAll.scenario.js';
+import { Scenario as TabsMotionScrollSafe } from './tabs-motion-scroll-safe.scenario.js';
+import { Scenario as TabsMotionScrollVertical } from './tabs-motion-scroll-vertical.scenario.js';
+import { Scenario as TabsMotionScroll } from './tabs-motion-scroll.scenario.js';
+import { Scenario as TabsMotionStateful } from './tabs-motion-stateful.scenario.js';
+import { Scenario as TabsMotionVerticalPageScroll } from './tabs-motion-vertical-pageScroll.scenario.js';
+import { Scenario as TabsMotionVertical } from './tabs-motion-vertical.scenario.js';
+import { Scenario as TabsMotionDefault } from './tabs-motion.scenario.js';
 
 export const Align = () => <TabsMotionAlign />;
 export const Artwork = () => <TabsMotionArtwork />;

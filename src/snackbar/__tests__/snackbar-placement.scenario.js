@@ -9,15 +9,13 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {SnackbarProvider, useSnackbar, DURATION, PLACEMENT} from '../index.js';
+import { SnackbarProvider, useSnackbar, DURATION, PLACEMENT } from '../index.js';
 
-function Child({placement}) {
-  const {enqueue} = useSnackbar();
+function Child({ placement }) {
+  const { enqueue } = useSnackbar();
   return (
     <div>
-      <button onClick={() => enqueue({message: placement}, DURATION.short)}>
-        one line
-      </button>
+      <button onClick={() => enqueue({ message: placement }, DURATION.short)}>one line</button>
 
       <button
         onClick={() =>
@@ -27,7 +25,7 @@ function Child({placement}) {
                 'It seems to me then as if all the moments of our life occupy the same space, as if future events already existed',
             },
 
-            DURATION.medium,
+            DURATION.medium
           )
         }
       >
@@ -43,7 +41,7 @@ function Child({placement}) {
               actionMessage: 'A button label much longer than 50%',
             },
 
-            DURATION.long,
+            DURATION.long
           )
         }
       >
@@ -60,10 +58,7 @@ export function Scenario() {
       <SnackbarProvider placement={placement}>
         <Child placement={placement} />
         {/* eslint-disable-next-line jsx-a11y/no-onchange */}
-        <select
-          onChange={(event) => setPlacement(event.target.value)}
-          value={placement}
-        >
+        <select onChange={(event) => setPlacement(event.target.value)} value={placement}>
           {Object.values(PLACEMENT).map((p) => (
             <option key={String(p)} value={p}>
               {String(p)}

@@ -8,8 +8,8 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 // $FlowFixMe
 import Yard from '../../../components/yard/index';
-import {Select, SIZE, TYPE} from 'baseui/select';
-import {PropTypes} from 'react-view';
+import { Select, SIZE, TYPE } from 'baseui/select';
+import { PropTypes } from 'react-view';
 // $FlowFixMe
 import tagConfig from '../../../components/yard/config/tag';
 
@@ -58,8 +58,7 @@ const selectYardConfig = {
     onChange: {
       value: '(params) => setValue(params.value)',
       type: PropTypes.Function,
-      description:
-        'Change handler of the select to be called when a value is changed.',
+      description: 'Change handler of the select to be called when a value is changed.',
       propHook: {
         what: 'JSON.stringify(params.value)',
         into: 'value',
@@ -83,13 +82,7 @@ const selectYardConfig = {
       type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
       custom: {
-        names: [
-          'Root',
-          'DropdownListItem',
-          'Placeholder',
-          tagConfig,
-          'ValueContainer',
-        ],
+        names: ['Root', 'DropdownListItem', 'Placeholder', tagConfig, 'ValueContainer'],
         sharedProps: {
           $isFocused: {
             type: PropTypes.Boolean,
@@ -97,8 +90,7 @@ const selectYardConfig = {
           },
           $isOpen: {
             type: PropTypes.Boolean,
-            description:
-              "Indicates if the select's dropdown is currently opened.",
+            description: "Indicates if the select's dropdown is currently opened.",
           },
         },
       },

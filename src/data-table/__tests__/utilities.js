@@ -19,7 +19,7 @@ function getTable(page: any) {
 function getHeaderCellAtIndex(page: any, index: number) {
   return page.$(
     // plus one to convert to one indexed item
-    `${TABLE_ROOT} > div > div:nth-child(${index + 1})`,
+    `${TABLE_ROOT} > div > div:nth-child(${index + 1})`
   );
 }
 
@@ -44,7 +44,7 @@ async function getCellContentsAtColumnIndex(
   // flowlint-next-line unclear-type:off
   page: any,
   columnCount: number,
-  index: number,
+  index: number
 ) {
   const elements = await getCellsAtColumnIndex(page, columnCount, index);
 
@@ -52,7 +52,7 @@ async function getCellContentsAtColumnIndex(
     return Promise.all(
       elements.map((element) => {
         return page.evaluate((e) => e.textContent, element);
-      }),
+      })
     );
   }
 

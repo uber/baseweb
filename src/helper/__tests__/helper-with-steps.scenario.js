@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {useStyletron} from '../../styles/index.js';
+import { useStyletron } from '../../styles/index.js';
 
 import {
   Unstable_StatefulHelper as StatefulHelper,
@@ -17,11 +17,11 @@ import {
   PLACEMENT,
 } from '../index.js';
 
-function Content({index, length, onPrev, onNext, onFinish}) {
+function Content({ index, length, onPrev, onNext, onFinish }) {
   const [css] = useStyletron();
   return (
-    <div className={css({width: '256px', padding: '16px'})}>
-      <div className={css({height: '128px'})}>
+    <div className={css({ width: '256px', padding: '16px' })}>
+      <div className={css({ height: '128px' })}>
         <p>step number: {index + 1}</p>
       </div>
       <HelperSteps
@@ -54,10 +54,10 @@ export function Scenario() {
   }
 
   return (
-    <div className={css({backgroundColor: 'lightblue', padding: '48px'})}>
+    <div className={css({ backgroundColor: 'lightblue', padding: '48px' })}>
       <StatefulHelper
         placement={PLACEMENT.bottomLeft}
-        content={({close}) => (
+        content={({ close }) => (
           <Content
             index={index}
             length={LENGTH}

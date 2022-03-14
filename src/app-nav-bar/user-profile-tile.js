@@ -7,40 +7,34 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {Avatar} from '../avatar/index.js';
-import {getOverrides} from '../helpers/overrides.js';
-import {LabelMedium, ParagraphSmall} from '../typography/index.js';
+import { Avatar } from '../avatar/index.js';
+import { getOverrides } from '../helpers/overrides.js';
+import { LabelMedium, ParagraphSmall } from '../typography/index.js';
 
 import {
   StyledUserProfileTileContainer,
   StyledUserProfilePictureContainer,
   StyledUserProfileInfoContainer,
 } from './styled-components.js';
-import type {OverridesT, UserMenuPropsT} from './types.js';
+import type { OverridesT, UserMenuPropsT } from './types.js';
 
-export default function UserProfileTile(props: {|
-  ...UserMenuPropsT,
-  overrides: OverridesT,
-|}) {
-  const {overrides = {}, username, usernameSubtitle, userImgUrl} = props;
+export default function UserProfileTile(props: {| ...UserMenuPropsT, overrides: OverridesT |}) {
+  const { overrides = {}, username, usernameSubtitle, userImgUrl } = props;
 
-  const [UserProfileTileContainer, userProfileTileContainerProps] =
-    getOverrides(
-      overrides.UserProfileTileContainer,
-      StyledUserProfileTileContainer,
-    );
+  const [UserProfileTileContainer, userProfileTileContainerProps] = getOverrides(
+    overrides.UserProfileTileContainer,
+    StyledUserProfileTileContainer
+  );
 
-  const [UserProfilePictureContainer, userProfilePictureContainerProps] =
-    getOverrides(
-      overrides.UserProfilePictureContainer,
-      StyledUserProfilePictureContainer,
-    );
+  const [UserProfilePictureContainer, userProfilePictureContainerProps] = getOverrides(
+    overrides.UserProfilePictureContainer,
+    StyledUserProfilePictureContainer
+  );
 
-  const [UserProfileInfoContainer, userProfileInfoContainerProps] =
-    getOverrides(
-      overrides.UserProfileInfoContainer,
-      StyledUserProfileInfoContainer,
-    );
+  const [UserProfileInfoContainer, userProfileInfoContainerProps] = getOverrides(
+    overrides.UserProfileInfoContainer,
+    StyledUserProfileInfoContainer
+  );
 
   return (
     // Replace with a  profile tile renderer: renderUserProfileTile()

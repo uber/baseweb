@@ -8,8 +8,8 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {StatefulDatepicker} from '../index.js';
-import {hu} from 'date-fns/locale/index.js';
+import { StatefulDatepicker } from '../index.js';
+import { hu } from 'date-fns/locale/index.js';
 
 export function Scenario() {
   return (
@@ -22,10 +22,10 @@ export function Scenario() {
       mask={null}
       range
       overrides={{
-        MonthYearSelectButton: {props: {'data-id': 'monthYearSelectButton'}},
+        MonthYearSelectButton: { props: { 'data-id': 'monthYearSelectButton' } },
         MonthYearSelectStatefulMenu: {
           props: {
-            overrides: {List: {props: {'data-id': 'monthYearSelectMenu'}}},
+            overrides: { List: { props: { 'data-id': 'monthYearSelectMenu' } } },
           },
         },
       }}

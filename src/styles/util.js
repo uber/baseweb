@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import type {BorderT, Globals, LineStyle} from '../themes/types.js';
+import type { BorderT, Globals, LineStyle } from '../themes/types.js';
 
 export function hexToRgb(hex: string = '', alpha: string = '1') {
   const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
@@ -17,7 +17,7 @@ export function hexToRgb(hex: string = '', alpha: string = '1') {
   return result
     ? `rgba(${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(
         result[3],
-        16,
+        16
       )}, ${alpha})`
     : null;
 }

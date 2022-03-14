@@ -7,8 +7,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-disable flowtype/generic-spacing */
 import * as React from 'react';
-import type {OverrideT} from '../helpers/overrides.js';
-import {STATE_CHANGE_TYPE} from './constants.js';
+import type { OverrideT } from '../helpers/overrides.js';
+import { STATE_CHANGE_TYPE } from './constants.js';
 
 export type StateT = {
   items: Array<React.Node>,
@@ -19,7 +19,7 @@ export type StateChangeTypeT = $Values<typeof STATE_CHANGE_TYPE>;
 export type StateReducerT = (
   stateChangeType: StateChangeTypeT,
   nextState: StateT,
-  currentState: StateT,
+  currentState: StateT
 ) => StateT;
 
 export type OverridesT = {
@@ -42,7 +42,7 @@ export type ListPropsT = {|
   /** Items (labels) to be rendered */
   items: Array<React.Node>,
   /** Handler for when drag and drop is finished and order changed or item is deleted (newIndex would be -1 in that case) */
-  onChange: ({oldIndex: number, newIndex: number}) => mixed,
+  onChange: ({ oldIndex: number, newIndex: number }) => mixed,
   overrides?: OverridesT,
 |};
 
@@ -69,10 +69,10 @@ export type StatefulListPropsT = {|
 // Props for stateful container
 export type StatefulComponentContainerPropsT = $Diff<
   StatefulListPropsT,
-  {children: ChildrenT},
+  { children: ChildrenT }
 > & {
   initialState?: StateT,
-  children: (props: $Diff<ListPropsT, {children: ChildrenT}>) => React.Node,
+  children: (props: $Diff<ListPropsT, { children: ChildrenT }>) => React.Node,
 };
 
 export type SharedStylePropsArgT = {

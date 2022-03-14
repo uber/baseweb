@@ -8,11 +8,11 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {useStyletron} from '../styles/index.js';
+import { useStyletron } from '../styles/index.js';
 
 import Column from './column.js';
-import {COLUMNS} from './constants.js';
-import type {ColumnT} from './types.js';
+import { COLUMNS } from './constants.js';
+import type { ColumnT } from './types.js';
 
 type ValueT = null;
 type FilterParametersT = {};

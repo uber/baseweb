@@ -7,28 +7,22 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {
-  render,
-  fireEvent,
-  getByText,
-  getByTestId,
-  queryAllByText,
-} from '@testing-library/react';
+import { render, fireEvent, getByText, getByTestId, queryAllByText } from '@testing-library/react';
 
-import {Accordion, Panel} from '../index.js';
+import { Accordion, Panel } from '../index.js';
 
 describe('Accordion', () => {
   it('renders basic configuration', () => {
-    const {container} = render(
+    const { container } = render(
       <Accordion
         overrides={{
-          ContentAnimationContainer: {props: {'data-testid': 'transitionDiv'}},
+          ContentAnimationContainer: { props: { 'data-testid': 'transitionDiv' } },
         }}
       >
         <Panel title="Accordion panel 1">panel 1</Panel>
         <Panel title="Accordion panel 2">panel 2</Panel>
         <Panel title="Accordion panel 3">panel 3</Panel>
-      </Accordion>,
+      </Accordion>
     );
     const first = getByText(container, 'Accordion panel 1');
     expect(queryAllByText(container, 'panel 1').length).toBe(0);
@@ -40,7 +34,7 @@ describe('Accordion', () => {
     if (second) fireEvent.click(second);
     fireEvent.transitionEnd(
       //flowlint-next-line unclear-type:off
-      getByTestId(((first.parentElement: any): HTMLElement), 'transitionDiv'),
+      getByTestId(((first.parentElement: any): HTMLElement), 'transitionDiv')
     );
     expect(queryAllByText(container, 'panel 1').length).toBe(0);
     expect(queryAllByText(container, 'panel 2').length).toBe(1);
@@ -49,12 +43,12 @@ describe('Accordion', () => {
   });
 
   it('can render all visibly hidden content for seo', () => {
-    const {container} = render(
+    const { container } = render(
       <Accordion renderAll>
         <Panel title="Accordion panel 1">panel 1</Panel>
         <Panel title="Accordion panel 2">panel 2</Panel>
         <Panel title="Accordion panel 3">panel 3</Panel>
-      </Accordion>,
+      </Accordion>
     );
     getByText(container, 'panel 1');
     getByText(container, 'panel 2');

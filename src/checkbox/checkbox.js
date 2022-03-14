@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {getOverride, getOverrideProps} from '../helpers/overrides.js';
-import type {PropsT, DefaultPropsT, StatelessStateT} from './types.js';
+import { getOverride, getOverrideProps } from '../helpers/overrides.js';
+import type { PropsT, DefaultPropsT, StatelessStateT } from './types.js';
 import {
   Checkmark as StyledCheckmark,
   Input as StyledInput,
@@ -17,8 +17,8 @@ import {
   ToggleInner as StyledToggleInner,
   ToggleTrack as StyledToggleTrack,
 } from './styled-components.js';
-import {STYLE_TYPE} from './constants.js';
-import {isFocusVisible} from '../utils/focusVisible.js';
+import { STYLE_TYPE } from './constants.js';
+import { isFocusVisible } from '../utils/focusVisible.js';
 
 const stopPropagation = (e) => e.stopPropagation();
 
@@ -52,7 +52,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
   };
 
   componentDidMount() {
-    const {autoFocus, inputRef} = this.props;
+    const { autoFocus, inputRef } = this.props;
     if (autoFocus && inputRef.current) {
       inputRef.current.focus();
     }
@@ -62,50 +62,50 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
       if (this.props.checkmarkType === STYLE_TYPE.toggle) {
         console.warn(
           "baseui:Checkbox The STYLE_TYPE.toggle value on the 'checkmarkType' prop does not conform to the current base design specification. " +
-            'Please update your code to STYLE_TYPE.toggle_round. This will be updated automatically in a future major version.',
+            'Please update your code to STYLE_TYPE.toggle_round. This will be updated automatically in a future major version.'
         );
       }
       if (this.props.isError) {
         console.warn(
-          'baseui:Checkbox Property "isError" will be removed in the next major version. Use "error" property instead.',
+          'baseui:Checkbox Property "isError" will be removed in the next major version. Use "error" property instead.'
         );
       }
     }
   }
 
   onMouseEnter = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    this.setState({isHovered: true});
+    this.setState({ isHovered: true });
     this.props.onMouseEnter(e);
   };
 
   onMouseLeave = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    this.setState({isHovered: false, isActive: false});
+    this.setState({ isHovered: false, isActive: false });
     this.props.onMouseLeave(e);
   };
 
   onMouseDown = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    this.setState({isActive: true});
+    this.setState({ isActive: true });
     this.props.onMouseDown(e);
   };
 
   onMouseUp = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    this.setState({isActive: false});
+    this.setState({ isActive: false });
     this.props.onMouseUp(e);
   };
 
   onFocus = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    this.setState({isFocused: true});
+    this.setState({ isFocused: true });
     this.props.onFocus(e);
     if (isFocusVisible(e)) {
-      this.setState({isFocusVisible: true});
+      this.setState({ isFocusVisible: true });
     }
   };
 
   onBlur = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    this.setState({isFocused: false});
+    this.setState({ isFocused: false });
     this.props.onBlur(e);
     if (this.state.isFocusVisible !== false) {
-      this.setState({isFocusVisible: false});
+      this.setState({ isFocusVisible: false });
     }
   };
 
@@ -117,7 +117,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
   };
 
   render() {
-    const {checkmarkType} = this.props;
+    const { checkmarkType } = this.props;
     const {
       overrides = {},
       onChange,
@@ -181,11 +181,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
     };
     // TODO(v11) - add check for children (#2172)
     const labelComp = (
-      <Label
-        $labelPlacement={labelPlacement}
-        {...sharedProps}
-        {...getOverrideProps(LabelOverride)}
-      >
+      <Label $labelPlacement={labelPlacement} {...sharedProps} {...getOverrideProps(LabelOverride)}>
         {this.props.containsInteractiveElement ? (
           // Prevents the event from bubbling up to the label and moving focus to the radio button
           // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
@@ -206,22 +202,13 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
       >
         {(labelPlacement === 'top' || labelPlacement === 'left') && labelComp}
         {this.isToggle() ? (
-          <ToggleTrack
-            {...sharedProps}
-            {...getOverrideProps(ToggleTrackOverride)}
-          >
+          <ToggleTrack {...sharedProps} {...getOverrideProps(ToggleTrackOverride)}>
             <Toggle {...sharedProps} {...getOverrideProps(ToggleOverride)}>
-              <ToggleInner
-                {...sharedProps}
-                {...getOverrideProps(ToggleInnerOverride)}
-              />
+              <ToggleInner {...sharedProps} {...getOverrideProps(ToggleInnerOverride)} />
             </Toggle>
           </ToggleTrack>
         ) : (
-          <Checkmark
-            {...sharedProps}
-            {...getOverrideProps(CheckmarkOverride)}
-          />
+          <Checkmark {...sharedProps} {...getOverrideProps(CheckmarkOverride)} />
         )}
         <Input
           value={value}
@@ -244,8 +231,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
           {...inputEvents}
           {...getOverrideProps(InputOverride)}
         />
-        {(labelPlacement === 'bottom' || labelPlacement === 'right') &&
-          labelComp}
+        {(labelPlacement === 'bottom' || labelPlacement === 'right') && labelComp}
       </Root>
     );
   }

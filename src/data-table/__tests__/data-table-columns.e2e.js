@@ -7,11 +7,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {
-  mount,
-  analyzeAccessibility,
-  waitForTimeout,
-} = require('../../../e2e/helpers');
+const { mount, analyzeAccessibility, waitForTimeout } = require('../../../e2e/helpers');
 
 const {
   TABLE_ROOT,
@@ -41,11 +37,7 @@ describe('data table columns', () => {
     const index = 0;
     await mount(page, 'data-table--columns');
     await page.waitForSelector('div[data-baseweb="data-table"]');
-    const initial = await getCellContentsAtColumnIndex(
-      page,
-      COLUMN_COUNT,
-      index,
-    );
+    const initial = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
     expect(matchArrayElements(initial, ['T', 'F', 'T', 'F'])).toBe(true);
 
     await sortColumnAtIndex(page, index);
@@ -57,11 +49,7 @@ describe('data table columns', () => {
     expect(matchArrayElements(asc, ['F', 'F', 'T', 'T'])).toBe(true);
 
     await sortColumnAtIndex(page, index);
-    const restored = await getCellContentsAtColumnIndex(
-      page,
-      COLUMN_COUNT,
-      index,
-    );
+    const restored = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
     expect(matchArrayElements(initial, restored)).toBe(true);
   });
 
@@ -69,11 +57,7 @@ describe('data table columns', () => {
     const index = 1;
     await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
-    const initial = await getCellContentsAtColumnIndex(
-      page,
-      COLUMN_COUNT,
-      index,
-    );
+    const initial = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
     expect(matchArrayElements(initial, ['A', 'B', 'A', 'A'])).toBe(true);
 
     await sortColumnAtIndex(page, index);
@@ -85,11 +69,7 @@ describe('data table columns', () => {
     expect(matchArrayElements(asc, ['B', 'A', 'A', 'A'])).toBe(true);
 
     await sortColumnAtIndex(page, index);
-    const restored = await getCellContentsAtColumnIndex(
-      page,
-      COLUMN_COUNT,
-      index,
-    );
+    const restored = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
     expect(matchArrayElements(initial, restored)).toBe(true);
   });
 
@@ -97,11 +77,7 @@ describe('data table columns', () => {
     const index = 2;
     await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
-    const initial = await getCellContentsAtColumnIndex(
-      page,
-      COLUMN_COUNT,
-      index,
-    );
+    const initial = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
     expect(matchArrayElements(initial, ['2', '1', '4', '3'])).toBe(true);
 
     await sortColumnAtIndex(page, index);
@@ -113,11 +89,7 @@ describe('data table columns', () => {
     expect(matchArrayElements(asc, ['4', '3', '2', '1'])).toBe(true);
 
     await sortColumnAtIndex(page, index);
-    const restored = await getCellContentsAtColumnIndex(
-      page,
-      COLUMN_COUNT,
-      index,
-    );
+    const restored = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
     expect(matchArrayElements(initial, restored)).toBe(true);
   });
 
@@ -125,21 +97,13 @@ describe('data table columns', () => {
     const index = 3;
     await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
-    const initial = await getCellContentsAtColumnIndex(
-      page,
-      COLUMN_COUNT,
-      index,
-    );
-    expect(matchArrayElements(initial, ['one', 'two', 'three', 'four'])).toBe(
-      true,
-    );
+    const initial = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
+    expect(matchArrayElements(initial, ['one', 'two', 'three', 'four'])).toBe(true);
 
     await sortColumnAtIndex(page, index);
     await waitForTimeout(150);
     const desc = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
-    expect(matchArrayElements(desc, ['four', 'one', 'three', 'two'])).toBe(
-      true,
-    );
+    expect(matchArrayElements(desc, ['four', 'one', 'three', 'two'])).toBe(true);
 
     await sortColumnAtIndex(page, index);
     await waitForTimeout(150);
@@ -147,11 +111,7 @@ describe('data table columns', () => {
     expect(matchArrayElements(asc, ['two', 'three', 'one', 'four'])).toBe(true);
 
     await sortColumnAtIndex(page, index);
-    const restored = await getCellContentsAtColumnIndex(
-      page,
-      COLUMN_COUNT,
-      index,
-    );
+    const restored = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
     expect(matchArrayElements(initial, restored)).toBe(true);
   });
 
@@ -159,18 +119,14 @@ describe('data table columns', () => {
     const index = 4;
     await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
-    const initial = await getCellContentsAtColumnIndex(
-      page,
-      COLUMN_COUNT,
-      index,
-    );
+    const initial = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
     expect(
       matchArrayElements(initial, [
         '05-11-2012 10:20 30:00',
         '04-12-2011 11:21 31:00',
         '07-13-2014 12:22 32:00',
         '06-14-2013 13:23 33:00',
-      ]),
+      ])
     ).toBe(true);
 
     await sortColumnAtIndex(page, index);
@@ -182,7 +138,7 @@ describe('data table columns', () => {
         '05-11-2012 10:20 30:00',
         '06-14-2013 13:23 33:00',
         '07-13-2014 12:22 32:00',
-      ]),
+      ])
     ).toBe(true);
 
     await sortColumnAtIndex(page, index);
@@ -194,15 +150,11 @@ describe('data table columns', () => {
         '06-14-2013 13:23 33:00',
         '05-11-2012 10:20 30:00',
         '04-12-2011 11:21 31:00',
-      ]),
+      ])
     ).toBe(true);
 
     await sortColumnAtIndex(page, index);
-    const restored = await getCellContentsAtColumnIndex(
-      page,
-      COLUMN_COUNT,
-      index,
-    );
+    const restored = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
     expect(matchArrayElements(initial, restored)).toBe(true);
   });
 
@@ -210,11 +162,7 @@ describe('data table columns', () => {
     const index = 0;
     await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
-    const initial = await getCellContentsAtColumnIndex(
-      page,
-      COLUMN_COUNT,
-      index,
-    );
+    const initial = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
     expect(matchArrayElements(initial, ['T', 'F', 'T', 'F'])).toBe(true);
 
     const popover = await openFilterAtIndex(page, index);
@@ -225,22 +173,14 @@ describe('data table columns', () => {
       return button.click();
     });
 
-    const filtered = await getCellContentsAtColumnIndex(
-      page,
-      COLUMN_COUNT,
-      index,
-    );
+    const filtered = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
     expect(matchArrayElements(filtered, ['T', 'T'])).toBe(true);
 
     const tag = await page.$('span[data-baseweb="tag"]');
     const closeTagButton = await tag.$('span[role="presentation"]');
     await closeTagButton.click();
 
-    const restored = await getCellContentsAtColumnIndex(
-      page,
-      COLUMN_COUNT,
-      index,
-    );
+    const restored = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
     expect(matchArrayElements(restored, ['T', 'F', 'T', 'F'])).toBe(true);
   });
 
@@ -248,11 +188,7 @@ describe('data table columns', () => {
     const index = 1;
     await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
-    const initial = await getCellContentsAtColumnIndex(
-      page,
-      COLUMN_COUNT,
-      index,
-    );
+    const initial = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
     expect(matchArrayElements(initial, ['A', 'B', 'A', 'A'])).toBe(true);
 
     const popover = await openFilterAtIndex(page, index);
@@ -263,22 +199,14 @@ describe('data table columns', () => {
       return button.click();
     });
 
-    const filtered = await getCellContentsAtColumnIndex(
-      page,
-      COLUMN_COUNT,
-      index,
-    );
+    const filtered = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
     expect(matchArrayElements(filtered, ['A', 'A', 'A'])).toBe(true);
 
     const tag = await page.$('span[data-baseweb="tag"]');
     const closeTagButton = await tag.$('span[role="presentation"]');
     await closeTagButton.click();
 
-    const restored = await getCellContentsAtColumnIndex(
-      page,
-      COLUMN_COUNT,
-      index,
-    );
+    const restored = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
     expect(matchArrayElements(restored, ['A', 'B', 'A', 'A'])).toBe(true);
   });
 
@@ -286,11 +214,7 @@ describe('data table columns', () => {
     const index = 2;
     await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
-    const initial = await getCellContentsAtColumnIndex(
-      page,
-      COLUMN_COUNT,
-      index,
-    );
+    const initial = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
     expect(matchArrayElements(initial, ['2', '1', '4', '3'])).toBe(true);
 
     const popover = await openFilterAtIndex(page, index);
@@ -308,22 +232,14 @@ describe('data table columns', () => {
       return button.click();
     });
 
-    const filtered = await getCellContentsAtColumnIndex(
-      page,
-      COLUMN_COUNT,
-      index,
-    );
+    const filtered = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
     expect(matchArrayElements(filtered, ['2'])).toBe(true);
 
     const tag = await page.$('span[data-baseweb="tag"]');
     const closeTagButton = await tag.$('span[role="presentation"]');
     await closeTagButton.click();
 
-    const restored = await getCellContentsAtColumnIndex(
-      page,
-      COLUMN_COUNT,
-      index,
-    );
+    const restored = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
     expect(matchArrayElements(restored, ['2', '1', '4', '3'])).toBe(true);
   });
 
@@ -331,11 +247,7 @@ describe('data table columns', () => {
     const index = 2;
     await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
-    const initial = await getCellContentsAtColumnIndex(
-      page,
-      COLUMN_COUNT,
-      index,
-    );
+    const initial = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
     expect(matchArrayElements(initial, ['2', '1', '4', '3'])).toBe(true);
 
     const popover = await openFilterAtIndex(page, index);
@@ -349,7 +261,7 @@ describe('data table columns', () => {
     await page.keyboard.press('Backspace');
     await inputs[0].type('2');
 
-    await inputs[1].click({clickCount: 3});
+    await inputs[1].click({ clickCount: 3 });
     await page.keyboard.press('Backspace');
     await inputs[1].type('3');
 
@@ -358,11 +270,7 @@ describe('data table columns', () => {
       return button.click();
     });
 
-    const filtered = await getCellContentsAtColumnIndex(
-      page,
-      COLUMN_COUNT,
-      index,
-    );
+    const filtered = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
     expect(matchArrayElements(filtered, ['2', '3'])).toBe(true);
   });
 
@@ -370,18 +278,14 @@ describe('data table columns', () => {
     const index = 4;
     await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
-    const initial = await getCellContentsAtColumnIndex(
-      page,
-      COLUMN_COUNT,
-      index,
-    );
+    const initial = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
     expect(
       matchArrayElements(initial, [
         '05-11-2012 10:20 30:00',
         '04-12-2011 11:21 31:00',
         '07-13-2014 12:22 32:00',
         '06-14-2013 13:23 33:00',
-      ]),
+      ])
     ).toBe(true);
 
     // can't figure out why the test restarts after selecting the time
@@ -423,31 +327,25 @@ describe('data table columns', () => {
     const index = 4;
     await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
-    const initial = await getCellContentsAtColumnIndex(
-      page,
-      COLUMN_COUNT,
-      index,
-    );
+    const initial = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
     expect(
       matchArrayElements(initial, [
         '05-11-2012 10:20 30:00',
         '04-12-2011 11:21 31:00',
         '07-13-2014 12:22 32:00',
         '06-14-2013 13:23 33:00',
-      ]),
+      ])
     ).toBe(true);
 
     const popover = await openFilterAtIndex(page, 3);
 
-    const [select, datepicker] = await page.$$(
-      'div[data-baseweb="popover"] input',
-    );
+    const [select, datepicker] = await page.$$('div[data-baseweb="popover"] input');
 
     await select.click();
     const [, dateop] = await page.$$('li');
     await dateop.click();
 
-    await datepicker.click({clickCount: 3});
+    await datepicker.click({ clickCount: 3 });
     await page.keyboard.press('Backspace');
     await datepicker.type('07132014');
     await datepicker.type('07132014');
@@ -457,11 +355,7 @@ describe('data table columns', () => {
       return button.click();
     });
 
-    const filtered = await getCellContentsAtColumnIndex(
-      page,
-      COLUMN_COUNT,
-      index,
-    );
+    const filtered = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
     expect(matchArrayElements(filtered, ['07-13-2014 12:22 32:00'])).toBe(true);
   });
 
@@ -469,18 +363,14 @@ describe('data table columns', () => {
     const index = 4;
     await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
-    const initial = await getCellContentsAtColumnIndex(
-      page,
-      COLUMN_COUNT,
-      index,
-    );
+    const initial = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
     expect(
       matchArrayElements(initial, [
         '05-11-2012 10:20 30:00',
         '04-12-2011 11:21 31:00',
         '07-13-2014 12:22 32:00',
         '06-14-2013 13:23 33:00',
-      ]),
+      ])
     ).toBe(true);
 
     const popover = await openFilterAtIndex(page, 3);
@@ -495,18 +385,14 @@ describe('data table columns', () => {
       return button.click();
     });
 
-    const filtered = await getCellContentsAtColumnIndex(
-      page,
-      COLUMN_COUNT,
-      index,
-    );
+    const filtered = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
     expect(
       matchArrayElements(filtered, [
         '05-11-2012 10:20 30:00',
         '04-12-2011 11:21 31:00',
         '07-13-2014 12:22 32:00',
         '06-14-2013 13:23 33:00',
-      ]),
+      ])
     ).toBe(true);
   });
 
@@ -514,24 +400,20 @@ describe('data table columns', () => {
     const index = 4;
     await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
-    const initial = await getCellContentsAtColumnIndex(
-      page,
-      COLUMN_COUNT,
-      index,
-    );
+    const initial = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
     expect(
       matchArrayElements(initial, [
         '05-11-2012 10:20 30:00',
         '04-12-2011 11:21 31:00',
         '07-13-2014 12:22 32:00',
         '06-14-2013 13:23 33:00',
-      ]),
+      ])
     ).toBe(true);
 
     const popover = await openFilterAtIndex(page, 3);
 
     const [select, , starttimepicker, endtimepicker] = await page.$$(
-      'div[data-baseweb="popover"] input',
+      'div[data-baseweb="popover"] input'
     );
 
     await select.click();
@@ -553,11 +435,7 @@ describe('data table columns', () => {
       return button.click();
     });
 
-    const filtered = await getCellContentsAtColumnIndex(
-      page,
-      COLUMN_COUNT,
-      index,
-    );
+    const filtered = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
     expect(matchArrayElements(filtered, ['06-14-2013 13:23 33:00'])).toBe(true);
   });
 
@@ -565,24 +443,18 @@ describe('data table columns', () => {
     const index = 4;
     await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
-    const initial = await getCellContentsAtColumnIndex(
-      page,
-      COLUMN_COUNT,
-      index,
-    );
+    const initial = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
     expect(
       matchArrayElements(initial, [
         '05-11-2012 10:20 30:00',
         '04-12-2011 11:21 31:00',
         '07-13-2014 12:22 32:00',
         '06-14-2013 13:23 33:00',
-      ]),
+      ])
     ).toBe(true);
 
     const popover = await openFilterAtIndex(page, 3);
-    const [, categorical] = await popover.$$(
-      'div[data-baseweb="button-group"] button',
-    );
+    const [, categorical] = await popover.$$('div[data-baseweb="button-group"] button');
     await categorical.click();
     const [sunday] = await popover.$$('label[data-baseweb="checkbox"]');
     await sunday.click();
@@ -592,11 +464,7 @@ describe('data table columns', () => {
       return button.click();
     });
 
-    const filtered = await getCellContentsAtColumnIndex(
-      page,
-      COLUMN_COUNT,
-      index,
-    );
+    const filtered = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
     expect(matchArrayElements(filtered, ['07-13-2014 12:22 32:00'])).toBe(true);
   });
 
@@ -604,25 +472,19 @@ describe('data table columns', () => {
     const index = 4;
     await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
-    const initial = await getCellContentsAtColumnIndex(
-      page,
-      COLUMN_COUNT,
-      index,
-    );
+    const initial = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
     expect(
       matchArrayElements(initial, [
         '05-11-2012 10:20 30:00',
         '04-12-2011 11:21 31:00',
         '07-13-2014 12:22 32:00',
         '06-14-2013 13:23 33:00',
-      ]),
+      ])
     ).toBe(true);
 
     const popover = await openFilterAtIndex(page, 3);
 
-    const [, categorical] = await popover.$$(
-      'div[data-baseweb="button-group"] button',
-    );
+    const [, categorical] = await popover.$$('div[data-baseweb="button-group"] button');
     await categorical.click();
 
     const select = await page.$('div[data-baseweb="popover"] input');
@@ -638,11 +500,7 @@ describe('data table columns', () => {
       return button.click();
     });
 
-    const filtered = await getCellContentsAtColumnIndex(
-      page,
-      COLUMN_COUNT,
-      index,
-    );
+    const filtered = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
     expect(matchArrayElements(filtered, ['05-11-2012 10:20 30:00'])).toBe(true);
   });
 
@@ -650,25 +508,19 @@ describe('data table columns', () => {
     const index = 4;
     await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
-    const initial = await getCellContentsAtColumnIndex(
-      page,
-      COLUMN_COUNT,
-      index,
-    );
+    const initial = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
     expect(
       matchArrayElements(initial, [
         '05-11-2012 10:20 30:00',
         '04-12-2011 11:21 31:00',
         '07-13-2014 12:22 32:00',
         '06-14-2013 13:23 33:00',
-      ]),
+      ])
     ).toBe(true);
 
     const popover = await openFilterAtIndex(page, 3);
 
-    const [, categorical] = await popover.$$(
-      'div[data-baseweb="button-group"] button',
-    );
+    const [, categorical] = await popover.$$('div[data-baseweb="button-group"] button');
     await categorical.click();
 
     const select = await page.$('div[data-baseweb="popover"] input');
@@ -684,11 +536,7 @@ describe('data table columns', () => {
       return button.click();
     });
 
-    const filtered = await getCellContentsAtColumnIndex(
-      page,
-      COLUMN_COUNT,
-      index,
-    );
+    const filtered = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
     expect(matchArrayElements(filtered, ['07-13-2014 12:22 32:00'])).toBe(true);
   });
 
@@ -696,25 +544,19 @@ describe('data table columns', () => {
     const index = 4;
     await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
-    const initial = await getCellContentsAtColumnIndex(
-      page,
-      COLUMN_COUNT,
-      index,
-    );
+    const initial = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
     expect(
       matchArrayElements(initial, [
         '05-11-2012 10:20 30:00',
         '04-12-2011 11:21 31:00',
         '07-13-2014 12:22 32:00',
         '06-14-2013 13:23 33:00',
-      ]),
+      ])
     ).toBe(true);
 
     const popover = await openFilterAtIndex(page, 3);
 
-    const [, categorical] = await popover.$$(
-      'div[data-baseweb="button-group"] button',
-    );
+    const [, categorical] = await popover.$$('div[data-baseweb="button-group"] button');
     await categorical.click();
 
     const select = await page.$('div[data-baseweb="popover"] input');
@@ -730,11 +572,7 @@ describe('data table columns', () => {
       return button.click();
     });
 
-    const filtered = await getCellContentsAtColumnIndex(
-      page,
-      COLUMN_COUNT,
-      index,
-    );
+    const filtered = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
     expect(matchArrayElements(filtered, ['07-13-2014 12:22 32:00'])).toBe(true);
   });
 
@@ -742,25 +580,19 @@ describe('data table columns', () => {
     const index = 4;
     await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
-    const initial = await getCellContentsAtColumnIndex(
-      page,
-      COLUMN_COUNT,
-      index,
-    );
+    const initial = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
     expect(
       matchArrayElements(initial, [
         '05-11-2012 10:20 30:00',
         '04-12-2011 11:21 31:00',
         '07-13-2014 12:22 32:00',
         '06-14-2013 13:23 33:00',
-      ]),
+      ])
     ).toBe(true);
 
     const popover = await openFilterAtIndex(page, 3);
 
-    const [, categorical] = await popover.$$(
-      'div[data-baseweb="button-group"] button',
-    );
+    const [, categorical] = await popover.$$('div[data-baseweb="button-group"] button');
     await categorical.click();
 
     const select = await page.$('div[data-baseweb="popover"] input');
@@ -776,11 +608,7 @@ describe('data table columns', () => {
       return button.click();
     });
 
-    const filtered = await getCellContentsAtColumnIndex(
-      page,
-      COLUMN_COUNT,
-      index,
-    );
+    const filtered = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
     expect(matchArrayElements(filtered, ['05-11-2012 10:20 30:00'])).toBe(true);
   });
 });

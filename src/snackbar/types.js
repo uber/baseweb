@@ -9,9 +9,9 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import type {OverrideT} from '../helpers/overrides.js';
+import type { OverrideT } from '../helpers/overrides.js';
 
-import {DURATION, PLACEMENT} from './constants.js';
+import { DURATION, PLACEMENT } from './constants.js';
 
 export type DurationT =
   | typeof DURATION.infinite

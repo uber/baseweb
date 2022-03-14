@@ -7,22 +7,18 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {render, getByTestId} from '@testing-library/react';
+import { render, getByTestId } from '@testing-library/react';
 
-import {Spinner} from '../index.js';
+import { Spinner } from '../index.js';
 
 describe('Spinner', () => {
   it('component overrides', () => {
     const overrides = {
-      Svg: jest
-        .fn()
-        .mockImplementation(({children}) => (
-          <svg data-testid="mock">{children}</svg>
-        )),
+      Svg: jest.fn().mockImplementation(({ children }) => <svg data-testid="mock">{children}</svg>),
     };
-    const {container} = render(
+    const { container } = render(
       // $FlowFixMe
-      <Spinner $silenceV11DeprecationWarning overrides={overrides} />,
+      <Spinner $silenceV11DeprecationWarning overrides={overrides} />
     );
     getByTestId(container, 'mock');
   });

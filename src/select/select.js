@@ -11,12 +11,7 @@ import MultiValue from './multi-value.js';
 import SingleValue from './value.js';
 
 function Select(props: React.ElementConfig<typeof SelectComponent>) {
-  return (
-    <SelectComponent
-      {...props}
-      valueComponent={props.multi ? MultiValue : SingleValue}
-    />
-  );
+  return <SelectComponent {...props} valueComponent={props.multi ? MultiValue : SingleValue} />;
 }
 
 export default Select;

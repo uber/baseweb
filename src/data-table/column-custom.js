@@ -7,13 +7,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import Column from './column.js';
-import {COLUMNS} from './constants.js';
-import type {
-  ColumnT,
-  RenderCellT,
-  RenderFilterT,
-  SharedColumnOptionsT,
-} from './types.js';
+import { COLUMNS } from './constants.js';
+import type { ColumnT, RenderCellT, RenderFilterT, SharedColumnOptionsT } from './types.js';
 
 // I could not re-use the ColumnT type to build this.. tried to spread the ColumnT
 // and define renderFilter, etc. to optional, but required status was maintained.
@@ -27,10 +22,10 @@ type OptionsT<ValueT, FilterParamsT> = {|
 |};
 
 function CustomColumn<ValueT, FilterParamsT>(
-  options: OptionsT<ValueT, FilterParamsT>,
+  options: OptionsT<ValueT, FilterParamsT>
 ): ColumnT<ValueT, FilterParamsT> {
   //$FlowFixMe
-  return Column({kind: COLUMNS.CUSTOM, ...options});
+  return Column({ kind: COLUMNS.CUSTOM, ...options });
 }
 
 export default CustomColumn;

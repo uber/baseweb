@@ -7,8 +7,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {FixedMarker} from '../index.js';
-import {Checkbox, LABEL_PLACEMENT} from '../../checkbox/index.js';
+import { FixedMarker } from '../index.js';
+import { Checkbox, LABEL_PLACEMENT } from '../../checkbox/index.js';
 import {
   PINHEAD_SIZES_SHAPES,
   NEEDLE_SIZES,
@@ -16,12 +16,12 @@ import {
   LABEL_ENHANCER_POSITIONS,
 } from '../constants.js';
 import TileGrid from './tile-grid.js';
-import {Input} from '../../input/index.js';
+import { Input } from '../../input/index.js';
 import Upload from '../../icon/upload.js';
 import Search from '../../icon/search.js';
-import {Select} from '../../select/index.js';
+import { Select } from '../../select/index.js';
 
-import type {PinHeadSizeT, NeedleSizeT} from '../types.js';
+import type { PinHeadSizeT, NeedleSizeT } from '../types.js';
 
 const labelEnhancerPositions = Object.keys(LABEL_ENHANCER_POSITIONS)
   .map((key) => LABEL_ENHANCER_POSITIONS[key])
@@ -37,8 +37,8 @@ const badgeEnhancerSizes = Object.keys(BADGE_ENHANCER_SIZES)
     id: x,
   }));
 
-const BadgeEnhancerIcon = ({size}) => <Search size={size} />;
-const BadgeEnhancerText = ({size}) => 'Search';
+const BadgeEnhancerIcon = ({ size }) => <Search size={size} />;
+const BadgeEnhancerText = ({ size }) => 'Search';
 
 export function Scenario() {
   const markers = [];
@@ -53,9 +53,7 @@ export function Scenario() {
     labelEnhancerPositions[0],
   ]);
 
-  const [badgeEnhancerSize, setBadgeEnhancerSize] = React.useState([
-    badgeEnhancerSizes[0],
-  ]);
+  const [badgeEnhancerSize, setBadgeEnhancerSize] = React.useState([badgeEnhancerSizes[0]]);
 
   const BadgeEnhancerContent =
     badgeEnhancerSize[0].id === BADGE_ENHANCER_SIZES.mediumText
@@ -79,14 +77,14 @@ export function Scenario() {
                 dragging={dragging}
                 startEnhancer={
                   startEnhancer
-                    ? function renderEnhancer({size}) {
+                    ? function renderEnhancer({ size }) {
                         return <Upload size={size} />;
                       }
                     : undefined
                 }
                 endEnhancer={
                   endEnhancer
-                    ? function renderEnhancer({size}) {
+                    ? function renderEnhancer({ size }) {
                         return <Search size={size} />;
                       }
                     : undefined

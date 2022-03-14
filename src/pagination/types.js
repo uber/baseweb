@@ -5,9 +5,9 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import type {OverrideT} from '../helpers/overrides.js';
-import {STATE_CHANGE_TYPE} from './constants.js';
-import {SIZE} from '../input/constants.js';
+import type { OverrideT } from '../helpers/overrides.js';
+import { STATE_CHANGE_TYPE } from './constants.js';
+import { SIZE } from '../input/constants.js';
 
 export type LabelsT = {
   prevButton?: string,
@@ -20,19 +20,19 @@ export type SizeT = $Keys<typeof SIZE>;
 export type CallbacksT = {
   /** Callback for prev button click. */
   //flowlint-next-line unclear-type:off
-  onPrevClick?: ({event: any}) => any,
+  onPrevClick?: ({ event: any }) => any,
   /** Callback for next button click. */
   //flowlint-next-line unclear-type:off
-  onNextClick?: ({event: any}) => any,
+  onNextClick?: ({ event: any }) => any,
   /** Callback for when page changes. */
   //flowlint-next-line unclear-type:off
-  onPageChange?: ({nextPage: number, prevPage: number}) => any,
+  onPageChange?: ({ nextPage: number, prevPage: number }) => any,
 };
 
 export type StateReducerFnT = (
   changeType: $Keys<typeof STATE_CHANGE_TYPE>,
   changes: StatefulContainerStateT,
-  currentState: StatefulContainerStateT,
+  currentState: StatefulContainerStateT
 ) => StatefulContainerStateT;
 
 export type OverridesT = {

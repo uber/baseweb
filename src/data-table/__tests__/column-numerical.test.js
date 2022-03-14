@@ -7,18 +7,18 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {render, fireEvent} from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 
-import {NumericalColumn, NUMERICAL_FORMATS} from '../index.js';
+import { NumericalColumn, NUMERICAL_FORMATS } from '../index.js';
 
 describe('numerical column', () => {
   it('is sortable by default', () => {
-    const column = NumericalColumn({title: 'column', mapDataToValue: () => 0});
+    const column = NumericalColumn({ title: 'column', mapDataToValue: () => 0 });
     expect(column.sortable).toBe(true);
   });
 
   it('is filterable by default', () => {
-    const column = NumericalColumn({title: 'column', mapDataToValue: () => 0});
+    const column = NumericalColumn({ title: 'column', mapDataToValue: () => 0 });
     expect(column.filterable).toBe(true);
   });
 
@@ -41,10 +41,10 @@ describe('numerical column', () => {
   });
 
   it('cell renders provided value with default options', () => {
-    const column = NumericalColumn({title: 'column', mapDataToValue: () => 0});
+    const column = NumericalColumn({ title: 'column', mapDataToValue: () => 0 });
     const Cell = column.renderCell;
 
-    const {container} = render(<Cell value={1999.888} x={0} y={0} />);
+    const { container } = render(<Cell value={1999.888} x={0} y={0} />);
     const cell = container.querySelector('div');
     expect(cell?.textContent).toBe('2000');
   });
@@ -58,7 +58,7 @@ describe('numerical column', () => {
     });
     const Cell = column.renderCell;
 
-    const {container} = render(<Cell value={value} x={0} y={0} />);
+    const { container } = render(<Cell value={value} x={0} y={0} />);
     const cell = container.querySelector('div');
     expect(cell?.textContent).toBe('$1999.89');
   });
@@ -72,7 +72,7 @@ describe('numerical column', () => {
     });
     const Cell = column.renderCell;
 
-    const {container} = render(<Cell value={value} x={0} y={0} />);
+    const { container } = render(<Cell value={value} x={0} y={0} />);
     const cell = container.querySelector('div');
     expect(cell?.textContent).toBe('($1999.89)');
   });
@@ -86,7 +86,7 @@ describe('numerical column', () => {
     });
     const Cell = column.renderCell;
 
-    const {container} = render(<Cell value={value} x={0} y={0} />);
+    const { container } = render(<Cell value={value} x={0} y={0} />);
     const cell = container.querySelector('div');
     expect(cell?.textContent).toBe('1999.89%');
   });
@@ -100,7 +100,7 @@ describe('numerical column', () => {
     });
     const Cell = column.renderCell;
 
-    const {container} = render(<Cell value={value} x={0} y={0} />);
+    const { container } = render(<Cell value={value} x={0} y={0} />);
     const cell = container.querySelector('div');
     expect(cell?.textContent).toBe('EUR 1999.888');
   });
@@ -114,26 +114,24 @@ describe('numerical column', () => {
     });
     const Cell = column.renderCell;
 
-    const {container} = render(<Cell value={value} x={0} y={0} />);
+    const { container } = render(<Cell value={value} x={0} y={0} />);
     const cell = container.querySelector('div');
     expect(cell?.textContent).toBe('1999.888');
   });
 
   it('can call setFilter with expected selection', () => {
-    const column = NumericalColumn({title: 'column', mapDataToValue: () => 0});
+    const column = NumericalColumn({ title: 'column', mapDataToValue: () => 0 });
     const Filter = column.renderFilter;
 
     const mockSetFilter = jest.fn();
     const data = [1, 2, 3, 4];
-    const {container, getByText} = render(
-      <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
+    const { container, getByText } = render(
+      <Filter setFilter={mockSetFilter} close={() => {}} data={data} />
     );
 
-    const inputs = container.querySelectorAll(
-      'div[data-baseweb="input"] input',
-    );
+    const inputs = container.querySelectorAll('div[data-baseweb="input"] input');
     expect(inputs.length).toBe(2);
-    fireEvent.change(inputs[1], {target: {value: '2'}});
+    fireEvent.change(inputs[1], { target: { value: '2' } });
     fireEvent.click(getByText('Apply'));
 
     expect(mockSetFilter.mock.calls.length).toBe(1);
@@ -143,14 +141,12 @@ describe('numerical column', () => {
   });
 
   it('can exclude the range', () => {
-    const column = NumericalColumn({title: 'column', mapDataToValue: () => 0});
+    const column = NumericalColumn({ title: 'column', mapDataToValue: () => 0 });
     const Filter = column.renderFilter;
 
     const mockSetFilter = jest.fn();
     const data = [1, 2, 3, 4];
-    const {getByText} = render(
-      <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
-    );
+    const { getByText } = render(<Filter setFilter={mockSetFilter} close={() => {}} data={data} />);
 
     fireEvent.click(getByText('Exclude range'));
     fireEvent.click(getByText('Apply'));
@@ -170,7 +166,7 @@ describe('numerical column', () => {
   });
 
   it('builds default filter function for integers', () => {
-    const column = NumericalColumn({title: 'column', mapDataToValue: () => 0});
+    const column = NumericalColumn({ title: 'column', mapDataToValue: () => 0 });
     const eq = column.buildFilter({
       lowerValue: 1,
       upperValue: 2,
@@ -199,7 +195,7 @@ describe('numerical column', () => {
 
   // it rounds based on the default precision, which is 0, so to closest whole number.
   it('builds default filter function for floats', () => {
-    const column = NumericalColumn({title: 'column', mapDataToValue: () => 0});
+    const column = NumericalColumn({ title: 'column', mapDataToValue: () => 0 });
     const eq = column.buildFilter({
       lowerValue: 1.1,
       upperValue: 2.2,
@@ -267,7 +263,7 @@ describe('numerical column', () => {
   });
 
   it('builds expected sort function', () => {
-    const column = NumericalColumn({title: 'column', mapDataToValue: () => 0});
+    const column = NumericalColumn({ title: 'column', mapDataToValue: () => 0 });
     const input = [2, 1, 3, 4];
     input.sort(column.sortFn);
 

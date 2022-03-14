@@ -7,13 +7,13 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {render, screen, fireEvent} from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 
-import {TimezonePicker} from '../index.js';
-import {TestBaseProvider} from '../../test/test-utils.js';
+import { TimezonePicker } from '../index.js';
+import { TestBaseProvider } from '../../test/test-utils.js';
 
 const mockedDate = '2021-01-01T00:00:00Z';
-const Example = ({setDate}) => {
+const Example = ({ setDate }) => {
   return <TimezonePicker value={mockedDate} onChange={setDate} />;
 };
 
@@ -22,7 +22,7 @@ const renderComponent = () => {
   render(
     <TestBaseProvider>
       <Example setDate={setDate} />
-    </TestBaseProvider>,
+    </TestBaseProvider>
   );
   return setDate;
 };

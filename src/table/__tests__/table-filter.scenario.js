@@ -7,8 +7,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {styled} from '../../styles/index.js';
-import {Checkbox} from '../../checkbox/index.js';
+import { styled } from '../../styles/index.js';
+import { Checkbox } from '../../checkbox/index.js';
 import {
   Filter,
   StyledTable,
@@ -25,13 +25,13 @@ const FilterCheckbox = (props) => (
     onChange={props.onChange}
     overrides={{
       Root: {
-        style: ({$theme}) => ({
+        style: ({ $theme }) => ({
           marginTop: $theme.sizing.scale400,
           marginBottom: $theme.sizing.scale400,
         }),
       },
 
-      Checkmark: {style: {marginLeft: 0}},
+      Checkmark: { style: { marginLeft: 0 } },
     }}
   >
     {props.children}
@@ -44,9 +44,7 @@ class FilterTable extends React.Component<any, any> {
     filters: [],
   };
 
-  FILTER_FUNCTIONS = [...new Array(10)].map(
-    (_, i) => (row) => row[0] % (i + 1) === 0,
-  );
+  FILTER_FUNCTIONS = [...new Array(10)].map((_, i) => (row) => row[0] % (i + 1) === 0);
 
   onFilter = (index) => {
     const isActive = !!this.state.filters[index];
@@ -57,11 +55,11 @@ class FilterTable extends React.Component<any, any> {
     } else {
       filters[index] = this.FILTER_FUNCTIONS[index];
     }
-    this.setState({filters});
+    this.setState({ filters });
   };
 
-  handleReset = () => this.setState({filters: []});
-  handleSelectAll = () => this.setState({filters: this.FILTER_FUNCTIONS});
+  handleReset = () => this.setState({ filters: [] });
+  handleSelectAll = () => this.setState({ filters: this.FILTER_FUNCTIONS });
 
   render() {
     const filteredData = this.state.filters

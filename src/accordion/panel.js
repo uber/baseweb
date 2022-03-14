@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {LocaleContext} from '../locale/index.js';
-import {getOverrides} from '../helpers/overrides.js';
+import { LocaleContext } from '../locale/index.js';
+import { getOverrides } from '../helpers/overrides.js';
 import {
   PanelContainer as StyledPanelContainer,
   Header as StyledHeader,
@@ -16,9 +16,9 @@ import {
   ToggleIconGroup as StyledToggleIconGroup,
   ContentAnimationContainer as StyledContentAnimationContainer,
 } from './styled-components.js';
-import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
+import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible.js';
 
-import type {PanelPropsT} from './types.js';
+import type { PanelPropsT } from './types.js';
 
 const Panel = ({
   'aria-controls': ariaControls,
@@ -42,28 +42,28 @@ const Panel = ({
   const handleFocus = React.useCallback(
     (event: SyntheticEvent<>) => {
       if (isFocusVisible(event)) {
-        setLocalState({...localState, isFocusVisible: true});
+        setLocalState({ ...localState, isFocusVisible: true });
       }
     },
-    [localState],
+    [localState]
   );
   const handleBlur = React.useCallback(
     (event: SyntheticEvent<>) => {
       if (localState.isFocusVisible) {
-        setLocalState({...localState, isFocusVisible: false});
+        setLocalState({ ...localState, isFocusVisible: false });
       }
     },
-    [localState],
+    [localState]
   );
   const handleClick = React.useCallback(
     (e: Event) => {
       if (disabled) {
         return;
       }
-      typeof onChange === 'function' && onChange({expanded: !expanded});
+      typeof onChange === 'function' && onChange({ expanded: !expanded });
       typeof onClick === 'function' && onClick(e);
     },
-    [expanded, disabled, onChange, onClick],
+    [expanded, disabled, onChange, onClick]
   );
   const handleKeyDown = React.useCallback(
     (e: KeyboardEvent) => {
@@ -75,14 +75,14 @@ const Panel = ({
       const SPACE = 32;
 
       if (e.keyCode === ENTER || e.keyCode === SPACE) {
-        typeof onChange === 'function' && onChange({expanded: !expanded});
+        typeof onChange === 'function' && onChange({ expanded: !expanded });
         if (e.keyCode === SPACE) {
           e.preventDefault(); // prevent jumping scroll when using Space
         }
       }
       typeof onKeyDown === 'function' && onKeyDown(e);
     },
-    [expanded, disabled, onChange, onKeyDown],
+    [expanded, disabled, onChange, onKeyDown]
   );
   // flowlint-next-line unclear-type:off
   const _animateRef = React.useRef<any>(null);
@@ -108,13 +108,7 @@ const Panel = ({
         });
       }
     }
-  }, [
-    _animateRef.current,
-    expanded,
-    localState.elementHeight,
-    localState.expanded,
-    setLocalState,
-  ]);
+  }, [_animateRef.current, expanded, localState.elementHeight, localState.expanded, setLocalState]);
 
   const contentHeight = React.useMemo(() => {
     // When closing, the first render will re-query the content element for the new
@@ -132,12 +126,7 @@ const Panel = ({
     }
     // When no longer animating, set the height to auto to accommodate dynamic nested components.
     return localState.animationInProgress ? localState.elementHeight : 'auto';
-  }, [
-    expanded,
-    localState.expanded,
-    localState.animationInProgress,
-    localState.elementHeight,
-  ]);
+  }, [expanded, localState.expanded, localState.animationInProgress, localState.elementHeight]);
 
   const sharedProps = {
     $disabled: disabled,
@@ -156,23 +145,20 @@ const Panel = ({
 
   const [PanelContainer, panelContainerProps] = getOverrides(
     PanelContainerOverride,
-    StyledPanelContainer,
+    StyledPanelContainer
   );
   const [Header, headerProps] = getOverrides(HeaderOverride, StyledHeader);
   const [Content, contentProps] = getOverrides(ContentOverride, StyledContent);
   const [ContentAnimationContainer, contentAnimationProps] = getOverrides(
     ContentAnimationContainerOverride,
-    StyledContentAnimationContainer,
+    StyledContentAnimationContainer
   );
   const [ToggleIconGroup, toggleIconGroupProps] = getOverrides(
     ToggleIconGroupOverride,
-    StyledToggleIconGroup,
+    StyledToggleIconGroup
   );
 
-  const [ToggleIcon, toggleIconProps] = getOverrides(
-    ToggleIconOverride,
-    StyledToggleIcon,
-  );
+  const [ToggleIcon, toggleIconProps] = getOverrides(ToggleIconOverride, StyledToggleIcon);
 
   return (
     <LocaleContext.Consumer>
@@ -185,7 +171,7 @@ const Panel = ({
             aria-disabled={disabled || null}
             {...sharedProps}
             {...headerProps}
-            {...(ariaControls ? {'aria-controls': ariaControls} : {})}
+            {...(ariaControls ? { 'aria-controls': ariaControls } : {})}
             onClick={handleClick}
             onKeyDown={handleKeyDown}
             onFocus={forkFocus(headerProps, handleFocus)}
@@ -194,11 +180,7 @@ const Panel = ({
             {title}
             <ToggleIcon
               viewBox="0 0 24 24"
-              title={
-                localState.expanded
-                  ? locale.accordion.collapse
-                  : locale.accordion.expand
-              }
+              title={localState.expanded ? locale.accordion.collapse : locale.accordion.expand}
               size={16}
               {...toggleIconProps}
               {...sharedProps}
@@ -223,7 +205,7 @@ const Panel = ({
             $height={contentHeight}
             onTransitionEnd={() => {
               if (localState.animationInProgress) {
-                setLocalState({...localState, animationInProgress: false});
+                setLocalState({ ...localState, animationInProgress: false });
               }
             }}
           >
@@ -231,7 +213,7 @@ const Panel = ({
               ref={_animateRef}
               {...sharedProps}
               {...contentProps}
-              {...(ariaControls ? {id: ariaControls} : {})}
+              {...(ariaControls ? { id: ariaControls } : {})}
             >
               {localState.expanded ||
               renderAll ||

@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import * as ReactIs from 'react-is';
 
-import {getOverrides} from '../helpers/overrides.js';
+import { getOverrides } from '../helpers/overrides.js';
 
 import {
   StyledHeadingRoot,
@@ -20,10 +20,10 @@ import {
   StyledHeadingMainHeading,
   StyledHeadingSubHeading,
 } from './styled-components.js';
-import type {HeadingPropsT} from './types.js';
+import type { HeadingPropsT } from './types.js';
 
 function RenderNode(props) {
-  const {component, ...restProps} = props;
+  const { component, ...restProps } = props;
   const Component = component;
   if (!Component) {
     return null;
@@ -43,101 +43,86 @@ function isMaxLinesValid(maxLines) {
   return maxLines === 1 || maxLines === 2;
 }
 
-const ListHeading = React.forwardRef<HeadingPropsT, HTMLLIElement>(
-  (props: HeadingPropsT, ref) => {
-    const {overrides = {}, maxLines} = props;
-    const EndEnhancer = props.endEnhancer;
-    const EndEnhancerDescription = props.endEnhancerDescription;
-    const SubHeading = props.subHeading;
+const ListHeading = React.forwardRef<HeadingPropsT, HTMLLIElement>((props: HeadingPropsT, ref) => {
+  const { overrides = {}, maxLines } = props;
+  const EndEnhancer = props.endEnhancer;
+  const EndEnhancerDescription = props.endEnhancerDescription;
+  const SubHeading = props.subHeading;
 
-    const [Root, rootProps] = getOverrides(overrides.Root, StyledHeadingRoot);
-    const [Content, contentProps] = getOverrides(
-      overrides.Content,
-      StyledHeadingContent,
-    );
-    const [HeadingContainer, headingContainerProps] = getOverrides(
-      overrides.HeadingContainer,
-      StyledHeadingMainHeading,
-    );
-    const [SubHeadingContainer, subHeadingContainerProps] = getOverrides(
-      overrides.SubHeadingContainer,
-      StyledHeadingSubHeading,
-    );
-    const [EndEnhancerContainer, endEnhancerContainerProps] = getOverrides(
-      overrides.EndEnhancerContainer,
-      StyledHeadingEndEnhancerContainer,
-    );
-    const [
-      EndEnhancerDescriptionContainer,
-      endEnhancerDescriptionContainerProps,
-    ] = getOverrides(
-      overrides.EndEnhancerDescriptionContainer,
-      StyledHeadingEndEnhancerDescriptionContainer,
-    );
+  const [Root, rootProps] = getOverrides(overrides.Root, StyledHeadingRoot);
+  const [Content, contentProps] = getOverrides(overrides.Content, StyledHeadingContent);
+  const [HeadingContainer, headingContainerProps] = getOverrides(
+    overrides.HeadingContainer,
+    StyledHeadingMainHeading
+  );
+  const [SubHeadingContainer, subHeadingContainerProps] = getOverrides(
+    overrides.SubHeadingContainer,
+    StyledHeadingSubHeading
+  );
+  const [EndEnhancerContainer, endEnhancerContainerProps] = getOverrides(
+    overrides.EndEnhancerContainer,
+    StyledHeadingEndEnhancerContainer
+  );
+  const [EndEnhancerDescriptionContainer, endEnhancerDescriptionContainerProps] = getOverrides(
+    overrides.EndEnhancerDescriptionContainer,
+    StyledHeadingEndEnhancerDescriptionContainer
+  );
 
-    const isEndEnhancerString = typeof EndEnhancer === 'string';
+  const isEndEnhancerString = typeof EndEnhancer === 'string';
 
-    if (__DEV__) {
-      if (isEndEnhancerString && EndEnhancerDescription) {
-        console.warn(
-          'endEnhancerDescription will not be rendered if endEnhancer is not a string',
-        );
-      }
-      if (maxLines && !isMaxLinesValid(maxLines)) {
-        console.warn('maxLines must be 1 or 2.');
-      }
+  if (__DEV__) {
+    if (isEndEnhancerString && EndEnhancerDescription) {
+      console.warn('endEnhancerDescription will not be rendered if endEnhancer is not a string');
     }
+    if (maxLines && !isMaxLinesValid(maxLines)) {
+      console.warn('maxLines must be 1 or 2.');
+    }
+  }
 
-    return (
-      <Root
-        // flowlint-next-line unclear-type:off
-        ref={(ref: any)}
-        {...rootProps}
-      >
-        <Content {...contentProps}>
-          {/* ----- Top Row -------------------------- */}
+  return (
+    <Root
+      // flowlint-next-line unclear-type:off
+      ref={(ref: any)}
+      {...rootProps}
+    >
+      <Content {...contentProps}>
+        {/* ----- Top Row -------------------------- */}
+        <StyledHeadingContentRow>
+          <HeadingContainer
+            $maxLines={isMaxLinesValid(maxLines) ? maxLines : 1}
+            {...headingContainerProps}
+          >
+            <RenderNode component={props.heading} />
+          </HeadingContainer>
+
+          {EndEnhancer && (
+            <EndEnhancerContainer $isText={isEndEnhancerString} {...endEnhancerContainerProps}>
+              <RenderNode component={EndEnhancer} />
+            </EndEnhancerContainer>
+          )}
+        </StyledHeadingContentRow>
+
+        {/* ----- Bottom Row ----------------------- */}
+        {(Boolean(SubHeading) || EndEnhancerDescription) && (
           <StyledHeadingContentRow>
-            <HeadingContainer
+            <SubHeadingContainer
               $maxLines={isMaxLinesValid(maxLines) ? maxLines : 1}
-              {...headingContainerProps}
+              {...subHeadingContainerProps}
             >
-              <RenderNode component={props.heading} />
-            </HeadingContainer>
+              <RenderNode component={SubHeading} />
+            </SubHeadingContainer>
 
-            {EndEnhancer && (
-              <EndEnhancerContainer
-                $isText={isEndEnhancerString}
-                {...endEnhancerContainerProps}
-              >
-                <RenderNode component={EndEnhancer} />
-              </EndEnhancerContainer>
+            {Boolean(EndEnhancerDescription) && isEndEnhancerString && (
+              <EndEnhancerDescriptionContainer {...endEnhancerDescriptionContainerProps}>
+                <RenderNode component={EndEnhancerDescription} />
+              </EndEnhancerDescriptionContainer>
             )}
           </StyledHeadingContentRow>
-
-          {/* ----- Bottom Row ----------------------- */}
-          {(Boolean(SubHeading) || EndEnhancerDescription) && (
-            <StyledHeadingContentRow>
-              <SubHeadingContainer
-                $maxLines={isMaxLinesValid(maxLines) ? maxLines : 1}
-                {...subHeadingContainerProps}
-              >
-                <RenderNode component={SubHeading} />
-              </SubHeadingContainer>
-
-              {Boolean(EndEnhancerDescription) && isEndEnhancerString && (
-                <EndEnhancerDescriptionContainer
-                  {...endEnhancerDescriptionContainerProps}
-                >
-                  <RenderNode component={EndEnhancerDescription} />
-                </EndEnhancerDescriptionContainer>
-              )}
-            </StyledHeadingContentRow>
-          )}
-        </Content>
-      </Root>
-    );
-  },
-);
+        )}
+      </Content>
+    </Root>
+  );
+});
 ListHeading.displayName = 'ListHeading';
 
 export default ListHeading;

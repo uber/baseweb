@@ -6,18 +6,14 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import React from 'react';
-import {ThemeContext} from '../styles/theme-provider.js';
-import type {TreeLabelT, SharedStylePropsT} from './types.js';
-import {StyledIconContainer, StyledItemContent} from './styled-components.js';
+import { ThemeContext } from '../styles/theme-provider.js';
+import type { TreeLabelT, SharedStylePropsT } from './types.js';
+import { StyledIconContainer, StyledItemContent } from './styled-components.js';
 import ChevronRight from '../icon/chevron-right.js';
 import ChevronDown from '../icon/chevron-down.js';
 import ChevronLeft from '../icon/chevron-left.js';
 import BlankIcon from '../icon/blank.js';
-import {
-  getOverride,
-  getOverrideProps,
-  getOverrides,
-} from '../helpers/overrides.js';
+import { getOverride, getOverrideProps, getOverrides } from '../helpers/overrides.js';
 
 const TreeLabel: React$ComponentType<TreeLabelT> = ({
   hasChildren,
@@ -43,24 +39,18 @@ const TreeLabel: React$ComponentType<TreeLabelT> = ({
     LeafIcon: LeafIconOverride,
     TreeItemContent: TreeItemContentOverride,
   } = overrides;
-  const IconContainer =
-    getOverride(IconContainerOverride) || StyledIconContainer;
+  const IconContainer = getOverride(IconContainerOverride) || StyledIconContainer;
   const [Left, LeftProps] = getOverrides(ExpandIconOverride, ChevronLeft);
   const [Right, RightProps] = getOverrides(ExpandIconOverride, ChevronRight);
   const CollapseIcon = getOverride(CollapseIconOverride) || ChevronDown;
-  const LeafIconContainer =
-    getOverride(LeafIconContainerOverride) || StyledIconContainer;
+  const LeafIconContainer = getOverride(LeafIconContainerOverride) || StyledIconContainer;
   const LeafIcon = getOverride(LeafIconOverride) || BlankIcon;
-  const TreeItemContent =
-    getOverride(TreeItemContentOverride) || StyledItemContent;
+  const TreeItemContent = getOverride(TreeItemContentOverride) || StyledItemContent;
   return (
     // $FlowExpectedError[cannot-spread-inexact]
     <TreeItemContent {...sharedProps} {...props}>
       {hasChildren && (
-        <IconContainer
-          {...sharedProps}
-          {...getOverrideProps(IconContainerOverride)}
-        >
+        <IconContainer {...sharedProps} {...getOverrideProps(IconContainerOverride)}>
           {!isExpanded ? (
             <ThemeContext.Consumer>
               {(theme) =>
@@ -72,18 +62,12 @@ const TreeLabel: React$ComponentType<TreeLabelT> = ({
               }
             </ThemeContext.Consumer>
           ) : (
-            <CollapseIcon
-              {...sharedProps}
-              {...getOverrideProps(CollapseIconOverride)}
-            />
+            <CollapseIcon {...sharedProps} {...getOverrideProps(CollapseIconOverride)} />
           )}
         </IconContainer>
       )}
       {!hasChildren && LeafIcon && (
-        <LeafIconContainer
-          {...sharedProps}
-          {...getOverrideProps(LeafIconContainerOverride)}
-        >
+        <LeafIconContainer {...sharedProps} {...getOverrideProps(LeafIconContainerOverride)}>
           <LeafIcon {...sharedProps} {...getOverrideProps(LeafIconOverride)} />
         </LeafIconContainer>
       )}

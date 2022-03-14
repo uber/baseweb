@@ -6,14 +6,14 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {render} from '@testing-library/react';
+import { render } from '@testing-library/react';
 
 import StatefulContainer from '../stateful-container.js';
 
 describe('side-navigation stateful-container', () => {
   it('provides expected props to child fn', () => {
     const props = {
-      initialState: {activeItemId: '/'},
+      initialState: { activeItemId: '/' },
       onChange: jest.fn(),
       stateReducer: jest.fn(),
     };

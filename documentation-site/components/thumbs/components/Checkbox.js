@@ -18,10 +18,7 @@ export default function SvgCheckbox(props) {
         d="M73.567 71.293L72.274 70l-4.416 4.416-2.565-2.565L64 73.144l3.232 3.232.002-.002.625.626 5.708-5.707z"
         fill={props.colors[0]}
       />
-      <path
-        fill={props.colors[1]}
-        d="M90 67h57v12H90zM62 86h14v14H62zM90 87h80v12H90z"
-      />
+      <path fill={props.colors[1]} d="M90 67h57v12H90zM62 86h14v14H62zM90 87h80v12H90z" />
     </svg>
   );
 }

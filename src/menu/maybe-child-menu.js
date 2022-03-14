@@ -9,11 +9,11 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {NestedMenuContext} from './nested-menus.js';
-import {Popover} from '../popover/index.js';
-import type {OverrideT} from '../helpers/overrides.js';
-import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
-import type {ItemT} from './types.js';
+import { NestedMenuContext } from './nested-menus.js';
+import { Popover } from '../popover/index.js';
+import type { OverrideT } from '../helpers/overrides.js';
+import { getOverrides, mergeOverrides } from '../helpers/overrides.js';
+import type { ItemT } from './types.js';
 
 type PropsT = {
   children: React.Node,
@@ -37,11 +37,8 @@ export default function MaybeChildMenu(props: PropsT) {
   if (!ChildMenu) {
     return props.children;
   }
-  const {overrides = {}} = props;
-  const [PopoverOverride, popoverProps] = getOverrides(
-    overrides.ChildMenuPopover,
-    Popover,
-  );
+  const { overrides = {} } = props;
+  const [PopoverOverride, popoverProps] = getOverrides(overrides.ChildMenuPopover, Popover);
 
   return (
     <NestedMenuContext.Consumer>
@@ -76,7 +73,7 @@ export default function MaybeChildMenu(props: PropsT) {
                   },
                 },
               },
-              popoverProps.overrides,
+              popoverProps.overrides
             )}
           >
             {props.children}

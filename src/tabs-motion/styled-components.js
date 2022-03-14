@@ -7,22 +7,16 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-import {styled} from '../styles/index.js';
-import {ORIENTATION, FILL} from './constants.js';
-import {
-  isHorizontal,
-  isVertical,
-  isRTL,
-  isIntrinsic,
-  isFixed,
-} from './utils.js';
+import { styled } from '../styles/index.js';
+import { ORIENTATION, FILL } from './constants.js';
+import { isHorizontal, isVertical, isRTL, isIntrinsic, isFixed } from './utils.js';
 
-import type {StyleObject} from 'styletron-standard';
-import type {OrientationT, FillT} from './types.js';
+import type { StyleObject } from 'styletron-standard';
+import type { OrientationT, FillT } from './types.js';
 
-export const StyledRoot = styled<{$orientation?: OrientationT}>(
+export const StyledRoot = styled<{ $orientation?: OrientationT }>(
   'div',
-  ({$theme, $orientation = ORIENTATION.horizontal}) => {
+  ({ $theme, $orientation = ORIENTATION.horizontal }) => {
     const style: StyleObject = {
       // Creates a stacking context so we can use z-index on the TabHighlight
       // without affecting anything outside of this element.
@@ -32,48 +26,45 @@ export const StyledRoot = styled<{$orientation?: OrientationT}>(
       style.display = 'flex';
     }
     return style;
-  },
+  }
 );
 
 export const StyledTabList = styled<{
   $orientation?: OrientationT,
   $fill?: FillT,
-}>(
-  'div',
-  ({$theme, $fill = FILL.intrinsic, $orientation = ORIENTATION.horizontal}) => {
-    const style: StyleObject = {
-      position: 'relative',
-      display: 'flex',
-      flexWrap: 'nowrap',
-    };
-    if (isHorizontal($orientation)) {
-      style.flexDirection = 'row';
-      style.paddingBottom = '5px';
-      style.marginBottom = '-5px';
+}>('div', ({ $theme, $fill = FILL.intrinsic, $orientation = ORIENTATION.horizontal }) => {
+  const style: StyleObject = {
+    position: 'relative',
+    display: 'flex',
+    flexWrap: 'nowrap',
+  };
+  if (isHorizontal($orientation)) {
+    style.flexDirection = 'row';
+    style.paddingBottom = '5px';
+    style.marginBottom = '-5px';
+  } else {
+    style.flexDirection = 'column';
+    if (isRTL($theme.direction)) {
+      style.paddingLeft = '5px';
+      style.marginLeft = '-5px';
     } else {
-      style.flexDirection = 'column';
-      if (isRTL($theme.direction)) {
-        style.paddingLeft = '5px';
-        style.marginLeft = '-5px';
-      } else {
-        style.paddingRight = '5px';
-        style.marginRight = '-5px';
-      }
+      style.paddingRight = '5px';
+      style.marginRight = '-5px';
     }
-    if (isIntrinsic($fill)) {
-      style['::-webkit-scrollbar'] = {display: 'none'};
-      // $FlowFixMe: property missing in StyleObject
-      style['-ms-overflow-style'] = 'none';
-      style.scrollbarWidth = 'none';
-      if (isHorizontal($orientation)) {
-        style.overflowX = 'scroll';
-      } else {
-        style.overflowY = 'scroll';
-      }
+  }
+  if (isIntrinsic($fill)) {
+    style['::-webkit-scrollbar'] = { display: 'none' };
+    // $FlowFixMe: property missing in StyleObject
+    style['-ms-overflow-style'] = 'none';
+    style.scrollbarWidth = 'none';
+    if (isHorizontal($orientation)) {
+      style.overflowX = 'scroll';
+    } else {
+      style.overflowY = 'scroll';
     }
-    return style;
-  },
-);
+  }
+  return style;
+});
 
 export const StyledTab = styled<{
   $orientation?: OrientationT,
@@ -143,12 +134,12 @@ export const StyledTab = styled<{
       style.justifyContent = 'flex-end';
     }
     return style;
-  },
+  }
 );
 
-export const StyledArtworkContainer = styled<{$orientation?: OrientationT}>(
+export const StyledArtworkContainer = styled<{ $orientation?: OrientationT }>(
   'div',
-  ({$theme, $orientation = ORIENTATION.horizontal}) => {
+  ({ $theme, $orientation = ORIENTATION.horizontal }) => {
     const style: StyleObject = {
       display: 'flex',
     };
@@ -158,12 +149,12 @@ export const StyledArtworkContainer = styled<{$orientation?: OrientationT}>(
       style.marginRight = $theme.sizing.scale300;
     }
     return style;
-  },
+  }
 );
 
-export const StyledTabBorder = styled<{$orientation?: OrientationT}>(
+export const StyledTabBorder = styled<{ $orientation?: OrientationT }>(
   'div',
-  ({$theme, $orientation = ORIENTATION.horizontal}) => {
+  ({ $theme, $orientation = ORIENTATION.horizontal }) => {
     const style: StyleObject = {
       backgroundColor: $theme.colors.borderOpaque,
       position: 'relative',
@@ -174,7 +165,7 @@ export const StyledTabBorder = styled<{$orientation?: OrientationT}>(
       style.width = '5px';
     }
     return style;
-  },
+  }
 );
 
 export const StyledTabHighlight = styled<{
@@ -218,22 +209,19 @@ export const StyledTabHighlight = styled<{
       style.transitionTimingFunction = $theme.animation.easeInOutQuinticCurve;
     }
     return style;
-  },
+  }
 );
 
-export const StyledTabPanel = styled<{$pad: boolean}>(
-  'div',
-  ({$theme, $pad = true}) => {
-    const style: StyleObject = {
-      flexGrow: 1, // only used in vertical orientation
-      outline: 'none',
-    };
-    if ($pad) {
-      style.paddingTop = $theme.sizing.scale600;
-      style.paddingRight = $theme.sizing.scale600;
-      style.paddingBottom = $theme.sizing.scale600;
-      style.paddingLeft = $theme.sizing.scale600;
-    }
-    return style;
-  },
-);
+export const StyledTabPanel = styled<{ $pad: boolean }>('div', ({ $theme, $pad = true }) => {
+  const style: StyleObject = {
+    flexGrow: 1, // only used in vertical orientation
+    outline: 'none',
+  };
+  if ($pad) {
+    style.paddingTop = $theme.sizing.scale600;
+    style.paddingRight = $theme.sizing.scale600;
+    style.paddingBottom = $theme.sizing.scale600;
+    style.paddingLeft = $theme.sizing.scale600;
+  }
+  return style;
+});

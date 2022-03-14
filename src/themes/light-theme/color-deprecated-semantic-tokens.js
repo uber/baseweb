@@ -6,12 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import colorTokens from './color-tokens.js';
-import type {ColorTokensT, DeprecatedSemanticColorTokensT} from '../types.js';
+import type { ColorTokensT, DeprecatedSemanticColorTokensT } from '../types.js';
 
 /* ---- DEPRECATED ---- */
-export default (
-  themePrimitives: ColorTokensT = colorTokens,
-): DeprecatedSemanticColorTokensT => ({
+export default (themePrimitives: ColorTokensT = colorTokens): DeprecatedSemanticColorTokensT => ({
   // TODO(#2318) Remove Legacy Semantic Colors values in the next v11 major
   // since it's not used in the component specific tokens
   // and we ship semantic tokens separately

@@ -5,10 +5,10 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import {styled} from '../styles/index.js';
+import { styled } from '../styles/index.js';
 import getDayStateCode from './utils/day-state.js';
-import type {SharedStylePropsT, CalendarPropsT} from './types.js';
-import {ORIENTATION, DENSITY} from './constants.js';
+import type { SharedStylePropsT, CalendarPropsT } from './types.js';
+import { ORIENTATION, DENSITY } from './constants.js';
 
 /**
  * Main component container element
@@ -17,27 +17,25 @@ export const StyledInputWrapper = styled<{
   ...SharedStylePropsT,
   $separateRangeInputs: boolean,
 }>('div', (props) => {
-  const {$separateRangeInputs} = props;
+  const { $separateRangeInputs } = props;
 
   return {
     width: '100%',
-    ...($separateRangeInputs
-      ? {display: 'flex', justifyContent: 'center'}
-      : {}),
+    ...($separateRangeInputs ? { display: 'flex', justifyContent: 'center' } : {}),
   };
 });
 
-export const StyledInputLabel = styled<{}>('div', ({$theme}) => ({
+export const StyledInputLabel = styled<{}>('div', ({ $theme }) => ({
   ...$theme.typography.LabelMedium,
   marginBottom: $theme.sizing.scale300,
 }));
 
-export const StyledStartDate = styled<{}>('div', ({$theme}) => ({
+export const StyledStartDate = styled<{}>('div', ({ $theme }) => ({
   width: '100%',
   marginRight: $theme.sizing.scale300,
 }));
 
-export const StyledEndDate = styled<{}>('div', ({$theme}) => ({
+export const StyledEndDate = styled<{}>('div', ({ $theme }) => ({
   width: '100%',
 }));
 
@@ -46,7 +44,7 @@ export const StyledEndDate = styled<{}>('div', ({$theme}) => ({
  */
 export const StyledRoot = styled<SharedStylePropsT>('div', (props) => {
   const {
-    $theme: {typography, colors, borders},
+    $theme: { typography, colors, borders },
   } = props;
   return {
     ...typography.font200,
@@ -64,75 +62,61 @@ export const StyledRoot = styled<SharedStylePropsT>('div', (props) => {
 export const StyledMonthContainer = styled<{
   $orientation: $PropertyType<CalendarPropsT<Date>, 'orientation'>,
 }>('div', (props) => {
-  const {$orientation} = props;
+  const { $orientation } = props;
   return {
     display: 'flex',
     flexDirection: $orientation === ORIENTATION.vertical ? 'column' : 'row',
   };
 });
 
-export const StyledCalendarContainer = styled<SharedStylePropsT>(
-  'div',
-  (props) => {
-    const {
-      $theme: {sizing},
-      $density,
-    } = props;
-    return {
-      paddingTop: sizing.scale300,
-      paddingBottom:
-        $density === DENSITY.high ? sizing.scale400 : sizing.scale300,
-      paddingLeft: sizing.scale500,
-      paddingRight: sizing.scale500,
-    };
-  },
-);
+export const StyledCalendarContainer = styled<SharedStylePropsT>('div', (props) => {
+  const {
+    $theme: { sizing },
+    $density,
+  } = props;
+  return {
+    paddingTop: sizing.scale300,
+    paddingBottom: $density === DENSITY.high ? sizing.scale400 : sizing.scale300,
+    paddingLeft: sizing.scale500,
+    paddingRight: sizing.scale500,
+  };
+});
 
-export const StyledSelectorContainer = styled<SharedStylePropsT>(
-  'div',
-  ({$theme}) => {
-    const textAlign = $theme.direction === 'rtl' ? 'right' : 'left';
-    return {
-      marginBottom: $theme.sizing.scale600,
-      paddingLeft: $theme.sizing.scale600,
-      paddingRight: $theme.sizing.scale600,
-      textAlign,
-    };
-  },
-);
+export const StyledSelectorContainer = styled<SharedStylePropsT>('div', ({ $theme }) => {
+  const textAlign = $theme.direction === 'rtl' ? 'right' : 'left';
+  return {
+    marginBottom: $theme.sizing.scale600,
+    paddingLeft: $theme.sizing.scale600,
+    paddingRight: $theme.sizing.scale600,
+    textAlign,
+  };
+});
 
-export const StyledCalendarHeader = styled<SharedStylePropsT>(
-  'div',
-  (props) => {
-    const {
-      $theme: {typography, borders, colors, sizing},
-      $density,
-    } = props;
-    return {
-      ...($density === DENSITY.high
-        ? typography.LabelMedium
-        : typography.LabelLarge),
-      color: colors.calendarHeaderForeground,
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      paddingTop: sizing.scale600,
-      paddingBottom: sizing.scale300,
-      paddingLeft: sizing.scale600,
-      paddingRight: sizing.scale600,
-      backgroundColor: colors.calendarHeaderBackground,
-      borderTopLeftRadius: borders.surfaceBorderRadius,
-      borderTopRightRadius: borders.surfaceBorderRadius,
-      borderBottomRightRadius: 0,
-      borderBottomLeftRadius: 0,
-      // account for the left/right arrow heights
-      minHeight:
-        $density === DENSITY.high
-          ? `calc(${sizing.scale800} + ${sizing.scale0})`
-          : sizing.scale950,
-    };
-  },
-);
+export const StyledCalendarHeader = styled<SharedStylePropsT>('div', (props) => {
+  const {
+    $theme: { typography, borders, colors, sizing },
+    $density,
+  } = props;
+  return {
+    ...($density === DENSITY.high ? typography.LabelMedium : typography.LabelLarge),
+    color: colors.calendarHeaderForeground,
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingTop: sizing.scale600,
+    paddingBottom: sizing.scale300,
+    paddingLeft: sizing.scale600,
+    paddingRight: sizing.scale600,
+    backgroundColor: colors.calendarHeaderBackground,
+    borderTopLeftRadius: borders.surfaceBorderRadius,
+    borderTopRightRadius: borders.surfaceBorderRadius,
+    borderBottomRightRadius: 0,
+    borderBottomLeftRadius: 0,
+    // account for the left/right arrow heights
+    minHeight:
+      $density === DENSITY.high ? `calc(${sizing.scale800} + ${sizing.scale0})` : sizing.scale950,
+  };
+});
 
 export const StyledMonthHeader = styled<SharedStylePropsT>('div', (props) => {
   return {
@@ -142,49 +126,40 @@ export const StyledMonthHeader = styled<SharedStylePropsT>('div', (props) => {
   };
 });
 
-export const StyledMonthYearSelectButton = styled<SharedStylePropsT>(
-  'button',
-  (props) => {
-    const {
-      $theme: {typography, colors},
-      $isFocusVisible,
-      $density,
-    } = props;
-    return {
-      ...($density === DENSITY.high
-        ? typography.LabelMedium
-        : typography.LabelLarge),
-      alignItems: 'center',
-      backgroundColor: 'transparent',
-      borderLeftWidth: 0,
-      borderRightWidth: 0,
-      borderTopWidth: 0,
-      borderBottomWidth: 0,
-      color: colors.calendarHeaderForeground,
-      cursor: 'pointer',
-      display: 'flex',
-      outline: 'none',
-      ':focus': {
-        boxShadow: $isFocusVisible ? `0 0 0 3px ${colors.accent}` : 'none',
-      },
-    };
-  },
-);
+export const StyledMonthYearSelectButton = styled<SharedStylePropsT>('button', (props) => {
+  const {
+    $theme: { typography, colors },
+    $isFocusVisible,
+    $density,
+  } = props;
+  return {
+    ...($density === DENSITY.high ? typography.LabelMedium : typography.LabelLarge),
+    alignItems: 'center',
+    backgroundColor: 'transparent',
+    borderLeftWidth: 0,
+    borderRightWidth: 0,
+    borderTopWidth: 0,
+    borderBottomWidth: 0,
+    color: colors.calendarHeaderForeground,
+    cursor: 'pointer',
+    display: 'flex',
+    outline: 'none',
+    ':focus': {
+      boxShadow: $isFocusVisible ? `0 0 0 3px ${colors.accent}` : 'none',
+    },
+  };
+});
 
-export const StyledMonthYearSelectIconContainer = styled<{}>(
-  'span',
-  (props) => {
-    const marginDirection: string =
-      props.$theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
-    return {
-      alignItems: 'center',
-      display: 'flex',
-      [marginDirection]: props.$theme.sizing.scale500,
-    };
-  },
-);
+export const StyledMonthYearSelectIconContainer = styled<{}>('span', (props) => {
+  const marginDirection: string = props.$theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
+  return {
+    alignItems: 'center',
+    display: 'flex',
+    [marginDirection]: props.$theme.sizing.scale500,
+  };
+});
 
-function getArrowBtnStyle({$theme, $disabled, $isFocusVisible}) {
+function getArrowBtnStyle({ $theme, $disabled, $isFocusVisible }) {
   return {
     boxSizing: 'border-box',
     display: 'flex',
@@ -207,35 +182,24 @@ function getArrowBtnStyle({$theme, $disabled, $isFocusVisible}) {
     ':focus': $disabled
       ? {}
       : {
-          boxShadow: $isFocusVisible
-            ? `0 0 0 3px ${$theme.colors.accent}`
-            : 'none',
+          boxShadow: $isFocusVisible ? `0 0 0 3px ${$theme.colors.accent}` : 'none',
         },
   };
 }
 
-export const StyledPrevButton = styled<SharedStylePropsT>(
-  'button',
-  getArrowBtnStyle,
-);
+export const StyledPrevButton = styled<SharedStylePropsT>('button', getArrowBtnStyle);
 
-export const StyledNextButton = styled<SharedStylePropsT>(
-  'button',
-  getArrowBtnStyle,
-);
+export const StyledNextButton = styled<SharedStylePropsT>('button', getArrowBtnStyle);
 
-export const StyledMonth = styled<SharedStylePropsT>(
-  'div',
-  (props: SharedStylePropsT) => {
-    return {
-      display: 'inline-block',
-    };
-  },
-);
+export const StyledMonth = styled<SharedStylePropsT>('div', (props: SharedStylePropsT) => {
+  return {
+    display: 'inline-block',
+  };
+});
 
 export const StyledWeek = styled<SharedStylePropsT>('div', (props) => {
   const {
-    $theme: {sizing},
+    $theme: { sizing },
   } = props;
   return {
     whiteSpace: 'nowrap',
@@ -245,10 +209,8 @@ export const StyledWeek = styled<SharedStylePropsT>('div', (props) => {
 });
 
 function generateDayStyles(defaultCode: string, defaultStyle) {
-  const codeForSM =
-    defaultCode.substr(0, 12) + '1' + defaultCode.substr(12 + 1);
-  const codeForEM =
-    defaultCode.substr(0, 13) + '1' + defaultCode.substr(13 + 1);
+  const codeForSM = defaultCode.substr(0, 12) + '1' + defaultCode.substr(12 + 1);
+  const codeForEM = defaultCode.substr(0, 13) + '1' + defaultCode.substr(13 + 1);
   return {
     [defaultCode]: defaultStyle,
     [codeForSM]: defaultStyle,
@@ -257,16 +219,16 @@ function generateDayStyles(defaultCode: string, defaultStyle) {
 }
 
 // flowlint-next-line unclear-type:off
-function getDayStyles(code, {colors}): any {
+function getDayStyles(code, { colors }): any {
   const undefinedDayStyle = {
-    ':before': {content: null},
-    ':after': {content: null},
+    ':before': { content: null },
+    ':after': { content: null },
   };
   let defaultDayStyle = undefinedDayStyle;
   const disabledDateStyle = {
     color: colors.calendarForegroundDisabled,
-    ':before': {content: null},
-    ':after': {content: null},
+    ':before': { content: null },
+    ':after': { content: null },
   };
   const outsideMonthDateStyle = {
     color: colors.calendarForegroundDisabled,
@@ -289,7 +251,7 @@ function getDayStyles(code, {colors}): any {
     },
   };
   const highlightedStyle = {
-    ':before': {content: null},
+    ':before': { content: null },
   };
   const CODE_DISABLED_INDEX = 1;
   if (code && code[CODE_DISABLED_INDEX] === '1') {
@@ -316,14 +278,14 @@ function getDayStyles(code, {colors}): any {
     {
       '010000000000000': {
         color: colors.calendarForegroundDisabled,
-        ':after': {content: null},
+        ':after': { content: null },
       },
     },
     // disabled highlighted date
     {
       '011000000000000': {
         color: colors.calendarForegroundDisabled,
-        ':after': {content: null},
+        ':after': { content: null },
       },
     },
     // date outside of the currently displayed month (when peekNextMonth is true)
@@ -340,16 +302,16 @@ function getDayStyles(code, {colors}): any {
     // when single date selected in a range
     generateDayStyles('101100000000000', {
       color: colors.calendarDayForegroundSelectedHighlighted,
-      ':before': {content: null},
+      ':before': { content: null },
     }),
     // range: selected start and end dates are the same
     generateDayStyles('100111100000000', {
       color: colors.calendarDayForegroundSelected,
-      ':before': {content: null},
+      ':before': { content: null },
     }),
     generateDayStyles('101111100000000', {
       color: colors.calendarDayForegroundSelectedHighlighted,
-      ':before': {content: null},
+      ':before': { content: null },
     }),
     // range: selected start date
     generateDayStyles('100111000000000', {
@@ -358,7 +320,7 @@ function getDayStyles(code, {colors}): any {
     // range: selected end date
     generateDayStyles('100110100000000', {
       color: colors.calendarDayForegroundSelected,
-      ':before': {left: null, right: '50%'},
+      ':before': { left: null, right: '50%' },
     }),
     // range: first selected date while a range is highlighted but no second date selected yet
     // highlighted range on the right from the selected
@@ -368,20 +330,20 @@ function getDayStyles(code, {colors}): any {
     // highlighted range on the left from the selected
     generateDayStyles('100100001001000', {
       color: colors.calendarDayForegroundSelected,
-      ':before': {left: null, right: '50%'},
+      ':before': { left: null, right: '50%' },
     }),
     // range: second date in a range that is highlighted but not selected
     generateDayStyles('101000001010000', {
-      ':before': {left: null, right: '50%'},
+      ':before': { left: null, right: '50%' },
     }),
-    {'101000001001000': {}},
-    {'101000001001100': {}},
-    {'101000001001010': {}},
+    { '101000001001000': {} },
+    { '101000001001100': {} },
+    { '101000001001010': {} },
     // range: pseudo-selected date
     generateDayStyles('100010010000000', {
       color: colors.calendarDayForegroundPseudoSelected,
-      ':before': {left: '0', width: '100%'},
-      ':after': {content: null},
+      ':before': { left: '0', width: '100%' },
+      ':after': { content: null },
     }),
     // range: pseudo-highlighted date (in a range where only one date is
     // selected and second date is highlighted)
@@ -414,12 +376,12 @@ function getDayStyles(code, {colors}): any {
     // highlighted end date in a range
     generateDayStyles('101110100000000', {
       color: colors.calendarDayForegroundSelectedHighlighted,
-      ':before': {left: null, right: '50%'},
+      ':before': { left: null, right: '50%' },
     }),
     // range: pseudo-selected date
     generateDayStyles('101010010000000', {
       color: colors.calendarDayForegroundPseudoSelectedHighlighted,
-      ':before': {left: '0', width: '100%'},
+      ':before': { left: '0', width: '100%' },
     }),
     // Range is true Date outside current month (when peekNextMonth is true)
     generateDayStyles('100000000000001', outsideMonthDateStyle),
@@ -428,7 +390,7 @@ function getDayStyles(code, {colors}): any {
     // peekNextMonth is true, date is outside month, start date is selected and range is highlighted is on left
     generateDayStyles('100000001001001', outsideMonthDateStyle),
     // peekNextMonth is true, date is outside month, range is selected
-    generateDayStyles('100010000000001', outsideMonthDateStyle),
+    generateDayStyles('100010000000001', outsideMonthDateStyle)
   );
   return dayStateStyle[code] || defaultDayStyle;
 }
@@ -446,7 +408,7 @@ export const StyledDay = styled<SharedStylePropsT>('div', (props) => {
     $outsideMonthWithinRange,
     $hasDateLabel,
     $density,
-    $theme: {colors, typography, sizing},
+    $theme: { colors, typography, sizing },
   } = props;
   const code = getDayStateCode(props);
 
@@ -466,13 +428,10 @@ export const StyledDay = styled<SharedStylePropsT>('div', (props) => {
   }
 
   return ({
-    ...($density === DENSITY.high
-      ? typography.ParagraphSmall
-      : typography.ParagraphMedium),
+    ...($density === DENSITY.high ? typography.ParagraphSmall : typography.ParagraphMedium),
     boxSizing: 'border-box',
     position: 'relative',
-    cursor:
-      $disabled || (!$peekNextMonth && $outsideMonth) ? 'default' : 'pointer',
+    cursor: $disabled || (!$peekNextMonth && $outsideMonth) ? 'default' : 'pointer',
     color: colors.calendarForeground,
     display: 'inline-block',
     width: $density === DENSITY.high ? '42px' : '50px',
@@ -511,11 +470,7 @@ export const StyledDay = styled<SharedStylePropsT>('div', (props) => {
         : $pseudoSelected && $isHighlighted
         ? colors.calendarDayBackgroundPseudoSelectedHighlighted
         : colors.calendarBackground,
-      height: $hasDateLabel
-        ? '100%'
-        : $density === DENSITY.high
-        ? '42px'
-        : '50px',
+      height: $hasDateLabel ? '100%' : $density === DENSITY.high ? '42px' : '50px',
       width: '100%',
       position: 'absolute',
       top: $hasDateLabel ? 0 : '-1px',
@@ -539,7 +494,7 @@ export const StyledDay = styled<SharedStylePropsT>('div', (props) => {
       borderBottomLeftRadius: $hasDateLabel ? sizing.scale800 : '100%',
       borderBottomRightRadius: $hasDateLabel ? sizing.scale800 : '100%',
       ...(getDayStyles(code, props.$theme)[':after'] || {}),
-      ...($outsideMonthWithinRange ? {content: null} : {}),
+      ...($outsideMonthWithinRange ? { content: null } : {}),
     },
     ...($range
       ? {
@@ -587,7 +542,7 @@ export const StyledDay = styled<SharedStylePropsT>('div', (props) => {
 
 export const StyledDayLabel = styled<SharedStylePropsT>('div', (props) => {
   const {
-    $theme: {typography, colors},
+    $theme: { typography, colors },
     $selected,
   } = props;
   return {
@@ -598,7 +553,7 @@ export const StyledDayLabel = styled<SharedStylePropsT>('div', (props) => {
 
 export const StyledWeekdayHeader = styled<SharedStylePropsT>('div', (props) => {
   const {
-    $theme: {typography, colors, sizing},
+    $theme: { typography, colors, sizing },
     $density,
   } = props;
   return ({

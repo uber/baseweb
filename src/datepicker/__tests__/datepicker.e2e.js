@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
+const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
 
 const selectors = {
   input: 'input',
@@ -38,10 +38,7 @@ describe('Datepicker', () => {
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
     await page.waitForSelector(selectors.calendar);
-    const calendarCount = await page.$$eval(
-      selectors.calendar,
-      (calendar) => calendar.length,
-    );
+    const calendarCount = await page.$$eval(selectors.calendar, (calendar) => calendar.length);
     expect(calendarCount).toEqual(1);
   });
 
@@ -50,10 +47,7 @@ describe('Datepicker', () => {
     await page.waitForSelector(selectors.input);
     await page.focus(selectors.input);
     await page.waitForSelector(selectors.calendar);
-    const calendarCount = await page.$$eval(
-      selectors.calendar,
-      (calendar) => calendar.length,
-    );
+    const calendarCount = await page.$$eval(selectors.calendar, (calendar) => calendar.length);
     expect(calendarCount).toEqual(1);
   });
 
@@ -78,10 +72,7 @@ describe('Datepicker', () => {
       hidden: true,
     });
 
-    const selectedValue = await page.$eval(
-      selectors.input,
-      (input) => input.value,
-    );
+    const selectedValue = await page.$eval(selectors.input, (input) => input.value);
     expect(selectedValue).toBe('2019/03/10');
   });
 
@@ -90,10 +81,7 @@ describe('Datepicker', () => {
     await page.waitForSelector(selectors.input);
     await page.click('button');
 
-    const selectedValue = await page.$eval(
-      selectors.input,
-      (input) => input.value,
-    );
+    const selectedValue = await page.$eval(selectors.input, (input) => input.value);
     expect(selectedValue).toBe('2019/07/01');
   });
 
@@ -111,7 +99,7 @@ describe('Datepicker', () => {
     await page.keyboard.press('2');
 
     // make sure march is gone
-    await page.waitForSelector(selectors.day, {hidden: true});
+    await page.waitForSelector(selectors.day, { hidden: true });
     // and make sure july is now visible
     await page.waitForSelector(selectors.day6);
   });
@@ -150,7 +138,7 @@ describe('Datepicker', () => {
     await page.keyboard.press('ArrowDown');
     await page.waitForSelector(selectors.monthYearSelectMenu);
     await page.keyboard.press('Escape');
-    await page.waitForSelector(selectors.monthYearSelectMenu, {hidden: true});
+    await page.waitForSelector(selectors.monthYearSelectMenu, { hidden: true });
     await page.waitForSelector(selectors.calendar);
   });
 });

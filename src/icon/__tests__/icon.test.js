@@ -8,8 +8,8 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env browser */
 
 import * as React from 'react';
-import {render} from '@testing-library/react';
-import {Icon} from '../index.js';
+import { render } from '@testing-library/react';
+import { Icon } from '../index.js';
 import * as Icons from '../icon-exports.js';
 
 describe('Icon', () => {
@@ -17,14 +17,14 @@ describe('Icon', () => {
     const viewBox = '0 0 23px 23px';
     const title = 'Test';
 
-    const {container} = render(
+    const { container } = render(
       <Icon viewBox={viewBox} title={title}>
         <path
           fillRule="evenodd"
           clipRule="evenodd"
           d="M6 12C6 11.4477 6.44772 11 7 11H17C17.5523 11 18 11.4477 18 12C18 12.5523 17.5523 13 17 13H7C6.44772 13 6 12.5523 6 12Z"
         />
-      </Icon>,
+      </Icon>
     );
     const svgElement = container.querySelector('svg');
     expect(svgElement?.getAttribute('viewBox')).toBe(viewBox);
@@ -44,7 +44,7 @@ describe('Icon', () => {
           clipRule="evenodd"
           d="M6 12C6 11.4477 6.44772 11 7 11H17C17.5523 11 18 11.4477 18 12C18 12.5523 17.5523 13 17 13H7C6.44772 13 6 12.5523 6 12Z"
         />
-      </Icon>,
+      </Icon>
     );
     // $FlowFixMe
     expect(console.error.mock.calls.length).toBe(0);
@@ -56,7 +56,7 @@ describe('Icon', () => {
   Object.keys(Icons).forEach((key) => {
     const Component = Icons[key];
     test(`renders ${key} icon`, () => {
-      const {container} = render(<Component />);
+      const { container } = render(<Component />);
       const svgElement = container.querySelector('svg');
       expect(svgElement).not.toBeNull();
     });

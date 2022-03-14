@@ -7,10 +7,10 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-disable flowtype/generic-spacing */
 import * as React from 'react';
-import type {OverrideT} from '../helpers/overrides.js';
+import type { OverrideT } from '../helpers/overrides.js';
 
-import type {OptionT} from '../select/index.js';
-import type {SizeT} from '../input/types.js';
+import type { OptionT } from '../select/index.js';
+import type { SizeT } from '../input/types.js';
 
 export type TimezonePickerStateT = {
   /** List of timezones from the IANA database. */
@@ -45,7 +45,7 @@ export type TimezonePickerPropsT = {
   mapLabels?: (OptionT) => React.Node,
   /** Callback for when the timezone selection changes. */
   onChange?: (value: ?TimezoneT) => mixed,
-  overrides?: {Select?: OverrideT},
+  overrides?: { Select?: OverrideT },
   /**
    * Optional value that can be provided to fully control the component. If not provided,
    * TimezonePicker will manage state internally.

@@ -7,11 +7,11 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-import {finaliseCSB, sendFilesToCSB} from 'codesandboxer';
+import { finaliseCSB, sendFilesToCSB } from 'codesandboxer';
 //$FlowFixMe
 import packageJson from '../../package.json';
 // $FlowFixMe - because this is a .ts file
-import {trackEvent} from '../helpers/ga';
+import { trackEvent } from '../helpers/ga';
 
 const html = `<div id="root" />`;
 const index = `
@@ -44,16 +44,16 @@ ReactDOM.render(
 export async function deploy(
   title /*: string */,
   source /*: string */,
-  additionalDependencies /*: ?{[string]: string} */,
+  additionalDependencies /*: ?{[string]: string} */
 ) /*: Promise<?string> */ {
   try {
-    const {devDependencies} = packageJson;
-    const {parameters} = finaliseCSB(
+    const { devDependencies } = packageJson;
+    const { parameters } = finaliseCSB(
       {
         files: {
-          'public/index.html': {content: html},
-          'src/index.js': {content: index},
-          'src/example.js': {content: source},
+          'public/index.html': { content: html },
+          'src/index.js': { content: index },
+          'src/example.js': { content: source },
         },
         //$FlowExpectedError[cannot-spread-indexer]
         deps: {
@@ -69,9 +69,9 @@ export async function deploy(
       {
         fileName: 'src/example.js',
         name: title,
-      },
+      }
     );
-    const {sandboxId} = await sendFilesToCSB(parameters);
+    const { sandboxId } = await sendFilesToCSB(parameters);
     trackEvent('codesandbox_deployed', title);
     return `https://codesandbox.io/s/${sandboxId}?module=src/example.js`;
   } catch (error) {

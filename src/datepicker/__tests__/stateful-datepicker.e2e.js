@@ -8,14 +8,13 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
+const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
 
 const selectors = {
   input: 'input',
   calendar: '[data-baseweb="calendar"]',
   day: '[aria-label="Choose Sunday, March 10th 2019. It\'s available."]',
-  selected:
-    '[aria-label="Choose Tuesday, February 19th 2019. It\'s available."]',
+  selected: '[aria-label="Choose Tuesday, February 19th 2019. It\'s available."]',
   leftArrow: '[aria-label="Previous month."]',
   rightArrow: '[aria-label="Next month."]',
   monthYearSelectButton: '[data-id="monthYearSelectButton"]',
@@ -47,10 +46,7 @@ describe('Stateful Datepicker', () => {
     await page.click(selectors.input);
     await page.waitForSelector(selectors.calendar);
     await page.waitForSelector(selectors.leftArrow);
-    let value = await page.$eval(
-      selectors.leftArrow,
-      (select) => select.disabled,
-    );
+    let value = await page.$eval(selectors.leftArrow, (select) => select.disabled);
     expect(value).toBe(false);
     await page.click(selectors.leftArrow);
     await page.waitForSelector(selectors.day, {
@@ -86,7 +82,7 @@ describe('Stateful Datepicker', () => {
       (items) => {
         // Return the first and last month year option
         return [items[0].textContent, items[items.length - 1].textContent];
-      },
+      }
     );
 
     expect(monthOptions[0]).toEqual('February');

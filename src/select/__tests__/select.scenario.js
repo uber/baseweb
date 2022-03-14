@@ -8,15 +8,15 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {StatefulSelect, SingleSelect, MultiSelect} from '../index.js';
+import { StatefulSelect, SingleSelect, MultiSelect } from '../index.js';
 
 const options = [
-  {id: 'AliceBlue', color: '#F0F8FF'},
-  {id: 'AntiqueWhite', color: '#FAEBD7'},
-  {id: 'Aqua', color: '#00FFFF'},
-  {id: 'Aquamarine', color: '#7FFFD4'},
-  {id: 'Azure', color: '#F0FFFF'},
-  {id: 'Beige', color: '#F5F5DC'},
+  { id: 'AliceBlue', color: '#F0F8FF' },
+  { id: 'AntiqueWhite', color: '#FAEBD7' },
+  { id: 'Aqua', color: '#00FFFF' },
+  { id: 'Aquamarine', color: '#7FFFD4' },
+  { id: 'Azure', color: '#F0FFFF' },
+  { id: 'Beige', color: '#F5F5DC' },
 ];
 
 export function Scenario() {
@@ -25,7 +25,7 @@ export function Scenario() {
       <StatefulSelect
         aria-label="Select a color"
         options={options}
-        overrides={{ValueContainer: {props: {'data-id': 'selected'}}}}
+        overrides={{ ValueContainer: { props: { 'data-id': 'selected' } } }}
         labelKey="id"
         valueKey="color"
       />
@@ -36,7 +36,7 @@ export function Scenario() {
         options={options}
         labelKey="id"
         valueKey="color"
-        value={[{color: '#00FFFF'}]}
+        value={[{ color: '#00FFFF' }]}
       />
 
       <br />
@@ -45,7 +45,7 @@ export function Scenario() {
         options={options}
         labelKey="id"
         valueKey="color"
-        value={[{color: '#00FFFF'}]}
+        value={[{ color: '#00FFFF' }]}
       />
     </>
   );

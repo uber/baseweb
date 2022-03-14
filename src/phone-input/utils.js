@@ -18,13 +18,11 @@ export function iso2FlagEmoji(iso: string) {
       console.warn(
         `iso argument must be an ISO 3166-1 alpha-2 string, but got '${
           type === 'string' ? iso : type
-        }' instead.`,
+        }' instead.`
       );
     }
     return;
   }
-  const chars = Array.from(iso.toUpperCase()).map(
-    (char) => char.charCodeAt(0) + OFFSET,
-  );
+  const chars = Array.from(iso.toUpperCase()).map((char) => char.charCodeAt(0) + OFFSET);
   return String.fromCodePoint(...chars);
 }

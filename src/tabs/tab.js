@@ -6,16 +6,13 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {getOverrides} from '../helpers/overrides.js';
-import {Tab as StyledTab} from './styled-components.js';
-import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
+import { getOverrides } from '../helpers/overrides.js';
+import { Tab as StyledTab } from './styled-components.js';
+import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible.js';
 
-import type {TabPropsT, SharedStylePropsArgT} from './types.js';
+import type { TabPropsT, SharedStylePropsArgT } from './types.js';
 
-class TabComponent extends React.Component<
-  TabPropsT,
-  {isFocusVisible: boolean},
-> {
+class TabComponent extends React.Component<TabPropsT, { isFocusVisible: boolean }> {
   static defaultProps = {
     disabled: false,
     expanded: false,
@@ -25,22 +22,22 @@ class TabComponent extends React.Component<
     title: '',
   };
 
-  state = {isFocusVisible: false};
+  state = { isFocusVisible: false };
 
   handleFocus = (event: SyntheticEvent<>) => {
     if (isFocusVisible(event)) {
-      this.setState({isFocusVisible: true});
+      this.setState({ isFocusVisible: true });
     }
   };
 
   handleBlur = (event: SyntheticEvent<>) => {
     if (this.state.isFocusVisible !== false) {
-      this.setState({isFocusVisible: false});
+      this.setState({ isFocusVisible: false });
     }
   };
 
   onClick = (e: Event) => {
-    const {disabled, onSelect, onClick} = this.props;
+    const { disabled, onSelect, onClick } = this.props;
     if (disabled) {
       return;
     }
@@ -50,7 +47,7 @@ class TabComponent extends React.Component<
   };
 
   onKeyDown = (e: KeyboardEvent) => {
-    const {disabled, onSelect, onKeyDown} = this.props;
+    const { disabled, onSelect, onKeyDown } = this.props;
     if (disabled) {
       return;
     }
@@ -64,7 +61,7 @@ class TabComponent extends React.Component<
   };
 
   getSharedProps(): SharedStylePropsArgT {
-    const {disabled, active, $orientation} = this.props;
+    const { disabled, active, $orientation } = this.props;
     return {
       $disabled: disabled,
       $active: active,
@@ -73,9 +70,9 @@ class TabComponent extends React.Component<
   }
 
   render() {
-    const {active, disabled, id, overrides = {}, children} = this.props;
+    const { active, disabled, id, overrides = {}, children } = this.props;
     const sharedProps = this.getSharedProps();
-    const {Tab: TabOverride} = overrides;
+    const { Tab: TabOverride } = overrides;
     const [Tab, tabProps] = getOverrides(TabOverride, StyledTab);
 
     return (

@@ -7,16 +7,13 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {Notification, KIND} from 'baseui/notification';
-import {StyledLink} from 'baseui/link';
+import { Notification, KIND } from 'baseui/notification';
+import { StyledLink } from 'baseui/link';
 import Link from 'next/link';
 
 export default function UnstableWarning() {
   return (
-    <Notification
-      overrides={{Body: {style: {width: 'auto'}}}}
-      kind={KIND.positive}
-    >
+    <Notification overrides={{ Body: { style: { width: 'auto' } } }} kind={KIND.positive}>
       <>
         View the{' '}
         <Link href="/guides/tables">

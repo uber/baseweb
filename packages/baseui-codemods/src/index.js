@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-export {default as styledV7FlowFixMe} from './styled-flowfixme.js';
-export {default as styledV7TypeArguments} from './styled-v7-type-arguments.js';
-export {default as styledV8ToThemedStyled} from './styled-v8-themedStyled.js';
-export {default as v9ThemeScale} from './v9-theme-scale.js';
+export { default as styledV7FlowFixMe } from './styled-flowfixme.js';
+export { default as styledV7TypeArguments } from './styled-v7-type-arguments.js';
+export { default as styledV8ToThemedStyled } from './styled-v8-themedStyled.js';
+export { default as v9ThemeScale } from './v9-theme-scale.js';

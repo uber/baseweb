@@ -21,7 +21,7 @@ async function main() {
   try {
     const tmpDir = path.join(__dirname, 'tmp');
     // $FlowFixMe - flow is not aware of recursive option
-    await fs.promises.rmdir(tmpDir, {recursive: true});
+    await fs.promises.rmdir(tmpDir, { recursive: true });
     await fs.promises.mkdir(tmpDir);
 
     const src = `https://www.iana.org/time-zones/repository/tzdata-latest.tar.gz`;
@@ -57,7 +57,7 @@ async function main() {
     await fs.promises.writeFile(tzdataPath, file.join('\n'));
 
     // $FlowFixMe - flow is not aware of recursive option
-    await fs.promises.rmdir(tmpDir, {recursive: true});
+    await fs.promises.rmdir(tmpDir, { recursive: true });
   } catch (error) {
     console.error(error);
   }

@@ -7,20 +7,20 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {FloatingMarker} from '../index.js';
+import { FloatingMarker } from '../index.js';
 import {
   FLOATING_MARKER_ANCHOR_POSITIONS,
   FLOATING_MARKER_SIZES,
   FLOATING_MARKER_ANCHOR_TYPES,
 } from '../constants.js';
 import TileGrid from './tile-grid.js';
-import {Checkbox, LABEL_PLACEMENT} from '../../checkbox/index.js';
-import {Input} from '../../input/index.js';
+import { Checkbox, LABEL_PLACEMENT } from '../../checkbox/index.js';
+import { Input } from '../../input/index.js';
 import Upload from '../../icon/upload.js';
 import Search from '../../icon/search.js';
-import {Select} from '../../select/index.js';
+import { Select } from '../../select/index.js';
 
-import type {FloatingMarkerSizeT, AnchorPositionsT} from '../types.js';
+import type { FloatingMarkerSizeT, AnchorPositionsT } from '../types.js';
 
 const floatingMarkerAnchorTypes = Object.keys(FLOATING_MARKER_ANCHOR_TYPES)
   .map((key) => FLOATING_MARKER_ANCHOR_TYPES[key])
@@ -33,8 +33,9 @@ export function Scenario() {
   const [label, setLabel] = React.useState('Uber HQ');
   const [startEnhancer, setStartEnhancer] = React.useState(true);
   const [endEnhancer, setEndEnhancer] = React.useState(false);
-  const [floatingMarkerAnchorType, setFloatingMarkerAnchorType] =
-    React.useState([floatingMarkerAnchorTypes[0]]);
+  const [floatingMarkerAnchorType, setFloatingMarkerAnchorType] = React.useState([
+    floatingMarkerAnchorTypes[0],
+  ]);
 
   const markers = [];
   Object.keys(FLOATING_MARKER_SIZES)
@@ -55,14 +56,14 @@ export function Scenario() {
                 anchorType={floatingMarkerAnchorType[0].id}
                 startEnhancer={
                   startEnhancer
-                    ? function renderEnhancer({size}) {
+                    ? function renderEnhancer({ size }) {
                         return <Upload size={size} />;
                       }
                     : undefined
                 }
                 endEnhancer={
                   endEnhancer
-                    ? function renderEnhancer({size}) {
+                    ? function renderEnhancer({ size }) {
                         return <Search size={size} />;
                       }
                     : undefined

@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 'use strict';
 
-const {RuleTester} = require('eslint');
+const { RuleTester } = require('eslint');
 const rule = require('../src/no-component-classname.js');
 const MESSAGES = require('../src/messages.js');
 
@@ -42,7 +42,7 @@ const tests = {
           return <Block className={css({marginRight: '0px'})} />
         }
       `,
-      errors: [{messageId: MESSAGES.noClassName.id}],
+      errors: [{ messageId: MESSAGES.noClassName.id }],
     },
     // Button - className
     {
@@ -53,7 +53,7 @@ const tests = {
           return <Button className={css({marginRight: '0px'})} />
         }
       `,
-      errors: [{messageId: MESSAGES.noClassName.id}],
+      errors: [{ messageId: MESSAGES.noClassName.id }],
     },
     // Accordion - className
     {
@@ -64,7 +64,7 @@ const tests = {
           return <Accordion className={css({marginRight: '0px'})} />
         }
       `,
-      errors: [{messageId: MESSAGES.noClassName.id}],
+      errors: [{ messageId: MESSAGES.noClassName.id }],
     },
     // Datepicker - className
     {
@@ -75,7 +75,7 @@ const tests = {
           return <Datepicker className={css({marginRight: '0px'})} />
         }
       `,
-      errors: [{messageId: MESSAGES.noClassName.id}],
+      errors: [{ messageId: MESSAGES.noClassName.id }],
     },
     // Block - className
     {
@@ -86,7 +86,7 @@ const tests = {
           return <ParagraphSmall className={css({marginRight: '0px'})} />
         }
       `,
-      errors: [{messageId: MESSAGES.noClassName.id}],
+      errors: [{ messageId: MESSAGES.noClassName.id }],
     },
   ],
 };

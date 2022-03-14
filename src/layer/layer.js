@@ -8,11 +8,11 @@ LICENSE file in the root directory of this source tree.
 /* global document */
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import {styled} from '../styles/index.js';
-import {LayersContext, Consumer} from './layers-manager.js';
-import type {LayerPropsT, LayerComponentPropsT, LayerStateT} from './types.js';
+import { styled } from '../styles/index.js';
+import { LayersContext, Consumer } from './layers-manager.js';
+import type { LayerPropsT, LayerComponentPropsT, LayerStateT } from './types.js';
 
-const Container = styled<{$zIndex?: number}>('div', ({$zIndex}) => ({
+const Container = styled<{ $zIndex?: number }>('div', ({ $zIndex }) => ({
   position: 'absolute',
   top: 0,
   left: 0,
@@ -20,13 +20,10 @@ const Container = styled<{$zIndex?: number}>('div', ({$zIndex}) => ({
   zIndex: $zIndex || null,
 }));
 
-class LayerComponent extends React.Component<
-  LayerComponentPropsT,
-  LayerStateT,
-> {
+class LayerComponent extends React.Component<LayerComponentPropsT, LayerStateT> {
   static contextType: typeof LayersContext = LayersContext;
 
-  state = {container: null};
+  state = { container: null };
 
   componentDidMount() {
     this.context.addEscapeHandler(this.onEscape);
@@ -34,7 +31,7 @@ class LayerComponent extends React.Component<
       this.context.addDocClickHandler(this.onDocumentClick);
     }
 
-    const {onMount, mountNode, host: layersManagerHost} = this.props;
+    const { onMount, mountNode, host: layersManagerHost } = this.props;
     if (mountNode) {
       onMount && onMount();
       return;
@@ -46,7 +43,7 @@ class LayerComponent extends React.Component<
     if (__DEV__) {
       if (!hasLayersManager) {
         console.warn(
-          '`LayersManager` was not found. This occurs if you are attempting to use a component requiring `Layer` without using the `BaseProvider` at the root of your app. Please visit https://baseweb.design/components/base-provider/ for more information',
+          '`LayersManager` was not found. This occurs if you are attempting to use a component requiring `Layer` without using the `BaseProvider` at the root of your app. Please visit https://baseweb.design/components/base-provider/ for more information'
         );
       }
     }
@@ -57,7 +54,7 @@ class LayerComponent extends React.Component<
   }
 
   componentDidUpdate(prevProps) {
-    const {host, mountNode} = this.props;
+    const { host, mountNode } = this.props;
     if (mountNode) {
       return;
     }
@@ -105,7 +102,7 @@ class LayerComponent extends React.Component<
   };
 
   addContainer(host) {
-    const {index, mountNode, onMount} = this.props;
+    const { index, mountNode, onMount } = this.props;
     // Do nothing if mountNode is provided
     if (mountNode) {
       return;
@@ -114,24 +111,18 @@ class LayerComponent extends React.Component<
       const container = host.ownerDocument.createElement('div');
       // `host` is an DOM node, but not a React component
       const sibling = typeof index === 'number' ? host.children[index] : null;
-      sibling
-        ? host.insertBefore(container, sibling)
-        : host.appendChild(container);
-      this.setState({container}, () => {
+      sibling ? host.insertBefore(container, sibling) : host.appendChild(container);
+      this.setState({ container }, () => {
         onMount && onMount();
       });
     }
   }
 
   render() {
-    const {container} = this.state;
-    const {children, mountNode, zIndex} = this.props;
+    const { container } = this.state;
+    const { children, mountNode, zIndex } = this.props;
     // Only adding an additional wrapper when a layer has z-index to be set
-    const childrenToRender = zIndex ? (
-      <Container $zIndex={zIndex}>{children}</Container>
-    ) : (
-      children
-    );
+    const childrenToRender = zIndex ? <Container $zIndex={zIndex}>{children}</Container> : children;
     if (__BROWSER__) {
       const portalContainer = mountNode || container;
       if (portalContainer) {
@@ -146,9 +137,7 @@ class LayerComponent extends React.Component<
 export default function Layer(props: LayerPropsT) {
   return (
     <Consumer>
-      {({host, zIndex}) => (
-        <LayerComponent {...props} host={host} zIndex={zIndex} />
-      )}
+      {({ host, zIndex }) => <LayerComponent {...props} host={host} zIndex={zIndex} />}
     </Consumer>
   );
 }

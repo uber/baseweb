@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
-import {PaymentCard} from '../index.js';
+import { PaymentCard } from '../index.js';
 
 export function Scenario() {
   return (

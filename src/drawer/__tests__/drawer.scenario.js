@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {Button} from '../../button/index.js';
-import {Drawer, SIZE, ANCHOR} from '../index.js';
+import { Button } from '../../button/index.js';
+import { Drawer, SIZE, ANCHOR } from '../index.js';
 
 export function Scenario() {
   const [isOpen, setIsOpen] = React.useState(true);
@@ -32,11 +32,11 @@ export function Scenario() {
         size={SIZE.default}
         anchor={ANCHOR.right}
         overrides={{
-          DrawerContainer: {props: {'data-e2e': 'drawer-container'}},
+          DrawerContainer: { props: { 'data-e2e': 'drawer-container' } },
         }}
       >
-        Proin ut dui sed metus pharetra hend rerit vel non mi. Nulla ornare
-        faucibus ex, non facilisis nisl. Maecenas aliquet mauris ut tempus.
+        Proin ut dui sed metus pharetra hend rerit vel non mi. Nulla ornare faucibus ex, non
+        facilisis nisl. Maecenas aliquet mauris ut tempus.
       </Drawer>
     </React.Fragment>
   );

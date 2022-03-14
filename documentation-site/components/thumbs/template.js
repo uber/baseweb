@@ -21,8 +21,8 @@ LICENSE file in the root directory of this source tree.
 `;
 
 function template(api, opts, values) {
-  const {template} = api;
-  const {imports, componentName, props, jsx} = values;
+  const { template } = api;
+  const { imports, componentName, props, jsx } = values;
   return template.ast`
 ${header}
 ${imports}

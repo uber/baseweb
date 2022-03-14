@@ -5,20 +5,20 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import {styled} from '../styles/index.js';
-import type {SharedStylePropsArgT} from './types.js';
+import { styled } from '../styles/index.js';
+import type { SharedStylePropsArgT } from './types.js';
 
 /**
  * Main component container element
  */
-export const Root = styled<SharedStylePropsArgT>('div', ({$theme}) => {
+export const Root = styled<SharedStylePropsArgT>('div', ({ $theme }) => {
   return {
     width: '100%',
   };
 });
 Root.displayName = 'StyledRoot';
 
-export const List = styled<SharedStylePropsArgT>('ul', ({$isDragged}) => {
+export const List = styled<SharedStylePropsArgT>('ul', ({ $isDragged }) => {
   return ({
     paddingLeft: 0,
     cursor: $isDragged ? 'grabbing' : null,
@@ -29,7 +29,7 @@ List.displayName = 'StyledList';
 
 export const Item = styled<SharedStylePropsArgT>(
   'li',
-  ({$isDragged, $isSelected, $theme, $isFocusVisible}) => {
+  ({ $isDragged, $isSelected, $theme, $isFocusVisible }) => {
     return ({
       ':hover':
         !$isDragged && !$isSelected
@@ -75,22 +75,17 @@ export const Item = styled<SharedStylePropsArgT>(
       borderBottomStyle: 'solid',
       borderLeftStyle: 'solid',
       borderRightStyle: 'solid',
-      borderTopColor:
-        $isDragged || $isSelected ? $theme.colors.primary : 'transparent',
-      borderBottomColor:
-        $isDragged || $isSelected ? $theme.colors.primary : 'transparent',
-      borderLeftColor:
-        $isDragged || $isSelected ? $theme.colors.primary : 'transparent',
-      borderRightColor:
-        $isDragged || $isSelected ? $theme.colors.primary : 'transparent',
+      borderTopColor: $isDragged || $isSelected ? $theme.colors.primary : 'transparent',
+      borderBottomColor: $isDragged || $isSelected ? $theme.colors.primary : 'transparent',
+      borderLeftColor: $isDragged || $isSelected ? $theme.colors.primary : 'transparent',
+      borderRightColor: $isDragged || $isSelected ? $theme.colors.primary : 'transparent',
     }: {});
-  },
+  }
 );
 List.displayName = 'StyledItem';
 
-export const DragHandle = styled<SharedStylePropsArgT>('div', ({$theme}) => {
-  const marginDir: string =
-    $theme.direction === 'rtl' ? 'marginLeft' : 'marginRight';
+export const DragHandle = styled<SharedStylePropsArgT>('div', ({ $theme }) => {
+  const marginDir: string = $theme.direction === 'rtl' ? 'marginLeft' : 'marginRight';
   return {
     [marginDir]: $theme.sizing.scale600,
     width: $theme.sizing.scale800,
@@ -101,36 +96,32 @@ export const DragHandle = styled<SharedStylePropsArgT>('div', ({$theme}) => {
 });
 DragHandle.displayName = 'StyledDragHandle';
 
-export const CloseHandle = styled<SharedStylePropsArgT>(
-  'button',
-  ({$theme, $isFocusVisible}) => {
-    const marginDir: string =
-      $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
-    return {
-      borderLeftStyle: 'none',
-      borderTopStyle: 'none',
-      borderRightStyle: 'none',
-      borderBottomStyle: 'none',
-      paddingTop: 0,
-      paddingBottom: 0,
-      paddingLeft: 0,
-      paddingRight: 0,
-      overflow: 'visible',
-      cursor: 'pointer',
-      backgroundColor: 'transparent',
-      [marginDir]: $theme.sizing.scale600,
-      width: $theme.sizing.scale800,
-      display: 'flex',
-      alignItems: 'center',
-      ':focus': {
-        outline: $isFocusVisible ? `3px solid ${$theme.colors.accent}` : 'none',
-      },
-    };
-  },
-);
+export const CloseHandle = styled<SharedStylePropsArgT>('button', ({ $theme, $isFocusVisible }) => {
+  const marginDir: string = $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
+  return {
+    borderLeftStyle: 'none',
+    borderTopStyle: 'none',
+    borderRightStyle: 'none',
+    borderBottomStyle: 'none',
+    paddingTop: 0,
+    paddingBottom: 0,
+    paddingLeft: 0,
+    paddingRight: 0,
+    overflow: 'visible',
+    cursor: 'pointer',
+    backgroundColor: 'transparent',
+    [marginDir]: $theme.sizing.scale600,
+    width: $theme.sizing.scale800,
+    display: 'flex',
+    alignItems: 'center',
+    ':focus': {
+      outline: $isFocusVisible ? `3px solid ${$theme.colors.accent}` : 'none',
+    },
+  };
+});
 CloseHandle.displayName = 'StyledCloseHandle';
 
-export const Label = styled<SharedStylePropsArgT>('div', ({$theme}) => ({
+export const Label = styled<SharedStylePropsArgT>('div', ({ $theme }) => ({
   flexGrow: 1,
   ...$theme.typography.font300,
 }));

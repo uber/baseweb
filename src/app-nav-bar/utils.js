@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-import type {NavItemT} from './types.js';
+import type { NavItemT } from './types.js';
 
 type GetUniqueIdentifierT = (NavItemT) => string | number;
 
@@ -15,7 +15,7 @@ export function defaultMapItemToNode(item: NavItemT) {
   if (__DEV__) {
     if (!item.label) {
       throw Error(
-        'There needs to be an unique item.label. You can implement a custom mapping with the mapItemToNode prop.',
+        'There needs to be an unique item.label. You can implement a custom mapping with the mapItemToNode prop.'
       );
     }
   }
@@ -26,17 +26,14 @@ function defaultGetUniqueIdentifier(item: NavItemT) {
   if (__DEV__) {
     if (!item.label) {
       throw Error(
-        'There needs to be an unique item.label. You can implement a custom mapping with the getUniqueIdentifier argument to setItemActive.',
+        'There needs to be an unique item.label. You can implement a custom mapping with the getUniqueIdentifier argument to setItemActive.'
       );
     }
   }
   return item.label;
 }
 
-export function mapItemsActive(
-  items: NavItemT[],
-  predicate: (NavItemT) => boolean,
-) {
+export function mapItemsActive(items: NavItemT[], predicate: (NavItemT) => boolean) {
   return items.map<NavItemT>((current) => {
     if (predicate(current)) {
       current.active = true;
@@ -58,10 +55,10 @@ export function mapItemsActive(
 export function setItemActive(
   items: NavItemT[],
   item: NavItemT,
-  getUniqueIdentifier?: GetUniqueIdentifierT = defaultGetUniqueIdentifier,
+  getUniqueIdentifier?: GetUniqueIdentifierT = defaultGetUniqueIdentifier
 ) {
   return mapItemsActive(
     items,
-    (current) => getUniqueIdentifier(current) === getUniqueIdentifier(item),
+    (current) => getUniqueIdentifier(current) === getUniqueIdentifier(item)
   );
 }

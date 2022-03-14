@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {StatefulDataTable, BooleanColumn, CategoricalColumn} from '../index.js';
+import { StatefulDataTable, BooleanColumn, CategoricalColumn } from '../index.js';
 
 type RowDataT = [boolean, string];
 
@@ -27,10 +27,10 @@ export function Scenario() {
 
   return (
     <React.Fragment>
-      <div style={{height: '200px', width: '800px'}}>
+      <div style={{ height: '200px', width: '800px' }}>
         <StatefulDataTable loading columns={columns} rows={[]} />
       </div>
-      <div style={{height: '200px', width: '800px'}}>
+      <div style={{ height: '200px', width: '800px' }}>
         <StatefulDataTable
           loading
           loadingMessage="string loading message"
@@ -38,7 +38,7 @@ export function Scenario() {
           rows={[]}
         />
       </div>
-      <div style={{height: '200px', width: '800px'}}>
+      <div style={{ height: '200px', width: '800px' }}>
         <StatefulDataTable
           loading
           loadingMessage={() => <h1>component loading message</h1>}

@@ -16,23 +16,20 @@ import {
   waitForElementToBeRemoved,
 } from '@testing-library/react';
 
-import {Toast} from '../index.js';
+import { Toast } from '../index.js';
 
 describe('Toast', () => {
   it('basic toast functionality', () => {
-    const {container} = render(<Toast>content</Toast>);
+    const { container } = render(<Toast>content</Toast>);
     getByRole(container, 'alert');
   });
 
   it('handles close click', async () => {
     const onClose = jest.fn();
-    const {container} = render(
-      <Toast
-        onClose={onClose}
-        overrides={{CloseIcon: {props: {'data-testid': 'close'}}}}
-      >
+    const { container } = render(
+      <Toast onClose={onClose} overrides={{ CloseIcon: { props: { 'data-testid': 'close' } } }}>
         content
-      </Toast>,
+      </Toast>
     );
     const icon = getByTestId(container, 'close');
     fireEvent.click(icon);
@@ -42,14 +39,14 @@ describe('Toast', () => {
 
   it('handles non-closable', () => {
     const onClose = jest.fn();
-    const {container} = render(
+    const { container } = render(
       <Toast
         closeable={false}
         onClose={onClose}
-        overrides={{CloseIcon: {props: {'data-testid': 'close'}}}}
+        overrides={{ CloseIcon: { props: { 'data-testid': 'close' } } }}
       >
         content
-      </Toast>,
+      </Toast>
     );
     const icon = queryByTestId(container, 'close');
     expect(icon).toBeNull();

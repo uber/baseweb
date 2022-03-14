@@ -9,12 +9,8 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {DisplayLarge} from '../index.js';
+import { DisplayLarge } from '../index.js';
 
 export function Scenario() {
-  return (
-    <DisplayLarge>
-      We ignite opportunity by setting the world in motion.
-    </DisplayLarge>
-  );
+  return <DisplayLarge>We ignite opportunity by setting the world in motion.</DisplayLarge>;
 }

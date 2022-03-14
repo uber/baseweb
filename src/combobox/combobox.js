@@ -8,11 +8,11 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Input, SIZE} from '../input/index.js';
-import {scrollItemIntoView} from '../menu/utils.js';
-import {getOverrides} from '../helpers/overrides.js';
-import {Popover, PLACEMENT} from '../popover/index.js';
-import {useUIDSeed} from 'react-uid';
+import { Input, SIZE } from '../input/index.js';
+import { scrollItemIntoView } from '../menu/utils.js';
+import { getOverrides } from '../helpers/overrides.js';
+import { Popover, PLACEMENT } from '../popover/index.js';
+import { useUIDSeed } from 'react-uid';
 
 import {
   StyledRoot,
@@ -20,7 +20,7 @@ import {
   StyledListBox,
   StyledListItem,
 } from './styled-components.js';
-import type {PropsT} from './types.js';
+import type { PropsT } from './types.js';
 
 const ENTER = 13;
 const ESCAPE = 27;
@@ -96,7 +96,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
         selectedOptionRef.current,
         listboxRef.current,
         selectionIndex === 0,
-        selectionIndex === options.length - 1,
+        selectionIndex === options.length - 1
       );
     }
   }, [isOpen, selectedOptionRef.current, listboxRef.current]);
@@ -145,7 +145,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
         onChange(mapOptionToString(clickedOption), clickedOption);
       } else {
         if (onSubmit) {
-          onSubmit({closeListbox: () => setIsOpen(false), value});
+          onSubmit({ closeListbox: () => setIsOpen(false), value });
         }
       }
     }
@@ -231,22 +231,16 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
   const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
   const [InputContainer, inputContainerProps] = getOverrides(
     overrides.InputContainer,
-    StyledInputContainer,
+    StyledInputContainer
   );
-  const [ListBox, listBoxProps] = getOverrides(
-    overrides.ListBox,
-    StyledListBox,
+  const [ListBox, listBoxProps] = getOverrides(overrides.ListBox, StyledListBox);
+  const [ListItem, listItemProps] = getOverrides(overrides.ListItem, StyledListItem);
+  const [OverriddenInput, { overrides: inputOverrides = {}, ...restInputProps }] = getOverrides(
+    overrides.Input,
+    Input
   );
-  const [ListItem, listItemProps] = getOverrides(
-    overrides.ListItem,
-    StyledListItem,
-  );
-  const [OverriddenInput, {overrides: inputOverrides = {}, ...restInputProps}] =
-    getOverrides(overrides.Input, Input);
-  const [
-    OverriddenPopover,
-    {overrides: popoverOverrides = {}, ...restPopoverProps},
-  ] = getOverrides(overrides.Popover, Popover);
+  const [OverriddenPopover, { overrides: popoverOverrides = {}, ...restPopoverProps }] =
+    getOverrides(overrides.Popover, Popover);
 
   return (
     <Root
@@ -319,9 +313,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
         >
           <OverriddenInput
             inputRef={handleInputRef}
-            aria-activedescendant={
-              isOpen && selectionIndex >= 0 ? activeDescendantId : undefined
-            }
+            aria-activedescendant={isOpen && selectionIndex >= 0 ? activeDescendantId : undefined}
             aria-autocomplete="list"
             disabled={disabled}
             error={error}
@@ -335,7 +327,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
             positive={positive}
             size={size}
             value={tempValue ? tempValue : value}
-            {...(isOpen ? {'aria-controls': listboxId} : {})}
+            {...(isOpen ? { 'aria-controls': listboxId } : {})}
             {...restInputProps}
           />
         </InputContainer>

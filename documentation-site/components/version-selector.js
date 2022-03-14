@@ -12,11 +12,11 @@ import * as React from 'react';
 import semver from 'semver';
 
 import ChevronDown from 'baseui/icon/chevron-down';
-import {StatefulPopover, PLACEMENT as PopoverPlacement} from 'baseui/popover';
-import {StatefulMenu, NestedMenus} from 'baseui/menu';
-import {Button, KIND} from 'baseui/button';
+import { StatefulPopover, PLACEMENT as PopoverPlacement } from 'baseui/popover';
+import { StatefulMenu, NestedMenus } from 'baseui/menu';
+import { Button, KIND } from 'baseui/button';
 
-import {version} from '../../package.json';
+import { version } from '../../package.json';
 import versions from '../../versions.json';
 
 // list of version for which we don't have a deployed documentation site
@@ -50,18 +50,16 @@ const majorVersions = Array.from(
       return set;
     }
     return set.add(semver.major(semver.coerce(version.tag_name)));
-  }, new Set()),
+  }, new Set())
 ).map((version) => ({
   label: `v${version}`,
 }));
 
 const majorVersionsToDisplay = majorVersions.map((version) => {
-  const {label} = version;
+  const { label } = version;
 
   return {
-    label: semver.satisfies(semver.coerce(label), '>=8.0.0')
-      ? `${label} →`
-      : label,
+    label: semver.satisfies(semver.coerce(label), '>=8.0.0') ? `${label} →` : label,
     originalVersionNumber: label,
   };
 });
@@ -76,7 +74,7 @@ const versionsToShowPerMajor = versions
     acc[key] = acc[key] || [];
 
     if (!disabledVersions.includes(version.tag_name)) {
-      acc[key].push({label: version.tag_name});
+      acc[key].push({ label: version.tag_name });
     }
 
     return acc;
@@ -89,11 +87,11 @@ const VersionSelector = () => {
       focusLock
       // eslint-disable-next-line jsx-a11y/no-autofocus
       autoFocus
-      content={({close}) => (
+      content={({ close }) => (
         <NestedMenus>
           <StatefulMenu
             items={majorVersionsToDisplay}
-            onItemSelect={({item}) => {
+            onItemSelect={({ item }) => {
               window.open(`https://${item.label}.baseweb.design`);
               close();
             }}
@@ -107,29 +105,22 @@ const VersionSelector = () => {
                 props: {
                   size: 'compact',
                   getChildMenu: (item) => {
-                    if (
-                      semver.satisfies(semver.coerce(item.label), '>=8.0.0')
-                    ) {
+                    if (semver.satisfies(semver.coerce(item.label), '>=8.0.0')) {
                       return (
                         <StatefulMenu
                           size="compact"
-                          items={
-                            versionsToShowPerMajor[item.originalVersionNumber]
-                          }
-                          onItemSelect={({item}) => {
+                          items={versionsToShowPerMajor[item.originalVersionNumber]}
+                          onItemSelect={({ item }) => {
                             window.open(
-                              `https://${item.label.replace(
-                                /\./gi,
-                                '-',
-                              )}.baseweb.design`,
+                              `https://${item.label.replace(/\./gi, '-')}.baseweb.design`
                             );
                             close();
                           }}
                           overrides={{
                             // using 315px to make sure an option is cut in half
                             // so the user has a clue that it's scrollable
-                            List: {style: {width: '100px', maxHeight: '315px'}},
-                            Option: {props: {size: 'compact'}},
+                            List: { style: { width: '100px', maxHeight: '315px' } },
+                            Option: { props: { size: 'compact' } },
                           }}
                         />
                       );
@@ -142,11 +133,7 @@ const VersionSelector = () => {
         </NestedMenus>
       )}
     >
-      <Button
-        size="compact"
-        kind={KIND.minimal}
-        endEnhancer={() => <ChevronDown size={20} />}
-      >
+      <Button size="compact" kind={KIND.minimal} endEnhancer={() => <ChevronDown size={20} />}>
         v{version}
       </Button>
     </StatefulPopover>

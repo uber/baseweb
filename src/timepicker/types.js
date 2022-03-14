@@ -6,10 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 /* eslint-disable flowtype/generic-spacing */
-import type {OverrideT} from '../helpers/overrides.js';
-import type {OptionT} from '../select/index.js';
-import type {SizeT} from '../input/types.js';
-import type {DateIOAdapter} from '../datepicker/utils/types.js';
+import type { OverrideT } from '../helpers/overrides.js';
+import type { OptionT } from '../select/index.js';
+import type { SizeT } from '../input/types.js';
+import type { DateIOAdapter } from '../datepicker/utils/types.js';
 
 export type TimePickerPropsT<T = Date> = {
   /** Render options in AM/PM format or 24 hour format. Defaults to 12 hour. */

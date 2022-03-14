@@ -10,10 +10,10 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import FocusLock from 'react-focus-lock';
 
-import {LocaleContext} from '../locale/index.js';
-import {getOverrides} from '../helpers/overrides.js';
-import {Layer} from '../layer/index.js';
-import {SIZE, CLOSE_SOURCE, ANCHOR} from './constants.js';
+import { LocaleContext } from '../locale/index.js';
+import { getOverrides } from '../helpers/overrides.js';
+import { Layer } from '../layer/index.js';
+import { SIZE, CLOSE_SOURCE, ANCHOR } from './constants.js';
 import {
   StyledRoot,
   StyledBackdrop,
@@ -22,7 +22,7 @@ import {
   StyledClose,
   Hidden,
 } from './styled-components.js';
-import {CloseIcon} from './close-icon.js';
+import { CloseIcon } from './close-icon.js';
 
 import type {
   DrawerPropsT,
@@ -31,7 +31,7 @@ import type {
   CloseSourceT,
   ElementRefT,
 } from './types.js';
-import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
+import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible.js';
 
 class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
   static defaultProps: $Shape<DrawerPropsT> = {
@@ -50,7 +50,7 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
   animateStartTimer: ?AnimationFrameID;
   lastFocus: ?HTMLElement = null;
   lastMountNodeOverflowStyle: ?string = null;
-  _refs: {[string]: ElementRefT} = {};
+  _refs: { [string]: ElementRefT } = {};
 
   state = {
     isVisible: false,
@@ -59,7 +59,7 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
   };
 
   componentDidMount() {
-    this.setState({mounted: true});
+    this.setState({ mounted: true });
   }
 
   componentWillUnmount() {
@@ -68,7 +68,7 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
   }
 
   componentDidUpdate(prevProps: DrawerPropsT, prevState: DrawerStateT) {
-    const {isOpen} = this.props;
+    const { isOpen } = this.props;
     if (
       // If isOpen is changing *or* we just mounted and drawer should be open
       isOpen !== prevProps.isOpen ||
@@ -84,13 +84,13 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
 
   handleFocus = (event: SyntheticEvent<>) => {
     if (isFocusVisible(event)) {
-      this.setState({isFocusVisible: true});
+      this.setState({ isFocusVisible: true });
     }
   };
 
   handleBlur = (event: SyntheticEvent<>) => {
     if (this.state.isFocusVisible !== false) {
-      this.setState({isFocusVisible: false});
+      this.setState({ isFocusVisible: false });
     }
   };
 
@@ -114,7 +114,7 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
   }
 
   getMountNode(): HTMLElement {
-    const {mountNode} = this.props;
+    const { mountNode } = this.props;
     if (mountNode) {
       return mountNode;
     }
@@ -171,7 +171,7 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
 
     // eslint-disable-next-line cup/no-undef
     this.animateStartTimer = requestAnimationFrame(() => {
-      this.setState({isVisible: true});
+      this.setState({ isVisible: true });
     });
   }
 
@@ -195,8 +195,8 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
     });
   };
 
-  getSharedProps(): $Diff<SharedStylePropsArgT, {children?: React.Node}> {
-    const {animate, isOpen, size, closeable, anchor, showBackdrop} = this.props;
+  getSharedProps(): $Diff<SharedStylePropsArgT, { children?: React.Node }> {
+    const { animate, isOpen, size, closeable, anchor, showBackdrop } = this.props;
     return {
       $animating: animate,
       $isVisible: this.state.isVisible,
@@ -210,7 +210,7 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
   }
 
   getChildren() {
-    const {children} = this.props;
+    const { children } = this.props;
     return typeof children === 'function' ? children() : children;
   }
 
@@ -222,7 +222,7 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
   }
 
   renderDrawer(renderedContent: React.Node) {
-    const {overrides = {}, closeable, autoFocus} = this.props;
+    const { overrides = {}, closeable, autoFocus } = this.props;
 
     const {
       Root: RootOverride,
@@ -233,18 +233,12 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
     } = overrides;
 
     const [Root, rootProps] = getOverrides(RootOverride, StyledRoot);
-    const [Backdrop, backdropProps] = getOverrides(
-      BackdropOverride,
-      StyledBackdrop,
-    );
+    const [Backdrop, backdropProps] = getOverrides(BackdropOverride, StyledBackdrop);
     const [DrawerContainer, drawerContainerProps] = getOverrides(
       DrawerContainerOverride,
-      StyledDrawerContainer,
+      StyledDrawerContainer
     );
-    const [DrawerBody, drawerBodyProps] = getOverrides(
-      DrawerBodyOverride,
-      StyledDrawerBody,
-    );
+    const [DrawerBody, drawerBodyProps] = getOverrides(DrawerBodyOverride, StyledDrawerBody);
     const [Close, closeProps] = getOverrides(CloseOverride, StyledClose);
 
     const sharedProps = this.getSharedProps();
@@ -260,17 +254,8 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
               autoFocus={autoFocus}
               noFocusGuards={true}
             >
-              <Root
-                data-baseweb="drawer"
-                ref={this.getRef('Root')}
-                {...sharedProps}
-                {...rootProps}
-              >
-                <Backdrop
-                  onClick={this.onBackdropClick}
-                  {...sharedProps}
-                  {...backdropProps}
-                />
+              <Root data-baseweb="drawer" ref={this.getRef('Root')} {...sharedProps} {...rootProps}>
+                <Backdrop onClick={this.onBackdropClick} {...sharedProps} {...backdropProps} />
                 <DrawerContainer {...sharedProps} {...drawerContainerProps}>
                   <DrawerBody {...sharedProps} {...drawerBodyProps}>
                     {renderedContent}
@@ -297,11 +282,9 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
   }
 
   render() {
-    const mountedAndOpen =
-      this.state.mounted && (this.props.isOpen || this.state.isVisible);
+    const mountedAndOpen = this.state.mounted && (this.props.isOpen || this.state.isVisible);
 
-    const renderedContent =
-      mountedAndOpen || this.props.renderAll ? this.getChildren() : null;
+    const renderedContent = mountedAndOpen || this.props.renderAll ? this.getChildren() : null;
 
     if (renderedContent) {
       if (mountedAndOpen) {

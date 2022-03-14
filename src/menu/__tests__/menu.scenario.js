@@ -8,21 +8,21 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Menu} from '../index.js';
+import { Menu } from '../index.js';
 
 const ITEMS = [
-  {label: 'Item One'},
-  {label: 'Item Two'},
-  {disabled: true, label: 'Item Three'},
-  {label: 'Item Four'},
-  {label: 'Item Five'},
-  {label: 'Item Six'},
-  {label: 'Item Seven'},
-  {label: 'Item Eight'},
-  {label: 'Item Nine'},
-  {label: 'Item Ten'},
-  {label: 'Item Eleven'},
-  {label: 'Item Twelve'},
+  { label: 'Item One' },
+  { label: 'Item Two' },
+  { disabled: true, label: 'Item Three' },
+  { label: 'Item Four' },
+  { label: 'Item Five' },
+  { label: 'Item Six' },
+  { label: 'Item Seven' },
+  { label: 'Item Eight' },
+  { label: 'Item Nine' },
+  { label: 'Item Ten' },
+  { label: 'Item Eleven' },
+  { label: 'Item Twelve' },
 ];
 
 export function Scenario() {

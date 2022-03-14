@@ -131,5 +131,5 @@ export function useCellNavigation() {
     };
   }, [columnIndex, rowIndex]);
 
-  return {getCellProps};
+  return { getCellProps };
 }

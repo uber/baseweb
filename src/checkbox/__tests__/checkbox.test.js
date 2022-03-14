@@ -8,13 +8,13 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 
 import * as React from 'react';
-import {render, fireEvent, getByText} from '@testing-library/react';
+import { render, fireEvent, getByText } from '@testing-library/react';
 
-import {Checkbox} from '../index.js';
+import { Checkbox } from '../index.js';
 
 describe('Stateless checkbox', function () {
   it('renders provided label', function () {
-    const {container} = render(<Checkbox>label</Checkbox>);
+    const { container } = render(<Checkbox>label</Checkbox>);
     getByText(container, 'label');
   });
 
@@ -26,7 +26,7 @@ describe('Stateless checkbox', function () {
     const onFocus = jest.fn();
     const onBlur = jest.fn();
 
-    const {container} = render(
+    const { container } = render(
       <Checkbox
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
@@ -36,7 +36,7 @@ describe('Stateless checkbox', function () {
         onBlur={onBlur}
       >
         label
-      </Checkbox>,
+      </Checkbox>
     );
 
     const input = container.querySelector('input');
@@ -59,11 +59,11 @@ describe('Stateless checkbox', function () {
 
   it('only fires one click event', () => {
     const onAncestorClick = jest.fn();
-    const {container} = render(
+    const { container } = render(
       // eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events
       <div onClick={onAncestorClick}>
         <Checkbox>label</Checkbox>
-      </div>,
+      </div>
     );
     const label = container.querySelector('label');
     if (label) {

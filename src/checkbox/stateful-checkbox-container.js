@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {STATE_TYPE} from './constants.js';
+import { STATE_TYPE } from './constants.js';
 import type {
   StatefulContainerPropsT,
   StateReducerT,
@@ -16,10 +16,7 @@ import type {
 
 const defaultStateReducer: StateReducerT = (type, nextState) => nextState;
 
-class StatefulCheckboxContainer extends React.Component<
-  StatefulContainerPropsT,
-  StateT,
-> {
+class StatefulCheckboxContainer extends React.Component<StatefulContainerPropsT, StateT> {
   static defaultProps: DefaultStatefulPropsT = {
     initialState: {
       checked: false,
@@ -35,7 +32,7 @@ class StatefulCheckboxContainer extends React.Component<
 
   constructor(props: StatefulContainerPropsT) {
     super(props);
-    const {initialState} = this.props;
+    const { initialState } = this.props;
     this.state = {
       ...initialState,
     };
@@ -43,36 +40,36 @@ class StatefulCheckboxContainer extends React.Component<
 
   onChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
     this.stateReducer(STATE_TYPE.change, e);
-    const {onChange} = this.props;
+    const { onChange } = this.props;
     onChange && onChange(e);
   };
 
   onMouseEnter = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    const {onMouseEnter} = this.props;
+    const { onMouseEnter } = this.props;
     onMouseEnter && onMouseEnter(e);
   };
 
   onMouseLeave = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    const {onMouseLeave} = this.props;
+    const { onMouseLeave } = this.props;
     onMouseLeave && onMouseLeave(e);
   };
 
   onFocus = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    const {onFocus} = this.props;
+    const { onFocus } = this.props;
     onFocus && onFocus(e);
   };
 
   onBlur = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    const {onBlur} = this.props;
+    const { onBlur } = this.props;
     onBlur && onBlur(e);
   };
 
   stateReducer = (type: string, e: SyntheticInputEvent<HTMLInputElement>) => {
     let nextState = {};
-    const {stateReducer} = this.props;
+    const { stateReducer } = this.props;
     switch (type) {
       case STATE_TYPE.change:
-        nextState = {checked: e.target.checked};
+        nextState = { checked: e.target.checked };
         break;
     }
     const newState = stateReducer(type, nextState, this.state, e);
@@ -86,7 +83,7 @@ class StatefulCheckboxContainer extends React.Component<
       stateReducer,
       ...restProps
     } = this.props;
-    const {onChange, onMouseEnter, onMouseLeave, onFocus, onBlur} = this;
+    const { onChange, onMouseEnter, onMouseLeave, onFocus, onBlur } = this;
     return children({
       ...restProps,
       checked: this.state.checked,

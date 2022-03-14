@@ -9,14 +9,14 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import Menu from './menu.js';
-import {NestedMenuContext} from './nested-menus.js';
+import { NestedMenuContext } from './nested-menus.js';
 import StatefulContainer from './stateful-container.js';
 
-import type {StatefulMenuPropsT} from './types.js';
+import type { StatefulMenuPropsT } from './types.js';
 
 export default class StatefulMenu extends React.PureComponent<StatefulMenuPropsT> {
   render() {
-    const {overrides, ...props} = this.props;
+    const { overrides, ...props } = this.props;
     return (
       <NestedMenuContext.Consumer>
         {(ctx) => (

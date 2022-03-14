@@ -8,36 +8,36 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
-import {StatefulInput, SIZE} from '../index.js';
-import {Block} from '../../block/index.js';
-import {Button} from '../../button/index.js';
+import { StatefulInput, SIZE } from '../index.js';
+import { Block } from '../../block/index.js';
+import { Button } from '../../button/index.js';
 
 export function Scenario() {
   return (
     <React.Fragment>
       <Block display="flex" marginBottom="8px">
         <StatefulInput
-          initialState={{value: 'Move the world'}}
+          initialState={{ value: 'Move the world' }}
           size={SIZE.compact}
-          overrides={{Root: {style: {marginRight: '8px'}}}}
+          overrides={{ Root: { style: { marginRight: '8px' } } }}
         />
 
         <Button size={SIZE.compact}>Move</Button>
       </Block>
       <Block display="flex" marginBottom="8px">
         <StatefulInput
-          initialState={{value: 'Move the world'}}
+          initialState={{ value: 'Move the world' }}
           size={SIZE.default}
-          overrides={{Root: {style: {marginRight: '8px'}}}}
+          overrides={{ Root: { style: { marginRight: '8px' } } }}
         />
 
         <Button size={SIZE.default}>Move</Button>
       </Block>
       <Block display="flex" marginBottom="8px">
         <StatefulInput
-          initialState={{value: 'Move the world'}}
+          initialState={{ value: 'Move the world' }}
           size={SIZE.large}
-          overrides={{Root: {style: {marginRight: '8px'}}}}
+          overrides={{ Root: { style: { marginRight: '8px' } } }}
         />
 
         <Button size={SIZE.large}>Move</Button>

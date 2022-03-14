@@ -8,18 +8,18 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {StatefulInput, SIZE} from '../index.js';
+import { StatefulInput, SIZE } from '../index.js';
 
 export function Scenario() {
   return (
     <StatefulInput
       aria-label="stateful input example"
       autoFocus={true}
-      initialState={{value: 'uber'}}
+      initialState={{ value: 'uber' }}
       startEnhancer="@"
       endEnhancer=".com"
       size={SIZE.compact}
-      overrides={{Input: {props: {'data-e2e': 'input'}}}}
+      overrides={{ Input: { props: { 'data-e2e': 'input' } } }}
     />
   );
 }

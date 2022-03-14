@@ -8,14 +8,14 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {useStyletron} from '../../styles/index.js';
+import { useStyletron } from '../../styles/index.js';
 
-import {AppNavBar, setItemActive} from '../index.js';
+import { AppNavBar, setItemActive } from '../index.js';
 
 export function Scenario() {
   const [css] = useStyletron();
 
-  const [mainItems, setMainItems] = React.useState([{label: 'label'}]);
+  const [mainItems, setMainItems] = React.useState([{ label: 'label' }]);
 
   function handleMainItemSelect(item) {
     setMainItems((prev) => setItemActive(prev, item));
@@ -23,7 +23,7 @@ export function Scenario() {
 
   return (
     <AppNavBar
-      title={<div className={css({color: 'green'})}>title node</div>}
+      title={<div className={css({ color: 'green' })}>title node</div>}
       mainItems={mainItems}
       onMainItemSelect={handleMainItemSelect}
     />

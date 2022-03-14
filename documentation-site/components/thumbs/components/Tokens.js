@@ -13,10 +13,7 @@ export default function SvgTokens(props) {
       <path fill={props.colors[0]} d="M93 37h20v20H93z" />
       <path fill={props.colors[2]} d="M120 44h20v6h-20z" />
       <path fill={props.colors[1]} d="M93 63h20v20H93z" />
-      <path
-        fill={props.colors[2]}
-        d="M120 70h20v6h-20zM93 89h20v20H93zM120 96h20v6h-20z"
-      />
+      <path fill={props.colors[2]} d="M120 70h20v6h-20zM93 89h20v20H93zM120 96h20v6h-20z" />
     </svg>
   );
 }

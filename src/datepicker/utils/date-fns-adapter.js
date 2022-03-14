@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import DateFnsUtils from '@date-io/date-fns';
-import type {DateIOAdapter} from './types.js';
+import type { DateIOAdapter } from './types.js';
 
 const adapter: DateIOAdapter<Date> = new DateFnsUtils({});
 

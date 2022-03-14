@@ -7,6 +7,6 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {Scenario as HeadingDefault} from './heading.scenario.js';
+import { Scenario as HeadingDefault } from './heading.scenario.js';
 
 export const Heading = () => <HeadingDefault />;

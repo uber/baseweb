@@ -8,14 +8,14 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {StyledDay, StatefulDatepicker} from '../index.js';
+import { StyledDay, StatefulDatepicker } from '../index.js';
 
 export function Scenario() {
   return (
     <StatefulDatepicker
       aria-label="Select a date"
       clearable={true}
-      initialState={{value: []}}
+      initialState={{ value: [] }}
       highlightedDate={new Date('March 10, 2019')}
       range
       timeSelectEnd
@@ -24,18 +24,14 @@ export function Scenario() {
         Day: {
           // eslint-disable-next-line react/display-name
           component: React.forwardRef((props, ref) => (
-            <StyledDay
-              data-highlighted={props.$isHighlighted}
-              {...props}
-              ref={ref}
-            />
+            <StyledDay data-highlighted={props.$isHighlighted} {...props} ref={ref} />
           )),
         },
 
-        MonthYearSelectButton: {props: {'data-id': 'monthYearSelectButton'}},
+        MonthYearSelectButton: { props: { 'data-id': 'monthYearSelectButton' } },
         MonthYearSelectStatefulMenu: {
           props: {
-            overrides: {List: {props: {'data-id': 'monthYearSelectMenu'}}},
+            overrides: { List: { props: { 'data-id': 'monthYearSelectMenu' } } },
           },
         },
 
@@ -45,8 +41,8 @@ export function Scenario() {
               Select: {
                 props: {
                   overrides: {
-                    Root: {props: {'data-id': 'time-select'}},
-                    ValueContainer: {props: {'data-id': 'selected'}},
+                    Root: { props: { 'data-id': 'time-select' } },
+                    ValueContainer: { props: { 'data-id': 'selected' } },
                   },
                 },
               },

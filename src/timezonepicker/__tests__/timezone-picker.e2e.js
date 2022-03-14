@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
+const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
 
 const selectors = {
   standard: '[data-e2e="standard"]',
@@ -37,7 +37,7 @@ describe('TimezonePicker', () => {
     await page.keyboard.press('Enter');
     const value = await page.$eval(
       `${selectors.standard} ${selectors.value}`,
-      (select) => select.textContent,
+      (select) => select.textContent
     );
 
     expect(value).toBe('(GMT-5) America/New York');
@@ -53,7 +53,7 @@ describe('TimezonePicker', () => {
     await page.keyboard.press('Enter');
     const value = await page.$eval(
       `${selectors.daylight} ${selectors.value}`,
-      (select) => select.textContent,
+      (select) => select.textContent
     );
 
     expect(value).toBe('(GMT-4) America/New York');
@@ -64,7 +64,7 @@ describe('TimezonePicker', () => {
     await page.waitForSelector(selectors.controlled);
     const initial = await page.$eval(
       `${selectors.controlled} ${selectors.value}`,
-      (select) => select.textContent,
+      (select) => select.textContent
     );
     expect(initial).toBe('(GMT+9) Asia/Tokyo');
   });
@@ -79,7 +79,7 @@ describe('TimezonePicker', () => {
     await page.keyboard.press('Enter');
     const value = await page.$eval(
       `${selectors.daylight} ${selectors.value}`,
-      (select) => select.textContent,
+      (select) => select.textContent
     );
 
     expect(value).toBe('(GMT+3) Europe/Minsk');

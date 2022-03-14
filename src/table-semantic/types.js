@@ -7,8 +7,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 
-import type {OverrideT} from '../helpers/overrides.js';
-import {SIZE, DIVIDER} from './constants.js';
+import type { OverrideT } from '../helpers/overrides.js';
+import { SIZE, DIVIDER } from './constants.js';
 
 export type SizeT = $Keys<typeof SIZE>;
 export type DividerT = $Keys<typeof DIVIDER>;

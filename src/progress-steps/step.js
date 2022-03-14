@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {getOverrides} from '../helpers/overrides.js';
+import { getOverrides } from '../helpers/overrides.js';
 import {
   StyledStep,
   StyledIconContainer,
@@ -20,35 +20,22 @@ import {
   StyledContentDescription,
 } from './styled-components.js';
 
-import type {StepPropsT} from './types.js';
+import type { StepPropsT } from './types.js';
 
-function Step({
-  overrides = {},
-  isCompleted,
-  isActive,
-  isLast,
-  title,
-  children,
-}: StepPropsT) {
+function Step({ overrides = {}, isCompleted, isActive, isLast, title, children }: StepPropsT) {
   const [Root, rootProps] = getOverrides(overrides.Root, StyledStep);
   const [IconContainer, iconContainerProps] = getOverrides(
     overrides.IconContainer,
-    StyledIconContainer,
+    StyledIconContainer
   );
   const [Icon, iconProps] = getOverrides(overrides.Icon, StyledIcon);
-  const [InnerIcon, innerIconProps] = getOverrides(
-    overrides.InnerIcon,
-    StyledInnerIcon,
-  );
+  const [InnerIcon, innerIconProps] = getOverrides(overrides.InnerIcon, StyledInnerIcon);
   const [Tail, tailProps] = getOverrides(overrides.Tail, StyledContentTail);
-  const [Content, contentProps] = getOverrides(
-    overrides.Content,
-    StyledContent,
-  );
+  const [Content, contentProps] = getOverrides(overrides.Content, StyledContent);
   const [Title, titleProps] = getOverrides(overrides.Title, StyledContentTitle);
   const [Description, descriptionProps] = getOverrides(
     overrides.Description,
-    StyledContentDescription,
+    StyledContentDescription
   );
 
   const sharedProps = {

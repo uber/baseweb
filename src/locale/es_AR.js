@@ -30,8 +30,7 @@ export default {
     screenReaderMessageInput:
       'Presione la tecla de flecha hacia abajo para interactuar con el calendario y seleccione una fecha. Presione el botón de escape para cerrar el calendario.',
     selectedDate: 'La fecha seleccionada es ${date}.',
-    selectedDateRange:
-      'El rango de fecha seleccionado es desde ${startDate} hasta ${endDate}.',
+    selectedDateRange: 'El rango de fecha seleccionado es desde ${startDate} hasta ${endDate}.',
     selectSecondDatePrompt: 'Selecciona la segunda fecha.',
     quickSelectLabel: 'Selecciona un rango de fechas.',
     quickSelectAriaLabel: 'Selecciona un rango de fechas.',

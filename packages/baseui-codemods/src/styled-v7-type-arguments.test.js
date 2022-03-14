@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import codemod from './styled-v7-type-arguments.js';
-import {Fixture} from './test-utilities.js';
+import { Fixture } from './test-utilities.js';
 
 describe('styled v7 change - type parameters on baseui styled', () => {
   it('applies any as prop type if base is element string, and fn style arg', async () => {
@@ -19,7 +19,7 @@ const Component = styled('div', p => ({color: 'red'}));`;
 
     const fixture = new Fixture();
     await fixture.write(content);
-    await codemod({dir: fixture.dir});
+    await codemod({ dir: fixture.dir });
     const transformed = await fixture.read();
     await fixture.remove();
 
@@ -39,7 +39,7 @@ const Component = styled('div', {color: 'red'});`;
 
     const fixture = new Fixture();
     await fixture.write(content);
-    await codemod({dir: fixture.dir});
+    await codemod({ dir: fixture.dir });
     const transformed = await fixture.read();
     await fixture.remove();
 
@@ -62,7 +62,7 @@ const Component = styled(Base, p => ({color: 'red'}));`;
 
     const fixture = new Fixture();
     await fixture.write(content);
-    await codemod({dir: fixture.dir});
+    await codemod({ dir: fixture.dir });
     const transformed = await fixture.read();
     await fixture.remove();
 
@@ -88,7 +88,7 @@ const Component = styled(Base, {color: 'red'});`;
 
     const fixture = new Fixture();
     await fixture.write(content);
-    await codemod({dir: fixture.dir});
+    await codemod({ dir: fixture.dir });
     const transformed = await fixture.read();
     await fixture.remove();
 
@@ -110,7 +110,7 @@ const Component = styled('div', {color: 'red'});`;
 
     const fixture = new Fixture();
     await fixture.write(content);
-    await codemod({dir: fixture.dir});
+    await codemod({ dir: fixture.dir });
     const transformed = await fixture.read();
     await fixture.remove();
 
@@ -129,7 +129,7 @@ const Component = styled('div', {color: 'red'});`;
 
     const fixture = new Fixture();
     await fixture.write(content);
-    await codemod({dir: fixture.dir});
+    await codemod({ dir: fixture.dir });
     const transformed = await fixture.read();
     await fixture.remove();
 
@@ -149,7 +149,7 @@ const Component = styled<{}>('div', p => ({color: 'red'}));`;
 
     const fixture = new Fixture();
     await fixture.write(content);
-    await codemod({dir: fixture.dir});
+    await codemod({ dir: fixture.dir });
     const transformed = await fixture.read();
     await fixture.remove();
 
@@ -169,7 +169,7 @@ const Component = styled('div');`;
 
     const fixture = new Fixture();
     await fixture.write(content);
-    await codemod({dir: fixture.dir});
+    await codemod({ dir: fixture.dir });
     const transformed = await fixture.read();
     await fixture.remove();
 
@@ -189,7 +189,7 @@ const Component = something(styled('div', p => ({color: 'red'})));`;
 
     const fixture = new Fixture();
     await fixture.write(content);
-    await codemod({dir: fixture.dir});
+    await codemod({ dir: fixture.dir });
     const transformed = await fixture.read();
     await fixture.remove();
 

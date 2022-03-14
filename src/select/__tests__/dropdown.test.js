@@ -6,15 +6,15 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {render, getByText} from '@testing-library/react';
+import { render, getByText } from '@testing-library/react';
 
 import SelectDropdown from '../dropdown.js';
-import {SIZE, TYPE} from '../constants.js';
-import type {ReactRefT} from '../types.js';
+import { SIZE, TYPE } from '../constants.js';
+import type { ReactRefT } from '../types.js';
 
 const options = [
-  {id: '1', label: 'label1'},
-  {id: '2', label: 'label2'},
+  { id: '1', label: 'label1' },
+  { id: '2', label: 'label2' },
 ];
 const value = [options[1]];
 
@@ -29,7 +29,7 @@ describe('SelectDropdown', function () {
         size: SIZE.default,
         options,
         onItemSelect: jest.fn(),
-        getOptionLabel: jest.fn(({option}) => <span>{option.label}</span>),
+        getOptionLabel: jest.fn(({ option }) => <span>{option.label}</span>),
         maxDropdownHeight: '1000px',
         overrides: {},
         error: false,
@@ -44,7 +44,7 @@ describe('SelectDropdown', function () {
 
       return <SelectDropdown {...props} />;
     }
-    const {container} = render(<TestCase />);
+    const { container } = render(<TestCase />);
     getByText(container, options[0].label);
     getByText(container, options[1].label);
 
@@ -63,7 +63,7 @@ describe('SelectDropdown', function () {
         size: SIZE.default,
         options,
         onItemSelect: jest.fn(),
-        getOptionLabel: jest.fn(({option}) => <span>{option.label}</span>),
+        getOptionLabel: jest.fn(({ option }) => <span>{option.label}</span>),
         maxDropdownHeight: '1000px',
         overrides: {},
         error: false,
@@ -78,7 +78,7 @@ describe('SelectDropdown', function () {
 
       return <SelectDropdown {...props} />;
     }
-    const {container} = render(<TestCase />);
+    const { container } = render(<TestCase />);
     getByText(container, options[0].label);
     getByText(container, options[1].label);
 

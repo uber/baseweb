@@ -8,12 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {
-  CategoricalColumn,
-  StringColumn,
-  BooleanColumn,
-  StatefulDataTable,
-} from '../index.js';
+import { CategoricalColumn, StringColumn, BooleanColumn, StatefulDataTable } from '../index.js';
 
 import AnimalData from './animal-data.js';
 
@@ -70,7 +65,7 @@ const columns = [
 const initialRows = AnimalData.map((row) => {
   return {
     id: row.Name,
-    data: {...row, isSelected: false},
+    data: { ...row, isSelected: false },
   };
 });
 
@@ -116,7 +111,7 @@ export function Scenario() {
   }, [highlightedRow, setRows]);
 
   return (
-    <div style={{height: '600px', width: '700px'}}>
+    <div style={{ height: '600px', width: '700px' }}>
       <StatefulDataTable
         rowHighlightIndex={highlightIndex}
         onRowHighlightChange={(rowIndex, row) => {

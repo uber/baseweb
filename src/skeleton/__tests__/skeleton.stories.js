@@ -7,9 +7,9 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {Scenario as SkeletonAnimation} from './skeleton-animation.scenario.js';
-import {Scenario as SkeletonLoading} from './skeleton-loading.scenario.js';
-import {Scenario as SkeletonDefault} from './skeleton.scenario.js';
+import { Scenario as SkeletonAnimation } from './skeleton-animation.scenario.js';
+import { Scenario as SkeletonLoading } from './skeleton-loading.scenario.js';
+import { Scenario as SkeletonDefault } from './skeleton.scenario.js';
 
 export const Animation = () => <SkeletonAnimation />;
 export const Loading = () => <SkeletonLoading />;

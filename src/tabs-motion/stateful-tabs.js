@@ -8,33 +8,23 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {Tabs} from './tabs.js';
-import {STATE_CHANGE_TYPE} from './constants.js';
+import { Tabs } from './tabs.js';
+import { STATE_CHANGE_TYPE } from './constants.js';
 
-import type {
-  StatefulTabsPropsT,
-  StatefulTabsStateT,
-  StatefulTabsReducerT,
-} from './types.js';
+import type { StatefulTabsPropsT, StatefulTabsStateT, StatefulTabsReducerT } from './types.js';
 
-const getInitialState = (
-  children: React.Node,
-  initialState?: StatefulTabsStateT,
-) => {
+const getInitialState = (children: React.Node, initialState?: StatefulTabsStateT) => {
   if (initialState && initialState.activeKey) {
     return initialState;
   } else {
-    const firstKey = React.Children.map(
-      children,
-      (child, index) => child.key || String(index),
-    )[0];
-    return {activeKey: firstKey};
+    const firstKey = React.Children.map(children, (child, index) => child.key || String(index))[0];
+    return { activeKey: firstKey };
   }
 };
 
 const defaultStateReducer: StatefulTabsReducerT = (state, action) => {
   if (action.type === STATE_CHANGE_TYPE.change) {
-    return {activeKey: action.payload};
+    return { activeKey: action.payload };
   }
   return state;
 };
@@ -47,13 +37,10 @@ export function StatefulTabs(props: StatefulTabsPropsT) {
     onChange,
     ...restProps
   } = props;
-  const [state, dispatch] = React.useReducer(
-    stateReducer,
-    getInitialState(children, initialState),
-  );
+  const [state, dispatch] = React.useReducer(stateReducer, getInitialState(children, initialState));
   const handleChange = React.useCallback((params) => {
-    const {activeKey} = params;
-    dispatch({type: STATE_CHANGE_TYPE.change, payload: activeKey});
+    const { activeKey } = params;
+    dispatch({ type: STATE_CHANGE_TYPE.change, payload: activeKey });
     if (typeof onChange === 'function') onChange(params);
   }, []);
   return (

@@ -10,10 +10,7 @@ import React from 'react';
 export default function SvgDndList(props) {
   return (
     <svg width={232} height={145} fill="none" {...props}>
-      <path
-        fill={props.colors[0]}
-        d="M61 39h110v16H61zM61 70h110v16H61zM61 90h110v16H61z"
-      />
+      <path fill={props.colors[0]} d="M61 39h110v16H61zM61 70h110v16H61zM61 90h110v16H61z" />
       <path fill={props.colors[2]} d="M75 62h110v16H75z" />
       <path fill={props.colors[0]} d="M73 60h110v16H73z" />
     </svg>

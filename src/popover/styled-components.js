@@ -5,25 +5,21 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import {styled} from '../styles/index.js';
-import {ARROW_SIZE, ARROW_WIDTH} from './constants.js';
+import { styled } from '../styles/index.js';
+import { ARROW_SIZE, ARROW_WIDTH } from './constants.js';
 import {
   getPopoverMarginStyles,
   getArrowPositionStyles,
   getStartPosition,
   getEndPosition,
 } from './utils.js';
-import type {
-  ArrowStylePropsArgT,
-  BodyStylePropsArgT,
-  InnerStylePropsArgT,
-} from './types.js';
-import type {ThemeT} from '../styles/types.js';
+import type { ArrowStylePropsArgT, BodyStylePropsArgT, InnerStylePropsArgT } from './types.js';
+import type { ThemeT } from '../styles/types.js';
 
 /**
  * Main popover container element that gets positioned next to the anchor
  */
-export function getBodyStyles(props: BodyStylePropsArgT & {$theme: ThemeT}) {
+export function getBodyStyles(props: BodyStylePropsArgT & { $theme: ThemeT }) {
   const {
     $isOpen,
     $isAnimating,
@@ -54,24 +50,15 @@ export function getBodyStyles(props: BodyStylePropsArgT & {$theme: ThemeT}) {
     transform:
       $isAnimating && $isOpen
         ? getEndPosition($popoverOffset)
-        : getStartPosition(
-            $popoverOffset,
-            $placement,
-            $showArrow ? ARROW_SIZE : 0,
-            $popoverMargin,
-          ),
-    ...getPopoverMarginStyles(
-      $showArrow ? ARROW_SIZE : 0,
-      $placement,
-      $popoverMargin,
-    ),
+        : getStartPosition($popoverOffset, $placement, $showArrow ? ARROW_SIZE : 0, $popoverMargin),
+    ...getPopoverMarginStyles($showArrow ? ARROW_SIZE : 0, $placement, $popoverMargin),
     ...($isHoverTrigger
       ? {
           animationDuration: '.1s',
           animationName: {
-            '0%': {pointerEvents: 'none'},
-            '99%': {pointerEvents: 'none'},
-            '100%': {pointerEvents: 'auto'},
+            '0%': { pointerEvents: 'none' },
+            '99%': { pointerEvents: 'none' },
+            '100%': { pointerEvents: 'auto' },
           },
         }
       : {}),
@@ -83,8 +70,8 @@ export const Body = styled<BodyStylePropsArgT>('div', getBodyStyles);
 /**
  * Arrow shown between the popover and the anchor element
  */
-export function getArrowStyles(props: ArrowStylePropsArgT & {$theme: ThemeT}) {
-  const {$arrowOffset, $placement, $theme} = props;
+export function getArrowStyles(props: ArrowStylePropsArgT & { $theme: ThemeT }) {
+  const { $arrowOffset, $placement, $theme } = props;
   return {
     backgroundColor: $theme.colors.backgroundTertiary,
     boxShadow: $theme.lighting.shadow600,
@@ -104,7 +91,7 @@ export const Arrow = styled<ArrowStylePropsArgT>('div', getArrowStyles);
  * and rendering this extra element on top with a solid background
  * clips the part of the arrow that extends into the popover.
  */
-export function getInnerStyles({$theme}: {$theme: ThemeT}) {
+export function getInnerStyles({ $theme }: { $theme: ThemeT }) {
   return {
     backgroundColor: $theme.colors.backgroundTertiary,
     borderTopLeftRadius: $theme.borders.popoverBorderRadius,

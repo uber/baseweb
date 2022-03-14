@@ -8,14 +8,11 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {StatefulTooltip} from '../index.js';
+import { StatefulTooltip } from '../index.js';
 
 export function Scenario() {
   return (
-    <StatefulTooltip
-      accessibilityType={'tooltip'}
-      content="Tooltips display short messages."
-    >
+    <StatefulTooltip accessibilityType={'tooltip'} content="Tooltips display short messages.">
       <span>such as this</span>
     </StatefulTooltip>
   );

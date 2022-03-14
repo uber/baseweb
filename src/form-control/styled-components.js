@@ -6,13 +6,13 @@ LICENSE file in the root directory of this source tree.
 */
 
 // @flow
-import {styled} from '../styles/index.js';
-import type {StylePropsT} from './types.js';
+import { styled } from '../styles/index.js';
+import type { StylePropsT } from './types.js';
 
 export const Label = styled<StylePropsT>('label', (props) => {
   const {
     $disabled,
-    $theme: {colors, typography},
+    $theme: { colors, typography },
   } = props;
   return {
     ...typography.font250,
@@ -27,21 +27,18 @@ export const Label = styled<StylePropsT>('label', (props) => {
   };
 });
 
-export const LabelContainer = styled<StylePropsT>(
-  'span',
-  ({$theme: {sizing}}) => ({
-    display: 'flex',
-    width: '100%',
-    marginTop: sizing.scale300,
-    marginRight: 0,
-    marginBottom: sizing.scale300,
-    marginLeft: 0,
-  }),
-);
+export const LabelContainer = styled<StylePropsT>('span', ({ $theme: { sizing } }) => ({
+  display: 'flex',
+  width: '100%',
+  marginTop: sizing.scale300,
+  marginRight: 0,
+  marginBottom: sizing.scale300,
+  marginLeft: 0,
+}));
 
 export const LabelEndEnhancer = styled<StylePropsT>(
   'span',
-  ({$disabled, $counterError, $theme: {colors, typography}}) => ({
+  ({ $disabled, $counterError, $theme: { colors, typography } }) => ({
     ...typography.font100,
     flex: 0,
     width: '100%',
@@ -50,14 +47,14 @@ export const LabelEndEnhancer = styled<StylePropsT>(
       : $disabled
       ? colors.contentSecondary
       : colors.contentPrimary,
-  }),
+  })
 );
 
 export const Caption = styled<StylePropsT>('div', (props) => {
   const {
     $error,
     $positive,
-    $theme: {colors, sizing, typography},
+    $theme: { colors, sizing, typography },
   } = props;
 
   let fontColor = colors.contentSecondary;
@@ -83,7 +80,7 @@ export const Caption = styled<StylePropsT>('div', (props) => {
 
 export const ControlContainer = styled<StylePropsT>('div', (props) => {
   const {
-    $theme: {sizing},
+    $theme: { sizing },
   } = props;
   return {
     width: '100%',

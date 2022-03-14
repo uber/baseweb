@@ -6,16 +6,11 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {render, findByText, fireEvent, getByText} from '@testing-library/react';
+import { render, findByText, fireEvent, getByText } from '@testing-library/react';
 
-import {TestBaseProvider} from '../../test/test-utils.js';
+import { TestBaseProvider } from '../../test/test-utils.js';
 
-import {
-  Tooltip,
-  ACCESSIBILITY_TYPE,
-  PLACEMENT,
-  TRIGGER_TYPE,
-} from '../index.js';
+import { Tooltip, ACCESSIBILITY_TYPE, PLACEMENT, TRIGGER_TYPE } from '../index.js';
 
 describe('Tooltip', () => {
   it('basic render', async () => {
@@ -52,7 +47,7 @@ describe('Tooltip', () => {
       );
     }
 
-    const {container} = render(<TestCase />);
+    const { container } = render(<TestCase />);
     const anchorElement = getByText(container, anchor);
     fireEvent.mouseEnter(anchorElement);
     await findByText(container, content);

@@ -7,12 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-env browser */
 import * as React from 'react';
-import {
-  render,
-  getByTestId,
-  getByText,
-  fireEvent,
-} from '@testing-library/react';
+import { render, getByTestId, getByText, fireEvent } from '@testing-library/react';
 
 import Pagination from '../pagination.js';
 
@@ -26,15 +21,15 @@ function getSharedProps() {
 describe('Pagination Stateless', () => {
   it('renders dropdown', () => {
     const props = getSharedProps();
-    const {container} = render(
+    const { container } = render(
       <Pagination
         {...props}
         overrides={{
           Select: {
-            props: {overrides: {Root: {props: {'data-testid': 'root'}}}},
+            props: { overrides: { Root: { props: { 'data-testid': 'root' } } } },
           },
         }}
-      />,
+      />
     );
     getByTestId(container, 'root');
   });
@@ -45,7 +40,7 @@ describe('Pagination Stateless', () => {
       onPageChange: jest.fn(),
       onPrevClick: jest.fn(),
     };
-    const {container} = render(<Pagination {...props} />);
+    const { container } = render(<Pagination {...props} />);
     fireEvent.click(getByText(container, 'Prev'));
 
     expect(props.onPrevClick.mock.calls.length).toBe(1);
@@ -64,7 +59,7 @@ describe('Pagination Stateless', () => {
       onPageChange: jest.fn(),
       onNextClick: jest.fn(),
     };
-    const {container} = render(<Pagination {...props} />);
+    const { container } = render(<Pagination {...props} />);
     fireEvent.click(getByText(container, 'Next'));
 
     expect(props.onPageChange.mock.calls[0]).toEqual([

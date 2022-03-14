@@ -20,17 +20,17 @@ import lighting from '../shared/lighting.js';
 import mediaQuery from '../shared/media-query.js';
 import sizing from '../shared/sizing.js';
 
-import type {PrimitivesT, ColorTokensT} from '../types.js';
-import type {ThemeT} from '../../styles/types.js';
+import type { PrimitivesT, ColorTokensT } from '../types.js';
+import type { ThemeT } from '../../styles/types.js';
 
 export default function createLightTheme(
   // Used to derive typography and color theme properties
   primitives?: $Shape<PrimitivesT> = {},
   // Used to override default theme property values derived from primitives
-  overrides?: {},
+  overrides?: {}
 ): ThemeT {
   // Extract font tokens and color tokens from primitives
-  const {primaryFontFamily, ...customColorTokens} = primitives;
+  const { primaryFontFamily, ...customColorTokens } = primitives;
   // Assemble color tokens by overriding defaults with custom color tokens
   const colorTokens: ColorTokensT = {
     ...defaultColorTokens,
@@ -52,9 +52,7 @@ export default function createLightTheme(
     mediaQuery,
     sizing,
     // If primaryFontFamily is not provided, we use our default font tokens
-    typography: primaryFontFamily
-      ? getTypography({primaryFontFamily})
-      : getTypography(),
+    typography: primaryFontFamily ? getTypography({ primaryFontFamily }) : getTypography(),
     // TODO(#2318) Remove in v11, the next major version.
     // Do not use.
     zIndex: {

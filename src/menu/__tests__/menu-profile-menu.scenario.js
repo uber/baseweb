@@ -7,9 +7,9 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {StatefulMenu, OptionProfile} from '../index.js';
+import { StatefulMenu, OptionProfile } from '../index.js';
 
-const ITEMS = Array.from({length: 4}, () => ({
+const ITEMS = Array.from({ length: 4 }, () => ({
   title: 'David Smith',
   subtitle: 'Senior Engineering Manager',
   body: 'Uber Everything',
@@ -29,7 +29,7 @@ export function Scenario() {
         Option: {
           component: OptionProfile,
           props: {
-            getProfileItemLabels: ({title, subtitle, body}) => ({
+            getProfileItemLabels: ({ title, subtitle, body }) => ({
               title,
               subtitle,
               body,

@@ -7,10 +7,10 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {Scenario as ToastDefault} from './toast.scenario.js';
-import {Scenario as ToastApplicationState} from './toast-application-state.scenario.js';
-import {Scenario as ToasterFocusScenario} from './toaster-focus.scenario.js';
-import {Scenario as ToasterScenario} from './toaster.scenario.js';
+import { Scenario as ToastDefault } from './toast.scenario.js';
+import { Scenario as ToastApplicationState } from './toast-application-state.scenario.js';
+import { Scenario as ToasterFocusScenario } from './toaster-focus.scenario.js';
+import { Scenario as ToasterScenario } from './toaster.scenario.js';
 
 export const Toast = () => <ToastDefault />;
 export const ApplicationState = () => <ToastApplicationState />;

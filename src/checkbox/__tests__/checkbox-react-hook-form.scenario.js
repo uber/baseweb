@@ -8,9 +8,9 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {FormProvider, useForm, Controller} from 'react-hook-form';
-import {StatefulCheckbox, Checkbox, LABEL_PLACEMENT} from '../index.js';
-import {Heading, HeadingLevel} from '../../heading/index.js';
+import { FormProvider, useForm, Controller } from 'react-hook-form';
+import { StatefulCheckbox, Checkbox, LABEL_PLACEMENT } from '../index.js';
+import { Heading, HeadingLevel } from '../../heading/index.js';
 
 const StatefulCheckboxExample = () => {
   const form = useForm({
@@ -23,7 +23,7 @@ const StatefulCheckboxExample = () => {
   function handleSubmit(data) {
     console.log(data);
   }
-  const {ref: refA, ...checkboxA} = form.register('basewebStatefulCheckbox');
+  const { ref: refA, ...checkboxA } = form.register('basewebStatefulCheckbox');
 
   return (
     <FormProvider {...form}>
@@ -32,7 +32,7 @@ const StatefulCheckboxExample = () => {
           {...checkboxA}
           inputRef={refA}
           labelPlacement={LABEL_PLACEMENT.right}
-          initialState={{checked: true, indeterminate: false}}
+          initialState={{ checked: true, indeterminate: false }}
         >
           Baseweb StatefulCheckbox
         </StatefulCheckbox>
@@ -66,7 +66,7 @@ const CheckboxWithControllerExample = () => {
         <Controller
           control={form.control}
           name={'basewebCheckbox'}
-          render={({field: {value, ref, ...rest}}) => (
+          render={({ field: { value, ref, ...rest } }) => (
             <Checkbox
               {...rest}
               checked={value}
@@ -97,9 +97,7 @@ const Example = () => {
       <HeadingLevel>
         <Heading styleLevel={6}>Using StatefulCheckbox</Heading>
         <StatefulCheckboxExample />
-        <Heading styleLevel={6}>
-          Using Checkbox with react-hook-form Controller
-        </Heading>
+        <Heading styleLevel={6}>Using Checkbox with react-hook-form Controller</Heading>
         <CheckboxWithControllerExample />
       </HeadingLevel>
     </HeadingLevel>

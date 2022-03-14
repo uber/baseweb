@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable no-prototype-builtins */
 // @flow
 import * as t from '@babel/types';
-import {withJsFiles} from '@dubstep/core';
+import { withJsFiles } from '@dubstep/core';
 
 const THEME_TYPOGRAPHY_MAP = {
   font100: 'font100',
@@ -45,10 +45,7 @@ function updateCaptionColorAttributes(path, localAlias = null) {
   path.traverse({
     JSXOpeningElement(path) {
       // If we find a Caption or the local alias for a Caption...
-      if (
-        localAlias === path.node.name.name ||
-        CAPTIONS.includes(path.node.name.name)
-      ) {
+      if (localAlias === path.node.name.name || CAPTIONS.includes(path.node.name.name)) {
         let shouldSetCaptionColor = true;
         // Check if the color prop is already set.
         path.traverse({
@@ -61,7 +58,7 @@ function updateCaptionColorAttributes(path, localAlias = null) {
           // Create a new JSX attribute...
           const colorAttribute = t.jsxAttribute(
             t.jsxIdentifier('color'),
-            t.StringLiteral('contentSecondary'),
+            t.StringLiteral('contentSecondary')
           );
           // Add it to the opening element.
           path.node.attributes.push(colorAttribute);
@@ -115,24 +112,12 @@ function updateTypographyComponentImports(path) {
           if (path.node.value === 'baseui/typography') {
             path.parentPath.traverse({
               ImportSpecifier(path) {
-                if (
-                  COMPONENT_TYPOGRAPHY_MAP.hasOwnProperty(
-                    path.node.imported.name,
-                  )
-                ) {
-                  const newName =
-                    COMPONENT_TYPOGRAPHY_MAP[path.node.imported.name];
-                  const hasLocalAlias =
-                    path.node.imported.name !== path.node.local.name;
+                if (COMPONENT_TYPOGRAPHY_MAP.hasOwnProperty(path.node.imported.name)) {
+                  const newName = COMPONENT_TYPOGRAPHY_MAP[path.node.imported.name];
+                  const hasLocalAlias = path.node.imported.name !== path.node.local.name;
 
-                  if (
-                    CAPTIONS.includes(path.node.imported.name) &&
-                    hasLocalAlias
-                  ) {
-                    updateCaptionColorAttributes(
-                      path.parentPath.parentPath,
-                      path.node.local.name,
-                    );
+                  if (CAPTIONS.includes(path.node.imported.name) && hasLocalAlias) {
+                    updateCaptionColorAttributes(path.parentPath.parentPath, path.node.local.name);
                   }
 
                   path.node.imported.name = newName;
@@ -147,7 +132,7 @@ function updateTypographyComponentImports(path) {
   });
 }
 
-async function codemod(options: {dir: string}) {
+async function codemod(options: { dir: string }) {
   await withJsFiles(`${options.dir}/**/*.js`, async (path) => {
     updateCaptionColorAttributes(path);
     updateFontAttributes(path);

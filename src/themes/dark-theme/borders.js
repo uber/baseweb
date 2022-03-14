@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import sharedBorders from '../shared/borders.js';
 import deepMerge from '../../utils/deep-merge.js';
-import type {BordersT} from '../types.js';
+import type { BordersT } from '../types.js';
 
 // Override border colors for the dark theme
 const borders: BordersT = deepMerge({}, sharedBorders, {

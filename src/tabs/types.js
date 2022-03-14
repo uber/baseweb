@@ -7,8 +7,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-disable flowtype/generic-spacing */
 import * as React from 'react';
-import type {OverrideT} from '../helpers/overrides.js';
-import {ORIENTATION, STATE_CHANGE_TYPE} from './constants.js';
+import type { OverrideT } from '../helpers/overrides.js';
+import { ORIENTATION, STATE_CHANGE_TYPE } from './constants.js';
 
 export type SharedStylePropsArgT = {
   $disabled?: boolean,
@@ -26,7 +26,7 @@ export type StateChangeTypeT = $Keys<typeof STATE_CHANGE_TYPE>;
 export type StateReducerT = (
   stateChangeType: StateChangeTypeT,
   nextState: StatefulTabsStateT,
-  currentState: StatefulTabsStateT,
+  currentState: StatefulTabsStateT
 ) => StatefulTabsStateT;
 
 export type TabsOverridesT = {
@@ -40,7 +40,7 @@ export type TabOverridesT = {
   Tab?: OverrideT,
 };
 
-export type OnChangeHandlerT = ({activeKey: React.Key}) => mixed;
+export type OnChangeHandlerT = ({ activeKey: React.Key }) => mixed;
 
 export type TabsPropsT = {
   /** An array of Tab components. */
@@ -59,7 +59,7 @@ export type TabsPropsT = {
   overrides?: TabsOverridesT,
 };
 
-export type StatefulTabsPropsT = $Diff<TabsPropsT, {activeKey: React.Key}> & {
+export type StatefulTabsPropsT = $Diff<TabsPropsT, { activeKey: React.Key }> & {
   /**  Initial state of the component */
   initialState?: StatefulTabsStateT,
   /**  A state change handler. */

@@ -11,10 +11,7 @@ export default function SvgHeading(props) {
   return (
     <svg width={232} height={145} fill="none" {...props}>
       <path fill={props.colors[2]} d="M61 48h110v10H61z" />
-      <path
-        fill={props.colors[0]}
-        d="M61 90h85v8H61zM61 66h110v8H61zM61 78h110v8H61z"
-      />
+      <path fill={props.colors[0]} d="M61 90h85v8H61zM61 66h110v8H61zM61 78h110v8H61z" />
     </svg>
   );
 }

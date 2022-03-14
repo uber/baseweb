@@ -10,26 +10,12 @@ import React from 'react';
 export default function SvgTag(props) {
   return (
     <svg width={232} height={145} fill="none" {...props}>
-      <rect
-        x={61}
-        y={65}
-        width={50}
-        height={16}
-        rx={8}
-        fill={props.colors[0]}
-      />
+      <rect x={61} y={65} width={50} height={16} rx={8} fill={props.colors[0]} />
       <path
         d="M103.64 70.24l-.88-.88-2.76 2.8-2.76-2.8-.88.88 2.8 2.76-2.8 2.76.88.88 2.76-2.8 2.76 2.8.88-.88-2.8-2.76 2.8-2.76z"
         fill={props.colors[2]}
       />
-      <rect
-        x={121}
-        y={65}
-        width={50}
-        height={16}
-        rx={8}
-        fill={props.colors[2]}
-      />
+      <rect x={121} y={65} width={50} height={16} rx={8} fill={props.colors[2]} />
       <path
         d="M163.64 70.24l-.88-.88-2.76 2.8-2.76-2.8-.88.88 2.8 2.76-2.8 2.76.88.88 2.76-2.8 2.76 2.8.88-.88-2.8-2.76 2.8-2.76z"
         fill={props.colors[0]}

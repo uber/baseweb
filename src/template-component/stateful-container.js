@@ -15,12 +15,9 @@ import type {
 
 const defaultStateReducer: StateReducerT = (type, nextState) => nextState;
 
-class StatefulContainer extends React.Component<
-  StatefulComponentContainerPropsT,
-  StateT,
-> {
+class StatefulContainer extends React.Component<StatefulComponentContainerPropsT, StateT> {
   static defaultProps: $Shape<StatefulComponentContainerPropsT> = {
-    initialState: {prop: true},
+    initialState: { prop: true },
     stateReducer: defaultStateReducer,
   };
 
@@ -33,11 +30,11 @@ class StatefulContainer extends React.Component<
     if (typeof this.props.onClick === 'function') {
       this.props.onClick(...args);
     }
-    this.internalSetState('click', {prop: !this.state.prop});
+    this.internalSetState('click', { prop: !this.state.prop });
   };
 
   internalSetState(type: StateChangeTypeT, changes: StateT) {
-    const {stateReducer} = this.props;
+    const { stateReducer } = this.props;
     if (typeof stateReducer !== 'function') {
       this.setState(changes);
       return;
@@ -46,7 +43,7 @@ class StatefulContainer extends React.Component<
   }
 
   render() {
-    const {children, initialState, stateReducer, ...restProps} = this.props;
+    const { children, initialState, stateReducer, ...restProps } = this.props;
 
     return this.props.children({
       ...restProps,

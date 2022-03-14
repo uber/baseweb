@@ -11,10 +11,7 @@ export default function SvgSelect(props) {
   return (
     <svg width={232} height={145} fill="none" {...props}>
       <path fill={props.colors[1]} d="M29 59h174v28H29z" />
-      <path
-        d="M186.923 76l-5.129-5.25h10.259l-5.13 5.25z"
-        fill={props.colors[2]}
-      />
+      <path d="M186.923 76l-5.129-5.25h10.259l-5.13 5.25z" fill={props.colors[2]} />
     </svg>
   );
 }

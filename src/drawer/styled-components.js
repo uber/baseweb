@@ -5,9 +5,9 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import {styled} from '../styles/index.js';
-import {SIZE, SIZE_DIMENSION, ANCHOR} from './constants.js';
-import type {SharedStylePropsArgT, SizePropT, AnchorPropT} from './types.js';
+import { styled } from '../styles/index.js';
+import { SIZE, SIZE_DIMENSION, ANCHOR } from './constants.js';
+import type { SharedStylePropsArgT, SizePropT, AnchorPropT } from './types.js';
 
 function getSizeStyles($size: SizePropT, $anchor: AnchorPropT) {
   const styles = {
@@ -38,15 +38,13 @@ function getSizeStyles($size: SizePropT, $anchor: AnchorPropT) {
 }
 
 function getAnchorStyles(props: SharedStylePropsArgT) {
-  const {$anchor, $isVisible, $size} = props;
+  const { $anchor, $isVisible, $size } = props;
   const sizeStyles = getSizeStyles($size, $anchor);
-  const {left, right, top, bottom} = ANCHOR;
+  const { left, right, top, bottom } = ANCHOR;
   switch ($anchor) {
     case right: {
       return {
-        transform: $isVisible
-          ? 'translateX(0)'
-          : `translateX(${sizeStyles.width})`,
+        transform: $isVisible ? 'translateX(0)' : `translateX(${sizeStyles.width})`,
         right: $isVisible ? 0 : `-${sizeStyles.width}`,
         top: 0,
         ...sizeStyles,
@@ -54,9 +52,7 @@ function getAnchorStyles(props: SharedStylePropsArgT) {
     }
     case left: {
       return {
-        transform: $isVisible
-          ? 'translateX(0)'
-          : `translateX(-${sizeStyles.width})`,
+        transform: $isVisible ? 'translateX(0)' : `translateX(-${sizeStyles.width})`,
         left: $isVisible ? 0 : `-${sizeStyles.width}`,
         top: 0,
         ...sizeStyles,
@@ -64,9 +60,7 @@ function getAnchorStyles(props: SharedStylePropsArgT) {
     }
     case bottom: {
       return {
-        transform: $isVisible
-          ? 'translateY(0)'
-          : `translateY(${sizeStyles.height})`,
+        transform: $isVisible ? 'translateY(0)' : `translateY(${sizeStyles.height})`,
         left: 0,
         bottom: $isVisible ? '0' : `-${sizeStyles.height}`,
         ...sizeStyles,
@@ -74,9 +68,7 @@ function getAnchorStyles(props: SharedStylePropsArgT) {
     }
     case top: {
       return {
-        transform: $isVisible
-          ? 'translateY(0)'
-          : `translateY(-${sizeStyles.height})`,
+        transform: $isVisible ? 'translateY(0)' : `translateY(-${sizeStyles.height})`,
         left: 0,
         top: $isVisible ? '0' : `-${sizeStyles.height}`,
         ...sizeStyles,
@@ -100,7 +92,7 @@ export const StyledRoot = styled<SharedStylePropsArgT>('div', (props) => {
 });
 
 export const StyledBackdrop = styled<SharedStylePropsArgT>('div', (props) => {
-  const {$animating, $isOpen, $isVisible, $showBackdrop, $theme} = props;
+  const { $animating, $isOpen, $isVisible, $showBackdrop, $theme } = props;
   return {
     position: 'fixed',
     right: 0,
@@ -123,33 +115,28 @@ export const StyledBackdrop = styled<SharedStylePropsArgT>('div', (props) => {
   };
 });
 
-export const StyledDrawerContainer = styled<SharedStylePropsArgT>(
-  'div',
-  (props) => {
-    const {$animating, $isOpen, $isVisible, $theme} = props;
-    return {
-      backgroundColor: $theme.colors.backgroundPrimary,
-      borderTopLeftRadius: $theme.borders.surfaceBorderRadius,
-      borderTopRightRadius: $theme.borders.surfaceBorderRadius,
-      borderBottomRightRadius: $theme.borders.surfaceBorderRadius,
-      borderBottomLeftRadius: $theme.borders.surfaceBorderRadius,
-      ...getAnchorStyles(props),
+export const StyledDrawerContainer = styled<SharedStylePropsArgT>('div', (props) => {
+  const { $animating, $isOpen, $isVisible, $theme } = props;
+  return {
+    backgroundColor: $theme.colors.backgroundPrimary,
+    borderTopLeftRadius: $theme.borders.surfaceBorderRadius,
+    borderTopRightRadius: $theme.borders.surfaceBorderRadius,
+    borderBottomRightRadius: $theme.borders.surfaceBorderRadius,
+    borderBottomLeftRadius: $theme.borders.surfaceBorderRadius,
+    ...getAnchorStyles(props),
 
-      // Animation
-      opacity: $isVisible && $isOpen ? 1 : 0,
-      transitionProperty: $animating ? 'opacity, transform' : null,
-      transitionDuration: $animating ? $theme.animation.timing400 : null,
-      transitionTimingFunction: $animating
-        ? $theme.animation.easeOutCurve
-        : null,
-      display: 'flex',
-      position: 'fixed',
-    };
-  },
-);
+    // Animation
+    opacity: $isVisible && $isOpen ? 1 : 0,
+    transitionProperty: $animating ? 'opacity, transform' : null,
+    transitionDuration: $animating ? $theme.animation.timing400 : null,
+    transitionTimingFunction: $animating ? $theme.animation.easeOutCurve : null,
+    display: 'flex',
+    position: 'fixed',
+  };
+});
 
 export const StyledDrawerBody = styled<SharedStylePropsArgT>('div', (props) => {
-  const {$theme} = props;
+  const { $theme } = props;
   return {
     ...$theme.typography.font200,
     color: $theme.colors.contentPrimary,
@@ -163,7 +150,7 @@ export const StyledDrawerBody = styled<SharedStylePropsArgT>('div', (props) => {
 });
 
 export const StyledClose = styled<SharedStylePropsArgT>('button', (props) => {
-  const {$theme, $isFocusVisible} = props;
+  const { $theme, $isFocusVisible } = props;
   const dir: string = $theme.direction === 'rtl' ? 'left' : 'right';
   return {
     // Reset button styles

@@ -8,11 +8,11 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import type {StarRatingPropsT, RatingStateT} from './types.js';
-import {StyledRoot, StyledStar} from './styled-components.js';
-import {getOverrides} from '../helpers/overrides.js';
-import {ARROW_UP, ARROW_DOWN, ARROW_LEFT, ARROW_RIGHT} from './utils.js';
-import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
+import type { StarRatingPropsT, RatingStateT } from './types.js';
+import { StyledRoot, StyledStar } from './styled-components.js';
+import { getOverrides } from '../helpers/overrides.js';
+import { ARROW_UP, ARROW_DOWN, ARROW_LEFT, ARROW_RIGHT } from './utils.js';
+import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible.js';
 
 class StarRating extends React.Component<StarRatingPropsT, RatingStateT> {
   static defaultProps = {
@@ -21,44 +21,38 @@ class StarRating extends React.Component<StarRatingPropsT, RatingStateT> {
     readOnly: false,
   };
 
-  state = {isFocusVisible: false, previewIndex: undefined};
+  state = { isFocusVisible: false, previewIndex: undefined };
 
   selectItem = (value: number) => {
-    const {onChange} = this.props;
+    const { onChange } = this.props;
 
-    onChange && onChange({value});
-    this.setState({previewIndex: undefined});
+    onChange && onChange({ value });
+    this.setState({ previewIndex: undefined });
   };
 
   updatePreview = (previewIndex?: number) => {
-    this.setState({previewIndex});
+    this.setState({ previewIndex });
   };
 
   handleFocus = (event: SyntheticEvent<>) => {
     if (isFocusVisible(event)) {
-      this.setState({isFocusVisible: true});
+      this.setState({ isFocusVisible: true });
     }
   };
 
   handleBlur = (event: SyntheticEvent<>) => {
     if (this.state.isFocusVisible !== false) {
-      this.setState({isFocusVisible: false});
+      this.setState({ isFocusVisible: false });
     }
   };
 
   renderRatingContents = () => {
-    const {
-      overrides = {},
-      value = -1,
-      numItems,
-      size = 22,
-      readOnly = false,
-    } = this.props;
-    const {previewIndex} = this.state;
+    const { overrides = {}, value = -1, numItems, size = 22, readOnly = false } = this.props;
+    const { previewIndex } = this.state;
     const [Star, starProps] = getOverrides(overrides.Item, StyledStar);
 
     const ratings = [];
-    const refs = [{current: null}];
+    const refs = [{ current: null }];
     for (let x = 1; x <= numItems; x++) {
       const isFocusable = x === value || (value < 1 && x === 1);
       const starRef = React.createRef<HTMLLIElement>();
@@ -77,12 +71,8 @@ class StarRating extends React.Component<StarRatingPropsT, RatingStateT> {
           aria-disabled={readOnly}
           $size={size}
           $index={x}
-          $isActive={
-            previewIndex !== undefined ? x <= previewIndex : x <= value
-          }
-          $isPartialActive={
-            previewIndex !== undefined ? false : x <= value + 0.5
-          }
+          $isActive={previewIndex !== undefined ? x <= previewIndex : x <= value}
+          $isPartialActive={previewIndex !== undefined ? false : x <= value + 0.5}
           $isSelected={x === previewIndex}
           $isFocusVisible={this.state.isFocusVisible && isFocusable}
           $isReadOnly={readOnly}
@@ -118,7 +108,7 @@ class StarRating extends React.Component<StarRatingPropsT, RatingStateT> {
           {...starProps}
           onFocus={forkFocus(starProps, this.handleFocus)}
           onBlur={forkBlur(starProps, this.handleBlur)}
-        />,
+        />
       );
     }
 
@@ -126,7 +116,7 @@ class StarRating extends React.Component<StarRatingPropsT, RatingStateT> {
   };
 
   render() {
-    const {overrides = {}} = this.props;
+    const { overrides = {} } = this.props;
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
 
     return (
@@ -134,8 +124,7 @@ class StarRating extends React.Component<StarRatingPropsT, RatingStateT> {
         data-baseweb="star-rating"
         role="radiogroup"
         onBlur={(e) => {
-          if (!e.currentTarget.contains(e.relatedTarget))
-            this.updatePreview(undefined);
+          if (!e.currentTarget.contains(e.relatedTarget)) this.updatePreview(undefined);
         }}
         onMouseLeave={() => this.updatePreview(undefined)}
         {...rootProps}

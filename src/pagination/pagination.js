@@ -8,21 +8,17 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import memoize from 'memoize-one';
 // Files
-import {LocaleContext} from '../locale/index.js';
-import {ThemeContext} from '../styles/theme-provider.js';
-import {Select as BaseSelect} from '../select/index.js';
-import {Button, KIND} from '../button/index.js';
-import {
-  StyledRoot,
-  StyledMaxLabel,
-  StyledDropdownContainer,
-} from './styled-components.js';
+import { LocaleContext } from '../locale/index.js';
+import { ThemeContext } from '../styles/theme-provider.js';
+import { Select as BaseSelect } from '../select/index.js';
+import { Button, KIND } from '../button/index.js';
+import { StyledRoot, StyledMaxLabel, StyledDropdownContainer } from './styled-components.js';
 import ChevronLeft from '../icon/chevron-left.js';
 import ChevronRight from '../icon/chevron-right.js';
-import {getOverrides} from '../helpers/overrides.js';
-import type {PaginationPropsT} from './types.js';
-import type {LocaleT} from '../locale/types.js';
-import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
+import { getOverrides } from '../helpers/overrides.js';
+import type { PaginationPropsT } from './types.js';
+import type { LocaleT } from '../locale/types.js';
+import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible.js';
 
 type PageOptionT = {
   label: number,
@@ -30,89 +26,80 @@ type PageOptionT = {
 
 export default class Pagination extends React.PureComponent<
   PaginationPropsT,
-  {isFocusVisible: boolean},
+  { isFocusVisible: boolean }
 > {
   static defaultProps = {
     labels: {},
     overrides: {},
   };
 
-  state = {isFocusVisible: false};
+  state = { isFocusVisible: false };
   handleFocus = (event: SyntheticEvent<>) => {
     if (isFocusVisible(event)) {
-      this.setState({isFocusVisible: true});
+      this.setState({ isFocusVisible: true });
     }
   };
 
   handleBlur = (event: SyntheticEvent<>) => {
     if (this.state.isFocusVisible !== false) {
-      this.setState({isFocusVisible: false});
+      this.setState({ isFocusVisible: false });
     }
   };
 
   getMenuOptions = memoize((numPages: number) => {
     const menuOptions = [];
     for (let i = 1; i <= numPages; i++) {
-      menuOptions.push({label: i});
+      menuOptions.push({ label: i });
     }
     return menuOptions;
   });
 
-  onMenuItemSelect = (data: {value: $ReadOnlyArray<PageOptionT>}) => {
+  onMenuItemSelect = (data: { value: $ReadOnlyArray<PageOptionT> }) => {
     const item = data.value[0];
-    const {onPageChange, currentPage} = this.props;
+    const { onPageChange, currentPage } = this.props;
     const page = item.label;
     if (page !== currentPage) {
-      onPageChange && onPageChange({nextPage: page, prevPage: currentPage});
+      onPageChange && onPageChange({ nextPage: page, prevPage: currentPage });
     }
   };
 
   onPrevClick = (event: SyntheticEvent<>) => {
-    const {currentPage, onPageChange, onPrevClick} = this.props;
+    const { currentPage, onPageChange, onPrevClick } = this.props;
     if (currentPage > 1) {
-      onPageChange &&
-        onPageChange({nextPage: currentPage - 1, prevPage: currentPage});
-      onPrevClick && onPrevClick({event});
+      onPageChange && onPageChange({ nextPage: currentPage - 1, prevPage: currentPage });
+      onPrevClick && onPrevClick({ event });
     }
   };
 
   onNextClick = (event: SyntheticEvent<>) => {
-    const {currentPage, numPages, onPageChange, onNextClick} = this.props;
+    const { currentPage, numPages, onPageChange, onNextClick } = this.props;
     if (currentPage < numPages) {
-      onPageChange &&
-        onPageChange({nextPage: currentPage + 1, prevPage: currentPage});
-      onNextClick && onNextClick({event});
+      onPageChange && onPageChange({ nextPage: currentPage + 1, prevPage: currentPage });
+      onNextClick && onNextClick({ event });
     }
   };
 
   constructAriaWayfinderLabel = (locale: LocaleT, prefix: string) => {
-    const {currentPage, numPages, labels} = this.props;
+    const { currentPage, numPages, labels } = this.props;
     return (
       prefix +
       ' ' +
       currentPage +
       ' ' +
-      `${
-        labels && labels.preposition
-          ? labels.preposition
-          : locale.pagination.preposition
-      }` +
+      `${labels && labels.preposition ? labels.preposition : locale.pagination.preposition}` +
       ' ' +
       numPages
     );
   };
 
   render() {
-    const {overrides = {}, currentPage, labels, numPages, size} = this.props;
+    const { overrides = {}, currentPage, labels, numPages, size } = this.props;
 
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
-    const [MaxLabel, maxLabelProps] = getOverrides(
-      overrides.MaxLabel,
-      StyledMaxLabel,
-    );
+    const [MaxLabel, maxLabelProps] = getOverrides(overrides.MaxLabel, StyledMaxLabel);
     const [DropdownContainer, dropdownContainerProps] = getOverrides(
       overrides.DropdownContainer,
-      StyledDropdownContainer,
+      StyledDropdownContainer
     );
     const [Select, selectProps] = getOverrides(overrides.Select, BaseSelect);
 
@@ -127,7 +114,7 @@ export default class Pagination extends React.PureComponent<
                 <Button
                   aria-label={this.constructAriaWayfinderLabel(
                     locale,
-                    'previous page. current page',
+                    'previous page. current page'
                   )}
                   disabled={currentPage <= 1}
                   onClick={this.onPrevClick}
@@ -144,9 +131,7 @@ export default class Pagination extends React.PureComponent<
                   }}
                   size={size}
                 >
-                  {labels && labels.prevButton
-                    ? labels.prevButton
-                    : locale.pagination.prev}
+                  {labels && labels.prevButton ? labels.prevButton : locale.pagination.prev}
                 </Button>
                 <DropdownContainer
                   $isFocusVisible={this.state.isFocusVisible}
@@ -155,22 +140,19 @@ export default class Pagination extends React.PureComponent<
                   onBlur={forkBlur(dropdownContainerProps, this.handleBlur)}
                 >
                   <Select
-                    aria-label={this.constructAriaWayfinderLabel(
-                      locale,
-                      'page',
-                    )}
+                    aria-label={this.constructAriaWayfinderLabel(locale, 'page')}
                     options={options}
                     labelKey="label"
                     valueKey="label"
                     onChange={this.onMenuItemSelect}
                     searchable={false}
                     clearable={false}
-                    value={[{label: currentPage}]}
+                    value={[{ label: currentPage }]}
                     maxDropdownHeight="200px"
                     size={size}
                     overrides={{
                       ControlContainer: {
-                        style: ({$theme, $disabled, $isOpen, $error}) => ({
+                        style: ({ $theme, $disabled, $isOpen, $error }) => ({
                           borderLeftColor: 'transparent',
                           borderRightColor: 'transparent',
                           borderTopColor: 'transparent',
@@ -199,7 +181,7 @@ export default class Pagination extends React.PureComponent<
                         },
                       },
                       SingleValue: {
-                        style: ({$theme}) => ({
+                        style: ({ $theme }) => ({
                           position: 'relative',
                           paddingTop: '0',
                           paddingBottom: '0',
@@ -211,7 +193,7 @@ export default class Pagination extends React.PureComponent<
                         }),
                       },
                       SelectArrow: {
-                        style: ({$theme}) => ({
+                        style: ({ $theme }) => ({
                           width: '24px',
                           height: '24px',
                           color: $theme.colors.buttonTertiaryText,
@@ -229,10 +211,7 @@ export default class Pagination extends React.PureComponent<
                   } ${numPages}`}
                 </MaxLabel>
                 <Button
-                  aria-label={this.constructAriaWayfinderLabel(
-                    locale,
-                    'next page. current page',
-                  )}
+                  aria-label={this.constructAriaWayfinderLabel(locale, 'next page. current page')}
                   disabled={currentPage >= numPages}
                   onClick={this.onNextClick}
                   endEnhancer={() => {
@@ -248,9 +227,7 @@ export default class Pagination extends React.PureComponent<
                   }}
                   size={size}
                 >
-                  {labels && labels.nextButton
-                    ? labels.nextButton
-                    : locale.pagination.next}
+                  {labels && labels.nextButton ? labels.nextButton : locale.pagination.next}
                 </Button>
               </Root>
             )}

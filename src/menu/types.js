@@ -7,13 +7,13 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import type {OverrideT} from '../helpers/overrides.js';
-import {STATE_CHANGE_TYPES, OPTION_LIST_SIZE} from './constants.js';
+import type { OverrideT } from '../helpers/overrides.js';
+import { STATE_CHANGE_TYPES, OPTION_LIST_SIZE } from './constants.js';
 
 // flowlint-next-line unclear-type:off
 export type ItemT = any;
 export type ArrayItemsT = $ReadOnlyArray<ItemT>;
-export type GroupedItemsT = {__ungrouped: ArrayItemsT, [string]: ArrayItemsT};
+export type GroupedItemsT = { __ungrouped: ArrayItemsT, [string]: ArrayItemsT };
 export type ItemsT = ArrayItemsT | GroupedItemsT;
 
 export type GetItemLabelFnT = (item: ItemT) => React.Node;
@@ -25,14 +25,14 @@ export type GetProfileItemLabelsFnT = (item: ItemT) => {
 };
 
 export type GetProfileItemImgFnT = (
-  item: ItemT, // flowlint-next-line unclear-type:off
+  item: ItemT // flowlint-next-line unclear-type:off
 ) => string | React.ComponentType<any>;
 
 export type GetProfileItemImgTextFnT = (item: ItemT) => string;
 
 export type SetRootRefFnT = (ref: React.ElementRef<typeof HTMLElement>) => void;
 
-export type RootRefT = {current: null | HTMLElement};
+export type RootRefT = { current: null | HTMLElement };
 
 export type OnItemSelectFnT = ({
   item: ItemT,
@@ -62,15 +62,12 @@ export type RenderItemPropsT = {
   resetMenu?: () => mixed,
 };
 
-export type GetRequiredItemPropsFnT = (
-  item: ItemT,
-  index: number,
-) => $Shape<RenderItemPropsT>;
+export type GetRequiredItemPropsFnT = (item: ItemT, index: number) => $Shape<RenderItemPropsT>;
 
 export type StateReducerFnT = (
   changeType: ?$Keys<typeof STATE_CHANGE_TYPES>,
   changes: StatefulContainerStateT,
-  currentState: StatefulContainerStateT,
+  currentState: StatefulContainerStateT
 ) => StatefulContainerStateT;
 
 export type StatefulContainerStateT = {
@@ -122,21 +119,21 @@ export type StatefulContainerPropsT = {
   /** Ref for the menu container element. Used to capture key events for navigation */
   rootRef?: RootRefT,
   /** Node for menu's keyboard listener. Default is null and keyboard handlers will listen on menu root. */
-  keyboardControlNode: {current: HTMLElement | null},
+  keyboardControlNode: { current: HTMLElement | null },
   /** whether has keyboard type-ahead function */
   typeAhead: boolean,
   /** Child as function pattern. */
   children: (RenderPropsT) => React.Node,
-  addMenuToNesting?: (ref: {current: HTMLElement | null}) => void,
-  removeMenuFromNesting?: (ref: {current: HTMLElement | null}) => void,
-  getParentMenu?: (ref: {current: HTMLElement | null}) => ?{
+  addMenuToNesting?: (ref: { current: HTMLElement | null }) => void,
+  removeMenuFromNesting?: (ref: { current: HTMLElement | null }) => void,
+  getParentMenu?: (ref: { current: HTMLElement | null }) => ?{
     current: HTMLElement | null,
   },
-  getChildMenu?: (ref: {current: HTMLElement | null}) => ?{
+  getChildMenu?: (ref: { current: HTMLElement | null }) => ?{
     current: HTMLElement | null,
   },
   nestedMenuHoverIndex?: number,
-  isNestedMenuVisible?: (ref: {current: HTMLElement | null}) => boolean,
+  isNestedMenuVisible?: (ref: { current: HTMLElement | null }) => boolean,
   forceHighlight: boolean,
 };
 
@@ -208,25 +205,23 @@ export type StatefulMenuPropsT = {
   children?: (RenderPropsT) => React.Node,
   /** whether has keyboard type-ahead function */
   typeAhead?: boolean,
-  addMenuToNesting?: (ref: {current: HTMLElement | null}) => void,
-  removeMenuFromNesting?: (ref: {current: HTMLElement | null}) => void,
-  getParentMenu?: (ref: {current: HTMLElement | null}) => ?{
+  addMenuToNesting?: (ref: { current: HTMLElement | null }) => void,
+  removeMenuFromNesting?: (ref: { current: HTMLElement | null }) => void,
+  getParentMenu?: (ref: { current: HTMLElement | null }) => ?{
     current: HTMLElement | null,
   },
-  getChildMenu?: (ref: {current: HTMLElement | null}) => ?{
+  getChildMenu?: (ref: { current: HTMLElement | null }) => ?{
     current: HTMLElement | null,
   },
   nestedMenuHoverIndex?: number,
-  isNestedMenuVisible?: (ref: {current: HTMLElement | null}) => boolean,
+  isNestedMenuVisible?: (ref: { current: HTMLElement | null }) => boolean,
 } & MenuPropsT;
 
-export type StatefulMenuProfilePropsT = StatefulContainerPropsT &
-  MenuProfilePropsT;
+export type StatefulMenuProfilePropsT = StatefulContainerPropsT & MenuProfilePropsT;
 
 export type StatelessMenuPropsT = SharedStatelessPropsT & MenuPropsT;
 
-export type StatelessMenuProfilePropsT = SharedStatelessPropsT &
-  MenuProfilePropsT;
+export type StatelessMenuProfilePropsT = SharedStatelessPropsT & MenuProfilePropsT;
 
 export type OptionListPropsT = {
   /** Item to parse and render. */
@@ -297,7 +292,7 @@ export type OptionProfilePropsT = {
   renderAll?: boolean,
 };
 
-export type NestedMenuRefT = {current: HTMLElement | null};
+export type NestedMenuRefT = { current: HTMLElement | null };
 export type NestedMenuContextT = {|
   addMenuToNesting: (ref: NestedMenuRefT) => void,
   removeMenuFromNesting: (ref: NestedMenuRefT) => void,

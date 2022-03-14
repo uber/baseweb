@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {StatefulContainer as StatefulPopoverContainer} from '../popover/index.js';
+import { StatefulContainer as StatefulPopoverContainer } from '../popover/index.js';
 import baseDefaultProps from './default-props.js';
-import type {StatefulTooltipContainerPropsT} from './types.js';
+import type { StatefulTooltipContainerPropsT } from './types.js';
 
 class StatefulContainer extends React.Component<StatefulTooltipContainerPropsT> {
   static defaultProps: $Shape<StatefulTooltipContainerPropsT> = {

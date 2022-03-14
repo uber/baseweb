@@ -8,18 +8,11 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Button} from '../../button/index.js';
-import {
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  ModalButton,
-  SIZE,
-} from '../index.js';
+import { Button } from '../../button/index.js';
+import { Modal, ModalHeader, ModalBody, ModalFooter, ModalButton, SIZE } from '../index.js';
 
 // $FlowFixMe
-export function Scenario({closeable = true}) {
+export function Scenario({ closeable = true }) {
   const [isOpen, setIsOpen] = React.useState(false);
 
   // adding mountNode so that rtl vrts work render properly. this is because the portal
@@ -45,14 +38,11 @@ export function Scenario({closeable = true}) {
       >
         <ModalHeader>Hello world</ModalHeader>
         <ModalBody>
-          Proin ut dui sed metus pharetra hend rerit vel non mi. Nulla ornare
-          faucibus ex, non facilisis nisl. Maecenas aliquet mauris ut tempus.
+          Proin ut dui sed metus pharetra hend rerit vel non mi. Nulla ornare faucibus ex, non
+          facilisis nisl. Maecenas aliquet mauris ut tempus.
         </ModalBody>
         <ModalFooter>
-          <ModalButton
-            onClick={() => setIsOpen(false)}
-            data-e2e="cancel-button"
-          >
+          <ModalButton onClick={() => setIsOpen(false)} data-e2e="cancel-button">
             Cancel
           </ModalButton>
           <ModalButton onClick={() => setIsOpen(false)}>Okay</ModalButton>

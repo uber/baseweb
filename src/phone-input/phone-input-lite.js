@@ -5,14 +5,14 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import React, {useRef} from 'react';
-import {Input as DefaultInput} from '../input/index.js';
+import React, { useRef } from 'react';
+import { Input as DefaultInput } from '../input/index.js';
 import CountrySelect from './country-select.js';
-import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
+import { getOverrides, mergeOverrides } from '../helpers/overrides.js';
 import defaultProps from './default-props.js';
-import type {LitePropsT} from './types.js';
+import type { LitePropsT } from './types.js';
 
-const {country, ...lightDefaultProps} = defaultProps;
+const { country, ...lightDefaultProps } = defaultProps;
 
 PhoneInputLite.defaultProps = lightDefaultProps;
 
@@ -43,7 +43,7 @@ export default function PhoneInputLite(props: LitePropsT) {
   const inputRef = useRef(null);
   const baseOverrides = {
     Input: {
-      style: ({$theme: {sizing}}) => ({paddingLeft: sizing.scale100}),
+      style: ({ $theme: { sizing } }) => ({ paddingLeft: sizing.scale100 }),
     },
     Before: {
       component: CountrySelect,

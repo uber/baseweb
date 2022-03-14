@@ -7,12 +7,12 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {ThemeProvider, LightTheme} from '../../index.js';
-import {Scenario as RadioScenario} from './radio.scenario.js';
+import { ThemeProvider, LightTheme } from '../../index.js';
+import { Scenario as RadioScenario } from './radio.scenario.js';
 
 export function Scenario() {
   return (
-    <ThemeProvider theme={{...LightTheme, direction: 'rtl'}}>
+    <ThemeProvider theme={{ ...LightTheme, direction: 'rtl' }}>
       <div dir="rtl">
         <RadioScenario />
       </div>

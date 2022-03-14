@@ -8,21 +8,14 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {useStyletron} from '../styles/index.js';
+import { useStyletron } from '../styles/index.js';
 
 import HeaderCell from './header-cell.js';
-import type {ColumnT, RowT} from './types.js';
-import {useRef} from 'react';
+import type { ColumnT, RowT } from './types.js';
+import { useRef } from 'react';
 
 // Measures the column header + sampled data
-function MeasureColumn({
-  sampleIndexes,
-  column,
-  columnIndex,
-  rows,
-  isSelectable,
-  onLayout,
-}) {
+function MeasureColumn({ sampleIndexes, column, columnIndex, rows, isSelectable, onLayout }) {
   const [css] = useStyletron();
 
   const ref = useRef();
@@ -124,8 +117,7 @@ export default function MeasureColumnWidths({
     return new Map();
   }, []);
 
-  const sampleSize =
-    rows.length < MAX_SAMPLE_SIZE ? rows.length : MAX_SAMPLE_SIZE;
+  const sampleSize = rows.length < MAX_SAMPLE_SIZE ? rows.length : MAX_SAMPLE_SIZE;
   const finishedMeasurementCount = (sampleSize + 1) * columns.length;
 
   const sampleIndexes = React.useMemo<number[]>(() => {
@@ -138,9 +130,9 @@ export default function MeasureColumnWidths({
         Math.max(
           columns[columnIndex].minWidth || 0,
           widthMap.get(columnIndex) || 0,
-          dimensions.width + 1,
+          dimensions.width + 1
         ),
-        columns[columnIndex].maxWidth || Infinity,
+        columns[columnIndex].maxWidth || Infinity
       );
 
       if (nextWidth !== widthMap.get(columnIndex)) {
@@ -157,7 +149,7 @@ export default function MeasureColumnWidths({
         onWidthsChange(Array.from(widthMap.values()));
       }
     },
-    [columns, finishedMeasurementCount, onWidthsChange],
+    [columns, finishedMeasurementCount, onWidthsChange]
   );
 
   const hiddenStyle = css({

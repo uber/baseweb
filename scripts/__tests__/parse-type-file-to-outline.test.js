@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 //$FlowFixMe
-const {parseFileToOutline} = require('../cheat-sheet-generator.js');
+const { parseFileToOutline } = require('../cheat-sheet-generator.js');
 
 describe('parse-type-file-to-outline', () => {
   it('simple type', () => {

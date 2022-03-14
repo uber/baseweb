@@ -8,19 +8,16 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {SORT_DIRECTIONS} from './constants.js';
-import type {ColumnT, StatefulContainerPropsT} from './types.js';
+import { SORT_DIRECTIONS } from './constants.js';
+import type { ColumnT, StatefulContainerPropsT } from './types.js';
 
 function useDuplicateColumnTitleWarning(columns: ColumnT<>[]) {
   React.useEffect(() => {
     if (__DEV__) {
-      const titles = columns.reduce(
-        (set, column) => set.add(column.title),
-        new Set(),
-      );
+      const titles = columns.reduce((set, column) => set.add(column.title), new Set());
       if (titles.size < columns.length) {
         console.warn(
-          'BaseWeb DataTable: Column titles must be unique else will result in non-deterministic filtering.',
+          'BaseWeb DataTable: Column titles must be unique else will result in non-deterministic filtering.'
         );
       }
     }
@@ -29,8 +26,7 @@ function useDuplicateColumnTitleWarning(columns: ColumnT<>[]) {
 
 function useSortParameters(initialSortIndex = -1, initialSortDirection = null) {
   const [sortIndex, setSortIndex] = React.useState(initialSortIndex);
-  const [sortDirection, setSortDirection] =
-    React.useState(initialSortDirection);
+  const [sortDirection, setSortDirection] = React.useState(initialSortDirection);
 
   function handleSort(columnIndex) {
     if (columnIndex === sortIndex) {
@@ -53,11 +49,9 @@ export function StatefulContainer(props: StatefulContainerPropsT) {
   useDuplicateColumnTitleWarning(props.columns);
   const [sortIndex, sortDirection, handleSort] = useSortParameters(
     props.initialSortIndex,
-    props.initialSortDirection,
+    props.initialSortDirection
   );
-  const [filters, setFilters] = React.useState(
-    props.initialFilters || new Map(),
-  );
+  const [filters, setFilters] = React.useState(props.initialFilters || new Map());
   const [textQuery, setTextQuery] = React.useState('');
 
   function handleFilterAdd(title, filterParams) {
@@ -76,7 +70,7 @@ export function StatefulContainer(props: StatefulContainerPropsT) {
   }
 
   const [selectedRowIds, setSelectedRowIds] = React.useState(
-    props.initialSelectedRowIds || new Set(),
+    props.initialSelectedRowIds || new Set()
   );
   function handleSelectChange(next) {
     setSelectedRowIds(next);
@@ -88,9 +82,7 @@ export function StatefulContainer(props: StatefulContainerPropsT) {
   }
   function handleSelectMany(incomingRows) {
     // only adds rows that are visible in the table
-    handleSelectChange(
-      new Set([...selectedRowIds, ...incomingRows.map((r) => r.id)]),
-    );
+    handleSelectChange(new Set([...selectedRowIds, ...incomingRows.map((r) => r.id)]));
   }
   function handleSelectNone() {
     handleSelectChange(new Set());
@@ -110,7 +102,7 @@ export function StatefulContainer(props: StatefulContainerPropsT) {
         props.onIncludedRowsChange(rows);
       }
     },
-    [props.onIncludedRowsChange],
+    [props.onIncludedRowsChange]
   );
 
   const handleRowHighlightChange = React.useCallback(
@@ -119,7 +111,7 @@ export function StatefulContainer(props: StatefulContainerPropsT) {
         props.onRowHighlightChange(rowIndex, row);
       }
     },
-    [props.rowHighlightIndex],
+    [props.rowHighlightIndex]
   );
 
   return props.children({

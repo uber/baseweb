@@ -5,17 +5,17 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import {getTrackBackground} from 'react-range';
+import { getTrackBackground } from 'react-range';
 
-import {styled} from '../styles/index.js';
-import type {StylePropsT} from './types.js';
+import { styled } from '../styles/index.js';
+import type { StylePropsT } from './types.js';
 
-export const Root = styled('div', {position: 'relative', width: '100%'});
+export const Root = styled('div', { position: 'relative', width: '100%' });
 Root.displayName = 'StyledRoot';
 
 export const Track = styled<StylePropsT>('div', (props) => {
-  const {$theme, $value = [], $disabled, $isDragged} = props;
-  const {sizing} = $theme;
+  const { $theme, $value = [], $disabled, $isDragged } = props;
+  const { sizing } = $theme;
   let cursor = 'inherit';
   if ($disabled) {
     cursor = 'not-allowed';
@@ -37,8 +37,8 @@ export const Track = styled<StylePropsT>('div', (props) => {
 Track.displayName = 'StyledTrack';
 
 export const InnerTrack = styled<StylePropsT>('div', (props) => {
-  const {$theme, $value = [], $min, $max, $disabled} = props;
-  const {colors, borders, direction} = $theme;
+  const { $theme, $value = [], $min, $max, $disabled } = props;
+  const { colors, borders, direction } = $theme;
   const borderRadius = $theme.borders.useRoundedCorners ? borders.radius100 : 0;
   return {
     borderTopLeftRadius: borderRadius,
@@ -89,8 +89,8 @@ export const Tick = styled<StylePropsT>('div', (props) => {
 Tick.displayName = 'StyledTick';
 
 export const TickBar = styled<StylePropsT>('div', (props) => {
-  const {$theme} = props;
-  const {sizing} = $theme;
+  const { $theme } = props;
+  const { sizing } = $theme;
   return {
     display: 'flex',
     justifyContent: 'space-between',
@@ -103,7 +103,7 @@ export const TickBar = styled<StylePropsT>('div', (props) => {
 TickBar.displayName = 'StyledTickBar';
 
 export const Thumb = styled<StylePropsT>('div', (props) => {
-  const {$theme, $value = [], $thumbIndex, $disabled} = props;
+  const { $theme, $value = [], $thumbIndex, $disabled } = props;
   let isLeft = $value.length === 2 && $thumbIndex === 0;
   let isRight = $value.length === 2 && $thumbIndex === 1;
 
@@ -135,7 +135,7 @@ export const Thumb = styled<StylePropsT>('div', (props) => {
 Thumb.displayName = 'StyledThumb';
 
 export const InnerThumb = styled<StylePropsT>('div', (props) => {
-  const {$disabled, $theme} = props;
+  const { $disabled, $theme } = props;
   return {
     position: 'absolute',
     top: '-16px',
@@ -149,7 +149,7 @@ export const InnerThumb = styled<StylePropsT>('div', (props) => {
 InnerThumb.displayName = 'StyledInnerThumb';
 
 export const ThumbValue = styled<StylePropsT>('div', (props) => {
-  const {$disabled, $theme} = props;
+  const { $disabled, $theme } = props;
   return {
     position: 'absolute',
     top: `-${$theme.sizing.scale1400}`,

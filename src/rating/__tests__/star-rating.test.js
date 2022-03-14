@@ -8,23 +8,18 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {
-  render,
-  fireEvent,
-  getByRole,
-  getAllByRole,
-} from '@testing-library/react';
+import { render, fireEvent, getByRole, getAllByRole } from '@testing-library/react';
 
-import {StarRating} from '../index.js';
+import { StarRating } from '../index.js';
 
 describe('StarRating', () => {
   it('applies correct accessibility attributes to the root element', () => {
-    const {container} = render(<StarRating value={2} />);
+    const { container } = render(<StarRating value={2} />);
     getByRole(container, 'radiogroup');
   });
 
   it('sets correct accessibility attributes to radio elements', () => {
-    const {container} = render(<StarRating value={2} />);
+    const { container } = render(<StarRating value={2} />);
     const items = getAllByRole(container, 'radio');
     expect(items[0].getAttribute('aria-checked')).toBe('true');
     expect(items[1].getAttribute('aria-checked')).toBe('true');
@@ -34,7 +29,7 @@ describe('StarRating', () => {
   });
 
   it('sets correct accessibility attributes to radio elements when read only', () => {
-    const {container} = render(<StarRating value={2} readOnly />);
+    const { container } = render(<StarRating value={2} readOnly />);
     const items = getAllByRole(container, 'radio');
     items.forEach((item) => {
       expect(item.getAttribute('aria-disabled')).toBe('true');
@@ -44,11 +39,9 @@ describe('StarRating', () => {
   it('can update active radio on click', () => {
     function TestCase() {
       const [value, setValue] = React.useState(-1);
-      return (
-        <StarRating value={value} onChange={({value}) => setValue(value)} />
-      );
+      return <StarRating value={value} onChange={({ value }) => setValue(value)} />;
     }
-    const {container} = render(<TestCase />);
+    const { container } = render(<TestCase />);
     const items = getAllByRole(container, 'radio');
     for (let item of items) {
       expect(item.getAttribute('aria-checked')).toBe('false');
@@ -64,15 +57,9 @@ describe('StarRating', () => {
   it('cannot update rating on click when read only', () => {
     function TestCase() {
       const [value, setValue] = React.useState(2);
-      return (
-        <StarRating
-          value={value}
-          onChange={({value}) => setValue(value)}
-          readOnly
-        />
-      );
+      return <StarRating value={value} onChange={({ value }) => setValue(value)} readOnly />;
     }
-    const {container} = render(<TestCase />);
+    const { container } = render(<TestCase />);
     const items = getAllByRole(container, 'radio');
     fireEvent.click(items[4]);
     expect(items[0].getAttribute('aria-checked')).toBe('true');

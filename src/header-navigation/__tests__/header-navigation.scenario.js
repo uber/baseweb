@@ -14,8 +14,8 @@ import {
   StyledNavigationItem as NavigationItem,
   StyledNavigationList as NavigationList,
 } from '../index.js';
-import {Button} from '../../button/index.js';
-import {StyledLink as Link} from '../../link/index.js';
+import { Button } from '../../button/index.js';
+import { StyledLink as Link } from '../../link/index.js';
 import Menu from '../../icon/menu.js';
 
 export function Scenario() {

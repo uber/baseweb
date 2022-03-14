@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import type {PropsT, OptionT, OptionsT, OptgroupsT, ValueT} from '../types.js';
+import type { PropsT, OptionT, OptionsT, OptgroupsT, ValueT } from '../types.js';
 
 function groupedOptionsToArray(groupedOptions: OptgroupsT): ValueT {
   return Object.keys(groupedOptions).reduce((arr, optgroup) => {
@@ -16,7 +16,7 @@ function groupedOptionsToArray(groupedOptions: OptgroupsT): ValueT {
           ...option,
           __optgroup: optgroup,
         };
-      }),
+      })
     );
   }, []);
 }
@@ -38,10 +38,7 @@ export const expandValue = (value: OptionT, props: $Shape<PropsT>): OptionT => {
 
   const normalizedOptions = normalizeOptions(props.options);
   for (let i = 0; i < normalizedOptions.length; i++) {
-    if (
-      String(normalizedOptions[i][props.valueKey]) ===
-      String(value[props.valueKey])
-    ) {
+    if (String(normalizedOptions[i][props.valueKey]) === String(value[props.valueKey])) {
       return normalizedOptions[i];
     }
   }

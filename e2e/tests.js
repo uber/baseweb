@@ -31,7 +31,7 @@ if (collisions.length >= 1) {
 }
 
 const A11yFail = (props) => (
-  <div style={{backgroundColor: 'red', color: 'white'}} role={props.message}>
+  <div style={{ backgroundColor: 'red', color: 'white' }} role={props.message}>
     {props.message}
   </div>
 );

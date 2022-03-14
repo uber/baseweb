@@ -6,16 +6,16 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import type {TextareaPropsT} from './types.js';
-import {mergeOverrides, getOverrides} from '../helpers/overrides.js';
-import {BaseInput, SIZE, CUSTOM_INPUT_TYPE} from '../input/index.js';
+import type { TextareaPropsT } from './types.js';
+import { mergeOverrides, getOverrides } from '../helpers/overrides.js';
+import { BaseInput, SIZE, CUSTOM_INPUT_TYPE } from '../input/index.js';
 import {
   StyledTextAreaRoot,
   StyledTextarea,
   StyledTextareaContainer,
 } from './styled-components.js';
 
-class Textarea extends React.Component<TextareaPropsT, {isFocused: boolean}> {
+class Textarea extends React.Component<TextareaPropsT, { isFocused: boolean }> {
   static defaultProps = {
     autoFocus: false,
     disabled: false,
@@ -39,24 +39,24 @@ class Textarea extends React.Component<TextareaPropsT, {isFocused: boolean}> {
   };
 
   onFocus = (e: SyntheticFocusEvent<HTMLTextAreaElement>) => {
-    this.setState({isFocused: true});
+    this.setState({ isFocused: true });
     this.props.onFocus(e);
   };
 
   onBlur = (e: SyntheticFocusEvent<HTMLTextAreaElement>) => {
-    this.setState({isFocused: false});
+    this.setState({ isFocused: false });
     this.props.onBlur(e);
   };
 
   render() {
-    const {overrides = {}} = this.props;
+    const { overrides = {} } = this.props;
     const [Root, rootProps] = getOverrides(overrides.Root, StyledTextAreaRoot);
     const inputOverrides = mergeOverrides(
       {
-        Input: {component: StyledTextarea},
-        InputContainer: {component: StyledTextareaContainer},
+        Input: { component: StyledTextarea },
+        InputContainer: { component: StyledTextareaContainer },
       },
-      overrides,
+      overrides
     );
 
     return (

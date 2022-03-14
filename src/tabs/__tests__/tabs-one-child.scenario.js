@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
-import {StatefulTabs, Tab} from '../index.js';
+import { StatefulTabs, Tab } from '../index.js';
 
 export function Scenario() {
   return (

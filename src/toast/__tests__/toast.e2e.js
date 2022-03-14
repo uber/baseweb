@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
+const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
 
 const selectors = {
   toast: '[role="alert"]',
@@ -37,10 +37,7 @@ describe('toast', () => {
     await mount(page, 'toast--toast');
     await page.waitForSelector(selectors.toast);
 
-    const originalNumberOfAlerts = await page.$$eval(
-      selectors.toast,
-      (toasts) => toasts.length,
-    );
+    const originalNumberOfAlerts = await page.$$eval(selectors.toast, (toasts) => toasts.length);
 
     // close one toast with mouse click
     await page.click(selectors.dismiss);
@@ -54,10 +51,7 @@ describe('toast', () => {
       setTimeout(resolve, 1000);
     });
 
-    const updatedNumberOfAlerts = await page.$$eval(
-      selectors.toast,
-      (toasts) => toasts.length,
-    );
+    const updatedNumberOfAlerts = await page.$$eval(selectors.toast, (toasts) => toasts.length);
 
     expect(updatedNumberOfAlerts).toBe(originalNumberOfAlerts - 2);
   });
@@ -68,10 +62,7 @@ describe('toast', () => {
     await page.click(selectors.buttonDefault);
     await page.click(selectors.buttonDefault);
 
-    const numberOfAlerts = await page.$$eval(
-      selectors.toast,
-      (toasts) => toasts.length,
-    );
+    const numberOfAlerts = await page.$$eval(selectors.toast, (toasts) => toasts.length);
 
     expect(numberOfAlerts).toBe(2);
   });

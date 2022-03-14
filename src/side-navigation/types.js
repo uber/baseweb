@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import type {OverrideT} from '../helpers/overrides.js';
-import {STATE_CHANGE_TYPE} from './constants.js';
+import type { OverrideT } from '../helpers/overrides.js';
+import { STATE_CHANGE_TYPE } from './constants.js';
 
 const stateChangeType = Object.freeze(STATE_CHANGE_TYPE);
 export type StateTypeT = $Values<typeof stateChangeType>;
@@ -19,7 +19,7 @@ export type StateT = {
 export type StateReducerT = (
   stateType: StateTypeT,
   nextState: StateT,
-  currentState: StateT,
+  currentState: StateT
 ) => StateT;
 
 export type SharedPropsT = {
@@ -48,7 +48,7 @@ export type NavPropsT = {
    */
   itemMemoizationComparator?: (NavItemPropsT, NavItemPropsT) => boolean,
   /** onChange handler that is called when a nav item is selected */
-  onChange?: ({item: Item, event: Event | KeyboardEvent}) => mixed,
+  onChange?: ({ item: Item, event: Event | KeyboardEvent }) => mixed,
   /** Overrides for the internal elements and components */
   overrides: {
     Root?: OverrideT,
@@ -83,7 +83,7 @@ export type NavItemPropsT = SharedPropsT & {
    *  NavItem component's React.memo call.
    */
   itemMemoizationComparator?: (NavItemPropsT, NavItemPropsT) => boolean,
-  onSelect?: ({item: Item, event: Event | KeyboardEvent}) => mixed,
+  onSelect?: ({ item: Item, event: Event | KeyboardEvent }) => mixed,
   overrides: {
     NavLink?: OverrideT,
     NavItem?: OverrideT,
@@ -96,7 +96,7 @@ export type StatefulContainerPropsT = {
   initialState?: StateT,
   /** A state change handler. Used to override default state transitions. */
   stateReducer?: StateReducerT,
-  onChange?: ({item: Item, event: Event | KeyboardEvent}) => mixed,
+  onChange?: ({ item: Item, event: Event | KeyboardEvent }) => mixed,
 };
 
 type ExcludeT = {

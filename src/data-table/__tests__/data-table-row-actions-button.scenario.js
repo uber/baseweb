@@ -10,7 +10,7 @@ import * as React from 'react';
 
 import BooleanColumn from '../column-boolean.js';
 import NumericalColumn from '../column-numerical.js';
-import {StatefulDataTable} from '../stateful-data-table.js';
+import { StatefulDataTable } from '../stateful-data-table.js';
 
 type RowDataT = [boolean, number];
 
@@ -28,7 +28,7 @@ const columns = [
 
 const rows = [];
 for (let i = 0; i < 100; i++) {
-  rows.push({id: i, data: [i % 2 ? true : false, i + 1]});
+  rows.push({ id: i, data: [i % 2 ? true : false, i + 1] });
 }
 
 export function Scenario() {
@@ -60,12 +60,8 @@ export function Scenario() {
 
   return (
     <div>
-      <div style={{height: '500px', width: '400px'}}>
-        <StatefulDataTable
-          columns={columns}
-          rows={rows}
-          rowActions={rowActions}
-        />
+      <div style={{ height: '500px', width: '400px' }}>
+        <StatefulDataTable columns={columns} rows={rows} rowActions={rowActions} />
       </div>
     </div>
   );

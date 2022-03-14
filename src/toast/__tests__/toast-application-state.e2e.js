@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {mount} = require('../../../e2e/helpers');
+const { mount } = require('../../../e2e/helpers');
 
 describe('toasts managed by application state', () => {
   it('only dismisses one toast', async () => {
@@ -22,7 +22,7 @@ describe('toasts managed by application state', () => {
     const dismiss = await page.$('[data-testid="0"] [title="Close"]');
     await dismiss.click();
 
-    await page.waitForSelector('[data-testid="0"]', {hidden: true});
+    await page.waitForSelector('[data-testid="0"]', { hidden: true });
     await page.waitForSelector('[data-testid="1"]');
     await page.waitForSelector('[data-testid="2"]');
   });

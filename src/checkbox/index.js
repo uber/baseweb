@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-export {default as StatefulCheckbox} from './stateful-checkbox.js';
-export {default as StatefulContainer} from './stateful-checkbox-container.js';
-export {default as Checkbox} from './checkbox.js';
+export { default as StatefulCheckbox } from './stateful-checkbox.js';
+export { default as StatefulContainer } from './stateful-checkbox-container.js';
+export { default as Checkbox } from './checkbox.js';
 // Styled elements
 export {
   Root as StyledRoot,
@@ -20,7 +20,7 @@ export {
   ToggleTrack as StyledToggleTrack,
 } from './styled-components.js';
 
-export {STATE_TYPE, STYLE_TYPE, LABEL_PLACEMENT} from './constants.js';
+export { STATE_TYPE, STYLE_TYPE, LABEL_PLACEMENT } from './constants.js';
 
 // Flow
 export type * from './types.js';

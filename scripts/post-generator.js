@@ -10,8 +10,8 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 // @flow
 
-const {writeFileSync, readdirSync, readFileSync, lstatSync} = require('fs');
-const {join, basename, resolve} = require('path');
+const { writeFileSync, readdirSync, readFileSync, lstatSync } = require('fs');
+const { join, basename, resolve } = require('path');
 
 const source = resolve(__dirname, '../documentation-site/pages/blog');
 
@@ -37,9 +37,7 @@ module.exports = function generatePosts() {
   }
 
   if (posts.length) {
-    posts = posts.sort(
-      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
-    );
+    posts = posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   }
 
   const content = `const posts = ${
