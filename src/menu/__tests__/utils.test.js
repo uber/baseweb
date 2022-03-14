@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as Utils from '../utils.js';
 
-describe.only('Menu Utils - scrollItemIntoView', () => {
+describe('Menu Utils - scrollItemIntoView', () => {
   // |=======================| <-- top of parent window (at 0)
   // | |-------------------| |
   // | |       50 ht       | |
