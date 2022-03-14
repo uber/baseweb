@@ -12,7 +12,7 @@ import { Block } from 'baseui/block';
 import { Button } from 'baseui/button';
 import { FlexGrid, FlexGridItem } from 'baseui/flex-grid';
 import { StyledLink as Link } from 'baseui/link';
-import { H1, H2 } from '../components/markdown-elements';
+import Markdown, { H1, H2 } from '../components/markdown-elements';
 import { Card, StyledBody } from 'baseui/card';
 import { Tag } from 'baseui/tag';
 import { withStyle } from 'baseui';
@@ -23,7 +23,6 @@ import BlogPosts from '../posts.js';
 
 import Layout from '../components/layout';
 import Contributors from '../components/contributors';
-import Markdown from '../components/markdown-elements';
 
 const MinHeightBody = withStyle(StyledBody, {
   minHeight: '150px',

@@ -14,6 +14,7 @@ import adapter from '../utils/date-fns-adapter';
 import { getFilteredMonthItems } from '../utils/calendar-header-helpers';
 import MomentUtils from '@date-io/moment';
 import moment from 'moment';
+
 const momentAdapter = new MomentUtils({ instance: moment });
 /* eslint-enable import/extensions */
 const dateHelpers = new DateHelpers(adapter);

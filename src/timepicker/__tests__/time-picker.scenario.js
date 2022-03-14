@@ -13,6 +13,7 @@ import { startOfDay } from 'date-fns';
 import { TimePicker } from '../index.js';
 import { SIZE } from '../../input/index.js';
 import MomentUtils from '@date-io/moment';
+
 const momentAdapter = new MomentUtils({});
 
 const MIDNIGHT = startOfDay(new Date(2019, 3, 19));

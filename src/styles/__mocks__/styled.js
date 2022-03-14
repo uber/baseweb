@@ -13,6 +13,7 @@ import { LightTheme } from '../../themes/index.js';
 import createMockTheme from '../../test/create-mock-theme.js';
 import type { ThemeT } from '../../styles/types.js';
 import type { StyletronComponent } from '../styled.js';
+
 type ObjOrFnT = {} | (({}) => {});
 
 type PropsT = {

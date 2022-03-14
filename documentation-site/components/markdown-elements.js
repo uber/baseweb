@@ -22,6 +22,7 @@ import Anchor from './anchor';
 import slugify from '../helpers/slugify';
 //$FlowFixMe
 import { useHover } from './hooks';
+
 type Props = {
   children: string | React.Node,
 };

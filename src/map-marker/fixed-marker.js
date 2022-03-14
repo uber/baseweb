@@ -92,10 +92,10 @@ const FixedMarker = ({
   }
   const enhancers = {};
   if (startEnhancer) {
-    enhancers['startEnhancer'] = startEnhancer;
+    enhancers.startEnhancer = startEnhancer;
   }
   if (endEnhancer) {
-    enhancers['endEnhancer'] = endEnhancer;
+    enhancers.endEnhancer = endEnhancer;
   }
   return (
     <Root data-baseweb="fixed-map-marker" {...rootProps}>

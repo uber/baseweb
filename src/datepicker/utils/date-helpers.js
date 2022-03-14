@@ -76,7 +76,7 @@ class DateHelpers<T> {
     // in e2e tests down the road, we're going to have
     // to figure that out
     const { getOptions = defaultGetOptions, formats } =
-      adapterMap[className] || adapterMap['DateFnsUtils'];
+      adapterMap[className] || adapterMap.DateFnsUtils;
     const options = getOptions(adapter);
     return new UtilsClass(
       Object.assign(

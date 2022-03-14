@@ -6,5 +6,6 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import { styled } from './styled.js';
+
 const asPrimaryExport = styled;
 export default asPrimaryExport;

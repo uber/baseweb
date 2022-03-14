@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import { arrayMove, arrayRemove } from 'react-movable';
+
 export { arrayMove, arrayRemove };
 export { default as StatefulList } from './stateful-list.js';
 export { default as StatefulListContainer } from './stateful-list-container.js';

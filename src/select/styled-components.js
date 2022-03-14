@@ -7,9 +7,9 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import { styled } from '../styles/index.js';
-import { TYPE } from './constants.js';
+import { TYPE, SIZE } from './constants.js';
 import { StyledList, StyledListItem } from '../menu/index.js';
-import { SIZE } from './constants.js';
+
 import type { SharedStylePropsArgT } from './types.js';
 import { ellipsisText } from '../styles/util.js';
 import type { ThemeT } from '../styles/types.js';

@@ -23,5 +23,3 @@ export { ORIENTATION, STATE_CHANGE_TYPE } from './constants.js';
 export * from './styled-components.js';
 // Flow
 export type * from './types.js';
-export type * from '../timepicker/types.js';
-export type * from '../timezonepicker/types.js';

@@ -8,9 +8,9 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const { mount } = require('../../../e2e/helpers');
-
 import { formatDate, subMonths } from '../utils/index.js';
+
+const { mount } = require('../../../e2e/helpers');
 
 const selectors = {
   input: 'input',

@@ -224,7 +224,7 @@ describe('numerical column', () => {
   });
 
   // it rounds based on the accounting precision, 2 digits
-  it('builds accounting filter function for floats', () => {
+  it('builds accounting filter function for floats, 2 digits', () => {
     const column = NumericalColumn({
       title: 'column',
       format: NUMERICAL_FORMATS.ACCOUNTING,

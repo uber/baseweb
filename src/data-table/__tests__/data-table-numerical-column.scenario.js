@@ -12,6 +12,7 @@ import { NUMERICAL_FORMATS, NumericalColumn } from '../index.js';
 import { randomLcg, randomBinomial, randomLogNormal, randomInt } from 'd3';
 
 import { precisionData } from './precision-data.js';
+
 const Filter = NumericalColumn({
   title: 'categorical-column',
   mapDataToValue: () => 0,

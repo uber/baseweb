@@ -11,8 +11,9 @@ import * as React from 'react';
 import { Datepicker } from '../index.js';
 import { Button } from '../../button/index.js';
 import MomentUtils from '@date-io/moment';
-const adapter = new MomentUtils({});
 import moment from 'moment';
+
+const adapter = new MomentUtils({});
 
 export function Scenario() {
   const [date, setDate] = React.useState(null);

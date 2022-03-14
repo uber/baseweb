@@ -13,6 +13,7 @@ import {
   StyledProgressBarRoundedTrackBackground,
   StyledProgressBarRoundedTrackForeground,
 } from '../progress-bar/index.js';
+
 export { default as Spinner } from './spinner.js';
 // Styled elements
 export {

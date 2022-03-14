@@ -34,9 +34,8 @@ import {
   getLoadingIconStyles,
   StyledSearchIconContainer,
 } from './styled-components.js';
-import type { PropsT, SelectStateT, ValueT, OptionT, ChangeActionT } from './types.js';
+import type { PropsT, SelectStateT, ValueT, OptionT, ChangeActionT, ReactRefT } from './types.js';
 import { expandValue, normalizeOptions } from './utils/index.js';
-import type { ReactRefT } from './types.js';
 
 function Noop() {
   return null;

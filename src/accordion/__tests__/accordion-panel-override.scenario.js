@@ -10,8 +10,7 @@ import * as React from 'react';
 
 import { Accordion, Panel } from '../index.js';
 
-import { createTheme, lightThemePrimitives } from '../../index.js';
-import { ThemeProvider } from '../../index.js';
+import { createTheme, lightThemePrimitives, ThemeProvider } from '../../index.js';
 
 const themeWithIcons = createTheme(
   {
