@@ -56,7 +56,8 @@ describe('sortable-head-cell', () => {
     const {container} = render(
       <SortableHeadCell onSort={spy} direction={null} title="test" />,
     );
-    fireEvent.click(container.querySelector('button'));
+    const button = container.querySelector('button');
+    if (button) fireEvent.click(button);
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
@@ -65,7 +66,8 @@ describe('sortable-head-cell', () => {
     const {container} = render(
       <SortableHeadCell onSort={spy} direction={null} title="test" disabled />,
     );
-    fireEvent.click(container.querySelector('button'));
+    const button = container.querySelector('button');
+    if (button) fireEvent.click(button);
     expect(spy).toHaveBeenCalledTimes(0);
   });
 });

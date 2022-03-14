@@ -11,6 +11,8 @@ import * as React from 'react';
 import type {OverrideT} from '../helpers/overrides.js';
 import {SIZE} from '../input/index.js';
 
+export type ReactRefT<T> = {|current: null | T|};
+
 export type PropsT<OptionT = mixed> = {|
   // Controls if the input value will be updated while keyboard navigating. Defaults to true.
   autocomplete?: boolean,
@@ -31,7 +33,7 @@ export type PropsT<OptionT = mixed> = {|
   id?: string,
   name?: string,
   // A ref to access the inner Input component.
-  inputRef?: React.ElementRef<*>,
+  inputRef?: ReactRefT<HTMLElement>,
   // Called when input loses focus.
   onBlur?: (SyntheticInputEvent<HTMLInputElement>) => mixed,
   // Called when input value changes or option is selected. If user selects a

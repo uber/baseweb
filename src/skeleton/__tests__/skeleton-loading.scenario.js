@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {Skeleton} from '../index.js';
 import {useStyletron} from '../../styles/index.js';
+// $FlowFixMe
 import imageFile from './static/adorable.png';
 import {Avatar} from '../../avatar/index.js';
 

@@ -99,7 +99,7 @@ function CellPlacement({columnIndex, rowIndex, data, style}) {
 
   let backgroundColor = theme.colors.backgroundPrimary;
   if (
-    (rowIndex % 2 && columnIndex === data.columnHighlightIndex) ||
+    (Boolean(rowIndex % 2) && columnIndex === data.columnHighlightIndex) ||
     rowIndex === data.rowHighlightIndex
   ) {
     backgroundColor = theme.colors.backgroundTertiary;
@@ -260,7 +260,7 @@ function Header(props: HeaderProps) {
   const [css, theme] = useStyletron();
   const [startResizePos, setStartResizePos] = React.useState(0);
   const [endResizePos, setEndResizePos] = React.useState(0);
-  // eslint-disable-next-line flowtype/no-weak-types
+  // flowlint-next-line unclear-type:off
   const headerCellRef = React.useRef<any>(null);
 
   const RULER_OFFSET = 2;
@@ -700,7 +700,7 @@ export function DataTable({
   );
 
   // We use state for our ref, to allow hooks to  update when the ref changes.
-  // eslint-disable-next-line flowtype/no-weak-types
+  // flowlint-next-line unclear-type:off
   const [gridRef, setGridRef] = React.useState<?VariableSizeGrid<any>>(null);
   const [measuredWidths, setMeasuredWidths] = React.useState(
     columns.map(() => 0),
@@ -1056,7 +1056,7 @@ export function DataTable({
             }}
           >
             <VariableSizeGrid
-              // eslint-disable-next-line flowtype/no-weak-types
+              // flowlint-next-line unclear-type:off
               ref={(setGridRef: any)}
               overscanRowCount={10}
               overscanColumnCount={5}

@@ -27,9 +27,9 @@ describe('Icon', () => {
       </Icon>,
     );
     const svgElement = container.querySelector('svg');
-    expect(svgElement.getAttribute('viewBox')).toBe(viewBox);
+    expect(svgElement?.getAttribute('viewBox')).toBe(viewBox);
     const titleElement = container.querySelector('title');
-    expect(titleElement.textContent).toBe(title);
+    expect(titleElement?.textContent).toBe(title);
   });
 
   it('does not pass extraneous attributes to svg elements', () => {

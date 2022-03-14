@@ -6,7 +6,7 @@ import * as Icons from 'baseui/icon/icon-exports';
 function makeImportStatement(key: string) {
   const path = key
     .split(/(?=[A-Z])/)
-    .map(word => word.toLowerCase())
+    .map((word) => word.toLowerCase())
     .join('-');
 
   return `import ${key} from 'baseui/icon/${path}'`;
@@ -48,6 +48,7 @@ function Row(props) {
 export default function Example() {
   return (
     <div>
+      {/* flowlint-next-line unclear-type:off */}
       {Object.entries(Icons).map(([title, Icon]: [string, any]) => (
         <Row key={title} title={title} icon={Icon} />
       ))}

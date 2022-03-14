@@ -234,7 +234,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
   isHiddenPaginationButton = (direction: $Values<typeof DIRECTION>) => {
     const {monthsShown, order} = this.props;
 
-    if (monthsShown && this.isMultiMonthHorizontal()) {
+    if (!!monthsShown && this.isMultiMonthHorizontal()) {
       if (direction === DIRECTION.NEXT) {
         const isLastMonth = order === monthsShown - 1;
         return !isLastMonth;

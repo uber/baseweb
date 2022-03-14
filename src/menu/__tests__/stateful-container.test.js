@@ -25,7 +25,7 @@ function getSharedProps() {
     onItemSelect: mockItemSelect,
     children: mockChildrenFn,
     stateReducer: jest
-      .fn()
+      .fn() // flowlint-next-line unclear-type:off
       .mockImplementation((changeType, changes) => (changes: any)),
   };
 }

@@ -22,10 +22,9 @@ export type {
 } from '../layer/types.js';
 
 export type PopoverPlacementT = TetherPlacementT;
-
 export type TriggerTypeT = $Keys<typeof TRIGGER_TYPE>;
-
 export type AccessibilityTypeT = $Keys<typeof ACCESSIBILITY_TYPE>;
+export type ReactRefT<T> = {|current: null | T|};
 
 export type StateT = {
   isOpen: boolean,
@@ -99,7 +98,7 @@ export type BasePopoverPropsT = {
   /** Popper options override
    * https://github.com/popperjs/popper.js/blob/v1.x/docs/_includes/popper-documentation.md
    */
-  // eslint-disable-next-line flowtype/no-weak-types
+  // flowlint-next-line unclear-type:off
   popperOptions?: any,
   /** Renders all popover content for SEO purposes regardless of popover isOpen state */
   renderAll?: boolean,
@@ -221,6 +220,6 @@ export type AnchorPropsT = {
   onFocus?: (e: Event) => mixed,
   onMouseEnter?: (e: Event) => mixed,
   onMouseLeave?: (e: Event) => mixed,
-  ref?: React.Ref<*>,
+  ref?: ReactRefT<HTMLElement>,
   tabIndex?: number,
 };

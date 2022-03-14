@@ -31,13 +31,13 @@ function isLabelBottomRight(labelPlacement) {
 const stopPropagation = (e) => e.stopPropagation();
 
 class Radio extends React.Component<RadioPropsT, RadioStateT> {
-  static defaultProps: $Shape<RadioPropsT> = {
+  static defaultProps = {
     overrides: {},
     containsInteractiveElement: false,
     checked: false,
     disabled: false,
     autoFocus: false,
-    inputRef: React.createRef(),
+    inputRef: React.createRef<HTMLInputElement>(),
     align: 'vertical',
     isError: false,
     error: false,

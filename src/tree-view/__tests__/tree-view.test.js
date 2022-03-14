@@ -8,7 +8,6 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {
   render,
-  createEvent,
   fireEvent,
   getAllByTestId,
   getByText,
@@ -95,16 +94,17 @@ describe('TreeView Component', () => {
   });
 
   it('keyboard copy keys still bubble', () => {
-    const {container} = render(<TreeView {...getSharedProps()} />);
-    const node = getByText(container, 'Node 1').parentElement;
-    const keyDownEvent = createEvent.keyDown(node, {
+    const {getByText} = render(<TreeView {...getSharedProps()} />);
+    const node = getByText('Node 1').parentElement;
+    const preventDefault = jest.fn();
+    //$FlowFixMe
+    fireEvent.keyDown(node, {
       key: 'C',
       ctrlKey: true,
       bubbles: true,
+      preventDefault,
     });
-    keyDownEvent.preventDefault = jest.fn();
-    fireEvent(node, keyDownEvent);
-    expect(keyDownEvent.preventDefault).not.toHaveBeenCalled();
+    expect(preventDefault).not.toHaveBeenCalled();
   });
 
   it('TreeLabel override should override default icons as well', () => {

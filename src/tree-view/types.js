@@ -8,6 +8,8 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import type {OverrideT} from '../helpers/overrides.js';
 
+export type ReactRefT<T> = {|current: null | T|};
+
 export type TreeLabelOverridesT = {
   TreeItemContent?: OverrideT,
   IconContainer?: OverrideT,
@@ -27,14 +29,14 @@ export type TreeViewOverridesT = {
 
 export type TreeNodeIdT = number | string;
 
-// eslint-disable-next-line flowtype/no-weak-types
+// flowlint-next-line unclear-type:off
 export type TreeNodeT<T = any> = {
   id?: TreeNodeIdT,
   children?: TreeNodeT<>[],
   isExpanded?: boolean,
   label: ((node: TreeNodeT<>) => React.Node) | string,
   info?: T,
-  // eslint-disable-next-line flowtype/no-weak-types
+  // flowlint-next-line unclear-type:off
   [key: string]: any,
 };
 
@@ -65,7 +67,7 @@ export type TreeNodePropsT = {
   onFocus?: (event: SyntheticEvent<>) => mixed,
   onBlur?: (event: SyntheticEvent<>) => mixed,
   selectedNodeId?: TreeNodeIdT,
-  addRef: (id: TreeNodeIdT, ref: React.ElementRef<*>) => mixed,
+  addRef: (id: TreeNodeIdT, ref: ReactRefT<HTMLLIElement>) => mixed,
   removeRef: (id: TreeNodeIdT) => mixed,
   isFocusVisible?: boolean,
   indentGuides?: boolean,

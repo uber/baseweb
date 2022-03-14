@@ -256,7 +256,7 @@ function generateDayStyles(defaultCode: string, defaultStyle) {
   };
 }
 
-// eslint-disable-next-line flowtype/no-weak-types
+// flowlint-next-line unclear-type:off
 function getDayStyles(code, {colors}): any {
   const undefinedDayStyle = {
     ':before': {content: null},
@@ -591,7 +591,7 @@ export const StyledDay = styled<SharedStylePropsT>('div', (props) => {
           },
         }
       : // a hack to make flow happy, otherwise it complains about complexity
-        // eslint-disable-next-line flowtype/no-weak-types
+        // flowlint-next-line unclear-type:off
         ({}: any)),
   }: {});
 });

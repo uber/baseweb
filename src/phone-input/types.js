@@ -10,17 +10,16 @@ import {STATE_CHANGE_TYPE, SIZE, COUNTRIES} from './constants.js';
 import type {OverrideT} from '../helpers/overrides.js';
 import type {OnChangeParamsT} from '../select/types.js';
 
+export type ReactRefT<T> = {current: null | T};
 export type SizeT = $Keys<typeof SIZE>;
-
 export type CountryIsoT = $Keys<typeof COUNTRIES>;
+export type CountriesT = $ReadOnly<CountryT>;
 
 export type CountryT = $ReadOnly<{
   dialCode: string,
   id: CountryIsoT,
   label: string,
 }>;
-
-export type CountriesT = $ReadOnly<CountryT>;
 
 export type StateT = {
   country: CountryT,
@@ -40,7 +39,7 @@ export type mapIsoToLabelT = (iso: string) => string;
 // Props
 
 export type CountrySelectDropdownPropsT = {
-  // eslint-disable-next-line flowtype/no-weak-types
+  //flowlint-next-line unclear-type:off
   children: $ReadOnlyArray<React.Element<any>>,
   $country: CountryT,
   $mapIsoToLabel?: mapIsoToLabelT,
@@ -63,7 +62,7 @@ export type CountrySelectPropsT = {
   country: CountryT,
   disabled: boolean,
   error: boolean,
-  inputRef: {current: HTMLInputElement | null},
+  inputRef: ReactRefT<HTMLInputElement>,
   onCountryChange: (event: OnChangeParamsT) => mixed,
   mapIsoToLabel?: mapIsoToLabelT,
   maxDropdownHeight: string,

@@ -11,6 +11,7 @@ import {render} from '@testing-library/react';
 import {StatefulContainer as StatefulSliderContainer} from '../index.js';
 
 describe('Stateful Slider Container', function () {
+  // flowlint-next-line unclear-type:off
   let allProps: any, childFn;
 
   beforeEach(function () {

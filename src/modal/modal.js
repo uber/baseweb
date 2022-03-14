@@ -216,7 +216,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
       return mountNode;
     }
     // Flow thinks body could be null (cast through any)
-    // eslint-disable-next-line flowtype/no-weak-types
+    // flowlint-next-line unclear-type:off
     return ((document.body: any): HTMLBodyElement);
   }
 
@@ -265,13 +265,13 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
           >
             <Root
               data-baseweb="modal"
-              // eslint-disable-next-line flowtype/no-weak-types
+              // flowlint-next-line unclear-type:off
               ref={(this.rootRef: any)}
               {...sharedProps}
               {...rootProps}
             >
               <DialogContainer
-                // eslint-disable-next-line flowtype/no-weak-types
+                // flowlint-next-line unclear-type:off
                 ref={(this.dialogContainerRef: any)}
                 {...sharedProps}
                 {...dialogContainerProps}

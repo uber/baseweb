@@ -10,12 +10,12 @@ LICENSE file in the root directory of this source tree.
 
 const TABLE_ROOT = 'div[data-baseweb="data-table"]';
 
-// eslint-disable-next-line flowtype/no-weak-types
+// flowlint-next-line unclear-type:off
 function getTable(page: any) {
   return page.$('div[data-baseweb="data-table"]');
 }
 
-// eslint-disable-next-line flowtype/no-weak-types
+// flowlint-next-line unclear-type:off
 function getHeaderCellAtIndex(page: any, index: number) {
   return page.$(
     // plus one to convert to one indexed item
@@ -23,7 +23,7 @@ function getHeaderCellAtIndex(page: any, index: number) {
   );
 }
 
-// eslint-disable-next-line flowtype/no-weak-types
+// flowlint-next-line unclear-type:off
 function getCellsAtColumnIndex(page: any, columnCount: number, index: number) {
   // At most, sample 20 rows. Seems like a reasonable ceiling for now.
   const MAX_ROW_SAMPLES = 20;
@@ -41,7 +41,7 @@ function getCellsAtColumnIndex(page: any, columnCount: number, index: number) {
 }
 
 async function getCellContentsAtColumnIndex(
-  // eslint-disable-next-line flowtype/no-weak-types
+  // flowlint-next-line unclear-type:off
   page: any,
   columnCount: number,
   index: number,
@@ -59,19 +59,19 @@ async function getCellContentsAtColumnIndex(
   return getTextContentFromElements(page, elements.filter(Boolean));
 }
 
-// eslint-disable-next-line flowtype/no-weak-types
+// flowlint-next-line unclear-type:off
 function getActionButtonByLabel(parent: any, label: string) {
   return parent.$(`button[alt="${label}"]`);
 }
 
-// eslint-disable-next-line flowtype/no-weak-types
+// flowlint-next-line unclear-type:off
 async function sortColumnAtIndex(page: any, index: number) {
   const headerCell = await getHeaderCellAtIndex(page, index);
   const sortButton = await headerCell.$('div[role="button"]');
   return sortButton.click();
 }
 
-// eslint-disable-next-line flowtype/no-weak-types
+// flowlint-next-line unclear-type:off
 async function openFilterAtIndex(page: any, index: number) {
   await page.click('button');
   const options = await page.$$('li[role="option"]');

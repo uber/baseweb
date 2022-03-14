@@ -37,7 +37,7 @@ describe('Option Profile Stateless Component', () => {
     getByText(container, mockItem.title);
     getByText(container, mockItem.subtitle);
     getByText(container, mockItem.body);
-    expect(container.querySelector('img').getAttribute('src')).toBe(
+    expect(container.querySelector('img')?.getAttribute('src')).toBe(
       mockItem.imgUrl,
     );
   });

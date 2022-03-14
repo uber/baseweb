@@ -38,12 +38,12 @@ describe('TimePicker', () => {
 
     const {container} = render(<Case />);
     const before = container.querySelector('[data-id="selected"]');
-    expect(before.textContent).toBe('1:30 AM');
+    expect(before?.textContent).toBe('1:30 AM');
 
     const button = container.querySelector('button');
-    fireEvent.click(button);
+    if (button) fireEvent.click(button);
 
     const after = container.querySelector('[data-id="selected"]');
-    expect(after.textContent).toBe('placeholder');
+    expect(after?.textContent).toBe('placeholder');
   });
 });

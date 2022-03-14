@@ -37,7 +37,7 @@ export default class Tabs extends React.Component<TabsPropsT> {
       children,
       overrides = {},
     } = this.props;
-    // eslint-disable-next-line flowtype/no-weak-types
+    // flowlint-next-line unclear-type:off
     const tabs = React.Children.map(children, (child: any, index) => {
       if (!child) return;
 
@@ -71,7 +71,7 @@ export default class Tabs extends React.Component<TabsPropsT> {
       TabContentOverride,
       StyledTabContent,
     );
-    // eslint-disable-next-line flowtype/no-weak-types
+    // flowlint-next-line unclear-type:off
     const tabs = React.Children.map(children, (child: any, index) => {
       if (!child) return;
       const key = child.key || String(index);

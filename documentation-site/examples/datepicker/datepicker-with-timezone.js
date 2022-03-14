@@ -5,7 +5,9 @@ import {TimezonePicker} from 'baseui/timezonepicker';
 import {FormControl} from 'baseui/form-control';
 
 export default function Example() {
+  // flowlint-next-line unclear-type:off
   const [date, setDate] = useState<any>(new Date());
+  // flowlint-next-line unclear-type:off
   const [tz, setZone] = useState<any>({
     id: 'America/Fort_Nelson',
     label: 'MST - America/Fort Nelson (GMT -07:00)',

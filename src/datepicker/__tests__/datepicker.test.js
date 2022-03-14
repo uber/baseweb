@@ -43,7 +43,7 @@ describe('Datepicker', () => {
     expect(before).toBeNull();
 
     const input = container.querySelector('input');
-    fireEvent.keyDown(input, {keyCode: 40});
+    if (input) fireEvent.keyDown(input, {keyCode: 40});
 
     const after = queryByTestId(container, 'calendar');
     expect(after).not.toBeNull();
@@ -62,7 +62,7 @@ describe('Datepicker', () => {
     expect(before).toBeNull();
 
     const input = container.querySelector('input');
-    fireEvent.focus(input);
+    if (input) fireEvent.focus(input);
 
     const after = queryByTestId(container, 'calendar');
     expect(after).not.toBeNull();
@@ -76,7 +76,7 @@ describe('Datepicker', () => {
       </TestBaseProvider>,
     );
     const input = container.querySelector('input');
-    fireEvent.change(input, {target: {value: '2011/11/04'}});
+    if (input) fireEvent.change(input, {target: {value: '2011/11/04'}});
     expect(onChange.mock.calls.length).toBe(1);
   });
 
@@ -218,7 +218,7 @@ describe('Datepicker', () => {
     );
 
     const input = container.querySelector('input');
-    expect(input.value).toBe(dateString);
+    expect(input?.value).toBe(dateString);
   });
 
   it('renders range input value in expected default format', () => {
@@ -231,7 +231,7 @@ describe('Datepicker', () => {
     );
 
     const input = container.querySelector('input');
-    expect(input.value).toBe('2019/01/01 – 2019/01/04');
+    expect(input?.value).toBe('2019/01/01 – 2019/01/04');
   });
 
   it('converts hyphen to en dashes', () => {
@@ -240,7 +240,7 @@ describe('Datepicker', () => {
     const value = [date, addDays(date, 3)];
     const {container} = render(<Datepicker mask={mask} value={value} />);
     const input = container.querySelector('input');
-    expect(input.value).toBe('2019/01/01 – 2019/01/04');
+    expect(input?.value).toBe('2019/01/01 – 2019/01/04');
   });
 
   it('converts em dash to en dashes', () => {
@@ -249,7 +249,7 @@ describe('Datepicker', () => {
     const value = [date, addDays(date, 3)];
     const {container} = render(<Datepicker mask={mask} value={value} />);
     const input = container.querySelector('input');
-    expect(input.value).toBe('2019/01/01 – 2019/01/04');
+    expect(input?.value).toBe('2019/01/01 – 2019/01/04');
   });
 
   it('handles space replacement correctly in formatString', () => {
@@ -259,14 +259,14 @@ describe('Datepicker', () => {
       <Datepicker value={date} formatString={formatString} />,
     );
     const input = container.querySelector('input');
-    expect(input.value).toBe('21 10 2019');
+    expect(input?.value).toBe('21 10 2019');
   });
 
   it('does not call onChange if input is shorter than default date format', () => {
     const onChange = jest.fn();
     const {container} = render(<Datepicker onChange={onChange} />);
     const input = container.querySelector('input');
-    fireEvent.change(input, {currentTarget: {value: '1'}});
+    if (input) fireEvent.change(input, {currentTarget: {value: '1'}});
     expect(onChange.mock.calls).toHaveLength(0);
   });
 
@@ -292,18 +292,20 @@ describe('Datepicker', () => {
     );
 
     const input = container.querySelector('input');
-    fireEvent.focus(input);
+    if (input) fireEvent.focus(input);
 
     const calendar = queryAllByTestId(container, 'calendar');
     expect(calendar.length).toBe(monthsShown);
 
     const prev = queryAllByTestId(container, 'prev-button').filter(
-      (el) => !el.disabled,
+      //flowlint-next-line unclear-type:off
+      (el) => !((el: any): HTMLButtonElement).disabled,
     );
     expect(prev.length).toBe(1);
 
     const next = queryAllByTestId(container, 'next-button').filter(
-      (el) => !el.disabled,
+      //flowlint-next-line unclear-type:off
+      (el) => !((el: any): HTMLButtonElement).disabled,
     );
     expect(next.length).toBe(1);
 

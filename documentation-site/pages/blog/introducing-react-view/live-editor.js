@@ -12,6 +12,7 @@ import Editor from '../../../components/yard/editor';
 
 /* eslint-disable */
 
+//$FlowFixMe
 import presetTypescript from '@babel/preset-typescript';
 
 function LiveEditor({initialCode}: {initialCode: string}) {

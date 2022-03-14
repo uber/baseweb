@@ -33,7 +33,7 @@ const StyledHeadingCell = withStyle(StyledCell, {
   paddingBottom: 0,
 });
 
-// eslint-disable-next-line flowtype/no-weak-types
+// flowlint-next-line unclear-type:off
 const StyledDeltaCell = withStyle<typeof StyledCell, any>(
   StyledCell,
   (props) => ({

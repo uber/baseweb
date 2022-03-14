@@ -27,7 +27,7 @@ export function Scenario() {
       onTextChange={(event) => {
         setText(event.currentTarget.value);
       }}
-      // eslint-disable-next-line flowtype/no-weak-types
+      // flowlint-next-line unclear-type:off
       onCountryChange={(event: any) => {
         setCountry(event.option);
       }}

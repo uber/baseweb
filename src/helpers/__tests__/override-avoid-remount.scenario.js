@@ -22,7 +22,7 @@ function Child(props: {overrides: {Base: OverrideT}}) {
   );
 }
 
-// eslint-disable-next-line flowtype/no-weak-types
+// flowlint-next-line unclear-type:off
 function BaseOverride(props: any) {
   return <input onChange={props.onChange} value={props.value} />;
 }

@@ -93,7 +93,7 @@ function Block({
     <BaseBlock
       // coerced to any because because of how react components are typed.
       // cannot guarantee an html element
-      // eslint-disable-next-line flowtype/no-weak-types
+      // flowlint-next-line unclear-type:off
       ref={(forwardedRef: any)}
       $as={as}
       $color={color}

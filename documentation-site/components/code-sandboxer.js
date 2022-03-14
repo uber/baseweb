@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import {finaliseCSB, sendFilesToCSB} from 'codesandboxer';
-
+//$FlowFixMe
 import packageJson from '../../package.json';
 // $FlowFixMe - because this is a .ts file
 import {trackEvent} from '../helpers/ga';

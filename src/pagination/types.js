@@ -19,11 +19,14 @@ export type SizeT = $Keys<typeof SIZE>;
 
 export type CallbacksT = {
   /** Callback for prev button click. */
-  onPrevClick?: ({event: *}) => *,
+  //flowlint-next-line unclear-type:off
+  onPrevClick?: ({event: any}) => any,
   /** Callback for next button click. */
-  onNextClick?: ({event: *}) => *,
+  //flowlint-next-line unclear-type:off
+  onNextClick?: ({event: any}) => any,
   /** Callback for when page changes. */
-  onPageChange?: ({nextPage: number, prevPage: number}) => *,
+  //flowlint-next-line unclear-type:off
+  onPageChange?: ({nextPage: number, prevPage: number}) => any,
 };
 
 export type StateReducerFnT = (
@@ -65,7 +68,8 @@ export type StatefulPaginationPropsT = CallbacksT & {
 };
 
 export type StatefulContainerPropsT = {
-  children: *,
+  //flowlint-next-line unclear-type:off
+  children: any,
   numPages: number,
   /** Reducer function to manipulate internal state updates. */
   stateReducer?: StateReducerFnT,

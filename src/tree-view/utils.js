@@ -240,7 +240,7 @@ export const matchString = (
   return null;
 };
 
-export const defaultGetId = (node: TreeNodeT<>) => {
+export const defaultGetId = (node: TreeNodeT<>): TreeNodeIdT => {
   if (!node.id) {
     throw Error(
       'There needs to be an unique node.id. You can implement a custom mapping with getId.',

@@ -78,7 +78,7 @@ export default class TreeNode extends React.Component<TreeNodePropsT> {
         onKeyDown={(e: KeyboardEvent) => onKeyDown && onKeyDown(e, node)}
         onBlur={onBlur}
         onFocus={this.onFocus}
-        aria-expanded={isExpanded ? true : false}
+        aria-expanded={isExpanded}
         $isLeafNode={!hasChildren}
         {...getOverrideProps(TreeItemOverride)}
       >

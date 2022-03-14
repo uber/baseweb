@@ -25,7 +25,7 @@ import {
 import type {SnackbarElementPropsT} from './types.js';
 
 const ActionButton = React.forwardRef(
-  // eslint-disable-next-line flowtype/no-weak-types
+  // flowlint-next-line unclear-type:off
   ({onClick, message, overrides = {}}, ref: any) => {
     const [, theme] = useStyletron();
     const [ActionButtonContainer, actionButtonContainerProps] = getOverrides(

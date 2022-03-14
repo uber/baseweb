@@ -15,7 +15,8 @@ describe('Component', () => {
   it('calls onClick handler when clicked', () => {
     const onClick = jest.fn();
     const {container} = render(<Component onClick={onClick}>test</Component>);
-    fireEvent.click(container.querySelector('button'));
+    const button = container.querySelector('button');
+    if (button) fireEvent.click(button);
     expect(onClick).toHaveBeenCalledTimes(1);
   });
 });

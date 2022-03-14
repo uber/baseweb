@@ -39,19 +39,19 @@ describe('masked-input', () => {
 
     const input = container.querySelector('input');
 
-    fireEvent.focus(input);
+    if (input) fireEvent.focus(input);
     expect(onFocus).toBeCalledTimes(1);
 
-    fireEvent.blur(input);
+    if (input) fireEvent.blur(input);
     expect(onBlur).toBeCalledTimes(1);
 
-    fireEvent.change(input, {target: {value: 'a'}});
+    if (input) fireEvent.change(input, {target: {value: 'a'}});
     expect(onChange).toBeCalledTimes(1);
 
-    fireEvent.keyDown(input, {key: 'A', code: 'KeyA'});
+    if (input) fireEvent.keyDown(input, {key: 'A', code: 'KeyA'});
     expect(onKeyDown).toBeCalledTimes(1);
 
-    fireEvent.keyUp(input, {key: 'A', code: 'KeyA'});
+    if (input) fireEvent.keyUp(input, {key: 'A', code: 'KeyA'});
     expect(onKeyUp).toBeCalledTimes(1);
   });
 });

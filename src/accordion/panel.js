@@ -83,7 +83,7 @@ const Panel = ({
     },
     [expanded, disabled, onChange, onKeyDown],
   );
-  // eslint-disable-next-line flowtype/no-weak-types
+  // flowlint-next-line unclear-type:off
   const _animateRef = React.useRef<any>(null);
 
   React.useEffect(() => {

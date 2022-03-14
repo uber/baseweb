@@ -10,14 +10,17 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import Head from 'next/head';
+//$FlowFixMe
 import Img from 'next/image';
 import {Block} from 'baseui/block';
 import {StyledLink} from 'baseui/link';
 import Code from './code';
 import {themedStyled} from '../pages/_app';
 import Link from 'next/link';
+//$FlowFixMe
 import Anchor from './anchor';
 import slugify from '../helpers/slugify';
+//$FlowFixMe
 import {useHover} from './hooks';
 type Props = {
   children: string | React.Node,

@@ -54,7 +54,7 @@ describe('datetime column', () => {
     const Cell = column.renderCell;
     const {container} = render(<Cell value={date} x={0} y={0} />);
     const cell = container.querySelector('div');
-    expect(cell.textContent).toBe('04-11-2011 10:20 30:00');
+    expect(cell?.textContent).toBe('04-11-2011 10:20 30:00');
   });
 
   it('cell renders provided value based on formatString', () => {
@@ -67,7 +67,7 @@ describe('datetime column', () => {
     const Cell = column.renderCell;
     const {container} = render(<Cell value={date} x={0} y={0} />);
     const cell = container.querySelector('div');
-    expect(cell.textContent).toBe('11/04/2011');
+    expect(cell?.textContent).toBe('11/04/2011');
   });
 
   it('sets filter params for range of datetimes', () => {
@@ -110,7 +110,7 @@ describe('datetime column', () => {
     );
 
     const select = container.querySelector("[data-baseweb='select'] div div");
-    fireEvent.click(select);
+    if (select) fireEvent.click(select);
     const options = container.querySelectorAll('li');
     fireEvent.click(options[1]);
     fireEvent.click(getByText('Apply'));
@@ -140,7 +140,7 @@ describe('datetime column', () => {
     );
 
     const select = container.querySelector("[data-baseweb='select'] div div");
-    fireEvent.click(select);
+    if (select) fireEvent.click(select);
     const options = container.querySelectorAll('li');
     fireEvent.click(options[2]);
     fireEvent.click(getByText('Apply'));
@@ -204,7 +204,7 @@ describe('datetime column', () => {
     fireEvent.click(getByText('Categorical'));
 
     const select = container.querySelector("[data-baseweb='select'] div div");
-    fireEvent.click(select);
+    if (select) fireEvent.click(select);
     const options = container.querySelectorAll('li');
     fireEvent.click(options[1]);
 
@@ -241,7 +241,7 @@ describe('datetime column', () => {
     fireEvent.click(getByText('Categorical'));
 
     const select = container.querySelector("[data-baseweb='select'] div div");
-    fireEvent.click(select);
+    if (select) fireEvent.click(select);
     const options = container.querySelectorAll('li');
     fireEvent.click(options[2]);
 
@@ -278,7 +278,7 @@ describe('datetime column', () => {
     fireEvent.click(getByText('Categorical'));
 
     const select = container.querySelector("[data-baseweb='select'] div div");
-    fireEvent.click(select);
+    if (select) fireEvent.click(select);
     const options = container.querySelectorAll('li');
     fireEvent.click(options[3]);
 
@@ -313,7 +313,7 @@ describe('datetime column', () => {
     fireEvent.click(getByText('Categorical'));
 
     const select = container.querySelector("[data-baseweb='select'] div div");
-    fireEvent.click(select);
+    if (select) fireEvent.click(select);
     const options = container.querySelectorAll('li');
     fireEvent.click(options[4]);
 

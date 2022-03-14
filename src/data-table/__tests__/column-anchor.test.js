@@ -64,7 +64,7 @@ describe('anchor column', () => {
       />,
     );
     const cell = container.querySelector('a');
-    expect(cell.textContent).toBe('baseweb');
+    expect(cell?.textContent).toBe('baseweb');
   });
 
   it('cell renders provided elementAs', () => {
@@ -86,7 +86,7 @@ describe('anchor column', () => {
       />,
     );
     const cell = container.querySelector('div');
-    expect(cell.textContent).toBe('baseweb');
+    expect(cell?.textContent).toBe('baseweb');
   });
 
   it('builds expected sort function', () => {

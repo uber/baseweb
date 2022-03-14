@@ -5,8 +5,6 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-/* eslint-disable react/no-find-dom-node */
-/* eslint-disable cup/no-undef */
 import * as React from 'react';
 import FocusLock, {MoveFocusInside} from 'react-focus-lock';
 
@@ -35,6 +33,7 @@ import type {
   PopoverPropsT,
   PopoverPrivateStateT,
   SharedStylePropsArgT,
+  ReactRefT,
 } from './types.js';
 import type {PopperDataObjectT, NormalizedOffsetsT} from '../layer/types.js';
 
@@ -50,9 +49,9 @@ class PopoverInner extends React.Component<
   animateOutCompleteTimer: ?TimeoutID;
   onMouseEnterTimer: ?TimeoutID;
   onMouseLeaveTimer: ?TimeoutID;
-  anchorRef = (React.createRef(): {current: *});
-  popperRef = (React.createRef(): {current: *});
-  arrowRef = (React.createRef(): {current: *});
+  anchorRef = React.createRef<HTMLElement>();
+  popperRef = React.createRef<HTMLElement>();
+  arrowRef = React.createRef<HTMLElement>();
   /* eslint-enable react/sort-comp */
 
   /**
@@ -256,10 +255,20 @@ class PopoverInner extends React.Component<
     const popper = this.popperRef.current;
     const anchor = this.anchorRef.current;
     // Ignore document click if it came from popover or anchor
-    if (!popper || popper === target || popper.contains(target)) {
+    if (
+      !popper ||
+      popper === target ||
+      // eslint-disable-next-line cup/no-undef
+      (target instanceof Node && popper.contains(target))
+    ) {
       return;
     }
-    if (!anchor || anchor === target || anchor.contains(target)) {
+    if (
+      !anchor ||
+      anchor === target ||
+      // eslint-disable-next-line cup/no-undef
+      (target instanceof Node && popper.contains(target))
+    ) {
       return;
     }
     if (this.props.onClickOutside) {
@@ -505,7 +514,9 @@ class PopoverInner extends React.Component<
 }
 
 // Remove when Popover is converted to a functional component.
-const Popover = (props: PopoverPropsT & {innerRef?: React$ElementRef<*>}) => {
+const Popover = (
+  props: PopoverPropsT & {innerRef?: ReactRefT<HTMLElement>},
+) => {
   const {innerRef} = props;
   //$FlowExpectedError[cannot-spread-inexact]
   return <PopoverInner id={props.id || useUID()} ref={innerRef} {...props} />;

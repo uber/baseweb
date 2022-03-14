@@ -12,7 +12,7 @@ function useInterval(callback: () => void, delay: number | null) {
   }, [callback]);
 
   // Set up the interval.
-  React.useEffect((): any => {
+  React.useEffect(() => {
     function tick() {
       savedCallback.current();
     }

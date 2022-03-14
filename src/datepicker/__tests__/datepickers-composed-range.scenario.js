@@ -52,7 +52,7 @@ export function Scenario() {
               <Datepicker
                 value={dates}
                 // typecast to any because if datepicker is range, value is always array type
-                // eslint-disable-next-line flowtype/no-weak-types
+                // flowlint-next-line unclear-type:off
                 onChange={({date}) => setDates((date: any))}
                 timeSelectStart
                 range
@@ -110,7 +110,7 @@ export function Scenario() {
               <Datepicker
                 value={dates}
                 // typecast to any because if datepicker is range, value is always array type
-                // eslint-disable-next-line flowtype/no-weak-types
+                // flowlint-next-line unclear-type:off
                 onChange={({date}) => setDates((date: any))}
                 timeSelectEnd
                 range

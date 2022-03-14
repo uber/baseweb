@@ -2,7 +2,9 @@
 import React from 'react';
 import {withStyle} from 'styletron-react';
 import {StatefulMenu, OptionList, StyledList} from 'baseui/menu';
+//$FlowFixMe
 import List from 'react-virtualized/dist/commonjs/List';
+//$FlowFixMe
 import AutoSizer from 'react-virtualized/dist/commonjs/AutoSizer';
 
 const ITEMS = Array.from({length: 1500}, (_, index) => ({
