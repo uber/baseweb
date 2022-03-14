@@ -48,10 +48,11 @@ export const flexGridItemMediaQueryStyle = ({
     width: `calc(${widthCalc} - .5px)`,
     // Add colGap except at end of row
     [marginDirection]:
-      !!colGapQuantity && ((itemIndex + 1) % colCount !== 0 ? colGap : 0),
+      colGapQuantity && //flowlint-line sketchy-number-and:off
+      ((itemIndex + 1) % colCount !== 0 ? colGap : 0),
     // Add rowGap except at end of column
     marginBottom:
-      !!rowGapQuantity &&
+      rowGapQuantity && //flowlint-line sketchy-number-and:off
       (~~(itemIndex / colCount) !== ~~((itemCount - 1) / colCount)
         ? rowGap
         : 0),
