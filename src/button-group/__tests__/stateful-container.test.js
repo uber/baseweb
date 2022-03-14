@@ -28,8 +28,10 @@ describe('ButtonGroup StatefulContainer', () => {
         {(childProps) => <div {...childProps}>children</div>}
       </StatefulContainer>,
     );
-
-    fireEvent.click(container.querySelector('div'));
+    const div = container.querySelector('div');
+    if (div) {
+      fireEvent.click(div);
+    }
     expect(onClick).toHaveBeenCalledTimes(1);
   });
 
@@ -41,8 +43,10 @@ describe('ButtonGroup StatefulContainer', () => {
         {(childProps) => <div {...childProps}>children</div>}
       </StatefulContainer>,
     );
-
-    fireEvent.click(container.querySelector('div'));
+    const div = container.querySelector('div');
+    if (div) {
+      fireEvent.click(div);
+    }
     expect(stateReducer).toHaveBeenCalledTimes(0);
   });
 
@@ -58,8 +62,10 @@ describe('ButtonGroup StatefulContainer', () => {
         {(childProps) => <div {...childProps}>children</div>}
       </StatefulContainer>,
     );
-
-    fireEvent.click(container.querySelector('div'));
+    const div = container.querySelector('div');
+    if (div) {
+      fireEvent.click(div);
+    }
     expect(stateReducer).toHaveBeenCalledTimes(1);
   });
 });

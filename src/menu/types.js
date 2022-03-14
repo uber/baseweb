@@ -10,7 +10,8 @@ import * as React from 'react';
 import type {OverrideT} from '../helpers/overrides.js';
 import {STATE_CHANGE_TYPES, OPTION_LIST_SIZE} from './constants.js';
 
-export type ItemT = *;
+// flowlint-next-line unclear-type:off
+export type ItemT = any;
 export type ArrayItemsT = $ReadOnlyArray<ItemT>;
 export type GroupedItemsT = {__ungrouped: ArrayItemsT, [string]: ArrayItemsT};
 export type ItemsT = ArrayItemsT | GroupedItemsT;
@@ -24,14 +25,14 @@ export type GetProfileItemLabelsFnT = (item: ItemT) => {
 };
 
 export type GetProfileItemImgFnT = (
-  item: ItemT,
-) => string | React.ComponentType<*>;
+  item: ItemT, // flowlint-next-line unclear-type:off
+) => string | React.ComponentType<any>;
 
 export type GetProfileItemImgTextFnT = (item: ItemT) => string;
 
-export type SetRootRefFnT = (ref: React$ElementRef<*>) => void;
+export type SetRootRefFnT = (ref: React.ElementRef<typeof HTMLElement>) => void;
 
-export type RootRefT = React$ElementRef<*>;
+export type RootRefT = {current: null | HTMLElement};
 
 export type OnItemSelectFnT = ({
   item: ItemT,
@@ -51,7 +52,7 @@ export type ProfileOverridesT = {
 
 export type RenderItemPropsT = {
   disabled?: boolean,
-  ref?: React$ElementRef<*>,
+  ref?: React.ElementRef<typeof HTMLElement>,
   id?: ?string,
   isFocused?: boolean,
   // indicates when the item is visually focused
@@ -121,7 +122,7 @@ export type StatefulContainerPropsT = {
   /** Ref for the menu container element. Used to capture key events for navigation */
   rootRef?: RootRefT,
   /** Node for menu's keyboard listener. Default is null and keyboard handlers will listen on menu root. */
-  keyboardControlNode: React$ElementRef<*>,
+  keyboardControlNode: {current: HTMLElement | null},
   /** whether has keyboard type-ahead function */
   typeAhead: boolean,
   /** Child as function pattern. */

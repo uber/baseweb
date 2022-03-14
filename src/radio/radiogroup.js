@@ -74,7 +74,10 @@ class StatelessRadioGroup extends React.Component<PropsT, StatelessStateT> {
     if (__DEV__) {
       const overrideKeys = Object.keys(overrides);
       // TODO(v11)
-      if (overrideKeys.length && !overrideKeys.includes('RadioGroupRoot')) {
+      if (
+        Boolean(overrideKeys.length) &&
+        !overrideKeys.includes('RadioGroupRoot')
+      ) {
         // eslint-disable-next-line no-console
         console.warn(`All overrides beside 'RadioGroupRoot' will be deprecated in the next major version update.
           Pass other overrides to the 'Radio' children instead.

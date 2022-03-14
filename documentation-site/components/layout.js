@@ -10,15 +10,18 @@ import * as React from 'react';
 import {MDXProvider} from '@mdx-js/tag';
 import {Block} from 'baseui/block';
 import {Button, KIND, SIZE} from 'baseui/button';
-
+//$FlowFixMe
 import TableOfContents from './table-of-contents';
 import {themedStyled} from '../pages/_app';
 import MarkdownElements from './markdown-elements';
+//$FlowFixMe
 import Sidebar from './sidebar';
 import HeaderNavigation from './header-navigation';
 import Footer from './footer';
 import PencilIcon from './pencil-icon';
+//$FlowFixMe
 import Routes from '../routes';
+//$FlowFixMe
 import DirectionContext from '../components/direction-context';
 import SkipToContent from './skip-to-content';
 

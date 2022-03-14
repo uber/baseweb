@@ -20,6 +20,11 @@ import {
 
 import {toaster, ToasterContainer} from '../index.js';
 
+const getBody = (): HTMLBodyElement => {
+  //flowlint-next-line unclear-type:off
+  return ((document.body: any): HTMLBodyElement);
+};
+
 function wait(ms) {
   return new Promise((res) => {
     setTimeout(res, ms);
@@ -31,7 +36,7 @@ describe('toaster', () => {
     render(
       <ToasterContainer overrides={{Root: {props: {'data-testid': 'root'}}}} />,
     );
-    getByTestId(document.body, 'root');
+    getByTestId(getBody(), 'root');
   });
 
   describe('toaster methods', () => {
@@ -39,29 +44,29 @@ describe('toaster', () => {
       render(<ToasterContainer />);
 
       const key = toaster.show('show');
-      await findByText(document.body, 'show');
+      await findByText(getBody(), 'show');
 
       toaster.update(String(key), {children: 'update'});
-      await findByText(document.body, 'update');
+      await findByText(getBody(), 'update');
 
       toaster.clear(key);
-      await waitForElementToBeRemoved(() => getByText(document.body, 'update'));
+      await waitForElementToBeRemoved(() => getByText(getBody(), 'update'));
     });
 
     it('info, positive, warning, negative methods and clear all', async () => {
       render(<ToasterContainer />);
 
       toaster.info('info');
-      await findByText(document.body, 'info');
+      await findByText(getBody(), 'info');
 
       toaster.positive('positive');
-      await findByText(document.body, 'positive');
+      await findByText(getBody(), 'positive');
 
       toaster.warning('warning');
-      await findByText(document.body, 'warning');
+      await findByText(getBody(), 'warning');
 
       toaster.negative('negative');
-      await findByText(document.body, 'negative');
+      await findByText(getBody(), 'negative');
     });
 
     it('onClose toast handler is called', async () => {
@@ -72,32 +77,31 @@ describe('toaster', () => {
         onClose,
         overrides: {CloseIcon: {props: {'data-testid': 'close'}}},
       });
-      await findByText(document.body, 'message');
-      fireEvent.click(getByTestId(document.body, 'close'));
-      await waitForElementToBeRemoved(() =>
-        getByText(document.body, 'message'),
-      );
+      await findByText(getBody(), 'message');
+      fireEvent.click(getByTestId(getBody(), 'close'));
+      await waitForElementToBeRemoved(() => getByText(getBody(), 'message'));
       expect(onClose).toHaveBeenCalled();
     });
 
     it('hides when autoHideDuration completes', async () => {
       render(<ToasterContainer autoHideDuration={100} />);
       toaster.info('info');
-      await findByText(document.body, 'info');
+      //flowlint-next-line unclear-type:off
+      await findByText(((getBody(): any): HTMLBodyElement), 'info');
       await wait(100);
       await wait(600);
-      expect(queryByText(document.body, 'info')).toBeNull();
+      expect(queryByText(getBody(), 'info')).toBeNull();
     });
 
     it('hides when autoHideDuration from toast completes', async () => {
       render(<ToasterContainer autoHideDuration={100} />);
       toaster.info('info', {autoHideDuration: 1000});
-      await findByText(document.body, 'info');
+      await findByText(getBody(), 'info');
       await wait(100);
       await wait(600);
-      expect(queryByText(document.body, 'info')).not.toBeNull();
-      await waitForElementToBeRemoved(() => getByText(document.body, 'info'));
-      expect(queryByText(document.body, 'info')).toBeNull();
+      expect(queryByText(getBody(), 'info')).not.toBeNull();
+      await waitForElementToBeRemoved(() => getByText(getBody(), 'info'));
+      expect(queryByText(getBody(), 'info')).toBeNull();
     });
   });
 });

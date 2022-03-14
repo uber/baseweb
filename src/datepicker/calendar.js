@@ -58,7 +58,7 @@ export default class Calendar<T = Date> extends React.Component<
 
   dateHelpers: DateHelpers<T>;
 
-  calendar: React.ElementRef<*>;
+  calendar: React.ElementRef<typeof HTMLElement>;
 
   constructor(props: CalendarPropsT<T>) {
     super(props);
@@ -485,7 +485,7 @@ export default class Calendar<T = Date> extends React.Component<
     );
   };
 
-  // eslint-disable-next-line flowtype/no-weak-types
+  // flowlint-next-line unclear-type:off
   renderTimeSelect: (?T, Function, string) => React.Node = (
     value,
     onChange,

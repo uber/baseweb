@@ -133,8 +133,9 @@ class LayerComponent extends React.Component<
       children
     );
     if (__BROWSER__) {
-      if (mountNode || container) {
-        return ReactDOM.createPortal(childrenToRender, mountNode || container);
+      const portalContainer = mountNode || container;
+      if (portalContainer) {
+        return ReactDOM.createPortal(childrenToRender, portalContainer);
       }
       return null;
     }

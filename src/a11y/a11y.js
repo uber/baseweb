@@ -136,7 +136,7 @@ export default function A11y(props: {children: React.Node}) {
       <span ref={child}>{props.children}</span>
       <div>
         {violationsByNode.map(([node, violations], index) => (
-          // eslint-disable-next-line flowtype/no-weak-types
+          // flowlint-next-line unclear-type:off
           <Violation target={node} violations={(violations: any)} key={index} />
         ))}
       </div>

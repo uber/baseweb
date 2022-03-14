@@ -7,7 +7,7 @@ import {StatefulMenu} from 'baseui/menu';
 import {Pagination} from 'baseui/pagination';
 import {StatefulPopover, PLACEMENT} from 'baseui/popover';
 import {Table} from 'baseui/table';
-
+// flowlint-next-line unclear-type:off
 function PaginatedTable(props: {data: any[], columns: any[]}) {
   const [css, theme] = useStyletron();
   const [page, setPage] = React.useState(1);

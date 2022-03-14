@@ -20,7 +20,7 @@ import {
 import type {ProgressBarPropsT} from './types.js';
 
 class ProgressBar extends React.Component<
-  // eslint-disable-next-line flowtype/no-weak-types
+  // flowlint-next-line unclear-type:off
   ProgressBarPropsT & {forwardedRef: any},
 > {
   static defaultProps = {

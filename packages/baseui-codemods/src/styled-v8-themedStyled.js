@@ -51,7 +51,7 @@ function findStyledComponentsWithTheme(p) {
 
 class ThemeCache {
   count: number;
-  // eslint-disable-next-line flowtype/no-weak-types
+  // flowlint-next-line unclear-type:off
   visitedGenericTypes: {[string]: {node: any, position: number}};
 
   constructor() {

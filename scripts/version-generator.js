@@ -12,6 +12,7 @@ LICENSE file in the root directory of this source tree.
 
 const {writeFileSync, unlinkSync} = require('fs');
 const {resolve} = require('path');
+//$FlowFixMe
 const Octokit = require('@octokit/rest');
 
 const octokit = Octokit({auth: process.env.GITHUB_AUTH_TOKEN});

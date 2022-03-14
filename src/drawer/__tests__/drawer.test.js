@@ -67,7 +67,8 @@ describe('Drawer', () => {
         Drawer Body
       </Drawer>,
     );
-    fireEvent.click(container.querySelector('button'));
+    const button = container.querySelector('button');
+    if (button) fireEvent.click(button);
     expect(onClose).toHaveBeenCalledTimes(1);
     expect(onClose).toHaveBeenLastCalledWith({
       closeSource: CLOSE_SOURCE.closeButton,

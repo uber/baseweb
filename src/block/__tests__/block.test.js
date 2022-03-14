@@ -17,26 +17,29 @@ describe('Block', () => {
     const {container} = render(
       <Block backgroundColor="primary200">test</Block>,
     );
-    const style = JSON.parse(
-      container.querySelector('div').getAttribute('test-style'),
-    );
+    const testStyle = container
+      .querySelector('div')
+      ?.getAttribute('test-style');
+    const style = JSON.parse(testStyle || '');
     expect(style.backgroundColor).toBe('$theme.colors.primary200');
   });
 
   it('renders themed color if provided', () => {
     const {container} = render(<Block color="primary200">test</Block>);
-    const style = JSON.parse(
-      container.querySelector('div').getAttribute('test-style'),
-    );
+    const testStyle = container
+      .querySelector('div')
+      ?.getAttribute('test-style');
+    const style = JSON.parse(testStyle || '');
     expect(style.color).toBe('$theme.colors.primary200');
   });
 
   describe('Overflow', () => {
     it('renders overflowX styling if provided with scrollX value', () => {
       const {container} = render(<Block overflow="scrollX">test</Block>);
-      const style = JSON.parse(
-        container.querySelector('div').getAttribute('test-style'),
-      );
+      const testStyle = container
+        .querySelector('div')
+        ?.getAttribute('test-style');
+      const style = JSON.parse(testStyle || '');
       expect(style.overflowX).toBe('scroll');
       expect(style.overflowY).toBe(null);
       expect(style.overflow).toBe(null);
@@ -44,9 +47,10 @@ describe('Block', () => {
 
     it('renders overflowY styling if provided with scrollY value', () => {
       const {container} = render(<Block overflow="scrollY">test</Block>);
-      const style = JSON.parse(
-        container.querySelector('div').getAttribute('test-style'),
-      );
+      const testStyle = container
+        .querySelector('div')
+        ?.getAttribute('test-style');
+      const style = JSON.parse(testStyle || '');
       expect(style.overflowX).toBe(null);
       expect(style.overflowY).toBe('scroll');
       expect(style.overflow).toBe(null);
@@ -54,9 +58,10 @@ describe('Block', () => {
 
     it('renders overflow styling if provided any other value', () => {
       const {container} = render(<Block overflow="auto">test</Block>);
-      const style = JSON.parse(
-        container.querySelector('div').getAttribute('test-style'),
-      );
+      const testStyle = container
+        .querySelector('div')
+        ?.getAttribute('test-style');
+      const style = JSON.parse(testStyle || '');
       expect(style.overflowX).toBe(null);
       expect(style.overflowY).toBe(null);
       expect(style.overflow).toBe('auto');
@@ -66,9 +71,10 @@ describe('Block', () => {
   describe('FlexWrap', () => {
     it('renders flexWrap styling as expected', () => {
       const {container} = render(<Block flexWrap>test</Block>);
-      const style = JSON.parse(
-        container.querySelector('div').getAttribute('test-style'),
-      );
+      const testStyle = container
+        .querySelector('div')
+        ?.getAttribute('test-style');
+      const style = JSON.parse(testStyle || '');
       expect(style.flexWrap).toBe('wrap');
     });
   });
@@ -76,7 +82,8 @@ describe('Block', () => {
   it('applies event handlers', () => {
     const onClick = jest.fn();
     const {container} = render(<Block onClick={onClick}>test</Block>);
-    fireEvent.click(container.querySelector('div'));
+    const div = container.querySelector('div');
+    if (div) fireEvent.click(div);
     expect(onClick).toHaveBeenCalled();
   });
 
@@ -87,9 +94,10 @@ describe('Block', () => {
           test
         </Block>,
       );
-      const style = JSON.parse(
-        container.querySelector('div').getAttribute('test-style'),
-      );
+      const testStyle = container
+        .querySelector('div')
+        ?.getAttribute('test-style');
+      const style = JSON.parse(testStyle || '');
       expect(style).toMatchInlineSnapshot(`
 Object {
   "@media screen and (min-width: $theme.breakpoints.largepx)": Object {
@@ -110,9 +118,10 @@ Object {
       const {container} = render(
         <Block marginLeft={['scale100', 'scale200']}>test</Block>,
       );
-      const style = JSON.parse(
-        container.querySelector('div').getAttribute('test-style'),
-      );
+      const testStyle = container
+        .querySelector('div')
+        ?.getAttribute('test-style');
+      const style = JSON.parse(testStyle || '');
       expect(style).toMatchInlineSnapshot(`
 Object {
   "@media screen and (min-width: $theme.breakpoints.smallpx)": Object {
@@ -126,9 +135,10 @@ Object {
 
   it('renders themed font if provided', () => {
     const {container} = render(<Block font="font200">test</Block>);
-    const style = JSON.parse(
-      container.querySelector('div').getAttribute('test-style'),
-    );
+    const testStyle = container
+      .querySelector('div')
+      ?.getAttribute('test-style');
+    const style = JSON.parse(testStyle || '');
     expect(style).toMatchInlineSnapshot(`
 Object {
   "fontFamily": "$theme.typography.font200.fontFamily",
@@ -141,9 +151,10 @@ Object {
 
   it('does not throw if provided unknown font prop', () => {
     const {container} = render(<Block font="not-a-real-font">test</Block>);
-    const style = JSON.parse(
-      container.querySelector('div').getAttribute('test-style'),
-    );
+    const testStyle = container
+      .querySelector('div')
+      ?.getAttribute('test-style');
+    const style = JSON.parse(testStyle || '');
     expect(style).toMatchInlineSnapshot(`
 Object {
   "fontFamily": null,

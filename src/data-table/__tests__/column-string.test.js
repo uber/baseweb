@@ -37,7 +37,7 @@ describe('string column', () => {
 
     const {container} = render(<Cell value="hello" x={0} y={0} />);
     const cell = container.querySelector('div');
-    expect(cell.textContent).toBe('hello');
+    expect(cell?.textContent).toBe('hello');
   });
 
   it('builds expected sort function', () => {

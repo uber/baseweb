@@ -83,7 +83,7 @@ export type StyledHeadingHeadingPropsT = {|
 
 export type MenuAdapterPropsT = {
   ...PropsT,
-  // eslint-disable-next-line flowtype/no-weak-types
+  // flowlint-next-line unclear-type:off
   item?: any,
   onMouseEnter?: (MouseEvent) => mixed,
   onClick?: (MouseEvent) => mixed,

@@ -65,7 +65,7 @@ function Slider({
       setIsFocusVisible(true);
     }
     const index =
-      // eslint-disable-next-line flowtype/no-weak-types
+      // flowlint-next-line unclear-type:off
       (event.target: any).parentNode.firstChild === event.target ? 0 : 1;
     setFocusedThumbIndex(index);
   }, []);
@@ -147,7 +147,9 @@ function Slider({
         renderThumb={({props, index, isDragged}) => {
           const displayLabel = persistentThumb
             ? persistentThumb
-            : ((index && isHovered1) || (!index && isHovered0) || isDragged) &&
+            : ((!!index && isHovered1) ||
+                (!index && isHovered0) ||
+                isDragged) &&
               !disabled;
           return (
             <Thumb

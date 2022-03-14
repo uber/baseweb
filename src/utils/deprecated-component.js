@@ -7,10 +7,10 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 
-// eslint-disable-next-line flowtype/no-weak-types
+// flowlint-next-line unclear-type:off
 export default function (Component: any, displayName: string) {
-  // eslint-disable-next-line flowtype/no-weak-types,react/display-name
-  return React.forwardRef<any, any>((props, ref) => {
+  // flowlint-next-line unclear-type:off
+  const DeprecatedComponent = React.forwardRef<any, any>((props, ref) => {
     if (__DEV__) {
       console.warn(
         `We have stabilized the ${displayName} component, so you can drop the "Unstable_" prefix from your imports. We will remove the "Unstable_" exports soon, so please make these changes as soon as possible!`,
@@ -18,4 +18,6 @@ export default function (Component: any, displayName: string) {
     }
     return <Component {...props} ref={ref} />;
   });
+  DeprecatedComponent.displayName = 'DeprecatedComponent';
+  return DeprecatedComponent;
 }

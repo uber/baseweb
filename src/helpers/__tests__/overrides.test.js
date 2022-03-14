@@ -11,16 +11,15 @@ import {render} from '@testing-library/react';
 import {
   getOverride,
   getOverrideProps,
-  toObjectOverride,
-  mergeOverrides,
-  mergeOverride,
-  mergeConfigurationOverrides,
   getOverrides,
+  mergeConfigurationOverrides,
+  mergeOverride,
+  mergeOverrides,
+  toObjectOverride,
 } from '../overrides.js';
 
-function getMockComponent(): React.ComponentType<*> {
-  const mock: React.ComponentType<*> = () => null;
-  return mock;
+function getMockComponent(): React.ComponentType<{}> {
+  return () => null;
 }
 
 describe('Helpers - Overrides', () => {
@@ -66,7 +65,7 @@ describe('Helpers - Overrides', () => {
     });
     expect(
       toObjectOverride({
-        component: (CustomComponent: React.ComponentType<*>),
+        component: (CustomComponent: React.ComponentType<{}>),
         style: {width: '300px'},
       }),
     ).toEqual({
@@ -86,7 +85,7 @@ describe('Helpers - Overrides', () => {
 
     const overrides2 = {
       Root: {
-        component: (CustomFoo: React.ComponentType<*>),
+        component: (CustomFoo: React.ComponentType<{}>),
       },
       Bar: CustomBar,
     };
@@ -250,7 +249,7 @@ describe('Helpers - Overrides', () => {
 
     const {container} = render(<Component count={1} {...componentProps} />);
     const element = container.querySelector('div');
-    expect(element.textContent).toBe('default 2');
+    expect(element?.textContent).toBe('default 2');
 
     // $FlowFixMe
     expect(console.warn.mock.calls.length).toBe(1);
@@ -282,7 +281,7 @@ describe('Helpers - Overrides', () => {
 
     const {container} = render(<Component count={1} {...componentProps} />);
     const element = container.querySelector('div');
-    expect(element.textContent).toBe('custom 3');
+    expect(element?.textContent).toBe('custom 3');
 
     // $FlowFixMe
     expect(console.warn.mock.calls.length).toBe(1);
@@ -322,8 +321,8 @@ describe('Helpers - Overrides', () => {
 
     const {container} = render(<Component count={1} {...componentProps} />);
     const element = container.querySelector('div');
-    expect(element.getAttribute('style')).toBe('background-color: blue;');
-    expect(element.textContent).toBe('custom 3');
+    expect(element?.getAttribute('style')).toBe('background-color: blue;');
+    expect(element?.textContent).toBe('custom 3');
 
     // $FlowFixMe
     expect(console.warn.mock.calls.length).toBe(1);

@@ -33,12 +33,15 @@ describe('Accordion', () => {
     const first = getByText(container, 'Accordion panel 1');
     expect(queryAllByText(container, 'panel 1').length).toBe(0);
 
-    fireEvent.click(first);
+    if (first) fireEvent.click(first);
     expect(queryAllByText(container, 'panel 1').length).toBe(1);
 
     const second = getByText(container, 'Accordion panel 2');
-    fireEvent.click(second);
-    fireEvent.transitionEnd(getByTestId(first.parentElement, 'transitionDiv'));
+    if (second) fireEvent.click(second);
+    fireEvent.transitionEnd(
+      //flowlint-next-line unclear-type:off
+      getByTestId(((first.parentElement: any): HTMLElement), 'transitionDiv'),
+    );
     expect(queryAllByText(container, 'panel 1').length).toBe(0);
     expect(queryAllByText(container, 'panel 2').length).toBe(1);
 

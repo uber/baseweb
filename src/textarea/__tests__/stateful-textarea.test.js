@@ -20,7 +20,7 @@ describe('StatefulTextarea', () => {
     const {container} = render(<StatefulTextarea />);
 
     const textarea = container.querySelector('textarea');
-    fireEvent.keyDown(textarea, {target: {value: 'a'}});
-    expect(textarea.value).toBe('a');
+    if (textarea) fireEvent.keyDown(textarea, {target: {value: 'a'}});
+    expect(textarea?.value).toBe('a');
   });
 });

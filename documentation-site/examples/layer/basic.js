@@ -5,6 +5,7 @@ import {Layer} from 'baseui/layer';
 import {useStyletron} from 'baseui';
 import {Button} from 'baseui/button';
 
+// flowlint-next-line unclear-type:off
 function Wrapper(props: any) {
   const [css] = useStyletron();
   const {offset, color, children, forwardedRef} = props;

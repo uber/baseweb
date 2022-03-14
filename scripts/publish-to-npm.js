@@ -101,6 +101,7 @@ function publishEslintPlugin(tag) {
 
 const rootPackageJSONPath = path.resolve(ROOT_DIR, 'package.json');
 
+// flowlint-next-line unclear-type:off
 module.exports = function publishToNpm(params /*: any */) {
   const {tag, commit} = params;
 

@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
+// $FlowFixMe
 import {render, prettyDOM} from '@testing-library/react';
 
 import FlexGrid from '../flex-grid.js';

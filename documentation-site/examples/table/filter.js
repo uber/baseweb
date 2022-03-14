@@ -12,7 +12,7 @@ import {
   StyledCell,
 } from 'baseui/table';
 
-const FilterCheckbox = props => (
+const FilterCheckbox = (props) => (
   <Checkbox
     checked={props.checked}
     onChange={props.onChange}
@@ -31,18 +31,21 @@ const FilterCheckbox = props => (
 );
 
 class FilterTable extends React.Component<
+  // flowlint-next-line unclear-type:off
   {data: any},
+  // flowlint-next-line unclear-type:off
   {filters: any[]},
 > {
   state = {
     filters: [],
   };
 
-  FILTER_FUNCTIONS = Array.from({length: 10}, (_, i) => row =>
-    row[0] % (i + 1) === 0,
+  FILTER_FUNCTIONS = Array.from(
+    {length: 10},
+    (_, i) => (row) => row[0] % (i + 1) === 0,
   );
 
-  onFilter = index => {
+  onFilter = (index) => {
     const isActive = !!this.state.filters[index];
 
     const filters = [...this.state.filters];

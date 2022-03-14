@@ -59,7 +59,7 @@ const ListItem = React.forwardRef<PropsT, HTMLLIElement>(
 
     return (
       <Root
-        // eslint-disable-next-line flowtype/no-weak-types
+        // flowlint-next-line unclear-type:off
         ref={(ref: any)}
         $shape={props.shape || SHAPE.DEFAULT}
         {...rootProps}

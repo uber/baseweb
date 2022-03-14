@@ -15,10 +15,9 @@ import {
 } from './constants.js';
 
 export type AdjoinedT = $Keys<typeof ADJOINED>;
-
 export type SizeT = $Keys<typeof SIZE>;
-
 export type StateTypeT = $Keys<typeof STATE_CHANGE_TYPE>;
+export type ReactRefT<T> = {|current: null | T|};
 
 export type InternalStateT = {
   /** Renders UI in 'focus' state */
@@ -60,8 +59,6 @@ export type SharedPropsT = {|
   /** Defines if has a clearable or MaskToggleButton at the end */
   $hasIconTrailing: boolean,
 |};
-
-export type PropsT = *;
 
 export type BaseInputComponentsT = {|
   InputContainer?: OverrideT,
@@ -116,7 +113,7 @@ export type BaseInputPropsT<T> = {|
   /** A  hint as to the type of data that might be entered by the user while editing the element or its contents. */
   inputMode?: string,
   /** A ref to access an input element. */
-  inputRef?: React.ElementRef<*>,
+  inputRef?: ReactRefT<HTMLElement>,
   name: string,
   onBlur: (e: SyntheticFocusEvent<T>) => mixed,
   onChange?: (e: SyntheticInputEvent<T>) => mixed,
@@ -155,9 +152,9 @@ export type InputPropsT = {|
   ...BaseInputPropsT<HTMLInputElement>,
   overrides: InputComponentsT,
   /** An input helper rendered before and attached to the input field. */
-  startEnhancer: ?(React.Node | ((props: PropsT) => React.Node)),
+  startEnhancer: ?(React.Node | ((props: SharedPropsT) => React.Node)),
   /** An input helper rendered after and attached to the input field. */
-  endEnhancer: ?(React.Node | ((props: PropsT) => React.Node)),
+  endEnhancer: ?(React.Node | ((props: SharedPropsT) => React.Node)),
   /** Handler for the `focus` event. */
   onFocus: (e: SyntheticFocusEvent<HTMLInputElement>) => mixed,
   /** Handler for the `blur` event. */
@@ -172,8 +169,15 @@ export type MaskedInputPropsT = $Shape<{|
   maskChar?: string,
 |}>;
 
+export type StatefulContainerChildrenPropsT<T> = {|
+  onChange: (e: SyntheticInputEvent<T>) => mixed,
+  /** If true, adds a clear value icon button to the end of the input container. */
+  clearable?: boolean,
+  ...StatefulInputPropsT,
+|};
+
 export type StatefulContainerPropsT<T> = {|
-  children: (props: PropsT) => React.Node,
+  children: (props: StatefulContainerChildrenPropsT<T>) => React.Node,
   /** Initial state of an uncontrolled input component. */
   initialState?: StateT,
   /** A state change handler. Used to override default state transitions. */
@@ -186,7 +190,9 @@ export type StatefulContainerPropsT<T> = {|
 
 type OmitPropsT = {
   overrides: InputComponentsT,
-  children: ?(props: *) => React.Node,
+  children: ?(
+    props: StatefulContainerChildrenPropsT<HTMLInputElement>,
+  ) => React.Node,
 };
 
 type FullStPropsT = InputPropsT & StatefulContainerPropsT<HTMLInputElement>;

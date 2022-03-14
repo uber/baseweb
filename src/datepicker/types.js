@@ -18,7 +18,7 @@ import type {
 
 import type {OptionT} from '../select/index.js';
 
-// eslint-disable-next-line flowtype/no-weak-types
+// flowlint-next-line unclear-type:off
 type LocaleT = any; // see https://github.com/date-fns/date-fns/blob/master/src/locale/index.js.flow
 
 type onChangeT<T> = ({date: ?T | Array<T>}) => mixed;
@@ -238,7 +238,7 @@ export type DatepickerPropsT<T = Date> = CalendarPropsT<T> & {
 };
 
 export type SharedStylePropsT = {
-  // eslint-disable-next-line flowtype/no-weak-types
+  // flowlint-next-line unclear-type:off
   $date: any,
   $disabled: ?boolean,
   $density: DensityT,

@@ -35,13 +35,13 @@ export type OverridesT = {|
 
 export type NavItemT = {|
   active?: boolean,
-  // eslint-disable-next-line flowtype/no-weak-types
+  // flowlint-next-line unclear-type:off
   icon?: React.AbstractComponent<any>,
-  // eslint-disable-next-line flowtype/no-weak-types
+  // flowlint-next-line unclear-type:off
   info?: any,
   label: string,
   children?: NavItemT[],
-  // eslint-disable-next-line flowtype/no-weak-types
+  // flowlint-next-line unclear-type:off
   navExitIcon?: React.AbstractComponent<any>,
   navPosition?: {
     desktop?: $Values<typeof POSITION>,

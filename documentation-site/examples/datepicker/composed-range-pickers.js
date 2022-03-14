@@ -13,6 +13,7 @@ const END_DATE = new Date(2019, 3, 10, 16, 0, 0);
 
 export default function Example() {
   const [css, theme] = useStyletron();
+  // flowlint-next-line unclear-type:off
   const [dates, setDates] = useState<any>([START_DATE, END_DATE]);
 
   return (
@@ -53,7 +54,7 @@ export default function Example() {
           <FormControl label="Start Time" caption="HH:MM">
             <TimePicker
               value={dates[0]}
-              onChange={time => {
+              onChange={(time) => {
                 if (time) {
                   if (isAfter(time, dates[1])) {
                     setDates([time, time]);
@@ -107,7 +108,7 @@ export default function Example() {
           <FormControl label="End Time" caption="HH:MM">
             <TimePicker
               value={dates[1]}
-              onChange={time => {
+              onChange={(time) => {
                 if (time) {
                   if (isBefore(time, dates[0])) {
                     setDates([time, time]);

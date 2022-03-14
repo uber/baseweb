@@ -43,7 +43,7 @@ import {LocaleContext} from '../locale/index.js';
 type OptionsT = {|
   ...SharedColumnOptionsT<Date>,
   formatString?: string,
-  // eslint-disable-next-line flowtype/no-weak-types
+  // flowlint-next-line unclear-type:off
   locale?: any,
 |};
 
@@ -241,7 +241,7 @@ function DatetimeFilter(props) {
   const [categoricalOperator, setCategoricalOperator] = React.useState<ValueT>([
     initialState.categoricalOperator,
   ]);
-  // eslint-disable-next-line flowtype/no-weak-types
+  // flowlint-next-line unclear-type:off
   const [rangeDates, setRangeDates] = React.useState<any>(
     initialState.rangeDates.length
       ? initialState.rangeDates
@@ -270,7 +270,7 @@ function DatetimeFilter(props) {
       onExcludeChange={() => setExclude(!exclude)}
       onApply={() => {
         if (isRange) {
-          // eslint-disable-next-line flowtype/no-weak-types
+          // flowlint-next-line unclear-type:off
           const op: DatetimeOperationsT = (rangeOperator[0].id: any);
 
           let description = '';
@@ -298,7 +298,7 @@ function DatetimeFilter(props) {
         }
 
         if (isCategorical) {
-          // eslint-disable-next-line flowtype/no-weak-types
+          // flowlint-next-line unclear-type:off
           const op: DatetimeOperationsT = (categoricalOperator[0].id: any);
 
           let selection: number[] = [];
@@ -389,7 +389,7 @@ function DatetimeFilter(props) {
             <Select
               value={rangeOperator}
               onChange={(params) => setRangeOperator(params.value)}
-              // eslint-disable-next-line flowtype/no-weak-types
+              // flowlint-next-line unclear-type:off
               mountNode={(mountNode.current: any)}
               options={RANGE_OPERATIONS.map((op) => ({
                 label: locale.datatable[op.localeLabelKey],
@@ -403,7 +403,7 @@ function DatetimeFilter(props) {
               {(rangeOperator[0].id === DATETIME_OPERATIONS.RANGE_DATETIME ||
                 rangeOperator[0].id === DATETIME_OPERATIONS.RANGE_DATE) && (
                 <Datepicker
-                  // eslint-disable-next-line flowtype/no-weak-types
+                  // flowlint-next-line unclear-type:off
                   mountNode={(mountNode.current: any)}
                   value={rangeDates}
                   onChange={({date}) => {
@@ -496,7 +496,7 @@ function DatetimeFilter(props) {
                 label: locale.datatable[op.localeLabelKey],
                 id: op.id,
               }))}
-              // eslint-disable-next-line flowtype/no-weak-types
+              // flowlint-next-line unclear-type:off
               mountNode={(mountNode.current: any)}
               size="compact"
               clearable={false}

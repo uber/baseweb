@@ -25,7 +25,7 @@ describe('Option List Stateless Component', () => {
     const {container} = render(<OptionList {...getSharedProps()} />);
 
     const item = container.querySelector('li');
-    expect(item.textContent).toBe(mockItem.label);
+    expect(item?.textContent).toBe(mockItem.label);
   });
 
   it('renders with components overrides', () => {

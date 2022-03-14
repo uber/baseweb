@@ -38,7 +38,8 @@ export default class Accordion extends React.Component<
     ...this.props.initialState,
   };
 
-  onPanelChange(key: React.Key, onChange: () => {}, ...args: *) {
+  //flowlint-next-line unclear-type:off
+  onPanelChange(key: React.Key, onChange: () => {}, ...args: Array<any>) {
     let activeKeys = this.state.expanded;
     const {accordion} = this.props;
     if (accordion) {
@@ -77,8 +78,8 @@ export default class Accordion extends React.Component<
       renderAll,
       overrides,
     } = this.props;
-    // eslint-disable-next-line flowtype/no-weak-types
-    return React.Children.map(children, (child: *, index) => {
+    // flowlint-next-line unclear-type:off
+    return React.Children.map(children, (child: any, index) => {
       if (!child) return;
       // If there is no key provided use the panel order as a default key
       const key = child.key || String(index);

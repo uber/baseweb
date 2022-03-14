@@ -33,11 +33,7 @@ export function normalizeOptions(options: OptionsT): ValueT {
   return [];
 }
 
-export const expandValue = (
-  // eslint-disable-next-line flowtype/no-weak-types
-  value: OptionT,
-  props: $Shape<PropsT>,
-): OptionT => {
+export const expandValue = (value: OptionT, props: $Shape<PropsT>): OptionT => {
   if (!props.options) return value;
 
   const normalizedOptions = normalizeOptions(props.options);

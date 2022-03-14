@@ -9,14 +9,14 @@ LICENSE file in the root directory of this source tree.
 
 import {generateJs} from '@dubstep/core';
 
-// eslint-disable-next-line flowtype/no-weak-types
+// flowlint-next-line unclear-type:off
 export function containsFlowComment(program: any) {
   const FLOW_PRAGMA = /^\s*(\/*\*+|\/\/)\s*@flow/;
   return FLOW_PRAGMA.test(generateJs(program));
 }
 
 // returns null if baseui styled is not imported, otherwise returns the local name
-// eslint-disable-next-line flowtype/no-weak-types
+// flowlint-next-line unclear-type:off
 export function getStyledLocalImportName(program: any) {
   let localStyledName = null;
   program.traverse({
