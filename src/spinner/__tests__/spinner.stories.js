@@ -14,3 +14,7 @@ import { Scenario as SpinnerDefault } from './spinner.scenario.js';
 export const Negative = () => <SpinnerNegative />;
 export const Next = () => <SpinnerNext />;
 export const Spinner = () => <SpinnerDefault />;
+
+export default {
+  title: 'Spinner',
+};

@@ -14,3 +14,7 @@ import { Scenario as ModalDefault } from './modal.scenario.js';
 export const Select = () => <ModalSelect />;
 export const Uncloseable = () => <ModalUncloseable />;
 export const Modal = () => <ModalDefault />;
+
+export default {
+  title: 'Modal',
+};

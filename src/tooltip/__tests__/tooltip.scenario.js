@@ -17,3 +17,7 @@ export function Scenario() {
     </StatefulTooltip>
   );
 }
+
+export default {
+  title: 'Tooltip',
+};

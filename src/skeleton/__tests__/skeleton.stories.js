@@ -14,3 +14,7 @@ import { Scenario as SkeletonDefault } from './skeleton.scenario.js';
 export const Animation = () => <SkeletonAnimation />;
 export const Loading = () => <SkeletonLoading />;
 export const Skeleton = () => <SkeletonDefault />;
+
+export default {
+  title: 'Skeleton',
+};

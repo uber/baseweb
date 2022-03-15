@@ -14,3 +14,7 @@ import { Scenario as BreadcrumbsDefault } from './breadcrumbs.scenario.js';
 export const Pseudo = () => <BreadcrumbsPseudo />;
 export const Trailing = () => <BreadcrumbsTrailing />;
 export const Breadcrumbs = () => <BreadcrumbsDefault />;
+
+export default {
+  title: 'Breadcrumbs',
+};

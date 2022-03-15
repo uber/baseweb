@@ -16,3 +16,7 @@ export const Interactable = () => <TreeViewInteractable />;
 export const RenderAll = () => <TreeViewRenderAll />;
 export const SingleExpanded = () => <TreeViewSingleExpanded />;
 export const TreeView = () => <TreeViewDefault />;
+
+export default {
+  title: 'TreeView',
+};

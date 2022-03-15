@@ -10,3 +10,7 @@ import React from 'react';
 import { Scenario as LayerZIndex } from './layer-z-index.scenario.js';
 
 export const ZIndex = () => <LayerZIndex />;
+
+export default {
+  title: 'Layer',
+};

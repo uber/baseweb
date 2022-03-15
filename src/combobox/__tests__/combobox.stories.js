@@ -30,3 +30,7 @@ export const ReplacementNode = () => <ComboboxReplacementNode />;
 export const Search = () => <ComboboxSearch />;
 export const Sizes = () => <ComboboxSizes />;
 export const Combobox = () => <ComboboxDefault />;
+
+export default {
+  title: 'Combobox',
+};

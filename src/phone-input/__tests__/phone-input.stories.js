@@ -23,3 +23,7 @@ export const NextDropdown = () => <PhoneInputNextDropdown />;
 export const Next = () => <PhoneInputNext />;
 export const Overrides = () => <PhoneInputOverrides />;
 export const PhoneInput = () => <PhoneInputDefault />;
+
+export default {
+  title: 'PhoneInput',
+};

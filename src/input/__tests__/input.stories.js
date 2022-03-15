@@ -34,3 +34,7 @@ export const Sizes = () => <InputSizes />;
 export const States = () => <InputStates />;
 export const WithButton = () => <InputWithButton />;
 export const Input = () => <InputDefault />;
+
+export default {
+  title: 'Input',
+};

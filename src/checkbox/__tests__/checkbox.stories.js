@@ -26,3 +26,7 @@ export const Toggle = () => <CheckboxToggle />;
 export const Unlabeled = () => <CheckboxUnlabeled />;
 export const Checkbox = () => <CheckboxDefault />;
 export const ReactHookForm = () => <CheckboxReactHookForm />;
+
+export default {
+  title: 'Checkbox',
+};

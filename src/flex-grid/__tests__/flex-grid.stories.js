@@ -20,3 +20,7 @@ export const Responsive = () => <FlexGridResponsive />;
 export const UnequalNarrow = () => <FlexGridUnequalNarrow />;
 export const UnequalWide = () => <FlexGridUnequalWide />;
 export const FlexGrid = () => <FlexGridDefault />;
+
+export default {
+  title: 'FlexGrid',
+};

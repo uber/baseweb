@@ -10,3 +10,7 @@ import React from 'react';
 import { Scenario as HeadingDefault } from './heading.scenario.js';
 
 export const Heading = () => <HeadingDefault />;
+
+export default {
+  title: 'Heading',
+};

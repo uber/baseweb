@@ -20,3 +20,7 @@ export const ItemOverrides = () => <ListItemOverrides />;
 export const ItemRtl = () => <ListItemRtl />;
 export const Item = () => <ListItem />;
 export const Heading = () => <ListHeading />;
+
+export default {
+  title: 'List',
+};

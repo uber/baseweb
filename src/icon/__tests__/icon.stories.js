@@ -14,3 +14,7 @@ import { Scenario as IconOverrides } from './icon-overrides.scenario.js';
 export const Attributes = () => <IconAttributes />;
 export const Buttons = () => <IconButtons />;
 export const Overrides = () => <IconOverrides />;
+
+export default {
+  title: 'Icon',
+};

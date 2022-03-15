@@ -28,3 +28,7 @@ export const Stateful = () => <MenuStateful />;
 export const Virtualized = () => <MenuVirtualized />;
 export const Menu = () => <MenuDefault />;
 export const ProfileMenu = () => <MenuProfileMenu />;
+
+export default {
+  title: 'Menu',
+};

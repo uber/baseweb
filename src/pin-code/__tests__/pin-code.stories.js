@@ -18,3 +18,7 @@ export const Overrides = () => <PinCodeOverrides />;
 export const Sizes = () => <PinCodeSizes />;
 export const States = () => <PinCodeStates />;
 export const PinCode = () => <PinCodeDefault />;
+
+export default {
+  title: 'PinCode',
+};

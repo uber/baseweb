@@ -24,3 +24,7 @@ export const Step = () => <SliderStep />;
 export const AlwaysShowLabel = () => <SliderAlwaysShowLabel />;
 export const Rtl = () => <SliderRtl />;
 export const Slider = () => <SliderDefault />;
+
+export default {
+  title: 'Slider',
+};

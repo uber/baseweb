@@ -10,3 +10,7 @@ import React from 'react';
 import { Scenario as DndListDefault } from './dnd-list.scenario.js';
 
 export const DndList = () => <DndListDefault />;
+
+export default {
+  title: 'Dndlist',
+};

@@ -10,3 +10,7 @@ import React from 'react';
 import { Scenario as PaginationDefault } from './pagination.scenario.js';
 
 export const Pagination = () => <PaginationDefault />;
+
+export default {
+  title: 'Pagination',
+};

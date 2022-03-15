@@ -16,3 +16,7 @@ export const Jobs = () => <TableGridJobs />;
 export const Records = () => <TableGridRecords />;
 export const Sortable = () => <TableGridSortable />;
 export const TableGrid = () => <TableGridDefault />;
+
+export default {
+  title: 'TableGrid',
+};

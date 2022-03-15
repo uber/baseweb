@@ -22,3 +22,7 @@ export const Divider = () => <TableSemanticDivider />;
 export const Size = () => <TableSemanticSize />;
 export const BuilderSize = () => <TableSemanticBuilderSize />;
 export const BuilderDivider = () => <TableSemanticBuilderDivider />;
+
+export default {
+  title: 'TableSemantic',
+};

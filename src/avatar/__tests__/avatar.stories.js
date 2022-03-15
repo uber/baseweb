@@ -18,3 +18,7 @@ export const Error = () => <AvatarError />;
 export const NoSrc = () => <AvatarNoSrc />;
 export const Avatar = () => <AvatarDefault />;
 export const UpdateImage = () => <AvatarUpdateImage />;
+
+export default {
+  title: 'Avatar',
+};

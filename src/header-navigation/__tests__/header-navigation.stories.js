@@ -10,3 +10,7 @@ import React from 'react';
 import { Scenario as HeaderNavigationDefault } from './header-navigation.scenario.js';
 
 export const HeaderNavigation = () => <HeaderNavigationDefault />;
+
+export default {
+  title: 'HeaderNavigation',
+};

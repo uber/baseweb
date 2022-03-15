@@ -12,3 +12,7 @@ import { Scenario as NavScenario } from './nav.scenario.js';
 
 export const NavLong = () => <NavLongScenario />;
 export const Nav = () => <NavScenario />;
+
+export default {
+  title: 'SideNav',
+};

@@ -14,3 +14,7 @@ import { Scenario as TabsDefault } from './tabs.scenario.js';
 export const Controlled = () => <TabsControlled />;
 export const OneChild = () => <TabsOneChild />;
 export const Tabs = () => <TabsDefault />;
+
+export default {
+  title: 'Tabs',
+};

@@ -14,3 +14,7 @@ import { Scenario as FormControlWithCounter } from './form-control-with-counter.
 export const Id = () => <FormControlId />;
 export const FormControl = () => <FormControlDefault />;
 export const WithCounter = () => <FormControlWithCounter />;
+
+export default {
+  title: 'FormControl',
+};

@@ -20,3 +20,7 @@ export const ProgressbarRoundedOverrides = () => <ProgressbarRoundedOverridesSce
 
 export const ProgressbarRounded = () => <ProgressbarRoundedScenario />;
 export const Progressbar = () => <ProgressbarScenario />;
+
+export default {
+  title: 'ProgressBar',
+};

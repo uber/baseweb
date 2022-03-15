@@ -18,3 +18,7 @@ export const ImageObject = () => <CardImageObject />;
 export const TextOnly = () => <CardTextOnly />;
 export const Card = () => <CardDefault />;
 export const HeaderLevel = () => <CardHeaderLevel />;
+
+export default {
+  title: 'Card',
+};

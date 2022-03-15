@@ -24,3 +24,7 @@ export const Pagination = () => <TablePagination />;
 export const Scroll = () => <TableScroll />;
 export const SortableFillClick = () => <TableSortableFillClick />;
 export const Sortable = () => <TableSortable />;
+
+export default {
+  title: 'Table',
+};

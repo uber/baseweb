@@ -22,3 +22,7 @@ export const PreDrop = () => <FileUploaderPreDrop />;
 export const ProgressBar = () => <FileUploaderProgressBar />;
 export const Spinner = () => <FileUploaderSpinner />;
 export const FileUploader = () => <FileUploaderDefault />;
+
+export default {
+  title: 'FileUploader',
+};

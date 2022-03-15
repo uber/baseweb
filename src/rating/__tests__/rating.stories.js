@@ -14,3 +14,7 @@ import { Scenario as RatingStar } from './rating-star.scenario.js';
 export const Emoticon = () => <RatingEmoticon />;
 export const Size = () => <RatingSize />;
 export const Star = () => <RatingStar />;
+
+export default {
+  title: 'Rating',
+};

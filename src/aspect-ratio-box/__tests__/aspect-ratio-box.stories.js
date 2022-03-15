@@ -10,3 +10,7 @@ import React from 'react';
 import { Scenario as AspectRatioBoxDefault } from './aspect-ratio-box.scenario.js';
 
 export const AspectRatioBox = () => <AspectRatioBoxDefault />;
+
+export default {
+  title: 'Aspect Ratio',
+};

@@ -14,3 +14,7 @@ import { Scenario as RadioDefault } from './radio.scenario.js';
 export const States = () => <RadioStates />;
 export const Select = () => <RadioSelect />;
 export const Radio = () => <RadioDefault />;
+
+export default {
+  title: 'Radio',
+};

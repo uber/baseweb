@@ -11,4 +11,9 @@ import { Scenario as TimezonePickerScenario } from './timezone-picker.scenario.j
 import { Scenario as TimezonePickerAbbreviationsScenario } from './timezone-picker--abbreviations.scenario.js';
 
 export const TimezonePicker = () => <TimezonePickerScenario />;
+
 export const TimezonePickerAbbreviations = () => <TimezonePickerAbbreviationsScenario />;
+
+export default {
+  title: 'TimezonePicker',
+};

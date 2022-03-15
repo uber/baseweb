@@ -24,3 +24,7 @@ export const Overrides = () => <ButtonGroupOverrides />;
 export const Pill = () => <ButtonGroupPill />;
 export const Radio = () => <ButtonGroupRadio />;
 export const Sizes = () => <ButtonGroupSizes />;
+
+export default {
+  title: 'ButtonGroup',
+};

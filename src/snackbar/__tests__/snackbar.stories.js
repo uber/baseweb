@@ -20,3 +20,7 @@ export const Element = () => <SnackbarElement />;
 export const Placement = () => <SnackbarPlacement />;
 export const ProviderOverrides = () => <SnackbarProviderOverrides />;
 export const Provider = () => <SnackbarProvider />;
+
+export default {
+  title: 'Snackbar',
+};

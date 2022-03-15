@@ -18,3 +18,7 @@ export const Display = () => <TypographyDisplay />;
 export const Heading = () => <TypographyHeading />;
 export const MonoStyletron = () => <TypographyMonoStyletron />;
 export const Mono = () => <TypographyMono />;
+
+export default {
+  title: 'Typo',
+};

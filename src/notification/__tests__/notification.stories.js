@@ -10,3 +10,7 @@ import React from 'react';
 import { Scenario as NotificationDefault } from './notification.scenario.js';
 
 export const Notification = () => <NotificationDefault />;
+
+export default {
+  title: 'Notification',
+};

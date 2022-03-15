@@ -60,3 +60,7 @@ export const UnmountBlur = () => <SelectUnmountBlur />;
 export const Select = () => <SelectDefault />;
 export const ControlRefSetDropdownOpen = () => <SelectControlRefSetDropdownOpen />;
 export const ControlRefSetInputValue = () => <SelectControlRefSetInputValue />;
+
+export default {
+  title: 'Select',
+};

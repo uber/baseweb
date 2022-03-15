@@ -38,3 +38,7 @@ export const PreventScrollOnFocus = () => <PopoverPreventScrollOnFocus />;
 export const RepositionWithAnchorUpdate = () => <PopoverRepositionWithAnchorUpdate />;
 export const Scroll = () => <PopoverScroll />;
 export const AutoFocusWithoutFocusLock = () => <PopoverAutoFocusWithoutFocusLock />;
+
+export default {
+  title: 'Popover',
+};

@@ -18,3 +18,7 @@ export const ProgressStepOverrides = () => <ProgressStepOverridesScenario />;
 export const IsActive = () => <ProgressStepsIsActive />;
 export const Number = () => <ProgressStepsNumber />;
 export const ProgressSteps = () => <ProgressStepsDefault />;
+
+export default {
+  title: 'ProgressSteps',
+};

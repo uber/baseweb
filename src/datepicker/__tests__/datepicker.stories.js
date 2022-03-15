@@ -49,6 +49,10 @@ export const StatefulComposedRange = () => <DatepickersComposedRange />;
 export const StatefulComposedSingle = () => <DatepickersComposedSingle />;
 export const StatefulCalendarOverrides = () => <StatefulCalendarOverridesScenario />;
 
+export default {
+  title: 'Datepicker',
+};
+
 export const StatefulCalendar = () => <StatefulCalendarScenario />;
 export const StatefulMinMaxDate = () => <StatefulDatepickerMinMaxDate />;
 export const StatefulQuickSelect = () => <StatefulDatepickerQuickSelect />;

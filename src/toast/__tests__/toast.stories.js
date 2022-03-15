@@ -16,3 +16,7 @@ export const Toast = () => <ToastDefault />;
 export const ApplicationState = () => <ToastApplicationState />;
 export const ToasterFocus = () => <ToasterFocusScenario />;
 export const Toaster = () => <ToasterScenario />;
+
+export default {
+  title: 'Toast',
+};

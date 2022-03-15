@@ -44,3 +44,7 @@ export const Stateful = () => <TabsMotionStateful />;
 export const VerticalPageScroll = () => <TabsMotionVerticalPageScroll />;
 export const Vertical = () => <TabsMotionVertical />;
 export const TabsMotion = () => <TabsMotionDefault />;
+
+export default {
+  title: 'TabsMotion',
+};

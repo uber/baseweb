@@ -66,3 +66,7 @@ export const TextSearch = () => <DataTableTextSearch />;
 export const DataTable = () => <DataTableDefault />;
 export const TestRtl = () => <DataTableRtl />;
 export const LargeData = () => <DataTableLargeData />;
+
+export default {
+  title: 'DataTable',
+};

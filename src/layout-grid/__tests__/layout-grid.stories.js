@@ -30,3 +30,7 @@ export const Unit = () => <LayoutGridUnit />;
 export const Wrap = () => <LayoutGridWrap />;
 export const LayoutGrid = () => <LayoutGridDefault />;
 export const Compact = () => <LayoutGridCompact />;
+
+export default {
+  title: 'LayoutGrid',
+};

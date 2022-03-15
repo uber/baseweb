@@ -24,3 +24,7 @@ export const Shapes = () => <ButtonShapes />;
 export const SizesLoading = () => <ButtonSizesLoading />;
 export const Sizes = () => <ButtonSizes />;
 export const Button = () => <ButtonDefault />;
+
+export default {
+  title: 'Button',
+};

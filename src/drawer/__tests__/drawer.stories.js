@@ -16,3 +16,7 @@ export const RenderAll = () => <DrawerRenderAll />;
 export const Select = () => <DrawerSelect />;
 export const Drawer = () => <DrawerDefault />;
 export const HideBackdrop = () => <DrawerHideBackdrop />;
+
+export default {
+  title: 'Drawer',
+};

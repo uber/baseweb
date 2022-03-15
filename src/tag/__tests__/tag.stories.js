@@ -18,3 +18,7 @@ export const Overrides = () => <TagOverrides />;
 export const Size = () => <TagSize />;
 export const Tag = () => <TagDefault />;
 export const StartEnhancer = () => <TagStartEnhancer />;
+
+export default {
+  title: 'Tag',
+};

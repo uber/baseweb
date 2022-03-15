@@ -10,3 +10,7 @@ import React from 'react';
 import { Scenario as LinkDefault } from './link.scenario.js';
 
 export const Link = () => <LinkDefault />;
+
+export default {
+  title: 'Link',
+};

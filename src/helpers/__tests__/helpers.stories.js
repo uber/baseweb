@@ -10,3 +10,7 @@ import React from 'react';
 import { Scenario as OverrideAvoidRemountScenario } from './override-avoid-remount.scenario.js';
 
 export const OverrideAvoidRemount = () => <OverrideAvoidRemountScenario />;
+
+export default {
+  title: 'OverrideAvoidRemount',
+};

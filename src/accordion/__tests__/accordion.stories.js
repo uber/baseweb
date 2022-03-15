@@ -14,6 +14,10 @@ import { Scenario as AccordionPanelOverride } from './accordion-panel-override.s
 import { Scenario as AccordionStateless } from './accordion-stateless.scenario.js';
 import { Scenario as AccordionDefault } from './accordion.scenario.js';
 
+export default {
+  title: 'Accordion',
+};
+
 export const Controlled = () => <AccordionControlled />;
 export const Disabled = () => <AccordionDisabled />;
 export const Expanded = () => <AccordionExpanded />;

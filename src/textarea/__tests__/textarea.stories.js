@@ -10,3 +10,7 @@ import React from 'react';
 import { Scenario as TextareaDefault } from './textarea.scenario.js';
 
 export const Textarea = () => <TextareaDefault />;
+
+export default {
+  title: 'Textarea',
+};

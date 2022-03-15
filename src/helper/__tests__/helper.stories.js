@@ -14,3 +14,7 @@ import { Scenario as HelperWithSteps } from './helper-with-steps.scenario.js';
 export const Position = () => <HelperPosition />;
 export const Steps = () => <HelperSteps />;
 export const WithSteps = () => <HelperWithSteps />;
+
+export default {
+  title: 'Helper',
+};

@@ -17,3 +17,7 @@ export const FloatingMarker = () => <FloatingMarkerStory />;
 export const FloatingMarkerMap = () => <FloatingMarkerMapStory />;
 export const FixedMarkerMap = () => <FixedMarkerMapStory />;
 export const EatsPickupMarker = () => <EatsPickupMarkerStory />;
+
+export default {
+  title: 'MapMarker',
+};

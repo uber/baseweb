@@ -12,3 +12,7 @@ import { Scenario as StatefulPaymentCard } from './stateful-payment-card.scenari
 
 export const PaymentCard = () => <PaymentCardDefault />;
 export const Stateful = () => <StatefulPaymentCard />;
+
+export default {
+  title: 'PaymentCard',
+};

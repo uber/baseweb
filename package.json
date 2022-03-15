@@ -55,7 +55,9 @@
     "next:build": "NODE_OPTIONS=--max_old_space_size=4096 next build documentation-site",
     "next:export": "next export documentation-site -o public",
     "tsc": "tsc --skipLibCheck",
-    "validate:examples": "node ./scripts/validate-examples.js"
+    "validate:examples": "node ./scripts/validate-examples.js",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "devDependencies": {
     "@babel/cli": "^7.6.0",
@@ -84,6 +86,12 @@
     "@ladle/react": "^0.10.1",
     "@mdx-js/tag": "^0.20.0",
     "@octokit/rest": "^16.33.1",
+    "@storybook/addon-actions": "^6.4.19",
+    "@storybook/addon-essentials": "^6.4.19",
+    "@storybook/addon-interactions": "^6.4.19",
+    "@storybook/addon-links": "^6.4.19",
+    "@storybook/react": "^6.4.19",
+    "@storybook/testing-library": "^0.0.9",
     "@svgr/cli": "^4.3.2",
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",

@@ -10,3 +10,7 @@ import React from 'react';
 import { Scenario as TemplateComponentDefault } from './template-component.scenario.js';
 
 export const TemplateComponent = () => <TemplateComponentDefault />;
+
+export default {
+  title: 'Template',
+};
