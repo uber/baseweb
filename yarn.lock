@@ -9133,13 +9133,6 @@ eslint-config-cup@^2.0.1:
   resolved "https://registry.yarnpkg.com/eslint-config-cup/-/eslint-config-cup-2.0.1.tgz#20f5af07c66594a3bbcce718ccc30639e894ff81"
   integrity sha1-IPWvB8ZllKO7zOcYzMMGOeiU/4E=
 
-eslint-config-fusion@^6.2.5:
-  version "6.2.5"
-  resolved "https://registry.yarnpkg.com/eslint-config-fusion/-/eslint-config-fusion-6.2.5.tgz#5a10f46903dc55db2a33bfd30b9d987c24173573"
-  integrity sha512-exSHvPcP0TP1PvJU0nzdxsWLOVhKn+R6h53p+CW1PrCOObYyplggNk6F+upKzsbZJm43pG6bpMgX6GbA08o7cA==
-  dependencies:
-    eslint-config-uber-universal-stage-3 "^3.0.1"
-
 eslint-config-prettier@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-3.1.0.tgz#2c26d2cdcfa3a05f0642cd7e6e4ef3316cdabfa2"
@@ -9161,7 +9154,7 @@ eslint-config-uber-base@^3.0.2:
   dependencies:
     eslint-config-prettier "^3.1.0"
 
-eslint-config-uber-universal-stage-3@^3.0.1, eslint-config-uber-universal-stage-3@^3.0.2:
+eslint-config-uber-universal-stage-3@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/eslint-config-uber-universal-stage-3/-/eslint-config-uber-universal-stage-3-3.0.2.tgz#8c64be0b1ead26e5961e3a469db21d1784876bdd"
   integrity sha512-aaPPRr6S01/v/uXQousOL6HBi8RE+6uP3/J3hnb/ypMyO8tmM8ti2bqpTkBjX5jqpFSROBpA3axFwT1WN6u+Fw==
@@ -11934,6 +11927,11 @@ jest-each@^26.6.1:
     jest-get-type "^26.3.0"
     jest-util "^26.6.1"
     pretty-format "^26.6.1"
+
+jest-environment-jsdom-global@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/jest-environment-jsdom-global/-/jest-environment-jsdom-global-3.0.0.tgz#a1c021d94232cc72b5fbf5b44639ac66b0ba4542"
+  integrity sha512-+7ZNxuB/35ybGug9vMaBYontqI7T8KhnUU55wtT5OYw6GRfDn2Vzak2YRvBwFjdm0so0Qz7KAL6NtEB0r+3x+g==
 
 jest-environment-jsdom@^26.6.1:
   version "26.6.1"

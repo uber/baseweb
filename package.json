@@ -199,6 +199,7 @@
     "date-fns": "^2.6.0",
     "date-fns-tz": "^1.2.2",
     "glob": "^7.1.6",
+    "jest-environment-jsdom-global": "^3.0.0",
     "just-extend": "^4.0.2",
     "memoize-one": "^5.1.1",
     "mockdate": "^3.0.5",
