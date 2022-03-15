@@ -51,7 +51,8 @@ module.exports = {
       'error',
       { optionalDependencies: false, devDependencies: true },
     ],
-    'import/extensions': ['error', 'always', { ignorePackages: true }],
+    // todo: after typescript migration to remove import extensions where possible
+    'import/extensions': 'off',
     'prettier/prettier': [
       'error',
       {
