@@ -110,6 +110,8 @@
     "@types/styletron-engine-atomic": "^1.1.0",
     "@types/styletron-react": "^5.0.1",
     "@types/styletron-standard": "^2.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.26.0",
+    "@typescript-eslint/parser": "^5.26.0",
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-mdx": "^1.2.0",
     "axe-core": "^4.2.2",
