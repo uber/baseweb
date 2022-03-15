@@ -5,10 +5,10 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import pick from 'just-pick';
-import {Checkbox, STYLE_TYPE, LABEL_PLACEMENT} from 'baseui/checkbox';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
-import {changeHandlers} from './common/common';
+import { Checkbox, STYLE_TYPE, LABEL_PLACEMENT } from 'baseui/checkbox';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
+import { changeHandlers } from './common/common';
 
 const checkboxProps = require('!!extract-react-types-loader!../../../../src/checkbox/checkbox.js');
 
@@ -91,16 +91,14 @@ const CheckboxConfig: TConfig = {
     isIndeterminate: {
       value: false,
       type: PropTypes.Boolean,
-      description:
-        'Indicates indeterminate state for the checkmark. Checked property is ignored.',
+      description: 'Indicates indeterminate state for the checkmark. Checked property is ignored.',
     },
     labelPlacement: {
       value: 'LABEL_PLACEMENT.right',
       options: LABEL_PLACEMENT,
       type: PropTypes.Enum,
       enumName: 'LABEL_PLACEMENT',
-      description:
-        'Determines how to position the label relative to the checkbox.',
+      description: 'Determines how to position the label relative to the checkbox.',
       imports: {
         'baseui/checkbox': {
           named: ['LABEL_PLACEMENT'],
@@ -150,26 +148,13 @@ const CheckboxConfig: TConfig = {
       description: 'Aria-label attribute',
       hidden: true,
     },
-    ...pick(changeHandlers, [
-      'onBlur',
-      'onFocus',
-      'onMouseDown',
-      'onMouseEnter',
-      'onMouseLeave',
-    ]),
+    ...pick(changeHandlers, ['onBlur', 'onFocus', 'onMouseDown', 'onMouseEnter', 'onMouseLeave']),
     overrides: {
       value: undefined,
       type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
       custom: {
-        names: [
-          'Root',
-          'Checkmark',
-          'Label',
-          'Toggle',
-          'ToggleInner',
-          'ToggleTrack',
-        ],
+        names: ['Root', 'Checkmark', 'Label', 'Toggle', 'ToggleInner', 'ToggleTrack'],
         sharedProps: {
           $isFocused: {
             type: PropTypes.Boolean,

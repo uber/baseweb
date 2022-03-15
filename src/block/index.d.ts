@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {Override} from '../overrides';
-import {$StyleProp} from 'styletron-react';
+import { Override } from '../overrides';
+import { $StyleProp } from 'styletron-react';
 
 export type Responsive<T> = T | T[];
 

@@ -1,10 +1,6 @@
 import * as React from 'react';
-import {
-  StyledFn,
-  StyletronComponent,
-  StyletronComponentInjectedProps,
-} from 'styletron-react';
-import {Override} from '../overrides';
+import { StyledFn, StyletronComponent, StyletronComponentInjectedProps } from 'styletron-react';
+import { Override } from '../overrides';
 
 export interface KIND {
   primary: 'primary';
@@ -41,8 +37,7 @@ export interface CustomColorsT {
   color: string;
 }
 
-export interface ButtonProps
-  extends StyletronComponentInjectedProps<ButtonProps> {
+export interface ButtonProps extends StyletronComponentInjectedProps<ButtonProps> {
   colors?: CustomColorsT;
   href?: string;
   target?: string;

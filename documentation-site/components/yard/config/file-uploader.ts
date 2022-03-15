@@ -1,6 +1,6 @@
-import {FileUploader} from 'baseui/file-uploader';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
+import { FileUploader } from 'baseui/file-uploader';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
 import buttonConfig from './button';
 
 const fileUploaderProps = require('!!extract-react-types-loader!../../../../src/file-uploader/file-uploader.js');
@@ -25,7 +25,7 @@ const changeHandlers = [
 const FileUploaderConfig: TConfig = {
   componentName: 'FileUploader',
   imports: {
-    'baseui/file-uploader': {named: ['FileUploader']},
+    'baseui/file-uploader': { named: ['FileUploader'] },
   },
   scope: {
     FileUploader,
@@ -51,14 +51,12 @@ const FileUploaderConfig: TConfig = {
     multiple: {
       value: undefined,
       type: PropTypes.Boolean,
-      description:
-        'Allow drag n drop (or selection from the file dialog) of multiple files',
+      description: 'Allow drag n drop (or selection from the file dialog) of multiple files',
     },
     disableClick: {
       value: undefined,
       type: PropTypes.Boolean,
-      description:
-        'Disallow clicking on the dropzone container to open file dialog.',
+      description: 'Disallow clicking on the dropzone container to open file dialog.',
     },
     disabled: {
       value: false,
@@ -100,7 +98,7 @@ const FileUploaderConfig: TConfig = {
       custom: {
         names: [
           'Root',
-          {...buttonConfig, componentName: 'ButtonComponent'},
+          { ...buttonConfig, componentName: 'ButtonComponent' },
           'ContentMessage',
           'ErrorMessage',
           'FileDragAndDrop',

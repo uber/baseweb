@@ -3,7 +3,7 @@ import * as vscode from 'vscode';
 import showColorSamples from './coloring';
 
 // @ts-ignore
-import {components} from './components.json';
+import { components } from './components.json';
 
 export function activate(context: vscode.ExtensionContext) {
   // @ts-ignore
@@ -11,10 +11,8 @@ export function activate(context: vscode.ExtensionContext) {
     const disposable = vscode.commands.registerCommand(
       `extension.baseweb.docs.${component}`,
       () => {
-        vscode.env.openExternal(
-          vscode.Uri.parse(`https://baseweb.design/components/${component}`),
-        );
-      },
+        vscode.env.openExternal(vscode.Uri.parse(`https://baseweb.design/components/${component}`));
+      }
     );
 
     context.subscriptions.push(disposable);
@@ -23,7 +21,7 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(
     vscode.commands.registerCommand('extension.baseweb.theme', () => {
       ReactPanel.createOrShow(context.extensionPath);
-    }),
+    })
   );
 
   showColorSamples(context);
@@ -57,10 +55,7 @@ class ReactPanel {
     if (ReactPanel.currentPanel) {
       ReactPanel.currentPanel._panel.reveal(column);
     } else {
-      ReactPanel.currentPanel = new ReactPanel(
-        extensionPath,
-        column || vscode.ViewColumn.One,
-      );
+      ReactPanel.currentPanel = new ReactPanel(extensionPath, column || vscode.ViewColumn.One);
     }
   }
 
@@ -77,10 +72,8 @@ class ReactPanel {
         enableScripts: true,
 
         // And restrict the webview to only loading content from our extension's `media` directory.
-        localResourceRoots: [
-          vscode.Uri.file(path.join(this._extensionPath, 'build')),
-        ],
-      },
+        localResourceRoots: [vscode.Uri.file(path.join(this._extensionPath, 'build'))],
+      }
     );
 
     // Set the webview's initial html content
@@ -92,7 +85,7 @@ class ReactPanel {
 
     // Handle messages from the webview
     this._panel.webview.onDidReceiveMessage(
-      message => {
+      (message) => {
         switch (message.command) {
           case 'alert':
             vscode.window.showErrorMessage(message.text);
@@ -100,14 +93,14 @@ class ReactPanel {
         }
       },
       null,
-      this._disposables,
+      this._disposables
     );
   }
 
   public doRefactor() {
     // Send a message to the webview webview.
     // You can send any JSON serializable data.
-    this._panel.webview.postMessage({command: 'refactor'});
+    this._panel.webview.postMessage({ command: 'refactor' });
   }
 
   public dispose() {
@@ -125,22 +118,14 @@ class ReactPanel {
   }
 
   private _getHtmlForWebview() {
-    const manifest = require(path.join(
-      this._extensionPath,
-      'build',
-      'asset-manifest.json',
-    ));
+    const manifest = require(path.join(this._extensionPath, 'build', 'asset-manifest.json'));
     const mainScript = manifest['main.js'];
     const mainStyle = manifest['main.css'];
 
-    const scriptPathOnDisk = vscode.Uri.file(
-      path.join(this._extensionPath, 'build', mainScript),
-    );
-    const scriptUri = scriptPathOnDisk.with({scheme: 'vscode-resource'});
-    const stylePathOnDisk = vscode.Uri.file(
-      path.join(this._extensionPath, 'build', mainStyle),
-    );
-    const styleUri = stylePathOnDisk.with({scheme: 'vscode-resource'});
+    const scriptPathOnDisk = vscode.Uri.file(path.join(this._extensionPath, 'build', mainScript));
+    const scriptUri = scriptPathOnDisk.with({ scheme: 'vscode-resource' });
+    const stylePathOnDisk = vscode.Uri.file(path.join(this._extensionPath, 'build', mainStyle));
+    const styleUri = stylePathOnDisk.with({ scheme: 'vscode-resource' });
 
     // Use a nonce to whitelist which scripts can be run
     const nonce = getNonce();
@@ -171,8 +156,7 @@ class ReactPanel {
 
 function getNonce() {
   let text = '';
-  const possible =
-    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   for (let i = 0; i < 32; i++) {
     text += possible.charAt(Math.floor(Math.random() * possible.length));
   }

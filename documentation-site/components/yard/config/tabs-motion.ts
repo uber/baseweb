@@ -4,9 +4,9 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import {Tabs, Tab, ORIENTATION, FILL} from 'baseui/tabs-motion';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
+import { Tabs, Tab, ORIENTATION, FILL } from 'baseui/tabs-motion';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
 
 const tabsProps = require('!!extract-react-types-loader!../../../../src/tabs-motion/tabs.js');
 const tabProps = require('!!extract-react-types-loader!../../../../src/tabs-motion/tab.js');
@@ -14,7 +14,7 @@ const tabProps = require('!!extract-react-types-loader!../../../../src/tabs-moti
 const TabsConfig: TConfig = {
   componentName: 'Tabs',
   imports: {
-    'baseui/tabs-motion': {named: ['Tabs']},
+    'baseui/tabs-motion': { named: ['Tabs'] },
   },
   scope: {
     Tabs,
@@ -50,7 +50,7 @@ const TabsConfig: TConfig = {
       type: PropTypes.ReactNode,
       description: `An array of Tab components.`,
       imports: {
-        'baseui/tabs-motion': {named: ['Tab']},
+        'baseui/tabs-motion': { named: ['Tab'] },
       },
     },
     onChange: {
@@ -69,7 +69,7 @@ const TabsConfig: TConfig = {
       options: ORIENTATION,
       description: 'The orientation of the tab component.',
       imports: {
-        'baseui/tabs-motion': {named: ['ORIENTATION']},
+        'baseui/tabs-motion': { named: ['ORIENTATION'] },
       },
     },
     fill: {
@@ -79,7 +79,7 @@ const TabsConfig: TConfig = {
       options: FILL,
       description: 'Determines how Tabs fill the TabList.',
       imports: {
-        'baseui/tabs-motion': {named: ['FILL']},
+        'baseui/tabs-motion': { named: ['FILL'] },
       },
     },
     activateOnFocus: {
@@ -95,8 +95,7 @@ const TabsConfig: TConfig = {
     renderAll: {
       value: false,
       type: PropTypes.Boolean,
-      description:
-        'Renders all tab content for SEO purposes regardless of tab active state.',
+      description: 'Renders all tab content for SEO purposes regardless of tab active state.',
     },
     overrides: {
       value: undefined,

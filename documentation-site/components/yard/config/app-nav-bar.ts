@@ -1,7 +1,7 @@
-import {AppNavBar, setItemActive} from 'baseui/app-nav-bar';
-import {ChevronDown, Delete, Overflow, Upload} from 'baseui/icon';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
+import { AppNavBar, setItemActive } from 'baseui/app-nav-bar';
+import { ChevronDown, Delete, Overflow, Upload } from 'baseui/icon';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
 
 const navBarProps = require('!!extract-react-types-loader!../../../../src/app-nav-bar/app-nav-bar.js');
 
@@ -52,8 +52,7 @@ const NavigationBarConfig: TConfig = {
     },
 
     onMainItemSelect: {
-      value:
-        '(item) => {\n setMainItems(prev =>\n   setItemActive(prev, item)\n )\n}',
+      value: '(item) => {\n setMainItems(prev =>\n   setItemActive(prev, item)\n )\n}',
       type: PropTypes.Function,
       description: 'Handler called when a menu item is selected.',
     },

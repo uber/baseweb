@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {StyletronComponent} from 'styletron-react';
-import {Override} from '../overrides';
+import { StyletronComponent } from 'styletron-react';
+import { Override } from '../overrides';
 
 export interface STATE_CHANGE_TYPE {
   change: 'change';
@@ -10,11 +10,7 @@ export interface State {
   value: number[];
 }
 
-export type StateReducer = (
-  stateType: string,
-  nextState: State,
-  currentState: State,
-) => State;
+export type StateReducer = (stateType: string, nextState: State, currentState: State) => State;
 
 export interface SliderOverrides {
   Root?: Override<SharedProps>;
@@ -80,13 +76,10 @@ export type SharedProps = {
 
 export const Slider: React.FC<SliderProps>;
 export const StatefulSlider: React.FC<StatefulSliderProps>;
-export class StatefulContainer extends React.Component<
-  StatefulContainerProps,
-  State
-> {
+export class StatefulContainer extends React.Component<StatefulContainerProps, State> {
   onChange(params: State): any;
   onFinalChange?: (params: State) => any;
-  internalSetState(type: 'change', {value}: State): void;
+  internalSetState(type: 'change', { value }: State): void;
 }
 
 export const StyledRoot: StyletronComponent<any>;

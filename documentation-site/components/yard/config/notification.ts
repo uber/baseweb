@@ -1,8 +1,8 @@
 import pick from 'just-pick';
-import {Notification, KIND} from 'baseui/notification';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
-import {changeHandlers} from './common/common';
+import { Notification, KIND } from 'baseui/notification';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
+import { changeHandlers } from './common/common';
 
 const notificationProps = require('!!extract-react-types-loader!../../../../src/notification/notification.js');
 

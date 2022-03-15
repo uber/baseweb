@@ -4,11 +4,11 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import {toaster, ToasterContainer, PLACEMENT} from 'baseui/toast';
-import {Button, SIZE} from 'baseui/button';
-import {Block} from 'baseui/block';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
+import { toaster, ToasterContainer, PLACEMENT } from 'baseui/toast';
+import { Button, SIZE } from 'baseui/button';
+import { Block } from 'baseui/block';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
 
 const toasterContainerProps = require('!!extract-react-types-loader!../../../../src/toast/toaster.js');
 const buttonProps = require('!!extract-react-types-loader!../../../../src/button/button.js');

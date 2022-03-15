@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {StyletronComponent} from 'styletron-react';
-import {Override} from '../overrides';
+import { StyletronComponent } from 'styletron-react';
+import { Override } from '../overrides';
 
 export const StyledLabel: StyletronComponent<any>;
 export const StyledCaption: StyletronComponent<any>;
@@ -25,19 +25,16 @@ export interface FormControlProps {
   error?: boolean | React.ReactNode;
   positive?: React.ReactNode;
   htmlFor?: string;
-  counter?: boolean | {length?: number; maxLength?: number; error?: boolean};
+  counter?: boolean | { length?: number; maxLength?: number; error?: boolean };
 }
 
-export class FormControl extends React.Component<
-  FormControlProps,
-  FormControlState
-> {}
+export class FormControl extends React.Component<FormControlProps, FormControlState> {}
 
 export interface FormControlChildProps {
-  'aria-describedby': string | null,
-  'aria-errormessage': string | null,
-  key: React.Key,
-  disabled: boolean,
-  error: boolean,
-  positive: boolean
+  'aria-describedby': string | null;
+  'aria-errormessage': string | null;
+  key: React.Key;
+  disabled: boolean;
+  error: boolean;
+  positive: boolean;
 }

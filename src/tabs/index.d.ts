@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {StyletronComponent} from 'styletron-react';
-import {Override} from '../overrides';
+import { StyletronComponent } from 'styletron-react';
+import { Override } from '../overrides';
 
 export interface ORIENTATION {
   horizontal: 'horizontal';
@@ -17,7 +17,7 @@ export interface State {
 export type StateReducer = (
   stateChangeType: STATE_CHANGE_TYPE[keyof STATE_CHANGE_TYPE],
   nextState: State,
-  currentState: State,
+  currentState: State
 ) => State;
 
 export interface TabsOverrides<T> {
@@ -32,9 +32,9 @@ export interface TabsProps {
   activeKey?: React.Key;
   disabled?: boolean;
   renderAll?: boolean;
-  onChange?: (args: {activeKey: React.Key}) => any;
+  onChange?: (args: { activeKey: React.Key }) => any;
   orientation?: ORIENTATION[keyof ORIENTATION];
-  overrides?: TabsOverrides<SharedProps & {$active?: boolean}>;
+  overrides?: TabsOverrides<SharedProps & { $active?: boolean }>;
 }
 
 export const Tabs: React.FC<TabsProps>;
@@ -48,10 +48,7 @@ export type StatefulTabsProps = TabsProps & {
 
 export class StatefulTabs extends React.Component<StatefulTabsProps, State> {
   onTabChange(newState: State): void;
-  internalSetState(
-    type: STATE_CHANGE_TYPE[keyof STATE_CHANGE_TYPE],
-    changes: State,
-  ): void;
+  internalSetState(type: STATE_CHANGE_TYPE[keyof STATE_CHANGE_TYPE], changes: State): void;
   getInitialKey(): any;
 }
 

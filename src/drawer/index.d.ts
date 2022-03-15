@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {StyletronComponent} from 'styletron-react';
-import {Override} from '../overrides';
+import { StyletronComponent } from 'styletron-react';
+import { Override } from '../overrides';
 
 export interface SIZE {
   default: 'default';
@@ -53,7 +53,7 @@ export interface DrawerProps {
   renderAll?: boolean;
   isOpen?: boolean;
   mountNode?: HTMLElement;
-  onClose?: (args: {closeSource?: CLOSE_SOURCE[keyof CLOSE_SOURCE]}) => any;
+  onClose?: (args: { closeSource?: CLOSE_SOURCE[keyof CLOSE_SOURCE] }) => any;
   overrides?: DrawerOverrides;
   size?: SIZE[keyof SIZE] | string;
   anchor?: ANCHOR[keyof ANCHOR] | string;
@@ -78,7 +78,7 @@ export class Drawer extends React.Component<DrawerProps, DrawerState> {
   didClose(): void;
   triggerClose(source: CLOSE_SOURCE[keyof CLOSE_SOURCE]): void;
   animateOutComplete(): void;
-  getSharedProps(): SharedStylePropsArg & {children: React.ReactNode};
+  getSharedProps(): SharedStylePropsArg & { children: React.ReactNode };
   getChildren(): React.ReactNode;
   getRef(component: string): React.Ref<any>;
   renderDrawer(): React.ReactNode;

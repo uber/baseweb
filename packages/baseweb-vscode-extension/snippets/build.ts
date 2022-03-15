@@ -1,4 +1,4 @@
-import {vscodeSnippet} from 'react-view';
+import { vscodeSnippet } from 'react-view';
 import fs from 'fs';
 import path from 'path';
 
@@ -13,13 +13,7 @@ let snippets = {
     scope: 'javascript,javascriptreact',
     prefix: ['React component'],
     description: 'React import.',
-    body: [
-      'const ${1} = (${2}) => {',
-      '  return ${0};',
-      '};',
-      '',
-      'export default ${1};',
-    ],
+    body: ['const ${1} = (${2}) => {', '  return ${0};', '};', '', 'export default ${1};'],
   },
   'React typescript component': {
     scope: 'typescript,typescriptreact',
@@ -37,7 +31,7 @@ let snippets = {
 
 const filenameToPrefix = (str: string) => {
   return str
-    .replace(/(^([a-zA-Z\p{M}]))|([ -][a-zA-Z\p{M}])/g, function(firstLetter) {
+    .replace(/(^([a-zA-Z\p{M}]))|([ -][a-zA-Z\p{M}])/g, function (firstLetter) {
       return firstLetter.toUpperCase();
     })
     .replace(/\-/g, '')
@@ -45,17 +39,17 @@ const filenameToPrefix = (str: string) => {
 };
 
 const files = fs.readdirSync(
-  path.join(__dirname, '../../../documentation-site/components/yard/config'),
+  path.join(__dirname, '../../../documentation-site/components/yard/config')
 );
 
 files
-  .filter(file => file.includes('.ts'))
-  .forEach(file => {
+  .filter((file) => file.includes('.ts'))
+  .forEach((file) => {
     const prefix = filenameToPrefix(file);
     const filePath = path.join(
       __dirname,
       '../../../documentation-site/components/yard/config',
-      file,
+      file
     );
     const config = require(filePath);
     delete config.default.props.overrides;
@@ -65,10 +59,10 @@ files
       imports: config.default.imports,
       props: config.default.props,
     });
-    snippets = {...snippets, ...snippet};
+    snippets = { ...snippets, ...snippet };
   });
 
 fs.writeFileSync(
   path.join(__dirname, 'baseweb.code-snippets'),
-  JSON.stringify(snippets, undefined, ' '),
+  JSON.stringify(snippets, undefined, ' ')
 );

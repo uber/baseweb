@@ -1,17 +1,13 @@
 import * as React from 'react';
-import {useStyletron} from 'baseui';
-import {TImportsConfig} from 'react-view';
-import {
-  MdContentCopy,
-  MdFormatIndentIncrease,
-  MdRotateRight,
-} from 'react-icons/md';
+import { useStyletron } from 'baseui';
+import { TImportsConfig } from 'react-view';
+import { MdContentCopy, MdFormatIndentIncrease, MdRotateRight } from 'react-icons/md';
 
-import {Button, KIND, SIZE} from 'baseui/button';
-import {ButtonGroup} from 'baseui/button-group';
+import { Button, KIND, SIZE } from 'baseui/button';
+import { ButtonGroup } from 'baseui/button-group';
 
 // @ts-ignore
-import {deploy} from '../../components/code-sandboxer.js';
+import { deploy } from '../../components/code-sandboxer.js';
 
 const ActionButtons: React.FC<{
   formatCode: () => void;
@@ -21,7 +17,7 @@ const ActionButtons: React.FC<{
   code: string;
   componentName: string;
   importsConfig: TImportsConfig;
-}> = ({formatCode, copyCode, reset, code, componentName, importsConfig}) => {
+}> = ({ formatCode, copyCode, reset, code, componentName, importsConfig }) => {
   const [, theme] = useStyletron();
   async function handleOpenExample() {
     const url = await deploy(`Base Web - ${componentName}`, code);
@@ -36,7 +32,7 @@ const ActionButtons: React.FC<{
         size={SIZE.compact}
         overrides={{
           Root: {
-            style: ({$theme}) => ({
+            style: ({ $theme }) => ({
               flexWrap: 'wrap',
               marginTop: $theme.sizing.scale300,
             }),
@@ -44,13 +40,10 @@ const ActionButtons: React.FC<{
         }}
       >
         <Button kind={KIND.tertiary} onClick={formatCode}>
-          <MdFormatIndentIncrease
-            style={{paddingRight: theme.sizing.scale100}}
-          />{' '}
-          Format
+          <MdFormatIndentIncrease style={{ paddingRight: theme.sizing.scale100 }} /> Format
         </Button>
         <Button kind={KIND.tertiary} onClick={copyCode}>
-          <MdContentCopy style={{paddingRight: theme.sizing.scale100}} /> Copy
+          <MdContentCopy style={{ paddingRight: theme.sizing.scale100 }} /> Copy
         </Button>
         <Button
           kind={KIND.tertiary}
@@ -58,13 +51,9 @@ const ActionButtons: React.FC<{
             reset();
           }}
         >
-          <MdRotateRight style={{paddingRight: theme.sizing.scale100}} /> Reset
+          <MdRotateRight style={{ paddingRight: theme.sizing.scale100 }} /> Reset
         </Button>
-        <Button
-          kind={KIND.secondary}
-          size={SIZE.compact}
-          onClick={handleOpenExample}
-        >
+        <Button kind={KIND.secondary} size={SIZE.compact} onClick={handleOpenExample}>
           Try example on CodeSandbox
         </Button>
         <Button
@@ -75,9 +64,7 @@ const ActionButtons: React.FC<{
               },
             },
           }}
-          href={`/cheat-sheet#${Object.keys(importsConfig)[0]
-            .split('/')[1]
-            .toLowerCase()}`}
+          href={`/cheat-sheet#${Object.keys(importsConfig)[0].split('/')[1].toLowerCase()}`}
           kind={KIND.tertiary}
         >
           API
