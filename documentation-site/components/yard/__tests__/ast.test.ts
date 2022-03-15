@@ -28,7 +28,7 @@ describe('parseOverrides', () => {
       Root: {
         active: true,
         style: `({ $theme }) => ({
-  outline: \`\${\$theme.colors.warning200} solid\`,
+  outline: \`\${$theme.colors.warning200} solid\`,
   backgroundColor: $theme.colors.warning200
 })`,
       },
@@ -38,7 +38,7 @@ describe('parseOverrides', () => {
           Action: {
             active: true,
             style: `({ $theme }) => ({
-  outline: \`\${\$theme.colors.warning200} dashed\`,
+  outline: \`\${$theme.colors.warning200} dashed\`,
   backgroundColor: $theme.colors.warning200
 })`,
           },

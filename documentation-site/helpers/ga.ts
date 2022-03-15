@@ -11,7 +11,9 @@ export const trackPageView = (url: string) => {
     (window as any).gtag('config', GA_ID, {
       page_location: url,
     });
-  } catch (error) {}
+  } catch (error) {
+    // ignore the error
+  }
 };
 
 export const trackEvent = (eventName: string, label: string, value?: string) => {
@@ -22,5 +24,7 @@ export const trackEvent = (eventName: string, label: string, value?: string) => 
       event_label: label,
       event_value: value,
     });
-  } catch (error) {}
+  } catch (error) {
+    // ignore the error
+  }
 };

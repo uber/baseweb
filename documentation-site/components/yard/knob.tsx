@@ -30,6 +30,7 @@ const Label: React.FC<{
 }> = ({ children, tooltip }) => {
   const [css, theme] = useStyletron();
   return (
+    // eslint-disable-next-line jsx-a11y/label-has-associated-control
     <label
       className={css({
         ...theme.typography.font250,
@@ -139,12 +140,16 @@ const Knob: React.SFC<{
         </Spacing>
       );
     case PropTypes.Enum:
+      // eslint-disable-next-line no-case-declarations
       const optionsKeys = Object.keys(options);
+      // eslint-disable-next-line no-case-declarations
       const numberOfOptions = optionsKeys.length;
+      // eslint-disable-next-line no-case-declarations
       const selectOptions = optionsKeys.map((key) => ({
         id: key,
         option: options[key],
       }));
+      // eslint-disable-next-line no-case-declarations
       const valueKey = val && String(val).split('.')[1];
       return (
         <Spacing>
