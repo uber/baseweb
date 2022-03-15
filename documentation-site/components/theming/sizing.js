@@ -7,10 +7,10 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {useStyletron} from 'baseui';
-import {Property} from './common.js';
+import { useStyletron } from 'baseui';
+import { Property } from './common.js';
 
-export function Sizing({name}: {name: string}) {
+export function Sizing({ name }: { name: string }) {
   const [css, theme] = useStyletron();
   return (
     <Property

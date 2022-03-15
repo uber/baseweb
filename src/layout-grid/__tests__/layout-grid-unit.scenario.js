@@ -7,18 +7,12 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {Grid, Cell} from '../index.js';
+import { Grid, Cell } from '../index.js';
 import Inner from './inner.js';
 
 export function Scenario() {
   return (
-    <Grid
-      gridUnit="rem"
-      gridGutters={1}
-      gridGaps={1}
-      gridMargins={2}
-      gridMaxWidth={40}
-    >
+    <Grid gridUnit="rem" gridGutters={1} gridGaps={1} gridMargins={2} gridMaxWidth={40}>
       <Cell span={[2, 4, 6]}>
         <Inner>1</Inner>
       </Cell>

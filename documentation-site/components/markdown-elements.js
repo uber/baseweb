@@ -12,16 +12,17 @@ import * as React from 'react';
 import Head from 'next/head';
 //$FlowFixMe
 import Img from 'next/image';
-import {Block} from 'baseui/block';
-import {StyledLink} from 'baseui/link';
+import { Block } from 'baseui/block';
+import { StyledLink } from 'baseui/link';
 import Code from './code';
-import {themedStyled} from '../pages/_app';
+import { themedStyled } from '../pages/_app';
 import Link from 'next/link';
 //$FlowFixMe
 import Anchor from './anchor';
 import slugify from '../helpers/slugify';
 //$FlowFixMe
-import {useHover} from './hooks';
+import { useHover } from './hooks';
+
 type Props = {
   children: string | React.Node,
 };
@@ -62,8 +63,7 @@ export const Heading = ({
       color="contentPrimary"
     >
       <React.Fragment>
-        {children}{' '}
-        <Anchor isVisible={isHovered} slug={slug} element={element} />
+        {children} <Anchor isVisible={isHovered} slug={slug} element={element} />
       </React.Fragment>
     </Block>
   );
@@ -83,7 +83,7 @@ export const Paragraph = (props: Props) => (
 
 export const UnorderedList = (props: Props) => <ul>{props.children}</ul>;
 
-export const InlineCode = themedStyled<{}>('code', ({$theme}) => {
+export const InlineCode = themedStyled<{}>('code', ({ $theme }) => {
   return {
     ...$theme.typography.MonoParagraphMedium,
     backgroundColor: 'rgba(27, 31, 35, 0.05)',
@@ -113,10 +113,9 @@ const Blockquote = themedStyled('blockquote', {
   padding: '1em 3em',
 });
 
-export const DocLink = ({children, href}: {children: string, href: string}) => {
+export const DocLink = ({ children, href }: { children: string, href: string }) => {
   const parts = href.split('#');
-  const internal =
-    (parts[0] === '' && parts[1] !== '') || !href.includes('http');
+  const internal = (parts[0] === '' && parts[1] !== '') || !href.includes('http');
   if (internal) {
     return (
       <Link href={href}>
@@ -131,7 +130,7 @@ export const DocLink = ({children, href}: {children: string, href: string}) => {
   );
 };
 
-export const H1 = ({children}: {children: React.Node}) => (
+export const H1 = ({ children }: { children: React.Node }) => (
   <React.Fragment>
     <Head>
       <title key="title">
@@ -145,31 +144,31 @@ export const H1 = ({children}: {children: React.Node}) => (
   </React.Fragment>
 );
 
-export const H2 = ({children}: {children: React.Node}) => (
+export const H2 = ({ children }: { children: React.Node }) => (
   <Heading element="h2" fontType="font650" marginTop="scale1000">
     {children}
   </Heading>
 );
 
-export const H3 = ({children}: {children: React.Node}) => (
+export const H3 = ({ children }: { children: React.Node }) => (
   <Heading element="h3" fontType="font550">
     {children}
   </Heading>
 );
 
-export const H4 = ({children}: {children: React.Node}) => (
+export const H4 = ({ children }: { children: React.Node }) => (
   <Heading element="h4" fontType="font400">
     {children}
   </Heading>
 );
 
-export const H5 = ({children}: {children: React.Node}) => (
+export const H5 = ({ children }: { children: React.Node }) => (
   <Heading element="h5" fontType="font350">
     {children}
   </Heading>
 );
 
-export const H6 = ({children}: {children: React.Node}) => (
+export const H6 = ({ children }: { children: React.Node }) => (
   <Heading element="h6" fontType="font250">
     {children}
   </Heading>
@@ -205,7 +204,7 @@ export default {
   li: ListItem,
   p: Paragraph,
   ul: UnorderedList,
-  inlineCode: ({children}: Props) => <InlineCode>{children}</InlineCode>,
-  blockquote: ({children}: Props) => <Blockquote>{children}</Blockquote>,
+  inlineCode: ({ children }: Props) => <InlineCode>{children}</InlineCode>,
+  blockquote: ({ children }: Props) => <Blockquote>{children}</Blockquote>,
   a: DocLink,
 };

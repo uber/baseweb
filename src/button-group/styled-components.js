@@ -6,12 +6,12 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import {styled} from '../styles/index.js';
-import {SHAPE} from '../button/index.js';
+import { styled } from '../styles/index.js';
+import { SHAPE } from '../button/index.js';
 
-export const StyledRoot = styled<{$shape: string, $length: number}>(
+export const StyledRoot = styled<{ $shape: string, $length: number }>(
   'div',
-  ({$shape, $length, $theme}) => {
+  ({ $shape, $length, $theme }) => {
     const margin =
       $length === 1
         ? undefined
@@ -23,5 +23,5 @@ export const StyledRoot = styled<{$shape: string, $length: number}>(
       marginLeft: margin,
       marginRight: margin,
     };
-  },
+  }
 );

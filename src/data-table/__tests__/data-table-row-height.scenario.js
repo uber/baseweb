@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import StringColumn from '../column-string.js';
-import {StatefulDataTable} from '../stateful-data-table.js';
+import { StatefulDataTable } from '../stateful-data-table.js';
 
 import AnimalData from './animal-data.js';
 
@@ -45,7 +45,7 @@ const columns = [
 const rows = AnimalData.map((row, index) => {
   return {
     id: row.Name,
-    data: {Name: row.Name, loremIpsum},
+    data: { Name: row.Name, loremIpsum },
   };
 });
 
@@ -58,13 +58,8 @@ const actions = [
 
 export function Scenario() {
   return (
-    <div style={{height: '600px', width: '700px'}}>
-      <StatefulDataTable
-        batchActions={actions}
-        columns={columns}
-        rows={rows}
-        rowHeight={78}
-      />
+    <div style={{ height: '600px', width: '700px' }}>
+      <StatefulDataTable batchActions={actions} columns={columns} rows={rows} rowHeight={78} />
     </div>
   );
 }

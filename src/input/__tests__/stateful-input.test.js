@@ -6,22 +6,22 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {render, fireEvent} from '@testing-library/react';
-import {StatefulInput} from '../index.js';
+import { render, fireEvent } from '@testing-library/react';
+import { StatefulInput } from '../index.js';
 
 describe('stateful-input', () => {
   it('renders input', () => {
-    const {container} = render(<StatefulInput />);
+    const { container } = render(<StatefulInput />);
     const input = container.querySelector('input');
     expect(input).not.toBeNull();
   });
 
   it('handles change events', () => {
-    const {container} = render(<StatefulInput />);
+    const { container } = render(<StatefulInput />);
     const input = container.querySelector('input');
     expect(input?.value).toBe('');
 
-    if (input) fireEvent.change(input, {target: {value: 'a'}});
+    if (input) fireEvent.change(input, { target: { value: 'a' } });
     expect(input?.value).toBe('a');
   });
 });

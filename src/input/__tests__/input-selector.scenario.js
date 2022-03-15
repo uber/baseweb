@@ -8,30 +8,27 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {FormControl} from '../../form-control/index.js';
-import {Select} from '../../select/index.js';
-import {useStyletron} from '../../styles/index.js';
+import { FormControl } from '../../form-control/index.js';
+import { Select } from '../../select/index.js';
+import { useStyletron } from '../../styles/index.js';
 
-import {Input} from '../index.js';
+import { Input } from '../index.js';
 
 function SelectAtStart(props) {
   const [css] = useStyletron();
   return (
-    <div className={css({display: 'flex'})}>
-      <div className={css({width: '200px', paddingRight: '8px'})}>
+    <div className={css({ display: 'flex' })}>
+      <div className={css({ width: '200px', paddingRight: '8px' })}>
         <Select
           options={props.options}
           labelKey="id"
           valueKey="color"
-          onChange={({value}) => props.onSelectChange(value)}
+          onChange={({ value }) => props.onSelectChange(value)}
           value={props.selectValue}
           id={props.id}
         />
       </div>
-      <Input
-        onChange={(e) => props.onInputChange(e.target.value)}
-        value={props.inputValue}
-      />
+      <Input onChange={(e) => props.onInputChange(e.target.value)} value={props.inputValue} />
     </div>
   );
 }
@@ -39,19 +36,19 @@ function SelectAtStart(props) {
 function SelectAtEnd(props) {
   const [css] = useStyletron();
   return (
-    <div className={css({display: 'flex'})}>
+    <div className={css({ display: 'flex' })}>
       <Input
         onChange={(e) => props.onInputChange(e.target.value)}
         value={props.inputValue}
         id={props.id}
       />
 
-      <div className={css({width: '200px', paddingLeft: '8px'})}>
+      <div className={css({ width: '200px', paddingLeft: '8px' })}>
         <Select
           options={props.options}
           labelKey="id"
           valueKey="color"
-          onChange={({value}) => props.onSelectChange(value)}
+          onChange={({ value }) => props.onSelectChange(value)}
           value={props.selectValue}
         />
       </div>
@@ -67,7 +64,7 @@ export function Scenario() {
   const [endSelectValue, setEndSelectValue] = React.useState([]);
 
   return (
-    <div className={css({padding: '24px', width: '500px'})}>
+    <div className={css({ padding: '24px', width: '500px' })}>
       <FormControl label="input with start select" caption="caption">
         <SelectAtStart
           inputValue={startInputValue}
@@ -75,9 +72,9 @@ export function Scenario() {
           selectValue={startSelectValue}
           onSelectChange={(v) => setStartSelectValue(v)}
           options={[
-            {id: 'AliceBlue', color: '#F0F8FF'},
-            {id: 'AntiqueWhite', color: '#FAEBD7'},
-            {id: 'Aqua', color: '#00FFFF'},
+            { id: 'AliceBlue', color: '#F0F8FF' },
+            { id: 'AntiqueWhite', color: '#FAEBD7' },
+            { id: 'Aqua', color: '#00FFFF' },
           ]}
           id="start-id"
         />
@@ -90,9 +87,9 @@ export function Scenario() {
           selectValue={endSelectValue}
           onSelectChange={(v) => setEndSelectValue(v)}
           options={[
-            {id: 'AliceBlue', color: '#F0F8FF'},
-            {id: 'AntiqueWhite', color: '#FAEBD7'},
-            {id: 'Aqua', color: '#00FFFF'},
+            { id: 'AliceBlue', color: '#F0F8FF' },
+            { id: 'AntiqueWhite', color: '#FAEBD7' },
+            { id: 'Aqua', color: '#00FFFF' },
           ]}
           id="end-id"
         />

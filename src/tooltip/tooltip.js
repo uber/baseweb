@@ -7,10 +7,10 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-disable react/no-find-dom-node */
 import * as React from 'react';
-import {Popover} from '../popover/index.js';
-import {mergeOverrides} from '../helpers/overrides.js';
+import { Popover } from '../popover/index.js';
+import { mergeOverrides } from '../helpers/overrides.js';
 import baseDefaultProps from './default-props.js';
-import type {TooltipPropsT} from './types.js';
+import type { TooltipPropsT } from './types.js';
 import {
   Arrow as StyledArrow,
   Body as StyledBody,
@@ -29,15 +29,10 @@ class Tooltip extends React.Component<TooltipPropsT> {
         Body: StyledBody,
         Inner: StyledInner,
       },
-      this.props.overrides,
+      this.props.overrides
     );
     return (
-      <Popover
-        autoFocus={false}
-        data-baseweb="tooltip"
-        {...this.props}
-        overrides={overrides}
-      />
+      <Popover autoFocus={false} data-baseweb="tooltip" {...this.props} overrides={overrides} />
     );
   }
 }

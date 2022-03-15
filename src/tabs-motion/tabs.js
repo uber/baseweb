@@ -10,11 +10,11 @@ LICENSE file in the root directory of this source tree.
 /* global window */
 
 import * as React from 'react';
-import {useUID} from 'react-uid';
-import {useStyletron} from '../styles/index.js';
-import {getOverrides} from '../helpers/overrides.js';
-import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
-import {ORIENTATION, FILL} from './constants.js';
+import { useUID } from 'react-uid';
+import { useStyletron } from '../styles/index.js';
+import { getOverrides } from '../helpers/overrides.js';
+import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible.js';
+import { ORIENTATION, FILL } from './constants.js';
 import {
   StyledRoot,
   StyledTabList,
@@ -24,15 +24,9 @@ import {
   StyledTabBorder,
   StyledTabPanel,
 } from './styled-components.js';
-import {
-  getTabId,
-  getTabPanelId,
-  isVertical,
-  isHorizontal,
-  isRTL,
-} from './utils.js';
+import { getTabId, getTabPanelId, isVertical, isHorizontal, isRTL } from './utils.js';
 
-import type {TabsPropsT} from './types.js';
+import type { TabsPropsT } from './types.js';
 
 const KEYBOARD_ACTION = {
   next: 'next',
@@ -85,7 +79,7 @@ const scrollParentToCentreTarget = (targetNode) => {
     y: childY - parentY + childHeight / 2,
   };
   // aim for the centre of the child to be the centre of the parent
-  const {scrollLeft, scrollTop} = targetNode.parentNode;
+  const { scrollLeft, scrollTop } = targetNode.parentNode;
   const target = {
     x: scrollLeft + childCentre.x - parentWidth / 2,
     y: scrollTop + childCentre.y - parentHeight / 2,
@@ -119,14 +113,8 @@ export function Tabs({
   } = overrides;
   const [Root, RootProps] = getOverrides(RootOverrides, StyledRoot);
   const [TabList, TabListProps] = getOverrides(TabListOverrides, StyledTabList);
-  const [TabHighlight, TabHighlightProps] = getOverrides(
-    TabHighlightOverrides,
-    StyledTabHighlight,
-  );
-  const [TabBorder, TabBorderProps] = getOverrides(
-    TabBorderOverrides,
-    StyledTabBorder,
-  );
+  const [TabHighlight, TabHighlightProps] = getOverrides(TabHighlightOverrides, StyledTabHighlight);
+  const [TabBorder, TabBorderProps] = getOverrides(TabBorderOverrides, StyledTabBorder);
 
   // Count key updates
   // We disable a few things until after first mount:
@@ -223,7 +211,7 @@ export function Tabs({
         }
       }
     },
-    [orientation, theme.direction],
+    [orientation, theme.direction]
   );
 
   return (
@@ -309,14 +297,7 @@ function InternalTab({
 }) {
   const key = childKey || String(childIndex);
   const isActive = key == activeKey;
-  const {
-    artwork: Artwork,
-    overrides = {},
-    tabRef,
-    onClick,
-    title,
-    ...restProps
-  } = props;
+  const { artwork: Artwork, overrides = {}, tabRef, onClick, title, ...restProps } = props;
 
   // A way to share our internal activeTabRef via the "tabRef" prop.
   const ref = React.useRef();
@@ -326,11 +307,11 @@ function InternalTab({
 
   // Track tab dimensions in a ref after each render
   // This is used to compare params when the resize observer fires
-  const tabLayoutParams = React.useRef({length: 0, distance: 0});
+  const tabLayoutParams = React.useRef({ length: 0, distance: 0 });
   React.useEffect(() => {
     tabLayoutParams.current = getLayoutParams(
       isActive ? activeTabRef.current : ref.current,
-      orientation,
+      orientation
     );
   });
 
@@ -340,15 +321,10 @@ function InternalTab({
     if (window.ResizeObserver) {
       const observer = new window.ResizeObserver((entries) => {
         if (entries[0] && entries[0].target) {
-          const tabLayoutParamsAfterResize = getLayoutParams(
-            entries[0].target,
-            orientation,
-          );
+          const tabLayoutParamsAfterResize = getLayoutParams(entries[0].target, orientation);
           if (
-            tabLayoutParamsAfterResize.length !==
-              tabLayoutParams.current.length ||
-            tabLayoutParamsAfterResize.distance !==
-              tabLayoutParams.current.distance
+            tabLayoutParamsAfterResize.length !== tabLayoutParams.current.length ||
+            tabLayoutParamsAfterResize.distance !== tabLayoutParams.current.distance
           ) {
             updateHighlight();
           }
@@ -364,12 +340,11 @@ function InternalTab({
   React.useEffect(updateHighlight, [title]);
 
   // Collect overrides
-  const {Tab: TabOverrides, ArtworkContainer: ArtworkContainerOverrides} =
-    overrides;
+  const { Tab: TabOverrides, ArtworkContainer: ArtworkContainerOverrides } = overrides;
   const [Tab, TabProps] = getOverrides(TabOverrides, StyledTab);
   const [ArtworkContainer, ArtworkContainerProps] = getOverrides(
     ArtworkContainerOverrides,
-    StyledArtworkContainer,
+    StyledArtworkContainer
   );
 
   // Keyboard focus styling
@@ -385,7 +360,7 @@ function InternalTab({
         setFocusVisible(false);
       }
     },
-    [focusVisible],
+    [focusVisible]
   );
 
   // Keyboard focus management
@@ -396,7 +371,7 @@ function InternalTab({
 
     // Find all tabs eligible for focus
     const availableTabs = [...event.target.parentNode.childNodes].filter(
-      (node) => !node.disabled && node.getAttribute('role') === 'tab',
+      (node) => !node.disabled && node.getAttribute('role') === 'tab'
     );
 
     // Exit early if there are no other tabs available
@@ -455,11 +430,11 @@ function InternalTab({
       {...restProps}
       {...TabProps}
       onClick={(event) => {
-        if (typeof onChange === 'function') onChange({activeKey: key});
+        if (typeof onChange === 'function') onChange({ activeKey: key });
         if (typeof onClick === 'function') onClick(event);
       }}
-      onFocus={forkFocus({...restProps, ...TabProps}, handleFocus)}
-      onBlur={forkBlur({...restProps, ...TabProps}, handleBlur)}
+      onFocus={forkFocus({ ...restProps, ...TabProps }, handleFocus)}
+      onBlur={forkBlur({ ...restProps, ...TabProps }, handleBlur)}
     >
       {Artwork ? (
         <ArtworkContainer
@@ -486,12 +461,9 @@ function InternalTabPanel({
 }) {
   const key = childKey || String(childIndex);
   const isActive = key == activeKey;
-  const {overrides = {}, children} = props;
-  const {TabPanel: TabPanelOverrides} = overrides;
-  const [TabPanel, TabPanelProps] = getOverrides(
-    TabPanelOverrides,
-    StyledTabPanel,
-  );
+  const { overrides = {}, children } = props;
+  const { TabPanel: TabPanelOverrides } = overrides;
+  const [TabPanel, TabPanelProps] = getOverrides(TabPanelOverrides, StyledTabPanel);
   return (
     <TabPanel
       data-baseweb="tab-panel"

@@ -10,15 +10,15 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable jsx-a11y/accessible-emoji */
 
 import * as React from 'react';
-import {Tab, Tabs} from '../index.js';
-import {Button, KIND} from '../../button/index.js';
-import {ArrowUp, ArrowRight, ArrowLeft} from '../../icon/index.js';
+import { Tab, Tabs } from '../index.js';
+import { Button, KIND } from '../../button/index.js';
+import { ArrowUp, ArrowRight, ArrowLeft } from '../../icon/index.js';
 
 const TabOverrides = {
-  Tab: {style: {backgroundColor: 'aquamarine'}},
-  ArtworkContainer: {style: {backgroundColor: 'gold'}},
+  Tab: { style: { backgroundColor: 'aquamarine' } },
+  ArtworkContainer: { style: { backgroundColor: 'gold' } },
   TabPanel: {
-    style: {background: 'linear-gradient(360deg, skyblue, transparent)'},
+    style: { background: 'linear-gradient(360deg, skyblue, transparent)' },
   },
 };
 
@@ -27,12 +27,12 @@ export function Scenario() {
   return (
     <Tabs
       activeKey={activeKey}
-      onChange={({activeKey}) => setActiveKey(activeKey)}
+      onChange={({ activeKey }) => setActiveKey(activeKey)}
       overrides={{
-        Root: {style: {backgroundColor: 'pink'}},
-        TabList: {style: {backgroundColor: 'skyblue'}},
-        TabHighlight: {style: {backgroundColor: 'seagreen'}},
-        TabBorder: {style: {backgroundColor: 'coral'}},
+        Root: { style: { backgroundColor: 'pink' } },
+        TabList: { style: { backgroundColor: 'skyblue' } },
+        TabHighlight: { style: { backgroundColor: 'seagreen' } },
+        TabBorder: { style: { backgroundColor: 'coral' } },
       }}
     >
       <Tab title="Robot" artwork={ArrowLeft} overrides={TabOverrides}>

@@ -7,8 +7,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-disable flowtype/generic-spacing */
 import * as React from 'react';
-import type {OverrideT} from '../helpers/overrides.js';
-import type {SizeT} from '../input/types.js';
+import type { OverrideT } from '../helpers/overrides.js';
+import type { SizeT } from '../input/types.js';
 import {
   INPUT_ROLE,
   ORIENTATION,
@@ -16,20 +16,20 @@ import {
   STATE_CHANGE_TYPE,
   DENSITY,
 } from './constants.js';
-import type {DateIOAdapter} from './utils/types.js';
+import type { DateIOAdapter } from './utils/types.js';
 import type {
   TimePickerPropsT as TimePickerPropsTBase,
   TimePickerStateT as TimePickerStateTBase,
 } from '../timepicker/types.js';
 
-import type {OptionT} from '../select/index.js';
+import type { OptionT } from '../select/index.js';
 
 // flowlint-next-line unclear-type:off
 type LocaleT = any; // see https://github.com/date-fns/date-fns/blob/master/src/locale/index.js.flow
 
 export type DateValueT<T> = ?T | Array<?T>;
 
-type onChangeT<T> = ({date: DateValueT<T>}) => mixed;
+type onChangeT<T> = ({ date: DateValueT<T> }) => mixed;
 
 export type DensityT = $Keys<typeof DENSITY>;
 
@@ -90,12 +90,12 @@ export type DayPropsT<T = Date> = {
   adapter: DateIOAdapter<T>,
   minDate: ?T,
   month: ?number,
-  onBlur: ({event: Event, date: T}) => mixed,
-  onFocus: ({event: Event, date: T}) => mixed,
-  onSelect: ({date: DateValueT<T>}) => mixed,
-  onClick: ({event: Event, date: T}) => mixed,
-  onMouseOver: ({event: Event, date: T}) => mixed,
-  onMouseLeave: ({event: Event, date: T}) => mixed,
+  onBlur: ({ event: Event, date: T }) => mixed,
+  onFocus: ({ event: Event, date: T }) => mixed,
+  onSelect: ({ date: DateValueT<T> }) => mixed,
+  onClick: ({ event: Event, date: T }) => mixed,
+  onMouseOver: ({ event: Event, date: T }) => mixed,
+  onMouseLeave: ({ event: Event, date: T }) => mixed,
   overrides?: DatepickerOverridesT,
   peekNextMonth: boolean,
   value: DateValueT<T>,
@@ -122,11 +122,11 @@ export type WeekPropsT<T = Date> = {
   minDate: ?T,
   adapter: DateIOAdapter<T>,
   month: ?number,
-  onDayBlur: ({date: T, event: Event}) => mixed,
-  onDayClick: ({date: T, event: Event}) => mixed,
-  onDayFocus: ({date: T, event: Event}) => mixed,
-  onDayMouseOver: ({date: T, event: Event}) => mixed,
-  onDayMouseLeave: ({date: T, event: Event}) => mixed,
+  onDayBlur: ({ date: T, event: Event }) => mixed,
+  onDayClick: ({ date: T, event: Event }) => mixed,
+  onDayFocus: ({ date: T, event: Event }) => mixed,
+  onDayMouseOver: ({ date: T, event: Event }) => mixed,
+  onDayMouseLeave: ({ date: T, event: Event }) => mixed,
   onChange?: onChangeT<T>,
   overrides?: DatepickerOverridesT,
   peekNextMonth: boolean,
@@ -181,17 +181,17 @@ export type CalendarPropsT<T = Date> = {
   /** A number of months rendered in the calendar. */
   monthsShown?: number,
   /** Day's `click` event handler. */
-  onDayClick?: ({date: T, event: Event}) => mixed,
+  onDayClick?: ({ date: T, event: Event }) => mixed,
   /** Day's `focus` event handler. */
-  onDayFocus?: ({date: T, event: Event}) => mixed,
+  onDayFocus?: ({ date: T, event: Event }) => mixed,
   /** Day's `mouseover` event handler. */
-  onDayMouseOver?: ({date: T, event: Event}) => mixed,
+  onDayMouseOver?: ({ date: T, event: Event }) => mixed,
   /** Day's `mouseleave` event handler. */
-  onDayMouseLeave?: ({date: T, event: Event}) => mixed,
+  onDayMouseLeave?: ({ date: T, event: Event }) => mixed,
   /** Event handler that is called when the current rendered month is changed. */
-  onMonthChange?: ({date: T}) => mixed,
+  onMonthChange?: ({ date: T }) => mixed,
   /** Event handler that is called when the current rendered month's year is changed. */
-  onYearChange?: ({date: T}) => mixed,
+  onYearChange?: ({ date: T }) => mixed,
   /** Event handler that is called when a new date is selected. */
   onChange?: onChangeT<T>,
   /** Event handler that is called when a selection is made using the quick select menu. */
@@ -307,13 +307,13 @@ export type NavigationContainerStateT<T = Date> = {
 export type StateReducerT<T = Date> = (
   stateType: StateChangeTypeT,
   nextState: ContainerStateT<T>,
-  currentState: ContainerStateT<T>,
+  currentState: ContainerStateT<T>
 ) => ContainerStateT<T>;
 
 export type NavigationContainerStateReducerT<T = Date> = (
   stateType: StateChangeTypeT,
   nextState: NavigationContainerStateT<T>,
-  currentState: NavigationContainerStateT<T>,
+  currentState: NavigationContainerStateT<T>
 ) => NavigationContainerStateT<T>;
 
 export type StatefulContainerPropsT<PropsT, T = Date> = {
@@ -335,15 +335,15 @@ export type NavigationContainerPropsT<T = Date> = {
   range?: boolean,
   highlightedDate?: ?Date,
   /** Day's `mouseover` event handler. */
-  onDayMouseOver: (params: {date: Date, event: Event}) => mixed,
+  onDayMouseOver: (params: { date: Date, event: Event }) => mixed,
   /** Day's `mouseleave` event handler. */
-  onDayMouseLeave: (params: {date: Date, event: Event}) => mixed,
+  onDayMouseLeave: (params: { date: Date, event: Event }) => mixed,
   /** Event handler that is called when a new date is selected. */
   onChange: onChangeT<T>,
   /** Event handler that is called when the current rendered month is changed. */
-  onMonthChange?: ({date: T}) => mixed,
+  onMonthChange?: ({ date: T }) => mixed,
   /** Event handler that is called when the current rendered year is changed. */
-  onYearChange?: ({date: T}) => mixed,
+  onYearChange?: ({ date: T }) => mixed,
   /** Selected `Date`. If `range` is set, `value` is an array of 2 values. */
   value?: DateValueT<T>,
   stateReducer: NavigationContainerStateReducerT<T>,
@@ -354,7 +354,7 @@ export type StatefulDatepickerPropsT<PropsT, T = Date> = $Diff<
   StatefulContainerPropsT<PropsT, T>,
   {
     children: (PropsT) => React.Node,
-  },
+  }
 >;
 
 export type TimePickerPropsT<T = Date> = TimePickerPropsTBase<T>;
@@ -381,8 +381,8 @@ export type TimezonePickerPropsT = {
    */
   mapLabels?: (OptionT) => React.Node,
   /** Callback for when the timezone selection changes. */
-  onChange?: (value: ?{id: string, label: string, offset: number}) => mixed,
-  overrides?: {Select?: OverrideT},
+  onChange?: (value: ?{ id: string, label: string, offset: number }) => mixed,
+  overrides?: { Select?: OverrideT },
   /**
    * Optional value that can be provided to fully control the component. If not provided,
    * TimezonePicker will manage state internally.

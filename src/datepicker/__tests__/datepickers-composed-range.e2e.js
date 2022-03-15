@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {mount} = require('../../../e2e/helpers');
+const { mount } = require('../../../e2e/helpers');
 
 const START_DATE_INPUT = '[id="start-date"] input';
 const START_TIME_SELECT = '[id="time-select-start"]';
@@ -139,15 +139,9 @@ describe('datepicker-composed-range', () => {
     await page.keyboard.press('ArrowDown');
     await page.keyboard.press('Enter');
 
-    const startDate = await page.$eval(
-      DISPLAY_START_DATE,
-      (e) => e.textContent,
-    );
+    const startDate = await page.$eval(DISPLAY_START_DATE, (e) => e.textContent);
     const endDate = await page.$eval(DISPLAY_END_DATE, (e) => e.textContent);
-    const startTime = await page.$eval(
-      DISPLAY_START_TIME,
-      (e) => e.textContent,
-    );
+    const startTime = await page.$eval(DISPLAY_START_TIME, (e) => e.textContent);
     const endTime = await page.$eval(DISPLAY_END_TIME, (e) => e.textContent);
 
     expect(startDate).toBe('2020/10/10');

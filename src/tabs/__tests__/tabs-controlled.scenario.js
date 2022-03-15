@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Tabs, Tab} from '../index.js';
+import { Tabs, Tab } from '../index.js';
 
 type StateT = {
   activeKey: string,
@@ -19,8 +19,8 @@ export class Scenario extends React.Component<{}, StateT> {
     activeKey: '0',
   };
 
-  onChange = (params: {activeKey: React.Key}) => {
-    this.setState({activeKey: String(params.activeKey)});
+  onChange = (params: { activeKey: React.Key }) => {
+    this.setState({ activeKey: String(params.activeKey) });
   };
 
   render() {

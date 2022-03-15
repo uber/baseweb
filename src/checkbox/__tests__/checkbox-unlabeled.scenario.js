@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {StatefulCheckbox} from '../index.js';
+import { StatefulCheckbox } from '../index.js';
 
 export function Scenario() {
   return <StatefulCheckbox title="buy milk" />;

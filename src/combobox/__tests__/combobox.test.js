@@ -7,18 +7,18 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {render, fireEvent} from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 
-import {TestBaseProvider} from '../../test/test-utils.js';
+import { TestBaseProvider } from '../../test/test-utils.js';
 
-import {Combobox} from '../index.js';
+import { Combobox } from '../index.js';
 
 const options = ['A', 'B', 'C', 'D', 'E', 'F'];
 
 describe('combobox', () => {
   it('calls onChange when text is entered', () => {
     const handleChange = jest.fn();
-    const {container} = render(
+    const { container } = render(
       <TestBaseProvider>
         <Combobox
           mapOptionToString={(o) => o}
@@ -26,11 +26,11 @@ describe('combobox', () => {
           options={options}
           value={''}
         />
-      </TestBaseProvider>,
+      </TestBaseProvider>
     );
     const input = container.querySelector('input');
     if (input) {
-      fireEvent.change(input, {target: {value: 'x'}});
+      fireEvent.change(input, { target: { value: 'x' } });
     }
 
     expect(handleChange.mock.calls.length).toBe(1);
@@ -40,7 +40,7 @@ describe('combobox', () => {
 
   it('calls onBlur when input loses focus', () => {
     const handleBlur = jest.fn();
-    const {container} = render(
+    const { container } = render(
       <TestBaseProvider>
         <Combobox
           mapOptionToString={(o) => o}
@@ -49,11 +49,11 @@ describe('combobox', () => {
           options={options}
           value={''}
         />
-      </TestBaseProvider>,
+      </TestBaseProvider>
     );
     const input = container.querySelector('input');
     if (input) {
-      fireEvent.change(input, {target: {value: 'x'}});
+      fireEvent.change(input, { target: { value: 'x' } });
       fireEvent.blur(input);
     }
     expect(handleBlur.mock.calls.length).toBe(1);
@@ -61,7 +61,7 @@ describe('combobox', () => {
 
   it('calls onFocus when input enters focus', () => {
     const handleFocus = jest.fn();
-    const {container} = render(
+    const { container } = render(
       <TestBaseProvider>
         <Combobox
           mapOptionToString={(o) => o}
@@ -70,55 +70,45 @@ describe('combobox', () => {
           options={options}
           value={''}
         />
-      </TestBaseProvider>,
+      </TestBaseProvider>
     );
     const input = container.querySelector('input');
     if (input) {
-      fireEvent.change(input, {target: {value: 'x'}});
+      fireEvent.change(input, { target: { value: 'x' } });
       fireEvent.focus(input);
     }
     expect(handleFocus.mock.calls.length).toBe(1);
   });
 
   it('opens listbox when text is entered', () => {
-    const {container} = render(
+    const { container } = render(
       <TestBaseProvider>
-        <Combobox
-          mapOptionToString={(o) => o}
-          onChange={() => {}}
-          options={options}
-          value={''}
-        />
-      </TestBaseProvider>,
+        <Combobox mapOptionToString={(o) => o} onChange={() => {}} options={options} value={''} />
+      </TestBaseProvider>
     );
     const before = container.querySelector('ul');
     expect(before).toBeNull();
 
     const input = container.querySelector('input');
     if (input) {
-      fireEvent.change(input, {target: {value: 'x'}});
+      fireEvent.change(input, { target: { value: 'x' } });
     }
     const after = container.querySelector('ul');
     expect(after).not.toBeNull();
   });
 
   it('opens listbox when arrow down is pressed', () => {
-    const {container} = render(
+    const { container } = render(
       <TestBaseProvider>
-        <Combobox
-          mapOptionToString={(o) => o}
-          onChange={() => {}}
-          options={options}
-          value={''}
-        />
-      </TestBaseProvider>,
+        <Combobox mapOptionToString={(o) => o} onChange={() => {}} options={options} value={''} />
+      </TestBaseProvider>
     );
     const before = container.querySelector('ul');
     expect(before).toBeNull();
 
     const input = container.querySelector('input');
     if (input) {
-      fireEvent.keyDown(input, {keyCode: 40});
+      fireEvent.keyDown(input, { keyCode: 40 });
     }
     const after = container.querySelector('ul');
     expect(after).not.toBeNull();
@@ -126,7 +116,7 @@ describe('combobox', () => {
 
   it('does not call onChange selection changes', () => {
     const handleChange = jest.fn();
-    const {container} = render(
+    const { container } = render(
       <TestBaseProvider>
         <Combobox
           mapOptionToString={(o) => o}
@@ -134,20 +124,20 @@ describe('combobox', () => {
           options={options}
           value={''}
         />
-      </TestBaseProvider>,
+      </TestBaseProvider>
     );
     const input = container.querySelector('input');
     if (input) {
-      fireEvent.keyDown(input, {keyCode: 40});
-      fireEvent.keyDown(input, {keyCode: 40});
-      fireEvent.keyDown(input, {keyCode: 40});
+      fireEvent.keyDown(input, { keyCode: 40 });
+      fireEvent.keyDown(input, { keyCode: 40 });
+      fireEvent.keyDown(input, { keyCode: 40 });
     }
     expect(handleChange.mock.calls.length).toBe(0);
   });
 
   it('calls onChange with selected value when enter key pressed', () => {
     const handleChange = jest.fn();
-    const {container} = render(
+    const { container } = render(
       <TestBaseProvider>
         <Combobox
           mapOptionToString={(o) => o}
@@ -155,13 +145,13 @@ describe('combobox', () => {
           options={options}
           value={''}
         />
-      </TestBaseProvider>,
+      </TestBaseProvider>
     );
     const input = container.querySelector('input');
     if (input) {
-      fireEvent.keyDown(input, {keyCode: 40});
-      fireEvent.keyDown(input, {keyCode: 40});
-      fireEvent.keyDown(input, {keyCode: 13});
+      fireEvent.keyDown(input, { keyCode: 40 });
+      fireEvent.keyDown(input, { keyCode: 40 });
+      fireEvent.keyDown(input, { keyCode: 13 });
     }
     expect(handleChange.mock.calls.length).toBe(1);
     expect(handleChange.mock.calls[0][0]).toBe(options[1]);
@@ -170,7 +160,7 @@ describe('combobox', () => {
 
   it('calls onChange with selected value when option clicked', () => {
     const handleChange = jest.fn();
-    const {container} = render(
+    const { container } = render(
       <TestBaseProvider>
         <Combobox
           mapOptionToString={(o) => o}
@@ -178,13 +168,13 @@ describe('combobox', () => {
           options={options}
           value={''}
         />
-      </TestBaseProvider>,
+      </TestBaseProvider>
     );
     const input = container.querySelector('input');
     if (input) {
-      fireEvent.keyDown(input, {keyCode: 40});
-      fireEvent.keyDown(input, {keyCode: 40});
-      fireEvent.keyDown(input, {keyCode: 40});
+      fireEvent.keyDown(input, { keyCode: 40 });
+      fireEvent.keyDown(input, { keyCode: 40 });
+      fireEvent.keyDown(input, { keyCode: 40 });
     }
     const selectedItem = container.querySelector('li[aria-selected="true"]');
     if (selectedItem) {
@@ -196,15 +186,10 @@ describe('combobox', () => {
   });
 
   it('opens listbox on focus', () => {
-    const {container} = render(
+    const { container } = render(
       <TestBaseProvider>
-        <Combobox
-          mapOptionToString={(o) => o}
-          onChange={() => {}}
-          options={options}
-          value={''}
-        />
-      </TestBaseProvider>,
+        <Combobox mapOptionToString={(o) => o} onChange={() => {}} options={options} value={''} />
+      </TestBaseProvider>
     );
     const initial = container.querySelector('ul');
     expect(initial).toBeNull();
@@ -218,15 +203,10 @@ describe('combobox', () => {
   });
 
   it('does not open listbox on focus if no options', () => {
-    const {container} = render(
+    const { container } = render(
       <TestBaseProvider>
-        <Combobox
-          mapOptionToString={(o) => o}
-          onChange={() => {}}
-          options={[]}
-          value={''}
-        />
-      </TestBaseProvider>,
+        <Combobox mapOptionToString={(o) => o} onChange={() => {}} options={[]} value={''} />
+      </TestBaseProvider>
     );
     const initial = container.querySelector('ul');
     expect(initial).toBeNull();
@@ -240,15 +220,10 @@ describe('combobox', () => {
   });
 
   it('closes listbox on option click', () => {
-    const {container} = render(
+    const { container } = render(
       <TestBaseProvider>
-        <Combobox
-          mapOptionToString={(o) => o}
-          onChange={() => {}}
-          options={options}
-          value={''}
-        />
-      </TestBaseProvider>,
+        <Combobox mapOptionToString={(o) => o} onChange={() => {}} options={options} value={''} />
+      </TestBaseProvider>
     );
     const initial = container.querySelector('ul');
     expect(initial).toBeNull();
@@ -269,22 +244,17 @@ describe('combobox', () => {
   });
 
   it('closes listbox on blur', () => {
-    const {container} = render(
+    const { container } = render(
       <TestBaseProvider>
-        <Combobox
-          mapOptionToString={(o) => o}
-          onChange={() => {}}
-          options={options}
-          value={''}
-        />
-      </TestBaseProvider>,
+        <Combobox mapOptionToString={(o) => o} onChange={() => {}} options={options} value={''} />
+      </TestBaseProvider>
     );
     const initial = container.querySelector('ul');
     expect(initial).toBeNull();
 
     const input = container.querySelector('input');
     if (input) {
-      fireEvent.keyDown(input, {keyCode: 40});
+      fireEvent.keyDown(input, { keyCode: 40 });
     }
     const open = container.querySelector('ul');
     expect(open).not.toBeNull();
@@ -311,13 +281,13 @@ describe('combobox', () => {
         </TestBaseProvider>
       );
     }
-    const {container} = render(<TestCase />);
+    const { container } = render(<TestCase />);
 
     const input = container.querySelector('input');
     if (input) {
-      fireEvent.keyDown(input, {keyCode: 40});
-      fireEvent.keyDown(input, {keyCode: 40});
-      fireEvent.keyDown(input, {keyCode: 13});
+      fireEvent.keyDown(input, { keyCode: 40 });
+      fireEvent.keyDown(input, { keyCode: 40 });
+      fireEvent.keyDown(input, { keyCode: 13 });
     }
     expect(input?.getAttribute('value')).toBe(options[1]);
 
@@ -344,13 +314,13 @@ describe('combobox', () => {
         </TestBaseProvider>
       );
     }
-    const {container} = render(<TestCase />);
+    const { container } = render(<TestCase />);
 
     const input = container.querySelector('input');
     if (input) {
-      fireEvent.keyDown(input, {keyCode: 40});
-      fireEvent.keyDown(input, {keyCode: 40});
-      fireEvent.keyDown(input, {keyCode: 13});
+      fireEvent.keyDown(input, { keyCode: 40 });
+      fireEvent.keyDown(input, { keyCode: 40 });
+      fireEvent.keyDown(input, { keyCode: 13 });
     }
     expect(input?.getAttribute('value')).toBe(options[1]);
 
@@ -362,7 +332,7 @@ describe('combobox', () => {
   });
 
   it('does not change input value while keyboard nav if autocomplete is false', () => {
-    const {container} = render(
+    const { container } = render(
       <TestBaseProvider>
         <Combobox
           autocomplete={false}
@@ -371,37 +341,37 @@ describe('combobox', () => {
           options={options}
           value={''}
         />
-      </TestBaseProvider>,
+      </TestBaseProvider>
     );
     const input = container.querySelector('input');
     if (input) {
-      fireEvent.keyDown(input, {keyCode: 40});
+      fireEvent.keyDown(input, { keyCode: 40 });
     }
     expect(input?.getAttribute('value')).toBe('');
   });
 
   it('can close listbox on submission', () => {
-    const {container} = render(
+    const { container } = render(
       <TestBaseProvider>
         <Combobox
           mapOptionToString={(o) => o}
           onChange={() => {}}
-          onSubmit={({closeListbox}) => closeListbox()}
+          onSubmit={({ closeListbox }) => closeListbox()}
           options={options}
           value={''}
         />
-      </TestBaseProvider>,
+      </TestBaseProvider>
     );
 
     const input = container.querySelector('input');
     if (input) {
-      fireEvent.change(input, {target: {value: 'x'}});
+      fireEvent.change(input, { target: { value: 'x' } });
     }
     const open = container.querySelector('ul');
     expect(open).not.toBeNull();
 
     if (input) {
-      fireEvent.keyDown(input, {keyCode: 13});
+      fireEvent.keyDown(input, { keyCode: 13 });
     }
     const closed = container.querySelector('ul');
     expect(closed).toBeNull();
@@ -423,7 +393,7 @@ describe('combobox', () => {
           inputRef={inputRef}
           onFocus={onFocus}
         />
-      </TestBaseProvider>,
+      </TestBaseProvider>
     );
 
     expect(inputRef.current).toBeDefined();

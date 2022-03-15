@@ -12,10 +12,10 @@ LICENSE file in the root directory of this source tree.
  */
 
 import * as React from 'react';
-import {useStyletron, styled} from 'baseui';
-import {LightTheme, DarkTheme} from 'baseui/themes';
+import { useStyletron, styled } from 'baseui';
+import { LightTheme, DarkTheme } from 'baseui/themes';
 
-const SubTitle = styled<{}>('span', ({$theme}) => {
+const SubTitle = styled<{}>('span', ({ $theme }) => {
   return {
     ...$theme.typography.MonoLabelSmall,
     fontStyle: 'italic',
@@ -23,31 +23,29 @@ const SubTitle = styled<{}>('span', ({$theme}) => {
   };
 });
 
-export const Title = styled<{}>('div', ({$theme}) => {
+export const Title = styled<{}>('div', ({ $theme }) => {
   return {
     ...$theme.typography.MonoHeadingXSmall,
   };
 });
 
-export const Value = styled<{}>('div', ({$theme}) => {
+export const Value = styled<{}>('div', ({ $theme }) => {
   return {
     ...$theme.typography.MonoParagraphSmall,
   };
 });
 
 // $FlowFixMe
-export function Property({name, concern, renderPreview, renderValue}) {
+export function Property({ name, concern, renderPreview, renderValue }) {
   const [css, theme] = useStyletron();
   return (
-    <div className={css({marginBottom: theme.sizing.scale800})}>
-      <Title $style={{marginBottom: theme.sizing.scale200}}>
+    <div className={css({ marginBottom: theme.sizing.scale800 })}>
+      <Title $style={{ marginBottom: theme.sizing.scale200 }}>
         <SubTitle>theme.{concern}.</SubTitle>
         {name}
       </Title>
       {renderPreview && (
-        <div className={css({marginBottom: theme.sizing.scale300})}>
-          {renderPreview()}
-        </div>
+        <div className={css({ marginBottom: theme.sizing.scale300 })}>{renderPreview()}</div>
       )}
       <Value>{renderValue && renderValue()}</Value>
     </div>
@@ -55,7 +53,7 @@ export function Property({name, concern, renderPreview, renderValue}) {
 }
 
 // $FlowFixMe
-export function PropertyCompareTheme({name, concern, renderBox, renderValue}) {
+export function PropertyCompareTheme({ name, concern, renderBox, renderValue }) {
   const [css] = useStyletron();
   return (
     <Property
@@ -63,11 +61,11 @@ export function PropertyCompareTheme({name, concern, renderBox, renderValue}) {
       concern={concern}
       renderPreview={() => {
         return (
-          <div className={css({display: 'flex'})}>
-            <div className={css({flexBasis: '50%'})}>
+          <div className={css({ display: 'flex' })}>
+            <div className={css({ flexBasis: '50%' })}>
               <Swatch renderBox={renderBox} previewTheme={LightTheme} left />
             </div>
-            <div className={css({flexBasis: '50%'})}>
+            <div className={css({ flexBasis: '50%' })}>
               <Swatch renderBox={renderBox} previewTheme={DarkTheme} />
             </div>
           </div>
@@ -75,12 +73,12 @@ export function PropertyCompareTheme({name, concern, renderBox, renderValue}) {
       }}
       renderValue={() => {
         return (
-          <div className={css({display: 'flex'})}>
-            <div className={css({flexBasis: '50%'})}>
-              <Value>{renderValue({previewTheme: LightTheme})}</Value>
+          <div className={css({ display: 'flex' })}>
+            <div className={css({ flexBasis: '50%' })}>
+              <Value>{renderValue({ previewTheme: LightTheme })}</Value>
             </div>
-            <div className={css({flexBasis: '50%'})}>
-              <Value>{renderValue({previewTheme: DarkTheme})}</Value>
+            <div className={css({ flexBasis: '50%' })}>
+              <Value>{renderValue({ previewTheme: DarkTheme })}</Value>
             </div>
           </div>
         );
@@ -89,7 +87,7 @@ export function PropertyCompareTheme({name, concern, renderBox, renderValue}) {
   );
 }
 
-function Swatch({renderBox, previewTheme, left = false}) {
+function Swatch({ renderBox, previewTheme, left = false }) {
   const [css, theme] = useStyletron();
   return (
     <div
@@ -115,7 +113,7 @@ function Swatch({renderBox, previewTheme, left = false}) {
     >
       {renderBox({
         previewTheme,
-        commonStyles: {height: '50px', width: '50px'},
+        commonStyles: { height: '50px', width: '50px' },
       })}
     </div>
   );

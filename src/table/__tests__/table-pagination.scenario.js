@@ -8,23 +8,21 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Block} from '../../block/index.js';
-import {Button, KIND} from '../../button/index.js';
+import { Block } from '../../block/index.js';
+import { Button, KIND } from '../../button/index.js';
 import TriangleDown from '../../icon/triangle-down.js';
-import {StatefulMenu} from '../../menu/index.js';
-import {Pagination} from '../../pagination/index.js';
-import {StatefulPopover, PLACEMENT} from '../../popover/index.js';
+import { StatefulMenu } from '../../menu/index.js';
+import { Pagination } from '../../pagination/index.js';
+import { StatefulPopover, PLACEMENT } from '../../popover/index.js';
 
-import {Table} from '../index.js';
+import { Table } from '../index.js';
 
 const COLUMNS = [...new Array(5)].map(() => 'Label');
-const DATA = [...new Array(45)].map((_, i) =>
-  [...new Array(5)].map(() => `row: ${i + 1}`),
-);
+const DATA = [...new Array(45)].map((_, i) => [...new Array(5)].map(() => `row: ${i + 1}`));
 
 // flowlint-next-line unclear-type:off
 class PaginatedTable extends React.Component<any, any> {
-  state = {page: 1, limit: 12};
+  state = { page: 1, limit: 12 };
 
   handlePageChange = (nextPage: number) => {
     if (nextPage < 1) {
@@ -33,15 +31,15 @@ class PaginatedTable extends React.Component<any, any> {
     if (nextPage > Math.ceil(this.props.data.length / this.state.limit)) {
       return;
     }
-    this.setState({page: nextPage});
+    this.setState({ page: nextPage });
   };
 
   handleLimitChange = (nextLimit: number) => {
     const nextPageNum = Math.ceil(this.props.data.length / nextLimit);
     if (nextPageNum < this.state.page) {
-      this.setState({limit: nextLimit, page: nextPageNum});
+      this.setState({ limit: nextLimit, page: nextPageNum });
     } else {
-      this.setState({limit: nextLimit});
+      this.setState({ limit: nextLimit });
     }
   };
 
@@ -78,14 +76,14 @@ class PaginatedTable extends React.Component<any, any> {
           justifyContent="space-between"
         >
           <StatefulPopover
-            content={({close}) => (
+            content={({ close }) => (
               <StatefulMenu
-                items={[...new Array(100)].map((_, i) => ({label: i + 1}))}
-                onItemSelect={({item}) => {
+                items={[...new Array(100)].map((_, i) => ({ label: i + 1 }))}
+                onItemSelect={({ item }) => {
                   this.handleLimitChange(item.label);
                   close();
                 }}
-                overrides={{List: {style: {height: '150px', width: '100px'}}}}
+                overrides={{ List: { style: { height: '150px', width: '100px' } } }}
               />
             )}
             placement={PLACEMENT.bottom}
@@ -98,7 +96,7 @@ class PaginatedTable extends React.Component<any, any> {
           <Pagination
             currentPage={this.state.page}
             numPages={Math.ceil(this.props.data.length / this.state.limit)}
-            onPageChange={({nextPage}) => this.handlePageChange(nextPage)}
+            onPageChange={({ nextPage }) => this.handlePageChange(nextPage)}
           />
         </Block>
       </Block>

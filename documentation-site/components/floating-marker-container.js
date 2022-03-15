@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {useStyletron} from 'baseui';
+import { useStyletron } from 'baseui';
 
-const FloatingMarkerContainer = ({children}: {children: React.Node}) => {
+const FloatingMarkerContainer = ({ children }: { children: React.Node }) => {
   const [css] = useStyletron();
   return (
     <div

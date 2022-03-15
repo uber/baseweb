@@ -7,21 +7,21 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {format} from 'date-fns';
+import { format } from 'date-fns';
 
-import {Button} from '../../button/index.js';
-import {Heading, HeadingLevel} from '../../heading/index.js';
+import { Button } from '../../button/index.js';
+import { Heading, HeadingLevel } from '../../heading/index.js';
 import ChevronDown from '../../icon/chevron-down.js';
 import ChevronRight from '../../icon/chevron-right.js';
 import Overflow from '../../icon/overflow.js';
-import {StyledLink} from '../../link/index.js';
-import {StatefulMenu} from '../../menu/index.js';
-import {StatefulPopover, PLACEMENT} from '../../popover/index.js';
-import {styled, withStyle, useStyletron} from '../../styles/index.js';
-import {Tag} from '../../tag/index.js';
+import { StyledLink } from '../../link/index.js';
+import { StatefulMenu } from '../../menu/index.js';
+import { StatefulPopover, PLACEMENT } from '../../popover/index.js';
+import { styled, withStyle, useStyletron } from '../../styles/index.js';
+import { Tag } from '../../tag/index.js';
 
-import {StyledTable, StyledHeadCell, StyledBodyCell} from '../index.js';
-import {useCellNavigation} from './shared.js';
+import { StyledTable, StyledHeadCell, StyledBodyCell } from '../index.js';
+import { useCellNavigation } from './shared.js';
 
 type StatusT = 'running' | 'passed' | 'failed';
 type RowT = [string, StatusT, Date, string, string, string, TaskT[]];
@@ -137,7 +137,7 @@ function statusToTagKind(status: StatusT) {
   }
 }
 
-function Tasks(props: {tasks: TaskT[]}) {
+function Tasks(props: { tasks: TaskT[] }) {
   const [css] = useStyletron();
   return (
     <div
@@ -156,17 +156,11 @@ function Tasks(props: {tasks: TaskT[]}) {
             <>
               <StyledBodyCell>{task[0]}</StyledBodyCell>
               <StyledBodyCell>
-                <Tag
-                  closeable={false}
-                  variant="outlined"
-                  kind={statusToTagKind(task[1])}
-                >
+                <Tag closeable={false} variant="outlined" kind={statusToTagKind(task[1])}>
                   {task[1]}
                 </Tag>
               </StyledBodyCell>
-              <StyledBodyCell>
-                {format(task[2], 'yyyy-MM-dd h:mm a')}
-              </StyledBodyCell>
+              <StyledBodyCell>{format(task[2], 'yyyy-MM-dd h:mm a')}</StyledBodyCell>
               <StyledBodyCell>
                 <StyledLink href={task[4]}>{task[3]}</StyledLink>
               </StyledBodyCell>
@@ -212,11 +206,7 @@ function Row(props: RowPropsT) {
         {props.row[0]}
       </CenteredBodyCell>
       <CenteredBodyCell {...props.getCellProps(1)} $striped={props.striped}>
-        <Tag
-          closeable={false}
-          variant="outlined"
-          kind={statusToTagKind(props.row[1])}
-        >
+        <Tag closeable={false} variant="outlined" kind={statusToTagKind(props.row[1])}>
           {props.row[1]}
         </Tag>
       </CenteredBodyCell>
@@ -230,16 +220,16 @@ function Row(props: RowPropsT) {
         <Truncate>{props.row[5]}</Truncate>
         <StatefulPopover
           placement={PLACEMENT.bottomLeft}
-          content={({close}) => (
+          content={({ close }) => (
             <StatefulMenu
               items={[
-                {label: 'Item One'},
-                {label: 'Item Two'},
-                {label: 'Item Three'},
-                {label: 'Item Four'},
+                { label: 'Item One' },
+                { label: 'Item Two' },
+                { label: 'Item Three' },
+                { label: 'Item Four' },
               ]}
               onItemSelect={() => close()}
-              overrides={{List: {style: {height: '144px', width: '138px'}}}}
+              overrides={{ List: { style: { height: '144px', width: '138px' } } }}
             />
           )}
         >
@@ -255,10 +245,10 @@ function Row(props: RowPropsT) {
 
 export function Scenario() {
   const [css] = useStyletron();
-  const {getCellProps} = useCellNavigation();
+  const { getCellProps } = useCellNavigation();
 
   return (
-    <div className={css({height: '600px'})}>
+    <div className={css({ height: '600px' })}>
       <HeadingLevel>
         <div
           className={css({
@@ -272,11 +262,7 @@ export function Scenario() {
         </div>
       </HeadingLevel>
 
-      <StyledTable
-        tabIndex="0"
-        role="grid"
-        $gridTemplateColumns="auto auto max-content auto auto"
-      >
+      <StyledTable tabIndex="0" role="grid" $gridTemplateColumns="auto auto max-content auto auto">
         <StyledHeadCell {...getCellProps(0, 0)}>Job Name</StyledHeadCell>
         <StyledHeadCell {...getCellProps(1, 0)}>Status</StyledHeadCell>
         <StyledHeadCell {...getCellProps(2, 0)}>Pull Request</StyledHeadCell>
@@ -287,9 +273,7 @@ export function Scenario() {
           const striped = rowIndex % 2 === 0;
           return (
             <Row
-              getCellProps={(columnIndex) =>
-                getCellProps(columnIndex, rowIndex + 1)
-              }
+              getCellProps={(columnIndex) => getCellProps(columnIndex, rowIndex + 1)}
               key={rowIndex}
               row={row}
               striped={striped}

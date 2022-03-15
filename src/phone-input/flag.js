@@ -9,9 +9,9 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 
 import * as flags from './flags/index.js';
-import {styled} from '../styles/index.js';
-import {SIZE} from './constants.js';
-import type {CountryIsoT, SizeT} from './types.js';
+import { styled } from '../styles/index.js';
+import { SIZE } from './constants.js';
+import type { CountryIsoT, SizeT } from './types.js';
 
 type SizeStyleProps = {
   $size?: SizeT,
@@ -23,7 +23,7 @@ export default function Flag(props: {
   iso?: CountryIsoT,
   width?: string,
 }) {
-  const {$iso, iso: oldIsoProp, width = '16px', ...restProps} = props;
+  const { $iso, iso: oldIsoProp, width = '16px', ...restProps } = props;
   const iso: CountryIsoT = oldIsoProp || $iso;
   const FlagComponent = flags[`Flag${iso.toUpperCase()}`];
   //$FlowExpectedError[cannot-spread-inexact]
@@ -32,7 +32,7 @@ export default function Flag(props: {
 
 export const StyledFlag = styled<typeof Flag, SizeStyleProps>(
   Flag,
-  ({$size = SIZE.default, $theme: {sizing}}) => {
+  ({ $size = SIZE.default, $theme: { sizing } }) => {
     const sizeToWidth = {
       [SIZE.mini]: sizing.scale700,
       [SIZE.compact]: sizing.scale800,
@@ -42,5 +42,5 @@ export const StyledFlag = styled<typeof Flag, SizeStyleProps>(
     return {
       width: sizeToWidth[$size],
     };
-  },
+  }
 );

@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-const Amex = ({size}: {size: string}) => (
+const Amex = ({ size }: { size: string }) => (
   <svg
     width={size}
     height={size}
@@ -26,10 +26,7 @@ const Amex = ({size}: {size: string}) => (
         d="M11.9926 11.6554H10.5081L12.6995 6.70691H14.4315L16.6053 11.5847V6.70691H18.7084L19.8218 9.76435L20.9175 6.70691H23.0029V11.6554H21.6598V8.24446L20.3873 11.6554H19.1855L17.9484 8.24446V11.6554H15.103L14.6612 10.6833H12.3991L11.9926 11.6554Z"
         fill="#1071CC"
       />
-      <path
-        d="M14.2018 9.55227L13.5302 7.97937L12.8586 9.55227H14.2018Z"
-        fill="#fff"
-      />
+      <path d="M14.2018 9.55227L13.5302 7.97937L12.8586 9.55227H14.2018Z" fill="#fff" />
       <path
         d="M12.3992 17.3108V12.3623H18.3903L19.8042 13.9529L21.2534 12.3623H23.003L20.6702 14.8365L23.003 17.3108H21.2357L19.7688 15.7379L18.3373 17.3108H12.3992Z"
         fill="#1071CC"

@@ -7,8 +7,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-disable flowtype/generic-spacing */
 import * as React from 'react';
-import type {OverrideT} from '../helpers/overrides.js';
-import {SIZE, ROLE, CLOSE_SOURCE} from './constants.js';
+import type { OverrideT } from '../helpers/overrides.js';
+import { SIZE, ROLE, CLOSE_SOURCE } from './constants.js';
 
 export type SizeT = $Keys<typeof SIZE>;
 export type SizePropT = SizeT | number | string;
@@ -43,10 +43,7 @@ export type ModalPropsT = {
    * Optionally, can pass focus options instead of `true` to control the focus
    * more precisely (ie. `{ preventScroll: true }`)
    */
-  returnFocus?:
-    | boolean
-    | FocusOptions
-    | ((returnTo: Element) => boolean | FocusOptions),
+  returnFocus?: boolean | FocusOptions | ((returnTo: Element) => boolean | FocusOptions),
   /** Modal content. The children-as-function API may be preferable
    * for performance reasons (wont render until opened) */
   children?: React.Node | (() => React.Node),
@@ -70,10 +67,7 @@ export type ModalPropsT = {
   size: SizePropT,
 };
 
-export type ModalPropsWithoutChildrenT = $Diff<
-  ModalPropsT,
-  {children: ?React.Node},
->;
+export type ModalPropsWithoutChildrenT = $Diff<ModalPropsT, { children: ?React.Node }>;
 
 export type ModalStateT = {
   isVisible: boolean,

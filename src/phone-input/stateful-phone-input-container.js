@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import React from 'react';
 // needs to be removed from here
-import {COUNTRIES, STATE_CHANGE_TYPE} from './constants.js';
+import { COUNTRIES, STATE_CHANGE_TYPE } from './constants.js';
 import type {
   StatefulPhoneInputContainerPropsT,
   StateT,
@@ -15,13 +15,13 @@ import type {
   StateChangeT,
 } from './types.js';
 import defaultProps from './default-props.js';
-import type {OnChangeParamsT} from '../select/types.js';
+import type { OnChangeParamsT } from '../select/types.js';
 
 const defaultStateReducer: StateReducerT = (type, nextState) => nextState;
 
 export default class StatefulPhoneInputContainer extends React.Component<
   StatefulPhoneInputContainerPropsT,
-  StateT,
+  StateT
 > {
   static defaultProps = {
     initialState: {
@@ -34,7 +34,7 @@ export default class StatefulPhoneInputContainer extends React.Component<
     overrides: {},
   };
 
-  state = {text: '', country: COUNTRIES.US, ...this.props.initialState};
+  state = { text: '', country: COUNTRIES.US, ...this.props.initialState };
 
   internalSetState = (type: StateChangeT, nextState: $Shape<StateT>) => {
     this.setState(this.props.stateReducer(type, nextState, this.state));

@@ -7,12 +7,12 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {useStyletron} from '../../styles/index.js';
+import { useStyletron } from '../../styles/index.js';
 
 const Inner: React.StatelessFunctionalComponent<{
   children: React.Node,
   h?: string,
-}> = ({children, h = 'auto'}) => {
+}> = ({ children, h = 'auto' }) => {
   const [css, theme] = useStyletron();
   return (
     <div

@@ -6,15 +6,15 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {render} from '@testing-library/react';
+import { render } from '@testing-library/react';
 
 import AutosizeInput from '../autosize-input.js';
 
 describe('AutosizeInput component', function () {
   it('renders correctly', function () {
-    const {container} = render(
+    const { container } = render(
       // $FlowFixMe
-      <AutosizeInput value="test" onChange={jest.fn()} />,
+      <AutosizeInput value="test" onChange={jest.fn()} />
     );
     const input = container.querySelector('input');
     expect(input).not.toBeNull();

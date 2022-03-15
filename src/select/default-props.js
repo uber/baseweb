@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import defaultFilterOptions from './utils/default-filter-options.js';
-import {TYPE, SIZE} from './constants.js';
+import { TYPE, SIZE } from './constants.js';
 
 const defaultProps = {
   'aria-label': null,

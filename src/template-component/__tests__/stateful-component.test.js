@@ -7,13 +7,13 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {render, getByText} from '@testing-library/react';
+import { render, getByText } from '@testing-library/react';
 
-import {StatefulComponent} from '../index.js';
+import { StatefulComponent } from '../index.js';
 
 describe('StatefulComponent', () => {
   it('renders the content', () => {
-    const {container} = render(<StatefulComponent>test</StatefulComponent>);
+    const { container } = render(<StatefulComponent>test</StatefulComponent>);
     getByText(container, 'test');
   });
 });

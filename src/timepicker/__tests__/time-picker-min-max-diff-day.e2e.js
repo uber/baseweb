@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {mount} = require('../../../e2e/helpers');
+const { mount } = require('../../../e2e/helpers');
 
 const COMBOBOX = 'input[role="combobox"]';
 const LISTBOX = '[role="listbox"]';
@@ -23,10 +23,7 @@ describe('TimePicker min/max times', () => {
 
     const listItems = await listbox.$$(`${LISTBOX} li`);
     const min = await page.evaluate((el) => el.textContent, listItems[0]);
-    const max = await page.evaluate(
-      (el) => el.textContent,
-      listItems[listItems.length - 1],
-    );
+    const max = await page.evaluate((el) => el.textContent, listItems[listItems.length - 1]);
 
     expect(min).toBe('12:00 AM');
     expect(max).toBe('11:45 PM');
@@ -41,10 +38,7 @@ describe('TimePicker min/max times', () => {
 
     const listItems = await listbox.$$(`${LISTBOX} li`);
     const min = await page.evaluate((el) => el.textContent, listItems[0]);
-    const max = await page.evaluate(
-      (el) => el.textContent,
-      listItems[listItems.length - 1],
-    );
+    const max = await page.evaluate((el) => el.textContent, listItems[listItems.length - 1]);
 
     expect(min).toBe('8:02 AM');
     expect(max).toBe('11:47 PM');
@@ -59,10 +53,7 @@ describe('TimePicker min/max times', () => {
 
     const listItems = await listbox.$$(`${LISTBOX} li`);
     const min = await page.evaluate((el) => el.textContent, listItems[0]);
-    const max = await page.evaluate(
-      (el) => el.textContent,
-      listItems[listItems.length - 1],
-    );
+    const max = await page.evaluate((el) => el.textContent, listItems[listItems.length - 1]);
 
     expect(min).toBe('12:00 AM');
     expect(max).toBe('6:00 PM');
@@ -77,16 +68,13 @@ describe('TimePicker min/max times', () => {
 
     const listItems = await listbox.$$(`${LISTBOX} li`);
     const min = await page.evaluate((el) => el.textContent, listItems[0]);
-    const max = await page.evaluate(
-      (el) => el.textContent,
-      listItems[listItems.length - 1],
-    );
+    const max = await page.evaluate((el) => el.textContent, listItems[listItems.length - 1]);
 
     expect(min).toBe('8:02 AM');
     expect(max).toBe('6:02 PM');
   });
 
-  it('handles min max datetimes with different date than value datetime ignoring min max date', async () => {
+  it('handles min max datetimes with different date than value datetime ignoring min max date on step', async () => {
     await mount(page, 'timepicker--time-picker-min-max-diff-day');
 
     const parent = await page.$('#max-time-lands-on-step');
@@ -95,10 +83,7 @@ describe('TimePicker min/max times', () => {
 
     const listItems = await listbox.$$(`${LISTBOX} li`);
     const min = await page.evaluate((el) => el.textContent, listItems[0]);
-    const max = await page.evaluate(
-      (el) => el.textContent,
-      listItems[listItems.length - 1],
-    );
+    const max = await page.evaluate((el) => el.textContent, listItems[listItems.length - 1]);
 
     expect(min).toBe('8:00 AM');
     expect(max).toBe('10:00 AM');

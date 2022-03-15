@@ -7,13 +7,13 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {ThemeProvider, LightTheme} from '../../index.js';
-import {Scenario as SliderScenario} from './slider.scenario.js';
+import { ThemeProvider, LightTheme } from '../../index.js';
+import { Scenario as SliderScenario } from './slider.scenario.js';
 
 export function Scenario() {
   return (
-    <ThemeProvider theme={{...LightTheme, direction: 'rtl'}}>
-      <div dir="rtl" style={{margin: '64px'}}>
+    <ThemeProvider theme={{ ...LightTheme, direction: 'rtl' }}>
+      <div dir="rtl" style={{ margin: '64px' }}>
         <SliderScenario />
       </div>
     </ThemeProvider>

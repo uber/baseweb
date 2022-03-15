@@ -8,13 +8,13 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {StyledDay, StatefulDatepicker} from '../index.js';
+import { StyledDay, StatefulDatepicker } from '../index.js';
 
 export function Scenario() {
   return (
     <StatefulDatepicker
       aria-label="Select a date"
-      initialState={{value: []}}
+      initialState={{ value: [] }}
       range
       monthsShown={2}
       highlightedDate={new Date('March 10, 2019')}
@@ -22,15 +22,13 @@ export function Scenario() {
       overrides={{
         Day: {
           // eslint-disable-next-line react/display-name
-          component: (props) => (
-            <StyledDay data-highlighted={props.$isHighlighted} {...props} />
-          ),
+          component: (props) => <StyledDay data-highlighted={props.$isHighlighted} {...props} />,
         },
 
-        MonthYearSelectButton: {props: {'data-id': 'monthYearSelectButton'}},
+        MonthYearSelectButton: { props: { 'data-id': 'monthYearSelectButton' } },
         MonthYearSelectStatefulMenu: {
           props: {
-            overrides: {List: {props: {'data-id': 'monthYearSelectMenu'}}},
+            overrides: { List: { props: { 'data-id': 'monthYearSelectMenu' } } },
           },
         },
       }}

@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import {styled} from '../styles/index.js';
-import type {ThemeT} from '../styles/types.js';
-import type {StyledComponentArgsT} from './types.js';
+import { styled } from '../styles/index.js';
+import type { ThemeT } from '../styles/types.js';
+import type { StyledComponentArgsT } from './types.js';
 
 export function getSvgStyles({
   $theme,

@@ -17,9 +17,9 @@ import {
   StyledCell,
 } from './styled-components.js';
 
-import {ProgressBar} from '../progress-bar/index.js';
+import { ProgressBar } from '../progress-bar/index.js';
 
-import type {TablePropsT} from './types.js';
+import type { TablePropsT } from './types.js';
 
 export default class Table extends React.Component<TablePropsT> {
   static defaultProps = {

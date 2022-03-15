@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {Table} from '../index.js';
+import { Table } from '../index.js';
 
 const COLUMNS = ['Name', 'Age', 'Address'];
 

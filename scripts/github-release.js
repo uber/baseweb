@@ -16,19 +16,19 @@ if (!process.env.GITHUB_AUTH_TOKEN) {
   throw new Error('No GITHUB_AUTH_TOKEN set.');
 }
 
-const octokit = Octokit({auth: process.env.GITHUB_AUTH_TOKEN});
+const octokit = Octokit({ auth: process.env.GITHUB_AUTH_TOKEN });
 
 const owner = 'uber';
 const repo = 'baseweb';
 
 async function main() {
-  const tagsResponse = await octokit.repos.listTags({owner, repo});
+  const tagsResponse = await octokit.repos.listTags({ owner, repo });
   if (tagsResponse.status !== 200) {
     throw new Error(`Failed to fetch tags. ${tagsResponse.statusText}`);
   }
   const tags = await tagsResponse.data;
 
-  const commitsResponse = await octokit.repos.listCommits({owner, repo});
+  const commitsResponse = await octokit.repos.listCommits({ owner, repo });
   if (commitsResponse.status !== 200) {
     throw new Error(`Failed to fetch commits. ${commitsResponse.statusText}`);
   }
@@ -37,9 +37,7 @@ async function main() {
   const releaseMessageRgx = /^Release (v[0-9]+\.[0-9]+\.[0-9]+)/;
   const match = releaseMessageRgx.exec(releaseCommit.commit.message);
   if (!Array.isArray(match) || typeof match[1] !== 'string') {
-    throw new Error(
-      `Failed to parse release commit message: ${releaseCommit.commit.message}`,
-    );
+    throw new Error(`Failed to parse release commit message: ${releaseCommit.commit.message}`);
   }
   const releaseVersion = match[1];
 
@@ -67,9 +65,7 @@ async function main() {
   if (releaseResponse.status !== 201) {
     throw new Error(`Failed to create release. ${releaseResponse.status}`);
   }
-  console.log(
-    `Successfully created release at: ${releaseResponse.data.html_url}`,
-  );
+  console.log(`Successfully created release at: ${releaseResponse.data.html_url}`);
 }
 
 main();

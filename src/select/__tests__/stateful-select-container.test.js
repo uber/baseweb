@@ -6,10 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {render} from '@testing-library/react';
+import { render } from '@testing-library/react';
 
-import {StatefulSelectContainer} from '../index.js';
-import {STATE_CHANGE_TYPE} from '../constants.js';
+import { StatefulSelectContainer } from '../index.js';
+import { STATE_CHANGE_TYPE } from '../constants.js';
 
 describe('StatefulSelectContainer', function () {
   let props = {};
@@ -17,7 +17,7 @@ describe('StatefulSelectContainer', function () {
   beforeEach(function () {
     props = {
       children: jest.fn(() => <div>test</div>),
-      initialState: {value: [{id: 'id', label: 'label'}]},
+      initialState: { value: [{ id: 'id', label: 'label' }] },
       stateReducer: jest.fn(),
       overrides: {},
       onChange: jest.fn(),
@@ -34,7 +34,7 @@ describe('StatefulSelectContainer', function () {
   it('calls onChange handler with correct params', function () {
     //$FlowFixMe
     render(<StatefulSelectContainer {...props} />);
-    const newValue = {id: 'id2', label: 'label2'};
+    const newValue = { id: 'id2', label: 'label2' };
     const params = {
       value: [...props.initialState.value, newValue],
       option: newValue,

@@ -8,21 +8,18 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Button} from '../button/index.js';
-import {Drawer, ANCHOR} from '../drawer/index.js';
-import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
+import { Button } from '../button/index.js';
+import { Drawer, ANCHOR } from '../drawer/index.js';
+import { getOverrides, mergeOverrides } from '../helpers/overrides.js';
 import ArrowLeft from '../icon/arrow-left.js';
 import MenuIcon from '../icon/menu.js';
-import {MenuAdapter, ListItemLabel, ARTWORK_SIZES} from '../list/index.js';
-import {StatefulMenu} from '../menu/index.js';
+import { MenuAdapter, ListItemLabel, ARTWORK_SIZES } from '../list/index.js';
+import { StatefulMenu } from '../menu/index.js';
 
-import {
-  StyledSideMenuButton,
-  StyledUserMenuProfileListItem,
-} from './styled-components.js';
-import type {AppNavBarPropsT} from './types.js';
+import { StyledSideMenuButton, StyledUserMenuProfileListItem } from './styled-components.js';
+import type { AppNavBarPropsT } from './types.js';
 import UserProfileTile from './user-profile-tile.js';
-import {defaultMapItemToNode} from './utils.js';
+import { defaultMapItemToNode } from './utils.js';
 
 const USER_TITLE_ITEM = 'USER_TITLE_ITEM';
 const USER_MENU_ITEM = 'USER_MENU_ITEM';
@@ -30,16 +27,11 @@ const PARENT_MENU_ITEM = 'PARENT_MENU_ITEM';
 
 // eslint-disable-next-line react/display-name
 const MobileNavMenuItem = React.forwardRef((props, ref) => {
-  const {
-    item,
-    mapItemToNode = defaultMapItemToNode,
-    overrides = {},
-    ...restProps
-  } = props;
+  const { item, mapItemToNode = defaultMapItemToNode, overrides = {}, ...restProps } = props;
 
   const [UserMenuProfileListItem, userMenuProfileListItemProps] = getOverrides(
     overrides.UserMenuProfileListItem,
-    StyledUserMenuProfileListItem,
+    StyledUserMenuProfileListItem
   );
 
   if (item.PARENT_MENU_ITEM) {
@@ -57,11 +49,7 @@ const MobileNavMenuItem = React.forwardRef((props, ref) => {
   if (item.USER_TITLE_ITEM) {
     // Replace with a user menu item renderer
     return (
-      <UserMenuProfileListItem
-        {...restProps}
-        {...userMenuProfileListItemProps}
-        ref={ref}
-      >
+      <UserMenuProfileListItem {...restProps} {...userMenuProfileListItemProps} ref={ref}>
         <UserProfileTile {...item.item} />
       </UserMenuProfileListItem>
     );
@@ -80,19 +68,13 @@ const MobileNavMenuItem = React.forwardRef((props, ref) => {
 });
 
 export default function MobileMenu(props: AppNavBarPropsT) {
-  const {
-    mainItems = [],
-    userItems = [],
-    mapItemToNode,
-    overrides = {},
-    ...rest
-  } = props;
+  const { mainItems = [], userItems = [], mapItemToNode, overrides = {}, ...rest } = props;
 
   const items = [
     ...(userItems.length
       ? [
           {
-            item: {...rest},
+            item: { ...rest },
             label: props.username,
             [USER_TITLE_ITEM]: true,
             children: userItems.map((item) => {
@@ -115,23 +97,17 @@ export default function MobileMenu(props: AppNavBarPropsT) {
     setIsOpen(!isOpen);
   };
 
-  const [SideMenuButton, sideMenuButtonProps] = getOverrides(
-    overrides.SideMenuButton,
-    Button,
-  );
+  const [SideMenuButton, sideMenuButtonProps] = getOverrides(overrides.SideMenuButton, Button);
   sideMenuButtonProps.overrides = mergeOverrides(
-    {BaseButton: {component: StyledSideMenuButton}},
-    sideMenuButtonProps.overrides,
+    { BaseButton: { component: StyledSideMenuButton } },
+    sideMenuButtonProps.overrides
   );
 
-  const [MobileDrawer, drawerProps] = getOverrides(
-    overrides.MobileDrawer,
-    Drawer,
-  );
+  const [MobileDrawer, drawerProps] = getOverrides(overrides.MobileDrawer, Drawer);
   drawerProps.overrides = mergeOverrides(
     {
       DrawerBody: {
-        style: ({$theme}) => {
+        style: ({ $theme }) => {
           return {
             marginTop: '0px',
             marginBottom: '0px',
@@ -143,13 +119,10 @@ export default function MobileMenu(props: AppNavBarPropsT) {
       // Removes the close icon from the drawer
       Close: () => null,
     },
-    drawerProps.overrides,
+    drawerProps.overrides
   );
 
-  const [MobileMenu, menuProps] = getOverrides(
-    overrides.MobileMenu,
-    StatefulMenu,
-  );
+  const [MobileMenu, menuProps] = getOverrides(overrides.MobileMenu, StatefulMenu);
   menuProps.overrides = mergeOverrides(
     {
       List: {
@@ -172,7 +145,7 @@ export default function MobileMenu(props: AppNavBarPropsT) {
         );
       }),
     },
-    menuProps.overrides,
+    menuProps.overrides
   );
 
   return (
@@ -189,13 +162,13 @@ export default function MobileMenu(props: AppNavBarPropsT) {
       >
         <MobileMenu
           items={currentNavItems}
-          onItemSelect={({item}) => {
+          onItemSelect={({ item }) => {
             if (item.PARENT_MENU_ITEM) {
               // Remove current parent item selected to return to
               // from the ancestors list (`ancestorNavItems[ancestorArrLength - 1]`)
               const updatedAncestorNavItems = ancestorNavItems.slice(
                 0,
-                ancestorNavItems.length - 1,
+                ancestorNavItems.length - 1
               );
               const isTopLevel = !updatedAncestorNavItems.length;
               if (isTopLevel) {
@@ -203,9 +176,7 @@ export default function MobileMenu(props: AppNavBarPropsT) {
                 setCurrentNavItems(items);
               } else {
                 const newParentItem = {
-                  ...updatedAncestorNavItems[
-                    updatedAncestorNavItems.length - 1
-                  ],
+                  ...updatedAncestorNavItems[updatedAncestorNavItems.length - 1],
                   [PARENT_MENU_ITEM]: true,
                 };
                 setCurrentNavItems([newParentItem, ...newParentItem.children]);
@@ -221,7 +192,7 @@ export default function MobileMenu(props: AppNavBarPropsT) {
             }
 
             if (item.children && item.children.length) {
-              const parentItem = {...item, [PARENT_MENU_ITEM]: true};
+              const parentItem = { ...item, [PARENT_MENU_ITEM]: true };
               setAncestorNavItems([...ancestorNavItems, item]);
               setCurrentNavItems([parentItem, ...item.children]);
               return;

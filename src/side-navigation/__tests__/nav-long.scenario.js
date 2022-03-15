@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Navigation} from '../index.js';
+import { Navigation } from '../index.js';
 
 function createItems(floor) {
   const nav = [];
@@ -54,9 +54,7 @@ export function Scenario() {
 
   return (
     <div>
-      <button onClick={() => setFloor(floor + 1)}>
-        change (this works since we compare item)
-      </button>
+      <button onClick={() => setFloor(floor + 1)}>change (this works since we compare item)</button>
       <button
         onClick={() => {
           if (color === 'red') {
@@ -70,14 +68,14 @@ export function Scenario() {
       </button>
 
       <Navigation
-        onChange={({event, item}) => {
+        onChange={({ event, item }) => {
           event.preventDefault();
           setLocation(item.itemId);
         }}
         items={items}
         itemMemoizationComparator={pragmaticCompare}
         activeItemId={location}
-        overrides={{NavItem: {style: {color}}}}
+        overrides={{ NavItem: { style: { color } } }}
       />
     </div>
   );

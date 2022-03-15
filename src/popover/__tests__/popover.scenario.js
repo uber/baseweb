@@ -8,17 +8,12 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Button} from '../../button/index.js';
-import {Popover} from '../index.js';
+import { Button } from '../../button/index.js';
+import { Popover } from '../index.js';
 
 export function Scenario() {
   return (
-    <Popover
-      autoFocus={false}
-      accessibilityType={'tooltip'}
-      isOpen
-      content={<div>content</div>}
-    >
+    <Popover autoFocus={false} accessibilityType={'tooltip'} isOpen content={<div>content</div>}>
       <Button>Open</Button>
     </Popover>
   );

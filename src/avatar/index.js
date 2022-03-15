@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-export {default as Avatar} from './avatar.js';
+export { default as Avatar } from './avatar.js';
 
 // Styled elements
 export {

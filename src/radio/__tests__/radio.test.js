@@ -7,21 +7,16 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-env node */
 import * as React from 'react';
-import {
-  render,
-  fireEvent,
-  getByTestId,
-  getByText,
-} from '@testing-library/react';
+import { render, fireEvent, getByTestId, getByText } from '@testing-library/react';
 
-import {ALIGN, Radio, StatefulRadioGroup} from '../index.js';
-import {Select} from '../../select/index.js';
+import { ALIGN, Radio, StatefulRadioGroup } from '../index.js';
+import { Select } from '../../select/index.js';
 
 describe('Radio', () => {
   it('calls provided handlers', () => {
     const spy = jest.fn();
 
-    const {container} = render(
+    const { container } = render(
       <Radio
         onBlur={spy}
         onChange={spy}
@@ -30,8 +25,8 @@ describe('Radio', () => {
         onMouseLeave={spy}
         onMouseDown={spy}
         onMouseUp={spy}
-        overrides={{Root: {props: {'data-testid': 'root'}}}}
-      />,
+        overrides={{ Root: { props: { 'data-testid': 'root' } } }}
+      />
     );
 
     const input = container.querySelector('input');
@@ -52,19 +47,17 @@ describe('Radio', () => {
   });
 
   it('does not select radio when interactive element is present', () => {
-    const {container} = render(
+    const { container } = render(
       <StatefulRadioGroup name="number" align={ALIGN.vertical}>
         <Radio value="one" containsInteractiveElement>
           <Select placeholder="Select color" />
         </Radio>
         <Radio value="two">Two</Radio>
-      </StatefulRadioGroup>,
+      </StatefulRadioGroup>
     );
 
     const select = container.querySelector('[data-baseweb="select"]');
-    const radio = ((container.querySelector(
-      'input[type="radio"]',
-    ): any): HTMLInputElement); //flowlint-line unclear-type:off
+    const radio = ((container.querySelector('input[type="radio"]'): any): HTMLInputElement); //flowlint-line unclear-type:off
     expect(radio.checked).toBe(false);
     if (select) fireEvent.click(select);
     expect(radio.checked).toBe(false);
@@ -72,17 +65,17 @@ describe('Radio', () => {
 
   it('displays description if provided', () => {
     const description = 'foo';
-    const {container} = render(<Radio description={description}>bar</Radio>);
+    const { container } = render(<Radio description={description}>bar</Radio>);
     getByText(container, description);
   });
 
   it('only fires one click event', () => {
     const onAncestorClick = jest.fn();
-    const {container} = render(
+    const { container } = render(
       // eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events
       <div onClick={onAncestorClick}>
         <Radio>label</Radio>
-      </div>,
+      </div>
     );
     const label = container.querySelector('label');
     if (label) fireEvent.click(label);

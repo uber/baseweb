@@ -6,12 +6,12 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {Provider as StyletronProvider} from 'styletron-react';
-import {Client as Styletron} from 'styletron-engine-atomic';
+import { Provider as StyletronProvider } from 'styletron-react';
+import { Client as Styletron } from 'styletron-engine-atomic';
 
 import BaseProvider from '../helpers/base-provider.js';
-import {ThemeProvider} from '../styles/index.js';
-import {LightTheme} from '../themes/index.js';
+import { ThemeProvider } from '../styles/index.js';
+import { LightTheme } from '../themes/index.js';
 
 const engine = new Styletron();
 
@@ -42,6 +42,6 @@ export const withAll = (Component: () => React.Element<any>) => {
   );
 };
 
-export function TestBaseProvider({children}: {children?: React.Node}) {
+export function TestBaseProvider({ children }: { children?: React.Node }) {
   return <BaseProvider theme={LightTheme}>{children}</BaseProvider>;
 }

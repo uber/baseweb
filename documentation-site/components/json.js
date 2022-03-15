@@ -12,8 +12,6 @@ type PropsT = {
   src: string,
 };
 
-const JSONViewer = (props: PropsT) => (
-  <Code>{JSON.stringify(props.src, null, 2)}</Code>
-);
+const JSONViewer = (props: PropsT) => <Code>{JSON.stringify(props.src, null, 2)}</Code>;
 
 export default JSONViewer;

@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import {styled} from '../styles/index.js';
-import {getSvgStyles} from '../icon/styled-components.js';
-import {KIND, PLACEMENT, TYPE} from './constants.js';
+import { styled } from '../styles/index.js';
+import { getSvgStyles } from '../icon/styled-components.js';
+import { KIND, PLACEMENT, TYPE } from './constants.js';
 import {
   type SharedStylePropsArgT,
   type ToasterSharedStylePropsArgT,
@@ -16,14 +16,10 @@ import {
   type NotificationTypeT,
   type PlacementTypeT,
 } from './types.js';
-import type {ThemeT} from '../styles/types.js';
-import type {StyleObject} from 'styletron-standard';
+import type { ThemeT } from '../styles/types.js';
+import type { StyleObject } from 'styletron-standard';
 
-function getBackgroundColor(
-  kind: KindTypeT,
-  type: NotificationTypeT,
-  theme: ThemeT,
-) {
+function getBackgroundColor(kind: KindTypeT, type: NotificationTypeT, theme: ThemeT) {
   const isInline = type === TYPE.inline;
   return {
     [KIND.info]: isInline
@@ -103,7 +99,7 @@ export function getPlacement(placement: PlacementTypeT) {
 
 export const Root = styled<ToasterSharedStylePropsArgT>(
   'div',
-  ({$placement, $theme}: ToasterSharedStylePropsArgT & {$theme: ThemeT}) => {
+  ({ $placement, $theme }: ToasterSharedStylePropsArgT & { $theme: ThemeT }) => {
     return {
       pointerEvents: 'none',
       position: 'fixed',
@@ -116,23 +112,18 @@ export const Root = styled<ToasterSharedStylePropsArgT>(
       marginRight: $theme.sizing.scale600,
       ...getPlacement($placement),
     };
-  },
+  }
 );
 
 export const InnerContainer = styled<SharedStylePropsArgT>(
   'div',
   // eslint-disable-next-line no-empty-pattern
-  ({}: SharedStylePropsArgT & {$theme: ThemeT}) => ({}),
+  ({}: SharedStylePropsArgT & { $theme: ThemeT }) => ({})
 );
 
 export const Body = styled<SharedStylePropsArgT>(
   'div',
-  ({
-    $isVisible,
-    $kind,
-    $type,
-    $theme,
-  }: SharedStylePropsArgT & {$theme: ThemeT}) => {
+  ({ $isVisible, $kind, $type, $theme }: SharedStylePropsArgT & { $theme: ThemeT }) => {
     const isInline = $type === TYPE.inline;
     return {
       ...$theme.typography.font300,
@@ -146,8 +137,7 @@ export const Body = styled<SharedStylePropsArgT>(
       paddingLeft: $theme.sizing.scale600,
       marginTop: $theme.sizing.scale300,
       marginBottom: $theme.sizing.scale300,
-      backgroundColor:
-        getBackgroundColor($kind, $type, $theme) || $theme.colors.accent,
+      backgroundColor: getBackgroundColor($kind, $type, $theme) || $theme.colors.accent,
       borderTopLeftRadius: $theme.borders.radius400,
       borderTopRightRadius: $theme.borders.radius400,
       borderBottomRightRadius: $theme.borders.radius400,
@@ -160,7 +150,7 @@ export const Body = styled<SharedStylePropsArgT>(
       display: 'flex',
       justifyContent: 'space-between',
     };
-  },
+  }
 );
 
 export const CloseIconSvg = styled<{
@@ -180,10 +170,10 @@ export const CloseIconSvg = styled<{
     $color: string,
     $theme: ThemeT,
   }): StyleObject => ({
-    ...getSvgStyles({$theme, $size, $color}),
+    ...getSvgStyles({ $theme, $size, $color }),
     cursor: 'pointer',
     width: $size || '16px',
     flexShrink: 0,
     outline: $isFocusVisible ? `3px solid ${$theme.colors.accent}` : 'none',
-  }),
+  })
 );

@@ -17,7 +17,7 @@ import {
   LABEL_ENHANCER_POSITIONS,
   KIND,
 } from './constants.js';
-import type {OverrideT} from '../helpers/overrides.js';
+import type { OverrideT } from '../helpers/overrides.js';
 
 export type AnchorPositionsT = $Values<typeof FLOATING_MARKER_ANCHOR_POSITIONS>;
 
@@ -30,9 +30,7 @@ export type PinHeadSizeT = $Values<typeof PINHEAD_SIZES_SHAPES>;
 export type FloatingMarkerSizeT = $Values<typeof FLOATING_MARKER_SIZES>;
 
 /* eslint-disable flowtype/generic-spacing*/
-export type FloatingMarkerAnchorTypeT = $Values<
-  typeof FLOATING_MARKER_ANCHOR_TYPES,
->;
+export type FloatingMarkerAnchorTypeT = $Values<typeof FLOATING_MARKER_ANCHOR_TYPES>;
 
 export type BadgeEnhancerSizeT = $Values<typeof BADGE_ENHANCER_SIZES>;
 
@@ -82,7 +80,7 @@ export type LabelEhancerComponentT = {
 
 export type BadgeEnhancerT = {|
   badgeEnhancerSize?: BadgeEnhancerSizeT | null,
-  badgeEnhancerContent?: React.AbstractComponent<{|size: number|}>,
+  badgeEnhancerContent?: React.AbstractComponent<{| size: number |}>,
 |};
 
 export type BadgeEnhancerComponentT = {
@@ -100,8 +98,8 @@ export type FixedMarkerPropsT = {|
   size?: PinHeadSizeT,
   needle?: NeedleSizeT,
   label?: string,
-  startEnhancer?: React.AbstractComponent<{|size: number|}>,
-  endEnhancer?: React.AbstractComponent<{|size: number|}>,
+  startEnhancer?: React.AbstractComponent<{| size: number |}>,
+  endEnhancer?: React.AbstractComponent<{| size: number |}>,
   kind?: KindT,
   dragging?: boolean,
   overrides?: FixedMarkerOverridesT,
@@ -129,8 +127,8 @@ export type FloatingMarkerOverridesT = {
 export type FloatingMarkerPropsT = {
   label?: string,
   anchor?: AnchorPositionsT,
-  endEnhancer?: React.AbstractComponent<{|size: number|}>,
-  startEnhancer?: React.AbstractComponent<{|size: number|}>,
+  endEnhancer?: React.AbstractComponent<{| size: number |}>,
+  startEnhancer?: React.AbstractComponent<{| size: number |}>,
   anchorType?: FloatingMarkerAnchorTypeT,
   size?: FloatingMarkerSizeT,
   overrides?: FloatingMarkerOverridesT,
@@ -139,8 +137,8 @@ export type FloatingMarkerPropsT = {
 export type PinHeadPropsT = {
   size?: PinHeadSizeT,
   label?: string,
-  endEnhancer?: React.AbstractComponent<{|size: number|}>,
-  startEnhancer?: React.AbstractComponent<{|size: number|}>,
+  endEnhancer?: React.AbstractComponent<{| size: number |}>,
+  startEnhancer?: React.AbstractComponent<{| size: number |}>,
   color: string,
   background: string,
   type?: PinHeadT,

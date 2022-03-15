@@ -6,13 +6,13 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {getOverrides} from '../helpers/overrides.js';
-import {Svg as StyledSvg} from './styled-components.js';
+import { getOverrides } from '../helpers/overrides.js';
+import { Svg as StyledSvg } from './styled-components.js';
 import omitDollarPrefixedKeys from './omit-dollar-prefixed-keys.js';
-import type {IconPropsT} from './types.js';
+import type { IconPropsT } from './types.js';
 
 function Icon(props: IconPropsT, ref) {
-  const {children, title, size, color, overrides = {}, ...restProps} = props;
+  const { children, title, size, color, overrides = {}, ...restProps } = props;
   const [Svg, overrideProps] = getOverrides(overrides.Svg, StyledSvg);
   // Determine how/which props are passed based on if the component is a Styletron component.
   // $FlowFixMe: __STYLETRON__ not in React.AbstractcomponentStatics

@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import type {OverrideT} from '../helpers/overrides.js';
-import {STATE_CHANGE_TYPE} from './constants.js';
+import type { OverrideT } from '../helpers/overrides.js';
+import { STATE_CHANGE_TYPE } from './constants.js';
 
 export type ChangeActionT = $Keys<typeof STATE_CHANGE_TYPE>;
 export type ParamsT = {
@@ -57,11 +57,7 @@ export type StateT = {|
   value: Array<number>,
 |};
 
-export type StateReducerT = (
-  stateType: string,
-  nextState: StateT,
-  currentState: StateT,
-) => StateT;
+export type StateReducerT = (stateType: string, nextState: StateT, currentState: StateT) => StateT;
 
 export type StatefulContainerPropsT = {
   overrides?: OverridesT,
@@ -74,9 +70,9 @@ export type StatefulContainerPropsT = {
   /** Reducer function to manipulate internal state updates. */
   stateReducer: StateReducerT,
   /** Handler for events on trigger element, each time thumbs change selection, which is passed in `value`. */
-  onChange: ({...ParamsT}) => mixed,
+  onChange: ({ ...ParamsT }) => mixed,
   /** Handler for events on trigger element, each time thumbs finish changing selection, which is passed in `value`. */
-  onFinalChange: ({...ParamsT}) => mixed,
+  onFinalChange: ({ ...ParamsT }) => mixed,
 };
 
 export type StatefulSliderPropsT = {
@@ -92,9 +88,9 @@ export type StatefulSliderPropsT = {
   /** Function to change the numeric value to a user friendly value. Also applied to min/max labels. */
   valueToLabel?: (value: number) => React$Node,
   /** Handler for events on trigger element, each time thumbs change selection, which is passed in `value`. */
-  onChange?: ({...ParamsT}) => mixed,
+  onChange?: ({ ...ParamsT }) => mixed,
   /** Handler for events on trigger element, each time thumbs finish changing selection, which is passed in `value`. */
-  onFinalChange?: ({...ParamsT}) => mixed,
+  onFinalChange?: ({ ...ParamsT }) => mixed,
 };
 
 export type StylePropsT = {

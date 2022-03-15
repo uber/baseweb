@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {mount} = require('../../../e2e/helpers');
+const { mount } = require('../../../e2e/helpers');
 
 describe('select unmount blur', () => {
   it('onBlur callback properly handles unmounted component', async () => {
@@ -26,10 +26,7 @@ describe('select unmount blur', () => {
     await page.click('button');
     await page.waitForSelector('[data-testid="select-container"]');
 
-    const value = await page.$eval(
-      '[data-testid="selected"]',
-      (select) => select.textContent,
-    );
+    const value = await page.$eval('[data-testid="selected"]', (select) => select.textContent);
     expect(value).toBe('AliceBlue');
   });
 });

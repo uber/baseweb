@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
+const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
 
 const selectors = {
   combobox: '[role="combobox"]',
@@ -38,7 +38,7 @@ describe('combobox', () => {
     await page.click(selectors.combobox);
     await page.waitForSelector(selectors.listbox);
     await page.click(selectors.firstOption);
-    await page.waitForSelector(selectors.listbox, {hidden: true});
+    await page.waitForSelector(selectors.listbox, { hidden: true });
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });

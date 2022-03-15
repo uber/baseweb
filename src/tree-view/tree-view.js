@@ -10,7 +10,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import TreeNode from './tree-node.js';
-import {StyledTreeItemList} from './styled-components.js';
+import { StyledTreeItemList } from './styled-components.js';
 import {
   getPrevId,
   getNextId,
@@ -21,15 +21,10 @@ import {
   defaultGetId,
   getCharMatchId,
 } from './utils.js';
-import type {
-  TreeViewPropsT,
-  TreeNodeT,
-  TreeNodeIdT,
-  ReactRefT,
-} from './types.js';
-import {isFocusVisible} from '../utils/focusVisible.js';
+import type { TreeViewPropsT, TreeNodeT, TreeNodeIdT, ReactRefT } from './types.js';
+import { isFocusVisible } from '../utils/focusVisible.js';
 
-import {getOverride, getOverrideProps} from '../helpers/overrides.js';
+import { getOverride, getOverrideProps } from '../helpers/overrides.js';
 
 export default function TreeView(props: TreeViewPropsT) {
   const {
@@ -40,7 +35,7 @@ export default function TreeView(props: TreeViewPropsT) {
     renderAll,
     getId = defaultGetId,
   } = props;
-  const {Root: RootOverride} = overrides;
+  const { Root: RootOverride } = overrides;
 
   const Root = getOverride(RootOverride) || StyledTreeItemList;
   const firstId = data.length > 0 ? getId(data[0]) : 0;
@@ -48,7 +43,7 @@ export default function TreeView(props: TreeViewPropsT) {
   const [focusVisible, setFocusVisible] = React.useState(false);
   const [typeAheadChars, setTypeAheadChars] = React.useState('');
   const timeOutRef = React.useRef(null);
-  const treeItemRefs: {[key: TreeNodeIdT]: ReactRefT<HTMLLIElement>} = {};
+  const treeItemRefs: { [key: TreeNodeIdT]: ReactRefT<HTMLLIElement> } = {};
 
   const focusTreeItem = (id: TreeNodeIdT | null) => {
     if (!id) return;
@@ -61,9 +56,7 @@ export default function TreeView(props: TreeViewPropsT) {
 
   const onKeyDown = (e: KeyboardEvent, node: TreeNodeT<>) => {
     // flowlint-next-line unclear-type:off
-    const elementId = ((e.target: any): HTMLLIElement).getAttribute(
-      'data-nodeid',
-    );
+    const elementId = ((e.target: any): HTMLLIElement).getAttribute('data-nodeid');
     // this check prevents bubbling
     if (elementId !== getId(node) && parseInt(elementId) !== getId(node)) {
       return;
@@ -111,7 +104,7 @@ export default function TreeView(props: TreeViewPropsT) {
       case '*':
         e.preventDefault();
         getExpandableSiblings(data, selectedNodeId, getId).forEach(
-          (node) => onToggle && onToggle(node),
+          (node) => onToggle && onToggle(node)
         );
         break;
       default:
@@ -123,15 +116,7 @@ export default function TreeView(props: TreeViewPropsT) {
           setTypeAheadChars('');
         }, 500);
 
-        focusTreeItem(
-          getCharMatchId(
-            data,
-            selectedNodeId,
-            typeAheadChars + e.key,
-            null,
-            getId,
-          ),
-        );
+        focusTreeItem(getCharMatchId(data, selectedNodeId, typeAheadChars + e.key, null, getId));
         break;
     }
   };

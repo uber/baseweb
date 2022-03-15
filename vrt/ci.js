@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 /* eslint-env node */
 
-const {execSync} = require('child_process');
+const { execSync } = require('child_process');
 const Octokit = require('@octokit/rest');
 
 // Load environment variables
@@ -24,8 +24,9 @@ const {
 
 // Derive some useful constants
 const ORIGINAL_BRANCH_NAME = getOriginalBranchName();
-const [ORIGINAL_REPOSITORY_OWNER, ORIGINAL_REPOSITORY_NAME] =
-  getRepositoryOwnerAndNameFromURL(BUILDKITE_PULL_REQUEST_REPO);
+const [ORIGINAL_REPOSITORY_OWNER, ORIGINAL_REPOSITORY_NAME] = getRepositoryOwnerAndNameFromURL(
+  BUILDKITE_PULL_REQUEST_REPO
+);
 const ORIGINAL_COMMIT_SHORT_HASH = BUILDKITE_COMMIT.substring(0, 7); // First 7 chars makes it linkable in GitHub
 
 // Derive a consistent and unique snapshot branch name
@@ -84,7 +85,7 @@ function buildWasTriggeredByPR() {
 function configureGit() {
   log(`Configuring git to allow for pushing new commits & branches.`);
   execSync(
-    `git config --global url."https://${GITHUB_BOT_AUTH_TOKEN}:@github.com/".insteadOf "https://github.com/"`,
+    `git config --global url."https://${GITHUB_BOT_AUTH_TOKEN}:@github.com/".insteadOf "https://github.com/"`
   );
   execSync(`git config --global user.email ${GITHUB_BOT_EMAIL}`);
   execSync(`git config --global user.name ${GITHUB_BOT_NAME}`);
@@ -92,12 +93,12 @@ function configureGit() {
 
 function runTestsWithUpdates() {
   log(`Running visual snapshot tests with updates.`);
-  execSync(`yarn vrt -u`, {stdio: 'inherit'});
+  execSync(`yarn vrt -u`, { stdio: 'inherit' });
 }
 
 function runTestsWithNoUpdates() {
   log(`Running visual snapshot tests with no updates.`);
-  execSync(`yarn vrt`, {stdio: 'inherit'});
+  execSync(`yarn vrt`, { stdio: 'inherit' });
 }
 
 async function updateGitHub() {
@@ -105,9 +106,7 @@ async function updateGitHub() {
   if (someSnapshotsWereUpdated()) {
     pushChangesToGitHub();
     await updatePullRequests(snapshotPullRequest);
-    throw new Error(
-      `Generated snapshots do not match currently checked in snapshots.`,
-    );
+    throw new Error(`Generated snapshots do not match currently checked in snapshots.`);
   } else {
     await removeSnapshotsWorkFromGitHub(snapshotPullRequest);
   }
@@ -126,9 +125,7 @@ async function removeSnapshotsWorkFromGitHub(snapshotPullRequest) {
 
 async function updatePullRequests(snapshotPullRequest) {
   if (snapshotPullRequest) {
-    log(
-      `The existing snapshot PR has been updated with the latest snapshot diffs.`,
-    );
+    log(`The existing snapshot PR has been updated with the latest snapshot diffs.`);
     await addCommentToOriginalPullRequest(snapshotPullRequest.html_url);
   } else {
     const newSnapshotPullRequest = await createSnapshotPullRequest();
@@ -136,7 +133,7 @@ async function updatePullRequests(snapshotPullRequest) {
     await addCommentToOriginalPullRequest(newSnapshotPullRequest.html_url);
     await addOriginalAuthorAsReviewer(newSnapshotPullRequest.number);
     log(
-      `Snapshots on \`${SNAPSHOT_BRANCH_NAME}\` must be merged into \`${BUILDKITE_BRANCH}\` before it can be merged into \`master\`.`,
+      `Snapshots on \`${SNAPSHOT_BRANCH_NAME}\` must be merged into \`${BUILDKITE_BRANCH}\` before it can be merged into \`master\`.`
     );
   }
 }
@@ -157,9 +154,7 @@ async function addOriginalAuthorAsReviewer(snapshotPullRequestNumber) {
     });
     log(`Requested review from \`${author.login}\` on new snapshot PR.`);
   } catch (er) {
-    log(
-      `There was an error adding the original PR author as a reviewer for the new snapshot PR.`,
-    );
+    log(`There was an error adding the original PR author as a reviewer for the new snapshot PR.`);
     log(er);
   }
 }
@@ -203,13 +198,9 @@ async function notifyOriginalPullRequestOfClosure(snapshotPullRequestUrl) {
         `Visual changes have been resolved. ${snapshotPullRequestUrl} has been closed. ` +
         `If future commits on \`${BUILDKITE_BRANCH}\` trigger visual changes, a new snapshot branch will be created and a new PR will be opened.`,
     });
-    log(
-      `Posted a comment on original PR about closure of existing snapshot PR.`,
-    );
+    log(`Posted a comment on original PR about closure of existing snapshot PR.`);
   } catch (er) {
-    log(
-      `There was an error commenting on the original PR about snapshot resolution.`,
-    );
+    log(`There was an error commenting on the original PR about snapshot resolution.`);
     log(er);
   }
 }
@@ -227,9 +218,7 @@ async function notifySnapshotPullRequestOfClosure(snapshotPullRequestNumber) {
     });
     log(`Posted a comment on snapshot PR about visual resolution and closure.`);
   } catch (er) {
-    log(
-      `There was an error commenting on the existing snapshot PR about snapshot resolution.`,
-    );
+    log(`There was an error commenting on the existing snapshot PR about snapshot resolution.`);
     log(er);
   }
 }
@@ -259,9 +248,7 @@ async function addCommentToOriginalPullRequest(snapshotPullRequestUrl) {
         `Visual changes were detected on this branch. ` +
         `Please review the following PR containing updated snapshots: ${snapshotPullRequestUrl}`,
     });
-    log(
-      `Posted a comment linking to snapshot PR on original PR: ${comment.data.html_url}`,
-    );
+    log(`Posted a comment linking to snapshot PR on original PR: ${comment.data.html_url}`);
   } catch (er) {
     log(`Error creating comment on original PR.`);
     log(er);
@@ -303,9 +290,7 @@ async function getSnapshotPullRequest() {
       return null;
     }
   } catch (er) {
-    log(
-      `There was an error fetching existing PRs so could not find an existing snapshot PR.`,
-    );
+    log(`There was an error fetching existing PRs so could not find an existing snapshot PR.`);
     log(er);
     return null;
   }
@@ -314,13 +299,13 @@ async function getSnapshotPullRequest() {
 function pushChangesToGitHub() {
   log(
     `Creating a new snapshot branch: ${SNAPSHOT_BRANCH_NAME}. ` +
-      `This will overwrite any existing snapshot branch.`,
+      `This will overwrite any existing snapshot branch.`
   );
   execSync(`git checkout -b ${SNAPSHOT_BRANCH_NAME}`);
   execSync(`git add vrt/__image_snapshots__/`);
   log(`Committing updated snapshots to ${SNAPSHOT_BRANCH_NAME}.`);
   execSync(
-    `git commit -m "test(vrt): update visual snapshots for ${ORIGINAL_COMMIT_SHORT_HASH} [skip ci]"`,
+    `git commit -m "test(vrt): update visual snapshots for ${ORIGINAL_COMMIT_SHORT_HASH} [skip ci]"`
   );
   log(`Force pushing updated snapshot branch to GitHub.`);
   execSync(`git push --force origin ${SNAPSHOT_BRANCH_NAME}`);
@@ -329,9 +314,7 @@ function pushChangesToGitHub() {
 function someSnapshotsWereUpdated() {
   const stdout = execSync(`git status --porcelain`).toString();
   const changedFiles = stdout.split(`\n`);
-  const updatedSnapshots = changedFiles.filter((s) =>
-    s.match(/vrt\/__image_snapshots__\//),
-  );
+  const updatedSnapshots = changedFiles.filter((s) => s.match(/vrt\/__image_snapshots__\//));
   const result = updatedSnapshots.length > 0;
   if (result) {
     log(`Some snapshots were updated.`);

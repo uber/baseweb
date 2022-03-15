@@ -9,14 +9,14 @@ LICENSE file in the root directory of this source tree.
 /* global process document */
 
 import React from 'react';
-import {useRouter} from 'next/router';
-import {useStyletron} from 'baseui';
-import {StyledLink} from 'baseui/link';
+import { useRouter } from 'next/router';
+import { useStyletron } from 'baseui';
+import { StyledLink } from 'baseui/link';
 //$FlowFixMe
 import outlines from '../cheat-sheet.js';
-import {H2} from './markdown-elements.js';
+import { H2 } from './markdown-elements.js';
 // $FlowFixMe - because this is a .ts file
-import {trackEvent} from '../helpers/ga';
+import { trackEvent } from '../helpers/ga';
 
 function buildHref(file, line) {
   const commit = process.env.COMMIT_REF || 'master';
@@ -31,7 +31,7 @@ function buildHref(file, line) {
 
 function CheatSheet() {
   const [css, theme] = useStyletron();
-  const {query} = useRouter();
+  const { query } = useRouter();
 
   React.useEffect(() => {
     if (query.component) {
@@ -77,12 +77,7 @@ function CheatSheet() {
                     <StyledLink
                       target="_blank"
                       href={buildHref(outline.file, t.lineStart)}
-                      onClick={() =>
-                        trackEvent(
-                          'cheat_sheet_click',
-                          `${componentName}_${t.name}`,
-                        )
-                      }
+                      onClick={() => trackEvent('cheat_sheet_click', `${componentName}_${t.name}`)}
                     >
                       {t.name}
                     </StyledLink>
@@ -100,10 +95,7 @@ function CheatSheet() {
                         target="_blank"
                         href={buildHref(outline.file, c.lineStart)}
                         onClick={() =>
-                          trackEvent(
-                            'cheat_sheet_click',
-                            `${componentName}_${t.name}_${c.name}`,
-                          )
+                          trackEvent('cheat_sheet_click', `${componentName}_${t.name}_${c.name}`)
                         }
                       >
                         {c.name}

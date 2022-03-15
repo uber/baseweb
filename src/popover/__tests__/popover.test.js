@@ -18,10 +18,10 @@ import {
   waitForElementToBeRemoved,
 } from '@testing-library/react';
 
-import {TestBaseProvider} from '../../test/test-utils.js';
-import {Popover, ACCESSIBILITY_TYPE, TRIGGER_TYPE} from '../index.js';
+import { TestBaseProvider } from '../../test/test-utils.js';
+import { Popover, ACCESSIBILITY_TYPE, TRIGGER_TYPE } from '../index.js';
 
-import {styled} from '../../styles/index.js';
+import { styled } from '../../styles/index.js';
 import * as reactuid from 'react-uid';
 
 describe('Popover', () => {
@@ -41,18 +41,14 @@ describe('Popover', () => {
       const [open, setOpen] = React.useState(false);
       return (
         <TestBaseProvider>
-          <Popover
-            content={content}
-            isOpen={open}
-            onClick={() => setOpen(true)}
-          >
+          <Popover content={content} isOpen={open} onClick={() => setOpen(true)}>
             <button type="button">{anchorContent}</button>
           </Popover>
         </TestBaseProvider>
       );
     }
 
-    const {container} = render(<TestCase />);
+    const { container } = render(<TestCase />);
     expect(queryByText(container, content)).toBeNull();
 
     fireEvent.click(getByText(container, anchorContent));
@@ -80,7 +76,7 @@ describe('Popover', () => {
       );
     }
 
-    const {container} = render(<TestCase />);
+    const { container } = render(<TestCase />);
     expect(queryByText(container, content)).toBeNull();
 
     fireEvent.mouseEnter(getByText(container, anchorContent));
@@ -132,7 +128,7 @@ describe('Popover', () => {
       );
     }
 
-    const {container} = render(<TestCase />);
+    const { container } = render(<TestCase />);
 
     fireEvent.click(getByText(container, anchorContent));
     await findByText(container, contentContent);
@@ -150,12 +146,12 @@ describe('Popover', () => {
     const onEsc = jest.fn();
     const content = <strong>Hello world</strong>;
     const anchorContent = 'hover';
-    const {container} = render(
+    const { container } = render(
       <TestBaseProvider>
         <Popover isOpen content={content} onClick={onClick} onEsc={onEsc}>
           {anchorContent}
         </Popover>
-      </TestBaseProvider>,
+      </TestBaseProvider>
     );
     const anchor = getByText(container, anchorContent);
     expect(anchor.tagName).toBe('SPAN');
@@ -168,12 +164,12 @@ describe('Popover', () => {
     const content = <strong>Hello world</strong>;
     const anchorContent = 'hover';
     const CustomComponent = styled('span', {});
-    const {container} = render(
+    const { container } = render(
       <TestBaseProvider>
         <Popover isOpen content={content} onClick={onClick}>
           <CustomComponent>{anchorContent}</CustomComponent>
         </Popover>
-      </TestBaseProvider>,
+      </TestBaseProvider>
     );
     const anchor = getByText(container, anchorContent);
     expect(anchor.tagName).toBe('SPAN');
@@ -202,7 +198,7 @@ describe('Popover', () => {
       );
     }
 
-    const {container} = render(<TestCase />);
+    const { container } = render(<TestCase />);
     const anchor = getByText(container, anchorContent);
     expect(anchor.getAttribute('aria-haspopup')).toBe('true');
     expect(anchor.getAttribute('aria-expanded')).toBe('false');
@@ -235,7 +231,7 @@ describe('Popover', () => {
         </TestBaseProvider>
       );
     }
-    const {container} = render(<TestCase />);
+    const { container } = render(<TestCase />);
     const anchor = getByText(container, anchorContent);
     expect(anchor.getAttribute('aria-haspopup')).toBe('true');
     expect(anchor.getAttribute('aria-expanded')).toBe('false');
@@ -270,7 +266,7 @@ describe('Popover', () => {
       );
     }
 
-    const {container} = render(<TestCase />);
+    const { container } = render(<TestCase />);
 
     const anchor = getByText(container, anchorContent);
     expect(anchor.getAttribute('id')).toBe(`${id}__anchor`);

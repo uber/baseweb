@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-import {generateJs} from '@dubstep/core';
+import { generateJs } from '@dubstep/core';
 
 // flowlint-next-line unclear-type:off
 export function containsFlowComment(program: any) {

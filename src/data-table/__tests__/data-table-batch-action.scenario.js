@@ -13,7 +13,7 @@ import Check from '../../icon/check.js';
 
 import BooleanColumn from '../column-boolean.js';
 import NumericalColumn from '../column-numerical.js';
-import {StatefulDataTable} from '../stateful-data-table.js';
+import { StatefulDataTable } from '../stateful-data-table.js';
 
 type RowDataT = [number, boolean];
 
@@ -32,18 +32,18 @@ const columns = [
 export function Scenario() {
   const [count, setCount] = React.useState(0);
   const [rows, setRows] = React.useState([
-    {id: 1, data: [1, false]},
-    {id: 2, data: [2, false]},
-    {id: 3, data: [3, false]},
-    {id: 4, data: [4, false]},
-    {id: 5, data: [5, false]},
+    { id: 1, data: [1, false] },
+    { id: 2, data: [2, false] },
+    { id: 3, data: [3, false] },
+    { id: 4, data: [4, false] },
+    { id: 5, data: [5, false] },
   ]);
 
   function flagRows(ids) {
     const nextRows = rows.map((row) => {
       if (ids.includes(row.id)) {
         const nextData = [row.data[0], true];
-        return {...row, data: nextData};
+        return { ...row, data: nextData };
       }
 
       return row;
@@ -59,35 +59,35 @@ export function Scenario() {
   const actions = [
     {
       label: 'Flag',
-      onClick: ({selection, clearSelection}) => {
+      onClick: ({ selection, clearSelection }) => {
         flagRows(selection.map((r) => r.id));
         clearSelection();
       },
-      renderIcon: function RenderAlert({size}) {
+      renderIcon: function RenderAlert({ size }) {
         return <Alert size={size} />;
       },
     },
 
     {
       label: 'Approve',
-      onClick: ({selection, clearSelection}) => {
+      onClick: ({ selection, clearSelection }) => {
         removeRows(selection.map((r) => r.id));
         clearSelection();
       },
-      renderIcon: function RenderCheck({size}) {
+      renderIcon: function RenderCheck({ size }) {
         return <Check size={size} />;
       },
     },
 
     {
       label: 'Download',
-      onClick: ({clearSelection}) => clearSelection(),
+      onClick: ({ clearSelection }) => clearSelection(),
     },
   ];
 
   return (
     <div>
-      <div style={{height: '400px', width: '900px'}}>
+      <div style={{ height: '400px', width: '900px' }}>
         <StatefulDataTable
           batchActions={actions}
           columns={columns}

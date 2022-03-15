@@ -18,7 +18,7 @@ import grid from '../shared/grid.js';
 import mediaQuery from '../shared/media-query.js';
 import sizing from '../shared/sizing.js';
 
-import type {ThemeT} from '../../styles/types.js';
+import type { ThemeT } from '../../styles/types.js';
 
 export const DarkTheme: ThemeT = {
   name: 'dark-theme',

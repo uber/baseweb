@@ -16,7 +16,7 @@ import {
   queryByText,
 } from '@testing-library/react';
 
-import {TableBuilder, TableBuilderColumn} from '../index.js';
+import { TableBuilder, TableBuilderColumn } from '../index.js';
 
 const DATA = [
   {
@@ -38,42 +38,42 @@ const DATA = [
 
 describe('Table Semantic Builder', () => {
   it('renders expected number of rows', () => {
-    const {container} = render(
+    const { container } = render(
       <TableBuilder data={DATA}>
         <TableBuilderColumn header="Foo">{(row) => row.foo}</TableBuilderColumn>
         <TableBuilderColumn header="Bar">
           {(row) => <a href={row.url}>{row.bar}</a>}
         </TableBuilderColumn>
         <TableBuilderColumn>{(row) => 'Hey'}</TableBuilderColumn>
-      </TableBuilder>,
+      </TableBuilder>
     );
     const rows = container.querySelectorAll('tr');
     expect(rows.length).toBe(DATA.length + 1);
   });
 
   it('renders expected number of columns', () => {
-    const {container} = render(
+    const { container } = render(
       <TableBuilder data={DATA}>
         <TableBuilderColumn header="Foo">{(row) => row.foo}</TableBuilderColumn>
         <TableBuilderColumn header="Bar">
           {(row) => <a href={row.url}>{row.bar}</a>}
         </TableBuilderColumn>
         <TableBuilderColumn>{(row) => 'Hey'}</TableBuilderColumn>
-      </TableBuilder>,
+      </TableBuilder>
     );
     const headCells = container.querySelectorAll('th');
     expect(headCells.length).toBe(3);
   });
 
   it('renders expected number of anchors', () => {
-    const {container} = render(
+    const { container } = render(
       <TableBuilder data={DATA}>
         <TableBuilderColumn header="Foo">{(row) => row.foo}</TableBuilderColumn>
         <TableBuilderColumn header="Bar">
           {(row) => <a href={row.url}>{row.bar}</a>}
         </TableBuilderColumn>
         <TableBuilderColumn>{(row) => 'Hey'}</TableBuilderColumn>
-      </TableBuilder>,
+      </TableBuilder>
     );
 
     const anchors = container.querySelectorAll('a');
@@ -83,15 +83,15 @@ describe('Table Semantic Builder', () => {
   });
 
   it('renders sorted results ascending', () => {
-    const {container} = render(
+    const { container } = render(
       <TableBuilder
         data={DATA}
         sortColumn={'foo'}
         sortOrder={'ASC'}
         overrides={{
-          SortAscIcon: {props: {'data-testid': 'sort-asc-icon'}},
-          SortDescIcon: {props: {'data-testid': 'sort-desc-icon'}},
-          SortNoneIcon: {props: {'data-testid': 'sort-none-icon'}},
+          SortAscIcon: { props: { 'data-testid': 'sort-asc-icon' } },
+          SortDescIcon: { props: { 'data-testid': 'sort-desc-icon' } },
+          SortNoneIcon: { props: { 'data-testid': 'sort-none-icon' } },
         }}
       >
         <TableBuilderColumn header="Foo" id="foo" numeric sortable>
@@ -100,7 +100,7 @@ describe('Table Semantic Builder', () => {
         <TableBuilderColumn header="Bar" id="bar" sortable>
           {(row) => <a href={row.url}>{row.bar}</a>}
         </TableBuilderColumn>
-      </TableBuilder>,
+      </TableBuilder>
     );
 
     expect(queryByTestId(container, 'sort-asc-icon')).not.toBeNull();
@@ -109,15 +109,15 @@ describe('Table Semantic Builder', () => {
   });
 
   it('renders sorted results descending', () => {
-    const {container} = render(
+    const { container } = render(
       <TableBuilder
         data={DATA}
         sortColumn={'bar'}
         sortOrder={'DESC'}
         overrides={{
-          SortAscIcon: {props: {'data-testid': 'sort-asc-icon'}},
-          SortDescIcon: {props: {'data-testid': 'sort-desc-icon'}},
-          SortNoneIcon: {props: {'data-testid': 'sort-none-icon'}},
+          SortAscIcon: { props: { 'data-testid': 'sort-asc-icon' } },
+          SortDescIcon: { props: { 'data-testid': 'sort-desc-icon' } },
+          SortNoneIcon: { props: { 'data-testid': 'sort-none-icon' } },
         }}
       >
         <TableBuilderColumn header="Foo" id="foo" numeric sortable>
@@ -126,7 +126,7 @@ describe('Table Semantic Builder', () => {
         <TableBuilderColumn header="Bar" id="bar" sortable>
           {(row) => <a href={row.url}>{row.bar}</a>}
         </TableBuilderColumn>
-      </TableBuilder>,
+      </TableBuilder>
     );
 
     expect(queryByTestId(container, 'sort-asc-icon')).toBeNull();
@@ -135,13 +135,13 @@ describe('Table Semantic Builder', () => {
   });
 
   it('renders sorted results none', () => {
-    const {container} = render(
+    const { container } = render(
       <TableBuilder
         data={DATA}
         overrides={{
-          SortAscIcon: {props: {'data-testid': 'sort-asc-icon'}},
-          SortDescIcon: {props: {'data-testid': 'sort-desc-icon'}},
-          SortNoneIcon: {props: {'data-testid': 'sort-none-icon'}},
+          SortAscIcon: { props: { 'data-testid': 'sort-asc-icon' } },
+          SortDescIcon: { props: { 'data-testid': 'sort-desc-icon' } },
+          SortNoneIcon: { props: { 'data-testid': 'sort-none-icon' } },
         }}
       >
         <TableBuilderColumn header="Foo" id="foo" numeric sortable>
@@ -150,7 +150,7 @@ describe('Table Semantic Builder', () => {
         <TableBuilderColumn header="Bar" id="bar" sortable>
           {(row) => <a href={row.url}>{row.bar}</a>}
         </TableBuilderColumn>
-      </TableBuilder>,
+      </TableBuilder>
     );
 
     expect(queryByTestId(container, 'sort-asc-icon')).toBeNull();
@@ -161,7 +161,7 @@ describe('Table Semantic Builder', () => {
   it('executes onSort with column id when header is clicked', () => {
     const mockOnSort = jest.fn();
 
-    const {container} = render(
+    const { container } = render(
       <TableBuilder data={DATA} onSort={mockOnSort}>
         <TableBuilderColumn header="Foo" id="foo" sortable>
           {(row) => row.foo}
@@ -169,7 +169,7 @@ describe('Table Semantic Builder', () => {
         <TableBuilderColumn header="Bar" id="bar" sortable>
           {(row) => <a href={row.url}>{row.bar}</a>}
         </TableBuilderColumn>
-      </TableBuilder>,
+      </TableBuilder>
     );
 
     const headCells = container.querySelectorAll('th');
@@ -177,13 +177,13 @@ describe('Table Semantic Builder', () => {
     fireEvent.click(headCells[1]);
 
     fireEvent.focus(headCells[1]);
-    fireEvent.keyDown(headCells[1], {key: 'Enter'});
+    fireEvent.keyDown(headCells[1], { key: 'Enter' });
 
     fireEvent.focus(headCells[1]);
-    fireEvent.keyDown(headCells[1], {key: ' '});
+    fireEvent.keyDown(headCells[1], { key: ' ' });
 
     fireEvent.focus(headCells[1]);
-    fireEvent.keyDown(headCells[1], {key: 'a'});
+    fireEvent.keyDown(headCells[1], { key: 'a' });
 
     fireEvent.blur(headCells[1]);
 
@@ -217,7 +217,7 @@ describe('Table Semantic Builder', () => {
         <TableBuilderColumn header="Bar" id="bar">
           {(row) => <a href={row.url}>{row.bar}</a>}
         </TableBuilderColumn>
-      </TableBuilder>,
+      </TableBuilder>
     );
 
     expect(mockTableHeadCellStyle.mock.calls.length).toBe(2);
@@ -228,7 +228,7 @@ describe('Table Semantic Builder', () => {
           header: 'Foo',
           id: 'foo',
         }),
-      }),
+      })
     );
 
     expect(mockTableBodyRowStyle.mock.calls.length).toBe(3);
@@ -236,7 +236,7 @@ describe('Table Semantic Builder', () => {
       expect.objectContaining({
         $rowIndex: 0,
         $row: DATA[0],
-      }),
+      })
     );
 
     expect(mockTableBodyCellStyle.mock.calls.length).toBe(6);
@@ -249,71 +249,63 @@ describe('Table Semantic Builder', () => {
         }),
         $rowIndex: 0,
         $row: DATA[0],
-      }),
+      })
     );
   });
 
   it('renders aria label for column header', () => {
-    const {container} = render(
+    const { container } = render(
       <TableBuilder data={DATA}>
-        <TableBuilderColumn
-          header={<span>Foo</span>}
-          tableHeadAriaLabel="Foo Aria Label"
-          sortable
-        >
+        <TableBuilderColumn header={<span>Foo</span>} tableHeadAriaLabel="Foo Aria Label" sortable>
           {(row) => row.foo}
         </TableBuilderColumn>
         <TableBuilderColumn header="Bar" sortable>
           {(row) => <a href={row.url}>{row.bar}</a>}
         </TableBuilderColumn>
         <TableBuilderColumn>{(row) => 'Hey'}</TableBuilderColumn>
-      </TableBuilder>,
+      </TableBuilder>
     );
 
     const headCells = container.querySelectorAll('th');
-    expect(headCells[0].getAttribute('aria-label')).toBe(
-      'Foo Aria Label, ascending sorting',
-    );
-    expect(headCells[1].getAttribute('aria-label')).toBe(
-      'Bar, ascending sorting',
-    );
+    expect(headCells[0].getAttribute('aria-label')).toBe('Foo Aria Label, ascending sorting');
+    expect(headCells[1].getAttribute('aria-label')).toBe('Bar, ascending sorting');
   });
 
   it('renders loading message', () => {
-    const {container} = render(
+    const { container } = render(
       <TableBuilder data={DATA} isLoading={true}>
         <TableBuilderColumn header="Foo">{(row) => row.foo}</TableBuilderColumn>
         <TableBuilderColumn header="Bar">
           {(row) => <a href={row.url}>{row.bar}</a>}
         </TableBuilderColumn>
         <TableBuilderColumn>{(row) => 'Hey'}</TableBuilderColumn>
-      </TableBuilder>,
+      </TableBuilder>
     );
     getByText(container, 'Loading...');
   });
 
   it('renders empty message', () => {
-    const {container} = render(
+    const { container } = render(
       <TableBuilder data={[]} emptyMessage="No data">
         <TableBuilderColumn header="Foo">{(row) => row.foo}</TableBuilderColumn>
         <TableBuilderColumn header="Bar">
           {(row) => <a href={row.url}>{row.bar}</a>}
         </TableBuilderColumn>
         <TableBuilderColumn>{(row) => 'Hey'}</TableBuilderColumn>
-      </TableBuilder>,
+      </TableBuilder>
     );
     getByText(container, 'No data');
   });
 
   it('does not render unset empty message', () => {
-    const {container} = render(
+    const { container } = render(
       <TableBuilder data={[]}>
         <TableBuilderColumn header="Foo">{(row) => row.foo}</TableBuilderColumn>
         <TableBuilderColumn header="Bar">
           {(row) => <a href={row.url}>{row.bar}</a>}
         </TableBuilderColumn>
         <TableBuilderColumn>{(row) => 'Hey'}</TableBuilderColumn>
-      </TableBuilder>,
+      </TableBuilder>
     );
     expect(queryByText(container, 'Loading...')).toBeNull();
   });

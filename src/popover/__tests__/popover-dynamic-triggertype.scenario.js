@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Popover} from '../index.js';
+import { Popover } from '../index.js';
 
 // https://github.com/uber/baseweb/issues/4617
 export function Scenario() {
@@ -33,9 +33,7 @@ export function Scenario() {
         onMouseEnter={() => setIsOpen(true)}
         triggerType={triggerType}
       >
-        <button onClick={() => setTriggerType('click')}>
-          click or hover me
-        </button>
+        <button onClick={() => setTriggerType('click')}>click or hover me</button>
       </Popover>
 
       <p id="outside-target">click outside target</p>

@@ -12,14 +12,10 @@ LICENSE file in the root directory of this source tree.
 
 const fs = require('fs');
 const path = require('path');
-const {spawnSync} = require('child_process');
+const { spawnSync } = require('child_process');
 
 const ROOT_DIR = path.resolve(__dirname, '..');
-const ESLINT_PLUGIN_DIR = path.resolve(
-  ROOT_DIR,
-  'packages',
-  'eslint-plugin-baseui',
-);
+const ESLINT_PLUGIN_DIR = path.resolve(ROOT_DIR, 'packages', 'eslint-plugin-baseui');
 
 const ALPHA_TAG = 'alpha';
 const LATEST_TAG = 'latest';
@@ -34,16 +30,10 @@ function writeNpmTokenFromEnv() {
   }
   fs.unlinkSync(npmrcPath);
   fs.writeFileSync(npmrcPath, `//registry.npmjs.org/:_authToken=${token}`);
-  fs.writeFileSync(
-    eslintPluginNpmrcPath,
-    `//registry.npmjs.org/:_authToken=${token}`,
-  );
+  fs.writeFileSync(eslintPluginNpmrcPath, `//registry.npmjs.org/:_authToken=${token}`);
 }
 function cleanup() {
-  fs.writeFileSync(
-    npmrcPath,
-    'registry=https://registry.yarnpkg.com\n_auth=\n',
-  );
+  fs.writeFileSync(npmrcPath, 'registry=https://registry.yarnpkg.com\n_auth=\n');
   fs.unlinkSync(eslintPluginNpmrcPath);
 }
 
@@ -54,9 +44,7 @@ function readJSONFile(filepath) {
 
 function copyPackageJSONVersionFromRoot(filepath) {
   if (!filepath.endsWith('package.json')) {
-    throw new Error(
-      `Must copy version to a package.json file. Received: ${filepath}`,
-    );
+    throw new Error(`Must copy version to a package.json file. Received: ${filepath}`);
   }
   const source = readJSONFile(path.resolve(ROOT_DIR, 'package.json'));
   const dest = readJSONFile(filepath);
@@ -66,64 +54,41 @@ function copyPackageJSONVersionFromRoot(filepath) {
 
 function publishBaseui(tag) {
   console.log('--- Publishing baseui to NPM');
-  spawnSync('yarn', ['build'], {stdio: 'inherit', cwd: ROOT_DIR});
-  spawnSync(
-    'npm',
-    [
-      'publish',
-      'dist',
-      '--registry',
-      'https://registry.npmjs.org',
-      '--tag',
-      tag,
-    ],
-    {
-      stdio: 'inherit',
-      cwd: ROOT_DIR,
-    },
-  );
+  spawnSync('yarn', ['build'], { stdio: 'inherit', cwd: ROOT_DIR });
+  spawnSync('npm', ['publish', 'dist', '--registry', 'https://registry.npmjs.org', '--tag', tag], {
+    stdio: 'inherit',
+    cwd: ROOT_DIR,
+  });
 }
 
 function publishEslintPlugin(tag) {
   console.log('--- Publishing eslint-plugin-baseui to NPM');
-  copyPackageJSONVersionFromRoot(
-    path.resolve(ESLINT_PLUGIN_DIR, 'package.json'),
-  );
-  spawnSync(
-    'npm',
-    ['publish', '--registry', 'https://registry.npmjs.org', '--tag', tag],
-    {
-      stdio: 'inherit',
-      cwd: ESLINT_PLUGIN_DIR,
-    },
-  );
+  copyPackageJSONVersionFromRoot(path.resolve(ESLINT_PLUGIN_DIR, 'package.json'));
+  spawnSync('npm', ['publish', '--registry', 'https://registry.npmjs.org', '--tag', tag], {
+    stdio: 'inherit',
+    cwd: ESLINT_PLUGIN_DIR,
+  });
 }
 
 const rootPackageJSONPath = path.resolve(ROOT_DIR, 'package.json');
 
 // flowlint-next-line unclear-type:off
 module.exports = function publishToNpm(params /*: any */) {
-  const {tag, commit} = params;
+  const { tag, commit } = params;
 
   if (tag !== ALPHA_TAG && tag !== LATEST_TAG && tag !== NEXT_TAG) {
-    throw new Error(
-      `NPM tag ${tag} must be either ${ALPHA_TAG} or ${LATEST_TAG} or ${NEXT_TAG}.`,
-    );
+    throw new Error(`NPM tag ${tag} must be either ${ALPHA_TAG} or ${LATEST_TAG} or ${NEXT_TAG}.`);
   }
 
   if (tag === ALPHA_TAG || tag === NEXT_TAG) {
     console.log(`+++ Updating package.json version to ${tag}.`);
     if (!commit) {
-      throw new Error(
-        `Must provide a commit param to publish an ${tag} release.`,
-      );
+      throw new Error(`Must provide a commit param to publish an ${tag} release.`);
     }
     const packageJSON = readJSONFile(rootPackageJSONPath);
     const shortHash = commit.slice(-7);
     packageJSON.version = `0.0.0-${tag}-${shortHash}`;
-    console.log(
-      `Updated package.json version to ${packageJSON.version} for ${tag} release.`,
-    );
+    console.log(`Updated package.json version to ${packageJSON.version} for ${tag} release.`);
     fs.writeFileSync(rootPackageJSONPath, JSON.stringify(packageJSON, null, 2));
   }
 

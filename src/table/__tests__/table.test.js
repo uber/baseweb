@@ -7,9 +7,9 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {render, getByRole, getAllByRole} from '@testing-library/react';
+import { render, getByRole, getAllByRole } from '@testing-library/react';
 
-import {Table} from '../index.js';
+import { Table } from '../index.js';
 
 const DATA = [
   ['1', 'Sarah', 'Brown', 31, '100 Broadway st. New York City, New York'],
@@ -21,37 +21,37 @@ const COLUMNS = ['ID', 'First Name', 'Last Name', 'Age', 'Address'];
 
 describe('Table', () => {
   it('renders expected number of rows', () => {
-    const {container} = render(<Table columns={COLUMNS} data={DATA} />);
+    const { container } = render(<Table columns={COLUMNS} data={DATA} />);
     const rows = getAllByRole(container, 'row');
     expect(rows.length).toBe(4);
   });
 
   it('renders expected number of columns', () => {
-    const {container} = render(<Table columns={COLUMNS} data={DATA} />);
+    const { container } = render(<Table columns={COLUMNS} data={DATA} />);
     const rows = getAllByRole(container, 'row');
     expect(rows[0].children.length).toBe(5);
   });
 
   it('applies correct aria attributes to table container', () => {
-    const {container} = render(<Table columns={COLUMNS} data={DATA} />);
+    const { container } = render(<Table columns={COLUMNS} data={DATA} />);
     const grid = getByRole(container, 'grid');
     expect(grid.getAttribute('aria-colcount')).toBe(COLUMNS.length.toString());
     expect(grid.getAttribute('aria-rowcount')).toBe(DATA.length.toString());
   });
 
   it('applies correct role attribute to table head cell', () => {
-    const {container} = render(<Table columns={COLUMNS} data={DATA} />);
+    const { container } = render(<Table columns={COLUMNS} data={DATA} />);
     const headers = getAllByRole(container, 'columnheader');
     expect(headers.length).toBe(5);
   });
 
   it('applies correct role attribute to table body', () => {
-    const {container} = render(<Table columns={COLUMNS} data={DATA} />);
+    const { container } = render(<Table columns={COLUMNS} data={DATA} />);
     getByRole(container, 'rowgroup');
   });
 
   it('applies correct role attribute to table cell', () => {
-    const {container} = render(<Table columns={COLUMNS} data={DATA} />);
+    const { container } = render(<Table columns={COLUMNS} data={DATA} />);
     const cells = getAllByRole(container, 'gridcell');
     expect(cells.length).toBe(15);
   });

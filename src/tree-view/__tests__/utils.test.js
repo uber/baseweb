@@ -15,7 +15,7 @@ import {
   getCharMatchId,
   defaultGetId as getId,
 } from '../utils.js';
-import type {TreeNodeT} from '../types.js';
+import type { TreeNodeT } from '../types.js';
 
 const data: TreeNodeT<>[] = [
   {

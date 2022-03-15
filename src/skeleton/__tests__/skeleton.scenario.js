@@ -6,17 +6,17 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {Skeleton} from '../index.js';
-import {useStyletron} from '../../styles/index.js';
+import { Skeleton } from '../index.js';
+import { useStyletron } from '../../styles/index.js';
 
 export function Scenario() {
   const [css] = useStyletron();
   return (
-    <div className={css({width: '1000px', display: 'flex', flexWrap: 'wrap'})}>
+    <div className={css({ width: '1000px', display: 'flex', flexWrap: 'wrap' })}>
       {Array(8)
         .fill()
         .map((item, index) => (
-          <div className={css({margin: '10px'})} key={index}>
+          <div className={css({ margin: '10px' })} key={index}>
             <Skeleton
               height="150px"
               width="300px"

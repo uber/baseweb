@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {STATE_TYPE} from './constants.js';
+import { STATE_TYPE } from './constants.js';
 import type {
   StatefulContainerPropsT,
   StateReducerT,
@@ -16,10 +16,7 @@ import type {
 
 const defaultStateReducer: StateReducerT = (type, nextState) => nextState;
 
-class StatefulRadioGroupContainer extends React.Component<
-  StatefulContainerPropsT,
-  StateT,
-> {
+class StatefulRadioGroupContainer extends React.Component<StatefulContainerPropsT, StateT> {
   static defaultProps: DefaultStatefulPropsT = {
     initialState: {
       value: '',
@@ -30,7 +27,7 @@ class StatefulRadioGroupContainer extends React.Component<
 
   constructor(props: StatefulContainerPropsT) {
     super(props);
-    const {initialState} = this.props;
+    const { initialState } = this.props;
     this.state = {
       ...initialState,
     };
@@ -38,15 +35,15 @@ class StatefulRadioGroupContainer extends React.Component<
 
   onChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
     this.stateReducer(STATE_TYPE.change, e);
-    const {onChange} = this.props;
+    const { onChange } = this.props;
     onChange && onChange(e);
   };
 
   stateReducer = (type: string, e: SyntheticInputEvent<HTMLInputElement>) => {
     let nextState = {};
-    const {stateReducer} = this.props;
+    const { stateReducer } = this.props;
     if (type === STATE_TYPE.change) {
-      nextState = {value: e.target.value};
+      nextState = { value: e.target.value };
     }
     const newState = stateReducer(type, nextState, this.state, e);
     this.setState(newState);
@@ -59,7 +56,7 @@ class StatefulRadioGroupContainer extends React.Component<
       stateReducer, // eslint-disable-line no-unused-vars
       ...restProps
     } = this.props;
-    const {onChange} = this;
+    const { onChange } = this;
     return children({
       ...restProps,
       value: this.state.value,

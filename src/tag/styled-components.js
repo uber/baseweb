@@ -8,10 +8,10 @@ LICENSE file in the root directory of this source tree.
 import tint from 'polished/lib/color/tint.js';
 import shade from 'polished/lib/color/shade.js';
 
-import {styled, type ThemeT} from '../styles/index.js';
-import {KIND, VARIANT, SIZE} from './constants.js';
-import type {SharedPropsArgT} from './types.js';
-import {colors as colorTokens} from '../tokens/index.js';
+import { styled, type ThemeT } from '../styles/index.js';
+import { KIND, VARIANT, SIZE } from './constants.js';
+import type { SharedPropsArgT } from './types.js';
+import { colors as colorTokens } from '../tokens/index.js';
 
 export function customOnRamp(color?: string, unit?: string) {
   switch (unit) {
@@ -49,8 +49,7 @@ const COLOR_STATE = {
 };
 
 // Probably best to bake this into the theme once we hit our next major.
-const pick = (theme, light, dark) =>
-  theme.name && theme.name.includes('dark') ? dark : light;
+const pick = (theme, light, dark) => (theme.name && theme.name.includes('dark') ? dark : light);
 
 const neutralColorStates = {
   [COLOR_STATE.disabled]: (theme, color) => ({
@@ -258,26 +257,17 @@ const getColorStateFromProps = (props) => {
 
 export const Action = styled<SharedPropsArgT>(
   'span',
-  (props: SharedPropsArgT & {$theme: ThemeT}) => {
-    const {$theme, $disabled, $size = SIZE.small} = props;
+  (props: SharedPropsArgT & { $theme: ThemeT }) => {
+    const { $theme, $disabled, $size = SIZE.small } = props;
     const bottomRadiusDir: string =
-      $theme.direction === 'rtl'
-        ? 'borderBottomLeftRadius'
-        : 'borderBottomRightRadius';
+      $theme.direction === 'rtl' ? 'borderBottomLeftRadius' : 'borderBottomRightRadius';
     const topRadiusDir: string =
-      $theme.direction === 'rtl'
-        ? 'borderTopLeftRadius'
-        : 'borderTopRightRadius';
-    const marginDir: string =
-      $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
+      $theme.direction === 'rtl' ? 'borderTopLeftRadius' : 'borderTopRightRadius';
+    const marginDir: string = $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
     return ({
       alignItems: 'center',
-      [bottomRadiusDir]: $theme.borders.useRoundedCorners
-        ? $theme.borders.radius400
-        : 0,
-      [topRadiusDir]: $theme.borders.useRoundedCorners
-        ? $theme.borders.radius400
-        : 0,
+      [bottomRadiusDir]: $theme.borders.useRoundedCorners ? $theme.borders.radius400 : 0,
+      [topRadiusDir]: $theme.borders.useRoundedCorners ? $theme.borders.radius400 : 0,
       cursor: $disabled ? 'not-allowed' : 'pointer',
       display: 'flex',
       [marginDir]: {
@@ -290,12 +280,12 @@ export const Action = styled<SharedPropsArgT>(
       transitionDuration: 'background-color',
       transitionTimingFunction: $theme.animation.easeOutCurve,
     }: {});
-  },
+  }
 );
 
 export const StartEnhancerContainer = styled<SharedPropsArgT>(
   'div',
-  ({$theme, $size = SIZE.small}: SharedPropsArgT & {$theme: ThemeT}) => {
+  ({ $theme, $size = SIZE.small }: SharedPropsArgT & { $theme: ThemeT }) => {
     let paddingMagnitude = $theme.sizing.scale300;
     if ($size === SIZE.medium) {
       paddingMagnitude = $theme.sizing.scale400;
@@ -303,21 +293,20 @@ export const StartEnhancerContainer = styled<SharedPropsArgT>(
       paddingMagnitude = $theme.sizing.scale600;
     }
 
-    const paddingDir: string =
-      $theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight';
+    const paddingDir: string = $theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight';
 
     return {
       alignItems: 'center',
       display: 'flex',
       [paddingDir]: paddingMagnitude,
     };
-  },
+  }
 );
 
 export const Text = styled<SharedPropsArgT>(
   'span',
-  (props: SharedPropsArgT & {$theme: ThemeT}) => {
-    const {$theme} = props;
+  (props: SharedPropsArgT & { $theme: ThemeT }) => {
+    const { $theme } = props;
 
     return {
       overflow: 'hidden',
@@ -326,12 +315,12 @@ export const Text = styled<SharedPropsArgT>(
       maxWidth: props.$theme.sizing.scale3200,
       order: $theme.direction === 'rtl' ? 1 : 0,
     };
-  },
+  }
 );
 
 export const Root = styled<SharedPropsArgT>(
   'span',
-  (props: SharedPropsArgT & {$theme: ThemeT}) => {
+  (props: SharedPropsArgT & { $theme: ThemeT }) => {
     const {
       $theme,
       $kind = KIND.primary,
@@ -350,9 +339,10 @@ export const Root = styled<SharedPropsArgT>(
       [SIZE.large]: $theme.sizing.scale600,
     }[$size];
     const borderWidth = !$disabled && $variant === VARIANT.solid ? 0 : '2px';
-    const {color, backgroundColor, borderColor} = colorMap[$kind][
-      getColorStateFromProps(props)
-    ]($theme, $color);
+    const { color, backgroundColor, borderColor } = colorMap[$kind][getColorStateFromProps(props)](
+      $theme,
+      $color
+    );
     return ({
       ...{
         [SIZE.small]: $theme.typography.LabelSmall,
@@ -403,7 +393,7 @@ export const Root = styled<SharedPropsArgT>(
               boxShadow: `inset 0px 0px 100px ${pick(
                 $theme,
                 `rgba(0, 0, 0, 0.08)`,
-                `rgba(255, 255, 255, 0.2)`,
+                `rgba(255, 255, 255, 0.2)`
               )}`,
             },
       ':focus':
@@ -412,12 +402,10 @@ export const Root = styled<SharedPropsArgT>(
           : {
               boxShadow: $isFocusVisible
                 ? `0 0 0 3px ${
-                    $kind === KIND.accent
-                      ? $theme.colors.primaryA
-                      : $theme.colors.accent
+                    $kind === KIND.accent ? $theme.colors.primaryA : $theme.colors.accent
                   }`
                 : 'none',
             },
     }: {});
-  },
+  }
 );

@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {getOverrides} from '../helpers/overrides.js';
+import { getOverrides } from '../helpers/overrides.js';
 
 import {
   Root as StyledRoot,
@@ -18,7 +18,7 @@ import {
   RadioMarkOuter as StyledRadioMarkOuter,
   Description as StyledDescription,
 } from './styled-components.js';
-import type {RadioPropsT, RadioStateT} from './types.js';
+import type { RadioPropsT, RadioStateT } from './types.js';
 
 function isLabelTopLeft(labelPlacement) {
   return labelPlacement === 'top' || labelPlacement === 'left';
@@ -61,47 +61,44 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
     }
     if (__DEV__ && this.props.isError) {
       console.warn(
-        'baseui:Radio Property "isError" will be removed in the next major version. Use "error" property instead.',
+        'baseui:Radio Property "isError" will be removed in the next major version. Use "error" property instead.'
       );
     }
   }
 
   onMouseEnter = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    this.setState({isHovered: true});
+    this.setState({ isHovered: true });
     this.props.onMouseEnter && this.props.onMouseEnter(e);
   };
 
   onMouseLeave = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    this.setState({isHovered: false});
+    this.setState({ isHovered: false });
     this.props.onMouseLeave && this.props.onMouseLeave(e);
   };
 
   onMouseDown = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    this.setState({isActive: true});
+    this.setState({ isActive: true });
     this.props.onMouseDown && this.props.onMouseDown(e);
   };
 
   onMouseUp = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    this.setState({isActive: false});
+    this.setState({ isActive: false });
     this.props.onMouseUp && this.props.onMouseUp(e);
   };
 
   render() {
-    const {overrides = {}} = this.props;
+    const { overrides = {} } = this.props;
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
     const [Label, labelProps] = getOverrides(overrides.Label, StyledLabel);
     const [Input, inputProps] = getOverrides(overrides.Input, StyledInput);
-    const [Description, descriptionProps] = getOverrides(
-      overrides.Description,
-      StyledDescription,
-    );
+    const [Description, descriptionProps] = getOverrides(overrides.Description, StyledDescription);
     const [RadioMarkInner, radioMarkInnerProps] = getOverrides(
       overrides.RadioMarkInner,
-      StyledRadioMarkInner,
+      StyledRadioMarkInner
     );
     const [RadioMarkOuter, radioMarkOuterProps] = getOverrides(
       overrides.RadioMarkOuter,
-      StyledRadioMarkOuter,
+      StyledRadioMarkOuter
     );
 
     const sharedProps = {

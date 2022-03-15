@@ -8,15 +8,15 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Notification, KIND} from '../index.js';
+import { Notification, KIND } from '../index.js';
 
 export function Scenario() {
   return (
     <React.Fragment>
       <Notification>Default info notification</Notification>
       <Notification>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua
       </Notification>
       <Notification kind={KIND.positive}>Positive notification</Notification>
       <Notification kind={KIND.warning}>Warning notification</Notification>

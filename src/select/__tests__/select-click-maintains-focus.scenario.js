@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
-import {StatefulSelect} from '../index.js';
+import { StatefulSelect } from '../index.js';
 
 export function Scenario() {
   return (
@@ -16,9 +16,9 @@ export function Scenario() {
       <button>before</button>
       <StatefulSelect
         options={[
-          {id: 'a', label: 'hey!'},
-          {id: 'b', label: 'are you listening?'},
-          {id: 'c', label: 'look at me!'},
+          { id: 'a', label: 'hey!' },
+          { id: 'b', label: 'are you listening?' },
+          { id: 'c', label: 'look at me!' },
         ]}
       />
 

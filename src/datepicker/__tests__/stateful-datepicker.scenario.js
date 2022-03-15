@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {StatefulDatepicker} from '../index.js';
+import { StatefulDatepicker } from '../index.js';
 
 export function Scenario() {
   return <StatefulDatepicker />;

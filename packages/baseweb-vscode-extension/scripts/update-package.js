@@ -10,7 +10,7 @@ LICENSE file in the root directory of this source tree.
 const fs = require('fs');
 const path = require('path');
 
-const {components} = require(path.resolve(__dirname, '../ext-src/components'));
+const { components } = require(path.resolve(__dirname, '../ext-src/components'));
 const packageJson = require(path.resolve(__dirname, '../package.json'));
 
 components.forEach((component) => {
@@ -34,7 +34,4 @@ components.forEach((component) => {
   }
 });
 
-fs.writeFileSync(
-  path.resolve(__dirname, '../package.json'),
-  JSON.stringify(packageJson, null, 2),
-);
+fs.writeFileSync(path.resolve(__dirname, '../package.json'), JSON.stringify(packageJson, null, 2));

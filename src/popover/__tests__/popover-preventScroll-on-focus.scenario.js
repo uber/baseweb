@@ -7,17 +7,17 @@ LICENSE file in the root directory of this source tree.
 //@flow
 
 import * as React from 'react';
-import {Button} from '../../button/index.js';
-import {Block} from '../../block/index.js';
+import { Button } from '../../button/index.js';
+import { Block } from '../../block/index.js';
 import {
   HeaderNavigation,
   ALIGN,
   StyledNavigationList,
   StyledNavigationItem,
 } from '../../header-navigation/index.js';
-import {StatefulPopover} from '../index.js';
+import { StatefulPopover } from '../index.js';
 
-const Header = ({children}) => {
+const Header = ({ children }) => {
   return (
     <HeaderNavigation
       overrides={{
@@ -39,7 +39,7 @@ const Header = ({children}) => {
   );
 };
 
-const Spacer = ({num}) => (
+const Spacer = ({ num }) => (
   <Block
     height="200px"
     display="flex"
@@ -62,12 +62,12 @@ const Instructions = () => {
       backgroundColor="whitesmoke"
     >
       <h3>
-        It is only possible to reproduce this in preview mode where the entire
-        page scrolls. Hence, the scenario component goes beyond the page
+        It is only possible to reproduce this in preview mode where the entire page scrolls. Hence,
+        the scenario component goes beyond the page
       </h3>
       <h3>
-        Steps to Reproduce error if {'(focusOptions={{ preventScroll: true }})'}{' '}
-        is not passed as a prop to Popover
+        Steps to Reproduce error if {'(focusOptions={{ preventScroll: true }})'} is not passed as a
+        prop to Popover
       </h3>
       <ol>
         <li>Click on `Show Menu` on center</li>
@@ -95,7 +95,7 @@ export function Scenario() {
               <h1>hello</h1>
             </div>
           }
-          focusOptions={{preventScroll: true}}
+          focusOptions={{ preventScroll: true }}
           focusLock
           returnFocus
           autoFocus

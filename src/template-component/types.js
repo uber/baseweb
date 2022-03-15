@@ -7,8 +7,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-disable flowtype/generic-spacing */
 import * as React from 'react';
-import type {OverrideT} from '../helpers/overrides.js';
-import {STATE_CHANGE_TYPE} from './constants.js';
+import type { OverrideT } from '../helpers/overrides.js';
+import { STATE_CHANGE_TYPE } from './constants.js';
 
 export type StateT = {
   prop: boolean,
@@ -19,7 +19,7 @@ export type StateChangeTypeT = $Keys<typeof STATE_CHANGE_TYPE>;
 export type StateReducerT = (
   stateChangeType: StateChangeTypeT,
   nextState: StateT,
-  currentState: StateT,
+  currentState: StateT
 ) => StateT;
 
 export type ComponentRenderPropT = (props: {}) => React.Node;
@@ -50,12 +50,10 @@ export type StatefulComponentPropsT = ComponentPropsT & {
 // Props for stateful container
 export type StatefulComponentContainerPropsT = $Diff<
   StatefulComponentPropsT,
-  {children: ChildrenT},
+  { children: ChildrenT }
 > & {
   initialState?: StateT,
-  children: (
-    props: $Diff<ComponentPropsT, {children: ChildrenT}>,
-  ) => React.Node,
+  children: (props: $Diff<ComponentPropsT, { children: ChildrenT }>) => React.Node,
 };
 
 export type SharedStylePropsT = {

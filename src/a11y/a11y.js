@@ -10,16 +10,16 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import axe from 'axe-core';
 
-import {Layer, TetherBehavior, TETHER_PLACEMENT} from '../layer/index.js';
-import {ParagraphSmall, ParagraphXSmall} from '../typography/index.js';
-import {styled} from '../styles/index.js';
-import {ThemeContext} from '../styles/theme-provider.js';
+import { Layer, TetherBehavior, TETHER_PLACEMENT } from '../layer/index.js';
+import { ParagraphSmall, ParagraphXSmall } from '../typography/index.js';
+import { styled } from '../styles/index.js';
+import { ThemeContext } from '../styles/theme-provider.js';
 
-import type {ViolationPropsT} from './types.js';
+import type { ViolationPropsT } from './types.js';
 
 function validateNode(node) {
   return new Promise((resolve, reject) => {
-    axe.run(node, {reporter: 'v2'}, (error, results) => {
+    axe.run(node, { reporter: 'v2' }, (error, results) => {
       if (error) reject(error);
       resolve(results.violations);
     });
@@ -40,9 +40,9 @@ function segmentViolationsByNode(violations) {
   return Object.entries(nodes);
 }
 
-const ViolationContainer = styled<{$top: string, $left: string}>(
+const ViolationContainer = styled<{ $top: string, $left: string }>(
   'div',
-  ({$theme, $top, $left}) => {
+  ({ $theme, $top, $left }) => {
     return {
       backgroundColor: $theme.colors.mono100,
       boxShadow: $theme.lighting.shadow600,
@@ -51,11 +51,11 @@ const ViolationContainer = styled<{$top: string, $left: string}>(
       top: $top,
       left: $left,
     };
-  },
+  }
 );
 
 function Violation(props: ViolationPropsT) {
-  const [offset, setOffset] = React.useState({top: 0, left: 0});
+  const [offset, setOffset] = React.useState({ top: 0, left: 0 });
   const [anchor, setAnchor] = React.useState(null);
   const [popper, setPopper] = React.useState(null);
   const [isHovered, setIsHovered] = React.useState(false);
@@ -69,10 +69,7 @@ function Violation(props: ViolationPropsT) {
     if (node) {
       setAnchor(node);
 
-      node.setAttribute(
-        'style',
-        `border: solid 1px ${theme.colors.negative300};`,
-      );
+      node.setAttribute('style', `border: solid 1px ${theme.colors.negative300};`);
 
       node.addEventListener('mouseenter', handleMouseEnter);
       node.addEventListener('mouseleave', handleMouseLeave);
@@ -111,7 +108,7 @@ function Violation(props: ViolationPropsT) {
   );
 }
 
-export default function A11y(props: {children: React.Node}) {
+export default function A11y(props: { children: React.Node }) {
   const [violations, setViolations] = React.useState([]);
   const [idleID, setIdleID] = React.useState(null);
   const child = React.useRef(null);

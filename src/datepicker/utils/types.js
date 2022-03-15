@@ -16,13 +16,13 @@ type DateFunc<T> = (DateInput<T> | void) => T;
 
 export type AdapterOptions = {
   locale?: mixed,
-  formats?: {[key: string]: string},
+  formats?: { [key: string]: string },
   instance?: mixed,
 };
 
 export type DateIOAdapter<T> = {
   locale?: mixed,
-  formats: {[key: string]: string},
+  formats: { [key: string]: string },
   date: DateFunc<T>,
   toJsDate(value: DateInput<T>): Date,
   parse(value: string, format: string): T,

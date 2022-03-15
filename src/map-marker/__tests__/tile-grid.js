@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {useStyletron} from '../../styles/index.js';
-import {LabelSmall} from '../../typography/index.js';
-import {Block} from '../../block/index.js';
+import { useStyletron } from '../../styles/index.js';
+import { LabelSmall } from '../../typography/index.js';
+import { Block } from '../../block/index.js';
 
 type TileGridPropsT = {
   // flowlint-next-line unclear-type:off
@@ -17,10 +17,10 @@ type TileGridPropsT = {
   cols: number,
 };
 
-const TileGrid = ({children, customizerOptions, cols}: TileGridPropsT) => {
+const TileGrid = ({ children, customizerOptions, cols }: TileGridPropsT) => {
   const [, theme] = useStyletron();
   const {
-    colors: {contentSecondary},
+    colors: { contentSecondary },
   } = theme;
 
   return (
@@ -36,28 +36,14 @@ const TileGrid = ({children, customizerOptions, cols}: TileGridPropsT) => {
         </Block>
       )}
 
-      <Block
-        display="grid"
-        gridTemplateColumns={`repeat(${cols}, 1fr)`}
-        gridGap="20px"
-      >
+      <Block display="grid" gridTemplateColumns={`repeat(${cols}, 1fr)`} gridGap="20px">
         {children &&
           children.map((node, index) => {
-            const {id: label, content} = node;
+            const { id: label, content } = node;
             return (
-              <Block
-                display="flex"
-                flexDirection="column"
-                height="150px"
-                key={index}
-              >
+              <Block display="flex" flexDirection="column" height="150px" key={index}>
                 <LabelSmall color={contentSecondary}>{label}</LabelSmall>
-                <Block
-                  alignItems="center"
-                  justifyContent="center"
-                  flex="1"
-                  display="flex"
-                >
+                <Block alignItems="center" justifyContent="center" flex="1" display="flex">
                   {content}
                 </Block>
               </Block>

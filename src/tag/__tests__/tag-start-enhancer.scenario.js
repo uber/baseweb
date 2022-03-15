@@ -7,9 +7,9 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* global alert */
 import * as React from 'react';
-import {Upload} from '../../icon/index.js';
-import {useStyletron} from '../../styles/index.js';
-import {Tag, KIND, SIZE, VARIANT} from '../index.js';
+import { Upload } from '../../icon/index.js';
+import { useStyletron } from '../../styles/index.js';
+import { Tag, KIND, SIZE, VARIANT } from '../index.js';
 
 const customColor = '#26c6da';
 
@@ -32,71 +32,61 @@ export function Scenario() {
       </div>
 
       {/* SEMANTIC TAGS */}
-      {[
-        KIND.neutral,
-        KIND.primary,
-        KIND.accent,
-        KIND.positive,
-        KIND.negative,
-        KIND.warning,
-      ].map((kind) => (
-        <div key={kind} className={css({display: 'flex'})}>
-          <div className={css({marginRight: '20px'})}>
-            <Tag
-              startEnhancer={() => <Upload />}
-              kind={kind}
-              onClick={() => alert('click')}
-              closeable={false}
-            >
-              Label
-            </Tag>
-            <Tag
-              startEnhancer={() => <Upload />}
-              kind={kind}
-              onClick={() => alert('click')}
-              closeable={false}
-              variant={VARIANT.solid}
-            >
-              Label
-            </Tag>
-            <Tag
-              startEnhancer={() => <Upload />}
-              kind={kind}
-              disabled
-              closeable={false}
-            >
-              Label
-            </Tag>
+      {[KIND.neutral, KIND.primary, KIND.accent, KIND.positive, KIND.negative, KIND.warning].map(
+        (kind) => (
+          <div key={kind} className={css({ display: 'flex' })}>
+            <div className={css({ marginRight: '20px' })}>
+              <Tag
+                startEnhancer={() => <Upload />}
+                kind={kind}
+                onClick={() => alert('click')}
+                closeable={false}
+              >
+                Label
+              </Tag>
+              <Tag
+                startEnhancer={() => <Upload />}
+                kind={kind}
+                onClick={() => alert('click')}
+                closeable={false}
+                variant={VARIANT.solid}
+              >
+                Label
+              </Tag>
+              <Tag startEnhancer={() => <Upload />} kind={kind} disabled closeable={false}>
+                Label
+              </Tag>
+            </div>
+            <div>
+              <Tag
+                startEnhancer={() => <Upload />}
+                kind={kind}
+                onClick={() => alert('click')}
+                onActionClick={() => alert('action')}
+              >
+                Label
+              </Tag>
+              <Tag
+                startEnhancer={() => <Upload />}
+                kind={kind}
+                variant={VARIANT.solid}
+                onClick={() => alert('click')}
+                onActionClick={() => alert('action')}
+              >
+                Label
+              </Tag>
+              <Tag
+                startEnhancer={() => <Upload />}
+                kind={kind}
+                disabled
+                onActionClick={() => alert('action')}
+              >
+                Label
+              </Tag>
+            </div>
           </div>
-          <div>
-            <Tag
-              startEnhancer={() => <Upload />}
-              kind={kind}
-              onClick={() => alert('click')}
-              onActionClick={() => alert('action')}
-            >
-              Label
-            </Tag>
-            <Tag
-              startEnhancer={() => <Upload />}
-              kind={kind}
-              variant={VARIANT.solid}
-              onClick={() => alert('click')}
-              onActionClick={() => alert('action')}
-            >
-              Label
-            </Tag>
-            <Tag
-              startEnhancer={() => <Upload />}
-              kind={kind}
-              disabled
-              onActionClick={() => alert('action')}
-            >
-              Label
-            </Tag>
-          </div>
-        </div>
-      ))}
+        )
+      )}
 
       <br />
       {/* PRIMITIVE TAGS */}
@@ -110,8 +100,8 @@ export function Scenario() {
         KIND.purple,
         KIND.brown,
       ].map((kind) => (
-        <div key={kind} className={css({display: 'flex'})}>
-          <div className={css({marginRight: '20px'})}>
+        <div key={kind} className={css({ display: 'flex' })}>
+          <div className={css({ marginRight: '20px' })}>
             <Tag
               startEnhancer={() => <Upload />}
               kind={kind}
@@ -129,12 +119,7 @@ export function Scenario() {
             >
               Label
             </Tag>
-            <Tag
-              startEnhancer={() => <Upload />}
-              kind={kind}
-              disabled
-              closeable={false}
-            >
+            <Tag startEnhancer={() => <Upload />} kind={kind} disabled closeable={false}>
               Label
             </Tag>
           </div>
@@ -170,12 +155,8 @@ export function Scenario() {
 
       <br />
       {/* CUSTOM TAG */}
-      <div
-        key={KIND.custom}
-        color={customColor}
-        className={css({display: 'flex'})}
-      >
-        <div className={css({marginRight: '20px'})}>
+      <div key={KIND.custom} color={customColor} className={css({ display: 'flex' })}>
+        <div className={css({ marginRight: '20px' })}>
           <Tag
             startEnhancer={() => <Upload />}
             kind={KIND.custom}

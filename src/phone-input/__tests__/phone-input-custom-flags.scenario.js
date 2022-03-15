@@ -8,11 +8,11 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {PhoneInput, COUNTRIES, StyledFlag} from '../../phone-input/index.js';
-import type {CountryIsoT} from '../../phone-input/index.js';
+import { PhoneInput, COUNTRIES, StyledFlag } from '../../phone-input/index.js';
+import type { CountryIsoT } from '../../phone-input/index.js';
 
-function CustomFlag(props: {children: React.Node, $iso: CountryIsoT}) {
-  const {children, ...rest} = props;
+function CustomFlag(props: { children: React.Node, $iso: CountryIsoT }) {
+  const { children, ...rest } = props;
   //$FlowExpectedError[cannot-spread-inexact]
   return <StyledFlag iso={props.$iso} {...rest} />;
 }

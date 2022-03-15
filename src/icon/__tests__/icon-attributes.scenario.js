@@ -8,14 +8,14 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {ThemeProvider} from '../../styles/index.js';
-import {createLightTheme, lightThemePrimitives} from '../../themes/index.js';
+import { ThemeProvider } from '../../styles/index.js';
+import { createLightTheme, lightThemePrimitives } from '../../themes/index.js';
 import Upload from '../upload.js';
 import Check from '../check.js';
 
 // Simulate roughly how our own icons are distributed
 const Triangle = React.forwardRef((props, ref) => {
-  const {title, size = '1em', ...restProps} = props;
+  const { title, size = '1em', ...restProps } = props;
   return (
     <svg
       width={size}
@@ -52,7 +52,7 @@ export function Scenario() {
       <Check
         overrides={{
           Svg: {
-            style: {fill: 'red', height: '100px', width: '100px'},
+            style: { fill: 'red', height: '100px', width: '100px' },
           },
         }}
       />

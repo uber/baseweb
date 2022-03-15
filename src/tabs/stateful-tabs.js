@@ -7,17 +7,10 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import Tabs from './tabs.js';
-import {STATE_CHANGE_TYPE} from './constants.js';
-import type {
-  StatefulTabsPropsT,
-  StatefulTabsStateT,
-  StateChangeTypeT,
-} from './types.js';
+import { STATE_CHANGE_TYPE } from './constants.js';
+import type { StatefulTabsPropsT, StatefulTabsStateT, StateChangeTypeT } from './types.js';
 
-export default class StatefulTabs extends React.Component<
-  StatefulTabsPropsT,
-  StatefulTabsStateT,
-> {
+export default class StatefulTabs extends React.Component<StatefulTabsPropsT, StatefulTabsStateT> {
   static defaultProps: $Shape<StatefulTabsPropsT> = {
     disabled: false,
     onChange: () => {},
@@ -34,32 +27,23 @@ export default class StatefulTabs extends React.Component<
   };
 
   internalSetState(type: StateChangeTypeT, changes: StatefulTabsStateT) {
-    const {stateReducer, onChange} = this.props;
+    const { stateReducer, onChange } = this.props;
     const newState = stateReducer(type, changes, this.state);
     this.setState(newState);
     typeof onChange === 'function' && onChange(newState);
   }
 
   getInitialKey() {
-    const {initialState, children} = this.props;
+    const { initialState, children } = this.props;
     if (initialState && initialState.activeKey) {
       return initialState.activeKey;
     } else {
-      return React.Children.map(
-        children,
-        (child, index) => child.key || String(index),
-      )[0];
+      return React.Children.map(children, (child, index) => child.key || String(index))[0];
     }
   }
 
   render() {
-    const {initialState, stateReducer, ...restProps} = this.props;
-    return (
-      <Tabs
-        {...restProps}
-        activeKey={this.state.activeKey}
-        onChange={this.onTabChange}
-      />
-    );
+    const { initialState, stateReducer, ...restProps } = this.props;
+    return <Tabs {...restProps} activeKey={this.state.activeKey} onChange={this.onTabChange} />;
   }
 }

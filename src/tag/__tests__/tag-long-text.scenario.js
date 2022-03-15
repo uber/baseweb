@@ -7,8 +7,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {Upload} from '../../icon/index.js';
-import {Tag} from '../index.js';
+import { Upload } from '../../icon/index.js';
+import { Tag } from '../index.js';
 
 export function Scenario() {
   return (

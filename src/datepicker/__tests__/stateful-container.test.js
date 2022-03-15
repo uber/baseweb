@@ -6,17 +6,13 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {render} from '@testing-library/react';
-import {StatefulContainer} from '../index.js';
+import { render } from '@testing-library/react';
+import { StatefulContainer } from '../index.js';
 
 describe('StatefulComponentContainer', () => {
   it('basic render', () => {
     const children = jest.fn(() => null);
-    render(
-      <StatefulContainer initialState={{value: new Date()}}>
-        {children}
-      </StatefulContainer>,
-    );
+    render(<StatefulContainer initialState={{ value: new Date() }}>{children}</StatefulContainer>);
     expect(children).toHaveBeenCalledTimes(1);
   });
 
@@ -28,10 +24,10 @@ describe('StatefulComponentContainer', () => {
       <StatefulContainer
         onDayMouseOver={onDayMouseOver}
         onDayMouseLeave={onDayMouseLeave}
-        initialState={{value: new Date(2019, 2, 10)}}
+        initialState={{ value: new Date(2019, 2, 10) }}
       >
         {children}
-      </StatefulContainer>,
+      </StatefulContainer>
     );
     expect(children.mock.calls[0][0].onDayMouseOver).toEqual(onDayMouseOver);
     expect(children.mock.calls[0][0].onDayMouseLeave).toEqual(onDayMouseLeave);

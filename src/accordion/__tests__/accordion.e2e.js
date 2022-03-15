@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 /*eslint-env node*/
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
+const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
 
 const collapsed = '[aria-expanded=false]';
 const expanded = '[aria-expanded=true]';
@@ -25,16 +25,13 @@ describe('accordion', () => {
     await mount(page, 'accordion--accordion');
     await page.click(collapsed);
     await page.waitForSelector(expanded);
-    await expect(page).toMatchElement('li', {text: 'panel 1'});
+    await expect(page).toMatchElement('li', { text: 'panel 1' });
   });
 
   it('collapses once expanded title is clicked', async () => {
     await mount(page, 'accordion--accordion');
 
-    const initialCount = await page.$$eval(
-      collapsed,
-      (panels) => panels.length,
-    );
+    const initialCount = await page.$$eval(collapsed, (panels) => panels.length);
 
     await page.click(collapsed);
     await page.waitForSelector(expanded);

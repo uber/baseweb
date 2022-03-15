@@ -14,12 +14,7 @@ type PropT = {
 };
 
 const Bulb = (props: PropT) => (
-  <svg
-    width={props.size}
-    height={props.size}
-    viewBox="0 0 24 24"
-    aria-hidden="true"
-  >
+  <svg width={props.size} height={props.size} viewBox="0 0 24 24" aria-hidden="true">
     <g
       transform="matrix(
       1 0

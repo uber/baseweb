@@ -6,14 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import type {ResponsiveT, CSSLengthUnitT} from '../layout-grid/types.js';
+import type { ResponsiveT, CSSLengthUnitT } from '../layout-grid/types.js';
 
-export type Globals =
-  | '-moz-initial'
-  | 'inherit'
-  | 'initial'
-  | 'revert'
-  | 'unset';
+export type Globals = '-moz-initial' | 'inherit' | 'initial' | 'revert' | 'unset';
 export type LineStyle =
   | 'dashed'
   | 'dotted'

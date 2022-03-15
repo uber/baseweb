@@ -7,8 +7,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {Scenario as NavLongScenario} from './nav-long.scenario.js';
-import {Scenario as NavScenario} from './nav.scenario.js';
+import { Scenario as NavLongScenario } from './nav-long.scenario.js';
+import { Scenario as NavScenario } from './nav.scenario.js';
 
 export const NavLong = () => <NavLongScenario />;
 export const Nav = () => <NavScenario />;

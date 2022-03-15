@@ -6,28 +6,17 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {getOverrides} from '../helpers/overrides.js';
-import {dragShadowWidth} from './constants.js';
-import {
-  StyledDragShadow,
-  StyledDragShadowContainer,
-} from './styled-components.js';
-import type {DragShadowPropsT} from './types.js';
+import { getOverrides } from '../helpers/overrides.js';
+import { dragShadowWidth } from './constants.js';
+import { StyledDragShadow, StyledDragShadowContainer } from './styled-components.js';
+import type { DragShadowPropsT } from './types.js';
 
-const DragShadow = ({
-  background,
-  dragging,
-  height,
-  overrides = {},
-}: DragShadowPropsT) => {
+const DragShadow = ({ background, dragging, height, overrides = {} }: DragShadowPropsT) => {
   const [DragShadowContainer, dragShadowContainerProps] = getOverrides(
     overrides.DragShadowContainer,
-    StyledDragShadowContainer,
+    StyledDragShadowContainer
   );
-  const [DragShadow, dragShadowProps] = getOverrides(
-    overrides.DragShadow,
-    StyledDragShadow,
-  );
+  const [DragShadow, dragShadowProps] = getOverrides(overrides.DragShadow, StyledDragShadow);
 
   return (
     <DragShadowContainer
@@ -36,11 +25,7 @@ const DragShadow = ({
       $dragging={dragging}
       {...dragShadowContainerProps}
     >
-      <DragShadow
-        $width={dragShadowWidth}
-        $background={background}
-        {...dragShadowProps}
-      />
+      <DragShadow $width={dragShadowWidth} $background={background} {...dragShadowProps} />
     </DragShadowContainer>
   );
 };

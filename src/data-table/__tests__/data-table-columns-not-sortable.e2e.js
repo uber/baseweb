@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {mount} = require('../../../e2e/helpers');
+const { mount } = require('../../../e2e/helpers');
 
 const {
   TABLE_ROOT,
@@ -23,11 +23,7 @@ describe('data table non-sortable columns', () => {
     const index = 0;
     await mount(page, 'data-table--columns-not-sortable');
     await page.waitForSelector(TABLE_ROOT);
-    const before = await getCellContentsAtColumnIndex(
-      page,
-      COLUMN_COUNT,
-      index,
-    );
+    const before = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
     expect(matchArrayElements(before, ['T', 'F', 'T', 'F'])).toBe(true);
 
     await sortColumnAtIndex(page, index);

@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 /* global window */
 
-const {mount} = require('../../../e2e/helpers');
+const { mount } = require('../../../e2e/helpers');
 
 describe('popover scroll', () => {
   it('should maintain scroll position after not-focus-locked open', async () => {

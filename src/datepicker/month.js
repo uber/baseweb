@@ -7,12 +7,12 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import Week from './week.js';
-import {StyledMonth} from './styled-components.js';
+import { StyledMonth } from './styled-components.js';
 import dateFnsAdapter from './utils/date-fns-adapter.js';
 import DateHelpers from './utils/date-helpers.js';
-import {getOverrides} from '../helpers/overrides.js';
-import type {MonthPropsT} from './types.js';
-import {DENSITY} from './constants.js';
+import { getOverrides } from '../helpers/overrides.js';
+import type { MonthPropsT } from './types.js';
+import { DENSITY } from './constants.js';
 
 const defaultProps = {
   dateLabel: null,
@@ -38,9 +38,7 @@ const defaultProps = {
 
 const CALENDAR_MAX_ROWS = 6;
 
-export default class CalendarMonth<T = Date> extends React.Component<
-  MonthPropsT<T>,
-> {
+export default class CalendarMonth<T = Date> extends React.Component<MonthPropsT<T>> {
   static defaultProps = defaultProps;
 
   dateHelpers: DateHelpers<T>;
@@ -67,16 +65,14 @@ export default class CalendarMonth<T = Date> extends React.Component<
     const weeks = [];
     let currentWeekStart = this.dateHelpers.getStartOfWeek(
       this.dateHelpers.getStartOfMonth(this.getDateProp()),
-      this.props.locale,
+      this.props.locale
     );
     let i = 0;
     let isWithinMonth = true;
 
     while (
       isWithinMonth ||
-      (this.props.fixedHeight &&
-        this.props.peekNextMonth &&
-        i < CALENDAR_MAX_ROWS)
+      (this.props.fixedHeight && this.props.peekNextMonth && i < CALENDAR_MAX_ROWS)
     ) {
       weeks.push(
         <Week
@@ -106,7 +102,7 @@ export default class CalendarMonth<T = Date> extends React.Component<
           value={this.props.value}
           hasLockedBehavior={this.props.hasLockedBehavior}
           selectedInput={this.props.selectedInput}
-        />,
+        />
       );
       i++;
       currentWeekStart = this.dateHelpers.addWeeks(currentWeekStart, 1);
@@ -117,7 +113,7 @@ export default class CalendarMonth<T = Date> extends React.Component<
   };
 
   render() {
-    const {overrides = {}} = this.props;
+    const { overrides = {} } = this.props;
     const [Month, monthProps] = getOverrides(overrides.Month, StyledMonth);
     return <Month {...monthProps}>{this.renderWeeks()}</Month>;
   }

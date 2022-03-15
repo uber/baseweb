@@ -7,13 +7,9 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {Range} from 'react-range';
-import type {PropsT} from './types.js';
-import {
-  isFocusVisible as focusVisible,
-  forkFocus,
-  forkBlur,
-} from '../utils/focusVisible.js';
+import { Range } from 'react-range';
+import type { PropsT } from './types.js';
+import { isFocusVisible as focusVisible, forkFocus, forkBlur } from '../utils/focusVisible.js';
 import {
   Root as StyledRoot,
   Track as StyledTrack,
@@ -25,8 +21,8 @@ import {
   ThumbValue as StyledThumbValue,
   Mark as StyledMark,
 } from './styled-components.js';
-import {getOverrides} from '../helpers/overrides.js';
-import {ThemeContext} from '../styles/theme-provider.js';
+import { getOverrides } from '../helpers/overrides.js';
+import { ThemeContext } from '../styles/theme-provider.js';
 
 // value.length should not be bigger than two
 // because our design doesn't support more than
@@ -34,7 +30,7 @@ import {ThemeContext} from '../styles/theme-provider.js';
 const limitValue = (value: number[]) => {
   if (value.length > 2 || value.length === 0) {
     throw new Error(
-      'the value prop represents positions of thumbs, so its length can be only one or two',
+      'the value prop represents positions of thumbs, so its length can be only one or two'
     );
   }
   return value;
@@ -89,24 +85,12 @@ function Slider({
 
   const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
   const [Track, trackProps] = getOverrides(overrides.Track, StyledTrack);
-  const [InnerTrack, innerTrackProps] = getOverrides(
-    overrides.InnerTrack,
-    StyledInnerTrack,
-  );
+  const [InnerTrack, innerTrackProps] = getOverrides(overrides.InnerTrack, StyledInnerTrack);
   const [Thumb, thumbProps] = getOverrides(overrides.Thumb, StyledThumb);
-  const [InnerThumb, innerThumbProps] = getOverrides(
-    overrides.InnerThumb,
-    StyledInnerThumb,
-  );
-  const [ThumbValue, thumbValueProps] = getOverrides(
-    overrides.ThumbValue,
-    StyledThumbValue,
-  );
+  const [InnerThumb, innerThumbProps] = getOverrides(overrides.InnerThumb, StyledInnerThumb);
+  const [ThumbValue, thumbValueProps] = getOverrides(overrides.ThumbValue, StyledThumbValue);
   const [Tick, tickProps] = getOverrides(overrides.Tick, StyledTick);
-  const [TickBar, tickBarProps] = getOverrides(
-    overrides.TickBar,
-    StyledTickBar,
-  );
+  const [TickBar, tickBarProps] = getOverrides(overrides.TickBar, StyledTickBar);
   const [Mark, markProps] = getOverrides(overrides.Mark, StyledMark);
 
   return (
@@ -123,10 +107,10 @@ function Slider({
         max={max}
         values={value}
         disabled={disabled}
-        onChange={(value) => onChange({value})}
-        onFinalChange={(value) => onFinalChange({value})}
+        onChange={(value) => onChange({ value })}
+        onFinalChange={(value) => onFinalChange({ value })}
         rtl={theme.direction === 'rtl'}
-        renderTrack={({props, children, isDragged}) => (
+        renderTrack={({ props, children, isDragged }) => (
           <Track
             onMouseDown={props.onMouseDown}
             onTouchStart={props.onTouchStart}
@@ -144,13 +128,10 @@ function Slider({
             </InnerTrack>
           </Track>
         )}
-        renderThumb={({props, index, isDragged}) => {
+        renderThumb={({ props, index, isDragged }) => {
           const displayLabel = persistentThumb
             ? persistentThumb
-            : ((!!index && isHovered1) ||
-                (!index && isHovered0) ||
-                isDragged) &&
-              !disabled;
+            : ((!!index && isHovered1) || (!index && isHovered0) || isDragged) && !disabled;
           return (
             <Thumb
               {...props}
@@ -201,13 +182,8 @@ function Slider({
         {...(marks
           ? {
               // eslint-disable-next-line react/display-name
-              renderMark: ({props, index}) => (
-                <Mark
-                  $markIndex={index}
-                  {...props}
-                  {...sharedProps}
-                  {...markProps}
-                />
+              renderMark: ({ props, index }) => (
+                <Mark $markIndex={index} {...props} {...sharedProps} {...markProps} />
               ),
             }
           : {})}

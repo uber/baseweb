@@ -11,11 +11,11 @@ import ChevronLeft from '../icon/chevron-left.js';
 import ChevronDown from '../icon/chevron-down.js';
 import dateFnsAdapter from './utils/date-fns-adapter.js';
 import DateHelpers from './utils/date-helpers.js';
-import {getFilteredMonthItems} from './utils/calendar-header-helpers.js';
-import {StatefulMenu} from '../menu/index.js';
-import {Popover} from '../popover/index.js';
-import {LocaleContext} from '../locale/index.js';
-import {ThemeContext} from '../styles/theme-provider.js';
+import { getFilteredMonthItems } from './utils/calendar-header-helpers.js';
+import { StatefulMenu } from '../menu/index.js';
+import { Popover } from '../popover/index.js';
+import { LocaleContext } from '../locale/index.js';
+import { ThemeContext } from '../styles/theme-provider.js';
 import {
   StyledCalendarHeader,
   StyledMonthHeader,
@@ -25,14 +25,14 @@ import {
   StyledPrevButton,
   StyledWeekdayHeader,
 } from './styled-components.js';
-import {DENSITY, ORIENTATION, WEEKDAYS} from './constants.js';
-import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
-import type {HeaderPropsT} from './types.js';
-import type {LocaleT} from '../locale/types.js';
-import type {ThemeT} from '../styles/types.js';
-import {forkBlur, forkFocus, isFocusVisible} from '../utils/focusVisible.js';
+import { DENSITY, ORIENTATION, WEEKDAYS } from './constants.js';
+import { getOverrides, mergeOverrides } from '../helpers/overrides.js';
+import type { HeaderPropsT } from './types.js';
+import type { LocaleT } from '../locale/types.js';
+import type { ThemeT } from '../styles/types.js';
+import { forkBlur, forkFocus, isFocusVisible } from '../utils/focusVisible.js';
 
-const navBtnStyle = ({$theme}) => ({
+const navBtnStyle = ({ $theme }) => ({
   cursor: 'pointer',
 });
 
@@ -56,7 +56,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
     isMonthDropdownOpen: boolean,
     isYearDropdownOpen: boolean,
     isFocusVisible: boolean,
-  },
+  }
 > {
   static defaultProps = {
     adapter: dateFnsAdapter,
@@ -68,8 +68,8 @@ export default class CalendarHeader<T = Date> extends React.Component<
   };
 
   dateHelpers: DateHelpers<T>;
-  monthItems: Array<{id: string, label: string, disabled?: boolean}>;
-  yearItems: Array<{id: string, label: string, disabled?: boolean}>;
+  monthItems: Array<{ id: string, label: string, disabled?: boolean }>;
+  yearItems: Array<{ id: string, label: string, disabled?: boolean }>;
 
   constructor(props: HeaderPropsT<T>) {
     super(props);
@@ -92,12 +92,10 @@ export default class CalendarHeader<T = Date> extends React.Component<
 
   componentDidUpdate(prevProps: HeaderPropsT<T>) {
     const selectedMonthDidChange =
-      this.dateHelpers.getMonth(this.props.date) !==
-      this.dateHelpers.getMonth(prevProps.date);
+      this.dateHelpers.getMonth(this.props.date) !== this.dateHelpers.getMonth(prevProps.date);
 
     const selectedYearDidChange =
-      this.dateHelpers.getYear(this.props.date) !==
-      this.dateHelpers.getYear(prevProps.date);
+      this.dateHelpers.getYear(this.props.date) !== this.dateHelpers.getYear(prevProps.date);
 
     if (selectedMonthDidChange) {
       // re-calculate yearItems
@@ -123,31 +121,23 @@ export default class CalendarHeader<T = Date> extends React.Component<
     const selectedMonth = this.dateHelpers.getMonth(date);
 
     // TODO: this logic can be optimized to only run when minDate / maxDate change
-    this.yearItems = Array.from(
-      {length: maxYear - minYear + 1},
-      (_, i) => minYear + i,
-    ).map((year) => ({id: year.toString(), label: year.toString()}));
-    const monthOfMaxDate = maxDate
-      ? this.dateHelpers.getMonth(maxDate)
-      : MAX_MONTH;
-    const monthOfMinDate = minDate
-      ? this.dateHelpers.getMonth(minDate)
-      : MIN_MONTH;
-    // Generates array like [0,1,.... monthOfMaxDate]
-    const maxYearMonths = Array.from({length: monthOfMaxDate + 1}, (x, i) => i);
-    // Generates array like [monthOfMinDate, ...., 10, 11]
-    const minYearMonths = Array.from(
-      {length: 12 - monthOfMinDate},
-      (x, i) => i + monthOfMinDate,
+    this.yearItems = Array.from({ length: maxYear - minYear + 1 }, (_, i) => minYear + i).map(
+      (year) => ({ id: year.toString(), label: year.toString() })
     );
+    const monthOfMaxDate = maxDate ? this.dateHelpers.getMonth(maxDate) : MAX_MONTH;
+    const monthOfMinDate = minDate ? this.dateHelpers.getMonth(minDate) : MIN_MONTH;
+    // Generates array like [0,1,.... monthOfMaxDate]
+    const maxYearMonths = Array.from({ length: monthOfMaxDate + 1 }, (x, i) => i);
+    // Generates array like [monthOfMinDate, ...., 10, 11]
+    const minYearMonths = Array.from({ length: 12 - monthOfMinDate }, (x, i) => i + monthOfMinDate);
 
     if (selectedMonth > maxYearMonths[maxYearMonths.length - 1]) {
       const lastIdx = this.yearItems.length - 1;
-      this.yearItems[lastIdx] = {...this.yearItems[lastIdx], disabled: true};
+      this.yearItems[lastIdx] = { ...this.yearItems[lastIdx], disabled: true };
     }
 
     if (selectedMonth < minYearMonths[0]) {
-      this.yearItems[0] = {...this.yearItems[0], disabled: true};
+      this.yearItems[0] = { ...this.yearItems[0], disabled: true };
     }
   };
 
@@ -159,24 +149,17 @@ export default class CalendarHeader<T = Date> extends React.Component<
     const maxYear = maxDate ? this.dateHelpers.getYear(maxDate) : MAX_YEAR;
     const minYear = minDate ? this.dateHelpers.getYear(minDate) : MIN_YEAR;
 
-    const monthOfMaxDate = maxDate
-      ? this.dateHelpers.getMonth(maxDate)
-      : MAX_MONTH;
+    const monthOfMaxDate = maxDate ? this.dateHelpers.getMonth(maxDate) : MAX_MONTH;
     // Generates array like [0,1,.... monthOfMaxDate]
-    const maxYearMonths = Array.from({length: monthOfMaxDate + 1}, (x, i) => i);
+    const maxYearMonths = Array.from({ length: monthOfMaxDate + 1 }, (x, i) => i);
 
-    const monthOfMinDate = minDate
-      ? this.dateHelpers.getMonth(minDate)
-      : MIN_MONTH;
+    const monthOfMinDate = minDate ? this.dateHelpers.getMonth(minDate) : MIN_MONTH;
 
     // Generates array like [monthOfMinDate, ...., 10, 11]
-    const minYearMonths = Array.from(
-      {length: 12 - monthOfMinDate},
-      (x, i) => i + monthOfMinDate,
-    );
+    const minYearMonths = Array.from({ length: 12 - monthOfMinDate }, (x, i) => i + monthOfMinDate);
 
     const maxMinYearMonthsIntersection = maxYearMonths.filter((year) =>
-      minYearMonths.includes(year),
+      minYearMonths.includes(year)
     );
 
     const filterMonthsList =
@@ -188,8 +171,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
         ? minYearMonths
         : null;
 
-    const formatMonthLabel = (month) =>
-      this.dateHelpers.getMonthInLocale(month, this.props.locale);
+    const formatMonthLabel = (month) => this.dateHelpers.getMonthInLocale(month, this.props.locale);
 
     this.monthItems = getFilteredMonthItems({
       filterMonthsList,
@@ -206,7 +188,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
           // in a multi-month context, `order` is the number months ahead of
           // the root Calendar month that this CalendarHeader displays. We account
           // for this by incrementing the month by 1, less the value of `order`.
-          1 - this.props.order,
+          1 - this.props.order
         ),
       });
     }
@@ -222,7 +204,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
   };
 
   isMultiMonthHorizontal = () => {
-    const {monthsShown, orientation} = this.props;
+    const { monthsShown, orientation } = this.props;
 
     if (!monthsShown) {
       return false;
@@ -232,7 +214,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
   };
 
   isHiddenPaginationButton = (direction: $Values<typeof DIRECTION>) => {
-    const {monthsShown, order} = this.props;
+    const { monthsShown, order } = this.props;
 
     if (!!monthsShown && this.isMultiMonthHorizontal()) {
       if (direction === DIRECTION.NEXT) {
@@ -249,38 +231,27 @@ export default class CalendarHeader<T = Date> extends React.Component<
 
   handleFocus = (event: SyntheticEvent<>) => {
     if (isFocusVisible(event)) {
-      this.setState({isFocusVisible: true});
+      this.setState({ isFocusVisible: true });
     }
   };
 
   handleBlur = (event: SyntheticEvent<>) => {
     if (this.state.isFocusVisible !== false) {
-      this.setState({isFocusVisible: false});
+      this.setState({ isFocusVisible: false });
     }
   };
 
-  renderPreviousMonthButton = ({
-    locale,
-    theme,
-  }: {
-    locale: LocaleT,
-    theme: ThemeT,
-  }) => {
+  renderPreviousMonthButton = ({ locale, theme }: { locale: LocaleT, theme: ThemeT }) => {
     const date = this.getDateProp();
-    const {overrides = {}, density} = this.props;
-    const allPrevDaysDisabled = this.dateHelpers.monthDisabledBefore(
-      date,
-      this.props,
-    );
+    const { overrides = {}, density } = this.props;
+    const allPrevDaysDisabled = this.dateHelpers.monthDisabledBefore(date, this.props);
 
     let isDisabled = false;
     if (allPrevDaysDisabled) {
       isDisabled = true;
     }
     const nextMonth = this.dateHelpers.subMonths(date, 1);
-    const minYear = this.props.minDate
-      ? this.dateHelpers.getYear(this.props.minDate)
-      : MIN_YEAR;
+    const minYear = this.props.minDate ? this.dateHelpers.getYear(this.props.minDate) : MIN_YEAR;
     if (this.dateHelpers.getYear(nextMonth) < minYear) {
       isDisabled = true;
     }
@@ -290,13 +261,10 @@ export default class CalendarHeader<T = Date> extends React.Component<
       isDisabled = true;
     }
 
-    const [PrevButton, prevButtonProps] = getOverrides(
-      overrides.PrevButton,
-      StyledPrevButton,
-    );
+    const [PrevButton, prevButtonProps] = getOverrides(overrides.PrevButton, StyledPrevButton);
     const [PrevButtonIcon, prevButtonIconProps] = getOverrides(
       overrides.PrevButtonIcon,
-      theme.direction === 'rtl' ? ChevronRight : ChevronLeft,
+      theme.direction === 'rtl' ? ChevronRight : ChevronLeft
     );
     let clickHandler = this.decreaseMonth;
     if (allPrevDaysDisabled) {
@@ -317,7 +285,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
         {isHidden ? null : (
           <PrevButtonIcon
             size={density === DENSITY.high ? 24 : 36}
-            overrides={{Svg: {style: navBtnStyle}}}
+            overrides={{ Svg: { style: navBtnStyle } }}
             {...prevButtonIconProps}
           />
         )}
@@ -325,28 +293,17 @@ export default class CalendarHeader<T = Date> extends React.Component<
     );
   };
 
-  renderNextMonthButton = ({
-    locale,
-    theme,
-  }: {
-    locale: LocaleT,
-    theme: ThemeT,
-  }) => {
+  renderNextMonthButton = ({ locale, theme }: { locale: LocaleT, theme: ThemeT }) => {
     const date = this.getDateProp();
-    const {overrides = {}, density} = this.props;
-    const allNextDaysDisabled = this.dateHelpers.monthDisabledAfter(
-      date,
-      this.props,
-    );
+    const { overrides = {}, density } = this.props;
+    const allNextDaysDisabled = this.dateHelpers.monthDisabledAfter(date, this.props);
 
     let isDisabled = false;
     if (allNextDaysDisabled) {
       isDisabled = true;
     }
     const nextMonth = this.dateHelpers.addMonths(date, 1);
-    const maxYear = this.props.maxDate
-      ? this.dateHelpers.getYear(this.props.maxDate)
-      : MAX_YEAR;
+    const maxYear = this.props.maxDate ? this.dateHelpers.getYear(this.props.maxDate) : MAX_YEAR;
     if (this.dateHelpers.getYear(nextMonth) > maxYear) {
       isDisabled = true;
     }
@@ -356,13 +313,10 @@ export default class CalendarHeader<T = Date> extends React.Component<
       isDisabled = true;
     }
 
-    const [NextButton, nextButtonProps] = getOverrides(
-      overrides.NextButton,
-      StyledNextButton,
-    );
+    const [NextButton, nextButtonProps] = getOverrides(overrides.NextButton, StyledNextButton);
     const [NextButtonIcon, nextButtonIconProps] = getOverrides(
       overrides.NextButtonIcon,
-      theme.direction === 'rtl' ? ChevronLeft : ChevronRight,
+      theme.direction === 'rtl' ? ChevronLeft : ChevronRight
     );
 
     let clickHandler = this.increaseMonth;
@@ -390,7 +344,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
         {isHidden ? null : (
           <NextButtonIcon
             size={density === DENSITY.high ? 24 : 36}
-            overrides={{Svg: {style: navBtnStyle}}}
+            overrides={{ Svg: { style: navBtnStyle } }}
             {...nextButtonIconProps}
           />
         )}
@@ -412,39 +366,38 @@ export default class CalendarHeader<T = Date> extends React.Component<
     const month = this.dateHelpers.getMonth(date);
     const year = this.dateHelpers.getYear(date);
 
-    const {locale, overrides = {}, density} = this.props;
+    const { locale, overrides = {}, density } = this.props;
     const [MonthYearSelectButton, monthYearSelectButtonProps] = getOverrides(
       overrides.MonthYearSelectButton,
-      StyledMonthYearSelectButton,
+      StyledMonthYearSelectButton
     );
-    const [MonthYearSelectIconContainer, monthYearSelectIconContainerProps] =
-      getOverrides(
-        overrides.MonthYearSelectIconContainer,
-        StyledMonthYearSelectIconContainer,
-      );
+    const [MonthYearSelectIconContainer, monthYearSelectIconContainerProps] = getOverrides(
+      overrides.MonthYearSelectIconContainer,
+      StyledMonthYearSelectIconContainer
+    );
     const [OverriddenPopover, popoverProps] = getOverrides(
       overrides.MonthYearSelectPopover,
-      Popover,
+      Popover
     );
     const [OverriddenStatefulMenu, menuProps] = getOverrides(
       overrides.MonthYearSelectStatefulMenu,
-      StatefulMenu,
+      StatefulMenu
     );
     menuProps.overrides = mergeOverrides(
-      {List: {style: {height: 'auto', maxHeight: '257px'}}},
-      menuProps && menuProps.overrides,
+      { List: { style: { height: 'auto', maxHeight: '257px' } } },
+      menuProps && menuProps.overrides
     );
 
     const initialMonthIndex = this.monthItems.findIndex(
-      (month) => month.id === this.dateHelpers.getMonth(date).toString(),
+      (month) => month.id === this.dateHelpers.getMonth(date).toString()
     );
     const initialYearIndex = this.yearItems.findIndex(
-      (year) => year.id === this.dateHelpers.getYear(date).toString(),
+      (year) => year.id === this.dateHelpers.getYear(date).toString()
     );
 
     const monthTitle = `${this.dateHelpers.getMonthInLocale(
       this.dateHelpers.getMonth(date),
-      locale,
+      locale
     )}`;
     const yearTitle = `${this.dateHelpers.getYear(date)}`;
 
@@ -463,8 +416,8 @@ export default class CalendarHeader<T = Date> extends React.Component<
               isMonthDropdownOpen: !prev.isMonthDropdownOpen,
             }));
           }}
-          onClickOutside={() => this.setState({isMonthDropdownOpen: false})}
-          onEsc={() => this.setState({isMonthDropdownOpen: false})}
+          onClickOutside={() => this.setState({ isMonthDropdownOpen: false })}
+          onEsc={() => this.setState({ isMonthDropdownOpen: false })}
           content={() => (
             <OverriddenStatefulMenu
               initialState={{
@@ -472,16 +425,15 @@ export default class CalendarHeader<T = Date> extends React.Component<
                 isFocused: true,
               }}
               items={this.monthItems}
-              onItemSelect={({item, event}) => {
+              onItemSelect={({ item, event }) => {
                 event.preventDefault();
                 const month = idToYearMonth(item.id);
                 const updatedDate = this.dateHelpers.set(date, {
                   year,
                   month,
                 });
-                this.props.onMonthChange &&
-                  this.props.onMonthChange({date: updatedDate});
-                this.setState({isMonthDropdownOpen: false});
+                this.props.onMonthChange && this.props.onMonthChange({ date: updatedDate });
+                this.setState({ isMonthDropdownOpen: false });
               }}
               {...menuProps}
             />
@@ -495,7 +447,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
             $density={density}
             onKeyUp={(event) => {
               if (this.canArrowsOpenDropdown(event)) {
-                this.setState({isMonthDropdownOpen: true});
+                this.setState({ isMonthDropdownOpen: true });
               }
             }}
             onKeyDown={(event) => {
@@ -505,18 +457,16 @@ export default class CalendarHeader<T = Date> extends React.Component<
               }
 
               if (event.key === 'Tab') {
-                this.setState({isMonthDropdownOpen: false});
+                this.setState({ isMonthDropdownOpen: false });
               }
             }}
             {...monthYearSelectButtonProps}
           >
             {monthTitle}
-            <MonthYearSelectIconContainer
-              {...monthYearSelectIconContainerProps}
-            >
+            <MonthYearSelectIconContainer {...monthYearSelectIconContainerProps}>
               <ChevronDown
                 title=""
-                overrides={{Svg: {props: {role: 'presentation'}}}}
+                overrides={{ Svg: { props: { role: 'presentation' } } }}
                 size={density === DENSITY.high ? 16 : 24}
               />
             </MonthYearSelectIconContainer>
@@ -533,8 +483,8 @@ export default class CalendarHeader<T = Date> extends React.Component<
               isYearDropdownOpen: !prev.isYearDropdownOpen,
             }));
           }}
-          onClickOutside={() => this.setState({isYearDropdownOpen: false})}
-          onEsc={() => this.setState({isYearDropdownOpen: false})}
+          onClickOutside={() => this.setState({ isYearDropdownOpen: false })}
+          onEsc={() => this.setState({ isYearDropdownOpen: false })}
           content={() => (
             <OverriddenStatefulMenu
               initialState={{
@@ -542,16 +492,15 @@ export default class CalendarHeader<T = Date> extends React.Component<
                 isFocused: true,
               }}
               items={this.yearItems}
-              onItemSelect={({item, event}) => {
+              onItemSelect={({ item, event }) => {
                 event.preventDefault();
                 const year = idToYearMonth(item.id);
                 const updatedDate = this.dateHelpers.set(date, {
                   year,
                   month,
                 });
-                this.props.onYearChange &&
-                  this.props.onYearChange({date: updatedDate});
-                this.setState({isYearDropdownOpen: false});
+                this.props.onYearChange && this.props.onYearChange({ date: updatedDate });
+                this.setState({ isYearDropdownOpen: false });
               }}
               {...menuProps}
             />
@@ -565,7 +514,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
             $density={density}
             onKeyUp={(event) => {
               if (this.canArrowsOpenDropdown(event)) {
-                this.setState({isYearDropdownOpen: true});
+                this.setState({ isYearDropdownOpen: true });
               }
             }}
             onKeyDown={(event) => {
@@ -575,18 +524,16 @@ export default class CalendarHeader<T = Date> extends React.Component<
               }
 
               if (event.key === 'Tab') {
-                this.setState({isYearDropdownOpen: false});
+                this.setState({ isYearDropdownOpen: false });
               }
             }}
             {...monthYearSelectButtonProps}
           >
             {yearTitle}
-            <MonthYearSelectIconContainer
-              {...monthYearSelectIconContainerProps}
-            >
+            <MonthYearSelectIconContainer {...monthYearSelectIconContainerProps}>
               <ChevronDown
                 title=""
-                overrides={{Svg: {props: {role: 'presentation'}}}}
+                overrides={{ Svg: { props: { role: 'presentation' } } }}
                 size={density === DENSITY.high ? 16 : 24}
               />
             </MonthYearSelectIconContainer>
@@ -597,24 +544,18 @@ export default class CalendarHeader<T = Date> extends React.Component<
   };
 
   render() {
-    const {overrides = {}, density} = this.props;
+    const { overrides = {}, density } = this.props;
     const [CalendarHeader, calendarHeaderProps] = getOverrides(
       overrides.CalendarHeader,
-      StyledCalendarHeader,
+      StyledCalendarHeader
     );
-    const [MonthHeader, monthHeaderProps] = getOverrides(
-      overrides.MonthHeader,
-      StyledMonthHeader,
-    );
+    const [MonthHeader, monthHeaderProps] = getOverrides(overrides.MonthHeader, StyledMonthHeader);
     const [WeekdayHeader, weekdayHeaderProps] = getOverrides(
       overrides.WeekdayHeader,
-      StyledWeekdayHeader,
+      StyledWeekdayHeader
     );
 
-    const startOfWeek = this.dateHelpers.getStartOfWeek(
-      this.getDateProp(),
-      this.props.locale,
-    );
+    const startOfWeek = this.dateHelpers.getStartOfWeek(this.getDateProp(), this.props.locale);
     return (
       <ThemeContext.Consumer>
         {(theme) => (
@@ -632,7 +573,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
                     theme,
                   })}
                   {this.renderMonthYearDropdown()}
-                  {this.renderNextMonthButton({locale, theme})}
+                  {this.renderNextMonthButton({ locale, theme })}
                 </CalendarHeader>
                 <MonthHeader role="presentation" {...monthHeaderProps}>
                   {WEEKDAYS.map((offset) => {
@@ -640,17 +581,11 @@ export default class CalendarHeader<T = Date> extends React.Component<
                     return (
                       <WeekdayHeader
                         key={offset}
-                        alt={this.dateHelpers.getWeekdayInLocale(
-                          day,
-                          this.props.locale,
-                        )}
+                        alt={this.dateHelpers.getWeekdayInLocale(day, this.props.locale)}
                         {...weekdayHeaderProps}
                         $density={density}
                       >
-                        {this.dateHelpers.getWeekdayMinInLocale(
-                          day,
-                          this.props.locale,
-                        )}
+                        {this.dateHelpers.getWeekdayMinInLocale(day, this.props.locale)}
                       </WeekdayHeader>
                     );
                   })}

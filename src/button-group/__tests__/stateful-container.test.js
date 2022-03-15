@@ -7,9 +7,9 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {render, fireEvent} from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 
-import {StatefulContainer, MODE} from '../index.js';
+import { StatefulContainer, MODE } from '../index.js';
 
 describe('ButtonGroup StatefulContainer', () => {
   it('provides expected props to children render function', () => {
@@ -23,10 +23,10 @@ describe('ButtonGroup StatefulContainer', () => {
 
   it('calls provided click handler', () => {
     const onClick = jest.fn();
-    const {container} = render(
+    const { container } = render(
       <StatefulContainer onClick={onClick}>
         {(childProps) => <div {...childProps}>children</div>}
-      </StatefulContainer>,
+      </StatefulContainer>
     );
     const div = container.querySelector('div');
     if (div) {
@@ -38,10 +38,10 @@ describe('ButtonGroup StatefulContainer', () => {
   it('does not call state reducer if mode is not set', () => {
     const onClick = jest.fn();
     const stateReducer = jest.fn();
-    const {container} = render(
+    const { container } = render(
       <StatefulContainer onClick={onClick} stateReducer={stateReducer}>
         {(childProps) => <div {...childProps}>children</div>}
-      </StatefulContainer>,
+      </StatefulContainer>
     );
     const div = container.querySelector('div');
     if (div) {
@@ -53,14 +53,10 @@ describe('ButtonGroup StatefulContainer', () => {
   it('calls state reducer if mode is set', () => {
     const onClick = jest.fn();
     const stateReducer = jest.fn();
-    const {container} = render(
-      <StatefulContainer
-        mode={MODE.radio}
-        onClick={onClick}
-        stateReducer={stateReducer}
-      >
+    const { container } = render(
+      <StatefulContainer mode={MODE.radio} onClick={onClick} stateReducer={stateReducer}>
         {(childProps) => <div {...childProps}>children</div>}
-      </StatefulContainer>,
+      </StatefulContainer>
     );
     const div = container.querySelector('div');
     if (div) {

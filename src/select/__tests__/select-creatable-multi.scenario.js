@@ -8,17 +8,17 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {StatefulSelect} from '../index.js';
+import { StatefulSelect } from '../index.js';
 
 export function Scenario() {
   return (
     <StatefulSelect
       creatable
       multi
-      options={[{id: 'Portland', label: 'Portland'}]}
+      options={[{ id: 'Portland', label: 'Portland' }]}
       labelKey="label"
       valueKey="id"
-      overrides={{ValueContainer: {props: {'data-id': 'selected'}}}}
+      overrides={{ ValueContainer: { props: { 'data-id': 'selected' } } }}
     />
   );
 }

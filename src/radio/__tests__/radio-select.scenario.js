@@ -8,10 +8,10 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {StatefulRadioGroup, Radio, ALIGN} from '../index.js';
+import { StatefulRadioGroup, Radio, ALIGN } from '../index.js';
 
-import {FormControl} from '../../form-control/index.js';
-import {Select} from '../../select/index.js';
+import { FormControl } from '../../form-control/index.js';
+import { Select } from '../../select/index.js';
 
 export function Scenario() {
   return (

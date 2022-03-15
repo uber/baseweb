@@ -8,11 +8,11 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Button} from '../../button/index.js';
+import { Button } from '../../button/index.js';
 import Check from '../../icon/check.js';
 import ChevronRight from '../../icon/chevron-right.js';
 import Search from '../../icon/search.js';
-import {ListItem, ListItemLabel, ARTWORK_SIZES, SHAPE} from '../index.js';
+import { ListItem, ListItemLabel, ARTWORK_SIZES, SHAPE } from '../index.js';
 
 export function Scenario() {
   return (
@@ -75,7 +75,7 @@ export function Scenario() {
             <Button shape="round" size="compact" kind="secondary">
               <Check />
             </Button>
-            <div style={{width: '18px'}} />
+            <div style={{ width: '18px' }} />
             <Button shape="round" size="compact" kind="secondary">
               <Check />
             </Button>
@@ -92,7 +92,7 @@ export function Scenario() {
             <Button shape="round" size="compact" kind="secondary">
               <Check />
             </Button>
-            <div style={{width: '18px'}} />
+            <div style={{ width: '18px' }} />
             <Button shape="round" size="compact" kind="secondary">
               <Check />
             </Button>
@@ -108,7 +108,7 @@ export function Scenario() {
             <Button shape="round" size="compact" kind="secondary">
               <Check />
             </Button>
-            <div style={{width: '18px'}} />
+            <div style={{ width: '18px' }} />
             <Button shape="round" size="compact" kind="secondary">
               <Check />
             </Button>
@@ -125,7 +125,7 @@ export function Scenario() {
             <Button shape="round" size="compact" kind="secondary">
               <Check />
             </Button>
-            <div style={{width: '18px'}} />
+            <div style={{ width: '18px' }} />
             <Button shape="round" size="compact" kind="secondary">
               <Check />
             </Button>
@@ -170,10 +170,7 @@ export function Scenario() {
       >
         <ListItemLabel>Label</ListItemLabel>
       </ListItem>
-      <ListItem
-        artwork={Search}
-        endEnhancer={() => <ListItemLabel>Label</ListItemLabel>}
-      >
+      <ListItem artwork={Search} endEnhancer={() => <ListItemLabel>Label</ListItemLabel>}>
         <ListItemLabel>Label</ListItemLabel>
       </ListItem>
       <ListItem
@@ -251,7 +248,7 @@ export function Scenario() {
             <Button shape="round" size="compact" kind="secondary">
               <Check />
             </Button>
-            <div style={{width: '18px'}} />
+            <div style={{ width: '18px' }} />
             <Button shape="round" size="compact" kind="secondary">
               <Check />
             </Button>
@@ -268,7 +265,7 @@ export function Scenario() {
             <Button shape="round" size="compact" kind="secondary">
               <Check />
             </Button>
-            <div style={{width: '18px'}} />
+            <div style={{ width: '18px' }} />
             <Button shape="round" size="compact" kind="secondary">
               <Check />
             </Button>
@@ -284,7 +281,7 @@ export function Scenario() {
             <Button shape="round" size="compact" kind="secondary">
               <Check />
             </Button>
-            <div style={{width: '18px'}} />
+            <div style={{ width: '18px' }} />
             <Button shape="round" size="compact" kind="secondary">
               <Check />
             </Button>
@@ -301,7 +298,7 @@ export function Scenario() {
             <Button shape="round" size="compact" kind="secondary">
               <Check />
             </Button>
-            <div style={{width: '18px'}} />
+            <div style={{ width: '18px' }} />
             <Button shape="round" size="compact" kind="secondary">
               <Check />
             </Button>
@@ -336,36 +333,26 @@ export function Scenario() {
 
       {/* ---------------------------------------- */}
 
-      <ListItem
-        endEnhancer={() => (
-          <ListItemLabel description="description">Label</ListItemLabel>
-        )}
-      >
+      <ListItem endEnhancer={() => <ListItemLabel description="description">Label</ListItemLabel>}>
         <ListItemLabel description="description">Label</ListItemLabel>
       </ListItem>
       <ListItem
         artwork={Search}
         artworkSize={ARTWORK_SIZES.SMALL}
-        endEnhancer={() => (
-          <ListItemLabel description="description">Label</ListItemLabel>
-        )}
+        endEnhancer={() => <ListItemLabel description="description">Label</ListItemLabel>}
       >
         <ListItemLabel description="description">Label</ListItemLabel>
       </ListItem>
       <ListItem
         artwork={Search}
-        endEnhancer={() => (
-          <ListItemLabel description="description">Label</ListItemLabel>
-        )}
+        endEnhancer={() => <ListItemLabel description="description">Label</ListItemLabel>}
       >
         <ListItemLabel description="description">Label</ListItemLabel>
       </ListItem>
       <ListItem
         artwork={Search}
         artworkSize={ARTWORK_SIZES.LARGE}
-        endEnhancer={() => (
-          <ListItemLabel description="description">Label</ListItemLabel>
-        )}
+        endEnhancer={() => <ListItemLabel description="description">Label</ListItemLabel>}
       >
         <ListItemLabel description="description">Label</ListItemLabel>
       </ListItem>
@@ -412,10 +399,7 @@ export function Scenario() {
 
       {/* ---------------------------------------- */}
 
-      <ListItem
-        endEnhancer={() => <ListItemLabel sublist>Label</ListItemLabel>}
-        sublist
-      >
+      <ListItem endEnhancer={() => <ListItemLabel sublist>Label</ListItemLabel>} sublist>
         <ListItemLabel sublist>Label</ListItemLabel>
       </ListItem>
       <ListItem
@@ -464,7 +448,7 @@ export function Scenario() {
         shape={SHAPE.ROUND}
         overrides={{
           Root: {
-            style: ({$theme}) => ({
+            style: ({ $theme }) => ({
               backgroundColor: $theme.colors.warning200,
             }),
           },
@@ -478,7 +462,7 @@ export function Scenario() {
         endEnhancer={() => <ListItemLabel>Default Shape</ListItemLabel>}
         overrides={{
           Root: {
-            style: ({$theme}) => ({
+            style: ({ $theme }) => ({
               backgroundColor: $theme.colors.warning200,
             }),
           },

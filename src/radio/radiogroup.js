@@ -7,11 +7,11 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 
-import {getOverrides} from '../helpers/overrides.js';
+import { getOverrides } from '../helpers/overrides.js';
 
-import {RadioGroupRoot as StyledRadioGroupRoot} from './styled-components.js';
-import type {PropsT, DefaultPropsT, StatelessStateT} from './types.js';
-import {isFocusVisible} from '../utils/focusVisible.js';
+import { RadioGroupRoot as StyledRadioGroupRoot } from './styled-components.js';
+import type { PropsT, DefaultPropsT, StatelessStateT } from './types.js';
+import { isFocusVisible } from '../utils/focusVisible.js';
 
 class StatelessRadioGroup extends React.Component<PropsT, StatelessStateT> {
   static defaultProps: DefaultPropsT = {
@@ -32,43 +32,37 @@ class StatelessRadioGroup extends React.Component<PropsT, StatelessStateT> {
     overrides: {},
   };
 
-  state = {isFocusVisible: false, focusedRadioIndex: -1};
+  state = { isFocusVisible: false, focusedRadioIndex: -1 };
 
   componentDidMount() {
     if (__DEV__ && this.props.isError) {
       console.warn(
-        'baseui:Radio Property "isError" will be removed in the next major version. Use "error" property instead.',
+        'baseui:Radio Property "isError" will be removed in the next major version. Use "error" property instead.'
       );
     }
   }
 
-  handleFocus = (
-    event: SyntheticInputEvent<HTMLInputElement>,
-    index: number,
-  ) => {
+  handleFocus = (event: SyntheticInputEvent<HTMLInputElement>, index: number) => {
     if (isFocusVisible(event)) {
-      this.setState({isFocusVisible: true});
+      this.setState({ isFocusVisible: true });
     }
-    this.setState({focusedRadioIndex: index});
+    this.setState({ focusedRadioIndex: index });
     this.props.onFocus && this.props.onFocus(event);
   };
 
-  handleBlur = (
-    event: SyntheticInputEvent<HTMLInputElement>,
-    index: number,
-  ) => {
+  handleBlur = (event: SyntheticInputEvent<HTMLInputElement>, index: number) => {
     if (this.state.isFocusVisible !== false) {
-      this.setState({isFocusVisible: false});
+      this.setState({ isFocusVisible: false });
     }
-    this.setState({focusedRadioIndex: -1});
+    this.setState({ focusedRadioIndex: -1 });
     this.props.onBlur && this.props.onBlur(event);
   };
 
   render() {
-    const {overrides = {}} = this.props;
+    const { overrides = {} } = this.props;
     const [RadioGroupRoot, radioGroupRootProps] = getOverrides(
       overrides.RadioGroupRoot,
-      StyledRadioGroupRoot,
+      StyledRadioGroupRoot
     );
 
     return (
@@ -101,14 +95,11 @@ class StatelessRadioGroup extends React.Component<PropsT, StatelessStateT> {
             error: this.props.error,
             isFocused: this.state.focusedRadioIndex === index,
             isFocusVisible: this.state.isFocusVisible,
-            tabIndex:
-              (index === 0 && !this.props.value) || checked ? '0' : '-1',
+            tabIndex: (index === 0 && !this.props.value) || checked ? '0' : '-1',
             labelPlacement: this.props.labelPlacement,
             name: this.props.name,
-            onBlur: (e: SyntheticInputEvent<HTMLInputElement>) =>
-              this.handleBlur(e, index),
-            onFocus: (e: SyntheticInputEvent<HTMLInputElement>) =>
-              this.handleFocus(e, index),
+            onBlur: (e: SyntheticInputEvent<HTMLInputElement>) => this.handleBlur(e, index),
+            onFocus: (e: SyntheticInputEvent<HTMLInputElement>) => this.handleFocus(e, index),
             onChange: this.props.onChange,
             onMouseEnter: this.props.onMouseEnter,
             onMouseLeave: this.props.onMouseLeave,

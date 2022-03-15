@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import type {BlockPropsT, ResponsiveT, ScaleT} from '../block/types.js';
+import type { BlockPropsT, ResponsiveT, ScaleT } from '../block/types.js';
 
 export type FlexGridPropsT = {
   /** Number of equal-width columns to allow for */

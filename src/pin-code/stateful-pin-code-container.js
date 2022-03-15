@@ -15,29 +15,25 @@ import type {
   StateReducerT,
 } from './types.js';
 import defaultProps from './default-props.js';
-import {STATE_CHANGE_TYPE} from '../input/index.js';
+import { STATE_CHANGE_TYPE } from '../input/index.js';
 
 const stateReducer: StateReducerT = (type, nextState) => nextState;
 
 export default class StatefulPinCodeContainer extends React.Component<
   StatefulPinCodeContainerPropsT,
-  StatefulPinCodeContainerStateT,
+  StatefulPinCodeContainerStateT
 > {
   static defaultProps = {
-    initialState: {values: defaultProps.values},
+    initialState: { values: defaultProps.values },
     stateReducer,
     onChange: defaultProps.onChange,
   };
 
   state = this.props.initialState;
 
-  handleChange = ({values, event}: ChangeEventT) => {
-    this.props.onChange({values, event});
-    const nextState = this.props.stateReducer(
-      STATE_CHANGE_TYPE.change,
-      {values},
-      this.state,
-    );
+  handleChange = ({ values, event }: ChangeEventT) => {
+    this.props.onChange({ values, event });
+    const nextState = this.props.stateReducer(STATE_CHANGE_TYPE.change, { values }, this.state);
     this.setState(nextState);
   };
 

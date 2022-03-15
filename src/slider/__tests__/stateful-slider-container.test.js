@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {render} from '@testing-library/react';
+import { render } from '@testing-library/react';
 
-import {StatefulContainer as StatefulSliderContainer} from '../index.js';
+import { StatefulContainer as StatefulSliderContainer } from '../index.js';
 
 describe('Stateful Slider Container', function () {
   // flowlint-next-line unclear-type:off
@@ -19,7 +19,7 @@ describe('Stateful Slider Container', function () {
     childFn = jest.fn(() => null);
     allProps = {
       children: childFn,
-      initialState: {value: [30, 80]},
+      initialState: { value: [30, 80] },
       stateReducer: stateReducer,
       foo: 'bar',
     };
@@ -32,9 +32,6 @@ describe('Stateful Slider Container', function () {
   it('passes additional props to child fn', function () {
     render(<StatefulSliderContainer {...allProps} />);
     expect(childFn.mock.calls[0][0]).toHaveProperty('foo', 'bar');
-    expect(childFn.mock.calls[0][0]).toHaveProperty(
-      'value',
-      allProps.initialState.value,
-    );
+    expect(childFn.mock.calls[0][0]).toHaveProperty('value', allProps.initialState.value);
   });
 });

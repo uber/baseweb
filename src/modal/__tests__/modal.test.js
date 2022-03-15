@@ -8,40 +8,34 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env browser */
 
 import * as React from 'react';
-import {
-  render,
-  fireEvent,
-  getByTestId,
-  getByText,
-  queryByText,
-} from '@testing-library/react';
+import { render, fireEvent, getByTestId, getByText, queryByText } from '@testing-library/react';
 
-import {StatefulSelect} from '../../select/index.js';
-import {TestBaseProvider} from '../../test/test-utils.js';
+import { StatefulSelect } from '../../select/index.js';
+import { TestBaseProvider } from '../../test/test-utils.js';
 
-import {Modal, ModalBody, CLOSE_SOURCE} from '../index.js';
+import { Modal, ModalBody, CLOSE_SOURCE } from '../index.js';
 
 describe('Modal', () => {
   it('renders nothing when closed', () => {
     const content = 'hello world';
-    const {container} = render(
+    const { container } = render(
       <TestBaseProvider>
         <Modal isOpen={false}>
           <ModalBody>{content}</ModalBody>
         </Modal>
-      </TestBaseProvider>,
+      </TestBaseProvider>
     );
     expect(queryByText(container, content)).toBeNull();
   });
 
   it('close button triggers close', () => {
     const onClose = jest.fn();
-    const {container} = render(
+    const { container } = render(
       <TestBaseProvider>
         <Modal isOpen onClose={onClose}>
           <ModalBody>Modal Body</ModalBody>
         </Modal>
-      </TestBaseProvider>,
+      </TestBaseProvider>
     );
     const button = container.querySelector('button');
     if (button) fireEvent.click(button);
@@ -52,32 +46,32 @@ describe('Modal', () => {
   });
 
   it('disables close', () => {
-    const {container} = render(
+    const { container } = render(
       <TestBaseProvider>
         <Modal isOpen closeable={false}>
           <ModalBody>Modal Body</ModalBody>
         </Modal>
-      </TestBaseProvider>,
+      </TestBaseProvider>
     );
 
     expect(container.querySelectorAll('button').length).toBe(0);
   });
 
   it('override components', () => {
-    const {container} = render(
+    const { container } = render(
       <TestBaseProvider>
         <Modal
           isOpen
           overrides={{
-            Root: {props: {'data-testid': 'root'}},
-            DialogContainer: {props: {'data-testid': 'dialog-container'}},
-            Dialog: {props: {'data-testid': 'dialog'}},
-            Close: {props: {'data-testid': 'close'}},
+            Root: { props: { 'data-testid': 'root' } },
+            DialogContainer: { props: { 'data-testid': 'dialog-container' } },
+            Dialog: { props: { 'data-testid': 'dialog' } },
+            Close: { props: { 'data-testid': 'close' } },
           }}
         >
           <ModalBody>Modal Body</ModalBody>
         </Modal>
-      </TestBaseProvider>,
+      </TestBaseProvider>
     );
 
     getByTestId(container, 'root');
@@ -87,13 +81,13 @@ describe('Modal', () => {
   });
 
   it('role', () => {
-    const {container} = render(
+    const { container } = render(
       <TestBaseProvider>
         {/* eslint-disable-next-line jsx-a11y/aria-role */}
         <Modal role="mycustomrole" isOpen>
           <ModalBody>Modal Body</ModalBody>
         </Modal>
-      </TestBaseProvider>,
+      </TestBaseProvider>
     );
 
     const dialog = container.querySelector('[role="mycustomrole"]');
@@ -101,24 +95,24 @@ describe('Modal', () => {
   });
 
   it('raises no errors when operating on select in modal', () => {
-    const {container} = render(
+    const { container } = render(
       <TestBaseProvider>
         <Modal isOpen>
           <StatefulSelect
             options={[
-              {id: 'AliceBlue', color: '#F0F8FF'},
-              {id: 'AntiqueWhite', color: '#FAEBD7'},
-              {id: 'Aqua', color: '#00FFFF'},
-              {id: 'Aquamarine', color: '#7FFFD4'},
-              {id: 'Azure', color: '#F0FFFF'},
-              {id: 'Beige', color: '#F5F5DC'},
+              { id: 'AliceBlue', color: '#F0F8FF' },
+              { id: 'AntiqueWhite', color: '#FAEBD7' },
+              { id: 'Aqua', color: '#00FFFF' },
+              { id: 'Aquamarine', color: '#7FFFD4' },
+              { id: 'Azure', color: '#F0FFFF' },
+              { id: 'Beige', color: '#F5F5DC' },
             ]}
-            overrides={{ValueContainer: {props: {'data-testid': 'selected'}}}}
+            overrides={{ ValueContainer: { props: { 'data-testid': 'selected' } } }}
             labelKey="id"
             valueKey="color"
           />
         </Modal>
-      </TestBaseProvider>,
+      </TestBaseProvider>
     );
     const input = container.querySelector('input');
     if (input) fireEvent.click(input);

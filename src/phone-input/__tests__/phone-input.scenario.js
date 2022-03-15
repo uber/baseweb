@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {SIZE, PhoneInput, StatefulPhoneInput} from '../index.js';
+import { SIZE, PhoneInput, StatefulPhoneInput } from '../index.js';
 
 export function Scenario() {
   return (

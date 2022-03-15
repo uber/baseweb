@@ -6,20 +6,19 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {Button} from '../../button/index.js';
-import {toaster, ToasterContainer, PLACEMENT} from '../index.js';
+import { Button } from '../../button/index.js';
+import { toaster, ToasterContainer, PLACEMENT } from '../index.js';
 
 export function Scenario() {
   return (
     <React.Fragment>
       <ToasterContainer placement={PLACEMENT.bottomRight} autoFocus />
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
-        ultricies lacus non quam placerat vehicula.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ultricies lacus non quam
+        placerat vehicula.
       </p>
       <p>
-        Maecenas ullamcorper volutpat lectus, eget placerat nisi hendrerit at.
-        Sed at erat mauris.
+        Maecenas ullamcorper volutpat lectus, eget placerat nisi hendrerit at. Sed at erat mauris.
       </p>
       <Button
         id="default"
@@ -31,8 +30,8 @@ export function Scenario() {
         Activate toast
       </Button>
       <p>
-        Praesent non sodales nunc. Quisque sagittis, ligula eu lacinia
-        fringilla, urna nisi porttitor ligula, ac fringilla felis leo eu augue.
+        Praesent non sodales nunc. Quisque sagittis, ligula eu lacinia fringilla, urna nisi
+        porttitor ligula, ac fringilla felis leo eu augue.
       </p>
       <p>Integer eget ligula magna. Morbi tincidunt fringilla consequat.</p>
       <Button>This does nothing</Button>

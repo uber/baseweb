@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 'use strict';
 
-const {RuleTester} = require('eslint');
+const { RuleTester } = require('eslint');
 const rule = require('../src/deprecated-component-api.js');
 const MESSAGES = require('../src/messages.js');
 
@@ -140,7 +140,7 @@ const tests = {
         import {Accordion} from "baseui/accordion";
         const Foo = () => <Accordion renderPanelContent />;
       `,
-      errors: [{messageId: MESSAGES.replace.id}],
+      errors: [{ messageId: MESSAGES.replace.id }],
       output: `
         import {Accordion} from "baseui/accordion";
         const Foo = () => <Accordion renderAll />;
@@ -154,7 +154,7 @@ const tests = {
         import {Accordion as Acc} from "baseui/accordion";
         const Foo = () => <Acc renderPanelContent />;
       `,
-      errors: [{messageId: MESSAGES.replace.id}],
+      errors: [{ messageId: MESSAGES.replace.id }],
       output: `
         import {Accordion as Acc} from "baseui/accordion";
         const Foo = () => <Acc renderAll />;
@@ -170,7 +170,7 @@ const tests = {
           return <Checkbox checkmarkType={STYLE_TYPE.toggle} />
         }
       `,
-      errors: [{messageId: MESSAGES.replace.id}],
+      errors: [{ messageId: MESSAGES.replace.id }],
       output: `
         import { Checkbox, STYLE_TYPE } from "baseui/checkbox"
         export default function() {
@@ -188,7 +188,7 @@ const tests = {
           return <Checkbox checkmarkType="toggle" />
         }
       `,
-      errors: [{messageId: MESSAGES.replace.id}],
+      errors: [{ messageId: MESSAGES.replace.id }],
       output: `
         import { Checkbox, STYLE_TYPE } from "baseui/checkbox"
         export default function() {
@@ -205,7 +205,7 @@ const tests = {
         export default function() {
           return <Modal autofocus>Hello</Modal>;
         }`,
-      errors: [{messageId: MESSAGES.replace.id}],
+      errors: [{ messageId: MESSAGES.replace.id }],
       output: `
         import {Modal} from 'baseui/modal';
         import Overflow from 'baseui/icon/overflow';
@@ -222,7 +222,7 @@ const tests = {
           return <Modal overrides={{ Backdrop: {} }} />
         }
       `,
-      errors: [{messageId: MESSAGES.modalBackdrop.id}],
+      errors: [{ messageId: MESSAGES.modalBackdrop.id }],
     },
 
     // Modal - Backdrop
@@ -234,7 +234,7 @@ const tests = {
           return <Foo overrides={{ Backdrop: {} }} />
         }
       `,
-      errors: [{messageId: MESSAGES.modalBackdrop.id}],
+      errors: [{ messageId: MESSAGES.modalBackdrop.id }],
     },
 
     // Spinner
@@ -245,7 +245,7 @@ const tests = {
           return <Spinner />
         }
       `,
-      errors: [{messageId: MESSAGES.deprecateSpinner.id}],
+      errors: [{ messageId: MESSAGES.deprecateSpinner.id }],
     },
 
     // Spinner renamed
@@ -256,7 +256,7 @@ const tests = {
           return <BaseSpinner />
         }
       `,
-      errors: [{messageId: MESSAGES.deprecateSpinner.id}],
+      errors: [{ messageId: MESSAGES.deprecateSpinner.id }],
     },
 
     // Button - minimal kind
@@ -272,7 +272,7 @@ const tests = {
           )
         }
       `,
-      errors: [{messageId: MESSAGES.buttonKindMinimal.id}],
+      errors: [{ messageId: MESSAGES.buttonKindMinimal.id }],
     },
 
     // Button - minimal kind
@@ -288,7 +288,7 @@ const tests = {
           )
         }
       `,
-      errors: [{messageId: MESSAGES.buttonKindMinimal.id}],
+      errors: [{ messageId: MESSAGES.buttonKindMinimal.id }],
     },
 
     // Button - minimal kind
@@ -304,7 +304,7 @@ const tests = {
           )
         }
       `,
-      errors: [{messageId: MESSAGES.buttonKindMinimal.id}],
+      errors: [{ messageId: MESSAGES.buttonKindMinimal.id }],
     },
 
     // Caption1
@@ -316,9 +316,9 @@ const tests = {
         }
       `,
       errors: [
-        {messageId: MESSAGES.replace.id},
-        {messageId: MESSAGES.replace.id},
-        {messageId: MESSAGES.replace.id},
+        { messageId: MESSAGES.replace.id },
+        { messageId: MESSAGES.replace.id },
+        { messageId: MESSAGES.replace.id },
       ],
       output: `
         import { ParagraphXSmall } from "baseui/typography"
@@ -336,7 +336,7 @@ const tests = {
           return <Foo>Hello</Foo>
         }
       `,
-      errors: [{messageId: MESSAGES.replace.id}],
+      errors: [{ messageId: MESSAGES.replace.id }],
       output: `
         import { ParagraphXSmall as Foo } from "baseui/typography"
         export default () => {
@@ -353,10 +353,7 @@ const tests = {
           return <div><Caption1 /></div>
         }
       `,
-      errors: [
-        {messageId: MESSAGES.replace.id},
-        {messageId: MESSAGES.replace.id},
-      ],
+      errors: [{ messageId: MESSAGES.replace.id }, { messageId: MESSAGES.replace.id }],
       output: `
         import { ParagraphXSmall } from "baseui/typography"
         export default () => {
@@ -374,9 +371,9 @@ const tests = {
         }
       `,
       errors: [
-        {messageId: MESSAGES.replace.id},
-        {messageId: MESSAGES.replace.id},
-        {messageId: MESSAGES.replace.id},
+        { messageId: MESSAGES.replace.id },
+        { messageId: MESSAGES.replace.id },
+        { messageId: MESSAGES.replace.id },
       ],
       output: `
         import { LabelXSmall } from "baseui/typography"
@@ -394,7 +391,7 @@ const tests = {
           return <Foo>Hello</Foo>
         }
       `,
-      errors: [{messageId: MESSAGES.replace.id}],
+      errors: [{ messageId: MESSAGES.replace.id }],
       output: `
         import { LabelXSmall as Foo } from "baseui/typography"
         export default () => {
@@ -413,9 +410,9 @@ const tests = {
         }));
       `,
       errors: [
-        {messageId: MESSAGES.replace.id},
-        {messageId: MESSAGES.replace.id},
-        {messageId: MESSAGES.replace.id},
+        { messageId: MESSAGES.replace.id },
+        { messageId: MESSAGES.replace.id },
+        { messageId: MESSAGES.replace.id },
       ],
       output: `
         import { LabelSmall } from "baseui/typography"
@@ -435,7 +432,7 @@ const tests = {
           marginBottom: $theme.sizing.scale600,
         }));
       `,
-      errors: [{messageId: MESSAGES.replace.id}],
+      errors: [{ messageId: MESSAGES.replace.id }],
       output: `
         import { LabelSmall as Foo } from "baseui/typography"
         
@@ -454,7 +451,7 @@ const tests = {
           marginBottom: $theme.sizing.scale600,
         }));
       `,
-      errors: [{messageId: MESSAGES.replace.id}],
+      errors: [{ messageId: MESSAGES.replace.id }],
       output: `
         import { LabelSmall as Foo } from "baseui/typography"
         import { Label3 } from "hello/world"
@@ -480,7 +477,7 @@ const tests = {
             }}/>;
           }
       `,
-      errors: [{messageId: MESSAGES.replace.id}],
+      errors: [{ messageId: MESSAGES.replace.id }],
       output: `
         import { HeadingXXLarge as StyledH1 } from "baseui/typography"
         import ReactMarkdown from 'react-markdown';
@@ -507,9 +504,9 @@ const tests = {
           }
       `,
       errors: [
-        {messageId: MESSAGES.replace.id},
-        {messageId: MESSAGES.replace.id},
-        {messageId: MESSAGES.replace.id},
+        { messageId: MESSAGES.replace.id },
+        { messageId: MESSAGES.replace.id },
+        { messageId: MESSAGES.replace.id },
       ],
       output: `
         import { HeadingXXLarge } from "baseui/typography"
@@ -529,9 +526,9 @@ const tests = {
           }
       `,
       errors: [
-        {messageId: MESSAGES.replace.id},
-        {messageId: MESSAGES.replace.id},
-        {messageId: MESSAGES.replace.id},
+        { messageId: MESSAGES.replace.id },
+        { messageId: MESSAGES.replace.id },
+        { messageId: MESSAGES.replace.id },
       ],
       output: `
         import { HeadingXXLarge as Hello } from "baseui/typography"
@@ -551,12 +548,12 @@ const tests = {
           }
       `,
       errors: [
-        {messageId: MESSAGES.replace.id},
-        {messageId: MESSAGES.replace.id},
-        {messageId: MESSAGES.replace.id},
-        {messageId: MESSAGES.replace.id},
-        {messageId: MESSAGES.replace.id},
-        {messageId: MESSAGES.replace.id},
+        { messageId: MESSAGES.replace.id },
+        { messageId: MESSAGES.replace.id },
+        { messageId: MESSAGES.replace.id },
+        { messageId: MESSAGES.replace.id },
+        { messageId: MESSAGES.replace.id },
+        { messageId: MESSAGES.replace.id },
       ],
       output: `
         import { HeadingXXLarge as Hello, HeadingXLarge } from "baseui/typography"
@@ -575,9 +572,9 @@ const tests = {
           }
       `,
       errors: [
-        {messageId: MESSAGES.replace.id},
-        {messageId: MESSAGES.replace.id},
-        {messageId: MESSAGES.replace.id},
+        { messageId: MESSAGES.replace.id },
+        { messageId: MESSAGES.replace.id },
+        { messageId: MESSAGES.replace.id },
       ],
       output: `
         import { HeadingXXLarge as Hello, HeadingXLarge } from "baseui/typography"
@@ -596,11 +593,11 @@ const tests = {
         }
       `,
       errors: [
-        {messageId: MESSAGES.replace.id},
-        {messageId: MESSAGES.replace.id},
-        {messageId: MESSAGES.replace.id},
-        {messageId: MESSAGES.replace.id},
-        {messageId: MESSAGES.replace.id},
+        { messageId: MESSAGES.replace.id },
+        { messageId: MESSAGES.replace.id },
+        { messageId: MESSAGES.replace.id },
+        { messageId: MESSAGES.replace.id },
+        { messageId: MESSAGES.replace.id },
       ],
       output: `
         import { ParagraphSmall } from "baseui/typography"

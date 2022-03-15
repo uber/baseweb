@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import type {OverrideT} from '../helpers/overrides.js';
+import type { OverrideT } from '../helpers/overrides.js';
 
 export type InitialsStylePropsT = {};
 export type AvatarStylePropsT = {

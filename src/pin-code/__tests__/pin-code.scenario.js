@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {StatefulPinCode} from '../index.js';
+import { StatefulPinCode } from '../index.js';
 
 export function Scenario() {
   return <StatefulPinCode />;

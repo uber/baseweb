@@ -18,5 +18,5 @@ type Props = {
 export default function FocusOnce(props: Props) {
   const [tabIndex, setTabIndex] = React.useState('0');
   const child = React.Children.only(props.children);
-  return React.cloneElement(child, {tabIndex, onBlur: () => setTabIndex(null)});
+  return React.cloneElement(child, { tabIndex, onBlur: () => setTabIndex(null) });
 }

@@ -8,12 +8,12 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Button} from '../../button/index.js';
-import {StatefulButtonGroup, MODE} from '../index.js';
+import { Button } from '../../button/index.js';
+import { StatefulButtonGroup, MODE } from '../index.js';
 
 const buttonOverrides = {
   BaseButton: {
-    style: ({$isSelected}) => {
+    style: ({ $isSelected }) => {
       if ($isSelected)
         return {
           backgroundColor: 'seagreen',
@@ -24,7 +24,7 @@ const buttonOverrides = {
 
 export function Scenario() {
   return (
-    <StatefulButtonGroup mode={MODE.checkbox} initialState={{selected: [0, 1]}}>
+    <StatefulButtonGroup mode={MODE.checkbox} initialState={{ selected: [0, 1] }}>
       <Button overrides={buttonOverrides}>Label</Button>
       <Button overrides={buttonOverrides}>Label</Button>
       <Button overrides={buttonOverrides}>Label</Button>

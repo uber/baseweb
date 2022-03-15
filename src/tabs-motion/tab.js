@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-import type {TabPropsT} from './types.js';
+import type { TabPropsT } from './types.js';
 
 export function Tab(props: TabPropsT) {
   return null;

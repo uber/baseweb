@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import type {DateIOAdapter, DateInput, AdapterOptions} from './types.js';
+import type { DateIOAdapter, DateInput, AdapterOptions } from './types.js';
 
 const MINUTE = 60;
 const HOUR = MINUTE * 60;
@@ -15,10 +15,10 @@ class DateHelpers<T> {
   constructor(adapter: DateIOAdapter<T>) {
     this.adapter = this.cloneAdapter(adapter);
   }
-  cloneAdapter: (
-    DateIOAdapter<T>,
-    ?(AdapterOptions) => AdapterOptions,
-  ) => DateIOAdapter<T> = (adapter, updateOptionsBase) => {
+  cloneAdapter: (DateIOAdapter<T>, ?(AdapterOptions) => AdapterOptions) => DateIOAdapter<T> = (
+    adapter,
+    updateOptionsBase
+  ) => {
     const adapterMap = {
       // all utils classes set the arguments passed into their constructor as public members in some way
       // it just varies by class, most just set formats and locale, but this handles the exceptions
@@ -75,8 +75,8 @@ class DateHelpers<T> {
     // if we want to test other adapter implementation
     // in e2e tests down the road, we're going to have
     // to figure that out
-    const {getOptions = defaultGetOptions, formats} =
-      adapterMap[className] || adapterMap['DateFnsUtils'];
+    const { getOptions = defaultGetOptions, formats } =
+      adapterMap[className] || adapterMap.DateFnsUtils;
     const options = getOptions(adapter);
     return new UtilsClass(
       Object.assign(
@@ -84,21 +84,19 @@ class DateHelpers<T> {
         updateOptions(
           Object.assign({}, options, {
             formats: Object.assign({}, options.formats, formats),
-          }),
-        ),
-      ),
+          })
+        )
+      )
     );
   };
   // flowlint-next-line unclear-type:off
   format: (T, string, any) => string = (date, format, locale) => {
-    const adapter = locale
-      ? this.getAdapterWithNewLocale(locale)
-      : this.adapter;
+    const adapter = locale ? this.getAdapterWithNewLocale(locale) : this.adapter;
 
     return adapter.format(date, format);
   };
   getAdapterWithNewLocale: (mixed) => DateIOAdapter<T> = (locale) => {
-    return this.cloneAdapter(this.adapter, (options) => ({...options, locale}));
+    return this.cloneAdapter(this.adapter, (options) => ({ ...options, locale }));
   };
   date: (DateInput<T> | void) => T = (date) => this.adapter.date(date);
   dateToSeconds: (T) => number = (date) => {
@@ -112,25 +110,19 @@ class DateHelpers<T> {
     return [d.getUTCHours(), d.getUTCMinutes()];
   };
   differenceInCalendarMonths: (T, T) => number = (fromDate, toDate) => {
-    var yearDiff =
-      this.adapter.getYear(fromDate) - this.adapter.getYear(toDate);
-    var monthDiff =
-      this.adapter.getMonth(fromDate) - this.adapter.getMonth(toDate);
+    var yearDiff = this.adapter.getYear(fromDate) - this.adapter.getYear(toDate);
+    var monthDiff = this.adapter.getMonth(fromDate) - this.adapter.getMonth(toDate);
     return yearDiff * 12 + monthDiff;
   };
   // flowlint-next-line unclear-type:off
   getStartOfWeek: (T, any) => T = (date, locale) => {
-    const adapter = locale
-      ? this.getAdapterWithNewLocale(locale)
-      : this.adapter;
+    const adapter = locale ? this.getAdapterWithNewLocale(locale) : this.adapter;
     // rewrapping this date here ensures that the locale will be taken into account in all adapters
     return adapter.startOfWeek(adapter.date(date));
   };
   // flowlint-next-line unclear-type:off
   formatDate: (T, string, any) => string = (date, formatString, locale) => {
-    const adapter = locale
-      ? this.getAdapterWithNewLocale(locale)
-      : this.adapter;
+    const adapter = locale ? this.getAdapterWithNewLocale(locale) : this.adapter;
     return adapter.formatByString(date, formatString);
   };
   // flowlint-next-line unclear-type:off
@@ -140,10 +132,7 @@ class DateHelpers<T> {
   // flowlint-next-line unclear-type:off
   getMonthInLocale: (number, any) => string = (monthNumber, locale) => {
     const localeAdapter = this.getAdapterWithNewLocale(locale);
-    return localeAdapter.format(
-      localeAdapter.setMonth(localeAdapter.date(), monthNumber),
-      'month',
-    );
+    return localeAdapter.format(localeAdapter.setMonth(localeAdapter.date(), monthNumber), 'month');
   };
   // flowlint-next-line unclear-type:off
   getWeekdayInLocale: (T, any) => string = (date, locale) => {
@@ -154,7 +143,7 @@ class DateHelpers<T> {
     const localeAdapter = this.getAdapterWithNewLocale(locale);
     return localeAdapter.format(
       localeAdapter.setMonth(localeAdapter.date(), quarterNumber * 3),
-      'quarter',
+      'quarter'
     );
   };
   getEndOfWeek: (T) => T = (date) => {
@@ -202,10 +191,7 @@ class DateHelpers<T> {
     }
     return false;
   };
-  dateRangeIncludesDates: (Array<?T>, ?Array<T>) => boolean = (
-    dateRange,
-    dates,
-  ) => {
+  dateRangeIncludesDates: (Array<?T>, ?Array<T>) => boolean = (dateRange, dates) => {
     const [startDate, endDate] = dateRange;
     if (startDate && endDate && Array.isArray(dates) && dates.length) {
       for (let i = 0; i < dates.length; i++) {
@@ -233,13 +219,13 @@ class DateHelpers<T> {
       return this.adapter.isAfter(date, maxDate) ? date : maxDate;
     });
   };
-  getEffectiveMinDate: ({minDate: ?T, includeDates: ?Array<T>}) => T = ({
+  getEffectiveMinDate: ({ minDate: ?T, includeDates: ?Array<T> }) => T = ({
     minDate,
     includeDates,
   }) => {
     if (includeDates && minDate) {
       let minDates = includeDates.filter((includeDate) =>
-        this.isOnOrAfterDay(includeDate, minDate),
+        this.isOnOrAfterDay(includeDate, minDate)
       );
       return this.min(minDates);
     } else if (includeDates && includeDates.length) {
@@ -251,13 +237,13 @@ class DateHelpers<T> {
     // but flow isn't smart enough to see that all of the conditions are covered
     return this.adapter.date();
   };
-  getEffectiveMaxDate: ({maxDate: ?T, includeDates: ?Array<T>}) => T = ({
+  getEffectiveMaxDate: ({ maxDate: ?T, includeDates: ?Array<T> }) => T = ({
     maxDate,
     includeDates,
   }) => {
     if (includeDates && maxDate) {
       let maxDates = includeDates.filter((includeDate) =>
-        this.isOnOrBeforeDay(includeDate, maxDate),
+        this.isOnOrBeforeDay(includeDate, maxDate)
       );
       return this.max(maxDates);
     } else if (includeDates) {
@@ -269,49 +255,44 @@ class DateHelpers<T> {
     // but flow isn't smart enough to see that all of the conditions are covered
     return this.adapter.date();
   };
-  monthDisabledBefore: (T, {minDate: ?T, includeDates: ?Array<T>}) => boolean =
-    (day, {minDate, includeDates} = {}) => {
-      const previousMonth = this.subMonths(day, 1);
-      return (
-        (!!minDate &&
-          this.differenceInCalendarMonths(minDate, previousMonth) > 0) ||
-        (!!includeDates &&
-          includeDates.every(
-            (includeDate) =>
-              this.differenceInCalendarMonths(includeDate, previousMonth) > 0,
-          )) ||
-        false
-      );
-    };
-  monthDisabledAfter: (T, {maxDate: ?T, includeDates: ?Array<T>}) => boolean = (
+  monthDisabledBefore: (T, { minDate: ?T, includeDates: ?Array<T> }) => boolean = (
     day,
-    {maxDate, includeDates} = {},
+    { minDate, includeDates } = {}
+  ) => {
+    const previousMonth = this.subMonths(day, 1);
+    return (
+      (!!minDate && this.differenceInCalendarMonths(minDate, previousMonth) > 0) ||
+      (!!includeDates &&
+        includeDates.every(
+          (includeDate) => this.differenceInCalendarMonths(includeDate, previousMonth) > 0
+        )) ||
+      false
+    );
+  };
+  monthDisabledAfter: (T, { maxDate: ?T, includeDates: ?Array<T> }) => boolean = (
+    day,
+    { maxDate, includeDates } = {}
   ) => {
     const nextMonth = this.adapter.addMonths(day, 1);
     return (
       (!!maxDate && this.differenceInCalendarMonths(nextMonth, maxDate) > 0) ||
       (!!includeDates &&
         includeDates.every(
-          (includeDate) =>
-            this.differenceInCalendarMonths(nextMonth, includeDate) > 0,
+          (includeDate) => this.differenceInCalendarMonths(nextMonth, includeDate) > 0
         )) ||
       false
     );
   };
   setDate: (T, number) => T = (date, dayNumber) => {
     const startOfMonthNoTime = this.adapter.startOfMonth(date);
-    const startOfMonthHoursAndMinutes = this.adapter.mergeDateAndTime(
-      startOfMonthNoTime,
-      date,
-    );
+    const startOfMonthHoursAndMinutes = this.adapter.mergeDateAndTime(startOfMonthNoTime, date);
     const startOfMonth = this.adapter.setSeconds(
       startOfMonthHoursAndMinutes,
-      this.adapter.getSeconds(date),
+      this.adapter.getSeconds(date)
     );
     return this.adapter.addDays(startOfMonth, dayNumber - 1);
   };
-  getDate: (T) => number = (date) =>
-    Number(this.adapter.format(date, 'dayOfMonthNumber'));
+  getDate: (T) => number = (date) => Number(this.adapter.format(date, 'dayOfMonthNumber'));
   applyDateToTime: (?T, T) => T = (time, date) => {
     if (!time) return date;
     const yearNumber = this.adapter.getYear(date);
@@ -323,10 +304,7 @@ class DateHelpers<T> {
   };
   applyTimeToDate: (?T, T) => T = (date, time) => {
     if (!date) return time;
-    return this.adapter.setSeconds(
-      this.adapter.mergeDateAndTime(date, time),
-      0,
-    );
+    return this.adapter.setSeconds(this.adapter.mergeDateAndTime(date, time), 0);
   };
   isDayDisabled: (
     T,
@@ -336,21 +314,14 @@ class DateHelpers<T> {
       excludeDates: ?Array<T>,
       includeDates: ?Array<T>,
       filterDate: ?(day: T) => boolean,
-    },
-  ) => boolean = (
-    day,
-    {minDate, maxDate, excludeDates, includeDates, filterDate} = {},
-  ) => {
+    }
+  ) => boolean = (day, { minDate, maxDate, excludeDates, includeDates, filterDate } = {}) => {
     return (
-      this.isOutOfBounds(day, {minDate, maxDate}) ||
+      this.isOutOfBounds(day, { minDate, maxDate }) ||
       (excludeDates &&
-        excludeDates.some((excludeDate) =>
-          this.adapter.isSameDay(day, excludeDate),
-        )) ||
+        excludeDates.some((excludeDate) => this.adapter.isSameDay(day, excludeDate))) ||
       (includeDates &&
-        !includeDates.some((includeDate) =>
-          this.adapter.isSameDay(day, includeDate),
-        )) ||
+        !includeDates.some((includeDate) => this.adapter.isSameDay(day, includeDate))) ||
       (filterDate && !filterDate(day)) ||
       false
     );
@@ -368,9 +339,9 @@ class DateHelpers<T> {
     }
     return this.adapter.isBefore(fromDate, toDate);
   };
-  isOutOfBounds: (T, {minDate: ?T, maxDate: ?T}) => boolean = (
+  isOutOfBounds: (T, { minDate: ?T, maxDate: ?T }) => boolean = (
     day,
-    {minDate, maxDate} = {},
+    { minDate, maxDate } = {}
   ) => {
     return (
       (!!minDate && !this.isOnOrAfterDay(day, minDate)) ||
@@ -379,24 +350,19 @@ class DateHelpers<T> {
   };
   // flowlint-next-line unclear-type:off
   parseString: (string, string, ?any) => T = (string, formatString, locale) => {
-    const adapter = locale
-      ? this.getAdapterWithNewLocale(locale)
-      : this.adapter;
+    const adapter = locale ? this.getAdapterWithNewLocale(locale) : this.adapter;
 
     return adapter.parse(string, formatString);
   };
   // flowlint-next-line unclear-type:off
   parse: (string, string, ?any) => T = (string, format, locale) => {
-    const adapter = locale
-      ? this.getAdapterWithNewLocale(locale)
-      : this.adapter;
+    const adapter = locale ? this.getAdapterWithNewLocale(locale) : this.adapter;
 
     return adapter.parse(string, adapter.formats[format]);
   };
   setMilliseconds: (T, number) => T = (date, milliseconds) => {
     return this.adapter.date(
-      this.adapter.getSeconds(this.adapter.startOfDay(date)) * 1000 +
-        milliseconds,
+      this.adapter.getSeconds(this.adapter.startOfDay(date)) * 1000 + milliseconds
     );
   };
   set: (
@@ -408,7 +374,7 @@ class DateHelpers<T> {
       hours?: number,
       minutes?: number,
       seconds?: number,
-    },
+    }
   ) => T = (date, values) => {
     let updatedDate = date;
     if (values.year != null) {
@@ -440,16 +406,11 @@ class DateHelpers<T> {
   getQuarter: (T) => number = (date) => {
     return Math.floor(this.getMonth(date) / 3) + 1;
   };
-  setSeconds: (T, number) => T = (date, seconds) =>
-    this.adapter.setSeconds(date, seconds);
-  setMinutes: (T, number) => T = (date, minutes) =>
-    this.adapter.setMinutes(date, minutes);
-  setHours: (T, number) => T = (date, hours) =>
-    this.adapter.setHours(date, hours);
-  setMonth: (T, number) => T = (date, monthNumber) =>
-    this.adapter.setMonth(date, monthNumber);
-  setYear: (T, number) => T = (date, yearNumber) =>
-    this.adapter.setYear(date, yearNumber);
+  setSeconds: (T, number) => T = (date, seconds) => this.adapter.setSeconds(date, seconds);
+  setMinutes: (T, number) => T = (date, minutes) => this.adapter.setMinutes(date, minutes);
+  setHours: (T, number) => T = (date, hours) => this.adapter.setHours(date, hours);
+  setMonth: (T, number) => T = (date, monthNumber) => this.adapter.setMonth(date, monthNumber);
+  setYear: (T, number) => T = (date, yearNumber) => this.adapter.setYear(date, yearNumber);
   getMinutes: (T) => number = (date) => this.adapter.getMinutes(date);
   getHours: (T) => number = (date) => this.adapter.getHours(date);
   getMonth: (T) => number = (date) => this.adapter.getMonth(date);
@@ -457,14 +418,10 @@ class DateHelpers<T> {
   getStartOfMonth: (T) => T = (date) => this.adapter.startOfMonth(date);
   getEndOfMonth: (T) => T = (date) => this.adapter.endOfMonth(date);
   addDays: (T, number) => T = (date, days) => this.adapter.addDays(date, days);
-  addMonths: (T, number) => T = (date, months) =>
-    this.adapter.addMonths(date, months);
-  isBefore: (T, T) => boolean = (fromDate, toDate) =>
-    this.adapter.isBefore(fromDate, toDate);
-  isAfter: (T, T) => boolean = (fromDate, toDate) =>
-    this.adapter.isAfter(fromDate, toDate);
-  isEqual: (T, T) => boolean = (fromDate, toDate) =>
-    this.adapter.isEqual(fromDate, toDate);
+  addMonths: (T, number) => T = (date, months) => this.adapter.addMonths(date, months);
+  isBefore: (T, T) => boolean = (fromDate, toDate) => this.adapter.isBefore(fromDate, toDate);
+  isAfter: (T, T) => boolean = (fromDate, toDate) => this.adapter.isAfter(fromDate, toDate);
+  isEqual: (T, T) => boolean = (fromDate, toDate) => this.adapter.isEqual(fromDate, toDate);
   isValid: (mixed) => boolean = (possibleDate) => {
     return this.adapter.isValid(possibleDate);
   };

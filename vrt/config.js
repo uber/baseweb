@@ -23,7 +23,7 @@ const config = {
           if (page.viewport().width < 1136) {
             menuToClickOn = drawerMenuSelector;
           }
-          await page.waitForSelector(menuToClickOn, {visible: true});
+          await page.waitForSelector(menuToClickOn, { visible: true });
           await page.click(menuToClickOn);
           await page.waitForSelector(menuSelector, {
             visible: true,
@@ -121,28 +121,20 @@ const config = {
       {
         name: 'controlledRowHighlightIndex',
         behavior: async (page) => {
-          await Promise.all(
-            Array.from({length: 4}).map(() => page.keyboard.press('j')),
-          );
+          await Promise.all(Array.from({ length: 4 }).map(() => page.keyboard.press('j')));
         },
       },
       {
         name: 'rowHighlightScrollsTableDown',
         behavior: async (page) => {
-          await Promise.all(
-            Array.from({length: 20}).map(() => page.keyboard.press('j')),
-          );
+          await Promise.all(Array.from({ length: 20 }).map(() => page.keyboard.press('j')));
         },
       },
       {
         name: 'rowHighlightScrollsTableUp',
         behavior: async (page) => {
-          await Promise.all(
-            Array.from({length: 20}).map(() => page.keyboard.press('j')),
-          );
-          await Promise.all(
-            Array.from({length: 15}).map(() => page.keyboard.press('k')),
-          );
+          await Promise.all(Array.from({ length: 20 }).map(() => page.keyboard.press('j')));
+          await Promise.all(Array.from({ length: 15 }).map(() => page.keyboard.press('k')));
         },
       },
     ],
@@ -203,10 +195,8 @@ const config = {
         behavior: async (page) => {
           const input = 'input';
           const calendar = '[data-baseweb="calendar"]';
-          const startDay =
-            '[aria-label="Choose Sunday, March 10th 2019. It\'s available."]';
-          const endDay =
-            '[aria-label="Choose Wednesday, March 20th 2019. It\'s available."]';
+          const startDay = '[aria-label="Choose Sunday, March 10th 2019. It\'s available."]';
+          const endDay = '[aria-label="Choose Wednesday, March 20th 2019. It\'s available."]';
           await page.waitForSelector(input);
           await page.click(input);
           await page.waitForSelector(calendar, {
@@ -241,7 +231,7 @@ const config = {
           });
           await page.click(rightArrow);
           await page.waitForFunction(
-            `document.querySelector("button[aria-haspopup]").innerText === 'April'`,
+            `document.querySelector("button[aria-haspopup]").innerText === 'April'`
           );
         },
       },
@@ -345,12 +335,12 @@ const config = {
 
           // Close Popover
           await page.click('button');
-          await page.waitForSelector('div[data-e2e="content"]', {hidden: true});
+          await page.waitForSelector('div[data-e2e="content"]', { hidden: true });
 
           // Scroll to the last div
           await page.evaluate(() =>
             // eslint-disable-next-line cup/no-undef
-            document.querySelector('div[data-e2e-spacer="1"]').scrollIntoView(),
+            document.querySelector('div[data-e2e-spacer="1"]').scrollIntoView()
           );
 
           // Listening to Scroll Event to determine if the page is still scrolling

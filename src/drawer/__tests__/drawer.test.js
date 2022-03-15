@@ -8,13 +8,8 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env browser */
 
 import * as React from 'react';
-import {
-  render,
-  fireEvent,
-  getByTestId,
-  queryByText,
-} from '@testing-library/react';
-import {Drawer, CLOSE_SOURCE} from '../index.js';
+import { render, fireEvent, getByTestId, queryByText } from '@testing-library/react';
+import { Drawer, CLOSE_SOURCE } from '../index.js';
 
 jest.mock('../../layer/index.js', () => {
   return {
@@ -26,35 +21,35 @@ jest.mock('../../layer/index.js', () => {
 
 describe('Drawer', () => {
   it('renders nothing when closed', () => {
-    const {container} = render(
+    const { container } = render(
       <Drawer isOpen={false} anchor="right">
         Hello world
-      </Drawer>,
+      </Drawer>
     );
     const text = queryByText(container, 'Hello world');
     expect(text).toBeNull();
   });
 
   it('renders content when open', () => {
-    const {container} = render(
+    const { container } = render(
       <Drawer isOpen anchor="right">
         Hello world
-      </Drawer>,
+      </Drawer>
     );
     const text = queryByText(container, 'Hello world');
     expect(text).not.toBeNull();
   });
 
   it('renders backdrop with opacity 0 when showBackdrop is false', () => {
-    const {container} = render(
+    const { container } = render(
       <Drawer
         isOpen
         anchor="right"
         showBackdrop={false}
-        overrides={{Backdrop: {props: {'data-testid': 'backdrop'}}}}
+        overrides={{ Backdrop: { props: { 'data-testid': 'backdrop' } } }}
       >
         Hello world
-      </Drawer>,
+      </Drawer>
     );
     const backdrop = getByTestId(container, 'backdrop');
     expect(backdrop).not.toBeNull();
@@ -62,10 +57,10 @@ describe('Drawer', () => {
 
   it('hides content when close button clicked', () => {
     const onClose = jest.fn();
-    const {container} = render(
+    const { container } = render(
       <Drawer isOpen onClose={onClose} anchor="right">
         Drawer Body
-      </Drawer>,
+      </Drawer>
     );
     const button = container.querySelector('button');
     if (button) fireEvent.click(button);
@@ -77,15 +72,15 @@ describe('Drawer', () => {
 
   it('hides content on backdrop click', () => {
     const onClose = jest.fn();
-    const {container} = render(
+    const { container } = render(
       <Drawer
         isOpen
         onClose={onClose}
         anchor="right"
-        overrides={{Backdrop: {props: {'data-testid': 'backdrop'}}}}
+        overrides={{ Backdrop: { props: { 'data-testid': 'backdrop' } } }}
       >
         Drawer Body
-      </Drawer>,
+      </Drawer>
     );
     fireEvent.click(getByTestId(container, 'backdrop'));
     expect(onClose).toHaveBeenCalledTimes(1);
@@ -96,15 +91,15 @@ describe('Drawer', () => {
 
   it('disables close feature', () => {
     const onClose = jest.fn();
-    const {container} = render(
+    const { container } = render(
       <Drawer
         isOpen
         closeable={false}
         onClose={onClose}
-        overrides={{Backdrop: {props: {'data-testid': 'backdrop'}}}}
+        overrides={{ Backdrop: { props: { 'data-testid': 'backdrop' } } }}
       >
         Drawer Body
-      </Drawer>,
+      </Drawer>
     );
     expect(queryByText(container, 'Drawer Body')).not.toBeNull();
     expect(container.querySelector('button')).toBeNull();
@@ -114,19 +109,19 @@ describe('Drawer', () => {
   });
 
   it('override components', () => {
-    const {container} = render(
+    const { container } = render(
       <Drawer
         isOpen
         overrides={{
-          Root: {props: {'data-testid': 'root'}},
-          Backdrop: {props: {'data-testid': 'backdrop'}},
-          DrawerContainer: {props: {'data-testid': 'drawer-container'}},
-          DrawerBody: {props: {'data-testid': 'drawer-body'}},
-          Close: {props: {'data-testid': 'close'}},
+          Root: { props: { 'data-testid': 'root' } },
+          Backdrop: { props: { 'data-testid': 'backdrop' } },
+          DrawerContainer: { props: { 'data-testid': 'drawer-container' } },
+          DrawerBody: { props: { 'data-testid': 'drawer-body' } },
+          Close: { props: { 'data-testid': 'close' } },
         }}
       >
         Drawer Body
-      </Drawer>,
+      </Drawer>
     );
 
     getByTestId(container, 'root');

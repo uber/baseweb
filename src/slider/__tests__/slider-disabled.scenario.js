@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {StatefulSlider} from '../index.js';
+import { StatefulSlider } from '../index.js';
 
 export function Scenario() {
   return (
@@ -19,7 +19,7 @@ export function Scenario() {
         margin: '64px',
       }}
     >
-      <StatefulSlider initialState={{value: [50]}} disabled />
+      <StatefulSlider initialState={{ value: [50] }} disabled />
     </div>
   );
 }

@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* flowlint unclear-type:off */
 
-import {ARROW_SIZE} from '../constants.js';
+import { ARROW_SIZE } from '../constants.js';
 import {
   capitalize,
   fromPopperPlacement,
@@ -100,9 +100,7 @@ describe('Popover utils', () => {
     test('getPopoverMarginStyles should return correct margins with arrow', () => {
       const MARGIN_SIZE = 8;
       const value = ARROW_SIZE + MARGIN_SIZE;
-      expect(
-        getPopoverMarginStyles(ARROW_SIZE, 'topLeft', MARGIN_SIZE),
-      ).toEqual({
+      expect(getPopoverMarginStyles(ARROW_SIZE, 'topLeft', MARGIN_SIZE)).toEqual({
         marginBottom: `${value}px`,
       });
       expect(getPopoverMarginStyles(ARROW_SIZE, 'top', MARGIN_SIZE)).toEqual({
@@ -111,9 +109,7 @@ describe('Popover utils', () => {
       expect(getPopoverMarginStyles(ARROW_SIZE, 'right', MARGIN_SIZE)).toEqual({
         marginLeft: `${value}px`,
       });
-      expect(
-        getPopoverMarginStyles(ARROW_SIZE, 'bottomLeft', MARGIN_SIZE),
-      ).toEqual({
+      expect(getPopoverMarginStyles(ARROW_SIZE, 'bottomLeft', MARGIN_SIZE)).toEqual({
         marginTop: `${value}px`,
       });
     });
@@ -121,16 +117,16 @@ describe('Popover utils', () => {
 
   describe('getArrowPositionStyles', () => {
     test('getArrowPositionStyles should return no styles when placement is unknown yet', () => {
-      expect(getArrowPositionStyles({top: 0, left: 15}, 'auto')).toBe(null);
+      expect(getArrowPositionStyles({ top: 0, left: 15 }, 'auto')).toBe(null);
     });
     test('getArrowPositionStyles should return correct styles for topLeft', () => {
-      expect(getArrowPositionStyles({top: 0, left: 15}, 'topLeft')).toEqual({
+      expect(getArrowPositionStyles({ top: 0, left: 15 }, 'topLeft')).toEqual({
         bottom: '-4px',
         left: '15px',
       });
     });
     test('getArrowPositionStyles should return correct styles for leftTop', () => {
-      expect(getArrowPositionStyles({top: 15, left: 0}, 'leftTop')).toEqual({
+      expect(getArrowPositionStyles({ top: 15, left: 0 }, 'leftTop')).toEqual({
         right: '-4px',
         top: '15px',
       });
@@ -139,17 +135,15 @@ describe('Popover utils', () => {
 
   describe('getStartPosition', () => {
     test('getStartPosition should return correct position for topLeft', () => {
-      expect(
-        getStartPosition({left: 10, top: 15}, 'topLeft', ARROW_SIZE, 8),
-      ).toEqual('translate3d(10px, 27px, 0)');
+      expect(getStartPosition({ left: 10, top: 15 }, 'topLeft', ARROW_SIZE, 8)).toEqual(
+        'translate3d(10px, 27px, 0)'
+      );
     });
   });
 
   describe('getEndPosition', () => {
     test('getEndPosition should return correct end position', () => {
-      expect(getEndPosition({left: 10, top: 15})).toEqual(
-        'translate3d(10px, 15px, 0)',
-      );
+      expect(getEndPosition({ left: 10, top: 15 })).toEqual('translate3d(10px, 15px, 0)');
     });
   });
 });

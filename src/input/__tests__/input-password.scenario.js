@@ -8,23 +8,15 @@ LICENSE file in the root directory of this source tree.
 /* global window */
 
 import React from 'react';
-import {StatefulInput, SIZE} from '../index.js';
+import { StatefulInput, SIZE } from '../index.js';
 
 export function Scenario() {
   return (
     <React.Fragment>
-      <StatefulInput
-        size={SIZE.mini}
-        type="password"
-        initialState={{value: '1234'}}
-      />
+      <StatefulInput size={SIZE.mini} type="password" initialState={{ value: '1234' }} />
 
       <br />
-      <StatefulInput
-        size={SIZE.compact}
-        type="password"
-        initialState={{value: '1234'}}
-      />
+      <StatefulInput size={SIZE.compact} type="password" initialState={{ value: '1234' }} />
 
       <br />
       <form
@@ -36,7 +28,7 @@ export function Scenario() {
       >
         <StatefulInput
           type="password"
-          initialState={{value: '1234'}}
+          initialState={{ value: '1234' }}
           overrides={{
             Input: {
               props: {
@@ -53,11 +45,7 @@ export function Scenario() {
         />
       </form>
       <br />
-      <StatefulInput
-        size={SIZE.large}
-        type="password"
-        initialState={{value: '1234'}}
-      />
+      <StatefulInput size={SIZE.large} type="password" initialState={{ value: '1234' }} />
     </React.Fragment>
   );
 }

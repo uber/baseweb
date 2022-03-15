@@ -8,12 +8,12 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Tag, KIND as TAG_KIND} from '../../tag/index.js';
+import { Tag, KIND as TAG_KIND } from '../../tag/index.js';
 
 import CategoricalColumn from '../column-categorical.js';
 import CustomColumn from '../column-custom.js';
 import StringColumn from '../column-string.js';
-import {StatefulDataTable} from '../stateful-data-table.js';
+import { StatefulDataTable } from '../stateful-data-table.js';
 
 import AnimalData from './animal-data.js';
 
@@ -93,7 +93,7 @@ const rows = AnimalData.map((row) => {
 
 export function Scenario() {
   return (
-    <div style={{height: '600px', width: '700px'}}>
+    <div style={{ height: '600px', width: '700px' }}>
       <StatefulDataTable resizableColumnWidths columns={columns} rows={rows} />
     </div>
   );

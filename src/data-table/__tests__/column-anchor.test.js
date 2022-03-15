@@ -7,9 +7,9 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {render} from '@testing-library/react';
+import { render } from '@testing-library/react';
 
-import {AnchorColumn} from '../index.js';
+import { AnchorColumn } from '../index.js';
 
 describe('anchor column', () => {
   it('is sortable by default', () => {
@@ -56,12 +56,8 @@ describe('anchor column', () => {
     });
     const Cell = column.renderCell;
 
-    const {container} = render(
-      <Cell
-        value={{content: 'baseweb', href: 'https://baseweb.design'}}
-        x={0}
-        y={0}
-      />,
+    const { container } = render(
+      <Cell value={{ content: 'baseweb', href: 'https://baseweb.design' }} x={0} y={0} />
     );
     const cell = container.querySelector('a');
     expect(cell?.textContent).toBe('baseweb');
@@ -78,12 +74,8 @@ describe('anchor column', () => {
     });
     const Cell = column.renderCell;
 
-    const {container} = render(
-      <Cell
-        value={{content: 'baseweb', href: 'https://baseweb.design'}}
-        x={0}
-        y={0}
-      />,
+    const { container } = render(
+      <Cell value={{ content: 'baseweb', href: 'https://baseweb.design' }} x={0} y={0} />
     );
     const cell = container.querySelector('div');
     expect(cell?.textContent).toBe('baseweb');

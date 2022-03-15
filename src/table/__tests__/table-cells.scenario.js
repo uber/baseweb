@@ -8,15 +8,15 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
-import {Block} from '../../block/index.js';
+import { Block } from '../../block/index.js';
 import ArrowDown from '../../icon/arrow-down.js';
 import ArrowUp from '../../icon/arrow-up.js';
 import Search from '../../icon/search.js';
 import Plus from '../../icon/plus.js';
 import Delete from '../../icon/delete.js';
 import Overflow from '../../icon/overflow.js';
-import {StatefulPanel} from '../../accordion/index.js';
-import {withStyle} from '../../styles/index.js';
+import { StatefulPanel } from '../../accordion/index.js';
+import { withStyle } from '../../styles/index.js';
 
 import {
   StyledTable,
@@ -34,19 +34,14 @@ const StyledHeadingCell = withStyle(StyledCell, {
 });
 
 // flowlint-next-line unclear-type:off
-const StyledDeltaCell = withStyle<typeof StyledCell, any>(
-  StyledCell,
-  (props) => ({
-    ...props.$theme.typography.font500,
-    alignItems: 'center',
-    backgroundColor: props.$isNegative
-      ? props.$theme.colors.negative50
-      : props.$theme.colors.positive50,
-    color: props.$isNegative
-      ? props.$theme.colors.negative
-      : props.$theme.colors.positive,
-  }),
-);
+const StyledDeltaCell = withStyle<typeof StyledCell, any>(StyledCell, (props) => ({
+  ...props.$theme.typography.font500,
+  alignItems: 'center',
+  backgroundColor: props.$isNegative
+    ? props.$theme.colors.negative50
+    : props.$theme.colors.positive50,
+  color: props.$isNegative ? props.$theme.colors.negative : props.$theme.colors.positive,
+}));
 
 const StyledLargeText = withStyle(StyledCell, {
   alignItems: 'center',
@@ -72,7 +67,7 @@ const ExpandableCell = withStyle(StyledCell, {
 
 const panelOverrides = {
   PanelContainer: {
-    style: ({$theme: {colors}, $expanded}) => ({
+    style: ({ $theme: { colors }, $expanded }) => ({
       borderBottomWidth: '1px',
       borderBottomStyle: 'solid',
       borderBottomColor: $expanded ? colors.mono500 : 'transparent',
@@ -80,7 +75,7 @@ const panelOverrides = {
   },
 
   Header: {
-    style: ({$theme: {sizing, typography}}) => ({
+    style: ({ $theme: { sizing, typography } }) => ({
       ...typography.font300,
       color: 'inherit',
       paddingTop: sizing.scale300,
@@ -97,7 +92,7 @@ const panelOverrides = {
   },
 
   Content: {
-    style: ({$theme: {colors, sizing}}) => ({
+    style: ({ $theme: { colors, sizing } }) => ({
       backgroundColor: colors.mono200,
       color: colors.mono800,
       paddingTop: sizing.scale300,
@@ -108,7 +103,7 @@ const panelOverrides = {
   },
 
   ToggleIcon: {
-    style: ({$theme: {colors, sizing}}) => ({
+    style: ({ $theme: { colors, sizing } }) => ({
       color: colors.mono600,
       marginRight: sizing.scale500,
     }),
@@ -122,7 +117,7 @@ const DATA = [
     'San Francisco',
     -100,
     1234.5,
-    {title: 'New York', data: '100 Broadway st. New York City, New York'},
+    { title: 'New York', data: '100 Broadway st. New York City, New York' },
   ],
 
   [
@@ -131,7 +126,7 @@ const DATA = [
     'Seattle',
     50,
     2435.2,
-    {title: 'California', data: '100 Market st. San Francisco, California'},
+    { title: 'California', data: '100 Market st. San Francisco, California' },
   ],
 
   [
@@ -140,7 +135,7 @@ const DATA = [
     'Los Angeles',
     40,
     8348.1,
-    {title: 'Australia', data: '100 Macquarie st. Sydney, Australia'},
+    { title: 'Australia', data: '100 Macquarie st. Sydney, Australia' },
   ],
 
   [
@@ -149,7 +144,7 @@ const DATA = [
     'Atlanta',
     700,
     2893.4,
-    {title: 'New York', data: '100 Broadway st. New York City, New York'},
+    { title: 'New York', data: '100 Broadway st. New York City, New York' },
   ],
 
   [
@@ -158,7 +153,7 @@ const DATA = [
     'Denver',
     99,
     8787.3,
-    {title: 'California', data: '100 Market st. San Francisco, California'},
+    { title: 'California', data: '100 Market st. San Francisco, California' },
   ],
 
   [
@@ -167,7 +162,7 @@ const DATA = [
     'Dallas',
     -20,
     6325.2,
-    {title: 'Australia', data: '100 Macquarie st. Sydney, Australia'},
+    { title: 'Australia', data: '100 Macquarie st. Sydney, Australia' },
   ],
 
   [
@@ -176,7 +171,7 @@ const DATA = [
     'Tempe',
     0,
     7392.7,
-    {title: 'New York', data: '100 Broadway st. New York City, New York'},
+    { title: 'New York', data: '100 Broadway st. New York City, New York' },
   ],
 
   [
@@ -185,7 +180,7 @@ const DATA = [
     'Pittsburgh',
     -15,
     9283.1,
-    {title: 'California', data: '100 Market st. San Francisco, California'},
+    { title: 'California', data: '100 Market st. San Francisco, California' },
   ],
 
   [
@@ -194,7 +189,7 @@ const DATA = [
     'Indianapolis',
     -2,
     7720.9,
-    {title: 'Australia', data: '100 Macquarie st. Sydney, Australia'},
+    { title: 'Australia', data: '100 Macquarie st. Sydney, Australia' },
   ],
 
   [
@@ -203,7 +198,7 @@ const DATA = [
     'New Orleans',
     30,
     6273.3,
-    {title: 'New York', data: '100 Broadway st. New York City, New York'},
+    { title: 'New York', data: '100 Broadway st. New York City, New York' },
   ],
 
   [
@@ -212,7 +207,7 @@ const DATA = [
     'New York City',
     -22,
     8837.4,
-    {title: 'California', data: '100 Market st. San Francisco, California'},
+    { title: 'California', data: '100 Market st. San Francisco, California' },
   ],
 
   [
@@ -221,7 +216,7 @@ const DATA = [
     'Oakland',
     4,
     9277.9,
-    {title: 'Australia', data: '100 Macquarie st. Sydney, Australia'},
+    { title: 'Australia', data: '100 Macquarie st. Sydney, Australia' },
   ],
 
   [
@@ -230,7 +225,7 @@ const DATA = [
     'Louisville',
     -9,
     7737.2,
-    {title: 'New York', data: '100 Broadway st. New York City, New York'},
+    { title: 'New York', data: '100 Broadway st. New York City, New York' },
   ],
 
   [
@@ -239,7 +234,7 @@ const DATA = [
     'Baltimore',
     -2,
     2330.3,
-    {title: 'California', data: '100 Market st. San Francisco, California'},
+    { title: 'California', data: '100 Market st. San Francisco, California' },
   ],
 
   [
@@ -248,7 +243,7 @@ const DATA = [
     'Boulder',
     -30,
     4458.8,
-    {title: 'Australia', data: '100 Macquarie st. Sydney, Australia'},
+    { title: 'Australia', data: '100 Macquarie st. Sydney, Australia' },
   ],
 
   [
@@ -257,7 +252,7 @@ const DATA = [
     'Chicago',
     -10,
     6363.9,
-    {title: 'New York', data: '100 Broadway st. New York City, New York'},
+    { title: 'New York', data: '100 Broadway st. New York City, New York' },
   ],
 
   [
@@ -266,7 +261,7 @@ const DATA = [
     'Grand Rapids',
     70,
     2235.2,
-    {title: 'California', data: '100 Market st. San Francisco, California'},
+    { title: 'California', data: '100 Market st. San Francisco, California' },
   ],
 
   [
@@ -275,7 +270,7 @@ const DATA = [
     'Nashville',
     30,
     9882.3,
-    {title: 'Australia', data: '100 Macquarie st. Sydney, Australia'},
+    { title: 'Australia', data: '100 Macquarie st. Sydney, Australia' },
   ],
 
   [
@@ -284,7 +279,7 @@ const DATA = [
     'Sacramento',
     10,
     8774.7,
-    {title: 'New York', data: '100 Broadway st. New York City, New York'},
+    { title: 'New York', data: '100 Broadway st. New York City, New York' },
   ],
 
   [
@@ -293,13 +288,13 @@ const DATA = [
     'Columbus',
     -5,
     2673.2,
-    {title: 'California', data: '100 Market st. San Francisco, California'},
+    { title: 'California', data: '100 Market st. San Francisco, California' },
   ],
 ];
 
 export function Scenario() {
   return (
-    <div style={{height: '500px', width: '900px'}}>
+    <div style={{ height: '500px', width: '900px' }}>
       <StyledTable>
         <StyledHead>
           <StyledHeadCell>Name</StyledHeadCell>

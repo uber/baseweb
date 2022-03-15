@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {StatelessAccordion, Panel} from '../index.js';
+import { StatelessAccordion, Panel } from '../index.js';
 
 export function Scenario() {
   const [expanded, setExpanded] = React.useState(['P1', 'P2']);
@@ -16,7 +16,7 @@ export function Scenario() {
     <StatelessAccordion
       expanded={expanded}
       accordion={false}
-      onChange={({key, expanded}) => {
+      onChange={({ key, expanded }) => {
         console.log(key, '----');
         console.log(expanded);
         setExpanded(expanded);

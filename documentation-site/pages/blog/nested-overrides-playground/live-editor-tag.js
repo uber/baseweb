@@ -8,8 +8,8 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 // $FlowFixMe
 import Yard from '../../../components/yard/index';
-import {Tag, KIND, VARIANT, SIZE} from 'baseui/tag';
-import {PropTypes} from 'react-view';
+import { Tag, KIND, VARIANT, SIZE } from 'baseui/tag';
+import { PropTypes } from 'react-view';
 
 const tagYardConfig = {
   componentName: 'Tag',

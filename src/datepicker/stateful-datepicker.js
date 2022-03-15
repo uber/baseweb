@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import StatefulContainer from './stateful-container.js';
 import Datepicker from './datepicker.js';
-import type {StatefulDatepickerPropsT, DatepickerPropsT} from './types.js';
+import type { StatefulDatepickerPropsT, DatepickerPropsT } from './types.js';
 
 type PropsT<T> = StatefulDatepickerPropsT<DatepickerPropsT<T>, T>;
 

@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
-import {TimePicker} from '../index.js';
+import { TimePicker } from '../index.js';
 
 export function Scenario() {
   return (

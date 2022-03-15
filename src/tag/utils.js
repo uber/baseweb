@@ -15,16 +15,14 @@ const JOINABLE_TYPES = new Set(['string', 'number']);
 // text from the child of a node to use as an attribute.
 export function getTextFromChildren(children: ?React$Node) {
   const childList = React.Children.toArray(children).filter(
-    (child) => child !== null && child !== undefined,
+    (child) => child !== null && child !== undefined
   );
 
   if (!childList.length) {
     return null;
   }
 
-  const isJoinable = childList.every((child) =>
-    JOINABLE_TYPES.has(typeof child),
-  );
+  const isJoinable = childList.every((child) => JOINABLE_TYPES.has(typeof child));
 
   if (!isJoinable) {
     return null;

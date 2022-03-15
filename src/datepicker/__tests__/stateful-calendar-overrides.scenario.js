@@ -8,9 +8,9 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {StatefulCalendar} from '../index.js';
+import { StatefulCalendar } from '../index.js';
 
-const arrowBtnOverrides = ({$theme}) => {
+const arrowBtnOverrides = ({ $theme }) => {
   return {
     ':focus': {
       backgroundColor: $theme.colors.positive500,
@@ -21,22 +21,22 @@ const arrowBtnOverrides = ({$theme}) => {
 export function Scenario() {
   return (
     <StatefulCalendar
-      initialState={{value: new Date('2019-02-14T10:00:00Z')}}
+      initialState={{ value: new Date('2019-02-14T10:00:00Z') }}
       overrides={{
         CalendarHeader: {
-          style: ({$theme}) => ({
+          style: ({ $theme }) => ({
             backgroundColor: $theme.colors.positive,
           }),
         },
 
         MonthHeader: {
-          style: ({$theme}) => ({
+          style: ({ $theme }) => ({
             backgroundColor: $theme.colors.positive,
           }),
         },
 
         MonthYearSelectButton: {
-          style: ({$theme}) => ({
+          style: ({ $theme }) => ({
             ':focus': {
               backgroundColor: $theme.colors.positive500,
               outline: 'none',
@@ -53,7 +53,7 @@ export function Scenario() {
         },
 
         Day: {
-          style: ({$theme, $selected, $isHovered, $isHighlighted}) => ({
+          style: ({ $theme, $selected, $isHovered, $isHighlighted }) => ({
             ':after': {
               backgroundColor: $selected
                 ? $isHovered || $isHighlighted

@@ -7,17 +7,15 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {render} from '@testing-library/react';
+import { render } from '@testing-library/react';
 
-import {StatefulPanelContainer} from '../index.js';
+import { StatefulPanelContainer } from '../index.js';
 
 describe('StatefulPanelContainer', () => {
   it('provides expected props to children function', () => {
     const children = jest.fn(() => null);
     render(
-      <StatefulPanelContainer initialState={{expanded: true}}>
-        {children}
-      </StatefulPanelContainer>,
+      <StatefulPanelContainer initialState={{ expanded: true }}>{children}</StatefulPanelContainer>
     );
 
     expect(children.mock.calls.length).toBe(1);

@@ -6,15 +6,11 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import {styled} from '../styles/index.js';
-import type {
-  AvatarStylePropsT,
-  RootStylePropsT,
-  InitialsStylePropsT,
-} from './types.js';
+import { styled } from '../styles/index.js';
+import type { AvatarStylePropsT, RootStylePropsT, InitialsStylePropsT } from './types.js';
 
 function getSize(props) {
-  const {$size, $theme} = props;
+  const { $size, $theme } = props;
 
   const defaultSize = $theme.sizing.scale1000;
   const size = $size || defaultSize;
@@ -47,7 +43,7 @@ export const Initials = styled<InitialsStylePropsT>('div', (props) => ({
 }));
 
 export const Root = styled<RootStylePropsT>('div', (props) => {
-  const {$didImageFailToLoad} = props;
+  const { $didImageFailToLoad } = props;
   const themedSize = getSize(props);
 
   return ({

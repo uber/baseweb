@@ -8,36 +8,31 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 import * as React from 'react';
-import {withStyle} from 'baseui';
-import {Navigation, StyledNavItem, StyledNavLink} from 'baseui/side-navigation';
+import { withStyle } from 'baseui';
+import { Navigation, StyledNavItem, StyledNavLink } from 'baseui/side-navigation';
 import Link from 'next/link';
 
 import Routes from '../routes';
 
-const CustomStyledNavItem = withStyle(
-  StyledNavItem,
-  ({$theme, $active, $hasItemId, $level}) => ({
-    paddingTop: $theme.sizing.scale200,
-    paddingBottom: $theme.sizing.scale200,
-    ...($theme.name.startsWith('dark') && $active
-      ? {
-          background: $theme.colors.backgroundSecondary,
-        }
-      : {}),
-    ...(!$hasItemId || $level === 1
-      ? {
-          textTransform: 'uppercase',
-          ...($level === 1
-            ? $theme.typography.font350
-            : $theme.typography.font250),
-        }
-      : {}),
-  }),
-);
+const CustomStyledNavItem = withStyle(StyledNavItem, ({ $theme, $active, $hasItemId, $level }) => ({
+  paddingTop: $theme.sizing.scale200,
+  paddingBottom: $theme.sizing.scale200,
+  ...($theme.name.startsWith('dark') && $active
+    ? {
+        background: $theme.colors.backgroundSecondary,
+      }
+    : {}),
+  ...(!$hasItemId || $level === 1
+    ? {
+        textTransform: 'uppercase',
+        ...($level === 1 ? $theme.typography.font350 : $theme.typography.font250),
+      }
+    : {}),
+}));
 
 const removeSlash = (path) => path && path.replace(/\/$/, '');
 
-const CustomNavItem = ({item, onSelect, onClick, onKeyDown, ...restProps}) => (
+const CustomNavItem = ({ item, onSelect, onClick, onKeyDown, ...restProps }) => (
   <CustomStyledNavItem $hasItemId={!!item.itemId} {...restProps} />
 );
 
@@ -55,7 +50,7 @@ const activePredicate = (item, location) =>
   (location && removeSlash(location) === removeSlash(item.itemId)) ||
   (!location && item.itemId === '/');
 
-function Sidebar({path}) {
+function Sidebar({ path }) {
   return (
     <Navigation
       activeItemId={path}

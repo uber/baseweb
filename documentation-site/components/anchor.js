@@ -8,9 +8,9 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {themedStyled} from '../pages/_app';
+import { themedStyled } from '../pages/_app';
 
-const Wrapper = themedStyled('a', ({$isVisible, $theme}) => ({
+const Wrapper = themedStyled('a', ({ $isVisible, $theme }) => ({
   visibility: $isVisible ? 'visible' : 'hidden',
   color: $theme.colors.primary,
   ':focus': {
@@ -32,7 +32,7 @@ const elementToSize = (element) => {
   }
 };
 
-const Anchor = ({isVisible, slug, element}) => (
+const Anchor = ({ isVisible, slug, element }) => (
   <Wrapper $isVisible={isVisible} href={`#${slug}`}>
     <svg
       xmlns="http://www.w3.org/2000/svg"

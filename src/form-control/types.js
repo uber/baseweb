@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 import * as React from 'react';
-import type {OverrideT} from '../helpers/overrides.js';
+import type { OverrideT } from '../helpers/overrides.js';
 
 export type FormControlStateT = {|
   captionId: string,
@@ -42,7 +42,7 @@ export type FormControlPropsT = {
   /** Adds a label end enhancer to the label */
   labelEndEnhancer?: ?(React.Node | ((props: {}) => React.Node)),
   /** Adds a length counter to the form control. If your input does not have a "string" value exposed as a prop, you provide the length as an object.*/
-  counter?: boolean | {|length?: number, maxLength?: number, error?: boolean|},
+  counter?: boolean | {| length?: number, maxLength?: number, error?: boolean |},
   children: React.Node,
 };
 

@@ -6,18 +6,13 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {
-  Layer,
-  LayersManager,
-  TetherBehavior,
-  TETHER_PLACEMENT,
-} from '../index.js';
-import {Block} from '../../block/index.js';
-import {Button} from '../../button/index.js';
-import type {NormalizedOffsetsT} from '../../layer/types.js';
+import { Layer, LayersManager, TetherBehavior, TETHER_PLACEMENT } from '../index.js';
+import { Block } from '../../block/index.js';
+import { Button } from '../../button/index.js';
+import type { NormalizedOffsetsT } from '../../layer/types.js';
 
 function BlockComponent(props) {
-  const {children, forwardedRef, offset, color, ...restProps} = props;
+  const { children, forwardedRef, offset, color, ...restProps } = props;
   return (
     <Block
       ref={forwardedRef}
@@ -51,9 +46,9 @@ export class Scenario extends React.Component<
     isSecondOpen: boolean,
     isFirstMounted: boolean,
     isSecondMounted: boolean,
-    offset1: {top: number, left: number},
-    offset2: {top: number, left: number},
-  },
+    offset1: { top: number, left: number },
+    offset2: { top: number, left: number },
+  }
 > {
   anchorRef1 = React.createRef<HTMLElement>();
   popperRef1 = React.createRef<HTMLElement>();
@@ -65,8 +60,8 @@ export class Scenario extends React.Component<
     isSecondOpen: false,
     isFirstMounted: false,
     isSecondMounted: false,
-    offset1: {top: 0, left: 0},
-    offset2: {top: 0, left: 0},
+    offset1: { top: 0, left: 0 },
+    offset2: { top: 0, left: 0 },
   };
 
   onPopperUpdate = (order: number, normalizedOffsets: NormalizedOffsetsT) => {
@@ -89,14 +84,14 @@ export class Scenario extends React.Component<
           <Button
             data-test="no-zindex-btn"
             ref={this.anchorRef1}
-            onClick={() => this.setState({isFirstOpen: true})}
+            onClick={() => this.setState({ isFirstOpen: true })}
           >
             Render Yellow Layer
           </Button>
           {this.state.isFirstOpen ? (
             <Layer
-              onMount={() => this.setState({isFirstMounted: true})}
-              onUnmount={() => this.setState({isFirstMounted: false})}
+              onMount={() => this.setState({ isFirstMounted: true })}
+              onUnmount={() => this.setState({ isFirstMounted: false })}
             >
               <TetherBehavior
                 anchorRef={this.anchorRef1.current}
@@ -111,9 +106,7 @@ export class Scenario extends React.Component<
                   offset={this.state.offset1}
                   color="rgba(255, 255, 190, 0.86)"
                 >
-                  <Button onClick={() => this.setState({isFirstOpen: false})}>
-                    Close
-                  </Button>
+                  <Button onClick={() => this.setState({ isFirstOpen: false })}>Close</Button>
                 </BlockComponent>
               </TetherBehavior>
             </Layer>
@@ -123,14 +116,14 @@ export class Scenario extends React.Component<
             <Button
               data-test="zindex-btn"
               ref={this.anchorRef2}
-              onClick={() => this.setState({isSecondOpen: true})}
+              onClick={() => this.setState({ isSecondOpen: true })}
             >
               Render Green Layer
             </Button>
             {this.state.isSecondOpen ? (
               <Layer
-                onMount={() => this.setState({isSecondMounted: true})}
-                onUnmount={() => this.setState({isSecondMounted: false})}
+                onMount={() => this.setState({ isSecondMounted: true })}
+                onUnmount={() => this.setState({ isSecondMounted: false })}
               >
                 <TetherBehavior
                   anchorRef={this.anchorRef2.current}
@@ -145,11 +138,7 @@ export class Scenario extends React.Component<
                     offset={this.state.offset2}
                     color="rgba(190, 255, 190, 0.86)"
                   >
-                    <Button
-                      onClick={() => this.setState({isSecondOpen: false})}
-                    >
-                      Close
-                    </Button>
+                    <Button onClick={() => this.setState({ isSecondOpen: false })}>Close</Button>
                   </BlockComponent>
                 </TetherBehavior>
               </Layer>

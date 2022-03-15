@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {useView, Compiler, Error} from 'react-view';
+import { useView, Compiler, Error } from 'react-view';
 //$FlowFixMe
 import Editor from '../../../components/yard/editor';
 
@@ -15,7 +15,7 @@ import Editor from '../../../components/yard/editor';
 //$FlowFixMe
 import presetTypescript from '@babel/preset-typescript';
 
-function LiveEditor({initialCode}: {initialCode: string}) {
+function LiveEditor({ initialCode }: { initialCode: string }) {
   const params = useView({
     initialCode,
     scope: {},

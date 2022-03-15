@@ -7,16 +7,16 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-import {styled} from '../styles/index.js';
+import { styled } from '../styles/index.js';
 
-export const StyledRoot = styled<{}>('nav', ({$theme}) => {
+export const StyledRoot = styled<{}>('nav', ({ $theme }) => {
   return {
     color: $theme.colors.breadcrumbsText,
     ...$theme.typography.font350,
   };
 });
 
-export const StyledList = styled<{}>('ol', ({$theme}) => {
+export const StyledList = styled<{}>('ol', ({ $theme }) => {
   return {
     listStyleType: 'none',
     margin: 0,
@@ -25,14 +25,14 @@ export const StyledList = styled<{}>('ol', ({$theme}) => {
   };
 });
 
-export const StyledListItem = styled<{}>('li', ({$theme}) => {
+export const StyledListItem = styled<{}>('li', ({ $theme }) => {
   return {
     display: 'inline-block',
     ...$theme.typography.font350,
   };
 });
 
-export const StyledSeparator = styled<{}>('div', ({$theme}) => {
+export const StyledSeparator = styled<{}>('div', ({ $theme }) => {
   return {
     display: 'inline-block',
     color: $theme.colors.breadcrumbsSeparatorFill,

@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {DatetimeColumn} from '../index.js';
+import { DatetimeColumn } from '../index.js';
 
 const Column = DatetimeColumn({
   title: 'categorical-column',
@@ -24,7 +24,7 @@ const data = [1, 2, 3, 4, 5, 6, 7, 7, 8, 8, 9].map((i) => {
 
 export function Scenario() {
   return (
-    <div style={{backgroundColor: '#FFD700', padding: '24px'}}>
+    <div style={{ backgroundColor: '#FFD700', padding: '24px' }}>
       <div>
         <Filter close={() => {}} setFilter={() => {}} data={data} />
       </div>

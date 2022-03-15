@@ -8,8 +8,8 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {StyledLink} from '../../link/index.js';
-import {Breadcrumbs} from '../index.js';
+import { StyledLink } from '../../link/index.js';
+import { Breadcrumbs } from '../index.js';
 
 export function Scenario() {
   return (

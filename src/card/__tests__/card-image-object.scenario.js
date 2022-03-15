@@ -8,11 +8,11 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Card, type ImagePropsT, StyledBody} from '../index.js';
-import {header as headerImg, thumbnail as thumbnailImg} from '../images.js';
-import {styled} from '../../styles/index.js';
+import { Card, type ImagePropsT, StyledBody } from '../index.js';
+import { header as headerImg, thumbnail as thumbnailImg } from '../images.js';
+import { styled } from '../../styles/index.js';
 
-const Container = styled('div', {width: '328px'});
+const Container = styled('div', { width: '328px' });
 
 const headerImage: ImagePropsT = {
   src: headerImg,
@@ -25,9 +25,9 @@ export function Scenario() {
     <Container>
       <Card headerImage={headerImage} title="Card Title Entry">
         <StyledBody>
-          Proin ut dui sed metus pharetra hend rerit vel non mi. Nulla ornare
-          faucibus ex, non facilisis nisl. Maecenas aliquet mauris ut tempus
-          cursus. Etiam semper luctus sem ac blandit.
+          Proin ut dui sed metus pharetra hend rerit vel non mi. Nulla ornare faucibus ex, non
+          facilisis nisl. Maecenas aliquet mauris ut tempus cursus. Etiam semper luctus sem ac
+          blandit.
         </StyledBody>
       </Card>
     </Container>

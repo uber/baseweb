@@ -5,8 +5,8 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import {styled} from '../styles/index.js';
-import type {StylePropsT} from './types.js';
+import { styled } from '../styles/index.js';
+import type { StylePropsT } from './types.js';
 
 const DEFAULT = 0;
 const HOVERED = 1;
@@ -21,7 +21,7 @@ function getState(props): State {
 
 function getOuterColor(props) {
   const {
-    $theme: {colors},
+    $theme: { colors },
     $disabled,
     $checked,
     $isFocusVisible,
@@ -59,7 +59,7 @@ function getOuterColor(props) {
 }
 
 function getInnerColor(props) {
-  const {colors} = props.$theme;
+  const { colors } = props.$theme;
 
   if (props.$disabled) {
     return colors.tickMarkFillDisabled;
@@ -91,7 +91,7 @@ function getInnerColor(props) {
 }
 
 function getLabelPadding(props) {
-  const {$labelPlacement = '', $theme} = props;
+  const { $labelPlacement = '', $theme } = props;
   let paddingDirection;
   switch ($labelPlacement) {
     case 'top':
@@ -108,16 +108,16 @@ function getLabelPadding(props) {
       paddingDirection = $theme.direction === 'rtl' ? 'Right' : 'Left';
       break;
   }
-  const {sizing} = $theme;
-  const {scale300} = sizing;
+  const { sizing } = $theme;
+  const { scale300 } = sizing;
   return {
     [`padding${paddingDirection}`]: scale300,
   };
 }
 
 function getLabelColor(props) {
-  const {$disabled, $theme} = props;
-  const {colors} = $theme;
+  const { $disabled, $theme } = props;
+  const { colors } = $theme;
   return $disabled ? colors.contentSecondary : colors.contentPrimary;
 }
 
@@ -125,7 +125,7 @@ export const RadioGroupRoot = styled<StylePropsT>(
   'div',
   // $FlowFixMe - suppressing due to webkit property
   (props) => {
-    const {$disabled, $align} = props;
+    const { $disabled, $align } = props;
     return {
       display: 'flex',
       flexWrap: 'wrap',
@@ -134,20 +134,17 @@ export const RadioGroupRoot = styled<StylePropsT>(
       cursor: $disabled ? 'not-allowed' : 'pointer',
       '-webkit-tap-highlight-color': 'transparent',
     };
-  },
+  }
 );
 
 export const Root = styled<StylePropsT>('label', (props) => {
-  const {$disabled, $hasDescription, $labelPlacement, $theme, $align} = props;
-  const {sizing} = $theme;
+  const { $disabled, $hasDescription, $labelPlacement, $theme, $align } = props;
+  const { sizing } = $theme;
   const isHorizontal = $align === 'horizontal';
 
   const marginAfter = $theme.direction === 'rtl' ? 'Left' : 'Right';
   return ({
-    flexDirection:
-      $labelPlacement === 'top' || $labelPlacement === 'bottom'
-        ? 'column'
-        : 'row',
+    flexDirection: $labelPlacement === 'top' || $labelPlacement === 'bottom' ? 'column' : 'row',
     display: 'flex',
     alignItems: 'center',
     cursor: $disabled ? 'not-allowed' : 'pointer',
@@ -158,7 +155,7 @@ export const Root = styled<StylePropsT>('label', (props) => {
 });
 
 export const RadioMarkInner = styled<StylePropsT>('div', (props) => {
-  const {animation, sizing} = props.$theme;
+  const { animation, sizing } = props.$theme;
 
   return {
     backgroundColor: getInnerColor(props),
@@ -174,7 +171,7 @@ export const RadioMarkInner = styled<StylePropsT>('div', (props) => {
 });
 
 export const RadioMarkOuter = styled<StylePropsT>('div', (props) => {
-  const {animation, sizing} = props.$theme;
+  const { animation, sizing } = props.$theme;
 
   return ({
     alignItems: 'center',
@@ -184,9 +181,7 @@ export const RadioMarkOuter = styled<StylePropsT>('div', (props) => {
     borderBottomRightRadius: '50%',
     borderBottomLeftRadius: '50%',
     boxShadow:
-      props.$isFocusVisible && props.$checked
-        ? `0 0 0 3px ${props.$theme.colors.accent}`
-        : 'none',
+      props.$isFocusVisible && props.$checked ? `0 0 0 3px ${props.$theme.colors.accent}` : 'none',
     display: 'flex',
     height: sizing.scale700,
     justifyContent: 'center',
@@ -205,7 +200,7 @@ export const RadioMarkOuter = styled<StylePropsT>('div', (props) => {
 
 export const Label = styled<StylePropsT>('div', (props) => {
   const {
-    $theme: {typography},
+    $theme: { typography },
   } = props;
   return {
     verticalAlign: 'middle',
@@ -232,7 +227,7 @@ export const Input = styled('input', {
 });
 
 export const Description = styled<StylePropsT>('div', (props) => {
-  const {$theme, $align} = props;
+  const { $theme, $align } = props;
   const isHorizontal = $align === 'horizontal';
   const marginBefore = $theme.direction === 'rtl' ? 'Right' : 'Left';
   const marginAfter = $theme.direction === 'rtl' ? 'Left' : 'Right';
@@ -240,8 +235,7 @@ export const Description = styled<StylePropsT>('div', (props) => {
     ...$theme.typography.ParagraphSmall,
     color: $theme.colors.contentSecondary,
     cursor: 'auto',
-    [`margin${marginBefore}`]:
-      $align === 'horizontal' ? null : $theme.sizing.scale900,
+    [`margin${marginBefore}`]: $align === 'horizontal' ? null : $theme.sizing.scale900,
     [`margin${marginAfter}`]: isHorizontal ? $theme.sizing.scale200 : null,
     maxWidth: '240px',
   };

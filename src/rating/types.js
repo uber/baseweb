@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import type {ThemeT} from '../styles/types.js';
-import type {OverrideT} from '../helpers/overrides.js';
+import type { ThemeT } from '../styles/types.js';
+import type { OverrideT } from '../helpers/overrides.js';
 
 export type RatingOverridesT = {
   Root?: OverrideT,
@@ -22,7 +22,7 @@ export type StarRatingPropsT = {
   numItems: number,
   readOnly?: boolean,
   /** Callback that's called with the newly selected value. */
-  onChange?: ({value: number}) => mixed,
+  onChange?: ({ value: number }) => mixed,
   size?: number,
 };
 
@@ -32,7 +32,7 @@ export type EmoticonRatingPropsT = {
   value?: number,
   readOnly?: boolean,
   /** Callback that's called with the newly selected value. */
-  onChange?: ({value: number}) => mixed,
+  onChange?: ({ value: number }) => mixed,
   size?: number,
 };
 

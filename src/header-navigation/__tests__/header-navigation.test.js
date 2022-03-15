@@ -6,23 +6,21 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {render, getByTestId, getByText} from '@testing-library/react';
+import { render, getByTestId, getByText } from '@testing-library/react';
 
-import {HeaderNavigation} from '../index.js';
+import { HeaderNavigation } from '../index.js';
 
 describe('Stateless header navigation', function () {
   it('should render component', function () {
-    const {container} = render(
-      <HeaderNavigation>hello world</HeaderNavigation>,
-    );
+    const { container } = render(<HeaderNavigation>hello world</HeaderNavigation>);
     getByText(container, 'hello world');
   });
 
   it('applies root overrides', function () {
-    const {container} = render(
-      <HeaderNavigation overrides={{Root: {props: {'data-testid': 'root'}}}}>
+    const { container } = render(
+      <HeaderNavigation overrides={{ Root: { props: { 'data-testid': 'root' } } }}>
         hello world
-      </HeaderNavigation>,
+      </HeaderNavigation>
     );
     getByTestId(container, 'root');
   });

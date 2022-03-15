@@ -5,9 +5,9 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import {styled} from '../styles/index.js';
-import {getSvgStyles} from '../icon/styled-components.js';
-import type {SharedStylePropsArgT} from './types.js';
+import { styled } from '../styles/index.js';
+import { getSvgStyles } from '../icon/styled-components.js';
+import type { SharedStylePropsArgT } from './types.js';
 
 /**
  * Main component container element
@@ -24,7 +24,7 @@ export const Root = styled('ul', {
 export const PanelContainer = styled<SharedStylePropsArgT>('li', (props) => {
   const {
     $expanded,
-    $theme: {colors},
+    $theme: { colors },
   } = props;
   return {
     listStyleType: 'none',
@@ -39,7 +39,7 @@ export const Header = styled<SharedStylePropsArgT>('div', (props) => {
   const {
     $disabled,
     $isFocusVisible,
-    $theme: {colors, sizing, typography},
+    $theme: { colors, sizing, typography },
   } = props;
   return {
     ...typography.font350,
@@ -66,7 +66,7 @@ export const Header = styled<SharedStylePropsArgT>('div', (props) => {
 });
 
 export const ToggleIcon = styled<SharedStylePropsArgT>('svg', (props) => {
-  const {$theme, $disabled, $color} = props;
+  const { $theme, $disabled, $color } = props;
   return {
     ...getSvgStyles(props),
     flexShrink: 0,
@@ -76,7 +76,7 @@ export const ToggleIcon = styled<SharedStylePropsArgT>('svg', (props) => {
 });
 
 export const ToggleIconGroup = styled<SharedStylePropsArgT>('g', (props) => {
-  const {$theme, $expanded} = props;
+  const { $theme, $expanded } = props;
   return {
     transform: $expanded ? 'rotate(0)' : 'rotate(-90deg)',
     transformOrigin: 'center',
@@ -88,7 +88,7 @@ export const ToggleIconGroup = styled<SharedStylePropsArgT>('g', (props) => {
 
 export const Content = styled<SharedStylePropsArgT>('div', (props) => {
   const {
-    $theme: {animation, colors, sizing, typography},
+    $theme: { animation, colors, sizing, typography },
     $expanded,
   } = props;
   return {
@@ -115,11 +115,11 @@ export const Content = styled<SharedStylePropsArgT>('div', (props) => {
 });
 
 export const ContentAnimationContainer = styled<
-  {$height: string | number} & SharedStylePropsArgT,
+  { $height: string | number } & SharedStylePropsArgT
 >('div', (props) => {
   const {
     $height,
-    $theme: {animation},
+    $theme: { animation },
   } = props;
   return {
     height: `${$height}`,

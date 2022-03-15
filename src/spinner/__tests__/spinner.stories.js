@@ -7,6 +7,6 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {Scenario as SpinnerDefault} from './spinner.scenario.js';
+import { Scenario as SpinnerDefault } from './spinner.scenario.js';
 
 export const Spinner = () => <SpinnerDefault />;

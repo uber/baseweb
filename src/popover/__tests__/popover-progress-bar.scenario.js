@@ -8,9 +8,9 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {ParagraphSmall} from '../../typography/index.js';
-import {ProgressBar} from '../../progress-bar/index.js';
-import {StatefulPopover, TRIGGER_TYPE} from '../index.js';
+import { ParagraphSmall } from '../../typography/index.js';
+import { ProgressBar } from '../../progress-bar/index.js';
+import { StatefulPopover, TRIGGER_TYPE } from '../index.js';
 
 export function Scenario() {
   return (

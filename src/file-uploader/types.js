@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import type {OverrideT} from '../helpers/overrides.js';
+import type { OverrideT } from '../helpers/overrides.js';
 
 export type StylePropsT = {|
   $afterFileDrop: boolean,
@@ -67,12 +67,12 @@ export type PropsT = {|
 export type DropFilesEventHandlerT = (
   accepted: File[],
   rejected: File[],
-  event: SyntheticDragEvent<HTMLElement>,
+  event: SyntheticDragEvent<HTMLElement>
 ) => mixed;
 
 type DropFileEventHandlerT = (
   acceptedOrRejected: File[],
-  event: SyntheticDragEvent<HTMLElement>,
+  event: SyntheticDragEvent<HTMLElement>
 ) => mixed;
 
 type DataTransferEventT =
@@ -80,6 +80,4 @@ type DataTransferEventT =
   | SyntheticInputEvent<HTMLInputElement>
   | SyntheticDragEvent<any> //flowlint-line unclear-type:off
   | SyntheticEvent<any>; //flowlint-line unclear-type:off
-type GetDataTransferItemsT = (
-  event: DataTransferEventT,
-) => Promise<Array<File | DataTransferItem>>;
+type GetDataTransferItemsT = (event: DataTransferEventT) => Promise<Array<File | DataTransferItem>>;

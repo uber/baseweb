@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import type {NestedMenuRefT, NestedMenuContextT} from './types.js';
+import type { NestedMenuRefT, NestedMenuContextT } from './types.js';
 
 type StateT = {
   nestedMenuHoverIndex: number,
@@ -19,16 +19,15 @@ type PropsT = {
   children: React.Node,
 };
 
-export const NestedMenuContext: React.Context<NestedMenuContextT> =
-  React.createContext({
-    addMenuToNesting: () => {},
-    removeMenuFromNesting: () => {},
-    getParentMenu: () => {},
-    getChildMenu: () => {},
-    nestedMenuHoverIndex: -1,
-    isNestedMenuVisible: () => false,
-    mountRef: {current: null},
-  });
+export const NestedMenuContext: React.Context<NestedMenuContextT> = React.createContext({
+  addMenuToNesting: () => {},
+  removeMenuFromNesting: () => {},
+  getParentMenu: () => {},
+  getChildMenu: () => {},
+  nestedMenuHoverIndex: -1,
+  isNestedMenuVisible: () => false,
+  mountRef: { current: null },
+});
 
 function isSame(a: ?HTMLElement, b: ?HTMLElement) {
   if (!a || !b) {
@@ -39,13 +38,13 @@ function isSame(a: ?HTMLElement, b: ?HTMLElement) {
 }
 
 export default class NestedMenus extends React.Component<PropsT, StateT> {
-  state = {menus: [], nestedMenuHoverIndex: -1};
-  mountRef = (React.createRef(): {current: HTMLElement | null});
+  state = { menus: [], nestedMenuHoverIndex: -1 };
+  mountRef = (React.createRef(): { current: HTMLElement | null });
   mouseLeaveTimeoueId = null;
 
   handleMenuMouseLeave = (event: MouseEvent) => {
     this.mouseLeaveTimeoueId = setTimeout(() => {
-      this.setState({nestedMenuHoverIndex: -1});
+      this.setState({ nestedMenuHoverIndex: -1 });
     }, 200);
   };
 
@@ -60,7 +59,7 @@ export default class NestedMenus extends React.Component<PropsT, StateT> {
         );
       });
 
-      this.setState({nestedMenuHoverIndex: index});
+      this.setState({ nestedMenuHoverIndex: index });
     }
   };
 
@@ -74,7 +73,7 @@ export default class NestedMenus extends React.Component<PropsT, StateT> {
       element.addEventListener('mouseleave', this.handleMenuMouseLeave);
 
       this.setState((state) => {
-        return {menus: [...state.menus, ref]};
+        return { menus: [...state.menus, ref] };
       });
     }
   };
@@ -93,7 +92,7 @@ export default class NestedMenus extends React.Component<PropsT, StateT> {
         return r.current && !isSame(r.current, ref.current);
       });
 
-      return {menus: nextMenus};
+      return { menus: nextMenus };
     });
   };
 

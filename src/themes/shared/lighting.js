@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import type {LightingT} from '../types.js';
+import type { LightingT } from '../types.js';
 
 const lighting: LightingT = {
   shadow400: '0 1px 4px hsla(0, 0%, 0%, 0.16)',

@@ -7,13 +7,9 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {mount} = require('../../../e2e/helpers');
+const { mount } = require('../../../e2e/helpers');
 
-const {
-  TABLE_ROOT,
-  getCellContentsAtColumnIndex,
-  matchArrayElements,
-} = require('./utilities.js');
+const { TABLE_ROOT, getCellContentsAtColumnIndex, matchArrayElements } = require('./utilities.js');
 
 const COLUMN_COUNT = 6;
 
@@ -21,7 +17,7 @@ describe('data-table-extracted-filters', () => {
   it('applies expected filters to table', async () => {
     // windowed table excludes hidden cells. set to larger viewport
     // to display everything we need to get the column contents
-    await page.setViewport({width: 1366, height: 1000});
+    await page.setViewport({ width: 1366, height: 1000 });
 
     await mount(page, 'data-table--extracted-filters');
     await page.waitForSelector(TABLE_ROOT);

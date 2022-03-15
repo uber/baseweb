@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Component} from '../index.js';
+import { Component } from '../index.js';
 
 export function Scenario() {
   return <Component>Component</Component>;

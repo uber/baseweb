@@ -7,14 +7,12 @@ LICENSE file in the root directory of this source tree.
 /* THIS FILE IS AUTO-GENERATED. DO NOT MODIFY. */
 /* eslint-disable flowtype/require-valid-file-annotation */
 import React from 'react';
+
 export default function SvgTextarea(props) {
   return (
     <svg width={232} height={145} fill="none" {...props}>
       <path fill={props.colors[1]} d="M29 44h174v56H29z" />
-      <path
-        d="M194.138 91.138l-7.34-.085 7.255-7.254.085 7.339z"
-        fill={props.colors[2]}
-      />
+      <path d="M194.138 91.138l-7.34-.085 7.255-7.254.085 7.339z" fill={props.colors[2]} />
     </svg>
   );
 }

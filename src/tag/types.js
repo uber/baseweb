@@ -8,8 +8,8 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import type {OverrideT} from '../helpers/overrides.js';
-import {KIND, VARIANT, SIZE} from './constants.js';
+import type { OverrideT } from '../helpers/overrides.js';
+import { KIND, VARIANT, SIZE } from './constants.js';
 
 export const TagKind = Object.freeze(KIND);
 export const TagVariant = Object.freeze(VARIANT);

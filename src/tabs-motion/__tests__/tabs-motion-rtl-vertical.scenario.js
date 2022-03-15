@@ -10,22 +10,22 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable jsx-a11y/accessible-emoji */
 
 import * as React from 'react';
-import {Tab, Tabs, ORIENTATION} from '../index.js';
-import {Button, KIND} from '../../button/index.js';
-import {ThemeProvider, LightTheme} from '../../index.js';
+import { Tab, Tabs, ORIENTATION } from '../index.js';
+import { Button, KIND } from '../../button/index.js';
+import { ThemeProvider, LightTheme } from '../../index.js';
 
 export function Scenario() {
   const [activeKey, setActiveKey] = React.useState('0');
   return (
-    <ThemeProvider theme={{...LightTheme, direction: 'rtl'}}>
+    <ThemeProvider theme={{ ...LightTheme, direction: 'rtl' }}>
       <div dir="rtl">
         <Tabs
           activeKey={activeKey}
-          onChange={({activeKey}) => setActiveKey(activeKey)}
+          onChange={({ activeKey }) => setActiveKey(activeKey)}
           orientation={ORIENTATION.vertical}
           overrides={{
             Root: {
-              style: ({$theme}) => ({
+              style: ({ $theme }) => ({
                 borderBottom: `solid 1px ${$theme.colors.borderOpaque}`,
               }),
             },

@@ -9,9 +9,9 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {useStyletron} from '../../styles/index.js';
+import { useStyletron } from '../../styles/index.js';
 
-import {Unstable_Helper as Helper, PLACEMENT} from '../index.js';
+import { Unstable_Helper as Helper, PLACEMENT } from '../index.js';
 
 export function Scenario() {
   const [css] = useStyletron();
@@ -63,9 +63,7 @@ export function Scenario() {
             >
               <Helper
                 placement={PLACEMENT[placement]}
-                content={() => (
-                  <div className={css({padding: '12px'})}>content</div>
-                )}
+                content={() => <div className={css({ padding: '12px' })}>content</div>}
                 isOpen
                 showArrow
               >

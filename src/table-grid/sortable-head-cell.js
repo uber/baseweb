@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import {SortableHeadCellFactory} from '../table/index.js';
-import {StyledHeadCell} from './styled-components.js';
+import { SortableHeadCellFactory } from '../table/index.js';
+import { StyledHeadCell } from './styled-components.js';
 
 export const SortableHeadCell = SortableHeadCellFactory(StyledHeadCell);

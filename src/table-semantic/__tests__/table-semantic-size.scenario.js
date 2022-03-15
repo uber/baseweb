@@ -7,8 +7,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {useStyletron} from '../../styles/index.js';
-import {Table, SIZE} from '../index.js';
+import { useStyletron } from '../../styles/index.js';
+import { Table, SIZE } from '../index.js';
 
 const COLUMNS = ['Name', 'Age', 'Address'];
 
@@ -27,7 +27,7 @@ export function Scenario() {
   });
 
   return (
-    <div style={{padding: '24px'}}>
+    <div style={{ padding: '24px' }}>
       <p className={title}>compact</p>
       <Table size={SIZE.compact} columns={COLUMNS} data={DATA} />
       <p className={title}>default</p>

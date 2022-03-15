@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {Select} from '../index.js';
+import { Select } from '../index.js';
 
 export function Scenario() {
   const [first, setFirst] = React.useState([]);
@@ -19,19 +19,19 @@ export function Scenario() {
         backspace behavior
         <Select
           options={[
-            {id: 'AliceBlue', color: '#F0F8FF'},
-            {id: 'AntiqueWhite', color: '#FAEBD7'},
-            {id: 'Aqua', color: '#00FFFF'},
-            {id: 'Aquamarine', color: '#7FFFD4'},
-            {id: 'Azure', color: '#F0FFFF'},
-            {id: 'Beige', color: '#F5F5DC'},
+            { id: 'AliceBlue', color: '#F0F8FF' },
+            { id: 'AntiqueWhite', color: '#FAEBD7' },
+            { id: 'Aqua', color: '#00FFFF' },
+            { id: 'Aquamarine', color: '#7FFFD4' },
+            { id: 'Azure', color: '#F0FFFF' },
+            { id: 'Beige', color: '#F5F5DC' },
           ]}
           labelKey="id"
           valueKey="color"
           backspaceRemoves
-          onChange={({value}) => setFirst(value)}
+          onChange={({ value }) => setFirst(value)}
           value={first}
-          overrides={{ClearIcon: {props: {'data-id': 'clear-icon'}}}}
+          overrides={{ ClearIcon: { props: { 'data-id': 'clear-icon' } } }}
         />
       </div>
 
@@ -39,20 +39,20 @@ export function Scenario() {
         backspace clears input value
         <Select
           options={[
-            {id: 'AliceBlue', color: '#F0F8FF'},
-            {id: 'AntiqueWhite', color: '#FAEBD7'},
-            {id: 'Aqua', color: '#00FFFF'},
-            {id: 'Aquamarine', color: '#7FFFD4'},
-            {id: 'Azure', color: '#F0FFFF'},
-            {id: 'Beige', color: '#F5F5DC'},
+            { id: 'AliceBlue', color: '#F0F8FF' },
+            { id: 'AntiqueWhite', color: '#FAEBD7' },
+            { id: 'Aqua', color: '#00FFFF' },
+            { id: 'Aquamarine', color: '#7FFFD4' },
+            { id: 'Azure', color: '#F0FFFF' },
+            { id: 'Beige', color: '#F5F5DC' },
           ]}
           labelKey="id"
           valueKey="color"
           backspaceRemoves
           backspaceClearsInputValue
-          onChange={({value}) => setSecond(value)}
+          onChange={({ value }) => setSecond(value)}
           value={second}
-          overrides={{ClearIcon: {props: {'data-id': 'clear-icon'}}}}
+          overrides={{ ClearIcon: { props: { 'data-id': 'clear-icon' } } }}
         />
       </div>
     </div>

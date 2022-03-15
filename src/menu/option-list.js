@@ -8,17 +8,17 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {LocaleContext} from '../locale/index.js';
-import {getOverrides} from '../helpers/overrides.js';
+import { LocaleContext } from '../locale/index.js';
+import { getOverrides } from '../helpers/overrides.js';
 
-import {OPTION_LIST_SIZE} from './constants.js';
+import { OPTION_LIST_SIZE } from './constants.js';
 import MaybeChildMenu from './maybe-child-menu.js';
-import {StyledListItem, StyledListItemAnchor} from './styled-components.js';
-import type {OptionListPropsT} from './types.js';
+import { StyledListItem, StyledListItemAnchor } from './styled-components.js';
+import type { OptionListPropsT } from './types.js';
 
 function OptionList(
   props: OptionListPropsT,
-  ref?: {current: null | HTMLElement, ...} | ((null | HTMLElement) => mixed),
+  ref?: { current: null | HTMLElement, ... } | ((null | HTMLElement) => mixed)
 ) {
   const {
     getChildMenu,
@@ -35,13 +35,10 @@ function OptionList(
     ...restProps
   } = props;
 
-  const [ListItem, listItemProps] = getOverrides(
-    overrides.ListItem,
-    StyledListItem,
-  );
+  const [ListItem, listItemProps] = getOverrides(overrides.ListItem, StyledListItem);
   const [ListItemAnchor, listItemAnchorProps] = getOverrides(
     overrides.ListItemAnchor,
-    StyledListItemAnchor,
+    StyledListItemAnchor
   );
 
   const getItem = (item) => {
@@ -71,9 +68,7 @@ function OptionList(
           <ListItem
             ref={ref}
             aria-label={
-              getChildMenu && getChildMenu(item)
-                ? locale.menu.parentMenuItemAriaLabel
-                : null
+              getChildMenu && getChildMenu(item) ? locale.menu.parentMenuItemAriaLabel : null
             }
             item={item}
             onClick={onClick}
@@ -83,7 +78,7 @@ function OptionList(
             {...restProps}
             {...listItemProps}
           >
-            {getItem({isHighlighted: $isHighlighted, ...item})}
+            {getItem({ isHighlighted: $isHighlighted, ...item })}
           </ListItem>
         </MaybeChildMenu>
       )}

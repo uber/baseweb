@@ -22,9 +22,7 @@ function MetaSeo(props) {
         />
       ) : null}
 
-      {props.keywords ? (
-        <meta name="keywords" content={props.keywords} key="keywords" />
-      ) : null}
+      {props.keywords ? <meta name="keywords" content={props.keywords} key="keywords" /> : null}
     </Head>
   );
 }

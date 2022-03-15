@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {render, getByText} from '@testing-library/react';
+import { render, getByText } from '@testing-library/react';
 
-import {TetherBehavior} from '../index.js';
+import { TetherBehavior } from '../index.js';
 
 describe('TetherBehavior', () => {
   it('renders tether content', () => {
@@ -29,7 +29,7 @@ describe('TetherBehavior', () => {
         </React.Fragment>
       );
     }
-    const {container} = render(<TestCase />);
+    const { container } = render(<TestCase />);
     getByText(container, 'This is anchor');
     getByText(container, 'This is popper');
   });

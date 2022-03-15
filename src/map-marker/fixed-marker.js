@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {useStyletron, type ThemeT} from '../styles/index.js';
-import {getOverrides} from '../helpers/overrides.js';
+import { useStyletron, type ThemeT } from '../styles/index.js';
+import { getOverrides } from '../helpers/overrides.js';
 import {
   PINHEAD_TYPES,
   NEEDLE_SIZES,
@@ -20,11 +20,8 @@ import {
 import PinHead from './pin-head.js';
 import Needle from './needle.js';
 import DragShadow from './drag-shadow.js';
-import {
-  StyledFixedMarkerDragContainer,
-  StyledFixedMarkerRoot,
-} from './styled-components.js';
-import type {FixedMarkerPropsT, KindT} from './types.js';
+import { StyledFixedMarkerDragContainer, StyledFixedMarkerRoot } from './styled-components.js';
+import type { FixedMarkerPropsT, KindT } from './types.js';
 
 type Colors = {
   color: string,
@@ -66,7 +63,7 @@ const FixedMarker = ({
   ...restProps
 }: FixedMarkerPropsT) => {
   const [, theme] = useStyletron();
-  const {color, backgroundColor} = getColors(kind, theme);
+  const { color, backgroundColor } = getColors(kind, theme);
 
   const doesPinHeadTransformOnDrag =
     needle !== NEEDLE_SIZES.none &&
@@ -74,35 +71,31 @@ const FixedMarker = ({
     size !== PINHEAD_SIZES_SHAPES.xxSmallSquare;
 
   const [Root, rootProps] = getOverrides(overrides.Root, StyledFixedMarkerRoot);
-  const [FixedMarkerDragContainer, fixedMarkerDragContainerProps] =
-    getOverrides(overrides.DragContainer, StyledFixedMarkerDragContainer);
+  const [FixedMarkerDragContainer, fixedMarkerDragContainerProps] = getOverrides(
+    overrides.DragContainer,
+    StyledFixedMarkerDragContainer
+  );
 
   const renderNeedle =
     needle !== NEEDLE_SIZES.none &&
-    ![
-      PINHEAD_SIZES_SHAPES.xxSmallCircle,
-      PINHEAD_SIZES_SHAPES.xxSmallSquare,
-    ].includes(size);
+    ![PINHEAD_SIZES_SHAPES.xxSmallCircle, PINHEAD_SIZES_SHAPES.xxSmallSquare].includes(size);
 
   if (__DEV__) {
     if (
       needle !== NEEDLE_SIZES.none &&
-      [
-        PINHEAD_SIZES_SHAPES.xxSmallCircle,
-        PINHEAD_SIZES_SHAPES.xxSmallSquare,
-      ].includes(size)
+      [PINHEAD_SIZES_SHAPES.xxSmallCircle, PINHEAD_SIZES_SHAPES.xxSmallSquare].includes(size)
     ) {
       console.warn(
-        `Needles cannot be rendered with ${PINHEAD_SIZES_SHAPES.xxSmallCircle} or ${PINHEAD_SIZES_SHAPES.xxSmallSquare} pin heads`,
+        `Needles cannot be rendered with ${PINHEAD_SIZES_SHAPES.xxSmallCircle} or ${PINHEAD_SIZES_SHAPES.xxSmallSquare} pin heads`
       );
     }
   }
   const enhancers = {};
   if (startEnhancer) {
-    enhancers['startEnhancer'] = startEnhancer;
+    enhancers.startEnhancer = startEnhancer;
   }
   if (endEnhancer) {
-    enhancers['endEnhancer'] = endEnhancer;
+    enhancers.endEnhancer = endEnhancer;
   }
   return (
     <Root data-baseweb="fixed-map-marker" {...rootProps}>
@@ -126,11 +119,7 @@ const FixedMarker = ({
           needle={needle}
         />
         {renderNeedle && (
-          <Needle
-            size={needle}
-            background={backgroundColor}
-            overrides={overrides}
-          />
+          <Needle size={needle} background={backgroundColor} overrides={overrides} />
         )}
       </FixedMarkerDragContainer>
       {doesPinHeadTransformOnDrag && (

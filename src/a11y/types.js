@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-type NodeT = {target: string};
-type ViolationT = {description: string, nodes: NodeT};
+type NodeT = { target: string };
+type ViolationT = { description: string, nodes: NodeT };
 
 export type ViolationPropsT = {
   target: string,

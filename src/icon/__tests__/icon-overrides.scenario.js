@@ -10,10 +10,10 @@ import * as React from 'react';
 
 import DeleteIcon from '../delete.js';
 import PlusIcon from '../plus.js';
-import {ThemeProvider, LightTheme, styled} from '../../index.js';
-import {getSvgStyles} from '../../icon/styled-components.js';
+import { ThemeProvider, LightTheme, styled } from '../../index.js';
+import { getSvgStyles } from '../../icon/styled-components.js';
 
-const XSmallFilled = ({title, ...props}) => {
+const XSmallFilled = ({ title, ...props }) => {
   return (
     <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none">
       <path
@@ -24,7 +24,7 @@ const XSmallFilled = ({title, ...props}) => {
   );
 };
 
-const StyledBody = styled('div', {display: 'flex'});
+const StyledBody = styled('div', { display: 'flex' });
 const StyledCloseIcon = styled('svg', (props) => {
   return {
     ...getSvgStyles(props),
@@ -38,17 +38,14 @@ export function Scenario() {
   const closeRef = React.useRef();
   return (
     <div>
-      <ThemeProvider theme={{...LightTheme, icons: {Delete: XSmallFilled}}}>
+      <ThemeProvider theme={{ ...LightTheme, icons: { Delete: XSmallFilled } }}>
         <StyledBody>
-          <DeleteIcon
-            ref={closeRef}
-            overrides={{Svg: {component: StyledCloseIcon}}}
-          />
+          <DeleteIcon ref={closeRef} overrides={{ Svg: { component: StyledCloseIcon } }} />
           Stuff
         </StyledBody>
       </ThemeProvider>
       <div>
-        <PlusIcon size="54px" overrides={{Svg: {props: {size: '54px'}}}} />
+        <PlusIcon size="54px" overrides={{ Svg: { props: { size: '54px' } } }} />
       </div>
     </div>
   );

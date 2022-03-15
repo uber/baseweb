@@ -9,18 +9,14 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Layer} from '../layer/index.js';
-import {getOverrides} from '../helpers/overrides.js';
-import {useStyletron} from '../styles/index.js';
+import { Layer } from '../layer/index.js';
+import { getOverrides } from '../helpers/overrides.js';
+import { useStyletron } from '../styles/index.js';
 
-import {DURATION, PLACEMENT} from './constants.js';
+import { DURATION, PLACEMENT } from './constants.js';
 import SnackbarElement from './snackbar-element.js';
-import {StyledPlacementContainer} from './styled-components.js';
-import type {
-  SnackbarElementPropsT,
-  SnackbarProviderPropsT,
-  DurationT,
-} from './types.js';
+import { StyledPlacementContainer } from './styled-components.js';
+import type { SnackbarElementPropsT, SnackbarProviderPropsT, DurationT } from './types.js';
 
 type ContextT = {|
   enqueue: (elementProps: SnackbarElementPropsT, duration?: DurationT) => void,
@@ -40,7 +36,7 @@ export const SnackbarContext: React.Context<ContextT> = React.createContext({
 
 export function useSnackbar() {
   const context = React.useContext(SnackbarContext);
-  return {enqueue: context.enqueue, dequeue: context.dequeue};
+  return { enqueue: context.enqueue, dequeue: context.dequeue };
 }
 
 function usePrevious(value) {
@@ -69,7 +65,7 @@ export default function SnackbarProvider({
 
   function enqueue(elementProps, duration = defaultDuration) {
     setSnackbars((prev) => {
-      return [...prev, {elementProps, duration}];
+      return [...prev, { elementProps, duration }];
     });
   }
 
@@ -135,7 +131,7 @@ export default function SnackbarProvider({
     if (__BROWSER__) {
       if (window.ResizeObserver) {
         const observer = new window.ResizeObserver(([entry]) =>
-          setContainerHeight(entry.contentRect.height),
+          setContainerHeight(entry.contentRect.height)
         );
         if (containerRef.current) {
           observer.observe(containerRef.current);
@@ -158,17 +154,14 @@ export default function SnackbarProvider({
     return value;
   }, [placement, containerHeight]);
 
-  const {
-    PlacementContainer: PlacementContainerOverrides,
-    ...snackbarOverrides
-  } = overrides;
+  const { PlacementContainer: PlacementContainerOverrides, ...snackbarOverrides } = overrides;
   const [PlacementContainer, placementContainerProps] = getOverrides(
     PlacementContainerOverrides,
-    StyledPlacementContainer,
+    StyledPlacementContainer
   );
 
   return (
-    <SnackbarContext.Provider value={{enqueue, dequeue: exit}}>
+    <SnackbarContext.Provider value={{ enqueue, dequeue: exit }}>
       <div
         className={css({
           boxSizing: 'border-box',
@@ -202,7 +195,7 @@ export default function SnackbarProvider({
               role="alert"
               onMouseEnter={handleMouseEnter}
               onMouseLeave={() => handleMouseLeave(snackbars[0].duration)}
-              className={css({display: 'inline', pointerEvents: 'all'})}
+              className={css({ display: 'inline', pointerEvents: 'all' })}
             >
               <SnackbarElement
                 {...snackbars[0].elementProps}

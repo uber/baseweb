@@ -7,21 +7,18 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {FloatingMarker} from '../index.js';
-import {
-  FLOATING_MARKER_ANCHOR_POSITIONS,
-  FLOATING_MARKER_ANCHOR_TYPES,
-} from '../constants.js';
+import { FloatingMarker } from '../index.js';
+import { FLOATING_MARKER_ANCHOR_POSITIONS, FLOATING_MARKER_ANCHOR_TYPES } from '../constants.js';
 import TileGrid from './tile-grid.js';
-import {Checkbox, LABEL_PLACEMENT} from '../../checkbox/index.js';
-import {Input} from '../../input/index.js';
+import { Checkbox, LABEL_PLACEMENT } from '../../checkbox/index.js';
+import { Input } from '../../input/index.js';
 import Upload from '../../icon/upload.js';
 import Search from '../../icon/search.js';
-import {Select} from '../../select/index.js';
-import ReactMapGL, {Marker} from 'react-map-gl';
-import {Button} from '../../button/index.js';
-import {useStyletron} from '../../styles/index.js';
-import {getMapStyle} from './map-style.js';
+import { Select } from '../../select/index.js';
+import ReactMapGL, { Marker } from 'react-map-gl';
+import { Button } from '../../button/index.js';
+import { useStyletron } from '../../styles/index.js';
+import { getMapStyle } from './map-style.js';
 
 const floatingMarkerAnchorTypes = Object.keys(FLOATING_MARKER_ANCHOR_TYPES)
   .map((key) => FLOATING_MARKER_ANCHOR_TYPES[key])
@@ -30,9 +27,7 @@ const floatingMarkerAnchorTypes = Object.keys(FLOATING_MARKER_ANCHOR_TYPES)
     id: x,
   }));
 
-const floatingMarkerAnchorPositions = Object.keys(
-  FLOATING_MARKER_ANCHOR_POSITIONS,
-)
+const floatingMarkerAnchorPositions = Object.keys(FLOATING_MARKER_ANCHOR_POSITIONS)
   .map((key) => FLOATING_MARKER_ANCHOR_POSITIONS[key])
   .map((x) => ({
     label: x,
@@ -50,11 +45,13 @@ export function Scenario() {
   const [label, setLabel] = React.useState('Uber HQ');
   const [startEnhancer, setStartEnhancer] = React.useState(true);
   const [endEnhancer, setEndEnhancer] = React.useState(false);
-  const [floatingMarkerAnchorType, setFloatingMarkerAnchorType] =
-    React.useState([floatingMarkerAnchorTypes[0]]);
+  const [floatingMarkerAnchorType, setFloatingMarkerAnchorType] = React.useState([
+    floatingMarkerAnchorTypes[0],
+  ]);
 
-  const [floatingMarkerAnchorPosition, setFloatingMarkerAnchorPosition] =
-    React.useState([floatingMarkerAnchorPositions[0]]);
+  const [floatingMarkerAnchorPosition, setFloatingMarkerAnchorPosition] = React.useState([
+    floatingMarkerAnchorPositions[0],
+  ]);
 
   const [locations, setLocations] = React.useState([defaultLocation]);
 
@@ -66,12 +63,11 @@ export function Scenario() {
   });
 
   const requiresAlignment =
-    floatingMarkerAnchorPosition[0].id !==
-    FLOATING_MARKER_ANCHOR_POSITIONS.none;
+    floatingMarkerAnchorPosition[0].id !== FLOATING_MARKER_ANCHOR_POSITIONS.none;
 
   const [css, theme] = useStyletron();
 
-  const mapStyle = getMapStyle(locations, {showPointDebug});
+  const mapStyle = getMapStyle(locations, { showPointDebug });
 
   return (
     <>
@@ -129,18 +125,14 @@ export function Scenario() {
           </Checkbox>,
         ]}
       />
-      <div
-        className={css({backgroundColor: theme.colors.backgroundLightAccent})}
-      >
+      <div className={css({ backgroundColor: theme.colors.backgroundLightAccent })}>
         <ReactMapGL
           {...viewport}
           width="100%"
           height="760px"
           onViewportChange={(viewport) => setViewport(viewport)}
           mapStyle={mapStyle}
-          onClick={({lngLat}) =>
-            setLocations((existing) => [...existing, lngLat])
-          }
+          onClick={({ lngLat }) => setLocations((existing) => [...existing, lngLat])}
         >
           {locations.map((x, i) => (
             <Marker latitude={x[1]} longitude={x[0]} key={i}>
@@ -160,14 +152,14 @@ export function Scenario() {
                 label={label}
                 startEnhancer={
                   startEnhancer
-                    ? function renderEnhancer({size}) {
+                    ? function renderEnhancer({ size }) {
                         return <Upload size={size} />;
                       }
                     : undefined
                 }
                 endEnhancer={
                   endEnhancer
-                    ? function renderEnhancer({size}) {
+                    ? function renderEnhancer({ size }) {
                         return <Search size={size} />;
                       }
                     : undefined

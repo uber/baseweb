@@ -8,24 +8,24 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {StatefulSelect} from '../index.js';
+import { StatefulSelect } from '../index.js';
 
 export function Scenario() {
   return (
     <StatefulSelect
       creatable
       options={[
-        {id: 'Portland', label: 'Portland'},
-        {id: 'NYC', label: 'New York City'},
-        {id: 'LosAngeles', label: 'Los Angeles'},
-        {id: 'Boston', label: 'Boston'},
-        {id: 'Atlanta', label: 'Atlanta'},
-        {id: 'SanFrancisco', label: 'San Francisco'},
+        { id: 'Portland', label: 'Portland' },
+        { id: 'NYC', label: 'New York City' },
+        { id: 'LosAngeles', label: 'Los Angeles' },
+        { id: 'Boston', label: 'Boston' },
+        { id: 'Atlanta', label: 'Atlanta' },
+        { id: 'SanFrancisco', label: 'San Francisco' },
       ]}
       closeOnSelect={false}
       labelKey="label"
       valueKey="id"
-      overrides={{ValueContainer: {props: {'data-id': 'selected'}}}}
+      overrides={{ ValueContainer: { props: { 'data-id': 'selected' } } }}
     />
   );
 }

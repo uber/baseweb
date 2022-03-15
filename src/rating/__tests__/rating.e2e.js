@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
+const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
 
 const selectors = {
   container: '[role="radiogroup"]',
@@ -27,10 +27,7 @@ describe('Rating', () => {
     await mount(page, 'rating--star');
     await page.waitForSelector(selectors.container);
 
-    const highlightedStars = await page.$$eval(
-      selectors.checked,
-      (stars) => stars.length,
-    );
+    const highlightedStars = await page.$$eval(selectors.checked, (stars) => stars.length);
     expect(highlightedStars).toBe(3);
   });
 
@@ -38,15 +35,12 @@ describe('Rating', () => {
     await mount(page, 'rating--emoticon');
     await page.waitForSelector(selectors.container);
 
-    const highlightedEmoticons = await page.$$eval(
-      selectors.checked,
-      (stars) => stars.length,
-    );
+    const highlightedEmoticons = await page.$$eval(selectors.checked, (stars) => stars.length);
     expect(highlightedEmoticons).toBe(1);
 
     const indexOfHighlighted = await page.$eval(
       selectors.checked,
-      (star) => +star.getAttribute('aria-posinset'),
+      (star) => +star.getAttribute('aria-posinset')
     );
     expect(indexOfHighlighted).toBe(3);
   });

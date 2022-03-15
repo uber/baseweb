@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
-import {StatefulSelect} from '../index.js';
+import { StatefulSelect } from '../index.js';
 
 export function Scenario() {
   const [blurCount, setBlurCount] = React.useState(0);
@@ -18,9 +18,9 @@ export function Scenario() {
         closeOnSelect={false}
         onBlur={() => setBlurCount((prev) => prev + 1)}
         options={[
-          {id: 'a', label: 'hey!'},
-          {id: 'b', label: 'are you listening?'},
-          {id: 'c', label: 'look at me!'},
+          { id: 'a', label: 'hey!' },
+          { id: 'b', label: 'are you listening?' },
+          { id: 'c', label: 'look at me!' },
         ]}
       />
 

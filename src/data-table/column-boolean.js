@@ -8,13 +8,13 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {useStyletron} from '../styles/index.js';
+import { useStyletron } from '../styles/index.js';
 
-import {CategoricalFilter} from './column-categorical.js';
+import { CategoricalFilter } from './column-categorical.js';
 import Column from './column.js';
-import {COLUMNS} from './constants.js';
-import type {ColumnT, SharedColumnOptionsT} from './types.js';
-import {LocaleContext} from '../locale/index.js';
+import { COLUMNS } from './constants.js';
+import type { ColumnT, SharedColumnOptionsT } from './types.js';
+import { LocaleContext } from '../locale/index.js';
 
 type OptionsT = {|
   ...SharedColumnOptionsT<boolean>,
@@ -40,19 +40,14 @@ function BooleanFilter(props) {
   let selectionString = new Set();
   if (props.filterParams && props.filterParams.selection) {
     selectionString = mapSelection(props.filterParams.selection, (i) =>
-      i
-        ? locale.datatable.booleanFilterTrue
-        : locale.datatable.booleanFilterFalse,
+      i ? locale.datatable.booleanFilterTrue : locale.datatable.booleanFilterFalse
     );
   }
 
   return (
     <CategoricalFilter
       close={props.close}
-      data={[
-        locale.datatable.booleanFilterTrue,
-        locale.datatable.booleanFilterFalse,
-      ]}
+      data={[locale.datatable.booleanFilterTrue, locale.datatable.booleanFilterFalse]}
       filterParams={
         props.filterParams
           ? {
@@ -66,7 +61,7 @@ function BooleanFilter(props) {
         props.setFilter({
           selection: mapSelection(
             params.selection,
-            (i) => i === locale.datatable.booleanFilterTrue,
+            (i) => i === locale.datatable.booleanFilterTrue
           ),
           exclude: params.exclude,
           description: params.description,

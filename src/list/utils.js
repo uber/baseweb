@@ -6,13 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import {ARTWORK_SIZES} from './constants.js';
-import type {ArtworkSizesT} from './types.js';
+import { ARTWORK_SIZES } from './constants.js';
+import type { ArtworkSizesT } from './types.js';
 
-export function artworkSizeToValue(
-  artworkSize: ArtworkSizesT,
-  isSublist: boolean,
-) {
+export function artworkSizeToValue(artworkSize: ArtworkSizesT, isSublist: boolean) {
   if (isSublist) {
     switch (artworkSize) {
       case ARTWORK_SIZES.LARGE:

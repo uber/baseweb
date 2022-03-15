@@ -11,13 +11,13 @@ import {
   StartEnhancer as StyledStartEnhancer,
   EndEnhancer as StyledEndEnhancer,
 } from './styled-components.js';
-import {getSharedProps} from './utils.js';
-import {getOverrides} from '../helpers/overrides.js';
+import { getSharedProps } from './utils.js';
+import { getOverrides } from '../helpers/overrides.js';
 
-import type {ButtonPropsT} from './types.js';
+import type { ButtonPropsT } from './types.js';
 
 function RenderEnhancer(props) {
-  const {Enhancer, ...restProps} = props;
+  const { Enhancer, ...restProps } = props;
   if (typeof Enhancer === 'string') {
     return Enhancer;
   }
@@ -30,15 +30,12 @@ function RenderEnhancer(props) {
 }
 
 export default function ButtonInternals(props: ButtonPropsT) {
-  const {children, overrides = {}, startEnhancer, endEnhancer} = props;
+  const { children, overrides = {}, startEnhancer, endEnhancer } = props;
   const [StartEnhancer, startEnhancerProps] = getOverrides(
     overrides.StartEnhancer,
-    StyledStartEnhancer,
+    StyledStartEnhancer
   );
-  const [EndEnhancer, endEnhancerProps] = getOverrides(
-    overrides.EndEnhancer,
-    StyledEndEnhancer,
-  );
+  const [EndEnhancer, endEnhancerProps] = getOverrides(overrides.EndEnhancer, StyledEndEnhancer);
   const sharedProps = getSharedProps(props);
   return (
     <React.Fragment>

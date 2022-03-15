@@ -8,12 +8,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {
-  render,
-  fireEvent,
-  getByText,
-  queryByText,
-} from '@testing-library/react';
+import { render, fireEvent, getByText, queryByText } from '@testing-library/react';
 
 import ProgressSteps from '../progress-steps.js';
 import Step from '../step.js';
@@ -34,7 +29,7 @@ describe('ProgressSteps', () => {
       );
     }
 
-    const {container} = render(<TestCase />);
+    const { container } = render(<TestCase />);
 
     getByText(container, 'step 1');
     getByText(container, 'step 2');

@@ -9,12 +9,12 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Slider} from '../index.js';
+import { Slider } from '../index.js';
 
 export function Scenario() {
   const [rangeValue, setRangeValue] = React.useState([10, 75]);
   return (
-    <div style={{margin: '64px'}}>
+    <div style={{ margin: '64px' }}>
       <Slider
         value={rangeValue}
         max={24 * 4 - 1}
@@ -29,7 +29,7 @@ export function Scenario() {
           const meridiem = value > 95 / 2 ? 'PM' : 'AM';
           return `${hour === 0 ? '12' : hour}:${minute}  ${meridiem}`;
         }}
-        onChange={({value}) => value && setRangeValue(value)}
+        onChange={({ value }) => value && setRangeValue(value)}
         overrides={{
           ThumbValue: {
             style: {
