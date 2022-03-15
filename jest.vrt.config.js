@@ -13,7 +13,6 @@ module.exports = {
   preset: 'jest-puppeteer',
   testRunner: 'jest-circus/runner',
   testRegex: 'vrt.js$',
-  globalSetup: '<rootDir>/jest.global-setup.js',
   transformIgnorePatterns: ['./babel/transform-cup-globals.js'],
   setupFilesAfterEnv: ['<rootDir>/jest.e2e.setup.js'],
 };

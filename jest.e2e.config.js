@@ -12,7 +12,6 @@ module.exports = {
   roots: ['<rootDir>/src'],
   preset: 'jest-puppeteer',
   testRunner: 'jest-circus/runner',
-  globalSetup: '<rootDir>/jest.global-setup.js',
   testMatch: ['**/__tests__/*.e2e.js'],
   setupFilesAfterEnv: ['expect-puppeteer', '<rootDir>/jest.e2e.setup.js'],
 };
