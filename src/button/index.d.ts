@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyledFn, StyletronComponent, StyletronComponentInjectedProps } from 'styletron-react';
+import { StyletronComponent, StyletronComponentInjectedProps } from 'styletron-react';
 import { Override } from '../overrides';
 
 export interface KIND {

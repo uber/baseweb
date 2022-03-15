@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { StyletronComponent } from 'styletron-react';
 import { Override } from '../overrides';
 
 import { SIZE, InputProps, InputOverrides, STATE_CHANGE_TYPE } from '../input';
