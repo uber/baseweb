@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {CategoricalColumn} from '../index.js';
+import { CategoricalColumn } from '../index.js';
 
 const Column = CategoricalColumn({
   title: 'categorical-column',
@@ -35,23 +35,15 @@ const dataLong = [
   'Uber WAV',
 ];
 
-const dataShort = [
-  'Bike',
-  'Scooter',
-  'Truck',
-  'AIR Taxi',
-  'Transit',
-  'Taxi',
-  'UberX',
-];
+const dataShort = ['Bike', 'Scooter', 'Truck', 'AIR Taxi', 'Transit', 'Taxi', 'UberX'];
 
 export function Scenario() {
   return (
-    <div style={{backgroundColor: 'lightgreen', padding: '24px'}}>
+    <div style={{ backgroundColor: 'lightgreen', padding: '24px' }}>
       <div id="many-categories">
         <Filter close={() => {}} setFilter={() => {}} data={dataLong} />
       </div>
-      <div style={{height: '48px'}} />
+      <div style={{ height: '48px' }} />
       <div id="few-categories">
         <Filter close={() => {}} setFilter={() => {}} data={dataShort} />
       </div>

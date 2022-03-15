@@ -9,40 +9,40 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
-import {StatefulPopover} from '../../popover/index.js';
-import {StatefulMenu, NestedMenus} from '../index.js';
+import { StatefulPopover } from '../../popover/index.js';
+import { StatefulMenu, NestedMenus } from '../index.js';
 
 const OPEN_RECENT = 'Open Recent ->';
 const NEW_BREAKPOINT = 'New Breakpoint ->';
 const FILE = [
-  {label: 'New File'},
-  {label: 'New Window'},
-  {label: 'Open...'},
-  {label: 'Open Workspace...'},
-  {label: OPEN_RECENT},
-  {label: 'Add Folder to Workspace...'},
-  {label: 'Save'},
-  {label: 'Save As...'},
-  {label: 'Toggle Breakpoint'},
-  {label: NEW_BREAKPOINT},
-  {label: 'Close Folder'},
-  {label: 'Close Window'},
+  { label: 'New File' },
+  { label: 'New Window' },
+  { label: 'Open...' },
+  { label: 'Open Workspace...' },
+  { label: OPEN_RECENT },
+  { label: 'Add Folder to Workspace...' },
+  { label: 'Save' },
+  { label: 'Save As...' },
+  { label: 'Toggle Breakpoint' },
+  { label: NEW_BREAKPOINT },
+  { label: 'Close Folder' },
+  { label: 'Close Window' },
 ];
 
 const RECENT_FILES = [
-  {label: 'Reopen Closed Editor'},
-  {label: '~/workspace/baseui'},
-  {label: '~/workspace/styletron'},
-  {label: '~/workspace/my-project'},
-  {label: 'More...'},
-  {label: 'Clear Recently Opened'},
+  { label: 'Reopen Closed Editor' },
+  { label: '~/workspace/baseui' },
+  { label: '~/workspace/styletron' },
+  { label: '~/workspace/my-project' },
+  { label: 'More...' },
+  { label: 'Clear Recently Opened' },
 ];
 
 const BREAKPOINTS = [
-  {label: 'Conditional Breakpoint...'},
-  {label: 'Inline Breakpoint'},
-  {label: 'Function Breakpoint...'},
-  {label: 'Logpoint...'},
+  { label: 'Conditional Breakpoint...' },
+  { label: 'Inline Breakpoint' },
+  { label: 'Function Breakpoint...' },
+  { label: 'Logpoint...' },
 ];
 
 const Overlay = () => {
@@ -67,8 +67,8 @@ const childMenu = (items) => (
     items={items}
     overrides={{
       List: {
-        style: {width: '300px'},
-        props: {'data-e2e': 'child-menu'},
+        style: { width: '300px' },
+        props: { 'data-e2e': 'child-menu' },
       },
 
       Option: {
@@ -86,7 +86,7 @@ export function Scenario() {
       <StatefulPopover
         overrides={{
           Body: {
-            style: {zIndex: 3},
+            style: { zIndex: 3 },
           },
         }}
         content={() => (
@@ -95,8 +95,8 @@ export function Scenario() {
               items={FILE}
               overrides={{
                 List: {
-                  style: {width: '300px', overflow: 'auto'},
-                  props: {'data-e2e': 'parent-menu'},
+                  style: { width: '300px', overflow: 'auto' },
+                  props: { 'data-e2e': 'parent-menu' },
                 },
 
                 Option: {

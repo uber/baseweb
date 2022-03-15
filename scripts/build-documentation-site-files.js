@@ -13,7 +13,7 @@ LICENSE file in the root directory of this source tree.
 const generateBlogPosts = require('./post-generator.js');
 const generateVersions = require('./version-generator.js');
 //$FlowFixMe
-const {generateCheatSheet} = require('./cheat-sheet-generator.js');
+const { generateCheatSheet } = require('./cheat-sheet-generator.js');
 
 generateBlogPosts();
 generateVersions();

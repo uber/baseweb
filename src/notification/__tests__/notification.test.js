@@ -7,14 +7,14 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {render, getByText} from '@testing-library/react';
+import { render, getByText } from '@testing-library/react';
 
-import {Notification} from '../index.js';
+import { Notification } from '../index.js';
 
 describe('Toast', () => {
   it('basic inline rendering', () => {
     const content = 'content';
-    const {container} = render(<Notification>{content}</Notification>);
+    const { container } = render(<Notification>{content}</Notification>);
     getByText(container, content);
   });
 });

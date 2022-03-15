@@ -12,20 +12,17 @@ LICENSE file in the root directory of this source tree.
 // The `DialCode` rendering should be a part of the composed
 // non-split phone input.
 import React from 'react';
-import {
-  StyledDialCode,
-  StyledCountrySelectContainer,
-} from './styled-components.js';
+import { StyledDialCode, StyledCountrySelectContainer } from './styled-components.js';
 import BaseCountryPicker from './base-country-picker.js';
-import {SingleSelect as DefaultSelect} from '../select/index.js';
-import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
+import { SingleSelect as DefaultSelect } from '../select/index.js';
+import { getOverrides, mergeOverrides } from '../helpers/overrides.js';
 import defaultProps from './default-props.js';
 
-import type {CountrySelectPropsT} from './types.js';
+import type { CountrySelectPropsT } from './types.js';
 
 CountrySelect.defaultProps = {
   disabled: defaultProps.disabled,
-  inputRef: {current: null},
+  inputRef: { current: null },
   maxDropdownHeight: defaultProps.maxDropdownHeight,
   maxDropdownWidth: defaultProps.maxDropdownWidth,
   overrides: {},
@@ -36,7 +33,7 @@ CountrySelect.defaultProps = {
 };
 
 export default function CountrySelect(props: CountrySelectPropsT) {
-  const {country, disabled, error, overrides, positive, required, size} = props;
+  const { country, disabled, error, overrides, positive, required, size } = props;
   const sharedProps = {
     $disabled: disabled,
     $error: error,
@@ -60,28 +57,19 @@ export default function CountrySelect(props: CountrySelectPropsT) {
     },
   };
 
-  const [Select, selectProps] = getOverrides(
-    overrides.CountrySelect,
-    DefaultSelect,
-  );
+  const [Select, selectProps] = getOverrides(overrides.CountrySelect, DefaultSelect);
   const selectOverrides = mergeOverrides(baseSelectOverrides, {
     Dropdown: overrides.CountrySelectDropdown || {},
     DropdownListItem: overrides.CountrySelectDropdownListItem || {},
   });
-  selectProps.overrides = mergeOverrides(
-    selectOverrides,
-    selectProps.overrides,
-  );
+  selectProps.overrides = mergeOverrides(selectOverrides, selectProps.overrides);
 
   const [CountrySelectContainer, countrySelectContainerProps] = getOverrides(
     overrides.CountrySelectContainer,
-    StyledCountrySelectContainer,
+    StyledCountrySelectContainer
   );
 
-  const [DialCode, dialCodeProps] = getOverrides(
-    overrides.DialCode,
-    StyledDialCode,
-  );
+  const [DialCode, dialCodeProps] = getOverrides(overrides.DialCode, StyledDialCode);
 
   return (
     <CountrySelectContainer {...countrySelectContainerProps}>

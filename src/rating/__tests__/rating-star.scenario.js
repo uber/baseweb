@@ -8,19 +8,16 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {StarRating} from '../index.js';
+import { StarRating } from '../index.js';
 
-export class Scenario extends React.Component<{}, {value: number}> {
+export class Scenario extends React.Component<{}, { value: number }> {
   state = {
     value: 3,
   };
 
   render() {
     return (
-      <StarRating
-        value={this.state.value}
-        onChange={({value}) => this.setState({value})}
-      />
+      <StarRating value={this.state.value} onChange={({ value }) => this.setState({ value })} />
     );
   }
 }

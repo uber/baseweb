@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import {SIZE} from '../input/index.js';
+import { SIZE } from '../input/index.js';
 
 const defaultProps = {
   'aria-label': 'Please enter your pin code',

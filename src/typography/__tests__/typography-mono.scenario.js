@@ -30,13 +30,13 @@ import {
   MonoDisplayLarge,
 } from '../index.js';
 
-import {useStyletron} from '../../styles/index.js';
+import { useStyletron } from '../../styles/index.js';
 
 export function Scenario() {
   const [css, theme] = useStyletron();
   return (
-    <div className={css({width: '800px', color: theme.colors.contentPrimary})}>
-      <div className={css({display: 'flex', justifyContent: 'space-between'})}>
+    <div className={css({ width: '800px', color: theme.colors.contentPrimary })}>
+      <div className={css({ display: 'flex', justifyContent: 'space-between' })}>
         <div>
           <p>paragraph</p>
           <MonoParagraphXSmall>$123,000</MonoParagraphXSmall>
@@ -54,7 +54,7 @@ export function Scenario() {
         </div>
       </div>
 
-      <div className={css({display: 'flex', justifyContent: 'space-between'})}>
+      <div className={css({ display: 'flex', justifyContent: 'space-between' })}>
         <div>
           <p>heading</p>
           <MonoHeadingXSmall>$123,000</MonoHeadingXSmall>

@@ -7,8 +7,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-disable flowtype/generic-spacing */
 import * as React from 'react';
-import type {OverrideT} from '../helpers/overrides.js';
-import {STATE_CHANGE_TYPE} from './constants.js';
+import type { OverrideT } from '../helpers/overrides.js';
+import { STATE_CHANGE_TYPE } from './constants.js';
 
 export type AccordionStateT = {
   expanded: Array<React.Key>,
@@ -23,13 +23,13 @@ export type StateChangeTypeT = $Keys<typeof STATE_CHANGE_TYPE>;
 export type StateReducerT = (
   stateChangeType: StateChangeTypeT,
   nextState: AccordionStateT,
-  currentState: AccordionStateT,
+  currentState: AccordionStateT
 ) => AccordionStateT;
 
 export type PanelStateReducerT = (
   stateChangeType: StateChangeTypeT,
   nextState: PanelStateT,
-  currentState: PanelStateT,
+  currentState: PanelStateT
 ) => PanelStateT;
 
 export type AccordionOverridesT = {
@@ -51,7 +51,7 @@ export type PanelOverridesT = {
   ContentAnimationContainer?: OverrideT,
 };
 
-export type OnChangeHandlerT = ({expanded: boolean}) => mixed;
+export type OnChangeHandlerT = ({ expanded: boolean }) => mixed;
 
 export type AccordionOnChangeHandlerT = ({
   expanded: Array<React.Key>,
@@ -167,14 +167,12 @@ type SharedStatefulPanelContainerPropsT = {
   onChange?: OnChangeHandlerT,
   stateReducer?: PanelStateReducerT,
 };
-export type StatefulPanelContainerPropsT =
-  SharedStatefulPanelContainerPropsT & {
-    children: (props: $Diff<PanelPropsT, {children: React.Node}>) => React.Node,
-  };
+export type StatefulPanelContainerPropsT = SharedStatefulPanelContainerPropsT & {
+  children: (props: $Diff<PanelPropsT, { children: React.Node }>) => React.Node,
+};
 
 // Props for stateful panel
-export type StatefulPanelPropsT = SharedStatefulPanelContainerPropsT &
-  SharedPanelPropsT;
+export type StatefulPanelPropsT = SharedStatefulPanelContainerPropsT & SharedPanelPropsT;
 
 export type SharedStylePropsArgT = {
   $color?: string,

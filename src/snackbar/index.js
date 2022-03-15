@@ -7,9 +7,9 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-export {DURATION, PLACEMENT} from './constants.js';
-export {default as SnackbarElement} from './snackbar-element.js';
-export {default as SnackbarProvider, useSnackbar} from './snackbar-context.js';
+export { DURATION, PLACEMENT } from './constants.js';
+export { default as SnackbarElement } from './snackbar-element.js';
+export { default as SnackbarProvider, useSnackbar } from './snackbar-context.js';
 export {
   StyledRoot,
   StyledContent,

@@ -8,11 +8,12 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Datepicker} from '../index.js';
-import {Button} from '../../button/index.js';
+import { Datepicker } from '../index.js';
+import { Button } from '../../button/index.js';
 import MomentUtils from '@date-io/moment';
-const adapter = new MomentUtils({});
 import moment from 'moment';
+
+const adapter = new MomentUtils({});
 
 export function Scenario() {
   const [date, setDate] = React.useState(null);
@@ -32,12 +33,12 @@ export function Scenario() {
         aria-label="Select a date"
         highlightedDate={new Date('March 10, 2019')}
         value={date}
-        onChange={({date}) => setDate(date)}
+        onChange={({ date }) => setDate(date)}
         overrides={{
-          MonthYearSelectButton: {props: {'data-id': 'monthYearSelectButton'}},
+          MonthYearSelectButton: { props: { 'data-id': 'monthYearSelectButton' } },
           MonthYearSelectStatefulMenu: {
             props: {
-              overrides: {List: {props: {'data-id': 'monthYearSelectMenu'}}},
+              overrides: { List: { props: { 'data-id': 'monthYearSelectMenu' } } },
             },
           },
         }}
@@ -50,10 +51,10 @@ export function Scenario() {
         highlightedDate={new Date('March 10, 2019')}
         size="large"
         overrides={{
-          MonthYearSelectButton: {props: {'data-id': 'monthYearSelectButton'}},
+          MonthYearSelectButton: { props: { 'data-id': 'monthYearSelectButton' } },
           MonthYearSelectStatefulMenu: {
             props: {
-              overrides: {List: {props: {'data-id': 'monthYearSelectMenu'}}},
+              overrides: { List: { props: { 'data-id': 'monthYearSelectMenu' } } },
             },
           },
         }}
@@ -66,10 +67,10 @@ export function Scenario() {
         highlightedDate={new Date('March 10, 2019')}
         size="compact"
         overrides={{
-          MonthYearSelectButton: {props: {'data-id': 'monthYearSelectButton'}},
+          MonthYearSelectButton: { props: { 'data-id': 'monthYearSelectButton' } },
           MonthYearSelectStatefulMenu: {
             props: {
-              overrides: {List: {props: {'data-id': 'monthYearSelectMenu'}}},
+              overrides: { List: { props: { 'data-id': 'monthYearSelectMenu' } } },
             },
           },
         }}
@@ -82,12 +83,12 @@ export function Scenario() {
         aria-describedby="moment-datepicker"
         highlightedDate={moment('March 10, 2019')}
         value={momentDate}
-        onChange={({date}) => setMomentDate(date)}
+        onChange={({ date }) => setMomentDate(date)}
         overrides={{
-          MonthYearSelectButton: {props: {'data-id': 'monthYearSelectButton'}},
+          MonthYearSelectButton: { props: { 'data-id': 'monthYearSelectButton' } },
           MonthYearSelectStatefulMenu: {
             props: {
-              overrides: {List: {props: {'data-id': 'monthYearSelectMenu'}}},
+              overrides: { List: { props: { 'data-id': 'monthYearSelectMenu' } } },
             },
           },
         }}

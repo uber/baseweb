@@ -7,10 +7,10 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-import {styled} from '../styles/index.js';
-import type {StylePropsT} from './types.js';
+import { styled } from '../styles/index.js';
+import type { StylePropsT } from './types.js';
 
-export const StyledProgressSteps = styled<{}>('ol', ({$theme}) => {
+export const StyledProgressSteps = styled<{}>('ol', ({ $theme }) => {
   return {
     display: 'inline-block',
     marginBottom: 0,
@@ -22,7 +22,7 @@ export const StyledProgressSteps = styled<{}>('ol', ({$theme}) => {
   };
 });
 
-export const StyledStep = styled<StylePropsT>('li', ({$theme}) => {
+export const StyledStep = styled<StylePropsT>('li', ({ $theme }) => {
   return {
     listStyleType: 'none',
     position: 'relative',
@@ -32,7 +32,7 @@ export const StyledStep = styled<StylePropsT>('li', ({$theme}) => {
 
 export const StyledIconContainer = styled<StylePropsT>(
   'div',
-  ({$theme, $isActive, $isCompleted, $disabled}) => {
+  ({ $theme, $isActive, $isCompleted, $disabled }) => {
     let currentColor = $theme.colors.backgroundPrimary;
     let size = $theme.sizing.scale500;
     let marginLeft = '26px';
@@ -65,12 +65,12 @@ export const StyledIconContainer = styled<StylePropsT>(
       justifyContent: 'center',
       alignItems: 'center',
     };
-  },
+  }
 );
 
 export const StyledIcon = styled<StylePropsT>(
   'div',
-  ({$theme, $isActive, $isCompleted, $disabled}) => {
+  ({ $theme, $isActive, $isCompleted, $disabled }) => {
     let currentColor = $theme.colors.mono400;
     let size = $theme.sizing.scale300;
 
@@ -99,10 +99,10 @@ export const StyledIcon = styled<StylePropsT>(
       justifyContent: 'center',
       alignItems: 'center',
     };
-  },
+  }
 );
 
-export const StyledInnerIcon = styled<StylePropsT>('div', ({$theme}) => {
+export const StyledInnerIcon = styled<StylePropsT>('div', ({ $theme }) => {
   return {
     width: $theme.sizing.scale300,
     height: $theme.sizing.scale300,
@@ -116,9 +116,8 @@ export const StyledInnerIcon = styled<StylePropsT>('div', ({$theme}) => {
   };
 });
 
-export const StyledContent = styled<StylePropsT>('div', ({$theme}) => {
-  const marginDir: string =
-    $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
+export const StyledContent = styled<StylePropsT>('div', ({ $theme }) => {
+  const marginDir: string = $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
   return {
     [marginDir]: $theme.sizing.scale1600,
   };
@@ -126,7 +125,7 @@ export const StyledContent = styled<StylePropsT>('div', ({$theme}) => {
 
 export const StyledContentTitle = styled<StylePropsT>(
   'div',
-  ({$theme, $isActive, $isCompleted}) => {
+  ({ $theme, $isActive, $isCompleted }) => {
     let color = $theme.colors.primary400;
     if ($isCompleted) {
       color = $theme.colors.contentSecondary;
@@ -141,12 +140,12 @@ export const StyledContentTitle = styled<StylePropsT>(
       paddingTop: $theme.sizing.scale800,
       paddingBottom: $theme.sizing.scale800,
     };
-  },
+  }
 );
 
 export const StyledContentTail = styled<StylePropsT>(
   'div',
-  ({$theme, $isCompleted, $isActive}) => {
+  ({ $theme, $isCompleted, $isActive }) => {
     let currentColor = $theme.colors.mono400;
     let size = $theme.sizing.scale500;
     let font = $theme.typography.LabelMedium;
@@ -173,19 +172,16 @@ export const StyledContentTail = styled<StylePropsT>(
       display: 'inline-block',
       backgroundColor: currentColor,
     };
-  },
+  }
 );
 
-export const StyledContentDescription = styled<StylePropsT>(
-  'div',
-  ({$theme}) => {
-    return {
-      marginBottom: $theme.sizing.scale700,
-    };
-  },
-);
+export const StyledContentDescription = styled<StylePropsT>('div', ({ $theme }) => {
+  return {
+    marginBottom: $theme.sizing.scale700,
+  };
+});
 
-export const StyledNumberStep = styled<StylePropsT>('li', ({$theme}) => {
+export const StyledNumberStep = styled<StylePropsT>('li', ({ $theme }) => {
   return {
     listStyleType: 'none',
     position: 'relative',
@@ -195,7 +191,7 @@ export const StyledNumberStep = styled<StylePropsT>('li', ({$theme}) => {
 
 export const StyledNumberIcon = styled<StylePropsT>(
   'div',
-  ({$theme, $isActive, $isCompleted, $disabled}) => {
+  ({ $theme, $isActive, $isCompleted, $disabled }) => {
     let backgroundColor = $theme.colors.mono400;
     let color = $theme.colors.contentStateDisabled;
     let size = $theme.sizing.scale950;
@@ -234,12 +230,12 @@ export const StyledNumberIcon = styled<StylePropsT>(
       alignItems: 'center',
       ...font,
     };
-  },
+  }
 );
 
 export const StyledNumberContentTail = styled<StylePropsT>(
   'div',
-  ({$theme, $isActive, $isCompleted, $disabled}) => {
+  ({ $theme, $isActive, $isCompleted, $disabled }) => {
     let currentColor = $theme.colors.mono300;
     let size = $theme.sizing.scale950;
     let titleFont = $theme.typography.LabelMedium;
@@ -261,5 +257,5 @@ export const StyledNumberContentTail = styled<StylePropsT>(
       backgroundColor: currentColor,
       display: 'inline-block',
     };
-  },
+  }
 );

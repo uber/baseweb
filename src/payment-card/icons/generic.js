@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-const Generic = ({size}: {size: string}) => (
+const Generic = ({ size }: { size: string }) => (
   <svg
     width={size}
     height={size}

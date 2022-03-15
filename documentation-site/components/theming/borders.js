@@ -7,16 +7,16 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {useStyletron} from 'baseui';
-import {Property, PropertyCompareTheme} from './common.js';
+import { useStyletron } from 'baseui';
+import { Property, PropertyCompareTheme } from './common.js';
 
-export function Border({name}: {name: string}) {
+export function Border({ name }: { name: string }) {
   const [css] = useStyletron();
   return (
     <PropertyCompareTheme
       name={name}
       concern="borders"
-      renderBox={({previewTheme, commonStyles}) => (
+      renderBox={({ previewTheme, commonStyles }) => (
         <div
           className={css({
             ...commonStyles,
@@ -24,12 +24,11 @@ export function Border({name}: {name: string}) {
           })}
         ></div>
       )}
-      renderValue={({previewTheme}) => (
+      renderValue={({ previewTheme }) => (
         <pre
           className={css({
             fontSize: '12px',
-            fontFamily:
-              'Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;',
+            fontFamily: 'Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;',
           })}
         >
           {`{
@@ -43,7 +42,7 @@ export function Border({name}: {name: string}) {
   );
 }
 
-export function Radius({name}: {name: string}) {
+export function Radius({ name }: { name: string }) {
   const [css, theme] = useStyletron();
   return (
     <Property

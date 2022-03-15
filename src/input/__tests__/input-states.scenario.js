@@ -8,15 +8,15 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {StatefulInput} from '../index.js';
-import {Block} from '../../block/index.js';
-import {Search} from '../../icon/index.js';
+import { StatefulInput } from '../index.js';
+import { Block } from '../../block/index.js';
+import { Search } from '../../icon/index.js';
 
 export function Scenario() {
   return (
     <>
       <StatefulInput
-        initialState={{value: 'Default'}}
+        initialState={{ value: 'Default' }}
         endEnhancer="00"
         overrides={{
           // eslint-disable-next-line react/display-name
@@ -30,7 +30,7 @@ export function Scenario() {
 
       <br />
       <StatefulInput
-        initialState={{value: 'Active'}}
+        initialState={{ value: 'Active' }}
         endEnhancer="00"
         autoFocus
         overrides={{
@@ -45,7 +45,7 @@ export function Scenario() {
 
       <br />
       <StatefulInput
-        initialState={{value: 'Positive'}}
+        initialState={{ value: 'Positive' }}
         endEnhancer="00"
         positive
         overrides={{
@@ -60,7 +60,7 @@ export function Scenario() {
 
       <br />
       <StatefulInput
-        initialState={{value: 'Error'}}
+        initialState={{ value: 'Error' }}
         endEnhancer="00"
         error
         overrides={{
@@ -75,7 +75,7 @@ export function Scenario() {
 
       <br />
       <StatefulInput
-        initialState={{value: 'Disabled'}}
+        initialState={{ value: 'Disabled' }}
         endEnhancer="00"
         disabled
         overrides={{

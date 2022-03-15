@@ -7,34 +7,25 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {mount} = require('../../../e2e/helpers');
+const { mount } = require('../../../e2e/helpers');
 
-const {sortColumnAtIndex, getActionButtonByLabel} = require('./utilities.js');
+const { sortColumnAtIndex, getActionButtonByLabel } = require('./utilities.js');
 
 describe('data-table-row-actions', () => {
   it('renders provided row action buttons', async () => {
     await mount(page, 'data-table--row-actions');
     await page.mouse.move(150, 327);
-    const actionButtonOne = await getActionButtonByLabel(
-      page,
-      'row-action-label-one',
-    );
+    const actionButtonOne = await getActionButtonByLabel(page, 'row-action-label-one');
     expect(actionButtonOne).toBeTruthy();
 
-    const actionButtonTwo = await getActionButtonByLabel(
-      page,
-      'row-action-label-two',
-    );
+    const actionButtonTwo = await getActionButtonByLabel(page, 'row-action-label-two');
     expect(actionButtonTwo).toBeTruthy();
   });
 
   it('calls provided onclick function when clicked', async () => {
     await mount(page, 'data-table--row-actions');
     await page.mouse.move(150, 327);
-    const actionButton = await getActionButtonByLabel(
-      page,
-      'row-action-label-one',
-    );
+    const actionButton = await getActionButtonByLabel(page, 'row-action-label-one');
     await actionButton.click();
     const listItems = await page.$$('li');
     expect(listItems.length).toBe(1);
@@ -48,10 +39,7 @@ describe('data-table-row-actions', () => {
     await sortColumnAtIndex(page, 0);
 
     await page.mouse.move(150, 327);
-    const actionButton = await getActionButtonByLabel(
-      page,
-      'row-action-label-one',
-    );
+    const actionButton = await getActionButtonByLabel(page, 'row-action-label-one');
     await actionButton.click();
     const listItem = await page.$('li');
     const title = await page.evaluate((item) => item.textContent, listItem);

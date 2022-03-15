@@ -8,8 +8,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {H2} from '../components/markdown-elements';
-import {useStyletron, expandBorderStyles} from 'baseui/styles';
+import { H2 } from '../components/markdown-elements';
+import { useStyletron, expandBorderStyles } from 'baseui/styles';
 
 import * as thumbnails from '../components/thumbs';
 
@@ -272,7 +272,7 @@ const COMPONENTS = {
   ],
 };
 
-function Thumbnail({children, href}) {
+function Thumbnail({ children, href }) {
   const [css, theme] = useStyletron();
   return (
     <a
@@ -353,7 +353,7 @@ function Thumbnail({children, href}) {
   );
 }
 
-function Section({category}) {
+function Section({ category }) {
   const [css, theme] = useStyletron();
   const colors = theme.name.includes('light-theme')
     ? [theme.colors.mono200, theme.colors.mono400, theme.colors.mono600]
@@ -368,7 +368,7 @@ function Section({category}) {
           marginTop: theme.sizing.scale800,
         })}
       >
-        {COMPONENTS[category].map(({Component, ...props}) => {
+        {COMPONENTS[category].map(({ Component, ...props }) => {
           return (
             <Thumbnail key={props.href} {...props}>
               <Component colors={colors} />

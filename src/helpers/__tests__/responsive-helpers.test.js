@@ -6,13 +6,11 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import {getMediaQueries, getMediaQuery} from '../responsive-helpers.js';
+import { getMediaQueries, getMediaQuery } from '../responsive-helpers.js';
 
 describe('Helpers - ResponsiveHelpers', () => {
   test('getMediaQuery', () => {
-    expect(getMediaQuery(1280)).toEqual(
-      '@media screen and (min-width: 1280px)',
-    );
+    expect(getMediaQuery(1280)).toEqual('@media screen and (min-width: 1280px)');
   });
 
   test('getMediaQueries', () => {
@@ -21,7 +19,7 @@ describe('Helpers - ResponsiveHelpers', () => {
         small: 320,
         medium: 600,
         large: 1280,
-      }),
+      })
     ).toMatchObject([
       '@media screen and (min-width: 320px)',
       '@media screen and (min-width: 600px)',
@@ -35,7 +33,7 @@ describe('Helpers - ResponsiveHelpers', () => {
         large: 1280,
         small: 320,
         medium: 600,
-      }),
+      })
     ).toMatchObject([
       '@media screen and (min-width: 320px)',
       '@media screen and (min-width: 600px)',

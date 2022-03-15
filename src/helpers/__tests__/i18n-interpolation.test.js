@@ -12,11 +12,8 @@ describe('Inserts interpolations correctly', () => {
   test('i18n-interpolation', () => {
     const startDate = 'Jan 1, 2020';
     const endDate = 'Jan 15, 2020';
-    const translation =
-      'Selected date range is from ${startDate} to ${endDate}.';
+    const translation = 'Selected date range is from ${startDate} to ${endDate}.';
     const expectation = `Selected date range is from ${startDate} to ${endDate}.`;
-    expect(getInterpolatedString(translation, {startDate, endDate})).toEqual(
-      expectation,
-    );
+    expect(getInterpolatedString(translation, { startDate, endDate })).toEqual(expectation);
   });
 });

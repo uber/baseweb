@@ -10,8 +10,8 @@ import * as React from 'react';
 
 import ChevronRight from '../../icon/chevron-right.js';
 import Search from '../../icon/search.js';
-import {StatefulMenu} from '../../menu/index.js';
-import {ListItemLabel, MenuAdapter, ARTWORK_SIZES} from '../index.js';
+import { StatefulMenu } from '../../menu/index.js';
+import { ListItemLabel, MenuAdapter, ARTWORK_SIZES } from '../index.js';
 
 const ITEMS = [...new Array(10)].map(() => ({
   title: 'Jane Smith',

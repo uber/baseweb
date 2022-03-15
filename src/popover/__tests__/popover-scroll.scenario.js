@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 //@flow
 
 import * as React from 'react';
-import {StatefulPopover} from '../index.js';
+import { StatefulPopover } from '../index.js';
 
 function PopoverContent() {
   return (
@@ -20,11 +20,11 @@ function PopoverContent() {
 
 export function Scenario() {
   return (
-    <div style={{height: '2000px'}}>
-      <div style={{height: '1500px'}}>
+    <div style={{ height: '2000px' }}>
+      <div style={{ height: '1500px' }}>
         <p>scroll down for test cases</p>
       </div>
-      <div style={{display: 'flex', justifyContent: 'center'}}>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
         <div id="case-not-focus-locked">
           <StatefulPopover content={PopoverContent}>
             <button id="button-not-focus-locked">not-focus-locked</button>

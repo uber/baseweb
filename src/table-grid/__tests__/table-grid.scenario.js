@@ -8,11 +8,11 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
-import {useStyletron} from '../../styles/index.js';
+import { useStyletron } from '../../styles/index.js';
 
-import {StyledTable, StyledHeadCell, StyledBodyCell} from '../index.js';
+import { StyledTable, StyledHeadCell, StyledBodyCell } from '../index.js';
 
-import {useCellNavigation} from './shared.js';
+import { useCellNavigation } from './shared.js';
 
 const data = Array(100)
   .fill(2)
@@ -27,10 +27,10 @@ const data = Array(100)
   ]);
 
 export function Scenario() {
-  const {getCellProps} = useCellNavigation();
+  const { getCellProps } = useCellNavigation();
   const [css] = useStyletron();
   return (
-    <div className={css({height: '750px', width: '900px'})}>
+    <div className={css({ height: '750px', width: '900px' })}>
       <StyledTable
         tabIndex="0"
         role="grid"
@@ -46,24 +46,12 @@ export function Scenario() {
           const rowNumber = index + 1;
           return (
             <React.Fragment key={index}>
-              <StyledBodyCell {...getCellProps(0, rowNumber)}>
-                {row[0]}
-              </StyledBodyCell>
-              <StyledBodyCell {...getCellProps(1, rowNumber)}>
-                {row[1]}
-              </StyledBodyCell>
-              <StyledBodyCell {...getCellProps(2, rowNumber)}>
-                {row[2]}
-              </StyledBodyCell>
-              <StyledBodyCell {...getCellProps(3, rowNumber)}>
-                {row[3]}
-              </StyledBodyCell>
-              <StyledBodyCell {...getCellProps(4, rowNumber)}>
-                {row[4]}
-              </StyledBodyCell>
-              <StyledBodyCell {...getCellProps(5, rowNumber)}>
-                {row[5]}
-              </StyledBodyCell>
+              <StyledBodyCell {...getCellProps(0, rowNumber)}>{row[0]}</StyledBodyCell>
+              <StyledBodyCell {...getCellProps(1, rowNumber)}>{row[1]}</StyledBodyCell>
+              <StyledBodyCell {...getCellProps(2, rowNumber)}>{row[2]}</StyledBodyCell>
+              <StyledBodyCell {...getCellProps(3, rowNumber)}>{row[3]}</StyledBodyCell>
+              <StyledBodyCell {...getCellProps(4, rowNumber)}>{row[4]}</StyledBodyCell>
+              <StyledBodyCell {...getCellProps(5, rowNumber)}>{row[5]}</StyledBodyCell>
             </React.Fragment>
           );
         })}

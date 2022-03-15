@@ -8,12 +8,9 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {COLUMNS, SORT_DIRECTIONS} from './constants.js';
+import { COLUMNS, SORT_DIRECTIONS } from './constants.js';
 
-export type SortDirectionsT =
-  | typeof SORT_DIRECTIONS.ASC
-  | typeof SORT_DIRECTIONS.DESC
-  | null;
+export type SortDirectionsT = typeof SORT_DIRECTIONS.ASC | typeof SORT_DIRECTIONS.DESC | null;
 
 export type ColumnsT =
   | typeof COLUMNS.ANCHOR
@@ -80,13 +77,13 @@ export type BatchActionT = {|
     event: SyntheticEvent<HTMLButtonElement>,
     selection: RowT[],
   }) => mixed,
-  renderIcon?: React.AbstractComponent<{|size: number|}>,
+  renderIcon?: React.AbstractComponent<{| size: number |}>,
 |};
 
 export type RowActionT = {|
   label: string,
-  onClick: ({event: SyntheticEvent<HTMLButtonElement>, row: RowT}) => mixed,
-  renderIcon: React.AbstractComponent<{|size: number|}>,
+  onClick: ({ event: SyntheticEvent<HTMLButtonElement>, row: RowT }) => mixed,
+  renderIcon: React.AbstractComponent<{| size: number |}>,
   renderButton?: React.AbstractComponent<{||}>,
 |};
 
@@ -95,13 +92,13 @@ export type StatefulDataTablePropsT = {|
   columns: ColumnT<>[],
   emptyMessage?: string | React.AbstractComponent<{||}>,
   filterable?: boolean,
-  initialFilters?: Map<string, {description: string}>,
+  initialFilters?: Map<string, { description: string }>,
   initialSelectedRowIds?: Set<number | string>,
   initialSortIndex?: number,
   initialSortDirection?: SortDirectionsT,
   loading?: boolean,
   loadingMessage?: string | React.AbstractComponent<{||}>,
-  onFilterAdd?: (string, {description: string}) => mixed,
+  onFilterAdd?: (string, { description: string }) => mixed,
   onFilterRemove?: (string) => mixed,
   onIncludedRowsChange?: (rows: RowT[]) => void,
   onRowHighlightChange?: (rowIndex: number, row: RowT) => void,
@@ -117,7 +114,7 @@ export type StatefulDataTablePropsT = {|
 export type DataTablePropsT = {|
   ...StatefulDataTablePropsT,
   emptyMessage?: string | React.AbstractComponent<{||}>,
-  filters?: Map<string, {description: string}>,
+  filters?: Map<string, { description: string }>,
   loading?: boolean,
   loadingMessage?: string | React.AbstractComponent<{||}>,
   onIncludedRowsChange?: (rows: RowT[]) => void,
@@ -137,8 +134,8 @@ export type DataTablePropsT = {|
 export type StatefulContainerPropsT = {|
   ...StatefulDataTablePropsT,
   children: ({|
-    filters: Map<string, {description: string}>,
-    onFilterAdd: (title: string, filterParams: {description: string}) => void,
+    filters: Map<string, { description: string }>,
+    onFilterAdd: (title: string, filterParams: { description: string }) => void,
     onFilterRemove: (title: string) => void,
     onIncludedRowsChange: (rows: RowT[]) => void,
     onRowHighlightChange: (rowIndex: number, row: RowT) => void,

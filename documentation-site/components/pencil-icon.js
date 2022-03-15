@@ -14,12 +14,7 @@ type PropT = {
 };
 
 const PencilIcon = (props: PropT) => (
-  <svg
-    width={props.size}
-    height={props.size}
-    viewBox="0 0 20 18"
-    aria-hidden="true"
-  >
+  <svg width={props.size} height={props.size} viewBox="0 0 20 18" aria-hidden="true">
     <path
       fillRule="evenodd"
       fill={props.color}

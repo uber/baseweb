@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {mount} = require('../../../e2e/helpers');
+const { mount } = require('../../../e2e/helpers');
 
 describe('popover', () => {
   it('hover trigger does not cause loop on click', async () => {
@@ -17,9 +17,9 @@ describe('popover', () => {
     await page.waitForSelector('div[data-e2e="content"]');
 
     await page.click('button');
-    await page.waitForSelector('div[data-e2e="content"]', {hidden: false});
+    await page.waitForSelector('div[data-e2e="content"]', { hidden: false });
     await page.click('button');
-    await page.waitForSelector('div[data-e2e="content"]', {hidden: false});
+    await page.waitForSelector('div[data-e2e="content"]', { hidden: false });
 
     await page.mouse.move(200, 200);
     await page.hover('button');

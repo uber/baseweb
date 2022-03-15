@@ -8,32 +8,32 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {Button, KIND, SIZE} from 'baseui/button';
-import {ButtonGroup} from 'baseui/button-group';
-import {Card} from 'baseui/card';
-import {Block} from 'baseui/block';
+import { Button, KIND, SIZE } from 'baseui/button';
+import { ButtonGroup } from 'baseui/button-group';
+import { Card } from 'baseui/card';
+import { Block } from 'baseui/block';
 
 import Code from './code';
 import CodeIcon from './code-icon';
 //$FlowFixMe
-import {trackEvent} from '../helpers/ga';
-import {H3} from './markdown-elements';
-import {deploy} from '../components/code-sandboxer.js';
+import { trackEvent } from '../helpers/ga';
+import { H3 } from './markdown-elements';
+import { deploy } from '../components/code-sandboxer.js';
 
-function Source(props: {children: ?React.Node}) {
+function Source(props: { children: ?React.Node }) {
   if (!props.children || typeof props.children !== 'string') return null;
   return <Code>{props.children}</Code>;
 }
 
 type PropsT = {
-  additionalPackages: {[string]: string},
+  additionalPackages: { [string]: string },
   children: React.Node,
   path: string, // required to fetch the uncompiled source code
   title: ?string,
 };
 
 function Example(props: PropsT) {
-  const {additionalPackages = {}, path, children, title = null} = props;
+  const { additionalPackages = {}, path, children, title = null } = props;
 
   // Which language the example should be displayed in.
   const [selectedLanguage, setSelectedLanguage] = React.useState(-1);
@@ -48,14 +48,9 @@ function Example(props: PropsT) {
   // Load example code for various languages on initial mount.
   React.useEffect(() => {
     (async () => {
-      const flowCode = await import(
-        /* webpackMode: "eager" */ `!!raw-loader!../examples/${path}`
-      );
+      const flowCode = await import(/* webpackMode: "eager" */ `!!raw-loader!../examples/${path}`);
       const tsCode = await import(
-        /* webpackMode: "eager" */ `!!raw-loader!../examples/${path.replace(
-          '.js',
-          '.tsx',
-        )}`
+        /* webpackMode: "eager" */ `!!raw-loader!../examples/${path.replace('.js', '.tsx')}`
       );
       const jsCode = await import(
         /* webpackMode: "eager" */ `!!raw-loader!remove-flow-types-loader?pretty!../examples/${path}`
@@ -78,11 +73,7 @@ function Example(props: PropsT) {
 
   async function handleOpenExample() {
     if (code.js) {
-      const url = await deploy(
-        `Base Web - ${title || 'Example'}`,
-        code.js,
-        additionalPackages,
-      );
+      const url = await deploy(`Base Web - ${title || 'Example'}`, code.js, additionalPackages);
       if (url) {
         window.open(url, '_blank');
       }
@@ -93,7 +84,7 @@ function Example(props: PropsT) {
     <Card
       overrides={{
         Root: {
-          style: ({$theme}) => ({
+          style: ({ $theme }) => ({
             marginTop: 0,
             marginBottom: 0,
             borderTopWidth: 0,
@@ -165,11 +156,7 @@ function Example(props: PropsT) {
             {selectedLanguage === 1 && <Source>{code.flow}</Source>}
             {selectedLanguage === 2 && <Source>{code.ts}</Source>}
           </Block>
-          <Button
-            kind={KIND.secondary}
-            size={SIZE.compact}
-            onClick={handleOpenExample}
-          >
+          <Button kind={KIND.secondary} size={SIZE.compact} onClick={handleOpenExample}>
             Try example on CodeSandbox
           </Button>
         </React.Fragment>

@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import React from 'react';
-import {Spinner} from '../index.js';
+import { Spinner } from '../index.js';
 
 export function Scenario() {
   return (

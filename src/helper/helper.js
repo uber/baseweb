@@ -9,26 +9,26 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Popover, PLACEMENT} from '../popover/index.js';
-import {mergeOverrides} from '../helpers/overrides.js';
+import { Popover, PLACEMENT } from '../popover/index.js';
+import { mergeOverrides } from '../helpers/overrides.js';
 
-import {StyledArrow, StyledBody} from './styled-components.js';
-import type {PropsT} from './types.js';
+import { StyledArrow, StyledBody } from './styled-components.js';
+import type { PropsT } from './types.js';
 
 export function Helper(props: PropsT) {
-  const {overrides = {}, placement, ...restProps} = props;
+  const { overrides = {}, placement, ...restProps } = props;
 
   const mergedOverrides = mergeOverrides(
     {
       Arrow: placement !== PLACEMENT.auto ? StyledArrow : {},
       Body: placement !== PLACEMENT.auto ? StyledBody : {},
       Inner: {
-        style: ({$theme}) => {
-          return {backgroundColor: $theme.colors.backgroundPrimary};
+        style: ({ $theme }) => {
+          return { backgroundColor: $theme.colors.backgroundPrimary };
         },
       },
     },
-    overrides,
+    overrides
   );
 
   return (

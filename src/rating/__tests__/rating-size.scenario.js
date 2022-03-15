@@ -8,32 +8,24 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {EmoticonRating, StarRating} from '../index.js';
+import { EmoticonRating, StarRating } from '../index.js';
 
 export function Scenario() {
   const [value, setValue] = React.useState(3);
   return (
     <div>
-      <EmoticonRating
-        size={30}
-        value={value}
-        onChange={({value: v}) => setValue(v)}
-      />
+      <EmoticonRating size={30} value={value} onChange={({ value: v }) => setValue(v)} />
 
       <br />
 
-      <EmoticonRating value={value} onChange={({value: v}) => setValue(v)} />
+      <EmoticonRating value={value} onChange={({ value: v }) => setValue(v)} />
       <br />
 
-      <StarRating
-        size={30}
-        value={value}
-        onChange={({value: v}) => setValue(v)}
-      />
+      <StarRating size={30} value={value} onChange={({ value: v }) => setValue(v)} />
 
       <br />
 
-      <StarRating value={value} onChange={({value: v}) => setValue(v)} />
+      <StarRating value={value} onChange={({ value: v }) => setValue(v)} />
     </div>
   );
 }

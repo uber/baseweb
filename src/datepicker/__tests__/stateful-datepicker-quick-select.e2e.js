@@ -8,9 +8,9 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {mount} = require('../../../e2e/helpers');
+import { formatDate, subMonths } from '../utils/index.js';
 
-import {formatDate, subMonths} from '../utils/index.js';
+const { mount } = require('../../../e2e/helpers');
 
 const selectors = {
   input: 'input',
@@ -38,15 +38,10 @@ describe('Stateful Datepicker Quick Select', () => {
     await page.keyboard.press('ArrowDown');
     await page.keyboard.press('Enter');
 
-    const selectedValue = await page.$eval(
-      selectors.input,
-      (input) => input.value,
-    );
+    const selectedValue = await page.$eval(selectors.input, (input) => input.value);
 
     expect(selectedValue).toBe(
-      [subMonths(NOW, 1), NOW]
-        .map((d) => formatDate(d, FORMAT_STRING))
-        .join(' – '),
+      [subMonths(NOW, 1), NOW].map((d) => formatDate(d, FORMAT_STRING)).join(' – ')
     );
   });
 
@@ -59,15 +54,10 @@ describe('Stateful Datepicker Quick Select', () => {
     await page.waitForSelector(selectors.quickSelectMenu);
     await page.click(selectors.quickSelectPastMonth);
 
-    const selectedValue = await page.$eval(
-      selectors.input,
-      (input) => input.value,
-    );
+    const selectedValue = await page.$eval(selectors.input, (input) => input.value);
 
     expect(selectedValue).toBe(
-      [subMonths(NOW, 1), NOW]
-        .map((d) => formatDate(d, FORMAT_STRING))
-        .join(' – '),
+      [subMonths(NOW, 1), NOW].map((d) => formatDate(d, FORMAT_STRING)).join(' – ')
     );
   });
 });

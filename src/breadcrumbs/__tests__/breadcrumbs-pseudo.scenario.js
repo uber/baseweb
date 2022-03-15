@@ -8,15 +8,15 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {StyledLink as Link} from '../../link/index.js';
-import {Breadcrumbs} from '../index.js';
+import { StyledLink as Link } from '../../link/index.js';
+import { Breadcrumbs } from '../index.js';
 
 export function Scenario() {
   return (
     <Breadcrumbs
       overrides={{
         ListItem: {
-          style: ({$itemIndex, $theme}) => {
+          style: ({ $itemIndex, $theme }) => {
             if ($itemIndex === 0) return {};
             return {
               ':before': {

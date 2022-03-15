@@ -7,9 +7,9 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {render, fireEvent} from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 
-import {BooleanColumn} from '../index.js';
+import { BooleanColumn } from '../index.js';
 
 describe('boolean column', () => {
   it('is sortable by default', () => {
@@ -53,7 +53,7 @@ describe('boolean column', () => {
     });
     const Cell = column.renderCell;
 
-    const {container} = render(<Cell value={true} x={0} y={0} />);
+    const { container } = render(<Cell value={true} x={0} y={0} />);
     const cell = container.querySelector('div');
     expect(cell?.textContent).toBe('T');
   });
@@ -65,7 +65,7 @@ describe('boolean column', () => {
     });
     const Cell = column.renderCell;
 
-    const {container} = render(<Cell value={false} x={0} y={0} />);
+    const { container } = render(<Cell value={false} x={0} y={0} />);
     const cell = container.querySelector('div');
     expect(cell?.textContent).toBe('F');
   });
@@ -79,8 +79,8 @@ describe('boolean column', () => {
 
     const mockSetFilter = jest.fn();
     const data = [true, false, true];
-    const {container, getByText} = render(
-      <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
+    const { container, getByText } = render(
+      <Filter setFilter={mockSetFilter} close={() => {}} data={data} />
     );
 
     const checkboxes = container.querySelectorAll('input[type="checkbox"]');

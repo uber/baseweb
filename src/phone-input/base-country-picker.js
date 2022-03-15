@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 import {
   StyledRoot,
@@ -16,17 +16,17 @@ import {
   StyledCountrySelectDropdownNameColumn as DefaultNameColumn,
   StyledCountrySelectDropdownDialcodeColumn as DefaultDialcodeColumn,
 } from './styled-components.js';
-import {SingleSelect as DefaultSelect} from '../select/index.js';
-import {PLACEMENT} from '../popover/index.js';
-import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
+import { SingleSelect as DefaultSelect } from '../select/index.js';
+import { PLACEMENT } from '../popover/index.js';
+import { getOverrides, mergeOverrides } from '../helpers/overrides.js';
 import defaultProps from './default-props.js';
-import {iso2FlagEmoji} from './utils.js';
+import { iso2FlagEmoji } from './utils.js';
 
-import type {CountryT, CountrySelectPropsT} from './types.js';
+import type { CountryT, CountrySelectPropsT } from './types.js';
 
 CountryPicker.defaultProps = {
   disabled: defaultProps.disabled,
-  inputRef: {current: null},
+  inputRef: { current: null },
   maxDropdownHeight: defaultProps.maxDropdownHeight,
   maxDropdownWidth: defaultProps.maxDropdownWidth,
   overrides: {},
@@ -37,7 +37,7 @@ CountryPicker.defaultProps = {
 };
 
 const DropdownListItem = React.forwardRef((props, ref) => {
-  const {children, ...rest} = props;
+  const { children, ...rest } = props;
   return (
     <DefaultListItem ref={ref} {...rest}>
       {props.children}
@@ -130,14 +130,10 @@ export default function CountryPicker(props: CountrySelectPropsT) {
         $mapIsoToLabel: mapIsoToLabel,
         $overrides: {
           CountrySelectDropdown: overrides.CountrySelectDropdown,
-          CountrySelectDropdownListItem:
-            overrides.CountrySelectDropdownListItem,
-          CountrySelectDropdownFlagColumn:
-            overrides.CountrySelectDropdownFlagColumn,
-          CountrySelectDropdownNameColumn:
-            overrides.CountrySelectDropdownNameColumn,
-          CountrySelectDropdownDialcodeColumn:
-            overrides.CountrySelectDropdownDialcodeColumn,
+          CountrySelectDropdownListItem: overrides.CountrySelectDropdownListItem,
+          CountrySelectDropdownFlagColumn: overrides.CountrySelectDropdownFlagColumn,
+          CountrySelectDropdownNameColumn: overrides.CountrySelectDropdownNameColumn,
+          CountrySelectDropdownDialcodeColumn: overrides.CountrySelectDropdownDialcodeColumn,
           FlagContainer: overrides.FlagContainer,
         },
       },
@@ -156,41 +152,35 @@ export default function CountryPicker(props: CountrySelectPropsT) {
     },
   };
 
-  const [Select, selectProps] = getOverrides(
-    overrides.CountrySelect,
-    DefaultSelect,
-  );
+  const [Select, selectProps] = getOverrides(overrides.CountrySelect, DefaultSelect);
   const selectOverrides = mergeOverrides(baseSelectOverrides, {
     Dropdown: overrides.CountrySelectDropdown || {},
     DropdownListItem: overrides.CountrySelectDropdownListItem || {},
   });
-  selectProps.overrides = mergeOverrides(
-    selectOverrides,
-    selectProps.overrides,
-  );
+  selectProps.overrides = mergeOverrides(selectOverrides, selectProps.overrides);
 
   const [FlagColumn, flagColumnProps] = getOverrides(
     overrides.CountrySelectDropdownFlagColumn,
-    DefaultFlagColumn,
+    DefaultFlagColumn
   );
   const [FlagContainer, flagContainerProps] = getOverrides(
     overrides.FlagContainer,
-    StyledFlagContainer,
+    StyledFlagContainer
   );
   const [NameColumn, nameColumnProps] = getOverrides(
     overrides.CountrySelectDropdownNameColumn,
-    DefaultNameColumn,
+    DefaultNameColumn
   );
   const [Dialcode, dialcodeProps] = getOverrides(
     overrides.CountrySelectDropdownDialcodeColumn,
-    DefaultDialcodeColumn,
+    DefaultDialcodeColumn
   );
 
   return (
     <Select
       clearable={false}
       disabled={disabled}
-      getOptionLabel={({option, optionState}) => {
+      getOptionLabel={({ option, optionState }) => {
         const iso = option.id;
         return (
           <>
@@ -206,15 +196,10 @@ export default function CountryPicker(props: CountrySelectPropsT) {
           </>
         );
       }}
-      getValueLabel={(value: {option: CountryT}) => {
+      getValueLabel={(value: { option: CountryT }) => {
         const iso = value.option.id;
         return (
-          <FlagContainer
-            $iso={iso}
-            data-iso={iso}
-            {...sharedProps}
-            {...flagContainerProps}
-          >
+          <FlagContainer $iso={iso} data-iso={iso} {...sharedProps} {...flagContainerProps}>
             {iso2FlagEmoji(iso)}
           </FlagContainer>
         );
@@ -228,7 +213,7 @@ export default function CountryPicker(props: CountrySelectPropsT) {
           console.warn(
             'CountryPicker component is controlled (or stateless) ' +
               'and requires an `onCountryChange` handler to be passed in ' +
-              'that handles the `country` prop value update.',
+              'that handles the `country` prop value update.'
           );
         }
         // After choosing a country, shift focus to the text input

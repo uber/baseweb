@@ -8,14 +8,14 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {getOverrides} from '../helpers/overrides.js';
+import { getOverrides } from '../helpers/overrides.js';
 
 import {
   Avatar as StyledAvatar,
   Initials as StyledInitials,
   Root as StyledRoot,
 } from './styled-components.js';
-import type {PropsT} from './types.js';
+import type { PropsT } from './types.js';
 
 function getInitials(name) {
   const words = name.split(' ');
@@ -62,10 +62,7 @@ export default function Avatar({
   }, [src]);
 
   const [Avatar, avatarProps] = getOverrides(overrides.Avatar, StyledAvatar);
-  const [Initials, initialsProps] = getOverrides(
-    overrides.Initials,
-    StyledInitials,
-  );
+  const [Initials, initialsProps] = getOverrides(overrides.Initials, StyledInitials);
   const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
 
   return (
@@ -77,17 +74,9 @@ export default function Avatar({
       data-baseweb="avatar"
       {...rootProps}
     >
-      <Avatar
-        ref={imageRef}
-        alt={name}
-        $imageLoaded={imageLoaded}
-        $size={size}
-        {...avatarProps}
-      />
+      <Avatar ref={imageRef} alt={name} $imageLoaded={imageLoaded} $size={size} {...avatarProps} />
 
-      {!imageLoaded && (
-        <Initials {...initialsProps}>{initials || getInitials(name)}</Initials>
-      )}
+      {!imageLoaded && <Initials {...initialsProps}>{initials || getInitials(name)}</Initials>}
     </Root>
   );
 }

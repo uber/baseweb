@@ -5,13 +5,13 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import {getSharedProps} from '../utils.js';
-import {ADJOINED, SIZE} from '../index.js';
+import { getSharedProps } from '../utils.js';
+import { ADJOINED, SIZE } from '../index.js';
 
 test('Utils - getSharedProps', () => {
   const props = {
     id: 'id',
-    inputRef: {current: {focus: () => {}}},
+    inputRef: { current: { focus: () => {} } },
     adjoined: ADJOINED.none,
     size: SIZE.default,
     required: false,
@@ -28,7 +28,5 @@ test('Utils - getSharedProps', () => {
     isFocused: true,
   };
   // $FlowFixMe
-  expect(getSharedProps(props, state)).toMatchSnapshot(
-    'getSharedProps returns correct object',
-  );
+  expect(getSharedProps(props, state)).toMatchSnapshot('getSharedProps returns correct object');
 });

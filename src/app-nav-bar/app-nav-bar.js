@@ -8,12 +8,12 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {getOverrides} from '../helpers/overrides.js';
-import {Cell, Grid} from '../layout-grid/index.js';
-import {useStyletron} from '../styles/index.js';
-import {isFocusVisible} from '../utils/focusVisible.js';
+import { getOverrides } from '../helpers/overrides.js';
+import { Cell, Grid } from '../layout-grid/index.js';
+import { useStyletron } from '../styles/index.js';
+import { isFocusVisible } from '../utils/focusVisible.js';
 
-import {KIND, POSITION} from './constants.js';
+import { KIND, POSITION } from './constants.js';
 import MobileNav from './mobile-menu.js';
 import UserMenu from './user-menu.js';
 import {
@@ -25,17 +25,11 @@ import {
   StyledAppName,
   StyledMainMenuItem,
 } from './styled-components.js';
-import type {AppNavBarPropsT} from './types.js';
-import {defaultMapItemToNode, mapItemsActive} from './utils.js';
+import type { AppNavBarPropsT } from './types.js';
+import { defaultMapItemToNode, mapItemsActive } from './utils.js';
 
 function MainMenuItem(props) {
-  const {
-    item,
-    kind = KIND.primary,
-    mapItemToNode,
-    onSelect,
-    overrides = {},
-  } = props;
+  const { item, kind = KIND.primary, mapItemToNode, onSelect, overrides = {} } = props;
   const [focusVisible, setFocusVisible] = React.useState(false);
 
   function handleFocus(event) {
@@ -64,7 +58,7 @@ function MainMenuItem(props) {
 
   const [MainMenuItemElement, mainMenuItemElementProps] = getOverrides(
     overrides.MainMenuItem,
-    StyledMainMenuItem,
+    StyledMainMenuItem
   );
 
   return (
@@ -86,15 +80,15 @@ function MainMenuItem(props) {
 }
 
 function SecondaryMenu(props) {
-  const {items = [], mapItemToNode, onSelect, overrides = {}} = props;
+  const { items = [], mapItemToNode, onSelect, overrides = {} } = props;
 
   const [SubnavContainer, subnavContainerProps] = getOverrides(
     overrides.SubnavContainer,
-    StyledSubnavContainer,
+    StyledSubnavContainer
   );
   const [SecondaryMenuContainer, secondaryMenuContainerProps] = getOverrides(
     overrides.SecondaryMenuContainer,
-    StyledSecondaryMenuContainer,
+    StyledSecondaryMenuContainer
   );
 
   return (
@@ -146,17 +140,11 @@ export default function AppNavBar(props: AppNavBarPropsT) {
   }, [props.mainItems, props.isMainItemActive]);
 
   const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
-  const [Spacing, spacingProps] = getOverrides(
-    overrides.Spacing,
-    StyledSpacing,
-  );
-  const [AppName, appNameProps] = getOverrides(
-    overrides.AppName,
-    StyledAppName,
-  );
+  const [Spacing, spacingProps] = getOverrides(overrides.Spacing, StyledSpacing);
+  const [AppName, appNameProps] = getOverrides(overrides.AppName, StyledAppName);
   const [PrimaryMenuContainer, primaryMenuContainerProps] = getOverrides(
     overrides.PrimaryMenuContainer,
-    StyledPrimaryMenuContainer,
+    StyledPrimaryMenuContainer
   );
 
   let secondaryMenu;
@@ -176,9 +164,7 @@ export default function AppNavBar(props: AppNavBarPropsT) {
         <Grid>
           <Cell span={[4, 8, 0]}>
             <Spacing {...spacingProps}>
-              {mainItems.length || userItems.length ? (
-                <MobileNav {...props} />
-              ) : null}
+              {mainItems.length || userItems.length ? <MobileNav {...props} /> : null}
               <AppName {...appNameProps}>{title}</AppName>
             </Spacing>
           </Cell>
@@ -220,10 +206,8 @@ export default function AppNavBar(props: AppNavBarPropsT) {
                 if (item.active && item.children && item.children.length) {
                   secondaryMenu = item.children;
                   if (item.navPosition) {
-                    desktopSubNavPosition =
-                      item.navPosition.desktop || desktopSubNavPosition;
-                    mobileSubNavPosition =
-                      item.navPosition.mobile || mobileSubNavPosition;
+                    desktopSubNavPosition = item.navPosition.desktop || desktopSubNavPosition;
+                    mobileSubNavPosition = item.navPosition.mobile || mobileSubNavPosition;
                   }
                 }
                 return (

@@ -7,9 +7,9 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {mount} = require('../../../e2e/helpers');
+const { mount } = require('../../../e2e/helpers');
 
-const {getActionButtonByLabel} = require('./utilities.js');
+const { getActionButtonByLabel } = require('./utilities.js');
 
 describe('data-table-row-actions-dynamic', () => {
   it('renders provided row action buttons', async () => {

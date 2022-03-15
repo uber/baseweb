@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {ListItem, ListItemLabel} from '../index.js';
+import { ListItem, ListItemLabel } from '../index.js';
 
 export function Scenario() {
   return (
@@ -24,7 +24,7 @@ export function Scenario() {
         <ListItemLabel
           overrides={{
             LabelContent: {
-              style: ({$theme}) => ({color: $theme.colors.positive}),
+              style: ({ $theme }) => ({ color: $theme.colors.positive }),
             },
           }}
         >

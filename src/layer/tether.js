@@ -7,10 +7,10 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import Popper from 'popper.js';
-import type {Instance as PopperInstance} from 'popper.js';
-import {toPopperPlacement, parsePopperOffset} from './utils.js';
-import {TETHER_PLACEMENT} from './constants.js';
-import type {TetherPropsT, TetherStateT, PopperDataObjectT} from './types.js';
+import type { Instance as PopperInstance } from 'popper.js';
+import { toPopperPlacement, parsePopperOffset } from './utils.js';
+import { TETHER_PLACEMENT } from './constants.js';
+import type { TetherPropsT, TetherStateT, PopperDataObjectT } from './types.js';
 
 class Tether extends React.Component<TetherPropsT, TetherStateT> {
   static defaultProps = {
@@ -32,7 +32,7 @@ class Tether extends React.Component<TetherPropsT, TetherStateT> {
   };
 
   componentDidMount() {
-    this.setState({isMounted: true});
+    this.setState({ isMounted: true });
   }
 
   componentDidUpdate(prevProps: TetherPropsT, prevState: TetherStateT) {
@@ -42,7 +42,7 @@ class Tether extends React.Component<TetherPropsT, TetherStateT> {
     // between it and the input element.
 
     if (this.props.anchorRef) {
-      const {height, width} = this.props.anchorRef.getBoundingClientRect();
+      const { height, width } = this.props.anchorRef.getBoundingClientRect();
 
       if (this.anchorHeight !== height || this.anchorWidth !== width) {
         this.anchorHeight = height;
@@ -52,7 +52,7 @@ class Tether extends React.Component<TetherPropsT, TetherStateT> {
     }
 
     if (this.props.popperRef) {
-      const {height, width} = this.props.popperRef.getBoundingClientRect();
+      const { height, width } = this.props.popperRef.getBoundingClientRect();
 
       if (this.popperHeight !== height || this.popperWidth !== width) {
         this.popperHeight = height;
@@ -67,7 +67,7 @@ class Tether extends React.Component<TetherPropsT, TetherStateT> {
             console.warn(
               `[baseui][TetherBehavior] ref has not been passed to the Popper's anchor element.
               See how to pass the ref to an anchor element in the Popover example
-              http://baseui.design/components/popover#anchor-ref-handling-example`,
+              http://baseui.design/components/popover#anchor-ref-handling-example`
             );
           }
         } else {
@@ -82,8 +82,8 @@ class Tether extends React.Component<TetherPropsT, TetherStateT> {
   }
 
   initializePopper() {
-    const {placement, popperOptions} = this.props;
-    const {modifiers, ...restOptions} = popperOptions;
+    const { placement, popperOptions } = this.props;
+    const { modifiers, ...restOptions } = popperOptions;
 
     if (!this.props.anchorRef || !this.props.popperRef) return;
 
@@ -110,7 +110,7 @@ class Tether extends React.Component<TetherPropsT, TetherStateT> {
           fn: this.onPopperUpdate,
           order: 900,
         },
-        preventOverflow: {enabled: true},
+        preventOverflow: { enabled: true },
         ...modifiers,
       },
       ...restOptions,
@@ -120,9 +120,7 @@ class Tether extends React.Component<TetherPropsT, TetherStateT> {
   onPopperUpdate = (data: PopperDataObjectT) => {
     const normalizedOffsets = {
       popper: parsePopperOffset(data.offsets.popper),
-      arrow: data.offsets.arrow
-        ? parsePopperOffset(data.offsets.arrow)
-        : {top: 0, left: 0},
+      arrow: data.offsets.arrow ? parsePopperOffset(data.offsets.arrow) : { top: 0, left: 0 },
     };
     this.props.onPopperUpdate(normalizedOffsets, data);
   };

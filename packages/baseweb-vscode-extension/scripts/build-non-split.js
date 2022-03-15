@@ -10,6 +10,7 @@ LICENSE file in the root directory of this source tree.
 // See https://github.com/facebook/create-react-app/issues/5306#issuecomment-433425838
 
 const rewire = require('rewire');
+
 const defaults = rewire('react-scripts/scripts/build.js');
 let config = defaults.__get__('config');
 

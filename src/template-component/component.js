@@ -7,10 +7,10 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-disable cup/no-undef */
 import * as React from 'react';
-import {getOverride, getOverrideProps} from '../helpers/overrides.js';
-import {Root as StyledRoot} from './styled-components.js';
+import { getOverride, getOverrideProps } from '../helpers/overrides.js';
+import { Root as StyledRoot } from './styled-components.js';
 
-import type {ComponentPropsT, SharedStylePropsT} from './types.js';
+import type { ComponentPropsT, SharedStylePropsT } from './types.js';
 
 class Component extends React.Component<ComponentPropsT> {
   static defaultProps: $Shape<ComponentPropsT> = {
@@ -18,16 +18,16 @@ class Component extends React.Component<ComponentPropsT> {
     onClick: () => {},
   };
 
-  getSharedProps(): $Diff<SharedStylePropsT, {children?: React.Node}> {
-    const {prop} = this.props;
+  getSharedProps(): $Diff<SharedStylePropsT, { children?: React.Node }> {
+    const { prop } = this.props;
     return {
       $prop: Boolean(prop),
     };
   }
 
   render() {
-    const {overrides = {}, children} = this.props;
-    const {Root: RootOverride} = overrides;
+    const { overrides = {}, children } = this.props;
+    const { Root: RootOverride } = overrides;
 
     const Root = getOverride(RootOverride) || StyledRoot;
     const sharedProps = this.getSharedProps();

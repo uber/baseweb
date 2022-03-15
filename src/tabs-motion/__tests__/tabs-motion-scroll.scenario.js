@@ -10,15 +10,12 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable jsx-a11y/accessible-emoji */
 
 import * as React from 'react';
-import {Tab, Tabs} from '../index.js';
+import { Tab, Tabs } from '../index.js';
 
 export function Scenario() {
   const [activeKey, setActiveKey] = React.useState('8');
   return (
-    <Tabs
-      activeKey={activeKey}
-      onChange={({activeKey}) => setActiveKey(activeKey)}
-    >
+    <Tabs activeKey={activeKey} onChange={({ activeKey }) => setActiveKey(activeKey)}>
       <Tab title="One">One</Tab>
       <Tab title="Two">Two</Tab>
       <Tab title="Three">Three</Tab>

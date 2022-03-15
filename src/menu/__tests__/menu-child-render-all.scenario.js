@@ -8,18 +8,18 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {StatefulMenu, NestedMenus} from '../index.js';
+import { StatefulMenu, NestedMenus } from '../index.js';
 
 const SSR = 'Rendered ->';
-const FILE = [{label: 'Server'}, {label: 'Side'}, {label: SSR}];
+const FILE = [{ label: 'Server' }, { label: 'Side' }, { label: SSR }];
 
 const SSR_SUB_MENU = [
-  {label: 'Rendered'},
-  {label: 'SSR'},
-  {label: '(check source!)'},
-  {label: 'And'},
-  {label: 'When'},
-  {label: 'Closed'},
+  { label: 'Rendered' },
+  { label: 'SSR' },
+  { label: '(check source!)' },
+  { label: 'And' },
+  { label: 'When' },
+  { label: 'Closed' },
 ];
 
 const childMenu = (items) => (
@@ -28,8 +28,8 @@ const childMenu = (items) => (
     items={items}
     overrides={{
       List: {
-        style: {width: '300px'},
-        props: {'data-e2e': 'child-menu'},
+        style: { width: '300px' },
+        props: { 'data-e2e': 'child-menu' },
       },
 
       Option: {
@@ -49,8 +49,8 @@ export function Scenario() {
         items={FILE}
         overrides={{
           List: {
-            style: {width: '300px', overflow: 'auto'},
-            props: {'data-e2e': 'parent-menu'},
+            style: { width: '300px', overflow: 'auto' },
+            props: { 'data-e2e': 'parent-menu' },
           },
 
           Option: {

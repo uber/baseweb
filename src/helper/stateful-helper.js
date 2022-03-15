@@ -15,13 +15,13 @@ import {
   PLACEMENT,
   TRIGGER_TYPE,
 } from '../popover/index.js';
-import {POPOVER_MARGIN} from '../popover/constants.js';
+import { POPOVER_MARGIN } from '../popover/constants.js';
 
-import {Helper} from './helper.js';
-import type {StatefulPropsT} from './types.js';
+import { Helper } from './helper.js';
+import type { StatefulPropsT } from './types.js';
 
 export function StatefulHelper(props: StatefulPropsT) {
-  const {children, ...restProps} = props;
+  const { children, ...restProps } = props;
   return (
     <StatefulContainer {...restProps}>
       {(helperProps) => <Helper {...helperProps}>{children}</Helper>}

@@ -6,10 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import {styled} from '../styles/index.js';
+import { styled } from '../styles/index.js';
 
 function getAnimationColor(props) {
-  const {$theme} = props;
+  const { $theme } = props;
   return `linear-gradient(135deg,
     ${$theme.colors.backgroundTertiary},
     ${$theme.colors.backgroundTertiary},
@@ -58,23 +58,20 @@ export const StyledRoot = styled<{
 
   return {
     ...(props.$animation
-      ? {...animationStyle, backgroundImage: getAnimationColor(props)}
-      : {backgroundColor: props.$theme.colors.backgroundTertiary}),
+      ? { ...animationStyle, backgroundImage: getAnimationColor(props) }
+      : { backgroundColor: props.$theme.colors.backgroundTertiary }),
     height: props.$height,
     width: props.$width,
   };
 });
 
-export const StyledRow = styled<{$animation?: boolean, $isLastRow: boolean}>(
-  'div',
-  (props) => {
-    return {
-      ...(props.$animation
-        ? {...animationStyle, backgroundImage: getAnimationColor(props)}
-        : {backgroundColor: props.$theme.colors.backgroundTertiary}),
-      width: '100%',
-      height: '15px',
-      marginBottom: props.$isLastRow ? '0px' : '10px',
-    };
-  },
-);
+export const StyledRow = styled<{ $animation?: boolean, $isLastRow: boolean }>('div', (props) => {
+  return {
+    ...(props.$animation
+      ? { ...animationStyle, backgroundImage: getAnimationColor(props) }
+      : { backgroundColor: props.$theme.colors.backgroundTertiary }),
+    width: '100%',
+    height: '15px',
+    marginBottom: props.$isLastRow ? '0px' : '10px',
+  };
+});

@@ -7,11 +7,11 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 import * as React from 'react';
-import {render, getByTestId} from '@testing-library/react';
+import { render, getByTestId } from '@testing-library/react';
 
 import OptionList from '../option-list.js';
 
-const mockItem = {label: 'item1'};
+const mockItem = { label: 'item1' };
 
 function getSharedProps() {
   return {
@@ -22,7 +22,7 @@ function getSharedProps() {
 
 describe('Option List Stateless Component', () => {
   it('basic renders', () => {
-    const {container} = render(<OptionList {...getSharedProps()} />);
+    const { container } = render(<OptionList {...getSharedProps()} />);
 
     const item = container.querySelector('li');
     expect(item?.textContent).toBe(mockItem.label);
@@ -41,7 +41,7 @@ describe('Option List Stateless Component', () => {
         },
       },
     };
-    const {container} = render(<OptionList {...props} />);
+    const { container } = render(<OptionList {...props} />);
     getByTestId(container, 'list-item');
   });
 });

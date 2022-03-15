@@ -8,8 +8,8 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {SORT_DIRECTION} from './constants.js';
-import type {OverrideT} from '../helpers/overrides.js';
+import { SORT_DIRECTION } from './constants.js';
+import type { OverrideT } from '../helpers/overrides.js';
 
 export type SortDirectionT = ?$Keys<typeof SORT_DIRECTION>;
 

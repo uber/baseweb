@@ -32,12 +32,12 @@ global.it = async function (name, func, timeout) {
         }
         if (process.env.CI) {
           console.log(
-            `\u001B]1338;url="artifact://__artifacts__/${name}.png";alt="Screenshot"\u0007`,
+            `\u001B]1338;url="artifact://__artifacts__/${name}.png";alt="Screenshot"\u0007`
           );
         }
         throw e;
       }
     },
-    timeout,
+    timeout
   );
 };

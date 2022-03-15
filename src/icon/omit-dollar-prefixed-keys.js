@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 // flowlint-next-line unclear-type:off
-export default function omitDollarPrefixedKeys(source: {[string]: any}) {
+export default function omitDollarPrefixedKeys(source: { [string]: any }) {
   const result = {};
 
   for (const key in source) {

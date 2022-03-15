@@ -8,12 +8,12 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {useStyletron} from '../styles/index.js';
+import { useStyletron } from '../styles/index.js';
 
 import Column from './column.js';
-import {COLUMNS} from './constants.js';
-import {HighlightCellText} from './text-search.js';
-import type {ColumnT, SharedColumnOptionsT} from './types.js';
+import { COLUMNS } from './constants.js';
+import { HighlightCellText } from './text-search.js';
+import type { ColumnT, SharedColumnOptionsT } from './types.js';
 
 type OptionsT = {|
   ...SharedColumnOptionsT<string>,

@@ -8,19 +8,19 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Select} from '../../select/index.js';
+import { Select } from '../../select/index.js';
 
 export function Scenario() {
   const [value, setValue] = React.useState([]);
   return (
-    <div style={{width: '200px'}}>
+    <div style={{ width: '200px' }}>
       <Select
         multi
         filterOutSelected={false}
         options={[
-          {label: 'Option 1', id: '1'},
-          {label: 'Option 2', id: '2'},
-          {label: 'Option 3', id: '3'},
+          { label: 'Option 1', id: '1' },
+          { label: 'Option 2', id: '2' },
+          { label: 'Option 3', id: '3' },
         ]}
         value={value}
         placeholder="Select color"

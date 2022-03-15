@@ -7,8 +7,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {StyledLink} from 'baseui/link';
-import {useStyletron} from 'baseui';
+import { StyledLink } from 'baseui/link';
+import { useStyletron } from 'baseui';
 
 const SkipToContent = () => {
   const [, theme] = useStyletron();

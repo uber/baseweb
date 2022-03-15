@@ -7,15 +7,15 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* global document */
 import * as React from 'react';
-import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
+import { getOverrides, mergeOverrides } from '../helpers/overrides.js';
 import DeleteIcon from '../icon/delete.js';
 import {
   Body as StyledBody,
   CloseIconSvg as StyledCloseIcon,
   InnerContainer as StyledInnerContainer,
 } from './styled-components.js';
-import {KIND, TYPE} from './constants.js';
-import {LocaleContext} from '../locale/index.js';
+import { KIND, TYPE } from './constants.js';
+import { LocaleContext } from '../locale/index.js';
 
 import type {
   ToastPropsT,
@@ -23,8 +23,8 @@ import type {
   ToastPrivateStateT,
   SharedStylePropsArgT,
 } from './types.js';
-import type {OverridesT} from '../icon/index.js';
-import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
+import type { OverridesT } from '../icon/index.js';
+import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible.js';
 
 class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
   static defaultProps: ToastPropsShapeT = {
@@ -46,7 +46,7 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
   autoHideTimeout: ?TimeoutID;
   animateInTimer: ?TimeoutID;
   animateOutCompleteTimer: ?TimeoutID;
-  closeRef: ?{current: ?mixed};
+  closeRef: ?{ current: ?mixed };
   previouslyFocusedElement: ?HTMLElement;
 
   state = {
@@ -75,7 +75,7 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
       this.previouslyFocusedElement = document.activeElement;
       // $FlowFixMe: CloseIcon is `mixed` type so doesn't like `focus` call.
       this.closeRef.current.focus();
-      this.setState({isFocusVisible: true});
+      this.setState({ isFocusVisible: true });
     }
   }
 
@@ -94,13 +94,13 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
 
   handleFocus = (event: SyntheticEvent<>) => {
     if (isFocusVisible(event)) {
-      this.setState({isFocusVisible: true});
+      this.setState({ isFocusVisible: true });
     }
   };
 
   handleBlur = (event: SyntheticEvent<>) => {
     if (this.state.isFocusVisible !== false) {
-      this.setState({isFocusVisible: false});
+      this.setState({ isFocusVisible: false });
     }
   };
 
@@ -109,19 +109,12 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
       if (this.autoHideTimeout) {
         clearTimeout(this.autoHideTimeout);
       }
-      this.autoHideTimeout = setTimeout(
-        this.dismiss,
-        this.props.autoHideDuration,
-      );
+      this.autoHideTimeout = setTimeout(this.dismiss, this.props.autoHideDuration);
     }
   }
 
   clearTimeout() {
-    [
-      this.autoHideTimeout,
-      this.animateInTimer,
-      this.animateOutCompleteTimer,
-    ].forEach((timerId) => {
+    [this.autoHideTimeout, this.animateInTimer, this.animateOutCompleteTimer].forEach((timerId) => {
       if (timerId) {
         clearTimeout(timerId);
       }
@@ -131,15 +124,15 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
   animateIn = () => {
     // Defer to next event loop
     this.animateInTimer = setTimeout(() => {
-      this.setState({isVisible: true});
+      this.setState({ isVisible: true });
     }, 0);
   };
 
   animateOut = (callback: () => mixed = () => {}) => {
-    this.setState({isVisible: false});
+    this.setState({ isVisible: false });
     // Remove the toast from the DOM after animation finishes
     this.animateOutCompleteTimer = setTimeout(() => {
-      this.setState({isRendered: false});
+      this.setState({ isRendered: false });
       callback();
     }, 600);
   };
@@ -176,8 +169,8 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
   };
 
   getSharedProps(): $Shape<SharedStylePropsArgT> {
-    const {kind, notificationType, closeable} = this.props;
-    const {isRendered, isVisible} = this.state;
+    const { kind, notificationType, closeable } = this.props;
+    const { isRendered, isVisible } = this.state;
     return {
       $kind: kind,
       $type: notificationType,
@@ -188,8 +181,8 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
   }
 
   render() {
-    const {children, closeable} = this.props;
-    const {isRendered} = this.state;
+    const { children, closeable } = this.props;
+    const { isRendered } = this.state;
     const {
       Body: BodyOverride,
       CloseIcon: CloseIconOverride,
@@ -200,18 +193,15 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
 
     const [InnerContainer, innerContainerProps] = getOverrides(
       InnerContainerOverride,
-      StyledInnerContainer,
+      StyledInnerContainer
     );
 
-    const [CloseIcon, closeIconProps] = getOverrides(
-      CloseIconOverride,
-      StyledCloseIcon,
-    );
+    const [CloseIcon, closeIconProps] = getOverrides(CloseIconOverride, StyledCloseIcon);
 
     const closeIconOverrides: OverridesT = mergeOverrides(
-      {Svg: {component: CloseIcon}},
+      { Svg: { component: CloseIcon } },
       // $FlowFixMe
-      {Svg: CloseIconOverride},
+      { Svg: CloseIconOverride }
     );
 
     const sharedProps = this.getSharedProps();
@@ -234,9 +224,7 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
             onMouseLeave={this.onMouseLeave}
           >
             <InnerContainer {...sharedProps} {...innerContainerProps}>
-              {typeof children === 'function'
-                ? children({dismiss: this.dismiss})
-                : children}
+              {typeof children === 'function' ? children({ dismiss: this.dismiss }) : children}
             </InnerContainer>
             {closeable ? (
               <DeleteIcon

@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-export {default as FileUploader} from './file-uploader.js';
+export { default as FileUploader } from './file-uploader.js';
 
 // Styled elements
 export {

@@ -5,10 +5,10 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import {styled} from '../styles/index.js';
-import {KIND, SIZE, SHAPE} from './constants.js';
-import type {SharedStylePropsT} from './types.js';
-import type {FontT} from '../themes/types.js';
+import { styled } from '../styles/index.js';
+import { KIND, SIZE, SHAPE } from './constants.js';
+import type { SharedStylePropsT } from './types.js';
+import type { FontT } from '../themes/types.js';
 
 export const BaseButton = styled<SharedStylePropsT>(
   'button',
@@ -38,9 +38,7 @@ export const BaseButton = styled<SharedStylePropsT>(
     borderRightStyle: 'none',
     borderBottomStyle: 'none',
     outline: 'none',
-    boxShadow: $isFocusVisible
-      ? `inset 0 0 0 3px ${$theme.colors.accent}`
-      : 'none',
+    boxShadow: $isFocusVisible ? `inset 0 0 0 3px ${$theme.colors.accent}` : 'none',
     textDecoration: 'none',
     WebkitAppearance: 'none',
     transitionProperty: 'background',
@@ -49,15 +47,15 @@ export const BaseButton = styled<SharedStylePropsT>(
     cursor: 'pointer',
     ':disabled': {
       cursor: 'not-allowed',
-      ...getDisabledStyles({$theme, $kind, $disabled, $isSelected}),
+      ...getDisabledStyles({ $theme, $kind, $disabled, $isSelected }),
     },
     marginLeft: 0,
     marginTop: 0,
     marginRight: 0,
     marginBottom: 0,
-    ...getFontStyles({$theme, $size}),
-    ...getBorderRadiiStyles({$theme, $size, $shape}),
-    ...getPaddingStyles({$theme, $size, $shape}),
+    ...getFontStyles({ $theme, $size }),
+    ...getBorderRadiiStyles({ $theme, $size, $shape }),
+    ...getPaddingStyles({ $theme, $size, $shape }),
     ...getColorStyles({
       $theme,
       $colors,
@@ -66,53 +64,48 @@ export const BaseButton = styled<SharedStylePropsT>(
       $isSelected,
       $disabled,
     }),
-    ...getShapeStyles({$shape, $size}),
-  }),
+    ...getShapeStyles({ $shape, $size }),
+  })
 );
 
-export const EndEnhancer = styled<SharedStylePropsT>('div', ({$theme}) => {
-  const marginDirection: string =
-    $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
+export const EndEnhancer = styled<SharedStylePropsT>('div', ({ $theme }) => {
+  const marginDirection: string = $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
   return {
     display: 'flex',
     [marginDirection]: $theme.sizing.scale500,
   };
 });
 
-export const StartEnhancer = styled<SharedStylePropsT>('div', ({$theme}) => {
-  const marginDirection: string =
-    $theme.direction === 'rtl' ? 'marginLeft' : 'marginRight';
+export const StartEnhancer = styled<SharedStylePropsT>('div', ({ $theme }) => {
+  const marginDirection: string = $theme.direction === 'rtl' ? 'marginLeft' : 'marginRight';
   return {
     display: 'flex',
     [marginDirection]: $theme.sizing.scale500,
   };
 });
 
-export const LoadingSpinnerContainer = styled<SharedStylePropsT>(
-  'div',
-  ({$theme, $size}) => {
-    // we don't have a theming value for this
-    let margins = '3px';
-    if ($size === SIZE.mini || $size === SIZE.compact) {
-      margins = $theme.sizing.scale0;
-    }
-    if ($size === SIZE.large) {
-      margins = $theme.sizing.scale100;
-    }
+export const LoadingSpinnerContainer = styled<SharedStylePropsT>('div', ({ $theme, $size }) => {
+  // we don't have a theming value for this
+  let margins = '3px';
+  if ($size === SIZE.mini || $size === SIZE.compact) {
+    margins = $theme.sizing.scale0;
+  }
+  if ($size === SIZE.large) {
+    margins = $theme.sizing.scale100;
+  }
 
-    return {
-      lineHeight: 0,
-      position: 'static',
-      marginBottom: margins,
-      marginTop: margins,
-    };
-  },
-);
+  return {
+    lineHeight: 0,
+    position: 'static',
+    marginBottom: margins,
+    marginTop: margins,
+  };
+});
 
 export const LoadingSpinner = styled<SharedStylePropsT>(
   'span',
-  ({$theme, $kind, $disabled, $size}) => {
-    const {foreground, background} = getLoadingSpinnerColors({
+  ({ $theme, $kind, $disabled, $size }) => {
+    const { foreground, background } = getLoadingSpinnerColors({
       $theme,
       $kind,
       $disabled,
@@ -159,10 +152,10 @@ export const LoadingSpinner = styled<SharedStylePropsT>(
         },
       },
     };
-  },
+  }
 );
 
-function getLoadingSpinnerColors({$theme, $kind, $disabled}) {
+function getLoadingSpinnerColors({ $theme, $kind, $disabled }) {
   if ($disabled) {
     return {
       foreground: $theme.colors.buttonDisabledSpinnerForeground,
@@ -198,7 +191,7 @@ function getLoadingSpinnerColors({$theme, $kind, $disabled}) {
   }
 }
 
-function getBorderRadiiStyles({$theme, $size, $shape}) {
+function getBorderRadiiStyles({ $theme, $size, $shape }) {
   let value = $theme.borders.buttonBorderRadius;
 
   if ($shape === SHAPE.pill) {
@@ -221,7 +214,7 @@ function getBorderRadiiStyles({$theme, $size, $shape}) {
   };
 }
 
-function getFontStyles({$theme, $size}): FontT {
+function getFontStyles({ $theme, $size }): FontT {
   switch ($size) {
     case SIZE.mini:
       return $theme.typography.font150;
@@ -234,7 +227,7 @@ function getFontStyles({$theme, $size}): FontT {
   }
 }
 
-function getDisabledStyles({$theme, $kind, $isSelected, $disabled}) {
+function getDisabledStyles({ $theme, $kind, $isSelected, $disabled }) {
   if ($disabled && $isSelected) {
     if ($kind === KIND.primary || $kind === KIND.secondary) {
       return {
@@ -258,55 +251,36 @@ function getDisabledStyles({$theme, $kind, $isSelected, $disabled}) {
   };
 }
 
-function getPaddingStyles({$theme, $size, $shape}) {
-  const iconShape =
-    $shape === SHAPE.square ||
-    $shape === SHAPE.circle ||
-    $shape === SHAPE.round;
+function getPaddingStyles({ $theme, $size, $shape }) {
+  const iconShape = $shape === SHAPE.square || $shape === SHAPE.circle || $shape === SHAPE.round;
   switch ($size) {
     case SIZE.mini:
       return {
         paddingTop: $theme.sizing.scale200,
         paddingBottom: $theme.sizing.scale200,
-        paddingLeft: iconShape
-          ? $theme.sizing.scale200
-          : $theme.sizing.scale300,
-        paddingRight: iconShape
-          ? $theme.sizing.scale200
-          : $theme.sizing.scale300,
+        paddingLeft: iconShape ? $theme.sizing.scale200 : $theme.sizing.scale300,
+        paddingRight: iconShape ? $theme.sizing.scale200 : $theme.sizing.scale300,
       };
     case SIZE.compact:
       return {
         paddingTop: $theme.sizing.scale400,
         paddingBottom: $theme.sizing.scale400,
-        paddingLeft: iconShape
-          ? $theme.sizing.scale400
-          : $theme.sizing.scale500,
-        paddingRight: iconShape
-          ? $theme.sizing.scale400
-          : $theme.sizing.scale500,
+        paddingLeft: iconShape ? $theme.sizing.scale400 : $theme.sizing.scale500,
+        paddingRight: iconShape ? $theme.sizing.scale400 : $theme.sizing.scale500,
       };
     case SIZE.large:
       return {
         paddingTop: $theme.sizing.scale600,
         paddingBottom: $theme.sizing.scale600,
-        paddingLeft: iconShape
-          ? $theme.sizing.scale600
-          : $theme.sizing.scale700,
-        paddingRight: iconShape
-          ? $theme.sizing.scale600
-          : $theme.sizing.scale700,
+        paddingLeft: iconShape ? $theme.sizing.scale600 : $theme.sizing.scale700,
+        paddingRight: iconShape ? $theme.sizing.scale600 : $theme.sizing.scale700,
       };
     default:
       return {
         paddingTop: $theme.sizing.scale550,
         paddingBottom: $theme.sizing.scale550,
-        paddingLeft: iconShape
-          ? $theme.sizing.scale550
-          : $theme.sizing.scale600,
-        paddingRight: iconShape
-          ? $theme.sizing.scale550
-          : $theme.sizing.scale600,
+        paddingLeft: iconShape ? $theme.sizing.scale550 : $theme.sizing.scale600,
+        paddingRight: iconShape ? $theme.sizing.scale550 : $theme.sizing.scale600,
       };
   }
 }
@@ -433,7 +407,7 @@ function getColorStyles({
   }
 }
 
-function getShapeStyles({$shape, $size}): {
+function getShapeStyles({ $shape, $size }): {
   height?: string,
   width?: string,
   paddingTop?: number,

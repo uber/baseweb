@@ -6,38 +6,34 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import {SIZE} from '../input/index.js';
-import {styled} from '../styles/index.js';
-import type {FontT} from '../themes/types.js';
+import { SIZE } from '../input/index.js';
+import { styled } from '../styles/index.js';
+import type { FontT } from '../themes/types.js';
 
 export const StyledRoot = styled('div', {});
 
 export const StyledInputContainer = styled('div', {});
 
-export const StyledListBox = styled<{|$width: string|}>(
-  'ul',
-  ({$theme, $width}) => {
-    return {
-      backgroundColor: $theme.colors.backgroundPrimary,
-      marginBlockStart: 'unset',
-      marginBlockEnd: 'unset',
-      maxHeight: '200px',
-      overflowY: 'auto',
-      outline: 'none',
-      paddingInlineStart: 'unset',
-      width: $width,
-    };
-  },
-);
+export const StyledListBox = styled<{| $width: string |}>('ul', ({ $theme, $width }) => {
+  return {
+    backgroundColor: $theme.colors.backgroundPrimary,
+    marginBlockStart: 'unset',
+    marginBlockEnd: 'unset',
+    maxHeight: '200px',
+    overflowY: 'auto',
+    outline: 'none',
+    paddingInlineStart: 'unset',
+    width: $width,
+  };
+});
 
 function buildStylesForSize(
   size,
-  theme,
+  theme
 ):
-  | {|...FontT, height: string, paddingLeft?: string|}
-  | {|...FontT, height: string, paddingRight?: string|} {
-  const paddingDir: string =
-    theme.direction === 'rtl' ? 'paddingRight' : 'paddingLeft';
+  | {| ...FontT, height: string, paddingLeft?: string |}
+  | {| ...FontT, height: string, paddingRight?: string |} {
+  const paddingDir: string = theme.direction === 'rtl' ? 'paddingRight' : 'paddingLeft';
   switch (size) {
     case SIZE.mini:
       return {
@@ -70,7 +66,7 @@ function buildStylesForSize(
 export const StyledListItem = styled<{|
   $isSelected: boolean,
   $size: $Keys<typeof SIZE>,
-|}>('li', ({$isSelected, $theme, $size}) => {
+|}>('li', ({ $isSelected, $theme, $size }) => {
   return {
     ...buildStylesForSize($size, $theme),
     alignItems: 'center',

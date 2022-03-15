@@ -7,10 +7,10 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 
-import {KIND, SIZE, SHAPE} from './constants.js';
-import type {OverrideT} from '../helpers/overrides.js';
+import { KIND, SIZE, SHAPE } from './constants.js';
+import type { OverrideT } from '../helpers/overrides.js';
 
-export type ReactRefT<T> = {|current: null | T|};
+export type ReactRefT<T> = {| current: null | T |};
 
 export type OverridesT = {
   Root?: OverrideT,

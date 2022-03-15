@@ -8,27 +8,20 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
-import {LocaleContext} from '../locale/index.js';
-import type {OnChangeParamsT, OptionT} from '../select/index.js';
-import {filterOptions, Select} from '../select/index.js';
+import { getOverrides, mergeOverrides } from '../helpers/overrides.js';
+import { LocaleContext } from '../locale/index.js';
+import type { OnChangeParamsT, OptionT } from '../select/index.js';
+import { filterOptions, Select } from '../select/index.js';
 import DateHelpers from '../datepicker/utils/date-helpers.js';
 import dateFnsAdapter from '../datepicker/utils/date-fns-adapter.js';
-import type {
-  TimePickerDefaultPropsT,
-  TimePickerPropsT,
-  TimePickerStateT,
-} from './types.js';
+import type { TimePickerDefaultPropsT, TimePickerPropsT, TimePickerStateT } from './types.js';
 
 const MINUTE = 60;
 const HOUR = MINUTE * 60;
 const DAY = HOUR * 24;
 const NOON = DAY / 2;
 
-class TimePicker<T = Date> extends React.Component<
-  TimePickerPropsT<T>,
-  TimePickerStateT,
-> {
+class TimePicker<T = Date> extends React.Component<TimePickerPropsT<T>, TimePickerStateT> {
   static defaultProps: TimePickerDefaultPropsT = {
     format: '12',
     step: 900,
@@ -38,7 +31,7 @@ class TimePicker<T = Date> extends React.Component<
   };
   dateHelpers: DateHelpers<T>;
 
-  state = {steps: [], value: null};
+  state = { steps: [], value: null };
 
   constructor(props: TimePickerPropsT<T>) {
     super(props);
@@ -87,15 +80,15 @@ class TimePicker<T = Date> extends React.Component<
     }
     if (formatChanged || stepChanged || minTimeChange || maxTimeChange) {
       const steps = this.buildSteps();
-      this.setState({steps});
+      this.setState({ steps });
     }
     if (prevProps.value && !this.props.value) {
-      this.setState({value: null});
+      this.setState({ value: null });
     }
   }
 
   onChange = (params: OnChangeParamsT) => {
-    this.setState({value: params.value[0]});
+    this.setState({ value: params.value[0] });
     if (params.value.length === 0) {
       if (this.props.nullable) {
         this.props.onChange && this.props.onChange(null);
@@ -133,10 +126,7 @@ class TimePicker<T = Date> extends React.Component<
    * Converts a time string, e.g. 10:00, to one or more possible TimePicker
    * options representing that time.
    */
-  stringToOptions: (string, format?: '12' | '24') => Array<OptionT> = (
-    str,
-    format = '12',
-  ) => {
+  stringToOptions: (string, format?: '12' | '24') => Array<OptionT> = (str, format = '12') => {
     // leading zero is optional, AM/PM is optional
     const twelveHourRegex = /^(1[0-2]|0?[1-9]):([0-5][0-9]) ?([AaPp][Mm]?)?$/;
     // leading zero is optional
@@ -152,7 +142,7 @@ class TimePicker<T = Date> extends React.Component<
     let hoursMinutes = [];
     switch (format) {
       case '24': {
-        hoursMinutes = [{hours, minutes}];
+        hoursMinutes = [{ hours, minutes }];
         break;
       }
       case '12':
@@ -162,22 +152,22 @@ class TimePicker<T = Date> extends React.Component<
         // if there's no AM/PM, add both AM and PM options
         if (!meridiem) {
           hoursMinutes = [
-            {hours: twelveHours, minutes},
-            {hours: twelveHours + 12, minutes},
+            { hours: twelveHours, minutes },
+            { hours: twelveHours + 12, minutes },
           ];
         } else {
           const twentyFourHours =
             meridiem.toLowerCase()[0] === 'a' ? twelveHours : twelveHours + 12;
 
-          hoursMinutes = [{hours: twentyFourHours, minutes}];
+          hoursMinutes = [{ hours: twentyFourHours, minutes }];
         }
         break;
       }
     }
 
-    return hoursMinutes.map(({hours, minutes}) => {
+    return hoursMinutes.map(({ hours, minutes }) => {
       const secs = hours * 3600 + minutes * 60;
-      return {id: secs, label: this.secondsToLabel(secs, format)};
+      return { id: secs, label: this.secondsToLabel(secs, format) };
     });
   };
 
@@ -187,42 +177,29 @@ class TimePicker<T = Date> extends React.Component<
     this.props.onChange && this.props.onChange(updatedDate);
   };
 
-  setTime: (?T, number, number, number) => T = (
-    val,
-    hours,
-    minutes,
-    seconds,
-  ) => {
-    const {setSeconds, setMinutes, setHours} = this.dateHelpers;
-    const date = this.props.adapter.startOfDay(
-      this.props.adapter.date(val || undefined),
-    );
+  setTime: (?T, number, number, number) => T = (val, hours, minutes, seconds) => {
+    const { setSeconds, setMinutes, setHours } = this.dateHelpers;
+    const date = this.props.adapter.startOfDay(this.props.adapter.date(val || undefined));
     return setSeconds(setMinutes(setHours(date, hours), minutes), seconds);
   };
 
-  getTimeWindowInSeconds = (step: number): {start: number, end: number} => {
-    let {minTime: min, maxTime: max, ignoreMinMaxDateComponent} = this.props;
+  getTimeWindowInSeconds = (step: number): { start: number, end: number } => {
+    let { minTime: min, maxTime: max, ignoreMinMaxDateComponent } = this.props;
     const dayStart = this.setTime(this.props.value, 0, 0, 0);
     const dayEnd = this.setTime(this.props.value, 24, 0, 0);
 
-    if (
-      !min ||
-      (this.props.adapter.isBefore(min, dayStart) && !ignoreMinMaxDateComponent)
-    ) {
+    if (!min || (this.props.adapter.isBefore(min, dayStart) && !ignoreMinMaxDateComponent)) {
       min = dayStart;
     } else {
       min = this.setTime(
         this.props.value,
         this.props.adapter.getHours(min),
         this.props.adapter.getMinutes(min),
-        this.props.adapter.getSeconds(min),
+        this.props.adapter.getSeconds(min)
       );
     }
 
-    if (
-      !max ||
-      (this.props.adapter.isAfter(max, dayEnd) && !ignoreMinMaxDateComponent)
-    ) {
+    if (!max || (this.props.adapter.isAfter(max, dayEnd) && !ignoreMinMaxDateComponent)) {
       max = dayEnd;
     } else {
       max = this.setTime(
@@ -230,7 +207,7 @@ class TimePicker<T = Date> extends React.Component<
         this.props.adapter.getHours(max),
         this.props.adapter.getMinutes(max),
         // maxTime (if provided) should be inclusive, so add an extra second here
-        this.props.adapter.getSeconds(max) + 1,
+        this.props.adapter.getSeconds(max) + 1
       );
     }
 
@@ -244,14 +221,14 @@ class TimePicker<T = Date> extends React.Component<
   };
 
   buildSteps = () => {
-    const {step = 900} = this.props;
+    const { step = 900 } = this.props;
 
     const timeWindow = this.getTimeWindowInSeconds(step);
     let stepCount = (timeWindow.end - timeWindow.start) / step;
     if (__DEV__ && stepCount > 500) {
       // eslint-disable-next-line no-console
       console.warn(
-        `Provided step value (${step}) results in ${stepCount} steps. Performance may suffer when more than 500 elements are rendered.`,
+        `Provided step value (${step}) results in ${stepCount} steps. Performance may suffer when more than 500 elements are rendered.`
       );
     }
 
@@ -262,7 +239,7 @@ class TimePicker<T = Date> extends React.Component<
       if (__DEV__) {
         // eslint-disable-next-line no-console
         console.warn(
-          `Provided step value (${step}) does not spread evenly across a day. Rounding from ${previousStepCount} total steps to ${stepCount}.`,
+          `Provided step value (${step}) does not spread evenly across a day. Rounding from ${previousStepCount} total steps to ${stepCount}.`
         );
       }
     }
@@ -278,7 +255,7 @@ class TimePicker<T = Date> extends React.Component<
     options,
     filterValue,
     excludeOptions,
-    newProps,
+    newProps
   ) => {
     const result = this.stringToOptions(filterValue, this.props.format);
     if (result.length) {
@@ -287,10 +264,7 @@ class TimePicker<T = Date> extends React.Component<
     return filterOptions(options, filterValue, excludeOptions, newProps);
   };
 
-  buildSelectedOption: (T, ?'12' | '24') => OptionT = (
-    value,
-    format = '12',
-  ) => {
+  buildSelectedOption: (T, ?'12' | '24') => OptionT = (value, format = '12') => {
     const secs = this.dateHelpers.dateToSeconds(value);
     return {
       id: secs,
@@ -299,15 +273,12 @@ class TimePicker<T = Date> extends React.Component<
   };
 
   render() {
-    const {format, overrides = {}, adapter} = this.props;
+    const { format, overrides = {}, adapter } = this.props;
 
-    const [OverriddenSelect, selectProps] = getOverrides(
-      overrides.Select,
-      Select,
-    );
+    const [OverriddenSelect, selectProps] = getOverrides(overrides.Select, Select);
     selectProps.overrides = mergeOverrides(
-      {Dropdown: {style: {maxHeight: '126px'}}},
-      selectProps.overrides,
+      { Dropdown: { style: { maxHeight: '126px' } } },
+      selectProps.overrides
     );
 
     const value =
@@ -341,9 +312,7 @@ class TimePicker<T = Date> extends React.Component<
                 id: n,
                 label: this.secondsToLabel(n, this.props.format),
               }))}
-              filterOptions={
-                this.props.creatable ? this.creatableFilterOptions : undefined
-              }
+              filterOptions={this.props.creatable ? this.creatableFilterOptions : undefined}
               onChange={this.onChange}
               // if value is defined, it should be an array type
               value={value ? [value] : value}

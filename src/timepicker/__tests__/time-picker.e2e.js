@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
+const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
 
 const selectors = {
   twelveHour: '[data-e2e="12-hour"]',
@@ -47,19 +47,19 @@ describe('TimePicker', () => {
 
     const value = await page.$eval(
       `${selectors.twelveHour} ${selectors.value}`,
-      (select) => select.textContent,
+      (select) => select.textContent
     );
     expect(value).toBe('1:00 AM');
 
     const hours = await page.$eval(
       `${selectors.twelveHour} ${selectors.hours}`,
-      (select) => select.textContent,
+      (select) => select.textContent
     );
     expect(hours).toBe('hour: 1');
 
     const minutes = await page.$eval(
       `${selectors.twelveHour} ${selectors.minutes}`,
-      (select) => select.textContent,
+      (select) => select.textContent
     );
     expect(minutes).toBe('minute: 0');
   });
@@ -74,19 +74,19 @@ describe('TimePicker', () => {
 
     const value = await page.$eval(
       `${selectors.minMaxTime} ${selectors.value}`,
-      (select) => select.textContent,
+      (select) => select.textContent
     );
     expect(value).toBe('10:00');
 
     const hours = await page.$eval(
       `${selectors.minMaxTime} ${selectors.hours}`,
-      (select) => select.textContent,
+      (select) => select.textContent
     );
     expect(hours).toBe('hour: 10');
 
     const minutes = await page.$eval(
       `${selectors.minMaxTime} ${selectors.minutes}`,
-      (select) => select.textContent,
+      (select) => select.textContent
     );
     expect(minutes).toBe('minute: 0');
   });
@@ -104,20 +104,20 @@ describe('TimePicker', () => {
 
     const value = await page.$eval(
       `${selectors.twentyFourHour} ${selectors.value}`,
-      (select) => select.textContent,
+      (select) => select.textContent
     );
 
     expect(value).toBe('02:00');
 
     const hours = await page.$eval(
       `${selectors.twentyFourHour} ${selectors.hours}`,
-      (select) => select.textContent,
+      (select) => select.textContent
     );
     expect(hours).toBe('hour: 2');
 
     const minutes = await page.$eval(
       `${selectors.twentyFourHour} ${selectors.minutes}`,
-      (select) => select.textContent,
+      (select) => select.textContent
     );
     expect(minutes).toBe('minute: 0');
   });
@@ -129,12 +129,12 @@ describe('TimePicker', () => {
 
     const twelveHourValue = await page.$eval(
       `${selectors.twelveHourCreatable} ${selectors.value}`,
-      (select) => select.textContent,
+      (select) => select.textContent
     );
 
     const twentyFourHourValue = await page.$eval(
       `${selectors.twentyFourHourCreatable} ${selectors.value}`,
-      (select) => select.textContent,
+      (select) => select.textContent
     );
 
     expect(twelveHourValue).toBe('1:11 AM');
@@ -183,20 +183,20 @@ describe('TimePicker', () => {
 
       const value = await page.$eval(
         `${selectors.twelveHourCreatable} ${selectors.value}`,
-        (select) => select.textContent,
+        (select) => select.textContent
       );
 
       expect(value).toBe('12:11 PM');
 
       const hours = await page.$eval(
         `${selectors.twelveHourCreatable} ${selectors.hours}`,
-        (select) => select.textContent,
+        (select) => select.textContent
       );
       expect(hours).toBe('hour: 12');
 
       const minutes = await page.$eval(
         `${selectors.twelveHourCreatable} ${selectors.minutes}`,
-        (select) => select.textContent,
+        (select) => select.textContent
       );
       expect(minutes).toBe('minute: 11');
     });
@@ -212,7 +212,7 @@ describe('TimePicker', () => {
 
       const value = await page.$eval(
         `${selectors.twelveHourCreatable} ${selectors.value}`,
-        (select) => select.textContent,
+        (select) => select.textContent
       );
 
       expect(value).toBe('12:22 AM');
@@ -221,9 +221,7 @@ describe('TimePicker', () => {
     it('shows an option when a 24 hour time without leading zero is entered', async () => {
       await mount(page, 'timepicker--time-picker');
       await page.waitForSelector(selectors.twentyFourHourCreatable);
-      await page.click(
-        `${selectors.twentyFourHourCreatable} ${selectors.input}`,
-      );
+      await page.click(`${selectors.twentyFourHourCreatable} ${selectors.input}`);
       await page.waitForSelector(selectors.dropdown);
       await page.keyboard.type('3:33');
 
@@ -237,9 +235,7 @@ describe('TimePicker', () => {
     it('shows only one option when a time is entered that matches an existing option', async () => {
       await mount(page, 'timepicker--time-picker');
       await page.waitForSelector(selectors.twentyFourHourCreatable);
-      await page.click(
-        `${selectors.twentyFourHourCreatable} ${selectors.input}`,
-      );
+      await page.click(`${selectors.twentyFourHourCreatable} ${selectors.input}`);
       await page.waitForSelector(selectors.dropdown);
       await page.keyboard.type('00:15');
 
@@ -264,20 +260,20 @@ describe('TimePicker', () => {
 
       const value = await page.$eval(
         `${selectors.twentyFourHourMoment} ${selectors.value}`,
-        (select) => select.textContent,
+        (select) => select.textContent
       );
 
       expect(value).toBe('02:00');
 
       const hours = await page.$eval(
         `${selectors.twentyFourHourMoment} ${selectors.hours}`,
-        (select) => select.textContent,
+        (select) => select.textContent
       );
       expect(hours).toBe('hour: 2');
 
       const minutes = await page.$eval(
         `${selectors.twentyFourHourMoment} ${selectors.minutes}`,
-        (select) => select.textContent,
+        (select) => select.textContent
       );
       expect(minutes).toBe('minute: 0');
     });
@@ -292,19 +288,19 @@ describe('TimePicker', () => {
 
       const value = await page.$eval(
         `${selectors.minMaxTimeMoment} ${selectors.value}`,
-        (select) => select.textContent,
+        (select) => select.textContent
       );
       expect(value).toBe('10:00');
 
       const hours = await page.$eval(
         `${selectors.minMaxTimeMoment} ${selectors.hours}`,
-        (select) => select.textContent,
+        (select) => select.textContent
       );
       expect(hours).toBe('hour: 10');
 
       const minutes = await page.$eval(
         `${selectors.minMaxTimeMoment} ${selectors.minutes}`,
-        (select) => select.textContent,
+        (select) => select.textContent
       );
       expect(minutes).toBe('minute: 0');
     });

@@ -19,9 +19,9 @@ import {
   StyledTableLoadingMessage,
   StyledTableEmptyMessage,
 } from './styled-components.js';
-import {getOverrides} from '../helpers/overrides.js';
+import { getOverrides } from '../helpers/overrides.js';
 
-import type {TablePropsT} from './types.js';
+import type { TablePropsT } from './types.js';
 
 export default class Table extends React.Component<TablePropsT> {
   static defaultProps = {
@@ -48,56 +48,45 @@ export default class Table extends React.Component<TablePropsT> {
 
     const [Table, tableProps] = getOverrides(overrides.Table, StyledTable);
 
-    const [TableHead, tableHeadProps] = getOverrides(
-      overrides.TableHead,
-      StyledTableHead,
-    );
+    const [TableHead, tableHeadProps] = getOverrides(overrides.TableHead, StyledTableHead);
 
     const [TableHeadRow, tableHeadRowProps] = getOverrides(
       overrides.TableHeadRow,
-      StyledTableHeadRow,
+      StyledTableHeadRow
     );
 
     const [TableHeadCell, tableHeadCellProps] = getOverrides(
       overrides.TableHeadCell,
-      StyledTableHeadCell,
+      StyledTableHeadCell
     );
 
-    const [TableBody, tableBodyProps] = getOverrides(
-      overrides.TableBody,
-      StyledTableBody,
-    );
+    const [TableBody, tableBodyProps] = getOverrides(overrides.TableBody, StyledTableBody);
 
     const [TableBodyRow, tableBodyRowProps] = getOverrides(
       overrides.TableBodyRow,
-      StyledTableBodyRow,
+      StyledTableBodyRow
     );
 
     const [TableBodyCell, tableBodyCellProps] = getOverrides(
       overrides.TableBodyCell,
-      StyledTableBodyCell,
+      StyledTableBodyCell
     );
 
     const [TableLoadingMessage, tableLoadingMessageProps] = getOverrides(
       overrides.TableLoadingMessage,
-      StyledTableLoadingMessage,
+      StyledTableLoadingMessage
     );
 
     const [TableEmptyMessage, tableEmptyMessageProps] = getOverrides(
       overrides.TableEmptyMessage,
-      StyledTableEmptyMessage,
+      StyledTableEmptyMessage
     );
 
     const isEmpty = !isLoading && data.length === 0;
     const isRendered = !isLoading && !isEmpty;
 
     return (
-      <Root
-        data-baseweb="table-semantic"
-        $divider={divider}
-        {...rootProps}
-        {...rest}
-      >
+      <Root data-baseweb="table-semantic" $divider={divider} {...rootProps} {...rest}>
         <Table $width={horizontalScrollWidth} {...tableProps}>
           <TableHead {...tableHeadProps}>
             <TableHeadRow {...tableHeadRowProps}>
@@ -120,9 +109,7 @@ export default class Table extends React.Component<TablePropsT> {
               <tr>
                 <td colSpan={columns.length}>
                   <TableLoadingMessage {...tableLoadingMessageProps}>
-                    {typeof loadingMessage === 'function'
-                      ? loadingMessage()
-                      : loadingMessage}
+                    {typeof loadingMessage === 'function' ? loadingMessage() : loadingMessage}
                   </TableLoadingMessage>
                 </td>
               </tr>
@@ -131,9 +118,7 @@ export default class Table extends React.Component<TablePropsT> {
               <tr>
                 <td colSpan={columns.length}>
                   <TableEmptyMessage {...tableEmptyMessageProps}>
-                    {typeof emptyMessage === 'function'
-                      ? emptyMessage()
-                      : emptyMessage}
+                    {typeof emptyMessage === 'function' ? emptyMessage() : emptyMessage}
                   </TableEmptyMessage>
                 </td>
               </tr>

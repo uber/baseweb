@@ -7,8 +7,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 
-import {Toast, TYPE} from '../toast/index.js';
-import type {ToastPropsT, ToastPropsShapeT} from '../toast/types.js';
+import { Toast, TYPE } from '../toast/index.js';
+import type { ToastPropsT, ToastPropsShapeT } from '../toast/types.js';
 
 export default class Notification extends React.Component<ToastPropsT> {
   static defaultProps: ToastPropsShapeT = {

@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 'use strict';
 
-const {RuleTester} = require('eslint');
+const { RuleTester } = require('eslint');
 const rule = require('../src/no-deep-imports.js');
 
 RuleTester.setDefaultConfig({

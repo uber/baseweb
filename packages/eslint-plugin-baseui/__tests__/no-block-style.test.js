@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 'use strict';
 
-const {RuleTester} = require('eslint');
+const { RuleTester } = require('eslint');
 const rule = require('../src/no-block-style.js');
 const MESSAGES = require('../src/messages.js');
 
@@ -49,7 +49,7 @@ const tests = {
           return <Block $style={{ color: "red" }} />
         }
       `,
-      errors: [{messageId: MESSAGES.styleOnBlock.id}],
+      errors: [{ messageId: MESSAGES.styleOnBlock.id }],
     },
     // Block - style
     {
@@ -59,7 +59,7 @@ const tests = {
           return <Block style={{ color: "red" }} />
         }
       `,
-      errors: [{messageId: MESSAGES.styleOnBlock.id}],
+      errors: [{ messageId: MESSAGES.styleOnBlock.id }],
     },
     // Block - renamed - style
     {
@@ -69,7 +69,7 @@ const tests = {
           return <Div style={{ color: "red" }} />
         }
       `,
-      errors: [{messageId: MESSAGES.styleOnBlock.id}],
+      errors: [{ messageId: MESSAGES.styleOnBlock.id }],
     },
   ],
 };

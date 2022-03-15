@@ -8,12 +8,12 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Button} from '../../button/index.js';
-import {StatefulButtonGroup, MODE} from '../index.js';
+import { Button } from '../../button/index.js';
+import { StatefulButtonGroup, MODE } from '../index.js';
 
 export function Scenario() {
   return (
-    <StatefulButtonGroup mode={MODE.radio} initialState={{selected: 0}}>
+    <StatefulButtonGroup mode={MODE.radio} initialState={{ selected: 0 }}>
       <Button>Label</Button>
       <Button>Label</Button>
       <Button>Label</Button>

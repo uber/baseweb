@@ -16,19 +16,19 @@ import {
   KIND as BUTTON_KINDS,
 } from '../button/index.js';
 import Search from '../icon/search.js';
-import {Input, SIZE as INPUT_SIZES} from '../input/index.js';
-import {Popover} from '../popover/index.js';
-import {useStyletron} from '../styles/index.js';
-import {Tag} from '../tag/index.js';
+import { Input, SIZE as INPUT_SIZES } from '../input/index.js';
+import { Popover } from '../popover/index.js';
+import { useStyletron } from '../styles/index.js';
+import { Tag } from '../tag/index.js';
 import FilterMenu from './filter-menu.js';
-import {DataTable} from './data-table.js';
-import {StatefulContainer} from './stateful-container.js';
-import type {StatefulDataTablePropsT} from './types.js';
-import {LocaleContext} from '../locale/index.js';
+import { DataTable } from './data-table.js';
+import { StatefulContainer } from './stateful-container.js';
+import type { StatefulDataTablePropsT } from './types.js';
+import { LocaleContext } from '../locale/index.js';
 
 function useResizeObserver(
-  ref: {current: HTMLElement | null},
-  callback: (ResizeObserverEntry[], ResizeObserver) => mixed,
+  ref: { current: HTMLElement | null },
+  callback: (ResizeObserverEntry[], ResizeObserver) => mixed
 ) {
   React.useLayoutEffect(() => {
     if (__BROWSER__) {
@@ -53,7 +53,7 @@ function QueryInput(props) {
   }, [value]);
 
   return (
-    <div className={css({width: '375px', marginBottom: theme.sizing.scale500})}>
+    <div className={css({ width: '375px', marginBottom: theme.sizing.scale500 })}>
       <Input
         aria-label={locale.datatable.searchAriaLabel}
         overrides={{
@@ -104,9 +104,7 @@ function FilterTag(props) {
           close={() => setIsOpen(false)}
           data={data}
           filterParams={props.filter}
-          setFilter={(filterParams) =>
-            props.onFilterAdd(props.title, filterParams)
-          }
+          setFilter={(filterParams) => props.onFilterAdd(props.title, filterParams)}
         />
       )}
     >
@@ -195,7 +193,7 @@ export function StatefulDataTable(props: StatefulDataTablePropsT) {
         textQuery,
       }) => (
         <React.Fragment>
-          <div className={css({height: `${headlineHeight}px`})}>
+          <div className={css({ height: `${headlineHeight}px` })}>
             <div ref={headlineRef}>
               {!selectedRowIds.size && (
                 <div
@@ -247,9 +245,7 @@ export function StatefulDataTable(props: StatefulDataTablePropsT) {
                       action.onClick({
                         clearSelection: onSelectNone,
                         event,
-                        selection: props.rows.filter((r) =>
-                          selectedRowIds.has(r.id),
-                        ),
+                        selection: props.rows.filter((r) => selectedRowIds.has(r.id)),
                       });
                     }
 
@@ -259,7 +255,7 @@ export function StatefulDataTable(props: StatefulDataTablePropsT) {
                         <Button
                           key={action.label}
                           overrides={{
-                            BaseButton: {props: {'aria-label': action.label}},
+                            BaseButton: { props: { 'aria-label': action.label } },
                           }}
                           onClick={onClick}
                           kind={BUTTON_KINDS.tertiary}
@@ -286,9 +282,7 @@ export function StatefulDataTable(props: StatefulDataTablePropsT) {
             </div>
           </div>
 
-          <div
-            style={{width: '100%', height: `calc(100% - ${headlineHeight}px)`}}
-          >
+          <div style={{ width: '100%', height: `calc(100% - ${headlineHeight}px)` }}>
             <DataTable
               batchActions={props.batchActions}
               columns={props.columns}

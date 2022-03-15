@@ -6,14 +6,14 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
+import { getOverrides, mergeOverrides } from '../helpers/overrides.js';
 import {
   Root as StyledRoot,
   TabBar as StyledTabBar,
   TabContent as StyledTabContent,
 } from './styled-components.js';
-import type {TabsPropsT, SharedStylePropsArgT} from './types.js';
-import {ORIENTATION} from './constants.js';
+import type { TabsPropsT, SharedStylePropsArgT } from './types.js';
+import { ORIENTATION } from './constants.js';
 
 export default class Tabs extends React.Component<TabsPropsT> {
   static defaultProps: $Shape<TabsPropsT> = {
@@ -24,19 +24,13 @@ export default class Tabs extends React.Component<TabsPropsT> {
     renderAll: false,
   };
 
-  onChange({activeKey}: {activeKey: string}) {
-    const {onChange} = this.props;
-    typeof onChange === 'function' && onChange({activeKey});
+  onChange({ activeKey }: { activeKey: string }) {
+    const { onChange } = this.props;
+    typeof onChange === 'function' && onChange({ activeKey });
   }
 
   getTabs() {
-    const {
-      activeKey,
-      disabled,
-      orientation,
-      children,
-      overrides = {},
-    } = this.props;
+    const { activeKey, disabled, orientation, children, overrides = {} } = this.props;
     // flowlint-next-line unclear-type:off
     const tabs = React.Children.map(children, (child: any, index) => {
       if (!child) return;
@@ -48,7 +42,7 @@ export default class Tabs extends React.Component<TabsPropsT> {
         active: key === activeKey,
         disabled: disabled || child.props.disabled,
         $orientation: orientation,
-        onSelect: () => this.onChange({activeKey: key}),
+        onSelect: () => this.onChange({ activeKey: key }),
         children: child.props.title,
         overrides: mergeOverrides(overrides, child.props.overrides || {}),
       });
@@ -58,19 +52,9 @@ export default class Tabs extends React.Component<TabsPropsT> {
   }
 
   getPanels() {
-    const {
-      activeKey,
-      disabled,
-      orientation,
-      children,
-      overrides = {},
-      renderAll,
-    } = this.props;
-    const {TabContent: TabContentOverride} = overrides;
-    const [TabContent, tabContentProps] = getOverrides(
-      TabContentOverride,
-      StyledTabContent,
-    );
+    const { activeKey, disabled, orientation, children, overrides = {}, renderAll } = this.props;
+    const { TabContent: TabContentOverride } = overrides;
+    const [TabContent, tabContentProps] = getOverrides(TabContentOverride, StyledTabContent);
     // flowlint-next-line unclear-type:off
     const tabs = React.Children.map(children, (child: any, index) => {
       if (!child) return;
@@ -87,12 +71,7 @@ export default class Tabs extends React.Component<TabsPropsT> {
       };
 
       return (
-        <TabContent
-          role="tabpanel"
-          {...sharedProps}
-          {...tabContentProps}
-          {...props}
-        >
+        <TabContent role="tabpanel" {...sharedProps} {...tabContentProps} {...props}>
           {renderAll ? child.props.children : null}
           {isActive && !renderAll ? child.props.children : null}
         </TabContent>
@@ -102,7 +81,7 @@ export default class Tabs extends React.Component<TabsPropsT> {
   }
 
   getSharedProps(): SharedStylePropsArgT {
-    const {disabled, orientation} = this.props;
+    const { disabled, orientation } = this.props;
     return {
       $disabled: disabled,
       $orientation: orientation,
@@ -111,8 +90,8 @@ export default class Tabs extends React.Component<TabsPropsT> {
 
   render() {
     const sharedProps = this.getSharedProps();
-    const {overrides = {}} = this.props;
-    const {Root: RootOverride, TabBar: TabBarOverride} = overrides;
+    const { overrides = {} } = this.props;
+    const { Root: RootOverride, TabBar: TabBarOverride } = overrides;
     const [Root, rootProps] = getOverrides(RootOverride, StyledRoot);
     const [TabBar, tabBarProps] = getOverrides(TabBarOverride, StyledTabBar);
 

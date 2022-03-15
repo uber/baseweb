@@ -6,15 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {
-  render,
-  fireEvent,
-  getByText,
-  queryByText,
-} from '@testing-library/react';
+import { render, fireEvent, getByText, queryByText } from '@testing-library/react';
 
-import {StatefulTabs, Tab} from '../index.js';
-import {STATE_CHANGE_TYPE} from '../constants.js';
+import { StatefulTabs, Tab } from '../index.js';
+import { STATE_CHANGE_TYPE } from '../constants.js';
 
 describe('StatefulTabs', () => {
   const Component = (props) => (
@@ -26,7 +21,7 @@ describe('StatefulTabs', () => {
   );
 
   it('basic render', () => {
-    const {container} = render(<Component />);
+    const { container } = render(<Component />);
     getByText(container, 'Tab Link 1');
     getByText(container, 'Tab Link 2');
     getByText(container, 'Tab Link 3');
@@ -36,7 +31,7 @@ describe('StatefulTabs', () => {
   });
 
   it('basic render w/ SEO', () => {
-    const {container} = render(<Component renderAll />);
+    const { container } = render(<Component renderAll />);
     getByText(container, 'Tab Link 1');
     getByText(container, 'Tab Link 2');
     getByText(container, 'Tab Link 3');
@@ -47,9 +42,9 @@ describe('StatefulTabs', () => {
 
   it('basic render with initial state', () => {
     const props = {
-      initialState: {activeKey: '1'},
+      initialState: { activeKey: '1' },
     };
-    const {container} = render(<Component {...props} />);
+    const { container } = render(<Component {...props} />);
     expect(queryByText(container, 'Tab 1 content')).toBeNull();
     getByText(container, 'Tab 2 content');
     expect(queryByText(container, 'Tab 3 content')).toBeNull();
@@ -59,23 +54,23 @@ describe('StatefulTabs', () => {
     const props = {
       onChange: jest.fn(),
     };
-    const {container} = render(<Component {...props} />);
+    const { container } = render(<Component {...props} />);
     fireEvent.click(getByText(container, 'Tab Link 2'));
     expect(props.onChange).toHaveBeenCalledTimes(1);
-    expect(props.onChange).toHaveBeenCalledWith({activeKey: '1'});
+    expect(props.onChange).toHaveBeenCalledWith({ activeKey: '1' });
   });
 
   it('stateReducer functionality', () => {
     const props = {
       stateReducer: jest.fn((type, newState) => newState),
     };
-    const {container} = render(<Component {...props} />);
+    const { container } = render(<Component {...props} />);
     fireEvent.click(getByText(container, 'Tab Link 2'));
     expect(props.stateReducer).toHaveBeenCalledTimes(1);
     expect(props.stateReducer).toHaveBeenCalledWith(
       STATE_CHANGE_TYPE.change,
-      {activeKey: '1'},
-      {activeKey: '0'},
+      { activeKey: '1' },
+      { activeKey: '0' }
     );
   });
 });

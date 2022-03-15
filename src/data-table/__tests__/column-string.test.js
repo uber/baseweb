@@ -7,18 +7,18 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {render} from '@testing-library/react';
+import { render } from '@testing-library/react';
 
-import {StringColumn} from '../index.js';
+import { StringColumn } from '../index.js';
 
 describe('string column', () => {
   it('is sortable by default', () => {
-    const column = StringColumn({title: 'column', mapDataToValue: () => ''});
+    const column = StringColumn({ title: 'column', mapDataToValue: () => '' });
     expect(column.sortable).toBe(true);
   });
 
   it('is not filterable by default', () => {
-    const column = StringColumn({title: 'column', mapDataToValue: () => ''});
+    const column = StringColumn({ title: 'column', mapDataToValue: () => '' });
     expect(column.filterable).toBe(false);
   });
 
@@ -32,16 +32,16 @@ describe('string column', () => {
   });
 
   it('cell renders provided value', () => {
-    const column = StringColumn({title: 'column', mapDataToValue: () => ''});
+    const column = StringColumn({ title: 'column', mapDataToValue: () => '' });
     const Cell = column.renderCell;
 
-    const {container} = render(<Cell value="hello" x={0} y={0} />);
+    const { container } = render(<Cell value="hello" x={0} y={0} />);
     const cell = container.querySelector('div');
     expect(cell?.textContent).toBe('hello');
   });
 
   it('builds expected sort function', () => {
-    const column = StringColumn({title: 'column', mapDataToValue: () => ''});
+    const column = StringColumn({ title: 'column', mapDataToValue: () => '' });
     const input = ['A', 'B', 'C', 'C', 'B', 'A'];
     input.sort(column.sortFn);
 

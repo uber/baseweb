@@ -5,9 +5,9 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-export {default as Button} from './button.js';
+export { default as Button } from './button.js';
 // Constants
-export {KIND, SIZE, SHAPE} from './constants.js';
+export { KIND, SIZE, SHAPE } from './constants.js';
 // Styled elements
 export {
   BaseButton as StyledBaseButton,

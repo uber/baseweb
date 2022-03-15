@@ -17,9 +17,9 @@ import isBefore from 'date-fns/isBefore/index.js';
 import isEqual from 'date-fns/isEqual/index.js';
 import set from 'date-fns/set/index.js';
 
-import {Button, SIZE} from '../button/index.js';
-import {ButtonGroup, MODE} from '../button-group/index.js';
-import {Checkbox} from '../checkbox/index.js';
+import { Button, SIZE } from '../button/index.js';
+import { ButtonGroup, MODE } from '../button-group/index.js';
+import { Checkbox } from '../checkbox/index.js';
 import {
   applyDateToTime,
   applyTimeToDate,
@@ -29,16 +29,16 @@ import {
   getStartOfWeek,
   addDays,
 } from '../datepicker/utils/index.js';
-import {Datepicker} from '../datepicker/index.js';
-import {TimePicker} from '../timepicker/index.js';
-import {useStyletron} from '../styles/index.js';
-import {Select, type ValueT} from '../select/index.js';
+import { Datepicker } from '../datepicker/index.js';
+import { TimePicker } from '../timepicker/index.js';
+import { useStyletron } from '../styles/index.js';
+import { Select, type ValueT } from '../select/index.js';
 
 import Column from './column.js';
-import {COLUMNS, DATETIME_OPERATIONS} from './constants.js';
+import { COLUMNS, DATETIME_OPERATIONS } from './constants.js';
 import FilterShell from './filter-shell.js';
-import type {ColumnT, SharedColumnOptionsT} from './types.js';
-import {LocaleContext} from '../locale/index.js';
+import type { ColumnT, SharedColumnOptionsT } from './types.js';
+import { LocaleContext } from '../locale/index.js';
 
 type OptionsT = {|
   ...SharedColumnOptionsT<Date>,
@@ -123,14 +123,11 @@ const QUARTERS = [0, 1, 2, 3];
 function Checks(props) {
   const [css, theme] = useStyletron();
   return (
-    <div className={css({maxHeight: '256px', overflowY: 'auto'})}>
+    <div className={css({ maxHeight: '256px', overflowY: 'auto' })}>
       {props.options.map((item) => {
         const checked = props.value.includes(item.id);
         return (
-          <div
-            key={item.id}
-            className={css({marginBottom: theme.sizing.scale200})}
-          >
+          <div key={item.id} className={css({ marginBottom: theme.sizing.scale200 })}>
             <Checkbox
               checked={checked}
               onChange={() => {
@@ -225,19 +222,12 @@ function DatetimeFilter(props) {
     return getStartOfWeek(new Date(), props.locale);
   }, [props.locale]);
   const localizedWeekdays = React.useMemo(() => {
-    return [
-      ...WEEKDAYS.slice(getDay(startOfWeek), 7),
-      ...WEEKDAYS.slice(0, getDay(startOfWeek)),
-    ];
+    return [...WEEKDAYS.slice(getDay(startOfWeek), 7), ...WEEKDAYS.slice(0, getDay(startOfWeek))];
   }, [props.locale]);
 
   const [exclude, setExclude] = React.useState(initialState.exclude);
-  const [comparatorIndex, setComparatorIndex] = React.useState(
-    initialState.comparatorIndex,
-  );
-  const [rangeOperator, setRangeOperator] = React.useState<ValueT>([
-    initialState.rangeOperator,
-  ]);
+  const [comparatorIndex, setComparatorIndex] = React.useState(initialState.comparatorIndex);
+  const [rangeOperator, setRangeOperator] = React.useState<ValueT>([initialState.rangeOperator]);
   const [categoricalOperator, setCategoricalOperator] = React.useState<ValueT>([
     initialState.categoricalOperator,
   ]);
@@ -245,21 +235,14 @@ function DatetimeFilter(props) {
   const [rangeDates, setRangeDates] = React.useState<any>(
     initialState.rangeDates.length
       ? initialState.rangeDates
-      : [
-          new Date(datesSorted[0]),
-          new Date(datesSorted[datesSorted.length - 1]),
-        ],
+      : [new Date(datesSorted[0]), new Date(datesSorted[datesSorted.length - 1])]
   );
 
   const [years, setYears] = React.useState<number[]>(initialState.years);
   const [halves, setHalves] = React.useState<number[]>(initialState.halves);
-  const [quarters, setQuarters] = React.useState<number[]>(
-    initialState.quarters,
-  );
+  const [quarters, setQuarters] = React.useState<number[]>(initialState.quarters);
   const [months, setMonths] = React.useState<number[]>(initialState.months);
-  const [weekdays, setWeekdays] = React.useState<number[]>(
-    initialState.weekdays,
-  );
+  const [weekdays, setWeekdays] = React.useState<number[]>(initialState.weekdays);
 
   const isRange = comparatorIndex === 0;
   const isCategorical = comparatorIndex === 1;
@@ -317,15 +300,11 @@ function DatetimeFilter(props) {
           } else if (op === DATETIME_OPERATIONS.MONTH) {
             selection = months;
             operatorLocaleLabelKey = CATEGORICAL_OPERATIONS[1].localeLabelKey;
-            description = months
-              .map((m) => getMonthInLocale(m, props.locale))
-              .join(', ');
+            description = months.map((m) => getMonthInLocale(m, props.locale)).join(', ');
           } else if (op === DATETIME_OPERATIONS.QUARTER) {
             selection = quarters;
             operatorLocaleLabelKey = CATEGORICAL_OPERATIONS[2].localeLabelKey;
-            description = quarters
-              .map((q) => getQuarterInLocale(q, props.locale))
-              .join(', ');
+            description = quarters.map((q) => getQuarterInLocale(q, props.locale)).join(', ');
           } else if (op === DATETIME_OPERATIONS.HALF) {
             selection = halves;
             operatorLocaleLabelKey = CATEGORICAL_OPERATIONS[3].localeLabelKey;
@@ -333,7 +312,7 @@ function DatetimeFilter(props) {
               .map((h) =>
                 h === 0
                   ? locale.datatable.datetimeFilterCategoricalFirstHalf
-                  : locale.datatable.datetimeFilterCategoricalSecondHalf,
+                  : locale.datatable.datetimeFilterCategoricalSecondHalf
               )
               .join(', ');
           } else if (op === DATETIME_OPERATIONS.YEAR) {
@@ -366,20 +345,14 @@ function DatetimeFilter(props) {
           onClick={(_, index) => setComparatorIndex(index)}
           overrides={{
             Root: {
-              style: ({$theme}) => ({marginBottom: $theme.sizing.scale300}),
+              style: ({ $theme }) => ({ marginBottom: $theme.sizing.scale300 }),
             },
           }}
         >
-          <Button
-            type="button"
-            overrides={{BaseButton: {style: {width: '100%'}}}}
-          >
+          <Button type="button" overrides={{ BaseButton: { style: { width: '100%' } } }}>
             {locale.datatable.datetimeFilterRange}
           </Button>
-          <Button
-            type="button"
-            overrides={{BaseButton: {style: {width: '100%'}}}}
-          >
+          <Button type="button" overrides={{ BaseButton: { style: { width: '100%' } } }}>
             {locale.datatable.datetimeFilterCategorical}
           </Button>
         </ButtonGroup>
@@ -399,19 +372,17 @@ function DatetimeFilter(props) {
               clearable={false}
             />
 
-            <div className={css({paddingTop: theme.sizing.scale600})}>
+            <div className={css({ paddingTop: theme.sizing.scale600 })}>
               {(rangeOperator[0].id === DATETIME_OPERATIONS.RANGE_DATETIME ||
                 rangeOperator[0].id === DATETIME_OPERATIONS.RANGE_DATE) && (
                 <Datepicker
                   // flowlint-next-line unclear-type:off
                   mountNode={(mountNode.current: any)}
                   value={rangeDates}
-                  onChange={({date}) => {
+                  onChange={({ date }) => {
                     if (Array.isArray(date)) {
                       if (!date.length) return;
-                      const nextDates = date.map((d, i) =>
-                        applyDateToTime(rangeDates[i], d),
-                      );
+                      const nextDates = date.map((d, i) => applyDateToTime(rangeDates[i], d));
                       setRangeDates(nextDates);
                     }
                   }}
@@ -420,13 +391,9 @@ function DatetimeFilter(props) {
                   placeholder="MM-DD-YYYY - MM-DD-YYYY"
                   minDate={datesSorted[0]}
                   maxDate={datesSorted[datesSorted.length - 1]}
-                  timeSelectStart={
-                    rangeOperator[0].id === DATETIME_OPERATIONS.RANGE_DATETIME
-                  }
-                  timeSelectEnd={
-                    rangeOperator[0].id === DATETIME_OPERATIONS.RANGE_DATETIME
-                  }
-                  overrides={{TimeSelect: {props: {size: 'compact'}}}}
+                  timeSelectStart={rangeOperator[0].id === DATETIME_OPERATIONS.RANGE_DATETIME}
+                  timeSelectEnd={rangeOperator[0].id === DATETIME_OPERATIONS.RANGE_DATETIME}
+                  overrides={{ TimeSelect: { props: { size: 'compact' } } }}
                   range
                   size="compact"
                   locale={props.locale}
@@ -452,11 +419,7 @@ function DatetimeFilter(props) {
                     format="24"
                     value={rangeDates[0]}
                     onChange={(time) =>
-                      time &&
-                      setRangeDates([
-                        applyTimeToDate(rangeDates[0], time),
-                        rangeDates[1],
-                      ])
+                      time && setRangeDates([applyTimeToDate(rangeDates[0], time), rangeDates[1]])
                     }
                     creatable
                     size="compact"
@@ -472,11 +435,7 @@ function DatetimeFilter(props) {
                     format="24"
                     value={rangeDates[1]}
                     onChange={(time) =>
-                      time &&
-                      setRangeDates([
-                        rangeDates[0],
-                        applyTimeToDate(rangeDates[1], time),
-                      ])
+                      time && setRangeDates([rangeDates[0], applyTimeToDate(rangeDates[1], time)])
                     }
                     creatable
                     size="compact"
@@ -551,13 +510,11 @@ function DatetimeFilter(props) {
                   setValue={setHalves}
                   options={[
                     {
-                      label:
-                        locale.datatable.datetimeFilterCategoricalFirstHalf,
+                      label: locale.datatable.datetimeFilterCategoricalFirstHalf,
                       id: 0,
                     },
                     {
-                      label:
-                        locale.datatable.datetimeFilterCategoricalSecondHalf,
+                      label: locale.datatable.datetimeFilterCategoricalSecondHalf,
                       id: 1,
                     },
                   ]}
@@ -641,15 +598,15 @@ function DatetimeColumn(options: OptionsT): DatetimeColumnT {
           let [left, right] = params.range;
 
           if (params.operation === DATETIME_OPERATIONS.RANGE_DATE) {
-            left = set(left, {hours: 0, minutes: 0, seconds: 0});
-            right = set(right, {hours: 0, minutes: 0, seconds: 0});
-            data = set(data, {hours: 0, minutes: 0, seconds: 0});
+            left = set(left, { hours: 0, minutes: 0, seconds: 0 });
+            right = set(right, { hours: 0, minutes: 0, seconds: 0 });
+            data = set(data, { hours: 0, minutes: 0, seconds: 0 });
           }
 
           if (params.operation === DATETIME_OPERATIONS.RANGE_TIME) {
-            left = set(left, {year: 2000, month: 1, date: 1});
-            right = set(right, {year: 2000, month: 1, date: 1});
-            data = set(data, {year: 2000, month: 1, date: 1});
+            left = set(left, { year: 2000, month: 1, date: 1 });
+            right = set(right, { year: 2000, month: 1, date: 1 });
+            data = set(data, { year: 2000, month: 1, date: 1 });
           }
 
           const after = isAfter(data, left) || isEqual(data, left);
@@ -667,12 +624,7 @@ function DatetimeColumn(options: OptionsT): DatetimeColumnT {
     maxWidth: options.maxWidth,
     minWidth: options.minWidth,
     renderCell: function RenderDatetimeCell(props) {
-      return (
-        <DatetimeCell
-          value={props.value}
-          formatString={normalizedOptions.formatString}
-        />
-      );
+      return <DatetimeCell value={props.value} formatString={normalizedOptions.formatString} />;
     },
     renderFilter: function RenderDatetimeFilter(props) {
       return <DatetimeFilter {...props} locale={options.locale} />;

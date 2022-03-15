@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {render} from '@testing-library/react';
-import {StatefulContainer} from '../index.js';
+import { render } from '@testing-library/react';
+import { StatefulContainer } from '../index.js';
 
 describe('StatefulComponentContainer', () => {
   test('provides expected arguments to children fn', () => {

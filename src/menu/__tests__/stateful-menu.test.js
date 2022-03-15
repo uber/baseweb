@@ -6,17 +6,17 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {render} from '@testing-library/react';
+import { render } from '@testing-library/react';
 
 import StatefulMenu from '../stateful-menu.js';
 
 describe('Menu StatefulMenu', () => {
   it('renders with props', () => {
     const props = {
-      items: [{label: 'item1'}, {label: 'item2'}],
+      items: [{ label: 'item1' }, { label: 'item2' }],
       getItemLabel: (item) => item.label,
     };
-    const {container} = render(<StatefulMenu {...props} />);
+    const { container } = render(<StatefulMenu {...props} />);
 
     const list = container.querySelector('ul');
     expect(list).not.toBeNull();

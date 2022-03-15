@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 /* eslint-disable import/prefer-default-export */
-import {ARROW_SIZE, PLACEMENT} from './constants.js';
-import type {OffsetT, PopoverPlacementT} from './types.js';
+import { ARROW_SIZE, PLACEMENT } from './constants.js';
+import type { OffsetT, PopoverPlacementT } from './types.js';
 
 const OPPOSITE_POSITIONS = {
   top: 'bottom',
@@ -45,9 +45,7 @@ export function capitalize(str: string): string {
  * Opposite of function above, converts from Popper.js placement
  * to our placement prop
  */
-export function fromPopperPlacement(
-  placement: string,
-): PopoverPlacementT | null {
+export function fromPopperPlacement(placement: string): PopoverPlacementT | null {
   const popoverPlacement: string = placement
     .replace(/(top|bottom)-start$/, '$1Left')
     .replace(/(top|bottom)-end$/, '$1Right')
@@ -74,7 +72,7 @@ export function splitPlacement(placement: PopoverPlacementT): string[] {
 export function getPopoverMarginStyles(
   arrowSize: number,
   placement: PopoverPlacementT,
-  popoverMargin: number,
+  popoverMargin: number
 ) {
   const [position] = splitPlacement(placement);
   const opposite = getOppositePosition(position);
@@ -94,9 +92,9 @@ export function getStartPosition(
   offset: OffsetT,
   placement: PopoverPlacementT,
   arrowSize: number,
-  popoverMargin: number,
+  popoverMargin: number
 ) {
-  offset = {...offset};
+  offset = { ...offset };
   const [position] = splitPlacement(placement);
   const margin = (arrowSize > 0 ? arrowSize : popoverMargin) * 2;
   if (isVerticalPosition(position)) {
@@ -117,19 +115,14 @@ export function getEndPosition(offset: OffsetT) {
 /**
  * Returns top/left styles to position the popover arrow
  */
-export function getArrowPositionStyles(
-  offsets: OffsetT,
-  placement: PopoverPlacementT,
-) {
+export function getArrowPositionStyles(offsets: OffsetT, placement: PopoverPlacementT) {
   const [position] = splitPlacement(placement);
   const oppositePosition = getOppositePosition(position);
   if (!oppositePosition) {
     return null;
   }
 
-  const alignmentProperty: string = isVerticalPosition(position)
-    ? 'left'
-    : 'top';
+  const alignmentProperty: string = isVerticalPosition(position) ? 'left' : 'top';
   return {
     [alignmentProperty]: `${offsets[alignmentProperty]}px`,
     [oppositePosition]: `-${ARROW_SIZE - 2}px`,

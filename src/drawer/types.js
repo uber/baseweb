@@ -7,8 +7,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-disable flowtype/generic-spacing */
 import * as React from 'react';
-import type {OverrideT} from '../helpers/overrides.js';
-import {SIZE, CLOSE_SOURCE, ANCHOR} from './constants.js';
+import type { OverrideT } from '../helpers/overrides.js';
+import { SIZE, CLOSE_SOURCE, ANCHOR } from './constants.js';
 
 export type SizeT = $Keys<typeof SIZE>;
 export type SizePropT = SizeT | string;
@@ -27,7 +27,7 @@ export type OverridesT = {
 };
 
 // flowlint-next-line unclear-type:off
-export type ElementRefT = {current: React.ElementRef<any> | null};
+export type ElementRefT = { current: React.ElementRef<any> | null };
 
 // Props shared by all flavors of modal
 export type DrawerPropsT = {
@@ -66,10 +66,7 @@ export type DrawerPropsT = {
   onEscapeKeyDown?: (e: Event) => mixed,
 };
 
-export type DrawerPropsWithoutChildrenT = $Diff<
-  DrawerPropsT,
-  {children: ?React.Node},
->;
+export type DrawerPropsWithoutChildrenT = $Diff<DrawerPropsT, { children: ?React.Node }>;
 
 export type DrawerStateT = {
   isVisible: boolean,

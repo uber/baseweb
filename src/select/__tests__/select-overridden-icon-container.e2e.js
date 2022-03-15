@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {mount} = require('../../../e2e/helpers/index.js');
+const { mount } = require('../../../e2e/helpers/index.js');
 
 describe('select overridden icon container', () => {
   it('does not call custom click handler on clear icon clicks on mobile', async () => {

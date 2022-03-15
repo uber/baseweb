@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import {SIZE} from './constants.js';
-import type {OverrideT} from '../helpers/overrides.js';
-import type {SizingT} from '../themes/types.js';
+import { SIZE } from './constants.js';
+import type { OverrideT } from '../helpers/overrides.js';
+import type { SizingT } from '../themes/types.js';
 
 export type SizeT = $Keys<typeof SIZE>;
 export type SpinnerPropsT = {

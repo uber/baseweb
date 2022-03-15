@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 /* global window */
 
-const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
+const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
 
 const selectors = {
   input: '[data-e2e="input"]',
@@ -54,10 +54,7 @@ describe('input', () => {
       await mount(page, 'input--clearable');
       await page.waitForSelector(selectors.input);
 
-      let inputValue = await page.$eval(
-        selectors.input,
-        (input) => input.value,
-      );
+      let inputValue = await page.$eval(selectors.input, (input) => input.value);
       expect(inputValue).toBe('Thing');
 
       await page.focus(selectors.input);
@@ -75,10 +72,7 @@ describe('input', () => {
       await mount(page, 'input--clearable-noescape');
       await page.waitForSelector(selectors.input);
 
-      let inputValue = await page.$eval(
-        selectors.input,
-        (input) => input.value,
-      );
+      let inputValue = await page.$eval(selectors.input, (input) => input.value);
       expect(inputValue).toBe('Thing');
 
       await page.focus(selectors.input);
@@ -92,10 +86,7 @@ describe('input', () => {
       await mount(page, 'input--clearable');
       await page.waitForSelector(selectors.input);
 
-      let inputValue = await page.$eval(
-        selectors.input,
-        (input) => input.value,
-      );
+      let inputValue = await page.$eval(selectors.input, (input) => input.value);
       expect(inputValue).toBe('Thing');
 
       await page.click(selectors.clearIcon);
@@ -112,10 +103,7 @@ describe('input', () => {
       await mount(page, 'input--clearable');
       await page.waitForSelector(selectors.input);
 
-      let inputValue = await page.$eval(
-        selectors.input,
-        (input) => input.value,
-      );
+      let inputValue = await page.$eval(selectors.input, (input) => input.value);
       expect(inputValue).toBe('Thing');
 
       await page.focus(selectors.clearIcon);
@@ -133,10 +121,7 @@ describe('input', () => {
       await mount(page, 'input--clearable');
       await page.waitForSelector(selectors.input);
 
-      let inputValue = await page.$eval(
-        selectors.input,
-        (input) => input.value,
-      );
+      let inputValue = await page.$eval(selectors.input, (input) => input.value);
       expect(inputValue).toBe('Thing');
 
       await page.focus(selectors.clearIcon);
@@ -157,27 +142,19 @@ describe('input', () => {
       await page.waitForSelector(selectors.input);
 
       // verify first input value is "Thing"
-      expect(await page.$eval(selectors.input, (input) => input.value)).toBe(
-        'Thing',
-      );
+      expect(await page.$eval(selectors.input, (input) => input.value)).toBe('Thing');
 
       // verify second input value is "Or other"
-      expect(
-        await page.$eval(selectors.lastInput, (input) => input.value),
-      ).toBe('Or other');
+      expect(await page.$eval(selectors.lastInput, (input) => input.value)).toBe('Or other');
 
       // clear first input
       await page.click(selectors.clearIcon);
 
       // verify first input value is ""
-      expect(await page.$eval(selectors.input, (input) => input.value)).toBe(
-        '',
-      );
+      expect(await page.$eval(selectors.input, (input) => input.value)).toBe('');
 
       // verify second input value is still "Other"
-      expect(
-        await page.$eval(selectors.lastInput, (input) => input.value),
-      ).toBe('Or other');
+      expect(await page.$eval(selectors.lastInput, (input) => input.value)).toBe('Or other');
     });
 
     // regression tests for https://github.com/uber/baseweb/issues/1662
@@ -193,38 +170,26 @@ describe('input', () => {
         // focus input
         await page.focus(selectors.input);
         // verify type is password, aka the text is masked
-        expect(await page.$eval(selectors.input, (input) => input.type)).toBe(
-          'password',
-        );
+        expect(await page.$eval(selectors.input, (input) => input.type)).toBe('password');
         // hit enter
         await page.keyboard.press('Enter');
         // verify type is still password, aka the text is still masked
-        expect(await page.$eval(selectors.input, (input) => input.type)).toBe(
-          'password',
-        );
+        expect(await page.$eval(selectors.input, (input) => input.type)).toBe('password');
         // verify global variable '__e2e__formSubmitted__' is true
-        expect(await page.evaluate(() => window.__e2e__formSubmitted__)).toBe(
-          true,
-        );
+        expect(await page.evaluate(() => window.__e2e__formSubmitted__)).toBe(true);
       });
 
       it('while focusing mask toggle, "enter" does not submit the form', async () => {
         // focus password mask toggle
         await page.focus(selectors.maskToggle);
         // verify type is password, aka the text is masked
-        expect(await page.$eval(selectors.input, (input) => input.type)).toBe(
-          'password',
-        );
+        expect(await page.$eval(selectors.input, (input) => input.type)).toBe('password');
         // hit enter
         await page.keyboard.press('Enter');
         // verify type is now text, aka the text is not masked
-        expect(await page.$eval(selectors.input, (input) => input.type)).toBe(
-          'text',
-        );
+        expect(await page.$eval(selectors.input, (input) => input.type)).toBe('text');
         // verify global variable '__e2e__formSubmitted__' is still false
-        expect(await page.evaluate(() => window.__e2e__formSubmitted__)).toBe(
-          false,
-        );
+        expect(await page.evaluate(() => window.__e2e__formSubmitted__)).toBe(false);
       });
     });
   });

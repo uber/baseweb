@@ -10,9 +10,9 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable jsx-a11y/accessible-emoji */
 
 import * as React from 'react';
-import {Tab, Tabs, StyledTabList, StyledTabPanel} from '../index.js';
-import {Button, KIND} from '../../button/index.js';
-import {Grid, Cell} from '../../layout-grid/index.js';
+import { Tab, Tabs, StyledTabList, StyledTabPanel } from '../index.js';
+import { Button, KIND } from '../../button/index.js';
+import { Grid, Cell } from '../../layout-grid/index.js';
 
 const TabsOverrides = {
   TabList: {
@@ -48,7 +48,7 @@ export function Scenario() {
     <React.Fragment>
       <Tabs
         activeKey={activeKey}
-        onChange={({activeKey}) => setActiveKey(activeKey)}
+        onChange={({ activeKey }) => setActiveKey(activeKey)}
         overrides={TabsOverrides}
       >
         <Tab title="Robot" overrides={TabOverrides}>

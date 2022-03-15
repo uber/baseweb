@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {StatefulList} from '../index.js';
+import { StatefulList } from '../index.js';
 
 export function Scenario() {
   return (

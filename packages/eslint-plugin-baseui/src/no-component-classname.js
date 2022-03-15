@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 
 'use strict';
-const {hasProp} = require('jsx-ast-utils');
+const { hasProp } = require('jsx-ast-utils');
 const MESSAGES = require('./messages.js');
 
 module.exports = {
@@ -43,10 +43,7 @@ module.exports = {
         // ================
         // className
         // Ex: <Block className={css({...})} />, <Button className={css({...})} />
-        if (
-          importState[node.name.name] &&
-          hasProp(node.attributes, 'className')
-        ) {
+        if (importState[node.name.name] && hasProp(node.attributes, 'className')) {
           context.report({
             node,
             messageId: MESSAGES.noClassName.id,

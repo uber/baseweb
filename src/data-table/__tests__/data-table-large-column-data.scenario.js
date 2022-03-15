@@ -8,8 +8,8 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {StatefulDataTable, NumericalColumn, StringColumn} from '../index.js';
-import {randomLcg} from 'd3';
+import { StatefulDataTable, NumericalColumn, StringColumn } from '../index.js';
+import { randomLcg } from 'd3';
 
 type RowDataT = [string, number];
 
@@ -38,18 +38,14 @@ const genRows = (count) => {
   return new Array(count).fill(false).map((x, i) => {
     return {
       id: i,
-      data: [
-        genString(Math.ceil(1 + expRandom(0.2))),
-        getRandomArbitrary(1, 1000),
-      ],
+      data: [genString(Math.ceil(1 + expRandom(0.2))), getRandomArbitrary(1, 1000)],
     };
   });
 };
 
 function genString(length) {
   let result = '';
-  const characters =
-    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   const charactersLength = characters.length;
   for (let i = 0; i < length; i++) {
     result += characters.charAt(Math.floor(randGen() * charactersLength));
@@ -70,7 +66,7 @@ const rows = genRows(5000);
 
 export function Scenario() {
   return (
-    <div style={{height: '100vh', width: '100vw'}}>
+    <div style={{ height: '100vh', width: '100vw' }}>
       <React.Profiler id={'table'} onRender={onRenderCallback}>
         <StatefulDataTable columns={columns} rows={rows} />
       </React.Profiler>
@@ -81,7 +77,7 @@ export function Scenario() {
 function onRenderCallback(
   id, // the "id" prop of the Profiler tree that has just committed
   phase, // either "mount" (if the tree just mounted) or "update" (if it re-rendered)
-  actualDuration, // time spent rendering the committed update
+  actualDuration // time spent rendering the committed update
 ) {
   console.log(median(actualDuration).toFixed(0));
 }

@@ -7,14 +7,14 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {AppNavBar, setItemActive} from '../index.js';
+import { AppNavBar, setItemActive } from '../index.js';
 
 export function Scenario() {
   const [mainItems, setMainItems] = React.useState([
-    {label: 'label', info: {id: 1}},
-    {label: 'label', info: {id: 2}},
-    {label: 'label', info: {id: 3}},
-    {label: 'label', info: {id: 4}},
+    { label: 'label', info: { id: 1 } },
+    { label: 'label', info: { id: 2 } },
+    { label: 'label', info: { id: 3 } },
+    { label: 'label', info: { id: 4 } },
   ]);
 
   function getUniqueIdentifier(item) {

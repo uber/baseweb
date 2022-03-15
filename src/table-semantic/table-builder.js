@@ -23,14 +23,14 @@ import {
   StyledSortDescIcon,
   StyledSortNoneIcon,
 } from './styled-components.js';
-import {getOverrides} from '../helpers/overrides.js';
-import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
+import { getOverrides } from '../helpers/overrides.js';
+import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible.js';
 
-import type {TableBuilderPropsT} from './types.js';
+import type { TableBuilderPropsT } from './types.js';
 
 export default class TableBuilder<T> extends React.Component<
   TableBuilderPropsT<T>,
-  {isFocusVisible: boolean},
+  { isFocusVisible: boolean }
 > {
   static defaultProps = {
     data: [],
@@ -43,13 +43,13 @@ export default class TableBuilder<T> extends React.Component<
 
   handleFocus = (event: SyntheticEvent<>) => {
     if (isFocusVisible(event)) {
-      this.setState({isFocusVisible: true});
+      this.setState({ isFocusVisible: true });
     }
   };
 
   handleBlur = (event: SyntheticEvent<>) => {
     if (this.state.isFocusVisible !== false) {
-      this.setState({isFocusVisible: false});
+      this.setState({ isFocusVisible: false });
     }
   };
 
@@ -74,64 +74,55 @@ export default class TableBuilder<T> extends React.Component<
 
     const [Table, tableProps] = getOverrides(overrides.Table, StyledTable);
 
-    const [TableHead, tableHeadProps] = getOverrides(
-      overrides.TableHead,
-      StyledTableHead,
-    );
+    const [TableHead, tableHeadProps] = getOverrides(overrides.TableHead, StyledTableHead);
 
     const [TableHeadRow, tableHeadRowProps] = getOverrides(
       overrides.TableHeadRow,
-      StyledTableHeadRow,
+      StyledTableHeadRow
     );
 
     const [TableHeadCell, tableHeadCellProps] = getOverrides(
       overrides.TableHeadCell,
-      StyledTableHeadCell,
+      StyledTableHeadCell
     );
 
     const [TableHeadCellSortable, tableHeadCellSortableProps] = getOverrides(
       overrides.TableHeadCellSortable,
-      StyledTableHeadCellSortable,
+      StyledTableHeadCellSortable
     );
 
-    const [TableBody, tableBodyProps] = getOverrides(
-      overrides.TableBody,
-      StyledTableBody,
-    );
+    const [TableBody, tableBodyProps] = getOverrides(overrides.TableBody, StyledTableBody);
 
     const [TableBodyRow, tableBodyRowProps] = getOverrides(
       overrides.TableBodyRow,
-      StyledTableBodyRow,
+      StyledTableBodyRow
     );
 
     const [TableBodyCell, tableBodyCellProps] = getOverrides(
       overrides.TableBodyCell,
-      StyledTableBodyCell,
+      StyledTableBodyCell
     );
 
     const [TableLoadingMessage, tableLoadingMessageProps] = getOverrides(
       overrides.TableLoadingMessage,
-      StyledTableLoadingMessage,
+      StyledTableLoadingMessage
     );
 
     const [TableEmptyMessage, tableEmptyMessageProps] = getOverrides(
       overrides.TableEmptyMessage,
-      StyledTableEmptyMessage,
+      StyledTableEmptyMessage
     );
 
-    const [SortAscIcon, sortAscIconProps] = getOverrides(
-      overrides.SortAscIcon,
-      StyledSortAscIcon,
-    );
+    const [SortAscIcon, sortAscIconProps] = getOverrides(overrides.SortAscIcon, StyledSortAscIcon);
 
     const [SortDescIcon, sortDescIconProps] = getOverrides(
       overrides.SortDescIcon,
-      StyledSortDescIcon,
+      StyledSortDescIcon
     );
 
     const [SortNoneIcon, sortNoneIconProps] = getOverrides(
       overrides.SortNoneIcon,
-      StyledSortNoneIcon,
+      StyledSortNoneIcon
     );
 
     const columns = React.Children.toArray(children)
@@ -144,7 +135,7 @@ export default class TableBuilder<T> extends React.Component<
       if (!col.sortable) {
         const [ColTableHeadCell, colTableHeadCellProps] = getOverrides(
           colOverrides.TableHeadCell,
-          TableHeadCell,
+          TableHeadCell
         );
 
         return (
@@ -163,41 +154,25 @@ export default class TableBuilder<T> extends React.Component<
         );
       }
 
-      const [ColTableHeadCellSortable, colTableHeadCellSortableProps] =
-        getOverrides(colOverrides.TableHeadCellSortable, TableHeadCellSortable);
+      const [ColTableHeadCellSortable, colTableHeadCellSortableProps] = getOverrides(
+        colOverrides.TableHeadCellSortable,
+        TableHeadCellSortable
+      );
 
       let sortIcon = null;
       let sortLabel = 'not sorted';
 
       switch (col.id === sortColumn && sortOrder) {
         case 'ASC':
-          sortIcon = (
-            <SortAscIcon
-              aria-hidden={true}
-              role="presentation"
-              {...sortAscIconProps}
-            />
-          );
+          sortIcon = <SortAscIcon aria-hidden={true} role="presentation" {...sortAscIconProps} />;
           sortLabel = 'ascending sorting';
           break;
         case 'DESC':
-          sortIcon = (
-            <SortDescIcon
-              aria-hidden={true}
-              role="presentation"
-              {...sortDescIconProps}
-            />
-          );
+          sortIcon = <SortDescIcon aria-hidden={true} role="presentation" {...sortDescIconProps} />;
           sortLabel = 'descending sorting';
           break;
         default:
-          sortIcon = (
-            <SortNoneIcon
-              aria-hidden={true}
-              role="presentation"
-              {...sortNoneIconProps}
-            />
-          );
+          sortIcon = <SortNoneIcon aria-hidden={true} role="presentation" {...sortNoneIconProps} />;
           break;
       }
 
@@ -233,7 +208,7 @@ export default class TableBuilder<T> extends React.Component<
 
       const [ColTableBodyCell, colTableBodyCellProps] = getOverrides(
         colOverrides.TableBodyCell,
-        TableBodyCell,
+        TableBodyCell
       );
 
       return (
@@ -260,12 +235,7 @@ export default class TableBuilder<T> extends React.Component<
     const isRendered = !isLoading && !isEmpty;
 
     return (
-      <Root
-        data-baseweb="table-builder-semantic"
-        $divider={divider}
-        {...rootProps}
-        {...rest}
-      >
+      <Root data-baseweb="table-builder-semantic" $divider={divider} {...rootProps} {...rest}>
         <Table
           $width={horizontalScrollWidth}
           {...tableProps}
@@ -275,7 +245,7 @@ export default class TableBuilder<T> extends React.Component<
           <TableHead {...tableHeadProps}>
             <TableHeadRow {...tableHeadRowProps}>
               {columns.map((col, colIndex) =>
-                renderHeader(col, colIndex, this.state.isFocusVisible),
+                renderHeader(col, colIndex, this.state.isFocusVisible)
               )}
             </TableHeadRow>
           </TableHead>
@@ -284,9 +254,7 @@ export default class TableBuilder<T> extends React.Component<
               <tr>
                 <td colSpan={columns.length}>
                   <TableLoadingMessage {...tableLoadingMessageProps}>
-                    {typeof loadingMessage === 'function'
-                      ? loadingMessage()
-                      : loadingMessage}
+                    {typeof loadingMessage === 'function' ? loadingMessage() : loadingMessage}
                   </TableLoadingMessage>
                 </td>
               </tr>
@@ -295,9 +263,7 @@ export default class TableBuilder<T> extends React.Component<
               <tr>
                 <td colSpan={columns.length}>
                   <TableEmptyMessage {...tableEmptyMessageProps}>
-                    {typeof emptyMessage === 'function'
-                      ? emptyMessage()
-                      : emptyMessage}
+                    {typeof emptyMessage === 'function' ? emptyMessage() : emptyMessage}
                   </TableEmptyMessage>
                 </td>
               </tr>
@@ -312,7 +278,7 @@ export default class TableBuilder<T> extends React.Component<
                   {...tableBodyRowProps}
                 >
                   {columns.map((col, colIndex) =>
-                    renderCell(col, colIndex, row, rowIndex, data.length - 1),
+                    renderCell(col, colIndex, row, rowIndex, data.length - 1)
                   )}
                 </TableBodyRow>
               ))}

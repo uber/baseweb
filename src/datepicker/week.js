@@ -7,13 +7,13 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import Day from './day.js';
-import {StyledWeek} from './styled-components.js';
-import {WEEKDAYS} from './constants.js';
+import { StyledWeek } from './styled-components.js';
+import { WEEKDAYS } from './constants.js';
 import dateFnsAdapter from './utils/date-fns-adapter.js';
 import DateHelpers from './utils/date-helpers.js';
 
-import {getOverrides} from '../helpers/overrides.js';
-import type {WeekPropsT} from './types.js';
+import { getOverrides } from '../helpers/overrides.js';
+import type { WeekPropsT } from './types.js';
 
 export default class Week<T = Date> extends React.Component<WeekPropsT<T>> {
   static defaultProps = {
@@ -39,7 +39,7 @@ export default class Week<T = Date> extends React.Component<WeekPropsT<T>> {
   renderDays = () => {
     const startOfWeek = this.dateHelpers.getStartOfWeek(
       this.props.date || this.dateHelpers.date(),
-      this.props.locale,
+      this.props.locale
     );
     const days = [];
     // $FlowFixMe
@@ -57,10 +57,7 @@ export default class Week<T = Date> extends React.Component<WeekPropsT<T>> {
             excludeDates={this.props.excludeDates}
             filterDate={this.props.filterDate}
             highlightedDate={this.props.highlightedDate}
-            highlighted={this.dateHelpers.isSameDay(
-              day,
-              this.props.highlightedDate,
-            )}
+            highlighted={this.dateHelpers.isSameDay(day, this.props.highlightedDate)}
             includeDates={this.props.includeDates}
             focusedCalendar={this.props.focusedCalendar}
             range={this.props.range}
@@ -80,12 +77,12 @@ export default class Week<T = Date> extends React.Component<WeekPropsT<T>> {
             value={this.props.value}
           />
         );
-      }),
+      })
     );
   };
 
   render() {
-    const {overrides = {}} = this.props;
+    const { overrides = {} } = this.props;
     const [Week, weekProps] = getOverrides(overrides.Week, StyledWeek);
     return (
       <Week role="row" {...weekProps}>

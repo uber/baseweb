@@ -7,10 +7,10 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import type {OverrideT} from '../helpers/overrides.js';
-import {SIZE, STATE_CHANGE_TYPE} from '../input/index.js';
+import type { OverrideT } from '../helpers/overrides.js';
+import { SIZE, STATE_CHANGE_TYPE } from '../input/index.js';
 
-export type ChangeEventT = {values: string[], event: InputEvent};
+export type ChangeEventT = { values: string[], event: InputEvent };
 
 export type PropsT = {
   /** Sets aria-label attribute for each input element. */
@@ -68,7 +68,7 @@ export type StateChangeT = $Keys<typeof STATE_CHANGE_TYPE>;
 export type StateReducerT = (
   type: StateChangeT,
   nextState: StatefulPinCodeContainerStateT,
-  currentState: StatefulPinCodeContainerStateT,
+  currentState: StatefulPinCodeContainerStateT
 ) => StatefulPinCodeContainerStateT;
 
 export type StatefulPinCodePropsT = PropsT & {

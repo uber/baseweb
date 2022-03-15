@@ -8,21 +8,21 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
-import {StatefulInput} from '../index.js';
+import { StatefulInput } from '../index.js';
 
 export function Scenario() {
   return (
     <StatefulInput
       clearable
       clearOnEscape={false}
-      initialState={{value: 'Thing'}}
+      initialState={{ value: 'Thing' }}
       overrides={{
         Input: {
-          props: {'data-e2e': 'input'},
+          props: { 'data-e2e': 'input' },
         },
 
         ClearIcon: {
-          props: {'data-e2e': 'clear-icon'},
+          props: { 'data-e2e': 'clear-icon' },
         },
       }}
     />

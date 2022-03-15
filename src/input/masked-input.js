@@ -10,8 +10,8 @@ import * as React from 'react';
 import InputMask from 'react-input-mask';
 
 import Input from './input.js';
-import {Input as StyledInput} from './styled-components.js';
-import type {MaskedInputPropsT} from './types.js';
+import { Input as StyledInput } from './styled-components.js';
+import type { MaskedInputPropsT } from './types.js';
 
 const MaskOverride = React.forwardRef<MaskedInputPropsT, HTMLElement>(
   (
@@ -30,7 +30,7 @@ const MaskOverride = React.forwardRef<MaskedInputPropsT, HTMLElement>(
       disabled,
       ...restProps
     }: MaskedInputPropsT,
-    ref,
+    ref
   ) => {
     return (
       <InputMask
@@ -54,14 +54,14 @@ const MaskOverride = React.forwardRef<MaskedInputPropsT, HTMLElement>(
         )}
       </InputMask>
     );
-  },
+  }
 );
 MaskOverride.displayName = 'MaskOverride';
 
 export default function MaskedInput({
   mask,
   maskChar,
-  overrides: {Input: inputOverride = {}, ...restOverrides} = {},
+  overrides: { Input: inputOverride = {}, ...restOverrides } = {},
   ...restProps
 }: MaskedInputPropsT) {
   let componentOverride = MaskOverride;

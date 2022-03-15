@@ -8,10 +8,10 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 // $FlowFixMe
-import {render, prettyDOM} from '@testing-library/react';
+import { render, prettyDOM } from '@testing-library/react';
 
 import FlexGrid from '../flex-grid.js';
-import {camelToKebab} from '../../helpers/strings.js';
+import { camelToKebab } from '../../helpers/strings.js';
 
 describe('FlexGrid', () => {
   it('passes FlexGrid props to children', () => {
@@ -24,14 +24,12 @@ describe('FlexGrid', () => {
         }, {})}
       />
     );
-    const {baseElement} = render(
+    const { baseElement } = render(
       <FlexGrid flexGridColumnCount={4}>
         <MockFlexGridItem>Item 1</MockFlexGridItem>
         <MockFlexGridItem>Item 2</MockFlexGridItem>
-      </FlexGrid>,
+      </FlexGrid>
     );
-    expect(prettyDOM(baseElement)).toMatchSnapshot(
-      'FlexGridItem with flexGridColumnCount',
-    );
+    expect(prettyDOM(baseElement)).toMatchSnapshot('FlexGridItem with flexGridColumnCount');
   });
 });

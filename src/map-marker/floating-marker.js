@@ -6,15 +6,15 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {useStyletron} from '../styles/index.js';
+import { useStyletron } from '../styles/index.js';
 import PinHead from './pin-head.js';
-import {getOverrides} from '../helpers/overrides.js';
+import { getOverrides } from '../helpers/overrides.js';
 import {
   StyledFloatingMarkerRoot,
   StyledFloatingMarkerAnchorContainer,
   StyledFloatingMarkerPinHeadContainer,
 } from './styled-components.js';
-import type {FloatingMarkerPropsT} from './types.js';
+import type { FloatingMarkerPropsT } from './types.js';
 import {
   FLOATING_MARKER_ANCHOR_POSITIONS,
   PINHEAD_SIZES_SHAPES,
@@ -46,26 +46,21 @@ const FloatingMarker = ({
 }: FloatingMarkerPropsT) => {
   const [, theme] = useStyletron();
   const {
-    colors: {backgroundPrimary, backgroundInversePrimary, primaryA, primaryB},
+    colors: { backgroundPrimary, backgroundInversePrimary, primaryA, primaryB },
   } = theme;
 
   const anchorPinHeadSize = getAnchorPinHeadSize(anchorType);
 
-  const [Root, rootProps] = getOverrides(
-    overrides.Root,
-    StyledFloatingMarkerRoot,
+  const [Root, rootProps] = getOverrides(overrides.Root, StyledFloatingMarkerRoot);
+  const [FloatingMarkerPinHeadContainer, floatingMarkerPinHeadContainerProps] = getOverrides(
+    overrides.PinHeadContainer,
+    StyledFloatingMarkerPinHeadContainer
   );
-  const [FloatingMarkerPinHeadContainer, floatingMarkerPinHeadContainerProps] =
-    getOverrides(
-      overrides.PinHeadContainer,
-      StyledFloatingMarkerPinHeadContainer,
-    );
 
-  const [FloatingMarkerAnchorContainer, floatingMarkerAnchorContainerProps] =
-    getOverrides(
-      overrides.AnchorContainer,
-      StyledFloatingMarkerAnchorContainer,
-    );
+  const [FloatingMarkerAnchorContainer, floatingMarkerAnchorContainerProps] = getOverrides(
+    overrides.AnchorContainer,
+    StyledFloatingMarkerAnchorContainer
+  );
 
   return (
     <Root

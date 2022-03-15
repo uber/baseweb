@@ -7,8 +7,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {TETHER_PLACEMENT} from './constants.js';
-import type {OverrideT} from '../helpers/overrides.js';
+import { TETHER_PLACEMENT } from './constants.js';
+import type { OverrideT } from '../helpers/overrides.js';
 
 /** LayersManager */
 export type LayersManagerPropsT = {

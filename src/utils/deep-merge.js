@@ -7,10 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 /* flowlint unclear-type:off */
-export default function deepMerge(
-  target?: ?{},
-  ...sources: Array<null | ?{}>
-): any {
+export default function deepMerge(target?: ?{}, ...sources: Array<null | ?{}>): any {
   target = target || {};
   const len = sources.length;
   let obj;
@@ -24,7 +21,7 @@ export default function deepMerge(
           target[key] = deepMerge(
             /* eslint-disable-next-line no-mixed-operators */
             target[key] || (Array.isArray(value) && []) || {},
-            value,
+            value
           );
         } else {
           target[key] = value;

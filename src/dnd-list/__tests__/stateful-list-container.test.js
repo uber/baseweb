@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {render} from '@testing-library/react';
-import {StatefulListContainer, STATE_CHANGE_TYPE} from '../index.js';
+import { render } from '@testing-library/react';
+import { StatefulListContainer, STATE_CHANGE_TYPE } from '../index.js';
 
 describe('StatefulListContainer', () => {
   it('basic render', () => {
@@ -24,9 +24,7 @@ describe('StatefulListContainer', () => {
       stateReducer: jest.fn(),
     };
     const children = jest.fn(() => null);
-    render(
-      <StatefulListContainer {...props}>{children}</StatefulListContainer>,
-    );
+    render(<StatefulListContainer {...props}>{children}</StatefulListContainer>);
     expect(children).toHaveBeenCalledTimes(1);
   });
 
@@ -42,9 +40,7 @@ describe('StatefulListContainer', () => {
       oldIndex: undefined,
     };
 
-    render(
-      <StatefulListContainer {...props}>{children}</StatefulListContainer>,
-    );
+    render(<StatefulListContainer {...props}>{children}</StatefulListContainer>);
 
     expect(children).toHaveBeenCalledTimes(1);
 
@@ -67,11 +63,9 @@ describe('StatefulListContainer', () => {
     };
     const children = jest.fn(() => null);
 
-    render(
-      <StatefulListContainer {...props}>{children}</StatefulListContainer>,
-    );
+    render(<StatefulListContainer {...props}>{children}</StatefulListContainer>);
 
-    props.stateReducer.mockReturnValueOnce({items: ['Item 2', 'Item 1']});
+    props.stateReducer.mockReturnValueOnce({ items: ['Item 2', 'Item 1'] });
     // flowlint-next-line unclear-type:off
     const targetRect: any = {};
     children.mock.calls[0][0].onChange({
@@ -83,8 +77,8 @@ describe('StatefulListContainer', () => {
     expect(props.stateReducer).toHaveBeenCalledTimes(1);
     expect(props.stateReducer).toHaveBeenLastCalledWith(
       STATE_CHANGE_TYPE.change,
-      {items: ['Item 2', 'Item 1']},
-      {items: ['Item 1', 'Item 2']},
+      { items: ['Item 2', 'Item 1'] },
+      { items: ['Item 1', 'Item 2'] }
     );
   });
 });

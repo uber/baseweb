@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import colorTokens from './color-tokens.js';
-import type {ColorTokensT} from '../types.js';
+import type { ColorTokensT } from '../types.js';
 
 /* ---- DEPRECATED ---- */
 export default (themePrimitives: ColorTokensT = colorTokens) => ({

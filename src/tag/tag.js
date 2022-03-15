@@ -6,24 +6,22 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {getOverrides} from '../helpers/overrides.js';
+import { getOverrides } from '../helpers/overrides.js';
 import {
   Action as StyledAction,
   Root as StyledRoot,
   StartEnhancerContainer as StyledStartEnhancerContainer,
   Text as StyledText,
 } from './styled-components.js';
-import {KIND, VARIANT, SIZE} from './constants.js';
-import {getTextFromChildren} from './utils.js';
-import type {PropsT, SharedPropsArgT} from './types.js';
+import { KIND, VARIANT, SIZE } from './constants.js';
+import { getTextFromChildren } from './utils.js';
+import type { PropsT, SharedPropsArgT } from './types.js';
 import DeleteIcon from '../icon/delete.js';
-import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
+import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible.js';
 
 // Previously, Tag used a hardcoded SVG as its 'close' icon. Replacing it with
 // Delete requires modifying Delete's viewbox to prevent visual regressions.
-const ModifiedViewBoxDeleteIcon = (props) => (
-  <DeleteIcon viewBox="5 5 13.186 13.186" {...props} />
-);
+const ModifiedViewBoxDeleteIcon = (props) => <DeleteIcon viewBox="5 5 13.186 13.186" {...props} />;
 
 const Tag = React.forwardRef<PropsT, HTMLSpanElement>((props, ref) => {
   const {
@@ -79,11 +77,11 @@ const Tag = React.forwardRef<PropsT, HTMLSpanElement>((props, ref) => {
   const [Action, actionProps] = getOverrides(overrides.Action, StyledAction);
   const [ActionIcon, actionIconProps] = getOverrides(
     overrides.ActionIcon,
-    ModifiedViewBoxDeleteIcon,
+    ModifiedViewBoxDeleteIcon
   );
   const [StartEnhancerContainer, startEnhancerContainerProps] = getOverrides(
     overrides.StartEnhancerContainer,
-    StyledStartEnhancerContainer,
+    StyledStartEnhancerContainer
   );
   const [Text, textProps] = getOverrides(overrides.Text, StyledText);
   const clickable = typeof onClick === 'function';
@@ -132,9 +130,7 @@ const Tag = React.forwardRef<PropsT, HTMLSpanElement>((props, ref) => {
       data-baseweb="tag"
       aria-label={
         isButton && closeable
-          ? `${
-              typeof children === 'string' ? `${children}, ` : ''
-            }close by backspace`
+          ? `${typeof children === 'string' ? `${children}, ` : ''}close by backspace`
           : null
       }
       aria-disabled={disabled ? true : null}

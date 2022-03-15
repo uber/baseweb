@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {mount} = require('../../../e2e/helpers');
+const { mount } = require('../../../e2e/helpers');
 
 describe('popover-dynamic-triggertype', () => {
   it('hover opens/closes content by default', async () => {
@@ -18,7 +18,7 @@ describe('popover-dynamic-triggertype', () => {
     await page.waitForSelector('#content-hover');
 
     await page.hover('#outside-target');
-    await page.waitForSelector('#content-hover', {hidden: true});
+    await page.waitForSelector('#content-hover', { hidden: true });
   });
 
   it('click opens/closes content', async () => {
@@ -32,6 +32,6 @@ describe('popover-dynamic-triggertype', () => {
     await page.waitForSelector('#content-click');
 
     await page.click('#outside-target');
-    await page.waitForSelector('#content-click', {hidden: true});
+    await page.waitForSelector('#content-click', { hidden: true });
   });
 });

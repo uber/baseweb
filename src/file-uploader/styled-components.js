@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import {styled} from '../styles/index.js';
-import type {StylePropsT} from './types.js';
+import { styled } from '../styles/index.js';
+import type { StylePropsT } from './types.js';
 
 export const StyledFileDragAndDrop = styled<StylePropsT>('div', (props) => {
   const borderColor = props.$isDragActive
@@ -51,11 +51,9 @@ export const StyledFileDragAndDrop = styled<StylePropsT>('div', (props) => {
 
 export const StyledContentMessage = styled<StylePropsT>(
   'div',
-  ({$theme, $afterFileDrop, $isDragActive}) =>
+  ({ $theme, $afterFileDrop, $isDragActive }) =>
     ({
-      ...($afterFileDrop
-        ? $theme.typography.LabelMedium
-        : $theme.typography.LabelSmall),
+      ...($afterFileDrop ? $theme.typography.LabelMedium : $theme.typography.LabelSmall),
       color: $afterFileDrop
         ? $theme.colors.contentPrimary
         : $isDragActive
@@ -63,7 +61,7 @@ export const StyledContentMessage = styled<StylePropsT>(
         : null,
       marginTop: $afterFileDrop ? $theme.sizing.scale100 : null,
       marginBottom: $afterFileDrop ? $theme.sizing.scale100 : null,
-    }: {}),
+    }: {})
 );
 
 export const StyledContentSeparator = StyledContentMessage;
@@ -76,7 +74,7 @@ export const StyledErrorMessage = styled<StylePropsT>(
       color: props.$theme.colors.negative,
       marginTop: props.$afterFileDrop ? props.$theme.sizing.scale100 : null,
       marginBottom: props.$afterFileDrop ? props.$theme.sizing.scale100 : null,
-    }: {}),
+    }: {})
 );
 
 export const StyledRoot = styled<StylePropsT>('div', (props) => ({

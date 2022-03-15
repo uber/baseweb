@@ -5,10 +5,10 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import {styled} from '../styles/index.js';
-import {getSvgStyles} from '../icon/styled-components.js';
-import {SIZE} from './constants.js';
-import type {StyledSpinnerNextPropsT} from './types.js';
+import { styled } from '../styles/index.js';
+import { getSvgStyles } from '../icon/styled-components.js';
+import { SIZE } from './constants.js';
+import type { StyledSpinnerNextPropsT } from './types.js';
 
 type StylePropsT = {
   $size?: number | string,
@@ -28,7 +28,7 @@ const spin = {
  * Spinner icon overrides
  */
 export const Svg = styled<StylePropsT>('svg', (props) => {
-  const {$theme, $color} = props;
+  const { $theme, $color } = props;
   return {
     ...getSvgStyles(props),
     fill: $color || $theme.colors.accent,
@@ -108,5 +108,5 @@ export const StyledSpinnerNext = styled<StyledSpinnerNextPropsT>(
       height: boxSize,
       cursor: 'wait',
     };
-  },
+  }
 );

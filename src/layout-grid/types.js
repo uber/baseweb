@@ -7,16 +7,13 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {ALIGNMENT, BEHAVIOR, STYLE} from './constants.js';
+import { ALIGNMENT, BEHAVIOR, STYLE } from './constants.js';
 
-import type {OverrideT} from '../helpers/overrides.js';
+import type { OverrideT } from '../helpers/overrides.js';
 
 export type ResponsiveT<T> = T | Array<T>;
 
-export type AlignmentT =
-  | typeof ALIGNMENT.start
-  | typeof ALIGNMENT.center
-  | typeof ALIGNMENT.end;
+export type AlignmentT = typeof ALIGNMENT.start | typeof ALIGNMENT.center | typeof ALIGNMENT.end;
 
 export type BehaviorT = typeof BEHAVIOR.fixed | typeof BEHAVIOR.fluid;
 export type CSSLengthUnitT =

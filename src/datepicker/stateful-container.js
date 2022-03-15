@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {STATE_CHANGE_TYPE} from './constants.js';
+import { STATE_CHANGE_TYPE } from './constants.js';
 import type {
   CalendarPropsT,
   ContainerStateT,
@@ -20,11 +20,8 @@ type InputProps<T> = CalendarPropsT<T> | DatepickerPropsT<T>;
 
 type PropsT<T> = StatefulContainerPropsT<InputProps<T>, T>;
 
-class StatefulContainer<T = Date> extends React.Component<
-  PropsT<T>,
-  ContainerStateT<T>,
-> {
-  static defaultProps: {stateReducer: StateReducerT<T>} = {
+class StatefulContainer<T = Date> extends React.Component<PropsT<T>, ContainerStateT<T>> {
+  static defaultProps: { stateReducer: StateReducerT<T> } = {
     initialState: {},
     stateReducer: (type, nextState) => nextState,
     onChange: () => {},
@@ -33,24 +30,24 @@ class StatefulContainer<T = Date> extends React.Component<
   constructor(props: PropsT<T>) {
     super(props);
     const value = props.range ? [] : (null: ?T);
-    this.state = {value, ...props.initialState};
+    this.state = { value, ...props.initialState };
   }
 
-  onChange: ({date: ?T | Array<T>}) => mixed = (data) => {
-    const {date} = data;
-    this.internalSetState(STATE_CHANGE_TYPE.change, {value: date});
+  onChange: ({ date: ?T | Array<T> }) => mixed = (data) => {
+    const { date } = data;
+    this.internalSetState(STATE_CHANGE_TYPE.change, { value: date });
     if (typeof this.props.onChange === 'function') {
       this.props.onChange(data);
     }
   };
 
   internalSetState(type: StateChangeTypeT, changes: ContainerStateT<T>) {
-    const {stateReducer} = this.props;
+    const { stateReducer } = this.props;
     this.setState((prevState) => stateReducer(type, changes, prevState));
   }
 
   render() {
-    const {children, initialState, stateReducer, ...restProps} = this.props;
+    const { children, initialState, stateReducer, ...restProps } = this.props;
     return this.props.children({
       ...restProps,
       value: this.state.value,

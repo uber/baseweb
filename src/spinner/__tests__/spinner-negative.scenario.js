@@ -8,13 +8,13 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Spinner} from '../index.js';
+import { Spinner } from '../index.js';
 
 export function Scenario() {
   return (
     <Spinner
       overrides={{
-        ActivePath: {style: ({$theme}) => ({fill: $theme.colors.negative})},
+        ActivePath: { style: ({ $theme }) => ({ fill: $theme.colors.negative }) },
       }}
     />
   );

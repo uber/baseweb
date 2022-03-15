@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {getOverrides} from '../helpers/overrides.js';
+import { getOverrides } from '../helpers/overrides.js';
 import {
   StyledNumberStep,
   StyledNumberIcon,
@@ -19,7 +19,7 @@ import {
 } from './styled-components.js';
 import StyledCheckIcon from '../icon/check.js';
 
-import type {NumberedStepPropsT} from './types.js';
+import type { NumberedStepPropsT } from './types.js';
 
 function NumberedStep({
   overrides = {},
@@ -32,23 +32,14 @@ function NumberedStep({
 }: NumberedStepPropsT) {
   const [Root, rootProps] = getOverrides(overrides.Root, StyledNumberStep);
   const [Icon, iconProps] = getOverrides(overrides.Icon, StyledNumberIcon);
-  const [Tail, tailProps] = getOverrides(
-    overrides.Tail,
-    StyledNumberContentTail,
-  );
-  const [Content, contentProps] = getOverrides(
-    overrides.Content,
-    StyledContent,
-  );
+  const [Tail, tailProps] = getOverrides(overrides.Tail, StyledNumberContentTail);
+  const [Content, contentProps] = getOverrides(overrides.Content, StyledContent);
   const [Title, titleProps] = getOverrides(overrides.Title, StyledContentTitle);
   const [Description, descriptionProps] = getOverrides(
     overrides.Description,
-    StyledContentDescription,
+    StyledContentDescription
   );
-  const [CheckIcon, checkIconProps] = getOverrides(
-    overrides.Icon,
-    StyledCheckIcon,
-  );
+  const [CheckIcon, checkIconProps] = getOverrides(overrides.Icon, StyledCheckIcon);
 
   const sharedProps = {
     $isCompleted: isCompleted,

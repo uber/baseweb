@@ -9,19 +9,13 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {ArrowLeft, ArrowRight, Check} from '../icon/index.js';
-import {Button, KIND, SHAPE} from '../button/index.js';
-import {useStyletron} from '../styles/index.js';
+import { ArrowLeft, ArrowRight, Check } from '../icon/index.js';
+import { Button, KIND, SHAPE } from '../button/index.js';
+import { useStyletron } from '../styles/index.js';
 
-import type {HelperStepsPropsT} from './types.js';
+import type { HelperStepsPropsT } from './types.js';
 
-export function HelperSteps({
-  index,
-  length,
-  onFinish,
-  onPrev,
-  onNext,
-}: HelperStepsPropsT) {
+export function HelperSteps({ index, length, onFinish, onPrev, onNext }: HelperStepsPropsT) {
   const [css, theme] = useStyletron();
 
   const isLast = index === length - 1;
@@ -34,15 +28,10 @@ export function HelperSteps({
         justifyContent: 'space-between',
       })}
     >
-      <Button
-        disabled={index === 0}
-        kind={KIND.secondary}
-        onClick={onPrev}
-        shape={SHAPE.circle}
-      >
+      <Button disabled={index === 0} kind={KIND.secondary} onClick={onPrev} shape={SHAPE.circle}>
         <ArrowLeft size={20} />
       </Button>
-      <div className={css({display: 'flex'})}>
+      <div className={css({ display: 'flex' })}>
         {new Array(length).fill().map((_, i) => {
           return (
             <div
@@ -51,9 +40,7 @@ export function HelperSteps({
                 height: '8px',
                 width: '8px',
                 backgroundColor:
-                  i === index
-                    ? theme.colors.contentPrimary
-                    : theme.colors.backgroundTertiary,
+                  i === index ? theme.colors.contentPrimary : theme.colors.backgroundTertiary,
                 borderTopLeftRadius: '50%',
                 borderTopRightRadius: '50%',
                 borderBottomRightRadius: '50%',

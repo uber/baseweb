@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {mount} = require('../../../e2e/helpers');
+const { mount } = require('../../../e2e/helpers');
 
 const SELECT_INPUT = 'div[data-baseweb="select"] input';
 

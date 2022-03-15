@@ -7,16 +7,12 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-import {styled} from '../styles/index.js';
+import { styled } from '../styles/index.js';
 
-import {PLACEMENT} from '../popover/constants.js';
-import type {
-  OffsetT,
-  PopoverPlacementT,
-  SharedStylePropsArgT,
-} from '../popover/types.js';
-import {getBodyStyles} from '../popover/styled-components.js';
-import {getPopoverMarginStyles, splitPlacement} from '../popover/utils.js';
+import { PLACEMENT } from '../popover/constants.js';
+import type { OffsetT, PopoverPlacementT, SharedStylePropsArgT } from '../popover/types.js';
+import { getBodyStyles } from '../popover/styled-components.js';
+import { getPopoverMarginStyles, splitPlacement } from '../popover/utils.js';
 
 const CLAMP_ARROW_SIZE = 16;
 
@@ -128,11 +124,7 @@ function position(offsets, placement, width, height) {
   return {};
 }
 
-function clampArrowStyle(
-  offsets: OffsetT,
-  placement: PopoverPlacementT,
-  color: string,
-) {
+function clampArrowStyle(offsets: OffsetT, placement: PopoverPlacementT, color: string) {
   if (placement === PLACEMENT.auto) {
     return {};
   } else if (
@@ -148,7 +140,7 @@ function clampArrowStyle(
       width: `${w}px`,
       height: `${h}px`,
       background: `conic-gradient(from ${conicGradientDegStart(
-        placement,
+        placement
       )}deg at ${x}% ${y}%, ${color} 0%, ${color} 25%, transparent 25%, transparent 100%)`,
       ...position(offsets, placement, w, h),
     };
@@ -159,7 +151,7 @@ function clampArrowStyle(
       width: `${w}px`,
       height: `${h}px`,
       background: `linear-gradient(${linearGradientDirection(
-        placement,
+        placement
       )}, transparent 0%, transparent 50%, ${color} 50%, ${color} 100%)`,
       ...position(offsets, placement, w, h),
     };
@@ -172,7 +164,7 @@ export const StyledBody = styled<SharedStylePropsArgT>('div', (props) => {
     ...getPopoverMarginStyles(
       props.$showArrow ? CLAMP_ARROW_SIZE : 0,
       props.$placement,
-      props.$popoverMargin,
+      props.$popoverMargin
     ),
     backgroundColor: props.$theme.colors.backgroundPrimary,
   };
@@ -180,10 +172,6 @@ export const StyledBody = styled<SharedStylePropsArgT>('div', (props) => {
 
 export const StyledArrow = styled<SharedStylePropsArgT>('div', (props) => {
   return {
-    ...clampArrowStyle(
-      props.$arrowOffset,
-      props.$placement,
-      props.$theme.colors.backgroundPrimary,
-    ),
+    ...clampArrowStyle(props.$arrowOffset, props.$placement, props.$theme.colors.backgroundPrimary),
   };
 });

@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import type {BreakpointsT} from '../styles/types.js';
+import type { BreakpointsT } from '../styles/types.js';
 
 /**
  * Helper function that generates media queries based on breakpoint, e.g.

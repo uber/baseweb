@@ -7,13 +7,13 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {format} from 'date-fns';
+import { format } from 'date-fns';
 
-import {StyledLink} from '../../link/index.js';
-import {useStyletron} from '../../styles/index.js';
+import { StyledLink } from '../../link/index.js';
+import { useStyletron } from '../../styles/index.js';
 
-import {StyledTable, StyledHeadCell, StyledBodyCell} from '../index.js';
-import {useCellNavigation} from './shared.js';
+import { StyledTable, StyledHeadCell, StyledBodyCell } from '../index.js';
+import { useCellNavigation } from './shared.js';
 
 // [date, event description]
 type EventT = [Date, string];
@@ -44,9 +44,9 @@ const data: RowT[] = [row, row, row, row, row, row, row];
 
 export function Scenario() {
   const [css] = useStyletron();
-  const {getCellProps} = useCellNavigation();
+  const { getCellProps } = useCellNavigation();
   return (
-    <div className={css({height: '600px'})}>
+    <div className={css({ height: '600px' })}>
       <StyledTable
         role="grid"
         tabIndex="0"

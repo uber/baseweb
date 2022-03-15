@@ -12,16 +12,13 @@ import type {
   StateChangeTypeT,
   StateReducerT,
 } from './types.js';
-import {arrayMove, arrayRemove} from 'react-movable';
+import { arrayMove, arrayRemove } from 'react-movable';
 
 const defaultStateReducer: StateReducerT = (type, nextState) => nextState;
 
-class StatefulListContainer extends React.Component<
-  StatefulComponentContainerPropsT,
-  StateT,
-> {
+class StatefulListContainer extends React.Component<StatefulComponentContainerPropsT, StateT> {
   static defaultProps: $Shape<StatefulComponentContainerPropsT> = {
-    initialState: {items: []},
+    initialState: { items: [] },
     stateReducer: defaultStateReducer,
     onChange: () => {},
   };
@@ -50,16 +47,16 @@ class StatefulListContainer extends React.Component<
       newIndex,
       targetRect,
     });
-    this.internalSetState('change', {items: newItemsState});
+    this.internalSetState('change', { items: newItemsState });
   };
 
   internalSetState(type: StateChangeTypeT, changes: StateT) {
-    const {stateReducer} = this.props;
+    const { stateReducer } = this.props;
     this.setState((prevState) => stateReducer(type, changes, prevState));
   }
 
   render() {
-    const {children, initialState, stateReducer, ...restProps} = this.props;
+    const { children, initialState, stateReducer, ...restProps } = this.props;
 
     return this.props.children({
       ...restProps,

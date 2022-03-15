@@ -8,32 +8,20 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
-import {StatefulInput, SIZE} from '../index.js';
+import { StatefulInput, SIZE } from '../index.js';
 
 export function Scenario() {
   return (
     <>
-      <StatefulInput
-        size={SIZE.mini}
-        initialState={{value: 'Mini'}}
-        endEnhancer=".com"
-      />
+      <StatefulInput size={SIZE.mini} initialState={{ value: 'Mini' }} endEnhancer=".com" />
 
       <br />
-      <StatefulInput
-        size={SIZE.compact}
-        initialState={{value: 'Compact'}}
-        endEnhancer=".com"
-      />
+      <StatefulInput size={SIZE.compact} initialState={{ value: 'Compact' }} endEnhancer=".com" />
 
       <br />
-      <StatefulInput initialState={{value: 'Default'}} endEnhancer=".com" />
+      <StatefulInput initialState={{ value: 'Default' }} endEnhancer=".com" />
       <br />
-      <StatefulInput
-        size={SIZE.large}
-        initialState={{value: 'Large'}}
-        endEnhancer=".com"
-      />
+      <StatefulInput size={SIZE.large} initialState={{ value: 'Large' }} endEnhancer=".com" />
     </>
   );
 }

@@ -6,31 +6,31 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {render, fireEvent, getByTestId} from '@testing-library/react';
+import { render, fireEvent, getByTestId } from '@testing-library/react';
 
-import {Tag} from '../index.js';
-import type {TagKindT} from '../index.js';
+import { Tag } from '../index.js';
+import type { TagKindT } from '../index.js';
 
 describe('Tag', () => {
   it('renders provided children', () => {
     const content = 'hello world';
-    const {getByText} = render(<Tag>{content}</Tag>);
+    const { getByText } = render(<Tag>{content}</Tag>);
     const element = getByText(content);
     expect(element).toBeDefined();
   });
 
   it('does not render a11y attributes if disabled', () => {
-    const {container} = render(
+    const { container } = render(
       <Tag
         disabled
         onActionClick={() => {}}
         overrides={{
-          Root: {props: {'data-testid': 'root'}},
-          Action: {props: {'data-testid': 'action'}},
+          Root: { props: { 'data-testid': 'root' } },
+          Action: { props: { 'data-testid': 'action' } },
         }}
       >
         content
-      </Tag>,
+      </Tag>
     );
     const root = getByTestId(container, 'root');
     expect(root.getAttribute('aria-label')).toBeNull();
@@ -42,13 +42,13 @@ describe('Tag', () => {
 
   it('calls action callback on click', () => {
     const actionClickMock = jest.fn();
-    const {container} = render(
+    const { container } = render(
       <Tag
         onActionClick={actionClickMock}
-        overrides={{Action: {props: {'data-testid': 'action'}}}}
+        overrides={{ Action: { props: { 'data-testid': 'action' } } }}
       >
         content
-      </Tag>,
+      </Tag>
     );
 
     const action = getByTestId(container, 'action');
@@ -59,7 +59,7 @@ describe('Tag', () => {
   it('passes flow check with tag enum', function () {
     // https://github.com/uber/baseweb/issues/1910
     // eslint-disable-next-line no-unused-vars
-    function TagWrapper(props: {kind: TagKindT}) {
+    function TagWrapper(props: { kind: TagKindT }) {
       return <Tag kind={props.kind} />;
     }
   });

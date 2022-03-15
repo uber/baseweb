@@ -6,13 +6,13 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import {styled} from '../styles/index.js';
+import { styled } from '../styles/index.js';
 
 export const Link = styled<{
   $isAnimateUnderline: boolean,
   $isFocusVisible: boolean,
-}>('a', ({$theme, $isAnimateUnderline, $isFocusVisible}) => {
-  const {colors, typography, animation, direction} = $theme;
+}>('a', ({ $theme, $isAnimateUnderline, $isFocusVisible }) => {
+  const { colors, typography, animation, direction } = $theme;
 
   const underlineLTR = `linear-gradient(transparent calc(100% - 1px), ${colors.linkHover} 1px), linear-gradient(transparent calc(100% - 1px), ${colors.linkText} 1px)`;
 
@@ -30,8 +30,7 @@ export const Link = styled<{
     textDecoration: $isAnimateUnderline ? 'none' : 'underline',
     textUnderlinePosition: 'under',
     willChange: 'background-size',
-    backgroundSize:
-      direction === 'rtl' ? '100% 100%, 100% 100%' : '0% 100%, 100% 100%',
+    backgroundSize: direction === 'rtl' ? '100% 100%, 100% 100%' : '0% 100%, 100% 100%',
     backgroundRepeat: 'no-repeat',
     backgroundImage: $isAnimateUnderline
       ? direction === 'rtl'
@@ -40,8 +39,7 @@ export const Link = styled<{
       : 'none',
     ':hover': {
       color: colors.linkHover,
-      backgroundSize:
-        direction === 'rtl' ? '0% 100%, 100% 100%' : '100% 100%, 100% 100%',
+      backgroundSize: direction === 'rtl' ? '0% 100%, 100% 100%' : '100% 100%, 100% 100%',
     },
     ':focus': {
       outline: $isFocusVisible ? `3px solid ${colors.accent}` : 'none',

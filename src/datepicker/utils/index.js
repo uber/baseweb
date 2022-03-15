@@ -13,7 +13,7 @@ import DateHelpers from './date-helpers';
 const defaultDateHelpers = new DateHelpers<Date>(defaultAdapter);
 
 type DirtyDate = Date | number;
-const {date: wrapDate} = defaultAdapter;
+const { date: wrapDate } = defaultAdapter;
 
 export const formatDate = defaultDateHelpers.formatDate;
 export const getStartOfWeek = defaultDateHelpers.getStartOfWeek;
@@ -40,8 +40,7 @@ export const applyTimeToDate = defaultDateHelpers.applyTimeToDate;
 export const applyDateToTime = defaultDateHelpers.applyDateToTime;
 
 const createDirtySetter = (setter: (Date, number) => Date) => {
-  return (dirtyDate: DirtyDate, number: number) =>
-    setter(wrapDate(dirtyDate), number);
+  return (dirtyDate: DirtyDate, number: number) => setter(wrapDate(dirtyDate), number);
 };
 
 const createDirtyGetter = (getter: (Date) => number) => {

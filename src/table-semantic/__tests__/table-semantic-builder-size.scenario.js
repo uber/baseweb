@@ -7,8 +7,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {useStyletron} from '../../styles/index.js';
-import {TableBuilder, TableBuilderColumn, SIZE} from '../index.js';
+import { useStyletron } from '../../styles/index.js';
+import { TableBuilder, TableBuilderColumn, SIZE } from '../index.js';
 
 const data = [
   {
@@ -33,7 +33,7 @@ const data = [
   },
 ];
 
-function Instance({size}) {
+function Instance({ size }) {
   return (
     <TableBuilder data={data} size={size}>
       <TableBuilderColumn id="bar" header="Produce" sortable>
@@ -54,7 +54,7 @@ export function Scenario() {
   });
 
   return (
-    <div className={css({padding: '24px', width: '800px'})}>
+    <div className={css({ padding: '24px', width: '800px' })}>
       <p className={title}>compact</p>
       <Instance size={SIZE.compact} />
 

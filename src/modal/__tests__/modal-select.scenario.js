@@ -8,9 +8,9 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Button} from '../../button/index.js';
-import {StatefulSelect} from '../../select/index.js';
-import {Modal, ModalBody, ModalHeader} from '../index.js';
+import { Button } from '../../button/index.js';
+import { StatefulSelect } from '../../select/index.js';
+import { Modal, ModalBody, ModalHeader } from '../index.js';
 
 export function Scenario() {
   const [isOpen, setIsOpen] = React.useState(true);
@@ -22,21 +22,21 @@ export function Scenario() {
       <Modal
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
-        overrides={{Backdrop: {props: {'data-e2e': 'backdrop'}}}}
+        overrides={{ Backdrop: { props: { 'data-e2e': 'backdrop' } } }}
         unstable_ModalBackdropScroll
       >
         <ModalHeader>Hello world</ModalHeader>
         <ModalBody>
           <StatefulSelect
             options={[
-              {id: 'AliceBlue', color: '#F0F8FF'},
-              {id: 'AntiqueWhite', color: '#FAEBD7'},
-              {id: 'Aqua', color: '#00FFFF'},
-              {id: 'Aquamarine', color: '#7FFFD4'},
-              {id: 'Azure', color: '#F0FFFF'},
-              {id: 'Beige', color: '#F5F5DC'},
+              { id: 'AliceBlue', color: '#F0F8FF' },
+              { id: 'AntiqueWhite', color: '#FAEBD7' },
+              { id: 'Aqua', color: '#00FFFF' },
+              { id: 'Aquamarine', color: '#7FFFD4' },
+              { id: 'Azure', color: '#F0FFFF' },
+              { id: 'Beige', color: '#F5F5DC' },
             ]}
-            overrides={{ValueContainer: {props: {'data-id': 'selected'}}}}
+            overrides={{ ValueContainer: { props: { 'data-id': 'selected' } } }}
             labelKey="id"
             valueKey="color"
             placeholder="Start searching"

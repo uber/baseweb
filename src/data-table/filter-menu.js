@@ -7,21 +7,21 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {Button, SHAPE, SIZE} from '../button/index.js';
-import {Filter as FilterIcon} from '../icon/index.js';
-import {Input, SIZE as INPUT_SIZE} from '../input/index.js';
-import {Popover, PLACEMENT} from '../popover/index.js';
-import {useStyletron} from '../styles/index.js';
-import {useUIDSeed} from 'react-uid';
+import { Button, SHAPE, SIZE } from '../button/index.js';
+import { Filter as FilterIcon } from '../icon/index.js';
+import { Input, SIZE as INPUT_SIZE } from '../input/index.js';
+import { Popover, PLACEMENT } from '../popover/index.js';
+import { useStyletron } from '../styles/index.js';
+import { useUIDSeed } from 'react-uid';
 
-import {COLUMNS} from './constants.js';
-import {matchesQuery} from './text-search.js';
-import type {ColumnT} from './types.js';
-import {LocaleContext} from '../locale/index.js';
+import { COLUMNS } from './constants.js';
+import { matchesQuery } from './text-search.js';
+import type { ColumnT } from './types.js';
+import { LocaleContext } from '../locale/index.js';
 
-import {isFocusVisible} from '../utils/focusVisible.js';
+import { isFocusVisible } from '../utils/focusVisible.js';
 
-function ColumnIcon(props: {column: ColumnT<>}) {
+function ColumnIcon(props: { column: ColumnT<> }) {
   if (props.column.kind === COLUMNS.BOOLEAN) {
     return '01';
   }
@@ -163,9 +163,7 @@ function Options(props: OptionsPropsT) {
               className={css({
                 ...theme.typography.font100,
                 alignItems: 'center',
-                backgroundColor: isHighlighted
-                  ? theme.colors.menuFillHover
-                  : null,
+                backgroundColor: isHighlighted ? theme.colors.menuFillHover : null,
                 cursor: 'pointer',
                 display: 'flex',
                 paddingTop: theme.sizing.scale100,
@@ -205,10 +203,7 @@ type PropsT = {
   filters: Map<string, any>,
   // flowlint-next-line unclear-type:off
   rows: any[],
-  onSetFilter: (
-    columnTitle: string,
-    filterParams: {description: string},
-  ) => void,
+  onSetFilter: (columnTitle: string, filterParams: { description: string }) => void,
 };
 
 function FilterMenu(props: PropsT) {
@@ -234,9 +229,7 @@ function FilterMenu(props: PropsT) {
   }, [props.columns, props.filters]);
 
   const columns = React.useMemo(() => {
-    return filterableColumns.filter((column) =>
-      matchesQuery(column.title, query),
-    );
+    return filterableColumns.filter((column) => matchesQuery(column.title, query));
   }, [filterableColumns, query]);
 
   const Filter = React.useMemo(() => {
@@ -247,9 +240,7 @@ function FilterMenu(props: PropsT) {
   const activeColumnData = React.useMemo(() => {
     const columnIndex = props.columns.findIndex((c) => c === activeColumn);
     if (columnIndex < 0) return [];
-    return props.rows.map((row) =>
-      props.columns[columnIndex].mapDataToValue(row.data),
-    );
+    return props.rows.map((row) => props.columns[columnIndex].mapDataToValue(row.data));
   }, [props.columns, props.rows, activeColumn]);
 
   function handleKeyDown(event) {
@@ -282,9 +273,7 @@ function FilterMenu(props: PropsT) {
             <Filter
               data={activeColumnData}
               close={handleClose}
-              setFilter={(filterParams) =>
-                props.onSetFilter(activeColumn.title, filterParams)
-              }
+              setFilter={(filterParams) => props.onSetFilter(activeColumn.title, filterParams)}
             />
           );
         }

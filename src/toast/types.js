@@ -7,8 +7,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 
-import type {OverrideT} from '../helpers/overrides.js';
-import {KIND, PLACEMENT, TYPE} from './constants.js';
+import type { OverrideT } from '../helpers/overrides.js';
+import { KIND, PLACEMENT, TYPE } from './constants.js';
 
 export type KindTypeT = $Values<typeof KIND>;
 export type NotificationTypeT = $Values<typeof TYPE>;
@@ -33,7 +33,7 @@ export type OverridesT = {
   InnerContainer?: OverrideT,
 };
 
-export type ComponentRenderPropT = (props: {dismiss: () => void}) => React.Node;
+export type ComponentRenderPropT = (props: { dismiss: () => void }) => React.Node;
 
 export type ChildT = React.Node;
 
@@ -82,7 +82,7 @@ export type ToastPropsT = {
 };
 
 export type ToastPropsShapeT = $Shape<
-  $Diff<ToastPropsT, {children: ChildrenT | ComponentRenderPropT}>,
+  $Diff<ToastPropsT, { children: ChildrenT | ComponentRenderPropT }>
 >;
 
 export type ToasterOverridesT = {

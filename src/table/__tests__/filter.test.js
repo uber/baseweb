@@ -7,37 +7,28 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {
-  render,
-  fireEvent,
-  queryByTestId,
-  getByText,
-} from '@testing-library/react';
+import { render, fireEvent, queryByTestId, getByText } from '@testing-library/react';
 
-import {TestBaseProvider} from '../../test/test-utils.js';
+import { TestBaseProvider } from '../../test/test-utils.js';
 
-import {Filter} from '../index.js';
+import { Filter } from '../index.js';
 
 describe('Table-Filter', () => {
   it('does not display filter content by default', () => {
-    const {container} = render(
+    const { container } = render(
       <TestBaseProvider>
-        <Filter overrides={{Content: {props: {'data-testid': 'content'}}}}>
-          hello
-        </Filter>
-      </TestBaseProvider>,
+        <Filter overrides={{ Content: { props: { 'data-testid': 'content' } } }}>hello</Filter>
+      </TestBaseProvider>
     );
     expect(queryByTestId(container, 'content')).toBeNull();
   });
 
   it('displays filter content on click', () => {
     const children = 'hello';
-    const {container} = render(
+    const { container } = render(
       <TestBaseProvider>
-        <Filter overrides={{Content: {props: {'data-testid': 'content'}}}}>
-          {children}
-        </Filter>
-      </TestBaseProvider>,
+        <Filter overrides={{ Content: { props: { 'data-testid': 'content' } } }}>{children}</Filter>
+      </TestBaseProvider>
     );
     const button = container.querySelector('button');
     if (button) fireEvent.click(button);
@@ -45,15 +36,12 @@ describe('Table-Filter', () => {
   });
 
   it('does not display filter content if disabled', () => {
-    const {container} = render(
+    const { container } = render(
       <TestBaseProvider>
-        <Filter
-          disabled
-          overrides={{Content: {props: {'data-testid': 'content'}}}}
-        >
+        <Filter disabled overrides={{ Content: { props: { 'data-testid': 'content' } } }}>
           hello
         </Filter>
-      </TestBaseProvider>,
+      </TestBaseProvider>
     );
     const button = container.querySelector('button');
     if (button) fireEvent.click(button);
@@ -61,10 +49,10 @@ describe('Table-Filter', () => {
   });
 
   it('does display close button when enabled', () => {
-    const {container} = render(
+    const { container } = render(
       <TestBaseProvider>
         <Filter hasCloseButton={true}>hello</Filter>
-      </TestBaseProvider>,
+      </TestBaseProvider>
     );
     const button = container.querySelector('button');
     if (button) fireEvent.click(button);
@@ -72,15 +60,15 @@ describe('Table-Filter', () => {
   });
 
   it('does close filter when when closed is clicked', () => {
-    const {container} = render(
+    const { container } = render(
       <TestBaseProvider>
         <Filter
           hasCloseButton={true}
-          overrides={{Content: {props: {'data-testid': 'content'}}}}
+          overrides={{ Content: { props: { 'data-testid': 'content' } } }}
         >
           hello
         </Filter>
-      </TestBaseProvider>,
+      </TestBaseProvider>
     );
     const button = container.querySelector('button');
     if (button) fireEvent.click(button);
@@ -91,10 +79,10 @@ describe('Table-Filter', () => {
 
   it('calls provided onSelectAll handler', () => {
     const spy = jest.fn();
-    const {container} = render(
+    const { container } = render(
       <TestBaseProvider>
         <Filter onSelectAll={spy}>hello</Filter>
-      </TestBaseProvider>,
+      </TestBaseProvider>
     );
     const button = container.querySelector('button');
     if (button) fireEvent.click(button);
@@ -105,10 +93,10 @@ describe('Table-Filter', () => {
 
   it('calls provided onReset handler', () => {
     const spy = jest.fn();
-    const {container} = render(
+    const { container } = render(
       <TestBaseProvider>
         <Filter onReset={spy}>hello</Filter>
-      </TestBaseProvider>,
+      </TestBaseProvider>
     );
     const button = container.querySelector('button');
     if (button) fireEvent.click(button);

@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {getOverrides} from '../helpers/overrides.js';
+import { getOverrides } from '../helpers/overrides.js';
 import {
   Root as StyledRoot,
   List as StyledList,
@@ -15,52 +15,43 @@ import {
   CloseHandle as StyledCloseHandle,
   Label as StyledLabel,
 } from './styled-components.js';
-import {List as MovableList} from 'react-movable';
+import { List as MovableList } from 'react-movable';
 import Grab from '../icon/grab.js';
 import Delete from '../icon/delete.js';
-import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
-import {Layer} from '../layer/index.js';
+import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible.js';
+import { Layer } from '../layer/index.js';
 
-import type {ListPropsT, SharedStylePropsArgT} from './types.js';
+import type { ListPropsT, SharedStylePropsArgT } from './types.js';
 
-const ItemLayer = ({
-  children,
-  dragged,
-}: {
-  children: React.Node,
-  dragged: boolean,
-}) => {
+const ItemLayer = ({ children, dragged }: { children: React.Node, dragged: boolean }) => {
   if (!dragged) {
     return children;
   }
   return <Layer>{children}</Layer>;
 };
 
-class StatelessList extends React.Component<
-  ListPropsT,
-  {isFocusVisible: boolean},
-> {
+class StatelessList extends React.Component<ListPropsT, { isFocusVisible: boolean }> {
   static defaultProps: $Shape<ListPropsT> = {
     items: [],
     onChange: () => {},
   };
 
-  state = {isFocusVisible: false};
+  state = { isFocusVisible: false };
 
   handleFocus = (event: SyntheticEvent<>) => {
     if (isFocusVisible(event)) {
-      this.setState({isFocusVisible: true});
+      this.setState({ isFocusVisible: true });
     }
   };
 
   handleBlur = (event: SyntheticEvent<>) => {
     if (this.state.isFocusVisible !== false) {
-      this.setState({isFocusVisible: false});
+      this.setState({ isFocusVisible: false });
     }
   };
 
   render() {
-    const {overrides = {}, items, onChange, removable} = this.props;
+    const { overrides = {}, items, onChange, removable } = this.props;
     const {
       Root: RootOverride,
       List: ListOverride,
@@ -72,14 +63,8 @@ class StatelessList extends React.Component<
     const [Root, rootProps] = getOverrides(RootOverride, StyledRoot);
     const [List, listProps] = getOverrides(ListOverride, StyledList);
     const [Item, itemProps] = getOverrides(ItemOverride, StyledItem);
-    const [DragHandle, dragHandleProps] = getOverrides(
-      DragHandleOverride,
-      StyledDragHandle,
-    );
-    const [CloseHandle, closeHandleProps] = getOverrides(
-      CloseHandleOverride,
-      StyledCloseHandle,
-    );
+    const [DragHandle, dragHandleProps] = getOverrides(DragHandleOverride, StyledDragHandle);
+    const [CloseHandle, closeHandleProps] = getOverrides(CloseHandleOverride, StyledCloseHandle);
     const [Label, labelProps] = getOverrides(LabelOverride, StyledLabel);
     const isRemovable = this.props.removable || false;
     const isRemovableByMove = this.props.removableByMove || false;
@@ -95,24 +80,12 @@ class StatelessList extends React.Component<
           removableByMove={isRemovableByMove}
           values={items}
           onChange={onChange}
-          renderList={({children, props, isDragged}) => (
-            <List
-              $isRemovable={isRemovable}
-              $isDragged={isDragged}
-              ref={props.ref}
-              {...listProps}
-            >
+          renderList={({ children, props, isDragged }) => (
+            <List $isRemovable={isRemovable} $isDragged={isDragged} ref={props.ref} {...listProps}>
               {children}
             </List>
           )}
-          renderItem={({
-            value,
-            props,
-            isDragged,
-            isSelected,
-            isOutOfBounds,
-            index,
-          }) => {
+          renderItem={({ value, props, isDragged, isSelected, isOutOfBounds, index }) => {
             const sharedProps: SharedStylePropsArgT = {
               $isRemovable: isRemovable,
               $isRemovableByMove: isRemovableByMove,
@@ -133,7 +106,7 @@ class StatelessList extends React.Component<
                   onKeyDown={props.onKeyDown}
                   onWheel={props.onWheel}
                   {...itemProps}
-                  style={{...props.style, display: 'flex'}}
+                  style={{ ...props.style, display: 'flex' }}
                 >
                   <DragHandle {...sharedProps} {...dragHandleProps}>
                     <Grab size={24} />

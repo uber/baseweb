@@ -7,9 +7,9 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {render, fireEvent} from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 
-import {CategoricalColumn} from '../index.js';
+import { CategoricalColumn } from '../index.js';
 
 describe('categorical column', () => {
   it('is sortable by default', () => {
@@ -53,7 +53,7 @@ describe('categorical column', () => {
     });
     const Cell = column.renderCell;
 
-    const {container} = render(<Cell value="A" x={0} y={0} />);
+    const { container } = render(<Cell value="A" x={0} y={0} />);
     const cell = container.querySelector('div');
     expect(cell?.textContent).toBe('A');
   });
@@ -67,9 +67,7 @@ describe('categorical column', () => {
 
     const mockSetFilter = jest.fn();
     const data = ['A', 'B', 'C'];
-    const {container} = render(
-      <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
-    );
+    const { container } = render(<Filter setFilter={mockSetFilter} close={() => {}} data={data} />);
 
     const checkboxes = container.querySelectorAll('input[type="checkbox"]');
     // counts an additional checkbox to account for the 'exclude' toggle
@@ -85,8 +83,8 @@ describe('categorical column', () => {
 
     const mockSetFilter = jest.fn();
     const data = ['A', 'B', 'C'];
-    const {container, getByText} = render(
-      <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
+    const { container, getByText } = render(
+      <Filter setFilter={mockSetFilter} close={() => {}} data={data} />
     );
 
     const checkboxes = container.querySelectorAll('input[type="checkbox"]');
@@ -114,8 +112,8 @@ describe('categorical column', () => {
 
     const mockSetFilter = jest.fn();
     const data = ['A', 'B', 'C'];
-    const {container, getByText} = render(
-      <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
+    const { container, getByText } = render(
+      <Filter setFilter={mockSetFilter} close={() => {}} data={data} />
     );
 
     fireEvent.click(getByText('Select All'));
@@ -138,8 +136,8 @@ describe('categorical column', () => {
 
     const mockSetFilter = jest.fn();
     const data = ['A', 'B', 'C'];
-    const {container, getByText} = render(
-      <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
+    const { container, getByText } = render(
+      <Filter setFilter={mockSetFilter} close={() => {}} data={data} />
     );
 
     const checkboxes = container.querySelectorAll('input[type="checkbox"]');
@@ -163,9 +161,7 @@ describe('categorical column', () => {
 
     const mockSetFilter = jest.fn();
     const data = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
-    const {container} = render(
-      <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
-    );
+    const { container } = render(<Filter setFilter={mockSetFilter} close={() => {}} data={data} />);
 
     const input = container.querySelector('[data-baseweb="input"] input');
     expect(input).toBeTruthy();
@@ -180,12 +176,10 @@ describe('categorical column', () => {
 
     const mockSetFilter = jest.fn();
     const data = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
-    const {container} = render(
-      <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
-    );
+    const { container } = render(<Filter setFilter={mockSetFilter} close={() => {}} data={data} />);
 
     const input = container.querySelector('[data-baseweb="input"] input');
-    if (input) fireEvent.change(input, {target: {value: 'a'}});
+    if (input) fireEvent.change(input, { target: { value: 'a' } });
 
     const checkboxes = container.querySelectorAll('input[type="checkbox"]');
     expect(checkboxes.length).toBe(2);
@@ -200,15 +194,15 @@ describe('categorical column', () => {
 
     const mockSetFilter = jest.fn();
     const data = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
-    const {container, queryByText} = render(
-      <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
+    const { container, queryByText } = render(
+      <Filter setFilter={mockSetFilter} close={() => {}} data={data} />
     );
 
     expect(queryByText('Select All')).toBeTruthy();
     expect(queryByText('Clear')).toBeTruthy();
 
     const input = container.querySelector('[data-baseweb="input"] input');
-    if (input) fireEvent.change(input, {target: {value: 'a'}});
+    if (input) fireEvent.change(input, { target: { value: 'a' } });
 
     expect(queryByText('Select All')).toBeFalsy();
     expect(queryByText('Clear')).toBeFalsy();

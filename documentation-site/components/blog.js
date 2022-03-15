@@ -7,10 +7,10 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 import * as React from 'react';
-import {Block} from 'baseui/block';
+import { Block } from 'baseui/block';
 import Head from 'next/head';
-import {H1} from './markdown-elements';
-import {themedStyled} from '../pages/_app';
+import { H1 } from './markdown-elements';
+import { themedStyled } from '../pages/_app';
 
 const Image = themedStyled('img', (props) => ({
   display: 'block',
@@ -20,17 +20,21 @@ const Image = themedStyled('img', (props) => ({
   width: props.$full ? '100%' : 'auto',
 }));
 
-export const Caption = themedStyled<{}>('figcaption', ({$theme}) => ({
-  color: $theme.colors.contentSecondary,
-  fontFamily: $theme.typography.font100.fontFamily,
-  fontSize: $theme.sizing.scale500,
-  fontWeight: 300,
-  textAlign: 'center',
-  padding: '4px 4px 0 0',
-}));
+export const Caption =
+  themedStyled <
+  {} >
+  ('figcaption',
+  ({ $theme }) => ({
+    color: $theme.colors.contentSecondary,
+    fontFamily: $theme.typography.font100.fontFamily,
+    fontSize: $theme.sizing.scale500,
+    fontWeight: 300,
+    textAlign: 'center',
+    padding: '4px 4px 0 0',
+  }));
 
-export const BlogImage = ({full, alt, caption, src, style}) => (
-  <figure style={{margin: 0}}>
+export const BlogImage = ({ full, alt, caption, src, style }) => (
+  <figure style={{ margin: 0 }}>
     <Image $full={full} src={src} alt={alt} style={style} />
     {caption && <Caption>{caption}</Caption>}
   </figure>
@@ -50,14 +54,14 @@ export const Demo = themedStyled('iframe', {
   width: '100%',
 });
 
-const Tagline = themedStyled('span', ({$theme}) => ({
+const Tagline = themedStyled('span', ({ $theme }) => ({
   color: $theme.colors.contentSecondary,
   fontFamily: $theme.typography.font100.fontFamily,
   fontSize: $theme.sizing.scale800,
   fontWeight: 300,
 }));
 
-const AuthorLink = themedStyled('a', ({$theme}) => ({
+const AuthorLink = themedStyled('a', ({ $theme }) => ({
   color: $theme.colors.contentSecondary,
   fontFamily: $theme.typography.font100.fontFamily,
   ':hover': {
@@ -70,7 +74,7 @@ const AuthorLink = themedStyled('a', ({$theme}) => ({
   },
 }));
 
-const ArticleDate = themedStyled('span', ({$theme}) => ({
+const ArticleDate = themedStyled('span', ({ $theme }) => ({
   color: $theme.colors.contentSecondary,
 }));
 
@@ -91,33 +95,21 @@ export const Meta = ({
     <Head>
       <meta property="og:title" content={title} name="title" />
       <meta property="og:type" content="article" />
-      <meta
-        property="og:description"
-        content={tagline}
-        key="description"
-        name="description"
-      />
+      <meta property="og:description" content={tagline} key="description" name="description" />
       <meta property="article:author" content={author} name="author" />
       {keyWords.map((kw) => (
         <meta property="article:tag" content={kw} key={`article:tag:${kw}`} />
       ))}
-      <meta
-        property="article:published_time"
-        content={new Date(date).toISOString()}
-      />
+      <meta property="article:published_time" content={new Date(date).toISOString()} />
       <meta property="og:image" content={coverImage} />
       {/* Best practice to specify these, but will usually work regardless. Ideal dimensions are 1200x630. */}
-      {coverImageWidth ? (
-        <meta property="og:image:width" content={coverImageWidth} />
-      ) : null}
-      {coverImageHeight ? (
-        <meta property="og:image:height" content={coverImageHeight} />
-      ) : null}
+      {coverImageWidth ? <meta property="og:image:width" content={coverImageWidth} /> : null}
+      {coverImageHeight ? <meta property="og:image:height" content={coverImageHeight} /> : null}
     </Head>
     <Block
       overrides={{
         Block: {
-          style: ({$theme}) => ({
+          style: ({ $theme }) => ({
             marginBottom: $theme.sizing.scale1400,
           }),
         },
@@ -128,7 +120,7 @@ export const Meta = ({
       <Block
         overrides={{
           Block: {
-            style: ({$theme}) => ({
+            style: ({ $theme }) => ({
               color: $theme.colors.contentSecondary,
               fontFamily: $theme.typography.font100.fontFamily,
               margin: `${$theme.sizing.scale400} 0`,

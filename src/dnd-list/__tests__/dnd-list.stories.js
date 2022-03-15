@@ -7,6 +7,6 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {Scenario as DndListDefault} from './dnd-list.scenario.js';
+import { Scenario as DndListDefault } from './dnd-list.scenario.js';
 
 export const DndList = () => <DndListDefault />;

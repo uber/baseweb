@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
-import {AspectRatioBox, AspectRatioBoxBody} from '../index.js';
+import { AspectRatioBox, AspectRatioBoxBody } from '../index.js';
 
 const bodyProps = {
   display: 'flex',
@@ -38,14 +38,10 @@ export function Scenario() {
   return (
     <React.Fragment>
       <AspectRatioBox>
-        <AspectRatioBoxBody {...bodyProps}>
-          Square by default
-        </AspectRatioBoxBody>
+        <AspectRatioBoxBody {...bodyProps}>Square by default</AspectRatioBoxBody>
       </AspectRatioBox>
       <AspectRatioBox aspectRatio={16 / 9}>
-        <AspectRatioBoxBody {...bodyProps}>
-          16:9 aspect ratio
-        </AspectRatioBoxBody>
+        <AspectRatioBoxBody {...bodyProps}>16:9 aspect ratio</AspectRatioBoxBody>
       </AspectRatioBox>
     </React.Fragment>
   );

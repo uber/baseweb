@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {getOverrides} from '../helpers/overrides.js';
-import {SIZE} from './constants.js';
+import { getOverrides } from '../helpers/overrides.js';
+import { SIZE } from './constants.js';
 import {
   StyledRoot,
   StyledBarContainer,
@@ -17,17 +17,15 @@ import {
   StyledInfiniteBar,
 } from './styled-components.js';
 
-import type {ProgressBarPropsT} from './types.js';
+import type { ProgressBarPropsT } from './types.js';
 
 class ProgressBar extends React.Component<
   // flowlint-next-line unclear-type:off
-  ProgressBarPropsT & {forwardedRef: any},
+  ProgressBarPropsT & { forwardedRef: any }
 > {
   static defaultProps = {
     getProgressLabel: (value: number, maxValue: number, minValue: number) =>
-      `${Math.round(
-        ((value - minValue) / (maxValue - minValue)) * 100,
-      )}% Loaded`,
+      `${Math.round(((value - minValue) / (maxValue - minValue)) * 100)}% Loaded`,
     infinite: false,
     overrides: {},
     showLabel: false,
@@ -43,9 +41,7 @@ class ProgressBar extends React.Component<
     // TODO(v11): remove warning when switching default Spinner
     if (__DEV__) {
       if (this.props.errorMessage) {
-        console.warn(
-          'baseui:ProgressBar The `errorMessage` prop is deprecated in WAI-ARIA v1.2.',
-        );
+        console.warn('baseui:ProgressBar The `errorMessage` prop is deprecated in WAI-ARIA v1.2.');
       }
     }
   }
@@ -72,18 +68,12 @@ class ProgressBar extends React.Component<
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
     const [BarContainer, barContainerProps] = getOverrides(
       overrides.BarContainer,
-      StyledBarContainer,
+      StyledBarContainer
     );
     const [Bar, barProps] = getOverrides(overrides.Bar, StyledBar);
-    const [BarProgress, barProgressProps] = getOverrides(
-      overrides.BarProgress,
-      StyledBarProgress,
-    );
+    const [BarProgress, barProgressProps] = getOverrides(overrides.BarProgress, StyledBarProgress);
     const [Label, labelProps] = getOverrides(overrides.Label, StyledLabel);
-    const [InfiniteBar, infiniteBarProps] = getOverrides(
-      overrides.InfiniteBar,
-      StyledInfiniteBar,
-    );
+    const [InfiniteBar, infiniteBarProps] = getOverrides(overrides.InfiniteBar, StyledInfiniteBar);
     const sharedProps = {
       $infinite: infinite,
       $size: size,
@@ -99,7 +89,7 @@ class ProgressBar extends React.Component<
         children.push(
           <Bar key={i} {...sharedProps} {...barProps}>
             <BarProgress $index={i} {...sharedProps} {...barProgressProps} />
-          </Bar>,
+          </Bar>
         );
       }
       return children;
@@ -110,9 +100,7 @@ class ProgressBar extends React.Component<
         ref={forwardedRef}
         data-baseweb="progress-bar"
         role="progressbar"
-        aria-label={
-          ariaLabel || getProgressLabel(value, maximumValue, minValue)
-        }
+        aria-label={ariaLabel || getProgressLabel(value, maximumValue, minValue)}
         aria-valuenow={infinite ? null : value}
         aria-valuemin={infinite ? null : minValue}
         aria-valuemax={infinite ? null : maximumValue}
@@ -125,11 +113,7 @@ class ProgressBar extends React.Component<
         <BarContainer {...sharedProps} {...barContainerProps}>
           {infinite ? (
             <React.Fragment>
-              <InfiniteBar
-                $isLeft={true}
-                $size={sharedProps.$size}
-                {...infiniteBarProps}
-              />
+              <InfiniteBar $isLeft={true} $size={sharedProps.$size} {...infiniteBarProps} />
               <InfiniteBar $size={sharedProps.$size} {...infiniteBarProps} />
             </React.Fragment>
           ) : (
@@ -146,12 +130,11 @@ class ProgressBar extends React.Component<
   }
 }
 
-const ForwardedProgressBar = React.forwardRef<
-  $Shape<ProgressBarPropsT>,
-  HTMLDivElement,
->((props: ProgressBarPropsT, ref) => (
-  //$FlowExpectedError[cannot-spread-inexact]
-  <ProgressBar forwardedRef={ref} {...props} />
-));
+const ForwardedProgressBar = React.forwardRef<$Shape<ProgressBarPropsT>, HTMLDivElement>(
+  (props: ProgressBarPropsT, ref) => (
+    //$FlowExpectedError[cannot-spread-inexact]
+    <ProgressBar forwardedRef={ref} {...props} />
+  )
+);
 ForwardedProgressBar.displayName = 'ProgressBar';
 export default ForwardedProgressBar;

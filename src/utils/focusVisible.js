@@ -39,7 +39,7 @@ const inputTypesWhitelist = {
  * @return {boolean}
  */
 function focusTriggersKeyboardModality(node) {
-  const {type, tagName} = node;
+  const { type, tagName } = node;
 
   if (tagName === 'INPUT' && inputTypesWhitelist[type] && !node.readOnly) {
     return true;
@@ -155,7 +155,7 @@ export const forkFocus =
   (
     // flowlint-next-line unclear-type:off
     rootProps: any,
-    handler: (e: SyntheticEvent<>) => void,
+    handler: (e: SyntheticEvent<>) => void
   ) =>
   (e: SyntheticEvent<>) => {
     if (typeof rootProps.onFocus === 'function') {
@@ -168,7 +168,7 @@ export const forkBlur =
   (
     // flowlint-next-line unclear-type:off
     rootProps: any,
-    handler: (e: SyntheticEvent<>) => void,
+    handler: (e: SyntheticEvent<>) => void
   ) =>
   (e: SyntheticEvent<>) => {
     if (typeof rootProps.onBlur === 'function') {

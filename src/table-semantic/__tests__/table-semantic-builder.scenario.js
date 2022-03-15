@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import React, {useState, useMemo} from 'react';
-import {TableBuilder, TableBuilderColumn} from '../index.js';
+import React, { useState, useMemo } from 'react';
+import { TableBuilder, TableBuilderColumn } from '../index.js';
 
 export function Scenario() {
   const [sortColumn, setSortColumn] = useState('bar');

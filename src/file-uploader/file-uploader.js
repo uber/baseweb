@@ -9,12 +9,12 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import Dropzone from 'react-dropzone';
 
-import {LocaleContext} from '../locale/index.js';
-import {useStyletron} from '../styles/index.js';
-import {Button, KIND, SHAPE, SIZE as BUTTON_SIZE} from '../button/index.js';
-import {getOverrides} from '../helpers/overrides.js';
-import {ProgressBar} from '../progress-bar/index.js';
-import {StyledSpinnerNext, SIZE as SPINNER_SIZE} from '../spinner/index.js';
+import { LocaleContext } from '../locale/index.js';
+import { useStyletron } from '../styles/index.js';
+import { Button, KIND, SHAPE, SIZE as BUTTON_SIZE } from '../button/index.js';
+import { getOverrides } from '../helpers/overrides.js';
+import { ProgressBar } from '../progress-bar/index.js';
+import { StyledSpinnerNext, SIZE as SPINNER_SIZE } from '../spinner/index.js';
 
 import {
   StyledRoot,
@@ -24,7 +24,7 @@ import {
   StyledErrorMessage,
   StyledHiddenInput,
 } from './styled-components.js';
-import type {PropsT} from './types.js';
+import type { PropsT } from './types.js';
 
 function prependStyleProps(styleProps) {
   return Object.keys(styleProps).reduce((nextStyleProps, currentKey) => {
@@ -34,51 +34,38 @@ function prependStyleProps(styleProps) {
 }
 
 function FileUploader(props: PropsT) {
-  const {overrides = {}} = props;
+  const { overrides = {} } = props;
   const [, theme] = useStyletron();
 
   const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
   const [FileDragAndDrop, fileDragAndDropProps] = getOverrides(
     overrides.FileDragAndDrop,
-    StyledFileDragAndDrop,
+    StyledFileDragAndDrop
   );
   const [ContentMessage, contentMessageProps] = getOverrides(
     overrides.ContentMessage,
-    StyledContentMessage,
+    StyledContentMessage
   );
 
   const [ContentSeparator, contentSeparatorProps] = getOverrides(
     overrides.ContentSeparator,
-    StyledContentSeparator,
+    StyledContentSeparator
   );
   const [ErrorMessage, errorMessageProps] = getOverrides(
     overrides.ErrorMessage,
-    StyledErrorMessage,
+    StyledErrorMessage
   );
-  const [HiddenInput, hiddenInputProps] = getOverrides(
-    overrides.HiddenInput,
-    StyledHiddenInput,
-  );
-  const [ButtonComponent, buttonProps] = getOverrides(
-    overrides.ButtonComponent,
-    Button,
-  );
+  const [HiddenInput, hiddenInputProps] = getOverrides(overrides.HiddenInput, StyledHiddenInput);
+  const [ButtonComponent, buttonProps] = getOverrides(overrides.ButtonComponent, Button);
 
-  const [SpinnerComponent, spinnerProps] = getOverrides(
-    overrides.Spinner,
-    StyledSpinnerNext,
-  );
+  const [SpinnerComponent, spinnerProps] = getOverrides(overrides.Spinner, StyledSpinnerNext);
 
-  const afterFileDrop = !!(
-    props.progressAmount ||
-    props.progressMessage ||
-    props.errorMessage
-  );
+  const afterFileDrop = !!(props.progressAmount || props.progressMessage || props.errorMessage);
 
   return (
     <Dropzone {...props} disabled={props.disabled || afterFileDrop}>
       {(renderProps) => {
-        const {getRootProps, getInputProps, open, ...styleProps} = renderProps;
+        const { getRootProps, getInputProps, open, ...styleProps } = renderProps;
 
         const prefixedStyledProps = prependStyleProps({
           ...styleProps,
@@ -90,20 +77,14 @@ function FileUploader(props: PropsT) {
           onClick?: (SyntheticEvent<HTMLElement>) => void,
           tabIndex: string,
         } = {
-          ...(props.disableClick
-            ? {onClick: (evt) => evt.preventDefault()}
-            : {}),
+          ...(props.disableClick ? { onClick: (evt) => evt.preventDefault() } : {}),
           tabIndex: '-1',
         };
 
         return (
           <LocaleContext.Consumer>
             {(locale) => (
-              <Root
-                data-baseweb="file-uploader"
-                {...prefixedStyledProps}
-                {...rootProps}
-              >
+              <Root data-baseweb="file-uploader" {...prefixedStyledProps} {...rootProps}>
                 <FileDragAndDrop
                   {...getRootProps(getRootPropsArgs)}
                   {...prefixedStyledProps}
@@ -111,17 +92,11 @@ function FileUploader(props: PropsT) {
                 >
                   {!afterFileDrop && (
                     <React.Fragment>
-                      <ContentMessage
-                        {...prefixedStyledProps}
-                        {...contentMessageProps}
-                      >
+                      <ContentMessage {...prefixedStyledProps} {...contentMessageProps}>
                         {locale.fileuploader.dropFilesToUpload}
                       </ContentMessage>
                       {/* TODO(v11): ContentSeparator potentially can be removed in the next major version */}
-                      <ContentSeparator
-                        {...prefixedStyledProps}
-                        {...contentSeparatorProps}
-                      >
+                      <ContentSeparator {...prefixedStyledProps} {...contentSeparatorProps}>
                         {locale.fileuploader.or}
                       </ContentSeparator>
                       <ButtonComponent
@@ -133,7 +108,7 @@ function FileUploader(props: PropsT) {
                         role="button"
                         overrides={{
                           BaseButton: {
-                            style: ({$theme}) => ({
+                            style: ({ $theme }) => ({
                               marginTop: $theme.sizing.scale500,
                             }),
                           },
@@ -159,7 +134,7 @@ function FileUploader(props: PropsT) {
                           value={props.progressAmount}
                           overrides={{
                             BarProgress: {
-                              style: ({$theme}) => ({
+                              style: ({ $theme }) => ({
                                 backgroundColor: props.errorMessage
                                   ? $theme.colors.negative
                                   : $theme.colors.accent,
@@ -170,23 +145,16 @@ function FileUploader(props: PropsT) {
                       ) : props.errorMessage ? null : (
                         <SpinnerComponent
                           $size={SPINNER_SIZE.medium}
-                          $style={{marginBottom: theme.sizing.scale300}}
+                          $style={{ marginBottom: theme.sizing.scale300 }}
                           {...spinnerProps}
                         />
                       )}
-                      {(props.errorMessage || props.progressMessage) &&
-                      props.errorMessage ? (
-                        <ErrorMessage
-                          {...prefixedStyledProps}
-                          {...errorMessageProps}
-                        >
+                      {(props.errorMessage || props.progressMessage) && props.errorMessage ? (
+                        <ErrorMessage {...prefixedStyledProps} {...errorMessageProps}>
                           {props.errorMessage}
                         </ErrorMessage>
                       ) : (
-                        <ContentMessage
-                          {...prefixedStyledProps}
-                          {...contentMessageProps}
-                        >
+                        <ContentMessage {...prefixedStyledProps} {...contentMessageProps}>
                           {props.progressMessage}
                         </ContentMessage>
                       )}
@@ -211,7 +179,7 @@ function FileUploader(props: PropsT) {
                           aria-describedby={props['aria-describedby']}
                           overrides={{
                             BaseButton: {
-                              style: ({$theme}) => ({
+                              style: ({ $theme }) => ({
                                 color: $theme.colors.contentNegative,
                               }),
                             },

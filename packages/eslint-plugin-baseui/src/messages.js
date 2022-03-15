@@ -43,8 +43,7 @@ module.exports = {
   },
   selectSearchIcon: {
     id: 'selectSearchIcon',
-    message:
-      'The "SearchIcon" override will be removed in favor of "StyledSearchIconContainer".',
+    message: 'The "SearchIcon" override will be removed in favor of "StyledSearchIconContainer".',
   },
   radioGroupOverrides: {
     id: 'radioGroupOverrides',

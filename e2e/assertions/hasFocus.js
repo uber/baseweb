@@ -43,7 +43,7 @@ exports.assertion = function (selector, msg) {
         return document.activeElement === document.querySelector(selector);
       },
       [selector],
-      callback,
+      callback
     );
   };
 };

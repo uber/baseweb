@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Calendar} from '../index.js';
+import { Calendar } from '../index.js';
 
 const DATE = new Date('2019-02-22T10:00:00Z');
 const TIME = new Date(DATE);
@@ -16,7 +16,7 @@ TIME.setHours(12, 0, 0);
 
 // flowlint-next-line unclear-type:off
 export class Scenario extends React.Component<any, any> {
-  state = {date: DATE, time: TIME};
+  state = { date: DATE, time: TIME };
 
   render() {
     return (
@@ -24,8 +24,8 @@ export class Scenario extends React.Component<any, any> {
         <Calendar
           value={this.state.date}
           time={this.state.time}
-          onChange={(data) => this.setState({date: data.date})}
-          onTimeChange={(data) => this.setState({time: data.time})}
+          onChange={(data) => this.setState({ date: data.date })}
+          onTimeChange={(data) => this.setState({ time: data.time })}
           timeSelect
         />
 
@@ -33,9 +33,7 @@ export class Scenario extends React.Component<any, any> {
           {`${this.state.date.getFullYear()}-${this.state.date.getMonth()}-${this.state.date.getDate()}`}
         </div>
 
-        <div>
-          {`${this.state.time.getHours()}:${this.state.time.getMinutes()}`}
-        </div>
+        <div>{`${this.state.time.getHours()}:${this.state.time.getMinutes()}`}</div>
       </>
     );
   }

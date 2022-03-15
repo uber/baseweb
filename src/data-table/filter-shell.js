@@ -8,11 +8,11 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Button, SIZE as BUTTON_SIZE} from '../button/index.js';
-import {Checkbox, STYLE_TYPE} from '../checkbox/index.js';
-import {useStyletron} from '../styles/index.js';
-import {LocaleContext} from '../locale/index.js';
-import {FILTER_SHELL_WIDTH} from './constants.js';
+import { Button, SIZE as BUTTON_SIZE } from '../button/index.js';
+import { Checkbox, STYLE_TYPE } from '../checkbox/index.js';
+import { useStyletron } from '../styles/index.js';
+import { LocaleContext } from '../locale/index.js';
+import { FILTER_SHELL_WIDTH } from './constants.js';
 
 export type ExcludeKind = 'value' | 'range';
 

@@ -10,12 +10,12 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 // @flow
 
-const {writeFileSync, unlinkSync} = require('fs');
-const {resolve} = require('path');
+const { writeFileSync, unlinkSync } = require('fs');
+const { resolve } = require('path');
 //$FlowFixMe
 const Octokit = require('@octokit/rest');
 
-const octokit = Octokit({auth: process.env.GITHUB_AUTH_TOKEN});
+const octokit = Octokit({ auth: process.env.GITHUB_AUTH_TOKEN });
 const VERSIONS_PATH = resolve(__dirname, '../versions.json');
 module.exports = async function generateVersions() {
   try {
@@ -25,13 +25,10 @@ module.exports = async function generateVersions() {
   }
 
   try {
-    const releases = await octokit.paginate(
-      'GET /repos/:owner/:repo/releases',
-      {
-        owner: 'uber',
-        repo: 'baseweb',
-      },
-    );
+    const releases = await octokit.paginate('GET /repos/:owner/:repo/releases', {
+      owner: 'uber',
+      repo: 'baseweb',
+    });
     writeFileSync(VERSIONS_PATH, JSON.stringify(releases, null, 2));
   } catch (error) {
     console.error(`Failed to generate baseweb versions`, error);

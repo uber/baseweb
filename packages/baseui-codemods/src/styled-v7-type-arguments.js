@@ -8,9 +8,9 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as t from '@babel/types';
-import {withJsFiles} from '@dubstep/core';
+import { withJsFiles } from '@dubstep/core';
 
-import {containsFlowComment, getStyledLocalImportName} from './shared.js';
+import { containsFlowComment, getStyledLocalImportName } from './shared.js';
 
 function isStyledElement(path) {
   return (
@@ -28,39 +28,35 @@ function isStyledComponent(path) {
   );
 }
 
-async function styledV7TypeArguments(options: {dir: string}) {
+async function styledV7TypeArguments(options: { dir: string }) {
   await withJsFiles(`${options.dir}/**/*.js`, async (p) => {
     if (containsFlowComment(p)) {
       const styledLocalImportName = getStyledLocalImportName(p);
       if (styledLocalImportName) {
         p.traverse({
           CallExpression(path) {
-            if (
-              path.node.callee.name === styledLocalImportName &&
-              !path.node.typeArguments
-            ) {
+            if (path.node.callee.name === styledLocalImportName && !path.node.typeArguments) {
               if (path.node.arguments.length === 1) {
                 path.node.arguments.push(t.objectExpression([]));
               }
 
               if (isStyledElement(path)) {
                 if (!t.isObjectExpression(path.node.arguments[1])) {
-                  path.node.callee.typeAnnotation =
-                    t.typeParameterInstantiation([t.anyTypeAnnotation()]);
+                  path.node.callee.typeAnnotation = t.typeParameterInstantiation([
+                    t.anyTypeAnnotation(),
+                  ]);
                 }
               } else if (isStyledComponent(path)) {
                 const base = path.node.arguments[0];
                 if (!t.isObjectExpression(path.node.arguments[1])) {
-                  path.node.callee.typeAnnotation =
-                    t.typeParameterInstantiation([
-                      t.typeofTypeAnnotation(t.genericTypeAnnotation(base)),
-                      t.anyTypeAnnotation(),
-                    ]);
+                  path.node.callee.typeAnnotation = t.typeParameterInstantiation([
+                    t.typeofTypeAnnotation(t.genericTypeAnnotation(base)),
+                    t.anyTypeAnnotation(),
+                  ]);
                 } else {
-                  path.node.callee.typeAnnotation =
-                    t.typeParameterInstantiation([
-                      t.typeofTypeAnnotation(t.genericTypeAnnotation(base)),
-                    ]);
+                  path.node.callee.typeAnnotation = t.typeParameterInstantiation([
+                    t.typeofTypeAnnotation(t.genericTypeAnnotation(base)),
+                  ]);
                 }
               }
             }

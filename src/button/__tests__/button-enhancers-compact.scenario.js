@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Button, SIZE} from '../index.js';
+import { Button, SIZE } from '../index.js';
 import ArrowRight from '../../icon/arrow-right.js';
 
 export function Scenario() {
@@ -21,11 +21,7 @@ export function Scenario() {
       <Button size={SIZE.compact} endEnhancer={ArrowRight}>
         End Enhancer
       </Button>
-      <Button
-        size={SIZE.compact}
-        startEnhancer={ArrowRight}
-        endEnhancer={ArrowRight}
-      >
+      <Button size={SIZE.compact} startEnhancer={ArrowRight} endEnhancer={ArrowRight}>
         Both Enhancers
       </Button>
     </React.Fragment>

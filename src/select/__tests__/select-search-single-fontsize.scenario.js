@@ -10,18 +10,18 @@ LICENSE file in the root directory of this source tree.
 // with new styles the autosizer logic does not cut off any text.
 
 import * as React from 'react';
-import {StatefulSelect} from '../index.js';
+import { StatefulSelect } from '../index.js';
 
 export function Scenario() {
   return (
     <StatefulSelect
       clearable={false}
       options={[
-        {id: 'la', name: 'Los Angeles'},
-        {id: 'sf', name: 'San Francisco'},
-        {id: 'ny', name: 'New York City'},
+        { id: 'la', name: 'Los Angeles' },
+        { id: 'sf', name: 'San Francisco' },
+        { id: 'ny', name: 'New York City' },
       ]}
-      initialState={{value: [{id: 'la', name: 'Los Angeles'}]}}
+      initialState={{ value: [{ id: 'la', name: 'Los Angeles' }] }}
       labelKey="name"
       valueKey="id"
       overrides={{

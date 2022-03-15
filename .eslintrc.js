@@ -15,6 +15,9 @@ module.exports = {
     'eslint-plugin-import',
     'header',
     'jsx-a11y',
+    'prettier',
+    'import',
+    'jest',
   ],
   env: {
     jest: true,
@@ -35,6 +38,8 @@ module.exports = {
     'plugin:react/recommended',
     require.resolve('eslint-config-uber-universal-stage-3'),
     'plugin:jsx-a11y/recommended',
+    'plugin:prettier/recommended',
+    'prettier/flowtype',
   ],
   rules: {
     // Enforce flow file declarations
@@ -45,15 +50,20 @@ module.exports = {
     // Enforces imports of external modules to be declared in the package.json
     'import/no-extraneous-dependencies': [
       'error',
-      {optionalDependencies: false, devDependencies: true},
+      { optionalDependencies: false, devDependencies: true },
     ],
-    'import/extensions': ['error', 'always', {ignorePackages: true}],
+    'import/extensions': ['error', 'always', { ignorePackages: true }],
     'prettier/prettier': [
       'error',
       {
+        printWidth: 100,
+        tabWidth: 2,
+        useTabs: false,
+        semi: true,
         singleQuote: true,
-        trailingComma: 'all',
-        bracketSpacing: false,
+        trailingComma: 'es5',
+        bracketSpacing: true,
+        jsxBracketSameLine: false,
       },
     ],
     'import/prefer-default-export': ['off'],
@@ -64,6 +74,12 @@ module.exports = {
         ignoreNonDOM: true,
       },
     ],
+    'import/no-duplicates': 2,
+    'import/newline-after-import': 2,
+    'jest/no-identical-title': 2,
+    'jest/no-focused-tests': 2,
+    'import/first': 2,
+    'dot-notation': 2,
   },
   overrides: [
     {
@@ -80,10 +96,7 @@ module.exports = {
       },
     },
     {
-      files: [
-        'packages/eslint-plugin-baseui/**/*.js',
-        'packages/baseweb-vscode-extension/**/*.js',
-      ],
+      files: ['packages/eslint-plugin-baseui/**/*.js', 'packages/baseweb-vscode-extension/**/*.js'],
       rules: {
         'flowtype/require-valid-file-annotation': 'off',
       },

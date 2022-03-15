@@ -10,9 +10,9 @@ import * as React from 'react';
 
 import BooleanColumn from '../column-boolean.js';
 import NumericalColumn from '../column-numerical.js';
-import {StatefulDataTable} from '../stateful-data-table.js';
+import { StatefulDataTable } from '../stateful-data-table.js';
 
-import {ArrowUp, ArrowDown, Check} from '../../icon/index.js';
+import { ArrowUp, ArrowDown, Check } from '../../icon/index.js';
 
 type RowDataT = [boolean, number];
 
@@ -30,7 +30,7 @@ const columns = [
 
 const rows = [];
 for (let i = 0; i < 100; i++) {
-  rows.push({id: i, data: [i % 2 ? true : false, i + 1]});
+  rows.push({ id: i, data: [i % 2 ? true : false, i + 1] });
 }
 
 export function Scenario() {
@@ -39,7 +39,7 @@ export function Scenario() {
       {
         label: 'stable-action-icon',
         onClick: () => {},
-        renderIcon: function RenderArrow({size}) {
+        renderIcon: function RenderArrow({ size }) {
           if (row.data[0] === true) {
             return <ArrowUp size={size} />;
           } else {
@@ -53,7 +53,7 @@ export function Scenario() {
       actions.push({
         label: 'dynamic-action-icon',
         onClick: () => {},
-        renderIcon: function RenderCheck({size}) {
+        renderIcon: function RenderCheck({ size }) {
           return <Check size={size} />;
         },
       });
@@ -64,12 +64,8 @@ export function Scenario() {
 
   return (
     <div>
-      <div style={{height: '500px', width: '400px'}}>
-        <StatefulDataTable
-          columns={columns}
-          rows={rows}
-          rowActions={rowActions}
-        />
+      <div style={{ height: '500px', width: '400px' }}>
+        <StatefulDataTable columns={columns} rows={rows} rowActions={rowActions} />
       </div>
     </div>
   );

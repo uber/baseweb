@@ -10,20 +10,17 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable jsx-a11y/accessible-emoji */
 
 import * as React from 'react';
-import {Tab, Tabs} from '../index.js';
-import {Button, KIND} from '../../button/index.js';
-import {ArrowUp, ArrowRight, ArrowDown, ArrowLeft} from '../../icon/index.js';
-import {ThemeProvider, LightTheme} from '../../index.js';
+import { Tab, Tabs } from '../index.js';
+import { Button, KIND } from '../../button/index.js';
+import { ArrowUp, ArrowRight, ArrowDown, ArrowLeft } from '../../icon/index.js';
+import { ThemeProvider, LightTheme } from '../../index.js';
 
 export function Scenario() {
   const [activeKey, setActiveKey] = React.useState('0');
   return (
-    <ThemeProvider theme={{...LightTheme, direction: 'rtl'}}>
+    <ThemeProvider theme={{ ...LightTheme, direction: 'rtl' }}>
       <div dir="rtl">
-        <Tabs
-          activeKey={activeKey}
-          onChange={({activeKey}) => setActiveKey(activeKey)}
-        >
+        <Tabs activeKey={activeKey} onChange={({ activeKey }) => setActiveKey(activeKey)}>
           <Tab title="Robot" artwork={(props) => <ArrowUp {...props} />}>
             <Button kind={KIND.secondary}>🤖</Button>
           </Tab>

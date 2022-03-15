@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
-import {FlexGrid, FlexGridItem} from '../index.js';
+import { FlexGrid, FlexGridItem } from '../index.js';
 
 const itemProps = {
   backgroundColor: 'mono300',
@@ -22,7 +22,7 @@ const wideItemProps = {
   ...itemProps,
   overrides: {
     Block: {
-      style: ({$theme}) => ({
+      style: ({ $theme }) => ({
         width: `calc((200% - ${$theme.sizing.scale800}) / 3)`,
       }),
     },
@@ -31,11 +31,7 @@ const wideItemProps = {
 
 export function Scenario() {
   return (
-    <FlexGrid
-      flexGridColumnCount={3}
-      flexGridColumnGap="scale800"
-      flexGridRowGap="scale800"
-    >
+    <FlexGrid flexGridColumnCount={3} flexGridColumnGap="scale800" flexGridRowGap="scale800">
       <FlexGridItem {...wideItemProps}>Wide item</FlexGridItem>
       <FlexGridItem display="none">
         This invisible one is needed so the margins line up

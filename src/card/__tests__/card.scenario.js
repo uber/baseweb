@@ -8,19 +8,13 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {
-  Card,
-  StyledAction,
-  StyledBody,
-  StyledThumbnail,
-  StyledTitle,
-} from '../index.js';
-import {Button} from '../../button/index.js';
-import {styled} from '../../styles/index.js';
+import { Card, StyledAction, StyledBody, StyledThumbnail, StyledTitle } from '../index.js';
+import { Button } from '../../button/index.js';
+import { styled } from '../../styles/index.js';
 
-import {thumbnail} from '../images.js';
+import { thumbnail } from '../images.js';
 
-const Container = styled('div', {width: '328px'});
+const Container = styled('div', { width: '328px' });
 
 export function Scenario() {
   return (
@@ -30,7 +24,7 @@ export function Scenario() {
         <StyledTitle $hasThumbnail={true}>Card Title Entry</StyledTitle>
         <StyledBody>Card text</StyledBody>
         <StyledAction>
-          <Button style={{width: '100%'}}>Button Label</Button>
+          <Button style={{ width: '100%' }}>Button Label</Button>
         </StyledAction>
       </Card>
     </Container>

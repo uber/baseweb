@@ -10,10 +10,10 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import FocusLock from 'react-focus-lock';
 
-import {LocaleContext} from '../locale/index.js';
-import {getOverrides} from '../helpers/overrides.js';
-import {Layer} from '../layer/index.js';
-import {SIZE, ROLE, CLOSE_SOURCE} from './constants.js';
+import { LocaleContext } from '../locale/index.js';
+import { getOverrides } from '../helpers/overrides.js';
+import { Layer } from '../layer/index.js';
+import { SIZE, ROLE, CLOSE_SOURCE } from './constants.js';
 import {
   Root as StyledRoot,
   Backdrop as StyledBackdrop,
@@ -21,7 +21,7 @@ import {
   DialogContainer as StyledDialogContainer,
   Close as StyledClose,
 } from './styled-components.js';
-import {CloseIcon} from './close-icon.js';
+import { CloseIcon } from './close-icon.js';
 
 import type {
   ModalPropsT,
@@ -30,7 +30,7 @@ import type {
   CloseSourceT,
   ElementRefT,
 } from './types.js';
-import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
+import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible.js';
 
 class Modal extends React.Component<ModalPropsT, ModalStateT> {
   static defaultProps: $Shape<ModalPropsT> = {
@@ -53,7 +53,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
   animateStartTimer: ?AnimationFrameID;
   lastFocus: ?HTMLElement = null;
   lastMountNodeOverflowStyle: ?string = null;
-  _refs: {[string]: ElementRefT} = {};
+  _refs: { [string]: ElementRefT } = {};
 
   state = {
     isVisible: false,
@@ -62,7 +62,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
   };
 
   componentDidMount() {
-    this.setState({mounted: true});
+    this.setState({ mounted: true });
     // TODO(v11)
     if (__DEV__) {
       if (!this.props.unstable_ModalBackdropScroll) {
@@ -81,7 +81,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
       // $FlowFixMe: flow complains that this prop doesn't exist
       if (this.props.closable) {
         console.warn(
-          'The property `closable` is not supported on the Modal. Did you mean `closeable`?',
+          'The property `closable` is not supported on the Modal. Did you mean `closeable`?'
         );
       }
     }
@@ -93,7 +93,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
   }
 
   componentDidUpdate(prevProps: ModalPropsT, prevState: ModalStateT) {
-    const {isOpen} = this.props;
+    const { isOpen } = this.props;
     if (
       // If isOpen is changing *or* we just mounted and modal should be open
       isOpen !== prevProps.isOpen ||
@@ -109,13 +109,13 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
 
   handleFocus = (event: SyntheticEvent<>) => {
     if (isFocusVisible(event)) {
-      this.setState({isFocusVisible: true});
+      this.setState({ isFocusVisible: true });
     }
   };
 
   handleBlur = (event: SyntheticEvent<>) => {
     if (this.state.isFocusVisible !== false) {
-      this.setState({isFocusVisible: false});
+      this.setState({ isFocusVisible: false });
     }
   };
 
@@ -195,7 +195,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
 
     // eslint-disable-next-line cup/no-undef
     this.animateStartTimer = requestAnimationFrame(() => {
-      this.setState({isVisible: true});
+      this.setState({ isVisible: true });
     });
   }
 
@@ -219,15 +219,8 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     });
   };
 
-  getSharedProps(): $Diff<SharedStylePropsArgT, {children?: React.Node}> {
-    const {
-      animate,
-      isOpen,
-      size,
-      role,
-      closeable,
-      unstable_ModalBackdropScroll,
-    } = this.props;
+  getSharedProps(): $Diff<SharedStylePropsArgT, { children?: React.Node }> {
+    const { animate, isOpen, size, role, closeable, unstable_ModalBackdropScroll } = this.props;
     return {
       $animate: animate,
       $isVisible: this.state.isVisible,
@@ -241,7 +234,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
   }
 
   getMountNode(): HTMLElement {
-    const {mountNode} = this.props;
+    const { mountNode } = this.props;
     if (mountNode) {
       return mountNode;
     }
@@ -251,7 +244,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
   }
 
   getChildren() {
-    const {children} = this.props;
+    const { children } = this.props;
     return typeof children === 'function' ? children() : children;
   }
 
@@ -283,13 +276,10 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     } = overrides;
 
     const [Root, rootProps] = getOverrides(RootOverride, StyledRoot);
-    const [Backdrop, backdropProps] = getOverrides(
-      BackdropOverride,
-      StyledBackdrop,
-    );
+    const [Backdrop, backdropProps] = getOverrides(BackdropOverride, StyledBackdrop);
     const [DialogContainer, dialogContainerProps] = getOverrides(
       DialogContainerOverride,
-      StyledDialogContainer,
+      StyledDialogContainer
     );
     const [Dialog, dialogProps] = getOverrides(DialogOverride, StyledDialog);
     const [Close, closeProps] = getOverrides(CloseOverride, StyledClose);
@@ -300,7 +290,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     if (autofocus === false && __DEV__) {
       console.warn(
         `The prop "autofocus" is deprecated in favor of "autoFocus" to be consistent across the project.
-        The property "autofocus" will be removed in a future major version.`,
+        The property "autofocus" will be removed in a future major version.`
       );
     }
 
@@ -324,12 +314,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
             returnFocus={returnFocus}
             autoFocus={autofocus !== null ? autofocus : autoFocus}
           >
-            <Root
-              data-baseweb="modal"
-              ref={this.getRef('Root')}
-              {...sharedProps}
-              {...rootProps}
-            >
+            <Root data-baseweb="modal" ref={this.getRef('Root')} {...sharedProps} {...rootProps}>
               <Backdrop
                 {...(unstable_ModalBackdropScroll
                   ? {}

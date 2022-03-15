@@ -6,15 +6,12 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {getOverrides} from '../helpers/overrides.js';
-import type {InputPropsT, InternalStateT, AdjoinedT} from './types.js';
-import {getSharedProps} from './utils.js';
+import { getOverrides } from '../helpers/overrides.js';
+import type { InputPropsT, InternalStateT, AdjoinedT } from './types.js';
+import { getSharedProps } from './utils.js';
 import BaseInput from './base-input.js';
-import {
-  Root as StyledRoot,
-  InputEnhancer as StyledInputEnhancer,
-} from './styled-components.js';
-import {SIZE, ADJOINED, ENHANCER_POSITION} from './constants.js';
+import { Root as StyledRoot, InputEnhancer as StyledInputEnhancer } from './styled-components.js';
+import { SIZE, ADJOINED, ENHANCER_POSITION } from './constants.js';
 
 class Input extends React.Component<InputPropsT, InternalStateT> {
   static defaultProps = {
@@ -42,12 +39,12 @@ class Input extends React.Component<InputPropsT, InternalStateT> {
   };
 
   onFocus = (e: SyntheticFocusEvent<HTMLInputElement>) => {
-    this.setState({isFocused: true});
+    this.setState({ isFocused: true });
     this.props.onFocus(e);
   };
 
   onBlur = (e: SyntheticFocusEvent<HTMLInputElement>) => {
-    this.setState({isFocused: false});
+    this.setState({ isFocused: false });
     this.props.onBlur(e);
   };
 
@@ -67,12 +64,9 @@ class Input extends React.Component<InputPropsT, InternalStateT> {
     const [Root, rootProps] = getOverrides(RootOverride, StyledRoot);
     const [StartEnhancer, startEnhancerProps] = getOverrides(
       StartEnhancerOverride,
-      StyledInputEnhancer,
+      StyledInputEnhancer
     );
-    const [EndEnhancer, endEnhancerProps] = getOverrides(
-      EndEnhancerOverride,
-      StyledInputEnhancer,
-    );
+    const [EndEnhancer, endEnhancerProps] = getOverrides(EndEnhancerOverride, StyledInputEnhancer);
 
     const sharedProps = getSharedProps(this.props, this.state);
 
@@ -80,7 +74,7 @@ class Input extends React.Component<InputPropsT, InternalStateT> {
       if (this.props.error && this.props.positive) {
         // eslint-disable-next-line no-console
         console.warn(
-          `[Input] \`error\` and \`positive\` are both set to \`true\`. \`error\` will take precedence but this may not be what you want.`,
+          `[Input] \`error\` and \`positive\` are both set to \`true\`. \`error\` will take precedence but this may not be what you want.`
         );
       }
     }
@@ -99,9 +93,7 @@ class Input extends React.Component<InputPropsT, InternalStateT> {
             {...startEnhancerProps}
             $position={ENHANCER_POSITION.start}
           >
-            {typeof startEnhancer === 'function'
-              ? startEnhancer(sharedProps)
-              : startEnhancer}
+            {typeof startEnhancer === 'function' ? startEnhancer(sharedProps) : startEnhancer}
           </StartEnhancer>
         )}
         <BaseInput
@@ -112,14 +104,8 @@ class Input extends React.Component<InputPropsT, InternalStateT> {
           onBlur={this.onBlur}
         />
         {isEnhancer(endEnhancer) && (
-          <EndEnhancer
-            {...sharedProps}
-            {...endEnhancerProps}
-            $position={ENHANCER_POSITION.end}
-          >
-            {typeof endEnhancer === 'function'
-              ? endEnhancer(sharedProps)
-              : endEnhancer}
+          <EndEnhancer {...sharedProps} {...endEnhancerProps} $position={ENHANCER_POSITION.end}>
+            {typeof endEnhancer === 'function' ? endEnhancer(sharedProps) : endEnhancer}
           </EndEnhancer>
         )}
       </Root>

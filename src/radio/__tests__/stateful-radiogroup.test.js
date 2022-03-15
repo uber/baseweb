@@ -7,18 +7,18 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {render, fireEvent, getByRole} from '@testing-library/react';
+import { render, fireEvent, getByRole } from '@testing-library/react';
 
-import {StatefulRadioGroup, Radio} from '../index.js';
+import { StatefulRadioGroup, Radio } from '../index.js';
 
 describe('radio-group', () => {
   it('sets clicked child checked', () => {
-    const {container} = render(
+    const { container } = render(
       <StatefulRadioGroup>
         <Radio value="1">one</Radio>
         <Radio value="2">two</Radio>
         <Radio value="3">three</Radio>
-      </StatefulRadioGroup>,
+      </StatefulRadioGroup>
     );
 
     getByRole(container, 'radiogroup');

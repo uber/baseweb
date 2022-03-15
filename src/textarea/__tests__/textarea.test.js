@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 /* global document */
 // @flow
 import * as React from 'react';
-import {render, fireEvent} from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 
 import Textarea from '../textarea.js';
 
@@ -21,7 +21,7 @@ describe('Textarea', () => {
       onChange: jest.fn(),
     };
 
-    const {container} = render(<Textarea {...props} />);
+    const { container } = render(<Textarea {...props} />);
 
     const textarea = container.querySelector('textarea');
     expect(textarea).not.toBeNull();
@@ -35,7 +35,7 @@ describe('Textarea', () => {
     if (textarea) fireEvent.blur(textarea);
     expect(props.onBlur).toHaveBeenCalled();
 
-    if (textarea) fireEvent.change(textarea, {target: {value: 'a'}});
+    if (textarea) fireEvent.change(textarea, { target: { value: 'a' } });
     expect(props.onChange).toHaveBeenCalled();
   });
 
@@ -45,7 +45,7 @@ describe('Textarea', () => {
       onChange: jest.fn(),
     };
 
-    const {container} = render(<Textarea {...props} />);
+    const { container } = render(<Textarea {...props} />);
     const textarea = container.querySelector('textarea');
     expect(document.activeElement).toBe(textarea);
   });

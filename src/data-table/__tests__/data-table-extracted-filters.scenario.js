@@ -8,15 +8,10 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {useStyletron} from '../../styles/index.js';
-import {LabelXSmall} from '../../typography/index.js';
+import { useStyletron } from '../../styles/index.js';
+import { LabelXSmall } from '../../typography/index.js';
 
-import {
-  DataTable,
-  StatefulContainer,
-  CategoricalColumn,
-  StringColumn,
-} from '../index.js';
+import { DataTable, StatefulContainer, CategoricalColumn, StringColumn } from '../index.js';
 
 import AnimalData from './animal-data.js';
 
@@ -68,14 +63,7 @@ export function Scenario() {
   const [css] = useStyletron();
   return (
     <StatefulContainer columns={columns} rows={rows}>
-      {({
-        filters,
-        onFilterAdd,
-        onFilterRemove,
-        onSort,
-        sortIndex,
-        sortDirection,
-      }) => (
+      {({ filters, onFilterAdd, onFilterRemove, onSort, sortIndex, sortDirection }) => (
         <div
           className={css({
             display: 'flex',
@@ -83,7 +71,7 @@ export function Scenario() {
             paddingRight: '24px',
           })}
         >
-          <div className={css({overflowY: 'auto'})}>
+          <div className={css({ overflowY: 'auto' })}>
             {columns.map((column, index) => {
               if (!column.filterable) return null;
               const Filter = column.renderFilter;
@@ -104,9 +92,7 @@ export function Scenario() {
                       <LabelXSmall>
                         {column.title}:{activeFilter.description}
                       </LabelXSmall>
-                      <button onClick={() => onFilterRemove(column.title)}>
-                        x
-                      </button>
+                      <button onClick={() => onFilterRemove(column.title)}>x</button>
                     </div>
                   )}
 
@@ -126,7 +112,7 @@ export function Scenario() {
               );
             })}
           </div>
-          <div className={css({width: '700px'})}>
+          <div className={css({ width: '700px' })}>
             <DataTable
               columns={columns}
               rows={rows}
@@ -136,7 +122,7 @@ export function Scenario() {
               sortDirection={sortDirection}
             />
           </div>
-          <div className={css({paddingLeft: '24px'})}>
+          <div className={css({ paddingLeft: '24px' })}>
             Applied filters:
             <ul>
               {Array.from(filters).map(([title, f]) => (

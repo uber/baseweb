@@ -48,15 +48,15 @@ export function Scenario() {
   ];
 
   const rows = [
-    {id: 1, data: [true, 'A', 2, 'one', new Date('2012-05-11T10:20:30')]},
-    {id: 2, data: [false, 'B', 1, 'two', new Date('2011-04-12T11:21:31')]},
-    {id: 3, data: [true, 'A', 4, 'three', new Date('2014-07-13T12:22:32')]},
-    {id: 4, data: [false, 'A', 3, 'four', new Date('2013-06-14T13:23:33')]},
+    { id: 1, data: [true, 'A', 2, 'one', new Date('2012-05-11T10:20:30')] },
+    { id: 2, data: [false, 'B', 1, 'two', new Date('2011-04-12T11:21:31')] },
+    { id: 3, data: [true, 'A', 4, 'three', new Date('2014-07-13T12:22:32')] },
+    { id: 4, data: [false, 'A', 3, 'four', new Date('2013-06-14T13:23:33')] },
   ];
 
   return (
     <React.Fragment>
-      <div style={{height: '600px', width: '1000px', marginBottom: '100px'}}>
+      <div style={{ height: '600px', width: '1000px', marginBottom: '100px' }}>
         <StatefulDataTable columns={columns} rows={rows} />
       </div>
     </React.Fragment>

@@ -8,15 +8,10 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {Checkbox} from '../index.js';
+import { Checkbox } from '../index.js';
 
 export function Scenario() {
-  const [checkboxes, setCheckboxes] = React.useState([
-    false,
-    false,
-    false,
-    false,
-  ]);
+  const [checkboxes, setCheckboxes] = React.useState([false, false, false, false]);
 
   return (
     <React.Fragment>

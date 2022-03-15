@@ -8,23 +8,23 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
-import {StatefulInput} from '../index.js';
+import { StatefulInput } from '../index.js';
 
 export function Scenario() {
   return (
     <>
-      <StatefulInput clearable initialState={{value: 'Some'}} size="compact" />
+      <StatefulInput clearable initialState={{ value: 'Some' }} size="compact" />
       <br />
       <StatefulInput
         clearable
-        initialState={{value: 'Thing'}}
+        initialState={{ value: 'Thing' }}
         overrides={{
           Input: {
-            props: {'data-e2e': 'input'},
+            props: { 'data-e2e': 'input' },
           },
 
           ClearIcon: {
-            props: {'data-e2e': 'clear-icon'},
+            props: { 'data-e2e': 'clear-icon' },
           },
         }}
       />
@@ -32,10 +32,10 @@ export function Scenario() {
       <br />
       <StatefulInput
         clearable
-        initialState={{value: 'Or other'}}
+        initialState={{ value: 'Or other' }}
         overrides={{
           Input: {
-            props: {'data-e2e': 'last-input'},
+            props: { 'data-e2e': 'last-input' },
           },
         }}
         size="large"
@@ -43,7 +43,7 @@ export function Scenario() {
 
       <br />
       <p>renders clearable if initial value is number type</p>
-      <StatefulInput clearable initialState={{value: 5}} type="number" />
+      <StatefulInput clearable initialState={{ value: 5 }} type="number" />
     </>
   );
 }

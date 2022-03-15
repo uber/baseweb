@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {STATE_CHANGE_TYPE} from './constants.js';
+import { STATE_CHANGE_TYPE } from './constants.js';
 import type {
   StatefulContainerPropsT,
   StateReducerT,
@@ -17,10 +17,7 @@ import type {
 
 const defaultStateReducer: StateReducerT = (type, nextState) => nextState;
 
-class StatefulSliderContainer extends React.Component<
-  StatefulContainerPropsT,
-  StateT,
-> {
+class StatefulSliderContainer extends React.Component<StatefulContainerPropsT, StateT> {
   constructor(props: StatefulContainerPropsT) {
     super(props);
     this.state = {
@@ -40,19 +37,19 @@ class StatefulSliderContainer extends React.Component<
     onFinalChange: () => {},
   };
 
-  onChange = (params: {value: Array<number>}) => {
+  onChange = (params: { value: Array<number> }) => {
     this.internalSetState(STATE_CHANGE_TYPE.change, params);
-    return this.props.onChange({...params});
+    return this.props.onChange({ ...params });
   };
 
-  onFinalChange = (params: {value: Array<number>}) => {
+  onFinalChange = (params: { value: Array<number> }) => {
     this.internalSetState(STATE_CHANGE_TYPE.finalChange, params);
-    return this.props.onFinalChange({...params});
+    return this.props.onFinalChange({ ...params });
   };
 
-  internalSetState = (type: ChangeActionT, {value}: ParamsT) => {
-    const nextState = {value};
-    const {stateReducer} = this.props;
+  internalSetState = (type: ChangeActionT, { value }: ParamsT) => {
+    const nextState = { value };
+    const { stateReducer } = this.props;
     const newState = stateReducer(type, nextState, this.state);
     this.setState(newState);
   };

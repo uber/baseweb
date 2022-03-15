@@ -7,23 +7,20 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-import {withJsFiles} from '@dubstep/core';
+import { withJsFiles } from '@dubstep/core';
 
-import {containsFlowComment, getStyledLocalImportName} from './shared.js';
+import { containsFlowComment, getStyledLocalImportName } from './shared.js';
 
 const FLOW_IGNORE = '$FlowFixMe';
 
-async function styledV7FlowFixme(options: {dir: string}) {
+async function styledV7FlowFixme(options: { dir: string }) {
   await withJsFiles(`${options.dir}/**/*.js`, async (p) => {
     if (containsFlowComment(p)) {
       const styledLocalImportName = getStyledLocalImportName(p);
       if (styledLocalImportName) {
         p.traverse({
           CallExpression(path) {
-            if (
-              path.node.callee.name === styledLocalImportName &&
-              !path.node.typeArguments
-            ) {
+            if (path.node.callee.name === styledLocalImportName && !path.node.typeArguments) {
               const parent = path.findParent((n) => n.isVariableDeclaration());
               if (parent) {
                 const comments = parent.node.comments || [];

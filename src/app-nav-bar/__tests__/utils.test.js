@@ -6,11 +6,11 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import {setItemActive} from '../index.js';
+import { setItemActive } from '../index.js';
 
 describe('setItemActive', () => {
   it('sets specified item active', () => {
-    const items = [{label: 'one'}, {label: 'two'}];
+    const items = [{ label: 'one' }, { label: 'two' }];
     const nextActive = items[0];
     const nextItems = setItemActive(items, nextActive);
 
@@ -22,11 +22,11 @@ describe('setItemActive', () => {
     const items = [
       {
         label: 'A',
-        children: [{label: 'A A'}, {label: 'A B'}],
+        children: [{ label: 'A A' }, { label: 'A B' }],
       },
       {
         label: 'B',
-        children: [{label: 'B A'}, {label: 'B B'}],
+        children: [{ label: 'B A' }, { label: 'B B' }],
       },
     ];
 
@@ -50,11 +50,11 @@ describe('setItemActive', () => {
     const items = [
       {
         label: 'A',
-        children: [{label: 'A A'}, {label: 'A B'}],
+        children: [{ label: 'A A' }, { label: 'A B' }],
       },
       {
         label: 'B',
-        children: [{label: 'B A'}, {label: 'B B', active: true}],
+        children: [{ label: 'B A' }, { label: 'B B', active: true }],
         active: true,
       },
     ];
@@ -77,8 +77,8 @@ describe('setItemActive', () => {
 
   it('custom getUniqueIdentifier', () => {
     const items = [
-      {label: 'one', info: {id: 1}},
-      {label: 'two', info: {id: 2}},
+      { label: 'one', info: { id: 1 } },
+      { label: 'two', info: { id: 2 } },
     ];
     const nextActive = items[0];
     const getId = (item) => (item.info ? item.info.id : item.label);

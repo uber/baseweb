@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-const Visa = ({size}: {size: string}) => (
+const Visa = ({ size }: { size: string }) => (
   <svg
     width={size}
     height={size}

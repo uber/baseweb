@@ -10,7 +10,7 @@ import * as React from 'react';
 // transforms props for native styled components adding $ symbol to avoid to supported warning
 export default function asPrimaryExport(
   StyledComponent: React.ComponentType<{}>,
-  propsTransformNames: Array<string>,
+  propsTransformNames: Array<string>
 ) {
   return function withStyledPropsHOC(props: {}) {
     const styledProps = Object.keys(props).reduce((acc, key) => {

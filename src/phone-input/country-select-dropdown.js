@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {List, AutoSizer} from 'react-virtualized';
+import { List, AutoSizer } from 'react-virtualized';
 import defaultProps from './default-props.js';
 import {
   StyledFlagContainer,
@@ -17,13 +17,13 @@ import {
   StyledCountrySelectDropdownNameColumn as DefaultNameColumn,
   StyledCountrySelectDropdownDialcodeColumn as DefaultDialcodeColumn,
 } from './styled-components.js';
-import {LocaleContext} from '../locale/index.js';
-import {StyledEmptyState} from '../menu/styled-components.js';
-import {getOverrides} from '../helpers/overrides.js';
-import {iso2FlagEmoji} from './utils.js';
+import { LocaleContext } from '../locale/index.js';
+import { StyledEmptyState } from '../menu/styled-components.js';
+import { getOverrides } from '../helpers/overrides.js';
+import { iso2FlagEmoji } from './utils.js';
 
-import type {CountrySelectDropdownPropsT, ReactRefT} from './types.js';
-import type {LocaleT} from '../locale/types.js';
+import type { CountrySelectDropdownPropsT, ReactRefT } from './types.js';
+import type { LocaleT } from '../locale/types.js';
 
 CountrySelectDropdown.defaultProps = {
   maxDropdownHeight: defaultProps.maxDropdownHeight,
@@ -33,7 +33,7 @@ CountrySelectDropdown.defaultProps = {
 function CountrySelectDropdown(
   props: CountrySelectDropdownPropsT & {
     $forwardedRef: ReactRefT<HTMLElement> | ((null | HTMLElement) => mixed),
-  },
+  }
 ) {
   const {
     $country: country,
@@ -46,41 +46,36 @@ function CountrySelectDropdown(
 
   const [Container, containerProps] = getOverrides(
     overrides.CountrySelectDropdown,
-    DefaultContainer,
+    DefaultContainer
   );
   const [ListItem, listItemProps] = getOverrides(
     overrides.CountrySelectDropdownListItem,
-    DefaultListItem,
+    DefaultListItem
   );
   const [FlagColumn, flagColumnProps] = getOverrides(
     overrides.CountrySelectDropdownFlagColumn,
-    DefaultFlagColumn,
+    DefaultFlagColumn
   );
   const [FlagContainer, flagContainerProps] = getOverrides(
     overrides.FlagContainer,
-    StyledFlagContainer,
+    StyledFlagContainer
   );
   const [NameColumn, nameColumnProps] = getOverrides(
     overrides.CountrySelectDropdownNameColumn,
-    DefaultNameColumn,
+    DefaultNameColumn
   );
   const [Dialcode, dialcodeProps] = getOverrides(
     overrides.CountrySelectDropdownDialcodeColumn,
-    DefaultDialcodeColumn,
+    DefaultDialcodeColumn
   );
-  const [EmptyState, emptyStateProps] = getOverrides(
-    overrides.EmptyState,
-    StyledEmptyState,
-  );
+  const [EmptyState, emptyStateProps] = getOverrides(overrides.EmptyState, StyledEmptyState);
 
   // Handle no results, likely from filtering
   if (!props.children.length) {
     return (
       <LocaleContext.Consumer>
         {(locale: LocaleT) => (
-          <EmptyState {...emptyStateProps}>
-            {noResultsMsg || locale.menu.noResultsMsg}
-          </EmptyState>
+          <EmptyState {...emptyStateProps}>{noResultsMsg || locale.menu.noResultsMsg}</EmptyState>
         )}
       </LocaleContext.Consumer>
     );
@@ -89,16 +84,12 @@ function CountrySelectDropdown(
   const children = React.Children.toArray(props.children);
   const scrollIndex = Math.min(
     children.findIndex((opt) => opt.props.item.id === country.id) + 5,
-    children.length - 1,
+    children.length - 1
   );
   return (
-    <Container
-      ref={forwardedRef}
-      $height={maxDropdownHeight}
-      {...containerProps}
-    >
+    <Container ref={forwardedRef} $height={maxDropdownHeight} {...containerProps}>
       <AutoSizer>
-        {({height, width}) => {
+        {({ height, width }) => {
           return (
             <List
               role="listbox"
@@ -107,11 +98,10 @@ function CountrySelectDropdown(
               rowCount={children.length}
               rowHeight={42}
               scrollToIndex={scrollIndex}
-              rowRenderer={({index, key, style}) => {
+              rowRenderer={({ index, key, style }) => {
                 // resetMenu and getItemLabel should not end up on native html elements
-                const {item, resetMenu, getItemLabel, ...rest} =
-                  children[index].props;
-                const {id: iso, label, dialCode} = item;
+                const { item, resetMenu, getItemLabel, ...rest } = children[index].props;
+                const { id: iso, label, dialCode } = item;
                 return (
                   <ListItem
                     key={key}
@@ -122,11 +112,7 @@ function CountrySelectDropdown(
                     data-iso={iso}
                   >
                     <FlagColumn {...flagColumnProps}>
-                      <FlagContainer
-                        $iso={iso}
-                        data-iso={iso}
-                        {...flagContainerProps}
-                      >
+                      <FlagContainer $iso={iso} data-iso={iso} {...flagContainerProps}>
                         {iso2FlagEmoji(iso)}
                       </FlagContainer>
                     </FlagColumn>
@@ -145,9 +131,8 @@ function CountrySelectDropdown(
   );
 }
 
-const CountrySelectDropdownFwd = React.forwardRef<
-  CountrySelectDropdownPropsT,
-  HTMLElement,
->((props, ref) => <CountrySelectDropdown {...props} $forwardedRef={ref} />);
+const CountrySelectDropdownFwd = React.forwardRef<CountrySelectDropdownPropsT, HTMLElement>(
+  (props, ref) => <CountrySelectDropdown {...props} $forwardedRef={ref} />
+);
 CountrySelectDropdownFwd.displayName = 'CountrySelectDropdownFwd';
 export default CountrySelectDropdownFwd;

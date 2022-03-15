@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import StatefulContainer from './stateful-container.js';
 import Navigation from './nav.js';
-import type {StatefulNavPropsT} from './types.js';
+import type { StatefulNavPropsT } from './types.js';
 
 export default function StatefulNavigation(props: StatefulNavPropsT) {
   return (

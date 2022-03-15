@@ -6,13 +6,13 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {FormControl} from '../form-control/index.js';
-import {LocaleContext} from '../locale/index.js';
-import {Select} from '../select/index.js';
+import { FormControl } from '../form-control/index.js';
+import { LocaleContext } from '../locale/index.js';
+import { Select } from '../select/index.js';
 import CalendarHeader from './calendar-header.js';
 import Month from './month.js';
 import TimePicker from '../timepicker/timepicker.js';
-import type {DateIOAdapter} from './utils/types.js';
+import type { DateIOAdapter } from './utils/types.js';
 import {
   StyledCalendarContainer,
   StyledMonthContainer,
@@ -21,15 +21,15 @@ import {
 } from './styled-components.js';
 import dateFnsAdapter from './utils/date-fns-adapter.js';
 import DateHelpers from './utils/date-helpers.js';
-import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
-import type {CalendarPropsT, CalendarInternalState} from './types.js';
-import {DENSITY, ORIENTATION} from './constants.js';
+import { getOverrides, mergeOverrides } from '../helpers/overrides.js';
+import type { CalendarPropsT, CalendarInternalState } from './types.js';
+import { DENSITY, ORIENTATION } from './constants.js';
 
 export default class Calendar<T = Date> extends React.Component<
   CalendarPropsT<T>,
-  CalendarInternalState<T>,
+  CalendarInternalState<T>
 > {
-  static defaultProps: {adapter: DateIOAdapter<Date>} = {
+  static defaultProps: { adapter: DateIOAdapter<Date> } = {
     autoFocusCalendar: false,
     dateLabel: null,
     density: DENSITY.default,
@@ -63,7 +63,7 @@ export default class Calendar<T = Date> extends React.Component<
   constructor(props: CalendarPropsT<T>) {
     super(props);
 
-    const {highlightedDate, value, adapter} = this.props;
+    const { highlightedDate, value, adapter } = this.props;
     //$FlowFixMe
     this.dateHelpers = new DateHelpers(adapter);
     const dateInView = this.getDateInView();
@@ -76,8 +76,7 @@ export default class Calendar<T = Date> extends React.Component<
     this.state = {
       highlightedDate:
         this.getSingleDate(value) ||
-        (highlightedDate &&
-        this.dateHelpers.isSameMonth(dateInView, highlightedDate)
+        (highlightedDate && this.dateHelpers.isSameMonth(dateInView, highlightedDate)
           ? highlightedDate
           : this.dateHelpers.date()),
       focused: false,
@@ -97,10 +96,7 @@ export default class Calendar<T = Date> extends React.Component<
   componentDidUpdate(prevProps: CalendarPropsT<T>) {
     if (
       this.props.highlightedDate &&
-      !this.dateHelpers.isSameDay(
-        this.props.highlightedDate,
-        prevProps.highlightedDate,
-      )
+      !this.dateHelpers.isSameDay(this.props.highlightedDate, prevProps.highlightedDate)
     ) {
       this.setState({
         date: this.props.highlightedDate,
@@ -128,14 +124,11 @@ export default class Calendar<T = Date> extends React.Component<
     const currentDate = this.state.date;
 
     // First we get the year delta
-    const yearDelta =
-      this.dateHelpers.getYear(date) - this.dateHelpers.getYear(currentDate);
+    const yearDelta = this.dateHelpers.getYear(date) - this.dateHelpers.getYear(currentDate);
 
     // then we convert it to months. Then we simply add the date-without-year month delta back in.
     const monthDelta =
-      yearDelta * 12 +
-      this.dateHelpers.getMonth(date) -
-      this.dateHelpers.getMonth(currentDate);
+      yearDelta * 12 + this.dateHelpers.getMonth(date) - this.dateHelpers.getMonth(currentDate);
 
     // we just check that the delta is between the range given by "this month" (i.e. 0) and "the last month" (i.e. monthsShown)
     return monthDelta >= 0 && monthDelta < (this.props.monthsShown || 1);
@@ -151,7 +144,7 @@ export default class Calendar<T = Date> extends React.Component<
   }
 
   getDateInView: () => T = () => {
-    const {highlightedDate, value} = this.props;
+    const { highlightedDate, value } = this.props;
     const minDate = this.dateHelpers.getEffectiveMinDate(this.props);
     const maxDate = this.dateHelpers.getEffectiveMaxDate(this.props);
     const current = this.dateHelpers.date();
@@ -171,29 +164,26 @@ export default class Calendar<T = Date> extends React.Component<
   handleMonthChange: (T) => void = (date) => {
     this.setHighlightedDate(this.dateHelpers.getStartOfMonth(date));
     if (this.props.onMonthChange) {
-      this.props.onMonthChange({date});
+      this.props.onMonthChange({ date });
     }
   };
 
   handleYearChange: (T) => void = (date) => {
     this.setHighlightedDate(date);
     if (this.props.onYearChange) {
-      this.props.onYearChange({date});
+      this.props.onYearChange({ date });
     }
   };
 
-  changeMonth: ({date: T}) => mixed = ({date}) => {
-    this.setState({date: date}, () => this.handleMonthChange(this.state.date));
+  changeMonth: ({ date: T }) => mixed = ({ date }) => {
+    this.setState({ date: date }, () => this.handleMonthChange(this.state.date));
   };
 
-  changeYear: ({date: T}) => mixed = ({date}) => {
-    this.setState({date: date}, () => this.handleYearChange(this.state.date));
+  changeYear: ({ date: T }) => mixed = ({ date }) => {
+    this.setState({ date: date }, () => this.handleYearChange(this.state.date));
   };
 
-  renderCalendarHeader: (T, number) => React.Node = (
-    date = this.state.date,
-    order,
-  ) => {
+  renderCalendarHeader: (T, number) => React.Node = (date = this.state.date, order) => {
     return (
       <CalendarHeader
         {...this.props}
@@ -224,7 +214,7 @@ export default class Calendar<T = Date> extends React.Component<
   };
 
   handleArrowKey = (key: string) => {
-    const {highlightedDate: oldDate} = this.state;
+    const { highlightedDate: oldDate } = this.state;
     let highlightedDate = oldDate;
     const currentDate = this.dateHelpers.date();
     switch (key) {
@@ -232,63 +222,63 @@ export default class Calendar<T = Date> extends React.Component<
         // adding `new Date()` as the last option to satisfy Flow
         highlightedDate = this.dateHelpers.subDays(
           highlightedDate ? highlightedDate : currentDate,
-          1,
+          1
         );
         break;
       case 'ArrowRight':
         highlightedDate = this.dateHelpers.addDays(
           // adding `new Date()` as the last option to satisfy Flow
           highlightedDate ? highlightedDate : currentDate,
-          1,
+          1
         );
         break;
       case 'ArrowUp':
         highlightedDate = this.dateHelpers.subWeeks(
           // adding `new Date()` as the last option to satisfy Flow
           highlightedDate ? highlightedDate : currentDate,
-          1,
+          1
         );
         break;
       case 'ArrowDown':
         highlightedDate = this.dateHelpers.addWeeks(
           // adding `new Date()` as the last option to satisfy Flow
           highlightedDate ? highlightedDate : currentDate,
-          1,
+          1
         );
         break;
       case 'Home':
         highlightedDate = this.dateHelpers.getStartOfWeek(
           // adding `new Date()` as the last option to satisfy Flow
-          highlightedDate ? highlightedDate : currentDate,
+          highlightedDate ? highlightedDate : currentDate
         );
         break;
       case 'End':
         highlightedDate = this.dateHelpers.getEndOfWeek(
           // adding `new Date()` as the last option to satisfy Flow
-          highlightedDate ? highlightedDate : currentDate,
+          highlightedDate ? highlightedDate : currentDate
         );
         break;
       case 'PageUp':
         highlightedDate = this.dateHelpers.subMonths(
           // adding `new Date()` as the last option to satisfy Flow
           highlightedDate ? highlightedDate : currentDate,
-          1,
+          1
         );
         break;
       case 'PageDown':
         highlightedDate = this.dateHelpers.addMonths(
           // adding `new Date()` as the last option to satisfy Flow
           highlightedDate ? highlightedDate : currentDate,
-          1,
+          1
         );
         break;
     }
-    this.setState({highlightedDate, date: highlightedDate});
+    this.setState({ highlightedDate, date: highlightedDate });
   };
 
   focusCalendar = () => {
     if (!this.state.focused) {
-      this.setState({focused: true});
+      this.setState({ focused: true });
     }
   };
 
@@ -296,7 +286,7 @@ export default class Calendar<T = Date> extends React.Component<
     if (__BROWSER__) {
       const activeElm = document.activeElement;
       if (this.calendar && !this.calendar.contains(activeElm)) {
-        this.setState({focused: false});
+        this.setState({ focused: false });
       }
     }
   };
@@ -326,62 +316,53 @@ export default class Calendar<T = Date> extends React.Component<
     }
   };
 
-  onDayFocus: ({event: Event, date: T}) => mixed = (data) => {
-    const {date} = data;
-    this.setState({highlightedDate: date});
+  onDayFocus: ({ event: Event, date: T }) => mixed = (data) => {
+    const { date } = data;
+    this.setState({ highlightedDate: date });
     this.focusCalendar();
     this.props.onDayFocus && this.props.onDayFocus(data);
   };
 
-  onDayMouseOver: ({event: Event, date: T}) => mixed = (data) => {
-    const {date} = data;
-    this.setState({highlightedDate: date});
+  onDayMouseOver: ({ event: Event, date: T }) => mixed = (data) => {
+    const { date } = data;
+    this.setState({ highlightedDate: date });
     this.props.onDayMouseOver && this.props.onDayMouseOver(data);
   };
 
-  onDayMouseLeave: ({event: Event, date: T}) => mixed = (data) => {
-    const {date} = data;
-    const {value} = this.props;
+  onDayMouseLeave: ({ event: Event, date: T }) => mixed = (data) => {
+    const { date } = data;
+    const { value } = this.props;
     const selected = this.getSingleDate(value);
-    this.setState({highlightedDate: selected || date});
+    this.setState({ highlightedDate: selected || date });
     this.props.onDayMouseLeave && this.props.onDayMouseLeave(data);
   };
 
-  handleDateChange: ({date: ?T | Array<T>}) => void = (data) => {
-    const {onChange = (params) => {}} = this.props;
+  handleDateChange: ({ date: ?T | Array<T> }) => void = (data) => {
+    const { onChange = (params) => {} } = this.props;
     let updatedDate = data.date;
     // We'll need to update the date in time values of internal state
     const newTimeState = [...this.state.time];
     // Apply the currently selected time values (saved in state) to the updated date
     if (Array.isArray(data.date)) {
       updatedDate = data.date.map((date, index) => {
-        newTimeState[index] = this.dateHelpers.applyDateToTime(
-          newTimeState[index],
-          date,
-        );
+        newTimeState[index] = this.dateHelpers.applyDateToTime(newTimeState[index], date);
         return newTimeState[index];
       });
     } else if (!Array.isArray(this.props.value) && data.date) {
-      newTimeState[0] = this.dateHelpers.applyDateToTime(
-        newTimeState[0],
-        data.date,
-      );
+      newTimeState[0] = this.dateHelpers.applyDateToTime(newTimeState[0], data.date);
       updatedDate = newTimeState[0];
     }
     // Update the date in time values of internal state
-    this.setState({time: newTimeState});
-    onChange({date: updatedDate});
+    this.setState({ time: newTimeState });
+    onChange({ date: updatedDate });
   };
 
   handleTimeChange = (time: T, index: number) => {
-    const {onChange = (params) => {}} = this.props;
+    const { onChange = (params) => {} } = this.props;
     // Save/update the time value in internal state
     const newTimeState = [...this.state.time];
-    newTimeState[index] = this.dateHelpers.applyTimeToDate(
-      newTimeState[index],
-      time,
-    );
-    this.setState({time: newTimeState});
+    newTimeState[index] = this.dateHelpers.applyTimeToDate(newTimeState[index], time);
+    this.setState({ time: newTimeState });
     // Time change calls calendar's onChange handler
     // with the date value set to the date with updated time
     if (Array.isArray(this.props.value)) {
@@ -391,15 +372,15 @@ export default class Calendar<T = Date> extends React.Component<
         }
         return date;
       });
-      onChange({date: dates});
+      onChange({ date: dates });
     } else {
       const date = this.dateHelpers.applyTimeToDate(this.props.value, time);
-      onChange({date});
+      onChange({ date });
     }
   };
 
   setHighlightedDate(date: T) {
-    const {value} = this.props;
+    const { value } = this.props;
     const selected = this.getSingleDate(value);
     let nextState;
     if (
@@ -407,7 +388,7 @@ export default class Calendar<T = Date> extends React.Component<
       this.dateHelpers.isSameMonth(selected, date) &&
       this.dateHelpers.isSameYear(selected, date)
     ) {
-      nextState = {highlightedDate: selected};
+      nextState = { highlightedDate: selected };
     } else {
       nextState = {
         highlightedDate: date,
@@ -416,16 +397,16 @@ export default class Calendar<T = Date> extends React.Component<
     this.setState(nextState);
   }
 
-  renderMonths = (translations: {ariaRoleDescCalMonth: string}) => {
-    const {overrides = {}, orientation} = this.props;
+  renderMonths = (translations: { ariaRoleDescCalMonth: string }) => {
+    const { overrides = {}, orientation } = this.props;
     const monthList = [];
     const [CalendarContainer, calendarContainerProps] = getOverrides(
       overrides.CalendarContainer,
-      StyledCalendarContainer,
+      StyledCalendarContainer
     );
     const [MonthContainer, monthContainerProps] = getOverrides(
       overrides.MonthContainer,
-      StyledMonthContainer,
+      StyledMonthContainer
     );
 
     for (let i = 0; i < (this.props.monthsShown || 1); ++i) {
@@ -472,11 +453,9 @@ export default class Calendar<T = Date> extends React.Component<
             peekNextMonth={this.props.peekNextMonth}
             fixedHeight={this.props.fixedHeight}
           />
-        </CalendarContainer>,
+        </CalendarContainer>
       );
-      monthList.push(
-        <div key={`month-component-${i}`}>{monthSubComponents}</div>,
-      );
+      monthList.push(<div key={`month-component-${i}`}>{monthSubComponents}</div>);
     }
     return (
       <MonthContainer $orientation={orientation} {...monthContainerProps}>
@@ -486,24 +465,17 @@ export default class Calendar<T = Date> extends React.Component<
   };
 
   // flowlint-next-line unclear-type:off
-  renderTimeSelect: (?T, Function, string) => React.Node = (
-    value,
-    onChange,
-    label,
-  ) => {
-    const {overrides = {}} = this.props;
+  renderTimeSelect: (?T, Function, string) => React.Node = (value, onChange, label) => {
+    const { overrides = {} } = this.props;
     const [TimeSelectContainer, timeSelectContainerProps] = getOverrides(
       overrides.TimeSelectContainer,
-      StyledSelectorContainer,
+      StyledSelectorContainer
     );
     const [TimeSelectFormControl, timeSelectFormControlProps] = getOverrides(
       overrides.TimeSelectFormControl,
-      FormControl,
+      FormControl
     );
-    const [TimeSelect, timeSelectProps] = getOverrides(
-      overrides.TimeSelect,
-      TimePicker,
-    );
+    const [TimeSelect, timeSelectProps] = getOverrides(overrides.TimeSelect, TimePicker);
 
     return (
       <TimeSelectContainer {...timeSelectContainerProps}>
@@ -520,23 +492,21 @@ export default class Calendar<T = Date> extends React.Component<
   };
 
   renderQuickSelect = () => {
-    const {overrides = {}} = this.props;
+    const { overrides = {} } = this.props;
     const [QuickSelectContainer, quickSelectContainerProps] = getOverrides(
       overrides.QuickSelectContainer,
-      StyledSelectorContainer,
+      StyledSelectorContainer
     );
     const [QuickSelectFormControl, quickSelectFormControlProps] = getOverrides(
       overrides.QuickSelectFormControl,
-      FormControl,
+      FormControl
     );
-    const [
-      QuickSelect,
-      {overrides: quickSelectOverrides, ...restQuickSelectProps},
-    ] = getOverrides(
-      //
-      overrides.QuickSelect,
-      Select,
-    );
+    const [QuickSelect, { overrides: quickSelectOverrides, ...restQuickSelectProps }] =
+      getOverrides(
+        //
+        overrides.QuickSelect,
+        Select
+      );
 
     if (!this.props.quickSelect) {
       return null;
@@ -561,8 +531,8 @@ export default class Calendar<T = Date> extends React.Component<
                 labelKey="id"
                 onChange={(params) => {
                   if (!params.option) {
-                    this.setState({quickSelectId: null});
-                    this.props.onChange && this.props.onChange({date: []});
+                    this.setState({ quickSelectId: null });
+                    this.props.onChange && this.props.onChange({ date: [] });
                   } else {
                     this.setState({
                       quickSelectId: params.option.id,
@@ -570,10 +540,7 @@ export default class Calendar<T = Date> extends React.Component<
                     if (this.props.onChange) {
                       if (this.props.range) {
                         this.props.onChange({
-                          date: [
-                            params.option.beginDate,
-                            params.option.endDate || NOW,
-                          ],
+                          date: [params.option.beginDate, params.option.endDate || NOW],
                         });
                       } else {
                         this.props.onChange({
@@ -615,9 +582,7 @@ export default class Calendar<T = Date> extends React.Component<
                   ]
                 }
                 placeholder={locale.datepicker.quickSelectPlaceholder}
-                value={
-                  this.state.quickSelectId && [{id: this.state.quickSelectId}]
-                }
+                value={this.state.quickSelectId && [{ id: this.state.quickSelectId }]}
                 overrides={mergeOverrides(
                   {
                     Dropdown: {
@@ -626,7 +591,7 @@ export default class Calendar<T = Date> extends React.Component<
                       },
                     },
                   },
-                  quickSelectOverrides,
+                  quickSelectOverrides
                 )}
                 {...restQuickSelectProps}
               />
@@ -638,7 +603,7 @@ export default class Calendar<T = Date> extends React.Component<
   };
 
   render() {
-    const {overrides = {}} = this.props;
+    const { overrides = {} } = this.props;
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
     const [startDate, endDate] = [].concat(this.props.value);
 
@@ -651,11 +616,7 @@ export default class Calendar<T = Date> extends React.Component<
             role="application"
             aria-roledescription="datepicker"
             ref={(root) => {
-              if (
-                root &&
-                root instanceof HTMLElement &&
-                !this.state.rootElement
-              ) {
+              if (root && root instanceof HTMLElement && !this.state.rootElement) {
                 this.setState({
                   rootElement: (root: HTMLElement),
                 });
@@ -666,21 +627,20 @@ export default class Calendar<T = Date> extends React.Component<
             {...rootProps}
           >
             {this.renderMonths({
-              ariaRoleDescCalMonth:
-                locale.datepicker.ariaRoleDescriptionCalendarMonth,
+              ariaRoleDescCalMonth: locale.datepicker.ariaRoleDescriptionCalendarMonth,
             })}
             {this.props.timeSelectStart &&
               this.renderTimeSelect(
                 startDate,
                 (time) => this.handleTimeChange(time, 0),
-                locale.datepicker.timeSelectStartLabel,
+                locale.datepicker.timeSelectStartLabel
               )}
             {this.props.timeSelectEnd &&
               this.props.range &&
               this.renderTimeSelect(
                 endDate,
                 (time) => this.handleTimeChange(time, 1),
-                locale.datepicker.timeSelectEndLabel,
+                locale.datepicker.timeSelectEndLabel
               )}
             {this.renderQuickSelect()}
           </Root>

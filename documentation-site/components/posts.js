@@ -7,14 +7,14 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 import * as React from 'react';
-import {Block} from 'baseui/block';
+import { Block } from 'baseui/block';
 import Link from 'next/link';
-import {Card, StyledBody, StyledAction, StyledTitle} from 'baseui/card';
-import {Button, KIND} from 'baseui/button';
-import {themedStyled} from '../pages/_app';
+import { Card, StyledBody, StyledAction, StyledTitle } from 'baseui/card';
+import { Button, KIND } from 'baseui/button';
+import { themedStyled } from '../pages/_app';
 import posts from '../posts';
 
-const MetaData = themedStyled('h2', ({$theme}) => ({
+const MetaData = themedStyled('h2', ({ $theme }) => ({
   color: $theme.colors.contentSecondary,
   fontFamily: $theme.typography.font100.fontFamily,
   fontSize: $theme.sizing.scale500,
@@ -33,7 +33,7 @@ const Index = () => {
       flexWrap
       overrides={{
         Block: {
-          style: ({$theme}) => ({
+          style: ({ $theme }) => ({
             justifyContent: 'center',
             [$theme.mediaQuery.small]: {
               justifyContent: 'flex-start',
@@ -80,7 +80,7 @@ const Index = () => {
                     href={p.path}
                     overrides={{
                       BaseButton: {
-                        style: {boxSizing: 'border-box', width: '100%'},
+                        style: { boxSizing: 'border-box', width: '100%' },
                       },
                     }}
                   >
@@ -88,7 +88,7 @@ const Index = () => {
                   </Button>
                 </Link>
               </StyledAction>
-              <StyledTitle $style={{marginTop: '1em'}}>{p.title}</StyledTitle>
+              <StyledTitle $style={{ marginTop: '1em' }}>{p.title}</StyledTitle>
               <MetaData>{`${p.author} - ${p.date}`}</MetaData>
               <StyledBody />
             </Card>

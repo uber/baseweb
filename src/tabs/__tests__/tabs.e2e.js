@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
+const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
 
 describe('tabs', () => {
   it('passes basic a11y tests', async () => {
@@ -25,10 +25,7 @@ describe('tabs', () => {
     let states = [true, false, false];
 
     for (let i = 0; i < states.length; i++) {
-      let visible = await page.$eval(
-        `[aria-labelledby="${i}"]`,
-        (input) => !!input.offsetParent,
-      );
+      let visible = await page.$eval(`[aria-labelledby="${i}"]`, (input) => !!input.offsetParent);
       await expect(visible).toBe(states[i]);
     }
     // click tab 2 and verify
@@ -36,10 +33,7 @@ describe('tabs', () => {
     states = [false, true, false];
 
     for (let i = 0; i < states.length; i++) {
-      let visible = await page.$eval(
-        `[aria-labelledby="${i}"]`,
-        (input) => !!input.offsetParent,
-      );
+      let visible = await page.$eval(`[aria-labelledby="${i}"]`, (input) => !!input.offsetParent);
       await expect(visible).toBe(states[i]);
     }
   });

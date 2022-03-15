@@ -6,21 +6,12 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {STATE_CHANGE_TYPE} from './constants.js';
-import type {
-  StatefulContainerPropsT,
-  StateT,
-  StateReducerT,
-  StateTypeT,
-  Item,
-} from './types.js';
+import { STATE_CHANGE_TYPE } from './constants.js';
+import type { StatefulContainerPropsT, StateT, StateReducerT, StateTypeT, Item } from './types.js';
 
 const defaultStateReducer: StateReducerT = (type, nextState) => nextState;
 
-class StatefulContainer extends React.Component<
-  StatefulContainerPropsT,
-  StateT,
-> {
+class StatefulContainer extends React.Component<StatefulContainerPropsT, StateT> {
   static defaultProps = {
     initialState: {},
     stateReducer: defaultStateReducer,
@@ -32,8 +23,8 @@ class StatefulContainer extends React.Component<
     ...this.props.initialState,
   };
 
-  onChange = (params: {item: Item, event: Event | KeyboardEvent}) => {
-    const {onChange} = this.props;
+  onChange = (params: { item: Item, event: Event | KeyboardEvent }) => {
+    const { onChange } = this.props;
     this.internalSetState(STATE_CHANGE_TYPE.change, params.item);
     if (typeof onChange === 'function') {
       onChange(params);
@@ -43,7 +34,7 @@ class StatefulContainer extends React.Component<
   internalSetState = (type: StateTypeT, item: any) => {
     let nextState = {};
     if (type === STATE_CHANGE_TYPE.change) {
-      nextState = {activeItemId: item.itemId};
+      nextState = { activeItemId: item.itemId };
     }
     const newState = this.props.stateReducer
       ? this.props.stateReducer(type, nextState, this.state)
@@ -53,8 +44,8 @@ class StatefulContainer extends React.Component<
 
   render() {
     // eslint-disable-next-line no-unused-vars
-    const {children, initialState, stateReducer, ...restProps} = this.props;
-    const {onChange} = this;
+    const { children, initialState, stateReducer, ...restProps } = this.props;
+    const { onChange } = this;
     // $FlowFixMe
     return children({
       ...restProps,

@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-const Jcb = ({size}: {size: string}) => (
+const Jcb = ({ size }: { size: string }) => (
   <svg
     width={size}
     height={size}
@@ -16,18 +16,9 @@ const Jcb = ({size}: {size: string}) => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <path
-      d="M13 4H15V16C15 18.21 13.21 20 11 20H9V8C9 5.79 10.79 4 13 4Z"
-      fill="#BF2240"
-    />
-    <path
-      d="M8 4V16C8 18.21 6.21 20 4 20H1V8C1 5.79 2.79 4 5 4H8Z"
-      fill="#1061A7"
-    />
-    <path
-      d="M23 4V16C23 18.21 21.21 20 19 20H16V8C16 5.79 17.79 4 20 4H23Z"
-      fill="#43A946"
-    />
+    <path d="M13 4H15V16C15 18.21 13.21 20 11 20H9V8C9 5.79 10.79 4 13 4Z" fill="#BF2240" />
+    <path d="M8 4V16C8 18.21 6.21 20 4 20H1V8C1 5.79 2.79 4 5 4H8Z" fill="#1061A7" />
+    <path d="M23 4V16C23 18.21 21.21 20 19 20H16V8C16 5.79 17.79 4 20 4H23Z" fill="#43A946" />
     <path
       d="M1 12.47C1.22 12.61 2.3 12.96 2.74 12.99C3.69 13.06 4.28 12.74 4.37 11.95V9.01001H6.47V11.89C6.36 13.54 4.91 13.87 2.71 13.76C2.14 13.73 1.37 13.58 1 13.49V12.47Z"
       fill="white"

@@ -8,9 +8,9 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Block} from '../../block/index.js';
-import {LabelMedium} from '../../typography/index.js';
-import {Datepicker, TimePicker, TimezonePicker} from '../index.js';
+import { Block } from '../../block/index.js';
+import { LabelMedium } from '../../typography/index.js';
+import { Datepicker, TimePicker, TimezonePicker } from '../index.js';
 
 const DATE = new Date('2019-07-03T12:00:00Z');
 

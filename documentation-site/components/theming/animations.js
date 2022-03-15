@@ -7,8 +7,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {useStyletron} from 'baseui';
-import {Property} from './common.js';
+import { useStyletron } from 'baseui';
+import { Property } from './common.js';
 
 const move = {
   from: {
@@ -80,7 +80,7 @@ const animations = {
   },
 };
 
-export function Timing({name}: {name: string}) {
+export function Timing({ name }: { name: string }) {
   const [css, theme] = useStyletron();
   return (
     <Property
@@ -110,7 +110,7 @@ export function Timing({name}: {name: string}) {
   );
 }
 
-export function Easing({name}: {name: string}) {
+export function Easing({ name }: { name: string }) {
   const [css, theme] = useStyletron();
   return (
     <Property

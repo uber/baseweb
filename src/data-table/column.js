@@ -8,13 +8,13 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Checkbox} from '../checkbox/index.js';
-import {useStyletron} from '../styles/index.js';
+import { Checkbox } from '../checkbox/index.js';
+import { useStyletron } from '../styles/index.js';
 
-import type {ColumnT} from './types.js';
+import type { ColumnT } from './types.js';
 
 function Column<ValueT, FilterParamsT>(
-  options: ColumnT<ValueT, FilterParamsT>,
+  options: ColumnT<ValueT, FilterParamsT>
 ): ColumnT<ValueT, FilterParamsT> {
   return {
     kind: options.kind,
@@ -22,9 +22,7 @@ function Column<ValueT, FilterParamsT>(
     textQueryFilter: options.textQueryFilter,
     fillWidth: options.fillWidth === undefined ? true : options.fillWidth,
     filterable:
-      Boolean(options.filterable) &&
-      Boolean(options.renderFilter) &&
-      Boolean(options.buildFilter),
+      Boolean(options.filterable) && Boolean(options.renderFilter) && Boolean(options.buildFilter),
     mapDataToValue: options.mapDataToValue,
     maxWidth: options.maxWidth,
     minWidth: options.minWidth,
@@ -68,7 +66,7 @@ function Column<ValueT, FilterParamsT>(
                 onChange={props.onSelect}
                 checked={props.isSelected}
                 overrides={{
-                  Checkmark: {style: {marginTop: null, marginBottom: null}},
+                  Checkmark: { style: { marginTop: null, marginBottom: null } },
                 }}
               />
             )}

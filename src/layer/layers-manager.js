@@ -6,14 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {styled} from '../styles/index.js';
-import {getOverrides} from '../helpers/overrides.js';
-import type {
-  LayersManagerPropsT,
-  LayersManagerStateT,
-  LayersContextT,
-} from './types.js';
-import {initFocusVisible} from '../utils/focusVisible.js';
+import { styled } from '../styles/index.js';
+import { getOverrides } from '../helpers/overrides.js';
+import type { LayersManagerPropsT, LayersManagerStateT, LayersContextT } from './types.js';
+import { initFocusVisible } from '../utils/focusVisible.js';
 
 const StyledAppContainer = styled('div', {});
 const StyledLayersContainer = styled('div', {});
@@ -21,7 +17,7 @@ const StyledLayersContainer = styled('div', {});
 function defaultEventHandlerFn() {
   if (__DEV__) {
     console.warn(
-      '`LayersManager` was not found. This occurs if you are attempting to use a component requiring `Layer` without using the `BaseProvider` at the root of your app. Please visit https://baseweb.design/components/base-provider/ for more information',
+      '`LayersManager` was not found. This occurs if you are attempting to use a component requiring `Layer` without using the `BaseProvider` at the root of your app. Please visit https://baseweb.design/components/base-provider/ for more information'
     );
   }
 }
@@ -39,7 +35,7 @@ export const Consumer = LayersContext.Consumer;
 
 export default class LayersManager extends React.Component<
   LayersManagerPropsT,
-  LayersManagerStateT,
+  LayersManagerStateT
 > {
   host: {
     // flowlint-next-line unclear-type:off
@@ -53,7 +49,7 @@ export default class LayersManager extends React.Component<
 
   constructor(props: LayersManagerPropsT) {
     super(props);
-    this.state = {escapeKeyHandlers: [], docClickHandlers: []};
+    this.state = { escapeKeyHandlers: [], docClickHandlers: [] };
   }
 
   componentDidMount() {
@@ -75,8 +71,7 @@ export default class LayersManager extends React.Component<
   }
 
   onDocumentClick = (event: MouseEvent) => {
-    const docClickHandler =
-      this.state.docClickHandlers[this.state.docClickHandlers.length - 1];
+    const docClickHandler = this.state.docClickHandlers[this.state.docClickHandlers.length - 1];
     if (docClickHandler) {
       docClickHandler(event);
     }
@@ -94,54 +89,50 @@ export default class LayersManager extends React.Component<
 
   onAddEscapeHandler = (escapeKeyHandler: () => mixed) => {
     this.setState((prev) => {
-      return {escapeKeyHandlers: [...prev.escapeKeyHandlers, escapeKeyHandler]};
+      return { escapeKeyHandlers: [...prev.escapeKeyHandlers, escapeKeyHandler] };
     });
   };
 
   onRemoveEscapeHandler = (escapeKeyHandler: () => mixed) => {
     this.setState((prev) => {
       return {
-        escapeKeyHandlers: prev.escapeKeyHandlers.filter(
-          (handler) => handler !== escapeKeyHandler,
-        ),
+        escapeKeyHandlers: prev.escapeKeyHandlers.filter((handler) => handler !== escapeKeyHandler),
       };
     });
   };
 
   onAddDocClickHandler = (docClickHandler: (event: MouseEvent) => mixed) => {
     this.setState((prev) => {
-      return {docClickHandlers: [...prev.docClickHandlers, docClickHandler]};
+      return { docClickHandlers: [...prev.docClickHandlers, docClickHandler] };
     });
   };
 
   onRemoveDocClickHandler = (docClickHandler: (event: MouseEvent) => mixed) => {
     this.setState((prev) => {
       return {
-        docClickHandlers: prev.docClickHandlers.filter(
-          (handler) => handler !== docClickHandler,
-        ),
+        docClickHandlers: prev.docClickHandlers.filter((handler) => handler !== docClickHandler),
       };
     });
   };
 
   render() {
-    const {overrides = {}} = this.props;
+    const { overrides = {} } = this.props;
     const [AppContainer, appContainerProps] = getOverrides(
       overrides.AppContainer,
-      StyledAppContainer,
+      StyledAppContainer
     );
     const [LayersContainer, layersContainerProps] = getOverrides(
       overrides.LayersContainer,
-      StyledLayersContainer,
+      StyledLayersContainer
     );
     return (
       <Consumer>
-        {({host}) => {
+        {({ host }) => {
           if (__DEV__) {
             if (host !== undefined) {
               // eslint-disable-next-line no-console
               console.warn(
-                'There is a LayersManager already exists in your application. It is not recommended to have more than one LayersManager in an application.',
+                'There is a LayersManager already exists in your application. It is not recommended to have more than one LayersManager in an application.'
               );
             }
           }
