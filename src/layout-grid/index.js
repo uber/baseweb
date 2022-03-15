@@ -5,13 +5,13 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import {StyledGrid, StyledCell} from './styled-components.js';
+import { StyledGrid, StyledCell } from './styled-components.js';
 import Grid from './grid.js';
 import Cell from './cell.js';
 
 import DeprecatedHOC from '../utils/deprecated-component.js';
 
-export {StyledGrid, StyledCell, Grid, Cell};
+export { StyledGrid, StyledCell, Grid, Cell };
 export * from './constants.js';
 
 const componentName = 'Layout Grid (baseui/layout-grid)';

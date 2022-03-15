@@ -8,61 +8,50 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import type {EmoticonRatingPropsT, RatingStateT} from './types.js';
-import {StyledRoot, StyledEmoticon} from './styled-components.js';
-import {getOverrides} from '../helpers/overrides.js';
-import {ARROW_UP, ARROW_DOWN, ARROW_LEFT, ARROW_RIGHT} from './utils.js';
-import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
+import type { EmoticonRatingPropsT, RatingStateT } from './types.js';
+import { StyledRoot, StyledEmoticon } from './styled-components.js';
+import { getOverrides } from '../helpers/overrides.js';
+import { ARROW_UP, ARROW_DOWN, ARROW_LEFT, ARROW_RIGHT } from './utils.js';
+import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible.js';
 
-class EmoticonRating extends React.Component<
-  EmoticonRatingPropsT,
-  RatingStateT,
-> {
+class EmoticonRating extends React.Component<EmoticonRatingPropsT, RatingStateT> {
   static defaultProps = {
     overrides: {},
     readOnly: false,
   };
 
-  state = {isFocusVisible: false, previewIndex: undefined};
+  state = { isFocusVisible: false, previewIndex: undefined };
 
   selectItem = (value: number) => {
-    const {onChange} = this.props;
+    const { onChange } = this.props;
 
-    onChange && onChange({value});
-    this.setState({previewIndex: undefined});
+    onChange && onChange({ value });
+    this.setState({ previewIndex: undefined });
   };
 
   updatePreview = (previewIndex?: number) => {
-    this.setState({previewIndex});
+    this.setState({ previewIndex });
   };
 
   handleFocus = (event: SyntheticEvent<>) => {
     if (isFocusVisible(event)) {
-      this.setState({isFocusVisible: true});
+      this.setState({ isFocusVisible: true });
     }
   };
 
   handleBlur = (event: SyntheticEvent<>) => {
     if (this.state.isFocusVisible !== false) {
-      this.setState({isFocusVisible: false});
+      this.setState({ isFocusVisible: false });
     }
   };
 
   renderRatingContents = () => {
-    const {
-      overrides = {},
-      value = -1,
-      size = 44,
-      readOnly = false,
-    } = this.props;
-    const {previewIndex} = this.state;
+    const { overrides = {}, value = -1, size = 44, readOnly = false } = this.props;
+    const { previewIndex } = this.state;
 
-    const [Emoticon, emoticonProps] = getOverrides(
-      overrides.Item,
-      StyledEmoticon,
-    );
+    const [Emoticon, emoticonProps] = getOverrides(overrides.Item, StyledEmoticon);
     const ratings = [];
-    const refs = [{current: null}];
+    const refs = [{ current: null }];
     for (let x = 1; x <= 5; x++) {
       const isFocusable = x === value || (value < 1 && x === 1);
       const starRef = React.createRef<HTMLLIElement>();
@@ -81,9 +70,7 @@ class EmoticonRating extends React.Component<
           aria-disabled={readOnly}
           $size={size}
           $index={x}
-          $isActive={
-            previewIndex !== undefined ? x === previewIndex : x === value
-          }
+          $isActive={previewIndex !== undefined ? x === previewIndex : x === value}
           $isSelected={x === previewIndex}
           $isFocusVisible={this.state.isFocusVisible && isFocusable}
           $isReadOnly={readOnly}
@@ -120,7 +107,7 @@ class EmoticonRating extends React.Component<
           onFocus={forkFocus(emoticonProps, this.handleFocus)}
           onBlur={forkBlur(emoticonProps, this.handleBlur)}
           {...emoticonProps}
-        />,
+        />
       );
     }
 
@@ -128,7 +115,7 @@ class EmoticonRating extends React.Component<
   };
 
   render() {
-    const {overrides = {}} = this.props;
+    const { overrides = {} } = this.props;
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
 
     return (
@@ -136,8 +123,7 @@ class EmoticonRating extends React.Component<
         data-baseweb="emoticon-rating"
         role="radiogroup"
         onBlur={(e) => {
-          if (!e.currentTarget.contains(e.relatedTarget))
-            this.updatePreview(undefined);
+          if (!e.currentTarget.contains(e.relatedTarget)) this.updatePreview(undefined);
         }}
         onMouseLeave={() => this.updatePreview(undefined)}
         {...rootProps}

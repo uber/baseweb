@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {STATE_CHANGE_TYPE} from './constants.js';
+import { STATE_CHANGE_TYPE } from './constants.js';
 import type {
   PanelStateT,
   StatefulPanelContainerPropsT,
@@ -17,12 +17,9 @@ import type {
 
 const defaultStateReducer: PanelStateReducerT = (type, nextState) => nextState;
 
-class StatefulPanelContainer extends React.Component<
-  StatefulPanelContainerPropsT,
-  PanelStateT,
-> {
+class StatefulPanelContainer extends React.Component<StatefulPanelContainerPropsT, PanelStateT> {
   static defaultProps = {
-    initialState: {expanded: false},
+    initialState: { expanded: false },
     stateReducer: defaultStateReducer,
     onChange: () => {},
   };
@@ -34,7 +31,7 @@ class StatefulPanelContainer extends React.Component<
 
   onChange: OnChangeHandlerT = () => {
     if (typeof this.props.onChange === 'function') {
-      this.props.onChange({expanded: !this.state.expanded});
+      this.props.onChange({ expanded: !this.state.expanded });
     }
     this.internalSetState(STATE_CHANGE_TYPE.expand, {
       expanded: !this.state.expanded,
@@ -42,14 +39,12 @@ class StatefulPanelContainer extends React.Component<
   };
 
   internalSetState(type: StateChangeTypeT, changes: PanelStateT) {
-    const {stateReducer} = this.props;
-    this.setState((prevState) =>
-      stateReducer ? stateReducer(type, changes, prevState) : changes,
-    );
+    const { stateReducer } = this.props;
+    this.setState((prevState) => (stateReducer ? stateReducer(type, changes, prevState) : changes));
   }
 
   render() {
-    const {children, initialState, stateReducer, ...restProps} = this.props;
+    const { children, initialState, stateReducer, ...restProps } = this.props;
 
     return this.props.children({
       ...restProps,

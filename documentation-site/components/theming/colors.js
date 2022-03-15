@@ -7,9 +7,9 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {useStyletron, expandBorderStyles} from 'baseui/styles';
-import {colors} from 'baseui/tokens';
-import {PropertyCompareTheme} from './common.js';
+import { useStyletron, expandBorderStyles } from 'baseui/styles';
+import { colors } from 'baseui/tokens';
+import { PropertyCompareTheme } from './common.js';
 
 function getTokenFromCode(code) {
   let res = '';
@@ -19,13 +19,13 @@ function getTokenFromCode(code) {
   return res;
 }
 
-export function Color({name}: {name: string}) {
+export function Color({ name }: { name: string }) {
   const [css] = useStyletron();
   return (
     <PropertyCompareTheme
       name={name}
       concern="colors"
-      renderBox={({previewTheme, commonStyles}) => (
+      renderBox={({ previewTheme, commonStyles }) => (
         <div
           className={css({
             ...commonStyles,
@@ -34,7 +34,7 @@ export function Color({name}: {name: string}) {
           })}
         ></div>
       )}
-      renderValue={({previewTheme}) => (
+      renderValue={({ previewTheme }) => (
         <React.Fragment>
           <div>{previewTheme.colors[name]}</div>
           <div>{getTokenFromCode(previewTheme.colors[name])}</div>

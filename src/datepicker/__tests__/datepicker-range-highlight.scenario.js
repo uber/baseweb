@@ -7,13 +7,13 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {StatefulDatepicker} from '../index.js';
+import { StatefulDatepicker } from '../index.js';
 
 export function Scenario() {
   return (
     <StatefulDatepicker
       aria-label="Select a date"
-      initialState={{value: []}}
+      initialState={{ value: [] }}
       range
       highlightedDate={new Date('March 10, 2019')}
     />

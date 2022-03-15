@@ -7,19 +7,12 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-disable cup/no-undef */
 import * as React from 'react';
-import {getOverrides} from '../helpers/overrides.js';
-import {Root as StyledRoot} from './styled-components.js';
-import {STATE_CHANGE_TYPE} from './constants.js';
-import type {
-  AccordionPropsT,
-  AccordionStateT,
-  StateChangeTypeT,
-} from './types.js';
+import { getOverrides } from '../helpers/overrides.js';
+import { Root as StyledRoot } from './styled-components.js';
+import { STATE_CHANGE_TYPE } from './constants.js';
+import type { AccordionPropsT, AccordionStateT, StateChangeTypeT } from './types.js';
 
-export default class Accordion extends React.Component<
-  AccordionPropsT,
-  AccordionStateT,
-> {
+export default class Accordion extends React.Component<AccordionPropsT, AccordionStateT> {
   static defaultProps: $Shape<AccordionPropsT> = {
     accordion: true,
     disabled: false,
@@ -40,7 +33,7 @@ export default class Accordion extends React.Component<
   //flowlint-next-line unclear-type:off
   onPanelChange(key: React.Key, onChange: () => {}, ...args: Array<any>) {
     let activeKeys = this.state.expanded;
-    const {accordion} = this.props;
+    const { accordion } = this.props;
     if (accordion) {
       activeKeys = activeKeys[0] === key ? [] : [key];
     } else {
@@ -54,22 +47,22 @@ export default class Accordion extends React.Component<
         activeKeys.push(key);
       }
     }
-    const newState = {expanded: activeKeys};
+    const newState = { expanded: activeKeys };
     this.internalSetState(STATE_CHANGE_TYPE.expand, newState);
     // Call individual panel's onChange handler
     if (typeof onChange === 'function') onChange(...args);
   }
 
   internalSetState(type: StateChangeTypeT, changes: AccordionStateT) {
-    const {stateReducer, onChange} = this.props;
+    const { stateReducer, onChange } = this.props;
     const newState = stateReducer(type, changes, this.state);
     this.setState(newState);
     typeof onChange === 'function' && onChange(newState);
   }
 
   getItems() {
-    const {expanded} = this.state;
-    const {accordion, disabled, children, renderAll, overrides} = this.props;
+    const { expanded } = this.state;
+    const { accordion, disabled, children, renderAll, overrides } = this.props;
     // flowlint-next-line unclear-type:off
     return React.Children.map(children, (child: any, index) => {
       if (!child) return;
@@ -89,16 +82,15 @@ export default class Accordion extends React.Component<
         renderAll,
         overrides: child.props.overrides || overrides,
         disabled: child.props.disabled || disabled,
-        onChange: (...args) =>
-          this.onPanelChange(key, child.props.onChange, ...args),
+        onChange: (...args) => this.onPanelChange(key, child.props.onChange, ...args),
       };
       return React.cloneElement(child, props);
     });
   }
 
   render() {
-    const {overrides = {}} = this.props;
-    const {Root: RootOverride} = overrides;
+    const { overrides = {} } = this.props;
+    const { Root: RootOverride } = overrides;
     const [Root, rootProps] = getOverrides(RootOverride, StyledRoot);
     return (
       <Root

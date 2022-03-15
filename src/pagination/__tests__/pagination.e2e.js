@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
+const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
 
 const selectors = {
   prevButton: 'button[data-test="prev-button"]',
@@ -35,26 +35,17 @@ describe('pagination', () => {
     await mount(page, 'pagination--pagination');
     await page.waitForSelector(selectors.prevButton);
     // assert initial state
-    const initialValue = await page.$eval(
-      selectors.dropDownButton,
-      (input) => input.textContent,
-    );
+    const initialValue = await page.$eval(selectors.dropDownButton, (input) => input.textContent);
     expect(initialValue).toBe('1');
 
     // paginate to the next page
     await page.click(selectors.nextButton);
-    let value = await page.$eval(
-      selectors.dropDownButton,
-      (input) => input.textContent,
-    );
+    let value = await page.$eval(selectors.dropDownButton, (input) => input.textContent);
     expect(value).toBe('2');
 
     // paginate to the previous page
     await page.click(selectors.prevButton);
-    value = await page.$eval(
-      selectors.dropDownButton,
-      (input) => input.textContent,
-    );
+    value = await page.$eval(selectors.dropDownButton, (input) => input.textContent);
     expect(value).toBe('1');
   });
 
@@ -62,20 +53,14 @@ describe('pagination', () => {
     await mount(page, 'pagination--pagination');
     await page.waitForSelector(selectors.prevButton);
     // assert initial state
-    const initialValue = await page.$eval(
-      selectors.dropDownButton,
-      (input) => input.textContent,
-    );
+    const initialValue = await page.$eval(selectors.dropDownButton, (input) => input.textContent);
     expect(initialValue).toBe('1');
 
     // paginate using the dropdown menu
     await page.click(selectors.dropDownButton);
     await page.click('ul li:nth-child(3)');
 
-    let value = await page.$eval(
-      selectors.dropDownButton,
-      (input) => input.textContent,
-    );
+    let value = await page.$eval(selectors.dropDownButton, (input) => input.textContent);
     expect(value).toBe('3');
   });
 });

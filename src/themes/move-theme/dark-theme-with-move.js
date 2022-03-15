@@ -7,14 +7,11 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import deepMerge from '../../utils/deep-merge.js';
-import {DarkTheme} from '../dark-theme/dark-theme.js';
-import {
-  typography as moveTypography,
-  fontTokens as moveFontTokens,
-} from './typography.js';
+import { DarkTheme } from '../dark-theme/dark-theme.js';
+import { typography as moveTypography, fontTokens as moveFontTokens } from './typography.js';
 import getTypography from '../shared/typography.js';
 
-import type {ThemeT} from '../../styles/types.js';
+import type { ThemeT } from '../../styles/types.js';
 
 export const DarkThemeMove: ThemeT = deepMerge({}, DarkTheme, {
   name: 'dark-theme-with-move',

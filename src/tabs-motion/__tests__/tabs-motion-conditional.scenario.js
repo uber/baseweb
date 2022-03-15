@@ -11,20 +11,17 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable jsx-a11y/accessible-emoji */
 
 import * as React from 'react';
-import {Tab, Tabs} from '../index.js';
-import {Button, KIND} from '../../button/index.js';
+import { Tab, Tabs } from '../index.js';
+import { Button, KIND } from '../../button/index.js';
 
-class ErrorBoundary extends React.Component<
-  {children: React.Node},
-  {hasError: boolean},
-> {
+class ErrorBoundary extends React.Component<{ children: React.Node }, { hasError: boolean }> {
   static getDerivedStateFromError(error) {
-    return {hasError: true};
+    return { hasError: true };
   }
 
   constructor(props) {
     super(props);
-    this.state = {hasError: false};
+    this.state = { hasError: false };
   }
 
   componentDidMount() {
@@ -45,17 +42,13 @@ export function Scenario() {
   const [show, setShow] = React.useState(false);
   return (
     <React.Fragment>
-      <button
-        type="button"
-        onClick={() => setShow((s) => !s)}
-        id="toggle-robot-tab"
-      >
+      <button type="button" onClick={() => setShow((s) => !s)} id="toggle-robot-tab">
         Toggle Robot Tab
       </button>
       <ErrorBoundary>
         <Tabs
           activeKey={activeKey}
-          onChange={({activeKey}) => setActiveKey(activeKey)}
+          onChange={({ activeKey }) => setActiveKey(activeKey)}
           uid="conditional"
         >
           {show && (

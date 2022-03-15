@@ -8,8 +8,8 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {StatefulDataTable, CategoricalColumn} from '../index.js';
-import {useStyletron} from '../../styles/index.js';
+import { StatefulDataTable, CategoricalColumn } from '../index.js';
+import { useStyletron } from '../../styles/index.js';
 
 export function Scenario() {
   const [css, theme] = useStyletron();
@@ -24,10 +24,10 @@ export function Scenario() {
   ];
 
   const rows = [
-    {id: 1, data: 'a'},
-    {id: 2, data: 'b'},
-    {id: 3, data: 'c'},
-    {id: 4, data: 'd'},
+    { id: 1, data: 'a' },
+    { id: 2, data: 'b' },
+    { id: 3, data: 'c' },
+    { id: 4, data: 'd' },
   ];
 
   const initialFilters = React.useMemo(() => {
@@ -43,12 +43,10 @@ export function Scenario() {
 
   return (
     <React.Fragment>
-      <div style={{height: '400px', width: '800px'}}>
+      <div style={{ height: '400px', width: '800px' }}>
         <StatefulDataTable
           initialFilters={initialFilters}
-          onFilterAdd={(title, params) =>
-            setAddLog([...addLog, [title, params]])
-          }
+          onFilterAdd={(title, params) => setAddLog([...addLog, [title, params]])}
           onFilterRemove={(title) => setRemoveLog([...removeLog, title])}
           columns={columns}
           rows={rows}

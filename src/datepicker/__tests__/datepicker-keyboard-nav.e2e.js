@@ -8,15 +8,14 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {mount} = require('../../../e2e/helpers');
+const { mount } = require('../../../e2e/helpers');
 
 const selectors = {
   input: 'input',
   calendar: '[data-baseweb="calendar"]',
   mar10: '[aria-label="Choose Sunday, March 10th 2019. It\'s available."]',
   mar12: '[aria-label="Choose Tuesday, March 12th 2019. It\'s available."]',
-  mar12Selected:
-    '[aria-label="Selected start date. Tuesday, March 12th 2019. It\'s available."]',
+  mar12Selected: '[aria-label="Selected start date. Tuesday, March 12th 2019. It\'s available."]',
   mar14: '[aria-label="Choose Thursday, March 14th 2019. It\'s available."]',
   mar16: '[aria-label="Choose Saturday, March 16th 2019. It\'s available."]',
   apr1: '[aria-label="Choose Monday, April 1st 2019. It\'s available."]',
@@ -30,11 +29,7 @@ const isActiveEl = async (page, selector) => {
   // eslint-disable-next-line cup/no-undef
   const activeEl = await page.evaluateHandle(() => document.activeElement);
   const selectedEl = await page.$(selector);
-  const equal = await page.evaluate(
-    (e1, e2) => e1 === e2,
-    activeEl,
-    selectedEl,
-  );
+  const equal = await page.evaluate((e1, e2) => e1 === e2, activeEl, selectedEl);
   activeEl.dispose();
   return equal;
 };
@@ -72,10 +67,7 @@ describe('Datepicker - keyboard navigation', () => {
 
     // tab again - month/year select is focused
     await page.keyboard.press('Tab');
-    const isMonthSelectActive = await isActiveEl(
-      page,
-      selectors.monthYearSelectButton,
-    );
+    const isMonthSelectActive = await isActiveEl(page, selectors.monthYearSelectButton);
     expect(isMonthSelectActive).toBe(true);
 
     // tab again - next month button is focused
@@ -87,7 +79,7 @@ describe('Datepicker - keyboard navigation', () => {
     // press the next month button
     await page.keyboard.press('Enter');
     // make sure March is gone
-    await page.waitForSelector(selectors.mar10, {hidden: true});
+    await page.waitForSelector(selectors.mar10, { hidden: true });
     // and make sure April is now visible
     await page.waitForSelector(selectors.apr1);
 
@@ -167,7 +159,7 @@ describe('Datepicker - keyboard navigation', () => {
     await page.keyboard.press('Enter');
 
     // check that calendar is closed and input gets focus
-    await page.waitForSelector(selectors.calendar, {hidden: true});
+    await page.waitForSelector(selectors.calendar, { hidden: true });
     isInputActive = await isActiveEl(page, selectors.input);
     expect(isInputActive).toBe(true);
 
@@ -241,7 +233,7 @@ describe('Datepicker - keyboard navigation', () => {
     // press the next month button
     await page.keyboard.press('Enter');
     // make sure March is gone
-    await page.waitForSelector(selectors.mar14, {hidden: true});
+    await page.waitForSelector(selectors.mar14, { hidden: true });
     // and make sure April is now visible
     await page.waitForSelector(selectors.apr1);
 
@@ -264,7 +256,7 @@ describe('Datepicker - keyboard navigation', () => {
     // press the prev month button
     await page.keyboard.press('Enter');
     // make sure April is gone
-    await page.waitForSelector(selectors.apr1, {hidden: true});
+    await page.waitForSelector(selectors.apr1, { hidden: true });
     // and make sure March is now visible
     await page.waitForSelector(selectors.mar10);
 

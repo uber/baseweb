@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import BooleanColumn from '../column-boolean.js';
-import {StatefulDataTable} from '../stateful-data-table.js';
+import { StatefulDataTable } from '../stateful-data-table.js';
 
 function getColumn(index) {
   return BooleanColumn({
@@ -18,7 +18,7 @@ function getColumn(index) {
   });
 }
 
-const rows = new Array(5).fill().map((_, i) => ({id: i, data: {}}));
+const rows = new Array(5).fill().map((_, i) => ({ id: i, data: {} }));
 
 export function Scenario() {
   const [columns, setColumns] = React.useState([getColumn(0), getColumn(1)]);
@@ -30,19 +30,12 @@ export function Scenario() {
       >
         Add Column
       </button>
-      <button
-        data-testid="remove"
-        onClick={() => setColumns((prev) => prev.slice(0, -1))}
-      >
+      <button data-testid="remove" onClick={() => setColumns((prev) => prev.slice(0, -1))}>
         Remove Column
       </button>
 
-      <div style={{height: '400px', width: '900px'}}>
-        <StatefulDataTable
-          resizableColumnWidths
-          columns={columns || []}
-          rows={rows}
-        />
+      <div style={{ height: '400px', width: '900px' }}>
+        <StatefulDataTable resizableColumnWidths columns={columns || []} rows={rows} />
       </div>
     </div>
   );

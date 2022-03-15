@@ -7,9 +7,9 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {Avatar} from 'baseui/avatar';
-import {Block} from 'baseui/block';
-import {H2} from './markdown-elements';
+import { Avatar } from 'baseui/avatar';
+import { Block } from 'baseui/block';
+import { H2 } from './markdown-elements';
 
 type Contributor = {
   avatar_url: string,
@@ -20,7 +20,7 @@ type Contributor = {
 
 const isUser = (user) => user.type === 'User';
 
-function Contributors(props: {contributors: Contributor[]}) {
+function Contributors(props: { contributors: Contributor[] }) {
   if (!props.contributors.length) {
     return null;
   }
@@ -41,7 +41,7 @@ function Contributors(props: {contributors: Contributor[]}) {
             title={contributor.login}
             overrides={{
               Block: {
-                style: ({$theme}) => ({
+                style: ({ $theme }) => ({
                   ':focus > div > img': {
                     boxShadow: `0 0 0 3px ${$theme.colors.accent}`,
                     outline: 'none',
@@ -60,7 +60,7 @@ function Contributors(props: {contributors: Contributor[]}) {
               src={`${contributor.avatar_url}&s=64`}
               overrides={{
                 Root: {
-                  style: ({$theme}) => ({
+                  style: ({ $theme }) => ({
                     margin: $theme.sizing.scale100,
                     transitionProperty: 'all',
                     transitionDuration: $theme.animation.timing200,

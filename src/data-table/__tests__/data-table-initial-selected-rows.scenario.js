@@ -8,11 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {
-  StatefulDataTable,
-  CategoricalColumn,
-  RowIndexColumn,
-} from '../index.js';
+import { StatefulDataTable, CategoricalColumn, RowIndexColumn } from '../index.js';
 
 import Alert from '../../icon/alert.js';
 import Check from '../../icon/check.js';
@@ -21,7 +17,7 @@ const rowActions = [
   {
     label: 'Check',
     onClick: () => {},
-    renderIcon: function RenderCheck({size}) {
+    renderIcon: function RenderCheck({ size }) {
       return <Check size={size} />;
     },
   },
@@ -29,7 +25,7 @@ const rowActions = [
   {
     label: 'Remove',
     onClick: () => {},
-    renderIcon: function RenderAlert({size}) {
+    renderIcon: function RenderAlert({ size }) {
       return <Alert size={size} />;
     },
   },
@@ -45,17 +41,17 @@ export function Scenario() {
   ];
 
   const rows = [
-    {id: 1, data: 'a'},
-    {id: 2, data: 'b'},
-    {id: 3, data: 'c'},
-    {id: 4, data: 'd'},
+    { id: 1, data: 'a' },
+    { id: 2, data: 'b' },
+    { id: 3, data: 'c' },
+    { id: 4, data: 'd' },
   ];
 
   const initialSelectedRowIds = new Set([1]);
 
   return (
     <React.Fragment>
-      <div style={{height: '400px', width: '800px'}}>
+      <div style={{ height: '400px', width: '800px' }}>
         <StatefulDataTable
           initialSelectedRowIds={initialSelectedRowIds}
           columns={columns}

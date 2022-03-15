@@ -6,18 +6,13 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {
-  ACCESSIBILITY_TYPE,
-  PLACEMENT,
-  TRIGGER_TYPE,
-  POPOVER_MARGIN,
-} from './constants.js';
+import { ACCESSIBILITY_TYPE, PLACEMENT, TRIGGER_TYPE, POPOVER_MARGIN } from './constants.js';
 import StatefulContainer from './stateful-container.js';
 import Popover from './popover.js';
-import type {StatefulPopoverPropsT} from './types.js';
+import type { StatefulPopoverPropsT } from './types.js';
 
 function StatefulPopover(props: StatefulPopoverPropsT) {
-  const {children, ...restProps} = props;
+  const { children, ...restProps } = props;
   return (
     <StatefulContainer {...restProps}>
       {(popoverProps) => <Popover {...popoverProps}>{children}</Popover>}

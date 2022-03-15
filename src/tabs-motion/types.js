@@ -8,10 +8,10 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {ORIENTATION, FILL, STATE_CHANGE_TYPE} from './constants.js';
+import { ORIENTATION, FILL, STATE_CHANGE_TYPE } from './constants.js';
 
-import type {OverrideT} from '../helpers/overrides.js';
-import type {IconPropsT} from '../icon/types.js';
+import type { OverrideT } from '../helpers/overrides.js';
+import type { IconPropsT } from '../icon/types.js';
 
 export type OrientationT = $Values<typeof ORIENTATION>;
 export type FillT = $Values<typeof FILL>;
@@ -41,10 +41,10 @@ export type StatefulTabsActionT = {|
 
 export type StatefulTabsReducerT = (
   state: StatefulTabsStateT,
-  action: StatefulTabsActionT,
+  action: StatefulTabsActionT
 ) => StatefulTabsStateT;
 
-export type onChangeT = (params: {activeKey: React.Key}) => void;
+export type onChangeT = (params: { activeKey: React.Key }) => void;
 
 export type TabsPropsT = {|
   children: React.Node,

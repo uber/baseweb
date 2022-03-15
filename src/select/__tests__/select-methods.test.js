@@ -6,26 +6,26 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {render, fireEvent, screen} from '@testing-library/react';
+import { render, fireEvent, screen } from '@testing-library/react';
 import BaseProvider from '../../helpers/base-provider.js';
-import {LightTheme} from '../../themes/index.js';
+import { LightTheme } from '../../themes/index.js';
 
-import {StatefulSelect, Select} from '../index.js';
-import type {MethodsRefT} from '../types.js';
+import { StatefulSelect, Select } from '../index.js';
+import type { MethodsRefT } from '../types.js';
 
 describe('setDropdownOpen', function () {
   it('opens and closes dropdown with StatefulSelect', () => {
     const options = [
-      {id: 'a', label: 'a'},
-      {id: 'b', label: 'b'},
-      {id: 'c', label: 'c'},
+      { id: 'a', label: 'a' },
+      { id: 'b', label: 'b' },
+      { id: 'c', label: 'c' },
     ];
     const methodsRef: MethodsRefT = React.createRef();
 
-    const {container} = render(
+    const { container } = render(
       <BaseProvider theme={LightTheme}>
         <StatefulSelect methodsRef={methodsRef} options={options} />
-      </BaseProvider>,
+      </BaseProvider>
     );
 
     expect(container.querySelectorAll('li').length).toBe(0);
@@ -48,9 +48,9 @@ describe('setDropdownOpen', function () {
 
   it('opens and closes dropdown with Select', () => {
     const options = [
-      {id: 'a', label: 'a'},
-      {id: 'b', label: 'b'},
-      {id: 'c', label: 'c'},
+      { id: 'a', label: 'a' },
+      { id: 'b', label: 'b' },
+      { id: 'c', label: 'c' },
     ];
     const methodsRef = React.createRef();
 
@@ -69,7 +69,7 @@ describe('setDropdownOpen', function () {
       );
     };
 
-    const {container} = render(<TestCase />);
+    const { container } = render(<TestCase />);
 
     expect(container.querySelectorAll('li').length).toBe(0);
 

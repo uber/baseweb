@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import Link from 'next/link';
-import {themedUseStyletron as useStyletron} from '../pages/_app';
+import { themedUseStyletron as useStyletron } from '../pages/_app';
 import Menu from 'baseui/icon/menu';
 import DarkLogo from '../images/base-web.svg';
 import LightLogo from '../images/base-web-white.svg';
@@ -20,13 +20,12 @@ import AlignRightIcon from './align-right-icon';
 import VersionSelector from './version-selector.js';
 import Search from './search';
 import Bulb from './bulb';
-import {Button, KIND, SIZE, SHAPE} from 'baseui/button';
+import { Button, KIND, SIZE, SHAPE } from 'baseui/button';
 
 // Breakpoint for un-wrapping the search bar from under the links and toggles.
 const WRAP_SEARCH = 715;
 
-const mq = (breakpoint: number): string =>
-  `@media screen and (min-width: ${breakpoint}px)`;
+const mq = (breakpoint: number): string => `@media screen and (min-width: ${breakpoint}px)`;
 
 export default function HeaderNavigation({
   toggleSidebar,
@@ -72,10 +71,8 @@ export default function HeaderNavigation({
           <a
             className={css({
               display: 'flex',
-              marginLeft:
-                theme.direction === 'rtl' ? theme.sizing.scale400 : 'none',
-              marginRight:
-                theme.direction === 'rtl' ? 'none' : theme.sizing.scale400,
+              marginLeft: theme.direction === 'rtl' ? theme.sizing.scale400 : 'none',
+              marginRight: theme.direction === 'rtl' ? 'none' : theme.sizing.scale400,
               ':focus': {
                 outline: `3px solid ${theme.colors.accent}`,
                 outlineOffset: '5px',
@@ -153,10 +150,8 @@ export default function HeaderNavigation({
             flexBasis: 'auto',
             order: 2,
             marginTop: '0',
-            marginLeft:
-              theme.direction === 'rtl' ? theme.sizing.scale400 : 'none',
-            marginRight:
-              theme.direction === 'rtl' ? 'none' : theme.sizing.scale400,
+            marginLeft: theme.direction === 'rtl' ? theme.sizing.scale400 : 'none',
+            marginRight: theme.direction === 'rtl' ? 'none' : theme.sizing.scale400,
           },
         })}
       >

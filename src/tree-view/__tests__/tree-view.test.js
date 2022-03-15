@@ -79,7 +79,7 @@ function getSharedProps() {
 
 describe('TreeView Component', () => {
   it('basic renders', () => {
-    const {container} = render(<TreeView {...getSharedProps()} />);
+    const { container } = render(<TreeView {...getSharedProps()} />);
     getByText(container, 'Node 1');
   });
 
@@ -88,13 +88,13 @@ describe('TreeView Component', () => {
       ...getSharedProps(),
       onToggle: jest.fn(),
     };
-    const {container} = render(<TreeView {...props} />);
+    const { container } = render(<TreeView {...props} />);
     fireEvent.click(getByText(container, 'Node 1'));
     expect(props.onToggle).toHaveBeenCalled();
   });
 
   it('keyboard copy keys still bubble', () => {
-    const {getByText} = render(<TreeView {...getSharedProps()} />);
+    const { getByText } = render(<TreeView {...getSharedProps()} />);
     const node = getByText('Node 1').parentElement;
     const preventDefault = jest.fn();
     //$FlowFixMe
@@ -131,10 +131,10 @@ describe('TreeView Component', () => {
         TreeLabel: {
           component: CustomTreeLabel,
         },
-        ExpandIcon: {props: {'data-testid': 'expand-icon'}},
+        ExpandIcon: { props: { 'data-testid': 'expand-icon' } },
       },
     };
-    const {container} = render(<TreeView {...props} />);
+    const { container } = render(<TreeView {...props} />);
     getAllByTestId(container, 'label');
     expect(queryByTestId(container, 'expand-icon')).toBeNull();
   });

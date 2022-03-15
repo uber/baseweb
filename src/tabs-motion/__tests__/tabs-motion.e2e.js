@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
+const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
 
 const getTabs = () => page.$$('[role=tab]');
 
@@ -19,10 +19,7 @@ const isHidden = (t) => {
 };
 
 const isSelected = (t) => {
-  return page.evaluate(
-    (tab) => tab.getAttribute('aria-selected') === 'true',
-    t,
-  );
+  return page.evaluate((tab) => tab.getAttribute('aria-selected') === 'true', t);
 };
 
 const isEqual = (e1, e2) => page.evaluate((e1, e2) => e1 === e2, e1, e2);

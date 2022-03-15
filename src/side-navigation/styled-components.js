@@ -6,12 +6,12 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {styled, hexToRgb, withWrapper} from '../styles/index.js';
-import type {SharedPropsT} from './types.js';
+import { styled, hexToRgb, withWrapper } from '../styles/index.js';
+import type { SharedPropsT } from './types.js';
 
 export const StyledRoot = styled<SharedPropsT>('nav', (props) => {
   const {
-    $theme: {colors, typography},
+    $theme: { colors, typography },
   } = props;
   return {
     ...typography.font300,
@@ -30,9 +30,9 @@ export const StyledRoot = styled<SharedPropsT>('nav', (props) => {
 
 export const StyledNavItemContainer = styled('li', {});
 
-export const StyledNavLink = styled<{$isFocusVisible: boolean}>(
+export const StyledNavLink = styled<{ $isFocusVisible: boolean }>(
   'a',
-  ({$theme, $isFocusVisible}) => ({
+  ({ $theme, $isFocusVisible }) => ({
     color: 'inherit',
     outline: 'none',
     textDecoration: 'none',
@@ -45,8 +45,8 @@ export const StyledNavLink = styled<{$isFocusVisible: boolean}>(
           borderRightColor: 'transparent',
           borderBottomColor: 'transparent',
         }
-      : {outline: 'none'},
-  }),
+      : { outline: 'none' },
+  })
 );
 
 export const StyledNavItemElement = styled<SharedPropsT>('div', (props) => {
@@ -56,7 +56,7 @@ export const StyledNavItemElement = styled<SharedPropsT>('div', (props) => {
     $level,
     $disabled,
     $theme,
-    $theme: {colors, sizing},
+    $theme: { colors, sizing },
   } = props;
   const bgImgGradient = hexToRgb(colors.backgroundPrimary, '0.92') || '';
   const borderWidthDir: string =
@@ -65,10 +65,8 @@ export const StyledNavItemElement = styled<SharedPropsT>('div', (props) => {
     $theme.direction === 'rtl' ? 'borderRightStyle' : 'borderLeftStyle';
   const borderColorDir: string =
     $theme.direction === 'rtl' ? 'borderRightColor' : 'borderLeftColor';
-  const paddingPrefixDir: string =
-    $theme.direction === 'rtl' ? 'paddingRight' : 'paddingLeft';
-  const paddingSuffixDir: string =
-    $theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight';
+  const paddingPrefixDir: string = $theme.direction === 'rtl' ? 'paddingRight' : 'paddingLeft';
+  const paddingSuffixDir: string = $theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight';
 
   let cursor = $selectable ? 'pointer' : 'default';
   let color = $active ? colors.primary : null;
@@ -82,9 +80,7 @@ export const StyledNavItemElement = styled<SharedPropsT>('div', (props) => {
 
   return ({
     backgroundColor: $active ? colors.backgroundInversePrimary : 'transparent',
-    backgroundImage: $active
-      ? `linear-gradient(0deg, ${bgImgGradient}, ${bgImgGradient})`
-      : null,
+    backgroundImage: $active ? `linear-gradient(0deg, ${bgImgGradient}, ${bgImgGradient})` : null,
     boxSizing: 'border-box',
     [borderWidthDir]: '4px',
     [borderStyleDir]: 'solid',
@@ -108,9 +104,9 @@ export const StyledNavItemElement = styled<SharedPropsT>('div', (props) => {
 export const StyledNavItem = withWrapper(
   StyledNavItemElement,
   (Styled) =>
-    function StyledNav({item, ...restProps}) {
+    function StyledNav({ item, ...restProps }) {
       return <Styled {...restProps} />;
-    },
+    }
 );
 
 export const StyledSubNavContainer = styled('ul', {

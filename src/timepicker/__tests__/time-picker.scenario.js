@@ -6,13 +6,14 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 // eslint-disable-next-line import/extensions
-import {startOfDay} from 'date-fns';
+import { startOfDay } from 'date-fns';
 
-import {TimePicker} from '../index.js';
-import {SIZE} from '../../input/index.js';
+import { TimePicker } from '../index.js';
+import { SIZE } from '../../input/index.js';
 import MomentUtils from '@date-io/moment';
+
 const momentAdapter = new MomentUtils({});
 
 const MIDNIGHT = startOfDay(new Date(2019, 3, 19));
@@ -20,7 +21,7 @@ const MOMENT_MIDNIGHT = momentAdapter.date(MIDNIGHT);
 const OFF_STEP_TIME = new Date(2019, 3, 19, 1, 11);
 const overrides = {
   Select: {
-    props: {overrides: {ValueContainer: {props: {'data-id': 'selected'}}}},
+    props: { overrides: { ValueContainer: { props: { 'data-id': 'selected' } } } },
   },
 };
 
@@ -60,7 +61,7 @@ const MomentControlled = ({
   ...restProps
 }) => {
   const [time, setTime] = useState(initialDate);
-  const {getHours, getMinutes} = momentAdapter;
+  const { getHours, getMinutes } = momentAdapter;
   return (
     <React.Fragment>
       <TimePicker
@@ -91,7 +92,7 @@ export function Scenario() {
   const momentMinTime = momentAdapter.date(minTime);
   const momentMaxTime = momentAdapter.date(maxTime);
   return (
-    <div style={{width: '130px'}}>
+    <div style={{ width: '130px' }}>
       <div data-e2e="12-hour">
         12 hour format
         <Controlled format="12" step={900} initialDate={null} nullable={true} />
@@ -131,21 +132,11 @@ export function Scenario() {
       </div>
       <div data-e2e="with-min-time">
         With min time
-        <Controlled
-          format="24"
-          step={1800}
-          minTime={minTime}
-          initialDate={MIDNIGHT}
-        />
+        <Controlled format="24" step={1800} minTime={minTime} initialDate={MIDNIGHT} />
       </div>
       <div data-e2e="with-max-time">
         With max time
-        <Controlled
-          format="24"
-          step={1800}
-          maxTime={maxTime}
-          initialDate={MIDNIGHT}
-        />
+        <Controlled format="24" step={1800} maxTime={maxTime} initialDate={MIDNIGHT} />
       </div>
       <div data-e2e="with-min-and-max-time">
         With min & max time
@@ -169,11 +160,7 @@ export function Scenario() {
       </div>
       <div data-e2e="24-hour-moment">
         24 hour format(moment)
-        <MomentControlled
-          format="24"
-          step={1800}
-          initialDate={MOMENT_MIDNIGHT}
-        />
+        <MomentControlled format="24" step={1800} initialDate={MOMENT_MIDNIGHT} />
       </div>
     </div>
   );

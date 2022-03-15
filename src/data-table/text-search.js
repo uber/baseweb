@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
-import {useStyletron} from '../styles/index.js';
+import { useStyletron } from '../styles/index.js';
 
 export function matchesQuery(text: string, query: string): boolean {
   return text.toLowerCase().includes(query.toLowerCase());
@@ -45,7 +45,7 @@ export function splitByQuery(text: string, query: string): string[] {
   return substrings;
 }
 
-export function HighlightCellText(props: {text: string, query: string}) {
+export function HighlightCellText(props: { text: string, query: string }) {
   const [css, theme] = useStyletron();
 
   if (!props.query) {
@@ -57,7 +57,7 @@ export function HighlightCellText(props: {text: string, query: string}) {
       {splitByQuery(props.text, props.query).map((el, i) => {
         if (matchesQuery(el, props.query)) {
           return (
-            <span className={css({...theme.typography.font150})} key={i}>
+            <span className={css({ ...theme.typography.font150 })} key={i}>
               {el}
             </span>
           );

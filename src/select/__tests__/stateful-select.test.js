@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {render} from '@testing-library/react';
+import { render } from '@testing-library/react';
 
 import {
   StatefulSelect,
@@ -41,7 +41,7 @@ describe('Stateful select', function () {
         ValueContainer: StyledValueContainer,
         Placeholder: StyledPlaceholder,
         SingleValue: StyledSingleValue,
-        Tag: function TagComponent({children}) {
+        Tag: function TagComponent({ children }) {
           return <div>{children}</div>;
         },
         InputContainer: StyledInputContainer,
@@ -56,7 +56,7 @@ describe('Stateful select', function () {
     };
     render(<StatefulSelect {...props} />);
     // $FlowFixMe
-    const {overrides} = Select.mock.calls[0][0];
+    const { overrides } = Select.mock.calls[0][0];
     expect(overrides).toEqual(props.overrides);
     expect(Select).toHaveBeenCalled();
   });

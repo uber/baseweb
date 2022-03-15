@@ -8,15 +8,15 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 import BaseCountryPicker from './base-country-picker.js';
-import {SIZE} from './constants.js';
-import {SingleSelect as DefaultSelect} from '../select/index.js';
-import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
+import { SIZE } from './constants.js';
+import { SingleSelect as DefaultSelect } from '../select/index.js';
+import { getOverrides, mergeOverrides } from '../helpers/overrides.js';
 import defaultProps from './default-props.js';
-import type {CountrySelectPropsT} from './types.js';
+import type { CountrySelectPropsT } from './types.js';
 
 CountryPicker.defaultProps = {
   disabled: defaultProps.disabled,
-  inputRef: {current: null},
+  inputRef: { current: null },
   maxDropdownHeight: defaultProps.maxDropdownHeight,
   maxDropdownWidth: defaultProps.maxDropdownWidth,
   overrides: {},
@@ -27,12 +27,11 @@ CountryPicker.defaultProps = {
 };
 
 export default function CountryPicker(props: CountrySelectPropsT) {
-  const {overrides} = props;
+  const { overrides } = props;
   const baseSelectOverrides = {
     Root: {
-      style: ({$theme: {direction, sizing}}) => {
-        const marginDir: string =
-          direction === 'rtl' ? 'marginLeft' : 'marginRight';
+      style: ({ $theme: { direction, sizing } }) => {
+        const marginDir: string = direction === 'rtl' ? 'marginLeft' : 'marginRight';
         return {
           [marginDir]: sizing.scale300,
           width: 'auto',
@@ -40,7 +39,7 @@ export default function CountryPicker(props: CountrySelectPropsT) {
       },
     },
     ControlContainer: {
-      style: ({$theme: {direction, sizing}, ...props}) => {
+      style: ({ $theme: { direction, sizing }, ...props }) => {
         const sizeToLeftPadding = {
           [SIZE.mini]: '0',
           [SIZE.compact]: sizing.scale0,
@@ -53,10 +52,8 @@ export default function CountryPicker(props: CountrySelectPropsT) {
           [SIZE.default]: sizing.scale600,
           [SIZE.large]: sizing.scale700,
         };
-        const padStartDir: string =
-          direction === 'rtl' ? 'paddingRight' : 'paddingLeft';
-        const padEndDir: string =
-          direction === 'rtl' ? 'paddingLeft' : 'paddingRight';
+        const padStartDir: string = direction === 'rtl' ? 'paddingRight' : 'paddingLeft';
+        const padEndDir: string = direction === 'rtl' ? 'paddingLeft' : 'paddingRight';
         const styleOverride = {
           [padStartDir]: sizeToLeftPadding[props.$size || SIZE.default],
           [padEndDir]: sizeToRightPadding[props.$size || SIZE.default],
@@ -76,39 +73,31 @@ export default function CountryPicker(props: CountrySelectPropsT) {
     },
   };
 
-  const [Select, selectProps] = getOverrides(
-    overrides.CountrySelect,
-    DefaultSelect,
-  );
+  const [Select, selectProps] = getOverrides(overrides.CountrySelect, DefaultSelect);
   const selectOverrides = mergeOverrides(baseSelectOverrides, {
     Dropdown: overrides.CountrySelectDropdown || {},
     DropdownListItem: overrides.CountrySelectDropdownListItem || {},
   });
-  selectProps.overrides = mergeOverrides(
-    selectOverrides,
-    selectProps.overrides,
-  );
+  selectProps.overrides = mergeOverrides(selectOverrides, selectProps.overrides);
 
   const baseOverrides = {
     FlagContainer: {
-      style: ({$theme: {direction, sizing}, ...props}) => {
+      style: ({ $theme: { direction, sizing }, ...props }) => {
         const sizeToMargin = {
           [SIZE.mini]: sizing.scale200,
           [SIZE.compact]: sizing.scale300,
           [SIZE.default]: sizing.scale400,
           [SIZE.large]: sizing.scale500,
         };
-        const marginDir: string =
-          direction === 'rtl' ? 'marginLeft' : 'marginRight';
+        const marginDir: string = direction === 'rtl' ? 'marginLeft' : 'marginRight';
         return {
           [marginDir]: sizeToMargin[props.$size || SIZE.default],
         };
       },
     },
     DialCode: {
-      style: ({$theme: {direction, sizing}}) => {
-        const marginDir: string =
-          direction === 'rtl' ? 'marginRight' : 'marginLeft';
+      style: ({ $theme: { direction, sizing } }) => {
+        const marginDir: string = direction === 'rtl' ? 'marginRight' : 'marginLeft';
         return {
           [marginDir]: sizing.scale600,
         };

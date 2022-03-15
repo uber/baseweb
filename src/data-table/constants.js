@@ -43,7 +43,7 @@ export const SORT_DIRECTIONS = Object.freeze({
 export const FILTER_SHELL_WIDTH = '320px';
 
 // Depends on FILTER_SHELL_WIDTH
-export const HISTOGRAM_SIZE = {width: 308, height: 120};
+export const HISTOGRAM_SIZE = { width: 308, height: 120 };
 
 // Arguably visually appealing within the given width.
 // Smaller and we don't have enough detail per bar.

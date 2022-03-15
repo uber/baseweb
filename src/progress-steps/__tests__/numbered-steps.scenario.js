@@ -8,9 +8,9 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Block} from '../../block/index.js';
-import {Button} from '../../button/index.js';
-import {ProgressSteps, NumberedStep} from '../index.js';
+import { Block } from '../../block/index.js';
+import { Button } from '../../button/index.js';
+import { ProgressSteps, NumberedStep } from '../index.js';
 
 export function Scenario() {
   const [current, setCurrent] = React.useState(1);

@@ -7,8 +7,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {useStyletron} from '../../styles/index.js';
-import {Combobox} from '../index.js';
+import { useStyletron } from '../../styles/index.js';
+import { Combobox } from '../index.js';
 
 const availableChannels = [
   'general',
@@ -69,9 +69,7 @@ export function Scenario() {
       const index = searchIndex(nextInputValue);
       const query = nextInputValue.substring(index + 1);
       setOptions((prevOptions) => {
-        return prevOptions.filter((option) =>
-          option.toLowerCase().includes(query.toLowerCase()),
-        );
+        return prevOptions.filter((option) => option.toLowerCase().includes(query.toLowerCase()));
       });
 
       setValue(nextInputValue);
@@ -82,7 +80,7 @@ export function Scenario() {
   }
 
   return (
-    <div className={css({padding: '12px 48px'})}>
+    <div className={css({ padding: '12px 48px' })}>
       <Combobox
         autocomplete={false}
         value={value}

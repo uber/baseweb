@@ -6,14 +6,14 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {getOverrides} from '../helpers/overrides.js';
+import { getOverrides } from '../helpers/overrides.js';
 import {
   RelativeContainer,
   StyledStrokedLabel,
   StyledStrokedLabelContainer,
 } from './styled-components.js';
-import {LABEL_ENHANCER_POSITIONS} from './constants.js';
-import type {LabelEhancerComponentT} from './types.js';
+import { LABEL_ENHANCER_POSITIONS } from './constants.js';
+import type { LabelEhancerComponentT } from './types.js';
 
 const LabelEnhancer = ({
   labelEnhancerContent,
@@ -22,10 +22,7 @@ const LabelEnhancer = ({
   size,
   overrides = {},
 }: LabelEhancerComponentT) => {
-  if (
-    !labelEnhancerPosition ||
-    labelEnhancerPosition === LABEL_ENHANCER_POSITIONS.none
-  ) {
+  if (!labelEnhancerPosition || labelEnhancerPosition === LABEL_ENHANCER_POSITIONS.none) {
     return null;
   }
   if (!labelEnhancerContent) {
@@ -34,12 +31,12 @@ const LabelEnhancer = ({
 
   const [StrokedLabelContainer, strokedLabelContainerProps] = getOverrides(
     overrides.LabelEnhancerContainer,
-    StyledStrokedLabelContainer,
+    StyledStrokedLabelContainer
   );
 
   const [StrokedLabel, strokedLabelProps] = getOverrides(
     overrides.LabelEnhancer,
-    StyledStrokedLabel,
+    StyledStrokedLabel
   );
   return (
     <StrokedLabelContainer

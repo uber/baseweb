@@ -7,13 +7,9 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
+const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
 
-const {
-  getTable,
-  getCellContentsAtColumnIndex,
-  matchArrayElements,
-} = require('./utilities.js');
+const { getTable, getCellContentsAtColumnIndex, matchArrayElements } = require('./utilities.js');
 
 const COLUMN_COUNT = 2;
 
@@ -33,7 +29,7 @@ function wait(ms) {
 async function getCheckboxValues(element) {
   await wait(50); // briefly wait to give table state chance to update
   return element.$$eval('label[data-baseweb="checkbox"] input', (elements) =>
-    elements.map((el) => el.checked),
+    elements.map((el) => el.checked)
   );
 }
 
@@ -125,10 +121,7 @@ describe('data-table batch-actions', () => {
     await clickCheckboxAtRowIndex(table, 1);
     await clickCheckboxAtRowIndex(table, 2);
     await clickCheckboxAtRowIndex(table, 3);
-    const count = await page.$eval(
-      '#selection-change-count',
-      (el) => el.textContent,
-    );
+    const count = await page.$eval('#selection-change-count', (el) => el.textContent);
     expect(count).toBe('selection change count: 3');
   });
 
@@ -137,11 +130,7 @@ describe('data-table batch-actions', () => {
     await mount(page, 'data-table--batch-action');
     const table = await getTable(page);
 
-    const before = await getCellContentsAtColumnIndex(
-      page,
-      COLUMN_COUNT,
-      index,
-    );
+    const before = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
     expect(matchArrayElements(before, ['1', '2', '3', '4', '5'])).toBe(true);
 
     await clickCheckboxAtRowIndex(table, 0);

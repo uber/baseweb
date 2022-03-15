@@ -7,8 +7,8 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-import {styled} from '../styles/index.js';
-import type {StyledRootPropsT, StyledRatingItemPropsT} from './types.js';
+import { styled } from '../styles/index.js';
+import type { StyledRootPropsT, StyledRatingItemPropsT } from './types.js';
 import {
   starSVG,
   angryRatingSVG,
@@ -18,7 +18,7 @@ import {
   veryHappyRatingSVG,
 } from './svg-icons.js';
 
-export const StyledRoot = styled<StyledRootPropsT>('ul', ({$theme}) => {
+export const StyledRoot = styled<StyledRootPropsT>('ul', ({ $theme }) => {
   return {
     marginLeft: 0,
     marginRight: 0,
@@ -37,15 +37,7 @@ export const StyledRoot = styled<StyledRootPropsT>('ul', ({$theme}) => {
 
 export const StyledStar = styled<StyledRatingItemPropsT>(
   'li',
-  ({
-    $theme,
-    $isActive,
-    $isPartialActive,
-    $isSelected,
-    $isFocusVisible,
-    $isReadOnly,
-    $size,
-  }) => {
+  ({ $theme, $isActive, $isPartialActive, $isSelected, $isFocusVisible, $isReadOnly, $size }) => {
     let starStroke = $theme.colors.ratingStroke;
     let starFill = $theme.colors.ratingInactiveFill;
     let prePartialStarStroke;
@@ -79,10 +71,7 @@ export const StyledStar = styled<StyledRatingItemPropsT>(
       position: 'relative',
       ':after': {
         transition: `all ${$theme.animation.timing400}`,
-        content:
-          `url('data:image/svg+xml,` +
-          starSVG(starFill, starStroke, $size) +
-          `')`,
+        content: `url('data:image/svg+xml,` + starSVG(starFill, starStroke, $size) + `')`,
         height: '100%',
       },
       ':before':
@@ -108,20 +97,12 @@ export const StyledStar = styled<StyledRatingItemPropsT>(
     };
 
     return styles;
-  },
+  }
 );
 
 export const StyledEmoticon = styled<StyledRatingItemPropsT>(
   'li',
-  ({
-    $theme,
-    $isActive,
-    $isSelected,
-    $index = 1,
-    $isFocusVisible,
-    $isReadOnly,
-    $size,
-  }) => {
+  ({ $theme, $isActive, $isSelected, $index = 1, $isFocusVisible, $isReadOnly, $size }) => {
     let emoticonFill = $theme.colors.ratingInactiveFill;
 
     if ($isActive) {
@@ -160,5 +141,5 @@ export const StyledEmoticon = styled<StyledRatingItemPropsT>(
     };
 
     return styles;
-  },
+  }
 );

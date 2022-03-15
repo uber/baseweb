@@ -8,14 +8,12 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Checkbox, STYLE_TYPE} from '../index.js';
+import { Checkbox, STYLE_TYPE } from '../index.js';
 
 export function Scenario() {
   return (
-    <div style={{width: '200px'}}>
-      <Checkbox checkmarkType={STYLE_TYPE.toggle_round}>
-        default unchecked
-      </Checkbox>
+    <div style={{ width: '200px' }}>
+      <Checkbox checkmarkType={STYLE_TYPE.toggle_round}>default unchecked</Checkbox>
       <Checkbox checkmarkType={STYLE_TYPE.toggle_round} checked>
         default checked
       </Checkbox>

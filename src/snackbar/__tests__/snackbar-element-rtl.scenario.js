@@ -8,12 +8,12 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {ThemeProvider, LightTheme} from '../../index.js';
-import {Scenario as SnackbarScenario} from './snackbar-element.scenario.js';
+import { ThemeProvider, LightTheme } from '../../index.js';
+import { Scenario as SnackbarScenario } from './snackbar-element.scenario.js';
 
 export function Scenario() {
   return (
-    <ThemeProvider theme={{...LightTheme, direction: 'rtl'}}>
+    <ThemeProvider theme={{ ...LightTheme, direction: 'rtl' }}>
       <div dir="rtl">
         <SnackbarScenario />
       </div>

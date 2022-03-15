@@ -8,9 +8,9 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {SIZE, SHAPE, KIND} from '../button/index.js';
-import type {OverrideT} from '../helpers/overrides.js';
-import {MODE, STATE_CHANGE_TYPE} from './constants.js';
+import { SIZE, SHAPE, KIND } from '../button/index.js';
+import type { OverrideT } from '../helpers/overrides.js';
+import { MODE, STATE_CHANGE_TYPE } from './constants.js';
 
 // button-group
 export type PropsT = {|
@@ -56,17 +56,17 @@ type OverridesT = {
 export type StatefulPropsT = $Diff<
   {|
     ...PropsT,
-    initialState?: {selected: number | Array<number>},
+    initialState?: { selected: number | Array<number> },
     stateReducer?: StateReducerT,
   |},
-  {selected: mixed}, // excluded from type definition
+  { selected: mixed } // excluded from type definition
 >;
 
 // stateful-container
 export type StatefulContainerPropsT = {|
   ...StatefulPropsT,
   children: (props: {
-    ...$Diff<PropsT, {children: mixed}>,
+    ...$Diff<PropsT, { children: mixed }>,
     onClick: ClickHandlerT,
     selected: number | Array<number>,
   }) => React.Node,
@@ -79,11 +79,8 @@ export type StateT = {
 export type StateReducerT = (
   stateType: $Values<typeof STATE_CHANGE_TYPE>,
   nextState: StateT,
-  currentState: StateT,
+  currentState: StateT
 ) => StateT;
 
 // general
-type ClickHandlerT = (
-  event: SyntheticEvent<HTMLButtonElement>,
-  index: number,
-) => mixed;
+type ClickHandlerT = (event: SyntheticEvent<HTMLButtonElement>, index: number) => mixed;

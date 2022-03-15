@@ -14,9 +14,9 @@ import {
   StyledInputOverrideRoot,
   StyledInputOverrideInput,
 } from './styled-components.js';
-import type {PropsT, StateT} from './types.js';
-import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
-import {Input as DefaultInput} from '../input/index.js';
+import type { PropsT, StateT } from './types.js';
+import { getOverrides, mergeOverrides } from '../helpers/overrides.js';
+import { Input as DefaultInput } from '../input/index.js';
 
 export default class PinCode extends React.Component<PropsT, StateT> {
   static defaultProps = defaultProps;
@@ -43,23 +43,14 @@ export default class PinCode extends React.Component<PropsT, StateT> {
   }
 
   render() {
-    const [Root, rootProps] = getOverrides(
-      this.props.overrides.Root,
-      StyledRoot,
-    );
-    const [Input, inputProps] = getOverrides(
-      this.props.overrides.Input,
-      DefaultInput,
-    );
+    const [Root, rootProps] = getOverrides(this.props.overrides.Root, StyledRoot);
+    const [Input, inputProps] = getOverrides(this.props.overrides.Input, DefaultInput);
     const baseOverrides = {
-      Root: {component: StyledInputOverrideRoot},
+      Root: { component: StyledInputOverrideRoot },
       Input: {
         component: StyledInputOverrideInput,
         props: {
-          type:
-            typeof this.props.mask === 'boolean' && this.props.mask
-              ? 'password'
-              : 'text',
+          type: typeof this.props.mask === 'boolean' && this.props.mask ? 'password' : 'text',
         },
       },
     };
@@ -80,8 +71,8 @@ export default class PinCode extends React.Component<PropsT, StateT> {
               inputRef={this._inputRefs.ref(i)}
               key={i}
               name={this.props.name}
-              onBlur={() => this.setState({hasFocus: false})}
-              onFocus={() => this.setState({hasFocus: true})}
+              onBlur={() => this.setState({ hasFocus: false })}
+              onFocus={() => this.setState({ hasFocus: true })}
               onChange={(event) => {
                 const eventValue = event.target.value;
                 // in the case of an autocomplete or copy and paste
@@ -91,7 +82,7 @@ export default class PinCode extends React.Component<PropsT, StateT> {
                     eventValue.length === this.props.values.length &&
                     eventValue.match(/^[0-9]+$/)
                   ) {
-                    this.props.onChange({values: eventValue.split(''), event});
+                    this.props.onChange({ values: eventValue.split(''), event });
                   }
                   return;
                 }
@@ -99,7 +90,7 @@ export default class PinCode extends React.Component<PropsT, StateT> {
                 if (eventValue === '') {
                   const newValues = this.props.values.slice();
                   newValues[i] = '';
-                  this.props.onChange({values: newValues, event});
+                  this.props.onChange({ values: newValues, event });
                   return;
                 }
                 // we want to override the input value with the last digit typed
@@ -114,12 +105,9 @@ export default class PinCode extends React.Component<PropsT, StateT> {
                 if (newValue.match(/^[0-9]$/)) {
                   const newValues = this.props.values.slice();
                   newValues[i] = newValue;
-                  this.props.onChange({values: newValues, event});
+                  this.props.onChange({ values: newValues, event });
                   // tab to next pin code input if we aren't at end already
-                  if (
-                    this.props.manageFocus &&
-                    i < this.props.values.length - 1
-                  ) {
+                  if (this.props.manageFocus && i < this.props.values.length - 1) {
                     const inputRef = this._inputRefs.map.get(i + 1);
                     if (inputRef && inputRef.focus) inputRef.focus();
                   }

@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {StatefulPopover} from '../index.js';
+import { StatefulPopover } from '../index.js';
 
 // addresses https://github.com/uber/baseweb/issues/2685
 // infinite loop between focusing the content and the anchor element

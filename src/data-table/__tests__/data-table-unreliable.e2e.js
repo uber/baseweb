@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {mount} = require('../../../e2e/helpers');
+const { mount } = require('../../../e2e/helpers');
 
 const {
   TABLE_ROOT,
@@ -23,11 +23,7 @@ describe('data table columns', () => {
     const index = 1;
     await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
-    const initial = await getCellContentsAtColumnIndex(
-      page,
-      COLUMN_COUNT,
-      index,
-    );
+    const initial = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
     expect(matchArrayElements(initial, ['A', 'B', 'A', 'A'])).toBe(true);
 
     let popover = await openFilterAtIndex(page, index);
@@ -38,11 +34,7 @@ describe('data table columns', () => {
       return button.click();
     });
 
-    const filtered = await getCellContentsAtColumnIndex(
-      page,
-      COLUMN_COUNT,
-      index,
-    );
+    const filtered = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
     expect(matchArrayElements(filtered, ['A', 'A', 'A'])).toBe(true);
 
     const tag = await page.$('span[data-baseweb="tag"]');
@@ -57,13 +49,9 @@ describe('data table columns', () => {
       const button = items.find((item) => item.textContent === 'Apply');
       return button.click();
     });
-    await page.waitForSelector('div[data-baseweb="popover"]', {hidden: true});
+    await page.waitForSelector('div[data-baseweb="popover"]', { hidden: true });
 
-    const updated = await getCellContentsAtColumnIndex(
-      page,
-      COLUMN_COUNT,
-      index,
-    );
+    const updated = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
 
     expect(matchArrayElements(updated, ['B'])).toBe(true);
   });

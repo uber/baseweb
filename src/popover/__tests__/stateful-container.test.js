@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {render} from '@testing-library/react';
+import { render } from '@testing-library/react';
 
-import {StatefulContainer, PLACEMENT, TRIGGER_TYPE} from '../index.js';
+import { StatefulContainer, PLACEMENT, TRIGGER_TYPE } from '../index.js';
 
 describe('StatefulPopoverContainer', () => {
   it('basic render', () => {
@@ -218,7 +218,7 @@ describe('StatefulPopoverContainer', () => {
 
     render(
       // $FlowFixMe - Allow null stateReducer for the sake of testing
-      <StatefulContainer {...props}>{children}</StatefulContainer>,
+      <StatefulContainer {...props}>{children}</StatefulContainer>
     );
 
     expect(children.mock.calls[0][0]).toHaveProperty('isOpen', false);

@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Datepicker} from '../index.js';
+import { Datepicker } from '../index.js';
 
 export function Scenario() {
   const [value, setValue] = React.useState([]);
@@ -16,9 +16,9 @@ export function Scenario() {
     <Datepicker
       aria-label="Select a date"
       clearable={true}
-      initialState={{value: []}}
+      initialState={{ value: [] }}
       value={value}
-      onChange={({date}) => setValue(date)}
+      onChange={({ date }) => setValue(date)}
       excludeDates={[
         new Date('2022-03-09'),
         new Date('2022-03-13'),
@@ -32,10 +32,10 @@ export function Scenario() {
       maxDate={new Date('2022-05-14')}
       minDate={new Date('2022-03-05')}
       overrides={{
-        MonthYearSelectButton: {props: {'data-id': 'monthYearSelectButton'}},
+        MonthYearSelectButton: { props: { 'data-id': 'monthYearSelectButton' } },
         MonthYearSelectStatefulMenu: {
           props: {
-            overrides: {List: {props: {'data-id': 'monthYearSelectMenu'}}},
+            overrides: { List: { props: { 'data-id': 'monthYearSelectMenu' } } },
           },
         },
 
@@ -45,8 +45,8 @@ export function Scenario() {
               Select: {
                 props: {
                   overrides: {
-                    Root: {props: {'data-id': 'time-select'}},
-                    ValueContainer: {props: {'data-id': 'selected'}},
+                    Root: { props: { 'data-id': 'time-select' } },
+                    ValueContainer: { props: { 'data-id': 'selected' } },
                   },
                 },
               },

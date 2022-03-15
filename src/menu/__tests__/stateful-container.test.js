@@ -7,12 +7,12 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-env browser */
 import * as React from 'react';
-import {render} from '@testing-library/react';
+import { render } from '@testing-library/react';
 
 import StatefulContainer from '../stateful-container.js';
-import {KEY_STRINGS} from '../constants.js';
+import { KEY_STRINGS } from '../constants.js';
 
-const mockItems = [{label: 'item1'}, {disabled: true, label: 'item2'}];
+const mockItems = [{ label: 'item1' }, { disabled: true, label: 'item2' }];
 const mockChildrenFn = jest.fn().mockImplementation(() => <div />);
 const mockItemSelect = jest.fn();
 
@@ -96,7 +96,7 @@ describe('Menu StatefulContainer', () => {
     expect(props).toHaveProperty('ref');
     expect(props).toHaveProperty('resetMenu');
 
-    const event = {preventDefault: jest.fn()};
+    const event = { preventDefault: jest.fn() };
     props.onClick(event);
     expect(mockItemSelect.mock.calls[0][0]).toEqual({
       item,
@@ -120,15 +120,8 @@ describe('Menu StatefulContainer', () => {
   });
 
   it('getRequiredItemProps does not return onClick and onMouseEnter props for item set to disabled through getRequiredItemProps', () => {
-    const getRequiredItemProps = jest
-      .fn()
-      .mockImplementation((item) => ({disabled: true}));
-    render(
-      <StatefulContainer
-        {...getSharedProps()}
-        getRequiredItemProps={getRequiredItemProps}
-      />,
-    );
+    const getRequiredItemProps = jest.fn().mockImplementation((item) => ({ disabled: true }));
+    render(<StatefulContainer {...getSharedProps()} getRequiredItemProps={getRequiredItemProps} />);
     const item = mockItems[0];
     const result = mockChildrenFn.mock.calls[0][0];
     const props = result.getRequiredItemProps(item, 0);
@@ -138,15 +131,8 @@ describe('Menu StatefulContainer', () => {
   });
 
   it('disabled prop value returned from getRequiredItemProps takes precedence over the one defined on item', () => {
-    const getRequiredItemProps = jest
-      .fn()
-      .mockImplementation((item) => ({disabled: false}));
-    render(
-      <StatefulContainer
-        {...getSharedProps()}
-        getRequiredItemProps={getRequiredItemProps}
-      />,
-    );
+    const getRequiredItemProps = jest.fn().mockImplementation((item) => ({ disabled: false }));
+    render(<StatefulContainer {...getSharedProps()} getRequiredItemProps={getRequiredItemProps} />);
     const item = mockItems[1];
     const result = mockChildrenFn.mock.calls[0][0];
     const props = result.getRequiredItemProps(item, 1);
@@ -156,12 +142,7 @@ describe('Menu StatefulContainer', () => {
   });
 
   it('getRequiredItemProps returns correct props for active child', () => {
-    render(
-      <StatefulContainer
-        {...getSharedProps()}
-        initialState={{highlightedIndex: 0}}
-      />,
-    );
+    render(<StatefulContainer {...getSharedProps()} initialState={{ highlightedIndex: 0 }} />);
     const item = mockItems[0];
     const result = mockChildrenFn.mock.calls[0][0];
     const props = result.getRequiredItemProps(item, 0);
@@ -223,13 +204,10 @@ describe('Menu StatefulContainer', () => {
     const sharedProps = getSharedProps();
     const props = {
       ...sharedProps,
-      items: [{label: 'item1'}, {label: 'aardvark'}],
+      items: [{ label: 'item1' }, { label: 'aardvark' }],
     };
     render(<StatefulContainer {...props} typeAhead />);
-    expect(mockChildrenFn.mock.calls[0][0]).toHaveProperty(
-      'highlightedIndex',
-      -1,
-    );
+    expect(mockChildrenFn.mock.calls[0][0]).toHaveProperty('highlightedIndex', -1);
 
     // $FlowFixMe
     mockChildrenFn.mock.calls[0][0].handleKeyDown({
@@ -252,7 +230,7 @@ describe('Menu StatefulContainer', () => {
     const sharedProps = getSharedProps();
     const props = {
       ...sharedProps,
-      items: [{label: <span>item1</span>}, {label: 'aardvark'}],
+      items: [{ label: <span>item1</span> }, { label: 'aardvark' }],
     };
     render(<StatefulContainer {...props} typeAhead />);
 
@@ -261,7 +239,7 @@ describe('Menu StatefulContainer', () => {
       mockChildrenFn.mock.calls[0][0].handleKeyDown({
         key: 'z',
         preventDefault: jest.fn(),
-      }),
+      })
     ).not.toThrow();
   });
 });

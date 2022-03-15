@@ -8,21 +8,21 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
-import {Select} from '../index.js';
-import {Button} from '../../button/index.js';
+import { Select } from '../index.js';
+import { Button } from '../../button/index.js';
 
 export function Scenario() {
   const methodsRef = React.useRef(null);
   const [value, setValue] = React.useState([]);
 
   const options = [
-    {id: 'a', label: 'apples'},
-    {id: 'b', label: 'bananas'},
-    {id: 'c', label: 'dragon fruit'},
+    { id: 'a', label: 'apples' },
+    { id: 'b', label: 'bananas' },
+    { id: 'c', label: 'dragon fruit' },
   ];
 
   return (
-    <div style={{width: '360px'}}>
+    <div style={{ width: '360px' }}>
       <div
         style={{
           display: 'flex',

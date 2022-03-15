@@ -42,14 +42,14 @@ export function Scenario() {
   ];
 
   const rows = [
-    {id: 1, data: [true, 'A', 2, 'one']},
-    {id: 2, data: [false, 'B', 1, 'two']},
-    {id: 3, data: [true, 'A', 4, 'three']},
-    {id: 4, data: [false, 'A', 3, 'four']},
+    { id: 1, data: [true, 'A', 2, 'one'] },
+    { id: 2, data: [false, 'B', 1, 'two'] },
+    { id: 3, data: [true, 'A', 4, 'three'] },
+    { id: 4, data: [false, 'A', 3, 'four'] },
   ];
 
   return (
-    <div style={{height: '100vh', width: '100vw'}}>
+    <div style={{ height: '100vh', width: '100vw' }}>
       <StatefulDataTable columns={columns} rows={rows} />
     </div>
   );

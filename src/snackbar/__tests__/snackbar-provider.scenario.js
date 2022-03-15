@@ -9,10 +9,10 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {SnackbarProvider, useSnackbar} from '../index.js';
+import { SnackbarProvider, useSnackbar } from '../index.js';
 
 function Child() {
-  const {enqueue} = useSnackbar();
+  const { enqueue } = useSnackbar();
 
   return (
     <div>
@@ -32,9 +32,9 @@ function Child() {
       <button
         data-testid="queue-three"
         onClick={() => {
-          enqueue({message: 'one'});
-          enqueue({message: 'two'});
-          enqueue({message: 'three'});
+          enqueue({ message: 'one' });
+          enqueue({ message: 'two' });
+          enqueue({ message: 'three' });
         }}
       >
         queue three
@@ -45,9 +45,7 @@ function Child() {
 
 export function Scenario() {
   return (
-    <SnackbarProvider
-      overrides={{Root: {props: {'data-testid': 'snackbar-root'}}}}
-    >
+    <SnackbarProvider overrides={{ Root: { props: { 'data-testid': 'snackbar-root' } } }}>
       <Child />
     </SnackbarProvider>
   );

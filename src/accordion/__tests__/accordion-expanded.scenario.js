@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Accordion, StatefulPanel, Panel} from '../index.js';
+import { Accordion, StatefulPanel, Panel } from '../index.js';
 
 export function Scenario() {
   return (
@@ -17,10 +17,7 @@ export function Scenario() {
       <Panel title="Expanded provided as prop" expanded>
         stateless panel
       </Panel>
-      <StatefulPanel
-        initialState={{expanded: true}}
-        title="Initial state expanded"
-      >
+      <StatefulPanel initialState={{ expanded: true }} title="Initial state expanded">
         stateful panel
       </StatefulPanel>
     </Accordion>

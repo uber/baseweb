@@ -6,11 +6,11 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {render, getAllByTestId} from '@testing-library/react';
+import { render, getAllByTestId } from '@testing-library/react';
 
 import Menu from '../menu.js';
 
-const mockItems = [{label: 'item1'}, {label: 'item2'}];
+const mockItems = [{ label: 'item1' }, { label: 'item2' }];
 
 function getSharedProps() {
   return {
@@ -22,7 +22,7 @@ function getSharedProps() {
 
 describe('Menu Stateless Component', () => {
   it('renders basic menu', () => {
-    const {container} = render(<Menu {...getSharedProps()} />);
+    const { container } = render(<Menu {...getSharedProps()} />);
 
     const list = container.querySelector('ul');
     expect(list).not.toBeNull();
@@ -41,7 +41,7 @@ describe('Menu Stateless Component', () => {
         },
       },
     };
-    const {container} = render(<Menu {...props} />);
+    const { container } = render(<Menu {...props} />);
     const options = getAllByTestId(container, 'option');
     expect(options.length).toBe(2);
   });

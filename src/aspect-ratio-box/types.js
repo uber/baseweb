@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import type {BlockPropsT} from '../block/types.js';
+import type { BlockPropsT } from '../block/types.js';
 
 export type AspectRatioBoxPropsT = {
   /** Aspect ratio is width divided by height. */

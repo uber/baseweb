@@ -33,7 +33,7 @@ const ignore = [
 ];
 
 async function run() {
-  const filepaths = glob.sync('**/*.js', {cwd: src, ignore});
+  const filepaths = glob.sync('**/*.js', { cwd: src, ignore });
 
   const sourceCodes = await Promise.all(
     filepaths.map(async (filepath) => {
@@ -44,7 +44,7 @@ declare var __DEV__: boolean;
 declare var __NODE__: boolean;
 declare var __BROWSER__: boolean;
 `;
-    }),
+    })
   );
 
   await Promise.all(
@@ -52,7 +52,7 @@ declare var __BROWSER__: boolean;
       const destination = path.resolve(dist, filepath);
       const sourceCode = sourceCodes[index];
       return fs.writeFile(`${destination}.flow`, sourceCode);
-    }),
+    })
   );
 }
 

@@ -6,20 +6,16 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {LocaleContext} from '../locale/index.js';
+import { LocaleContext } from '../locale/index.js';
 // Components
-import {
-  StyledList,
-  StyledEmptyState,
-  StyledOptgroupHeader,
-} from './styled-components.js';
+import { StyledList, StyledEmptyState, StyledOptgroupHeader } from './styled-components.js';
 import OptionList from './option-list.js';
-import {getOverrides} from '../helpers/overrides.js';
+import { getOverrides } from '../helpers/overrides.js';
 // Types
-import type {StatelessMenuPropsT} from './types.js';
-import type {LocaleT} from '../locale/types.js';
+import type { StatelessMenuPropsT } from './types.js';
+import type { LocaleT } from '../locale/types.js';
 
-import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
+import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible.js';
 
 export default function Menu(props: StatelessMenuPropsT) {
   const {
@@ -48,18 +44,13 @@ export default function Menu(props: StatelessMenuPropsT) {
 
   const [List, listProps] = getOverrides(overrides.List, StyledList);
   const [Option, optionProps] = getOverrides(overrides.Option, OptionList);
-  const [EmptyState, emptyStateProps] = getOverrides(
-    overrides.EmptyState,
-    StyledEmptyState,
-  );
+  const [EmptyState, emptyStateProps] = getOverrides(overrides.EmptyState, StyledEmptyState);
   const [OptgroupHeader, optgroupHeaderProps] = getOverrides(
     overrides.OptgroupHeader,
-    StyledOptgroupHeader,
+    StyledOptgroupHeader
   );
 
-  const groupedItems = Array.isArray(props.items)
-    ? {__ungrouped: props.items}
-    : props.items;
+  const groupedItems = Array.isArray(props.items) ? { __ungrouped: props.items } : props.items;
   const optgroups = Object.keys(groupedItems);
   const [elements] = optgroups.reduce(
     ([els, itemIndex], optgroup) => {
@@ -67,12 +58,12 @@ export default function Menu(props: StatelessMenuPropsT) {
         els.push(
           <OptgroupHeader key={optgroup} {...optgroupHeaderProps}>
             {optgroup}
-          </OptgroupHeader>,
+          </OptgroupHeader>
         );
       }
       const groupItems = groupedItems[optgroup].map((item, index) => {
         itemIndex = itemIndex + 1;
-        const {getRequiredItemProps = (item, index) => ({})} = props;
+        const { getRequiredItemProps = (item, index) => ({}) } = props;
 
         const {
           disabled,
@@ -102,7 +93,7 @@ export default function Menu(props: StatelessMenuPropsT) {
       });
       return [els.concat(groupItems), itemIndex];
     },
-    [[], -1],
+    [[], -1]
   );
 
   const isEmpty = optgroups.every((optgroup) => !groupedItems[optgroup].length);
@@ -118,8 +109,8 @@ export default function Menu(props: StatelessMenuPropsT) {
           onMouseEnter={focusMenu}
           onMouseLeave={handleMouseLeave}
           onMouseOver={focusMenu}
-          onFocus={forkFocus({onFocus: focusMenu}, handleFocus)}
-          onBlur={forkBlur({onBlur: unfocusMenu}, handleBlur)}
+          onFocus={forkFocus({ onFocus: focusMenu }, handleFocus)}
+          onBlur={forkBlur({ onBlur: unfocusMenu }, handleBlur)}
           onKeyDown={(event) => {
             if (props.isFocused) {
               handleKeyDown(event);

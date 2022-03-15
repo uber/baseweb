@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-import {writeFile, readFile, removeFile} from '@dubstep/core';
+import { writeFile, readFile, removeFile } from '@dubstep/core';
 
 export class Fixture {
   dir: string;

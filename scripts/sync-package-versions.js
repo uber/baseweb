@@ -19,6 +19,6 @@ const packageJsonToUpdate = process.argv[2];
 const packageJSON = fs.readFileSync(packageJsonToUpdate, 'utf-8');
 const packageJSONBumped = packageJSON.replace(
   '"version": "0.0.0"',
-  `"version": "${baseuiVersion}"`,
+  `"version": "${baseuiVersion}"`
 );
 fs.writeFileSync(packageJsonToUpdate, packageJSONBumped, 'utf-8');

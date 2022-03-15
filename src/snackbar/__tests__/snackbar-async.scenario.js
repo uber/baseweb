@@ -9,20 +9,20 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {SnackbarProvider, useSnackbar, DURATION} from '../index.js';
+import { SnackbarProvider, useSnackbar, DURATION } from '../index.js';
 
 function Child() {
-  const {enqueue} = useSnackbar();
+  const { enqueue } = useSnackbar();
 
   async function handleClick() {
     await Promise.resolve();
 
     let i = 0;
-    enqueue({message: ++i});
-    enqueue({message: ++i});
-    enqueue({message: ++i});
-    enqueue({message: ++i});
-    enqueue({message: ++i});
+    enqueue({ message: ++i });
+    enqueue({ message: ++i });
+    enqueue({ message: ++i });
+    enqueue({ message: ++i });
+    enqueue({ message: ++i });
   }
 
   return (
@@ -38,7 +38,7 @@ export function Scenario() {
   return (
     <SnackbarProvider
       overrides={{
-        Root: {props: {'data-testid': 'snackbar-root'}},
+        Root: { props: { 'data-testid': 'snackbar-root' } },
       }}
       defaultDuration={DURATION.short}
     >

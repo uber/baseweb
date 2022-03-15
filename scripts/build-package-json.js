@@ -34,7 +34,7 @@ async function buildPackageJsonFiles() {
         JSON.stringify(data, null, 2),
         (err) => {
           if (err) throw err;
-        },
+        }
       );
     }
   }

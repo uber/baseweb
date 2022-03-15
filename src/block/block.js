@@ -8,9 +8,9 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import type {BlockPropsT} from './types.js';
-import {StyledBlock} from './styled-components.js';
-import {getOverrides} from '../helpers/overrides.js';
+import type { BlockPropsT } from './types.js';
+import { StyledBlock } from './styled-components.js';
+import { getOverrides } from '../helpers/overrides.js';
 
 function Block({
   forwardedRef,
@@ -84,10 +84,7 @@ function Block({
   whiteSpace,
   ...restProps
 }) {
-  const [BaseBlock, baseBlockProps] = getOverrides(
-    overrides.Block,
-    StyledBlock,
-  );
+  const [BaseBlock, baseBlockProps] = getOverrides(overrides.Block, StyledBlock);
 
   return (
     <BaseBlock
@@ -170,8 +167,8 @@ function Block({
   );
 }
 
-const BlockComponent = React.forwardRef<BlockPropsT, HTMLElement>(
-  (props: BlockPropsT, ref) => <Block {...props} forwardedRef={ref} />,
-);
+const BlockComponent = React.forwardRef<BlockPropsT, HTMLElement>((props: BlockPropsT, ref) => (
+  <Block {...props} forwardedRef={ref} />
+));
 BlockComponent.displayName = 'Block';
 export default BlockComponent;

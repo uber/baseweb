@@ -6,21 +6,21 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {render, fireEvent} from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 
-import {StatefulTextarea} from '../index.js';
+import { StatefulTextarea } from '../index.js';
 
 describe('StatefulTextarea', () => {
   it('basic render', () => {
-    const {container} = render(<StatefulTextarea />);
+    const { container } = render(<StatefulTextarea />);
     expect(container.querySelector('textarea')).not.toBeNull();
   });
 
   it('handles changes', () => {
-    const {container} = render(<StatefulTextarea />);
+    const { container } = render(<StatefulTextarea />);
 
     const textarea = container.querySelector('textarea');
-    if (textarea) fireEvent.keyDown(textarea, {target: {value: 'a'}});
+    if (textarea) fireEvent.keyDown(textarea, { target: { value: 'a' } });
     expect(textarea?.value).toBe('a');
   });
 });

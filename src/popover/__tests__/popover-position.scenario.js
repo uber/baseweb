@@ -8,9 +8,9 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {useStyletron} from '../../styles/index.js';
+import { useStyletron } from '../../styles/index.js';
 
-import {Popover, PLACEMENT} from '../index.js';
+import { Popover, PLACEMENT } from '../index.js';
 
 export function Scenario() {
   const [css] = useStyletron();
@@ -56,9 +56,7 @@ export function Scenario() {
               <Popover
                 autoFocus={false}
                 placement={PLACEMENT[placement]}
-                content={() => (
-                  <div className={css({padding: '12px'})}>content</div>
-                )}
+                content={() => <div className={css({ padding: '12px' })}>content</div>}
                 isOpen
                 showArrow
               >

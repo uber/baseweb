@@ -7,19 +7,19 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-disable cup/no-undef */
 import * as React from 'react';
-import {StyledInput, StyledInputSizer} from './styled-components.js';
-import {getOverrides} from '../helpers/overrides.js';
-import type {AutosizeInputPropsT, AutosizeInputStateT} from './types.js';
+import { StyledInput, StyledInputSizer } from './styled-components.js';
+import { getOverrides } from '../helpers/overrides.js';
+import type { AutosizeInputPropsT, AutosizeInputStateT } from './types.js';
 
 export default class AutosizeInput extends React.Component<
   AutosizeInputPropsT,
-  AutosizeInputStateT,
+  AutosizeInputStateT
 > {
   mounted: boolean;
   sizer: ?HTMLElement;
 
   static defaultProps = {
-    inputRef: (React.createRef(): {current: HTMLInputElement | null}),
+    inputRef: (React.createRef(): { current: HTMLInputElement | null }),
     value: '',
     overrides: {},
   };
@@ -30,10 +30,7 @@ export default class AutosizeInput extends React.Component<
     this.mounted = true;
     this.updateInputWidth();
   }
-  componentDidUpdate(
-    prevProps: AutosizeInputPropsT,
-    prevState: AutosizeInputStateT,
-  ) {
+  componentDidUpdate(prevProps: AutosizeInputPropsT, prevState: AutosizeInputStateT) {
     this.updateInputWidth();
   }
   componentWillUnmount() {
@@ -43,11 +40,7 @@ export default class AutosizeInput extends React.Component<
     this.sizer = el;
   };
   updateInputWidth() {
-    if (
-      !this.mounted ||
-      !this.sizer ||
-      typeof this.sizer.scrollWidth === 'undefined'
-    ) {
+    if (!this.mounted || !this.sizer || typeof this.sizer.scrollWidth === 'undefined') {
       return;
     }
     const newInputWidth = this.sizer.scrollWidth + 2;
@@ -55,11 +48,11 @@ export default class AutosizeInput extends React.Component<
       newInputWidth !== this.state.inputWidth &&
       this.sizer.scrollWidth !== this.state.inputWidth
     ) {
-      this.setState({inputWidth: newInputWidth});
+      this.setState({ inputWidth: newInputWidth });
     }
   }
   render() {
-    const {overrides = {}, inputRef, ...restProps} = this.props;
+    const { overrides = {}, inputRef, ...restProps } = this.props;
     const [Input, inputProps] = getOverrides(overrides.Input, StyledInput);
     const sizerValue = [this.props.defaultValue, this.props.value, ''].reduce(
       (previousValue, currentValue) => {
@@ -67,7 +60,7 @@ export default class AutosizeInput extends React.Component<
           return previousValue;
         }
         return currentValue;
-      },
+      }
     );
     const componentInputProps = {
       ...restProps,

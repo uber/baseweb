@@ -8,12 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {
-  AnchorColumn,
-  CategoricalColumn,
-  NumericalColumn,
-  StatefulDataTable,
-} from '../index.js';
+import { AnchorColumn, CategoricalColumn, NumericalColumn, StatefulDataTable } from '../index.js';
 
 import graphqlArrayData from './graphql-array-data.js';
 
@@ -41,7 +36,7 @@ const columns = [
   AnchorColumn({
     // illustrates that this could be provided with a react-router-link
     // eslint-disable-next-line react/display-name
-    elementAs: ({children}) => <div style={{color: 'green'}}>{children}</div>,
+    elementAs: ({ children }) => <div style={{ color: 'green' }}>{children}</div>,
     title: 'User',
     mapDataToValue: (data: RowDataT) => ({
       content: data.realUser,
@@ -81,7 +76,7 @@ const rows = [
 
 export function Scenario() {
   return (
-    <div style={{height: '600px', width: '700px'}}>
+    <div style={{ height: '600px', width: '700px' }}>
       <StatefulDataTable columns={columns} rows={rows} />
     </div>
   );

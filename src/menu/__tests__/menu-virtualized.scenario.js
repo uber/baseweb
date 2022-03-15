@@ -10,8 +10,8 @@ LICENSE file in the root directory of this source tree.
 // virtualized example to regress. while this is not an explicit part of baseui's api,
 // pushing a change that would break applications using this example would be quite painful
 import React from 'react';
-import {withStyle} from 'styletron-react';
-import {StatefulMenu, OptionList, StyledList} from '../index.js';
+import { withStyle } from 'styletron-react';
+import { StatefulMenu, OptionList, StyledList } from '../index.js';
 //flowlint-next-line untyped-import:off
 import List from 'react-virtualized/dist/commonjs/List';
 //flowlint-next-line untyped-import:off
@@ -21,7 +21,7 @@ const ITEMS = [...new Array(1500)].map((_, index) => ({
   label: `item number: ${index + 1}`,
 }));
 
-const Container = withStyle(StyledList, {height: '500px'});
+const Container = withStyle(StyledList, { height: '500px' });
 
 // eslint-disable-next-line react/display-name
 const VirtualList = React.forwardRef((props, ref) => {
@@ -29,13 +29,13 @@ const VirtualList = React.forwardRef((props, ref) => {
   return (
     <Container {...props} ref={ref}>
       <AutoSizer>
-        {({width}) => (
+        {({ width }) => (
           <List
             role={props.role}
             height={500}
             rowCount={props.children.length}
             rowHeight={36}
-            rowRenderer={({index, key, style}) => (
+            rowRenderer={({ index, key, style }) => (
               <OptionList
                 key={key}
                 style={style}
@@ -61,7 +61,5 @@ const VirtualList = React.forwardRef((props, ref) => {
 });
 
 export function Scenario() {
-  return (
-    <StatefulMenu items={ITEMS} overrides={{List: {component: VirtualList}}} />
-  );
+  return <StatefulMenu items={ITEMS} overrides={{ List: { component: VirtualList } }} />;
 }

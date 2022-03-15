@@ -8,22 +8,22 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {StatefulSelect, TYPE} from '../index.js';
+import { StatefulSelect, TYPE } from '../index.js';
 
 export function Scenario() {
   return (
     <StatefulSelect
       options={[
-        {id: 'AliceBlue', color: '#F0F8FF'},
-        {id: 'AntiqueWhite', color: '#FAEBD7'},
-        {id: 'Aqua', color: '#00FFFF'},
-        {id: 'Aquamarine', color: '#7FFFD4'},
-        {id: 'Azure', color: '#F0FFFF'},
-        {id: 'Beige', color: '#F5F5DC'},
-        {id: 'DarkBlue', color: '#00008B'},
-        {id: 'DarkCyan', color: '#008B8B'},
+        { id: 'AliceBlue', color: '#F0F8FF' },
+        { id: 'AntiqueWhite', color: '#FAEBD7' },
+        { id: 'Aqua', color: '#00FFFF' },
+        { id: 'Aquamarine', color: '#7FFFD4' },
+        { id: 'Azure', color: '#F0FFFF' },
+        { id: 'Beige', color: '#F5F5DC' },
+        { id: 'DarkBlue', color: '#00008B' },
+        { id: 'DarkCyan', color: '#008B8B' },
       ]}
-      overrides={{ValueContainer: {props: {'data-id': 'selected'}}}}
+      overrides={{ ValueContainer: { props: { 'data-id': 'selected' } } }}
       closeOnSelect={false}
       labelKey="id"
       multi

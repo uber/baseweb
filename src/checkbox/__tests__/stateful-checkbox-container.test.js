@@ -7,9 +7,9 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {render, fireEvent} from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 
-import {StatefulContainer} from '../index.js';
+import { StatefulContainer } from '../index.js';
 
 describe('Stateful container', function () {
   it('should provide all needed props to children render func', function () {
@@ -22,11 +22,7 @@ describe('Stateful container', function () {
 
   it('should provide initial state as part of state', function () {
     const children = jest.fn(() => null);
-    render(
-      <StatefulContainer initialState={{checked: true}}>
-        {children}
-      </StatefulContainer>,
-    );
+    render(<StatefulContainer initialState={{ checked: true }}>{children}</StatefulContainer>);
     const props = children.mock.calls[0][0];
     expect(props.checked).toBe(true);
   });
@@ -39,7 +35,7 @@ describe('Stateful container', function () {
     const onFocus = jest.fn();
     const onBlur = jest.fn();
 
-    const {container} = render(
+    const { container } = render(
       <StatefulContainer
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
@@ -69,7 +65,7 @@ describe('Stateful container', function () {
             }}
           />
         )}
-      </StatefulContainer>,
+      </StatefulContainer>
     );
 
     const input = container.querySelector('input');

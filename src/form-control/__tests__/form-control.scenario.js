@@ -8,12 +8,12 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {FormControl} from '../index.js';
-import {StatefulCheckbox} from '../../checkbox/index.js';
-import {StatefulInput, SIZE} from '../../input/index.js';
-import {StatefulRadioGroup, Radio} from '../../radio/index.js';
-import {StatefulTextarea} from '../../textarea/index.js';
-import {StatefulSelect} from '../../select/index.js';
+import { FormControl } from '../index.js';
+import { StatefulCheckbox } from '../../checkbox/index.js';
+import { StatefulInput, SIZE } from '../../input/index.js';
+import { StatefulRadioGroup, Radio } from '../../radio/index.js';
+import { StatefulTextarea } from '../../textarea/index.js';
+import { StatefulSelect } from '../../select/index.js';
 
 export function Scenario() {
   return (
@@ -21,25 +21,13 @@ export function Scenario() {
       <FormControl label="Input label" caption="Input caption">
         <StatefulInput size={SIZE.compact} />
       </FormControl>
-      <FormControl
-        disabled
-        label="Input label disabled"
-        caption="Input caption"
-      >
+      <FormControl disabled label="Input label disabled" caption="Input caption">
         <StatefulInput size={SIZE.compact} />
       </FormControl>
-      <FormControl
-        disabled
-        label="Input label disabled with enabled input"
-        caption="Input caption"
-      >
+      <FormControl disabled label="Input label disabled with enabled input" caption="Input caption">
         <StatefulInput disabled={false} size={SIZE.compact} />
       </FormControl>
-      <FormControl
-        positive
-        label="Input label positive"
-        caption="Input caption"
-      >
+      <FormControl positive label="Input label positive" caption="Input caption">
         <StatefulInput size={SIZE.compact} />
       </FormControl>
       <FormControl error label="Input label error" caption="Input caption">
@@ -61,12 +49,12 @@ export function Scenario() {
       <FormControl label="Select label" caption="Select caption">
         <StatefulSelect
           options={[
-            {id: 'AliceBlue', color: '#F0F8FF'},
-            {id: 'AntiqueWhite', color: '#FAEBD7'},
-            {id: 'Aqua', color: '#00FFFF'},
-            {id: 'Aquamarine', color: '#7FFFD4'},
-            {id: 'Azure', color: '#F0FFFF'},
-            {id: 'Beige', color: '#F5F5DC'},
+            { id: 'AliceBlue', color: '#F0F8FF' },
+            { id: 'AntiqueWhite', color: '#FAEBD7' },
+            { id: 'Aqua', color: '#00FFFF' },
+            { id: 'Aquamarine', color: '#7FFFD4' },
+            { id: 'Azure', color: '#F0FFFF' },
+            { id: 'Beige', color: '#F5F5DC' },
           ]}
           labelKey="id"
           valueKey="color"

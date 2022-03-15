@@ -7,14 +7,14 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {render, fireEvent} from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 
-import {TimePicker} from '../index.js';
+import { TimePicker } from '../index.js';
 
 const TIME = new Date(2019, 3, 19, 1, 30);
 const overrides = {
   Select: {
-    props: {overrides: {ValueContainer: {props: {'data-id': 'selected'}}}},
+    props: { overrides: { ValueContainer: { props: { 'data-id': 'selected' } } } },
   },
 };
 
@@ -36,7 +36,7 @@ describe('TimePicker', () => {
       );
     }
 
-    const {container} = render(<Case />);
+    const { container } = render(<Case />);
     const before = container.querySelector('[data-id="selected"]');
     expect(before?.textContent).toBe('1:30 AM');
 

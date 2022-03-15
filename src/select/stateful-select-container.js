@@ -6,19 +6,11 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import type {
-  StatefulContainerPropsT,
-  StateReducerT,
-  StateT,
-  OnChangeParamsT,
-} from './types.js';
+import type { StatefulContainerPropsT, StateReducerT, StateT, OnChangeParamsT } from './types.js';
 
 const defaultStateReducer: StateReducerT = (type, nextState) => nextState;
 
-class StatefulSelectContainer extends React.Component<
-  StatefulContainerPropsT,
-  StateT,
-> {
+class StatefulSelectContainer extends React.Component<StatefulContainerPropsT, StateT> {
   static defaultProps = {
     initialState: {
       value: [],
@@ -28,7 +20,7 @@ class StatefulSelectContainer extends React.Component<
     stateReducer: defaultStateReducer,
   };
 
-  state = {...this.props.initialState};
+  state = { ...this.props.initialState };
 
   onChange = (params: OnChangeParamsT) => {
     this.internalSetState(params);
@@ -36,8 +28,8 @@ class StatefulSelectContainer extends React.Component<
   };
 
   internalSetState = (params: OnChangeParamsT) => {
-    const {stateReducer} = this.props;
-    const nextState: StateT = {value: params.value};
+    const { stateReducer } = this.props;
+    const nextState: StateT = { value: params.value };
     this.setState(stateReducer(params.type, nextState, this.state));
   };
 

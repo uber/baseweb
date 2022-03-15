@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
+const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
 
 const selectors = {
   phoneInput: `[data-baseweb="phone-input"]`,
@@ -20,11 +20,10 @@ const selectors = {
   phoneInputSelectListItem: `[data-e2e="country-select-list-item"]`,
 };
 
-const countryListItemForIso = (iso) =>
-  `${selectors.phoneInputSelectListItem} [data-iso="${iso}"]`;
+const countryListItemForIso = (iso) => `${selectors.phoneInputSelectListItem} [data-iso="${iso}"]`;
 
-const unitedStates = {iso: 'US', dialCode: '+1'};
-const unitedKingdom = {iso: 'GB', dialCode: '+44'};
+const unitedStates = { iso: 'US', dialCode: '+1' };
+const unitedKingdom = { iso: 'GB', dialCode: '+44' };
 
 describe('PhoneInput', () => {
   beforeEach(async () => {
@@ -46,15 +45,10 @@ describe('PhoneInput', () => {
 
   it('displays a selected country flag and dial code by default', async () => {
     // verify correct default flag shows up
-    const iso = await page.$eval(selectors.phoneInputFlag, (flag) =>
-      flag.getAttribute(`data-iso`),
-    );
+    const iso = await page.$eval(selectors.phoneInputFlag, (flag) => flag.getAttribute(`data-iso`));
     expect(iso).toEqual(unitedStates.iso);
     // verify correct default dialcode shows up
-    const dialcode = await page.$eval(
-      selectors.phoneInputDialcode,
-      (block) => block.innerText,
-    );
+    const dialcode = await page.$eval(selectors.phoneInputDialcode, (block) => block.innerText);
     expect(dialcode).toEqual(unitedStates.dialCode);
   });
 
@@ -80,10 +74,7 @@ describe('PhoneInput', () => {
     await page.keyboard.press('ArrowDown');
     await page.keyboard.press('Enter');
 
-    const dialcode = await page.$eval(
-      selectors.phoneInputDialcode,
-      (block) => block.innerText,
-    );
+    const dialcode = await page.$eval(selectors.phoneInputDialcode, (block) => block.innerText);
     expect(dialcode).toEqual(unitedKingdom.dialCode);
   });
 
@@ -99,15 +90,10 @@ describe('PhoneInput', () => {
       hidden: true,
     });
     // verify correct flag and dial code shows up
-    const iso = await page.$eval(selectors.phoneInputFlag, (flag) =>
-      flag.getAttribute('data-iso'),
-    );
+    const iso = await page.$eval(selectors.phoneInputFlag, (flag) => flag.getAttribute('data-iso'));
     expect(iso).toEqual(unitedKingdom.iso);
     // verify correct dial code shows up
-    const dialcode = await page.$eval(
-      selectors.phoneInputDialcode,
-      (block) => block.innerText,
-    );
+    const dialcode = await page.$eval(selectors.phoneInputDialcode, (block) => block.innerText);
     expect(dialcode).toEqual(unitedKingdom.dialCode);
   });
 });

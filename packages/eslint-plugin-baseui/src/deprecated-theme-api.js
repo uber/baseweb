@@ -267,17 +267,14 @@ function lintCreateTheme(context, node) {
   // Is createTheme being imported from "baseui"?
   let importSpecifier;
 
-  const program = context
-    .getAncestors(node)
-    .find((node) => node.type === 'Program');
+  const program = context.getAncestors(node).find((node) => node.type === 'Program');
   const importDeclaration = program.body.find(
-    (node) =>
-      node.type === 'ImportDeclaration' && node.source.value === 'baseui',
+    (node) => node.type === 'ImportDeclaration' && node.source.value === 'baseui'
   );
 
   if (importDeclaration && importDeclaration.specifiers) {
     importSpecifier = importDeclaration.specifiers.find(
-      (specifier) => specifier.imported.name === 'createTheme',
+      (specifier) => specifier.imported.name === 'createTheme'
     );
   }
 
@@ -323,9 +320,7 @@ function lintStyleFunction(context, node) {
     scope.type === 'function' &&
     scope.block.parent.type === 'Property' &&
     scope.block.parent.key.name === 'style' &&
-    ancestors.some(
-      (node) => node.type === 'JSXAttribute' && node.name.name === 'overrides',
-    );
+    ancestors.some((node) => node.type === 'JSXAttribute' && node.name.name === 'overrides');
 
   if (!passedToStyledOrWithStyle && !passedToOverrides) {
     return false;
@@ -359,9 +354,7 @@ function lintStyleFunction(context, node) {
 
   if (parameter.type === 'ObjectPattern') {
     // Our parameter is being destructured.
-    const $themeProperty = parameter.properties.find(
-      (property) => property.key.name === '$theme',
-    );
+    const $themeProperty = parameter.properties.find((property) => property.key.name === '$theme');
 
     // the styled function is not using the theme
     if (!$themeProperty) {
@@ -370,10 +363,7 @@ function lintStyleFunction(context, node) {
 
     // Option 2. Destructuring $theme in parameters.
     // ({$theme}) => ({ color: $theme.colors.foreground })
-    if (
-      $themeProperty.value.type === 'Identifier' &&
-      $themeProperty.value.name === '$theme'
-    ) {
+    if ($themeProperty.value.type === 'Identifier' && $themeProperty.value.name === '$theme') {
       if (
         node.parent.type === 'MemberExpression' &&
         node.parent.object.type === 'MemberExpression' &&
@@ -390,7 +380,7 @@ function lintStyleFunction(context, node) {
     // Account for nested destructuring.
     if ($themeProperty.value.type === 'ObjectPattern') {
       const concernPropertyNode = $themeProperty.value.properties.find(
-        (property) => property.key.name === themeProperty.concern,
+        (property) => property.key.name === themeProperty.concern
       );
 
       // Option 3. Nested destructuring of a "concern" in parameters.
@@ -409,12 +399,9 @@ function lintStyleFunction(context, node) {
 
       // Option 4. Nested destructuring of the deprecated theme property.
       // ({$theme: {colors: {foreground}}}) => ({ color: foreground })
-      if (
-        concernPropertyNode &&
-        concernPropertyNode.value.type === 'ObjectPattern'
-      ) {
+      if (concernPropertyNode && concernPropertyNode.value.type === 'ObjectPattern') {
         const deprecatedProperty = concernPropertyNode.value.properties.find(
-          (property) => property.key.name === node.name,
+          (property) => property.key.name === node.name
         );
         if (deprecatedProperty) {
           // We have verified that the identifier is destructured in
@@ -433,8 +420,7 @@ function lintStyleFunction(context, node) {
           //   - Finally! We can flag this node.
           if (
             node === deprecatedProperty.key ||
-            (node !== deprecatedProperty.value &&
-              node.parent.type !== 'MemberExpression')
+            (node !== deprecatedProperty.value && node.parent.type !== 'MemberExpression')
           ) {
             return true;
           }
@@ -463,7 +449,7 @@ function lintUseStyletron(context, node) {
   if (scope.type === 'function' && scope.block.body.body) {
     // Find all the variable declarations in the function body.
     const declarations = scope.block.body.body.filter(
-      (statement) => statement.type === 'VariableDeclaration',
+      (statement) => statement.type === 'VariableDeclaration'
     );
 
     // Map of variable declaration types and properties:
@@ -483,7 +469,7 @@ function lintUseStyletron(context, node) {
           declarator.type === 'VariableDeclarator' &&
           declarator.init &&
           declarator.init.type === 'CallExpression' &&
-          declarator.init.callee.name === 'useStyletron',
+          declarator.init.callee.name === 'useStyletron'
       );
     });
 
@@ -491,10 +477,7 @@ function lintUseStyletron(context, node) {
       return false;
     }
 
-    if (
-      declarator.id.type === 'ArrayPattern' &&
-      declarator.id.elements.length === 2
-    ) {
+    if (declarator.id.type === 'ArrayPattern' && declarator.id.elements.length === 2) {
       // Confirm we are accessing the theme index in the returned array.
       // Ex: const [css, theme] = useStyletron();
       // Ex: const [css, {colors}] = useStyletron();
@@ -523,7 +506,7 @@ function lintUseStyletron(context, node) {
         // Ex: const [css, {colors}] = useStyletron();
         // Ex: const [css, {colors: foo}] = useStyletron();
         const concernPropertyNode = themeIndexNode.properties.find(
-          (property) => property.key.name === themeProperty.concern,
+          (property) => property.key.name === themeProperty.concern
         );
 
         // TODO(refactor): check if lintStyleFunction can also use this:
@@ -542,17 +525,14 @@ function lintUseStyletron(context, node) {
           return true;
         }
 
-        if (
-          concernPropertyNode &&
-          concernPropertyNode.value.type === 'ObjectPattern'
-        ) {
+        if (concernPropertyNode && concernPropertyNode.value.type === 'ObjectPattern') {
           // We are destructuring even further!
 
           // Check if we are destructuring the deprecated property in question.
           // Ex: const [css, {colors: {foreground}}] = useStyletron();
           // Ex: const [css, {colors: {foreground: foo}}] = useStyletron();
           const deprecatedProperty = concernPropertyNode.value.properties.find(
-            (property) => property.key.name === node.name,
+            (property) => property.key.name === node.name
           );
 
           // TODO(refactor): The conditional below is pretty confusing.
@@ -561,8 +541,7 @@ function lintUseStyletron(context, node) {
           if (
             deprecatedProperty &&
             (node === deprecatedProperty.key ||
-              (node !== deprecatedProperty.value &&
-                node.parent.type !== 'MemberExpression'))
+              (node !== deprecatedProperty.value && node.parent.type !== 'MemberExpression'))
           ) {
             return true;
           }
@@ -579,20 +558,14 @@ module.exports = {
   meta: {
     fixable: 'code',
     messages: {
-      [MESSAGES.deprecateThemeProperty.id]:
-        MESSAGES.deprecateThemeProperty.message,
+      [MESSAGES.deprecateThemeProperty.id]: MESSAGES.deprecateThemeProperty.message,
       [MESSAGES.replaceThemeProperty.id]: MESSAGES.replaceThemeProperty.message,
     },
   },
   create(context) {
     return {
       Identifier(node) {
-        if (
-          Object.prototype.hasOwnProperty.call(
-            deprecatedThemeProperties,
-            node.name,
-          )
-        ) {
+        if (Object.prototype.hasOwnProperty.call(deprecatedThemeProperties, node.name)) {
           // We have matched a possible deprecated theme property.
           const deprecatedThemeProperty = deprecatedThemeProperties[node.name];
 
@@ -600,7 +573,7 @@ module.exports = {
           const reportOptions = {
             node,
             messageId: MESSAGES.deprecateThemeProperty.id,
-            data: {old: node.name},
+            data: { old: node.name },
             fix: null,
           };
 
@@ -609,10 +582,7 @@ module.exports = {
             reportOptions.messageId = MESSAGES.replaceThemeProperty.id;
             reportOptions.data.new = deprecatedThemeProperty.replacement;
             reportOptions.fix = function (fixer) {
-              return fixer.replaceText(
-                node,
-                deprecatedThemeProperty.replacement,
-              );
+              return fixer.replaceText(node, deprecatedThemeProperty.replacement);
             };
           }
 

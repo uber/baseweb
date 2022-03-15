@@ -7,9 +7,9 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {render, getByText, queryByText} from '@testing-library/react';
+import { render, getByText, queryByText } from '@testing-library/react';
 
-import {Table} from '../index.js';
+import { Table } from '../index.js';
 
 const COLUMNS = ['ID', 'First Name', 'Last Name', 'Age', 'Address'];
 
@@ -21,13 +21,13 @@ const DATA = [
 
 describe('Table Semantic', () => {
   it('renders expected number of rows', () => {
-    const {container} = render(<Table columns={COLUMNS} data={DATA} />);
+    const { container } = render(<Table columns={COLUMNS} data={DATA} />);
     const rows = container.querySelectorAll('tr');
     expect(rows.length).toBe(DATA.length + 1);
   });
 
   it('renders expected number of columns', () => {
-    const {container} = render(<Table columns={COLUMNS} data={DATA} />);
+    const { container } = render(<Table columns={COLUMNS} data={DATA} />);
     const headCells = container.querySelectorAll('th');
     expect(headCells.length).toBe(DATA[0].length);
   });
@@ -52,7 +52,7 @@ describe('Table Semantic', () => {
             style: mockTableBodyCellStyle,
           },
         }}
-      />,
+      />
     );
 
     expect(mockTableHeadCellStyle.mock.calls.length).toBe(5);
@@ -60,7 +60,7 @@ describe('Table Semantic', () => {
       expect.objectContaining({
         $colIndex: 0,
         $col: 'ID',
-      }),
+      })
     );
 
     expect(mockTableBodyRowStyle.mock.calls.length).toBe(3);
@@ -68,7 +68,7 @@ describe('Table Semantic', () => {
       expect.objectContaining({
         $rowIndex: 0,
         $row: DATA[0],
-      }),
+      })
     );
 
     expect(mockTableBodyCellStyle.mock.calls.length).toBe(15);
@@ -78,26 +78,22 @@ describe('Table Semantic', () => {
         $col: 'ID',
         $rowIndex: 0,
         $row: DATA[0],
-      }),
+      })
     );
   });
 
   it('renders loading message', () => {
-    const {container} = render(
-      <Table columns={COLUMNS} data={DATA} isLoading={true} />,
-    );
+    const { container } = render(<Table columns={COLUMNS} data={DATA} isLoading={true} />);
     getByText(container, 'Loading...');
   });
 
   it('renders empty message', () => {
-    const {container} = render(
-      <Table columns={COLUMNS} data={[]} emptyMessage="No data" />,
-    );
+    const { container } = render(<Table columns={COLUMNS} data={[]} emptyMessage="No data" />);
     getByText(container, 'No data');
   });
 
   it('does not render unset empty message', () => {
-    const {container} = render(<Table columns={COLUMNS} data={[]} />);
+    const { container } = render(<Table columns={COLUMNS} data={[]} />);
     expect(queryByText(container, 'Loading...')).toBeNull();
   });
 });

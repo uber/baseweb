@@ -43,7 +43,7 @@ const DATA = [
 
 // flowlint-next-line unclear-type:off
 export class Scenario extends React.Component<any, any> {
-  state = {nameDirection: null, ageDirection: null};
+  state = { nameDirection: null, ageDirection: null };
 
   handleSort = (title: string, prevDirection: ?string) => {
     let nextDirection = null;
@@ -58,12 +58,12 @@ export class Scenario extends React.Component<any, any> {
     }
 
     if (title === 'name') {
-      this.setState({nameDirection: nextDirection, ageDirection: null});
+      this.setState({ nameDirection: nextDirection, ageDirection: null });
       return;
     }
 
     if (title === 'age') {
-      this.setState({nameDirection: null, ageDirection: nextDirection});
+      this.setState({ nameDirection: null, ageDirection: nextDirection });
       return;
     }
   };
@@ -98,7 +98,7 @@ export class Scenario extends React.Component<any, any> {
 
   render() {
     return (
-      <div style={{height: '500px', width: '400px'}}>
+      <div style={{ height: '500px', width: '400px' }}>
         <StyledTable>
           <StyledHead>
             <SortableHeadCell

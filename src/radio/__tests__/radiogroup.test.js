@@ -7,20 +7,20 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {render} from '@testing-library/react';
+import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 
-import {StatefulRadioGroup, RadioGroup, Radio} from '../index.js';
+import { StatefulRadioGroup, RadioGroup, Radio } from '../index.js';
 
 describe('radio-group', () => {
   it('sets expected child radio checked', () => {
-    const {container} = render(
+    const { container } = render(
       <RadioGroup value="3">
         <Radio value="1" />
         <Radio value="2" />
         <Radio value="3" />
-      </RadioGroup>,
+      </RadioGroup>
     );
 
     const inputs = container.querySelectorAll('input');
@@ -30,12 +30,12 @@ describe('radio-group', () => {
   });
 
   it('disables children if disabled', () => {
-    const {container} = render(
+    const { container } = render(
       <RadioGroup disabled>
         <Radio />
         <Radio />
         <Radio />
-      </RadioGroup>,
+      </RadioGroup>
     );
 
     const inputs = container.querySelectorAll('input');
@@ -45,12 +45,12 @@ describe('radio-group', () => {
   });
 
   it('disabled prop on children take priority', () => {
-    const {container} = render(
+    const { container } = render(
       <RadioGroup disabled={false}>
         <Radio disabled />
         <Radio />
         <Radio />
-      </RadioGroup>,
+      </RadioGroup>
     );
 
     const inputs = container.querySelectorAll('input');
@@ -62,12 +62,12 @@ describe('radio-group', () => {
 
 describe('radio-group focus and a11y management', () => {
   it('sets the initial state', () => {
-    const {getByDisplayValue} = render(
-      <StatefulRadioGroup name="numbers" initialState={{value: '3'}}>
+    const { getByDisplayValue } = render(
+      <StatefulRadioGroup name="numbers" initialState={{ value: '3' }}>
         <Radio value="1" />
         <Radio value="2" />
         <Radio value="3" />
-      </StatefulRadioGroup>,
+      </StatefulRadioGroup>
     );
 
     const one = getByDisplayValue('1');
@@ -88,12 +88,12 @@ describe('radio-group focus and a11y management', () => {
   });
 
   it('focus selected radio', () => {
-    const {getByDisplayValue} = render(
-      <StatefulRadioGroup name="numbers" initialState={{value: '3'}}>
+    const { getByDisplayValue } = render(
+      <StatefulRadioGroup name="numbers" initialState={{ value: '3' }}>
         <Radio value="1" />
         <Radio value="2" />
         <Radio value="3" />
-      </StatefulRadioGroup>,
+      </StatefulRadioGroup>
     );
 
     const one = getByDisplayValue('1');
@@ -108,12 +108,12 @@ describe('radio-group focus and a11y management', () => {
   });
 
   it('focus first radio if no value is selected', () => {
-    const {getByDisplayValue} = render(
-      <StatefulRadioGroup name="numbers" initialState={{value: undefined}}>
+    const { getByDisplayValue } = render(
+      <StatefulRadioGroup name="numbers" initialState={{ value: undefined }}>
         <Radio value="1" />
         <Radio value="2" />
         <Radio value="3" />
-      </StatefulRadioGroup>,
+      </StatefulRadioGroup>
     );
 
     const one = getByDisplayValue('1');

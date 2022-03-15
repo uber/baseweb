@@ -7,13 +7,9 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {mount} = require('../../../e2e/helpers');
+const { mount } = require('../../../e2e/helpers');
 
-const {
-  TABLE_ROOT,
-  getCellContentsAtColumnIndex,
-  matchArrayElements,
-} = require('./utilities.js');
+const { TABLE_ROOT, getCellContentsAtColumnIndex, matchArrayElements } = require('./utilities.js');
 
 const COLUMN_COUNT = 1;
 

@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {parse} = require('@babel/parser');
+const { parse } = require('@babel/parser');
 const traverse = require('@babel/traverse').default;
 const t = require('@babel/types');
 
@@ -51,7 +51,7 @@ const path = require('path');
 
 function parseFileToOutline(code) {
   const types = [];
-  const ast = parse(code, {sourceType: 'module', plugins: ['flow']});
+  const ast = parse(code, { sourceType: 'module', plugins: ['flow'] });
   traverse(ast, {
     ExportNamedDeclaration(path) {
       if (t.isTypeAlias(path.node.declaration)) {
@@ -62,28 +62,26 @@ function parseFileToOutline(code) {
         };
 
         if (t.isObjectTypeAnnotation(path.node.declaration.right)) {
-          typeNode.children = path.node.declaration.right.properties.map(
-            (property) => {
-              if (t.isObjectTypeProperty(property)) {
-                if (t.isLiteral(property.key)) {
-                  return {
-                    name: property.key.value,
-                    lineStart: property.loc.start.line,
-                  };
-                } else if (t.isIdentifier(property.key)) {
-                  return {
-                    name: property.key.name,
-                    lineStart: property.loc.start.line,
-                  };
-                }
-              } else if (t.isObjectTypeSpreadProperty(property)) {
+          typeNode.children = path.node.declaration.right.properties.map((property) => {
+            if (t.isObjectTypeProperty(property)) {
+              if (t.isLiteral(property.key)) {
                 return {
-                  name: property.argument.id.name,
+                  name: property.key.value,
+                  lineStart: property.loc.start.line,
+                };
+              } else if (t.isIdentifier(property.key)) {
+                return {
+                  name: property.key.name,
                   lineStart: property.loc.start.line,
                 };
               }
-            },
-          );
+            } else if (t.isObjectTypeSpreadProperty(property)) {
+              return {
+                name: property.argument.id.name,
+                lineStart: property.loc.start.line,
+              };
+            }
+          });
         }
         types.push(typeNode);
       }
@@ -101,7 +99,7 @@ function generateCheatSheet() {
     const from = path.join(__dirname, '../', file);
     const source = fs.readFileSync(from, 'utf-8');
     const definitions = parseFileToOutline(source);
-    outlines.push({file, definitions});
+    outlines.push({ file, definitions });
   });
 
   const content = `
@@ -109,10 +107,7 @@ function generateCheatSheet() {
     export default outlines;
   `;
 
-  fs.writeFileSync(
-    `${process.cwd()}/documentation-site/cheat-sheet.js`,
-    content,
-  );
+  fs.writeFileSync(`${process.cwd()}/documentation-site/cheat-sheet.js`, content);
 }
 
 module.exports = {

@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 /* THIS FILE IS AUTO-GENERATED. DO NOT MODIFY. */
 /* eslint-disable flowtype/require-valid-file-annotation */
 import React from 'react';
+
 export default function SvgFloatingMarker(props) {
   return (
     <svg width={232} height={145} fill="none" {...props}>
@@ -26,11 +27,7 @@ export default function SvgFloatingMarker(props) {
       <path fill={props.colors[2]} d="M98.637 65.5h43v6h-43z" />
       <defs>
         <clipPath id="floating-marker_svg__clip0">
-          <path
-            fill="#fff"
-            transform="translate(82 62.181)"
-            d="M0 0h12.637v12.637H0z"
-          />
+          <path fill="#fff" transform="translate(82 62.181)" d="M0 0h12.637v12.637H0z" />
         </clipPath>
       </defs>
     </svg>

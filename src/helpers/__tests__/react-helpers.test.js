@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {flattenFragments} from '../react-helpers.js';
+import { flattenFragments } from '../react-helpers.js';
 
 describe('Helpers - ReactHelpers', () => {
   test('flattenFragments', () => {
@@ -23,8 +23,6 @@ describe('Helpers - ReactHelpers', () => {
     expect(flattenFragments(list.props.children)).toMatchSnapshot('no wrapper');
 
     const Wrapper = (props) => <b {...props} />;
-    expect(flattenFragments(list.props.children, Wrapper)).toMatchSnapshot(
-      'with wrapper',
-    );
+    expect(flattenFragments(list.props.children, Wrapper)).toMatchSnapshot('with wrapper');
   });
 });

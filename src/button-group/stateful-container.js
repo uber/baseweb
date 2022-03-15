@@ -8,9 +8,9 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {MODE, STATE_CHANGE_TYPE} from './constants.js';
+import { MODE, STATE_CHANGE_TYPE } from './constants.js';
 
-import type {StatefulContainerPropsT, StateT} from './types.js';
+import type { StatefulContainerPropsT, StateT } from './types.js';
 
 // handles the case where selected = 0
 function isSelectedDefined(selected) {
@@ -20,25 +20,22 @@ function isSelectedDefined(selected) {
 function defaultStateReducer(
   type: $Values<typeof STATE_CHANGE_TYPE>,
   nextState: StateT,
-  currentState: StateT,
+  currentState: StateT
 ) {
   return nextState;
 }
 
-export default class StatefulContainer extends React.Component<
-  StatefulContainerPropsT,
-  StateT,
-> {
+export default class StatefulContainer extends React.Component<StatefulContainerPropsT, StateT> {
   static defaultProps = {
-    initialState: {selected: []},
+    initialState: { selected: [] },
     stateReducer: defaultStateReducer,
   };
 
   constructor(props: StatefulContainerPropsT) {
     super(props);
 
-    const {initialState = {}} = props;
-    const {selected = []} = initialState;
+    const { initialState = {} } = props;
+    const { selected = [] } = initialState;
 
     this.state = {
       selected: isSelectedDefined(selected) ? [].concat(selected) : [],
@@ -47,13 +44,7 @@ export default class StatefulContainer extends React.Component<
 
   changeState = (nextState: StateT) => {
     if (this.props.stateReducer) {
-      this.setState(
-        this.props.stateReducer(
-          STATE_CHANGE_TYPE.change,
-          nextState,
-          this.state,
-        ),
-      );
+      this.setState(this.props.stateReducer(STATE_CHANGE_TYPE.change, nextState, this.state));
     } else {
       this.setState(nextState);
     }
@@ -61,19 +52,16 @@ export default class StatefulContainer extends React.Component<
 
   onClick = (event: SyntheticEvent<HTMLButtonElement>, index: number) => {
     if (this.props.mode === MODE.radio) {
-      if (
-        this.state.selected.length === 0 ||
-        this.state.selected[0] !== index
-      ) {
-        this.changeState({selected: [index]});
+      if (this.state.selected.length === 0 || this.state.selected[0] !== index) {
+        this.changeState({ selected: [index] });
       } else {
-        this.changeState({selected: []});
+        this.changeState({ selected: [] });
       }
     }
 
     if (this.props.mode === MODE.checkbox) {
       if (!this.state.selected.includes(index)) {
-        this.changeState({selected: [...this.state.selected, index]});
+        this.changeState({ selected: [...this.state.selected, index] });
       } else {
         this.changeState({
           selected: this.state.selected.filter((value) => value !== index),
@@ -87,7 +75,7 @@ export default class StatefulContainer extends React.Component<
   };
 
   render() {
-    const {initialState, stateReducer, ...props} = this.props;
+    const { initialState, stateReducer, ...props } = this.props;
     return this.props.children({
       ...props,
       onClick: this.onClick,

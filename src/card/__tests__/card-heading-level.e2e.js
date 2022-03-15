@@ -7,8 +7,8 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {mount} = require('../../../e2e/helpers');
-const {titleText} = require('./card-header-level.scenario');
+const { mount } = require('../../../e2e/helpers');
+const { titleText } = require('./card-header-level.scenario');
 
 describe('card', () => {
   it('renders the correct heading tag for the card title', async () => {
@@ -24,8 +24,6 @@ describe('card', () => {
     expect(h3Elems).toHaveLength(2);
     expect(h4Elems).toHaveLength(0);
 
-    expect(await page.evaluate((el) => el.textContent, h3Elems[1])).toBe(
-      titleText,
-    );
+    expect(await page.evaluate((el) => el.textContent, h3Elems[1])).toBe(titleText);
   });
 });

@@ -8,8 +8,8 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Button} from '../../button/index.js';
-import {toaster, ToasterContainer, PLACEMENT} from '../index.js';
+import { Button } from '../../button/index.js';
+import { toaster, ToasterContainer, PLACEMENT } from '../index.js';
 
 export function Scenario() {
   const [text, setText] = React.useState('not updated');
@@ -33,7 +33,7 @@ export function Scenario() {
       <Button
         id="same-key"
         onClick={() => {
-          toaster.info(text, {key: 'same-key'});
+          toaster.info(text, { key: 'same-key' });
           setText('updated');
         }}
       >

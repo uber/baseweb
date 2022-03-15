@@ -8,9 +8,9 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 /* eslint-env node */
 
-const {configureToMatchImageSnapshot} = require('jest-image-snapshot');
-const {getSnapshotConfig} = require('./config.js');
-const {mount, waitForTimeout, addTestStyles} = require('../e2e/helpers');
+const { configureToMatchImageSnapshot } = require('jest-image-snapshot');
+const { getSnapshotConfig } = require('./config.js');
+const { mount, waitForTimeout, addTestStyles } = require('../e2e/helpers');
 
 const THEME = {
   light: 'light',
@@ -47,22 +47,14 @@ describe('visual snapshot tests', () => {
 
     if (!scenarioName.includes('rtl')) {
       it(`${scenarioName}__dark`, async () => {
-        await preparePageForSnapshot(
-          scenarioName,
-          THEME.dark,
-          VIEWPORT.desktop,
-        );
+        await preparePageForSnapshot(scenarioName, THEME.dark, VIEWPORT.desktop);
         await snapshot(`${scenarioName}__dark`);
       });
     }
 
     snapshotConfig.interactions.forEach((interaction) => {
       it(`${scenarioName}__${interaction.name}`, async () => {
-        await preparePageForSnapshot(
-          scenarioName,
-          THEME.light,
-          VIEWPORT.desktop,
-        );
+        await preparePageForSnapshot(scenarioName, THEME.light, VIEWPORT.desktop);
 
         await interaction.behavior(page);
 
@@ -76,7 +68,7 @@ describe('visual snapshot tests', () => {
 });
 
 async function snapshot(identifier, viewport = VIEWPORT.desktop) {
-  const image = await page.screenshot({captureBeyondViewport: false});
+  const image = await page.screenshot({ captureBeyondViewport: false });
   expect(image).toMatchImageSnapshot({
     customSnapshotIdentifier: identifier,
   });
@@ -85,7 +77,7 @@ async function snapshot(identifier, viewport = VIEWPORT.desktop) {
 async function preparePageForSnapshot(
   scenarioName,
   theme = THEME.light,
-  viewport = VIEWPORT.desktop,
+  viewport = VIEWPORT.desktop
 ) {
   // Set initial viewport size.
   await page.setViewport({
@@ -129,7 +121,7 @@ function configureJest() {
     customDiffDir: '__artifacts__',
     diffDirection: 'vertical',
   });
-  expect.extend({toMatchImageSnapshot});
+  expect.extend({ toMatchImageSnapshot });
 }
 
 function getAllScenarioNames() {

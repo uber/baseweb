@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {useStyletron} from 'baseui';
-import Highlight, {defaultProps} from 'prism-react-renderer';
-import {lightTheme} from 'react-view';
+import { useStyletron } from 'baseui';
+import Highlight, { defaultProps } from 'prism-react-renderer';
+import { lightTheme } from 'react-view';
 //$FlowFixMe
 import darkTheme from './yard/dark-theme';
 //$FlowFixMe
@@ -19,7 +19,7 @@ type PropsT = {
   language: string,
 };
 
-const Code = ({children, language}: PropsT) => {
+const Code = ({ children, language }: PropsT) => {
   const [, theme] = useStyletron();
   return (
     <CodeBox>
@@ -29,12 +29,12 @@ const Code = ({children, language}: PropsT) => {
         language={language}
         theme={theme.name.startsWith('light-theme') ? lightTheme : darkTheme}
       >
-        {({style, tokens, getLineProps, getTokenProps}) => (
-          <pre dir="ltr" style={{...style, padding: '10px 10px'}}>
+        {({ style, tokens, getLineProps, getTokenProps }) => (
+          <pre dir="ltr" style={{ ...style, padding: '10px 10px' }}>
             {tokens.map((line, i) => (
-              <div key={i} {...getLineProps({line, key: i})}>
+              <div key={i} {...getLineProps({ line, key: i })}>
                 {line.map((token, key) => (
-                  <span key={key} {...getTokenProps({token, key})} />
+                  <span key={key} {...getTokenProps({ token, key })} />
                 ))}
               </div>
             ))}

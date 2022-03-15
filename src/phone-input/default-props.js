@@ -5,11 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import {
-  SIZE,
-  DEFAULT_MAX_DROPDOWN_HEIGHT,
-  DEFAULT_MAX_DROPDOWN_WIDTH,
-} from './constants.js';
+import { SIZE, DEFAULT_MAX_DROPDOWN_HEIGHT, DEFAULT_MAX_DROPDOWN_WIDTH } from './constants.js';
 
 const defaultProps = {
   'aria-label': 'Please enter a phone number without the country dial code.',
@@ -17,7 +13,7 @@ const defaultProps = {
   'aria-labelledby': null,
   clearable: true,
   focusLock: false,
-  country: {label: 'United States', id: 'US', dialCode: '+1'},
+  country: { label: 'United States', id: 'US', dialCode: '+1' },
   disabled: false,
   error: false,
   id: null,

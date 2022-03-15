@@ -7,9 +7,9 @@ LICENSE file in the root directory of this source tree.
 //@flow
 import * as React from 'react';
 import SearchIcon from 'baseui/icon/search';
-import {themedStyled} from '../pages/_app';
+import { themedStyled } from '../pages/_app';
 //$FlowFixMe
-import {trackEvent} from '../helpers/ga';
+import { trackEvent } from '../helpers/ga';
 
 const SEARCH_INPUT_ID = 'algolia-doc-search';
 
@@ -21,7 +21,7 @@ type State = {
 // own markdown and breaks our component (that's fairly complex)
 const PlainInput = themedStyled<{}>(
   'input',
-  ({$theme}) =>
+  ({ $theme }) =>
     ({
       display: 'block',
       borderLeftWidth: '2px',
@@ -54,21 +54,21 @@ const PlainInput = themedStyled<{}>(
         borderTopColor: $theme.colors.primary,
         borderBottomColor: $theme.colors.primary,
       },
-    }: {}),
+    }: {})
 );
 
 const SearchContainer = themedStyled<{}>(
   'div',
-  ({$theme}) =>
+  ({ $theme }) =>
     ({
       display: 'flex',
       alignItems: 'center',
       backgroundColor: $theme.colors.inputEnhancerFill,
       position: 'relative',
-    }: {}),
+    }: {})
 );
 
-const IconWrapper = themedStyled<{}>('div', ({$theme}) => ({
+const IconWrapper = themedStyled<{}>('div', ({ $theme }) => ({
   position: 'absolute',
   height: '100%',
   display: 'flex',
@@ -83,7 +83,7 @@ class DocSearch extends React.Component<{}, State> {
   };
   componentDidMount() {
     // eslint-disable-next-line
-    const {docsearch} = window;
+    const { docsearch } = window;
     if (docsearch) {
       docsearch({
         apiKey: '05dde354af2e84a6d80e426518498d71',
@@ -94,7 +94,7 @@ class DocSearch extends React.Component<{}, State> {
     } else {
       // eslint-disable-next-line no-console
       console.warn('Search has failed to load and now is being disabled');
-      this.setState({enabled: false});
+      this.setState({ enabled: false });
     }
   }
 

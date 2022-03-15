@@ -8,10 +8,10 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import type {OverrideT} from '../helpers/overrides.js';
-import {SIZE} from '../input/index.js';
+import type { OverrideT } from '../helpers/overrides.js';
+import { SIZE } from '../input/index.js';
 
-export type ReactRefT<T> = {|current: null | T|};
+export type ReactRefT<T> = {| current: null | T |};
 
 export type PropsT<OptionT = mixed> = {|
   // Controls if the input value will be updated while keyboard navigating. Defaults to true.
@@ -45,7 +45,7 @@ export type PropsT<OptionT = mixed> = {|
   onFocus?: (SyntheticInputEvent<HTMLInputElement>) => mixed,
   // Called when no option is selected and the enter key is pressed. An argument to this
   // function is another function to close the listbox if needed.
-  onSubmit?: ({closeListbox: () => void, value: string}) => mixed,
+  onSubmit?: ({ closeListbox: () => void, value: string }) => mixed,
   // Data to populate list items in the dropdown menu.
   options: OptionT[],
   overrides?: {|

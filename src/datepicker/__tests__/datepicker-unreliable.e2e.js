@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {mount} = require('../../../e2e/helpers');
+const { mount } = require('../../../e2e/helpers');
 
 const selectors = {
   input: 'input',
@@ -69,7 +69,7 @@ describe('Datepicker', () => {
       return option.click();
     });
 
-    await page.waitForSelector(selectors.monthYearSelectMenu, {hidden: true});
+    await page.waitForSelector(selectors.monthYearSelectMenu, { hidden: true });
     await page.waitForSelector(selectors.calendar);
     await page.waitForSelector(selectors.day5);
   });
@@ -89,7 +89,7 @@ describe('Datepicker', () => {
       return option.click();
     });
 
-    await page.waitForSelector(selectors.monthYearSelectMenu, {hidden: true});
+    await page.waitForSelector(selectors.monthYearSelectMenu, { hidden: true });
     await page.waitForSelector(selectors.calendar);
     await page.waitForSelector(selectors.day6);
   });
@@ -160,10 +160,7 @@ describe('Datepicker', () => {
     await page.click(selectors.input);
 
     // input mask
-    let selectedValue = await page.$eval(
-      selectors.input,
-      (input) => input.value,
-    );
+    let selectedValue = await page.$eval(selectors.input, (input) => input.value);
     expect(selectedValue).toBe('    /  /  ');
 
     // actual value

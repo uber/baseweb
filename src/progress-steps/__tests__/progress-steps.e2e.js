@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
+const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
 
 const selectors = {
   nextButton: '[data-e2e=button-next]',
@@ -31,7 +31,7 @@ describe('progress steps', () => {
     // verifies that the first content block is visible
     let firstContent = await page.$eval(
       selectors.contentAtPosition(1),
-      (input) => input.textContent,
+      (input) => input.textContent
     );
     expect(firstContent).toBe('Here is some step content');
 
@@ -39,16 +39,13 @@ describe('progress steps', () => {
     await page.click(selectors.nextButton);
     const secondContent = await page.$eval(
       selectors.contentAtPosition(2),
-      (input) => input.textContent,
+      (input) => input.textContent
     );
     expect(secondContent.startsWith('Here is some more content')).toBeTruthy();
 
     // go back to step 1
     await page.click(selectors.previousButton);
-    firstContent = await page.$eval(
-      selectors.contentAtPosition(1),
-      (input) => input.textContent,
-    );
+    firstContent = await page.$eval(selectors.contentAtPosition(1), (input) => input.textContent);
     expect(firstContent).toBe('Here is some step content');
   });
 });

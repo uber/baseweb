@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import type {OverrideT} from '../helpers/overrides.js';
-import {SIZE} from './constants.js';
+import type { OverrideT } from '../helpers/overrides.js';
+import { SIZE } from './constants.js';
 
 export type SizeT = $Keys<typeof SIZE>;
 
@@ -28,11 +28,7 @@ export type ProgressBarPropsT = {
   /** Error message for screen-reader users**/
   errorMessage?: string,
   /** The function that returns a progress bar label to display. */
-  getProgressLabel: (
-    value: number,
-    maxValue: number,
-    minValue: number,
-  ) => React.Node,
+  getProgressLabel: (value: number, maxValue: number, minValue: number) => React.Node,
   /** If set to true, there’s and infinite loading animation. */
   infinite: boolean,
   overrides?: OverridesT,

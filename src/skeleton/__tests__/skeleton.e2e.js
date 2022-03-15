@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
+const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
 
 describe('skeleton-loading', () => {
   it('passes basic a11y tests', async () => {
@@ -26,7 +26,7 @@ describe('skeleton-loading', () => {
       return false;
     });
     expect(haveSkeleton).toBe(true);
-    await page.waitForSelector('div[testid="loader"]', {hidden: true});
+    await page.waitForSelector('div[testid="loader"]', { hidden: true });
     const haveContent = await page.$$eval('div[id="content"]', (divs) => {
       if (divs.length > 0) {
         return true;

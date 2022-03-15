@@ -7,8 +7,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {useStyletron} from '../../styles/index.js';
-import {Table, DIVIDER, SIZE} from '../index.js';
+import { useStyletron } from '../../styles/index.js';
+import { Table, DIVIDER, SIZE } from '../index.js';
 
 const COLUMNS = ['Name', 'Age', 'Address'];
 
@@ -27,38 +27,18 @@ export function Scenario() {
   });
 
   return (
-    <div style={{padding: '24px'}}>
+    <div style={{ padding: '24px' }}>
       <p className={title}>horizontal / default</p>
-      <Table
-        divider={DIVIDER.horizontal}
-        size={SIZE.compact}
-        columns={COLUMNS}
-        data={DATA}
-      />
+      <Table divider={DIVIDER.horizontal} size={SIZE.compact} columns={COLUMNS} data={DATA} />
 
       <p className={title}>vertical</p>
-      <Table
-        divider={DIVIDER.vertical}
-        size={SIZE.compact}
-        columns={COLUMNS}
-        data={DATA}
-      />
+      <Table divider={DIVIDER.vertical} size={SIZE.compact} columns={COLUMNS} data={DATA} />
 
       <p className={title}>grid</p>
-      <Table
-        divider={DIVIDER.grid}
-        size={SIZE.compact}
-        columns={COLUMNS}
-        data={DATA}
-      />
+      <Table divider={DIVIDER.grid} size={SIZE.compact} columns={COLUMNS} data={DATA} />
 
       <p className={title}>clean</p>
-      <Table
-        divider={DIVIDER.clean}
-        size={SIZE.compact}
-        columns={COLUMNS}
-        data={DATA}
-      />
+      <Table divider={DIVIDER.clean} size={SIZE.compact} columns={COLUMNS} data={DATA} />
     </div>
   );
 }

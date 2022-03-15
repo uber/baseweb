@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 /* global document */
 
-const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
+const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
 
 const selectors = {
   cancelButton: '[data-e2e="cancel-button"]',
@@ -39,7 +39,7 @@ describe('modal', () => {
 
     const cancelButtonIsFocused = await page.$eval(
       selectors.cancelButton,
-      (cancelButton) => cancelButton === document.activeElement,
+      (cancelButton) => cancelButton === document.activeElement
     );
 
     // first focusable element (cancel button) should be focused
@@ -50,7 +50,7 @@ describe('modal', () => {
 
     const closeButtonIsFocused = await page.$eval(
       selectors.closeButton,
-      (closeButton) => closeButton === document.activeElement,
+      (closeButton) => closeButton === document.activeElement
     );
 
     // focus should be trapped in modal and go to close button
@@ -59,7 +59,7 @@ describe('modal', () => {
     // dialog should be accessible
     const accessibilityReport = await analyzeAccessibility(page, {
       // disable tabindex rule because react-focus-lock uses tabindex to trap focus
-      rules: [{id: 'tabindex', enabled: false}],
+      rules: [{ id: 'tabindex', enabled: false }],
     });
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
 
@@ -71,7 +71,7 @@ describe('modal', () => {
 
     const openIsFocused = await page.$eval(
       selectors.openModal,
-      (button) => button === document.activeElement,
+      (button) => button === document.activeElement
     );
     expect(openIsFocused).toBe(true);
   });
@@ -88,10 +88,7 @@ describe('modal', () => {
       hidden: true,
     });
 
-    const selectedValue = await page.$eval(
-      selectors.selectedList,
-      (select) => select.textContent,
-    );
+    const selectedValue = await page.$eval(selectors.selectedList, (select) => select.textContent);
     expect(selectedValue).toBe('AliceBlue');
   });
 
@@ -124,10 +121,10 @@ describe('modal', () => {
     await page.waitForSelector(selectors.selectDropDown);
 
     await page.keyboard.press('Escape');
-    await page.waitForSelector(selectors.selectDropDown, {hidden: true});
+    await page.waitForSelector(selectors.selectDropDown, { hidden: true });
     await page.waitForSelector(selectors.selectInput);
 
     await page.keyboard.press('Escape');
-    await page.waitForSelector(selectors.selectInput, {hidden: true});
+    await page.waitForSelector(selectors.selectInput, { hidden: true });
   });
 });

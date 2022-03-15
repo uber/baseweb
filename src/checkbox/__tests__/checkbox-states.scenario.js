@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {Checkbox} from '../index.js';
+import { Checkbox } from '../index.js';
 
 export function Scenario() {
   return (

@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
+const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
 
 const selectors = {
   selectInput: 'input[role="combobox"]',
@@ -65,10 +65,7 @@ describe('select', () => {
       hidden: true,
     });
 
-    const selectedValue = await page.$eval(
-      selectors.selectedList,
-      (select) => select.textContent,
-    );
+    const selectedValue = await page.$eval(selectors.selectedList, (select) => select.textContent);
     expect(selectedValue).toBe('AliceBlue');
   });
 
@@ -79,10 +76,7 @@ describe('select', () => {
     await page.waitForSelector(selectors.selectDropDown);
     await page.click(optionAtPosition(2));
     await page.waitForSelector(selectors.selectDropDown);
-    const selectedValue = await page.$eval(
-      selectors.selectedList,
-      (select) => select.textContent,
-    );
+    const selectedValue = await page.$eval(selectors.selectedList, (select) => select.textContent);
     expect(selectedValue).toBe('Start searching');
   });
 
@@ -93,10 +87,7 @@ describe('select', () => {
     await page.keyboard.type('Aqua');
     await page.keyboard.press('ArrowLeft');
     await page.keyboard.type('z');
-    const selectedValue = await page.$eval(
-      selectors.selectedList,
-      (select) => select.textContent,
-    );
+    const selectedValue = await page.$eval(selectors.selectedList, (select) => select.textContent);
     expect(selectedValue).toBe('Aquza');
   });
 
@@ -106,17 +97,11 @@ describe('select', () => {
     await page.focus(selectors.selectInput);
 
     await page.keyboard.type('a');
-    const first = await page.$eval(
-      selectors.selectedList,
-      (select) => select.textContent,
-    );
+    const first = await page.$eval(selectors.selectedList, (select) => select.textContent);
     expect(first).toBe('a');
 
     await page.click(selectors.clearIcon);
-    const second = await page.$eval(
-      selectors.selectedList,
-      (select) => select.textContent,
-    );
+    const second = await page.$eval(selectors.selectedList, (select) => select.textContent);
     expect(second).toBe('Start searching');
   });
 
@@ -139,10 +124,7 @@ describe('select', () => {
     await page.waitForSelector(selectors.selectDropDown);
     await page.waitForSelector(optionAtPosition(2));
     await page.click(optionAtPosition(1));
-    const selectedValue = await page.$eval(
-      selectors.selectedList,
-      (select) => select.textContent,
-    );
+    const selectedValue = await page.$eval(selectors.selectedList, (select) => select.textContent);
     expect(selectedValue).toBe('DarkBlueDelete');
   });
 
@@ -153,17 +135,11 @@ describe('select', () => {
     await page.waitForSelector(selectors.selectDropDown);
     await page.keyboard.press('Enter');
 
-    const first = await page.$eval(
-      selectors.selectedList,
-      (select) => select.textContent,
-    );
+    const first = await page.$eval(selectors.selectedList, (select) => select.textContent);
     expect(first).toBe('AliceBlueDelete');
 
     await page.keyboard.press('Enter');
-    const second = await page.$eval(
-      selectors.selectedList,
-      (select) => select.textContent,
-    );
+    const second = await page.$eval(selectors.selectedList, (select) => select.textContent);
     expect(second).toBe('AliceBlueDeleteAntiqueWhiteDelete');
   });
 
@@ -179,10 +155,7 @@ describe('select', () => {
     await page.keyboard.press('Enter');
     await page.type(selectors.selectInput, 'be');
     await page.keyboard.press('Enter');
-    const text = await page.$eval(
-      selectors.selectedList,
-      (select) => select.textContent,
-    );
+    const text = await page.$eval(selectors.selectedList, (select) => select.textContent);
     expect(text).toBe('AzureDeleteBeigeDelete');
   });
 
@@ -192,16 +165,10 @@ describe('select', () => {
     await page.click(selectors.selectInput);
     await page.waitForSelector(selectors.selectDropDown);
     await page.keyboard.type('Paris');
-    const option1Text = await page.$eval(
-      optionAtPosition(1),
-      (select) => select.innerText,
-    );
+    const option1Text = await page.$eval(optionAtPosition(1), (select) => select.innerText);
     expect(option1Text).toBe('Create “Paris”');
     await page.click(optionAtPosition(1));
-    const inputValue = await page.$eval(
-      selectors.selectedList,
-      (select) => select.innerText,
-    );
+    const inputValue = await page.$eval(selectors.selectedList, (select) => select.innerText);
     expect(inputValue).toBe('Paris');
   });
 
@@ -215,10 +182,7 @@ describe('select', () => {
     await page.click(selectors.selectInput);
     await page.waitForSelector(selectors.selectDropDown);
     const dropdown = await page.$(selectors.selectDropDown);
-    const text = await page.evaluate(
-      (dropdown) => dropdown.textContent,
-      dropdown,
-    );
+    const text = await page.evaluate((dropdown) => dropdown.textContent, dropdown);
     expect(text).toBe('No results');
   });
 
@@ -231,19 +195,13 @@ describe('select', () => {
     // add "Paris"
     await page.keyboard.type('Paris');
     await page.$eval(optionAtPosition(1), (elem) => elem.click());
-    const inputValue = await page.$eval(
-      selectors.selectedList,
-      (select) => select.innerText,
-    );
+    const inputValue = await page.$eval(selectors.selectedList, (select) => select.innerText);
     expect(inputValue).toBe('Paris');
 
     // add "London"
     await page.keyboard.type('London');
     await page.click(optionAtPosition(1));
-    const inputValue2 = await page.$eval(
-      selectors.selectedList,
-      (select) => select.innerText,
-    );
+    const inputValue2 = await page.$eval(selectors.selectedList, (select) => select.innerText);
     expect(inputValue2).toBe('Paris\nLondon');
 
     // add "Paris" again, option to create should not be provided
@@ -260,10 +218,7 @@ describe('select', () => {
     await page.keyboard.press('Enter');
     await page.type(selectors.selectInput, 'az');
     await page.keyboard.press('Enter');
-    const selectedValue = await page.$eval(
-      selectors.selectedList,
-      (select) => select.textContent,
-    );
+    const selectedValue = await page.$eval(selectors.selectedList, (select) => select.textContent);
     expect(selectedValue).toBe('DarkBlueDeleteAzureDelete');
   });
 
@@ -275,7 +230,7 @@ describe('select', () => {
     const actual = await Promise.all(
       listElements.map((listElement) => {
         return page.evaluate((li) => li.textContent, listElement);
-      }),
+      })
     );
     const expected = [
       'Black',
@@ -301,7 +256,7 @@ describe('select', () => {
     const actual = await Promise.all(
       listElements.map((listElement) => {
         return page.evaluate((li) => li.textContent, listElement);
-      }),
+      })
     );
     const expected = ['Blueish', 'Aqua', 'Aquamarine'];
 
@@ -317,10 +272,7 @@ describe('select', () => {
     await page.waitForSelector(selectors.selectDropDown, {
       hidden: true,
     });
-    const selectedValue = await page.$eval(
-      selectors.selectedList,
-      (select) => select.textContent,
-    );
+    const selectedValue = await page.$eval(selectors.selectedList, (select) => select.textContent);
     expect(selectedValue).toBe('AliceBlue');
   });
 
@@ -332,7 +284,7 @@ describe('select', () => {
     const actual = await Promise.all(
       listElements.map((listElement) => {
         return page.evaluate((li) => li.textContent, listElement);
-      }),
+      })
     );
     const expected = ['Aqua', 'Aquamarine'];
 

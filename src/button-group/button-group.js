@@ -8,13 +8,13 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {KIND, SIZE, SHAPE} from '../button/index.js';
-import {MODE} from './constants.js';
-import {getOverrides} from '../helpers/overrides.js';
-import {LocaleContext} from '../locale/index.js';
+import { KIND, SIZE, SHAPE } from '../button/index.js';
+import { MODE } from './constants.js';
+import { getOverrides } from '../helpers/overrides.js';
+import { LocaleContext } from '../locale/index.js';
 
-import {StyledRoot} from './styled-components.js';
-import type {PropsT} from './types.js';
+import { StyledRoot } from './styled-components.js';
+import type { PropsT } from './types.js';
 
 function isIndexSelected(selected, index) {
   if (!Array.isArray(selected) && typeof selected !== 'number') {
@@ -30,7 +30,7 @@ function isIndexSelected(selected, index) {
 
 export default class ButtonGroup extends React.Component<PropsT> {
   childRefs: // flowlint-next-line unclear-type:off
-  {[key: number]: React.ElementRef<any>} = {};
+  { [key: number]: React.ElementRef<any> } = {};
   static defaultProps = {
     disabled: false,
     onClick: () => {},
@@ -96,15 +96,13 @@ export default class ButtonGroup extends React.Component<PropsT> {
                     e.preventDefault && e.preventDefault();
                     const prevIndex = value - 1 < 0 ? numItems - 1 : value - 1;
                     onClick && onClick(e, prevIndex);
-                    this.childRefs[prevIndex].current &&
-                      this.childRefs[prevIndex].current.focus();
+                    this.childRefs[prevIndex].current && this.childRefs[prevIndex].current.focus();
                   }
                   if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
                     e.preventDefault && e.preventDefault();
                     const nextIndex = value + 1 > numItems - 1 ? 0 : value + 1;
                     onClick && onClick(e, nextIndex);
-                    this.childRefs[nextIndex].current &&
-                      this.childRefs[nextIndex].current.focus();
+                    this.childRefs[nextIndex].current && this.childRefs[nextIndex].current.focus();
                   }
                 },
                 kind,
@@ -125,7 +123,7 @@ export default class ButtonGroup extends React.Component<PropsT> {
                 size,
                 overrides: {
                   BaseButton: {
-                    style: ({$theme}) => {
+                    style: ({ $theme }) => {
                       // Even though baseui's buttons have square corners, some applications override to
                       // rounded. Maintaining corner radius in this circumstance is ideal to avoid further
                       // customization.

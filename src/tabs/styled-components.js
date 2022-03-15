@@ -5,13 +5,13 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import {styled} from '../styles/index.js';
-import {ORIENTATION} from './constants.js';
-import type {SharedStylePropsArgT} from './types.js';
+import { styled } from '../styles/index.js';
+import { ORIENTATION } from './constants.js';
+import type { SharedStylePropsArgT } from './types.js';
 
 // $FlowFixMe https://github.com/facebook/flow/issues/7745
 export const Root = styled<SharedStylePropsArgT>('div', (props) => {
-  const {$orientation} = props;
+  const { $orientation } = props;
   return {
     display: 'flex',
     flexDirection: $orientation === ORIENTATION.vertical ? 'row' : 'column',
@@ -25,7 +25,7 @@ export const Tab = styled<SharedStylePropsArgT>('div', (props) => {
     $active,
     $orientation,
     $isFocusVisible,
-    $theme: {colors, sizing, typography},
+    $theme: { colors, sizing, typography },
   } = props;
   let style = {
     ...typography.font200,
@@ -64,7 +64,7 @@ export const Tab = styled<SharedStylePropsArgT>('div', (props) => {
 export const TabBar = styled<SharedStylePropsArgT>('div', (props) => {
   const {
     $orientation,
-    $theme: {colors, sizing},
+    $theme: { colors, sizing },
   } = props;
   return {
     display: 'flex',
@@ -79,7 +79,7 @@ export const TabBar = styled<SharedStylePropsArgT>('div', (props) => {
 export const TabContent = styled<SharedStylePropsArgT>('div', (props) => {
   const {
     $active,
-    $theme: {sizing, typography},
+    $theme: { sizing, typography },
   } = props;
   return {
     ...typography.font300,

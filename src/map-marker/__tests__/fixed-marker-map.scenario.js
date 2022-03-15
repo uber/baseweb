@@ -7,8 +7,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {FixedMarker} from '../index.js';
-import {Checkbox, LABEL_PLACEMENT} from '../../checkbox/index.js';
+import { FixedMarker } from '../index.js';
+import { Checkbox, LABEL_PLACEMENT } from '../../checkbox/index.js';
 import {
   PINHEAD_SIZES_SHAPES,
   NEEDLE_SIZES,
@@ -16,14 +16,14 @@ import {
   LABEL_ENHANCER_POSITIONS,
 } from '../constants.js';
 import TileGrid from './tile-grid.js';
-import {Input} from '../../input/index.js';
+import { Input } from '../../input/index.js';
 import Upload from '../../icon/upload.js';
 import Search from '../../icon/search.js';
-import {Select} from '../../select/index.js';
-import ReactMapGL, {Marker} from 'react-map-gl';
-import {Button} from '../../button/index.js';
-import {useStyletron} from '../../styles/index.js';
-import {getMapStyle} from './map-style.js';
+import { Select } from '../../select/index.js';
+import ReactMapGL, { Marker } from 'react-map-gl';
+import { Button } from '../../button/index.js';
+import { useStyletron } from '../../styles/index.js';
+import { getMapStyle } from './map-style.js';
 
 const uberHq = {
   latitude: 37.768495131168336,
@@ -55,7 +55,7 @@ export function Scenario() {
   const [endEnhancer, setEndEnhancer] = React.useState(false);
 
   const [locations, setLocations] = React.useState([
-    {position: [uberHq.longitude, uberHq.latitude], dragging: false},
+    { position: [uberHq.longitude, uberHq.latitude], dragging: false },
   ]);
 
   const [showPointDebug, setShowPointDebug] = React.useState(true);
@@ -101,7 +101,7 @@ export function Scenario() {
     locations.map((loc) => loc.position),
     {
       showPointDebug,
-    },
+    }
   );
 
   return (
@@ -175,20 +175,15 @@ export function Scenario() {
           </Checkbox>,
         ]}
       ></TileGrid>
-      <div
-        className={css({backgroundColor: theme.colors.backgroundLightAccent})}
-      >
+      <div className={css({ backgroundColor: theme.colors.backgroundLightAccent })}>
         <ReactMapGL
           {...viewport}
           width="100%"
           height="760px"
           onViewportChange={(viewport) => setViewport(viewport)}
           mapStyle={mapStyle}
-          onClick={({lngLat}) =>
-            setLocations((existing) => [
-              ...existing,
-              {position: lngLat, dragging: false},
-            ])
+          onClick={({ lngLat }) =>
+            setLocations((existing) => [...existing, { position: lngLat, dragging: false }])
           }
         >
           {locations.map((x, i) => (
@@ -210,14 +205,14 @@ export function Scenario() {
                 dragging={x.dragging}
                 startEnhancer={
                   startEnhancer
-                    ? function renderEnhancer({size}) {
+                    ? function renderEnhancer({ size }) {
                         return <Upload size={size} />;
                       }
                     : undefined
                 }
                 endEnhancer={
                   endEnhancer
-                    ? function renderEnhancer({size}) {
+                    ? function renderEnhancer({ size }) {
                         return <Search size={size} />;
                       }
                     : undefined
@@ -225,9 +220,7 @@ export function Scenario() {
                 overrides={{
                   Root: {
                     style: () => ({
-                      transform: `translate(-50%, ${
-                        isMarkerCentered ? '-50%' : '-100%'
-                      })`,
+                      transform: `translate(-50%, ${isMarkerCentered ? '-50%' : '-100%'})`,
                     }),
                   },
                   BadgeEnhancer: {

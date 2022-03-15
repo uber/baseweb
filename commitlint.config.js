@@ -7,4 +7,4 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 /*eslint-env node*/
-module.exports = {extends: ['@commitlint/config-conventional']};
+module.exports = { extends: ['@commitlint/config-conventional'] };

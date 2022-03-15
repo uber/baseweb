@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
-import {FlexGrid, FlexGridItem} from '../index.js';
+import { FlexGrid, FlexGridItem } from '../index.js';
 
 const itemProps = {
   backgroundColor: 'mono300',
@@ -20,11 +20,7 @@ const itemProps = {
 
 export function Scenario() {
   return (
-    <FlexGrid
-      flexGridColumnCount={3}
-      flexGridColumnGap="scale800"
-      flexGridRowGap="scale800"
-    >
+    <FlexGrid flexGridColumnCount={3} flexGridColumnGap="scale800" flexGridRowGap="scale800">
       <FlexGridItem {...itemProps}>1</FlexGridItem>
       <FlexGridItem {...itemProps}>2</FlexGridItem>
       <FlexGridItem {...itemProps}>3</FlexGridItem>

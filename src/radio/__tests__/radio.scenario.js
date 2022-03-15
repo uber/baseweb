@@ -8,18 +8,14 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {StatefulRadioGroup, Radio} from '../index.js';
+import { StatefulRadioGroup, Radio } from '../index.js';
 
-import {FormControl} from '../../form-control/index.js';
+import { FormControl } from '../../form-control/index.js';
 
 export function Scenario() {
   return (
     <FormControl label="Test-label">
-      <StatefulRadioGroup
-        id="test-id"
-        initialState={{value: '2'}}
-        aria-label="choose item"
-      >
+      <StatefulRadioGroup id="test-id" initialState={{ value: '2' }} aria-label="choose item">
         <Radio value="1">First</Radio>
         <Radio
           value="2"

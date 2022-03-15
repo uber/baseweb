@@ -5,8 +5,8 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import type {Node} from 'react';
-import type {OverrideT} from '../helpers/overrides.js';
+import type { Node } from 'react';
+import type { OverrideT } from '../helpers/overrides.js';
 
 export type CardComponentsT = {
   Action?: OverrideT,
@@ -41,7 +41,7 @@ export type CardsPropsT = {
   /** Content to be rendered within the Card body. */
   +children?: Node,
   /** Function that takes Card props and returns a boolean that represents if a thumbnail will be rendered. */
-  +hasThumbnail: ({+thumbnail?: string}) => boolean,
+  +hasThumbnail: ({ +thumbnail?: string }) => boolean,
   /** Image to be positioned at the top of the Card. Can be a string representing the img src or an object with img attrs */
   +headerImage?: string | ImagePropsT,
   +overrides: CardComponentsT,

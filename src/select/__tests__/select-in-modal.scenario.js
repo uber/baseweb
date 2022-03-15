@@ -6,16 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import React, {useState} from 'react';
-import {Button} from '../../button/index.js';
-import {StatefulSelect} from '../index.js';
-import {
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  ModalButton,
-} from '../../modal/index.js';
+import React, { useState } from 'react';
+import { Button } from '../../button/index.js';
+import { StatefulSelect } from '../index.js';
+import { Modal, ModalHeader, ModalBody, ModalFooter, ModalButton } from '../../modal/index.js';
 
 export function Scenario() {
   const [isOpen, setIsOpen] = useState(false);
@@ -38,12 +32,12 @@ export function Scenario() {
         <ModalBody>
           <StatefulSelect
             options={[
-              {id: 'AliceBlue', color: '#F0F8FF'},
-              {id: 'AntiqueWhite', color: '#FAEBD7'},
-              {id: 'Aqua', color: '#00FFFF'},
-              {id: 'Aquamarine', color: '#7FFFD4'},
-              {id: 'Azure', color: '#F0FFFF'},
-              {id: 'Beige', color: '#F5F5DC'},
+              { id: 'AliceBlue', color: '#F0F8FF' },
+              { id: 'AntiqueWhite', color: '#FAEBD7' },
+              { id: 'Aqua', color: '#00FFFF' },
+              { id: 'Aquamarine', color: '#7FFFD4' },
+              { id: 'Azure', color: '#F0FFFF' },
+              { id: 'Beige', color: '#F5F5DC' },
             ]}
             labelKey="id"
             valueKey="color"

@@ -8,14 +8,14 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Button} from '../../button/index.js';
-import {useStyletron} from '../../styles/index.js';
-import {Popover} from '../index.js';
+import { Button } from '../../button/index.js';
+import { useStyletron } from '../../styles/index.js';
+import { Popover } from '../index.js';
 
 export function Scenario() {
   const [css] = useStyletron();
   return (
-    <div className={css({backgroundColor: 'lightskyblue'})}>
+    <div className={css({ backgroundColor: 'lightskyblue' })}>
       <div>
         <Popover
           autoFocus={false}

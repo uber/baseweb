@@ -39,8 +39,7 @@ const getOverrideIfExists = (name, node) => {
   if (node.parent.value.expression.type === 'ObjectExpression') {
     // Find property name
     return node.parent.value.expression.properties.find(
-      (property) =>
-        property.key && property.key.name && property.key.name === name,
+      (property) => property.key && property.key.name && property.key.name === name
     );
   }
   return null;
@@ -99,10 +98,7 @@ module.exports = {
         }
 
         function isImporting(node, importName, importPath) {
-          if (
-            node.imported.name === importName &&
-            node.parent.source.value === importPath
-          ) {
+          if (node.imported.name === importName && node.parent.source.value === importPath) {
             importState[importName] = node.local.name;
             return true;
           } else {
@@ -166,22 +162,15 @@ module.exports = {
             return;
           }
           const deprecatedComponent = specifier.imported.name;
-          const newComponent =
-            mapDeprecatedTypographyComponents[deprecatedComponent];
+          const newComponent = mapDeprecatedTypographyComponents[deprecatedComponent];
 
           if (newComponent) {
             const isAlreadyImported = Boolean(existingImports[newComponent]);
             const isRenamed = specifier.local.name !== specifier.imported.name;
 
             if (isAlreadyImported) {
-              removeImport(
-                node,
-                specifierIndex,
-                deprecatedComponent,
-                newComponent,
-              );
-              identifiersToRename[specifier.local.name] =
-                existingImports[newComponent];
+              removeImport(node, specifierIndex, deprecatedComponent, newComponent);
+              identifiersToRename[specifier.local.name] = existingImports[newComponent];
             } else {
               fixImport(specifier, deprecatedComponent, newComponent);
               if (!isRenamed) {
@@ -207,8 +196,7 @@ module.exports = {
               .getAncestors()
               .some(
                 (ancestor) =>
-                  ancestor.type === 'JSXOpeningElement' &&
-                  ancestor.name.name === component,
+                  ancestor.type === 'JSXOpeningElement' && ancestor.name.name === component
               )
           );
         }
@@ -218,8 +206,7 @@ module.exports = {
         // Ex: isComponent() with <Boo foo={} /> => true
         function isComponent() {
           return (
-            node.parent.type === 'JSXOpeningElement' ||
-            node.parent.type === 'JSXClosingElement'
+            node.parent.type === 'JSXOpeningElement' || node.parent.type === 'JSXClosingElement'
           );
         }
 
@@ -230,10 +217,7 @@ module.exports = {
         // renderPanelContent
         // Ex: <Accordion renderPanelContent />
         // Replacement: renderAll
-        if (
-          importState.Accordion &&
-          isProp('renderPanelContent', importState.Accordion)
-        ) {
+        if (importState.Accordion && isProp('renderPanelContent', importState.Accordion)) {
           context.report({
             node,
             messageId: MESSAGES.replace.id,
@@ -274,16 +258,10 @@ module.exports = {
         // Ex: <Checkbox checkmarkType="toggle" />
         // Ex: <Checkbox checkmarkType={STYLE_TYPE.toggle} />
         // Replacement: toggle_round
-        if (
-          importState.Checkbox &&
-          isProp('checkmarkType', importState.Checkbox)
-        ) {
+        if (importState.Checkbox && isProp('checkmarkType', importState.Checkbox)) {
           // The value can be a constant or a string literal.
           // We need to handle each a little differently.
-          if (
-            node.parent.value.type === 'Literal' &&
-            node.parent.value.value === 'toggle'
-          ) {
+          if (node.parent.value.type === 'Literal' && node.parent.value.value === 'toggle') {
             // Ex: <Checkmark checkmarkType="toggle" />
             context.report({
               node: node.parent.value,
@@ -311,10 +289,7 @@ module.exports = {
                 new: `STYLE_TYPE.toggle_round`,
               },
               fix: function (fixer) {
-                return fixer.replaceText(
-                  node.parent.value.expression.property,
-                  'toggle_round',
-                );
+                return fixer.replaceText(node.parent.value.expression.property, 'toggle_round');
               },
             });
             return;
@@ -328,10 +303,7 @@ module.exports = {
         if (importState.Button && isProp('kind', importState.Button)) {
           // The value can be a constant or a string literal.
           // We need to handle each a little differently.
-          if (
-            node.parent.value.type === 'Literal' &&
-            node.parent.value.value === 'minimal'
-          ) {
+          if (node.parent.value.type === 'Literal' && node.parent.value.value === 'minimal') {
             // Ex: <Button kind="minimal" />
             context.report({
               node: node.parent.value,
@@ -376,10 +348,7 @@ module.exports = {
         // Ex: <RadioGroup overrides={{ Description: {}}} />
         // Ex: <RadioGroup overrides={{ Root: {}}} />
         // Replacement: None
-        if (
-          importState.RadioGroup &&
-          isProp('overrides', importState.RadioGroup)
-        ) {
+        if (importState.RadioGroup && isProp('overrides', importState.RadioGroup)) {
           const properties = [
             'Root',
             'Input',
@@ -410,13 +379,7 @@ module.exports = {
         // Caption1
         // Ex: <Caption1 />
         // Replacement: ParagraphXSmall
-        if (
-          Object.prototype.hasOwnProperty.call(
-            identifiersToRename,
-            node.name,
-          ) &&
-          isComponent()
-        ) {
+        if (Object.prototype.hasOwnProperty.call(identifiersToRename, node.name) && isComponent()) {
           const oldName = node.name;
           const newName = identifiersToRename[node.name];
           context.report({
@@ -454,10 +417,7 @@ module.exports = {
         }
 
         if (
-          Object.prototype.hasOwnProperty.call(
-            identifiersToRename,
-            node.name,
-          ) &&
+          Object.prototype.hasOwnProperty.call(identifiersToRename, node.name) &&
           isIdentifier()
         ) {
           fixIdentifier(node.name, identifiersToRename[node.name]);

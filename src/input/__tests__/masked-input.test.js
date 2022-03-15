@@ -7,15 +7,13 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {render, fireEvent} from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 
-import {MaskedInput} from '../index.js';
+import { MaskedInput } from '../index.js';
 
 describe('masked-input', () => {
   it('renders input element', () => {
-    const {container} = render(
-      <MaskedInput value="(123) 456-7890" mask="(999) 999-9999" />,
-    );
+    const { container } = render(<MaskedInput value="(123) 456-7890" mask="(999) 999-9999" />);
     const input = container.querySelector('input');
     expect(input).not.toBeNull();
   });
@@ -27,14 +25,14 @@ describe('masked-input', () => {
     const onKeyDown = jest.fn();
     const onKeyUp = jest.fn();
 
-    const {container} = render(
+    const { container } = render(
       <MaskedInput
         onFocus={onFocus}
         onBlur={onBlur}
         onChange={onChange}
         onKeyDown={onKeyDown}
         onKeyUp={onKeyUp}
-      />,
+      />
     );
 
     const input = container.querySelector('input');
@@ -45,13 +43,13 @@ describe('masked-input', () => {
     if (input) fireEvent.blur(input);
     expect(onBlur).toBeCalledTimes(1);
 
-    if (input) fireEvent.change(input, {target: {value: 'a'}});
+    if (input) fireEvent.change(input, { target: { value: 'a' } });
     expect(onChange).toBeCalledTimes(1);
 
-    if (input) fireEvent.keyDown(input, {key: 'A', code: 'KeyA'});
+    if (input) fireEvent.keyDown(input, { key: 'A', code: 'KeyA' });
     expect(onKeyDown).toBeCalledTimes(1);
 
-    if (input) fireEvent.keyUp(input, {key: 'A', code: 'KeyA'});
+    if (input) fireEvent.keyUp(input, { key: 'A', code: 'KeyA' });
     expect(onKeyUp).toBeCalledTimes(1);
   });
 });

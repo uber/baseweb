@@ -7,14 +7,14 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 import * as React from 'react';
-import {Table} from 'baseui/table-semantic';
-import {useStyletron} from 'baseui';
-import {StatefulPopover, PLACEMENT, TRIGGER_TYPE} from 'baseui/popover';
-import {H3} from './markdown-elements';
-import {convert} from './yard/type-definition';
+import { Table } from 'baseui/table-semantic';
+import { useStyletron } from 'baseui';
+import { StatefulPopover, PLACEMENT, TRIGGER_TYPE } from 'baseui/popover';
+import { H3 } from './markdown-elements';
+import { convert } from './yard/type-definition';
 
 const ApiTable = (props) => {
-  const {title, config, types} = props;
+  const { title, config, types } = props;
   const [css, theme] = useStyletron();
   const flowTypes = {};
   try {

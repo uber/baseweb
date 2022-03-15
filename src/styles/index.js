@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import {ThemeContext} from './theme-provider.js';
+import { ThemeContext } from './theme-provider.js';
 
 export {
   createThemedStyled,
@@ -17,7 +17,7 @@ export {
   useStyletron,
   withWrapper,
 } from './styled.js';
-export {hexToRgb, expandBorderStyles} from './util.js';
-export {default as ThemeProvider} from './theme-provider.js';
+export { hexToRgb, expandBorderStyles } from './util.js';
+export { default as ThemeProvider } from './theme-provider.js';
 export const ThemeConsumer = ThemeContext.Consumer;
 export type * from './types.js';

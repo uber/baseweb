@@ -8,20 +8,20 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Button, SIZE, KIND} from '../button/index.js';
-import {ButtonGroup} from '../button-group/index.js';
-import {Checkbox, StyledLabel} from '../checkbox/index.js';
+import { Button, SIZE, KIND } from '../button/index.js';
+import { ButtonGroup } from '../button-group/index.js';
+import { Checkbox, StyledLabel } from '../checkbox/index.js';
 import Search from '../icon/search.js';
-import {Input, SIZE as INPUT_SIZE} from '../input/index.js';
-import {useStyletron, withStyle} from '../styles/index.js';
-import {LabelSmall} from '../typography/index.js';
+import { Input, SIZE as INPUT_SIZE } from '../input/index.js';
+import { useStyletron, withStyle } from '../styles/index.js';
+import { LabelSmall } from '../typography/index.js';
 
 import Column from './column.js';
-import {COLUMNS} from './constants.js';
-import type {ColumnT, SharedColumnOptionsT} from './types.js';
-import {LocaleContext} from '../locale/index.js';
+import { COLUMNS } from './constants.js';
+import type { ColumnT, SharedColumnOptionsT } from './types.js';
+import { LocaleContext } from '../locale/index.js';
 import FilterShell from './filter-shell.js';
-import {matchesQuery, splitByQuery, HighlightCellText} from './text-search.js';
+import { matchesQuery, splitByQuery, HighlightCellText } from './text-search.js';
 
 type OptionsT = {|
   ...SharedColumnOptionsT<string>,
@@ -50,10 +50,7 @@ function InputBefore() {
   );
 }
 
-function FilterQuickControls(props: {
-  onSelectAll: () => void,
-  onClearSelection: () => void,
-}) {
+function FilterQuickControls(props: { onSelectAll: () => void, onClearSelection: () => void }) {
   const locale = React.useContext(LocaleContext);
 
   return (
@@ -85,7 +82,7 @@ const StyledHighlightLabel = withStyle(StyledLabel, (props) => {
 });
 
 function HighlightCheckboxLabel(props) {
-  const {children, ...restProps} = props;
+  const { children, ...restProps } = props;
 
   if (!props.query) {
     return <StyledLabel {...restProps}>{children}</StyledLabel>;
@@ -118,22 +115,20 @@ export function CategoricalFilter(props: CategoricalFilterProps) {
   const [css, theme] = useStyletron();
   const locale = React.useContext(LocaleContext);
   const [selection, setSelection] = React.useState<Set<string>>(
-    props.filterParams ? props.filterParams.selection : new Set(),
+    props.filterParams ? props.filterParams.selection : new Set()
   );
   const [exclude, setExclude] = React.useState(
-    props.filterParams ? props.filterParams.exclude : false,
+    props.filterParams ? props.filterParams.exclude : false
   );
   const [query, setQuery] = React.useState('');
   const categories = React.useMemo(() => {
     return props.data.reduce((set, category) => set.add(category), new Set());
   }, [props.data]);
 
-  const checkboxStyles = css({marginBottom: theme.sizing.scale200});
+  const checkboxStyles = css({ marginBottom: theme.sizing.scale200 });
 
   const showQuery = Boolean(categories.size >= 10);
-  const filteredCategories = Array.from(categories, (c) => c).filter((c) =>
-    matchesQuery(c, query),
-  );
+  const filteredCategories = Array.from(categories, (c) => c).filter((c) => matchesQuery(c, query));
 
   return (
     <FilterShell
@@ -151,7 +146,7 @@ export function CategoricalFilter(props: CategoricalFilterProps) {
       {showQuery && (
         <Input
           size={INPUT_SIZE.compact}
-          overrides={{Before: InputBefore}}
+          overrides={{ Before: InputBefore }}
           value={query}
           onChange={(event) => setQuery(event.target.value)}
           clearable
@@ -201,7 +196,7 @@ export function CategoricalFilter(props: CategoricalFilterProps) {
                   setSelection(new Set(selection));
                 }}
                 overrides={{
-                  Label: {component: HighlightCheckboxLabel, props: {query}},
+                  Label: { component: HighlightCheckboxLabel, props: { query } },
                 }}
               >
                 {category}

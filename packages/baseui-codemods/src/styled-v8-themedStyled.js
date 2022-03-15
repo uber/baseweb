@@ -8,19 +8,16 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as t from '@babel/types';
-import {withJsFiles} from '@dubstep/core';
+import { withJsFiles } from '@dubstep/core';
 
-import {containsFlowComment, getStyledLocalImportName} from './shared.js';
+import { containsFlowComment, getStyledLocalImportName } from './shared.js';
 
 function findTypedStyledCalls(p) {
   const styledLocalImportName = getStyledLocalImportName(p);
   const paths = [];
   p.traverse({
     CallExpression(path) {
-      if (
-        path.node.callee.name === styledLocalImportName &&
-        path.node.typeArguments
-      ) {
+      if (path.node.callee.name === styledLocalImportName && path.node.typeArguments) {
         paths.push(path);
       }
     },
@@ -52,7 +49,7 @@ function findStyledComponentsWithTheme(p) {
 class ThemeCache {
   count: number;
   // flowlint-next-line unclear-type:off
-  visitedGenericTypes: {[string]: {node: any, position: number}};
+  visitedGenericTypes: { [string]: { node: any, position: number } };
 
   constructor() {
     this.count = 0;
@@ -62,7 +59,7 @@ class ThemeCache {
   insert(node) {
     if (node.type === 'GenericTypeAnnotation') {
       this.count++;
-      this.visitedGenericTypes[node.id.name] = {node, position: this.count};
+      this.visitedGenericTypes[node.id.name] = { node, position: this.count };
     } else {
       this.count++;
     }
@@ -78,10 +75,7 @@ class ThemeCache {
   }
 
   position(node) {
-    if (
-      node.type === 'GenericTypeAnnotation' &&
-      this.visitedGenericTypes[node.id.name]
-    ) {
+    if (node.type === 'GenericTypeAnnotation' && this.visitedGenericTypes[node.id.name]) {
       return this.visitedGenericTypes[node.id.name].position;
     } else {
       return this.count;
@@ -110,19 +104,20 @@ function visitStyledCall(path, themes) {
     const createThemedStyled = t.variableDeclaration('const', [
       t.variableDeclarator(
         t.identifier(nextCalleeName),
-        t.callExpression(t.identifier('createThemedStyled'), []),
+        t.callExpression(t.identifier('createThemedStyled'), [])
       ),
     ]);
 
-    createThemedStyled.declarations[0].init.callee.typeAnnotation =
-      t.typeParameterInstantiation([themes.read(theme) || theme]);
+    createThemedStyled.declarations[0].init.callee.typeAnnotation = t.typeParameterInstantiation([
+      themes.read(theme) || theme,
+    ]);
 
     const parent = path.findParent((n) => n.isVariableDeclaration());
     parent.insertBefore(createThemedStyled);
   }
 }
 
-async function styledV8ToThemedStyled(options: {dir: string}) {
+async function styledV8ToThemedStyled(options: { dir: string }) {
   await withJsFiles(`${options.dir}/**/*.js`, async (p) => {
     if (containsFlowComment(p)) {
       const themes = new ThemeCache();
@@ -147,7 +142,7 @@ async function styledV8ToThemedStyled(options: {dir: string}) {
               if (shouldImportCreateThemedStyled) {
                 const createThemedStyledSpecifier = t.importSpecifier(
                   t.identifier('createThemedStyled'),
-                  t.identifier('createThemedStyled'),
+                  t.identifier('createThemedStyled')
                 );
                 path.node.specifiers.push(createThemedStyledSpecifier);
               }

@@ -22,7 +22,7 @@ export function scrollItemIntoView(
   parent: HTMLElement,
   isFirst?: boolean,
   isLast?: boolean,
-  scrollAlignInView?: 'auto' | 'center' = 'auto',
+  scrollAlignInView?: 'auto' | 'center' = 'auto'
 ) {
   if (!child) return;
 

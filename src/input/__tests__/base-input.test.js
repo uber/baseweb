@@ -6,14 +6,14 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {render, fireEvent} from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 
-import {BaseInput} from '../index.js';
+import { BaseInput } from '../index.js';
 
 describe('base-input', () => {
   it('basic render', () => {
     // $FlowFixMe
-    const {container} = render(<BaseInput />);
+    const { container } = render(<BaseInput />);
     expect(container.querySelector('input')).not.toBeNull();
   });
 
@@ -24,7 +24,7 @@ describe('base-input', () => {
     const onKeyDown = jest.fn();
     const onKeyUp = jest.fn();
 
-    const {container} = render(
+    const { container } = render(
       // $FlowFixMe
       <BaseInput
         onFocus={onFocus}
@@ -32,7 +32,7 @@ describe('base-input', () => {
         onChange={onChange}
         onKeyDown={onKeyDown}
         onKeyUp={onKeyUp}
-      />,
+      />
     );
 
     const input = container.querySelector('input');
@@ -43,19 +43,19 @@ describe('base-input', () => {
     if (input) fireEvent.blur(input);
     expect(onBlur).toBeCalledTimes(1);
 
-    if (input) fireEvent.change(input, {target: {value: 'a'}});
+    if (input) fireEvent.change(input, { target: { value: 'a' } });
     expect(onChange).toBeCalledTimes(1);
 
-    if (input) fireEvent.keyDown(input, {key: 'A', code: 'KeyA'});
+    if (input) fireEvent.keyDown(input, { key: 'A', code: 'KeyA' });
     expect(onKeyDown).toBeCalledTimes(1);
 
-    if (input) fireEvent.keyUp(input, {key: 'A', code: 'KeyA'});
+    if (input) fireEvent.keyUp(input, { key: 'A', code: 'KeyA' });
     expect(onKeyUp).toBeCalledTimes(1);
   });
 
   it('BaseInput - should not take default value prop', () => {
     // $FlowFixMe
-    const {container} = render(<BaseInput />);
+    const { container } = render(<BaseInput />);
     // Guard against passing default value prop
     expect(container.querySelector('input')?.value).toBe('');
   });
@@ -64,7 +64,7 @@ describe('base-input', () => {
     const onFocus = jest.fn();
     render(
       // $FlowFixMe
-      <BaseInput autoFocus onFocus={onFocus} />,
+      <BaseInput autoFocus onFocus={onFocus} />
     );
     expect(onFocus).toBeCalledTimes(1);
   });
@@ -88,16 +88,16 @@ describe('base-input', () => {
 
   it('applies expected autocomplete attribute if type is password', () => {
     // $FlowFixMe
-    const {container} = render(<BaseInput type="password" />);
+    const { container } = render(<BaseInput type="password" />);
     const input = container.querySelector('input');
     expect(input?.getAttribute('autocomplete')).toBe('new-password');
   });
 
   it('applies provided autocomplete attribute', () => {
     const autocomplete = 'current-password';
-    const {container} = render(
+    const { container } = render(
       // $FlowFixMe
-      <BaseInput autoComplete={autocomplete} type="password" />,
+      <BaseInput autoComplete={autocomplete} type="password" />
     );
     const input = container.querySelector('input');
     expect(input?.getAttribute('autocomplete')).toBe(autocomplete);

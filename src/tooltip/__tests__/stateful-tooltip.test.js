@@ -6,10 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {render, fireEvent, findByText, getByText} from '@testing-library/react';
+import { render, fireEvent, findByText, getByText } from '@testing-library/react';
 
-import {TestBaseProvider} from '../../test/test-utils.js';
-import {StatefulTooltip, PLACEMENT, TRIGGER_TYPE} from '../index.js';
+import { TestBaseProvider } from '../../test/test-utils.js';
+import { StatefulTooltip, PLACEMENT, TRIGGER_TYPE } from '../index.js';
 
 describe('StatefulTooltip', () => {
   it('basic render', async () => {
@@ -33,12 +33,12 @@ describe('StatefulTooltip', () => {
       triggerType: TRIGGER_TYPE.hover,
     };
 
-    const {container} = render(
+    const { container } = render(
       <TestBaseProvider>
         <StatefulTooltip {...props}>
           <span>{anchor}</span>
         </StatefulTooltip>
-      </TestBaseProvider>,
+      </TestBaseProvider>
     );
 
     const anchorElement = getByText(container, anchor);

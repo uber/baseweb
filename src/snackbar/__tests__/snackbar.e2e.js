@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 /* global document */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
+const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
 
 const selectors = {
   enqueueOne: 'button[data-testid="queue-one"]',
@@ -43,7 +43,7 @@ describe('snackbar', () => {
 
     await page.waitForSelector(selectors.root);
 
-    await page.waitForSelector(selectors.root, {hidden: true});
+    await page.waitForSelector(selectors.root, { hidden: true });
   });
 
   it('displays only one snackbar at a time', async () => {

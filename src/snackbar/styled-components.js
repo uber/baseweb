@@ -7,13 +7,13 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-import {Spinner} from '../spinner/index.js';
-import {styled, withStyle} from '../styles/index.js';
+import { Spinner } from '../spinner/index.js';
+import { styled, withStyle } from '../styles/index.js';
 
-import {PLACEMENT} from './constants.js';
-import type {PlacementT} from './types.js';
+import { PLACEMENT } from './constants.js';
+import type { PlacementT } from './types.js';
 
-export const StyledRoot = styled<{}>('div', ({$theme}) => {
+export const StyledRoot = styled<{}>('div', ({ $theme }) => {
   return {
     backgroundColor: $theme.colors.backgroundInverseSecondary,
     borderTopLeftRadius: $theme.borders.radius400,
@@ -34,9 +34,8 @@ export const StyledContent = styled('div', {
   width: '100%',
 });
 
-export const StyledStartEnhancerContainer = styled<{}>('span', ({$theme}) => {
-  const paddingDir: string =
-    $theme.direction === 'rtl' ? 'paddingRight' : 'paddingLeft';
+export const StyledStartEnhancerContainer = styled<{}>('span', ({ $theme }) => {
+  const paddingDir: string = $theme.direction === 'rtl' ? 'paddingRight' : 'paddingLeft';
   return {
     alignItems: 'center',
     display: 'flex',
@@ -44,25 +43,23 @@ export const StyledStartEnhancerContainer = styled<{}>('span', ({$theme}) => {
   };
 });
 
-export const StyledSpinner = withStyle<
-  typeof Spinner,
-  {$height: number, $width: number},
->(Spinner, ({$height, $width}) => {
-  return {
-    boxSizing: 'border-box',
-    height: `${$height}px`,
-    width: `${$width}px`,
-  };
-});
+export const StyledSpinner = withStyle<typeof Spinner, { $height: number, $width: number }>(
+  Spinner,
+  ({ $height, $width }) => {
+    return {
+      boxSizing: 'border-box',
+      height: `${$height}px`,
+      width: `${$width}px`,
+    };
+  }
+);
 
-export const StyledMessage = styled<{$hasSuffix: boolean}>(
+export const StyledMessage = styled<{ $hasSuffix: boolean }>(
   'p',
   //$FlowExpectedError[incompatible-shape]
-  ({$theme, $hasSuffix}) => {
-    const prefixPadding: string =
-      $theme.direction === 'rtl' ? 'paddingRight' : 'paddingLeft';
-    const suffixPadding: string =
-      $theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight';
+  ({ $theme, $hasSuffix }) => {
+    const prefixPadding: string = $theme.direction === 'rtl' ? 'paddingRight' : 'paddingLeft';
+    const suffixPadding: string = $theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight';
     return {
       ...$theme.typography.ParagraphMedium,
       '-webkit-box-orient': 'vertical',
@@ -72,11 +69,9 @@ export const StyledMessage = styled<{$hasSuffix: boolean}>(
       marginBottom: $theme.sizing.scale600,
       overflow: 'hidden',
       [prefixPadding]: $theme.sizing.scale600,
-      [suffixPadding]: $hasSuffix
-        ? $theme.sizing.scale300
-        : $theme.sizing.scale600,
+      [suffixPadding]: $hasSuffix ? $theme.sizing.scale300 : $theme.sizing.scale600,
     };
-  },
+  }
 );
 
 export const StyledWrapActionButtonContainer = styled('div', {
@@ -84,9 +79,8 @@ export const StyledWrapActionButtonContainer = styled('div', {
   justifyContent: 'flex-end',
 });
 
-export const StyledActionButtonContainer = styled<{}>('div', ({$theme}) => {
-  const marginDir: string =
-    $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
+export const StyledActionButtonContainer = styled<{}>('div', ({ $theme }) => {
+  const marginDir: string = $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
   return {
     [marginDir]: 'auto',
   };
@@ -138,7 +132,7 @@ export const StyledPlacementContainer = styled<{
   $animating: boolean,
   $placement: PlacementT,
   $translateHeight: number,
-}>('div', ({$animating, $placement, $translateHeight, $theme}) => {
+}>('div', ({ $animating, $placement, $translateHeight, $theme }) => {
   return {
     ...placementRules($placement),
     display: 'flex',

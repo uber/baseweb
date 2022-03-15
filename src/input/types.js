@@ -6,18 +6,13 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import type {OverrideT} from '../helpers/overrides.js';
-import {
-  STATE_CHANGE_TYPE,
-  ADJOINED,
-  SIZE,
-  ENHANCER_POSITION,
-} from './constants.js';
+import type { OverrideT } from '../helpers/overrides.js';
+import { STATE_CHANGE_TYPE, ADJOINED, SIZE, ENHANCER_POSITION } from './constants.js';
 
 export type AdjoinedT = $Keys<typeof ADJOINED>;
 export type SizeT = $Keys<typeof SIZE>;
 export type StateTypeT = $Keys<typeof STATE_CHANGE_TYPE>;
-export type ReactRefT<T> = {|current: null | T|};
+export type ReactRefT<T> = {| current: null | T |};
 
 export type InternalStateT = {
   /** Renders UI in 'focus' state */
@@ -37,7 +32,7 @@ export type StateT = {
 export type StateReducerT = (
   stateType: StateTypeT,
   nextState: StateT,
-  currentState: StateT,
+  currentState: StateT
 ) => StateT;
 
 export type SharedPropsT = {|
@@ -190,9 +185,7 @@ export type StatefulContainerPropsT<T> = {|
 
 type OmitPropsT = {
   overrides: InputComponentsT,
-  children: ?(
-    props: StatefulContainerChildrenPropsT<HTMLInputElement>,
-  ) => React.Node,
+  children: ?(props: StatefulContainerChildrenPropsT<HTMLInputElement>) => React.Node,
 };
 
 type FullStPropsT = InputPropsT & StatefulContainerPropsT<HTMLInputElement>;

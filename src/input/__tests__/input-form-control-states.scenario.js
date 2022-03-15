@@ -8,25 +8,19 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {FormControl} from '../../form-control/index.js';
+import { FormControl } from '../../form-control/index.js';
 import Input from '../input.js';
 
 export function Scenario() {
   return (
     <>
-      <FormControl
-        label={'Positive'}
-        caption={() => 'caption'}
-        positive={'Success!'}
-      >
+      <FormControl label={'Positive'} caption={() => 'caption'} positive={'Success!'}>
         <Input
           overrides={{
             Root: {
-              style: ({$positive, $error}) => {
+              style: ({ $positive, $error }) => {
                 console.log(
-                  `Example 1 ${$positive ? 'positive' : 'error'} value: ${
-                    $positive || $error
-                  }`,
+                  `Example 1 ${$positive ? 'positive' : 'error'} value: ${$positive || $error}`
                 );
 
                 return {};
@@ -40,11 +34,9 @@ export function Scenario() {
         <Input
           overrides={{
             Root: {
-              style: ({$positive, $error}) => {
+              style: ({ $positive, $error }) => {
                 console.log(
-                  `Example 1 ${$positive ? 'positive' : 'error'} value: ${
-                    $positive || $error
-                  }`,
+                  `Example 1 ${$positive ? 'positive' : 'error'} value: ${$positive || $error}`
                 );
 
                 console.log($error);

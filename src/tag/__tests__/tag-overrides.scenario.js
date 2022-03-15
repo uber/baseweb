@@ -6,11 +6,11 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {Tag, SIZE} from '../index.js';
+import { Tag, SIZE } from '../index.js';
 import Alert from '../../icon/alert.js';
 import ArrowLeft from '../../icon/arrow-left.js';
 import ThemeProvider from '../../styles/theme-provider.js';
-import {createTheme, lightThemePrimitives} from '../../index.js';
+import { createTheme, lightThemePrimitives } from '../../index.js';
 
 const themeWithIcons = createTheme(
   {
@@ -21,7 +21,7 @@ const themeWithIcons = createTheme(
     icons: {
       Delete: ArrowLeft,
     },
-  },
+  }
 );
 
 export function Scenario() {
@@ -33,11 +33,11 @@ export function Scenario() {
       <Tag size={SIZE.large}>Label</Tag>
       <br />
       <h2>Overriding icon via the component</h2>
-      <Tag size={SIZE.small} overrides={{ActionIcon: {component: Alert}}}>
+      <Tag size={SIZE.small} overrides={{ ActionIcon: { component: Alert } }}>
         Label
       </Tag>
       <br />
-      <Tag size={SIZE.large} overrides={{ActionIcon: {component: Alert}}}>
+      <Tag size={SIZE.large} overrides={{ ActionIcon: { component: Alert } }}>
         Label
       </Tag>
       <ThemeProvider theme={themeWithIcons}>
@@ -45,15 +45,12 @@ export function Scenario() {
         <Tag size={SIZE.small}>Label</Tag>
         <br />
         <Tag size={SIZE.large}>Label</Tag>
-        <h2>
-          Overriding icon via the component (taking precedent over the theme
-          override)
-        </h2>
-        <Tag size={SIZE.small} overrides={{ActionIcon: {component: Alert}}}>
+        <h2>Overriding icon via the component (taking precedent over the theme override)</h2>
+        <Tag size={SIZE.small} overrides={{ ActionIcon: { component: Alert } }}>
           Label
         </Tag>
         <br />
-        <Tag size={SIZE.large} overrides={{ActionIcon: {component: Alert}}}>
+        <Tag size={SIZE.large} overrides={{ ActionIcon: { component: Alert } }}>
           Label
         </Tag>
       </ThemeProvider>

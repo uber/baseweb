@@ -7,9 +7,9 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {Scenario as BreadcrumbsPseudo} from './breadcrumbs-pseudo.scenario.js';
-import {Scenario as BreadcrumbsTrailing} from './breadcrumbs-trailing.scenario.js';
-import {Scenario as BreadcrumbsDefault} from './breadcrumbs.scenario.js';
+import { Scenario as BreadcrumbsPseudo } from './breadcrumbs-pseudo.scenario.js';
+import { Scenario as BreadcrumbsTrailing } from './breadcrumbs-trailing.scenario.js';
+import { Scenario as BreadcrumbsDefault } from './breadcrumbs.scenario.js';
 
 export const Pseudo = () => <BreadcrumbsPseudo />;
 export const Trailing = () => <BreadcrumbsTrailing />;

@@ -7,8 +7,8 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 import * as React from 'react';
-import {getOverride, getOverrideProps} from '../helpers/overrides.js';
-import {UIDConsumer} from 'react-uid';
+import { getOverride, getOverrideProps } from '../helpers/overrides.js';
+import { UIDConsumer } from 'react-uid';
 import {
   Label as StyledLabel,
   LabelEndEnhancer as StyledLabelEndEnhancer,
@@ -16,11 +16,7 @@ import {
   Caption as StyledCaption,
   ControlContainer as StyledControlContainer,
 } from './styled-components.js';
-import type {
-  FormControlPropsT,
-  FormControlStateT,
-  StylePropsT,
-} from './types.js';
+import type { FormControlPropsT, FormControlStateT, StylePropsT } from './types.js';
 
 function chooseRenderedHint(caption, error, positive, sharedProps) {
   if (!!error && typeof error !== 'boolean') {
@@ -38,10 +34,7 @@ function chooseRenderedHint(caption, error, positive, sharedProps) {
   return null;
 }
 
-export default class FormControl extends React.Component<
-  FormControlPropsT,
-  FormControlStateT,
-> {
+export default class FormControl extends React.Component<FormControlPropsT, FormControlStateT> {
   static defaultProps = {
     overrides: {},
     label: null,
@@ -78,13 +71,10 @@ export default class FormControl extends React.Component<
     };
 
     const Label = getOverride(LabelOverride) || StyledLabel;
-    const LabelEndEnhancer =
-      getOverride(LabelEndEnhancerOverride) || StyledLabelEndEnhancer;
-    const LabelContainer =
-      getOverride(LabelContainerOverride) || StyledLabelContainer;
+    const LabelEndEnhancer = getOverride(LabelEndEnhancerOverride) || StyledLabelEndEnhancer;
+    const LabelContainer = getOverride(LabelContainerOverride) || StyledLabelContainer;
     const Caption = getOverride(CaptionOverride) || StyledCaption;
-    const ControlContainer =
-      getOverride(ControlContainerOverride) || StyledControlContainer;
+    const ControlContainer = getOverride(ControlContainerOverride) || StyledControlContainer;
 
     const hint = chooseRenderedHint(caption, error, positive, sharedProps);
 
@@ -92,7 +82,7 @@ export default class FormControl extends React.Component<
       if (error && positive) {
         // eslint-disable-next-line no-console
         console.warn(
-          `[FormControl] \`error\` and \`positive\` are both set to \`true\`. \`error\` will take precedence but this may not be what you want.`,
+          `[FormControl] \`error\` and \`positive\` are both set to \`true\`. \`error\` will take precedence but this may not be what you want.`
         );
       }
     }
@@ -120,7 +110,7 @@ export default class FormControl extends React.Component<
         length = 0;
         if (__DEV__) {
           console.warn(
-            `[FromControl] \`length\` must either be explicitly set via \`counter\` object property, or \`value\` string property on the child component.`,
+            `[FromControl] \`length\` must either be explicitly set via \`counter\` object property, or \`value\` string property on the child component.`
           );
         }
       }
@@ -143,10 +133,7 @@ export default class FormControl extends React.Component<
     return (
       <React.Fragment>
         {label && (
-          <LabelContainer
-            {...sharedProps}
-            {...getOverrideProps(LabelContainerOverride)}
-          >
+          <LabelContainer {...sharedProps} {...getOverrideProps(LabelContainerOverride)}>
             <Label
               data-baseweb="form-control-label"
               htmlFor={htmlFor || onlyChildProps.id}
@@ -156,10 +143,7 @@ export default class FormControl extends React.Component<
               {typeof label === 'function' ? label(sharedProps) : label}
             </Label>
             {!!labelEndEnhancer && (
-              <LabelEndEnhancer
-                {...sharedProps}
-                {...getOverrideProps(LabelEndEnhancerOverride)}
-              >
+              <LabelEndEnhancer {...sharedProps} {...getOverrideProps(LabelEndEnhancerOverride)}>
                 {typeof labelEndEnhancer === 'function'
                   ? labelEndEnhancer(sharedProps)
                   : labelEndEnhancer}

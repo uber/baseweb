@@ -1,13 +1,10 @@
 {
+  "printWidth": 100,
+  "tabWidth": 2,
+  "useTabs": false,
+  "semi": true,
   "singleQuote": true,
-  "bracketSpacing": false,
-  "trailingComma": "all",
-  "overrides": [
-    {
-      "files": "*.js",
-      "options": {
-        "parser": "flow"
-      }
-    }
-  ]
+  "trailingComma": "es5",
+  "bracketSpacing": true,
+  "jsxBracketSameLine": false
 }

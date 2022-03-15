@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {render, getByText} from '@testing-library/react';
+import { render, getByText } from '@testing-library/react';
 
 import {
   ParagraphXSmall,
@@ -32,9 +32,7 @@ function getStyle(element) {
 
 describe('Typography', () => {
   it('caption 1', () => {
-    const {container} = render(
-      <ParagraphXSmall color="primary">test</ParagraphXSmall>,
-    );
+    const { container } = render(<ParagraphXSmall color="primary">test</ParagraphXSmall>);
     const element = getByText(container, 'test');
     expect(getStyle(element)).toMatchInlineSnapshot(`
 Object {
@@ -48,7 +46,7 @@ Object {
   });
 
   it('caption 2', () => {
-    const {container} = render(<LabelXSmall color="primary">test</LabelXSmall>);
+    const { container } = render(<LabelXSmall color="primary">test</LabelXSmall>);
     const element = getByText(container, 'test');
     expect(getStyle(element)).toMatchInlineSnapshot(`
 Object {
@@ -62,7 +60,7 @@ Object {
   });
 
   it('display', () => {
-    const {container} = render(<DisplayLarge>test</DisplayLarge>);
+    const { container } = render(<DisplayLarge>test</DisplayLarge>);
     const element = getByText(container, 'test');
     expect(getStyle(element)).toMatchInlineSnapshot(`
 Object {
@@ -76,7 +74,7 @@ Object {
   });
 
   it('h1', () => {
-    const {container} = render(<HeadingXXLarge>test</HeadingXXLarge>);
+    const { container } = render(<HeadingXXLarge>test</HeadingXXLarge>);
     const element = getByText(container, 'test');
     expect(getStyle(element)).toMatchInlineSnapshot(`
 Object {
@@ -90,7 +88,7 @@ Object {
   });
 
   it('h2', () => {
-    const {container} = render(<HeadingXLarge>test</HeadingXLarge>);
+    const { container } = render(<HeadingXLarge>test</HeadingXLarge>);
     const element = getByText(container, 'test');
     expect(getStyle(element)).toMatchInlineSnapshot(`
 Object {
@@ -104,7 +102,7 @@ Object {
   });
 
   it('h3', () => {
-    const {container} = render(<HeadingLarge>test</HeadingLarge>);
+    const { container } = render(<HeadingLarge>test</HeadingLarge>);
     const element = getByText(container, 'test');
     expect(getStyle(element)).toMatchInlineSnapshot(`
 Object {
@@ -118,7 +116,7 @@ Object {
   });
 
   it('h4', () => {
-    const {container} = render(<HeadingMedium>test</HeadingMedium>);
+    const { container } = render(<HeadingMedium>test</HeadingMedium>);
     const element = getByText(container, 'test');
     expect(getStyle(element)).toMatchInlineSnapshot(`
 Object {
@@ -132,7 +130,7 @@ Object {
   });
 
   it('h5', () => {
-    const {container} = render(<HeadingSmall>test</HeadingSmall>);
+    const { container } = render(<HeadingSmall>test</HeadingSmall>);
     const element = getByText(container, 'test');
     expect(getStyle(element)).toMatchInlineSnapshot(`
 Object {
@@ -146,7 +144,7 @@ Object {
   });
 
   it('h6', () => {
-    const {container} = render(<HeadingXSmall>test</HeadingXSmall>);
+    const { container } = render(<HeadingXSmall>test</HeadingXSmall>);
     const element = getByText(container, 'test');
     expect(getStyle(element)).toMatchInlineSnapshot(`
 Object {
@@ -160,7 +158,7 @@ Object {
   });
 
   it('label 1', () => {
-    const {container} = render(<LabelLarge>test</LabelLarge>);
+    const { container } = render(<LabelLarge>test</LabelLarge>);
     const element = getByText(container, 'test');
     expect(getStyle(element)).toMatchInlineSnapshot(`
 Object {
@@ -174,7 +172,7 @@ Object {
   });
 
   it('label 2', () => {
-    const {container} = render(<LabelMedium>test</LabelMedium>);
+    const { container } = render(<LabelMedium>test</LabelMedium>);
     const element = getByText(container, 'test');
     expect(getStyle(element)).toMatchInlineSnapshot(`
 Object {
@@ -188,7 +186,7 @@ Object {
   });
 
   it('paragraph 1', () => {
-    const {container} = render(<ParagraphLarge>test</ParagraphLarge>);
+    const { container } = render(<ParagraphLarge>test</ParagraphLarge>);
     const element = getByText(container, 'test');
     expect(getStyle(element)).toMatchInlineSnapshot(`
 Object {
@@ -202,7 +200,7 @@ Object {
   });
 
   it('paragraph 2', () => {
-    const {container} = render(<ParagraphMedium>test</ParagraphMedium>);
+    const { container } = render(<ParagraphMedium>test</ParagraphMedium>);
     const element = getByText(container, 'test');
     expect(getStyle(element)).toMatchInlineSnapshot(`
 Object {

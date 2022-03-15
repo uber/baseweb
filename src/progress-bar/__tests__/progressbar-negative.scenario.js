@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {ProgressBar} from '../index.js';
+import { ProgressBar } from '../index.js';
 
 export function Scenario() {
   return (
@@ -16,7 +16,7 @@ export function Scenario() {
       value={20}
       overrides={{
         BarProgress: {
-          style: ({$theme}) => ({backgroundColor: $theme.colors.negative}),
+          style: ({ $theme }) => ({ backgroundColor: $theme.colors.negative }),
         },
       }}
     />

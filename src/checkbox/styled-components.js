@@ -6,22 +6,15 @@ LICENSE file in the root directory of this source tree.
 */
 
 // @flow
-import {styled, expandBorderStyles} from '../styles/index.js';
-import {STYLE_TYPE} from './constants.js';
+import { styled, expandBorderStyles } from '../styles/index.js';
+import { STYLE_TYPE } from './constants.js';
 
-import type {SharedStylePropsT} from './types.js';
+import type { SharedStylePropsT } from './types.js';
 
 function getBorderColor(props) {
-  const {
-    $disabled,
-    $checked,
-    $isError,
-    $error,
-    $isIndeterminate,
-    $theme,
-    $isFocusVisible,
-  } = props;
-  const {colors} = $theme;
+  const { $disabled, $checked, $isError, $error, $isIndeterminate, $theme, $isFocusVisible } =
+    props;
+  const { colors } = $theme;
   if ($disabled) {
     return colors.tickFillDisabled;
   } else if ($checked || $isIndeterminate) {
@@ -36,9 +29,9 @@ function getBorderColor(props) {
 }
 
 function getLabelPadding(props) {
-  const {$labelPlacement = '', $theme} = props;
-  const {sizing} = $theme;
-  const {scale300} = sizing;
+  const { $labelPlacement = '', $theme } = props;
+  const { sizing } = $theme;
+  const { scale300 } = sizing;
   let paddingDirection;
 
   switch ($labelPlacement) {
@@ -81,7 +74,7 @@ function getBackgroundColor(props) {
     $checkmarkType,
   } = props;
   const isToggle = $checkmarkType === STYLE_TYPE.toggle;
-  const {colors} = $theme;
+  const { colors } = $theme;
   if ($disabled) {
     if (isToggle) {
       return colors.toggleFillDisabled;
@@ -127,39 +120,26 @@ function getBackgroundColor(props) {
 }
 
 function getLabelColor(props) {
-  const {$disabled, $theme} = props;
-  const {colors} = $theme;
+  const { $disabled, $theme } = props;
+  const { colors } = $theme;
   return $disabled ? colors.contentSecondary : colors.contentPrimary;
 }
 
 export const Root = styled<SharedStylePropsT>('label', (props) => {
-  const {$disabled, $labelPlacement} = props;
+  const { $disabled, $labelPlacement } = props;
   return {
-    flexDirection:
-      $labelPlacement === 'top' || $labelPlacement === 'bottom'
-        ? 'column'
-        : 'row',
+    flexDirection: $labelPlacement === 'top' || $labelPlacement === 'bottom' ? 'column' : 'row',
     display: 'flex',
-    alignItems:
-      $labelPlacement === 'top' || $labelPlacement === 'bottom'
-        ? 'center'
-        : 'flex-start',
+    alignItems: $labelPlacement === 'top' || $labelPlacement === 'bottom' ? 'center' : 'flex-start',
     cursor: $disabled ? 'not-allowed' : 'pointer',
     userSelect: 'none',
   };
 });
 
 export const Checkmark = styled<SharedStylePropsT>('span', (props) => {
-  const {
-    $checked,
-    $disabled,
-    $isError,
-    $error,
-    $isIndeterminate,
-    $theme,
-    $isFocusVisible,
-  } = props;
-  const {sizing, animation} = $theme;
+  const { $checked, $disabled, $isError, $error, $isIndeterminate, $theme, $isFocusVisible } =
+    props;
+  const { sizing, animation } = $theme;
 
   const tickColor = $disabled
     ? $theme.colors.tickMarkFillDisabled
@@ -208,10 +188,7 @@ export const Checkmark = styled<SharedStylePropsT>('span', (props) => {
     borderTopRightRadius: borderRadius,
     borderBottomRightRadius: borderRadius,
     borderBottomLeftRadius: borderRadius,
-    outline:
-      $isFocusVisible && $checked
-        ? `3px solid ${$theme.colors.accent}`
-        : 'none',
+    outline: $isFocusVisible && $checked ? `3px solid ${$theme.colors.accent}` : 'none',
     display: 'inline-block',
     verticalAlign: 'middle',
     backgroundImage: $isIndeterminate
@@ -231,8 +208,8 @@ export const Checkmark = styled<SharedStylePropsT>('span', (props) => {
 });
 
 export const Label = styled<SharedStylePropsT>('div', (props) => {
-  const {$theme, $checkmarkType} = props;
-  const {typography} = $theme;
+  const { $theme, $checkmarkType } = props;
+  const { typography } = $theme;
   return ({
     flex: $checkmarkType === STYLE_TYPE.toggle ? 'auto' : null,
     verticalAlign: 'middle',

@@ -12,7 +12,7 @@ const childProcess = require('child_process');
 const path = require('path');
 const publishToNpm = require('./publish-to-npm.js');
 
-const hash = childProcess.execSync('git rev-parse HEAD', {encoding: 'utf-8'});
+const hash = childProcess.execSync('git rev-parse HEAD', { encoding: 'utf-8' });
 const version = publishToNpm({
   tag: 'alpha',
   commit: hash.trim(),
@@ -22,10 +22,7 @@ const version = publishToNpm({
 // do this manually
 const ROOT_DIR = path.join(__dirname, '..');
 const rootPkg = path.join(ROOT_DIR, 'package.json');
-const eslintPkg = path.join(
-  ROOT_DIR,
-  'packages/eslint-plugin-baseui/package.json',
-);
+const eslintPkg = path.join(ROOT_DIR, 'packages/eslint-plugin-baseui/package.json');
 childProcess.execSync(`git checkout ${rootPkg}`);
 childProcess.execSync(`git checkout ${eslintPkg}`);
 

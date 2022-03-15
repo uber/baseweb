@@ -23,10 +23,7 @@ import type {
 
 const defaultStateReducer: StateReducerT = (type, nextState) => nextState;
 
-class StatefulContainer extends React.Component<
-  StatefulPopoverContainerPropsT,
-  StateT,
-> {
+class StatefulContainer extends React.Component<StatefulPopoverContainerPropsT, StateT> {
   static defaultProps: $Shape<StatefulPopoverContainerPropsT> = {
     accessibilityType: ACCESSIBILITY_TYPE.menu,
     ignoreBoundary: false,
@@ -121,7 +118,7 @@ class StatefulContainer extends React.Component<
   }
 
   internalSetState(type: StateChangeTypeT, changes: StateT) {
-    const {stateReducer} = this.props;
+    const { stateReducer } = this.props;
     if (typeof stateReducer !== 'function') {
       this.setState(changes);
       return;
@@ -140,9 +137,9 @@ class StatefulContainer extends React.Component<
    * </StatefulPopover>
    */
   renderContent = () => {
-    const {content} = this.props;
+    const { content } = this.props;
     if (typeof content === 'function') {
-      return content({close: this.onContentClose});
+      return content({ close: this.onContentClose });
     }
     return content;
   };

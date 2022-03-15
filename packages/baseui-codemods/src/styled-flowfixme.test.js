@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import codemod from './styled-flowfixme.js';
-import {Fixture} from './test-utilities.js';
+import { Fixture } from './test-utilities.js';
 
 describe('add flowfixme to styled calls without type annotations', () => {
   it('applies if styled is imported from baseui package', async () => {
@@ -19,7 +19,7 @@ const Component = styled('div', {color: 'red'});`;
 
     const fixture = new Fixture();
     await fixture.write(content);
-    await codemod({dir: fixture.dir});
+    await codemod({ dir: fixture.dir });
     const transformed = await fixture.read();
     await fixture.remove();
 
@@ -40,7 +40,7 @@ const Component = baseStyled('div', {color: 'red'});`;
 
     const fixture = new Fixture();
     await fixture.write(content);
-    await codemod({dir: fixture.dir});
+    await codemod({ dir: fixture.dir });
     const transformed = await fixture.read();
     await fixture.remove();
 
@@ -61,7 +61,7 @@ const Component = styled('div', {color: 'red'});`;
 
     const fixture = new Fixture();
     await fixture.write(content);
-    await codemod({dir: fixture.dir});
+    await codemod({ dir: fixture.dir });
     const transformed = await fixture.read();
     await fixture.remove();
 
@@ -80,7 +80,7 @@ const Component = styled('div', {color: 'red'});`;
 
     const fixture = new Fixture();
     await fixture.write(content);
-    await codemod({dir: fixture.dir});
+    await codemod({ dir: fixture.dir });
     const transformed = await fixture.read();
     await fixture.remove();
 
@@ -99,7 +99,7 @@ const Component = styled<{foo: string}>('div', {color: 'red'});`;
 
     const fixture = new Fixture();
     await fixture.write(content);
-    await codemod({dir: fixture.dir});
+    await codemod({ dir: fixture.dir });
     const transformed = await fixture.read();
     await fixture.remove();
 
@@ -120,7 +120,7 @@ const Component = styled('div', {color: 'red'});`;
 
     const fixture = new Fixture();
     await fixture.write(content);
-    await codemod({dir: fixture.dir});
+    await codemod({ dir: fixture.dir });
     const transformed = await fixture.read();
     await fixture.remove();
 

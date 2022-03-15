@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 import * as React from 'react';
-import {render, getByTestId, getByText} from '@testing-library/react';
+import { render, getByTestId, getByText } from '@testing-library/react';
 
 import OptionProfile from '../option-profile.js';
 
@@ -21,7 +21,7 @@ const mockItem = {
 function getSharedProps() {
   return {
     item: mockItem,
-    getProfileItemLabels: ({title, subtitle, body}) => ({
+    getProfileItemLabels: ({ title, subtitle, body }) => ({
       title,
       subtitle,
       body,
@@ -33,13 +33,11 @@ function getSharedProps() {
 
 describe('Option Profile Stateless Component', () => {
   it('basic renders', () => {
-    const {container} = render(<OptionProfile {...getSharedProps()} />);
+    const { container } = render(<OptionProfile {...getSharedProps()} />);
     getByText(container, mockItem.title);
     getByText(container, mockItem.subtitle);
     getByText(container, mockItem.body);
-    expect(container.querySelector('img')?.getAttribute('src')).toBe(
-      mockItem.imgUrl,
-    );
+    expect(container.querySelector('img')?.getAttribute('src')).toBe(mockItem.imgUrl);
   });
 
   it('renders with custom image component', () => {
@@ -50,7 +48,7 @@ describe('Option Profile Stateless Component', () => {
       ...getSharedProps(),
       getProfileItemImg: (item) => MockComponent,
     };
-    const {container} = render(<OptionProfile {...props} />);
+    const { container } = render(<OptionProfile {...props} />);
     getByTestId(container, 'mock-image-element');
   });
 
@@ -69,7 +67,7 @@ describe('Option Profile Stateless Component', () => {
         },
       },
     };
-    const {container} = render(<OptionProfile {...props} />);
+    const { container } = render(<OptionProfile {...props} />);
     getByTestId(container, 'mock-list-item-element');
   });
 });

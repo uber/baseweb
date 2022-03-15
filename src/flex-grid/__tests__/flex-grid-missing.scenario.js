@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
-import {FlexGrid, FlexGridItem} from '../index.js';
+import { FlexGrid, FlexGridItem } from '../index.js';
 
 const itemProps = {
   backgroundColor: 'mono300',

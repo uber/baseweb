@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import type {SizingT} from '../types.js';
+import type { SizingT } from '../types.js';
 
 const sizing: SizingT = {
   scale0: '2px',

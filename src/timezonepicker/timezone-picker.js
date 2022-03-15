@@ -8,24 +8,17 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {format, getTimezoneOffset} from 'date-fns-tz';
+import { format, getTimezoneOffset } from 'date-fns-tz';
 
-import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
-import {LocaleContext} from '../locale/index.js';
-import {Select} from '../select/index.js';
+import { getOverrides, mergeOverrides } from '../helpers/overrides.js';
+import { LocaleContext } from '../locale/index.js';
+import { Select } from '../select/index.js';
 
-import type {
-  TimezonePickerPropsT,
-  TimezonePickerStateT,
-  TimezoneT,
-} from './types.js';
-import {zones} from './tzdata.js';
+import type { TimezonePickerPropsT, TimezonePickerStateT, TimezoneT } from './types.js';
+import { zones } from './tzdata.js';
 
-class TimezonePicker extends React.Component<
-  TimezonePickerPropsT,
-  TimezonePickerStateT,
-> {
-  state = {timezones: [], value: null};
+class TimezonePicker extends React.Component<TimezonePickerPropsT, TimezonePickerStateT> {
+  state = { timezones: [], value: null };
 
   componentDidMount() {
     const timezones = this.buildTimezones(this.props.date || new Date());
@@ -33,15 +26,15 @@ class TimezonePicker extends React.Component<
     if (__BROWSER__) {
       if (!this.props.value) {
         const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-        this.setState({timezones, value: tz});
+        this.setState({ timezones, value: tz });
 
         const option = timezones.find((o) => o.id === tz);
         option && this.props.onChange && this.props.onChange(option);
       } else {
-        this.setState({timezones});
+        this.setState({ timezones });
       }
     } else {
-      this.setState({timezones});
+      this.setState({ timezones });
     }
   }
 
@@ -50,7 +43,7 @@ class TimezonePicker extends React.Component<
     const nextTime = this.props.date ? this.props.date.getTime() : 0;
     if (prevTime !== nextTime) {
       const timezones = this.buildTimezones(this.props.date || new Date());
-      this.setState({timezones});
+      this.setState({ timezones });
 
       const option = timezones.find((o) => o.id === this.state.value);
       option && this.props.onChange && this.props.onChange(option);
@@ -67,7 +60,7 @@ class TimezonePicker extends React.Component<
         let label = `(GMT${offsetFormatted}) ${zoneName.replace(/_/g, ' ')}`;
 
         if (this.props.includeAbbreviations) {
-          const abbreviation = format(compareDate, 'zzz', {timeZone: zoneName});
+          const abbreviation = format(compareDate, 'zzz', { timeZone: zoneName });
           if (abbreviation) {
             label += ` - ${abbreviation}`;
           }
@@ -101,16 +94,13 @@ class TimezonePicker extends React.Component<
   };
 
   render() {
-    const {overrides = {}} = this.props;
-    const [OverriddenSelect, selectProps] = getOverrides(
-      overrides.Select,
-      Select,
-    );
+    const { overrides = {} } = this.props;
+    const [OverriddenSelect, selectProps] = getOverrides(overrides.Select, Select);
     selectProps.overrides = mergeOverrides(
       {
-        Dropdown: {style: {maxHeight: '360px'}},
+        Dropdown: { style: { maxHeight: '360px' } },
       },
-      selectProps.overrides,
+      selectProps.overrides
     );
 
     let options = this.state.timezones;
@@ -135,16 +125,16 @@ class TimezonePicker extends React.Component<
             size={this.props.size}
             onChange={(params) => {
               if (params.type === 'clear') {
-                this.setState({value: ''});
+                this.setState({ value: '' });
                 this.props.onChange && this.props.onChange(null);
               } else {
-                this.setState({value: params.option.id});
+                this.setState({ value: params.option.id });
                 this.props.onChange && this.props.onChange(params.option);
               }
             }}
             value={
               this.props.value || this.state.value
-                ? [{id: this.props.value || this.state.value}]
+                ? [{ id: this.props.value || this.state.value }]
                 : null
             }
             {...selectProps}

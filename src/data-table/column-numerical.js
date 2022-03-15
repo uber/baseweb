@@ -8,23 +8,18 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Button, SIZE} from '../button/index.js';
-import {ButtonGroup, MODE} from '../button-group/index.js';
-import {Input, SIZE as INPUT_SIZE} from '../input/index.js';
-import {useStyletron} from '../styles/index.js';
+import { Button, SIZE } from '../button/index.js';
+import { ButtonGroup, MODE } from '../button-group/index.js';
+import { Input, SIZE as INPUT_SIZE } from '../input/index.js';
+import { useStyletron } from '../styles/index.js';
 
 import Column from './column.js';
-import {
-  COLUMNS,
-  NUMERICAL_FORMATS,
-  MAX_BIN_COUNT,
-  HISTOGRAM_SIZE,
-} from './constants.js';
-import FilterShell, {type ExcludeKind} from './filter-shell.js';
-import type {ColumnT, SharedColumnOptionsT} from './types.js';
-import {LocaleContext} from '../locale/index.js';
-import {bin, max as maxFunc, extent, scaleLinear, median, bisector} from 'd3';
-import {Slider} from '../slider/index.js';
+import { COLUMNS, NUMERICAL_FORMATS, MAX_BIN_COUNT, HISTOGRAM_SIZE } from './constants.js';
+import FilterShell, { type ExcludeKind } from './filter-shell.js';
+import type { ColumnT, SharedColumnOptionsT } from './types.js';
+import { LocaleContext } from '../locale/index.js';
+import { bin, max as maxFunc, extent, scaleLinear, median, bisector } from 'd3';
+import { Slider } from '../slider/index.js';
 
 type NumericalFormats =
   | typeof NUMERICAL_FORMATS.DEFAULT
@@ -96,7 +91,7 @@ const Histogram = React.memo(function Histogram({
 }) {
   const [css, theme] = useStyletron();
 
-  const {bins, xScale, yScale} = React.useMemo(() => {
+  const { bins, xScale, yScale } = React.useMemo(() => {
     const bins = bin().thresholds(Math.min(data.length, MAX_BIN_COUNT))(data);
 
     const xScale = scaleLinear()
@@ -108,7 +103,7 @@ const Histogram = React.memo(function Histogram({
       .domain([0, maxFunc(bins, (d) => d.length)])
       .nice()
       .range([HISTOGRAM_SIZE.height, 0]);
-    return {bins, xScale, yScale};
+    return { bins, xScale, yScale };
   }, [data]);
 
   // We need to find the index of bar which is nearest to the given single value
@@ -205,16 +200,16 @@ function NumericalFilter(props) {
   const [min, max] = React.useMemo(() => extent(props.data), [props.data]);
 
   const [lv, setLower] = React.useState<number>(() =>
-    roundToFixed(initialState.lowerValue || min, precision),
+    roundToFixed(initialState.lowerValue || min, precision)
   );
   const [uv, setUpper] = React.useState<number>(() =>
-    roundToFixed(initialState.upperValue || max, precision),
+    roundToFixed(initialState.upperValue || max, precision)
   );
 
   // We keep a separate value for the single select, to give a user the ability to toggle between
   // the range and single values without losing their previous input.
   const [sv, setSingle] = React.useState<number>(() =>
-    roundToFixed(initialState.lowerValue || median(props.data), precision),
+    roundToFixed(initialState.lowerValue || median(props.data), precision)
   );
 
   // This is the only conditional which we want to use to determine
@@ -250,7 +245,7 @@ function NumericalFilter(props) {
         .rangeRound([1, MAX_BIN_COUNT])
         // We clamp the values within our min and max even if a user enters a huge number
         .clamp(true),
-    [min, max],
+    [min, max]
   );
 
   let sliderValue = isRange
@@ -299,20 +294,20 @@ function NumericalFilter(props) {
         onClick={(_, index) => setComparatorIndex(index)}
         overrides={{
           Root: {
-            style: ({$theme}) => ({marginBottom: $theme.sizing.scale300}),
+            style: ({ $theme }) => ({ marginBottom: $theme.sizing.scale300 }),
           },
         }}
       >
         <Button
           type="button"
-          overrides={{BaseButton: {style: {width: '100%'}}}}
+          overrides={{ BaseButton: { style: { width: '100%' } } }}
           aria-label={locale.datatable.numericalFilterRange}
         >
           {locale.datatable.numericalFilterRange}
         </Button>
         <Button
           type="button"
-          overrides={{BaseButton: {style: {width: '100%'}}}}
+          overrides={{ BaseButton: { style: { width: '100%' } } }}
           aria-label={locale.datatable.numericalFilterSingleValue}
         >
           {locale.datatable.numericalFilterSingleValue}
@@ -328,7 +323,7 @@ function NumericalFilter(props) {
         precision={props.options.precision}
       />
 
-      <div className={css({display: 'flex', justifyContent: 'space-between'})}>
+      <div className={css({ display: 'flex', justifyContent: 'space-between' })}>
         <Slider
           // The slider throws errors when switching between single and two values
           // when it tries to read getThumbDistance on a thumb which is not there anymore
@@ -337,7 +332,7 @@ function NumericalFilter(props) {
           min={1}
           max={MAX_BIN_COUNT}
           value={sliderValue}
-          onChange={({value}) => {
+          onChange={({ value }) => {
             if (!value) {
               return;
             }
@@ -352,10 +347,10 @@ function NumericalFilter(props) {
             }
           }}
           overrides={{
-            InnerThumb: function InnerThumb({$value, $thumbIndex}) {
+            InnerThumb: function InnerThumb({ $value, $thumbIndex }) {
               return <React.Fragment>{$value[$thumbIndex]}</React.Fragment>;
             },
-            TickBar: ({$min, $max}) => null, // we don't want the ticks
+            TickBar: ({ $min, $max }) => null, // we don't want the ticks
             ThumbValue: () => null,
             Root: {
               style: () => ({
@@ -365,7 +360,7 @@ function NumericalFilter(props) {
               }),
             },
             InnerTrack: {
-              style: ({$theme}) => {
+              style: ({ $theme }) => {
                 if (!isRange) {
                   return {
                     // For range selection we use the color as is, but when selecting the single value,
@@ -399,7 +394,7 @@ function NumericalFilter(props) {
           min={min}
           max={max}
           size={INPUT_SIZE.mini}
-          overrides={{Root: {style: {width: '100%'}}}}
+          overrides={{ Root: { style: { width: '100%' } } }}
           value={inputValueLower}
           onChange={(event) => {
             if (validateInput(event.target.value)) {
@@ -419,8 +414,8 @@ function NumericalFilter(props) {
             max={max}
             size={INPUT_SIZE.mini}
             overrides={{
-              Input: {style: {textAlign: 'right'}},
-              Root: {style: {width: '100%'}},
+              Input: { style: { textAlign: 'right' } },
+              Root: { style: { width: '100%' } },
             }}
             value={inputValueUpper}
             onChange={(event) => {
@@ -446,9 +441,7 @@ function NumericalCell(props) {
         ...theme.typography.MonoParagraphXSmall,
         display: 'flex',
         justifyContent: theme.direction !== 'rtl' ? 'flex-end' : 'flex-start',
-        color: props.highlight(props.value)
-          ? theme.colors.contentNegative
-          : null,
+        color: props.highlight(props.value) ? theme.colors.contentNegative : null,
         width: '100%',
       })}
     >
@@ -494,8 +487,7 @@ function NumericalColumn(options: OptionsT): NumericalColumnT {
     buildFilter: function (params) {
       return function (data) {
         const value = roundToFixed(data, normalizedOptions.precision);
-        const included =
-          value >= params.lowerValue && value <= params.upperValue;
+        const included = value >= params.lowerValue && value <= params.upperValue;
         return params.exclude ? !included : included;
       };
     },

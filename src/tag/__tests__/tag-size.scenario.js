@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Tag, SIZE} from '../index.js';
+import { Tag, SIZE } from '../index.js';
 
 export function Scenario() {
   return (

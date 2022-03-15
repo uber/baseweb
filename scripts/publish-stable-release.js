@@ -11,4 +11,5 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 const publishToNpm = require('./publish-to-npm.js');
-publishToNpm({tag: 'latest'});
+
+publishToNpm({ tag: 'latest' });

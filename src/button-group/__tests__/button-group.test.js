@@ -7,12 +7,12 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {render, fireEvent} from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 
-import {Button} from '../../button/index.js';
+import { Button } from '../../button/index.js';
 
-import {ButtonGroup} from '../index.js';
-import type {PropsT} from '../types.js';
+import { ButtonGroup } from '../index.js';
+import type { PropsT } from '../types.js';
 
 function buildSimpleWrapper(props: $Shape<PropsT> = {}) {
   return render(
@@ -20,14 +20,14 @@ function buildSimpleWrapper(props: $Shape<PropsT> = {}) {
       <Button />
       <Button />
       <Button />
-    </ButtonGroup>,
+    </ButtonGroup>
   );
 }
 
 describe('ButtonGroup', () => {
   it('click event on child element triggers parent handler', () => {
     const handler = jest.fn();
-    const {container} = buildSimpleWrapper({onClick: handler});
+    const { container } = buildSimpleWrapper({ onClick: handler });
     const buttons = container.querySelectorAll('button');
     for (let button of buttons) {
       fireEvent.click(button);
@@ -38,11 +38,11 @@ describe('ButtonGroup', () => {
   it('does not clobber click handler on child element', () => {
     const parentHandler = jest.fn();
     const childHandler = jest.fn();
-    const {container} = render(
+    const { container } = render(
       <ButtonGroup onClick={parentHandler}>
         <Button onClick={childHandler} />
         <Button />
-      </ButtonGroup>,
+      </ButtonGroup>
     );
 
     const [first, second] = container.querySelectorAll('button');
@@ -58,7 +58,7 @@ describe('ButtonGroup', () => {
 
   it('if disabled, click events do not call provided handler', () => {
     const handler = jest.fn();
-    const {container} = buildSimpleWrapper({disabled: true, onClick: handler});
+    const { container } = buildSimpleWrapper({ disabled: true, onClick: handler });
     const button = container.querySelector('button');
     if (button) {
       fireEvent.click(button);
@@ -68,7 +68,7 @@ describe('ButtonGroup', () => {
 
   it('sets no children as selected if selected prop is null value', () => {
     //$FlowFixMe
-    const {container} = buildSimpleWrapper({selected: null});
+    const { container } = buildSimpleWrapper({ selected: null });
     const buttons = container.querySelectorAll('button');
     for (let button of buttons) {
       expect(button.getAttribute('aria-checked')).toBe('false');
@@ -76,7 +76,7 @@ describe('ButtonGroup', () => {
   });
 
   it('sets no children as selected if selected prop is empty array', () => {
-    const {container} = buildSimpleWrapper({selected: []});
+    const { container } = buildSimpleWrapper({ selected: [] });
     const buttons = container.querySelectorAll('button');
     for (let button of buttons) {
       expect(button.getAttribute('aria-checked')).toBe('false');
@@ -85,61 +85,55 @@ describe('ButtonGroup', () => {
 
   it('sets appropriate child as selected if selected prop is a number', () => {
     const selectedIndex = 2;
-    const {container} = buildSimpleWrapper({selected: selectedIndex});
+    const { container } = buildSimpleWrapper({ selected: selectedIndex });
     const buttons = container.querySelectorAll('button');
     for (let i = 0; i < buttons.length; i++) {
       const button = buttons[i];
-      expect(button.getAttribute('aria-checked')).toBe(
-        i === selectedIndex ? 'true' : 'false',
-      );
+      expect(button.getAttribute('aria-checked')).toBe(i === selectedIndex ? 'true' : 'false');
     }
   });
 
   it('sets appropriate child as selected if selected prop is zero', () => {
     const selectedIndex = 0;
-    const {container} = buildSimpleWrapper({selected: selectedIndex});
+    const { container } = buildSimpleWrapper({ selected: selectedIndex });
     const buttons = container.querySelectorAll('button');
     for (let i = 0; i < buttons.length; i++) {
       const button = buttons[i];
-      expect(button.getAttribute('aria-checked')).toBe(
-        i === selectedIndex ? 'true' : 'false',
-      );
+      expect(button.getAttribute('aria-checked')).toBe(i === selectedIndex ? 'true' : 'false');
     }
   });
 
   it('sets appropriate child as selected if selected prop is an array', () => {
     const selectedIndices = [0, 2];
-    const {container} = buildSimpleWrapper({selected: selectedIndices});
+    const { container } = buildSimpleWrapper({ selected: selectedIndices });
     const buttons = container.querySelectorAll('button');
     for (let i = 0; i < buttons.length; i++) {
       const button = buttons[i];
       expect(button.getAttribute('aria-checked')).toBe(
-        selectedIndices.includes(i) ? 'true' : 'false',
+        selectedIndices.includes(i) ? 'true' : 'false'
       );
     }
   });
 
   it('should respect isSelected value if the consumer passes the prop to Button', () => {
-    const {queryByTitle} = render(
+    const { queryByTitle } = render(
       <ButtonGroup>
         <Button isSelected title="testButton" />
         <Button />
         <Button />
-      </ButtonGroup>,
+      </ButtonGroup>
     );
 
-    expect(
-      queryByTitle('testButton')?.getAttribute('aria-checked'),
-    ).toBeTruthy();
+    expect(queryByTitle('testButton')?.getAttribute('aria-checked')).toBeTruthy();
   });
 
   it('should handle null children', () => {
-    const {container} = render(
+    const { container } = render(
       <ButtonGroup>
         <Button>one</Button>
         <Button>two</Button>
         {null}
-      </ButtonGroup>,
+      </ButtonGroup>
     );
 
     expect(container.querySelectorAll('button').length).toBe(2);

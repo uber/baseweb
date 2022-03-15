@@ -6,11 +6,11 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {STATE_CHANGE_TYPE, SIZE, COUNTRIES} from './constants.js';
-import type {OverrideT} from '../helpers/overrides.js';
-import type {OnChangeParamsT} from '../select/types.js';
+import { STATE_CHANGE_TYPE, SIZE, COUNTRIES } from './constants.js';
+import type { OverrideT } from '../helpers/overrides.js';
+import type { OnChangeParamsT } from '../select/types.js';
 
-export type ReactRefT<T> = {current: null | T};
+export type ReactRefT<T> = { current: null | T };
 export type SizeT = $Keys<typeof SIZE>;
 export type CountryIsoT = $Keys<typeof COUNTRIES>;
 export type CountriesT = $ReadOnly<CountryT>;
@@ -28,11 +28,7 @@ export type StateT = {
 
 export type StateChangeT = $Keys<typeof STATE_CHANGE_TYPE>;
 
-export type StateReducerT = (
-  type: StateChangeT,
-  nextState: StateT,
-  currentState: StateT,
-) => StateT;
+export type StateReducerT = (type: StateChangeT, nextState: StateT, currentState: StateT) => StateT;
 
 export type mapIsoToLabelT = (iso: string) => string;
 
@@ -58,7 +54,7 @@ export type CountrySelectDropdownPropsT = {
 };
 
 export type CountrySelectPropsT = {
-  countries: {[string]: CountryT},
+  countries: { [string]: CountryT },
   country: CountryT,
   disabled: boolean,
   error: boolean,
@@ -139,7 +135,7 @@ export type PropsT = {
 
 export type LitePropsT = {
   ...$Exact<PropsT>,
-  countries: {[string]: CountryT},
+  countries: { [string]: CountryT },
 };
 
 export type StatefulPhoneInputContainerPropsT = {

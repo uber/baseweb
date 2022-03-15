@@ -9,8 +9,8 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {useStyletron} from '../../styles/index.js';
-import {Unstable_HelperSteps as HelperSteps} from '../index.js';
+import { useStyletron } from '../../styles/index.js';
+import { Unstable_HelperSteps as HelperSteps } from '../index.js';
 
 const LENGTH = 5;
 
@@ -32,7 +32,7 @@ export function Scenario() {
   }
 
   return (
-    <div className={css({width: '375px'})}>
+    <div className={css({ width: '375px' })}>
       <HelperSteps
         index={index}
         length={LENGTH}
@@ -41,7 +41,7 @@ export function Scenario() {
         onNext={handleNext}
       />
 
-      <div className={css({color: theme.colors.contentPrimary})}>
+      <div className={css({ color: theme.colors.contentPrimary })}>
         <p>current step index: {index}</p>
         <p>is finished: {String(finished)}</p>
       </div>

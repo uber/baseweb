@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
+const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
 
 const selectors = {
   input: 'input',
@@ -125,8 +125,6 @@ describe('PinCodeMask', () => {
     expect(await page.evaluate((el) => el.value, inputs[3])).toBe('*');
 
     const pinCodeValue = await page.$(selectors.pinCodeValue);
-    expect(await page.evaluate((el) => el.textContent, pinCodeValue)).toBe(
-      'password:1 2 3 4 ',
-    );
+    expect(await page.evaluate((el) => el.textContent, pinCodeValue)).toBe('password:1 2 3 4 ');
   });
 });

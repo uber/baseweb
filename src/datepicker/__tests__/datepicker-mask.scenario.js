@@ -8,14 +8,11 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Datepicker} from '../index.js';
+import { Datepicker } from '../index.js';
 
 export function Scenario() {
   const [date, setDate] = React.useState(new Date('2020/01/10'));
-  const [range, setRange] = React.useState([
-    new Date('2020/10/10'),
-    new Date('2020/10/11'),
-  ]);
+  const [range, setRange] = React.useState([new Date('2020/10/10'), new Date('2020/10/11')]);
 
   return (
     <div>
@@ -23,7 +20,7 @@ export function Scenario() {
       <Datepicker
         aria-label="Select a date"
         value={date}
-        onChange={({date}) => setDate(date)}
+        onChange={({ date }) => setDate(date)}
         mask={null}
       />
 
@@ -31,7 +28,7 @@ export function Scenario() {
       <Datepicker
         aria-label="Select a date"
         value={date}
-        onChange={({date}) => setDate(date)}
+        onChange={({ date }) => setDate(date)}
         formatString="dd MM yyyy"
         placeholder="dd mm yyyy"
       />
@@ -40,7 +37,7 @@ export function Scenario() {
       <Datepicker
         aria-label="Select a date"
         value={date}
-        onChange={({date}) => setDate(date)}
+        onChange={({ date }) => setDate(date)}
         formatString="EEEE, MMMM dd yyyy"
         placeholder="EEEE, MMMM dd yyyy"
       />
@@ -49,7 +46,7 @@ export function Scenario() {
       <Datepicker
         aria-label="Select a date"
         value={date}
-        onChange={({date}) => setDate(date)}
+        onChange={({ date }) => setDate(date)}
         formatString="dd.MM.yyyy"
         placeholder="dd.mm.yyyy"
         mask={null}
@@ -59,7 +56,7 @@ export function Scenario() {
       <Datepicker
         aria-label="Select a date"
         value={date}
-        onChange={({date}) => setDate(date)}
+        onChange={({ date }) => setDate(date)}
         formatString="d.M.yyyy"
         placeholder="dd.mm.yyyy"
         mask={null}
@@ -69,7 +66,7 @@ export function Scenario() {
       <Datepicker
         aria-label="Select a date"
         value={range}
-        onChange={({date}) => setRange(date)}
+        onChange={({ date }) => setRange(date)}
         mask="9999/99/99 - 9999/99/99"
         range
       />
@@ -78,7 +75,7 @@ export function Scenario() {
       <Datepicker
         aria-label="Select a date"
         value={range}
-        onChange={({date}) => setRange(date)}
+        onChange={({ date }) => setRange(date)}
         mask="9999/99/99 — 9999/99/99"
         range
       />

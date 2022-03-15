@@ -7,10 +7,10 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-import {getMediaQueries} from '../helpers/responsive-helpers.js';
-import {styled} from '../styles/index.js';
-import type {BreakpointsT} from '../styles/types.js';
-import type {StyledBlockPropsT} from './types.js';
+import { getMediaQueries } from '../helpers/responsive-helpers.js';
+import { styled } from '../styles/index.js';
+import type { BreakpointsT } from '../styles/types.js';
+import type { StyledBlockPropsT } from './types.js';
 
 // styletron will throw when value is undefined. if so, replace with null
 function constrainToNull(value) {
@@ -33,7 +33,7 @@ function build(breakpoints: BreakpointsT) {
   const mediaQueries = getMediaQueries(breakpoints);
 
   return {
-    apply: ({property, transform = (x) => x, value}: ApplyParams) => {
+    apply: ({ property, transform = (x) => x, value }: ApplyParams) => {
       if (value === null || value === undefined) {
         return;
       }
@@ -67,7 +67,7 @@ function getFontValue(obj, key) {
 }
 
 export const StyledBlock = styled<StyledBlockPropsT>('div', (props) => {
-  const {breakpoints, colors, typography, sizing} = props.$theme;
+  const { breakpoints, colors, typography, sizing } = props.$theme;
 
   const get = (obj, key) => obj[key];
   const getScale = (size) => sizing[size] || size;
@@ -136,16 +136,16 @@ export const StyledBlock = styled<StyledBlockPropsT>('div', (props) => {
     property: 'alignContent',
     value: get(props, '$alignContent'),
   });
-  styles.apply({property: 'alignItems', value: get(props, '$alignItems')});
-  styles.apply({property: 'alignSelf', value: get(props, '$alignSelf')});
-  styles.apply({property: 'display', value: get(props, '$display')});
-  styles.apply({property: 'flex', value: get(props, '$flex')});
+  styles.apply({ property: 'alignItems', value: get(props, '$alignItems') });
+  styles.apply({ property: 'alignSelf', value: get(props, '$alignSelf') });
+  styles.apply({ property: 'display', value: get(props, '$display') });
+  styles.apply({ property: 'flex', value: get(props, '$flex') });
   styles.apply({
     property: 'flexDirection',
     value: get(props, '$flexDirection'),
   });
-  styles.apply({property: 'grid', value: get(props, '$grid')});
-  styles.apply({property: 'gridArea', value: get(props, '$gridArea')});
+  styles.apply({ property: 'grid', value: get(props, '$grid') });
+  styles.apply({ property: 'gridArea', value: get(props, '$gridArea') });
   styles.apply({
     property: 'gridAutoColumns',
     value: get(props, '$gridAutoColumns'),
@@ -158,7 +158,7 @@ export const StyledBlock = styled<StyledBlockPropsT>('div', (props) => {
     property: 'gridAutoRows',
     value: get(props, '$gridAutoRows'),
   });
-  styles.apply({property: 'gridColumn', value: get(props, '$gridColumn')});
+  styles.apply({ property: 'gridColumn', value: get(props, '$gridColumn') });
   styles.apply({
     property: 'gridColumnEnd',
     value: get(props, '$gridColumnEnd'),
@@ -177,15 +177,15 @@ export const StyledBlock = styled<StyledBlockPropsT>('div', (props) => {
     value: get(props, '$gridGap'),
     transform: getScale,
   });
-  styles.apply({property: 'gridRow', value: get(props, '$gridRow')});
-  styles.apply({property: 'gridRowEnd', value: get(props, '$gridRowEnd')});
+  styles.apply({ property: 'gridRow', value: get(props, '$gridRow') });
+  styles.apply({ property: 'gridRowEnd', value: get(props, '$gridRowEnd') });
   styles.apply({
     property: 'gridRowGap',
     value: get(props, '$gridRowGap'),
     transform: getScale,
   });
-  styles.apply({property: 'gridRowStart', value: get(props, '$gridRowStart')});
-  styles.apply({property: 'gridTemplate', value: get(props, '$gridTemplate')});
+  styles.apply({ property: 'gridRowStart', value: get(props, '$gridRowStart') });
+  styles.apply({ property: 'gridTemplate', value: get(props, '$gridTemplate') });
   styles.apply({
     property: 'gridTemplateAreas',
     value: get(props, '$gridTemplateAreas'),
@@ -206,8 +206,8 @@ export const StyledBlock = styled<StyledBlockPropsT>('div', (props) => {
     property: 'justifyItems',
     value: get(props, '$justifyItems'),
   });
-  styles.apply({property: 'justifySelf', value: get(props, '$justifySelf')});
-  styles.apply({property: 'position', value: get(props, '$position')});
+  styles.apply({ property: 'justifySelf', value: get(props, '$justifySelf') });
+  styles.apply({ property: 'position', value: get(props, '$position') });
   styles.apply({
     property: 'width',
     value: get(props, '$width'),
@@ -325,8 +325,8 @@ export const StyledBlock = styled<StyledBlockPropsT>('div', (props) => {
     property: 'placeContent',
     value: get(props, '$placeContent'),
   });
-  styles.apply({property: 'placeItems', value: get(props, '$placeItems')});
-  styles.apply({property: 'placeSelf', value: get(props, '$placeSelf')});
+  styles.apply({ property: 'placeItems', value: get(props, '$placeItems') });
+  styles.apply({ property: 'placeSelf', value: get(props, '$placeSelf') });
   styles.apply({
     property: 'flexWrap',
     value: get(props, '$flexWrap'),
@@ -354,8 +354,8 @@ export const StyledBlock = styled<StyledBlockPropsT>('div', (props) => {
     transform: getScale,
   });
 
-  styles.apply({property: 'textOverflow', value: get(props, '$textOverflow')});
-  styles.apply({property: 'whiteSpace', value: get(props, '$whiteSpace')});
+  styles.apply({ property: 'textOverflow', value: get(props, '$textOverflow') });
+  styles.apply({ property: 'whiteSpace', value: get(props, '$whiteSpace') });
 
   return styles.value();
 });

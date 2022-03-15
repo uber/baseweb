@@ -11,15 +11,15 @@ import * as React from 'react';
 import CategoricalColumn from '../column-categorical.js';
 import NumericalColumn from '../column-numerical.js';
 import StringColumn from '../column-string.js';
-import {NUMERICAL_FORMATS} from '../constants.js';
-import {StatefulDataTable} from '../stateful-data-table.js';
+import { NUMERICAL_FORMATS } from '../constants.js';
+import { StatefulDataTable } from '../stateful-data-table.js';
 
-import {ArrowUp} from '../../icon/index.js';
+import { ArrowUp } from '../../icon/index.js';
 
 type RowDataT = [string, string, number, number, number, number];
 
 const columns = [
-  StringColumn({title: 'Movie', mapDataToValue: (data: RowDataT) => data[0]}),
+  StringColumn({ title: 'Movie', mapDataToValue: (data: RowDataT) => data[0] }),
   CategoricalColumn({
     title: 'Genre',
     mapDataToValue: (data: RowDataT) => data[1],
@@ -65,14 +65,7 @@ const rows = [
   ['Monsters, Inc.', 'Adventure', 115, 577, 5.0, 8.0],
   ['The Twilight Saga: New Moon', 'Drama', 50, 710, 14.2, 4.5],
   ['Oz the Great and Powerful', 'Adventure', 160, 493, 3.1, 6.6],
-  [
-    `Pirates of the Caribbean: Dead Man's Chest`,
-    'Adventure',
-    225,
-    1066,
-    4.7,
-    7.3,
-  ],
+  [`Pirates of the Caribbean: Dead Man's Chest`, 'Adventure', 225, 1066, 4.7, 7.3],
 
   ['Quantum of Solace', 'Action', 200, 586, 2.9, 6.7],
   ['Raiders of the Lost Ark', 'Adventure', 18, 390, 21.7, 8.7],
@@ -84,7 +77,7 @@ const rows = [
   ['X-Men: The Last Stand', 'Action', 210, 459, 2.2, 6.8],
   [`You've Got Mail`, 'Drama', 65, 251, 3.9, 6.3],
   ['Zookeeper', 'Romantic Comedy', 80, 170, 2.1, 5.0],
-].map((r) => ({id: r[0], data: r}));
+].map((r) => ({ id: r[0], data: r }));
 
 export function Scenario() {
   const [selected, setSelected] = React.useState([]);
@@ -92,20 +85,20 @@ export function Scenario() {
   const rowActions = [
     {
       label: 'row-action-label-one',
-      onClick: ({row}) => {
+      onClick: ({ row }) => {
         setSelected([...selected, row.id]);
       },
-      renderIcon: function RenderArrowUp({size}) {
+      renderIcon: function RenderArrowUp({ size }) {
         return <ArrowUp size={size} />;
       },
     },
 
     {
       label: 'row-action-label-two',
-      onClick: ({row}) => {
+      onClick: ({ row }) => {
         setSelected([...selected, row.id]);
       },
-      renderIcon: function RenderArrowUp({size}) {
+      renderIcon: function RenderArrowUp({ size }) {
         return <ArrowUp size={size} />;
       },
     },
@@ -113,12 +106,8 @@ export function Scenario() {
 
   return (
     <div>
-      <div style={{height: '500px', width: '400px'}}>
-        <StatefulDataTable
-          columns={columns}
-          rows={rows}
-          rowActions={rowActions}
-        />
+      <div style={{ height: '500px', width: '400px' }}>
+        <StatefulDataTable columns={columns} rows={rows} rowActions={rowActions} />
       </div>
       <ul id="clicked-rows">
         {selected.map((r) => (

@@ -18,7 +18,7 @@ import {
   waitForElementToBeRemoved,
 } from '@testing-library/react';
 
-import {toaster, ToasterContainer} from '../index.js';
+import { toaster, ToasterContainer } from '../index.js';
 
 const getBody = (): HTMLBodyElement => {
   //flowlint-next-line unclear-type:off
@@ -33,9 +33,7 @@ function wait(ms) {
 
 describe('toaster', () => {
   it('renders container', () => {
-    render(
-      <ToasterContainer overrides={{Root: {props: {'data-testid': 'root'}}}} />,
-    );
+    render(<ToasterContainer overrides={{ Root: { props: { 'data-testid': 'root' } } }} />);
     getByTestId(getBody(), 'root');
   });
 
@@ -46,7 +44,7 @@ describe('toaster', () => {
       const key = toaster.show('show');
       await findByText(getBody(), 'show');
 
-      toaster.update(String(key), {children: 'update'});
+      toaster.update(String(key), { children: 'update' });
       await findByText(getBody(), 'update');
 
       toaster.clear(key);
@@ -75,7 +73,7 @@ describe('toaster', () => {
       const onClose = jest.fn();
       toaster.show('message', {
         onClose,
-        overrides: {CloseIcon: {props: {'data-testid': 'close'}}},
+        overrides: { CloseIcon: { props: { 'data-testid': 'close' } } },
       });
       await findByText(getBody(), 'message');
       fireEvent.click(getByTestId(getBody(), 'close'));
@@ -95,7 +93,7 @@ describe('toaster', () => {
 
     it('hides when autoHideDuration from toast completes', async () => {
       render(<ToasterContainer autoHideDuration={100} />);
-      toaster.info('info', {autoHideDuration: 1000});
+      toaster.info('info', { autoHideDuration: 1000 });
       await findByText(getBody(), 'info');
       await wait(100);
       await wait(600);

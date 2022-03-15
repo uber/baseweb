@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {mount} = require('../../../e2e/helpers');
+const { mount } = require('../../../e2e/helpers');
 
 const selectors = {
   input: 'input',
@@ -27,19 +27,13 @@ describe('Datepicker, Int', () => {
     await page.waitForSelector(selectors.calendar);
     await page.click(selectors.day);
     await page.waitForSelector(selectors.calendar);
-    const selectedValue1 = await page.$eval(
-      selectors.input,
-      (input) => input.value,
-    );
+    const selectedValue1 = await page.$eval(selectors.input, (input) => input.value);
     expect(selectedValue1).toBe('2019 vasárnap 10');
     await page.click(selectors.day2);
     await page.waitForSelector(selectors.calendar, {
       hidden: true,
     });
-    const selectedValue2 = await page.$eval(
-      selectors.input,
-      (input) => input.value,
-    );
+    const selectedValue2 = await page.$eval(selectors.input, (input) => input.value);
     expect(selectedValue2).toBe('2019 vasárnap 10 – 2019 csütörtök 28');
   });
 });

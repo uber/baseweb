@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {getOverrides} from '../helpers/overrides.js';
-import type {SkeletonPropsT} from './types.js';
-import {StyledRoot, StyledRow} from './styled-components.js';
+import { getOverrides } from '../helpers/overrides.js';
+import type { SkeletonPropsT } from './types.js';
+import { StyledRoot, StyledRow } from './styled-components.js';
 
 class Skeleton extends React.Component<SkeletonPropsT> {
   static defaultProps: SkeletonPropsT = {
@@ -16,7 +16,7 @@ class Skeleton extends React.Component<SkeletonPropsT> {
     animation: false,
   };
   render() {
-    const {overrides = {}} = this.props;
+    const { overrides = {} } = this.props;
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
     const [Row, rowProps] = getOverrides(overrides.Row, StyledRow);
 

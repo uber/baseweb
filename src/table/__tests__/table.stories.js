@@ -7,14 +7,14 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {Scenario as TableBorderless} from './table-borderless.scenario.js';
-import {Scenario as TableCells} from './table-cells.scenario.js';
-import {Scenario as TableFewRows} from './table-few-rows.scenario.js';
-import {Scenario as TableFilter} from './table-filter.scenario.js';
-import {Scenario as TablePagination} from './table-pagination.scenario.js';
-import {Scenario as TableScroll} from './table-scroll.scenario.js';
-import {Scenario as TableSortableFillClick} from './table-sortable-fill-click.scenario.js';
-import {Scenario as TableSortable} from './table-sortable.scenario.js';
+import { Scenario as TableBorderless } from './table-borderless.scenario.js';
+import { Scenario as TableCells } from './table-cells.scenario.js';
+import { Scenario as TableFewRows } from './table-few-rows.scenario.js';
+import { Scenario as TableFilter } from './table-filter.scenario.js';
+import { Scenario as TablePagination } from './table-pagination.scenario.js';
+import { Scenario as TableScroll } from './table-scroll.scenario.js';
+import { Scenario as TableSortableFillClick } from './table-sortable-fill-click.scenario.js';
+import { Scenario as TableSortable } from './table-sortable.scenario.js';
 
 export const Borderless = () => <TableBorderless />;
 export const Cells = () => <TableCells />;

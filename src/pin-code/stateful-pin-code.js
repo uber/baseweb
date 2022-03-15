@@ -10,7 +10,7 @@ import React from 'react';
 import defaultProps from './default-props.js';
 import PinCode from './pin-code.js';
 import StatefulPinCodeContainer from './stateful-pin-code-container.js';
-import type {PropsT, StatefulPinCodePropsT} from './types.js';
+import type { PropsT, StatefulPinCodePropsT } from './types.js';
 
 StatefulPinCode.defaultProps = defaultProps;
 

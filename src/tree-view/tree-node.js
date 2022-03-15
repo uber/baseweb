@@ -9,12 +9,12 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {StyledTreeItemList, StyledTreeItem} from './styled-components.js';
-import type {TreeNodePropsT} from './types.js';
+import { StyledTreeItemList, StyledTreeItem } from './styled-components.js';
+import type { TreeNodePropsT } from './types.js';
 
 import StyledTreeLabel from './tree-label.js';
 
-import {getOverride, getOverrideProps} from '../helpers/overrides.js';
+import { getOverride, getOverrideProps } from '../helpers/overrides.js';
 
 export default class TreeNode extends React.Component<TreeNodePropsT> {
   treeItemRef = React.createRef<HTMLLIElement>();
@@ -28,7 +28,7 @@ export default class TreeNode extends React.Component<TreeNodePropsT> {
   }
 
   onToggle = () => {
-    const {onToggle, node} = this.props;
+    const { onToggle, node } = this.props;
     if (onToggle) {
       onToggle(node);
     }
@@ -36,7 +36,7 @@ export default class TreeNode extends React.Component<TreeNodePropsT> {
 
   onFocus = (e: SyntheticEvent<>) => {
     if (e && e.target !== this.treeItemRef.current) return;
-    const {onFocus} = this.props;
+    const { onFocus } = this.props;
     if (onFocus) {
       onFocus(e);
     }
@@ -58,15 +58,14 @@ export default class TreeNode extends React.Component<TreeNodePropsT> {
       removeRef,
       isFocusVisible,
     } = this.props;
-    const {children, isExpanded, label} = node;
+    const { children, isExpanded, label } = node;
     const hasChildren = children && children.length !== 0;
     const {
       TreeItemList: TreeItemListOverride,
       TreeItem: TreeItemOverride,
       TreeLabel: TreeLabelOverride,
     } = overrides;
-    const TreeItemList =
-      getOverride(TreeItemListOverride) || StyledTreeItemList;
+    const TreeItemList = getOverride(TreeItemListOverride) || StyledTreeItemList;
     const TreeItem = getOverride(TreeItemOverride) || StyledTreeItem;
     const TreeLabel = getOverride(TreeLabelOverride) || StyledTreeLabel;
     return (

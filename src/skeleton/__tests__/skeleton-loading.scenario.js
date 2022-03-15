@@ -6,11 +6,11 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {Skeleton} from '../index.js';
-import {useStyletron} from '../../styles/index.js';
+import { Skeleton } from '../index.js';
+import { useStyletron } from '../../styles/index.js';
 // $FlowFixMe
 import imageFile from './static/adorable.png';
-import {Avatar} from '../../avatar/index.js';
+import { Avatar } from '../../avatar/index.js';
 
 export function Scenario() {
   const [loading, setLoading] = React.useState(true);
@@ -22,7 +22,7 @@ export function Scenario() {
   const [css] = useStyletron();
   if (loading) {
     return (
-      <div className={css({width: '300px', margin: '10px'})}>
+      <div className={css({ width: '300px', margin: '10px' })}>
         <Skeleton
           height="150px"
           width="300px"
@@ -62,7 +62,7 @@ export function Scenario() {
   }
 
   return (
-    <div id="content" className={css({width: '300px', margin: '10px'})}>
+    <div id="content" className={css({ width: '300px', margin: '10px' })}>
       <img
         className={css({
           width: '300px',

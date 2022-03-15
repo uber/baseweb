@@ -9,9 +9,9 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Button, KIND, SHAPE} from '../button/index.js';
-import {getOverrides} from '../helpers/overrides.js';
-import {useStyletron} from '../styles/index.js';
+import { Button, KIND, SHAPE } from '../button/index.js';
+import { getOverrides } from '../helpers/overrides.js';
+import { useStyletron } from '../styles/index.js';
 
 import {
   StyledRoot,
@@ -22,15 +22,15 @@ import {
   StyledWrapActionButtonContainer,
   StyledActionButtonContainer,
 } from './styled-components.js';
-import type {SnackbarElementPropsT} from './types.js';
+import type { SnackbarElementPropsT } from './types.js';
 
 const ActionButton = React.forwardRef(
   // flowlint-next-line unclear-type:off
-  ({onClick, message, overrides = {}}, ref: any) => {
+  ({ onClick, message, overrides = {} }, ref: any) => {
     const [, theme] = useStyletron();
     const [ActionButtonContainer, actionButtonContainerProps] = getOverrides(
       overrides.ActionButtonContainer,
-      StyledActionButtonContainer,
+      StyledActionButtonContainer
     );
     return (
       <ActionButtonContainer {...actionButtonContainerProps}>
@@ -40,10 +40,8 @@ const ActionButton = React.forwardRef(
             BaseButton: {
               style: {
                 color: theme.colors.contentInversePrimary,
-                marginRight:
-                  theme.direction === 'rtl' ? null : theme.sizing.scale100,
-                marginLeft:
-                  theme.direction === 'rtl' ? theme.sizing.scale100 : null,
+                marginRight: theme.direction === 'rtl' ? null : theme.sizing.scale100,
+                marginLeft: theme.direction === 'rtl' ? theme.sizing.scale100 : null,
                 width: '100%',
                 whiteSpace: 'nowrap',
                 ':hover': {
@@ -63,7 +61,7 @@ const ActionButton = React.forwardRef(
         </Button>
       </ActionButtonContainer>
     );
-  },
+  }
 );
 ActionButton.displayName = 'ActionButton';
 
@@ -84,7 +82,7 @@ export default function SnackbarElement({
     if (__BROWSER__) {
       if (window.ResizeObserver) {
         const observer = new window.ResizeObserver(([entry]) =>
-          setRootWidth(entry.contentRect.width),
+          setRootWidth(entry.contentRect.width)
         );
         if (rootRef.current) {
           observer.observe(rootRef.current);
@@ -100,7 +98,7 @@ export default function SnackbarElement({
     if (__BROWSER__) {
       if (window.ResizeObserver) {
         const observer = new window.ResizeObserver(([entry]) =>
-          setActionMeasureWidth(entry.contentRect.width),
+          setActionMeasureWidth(entry.contentRect.width)
         );
         if (actionMeasureRef.current) {
           observer.observe(actionMeasureRef.current);
@@ -113,27 +111,17 @@ export default function SnackbarElement({
   const wrapActionButton = actionMeasureWidth > rootWidth / 2;
 
   const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
-  const [Content, contentProps] = getOverrides(
-    overrides.Content,
-    StyledContent,
-  );
+  const [Content, contentProps] = getOverrides(overrides.Content, StyledContent);
   const [StartEnhancerContainer, startEnhancerContainerProps] = getOverrides(
     overrides.StartEnhancerContainer,
-    StyledStartEnhancerContainer,
+    StyledStartEnhancerContainer
   );
-  const [Spinner, spinnerProps] = getOverrides(
-    overrides.Spinner,
-    StyledSpinner,
+  const [Spinner, spinnerProps] = getOverrides(overrides.Spinner, StyledSpinner);
+  const [Message, messageProps] = getOverrides(overrides.Message, StyledMessage);
+  const [WrapActionButtonContainer, wrapActionButtonContainerProps] = getOverrides(
+    overrides.WrapActionButtonContainer,
+    StyledWrapActionButtonContainer
   );
-  const [Message, messageProps] = getOverrides(
-    overrides.Message,
-    StyledMessage,
-  );
-  const [WrapActionButtonContainer, wrapActionButtonContainerProps] =
-    getOverrides(
-      overrides.WrapActionButtonContainer,
-      StyledWrapActionButtonContainer,
-    );
 
   const prevFocusRef = React.useRef(null);
   const actionButtonRef = React.useRef(null);

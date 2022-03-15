@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import type {BlockPropsT} from '../block/types.js';
+import type { BlockPropsT } from '../block/types.js';
 
 export type HeadingPropsT = {
   /** Set and fix the style level independently on the hierarchy context. */

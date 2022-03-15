@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 //@flow
 import * as React from 'react';
 
-import {Datepicker} from '../index.js';
+import { Datepicker } from '../index.js';
 
 export function Scenario() {
   const [value, setValue] = React.useState([
@@ -17,7 +17,7 @@ export function Scenario() {
   return (
     <Datepicker
       value={value}
-      onChange={({date}) => setValue(date)}
+      onChange={({ date }) => setValue(date)}
       formatString="yyyy/MM/dd h:mm aa"
       range
       timeSelectStart

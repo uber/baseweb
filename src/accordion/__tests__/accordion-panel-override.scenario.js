@@ -8,10 +8,9 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Accordion, Panel} from '../index.js';
+import { Accordion, Panel } from '../index.js';
 
-import {createTheme, lightThemePrimitives} from '../../index.js';
-import {ThemeProvider} from '../../index.js';
+import { createTheme, lightThemePrimitives, ThemeProvider } from '../../index.js';
 
 const themeWithIcons = createTheme(
   {
@@ -25,7 +24,7 @@ const themeWithIcons = createTheme(
       // eslint-disable-next-line
       CheckIndeterminate: () => <div>minus-override(theme)</div>,
     },
-  },
+  }
 );
 
 export function Scenario() {

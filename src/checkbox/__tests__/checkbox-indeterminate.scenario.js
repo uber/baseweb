@@ -8,11 +8,11 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Block} from '../../block/index.js';
-import {Checkbox} from '../index.js';
+import { Block } from '../../block/index.js';
+import { Checkbox } from '../index.js';
 
-class GroupList extends React.Component<{}, {checkboxes: Array<boolean>}> {
-  state = {checkboxes: [true, false]};
+class GroupList extends React.Component<{}, { checkboxes: Array<boolean> }> {
+  state = { checkboxes: [true, false] };
 
   render() {
     const allChecked = this.state.checkboxes.every(Boolean);
@@ -24,11 +24,11 @@ class GroupList extends React.Component<{}, {checkboxes: Array<boolean>}> {
           components={{}}
           onChange={(e) => {
             const nextCheckboxes = [e.target.checked, e.target.checked];
-            this.setState({checkboxes: nextCheckboxes});
+            this.setState({ checkboxes: nextCheckboxes });
           }}
           isIndeterminate={isIndeterminate}
           checked={allChecked}
-          overrides={{Root: {props: {'data-name': 'parent'}}}}
+          overrides={{ Root: { props: { 'data-name': 'parent' } } }}
         >
           Indeterminate checkbox if not all subcheckboxes are checked
         </Checkbox>
@@ -38,9 +38,9 @@ class GroupList extends React.Component<{}, {checkboxes: Array<boolean>}> {
             onChange={(e) => {
               const nextCheckboxes = [...this.state.checkboxes];
               nextCheckboxes[0] = e.target.checked;
-              this.setState({checkboxes: nextCheckboxes});
+              this.setState({ checkboxes: nextCheckboxes });
             }}
-            overrides={{Root: {props: {'data-name': 'child1'}}}}
+            overrides={{ Root: { props: { 'data-name': 'child1' } } }}
           >
             First subcheckbox
           </Checkbox>
@@ -49,9 +49,9 @@ class GroupList extends React.Component<{}, {checkboxes: Array<boolean>}> {
             onChange={(e) => {
               const nextCheckboxes = [...this.state.checkboxes];
               nextCheckboxes[1] = e.target.checked;
-              this.setState({checkboxes: nextCheckboxes});
+              this.setState({ checkboxes: nextCheckboxes });
             }}
-            overrides={{Root: {props: {'data-name': 'child2'}}}}
+            overrides={{ Root: { props: { 'data-name': 'child2' } } }}
           >
             Second subcheckbox
           </Checkbox>

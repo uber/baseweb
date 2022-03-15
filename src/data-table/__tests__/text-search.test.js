@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import {splitByQuery} from '../text-search.js';
+import { splitByQuery } from '../text-search.js';
 
 describe('data-table text search', () => {
   it('splitByQuery handles alphabet characters', () => {

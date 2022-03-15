@@ -7,12 +7,12 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {Scenario as FlexGridFractionalPixel} from './flex-grid-fractional-pixel.scenario.js';
-import {Scenario as FlexGridMissing} from './flex-grid-missing.scenario.js';
-import {Scenario as FlexGridResponsive} from './flex-grid-responsive.scenario.js';
-import {Scenario as FlexGridUnequalNarrow} from './flex-grid-unequal-narrow.scenario.js';
-import {Scenario as FlexGridUnequalWide} from './flex-grid-unequal-wide.scenario.js';
-import {Scenario as FlexGridDefault} from './flex-grid.scenario.js';
+import { Scenario as FlexGridFractionalPixel } from './flex-grid-fractional-pixel.scenario.js';
+import { Scenario as FlexGridMissing } from './flex-grid-missing.scenario.js';
+import { Scenario as FlexGridResponsive } from './flex-grid-responsive.scenario.js';
+import { Scenario as FlexGridUnequalNarrow } from './flex-grid-unequal-narrow.scenario.js';
+import { Scenario as FlexGridUnequalWide } from './flex-grid-unequal-wide.scenario.js';
+import { Scenario as FlexGridDefault } from './flex-grid.scenario.js';
 
 export const FractionalPixel = () => <FlexGridFractionalPixel />;
 export const Missing = () => <FlexGridMissing />;

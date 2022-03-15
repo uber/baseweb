@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* global window */
 import * as React from 'react';
-import {SIZE} from './constants.js';
+import { SIZE } from './constants.js';
 import {
   StyledProgressBarRoundedRoot,
   StyledProgressBarRoundedSvg,
@@ -15,8 +15,8 @@ import {
   StyledProgressBarRoundedTrackForeground,
   StyledProgressBarRoundedText,
 } from './styled-components.js';
-import {useOverrides} from '../helpers/overrides.js';
-import type {ProgressBarRoundedPropsT} from './types.js';
+import { useOverrides } from '../helpers/overrides.js';
+import type { ProgressBarRoundedPropsT } from './types.js';
 
 const defaults = {
   Root: StyledProgressBarRoundedRoot,
@@ -81,9 +81,8 @@ function ProgressBarRounded({
       let animationTimeElapsed = now - animationTimeStarted;
       // Move out of state - might need to reverse calculate the path progress for interruped animations
       let currentPathProgress = Math.min(
-        (progress - pathProgress) * (animationTimeElapsed / animationDuration) +
-          pathProgress,
-        1,
+        (progress - pathProgress) * (animationTimeElapsed / animationDuration) + pathProgress,
+        1
       );
       currentPathProgress = Math.max(currentPathProgress, 0);
       setPathProgress(currentPathProgress);

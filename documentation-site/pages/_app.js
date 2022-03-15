@@ -19,20 +19,20 @@ import {
   LightTheme,
   LightThemeMove,
 } from 'baseui';
-import type {BreakpointsT, ThemeT} from 'baseui/styles/types';
+import type { BreakpointsT, ThemeT } from 'baseui/styles/types';
 
 import App from 'next/app';
 import Head from 'next/head';
-import {Provider as StyletronProvider} from 'styletron-react';
-import {Block} from 'baseui/block';
+import { Provider as StyletronProvider } from 'styletron-react';
+import { Block } from 'baseui/block';
 import Router from 'next/router';
-import type {AppProps} from 'next/app';
-import type {NextPage, NextPageContext} from 'next';
+import type { AppProps } from 'next/app';
+import type { NextPage, NextPageContext } from 'next';
 
 //$FlowFixMe
-import {styletron, debug} from '../helpers/styletron';
+import { styletron, debug } from '../helpers/styletron';
 // $FlowFixMe
-import {trackPageView} from '../helpers/ga';
+import { trackPageView } from '../helpers/ga';
 //$FlowFixMe
 import DirectionContext from '../components/direction-context';
 
@@ -44,22 +44,20 @@ const breakpoints: BreakpointsT = {
 
 const ResponsiveTheme = Object.keys(breakpoints).reduce(
   (acc, key) => {
-    acc.mediaQuery[
-      key
-    ] = `@media screen and (min-width: ${breakpoints[key]}px)`;
+    acc.mediaQuery[key] = `@media screen and (min-width: ${breakpoints[key]}px)`;
     return acc;
   },
   {
     breakpoints,
     mediaQuery: {},
-  },
+  }
 );
 
 const themes = {
-  LightTheme: {...LightTheme, ...ResponsiveTheme},
-  LightThemeMove: {...LightThemeMove, ...ResponsiveTheme},
-  DarkTheme: {...DarkTheme, ...ResponsiveTheme},
-  DarkThemeMove: {...DarkThemeMove, ...ResponsiveTheme},
+  LightTheme: { ...LightTheme, ...ResponsiveTheme },
+  LightThemeMove: { ...LightThemeMove, ...ResponsiveTheme },
+  DarkTheme: { ...DarkTheme, ...ResponsiveTheme },
+  DarkThemeMove: { ...DarkThemeMove, ...ResponsiveTheme },
 };
 
 export const themedStyled = createThemedStyled<ThemeT>();
@@ -89,18 +87,12 @@ export default class MyApp extends App {
     this.mediaQueryListener = this.mediaQueryListener.bind(this);
   }
 
-  static async getInitialProps({
-    Component,
-    ctx,
-  }: {
-    Component: NextPage,
-    ctx: NextPageContext,
-  }) {
+  static async getInitialProps({ Component, ctx }: { Component: NextPage, ctx: NextPageContext }) {
     let pageProps = {};
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps(ctx);
     }
-    return {path: ctx.asPath, pageProps};
+    return { path: ctx.asPath, pageProps };
   }
 
   componentDidMount() {
@@ -219,7 +211,7 @@ export default class MyApp extends App {
       this.setState({
         themeSet: true,
         direction: 'ltr',
-        theme: {...this.state.theme, direction: 'ltr'},
+        theme: { ...this.state.theme, direction: 'ltr' },
       });
       if (document.body) {
         document.body.dir = 'ltr';
@@ -228,7 +220,7 @@ export default class MyApp extends App {
       this.setState({
         themeSet: true,
         direction: 'rtl',
-        theme: {...this.state.theme, direction: 'rtl'},
+        theme: { ...this.state.theme, direction: 'rtl' },
       });
       if (document.body) {
         document.body.dir = 'rtl';
@@ -237,7 +229,7 @@ export default class MyApp extends App {
   }
 
   render() {
-    const {Component, pageProps, path} = this.props;
+    const { Component, pageProps, path } = this.props;
     return (
       <React.Fragment>
         <Head>

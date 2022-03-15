@@ -10,25 +10,20 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import FocusLock from 'react-focus-lock';
 
-import {LocaleContext} from '../locale/index.js';
-import {getOverrides} from '../helpers/overrides.js';
-import {Layer} from '../layer/index.js';
-import {SIZE, ROLE, CLOSE_SOURCE} from './constants.js';
+import { LocaleContext } from '../locale/index.js';
+import { getOverrides } from '../helpers/overrides.js';
+import { Layer } from '../layer/index.js';
+import { SIZE, ROLE, CLOSE_SOURCE } from './constants.js';
 import {
   Root as StyledRoot,
   Dialog as StyledDialog,
   DialogContainer as StyledDialogContainer,
   Close as StyledClose,
 } from './styled-components.js';
-import {CloseIcon} from './close-icon.js';
+import { CloseIcon } from './close-icon.js';
 
-import type {
-  ModalPropsT,
-  ModalStateT,
-  SharedStylePropsArgT,
-  CloseSourceT,
-} from './types.js';
-import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
+import type { ModalPropsT, ModalStateT, SharedStylePropsArgT, CloseSourceT } from './types.js';
+import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible.js';
 
 class Modal extends React.Component<ModalPropsT, ModalStateT> {
   static defaultProps: $Shape<ModalPropsT> = {
@@ -58,12 +53,12 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
   };
 
   componentDidMount() {
-    this.setState({mounted: true});
+    this.setState({ mounted: true });
     if (__DEV__) {
       // $FlowFixMe: flow complains that this prop doesn't exist
       if (this.props.closable) {
         console.warn(
-          'The property `closable` is not supported on the Modal. Did you mean `closeable`?',
+          'The property `closable` is not supported on the Modal. Did you mean `closeable`?'
         );
       }
     }
@@ -75,7 +70,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
   }
 
   componentDidUpdate(prevProps: ModalPropsT, prevState: ModalStateT) {
-    const {isOpen} = this.props;
+    const { isOpen } = this.props;
     if (
       // If isOpen is changing *or* we just mounted and modal should be open
       isOpen !== prevProps.isOpen ||
@@ -91,13 +86,13 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
 
   handleFocus = (event: SyntheticEvent<>) => {
     if (isFocusVisible(event)) {
-      this.setState({isFocusVisible: true});
+      this.setState({ isFocusVisible: true });
     }
   };
 
   handleBlur = (event: SyntheticEvent<>) => {
     if (this.state.isFocusVisible !== false) {
-      this.setState({isFocusVisible: false});
+      this.setState({ isFocusVisible: false });
     }
   };
 
@@ -173,7 +168,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
 
     // eslint-disable-next-line cup/no-undef
     this.animateStartTimer = requestAnimationFrame(() => {
-      this.setState({isVisible: true});
+      this.setState({ isVisible: true });
     });
   }
 
@@ -197,8 +192,8 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     });
   };
 
-  getSharedProps(): $Diff<SharedStylePropsArgT, {children?: React.Node}> {
-    const {animate, isOpen, size, role, closeable} = this.props;
+  getSharedProps(): $Diff<SharedStylePropsArgT, { children?: React.Node }> {
+    const { animate, isOpen, size, role, closeable } = this.props;
     return {
       $animate: animate,
       $isVisible: this.state.isVisible,
@@ -211,7 +206,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
   }
 
   getMountNode(): HTMLElement {
-    const {mountNode} = this.props;
+    const { mountNode } = this.props;
     if (mountNode) {
       return mountNode;
     }
@@ -221,19 +216,12 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
   }
 
   getChildren() {
-    const {children} = this.props;
+    const { children } = this.props;
     return typeof children === 'function' ? children() : children;
   }
 
   renderModal() {
-    const {
-      overrides = {},
-      closeable,
-      role,
-      autoFocus,
-      focusLock,
-      returnFocus,
-    } = this.props;
+    const { overrides = {}, closeable, role, autoFocus, focusLock, returnFocus } = this.props;
 
     const {
       Root: RootOverride,
@@ -245,7 +233,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     const [Root, rootProps] = getOverrides(RootOverride, StyledRoot);
     const [DialogContainer, dialogContainerProps] = getOverrides(
       DialogContainerOverride,
-      StyledDialogContainer,
+      StyledDialogContainer
     );
     const [Dialog, dialogProps] = getOverrides(DialogOverride, StyledDialog);
     const [Close, closeProps] = getOverrides(CloseOverride, StyledClose);

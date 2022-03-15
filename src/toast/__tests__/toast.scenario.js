@@ -8,24 +8,20 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Button, KIND as BUTTON_KIND, SIZE} from '../../button/index.js';
-import {Toast, KIND} from '../index.js';
+import { Button, KIND as BUTTON_KIND, SIZE } from '../../button/index.js';
+import { Toast, KIND } from '../index.js';
 
 export function Scenario() {
   return (
     <React.Fragment>
       <Toast autoFocus>Default info notification</Toast>
       <Toast>
-        {({dismiss}) => {
+        {({ dismiss }) => {
           return (
             <div>
               Info notification with no close button and children as a function.
               <div>
-                <Button
-                  onClick={dismiss}
-                  kind={BUTTON_KIND.secondary}
-                  size={SIZE.compact}
-                >
+                <Button onClick={dismiss} kind={BUTTON_KIND.secondary} size={SIZE.compact}>
                   Click to dismiss
                 </Button>
               </div>

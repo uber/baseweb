@@ -8,15 +8,15 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {getOverrides} from '../helpers/overrides.js';
+import { getOverrides } from '../helpers/overrides.js';
 import TriangleUp from '../icon/triangle-up.js';
 import TriangleDown from '../icon/triangle-down.js';
 
-import {SORT_DIRECTION} from './constants.js';
-import {StyledHeadCell, StyledSortableLabel} from './styled-components.js';
-import type {SortDirectionT, HeadCellPropsT} from './types.js';
+import { SORT_DIRECTION } from './constants.js';
+import { StyledHeadCell, StyledSortableLabel } from './styled-components.js';
+import type { SortDirectionT, HeadCellPropsT } from './types.js';
 
-function SortDirectionIcon({direction}: {direction: SortDirectionT}) {
+function SortDirectionIcon({ direction }: { direction: SortDirectionT }) {
   switch (direction) {
     case SORT_DIRECTION.ASC:
       return <TriangleUp title="Sort ascending" />;
@@ -27,19 +27,16 @@ function SortDirectionIcon({direction}: {direction: SortDirectionT}) {
   }
 }
 export const SortableHeadCellFactory = (
-  CustomHeadCell: React.ComponentType<HeadCellPropsT> = StyledHeadCell,
+  CustomHeadCell: React.ComponentType<HeadCellPropsT> = StyledHeadCell
 ) => {
   return function SortableHeadCell(props: HeadCellPropsT) {
-    const {overrides = {}, fillClickTarget, disabled} = props;
+    const { overrides = {}, fillClickTarget, disabled } = props;
 
-    const [HeadCell, headCellProps] = getOverrides(
-      overrides.HeadCell,
-      CustomHeadCell,
-    );
+    const [HeadCell, headCellProps] = getOverrides(overrides.HeadCell, CustomHeadCell);
 
     const [SortableLabel, sortableLabelProps] = getOverrides(
       overrides.SortableLabel,
-      StyledSortableLabel,
+      StyledSortableLabel
     );
 
     const onClick = () => {

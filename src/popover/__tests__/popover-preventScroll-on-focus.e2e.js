@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 /* eslint-disable flowtype/require-valid-file-annotation */
-const {mount} = require('../../../e2e/helpers');
+const { mount } = require('../../../e2e/helpers');
 
 describe('popover', () => {
   it('should not scroll the page on autoFocus if preventScroll is passed as true to focusOptions', async () => {
@@ -18,12 +18,12 @@ describe('popover', () => {
 
     // Close Popover
     await page.click('button');
-    await page.waitForSelector('div[data-e2e="content"]', {hidden: true});
+    await page.waitForSelector('div[data-e2e="content"]', { hidden: true });
 
     // Scroll to the last div
     await page.evaluate(() =>
       // eslint-disable-next-line cup/no-undef
-      document.querySelector('div[data-e2e-spacer="1"]').scrollIntoView(),
+      document.querySelector('div[data-e2e-spacer="1"]').scrollIntoView()
     );
 
     // Listening to Scroll Event to determine if the page is still scrolling
@@ -50,7 +50,7 @@ describe('popover', () => {
         () => {
           console.log('__PopOver_preventScroll_Page_Scrolled__');
         },
-        {once: true},
+        { once: true }
       );
     });
 

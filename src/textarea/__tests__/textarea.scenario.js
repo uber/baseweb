@@ -8,17 +8,17 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {StatefulTextarea} from '../index.js';
+import { StatefulTextarea } from '../index.js';
 
 export function Scenario() {
   return (
     <StatefulTextarea
       clearable
       placeholder="Uncontrolled textarea"
-      initialState={{value: 'initial value'}}
+      initialState={{ value: 'initial value' }}
       overrides={{
         ClearIcon: {
-          props: {'data-e2e': 'clear-icon'},
+          props: { 'data-e2e': 'clear-icon' },
         },
       }}
     />

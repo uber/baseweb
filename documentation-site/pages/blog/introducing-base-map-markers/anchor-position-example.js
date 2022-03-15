@@ -6,12 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import React from 'react';
-import {
-  FloatingMarker,
-  FLOATING_MARKER_ANCHOR_POSITIONS,
-} from 'baseui/map-marker';
-import {LabelSmall} from 'baseui/typography';
-import {useStyletron} from 'baseui';
+import { FloatingMarker, FLOATING_MARKER_ANCHOR_POSITIONS } from 'baseui/map-marker';
+import { LabelSmall } from 'baseui/typography';
+import { useStyletron } from 'baseui';
 
 const anchors = [
   FLOATING_MARKER_ANCHOR_POSITIONS.topLeft,

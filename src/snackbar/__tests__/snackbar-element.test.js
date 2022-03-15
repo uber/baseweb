@@ -8,15 +8,13 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {render, getByText} from '@testing-library/react';
+import { render, getByText } from '@testing-library/react';
 
-import {SnackbarElement} from '../index.js';
+import { SnackbarElement } from '../index.js';
 
 describe('snackbar-element', () => {
   it('renders text content', () => {
-    const {container} = render(
-      <SnackbarElement focus={false} message="message" />,
-    );
+    const { container } = render(<SnackbarElement focus={false} message="message" />);
     const message = getByText(container, 'message');
     expect(message).not.toBeNull();
   });

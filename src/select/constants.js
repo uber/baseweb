@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-export {SIZE} from '../input/index.js';
+export { SIZE } from '../input/index.js';
 
 export const TYPE = {
   select: 'select',

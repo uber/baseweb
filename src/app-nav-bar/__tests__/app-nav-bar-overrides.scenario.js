@@ -13,7 +13,7 @@ import Delete from '../../icon/delete.js';
 import Upload from '../../icon/upload.js';
 import Overflow from '../../icon/overflow.js';
 
-import {AppNavBar, setItemActive} from '../index.js';
+import { AppNavBar, setItemActive } from '../index.js';
 
 const expandBorderStyles = (str) => {
   const val = str.split(' ');
@@ -35,17 +35,17 @@ const expandBorderStyles = (str) => {
 
 export function Scenario() {
   const [mainItems, setMainItems] = React.useState([
-    {icon: Upload, label: 'Primary A'},
-    {icon: Upload, label: 'Primary B'},
+    { icon: Upload, label: 'Primary A' },
+    { icon: Upload, label: 'Primary B' },
     {
       icon: ChevronDown,
       label: 'Primary C',
       navExitIcon: Delete,
       children: [
-        {icon: Upload, label: 'Secondary A'},
-        {icon: Upload, label: 'Secondary B'},
-        {icon: Upload, label: 'Secondary C'},
-        {icon: Upload, label: 'Secondary D'},
+        { icon: Upload, label: 'Secondary A' },
+        { icon: Upload, label: 'Secondary B' },
+        { icon: Upload, label: 'Secondary C' },
+        { icon: Upload, label: 'Secondary D' },
       ],
     },
 
@@ -58,21 +58,21 @@ export function Scenario() {
           icon: ChevronDown,
           label: 'Secondary E',
           children: [
-            {icon: Upload, label: 'Tertiary A'},
-            {icon: Upload, label: 'Tertiary B'},
+            { icon: Upload, label: 'Tertiary A' },
+            { icon: Upload, label: 'Tertiary B' },
           ],
         },
 
-        {icon: Upload, label: 'Secondary F'},
+        { icon: Upload, label: 'Secondary F' },
       ],
     },
   ]);
 
   const userItems = [
-    {icon: Overflow, label: 'Account item1'},
-    {icon: Overflow, label: 'Account item2'},
-    {icon: Overflow, label: 'Account item3'},
-    {icon: Overflow, label: 'Account item4'},
+    { icon: Overflow, label: 'Account item1' },
+    { icon: Overflow, label: 'Account item2' },
+    { icon: Overflow, label: 'Account item3' },
+    { icon: Overflow, label: 'Account item4' },
   ];
 
   function handleMainItemSelect(item) {
@@ -90,17 +90,17 @@ export function Scenario() {
       usernameSubtitle="5.0"
       userImgUrl=""
       overrides={{
-        Root: {style: {...expandBorderStyles('dashed 2px red')}},
-        Spacing: {style: {...expandBorderStyles('dashed 2px orange')}},
-        AppName: {style: {...expandBorderStyles('dashed 2px yellow')}},
+        Root: { style: { ...expandBorderStyles('dashed 2px red') } },
+        Spacing: { style: { ...expandBorderStyles('dashed 2px orange') } },
+        AppName: { style: { ...expandBorderStyles('dashed 2px yellow') } },
         PrimaryMenuContainer: {
-          style: {...expandBorderStyles('dashed 2px green')},
+          style: { ...expandBorderStyles('dashed 2px green') },
         },
 
-        MainMenuItem: {style: {...expandBorderStyles('dashed 2px blue')}},
-        SubnavContainer: {style: {...expandBorderStyles('dashed 2px purple')}},
+        MainMenuItem: { style: { ...expandBorderStyles('dashed 2px blue') } },
+        SubnavContainer: { style: { ...expandBorderStyles('dashed 2px purple') } },
         SecondaryMenuContainer: {
-          style: {...expandBorderStyles('dashed 2px lightskyblue')},
+          style: { ...expandBorderStyles('dashed 2px lightskyblue') },
         },
 
         SideMenuButton: {
@@ -115,19 +115,19 @@ export function Scenario() {
         },
 
         UserMenuProfileListItem: {
-          style: {...expandBorderStyles('solid 2px red')},
+          style: { ...expandBorderStyles('solid 2px red') },
         },
 
         UserProfileInfoContainer: {
-          style: {...expandBorderStyles('solid 2px blue')},
+          style: { ...expandBorderStyles('solid 2px blue') },
         },
 
         UserProfilePictureContainer: {
-          style: {...expandBorderStyles('solid 2px green')},
+          style: { ...expandBorderStyles('solid 2px green') },
         },
 
         UserProfileTileContainer: {
-          style: {...expandBorderStyles('solid 2px purple')},
+          style: { ...expandBorderStyles('solid 2px purple') },
         },
       }}
     />

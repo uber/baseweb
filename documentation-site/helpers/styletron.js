@@ -8,16 +8,14 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 /* global document */
 
-import {Client, Server} from 'styletron-engine-atomic';
-import {DebugEngine} from 'styletron-react';
+import { Client, Server } from 'styletron-engine-atomic';
+import { DebugEngine } from 'styletron-react';
 
 export const isServer = typeof window === 'undefined';
 
 const getHydrate = () => document.getElementsByClassName('_styletron_hydrate_');
 
-export const styletron = isServer
-  ? new Server()
-  : new Client({hydrate: getHydrate()});
+export const styletron = isServer ? new Server() : new Client({ hydrate: getHydrate() });
 
 export const debug =
   /*eslint-disable*/

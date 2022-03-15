@@ -12,9 +12,9 @@ const config = require('../../jest-puppeteer.config.js');
 
 const axe = require('axe-core');
 const queryString = require('query-string');
-const {printReceived} = require('jest-matcher-utils');
-const {resolve} = require('path');
-const {realpathSync} = require('fs');
+const { printReceived } = require('jest-matcher-utils');
+const { resolve } = require('path');
+const { realpathSync } = require('fs');
 
 const PATH_TO_AXE = './node_modules/axe-core/axe.min.js';
 const appDirectory = realpathSync(process.cwd());
@@ -66,9 +66,9 @@ async function mount(page, scenarioName, theme, rtl) {
   await page.waitForSelector('[data-storyloaded]');
 }
 
-async function analyzeAccessibility(page, options = {rules: []}) {
+async function analyzeAccessibility(page, options = { rules: [] }) {
   // Inject the axe script in our page
-  await page.addScriptTag({path: resolvePath(PATH_TO_AXE)});
+  await page.addScriptTag({ path: resolvePath(PATH_TO_AXE) });
   // we make sure that axe is executed in the next tick after
   // the page emits the load event, giving priority for the
   // original JS to be evaluated
@@ -112,16 +112,12 @@ const defaultOptions = {
 };
 
 const printInvalidNode = (node) =>
-  `- ${printReceived(node.html)}\n\t${node.any
-    .map((check) => check.message)
-    .join('\n\t')}`;
+  `- ${printReceived(node.html)}\n\t${node.any.map((check) => check.message).join('\n\t')}`;
 
 const printInvalidRule = (rule) =>
-  `Violated rule: ${printReceived(rule.id)}\nReasoning: ${printReceived(
-    rule.help,
-  )}\n${rule.nodes.length} nodes involved:\n\n${rule.nodes
-    .map(printInvalidNode)
-    .join('\n')}`;
+  `Violated rule: ${printReceived(rule.id)}\nReasoning: ${printReceived(rule.help)}\n${
+    rule.nodes.length
+  } nodes involved:\n\n${rule.nodes.map(printInvalidNode).join('\n')}`;
 
 // Add a new method to expect assertions with a very detailed error report
 expect.extend({
@@ -130,9 +126,7 @@ expect.extend({
     let incomplete = [];
     const finalOptions = Object.assign({}, defaultOptions, options);
 
-    if (
-      accessibilityReport.violations.length > finalOptions.violationsThreshold
-    ) {
+    if (accessibilityReport.violations.length > finalOptions.violationsThreshold) {
       violations = [
         `Expected to have no more than ${finalOptions.violationsThreshold} violations. Detected ${accessibilityReport.violations.length} violations:\n`,
       ].concat(accessibilityReport.violations.map(printInvalidRule));
@@ -147,11 +141,9 @@ expect.extend({
     }
     const message = [].concat(violations, incomplete).join('\n');
     const pass =
-      accessibilityReport.violations.length <=
-        finalOptions.violationsThreshold &&
+      accessibilityReport.violations.length <= finalOptions.violationsThreshold &&
       (finalOptions.incompleteThreshold === false ||
-        accessibilityReport.incomplete.length <=
-          finalOptions.incompleteThreshold);
+        accessibilityReport.incomplete.length <= finalOptions.incompleteThreshold);
 
     return {
       pass,

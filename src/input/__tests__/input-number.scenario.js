@@ -7,10 +7,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {StatefulInput} from '../index.js';
+import { StatefulInput } from '../index.js';
 
 export function Scenario() {
-  return (
-    <StatefulInput initialState={{value: 10}} type="number" min={0} max={100} />
-  );
+  return <StatefulInput initialState={{ value: 10 }} type="number" min={0} max={100} />;
 }

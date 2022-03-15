@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
+const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
 
 const selectors = {
   phoneInput: `[data-baseweb="phone-input"]`,
@@ -19,10 +19,9 @@ const selectors = {
   countryPickerListItem: `[data-e2e="country-picker-list-item"]`,
 };
 
-const countryListItemForIso = (iso) =>
-  `${selectors.countryPickerListItem} [data-iso="${iso}"]`;
+const countryListItemForIso = (iso) => `${selectors.countryPickerListItem} [data-iso="${iso}"]`;
 
-const UK = {iso: 'GB', dialCode: '+44'};
+const UK = { iso: 'GB', dialCode: '+44' };
 
 describe('PhoneInput', () => {
   beforeEach(async () => {
@@ -57,14 +56,11 @@ describe('PhoneInput', () => {
     });
     // verify correct flag and dial code shows up
     const iso = await page.$eval(selectors.countryPickerFlag, (flag) =>
-      flag.getAttribute('data-iso'),
+      flag.getAttribute('data-iso')
     );
     expect(iso).toEqual(UK.iso);
     // verify correct dial code shows up
-    const dialcode = await page.$eval(
-      selectors.phoneInputDialcode,
-      (block) => block.innerText,
-    );
+    const dialcode = await page.$eval(selectors.phoneInputDialcode, (block) => block.innerText);
     expect(dialcode).toEqual(UK.dialCode);
   });
 });

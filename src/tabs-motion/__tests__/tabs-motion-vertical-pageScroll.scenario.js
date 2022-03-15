@@ -10,8 +10,8 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable jsx-a11y/accessible-emoji */
 
 import * as React from 'react';
-import {Tab, Tabs, ORIENTATION} from '../index.js';
-import {Button, KIND} from '../../button/index.js';
+import { Tab, Tabs, ORIENTATION } from '../index.js';
+import { Button, KIND } from '../../button/index.js';
 
 // This scenario ensures the up/down directional keys do not move the page
 // scroll position.
@@ -20,14 +20,14 @@ export function Scenario() {
   const [activeKey, setActiveKey] = React.useState('0');
   return (
     <React.Fragment>
-      <div style={{height: '50vh'}} />
+      <div style={{ height: '50vh' }} />
       <Tabs
         activeKey={activeKey}
-        onChange={({activeKey}) => setActiveKey(activeKey)}
+        onChange={({ activeKey }) => setActiveKey(activeKey)}
         orientation={ORIENTATION.vertical}
         overrides={{
           Root: {
-            style: ({$theme}) => ({
+            style: ({ $theme }) => ({
               borderTop: `solid 1px ${$theme.colors.borderOpaque}`,
               borderBottom: `solid 1px ${$theme.colors.borderOpaque}`,
             }),
@@ -44,7 +44,7 @@ export function Scenario() {
           <Button kind={KIND.secondary}>🍉</Button>
         </Tab>
       </Tabs>
-      <div style={{height: '50vh'}} />
+      <div style={{ height: '50vh' }} />
     </React.Fragment>
   );
 }

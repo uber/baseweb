@@ -6,18 +6,16 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {getOverrides} from '../helpers/overrides.js';
-import {STYLE, STYLE_VALUES} from './constants.js';
+import { getOverrides } from '../helpers/overrides.js';
+import { STYLE, STYLE_VALUES } from './constants.js';
 import {
   StyledGrid as DefaultStyledGrid,
   StyledGridWrapper as DefaultStyledGridWrapper,
 } from './styled-components.js';
 
-import type {GridPropsT, SharedGridPropsT} from './types.js';
+import type { GridPropsT, SharedGridPropsT } from './types.js';
 
-export const GridContext: React.Context<SharedGridPropsT> = React.createContext(
-  {},
-);
+export const GridContext: React.Context<SharedGridPropsT> = React.createContext({});
 
 export default function Grid({
   align,
@@ -32,13 +30,10 @@ export default function Grid({
   gridUnit,
   overrides = {},
 }: GridPropsT) {
-  const [StyledGrid, overrideProps] = getOverrides(
-    overrides.Grid,
-    DefaultStyledGrid,
-  );
+  const [StyledGrid, overrideProps] = getOverrides(overrides.Grid, DefaultStyledGrid);
   const [StyledGridWrapper, wrapperProps] = getOverrides(
     overrides.GridWrapper,
-    DefaultStyledGridWrapper,
+    DefaultStyledGridWrapper
   );
   const presetStyleValues = STYLE_VALUES[gridStyle];
   const gridStyleValues = presetStyleValues
@@ -59,27 +54,17 @@ export default function Grid({
   return (
     <StyledGridWrapper
       $behavior={behavior}
-      $gridMargins={
-        gridMargins != null ? gridMargins : gridStyleValues.$gridMargins
-      }
-      $gridMaxWidth={
-        gridMaxWidth != null ? gridMaxWidth : gridStyleValues.$gridMaxWidth
-      }
+      $gridMargins={gridMargins != null ? gridMargins : gridStyleValues.$gridMargins}
+      $gridMaxWidth={gridMaxWidth != null ? gridMaxWidth : gridStyleValues.$gridMaxWidth}
       $gridUnit={gridUnit != null ? gridUnit : gridStyleValues.$gridUnit}
       {...wrapperProps}
     >
       <StyledGrid
         $align={align}
         $behavior={behavior}
-        $gridGutters={
-          gridGutters != null ? gridGutters : gridStyleValues.$gridGutters
-        }
-        $gridMargins={
-          gridMargins != null ? gridMargins : gridStyleValues.$gridMargins
-        }
-        $gridMaxWidth={
-          gridMaxWidth != null ? gridMaxWidth : gridStyleValues.$gridMaxWidth
-        }
+        $gridGutters={gridGutters != null ? gridGutters : gridStyleValues.$gridGutters}
+        $gridMargins={gridMargins != null ? gridMargins : gridStyleValues.$gridMargins}
+        $gridMaxWidth={gridMaxWidth != null ? gridMaxWidth : gridStyleValues.$gridMaxWidth}
         $gridUnit={gridUnit != null ? gridUnit : gridStyleValues.$gridUnit}
         {...overrideProps}
       >

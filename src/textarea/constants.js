@@ -5,4 +5,4 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-export {SIZE, ADJOINED, STATE_CHANGE_TYPE} from '../input/constants.js';
+export { SIZE, ADJOINED, STATE_CHANGE_TYPE } from '../input/constants.js';

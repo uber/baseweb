@@ -8,11 +8,12 @@ LICENSE file in the root directory of this source tree.
 /* flowlint unclear-type:off */
 
 import * as React from 'react';
-import {getInitialStyle} from 'styletron-standard';
-import {LightTheme} from '../../themes/index.js';
+import { getInitialStyle } from 'styletron-standard';
+import { LightTheme } from '../../themes/index.js';
 import createMockTheme from '../../test/create-mock-theme.js';
-import type {ThemeT} from '../../styles/types.js';
-import type {StyletronComponent} from '../styled.js';
+import type { ThemeT } from '../../styles/types.js';
+import type { StyletronComponent } from '../styled.js';
+
 type ObjOrFnT = {} | (({}) => {});
 
 type PropsT = {
@@ -21,7 +22,7 @@ type PropsT = {
   forwardedRef: any,
 };
 
-type StateT = {styles?: {}};
+type StateT = { styles?: {} };
 
 const MOCK_THEME = createMockTheme(LightTheme);
 const IDENTITY = (x) => x;
@@ -37,10 +38,7 @@ export function useStyletron() {
   return [css, MOCK_THEME];
 }
 
-export function styled(
-  ElementName: string | React.ComponentType<{}>,
-  objOrFn?: ObjOrFnT = {},
-) {
+export function styled(ElementName: string | React.ComponentType<{}>, objOrFn?: ObjOrFnT = {}) {
   class MockStyledComponent extends React.Component<PropsT, StateT> {
     static displayName = 'MockStyledComponent';
 
@@ -53,23 +51,22 @@ export function styled(
         $theme: props.$theme || MOCK_THEME,
       };
 
-      let styles =
-        typeof objOrFn === 'function' ? objOrFn(styleFnArg) : objOrFn;
+      let styles = typeof objOrFn === 'function' ? objOrFn(styleFnArg) : objOrFn;
 
       // Check for runtime overrides
-      let {$style} = props;
+      let { $style } = props;
       if (typeof $style === 'function') {
         $style = $style(styleFnArg);
       }
       if ($style) {
-        styles = {...styles, ...$style};
+        styles = { ...styles, ...$style };
       }
 
-      return {styles};
+      return { styles };
     }
 
     getPassedProps() {
-      const {forwardedRef, ...restProps} = this.props;
+      const { forwardedRef, ...restProps } = this.props;
       return Object.keys(restProps).reduce((acc, key) => {
         if (key[0] !== '$') {
           acc[key] = restProps[key];
@@ -106,10 +103,10 @@ export const withStyle = styled;
 
 export function withWrapper(
   StyledElement: StyletronComponent<any>,
-  wrapperFn: (StyletronComponent<any>) => (any) => any,
+  wrapperFn: (StyletronComponent<any>) => (any) => any
 ) {
   // eslint-disable-next-line react/display-name
   return React.forwardRef<any, any>((props, ref) =>
-    wrapperFn(StyledElement)({ref: ref, ...props, $theme: MOCK_THEME}),
+    wrapperFn(StyledElement)({ ref: ref, ...props, $theme: MOCK_THEME })
   );
 }

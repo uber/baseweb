@@ -8,8 +8,8 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Button, KIND} from '../../button/index.js';
-import {ButtonGroup} from '../index.js';
+import { Button, KIND } from '../../button/index.js';
+import { ButtonGroup } from '../index.js';
 
 export function Scenario() {
   return (

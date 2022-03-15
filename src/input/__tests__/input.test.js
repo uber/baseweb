@@ -7,13 +7,13 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {render, fireEvent, getByText} from '@testing-library/react';
+import { render, fireEvent, getByText } from '@testing-library/react';
 
-import {Input} from '../index.js';
+import { Input } from '../index.js';
 
 describe('input', () => {
   it('renders input element', () => {
-    const {container} = render(<Input />);
+    const { container } = render(<Input />);
     const input = container.querySelector('input');
     expect(input).not.toBeNull();
   });
@@ -25,14 +25,14 @@ describe('input', () => {
     const onKeyDown = jest.fn();
     const onKeyUp = jest.fn();
 
-    const {container} = render(
+    const { container } = render(
       <Input
         onFocus={onFocus}
         onBlur={onBlur}
         onChange={onChange}
         onKeyDown={onKeyDown}
         onKeyUp={onKeyUp}
-      />,
+      />
     );
 
     const input = container.querySelector('input');
@@ -43,20 +43,18 @@ describe('input', () => {
     if (input) fireEvent.blur(input);
     expect(onBlur).toBeCalledTimes(1);
 
-    if (input) fireEvent.change(input, {target: {value: 'a'}});
+    if (input) fireEvent.change(input, { target: { value: 'a' } });
     expect(onChange).toBeCalledTimes(1);
 
-    if (input) fireEvent.keyDown(input, {key: 'A', code: 'KeyA'});
+    if (input) fireEvent.keyDown(input, { key: 'A', code: 'KeyA' });
     expect(onKeyDown).toBeCalledTimes(1);
 
-    if (input) fireEvent.keyUp(input, {key: 'A', code: 'KeyA'});
+    if (input) fireEvent.keyUp(input, { key: 'A', code: 'KeyA' });
     expect(onKeyUp).toBeCalledTimes(1);
   });
 
   it('renders enhancers', () => {
-    const {container} = render(
-      <Input startEnhancer="start" endEnhancer="end" />,
-    );
+    const { container } = render(<Input startEnhancer="start" endEnhancer="end" />);
     getByText(container, 'start');
     getByText(container, 'end');
   });

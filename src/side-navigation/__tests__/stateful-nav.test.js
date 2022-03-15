@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {render, getByText} from '@testing-library/react';
+import { render, getByText } from '@testing-library/react';
 
 import StatefulNavigation from '../stateful-nav.js';
 
@@ -42,7 +42,7 @@ describe('Navigation', () => {
       items: nav,
       onChange: jest.fn(),
     };
-    const {container} = render(<StatefulNavigation {...props} />);
+    const { container } = render(<StatefulNavigation {...props} />);
     getByText(container, 'Colors');
     getByText(container, 'Sizing');
     getByText(container, 'Typography');

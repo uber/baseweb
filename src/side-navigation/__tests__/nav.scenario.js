@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Navigation} from '../index.js';
+import { Navigation } from '../index.js';
 
 const nav = [
   {
@@ -40,7 +40,5 @@ const nav = [
 ];
 
 export function Scenario() {
-  return (
-    <Navigation items={nav} overrides={{Root: {props: {'data-test': 'e2e'}}}} />
-  );
+  return <Navigation items={nav} overrides={{ Root: { props: { 'data-test': 'e2e' } } }} />;
 }
