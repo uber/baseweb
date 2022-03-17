@@ -44,14 +44,19 @@ async function main() {
     }
 
     const file = [];
-    file.push('/* eslint-disable header/header */');
-    file.push('// @flow');
-    file.push('');
+    file.push(`/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+// @flow
+`);
     file.push('export const zones = [');
     for (const zone of zones) {
       file.push(`  '${zone}',`);
     }
-    file.push('];');
+    file.push('];\n');
 
     const tzdataPath = path.join(__dirname, 'tzdata.js');
     await fs.promises.writeFile(tzdataPath, file.join('\n'));
