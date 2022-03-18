@@ -27,7 +27,7 @@ export type PlacementT =
   | typeof PLACEMENT.bottom
   | typeof PLACEMENT.bottomRight;
 
-export type SnackbarElementOverridesT = {|
+export type SnackbarElementOverridesT = {
   Root?: OverrideT,
   Content?: OverrideT,
   StartEnhancerContainer?: OverrideT,
@@ -35,7 +35,7 @@ export type SnackbarElementOverridesT = {|
   Message?: OverrideT,
   WrapActionButtonContainer?: OverrideT,
   ActionButtonContainer?: OverrideT,
-|};
+};
 
 export type SnackbarElementPropsT = {|
   // message displayed in button
@@ -57,10 +57,10 @@ export type SnackbarElementPropsT = {|
 
 export type SnackbarProviderPropsT = {|
   children?: React.Node,
-  overrides?: {|
+  overrides?: {
     ...SnackbarElementOverridesT,
     PlacementContainer?: OverrideT,
-  |},
+  },
   // location on page where snackbar will render
   placement?: PlacementT,
   // default display duration

@@ -17,7 +17,7 @@ export type StylePropsT = {|
   $isFocused: boolean,
 |};
 
-export type OverridesT = {|
+export type OverridesT = {
   Root?: OverrideT,
   FileDragAndDrop?: OverrideT,
   ContentMessage?: OverrideT,
@@ -27,7 +27,7 @@ export type OverridesT = {|
   ErrorMessage?: OverrideT,
   ButtonComponent?: OverrideT,
   Spinner?: OverrideT,
-|};
+};
 
 export type PropsT = {|
   // react-dropzone: https://github.com/react-dropzone/react-dropzone/blob/master/typings/react-dropzone.d.ts

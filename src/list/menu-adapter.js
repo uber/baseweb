@@ -20,24 +20,21 @@ const MenuAdapter = React.forwardRef<MenuAdapterPropsT, HTMLLIElement>((props, r
       artwork={props.artwork}
       artworkSize={props.artworkSize}
       endEnhancer={props.endEnhancer}
-      overrides={
-        // $FlowFixMe
-        mergeOverrides(
-          {
-            Root: {
-              props: {
-                onMouseEnter: props.onMouseEnter,
-                onClick: props.onClick,
-              },
-              style: ({ $theme }) => ({
-                backgroundColor: props.$isHighlighted ? $theme.colors.menuFillHover : null,
-                cursor: props.$disabled ? 'not-allowed' : 'pointer',
-              }),
+      overrides={mergeOverrides(
+        {
+          Root: {
+            props: {
+              onMouseEnter: props.onMouseEnter,
+              onClick: props.onClick,
             },
+            style: ({ $theme }) => ({
+              backgroundColor: props.$isHighlighted ? $theme.colors.menuFillHover : null,
+              cursor: props.$disabled ? 'not-allowed' : 'pointer',
+            }),
           },
-          props.overrides
-        )
-      }
+        },
+        props.overrides
+      )}
     >
       {props.children}
     </ListItem>
