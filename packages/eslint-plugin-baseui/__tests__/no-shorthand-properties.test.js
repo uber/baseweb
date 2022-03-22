@@ -38,6 +38,30 @@ const tests = {
     {
       code: `
       import {Button} from "baseui/button"
+      const hello = {style: function() {return {borderTopColor: 'white'}; }};
+      return (<Button overrides={{Root: hello}} />);`,
+    },
+    {
+      code: `
+      import {Button} from "baseui/button"
+      const hello = {Root: {style: function() {return {borderTopColor: 'white'}; }}};
+      return (<Button overrides={hello} />);`,
+    },
+    {
+      code: `
+      import {Button} from "baseui/button"
+      const hello = {Root: {style: function() {return {borderTopColor: 'white'}; }}};
+      return (<Button overrides={''} />);`,
+    },
+    {
+      code: `
+      import {Button} from "baseui/button"
+      const hello = {Root: {style: function() {return {borderTopColor: 'white'}; }}};
+      return (<Button overrides />);`,
+    },
+    {
+      code: `
+      import {Button} from "baseui/button"
       return (<Button overrides={{Root: {style: function() {
         const hello = 'white';
         return {borderTopColor: hello}; 

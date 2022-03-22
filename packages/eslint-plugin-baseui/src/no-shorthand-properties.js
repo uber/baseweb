@@ -57,6 +57,14 @@ module.exports = {
       JSXOpeningElement(node) {
         if (importState[node.name.name] && hasProp(node.attributes, 'overrides')) {
           const overrides = node.attributes.filter((attr) => attr.name.name === 'overrides').pop();
+          if (
+            !overrides ||
+            !overrides.value ||
+            !overrides.value.expression ||
+            overrides.value.expression.type !== 'ObjectExpression'
+          ) {
+            return;
+          }
           const expression = overrides.value.expression;
           const nodesToScan = [...expression.properties];
           while (nodesToScan.length > 0) {
