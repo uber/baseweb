@@ -140,7 +140,7 @@ export type BaseInputPropsT<T> = {|
   /** max value when used as input type=number */
   max?: number,
   /** step value when used as input type=number */
-  step?: number,
+  step?: number | 'any',
 |};
 
 export type InputPropsT = {|
