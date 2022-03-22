@@ -27,6 +27,11 @@ const tests = {
     },
     {
       code: `
+      import {Menu} from "baseui/menu"
+      return (<Menu overrides={{Option: {props: {overrides: {ListItem: {style: {borderTopColor: 'white'}}}}}}} />);`,
+    },
+    {
+      code: `
       import {Button} from "baseui/button"
       return (<Button overrides={{Root: {style: () => ({borderTopColor: 'white'})}}} />);`,
     },
@@ -50,13 +55,11 @@ const tests = {
     {
       code: `
       import {Button} from "baseui/button"
-      const hello = {Root: {style: function() {return {borderTopColor: 'white'}; }}};
       return (<Button overrides={''} />);`,
     },
     {
       code: `
       import {Button} from "baseui/button"
-      const hello = {Root: {style: function() {return {borderTopColor: 'white'}; }}};
       return (<Button overrides />);`,
     },
     {
@@ -97,6 +100,12 @@ const tests = {
         return {borderColor: hello}; 
       }
       }}} />);`,
+      errors: 1,
+    },
+    {
+      code: `
+      import {Menu} from "baseui/menu"
+      return (<Menu overrides={{Option: {props: {overrides: {ListItem: {style: {borderColor: 'white'}}}}}}} />);`,
       errors: 1,
     },
   ],
