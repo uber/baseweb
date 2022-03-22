@@ -17,14 +17,10 @@ if (process.env.BABEL_ENV === 'es') {
 }
 
 module.exports = {
-  presets: [
-    ...defaultPresets,
-    '@babel/react',
-    ['@babel/preset-flow', {all: true}],
-  ],
+  presets: [...defaultPresets, '@babel/react', ['@babel/preset-flow', { all: true }]],
   plugins: [
     './babel/transform-cup-globals.js',
-    ['babel-plugin-transform-styletron-display-name', {importSources: 'any'}],
+    ['babel-plugin-transform-styletron-display-name', { importSources: 'any' }],
     '@babel/plugin-proposal-export-default-from',
     '@babel/plugin-proposal-class-properties',
     [

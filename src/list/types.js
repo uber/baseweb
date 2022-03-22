@@ -28,12 +28,12 @@ export type StyledArtworkContainerPropsT = {
 };
 export type StyledContentPropsT = { $mLeft: boolean, $sublist: boolean };
 
-export type OverridesT = {|
+export type OverridesT = {
   Root?: OverrideT,
   ArtworkContainer?: OverrideT,
   Content?: OverrideT,
   EndEnhancerContainer?: OverrideT,
-|};
+};
 
 export type PropsT = {|
   artwork?: React.AbstractComponent<{
@@ -59,14 +59,14 @@ export type LabelPropsT = {|
   |},
 |};
 
-export type HeadingOverridesT = {|
+export type HeadingOverridesT = {
   Root?: OverrideT,
   Content?: OverrideT,
   HeadingContainer?: OverrideT,
   SubHeadingContainer?: OverrideT,
   EndEnhancerContainer?: OverrideT,
   EndEnhancerDescriptionContainer?: OverrideT,
-|};
+};
 
 export type HeadingPropsT = {|
   heading: React.Node | React.AbstractComponent<{}>,

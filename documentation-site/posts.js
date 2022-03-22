@@ -1,5 +1,17 @@
 const posts = [
   {
+    path: '/blog/introducing-base-map-markers',
+    author: 'Dylan Babbs',
+    authorLink: 'https://twitter.com/dbabbs',
+    title: 'Introducing the Map Marker Component',
+    tagline: 'Bringing geospatial components to Base Web',
+    date: '13 October 2021',
+    coverImage: 'https://i.imgur.com/K5jPixm.png',
+    coverImageWidth: 542,
+    coverImageHeight: 440,
+    keyWords: ['React', 'Map', 'Mapbox GL', 'react-map-gl', 'Map marker'],
+  },
+  {
     path: '/blog/nested-overrides-playground',
     author: 'Vojtech Miksu',
     authorLink: 'https://twitter.com/vmiksu',
@@ -10,13 +22,7 @@ const posts = [
       'https://user-images.githubusercontent.com/1387913/100666854-922e5200-330e-11eb-8d90-c7869dbd32bd.jpg',
     coverImageWidth: 1200,
     coverImageHeight: 602,
-    keyWords: [
-      'Playground',
-      'React View',
-      'Documentation',
-      'Overrides',
-      'Nested',
-    ],
+    keyWords: ['Playground', 'React View', 'Documentation', 'Overrides', 'Nested'],
   },
   {
     path: '/blog/screen-reader-improvements',
@@ -29,13 +35,7 @@ const posts = [
       'https://user-images.githubusercontent.com/5317799/77114795-666e7480-69ea-11ea-958e-e63dae155f0d.png',
     coverImageWidth: 600,
     coverImageHeight: 450,
-    keyWords: [
-      'Base Web',
-      'Design System',
-      'React',
-      'screen reader',
-      'accessibility',
-    ],
+    keyWords: ['Base Web', 'Design System', 'React', 'screen reader', 'accessibility'],
   },
   {
     path: '/blog/vs-code-extension',
@@ -87,8 +87,7 @@ const posts = [
     path: '/blog/introducing-react-view',
     author: 'Vojtech Miksu',
     authorLink: 'https://twitter.com/vmiksu',
-    title:
-      'Introducing React View, an Interactive Playground for Your Components',
+    title: 'Introducing React View, an Interactive Playground for Your Components',
     tagline: 'Making documentation better.',
     date: '3 December 2019',
     coverImage:
@@ -104,8 +103,7 @@ const posts = [
     title: 'Building a Drag and Drop List',
     tagline: 'What goes into building a drag and drop component in 2019?',
     date: '30 October 2019',
-    coverImage:
-      'https://res.cloudinary.com/flycatcher/image/upload/v1572289775/listgif_igl9j7.gif',
+    coverImage: 'https://res.cloudinary.com/flycatcher/image/upload/v1572289775/listgif_igl9j7.gif',
     coverImageWidth: 600,
     coverImageHeight: 383,
     keyWords: ['Drag and Drop', 'React', 'DnD'],
@@ -115,40 +113,25 @@ const posts = [
     author: 'Graham Murdoch',
     authorLink: 'https://github.com/sandgraham',
     title: 'Color and Typography Updates in v9',
-    tagline:
-      'Everything you need to know about the latest style updates in Base Web',
+    tagline: 'Everything you need to know about the latest style updates in Base Web',
     date: '9 September 2019',
     coverImage:
       'https://res.cloudinary.com/dawr8pobn/image/upload/v1565816562/baseblack_oodvc1.png',
     coverImageWidth: 1200,
     coverImageHeight: 630,
-    keyWords: [
-      'Base Web',
-      'Design System',
-      'React',
-      'Migration Guide',
-      'Major Version',
-    ],
+    keyWords: ['Base Web', 'Design System', 'React', 'Migration Guide', 'Major Version'],
   },
   {
     path: '/blog/responsive-web',
     author: 'Leyan Lo',
     authorLink: 'https://github.com/leyanlo',
     title: 'Building Responsive Apps with Base Web',
-    tagline:
-      'Tips and tricks for building responsive apps for mobile and desktop using Base Web',
+    tagline: 'Tips and tricks for building responsive apps for mobile and desktop using Base Web',
     date: '8 August 2019',
     coverImage: '/images/blog/responsive-web/responsive-shipper-tools.svg',
     coverImageWidth: 1200,
     coverImageHeight: 630,
-    keyWords: [
-      'Base Web',
-      'Design System',
-      'React',
-      'Tutorial',
-      'Responsive',
-      'Mobile',
-    ],
+    keyWords: ['Base Web', 'Design System', 'React', 'Tutorial', 'Responsive', 'Mobile'],
   },
   {
     path: '/blog/phone-input',
@@ -207,8 +190,7 @@ const posts = [
     title: 'Getting Started with Base Web',
     tagline: "Let's build a password generator!",
     date: '2 April 2019',
-    coverImage:
-      'https://cdn.dribbble.com/users/914217/screenshots/4615198/base_ui.png',
+    coverImage: 'https://cdn.dribbble.com/users/914217/screenshots/4615198/base_ui.png',
     coverImageWidth: 800,
     coverImageHeight: 600,
     keyWords: ['Design System', 'React', 'Tutorial'],

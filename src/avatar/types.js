@@ -20,11 +20,11 @@ export type RootStylePropsT = {
 };
 export type StylePropsT = RootStylePropsT;
 
-export type OverridesT = {|
+export type OverridesT = {
   Avatar?: OverrideT,
   Initials?: OverrideT,
   Root?: OverrideT,
-|};
+};
 
 export type PropsT = {|
   /** Bypasses initial generation from provided name with this value. */

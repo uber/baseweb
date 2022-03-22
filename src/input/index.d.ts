@@ -69,7 +69,7 @@ export interface BaseInputProps<T> {
   rows?: number;
   min?: number;
   max?: number;
-  step?: number;
+  step?: number | 'any';
 }
 
 export interface State {
