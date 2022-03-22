@@ -7,6 +7,7 @@ This ESLint plugin is for developers using the Base Web component library. Mainl
 - Identify improper usage of components
 - Identify improper styling on Block elements
 - Identify improper styling on baseui components
+- Identify shorthand properties in baseui overrides
 
 ## Installation
 
@@ -35,6 +36,7 @@ Then add it to your ESLint configuration:
     'baseui/no-deep-imports': "warn",
     'baseui/no-block-style': "warn",
     'baseui/no-component-classname': "warn",
+    'baseui/no-shorthand-properties': "warn",
   }
 }
 ```
@@ -75,6 +77,7 @@ We sync the versions for each package, so you shouldn't have to worry about it.
 | `no-deep-imports`          | Identify importing unsupported modules from `baseui` source code.                              |
 | `no-block-style`           | Identify instances of Block being used with style/$style instead of overrides. (not supported) |
 | `no-component-classname`   | Identify instances of components being styled using className. (not supported)                 |
+| `no-shorthand-properties`  | Identify instances of component overrides using shorthand css properties.                      |
 
 ## Contributing
 
