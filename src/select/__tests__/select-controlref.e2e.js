@@ -69,8 +69,8 @@ describe('setDropdownOpen', () => {
 describe('setInputValue', () => {
   it('sets the input value', async () => {
     await mount(page, 'select--control-ref-set-input-value');
-    const input = '[data-id="input"]';
-    const setInputValue = `#setInputValue`;
+    const input = '#inputValue';
+    const setInputValue = `#setInputValueBtn`;
     const selected = '[data-id="selected"]';
 
     await page.waitForSelector(input);
@@ -78,10 +78,7 @@ describe('setInputValue', () => {
 
     // 'apples' is pre-popluted in the input field, make sure that gets set correctly
     await page.click(setInputValue);
-    const selectedValue = await page.$eval(
-      selected,
-      (select) => select.textContent,
-    );
+    const selectedValue = await page.$eval(selected, (select) => select.textContent);
     expect(selectedValue).toBe('apples');
 
     // let's type more text into the input field, make sure that gets set correctly
@@ -89,10 +86,7 @@ describe('setInputValue', () => {
     await page.keyboard.type(' and bananas');
 
     await page.click(setInputValue);
-    const selectedValue2 = await page.$eval(
-      selected,
-      (select) => select.textContent,
-    );
+    const selectedValue2 = await page.$eval(selected, (select) => select.textContent);
     expect(selectedValue2).toBe('apples and bananas');
   });
 });

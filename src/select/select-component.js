@@ -118,14 +118,14 @@ class Select extends React.Component<PropsT, SelectStateT> {
     }
     this.isItMounted = true;
 
-    if (this.props.controlRef) {
-      const { controlRef } = this.props;
+    const { controlRef } = this.props;
+    if (controlRef && typeof controlRef !== 'function') {
       controlRef.current = {
         setDropdownOpen: this.handleDropdownOpen.bind(this),
         setInputValue: this.handleSetInputValue.bind(this),
         setInputFocus: this.handleSetInputFocus.bind(this),
         setInputBlur: this.handleSetInputBlur.bind(this),
-        // `focus` & `blur` below are for backwards compatibility and may be removed. Don't use them.
+        // `focus` & `blur` below are for backwards compatibility and may be removed. Use setInputFocus and setInputBlur instead.
         focus: this.handleSetInputFocus.bind(this),
         blur: this.handleSetInputBlur.bind(this),
       };
@@ -498,6 +498,8 @@ class Select extends React.Component<PropsT, SelectStateT> {
     }
   };
 
+  // This method is to preserve backwards compatibility for users using controlRef to directly
+  // access the input element. This capability is not documented, and may be removed in the future.
   //flowlint-next-line unclear-type:off
   handleInputRef = (input: React.ElementRef<any>) => {
     this.input = input;
