@@ -8,9 +8,9 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
-import {Select} from '../index.js';
-import {Button, SHAPE} from '../../button/index.js';
-import {Input} from '../../input/index.js';
+import { Select } from '../index.js';
+import { Button, SHAPE } from '../../button/index.js';
+import { Input } from '../../input/index.js';
 
 export function Scenario() {
   const controlRef = React.useRef(null);
@@ -18,13 +18,13 @@ export function Scenario() {
   const [inputValue, setInputValue] = React.useState('apples');
 
   const options = [
-    {id: 'a', label: 'apples'},
-    {id: 'b', label: 'bananas'},
-    {id: 'c', label: 'dragon fruit'},
+    { id: 'a', label: 'apples' },
+    { id: 'b', label: 'bananas' },
+    { id: 'c', label: 'dragon fruit' },
   ];
 
   return (
-    <div style={{width: '360px'}}>
+    <div style={{ width: '360px' }}>
       <div
         style={{
           display: 'flex',
@@ -37,12 +37,10 @@ export function Scenario() {
           onChange={(e) => setInputValue(e.target.value)}
           id={'inputValue'}
         />
-        <div style={{minWidth: '105px', marginLeft: '20px'}}>
+        <div style={{ minWidth: '105px', marginLeft: '20px' }}>
           <Button
-            onClick={(e) =>
-              controlRef.current && controlRef.current.setInputValue(inputValue)
-            }
-            id={'setInputValue'}
+            onClick={(e) => controlRef.current && controlRef.current.setInputValue(inputValue)}
+            id={'setInputValueBtn'}
             shape={SHAPE.pill}
           >
             Set value
@@ -54,6 +52,7 @@ export function Scenario() {
         options={options}
         value={selectValue}
         onChange={(params) => setSelectValue(params.value)}
+        overrides={{ ValueContainer: { props: { 'data-id': 'selected' } } }}
       />
     </div>
   );

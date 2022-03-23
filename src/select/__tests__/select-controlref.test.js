@@ -69,7 +69,7 @@ describe('setDropdownOpen', function () {
       );
     };
 
-    const {container} = render(<TestCase />);
+    const { container } = render(<TestCase />);
 
     expect(container.querySelectorAll('li').length).toBe(0);
 
@@ -95,9 +95,9 @@ describe('setDropdownOpen', function () {
 describe('setInputValue', function () {
   it('correctly sets the input value', () => {
     const options = [
-      {id: 'a', label: 'dragons'},
-      {id: 'b', label: 'unicorns'},
-      {id: 'c', label: 'elves'},
+      { id: 'a', label: 'dragons' },
+      { id: 'b', label: 'unicorns' },
+      { id: 'c', label: 'elves' },
     ];
     const methodsRef = React.createRef();
 
@@ -120,15 +120,14 @@ describe('setInputValue', function () {
 
     const input = container.querySelector('input');
 
-    expect(input.getAttribute('value')).toBe('');
+    expect(input?.getAttribute('value')).toBe('');
 
     if (methodsRef.current !== null && methodsRef.current.setInputValue) {
       methodsRef.current.setInputValue('dragons');
-      expect(input.getAttribute('value')).toBe('dragons');
+      expect(input?.getAttribute('value')).toBe('dragons');
 
-      methodsRef.current &&
-        methodsRef.current.setInputValue('item not included');
-      expect(input.getAttribute('value')).toBe('item not included');
+      methodsRef.current && methodsRef.current.setInputValue('item not included');
+      expect(input?.getAttribute('value')).toBe('item not included');
     }
   });
 });
