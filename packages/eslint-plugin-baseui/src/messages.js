@@ -55,4 +55,9 @@ module.exports = {
     message:
       'Base web components should only be styled using `styled`, `withStyle`, or `overrides`. {{ component }} is using className, which can cause unintended styling issues. See https://baseweb.design/guides/styling/ for recommended styling patterns.',
   },
+  noShorthandProperties: {
+    id: 'noShorthandProperties',
+    message:
+      'Shorthand properties should not be used with baseui component overrides. See https://baseweb.design/guides/styling/ for recommended styling patterns.',
+  },
 };
