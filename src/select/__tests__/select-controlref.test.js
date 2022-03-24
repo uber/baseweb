@@ -11,7 +11,7 @@ import BaseProvider from '../../helpers/base-provider.js';
 import { LightTheme } from '../../themes/index.js';
 
 import { StatefulSelect, Select } from '../index.js';
-import type { MethodsRefT } from '../types.js';
+import type { ControlRefT } from '../types.js';
 
 describe('setDropdownOpen', function () {
   it('opens and closes dropdown with StatefulSelect', () => {
@@ -20,7 +20,7 @@ describe('setDropdownOpen', function () {
       { id: 'b', label: 'b' },
       { id: 'c', label: 'c' },
     ];
-    const controlRef: MethodsRefT = React.createRef();
+    const controlRef: ControlRefT = React.createRef();
 
     const { container } = render(
       <BaseProvider theme={LightTheme}>

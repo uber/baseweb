@@ -73,7 +73,7 @@ export type OverridesDropdownT = {
   StatefulMenu?: OverrideT,
 };
 
-type ImperativeFnsT = {|
+type ImperativeMethodsT = {|
   setDropdownOpen: (boolean) => mixed,
   setInputValue: (string) => void,
   setInputFocus: () => void,
@@ -82,8 +82,8 @@ type ImperativeFnsT = {|
   focus: () => void,
   blur: () => void,
 |};
-export type MethodsRefT = {
-  current: ImperativeFnsT | null,
+export type ControlRefT = {
+  current: ImperativeMethodsT | null,
 };
 
 export type PropsT = {
@@ -139,7 +139,7 @@ export type PropsT = {
   /** Defines if the comparison for a new creatable value should be case-insensitive. */
   ignoreCase?: boolean,
   /** An imperative handle exposing internal methods. To preserve backward compatibility. */
-  controlRef?: MethodsRefT,
+  controlRef?: ControlRefT,
   /** Defines if the select is in a loading (async) state. */
   isLoading: boolean,
   /** Defines an option key for a default label value. */

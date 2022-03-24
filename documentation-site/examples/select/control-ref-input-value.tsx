@@ -1,13 +1,13 @@
 // @flow
 import * as React from 'react';
 import {useStyletron} from 'baseui';
-import {Select, Value, ControlRef} from 'baseui/select';
+import {Select, Value, ImperativeMethods} from 'baseui/select';
 import {Button} from 'baseui/button';
 
 export default function Example() {
   const [css] = useStyletron();
   const [value, setValue] = React.useState<Value>([]);
-  const controlRef = React.useRef<ControlRef>(null);
+  const controlRef = React.useRef<ImperativeMethods>(null);
   return (
     <div>
       <div
@@ -16,11 +16,10 @@ export default function Example() {
         })}
       >
         <Button
-          onClick={(e) =>
+          onClick={() =>
             controlRef.current &&
             controlRef.current.setInputValue('orange')
           }
-          id="setInputValue"
         >
           Set value to "orange"
         </Button>
