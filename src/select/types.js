@@ -133,7 +133,7 @@ export type PropsT = {
   /** Defines if the comparison for a new creatable value should be case-insensitive. */
   ignoreCase?: boolean,
   /** A ref to access the input element powering the select if it's a search select, or the container div if it isn't. */
-  controlRef?: ReactRefT<HTMLElement>,
+  controlRef?: ReactRefT<HTMLInputElement | HTMLDivElement>,
   /** Defines if the select is in a loading (async) state. */
   isLoading: boolean,
   /** Defines an option key for a default label value. */
