@@ -12,7 +12,7 @@ import { STATE_CHANGE_TYPE, ADJOINED, SIZE, ENHANCER_POSITION } from './constant
 export type AdjoinedT = $Keys<typeof ADJOINED>;
 export type SizeT = $Keys<typeof SIZE>;
 export type StateTypeT = $Keys<typeof STATE_CHANGE_TYPE>;
-export type ReactRefT<T> = { current: null | T };
+export type ReactRefT<T> = {| current: null | T |} | { current: null | T };
 
 export type InternalStateT = {
   /** Renders UI in 'focus' state */
