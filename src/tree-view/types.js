@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import type { OverrideT } from '../helpers/overrides.js';
 
-export type ReactRefT<T> = {| current: null | T |};
+export type ReactRefT<T> = { current: null | T };
 
 export type TreeLabelOverridesT = {
   TreeItemContent?: OverrideT,

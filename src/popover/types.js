@@ -16,7 +16,7 @@ export type { PopperDataObjectT, PopperOffsetT, PopperOptionsT } from '../layer/
 export type PopoverPlacementT = TetherPlacementT;
 export type TriggerTypeT = $Keys<typeof TRIGGER_TYPE>;
 export type AccessibilityTypeT = $Keys<typeof ACCESSIBILITY_TYPE>;
-export type ReactRefT<T> = {| current: null | T |};
+export type ReactRefT<T> = { current: null | T };
 
 export type StateT = {
   isOpen: boolean,
