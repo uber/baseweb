@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
+import { act } from 'react-dom/test-utils';
 import { render, fireEvent, screen } from '@testing-library/react';
 import BaseProvider from '../../helpers/base-provider.js';
 import { LightTheme } from '../../themes/index.js';
@@ -30,19 +31,27 @@ describe('setDropdownOpen', function () {
 
     expect(container.querySelectorAll('li').length).toBe(0);
 
-    methodsRef.current && methodsRef.current.setDropdownOpen(true);
+    act(() => {
+      methodsRef.current && methodsRef.current.setDropdownOpen(true);
+    });
     expect(container.querySelectorAll('li').length).toBe(3);
 
-    methodsRef.current && methodsRef.current.setDropdownOpen(false);
+    act(() => {
+      methodsRef.current && methodsRef.current.setDropdownOpen(false);
+    });
     expect(container.querySelectorAll('li').length).toBe(0);
 
-    methodsRef.current && methodsRef.current.setDropdownOpen(false);
+    act(() => {
+      methodsRef.current && methodsRef.current.setDropdownOpen(false);
+    });
     expect(container.querySelectorAll('li').length).toBe(0);
 
     fireEvent.click(screen.getByText('Select...'));
     expect(container.querySelectorAll('li').length).toBe(3);
 
-    methodsRef.current && methodsRef.current.setDropdownOpen(false);
+    act(() => {
+      methodsRef.current && methodsRef.current.setDropdownOpen(false);
+    });
     expect(container.querySelectorAll('li').length).toBe(0);
   });
 
@@ -73,21 +82,27 @@ describe('setDropdownOpen', function () {
 
     expect(container.querySelectorAll('li').length).toBe(0);
 
-    if (methodsRef.current !== null && methodsRef.current.setDropdownOpen) {
-      methodsRef.current.setDropdownOpen(true);
-      expect(container.querySelectorAll('li').length).toBe(3);
-
-      methodsRef.current && methodsRef.current.setDropdownOpen(false);
-      expect(container.querySelectorAll('li').length).toBe(0);
-
-      methodsRef.current && methodsRef.current.setDropdownOpen(false);
-      expect(container.querySelectorAll('li').length).toBe(0);
-
-      fireEvent.click(screen.getByText('Select...'));
-      expect(container.querySelectorAll('li').length).toBe(3);
-
-      methodsRef.current && methodsRef.current.setDropdownOpen(false);
-      expect(container.querySelectorAll('li').length).toBe(0);
+    function setDropdownOpen(isOpen) {
+      act(() => {
+        if (methodsRef.current !== null && methodsRef.current.setDropdownOpen) {
+          methodsRef.current.setDropdownOpen(isOpen);
+        }
+      });
     }
+
+    setDropdownOpen(true);
+    expect(container.querySelectorAll('li').length).toBe(3);
+
+    setDropdownOpen(false);
+    expect(container.querySelectorAll('li').length).toBe(0);
+
+    setDropdownOpen(false);
+    expect(container.querySelectorAll('li').length).toBe(0);
+
+    fireEvent.click(screen.getByText('Select...'));
+    expect(container.querySelectorAll('li').length).toBe(3);
+
+    setDropdownOpen(false);
+    expect(container.querySelectorAll('li').length).toBe(0);
   });
 });

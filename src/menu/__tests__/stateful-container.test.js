@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-env browser */
 import * as React from 'react';
+import { act } from 'react-dom/test-utils';
 import { render } from '@testing-library/react';
 
 import StatefulContainer from '../stateful-container.js';
@@ -97,7 +98,7 @@ describe('Menu StatefulContainer', () => {
     expect(props).toHaveProperty('resetMenu');
 
     const event = { preventDefault: jest.fn() };
-    props.onClick(event);
+    act(() => props.onClick(event));
     expect(mockItemSelect.mock.calls[0][0]).toEqual({
       item,
       event,
@@ -160,17 +161,21 @@ describe('Menu StatefulContainer', () => {
     const props = getSharedProps();
     render(<StatefulContainer {...props} />);
 
-    // $FlowFixMe
-    mockChildrenFn.mock.calls[0][0].handleKeyDown({
-      key: KEY_STRINGS.ArrowUp,
-      preventDefault: jest.fn(),
+    act(() => {
+      // $FlowFixMe
+      mockChildrenFn.mock.calls[0][0].handleKeyDown({
+        key: KEY_STRINGS.ArrowUp,
+        preventDefault: jest.fn(),
+      });
     });
     expect(mockChildrenFn.mock.calls[1][0].highlightedIndex).toBe(0);
 
-    // $FlowFixMe
-    mockChildrenFn.mock.calls[0][0].handleKeyDown({
-      key: KEY_STRINGS.ArrowDown,
-      preventDefault: jest.fn(),
+    act(() => {
+      // $FlowFixMe
+      mockChildrenFn.mock.calls[0][0].handleKeyDown({
+        key: KEY_STRINGS.ArrowDown,
+        preventDefault: jest.fn(),
+      });
     });
     expect(mockChildrenFn.mock.calls[2][0].highlightedIndex).toBe(1);
   });
@@ -179,23 +184,29 @@ describe('Menu StatefulContainer', () => {
     const props = getSharedProps();
     render(<StatefulContainer {...props} />);
 
-    // $FlowFixMe
-    mockChildrenFn.mock.calls[0][0].handleKeyDown({
-      key: KEY_STRINGS.Enter,
-      preventDefault: jest.fn(),
+    act(() => {
+      // $FlowFixMe
+      mockChildrenFn.mock.calls[0][0].handleKeyDown({
+        key: KEY_STRINGS.Enter,
+        preventDefault: jest.fn(),
+      });
     });
     expect(mockItemSelect.mock.calls.length).toBe(0);
 
-    // $FlowFixMe
-    mockChildrenFn.mock.calls[0][0].handleKeyDown({
-      key: KEY_STRINGS.ArrowDown,
-      preventDefault: jest.fn(),
+    act(() => {
+      // $FlowFixMe
+      mockChildrenFn.mock.calls[0][0].handleKeyDown({
+        key: KEY_STRINGS.ArrowDown,
+        preventDefault: jest.fn(),
+      });
     });
 
-    // $FlowFixMe
-    mockChildrenFn.mock.calls[1][0].handleKeyDown({
-      key: KEY_STRINGS.Enter,
-      preventDefault: jest.fn(),
+    act(() => {
+      // $FlowFixMe
+      mockChildrenFn.mock.calls[1][0].handleKeyDown({
+        key: KEY_STRINGS.Enter,
+        preventDefault: jest.fn(),
+      });
     });
     expect(mockItemSelect.mock.calls.length).toBe(1);
   });
@@ -209,17 +220,21 @@ describe('Menu StatefulContainer', () => {
     render(<StatefulContainer {...props} typeAhead />);
     expect(mockChildrenFn.mock.calls[0][0]).toHaveProperty('highlightedIndex', -1);
 
-    // $FlowFixMe
-    mockChildrenFn.mock.calls[0][0].handleKeyDown({
-      key: 'a',
-      preventDefault: jest.fn(),
+    act(() => {
+      // $FlowFixMe
+      mockChildrenFn.mock.calls[0][0].handleKeyDown({
+        key: 'a',
+        preventDefault: jest.fn(),
+      });
     });
     expect(mockItemSelect.mock.calls.length).toBe(0);
 
-    // $FlowFixMe
-    mockChildrenFn.mock.calls[1][0].handleKeyDown({
-      key: KEY_STRINGS.Enter,
-      preventDefault: jest.fn(),
+    act(() => {
+      // $FlowFixMe
+      mockChildrenFn.mock.calls[1][0].handleKeyDown({
+        key: KEY_STRINGS.Enter,
+        preventDefault: jest.fn(),
+      });
     });
     const result = mockChildrenFn.mock.calls[1][0];
     expect(mockItemSelect.mock.calls.length).toBe(1);
@@ -235,10 +250,12 @@ describe('Menu StatefulContainer', () => {
     render(<StatefulContainer {...props} typeAhead />);
 
     expect(() =>
-      // $FlowFixMe
-      mockChildrenFn.mock.calls[0][0].handleKeyDown({
-        key: 'z',
-        preventDefault: jest.fn(),
+      act(() => {
+        // $FlowFixMe
+        mockChildrenFn.mock.calls[0][0].handleKeyDown({
+          key: 'z',
+          preventDefault: jest.fn(),
+        });
       })
     ).not.toThrow();
   });

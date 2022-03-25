@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
+import { act } from 'react-dom/test-utils';
 import { render } from '@testing-library/react';
 
 import { StatefulSelectContainer } from '../index.js';
@@ -41,7 +42,9 @@ describe('StatefulSelectContainer', function () {
       type: STATE_CHANGE_TYPE.select,
     };
     const actualProps = props.children.mock.calls[0][0];
-    actualProps.onChange(params);
+    act(() => {
+      actualProps.onChange(params);
+    });
     expect(props.onChange).toHaveBeenCalledWith(params);
   });
 });
