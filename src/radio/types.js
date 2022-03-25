@@ -114,7 +114,7 @@ export type RadioPropsT = {
   /** Disable the checkbox from being changed. */
   disabled?: boolean,
   /** Used to get a ref to the input element. Useful for programmatically focusing the input */
-  inputRef: ReactRefT<HTMLInputElement>,
+  inputRef?: ReactRefT<HTMLInputElement>,
   /** Renders checkbox in errored state. */
   error?: boolean,
   /** You should use the error prop instead. */
