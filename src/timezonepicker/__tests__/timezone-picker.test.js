@@ -12,9 +12,9 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { TimezonePicker } from '../index.js';
 import { TestBaseProvider } from '../../test/test-utils.js';
 
-const mockedDate = '2021-01-01T00:00:00Z';
+const mockedDate = new Date('2021-01-01T00:00:00Z');
 const Example = ({ setDate }) => {
-  return <TimezonePicker value={mockedDate} onChange={setDate} />;
+  return <TimezonePicker date={mockedDate} onChange={setDate} />;
 };
 
 const renderComponent = () => {
