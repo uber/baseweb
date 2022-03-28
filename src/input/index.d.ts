@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {StyletronComponent} from 'styletron-react';
-import {Override} from '../overrides';
+import { StyletronComponent } from 'styletron-react';
+import { Override } from '../overrides';
 
 export interface STATE_CHANGE_TYPE {
   change: 'change';
@@ -69,7 +69,7 @@ export interface BaseInputProps<T> {
   rows?: number;
   min?: number;
   max?: number;
-  step?: number;
+  step?: number | 'any';
 }
 
 export interface State {
@@ -123,10 +123,7 @@ export class Input extends React.Component<InputProps, InternalState> {
   onBlur(e: React.FocusEvent<HTMLInputElement>): void;
 }
 
-export class BaseInput extends React.Component<
-  BaseInputProps<HTMLInputElement>,
-  InternalState
-> {
+export class BaseInput extends React.Component<BaseInputProps<HTMLInputElement>, InternalState> {
   onFocus(e: React.FocusEvent<HTMLInputElement>): void;
   onBlur(e: React.FocusEvent<HTMLInputElement>): void;
 }
@@ -144,13 +141,12 @@ export interface StatefulContainerProps {
   stateReducer?: (
     stateType: STATE_CHANGE_TYPE[keyof STATE_CHANGE_TYPE],
     nextState: State,
-    currentState: State,
+    currentState: State
   ) => State;
   onChange?: React.FormEventHandler<HTMLInputElement>;
 }
 
-export type StatefulInputProps = InputProps &
-  StatefulContainerProps & {children?: never};
+export type StatefulInputProps = InputProps & StatefulContainerProps & { children?: never };
 
 export const StatefulInput: React.FC<StatefulInputProps>;
 export const StatefulContainer: React.FC<StatefulContainerProps>;

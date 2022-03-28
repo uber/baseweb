@@ -17,18 +17,18 @@ export type OrientationT = $Values<typeof ORIENTATION>;
 export type FillT = $Values<typeof FILL>;
 export type StateChangeT = $Values<typeof STATE_CHANGE_TYPE>;
 
-export type TabsOverridesT = {|
+export type TabsOverridesT = {
   Root?: OverrideT,
   TabList?: OverrideT,
   TabHighlight?: OverrideT,
   TabBorder?: OverrideT,
-|};
+};
 
-export type TabOverridesT = {|
+export type TabOverridesT = {
   Tab?: OverrideT,
   ArtworkContainer?: OverrideT,
   TabPanel?: OverrideT,
-|};
+};
 
 export type StatefulTabsStateT = {|
   activeKey: React.Key,

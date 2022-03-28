@@ -489,8 +489,9 @@ class PopoverInner extends React.Component<PopoverPropsT, PopoverPrivateStateT> 
 // Remove when Popover is converted to a functional component.
 const Popover = (props: PopoverPropsT & { innerRef?: ReactRefT<HTMLElement> }) => {
   const { innerRef } = props;
+  const gID = useUID();
   //$FlowExpectedError[cannot-spread-inexact]
-  return <PopoverInner id={props.id || useUID()} ref={innerRef} {...props} />;
+  return <PopoverInner id={props.id || gID} ref={innerRef} {...props} />;
 };
 
 Popover.defaultProps = defaultProps;

@@ -11,7 +11,7 @@ import { POSITION } from './constants.js';
 
 import type { OverrideT } from '../helpers/overrides.js';
 
-export type OverridesT = {|
+export type OverridesT = {
   Root?: OverrideT,
   AppName?: OverrideT,
   MainMenuItem?: OverrideT,
@@ -31,7 +31,7 @@ export type OverridesT = {|
   SideMenuButton?: OverrideT,
   UserMenuButton?: OverrideT,
   UserMenu?: OverrideT,
-|};
+};
 
 export type NavItemT = {|
   active?: boolean,

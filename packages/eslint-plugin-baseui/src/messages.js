@@ -41,6 +41,10 @@ module.exports = {
     message:
       'The "successValue" prop has been deprecated. The "value" prop should be normalized as though "successValue" was always set to 100.',
   },
+  selectSearchIcon: {
+    id: 'selectSearchIcon',
+    message: 'The "SearchIcon" override will be removed in favor of "StyledSearchIconContainer".',
+  },
   radioGroupOverrides: {
     id: 'radioGroupOverrides',
     message:
@@ -50,5 +54,10 @@ module.exports = {
     id: 'noClassName',
     message:
       'Base web components should only be styled using `styled`, `withStyle`, or `overrides`. {{ component }} is using className, which can cause unintended styling issues. See https://baseweb.design/guides/styling/ for recommended styling patterns.',
+  },
+  noShorthandProperties: {
+    id: 'noShorthandProperties',
+    message:
+      'Shorthand properties should not be used with baseui component overrides. See https://baseweb.design/guides/styling/ for recommended styling patterns.',
   },
 };
