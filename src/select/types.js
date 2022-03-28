@@ -138,7 +138,7 @@ export type PropsT = {
   id?: string,
   /** Defines if the comparison for a new creatable value should be case-insensitive. */
   ignoreCase?: boolean,
-  /** An imperative handle exposing internal methods. To preserve backward compatibility. */
+  /** An imperative handle exposing internal methods. */
   controlRef?: ControlRefT,
   /** Defines if the select is in a loading (async) state. */
   isLoading: boolean,

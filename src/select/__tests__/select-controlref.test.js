@@ -99,7 +99,7 @@ describe('setInputValue', function () {
       { id: 'b', label: 'unicorns' },
       { id: 'c', label: 'elves' },
     ];
-    const methodsRef = React.createRef();
+    const controlRef = React.createRef();
 
     const TestCase = () => {
       const [value, setValue] = React.useState([]);
@@ -110,7 +110,7 @@ describe('setInputValue', function () {
             value={value}
             onChange={(params) => setValue(params.value)}
             options={options}
-            methodsRef={methodsRef}
+            controlRef={controlRef}
           />
         </BaseProvider>
       );
@@ -122,11 +122,11 @@ describe('setInputValue', function () {
 
     expect(input?.getAttribute('value')).toBe('');
 
-    if (methodsRef.current !== null && methodsRef.current.setInputValue) {
-      methodsRef.current.setInputValue('dragons');
+    if (controlRef.current !== null && controlRef.current.setInputValue) {
+      controlRef.current.setInputValue('dragons');
       expect(input?.getAttribute('value')).toBe('dragons');
 
-      methodsRef.current && methodsRef.current.setInputValue('item not included');
+      controlRef.current && controlRef.current.setInputValue('item not included');
       expect(input?.getAttribute('value')).toBe('item not included');
     }
   });
