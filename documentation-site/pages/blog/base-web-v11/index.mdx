@@ -1,0 +1,103 @@
+import Layout from '../../../components/layout';
+import { Meta } from '../../../components/blog';
+import Code from '../../../components/code';
+import metadata from './metadata.json';
+
+export default Layout;
+
+<Meta data={metadata} />
+
+# Changes in Base Web@v11
+
+The latest Base Web major release removes tech debt that has been deprecated for roughly two years.
+Many deprecated features have had warnings present at development-time and others will auto-fix
+warnings when you have our [eslint plugin](https://www.npmjs.com/package/eslint-plugin-baseui) installed.
+
+### `baseui/button`
+
+- The `minimal` option for the Button `kind` prop is deprecated in favor of `tertiary`.
+
+### `LocaleProvider`
+
+- The `timePickerAriaLabel` prop is removed in favor of `timePickerAriaLabel12Hour` or `timePickerAriaLabel24Hour`.
+
+### `baseui/modal`
+
+- The `Backdrop` override property is removed in favor of `DialogContainer`.
+- The `unstable_ModalBackdropScroll` prop is removed and become the default behavior.
+- The `autofocus` prop is removed in favor of `autoFocus`.
+
+### `baseui/phone-input`
+
+- The design has been updated to split the dial code selector into a separate control (`CountryPicker`). Until now, it was available as [`PhoneInputNext`](https://baseweb.design/components/phone-input/#updated-phone-input-design). This is now default and `PhoneInputNext` is removed.
+- The `CountrySelect` component is removed in favor of `CountryPicker`.
+
+### `baseui/spinner`
+
+- The design has been updated to use a fill without rounded corners. Until now, it was available now as [`StyledSpinnerNext`](https://baseweb.design/components/spinner/#spinner-next). This is now default and `StyledSpinnerNext` is removed.
+
+### `baseui/accordion`
+
+- The `renderPanelContent` prop is removed in favor of [`renderAll`](https://baseweb.design/components/accordion/#accordion-seo-friendly).
+
+### `baseui/popover`
+
+- Upgrade popperjs to v2. [Context](https://popper.js.org/docs/v2/migration-guide/)
+- Implement `popperOffset` prop to introduce padding between the popper and its reference element. Remove all css margins. [Context](https://popper.js.org/docs/v2/migration-guide/#4-remove-all-css-margins)
+
+### `baseui/radio`
+
+- All overrides on the `RadioGroup` component is removed except for `RadioGroupRoot`. Overrides should be passed to `Radio` children instead.
+
+### `baseui/select`
+
+- The `SearchIcon` override is removed in favor of `StyledSearchIconContainer`. [Further context](https://github.com/uber/baseweb/pull/2397).
+
+### `baseui/checkbox`
+
+- The `checkmarkType` prop will use [`STYLE_TYPE.toggle_round`](https://baseweb.design/components/checkbox/#as-a-toggle) as the default value.
+- Unlabeled checkboxes will no longer receive padding on the right side. [Further context](https://github.com/uber/baseweb/pull/2172).
+
+### `baseui/typography`
+
+- The older typography components have been removed in favor of the newer typography components.
+
+  - `Display` -> `DisplayLarge`
+  - `Display1` -> `DisplayLarge`
+  - `Display2` -> `DisplayMedium`
+  - `Display3` -> `DisplaySmall`
+  - `Display4` -> `DisplayXSmall`
+  - `H1` -> `HeadingXXLarge`
+  - `H2` -> `HeadingXLarge`
+  - `H3` -> `HeadingLarge`
+  - `H4` -> `HeadingMedium`
+  - `H5` -> `HeadingSmall`
+  - `H6` -> `HeadingXSmall`
+  - `Paragraph1` -> `ParagraphLarge`
+  - `Paragraph2` -> `ParagraphMedium`
+  - `Paragraph3` -> `ParagraphSmall`
+  - `Paragraph4` -> `ParagraphXSmall`
+  - `Label1` -> `LabelLarge`
+  - `Label2` -> `LabelMedium`
+  - `Label3` -> `LabelSmall`
+  - `Label4` -> `LabelXSmall`
+
+### `baseui/theme`
+
+- The `zIndex` theme property is removed in favor of the [`Layers`](https://baseweb.design/components/layer/) system.
+- The `tooltip` theme property is removed in favor of the `colors.tooltipBackground` and `colors.tooltipText` properties. [Further context](https://github.com/uber/baseweb/pull/1184).
+- The legacy set of semantic color properties have been removed. You can use the following mapping to update to the newer set of semantic color properties:
+  - `colorPrimary` -> `contentPrimary`
+  - `colorSecondary` -> `contentSecondary`
+  - `background` -> `backgroundPrimary`
+  - `backgroundAlt` -> `backgroundSecondary`
+  - `backgroundInv` -> `backgroundInversePrimary`
+  - `foreground` -> `contentPrimary`
+  - `foregroundAlt` -> `contentSecondary`
+  - `foregroundInv` -> `contentInversePrimary`
+  - `border` -> `borderOpaque`
+  - `borderAlt` -> `borderTransparent`
+  - `borderFocus` -> `borderSelected`
+  - `borderError` -> `borderNegative`
+  - `shadowFocus` -> `-`
+  - `shadowError` -> `-`
