@@ -135,10 +135,10 @@ function getControlContainerColors(
   if ($isFocused || $isPseudoFocused) {
     return {
       color: colors.contentPrimary,
-      borderLeftColor: colors.borderFocus,
-      borderRightColor: colors.borderFocus,
-      borderTopColor: colors.borderFocus,
-      borderBottomColor: colors.borderFocus,
+      borderLeftColor: colors.borderSelected,
+      borderRightColor: colors.borderSelected,
+      borderTopColor: colors.borderSelected,
+      borderBottomColor: colors.borderSelected,
       backgroundColor: colors.inputFillActive,
     };
   }

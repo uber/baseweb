@@ -541,32 +541,6 @@ export type ComponentColorTokensT = {|
   tooltipText: string,
 |};
 
-export type DeprecatedSemanticColorTokensT = {|
-  // Font Color
-  colorPrimary: string,
-  colorSecondary: string,
-
-  // Background
-  background: string,
-  backgroundAlt: string,
-  backgroundInv: string,
-
-  // Foreground
-  foreground: string,
-  foregroundAlt: string,
-  foregroundInv: string,
-
-  // Borders
-  border: string,
-  borderAlt: string,
-  borderFocus: string,
-  borderError: string,
-
-  // Shadow
-  shadowFocus: string,
-  shadowError: string,
-|};
-
 export type FontTokensT = {|
   primaryFontFamily: string,
 |};

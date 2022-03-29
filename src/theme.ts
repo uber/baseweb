@@ -199,30 +199,6 @@ export interface Colors {
 
   /* ---- End of Semantic Colors ---- */
 
-  /* ---- Deprecated Semantic Colors ---- */
-
-  // Font Color
-  colorPrimary: string;
-  colorSecondary: string;
-
-  // Background
-  background: string;
-  backgroundAlt: string;
-  backgroundInv: string;
-
-  // Foreground
-  foreground: string;
-  foregroundAlt: string;
-  foregroundInv: string;
-
-  // Borders
-  border: string;
-  borderAlt: string;
-  borderFocus: string;
-  borderError: string;
-
-  /* ---- End of Deprecated Semantic Colors ---- */
-
   /* ---- Component Specific Colors ---- */
 
   // Buttons
