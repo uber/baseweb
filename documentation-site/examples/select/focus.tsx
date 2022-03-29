@@ -6,9 +6,7 @@ import {Button} from 'baseui/button';
 export default function Example() {
   const [css, theme] = useStyletron();
   const [value, setValue] = React.useState<Value>([]);
-  const controlRef = React.useRef<
-    HTMLInputElement | HTMLDivElement
-  >(null);
+  const controlRef = React.useRef<HTMLInputElement | null>(null);
   return (
     <div className={css({display: 'flex'})}>
       <Select

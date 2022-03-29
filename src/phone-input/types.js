@@ -10,7 +10,7 @@ import { STATE_CHANGE_TYPE, SIZE, COUNTRIES } from './constants.js';
 import type { OverrideT } from '../helpers/overrides.js';
 import type { OnChangeParamsT } from '../select/types.js';
 
-export type ReactRefT<T> = { current: null | T };
+export type ReactRefT<T> = { current: null | T } | {| current: null | T |};
 export type SizeT = $Keys<typeof SIZE>;
 export type CountryIsoT = $Keys<typeof COUNTRIES>;
 export type CountriesT = $ReadOnly<CountryT>;
