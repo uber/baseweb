@@ -44,10 +44,10 @@ export const StyledStar = styled<StyledRatingItemPropsT>(
     let prePartialStarFill;
 
     if ($isActive) {
-      starStroke = starFill = $theme.colors.rating400;
+      starStroke = starFill = $theme.colors.warning400;
     }
     if ($isPartialActive && !$isActive) {
-      prePartialStarStroke = prePartialStarFill = $theme.colors.rating400;
+      prePartialStarStroke = prePartialStarFill = $theme.colors.warning400;
     }
 
     const styles = {

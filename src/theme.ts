@@ -236,12 +236,6 @@ export interface Colors {
   breadcrumbsSeparatorFill: string;
 
   // Datepicker
-  datepickerBackground: string;
-  datepickerDayFont: string;
-  datepickerDayFontDisabled: string;
-  datepickerDayPseudoSelected: string;
-  datepickerDayPseudoHighlighted: string;
-
   calendarBackground: string;
   calendarForeground: string;
   calendarForegroundDisabled: string;
@@ -278,15 +272,12 @@ export interface Colors {
   // Lists
   listHeaderFill: string;
   listBodyFill: string;
-  listIconFill: string;
-  listBorder: string;
 
   // ProgressSteps
   progressStepsCompletedText: string;
   progressStepsCompletedFill: string;
   progressStepsActiveText: string;
   progressStepsActiveFill: string;
-  progressStepsIconActiveFill: string;
 
   // Toggle
   toggleFill: string;
@@ -319,24 +310,13 @@ export interface Colors {
   sliderTrackFill: string;
   sliderTrackFillHover: string;
   sliderTrackFillActive: string;
-  sliderTrackFillSelected: string;
-  sliderTrackFillSelectedHover: string;
-  sliderTrackFillSelectedActive: string;
   sliderTrackFillDisabled: string;
   sliderHandleFill: string;
-  sliderHandleFillHover: string;
-  sliderHandleFillActive: string;
-  sliderHandleFillSelected: string;
-  sliderHandleFillSelectedHover: string;
-  sliderHandleFillSelectedActive: string;
   sliderHandleFillDisabled: string;
   sliderHandleInnerFill: string;
   sliderHandleInnerFillDisabled: string;
   sliderHandleInnerFillSelectedHover: string;
   sliderHandleInnerFillSelectedActive: string;
-  sliderBorder: string;
-  sliderBorderHover: string;
-  sliderBorderDisabled: string;
 
   // Input
   inputBorder: string;
@@ -355,8 +335,6 @@ export interface Colors {
   inputPlaceholderDisabled: string;
 
   // Notification
-  notificationPrimaryBackground: string;
-  notificationPrimaryText: string;
   notificationInfoBackground: string;
   notificationInfoText: string;
   notificationPositiveBackground: string;
@@ -379,12 +357,6 @@ export interface Colors {
   modalCloseColorHover: string;
   modalCloseColorFocus: string;
 
-  // Pagination
-  paginationTriangleDown: string;
-
-  // Header navigation
-  headerNavigationFill: string;
-
   // Tab
   tabBarFill: string;
   tabColor: string;
@@ -394,18 +366,6 @@ export interface Colors {
   shadowError: string;
 
   // Tag
-
-  // Remove this section of theme values in next major version
-  tagBackground: string;
-  tagNeutralBackground: string;
-  tagPrimaryBackground: string;
-  tagPositiveBackground: string;
-  tagWarningBackground: string;
-  tagNegativeBackground: string;
-  tagRGBGradient: string;
-  tagRGBGradientSecondary: string;
-  // ^^^^^^^
-
   tagSolidRampUnit: string;
   tagSolidHoverRampUnit: string;
   tagSolidActiveRampUnit: string;
@@ -415,13 +375,11 @@ export interface Colors {
   tagLightRampUnit: string;
   tagLightHoverRampUnit: string;
   tagLightActiveRampUnit: string;
-  tagLightDisabledRampUnit: string;
   tagLightFontRampUnit: string;
   tagLightFontHoverRampUnit: string;
   tagOutlinedRampUnit: string;
   tagOutlinedHoverRampUnit: string;
   tagOutlinedActiveRampUnit: string;
-  tagOutlinedDisabledRampUnit: string;
   tagOutlinedFontRampUnit: string;
   tagOutlinedFontHoverRampUnit: string;
   tagFontDisabledRampUnit: string;
@@ -557,7 +515,6 @@ export interface Colors {
 
   // Toast
   toastText: string;
-  toastPrimaryBackground: string;
   toastInfoBackground: string;
   toastPositiveBackground: string;
   toastWarningBackground: string;
@@ -825,10 +782,6 @@ export interface ThemePrimitives {
   mono800: string;
   mono900: string;
   mono1000: string;
-
-  // Rating Palette
-  rating200: string;
-  rating400: string;
 
   primaryFontFamily: string;
 }

@@ -23,7 +23,7 @@ export const Root = styled<{}>('nav', (props) => {
     borderBottomWidth: '1px',
     borderBottomStyle: 'solid',
     borderBottomColor: `${borderOpaque}`,
-    backgroundColor: $theme.colors.headerNavigationFill,
+    backgroundColor: $theme.colors.backgroundPrimary,
   };
 });
 
