@@ -260,7 +260,7 @@ export const Toggle = styled<SharedStylePropsT>('div', (props) => {
     if (props.$disabled) {
       backgroundColor = props.$theme.colors.toggleFillDisabled;
     } else if (props.$checked && (props.$error || props.$isError)) {
-      backgroundColor = props.$theme.colors.borderNegative;
+      backgroundColor = props.$theme.colors.tickFillErrorSelected;
     } else if (props.$checked) {
       backgroundColor = props.$theme.colors.toggleFillChecked;
     }
