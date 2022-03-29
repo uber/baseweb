@@ -11,7 +11,7 @@ import BaseProvider from '../../helpers/base-provider.js';
 import { LightTheme } from '../../themes/index.js';
 
 import { StatefulSelect, Select } from '../index.js';
-import type { MethodsRefT } from '../types.js';
+import type { ControlRefT } from '../types.js';
 
 describe('setDropdownOpen', function () {
   it('opens and closes dropdown with StatefulSelect', () => {
@@ -20,29 +20,29 @@ describe('setDropdownOpen', function () {
       { id: 'b', label: 'b' },
       { id: 'c', label: 'c' },
     ];
-    const methodsRef: MethodsRefT = React.createRef();
+    const controlRef: ControlRefT = React.createRef();
 
     const { container } = render(
       <BaseProvider theme={LightTheme}>
-        <StatefulSelect methodsRef={methodsRef} options={options} />
+        <StatefulSelect controlRef={controlRef} options={options} />
       </BaseProvider>
     );
 
     expect(container.querySelectorAll('li').length).toBe(0);
 
-    methodsRef.current && methodsRef.current.setDropdownOpen(true);
+    controlRef.current && controlRef.current.setDropdownOpen(true);
     expect(container.querySelectorAll('li').length).toBe(3);
 
-    methodsRef.current && methodsRef.current.setDropdownOpen(false);
+    controlRef.current && controlRef.current.setDropdownOpen(false);
     expect(container.querySelectorAll('li').length).toBe(0);
 
-    methodsRef.current && methodsRef.current.setDropdownOpen(false);
+    controlRef.current && controlRef.current.setDropdownOpen(false);
     expect(container.querySelectorAll('li').length).toBe(0);
 
     fireEvent.click(screen.getByText('Select...'));
     expect(container.querySelectorAll('li').length).toBe(3);
 
-    methodsRef.current && methodsRef.current.setDropdownOpen(false);
+    controlRef.current && controlRef.current.setDropdownOpen(false);
     expect(container.querySelectorAll('li').length).toBe(0);
   });
 
@@ -52,7 +52,7 @@ describe('setDropdownOpen', function () {
       { id: 'b', label: 'b' },
       { id: 'c', label: 'c' },
     ];
-    const methodsRef = React.createRef();
+    const controlRef = React.createRef();
 
     const TestCase = () => {
       const [value, setValue] = React.useState([]);
@@ -63,7 +63,7 @@ describe('setDropdownOpen', function () {
             value={value}
             onChange={(params) => setValue(params.value)}
             options={options}
-            methodsRef={methodsRef}
+            controlRef={controlRef}
           />
         </BaseProvider>
       );
@@ -73,21 +73,61 @@ describe('setDropdownOpen', function () {
 
     expect(container.querySelectorAll('li').length).toBe(0);
 
-    if (methodsRef.current !== null && methodsRef.current.setDropdownOpen) {
-      methodsRef.current.setDropdownOpen(true);
+    if (controlRef.current !== null && controlRef.current.setDropdownOpen) {
+      controlRef.current.setDropdownOpen(true);
       expect(container.querySelectorAll('li').length).toBe(3);
 
-      methodsRef.current && methodsRef.current.setDropdownOpen(false);
+      controlRef.current && controlRef.current.setDropdownOpen(false);
       expect(container.querySelectorAll('li').length).toBe(0);
 
-      methodsRef.current && methodsRef.current.setDropdownOpen(false);
+      controlRef.current && controlRef.current.setDropdownOpen(false);
       expect(container.querySelectorAll('li').length).toBe(0);
 
       fireEvent.click(screen.getByText('Select...'));
       expect(container.querySelectorAll('li').length).toBe(3);
 
-      methodsRef.current && methodsRef.current.setDropdownOpen(false);
+      controlRef.current && controlRef.current.setDropdownOpen(false);
       expect(container.querySelectorAll('li').length).toBe(0);
+    }
+  });
+});
+
+describe('setInputValue', function () {
+  it('correctly sets the input value', () => {
+    const options = [
+      { id: 'a', label: 'dragons' },
+      { id: 'b', label: 'unicorns' },
+      { id: 'c', label: 'elves' },
+    ];
+    const controlRef = React.createRef();
+
+    const TestCase = () => {
+      const [value, setValue] = React.useState([]);
+
+      return (
+        <BaseProvider theme={LightTheme}>
+          <Select
+            value={value}
+            onChange={(params) => setValue(params.value)}
+            options={options}
+            controlRef={controlRef}
+          />
+        </BaseProvider>
+      );
+    };
+
+    const { container } = render(<TestCase />);
+
+    const input = container.querySelector('input');
+
+    expect(input?.getAttribute('value')).toBe('');
+
+    if (controlRef.current !== null && controlRef.current.setInputValue) {
+      controlRef.current.setInputValue('dragons');
+      expect(input?.getAttribute('value')).toBe('dragons');
+
+      controlRef.current && controlRef.current.setInputValue('item not included');
+      expect(input?.getAttribute('value')).toBe('item not included');
     }
   });
 });
