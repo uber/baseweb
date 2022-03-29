@@ -10,8 +10,11 @@ import * as React from 'react';
 import type { OverrideT } from '../helpers/overrides.js';
 import { STATE_CHANGE_TYPE } from './constants.js';
 
+export type ReactRefT<T> = { current: null | T } | {| current: null | T |};
+
 export type AccordionStateT = {
   expanded: Array<React.Key>,
+  itemRefs: Array<ReactRefT<HTMLDivElement>>,
 };
 
 export type PanelStateT = {

@@ -18,6 +18,7 @@ export default class Accordion extends React.Component<AccordionPropsT, Accordio
     disabled: false,
     initialState: {
       expanded: [],
+      itemRefs: [],
     },
     onChange: () => {},
     overrides: {},
@@ -29,6 +30,7 @@ export default class Accordion extends React.Component<AccordionPropsT, Accordio
   state = {
     expanded: [],
     ...this.props.initialState,
+    itemRefs: [],
   };
 
   //flowlint-next-line unclear-type:off
@@ -48,7 +50,7 @@ export default class Accordion extends React.Component<AccordionPropsT, Accordio
         activeKeys.push(key);
       }
     }
-    const newState = { expanded: activeKeys };
+    const newState = { expanded: activeKeys, itemRefs: this.state.itemRefs };
     this.internalSetState(STATE_CHANGE_TYPE.expand, newState);
     // Call individual panel's onChange handler
     if (typeof onChange === 'function') onChange(...args);
@@ -61,12 +63,54 @@ export default class Accordion extends React.Component<AccordionPropsT, Accordio
     typeof onChange === 'function' && onChange(newState);
   }
 
+  handleKeyDown(e: KeyboardEvent) {
+    if (this.props.disabled) {
+      return;
+    }
+
+    const { itemRefs } = this.state;
+
+    const HOME = 36;
+    const END = 35;
+    const ARROW_UP = 38;
+    const ARROW_DOWN = 40;
+
+    if (e.keyCode === HOME) {
+      const firstItem = itemRefs[0];
+      firstItem.current && firstItem.current.focus();
+    }
+    if (e.keyCode === END) {
+      const lastItem = itemRefs[itemRefs.length - 1];
+      lastItem.current && lastItem.current.focus();
+    }
+    if (e.keyCode === ARROW_UP) {
+      const activeItemIdx = itemRefs.findIndex((item) => item.current === document.activeElement);
+      if (activeItemIdx > 0) {
+        const prevItem = itemRefs[activeItemIdx - 1];
+        prevItem.current && prevItem.current.focus();
+      }
+    }
+    if (e.keyCode === ARROW_DOWN) {
+      const activeItemIdx = itemRefs.findIndex((item) => item.current === document.activeElement);
+      if (activeItemIdx < itemRefs.length - 1) {
+        const nextItem = itemRefs[activeItemIdx + 1];
+        nextItem.current && nextItem.current.focus();
+      }
+    }
+  }
+
   getItems() {
     const { expanded } = this.state;
     const { accordion, disabled, children, renderPanelContent, renderAll, overrides } = this.props;
     // flowlint-next-line unclear-type:off
     return React.Children.map(children, (child: any, index) => {
       if (!child) return;
+
+      const itemRef = React.createRef();
+      this.setState((prevState) => ({
+        itemRefs: [...prevState.itemRefs, itemRef],
+      }));
+
       // If there is no key provided use the panel order as a default key
       const key = child.key || String(index);
       let isExpanded = false;
@@ -78,6 +122,7 @@ export default class Accordion extends React.Component<AccordionPropsT, Accordio
 
       const props = {
         key,
+        ref: itemRef,
         expanded: isExpanded || child.props.expanded,
         accordion,
         renderPanelContent,
@@ -108,6 +153,7 @@ export default class Accordion extends React.Component<AccordionPropsT, Accordio
         data-baseweb="accordion"
         $disabled={this.props.disabled}
         $isFocusVisible={false}
+        onKeyDown={this.handleKeyDown.bind(this)}
         {...rootProps}
       >
         {this.getItems()}
