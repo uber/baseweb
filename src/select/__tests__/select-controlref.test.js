@@ -137,12 +137,18 @@ describe('setInputValue', function () {
 
     expect(input?.getAttribute('value')).toBe('');
 
-    if (controlRef.current !== null && controlRef.current.setInputValue) {
-      controlRef.current.setInputValue('dragons');
-      expect(input?.getAttribute('value')).toBe('dragons');
+    act(() => {
+      if (controlRef.current) {
+        controlRef.current.setInputValue('dragons');
+      }
+    });
+    expect(input?.getAttribute('value')).toBe('dragons');
 
-      controlRef.current && controlRef.current.setInputValue('item not included');
-      expect(input?.getAttribute('value')).toBe('item not included');
-    }
+    act(() => {
+      if (controlRef.current) {
+        controlRef.current.setInputValue('item not included');
+      }
+    });
+    expect(input?.getAttribute('value')).toBe('item not included');
   });
 });
