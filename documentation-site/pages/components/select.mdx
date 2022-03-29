@@ -28,9 +28,9 @@ import SelectFocus from 'examples/select/focus.js';
 import SelectDropdown from 'examples/select/control-ref-dropdown.js';
 import SelectInputValue from 'examples/select/control-ref-input-value.js';
 
-import {StatefulSelect, TYPE} from 'baseui/select';
+import { StatefulSelect, TYPE } from 'baseui/select';
 import * as SelectExports from 'baseui/select';
-import {Block} from 'baseui/block';
+import { Block } from 'baseui/block';
 
 import Yard from '../../components/yard/index';
 import selectYardConfig from '../../components/yard/config/select';
@@ -61,10 +61,7 @@ Things to note in the example source code:
 - the `value` is always an `Array` to provide a consistent interface - no matter if you use multi or single selects,
 - you have to call `setState` with the entire object, not just the `id` value.
 
-<Example
-  title="Select as single-pick search"
-  path="select/search-single-pick.js"
->
+<Example title="Select as single-pick search" path="select/search-single-pick.js">
   <SelectSinglePickSearch />
 </Example>
 
@@ -106,17 +103,11 @@ existing options.
   <SelectFocus />
 </Example>
 
-<Example
-  title="Imperatively control dropdown"
-  path="select/control-ref-dropdown.js"
->
+<Example title="Imperatively control dropdown" path="select/control-ref-dropdown.js">
   <SelectDropdown />
 </Example>
 
-<Example
-  title="Imperatively control input value"
-  path="select/control-ref-input-value.js"
->
+<Example title="Imperatively control input value" path="select/control-ref-input-value.js">
   <SelectInputValue />
 </Example>
 
@@ -130,7 +121,7 @@ following methods: `setInputFocus`, `setInputBlur`, `setDropdownOpen`, and `setI
 <Example
   title="Select with many options"
   path="select/with-many-options.js"
-  additionalPackages={{'react-window': '^1.8.5'}}
+  additionalPackages={{ 'react-window': '^1.8.5' }}
 >
   <SelectWithManyOptions />
 </Example>
@@ -161,8 +152,4 @@ To override the `Popover` that's being used by the Dropdown subcomponent, you ha
   types={require('!!extract-react-types-loader!../../../src/select/select-component.js')}
 />
 
-<Exports
-  component={SelectExports}
-  title="Select exports"
-  path="baseui/select"
-/>
+<Exports component={SelectExports} title="Select exports" path="baseui/select" />

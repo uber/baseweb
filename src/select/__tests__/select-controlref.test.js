@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
+import { act } from 'react-dom/test-utils';
 import { render, fireEvent, screen } from '@testing-library/react';
 import BaseProvider from '../../helpers/base-provider.js';
 import { LightTheme } from '../../themes/index.js';
@@ -30,19 +31,27 @@ describe('setDropdownOpen', function () {
 
     expect(container.querySelectorAll('li').length).toBe(0);
 
-    controlRef.current && controlRef.current.setDropdownOpen(true);
+    act(() => {
+      controlRef.current && controlRef.current.setDropdownOpen(true);
+    });
     expect(container.querySelectorAll('li').length).toBe(3);
 
-    controlRef.current && controlRef.current.setDropdownOpen(false);
+    act(() => {
+      controlRef.current && controlRef.current.setDropdownOpen(false);
+    });
     expect(container.querySelectorAll('li').length).toBe(0);
 
-    controlRef.current && controlRef.current.setDropdownOpen(false);
+    act(() => {
+      controlRef.current && controlRef.current.setDropdownOpen(false);
+    });
     expect(container.querySelectorAll('li').length).toBe(0);
 
     fireEvent.click(screen.getByText('Select...'));
     expect(container.querySelectorAll('li').length).toBe(3);
 
-    controlRef.current && controlRef.current.setDropdownOpen(false);
+    act(() => {
+      controlRef.current && controlRef.current.setDropdownOpen(false);
+    });
     expect(container.querySelectorAll('li').length).toBe(0);
   });
 
@@ -73,22 +82,28 @@ describe('setDropdownOpen', function () {
 
     expect(container.querySelectorAll('li').length).toBe(0);
 
-    if (controlRef.current !== null && controlRef.current.setDropdownOpen) {
-      controlRef.current.setDropdownOpen(true);
-      expect(container.querySelectorAll('li').length).toBe(3);
-
-      controlRef.current && controlRef.current.setDropdownOpen(false);
-      expect(container.querySelectorAll('li').length).toBe(0);
-
-      controlRef.current && controlRef.current.setDropdownOpen(false);
-      expect(container.querySelectorAll('li').length).toBe(0);
-
-      fireEvent.click(screen.getByText('Select...'));
-      expect(container.querySelectorAll('li').length).toBe(3);
-
-      controlRef.current && controlRef.current.setDropdownOpen(false);
-      expect(container.querySelectorAll('li').length).toBe(0);
+    function setDropdownOpen(isOpen) {
+      act(() => {
+        if (controlRef.current !== null && controlRef.current.setDropdownOpen) {
+          controlRef.current.setDropdownOpen(isOpen);
+        }
+      });
     }
+
+    setDropdownOpen(true);
+    expect(container.querySelectorAll('li').length).toBe(3);
+
+    setDropdownOpen(false);
+    expect(container.querySelectorAll('li').length).toBe(0);
+
+    setDropdownOpen(false);
+    expect(container.querySelectorAll('li').length).toBe(0);
+
+    fireEvent.click(screen.getByText('Select...'));
+    expect(container.querySelectorAll('li').length).toBe(3);
+
+    setDropdownOpen(false);
+    expect(container.querySelectorAll('li').length).toBe(0);
   });
 });
 
@@ -122,12 +137,18 @@ describe('setInputValue', function () {
 
     expect(input?.getAttribute('value')).toBe('');
 
-    if (controlRef.current !== null && controlRef.current.setInputValue) {
-      controlRef.current.setInputValue('dragons');
-      expect(input?.getAttribute('value')).toBe('dragons');
+    act(() => {
+      if (controlRef.current) {
+        controlRef.current.setInputValue('dragons');
+      }
+    });
+    expect(input?.getAttribute('value')).toBe('dragons');
 
-      controlRef.current && controlRef.current.setInputValue('item not included');
-      expect(input?.getAttribute('value')).toBe('item not included');
-    }
+    act(() => {
+      if (controlRef.current) {
+        controlRef.current.setInputValue('item not included');
+      }
+    });
+    expect(input?.getAttribute('value')).toBe('item not included');
   });
 });

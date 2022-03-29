@@ -9,6 +9,7 @@ LICENSE file in the root directory of this source tree.
 'use strict';
 const { hasProp } = require('jsx-ast-utils');
 const MESSAGES = require('./messages.js');
+
 const SHORTHAND_PROPERTIES = [
   'background',
   'border',
