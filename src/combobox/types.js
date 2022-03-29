@@ -11,7 +11,7 @@ import * as React from 'react';
 import type { OverrideT } from '../helpers/overrides.js';
 import { SIZE } from '../input/index.js';
 
-export type ReactRefT<T> = { current: null | T };
+export type ReactRefT<T> = { current: null | T } | {| current: null | T |};
 
 export type PropsT<OptionT = mixed> = {|
   // Controls if the input value will be updated while keyboard navigating. Defaults to true.

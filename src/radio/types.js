@@ -13,7 +13,7 @@ import { ALIGN } from './constants.js';
 
 export type LabelPlacementT = 'top' | 'right' | 'bottom' | 'left';
 export type AlignT = $Keys<typeof ALIGN>;
-export type ReactRefT<T> = { current: null | T };
+export type ReactRefT<T> = { current: null | T } | {| current: null | T |};
 
 export type RadioOverridesT = {
   RadioMarkInner?: OverrideT,

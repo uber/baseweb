@@ -58,4 +58,11 @@ describe('input', () => {
     getByText(container, 'start');
     getByText(container, 'end');
   });
+
+  it('applies ref', () => {
+    const ref = React.useRef<HTMLInputElement | null>(null);
+    const { container } = render(<Input inputRef={ref} />);
+    getByText(container, 'start');
+    getByText(container, 'end');
+  });
 });
