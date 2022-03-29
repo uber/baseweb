@@ -15,7 +15,7 @@ import type { OnItemSelectFnT } from '../menu/types.js';
 export type ChangeActionT = $Keys<typeof STATE_CHANGE_TYPE>;
 export type SizeT = $Keys<typeof SIZE>;
 export type TypeT = $Keys<typeof TYPE>;
-export type ReactRefT<T> = {| current: null | T |};
+export type ReactRefT<T> = { current: null | T } | {| current: null | T |};
 
 export type OptionT = $ReadOnly<{
   id?: string | number,
