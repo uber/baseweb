@@ -55,14 +55,25 @@ describe('input', () => {
 
   it('renders enhancers', () => {
     const { container } = render(<Input startEnhancer="start" endEnhancer="end" />);
-    getByText(container, 'start');
-    getByText(container, 'end');
+    expect(getByText(container, 'start')).toBeDefined();
+    expect(getByText(container, 'end')).toBeDefined();
   });
 
-  it('applies ref', () => {
-    const ref = React.useRef<HTMLInputElement | null>(null);
-    const { container } = render(<Input inputRef={ref} />);
-    getByText(container, 'start');
-    getByText(container, 'end');
+  it('applies useRef ref', () => {
+    const Component = () => {
+      const ref = React.useRef<HTMLInputElement | null>(null);
+      return <Input inputRef={ref} startEnhancer="start" />;
+    };
+    const { container } = render(<Component />);
+    expect(getByText(container, 'start')).toBeDefined();
+  });
+
+  it('applies createRef ref', () => {
+    const Component = () => {
+      const ref = React.createRef<HTMLInputElement>();
+      return <Input inputRef={ref} startEnhancer="start" />;
+    };
+    const { container } = render(<Component />);
+    expect(getByText(container, 'start')).toBeDefined();
   });
 });
