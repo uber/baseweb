@@ -106,7 +106,7 @@ export const StyledEmoticon = styled<StyledRatingItemPropsT>(
     let emoticonFill = $theme.colors.ratingInactiveFill;
 
     if ($isActive) {
-      emoticonFill = $theme.colors.rating400;
+      emoticonFill = $theme.colors.warning400;
     }
 
     const ratingIcons = [

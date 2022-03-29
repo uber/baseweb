@@ -120,8 +120,6 @@ export interface Colors {
   black: string;
 
   // Rating Palette
-  rating200: string;
-  rating400: string;
   ratingInactiveFill: string;
   ratingStroke: string;
 
