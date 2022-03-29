@@ -12,7 +12,7 @@ const { mount } = require('../../../e2e/helpers');
 
 describe('setDropdownOpen', () => {
   it('opens and closes dropdown with StatefulSelect', async () => {
-    await mount(page, 'select--methods');
+    await mount(page, 'select--control-ref-set-dropdown-open');
     const openBtn = `#open`;
     const closeBtn = `#close`;
 
@@ -39,7 +39,7 @@ describe('setDropdownOpen', () => {
   });
 
   it('opens and closes dropdown with Select', async () => {
-    await mount(page, 'select--methods');
+    await mount(page, 'select--control-ref-set-dropdown-open');
     const openBtn = `#open`;
     const closeBtn = `#close`;
 
@@ -63,5 +63,30 @@ describe('setDropdownOpen', () => {
     await page.keyboard.press('Escape');
     await page.click(closeBtn);
     expect(listElems3.length).toBe(0);
+  });
+});
+
+describe('setInputValue', () => {
+  it('sets the input value', async () => {
+    await mount(page, 'select--control-ref-set-input-value');
+    const input = '#inputValue';
+    const setInputValue = `#setInputValueBtn`;
+    const selected = '[data-id="selected"]';
+
+    await page.waitForSelector(input);
+    await page.waitForSelector(setInputValue);
+
+    // 'apples' is pre-popluted in the input field, make sure that gets set correctly
+    await page.click(setInputValue);
+    const selectedValue = await page.$eval(selected, (select) => select.textContent);
+    expect(selectedValue).toBe('apples');
+
+    // let's type more text into the input field, make sure that gets set correctly
+    await page.click(input);
+    await page.keyboard.type(' and bananas');
+
+    await page.click(setInputValue);
+    const selectedValue2 = await page.$eval(selected, (select) => select.textContent);
+    expect(selectedValue2).toBe('apples and bananas');
   });
 });

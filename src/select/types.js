@@ -73,11 +73,17 @@ export type OverridesDropdownT = {
   StatefulMenu?: OverrideT,
 };
 
-type ImperativeFnsT = {|
+type ImperativeMethodsT = {|
   setDropdownOpen: (boolean) => mixed,
+  setInputValue: (string) => void,
+  setInputFocus: () => void,
+  setInputBlur: () => void,
+  // these below are for backwards compatibility and may be removed. Don't use them.
+  focus: () => void,
+  blur: () => void,
 |};
-export type MethodsRefT = {
-  current: ImperativeFnsT | null,
+export type ControlRefT = {
+  current: ImperativeMethodsT | null,
 };
 
 export type PropsT = {
@@ -132,8 +138,8 @@ export type PropsT = {
   id?: string,
   /** Defines if the comparison for a new creatable value should be case-insensitive. */
   ignoreCase?: boolean,
-  /** A ref to access the input element powering the select if it's a search select, or the container div if it isn't. */
-  controlRef?: ReactRefT<HTMLInputElement>,
+  /** An imperative handle exposing internal methods. */
+  controlRef?: ControlRefT,
   /** Defines if the select is in a loading (async) state. */
   isLoading: boolean,
   /** Defines an option key for a default label value. */
@@ -142,8 +148,6 @@ export type PropsT = {
   maxDropdownHeight: string,
   /** Defines if multiple options can be selected. */
   multi: boolean,
-  /** Handle for accessing internal methods. */
-  methodsRef?: MethodsRefT,
   /** Message to be displayed if no options is found for a search query. */
   noResultsMsg?: React.Node,
   onBlur: (e: Event) => mixed,
