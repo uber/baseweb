@@ -202,6 +202,5 @@ export type SharedStylePropsT = {
   $required: boolean,
   $disabled: boolean,
   $value: string,
-  $checkmarkType: StyleTypeT,
   $labelPlacement: LabelPlacementT,
 };

@@ -11,7 +11,6 @@ import { Scenario as CheckboxIndeterminate } from './checkbox-indeterminate.scen
 import { Scenario as CheckboxPlacement } from './checkbox-placement.scenario.js';
 import { Scenario as CheckboxSelect } from './checkbox-select.scenario.js';
 import { Scenario as CheckboxStates } from './checkbox-states.scenario.js';
-import { Scenario as CheckboxToggleRound } from './checkbox-toggle-round.scenario.js';
 import { Scenario as CheckboxToggle } from './checkbox-toggle.scenario.js';
 import { Scenario as CheckboxUnlabeled } from './checkbox-unlabeled.scenario.js';
 import { Scenario as CheckboxDefault } from './checkbox.scenario.js';
@@ -21,7 +20,6 @@ export const Indeterminate = () => <CheckboxIndeterminate />;
 export const Placement = () => <CheckboxPlacement />;
 export const Select = () => <CheckboxSelect />;
 export const States = () => <CheckboxStates />;
-export const ToggleRound = () => <CheckboxToggleRound />;
 export const Toggle = () => <CheckboxToggle />;
 export const Unlabeled = () => <CheckboxUnlabeled />;
 export const Checkbox = () => <CheckboxDefault />;
