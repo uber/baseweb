@@ -59,7 +59,7 @@ steps:
       queue: workers
 
   - name: ':react: react@18 unit-test'
-    command: yarn upgrade react@rc react-dom@rc @testing-library/react@alpha && yarn unit-test
+    command: yarn upgrade react@^18.0.0 react-dom@^18.0.0 @testing-library/react@alpha && yarn unit-test
     plugins:
       'docker-compose#v3.0.3':
         run: baseui
@@ -136,7 +136,7 @@ steps:
       queue: workers
 
   - name: ':react: react@18 e2e'
-    command: yarn upgrade react@rc react-dom@rc && yarn e2e:test:ci
+    command: yarn upgrade react@^18.0.0 react-dom@^18.0.0 && yarn e2e:test:ci
     artifact_paths:
       - '__artifacts__/*.png'
     plugins:
