@@ -13,7 +13,7 @@ import Input from './input.js';
 import { Input as StyledInput } from './styled-components.js';
 import type { MaskedInputPropsT } from './types.js';
 
-const MaskOverride = React.forwardRef<MaskedInputPropsT, HTMLElement>(
+const MaskOverride = React.forwardRef<MaskedInputPropsT, HTMLInputElement>(
   (
     {
       // do nothing with these - we just don't want to pass it to the InputMask, as

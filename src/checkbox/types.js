@@ -11,7 +11,7 @@ import { STYLE_TYPE } from './constants.js';
 
 export type LabelPlacementT = 'top' | 'right' | 'bottom' | 'left';
 export type StyleTypeT = $Keys<typeof STYLE_TYPE>;
-export type ReactRefT<T> = {| current: null | T |};
+export type ReactRefT<T> = { current: null | T } | {| current: null | T |};
 
 export type OverridesT = {
   Checkmark?: OverrideT,

@@ -1,11 +1,11 @@
 import * as React from 'react';
-import {StyletronComponent} from 'styletron-react';
-import {SIZE} from '../input';
-import {OnItemSelect} from '../menu';
-import {Override} from '../overrides';
-import {Locale} from '../locale';
+import { StyletronComponent } from 'styletron-react';
+import { SIZE } from '../input';
+import { OnItemSelect } from '../menu';
+import { Override } from '../overrides';
+import { Locale } from '../locale';
 
-export {SIZE} from '../input';
+export { SIZE } from '../input';
 
 export interface TYPE {
   select: 'select';
@@ -27,7 +27,7 @@ export interface Option {
   [others: string]: any;
 }
 export type Value = ReadonlyArray<Option>;
-export type OptgroupsT = {__ungrouped: Value; [key: string]: Value};
+export type OptgroupsT = { __ungrouped: Value; [key: string]: Value };
 export type OptionsT = Value | OptgroupsT;
 
 export type ChangeAction = () => any;
@@ -44,7 +44,7 @@ export type filterOptions = (
     matchProp?: 'any' | 'label' | 'value';
     trimFilter?: boolean;
     valueKey?: string;
-  },
+  }
 ) => Value;
 
 export interface SelectOverrides {
@@ -91,7 +91,7 @@ export interface SelectProps {
     options: Value,
     filterValue: string,
     excludeOptions?: Value,
-    newProps?: {valueKey: string; labelKey: string},
+    newProps?: { valueKey: string; labelKey: string }
   ) => Value;
   filterOutSelected?: boolean;
   getOptionLabel?: (args: {
@@ -102,9 +102,9 @@ export interface SelectProps {
       $isHighlighted?: boolean;
     };
   }) => React.ReactNode;
-  getValueLabel?: (args: {option: Option}) => React.ReactNode;
+  getValueLabel?: (args: { option: Option }) => React.ReactNode;
   id?: string;
-  controlRef?: React.Ref<HTMLInputElement | HTMLDivElement>;
+  controlRef?: React.Ref<HTMLInputElement>;
   isLoading?: boolean;
   labelKey?: string;
   startOpen?: boolean;
@@ -164,22 +164,18 @@ export class Select extends React.Component<SelectProps, SelectState> {
         $disabled: boolean;
         $isHighlighted: boolean;
       };
-    },
+    }
   ): React.ReactNode;
-  getValueLabel({option}: {option: Option}): React.ReactNode;
+  getValueLabel({ option }: { option: Option }): React.ReactNode;
   getValueArray(value: Value): Option[];
   setValue(value: Value, option: Option, type: ChangeAction): void;
-  selectValue({item}: {item: Option}): void;
+  selectValue({ item }: { item: Option }): void;
   addValue(item: Option): void;
   popValue(): void;
   removeValue(item: Option): void;
   clearValue(event: KeyboardEvent | MouseEvent | TouchEvent): void;
   renderLoading(): React.ReactNode;
-  renderValue(
-    valueArray: Value,
-    isOpen: boolean,
-    locale: Locale,
-  ): React.ReactNode;
+  renderValue(valueArray: Value, isOpen: boolean, locale: Locale): React.ReactNode;
   renderInput(): React.ReactNode;
   renderClear(): React.ReactNode;
   renderArrow(): React.ReactNode;
@@ -219,10 +215,7 @@ export interface AutosizeInputProps {
 export interface AutosizeInputState {
   inputWidth: number;
 }
-export class AutosizeInput extends React.Component<
-  AutosizeInputProps,
-  AutosizeInputState
-> {
+export class AutosizeInput extends React.Component<AutosizeInputProps, AutosizeInputState> {
   sizerRef(el?: HTMLElement): void;
   updateInputWidth(): void;
 }
@@ -276,18 +269,14 @@ export class SelectDropdown extends React.Component<DropdownProps> {
     $type: TYPE[keyof TYPE];
     $width: number;
   };
-  getItemLabel(option: {[key: string]: any}): React.ReactNode;
+  getItemLabel(option: { [key: string]: any }): React.ReactNode;
   onMouseDown(e: Event): void;
 }
 
 export interface State {
   value: Value;
 }
-export type StateReducer = (
-  stateType: string,
-  nextState: State,
-  currentState: State,
-) => State;
+export type StateReducer = (stateType: string, nextState: State, currentState: State) => State;
 export interface OnChangeParams {
   value: Value;
   option?: Option;
@@ -306,10 +295,7 @@ export interface StatefulContainerProps {
   stateReducer?: StateReducer;
   onChange?: (params: OnChangeParams) => any;
 }
-export class StatefulSelectContainer extends React.Component<
-  StatefulContainerProps,
-  State
-> {
+export class StatefulSelectContainer extends React.Component<StatefulContainerProps, State> {
   onChange(params: OnChangeParams): void;
   internalSetState(params: OnChangeParams): void;
 }
