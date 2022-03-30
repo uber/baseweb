@@ -30,7 +30,6 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
     autoFocus: false,
     isIndeterminate: false,
     inputRef: React.createRef(),
-    isError: false,
     error: false,
     type: 'checkbox',
     checkmarkType: STYLE_TYPE.default,
@@ -54,21 +53,6 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
     const { autoFocus, inputRef } = this.props;
     if (autoFocus && inputRef.current) {
       inputRef.current.focus();
-    }
-
-    // TODO(v11)
-    if (__DEV__) {
-      if (this.props.checkmarkType === STYLE_TYPE.toggle) {
-        console.warn(
-          "baseui:Checkbox The STYLE_TYPE.toggle value on the 'checkmarkType' prop does not conform to the current base design specification. " +
-            'Please update your code to STYLE_TYPE.toggle_round. This will be updated automatically in a future major version.'
-        );
-      }
-      if (this.props.isError) {
-        console.warn(
-          'baseui:Checkbox Property "isError" will be removed in the next major version. Use "error" property instead.'
-        );
-      }
     }
   }
 
@@ -115,7 +99,6 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
       labelPlacement = this.props.checkmarkType === STYLE_TYPE.toggle ? 'left' : 'right',
       inputRef,
       isIndeterminate,
-      isError,
       error,
       disabled,
       value,
@@ -159,7 +142,6 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
       $isFocusVisible: this.state.isFocusVisible,
       $isHovered: this.state.isHovered,
       $isActive: this.state.isActive,
-      $isError: isError,
       $error: error,
       $checked: checked,
       $isIndeterminate: isIndeterminate,
@@ -206,7 +188,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
           aria-checked={isIndeterminate ? 'mixed' : checked}
           aria-describedby={this.props['aria-describedby']}
           aria-errormessage={this.props['aria-errormessage']}
-          aria-invalid={error || isError || null}
+          aria-invalid={error || null}
           aria-required={required || null}
           disabled={disabled}
           type={type}
