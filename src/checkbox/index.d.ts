@@ -56,7 +56,6 @@ export const StatefulContainer: React.FC<StatefulContainerProps>;
 export interface StatefulCheckboxProps {
   overrides?: CheckboxOverrides;
   disabled?: boolean;
-  isError?: boolean;
   error?: boolean;
   containsInteractiveElement?: boolean;
   labelPlacement?: 'top' | 'right' | 'bottom' | 'left';
@@ -94,7 +93,6 @@ export interface CheckboxProps {
   checked?: boolean;
   disabled?: boolean;
   required?: boolean;
-  isError?: boolean;
   error?: boolean;
   inputRef?: React.Ref<HTMLInputElement>;
   autoFocus?: boolean;
