@@ -31,7 +31,6 @@ export type RadioGroupOverridesT = {
 export type DefaultPropsT = {
   value: string,
   disabled: boolean,
-  isError: boolean,
   error: boolean,
   autoFocus: boolean,
   labelPlacement: LabelPlacementT,
@@ -65,8 +64,6 @@ export type PropsT = {
   required?: boolean,
   /** Sets radio group into error state. */
   error?: boolean,
-  /** You should use the error prop instead. */
-  isError?: boolean,
   /** Set to be focused (active) on selected\checked radio. */
   autoFocus?: boolean,
   /** How to position radio buttons in the group. */
@@ -112,8 +109,6 @@ export type RadioPropsT = {
   inputRef?: ReactRefT<HTMLInputElement>,
   /** Renders checkbox in errored state. */
   error?: boolean,
-  /** You should use the error prop instead. */
-  isError?: boolean,
   /** Is radio focused / active? */
   isFocused?: boolean,
   /** Is parent RadioGroup focused by keyboard? */
@@ -201,7 +196,6 @@ export type StylePropsT = {
   $disabled: boolean,
   $hasDescription: boolean,
   $isActive: boolean,
-  $isError: boolean,
   $error: boolean,
   $isFocused: boolean,
   $isFocusVisible: boolean,
