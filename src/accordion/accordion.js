@@ -18,7 +18,6 @@ export default class Accordion extends React.Component<AccordionPropsT, Accordio
     disabled: false,
     initialState: {
       expanded: [],
-      itemRefs: [],
     },
     onChange: () => {},
     overrides: {},
@@ -32,6 +31,8 @@ export default class Accordion extends React.Component<AccordionPropsT, Accordio
     ...this.props.initialState,
     itemRefs: [],
   };
+
+  itemRefs = [];
 
   //flowlint-next-line unclear-type:off
   onPanelChange(key: React.Key, onChange: () => {}, ...args: Array<any>) {
@@ -50,7 +51,7 @@ export default class Accordion extends React.Component<AccordionPropsT, Accordio
         activeKeys.push(key);
       }
     }
-    const newState = { expanded: activeKeys, itemRefs: this.state.itemRefs };
+    const newState = { expanded: activeKeys };
     this.internalSetState(STATE_CHANGE_TYPE.expand, newState);
     // Call individual panel's onChange handler
     if (typeof onChange === 'function') onChange(...args);
@@ -68,7 +69,7 @@ export default class Accordion extends React.Component<AccordionPropsT, Accordio
       return;
     }
 
-    const { itemRefs } = this.state;
+    const itemRefs = this.itemRefs;
 
     const HOME = 36;
     const END = 35;
@@ -106,10 +107,8 @@ export default class Accordion extends React.Component<AccordionPropsT, Accordio
     return React.Children.map(children, (child: any, index) => {
       if (!child) return;
 
-      const itemRef = React.createRef();
-      this.setState((prevState) => ({
-        itemRefs: [...prevState.itemRefs, itemRef],
-      }));
+      const itemRef = React.createRef<HTMLDivElement>();
+      this.itemRefs.push(itemRef);
 
       // If there is no key provided use the panel order as a default key
       const key = child.key || String(index);
