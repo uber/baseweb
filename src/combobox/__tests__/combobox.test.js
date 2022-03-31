@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
+import { act } from 'react-dom/test-utils';
 import { render, fireEvent } from '@testing-library/react';
 
 import { TestBaseProvider } from '../../test/test-utils.js';
@@ -397,7 +398,11 @@ describe('combobox', () => {
     );
 
     expect(inputRef.current).toBeDefined();
-    if (inputRef.current) inputRef.current.focus();
+    act(() => {
+      if (inputRef.current) {
+        inputRef.current.focus();
+      }
+    });
     expect(isFocused).toBeTruthy();
   });
 });

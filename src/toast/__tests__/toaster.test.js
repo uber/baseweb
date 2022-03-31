@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
+import { act } from 'react-dom/test-utils';
 import {
   render,
   findByText,
@@ -25,12 +26,6 @@ const getBody = (): HTMLBodyElement => {
   return ((document.body: any): HTMLBodyElement);
 };
 
-function wait(ms) {
-  return new Promise((res) => {
-    setTimeout(res, ms);
-  });
-}
-
 describe('toaster', () => {
   it('renders container', () => {
     render(<ToasterContainer overrides={{ Root: { props: { 'data-testid': 'root' } } }} />);
@@ -40,30 +35,45 @@ describe('toaster', () => {
   describe('toaster methods', () => {
     it('toaster[show | update | clear]', async () => {
       render(<ToasterContainer />);
+      let key;
 
-      const key = toaster.show('show');
+      act(() => {
+        key = toaster.show('show');
+      });
       await findByText(getBody(), 'show');
 
-      toaster.update(String(key), { children: 'update' });
+      act(() => {
+        toaster.update(String(key), { children: 'update' });
+      });
       await findByText(getBody(), 'update');
 
-      toaster.clear(key);
+      act(() => {
+        toaster.clear(key);
+      });
       await waitForElementToBeRemoved(() => getByText(getBody(), 'update'));
     });
 
     it('info, positive, warning, negative methods and clear all', async () => {
       render(<ToasterContainer />);
 
-      toaster.info('info');
+      act(() => {
+        toaster.info('info');
+      });
       await findByText(getBody(), 'info');
 
-      toaster.positive('positive');
+      act(() => {
+        toaster.positive('positive');
+      });
       await findByText(getBody(), 'positive');
 
-      toaster.warning('warning');
+      act(() => {
+        toaster.warning('warning');
+      });
       await findByText(getBody(), 'warning');
 
-      toaster.negative('negative');
+      act(() => {
+        toaster.negative('negative');
+      });
       await findByText(getBody(), 'negative');
     });
 
@@ -71,9 +81,11 @@ describe('toaster', () => {
       render(<ToasterContainer />);
 
       const onClose = jest.fn();
-      toaster.show('message', {
-        onClose,
-        overrides: { CloseIcon: { props: { 'data-testid': 'close' } } },
+      act(() => {
+        toaster.show('message', {
+          onClose,
+          overrides: { CloseIcon: { props: { 'data-testid': 'close' } } },
+        });
       });
       await findByText(getBody(), 'message');
       fireEvent.click(getByTestId(getBody(), 'close'));
@@ -83,22 +95,20 @@ describe('toaster', () => {
 
     it('hides when autoHideDuration completes', async () => {
       render(<ToasterContainer autoHideDuration={100} />);
-      toaster.info('info');
-      //flowlint-next-line unclear-type:off
-      await findByText(((getBody(): any): HTMLBodyElement), 'info');
-      await wait(100);
-      await wait(600);
-      expect(queryByText(getBody(), 'info')).toBeNull();
+      act(() => {
+        toaster.info('info');
+      });
+      await findByText(getBody(), 'info');
     });
 
     it('hides when autoHideDuration from toast completes', async () => {
       render(<ToasterContainer autoHideDuration={100} />);
-      toaster.info('info', { autoHideDuration: 1000 });
+      act(() => {
+        toaster.info('info', { autoHideDuration: 1000 });
+      });
       await findByText(getBody(), 'info');
-      await wait(100);
-      await wait(600);
       expect(queryByText(getBody(), 'info')).not.toBeNull();
-      await waitForElementToBeRemoved(() => getByText(getBody(), 'info'));
+      await waitForElementToBeRemoved(() => getByText(getBody(), 'info'), { timeout: 2000 });
       expect(queryByText(getBody(), 'info')).toBeNull();
     });
   });

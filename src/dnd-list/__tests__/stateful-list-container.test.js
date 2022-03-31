@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
+import { act } from 'react-dom/test-utils';
 import { render } from '@testing-library/react';
 import { StatefulListContainer, STATE_CHANGE_TYPE } from '../index.js';
 
@@ -49,7 +50,7 @@ describe('StatefulListContainer', () => {
     expect(childrenOnChangeProp).not.toBe(props.onChange);
 
     // user's onChange handler is called
-    childrenOnChangeProp(event);
+    act(() => childrenOnChangeProp(event));
     expect(props.onChange).toHaveBeenCalledTimes(1);
     expect(props.onChange).toHaveBeenLastCalledWith(event);
   });
@@ -68,10 +69,12 @@ describe('StatefulListContainer', () => {
     props.stateReducer.mockReturnValueOnce({ items: ['Item 2', 'Item 1'] });
     // flowlint-next-line unclear-type:off
     const targetRect: any = {};
-    children.mock.calls[0][0].onChange({
-      oldIndex: 0,
-      newIndex: 1,
-      targetRect,
+    act(() => {
+      children.mock.calls[0][0].onChange({
+        oldIndex: 0,
+        newIndex: 1,
+        targetRect,
+      });
     });
 
     expect(props.stateReducer).toHaveBeenCalledTimes(1);
