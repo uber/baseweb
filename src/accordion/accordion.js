@@ -76,14 +76,17 @@ export default class Accordion extends React.Component<AccordionPropsT, Accordio
     const ARROW_DOWN = 40;
 
     if (e.keyCode === HOME) {
+      e.preventDefault();
       const firstItem = itemRefs[0];
       firstItem.current && firstItem.current.focus();
     }
     if (e.keyCode === END) {
+      e.preventDefault();
       const lastItem = itemRefs[itemRefs.length - 1];
       lastItem.current && lastItem.current.focus();
     }
     if (e.keyCode === ARROW_UP) {
+      e.preventDefault();
       const activeItemIdx = itemRefs.findIndex((item) => item.current === document.activeElement);
       if (activeItemIdx > 0) {
         const prevItem = itemRefs[activeItemIdx - 1];
@@ -91,6 +94,7 @@ export default class Accordion extends React.Component<AccordionPropsT, Accordio
       }
     }
     if (e.keyCode === ARROW_DOWN) {
+      e.preventDefault();
       const activeItemIdx = itemRefs.findIndex((item) => item.current === document.activeElement);
       if (activeItemIdx < itemRefs.length - 1) {
         const nextItem = itemRefs[activeItemIdx + 1];

@@ -36,16 +36,17 @@ function StatelessAccordion({
     const ARROW_DOWN = 40;
 
     if (e.keyCode === HOME) {
+      e.preventDefault();
       const firstItem = itemRefs.current[0];
       firstItem?.focus();
     }
     if (e.keyCode === END) {
+      e.preventDefault();
       const lastItem = itemRefs.current[itemRefs.current.length - 1];
       lastItem?.focus();
     }
     if (e.keyCode === ARROW_UP) {
-      console.log('arrow up');
-      console.log('itemRefs', itemRefs);
+      e.preventDefault();
       const activeItemIdx = itemRefs.current.findIndex((item) => item === document.activeElement);
       if (activeItemIdx > 0) {
         const prevItem = itemRefs.current[activeItemIdx - 1];
@@ -53,6 +54,7 @@ function StatelessAccordion({
       }
     }
     if (e.keyCode === ARROW_DOWN) {
+      e.preventDefault();
       const activeItemIdx = itemRefs.current.findIndex((item) => item === document.activeElement);
       if (activeItemIdx < itemRefs.current.length - 1) {
         const nextItem = itemRefs.current[activeItemIdx + 1];
