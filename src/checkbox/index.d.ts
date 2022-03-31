@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {StyletronComponent} from 'styletron-react';
-import {Override} from '../overrides';
+import { StyletronComponent } from 'styletron-react';
+import { Override } from '../overrides';
 
 export interface STATE_TYPE {
   change: 'CHANGE';
@@ -8,7 +8,7 @@ export interface STATE_TYPE {
 export interface STYLE_TYPE {
   default: 'default';
   toggle: 'toggle';
-  toggle_round: 'toggle_round';
+  toggle_round: 'toggle';
 }
 
 export interface LABEL_PLACEMENT {
@@ -35,7 +35,7 @@ export type StateReducer = (
   stateType: string,
   nextState: CheckboxState,
   currentState: CheckboxState,
-  event: React.SyntheticEvent<HTMLInputElement>,
+  event: React.SyntheticEvent<HTMLInputElement>
 ) => CheckboxState;
 
 export interface StatefulContainerProps {
@@ -56,7 +56,6 @@ export const StatefulContainer: React.FC<StatefulContainerProps>;
 export interface StatefulCheckboxProps {
   overrides?: CheckboxOverrides;
   disabled?: boolean;
-  isError?: boolean;
   error?: boolean;
   containsInteractiveElement?: boolean;
   labelPlacement?: 'top' | 'right' | 'bottom' | 'left';
@@ -94,7 +93,6 @@ export interface CheckboxProps {
   checked?: boolean;
   disabled?: boolean;
   required?: boolean;
-  isError?: boolean;
   error?: boolean;
   inputRef?: React.Ref<HTMLInputElement>;
   autoFocus?: boolean;
