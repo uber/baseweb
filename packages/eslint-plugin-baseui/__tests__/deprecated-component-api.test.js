@@ -116,7 +116,7 @@ const tests = {
     {
       code: `
         import * as Typography from "baseui/typography";
-        
+
         const Example = () => {
           return <div></div>
         }
@@ -193,6 +193,148 @@ const tests = {
         import { Checkbox, STYLE_TYPE } from "baseui/checkbox"
         export default function() {
           return <Checkbox checkmarkType="toggle_round" />
+        }
+      `,
+    },
+
+    // Checkbox - isError
+    // prop as jsx identifier
+    {
+      code: `
+        import {Checkbox} from 'baseui/checkbox';
+        export default function() {
+          return <Checkbox isError />
+        }
+      `,
+      errors: [{ messageId: MESSAGES.replace.id }],
+      output: `
+        import {Checkbox} from 'baseui/checkbox';
+        export default function() {
+          return <Checkbox error />
+        }
+      `,
+    },
+
+    // Checkbox - isError
+    // prop as jsx expression
+    {
+      code: `
+        import {Checkbox} from 'baseui/checkbox';
+        export default function() {
+          return <Checkbox isError={true} />
+        }
+      `,
+      errors: [{ messageId: MESSAGES.replace.id }],
+      output: `
+        import {Checkbox} from 'baseui/checkbox';
+        export default function() {
+          return <Checkbox error={true} />
+        }
+      `,
+    },
+
+    // Radio - isError
+    // prop as jsx identifier
+    {
+      code: `
+        import {Radio} from 'baseui/radio';
+        export default function() {
+          return <Radio isError />
+        }
+      `,
+      errors: [{ messageId: MESSAGES.replace.id }],
+      output: `
+        import {Radio} from 'baseui/radio';
+        export default function() {
+          return <Radio error />
+        }
+      `,
+    },
+
+    // Radio - isError
+    // prop as jsx expression
+    {
+      code: `
+        import {Radio} from 'baseui/radio';
+        export default function() {
+          return <Radio isError={true} />
+        }
+      `,
+      errors: [{ messageId: MESSAGES.replace.id }],
+      output: `
+        import {Radio} from 'baseui/radio';
+        export default function() {
+          return <Radio error={true} />
+        }
+      `,
+    },
+
+    // RadioGroup - isError
+    // prop as jsx identifier
+    {
+      code: `
+        import {Radio, RadioGroup} from 'baseui/radio';
+        export default function() {
+          return (
+            <RadioGroup isError>
+              <Radio>one</Radio>
+            </RadioGroup>
+          );
+        }
+      `,
+      errors: [{ messageId: MESSAGES.replace.id }],
+      output: `
+        import {Radio, RadioGroup} from 'baseui/radio';
+        export default function() {
+          return (
+            <RadioGroup error>
+              <Radio>one</Radio>
+            </RadioGroup>
+          );
+        }
+      `,
+    },
+
+    // RadioGroup - isError
+    // prop as jsx expression
+    {
+      code: `
+        import {Radio, RadioGroup} from 'baseui/radio';
+        export default function() {
+          return (
+            <RadioGroup isError>
+              <Radio>one</Radio>
+            </RadioGroup>
+          );
+        }
+      `,
+      errors: [{ messageId: MESSAGES.replace.id }],
+      output: `
+        import {Radio, RadioGroup} from 'baseui/radio';
+        export default function() {
+          return (
+            <RadioGroup error>
+              <Radio>one</Radio>
+            </RadioGroup>
+          );
+        }
+      `,
+    },
+
+    // RadioGroup - isError
+    // prop as jsx expression
+    {
+      code: `
+        import {Radio} from 'baseui/radio';
+        export default function() {
+          return <Radio isError={true} />
+        }
+      `,
+      errors: [{ messageId: MESSAGES.replace.id }],
+      output: `
+        import {Radio} from 'baseui/radio';
+        export default function() {
+          return <Radio error={true} />
         }
       `,
     },
@@ -404,7 +546,7 @@ const tests = {
     {
       code: `
         import { Label3 } from "baseui/typography"
-        
+
         const VersionHistoryLabel = styled<typeof Label3, any>(Label3, ({ $theme }: TStyledFnArgs) => ({
           marginBottom: $theme.sizing.scale600,
         }));
@@ -416,7 +558,7 @@ const tests = {
       ],
       output: `
         import { LabelSmall } from "baseui/typography"
-        
+
         const VersionHistoryLabel = styled<typeof LabelSmall, any>(LabelSmall, ({ $theme }: TStyledFnArgs) => ({
           marginBottom: $theme.sizing.scale600,
         }));
@@ -427,7 +569,7 @@ const tests = {
     {
       code: `
         import { Label3 as Foo } from "baseui/typography"
-        
+
         const VersionHistoryLabel = styled<typeof Foo, any>(Foo, ({ $theme }: TStyledFnArgs) => ({
           marginBottom: $theme.sizing.scale600,
         }));
@@ -435,7 +577,7 @@ const tests = {
       errors: [{ messageId: MESSAGES.replace.id }],
       output: `
         import { LabelSmall as Foo } from "baseui/typography"
-        
+
         const VersionHistoryLabel = styled<typeof Foo, any>(Foo, ({ $theme }: TStyledFnArgs) => ({
           marginBottom: $theme.sizing.scale600,
         }));
@@ -446,7 +588,7 @@ const tests = {
       code: `
         import { Label3 as Foo } from "baseui/typography"
         import { Label3 } from "hello/world"
-        
+
         const VersionHistoryLabel = styled<typeof Label3, any>(Label3, ({ $theme }: TStyledFnArgs) => ({
           marginBottom: $theme.sizing.scale600,
         }));
@@ -455,7 +597,7 @@ const tests = {
       output: `
         import { LabelSmall as Foo } from "baseui/typography"
         import { Label3 } from "hello/world"
-        
+
         const VersionHistoryLabel = styled<typeof Label3, any>(Label3, ({ $theme }: TStyledFnArgs) => ({
           marginBottom: $theme.sizing.scale600,
         }));
@@ -470,7 +612,7 @@ const tests = {
 
         const MarkdownRender = ({ overrides = {}, text }: Props) => {
            const [H1, h1Props] = getOverrides(overrides.H1, StyledH1);
-        
+
           return <ReactMarkdown
             components={{
               h1: ({ node, ...rest }) => <H1 {...h1Props} {...rest} />
@@ -485,7 +627,7 @@ const tests = {
 
         const MarkdownRender = ({ overrides = {}, text }: Props) => {
            const [H1, h1Props] = getOverrides(overrides.H1, StyledH1);
-        
+
           return <ReactMarkdown
             components={{
               h1: ({ node, ...rest }) => <H1 {...h1Props} {...rest} />

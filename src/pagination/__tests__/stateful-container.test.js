@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-env browser */
 import * as React from 'react';
+import { act } from 'react-dom/test-utils';
 import { render } from '@testing-library/react';
 
 import { STATE_CHANGE_TYPE } from '../constants.js';
@@ -51,16 +52,16 @@ describe('Pagination StatefulContainer', () => {
 
   it('onPageChange called if and only if page has changed', () => {
     render(<StatefulContainer {...getSharedProps()} />);
-    mockChildrenFn.mock.calls[0][0].onPageChange({ nextPage: 5 });
+    act(() => mockChildrenFn.mock.calls[0][0].onPageChange({ nextPage: 5 }));
     expect(mockChildrenFn.mock.calls[1][0]).toHaveProperty('currentPage', 5);
     expect(mockOnPageChangeFn.mock.calls.length).toBe(1);
-    mockChildrenFn.mock.calls[1][0].onPageChange({ nextPage: 5 });
+    act(() => mockChildrenFn.mock.calls[1][0].onPageChange({ nextPage: 5 }));
     expect(mockOnPageChangeFn.mock.calls.length).toBe(1);
   });
 
   it('internalSetState calls stateReducer with the correct args', () => {
     render(<StatefulContainer {...getSharedProps()} />);
-    mockChildrenFn.mock.calls[0][0].onPageChange({ nextPage: 2 });
+    act(() => mockChildrenFn.mock.calls[0][0].onPageChange({ nextPage: 2 }));
     expect(mockStateReducerFn.mock.calls[0][0]).toEqual(STATE_CHANGE_TYPE.changePage);
     expect(mockStateReducerFn.mock.calls[0][1]).toEqual({ currentPage: 2 });
   });
@@ -72,7 +73,7 @@ describe('Pagination StatefulContainer', () => {
     };
     // $FlowFixMe
     render(<StatefulContainer {...props} />);
-    mockChildrenFn.mock.calls[0][0].onPageChange({ nextPage: 2 });
+    act(() => mockChildrenFn.mock.calls[0][0].onPageChange({ nextPage: 2 }));
     expect(mockChildrenFn.mock.calls[1][0]).toHaveProperty('currentPage', 2);
   });
 });

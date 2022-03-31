@@ -129,6 +129,10 @@ module.exports = {
             if (isImporting(specifier, 'Modal', 'baseui/modal')) return;
             if (isImporting(specifier, 'Checkbox', 'baseui/checkbox')) return;
             if (isImporting(specifier, 'Button', 'baseui/button')) return;
+
+            // removes return statement since these can be imported together
+            isImporting(specifier, 'Radio', 'baseui/radio');
+            isImporting(specifier, 'RadioGroup', 'baseui/radio');
           }
         }
 
@@ -294,6 +298,60 @@ module.exports = {
             });
             return;
           }
+        }
+
+        // Checkbox - isError
+        // Ex: <Checkbox isError />
+        // Replacement: error
+        if (importState.Checkbox && isProp('isError', importState.Checkbox)) {
+          context.report({
+            node: node,
+            messageId: MESSAGES.replace.id,
+            data: {
+              old: `isError`,
+              new: `error`,
+            },
+            fix: function (fixer) {
+              return fixer.replaceText(node, 'error');
+            },
+          });
+          return;
+        }
+
+        // Radio - isError
+        // Ex: <Radio isError />
+        // Replacement: error
+        if (importState.Radio && isProp('isError', importState.Radio)) {
+          context.report({
+            node: node,
+            messageId: MESSAGES.replace.id,
+            data: {
+              old: `isError`,
+              new: `error`,
+            },
+            fix: function (fixer) {
+              return fixer.replaceText(node, 'error');
+            },
+          });
+          return;
+        }
+
+        // RadioGroup - isError
+        // Ex: <RadioGroup isError />
+        // Replacement: error
+        if (importState.RadioGroup && isProp('isError', importState.RadioGroup)) {
+          context.report({
+            node: node,
+            messageId: MESSAGES.replace.id,
+            data: {
+              old: `isError`,
+              new: `error`,
+            },
+            fix: function (fixer) {
+              return fixer.replaceText(node, 'error');
+            },
+          });
+          return;
         }
 
         // kind
