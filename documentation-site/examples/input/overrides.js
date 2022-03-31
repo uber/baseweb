@@ -3,7 +3,7 @@ import React from 'react';
 import {withStyle} from 'baseui';
 import {Input, StyledRoot} from 'baseui/input';
 
-const RootWithStyle = withStyle(StyledRoot, props => {
+const RootWithStyle = withStyle(StyledRoot, (props) => {
   const {
     $disabled,
     $error,
@@ -11,7 +11,7 @@ const RootWithStyle = withStyle(StyledRoot, props => {
     $theme: {colors, sizing},
   } = props;
   const borderColor = $disabled
-    ? colors.borderAlt
+    ? colors.borderTransparent
     : $error
     ? colors.borderError
     : $isFocused

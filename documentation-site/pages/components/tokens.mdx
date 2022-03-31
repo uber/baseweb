@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
-import {useStyletron} from 'baseui';
+import { useStyletron } from 'baseui';
 import * as TokensExports from 'baseui/tokens';
 
 import Example from '../../components/example';
@@ -17,11 +17,9 @@ export default Layout;
 
 export function ColorPreviewContainer(props) {
   const [css, theme] = useStyletron();
-  return (
-    <div className={css({...theme.typography.MonoParagraphSmall})} {...props} />
-  );
+  return <div className={css({ ...theme.typography.MonoParagraphSmall })} {...props} />;
 }
-export function ColorPreview({name, value, displayValue}) {
+export function ColorPreview({ name, value, displayValue }) {
   return (
     <div
       style={{
@@ -41,7 +39,7 @@ export function ColorPreview({name, value, displayValue}) {
           marginRight: '20px',
         }}
       ></div>
-      <div style={{flexGrow: 1}}>{name}</div>
+      <div style={{ flexGrow: 1 }}>{name}</div>
       <div>{displayValue}</div>
     </div>
   );
@@ -72,8 +70,8 @@ You can create a custom theme with your choice of color tokens. Here is what tha
 ```js
 // myTheme.js
 
-import {createTheme, lightThemePrimitives} from 'baseui';
-import {colors} from 'baseui/tokens';
+import { createTheme, lightThemePrimitives } from 'baseui';
+import { colors } from 'baseui/tokens';
 
 const myThemePrimitives = {
   ...lightThemePrimitives,
@@ -99,12 +97,12 @@ Sometimes our default mapping of theme's building primitives to theme properties
 ```js
 // myTheme.js
 
-import {createTheme, lightThemePrimitives} from 'baseui';
-import {colors} from 'baseui/tokens';
+import { createTheme, lightThemePrimitives } from 'baseui';
+import { colors } from 'baseui/tokens';
 
 const myThemeOverrides = {
   colors: {
-    borderFocus: colors.yellow200,
+    borderSelected: colors.yellow200,
   },
 };
 
@@ -133,8 +131,4 @@ Not every color listed here is used in a `baseui` component. This is simply the 
 
 ## API
 
-<Exports
-  component={TokensExports}
-  title="Tokens exports"
-  path="baseui/tokens"
-/>
+<Exports component={TokensExports} title="Tokens exports" path="baseui/tokens" />

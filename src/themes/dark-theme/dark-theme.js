@@ -8,7 +8,6 @@ LICENSE file in the root directory of this source tree.
 import colorTokens from './color-tokens.js';
 import getSemanticColorTokens from './color-semantic-tokens.js';
 import getComponentColorTokens from './color-component-tokens.js';
-import getDeprecatedSemanticColorTokens from './color-deprecated-semantic-tokens.js';
 import borders from './borders.js';
 import lighting from '../shared/lighting.js';
 import getTypography from '../shared/typography.js';
@@ -25,7 +24,6 @@ export const DarkTheme: ThemeT = {
   colors: {
     ...colorTokens,
     ...getComponentColorTokens(),
-    ...getDeprecatedSemanticColorTokens(),
     ...getSemanticColorTokens(),
   },
   animation,
