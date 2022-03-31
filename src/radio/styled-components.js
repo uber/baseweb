@@ -26,15 +26,14 @@ function getOuterColor(props) {
     $checked,
     $isFocusVisible,
     $error,
-    $isError,
   } = props;
   if ($disabled) return colors.tickFillDisabled;
   if (!$checked) {
     if ($isFocusVisible) return colors.borderSelected;
-    if ($error || $isError) return colors.tickBorderError;
+    if ($error) return colors.tickBorderError;
     return colors.tickBorder;
   } else {
-    if ($error || $isError) {
+    if ($error) {
       switch (getState(props)) {
         case DEFAULT:
           return colors.tickFillErrorSelected;
@@ -66,7 +65,7 @@ function getInnerColor(props) {
   }
 
   if (!props.$checked) {
-    if (props.$error || props.$isError) {
+    if (props.$error) {
       switch (getState(props)) {
         case DEFAULT:
           return colors.tickFillError;
