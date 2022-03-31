@@ -321,22 +321,19 @@ const tests = {
       `,
     },
 
-    // RadioGroup - isError
-    // prop as jsx expression
+    // RadioGroup - deprecated overrides
     {
       code: `
-        import {Radio} from 'baseui/radio';
+        import {Radio, RadioGroup} from 'baseui/radio';
         export default function() {
-          return <Radio isError={true} />
+          return (
+            <RadioGroup overrides={{Label: {style: {marginRight: 0}}}}>
+              <Radio>hello</Radio>
+            </RadioGroup>
+          );
         }
       `,
-      errors: [{ messageId: MESSAGES.replace.id }],
-      output: `
-        import {Radio} from 'baseui/radio';
-        export default function() {
-          return <Radio error={true} />
-        }
-      `,
+      errors: [{ messageId: MESSAGES.radioGroupOverrides.id }],
     },
 
     // Modal - autofocus

@@ -57,7 +57,10 @@ module.exports = {
       },
       JSXOpeningElement(node) {
         if (importState[node.name.name] && hasProp(node.attributes, 'overrides')) {
-          const overrides = node.attributes.filter((attr) => attr.name.name === 'overrides').pop();
+          const overrides = node.attributes
+            // JsxSpreadAttribute {...foo} does not have a name parameter
+            .filter((attr) => attr.name && attr.name.name === 'overrides')
+            .pop();
           if (
             !overrides ||
             !overrides.value ||

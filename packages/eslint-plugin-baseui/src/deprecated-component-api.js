@@ -53,6 +53,7 @@ module.exports = {
       [MESSAGES.deprecateSpinner.id]: MESSAGES.deprecateSpinner.message,
       [MESSAGES.buttonKindMinimal.id]: MESSAGES.buttonKindMinimal.message,
       [MESSAGES.modalBackdrop.id]: MESSAGES.modalBackdrop.message,
+      [MESSAGES.radioGroupOverrides.id]: MESSAGES.radioGroupOverrides.message,
     },
   },
   create(context) {
