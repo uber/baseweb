@@ -29,7 +29,6 @@ export default class Accordion extends React.Component<AccordionPropsT, Accordio
   state = {
     expanded: [],
     ...this.props.initialState,
-    itemRefs: [],
   };
 
   itemRefs = [];
