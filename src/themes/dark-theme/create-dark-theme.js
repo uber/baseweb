@@ -12,7 +12,6 @@ import breakpoints from '../shared/breakpoints.js';
 import deepMerge from '../../utils/deep-merge.js';
 import defaultColorTokens from './color-tokens.js';
 import getComponentColorTokens from './color-component-tokens.js';
-import getDeprecatedSemanticColorTokens from './color-deprecated-semantic-tokens.js';
 import getSemanticColorTokens from './color-semantic-tokens.js';
 import getTypography from '../shared/typography.js';
 import grid from '../shared/grid.js';
@@ -43,7 +42,6 @@ export default function createDarkTheme(
     colors: {
       ...colorTokens,
       ...getComponentColorTokens(colorTokens),
-      ...getDeprecatedSemanticColorTokens(colorTokens),
       ...getSemanticColorTokens(colorTokens),
     },
     direction: 'auto',

@@ -58,13 +58,6 @@ export default (themePrimitives: ColorTokensT = colorTokens): ComponentColorToke
   breadcrumbsSeparatorFill: themePrimitives.mono700,
 
   // Datepicker
-  datepickerBackground: themePrimitives.mono100,
-  datepickerDayFont: themePrimitives.mono1000,
-  datepickerDayFontDisabled: themePrimitives.mono500,
-  datepickerDayPseudoSelected: themePrimitives.primary100,
-  datepickerDayPseudoHighlighted: themePrimitives.primary200,
-
-  // Calendar
   calendarBackground: themePrimitives.mono100,
   calendarForeground: themePrimitives.mono1000,
   calendarForegroundDisabled: themePrimitives.mono500,
@@ -72,7 +65,6 @@ export default (themePrimitives: ColorTokensT = colorTokens): ComponentColorToke
   calendarHeaderForeground: themePrimitives.primary,
   calendarHeaderBackgroundActive: themePrimitives.primary700,
   calendarHeaderForegroundDisabled: themePrimitives.primary500,
-  calendarDayBackgroundPseudoSelected: themePrimitives.primary100,
   calendarDayForegroundPseudoSelected: themePrimitives.mono1000,
   calendarDayBackgroundPseudoSelectedHighlighted: themePrimitives.primary200,
   calendarDayForegroundPseudoSelectedHighlighted: themePrimitives.mono1000,
@@ -101,15 +93,12 @@ export default (themePrimitives: ColorTokensT = colorTokens): ComponentColorToke
   // List
   listHeaderFill: themePrimitives.white,
   listBodyFill: themePrimitives.white,
-  listIconFill: themePrimitives.mono500,
-  listBorder: themePrimitives.mono500,
 
   // ProgressSteps
   progressStepsCompletedText: themePrimitives.white,
   progressStepsCompletedFill: themePrimitives.primary,
   progressStepsActiveText: themePrimitives.white,
   progressStepsActiveFill: themePrimitives.primary,
-  progressStepsIconActiveFill: themePrimitives.primary,
 
   // Toggle
   toggleFill: themePrimitives.white,
@@ -148,24 +137,12 @@ export default (themePrimitives: ColorTokensT = colorTokens): ComponentColorToke
   sliderHandleFill: themePrimitives.primaryA,
   sliderHandleFillDisabled: themePrimitives.primary400,
   sliderHandleInnerFill: themePrimitives.primaryA,
-
   sliderTrackFillHover: themePrimitives.mono500,
   sliderTrackFillActive: themePrimitives.mono600,
-  sliderTrackFillSelected: themePrimitives.primary,
-  sliderTrackFillSelectedHover: themePrimitives.primary,
-  sliderTrackFillSelectedActive: themePrimitives.primary500,
   sliderTrackFillDisabled: themePrimitives.mono300,
-  sliderHandleFillHover: themePrimitives.white,
-  sliderHandleFillActive: themePrimitives.white,
-  sliderHandleFillSelected: themePrimitives.white,
-  sliderHandleFillSelectedHover: themePrimitives.white,
-  sliderHandleFillSelectedActive: themePrimitives.white,
   sliderHandleInnerFillDisabled: themePrimitives.mono400,
   sliderHandleInnerFillSelectedHover: themePrimitives.primary,
   sliderHandleInnerFillSelectedActive: themePrimitives.primary500,
-  sliderBorder: themePrimitives.mono500,
-  sliderBorderHover: themePrimitives.primary,
-  sliderBorderDisabled: themePrimitives.mono600,
 
   // Inputs
   inputBorder: themePrimitives.mono300,
@@ -196,19 +173,11 @@ export default (themePrimitives: ColorTokensT = colorTokens): ComponentColorToke
   modalCloseColorHover: themePrimitives.mono800,
   modalCloseColorFocus: themePrimitives.mono800,
 
-  // Pagination
-  paginationTriangleDown: themePrimitives.mono800,
-
-  // Header navigation
-  headerNavigationFill: 'transparent',
-
   // Tab
   tabBarFill: themePrimitives.mono200,
   tabColor: themePrimitives.mono800,
 
   // Notification
-  notificationPrimaryBackground: themePrimitives.primary50,
-  notificationPrimaryText: themePrimitives.primaryA,
   notificationInfoBackground: themePrimitives.accent50,
   notificationInfoText: themePrimitives.primaryA,
   notificationPositiveBackground: themePrimitives.positive50,
@@ -222,7 +191,6 @@ export default (themePrimitives: ColorTokensT = colorTokens): ComponentColorToke
 
   // Custom ramps
   tagFontDisabledRampUnit: '100',
-  tagOutlinedDisabledRampUnit: '200',
   tagSolidFontRampUnit: '0',
   tagSolidRampUnit: '400',
   tagOutlinedFontRampUnit: '400',
@@ -235,7 +203,6 @@ export default (themePrimitives: ColorTokensT = colorTokens): ComponentColorToke
   tagLightRampUnit: '50',
   tagLightHoverRampUnit: '100',
   tagLightActiveRampUnit: '100',
-  tagLightDisabledRampUnit: '50',
   tagLightFontRampUnit: '500',
   tagLightFontHoverRampUnit: '500',
   tagOutlinedHoverRampUnit: '50',
@@ -385,7 +352,6 @@ export default (themePrimitives: ColorTokensT = colorTokens): ComponentColorToke
 
   // Toast
   toastText: themePrimitives.white,
-  toastPrimaryBackground: themePrimitives.primary400,
   toastPrimaryText: themePrimitives.white,
   toastInfoBackground: themePrimitives.accent400,
   toastInfoText: themePrimitives.white,

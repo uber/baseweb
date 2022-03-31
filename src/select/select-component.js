@@ -118,11 +118,16 @@ class Select extends React.Component<PropsT, SelectStateT> {
     }
     this.isItMounted = true;
 
-    if (this.props.methodsRef) {
-      const { methodsRef } = this.props;
-
-      methodsRef.current = {
+    const { controlRef } = this.props;
+    if (controlRef && typeof controlRef !== 'function') {
+      controlRef.current = {
         setDropdownOpen: this.handleDropdownOpen.bind(this),
+        setInputValue: this.handleSetInputValue.bind(this),
+        setInputFocus: this.handleSetInputFocus.bind(this),
+        setInputBlur: this.handleSetInputBlur.bind(this),
+        // `focus` & `blur` below are for backwards compatibility and may be removed. Use setInputFocus and setInputBlur instead.
+        focus: this.handleSetInputFocus.bind(this),
+        blur: this.handleSetInputBlur.bind(this),
       };
     }
   }
@@ -162,6 +167,20 @@ class Select extends React.Component<PropsT, SelectStateT> {
     this.setState({
       isOpen: nextOpenState,
     });
+  }
+
+  handleSetInputValue(newInputValue: string) {
+    this.setState({
+      inputValue: newInputValue,
+    });
+  }
+
+  handleSetInputFocus() {
+    this.input.focus();
+  }
+
+  handleSetInputBlur() {
+    this.input.blur();
   }
 
   // Handle touch outside on mobile to dismiss menu, ensures that the
@@ -479,15 +498,13 @@ class Select extends React.Component<PropsT, SelectStateT> {
     }
   };
 
+  // This method is to preserve backwards compatibility for users using controlRef to directly
+  // access the input element. This capability is not documented, and may be removed in the future.
   //flowlint-next-line unclear-type:off
   handleInputRef = (input: React.ElementRef<any>) => {
     this.input = input;
-    if (this.props.controlRef) {
-      if (typeof this.props.controlRef === 'function') {
-        this.props.controlRef(input);
-      } else {
-        this.props.controlRef.current = input;
-      }
+    if (this.props.controlRef && typeof this.props.controlRef === 'function') {
+      this.props.controlRef(input);
     }
   };
 
