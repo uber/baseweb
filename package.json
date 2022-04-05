@@ -104,6 +104,9 @@
     "webpack": "^4.17.1",
     "webpack-cli": "^3.1.0"
   },
+  "resolutions": {
+    "event-stream": "3.3.5"
+  },
   "dependencies": {
     "memoize-one": "^4.0.2",
     "popper.js": "^1.14.3",
