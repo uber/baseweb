@@ -9,7 +9,6 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env browser */
 
 import * as React from 'react';
-import semver from 'semver';
 
 import ChevronDown from 'baseui/icon/chevron-down';
 import { StatefulPopover, PLACEMENT as PopoverPlacement } from 'baseui/popover';
