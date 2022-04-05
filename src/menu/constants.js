@@ -29,7 +29,6 @@ export const KEY_STRINGS = {
   Backspace: 'Backspace',
   Home: 'Home',
   End: 'End',
-  Tab: 'Tab',
 };
 
 export const OPTION_LIST_SIZE = {

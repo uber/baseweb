@@ -176,8 +176,6 @@ class MenuStatefulContainerInner extends React.Component<
 
   onKeyDown = (event: KeyboardEvent) => {
     switch (event.key) {
-      case KEY_STRINGS.Tab:
-        break;
       case KEY_STRINGS.ArrowUp:
       case KEY_STRINGS.ArrowDown:
       case KEY_STRINGS.ArrowLeft:
@@ -212,7 +210,6 @@ class MenuStatefulContainerInner extends React.Component<
     }, 500);
 
     var nextIndex = prevIndex;
-    event.preventDefault();
     var list = this.getItems();
     if (list.length === 0 || !('label' in list[0])) return;
 
