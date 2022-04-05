@@ -109,6 +109,9 @@
     "popper.js": "^1.14.3",
     "smoothscroll-polyfill": "^0.4.3"
   },
+  "resolutions": {
+    "event-stream": "3.3.5"
+  },
   "peerDependencies": {
     "react": ">= 16.4.0 < 17",
     "react-dom": ">= 16.4.0 < 17",
