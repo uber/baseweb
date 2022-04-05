@@ -38,6 +38,9 @@
     "prepublish": "npm run build",
     "icon:generate": "./src/icon/build-icons.js"
   },
+  "resolutions": {
+    "event-stream": "3.3.5"
+  },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
     "@babel/core": "^7.0.0",
