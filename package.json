@@ -18,7 +18,6 @@
     "commitmsg": "commitlint -e $GIT_PARAMS",
     "test": "yarn lint && yarn flow && yarn unit-test",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook -o docs",
     "precommit": "pretty-quick --staged && yarn run test",
     "prebuild": "rimraf dist",
     "build:copy-files": "cp package.json dist/package.json && cp README.md dist/README.md",
