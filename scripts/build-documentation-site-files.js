@@ -11,10 +11,8 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 
 const generateBlogPosts = require('./post-generator.js');
-const generateVersions = require('./version-generator.js');
 //$FlowFixMe
 const { generateCheatSheet } = require('./cheat-sheet-generator.js');
 
 generateBlogPosts();
-generateVersions();
 generateCheatSheet();
