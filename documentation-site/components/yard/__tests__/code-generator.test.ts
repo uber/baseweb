@@ -16,91 +16,109 @@ test('overrides', () => {
             active: true,
             style: `() => { color: 'black'}`,
           },
-
           NotActiveNotInAST: {
             active: false,
             style: `() => { color: 'pink'}`,
           },
         },
-
         type: PropTypes.Custom,
         description: '',
       } as any,
       'overrides',
       customProps
     )
-  ).toMatchInlineSnapshot(`
-    Object {
-      "properties": Array [
-        Object {
-          "computed": false,
-          "decorators": null,
-          "key": Object {
-            "name": "Root",
-            "type": "Identifier",
-          },
-          "shorthand": false,
-          "type": "ObjectProperty",
-          "value": Object {
-            "properties": Array [
-              Object {
-                "computed": false,
-                "decorators": null,
-                "key": Object {
-                  "name": "style",
-                  "type": "Identifier",
-                },
-                "shorthand": false,
-                "type": "ObjectProperty",
-                "value": Object {
-                  "async": false,
-                  "body": Object {
-                    "body": Array [
-                      Object {
-                        "body": Object {
-                          "expression": Object {
-                            "extra": Object {
-                              "raw": "'black'",
-                              "rawValue": "black",
-                            },
-                            "loc": undefined,
-                            "type": "StringLiteral",
-                            "value": "black",
-                          },
-                          "loc": undefined,
-                          "type": "ExpressionStatement",
-                        },
-                        "label": Object {
-                          "loc": undefined,
-                          "name": "color",
-                          "type": "Identifier",
-                        },
-                        "loc": undefined,
-                        "type": "LabeledStatement",
-                      },
-                    ],
-                    "directives": Array [],
-                    "loc": undefined,
-                    "type": "BlockStatement",
-                  },
-                  "extra": Object {
-                    "parenStart": 0,
-                    "parenthesized": true,
-                  },
-                  "generator": false,
-                  "loc": undefined,
-                  "params": Array [],
-                  "type": "ArrowFunctionExpression",
-                },
-              },
-            ],
-            "type": "ObjectExpression",
-          },
+  ).toEqual({
+    properties: [
+      {
+        computed: false,
+        decorators: null,
+        key: {
+          name: 'Root',
+          type: 'Identifier',
         },
-      ],
-      "type": "ObjectExpression",
-    }
-  `);
+        shorthand: false,
+        type: 'ObjectProperty',
+        value: {
+          properties: [
+            {
+              computed: false,
+              decorators: null,
+              key: {
+                name: 'style',
+                type: 'Identifier',
+              },
+              shorthand: false,
+              type: 'ObjectProperty',
+              value: {
+                async: false,
+                body: {
+                  body: [
+                    {
+                      body: {
+                        expression: {
+                          extra: {
+                            raw: "'black'",
+                            rawValue: 'black',
+                          },
+                          innerComments: undefined,
+                          leadingComments: undefined,
+                          loc: undefined,
+                          trailingComments: undefined,
+                          type: 'StringLiteral',
+                          value: 'black',
+                        },
+                        extra: {},
+                        innerComments: undefined,
+                        leadingComments: undefined,
+                        loc: undefined,
+                        trailingComments: undefined,
+                        type: 'ExpressionStatement',
+                      },
+                      extra: {},
+                      innerComments: undefined,
+                      label: {
+                        extra: {},
+                        innerComments: undefined,
+                        leadingComments: undefined,
+                        loc: undefined,
+                        name: 'color',
+                        trailingComments: undefined,
+                        type: 'Identifier',
+                      },
+                      leadingComments: undefined,
+                      loc: undefined,
+                      trailingComments: undefined,
+                      type: 'LabeledStatement',
+                    },
+                  ],
+                  directives: [],
+                  extra: {},
+                  innerComments: undefined,
+                  leadingComments: undefined,
+                  loc: undefined,
+                  trailingComments: undefined,
+                  type: 'BlockStatement',
+                },
+                extra: {
+                  parenStart: 0,
+                  parenthesized: true,
+                },
+                generator: false,
+                innerComments: undefined,
+                leadingComments: undefined,
+                loc: undefined,
+                params: [],
+                trailingComments: undefined,
+                type: 'ArrowFunctionExpression',
+              },
+            },
+          ],
+          type: 'ObjectExpression',
+        },
+      },
+    ],
+    type: 'ObjectExpression',
+  });
 });
 
 describe('get theme AST primitives', () => {
