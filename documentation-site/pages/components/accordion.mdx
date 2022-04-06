@@ -18,7 +18,7 @@ import CustomTitle from 'examples/accordion/title.js';
 
 import * as AccordionExports from 'baseui/accordion';
 import * as PanelExports from 'baseui/accordion/panel.js';
-import {Accordion, Panel} from 'baseui/accordion';
+import { Accordion, Panel } from 'baseui/accordion';
 
 import Yard from '../../components/yard/index';
 import accordionYardConfig from '../../components/yard/config/accordion';
@@ -39,7 +39,9 @@ Accordions display a list of high-level options that can expand/contract to reve
 
 ## Accessibility
 
-- `tab`, `shift + tab` - to switch between panels.
+- `tab`, `shift + tab` - switch between panels.
+- `arrow up`, `arrow down`, `home`, `end` - switch between panels (won't shift focus outside of
+  accordion if you attempt to move beyond the first or last panel).
 - `space` or `enter` - when focus is on the accordion panel header it will toggle (expand or
   collapse) the currently focused panel.
 
@@ -61,10 +63,7 @@ Accordions display a list of high-level options that can expand/contract to reve
   <AccordionSEO />
 </Example>
 
-<Example
-  title="Using a stateful panel component on it's own"
-  path="accordion/stateful-panel.js"
->
+<Example title="Using a stateful panel component on it's own" path="accordion/stateful-panel.js">
   <StatefulPanelExample />
 </Example>
 
@@ -88,8 +87,4 @@ The `StatelessAccordion` gives you the flexibility to control the accordion as y
 
 **Note:** the `Panel` has the same overrides as `Accordion`, with the exception of the `Root` subcomponent.
 
-<Exports
-  component={AccordionExports}
-  title="Accordion exports"
-  path="baseui/accordion"
-/>
+<Exports component={AccordionExports} title="Accordion exports" path="baseui/accordion" />

@@ -20,18 +20,21 @@ import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible.js';
 
 import type { PanelPropsT } from './types.js';
 
-const Panel = ({
-  'aria-controls': ariaControls,
-  children,
-  disabled = false,
-  expanded = false,
-  onChange = () => {},
-  onClick = () => {},
-  onKeyDown = () => {},
-  overrides = {},
-  title = '',
-  renderAll = false,
-}: PanelPropsT) => {
+const Panel = (
+  {
+    'aria-controls': ariaControls,
+    children,
+    disabled = false,
+    expanded = false,
+    onChange = () => {},
+    onClick = () => {},
+    onKeyDown = () => {},
+    overrides = {},
+    title = '',
+    renderAll = false,
+  }: PanelPropsT,
+  ref
+) => {
   const [localState, setLocalState] = React.useState({
     expanded,
     isFocusVisible: false,
@@ -175,6 +178,7 @@ const Panel = ({
             onKeyDown={handleKeyDown}
             onFocus={forkFocus(headerProps, handleFocus)}
             onBlur={forkBlur(headerProps, handleBlur)}
+            ref={ref}
           >
             {title}
             <ToggleIcon
@@ -223,4 +227,6 @@ const Panel = ({
   );
 };
 
-export default Panel;
+const ForwardedPanel = React.forwardRef<PanelPropsT, HTMLElement>(Panel);
+ForwardedPanel.displayName = 'Panel';
+export default ForwardedPanel;
