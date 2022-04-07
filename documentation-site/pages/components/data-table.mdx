@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
-import {Notification, KIND} from 'baseui/notification';
+import { Notification, KIND } from 'baseui/notification';
 
 import Example from '../../components/example';
 import Layout from '../../components/layout';
@@ -21,6 +21,7 @@ import BatchAction from 'examples/data-table/batch-action.js';
 import RowHeightLineClamp from 'examples/data-table/row-height-line-clamp.js';
 import CustomizedEmptyState from 'examples/data-table/customized-empty-state.js';
 import CustomizedColumnSort from 'examples/data-table/customized-column-sort.js';
+import AccessTableData from 'examples/data-table/access-table-data.js';
 
 export default Layout;
 
@@ -49,24 +50,22 @@ other table options: [Table](/components/table) (uses css-flex) or [TableGrid](/
   <RowHeightLineClamp />
 </Example>
 
-<Example
-  title="Customized Column Sort"
-  path="data-table/customized-column-sort.js"
->
+<Example title="Customized Column Sort" path="data-table/customized-column-sort.js">
   <CustomizedColumnSort />
 </Example>
 
-<Example
-  title="Customized Empty State"
-  path="data-table/customized-empty-state.js"
->
+<Example title="Customized Empty State" path="data-table/customized-empty-state.js">
   <CustomizedEmptyState />
 </Example>
 
+<Example title="Imperatively access table data" path="data-table/access-table-data.js">
+  <AccessTableData />
+</Example>
+
+The `controlRef` prop allows developers to access the current state of data (filtered and
+sorted) via the `getRows` method. This can be used to copy the visible state of the table to the
+clipboard or download the data to CSV or other formats.
+
 ## API
 
-<Exports
-  component={DataTableExports}
-  title="Data-Table exports"
-  path="baseui/data-table"
-/>
+<Exports component={DataTableExports} title="Data-Table exports" path="baseui/data-table" />
