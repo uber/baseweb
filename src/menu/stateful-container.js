@@ -201,7 +201,6 @@ export default class MenuStatefulContainer extends React.Component<
     }, 500);
 
     var nextIndex = prevIndex;
-    event.preventDefault();
     var list = this.getItems();
     if (list.length === 0 || !('label' in list[0])) return;
 
