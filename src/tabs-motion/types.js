@@ -31,7 +31,7 @@ export type TabOverridesT = {
 };
 
 export type StatefulTabsStateT = {|
-  activeKey: React.Key,
+  activeKey?: React.Key,
 |};
 
 export type StatefulTabsActionT = {|

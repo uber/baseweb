@@ -13,11 +13,21 @@ import { STATE_CHANGE_TYPE } from './constants.js';
 
 import type { StatefulTabsPropsT, StatefulTabsStateT, StatefulTabsReducerT } from './types.js';
 
+// React doesn't render children that are null, undefined, or booleans.
+const isUnrenderedChild = (child: React.Node) => {
+  return child === true || child === false || child === null || child === undefined;
+};
+
 const getInitialState = (children: React.Node, initialState?: StatefulTabsStateT) => {
   if (initialState && initialState.activeKey) {
     return initialState;
   } else {
-    const firstKey = React.Children.map(children, (child, index) => child.key || String(index))[0];
+    const firstKey = React.Children.map(children, (child, index) => {
+      if (isUnrenderedChild(child)) {
+        return null;
+      }
+      return child.key || String(index);
+    }).find((child) => child !== null);
     return { activeKey: firstKey };
   }
 };

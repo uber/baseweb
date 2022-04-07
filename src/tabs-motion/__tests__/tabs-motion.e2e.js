@@ -92,6 +92,18 @@ describe('tabs', () => {
     expect(await page.evaluate(`window.__e2e__error`)).toBe(false);
   });
 
+  it('conditional stateful tab does not throw error', async () => {
+    const id = `d${Math.floor(Math.random() * 1e9)}`;
+    await mount(page, 'tabs-motion--stateful-conditional');
+    const button = await page.$('#toggle-robot-tab');
+    let firstTab = await page.$('#tabs-conditional-tab-robot');
+    expect(firstTab).toBeFalsy();
+    await button.click();
+    firstTab = await page.$('#tabs-conditional-tab-robot');
+    expect(firstTab).toBeTruthy();
+    expect(await page.evaluate(`window.__e2e__error`)).toBe(false);
+  });
+
   it('*tab* moves focus to active tab', async () => {
     await mount(page, 'tabs-motion--focus');
     const firstFocusElement = await page.$('#first-focus');

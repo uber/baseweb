@@ -22,6 +22,7 @@ import { Scenario as TabsMotionScrollSafe } from './tabs-motion-scroll-safe.scen
 import { Scenario as TabsMotionScrollVertical } from './tabs-motion-scroll-vertical.scenario.js';
 import { Scenario as TabsMotionScroll } from './tabs-motion-scroll.scenario.js';
 import { Scenario as TabsMotionStateful } from './tabs-motion-stateful.scenario.js';
+import { Scenario as TabsMotionStatefulConditional } from './tabs-motion-stateful-conditional.scenario.js';
 import { Scenario as TabsMotionVerticalPageScroll } from './tabs-motion-vertical-pageScroll.scenario.js';
 import { Scenario as TabsMotionVertical } from './tabs-motion-vertical.scenario.js';
 import { Scenario as TabsMotionDefault } from './tabs-motion.scenario.js';
@@ -41,6 +42,7 @@ export const ScrollSafe = () => <TabsMotionScrollSafe />;
 export const ScrollVertical = () => <TabsMotionScrollVertical />;
 export const Scroll = () => <TabsMotionScroll />;
 export const Stateful = () => <TabsMotionStateful />;
+export const StatefulConditional = () => <TabsMotionStatefulConditional />;
 export const VerticalPageScroll = () => <TabsMotionVerticalPageScroll />;
 export const Vertical = () => <TabsMotionVertical />;
 export const TabsMotion = () => <TabsMotionDefault />;
