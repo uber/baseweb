@@ -21,7 +21,6 @@ class StatelessRadioGroup extends React.Component<PropsT, StatelessStateT> {
     autoFocus: false,
     labelPlacement: 'right',
     align: 'vertical',
-    isError: false,
     error: false,
     required: false,
     onChange: () => {},
@@ -33,14 +32,6 @@ class StatelessRadioGroup extends React.Component<PropsT, StatelessStateT> {
   };
 
   state = { isFocusVisible: false, focusedRadioIndex: -1 };
-
-  componentDidMount() {
-    if (__DEV__ && this.props.isError) {
-      console.warn(
-        'baseui:Radio Property "isError" will be removed in the next major version. Use "error" property instead.'
-      );
-    }
-  }
 
   handleFocus = (event: SyntheticInputEvent<HTMLInputElement>, index: number) => {
     if (isFocusVisible(event)) {
@@ -65,30 +56,18 @@ class StatelessRadioGroup extends React.Component<PropsT, StatelessStateT> {
       StyledRadioGroupRoot
     );
 
-    if (__DEV__) {
-      const overrideKeys = Object.keys(overrides);
-      // TODO(v11)
-      if (Boolean(overrideKeys.length) && !overrideKeys.includes('RadioGroupRoot')) {
-        // eslint-disable-next-line no-console
-        console.warn(`All overrides beside 'RadioGroupRoot' will be deprecated in the next major version update.
-          Pass other overrides to the 'Radio' children instead.
-        `);
-      }
-    }
-
     return (
       <RadioGroupRoot
         id={this.props.id}
         role="radiogroup"
         aria-describedby={this.props['aria-describedby']}
         aria-errormessage={this.props['aria-errormessage']}
-        aria-invalid={this.props.error || this.props.isError || null}
+        aria-invalid={this.props.error || null}
         aria-label={this.props['aria-label']}
         aria-labelledby={this.props['aria-labelledby']}
         $align={this.props.align}
         $disabled={this.props.disabled}
-        $isError={this.props.error || this.props.isError}
-        $error={this.props.error || this.props.isError}
+        $error={this.props.error}
         $required={this.props.required}
         {...radioGroupRootProps}
       >
@@ -102,7 +81,6 @@ class StatelessRadioGroup extends React.Component<PropsT, StatelessStateT> {
             autoFocus: this.props.autoFocus,
             checked,
             disabled: this.props.disabled || child.props.disabled,
-            isError: this.props.isError,
             error: this.props.error,
             isFocused: this.state.focusedRadioIndex === index,
             isFocusVisible: this.state.isFocusVisible,
@@ -114,8 +92,6 @@ class StatelessRadioGroup extends React.Component<PropsT, StatelessStateT> {
             onChange: this.props.onChange,
             onMouseEnter: this.props.onMouseEnter,
             onMouseLeave: this.props.onMouseLeave,
-            // will need to remove overrides pass-through on next major version
-            overrides: { ...this.props.overrides, ...child.props.overrides },
           });
         })}
       </RadioGroupRoot>

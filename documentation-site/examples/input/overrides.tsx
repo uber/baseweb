@@ -6,7 +6,7 @@ export default function Example() {
     <Input
       overrides={{
         Root: {
-          style: props => {
+          style: (props) => {
             const {
               $disabled,
               $error,
@@ -14,12 +14,12 @@ export default function Example() {
               $theme: {colors, sizing},
             } = props;
             const border = $disabled
-              ? colors.borderAlt
+              ? colors.borderTransparent
               : $error
-              ? colors.borderError
+              ? colors.borderNegative
               : $isFocused
               ? 'darkseagreen'
-              : colors.border;
+              : colors.borderOpaque;
             return {
               borderLeftColor: border,
               borderRightColor: border,

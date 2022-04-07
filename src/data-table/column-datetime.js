@@ -382,7 +382,9 @@ function DatetimeFilter(props) {
                   onChange={({ date }) => {
                     if (Array.isArray(date)) {
                       if (!date.length) return;
-                      const nextDates = date.map((d, i) => applyDateToTime(rangeDates[i], d));
+                      const nextDates = date.map((d, i) =>
+                        d ? applyDateToTime(rangeDates[i], d) : null
+                      );
                       setRangeDates(nextDates);
                     }
                   }}

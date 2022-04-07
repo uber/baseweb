@@ -29,7 +29,7 @@ const StyledFooter = themedStyled<{}>(
     position: 'sticky',
     bottom: 0,
     color: colors.contentPrimary,
-    backgroundColor: name.startsWith('light-theme') ? colors.mono200 : colors.headerNavigationFill,
+    backgroundColor: colors.backgroundSecondary,
     width: '100%',
     marginTop: sizing.scale1400,
     paddingTop: sizing.scale1600,

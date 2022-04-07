@@ -27,7 +27,6 @@ export type DefaultPropsT = {
   children?: React$Node,
   checked: boolean,
   disabled: boolean,
-  isError: boolean,
   error: boolean,
   autoFocus: boolean,
   isIndeterminate: boolean,
@@ -63,8 +62,6 @@ export type PropsT = {
   required?: boolean,
   /** Renders checkbox in errored state. */
   error?: boolean,
-  /** You should use error instead. */
-  isError?: boolean,
   /** Used to get a ref to the input element. Useful for programmatically focusing the input */
   inputRef: ReactRefT<HTMLInputElement>,
   /** Focus the checkbox on initial render. */
@@ -195,13 +192,11 @@ export type SharedStylePropsT = {
   $isFocusVisible: boolean,
   $isHovered: boolean,
   $isActive: boolean,
-  $isError: boolean,
   $error: boolean,
   $checked: boolean,
   $isIndeterminate: boolean,
   $required: boolean,
   $disabled: boolean,
   $value: string,
-  $checkmarkType: StyleTypeT,
   $labelPlacement: LabelPlacementT,
 };

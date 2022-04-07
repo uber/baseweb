@@ -20,14 +20,10 @@ export type CloseSourceT = $Keys<typeof CLOSE_SOURCE>;
 
 export type OverridesT = {
   Root?: OverrideT,
-  Backdrop?: OverrideT,
   Dialog?: OverrideT,
   DialogContainer?: OverrideT,
   Close?: OverrideT,
 };
-
-// flowlint-next-line unclear-type:off
-export type ElementRefT = { current: React.ElementRef<any> | null };
 
 // Props shared by all flavors of modal
 export type ModalPropsT = {
@@ -37,7 +33,6 @@ export type ModalPropsT = {
    * If false, the modal container itself will receive focus.
    * Moving focus into a newly opened modal is important for accessibility purposes, so please be careful!
    */
-  autofocus: boolean | null,
   autoFocus: boolean,
   /** If true, focus will be locked to elements within the modal.
    */
@@ -53,7 +48,7 @@ export type ModalPropsT = {
    * for performance reasons (wont render until opened) */
   children?: React.Node | (() => React.Node),
   /** Whether the modal should be closeable by the user
-   *  (either via escape, backdrop click, etc). You can set this to
+   *  (either via escape, dialog container click, etc). You can set this to
    * false if your modal has an action that the user must take before closing.*/
   closeable: boolean,
   isOpen: boolean,
@@ -70,9 +65,6 @@ export type ModalPropsT = {
   /** Controls the size of the modal (primarily width).
    * Can be a SIZE constant or css width property value. */
   size: SizePropT,
-  /** Make modal scrollable while cursor is over the modal's backdrop.
-   * Will be removed and implemented as the default behavior in the next major version */
-  unstable_ModalBackdropScroll?: boolean,
 };
 
 export type ModalPropsWithoutChildrenT = $Diff<ModalPropsT, { children: ?React.Node }>;
@@ -90,6 +82,5 @@ export type SharedStylePropsArgT = {
   $size: SizePropT,
   $role: RolePropT,
   $closeable: boolean,
-  $unstable_ModalBackdropScroll?: boolean,
   $isFocusVisible: boolean,
 };

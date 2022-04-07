@@ -124,9 +124,10 @@ class LayerComponent extends React.Component<LayerComponentPropsT, LayerStateT> 
     // Only adding an additional wrapper when a layer has z-index to be set
     const childrenToRender = zIndex ? <Container $zIndex={zIndex}>{children}</Container> : children;
     if (__BROWSER__) {
-      const portalContainer = mountNode || container;
-      if (portalContainer) {
-        return ReactDOM.createPortal(childrenToRender, portalContainer);
+      if (mountNode) {
+        return ReactDOM.createPortal(childrenToRender, mountNode);
+      } else if (container) {
+        return ReactDOM.createPortal(childrenToRender, container);
       }
       return null;
     }

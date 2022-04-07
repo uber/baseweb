@@ -84,13 +84,4 @@ describe('Panel', () => {
     );
     expect(container.textContent).toBe('titlecontent');
   });
-
-  it('does render content when not expanded but renderPanelContent is true', () => {
-    const { container } = render(
-      <Panel title="title" renderPanelContent>
-        content
-      </Panel>
-    );
-    expect(container.textContent).toBe('titlecontent');
-  });
 });

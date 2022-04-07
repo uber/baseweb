@@ -4,10 +4,10 @@ import {
   StyledNavigationItem,
   StyledNavigationList,
 } from 'baseui/header-navigation';
-import {StyledLink} from 'baseui/link';
-import {Button} from 'baseui/button';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
+import { StyledLink } from 'baseui/link';
+import { Button } from 'baseui/button';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
 
 const headerNavigationProps = require('!!extract-react-types-loader!../../../../src/header-navigation/header-navigation.js');
 const buttonProps = require('!!extract-react-types-loader!../../../../src/button/button.js');
@@ -16,12 +16,7 @@ const HeaderNavigationConfig: TConfig = {
   componentName: 'HeaderNavigation',
   imports: {
     'baseui/header-navigation': {
-      named: [
-        'HeaderNavigation',
-        'ALIGN',
-        'StyledNavigationList',
-        'StyledNavigationItem',
-      ],
+      named: ['HeaderNavigation', 'ALIGN', 'StyledNavigationList', 'StyledNavigationItem'],
     },
     'baseui/link': {
       named: ['StyledLink'],
@@ -38,7 +33,7 @@ const HeaderNavigationConfig: TConfig = {
     StyledLink,
     Button,
   },
-  theme: ['headerNavigationFill'],
+  theme: [],
   props: {
     children: {
       value: `<StyledNavigationList $align={ALIGN.left}>

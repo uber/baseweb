@@ -39,7 +39,6 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
     autoFocus: false,
     inputRef: React.createRef<HTMLInputElement>(),
     align: 'vertical',
-    isError: false,
     error: false,
     onChange: () => {},
     onMouseEnter: () => {},
@@ -58,11 +57,6 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
   componentDidMount() {
     if (this.props.autoFocus && this.props.inputRef?.current) {
       this.props.inputRef.current.focus();
-    }
-    if (__DEV__ && this.props.isError) {
-      console.warn(
-        'baseui:Radio Property "isError" will be removed in the next major version. Use "error" property instead.'
-      );
     }
   }
 
@@ -107,7 +101,6 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
       $disabled: this.props.disabled,
       $hasDescription: !!this.props.description,
       $isActive: this.state.isActive,
-      $isError: this.props.isError,
       $error: this.props.error,
       $isFocused: this.props.isFocused,
       $isFocusVisible: this.props.isFocused && this.props.isFocusVisible,
@@ -145,7 +138,7 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
             <RadioMarkInner {...sharedProps} {...radioMarkInnerProps} />
           </RadioMarkOuter>
           <Input
-            aria-invalid={this.props.error || this.props.isError || null}
+            aria-invalid={this.props.error || null}
             checked={this.props.checked}
             disabled={this.props.disabled}
             name={this.props.name}

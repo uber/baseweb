@@ -26,7 +26,6 @@ const tagYardConfig = {
   },
   theme: [
     'tagFontDisabledRampUnit',
-    'tagOutlinedDisabledRampUnit',
     'tagSolidFontRampUnit',
     'tagSolidRampUnit',
     'tagOutlinedHoverRampUnit',

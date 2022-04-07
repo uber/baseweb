@@ -97,7 +97,7 @@ const HeaderCell = React.forwardRef<HeaderCellPropsT, HTMLDivElement>((props, re
       onBlur={handleBlur}
     >
       {props.isSelectable && (
-        <span ref={checkboxRef}>
+        <span className={css({ paddingRight: theme.sizing.scale300 })} ref={checkboxRef}>
           <Checkbox
             onChange={(e) => {
               if (props.isSelectedAll || props.isSelectedIndeterminate) {

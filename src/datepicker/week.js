@@ -75,6 +75,8 @@ export default class Week<T = Date> extends React.Component<WeekPropsT<T>> {
             overrides={this.props.overrides}
             peekNextMonth={this.props.peekNextMonth}
             value={this.props.value}
+            hasLockedBehavior={this.props.hasLockedBehavior}
+            selectedInput={this.props.selectedInput}
           />
         );
       })

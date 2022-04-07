@@ -74,7 +74,7 @@ describe('TimePicker min/max times', () => {
     expect(max).toBe('6:02 PM');
   });
 
-  it('handles min max datetimes with different date than value datetime ignoring min max date when max time on step', async () => {
+  it('handles min max datetimes with different date than value datetime ignoring min max date on step', async () => {
     await mount(page, 'timepicker--time-picker-min-max-diff-day');
 
     const parent = await page.$('#max-time-lands-on-step');

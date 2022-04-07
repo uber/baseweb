@@ -14,7 +14,8 @@ export const STATE_TYPE = {
 export const STYLE_TYPE = Object.freeze({
   default: 'default',
   toggle: 'toggle',
-  toggle_round: 'toggle_round',
+  // maintaining key with aliased value to assist in transition to v11 but will be removed soon after release
+  toggle_round: 'toggle',
 });
 
 export const LABEL_PLACEMENT = Object.freeze({
