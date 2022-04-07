@@ -100,6 +100,8 @@ export default class CalendarMonth<T = Date> extends React.Component<MonthPropsT
           overrides={this.props.overrides}
           peekNextMonth={this.props.peekNextMonth}
           value={this.props.value}
+          hasLockedBehavior={this.props.hasLockedBehavior}
+          selectedInput={this.props.selectedInput}
         />
       );
       i++;

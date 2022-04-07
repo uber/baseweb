@@ -282,15 +282,15 @@ describe('Datepicker', () => {
     const calendar = queryAllByTestId(container, 'calendar');
     expect(calendar.length).toBe(monthsShown);
 
-    //$FlowExpectedError[incompatible-call]
     const prev = queryAllByTestId(container, 'prev-button').filter(
-      (el: HTMLButtonElement) => !el.disabled
+      //flowlint-next-line unclear-type:off
+      (el) => !((el: any): HTMLButtonElement).disabled
     );
     expect(prev.length).toBe(1);
 
-    //$FlowExpectedError[incompatible-call]
     const next = queryAllByTestId(container, 'next-button').filter(
-      (el: HTMLButtonElement) => !el.disabled
+      //flowlint-next-line unclear-type:off
+      (el) => !((el: any): HTMLButtonElement).disabled
     );
     expect(next.length).toBe(1);
 

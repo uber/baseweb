@@ -24,14 +24,14 @@ Add `baseui` and its peer dependencies to your project:
 
 ```bash
 # using yarn
-yarn add baseui styletron-react styletron-engine-atomic
+yarn add baseui styletron-react styletron-engine-monolithic
 
 # using npm
-npm install baseui styletron-react styletron-engine-atomic
+npm install baseui styletron-react styletron-engine-monolithic
 ```
 
 ```javascript
-import {Client as Styletron} from 'styletron-engine-atomic';
+import {Client as Styletron} from 'styletron-engine-monolithic';
 import {Provider as StyletronProvider} from 'styletron-react';
 import {LightTheme, BaseProvider, styled} from 'baseui';
 import {StatefulInput} from 'baseui/input';

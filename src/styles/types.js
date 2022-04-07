@@ -12,7 +12,6 @@ import type {
   ColorTokensT,
   ComponentColorTokensT,
   SemanticColorTokensT,
-  DeprecatedSemanticColorTokensT,
   AnimationT,
   BreakpointsT,
   BorderT,
@@ -44,7 +43,6 @@ export type ColorsT = {
   ...ColorTokensT,
   ...ComponentColorTokensT,
   ...SemanticColorTokensT,
-  ...DeprecatedSemanticColorTokensT,
 };
 
 export type ThemeT = {|

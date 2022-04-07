@@ -461,34 +461,3 @@ export const MonoParagraphXSmall = React.forwardRef<BlockPropsT, HTMLElement>((p
   />
 ));
 MonoParagraphXSmall.displayName = 'MonoParagraphXSmall';
-
-// TODO(v11): remove
-// Aliases for backwards compatibility
-export const Display = DisplayLarge;
-export const Display1 = DisplayLarge;
-export const Display2 = DisplayMedium;
-export const Display3 = DisplaySmall;
-export const Display4 = DisplayXSmall;
-export const H1 = HeadingXXLarge;
-export const H2 = HeadingXLarge;
-export const H3 = HeadingLarge;
-export const H4 = HeadingMedium;
-export const H5 = HeadingSmall;
-export const H6 = HeadingXSmall;
-export const Paragraph1 = ParagraphLarge;
-export const Paragraph2 = ParagraphMedium;
-export const Paragraph3 = ParagraphSmall;
-export const Paragraph4 = ParagraphXSmall;
-export const Label1 = LabelLarge;
-export const Label2 = LabelMedium;
-export const Label3 = LabelSmall;
-export const Label4 = LabelXSmall;
-
-export const Caption1 = React.forwardRef<BlockPropsT, HTMLElement>((props, ref) => (
-  <Paragraph4 {...props} color={props.color || 'contentSecondary'} ref={ref} />
-));
-Caption1.displayName = 'Caption1';
-export const Caption2 = React.forwardRef<BlockPropsT, HTMLElement>((props, ref) => (
-  <Label4 {...props} color={props.color || 'contentSecondary'} />
-));
-Caption2.displayName = 'Caption2';

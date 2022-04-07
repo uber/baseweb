@@ -10,7 +10,6 @@ export const KIND = {
   primary: 'primary',
   secondary: 'secondary',
   tertiary: 'tertiary',
-  minimal: 'minimal',
 };
 
 export const SHAPE = {

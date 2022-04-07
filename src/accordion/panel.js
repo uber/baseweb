@@ -31,7 +31,6 @@ const Panel = (
     onKeyDown = () => {},
     overrides = {},
     title = '',
-    renderPanelContent = false,
     renderAll = false,
   }: PanelPropsT,
   ref
@@ -219,12 +218,7 @@ const Panel = (
               {...contentProps}
               {...(ariaControls ? { id: ariaControls } : {})}
             >
-              {localState.expanded ||
-              renderAll ||
-              renderPanelContent ||
-              localState.animationInProgress
-                ? children
-                : null}
+              {localState.expanded || renderAll || localState.animationInProgress ? children : null}
             </Content>
           </ContentAnimationContainer>
         </PanelContainer>

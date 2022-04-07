@@ -9,7 +9,13 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import type { OverrideT } from '../helpers/overrides.js';
 import type { SizeT } from '../input/types.js';
-import { ORIENTATION, STATE_CHANGE_TYPE, DENSITY } from './constants.js';
+import {
+  INPUT_ROLE,
+  ORIENTATION,
+  RANGED_CALENDAR_BEHAVIOR,
+  STATE_CHANGE_TYPE,
+  DENSITY,
+} from './constants.js';
 import type { DateIOAdapter } from './utils/types.js';
 import type {
   TimePickerPropsT as TimePickerPropsTBase,
@@ -21,7 +27,9 @@ import type { OptionT } from '../select/index.js';
 // flowlint-next-line unclear-type:off
 type LocaleT = any; // see https://github.com/date-fns/date-fns/blob/master/src/locale/index.js.flow
 
-type onChangeT<T> = ({ date: ?T | Array<T> }) => mixed;
+export type DateValueT<T> = ?T | Array<?T>;
+
+type onChangeT<T> = ({ date: DateValueT<T> }) => mixed;
 
 export type DensityT = $Keys<typeof DENSITY>;
 
@@ -74,6 +82,8 @@ export type DayPropsT<T = Date> = {
   includeDates: ?Array<T>,
   highlighted: boolean,
   range: boolean,
+  hasLockedBehavior: boolean,
+  selectedInput: InputRoleT,
   focusedCalendar: boolean,
   locale: ?LocaleT,
   maxDate: ?T,
@@ -82,13 +92,13 @@ export type DayPropsT<T = Date> = {
   month: ?number,
   onBlur: ({ event: Event, date: T }) => mixed,
   onFocus: ({ event: Event, date: T }) => mixed,
-  onSelect: ({ date: ?T | Array<T> }) => mixed,
+  onSelect: ({ date: DateValueT<T> }) => mixed,
   onClick: ({ event: Event, date: T }) => mixed,
   onMouseOver: ({ event: Event, date: T }) => mixed,
   onMouseLeave: ({ event: Event, date: T }) => mixed,
   overrides?: DatepickerOverridesT,
   peekNextMonth: boolean,
-  value: ?T | Array<T>,
+  value: DateValueT<T>,
 };
 
 export type DayStateT = {
@@ -120,7 +130,9 @@ export type WeekPropsT<T = Date> = {
   onChange?: onChangeT<T>,
   overrides?: DatepickerOverridesT,
   peekNextMonth: boolean,
-  value: ?T | Array<T>,
+  value: DateValueT<T>,
+  hasLockedBehavior: boolean,
+  selectedInput?: InputRoleT,
 };
 
 export type MonthPropsT<T = Date> = WeekPropsT<T> & {
@@ -133,7 +145,7 @@ export type CalendarInternalState<T = Date> = {
   date: T,
   quickSelectId: ?string,
   rootElement: ?HTMLElement,
-  time: Array<T>,
+  time: Array<?T>,
 };
 
 export type CalendarPropsT<T = Date> = {
@@ -157,6 +169,8 @@ export type CalendarPropsT<T = Date> = {
   includeDates?: ?Array<T>,
   /** Defines if a range of dates can be selected. */
   range?: boolean,
+  /** Determines whether startDate and endDate should be updated independently of eachother */
+  hasLockedBehavior?: boolean,
   /** A locale object. See `date-fns` for more details https://github.com/date-fns/date-fns/tree/master/src/locale. */
   locale?: ?LocaleT,
   /** A max date that is selectable. */
@@ -194,8 +208,10 @@ export type CalendarPropsT<T = Date> = {
   /** Defines if tabbing inside the calendar is circled within it. */
   trapTabbing?: boolean,
   /** Currently selected date. */
-  value?: ?T | Array<T>,
+  value?: DateValueT<T>,
   fixedHeight?: boolean,
+  /** Determines whether user clicked startDate or endDate input to trigger calendar open */
+  selectedInput?: InputRoleT,
 };
 
 export type HeaderPropsT<T = Date> = CalendarPropsT<T> & {
@@ -222,7 +238,7 @@ export type DatepickerPropsT<T = Date> = CalendarPropsT<T> & {
   required?: boolean,
   clearable?: boolean,
   displayValueAtRangeIndex?: number,
-  formatDisplayValue?: (date: ?T | Array<T>, formatString: string) => string,
+  formatDisplayValue?: (date: DateValueT<T>, formatString: string) => string,
   formatString: string,
   /** Where to mount the popover */
   mountNode?: HTMLElement,
@@ -231,6 +247,8 @@ export type DatepickerPropsT<T = Date> = CalendarPropsT<T> & {
   /** Called when calendar is opened */
   onOpen?: () => mixed,
   mask?: string | null,
+  /** Determines whether startDate and endDate should be updated independently of eachother */
+  rangedCalendarBehavior?: RangedCalendarBehaviorT,
   /** Determines if startDate and endDate should be separated into two input fields. Ignored if `range` is not true. */
   separateRangeInputs?: boolean,
   startDateLabel?: string,
@@ -260,6 +278,9 @@ export type SharedStylePropsT = {
   $hasRangeHighlighted: ?boolean,
   $hasRangeOnRight: ?boolean,
   $hasRangeSelected: ?boolean,
+  $hasLockedBehavior: boolean,
+  $selectedInput: InputRoleT,
+  $value: Date | Array<Date>,
   $order: ?number,
   $hasDateLabel: ?boolean,
 };
@@ -268,7 +289,7 @@ export type StateChangeTypeT = ?$Values<typeof STATE_CHANGE_TYPE>;
 
 export type ContainerStateT<T = Date> = {
   /** Selected `Date`. If `range` is set, `value` is an array of 2 values. */
-  value?: ?T | Array<T>,
+  value?: DateValueT<T>,
 };
 
 export type NavigationContainerStateT<T = Date> = {
@@ -324,7 +345,7 @@ export type NavigationContainerPropsT<T = Date> = {
   /** Event handler that is called when the current rendered year is changed. */
   onYearChange?: ({ date: T }) => mixed,
   /** Selected `Date`. If `range` is set, `value` is an array of 2 values. */
-  value?: ?T | Array<T>,
+  value?: DateValueT<T>,
   stateReducer: NavigationContainerStateReducerT<T>,
   trapTabbing: boolean,
 };
@@ -371,3 +392,7 @@ export type TimezonePickerPropsT = {
   error?: boolean,
   positive?: boolean,
 };
+
+export type InputRoleT = ?$Values<typeof INPUT_ROLE>;
+
+export type RangedCalendarBehaviorT = ?$Values<typeof RANGED_CALENDAR_BEHAVIOR>;

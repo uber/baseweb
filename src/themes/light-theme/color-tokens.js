@@ -76,8 +76,6 @@ const lightColorTokens: ColorTokensT = {
   mono900: colors.gray700,
   mono1000: colors.black,
   // Rating Palette,
-  rating200: colors.yellow200,
-  rating400: colors.yellow400,
   ratingInactiveFill: colors.gray100,
   ratingStroke: colors.gray300,
 };

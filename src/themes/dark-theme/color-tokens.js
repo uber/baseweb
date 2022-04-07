@@ -77,8 +77,6 @@ export const darkColorTokens: ColorTokensT = {
   mono900: '#111111',
   mono1000: colors.black,
   // Rating Palette,
-  rating200: colors.yellow200,
-  rating400: colors.yellow400,
   ratingInactiveFill: colors.gray500,
   ratingStroke: colors.gray700,
 };

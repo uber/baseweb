@@ -94,8 +94,6 @@ export type ColorTokensT = {
   mono1000: string,
 
   // Rating Palette
-  rating200: string,
-  rating400: string,
   ratingInactiveFill: string,
   ratingStroke: string,
 };
@@ -202,14 +200,6 @@ export type ComponentColorTokensT = {|
   buttonTertiaryDisabledActiveText: string,
   buttonTertiarySpinnerForeground: string,
   buttonTertiarySpinnerBackground: string,
-  buttonMinimalFill: string,
-  buttonMinimalText: string,
-  buttonMinimalHover: string,
-  buttonMinimalActive: string,
-  buttonMinimalSelectedText: string,
-  buttonMinimalSelectedFill: string,
-  buttonMinimalSpinnerForeground: string,
-  buttonMinimalSpinnerBackground: string,
   buttonDisabledFill: string,
   buttonDisabledText: string,
   buttonDisabledActiveFill: string,
@@ -222,12 +212,6 @@ export type ComponentColorTokensT = {|
   breadcrumbsSeparatorFill: string,
 
   // Datepicker
-  datepickerBackground: string,
-  datepickerDayFont: string,
-  datepickerDayFontDisabled: string,
-  datepickerDayPseudoSelected: string,
-  datepickerDayPseudoHighlighted: string,
-
   calendarBackground: string,
   calendarForeground: string,
   calendarForegroundDisabled: string,
@@ -235,7 +219,6 @@ export type ComponentColorTokensT = {|
   calendarHeaderForeground: string,
   calendarHeaderBackgroundActive: string,
   calendarHeaderForegroundDisabled: string,
-  calendarDayBackgroundPseudoSelected: string,
   calendarDayForegroundPseudoSelected: string,
   calendarDayBackgroundPseudoSelectedHighlighted: string,
   calendarDayForegroundPseudoSelectedHighlighted: string,
@@ -264,15 +247,12 @@ export type ComponentColorTokensT = {|
   // Lists
   listHeaderFill: string,
   listBodyFill: string,
-  listIconFill: string,
-  listBorder: string,
 
   // ProgressSteps
   progressStepsCompletedText: string,
   progressStepsCompletedFill: string,
   progressStepsActiveText: string,
   progressStepsActiveFill: string,
-  progressStepsIconActiveFill: string,
 
   // Toggle
   toggleFill: string,
@@ -305,24 +285,13 @@ export type ComponentColorTokensT = {|
   sliderTrackFill: string,
   sliderTrackFillHover: string,
   sliderTrackFillActive: string,
-  sliderTrackFillSelected: string,
-  sliderTrackFillSelectedHover: string,
-  sliderTrackFillSelectedActive: string,
   sliderTrackFillDisabled: string,
   sliderHandleFill: string,
-  sliderHandleFillHover: string,
-  sliderHandleFillActive: string,
-  sliderHandleFillSelected: string,
-  sliderHandleFillSelectedHover: string,
-  sliderHandleFillSelectedActive: string,
   sliderHandleFillDisabled: string,
   sliderHandleInnerFill: string,
   sliderHandleInnerFillDisabled: string,
   sliderHandleInnerFillSelectedHover: string,
   sliderHandleInnerFillSelectedActive: string,
-  sliderBorder: string,
-  sliderBorderHover: string,
-  sliderBorderDisabled: string,
 
   // Input
   inputBorder: string,
@@ -341,8 +310,6 @@ export type ComponentColorTokensT = {|
   inputPlaceholderDisabled: string,
 
   // Notification
-  notificationPrimaryBackground: string,
-  notificationPrimaryText: string,
   notificationInfoBackground: string,
   notificationInfoText: string,
   notificationPositiveBackground: string,
@@ -365,12 +332,6 @@ export type ComponentColorTokensT = {|
   modalCloseColorHover: string,
   modalCloseColorFocus: string,
 
-  // Pagination
-  paginationTriangleDown: string,
-
-  // Header navigation
-  headerNavigationFill: string,
-
   // Tab
   tabBarFill: string,
   tabColor: string,
@@ -385,13 +346,11 @@ export type ComponentColorTokensT = {|
   tagLightRampUnit: string,
   tagLightHoverRampUnit: string,
   tagLightActiveRampUnit: string,
-  tagLightDisabledRampUnit: string,
   tagLightFontRampUnit: string,
   tagLightFontHoverRampUnit: string,
   tagOutlinedRampUnit: string,
   tagOutlinedHoverRampUnit: string,
   tagOutlinedActiveRampUnit: string,
-  tagOutlinedDisabledRampUnit: string,
   tagOutlinedFontRampUnit: string,
   tagOutlinedFontHoverRampUnit: string,
   tagFontDisabledRampUnit: string,
@@ -527,7 +486,6 @@ export type ComponentColorTokensT = {|
 
   // Toast
   toastText: string,
-  toastPrimaryBackground: string,
   toastPrimaryText: string,
   toastInfoBackground: string,
   toastInfoText: string,
@@ -547,32 +505,6 @@ export type ComponentColorTokensT = {|
   // Tooltip
   tooltipBackground: string,
   tooltipText: string,
-|};
-
-export type DeprecatedSemanticColorTokensT = {|
-  // Font Color
-  colorPrimary: string,
-  colorSecondary: string,
-
-  // Background
-  background: string,
-  backgroundAlt: string,
-  backgroundInv: string,
-
-  // Foreground
-  foreground: string,
-  foregroundAlt: string,
-  foregroundInv: string,
-
-  // Borders
-  border: string,
-  borderAlt: string,
-  borderFocus: string,
-  borderError: string,
-
-  // Shadow
-  shadowFocus: string,
-  shadowError: string,
 |};
 
 export type FontTokensT = {|

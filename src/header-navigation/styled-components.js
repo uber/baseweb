@@ -13,7 +13,7 @@ export const Root = styled<{}>('nav', (props) => {
   const {
     sizing: { scale500 },
     typography: { font300 },
-    colors: { border },
+    colors: { borderOpaque },
   } = $theme;
   return {
     ...font300,
@@ -22,8 +22,8 @@ export const Root = styled<{}>('nav', (props) => {
     paddingTop: scale500,
     borderBottomWidth: '1px',
     borderBottomStyle: 'solid',
-    borderBottomColor: `${border}`,
-    backgroundColor: $theme.colors.headerNavigationFill,
+    borderBottomColor: `${borderOpaque}`,
+    backgroundColor: $theme.colors.backgroundPrimary,
   };
 });
 

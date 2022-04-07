@@ -14,7 +14,7 @@ import { useStyletron } from '../styles/index.js';
 import { Button, KIND, SHAPE, SIZE as BUTTON_SIZE } from '../button/index.js';
 import { getOverrides } from '../helpers/overrides.js';
 import { ProgressBar } from '../progress-bar/index.js';
-import { StyledSpinnerNext, SIZE as SPINNER_SIZE } from '../spinner/index.js';
+import { Spinner, SIZE as SPINNER_SIZE } from '../spinner/index.js';
 
 import {
   StyledRoot,
@@ -58,7 +58,7 @@ function FileUploader(props: PropsT) {
   const [HiddenInput, hiddenInputProps] = getOverrides(overrides.HiddenInput, StyledHiddenInput);
   const [ButtonComponent, buttonProps] = getOverrides(overrides.ButtonComponent, Button);
 
-  const [SpinnerComponent, spinnerProps] = getOverrides(overrides.Spinner, StyledSpinnerNext);
+  const [SpinnerComponent, spinnerProps] = getOverrides(overrides.Spinner, Spinner);
 
   const afterFileDrop = !!(props.progressAmount || props.progressMessage || props.errorMessage);
 
@@ -160,7 +160,7 @@ function FileUploader(props: PropsT) {
                       )}
                       {props.errorMessage ? (
                         <ButtonComponent
-                          kind={KIND.minimal}
+                          kind={KIND.tertiary}
                           onClick={() => {
                             props.onRetry && props.onRetry();
                           }}
@@ -172,7 +172,7 @@ function FileUploader(props: PropsT) {
                         </ButtonComponent>
                       ) : (
                         <ButtonComponent
-                          kind={KIND.minimal}
+                          kind={KIND.tertiary}
                           onClick={() => {
                             props.onCancel && props.onCancel();
                           }}

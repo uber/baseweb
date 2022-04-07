@@ -22,7 +22,6 @@ export default class Accordion extends React.Component<AccordionPropsT, Accordio
     onChange: () => {},
     overrides: {},
     renderAll: false,
-    renderPanelContent: false,
     stateReducer: (type, newState) => newState,
   };
 
@@ -105,7 +104,7 @@ export default class Accordion extends React.Component<AccordionPropsT, Accordio
 
   getItems() {
     const { expanded } = this.state;
-    const { accordion, disabled, children, renderPanelContent, renderAll, overrides } = this.props;
+    const { accordion, disabled, children, renderAll, overrides } = this.props;
     // flowlint-next-line unclear-type:off
     return React.Children.map(children, (child: any, index) => {
       if (!child) return;
@@ -127,7 +126,6 @@ export default class Accordion extends React.Component<AccordionPropsT, Accordio
         ref: itemRef,
         expanded: isExpanded || child.props.expanded,
         accordion,
-        renderPanelContent,
         renderAll,
         overrides: child.props.overrides || overrides,
         disabled: child.props.disabled || disabled,
@@ -135,15 +133,6 @@ export default class Accordion extends React.Component<AccordionPropsT, Accordio
       };
       return React.cloneElement(child, props);
     });
-  }
-
-  componentDidMount() {
-    // TODO(v11)
-    if (__DEV__ && this.props.renderPanelContent) {
-      console.warn(
-        'baseui:Accordion The `renderPanelContent` prop is deprecated. Please update your code to use `renderAll`.'
-      );
-    }
   }
 
   render() {

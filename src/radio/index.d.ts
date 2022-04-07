@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {StyletronComponent} from 'styletron-react';
-import {Override} from '../overrides';
+import { StyletronComponent } from 'styletron-react';
+import { Override } from '../overrides';
 
 export interface STATE_TYPE {
   change: 'CHANGE';
@@ -15,7 +15,7 @@ export type StateReducer = (
   stateType: string,
   nextState: State,
   currentState: State,
-  event: React.SyntheticEvent<HTMLInputElement>,
+  event: React.SyntheticEvent<HTMLInputElement>
 ) => State;
 
 export interface State {
@@ -31,10 +31,7 @@ export interface StatefulContainerProps {
   autoFocus?: boolean;
 }
 
-export class StatefulContainer extends React.Component<
-  StatefulContainerProps,
-  State
-> {
+export class StatefulContainer extends React.Component<StatefulContainerProps, State> {
   onChange(e: React.ChangeEventHandler<HTMLInputElement>): void;
   stateReducer(type: string, e: React.SyntheticEvent<HTMLInputElement>): void;
 }
@@ -61,7 +58,6 @@ export interface RadioGroupProps {
   value?: string;
   disabled?: boolean;
   required?: boolean;
-  isError?: boolean;
   error?: boolean;
   autoFocus?: boolean;
   align?: 'horizontal' | 'vertical';
@@ -97,7 +93,6 @@ export interface RadioProps {
   description?: string;
   disabled?: boolean;
   inputRef?: React.Ref<HTMLInputElement>;
-  isError?: boolean;
   error?: boolean;
   isFocused?: boolean;
   isFocusVisible?: boolean;

@@ -62,13 +62,15 @@ function Column<ValueT, FilterParamsT>(
             })}
           >
             {Boolean(props.onSelect) && (
-              <Checkbox
-                onChange={props.onSelect}
-                checked={props.isSelected}
-                overrides={{
-                  Checkmark: { style: { marginTop: null, marginBottom: null } },
-                }}
-              />
+              <span className={css({ paddingRight: theme.sizing.scale300 })}>
+                <Checkbox
+                  onChange={props.onSelect}
+                  checked={props.isSelected}
+                  overrides={{
+                    Checkmark: { style: { marginTop: null, marginBottom: null } },
+                  }}
+                />
+              </span>
             )}
             <ProvidedCell {...props} />
           </div>

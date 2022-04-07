@@ -1,5 +1,18 @@
 const posts = [
   {
+    path: '/blog/base-web-v11',
+    author: 'Chase Starr',
+    authorLink: 'https://github.com/chasestarr',
+    title: "What's changed in Base Web 11?",
+    tagline: "Let's take a look at all the changes Base Web 11 brings",
+    date: '28 March 2022',
+    coverImage:
+      'https://user-images.githubusercontent.com/5317799/160484160-c3de4f21-c4bd-4978-b39a-7c5c677b449f.png',
+    coverImageWidth: 960,
+    coverImageHeight: 575,
+    keyWords: ['Base Web', 'Design System', 'React', 'Changelog'],
+  },
+  {
     path: '/blog/introducing-base-map-markers',
     author: 'Dylan Babbs',
     authorLink: 'https://twitter.com/dbabbs',

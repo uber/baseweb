@@ -57,17 +57,17 @@ describe('Component', () => {
       </TestBaseProvider>
     );
     const quickSelect = container.querySelector('[data-baseweb="select"]')?.firstChild;
-    //flowlint-next-line unclear-type: off
-    if (quickSelect) fireEvent.click(((quickSelect: any): HTMLElement));
-    if (container.parentElement) {
-      fireEvent.click(
-        await getByText(
-          //flowlint-next-line unclear-type: off
-          ((container.parentElement: any): HTMLElement),
-          'Past Week'
-        )
-      );
+    if (quickSelect) {
+      //flowlint-next-line unclear-type:off
+      fireEvent.click(((quickSelect: any): HTMLElement));
     }
+    fireEvent.click(
+      await getByText(
+        //flowlint-next-line unclear-type:off
+        ((container.parentElement: any): HTMLElement),
+        'Past Week'
+      )
+    );
     expect(onQuickSelectChange).toHaveBeenCalledWith(expect.objectContaining({ id: 'Past Week' }));
   });
 });

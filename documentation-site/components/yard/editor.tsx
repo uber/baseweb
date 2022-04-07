@@ -1,28 +1,23 @@
 import * as React from 'react';
 import SimpleEditor from 'react-simple-code-editor';
-import Highlight, {Prism} from 'prism-react-renderer';
-import {useStyletron} from 'baseui';
+import Highlight, { Prism } from 'prism-react-renderer';
+import { useStyletron } from 'baseui';
 
-import {
-  lightTheme,
-  useValueDebounce,
-  TTransformToken,
-  TEditorProps,
-} from 'react-view';
+import { lightTheme, useValueDebounce, TTransformToken, TEditorProps } from 'react-view';
 import darkTheme from './dark-theme';
 
 const highlightCode = (
   code: string,
   theme: typeof lightTheme,
-  transformToken?: TTransformToken,
+  transformToken?: TTransformToken
 ) => (
   <Highlight Prism={Prism} code={code} theme={theme} language="jsx">
-    {({tokens, getLineProps, getTokenProps}) => (
+    {({ tokens, getLineProps, getTokenProps }) => (
       <React.Fragment>
         {tokens.map((line, i) => (
-          <div {...getLineProps({line, key: i})}>
+          <div {...getLineProps({ line, key: i })}>
             {line.map((token, key) => {
-              const tokenProps = getTokenProps({token, key});
+              const tokenProps = getTokenProps({ token, key });
 
               if (transformToken) {
                 return transformToken(tokenProps);
@@ -45,18 +40,14 @@ const Editor: React.FC<TEditorProps> = ({
 }) => {
   const [css, theme] = useStyletron();
   const [focused, setFocused] = React.useState(false);
-  const plainStyles = theme.name.startsWith('light-theme')
-    ? lightTheme
-    : darkTheme;
+  const plainStyles = theme.name.startsWith('light-theme') ? lightTheme : darkTheme;
   const editorTheme = {
     ...plainStyles,
     plain: {
       ...plainStyles.plain,
       fontSize: small ? '13px' : '14px',
       whiteSpace: 'break-spaces',
-      backgroundColor: focused
-        ? theme.colors.inputFillActive
-        : theme.colors.inputFill,
+      backgroundColor: focused ? theme.colors.inputFillActive : theme.colors.inputFill,
     },
   };
 
@@ -80,18 +71,10 @@ const Editor: React.FC<TEditorProps> = ({
         borderTopStyle: 'solid',
         borderRightStyle: 'solid',
         borderBottomStyle: 'solid',
-        borderLeftColor: focused
-          ? theme.colors.borderFocus
-          : theme.colors.inputBorder,
-        borderTopColor: focused
-          ? theme.colors.borderFocus
-          : theme.colors.inputBorder,
-        borderRightColor: focused
-          ? theme.colors.borderFocus
-          : theme.colors.inputBorder,
-        borderBottomColor: focused
-          ? theme.colors.borderFocus
-          : theme.colors.inputBorder,
+        borderLeftColor: focused ? theme.colors.borderSelected : theme.colors.inputBorder,
+        borderTopColor: focused ? theme.colors.borderSelected : theme.colors.inputBorder,
+        borderRightColor: focused ? theme.colors.borderSelected : theme.colors.inputBorder,
+        borderBottomColor: focused ? theme.colors.borderSelected : theme.colors.inputBorder,
       })}
     >
       <style
@@ -103,8 +86,8 @@ const Editor: React.FC<TEditorProps> = ({
         ignoreTabKey={true}
         value={code || ''}
         placeholder={placeholder}
-        highlight={code => highlightCode(code, editorTheme, transformToken)}
-        onValueChange={code => setCode(code)}
+        highlight={(code) => highlightCode(code, editorTheme, transformToken)}
+        onValueChange={(code) => setCode(code)}
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
         padding={small ? 4 : 12}

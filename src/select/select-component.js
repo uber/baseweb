@@ -840,9 +840,8 @@ class Select extends React.Component<PropsT, SelectStateT> {
     const sharedProps = this.getSharedProps();
 
     return (
-      // TODO(v11): remove searchIconProps from SearchIconContainer
-      <SearchIconContainer {...sharedProps} {...searchIconProps} {...searchIconContainerProps}>
-        <SearchIcon size={16} title={'search'} {...searchIconProps} />
+      <SearchIconContainer {...sharedProps} {...searchIconContainerProps}>
+        <SearchIcon size={16} title={'search'} {...sharedProps} {...searchIconProps} />
       </SearchIconContainer>
     );
   }
