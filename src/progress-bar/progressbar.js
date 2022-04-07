@@ -14,6 +14,7 @@ import {
   StyledBar,
   StyledLabel,
   StyledBarProgress,
+  StyledInfiniteBar,
 } from './styled-components.js';
 
 import type {ProgressBarPropsT} from './types.js';
@@ -31,8 +32,20 @@ class ProgressBar extends React.Component<ProgressBarPropsT> {
     value: 0,
   };
 
+  componentDidMount() {
+    // TODO(v11): remove warning when switching default Spinner
+    if (__DEV__) {
+      if (this.props.errorMessage) {
+        console.warn(
+          'baseui:ProgressBar The `errorMessage` prop is deprecated in WAI-ARIA v1.2.',
+        );
+      }
+    }
+  }
+
   render() {
     const {
+      ariaLabel,
       overrides = {},
       getProgressLabel,
       value,
@@ -54,6 +67,10 @@ class ProgressBar extends React.Component<ProgressBarPropsT> {
       StyledBarProgress,
     );
     const [Label, labelProps] = getOverrides(overrides.Label, StyledLabel);
+    const [InfiniteBar, infiniteBarProps] = getOverrides(
+      overrides.InfiniteBar,
+      StyledInfiniteBar,
+    );
     const sharedProps = {
       $infinite: infinite,
       $size: size,
@@ -73,9 +90,11 @@ class ProgressBar extends React.Component<ProgressBarPropsT> {
       return children;
     }
     return (
+      // eslint-disable-next-line jsx-a11y/role-supports-aria-props
       <Root
         data-baseweb="progress-bar"
         role="progressbar"
+        aria-label={ariaLabel || getProgressLabel(value, successValue)}
         aria-valuenow={infinite ? null : value}
         aria-valuemin={infinite ? null : 0}
         aria-valuemax={infinite ? null : successValue}
@@ -85,7 +104,18 @@ class ProgressBar extends React.Component<ProgressBarPropsT> {
         {...rootProps}
       >
         <BarContainer {...sharedProps} {...barContainerProps}>
-          {renderProgressBar()}
+          {infinite ? (
+            <React.Fragment>
+              <InfiniteBar
+                $isLeft={true}
+                $size={sharedProps.$size}
+                {...infiniteBarProps}
+              />
+              <InfiniteBar $size={sharedProps.$size} {...infiniteBarProps} />
+            </React.Fragment>
+          ) : (
+            renderProgressBar()
+          )}
         </BarContainer>
         {showLabel && (
           <Label {...sharedProps} {...labelProps}>

@@ -123,11 +123,7 @@ export default class Pagination extends React.PureComponent<
         {theme => (
           <LocaleContext.Consumer>
             {locale => (
-              <Root
-                aria-label="pagination"
-                data-baseweb="pagination"
-                {...rootProps}
-              >
+              <Root data-baseweb="pagination" {...rootProps}>
                 <Button
                   aria-label={this.constructAriaWayfinderLabel(
                     locale,
@@ -159,6 +155,10 @@ export default class Pagination extends React.PureComponent<
                   onBlur={forkBlur(dropdownContainerProps, this.handleBlur)}
                 >
                   <Select
+                    aria-label={this.constructAriaWayfinderLabel(
+                      locale,
+                      'page',
+                    )}
                     options={options}
                     labelKey="label"
                     valueKey="label"
@@ -194,9 +194,9 @@ export default class Pagination extends React.PureComponent<
                         },
                       },
                       ValueContainer: {
-                        style: ({$theme}) => ({
+                        style: {
                           flexBasis: 'auto',
-                        }),
+                        },
                       },
                       SingleValue: {
                         style: ({$theme}) => ({
@@ -221,10 +221,7 @@ export default class Pagination extends React.PureComponent<
                     {...selectProps}
                   />
                 </DropdownContainer>
-                <MaxLabel
-                  aria-label={this.constructAriaWayfinderLabel(locale, 'page')}
-                  {...maxLabelProps}
-                >
+                <MaxLabel {...maxLabelProps} aria-hidden={true}>
                   {`${
                     labels && labels.preposition
                       ? labels.preposition

@@ -119,6 +119,14 @@ const DatepickerConfig: TConfig = {
         'A filter function (Date => boolean) that is called to check the disabled state of a day. If false is returned the day is considered to be disabled.',
       hidden: true,
     },
+    dateLabel: {
+      value: undefined,
+      type: PropTypes.Function,
+      placeholder: "dateLabel={() => 'Aa'}",
+      description:
+        'A date label function (Date => Node) that is called with the current date to return a label to be used below the date. If a falsy response is returned, no label will be shown but the taller day will be rendered. ',
+      hidden: true,
+    },
     highlightDate: {
       value: undefined,
       type: PropTypes.Date,
@@ -146,6 +154,14 @@ const DatepickerConfig: TConfig = {
     positive: inputConfig.props.positive,
     error: inputConfig.props.error,
     size: inputConfig.props.size,
+    placeholder: {
+      value: undefined,
+      type: PropTypes.String,
+      description:
+        'Specifies a hint that describes the expected value of the date picker',
+      placeholder: 'YYYY/MM/DD',
+      hidden: true,
+    },
     locale: {
       value: undefined,
       type: PropTypes.Object,
@@ -254,6 +270,13 @@ const DatepickerConfig: TConfig = {
         'Determines if TimePicker component will be enabled for end time',
     },
     disabled: inputConfig.props.disabled,
+    displayValueAtRangeIndex: {
+      value: 0,
+      type: PropTypes.Number,
+      description:
+        'Determines whether the datepicker displays the start date or end date of the selected date range. Must be 0 or 1.',
+      hidden: true,
+    },
     trapTabbing: {
       value: undefined,
       type: PropTypes.Boolean,

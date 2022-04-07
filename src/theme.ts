@@ -122,6 +122,8 @@ export interface Colors {
   // Rating Palette
   rating200: string;
   rating400: string;
+  ratingInactiveFill: string;
+  ratingStroke: string;
 
   /* ---- Semantic Colors ---- */
 
@@ -272,7 +274,6 @@ export interface Colors {
   calendarDayForegroundPseudoSelected: string;
   calendarDayBackgroundPseudoSelectedHighlighted: string;
   calendarDayForegroundPseudoSelectedHighlighted: string;
-  calendarDayBackgroundSelected: string;
   calendarDayForegroundSelected: string;
   calendarDayBackgroundSelectedHighlighted: string;
   calendarDayForegroundSelectedHighlighted: string;

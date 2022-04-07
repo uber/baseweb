@@ -100,7 +100,7 @@ export const StyledRoot = styled<SharedStylePropsArgT>('div', props => {
 });
 
 export const StyledBackdrop = styled<SharedStylePropsArgT>('div', props => {
-  const {$animating, $isOpen, $isVisible, $theme} = props;
+  const {$animating, $isOpen, $isVisible, $showBackdrop, $theme} = props;
   return {
     position: 'fixed',
     right: 0,
@@ -112,7 +112,7 @@ export const StyledBackdrop = styled<SharedStylePropsArgT>('div', props => {
     WebkitTapHighlightColor: 'transparent',
     // Disable scroll capabilities.
     touchAction: 'none',
-    opacity: $isVisible && $isOpen ? 1 : 0,
+    opacity: $isVisible && $isOpen && $showBackdrop ? 1 : 0,
     ...($animating
       ? {
           transitionProperty: 'opacity',

@@ -209,6 +209,7 @@ export default class MenuStatefulContainer extends React.Component<
       let label = list[n].label;
       if (
         label &&
+        label.toUpperCase &&
         label.toUpperCase().indexOf(this.typeAheadChars.toUpperCase()) === 0
       ) {
         nextIndex = n;
@@ -222,6 +223,7 @@ export default class MenuStatefulContainer extends React.Component<
         let label = list[n].label;
         if (
           label &&
+          label.toUpperCase &&
           label.toUpperCase().indexOf(this.typeAheadChars.toUpperCase()) > 0
         ) {
           nextIndex = n;

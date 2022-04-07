@@ -53,7 +53,7 @@ const lightColorTokens: ColorTokensT = {
   warning600: colors.yellow600,
   warning700: colors.yellow700,
   // Positive Palette
-  positive: colors.green400,
+  positive: colors.green500,
   positive50: colors.green50,
   positive100: colors.green100,
   positive200: colors.green200,
@@ -78,6 +78,8 @@ const lightColorTokens: ColorTokensT = {
   // Rating Palette,
   rating200: colors.yellow200,
   rating400: colors.yellow400,
+  ratingInactiveFill: colors.gray100,
+  ratingStroke: colors.gray300,
 };
 
 export default lightColorTokens;

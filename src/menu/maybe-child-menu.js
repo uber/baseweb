@@ -21,6 +21,7 @@ type PropsT = {
   item: *,
   resetParentMenu: () => void,
   renderAll?: boolean,
+  onClick?: (event: MouseEvent) => mixed,
   overrides?: {
     ChildMenuPopover?: OverrideT,
   },
@@ -52,6 +53,7 @@ export default function MaybeChildMenu(props: PropsT) {
             content={ChildMenu}
             ignoreBoundary
             mountNode={ctx.mountRef.current ? ctx.mountRef.current : undefined}
+            onClick={props.onClick}
             onMouseEnterDelay={30}
             onMouseLeaveDelay={30}
             onEsc={props.resetParentMenu}

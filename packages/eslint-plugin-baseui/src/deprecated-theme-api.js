@@ -108,9 +108,6 @@ const deprecatedThemeProperties = {
   sliderTrackFillSelectedActive: {
     concern: 'colors',
   },
-  sliderHandleFill: {
-    concern: 'colors',
-  },
   sliderHandleFillHover: {
     concern: 'colors',
   },
@@ -124,9 +121,6 @@ const deprecatedThemeProperties = {
     concern: 'colors',
   },
   sliderHandleFillSelectedActive: {
-    concern: 'colors',
-  },
-  sliderHandleFillDisabled: {
     concern: 'colors',
   },
   sliderBorder: {
@@ -157,6 +151,12 @@ const deprecatedThemeProperties = {
     concern: 'colors',
   },
   toastPrimaryBackground: {
+    concern: 'colors',
+  },
+  rating200: {
+    concern: 'colors',
+  },
+  rating400: {
     concern: 'colors',
   },
   // These are marked as deprecated in baseweb:src/theme.ts.

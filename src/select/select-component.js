@@ -246,6 +246,9 @@ class Select extends React.Component<PropsT, SelectStateT> {
 
       this.focusAfterClear = false;
     } else {
+      // When clear button is clicked, need to click twice to open control container - https://github.com/uber/baseweb/issues/4285
+      // Setting focusAfterClear to false, resolves the issue
+      this.focusAfterClear = false;
       this.openAfterFocus = this.props.openOnClick;
       this.focus();
     }
@@ -687,8 +690,11 @@ class Select extends React.Component<PropsT, SelectStateT> {
     if (!this.props.searchable) {
       return (
         <InputContainer
+          role="listbox"
           aria-activedescendant={this.state.activeDescendant}
           aria-expanded={isOpen}
+          aria-describedby={this.props['aria-describedby']}
+          aria-errormessage={this.props['aria-errormessage']}
           aria-disabled={this.props.disabled}
           aria-label={label}
           aria-labelledby={this.props['aria-labelledby']}

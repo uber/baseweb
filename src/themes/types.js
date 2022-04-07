@@ -96,6 +96,8 @@ export type ColorTokensT = {
   // Rating Palette
   rating200: string,
   rating400: string,
+  ratingInactiveFill: string,
+  ratingStroke: string,
 };
 
 export type CoreSemanticColorTokensT = {|

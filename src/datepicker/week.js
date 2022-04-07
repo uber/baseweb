@@ -51,6 +51,7 @@ export default class Week<T = Date> extends React.Component<WeekPropsT<T>> {
           <Day
             adapter={this.props.adapter}
             date={day}
+            dateLabel={this.props.dateLabel}
             disabled={this.dateHelpers.isDayDisabled(day, this.props)}
             excludeDates={this.props.excludeDates}
             filterDate={this.props.filterDate}

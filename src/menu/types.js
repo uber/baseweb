@@ -167,6 +167,8 @@ export type SharedStatelessPropsT = {
   /** Function to get props for each rendered item. This will have some defaults needed for keyboard
    * bindings to work properly. Every rendered item should call this.
    */
+  /** Passed to the top level menu element. */
+  ariaLabel?: string,
   getRequiredItemProps?: GetRequiredItemPropsFnT,
   isFocused?: boolean,
   handleMouseLeave?: () => mixed,
@@ -230,6 +232,7 @@ export type OptionListPropsT = {
   getItemLabel: GetItemLabelFnT,
   /** Used to render a sub menu at this menu item. You'll often render another menu from this function. */
   getChildMenu?: (item: ItemT) => React.Node,
+  onClick?: (event: MouseEvent) => mixed,
   /** Callback used to change highlighted index in stateful menu. */
   onMouseEnter?: (event: MouseEvent) => mixed,
   /** Renders UI in defined scale. */

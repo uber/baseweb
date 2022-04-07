@@ -31,6 +31,7 @@ export default class Calendar<T = Date> extends React.Component<
 > {
   static defaultProps: {adapter: DateIOAdapter<Date>} = {
     autoFocusCalendar: false,
+    dateLabel: null,
     excludeDates: null,
     filterDate: null,
     highlightedDate: null,
@@ -338,7 +339,9 @@ export default class Calendar<T = Date> extends React.Component<
 
   onDayMouseLeave: ({event: Event, date: T}) => mixed = data => {
     const {date} = data;
-    this.setHighlightedDate(date);
+    const {value} = this.props;
+    const selected = this.getSingleDate(value);
+    this.setState({highlightedDate: selected || date});
     this.props.onDayMouseLeave && this.props.onDayMouseLeave(data);
   };
 
@@ -443,6 +446,7 @@ export default class Calendar<T = Date> extends React.Component<
           <Month
             adapter={this.props.adapter}
             date={monthDate}
+            dateLabel={this.props.dateLabel}
             excludeDates={this.props.excludeDates}
             filterDate={this.props.filterDate}
             highlightedDate={this.state.highlightedDate}
@@ -634,6 +638,8 @@ export default class Calendar<T = Date> extends React.Component<
         {locale => (
           <Root
             data-baseweb="calendar"
+            role="application"
+            aria-roledescription="datepicker"
             ref={root => {
               if (
                 root &&

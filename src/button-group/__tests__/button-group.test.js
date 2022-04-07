@@ -113,4 +113,30 @@ describe('ButtonGroup', () => {
       );
     }
   });
+
+  it('should respect isSelected value if the consumer passes the prop to Button', () => {
+    const {queryByTitle} = render(
+      <ButtonGroup>
+        <Button isSelected title="testButton" />
+        <Button />
+        <Button />
+      </ButtonGroup>,
+    );
+
+    expect(
+      queryByTitle('testButton').getAttribute('aria-checked'),
+    ).toBeTruthy();
+  });
+
+  it('should handle null children', () => {
+    const {container} = render(
+      <ButtonGroup>
+        <Button>one</Button>
+        <Button>two</Button>
+        {null}
+      </ButtonGroup>,
+    );
+
+    expect(container.querySelectorAll('button').length).toBe(2);
+  });
 });

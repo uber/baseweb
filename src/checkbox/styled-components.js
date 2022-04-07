@@ -84,7 +84,7 @@ function getBackgroundColor(props) {
   const {colors} = $theme;
   if ($disabled) {
     if (isToggle) {
-      return colors.sliderTrackFillDisabled;
+      return colors.toggleFillDisabled;
     }
     if ($checked || $isIndeterminate) {
       return colors.tickFillDisabled;
@@ -121,7 +121,7 @@ function getBackgroundColor(props) {
     } else if ($isHovered) {
       return isToggle ? colors.sliderTrackFillHover : colors.tickFillHover;
     } else {
-      return isToggle ? colors.sliderTrackFill : colors.tickFill;
+      return isToggle ? colors.toggleTrackFill : colors.tickFill;
     }
   }
 }
@@ -327,7 +327,7 @@ export const ToggleInner = styled<SharedStylePropsT>('div', props => {
         return props.$theme.colors.sliderHandleInnerFillSelectedHover;
       }
 
-      return props.$theme.colors.sliderHandleInnerFill;
+      return props.$theme.colors.toggleTrackFill;
     };
     return {
       height: props.$theme.sizing.scale300,

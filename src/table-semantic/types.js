@@ -8,6 +8,10 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import type {OverrideT} from '../helpers/overrides.js';
+import {SIZE, DIVIDER} from './constants.js';
+
+export type SizeT = $Keys<typeof SIZE>;
+export type DividerT = $Keys<typeof DIVIDER>;
 
 export type OverridesT = {
   Root?: OverrideT,
@@ -26,10 +30,12 @@ export type TablePropsT = {
   overrides?: OverridesT,
   columns: Array<React.Node>,
   data: Array<Array<React.Node>>,
+  divider?: DividerT,
   horizontalScrollWidth?: string,
   isLoading?: boolean,
   loadingMessage?: React.Node | (() => React.Node),
   emptyMessage?: React.Node | (() => React.Node),
+  size?: SizeT,
 };
 
 export type BuilderOverridesT = {
@@ -44,6 +50,7 @@ export type TableBuilderPropsT<RowT> = {
   overrides?: BuilderOverridesT,
   children?: React.Node,
   data: Array<RowT>,
+  divider?: DividerT,
   horizontalScrollWidth?: string,
   sortColumn?: ?string,
   sortOrder?: 'ASC' | 'DESC' | null,
@@ -51,6 +58,7 @@ export type TableBuilderPropsT<RowT> = {
   isLoading?: boolean,
   loadingMessage?: React.Node | (() => React.Node),
   emptyMessage?: React.Node | (() => React.Node),
+  size?: SizeT,
 };
 
 export type ColumnOverridesT = {

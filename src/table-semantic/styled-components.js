@@ -9,23 +9,46 @@ import Blank from '../icon/blank.js';
 import ChevronDown from '../icon/chevron-down.js';
 import ChevronUp from '../icon/chevron-up.js';
 import {styled, withStyle, expandBorderStyles} from '../styles/index.js';
+import {SIZE, DIVIDER} from './constants.js';
+import type {SizeT, DividerT} from './types.js';
 
-export const StyledRoot = styled<{}>('div', ({$theme}) => {
-  return {
-    ...expandBorderStyles($theme.borders.border300),
-    position: 'relative',
-    overflow: 'auto',
-    WebkitOverflowScrolling: 'touch',
-    backgroundColor: $theme.colors.tableBackground,
-    borderTopLeftRadius: $theme.borders.radius200,
-    borderTopRightRadius: $theme.borders.radius200,
-    borderBottomRightRadius: $theme.borders.radius200,
-    borderBottomLeftRadius: $theme.borders.radius200,
-    // Creates a stacking context so we can use z-index on the StyledTableHeadCell
-    // without affecting anything outside of this component.
-    transform: 'scale(1)',
-  };
-});
+function sizeToCellPadding($theme, $size) {
+  if ($size === SIZE.compact) {
+    return $theme.sizing.scale500;
+  } else if ($size === SIZE.spacious) {
+    return $theme.sizing.scale800;
+  }
+  return $theme.sizing.scale600;
+}
+
+type StyledRootPropsT = {
+  $divider?: DividerT,
+};
+
+export const StyledRoot = styled<StyledRootPropsT>(
+  'div',
+  ({$theme, $divider}) => {
+    return {
+      ...($divider === DIVIDER.grid || $divider === DIVIDER.vertical
+        ? expandBorderStyles($theme.borders.border300)
+        : {}),
+      ...($divider === DIVIDER.horizontal
+        ? {
+            borderBottomWidth: $theme.borders.border300.borderWidth,
+            borderBottomStyle: $theme.borders.border300.borderStyle,
+            borderBottomColor: $theme.borders.border300.borderColor,
+          }
+        : {}),
+      position: 'relative',
+      overflow: 'auto',
+      WebkitOverflowScrolling: 'touch',
+      backgroundColor: $theme.colors.tableBackground,
+      // Creates a stacking context so we can use z-index on the StyledTableHeadCell
+      // without affecting anything outside of this component.
+      transform: 'scale(1)',
+    };
+  },
+);
 
 type StyledTablePropsT = {
   $width?: ?string,
@@ -54,20 +77,26 @@ export const StyledTableHeadRow = styled<{}>('tr', ({$theme}) => {
 type StyledTableHeadCellPropsT = {
   $col?: {},
   $colIndex?: ?number,
+  $divider?: DividerT,
+  $size?: SizeT,
 };
 
 export const StyledTableHeadCell = styled<StyledTableHeadCellPropsT>(
   'th',
-  ({$theme}) => {
-    const borderDir: string = $theme.direction === 'rtl' ? 'left' : 'right';
+  ({$theme, $size, $divider}) => {
+    const borderDir: string = $theme.direction === 'rtl' ? 'Left' : 'Right';
+    const borderVertical =
+      $divider === DIVIDER.grid || $divider === DIVIDER.vertical;
+    const padding = sizeToCellPadding($theme, $size);
+
     return {
       ...$theme.typography.font350,
       position: 'sticky',
       top: 0,
-      paddingTop: $theme.sizing.scale500,
-      paddingRight: $theme.sizing.scale600,
-      paddingBottom: $theme.sizing.scale500,
-      paddingLeft: $theme.sizing.scale600,
+      paddingTop: padding,
+      paddingRight: padding,
+      paddingBottom: padding,
+      paddingLeft: padding,
       backgroundColor: $theme.colors.tableHeadBackgroundColor,
       color: $theme.colors.contentPrimary,
       textAlign: $theme.direction === 'rtl' ? 'right' : 'left',
@@ -75,37 +104,23 @@ export const StyledTableHeadCell = styled<StyledTableHeadCellPropsT>(
       whiteSpace: 'nowrap',
       zIndex: 1,
 
-      // We have to use pseudo elements to add the border for headers
-      // because browsers don't properly handle borders on sticky cells.
-      // The cells stay fixed in place, but the borders scroll.
-      '::before': {
-        content: '""',
-        position: 'absolute',
-        top: '0',
-        [borderDir]: '100%',
-        bottom: '0',
-        borderLeftColor: $theme.borders.border300.borderColor,
-        borderLeftStyle: $theme.borders.border300.borderStyle,
-        borderLeftWidth: $theme.borders.border300.borderWidth,
-      },
-
-      // We have to use pseudo elements to add the shadow to prevent
-      // the shadows from casting on sibling cells.
-      '::after': {
-        content: '""',
-        position: 'absolute',
-        top: '100%',
-        right: '0',
-        left: '0',
-        height: $theme.sizing.scale100,
-        pointerEvents: 'none',
-        backgroundImage: `
-        linear-gradient(
-          to bottom,
-          rgba(0, 0, 0, 0.16),
-          rgba(0, 0, 0, 0)
-        )
-      `,
+      ...($divider === DIVIDER.clean
+        ? {}
+        : {
+            borderBottomColor: $theme.borders.border300.borderColor,
+            borderBottomStyle: $theme.borders.border300.borderStyle,
+            borderBottomWidth: $theme.borders.border300.borderWidth,
+          }),
+      ':not(:last-child)': {
+        [`border${borderDir}Color`]: borderVertical
+          ? $theme.borders.border300.borderColor
+          : null,
+        [`border${borderDir}Style`]: borderVertical
+          ? $theme.borders.border300.borderStyle
+          : null,
+        [`border${borderDir}Width`]: borderVertical
+          ? $theme.borders.border300.borderWidth
+          : null,
       },
     };
   },
@@ -177,12 +192,29 @@ export const StyledTableBody = styled<{}>('tbody', ({$theme}) => {
 type StyledTableBodyRowPropsT = {
   $col?: {},
   $colIndex?: ?number,
+  $divider?: DividerT,
 };
 
 export const StyledTableBodyRow = styled<StyledTableBodyRowPropsT>(
   'tr',
-  ({$theme}) => {
+  ({$theme, $divider}) => {
+    const borderHorizontal =
+      $divider === undefined ||
+      $divider === DIVIDER.horizontal ||
+      $divider === DIVIDER.grid;
+
     return {
+      ':not(:last-child)': {
+        borderBottomColor: borderHorizontal
+          ? $theme.borders.border300.borderColor
+          : null,
+        borderBottomStyle: borderHorizontal
+          ? $theme.borders.border300.borderStyle
+          : null,
+        borderBottomWidth: borderHorizontal
+          ? $theme.borders.border300.borderWidth
+          : null,
+      },
       ':hover': {
         backgroundColor: $theme.colors.tableStripedBackground,
       },
@@ -193,23 +225,42 @@ export const StyledTableBodyRow = styled<StyledTableBodyRowPropsT>(
 type StyledTableBodyCellPropsT = {
   $col?: {},
   $colIndex?: ?number,
+  $divider?: DividerT,
   $row?: {},
   $rowIndex?: ?number,
+  $size?: SizeT,
   $isNumeric?: ?boolean,
 };
 
 export const StyledTableBodyCell = styled<StyledTableBodyCellPropsT>(
   'td',
-  ({$theme, $isNumeric}) => {
+  ({$theme, $size, $divider, $isNumeric}) => {
+    const borderDir: string = $theme.direction === 'rtl' ? 'Left' : 'Right';
+    const borderVertical =
+      $divider === DIVIDER.vertical || $divider === DIVIDER.grid;
+    const padding = sizeToCellPadding($theme, $size);
+
     return {
       ...$theme.typography.font200,
-      paddingTop: $theme.sizing.scale300,
-      paddingRight: $theme.sizing.scale600,
-      paddingBottom: $theme.sizing.scale300,
-      paddingLeft: $theme.sizing.scale600,
+      paddingTop: padding,
+      paddingRight: padding,
+      paddingBottom: padding,
+      paddingLeft: padding,
       color: $theme.colors.contentPrimary,
       textAlign: $isNumeric ? 'right' : null,
       verticalAlign: 'top',
+
+      ':not(:last-child)': {
+        [`border${borderDir}Color`]: borderVertical
+          ? $theme.borders.border300.borderColor
+          : null,
+        [`border${borderDir}Style`]: borderVertical
+          ? $theme.borders.border300.borderStyle
+          : null,
+        [`border${borderDir}Width`]: borderVertical
+          ? $theme.borders.border300.borderWidth
+          : null,
+      },
     };
   },
 );

@@ -20,13 +20,14 @@ const AvatarConfig: TConfig = {
       description: 'Alternative text description of the image.',
     },
     size: {
-      value: 'scale1200',
+      value: 'scale1600',
       type: PropTypes.String,
       description:
         'Defines the width/height of the image. Accepts labels from theme.sizing, or passes value to height/width.',
     },
     src: {
-      value: 'https://api.adorable.io/avatars/285/10@adorable.io.png',
+      value:
+        'https://avatars.dicebear.com/api/human/yard.svg?width=285&mood=happy',
       type: PropTypes.String,
       description: 'Image to display.',
     },

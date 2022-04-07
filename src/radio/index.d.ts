@@ -93,6 +93,7 @@ export interface RadioProps {
   autoFocus?: boolean;
   checked?: boolean;
   children?: React.ReactNode;
+  containsInteractiveElement?: boolean;
   description?: string;
   disabled?: boolean;
   inputRef?: React.Ref<HTMLInputElement>;

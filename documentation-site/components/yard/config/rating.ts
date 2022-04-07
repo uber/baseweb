@@ -1,3 +1,9 @@
+/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
 import {StarRating} from 'baseui/rating';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
@@ -12,7 +18,7 @@ const ratingConfig: TConfig = {
     },
   },
   scope: {StarRating},
-  theme: ['rating200', 'rating400'],
+  theme: ['rating200', 'rating400', 'ratingInactiveFill', 'ratingStroke'],
   props: {
     numItems: {
       value: 5,

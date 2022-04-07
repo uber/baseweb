@@ -58,6 +58,7 @@ export default class TableBuilder<T> extends React.Component<
       overrides = {},
       children,
       data,
+      divider,
       horizontalScrollWidth,
       sortColumn,
       sortOrder = 'ASC',
@@ -65,6 +66,7 @@ export default class TableBuilder<T> extends React.Component<
       isLoading,
       loadingMessage,
       emptyMessage,
+      size,
       ...rest
     } = this.props;
 
@@ -150,6 +152,8 @@ export default class TableBuilder<T> extends React.Component<
             key={colIndex}
             $col={col}
             $colIndex={colIndex}
+            $divider={divider}
+            $size={size}
             {...tableHeadCellProps}
             {...colTableHeadCellProps}
           >
@@ -206,6 +210,7 @@ export default class TableBuilder<T> extends React.Component<
           key={colIndex}
           $col={col}
           $colIndex={colIndex}
+          $divider={divider}
           role="button"
           tabIndex="0"
           aria-label={`${col.tableHeadAriaLabel || col.header}, ${sortLabel}`}
@@ -239,9 +244,11 @@ export default class TableBuilder<T> extends React.Component<
           key={colIndex}
           $col={col}
           $colIndex={colIndex}
+          $divider={divider}
           $row={row}
           $rowIndex={rowIndex}
           $isNumeric={col.numeric}
+          $size={size}
           {...tableBodyCellProps}
           {...colTableBodyCellProps}
         >
@@ -254,7 +261,12 @@ export default class TableBuilder<T> extends React.Component<
     const isRendered = !isLoading && !isEmpty;
 
     return (
-      <Root data-baseweb="table-builder-semantic" {...rootProps} {...rest}>
+      <Root
+        data-baseweb="table-builder-semantic"
+        $divider={divider}
+        {...rootProps}
+        {...rest}
+      >
         <Table
           $width={horizontalScrollWidth}
           {...tableProps}
@@ -295,6 +307,7 @@ export default class TableBuilder<T> extends React.Component<
               data.map((row, rowIndex) => (
                 <TableBodyRow
                   key={rowIndex}
+                  $divider={divider}
                   $row={row}
                   $rowIndex={rowIndex}
                   {...tableBodyRowProps}
