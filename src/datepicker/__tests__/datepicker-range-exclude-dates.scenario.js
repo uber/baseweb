@@ -10,13 +10,12 @@ import * as React from 'react';
 
 import { Datepicker } from '../index.js';
 
-export function Scenario() {
-  const [value, setValue] = React.useState([]);
+function Instance({ startDate }) {
+  const [value, setValue] = React.useState([startDate]);
   return (
     <Datepicker
       aria-label="Select a date"
       clearable={true}
-      initialState={{ value: [] }}
       value={value}
       onChange={({ date }) => setValue(date)}
       excludeDates={[
@@ -38,7 +37,6 @@ export function Scenario() {
             overrides: { List: { props: { 'data-id': 'monthYearSelectMenu' } } },
           },
         },
-
         TimeSelect: {
           props: {
             overrides: {
@@ -55,5 +53,19 @@ export function Scenario() {
         },
       }}
     />
+  );
+}
+
+export function Scenario() {
+  return (
+    <div>
+      <div id="within-month">
+        <Instance startDate={new Date(2022, 2, 14)} />
+      </div>
+
+      <div id="between-month">
+        <Instance startDate={new Date(2022, 2, 31)} />
+      </div>
+    </div>
   );
 }

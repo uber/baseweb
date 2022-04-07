@@ -1,9 +1,9 @@
 //@ts-ignore
-import {getAstPropValue, getCode} from 'react-view/dist/lib/code-generator';
-import {PropTypes} from 'react-view';
+import { getAstPropValue, getCode } from 'react-view/dist/lib/code-generator';
+import { PropTypes } from 'react-view';
 import generate from '@babel/generator';
-import {customProps} from '../custom-props';
-import {generate as generateThemeWrapper, getProvider} from '../provider';
+import { customProps } from '../custom-props';
+import { generate as generateThemeWrapper, getProvider } from '../provider';
 
 import * as t from '@babel/types';
 
@@ -25,8 +25,8 @@ test('overrides', () => {
         description: '',
       } as any,
       'overrides',
-      customProps,
-    ),
+      customProps
+    )
   ).toEqual({
     properties: [
       {
@@ -124,11 +124,9 @@ test('overrides', () => {
 describe('get theme AST primitives', () => {
   test('getAstThemeWrapper', () => {
     expect(
-      generate(generateThemeWrapper(
-        {inputFill: 'yellow'},
-        t.jsxText('Hey') as any,
-        'light-theme',
-      ) as any).code,
+      generate(
+        generateThemeWrapper({ inputFill: 'yellow' }, t.jsxText('Hey') as any, 'light-theme') as any
+      ).code
     ).toBe(`<ThemeProvider theme={createTheme(light-theme, {
   colors: {
     inputFill: "yellow"
@@ -152,7 +150,7 @@ describe('getCode', () => {
             value: 'e => setValue(e.target.value)',
             type: PropTypes.Function,
             description: '',
-            propHook: {what: 'e.target.value', into: 'value'},
+            propHook: { what: 'e.target.value', into: 'value' },
           },
           overrides: {
             value: {
@@ -166,15 +164,15 @@ describe('getCode', () => {
           } as any,
         },
         componentName: 'Input',
-        providerValue: {inputFill: 'yellow'},
-        provider: getProvider({inputFill: 'pink'}, 'lightThemePrimitives'),
+        providerValue: { inputFill: 'yellow' },
+        provider: getProvider({ inputFill: 'pink' }, 'lightThemePrimitives'),
         importsConfig: {
           'baseui/input': {
             named: ['Input'],
           },
         },
         customProps,
-      }),
+      })
     ).toBe(`import * as React from "react";
 import { Input } from "baseui/input";
 import {
