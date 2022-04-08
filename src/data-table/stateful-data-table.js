@@ -306,6 +306,7 @@ export function StatefulDataTable(props: StatefulDataTablePropsT) {
               sortDirection={sortDirection}
               sortIndex={sortIndex}
               textQuery={textQuery}
+              controlRef={props.controlRef}
             />
           </div>
         </React.Fragment>
