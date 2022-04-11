@@ -155,7 +155,7 @@
     "markdownlint-cli": "^0.18.0",
     "mkdirp": "^0.5.1",
     "moment": "^2.24.0",
-    "next": "^10.0.0",
+    "next": "^10.0.6",
     "next-images": "^1.6.2",
     "next-transpile-modules": "^6.0.0",
     "node-fetch": "^2.6.1",
