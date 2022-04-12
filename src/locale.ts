@@ -29,7 +29,6 @@ interface DatepickerLocale {
   quickSelectPlaceholder: string;
   timeSelectEndLabel: string;
   timeSelectStartLabel: string;
-  timePickerAriaLabel?: string;
   timePickerAriaLabel12Hour: string;
   timePickerAriaLabel24Hour: string;
   timezonePickerAriaLabel: string;

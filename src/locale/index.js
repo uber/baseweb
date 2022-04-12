@@ -15,13 +15,6 @@ export const LocaleContext: React.Context<LocaleT> = React.createContext(en_US);
 
 const LocaleProvider = (props: { locale: $Shape<LocaleT>, children: ?React.Node }) => {
   const { locale, children } = props;
-  if (__DEV__) {
-    if (locale.datepicker && locale.datepicker.timePickerAriaLabel) {
-      console.warn(
-        '`timePickerAriaLabel` will be removed in v11 - please use timePickerAriaLabel12Hour and timePickerAriaLabel24Hour instead'
-      );
-    }
-  }
   return (
     <LocaleContext.Provider value={extend({}, en_US, locale)}>{children}</LocaleContext.Provider>
   );

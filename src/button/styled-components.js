@@ -175,12 +175,6 @@ function getLoadingSpinnerColors({ $theme, $kind, $disabled }) {
         background: $theme.colors.buttonTertiarySpinnerBackground,
       };
     }
-    case KIND.minimal: {
-      return {
-        foreground: $theme.colors.buttonMinimalSpinnerForeground,
-        background: $theme.colors.buttonMinimalSpinnerBackground,
-      };
-    }
     case KIND.primary:
     default: {
       return {
@@ -234,7 +228,7 @@ function getDisabledStyles({ $theme, $kind, $isSelected, $disabled }) {
         color: $theme.colors.buttonDisabledActiveText,
         backgroundColor: $theme.colors.buttonDisabledActiveFill,
       };
-    } else if ($kind === KIND.minimal || $kind === KIND.tertiary) {
+    } else if ($kind === KIND.tertiary) {
       return {
         backgroundColor: $theme.colors.buttonTertiaryDisabledActiveFill,
         color: $theme.colors.buttonTertiaryDisabledActiveText,
@@ -243,10 +237,7 @@ function getDisabledStyles({ $theme, $kind, $isSelected, $disabled }) {
   }
 
   return {
-    backgroundColor:
-      $kind === KIND.minimal || $kind === KIND.tertiary
-        ? 'transparent'
-        : $theme.colors.buttonDisabledFill,
+    backgroundColor: $kind === KIND.tertiary ? 'transparent' : $theme.colors.buttonDisabledFill,
     color: $theme.colors.buttonDisabledText,
   };
 }
@@ -381,25 +372,6 @@ function getColorStyles({
         },
         ':active': {
           backgroundColor: $theme.colors.buttonTertiaryActive,
-        },
-      };
-    case KIND.minimal:
-      if ($isSelected) {
-        return {
-          color: $theme.colors.buttonMinimalSelectedText,
-          backgroundColor: $theme.colors.buttonMinimalSelectedFill,
-        };
-      }
-      return {
-        color: $theme.colors.buttonMinimalText,
-        backgroundColor: $theme.colors.buttonMinimalFill,
-        ':hover': {
-          backgroundColor: $isLoading
-            ? $theme.colors.buttonMinimalActive
-            : $theme.colors.buttonMinimalHover,
-        },
-        ':active': {
-          backgroundColor: $theme.colors.buttonMinimalActive,
         },
       };
     default:

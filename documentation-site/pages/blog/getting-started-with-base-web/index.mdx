@@ -1,5 +1,5 @@
 import Layout from '../../../components/layout';
-import {BlogImage, Demo, Meta} from '../../../components/blog';
+import { BlogImage, Demo, Meta } from '../../../components/blog';
 import metadata from './metadata.json';
 
 export default Layout;
@@ -7,7 +7,7 @@ export default Layout;
 <Meta data={metadata} />
 
 <BlogImage
-  style={{marginTop: '20px'}}
+  style={{ marginTop: '20px' }}
   full
   src="https://cdn.dribbble.com/users/914217/screenshots/4615198/base_ui.png"
   caption="Base Web by Uber Design"
@@ -37,9 +37,9 @@ You might be asking "What's Styletron?". [Styletron](https://www.styletron.org) 
 As per [Base Web's set up instructions](/getting-started/setup/), we need to wrap our app in both the Styletron Provider and the [Base Provider](/components/base-provider/) before we can begin:
 
 ```js
-import {Provider as StyletronProvider} from 'styletron-react';
-import {Client as Styletron} from 'styletron-engine-atomic';
-import {LightTheme, BaseProvider} from 'baseui';
+import { Provider as StyletronProvider } from 'styletron-react';
+import { Client as Styletron } from 'styletron-engine-atomic';
+import { LightTheme, BaseProvider } from 'baseui';
 
 const engine = new Styletron();
 
@@ -49,7 +49,7 @@ ReactDOM.render(
       <App />
     </BaseProvider>
   </StyletronProvider>,
-  document.getElementById('root'),
+  document.getElementById('root')
 );
 ```
 
@@ -122,7 +122,7 @@ As a next step, let's move the button inside our input that generates a new pass
 <Input
   overrides={{
     After: () => (
-      <Button kind={KIND.minimal}>
+      <Button kind={KIND.tertiary}>
         <Icon />
       </Button>
     ),
@@ -132,9 +132,7 @@ As a next step, let's move the button inside our input that generates a new pass
 
 Using overrides, we can leverage an `After` option and pass a `Button` to it.
 
-<BlogImage
-  src={'/images/blog/getting-started-with-base-web/input-with-cta.png'}
-/>
+<BlogImage src={'/images/blog/getting-started-with-base-web/input-with-cta.png'} />
 
 ## Adjusting the layout
 
@@ -153,7 +151,7 @@ Alternatively, you can use the [useStyletron](/components/use-styletron/) hook t
 ```js
 const [css, theme] = useStyletron();
 
-<div className={css({marginBottom: theme.sizing.scale800})}>
+<div className={css({ marginBottom: theme.sizing.scale800 })}>
   <FormControl label="Length">
     <Slider {...sliderProps} />
   </FormControl>
@@ -167,11 +165,9 @@ Let's hook up the logic for our password generator. We will use [zxcvbn](https:/
 Base Web exposes the props we need for various change and click handlers. Except for copying our password to clipboard, interactions will generate a new password.
 
 ```js
-const setNewPassword = p => {
-  const newPassword = p
-    ? p
-    : generatePassword({length, numbers, uppercase, symbols});
-  const {score} = zxcvbn(newPassword);
+const setNewPassword = (p) => {
+  const newPassword = p ? p : generatePassword({ length, numbers, uppercase, symbols });
+  const { score } = zxcvbn(newPassword);
   setStrength(score);
   setCopied(false);
   setPassword(newPassword);
@@ -187,14 +183,14 @@ One thing we aren't doing yet is communicating how strong a generated password i
 We can pass our strength score into a function that returns a color ID from our theme.
 
 ```js
-const getStrengthColor = strength => {
+const getStrengthColor = (strength) => {
   switch (strength) {
     case 0:
       return 'negative400';
     case 1:
       return 'warning400';
     case 2:
-      return 'rating400';
+      return 'warning200';
     case 3:
       return 'positive200';
     case 4:
@@ -232,9 +228,7 @@ Tie that into our `Input`:
 
 And this will give us
 
-<BlogImage
-  src={'/images/blog/getting-started-with-base-web/strength-meter.gif'}
-/>
+<BlogImage src={'/images/blog/getting-started-with-base-web/strength-meter.gif'} />
 
 ## Conclusion
 

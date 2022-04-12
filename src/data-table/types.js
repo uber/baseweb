@@ -87,6 +87,13 @@ export type RowActionT = {|
   renderButton?: React.AbstractComponent<{||}>,
 |};
 
+type ImperativeMethodsT = {|
+  getRows: () => RowT[],
+|};
+export type ControlRefT = {
+  current: ImperativeMethodsT | null,
+};
+
 export type StatefulDataTablePropsT = {|
   batchActions?: BatchActionT[],
   columns: ColumnT<>[],
@@ -109,6 +116,7 @@ export type StatefulDataTablePropsT = {|
   rowHeight?: number,
   rowHighlightIndex?: number,
   searchable?: boolean,
+  controlRef?: ControlRefT,
 |};
 
 export type DataTablePropsT = {|

@@ -149,15 +149,7 @@ const RadioGroupConfig: TConfig = {
       type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
       custom: {
-        names: [
-          'Root',
-          'Input',
-          'Label',
-          'Description',
-          'RadioGroupRoot',
-          'RadioMarkInner',
-          'RadioMarkOuter',
-        ],
+        names: ['Root'],
         sharedProps: {
           $isFocused: {
             type: PropTypes.Boolean,

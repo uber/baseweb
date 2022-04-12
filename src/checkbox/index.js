@@ -16,7 +16,6 @@ export {
   Label as StyledLabel,
   Input as StyledInput,
   Toggle as StyledToggle,
-  ToggleInner as StyledToggleInner,
   ToggleTrack as StyledToggleTrack,
 } from './styled-components.js';
 

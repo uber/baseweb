@@ -92,7 +92,7 @@ export const StyledOptgroupHeader = styled<{}>('li', (props) => {
   const paddingY = props.$theme.sizing.scale200;
   return {
     ...props.$theme.typography.font250,
-    color: props.$theme.colors.colorPrimary,
+    color: props.$theme.colors.contentPrimary,
     paddingTop: paddingY,
     paddingBottom: paddingY,
     paddingRight: paddingX,

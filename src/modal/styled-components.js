@@ -47,59 +47,27 @@ export const Root = styled<SharedStylePropsArgT>('div', (props) => {
   };
 });
 
-export const Backdrop = styled<SharedStylePropsArgT>('div', (props) => {
-  const { $animate, $isOpen, $isVisible, $theme, $unstable_ModalBackdropScroll } = props;
-  if ($unstable_ModalBackdropScroll) {
-    return {};
-  }
-  return {
-    position: 'fixed',
-    right: 0,
-    bottom: 0,
-    top: 0,
-    left: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    // Remove grey highlight
-    WebkitTapHighlightColor: 'transparent',
-    // Disable scroll capabilities.
-    touchAction: 'none',
-    opacity: $isVisible && $isOpen ? 1 : 0,
-    ...($animate
-      ? {
-          transitionProperty: 'opacity',
-          transitionDuration: $theme.animation.timing400,
-          transitionTimingFunction: $theme.animation.easeOutCurve,
-        }
-      : null),
-  };
-});
-
 export const DialogContainer = styled<SharedStylePropsArgT>('div', (props) => {
-  const { $animate, $isOpen, $isVisible, $theme, $unstable_ModalBackdropScroll } = props;
+  const { $animate, $isOpen, $isVisible, $theme } = props;
+  const animationRules = {
+    transitionProperty: 'opacity',
+    transitionDuration: $theme.animation.timing400,
+    transitionTimingFunction: $theme.animation.easeOutCurve,
+  };
+
   return {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     width: '100%',
     minHeight: '100%',
-    pointerEvents: 'none',
     userSelect: 'none',
-    ...($unstable_ModalBackdropScroll
-      ? {
-          pointerEvents: 'auto',
-          backgroundColor: 'rgba(0, 0, 0, 0.5)',
-          // Remove grey highlight
-          WebkitTapHighlightColor: 'transparent',
-          opacity: $isVisible && $isOpen ? 1 : 0,
-          ...($animate
-            ? {
-                transitionProperty: 'opacity',
-                transitionDuration: $theme.animation.timing400,
-                transitionTimingFunction: $theme.animation.easeOutCurve,
-              }
-            : null),
-        }
-      : {}),
+    pointerEvents: 'auto',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    // Remove grey highlight
+    WebkitTapHighlightColor: 'transparent',
+    opacity: $isVisible && $isOpen ? 1 : 0,
+    ...($animate ? animationRules : null),
   };
 });
 

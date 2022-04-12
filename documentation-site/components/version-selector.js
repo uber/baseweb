@@ -57,7 +57,7 @@ const VersionSelector = () => {
         </NestedMenus>
       )}
     >
-      <Button size="compact" kind={KIND.minimal} endEnhancer={() => <ChevronDown size={20} />}>
+      <Button size="compact" kind={KIND.tertiary} endEnhancer={() => <ChevronDown size={20} />}>
         v{version}
       </Button>
     </StatefulPopover>

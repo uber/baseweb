@@ -217,7 +217,7 @@ const customColorStates = {
   [COLOR_STATE.disabled]: (theme, color) => ({
     color: customOnRamp(color, theme.colors.tagFontDisabledRampUnit),
     backgroundColor: null,
-    borderColor: customOnRamp(color, theme.colors.tagOutlinedDisabledRampUnit),
+    borderColor: customOnRamp(color, theme.colors.tagSolidDisabledRampUnit),
   }),
   [COLOR_STATE.solid]: (theme, color) => ({
     color: customOnRamp(color, theme.colors.tagSolidFontRampUnit),

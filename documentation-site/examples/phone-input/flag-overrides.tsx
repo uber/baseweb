@@ -2,7 +2,6 @@ import * as React from 'react';
 import {
   PhoneInput,
   COUNTRIES,
-  CountrySelectDropdown,
   StyledFlag,
 } from 'baseui/phone-input';
 
@@ -27,15 +26,6 @@ export default function Example() {
       overrides={{
         FlagContainer: {
           component: CustomFlag,
-        },
-        CountrySelect: {
-          props: {
-            overrides: {
-              Dropdown: {
-                component: CountrySelectDropdown,
-              },
-            },
-          },
         },
       }}
     />

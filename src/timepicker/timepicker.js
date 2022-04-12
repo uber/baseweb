@@ -289,16 +289,10 @@ class TimePicker<T = Date> extends React.Component<TimePickerPropsT<T>, TimePick
     return (
       <LocaleContext.Consumer>
         {(locale) => {
-          let ariaLabel;
-
-          if (locale.datepicker.timePickerAriaLabel) {
-            ariaLabel = locale.datepicker.timePickerAriaLabel;
-          } else {
-            ariaLabel =
-              format === '12'
-                ? locale.datepicker.timePickerAriaLabel12Hour
-                : locale.datepicker.timePickerAriaLabel24Hour;
-          }
+          const ariaLabel =
+            format === '12'
+              ? locale.datepicker.timePickerAriaLabel12Hour
+              : locale.datepicker.timePickerAriaLabel24Hour;
 
           return (
             <OverriddenSelect

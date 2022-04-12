@@ -97,7 +97,7 @@ export function toObjectOverride<T>(override: OverrideT): OverrideObjectT {
 /**
  * Get a convenient override array that will always have [component, props]
  */
-/* flowlint unclear-type:off */
+// flowlint unclear-type:off
 export function getOverrides<T>(
   override: Object,
   defaultComponent: React.ComponentType<any>

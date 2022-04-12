@@ -14,6 +14,7 @@ import type { DayPropsT, DayStateT } from './types.js';
 import { LocaleContext } from '../locale/index.js';
 import type { LocaleT } from '../locale/types.js';
 import { isFocusVisible } from '../utils/focusVisible.js';
+import { INPUT_ROLE } from './constants.js';
 
 export default class Day<T = Date> extends React.Component<DayPropsT<T>, DayStateT> {
   static defaultProps = {
@@ -72,21 +73,58 @@ export default class Day<T = Date> extends React.Component<DayPropsT<T>, DayStat
       : this.props.month;
   };
 
+  /**
+   * Determines how the day value(s) should be updated when a new day is selected.
+   * Note: time values are incorporated into new day/date values downstream in `Calendar`.
+   * Note: Situations where Start Dates are after End Dates are handled downstream in `Datepicker`.
+   * */
   onSelect: (T) => void = (selectedDate) => {
     const { range, value } = this.props;
-    let date;
-    if (Array.isArray(value) && range) {
-      if (!value.length || value.length > 1) {
-        date = [selectedDate];
-      } else if (this.dateHelpers.isAfter(selectedDate, value[0])) {
-        date = [value[0], selectedDate];
+
+    let nextDate;
+    if (Array.isArray(value) && range && this.props.hasLockedBehavior) {
+      const currentDate = this.props.value;
+      let nextStartDate = null;
+      let nextEndDate = null;
+
+      if (this.props.selectedInput === INPUT_ROLE.startDate) {
+        nextStartDate = selectedDate;
+        nextEndDate = Array.isArray(currentDate) && currentDate[1] ? currentDate[1] : null;
+      } else if (this.props.selectedInput === INPUT_ROLE.endDate) {
+        nextStartDate = Array.isArray(currentDate) && currentDate[0] ? currentDate[0] : null;
+        nextEndDate = selectedDate;
+      }
+
+      nextDate = [nextStartDate];
+      if (nextEndDate) {
+        nextDate.push(nextEndDate);
+      }
+    } else if (Array.isArray(value) && range && !this.props.hasLockedBehavior) {
+      const [start, end] = value;
+
+      // Starting a new range
+      if ((!start && !end) || (start && end)) {
+        nextDate = [selectedDate, null];
+
+        // EndDate needs a StartDate, SelectedDate comes before EndDate
+      } else if (!start && end && this.dateHelpers.isAfter(end, selectedDate)) {
+        nextDate = [selectedDate, end];
+
+        // EndDate needs a StartDate, but SelectedDate comes after EndDate
+      } else if (!start && end && this.dateHelpers.isAfter(selectedDate, end)) {
+        nextDate = [end, selectedDate];
+
+        // StartDate needs an EndDate, SelectedDate comes after StartDate
+      } else if (start && !end && this.dateHelpers.isAfter(selectedDate, start)) {
+        nextDate = [start, selectedDate];
       } else {
-        date = [selectedDate, value[0]];
+        nextDate = [selectedDate, start];
       }
     } else {
-      date = selectedDate;
+      nextDate = selectedDate;
     }
-    this.props.onSelect({ date });
+
+    this.props.onSelect({ date: nextDate });
   };
 
   onKeyDown = (event: KeyboardEvent) => {
@@ -205,16 +243,21 @@ export default class Day<T = Date> extends React.Component<DayPropsT<T>, DayStat
   isPseudoSelected() {
     const date = this.getDateProp();
     const { value } = this.props;
-    if (Array.isArray(value) && !value[0] && !value[1]) {
-      return false;
-    }
-    // fix flow by passing a specific arg type and remove 'Array.isArray(value)'
-    if (Array.isArray(value) && value.length > 1) {
-      return this.dateHelpers.isDayInRange(
-        this.clampToDayStart(date),
-        this.clampToDayStart(value[0]),
-        this.clampToDayStart(value[1])
-      );
+
+    if (Array.isArray(value)) {
+      const [start, end] = value;
+
+      if (!start && !end) {
+        return false;
+      }
+
+      if (start && end) {
+        return this.dateHelpers.isDayInRange(
+          this.clampToDayStart(date),
+          this.clampToDayStart(start),
+          this.clampToDayStart(end)
+        );
+      }
     }
   }
 
@@ -222,46 +265,66 @@ export default class Day<T = Date> extends React.Component<DayPropsT<T>, DayStat
   isPseudoHighlighted() {
     const date = this.getDateProp();
     const { value, highlightedDate } = this.props;
-    if (Array.isArray(value) && !value[0] && !value[1]) {
-      return false;
-    }
 
-    // fix flow by passing a specific arg type and remove 'Array.isArray(value)'
-    if (Array.isArray(value) && highlightedDate && value[0] && !value[1]) {
-      if (this.dateHelpers.isAfter(highlightedDate, value[0])) {
-        return this.dateHelpers.isDayInRange(
-          this.clampToDayStart(date),
-          this.clampToDayStart(value[0]),
-          this.clampToDayStart(highlightedDate)
-        );
-      } else {
-        return this.dateHelpers.isDayInRange(
-          this.clampToDayStart(date),
-          this.clampToDayStart(highlightedDate),
-          this.clampToDayStart(value[0])
-        );
+    if (Array.isArray(value)) {
+      const [start, end] = value;
+
+      if (!start && !end) {
+        return false;
+      }
+
+      if (highlightedDate && start && !end) {
+        if (this.dateHelpers.isAfter(highlightedDate, start)) {
+          return this.dateHelpers.isDayInRange(
+            this.clampToDayStart(date),
+            this.clampToDayStart(start),
+            this.clampToDayStart(highlightedDate)
+          );
+        } else {
+          return this.dateHelpers.isDayInRange(
+            this.clampToDayStart(date),
+            this.clampToDayStart(highlightedDate),
+            this.clampToDayStart(start)
+          );
+        }
+      }
+
+      if (highlightedDate && !start && end) {
+        if (this.dateHelpers.isAfter(highlightedDate, end)) {
+          return this.dateHelpers.isDayInRange(
+            this.clampToDayStart(date),
+            this.clampToDayStart(end),
+            this.clampToDayStart(highlightedDate)
+          );
+        } else {
+          return this.dateHelpers.isDayInRange(
+            this.clampToDayStart(date),
+            this.clampToDayStart(highlightedDate),
+            this.clampToDayStart(end)
+          );
+        }
       }
     }
   }
 
   getSharedProps() {
     const date = this.getDateProp();
-    const { value, highlightedDate, range, highlighted } = this.props;
+    const { value, highlightedDate, range, highlighted, peekNextMonth } = this.props;
     const $isHighlighted = highlighted;
     const $selected = this.isSelected();
     const $hasRangeHighlighted = !!(
       Array.isArray(value) &&
       range &&
-      value.length === 1 &&
       highlightedDate &&
-      !this.dateHelpers.isSameDay(value[0], highlightedDate)
+      ((value[0] && !value[1] && !this.dateHelpers.isSameDay(value[0], highlightedDate)) ||
+        (!value[0] && value[1] && !this.dateHelpers.isSameDay(value[1], highlightedDate)))
     );
-    const $outsideMonth = !this.props.peekNextMonth && this.isOutsideMonth();
+    const $outsideMonth = !peekNextMonth && this.isOutsideMonth();
     const $outsideMonthWithinRange = !!(
       Array.isArray(value) &&
       range &&
       $outsideMonth &&
-      !this.props.peekNextMonth &&
+      !peekNextMonth &&
       this.isOutsideOfMonthButWithinRange()
     );
     return {
@@ -270,7 +333,8 @@ export default class Day<T = Date> extends React.Component<DayPropsT<T>, DayStat
       $disabled: this.props.disabled,
       $endDate:
         (Array.isArray(value) &&
-          this.props.range &&
+          !!(value[0] && value[1]) &&
+          range &&
           $selected &&
           this.dateHelpers.isSameDay(date, value[1])) ||
         false,
@@ -280,9 +344,9 @@ export default class Day<T = Date> extends React.Component<DayPropsT<T>, DayStat
         Array.isArray(value) &&
         $hasRangeHighlighted &&
         highlightedDate &&
-        value[0] &&
-        this.dateHelpers.isAfter(highlightedDate, value[0]),
-      $hasRangeSelected: Array.isArray(value) ? value.length === 2 : false,
+        ((value[0] && this.dateHelpers.isAfter(highlightedDate, value[0])) ||
+          (value[1] && this.dateHelpers.isAfter(highlightedDate, value[1]))),
+      $hasRangeSelected: Array.isArray(value) ? !!(value[0] && value[1]) : false,
       $highlightedDate: highlightedDate,
       $isHighlighted,
       $isHovered: this.state.isHovered,
@@ -292,19 +356,19 @@ export default class Day<T = Date> extends React.Component<DayPropsT<T>, DayStat
       $month: this.getMonthProp(),
       $outsideMonth,
       $outsideMonthWithinRange,
-      $peekNextMonth: this.props.peekNextMonth,
+      $peekNextMonth: peekNextMonth,
       $pseudoHighlighted:
-        this.props.range && !$isHighlighted && !$selected ? this.isPseudoHighlighted() : false,
-      $pseudoSelected: this.props.range && !$selected ? this.isPseudoSelected() : false,
-      $range: this.props.range,
+        range && !$isHighlighted && !$selected ? this.isPseudoHighlighted() : false,
+      $pseudoSelected: range && !$selected ? this.isPseudoSelected() : false,
+      $range: range,
       $selected,
       $startDate:
-        Array.isArray(this.props.value) &&
-        this.props.value.length > 1 &&
-        this.props.range &&
-        $selected
-          ? this.dateHelpers.isSameDay(date, this.props.value[0])
+        Array.isArray(value) && value[0] && value[1] && range && $selected
+          ? this.dateHelpers.isSameDay(date, value[0])
           : false,
+      $hasLockedBehavior: this.props.hasLockedBehavior,
+      $selectedInput: this.props.selectedInput,
+      $value: this.props.value,
     };
   }
 
