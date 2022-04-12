@@ -7,7 +7,7 @@ import {
   OptionListProps,
 } from 'baseui/menu';
 
-import {FixedSizeList} from 'react-window';
+import {FixedSizeList, ListChildComponentProps} from 'react-window';
 
 const LIST_ITEM_HEIGHT = 36;
 const EMPTY_LIST_HEIGHT = 72;
@@ -20,7 +20,7 @@ const ListItem = withStyle(StyledDropdownListItem, {
   alignItems: 'center',
 });
 
-const FixedSizeListItem = ({
+const FixedSizeListItem: React.FC<ListChildComponentProps> = ({
   data,
   index,
   style,
@@ -44,43 +44,56 @@ const FixedSizeListItem = ({
   );
 };
 
-const VirtualDropdown = React.forwardRef((props: any, ref) => {
-  const children = React.Children.toArray(props.children);
+type Children =
+  | React.ReactElement
+  | Exclude<React.ReactFragment, {}>;
 
-  if (!children[0] || !children[0].props.item) {
+interface VirtualDropdown {
+  children: Children;
+}
+
+const VirtualDropdown = React.forwardRef(
+  (props: VirtualDropdown, ref) => {
+    const children = React.Children.toArray(
+      props.children,
+    ) as Children[];
+    const firstChild = children[0];
+
+    if (!firstChild || !firstChild.props.item) {
+      return (
+        <StyledList
+          $style={{height: EMPTY_LIST_HEIGHT + 'px'}}
+          ref={ref}
+        >
+          <StyledEmptyState {...firstChild.props} />
+        </StyledList>
+      );
+    }
+
+    const height = Math.min(
+      MAX_LIST_HEIGHT,
+      children.length * LIST_ITEM_HEIGHT,
+    );
+
     return (
-      <StyledList
-        $style={{height: EMPTY_LIST_HEIGHT + 'px'}}
-        ref={ref}
-      >
-        <StyledEmptyState {...children[0].props} />
+      <StyledList ref={ref}>
+        <FixedSizeList
+          width="100%"
+          height={height}
+          itemCount={children.length}
+          itemData={children}
+          itemKey={(
+            index: number,
+            data: {props: OptionListProps}[],
+          ) => data[index].props.item.id}
+          itemSize={LIST_ITEM_HEIGHT}
+        >
+          {FixedSizeListItem}
+        </FixedSizeList>
       </StyledList>
     );
-  }
-
-  const height = Math.min(
-    MAX_LIST_HEIGHT,
-    children.length * LIST_ITEM_HEIGHT,
-  );
-
-  return (
-    <StyledList ref={ref}>
-      <FixedSizeList
-        width="100%"
-        height={height}
-        itemCount={children.length}
-        itemData={children}
-        itemKey={(
-          index: number,
-          data: {props: OptionListProps}[],
-        ) => data[index].props.item.id}
-        itemSize={LIST_ITEM_HEIGHT}
-      >
-        {FixedSizeListItem}
-      </FixedSizeList>
-    </StyledList>
-  );
-});
+  },
+);
 
 const options: {id: number; label: number}[] = [];
 
