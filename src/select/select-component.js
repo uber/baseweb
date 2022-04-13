@@ -620,7 +620,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
       overrides.LoadingIndicator,
       StyledLoadingIndicator
     );
-    return <LoadingIndicator {...loadingIndicatorProps} />;
+    return <LoadingIndicator aria-label="Loading" {...loadingIndicatorProps} />;
   }
 
   renderValue(
