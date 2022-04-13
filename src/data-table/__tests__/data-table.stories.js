@@ -36,6 +36,7 @@ import { Scenario as DataTableTextSearch } from './data-table-text-search.scenar
 import { Scenario as DataTableDefault } from './data-table.scenario.js';
 import { Scenario as DataTableRtl } from './data-table-rtl.scenario.js';
 import { Scenario as DataTableLargeData } from './data-table-large-column-data.scenario.js';
+import { Scenario as DataTableGetRows } from './data-table-get-rows.scenario.js';
 
 export const AddRemoveColumns = () => <DataTableAddRemoveColumns />;
 export const BatchAction = () => <DataTableBatchAction />;
@@ -66,3 +67,4 @@ export const TextSearch = () => <DataTableTextSearch />;
 export const DataTable = () => <DataTableDefault />;
 export const TestRtl = () => <DataTableRtl />;
 export const LargeData = () => <DataTableLargeData />;
+export const GetRows = () => <DataTableGetRows />;
