@@ -15,7 +15,6 @@ import SearchIconComponent from '../icon/search.js';
 import { LocaleContext } from '../locale/index.js';
 import type { LocaleT } from '../locale/types.js';
 import { Popover, PLACEMENT } from '../popover/index.js';
-import { Spinner } from '../spinner/index.js';
 import { UIDConsumer } from 'react-uid';
 
 import AutosizeInput from './autosize-input.js';
@@ -31,8 +30,8 @@ import {
   StyledIconsContainer,
   StyledSelectArrow,
   StyledClearIcon,
-  getLoadingIconStyles,
   StyledSearchIconContainer,
+  StyledLoadingIndicator,
 } from './styled-components.js';
 import type { PropsT, SelectStateT, ValueT, OptionT, ChangeActionT, ReactRefT } from './types.js';
 import { expandValue, normalizeOptions } from './utils/index.js';
@@ -616,21 +615,12 @@ class Select extends React.Component<PropsT, SelectStateT> {
 
   renderLoading() {
     if (!this.props.isLoading) return;
-    const sharedProps = this.getSharedProps();
     const { overrides = {} } = this.props;
     const [LoadingIndicator, loadingIndicatorProps] = getOverrides(
       overrides.LoadingIndicator,
-      Spinner
+      StyledLoadingIndicator
     );
-    return (
-      <LoadingIndicator
-        size={16}
-        overrides={{ Svg: { style: getLoadingIconStyles } }}
-        $silenceV11DeprecationWarning
-        {...sharedProps}
-        {...loadingIndicatorProps}
-      />
-    );
+    return <LoadingIndicator {...loadingIndicatorProps} />;
   }
 
   renderValue(
