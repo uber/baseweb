@@ -58,6 +58,10 @@ const ListItem = React.forwardRef<PropsT, HTMLLIElement>((props: PropsT, ref) =>
       // flowlint-next-line unclear-type:off
       ref={(ref: any)}
       $shape={props.shape || SHAPE.DEFAULT}
+      aria-label={props['aria-label']}
+      aria-selected={props['aria-selected']}
+      id={props.id}
+      role={props.role}
       {...rootProps}
     >
       {Artwork && (
