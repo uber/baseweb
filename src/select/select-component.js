@@ -620,7 +620,29 @@ class Select extends React.Component<PropsT, SelectStateT> {
       overrides.LoadingIndicator,
       StyledLoadingIndicator
     );
-    return <LoadingIndicator aria-label="Loading" {...loadingIndicatorProps} />;
+
+    return (
+      <LoadingIndicator role="status" {...loadingIndicatorProps}>
+        {/* Offscreen content could be defined as styled-component and
+          overridable, but I can't think of a good reason for doing so.
+          LoadingIndicator children can be overriden if required. */}
+        <span
+          style={{
+            position: 'absolute',
+            width: '1px',
+            height: '1px',
+            padding: 0,
+            margin: '-1px',
+            overflow: 'hidden',
+            clip: 'rect(0,0,0,0)',
+            whiteSpace: 'nowrap',
+            border: 0,
+          }}
+        >
+          Loading
+        </span>
+      </LoadingIndicator>
+    );
   }
 
   renderValue(
