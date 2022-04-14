@@ -6,13 +6,13 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import { styled } from '../styles/index.js';
+import { styled, withStyle } from '../styles/index.js';
 import { TYPE, SIZE } from './constants.js';
 import { StyledList, StyledListItem } from '../menu/index.js';
+import { Spinner } from '../spinner/index.js';
 
 import type { SharedStylePropsArgT } from './types.js';
 import { ellipsisText } from '../styles/util.js';
-import type { ThemeT } from '../styles/types.js';
 
 function getFont(size = SIZE.default, typography) {
   return {
@@ -424,14 +424,19 @@ export const StyledClearIcon = styled<SharedStylePropsArgT>('svg', (props) => {
   };
 });
 
-export const getLoadingIconStyles = (props: { $theme: ThemeT }) => {
-  const { $theme } = props;
-  const { colors } = $theme;
+export const StyledLoadingIndicator = withStyle<typeof Spinner, {}>(Spinner, ({ $theme }) => {
   return {
-    ...getSvgStyles({ $theme }),
-    color: colors.contentPrimary,
+    borderTopWidth: '2px',
+    borderRightWidth: '2px',
+    borderBottomWidth: '2px',
+    borderLeftWidth: '2px',
+    borderRightColor: $theme.colors.borderOpaque,
+    borderBottomColor: $theme.colors.borderOpaque,
+    borderLeftColor: $theme.colors.borderOpaque,
+    width: '16px',
+    height: '16px',
   };
-};
+});
 
 export const StyledSearchIconContainer = styled<SharedStylePropsArgT>('div', (props) => {
   const { $disabled, $theme } = props;

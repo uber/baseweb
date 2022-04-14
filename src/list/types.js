@@ -44,7 +44,11 @@ export type PropsT = {|
   shape?: ShapeT,
   children: React.Node,
   endEnhancer?: React.AbstractComponent<{}>,
+  'aria-label'?: string,
+  'aria-selected'?: boolean,
+  id?: String,
   overrides?: OverridesT,
+  role?: string,
   sublist?: boolean,
 |};
 
