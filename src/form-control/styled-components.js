@@ -16,7 +16,6 @@ export const Label = styled<StylePropsT>('label', (props) => {
   } = props;
   return {
     ...typography.font250,
-    fontWeight: 500,
     width: '100%',
     color: $disabled ? colors.contentSecondary : colors.contentPrimary,
     display: 'block',
