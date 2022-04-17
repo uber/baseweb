@@ -231,3 +231,9 @@ export const LOCATION_PUCK_TYPES = Object.freeze({
   consumer: 'consumer',
   earner: 'earner',
 });
+
+export const EARNER_LOCATION_PUCK_CORE_SCALES = Object.freeze({
+  [LOCATION_PUCK_SIZES.small]: '50%',
+  [LOCATION_PUCK_SIZES.medium]: '75%',
+  [LOCATION_PUCK_SIZES.large]: '100%',
+});

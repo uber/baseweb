@@ -8,7 +8,11 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { useStyletron, type ThemeT } from '../styles/index.js';
 import { getOverrides } from '../helpers/overrides.js';
-import { LOCATION_PUCK_SIZES, LOCATION_PUCK_TYPES } from './constants.js';
+import {
+  LOCATION_PUCK_SIZES,
+  LOCATION_PUCK_TYPES,
+  EARNER_LOCATION_PUCK_CORE_SCALES,
+} from './constants.js';
 import type {
   LocationPuckPropsT,
   ConsumerLocationPuckPropsT,
@@ -19,6 +23,8 @@ import {
   StyledConsumerLocationPuckCore,
   StyledLocationPuckApproximation,
   consumerLocationShadow,
+  earnerLocationShadow,
+  StyledEarnerLocationPuckCore,
 } from './styled-components.js';
 
 const ConsumerLocationPuckHeading = ({ bearing }) => {
@@ -32,7 +38,7 @@ const ConsumerLocationPuckHeading = ({ bearing }) => {
         color: theme.colors.contentAccent,
         transform: `rotate(${bearing}deg) translateY(-16px)`,
         transition: `${theme.animation.timing300} ${theme.animation.easeOutCurve} all`,
-        ...consumerLocationShadow,
+        // ...consumerLocationShadow,
       })}
       width="11"
       height="6"
@@ -52,8 +58,8 @@ const ConsumerLocationPuckHeading = ({ bearing }) => {
 
 const ConsumerLocationPuck = ({ bearing, confidence, overrides }: ConsumerLocationPuckPropsT) => {
   const [, theme] = useStyletron();
-  const [ConsumerLocationPuckCore, consuserLocationPuckCoreProps] = getOverrides(
-    overrides.LocationPuckCore,
+  const [ConsumerLocationPuckCore, consumerLocationPuckCoreProps] = getOverrides(
+    overrides.ConsumerLocationPuckCore,
     StyledConsumerLocationPuckCore
   );
 
@@ -62,20 +68,65 @@ const ConsumerLocationPuck = ({ bearing, confidence, overrides }: ConsumerLocati
     StyledLocationPuckApproximation
   );
 
-  const color = theme.colors.contentAccent;
-
-  //do color
   return (
     <LocationPuckContainer>
-      <LocationPuckApproximation $color={color} {...locationPuckApproximationProps} />
-      <ConsumerLocationPuckCore {...consuserLocationPuckCoreProps} />
+      <LocationPuckApproximation
+        $color={theme.colors.contentAccent}
+        {...locationPuckApproximationProps}
+      />
+      <ConsumerLocationPuckCore {...consumerLocationPuckCoreProps} />
       <ConsumerLocationPuckHeading bearing={bearing} />
     </LocationPuckContainer>
   );
 };
 
+const EarnerLocationPuckHeading = ({ size, color, bearing }) => {
+  const [css, theme] = useStyletron();
+  return (
+    <svg
+      className={css({
+        position: 'absolute',
+        transition: `${theme.animation.timing300} ${theme.animation.easeOutCurve} all`,
+        transform: `rotate(${bearing}deg) scale(${EARNER_LOCATION_PUCK_CORE_SCALES[size]})`,
+      })}
+      width="72"
+      height="72"
+      viewBox="0 0 72 72"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M36 20L52 52L36 42.8571L20 52L36 20Z"
+        fill={color}
+      />
+    </svg>
+  );
+};
+
 const EarnerLocationPuck = ({ bearing, confidence, size, overrides }: EarnerLocationPuckPropsT) => {
-  return <LocationPuckContainer></LocationPuckContainer>;
+  const [css, theme] = useStyletron();
+
+  const [LocationPuckApproximation, locationPuckApproximationProps] = getOverrides(
+    overrides.LocationPuckApproximation,
+    StyledLocationPuckApproximation
+  );
+
+  const color = theme.colors.contentAccent;
+
+  const [EarnerLocationPuckCore, earnerLocationPuckCoreProps] = getOverrides(
+    overrides.EarnerLocationPuckCore,
+    StyledEarnerLocationPuckCore
+  );
+
+  return (
+    <LocationPuckContainer>
+      <LocationPuckApproximation $color={color} {...locationPuckApproximationProps} />
+      <EarnerLocationPuckCore $color={color} $size={size} {...earnerLocationPuckCoreProps} />
+      <EarnerLocationPuckHeading size={size} color={color} bearing={bearing} />
+    </LocationPuckContainer>
+  );
 };
 
 /* Ensure bearing is between 0 and 360 */

@@ -9,32 +9,68 @@ import Example from '../../components/example';
 import Layout from '../../components/layout';
 import Exports from '../../components/exports';
 import Yard from '../../components/yard/index';
-import locationPuckConfig from '../../components/yard/config/fixed-marker';
+import locationPuckYardConfig from '../../components/yard/config/location-puck';
 import ApiTable from '../../components/api-table';
 
-import * as FixedMarkerExports from 'baseui/map-marker';
+import ConsumerLocationPuck from 'examples/location-puck/consumer.js';
+import EarnerLocationPuck from 'examples/location-puck/earner.js';
+import ReactMapGL from 'examples/location-puck/react-map-gl.js';
+import FloatingMarkerContainer from '../../components/floating-marker-container';
+
+import * as LocationPuckExports from 'baseui/map-marker';
 
 export default Layout;
 
 # Location Puck
 
-<Yard placeholderHeight={48} {...locationPuckYardConfig} />
+<Yard
+  {...locationPuckYardConfig}
+  compilerStyles={{
+    paddingTop: '48px',
+    paddingBottom: '48px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  }}
+/>
 
-A location puck is used to mark a user's location on the mark.
+A location puck is used to mark a user's location on the map.
 
 ## When to use
 
-Use a fixed marker when you are showcasing specific points or areas. Think of it like a pin pushed into a wallmap. The content won’t move around or adjust, it’s not travelling around, and it’s not attached to something dynamic.
-
-Fixed markers are particularly helpful in draggable location setting situations, such as dragging around a marker to set your location.
-
-For more information on the design principles behind the Base map markers, please visit the official [Base design website documentation](https://base.uber.com/map-usage-markers).
+Use the location puck to represent a user's current location on a map. Do not use this component if the user's current location is not being accessed. Do not use this component to represent anything other than a user's current location.
 
 ## Guidelines
 
-### General
+The location puck comes in two types: `consumer` and `earner`.
+
+The `consumer` location puck should generally be used in top-down map views in consumer applications, such as Rides or Eats.
+
+The `earner` location puck should generally be navigation-based applications, such as Earner. The `earner` puck can be used for overview or turn-by-turn navigation use cases.
 
 ## Examples
+
+<Example title="Consumer location puck" path="location-puck/consumer.js">
+  <FloatingMarkerContainer>
+    <ConsumerLocationPuck />
+  </FloatingMarkerContainer>
+</Example>
+
+A consumer location puck.
+
+<Example title="Earner location puck" path="location-puck/earner.js">
+  <FloatingMarkerContainer>
+    <EarnerLocationPuck />
+  </FloatingMarkerContainer>
+</Example>
+
+An earner location puck.
+
+<Example title="Usage with react-map-gl" path="location-puck/react-map-gl.js">
+  <ReactMapGL />
+</Example>
+
+A consumer location puck rendered in a [react-map-gl](https://visgl.github.io/react-map-gl/) view. Everytime the marker is dragged, the `dragging` prop is updated and the marker position is updated.
 
 ## API
 

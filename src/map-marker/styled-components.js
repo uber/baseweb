@@ -10,6 +10,7 @@ import {
   BADGE_ENHANCER_STYLES,
   FLOATING_MARKER_ANCHOR_POSITIONS,
   LABEL_SIZES,
+  EARNER_LOCATION_PUCK_CORE_SCALES,
 } from './constants.js';
 
 import type {
@@ -18,6 +19,7 @@ import type {
   BadgeEnhancerSizeT,
   BadgePositionT,
   PinHeadSizeT,
+  LocationPuckSizeT,
 } from './types.js';
 
 export const getAnchorTransform = (anchor: AnchorPositionsT, anchorSize: number) =>
@@ -317,6 +319,8 @@ export const LocationPuckContainer = styled<{}>('div', () => {
 });
 
 export const consumerLocationShadow = { boxShadow: `0px 2px 4px 0px rgba(67, 76, 123, 0.2)` };
+export const earnerLocationShadow = { boxShadow: `0px 3px 5px 0px rgba(67, 76, 123, 0.4)` };
+
 export const StyledConsumerLocationPuckCore = styled<{}>('div', ({ $theme }) => {
   return {
     height: `${12}px`,
@@ -341,5 +345,23 @@ export const StyledLocationPuckApproximation = styled<{
     width: '80px',
     borderRadius: `${10000}px `,
     position: 'absolute',
+  };
+});
+
+export const StyledEarnerLocationPuckCore = styled<{
+  color: string,
+  $size: LocationPuckSizeT,
+}>('div', ({ $theme, $color, $size }) => {
+  return {
+    position: 'absolute',
+    transform: `scale(${EARNER_LOCATION_PUCK_CORE_SCALES[$size]})`,
+    transition: `${$theme.animation.timing300} ${$theme.animation.easeOutCurve} all`,
+    ...earnerLocationShadow,
+    borderRadius: '50%',
+    height: `${72}px`,
+    width: `${72}px`,
+    background: $theme.colors.backgroundPrimary,
+    border: `${6}px solid ${$color}`,
+    boxSizing: 'border-box',
   };
 });
