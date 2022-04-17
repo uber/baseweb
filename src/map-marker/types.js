@@ -161,19 +161,29 @@ export type DragShadowPropsT = {
   overrides: FixedMarkerOverridesT,
 };
 
+export type LocationPuckOverridesT = {
+  LocationPuckApproximation?: OverrideT,
+  ConsumerLocationPuckCore?: OverrideT,
+
+  EarnerLocationPuckCore?: OverrideT,
+};
+
 export type LocationPuckPropsT = {
   size: LocationPuckSizeT,
   bearing: number,
   confidence: number,
   type: LocationPuckTypeT,
+  overrides: LocationPuckOverridesT,
 };
 
 export type ConsumerLocationPuckPropsT = {
   bearing: number,
   confidence: number,
+  overrides: LocationPuckOverridesT,
 };
 export type EarnerLocationPuckPropsT = {
   bearing: number,
   confidence: number,
   size: LocationPuckSizeT,
+  overrides: LocationPuckOverridesT,
 };

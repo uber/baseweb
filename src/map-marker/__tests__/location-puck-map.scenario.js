@@ -15,7 +15,6 @@ import { Slider } from '../../slider/index.js';
 import { Select } from '../../select/index.js';
 
 import LocationPuck from '../location-puck.js';
-import { getMapStyle } from './map-style.js';
 
 const locationPuckSizes = Object.keys(LOCATION_PUCK_SIZES)
   .map((key) => LOCATION_PUCK_SIZES[key])
@@ -41,21 +40,14 @@ const defaultLocation = [uberHq.longitude, uberHq.latitude];
 export function Scenario() {
   const [confidence, setConfidence] = React.useState([1]);
   const [bearing, setBearing] = React.useState([0]);
-
   const [size, setSize] = React.useState([locationPuckSizes[0]]);
   const [type, setType] = React.useState([locationPuckTypes[0]]);
-
   const [locations, setLocations] = React.useState([defaultLocation]);
-
-  const [showPointDebug, setShowPointDebug] = React.useState(true);
-
   const [viewport, setViewport] = React.useState({
     ...uberHq,
     zoom: 14,
   });
   const [css, theme] = useStyletron();
-
-  const mapStyle = getMapStyle(locations, { showPointDebug });
 
   const onMarkerDragEnd = React.useCallback((event, index) => {
     setLocations((l) => {

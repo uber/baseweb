@@ -9,24 +9,8 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { LOCATION_PUCK_SIZES, LOCATION_PUCK_TYPES } from '../constants.js';
 import TileGrid from './tile-grid.js';
-
 import { Slider } from '../../slider/index.js';
-
 import LocationPuck from '../location-puck.js';
-
-const locationPuckSizes = Object.keys(LOCATION_PUCK_SIZES)
-  .map((key) => LOCATION_PUCK_SIZES[key])
-  .map((x) => ({
-    id: x,
-    label: x,
-  }));
-
-const locationPuckTypes = Object.keys(LOCATION_PUCK_TYPES)
-  .map((key) => LOCATION_PUCK_TYPES[key])
-  .map((x) => ({
-    label: x,
-    id: x,
-  }));
 
 export function Scenario() {
   const markers = [];

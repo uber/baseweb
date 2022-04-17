@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import { useStyletron, type ThemeT } from '../styles/index.js';
+import { useStyletron } from '../styles/index.js';
 import { getOverrides } from '../helpers/overrides.js';
 import {
   LOCATION_PUCK_SIZES,
@@ -22,8 +22,6 @@ import {
   LocationPuckContainer,
   StyledConsumerLocationPuckCore,
   StyledLocationPuckApproximation,
-  consumerLocationShadow,
-  earnerLocationShadow,
   StyledEarnerLocationPuckCore,
 } from './styled-components.js';
 
@@ -106,7 +104,7 @@ const EarnerLocationPuckHeading = ({ size, color, bearing }) => {
 };
 
 const EarnerLocationPuck = ({ bearing, confidence, size, overrides }: EarnerLocationPuckPropsT) => {
-  const [css, theme] = useStyletron();
+  const [, theme] = useStyletron();
 
   const [LocationPuckApproximation, locationPuckApproximationProps] = getOverrides(
     overrides.LocationPuckApproximation,
