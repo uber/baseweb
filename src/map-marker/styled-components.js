@@ -306,3 +306,40 @@ export const StyledContentItem = styled<{
     color: $color,
   };
 });
+
+export const LocationPuckContainer = styled<{}>('div', () => {
+  return {
+    position: 'relative',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  };
+});
+
+export const consumerLocationShadow = { boxShadow: `0px 2px 4px 0px rgba(67, 76, 123, 0.2)` };
+export const StyledConsumerLocationPuckCore = styled<{}>('div', ({ $theme }) => {
+  return {
+    height: `${12}px`,
+    width: `${12}px`,
+    background: $theme.colors.contentAccent,
+    borderRadius: `${100}px `,
+    position: 'absolute',
+    ...consumerLocationShadow,
+  };
+});
+
+/**
+ * TODO: standardize approximation
+ */
+export const StyledLocationPuckApproximation = styled<{
+  $color: string,
+}>('div', ({ $theme, $color }) => {
+  return {
+    background: $color,
+    opacity: 0.12,
+    height: '80px',
+    width: '80px',
+    borderRadius: `${10000}px `,
+    position: 'absolute',
+  };
+});

@@ -16,6 +16,8 @@ import {
   BADGE_ENHANCER_SIZES,
   LABEL_ENHANCER_POSITIONS,
   KIND,
+  LOCATION_PUCK_SIZES,
+  LOCATION_PUCK_TYPES,
 } from './constants.js';
 import type { OverrideT } from '../helpers/overrides.js';
 
@@ -37,6 +39,9 @@ export type BadgeEnhancerSizeT = $Values<typeof BADGE_ENHANCER_SIZES>;
 export type LabelEnhancerPositionT = $Values<typeof LABEL_ENHANCER_POSITIONS>;
 
 export type KindT = $Values<typeof KIND>;
+
+export type LocationPuckSizeT = $Values<typeof LOCATION_PUCK_SIZES>;
+export type LocationPuckTypeT = $Values<typeof LOCATION_PUCK_TYPES>;
 
 export type FixedMarkerOverridesT = {
   Root?: OverrideT,
@@ -154,4 +159,21 @@ export type DragShadowPropsT = {
   dragging: boolean,
   height: number,
   overrides: FixedMarkerOverridesT,
+};
+
+export type LocationPuckPropsT = {
+  size: LocationPuckSizeT,
+  bearing: number,
+  confidence: number,
+  type: LocationPuckTypeT,
+};
+
+export type ConsumerLocationPuckPropsT = {
+  bearing: number,
+  confidence: number,
+};
+export type EarnerLocationPuckPropsT = {
+  bearing: number,
+  confidence: number,
+  size: LocationPuckSizeT,
 };

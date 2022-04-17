@@ -220,3 +220,14 @@ export const KIND = Object.freeze({
   accent: 'accent',
   negative: 'negative',
 });
+
+export const LOCATION_PUCK_SIZES = Object.freeze({
+  small: 'small',
+  medium: 'medium',
+  large: 'large',
+});
+
+export const LOCATION_PUCK_TYPES = Object.freeze({
+  consumer: 'consumer',
+  earner: 'earner',
+});

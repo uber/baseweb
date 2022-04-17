@@ -231,6 +231,10 @@ const COMPONENTS = {
       href: '/components/floating-marker',
       Component: thumbnails.SvgFloatingMarker,
     },
+    {
+      href: '/components/location-puck',
+      Component: thumbnails.SvgLocationPuck,
+    },
   ],
   Utility: [
     {

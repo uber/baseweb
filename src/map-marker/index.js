@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 export { default as FixedMarker } from './fixed-marker.js';
 export { default as FloatingMarker } from './floating-marker.js';
-
+export { default as LocationPuck } from './location-puck.js';
 export {
   FLOATING_MARKER_ANCHOR_POSITIONS,
   FLOATING_MARKER_SIZES,
@@ -17,6 +17,8 @@ export {
   BADGE_ENHANCER_SIZES,
   LABEL_ENHANCER_POSITIONS,
   KIND,
+  LOCATION_PUCK_SIZES,
+  LOCATION_PUCK_TYPES,
 } from './constants.js';
 
 export type * from './types.js';

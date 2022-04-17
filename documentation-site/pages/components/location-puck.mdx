@@ -1,0 +1,47 @@
+<!--
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import Layout from '../../components/layout';
+import Exports from '../../components/exports';
+import Yard from '../../components/yard/index';
+import locationPuckConfig from '../../components/yard/config/fixed-marker';
+import ApiTable from '../../components/api-table';
+
+import * as FixedMarkerExports from 'baseui/map-marker';
+
+export default Layout;
+
+# Location Puck
+
+<Yard placeholderHeight={48} {...locationPuckYardConfig} />
+
+A location puck is used to mark a user's location on the mark.
+
+## When to use
+
+Use a fixed marker when you are showcasing specific points or areas. Think of it like a pin pushed into a wallmap. The content won’t move around or adjust, it’s not travelling around, and it’s not attached to something dynamic.
+
+Fixed markers are particularly helpful in draggable location setting situations, such as dragging around a marker to set your location.
+
+For more information on the design principles behind the Base map markers, please visit the official [Base design website documentation](https://base.uber.com/map-usage-markers).
+
+## Guidelines
+
+### General
+
+## Examples
+
+## API
+
+<ApiTable
+  title="Location Puck props"
+  config={locationPuckYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/map-marker/location-puck.js')}
+/>
+
+<Exports component={LocationPuckExports} title="Loction Puck exports" path="baseui/map-marker" />
