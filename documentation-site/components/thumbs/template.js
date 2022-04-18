@@ -26,6 +26,7 @@ function template(api, opts, values) {
   return template.ast`
 ${header}
 ${imports}
+${'\n'}
 export default function ${componentName} (${props}) {
   return ${jsx}
 }
