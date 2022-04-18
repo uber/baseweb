@@ -33,7 +33,7 @@ export const locationPuckProps = {
   },
   confidence: {
     value: 'LOCATION_PUCK_CONFIDENCES.medium',
-    enumName: 'LOCATION_PUCK_CONFIDENCES.Number',
+    enumName: 'LOCATION_PUCK_CONFIDENCES',
     defaultValue: 'LOCATION_PUCK_CONFIDENCES.medium',
     options: LOCATION_PUCK_CONFIDENCES,
     type: PropTypes.Enum,
