@@ -12,6 +12,7 @@ import {
   LOCATION_PUCK_SIZES,
   LOCATION_PUCK_TYPES,
   EARNER_LOCATION_PUCK_CORE_SCALES,
+  LOCATION_PUCK_CONFIDENCES,
 } from './constants.js';
 import type {
   LocationPuckPropsT,
@@ -36,7 +37,6 @@ const ConsumerLocationPuckHeading = ({ bearing }) => {
         color: theme.colors.contentAccent,
         transform: `rotate(${bearing}deg) translateY(-16px)`,
         transition: `${theme.animation.timing300} ${theme.animation.easeOutCurve} all`,
-        // ...consumerLocationShadow,
       })}
       width="11"
       height="6"
@@ -70,6 +70,7 @@ const ConsumerLocationPuck = ({ bearing, confidence, overrides }: ConsumerLocati
     <LocationPuckContainer>
       <LocationPuckApproximation
         $color={theme.colors.contentAccent}
+        $confidence={confidence}
         {...locationPuckApproximationProps}
       />
       <ConsumerLocationPuckCore {...consumerLocationPuckCoreProps} />
@@ -105,14 +106,11 @@ const EarnerLocationPuckHeading = ({ size, color, bearing }) => {
 
 const EarnerLocationPuck = ({ bearing, confidence, size, overrides }: EarnerLocationPuckPropsT) => {
   const [, theme] = useStyletron();
-
+  const color = theme.colors.contentAccent;
   const [LocationPuckApproximation, locationPuckApproximationProps] = getOverrides(
     overrides.LocationPuckApproximation,
     StyledLocationPuckApproximation
   );
-
-  const color = theme.colors.contentAccent;
-
   const [EarnerLocationPuckCore, earnerLocationPuckCoreProps] = getOverrides(
     overrides.EarnerLocationPuckCore,
     StyledEarnerLocationPuckCore
@@ -120,59 +118,41 @@ const EarnerLocationPuck = ({ bearing, confidence, size, overrides }: EarnerLoca
 
   return (
     <LocationPuckContainer>
-      <LocationPuckApproximation $color={color} {...locationPuckApproximationProps} />
+      <LocationPuckApproximation
+        $color={color}
+        $confidence={confidence}
+        {...locationPuckApproximationProps}
+      />
       <EarnerLocationPuckCore $color={color} $size={size} {...earnerLocationPuckCoreProps} />
       <EarnerLocationPuckHeading size={size} color={color} bearing={bearing} />
     </LocationPuckContainer>
   );
 };
 
-/* Ensure bearing is between 0 and 360 */
-function correctBearing(bearing) {
-  if (bearing < 0) {
-    return bearing + 360;
-  } else if (bearing > 360) {
-    return bearing - 360;
-  } else {
-    return bearing;
-  }
-}
-
 const LocationPuck = ({
   size = LOCATION_PUCK_SIZES.medium,
   bearing = 0,
-  confidence = 1,
+  confidence = LOCATION_PUCK_CONFIDENCES.medium,
   type = LOCATION_PUCK_TYPES.consumer,
   overrides = {},
 }: LocationPuckPropsT) => {
-  const correctedBearing = correctBearing(bearing);
-
   if (__DEV__) {
     if (size !== LOCATION_PUCK_SIZES.medium && type === LOCATION_PUCK_TYPES.consumer) {
       console.warn(`Location puck size can only be applied to type === LOCATION_PUCK_TYPES.earner`);
     }
   }
 
-  if (type === LOCATION_PUCK_TYPES.consumer) {
-    return (
-      <ConsumerLocationPuck
-        bearing={correctedBearing}
-        confidence={confidence}
-        overrides={overrides}
-      />
-    );
-  } else if (type === LOCATION_PUCK_TYPES.earner) {
-    return (
-      <EarnerLocationPuck
-        bearing={correctedBearing}
-        confidence={confidence}
-        size={size}
-        overrides={overrides}
-      />
-    );
-  } else {
-    return null;
-  }
+  const sharedProps = {
+    bearing,
+    confidence,
+    overrides,
+  };
+
+  return type === LOCATION_PUCK_TYPES.consumer ? (
+    <ConsumerLocationPuck {...sharedProps} />
+  ) : (
+    <EarnerLocationPuck {...sharedProps} size={size} />
+  );
 };
 
 export default LocationPuck;

@@ -19,6 +19,7 @@ export {
   KIND,
   LOCATION_PUCK_SIZES,
   LOCATION_PUCK_TYPES,
+  LOCATION_PUCK_CONFIDENCES,
 } from './constants.js';
 
 export type * from './types.js';

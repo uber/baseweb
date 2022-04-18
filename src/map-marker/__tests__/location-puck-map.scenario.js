@@ -9,7 +9,11 @@ LICENSE file in the root directory of this source tree.
 import ReactMapGL, { Marker } from 'react-map-gl';
 import { useStyletron } from '../../styles/index.js';
 import * as React from 'react';
-import { LOCATION_PUCK_SIZES, LOCATION_PUCK_TYPES } from '../constants.js';
+import {
+  LOCATION_PUCK_SIZES,
+  LOCATION_PUCK_TYPES,
+  LOCATION_PUCK_CONFIDENCES,
+} from '../constants.js';
 import TileGrid from './tile-grid.js';
 import { Slider } from '../../slider/index.js';
 import { Select } from '../../select/index.js';
@@ -30,6 +34,13 @@ const locationPuckTypes = Object.keys(LOCATION_PUCK_TYPES)
     id: x,
   }));
 
+const locationPuckConfidences = Object.keys(LOCATION_PUCK_CONFIDENCES)
+  .map((key) => LOCATION_PUCK_CONFIDENCES[key])
+  .map((x) => ({
+    label: x,
+    id: x,
+  }));
+
 const uberHq = {
   latitude: 37.768495131168336,
   longitude: -122.38856031220648,
@@ -38,7 +49,7 @@ const uberHq = {
 const defaultLocation = [uberHq.longitude, uberHq.latitude];
 
 export function Scenario() {
-  const [confidence, setConfidence] = React.useState([1]);
+  const [confidence, setConfidence] = React.useState([locationPuckConfidences[0]]);
   const [bearing, setBearing] = React.useState([0]);
   const [size, setSize] = React.useState([locationPuckSizes[0]]);
   const [type, setType] = React.useState([locationPuckTypes[0]]);
@@ -69,14 +80,6 @@ export function Scenario() {
             max={360}
             key={'bearing'}
           />,
-          <Slider
-            value={confidence}
-            onChange={({ value }) => value && setConfidence(value)}
-            min={0}
-            max={1}
-            step={0.1}
-            key={'confidence'}
-          />,
           <Select
             options={locationPuckSizes}
             value={size}
@@ -91,6 +94,13 @@ export function Scenario() {
             onChange={(params) => setType(params.value)}
             key="puck-type"
           />,
+          <Select
+            options={locationPuckConfidences}
+            value={confidence}
+            placeholder="Select a puck confidence"
+            onChange={(params) => setConfidence(params.value)}
+            key="confidence"
+          />,
         ]}
       />
       <div className={css({ backgroundColor: theme.colors.backgroundLightAccent })}>
@@ -99,7 +109,6 @@ export function Scenario() {
           width="100%"
           height="760px"
           onViewportChange={(viewport) => setViewport(viewport)}
-          //  mapStyle={mapStyle}
           mapboxApiAccessToken="pk.eyJ1IjoiYmFiYnN1YmVyIiwiYSI6ImNrdThqeGkxZTVwb3kyd3BpZGRlc2NlOXUifQ.qh-EtXm2DJQZVprWUJ-GFQ"
           onClick={({ lngLat }) => setLocations((existing) => [...existing, lngLat])}
         >
@@ -119,9 +128,12 @@ export function Scenario() {
                     }),
                   },
                 }}
-                bearing={bearing}
+                bearing={bearing[0]}
+                // $FlowFixMe Mismatch between general type and enum
                 size={size[0].id}
-                confidence={confidence}
+                // $FlowFixMe Mismatch between general type and enum
+                confidence={confidence[0].id}
+                // $FlowFixMe Mismatch between general type and enum
                 type={type[0].id}
               />
             </Marker>

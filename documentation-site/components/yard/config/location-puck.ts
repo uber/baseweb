@@ -1,4 +1,9 @@
-import { LocationPuck, LOCATION_PUCK_TYPES, LOCATION_PUCK_SIZES } from 'baseui/map-marker';
+import {
+  LocationPuck,
+  LOCATION_PUCK_TYPES,
+  LOCATION_PUCK_SIZES,
+  LOCATION_PUCK_CONFIDENCES,
+} from 'baseui/map-marker';
 import { PropTypes } from 'react-view';
 import { TConfig } from '../types';
 
@@ -22,9 +27,22 @@ export const locationPuckProps = {
   },
   bearing: {
     value: 0,
-    placeholder: 0,
+    defaultValue: 0,
     type: PropTypes.Number,
     description: 'Bearing (also known as heading or direction) of the user.',
+  },
+  confidence: {
+    value: 'LOCATION_PUCK_CONFIDENCES.medium',
+    enumName: 'LOCATION_PUCK_CONFIDENCES.Number',
+    defaultValue: 'LOCATION_PUCK_CONFIDENCES.medium',
+    options: LOCATION_PUCK_CONFIDENCES,
+    type: PropTypes.Enum,
+    description: 'Confidence of location signal. Low = larger circle, high = no circle',
+    imports: {
+      'baseui/map-marker': {
+        named: ['LOCATION_PUCK_CONFIDENCES'],
+      },
+    },
   },
   size: {
     value: 'LOCATION_PUCK_SIZES.medium',
@@ -52,6 +70,7 @@ const LocationPuckConfig: TConfig = {
     LocationPuck,
     LOCATION_PUCK_TYPES,
     LOCATION_PUCK_SIZES,
+    LOCATION_PUCK_CONFIDENCES,
   },
   theme,
   props: {

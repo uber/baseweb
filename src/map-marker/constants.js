@@ -237,3 +237,15 @@ export const EARNER_LOCATION_PUCK_CORE_SCALES = Object.freeze({
   [LOCATION_PUCK_SIZES.medium]: '75%',
   [LOCATION_PUCK_SIZES.large]: '100%',
 });
+
+export const LOCATION_PUCK_CONFIDENCES = Object.freeze({
+  low: 'low',
+  medium: 'medium',
+  high: 'high',
+});
+
+export const LOCATION_PUCK_CONFIDENCE_SIZES = Object.freeze({
+  [LOCATION_PUCK_CONFIDENCES.low]: 80,
+  [LOCATION_PUCK_CONFIDENCES.medium]: 60,
+  [LOCATION_PUCK_CONFIDENCES.high]: 12,
+});

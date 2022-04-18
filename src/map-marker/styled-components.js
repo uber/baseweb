@@ -11,6 +11,7 @@ import {
   FLOATING_MARKER_ANCHOR_POSITIONS,
   LABEL_SIZES,
   EARNER_LOCATION_PUCK_CORE_SCALES,
+  LOCATION_PUCK_CONFIDENCE_SIZES,
 } from './constants.js';
 
 import type {
@@ -20,6 +21,7 @@ import type {
   BadgePositionT,
   PinHeadSizeT,
   LocationPuckSizeT,
+  LocationPuckConfidenceT,
 } from './types.js';
 
 export const getAnchorTransform = (anchor: AnchorPositionsT, anchorSize: number) =>
@@ -337,19 +339,21 @@ export const StyledConsumerLocationPuckCore = styled<{}>('div', ({ $theme }) => 
  */
 export const StyledLocationPuckApproximation = styled<{
   $color: string,
-}>('div', ({ $theme, $color }) => {
+  $confidence: LocationPuckConfidenceT,
+}>('div', ({ $theme, $color, $confidence }) => {
   return {
     background: $color,
     opacity: 0.12,
-    height: '80px',
-    width: '80px',
+    height: `${LOCATION_PUCK_CONFIDENCE_SIZES[$confidence]}px`,
+    width: `${LOCATION_PUCK_CONFIDENCE_SIZES[$confidence]}px`,
     borderRadius: `${10000}px `,
     position: 'absolute',
+    transition: `${$theme.animation.timing300} ${$theme.animation.easeOutCurve} all`,
   };
 });
 
 export const StyledEarnerLocationPuckCore = styled<{
-  color: string,
+  $color: string,
   $size: LocationPuckSizeT,
 }>('div', ({ $theme, $color, $size }) => {
   return {

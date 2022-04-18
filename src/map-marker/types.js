@@ -18,6 +18,7 @@ import {
   KIND,
   LOCATION_PUCK_SIZES,
   LOCATION_PUCK_TYPES,
+  LOCATION_PUCK_CONFIDENCES,
 } from './constants.js';
 import type { OverrideT } from '../helpers/overrides.js';
 
@@ -42,6 +43,7 @@ export type KindT = $Values<typeof KIND>;
 
 export type LocationPuckSizeT = $Values<typeof LOCATION_PUCK_SIZES>;
 export type LocationPuckTypeT = $Values<typeof LOCATION_PUCK_TYPES>;
+export type LocationPuckConfidenceT = $Values<typeof LOCATION_PUCK_CONFIDENCES>;
 
 export type FixedMarkerOverridesT = {
   Root?: OverrideT,
@@ -169,21 +171,21 @@ export type LocationPuckOverridesT = {
 };
 
 export type LocationPuckPropsT = {
-  size: LocationPuckSizeT,
-  bearing: number,
-  confidence: number,
-  type: LocationPuckTypeT,
-  overrides: LocationPuckOverridesT,
+  size?: LocationPuckSizeT,
+  bearing?: number,
+  confidence?: LocationPuckConfidenceT,
+  type?: LocationPuckTypeT,
+  overrides?: LocationPuckOverridesT,
 };
 
 export type ConsumerLocationPuckPropsT = {
   bearing: number,
-  confidence: number,
+  confidence: LocationPuckConfidenceT,
   overrides: LocationPuckOverridesT,
 };
 export type EarnerLocationPuckPropsT = {
   bearing: number,
-  confidence: number,
+  confidence: LocationPuckConfidenceT,
   size: LocationPuckSizeT,
   overrides: LocationPuckOverridesT,
 };
