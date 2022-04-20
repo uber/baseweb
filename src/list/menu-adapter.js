@@ -17,9 +17,13 @@ const MenuAdapter = React.forwardRef<MenuAdapterPropsT, HTMLLIElement>((props, r
     <ListItem
       ref={ref}
       sublist={props.sublist || props.$size === 'compact'}
+      aria-label={props['aria-label']}
+      aria-selected={props['aria-selected']}
       artwork={props.artwork}
       artworkSize={props.artworkSize}
       endEnhancer={props.endEnhancer}
+      id={props.id}
+      role={props.role}
       overrides={mergeOverrides(
         {
           Root: {

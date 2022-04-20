@@ -34,10 +34,7 @@ export interface SORT_DIRECTIONS {
 }
 export const SORT_DIRECTIONS: SORT_DIRECTIONS;
 
-export type SortDirectionsT =
-  | SORT_DIRECTIONS['ASC']
-  | SORT_DIRECTIONS['DESC']
-  | null;
+export type SortDirectionsT = SORT_DIRECTIONS['ASC'] | SORT_DIRECTIONS['DESC'] | null;
 export type ColumnT = any;
 export type RowT = {
   id: number | string;
@@ -54,12 +51,13 @@ export type BatchActionT = {
   renderIcon?: any;
 };
 
+export interface ImperativeMethods {
+  getRows: () => RowT[];
+}
+
 export type RowActionT = {
   label: string;
-  onClick: (params: {
-    event: React.MouseEvent<HTMLButtonElement>;
-    row: RowT;
-  }) => any;
+  onClick: (params: { event: React.MouseEvent<HTMLButtonElement>; row: RowT }) => any;
   renderIcon: any;
 };
 
@@ -69,4 +67,5 @@ export type Props = {
   columns: ColumnT[];
   onSelectionChange?: (rows: RowT[]) => any;
   rows: RowT[];
+  controlRef?: React.Ref<ImperativeMethods>;
 };

@@ -15,7 +15,6 @@ import SearchIconComponent from '../icon/search.js';
 import { LocaleContext } from '../locale/index.js';
 import type { LocaleT } from '../locale/types.js';
 import { Popover, PLACEMENT } from '../popover/index.js';
-import { Spinner } from '../spinner/index.js';
 import { UIDConsumer } from 'react-uid';
 
 import AutosizeInput from './autosize-input.js';
@@ -31,8 +30,8 @@ import {
   StyledIconsContainer,
   StyledSelectArrow,
   StyledClearIcon,
-  getLoadingIconStyles,
   StyledSearchIconContainer,
+  StyledLoadingIndicator,
 } from './styled-components.js';
 import type { PropsT, SelectStateT, ValueT, OptionT, ChangeActionT, ReactRefT } from './types.js';
 import { expandValue, normalizeOptions } from './utils/index.js';
@@ -616,20 +615,33 @@ class Select extends React.Component<PropsT, SelectStateT> {
 
   renderLoading() {
     if (!this.props.isLoading) return;
-    const sharedProps = this.getSharedProps();
     const { overrides = {} } = this.props;
     const [LoadingIndicator, loadingIndicatorProps] = getOverrides(
       overrides.LoadingIndicator,
-      Spinner
+      StyledLoadingIndicator
     );
+
     return (
-      <LoadingIndicator
-        size={16}
-        overrides={{ Svg: { style: getLoadingIconStyles } }}
-        $silenceV11DeprecationWarning
-        {...sharedProps}
-        {...loadingIndicatorProps}
-      />
+      <LoadingIndicator role="status" {...loadingIndicatorProps}>
+        {/* Offscreen content could be defined as styled-component and
+          overridable, but I can't think of a good reason for doing so.
+          LoadingIndicator children can be overriden if required. */}
+        <span
+          style={{
+            position: 'absolute',
+            width: '1px',
+            height: '1px',
+            padding: 0,
+            margin: '-1px',
+            overflow: 'hidden',
+            clip: 'rect(0,0,0,0)',
+            whiteSpace: 'nowrap',
+            border: 0,
+          }}
+        >
+          Loading
+        </span>
+      </LoadingIndicator>
     );
   }
 
