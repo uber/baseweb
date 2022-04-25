@@ -49,7 +49,7 @@ export default function HeaderNavigation({
         paddingRight: theme.sizing.scale800,
         borderBottomStyle: 'solid',
         borderBottomWidth: '1px',
-        borderBottomColor: theme.colors.border,
+        borderBottomColor: theme.colors.borderOpaque,
         [mq(WRAP_SEARCH)]: {
           flexWrap: 'nowrap',
         },
@@ -103,7 +103,7 @@ export default function HeaderNavigation({
           <Button
             $as="a"
             size={SIZE.compact}
-            kind={KIND.minimal}
+            kind={KIND.tertiary}
             overrides={{
               BaseButton: {
                 style: {
@@ -123,7 +123,7 @@ export default function HeaderNavigation({
           <Button
             $as="a"
             size={SIZE.compact}
-            kind={KIND.minimal}
+            kind={KIND.tertiary}
             overrides={{
               BaseButton: {
                 style: {

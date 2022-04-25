@@ -25,10 +25,12 @@ import SelectOverriddenDropdown from 'examples/select/overridden-dropdown.js';
 import SelectGrouped from 'examples/select/grouped.js';
 import SelectAsyncOptions from 'examples/select/async-options.js';
 import SelectFocus from 'examples/select/focus.js';
+import SelectDropdown from 'examples/select/control-ref-dropdown.js';
+import SelectInputValue from 'examples/select/control-ref-input-value.js';
 
-import {StatefulSelect, TYPE} from 'baseui/select';
+import { StatefulSelect, TYPE } from 'baseui/select';
 import * as SelectExports from 'baseui/select';
-import {Block} from 'baseui/block';
+import { Block } from 'baseui/block';
 
 import Yard from '../../components/yard/index';
 import selectYardConfig from '../../components/yard/config/select';
@@ -59,10 +61,7 @@ Things to note in the example source code:
 - the `value` is always an `Array` to provide a consistent interface - no matter if you use multi or single selects,
 - you have to call `setState` with the entire object, not just the `id` value.
 
-<Example
-  title="Select as single-pick search"
-  path="select/search-single-pick.js"
->
+<Example title="Select as single-pick search" path="select/search-single-pick.js">
   <SelectSinglePickSearch />
 </Example>
 
@@ -100,9 +99,20 @@ existing options.
   <SelectNative />
 </Example>
 
-<Example title="Focus and ref" path="select/focus.js">
+<Example title="Imperatively control input focus" path="select/focus.js">
   <SelectFocus />
 </Example>
+
+<Example title="Imperatively control dropdown" path="select/control-ref-dropdown.js">
+  <SelectDropdown />
+</Example>
+
+<Example title="Imperatively control input value" path="select/control-ref-input-value.js">
+  <SelectInputValue />
+</Example>
+
+The `controlRef` prop gives developers imperative control over internal behavior via the
+following methods: `setInputFocus`, `setInputBlur`, `setDropdownOpen`, and `setInputValue`.
 
 <Example title="Select uncontrolled example" path="select/uncontrolled.js">
   <SelectUncontrolled />
@@ -111,7 +121,7 @@ existing options.
 <Example
   title="Select with many options"
   path="select/with-many-options.js"
-  additionalPackages={{'react-window': '^1.8.5'}}
+  additionalPackages={{ 'react-window': '^1.8.5' }}
 >
   <SelectWithManyOptions />
 </Example>
@@ -142,8 +152,4 @@ To override the `Popover` that's being used by the Dropdown subcomponent, you ha
   types={require('!!extract-react-types-loader!../../../src/select/select-component.js')}
 />
 
-<Exports
-  component={SelectExports}
-  title="Select exports"
-  path="baseui/select"
-/>
+<Exports component={SelectExports} title="Select exports" path="baseui/select" />

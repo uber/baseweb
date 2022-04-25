@@ -121,20 +121,41 @@ const config = {
       {
         name: 'controlledRowHighlightIndex',
         behavior: async (page) => {
-          await Promise.all(Array.from({ length: 4 }).map(() => page.keyboard.press('j')));
+          let index = 0;
+          while (index < 4) {
+            await page.keyboard.press('j');
+            await new Promise((res) => setTimeout(res, 100));
+            index += 1;
+          }
         },
       },
       {
         name: 'rowHighlightScrollsTableDown',
         behavior: async (page) => {
-          await Promise.all(Array.from({ length: 20 }).map(() => page.keyboard.press('j')));
+          let index = 0;
+          while (index < 20) {
+            await page.keyboard.press('j');
+            await new Promise((res) => setTimeout(res, 100));
+            index += 1;
+          }
         },
       },
       {
         name: 'rowHighlightScrollsTableUp',
         behavior: async (page) => {
-          await Promise.all(Array.from({ length: 20 }).map(() => page.keyboard.press('j')));
-          await Promise.all(Array.from({ length: 15 }).map(() => page.keyboard.press('k')));
+          let index = 0;
+          while (index < 20) {
+            await page.keyboard.press('j');
+            await new Promise((res) => setTimeout(res, 100));
+            index += 1;
+          }
+
+          index = 0;
+          while (index < 15) {
+            await page.keyboard.press('k');
+            await new Promise((res) => setTimeout(res, 100));
+            index += 1;
+          }
         },
       },
     ],

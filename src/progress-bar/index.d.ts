@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {StyletronComponent} from 'styletron-react';
-import {Override} from '../overrides';
+import { StyletronComponent } from 'styletron-react';
+import { Override } from '../overrides';
 
 export interface SIZE {
   small: 'small';
@@ -27,7 +27,7 @@ export interface ProgressBarProps {
   steps?: number;
   successValue?: number;
   minValue?: number;
-  mxaValue?: number;
+  maxValue?: number;
   value?: number;
 }
 export class ProgressBar extends React.Component<ProgressBarProps> {}

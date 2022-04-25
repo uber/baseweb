@@ -4,10 +4,10 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import {DatePicker, ORIENTATION} from 'baseui/datepicker';
-import {SIZE} from 'baseui/input';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
+import { DatePicker, ORIENTATION } from 'baseui/datepicker';
+import { SIZE } from 'baseui/input';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
 import inputConfig from './input';
 import menuConfig from './menu';
 import popoverConfig from './popover';
@@ -25,13 +25,8 @@ const DatepickerConfig: TConfig = {
       named: ['DatePicker'],
     },
   },
-  scope: {DatePicker, ORIENTATION, SIZE},
+  scope: { DatePicker, ORIENTATION, SIZE },
   theme: [
-    'datepickerBackground',
-    'datepickerDayFont',
-    'datepickerDayFontDisabled',
-    'datepickerDayPseudoSelected',
-    'datepickerDayPseudoHighlighted',
     'calendarBackground',
     'calendarForeground',
     'calendarForegroundDisabled',
@@ -75,8 +70,7 @@ const DatepickerConfig: TConfig = {
     autoFocusCalendar: {
       value: false,
       type: PropTypes.Boolean,
-      description:
-        'Defines if the calendar is set to be focused on an initial render.',
+      description: 'Defines if the calendar is set to be focused on an initial render.',
       hidden: true,
     },
     excludeDates: {
@@ -88,8 +82,7 @@ const DatepickerConfig: TConfig = {
     quickSelect: {
       value: undefined,
       type: PropTypes.Boolean,
-      description:
-        'Display select for quickly choosing date ranges. range must be true as well.',
+      description: 'Display select for quickly choosing date ranges. range must be true as well.',
     },
     formatString: {
       value: undefined,
@@ -145,8 +138,7 @@ const DatepickerConfig: TConfig = {
     highlightDate: {
       value: undefined,
       type: PropTypes.Date,
-      description:
-        'Indicates a highlighted date on hover and keyboard navigation',
+      description: 'Indicates a highlighted date on hover and keyboard navigation',
       hidden: true,
     },
     includesDates: {
@@ -170,8 +162,7 @@ const DatepickerConfig: TConfig = {
     clearable: {
       value: undefined,
       type: PropTypes.Boolean,
-      description:
-        'Makes the datepicker clearable via a visual icon in the Input component.',
+      description: 'Makes the datepicker clearable via a visual icon in the Input component.',
     },
     positive: inputConfig.props.positive,
     error: inputConfig.props.error,
@@ -179,8 +170,7 @@ const DatepickerConfig: TConfig = {
     placeholder: {
       value: undefined,
       type: PropTypes.String,
-      description:
-        'Specifies a hint that describes the expected value of the date picker',
+      description: 'Specifies a hint that describes the expected value of the date picker',
       placeholder: 'YYYY/MM/DD',
       hidden: true,
     },
@@ -234,8 +224,7 @@ const DatepickerConfig: TConfig = {
       value: undefined,
       type: PropTypes.Function,
       placeholder: '({ date }) => {}',
-      description:
-        'Event handler that is called when the current rendered month is changed.',
+      description: 'Event handler that is called when the current rendered month is changed.',
       hidden: true,
     },
     onYearChange: {
@@ -264,8 +253,7 @@ const DatepickerConfig: TConfig = {
       defaultValue: 'ORIENTATION.vertical',
       type: PropTypes.Enum,
       options: ORIENTATION,
-      description:
-        'Sets the orientation of the calendar when multiple months are displayed',
+      description: 'Sets the orientation of the calendar when multiple months are displayed',
       imports: {
         'baseui/datepicker': {
           named: ['ORIENTATION'],
@@ -282,28 +270,24 @@ const DatepickerConfig: TConfig = {
     peekNextMonth: {
       value: undefined,
       type: PropTypes.Boolean,
-      description:
-        'Defines if dates outside of the range of the current month are displayed.',
+      description: 'Defines if dates outside of the range of the current month are displayed.',
       hidden: true,
     },
     fixedHeight: {
       value: undefined,
       type: PropTypes.Boolean,
-      description:
-        'Defines if 6 rows should always be displayed for all the months.',
+      description: 'Defines if 6 rows should always be displayed for all the months.',
       hidden: true,
     },
     timeSelectStart: {
       value: undefined,
       type: PropTypes.Boolean,
-      description:
-        'Determines if TimePicker component will be enabled for start time',
+      description: 'Determines if TimePicker component will be enabled for start time',
     },
     timeSelectEnd: {
       value: undefined,
       type: PropTypes.Boolean,
-      description:
-        'Determines if TimePicker component will be enabled for end time',
+      description: 'Determines if TimePicker component will be enabled for end time',
     },
     disabled: inputConfig.props.disabled,
     displayValueAtRangeIndex: {
@@ -316,8 +300,7 @@ const DatepickerConfig: TConfig = {
     trapTabbing: {
       value: undefined,
       type: PropTypes.Boolean,
-      description:
-        'Defines if tabbing inside the calendar is circled within it.',
+      description: 'Defines if tabbing inside the calendar is circled within it.',
       hidden: true,
     },
     overrides: {
@@ -337,19 +320,19 @@ const DatepickerConfig: TConfig = {
           'MonthHeader',
           'MonthYearSelectButton',
           'MonthYearSelectIconContainer',
-          {...popoverConfig, componentName: 'MonthYearSelectPopover'},
-          {...menuConfig, componentName: 'MonthYearSelectStatefulMenu'},
+          { ...popoverConfig, componentName: 'MonthYearSelectPopover' },
+          { ...menuConfig, componentName: 'MonthYearSelectStatefulMenu' },
           'NextButton',
-          {...iconConfig, componentName: 'NextButtonIcon'},
-          {...popoverConfig, componentName: 'Popover'},
+          { ...iconConfig, componentName: 'NextButtonIcon' },
+          { ...popoverConfig, componentName: 'Popover' },
           'PrevButton',
-          {...iconConfig, componentName: 'PrevButtonIcon'},
-          {...selectConfig, componentName: 'QuickSelect'},
+          { ...iconConfig, componentName: 'PrevButtonIcon' },
+          { ...selectConfig, componentName: 'QuickSelect' },
           'QuickSelectContainer',
-          {...formControlConfig, componentName: 'QuickSelectFormControl'},
-          {...timepickerConfig, componentName: 'TimeSelect'},
+          { ...formControlConfig, componentName: 'QuickSelectFormControl' },
+          { ...timepickerConfig, componentName: 'TimeSelect' },
           'TimeSelectContainer',
-          {...formControlConfig, componentName: 'TimeSelectFormControl'},
+          { ...formControlConfig, componentName: 'TimeSelectFormControl' },
           'Week',
           'WeekdayHeader',
         ],

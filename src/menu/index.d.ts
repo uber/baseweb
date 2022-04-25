@@ -146,9 +146,7 @@ export const OptionList: React.FC<OptionListProps>;
 export interface OptionProfileProps extends BaseMenuPropsT {
   item: any;
   getChildMenu?: (item: any) => React.ReactNode;
-  getProfileItemLabels: (
-    item: any,
-  ) => {
+  getProfileItemLabels: (item: any) => {
     title?: string;
     subtitle?: string;
     body?: string;

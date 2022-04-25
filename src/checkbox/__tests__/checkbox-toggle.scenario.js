@@ -8,12 +8,29 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import { StatefulCheckbox, STYLE_TYPE } from '../index.js';
+import { Checkbox, STYLE_TYPE } from '../index.js';
 
 export function Scenario() {
   return (
     <div style={{ width: '200px' }}>
-      <StatefulCheckbox checkmarkType={STYLE_TYPE.toggle}>click me</StatefulCheckbox>
+      <Checkbox checkmarkType={STYLE_TYPE.toggle}>default unchecked</Checkbox>
+      <Checkbox checkmarkType={STYLE_TYPE.toggle} checked>
+        default checked
+      </Checkbox>
+
+      <Checkbox checkmarkType={STYLE_TYPE.toggle} disabled>
+        disabled unchecked
+      </Checkbox>
+      <Checkbox checkmarkType={STYLE_TYPE.toggle} checked disabled>
+        disabled checked
+      </Checkbox>
+
+      <Checkbox checkmarkType={STYLE_TYPE.toggle} error>
+        error unchecked
+      </Checkbox>
+      <Checkbox checkmarkType={STYLE_TYPE.toggle} checked error>
+        error checked
+      </Checkbox>
     </div>
   );
 }

@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
+import { act } from 'react-dom/test-utils';
 import { render } from '@testing-library/react';
 import { StatefulContainer } from '../index.js';
 
@@ -20,7 +21,7 @@ describe('stateful-container', () => {
     const onChange = jest.fn();
     const children = jest.fn(() => null);
     render(<StatefulContainer onChange={onChange}>{children}</StatefulContainer>);
-    children.mock.calls[0][0].onChange({ target: { value: 'a' } });
+    act(() => children.mock.calls[0][0].onChange({ target: { value: 'a' } }));
     expect(onChange).toBeCalledTimes(1);
   });
 });

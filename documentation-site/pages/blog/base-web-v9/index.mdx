@@ -1,5 +1,5 @@
-import {withStyle} from 'baseui';
-import {Block} from 'baseui/block';
+import { withStyle } from 'baseui';
+import { Block } from 'baseui/block';
 import {
   Table,
   StyledTable,
@@ -12,7 +12,7 @@ import {
 
 import metadata from './metadata.json';
 import Layout from '../../../components/layout';
-import {BlogImage, Meta, Caption} from '../../../components/blog';
+import { BlogImage, Meta, Caption } from '../../../components/blog';
 
 export default Layout;
 
@@ -49,8 +49,8 @@ If you use our default colors and you want to use blue as the `primary` color st
 ```js
 // myTheme.js
 
-import {createTheme, lightThemePrimitives} from 'baseui/themes';
-import {colors} from 'baseui/tokens';
+import { createTheme, lightThemePrimitives } from 'baseui/themes';
+import { colors } from 'baseui/tokens';
 
 const myThemePrimitives = {
   ...lightThemePrimitives,
@@ -77,7 +77,7 @@ If you use custom colors in your theme, **v9** will change _how_ your colors are
 ```js
 // myTheme.js
 
-import {createTheme} from 'baseui/themes';
+import { createTheme } from 'baseui/themes';
 
 const myTokens = {
   // define various brand colors here...
@@ -114,7 +114,7 @@ In summary, use the `primitives` object to assign semantic meaning to your proje
 ```js
 // myTheme.js
 
-import {createTheme} from 'baseui/themes';
+import { createTheme } from 'baseui/themes';
 
 const myTokens = {
   // define various brand colors here...
@@ -127,7 +127,7 @@ const myThemePrimitives = {
 const myThemeOverrides = {
   // override baseui default theme assignments...
   colors: {
-    borderFocus: myThemePrimitives.accent,
+    borderSelected: myThemePrimitives.accent,
   },
 };
 
@@ -533,7 +533,7 @@ The changes in most of the colors are quite subtle, but the gray (mono) palette 
 You can access any of Base Web's colors on the `colors` object exported by `baseui/tokens`. You can read more this new module [here](/components/tokens).
 
 ```js
-import {colors} from 'baseui/tokens';
+import { colors } from 'baseui/tokens';
 
 const theme = {
   primary: colors.blue400,
@@ -589,13 +589,13 @@ Here is an example of updating direct uses of font theme variables in source cod
 ```jsx
 // old
 // font300 used to return 14px/20px/400
-const StyledFoo = styled('div', props => ({
+const StyledFoo = styled('div', (props) => ({
   ...props.$theme.typography.font300,
 }));
 
 // new
 // font200 now returns 14px/20px/400
-const StyledFoo = styled('div', props => ({
+const StyledFoo = styled('div', (props) => ({
   ...props.$theme.typography.font200,
 }));
 ```
@@ -780,6 +780,6 @@ Thanks for using `baseui`!
 ---
 
 <Caption>
-  Feel free to reach out to us on our Slack channel or through a GitHub issue if
-  you think something is missing from this migration guide.
+  Feel free to reach out to us on our Slack channel or through a GitHub issue if you think something
+  is missing from this migration guide.
 </Caption>

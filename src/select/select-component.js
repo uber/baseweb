@@ -15,7 +15,6 @@ import SearchIconComponent from '../icon/search.js';
 import { LocaleContext } from '../locale/index.js';
 import type { LocaleT } from '../locale/types.js';
 import { Popover, PLACEMENT } from '../popover/index.js';
-import { Spinner } from '../spinner/index.js';
 import { UIDConsumer } from 'react-uid';
 
 import AutosizeInput from './autosize-input.js';
@@ -31,8 +30,8 @@ import {
   StyledIconsContainer,
   StyledSelectArrow,
   StyledClearIcon,
-  getLoadingIconStyles,
   StyledSearchIconContainer,
+  StyledLoadingIndicator,
 } from './styled-components.js';
 import type { PropsT, SelectStateT, ValueT, OptionT, ChangeActionT, ReactRefT } from './types.js';
 import { expandValue, normalizeOptions } from './utils/index.js';
@@ -118,11 +117,16 @@ class Select extends React.Component<PropsT, SelectStateT> {
     }
     this.isItMounted = true;
 
-    if (this.props.methodsRef) {
-      const { methodsRef } = this.props;
-
-      methodsRef.current = {
+    const { controlRef } = this.props;
+    if (controlRef && typeof controlRef !== 'function') {
+      controlRef.current = {
         setDropdownOpen: this.handleDropdownOpen.bind(this),
+        setInputValue: this.handleSetInputValue.bind(this),
+        setInputFocus: this.handleSetInputFocus.bind(this),
+        setInputBlur: this.handleSetInputBlur.bind(this),
+        // `focus` & `blur` below are for backwards compatibility and may be removed. Use setInputFocus and setInputBlur instead.
+        focus: this.handleSetInputFocus.bind(this),
+        blur: this.handleSetInputBlur.bind(this),
       };
     }
   }
@@ -162,6 +166,20 @@ class Select extends React.Component<PropsT, SelectStateT> {
     this.setState({
       isOpen: nextOpenState,
     });
+  }
+
+  handleSetInputValue(newInputValue: string) {
+    this.setState({
+      inputValue: newInputValue,
+    });
+  }
+
+  handleSetInputFocus() {
+    this.input.focus();
+  }
+
+  handleSetInputBlur() {
+    this.input.blur();
   }
 
   // Handle touch outside on mobile to dismiss menu, ensures that the
@@ -479,15 +497,13 @@ class Select extends React.Component<PropsT, SelectStateT> {
     }
   };
 
+  // This method is to preserve backwards compatibility for users using controlRef to directly
+  // access the input element. This capability is not documented, and may be removed in the future.
   //flowlint-next-line unclear-type:off
   handleInputRef = (input: React.ElementRef<any>) => {
     this.input = input;
-    if (this.props.controlRef) {
-      if (typeof this.props.controlRef === 'function') {
-        this.props.controlRef(input);
-      } else {
-        this.props.controlRef.current = input;
-      }
+    if (this.props.controlRef && typeof this.props.controlRef === 'function') {
+      this.props.controlRef(input);
     }
   };
 
@@ -599,20 +615,33 @@ class Select extends React.Component<PropsT, SelectStateT> {
 
   renderLoading() {
     if (!this.props.isLoading) return;
-    const sharedProps = this.getSharedProps();
     const { overrides = {} } = this.props;
     const [LoadingIndicator, loadingIndicatorProps] = getOverrides(
       overrides.LoadingIndicator,
-      Spinner
+      StyledLoadingIndicator
     );
+
     return (
-      <LoadingIndicator
-        size={16}
-        overrides={{ Svg: { style: getLoadingIconStyles } }}
-        $silenceV11DeprecationWarning
-        {...sharedProps}
-        {...loadingIndicatorProps}
-      />
+      <LoadingIndicator role="status" {...loadingIndicatorProps}>
+        {/* Offscreen content could be defined as styled-component and
+          overridable, but I can't think of a good reason for doing so.
+          LoadingIndicator children can be overriden if required. */}
+        <span
+          style={{
+            position: 'absolute',
+            width: '1px',
+            height: '1px',
+            padding: 0,
+            margin: '-1px',
+            overflow: 'hidden',
+            clip: 'rect(0,0,0,0)',
+            whiteSpace: 'nowrap',
+            border: 0,
+          }}
+        >
+          Loading
+        </span>
+      </LoadingIndicator>
     );
   }
 
@@ -823,9 +852,8 @@ class Select extends React.Component<PropsT, SelectStateT> {
     const sharedProps = this.getSharedProps();
 
     return (
-      // TODO(v11): remove searchIconProps from SearchIconContainer
-      <SearchIconContainer {...sharedProps} {...searchIconProps} {...searchIconContainerProps}>
-        <SearchIcon size={16} title={'search'} {...searchIconProps} />
+      <SearchIconContainer {...sharedProps} {...searchIconContainerProps}>
+        <SearchIcon size={16} title={'search'} {...sharedProps} {...searchIconProps} />
       </SearchIconContainer>
     );
   }

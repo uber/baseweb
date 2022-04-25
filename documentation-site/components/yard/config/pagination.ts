@@ -1,6 +1,6 @@
-import {Pagination, SIZE} from 'baseui/pagination';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
+import { Pagination, SIZE } from 'baseui/pagination';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
 import selectConfig from './select';
 
 const paginationProps = require('!!extract-react-types-loader!../../../../src/pagination/pagination.js');
@@ -12,8 +12,8 @@ const PaginationConfig: TConfig = {
       named: ['Pagination'],
     },
   },
-  scope: {Pagination, SIZE},
-  theme: ['paginationTriangleDown'],
+  scope: { Pagination, SIZE },
+  theme: [],
   props: {
     numPages: {
       value: 20,
@@ -59,14 +59,7 @@ const PaginationConfig: TConfig = {
       type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
       custom: {
-        names: [
-          'Root',
-          'MaxLabel',
-          'DropdownContainer',
-          selectConfig,
-          'NextButton',
-          'PrevButton',
-        ],
+        names: ['Root', 'MaxLabel', 'DropdownContainer', selectConfig, 'NextButton', 'PrevButton'],
         sharedProps: {},
       },
     },

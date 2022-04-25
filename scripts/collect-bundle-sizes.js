@@ -135,14 +135,23 @@ async function main() {
   );
   console.log(`baseline size ${baselineSize / 1000}kb`);
 
-  for (const storyTitle in metadata.stories) {
-    const pageSize = await measurePageBytesReceived(
-      browser,
-      `${LADLE_URL}?mode=preview&story=${storyTitle}`
+  const concurrency = 10;
+  const stories = Object.keys(metadata.stories);
+  let index = 0;
+  while (index < stories.length) {
+    const batch = stories.slice(index, Math.min(stories.length, index + concurrency));
+    await Promise.all(
+      batch.map(async (storyTitle) => {
+        const pageSize = await measurePageBytesReceived(
+          browser,
+          `${LADLE_URL}?mode=preview&story=${storyTitle}`
+        );
+        const deltaSize = pageSize - baselineSize;
+        console.log(storyTitle, `${deltaSize / 1000}kb`);
+        sizes[storyTitle] = deltaSize;
+      })
     );
-    const deltaSize = pageSize - baselineSize;
-    console.log(storyTitle, `${deltaSize / 1000}kb`);
-    sizes[storyTitle] = deltaSize;
+    index += concurrency;
   }
 
   await browser.close();

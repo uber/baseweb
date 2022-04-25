@@ -27,7 +27,10 @@ import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible.js';
 
 const NullComponent = () => null;
 
-class BaseInput<T: EventTarget> extends React.Component<BaseInputPropsT<T>, InternalStateT> {
+class BaseInput<T: HTMLInputElement | HTMLTextAreaElement> extends React.Component<
+  BaseInputPropsT<T>,
+  InternalStateT
+> {
   static defaultProps = {
     'aria-activedescendant': null,
     'aria-autocomplete': null,
@@ -63,8 +66,7 @@ class BaseInput<T: EventTarget> extends React.Component<BaseInputPropsT<T>, Inte
     type: 'text',
   };
 
-  // flowlint-next-line unclear-type:off
-  inputRef = this.props.inputRef || React.createRef<any>();
+  inputRef = this.props.inputRef || React.createRef<T>();
 
   state = {
     isFocused: this.props.autoFocus || false,

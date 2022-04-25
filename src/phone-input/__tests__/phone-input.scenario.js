@@ -7,45 +7,36 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import { StatefulPhoneInput, PhoneInputLite } from '../index.js';
+import { SIZE, PhoneInput, StatefulPhoneInput } from '../index.js';
 
 export function Scenario() {
   return (
-    <>
+    <React.Fragment>
+      <p>Uncontrolled (Stateful)</p>
       <StatefulPhoneInput
-        overrides={{
-          CountrySelectDropdownListItem: {
-            props: { 'data-e2e': 'country-select-list-item' },
-          },
-
-          FlagContainer: {
-            props: { 'data-e2e': 'country-flag' },
-          },
-
-          DialCode: {
-            props: { 'data-e2e': 'phone-input-dialcode' },
-          },
-        }}
+        onCountryChange={(e) => console.log('COUNTRY_CHANGED_1:', e)}
+        onTextChange={(e) => console.log('NUMBER_CHANGED_1:', e)}
       />
 
+      <p>Controlled (Stateless)</p>
+      <PhoneInput
+        onCountryChange={(e) => console.log('COUNTRY_CHANGED:', e)}
+        onTextChange={(e) => console.log('NUMBER_CHANGED:', e)}
+      />
+
+      <p>Sizes</p>
+      <StatefulPhoneInput size={SIZE.mini} />
       <br />
-      <p>Phone input lite</p>
-      <PhoneInputLite
-        country={{
-          label: 'Afghanistan (‫افغانستان‬‎)',
-          id: 'AF',
-          dialCode: '+93',
-        }}
-        countries={{
-          AF: { label: 'Afghanistan (‫افغانستان‬‎)', id: 'AF', dialCode: '+93' },
-          AL: { label: 'Albania (Shqipëri)', id: 'AL', dialCode: '+355' },
-          DZ: { label: 'Algeria (‫الجزائر‬‎)', id: 'DZ', dialCode: '+213' },
-          AS: { label: 'American Samoa', id: 'AS', dialCode: '+1684' },
-          AD: { label: 'Andorra', id: 'AD', dialCode: '+376' },
-          AO: { label: 'Angola', id: 'AO', dialCode: '+244' },
-          AI: { label: 'Anguilla', id: 'AI', dialCode: '+1264' },
-        }}
-      />
-    </>
+      <StatefulPhoneInput size={SIZE.compact} />
+      <br />
+      <StatefulPhoneInput />
+      <br />
+      <StatefulPhoneInput size={SIZE.large} />
+      <p>States</p>
+      <StatefulPhoneInput positive />
+      <br />
+      <StatefulPhoneInput error />
+      <br />
+    </React.Fragment>
   );
 }

@@ -1,8 +1,8 @@
 import pick from 'just-pick';
-import {Select, SIZE, TYPE} from 'baseui/select';
-import {PropTypes} from 'react-view';
-import {changeHandlers} from './common/common';
-import {TConfig} from '../types';
+import { Select, SIZE, TYPE } from 'baseui/select';
+import { PropTypes } from 'react-view';
+import { changeHandlers } from './common/common';
+import { TConfig } from '../types';
 import tagConfig from './tag';
 import popoverConfig from './popover';
 import spinnerConfig from './spinner';
@@ -83,8 +83,7 @@ const SelectConfig: TConfig = {
     creatable: {
       value: undefined,
       type: PropTypes.Boolean,
-      description:
-        'Defines if new options can be created along with choosing existing options.',
+      description: 'Defines if new options can be created along with choosing existing options.',
     },
     deleteRemoves: {
       value: true,
@@ -119,8 +118,7 @@ const SelectConfig: TConfig = {
       defaultValue: 'SIZE.default',
       options: SIZE,
       type: PropTypes.Enum,
-      description:
-        'Defines the size (scale) of dropdown menu items. See the Menu component API.',
+      description: 'Defines the size (scale) of dropdown menu items. See the Menu component API.',
       imports: {
         'baseui/select': {
           named: ['SIZE'],
@@ -150,15 +148,13 @@ const SelectConfig: TConfig = {
     getOptionLabel: {
       value: undefined,
       type: PropTypes.Function,
-      description:
-        'A custom method to get a display value for a dropdown option.',
+      description: 'A custom method to get a display value for a dropdown option.',
       placeholder: '({option}) => option.label',
     },
     getValueLabel: {
       value: undefined,
       type: PropTypes.Function,
-      description:
-        'A custom method to get a display value for a selected option.',
+      description: 'A custom method to get a display value for a selected option.',
       placeholder: '({option}) => option.label',
     },
     labelKey: {
@@ -260,14 +256,12 @@ const SelectConfig: TConfig = {
       value: true,
       type: PropTypes.Boolean,
       defaultValue: true,
-      description:
-        'Defines if the dropdown opens on a click event on the select.',
+      description: 'Defines if the dropdown opens on a click event on the select.',
     },
     required: {
       value: undefined,
       type: PropTypes.Boolean,
-      description:
-        'Defines if the select field is required to have a selection.',
+      description: 'Defines if the select field is required to have a selection.',
     },
     searchable: {
       value: true,
@@ -302,8 +296,7 @@ const SelectConfig: TConfig = {
     onChange: {
       value: '(params) => setValue(params.value)',
       type: PropTypes.Function,
-      description:
-        'Change handler of the select to be called when a value is changed.',
+      description: 'Change handler of the select to be called when a value is changed.',
       propHook: {
         what: 'JSON.stringify(params.value)',
         into: 'value',
@@ -313,8 +306,7 @@ const SelectConfig: TConfig = {
     filterOptions: {
       value: undefined,
       type: PropTypes.Function,
-      description:
-        'A custom method to filter options to be displayed in the dropdown.',
+      description: 'A custom method to filter options to be displayed in the dropdown.',
       placeholder: '(options) => options',
     },
     ...pick(changeHandlers, ['onBlur', 'onFocus']),
@@ -346,8 +338,14 @@ const SelectConfig: TConfig = {
     noResultsMsg: {
       value: undefined,
       type: PropTypes.ReactNode,
+      description: 'Message to be displayed if no options is found for a search query.',
+      hidden: true,
+    },
+    controlRef: {
+      value: undefined,
+      type: PropTypes.Ref,
       description:
-        'Message to be displayed if no options is found for a search query.',
+        'An imperative handle offering access to methods that control the internals of `Select`',
       hidden: true,
     },
     overrides: {
@@ -357,7 +355,7 @@ const SelectConfig: TConfig = {
       custom: {
         names: [
           'Root',
-          {...iconConfig, componentName: 'ClearIcon'},
+          { ...iconConfig, componentName: 'ClearIcon' },
           'ControlContainer',
           'Dropdown',
           'DropdownContainer',
@@ -366,13 +364,13 @@ const SelectConfig: TConfig = {
           'Input',
           'InputContainer',
           'IconsContainer',
-          {...spinnerConfig, componentName: 'LoadingIndicator'},
+          { ...spinnerConfig, componentName: 'LoadingIndicator' },
           'OptionContent',
           'Placeholder',
-          {...popoverConfig, componentName: 'Popover'},
-          {...iconConfig, componentName: 'SearchIcon'},
+          { ...popoverConfig, componentName: 'Popover' },
+          { ...iconConfig, componentName: 'SearchIcon' },
           'SearchIconContainer',
-          {...iconConfig, componentName: 'SelectArrow'},
+          { ...iconConfig, componentName: 'SelectArrow' },
           'SingleValue',
           'StatefulMenu',
           tagConfig,
@@ -389,14 +387,12 @@ const SelectConfig: TConfig = {
           },
           $isHighlighted: {
             type: PropTypes.Boolean,
-            description:
-              "Prop passed to an option indicating it's currently highlighted.",
+            description: "Prop passed to an option indicating it's currently highlighted.",
           },
           $isLoading: 'isLoading',
           $isOpen: {
             type: PropTypes.Boolean,
-            description:
-              "Indicates if the select's dropdown is currently opened.",
+            description: "Indicates if the select's dropdown is currently opened.",
           },
           $isPseudoFocused: {
             type: PropTypes.Boolean,
@@ -409,8 +405,7 @@ const SelectConfig: TConfig = {
           $searchable: 'searchable',
           $selected: {
             type: PropTypes.Boolean,
-            description:
-              "Prop passed to an option indicating it's currently selected.",
+            description: "Prop passed to an option indicating it's currently selected.",
           },
           $size: 'size',
           $type: 'type',

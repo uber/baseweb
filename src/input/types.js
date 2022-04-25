@@ -12,7 +12,7 @@ import { STATE_CHANGE_TYPE, ADJOINED, SIZE, ENHANCER_POSITION } from './constant
 export type AdjoinedT = $Keys<typeof ADJOINED>;
 export type SizeT = $Keys<typeof SIZE>;
 export type StateTypeT = $Keys<typeof STATE_CHANGE_TYPE>;
-export type ReactRefT<T> = {| current: null | T |};
+export type ReactRefT<T> = {| current: null | T |} | { current: null | T };
 
 export type InternalStateT = {
   /** Renders UI in 'focus' state */
@@ -108,7 +108,7 @@ export type BaseInputPropsT<T> = {|
   /** A  hint as to the type of data that might be entered by the user while editing the element or its contents. */
   inputMode?: string,
   /** A ref to access an input element. */
-  inputRef?: ReactRefT<HTMLElement>,
+  inputRef?: ReactRefT<T>,
   name: string,
   onBlur: (e: SyntheticFocusEvent<T>) => mixed,
   onChange?: (e: SyntheticInputEvent<T>) => mixed,
@@ -140,7 +140,7 @@ export type BaseInputPropsT<T> = {|
   /** max value when used as input type=number */
   max?: number,
   /** step value when used as input type=number */
-  step?: number,
+  step?: number | 'any',
 |};
 
 export type InputPropsT = {|

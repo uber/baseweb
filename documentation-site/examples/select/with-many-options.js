@@ -64,7 +64,7 @@ const VirtualDropdown = React.forwardRef((props, ref) => {
   );
 
   return (
-    <StyledList $style={{height: height + 'px'}} ref={ref}>
+    <StyledList ref={ref}>
       <FixedSizeList
         width="100%"
         height={height}

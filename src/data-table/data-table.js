@@ -587,7 +587,7 @@ const InnerTableElement = React.forwardRef<
                     })
                   }
                   size={BUTTON_SIZES.compact}
-                  kind={BUTTON_KINDS.minimal}
+                  kind={BUTTON_KINDS.tertiary}
                   shape={BUTTON_SHAPES.round}
                   overrides={{
                     BaseButton: {
@@ -658,6 +658,7 @@ export function DataTable({
   sortIndex,
   sortDirection,
   textQuery = '',
+  controlRef,
 }: DataTablePropsT) {
   const [, theme] = useStyletron();
   const locale = React.useContext(LocaleContext);
@@ -808,6 +809,8 @@ export function DataTable({
     }
     return result;
   }, [sortedIndices, filteredIndices, onIncludedRowsChange, allRows]);
+
+  React.useImperativeHandle(controlRef, () => ({ getRows: () => rows }), [rows]);
 
   const [browserScrollbarWidth, setBrowserScrollbarWidth] = React.useState(0);
   const normalizedWidths = React.useMemo(() => {

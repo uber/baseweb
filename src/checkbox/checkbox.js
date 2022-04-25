@@ -14,7 +14,6 @@ import {
   Label as StyledLabel,
   Root as StyledRoot,
   Toggle as StyledToggle,
-  ToggleInner as StyledToggleInner,
   ToggleTrack as StyledToggleTrack,
 } from './styled-components.js';
 import { STYLE_TYPE } from './constants.js';
@@ -31,7 +30,6 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
     autoFocus: false,
     isIndeterminate: false,
     inputRef: React.createRef(),
-    isError: false,
     error: false,
     type: 'checkbox',
     checkmarkType: STYLE_TYPE.default,
@@ -55,21 +53,6 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
     const { autoFocus, inputRef } = this.props;
     if (autoFocus && inputRef.current) {
       inputRef.current.focus();
-    }
-
-    // TODO(v11)
-    if (__DEV__) {
-      if (this.props.checkmarkType === STYLE_TYPE.toggle) {
-        console.warn(
-          "baseui:Checkbox The STYLE_TYPE.toggle value on the 'checkmarkType' prop does not conform to the current base design specification. " +
-            'Please update your code to STYLE_TYPE.toggle_round. This will be updated automatically in a future major version.'
-        );
-      }
-      if (this.props.isError) {
-        console.warn(
-          'baseui:Checkbox Property "isError" will be removed in the next major version. Use "error" property instead.'
-        );
-      }
     }
   }
 
@@ -109,22 +92,13 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
     }
   };
 
-  isToggle = () => {
-    return (
-      this.props.checkmarkType === STYLE_TYPE.toggle ||
-      this.props.checkmarkType === STYLE_TYPE.toggle_round
-    );
-  };
-
   render() {
-    const { checkmarkType } = this.props;
     const {
       overrides = {},
       onChange,
-      labelPlacement = this.isToggle() ? 'left' : 'right',
+      labelPlacement = this.props.checkmarkType === STYLE_TYPE.toggle ? 'left' : 'right',
       inputRef,
       isIndeterminate,
-      isError,
       error,
       disabled,
       value,
@@ -142,7 +116,6 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
       Label: LabelOverride,
       Input: InputOverride,
       Toggle: ToggleOverride,
-      ToggleInner: ToggleInnerOverride,
       ToggleTrack: ToggleTrackOverride,
     } = overrides;
 
@@ -151,7 +124,6 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
     const Label = getOverride(LabelOverride) || StyledLabel;
     const Input = getOverride(InputOverride) || StyledInput;
     const Toggle = getOverride(ToggleOverride) || StyledToggle;
-    const ToggleInner = getOverride(ToggleInnerOverride) || StyledToggleInner;
     const ToggleTrack = getOverride(ToggleTrackOverride) || StyledToggleTrack;
 
     const inputEvents = {
@@ -170,17 +142,15 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
       $isFocusVisible: this.state.isFocusVisible,
       $isHovered: this.state.isHovered,
       $isActive: this.state.isActive,
-      $isError: isError,
       $error: error,
       $checked: checked,
       $isIndeterminate: isIndeterminate,
       $required: required,
       $disabled: disabled,
       $value: value,
-      $checkmarkType: checkmarkType,
     };
-    // TODO(v11) - add check for children (#2172)
-    const labelComp = (
+
+    const labelComp = children && (
       <Label $labelPlacement={labelPlacement} {...sharedProps} {...getOverrideProps(LabelOverride)}>
         {this.props.containsInteractiveElement ? (
           // Prevents the event from bubbling up to the label and moving focus to the radio button
@@ -191,6 +161,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
         )}
       </Label>
     );
+
     return (
       <Root
         data-baseweb="checkbox"
@@ -201,11 +172,9 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
         {...getOverrideProps(RootOverride)}
       >
         {(labelPlacement === 'top' || labelPlacement === 'left') && labelComp}
-        {this.isToggle() ? (
+        {this.props.checkmarkType === STYLE_TYPE.toggle ? (
           <ToggleTrack {...sharedProps} {...getOverrideProps(ToggleTrackOverride)}>
-            <Toggle {...sharedProps} {...getOverrideProps(ToggleOverride)}>
-              <ToggleInner {...sharedProps} {...getOverrideProps(ToggleInnerOverride)} />
-            </Toggle>
+            <Toggle {...sharedProps} {...getOverrideProps(ToggleOverride)} />
           </ToggleTrack>
         ) : (
           <Checkmark {...sharedProps} {...getOverrideProps(CheckmarkOverride)} />
@@ -219,7 +188,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
           aria-checked={isIndeterminate ? 'mixed' : checked}
           aria-describedby={this.props['aria-describedby']}
           aria-errormessage={this.props['aria-errormessage']}
-          aria-invalid={error || isError || null}
+          aria-invalid={error || null}
           aria-required={required || null}
           disabled={disabled}
           type={type}

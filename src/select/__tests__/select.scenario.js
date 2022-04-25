@@ -31,6 +31,15 @@ export function Scenario() {
       />
 
       <br />
+      <StatefulSelect
+        isLoading
+        aria-label="Select a color"
+        options={options}
+        labelKey="id"
+        valueKey="color"
+      />
+
+      <br />
       <SingleSelect
         aria-label="Select a color"
         options={options}
