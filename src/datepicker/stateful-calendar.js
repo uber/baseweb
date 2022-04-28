@@ -18,10 +18,17 @@ class StatefulComponent<T = Date> extends React.Component<PropsT<T>> {
     stateReducer: (type, nextState) => nextState,
     onSelect: () => {},
   };
+
   render() {
     return (
       <StatefulContainer {...this.props}>
-        {(extendedProps) => <Calendar {...extendedProps} />}
+        {(extendedProps) => (
+          <Calendar
+            {...extendedProps}
+            // flowlint-next-line unclear-type:off
+            onChange={(extendedProps.onChange: any)}
+          />
+        )}
       </StatefulContainer>
     );
   }

@@ -14,6 +14,7 @@ import { Scenario as DatepickerI18nChinese } from './datepicker-i18n-chinese.sce
 import { Scenario as DatepickerIntRange } from './datepicker-int-range.scenario.js';
 import { Scenario as DatepickerInt } from './datepicker-int.scenario.js';
 import { Scenario as DatepickerMask } from './datepicker-mask.scenario.js';
+import { Scenario as DatepickerOnChangeFlow } from './datepicker-onchange-flow.scenario.js';
 import { Scenario as DatepickerRangeHighlight } from './datepicker-range-highlight.scenario.js';
 import { Scenario as DatepickerRangeMultiMonth } from './datepicker-range-multi-month.scenario.js';
 import { Scenario as DatepickerRange } from './datepicker-range.scenario.js';
@@ -50,6 +51,7 @@ export const RangeLockedBehavior = () => <DatepickerRangeLockedBehavior />;
 export const RangeExcludeDates = () => <DatepickerRangeExcludeDates />;
 export const Datepicker = () => <DatepickerDefault />;
 export const DatepickerTime = () => <DatepickerTimeScenario />;
+export const OnChangeFlow = () => <DatepickerOnChangeFlow />;
 export const StatefulColorStates = () => <DatepickersColorStates />;
 export const StatefulComposedRange = () => <DatepickersComposedRange />;
 export const StatefulComposedSingle = () => <DatepickersComposedSingle />;
