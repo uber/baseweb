@@ -14,7 +14,6 @@ import type {
   StatefulContainerPropsT,
   StateChangeTypeT,
   StateReducerT,
-  DateValueT,
 } from './types.js';
 
 type InputProps<T> = CalendarPropsT<T> | DatepickerPropsT<T>;
@@ -34,11 +33,25 @@ class StatefulContainer<T = Date> extends React.Component<PropsT<T>, ContainerSt
     this.state = { value, ...props.initialState };
   }
 
-  onChange: ({ date: DateValueT<T> }) => mixed = (data) => {
+  onChange: ({ +date: ?T | Array<?T> }) => mixed = (data) => {
     const { date } = data;
     this.internalSetState(STATE_CHANGE_TYPE.change, { value: date });
-    if (typeof this.props.onChange === 'function') {
-      this.props.onChange(data);
+
+    const onChange = this.props.onChange;
+    if (onChange) {
+      if (Array.isArray(date)) {
+        if (date.every(Boolean)) {
+          // flowlint-next-line unclear-type:off
+          onChange({ date: ((date: any): Array<T>) });
+        }
+      } else {
+        onChange({ date });
+      }
+    }
+
+    const onRangeChange = this.props.onRangeChange;
+    if (onRangeChange) {
+      onRangeChange({ date });
     }
   };
 

@@ -26,9 +26,9 @@ const selectors = {
 };
 
 describe('Datepicker', () => {
-  beforeEach(async () => {
-    await jestPuppeteer.resetPage();
-  });
+  // beforeEach(async () => {
+  //   await jestPuppeteer.resetPage();
+  // });
 
   it('renders previous month when the left arrow is clicked', async () => {
     await mount(page, 'datepicker--datepicker');

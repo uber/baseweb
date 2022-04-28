@@ -27,10 +27,6 @@ import type { OptionT } from '../select/index.js';
 // flowlint-next-line unclear-type:off
 type LocaleT = any; // see https://github.com/date-fns/date-fns/blob/master/src/locale/index.js.flow
 
-export type DateValueT<T> = ?T | Array<?T>;
-
-type onChangeT<T> = ({ date: DateValueT<T> }) => mixed;
-
 export type DensityT = $Keys<typeof DENSITY>;
 
 export type DatepickerOverridesT = {
@@ -92,13 +88,13 @@ export type DayPropsT<T = Date> = {
   month: ?number,
   onBlur: ({ event: Event, date: T }) => mixed,
   onFocus: ({ event: Event, date: T }) => mixed,
-  onSelect: ({ date: DateValueT<T> }) => mixed,
+  onSelect: ({ date: T | Array<?T> }) => mixed,
   onClick: ({ event: Event, date: T }) => mixed,
   onMouseOver: ({ event: Event, date: T }) => mixed,
   onMouseLeave: ({ event: Event, date: T }) => mixed,
   overrides?: DatepickerOverridesT,
   peekNextMonth: boolean,
-  value: DateValueT<T>,
+  value: ?T | $ReadOnlyArray<?T>,
 };
 
 export type DayStateT = {
@@ -127,15 +123,16 @@ export type WeekPropsT<T = Date> = {
   onDayFocus: ({ date: T, event: Event }) => mixed,
   onDayMouseOver: ({ date: T, event: Event }) => mixed,
   onDayMouseLeave: ({ date: T, event: Event }) => mixed,
-  onChange?: onChangeT<T>,
+  onChange?: ({ +date: ?T | Array<?T> }) => mixed,
   overrides?: DatepickerOverridesT,
   peekNextMonth: boolean,
-  value: DateValueT<T>,
+  value: ?T | $ReadOnlyArray<?T>,
   hasLockedBehavior: boolean,
   selectedInput?: InputRoleT,
 };
 
-export type MonthPropsT<T = Date> = WeekPropsT<T> & {
+export type MonthPropsT<T = Date> = {
+  ...WeekPropsT<T>,
   fixedHeight?: boolean,
 };
 
@@ -193,7 +190,7 @@ export type CalendarPropsT<T = Date> = {
   /** Event handler that is called when the current rendered month's year is changed. */
   onYearChange?: ({ date: T }) => mixed,
   /** Event handler that is called when a new date is selected. */
-  onChange?: onChangeT<T>,
+  onChange?: ({ +date: ?T | Array<?T> }) => mixed,
   /** Event handler that is called when a selection is made using the quick select menu. */
   onQuickSelectChange?: (option?: QuickSelectOption<T>) => mixed,
   /** Sets the orientation of the calendar when multiple months are displayed */
@@ -208,7 +205,7 @@ export type CalendarPropsT<T = Date> = {
   /** Defines if tabbing inside the calendar is circled within it. */
   trapTabbing?: boolean,
   /** Currently selected date. */
-  value?: DateValueT<T>,
+  value?: ?T | $ReadOnlyArray<?T>,
   fixedHeight?: boolean,
   /** Determines whether user clicked startDate or endDate input to trigger calendar open */
   selectedInput?: InputRoleT,
@@ -225,7 +222,8 @@ export type QuickSelectOption<T> = {
   endDate?: T,
 };
 
-export type DatepickerPropsT<T = Date> = CalendarPropsT<T> & {
+export type DatepickerPropsT<T = Date> = {
+  ...CalendarPropsT<T>,
   'aria-label'?: string,
   'aria-labelledby'?: string,
   'aria-describedby'?: ?string,
@@ -238,14 +236,18 @@ export type DatepickerPropsT<T = Date> = CalendarPropsT<T> & {
   required?: boolean,
   clearable?: boolean,
   displayValueAtRangeIndex?: number,
-  formatDisplayValue?: (date: DateValueT<T>, formatString: string) => string,
+  formatDisplayValue?: (date: ?T | $ReadOnlyArray<?T>, formatString: string) => string,
   formatString: string,
   /** Where to mount the popover */
   mountNode?: HTMLElement,
+  /** When single picker, fn is always called. When range picker, fn is called when start and end date are selected. */
+  onChange?: ({ +date: ?T | Array<T> }) => mixed,
   /** Called when calendar is closed */
   onClose?: () => mixed,
   /** Called when calendar is opened */
   onOpen?: () => mixed,
+  /** When single picker, fn is always called. When range picker, fn is called when either start or end date changes. */
+  onRangeChange?: ({ +date: ?T | Array<?T> }) => mixed,
   mask?: string | null,
   /** Determines whether startDate and endDate should be updated independently of eachother */
   rangedCalendarBehavior?: RangedCalendarBehaviorT,
@@ -253,6 +255,7 @@ export type DatepickerPropsT<T = Date> = CalendarPropsT<T> & {
   separateRangeInputs?: boolean,
   startDateLabel?: string,
   endDateLabel?: string,
+  value?: ?T | $ReadOnlyArray<?T>,
 };
 
 export type SharedStylePropsT = {
@@ -289,7 +292,7 @@ export type StateChangeTypeT = ?$Values<typeof STATE_CHANGE_TYPE>;
 
 export type ContainerStateT<T = Date> = {
   /** Selected `Date`. If `range` is set, `value` is an array of 2 values. */
-  value?: DateValueT<T>,
+  value?: ?T | $ReadOnlyArray<?T>,
 };
 
 export type NavigationContainerStateT<T = Date> = {
@@ -310,44 +313,19 @@ export type StateReducerT<T = Date> = (
   currentState: ContainerStateT<T>
 ) => ContainerStateT<T>;
 
-export type NavigationContainerStateReducerT<T = Date> = (
-  stateType: StateChangeTypeT,
-  nextState: NavigationContainerStateT<T>,
-  currentState: NavigationContainerStateT<T>
-) => NavigationContainerStateT<T>;
-
 export type StatefulContainerPropsT<PropsT, T = Date> = {
   children: (PropsT) => React.Node,
   /** Initial state of an uncontrolled datepicker component. */
   initialState: ContainerStateT<T>,
   /** A state change handler. */
   stateReducer: StateReducerT<T>,
-  /** Event handler that is called when a date/time is selected. */
-  onChange?: onChangeT<T>,
+  /** When single picker, fn is called when date/time is selected. When range picker, fn is called when both start and end are selected. */
+  onChange?: ({ +date: ?T | Array<T> }) => mixed,
+  /** When single picker, fn is called when date/time is selected. When range picker, fn is called when either start or end date changes. */
+  onRangeChange?: ({ +date: ?T | Array<?T> }) => mixed,
   adapter?: DateIOAdapter<T>,
   /** Should the date value be stored as an array or single value. */
   range?: boolean,
-};
-
-// This type is seemingly not used anywhere
-export type NavigationContainerPropsT<T = Date> = {
-  children: (CalendarPropsT<T>) => React.Node,
-  range?: boolean,
-  highlightedDate?: ?Date,
-  /** Day's `mouseover` event handler. */
-  onDayMouseOver: (params: { date: Date, event: Event }) => mixed,
-  /** Day's `mouseleave` event handler. */
-  onDayMouseLeave: (params: { date: Date, event: Event }) => mixed,
-  /** Event handler that is called when a new date is selected. */
-  onChange: onChangeT<T>,
-  /** Event handler that is called when the current rendered month is changed. */
-  onMonthChange?: ({ date: T }) => mixed,
-  /** Event handler that is called when the current rendered year is changed. */
-  onYearChange?: ({ date: T }) => mixed,
-  /** Selected `Date`. If `range` is set, `value` is an array of 2 values. */
-  value?: DateValueT<T>,
-  stateReducer: NavigationContainerStateReducerT<T>,
-  trapTabbing: boolean,
 };
 
 export type StatefulDatepickerPropsT<PropsT, T = Date> = $Diff<
