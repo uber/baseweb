@@ -21,7 +21,7 @@ export function Scenario() {
         aria-label="Select a date"
         clearable={true}
         value={singleMonthValue}
-        onChange={({ date }) => setSingleMonthValue(date)}
+        onRangeChange={({ date }) => setSingleMonthValue(date)}
         highlightedDate={new Date('March 10, 2019')}
         range
         separateRangeInputs
@@ -49,7 +49,7 @@ export function Scenario() {
       <Datepicker
         aria-label="Select a date"
         value={multiMonthValue}
-        onChange={({ date }) => setMultiMonthValue(date)}
+        onRangeChange={({ date }) => setMultiMonthValue(date)}
         highlightedDate={new Date('March 10, 2019')}
         range
         separateRangeInputs

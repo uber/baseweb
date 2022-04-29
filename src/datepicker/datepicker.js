@@ -19,7 +19,7 @@ import {
   StyledStartDate,
   StyledEndDate,
 } from './styled-components.js';
-import type { DatepickerPropsT, DateValueT, InputRoleT } from './types.js';
+import type { DatepickerPropsT, InputRoleT } from './types.js';
 import DateHelpers from './utils/date-helpers.js';
 import dateFnsAdapter from './utils/date-fns-adapter.js';
 import type { LocaleT } from '../locale/types.js';
@@ -78,7 +78,31 @@ export default class Datepicker<T = Date> extends React.Component<DatepickerProp
     };
   }
 
-  onChange: ({ date: DateValueT<T> }) => void = (data) => {
+  handleChange: (?T | $ReadOnlyArray<?T>) => void = (date) => {
+    const onChange = this.props.onChange;
+    const onRangeChange = this.props.onRangeChange;
+
+    if (Array.isArray(date)) {
+      if (onChange && date.every(Boolean)) {
+        // flowlint-next-line unclear-type:off
+        onChange({ date: ((date: any): Array<T>) });
+      }
+
+      if (onRangeChange) {
+        onRangeChange({ date: [...date] });
+      }
+    } else {
+      if (onChange) {
+        onChange({ date });
+      }
+
+      if (onRangeChange) {
+        onRangeChange({ date });
+      }
+    }
+  };
+
+  onCalendarSelect: ({ +date: ?T | Array<?T> }) => void = (data) => {
     let isOpen = false;
     let isPseudoFocused = false;
     let calendarFocused = false;
@@ -150,14 +174,14 @@ export default class Datepicker<T = Date> extends React.Component<DatepickerProp
       inputValue: this.formatDisplayValue(nextDate),
     });
 
-    this.props.onChange && this.props.onChange({ date: nextDate });
+    this.handleChange(nextDate);
   };
 
   getNullDatePlaceholder(formatString: string) {
     return (this.getMask() || formatString).split(INPUT_DELIMITER)[0].replace(/[0-9]|[a-z]/g, ' ');
   }
 
-  formatDate(date: DateValueT<T>, formatString: string) {
+  formatDate(date: ?T | $ReadOnlyArray<?T>, formatString: string) {
     const format = (date: T) => {
       if (formatString === DEFAULT_DATE_FORMAT) {
         return this.dateHelpers.format(date, 'slashDate', this.props.locale);
@@ -180,7 +204,7 @@ export default class Datepicker<T = Date> extends React.Component<DatepickerProp
     }
   }
 
-  formatDisplayValue: (DateValueT<T>) => string = (date: DateValueT<T>) => {
+  formatDisplayValue: (?T | $ReadOnlyArray<?T>) => string = (date) => {
     const { displayValueAtRangeIndex, formatDisplayValue, range } = this.props;
     const formatString = this.normalizeDashes(this.props.formatString);
 
@@ -278,12 +302,10 @@ export default class Datepicker<T = Date> extends React.Component<DatepickerProp
       (typeof mask === 'string' && inputValue === mask.replace(/9/g, ' ')) ||
       inputValue.length === 0
     ) {
-      if (this.props.onChange) {
-        if (this.props.range) {
-          this.props.onChange({ date: [] });
-        } else {
-          this.props.onChange({ date: null });
-        }
+      if (this.props.range) {
+        this.handleChange([]);
+      } else {
+        this.handleChange(null);
       }
     }
 
@@ -307,18 +329,15 @@ export default class Datepicker<T = Date> extends React.Component<DatepickerProp
         endDate = parseDateString(right);
       }
 
-      const onChange = this.props.onChange;
-      if (onChange) {
-        const datesValid = this.dateHelpers.isValid(startDate) && this.dateHelpers.isValid(endDate);
+      const datesValid = this.dateHelpers.isValid(startDate) && this.dateHelpers.isValid(endDate);
 
-        // added equal case so that times within the same day can be expressed
-        const rangeValid =
-          this.dateHelpers.isAfter(endDate, startDate) ||
-          this.dateHelpers.isEqual(startDate, endDate);
+      // added equal case so that times within the same day can be expressed
+      const rangeValid =
+        this.dateHelpers.isAfter(endDate, startDate) ||
+        this.dateHelpers.isEqual(startDate, endDate);
 
-        if (datesValid && rangeValid) {
-          onChange({ date: [startDate, endDate] });
-        }
+      if (datesValid && rangeValid) {
+        this.handleChange([startDate, endDate]);
       }
     } else {
       const dateString = this.normalizeDashes(inputValue);
@@ -333,41 +352,41 @@ export default class Datepicker<T = Date> extends React.Component<DatepickerProp
         date = parseDateString(dateString);
       }
 
-      const { displayValueAtRangeIndex, onChange, range, value } = this.props;
-      if (date && this.dateHelpers.isValid(date) && onChange) {
+      const { displayValueAtRangeIndex, range, value } = this.props;
+      if (date && this.dateHelpers.isValid(date)) {
         if (range && Array.isArray(value) && typeof displayValueAtRangeIndex === 'number') {
           let [left, right] = value;
           if (displayValueAtRangeIndex === 0) {
             left = date;
             if (!right) {
-              onChange({ date: [left] });
+              this.handleChange([left]);
             } else {
               if (this.dateHelpers.isAfter(right, left) || this.dateHelpers.isEqual(left, right)) {
-                onChange({ date: [left, right] });
+                this.handleChange([left, right]);
               } else {
                 // Is resetting back to previous value appropriate? Invalid range is not
                 // communicated to the user, but if it was not reset the text value would
                 // show one value and date value another. This seems a bit better but clearly
                 // has a downside.
-                onChange({ date: [...value] });
+                this.handleChange([...value]);
               }
             }
           } else if (displayValueAtRangeIndex === 1) {
             right = date;
             if (!left) {
               // If start value is not defined, set start/end to the same day.
-              onChange({ date: [right, right] });
+              this.handleChange([right, right]);
             } else {
               if (this.dateHelpers.isAfter(right, left) || this.dateHelpers.isEqual(left, right)) {
-                onChange({ date: [left, right] });
+                this.handleChange([left, right]);
               } else {
                 // See comment above about resetting dates on invalid range
-                onChange({ date: [...value] });
+                this.handleChange([...value]);
               }
             }
           }
         } else {
-          onChange({ date });
+          this.handleChange(date);
         }
       }
     }
@@ -439,8 +458,6 @@ export default class Datepicker<T = Date> extends React.Component<DatepickerProp
         ? endDate
         : this.state.inputValue;
 
-    const onChange = (event) => this.handleInputChange(event, inputRole);
-
     return (
       <InputComponent
         aria-disabled={this.props.disabled}
@@ -459,7 +476,7 @@ export default class Datepicker<T = Date> extends React.Component<DatepickerProp
         onFocus={() => this.open(inputRole)}
         onBlur={this.handleInputBlur}
         onKeyDown={this.handleKeyDown}
-        onChange={onChange}
+        onChange={(event) => this.handleInputChange(event, inputRole)}
         placeholder={placeholder}
         mask={this.getMask()}
         required={this.props.required}
@@ -499,7 +516,7 @@ export default class Datepicker<T = Date> extends React.Component<DatepickerProp
                   trapTabbing={true}
                   value={this.props.value}
                   {...this.props}
-                  onChange={this.onChange}
+                  onChange={this.onCalendarSelect}
                   selectedInput={this.state.selectedInput}
                   hasLockedBehavior={this.hasLockedBehavior()}
                 />

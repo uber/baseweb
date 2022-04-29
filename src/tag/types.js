@@ -70,6 +70,6 @@ export type SharedPropsArgT = {
   $isHovered?: boolean,
   $kind?: string,
   $variant?: string,
-  $isFocusVisible: boolean,
+  $isFocusVisible?: boolean,
   $size?: string,
 };
