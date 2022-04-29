@@ -241,7 +241,7 @@ export type DatepickerPropsT<T = Date> = {
   /** Where to mount the popover */
   mountNode?: HTMLElement,
   /** When single picker, fn is always called. When range picker, fn is called when start and end date are selected. */
-  onChange?: ({ +date: ?T | Array<T> }) => mixed,
+  onChange?: ({ date: ?T | Array<T> }) => mixed,
   /** Called when calendar is closed */
   onClose?: () => mixed,
   /** Called when calendar is opened */
@@ -320,7 +320,7 @@ export type StatefulContainerPropsT<PropsT, T = Date> = {
   /** A state change handler. */
   stateReducer: StateReducerT<T>,
   /** When single picker, fn is called when date/time is selected. When range picker, fn is called when both start and end are selected. */
-  onChange?: ({ +date: ?T | Array<T> }) => mixed,
+  onChange?: ({ date: ?T | Array<T> }) => mixed,
   /** When single picker, fn is called when date/time is selected. When range picker, fn is called when either start or end date changes. */
   onRangeChange?: ({ +date: ?T | Array<?T> }) => mixed,
   adapter?: DateIOAdapter<T>,
