@@ -58,7 +58,7 @@ const filterOptions = (
   }, new Set());
 
   const re = new RegExp(
-    `${props.matchPos === 'start' ? '$' : ''}${escapeRegExp(filterValue)}`,
+    `${props.matchPos === 'start' ? '^' : ''}${escapeRegExp(filterValue)}`,
     props.ignoreCase ? 'i' : ''
   );
 
