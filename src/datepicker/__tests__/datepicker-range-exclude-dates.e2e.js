@@ -35,7 +35,7 @@ describe('Datepicker, Range', () => {
     const selectedValue2 = await page.$eval(inputSelector, (input) => input.value);
     expect(selectedValue2).toBe('2022/03/14 –     /  /  ');
     await page.click(selectors.day3);
-    await page.waitForSelector(selectors.calendar, { hidden: true });
+    await page.waitForSelector(selectors.calendar, { state: 'hidden' });
     const selectedValue3 = await page.$eval(inputSelector, (input) => input.value);
     expect(selectedValue3).toBe('2022/03/14 – 2022/03/22');
   });
@@ -57,7 +57,7 @@ describe('Datepicker, Range', () => {
     const selectedValue3 = await page.$eval(inputSelector, (input) => input.value);
     expect(selectedValue3).toBe('2022/03/31 –     /  /  ');
     await page.click(selectors.day6);
-    await page.waitForSelector(selectors.calendar, { hidden: true });
+    await page.waitForSelector(selectors.calendar, { state: 'hidden' });
     const selectedValue4 = await page.$eval(inputSelector, (input) => input.value);
     expect(selectedValue4).toBe('2022/03/31 – 2022/04/01');
   });

@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 /* eslint-env node */
 
-const config = require('../../jest-puppeteer.config.js');
+const { expect } = require('@playwright/test');
 
 const axe = require('axe-core');
 const queryString = require('query-string');
@@ -20,15 +20,6 @@ const PATH_TO_AXE = './node_modules/axe-core/axe.min.js';
 const appDirectory = realpathSync(process.cwd());
 
 const resolvePath = (relativePath) => resolve(appDirectory, relativePath);
-
-function getPuppeteerUrl(name, theme, rtl) {
-  return `${config.tests.url}?${queryString.stringify({
-    story: name,
-    theme,
-    mode: 'preview',
-    rtl: rtl === true ? 'true' : undefined,
-  })}`;
-}
 
 const addTestStyles = async (page) => {
   await page.addStyleTag({
@@ -51,18 +42,16 @@ const addTestStyles = async (page) => {
   });
 };
 
-async function mount(page, scenarioName, theme, rtl) {
-  // replicate console events into terminal
-  // it's just spamming logs with no useful info right now
-  // page.on('console', msg => {
-  //   if (msg.type() === 'warning') return;
-  //   for (let i = 0; i < msg.args().length; ++i) {
-  //     // eslint-disable-next-line no-console
-  //     console.log(`${msg.args()[i]}`);
-  //   }
-  // });
-
-  await page.goto(getPuppeteerUrl(scenarioName, theme, rtl));
+async function mount(page, name, theme, rtl) {
+  const url = process.env.PUPPETEER_TARGET_URL || 'http://localhost:8080';
+  await page.goto(
+    `${url}?${queryString.stringify({
+      story: name,
+      theme,
+      mode: 'preview',
+      rtl: rtl === true ? 'true' : undefined,
+    })}`
+  );
   await page.waitForSelector('[data-storyloaded]');
 }
 

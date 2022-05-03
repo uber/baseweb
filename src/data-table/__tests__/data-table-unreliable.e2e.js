@@ -49,7 +49,7 @@ describe('data table columns', () => {
       const button = items.find((item) => item.textContent === 'Apply');
       return button.click();
     });
-    await page.waitForSelector('div[data-baseweb="popover"]', { hidden: true });
+    await page.waitForSelector('div[data-baseweb="popover"]', { state: 'hidden' });
 
     const updated = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
 

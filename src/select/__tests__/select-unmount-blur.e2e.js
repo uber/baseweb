@@ -20,7 +20,7 @@ describe('select unmount blur', () => {
     // unmounts the select component when option selected
     await page.click('[role="option"]');
     await page.waitForSelector('[data-testid="select-container"]', {
-      hidden: true,
+      state: 'hidden',
     });
 
     await page.click('button');

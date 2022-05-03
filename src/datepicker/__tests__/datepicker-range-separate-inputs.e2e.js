@@ -35,7 +35,7 @@ describe('Datepicker, Range', () => {
     expect(startDateValue1).toBe('2019/03/10');
     await page.click(selectors.day2);
     await page.waitForSelector(selectors.calendar, {
-      hidden: true,
+      state: 'hidden',
     });
     const [startDateValue2, endDateValue2] = await page.$$eval(selectors.input, (inputs) =>
       inputs.map((input) => input.value)
@@ -54,7 +54,7 @@ describe('Datepicker, Range', () => {
     expect(startDateValue1).toBe('2019/03/10');
     await page.click(selectors.day4);
     await page.waitForSelector(selectors.calendar, {
-      hidden: true,
+      state: 'hidden',
     });
     const [startDateValue2, endDateValue2] = await page.$$eval(
       selectors.multiMonthInputs,
@@ -81,7 +81,7 @@ describe('Datepicker, Range', () => {
     await page.waitForSelector(selectors.day);
     await page.click(selectors.day);
     await page.waitForSelector(selectors.calendar, {
-      hidden: true,
+      state: 'hidden',
     });
     const [startDateValue2, endDateValue2] = await page.$$eval(
       selectors.multiMonthInputs,
@@ -129,14 +129,14 @@ describe('Datepicker, Range', () => {
     await page.waitForSelector(selectors.day2);
     await page.click(selectors.day2);
     await page.waitForSelector(selectors.calendar, {
-      hidden: true,
+      state: 'hidden',
     });
     const [startDateValue2, endDateValue2] = await page.$$eval(selectors.input, (inputs) =>
       inputs.map((input) => input.value)
     );
     expect(startDateValue2).toBe('2019/03/10');
     expect(endDateValue2).toBe('2019/03/28');
-    await page.waitForSelector(selectors.calendar, { hidden: true });
+    await page.waitForSelector(selectors.calendar, { state: 'hidden' });
 
     // Open the calendar again and check that the time is set correctly
     await page.click(selectors.input);

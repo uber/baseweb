@@ -107,7 +107,7 @@ describe('menu-child', () => {
     expect(before).toBe('New File');
 
     await hoverItem(page, 1, 0);
-    await page.waitForSelector(highlightedSelector, { hidden: true });
+    await page.waitForSelector(highlightedSelector, { state: 'hidden' });
 
     const after = await findHighlightedLabel(page);
     expect(after).toBe('NOT_FOUND');
@@ -159,7 +159,7 @@ describe('menu-child', () => {
     await page.waitForSelector(childSelector);
     await page.keyboard.press('ArrowLeft');
     await page.keyboard.press('ArrowDown');
-    await page.waitForSelector(childSelector, { hidden: true });
+    await page.waitForSelector(childSelector, { state: 'hidden' });
   });
 
   it('highlights child menu item on hover', async () => {
@@ -179,7 +179,7 @@ describe('menu-child', () => {
     await page.mouse.move(x, y);
     await page.waitForSelector(childSelector);
     await page.mouse.move(0, y);
-    await page.waitForSelector(childSelector, { hidden: true });
+    await page.waitForSelector(childSelector, { state: 'hidden' });
   });
 
   it('item with child menu triggers click handler', async () => {
@@ -211,7 +211,7 @@ describe('menu-child', () => {
     await page.mouse.click(450, 159);
     await page.waitForSelector(childSelector);
     await page.click('button');
-    await page.waitForSelector(childSelector, { hidden: true });
+    await page.waitForSelector(childSelector, { state: 'hidden' });
   });
 
   it('keyboard navigation works when ancestor stopPropagations', async () => {

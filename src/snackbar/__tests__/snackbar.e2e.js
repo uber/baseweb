@@ -43,7 +43,7 @@ describe('snackbar', () => {
 
     await page.waitForSelector(selectors.root);
 
-    await page.waitForSelector(selectors.root, { hidden: true });
+    await page.waitForSelector(selectors.root, { state: 'hidden' });
   });
 
   it('displays only one snackbar at a time', async () => {

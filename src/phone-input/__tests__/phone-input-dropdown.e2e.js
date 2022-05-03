@@ -52,7 +52,7 @@ describe('PhoneInput', () => {
     await page.click(countryListItemForIso(UK.iso));
     // verify dropdown has closed
     await page.waitForSelector(selectors.countryPickerDropdown, {
-      hidden: true,
+      state: 'hidden',
     });
     // verify correct flag and dial code shows up
     const iso = await page.$eval(selectors.countryPickerFlag, (flag) =>

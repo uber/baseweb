@@ -26,7 +26,7 @@ describe('skeleton-loading', () => {
       return false;
     });
     expect(haveSkeleton).toBe(true);
-    await page.waitForSelector('div[testid="loader"]', { hidden: true });
+    await page.waitForSelector('div[testid="loader"]', { state: 'hidden' });
     const haveContent = await page.$$eval('div[id="content"]', (divs) => {
       if (divs.length > 0) {
         return true;

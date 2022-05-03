@@ -80,7 +80,7 @@ async function preparePageForSnapshot(
   viewport = VIEWPORT.desktop
 ) {
   // Set initial viewport size.
-  await page.setViewport({
+  await page.setViewportSize({
     width: VIEWPORT_WIDTH[viewport],
     height: 800,
   });
@@ -94,7 +94,7 @@ async function preparePageForSnapshot(
   // When we take a screenshot we do not want any resizing, which can cause flakiness.
   // We will set the viewport now and take a straight-up screenshot later.
   // The screenshot dimensions will use the scroll height of the page but clamp the width.
-  await page.setViewport({
+  await page.setViewportSize({
     width: VIEWPORT_WIDTH[viewport],
     height: await getPageScrollHeight(),
   });

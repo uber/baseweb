@@ -58,7 +58,7 @@ describe('Datepicker', () => {
     await page.waitForSelector(selectors.calendar);
     await page.keyboard.press('Escape');
     await page.waitForSelector(selectors.calendar, {
-      hidden: true,
+      state: 'hidden',
     });
   });
 
@@ -69,7 +69,7 @@ describe('Datepicker', () => {
     await page.waitForSelector(selectors.calendar);
     await page.click(selectors.day);
     await page.waitForSelector(selectors.calendar, {
-      hidden: true,
+      state: 'hidden',
     });
 
     const selectedValue = await page.$eval(selectors.input, (input) => input.value);
@@ -99,7 +99,7 @@ describe('Datepicker', () => {
     await page.keyboard.press('2');
 
     // make sure march is gone
-    await page.waitForSelector(selectors.day, { hidden: true });
+    await page.waitForSelector(selectors.day, { state: 'hidden' });
     // and make sure july is now visible
     await page.waitForSelector(selectors.day6);
   });
@@ -138,7 +138,7 @@ describe('Datepicker', () => {
     await page.keyboard.press('ArrowDown');
     await page.waitForSelector(selectors.monthYearSelectMenu);
     await page.keyboard.press('Escape');
-    await page.waitForSelector(selectors.monthYearSelectMenu, { hidden: true });
+    await page.waitForSelector(selectors.monthYearSelectMenu, { state: 'hidden' });
     await page.waitForSelector(selectors.calendar);
   });
 });

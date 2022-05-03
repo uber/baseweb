@@ -18,7 +18,7 @@ describe('popover', () => {
 
     // Close Popover
     await page.click('button');
-    await page.waitForSelector('div[data-e2e="content"]', { hidden: true });
+    await page.waitForSelector('div[data-e2e="content"]', { state: 'hidden' });
 
     // Scroll to the last div
     await page.evaluate(() =>

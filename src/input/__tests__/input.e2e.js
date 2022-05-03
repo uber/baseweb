@@ -46,7 +46,7 @@ describe('input', () => {
     it('shows a clear value icon', async () => {
       await mount(page, 'input--clearable');
       await page.waitForSelector(selectors.clearIcon, {
-        visible: true,
+        state: 'visible',
       });
     });
 
@@ -64,7 +64,7 @@ describe('input', () => {
       expect(inputValue).toBe('');
 
       await page.waitForSelector(selectors.clearIcon, {
-        hidden: true,
+        state: 'hidden',
       });
     });
 
@@ -95,7 +95,7 @@ describe('input', () => {
       expect(inputValue).toBe('');
 
       await page.waitForSelector(selectors.clearIcon, {
-        hidden: true,
+        state: 'hidden',
       });
     });
 
@@ -113,7 +113,7 @@ describe('input', () => {
       expect(inputValue).toBe('');
 
       await page.waitForSelector(selectors.clearIcon, {
-        hidden: true,
+        state: 'hidden',
       });
     });
 
@@ -131,7 +131,7 @@ describe('input', () => {
       expect(inputValue).toBe('');
 
       await page.waitForSelector(selectors.clearIcon, {
-        hidden: true,
+        state: 'hidden',
       });
     });
 

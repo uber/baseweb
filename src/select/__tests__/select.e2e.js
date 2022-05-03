@@ -51,7 +51,7 @@ describe('select', () => {
     await page.waitForSelector(selectors.selectDropDown);
     await page.keyboard.press('Escape');
     await page.waitForSelector(selectors.selectDropDown, {
-      hidden: true,
+      state: 'hidden',
     });
   });
 
@@ -62,7 +62,7 @@ describe('select', () => {
     await page.waitForSelector(selectors.selectDropDown);
     await page.click(optionAtPosition(1));
     await page.waitForSelector(selectors.selectDropDown, {
-      hidden: true,
+      state: 'hidden',
     });
 
     const selectedValue = await page.$eval(selectors.selectedList, (select) => select.textContent);
@@ -270,7 +270,7 @@ describe('select', () => {
     await page.keyboard.press('ArrowDown');
     await page.keyboard.press('Enter');
     await page.waitForSelector(selectors.selectDropDown, {
-      hidden: true,
+      state: 'hidden',
     });
     const selectedValue = await page.$eval(selectors.selectedList, (select) => select.textContent);
     expect(selectedValue).toBe('AliceBlue');

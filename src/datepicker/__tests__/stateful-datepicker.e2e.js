@@ -40,7 +40,7 @@ describe('Stateful Datepicker', () => {
     await page.waitForSelector(selectors.calendar);
     await page.click(selectors.day);
     await page.waitForSelector(selectors.calendar, {
-      hidden: true,
+      state: 'hidden',
     });
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
@@ -50,7 +50,7 @@ describe('Stateful Datepicker', () => {
     expect(value).toBe(false);
     await page.click(selectors.leftArrow);
     await page.waitForSelector(selectors.day, {
-      hidden: true,
+      state: 'hidden',
     });
     await page.waitForSelector(selectors.leftArrow);
     value = await page.$eval(selectors.leftArrow, (select) => select.disabled);

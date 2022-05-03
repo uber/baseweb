@@ -29,7 +29,7 @@ async function isListboxOpen(page) {
 }
 
 async function isListboxClosed(page) {
-  await page.waitForSelector('ul[role="listbox"]', { hidden: true });
+  await page.waitForSelector('ul[role="listbox"]', { state: 'hidden' });
 }
 
 describe('select click open/close', () => {

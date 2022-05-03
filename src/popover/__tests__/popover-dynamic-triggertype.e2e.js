@@ -18,7 +18,7 @@ describe('popover-dynamic-triggertype', () => {
     await page.waitForSelector('#content-hover');
 
     await page.hover('#outside-target');
-    await page.waitForSelector('#content-hover', { hidden: true });
+    await page.waitForSelector('#content-hover', { state: 'hidden' });
   });
 
   it('click opens/closes content', async () => {
@@ -32,6 +32,6 @@ describe('popover-dynamic-triggertype', () => {
     await page.waitForSelector('#content-click');
 
     await page.click('#outside-target');
-    await page.waitForSelector('#content-click', { hidden: true });
+    await page.waitForSelector('#content-click', { state: 'hidden' });
   });
 });

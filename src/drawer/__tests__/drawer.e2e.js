@@ -31,7 +31,7 @@ describe('drawer', () => {
     // close drawer to start fresh
     await page.click(selectors.closeButton);
     await page.waitForSelector(selectors.closeButton, {
-      hidden: true,
+      state: 'hidden',
     });
     await page.click(selectors.openDrawer);
     await page.waitForSelector(selectors.drawer);
@@ -54,7 +54,7 @@ describe('drawer', () => {
     // close again
     await page.click(selectors.closeButton);
     await page.waitForSelector(selectors.closeButton, {
-      hidden: true,
+      state: 'hidden',
     });
 
     const openIsFocused = await page.$eval(
@@ -73,7 +73,7 @@ describe('drawer', () => {
     await page.waitForSelector(selectors.selectDropDown);
     await page.click(optionAtPosition(1));
     await page.waitForSelector(selectors.selectDropDown, {
-      hidden: true,
+      state: 'hidden',
     });
 
     const selectedValue = await page.$eval(selectors.selectedList, (select) => select.textContent);
@@ -88,11 +88,11 @@ describe('drawer', () => {
     await page.waitForSelector(selectors.selectDropDown);
 
     await page.keyboard.press('Escape');
-    await page.waitForSelector(selectors.selectDropDown, { hidden: true });
+    await page.waitForSelector(selectors.selectDropDown, { state: 'hidden' });
     await page.waitForSelector(selectors.selectInput);
 
     await page.keyboard.press('Escape');
-    await page.waitForSelector(selectors.selectInput, { hidden: true });
+    await page.waitForSelector(selectors.selectInput, { state: 'hidden' });
   });
 
   it('renders content even when hidden: with renderAll prop', async () => {
@@ -107,7 +107,7 @@ describe('drawer', () => {
     await page.waitForSelector(selectors.closeButton);
     await page.click(selectors.closeButton);
     await page.waitForSelector(selectors.closeButton, {
-      hidden: true,
+      state: 'hidden',
     });
 
     // check for content again

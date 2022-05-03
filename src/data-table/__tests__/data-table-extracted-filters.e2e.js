@@ -17,7 +17,7 @@ describe('data-table-extracted-filters', () => {
   it('applies expected filters to table', async () => {
     // windowed table excludes hidden cells. set to larger viewport
     // to display everything we need to get the column contents
-    await page.setViewport({ width: 1366, height: 1000 });
+    await page.setViewportSize({ width: 1366, height: 1000 });
 
     await mount(page, 'data-table--extracted-filters');
     await page.waitForSelector(TABLE_ROOT);

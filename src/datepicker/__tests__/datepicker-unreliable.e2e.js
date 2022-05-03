@@ -37,7 +37,7 @@ describe('Datepicker', () => {
     await page.waitForSelector(selectors.leftArrow);
     await page.click(selectors.leftArrow);
     await page.waitForSelector(selectors.day, {
-      hidden: true,
+      state: 'hidden',
     });
     await page.waitForSelector(selectors.day3);
   });
@@ -49,7 +49,7 @@ describe('Datepicker', () => {
     await page.waitForSelector(selectors.rightArrow);
     await page.click(selectors.rightArrow);
     await page.waitForSelector(selectors.day, {
-      hidden: true,
+      state: 'hidden',
     });
     await page.waitForSelector(selectors.day4);
   });
@@ -69,7 +69,7 @@ describe('Datepicker', () => {
       return option.click();
     });
 
-    await page.waitForSelector(selectors.monthYearSelectMenu, { hidden: true });
+    await page.waitForSelector(selectors.monthYearSelectMenu, { state: 'hidden' });
     await page.waitForSelector(selectors.calendar);
     await page.waitForSelector(selectors.day5);
   });
@@ -89,7 +89,7 @@ describe('Datepicker', () => {
       return option.click();
     });
 
-    await page.waitForSelector(selectors.monthYearSelectMenu, { hidden: true });
+    await page.waitForSelector(selectors.monthYearSelectMenu, { state: 'hidden' });
     await page.waitForSelector(selectors.calendar);
     await page.waitForSelector(selectors.day6);
   });

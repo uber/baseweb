@@ -59,7 +59,7 @@ describe('PhoneInput', () => {
     await page.waitForSelector(selectors.phoneInputSelectDropdown);
     // // verify US option is visible
     await page.waitForSelector(countryListItemForIso(unitedStates.iso), {
-      visible: true,
+      state: 'visible',
     });
   });
 
@@ -87,7 +87,7 @@ describe('PhoneInput', () => {
     await page.click(countryListItemForIso(unitedKingdom.iso));
     // verify dropdown has closed
     await page.waitForSelector(selectors.phoneInputSelectDropdown, {
-      hidden: true,
+      state: 'hidden',
     });
     // verify correct flag and dial code shows up
     const iso = await page.$eval(selectors.phoneInputFlag, (flag) => flag.getAttribute('data-iso'));

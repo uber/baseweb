@@ -34,7 +34,7 @@ describe('popover', () => {
     await page.hover('button');
     await page.waitForSelector(selectors.tooltip);
     await page.mouse.move(200, 200);
-    await page.waitForSelector(selectors.tooltip, { hidden: true });
+    await page.waitForSelector(selectors.tooltip, { state: 'hidden' });
   });
 
   it('opened popover can be closed with ESC', async () => {
@@ -43,7 +43,7 @@ describe('popover', () => {
     await page.click('button');
     await page.waitForSelector(selectors.tooltip);
     await page.keyboard.press('Escape');
-    await page.waitForSelector(selectors.tooltip, { hidden: true });
+    await page.waitForSelector(selectors.tooltip, { state: 'hidden' });
   });
 
   it('allows interaction with select', async () => {
@@ -67,13 +67,13 @@ describe('popover', () => {
     // Select an option from the select dropdown
     const options = await page.$$(selectors.dropDownOption);
     await options[0].click();
-    await page.waitForSelector(selectors.selectDropDown, { hidden: true });
+    await page.waitForSelector(selectors.selectDropDown, { state: 'hidden' });
 
     const selectedValue = await page.$eval(selectors.selectedList, (select) => select.textContent);
     expect(selectedValue).toBe('AliceBlue');
     // Click outside to close the initial popover
     await page.click(selectors.outsideOfPopover);
-    await page.waitForSelector(selectors.selectInput, { hidden: true });
+    await page.waitForSelector(selectors.selectInput, { state: 'hidden' });
   });
 
   it('renders content even when hidden: with renderAll prop', async () => {
@@ -84,7 +84,7 @@ describe('popover', () => {
     await page.waitForSelector(selectors.tooltip);
     await page.waitForSelector(selectors.content);
     await page.keyboard.press('Escape');
-    await page.waitForSelector(selectors.tooltip, { hidden: true });
+    await page.waitForSelector(selectors.tooltip, { state: 'hidden' });
     await page.waitForSelector(selectors.content);
   });
 

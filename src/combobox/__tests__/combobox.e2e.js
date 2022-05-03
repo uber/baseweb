@@ -38,7 +38,7 @@ describe('combobox', () => {
     await page.click(selectors.combobox);
     await page.waitForSelector(selectors.listbox);
     await page.click(selectors.firstOption);
-    await page.waitForSelector(selectors.listbox, { hidden: true });
+    await page.waitForSelector(selectors.listbox, { state: 'hidden' });
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });

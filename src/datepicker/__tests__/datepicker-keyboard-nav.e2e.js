@@ -79,7 +79,7 @@ describe('Datepicker - keyboard navigation', () => {
     // press the next month button
     await page.keyboard.press('Enter');
     // make sure March is gone
-    await page.waitForSelector(selectors.mar10, { hidden: true });
+    await page.waitForSelector(selectors.mar10, { state: 'hidden' });
     // and make sure April is now visible
     await page.waitForSelector(selectors.apr1);
 
@@ -159,7 +159,7 @@ describe('Datepicker - keyboard navigation', () => {
     await page.keyboard.press('Enter');
 
     // check that calendar is closed and input gets focus
-    await page.waitForSelector(selectors.calendar, { hidden: true });
+    await page.waitForSelector(selectors.calendar, { state: 'hidden' });
     isInputActive = await isActiveEl(page, selectors.input);
     expect(isInputActive).toBe(true);
 
@@ -233,7 +233,7 @@ describe('Datepicker - keyboard navigation', () => {
     // press the next month button
     await page.keyboard.press('Enter');
     // make sure March is gone
-    await page.waitForSelector(selectors.mar14, { hidden: true });
+    await page.waitForSelector(selectors.mar14, { state: 'hidden' });
     // and make sure April is now visible
     await page.waitForSelector(selectors.apr1);
 
@@ -256,7 +256,7 @@ describe('Datepicker - keyboard navigation', () => {
     // press the prev month button
     await page.keyboard.press('Enter');
     // make sure April is gone
-    await page.waitForSelector(selectors.apr1, { hidden: true });
+    await page.waitForSelector(selectors.apr1, { state: 'hidden' });
     // and make sure March is now visible
     await page.waitForSelector(selectors.mar10);
 

@@ -23,7 +23,7 @@ describe('Datepicker, Int', () => {
     await page.click(selectors.input);
 
     await page.keyboard.type('31.03.202');
-    await page.waitForSelector(selectors.day, { hidden: true });
+    await page.waitForSelector(selectors.day, { state: 'hidden' });
 
     await page.keyboard.type('0');
     const inputValue = await page.$eval(selectors.input, (input) => input.value);

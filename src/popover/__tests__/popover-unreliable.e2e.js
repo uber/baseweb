@@ -31,11 +31,11 @@ describe('popover', () => {
     await page.waitForSelector(selectors.selectDropDown);
 
     await page.keyboard.press('Escape');
-    await page.waitForSelector(selectors.selectDropDown, { hidden: true });
+    await page.waitForSelector(selectors.selectDropDown, { state: 'hidden' });
     await page.waitForSelector(selectors.selectInput);
 
     await page.keyboard.press('Escape');
-    await page.waitForSelector(selectors.selectInput, { hidden: true });
+    await page.waitForSelector(selectors.selectInput, { state: 'hidden' });
   });
 
   it('closes one popover at a time on click outside', async () => {
@@ -62,12 +62,12 @@ describe('popover', () => {
     // First document and outside of the popovers click
     // closes only the top-most popover
     await page.click(selectors.outsideOfPopover);
-    await page.waitForSelector(selectors.selectDropDown, { hidden: true });
+    await page.waitForSelector(selectors.selectDropDown, { state: 'hidden' });
     await page.waitForSelector(selectors.selectInput);
 
     // Second document and outside of the remaining popover click
     // closes only the that popover
     await page.click(selectors.outsideOfPopover);
-    await page.waitForSelector(selectors.selectInput, { hidden: true });
+    await page.waitForSelector(selectors.selectInput, { state: 'hidden' });
   });
 });

@@ -22,7 +22,7 @@ describe('toasts managed by application state', () => {
     const dismiss = await page.$('[data-testid="0"] [title="Close"]');
     await dismiss.click();
 
-    await page.waitForSelector('[data-testid="0"]', { hidden: true });
+    await page.waitForSelector('[data-testid="0"]', { state: 'hidden' });
     await page.waitForSelector('[data-testid="1"]');
     await page.waitForSelector('[data-testid="2"]');
   });

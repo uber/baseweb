@@ -32,7 +32,7 @@ describe('modal', () => {
     // close modal to start fresh
     await page.click(selectors.closeButton);
     await page.waitForSelector(selectors.closeButton, {
-      hidden: true,
+      state: 'hidden',
     });
     await page.click(selectors.openModal);
     await page.waitForSelector(selectors.dialog);
@@ -66,7 +66,7 @@ describe('modal', () => {
     // close again
     await page.click(selectors.closeButton);
     await page.waitForSelector(selectors.closeButton, {
-      hidden: true,
+      state: 'hidden',
     });
 
     const openIsFocused = await page.$eval(
@@ -85,7 +85,7 @@ describe('modal', () => {
     await page.waitForSelector(selectors.selectDropDown);
     await page.click(optionAtPosition(1));
     await page.waitForSelector(selectors.selectDropDown, {
-      hidden: true,
+      state: 'hidden',
     });
 
     const selectedValue = await page.$eval(selectors.selectedList, (select) => select.textContent);
@@ -103,13 +103,13 @@ describe('modal', () => {
     // and outside the select dropdown
     await page.click(selectors.openModal);
     await page.waitForSelector(selectors.selectDropDown, {
-      hidden: true,
+      state: 'hidden',
     });
     await page.waitForSelector(selectors.dialog);
 
     await page.click(selectors.openModal);
     await page.waitForSelector(selectors.dialog, {
-      hidden: true,
+      state: 'hidden',
     });
   });
 
@@ -121,10 +121,10 @@ describe('modal', () => {
     await page.waitForSelector(selectors.selectDropDown);
 
     await page.keyboard.press('Escape');
-    await page.waitForSelector(selectors.selectDropDown, { hidden: true });
+    await page.waitForSelector(selectors.selectDropDown, { state: 'hidden' });
     await page.waitForSelector(selectors.selectInput);
 
     await page.keyboard.press('Escape');
-    await page.waitForSelector(selectors.selectInput, { hidden: true });
+    await page.waitForSelector(selectors.selectInput, { state: 'hidden' });
   });
 });
