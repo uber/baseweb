@@ -9,12 +9,14 @@ LICENSE file in the root directory of this source tree.
 
 const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
 
+const { expect, test } = require('@playwright/test');
+
 const selectors = {
   tooltip: '[role="tooltip"]',
 };
 
-describe('tooltip', () => {
-  it('passes basic a11y tests when hovered', async () => {
+test.describe('tooltip', () => {
+  test('passes basic a11y tests when hovered', async ({ page }) => {
     await mount(page, 'tooltip--tooltip');
     await page.waitForSelector('span');
     await page.hover('span');

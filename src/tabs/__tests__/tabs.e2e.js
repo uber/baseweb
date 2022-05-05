@@ -9,15 +9,17 @@ LICENSE file in the root directory of this source tree.
 
 const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
 
-describe('tabs', () => {
-  it('passes basic a11y tests', async () => {
+const { expect, test } = require('@playwright/test');
+
+test.describe('tabs', () => {
+  test('passes basic a11y tests', async ({ page }) => {
     await mount(page, 'tabs--tabs');
     await page.waitForSelector('[role="tab"]');
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
-  it('changes content on tab click', async () => {
+  test('changes content on tab click', async ({ page }) => {
     await mount(page, 'tabs--tabs');
     await page.waitForSelector('[role="tab"]');
 

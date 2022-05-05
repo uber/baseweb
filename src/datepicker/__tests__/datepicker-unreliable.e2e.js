@@ -10,6 +10,8 @@ LICENSE file in the root directory of this source tree.
 
 const { mount } = require('../../../e2e/helpers');
 
+const { expect, test } = require('@playwright/test');
+
 const selectors = {
   input: 'input',
   calendar: '[data-baseweb="calendar"]',
@@ -25,12 +27,8 @@ const selectors = {
   monthYearSelectMenu: '[data-id="monthYearSelectMenu"]',
 };
 
-describe('Datepicker', () => {
-  // beforeEach(async () => {
-  //   await jestPuppeteer.resetPage();
-  // });
-
-  it('renders previous month when the left arrow is clicked', async () => {
+test.describe('Datepicker', () => {
+  test('renders previous month when the left arrow is clicked', async ({ page }) => {
     await mount(page, 'datepicker--datepicker');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
@@ -42,7 +40,7 @@ describe('Datepicker', () => {
     await page.waitForSelector(selectors.day3);
   });
 
-  it('renders next month when the right arrow is clicked', async () => {
+  test('renders next month when the right arrow is clicked', async ({ page }) => {
     await mount(page, 'datepicker--datepicker');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
@@ -54,7 +52,7 @@ describe('Datepicker', () => {
     await page.waitForSelector(selectors.day4);
   });
 
-  it('updates the calendar when a year selected from the dropdown', async () => {
+  test('updates the calendar when a year selected from the dropdown', async ({ page }) => {
     await mount(page, 'datepicker--datepicker');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
@@ -74,7 +72,7 @@ describe('Datepicker', () => {
     await page.waitForSelector(selectors.day5);
   });
 
-  it('updates the calendar when a month selected from the dropdown', async () => {
+  test('updates the calendar when a month selected from the dropdown', async ({ page }) => {
     await mount(page, 'datepicker--datepicker');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
@@ -94,7 +92,7 @@ describe('Datepicker', () => {
     await page.waitForSelector(selectors.day6);
   });
 
-  it('disables previous month button if minimum month is selected', async () => {
+  test('disables previous month button if minimum month is selected', async ({ page }) => {
     await mount(page, 'datepicker--datepicker');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
@@ -118,13 +116,13 @@ describe('Datepicker', () => {
       return option.click();
     });
 
-    await page.click(selectors.leftArrow);
+    await page.click(selectors.leftArrow, { force: true });
     const value = await page.$(selectors.monthYearSelectButton);
     const text = await page.evaluate((element) => element.textContent, value);
     expect(text).toBe('January');
   });
 
-  it('disables next month button if maximum month is selected', async () => {
+  test('disables next month button if maximum month is selected', async ({ page }) => {
     await mount(page, 'datepicker--datepicker');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
@@ -148,13 +146,13 @@ describe('Datepicker', () => {
       return option.click();
     });
 
-    await page.click(selectors.rightArrow);
+    await page.click(selectors.rightArrow, { force: true });
     const value = await page.$(selectors.monthYearSelectButton);
     const text = await page.evaluate((element) => element.textContent, value);
     expect(text).toBe('December');
   });
 
-  it('selects day when typed', async () => {
+  test('selects day when typed', async ({ page }) => {
     await mount(page, 'datepicker--datepicker');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);

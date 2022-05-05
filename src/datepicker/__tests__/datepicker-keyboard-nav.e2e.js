@@ -8,7 +8,9 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const { mount } = require('../../../e2e/helpers');
+const { mount, isSameNode } = require('../../../e2e/helpers');
+
+const { expect, test } = require('@playwright/test');
 
 const selectors = {
   input: 'input',
@@ -29,13 +31,15 @@ const isActiveEl = async (page, selector) => {
   // eslint-disable-next-line cup/no-undef
   const activeEl = await page.evaluateHandle(() => document.activeElement);
   const selectedEl = await page.$(selector);
-  const equal = await page.evaluate((e1, e2) => e1 === e2, activeEl, selectedEl);
+  const equal = await isSameNode(page, activeEl, selectedEl);
   activeEl.dispose();
   return equal;
 };
 
-describe('Datepicker - keyboard navigation', () => {
-  it('calendar is focusable and can be navigated in', async () => {
+test.describe('Datepicker - keyboard navigation', () => {
+  test('calendar is focusable and can be navigated in', async ({ browserName, page }) => {
+    test.fixme(browserName === 'webkit', 'this feature fails in webkit');
+
     await mount(page, 'datepicker--datepicker');
     await page.waitForSelector(selectors.input);
     await page.focus(selectors.input);
@@ -108,7 +112,12 @@ describe('Datepicker - keyboard navigation', () => {
     expect(isElActive).toBe(true);
   });
 
-  it('calendar sets highlighted date appropriately when selecting a new date or navigating around', async () => {
+  test('calendar sets highlighted date appropriately when selecting a new date or navigating around', async ({
+    browserName,
+    page,
+  }) => {
+    test.fixme(browserName === 'webkit', 'this feature fails in webkit');
+
     await mount(page, 'datepicker--range-highlight');
     await page.waitForSelector(selectors.input);
     // open the calendar by moving focus into input

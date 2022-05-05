@@ -10,6 +10,8 @@ LICENSE file in the root directory of this source tree.
 
 const { mount } = require('../../../e2e/helpers');
 
+const { expect, test } = require('@playwright/test');
+
 const selectors = {
   input: 'input',
   calendar: '[data-baseweb="calendar"]',
@@ -23,8 +25,8 @@ const selectors = {
   multiMonthInputs: '[data-id="multiMonthInputs"]',
 };
 
-describe('Datepicker, Range', () => {
-  it('selects range', async () => {
+test.describe('Datepicker, Range', () => {
+  test('selects range', async ({ page }) => {
     await mount(page, 'datepicker--range-separate-inputs');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
@@ -43,7 +45,7 @@ describe('Datepicker, Range', () => {
     expect(startDateValue2).toBe('2019/03/10');
     expect(endDateValue2).toBe('2019/03/28');
   });
-  it('selects range in multi-month', async () => {
+  test('selects range in multi-month', async ({ page }) => {
     await mount(page, 'datepicker--range-separate-inputs');
     await page.waitForSelector(selectors.multiMonthInputs);
     await page.click(selectors.multiMonthInputs);
@@ -63,7 +65,9 @@ describe('Datepicker, Range', () => {
     expect(startDateValue2).toBe('2019/03/10');
     expect(endDateValue2).toBe('2019/04/01');
   });
-  it('selects range in multi-month - do not autoAdvance calendar months since selected date is in view', async () => {
+  test('selects range in multi-month - do not autoAdvance calendar months since selected date is in view', async ({
+    page,
+  }) => {
     await mount(page, 'datepicker--range-separate-inputs');
     await page.waitForSelector(selectors.multiMonthInputs);
     await page.click(selectors.multiMonthInputs);
@@ -90,7 +94,7 @@ describe('Datepicker, Range', () => {
     expect(startDateValue2).toBe('2019/03/10');
     expect(endDateValue2).toBe('2019/04/01');
   });
-  it('selected time is preserved when dates are changed', async () => {
+  test('selected time is preserved when dates are changed', async ({ page }) => {
     await mount(page, 'datepicker--range-separate-inputs');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);

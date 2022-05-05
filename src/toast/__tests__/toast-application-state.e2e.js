@@ -10,8 +10,10 @@ LICENSE file in the root directory of this source tree.
 
 const { mount } = require('../../../e2e/helpers');
 
-describe('toasts managed by application state', () => {
-  it('only dismisses one toast', async () => {
+const { expect, test } = require('@playwright/test');
+
+test.describe('toasts managed by application state', () => {
+  test('only dismisses one toast', async ({ page }) => {
     await mount(page, 'toast--application-state');
     await page.waitForSelector('#test-container');
 

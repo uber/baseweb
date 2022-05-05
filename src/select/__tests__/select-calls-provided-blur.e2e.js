@@ -10,6 +10,8 @@ LICENSE file in the root directory of this source tree.
 
 const { mount } = require('../../../e2e/helpers');
 
+const { expect, test } = require('@playwright/test');
+
 const SELECT_INPUT = 'div[data-baseweb="select"] input';
 
 function getActiveTag(page) {
@@ -21,8 +23,13 @@ function getActiveTag(page) {
   });
 }
 
-describe('select option click returns focus', () => {
-  it('calls provided blur function when another element is focused', async () => {
+test.describe('select option click returns focus', () => {
+  test('calls provided blur function when another element is focused', async ({
+    browserName,
+    page,
+  }) => {
+    test.fixme(browserName === 'webkit', 'this feature fails in webkit');
+
     await mount(page, 'select--calls-provided-blur');
     await page.waitForSelector(SELECT_INPUT);
 

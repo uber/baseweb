@@ -9,12 +9,14 @@ LICENSE file in the root directory of this source tree.
 
 const { mount } = require('../../../e2e/helpers');
 
+const { expect, test } = require('@playwright/test');
+
 const { TABLE_ROOT, getCellContentsAtColumnIndex, matchArrayElements } = require('./utilities.js');
 
 const COLUMN_COUNT = 1;
 
-describe('data table initial filters', () => {
-  it('mounts with initial sort applied', async () => {
+test.describe('data table initial filters', () => {
+  test('mounts with initial sort applied', async ({ page }) => {
     await mount(page, 'data-table--initial-sort');
     await page.waitForSelector(TABLE_ROOT);
     const data = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, 0);

@@ -10,6 +10,8 @@ LICENSE file in the root directory of this source tree.
 
 const { mount } = require('../../../e2e/helpers');
 
+const { expect, test } = require('@playwright/test');
+
 const selectors = {
   input: 'input',
   calendar: '[data-baseweb="calendar"]',
@@ -25,8 +27,8 @@ const mar10 = '[aria-label="Choose Sunday, March 10th 2019. It\'s available."]';
 const mar26 = '[aria-label="Choose Tuesday, March 26th 2019. It\'s available."]';
 const Apr1 = '[aria-label="Choose Monday, April 1st 2019. It\'s available."]';
 
-describe('Datepicker, Range with Locked Behavior', () => {
-  it('selects End Date, then Start Date, then changes End Date', async () => {
+test.describe('Datepicker, Range with Locked Behavior', () => {
+  test('selects End Date, then Start Date, then changes End Date', async ({ page }) => {
     await mount(page, 'datepicker--range-locked-behavior');
     const [startDateInput, endDateInput] = await page.$$(selectors.input);
 
@@ -74,7 +76,7 @@ describe('Datepicker, Range with Locked Behavior', () => {
     expect(startDateValue4).toBe('2019/03/10');
     expect(endDateValue4).toBe('2019/03/26');
   });
-  it('selects range in multi-month', async () => {
+  test('selects range in multi-month', async ({ page }) => {
     await mount(page, 'datepicker--range-locked-behavior');
     const [startDateInput, endDateInput] = await page.$$(selectors.multiMonthInputs);
 
@@ -123,7 +125,7 @@ describe('Datepicker, Range with Locked Behavior', () => {
     expect(endDateValue4).toBe('2019/04/01');
   });
 
-  it('selected time is preserved when dates are changed', async () => {
+  test('selected time is preserved when dates are changed', async ({ page }) => {
     await mount(page, 'datepicker--range-locked-behavior');
     const [startDateInput, endDateInput] = await page.$$(selectors.input);
 

@@ -9,8 +9,10 @@ LICENSE file in the root directory of this source tree.
 
 const { mount } = require('../../../e2e/helpers');
 
-describe('popover-dynamic-triggertype', () => {
-  it('hover opens/closes content by default', async () => {
+const { expect, test } = require('@playwright/test');
+
+test.describe('popover-dynamic-triggertype', () => {
+  test('hover opens/closes content by default', async ({ page }) => {
     await mount(page, 'popover--dynamic-trigger-type');
     await page.waitForSelector('button');
 
@@ -21,7 +23,7 @@ describe('popover-dynamic-triggertype', () => {
     await page.waitForSelector('#content-hover', { state: 'hidden' });
   });
 
-  it('click opens/closes content', async () => {
+  test('click opens/closes content', async ({ page }) => {
     await mount(page, 'popover--dynamic-trigger-type');
     await page.waitForSelector('button');
 

@@ -9,6 +9,8 @@ LICENSE file in the root directory of this source tree.
 
 const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
 
+const { expect, test } = require('@playwright/test');
+
 const selectors = {
   selectInput: 'input[role="combobox"]',
   selectDropDown: '[role="listbox"]',
@@ -30,21 +32,21 @@ function matchArrayElements(a, b) {
   return true;
 }
 
-describe('select', () => {
-  it(`passes basic a11y tests`, async () => {
+test.describe('select', () => {
+  test(`passes basic a11y tests`, async ({ page }) => {
     await mount(page, 'select--select');
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
-  it('opens dropdown menu when click on select input', async () => {
+  test('opens dropdown menu when click on select input', async ({ page }) => {
     await mount(page, 'select--select');
     await page.waitForSelector(selectors.selectInput);
     await page.click(selectors.selectInput);
     await page.waitForSelector(selectors.selectDropDown);
   });
 
-  it('opened dropdown can be closed with ESC', async () => {
+  test('opened dropdown can be closed with ESC', async ({ page }) => {
     await mount(page, 'select--select');
     await page.waitForSelector(selectors.selectInput);
     await page.click(selectors.selectInput);
@@ -55,7 +57,7 @@ describe('select', () => {
     });
   });
 
-  it('selects option when clicked in dropdown', async () => {
+  test('selects option when clicked in dropdown', async ({ page }) => {
     await mount(page, 'select--search-single');
     await page.waitForSelector(selectors.selectInput);
     await page.click(selectors.selectInput);
@@ -69,18 +71,20 @@ describe('select', () => {
     expect(selectedValue).toBe('AliceBlue');
   });
 
-  it('doesnt allow to click and select disabled options', async () => {
+  test('doesnt allow to click and select disabled options', async ({ page }) => {
     await mount(page, 'select--search-single');
-    await page.waitForSelector(selectors.selectInput);
-    await page.click(selectors.selectInput);
-    await page.waitForSelector(selectors.selectDropDown);
-    await page.click(optionAtPosition(2));
-    await page.waitForSelector(selectors.selectDropDown);
-    const selectedValue = await page.$eval(selectors.selectedList, (select) => select.textContent);
-    expect(selectedValue).toBe('Start searching');
+
+    const input = page.locator(selectors.selectInput);
+    const selected = page.locator(selectors.selectedList);
+    const listItems = page.locator(selectors.selectDropDown).locator('li');
+
+    await input.click();
+    await expect(listItems.nth(1)).toBeDisabled();
+    await listItems.nth(1).click({ force: true });
+    await expect(selected).toContainText('Start searching', { useInnerText: true });
   });
 
-  it('allows left/right arrow keys to navigate search text', async () => {
+  test('allows left/right arrow keys to navigate search text', async ({ page }) => {
     await mount(page, 'select--search-single');
     await page.waitForSelector(selectors.selectInput);
     await page.focus(selectors.selectInput);
@@ -91,7 +95,7 @@ describe('select', () => {
     expect(selectedValue).toBe('Aquza');
   });
 
-  it('renders clear button after input text is typed in', async () => {
+  test('renders clear button after input text is typed in', async ({ page }) => {
     await mount(page, 'select--search-single');
     await page.waitForSelector(selectors.selectInput);
     await page.focus(selectors.selectInput);
@@ -105,7 +109,7 @@ describe('select', () => {
     expect(second).toBe('Start searching');
   });
 
-  it('does not close dropdown after multiple selections were made', async () => {
+  test('does not close dropdown after multiple selections were made', async ({ page }) => {
     await mount(page, 'select--search-multi');
     await page.waitForSelector(selectors.selectInput);
     await page.click(selectors.selectInput);
@@ -116,7 +120,7 @@ describe('select', () => {
     await page.waitForSelector(selectors.selectDropDown);
   });
 
-  it('selects options when search input successful with results', async () => {
+  test('selects options when search input successful with results', async ({ page }) => {
     await mount(page, 'select--search-multi');
     await page.waitForSelector(selectors.selectInput);
     await page.click(selectors.selectInput);
@@ -128,7 +132,7 @@ describe('select', () => {
     expect(selectedValue).toBe('DarkBlueDelete');
   });
 
-  it('subsequent multi select dropdown opens highlights first value', async () => {
+  test('subsequent multi select dropdown opens highlights first value', async ({ page }) => {
     await mount(page, 'select--search-multi');
     await page.waitForSelector(selectors.selectInput);
     await page.click(selectors.selectInput);
@@ -143,7 +147,9 @@ describe('select', () => {
     expect(second).toBe('AliceBlueDeleteAntiqueWhiteDelete');
   });
 
-  it('subsequent multi select dropdown opens highlights first value after keyboard navigation', async () => {
+  test('subsequent multi select dropdown opens highlights first value after keyboard navigation', async ({
+    page,
+  }) => {
     await mount(page, 'select--search-multi');
     await page.waitForSelector(selectors.selectInput);
     await page.click(selectors.selectInput);
@@ -159,20 +165,21 @@ describe('select', () => {
     expect(text).toBe('AzureDeleteBeigeDelete');
   });
 
-  it('creates and selects a new option', async () => {
+  test('creates and selects a new option', async ({ page }) => {
     await mount(page, 'select--creatable');
-    await page.waitForSelector(selectors.selectInput);
-    await page.click(selectors.selectInput);
-    await page.waitForSelector(selectors.selectDropDown);
-    await page.keyboard.type('Paris');
-    const option1Text = await page.$eval(optionAtPosition(1), (select) => select.innerText);
-    expect(option1Text).toBe('Create “Paris”');
-    await page.click(optionAtPosition(1));
-    const inputValue = await page.$eval(selectors.selectedList, (select) => select.innerText);
-    expect(inputValue).toBe('Paris');
+
+    const input = page.locator(selectors.selectInput);
+    const selected = page.locator(selectors.selectedList);
+    const listItems = page.locator(selectors.selectDropDown).locator('li');
+
+    await input.click();
+    await input.type('Paris');
+    await expect(listItems.first()).toContainText('Paris');
+    await listItems.first().click();
+    await expect(selected).toContainText('Paris', { useInnerText: true });
   });
 
-  it('shows the no result msg if there are no options', async () => {
+  test('shows the no result msg if there are no options', async ({ page }) => {
     await mount(page, 'select--creatable-multi');
     await page.waitForSelector(selectors.selectInput);
     await page.click(selectors.selectInput);
@@ -186,31 +193,27 @@ describe('select', () => {
     expect(text).toBe('No results');
   });
 
-  it('creates multiple options', async () => {
+  test('creates multiple options', async ({ page }) => {
     await mount(page, 'select--creatable-multi');
-    await page.waitForSelector(selectors.selectInput);
-    await page.click(selectors.selectInput);
-    await page.waitForSelector(selectors.selectDropDown);
+    const input = page.locator(selectors.selectInput);
+    const selected = page.locator(selectors.selectedList);
+    const listItems = page.locator(selectors.selectDropDown).locator('li');
 
-    // add "Paris"
-    await page.keyboard.type('Paris');
-    await page.$eval(optionAtPosition(1), (elem) => elem.click());
-    const inputValue = await page.$eval(selectors.selectedList, (select) => select.innerText);
-    expect(inputValue).toBe('Paris');
+    await input.click();
 
-    // add "London"
-    await page.keyboard.type('London');
-    await page.click(optionAtPosition(1));
-    const inputValue2 = await page.$eval(selectors.selectedList, (select) => select.innerText);
-    expect(inputValue2).toBe('Paris\nLondon');
+    await input.type('Paris');
+    await listItems.first().click();
+    await expect(selected).toContainText('Paris', { useInnerText: true });
 
-    // add "Paris" again, option to create should not be provided
-    await page.keyboard.type('Paris');
-    const canBeParisCreated = (await page.$(optionAtPosition(1))) !== null;
-    expect(canBeParisCreated).toBeFalsy();
+    await input.type('London');
+    await listItems.first().click();
+    await expect(selected).toContainText('London', { useInnerText: true });
+
+    await input.type('Paris');
+    await expect(listItems.first()).toHaveText('No results');
   });
 
-  it('selects second option without mouse or arrow keys', async () => {
+  test('selects second option without mouse or arrow keys', async ({ page }) => {
     await mount(page, 'select--search-multi');
     await page.waitForSelector(selectors.selectInput);
     await page.click(selectors.selectInput);
@@ -222,7 +225,7 @@ describe('select', () => {
     expect(selectedValue).toBe('DarkBlueDeleteAzureDelete');
   });
 
-  it('renders expected grouped list items', async () => {
+  test('renders expected grouped list items', async ({ page }) => {
     await mount(page, 'select--option-group');
     await page.waitForSelector(selectors.selectInput);
     await page.click(selectors.selectInput);
@@ -247,7 +250,7 @@ describe('select', () => {
     expect(matchArrayElements(actual, expected)).toBe(true);
   });
 
-  it('renders expected grouped list items if filtered', async () => {
+  test('renders expected grouped list items if filtered', async ({ page }) => {
     await mount(page, 'select--option-group');
     await page.waitForSelector(selectors.selectInput);
     await page.focus(selectors.selectInput);
@@ -263,7 +266,7 @@ describe('select', () => {
     expect(matchArrayElements(actual, expected)).toBe(true);
   });
 
-  it('skips optgroup headers when navigating with keyboard controls', async () => {
+  test('skips optgroup headers when navigating with keyboard controls', async ({ page }) => {
     await mount(page, 'select--option-group');
     await page.focus(selectors.selectInput);
     await page.keyboard.press('ArrowDown');
@@ -276,7 +279,7 @@ describe('select', () => {
     expect(selectedValue).toBe('AliceBlue');
   });
 
-  it('works with async options', async () => {
+  test('works with async options', async ({ page }) => {
     await mount(page, 'select--async-options');
     await page.focus(selectors.selectInput);
     await page.keyboard.type('Aqua');

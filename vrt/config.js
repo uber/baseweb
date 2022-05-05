@@ -368,7 +368,7 @@ const config = {
           // Could wait for few seconds but that would be unreliable
           await page.evaluate(() => {
             function scrollHandler() {
-              // Disabling eslint checks on window / document as they would be executed in puppeteer
+              // Disabling eslint checks on window / document as they would be executed in playwright
               /* eslint-disable cup/no-undef */
               window.isPageScrolling = true;
               clearTimeout(window.scrollTimer);

@@ -9,8 +9,10 @@ LICENSE file in the root directory of this source tree.
 
 const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
 
-describe('table-semantic', () => {
-  it(`passes basic a11y tests`, async () => {
+const { expect, test } = require('@playwright/test');
+
+test.describe('table-semantic', () => {
+  test(`passes basic a11y tests`, async ({ page }) => {
     await mount(page, 'table-semantic--table-semantic');
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();

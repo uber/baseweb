@@ -10,6 +10,8 @@ LICENSE file in the root directory of this source tree.
 
 const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
 
+const { expect, test } = require('@playwright/test');
+
 const selectors = {
   phoneInput: `[data-baseweb="phone-input"]`,
   phoneInputInput: `[data-e2e="phone-input-input"]`,
@@ -25,13 +27,13 @@ const countryListItemForIso = (iso) => `${selectors.phoneInputSelectListItem} [d
 const unitedStates = { iso: 'US', dialCode: '+1' };
 const unitedKingdom = { iso: 'GB', dialCode: '+44' };
 
-describe('PhoneInput', () => {
-  beforeEach(async () => {
+test.describe('PhoneInput', () => {
+  test.beforeEach(async ({ page }) => {
     await mount(page, 'phone-input--lite');
     await page.waitForSelector(selectors.phoneInput);
   });
 
-  it('passes basic a11y tests', async () => {
+  test('passes basic a11y tests', async ({ page }) => {
     const accessibilityReport = await analyzeAccessibility(page, {
       rules: [
         {
@@ -43,7 +45,7 @@ describe('PhoneInput', () => {
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
-  it('displays a selected country flag and dial code by default', async () => {
+  test('displays a selected country flag and dial code by default', async ({ page }) => {
     // verify correct default flag shows up
     const iso = await page.$eval(selectors.phoneInputFlag, (flag) => flag.getAttribute(`data-iso`));
     expect(iso).toEqual(unitedStates.iso);
@@ -52,7 +54,7 @@ describe('PhoneInput', () => {
     expect(dialcode).toEqual(unitedStates.dialCode);
   });
 
-  it('allows a user to open a dropdown containing country dial codes', async () => {
+  test('allows a user to open a dropdown containing country dial codes', async ({ page }) => {
     // click select
     await page.click(selectors.phoneInputSelect);
     // verify dropdown is open
@@ -63,7 +65,7 @@ describe('PhoneInput', () => {
     });
   });
 
-  it('allows a user select a country using the keyboard', async () => {
+  test('allows a user select a country using the keyboard', async ({ page }) => {
     // click select
     await page.click(selectors.phoneInputSelect);
     // verify dropdown is open
@@ -78,7 +80,9 @@ describe('PhoneInput', () => {
     expect(dialcode).toEqual(unitedKingdom.dialCode);
   });
 
-  it('allows a user to select a country from the dropdown, which populates a dial code', async () => {
+  test('allows a user to select a country from the dropdown, which populates a dial code', async ({
+    page,
+  }) => {
     // click select
     await page.click(selectors.phoneInputSelect);
     // verify dropdown is open

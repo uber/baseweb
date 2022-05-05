@@ -1,5 +1,12 @@
+/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+
 /* eslint-env node */
-// @flow
+/* eslint-disable flowtype/require-valid-file-annotation */
 
 const { t, withJsFiles } = require('@dubstep/core');
 
@@ -17,6 +24,39 @@ async function puppeteerToPlaywright(wd) {
         ) {
           alreadyAddedRequire = true;
         }
+
+        if (path.node.callee.type === 'Identifier') {
+          if (path.node.callee.name === 'it') {
+            path.node.callee.name = 'test';
+
+            if (path.node.arguments.length === 2) {
+              const callback = path.node.arguments[1];
+
+              if (callback.type === 'ArrowFunctionExpression') {
+                path.node.arguments[1] = t.arrowFunctionExpression(
+                  [
+                    t.objectPattern([
+                      t.objectProperty(t.identifier('page'), t.identifier('page'), false, true),
+                    ]),
+                  ],
+                  callback.body,
+                  true
+                );
+              }
+            }
+          }
+
+          if (
+            ['describe', 'beforeAll', 'afterAll', 'beforeEach', 'afterEach'].includes(
+              path.node.callee.name
+            )
+          ) {
+            path.node.callee = t.memberExpression(
+              t.identifier('test'),
+              t.identifier(path.node.callee.name)
+            );
+          }
+        }
       },
     });
 
@@ -28,21 +68,23 @@ async function puppeteerToPlaywright(wd) {
           if (
             decl.init.type === 'CallExpression' &&
             decl.init.callee.name === 'require' &&
-            decl.init.arguments[0] &&
+            decl.init.arguments.length === 1 &&
+            typeof decl.init.arguments[0].value === 'string' &&
             decl.init.arguments[0].value.includes('e2e/helpers')
           ) {
-            console.log(alreadyAddedRequire, file);
-            path.insertBefore(
-              t.variableDeclaration('const', [
-                t.variableDeclarator(
-                  t.objectPattern([
-                    t.objectProperty(t.identifier('expect'), t.identifier('expect')),
-                    t.objectProperty(t.identifier('test'), t.identifier('test')),
-                  ]),
-                  t.callExpression(t.identifier('require'), [t.identifier('@playwright/test')])
-                ),
-              ])
-            );
+            if (!alreadyAddedRequire) {
+              path.insertAfter(
+                t.variableDeclaration('const', [
+                  t.variableDeclarator(
+                    t.objectPattern([
+                      t.objectProperty(t.identifier('expect'), t.identifier('expect'), false, true),
+                      t.objectProperty(t.identifier('test'), t.identifier('test'), false, true),
+                    ]),
+                    t.callExpression(t.identifier('require'), [t.stringLiteral('@playwright/test')])
+                  ),
+                ])
+              );
+            }
           }
         }
       },

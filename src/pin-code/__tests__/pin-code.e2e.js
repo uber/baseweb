@@ -9,28 +9,22 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
+const { mount, analyzeAccessibility, isSameNode } = require('../../../e2e/helpers');
+
+const { expect, test } = require('@playwright/test');
 
 const selectors = {
   input: 'input',
   pinCodeValue: 'p[data-testid="pinCodeValue"]',
 };
 
-function findActiveElement(page) {
-  return page.evaluateHandle(() => document.activeElement);
-}
-
-function compareElements(page, a, b) {
-  return page.evaluate((a, b) => a === b, a, b);
-}
-
-describe('PinCode', () => {
-  beforeEach(async () => {
+test.describe('PinCode', () => {
+  test.beforeEach(async ({ page }) => {
     await mount(page, 'pin-code--pin-code');
     await page.waitForSelector(selectors.input);
   });
 
-  it('passes basic a11y tests', async () => {
+  test('passes basic a11y tests', async ({ page }) => {
     const accessibilityReport = await analyzeAccessibility(page, {
       rules: [
         {
@@ -42,7 +36,7 @@ describe('PinCode', () => {
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
-  it('can enter a pin code', async () => {
+  test('can enter a pin code', async ({ page }) => {
     const inputs = await page.$$(selectors.input);
     await page.focus(selectors.input);
     await page.keyboard.press('1');
@@ -55,16 +49,14 @@ describe('PinCode', () => {
     expect(await page.evaluate((el) => el.value, inputs[3])).toBe('4');
   });
 
-  it('transfers focus to next input when a digit is entered', async () => {
-    const inputs = await page.$$(selectors.input);
-    await page.focus(selectors.input);
+  test('transfers focus to next input when a digit is entered', async ({ page }) => {
+    const inputs = page.locator(selectors.input);
+    await inputs.first().focus();
     await page.keyboard.press('1');
-    let activeElement = await findActiveElement(page);
-    let isEqual = await compareElements(page, inputs[1], activeElement);
-    expect(isEqual).toBe(true);
+    await expect(inputs.nth(1)).toBeFocused();
   });
 
-  it('only accepts digits', async () => {
+  test('only accepts digits', async ({ page }) => {
     const input = await page.$(selectors.input);
     await page.focus(selectors.input);
     await page.keyboard.press('a');
@@ -73,23 +65,23 @@ describe('PinCode', () => {
     expect(await page.evaluate((el) => el.value, input)).toBe('1');
   });
 
-  it('deleting empty input transfers focus to previous input & clears that input', async () => {
-    const inputs = await page.$$(selectors.input);
-    await page.focus(selectors.input);
-    await page.keyboard.press('1');
-    expect(await page.evaluate((el) => el.value, inputs[0])).toBe('1');
+  test('deleting empty input transfers focus to previous input & clears that input', async ({
+    page,
+  }) => {
+    const inputs = page.locator(selectors.input);
+    await inputs.first().focus();
+    await inputs.first().type('1');
+    await expect(inputs.first()).toHaveValue('1');
     await page.keyboard.press('Backspace');
-    expect(await page.evaluate((el) => el.value, inputs[0])).toBe('');
-    let activeElement = await findActiveElement(page);
-    let isEqual = await compareElements(page, inputs[0], activeElement);
-    expect(isEqual).toBe(true);
+    await expect(inputs.first()).toHaveValue('');
+    await expect(inputs.first()).toBeFocused();
   });
 
   // This test is validating that when you focus on an input
   // you do not have to have the current value selected to overwrite
   // the input value. So long as you enter a digit, the input will
   // be updated.
-  it('does not require text selection to update input value', async () => {
+  test('does not require text selection to update input value', async ({ page }) => {
     const input = await page.$(selectors.input);
     await page.focus(selectors.input);
     await page.keyboard.press('1');
@@ -106,13 +98,13 @@ describe('PinCode', () => {
   });
 });
 
-describe('PinCodeMask', () => {
-  beforeEach(async () => {
+test.describe('PinCodeMask', () => {
+  test.beforeEach(async ({ page }) => {
     await mount(page, 'pin-code--mask');
     await page.waitForSelector(selectors.input);
   });
 
-  it('successfully masks', async () => {
+  test('successfully masks', async ({ page }) => {
     const inputs = await page.$$(selectors.input);
     await page.focus(selectors.input);
     await page.keyboard.press('1');

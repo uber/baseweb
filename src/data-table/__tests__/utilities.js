@@ -11,12 +11,12 @@ LICENSE file in the root directory of this source tree.
 const TABLE_ROOT = 'div[data-baseweb="data-table"]';
 
 // flowlint-next-line unclear-type:off
-function getTable(page: any) {
+function getTable(page /*: any */) {
   return page.$('div[data-baseweb="data-table"]');
 }
 
 // flowlint-next-line unclear-type:off
-function getHeaderCellAtIndex(page: any, index: number) {
+function getHeaderCellAtIndex(page /*: any */, index /*: number */) {
   return page.$(
     // plus one to convert to one indexed item
     `${TABLE_ROOT} > div > div:nth-child(${index + 1})`
@@ -24,7 +24,7 @@ function getHeaderCellAtIndex(page: any, index: number) {
 }
 
 // flowlint-next-line unclear-type:off
-function getCellsAtColumnIndex(page: any, columnCount: number, index: number) {
+function getCellsAtColumnIndex(page /*: any */, columnCount /*: number */, index /*: number */) {
   // At most, sample 20 rows. Seems like a reasonable ceiling for now.
   const MAX_ROW_SAMPLES = 20;
   const indices = [];
@@ -42,9 +42,9 @@ function getCellsAtColumnIndex(page: any, columnCount: number, index: number) {
 
 async function getCellContentsAtColumnIndex(
   // flowlint-next-line unclear-type:off
-  page: any,
-  columnCount: number,
-  index: number
+  page /*: any */,
+  columnCount /*: number */,
+  index /*: number */
 ) {
   const elements = await getCellsAtColumnIndex(page, columnCount, index);
 
@@ -60,26 +60,26 @@ async function getCellContentsAtColumnIndex(
 }
 
 // flowlint-next-line unclear-type:off
-function getActionButtonByLabel(parent: any, label: string) {
+function getActionButtonByLabel(parent /*: any */, label /*: string */) {
   return parent.$(`button[alt="${label}"]`);
 }
 
 // flowlint-next-line unclear-type:off
-async function sortColumnAtIndex(page: any, index: number) {
+async function sortColumnAtIndex(page /*: any */, index /*: number */) {
   const headerCell = await getHeaderCellAtIndex(page, index);
   const sortButton = await headerCell.$('div[role="button"]');
   return sortButton.click();
 }
 
 // flowlint-next-line unclear-type:off
-async function openFilterAtIndex(page: any, index: number) {
+async function openFilterAtIndex(page /*: any */, index /*: number */) {
   await page.click('button');
   const options = await page.$$('li[role="option"]');
   await options[index].click();
   return page.$('div[data-baseweb="popover"]');
 }
 
-function matchArrayElements(a: string[], b: string[]) {
+function matchArrayElements(a /*: string[] */, b /*: string[] */) {
   if (a.length !== b.length) return false;
   for (let i = 0; i < a.length; i++) {
     if (a[i] !== b[i]) return false;

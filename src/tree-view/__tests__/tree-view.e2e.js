@@ -9,19 +9,21 @@ LICENSE file in the root directory of this source tree.
 
 const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
 
-describe('tree view', () => {
-  it('passes basic a11y tests', async () => {
+const { expect, test } = require('@playwright/test');
+
+test.describe('tree view', () => {
+  test('passes basic a11y tests', async ({ page }) => {
     await mount(page, 'tree-view--tree-view');
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
-  it('renderall: renders children even when hidden: with renderAll prop', async () => {
+  test('renderall: renders children even when hidden: with renderAll prop', async ({ page }) => {
     await mount(page, 'tree-view--render-all');
     expect((await page.$$("//div[contains(text(), 'hidden')]")).length).not.toBe(0);
   });
 
-  it('singleExpanded: only have one node sibling isExpanded at a time', async () => {
+  test('singleExpanded: only have one node sibling isExpanded at a time', async ({ page }) => {
     await mount(page, 'tree-view--single-expanded');
     expect((await page.$$("//div[contains(text(), 'Child 1.1')]")).length).not.toBe(0);
     expect((await page.$$("//div[contains(text(), 'Child 2.1')]")).length).toBe(0);
@@ -32,7 +34,7 @@ describe('tree view', () => {
     expect((await page.$$("//div[contains(text(), 'Child 1.1')]")).length).toBe(0);
   });
 
-  it('interactable elements in tree node label', async () => {
+  test('interactable elements in tree node label', async ({ page }) => {
     const checkbox = '[data-baseweb="checkbox"]';
     const checkboxInput = '[data-baseweb="checkbox"] input';
     await mount(page, 'tree-view--interactable');
@@ -44,7 +46,7 @@ describe('tree view', () => {
     expect(isChecked).toBe(true);
   });
 
-  it('type-ahead works normal', async () => {
+  test('type-ahead works normal', async ({ page }) => {
     await mount(page, 'tree-view--tree-view');
     await page.mouse.click(50, 20);
     await page.mouse.click(50, 20);

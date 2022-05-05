@@ -10,8 +10,10 @@ LICENSE file in the root directory of this source tree.
 
 const { mount } = require('../../../e2e/helpers');
 
-describe('setDropdownOpen', () => {
-  it('opens and closes dropdown with StatefulSelect', async () => {
+const { expect, test } = require('@playwright/test');
+
+test.describe('setDropdownOpen', () => {
+  test('opens and closes dropdown with StatefulSelect', async ({ page }) => {
     await mount(page, 'select--control-ref-set-dropdown-open');
     const openBtn = `#open`;
     const closeBtn = `#close`;
@@ -38,7 +40,7 @@ describe('setDropdownOpen', () => {
     expect(listElems3.length).toBe(0);
   });
 
-  it('opens and closes dropdown with Select', async () => {
+  test('opens and closes dropdown with Select', async ({ page }) => {
     await mount(page, 'select--control-ref-set-dropdown-open');
     const openBtn = `#open`;
     const closeBtn = `#close`;
@@ -66,8 +68,8 @@ describe('setDropdownOpen', () => {
   });
 });
 
-describe('setInputValue', () => {
-  it('sets the input value', async () => {
+test.describe('setInputValue', () => {
+  test('sets the input value', async ({ page }) => {
     await mount(page, 'select--control-ref-set-input-value');
     const input = '#inputValue';
     const setInputValue = `#setInputValueBtn`;

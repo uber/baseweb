@@ -95,6 +95,10 @@ function waitForTimeout(ms) {
   });
 }
 
+function isSameNode(page, a, b) {
+  return page.evaluate(({ a, b }) => a === b, { a, b });
+}
+
 const defaultOptions = {
   violationsThreshold: 0,
   incompleteThreshold: 0,
@@ -146,4 +150,5 @@ module.exports = {
   mount,
   waitForTimeout,
   addTestStyles,
+  isSameNode,
 };

@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 const { expect, test } = require('@playwright/test');
-const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
+const { mount, analyzeAccessibility, isSameNode } = require('../../../e2e/helpers');
 
 const selectors = {
   collapsed: '[aria-expanded=false]',
@@ -17,10 +17,6 @@ const selectors = {
   secondPanel: 'ul[data-baseweb="accordion"] li:nth-of-type(2) div:first-child',
   lastPanel: 'ul[data-baseweb="accordion"] li:last-of-type div:first-child',
 };
-
-function compareNode(page, a, b) {
-  return page.evaluate(({ a, b }) => a === b, { a, b });
-}
 
 test.describe('accordion', () => {
   test('passes basic a11y tests', async ({ page }) => {
@@ -59,14 +55,14 @@ test.describe('accordion', () => {
     // eslint-disable-next-line cup/no-undef
     const activeEl = await page.evaluateHandle(() => window.document.activeElement);
     const lastPanel = await page.$(selectors.lastPanel);
-    expect(await compareNode(page, activeEl, lastPanel)).toBe(true);
+    expect(await isSameNode(page, activeEl, lastPanel)).toBe(true);
 
     await page.keyboard.press('Home');
 
     // eslint-disable-next-line cup/no-undef
     const activeEl2 = await page.evaluateHandle(() => window.document.activeElement);
     const firstPanel = await page.$(selectors.collapsed);
-    expect(await compareNode(page, activeEl2, firstPanel)).toBe(true);
+    expect(await isSameNode(page, activeEl2, firstPanel)).toBe(true);
   });
 
   test('correctly shifts focus when Arrow Up and Arrow Down are pressed', async ({ page }) => {
@@ -78,14 +74,14 @@ test.describe('accordion', () => {
     // eslint-disable-next-line cup/no-undef
     const activeEl = await page.evaluateHandle(() => window.document.activeElement);
     const secondPanel = await page.$(selectors.secondPanel);
-    expect(await compareNode(page, activeEl, secondPanel)).toBe(true);
+    expect(await isSameNode(page, activeEl, secondPanel)).toBe(true);
 
     await page.keyboard.press('ArrowUp');
 
     // eslint-disable-next-line cup/no-undef
     const activeEl2 = await page.evaluateHandle(() => window.document.activeElement);
     const firstPanel = await page.$(selectors.collapsed);
-    expect(await compareNode(page, activeEl2, firstPanel)).toBe(true);
+    expect(await isSameNode(page, activeEl2, firstPanel)).toBe(true);
   });
 
   test('only moves between panel headers, ignoring panel bodies', async ({ page }) => {
@@ -101,6 +97,6 @@ test.describe('accordion', () => {
     // eslint-disable-next-line cup/no-undef
     const activeEl = await page.evaluateHandle(() => window.document.activeElement);
     const firstPanel = await page.$(selectors.collapsed);
-    expect(await compareNode(page, activeEl, firstPanel)).toBe(true);
+    expect(await isSameNode(page, activeEl, firstPanel)).toBe(true);
   });
 });

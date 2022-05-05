@@ -10,6 +10,8 @@ LICENSE file in the root directory of this source tree.
 
 const { mount } = require('../../../e2e/helpers');
 
+const { expect, test } = require('@playwright/test');
+
 const selectors = {
   input: 'input',
   calendar: '[data-baseweb="calendar"]',
@@ -26,8 +28,8 @@ const selectors = {
   timeSelectValue: '[data-id="selected"]',
 };
 
-describe('Datepicker, Range', () => {
-  it('selects range', async () => {
+test.describe('Datepicker, Range', () => {
+  test('selects range', async ({ page }) => {
     await mount(page, 'datepicker--range');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
@@ -43,7 +45,7 @@ describe('Datepicker, Range', () => {
     const selectedValue2 = await page.$eval(selectors.input, (input) => input.value);
     expect(selectedValue2).toBe('2019/03/10 – 2019/03/28');
   });
-  it('selects range in multi-month', async () => {
+  test('selects range in multi-month', async ({ page }) => {
     await mount(page, 'datepicker--range-multi-month');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
@@ -59,7 +61,9 @@ describe('Datepicker, Range', () => {
     const selectedValue2 = await page.$eval(selectors.input, (input) => input.value);
     expect(selectedValue2).toBe('2019/03/10 – 2019/04/01');
   });
-  it('selects range in multi-month - do not autoAdvance calendar months since selected date is in view', async () => {
+  test('selects range in multi-month - do not autoAdvance calendar months since selected date is in view', async ({
+    page,
+  }) => {
     await mount(page, 'datepicker--range-multi-month');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
@@ -82,7 +86,7 @@ describe('Datepicker, Range', () => {
     const selectedValue2 = await page.$eval(selectors.input, (input) => input.value);
     expect(selectedValue2).toBe('2019/03/10 – 2019/04/01');
   });
-  it('selected time is preserved when dates are changed', async () => {
+  test('selected time is preserved when dates are changed', async ({ page }) => {
     await mount(page, 'datepicker--range');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
@@ -144,13 +148,13 @@ describe('Datepicker, Range', () => {
   });
 });
 
-describe('Datepicker, Range, null StartDate with valid EndDate', () => {
-  it('displays NullDatePlaceholder in the input field', async () => {
+test.describe('Datepicker, Range, null StartDate with valid EndDate', () => {
+  test('displays NullDatePlaceholder in the input field', async ({ page }) => {
     await mount(page, 'datepicker--range-null-start-date');
     const selectedValue1 = await page.$eval(selectors.input, (input) => input.value);
     expect(selectedValue1).toBe('    /  /   – 2021/06/10');
   });
-  it('selects range when selected date is before EndDate', async () => {
+  test('selects range when selected date is before EndDate', async ({ page }) => {
     await mount(page, 'datepicker--range-null-start-date');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
@@ -159,7 +163,7 @@ describe('Datepicker, Range, null StartDate with valid EndDate', () => {
     const selectedValue1 = await page.$eval(selectors.input, (input) => input.value);
     expect(selectedValue1).toBe('2021/06/06 – 2021/06/10');
   });
-  it('selects range when selected date is after EndDate', async () => {
+  test('selects range when selected date is after EndDate', async ({ page }) => {
     await mount(page, 'datepicker--range-null-start-date');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);

@@ -9,12 +9,14 @@ LICENSE file in the root directory of this source tree.
 
 const { mount } = require('../../../e2e/helpers');
 
+const { expect, test } = require('@playwright/test');
+
 const { TABLE_ROOT, getCellContentsAtColumnIndex, matchArrayElements } = require('./utilities.js');
 
 const COLUMN_COUNT = 6;
 
-describe('data-table-extracted-filters', () => {
-  it('applies expected filters to table', async () => {
+test.describe('data-table-extracted-filters', () => {
+  test('applies expected filters to table', async ({ page }) => {
     // windowed table excludes hidden cells. set to larger viewport
     // to display everything we need to get the column contents
     await page.setViewportSize({ width: 1366, height: 1000 });
@@ -22,7 +24,7 @@ describe('data-table-extracted-filters', () => {
     await mount(page, 'data-table--extracted-filters');
     await page.waitForSelector(TABLE_ROOT);
     const phylumFilter = await page.$('#Phylum-filter');
-    const checkboxes = await phylumFilter.$$('label[data-baseweb="checkbox"');
+    const checkboxes = await phylumFilter.$$('label[data-baseweb="checkbox"]');
     await checkboxes[1].click();
     await phylumFilter.$$eval('button', (items) => {
       const button = items.find((item) => item.textContent === 'Apply');

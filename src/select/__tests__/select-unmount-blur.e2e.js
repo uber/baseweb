@@ -9,8 +9,10 @@ LICENSE file in the root directory of this source tree.
 
 const { mount } = require('../../../e2e/helpers');
 
-describe('select unmount blur', () => {
-  it('onBlur callback properly handles unmounted component', async () => {
+const { expect, test } = require('@playwright/test');
+
+test.describe('select unmount blur', () => {
+  test('onBlur callback properly handles unmounted component', async ({ page }) => {
     await mount(page, 'select--unmount-blur');
     await page.click('button');
     await page.waitForSelector('[data-testid="select-container"]');

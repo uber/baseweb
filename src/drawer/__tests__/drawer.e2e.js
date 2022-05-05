@@ -10,6 +10,8 @@ LICENSE file in the root directory of this source tree.
 
 const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
 
+const { expect, test } = require('@playwright/test');
+
 const selectors = {
   closeButton: 'button[aria-label="Close"]',
   openDrawer: '[data-e2e="open-drawer-button"]',
@@ -24,8 +26,10 @@ const selectors = {
 const optionAtPosition = (position) =>
   `${selectors.selectDropDown} ${selectors.dropDownOption}:nth-child(${position})`;
 
-describe('drawer', () => {
-  it('drawer component handles focus changes properly', async () => {
+test.describe('drawer', () => {
+  test('drawer component handles focus changes properly', async ({ browserName, page }) => {
+    test.fixme(browserName === 'webkit', 'this feature fails in webkit');
+
     await mount(page, 'drawer--drawer');
     await page.waitForSelector(selectors.closeButton);
     // close drawer to start fresh
@@ -65,7 +69,7 @@ describe('drawer', () => {
   });
 
   // This is a regression test to verify that elements in a portal will still work.
-  it('allows interaction with select', async () => {
+  test('allows interaction with select', async ({ page }) => {
     await mount(page, 'drawer--select');
     await page.waitForSelector(selectors.drawer);
 
@@ -80,7 +84,7 @@ describe('drawer', () => {
     expect(selectedValue).toBe('AliceBlue');
   });
 
-  it('closes one popover at a time on esc key press', async () => {
+  test('closes one popover at a time on esc key press', async ({ page }) => {
     await mount(page, 'drawer--select');
     await page.waitForSelector(selectors.drawer);
 
@@ -95,10 +99,10 @@ describe('drawer', () => {
     await page.waitForSelector(selectors.selectInput, { state: 'hidden' });
   });
 
-  it('renders content even when hidden: with renderAll prop', async () => {
+  test('renders content even when hidden: with renderAll prop', async ({ page }) => {
     await mount(page, 'drawer--render-all');
     // check for content while drawer is closed, then open
-    await page.waitForSelector(selectors.drawerContent);
+    await page.waitForSelector(selectors.drawerContent, { state: 'attached' });
     await page.click(selectors.openDrawer);
     await page.waitForSelector(selectors.drawer);
 
@@ -111,6 +115,6 @@ describe('drawer', () => {
     });
 
     // check for content again
-    await page.waitForSelector(selectors.drawerContent);
+    await page.waitForSelector(selectors.drawerContent, { state: 'attached' });
   });
 });

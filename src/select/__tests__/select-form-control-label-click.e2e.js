@@ -9,6 +9,8 @@ LICENSE file in the root directory of this source tree.
 
 const { mount } = require('../../../e2e/helpers');
 
+const { expect, test } = require('@playwright/test');
+
 async function clickOutside(page) {
   const el = await page.$('#click-outside');
   await el.click();
@@ -32,10 +34,10 @@ async function isListboxClosed(page) {
   await page.waitForSelector('ul[role="listbox"]', { state: 'hidden' });
 }
 
-describe('select click open/close', () => {
-  describe('baseui form-control label', () => {
-    describe('non-searchable', () => {
-      it('label click', async () => {
+test.describe('select click open/close', () => {
+  test.describe('baseui form-control label', () => {
+    test.describe('non-searchable', () => {
+      test('label click', async ({ page }) => {
         await mount(page, 'select--searchable-form-control');
         await clickLabelAtIndex(page, 0);
         await isListboxOpen(page);
@@ -50,7 +52,7 @@ describe('select click open/close', () => {
         await isListboxClosed(page);
       });
 
-      it('select click', async () => {
+      test('select click', async ({ page }) => {
         await mount(page, 'select--searchable-form-control');
         await clickSelectAtIndex(page, 0);
         await isListboxOpen(page);
@@ -66,8 +68,8 @@ describe('select click open/close', () => {
       });
     });
 
-    describe('searchable', () => {
-      it('label click', async () => {
+    test.describe('searchable', () => {
+      test('label click', async ({ page }) => {
         await mount(page, 'select--searchable-form-control');
         await clickLabelAtIndex(page, 1);
         await isListboxOpen(page);
@@ -82,7 +84,7 @@ describe('select click open/close', () => {
         await isListboxClosed(page);
       });
 
-      it('select click', async () => {
+      test('select click', async ({ page }) => {
         await mount(page, 'select--searchable-form-control');
         await clickSelectAtIndex(page, 1);
         await isListboxOpen(page);
@@ -99,9 +101,9 @@ describe('select click open/close', () => {
     });
   });
 
-  describe('native label', () => {
-    describe('non-searchable', () => {
-      it('label click', async () => {
+  test.describe('native label', () => {
+    test.describe('non-searchable', () => {
+      test('label click', async ({ page }) => {
         await mount(page, 'select--searchable-form-control');
         await clickLabelAtIndex(page, 2);
         await isListboxOpen(page);
@@ -116,7 +118,7 @@ describe('select click open/close', () => {
         await isListboxClosed(page);
       });
 
-      it('select click', async () => {
+      test('select click', async ({ page }) => {
         await mount(page, 'select--searchable-form-control');
         await clickSelectAtIndex(page, 2);
         await isListboxOpen(page);
@@ -132,8 +134,8 @@ describe('select click open/close', () => {
       });
     });
 
-    describe('searchable', () => {
-      it('label click', async () => {
+    test.describe('searchable', () => {
+      test('label click', async ({ page }) => {
         await mount(page, 'select--searchable-form-control');
         await clickLabelAtIndex(page, 3);
         await isListboxOpen(page);
@@ -148,7 +150,7 @@ describe('select click open/close', () => {
         await isListboxClosed(page);
       });
 
-      it('select click', async () => {
+      test('select click', async ({ page }) => {
         await mount(page, 'select--searchable-form-control');
         await clickSelectAtIndex(page, 3);
         await isListboxOpen(page);
@@ -165,8 +167,8 @@ describe('select click open/close', () => {
     });
   });
 
-  describe('no label', () => {
-    it('non-searchable', async () => {
+  test.describe('no label', () => {
+    test('non-searchable', async ({ page }) => {
       await mount(page, 'select--searchable-form-control');
       await clickSelectAtIndex(page, 4);
       await isListboxOpen(page);
@@ -181,7 +183,7 @@ describe('select click open/close', () => {
       await isListboxClosed(page);
     });
 
-    it('searchable', async () => {
+    test('searchable', async ({ page }) => {
       await mount(page, 'select--searchable-form-control');
       await clickSelectAtIndex(page, 5);
       await isListboxOpen(page);

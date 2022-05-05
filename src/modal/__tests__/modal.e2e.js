@@ -10,6 +10,8 @@ LICENSE file in the root directory of this source tree.
 
 const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
 
+const { expect, test } = require('@playwright/test');
+
 const selectors = {
   cancelButton: '[data-e2e="cancel-button"]',
   closeButton: 'button[aria-label="Close"]',
@@ -25,8 +27,10 @@ const selectors = {
 const optionAtPosition = (position) =>
   `${selectors.selectDropDown} ${selectors.dropDownOption}:nth-child(${position})`;
 
-describe('modal', () => {
-  it('handles focus changes properly', async () => {
+test.describe('modal', () => {
+  test('handles focus changes properly', async ({ browserName, page }) => {
+    test.fixme(browserName === 'webkit', 'this feature fails in webkit');
+
     await mount(page, 'modal--modal');
     await page.waitForSelector(selectors.closeButton);
     // close modal to start fresh
@@ -77,7 +81,7 @@ describe('modal', () => {
   });
 
   // This is a regression test to verify that elements in a portal will still work.
-  it('allows interaction with select', async () => {
+  test('allows interaction with select', async ({ page }) => {
     await mount(page, 'modal--select');
     await page.waitForSelector(selectors.dialog);
 
@@ -92,7 +96,7 @@ describe('modal', () => {
     expect(selectedValue).toBe('AliceBlue');
   });
 
-  it('closes one layer at a time on click outside', async () => {
+  test('closes one layer at a time on click outside', async ({ page }) => {
     await mount(page, 'modal--select');
     await page.waitForSelector(selectors.dialog);
 
@@ -101,19 +105,19 @@ describe('modal', () => {
 
     // clicking outside of the modal content
     // and outside the select dropdown
-    await page.click(selectors.openModal);
+    await page.click(selectors.openModal, { force: true });
     await page.waitForSelector(selectors.selectDropDown, {
       state: 'hidden',
     });
     await page.waitForSelector(selectors.dialog);
 
-    await page.click(selectors.openModal);
+    await page.click(selectors.openModal, { force: true });
     await page.waitForSelector(selectors.dialog, {
       state: 'hidden',
     });
   });
 
-  it('closes one popover at a time on esc key press', async () => {
+  test('closes one popover at a time on esc key press', async ({ page }) => {
     await mount(page, 'modal--select');
     await page.waitForSelector(selectors.dialog);
 
