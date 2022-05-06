@@ -138,6 +138,7 @@ export type PropsT = {
   id?: string,
   /** Defines if the comparison for a new creatable value should be case-insensitive. */
   ignoreCase?: boolean,
+  inputRef?: ReactRefT<HTMLInputElement>,
   /** An imperative handle exposing internal methods. */
   controlRef?: ControlRefT,
   /** Defines if the select is in a loading (async) state. */

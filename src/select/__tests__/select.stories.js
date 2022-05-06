@@ -17,6 +17,7 @@ import { Scenario as SelectDisableHrefAnchor } from './select-disable-href-ancho
 import { Scenario as SelectHighlight } from './select-highlight.scenario.js';
 import { Scenario as SelectInFlexContainer } from './select-in-flex-container.scenario.js';
 import { Scenario as SelectInModal } from './select-in-modal.scenario.js';
+import { Scenario as SelectInputRef } from './select-input-ref.scenario.js';
 import { Scenario as SelectMaintainsInputValue } from './select-maintains-input-value.scenario.js';
 import { Scenario as SelectOpen } from './select-open.scenario.js';
 import { Scenario as SelectOptionGroup } from './select-option-group.scenario.js';
@@ -44,6 +45,7 @@ export const DisableHrefAnchor = () => <SelectDisableHrefAnchor />;
 export const Highlight = () => <SelectHighlight />;
 export const InFlexContainer = () => <SelectInFlexContainer />;
 export const InModal = () => <SelectInModal />;
+export const InputRef = () => <SelectInputRef />;
 export const MaintainsInputValue = () => <SelectMaintainsInputValue />;
 export const Open = () => <SelectOpen />;
 export const OptionGroup = () => <SelectOptionGroup />;

@@ -111,6 +111,7 @@ export interface SelectProps {
   }) => React.ReactNode;
   getValueLabel?: (args: { option: Option }) => React.ReactNode;
   id?: string;
+  inputRef?: React.Ref<any>;
   controlRef?: React.Ref<ImperativeMethods>;
   isLoading?: boolean;
   labelKey?: string;
