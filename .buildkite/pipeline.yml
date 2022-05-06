@@ -114,7 +114,7 @@ steps:
   - name: e2e
     command: yarn e2e:test:ci
     artifact_paths:
-      - '__artifacts__/*.png'
+      - 'test-results/*.png'
     plugins:
       'docker-compose#v3.0.3':
         run: e2e-test
@@ -127,7 +127,7 @@ steps:
   - name: ':react: react@18 e2e'
     command: yarn upgrade react@^18.0.0 react-dom@^18.0.0 && yarn e2e:test:ci
     artifact_paths:
-      - '__artifacts__/*.png'
+      - 'test-results/*.png'
     plugins:
       'docker-compose#v3.0.3':
         run: e2e-test
@@ -140,7 +140,7 @@ steps:
   - name: vrt
     command: yarn vrt:ci
     artifact_paths:
-      - '__artifacts__/*.png'
+      - 'test-results/*.png'
     plugins:
       'docker-compose#v3.0.3':
         run: e2e-test
@@ -158,7 +158,7 @@ steps:
       - exit_status: 2
     plugins:
       'docker-compose#v3.0.3':
-        run: baseui
+        run: e2e-test
     agents:
       queue: workers
 

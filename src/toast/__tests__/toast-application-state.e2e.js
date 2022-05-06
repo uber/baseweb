@@ -10,7 +10,7 @@ LICENSE file in the root directory of this source tree.
 
 const { mount } = require('../../../e2e/helpers');
 
-const { expect, test } = require('@playwright/test');
+const { test } = require('@playwright/test');
 
 test.describe('toasts managed by application state', () => {
   test('only dismisses one toast', async ({ page }) => {

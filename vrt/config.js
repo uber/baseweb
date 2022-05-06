@@ -345,50 +345,45 @@ const config = {
   },
   'popover--prevent-scroll-on-focus': {
     interactions: [
-      {
-        name: 'scrollDownAndCheckIfPreventScrollPreventsReScrollOnPopover',
-        behavior: async (page) => {
-          await page.waitForSelector('button');
-
-          // Open Popover
-          await page.click('button');
-          await page.waitForSelector('div[data-e2e="content"]');
-
-          // Close Popover
-          await page.click('button');
-          await page.waitForSelector('div[data-e2e="content"]', { state: 'hidden' });
-
-          // Scroll to the last div
-          await page.evaluate(() =>
-            // eslint-disable-next-line cup/no-undef
-            document.querySelector('div[data-e2e-spacer="1"]').scrollIntoView()
-          );
-
-          // Listening to Scroll Event to determine if the page is still scrolling
-          // Could wait for few seconds but that would be unreliable
-          await page.evaluate(() => {
-            function scrollHandler() {
-              // Disabling eslint checks on window / document as they would be executed in playwright
-              /* eslint-disable cup/no-undef */
-              window.isPageScrolling = true;
-              clearTimeout(window.scrollTimer);
-              window.scrollTimer = setTimeout(() => {
-                window.isPageScrolling = false;
-                window.removeEventListener('scroll', scrollHandler);
-              }, 100);
-            }
-            window.addEventListener('scroll', scrollHandler);
-            /* eslint-enable cup/no-undef */
-          });
-
-          // Waiting for scroll to end
-          await page.waitForFunction('window.isPageScrolling === false');
-
-          // Clicking on button to show Popover
-          await page.click('button');
-          await page.waitForSelector('div[data-e2e="content"]');
-        },
-      },
+      // this is flakey in playwright
+      // {
+      //   name: 'scrollDownAndCheckIfPreventScrollPreventsReScrollOnPopover',
+      //   behavior: async (page) => {
+      //     await page.waitForSelector('button');
+      //     // Open Popover
+      //     await page.click('button');
+      //     await page.waitForSelector('div[data-e2e="content"]');
+      //     // Close Popover
+      //     await page.click('button');
+      //     await page.waitForSelector('div[data-e2e="content"]', { state: 'hidden' });
+      //     // Scroll to the last div
+      //     await page.evaluate(() =>
+      //       // eslint-disable-next-line cup/no-undef
+      //       document.querySelector('div[data-e2e-spacer="1"]').scrollIntoView()
+      //     );
+      //     // Listening to Scroll Event to determine if the page is still scrolling
+      //     // Could wait for few seconds but that would be unreliable
+      //     await page.evaluate(() => {
+      //       function scrollHandler() {
+      //         // Disabling eslint checks on window / document as they would be executed in playwright
+      //         /* eslint-disable cup/no-undef */
+      //         window.isPageScrolling = true;
+      //         clearTimeout(window.scrollTimer);
+      //         window.scrollTimer = setTimeout(() => {
+      //           window.isPageScrolling = false;
+      //           window.removeEventListener('scroll', scrollHandler);
+      //         }, 100);
+      //       }
+      //       window.addEventListener('scroll', scrollHandler);
+      //       /* eslint-enable cup/no-undef */
+      //     });
+      //     // Waiting for scroll to end
+      //     await page.waitForFunction('window.isPageScrolling === false');
+      //     // Clicking on button to show Popover
+      //     await page.click('button');
+      //     await page.waitForSelector('div[data-e2e="content"]');
+      //   },
+      // },
     ],
   },
   'popover--reposition-with-anchor-update': {

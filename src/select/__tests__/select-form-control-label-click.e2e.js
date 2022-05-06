@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 
 const { mount } = require('../../../e2e/helpers');
 
-const { expect, test } = require('@playwright/test');
+const { test } = require('@playwright/test');
 
 async function clickOutside(page) {
   const el = await page.$('#click-outside');

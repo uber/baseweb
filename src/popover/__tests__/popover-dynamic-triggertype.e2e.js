@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 
 const { mount } = require('../../../e2e/helpers');
 
-const { expect, test } = require('@playwright/test');
+const { test } = require('@playwright/test');
 
 test.describe('popover-dynamic-triggertype', () => {
   test('hover opens/closes content by default', async ({ page }) => {

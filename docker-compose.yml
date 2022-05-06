@@ -7,11 +7,7 @@ services:
     expose:
       - 8080
     healthcheck:
-      test:
-        [
-          'CMD-SHELL',
-          'curl -H "Accept: text/html" -f http://e2e-server:8080 || exit 1',
-        ]
+      test: ['CMD-SHELL', 'curl -H "Accept: text/html" -f http://e2e-server:8080 || exit 1']
       interval: 5s
       timeout: 10s
       retries: 5
@@ -29,12 +25,15 @@ services:
 
   # running the e2e tests in ci
   e2e-test:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile-playwright
     links:
       - e2e-server
     volumes:
       - ./__artifacts__:/baseui/__artifacts__:delegated
-      - ./vrt/__image_snapshots__:/baseui/vrt/__image_snapshots__:delegated
+      - ./test-results:/baseui/test-results:delegated
+      - ./vrt/tests.vrt.js-snapshots:/baseui/vrt/tests.vrt.js-snapshots:delegated
     depends_on:
       - e2e-server-healthy
     environment:
