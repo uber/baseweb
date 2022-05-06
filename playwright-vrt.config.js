@@ -34,7 +34,6 @@ const config = {
     screenshot: 'only-on-failure',
     trace: 'on-first-retry',
   },
-  workers: 10,
 };
 
 module.exports = config;

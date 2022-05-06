@@ -9,6 +9,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 
 const { execSync } = require('child_process');
+const path = require('path');
 const Octokit = require('@octokit/rest');
 
 // Load environment variables
@@ -93,12 +94,12 @@ function configureGit() {
 
 function runTestsWithUpdates() {
   log(`Running visual snapshot tests with updates.`);
-  execSync(`yarn vrt -u`, { stdio: 'inherit' });
+  execSync(`yarn vrt -u`, { stdio: 'inherit', cwd: path.join(__dirname, '..') });
 }
 
 function runTestsWithNoUpdates() {
   log(`Running visual snapshot tests with no updates.`);
-  execSync(`yarn vrt`, { stdio: 'inherit' });
+  execSync(`yarn vrt`, { stdio: 'inherit', cwd: path.join(__dirname, '..') });
 }
 
 async function updateGitHub() {
