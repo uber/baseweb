@@ -29,6 +29,7 @@
     "build:esm": "cross-env NODE_ENV=production BABEL_ENV=esm babel ./src --out-dir ./dist/esm --ignore **.test.js,**/__tests__/**,**/e2e.js,**/template-component/**,**/test/**",
     "build:es": "cross-env NODE_ENV=production BABEL_ENV=es babel ./src --out-dir ./dist/es --ignore **.test.js,**/__tests__/**,**/e2e.js,**/template-component/**,**/test/**",
     "build": "yarn build:cjs && yarn build:esm && yarn build:es && yarn build:copy-files && yarn build:copy-flow-files && yarn build:copy-ts-files && yarn build:package-json",
+    "build:docs-and-ladle": "yarn documentation:build && yarn ladle build --base-url /ladle/ && mv build public/ladle",
     "build:documentation-site-files": "node ./scripts/build-documentation-site-files.js",
     "unit-test": "yarn jest --coverage",
     "e2e:build": "yarn ladle build --out build-ladle",
