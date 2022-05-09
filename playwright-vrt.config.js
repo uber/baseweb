@@ -26,7 +26,6 @@ const config = {
       use: { ...devices['Desktop Safari'] },
     },
   ],
-  reporter: 'list',
   retries: process.env.CI ? 2 : 0,
   testDir: 'vrt',
   testMatch: ['tests.vrt.js'],

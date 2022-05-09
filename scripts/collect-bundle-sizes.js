@@ -38,7 +38,7 @@ async function waitForPort(port) {
 
 async function measurePageBytesReceived(browser, url) {
   const page = await browser.newPage();
-  const client = await page.target().createCDPSession();
+  const client = await page.context().newCDPSession(page);
   await client.send('Network.enable');
 
   let bytesReceived = 0;

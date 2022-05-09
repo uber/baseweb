@@ -9,7 +9,6 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 
 const { execSync } = require('child_process');
-const path = require('path');
 const Octokit = require('@octokit/rest');
 
 // Load environment variables
@@ -47,7 +46,6 @@ main();
 
 async function main() {
   if (!buildIsValid()) return;
-  installBrowsers();
   if (buildWasTriggeredByPR()) {
     configureGit();
     runTestsWithUpdates();
@@ -65,11 +63,6 @@ function buildIsValid() {
   } else {
     return true;
   }
-}
-
-function installBrowsers() {
-  log(`Add Puppeteer package to trigger Chromium installation script.`);
-  execSync(`yarn playwright install`);
 }
 
 function buildWasTriggeredByPR() {
@@ -94,12 +87,12 @@ function configureGit() {
 
 function runTestsWithUpdates() {
   log(`Running visual snapshot tests with updates.`);
-  execSync(`yarn vrt -u`, { stdio: 'inherit', cwd: path.join(__dirname, '..') });
+  execSync(`yarn vrt -u`, { stdio: 'inherit' });
 }
 
 function runTestsWithNoUpdates() {
   log(`Running visual snapshot tests with no updates.`);
-  execSync(`yarn vrt`, { stdio: 'inherit', cwd: path.join(__dirname, '..') });
+  execSync(`yarn vrt`, { stdio: 'inherit' });
 }
 
 async function updateGitHub() {

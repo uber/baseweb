@@ -8,7 +8,9 @@ RUN apt update --allow-releaseinfo-change && apt install fonts-wqy-zenhei
 # Doing this before a build step can more effectively leverage Docker caching.
 COPY package.json yarn.lock /baseui/
 RUN yarn
-RUN yarn playwright install
+RUN yarn playwright install --with-deps
 
 # Copy the current files to the docker image.
 COPY . .
+
+RUN yarn e2e:build
