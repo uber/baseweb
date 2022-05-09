@@ -28,6 +28,7 @@ class Input extends React.Component<InputPropsT, InternalStateT> {
     endEnhancer: null,
     clearable: false,
     type: 'text',
+    readOnly: false,
   };
 
   /**
@@ -35,17 +36,21 @@ class Input extends React.Component<InputPropsT, InternalStateT> {
    * customers shouldn't have to manage themselves, such as input's focus state.
    */
   state = {
-    isFocused: this.props.autoFocus || false,
+    isFocused: (this.props.autoFocus && !this.props.readOnly) || false,
   };
 
   onFocus = (e: SyntheticFocusEvent<HTMLInputElement>) => {
-    this.setState({ isFocused: true });
-    this.props.onFocus(e);
+    if (!this.props.readOnly) {
+      this.setState({ isFocused: true });
+      this.props.onFocus(e);
+    }
   };
 
   onBlur = (e: SyntheticFocusEvent<HTMLInputElement>) => {
-    this.setState({ isFocused: false });
-    this.props.onBlur(e);
+    if (!this.props.readOnly) {
+      this.setState({ isFocused: false });
+      this.props.onBlur(e);
+    }
   };
 
   render() {

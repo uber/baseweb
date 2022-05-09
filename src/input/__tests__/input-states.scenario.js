@@ -87,6 +87,21 @@ export function Scenario() {
           ),
         }}
       />
+
+      <br />
+      <StatefulInput
+        initialState={{ value: 'Read Only' }}
+        endEnhancer="00"
+        readOnly
+        overrides={{
+          // eslint-disable-next-line react/display-name
+          Before: () => (
+            <Block display="flex" alignItems="center" paddingLeft="scale500">
+              <Search size="18px" />
+            </Block>
+          ),
+        }}
+      />
     </>
   );
 }
