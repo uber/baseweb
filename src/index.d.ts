@@ -5,53 +5,47 @@ import {
   WithStyleFn as StyletronWithStyleFn,
   StyledFn as StyletronStyledFn,
 } from 'styletron-react';
-import {Override, Overrides} from './overrides';
-import {Locale} from './locale';
-import {Theme, ThemePrimitives} from './theme';
+import { Override, Overrides } from './overrides';
+import { Locale } from './locale';
+import { Theme, ThemePrimitives } from './theme';
 
 type UseStyletronFn<Theme> = () => [(arg: StyleObject) => string, Theme];
 export function createThemedUseStyletron<Theme>(): UseStyletronFn<Theme>;
 export const useStyletron: UseStyletronFn<Theme>;
-export function withWrapper<
-  C extends StyletronComponent<any>,
-  P extends object
->(
+export function withWrapper<C extends StyletronComponent<any>, P extends object>(
   component: C,
-  wrapper: (component: C) => React.ComponentType<P>,
+  wrapper: (component: C) => React.ComponentType<P>
 ): StyletronComponent<React.ComponentProps<C> & P>;
 
 export function createTheme<P extends object>(
   primitives: Partial<ThemePrimitives>,
-  overrides?: P,
+  overrides?: P
 ): Theme & P;
 export function createLightTheme<P extends object>(
   primitives: Partial<ThemePrimitives>,
-  overrides?: P,
+  overrides?: P
 ): Theme & P;
 export function createDarkTheme<P extends object>(
   primitives: Partial<ThemePrimitives>,
-  overrides?: P,
+  overrides?: P
 ): Theme & P;
-export function mergeOverrides<T>(
-  target?: Overrides<T>,
-  source?: Overrides<T>,
-): Overrides<T>;
+export function mergeOverrides<T>(target?: Overrides<T>, source?: Overrides<T>): Overrides<T>;
 export function styled<
   P extends object,
   C extends keyof JSX.IntrinsicElements | React.ComponentType<any>,
   T = Theme
 >(
   component: C,
-  styledFn: StyleObject | ((props: {$theme: T} & P) => StyleObject),
+  styledFn: StyleObject | ((props: { $theme: T } & P) => StyleObject)
 ): StyletronComponent<
-  Pick<
-    React.ComponentProps<C>,
-    Exclude<keyof React.ComponentProps<C>, {className: string}>
-  > &
-    P
+  Pick<React.ComponentProps<C>, Exclude<keyof React.ComponentProps<C>, { className: string }>> & P
 >;
+export function withStyle<C extends StyletronComponent<any>, P extends object, T = Theme>(
+  component: C,
+  styledFn: StyleObject | ((props: { $theme: T } & P) => StyleObject)
+): StyletronComponent<React.ComponentProps<C> & P>;
 
-export {Theme} from 'baseui/theme';
+export { Theme } from 'baseui/theme';
 export const LightTheme: Theme;
 export const LightThemeMove: Theme;
 export const lightThemePrimitives: ThemePrimitives;
@@ -85,18 +79,11 @@ export interface ThemeProviderProps {
 export const ThemeProvider: React.FC<ThemeProviderProps>;
 
 export interface StyledFn<T> extends StyletronStyledFn {
-  <
-    C extends keyof JSX.IntrinsicElements | React.ComponentType<any>,
-    P extends object
-  >(
+  <C extends keyof JSX.IntrinsicElements | React.ComponentType<any>, P extends object>(
     component: C,
-    style: (props: {$theme: T} & P) => StyleObject,
+    style: (props: { $theme: T } & P) => StyleObject
   ): StyletronComponent<
-    Pick<
-      React.ComponentProps<C>,
-      Exclude<keyof React.ComponentProps<C>, {className: string}>
-    > &
-      P
+    Pick<React.ComponentProps<C>, Exclude<keyof React.ComponentProps<C>, { className: string }>> & P
   >;
 }
 
@@ -105,10 +92,8 @@ export function createThemedStyled<Theme>(): StyledFn<Theme>;
 export interface WithStyleFn<T = Theme> extends StyletronWithStyleFn {
   <C extends StyletronComponent<any>, P extends object, T1 = T>(
     component: C,
-    style: (props: P & {$theme: T1}) => StyleObject,
+    style: (props: P & { $theme: T1 }) => StyleObject
   ): StyletronComponent<React.ComponentProps<C> & P>;
 }
-
-export const withStyle: WithStyleFn;
 
 export function createThemedWithStyle<Theme>(): WithStyleFn<Theme>;

@@ -497,11 +497,16 @@ class Select extends React.Component<PropsT, SelectStateT> {
     }
   };
 
-  // This method is to preserve backwards compatibility for users using controlRef to directly
-  // access the input element. This capability is not documented, and may be removed in the future.
   //flowlint-next-line unclear-type:off
   handleInputRef = (input: React.ElementRef<any>) => {
     this.input = input;
+
+    if (typeof this.props.inputRef === 'function') {
+      this.props.inputRef(input);
+    } else if (this.props.inputRef) {
+      this.props.inputRef.current = input;
+    }
+
     if (this.props.controlRef && typeof this.props.controlRef === 'function') {
       this.props.controlRef(input);
     }
