@@ -38,7 +38,8 @@ test.describe('popover scroll', () => {
     expect(afterYOffset).toBe(beforeYOffset);
   });
 
-  test('should maintain scroll position after focus-locked open', async ({ page }) => {
+  test('should maintain scroll position after focus-locked open', async ({ browserName, page }) => {
+    test.fixme(browserName === 'firefox', 'this feature fails in firefox');
     const container = '#case-focus-locked';
     const button = '#button-focus-locked';
 

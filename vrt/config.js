@@ -242,16 +242,11 @@ const config = {
       {
         name: 'noHighlight',
         behavior: async (page) => {
-          const input = `input`;
-          const calendar = '[data-baseweb="calendar"]';
-          const rightArrow = `[aria-label="Next month."]`;
-          await page.waitForSelector(input);
-          await page.click(input);
-          await page.waitForSelector(calendar, {
-            state: 'visible',
-          });
-          await page.click(rightArrow);
-          await page.waitForSelector('text="April');
+          await page.locator('input').click();
+          const calendar = page.locator('[data-baseweb="calendar"]');
+          await calendar.waitFor({ state: 'visible' });
+          await calendar.locator('[aria-label="Next month."]').click();
+          await calendar.locator('text="April"').waitFor();
         },
       },
     ],
