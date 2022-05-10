@@ -15,3 +15,4 @@ RUN cd packages/baseweb-vscode-extension && yarn
 
 # Perform any build steps if you want binaries inside of the image
 RUN yarn build
+RUN yarn e2e:build
