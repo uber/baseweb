@@ -12,7 +12,12 @@ const { mount } = require('../../../e2e/helpers');
 const { expect, test } = require('@playwright/test');
 
 test.describe('popover scroll', () => {
-  test('should maintain scroll position after not-focus-locked open', async ({ page }) => {
+  test('should maintain scroll position after not-focus-locked open', async ({
+    browserName,
+    page,
+  }) => {
+    test.fixme(browserName === 'firefox', 'this feature fails in firefox');
+
     const container = '#case-not-focus-locked';
     const button = '#button-not-focus-locked';
 

@@ -11,6 +11,7 @@ LICENSE file in the root directory of this source tree.
 const { mount } = require('../../../e2e/helpers');
 
 const { expect, test } = require('@playwright/test');
+const format = require('date-fns/format');
 
 const selectors = {
   input: 'input',
@@ -19,6 +20,10 @@ const selectors = {
   quickSelectMenu: '[data-baseweb="menu"]',
   quickSelectPastMonth: '[data-baseweb="menu"] > li:nth-child(2)',
 };
+
+const now = new Date();
+const monthAgo = new Date();
+monthAgo.setMonth(monthAgo.getMonth() - 1);
 
 test.describe('Stateful Datepicker Quick Select', () => {
   test('can quick select with keyboard', async ({ page }) => {
@@ -31,7 +36,7 @@ test.describe('Stateful Datepicker Quick Select', () => {
     await page.keyboard.press('ArrowDown');
     await page.keyboard.press('Enter');
     const selectedValue = await page.$eval(selectors.input, (input) => input.value);
-    expect(selectedValue).toBe('2022/04/06 – 2022/05/06');
+    expect(selectedValue).toBe([monthAgo, now].map((d) => format(d, 'yyyy/MM/dd')).join(' – '));
   });
 
   test('can quick select with mouse', async ({ page }) => {
@@ -43,6 +48,6 @@ test.describe('Stateful Datepicker Quick Select', () => {
     await page.waitForSelector(selectors.quickSelectMenu);
     await page.click(selectors.quickSelectPastMonth);
     const selectedValue = await page.$eval(selectors.input, (input) => input.value);
-    expect(selectedValue).toBe('2022/04/06 – 2022/05/06');
+    expect(selectedValue).toBe([monthAgo, now].map((d) => format(d, 'yyyy/MM/dd')).join(' – '));
   });
 });

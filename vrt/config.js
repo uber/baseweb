@@ -251,9 +251,7 @@ const config = {
             state: 'visible',
           });
           await page.click(rightArrow);
-          await page.waitForFunction(
-            `document.querySelector("button[aria-haspopup]").innerText === 'April'`
-          );
+          await page.waitForSelector('text="April');
         },
       },
     ],

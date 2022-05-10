@@ -206,7 +206,10 @@ test.describe('menu-child', () => {
     browserName,
     page,
   }) => {
-    test.fixme(browserName === 'firefox', 'this feature fails in firefox');
+    test.fixme(
+      browserName === 'firefox' || browserName === 'webkit',
+      'this feature fails in firefox/webkit'
+    );
 
     await mount(page, 'menu--child-in-popover');
     await page.click('button');

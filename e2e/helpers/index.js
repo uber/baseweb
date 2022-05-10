@@ -43,15 +43,15 @@ const addTestStyles = async (page) => {
 };
 
 async function mount(page, name, theme, rtl) {
-  const url = process.env.PUPPETEER_TARGET_URL || 'http://localhost:8080';
-  await page.goto(
-    `${url}?${queryString.stringify({
-      story: name,
-      theme,
-      mode: 'preview',
-      rtl: rtl === true ? 'true' : undefined,
-    })}`
-  );
+  const base = process.env.PUPPETEER_TARGET_URL || 'http://localhost:8080';
+  const url = `${base}?${queryString.stringify({
+    story: name,
+    theme,
+    mode: 'preview',
+    rtl: rtl === true ? 'true' : undefined,
+  })}`;
+
+  await page.goto(url);
   await page.waitForSelector('[data-storyloaded]');
 }
 

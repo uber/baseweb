@@ -48,6 +48,7 @@ services:
       - BUILDKITE_COMMIT
       - BUILDKITE_PULL_REQUEST
       - BUILDKITE_PULL_REQUEST_REPO
+      - BUILDKITE_UBEROPENSOURCE_API_TOKEN
       - GITHUB_BOT_AUTH_TOKEN
       - GITHUB_BOT_EMAIL
       - GITHUB_BOT_NAME
@@ -56,6 +57,7 @@ services:
     build: .
     volumes:
       - ./__artifacts__:/baseui/__artifacts__:delegated
+      - ./test-results:/baseui/test-results:delegated
     environment:
       - CODECOV_TOKEN
       - CI=true
