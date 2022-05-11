@@ -13,7 +13,7 @@ const { expect, test } = require('@playwright/test');
 const SELECT_INPUT = 'div[data-baseweb="select"] input';
 
 test.describe('inputRef prop', () => {
-  test('can get a reference to the select input element', async () => {
+  test('can get a reference to the select input element', async ({ page }) => {
     await mount(page, 'select--input-ref');
 
     // clicking on button will focus the input

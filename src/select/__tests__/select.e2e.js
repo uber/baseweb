@@ -281,16 +281,12 @@ test.describe('select', () => {
 
   test('works with async options', async ({ page }) => {
     await mount(page, 'select--async-options');
-    await page.focus(selectors.selectInput);
-    await page.keyboard.type('Aqua');
-    const listElements = await page.$$('li');
-    const actual = await Promise.all(
-      listElements.map((listElement) => {
-        return page.evaluate((li) => li.textContent, listElement);
-      })
-    );
+    const input = page.locator(selectors.selectInput);
+    await input.type('Aqua');
+    const dropdown = page.locator(selectors.selectDropDown);
+    const listElements = dropdown.locator('li');
+    const actual = await listElements.allTextContents();
     const expected = ['Aqua', 'Aquamarine'];
-
     expect(matchArrayElements(actual, expected)).toBe(true);
   });
 });
