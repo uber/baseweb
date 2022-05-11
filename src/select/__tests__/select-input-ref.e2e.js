@@ -8,11 +8,12 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 const { mount } = require('../../../e2e/helpers');
+const { expect, test } = require('@playwright/test');
 
 const SELECT_INPUT = 'div[data-baseweb="select"] input';
 
-describe('inputRef prop', () => {
-  it('can get a reference to the select input element', async () => {
+test.describe('inputRef prop', () => {
+  test('can get a reference to the select input element', async () => {
     await mount(page, 'select--input-ref');
 
     // clicking on button will focus the input
