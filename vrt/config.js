@@ -44,7 +44,7 @@ const config = {
           let menuToClickOn = userMenuSelector;
           await page.waitForSelector('body');
           // the large breakpoint from the theme is 1136
-          if (page.viewport().width < 1136) {
+          if (page.viewportSize().width < 1136) {
             menuToClickOn = drawerMenuSelector;
           }
           await page.waitForSelector(menuToClickOn, { visible: true });
