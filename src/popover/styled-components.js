@@ -43,7 +43,7 @@ export function getBodyStyles(props: BodyStylePropsArgT & { $theme: ThemeT }) {
     borderBottomLeftRadius: $theme.borders.popoverBorderRadius,
     boxShadow: $theme.lighting.shadow600,
     transitionProperty: 'opacity,transform',
-    transitionDuration: $isAnimating && !$isOpen ? `${$animationDuration}ms` : '0s',
+    transitionDuration: $isAnimating ? ($isOpen ? '0.1s' : `${$animationDuration}ms`) : '0s',
     transitionTimingFunction: $isOpen
       ? $theme.animation.easeOutCurve
       : $theme.animation.easeInCurve,
