@@ -9,6 +9,8 @@ LICENSE file in the root directory of this source tree.
 
 const { mount } = require('../../../e2e/helpers');
 
+const { expect, test } = require('@playwright/test');
+
 const selectors = {
   popover: '[data-baseweb="popover"]',
   outsideOfPopover: '[data-e2e="outside-popover"]',
@@ -20,8 +22,8 @@ const selectors = {
   content: '#content',
 };
 
-describe('popover', () => {
-  it('closes one popover at a time on esc key press', async () => {
+test.describe('popover', () => {
+  test('closes one popover at a time on esc key press', async ({ page }) => {
     await mount(page, 'popover--select');
     await page.waitForSelector('button');
     await page.click('button');
@@ -31,14 +33,14 @@ describe('popover', () => {
     await page.waitForSelector(selectors.selectDropDown);
 
     await page.keyboard.press('Escape');
-    await page.waitForSelector(selectors.selectDropDown, { hidden: true });
+    await page.waitForSelector(selectors.selectDropDown, { state: 'hidden' });
     await page.waitForSelector(selectors.selectInput);
 
     await page.keyboard.press('Escape');
-    await page.waitForSelector(selectors.selectInput, { hidden: true });
+    await page.waitForSelector(selectors.selectInput, { state: 'hidden' });
   });
 
-  it('closes one popover at a time on click outside', async () => {
+  test('closes one popover at a time on click outside', async ({ page }) => {
     await mount(page, 'popover--select');
     await page.waitForSelector('button');
     await page.click('button');
@@ -62,12 +64,12 @@ describe('popover', () => {
     // First document and outside of the popovers click
     // closes only the top-most popover
     await page.click(selectors.outsideOfPopover);
-    await page.waitForSelector(selectors.selectDropDown, { hidden: true });
+    await page.waitForSelector(selectors.selectDropDown, { state: 'hidden' });
     await page.waitForSelector(selectors.selectInput);
 
     // Second document and outside of the remaining popover click
     // closes only the that popover
     await page.click(selectors.outsideOfPopover);
-    await page.waitForSelector(selectors.selectInput, { hidden: true });
+    await page.waitForSelector(selectors.selectInput, { state: 'hidden' });
   });
 });

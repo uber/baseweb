@@ -1,7 +1,7 @@
 import metadata from './metadata.json';
 import Layout from '../../../components/layout';
-import {BlogImage, Meta, Caption} from '../../../components/blog';
-import {TwitterTweetEmbed} from 'react-twitter-embed';
+import { BlogImage, Meta, Caption } from '../../../components/blog';
+import { TwitterTweetEmbed } from 'react-twitter-embed';
 import Removable from '../../../examples/dnd-list/removable';
 
 export default Layout;
@@ -149,7 +149,7 @@ We have all the tools and APIs we need. Now it's time to put it all into a singl
 
 <BlogImage
   src="https://res.cloudinary.com/flycatcher/image/upload/v1572409269/Screen_Shot_2019-10-29_at_9.20.29_PM_ye0moq.png"
-  style={{width: '50%'}}
+  style={{ width: '50%' }}
   alt="User starts dragging the second item"
   caption="user starts dragging the second item"
 />
@@ -158,7 +158,7 @@ User clicks on the second item and starts dragging it. We set its visibility to 
 
 <BlogImage
   src="https://res.cloudinary.com/flycatcher/image/upload/v1572409269/Screen_Shot_2019-10-29_at_9.20.33_PM_gsdj15.png"
-  style={{width: '50%'}}
+  style={{ width: '50%' }}
   alt="User reaches the boundary of the third item"
   caption="User reaches the boundary of the third item"
 />
@@ -182,9 +182,7 @@ What does it mean? You should be able to control our component only through the 
 We also need to provide audible cues through the screen reader. First, we should [describe each item](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/Application_Role) so it's clear that you can move it:
 
 ```html
-<li aria-roledescription="This is a draggable item. Press space to lift.">
-  Item 1
-</li>
+<li aria-roledescription="This is a draggable item. Press space to lift.">Item 1</li>
 ```
 
 Then we provide additional messages as the user goes through the interaction:
@@ -203,7 +201,7 @@ There are some little things that you might now even notice but they make the wh
 
 <BlogImage
   src="https://res.cloudinary.com/flycatcher/image/upload/v1572410948/drop1_xpwz2d.gif"
-  style={{width: '50%'}}
+  style={{ width: '50%' }}
   alt="No drop animation."
   caption="No drop animation"
 />
@@ -218,7 +216,7 @@ bellow to make the item fly back which gives user a nice additional feedback:
 
 <BlogImage
   src="https://res.cloudinary.com/flycatcher/image/upload/v1572410952/drop2_vamnka.gif"
-  style={{width: '50%'}}
+  style={{ width: '50%' }}
   alt="The drop is animated."
   caption="The drop is animated."
 />
@@ -227,7 +225,7 @@ And there are many other small interactions like this to consider.
 
 ## Testing
 
-Any drag and drop library needs to rely on a multiple DOM APIs. If you want to write unit tests, you would have to mock out all of them. What are you even testing at that point? Focusing on end to end tests might be a better solution. With [Puppeteer](https://github.com/GoogleChrome/puppeteer) you can write short and descriptive tests. Here we are testing the whole interaction using the mouse:
+Any drag and drop library needs to rely on a multiple DOM APIs. If you want to write unit tests, you would have to mock out all of them. What are you even testing at that point? Focusing on end to end tests might be a better solution. With [Playwright](https://playwright.dev) you can write short and descriptive tests. Here we are testing the whole interaction using the mouse:
 
 ```js
 test('dnd the first item to second position', async () => {
@@ -289,13 +287,13 @@ touch-action: none;
 and it works in all browsers. **Except Safari**. What do you do when CSS fails you? Use more JavaScript! We can `e.preventDefault` all touch events. However, don't forget to make your event listeners **not passive**:
 
 ```js
-document.addEventListener('touchstart', _, {passive: false});
+document.addEventListener('touchstart', _, { passive: false });
 ```
 
 since otherwise the `e.preventDefault()` calls are ignored by default. This also means you can't use React event system at all - use native events only.
 
 ## Conclusion
 
-Building a drag and drop web experience is involved but not impossible. **You should never compromise on mobile support and accessibility**. To ensure that, avoid the HTML5 API and go with mouse/touch events. For positioning, CSS transforms are the right choice. Browsers provide many great APIs like getBoundingClientRect for measuring things. And before you release anything, don't forget to write tests. Puppeteer makes it easy!
+Building a drag and drop web experience is involved but not impossible. **You should never compromise on mobile support and accessibility**. To ensure that, avoid the HTML5 API and go with mouse/touch events. For positioning, CSS transforms are the right choice. Browsers provide many great APIs like getBoundingClientRect for measuring things. And before you release anything, don't forget to write tests. Playwright makes it easy!
 
 I gave a talk about this topic at [React Advanced London 2019](https://www.youtube.com/watch?v=q6TD3PvmQts&feature=youtu.be&t=6770). We published a separate open-source library [react-movable](https://github.com/tajo/react-movable). The Base DnD List uses it internally.

@@ -10,13 +10,15 @@ LICENSE file in the root directory of this source tree.
 
 const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
 
+const { expect, test } = require('@playwright/test');
+
 const selectors = {
   textarea: 'textarea',
   clearIcon: '[data-e2e="clear-icon"]',
 };
 
-describe('textarea', () => {
-  it('passes basic a11y tests', async () => {
+test.describe('textarea', () => {
+  test('passes basic a11y tests', async ({ page }) => {
     await mount(page, 'textarea--textarea');
     await page.waitForSelector(selectors.textarea);
     const accessibilityReport = await analyzeAccessibility(page, {
@@ -30,7 +32,7 @@ describe('textarea', () => {
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
-  it('preset value is displayed', async () => {
+  test('preset value is displayed', async ({ page }) => {
     await mount(page, 'textarea--textarea');
     await page.waitForSelector(selectors.textarea);
 
@@ -38,7 +40,7 @@ describe('textarea', () => {
     expect(value).toBe('initial value');
   });
 
-  it('entered value is displayed', async () => {
+  test('entered value is displayed', async ({ page }) => {
     await mount(page, 'textarea--textarea');
     await page.waitForSelector(selectors.textarea);
     await page.click(selectors.textarea);
@@ -48,7 +50,7 @@ describe('textarea', () => {
     expect(value).toBe('initial value!');
   });
 
-  it('can be cleared with a click', async () => {
+  test('can be cleared with a click', async ({ page }) => {
     await mount(page, 'textarea--textarea');
     await page.waitForSelector(selectors.textarea);
     await page.click(selectors.textarea);
@@ -58,7 +60,7 @@ describe('textarea', () => {
     expect(value).toBe('');
   });
 
-  it('can be cleared with escape', async () => {
+  test('can be cleared with escape', async ({ page }) => {
     await mount(page, 'textarea--textarea');
     await page.waitForSelector(selectors.textarea);
     await page.click(selectors.textarea);

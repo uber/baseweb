@@ -14,7 +14,6 @@ import { styled } from '../../styles/index.js';
 import { header } from '../images.js';
 
 const Container = styled('div', { width: '328px' });
-export const titleText = 'Card Title Should be H3';
 
 export function Scenario() {
   return (
@@ -26,7 +25,7 @@ export function Scenario() {
           <HeadingLevel>
             <Heading>This should be H3</Heading>
             <Container>
-              <Card headerImage={header} title={titleText}>
+              <Card headerImage={header} title="Card Title Should be H3">
                 <StyledBody>
                   Proin ut dui sed metus pharetra hend rerit vel non mi. Nulla ornare faucibus ex,
                   non facilisis nisl. Maecenas aliquet mauris ut tempus cursus. Etiam semper luctus

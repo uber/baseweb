@@ -10,9 +10,11 @@ LICENSE file in the root directory of this source tree.
 
 const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
 
+const { expect, test } = require('@playwright/test');
+
 // most slider actions are covered in react-range e2e tests: https://github.com/tajo/react-range/tree/master/e2e
-describe('slider', () => {
-  it('passes basic a11y tests', async () => {
+test.describe('slider', () => {
+  test('passes basic a11y tests', async ({ page }) => {
     await mount(page, 'slider--slider');
     const accessibilityReport = await analyzeAccessibility(page, {
       rules: [

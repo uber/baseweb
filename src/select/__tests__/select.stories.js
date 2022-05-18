@@ -15,6 +15,7 @@ import { Scenario as SelectCreatableMulti } from './select-creatable-multi.scena
 import { Scenario as SelectCreatable } from './select-creatable.scenario.js';
 import { Scenario as SelectDisableHrefAnchor } from './select-disable-href-anchor.scenario.js';
 import { Scenario as SelectHighlight } from './select-highlight.scenario.js';
+import { Scenario as SelectIconOverrides } from './select-icon-overrides.scenario.js';
 import { Scenario as SelectInFlexContainer } from './select-in-flex-container.scenario.js';
 import { Scenario as SelectInModal } from './select-in-modal.scenario.js';
 import { Scenario as SelectInputRef } from './select-input-ref.scenario.js';
@@ -43,6 +44,7 @@ export const CreatableMulti = () => <SelectCreatableMulti />;
 export const Creatable = () => <SelectCreatable />;
 export const DisableHrefAnchor = () => <SelectDisableHrefAnchor />;
 export const Highlight = () => <SelectHighlight />;
+export const IconOverrides = () => <SelectIconOverrides />;
 export const InFlexContainer = () => <SelectInFlexContainer />;
 export const InModal = () => <SelectInModal />;
 export const InputRef = () => <SelectInputRef />;

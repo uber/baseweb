@@ -9,8 +9,10 @@ LICENSE file in the root directory of this source tree.
 
 const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
 
-describe('checkbox', () => {
-  it(`passes basic a11y tests`, async () => {
+const { expect, test } = require('@playwright/test');
+
+test.describe('checkbox', () => {
+  test(`passes basic a11y tests`, async ({ page }) => {
     await mount(page, 'table--sortable-fill-click');
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();

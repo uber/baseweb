@@ -10,6 +10,8 @@ LICENSE file in the root directory of this source tree.
 
 const { mount } = require('../../../e2e/helpers');
 
+const { expect, test } = require('@playwright/test');
+
 const START_DATE_INPUT = '[id="start-date"] input';
 const START_TIME_SELECT = '[id="time-select-start"]';
 const END_DATE_INPUT = '[id="end-date"] input';
@@ -21,8 +23,10 @@ const DISPLAY_END_TIME = '[id="display-end-time"]';
 
 const SET_UNDEFINED_BTN = '[id="set-undefined"]';
 
-describe('datepicker-composed-range', () => {
-  it('displaying start date can update value from text input with existing dates', async () => {
+test.describe('datepicker-composed-range', () => {
+  test('displaying start date can update value from text input with existing dates', async ({
+    page,
+  }) => {
     await mount(page, 'datepicker--stateful-composed-range');
     await page.waitForSelector(START_DATE_INPUT);
 
@@ -37,7 +41,9 @@ describe('datepicker-composed-range', () => {
     expect(after).toBe('2019/4/2');
   });
 
-  it('displaying end date can update value from text input with existing dates', async () => {
+  test('displaying end date can update value from text input with existing dates', async ({
+    page,
+  }) => {
     await mount(page, 'datepicker--stateful-composed-range');
     await page.waitForSelector(END_DATE_INPUT);
 
@@ -52,7 +58,9 @@ describe('datepicker-composed-range', () => {
     expect(after).toBe('2019/4/11');
   });
 
-  it('displaying start date can update value from text input with undefined dates', async () => {
+  test('displaying start date can update value from text input with undefined dates', async ({
+    page,
+  }) => {
     await mount(page, 'datepicker--stateful-composed-range');
     await page.waitForSelector(START_DATE_INPUT);
 
@@ -68,7 +76,9 @@ describe('datepicker-composed-range', () => {
     expect(after).toBe('2020/10/10');
   });
 
-  it('displaying end date can update value from text input with undefined dates', async () => {
+  test('displaying end date can update value from text input with undefined dates', async ({
+    page,
+  }) => {
     await mount(page, 'datepicker--stateful-composed-range');
     await page.waitForSelector(END_DATE_INPUT);
 
@@ -86,7 +96,7 @@ describe('datepicker-composed-range', () => {
     expect(end).toBe('2020/10/10');
   });
 
-  it('displaying start date does not update if selection is after end date', async () => {
+  test('displaying start date does not update if selection is after end date', async ({ page }) => {
     await mount(page, 'datepicker--stateful-composed-range');
     await page.waitForSelector(START_DATE_INPUT);
 
@@ -103,7 +113,9 @@ describe('datepicker-composed-range', () => {
     expect(after).toBe('2019/4/1');
   });
 
-  it('displaying end date does not update if selection is before start date', async () => {
+  test('displaying end date does not update if selection is before start date', async ({
+    page,
+  }) => {
     await mount(page, 'datepicker--stateful-composed-range');
     await page.waitForSelector(END_DATE_INPUT);
 
@@ -122,7 +134,7 @@ describe('datepicker-composed-range', () => {
     expect(after).toBe('2019/4/10');
   });
 
-  it('handles time selection after end datetime', async () => {
+  test('handles time selection after end datetime', async ({ page }) => {
     await mount(page, 'datepicker--stateful-composed-range');
     await page.waitForSelector(START_DATE_INPUT);
 

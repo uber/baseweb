@@ -9,6 +9,8 @@ LICENSE file in the root directory of this source tree.
 
 const { mount } = require('../../../e2e/helpers');
 
+const { expect, test } = require('@playwright/test');
+
 const { TABLE_ROOT, getCellContentsAtColumnIndex, matchArrayElements } = require('./utilities.js');
 
 function wait(ms) {
@@ -17,9 +19,8 @@ function wait(ms) {
 
 const COLUMN_COUNT = 6;
 
-describe('data table text search', () => {
-  jest.setTimeout(10 * 1000);
-  it('filters to expected number of rows', async () => {
+test.describe('data table text search', () => {
+  test('filters to expected number of rows', async ({ page }) => {
     await mount(page, 'data-table--text-search');
     await page.waitForSelector(TABLE_ROOT);
     await page.type('input', 'arti');
@@ -30,7 +31,7 @@ describe('data table text search', () => {
     expect(matchArrayElements(actual, expected)).toBe(true);
   });
 
-  it('filters custom columns', async () => {
+  test('filters custom columns', async ({ page }) => {
     await mount(page, 'data-table--text-search');
     await page.waitForSelector(TABLE_ROOT);
     await page.type('input', 'moll');

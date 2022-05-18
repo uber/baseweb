@@ -9,10 +9,12 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
+const { mount, analyzeAccessibility, isSameNode } = require('../../../e2e/helpers');
 
-describe('menu', () => {
-  it('passes basic a11y tests', async () => {
+const { expect, test } = require('@playwright/test');
+
+test.describe('menu', () => {
+  test('passes basic a11y tests', async ({ page }) => {
     await mount(page, 'menu--menu');
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
@@ -54,22 +56,18 @@ async function findHighlightedLabel(page) {
   return await page.evaluate((item) => (item ? item.textContent : 'NOT_FOUND'), highlightedItem);
 }
 
-function compareElements(page, a, b) {
-  return page.evaluate((a, b) => a === b, a, b);
-}
-
-describe('menu-child', () => {
-  it('focuses menu on mouse enter and blurs on mouse leave', async () => {
+test.describe('menu-child', () => {
+  test('focuses menu on mouse enter and blurs on mouse leave', async ({ page }) => {
     await mount(page, 'menu--child');
     await hoverItem(page, 0, 0);
 
     const parent = await page.$(parentSelector);
     const activeElement = await findActiveElement(page);
-    const isEqual = await compareElements(page, parent, activeElement);
+    const isEqual = await isSameNode(page, parent, activeElement);
     expect(isEqual).toBe(true);
   });
 
-  it('up and down arrows change highlighted item', async () => {
+  test('up and down arrows change highlighted item', async ({ page }) => {
     await mount(page, 'menu--child');
     await hoverItem(page, 0, 0);
     await page.keyboard.press('ArrowDown');
@@ -80,7 +78,7 @@ describe('menu-child', () => {
     expect(text).toBe('New Window');
   });
 
-  it('keyboard character input change highlighted item through type-ahead', async () => {
+  test('keyboard character input change highlighted item through type-ahead', async ({ page }) => {
     await mount(page, 'menu--child');
     await hoverItem(page, 0, 0);
     await page.keyboard.press('ArrowDown');
@@ -89,7 +87,7 @@ describe('menu-child', () => {
     expect(text).toBe('Add Folder to Workspace...');
   });
 
-  it('type-ahead can have fulltext match', async () => {
+  test('type-ahead can have fulltext match', async ({ page }) => {
     await mount(page, 'menu--child');
     await hoverItem(page, 0, 0);
     await page.keyboard.press('ArrowDown');
@@ -98,7 +96,7 @@ describe('menu-child', () => {
     expect(text).toBe('Toggle Breakpoint');
   });
 
-  it('unhighlights item on mouse leave', async () => {
+  test('unhighlights item on mouse leave', async ({ page }) => {
     await mount(page, 'menu--child');
 
     await hoverItem(page, 0, 0);
@@ -107,13 +105,13 @@ describe('menu-child', () => {
     expect(before).toBe('New File');
 
     await hoverItem(page, 1, 0);
-    await page.waitForSelector(highlightedSelector, { hidden: true });
+    await page.waitForSelector(highlightedSelector, { state: 'hidden' });
 
     const after = await findHighlightedLabel(page);
     expect(after).toBe('NOT_FOUND');
   });
 
-  it('left and right arrows change focused menu', async () => {
+  test('left and right arrows change focused menu', async ({ page }) => {
     await mount(page, 'menu--child');
     await hoverItem(page, 0, 0);
 
@@ -125,11 +123,11 @@ describe('menu-child', () => {
 
     const child = await page.$(childSelector);
     const activeElement = await findActiveElement(page);
-    const isEqual = await compareElements(page, child, activeElement);
+    const isEqual = await isSameNode(page, child, activeElement);
     expect(isEqual).toBe(true);
   });
 
-  it('can select item in child menu by keyboard navigation', async () => {
+  test('can select item in child menu by keyboard navigation', async ({ page }) => {
     await mount(page, 'menu--child');
     await hoverItem(page, 0, 0);
 
@@ -147,22 +145,24 @@ describe('menu-child', () => {
     expect(text).toBe('More...');
   });
 
-  it('opens child menu on hover', async () => {
+  test('opens child menu on hover', async ({ page }) => {
     await mount(page, 'menu--child');
     await hoverItem(page, 0, 5);
     await page.waitForSelector(childSelector);
   });
 
-  it('allows child menu to release focus and closes menu when different menu item selected', async () => {
+  test('allows child menu to release focus and closes menu when different menu item selected', async ({
+    page,
+  }) => {
     await mount(page, 'menu--child');
     await hoverItem(page, 0, 5);
     await page.waitForSelector(childSelector);
     await page.keyboard.press('ArrowLeft');
     await page.keyboard.press('ArrowDown');
-    await page.waitForSelector(childSelector, { hidden: true });
+    await page.waitForSelector(childSelector, { state: 'hidden' });
   });
 
-  it('highlights child menu item on hover', async () => {
+  test('highlights child menu item on hover', async ({ page }) => {
     await mount(page, 'menu--child');
     await hoverItem(page, 0, 5);
     await page.waitForSelector(childSelector);
@@ -172,37 +172,45 @@ describe('menu-child', () => {
     expect(text).toBe('Reopen Closed Editor');
   });
 
-  it('closes child menu on parent mouse out from option with child content', async () => {
+  test('closes child menu on parent mouse out from option with child content', async ({ page }) => {
     await mount(page, 'menu--child');
     await page.waitForSelector(parentSelector);
     const [x, y] = position(0, 5);
     await page.mouse.move(x, y);
     await page.waitForSelector(childSelector);
     await page.mouse.move(0, y);
-    await page.waitForSelector(childSelector, { hidden: true });
+    await page.waitForSelector(childSelector, { state: 'hidden' });
   });
 
-  it('item with child menu triggers click handler', async () => {
+  test('item with child menu triggers click handler', async ({ page }) => {
     await mount(page, 'menu--child');
     await clickItem(page, 0, 5);
     const log = await page.$$('#menu-child-click-log > li');
     expect(log.length).toBe(1);
   });
 
-  it('renders content even when hidden: with renderAll prop', async () => {
+  test('renders content even when hidden: with renderAll prop', async ({ page }) => {
     await mount(page, 'menu--child-render-all');
     await page.waitForSelector(parentSelector);
-    await page.waitForSelector(childSelector);
+    await page.waitForSelector(childSelector, { state: 'attached' });
     await hoverItem(page, 0, 0);
 
     const parent = await page.$(parentSelector);
     const activeElement = await findActiveElement(page);
-    const isEqual = await compareElements(page, parent, activeElement);
+    const isEqual = await isSameNode(page, parent, activeElement);
     expect(isEqual).toBe(true);
-    await page.waitForSelector(childSelector);
+    await page.waitForSelector(childSelector, { state: 'attached' });
   });
 
-  it('child menu clicks do not close if inside popover content', async () => {
+  test('child menu clicks do not close if inside popover content', async ({
+    browserName,
+    page,
+  }) => {
+    test.fixme(
+      browserName === 'firefox' || browserName === 'webkit',
+      'this feature fails in firefox/webkit'
+    );
+
     await mount(page, 'menu--child-in-popover');
     await page.click('button');
     await page.waitForSelector(parentSelector);
@@ -211,10 +219,10 @@ describe('menu-child', () => {
     await page.mouse.click(450, 159);
     await page.waitForSelector(childSelector);
     await page.click('button');
-    await page.waitForSelector(childSelector, { hidden: true });
+    await page.waitForSelector(childSelector, { state: 'hidden' });
   });
 
-  it('keyboard navigation works when ancestor stopPropagations', async () => {
+  test('keyboard navigation works when ancestor stopPropagations', async ({ page }) => {
     await mount(page, 'menu--propagation');
     await hoverItem(page, 0, 0);
     await page.keyboard.press('ArrowDown');

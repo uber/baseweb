@@ -9,8 +9,10 @@ LICENSE file in the root directory of this source tree.
 
 const { mount } = require('../../../e2e/helpers');
 
-describe('popover', () => {
-  it('hover trigger does not cause loop on click', async () => {
+const { test } = require('@playwright/test');
+
+test.describe('popover', () => {
+  test('hover trigger does not cause loop on click', async ({ page }) => {
     await mount(page, 'popover--focus-loop');
     await page.waitForSelector('button');
     await page.hover('button');

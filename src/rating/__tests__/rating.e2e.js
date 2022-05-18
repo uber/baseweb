@@ -10,20 +10,22 @@ LICENSE file in the root directory of this source tree.
 
 const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
 
+const { expect, test } = require('@playwright/test');
+
 const selectors = {
   container: '[role="radiogroup"]',
   checked: '[aria-checked="true"]',
 };
 
-describe('Rating', () => {
-  it('passes basic a11y tests', async () => {
+test.describe('Rating', () => {
+  test('passes basic a11y tests', async ({ page }) => {
     await mount(page, 'rating--star');
     await page.waitForSelector(selectors.container);
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
-  it('for a value of three, three stars are highlighted', async () => {
+  test('for a value of three, three stars are highlighted', async ({ page }) => {
     await mount(page, 'rating--star');
     await page.waitForSelector(selectors.container);
 
@@ -31,7 +33,7 @@ describe('Rating', () => {
     expect(highlightedStars).toBe(3);
   });
 
-  it('for a value of three, the third emoticon is highlighted', async () => {
+  test('for a value of three, the third emoticon is highlighted', async ({ page }) => {
     await mount(page, 'rating--emoticon');
     await page.waitForSelector(selectors.container);
 

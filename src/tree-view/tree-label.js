@@ -55,20 +55,20 @@ const TreeLabel: React$ComponentType<TreeLabelT> = ({
             <ThemeContext.Consumer>
               {(theme) =>
                 theme.direction === 'rtl' ? (
-                  <Left {...sharedProps} {...LeftProps} />
+                  <Left size={16} {...sharedProps} {...LeftProps} />
                 ) : (
-                  <Right {...sharedProps} {...RightProps} />
+                  <Right size={16} {...sharedProps} {...RightProps} />
                 )
               }
             </ThemeContext.Consumer>
           ) : (
-            <CollapseIcon {...sharedProps} {...getOverrideProps(CollapseIconOverride)} />
+            <CollapseIcon size={16} {...sharedProps} {...getOverrideProps(CollapseIconOverride)} />
           )}
         </IconContainer>
       )}
       {!hasChildren && LeafIcon && (
         <LeafIconContainer {...sharedProps} {...getOverrideProps(LeafIconContainerOverride)}>
-          <LeafIcon {...sharedProps} {...getOverrideProps(LeafIconOverride)} />
+          <LeafIcon size={16} {...sharedProps} {...getOverrideProps(LeafIconOverride)} />
         </LeafIconContainer>
       )}
       {typeof label === 'function' ? label(node) : label}

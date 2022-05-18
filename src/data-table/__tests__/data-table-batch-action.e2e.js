@@ -9,6 +9,8 @@ LICENSE file in the root directory of this source tree.
 
 const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
 
+const { expect, test } = require('@playwright/test');
+
 const { getTable, getCellContentsAtColumnIndex, matchArrayElements } = require('./utilities.js');
 
 const COLUMN_COUNT = 2;
@@ -33,8 +35,8 @@ async function getCheckboxValues(element) {
   );
 }
 
-describe('data-table batch-actions', () => {
-  it('passes basic a11y tests', async () => {
+test.describe('data-table batch-actions', () => {
+  test('passes basic a11y tests', async ({ page }) => {
     await mount(page, 'data-table--columns');
     const accessibilityReport = await analyzeAccessibility(page, {
       rules: [
@@ -47,14 +49,14 @@ describe('data-table batch-actions', () => {
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
-  it('renders checkboxes if batch actions are provided', async () => {
+  test('renders checkboxes if batch actions are provided', async ({ page }) => {
     await mount(page, 'data-table--batch-action');
     const table = await getTable(page);
     const checkboxes = await getCheckboxes(table);
     expect(checkboxes.length).toBe(6);
   });
 
-  it('checks row on selection', async () => {
+  test('checks row on selection', async ({ page }) => {
     await mount(page, 'data-table--batch-action');
     const table = await getTable(page);
     await clickCheckboxAtRowIndex(table, 1);
@@ -63,7 +65,7 @@ describe('data-table batch-actions', () => {
     expect(matchArrayElements(actual, expected)).toBe(true);
   });
 
-  it('unchecks row on second selection', async () => {
+  test('unchecks row on second selection', async ({ page }) => {
     await mount(page, 'data-table--batch-action');
     const table = await getTable(page);
     await clickCheckboxAtRowIndex(table, 1);
@@ -73,7 +75,7 @@ describe('data-table batch-actions', () => {
     expect(matchArrayElements(actual, expected)).toBe(true);
   });
 
-  it('checks all rows on header selection', async () => {
+  test('checks all rows on header selection', async ({ page }) => {
     await mount(page, 'data-table--batch-action');
     const table = await getTable(page);
     await clickCheckboxAtRowIndex(table, 0);
@@ -82,7 +84,7 @@ describe('data-table batch-actions', () => {
     expect(matchArrayElements(actual, expected)).toBe(true);
   });
 
-  it('unchecks all rows on second header selection', async () => {
+  test('unchecks all rows on second header selection', async ({ page }) => {
     await mount(page, 'data-table--batch-action');
     const table = await getTable(page);
     await clickCheckboxAtRowIndex(table, 0);
@@ -92,7 +94,7 @@ describe('data-table batch-actions', () => {
     expect(matchArrayElements(actual, expected)).toBe(true);
   });
 
-  it('unchecks all after row select, then header selection', async () => {
+  test('unchecks all after row select, then header selection', async ({ page }) => {
     await mount(page, 'data-table--batch-action');
     const table = await getTable(page);
     await clickCheckboxAtRowIndex(table, 1);
@@ -102,7 +104,7 @@ describe('data-table batch-actions', () => {
     expect(matchArrayElements(actual, expected)).toBe(true);
   });
 
-  it('does not check header if no rows in table', async () => {
+  test('does not check header if no rows in table', async ({ page }) => {
     await mount(page, 'data-table--batch-action');
     const table = await getTable(page);
     await clickCheckboxAtRowIndex(table, 0);
@@ -115,7 +117,7 @@ describe('data-table batch-actions', () => {
     expect(matchArrayElements(actual, expected)).toBe(true);
   });
 
-  it('calls onSelectionChange on selection changes', async () => {
+  test('calls onSelectionChange on selection changes', async ({ page }) => {
     await mount(page, 'data-table--batch-action');
     const table = await getTable(page);
     await clickCheckboxAtRowIndex(table, 1);
@@ -125,7 +127,7 @@ describe('data-table batch-actions', () => {
     expect(count).toBe('selection change count: 3');
   });
 
-  it('avoids sort on header check', async () => {
+  test('avoids sort on header check', async ({ page }) => {
     const index = 0;
     await mount(page, 'data-table--batch-action');
     const table = await getTable(page);
@@ -138,7 +140,7 @@ describe('data-table batch-actions', () => {
     expect(matchArrayElements(after, ['1', '2', '3', '4', '5'])).toBe(true);
   });
 
-  it('calls batch action onClick with selected rows', async () => {
+  test('calls batch action onClick with selected rows', async ({ page }) => {
     await mount(page, 'data-table--batch-action');
     const table = await getTable(page);
     await clickCheckboxAtRowIndex(table, 1);
@@ -151,7 +153,7 @@ describe('data-table batch-actions', () => {
     expect(matchArrayElements(actual, expected)).toBe(true);
   });
 
-  it('batch action clearSelection clears selected rows', async () => {
+  test('batch action clearSelection clears selected rows', async ({ page }) => {
     await mount(page, 'data-table--batch-action');
     const table = await getTable(page);
     await clickCheckboxAtRowIndex(table, 1);

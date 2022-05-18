@@ -10,24 +10,26 @@ LICENSE file in the root directory of this source tree.
 
 const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
 
-async function checkedByValue(n) {
+const { expect, test } = require('@playwright/test');
+
+async function checkedByValue(page, n) {
   const input = await page.$(`input[value="${n}"]`);
   const checked = await input.getProperty('checked');
   return checked.jsonValue();
 }
 
-describe('radio', () => {
-  it('passes basic a11y tests', async () => {
+test.describe('radio', () => {
+  test('passes basic a11y tests', async ({ page }) => {
     await mount(page, 'radio--radio');
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
-  it('changes selection on radio click', async () => {
+  test('changes selection on radio click', async ({ page }) => {
     await mount(page, 'radio--radio');
-    expect(await checkedByValue(2)).toBeTruthy();
+    expect(await checkedByValue(page, 2)).toBeTruthy();
     await page.click('label:nth-of-type(3)');
-    expect(await checkedByValue(3)).toBeTruthy();
-    expect(await checkedByValue(2)).toBeFalsy();
+    expect(await checkedByValue(page, 3)).toBeTruthy();
+    expect(await checkedByValue(page, 2)).toBeFalsy();
   });
 });

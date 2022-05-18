@@ -180,7 +180,6 @@ const helpers: DateHelpers<Date> = Object.keys(dateHelpers).reduce((memo, method
 
       const skippedFormatAlignment = ['getWeekdayMinInLocale'];
       if (skippedFormatAlignment.includes(methodName)) {
-        console.log(`Skipping format alignment test for ${methodName} method.`);
         return dateHelpersReturn;
       }
 
