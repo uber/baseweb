@@ -17,7 +17,7 @@ import {
   StyledNumberContentTail,
   StyledContentDescription,
 } from './styled-components.js';
-import StyledCheckIcon from '../icon/check.js';
+import Check from '../icon/check.js';
 
 import type { NumberedStepPropsT } from './types.js';
 
@@ -39,7 +39,7 @@ function NumberedStep({
     overrides.Description,
     StyledContentDescription
   );
-  const [CheckIcon, checkIconProps] = getOverrides(overrides.Icon, StyledCheckIcon);
+  const [CheckIcon, checkIconProps] = getOverrides(overrides.Icon, Check);
 
   const sharedProps = {
     $isCompleted: isCompleted,

@@ -140,6 +140,18 @@ export const StyledTableHeadCellSortable = withStyle<
   };
 });
 
+export const StyledSortIconContainer = styled<{}>('span', ({ $theme }) => {
+  return {
+    display: 'flex',
+    alignItems: 'center',
+    position: 'absolute',
+    top: '50%',
+    right: $theme.sizing.scale500,
+    transform: 'translateY(-50%)',
+  };
+});
+
+// No longer used, but will maintain for some time to support existing usage
 export const StyledSortAscIcon = styled<typeof ChevronUp, {}>(ChevronUp, ({ $theme }) => {
   return {
     position: 'absolute',

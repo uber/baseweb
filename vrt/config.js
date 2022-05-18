@@ -32,6 +32,30 @@ const config = {
       },
     ],
   },
+  // repeated plain openedMenu with overridden icon scenario
+  'app-nav-bar--icon-overrides': {
+    interactions: [
+      {
+        name: 'openedMenu',
+        behavior: async (page) => {
+          const drawerMenuSelector = `[data-baseweb="button"] [data-baseweb="icon"]`;
+          const userMenuSelector = `[data-baseweb="button"] [data-baseweb="avatar"]`;
+          const menuSelector = `[data-baseweb="menu"]`;
+          let menuToClickOn = userMenuSelector;
+          await page.waitForSelector('body');
+          // the large breakpoint from the theme is 1136
+          if (page.viewport().width < 1136) {
+            menuToClickOn = drawerMenuSelector;
+          }
+          await page.waitForSelector(menuToClickOn, { visible: true });
+          await page.click(menuToClickOn);
+          await page.waitForSelector(menuSelector, {
+            visible: true,
+          });
+        },
+      },
+    ],
+  },
   'phone-input--country-select-dropdown': {
     interactions: [
       {
@@ -259,6 +283,18 @@ const config = {
     ],
   },
   'input--password': {
+    interactions: [
+      {
+        name: 'togglesMask',
+        behavior: async (page) => {
+          const toggleSelector = `[data-e2e="mask-toggle"]`;
+          await page.$(toggleSelector);
+          await page.click(toggleSelector);
+        },
+      },
+    ],
+  },
+  'input--password-icon-overrides': {
     interactions: [
       {
         name: 'togglesMask',
@@ -629,6 +665,18 @@ const config = {
           await page.waitForSelector(tooltipPopoverSelector, {
             visible: true,
           });
+        },
+      },
+    ],
+  },
+  'tree-view--icon-overrides': {
+    interactions: [
+      {
+        name: 'collapse',
+        behavior: async (page) => {
+          const node = '[data-nodeid="2"]';
+          await page.waitForSelector(node);
+          await page.click(node);
         },
       },
     ],

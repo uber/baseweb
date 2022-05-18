@@ -7,8 +7,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-
-import { StatefulSelect, SingleSelect, MultiSelect } from '../index.js';
+import { ThemeProvider, LightTheme } from '../../index.js';
+import { StatefulSelect, TYPE } from '../index.js';
 
 const options = [
   { id: 'AliceBlue', color: '#F0F8FF' },
@@ -19,83 +19,68 @@ const options = [
   { id: 'Beige', color: '#F5F5DC' },
 ];
 
+const XSmallFilled = ({ title, size, color, ...props }) => {
+  return (
+    <svg title={title} width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <path
+        d="M18.1 8.1l-2.2-2.2-3.9 4-3.9-4-2.2 2.2 4 3.9-4 3.9 2.2 2.2 3.9-4 3.9 4 2.2-2.2-4-3.9 4-3.9z"
+        fill={color}
+      />
+    </svg>
+  );
+};
+
 export function Scenario() {
   return (
-    <>
+    <ThemeProvider
+      theme={{
+        ...LightTheme,
+        icons: {
+          DeleteAlt: (p) => <XSmallFilled {...p} color="pink" />,
+          TriangleDown: (p) => <XSmallFilled {...p} color="green" />,
+          Search: (p) => <XSmallFilled {...p} color="blue" />,
+        },
+      }}
+    >
       <StatefulSelect
         aria-label="Select a color"
         options={options}
-        overrides={{ ValueContainer: { props: { 'data-id': 'selected' } } }}
         labelKey="id"
         valueKey="color"
+        type={TYPE.search}
       />
 
-      <br />
       <StatefulSelect
         aria-label="Select a color"
         options={options}
-        overrides={{ ValueContainer: { props: { 'data-id': 'selected' } } }}
+        overrides={{ SelectArrow: (p) => <XSmallFilled {...p} color="orange" /> }}
         labelKey="id"
         valueKey="color"
-        disabled
       />
 
-      <br />
       <StatefulSelect
-        isLoading
         aria-label="Select a color"
         options={options}
         labelKey="id"
         valueKey="color"
       />
 
-      <br />
       <StatefulSelect
-        isLoading
+        initialState={{ value: [options[0]] }}
         aria-label="Select a color"
         options={options}
         labelKey="id"
         valueKey="color"
-        disabled
       />
 
-      <br />
-      <SingleSelect
+      <StatefulSelect
+        initialState={{ value: [options[0]] }}
         aria-label="Select a color"
         options={options}
         labelKey="id"
         valueKey="color"
-        value={[{ color: '#00FFFF' }]}
+        overrides={{ ClearIcon: (p) => <XSmallFilled {...p} color="blue" /> }}
       />
-
-      <br />
-      <SingleSelect
-        aria-label="Select a color"
-        options={options}
-        labelKey="id"
-        valueKey="color"
-        value={[{ color: '#00FFFF' }]}
-        disabled
-      />
-
-      <br />
-      <MultiSelect
-        aria-label="Select a color"
-        options={options}
-        labelKey="id"
-        valueKey="color"
-        value={[{ color: '#00FFFF' }]}
-      />
-
-      <br />
-      <MultiSelect
-        aria-label="Select a color"
-        options={options}
-        labelKey="id"
-        valueKey="color"
-        value={[{ color: '#00FFFF' }]}
-        disabled
-      />
-    </>
+    </ThemeProvider>
   );
 }

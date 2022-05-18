@@ -19,13 +19,13 @@ import {
   StyledTableBodyCell,
   StyledTableLoadingMessage,
   StyledTableEmptyMessage,
-  StyledSortAscIcon,
-  StyledSortDescIcon,
-  StyledSortNoneIcon,
+  StyledSortIconContainer,
 } from './styled-components.js';
 import { getOverrides } from '../helpers/overrides.js';
+import Blank from '../icon/blank.js';
+import ChevronDown from '../icon/chevron-down.js';
+import ChevronUp from '../icon/chevron-up.js';
 import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible.js';
-
 import type { TableBuilderPropsT } from './types.js';
 
 export default class TableBuilder<T> extends React.Component<
@@ -113,17 +113,16 @@ export default class TableBuilder<T> extends React.Component<
       StyledTableEmptyMessage
     );
 
-    const [SortAscIcon, sortAscIconProps] = getOverrides(overrides.SortAscIcon, StyledSortAscIcon);
-
-    const [SortDescIcon, sortDescIconProps] = getOverrides(
-      overrides.SortDescIcon,
-      StyledSortDescIcon
+    const [SortIconContainer, sortIconContainerProps] = getOverrides(
+      overrides.SortIconContainer,
+      StyledSortIconContainer
     );
 
-    const [SortNoneIcon, sortNoneIconProps] = getOverrides(
-      overrides.SortNoneIcon,
-      StyledSortNoneIcon
-    );
+    const [SortAscIcon, sortAscIconProps] = getOverrides(overrides.SortAscIcon, ChevronUp);
+
+    const [SortDescIcon, sortDescIconProps] = getOverrides(overrides.SortDescIcon, ChevronDown);
+
+    const [SortNoneIcon, sortNoneIconProps] = getOverrides(overrides.SortNoneIcon, Blank);
 
     const columns = React.Children.toArray(children)
       .filter(Boolean)
@@ -164,15 +163,31 @@ export default class TableBuilder<T> extends React.Component<
 
       switch (col.id === sortColumn && sortOrder) {
         case 'ASC':
-          sortIcon = <SortAscIcon aria-hidden={true} role="presentation" {...sortAscIconProps} />;
+          sortIcon = (
+            <SortAscIcon size="16px" aria-hidden={true} role="presentation" {...sortAscIconProps} />
+          );
           sortLabel = 'ascending sorting';
           break;
         case 'DESC':
-          sortIcon = <SortDescIcon aria-hidden={true} role="presentation" {...sortDescIconProps} />;
+          sortIcon = (
+            <SortDescIcon
+              size="16px"
+              aria-hidden={true}
+              role="presentation"
+              {...sortDescIconProps}
+            />
+          );
           sortLabel = 'descending sorting';
           break;
         default:
-          sortIcon = <SortNoneIcon aria-hidden={true} role="presentation" {...sortNoneIconProps} />;
+          sortIcon = (
+            <SortNoneIcon
+              size="16px"
+              aria-hidden={true}
+              role="presentation"
+              {...sortNoneIconProps}
+            />
+          );
           break;
       }
 
@@ -198,7 +213,7 @@ export default class TableBuilder<T> extends React.Component<
           {...colTableHeadCellSortableProps}
         >
           {col.header}
-          {sortIcon}
+          <SortIconContainer {...sortIconContainerProps}>{sortIcon}</SortIconContainer>
         </ColTableHeadCellSortable>
       );
     }
