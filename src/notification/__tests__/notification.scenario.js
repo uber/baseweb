@@ -19,8 +19,15 @@ export function Scenario() {
         labore et dolore magna aliqua
       </Notification>
       <Notification kind={KIND.positive}>Positive notification</Notification>
-      <Notification kind={KIND.warning}>Warning notification</Notification>
-      <Notification kind={KIND.negative}>Negative notification</Notification>
+      <Notification
+        kind={KIND.warning}
+        overrides={{ Body: { style: () => ({ marginTop: '10px' }) } }}
+      >
+        Warning notification
+      </Notification>
+      <Notification kind={KIND.negative} overrides={{ Body: { style: { marginTop: '10px' } } }}>
+        Negative notification
+      </Notification>
     </React.Fragment>
   );
 }
