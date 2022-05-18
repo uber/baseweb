@@ -21,6 +21,7 @@ import type { ThemeT } from '../styles/types.js';
  */
 export function getBodyStyles(props: BodyStylePropsArgT & { $theme: ThemeT }) {
   const {
+    $animationDuration,
     $isOpen,
     $isAnimating,
     $placement,
@@ -42,7 +43,7 @@ export function getBodyStyles(props: BodyStylePropsArgT & { $theme: ThemeT }) {
     borderBottomLeftRadius: $theme.borders.popoverBorderRadius,
     boxShadow: $theme.lighting.shadow600,
     transitionProperty: 'opacity,transform',
-    transitionDuration: $isAnimating ? '0.1s' : '0s',
+    transitionDuration: $isAnimating && !$isOpen ? `${$animationDuration}ms` : '0s',
     transitionTimingFunction: $isOpen
       ? $theme.animation.easeOutCurve
       : $theme.animation.easeInCurve,
