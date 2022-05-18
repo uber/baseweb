@@ -32,6 +32,16 @@ export function Scenario() {
 
       <br />
       <StatefulSelect
+        aria-label="Select a color"
+        options={options}
+        overrides={{ ValueContainer: { props: { 'data-id': 'selected' } } }}
+        labelKey="id"
+        valueKey="color"
+        disabled
+      />
+
+      <br />
+      <StatefulSelect
         isLoading
         aria-label="Select a color"
         options={options}
@@ -40,7 +50,36 @@ export function Scenario() {
       />
 
       <br />
+      <StatefulSelect
+        isLoading
+        aria-label="Select a color"
+        options={options}
+        labelKey="id"
+        valueKey="color"
+        disabled
+      />
+
+      <br />
       <SingleSelect
+        aria-label="Select a color"
+        options={options}
+        labelKey="id"
+        valueKey="color"
+        value={[{ color: '#00FFFF' }]}
+      />
+
+      <br />
+      <SingleSelect
+        aria-label="Select a color"
+        options={options}
+        labelKey="id"
+        valueKey="color"
+        value={[{ color: '#00FFFF' }]}
+        disabled
+      />
+
+      <br />
+      <MultiSelect
         aria-label="Select a color"
         options={options}
         labelKey="id"
@@ -55,6 +94,7 @@ export function Scenario() {
         labelKey="id"
         valueKey="color"
         value={[{ color: '#00FFFF' }]}
+        disabled
       />
     </>
   );
