@@ -10,6 +10,8 @@ LICENSE file in the root directory of this source tree.
 
 const { mount } = require('../../../e2e/helpers');
 
+const { expect, test } = require('@playwright/test');
+
 const selectors = {
   input: 'input',
   calendar: '[data-baseweb="calendar"]',
@@ -23,8 +25,8 @@ const selectors = {
   multiMonthInputs: '[data-id="multiMonthInputs"]',
 };
 
-describe('Datepicker, Range', () => {
-  it('selects range', async () => {
+test.describe('Datepicker, Range', () => {
+  test('selects range', async ({ page }) => {
     await mount(page, 'datepicker--range-separate-inputs');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
@@ -35,7 +37,7 @@ describe('Datepicker, Range', () => {
     expect(startDateValue1).toBe('2019/03/10');
     await page.click(selectors.day2);
     await page.waitForSelector(selectors.calendar, {
-      hidden: true,
+      state: 'hidden',
     });
     const [startDateValue2, endDateValue2] = await page.$$eval(selectors.input, (inputs) =>
       inputs.map((input) => input.value)
@@ -43,7 +45,7 @@ describe('Datepicker, Range', () => {
     expect(startDateValue2).toBe('2019/03/10');
     expect(endDateValue2).toBe('2019/03/28');
   });
-  it('selects range in multi-month', async () => {
+  test('selects range in multi-month', async ({ page }) => {
     await mount(page, 'datepicker--range-separate-inputs');
     await page.waitForSelector(selectors.multiMonthInputs);
     await page.click(selectors.multiMonthInputs);
@@ -54,7 +56,7 @@ describe('Datepicker, Range', () => {
     expect(startDateValue1).toBe('2019/03/10');
     await page.click(selectors.day4);
     await page.waitForSelector(selectors.calendar, {
-      hidden: true,
+      state: 'hidden',
     });
     const [startDateValue2, endDateValue2] = await page.$$eval(
       selectors.multiMonthInputs,
@@ -63,7 +65,9 @@ describe('Datepicker, Range', () => {
     expect(startDateValue2).toBe('2019/03/10');
     expect(endDateValue2).toBe('2019/04/01');
   });
-  it('selects range in multi-month - do not autoAdvance calendar months since selected date is in view', async () => {
+  test('selects range in multi-month - do not autoAdvance calendar months since selected date is in view', async ({
+    page,
+  }) => {
     await mount(page, 'datepicker--range-separate-inputs');
     await page.waitForSelector(selectors.multiMonthInputs);
     await page.click(selectors.multiMonthInputs);
@@ -81,7 +85,7 @@ describe('Datepicker, Range', () => {
     await page.waitForSelector(selectors.day);
     await page.click(selectors.day);
     await page.waitForSelector(selectors.calendar, {
-      hidden: true,
+      state: 'hidden',
     });
     const [startDateValue2, endDateValue2] = await page.$$eval(
       selectors.multiMonthInputs,
@@ -90,7 +94,7 @@ describe('Datepicker, Range', () => {
     expect(startDateValue2).toBe('2019/03/10');
     expect(endDateValue2).toBe('2019/04/01');
   });
-  it('selected time is preserved when dates are changed', async () => {
+  test('selected time is preserved when dates are changed', async ({ page }) => {
     await mount(page, 'datepicker--range-separate-inputs');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
@@ -129,14 +133,14 @@ describe('Datepicker, Range', () => {
     await page.waitForSelector(selectors.day2);
     await page.click(selectors.day2);
     await page.waitForSelector(selectors.calendar, {
-      hidden: true,
+      state: 'hidden',
     });
     const [startDateValue2, endDateValue2] = await page.$$eval(selectors.input, (inputs) =>
       inputs.map((input) => input.value)
     );
     expect(startDateValue2).toBe('2019/03/10');
     expect(endDateValue2).toBe('2019/03/28');
-    await page.waitForSelector(selectors.calendar, { hidden: true });
+    await page.waitForSelector(selectors.calendar, { state: 'hidden' });
 
     // Open the calendar again and check that the time is set correctly
     await page.click(selectors.input);

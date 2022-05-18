@@ -10,29 +10,31 @@ LICENSE file in the root directory of this source tree.
 
 const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
 
+const { expect, test } = require('@playwright/test');
+
 const selectors = {
   input: 'input',
 };
 
-describe('PaymentCard', () => {
-  beforeEach(async () => {
+test.describe('PaymentCard', () => {
+  test.beforeEach(async ({ page }) => {
     await mount(page, 'payment-card--stateful');
     await page.waitForSelector(selectors.input);
   });
 
-  it('passes basic a11y tests', async () => {
+  test('passes basic a11y tests', async ({ page }) => {
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
-  it('enter full credit card number', async () => {
+  test('enter full credit card number', async ({ page }) => {
     const input = await page.$(selectors.input);
     await input.type('4111222233334444');
     const value = await page.evaluate((element) => element.value, input);
     expect(value).toBe('4111 2222 3333 4444');
   });
 
-  it('add more digits in the middle of input', async () => {
+  test('add more digits in the middle of input', async ({ page }) => {
     const input = await page.$(selectors.input);
     await input.type('41112');
     await page.keyboard.press('ArrowLeft');
@@ -44,7 +46,7 @@ describe('PaymentCard', () => {
     expect(await page.evaluate((el) => el.value, input)).toBe('4115 612');
   });
 
-  it('delete digits from the end of input', async () => {
+  test('delete digits from the end of input', async ({ page }) => {
     const input = await page.$(selectors.input);
     await input.type('4111 2');
     await page.keyboard.press('Backspace');
@@ -53,7 +55,7 @@ describe('PaymentCard', () => {
     expect(await page.evaluate((el) => el.value, input)).toBe('411');
   });
 
-  it('delete digits in the middle of input', async () => {
+  test('delete digits in the middle of input', async ({ page }) => {
     const input = await page.$(selectors.input);
     await input.type('4111 235');
     await page.keyboard.press('ArrowLeft');

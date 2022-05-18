@@ -9,21 +9,23 @@ LICENSE file in the root directory of this source tree.
 
 const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
 
+const { expect, test } = require('@playwright/test');
+
 const selectors = {
   combobox: '[role="combobox"]',
   listbox: '[role="listbox"]',
   firstOption: '[role="option"]',
 };
 
-describe('combobox', () => {
-  it('passes on initial render', async () => {
+test.describe('combobox', () => {
+  test('passes on initial render', async ({ page }) => {
     await mount(page, 'combobox--combobox');
     await page.waitForSelector(selectors.combobox);
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
-  it('passes when listbox is open', async () => {
+  test('passes when listbox is open', async ({ page }) => {
     await mount(page, 'combobox--combobox');
     await page.waitForSelector(selectors.combobox);
     await page.click(selectors.combobox);
@@ -32,13 +34,13 @@ describe('combobox', () => {
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
-  it('passes when listbox is open, and an option is selected', async () => {
+  test('passes when listbox is open, and an option is selected', async ({ page }) => {
     await mount(page, 'combobox--combobox');
     await page.waitForSelector(selectors.combobox);
     await page.click(selectors.combobox);
     await page.waitForSelector(selectors.listbox);
     await page.click(selectors.firstOption);
-    await page.waitForSelector(selectors.listbox, { hidden: true });
+    await page.waitForSelector(selectors.listbox, { state: 'hidden' });
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });

@@ -11,6 +11,8 @@ LICENSE file in the root directory of this source tree.
 
 const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
 
+const { expect, test } = require('@playwright/test');
+
 const selectors = {
   enqueueOne: 'button[data-testid="queue-one"]',
   enqueueThree: 'button[data-testid="queue-three"]',
@@ -23,16 +25,14 @@ function wait(ms) {
   });
 }
 
-describe('snackbar', () => {
-  jest.setTimeout(50 * 1000);
-
-  it('passes basic a11y tests', async () => {
+test.describe('snackbar', () => {
+  test('passes basic a11y tests', async ({ page }) => {
     await mount(page, 'snackbar--provider');
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
-  it('displays and hides single snackbar', async () => {
+  test('displays and hides single snackbar', async ({ page }) => {
     await mount(page, 'snackbar--provider');
 
     const before = await page.$(selectors.root);
@@ -43,10 +43,10 @@ describe('snackbar', () => {
 
     await page.waitForSelector(selectors.root);
 
-    await page.waitForSelector(selectors.root, { hidden: true });
+    await page.waitForSelector(selectors.root, { state: 'hidden' });
   });
 
-  it('displays only one snackbar at a time', async () => {
+  test('displays only one snackbar at a time', async ({ page }) => {
     await mount(page, 'snackbar--provider');
 
     const enqueue = await page.$(selectors.enqueueOne);
@@ -61,7 +61,7 @@ describe('snackbar', () => {
     expect(elements.length).toBe(2);
   });
 
-  it('hides snackbar on action click', async () => {
+  test('hides snackbar on action click', async ({ page }) => {
     await mount(page, 'snackbar--provider');
 
     const enqueue = await page.$(selectors.enqueueOne);
@@ -79,7 +79,7 @@ describe('snackbar', () => {
     expect(snackbar).toBeNull();
   });
 
-  it('handles asynchronous enqueue', async () => {
+  test('handles asynchronous enqueue', async ({ page }) => {
     await mount(page, 'snackbar--async');
     await page.click(selectors.enqueueOne);
 

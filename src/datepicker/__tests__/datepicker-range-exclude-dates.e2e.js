@@ -10,6 +10,8 @@ LICENSE file in the root directory of this source tree.
 
 const { mount } = require('../../../e2e/helpers');
 
+const { expect, test } = require('@playwright/test');
+
 const selectors = {
   input: 'input',
   calendar: '[data-baseweb="calendar"]',
@@ -22,8 +24,8 @@ const selectors = {
   rightArrow: '[aria-label="Next month."]',
 };
 
-describe('Datepicker, Range', () => {
-  it('is unable to select range that includes excluded date', async () => {
+test.describe('Datepicker, Range', () => {
+  test('is unable to select range that includes excluded date', async ({ page }) => {
     const inputSelector = `#within-month ${selectors.input}`;
     await mount(page, 'datepicker--range-exclude-dates');
     await page.waitForSelector(inputSelector);
@@ -35,12 +37,12 @@ describe('Datepicker, Range', () => {
     const selectedValue2 = await page.$eval(inputSelector, (input) => input.value);
     expect(selectedValue2).toBe('2022/03/14 –     /  /  ');
     await page.click(selectors.day3);
-    await page.waitForSelector(selectors.calendar, { hidden: true });
+    await page.waitForSelector(selectors.calendar, { state: 'hidden' });
     const selectedValue3 = await page.$eval(inputSelector, (input) => input.value);
     expect(selectedValue3).toBe('2022/03/14 – 2022/03/22');
   });
 
-  it('is unable to select range that includes excluded date, across months', async () => {
+  test('is unable to select range that includes excluded date, across months', async ({ page }) => {
     const inputSelector = `#between-month ${selectors.input}`;
     await mount(page, 'datepicker--range-exclude-dates');
     await page.waitForSelector(inputSelector);
@@ -57,7 +59,7 @@ describe('Datepicker, Range', () => {
     const selectedValue3 = await page.$eval(inputSelector, (input) => input.value);
     expect(selectedValue3).toBe('2022/03/31 –     /  /  ');
     await page.click(selectors.day6);
-    await page.waitForSelector(selectors.calendar, { hidden: true });
+    await page.waitForSelector(selectors.calendar, { state: 'hidden' });
     const selectedValue4 = await page.$eval(inputSelector, (input) => input.value);
     expect(selectedValue4).toBe('2022/03/31 – 2022/04/01');
   });

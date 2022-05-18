@@ -9,14 +9,16 @@ LICENSE file in the root directory of this source tree.
 
 const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
 
+const { expect, test } = require('@playwright/test');
+
 const selectors = {
   prevButton: 'button[data-test="prev-button"]',
   nextButton: 'button[data-test="next-button"]',
   dropDownButton: '[data-baseweb="select"] [aria-selected]',
 };
 
-describe('pagination', () => {
-  it('passes basic accessibility tests', async () => {
+test.describe('pagination', () => {
+  test('passes basic accessibility tests', async ({ page }) => {
     await mount(page, 'pagination--pagination');
     await page.waitForSelector(selectors.prevButton);
     const accessibilityReport = await analyzeAccessibility(page, {
@@ -31,7 +33,7 @@ describe('pagination', () => {
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
-  it('can be navigated using the prev and next buttons', async () => {
+  test('can be navigated using the prev and next buttons', async ({ page }) => {
     await mount(page, 'pagination--pagination');
     await page.waitForSelector(selectors.prevButton);
     // assert initial state
@@ -49,7 +51,7 @@ describe('pagination', () => {
     expect(value).toBe('1');
   });
 
-  it('can be navigated using the dropdown menu', async () => {
+  test('can be navigated using the dropdown menu', async ({ page }) => {
     await mount(page, 'pagination--pagination');
     await page.waitForSelector(selectors.prevButton);
     // assert initial state

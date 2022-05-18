@@ -9,8 +9,10 @@ LICENSE file in the root directory of this source tree.
 
 const { mount } = require('../../../e2e/helpers');
 
-describe('data-table-row-actions-button', () => {
-  it('renders provided row action buttons', async () => {
+const { expect, test } = require('@playwright/test');
+
+test.describe('data-table-row-actions-button', () => {
+  test('renders provided row action buttons', async ({ page }) => {
     await mount(page, 'data-table--row-actions-button');
 
     // hover first row

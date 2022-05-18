@@ -26,5 +26,6 @@ public
 !documentation-site/public
 versions.json
 __artifacts__
+test-results
 # Local Netlify folder
 .netlify

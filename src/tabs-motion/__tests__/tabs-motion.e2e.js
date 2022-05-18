@@ -8,80 +8,80 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
+const { mount, analyzeAccessibility, isSameNode } = require('../../../e2e/helpers');
 
-const getTabs = () => page.$$('[role=tab]');
+const { expect, test } = require('@playwright/test');
 
-const getTabPanels = () => page.$$('[role=tabpanel]');
+const getTabs = (page) => page.$$('[role=tab]');
 
-const isHidden = (t) => {
+const getTabPanels = (page) => page.$$('[role=tabpanel]');
+
+const isHidden = (page, t) => {
   return page.evaluate((tab) => tab.hidden, t);
 };
 
-const isSelected = (t) => {
+const isSelected = (page, t) => {
   return page.evaluate((tab) => tab.getAttribute('aria-selected') === 'true', t);
 };
 
-const isEqual = (e1, e2) => page.evaluate((e1, e2) => e1 === e2, e1, e2);
-
-const isActiveEl = async (el) => {
+const isActiveEl = async (page, el) => {
   const activeEl = await page.evaluateHandle(`document.activeElement`);
-  const result = await isEqual(activeEl, el);
+  const result = await isSameNode(activeEl, el);
   activeEl.dispose();
   return result;
 };
 
-describe('tabs', () => {
-  it('passes basic a11y tests', async () => {
+test.describe('tabs', () => {
+  test('passes basic a11y tests', async ({ page }) => {
     await mount(page, 'tabs-motion--tabs-motion');
     await page.waitForSelector('[role="tab"]');
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
-  it('only the selected tab has visible content', async () => {
+  test('only the selected tab has visible content', async ({ page }) => {
     await mount(page, 'tabs-motion--tabs-motion');
-    const tabs = await getTabs();
-    const tabPanels = await getTabPanels();
-    expect(await isSelected(tabs[0])).toBeTruthy();
-    expect(await isHidden(tabPanels[0])).toBeFalsy();
-    expect(await isSelected(tabs[1])).toBeFalsy();
-    expect(await isHidden(tabPanels[1])).toBeTruthy();
-    expect(await isSelected(tabs[2])).toBeFalsy();
-    expect(await isHidden(tabPanels[2])).toBeTruthy();
+    const tabs = await getTabs(page);
+    const tabPanels = await getTabPanels(page);
+    expect(await isSelected(page, tabs[0])).toBeTruthy();
+    expect(await isHidden(page, tabPanels[0])).toBeFalsy();
+    expect(await isSelected(page, tabs[1])).toBeFalsy();
+    expect(await isHidden(page, tabPanels[1])).toBeTruthy();
+    expect(await isSelected(page, tabs[2])).toBeFalsy();
+    expect(await isHidden(page, tabPanels[2])).toBeTruthy();
   });
 
-  it('*click* selects tab', async () => {
+  test('*click* selects tab', async ({ page }) => {
     await mount(page, 'tabs-motion--tabs-motion');
-    const tabs = await getTabs();
-    expect(await isSelected(tabs[0])).toBeTruthy();
+    const tabs = await getTabs(page);
+    expect(await isSelected(page, tabs[0])).toBeTruthy();
     await tabs[1].click();
-    expect(await isSelected(tabs[1])).toBeTruthy();
+    expect(await isSelected(page, tabs[1])).toBeTruthy();
   });
 
-  it('*click* does not select disabled tab', async () => {
+  test('*click* does not select disabled tab', async ({ page }) => {
     await mount(page, 'tabs-motion--disabled');
-    const tabs = await getTabs();
-    expect(await isSelected(tabs[0])).toBeTruthy();
-    await tabs[1].click();
-    expect(await isSelected(tabs[0])).toBeTruthy();
+    const tabs = await getTabs(page);
+    expect(await isSelected(page, tabs[0])).toBeTruthy();
+    await tabs[1].click({ force: true });
+    expect(await isSelected(page, tabs[0])).toBeTruthy();
   });
 
-  it('does not mount non selected tab content', async () => {
+  test('does not mount non selected tab content', async ({ page }) => {
     await mount(page, 'tabs-motion--tabs-motion');
-    const tabs = await getTabs();
-    expect(await isSelected(tabs[0])).toBeTruthy();
+    const tabs = await getTabs(page);
+    expect(await isSelected(page, tabs[0])).toBeTruthy();
     expect(await page.evaluate(`window.__e2e__mounted`)).toBe(false);
   });
 
-  it('[renderAll] mounts non selected tab content', async () => {
+  test('[renderAll] mounts non selected tab content', async ({ page }) => {
     await mount(page, 'tabs-motion--render-all');
-    const tabs = await getTabs();
-    expect(await isSelected(tabs[0])).toBeTruthy();
+    const tabs = await getTabs(page);
+    expect(await isSelected(page, tabs[0])).toBeTruthy();
     expect(await page.evaluate(`window.__e2e__mounted`)).toBe(true);
   });
 
-  it('{regression} conditional tab does not throw error', async () => {
+  test('{regression} conditional tab does not throw error', async ({ page }) => {
     await mount(page, 'tabs-motion--conditional');
     const button = await page.$('#toggle-robot-tab');
     let firstTab = await page.$('#tabs-conditional-tab-robot');
@@ -92,185 +92,185 @@ describe('tabs', () => {
     expect(await page.evaluate(`window.__e2e__error`)).toBe(false);
   });
 
-  it('*tab* moves focus to active tab', async () => {
+  test('*tab* moves focus to active tab', async ({ page }) => {
     await mount(page, 'tabs-motion--focus');
     const firstFocusElement = await page.$('#first-focus');
     await firstFocusElement.focus();
-    expect(await isActiveEl(firstFocusElement)).toBeTruthy();
+    expect(await isActiveEl(page, firstFocusElement)).toBeTruthy();
     await page.keyboard.press('Tab');
-    const tabs = await getTabs();
-    expect(await isActiveEl(tabs[1])).toBeTruthy();
+    const tabs = await getTabs(page);
+    expect(await isActiveEl(page, tabs[1])).toBeTruthy();
   });
 
-  it('*tab* moves focus to tab content', async () => {
+  test('*tab* moves focus to tab content', async ({ page }) => {
     await mount(page, 'tabs-motion--focus');
-    const tabs = await getTabs();
+    const tabs = await getTabs(page);
     await tabs[1].focus();
-    expect(await isActiveEl(tabs[1])).toBeTruthy();
+    expect(await isActiveEl(page, tabs[1])).toBeTruthy();
     await page.keyboard.press('Tab');
     const tabContent = await page.$('#tab-content');
-    expect(await isActiveEl(tabContent)).toBeTruthy();
+    expect(await isActiveEl(page, tabContent)).toBeTruthy();
   });
 
-  it('*direction* moves focus to tab and selects tab', async () => {
+  test('*direction* moves focus to tab and selects tab', async ({ page }) => {
     await mount(page, 'tabs-motion--tabs-motion');
-    const tabs = await getTabs();
+    const tabs = await getTabs(page);
     await tabs[0].focus();
-    expect(await isActiveEl(tabs[0])).toBeTruthy();
-    expect(await isSelected(tabs[0])).toBeTruthy();
+    expect(await isActiveEl(page, tabs[0])).toBeTruthy();
+    expect(await isSelected(page, tabs[0])).toBeTruthy();
     await page.keyboard.press('ArrowRight');
-    expect(await isActiveEl(tabs[1])).toBeTruthy();
-    expect(await isSelected(tabs[1])).toBeTruthy();
+    expect(await isActiveEl(page, tabs[1])).toBeTruthy();
+    expect(await isSelected(page, tabs[1])).toBeTruthy();
   });
 
-  it('*direction* moves focus to tab and *enter* selects tab when [manual]', async () => {
+  test('*direction* moves focus to tab and *enter* selects tab when [manual]', async ({ page }) => {
     await mount(page, 'tabs-motion--manual');
-    const tabs = await getTabs();
+    const tabs = await getTabs(page);
     await tabs[0].focus();
-    expect(await isActiveEl(tabs[0])).toBeTruthy();
-    expect(await isSelected(tabs[0])).toBeTruthy();
+    expect(await isActiveEl(page, tabs[0])).toBeTruthy();
+    expect(await isSelected(page, tabs[0])).toBeTruthy();
     await page.keyboard.press('ArrowRight');
-    expect(await isActiveEl(tabs[1])).toBeTruthy();
-    expect(await isSelected(tabs[0])).toBeTruthy();
+    expect(await isActiveEl(page, tabs[1])).toBeTruthy();
+    expect(await isSelected(page, tabs[0])).toBeTruthy();
     await page.keyboard.press('Enter');
-    expect(await isSelected(tabs[1])).toBeTruthy();
+    expect(await isSelected(page, tabs[1])).toBeTruthy();
   });
 
-  it('*direction* moves focus to tab and *space* selects tab when [manual]', async () => {
+  test('*direction* moves focus to tab and *space* selects tab when [manual]', async ({ page }) => {
     await mount(page, 'tabs-motion--manual');
-    const tabs = await getTabs();
+    const tabs = await getTabs(page);
     await tabs[0].focus();
-    expect(await isActiveEl(tabs[0])).toBeTruthy();
-    expect(await isSelected(tabs[0])).toBeTruthy();
+    expect(await isActiveEl(page, tabs[0])).toBeTruthy();
+    expect(await isSelected(page, tabs[0])).toBeTruthy();
     await page.keyboard.press('ArrowRight');
-    expect(await isActiveEl(tabs[1])).toBeTruthy();
-    expect(await isSelected(tabs[0])).toBeTruthy();
+    expect(await isActiveEl(page, tabs[1])).toBeTruthy();
+    expect(await isSelected(page, tabs[0])).toBeTruthy();
     await page.keyboard.press('Space');
-    expect(await isSelected(tabs[1])).toBeTruthy();
+    expect(await isSelected(page, tabs[1])).toBeTruthy();
   });
 
-  it('*direction* moves focus and skips disabled tabs', async () => {
+  test('*direction* moves focus and skips disabled tabs', async ({ page }) => {
     await mount(page, 'tabs-motion--disabled');
-    const tabs = await getTabs();
+    const tabs = await getTabs(page);
     await tabs[0].focus();
-    expect(await isActiveEl(tabs[0])).toBeTruthy();
-    expect(await isSelected(tabs[0])).toBeTruthy();
+    expect(await isActiveEl(page, tabs[0])).toBeTruthy();
+    expect(await isSelected(page, tabs[0])).toBeTruthy();
     await page.keyboard.press('ArrowRight');
-    expect(await isActiveEl(tabs[2])).toBeTruthy();
-    expect(await isSelected(tabs[2])).toBeTruthy();
+    expect(await isActiveEl(page, tabs[2])).toBeTruthy();
+    expect(await isSelected(page, tabs[2])).toBeTruthy();
   });
 
-  describe('ltr', () => {
-    it('*direction* moves focus to next tab', async () => {
+  test.describe('ltr', () => {
+    test('*direction* moves focus to next tab', async ({ page }) => {
       await mount(page, 'tabs-motion--tabs-motion');
-      const tabs = await getTabs();
+      const tabs = await getTabs(page);
       await tabs[0].focus();
-      expect(await isActiveEl(tabs[0])).toBeTruthy();
+      expect(await isActiveEl(page, tabs[0])).toBeTruthy();
       await page.keyboard.press('ArrowRight');
-      expect(await isActiveEl(tabs[1])).toBeTruthy();
+      expect(await isActiveEl(page, tabs[1])).toBeTruthy();
     });
 
-    it('*direction* moves focus to previous tab', async () => {
+    test('*direction* moves focus to previous tab', async ({ page }) => {
       await mount(page, 'tabs-motion--tabs-motion');
-      const tabs = await getTabs();
+      const tabs = await getTabs(page);
       await tabs[1].focus();
-      expect(await isActiveEl(tabs[1])).toBeTruthy();
+      expect(await isActiveEl(page, tabs[1])).toBeTruthy();
       await page.keyboard.press('ArrowLeft');
-      expect(await isActiveEl(tabs[0])).toBeTruthy();
+      expect(await isActiveEl(page, tabs[0])).toBeTruthy();
     });
 
-    it('*direction* moves focus to first tab', async () => {
+    test('*direction* moves focus to first tab', async ({ page }) => {
       await mount(page, 'tabs-motion--tabs-motion');
-      const tabs = await getTabs();
+      const tabs = await getTabs(page);
       await tabs[2].focus();
-      expect(await isActiveEl(tabs[2])).toBeTruthy();
+      expect(await isActiveEl(page, tabs[2])).toBeTruthy();
       await page.keyboard.press('ArrowRight');
-      expect(await isActiveEl(tabs[0])).toBeTruthy();
+      expect(await isActiveEl(page, tabs[0])).toBeTruthy();
     });
 
-    it('*direction* moves focus to last tab', async () => {
+    test('*direction* moves focus to last tab', async ({ page }) => {
       await mount(page, 'tabs-motion--tabs-motion');
-      const tabs = await getTabs();
+      const tabs = await getTabs(page);
       await tabs[0].focus();
-      expect(await isActiveEl(tabs[0])).toBeTruthy();
+      expect(await isActiveEl(page, tabs[0])).toBeTruthy();
       await page.keyboard.press('ArrowLeft');
-      expect(await isActiveEl(tabs[2])).toBeTruthy();
+      expect(await isActiveEl(page, tabs[2])).toBeTruthy();
     });
   });
 
-  describe('rtl', () => {
-    it('*direction* moves focus to next tab', async () => {
+  test.describe('rtl', () => {
+    test('*direction* moves focus to next tab', async ({ page }) => {
       await mount(page, 'tabs-motion--tabs-motion', 'light', true);
-      const tabs = await getTabs();
+      const tabs = await getTabs(page);
       await tabs[0].focus();
-      expect(await isActiveEl(tabs[0])).toBeTruthy();
+      expect(await isActiveEl(page, tabs[0])).toBeTruthy();
       await page.keyboard.press('ArrowLeft');
-      expect(await isActiveEl(tabs[1])).toBeTruthy();
+      expect(await isActiveEl(page, tabs[1])).toBeTruthy();
     });
 
-    it('*direction* moves focus to previous tab', async () => {
+    test('*direction* moves focus to previous tab', async ({ page }) => {
       await mount(page, 'tabs-motion--tabs-motion', 'light', true);
-      const tabs = await getTabs();
+      const tabs = await getTabs(page);
       await tabs[1].focus();
-      expect(await isActiveEl(tabs[1])).toBeTruthy();
+      expect(await isActiveEl(page, tabs[1])).toBeTruthy();
       await page.keyboard.press('ArrowRight');
-      expect(await isActiveEl(tabs[0])).toBeTruthy();
+      expect(await isActiveEl(page, tabs[0])).toBeTruthy();
     });
 
-    it('*direction* moves focus to first tab', async () => {
+    test('*direction* moves focus to first tab', async ({ page }) => {
       await mount(page, 'tabs-motion--tabs-motion', 'light', true);
-      const tabs = await getTabs();
+      const tabs = await getTabs(page);
       await tabs[2].focus();
-      expect(await isActiveEl(tabs[2])).toBeTruthy();
+      expect(await isActiveEl(page, tabs[2])).toBeTruthy();
       await page.keyboard.press('ArrowLeft');
-      expect(await isActiveEl(tabs[0])).toBeTruthy();
+      expect(await isActiveEl(page, tabs[0])).toBeTruthy();
     });
 
-    it('*direction* moves focus to last tab', async () => {
+    test('*direction* moves focus to last tab', async ({ page }) => {
       await mount(page, 'tabs-motion--tabs-motion', 'light', true);
-      const tabs = await getTabs();
+      const tabs = await getTabs(page);
       await tabs[0].focus();
-      expect(await isActiveEl(tabs[0])).toBeTruthy();
+      expect(await isActiveEl(page, tabs[0])).toBeTruthy();
       await page.keyboard.press('ArrowRight');
-      expect(await isActiveEl(tabs[2])).toBeTruthy();
+      expect(await isActiveEl(page, tabs[2])).toBeTruthy();
     });
   });
 
-  describe('vertical', () => {
-    it('*direction* moves focus to next tab', async () => {
+  test.describe('vertical', () => {
+    test('*direction* moves focus to next tab', async ({ page }) => {
       await mount(page, 'tabs-motion--vertical');
-      const tabs = await getTabs();
+      const tabs = await getTabs(page);
       await tabs[0].focus();
-      expect(await isActiveEl(tabs[0])).toBeTruthy();
+      expect(await isActiveEl(page, tabs[0])).toBeTruthy();
       await page.keyboard.press('ArrowDown');
-      expect(await isActiveEl(tabs[1])).toBeTruthy();
+      expect(await isActiveEl(page, tabs[1])).toBeTruthy();
     });
 
-    it('*direction* moves focus to previous tab', async () => {
+    test('*direction* moves focus to previous tab', async ({ page }) => {
       await mount(page, 'tabs-motion--vertical');
-      const tabs = await getTabs();
+      const tabs = await getTabs(page);
       await tabs[1].focus();
-      expect(await isActiveEl(tabs[1])).toBeTruthy();
+      expect(await isActiveEl(page, tabs[1])).toBeTruthy();
       await page.keyboard.press('ArrowUp');
-      expect(await isActiveEl(tabs[0])).toBeTruthy();
+      expect(await isActiveEl(page, tabs[0])).toBeTruthy();
     });
 
-    it('*direction* moves focus to first tab', async () => {
+    test('*direction* moves focus to first tab', async ({ page }) => {
       await mount(page, 'tabs-motion--vertical');
-      const tabs = await getTabs();
+      const tabs = await getTabs(page);
       await tabs[2].focus();
-      expect(await isActiveEl(tabs[2])).toBeTruthy();
+      expect(await isActiveEl(page, tabs[2])).toBeTruthy();
       await page.keyboard.press('ArrowDown');
-      expect(await isActiveEl(tabs[0])).toBeTruthy();
+      expect(await isActiveEl(page, tabs[0])).toBeTruthy();
     });
 
-    it('*direction* moves focus to last tab', async () => {
+    test('*direction* moves focus to last tab', async ({ page }) => {
       await mount(page, 'tabs-motion--vertical');
-      const tabs = await getTabs();
+      const tabs = await getTabs(page);
       await tabs[0].focus();
-      expect(await isActiveEl(tabs[0])).toBeTruthy();
+      expect(await isActiveEl(page, tabs[0])).toBeTruthy();
       await page.keyboard.press('ArrowUp');
-      expect(await isActiveEl(tabs[2])).toBeTruthy();
+      expect(await isActiveEl(page, tabs[2])).toBeTruthy();
     });
   });
 });
