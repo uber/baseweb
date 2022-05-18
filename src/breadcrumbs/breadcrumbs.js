@@ -43,9 +43,9 @@ export function Breadcrumbs(props: BreadcrumbsPropsT) {
             <ThemeContext.Consumer>
               {(theme) =>
                 theme.direction === 'rtl' ? (
-                  <Left {...baseIconProps} />
+                  <Left size={16} {...baseIconProps} />
                 ) : (
-                  <Right {...baseIconProps} />
+                  <Right size={16} {...baseIconProps} />
                 )
               }
             </ThemeContext.Consumer>
