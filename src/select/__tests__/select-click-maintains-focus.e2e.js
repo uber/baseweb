@@ -10,6 +10,8 @@ LICENSE file in the root directory of this source tree.
 
 const { mount } = require('../../../e2e/helpers');
 
+const { expect, test } = require('@playwright/test');
+
 const SELECT_INPUT = 'div[data-baseweb="select"] input';
 
 function getActiveTag(page) {
@@ -21,8 +23,8 @@ function getActiveTag(page) {
   });
 }
 
-describe('select option click returns focus', () => {
-  it('returns focus to select input after clicking option', async () => {
+test.describe('select option click returns focus', () => {
+  test('returns focus to select input after clicking option', async ({ page }) => {
     await mount(page, 'select--click-maintains-focus');
     await page.waitForSelector(SELECT_INPUT);
 

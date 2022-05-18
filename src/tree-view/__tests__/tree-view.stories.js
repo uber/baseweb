@@ -7,11 +7,13 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
+import { Scenario as TreeViewIconOverrides } from './tree-view-icon-overrides.scenario.js';
 import { Scenario as TreeViewInteractable } from './tree-view-interactable.scenario.js';
 import { Scenario as TreeViewRenderAll } from './tree-view-render-all.scenario.js';
 import { Scenario as TreeViewSingleExpanded } from './tree-view-single-expanded.scenario.js';
 import { Scenario as TreeViewDefault } from './tree-view.scenario.js';
 
+export const IconOverrides = () => <TreeViewIconOverrides />;
 export const Interactable = () => <TreeViewInteractable />;
 export const RenderAll = () => <TreeViewRenderAll />;
 export const SingleExpanded = () => <TreeViewSingleExpanded />;

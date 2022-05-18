@@ -8,10 +8,11 @@ LICENSE file in the root directory of this source tree.
 /*eslint-env node*/
 /* eslint-disable flowtype/require-valid-file-annotation */
 
+const { expect, test } = require('@playwright/test');
 const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
 
-describe('breadcrumbs', () => {
-  it('passes basic a11y tests', async () => {
+test.describe('breadcrumbs', () => {
+  test('passes basic a11y tests', async ({ page }) => {
     await mount(page, 'breadcrumbs--breadcrumbs');
     await page.waitForSelector('a');
 

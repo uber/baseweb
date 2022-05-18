@@ -13,7 +13,7 @@ LICENSE file in the root directory of this source tree.
 
 function applyErrorDetails(message) {
   return `Failing unit test due to unexpected console.error. Please resolve this in the relevant test.\n\n${
-    message instanceof Error ? '' : 'Error: '
+    message instanceof Error ? '${message}' : 'Error: '
   }${message}`;
 }
 

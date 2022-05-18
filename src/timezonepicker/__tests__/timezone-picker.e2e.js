@@ -10,6 +10,8 @@ LICENSE file in the root directory of this source tree.
 
 const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
 
+const { expect, test } = require('@playwright/test');
+
 const selectors = {
   standard: '[data-e2e="standard"]',
   daylight: '[data-e2e="daylight"]',
@@ -19,15 +21,15 @@ const selectors = {
   value: '[data-id="selected"]',
 };
 
-describe('TimezonePicker', () => {
-  it('passes basic a11y tests', async () => {
+test.describe('TimezonePicker', () => {
+  test('passes basic a11y tests', async ({ page }) => {
     await mount(page, 'timezonepicker--timezone-picker');
     await page.waitForSelector(selectors.standard);
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
-  it('provides appropriate zone options if standard time', async () => {
+  test('provides appropriate zone options if standard time', async ({ page }) => {
     await mount(page, 'timezonepicker--timezone-picker');
     await page.waitForSelector(selectors.standard);
     await page.click(`${selectors.standard} ${selectors.input}`);
@@ -43,7 +45,7 @@ describe('TimezonePicker', () => {
     expect(value).toBe('(GMT-5) America/New York');
   });
 
-  it('provides appropriate zone options if daylight savings time', async () => {
+  test('provides appropriate zone options if daylight savings time', async ({ page }) => {
     await mount(page, 'timezonepicker--timezone-picker');
     await page.waitForSelector(selectors.daylight);
     await page.click(`${selectors.daylight} ${selectors.input}`);
@@ -59,7 +61,7 @@ describe('TimezonePicker', () => {
     expect(value).toBe('(GMT-4) America/New York');
   });
 
-  it('prioritizes select with controlled value over browser default', async () => {
+  test('prioritizes select with controlled value over browser default', async ({ page }) => {
     await mount(page, 'timezonepicker--timezone-picker');
     await page.waitForSelector(selectors.controlled);
     const initial = await page.$eval(
@@ -69,7 +71,7 @@ describe('TimezonePicker', () => {
     expect(initial).toBe('(GMT+9) Asia/Tokyo');
   });
 
-  it('provides appropriate zone options if no acronym exists', async () => {
+  test('provides appropriate zone options if no acronym exists', async ({ page }) => {
     await mount(page, 'timezonepicker--timezone-picker');
     await page.waitForSelector(selectors.daylight);
     await page.click(`${selectors.daylight} ${selectors.input}`);

@@ -9,10 +9,12 @@ LICENSE file in the root directory of this source tree.
 
 const { mount } = require('../../../e2e/helpers');
 
+const { expect, test } = require('@playwright/test');
+
 const { getActionButtonByLabel } = require('./utilities.js');
 
-describe('data-table-row-actions-dynamic', () => {
-  it('renders provided row action buttons', async () => {
+test.describe('data-table-row-actions-dynamic', () => {
+  test('renders provided row action buttons', async ({ page }) => {
     await mount(page, 'data-table--row-actions-dynamic');
 
     // hover first row

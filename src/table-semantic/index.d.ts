@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {StyletronComponent} from 'styletron-react';
-import {Override} from '../overrides';
+import { StyletronComponent } from 'styletron-react';
+import { Override } from '../overrides';
 
 export interface DIVIDER {
   horizontal: 'horizontal';
@@ -42,6 +42,7 @@ export class Table extends React.Component<TableProps> {}
 
 export interface BuilderOverrides extends TableOverrides {
   TableHeadCellSortable?: Override<any>;
+  SortIconContainer?: Override<any>;
   SortAscIcon?: Override<any>;
   SortDescIcon?: Override<any>;
   SortNoneIcon?: Override<any>;
@@ -59,9 +60,7 @@ export interface TableBuilderProps<RowT> {
   emptyMessage?: React.ReactNode | (() => React.ReactNode);
   size?: SIZE[keyof SIZE];
 }
-export class TableBuilder<RowT> extends React.Component<
-  TableBuilderProps<RowT>
-> {}
+export class TableBuilder<RowT> extends React.Component<TableBuilderProps<RowT>> {}
 
 export interface ColumnOverrides {
   TableHeadCell?: Override<any>;
@@ -80,9 +79,7 @@ export interface TableBuilderColumnProps<RowT> {
   sortable?: boolean;
   tableHeadAriaLabel?: string;
 }
-export class TableBuilderColumn<RowT> extends React.Component<
-  TableBuilderColumnProps<RowT>
-> {}
+export class TableBuilderColumn<RowT> extends React.Component<TableBuilderColumnProps<RowT>> {}
 
 export const StyledRoot: StyletronComponent<any>;
 export const StyledTable: StyletronComponent<any>;

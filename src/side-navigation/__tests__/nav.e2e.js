@@ -10,12 +10,14 @@ LICENSE file in the root directory of this source tree.
 
 const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
 
+const { expect, test } = require('@playwright/test');
+
 const selectors = {
   root: 'nav[data-test="e2e"]',
 };
 
-describe('side navigation', () => {
-  it('passes basic a11y tests', async () => {
+test.describe('side navigation', () => {
+  test('passes basic a11y tests', async ({ page }) => {
     await mount(page, 'side-navigation--nav');
     await page.waitForSelector(selectors.root);
     const accessibilityReport = await analyzeAccessibility(page, {

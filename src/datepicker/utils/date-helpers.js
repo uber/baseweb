@@ -68,7 +68,7 @@ class DateHelpers<T> {
     // This ensures that if the adapter class isn't
     // supported it just falls back the default formats
 
-    // NOTE: in e2e tests puppeteer seems to add
+    // NOTE: in e2e tests playwright seems to add
     // a JSHandle wrapping class to all objects
     // so className always resolves to JSHandle:e
     // and if falls back to the default

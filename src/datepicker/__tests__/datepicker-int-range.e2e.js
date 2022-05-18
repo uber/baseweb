@@ -10,6 +10,8 @@ LICENSE file in the root directory of this source tree.
 
 const { mount } = require('../../../e2e/helpers');
 
+const { expect, test } = require('@playwright/test');
+
 const selectors = {
   input: 'input',
   calendar: '[data-baseweb="calendar"]',
@@ -19,8 +21,8 @@ const selectors = {
   monthYearSelectMenu: '[data-id="monthYearSelectMenu"]',
 };
 
-describe('Datepicker, Int', () => {
-  it('selects range - int', async () => {
+test.describe('Datepicker, Int', () => {
+  test('selects range - int', async ({ page }) => {
     await mount(page, 'datepicker--int-range');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
@@ -31,7 +33,7 @@ describe('Datepicker, Int', () => {
     expect(selectedValue1).toBe('2019 vasárnap 10');
     await page.click(selectors.day2);
     await page.waitForSelector(selectors.calendar, {
-      hidden: true,
+      state: 'hidden',
     });
     const selectedValue2 = await page.$eval(selectors.input, (input) => input.value);
     expect(selectedValue2).toBe('2019 vasárnap 10 – 2019 csütörtök 28');

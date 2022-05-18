@@ -10,14 +10,16 @@ LICENSE file in the root directory of this source tree.
 
 const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
 
-describe('file-uploader', () => {
-  it('pre-drop passes basic a11y tests', async () => {
+const { expect, test } = require('@playwright/test');
+
+test.describe('file-uploader', () => {
+  test('pre-drop passes basic a11y tests', async ({ page }) => {
     await mount(page, 'file-uploader--pre-drop');
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
-  it('post-drop passes basic a11y tests', async () => {
+  test('post-drop passes basic a11y tests', async ({ page }) => {
     await mount(page, 'file-uploader--post-drop');
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();

@@ -26,7 +26,6 @@ module.exports = {
     page: true,
     browser: true,
     context: true,
-    jestPuppeteer: true,
   },
   settings: {
     react: {
@@ -63,7 +62,7 @@ module.exports = {
         singleQuote: true,
         trailingComma: 'es5',
         bracketSpacing: true,
-        jsxBracketSameLine: false,
+        bracketSameLine: false,
       },
     ],
     'import/prefer-default-export': ['off'],
@@ -99,6 +98,13 @@ module.exports = {
       files: ['packages/eslint-plugin-baseui/**/*.js', 'packages/baseweb-vscode-extension/**/*.js'],
       rules: {
         'flowtype/require-valid-file-annotation': 'off',
+      },
+    },
+    {
+      files: ['**/*.e2e.js'],
+      rules: {
+        'flowtype/require-valid-file-annotation': 'off',
+        'jest/no-identical-title': 'off',
       },
     },
   ],
