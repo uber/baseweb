@@ -9,6 +9,8 @@ LICENSE file in the root directory of this source tree.
 
 const { mount } = require('../../../e2e/helpers');
 
+const { expect, test } = require('@playwright/test');
+
 const {
   TABLE_ROOT,
   getCellContentsAtColumnIndex,
@@ -18,15 +20,15 @@ const {
 
 const COLUMN_COUNT = 1;
 
-describe('data table initial filters', () => {
-  it('mounts with initial filters applied', async () => {
+test.describe('data table initial filters', () => {
+  test('mounts with initial filters applied', async ({ page }) => {
     await mount(page, 'data-table--initial-filters');
     await page.waitForSelector(TABLE_ROOT);
     const data = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, 0);
     expect(matchArrayElements(data, ['a'])).toBe(true);
   });
 
-  it('calls onFilterRemove when expected', async () => {
+  test('calls onFilterRemove when expected', async ({ page }) => {
     await mount(page, 'data-table--initial-filters');
     await page.waitForSelector(TABLE_ROOT);
     const before = await page.$$('li[data-log="remove"]');
@@ -40,7 +42,7 @@ describe('data table initial filters', () => {
     expect(after.length).toBe(1);
   });
 
-  it('calls onFilterAdd when expected', async () => {
+  test('calls onFilterAdd when expected', async ({ page }) => {
     await mount(page, 'data-table--initial-filters');
     await page.waitForSelector(TABLE_ROOT);
 

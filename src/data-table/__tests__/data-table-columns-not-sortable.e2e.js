@@ -9,6 +9,8 @@ LICENSE file in the root directory of this source tree.
 
 const { mount } = require('../../../e2e/helpers');
 
+const { expect, test } = require('@playwright/test');
+
 const {
   TABLE_ROOT,
   getCellContentsAtColumnIndex,
@@ -18,8 +20,8 @@ const {
 
 const COLUMN_COUNT = 5;
 
-describe('data table non-sortable columns', () => {
-  it('clicks on column header does not sort', async () => {
+test.describe('data table non-sortable columns', () => {
+  test('clicks on column header does not sort', async ({ page }) => {
     const index = 0;
     await mount(page, 'data-table--columns-not-sortable');
     await page.waitForSelector(TABLE_ROOT);

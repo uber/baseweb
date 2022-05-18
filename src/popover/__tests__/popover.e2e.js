@@ -9,6 +9,8 @@ LICENSE file in the root directory of this source tree.
 
 const { mount, analyzeAccessibility, waitForTimeout } = require('../../../e2e/helpers');
 
+const { expect, test } = require('@playwright/test');
+
 const selectors = {
   popover: '[data-baseweb="popover"]',
   outsideOfPopover: '[data-e2e="outside-popover"]',
@@ -20,33 +22,33 @@ const selectors = {
   content: '#content',
 };
 
-describe('popover', () => {
-  it('passes basic a11y tests', async () => {
+test.describe('popover', () => {
+  test('passes basic a11y tests', async ({ page }) => {
     await mount(page, 'popover--popover');
     await page.waitForSelector(selectors.tooltip);
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
-  it('hover opens the popover', async () => {
+  test('hover opens the popover', async ({ page }) => {
     await mount(page, 'popover--hover');
     await page.waitForSelector('button');
     await page.hover('button');
     await page.waitForSelector(selectors.tooltip);
     await page.mouse.move(200, 200);
-    await page.waitForSelector(selectors.tooltip, { hidden: true });
+    await page.waitForSelector(selectors.tooltip, { state: 'hidden' });
   });
 
-  it('opened popover can be closed with ESC', async () => {
+  test('opened popover can be closed with ESC', async ({ page }) => {
     await mount(page, 'popover--click');
     await page.waitForSelector('button');
     await page.click('button');
     await page.waitForSelector(selectors.tooltip);
     await page.keyboard.press('Escape');
-    await page.waitForSelector(selectors.tooltip, { hidden: true });
+    await page.waitForSelector(selectors.tooltip, { state: 'hidden' });
   });
 
-  it('allows interaction with select', async () => {
+  test('allows interaction with select', async ({ page }) => {
     await mount(page, 'popover--select');
     await page.waitForSelector('button');
     await page.click('button');
@@ -67,28 +69,28 @@ describe('popover', () => {
     // Select an option from the select dropdown
     const options = await page.$$(selectors.dropDownOption);
     await options[0].click();
-    await page.waitForSelector(selectors.selectDropDown, { hidden: true });
+    await page.waitForSelector(selectors.selectDropDown, { state: 'hidden' });
 
     const selectedValue = await page.$eval(selectors.selectedList, (select) => select.textContent);
     expect(selectedValue).toBe('AliceBlue');
     // Click outside to close the initial popover
     await page.click(selectors.outsideOfPopover);
-    await page.waitForSelector(selectors.selectInput, { hidden: true });
+    await page.waitForSelector(selectors.selectInput, { state: 'hidden' });
   });
 
-  it('renders content even when hidden: with renderAll prop', async () => {
+  test('renders content even when hidden: with renderAll prop', async ({ page }) => {
     await mount(page, 'popover--render-all');
     await page.waitForSelector('button');
-    await page.waitForSelector(selectors.content);
+    await page.waitForSelector(selectors.content, { state: 'attached' });
     await page.click('button');
     await page.waitForSelector(selectors.tooltip);
     await page.waitForSelector(selectors.content);
     await page.keyboard.press('Escape');
-    await page.waitForSelector(selectors.tooltip, { hidden: true });
-    await page.waitForSelector(selectors.content);
+    await page.waitForSelector(selectors.tooltip, { state: 'hidden' });
+    await page.waitForSelector(selectors.content, { state: 'attached' });
   });
 
-  it('updates position when width of popover changes', async () => {
+  test('updates position when width of popover changes', async ({ page }) => {
     await mount(page, 'popover--reposition');
     await page.click('#e2e-open');
     let popover = await page.$('#e2e-popover');

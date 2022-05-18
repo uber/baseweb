@@ -10,6 +10,8 @@ LICENSE file in the root directory of this source tree.
 
 const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
 
+const { expect, test } = require('@playwright/test');
+
 const selectors = {
   input: 'input',
   calendar: '[data-baseweb="calendar"]',
@@ -21,26 +23,22 @@ const selectors = {
   monthYearSelectMenu: '[data-id="monthYearSelectMenu"]',
 };
 
-describe('Stateful Datepicker', () => {
-  beforeEach(async () => {
-    await jestPuppeteer.resetPage();
-  });
-
-  it('passes basic a11y tests', async () => {
+test.describe('Stateful Datepicker', () => {
+  test('passes basic a11y tests', async ({ page }) => {
     await mount(page, 'datepicker--stateful');
     await page.waitForSelector(selectors.input);
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
-  it('datepicker with min max date allows browsing', async () => {
+  test('datepicker with min max date allows browsing', async ({ page }) => {
     await mount(page, 'datepicker--stateful-min-max-date');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
     await page.waitForSelector(selectors.calendar);
     await page.click(selectors.day);
     await page.waitForSelector(selectors.calendar, {
-      hidden: true,
+      state: 'hidden',
     });
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
@@ -50,7 +48,7 @@ describe('Stateful Datepicker', () => {
     expect(value).toBe(false);
     await page.click(selectors.leftArrow);
     await page.waitForSelector(selectors.day, {
-      hidden: true,
+      state: 'hidden',
     });
     await page.waitForSelector(selectors.leftArrow);
     value = await page.$eval(selectors.leftArrow, (select) => select.disabled);
@@ -68,7 +66,7 @@ describe('Stateful Datepicker', () => {
     expect(value).toBe(false);
   });
 
-  it('datepicker with min max date shows valid months in header dropdown', async () => {
+  test('datepicker with min max date shows valid months in header dropdown', async ({ page }) => {
     await mount(page, 'datepicker--stateful-min-max-date');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);

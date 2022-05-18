@@ -9,6 +9,8 @@ LICENSE file in the root directory of this source tree.
 
 const { mount, analyzeAccessibility, waitForTimeout } = require('../../../e2e/helpers');
 
+const { expect, test } = require('@playwright/test');
+
 const {
   TABLE_ROOT,
   getCellContentsAtColumnIndex,
@@ -19,8 +21,8 @@ const {
 
 const COLUMN_COUNT = 5;
 
-describe('data table columns', () => {
-  it('passes basic a11y tests', async () => {
+test.describe('data table columns', () => {
+  test('passes basic a11y tests', async ({ page }) => {
     await mount(page, 'data-table--columns');
     const accessibilityReport = await analyzeAccessibility(page, {
       rules: [
@@ -33,7 +35,7 @@ describe('data table columns', () => {
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
-  it('sorts boolean column', async () => {
+  test('sorts boolean column', async ({ page }) => {
     const index = 0;
     await mount(page, 'data-table--columns');
     await page.waitForSelector('div[data-baseweb="data-table"]');
@@ -53,7 +55,7 @@ describe('data table columns', () => {
     expect(matchArrayElements(initial, restored)).toBe(true);
   });
 
-  it('sorts categorical column', async () => {
+  test('sorts categorical column', async ({ page }) => {
     const index = 1;
     await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
@@ -73,7 +75,7 @@ describe('data table columns', () => {
     expect(matchArrayElements(initial, restored)).toBe(true);
   });
 
-  it('sorts numerical column', async () => {
+  test('sorts numerical column', async ({ page }) => {
     const index = 2;
     await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
@@ -93,7 +95,7 @@ describe('data table columns', () => {
     expect(matchArrayElements(initial, restored)).toBe(true);
   });
 
-  it('sorts string column', async () => {
+  test('sorts string column', async ({ page }) => {
     const index = 3;
     await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
@@ -115,7 +117,7 @@ describe('data table columns', () => {
     expect(matchArrayElements(initial, restored)).toBe(true);
   });
 
-  it('sorts datetime column', async () => {
+  test('sorts datetime column', async ({ page }) => {
     const index = 4;
     await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
@@ -158,7 +160,7 @@ describe('data table columns', () => {
     expect(matchArrayElements(initial, restored)).toBe(true);
   });
 
-  it('filters boolean column', async () => {
+  test('filters boolean column', async ({ page }) => {
     const index = 0;
     await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
@@ -184,7 +186,7 @@ describe('data table columns', () => {
     expect(matchArrayElements(restored, ['T', 'F', 'T', 'F'])).toBe(true);
   });
 
-  it('filters categorical column', async () => {
+  test('filters categorical column', async ({ page }) => {
     const index = 1;
     await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
@@ -210,7 +212,7 @@ describe('data table columns', () => {
     expect(matchArrayElements(restored, ['A', 'B', 'A', 'A'])).toBe(true);
   });
 
-  it('filters numerical column as single value', async () => {
+  test('filters numerical column as single value', async ({ page }) => {
     const index = 2;
     await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
@@ -243,7 +245,7 @@ describe('data table columns', () => {
     expect(matchArrayElements(restored, ['2', '1', '4', '3'])).toBe(true);
   });
 
-  it('filters numerical column range', async () => {
+  test('filters numerical column range', async ({ page }) => {
     const index = 2;
     await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
@@ -274,7 +276,7 @@ describe('data table columns', () => {
     expect(matchArrayElements(filtered, ['2', '3'])).toBe(true);
   });
 
-  it('filters datetime column - datetime range', async () => {
+  test('filters datetime column - datetime range', async ({ page }) => {
     const index = 4;
     await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
@@ -323,7 +325,7 @@ describe('data table columns', () => {
     // expect(matchArrayElements(filtered, ['04-12-2011 11:21 31:00'])).toBe(true);
   });
 
-  it('filters datetime column - date range', async () => {
+  test('filters datetime column - date range', async ({ page }) => {
     const index = 4;
     await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
@@ -359,7 +361,7 @@ describe('data table columns', () => {
     expect(matchArrayElements(filtered, ['07-13-2014 12:22 32:00'])).toBe(true);
   });
 
-  it('filters datetime column - date range - default', async () => {
+  test('filters datetime column - date range - default', async ({ page }) => {
     const index = 4;
     await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
@@ -396,7 +398,7 @@ describe('data table columns', () => {
     ).toBe(true);
   });
 
-  it('filters datetime column - time range', async () => {
+  test('filters datetime column - time range', async ({ page }) => {
     const index = 4;
     await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
@@ -439,7 +441,7 @@ describe('data table columns', () => {
     expect(matchArrayElements(filtered, ['06-14-2013 13:23 33:00'])).toBe(true);
   });
 
-  it('filters datetime column - weekday categorical', async () => {
+  test('filters datetime column - weekday categorical', async ({ page }) => {
     const index = 4;
     await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
@@ -468,7 +470,7 @@ describe('data table columns', () => {
     expect(matchArrayElements(filtered, ['07-13-2014 12:22 32:00'])).toBe(true);
   });
 
-  it('filters datetime column - month categorical', async () => {
+  test('filters datetime column - month categorical', async ({ page }) => {
     const index = 4;
     await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
@@ -504,7 +506,7 @@ describe('data table columns', () => {
     expect(matchArrayElements(filtered, ['05-11-2012 10:20 30:00'])).toBe(true);
   });
 
-  it('filters datetime column - quarter categorical', async () => {
+  test('filters datetime column - quarter categorical', async ({ page }) => {
     const index = 4;
     await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
@@ -540,7 +542,7 @@ describe('data table columns', () => {
     expect(matchArrayElements(filtered, ['07-13-2014 12:22 32:00'])).toBe(true);
   });
 
-  it('filters datetime column - half categorical', async () => {
+  test('filters datetime column - half categorical', async ({ page }) => {
     const index = 4;
     await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
@@ -576,7 +578,7 @@ describe('data table columns', () => {
     expect(matchArrayElements(filtered, ['07-13-2014 12:22 32:00'])).toBe(true);
   });
 
-  it('filters datetime column - year categorical', async () => {
+  test('filters datetime column - year categorical', async ({ page }) => {
     const index = 4;
     await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);

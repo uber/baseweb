@@ -8,7 +8,9 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
+const { mount, analyzeAccessibility, isSameNode } = require('../../../e2e/helpers');
+
+const { expect, test } = require('@playwright/test');
 
 const selectors = {
   toast: '[role="alert"]',
@@ -21,19 +23,18 @@ const isActiveEl = async (page, selector) => {
   // eslint-disable-next-line cup/no-undef
   const el = await page.evaluateHandle(() => window.document.activeElement);
   const selectedEl = await page.$(selector);
-  const equal = await page.evaluate((e1, e2) => e1 === e2, el, selectedEl);
-  return equal;
+  return await isSameNode(page, el, selectedEl);
 };
 
-describe('toast', () => {
-  it('passes basic a11y tests', async () => {
+test.describe('toast', () => {
+  test('passes basic a11y tests', async ({ page }) => {
     await mount(page, 'toast--toast');
     await page.waitForSelector(selectors.toast);
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
-  it('the close icon removes the notification', async () => {
+  test('the close icon removes the notification', async ({ page }) => {
     await mount(page, 'toast--toast');
     await page.waitForSelector(selectors.toast);
 
@@ -56,7 +57,9 @@ describe('toast', () => {
     expect(updatedNumberOfAlerts).toBe(originalNumberOfAlerts - 2);
   });
 
-  it('opens two notifications if triggered twice (auto-generate incrementing keys)', async () => {
+  test('opens two notifications if triggered twice (auto-generate incrementing keys)', async ({
+    page,
+  }) => {
     await mount(page, 'toast--toaster');
     await page.waitForSelector(selectors.buttonDefault);
     await page.click(selectors.buttonDefault);
@@ -67,7 +70,7 @@ describe('toast', () => {
     expect(numberOfAlerts).toBe(2);
   });
 
-  it('updates existing notification if the same key is provided', async () => {
+  test('updates existing notification if the same key is provided', async ({ page }) => {
     await mount(page, 'toast--toaster');
     await page.waitForSelector(selectors.buttonSameKey);
     await page.click(selectors.buttonSameKey);
@@ -90,7 +93,12 @@ describe('toast', () => {
     expect(toastContent).toBe('updated');
   });
 
-  it('focuses toast dismiss when autofocus is active and refocuses previously focused element on close', async () => {
+  test('focuses toast dismiss when autofocus is active and refocuses previously focused element on close', async ({
+    browserName,
+    page,
+  }) => {
+    test.fixme(browserName === 'webkit', 'this feature fails in webkit');
+
     await mount(page, 'toast--toaster-focus');
     await page.click(selectors.buttonDefault);
     await page.waitForSelector(selectors.toast);

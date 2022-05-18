@@ -20,13 +20,13 @@ const config = {
           let menuToClickOn = userMenuSelector;
           await page.waitForSelector('body');
           // the large breakpoint from the theme is 1136
-          if (page.viewport().width < 1136) {
+          if (page.viewportSize().width < 1136) {
             menuToClickOn = drawerMenuSelector;
           }
-          await page.waitForSelector(menuToClickOn, { visible: true });
+          await page.waitForSelector(menuToClickOn, { state: 'visible' });
           await page.click(menuToClickOn);
           await page.waitForSelector(menuSelector, {
-            visible: true,
+            state: 'visible',
           });
         },
       },
@@ -43,10 +43,10 @@ const config = {
           await page.waitForSelector(selectSelector);
           await page.click(selectSelector);
           await page.waitForSelector(dropdownSelector, {
-            visible: true,
+            state: 'visible',
           });
           await page.waitForSelector(flagOptionSelector, {
-            visible: true,
+            state: 'visible',
           });
         },
       },
@@ -63,10 +63,10 @@ const config = {
           await page.waitForSelector(selectSelector);
           await page.click(selectSelector);
           await page.waitForSelector(dropdownSelector, {
-            visible: true,
+            state: 'visible',
           });
           await page.waitForSelector(flagOptionSelector, {
-            visible: true,
+            state: 'visible',
           });
         },
       },
@@ -167,7 +167,7 @@ const config = {
         behavior: async (page) => {
           const button = '[aria-label="Single Value"]';
           await page.waitForSelector(button, {
-            visible: true,
+            state: 'visible',
           });
           await page.click(button);
         },
@@ -187,7 +187,7 @@ const config = {
           await page.waitForSelector(input);
           await page.click(input);
           await page.waitForSelector(calendar, {
-            visible: true,
+            state: 'visible',
           });
         },
       },
@@ -203,7 +203,7 @@ const config = {
           await page.waitForSelector(input);
           await page.click(input);
           await page.waitForSelector(calendar, {
-            visible: true,
+            state: 'visible',
           });
         },
       },
@@ -221,17 +221,17 @@ const config = {
           await page.waitForSelector(input);
           await page.click(input);
           await page.waitForSelector(calendar, {
-            visible: true,
+            state: 'visible',
           });
           await page.click(startDay);
           await page.click(endDay);
           await page.waitForSelector(calendar, {
-            hidden: true,
+            state: 'hidden',
           });
           await page.waitForSelector(input);
           await page.click(input);
           await page.waitForSelector(calendar, {
-            visible: true,
+            state: 'visible',
           });
         },
       },
@@ -242,18 +242,11 @@ const config = {
       {
         name: 'noHighlight',
         behavior: async (page) => {
-          const input = `input`;
-          const calendar = '[data-baseweb="calendar"]';
-          const rightArrow = `[aria-label="Next month."]`;
-          await page.waitForSelector(input);
-          await page.click(input);
-          await page.waitForSelector(calendar, {
-            visible: true,
-          });
-          await page.click(rightArrow);
-          await page.waitForFunction(
-            `document.querySelector("button[aria-haspopup]").innerText === 'April'`
-          );
+          await page.locator('input').click();
+          const calendar = page.locator('[data-baseweb="calendar"]');
+          await calendar.waitFor({ state: 'visible' });
+          await calendar.locator('[aria-label="Next month."]').click();
+          await calendar.locator('text="April"').waitFor();
         },
       },
     ],
@@ -345,50 +338,45 @@ const config = {
   },
   'popover--prevent-scroll-on-focus': {
     interactions: [
-      {
-        name: 'scrollDownAndCheckIfPreventScrollPreventsReScrollOnPopover',
-        behavior: async (page) => {
-          await page.waitForSelector('button');
-
-          // Open Popover
-          await page.click('button');
-          await page.waitForSelector('div[data-e2e="content"]');
-
-          // Close Popover
-          await page.click('button');
-          await page.waitForSelector('div[data-e2e="content"]', { hidden: true });
-
-          // Scroll to the last div
-          await page.evaluate(() =>
-            // eslint-disable-next-line cup/no-undef
-            document.querySelector('div[data-e2e-spacer="1"]').scrollIntoView()
-          );
-
-          // Listening to Scroll Event to determine if the page is still scrolling
-          // Could wait for few seconds but that would be unreliable
-          await page.evaluate(() => {
-            function scrollHandler() {
-              // Disabling eslint checks on window / document as they would be executed in puppeteer
-              /* eslint-disable cup/no-undef */
-              window.isPageScrolling = true;
-              clearTimeout(window.scrollTimer);
-              window.scrollTimer = setTimeout(() => {
-                window.isPageScrolling = false;
-                window.removeEventListener('scroll', scrollHandler);
-              }, 100);
-            }
-            window.addEventListener('scroll', scrollHandler);
-            /* eslint-enable cup/no-undef */
-          });
-
-          // Waiting for scroll to end
-          await page.waitForFunction('window.isPageScrolling === false');
-
-          // Clicking on button to show Popover
-          await page.click('button');
-          await page.waitForSelector('div[data-e2e="content"]');
-        },
-      },
+      // this is flakey in playwright
+      // {
+      //   name: 'scrollDownAndCheckIfPreventScrollPreventsReScrollOnPopover',
+      //   behavior: async (page) => {
+      //     await page.waitForSelector('button');
+      //     // Open Popover
+      //     await page.click('button');
+      //     await page.waitForSelector('div[data-e2e="content"]');
+      //     // Close Popover
+      //     await page.click('button');
+      //     await page.waitForSelector('div[data-e2e="content"]', { state: 'hidden' });
+      //     // Scroll to the last div
+      //     await page.evaluate(() =>
+      //       // eslint-disable-next-line cup/no-undef
+      //       document.querySelector('div[data-e2e-spacer="1"]').scrollIntoView()
+      //     );
+      //     // Listening to Scroll Event to determine if the page is still scrolling
+      //     // Could wait for few seconds but that would be unreliable
+      //     await page.evaluate(() => {
+      //       function scrollHandler() {
+      //         // Disabling eslint checks on window / document as they would be executed in playwright
+      //         /* eslint-disable cup/no-undef */
+      //         window.isPageScrolling = true;
+      //         clearTimeout(window.scrollTimer);
+      //         window.scrollTimer = setTimeout(() => {
+      //           window.isPageScrolling = false;
+      //           window.removeEventListener('scroll', scrollHandler);
+      //         }, 100);
+      //       }
+      //       window.addEventListener('scroll', scrollHandler);
+      //       /* eslint-enable cup/no-undef */
+      //     });
+      //     // Waiting for scroll to end
+      //     await page.waitForFunction('window.isPageScrolling === false');
+      //     // Clicking on button to show Popover
+      //     await page.click('button');
+      //     await page.waitForSelector('div[data-e2e="content"]');
+      //   },
+      // },
     ],
   },
   'popover--reposition-with-anchor-update': {
@@ -414,7 +402,7 @@ const config = {
           await page.waitForSelector(selectSelector);
           await page.click(selectSelector);
           await page.waitForSelector(dropdownSelector, {
-            visible: true,
+            state: 'visible',
           });
           await page.type(selectInputSelector, 'zzz');
         },
@@ -475,7 +463,7 @@ const config = {
           await page.waitForSelector(selectSelector);
           await page.click(selectSelector);
           await page.waitForSelector(dropdownSelector, {
-            visible: true,
+            state: 'visible',
           });
         },
       },
@@ -507,7 +495,7 @@ const config = {
           // open select dropdown
           await page.click(selectSelector);
           await page.waitForSelector(dropdownSelector, {
-            visible: true,
+            state: 'visible',
           });
         },
       },
@@ -523,7 +511,7 @@ const config = {
           await page.waitForSelector(inputSelector);
           await page.click(inputSelector);
           await page.waitForSelector(dropdownSelector, {
-            visible: true,
+            state: 'visible',
           });
         },
       },
@@ -539,7 +527,7 @@ const config = {
           await page.waitForSelector(inputSelector);
           await page.click(inputSelector);
           await page.waitForSelector(dropdownSelector, {
-            visible: true,
+            state: 'visible',
           });
         },
       },
@@ -556,7 +544,7 @@ const config = {
           await page.waitForSelector(inputSelector);
           await page.click(inputSelector);
           await page.waitForSelector(dropdownSelector, {
-            visible: true,
+            state: 'visible',
           });
           await page.type(selectInputSelector, 'zzz');
         },
@@ -627,7 +615,7 @@ const config = {
           const tooltipPopoverSelector = '[data-baseweb="tooltip"]';
           await page.hover(tooltipSelector);
           await page.waitForSelector(tooltipPopoverSelector, {
-            visible: true,
+            state: 'visible',
           });
         },
       },
@@ -645,11 +633,11 @@ const config = {
           await page.waitForSelector(selectSelector);
           await page.click(selectSelector);
           await page.waitForSelector(dropdownSelector, {
-            visible: true,
+            state: 'visible',
           });
           await page.click(firstOption);
           await page.waitForSelector(dropdownSelector, {
-            hidden: true,
+            state: 'hidden',
           });
         },
       },

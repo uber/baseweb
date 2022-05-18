@@ -10,8 +10,10 @@ LICENSE file in the root directory of this source tree.
 
 const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
 
-describe('Progress Bar', () => {
-  it('passes basic a11y tests', async () => {
+const { expect, test } = require('@playwright/test');
+
+test.describe('Progress Bar', () => {
+  test('passes basic a11y tests', async ({ page }) => {
     await mount(page, 'progress-bar--progressbar');
     await page.waitForSelector('[role="progressbar"]');
     const accessibilityReport = await analyzeAccessibility(page);

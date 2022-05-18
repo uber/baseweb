@@ -9,10 +9,12 @@ LICENSE file in the root directory of this source tree.
 
 const { mount } = require('../../../e2e/helpers');
 
+const { expect, test } = require('@playwright/test');
+
 const { sortColumnAtIndex, matchArrayElements } = require('./utilities.js');
 
-describe('data table columns', () => {
-  it('updates application state when rows change', async () => {
+test.describe('data table columns', () => {
+  test('updates application state when rows change', async ({ page }) => {
     const index = 0;
     await mount(page, 'data-table--included-rows-change');
     await page.waitForSelector('div[data-baseweb="data-table"]');
