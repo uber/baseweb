@@ -53,6 +53,7 @@ async function mount(page, name, theme, rtl) {
 
   await page.goto(url);
   await page.waitForSelector('[data-storyloaded]');
+  await addTestStyles(page);
 }
 
 async function analyzeAccessibility(page, options = { rules: [] }) {
