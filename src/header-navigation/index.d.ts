@@ -14,6 +14,7 @@ export interface HeaderNavigationOverrides {
 
 export interface HeaderNavigationProps {
   overrides?: HeaderNavigationOverrides;
+  children?: React.ReactNode;
 }
 
 export class HeaderNavigation extends React.Component<HeaderNavigationProps> {}
