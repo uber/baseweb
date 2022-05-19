@@ -41,6 +41,7 @@ export type TablePropsT = {
 export type BuilderOverridesT = {
   ...OverridesT,
   TableHeadCellSortable?: OverrideT,
+  SortIconContainer?: OverrideT,
   SortAscIcon?: OverrideT,
   SortDescIcon?: OverrideT,
   SortNoneIcon?: OverrideT,
