@@ -31,13 +31,17 @@ test.describe('setDropdownOpen', () => {
     expect(listElems2.length).toBe(3);
 
     await page.click(closeBtn);
+    await page.waitForSelector('li', { state: 'detached' });
     const listElems3 = await page.$$('li');
     expect(listElems3.length).toBe(0);
 
     await page.click(openBtn);
     await page.keyboard.press('Escape');
+
     await page.click(closeBtn);
-    expect(listElems3.length).toBe(0);
+    await page.waitForSelector('li', { state: 'detached' });
+    const listElems4 = await page.$$('li');
+    expect(listElems4.length).toBe(0);
   });
 
   test('opens and closes dropdown with Select', async ({ page }) => {
@@ -58,13 +62,17 @@ test.describe('setDropdownOpen', () => {
     expect(listElems2.length).toBe(3);
 
     await page.click(closeBtn);
+    await page.waitForSelector('li', { state: 'detached' });
     const listElems3 = await page.$$('li');
     expect(listElems3.length).toBe(0);
 
     await page.click(openBtn);
     await page.keyboard.press('Escape');
+
     await page.click(closeBtn);
-    expect(listElems3.length).toBe(0);
+    await page.waitForSelector('li', { state: 'detached' });
+    const listElems4 = await page.$$('li');
+    expect(listElems4.length).toBe(0);
   });
 });
 

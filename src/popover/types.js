@@ -175,6 +175,7 @@ export type ArrowStylePropsArgT = {
 };
 
 export type BodyStylePropsArgT = {
+  $animationDuration: number,
   $isAnimating: boolean,
   $isHoverTrigger: boolean,
   $isOpen: boolean,
