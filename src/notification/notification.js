@@ -19,7 +19,16 @@ export default class Notification extends React.Component<ToastPropsT> {
 
   render() {
     const overrides = mergeOverrides(
-      { Body: { style: { marginTop: 0, marginBottom: 0 } } },
+      {
+        Body: {
+          style: ({ $theme }) => ({
+            marginTop: $theme.sizing.scale600,
+            marginRight: $theme.sizing.scale600,
+            marginBottom: $theme.sizing.scale600,
+            marginLeft: $theme.sizing.scale600,
+          }),
+        },
+      },
       this.props.overrides
     );
     return <Toast data-baseweb="notification" {...this.props} overrides={overrides} />;
