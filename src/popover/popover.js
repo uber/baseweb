@@ -345,6 +345,7 @@ class PopoverInner extends React.Component<PopoverPropsT, PopoverPrivateStateT> 
       $popoverOffset: popoverOffset,
       $placement: placement,
       $isAnimating: isAnimating,
+      $animationDuration: this.props.animateOutTime || ANIMATE_OUT_TIME,
       $isOpen: isOpen,
       $popoverMargin: popoverMargin,
       $isHoverTrigger: this.isHoverTrigger(),
@@ -420,7 +421,7 @@ class PopoverInner extends React.Component<PopoverPropsT, PopoverPrivateStateT> 
   }
 
   render() {
-    const mountedAndOpen = this.state.isMounted && this.props.isOpen;
+    const mountedAndOpen = this.state.isMounted && (this.props.isOpen || this.state.isAnimating);
     const rendered = [this.renderAnchor()];
     const renderedContent = mountedAndOpen || this.props.renderAll ? this.renderContent() : null;
 

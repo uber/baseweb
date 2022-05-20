@@ -148,6 +148,7 @@ class StatefulContainer extends React.Component<StatefulPopoverContainerPropsT, 
     const {
       accessibilityType,
       autoFocus,
+      animateOutTime,
       dismissOnClickOutside,
       dismissOnEsc,
       focusLock,
@@ -173,6 +174,7 @@ class StatefulContainer extends React.Component<StatefulPopoverContainerPropsT, 
 
     const popoverProps: PopoverPropsWithoutChildrenT = {
       accessibilityType,
+      animateOutTime,
       autoFocus,
       content: this.renderContent,
       focusLock,
