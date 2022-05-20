@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyletronComponent, StyletronComponentInjectedProps } from 'styletron-react';
+import { StyletronComponent } from 'styletron-react';
 import { Override } from '../overrides';
 
 export interface KIND {
@@ -37,7 +37,8 @@ export interface CustomColorsT {
   color: string;
 }
 
-export interface ButtonProps extends StyletronComponentInjectedProps<ButtonProps> {
+export interface ButtonProps {
+  ref?: React.Ref<HTMLButtonElement>;
   colors?: CustomColorsT;
   href?: string;
   target?: string;
@@ -61,9 +62,7 @@ export const StyledEndEnhancer: StyletronComponent<any>;
 export const StyledLoadingSpinner: StyletronComponent<any>;
 export const StyledLoadingSpinnerContainer: StyletronComponent<any>;
 
-export const Button: React.ForwardRefExoticComponent<
-  React.PropsWithoutRef<ButtonProps> & React.RefAttributes<HTMLButtonElement>
->;
+export const Button: StyletronComponent<ButtonProps>;
 
 export const KIND: KIND;
 export const SHAPE: SHAPE;
