@@ -553,6 +553,22 @@ const config = {
       },
     ],
   },
+  'select--render-blur': {
+    interactions: [
+      {
+        name: 'click',
+        behavior: async (page) => {
+          const buttonSelector = `[data-test-id="button"]`;
+          const selectSelector = `[data-baseweb="select"]`;
+          await page.waitForSelector(buttonSelector);
+          await page.click(buttonSelector);
+          await page.waitForSelector(selectSelector, {
+            state: 'visible',
+          });
+        },
+      },
+    ],
+  },
   'select--search-single': {
     interactions: [
       {
