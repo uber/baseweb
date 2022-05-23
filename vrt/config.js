@@ -553,7 +553,7 @@ const config = {
       },
     ],
   },
-  'select--render-blur': {
+  'select--click-triggers-blur': {
     interactions: [
       {
         name: 'click',

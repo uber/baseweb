@@ -14,18 +14,16 @@ export function Scenario() {
   const [value, setValue] = React.useState([]);
 
   const handleClick = () => {
-    console.log('click');
     setShowSelect(true);
   };
 
   const handleBlur = () => {
-    console.log('blur');
     setShowSelect(false);
   };
 
   return (
     <>
-      <button data-test-id="button" onTouchStart={handleClick}>
+      <button data-test-id="button" onClick={handleClick}>
         Show Select
       </button>
       {showSelect && (
