@@ -67,7 +67,7 @@ class PaymentCard extends React.Component<PaymentCardPropsT> {
 
   constructor(props: PaymentCardPropsT) {
     super(props);
-    // Added custom card type support
+    // For adding new custom card type, add card config to custom-cards.config.js
     CUSTOM_CARDS_CONFIGURATION.forEach((cardTypeConfig) =>
       valid.creditCardType.addCard(cardTypeConfig)
     );
