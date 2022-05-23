@@ -201,6 +201,10 @@ const routes = [
             itemId: '/components/avatar',
           },
           {
+            title: 'Badge',
+            itemId: '/components/badge',
+          },
+          {
             title: 'Drag and Drop List',
             itemId: '/components/dnd-list',
           },
