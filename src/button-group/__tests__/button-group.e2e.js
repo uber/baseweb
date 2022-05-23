@@ -10,8 +10,10 @@ LICENSE file in the root directory of this source tree.
 
 const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
 
-describe('button-group', () => {
-  it('radio mode passes basic a11y tests', async () => {
+const { expect, test } = require('@playwright/test');
+
+test.describe('button-group', () => {
+  test('radio mode passes basic a11y tests', async ({ page }) => {
     await mount(page, 'button-group--radio');
     await page.waitForSelector('div');
     await page.click('button');
@@ -20,7 +22,7 @@ describe('button-group', () => {
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
-  it('checkbox mode passes basic a11y tests', async () => {
+  test('checkbox mode passes basic a11y tests', async ({ page }) => {
     await mount(page, 'button-group--checkbox');
     await page.waitForSelector('div');
     await page.click('button');

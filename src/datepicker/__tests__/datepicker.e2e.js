@@ -10,6 +10,8 @@ LICENSE file in the root directory of this source tree.
 
 const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
 
+const { expect, test } = require('@playwright/test');
+
 const selectors = {
   input: 'input',
   calendar: '[data-baseweb="calendar"]',
@@ -25,15 +27,15 @@ const selectors = {
   monthYearSelectMenu: '[data-id="monthYearSelectMenu"]',
 };
 
-describe('Datepicker', () => {
-  it('datepicker passes basic a11y tests', async () => {
+test.describe('Datepicker', () => {
+  test('datepicker passes basic a11y tests', async ({ page }) => {
     await mount(page, 'datepicker--datepicker');
     await page.waitForSelector(selectors.input);
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
-  it('opens the calendar on click', async () => {
+  test('opens the calendar on click', async ({ page }) => {
     await mount(page, 'datepicker--datepicker');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
@@ -42,7 +44,7 @@ describe('Datepicker', () => {
     expect(calendarCount).toEqual(1);
   });
 
-  it('opens the calendar on input focus', async () => {
+  test('opens the calendar on input focus', async ({ page }) => {
     await mount(page, 'datepicker--datepicker');
     await page.waitForSelector(selectors.input);
     await page.focus(selectors.input);
@@ -51,32 +53,32 @@ describe('Datepicker', () => {
     expect(calendarCount).toEqual(1);
   });
 
-  it('closes the calendar on esc', async () => {
+  test('closes the calendar on esc', async ({ page }) => {
     await mount(page, 'datepicker--datepicker');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
     await page.waitForSelector(selectors.calendar);
     await page.keyboard.press('Escape');
     await page.waitForSelector(selectors.calendar, {
-      hidden: true,
+      state: 'hidden',
     });
   });
 
-  it('selects day when clicked', async () => {
+  test('selects day when clicked', async ({ page }) => {
     await mount(page, 'datepicker--datepicker');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
     await page.waitForSelector(selectors.calendar);
     await page.click(selectors.day);
     await page.waitForSelector(selectors.calendar, {
-      hidden: true,
+      state: 'hidden',
     });
 
     const selectedValue = await page.$eval(selectors.input, (input) => input.value);
     expect(selectedValue).toBe('2019/03/10');
   });
 
-  it('rerenders input if value is changed', async () => {
+  test('rerenders input if value is changed', async ({ page }) => {
     await mount(page, 'datepicker--datepicker');
     await page.waitForSelector(selectors.input);
     await page.click('button');
@@ -85,7 +87,7 @@ describe('Datepicker', () => {
     expect(selectedValue).toBe('2019/07/01');
   });
 
-  it('input causes calendar to switch to appropriate month', async () => {
+  test('input causes calendar to switch to appropriate month', async ({ page }) => {
     await mount(page, 'datepicker--datepicker');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
@@ -99,12 +101,12 @@ describe('Datepicker', () => {
     await page.keyboard.press('2');
 
     // make sure march is gone
-    await page.waitForSelector(selectors.day, { hidden: true });
+    await page.waitForSelector(selectors.day, { state: 'hidden' });
     // and make sure july is now visible
     await page.waitForSelector(selectors.day6);
   });
 
-  it('month year dropdown opens on arrow down', async () => {
+  test('month year dropdown opens on arrow down', async ({ page }) => {
     await mount(page, 'datepicker--datepicker');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
@@ -116,7 +118,7 @@ describe('Datepicker', () => {
     await page.waitForSelector(selectors.monthYearSelectMenu);
   });
 
-  it('month year dropdown opens on arrow up', async () => {
+  test('month year dropdown opens on arrow up', async ({ page }) => {
     await mount(page, 'datepicker--datepicker');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
@@ -128,7 +130,7 @@ describe('Datepicker', () => {
     await page.waitForSelector(selectors.monthYearSelectMenu);
   });
 
-  it('month year dropdown escape does not close calendar', async () => {
+  test('month year dropdown escape does not close calendar', async ({ page }) => {
     await mount(page, 'datepicker--datepicker');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
@@ -138,7 +140,7 @@ describe('Datepicker', () => {
     await page.keyboard.press('ArrowDown');
     await page.waitForSelector(selectors.monthYearSelectMenu);
     await page.keyboard.press('Escape');
-    await page.waitForSelector(selectors.monthYearSelectMenu, { hidden: true });
+    await page.waitForSelector(selectors.monthYearSelectMenu, { state: 'hidden' });
     await page.waitForSelector(selectors.calendar);
   });
 });

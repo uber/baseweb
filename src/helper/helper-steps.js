@@ -9,7 +9,9 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import { ArrowLeft, ArrowRight, Check } from '../icon/index.js';
+import ArrowLeft from '../icon/arrow-left.js';
+import ArrowRight from '../icon/arrow-right.js';
+import Check from '../icon/check.js';
 import { Button, KIND, SHAPE } from '../button/index.js';
 import { useStyletron } from '../styles/index.js';
 

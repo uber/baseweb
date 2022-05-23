@@ -1,6 +1,6 @@
 import metadata from './metadata.json';
 import Layout from '../../../components/layout';
-import {BlogImage, Meta, Caption} from '../../../components/blog';
+import { BlogImage, Meta, Caption } from '../../../components/blog';
 import ReactCompareImage from 'react-compare-image';
 import ExampleSnapshotPNG from './examplesnapshot.png';
 import SwipeGIF from './swipe.gif';
@@ -59,7 +59,10 @@ For a UI component library such as Base Web the tradeoff is certainly worth maki
 This is the first and most obvious reason to use visual snapshot tests. When we make a change to source code we want to be sure we have not broken any styles. For a UI library such as Base Web, styling is immensely important— it is one of our main responsibilities. Having coverage over our component visuals means better quality components and better sleep at night for us maintainers.
 
 <ReactCompareImage leftImage={LeftPNG} rightImage={RightPNG} />
-<Caption>An example of two snapshots catching a regression. Swipe the divider back and forth to see the difference.</Caption>
+<Caption>
+  An example of two snapshots catching a regression. Swipe the divider back and forth to see the
+  difference.
+</Caption>
 
 ### Test what users see
 
@@ -146,11 +149,11 @@ One of the initial steps in the pipeline is spinning up a simple static server t
 
 #### **3 - Take screenshots of each scenario**
 
-When the Storybook scenario site is built, **`vrt`** initiates a suite of Jest tests focused on capturing visual snapshots. We use `puppeteer` (via `jest-puppeteer`) to visit each scenario page, where we execute a collection of snapshot tests. We take one snapshot of a component at desktop size, one snapshot for mobile, one for our dark theme, and, if specified through a configuration file, we can run multiple "interactions" on a given scenario before taking snapshots.
+When the Storybook scenario site is built, **`vrt`** initiates a suite of Jest tests focused on capturing visual snapshots. We use `playwright` to visit each scenario page, where we execute a collection of snapshot tests. We take one snapshot of a component at desktop size, one snapshot for mobile, one for our dark theme, and, if specified through a configuration file, we can run multiple "interactions" on a given scenario before taking snapshots.
 
 #### **4 - Compare screenshots to baseline**
 
-We use [`jest-image-snapshot`](https://github.com/americanexpress/jest-image-snapshot) for comparing a screenshot taken with our `puppeteer` instance against our baseline image snapshot. If a snapshot does not match our baseline, we update the snapshot locally within our Docker instance.
+We use [`jest-image-snapshot`](https://github.com/americanexpress/jest-image-snapshot) for comparing a screenshot taken with our `playwright` instance against our baseline image snapshot. If a snapshot does not match our baseline, we update the snapshot locally within our Docker instance.
 
 #### **5 - Check for updates**
 
@@ -176,20 +179,16 @@ One of the first things you will encounter when adding visual tests to your code
 
 The solution for this is to always run the tests in the same environment, which for most projects means running tests in a Docker container. Our CI pipeline was already configured to use Docker & Linux so this became our "environment of truth". Note that it is also possible to set up your CI pipeline to always run tests on a Mac, Windows, or other environment but Linux is probably the most common choice.
 
-### Puppeteer
+### Playwright
 
-An essential tool to acquaint yourself with is [Puppeteer](https://pptr.dev/). This is a library for automating the usage of Chrome via the Chrome Devtools Protocol. Puppeteer is what allows us to visit our various scenario pages, take screenshots of our components— it also allows us to script interactions on the page so we can capture states otherwise unreachable. If using Jest, you can use a bridge like [`jest-puppeteer`](https://github.com/smooth-code/jest-puppeteer) to set up a global reference to Puppeteer in your unit tests. In many of the code snippets below, you will see references to this global `page` object.
+An essential tool to acquaint yourself with is [Playwright](https://playwright.dev/). This is a library for automating the usage of Chrome via the Chrome Devtools Protocol. Playwright is what allows us to visit our various scenario pages, take screenshots of our components— it also allows us to script interactions on the page so we can capture states otherwise unreachable.
 
 ### A static site
 
-We need to render our components somewhere so that we can visit them with Puppeteer and generate screenshots. As part of our CI pipeline, we build a small static site that can render every Storybook scenario in our codebase. We use query parameters to find the `name` of the scenario to render as well as which `theme` to use (either light or dark). Once this site is built, we run visual regression tests as well as end-to-end tests against it.
-
-### Extending Jest
-
-We already had Jest, Puppeteer, and [`jest-puppeteer`](https://github.com/smooth-code/jest-puppeteer) set up for our end-to-end tests so it was fairly easy to use the same tools to run our visual regression tests. We required only one extra library: [`jest-image-snapshot`](https://github.com/americanexpress/jest-image-snapshot). This library provides a new Jest assertion to make comparing visual snapshots as easy as writing a unit test:
+We need to render our components somewhere so that we can visit them with Playwright and generate screenshots. As part of our CI pipeline, we build a small static site that can render every Storybook scenario in our codebase. We use query parameters to find the `name` of the scenario to render as well as which `theme` to use (either light or dark). Once this site is built, we run visual regression tests as well as end-to-end tests against it.
 
 ```js
-const image = await page.screenshot(); // generate a new image with puppeteer
+const image = await page.screenshot(); // generate a new image with playwright
 expect(image).toMatchImageSnapshot(); // compare to baseline image
 ```
 
@@ -203,7 +202,7 @@ All of our snapshot tests are run under one Jest `describe` block. It essentiall
 
 ```js
 describe('Visual Regression Tests', () => {
-  getAllScenarios().forEach(scenario => {
+  getAllScenarios().forEach((scenario) => {
     describe(scenario, () => {
       it('desktop', async () => {
         await setupDesktop();
@@ -217,7 +216,7 @@ describe('Visual Regression Tests', () => {
         await setupDark();
         await snapshot();
       });
-      getAllInteractionsForScenario(scenario).forEach(interaction => {
+      getAllInteractionsForScenario(scenario).forEach((interaction) => {
         it(interaction.name, async () => {
           await interaction.behavior();
           await snapshot();
@@ -240,7 +239,7 @@ const config = {
     interactions: [
       {
         name: 'togglesMask',
-        behavior: async page => {
+        behavior: async (page) => {
           const toggleSelector = `[data-e2e="mask-toggle"]`;
           await page.$(toggleSelector);
           await page.click(toggleSelector);
@@ -251,7 +250,7 @@ const config = {
 };
 ```
 
-Each scenario can have an array of `interactions` assigned to it. The `behavior` for an `interaction` is a function that takes a [Puppeteer Page](https://pptr.dev/#?product=Puppeteer&version=v2.0.0&show=api-class-page) instance and returns a Promise that when resolved has arranged the UI into the desired state for a snapshot.
+Each scenario can have an array of `interactions` assigned to it. The `behavior` for an `interaction` is a function that takes a [Playwright Page](https://playwright.dev/docs/api/class-page) instance and returns a Promise that when resolved has arranged the UI into the desired state for a snapshot.
 
 In the above example, we will generate a new snapshot based on the `input-password` scenario. The behavior function will run before a snapshot is saved as `input-password__togglesMask-snap.png`.
 
@@ -265,7 +264,7 @@ For one, any component that uses CSS to absolutely position elements, such as a 
 
 Another issue was that some elements would expand past the desired viewport width. Because of this, we weren't getting a real picture of what a mobile user would see and screenshots varied in width from snapshot to snapshot. The solution was to "clamp" the screenshot to a fixed width while capturing the maximum height of the page.
 
-With Puppeteer that looks something like this:
+With Playwright that looks something like this:
 
 ```js
 // Use Chrome Devtools Protocol to get the scroll height of the page.
@@ -313,7 +312,7 @@ If you have any components that make use of transitions or animations you are go
 When testing components that require interactions, you often need to wait for the UI to change before you can proceed to the next step in the interaction. It might be tempting to simply pad steps with arbitrary wait times, but this is a sure way to add flakiness to your test.
 
 ```js
-const {waitForTimeout} = require('../../../e2e/helpers/index.js');
+const { waitForTimeout } = require('../../../e2e/helpers/index.js');
 await waitForTimeout(250); // waits for 250ms before proceeding
 ```
 
@@ -325,7 +324,7 @@ const config = {
     interactions: [
       {
         name: 'open',
-        behavior: async page => {
+        behavior: async (page) => {
           const inputSelector = `[data-baseweb="select"]`;
           const dropdownSelector = `[role="listbox"]`;
           await page.waitForSelector(inputSelector);
@@ -338,7 +337,7 @@ const config = {
 };
 ```
 
-[Page](https://pptr.dev/#?product=Puppeteer&version=v2.0.0&show=api-class-page), has numerous methods for awaiting events or assertions. While it is still possible for an assertion to time out while waiting, this rarely happens in practice. This approach takes a little more time to get right, but it guarantees you are not wasting time on your tests and greatly reduces the chances your tests will flake.
+[Page](https://playwright.dev/docs/api/class-page), has numerous methods for awaiting events or assertions. While it is still possible for an assertion to time out while waiting, this rarely happens in practice. This approach takes a little more time to get right, but it guarantees you are not wasting time on your tests and greatly reduces the chances your tests will flake.
 
 ### Developer UX
 

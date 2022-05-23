@@ -8,9 +8,10 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-import { formatDate, subMonths } from '../utils/index.js';
-
 const { mount } = require('../../../e2e/helpers');
+
+const { expect, test } = require('@playwright/test');
+const format = require('date-fns/format');
 
 const selectors = {
   input: 'input',
@@ -20,15 +21,12 @@ const selectors = {
   quickSelectPastMonth: '[data-baseweb="menu"] > li:nth-child(2)',
 };
 
-const NOW = new Date();
-const FORMAT_STRING = 'yyyy/MM/dd';
+const now = new Date();
+const monthAgo = new Date();
+monthAgo.setMonth(monthAgo.getMonth() - 1);
 
-describe('Stateful Datepicker Quick Select', () => {
-  beforeEach(async () => {
-    await jestPuppeteer.resetPage();
-  });
-
-  it('can quick select with keyboard', async () => {
+test.describe('Stateful Datepicker Quick Select', () => {
+  test('can quick select with keyboard', async ({ page }) => {
     await mount(page, 'datepicker--stateful-quick-select');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
@@ -37,15 +35,11 @@ describe('Stateful Datepicker Quick Select', () => {
     await page.waitForSelector(selectors.quickSelectMenu);
     await page.keyboard.press('ArrowDown');
     await page.keyboard.press('Enter');
-
     const selectedValue = await page.$eval(selectors.input, (input) => input.value);
-
-    expect(selectedValue).toBe(
-      [subMonths(NOW, 1), NOW].map((d) => formatDate(d, FORMAT_STRING)).join(' – ')
-    );
+    expect(selectedValue).toBe([monthAgo, now].map((d) => format(d, 'yyyy/MM/dd')).join(' – '));
   });
 
-  it('can quick select with mouse', async () => {
+  test('can quick select with mouse', async ({ page }) => {
     await mount(page, 'datepicker--stateful-quick-select');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
@@ -53,11 +47,7 @@ describe('Stateful Datepicker Quick Select', () => {
     await page.click(selectors.quickSelect);
     await page.waitForSelector(selectors.quickSelectMenu);
     await page.click(selectors.quickSelectPastMonth);
-
     const selectedValue = await page.$eval(selectors.input, (input) => input.value);
-
-    expect(selectedValue).toBe(
-      [subMonths(NOW, 1), NOW].map((d) => formatDate(d, FORMAT_STRING)).join(' – ')
-    );
+    expect(selectedValue).toBe([monthAgo, now].map((d) => format(d, 'yyyy/MM/dd')).join(' – '));
   });
 });

@@ -12,7 +12,7 @@ const { spawn, execSync } = require('child_process');
 const { mkdirSync, writeFileSync } = require('fs');
 const { resolve } = require('path');
 const fetch = require('node-fetch').default;
-const puppeteer = require('puppeteer');
+const { chromium } = require('playwright');
 
 const PORT = 8080;
 const LADLE_URL = `http://localhost:${PORT}`;
@@ -38,7 +38,7 @@ async function waitForPort(port) {
 
 async function measurePageBytesReceived(browser, url) {
   const page = await browser.newPage();
-  const client = await page.target().createCDPSession();
+  const client = await page.context().newCDPSession(page);
   await client.send('Network.enable');
 
   let bytesReceived = 0;
@@ -124,7 +124,7 @@ async function main() {
   }
 
   const metadata = await metaResponse.json();
-  const browser = await puppeteer.launch({
+  const browser = await chromium.launch({
     args: ['--no-sandbox', '--disable-setuid-sandbox'],
   });
   const sizes = {};

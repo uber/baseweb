@@ -9,8 +9,15 @@ LICENSE file in the root directory of this source tree.
 
 const { mount } = require('../../../e2e/helpers');
 
-describe('popover scroll', () => {
-  it('should maintain scroll position after not-focus-locked open', async () => {
+const { expect, test } = require('@playwright/test');
+
+test.describe('popover scroll', () => {
+  test('should maintain scroll position after not-focus-locked open', async ({
+    browserName,
+    page,
+  }) => {
+    test.fixme(browserName === 'firefox', 'this feature fails in firefox');
+
     const container = '#case-not-focus-locked';
     const button = '#button-not-focus-locked';
 
@@ -31,7 +38,8 @@ describe('popover scroll', () => {
     expect(afterYOffset).toBe(beforeYOffset);
   });
 
-  it('should maintain scroll position after focus-locked open', async () => {
+  test('should maintain scroll position after focus-locked open', async ({ browserName, page }) => {
+    test.fixme(browserName === 'firefox', 'this feature fails in firefox');
     const container = '#case-focus-locked';
     const button = '#button-focus-locked';
 

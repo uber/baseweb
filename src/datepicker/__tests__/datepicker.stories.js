@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
+import { Scenario as CalendarIconOverridesScenario } from './calendar-icon-overrides.scenario.js';
 import { Scenario as CalendarMultiMonthScenario } from './calendar-multi-month.scenario.js';
 import { Scenario as CalendarTimeSelectScenario } from './calendar-time-select.scenario.js';
 import { Scenario as CalendarScenario } from './calendar.scenario.js';
@@ -14,6 +15,7 @@ import { Scenario as DatepickerI18nChinese } from './datepicker-i18n-chinese.sce
 import { Scenario as DatepickerIntRange } from './datepicker-int-range.scenario.js';
 import { Scenario as DatepickerInt } from './datepicker-int.scenario.js';
 import { Scenario as DatepickerMask } from './datepicker-mask.scenario.js';
+import { Scenario as DatepickerOnChangeFlow } from './datepicker-onchange-flow.scenario.js';
 import { Scenario as DatepickerRangeHighlight } from './datepicker-range-highlight.scenario.js';
 import { Scenario as DatepickerRangeMultiMonth } from './datepicker-range-multi-month.scenario.js';
 import { Scenario as DatepickerRange } from './datepicker-range.scenario.js';
@@ -34,6 +36,7 @@ import { Scenario as StatefulDatepicker } from './stateful-datepicker.scenario.j
 import { Scenario as StatefulRangeDatepicker } from './stateful-range-datepicker.scenario.js';
 import { Scenario as StatefulRangeQuickSelectScenario } from './stateful-range-quick-select.scenario.js';
 
+export const CalendarIconOverrides = () => <CalendarIconOverridesScenario />;
 export const CalendarMultiMonth = () => <CalendarMultiMonthScenario />;
 export const CalendarTimeSelect = () => <CalendarTimeSelectScenario />;
 export const Calendar = () => <CalendarScenario />;
@@ -50,6 +53,7 @@ export const RangeLockedBehavior = () => <DatepickerRangeLockedBehavior />;
 export const RangeExcludeDates = () => <DatepickerRangeExcludeDates />;
 export const Datepicker = () => <DatepickerDefault />;
 export const DatepickerTime = () => <DatepickerTimeScenario />;
+export const OnChangeFlow = () => <DatepickerOnChangeFlow />;
 export const StatefulColorStates = () => <DatepickersColorStates />;
 export const StatefulComposedRange = () => <DatepickersComposedRange />;
 export const StatefulComposedSingle = () => <DatepickersComposedSingle />;

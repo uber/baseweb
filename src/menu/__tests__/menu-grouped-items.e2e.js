@@ -10,6 +10,8 @@ LICENSE file in the root directory of this source tree.
 
 const { mount } = require('../../../e2e/helpers');
 
+const { expect, test } = require('@playwright/test');
+
 const highlightedSelector = '[aria-selected="true"]';
 
 async function findHighlightedLabel(page) {
@@ -25,8 +27,8 @@ function matchArrayElements(a, b) {
   return true;
 }
 
-describe('menu-grouped-items', () => {
-  it('renders expected li elements', async () => {
+test.describe('menu-grouped-items', () => {
+  test('renders expected li elements', async ({ page }) => {
     await mount(page, 'menu--grouped-items');
     const listElements = await page.$$('li');
     const actual = await Promise.all(
@@ -49,7 +51,7 @@ describe('menu-grouped-items', () => {
     expect(matchArrayElements(actual, expected)).toBe(true);
   });
 
-  it('skips optgroup headers when navigating with keyboard', async () => {
+  test('skips optgroup headers when navigating with keyboard', async ({ page }) => {
     await mount(page, 'menu--grouped-items');
     await page.keyboard.press('Tab');
     await page.keyboard.press('ArrowDown');

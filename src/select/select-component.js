@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable cup/no-undef */
 import * as React from 'react';
 
-import { getOverrides } from '../helpers/overrides.js';
+import { getOverrides, mergeOverrides } from '../helpers/overrides.js';
 import DeleteAlt from '../icon/delete-alt.js';
 import TriangleDownIcon from '../icon/triangle-down.js';
 import SearchIconComponent from '../icon/search.js';
@@ -18,7 +18,7 @@ import { Popover, PLACEMENT } from '../popover/index.js';
 import { UIDConsumer } from 'react-uid';
 
 import AutosizeInput from './autosize-input.js';
-import { TYPE, STATE_CHANGE_TYPE } from './constants.js';
+import { TYPE, STATE_CHANGE_TYPE, SIZE } from './constants.js';
 import defaultProps from './default-props.js';
 import SelectDropdown from './dropdown.js';
 import {
@@ -28,8 +28,6 @@ import {
   StyledValueContainer,
   StyledInputContainer,
   StyledIconsContainer,
-  StyledSelectArrow,
-  StyledClearIcon,
   StyledSearchIconContainer,
   StyledLoadingIndicator,
 } from './styled-components.js';
@@ -497,11 +495,16 @@ class Select extends React.Component<PropsT, SelectStateT> {
     }
   };
 
-  // This method is to preserve backwards compatibility for users using controlRef to directly
-  // access the input element. This capability is not documented, and may be removed in the future.
   //flowlint-next-line unclear-type:off
   handleInputRef = (input: React.ElementRef<any>) => {
     this.input = input;
+
+    if (typeof this.props.inputRef === 'function') {
+      this.props.inputRef(input);
+    } else if (this.props.inputRef) {
+      this.props.inputRef.current = input;
+    }
+
     if (this.props.controlRef && typeof this.props.controlRef === 'function') {
       this.props.controlRef(input);
     }
@@ -783,10 +786,17 @@ class Select extends React.Component<PropsT, SelectStateT> {
       return;
     }
 
-    const sharedProps = this.getSharedProps();
+    const { $size, ...sharedProps } = this.getSharedProps();
     const { overrides = {} } = this.props;
     const [ClearIcon, clearIconProps] = getOverrides(overrides.ClearIcon, DeleteAlt);
+
     const ariaLabel = this.props.multi ? 'Clear all' : 'Clear value';
+    const sizes = {
+      [SIZE.mini]: 15,
+      [SIZE.compact]: 15,
+      [SIZE.default]: 18,
+      [SIZE.large]: 22,
+    };
 
     return (
       <ClearIcon
@@ -794,15 +804,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
         aria-label={ariaLabel}
         onClick={this.clearValue}
         role="button"
-        overrides={{
-          Svg: {
-            component: StyledClearIcon,
-            props:
-              overrides.ClearIcon && overrides.ClearIcon.props ? overrides.ClearIcon.props : {},
-            style:
-              overrides.ClearIcon && overrides.ClearIcon.style ? overrides.ClearIcon.style : {},
-          },
-        }}
+        size={sizes[this.props.size] || sizes[SIZE.default]}
         {...sharedProps}
         {...clearIconProps}
       />
@@ -813,26 +815,34 @@ class Select extends React.Component<PropsT, SelectStateT> {
     if (this.props.type !== TYPE.select) {
       return null;
     }
+
+    const { $size, ...sharedProps } = this.getSharedProps();
     const { overrides = {} } = this.props;
     const [SelectArrow, selectArrowProps] = getOverrides(overrides.SelectArrow, TriangleDownIcon);
-    const sharedProps = this.getSharedProps();
+    selectArrowProps.overrides = mergeOverrides(
+      {
+        Svg: {
+          style: ({ $theme, $disabled }) => {
+            return {
+              color: $disabled ? $theme.colors.inputTextDisabled : $theme.colors.contentPrimary,
+            };
+          },
+        },
+      },
+      selectArrowProps.overrides
+    );
+
+    const sizes = {
+      [SIZE.mini]: 16,
+      [SIZE.compact]: 16,
+      [SIZE.default]: 20,
+      [SIZE.large]: 24,
+    };
+
     return (
       <SelectArrow
-        size={16}
+        size={sizes[this.props.size] || sizes[SIZE.default]}
         title={'open'}
-        overrides={{
-          Svg: {
-            component: StyledSelectArrow,
-            props:
-              overrides.SelectArrow && overrides.SelectArrow.props
-                ? overrides.SelectArrow.props
-                : {},
-            style:
-              overrides.SelectArrow && overrides.SelectArrow.style
-                ? overrides.SelectArrow.style
-                : {},
-          },
-        }}
         {...sharedProps}
         {...selectArrowProps}
       />

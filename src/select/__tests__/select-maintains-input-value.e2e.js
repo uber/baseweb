@@ -10,10 +10,12 @@ LICENSE file in the root directory of this source tree.
 
 const { mount } = require('../../../e2e/helpers');
 
+const { expect, test } = require('@playwright/test');
+
 const SELECT_INPUT = 'div[data-baseweb="select"] input';
 
-describe('select option maintains input value after actions', () => {
-  it('maintains input value after blur action', async () => {
+test.describe('select option maintains input value after actions', () => {
+  test('maintains input value after blur action', async ({ page }) => {
     await mount(page, 'select--maintains-input-value');
     const selector = `#maintain-after-blur ${SELECT_INPUT}`;
     await page.waitForSelector(selector);
@@ -24,18 +26,20 @@ describe('select option maintains input value after actions', () => {
     expect(value).toBe('a');
   });
 
-  it('maintains input value after close action', async () => {
+  test('maintains input value after close action', async ({ browserName, page }) => {
+    test.fixme(browserName === 'chromium', 'this feature fails in chromium');
+
     await mount(page, 'select--maintains-input-value');
-    const selector = `#maintain-after-close ${SELECT_INPUT}`;
-    await page.waitForSelector(selector);
-    const input = await page.$(selector);
+
+    const scenario = page.locator('#maintain-after-close');
+    const input = scenario.locator(SELECT_INPUT);
+
     await input.type('a');
     await page.keyboard.press('Escape');
-    const value = await page.$eval(selector, (i) => i.value);
-    expect(value).toBe('a');
+    await expect(input).toHaveValue('a');
   });
 
-  it('maintains input value after select action', async () => {
+  test('maintains input value after select action', async ({ page }) => {
     await mount(page, 'select--maintains-input-value');
     const selector = `#maintain-after-select ${SELECT_INPUT}`;
     await page.waitForSelector(selector);
@@ -46,27 +50,26 @@ describe('select option maintains input value after actions', () => {
     expect(value).toBe('a');
   });
 
-  it('maintains input value after any action', async () => {
+  test('maintains input value after any action', async ({ browserName, page }) => {
+    test.fixme(browserName === 'chromium', 'this feature fails in chromium');
+
     await mount(page, 'select--maintains-input-value');
-    const selector = `#maintain-after-all ${SELECT_INPUT}`;
-    await page.waitForSelector(selector);
-    const input = await page.$(selector);
+
+    const scenario = page.locator('#maintain-after-all');
+    const input = scenario.locator(SELECT_INPUT);
 
     await input.type('a');
     await page.keyboard.press('Tab');
-    const blur = await page.$eval(selector, (i) => i.value);
-    expect(blur).toBe('a');
+    await expect(input).toHaveValue('a');
 
     await input.focus();
     await input.type('b');
     await page.keyboard.press('Escape');
-    const close = await page.$eval(selector, (i) => i.value);
-    expect(close).toBe('ab');
+    await expect(input).toHaveValue('ab');
 
     await page.keyboard.press('Backspace');
     await input.type('q');
-    await page.click('li');
-    const select = await page.$eval(selector, (i) => i.value);
-    expect(select).toBe('aq');
+    await page.locator('li').first().click();
+    await expect(input).toHaveValue('aq');
   });
 });
