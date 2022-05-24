@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import { act } from 'react-dom/test-utils';
-import { render, fireEvent, screen } from '@testing-library/react';
+import { render, fireEvent, screen, getByTestId } from '@testing-library/react';
 import BaseProvider from '../../helpers/base-provider.js';
 import { LightTheme } from '../../themes/index.js';
 
@@ -150,5 +150,56 @@ describe('setInputValue', function () {
       }
     });
     expect(input?.getAttribute('value')).toBe('item not included');
+  });
+});
+
+describe('setInputFocus', function () {
+  const getBorderColor = (container) => {
+    let controlContainer = getByTestId(container, 'control-container');
+
+    let testStyle = controlContainer.getAttribute('test-style');
+    let style = JSON.parse(testStyle || '');
+
+    return style.borderLeftColor;
+  };
+
+  it('focuses the input', () => {
+    const options = [
+      { id: 'a', label: 'a' },
+      { id: 'b', label: 'b' },
+      { id: 'c', label: 'c' },
+    ];
+    const controlRef = React.createRef();
+
+    const TestCase = () => {
+      const [value, setValue] = React.useState([]);
+
+      return (
+        <BaseProvider theme={LightTheme}>
+          <Select
+            value={value}
+            onChange={(params) => setValue(params.value)}
+            options={options}
+            controlRef={controlRef}
+            overrides={{
+              ControlContainer: {
+                props: { 'data-testid': 'control-container' },
+              },
+            }}
+          />
+        </BaseProvider>
+      );
+    };
+
+    const { container, getByRole } = render(<TestCase />);
+    const input = getByRole('combobox');
+
+    expect(getBorderColor(container)).toEqual('$theme.colors.inputBorder');
+
+    fireEvent.focus(input);
+    expect(getBorderColor(container)).toEqual('$theme.colors.borderSelected');
+
+    fireEvent.blur(input);
+    expect(getBorderColor(container)).toEqual('$theme.colors.inputBorder');
   });
 });

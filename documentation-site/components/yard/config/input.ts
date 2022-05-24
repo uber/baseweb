@@ -1,10 +1,10 @@
 import pick from 'just-pick';
 
-import {Input, ADJOINED, SIZE} from 'baseui/input';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
+import { Input, ADJOINED, SIZE } from 'baseui/input';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
 
-import {changeHandlers} from './common/common';
+import { changeHandlers } from './common/common';
 
 const inputPropsType = require('!!extract-react-types-loader!../../../../src/input/input.js');
 
@@ -56,6 +56,11 @@ export const inputProps = {
     type: PropTypes.Boolean,
     description: 'Renders component in positive state.',
   },
+  readOnly: {
+    value: false,
+    type: PropTypes.Boolean,
+    description: 'Renders component in readOnly state.',
+  },
   size: {
     value: 'SIZE.default',
     defaultValue: 'SIZE.default',
@@ -82,8 +87,7 @@ export const inputProps = {
   clearable: {
     value: false,
     type: PropTypes.Boolean,
-    description:
-      'If true, adds a clear value icon button to the end of the input container.',
+    description: 'If true, adds a clear value icon button to the end of the input container.',
   },
   clearOnEscape: {
     value: true,
@@ -95,15 +99,13 @@ export const inputProps = {
     value: undefined,
     placeholder: '() => <span>$</span>',
     type: PropTypes.Function,
-    description:
-      'An input helper rendered before and attached to the input field.',
+    description: 'An input helper rendered before and attached to the input field.',
   },
   endEnhancer: {
     value: undefined,
     placeholder: '() => <span>?</span>',
     type: PropTypes.Function,
-    description:
-      'An input helper rendered after and attached to the input field.',
+    description: 'An input helper rendered after and attached to the input field.',
   },
   inputMode: {
     value: undefined,
@@ -158,8 +160,7 @@ export const inputProps = {
   pattern: {
     value: undefined,
     type: PropTypes.String,
-    description:
-      'A regex that is used to validate the value of the input on form submission.',
+    description: 'A regex that is used to validate the value of the input on form submission.',
     hidden: true,
   },
   id: {
@@ -205,13 +206,7 @@ export const inputProps = {
     description: 'max number of characters accepted in the input element',
     hidden: true,
   },
-  ...pick(changeHandlers, [
-    'onBlur',
-    'onKeyDown',
-    'onKeyPress',
-    'onKeyUp',
-    'onFocus',
-  ]),
+  ...pick(changeHandlers, ['onBlur', 'onKeyDown', 'onKeyPress', 'onKeyUp', 'onFocus']),
   required: {
     value: false,
     type: PropTypes.Boolean,
@@ -260,6 +255,7 @@ const InputConfig: TConfig = {
             description: 'True when the component is focused.',
           },
           $disabled: 'disabled',
+          $isReadOnly: 'readOnly',
           $error: 'error',
           $positive: 'positive',
           $adjoined: 'adjoined',
@@ -267,8 +263,7 @@ const InputConfig: TConfig = {
           $required: 'required',
           $position: {
             type: PropTypes.Enum,
-            description:
-              'ADJOINED state. How is the input grouped with other controls.',
+            description: 'ADJOINED state. How is the input grouped with other controls.',
           },
         },
       },

@@ -20,6 +20,7 @@ export type SharedStylePropsT = {
   $disabled: boolean,
   $error: boolean,
   $isFocused: boolean,
+  $isReadOnly: boolean,
   $positive?: boolean,
   $required: boolean,
   $size: SizeT,
