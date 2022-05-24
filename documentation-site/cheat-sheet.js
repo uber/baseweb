@@ -206,6 +206,41 @@ const outlines = [
     ],
   },
   {
+    file: 'src/badge/types.js',
+    definitions: [
+      { name: 'HierarchyT', lineStart: 12, children: [] },
+      { name: 'ShapeT', lineStart: 13, children: [] },
+      { name: 'ColorT', lineStart: 14, children: [] },
+      { name: 'PlacementT', lineStart: 15, children: [] },
+      { name: 'RoleT', lineStart: 16, children: [] },
+      {
+        name: 'BadgeOverridesT',
+        lineStart: 18,
+        children: [
+          { name: 'Root', lineStart: 19 },
+          { name: 'Positioner', lineStart: 20 },
+          { name: 'Badge', lineStart: 21 },
+        ],
+      },
+      {
+        name: 'BadgePropsT',
+        lineStart: 24,
+        children: [
+          { name: 'content', lineStart: 25 },
+          { name: 'hierarchy', lineStart: 26 },
+          { name: 'shape', lineStart: 27 },
+          { name: 'color', lineStart: 28 },
+          { name: 'placement', lineStart: 29 },
+          { name: 'hidden', lineStart: 30 },
+          { name: 'horizontalOffset', lineStart: 31 },
+          { name: 'verticalOffset', lineStart: 32 },
+          { name: 'overrides', lineStart: 33 },
+          { name: 'children', lineStart: 34 },
+        ],
+      },
+    ],
+  },
+  {
     file: 'src/block/types.js',
     definitions: [
       { name: 'OverridesT', lineStart: 13, children: [{ name: 'Block', lineStart: 14 }] },
