@@ -108,7 +108,7 @@ export const StyledPositioner = styled<{
   $horizontalOffset?: ?string,
   $verticalOffset?: ?string,
 }>('div', ({ $theme, $role, $placement, $horizontalOffset, $verticalOffset }) => {
-  let positionStyle = POSITION_STYLES[$placement][$role];
+  let positionStyle = POSITION_STYLES[$role][$placement];
 
   if ($verticalOffset) {
     if (
@@ -144,8 +144,6 @@ export const StyledPositioner = styled<{
   return {
     ...positionStyle,
     position: 'absolute',
-    // TODO(LUKE): this seems hacky 🤔
-    height: '20px',
-    lineHeight: 'initial',
+    height: 'unset',
   };
 });
