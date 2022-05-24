@@ -47,11 +47,11 @@ export interface LabelOverrides {
 }
 
 export interface PropsT {
-  artwork?: React.ReactNode;
+  artwork?: (args: { size: number }) => React.ReactNode;
   artworkSize?: ArtworkSizesT | number;
   shape?: ShapeT;
   children: React.ReactNode;
-  endEnhancer?: React.ReactNode;
+  endEnhancer?: () => React.ReactNode;
   overrides?: ListOverrides;
   sublist?: boolean;
 }
