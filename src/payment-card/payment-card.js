@@ -24,10 +24,13 @@ import MaestroIcon from './icons/maestro.js';
 import MastercardIcon from './icons/mastercard.js';
 import UnionPayIcon from './icons/unionpay.js';
 import VisaIcon from './icons/visa.js';
+import UatpIcon from './icons/uatp.js';
 
 import { IconWrapper as StyledIconWrapper } from './styled-components.js';
 
 import type { PaymentCardPropsT } from './types.js';
+
+import { CUSTOM_CARDS_CONFIGURATION } from './custom-cards.config.js';
 
 const CardTypeToComponent = {
   visa: VisaIcon,
@@ -40,6 +43,7 @@ const CardTypeToComponent = {
   maestro: MaestroIcon,
   elo: EloIcon,
   generic: GenericIcon,
+  uatp: UatpIcon,
 };
 
 class PaymentCard extends React.Component<PaymentCardPropsT> {
@@ -60,6 +64,14 @@ class PaymentCard extends React.Component<PaymentCardPropsT> {
     startEnhancer: null,
     endEnhancer: null,
   };
+
+  constructor(props: PaymentCardPropsT) {
+    super(props);
+    // For adding new custom card type, add card config to custom-cards.config.js
+    CUSTOM_CARDS_CONFIGURATION.forEach((cardTypeConfig) =>
+      valid.creditCardType.addCard(cardTypeConfig)
+    );
+  }
 
   componentDidUpdate(prevProps: PaymentCardPropsT) {
     if (this.inRef && prevProps.value !== this.props.value) {
