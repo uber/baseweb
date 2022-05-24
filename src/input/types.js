@@ -38,6 +38,8 @@ export type StateReducerT = (
 export type SharedPropsT = {|
   /** Renders UI in 'focus' state */
   $isFocused: boolean,
+  /** Renders UI in 'readOnly' state */
+  $isReadOnly: boolean,
   /** Renders UI in 'disabled' state */
   $disabled: boolean,
   /** Renders UI in 'error' state */
@@ -141,6 +143,8 @@ export type BaseInputPropsT<T> = {|
   max?: number,
   /** step value when used as input type=number */
   step?: number | 'any',
+  /** Renders component in 'readOnly' state. */
+  readOnly?: boolean,
 |};
 
 export type InputPropsT = {|

@@ -19,6 +19,7 @@ class Textarea extends React.Component<TextareaPropsT, { isFocused: boolean }> {
   static defaultProps = {
     autoFocus: false,
     disabled: false,
+    readOnly: false,
     error: false,
     name: '',
     onBlur: () => {},
@@ -35,17 +36,21 @@ class Textarea extends React.Component<TextareaPropsT, { isFocused: boolean }> {
   };
 
   state = {
-    isFocused: this.props.autoFocus || false,
+    isFocused: (this.props.autoFocus && !this.props.readOnly) || false,
   };
 
   onFocus = (e: SyntheticFocusEvent<HTMLTextAreaElement>) => {
-    this.setState({ isFocused: true });
-    this.props.onFocus(e);
+    if (!this.props.readOnly) {
+      this.setState({ isFocused: true });
+      this.props.onFocus(e);
+    }
   };
 
   onBlur = (e: SyntheticFocusEvent<HTMLTextAreaElement>) => {
-    this.setState({ isFocused: false });
-    this.props.onBlur(e);
+    if (!this.props.readOnly) {
+      this.setState({ isFocused: false });
+      this.props.onBlur(e);
+    }
   };
 
   render() {
@@ -63,6 +68,7 @@ class Textarea extends React.Component<TextareaPropsT, { isFocused: boolean }> {
       <Root
         data-baseweb="textarea"
         $isFocused={this.state.isFocused}
+        $isReadOnly={this.props.readOnly}
         $disabled={this.props.disabled}
         $error={this.props.error}
         $positive={this.props.positive}

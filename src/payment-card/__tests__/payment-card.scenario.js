@@ -30,6 +30,8 @@ export function Scenario() {
       <PaymentCard value="6246729687894613" />
       <br />
       <PaymentCard value="4111111111111111" />
+      <br />
+      <PaymentCard value="153342103478161" />
     </React.Fragment>
   );
 }

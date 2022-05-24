@@ -16,6 +16,7 @@ test('Utils - getSharedProps', () => {
     size: SIZE.default,
     required: false,
     disabled: false,
+    readOnly: false,
     error: false,
     positive: false,
     value: 'value',
