@@ -217,22 +217,6 @@ const config = {
       },
     ],
   },
-  'datepicker--rtl': {
-    interactions: [
-      {
-        name: 'calendarOpened',
-        behavior: async (page) => {
-          const input = 'input';
-          const calendar = '[data-baseweb="calendar"]';
-          await page.waitForSelector(input);
-          await page.click(input);
-          await page.waitForSelector(calendar, {
-            state: 'visible',
-          });
-        },
-      },
-    ],
-  },
   'datepicker--range': {
     interactions: [
       {
