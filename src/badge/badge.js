@@ -8,10 +8,9 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import { getOverrides } from '../helpers/overrides.js';
-import { StyledRoot, StyledPositioner } from './styled-components.js';
+import { StyledInlineBadge, StyledRoot, StyledPositioner } from './styled-components.js';
 import type { BadgePropsT } from './types.js';
 import { PLACEMENT, ROLES, SHAPE, HIERARCHY } from './constants.js';
-import InlineBadge from './inline-badge.js';
 import { getAnchorFromChildren } from './utils.js';
 
 const Badge = ({
@@ -26,9 +25,11 @@ const Badge = ({
   hidden,
   overrides = {},
 }: BadgePropsT) => {
-  const [Badge, badgeProps] = getOverrides(overrides.Badge, InlineBadge);
+  const [Badge, badgeProps] = getOverrides(overrides.Badge, StyledInlineBadge);
   const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
   const [Positioner, positionerProps] = getOverrides(overrides.Positioner, StyledPositioner);
+
+  const anchor = getAnchorFromChildren(children);
 
   if (__DEV__) {
     if (
@@ -37,18 +38,20 @@ const Badge = ({
     ) {
       console.warn('Rectangle badges should only be placed in a corner or used inline');
     }
-    if (shape === SHAPE.rectangle && hierarchy === HIERARCHY.secondary) {
+    if (shape === SHAPE.rectangle && hierarchy === HIERARCHY.secondary && anchor) {
       console.warn(
         'Secondary badges should not be positioned. Use the inline version of this badge instead.'
       );
     }
+    if (shape === SHAPE.pill && hierarchy === HIERARCHY.secondary) {
+      console.warn('Pill badges should only be used with primary hierarchy');
+    }
   }
 
-  const anchor = getAnchorFromChildren(children);
   // If there's no anchor, render the badge inline
   if (!anchor) {
     return (
-      <Badge color={color} shape={shape} hidden={hidden} {...badgeProps}>
+      <Badge $hierarchy={hierarchy} $shape={shape} $color={color} $hidden={hidden} {...badgeProps}>
         {content}
       </Badge>
     );
@@ -64,7 +67,13 @@ const Badge = ({
         $role={ROLES.badge}
         {...positionerProps}
       >
-        <Badge hierarchy={hierarchy} color={color} shape={shape} hidden={hidden} {...badgeProps}>
+        <Badge
+          $hierarchy={hierarchy}
+          $shape={shape}
+          $color={color}
+          $hidden={hidden}
+          {...badgeProps}
+        >
           {content}
         </Badge>
       </Positioner>

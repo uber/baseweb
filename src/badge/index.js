@@ -6,7 +6,6 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 export { default as Badge } from './badge.js';
-export { default as InlineBadge } from './inline-badge.js';
 
 export { HIERARCHY, SHAPE, COLOR, PLACEMENT } from './constants.js';
 

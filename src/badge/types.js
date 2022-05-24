@@ -15,32 +15,21 @@ export type ColorT = $Values<typeof COLOR>;
 export type PlacementT = $Values<typeof PLACEMENT>;
 export type RoleT = $Values<typeof ROLES>;
 
-export type OffsetT = string;
-
-export type InlineBadgeOverridesT = {
-  Badge?: OverrideT,
-};
-
 export type BadgeOverridesT = {
   Root?: OverrideT,
   Positioner?: OverrideT,
   Badge?: OverrideT,
 };
 
-export type InlineBadgePropsT = {
-  color?: ColorT,
-  shape?: ShapeT,
-  hierarchy?: HierarchyT,
-  children: ?React.Node,
-  overrides?: InlineBadgeOverridesT,
-  hidden?: boolean,
-};
-
 export type BadgePropsT = {
+  content: ?React.Node,
+  hierarchy?: HierarchyT,
+  shape?: ShapeT,
+  color?: ColorT,
+  placement?: PlacementT,
+  hidden?: boolean,
   horizontalOffset?: string,
   verticalOffset?: string,
-  placement?: PlacementT,
-  children: ?React.Node,
-  content: ?React.Node,
   overrides?: BadgeOverridesT,
-} & InlineBadgePropsT;
+  children?: React.Node,
+};

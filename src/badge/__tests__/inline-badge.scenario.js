@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { HIERARCHY, SHAPE } from '../constants.js';
 
-import { InlineBadge, COLOR } from '../index.js';
+import { Badge, COLOR } from '../index.js';
 
 const layout = {
   display: 'flex',
@@ -21,43 +21,27 @@ export function Scenario() {
   return (
     <div>
       <div style={layout}>
-        <InlineBadge>Rect</InlineBadge>
-        <InlineBadge color={COLOR.primary}>Rect</InlineBadge>
-        <InlineBadge color={COLOR.positive}>Rect</InlineBadge>
-        <InlineBadge color={COLOR.negative}>Rect</InlineBadge>
-        <InlineBadge color={COLOR.warning}>Rect</InlineBadge>
+        <Badge content="Rect" />
+        <Badge content="Rect" color={COLOR.primary} />
+        <Badge content="Rect" color={COLOR.positive} />
+        <Badge content="Rect" color={COLOR.negative} />
+        <Badge content="Rect" color={COLOR.warning} />
       </div>
 
       <div style={layout}>
-        <InlineBadge hierarchy={HIERARCHY.secondary}>Rect</InlineBadge>
-        <InlineBadge hierarchy={HIERARCHY.secondary} color={COLOR.primary}>
-          Rect
-        </InlineBadge>
-        <InlineBadge hierarchy={HIERARCHY.secondary} color={COLOR.positive}>
-          Rect
-        </InlineBadge>
-        <InlineBadge hierarchy={HIERARCHY.secondary} color={COLOR.negative}>
-          Rect
-        </InlineBadge>
-        <InlineBadge hierarchy={HIERARCHY.secondary} color={COLOR.warning}>
-          Rect
-        </InlineBadge>
+        <Badge content="Rect" hierarchy={HIERARCHY.secondary} />
+        <Badge content="Rect" hierarchy={HIERARCHY.secondary} color={COLOR.primary} />
+        <Badge content="Rect" hierarchy={HIERARCHY.secondary} color={COLOR.positive} />
+        <Badge content="Rect" hierarchy={HIERARCHY.secondary} color={COLOR.negative} />
+        <Badge content="Rect" hierarchy={HIERARCHY.secondary} color={COLOR.warning} />
       </div>
 
       <div style={layout}>
-        <InlineBadge shape={SHAPE.pill}>Pill</InlineBadge>
-        <InlineBadge shape={SHAPE.pill} color={COLOR.primary}>
-          Pill
-        </InlineBadge>
-        <InlineBadge shape={SHAPE.pill} color={COLOR.positive}>
-          Pill
-        </InlineBadge>
-        <InlineBadge shape={SHAPE.pill} color={COLOR.negative}>
-          Pill
-        </InlineBadge>
-        <InlineBadge shape={SHAPE.pill} color={COLOR.warning}>
-          Pill
-        </InlineBadge>
+        <Badge content="Pill" shape={SHAPE.pill} />
+        <Badge content="Pill" shape={SHAPE.pill} color={COLOR.primary} />
+        <Badge content="Pill" shape={SHAPE.pill} color={COLOR.positive} />
+        <Badge content="Pill" shape={SHAPE.pill} color={COLOR.negative} />
+        <Badge content="Pill" shape={SHAPE.pill} color={COLOR.warning} />
       </div>
     </div>
   );

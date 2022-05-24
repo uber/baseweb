@@ -12,7 +12,7 @@ export const getAnchorFromChildren = (children: ?React.Node) => {
   if (childArray.length !== 1) {
     // eslint-disable-next-line no-console
     console.error(
-      `[baseui] Exactly 1 child must be passed to Badge, found ${childArray.length} children`
+      `[baseui] No more than 1 child may be passed to Badge, found ${childArray.length} children`
     );
   }
   return childArray[0];

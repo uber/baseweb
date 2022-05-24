@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import { styled } from '../styles/index.js';
-import type { PlacementT, ColorT, ShapeT, RoleT, OffsetT, HierarchyT } from './types.js';
+import type { PlacementT, ColorT, ShapeT, RoleT, HierarchyT } from './types.js';
 import { COLOR, SHAPE, POSITION_STYLES, PLACEMENT, HIERARCHY } from './constants.js';
 
 function getColorStyles({ $theme, $hierarchy, $color }): {|
@@ -105,8 +105,8 @@ export const StyledInlineBadge = styled<{
 export const StyledPositioner = styled<{
   $role: RoleT,
   $placement: PlacementT,
-  $horizontalOffset: ?OffsetT,
-  $verticalOffset: ?OffsetT,
+  $horizontalOffset?: ?string,
+  $verticalOffset?: ?string,
 }>('div', ({ $theme, $role, $placement, $horizontalOffset, $verticalOffset }) => {
   let positionStyle = POSITION_STYLES[$placement][$role];
 

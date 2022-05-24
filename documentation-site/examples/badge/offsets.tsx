@@ -24,7 +24,7 @@ export default function Example() {
         <div style={styles}>
           <Avatar
             name={`user`}
-            size={'64px'}
+            size={'72px'}
             src={`https://avatars.dicebear.com/api/human/4.svg?width=285&mood=happy`}
           />
         </div>
