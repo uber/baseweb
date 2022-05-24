@@ -28,6 +28,7 @@ const MaskOverride = React.forwardRef<MaskedInputPropsT, HTMLInputElement>(
       onBlur,
       value,
       disabled,
+      readOnly,
       ...restProps
     }: MaskedInputPropsT,
     ref
@@ -39,6 +40,7 @@ const MaskOverride = React.forwardRef<MaskedInputPropsT, HTMLInputElement>(
         onBlur={onBlur}
         value={value}
         disabled={disabled}
+        readOnly={readOnly}
         {...restProps}
       >
         {(props) => (
@@ -49,6 +51,7 @@ const MaskOverride = React.forwardRef<MaskedInputPropsT, HTMLInputElement>(
             onBlur={onBlur}
             value={value}
             disabled={disabled}
+            readOnly={readOnly}
             {...props}
           />
         )}

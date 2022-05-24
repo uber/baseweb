@@ -64,6 +64,7 @@ class BaseInput<T: HTMLInputElement | HTMLTextAreaElement> extends React.Compone
     role: null,
     size: SIZE.default,
     type: 'text',
+    readOnly: false,
   };
 
   inputRef = this.props.inputRef || React.createRef<T>();
@@ -117,7 +118,12 @@ class BaseInput<T: HTMLInputElement | HTMLTextAreaElement> extends React.Compone
   }
 
   onInputKeyDown = (e: KeyboardEvent) => {
-    if (this.props.clearOnEscape && e.key === 'Escape' && this.inputRef.current) {
+    if (
+      this.props.clearOnEscape &&
+      e.key === 'Escape' &&
+      this.inputRef.current &&
+      !this.props.readOnly
+    ) {
       this.clearValue();
       // prevent event from closing modal or doing something unexpected
       e.stopPropagation();
@@ -131,13 +137,17 @@ class BaseInput<T: HTMLInputElement | HTMLTextAreaElement> extends React.Compone
   };
 
   onFocus = (e: SyntheticFocusEvent<T>) => {
-    this.setState({ isFocused: true });
-    this.props.onFocus(e);
+    if (!this.props.readOnly) {
+      this.setState({ isFocused: true });
+      this.props.onFocus(e);
+    }
   };
 
   onBlur = (e: SyntheticFocusEvent<T>) => {
-    this.setState({ isFocused: false });
-    this.props.onBlur(e);
+    if (!this.props.readOnly) {
+      this.setState({ isFocused: false });
+      this.props.onBlur(e);
+    }
   };
 
   getInputType() {
@@ -219,9 +229,10 @@ class BaseInput<T: HTMLInputElement | HTMLTextAreaElement> extends React.Compone
   };
 
   renderClear() {
-    const { clearable, value, disabled, overrides = {} } = this.props;
+    const { clearable, value, disabled, readOnly, overrides = {} } = this.props;
     if (
       disabled ||
+      readOnly ||
       !clearable ||
       value == null ||
       (typeof value === 'string' && value.length === 0)
@@ -320,6 +331,7 @@ class BaseInput<T: HTMLInputElement | HTMLTextAreaElement> extends React.Compone
           aria-required={this.props.required}
           autoComplete={autoComplete}
           disabled={this.props.disabled}
+          readOnly={this.props.readOnly}
           id={this.props.id}
           inputMode={this.props.inputMode}
           maxLength={this.props.maxLength}

@@ -9,18 +9,20 @@ export default function Example() {
       <Textarea
         positive
         value={valueA}
-        onChange={e => setValueA(e.currentTarget.value)}
+        onChange={(e) => setValueA(e.currentTarget.value)}
         placeholder="Positive state..."
       />
       <br />
       <Textarea
         error
         value={valueB}
-        onChange={e => setValueB(e.currentTarget.value)}
+        onChange={(e) => setValueB(e.currentTarget.value)}
         placeholder="Error state..."
       />
       <br />
       <Textarea disabled value="Disabled state..." />
+      <br />
+      <Textarea readOnly value="ReadOnly state..." />
     </React.Fragment>
   );
 }
