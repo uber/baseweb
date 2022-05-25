@@ -9,7 +9,8 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { HIERARCHY, SHAPE } from '../constants.js';
 
-import { Badge, COLOR } from '../index.js';
+import { Badge, NotificationCircle, COLOR } from '../index.js';
+import Check from '../../icon/check.js';
 
 const layout = {
   display: 'flex',
@@ -42,6 +43,22 @@ export function Scenario() {
         <Badge content="Pill" shape={SHAPE.pill} color={COLOR.positive} />
         <Badge content="Pill" shape={SHAPE.pill} color={COLOR.negative} />
         <Badge content="Pill" shape={SHAPE.pill} color={COLOR.warning} />
+      </div>
+
+      <div style={layout}>
+        <NotificationCircle content={5} />
+        <NotificationCircle content={8} color={COLOR.primary} />
+        <NotificationCircle content={24} color={COLOR.positive} />
+        <NotificationCircle content={5} color={COLOR.negative} />
+        <NotificationCircle content={34} color={COLOR.warning} />
+      </div>
+
+      <div style={layout}>
+        <NotificationCircle content={<Check />} />
+        <NotificationCircle content={<Check />} color={COLOR.primary} />
+        <NotificationCircle content={<Check />} color={COLOR.positive} />
+        <NotificationCircle content={<Check />} color={COLOR.negative} />
+        <NotificationCircle content={<Check />} color={COLOR.warning} />
       </div>
     </div>
   );

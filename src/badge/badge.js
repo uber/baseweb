@@ -8,9 +8,9 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import { getOverrides } from '../helpers/overrides.js';
-import { StyledInlineBadge, StyledRoot, StyledPositioner } from './styled-components.js';
+import { StyledBadge, StyledRoot, StyledPositioner } from './styled-components.js';
 import type { BadgePropsT } from './types.js';
-import { PLACEMENT, ROLES, SHAPE, HIERARCHY } from './constants.js';
+import { PLACEMENT, ROLE, SHAPE, HIERARCHY } from './constants.js';
 import { getAnchorFromChildren } from './utils.js';
 
 const Badge = ({
@@ -25,7 +25,7 @@ const Badge = ({
   hidden,
   overrides = {},
 }: BadgePropsT) => {
-  const [Badge, badgeProps] = getOverrides(overrides.Badge, StyledInlineBadge);
+  const [Badge, badgeProps] = getOverrides(overrides.Badge, StyledBadge);
   const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
   const [Positioner, positionerProps] = getOverrides(overrides.Positioner, StyledPositioner);
 
@@ -64,7 +64,7 @@ const Badge = ({
         $horizontalOffset={horizontalOffset}
         $verticalOffset={verticalOffset}
         $placement={placement}
-        $role={ROLES.badge}
+        $role={ROLE.badge}
         {...positionerProps}
       >
         <Badge

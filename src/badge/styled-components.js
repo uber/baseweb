@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import { styled } from '../styles/index.js';
 import type { PlacementT, ColorT, ShapeT, RoleT, HierarchyT } from './types.js';
-import { COLOR, SHAPE, POSITION_STYLES, PLACEMENT, HIERARCHY } from './constants.js';
+import { COLOR, SHAPE, ROLE, PLACEMENT, HIERARCHY } from './constants.js';
 
 function getColorStyles({ $theme, $hierarchy, $color }): {|
   color: string,
@@ -63,6 +63,67 @@ function getColorStyles({ $theme, $hierarchy, $color }): {|
   return COLOR_STYLES[$hierarchy][$color];
 }
 
+const POSITION_STYLES = Object.freeze({
+  [ROLE.badge]: {
+    [PLACEMENT.topLeft]: {
+      top: '16px',
+      left: '16px',
+      right: null,
+      bottom: null,
+    },
+    [PLACEMENT.top]: {
+      top: '-10px',
+      left: '50%',
+      right: null,
+      bottom: null,
+      transform: 'translateX(-50%)',
+    },
+    [PLACEMENT.topRight]: {
+      top: '16px',
+      right: '16px',
+      left: null,
+      bottom: null,
+    },
+    [PLACEMENT.bottomRight]: {
+      bottom: '16px',
+      right: '16px',
+      left: null,
+      top: null,
+    },
+    [PLACEMENT.bottom]: {
+      bottom: '-10px',
+      left: '50%',
+      right: null,
+      top: null,
+      transform: 'translateX(-50%)',
+    },
+    [PLACEMENT.bottomLeft]: {
+      bottom: '16px',
+      left: '16px',
+      right: null,
+      top: null,
+    },
+  },
+  [ROLE.notificationCircle]: {
+    [PLACEMENT.topLeft]: {
+      top: '-10px',
+      left: '-10px',
+      right: null,
+      bottom: null,
+    },
+    [PLACEMENT.topRight]: {
+      top: '-10px',
+      right: '-10px',
+      left: null,
+      bottom: null,
+    },
+  },
+  // [ROLE.hintDot]: {
+  //   [PLACEMENT.topLeft]: {},
+  //   [PLACEMENT.topRight]: {},
+  // },
+});
+
 export const StyledRoot = styled<{}>('div', () => {
   return {
     position: 'relative',
@@ -70,7 +131,7 @@ export const StyledRoot = styled<{}>('div', () => {
   };
 });
 
-export const StyledInlineBadge = styled<{
+export const StyledBadge = styled<{
   $shape?: ShapeT,
   $color?: ColorT,
   $hierarchy?: HierarchyT,
@@ -102,13 +163,36 @@ export const StyledInlineBadge = styled<{
   }
 );
 
+export const StyledNotificationCircle = styled<{
+  $color?: ColorT,
+  $hidden?: boolean,
+}>('div', ({ $theme, $color = COLOR.accent, $hidden }) => {
+  return {
+    visibility: $hidden ? 'hidden' : 'inherit',
+    height: $theme.sizing.scale700,
+    width: $theme.sizing.scale700,
+    borderRadius: '20px',
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    ...getColorStyles({ $theme, $hierarchy: HIERARCHY.primary, $color }),
+    ...$theme.typography.LabelXSmall,
+  };
+});
+
 export const StyledPositioner = styled<{
   $role: RoleT,
   $placement: PlacementT,
   $horizontalOffset?: ?string,
   $verticalOffset?: ?string,
 }>('div', ({ $theme, $role, $placement, $horizontalOffset, $verticalOffset }) => {
-  let positionStyle = POSITION_STYLES[$role][$placement];
+  // Need this for flow -- NotificationCircle & HintDot can only have topLeft or topRight placement
+  const placement =
+    $role !== ROLE.badge && $placement !== PLACEMENT.topLeft
+      ? PLACEMENT.topRight
+      : PLACEMENT.topLeft;
+
+  let positionStyle = POSITION_STYLES[$role][placement];
 
   if ($verticalOffset) {
     if (

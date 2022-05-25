@@ -33,59 +33,8 @@ export const PLACEMENT = Object.freeze({
   bottomLeft: 'bottomLeft',
 });
 
-export const ROLES = Object.freeze({
+export const ROLE = Object.freeze({
   badge: 'badge',
+  notificationCircle: 'notificationCircle',
   // hintDot: 'hintDot',
-  // notificationCircle: 'notificationCircle',
-});
-
-export const POSITION_STYLES = Object.freeze({
-  [ROLES.badge]: {
-    [PLACEMENT.topLeft]: {
-      top: '16px',
-      left: '16px',
-      right: null,
-      bottom: null,
-    },
-    [PLACEMENT.top]: {
-      top: '-10px',
-      left: '50%',
-      right: null,
-      bottom: null,
-      transform: 'translateX(-50%)',
-    },
-    [PLACEMENT.topRight]: {
-      top: '16px',
-      right: '16px',
-      left: null,
-      bottom: null,
-    },
-    [PLACEMENT.bottomRight]: {
-      bottom: '16px',
-      right: '16px',
-      left: null,
-      top: null,
-    },
-    [PLACEMENT.bottom]: {
-      bottom: '-10px',
-      left: '50%',
-      right: null,
-      top: null,
-      transform: 'translateX(-50%)',
-    },
-    [PLACEMENT.bottomLeft]: {
-      bottom: '16px',
-      left: '16px',
-      right: null,
-      top: null,
-    },
-  },
-  // [ROLES.notificationCircle]: {
-  //   [PLACEMENT.topLeft]: {},
-  //   [PLACEMENT.topRight]: {},
-  // },
-  // [ROLES.hintDot]: {
-  //   [PLACEMENT.topLeft]: {},
-  //   [PLACEMENT.topRight]: {},
-  // },
 });

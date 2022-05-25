@@ -7,8 +7,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import { PLACEMENT } from '../constants.js';
 
+import { PLACEMENT } from '../constants.js';
 import { Badge } from '../index.js';
 import { styled } from '../../styles/index.js';
 
@@ -18,6 +18,11 @@ export const Box = styled<{}>('div', ({ $theme }) => ({
   backgroundColor: $theme.colors.primaryA,
   height: '186px',
   width: '328px',
+  color: 'white',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  flexDirection: 'column',
 }));
 
 const layout = {
@@ -30,70 +35,83 @@ export function Scenario() {
   return (
     <div>
       <div style={layout}>
-        <Badge placement={PLACEMENT.topLeft} content="topLeft">
-          <Box />
+        <Badge placement={PLACEMENT.topLeft} content="Badge">
+          <Box>topLeft</Box>
         </Badge>
-        <Badge placement={PLACEMENT.top} content="top">
-          <Box />
+        <Badge placement={PLACEMENT.top} content="Badge">
+          <Box>top</Box>
         </Badge>
-        <Badge placement={PLACEMENT.topRight} content="topRight">
-          <Box />
+        <Badge placement={PLACEMENT.topRight} content="Badge">
+          <Box>topRight</Box>
         </Badge>
       </div>
 
       <div style={layout}>
-        <Badge placement={PLACEMENT.bottomLeft} content="bottomLeft">
-          <Box />
+        <Badge placement={PLACEMENT.bottomLeft} content="Badge">
+          <Box>bottomLeft</Box>
         </Badge>
-        <Badge placement={PLACEMENT.bottom} content="bottom">
-          <Box />
+        <Badge placement={PLACEMENT.bottom} content="Badge">
+          <Box>bottom</Box>
         </Badge>
-        <Badge placement={PLACEMENT.bottomRight} content="bottomRight">
-          <Box />
+        <Badge placement={PLACEMENT.bottomRight} content="Badge">
+          <Box>bottomRight</Box>
         </Badge>
       </div>
 
       <div style={layout}>
         <Badge
           placement={PLACEMENT.topLeft}
-          content="TL 0,0"
-          horizontalOffset="0px"
-          verticalOffset="0px"
-        >
-          <Box />
-        </Badge>
-        <Badge
-          placement={PLACEMENT.top}
-          content="T 50%,0"
-          horizontalOffset="50%"
+          content="Badge"
+          horizontalOffset="0"
           verticalOffset="0"
         >
-          <Box />
+          <Box>
+            <div>topLeft</div>
+            <div>0, 0</div>
+          </Box>
+        </Badge>
+        <Badge placement={PLACEMENT.top} content="Badge" horizontalOffset="50%" verticalOffset="0">
+          <Box>
+            <div>top</div>
+            <div>50%, 0</div>
+          </Box>
         </Badge>
         <Badge
           placement={PLACEMENT.topRight}
-          content="TR 0,-10px"
+          content="Badge"
           horizontalOffset="0"
           verticalOffset="-10px"
         >
-          <Box />
+          <Box>
+            <div>topRight</div>
+            <div>0, -10px</div>
+          </Box>
         </Badge>
       </div>
 
       <div style={layout}>
         <Badge
           placement={PLACEMENT.bottomLeft}
-          content="BL 10%,10%"
+          content="Badge"
           horizontalOffset="10%"
           verticalOffset="10%"
         >
-          <Box />
+          <Box>
+            <div>bottomLeft</div>
+            <div>10%, 10%</div>
+          </Box>
         </Badge>
-        <Badge placement={PLACEMENT.bottom} content="B 0,0" horizontalOffset="0" verticalOffset="0">
-          <Box />
+        <Badge placement={PLACEMENT.bottom} content="Badge" horizontalOffset="0" verticalOffset="0">
+          <Box>
+            <div>bottom</div>
+            <div>0, 0</div>
+          </Box>
         </Badge>
-        <Badge placement={PLACEMENT.bottomRight} content="BR null,30x" verticalOffset="30px">
-          <Box />
+        <Badge placement={PLACEMENT.bottomRight} content="Badge" verticalOffset="30px">
+          <Box>
+            <div>bottomRight</div>
+            <div>default, 30px</div>
+          </Box>
         </Badge>
       </div>
     </div>

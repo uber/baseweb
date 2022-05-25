@@ -6,6 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 export { default as Badge } from './badge.js';
+export { default as NotificationCircle } from './notification-circle.js';
+// export { default as HintDot } from './hint-dot.js';
 
 export { HIERARCHY, SHAPE, COLOR, PLACEMENT } from './constants.js';
 

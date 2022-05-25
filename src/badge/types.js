@@ -6,14 +6,14 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import { HIERARCHY, SHAPE, COLOR, PLACEMENT, ROLES } from './constants.js';
+import { HIERARCHY, SHAPE, COLOR, PLACEMENT, ROLE } from './constants.js';
 import type { OverrideT } from '../helpers/overrides.js';
 
 export type HierarchyT = $Values<typeof HIERARCHY>;
 export type ShapeT = $Values<typeof SHAPE>;
 export type ColorT = $Values<typeof COLOR>;
 export type PlacementT = $Values<typeof PLACEMENT>;
-export type RoleT = $Values<typeof ROLES>;
+export type RoleT = $Values<typeof ROLE>;
 
 export type BadgeOverridesT = {
   Root?: OverrideT,
@@ -25,6 +25,18 @@ export type BadgePropsT = {
   content: ?React.Node,
   hierarchy?: HierarchyT,
   shape?: ShapeT,
+  color?: ColorT,
+  placement?: PlacementT,
+  hidden?: boolean,
+  horizontalOffset?: string,
+  verticalOffset?: string,
+  overrides?: BadgeOverridesT,
+  children?: React.Node,
+};
+
+export type NotificationCirclePropsT = {
+  content: ?React.Node,
+  hierarchy?: HierarchyT,
   color?: ColorT,
   placement?: PlacementT,
   hidden?: boolean,
