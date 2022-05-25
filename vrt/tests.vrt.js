@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 
 const { test, expect } = require('@playwright/test');
-const { getSnapshotConfig } = require('./config.js');
+const { config, getSnapshotConfig } = require('./config.js');
 const { mount, waitForTimeout, addTestStyles } = require('../e2e/helpers');
 
 const THEME = {
@@ -29,7 +29,16 @@ const VIEWPORT_WIDTH = {
 
 test.describe.configure({ mode: 'parallel' });
 
-getAllScenarioNames().forEach((scenarioName) => {
+const scenarioNames = getAllScenarioNames();
+
+test('snapshot config does not reference missing scenario', () => {
+  const names = new Set(scenarioNames);
+  for (const key in config) {
+    expect(names).toContain(key);
+  }
+});
+
+scenarioNames.forEach((scenarioName) => {
   const snapshotConfig = getSnapshotConfig(scenarioName);
 
   if (snapshotConfig.skip) return;
