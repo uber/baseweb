@@ -70,6 +70,7 @@ export interface BaseInputProps<T> {
   min?: number;
   max?: number;
   step?: number | 'any';
+  readOnly?: boolean;
 }
 
 export interface State {
@@ -90,6 +91,8 @@ export type InputOverrides = BaseInputOverrides<SharedProps> & {
 export type SharedProps = {
   /** Renders UI in 'focus' state */
   $isFocused: boolean;
+  /** Renders UI in 'readOnly' state */
+  $isReadOnly: boolean;
   /** Renders UI in 'disabled' state */
   $disabled: boolean;
   /** Renders UI in 'error' state */

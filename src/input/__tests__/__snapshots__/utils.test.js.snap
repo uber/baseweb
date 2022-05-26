@@ -6,6 +6,7 @@ Object {
   "$disabled": false,
   "$error": false,
   "$isFocused": true,
+  "$isReadOnly": false,
   "$positive": false,
   "$required": false,
   "$size": "default",
