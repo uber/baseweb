@@ -1,3 +1,5 @@
+import * as React from 'react';
+
 interface AccordionLocale {
   collapse: string;
   expand: string;
@@ -101,3 +103,9 @@ export interface Locale {
   select: SelectLocale;
   toast: ToastLocale;
 }
+
+export interface LocaleProviderProps {
+  locale: Partial<Locale>;
+  children?: React.ReactNode;
+}
+export const LocaleProvider: React.FC<LocaleProviderProps>;

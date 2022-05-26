@@ -1,7 +1,25 @@
 import * as React from 'react';
 import { StyletronComponent } from 'styletron-react';
-import { CSSLengthUnitT } from '../theme';
 import { Override } from '../overrides';
+
+export type CSSLengthUnitT =
+  | 'cm'
+  | 'mm'
+  | 'Q'
+  | 'in'
+  | 'pc'
+  | 'px'
+  | 'pt'
+  | 'em'
+  | 'ex'
+  | 'ch'
+  | 'rem'
+  | 'lh'
+  | 'vw'
+  | 'vh'
+  | 'vmin'
+  | 'vmax'
+  | '%';
 
 export enum ALIGNMENT {
   start = 'flex-start',
