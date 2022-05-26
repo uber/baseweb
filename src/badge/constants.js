@@ -36,5 +36,5 @@ export const PLACEMENT = Object.freeze({
 export const ROLE = Object.freeze({
   badge: 'badge',
   notificationCircle: 'notificationCircle',
-  // hintDot: 'hintDot',
+  hintDot: 'hintDot',
 });

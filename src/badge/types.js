@@ -36,9 +36,17 @@ export type BadgePropsT = {
 
 export type NotificationCirclePropsT = {
   content: ?React.Node,
-  hierarchy?: HierarchyT,
   color?: ColorT,
   placement?: PlacementT,
+  hidden?: boolean,
+  horizontalOffset?: string,
+  verticalOffset?: string,
+  overrides?: BadgeOverridesT,
+  children?: React.Node,
+};
+
+export type HintDotPropsT = {
+  color?: ColorT,
   hidden?: boolean,
   horizontalOffset?: string,
   verticalOffset?: string,

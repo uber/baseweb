@@ -63,65 +63,69 @@ function getColorStyles({ $theme, $hierarchy, $color }): {|
   return COLOR_STYLES[$hierarchy][$color];
 }
 
+const DEFAULT_NOTIFICATION_CIRCLE_PLACEMENT = {
+  top: '-10px',
+  right: '-10px',
+};
+
+const DEFAULT_HINT_DOT_PLACEMENT = {
+  top: '-4px',
+  right: '-4px',
+};
+
 const POSITION_STYLES = Object.freeze({
   [ROLE.badge]: {
     [PLACEMENT.topLeft]: {
       top: '16px',
       left: '16px',
-      right: null,
-      bottom: null,
     },
     [PLACEMENT.top]: {
       top: '-10px',
       left: '50%',
-      right: null,
-      bottom: null,
       transform: 'translateX(-50%)',
     },
     [PLACEMENT.topRight]: {
       top: '16px',
       right: '16px',
-      left: null,
-      bottom: null,
     },
     [PLACEMENT.bottomRight]: {
       bottom: '16px',
       right: '16px',
-      left: null,
-      top: null,
     },
     [PLACEMENT.bottom]: {
       bottom: '-10px',
       left: '50%',
-      right: null,
-      top: null,
       transform: 'translateX(-50%)',
     },
     [PLACEMENT.bottomLeft]: {
       bottom: '16px',
       left: '16px',
-      right: null,
-      top: null,
     },
   },
   [ROLE.notificationCircle]: {
     [PLACEMENT.topLeft]: {
       top: '-10px',
       left: '-10px',
-      right: null,
-      bottom: null,
     },
-    [PLACEMENT.topRight]: {
-      top: '-10px',
-      right: '-10px',
-      left: null,
-      bottom: null,
-    },
+    [PLACEMENT.topRight]: DEFAULT_NOTIFICATION_CIRCLE_PLACEMENT,
+    // NotificationCircle can only be placed topLeft or topRight, other values fall back to topRight
+    [PLACEMENT.top]: DEFAULT_NOTIFICATION_CIRCLE_PLACEMENT,
+    [PLACEMENT.bottomRight]: DEFAULT_NOTIFICATION_CIRCLE_PLACEMENT,
+    [PLACEMENT.bottom]: DEFAULT_NOTIFICATION_CIRCLE_PLACEMENT,
+    [PLACEMENT.bottomLeft]: DEFAULT_NOTIFICATION_CIRCLE_PLACEMENT,
   },
-  // [ROLE.hintDot]: {
-  //   [PLACEMENT.topLeft]: {},
-  //   [PLACEMENT.topRight]: {},
-  // },
+  [ROLE.hintDot]: {
+    [PLACEMENT.topLeft]: {
+      top: '-4px',
+      left: '-4px',
+    },
+    [PLACEMENT.topRight]: DEFAULT_HINT_DOT_PLACEMENT,
+    // HintDot can only be placed topLeft or topRight, other values fall back to topRight
+    [PLACEMENT.top]: DEFAULT_HINT_DOT_PLACEMENT,
+    [PLACEMENT.bottomRight]: DEFAULT_HINT_DOT_PLACEMENT,
+    [PLACEMENT.bottom]: DEFAULT_HINT_DOT_PLACEMENT,
+    [PLACEMENT.bottomLeft]: DEFAULT_HINT_DOT_PLACEMENT,
+  },
 });
 
 export const StyledRoot = styled<{}>('div', () => {
@@ -186,14 +190,9 @@ export const StyledPositioner = styled<{
   $horizontalOffset?: ?string,
   $verticalOffset?: ?string,
 }>('div', ({ $theme, $role, $placement, $horizontalOffset, $verticalOffset }) => {
-  // Need this for flow -- NotificationCircle & HintDot can only have topLeft or topRight placement
-  const placement =
-    $role !== ROLE.badge && $placement !== PLACEMENT.topLeft
-      ? PLACEMENT.topRight
-      : PLACEMENT.topLeft;
+  let positionStyle = POSITION_STYLES[$role][$placement];
 
-  let positionStyle = POSITION_STYLES[$role][placement];
-
+  // apply offsets to position style
   if ($verticalOffset) {
     if (
       $placement === PLACEMENT.topLeft ||
@@ -210,7 +209,6 @@ export const StyledPositioner = styled<{
       positionStyle = { ...positionStyle, bottom: $verticalOffset };
     }
   }
-
   if ($horizontalOffset) {
     if (
       $placement === PLACEMENT.topLeft ||
@@ -231,3 +229,18 @@ export const StyledPositioner = styled<{
     height: 'unset',
   };
 });
+
+export const StyledHintDot = styled<{ $color: ColorT }>(
+  'div',
+  ({ $theme, $color = COLOR.accent }) => {
+    return {
+      backgroundColor: $theme.colors[$color],
+      boxSizing: 'content-box',
+      height: '8px',
+      width: '8px',
+      borderRadius: '50%',
+      border: `4px solid ${$theme.colors.backgroundPrimary}`,
+      ...getColorStyles({ $theme, $hierarchy: HIERARCHY.primary, $color }),
+    };
+  }
+);
