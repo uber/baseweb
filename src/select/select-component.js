@@ -142,7 +142,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
       }
 
       if (!prevState.isFocused && this.state.isFocused) {
-        document.addEventListener('click', this.handleClickOutside);
+        setTimeout(() => document.addEventListener('click', this.handleClickOutside), 0);
       }
     }
   }

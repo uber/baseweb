@@ -217,22 +217,6 @@ const config = {
       },
     ],
   },
-  'datepicker--rtl': {
-    interactions: [
-      {
-        name: 'calendarOpened',
-        behavior: async (page) => {
-          const input = 'input';
-          const calendar = '[data-baseweb="calendar"]';
-          await page.waitForSelector(input);
-          await page.click(input);
-          await page.waitForSelector(calendar, {
-            state: 'visible',
-          });
-        },
-      },
-    ],
-  },
   'datepicker--range': {
     interactions: [
       {
@@ -553,6 +537,22 @@ const config = {
       },
     ],
   },
+  'select--click-triggers-blur': {
+    interactions: [
+      {
+        name: 'click',
+        behavior: async (page) => {
+          const buttonSelector = `[data-test-id="button"]`;
+          const selectSelector = `[data-baseweb="select"]`;
+          await page.waitForSelector(buttonSelector);
+          await page.click(buttonSelector);
+          await page.waitForSelector(selectSelector, {
+            state: 'visible',
+          });
+        },
+      },
+    ],
+  },
   'select--search-single': {
     interactions: [
       {
@@ -586,9 +586,6 @@ const config = {
         },
       },
     ],
-  },
-  'spinner--determinate-animated': {
-    skip: true,
   },
   'tabs-motion--conditional': {
     skip: true,
