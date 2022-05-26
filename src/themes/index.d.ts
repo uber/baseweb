@@ -757,9 +757,9 @@ export function createDarkTheme<P extends object>(
   overrides?: P
 ): Theme & P;
 
-export const LightTheme: Theme;
-export const LightThemeMove: Theme;
-export const lightThemePrimitives: ThemePrimitives;
-export const DarkTheme: Theme;
-export const DarkThemeMove: Theme;
-export const darkThemePrimitives: ThemePrimitives;
+export declare const LightTheme: Theme;
+export declare const LightThemeMove: Theme;
+export declare const lightThemePrimitives: ThemePrimitives;
+export declare const DarkTheme: Theme;
+export declare const DarkThemeMove: Theme;
+export declare const darkThemePrimitives: ThemePrimitives;

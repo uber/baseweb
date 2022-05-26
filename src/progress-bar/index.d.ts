@@ -47,12 +47,12 @@ export interface ProgressBarRoundedProps {
   inline?: boolean;
   overrides?: ProgressBarRoundedOverrides;
 }
-export const ProgressBarRounded: React.FC<ProgressBarRoundedProps>;
+export declare const ProgressBarRounded: React.FC<ProgressBarRoundedProps>;
 
-export const SIZE: SIZE;
-export const StyledRoot: StyletronComponent<any>;
-export const StyledBarContainer: StyletronComponent<any>;
-export const StyledBar: StyletronComponent<any>;
-export const StyledBarProgress: StyletronComponent<any>;
-export const StyledInfiniteBar: StyletronComponent<any>;
-export const StyledLabel: StyletronComponent<any>;
+export declare const SIZE: SIZE;
+export declare const StyledRoot: StyletronComponent<any>;
+export declare const StyledBarContainer: StyletronComponent<any>;
+export declare const StyledBar: StyletronComponent<any>;
+export declare const StyledBarProgress: StyletronComponent<any>;
+export declare const StyledInfiniteBar: StyletronComponent<any>;
+export declare const StyledLabel: StyletronComponent<any>;

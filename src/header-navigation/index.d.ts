@@ -19,8 +19,8 @@ export interface HeaderNavigationProps {
 
 export class HeaderNavigation extends React.Component<HeaderNavigationProps> {}
 
-export const StyledRoot: StyletronComponent<any>;
-export const StyledNavigationItem: StyletronComponent<any>;
-export const StyledNavigationList: StyletronComponent<any>;
+export declare const StyledRoot: StyletronComponent<any>;
+export declare const StyledNavigationItem: StyletronComponent<any>;
+export declare const StyledNavigationList: StyletronComponent<any>;
 
-export const ALIGN: ALIGN;
+export declare const ALIGN: ALIGN;

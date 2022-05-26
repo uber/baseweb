@@ -78,6 +78,6 @@ export interface LayerProps {
 export class LayersManager extends React.Component<LayersManagerProps> {
   host: React.Ref<HTMLElement>;
 }
-export const Layer: React.FC<LayerProps>;
+export declare const Layer: React.FC<LayerProps>;
 
-export const TETHER_PLACEMENT: TETHER_PLACEMENT;
+export declare const TETHER_PLACEMENT: TETHER_PLACEMENT;

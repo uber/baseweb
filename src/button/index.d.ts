@@ -56,14 +56,14 @@ export interface ButtonProps {
   type?: 'submit' | 'reset' | 'button';
 }
 
-export const StyledBaseButton: StyletronComponent<any>;
-export const StyledStartEnhancer: StyletronComponent<any>;
-export const StyledEndEnhancer: StyletronComponent<any>;
-export const StyledLoadingSpinner: StyletronComponent<any>;
-export const StyledLoadingSpinnerContainer: StyletronComponent<any>;
+export declare const StyledBaseButton: StyletronComponent<any>;
+export declare const StyledStartEnhancer: StyletronComponent<any>;
+export declare const StyledEndEnhancer: StyletronComponent<any>;
+export declare const StyledLoadingSpinner: StyletronComponent<any>;
+export declare const StyledLoadingSpinnerContainer: StyletronComponent<any>;
 
-export const Button: StyletronComponent<ButtonProps>;
+export declare const Button: StyletronComponent<ButtonProps>;
 
-export const KIND: KIND;
-export const SHAPE: SHAPE;
-export const SIZE: SIZE;
+export declare const KIND: KIND;
+export declare const SHAPE: SHAPE;
+export declare const SIZE: SIZE;

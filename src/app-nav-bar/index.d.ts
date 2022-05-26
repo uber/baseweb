@@ -59,9 +59,9 @@ export interface POSITION {
 }
 
 export class AppNavBar extends React.Component<AppNavBarPropsT> {}
-export const POSITION: POSITION;
+export declare const POSITION: POSITION;
 
-export const setItemActive: (
+export declare const setItemActive: (
   items: NavItemT[],
   item: NavItemT,
   getUniqueueIdentifier?: (currentItem: NavItemT) => string | number

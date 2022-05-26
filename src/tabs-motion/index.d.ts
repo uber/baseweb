@@ -20,23 +20,23 @@ export enum STATE_CHANGE_TYPE {
 
 // utils
 
-export const getTabId: (uid: string, key: React.Key) => string;
-export const getTabPanelId: (uid: string, key: React.Key) => string;
-export const isHorizontal: (orientation: ORIENTATION) => boolean;
-export const isVertical: (orientation: ORIENTATION) => boolean;
-export const isIntrinsic: (fill: FILL) => boolean;
-export const isFixed: (fill: FILL) => boolean;
-export const isRTL: (direction: string) => boolean;
+export declare const getTabId: (uid: string, key: React.Key) => string;
+export declare const getTabPanelId: (uid: string, key: React.Key) => string;
+export declare const isHorizontal: (orientation: ORIENTATION) => boolean;
+export declare const isVertical: (orientation: ORIENTATION) => boolean;
+export declare const isIntrinsic: (fill: FILL) => boolean;
+export declare const isFixed: (fill: FILL) => boolean;
+export declare const isRTL: (direction: string) => boolean;
 
 // styled-components
 
-export const StyledRoot: StyletronComponent<any>;
-export const StyledTabList: StyletronComponent<any>;
-export const StyledTab: StyletronComponent<any>;
-export const StyledArtworkContainer: StyletronComponent<any>;
-export const StyledTabBorder: StyletronComponent<any>;
-export const StyledTabHighlight: StyletronComponent<any>;
-export const StyledTabPanel: StyletronComponent<any>;
+export declare const StyledRoot: StyletronComponent<any>;
+export declare const StyledTabList: StyletronComponent<any>;
+export declare const StyledTab: StyletronComponent<any>;
+export declare const StyledArtworkContainer: StyletronComponent<any>;
+export declare const StyledTabBorder: StyletronComponent<any>;
+export declare const StyledTabHighlight: StyletronComponent<any>;
+export declare const StyledTabPanel: StyletronComponent<any>;
 
 // tabs
 
@@ -72,7 +72,7 @@ interface TabsProps {
   uid?: string;
 }
 
-export const Tabs: React.FC<TabsProps>;
+export declare const Tabs: React.FC<TabsProps>;
 
 // tab
 
@@ -101,7 +101,7 @@ interface TabProps {
   tabRef?: React.MutableRefObject<HTMLButtonElement | undefined>;
 }
 
-export const Tab: React.FC<TabProps>;
+export declare const Tab: React.FC<TabProps>;
 
 // stateful-tabs
 
@@ -121,4 +121,4 @@ type StatefulTabsProps = TabsProps & {
   stateReducer?: StateReducer;
 };
 
-export const StatefulTabs: React.FC<StatefulTabsProps>;
+export declare const StatefulTabs: React.FC<StatefulTabsProps>;

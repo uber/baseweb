@@ -195,14 +195,14 @@ export type DragShadowPropsT = {
   overrides: FixedMarkerOverridesT;
 };
 
-export const FLOATING_MARKER_ANCHOR_POSITIONS: FLOATING_MARKER_ANCHOR_POSITIONS;
-export const FLOATING_MARKER_SIZES: FLOATING_MARKER_SIZES;
-export const FLOATING_MARKER_ANCHOR_TYPES: FLOATING_MARKER_ANCHOR_TYPES;
-export const NEEDLE_SIZES: NEEDLE_SIZES;
-export const PINHEAD_SIZES_SHAPES: PINHEAD_SIZES_SHAPES;
-export const BADGE_ENHANCER_SIZES: BADGE_ENHANCER_SIZES;
-export const LABEL_ENHANCER_POSITIONS: LABEL_ENHANCER_POSITIONS;
-export const KIND: KIND;
+export declare const FLOATING_MARKER_ANCHOR_POSITIONS: FLOATING_MARKER_ANCHOR_POSITIONS;
+export declare const FLOATING_MARKER_SIZES: FLOATING_MARKER_SIZES;
+export declare const FLOATING_MARKER_ANCHOR_TYPES: FLOATING_MARKER_ANCHOR_TYPES;
+export declare const NEEDLE_SIZES: NEEDLE_SIZES;
+export declare const PINHEAD_SIZES_SHAPES: PINHEAD_SIZES_SHAPES;
+export declare const BADGE_ENHANCER_SIZES: BADGE_ENHANCER_SIZES;
+export declare const LABEL_ENHANCER_POSITIONS: LABEL_ENHANCER_POSITIONS;
+export declare const KIND: KIND;
 
-export const FixedMarker: React.FC<FixedMarkerPropsT>;
-export const FloatingMarker: React.FC<FloatingMarkerPropsT>;
+export declare const FixedMarker: React.FC<FixedMarkerPropsT>;
+export declare const FloatingMarker: React.FC<FloatingMarkerPropsT>;

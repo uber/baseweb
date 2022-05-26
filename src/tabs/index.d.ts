@@ -37,7 +37,7 @@ export interface TabsProps {
   overrides?: TabsOverrides<SharedProps & { $active?: boolean }>;
 }
 
-export const Tabs: React.FC<TabsProps>;
+export declare const Tabs: React.FC<TabsProps>;
 
 export type StatefulTabsProps = TabsProps & {
   activeKey?: never;
@@ -82,10 +82,10 @@ export class Tab extends React.Component<TabProps> {
   getSharedProps(): SharedProps;
 }
 
-export const StyledRoot: StyletronComponent<any>;
-export const StyledTab: StyletronComponent<any>;
-export const StyledTabBar: StyletronComponent<any>;
-export const StyledTabContent: StyletronComponent<any>;
+export declare const StyledRoot: StyletronComponent<any>;
+export declare const StyledTab: StyletronComponent<any>;
+export declare const StyledTabBar: StyletronComponent<any>;
+export declare const StyledTabContent: StyletronComponent<any>;
 
-export const ORIENTATION: ORIENTATION;
-export const STATE_CHANGE_TYPE: STATE_CHANGE_TYPE;
+export declare const ORIENTATION: ORIENTATION;
+export declare const STATE_CHANGE_TYPE: STATE_CHANGE_TYPE;

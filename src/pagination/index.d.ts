@@ -69,7 +69,7 @@ export interface StatefulPaginationProps extends Callbacks {
   overrides?: PaginationOverrides;
 }
 
-export const StatefulPagination: React.FC<StatefulPaginationProps>;
+export declare const StatefulPagination: React.FC<StatefulPaginationProps>;
 
 export interface StatefulContainerProps {
   children: React.ReactNode;
@@ -84,7 +84,7 @@ export class StatefulContainer extends React.Component<StatefulContainerProps, S
   onPageChange(args: { nextPage: number }): void;
 }
 
-export const StyledRoot: StyletronComponent<any>;
-export const StyledMaxLabel: StyletronComponent<any>;
-export const StyledDropdownContainer: StyletronComponent<any>;
-export const STATE_CHANGE_TYPE: STATE_CHANGE_TYPE;
+export declare const StyledRoot: StyletronComponent<any>;
+export declare const StyledMaxLabel: StyletronComponent<any>;
+export declare const StyledDropdownContainer: StyletronComponent<any>;
+export declare const STATE_CHANGE_TYPE: STATE_CHANGE_TYPE;

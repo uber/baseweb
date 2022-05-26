@@ -319,4 +319,4 @@ export interface BlockProps {
   bottom?: Responsive<Scale>;
 }
 
-export const Block: React.FC<BlockProps>;
+export declare const Block: React.FC<BlockProps>;

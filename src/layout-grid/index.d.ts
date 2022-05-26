@@ -92,7 +92,7 @@ export type StyledCellProps = {
   $span?: Responsive<number>;
 };
 
-export const Grid: React.FunctionComponent<GridProps>;
-export const Cell: React.FunctionComponent<CellProps>;
-export const StyledGrid: StyletronComponent<StyledGridProps>;
-export const StyledCell: StyletronComponent<StyledCellProps>;
+export declare const Grid: React.FunctionComponent<GridProps>;
+export declare const Cell: React.FunctionComponent<CellProps>;
+export declare const StyledGrid: StyletronComponent<StyledGridProps>;
+export declare const StyledCell: StyletronComponent<StyledCellProps>;

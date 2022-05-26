@@ -334,12 +334,12 @@ export interface PhoneInputProps extends InputProps {
   maxDropdownWidth?: string;
   overrides?: PhoneInputOverrides;
 }
-export const PhoneInput: React.FC<PhoneInputProps>;
+export declare const PhoneInput: React.FC<PhoneInputProps>;
 
 export interface PhoneInputLiteProps extends PhoneInputProps {
   countries: { [key: string]: Country };
 }
-export const PhoneInputLite: React.FC<PhoneInputLiteProps>;
+export declare const PhoneInputLite: React.FC<PhoneInputLiteProps>;
 
 export interface StatefulPhoneInputProps {
   'aria-label'?: string;
@@ -350,7 +350,7 @@ export interface StatefulPhoneInputProps {
   mapIsoToLabel?: (iso: string) => string;
   overrides?: PhoneInputOverrides;
 }
-export const StatefulPhoneInput: React.FC<StatefulPhoneInputProps>;
+export declare const StatefulPhoneInput: React.FC<StatefulPhoneInputProps>;
 
 export type StateReducer = (type: StateChange, nextState: State, currentState: State) => State;
 export interface StatefulPhoneInputContainerProps {
@@ -402,7 +402,7 @@ export interface CountrySelectProps {
     FlagContainer?: Override<any>;
   };
 }
-export const CountrySelect: React.FC<CountrySelectProps>;
+export declare const CountrySelect: React.FC<CountrySelectProps>;
 
 export interface CountrySelectDropdownProps {
   children?: Readonly<React.ReactNode[]>;
@@ -418,25 +418,25 @@ export interface CountrySelectDropdownProps {
     FlagContainer?: Override<any>;
   };
 }
-export const CountrySelectDropdown: React.RefForwardingComponent<CountrySelectDropdownProps>;
+export declare const CountrySelectDropdown: React.RefForwardingComponent<CountrySelectDropdownProps>;
 
 export interface FlagProps {
   iso: COUNTRIES[keyof COUNTRIES];
   width?: string;
 }
-export const Flag: React.FC<FlagProps>;
+export declare const Flag: React.FC<FlagProps>;
 
-export const StyledFlag: StyletronComponent<any>;
-export const StyledRoot: StyletronComponent<any>;
-export const StyledDialCode: StyletronComponent<any>;
-export const StyledCountrySelectContainer: StyletronComponent<any>;
-export const StyledCountrySelectDropdownContainer: StyletronComponent<any>;
-export const StyledCountrySelectDropdownListItem: StyletronComponent<any>;
-export const StyledCountrySelectDropdownFlagColumn: StyletronComponent<any>;
-export const StyledCountrySelectDropdownNameColumn: StyletronComponent<any>;
-export const StyledCountrySelectDropdownDialcodeColumn: StyletronComponent<any>;
+export declare const StyledFlag: StyletronComponent<any>;
+export declare const StyledRoot: StyletronComponent<any>;
+export declare const StyledDialCode: StyletronComponent<any>;
+export declare const StyledCountrySelectContainer: StyletronComponent<any>;
+export declare const StyledCountrySelectDropdownContainer: StyletronComponent<any>;
+export declare const StyledCountrySelectDropdownListItem: StyletronComponent<any>;
+export declare const StyledCountrySelectDropdownFlagColumn: StyletronComponent<any>;
+export declare const StyledCountrySelectDropdownNameColumn: StyletronComponent<any>;
+export declare const StyledCountrySelectDropdownDialcodeColumn: StyletronComponent<any>;
 
-export const DEFAULT_MAX_DROPDOWN_WIDTH: '400px';
-export const DEFAULT_MAX_DROPDOWN_HEIGHT: '400px';
-export const STATE_CHANGE_TYPE: STATE_CHANGE_TYPE;
-export const COUNTRIES: COUNTRIES;
+export declare const DEFAULT_MAX_DROPDOWN_WIDTH: '400px';
+export declare const DEFAULT_MAX_DROPDOWN_HEIGHT: '400px';
+export declare const STATE_CHANGE_TYPE: STATE_CHANGE_TYPE;
+export declare const COUNTRIES: COUNTRIES;

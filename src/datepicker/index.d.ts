@@ -109,7 +109,7 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
   renderQuickSelect(): React.ReactNode;
 }
 
-export const StatefulCalendar: React.FC<StatefulDatepickerProps<CalendarProps>>;
+export declare const StatefulCalendar: React.FC<StatefulDatepickerProps<CalendarProps>>;
 
 export interface DatepickerOverrides<T> {
   Root?: Override<T>;
@@ -191,7 +191,7 @@ export { Datepicker as DatePicker };
 
 export type StatefulDatepickerProps<T> = T &
   StatefulContainerProps<T> & { children?: (args: T) => React.ReactNode };
-export const StatefulDatepicker: React.FC<StatefulDatepickerProps<DatepickerProps>>;
+export declare const StatefulDatepicker: React.FC<StatefulDatepickerProps<DatepickerProps>>;
 
 export { StatefulDatepicker as StatefulDatePicker };
 
@@ -213,15 +213,15 @@ export class TimezonePicker extends React.Component<TimezonePickerProps, Timezon
   buildTimezones(compareDate: Date): string[];
 }
 
-export const DISPLAY_FORMAT: 'L';
-export const ISO_FORMAT: 'YYYY-MM-DD';
-export const ISO_MONTH_FORMAT: 'YYYY-MM';
+export declare const DISPLAY_FORMAT: 'L';
+export declare const ISO_FORMAT: 'YYYY-MM-DD';
+export declare const ISO_MONTH_FORMAT: 'YYYY-MM';
 
-export const STATE_CHANGE_TYPE: STATE_CHANGE_TYPE;
+export declare const STATE_CHANGE_TYPE: STATE_CHANGE_TYPE;
 
-export const ORIENTATION: ORIENTATION;
+export declare const ORIENTATION: ORIENTATION;
 
-export const WEEKDAYS: [0, 1, 2, 3, 4, 5, 6];
+export declare const WEEKDAYS: [0, 1, 2, 3, 4, 5, 6];
 
 export type SharedStylePropsT = {
   $date: Date;

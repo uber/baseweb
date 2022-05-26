@@ -81,20 +81,20 @@ export interface TableBuilderColumnProps<RowT> {
 }
 export class TableBuilderColumn<RowT> extends React.Component<TableBuilderColumnProps<RowT>> {}
 
-export const StyledRoot: StyletronComponent<any>;
-export const StyledTable: StyletronComponent<any>;
-export const StyledTableHead: StyletronComponent<any>;
-export const StyledTableHeadRow: StyletronComponent<any>;
-export const StyledTableHeadCell: StyletronComponent<any>;
-export const StyledTableHeadCellSortable: StyletronComponent<any>;
-export const StyledTableBody: StyletronComponent<any>;
-export const StyledTableBodyRow: StyletronComponent<any>;
-export const StyledTableBodyCell: StyletronComponent<any>;
-export const StyledTableLoadingMessage: StyletronComponent<any>;
-export const StyledTableEmptyMessage: StyletronComponent<any>;
-export const StyledSortAscIcon: StyletronComponent<any>;
-export const StyledSortDescIcon: StyletronComponent<any>;
-export const StyledSortNoneIcon: StyletronComponent<any>;
+export declare const StyledRoot: StyletronComponent<any>;
+export declare const StyledTable: StyletronComponent<any>;
+export declare const StyledTableHead: StyletronComponent<any>;
+export declare const StyledTableHeadRow: StyletronComponent<any>;
+export declare const StyledTableHeadCell: StyletronComponent<any>;
+export declare const StyledTableHeadCellSortable: StyletronComponent<any>;
+export declare const StyledTableBody: StyletronComponent<any>;
+export declare const StyledTableBodyRow: StyletronComponent<any>;
+export declare const StyledTableBodyCell: StyletronComponent<any>;
+export declare const StyledTableLoadingMessage: StyletronComponent<any>;
+export declare const StyledTableEmptyMessage: StyletronComponent<any>;
+export declare const StyledSortAscIcon: StyletronComponent<any>;
+export declare const StyledSortDescIcon: StyletronComponent<any>;
+export declare const StyledSortNoneIcon: StyletronComponent<any>;
 
-export const DIVIDER: DIVIDER;
-export const SIZE: SIZE;
+export declare const DIVIDER: DIVIDER;
+export declare const SIZE: SIZE;

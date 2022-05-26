@@ -28,6 +28,6 @@ export class Avatar extends React.Component<AvatarProps, AvatarState> {
   handleError(): void;
 }
 
-export const StyledAvatar: StyletronComponent<any>;
-export const StyledInitials: StyletronComponent<any>;
-export const StyledRoot: StyletronComponent<any>;
+export declare const StyledAvatar: StyletronComponent<any>;
+export declare const StyledInitials: StyletronComponent<any>;
+export declare const StyledRoot: StyletronComponent<any>;

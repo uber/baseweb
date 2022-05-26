@@ -65,10 +65,10 @@ export class Tag extends React.Component<TagProps> {
   handleActionKeyDown(event: KeyboardEvent): void;
 }
 
-export const StyledRoot: StyletronComponent<any>;
-export const StyledAction: StyletronComponent<any>;
-export const StyledText: StyletronComponent<any>;
+export declare const StyledRoot: StyletronComponent<any>;
+export declare const StyledAction: StyletronComponent<any>;
+export declare const StyledText: StyletronComponent<any>;
 
-export const KIND: KIND;
-export const VARIANT: VARIANT;
-export const SIZE: SIZE;
+export declare const KIND: KIND;
+export declare const VARIANT: VARIANT;
+export declare const SIZE: SIZE;

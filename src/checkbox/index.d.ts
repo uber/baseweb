@@ -23,13 +23,13 @@ type initialState = {
   isIndeterminate?: boolean;
 };
 
-export const StyledRoot: StyletronComponent<any>;
-export const StyledCheckmark: StyletronComponent<any>;
-export const StyledLabel: StyletronComponent<any>;
-export const StyledInput: StyletronComponent<any>;
-export const StyledToggle: StyletronComponent<any>;
-export const StyledToggleInner: StyletronComponent<any>;
-export const StyledToggleTrack: StyletronComponent<any>;
+export declare const StyledRoot: StyletronComponent<any>;
+export declare const StyledCheckmark: StyletronComponent<any>;
+export declare const StyledLabel: StyletronComponent<any>;
+export declare const StyledInput: StyletronComponent<any>;
+export declare const StyledToggle: StyletronComponent<any>;
+export declare const StyledToggleInner: StyletronComponent<any>;
+export declare const StyledToggleTrack: StyletronComponent<any>;
 
 export type StateReducer = (
   stateType: string,
@@ -51,7 +51,7 @@ export interface StatefulContainerProps {
   autoFocus?: boolean;
 }
 
-export const StatefulContainer: React.FC<StatefulContainerProps>;
+export declare const StatefulContainer: React.FC<StatefulContainerProps>;
 
 export interface StatefulCheckboxProps {
   overrides?: CheckboxOverrides;
@@ -72,7 +72,7 @@ export interface StatefulCheckboxProps {
   onBlur?: React.FocusEventHandler<HTMLInputElement>;
 }
 
-export const StatefulCheckbox: React.FC<StatefulCheckboxProps>;
+export declare const StatefulCheckbox: React.FC<StatefulCheckboxProps>;
 
 export interface CheckboxOverrides {
   Checkmark?: Override<any>;
@@ -129,6 +129,6 @@ export class Checkbox extends React.Component<CheckboxProps, CheckboxState> {
   onBlur(event: React.FocusEvent<HTMLInputElement>): void;
 }
 
-export const STATE_TYPE: STATE_TYPE;
-export const STYLE_TYPE: STYLE_TYPE;
-export const LABEL_PLACEMENT: LABEL_PLACEMENT;
+export declare const STATE_TYPE: STATE_TYPE;
+export declare const STYLE_TYPE: STYLE_TYPE;
+export declare const LABEL_PLACEMENT: LABEL_PLACEMENT;

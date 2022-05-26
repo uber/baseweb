@@ -136,7 +136,7 @@ export interface MaskedInputProps extends InputProps {
   maskChar?: string;
 }
 
-export const MaskedInput: React.FC<MaskedInputProps>;
+export declare const MaskedInput: React.FC<MaskedInputProps>;
 
 export interface StatefulContainerProps {
   children?: React.ReactNode;
@@ -151,18 +151,18 @@ export interface StatefulContainerProps {
 
 export type StatefulInputProps = InputProps & StatefulContainerProps & { children?: never };
 
-export const StatefulInput: React.FC<StatefulInputProps>;
-export const StatefulContainer: React.FC<StatefulContainerProps>;
+export declare const StatefulInput: React.FC<StatefulInputProps>;
+export declare const StatefulContainer: React.FC<StatefulContainerProps>;
 
-export const StyledRoot: StyletronComponent<any>;
-export const StyledInputEnhancer: StyletronComponent<any>;
-export const StyledStartEnhancer: StyletronComponent<any>;
-export const StyledEndEnhancer: StyletronComponent<any>;
-export const StyledInputContainer: StyletronComponent<any>;
-export const StyledInput: StyletronComponent<any>;
+export declare const StyledRoot: StyletronComponent<any>;
+export declare const StyledInputEnhancer: StyletronComponent<any>;
+export declare const StyledStartEnhancer: StyletronComponent<any>;
+export declare const StyledEndEnhancer: StyletronComponent<any>;
+export declare const StyledInputContainer: StyletronComponent<any>;
+export declare const StyledInput: StyletronComponent<any>;
 
-export const STATE_CHANGE_TYPE: STATE_CHANGE_TYPE;
-export const CUSTOM_INPUT_TYPE: CUSTOM_INPUT_TYPE;
-export const ADJOINED: ADJOINED;
-export const SIZE: SIZE;
-export const ENHANCER_POSITION: ENHANCER_POSITION;
+export declare const STATE_CHANGE_TYPE: STATE_CHANGE_TYPE;
+export declare const CUSTOM_INPUT_TYPE: CUSTOM_INPUT_TYPE;
+export declare const ADJOINED: ADJOINED;
+export declare const SIZE: SIZE;
+export declare const ENHANCER_POSITION: ENHANCER_POSITION;

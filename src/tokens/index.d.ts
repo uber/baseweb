@@ -96,4 +96,4 @@ export interface TokenColors {
   cobalt700: string;
 }
 
-export const colors: TokenColors;
+export declare const colors: TokenColors;

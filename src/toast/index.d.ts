@@ -32,7 +32,7 @@ export interface IToaster {
   clear: (key?: React.Key) => void;
 }
 
-export const toaster: IToaster;
+export declare const toaster: IToaster;
 
 export interface ToasterContainerState {
   isMounted: boolean;
@@ -117,10 +117,10 @@ export class Toast extends React.Component<ToastProps, ToastPrivateState> {
   getSharedProps(): Readonly<SharedStylePropsArg>;
 }
 
-export const Root: StyletronComponent<any>;
-export const Body: StyletronComponent<any>;
-export const CloseIconSvg: StyletronComponent<any>;
+export declare const Root: StyletronComponent<any>;
+export declare const Body: StyletronComponent<any>;
+export declare const CloseIconSvg: StyletronComponent<any>;
 
-export const KIND: KIND;
-export const PLACEMENT: PLACEMENT;
-export const TYPE: TYPE;
+export declare const KIND: KIND;
+export declare const PLACEMENT: PLACEMENT;
+export declare const TYPE: TYPE;

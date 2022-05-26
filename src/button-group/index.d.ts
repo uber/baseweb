@@ -14,7 +14,7 @@ export interface STATE_CHANGE_TYPE {
   change: 'change';
 }
 
-export const StyledRoot: StyletronComponent<any>;
+export declare const StyledRoot: StyletronComponent<any>;
 
 export interface ButtonGroupOverrides {
   Root?: Override<any>;
@@ -34,7 +34,7 @@ export interface ButtonGroupProps {
   kind?: KIND[keyof KIND];
 }
 
-export const ButtonGroup: React.FC<ButtonGroupProps>;
+export declare const ButtonGroup: React.FC<ButtonGroupProps>;
 
 export interface InitialState {
   selected: number | number[];
@@ -49,12 +49,12 @@ export interface StatefulButtonGroupProps extends ButtonGroupProps {
   stateReducer?: (stateType: STATE_CHANGE_TYPE, nextState: State, currentState: State) => State;
 }
 
-export const StatefulButtonGroup: React.FC<StatefulButtonGroupProps>;
+export declare const StatefulButtonGroup: React.FC<StatefulButtonGroupProps>;
 
 export class StatefulContainer extends React.Component<StatefulButtonGroupProps, State> {
   changeState(nextState: State): void;
   onClick(event: React.MouseEvent<HTMLButtonElement>, index: number): void;
 }
 
-export const MODE: MODE;
-export const STATE_CHANGE_TYPE: STATE_CHANGE_TYPE;
+export declare const MODE: MODE;
+export declare const STATE_CHANGE_TYPE: STATE_CHANGE_TYPE;

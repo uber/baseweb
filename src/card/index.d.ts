@@ -22,14 +22,14 @@ export interface CardProps {
   readonly thumbnail?: string;
   readonly title?: React.ReactNode;
 }
-export const Card: React.FC<CardProps>;
+export declare const Card: React.FC<CardProps>;
 export type hasThumbnail = (props: { readonly thumbnail?: string }) => boolean;
 
-export const StyledAction: StyletronComponent<any>;
-export const StyledBody: StyletronComponent<any>;
-export const StyledContents: StyletronComponent<any>;
-export const StyledHeaderImage: StyletronComponent<any>;
-export const StyledThumbnail: StyletronComponent<any>;
-export const StyledTitle: StyletronComponent<any>;
-export const StyledRoot: StyletronComponent<any>;
-export const StyledWrapper: StyletronComponent<any>;
+export declare const StyledAction: StyletronComponent<any>;
+export declare const StyledBody: StyletronComponent<any>;
+export declare const StyledContents: StyletronComponent<any>;
+export declare const StyledHeaderImage: StyletronComponent<any>;
+export declare const StyledThumbnail: StyletronComponent<any>;
+export declare const StyledTitle: StyletronComponent<any>;
+export declare const StyledRoot: StyletronComponent<any>;
+export declare const StyledWrapper: StyletronComponent<any>;

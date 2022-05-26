@@ -138,7 +138,7 @@ export interface OptionListProps extends BaseMenuPropsT {
   id?: string;
   role?: string;
 }
-export const OptionList: React.FC<OptionListProps>;
+export declare const OptionList: React.FC<OptionListProps>;
 
 export interface OptionProfileProps extends BaseMenuPropsT {
   item: any;
@@ -162,7 +162,7 @@ export interface OptionProfileProps extends BaseMenuPropsT {
   };
   $isHighlighted?: boolean;
 }
-export const OptionProfile: React.FC<OptionProfileProps>;
+export declare const OptionProfile: React.FC<OptionProfileProps>;
 
 export interface SharedStatelessProps {
   activedescendantId?: string;
@@ -182,7 +182,7 @@ export interface SharedStatelessProps {
 }
 
 export type StatelessMenuProps = SharedStatelessProps & MenuProps;
-export const Menu: React.FC<StatelessMenuProps>;
+export declare const Menu: React.FC<StatelessMenuProps>;
 
 export interface NestedMenuProps {
   children: React.ReactNode;
@@ -200,17 +200,17 @@ export class NestedMenus extends React.Component<NestedMenuProps, NestedMenuStat
   isNestedMenuVisible(ref: React.Ref<HTMLElement>): boolean;
 }
 
-export const StyledEmptyState: StyletronComponent<any>;
-export const StyledList: StyletronComponent<any>;
-export const StyledListItem: StyletronComponent<any>;
-export const StyledListItemProfile: StyletronComponent<any>;
-export const StyledProfileImgContainer: StyletronComponent<any>;
-export const StyledProfileImg: StyletronComponent<any>;
-export const StyledProfileLabelsContainer: StyletronComponent<any>;
-export const StyledProfileTitle: StyletronComponent<any>;
-export const StyledProfileSubtitle: StyletronComponent<any>;
-export const StyledProfileBody: StyletronComponent<any>;
+export declare const StyledEmptyState: StyletronComponent<any>;
+export declare const StyledList: StyletronComponent<any>;
+export declare const StyledListItem: StyletronComponent<any>;
+export declare const StyledListItemProfile: StyletronComponent<any>;
+export declare const StyledProfileImgContainer: StyletronComponent<any>;
+export declare const StyledProfileImg: StyletronComponent<any>;
+export declare const StyledProfileLabelsContainer: StyletronComponent<any>;
+export declare const StyledProfileTitle: StyletronComponent<any>;
+export declare const StyledProfileSubtitle: StyletronComponent<any>;
+export declare const StyledProfileBody: StyletronComponent<any>;
 
-export const KEY_STRINGS: KEY_STRINGS;
-export const STATE_CHANGE_TYPES: STATE_CHANGE_TYPES;
-export const OPTION_LIST_SIZE: OPTION_LIST_SIZE;
+export declare const KEY_STRINGS: KEY_STRINGS;
+export declare const STATE_CHANGE_TYPES: STATE_CHANGE_TYPES;
+export declare const OPTION_LIST_SIZE: OPTION_LIST_SIZE;

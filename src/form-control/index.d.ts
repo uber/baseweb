@@ -2,9 +2,9 @@ import * as React from 'react';
 import { StyletronComponent } from 'styletron-react';
 import { Override } from '../overrides';
 
-export const StyledLabel: StyletronComponent<any>;
-export const StyledCaption: StyletronComponent<any>;
-export const StyledControlContainer: StyletronComponent<any>;
+export declare const StyledLabel: StyletronComponent<any>;
+export declare const StyledCaption: StyletronComponent<any>;
+export declare const StyledControlContainer: StyletronComponent<any>;
 
 export interface FormControlOverrides {
   Label?: Override<any>;

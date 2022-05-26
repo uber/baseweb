@@ -108,4 +108,4 @@ export interface LocaleProviderProps {
   locale: Partial<Locale>;
   children?: React.ReactNode;
 }
-export const LocaleProvider: React.FC<LocaleProviderProps>;
+export declare const LocaleProvider: React.FC<LocaleProviderProps>;

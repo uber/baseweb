@@ -38,7 +38,7 @@ export interface Theme {
 
 type UseStyletronFn<Theme> = () => [(arg: StyleObject) => string, Theme];
 export function createThemedUseStyletron<Theme>(): UseStyletronFn<Theme>;
-export const useStyletron: UseStyletronFn<Theme>;
+export declare const useStyletron: UseStyletronFn<Theme>;
 export function withWrapper<C extends StyletronComponent<any>, P extends object>(
   component: C,
   wrapper: (component: C) => React.ComponentType<P>
@@ -83,4 +83,4 @@ export interface ThemeProviderProps {
   theme: Theme;
   children?: React.ReactNode;
 }
-export const ThemeProvider: React.FC<ThemeProviderProps>;
+export declare const ThemeProvider: React.FC<ThemeProviderProps>;

@@ -13,4 +13,4 @@ export interface BaseProviderProps {
   overrides?: BaseProviderOverrides;
   zIndex?: number;
 }
-export const BaseProvider: React.FC<BaseProviderProps>;
+export declare const BaseProvider: React.FC<BaseProviderProps>;

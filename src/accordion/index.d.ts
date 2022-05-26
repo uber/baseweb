@@ -50,7 +50,7 @@ export type StatelessAccordionProps = {
   renderAll?: boolean;
 };
 
-export const StatelessAccordion: React.FC<StatelessAccordionProps>;
+export declare const StatelessAccordion: React.FC<StatelessAccordionProps>;
 
 export interface AccordionState {
   expanded: React.Key[];
@@ -99,7 +99,7 @@ export class Panel extends React.Component<PanelProps> {
 
 export type StatefulPanelProps = SharedPanelProps & SharedStatefulPanelContainerProps;
 
-export const StatefulPanel: React.FC<StatefulPanelProps>;
+export declare const StatefulPanel: React.FC<StatefulPanelProps>;
 
 export type StatefulPanelContainerProps = SharedStatefulPanelContainerProps & {
   children: React.ReactNode;
@@ -117,12 +117,12 @@ export class StatefulPanelContainer extends React.Component<
   internalSetState(type: STATE_CHANGE_TYPE[keyof STATE_CHANGE_TYPE], changes: PanelState): void;
 }
 
-export const StyledRoot: StyletronComponent<any>;
-export const StyledPanelContainer: StyletronComponent<any>;
-export const StyledHeader: StyletronComponent<any>;
-export const StyledContent: StyletronComponent<any>;
-export const StyledContentAnimationContainer: StyletronComponent<any>;
-export const StyledToggleIcon: StyletronComponent<any>;
-export const StyledToggleIconGroup: StyletronComponent<any>;
+export declare const StyledRoot: StyletronComponent<any>;
+export declare const StyledPanelContainer: StyletronComponent<any>;
+export declare const StyledHeader: StyletronComponent<any>;
+export declare const StyledContent: StyletronComponent<any>;
+export declare const StyledContentAnimationContainer: StyletronComponent<any>;
+export declare const StyledToggleIcon: StyletronComponent<any>;
+export declare const StyledToggleIconGroup: StyletronComponent<any>;
 
-export const STATE_CHANGE_TYPE: STATE_CHANGE_TYPE;
+export declare const STATE_CHANGE_TYPE: STATE_CHANGE_TYPE;

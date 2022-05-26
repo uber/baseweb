@@ -35,5 +35,5 @@ export type PropsT<OptionT = any> = {
   value: string;
 };
 
-export const Combobox: React.FC<PropsT>;
-export const SIZE: SIZE;
+export declare const Combobox: React.FC<PropsT>;
+export declare const SIZE: SIZE;

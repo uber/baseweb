@@ -50,7 +50,7 @@ export type StatefulPopoverProps = BasePopoverProps & {
   onOpen?: () => any;
   stateReducer?: StateReducer;
 };
-export const StatefulPopover: React.FC<StatefulPopoverProps>;
+export declare const StatefulPopover: React.FC<StatefulPopoverProps>;
 
 export type StatefulPopoverContainerProps = StatefulPopoverProps & {
   children: (props: PopoverProps & { children: never }) => React.ReactNode;
@@ -173,17 +173,17 @@ export class Popover extends React.Component<PopoverProps, PopoverPrivateState> 
   renderPopover(): React.ReactNode;
 }
 
-export const StyledArrow: StyletronComponent<any>;
-export const StyledBody: StyletronComponent<any>;
-export const StyledInner: StyletronComponent<any>;
-export const StyledPadding: StyletronComponent<any>;
+export declare const StyledArrow: StyletronComponent<any>;
+export declare const StyledBody: StyletronComponent<any>;
+export declare const StyledInner: StyletronComponent<any>;
+export declare const StyledPadding: StyletronComponent<any>;
 
-export const ACCESSIBILITY_TYPE: ACCESSIBILITY_TYPE;
-export const PLACEMENT: PLACEMENT;
-export const TRIGGER_TYPE: TRIGGER_TYPE;
-export const STATE_CHANGE_TYPE: STATE_CHANGE_TYPE;
-export const POPOVER_MARGIN: 8;
-export const ARROW_SIZE: 6;
-export const ANIMATE_IN_TIME: ANIMATE_IN_TIME;
-export const ANIMATE_OUT_TIME: ANIMATE_OUT_TIME;
-export const ARROW_WIDTH: number;
+export declare const ACCESSIBILITY_TYPE: ACCESSIBILITY_TYPE;
+export declare const PLACEMENT: PLACEMENT;
+export declare const TRIGGER_TYPE: TRIGGER_TYPE;
+export declare const STATE_CHANGE_TYPE: STATE_CHANGE_TYPE;
+export declare const POPOVER_MARGIN: 8;
+export declare const ARROW_SIZE: 6;
+export declare const ANIMATE_IN_TIME: ANIMATE_IN_TIME;
+export declare const ANIMATE_OUT_TIME: ANIMATE_OUT_TIME;
+export declare const ARROW_WIDTH: number;

@@ -74,21 +74,21 @@ export type SharedProps = {
   $marks: boolean;
 };
 
-export const Slider: React.FC<SliderProps>;
-export const StatefulSlider: React.FC<StatefulSliderProps>;
+export declare const Slider: React.FC<SliderProps>;
+export declare const StatefulSlider: React.FC<StatefulSliderProps>;
 export class StatefulContainer extends React.Component<StatefulContainerProps, State> {
   onChange(params: State): any;
   onFinalChange?: (params: State) => any;
   internalSetState(type: 'change', { value }: State): void;
 }
 
-export const StyledRoot: StyletronComponent<any>;
-export const StyledTrack: StyletronComponent<any>;
-export const StyledInnerTrack: StyletronComponent<any>;
-export const StyledThumb: StyletronComponent<any>;
-export const StyledInnerThumb: StyletronComponent<any>;
-export const StyledTick: StyletronComponent<any>;
-export const StyledTickBar: StyletronComponent<any>;
-export const StyledMark: StyletronComponent<any>;
+export declare const StyledRoot: StyletronComponent<any>;
+export declare const StyledTrack: StyletronComponent<any>;
+export declare const StyledInnerTrack: StyletronComponent<any>;
+export declare const StyledThumb: StyletronComponent<any>;
+export declare const StyledInnerThumb: StyletronComponent<any>;
+export declare const StyledTick: StyletronComponent<any>;
+export declare const StyledTickBar: StyletronComponent<any>;
+export declare const StyledMark: StyletronComponent<any>;
 
-export const STATE_CHANGE_TYPE: STATE_CHANGE_TYPE;
+export declare const STATE_CHANGE_TYPE: STATE_CHANGE_TYPE;
