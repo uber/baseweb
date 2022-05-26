@@ -60,6 +60,7 @@ class Button extends React.Component<
       endEnhancer,
       children,
       forwardedRef,
+      colors,
       ...restProps
     } = this.props;
     // Get overrides
