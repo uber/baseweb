@@ -3,34 +3,34 @@ import { StyletronComponent } from 'styletron-react';
 import { ButtonProps } from '../button';
 import { Override } from '../overrides';
 
-export interface SIZE {
+export declare const SIZE: {
   default: 'default';
   full: 'full';
   auto: 'auto';
-}
+};
 
-export interface SIZE_WIDTHS {
+export declare const SIZE_WIDTHS: {
   default: '500px';
   full: '100%';
   auto: 'auto';
-}
-export interface ROLE {
+};
+export declare const ROLE: {
   dialog: 'dialog';
   alertdialog: 'alertdialog';
-}
-export interface CLOSE_SOURCE {
+};
+export declare const CLOSE_SOURCE: {
   closeButton: 'closeButton';
   backdrop: 'backdrop';
   escape: 'escape';
-}
+};
 
 export interface SharedStylePropsArg {
   children?: React.ReactNode;
   $animate?: boolean;
   $isVisible?: boolean;
   $isOpen?: boolean;
-  $size?: SIZE[keyof SIZE];
-  $role?: ROLE[keyof ROLE];
+  $size?: typeof SIZE[keyof typeof SIZE];
+  $role?: typeof ROLE[keyof typeof ROLE];
   $closeable?: boolean;
 }
 
@@ -49,10 +49,10 @@ export interface ModalProps {
   closeable?: boolean;
   isOpen?: boolean;
   mountNode?: HTMLElement;
-  onClose?: (args: { closeSource?: CLOSE_SOURCE[keyof CLOSE_SOURCE] }) => any;
+  onClose?: (args: { closeSource?: typeof CLOSE_SOURCE[keyof typeof CLOSE_SOURCE] }) => any;
   overrides?: ModalOverrides;
-  role?: ROLE[keyof ROLE];
-  size?: SIZE[keyof SIZE];
+  role?: typeof ROLE[keyof typeof ROLE];
+  size?: typeof SIZE[keyof typeof SIZE];
 }
 export interface ModalState {
   isVisible: boolean;
@@ -69,7 +69,7 @@ export class Modal extends React.Component<ModalProps, ModalState> {
   clearTimers(): void;
   didOpen(): void;
   didClose(): void;
-  triggerClose(source: CLOSE_SOURCE[keyof CLOSE_SOURCE]): void;
+  triggerClose(source: typeof CLOSE_SOURCE[keyof typeof CLOSE_SOURCE]): void;
   captureLastFocus(): void;
   restoreLastFocus(): void;
   autoFocus(): void;
@@ -92,8 +92,3 @@ export declare const StyledClose: StyletronComponent<any>;
 export declare const ModalHeader: StyletronComponent<any>;
 export declare const ModalBody: StyletronComponent<any>;
 export declare const ModalFooter: StyletronComponent<any>;
-
-export declare const SIZE: SIZE;
-export declare const SIZE_WIDTHS: SIZE_WIDTHS;
-export declare const ROLE: ROLE;
-export declare const CLOSE_SOURCE: CLOSE_SOURCE;

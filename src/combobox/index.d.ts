@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { Override } from '../overrides';
 
-export interface SIZE {
+export declare const SIZE: {
   compact: 'compact';
   default: 'default';
   large: 'large';
   mini: 'mini';
-}
+};
 
 export interface ComboboxOverrides {
   Root?: Override<any>;
@@ -31,9 +31,8 @@ export type PropsT<OptionT = any> = {
   onSubmit?: (params: { closeListbox: () => void; value: string }) => any;
   options: OptionT[];
   overrides?: ComboboxOverrides;
-  size?: SIZE[keyof SIZE];
+  size?: typeof SIZE[keyof typeof SIZE];
   value: string;
 };
 
 export declare const Combobox: React.FC<PropsT>;
-export declare const SIZE: SIZE;

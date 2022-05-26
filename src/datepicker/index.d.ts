@@ -3,7 +3,7 @@ import { Option } from '../select';
 import { SIZE } from '../input';
 import { Override } from '../overrides';
 
-export interface STATE_CHANGE_TYPE {
+export declare const STATE_CHANGE_TYPE: {
   change: 'change';
   moveUp: 'moveUp';
   moveDown: 'moveDown';
@@ -11,16 +11,16 @@ export interface STATE_CHANGE_TYPE {
   moveRight: 'moveRight';
   mouseOver: 'mouseOver';
   mouseLeave: 'mouseLeave';
-}
+};
 
-export interface ORIENTATION {
+export declare const ORIENTATION: {
   horizontal: 'horizontal';
   vertical: 'vertical';
-}
+};
 
 export type onChange = (args: { date: Date | Date[] }) => any;
 export type StateReducer = (
-  stateType: STATE_CHANGE_TYPE[keyof STATE_CHANGE_TYPE],
+  stateType: typeof STATE_CHANGE_TYPE[keyof typeof STATE_CHANGE_TYPE],
   nextState: ContainerState,
   currentState: ContainerState
 ) => ContainerState;
@@ -40,7 +40,10 @@ export class StatefulContainer extends React.Component<
   ContainerState
 > {
   onChange(data: { date: Date | Date[] }): void;
-  internalSetState(type: STATE_CHANGE_TYPE[keyof STATE_CHANGE_TYPE], changes: ContainerState): void;
+  internalSetState(
+    type: typeof STATE_CHANGE_TYPE[keyof typeof STATE_CHANGE_TYPE],
+    changes: ContainerState
+  ): void;
 }
 
 export interface QuickSelectOption {
@@ -71,7 +74,7 @@ export interface CalendarProps {
   onYearChange?: (args: { date: Date }) => any;
   onChange?: onChange;
   onQuickSelectChange?: (option?: QuickSelectOption) => any;
-  orientation?: ORIENTATION[keyof ORIENTATION];
+  orientation?: typeof ORIENTATION[keyof typeof ORIENTATION];
   overrides?: DatepickerOverrides<SharedStylePropsT>;
   peekNextMonth?: boolean;
   timeSelectStart?: boolean;
@@ -149,7 +152,7 @@ export type DatepickerProps = CalendarProps & {
   'aria-describedby'?: string;
   disabled?: boolean;
   clearable?: boolean;
-  size?: SIZE[keyof SIZE];
+  size?: typeof SIZE[keyof typeof SIZE];
   error?: boolean;
   positive?: boolean;
   placeholder?: string;
@@ -216,10 +219,6 @@ export class TimezonePicker extends React.Component<TimezonePickerProps, Timezon
 export declare const DISPLAY_FORMAT: 'L';
 export declare const ISO_FORMAT: 'YYYY-MM-DD';
 export declare const ISO_MONTH_FORMAT: 'YYYY-MM';
-
-export declare const STATE_CHANGE_TYPE: STATE_CHANGE_TYPE;
-
-export declare const ORIENTATION: ORIENTATION;
 
 export declare const WEEKDAYS: [0, 1, 2, 3, 4, 5, 6];
 

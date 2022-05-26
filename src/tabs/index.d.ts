@@ -2,20 +2,20 @@ import * as React from 'react';
 import { StyletronComponent } from 'styletron-react';
 import { Override } from '../overrides';
 
-export interface ORIENTATION {
+export declare const ORIENTATION: {
   horizontal: 'horizontal';
   vertical: 'vertical';
-}
-export interface STATE_CHANGE_TYPE {
+};
+export declare const STATE_CHANGE_TYPE: {
   change: 'change';
-}
+};
 
 export interface State {
   activeKey: React.Key;
 }
 
 export type StateReducer = (
-  stateChangeType: STATE_CHANGE_TYPE[keyof STATE_CHANGE_TYPE],
+  stateChangeType: typeof STATE_CHANGE_TYPE[keyof typeof STATE_CHANGE_TYPE],
   nextState: State,
   currentState: State
 ) => State;
@@ -33,7 +33,7 @@ export interface TabsProps {
   disabled?: boolean;
   renderAll?: boolean;
   onChange?: (args: { activeKey: React.Key }) => any;
-  orientation?: ORIENTATION[keyof ORIENTATION];
+  orientation?: typeof ORIENTATION[keyof typeof ORIENTATION];
   overrides?: TabsOverrides<SharedProps & { $active?: boolean }>;
 }
 
@@ -48,7 +48,10 @@ export type StatefulTabsProps = TabsProps & {
 
 export class StatefulTabs extends React.Component<StatefulTabsProps, State> {
   onTabChange(newState: State): void;
-  internalSetState(type: STATE_CHANGE_TYPE[keyof STATE_CHANGE_TYPE], changes: State): void;
+  internalSetState(
+    type: typeof STATE_CHANGE_TYPE[keyof typeof STATE_CHANGE_TYPE],
+    changes: State
+  ): void;
   getInitialKey(): any;
 }
 
@@ -59,7 +62,7 @@ export interface TabOverrides<T> {
 export interface SharedProps {
   $disabled?: boolean;
   $active?: boolean;
-  $orientation?: ORIENTATION[keyof ORIENTATION];
+  $orientation?: typeof ORIENTATION[keyof typeof ORIENTATION];
 }
 
 export interface TabProps {
@@ -73,7 +76,7 @@ export interface TabProps {
   overrides?: TabOverrides<SharedProps>;
   title?: React.ReactNode;
   id?: string;
-  $orientation?: ORIENTATION[keyof ORIENTATION];
+  $orientation?: typeof ORIENTATION[keyof typeof ORIENTATION];
 }
 
 export class Tab extends React.Component<TabProps> {
@@ -86,6 +89,3 @@ export declare const StyledRoot: StyletronComponent<any>;
 export declare const StyledTab: StyletronComponent<any>;
 export declare const StyledTabBar: StyletronComponent<any>;
 export declare const StyledTabContent: StyletronComponent<any>;
-
-export declare const ORIENTATION: ORIENTATION;
-export declare const STATE_CHANGE_TYPE: STATE_CHANGE_TYPE;

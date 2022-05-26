@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export interface TETHER_PLACEMENT {
+export declare const TETHER_PLACEMENT: {
   auto: 'auto';
   topLeft: 'topLeft';
   top: 'top';
@@ -14,9 +14,9 @@ export interface TETHER_PLACEMENT {
   leftBottom: 'leftBottom';
   left: 'left';
   leftTop: 'leftTop';
-}
+};
 
-export type TetherPlacement = TETHER_PLACEMENT;
+export type TetherPlacement = typeof TETHER_PLACEMENT[keyof typeof TETHER_PLACEMENT];
 
 export interface NormalizedOffset {
   top: number;
@@ -47,7 +47,7 @@ export interface TetherProps {
   popperRef?: React.Ref<HTMLElement>;
   children: React.ReactNode;
   onPopperUpdate?: (offsets: NormalizedOffsets, popper: PopperDataObject) => any;
-  placement?: TETHER_PLACEMENT[keyof TETHER_PLACEMENT];
+  placement?: typeof TETHER_PLACEMENT[keyof typeof TETHER_PLACEMENT];
   popperOptions?: any;
 }
 export interface TetherState {
@@ -79,5 +79,3 @@ export class LayersManager extends React.Component<LayersManagerProps> {
   host: React.Ref<HTMLElement>;
 }
 export declare const Layer: React.FC<LayerProps>;
-
-export declare const TETHER_PLACEMENT: TETHER_PLACEMENT;

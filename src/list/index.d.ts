@@ -3,23 +3,18 @@ import * as React from 'react';
 import { StyletronComponent } from 'styletron-react';
 import { Override } from '../overrides';
 
-export interface ARTWORK_SIZES {
+export declare const ARTWORK_SIZES: {
   SMALL: 'SMALL';
   MEDIUM: 'MEDIUM';
   LARGE: 'LARGE';
-}
-export declare const ARTWORK_SIZES: ARTWORK_SIZES;
-export type ArtworkSizesT =
-  | ARTWORK_SIZES['SMALL']
-  | ARTWORK_SIZES['MEDIUM']
-  | ARTWORK_SIZES['LARGE'];
+};
+export type ArtworkSizesT = typeof ARTWORK_SIZES[keyof typeof ARTWORK_SIZES];
 
-export interface SHAPE {
+export declare const SHAPE: {
   DEFAULT: 'DEFAULT';
   ROUND: 'ROUND';
-}
-export declare const SHAPE: SHAPE;
-export type ShapeT = SHAPE['DEFAULT'] | SHAPE['ROUND'];
+};
+export type ShapeT = typeof SHAPE[keyof typeof SHAPE];
 
 export interface StyledRootPropsT {
   $shape: ShapeT;

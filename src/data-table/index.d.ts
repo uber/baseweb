@@ -10,7 +10,7 @@ export function CustomColumn<ValueT, FilterParamsT>(options: any): any;
 export function NumericalColumn(options: any): any;
 export function StringColumn(options: any): any;
 
-export interface COLUMNS {
+export declare const COLUMNS: {
   ANCHOR: 'ANCHOR';
   CATEGORICAL: 'CATEGORICAL';
   DATETIME: 'DATETIME';
@@ -18,23 +18,20 @@ export interface COLUMNS {
   BOOLEAN: 'BOOLEAN';
   STRING: 'STRING';
   CUSTOM: 'CUSTOM';
-}
-export declare const COLUMNS: COLUMNS;
+};
 
-export interface NUMERICAL_FORMATS {
+export declare const NUMERICAL_FORMATS: {
   DEFAULT: 'DEFAULT';
   ACCOUNTING: 'ACCOUNTING';
   PERCENTAGE: 'PERCENTAGE';
-}
-export declare const NUMERICAL_FORMATS: NUMERICAL_FORMATS;
+};
 
-export interface SORT_DIRECTIONS {
+export declare const SORT_DIRECTIONS: {
   ASC: 'ASC';
   DESC: 'DESC';
-}
-export declare const SORT_DIRECTIONS: SORT_DIRECTIONS;
+};
 
-export type SortDirectionsT = SORT_DIRECTIONS['ASC'] | SORT_DIRECTIONS['DESC'] | null;
+export type SortDirectionsT = typeof SORT_DIRECTIONS[keyof typeof SORT_DIRECTIONS] | null;
 export type ColumnT = any;
 export type RowT = {
   id: number | string;

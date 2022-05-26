@@ -1,35 +1,35 @@
 import * as React from 'react';
 import { Override } from '../overrides';
 
-export interface FLOATING_MARKER_ANCHOR_POSITIONS {
+export declare const FLOATING_MARKER_ANCHOR_POSITIONS: {
   none: 'none';
   topLeft: 'top-left';
   topRight: 'top-right';
   bottomRight: 'bottom-right';
   bottomLeft: 'bottom-left';
-}
+};
 
-export interface FLOATING_MARKER_SIZES {
+export declare const FLOATING_MARKER_SIZES: {
   small: 'small';
   medium: 'medium';
   large: 'large';
-}
+};
 
-export interface FLOATING_MARKER_ANCHOR_TYPES {
+export declare const FLOATING_MARKER_ANCHOR_TYPES: {
   circle: 'circle';
   square: 'square';
   xxSmallCircle: 'xx-small-circle';
   xxSmallSquare: 'xx-small-square';
-}
+};
 
-export interface NEEDLE_SIZES {
+export declare const NEEDLE_SIZES: {
   none: 'none';
   short: 'short';
   medium: 'medium';
   tall: 'tall';
-}
+};
 
-export interface PINHEAD_SIZES_SHAPES {
+export declare const PINHEAD_SIZES_SHAPES: {
   xxSmallCircle: 'xx-small-circle';
   xxSmallSquare: 'xx-small-square';
   xSmallCircle: 'x-small-circle';
@@ -37,46 +37,47 @@ export interface PINHEAD_SIZES_SHAPES {
   small: 'small';
   medium: 'medium';
   large: 'large';
-}
+};
 
-export interface BADGE_ENHANCER_SIZES {
+export declare const BADGE_ENHANCER_SIZES: {
   none: 'none';
   xSmall: 'x-small';
   small: 'small';
   mediumText: 'medium-text';
   mediumIcon: 'medium-icon';
-}
+};
 
-export interface LABEL_ENHANCER_POSITIONS {
+export declare const LABEL_ENHANCER_POSITIONS: {
   none: 'none';
   top: 'top';
   left: 'left';
   right: 'right';
   bottom: 'bottom';
-}
+};
 
-export interface KIND {
+export declare const KIND: {
   default: 'default';
   accent: 'accent';
   negative: 'negative';
-}
+};
 
-interface PINHEAD_TYPES {
+declare const PINHEAD_TYPES: {
   floating: 'floating';
   fixed: 'fixed';
-}
+};
 
 export type AnchorPositionsT =
-  FLOATING_MARKER_ANCHOR_POSITIONS[keyof FLOATING_MARKER_ANCHOR_POSITIONS];
-export type NeedleSizeT = NEEDLE_SIZES[keyof NEEDLE_SIZES];
-export type PinHeadT = PINHEAD_TYPES[keyof PINHEAD_TYPES];
-export type PinHeadSizeT = PINHEAD_SIZES_SHAPES[keyof PINHEAD_SIZES_SHAPES];
-export type FloatingMarkerSizeT = FLOATING_MARKER_SIZES[keyof FLOATING_MARKER_SIZES];
+  typeof FLOATING_MARKER_ANCHOR_POSITIONS[keyof typeof FLOATING_MARKER_ANCHOR_POSITIONS];
+export type NeedleSizeT = typeof NEEDLE_SIZES[keyof typeof NEEDLE_SIZES];
+export type PinHeadT = typeof PINHEAD_TYPES[keyof typeof PINHEAD_TYPES];
+export type PinHeadSizeT = typeof PINHEAD_SIZES_SHAPES[keyof typeof PINHEAD_SIZES_SHAPES];
+export type FloatingMarkerSizeT = typeof FLOATING_MARKER_SIZES[keyof typeof FLOATING_MARKER_SIZES];
 export type FloatingMarkerAnchorTypeT =
-  FLOATING_MARKER_ANCHOR_TYPES[keyof FLOATING_MARKER_ANCHOR_TYPES];
-export type BadgeEnhancerSizeT = BADGE_ENHANCER_SIZES[keyof BADGE_ENHANCER_SIZES];
-export type LabelEnhancerPositionT = LABEL_ENHANCER_POSITIONS[keyof LABEL_ENHANCER_POSITIONS];
-export type KindT = KIND[keyof KIND];
+  typeof FLOATING_MARKER_ANCHOR_TYPES[keyof typeof FLOATING_MARKER_ANCHOR_TYPES];
+export type BadgeEnhancerSizeT = typeof BADGE_ENHANCER_SIZES[keyof typeof BADGE_ENHANCER_SIZES];
+export type LabelEnhancerPositionT =
+  typeof LABEL_ENHANCER_POSITIONS[keyof typeof LABEL_ENHANCER_POSITIONS];
+export type KindT = typeof KIND[keyof typeof KIND];
 
 export type FixedMarkerOverridesT = {
   Root?: Override<any>;
@@ -194,15 +195,6 @@ export type DragShadowPropsT = {
   height: number;
   overrides: FixedMarkerOverridesT;
 };
-
-export declare const FLOATING_MARKER_ANCHOR_POSITIONS: FLOATING_MARKER_ANCHOR_POSITIONS;
-export declare const FLOATING_MARKER_SIZES: FLOATING_MARKER_SIZES;
-export declare const FLOATING_MARKER_ANCHOR_TYPES: FLOATING_MARKER_ANCHOR_TYPES;
-export declare const NEEDLE_SIZES: NEEDLE_SIZES;
-export declare const PINHEAD_SIZES_SHAPES: PINHEAD_SIZES_SHAPES;
-export declare const BADGE_ENHANCER_SIZES: BADGE_ENHANCER_SIZES;
-export declare const LABEL_ENHANCER_POSITIONS: LABEL_ENHANCER_POSITIONS;
-export declare const KIND: KIND;
 
 export declare const FixedMarker: React.FC<FixedMarkerPropsT>;
 export declare const FloatingMarker: React.FC<FloatingMarkerPropsT>;

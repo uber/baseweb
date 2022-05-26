@@ -28,7 +28,7 @@ export interface StatefulContainerProps {
   children?: React.ReactNode;
   initialState?: State;
   stateReducer?: (
-    type: STATE_CHANGE_TYPE[keyof STATE_CHANGE_TYPE],
+    type: typeof STATE_CHANGE_TYPE[keyof typeof STATE_CHANGE_TYPE],
     nextState: State,
     currentState: State
   ) => State;

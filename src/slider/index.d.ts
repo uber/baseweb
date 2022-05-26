@@ -2,9 +2,9 @@ import * as React from 'react';
 import { StyletronComponent } from 'styletron-react';
 import { Override } from '../overrides';
 
-export interface STATE_CHANGE_TYPE {
+export declare const STATE_CHANGE_TYPE: {
   change: 'change';
-}
+};
 
 export interface State {
   value: number[];
@@ -90,5 +90,3 @@ export declare const StyledInnerThumb: StyletronComponent<any>;
 export declare const StyledTick: StyletronComponent<any>;
 export declare const StyledTickBar: StyletronComponent<any>;
 export declare const StyledMark: StyletronComponent<any>;
-
-export declare const STATE_CHANGE_TYPE: STATE_CHANGE_TYPE;

@@ -3,12 +3,12 @@ import { StyletronComponent } from 'styletron-react';
 import { Override } from '../overrides';
 import { NormalizedOffsets, PopperDataObject, TetherPlacement } from '../layer';
 
-export interface ACCESSIBILITY_TYPE {
+export declare const ACCESSIBILITY_TYPE: {
   none: 'none';
   menu: 'menu';
   tooltip: 'tooltip';
-}
-export interface PLACEMENT {
+};
+export declare const PLACEMENT: {
   auto: 'auto';
   topLeft: 'topLeft';
   top: 'top';
@@ -22,20 +22,20 @@ export interface PLACEMENT {
   leftBottom: 'leftBottom';
   left: 'left';
   leftTop: 'leftTop';
-}
-export interface TRIGGER_TYPE {
+};
+export declare const TRIGGER_TYPE: {
   click: 'click';
   hover: 'hover';
-}
-export interface STATE_CHANGE_TYPE {
+};
+export declare const STATE_CHANGE_TYPE: {
   open: 'open';
   close: 'close';
-}
+};
 export type ANIMATE_IN_TIME = 20;
 export type ANIMATE_OUT_TIME = 0;
 
 export type StateReducer = (
-  stateChangeType: STATE_CHANGE_TYPE[keyof STATE_CHANGE_TYPE],
+  stateChangeType: typeof STATE_CHANGE_TYPE[keyof typeof STATE_CHANGE_TYPE],
   nextState: State,
   currentState: State
 ) => State;
@@ -69,7 +69,10 @@ export class StatefulContainer extends React.Component<StatefulPopoverContainerP
   onContentClose(): void;
   open(): void;
   close(): void;
-  internalSetState(type: STATE_CHANGE_TYPE[keyof STATE_CHANGE_TYPE], changes: State): void;
+  internalSetState(
+    type: typeof STATE_CHANGE_TYPE[keyof typeof STATE_CHANGE_TYPE],
+    changes: State
+  ): void;
 }
 
 export interface SharedStylePropsArg {
@@ -87,7 +90,7 @@ export interface PopoverOverrides {
   Inner?: Override<SharedStylePropsArg>;
 }
 export interface BasePopoverProps {
-  accessibilityType?: ACCESSIBILITY_TYPE[keyof ACCESSIBILITY_TYPE];
+  accessibilityType?: typeof ACCESSIBILITY_TYPE[keyof typeof ACCESSIBILITY_TYPE];
   focusLock?: boolean;
   autoFocus?: boolean;
   focusOptions?: FocusOptions;
@@ -100,7 +103,7 @@ export interface BasePopoverProps {
   overrides?: PopoverOverrides;
   placement?: TetherPlacement[keyof TetherPlacement];
   showArrow?: boolean;
-  triggerType?: TRIGGER_TYPE[keyof TRIGGER_TYPE];
+  triggerType?: typeof TRIGGER_TYPE[keyof typeof TRIGGER_TYPE];
   mountNode?: HTMLElement;
   animateOutTime?: number;
   popperOptions?: any;
@@ -138,7 +141,7 @@ export class Popover extends React.Component<PopoverProps, PopoverPrivateState> 
     isAnimating: false;
     arrowOffset: { left: 0; top: 0 };
     popoverOffset: { left: 0; top: 0 };
-    placement: PLACEMENT[keyof PLACEMENT];
+    placement: typeof PLACEMENT[keyof typeof PLACEMENT];
     isMounted: false;
     isLayerMounted: false;
   };
@@ -178,12 +181,6 @@ export declare const StyledBody: StyletronComponent<any>;
 export declare const StyledInner: StyletronComponent<any>;
 export declare const StyledPadding: StyletronComponent<any>;
 
-export declare const ACCESSIBILITY_TYPE: ACCESSIBILITY_TYPE;
-export declare const PLACEMENT: PLACEMENT;
-export declare const TRIGGER_TYPE: TRIGGER_TYPE;
-export declare const STATE_CHANGE_TYPE: STATE_CHANGE_TYPE;
 export declare const POPOVER_MARGIN: 8;
 export declare const ARROW_SIZE: 6;
-export declare const ANIMATE_IN_TIME: ANIMATE_IN_TIME;
-export declare const ANIMATE_OUT_TIME: ANIMATE_OUT_TIME;
 export declare const ARROW_WIDTH: number;

@@ -7,15 +7,15 @@ import { Locale } from '../locale';
 
 export { SIZE } from '../input';
 
-export interface TYPE {
+export declare const TYPE: {
   select: 'select';
   search: 'search';
-}
-export interface STATE_CHANGE_TYPE {
+};
+export declare const STATE_CHANGE_TYPE: {
   select: 'select';
   remove: 'remove';
   clear: 'clear';
-}
+};
 
 export interface Option {
   readonly id?: string | number;
@@ -134,8 +134,8 @@ export interface SelectProps {
   placeholder?: React.ReactNode;
   required?: boolean;
   searchable?: boolean;
-  size?: SIZE[keyof SIZE];
-  type?: TYPE[keyof TYPE];
+  size?: typeof SIZE[keyof typeof SIZE];
+  type?: typeof TYPE[keyof typeof TYPE];
   value?: Value;
   valueKey?: string;
   mountNode?: HTMLElement;
@@ -202,8 +202,8 @@ export class Select extends React.Component<SelectProps, SelectState> {
     $multi: boolean;
     $required: boolean;
     $searchable: boolean;
-    $size: SIZE[keyof SIZE];
-    $type: TYPE[keyof TYPE];
+    $size: typeof SIZE[keyof typeof SIZE];
+    $type: typeof TYPE[keyof typeof TYPE];
   };
 }
 
@@ -218,7 +218,7 @@ export interface AutosizeInputProps {
   defaultValue?: string;
   inputRef?: React.Ref<any>;
   overrides?: AutosizeInputOverrides;
-  $size?: SIZE[keyof SIZE];
+  $size?: typeof SIZE[keyof typeof SIZE];
 }
 export interface AutosizeInputState {
   inputWidth: number;
@@ -259,8 +259,8 @@ export interface DropdownProps {
   overrides?: DropdownOverrides;
   required?: boolean;
   searchable?: boolean;
-  size?: SIZE[keyof SIZE];
-  type?: TYPE[keyof TYPE];
+  size?: typeof SIZE[keyof typeof SIZE];
+  type?: typeof TYPE[keyof typeof TYPE];
   value?: Value;
   valueKey?: string;
   width?: number;
@@ -273,8 +273,8 @@ export class SelectDropdown extends React.Component<DropdownProps> {
     $multi: boolean;
     $required: boolean;
     $searchable: boolean;
-    $size: SIZE[keyof SIZE];
-    $type: TYPE[keyof TYPE];
+    $size: typeof SIZE[keyof typeof SIZE];
+    $type: typeof TYPE[keyof typeof TYPE];
     $width: number;
   };
   getItemLabel(option: { [key: string]: any }): React.ReactNode;
@@ -288,7 +288,7 @@ export type StateReducer = (stateType: string, nextState: State, currentState: S
 export interface OnChangeParams {
   value: Value;
   option?: Option;
-  type?: STATE_CHANGE_TYPE[keyof STATE_CHANGE_TYPE];
+  type?: typeof STATE_CHANGE_TYPE[keyof typeof STATE_CHANGE_TYPE];
 }
 export type StatefulSelectProps = SelectProps & {
   initialState?: State;
@@ -324,6 +324,3 @@ export declare const StyledDropdownContainer: StyletronComponent<any>;
 export declare const StyledDropdown: StyletronComponent<any>;
 export declare const StyledDropdownListItem: StyletronComponent<any>;
 export declare const StyledOptionContent: StyletronComponent<any>;
-
-export declare const TYPE: TYPE;
-export declare const STATE_CHANGE_TYPE: STATE_CHANGE_TYPE;

@@ -2,18 +2,18 @@ import * as React from 'react';
 import { StyletronComponent } from 'styletron-react';
 import { Override } from '../overrides';
 
-export interface DIVIDER {
+export declare const DIVIDER: {
   horizontal: 'horizontal';
   vertical: 'vertical';
   grid: 'grid';
   clean: 'clean';
-}
+};
 
-export interface SIZE {
+export declare const SIZE: {
   compact: 'compact';
   default: 'default';
   spacious: 'spacious';
-}
+};
 
 export interface TableOverrides {
   Root?: Override<any>;
@@ -31,12 +31,12 @@ export interface TableProps {
   overrides?: TableOverrides;
   columns: Array<React.ReactNode>;
   data: React.ReactNode[][];
-  divider?: DIVIDER[keyof DIVIDER];
+  divider?: typeof DIVIDER[keyof typeof DIVIDER];
   horizontalScrollWidth?: string;
   isLoading?: boolean;
   loadingMessage?: React.ReactNode | (() => React.ReactNode);
   emptyMessage?: React.ReactNode | (() => React.ReactNode);
-  size?: SIZE[keyof SIZE];
+  size?: typeof SIZE[keyof typeof SIZE];
 }
 export class Table extends React.Component<TableProps> {}
 
@@ -58,7 +58,7 @@ export interface TableBuilderProps<RowT> {
   isLoading?: boolean;
   loadingMessage?: React.ReactNode | (() => React.ReactNode);
   emptyMessage?: React.ReactNode | (() => React.ReactNode);
-  size?: SIZE[keyof SIZE];
+  size?: typeof SIZE[keyof typeof SIZE];
 }
 export class TableBuilder<RowT> extends React.Component<TableBuilderProps<RowT>> {}
 
@@ -95,6 +95,3 @@ export declare const StyledTableEmptyMessage: StyletronComponent<any>;
 export declare const StyledSortAscIcon: StyletronComponent<any>;
 export declare const StyledSortDescIcon: StyletronComponent<any>;
 export declare const StyledSortNoneIcon: StyletronComponent<any>;
-
-export declare const DIVIDER: DIVIDER;
-export declare const SIZE: SIZE;

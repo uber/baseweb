@@ -2,9 +2,9 @@ import * as React from 'react';
 import { StyletronComponent } from 'styletron-react';
 import { Override } from '../overrides';
 
-export interface STATE_CHANGE_TYPE {
+export declare const STATE_CHANGE_TYPE: {
   change: 'change';
-}
+};
 
 export interface Item {
   title: React.ReactNode;
@@ -58,5 +58,3 @@ export declare const StyledNavItemContainer: StyletronComponent<any>;
 export declare const StyledNavLink: StyletronComponent<any>;
 export declare const StyledNavItem: StyletronComponent<any>;
 export declare const StyledSubNavContainer: StyletronComponent<any>;
-
-export declare const STATE_CHANGE_TYPE: STATE_CHANGE_TYPE;

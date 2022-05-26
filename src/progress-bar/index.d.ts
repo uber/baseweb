@@ -2,11 +2,11 @@ import * as React from 'react';
 import { StyletronComponent } from 'styletron-react';
 import { Override } from '../overrides';
 
-export interface SIZE {
+export declare const SIZE: {
   small: 'small';
   medium: 'medium';
   large: 'large';
-}
+};
 export interface ProgressBarOverrides {
   Root?: Override<any>;
   BarContainer?: Override<any>;
@@ -22,7 +22,7 @@ export interface ProgressBarProps {
   getProgressLabel?: (value: number, successValue: number) => React.ReactNode;
   infinite?: boolean;
   overrides?: ProgressBarOverrides;
-  size?: keyof SIZE;
+  size?: typeof SIZE[keyof typeof SIZE];
   showLabel?: boolean;
   steps?: number;
   successValue?: number;
@@ -42,14 +42,13 @@ export interface ProgressBarRoundedOverrides {
 
 export interface ProgressBarRoundedProps {
   progress?: number;
-  size?: SIZE[keyof SIZE];
+  size?: typeof SIZE[keyof typeof SIZE];
   animate?: boolean;
   inline?: boolean;
   overrides?: ProgressBarRoundedOverrides;
 }
 export declare const ProgressBarRounded: React.FC<ProgressBarRoundedProps>;
 
-export declare const SIZE: SIZE;
 export declare const StyledRoot: StyletronComponent<any>;
 export declare const StyledBarContainer: StyletronComponent<any>;
 export declare const StyledBar: StyletronComponent<any>;

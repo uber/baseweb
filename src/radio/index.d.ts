@@ -2,14 +2,14 @@ import * as React from 'react';
 import { StyletronComponent } from 'styletron-react';
 import { Override } from '../overrides';
 
-export interface STATE_TYPE {
+export declare const STATE_TYPE: {
   change: 'CHANGE';
-}
+};
 
-export interface ALIGN {
+export declare const ALIGN: {
   vertical: 'vertical';
   horizontal: 'horizontal';
-}
+};
 
 export type StateReducer = (
   stateType: string,
@@ -132,6 +132,3 @@ export declare const StyledDescription: StyletronComponent<any>;
 export declare const StyledRadioMarkInner: StyletronComponent<any>;
 export declare const StyledRadioMarkOuter: StyletronComponent<any>;
 export declare const StyledRadioGroupRoot: StyletronComponent<any>;
-
-export declare const STATE_TYPE: STATE_TYPE;
-export declare const ALIGN: ALIGN;

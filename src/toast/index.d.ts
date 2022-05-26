@@ -2,24 +2,25 @@ import * as React from 'react';
 import { StyletronComponent } from 'styletron-react';
 import { Override } from '../overrides';
 
-export interface KIND {
+export declare const KIND: {
   info: 'info';
   positive: 'positive';
   warning: 'warning';
   negative: 'negative';
-}
-export interface PLACEMENT {
+};
+
+export declare const PLACEMENT: {
   topLeft: 'topLeft';
   top: 'top';
   topRight: 'topRight';
   bottomRight: 'bottomRight';
   bottom: 'bottom';
   bottomLeft: 'bottomLeft';
-}
-export interface TYPE {
+};
+export declare const TYPE: {
   inline: 'inline';
   toast: 'toast';
-}
+};
 
 export interface IToaster {
   getRef: () => React.Ref<typeof ToasterContainer>;
@@ -39,7 +40,7 @@ export interface ToasterContainerState {
   toasts: Readonly<ToastProps>;
 }
 export interface ToasterSharedStylePropsArg {
-  $placement?: PLACEMENT[keyof PLACEMENT];
+  $placement?: typeof PLACEMENT[keyof typeof PLACEMENT];
 }
 export interface ToasterOverrides {
   Root?: Override<ToasterSharedStylePropsArg>;
@@ -49,7 +50,7 @@ export interface ToasterOverrides {
 }
 export interface ToasterProps {
   overrides?: ToasterOverrides;
-  placement?: PLACEMENT[keyof PLACEMENT];
+  placement?: typeof PLACEMENT[keyof typeof PLACEMENT];
   usePortal?: boolean;
   autoHideDuration?: number;
 }
@@ -66,12 +67,12 @@ export class ToasterContainer extends React.Component<
   internalOnClose(key: React.Key): void;
   getOnCloseHandler(key: React.Key, onClose?: () => any): () => any;
   renderToast(toastProps: ToastProps & { key: React.Key }): React.ReactNode;
-  getSharedProps(): { $placement: PLACEMENT[keyof PLACEMENT] };
+  getSharedProps(): { $placement: typeof PLACEMENT[keyof typeof PLACEMENT] };
 }
 
 export interface SharedStylePropsArg {
-  $kind?: KIND[keyof KIND];
-  $type?: TYPE[keyof TYPE];
+  $kind?: typeof KIND[keyof typeof KIND];
+  $type?: typeof TYPE[keyof typeof TYPE];
   $closeable?: boolean;
   $isRendered?: boolean;
   $isVisible?: boolean;
@@ -92,8 +93,8 @@ export interface ToastProps {
   autoFocus?: Boolean;
   children?: ((args: { dismiss: () => void }) => React.ReactNode) | React.ReactNode;
   closeable?: boolean;
-  kind?: KIND[keyof KIND];
-  notificationType?: TYPE[keyof TYPE];
+  kind?: typeof KIND[keyof typeof KIND];
+  notificationType?: typeof TYPE[keyof typeof TYPE];
   onClose?: () => any;
   onBlur?: (e: Event) => any;
   onFocus?: (e: Event) => any;
@@ -120,7 +121,3 @@ export class Toast extends React.Component<ToastProps, ToastPrivateState> {
 export declare const Root: StyletronComponent<any>;
 export declare const Body: StyletronComponent<any>;
 export declare const CloseIconSvg: StyletronComponent<any>;
-
-export declare const KIND: KIND;
-export declare const PLACEMENT: PLACEMENT;
-export declare const TYPE: TYPE;
