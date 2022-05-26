@@ -67,7 +67,7 @@ const NotificationCircle = ({
         $role={ROLE.notificationCircle}
         {...positionerProps}
       >
-        <NotificationCircle {...NotificationCircleProps} $color={color}>
+        <NotificationCircle {...NotificationCircleProps} $color={color} $hidden={hidden}>
           {content}
         </NotificationCircle>
       </Positioner>

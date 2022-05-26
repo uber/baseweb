@@ -19,6 +19,7 @@ const HintDot = ({
   color,
   horizontalOffset: horizontalOffsetProp,
   verticalOffset: verticalOffsetProp,
+  hidden,
   overrides = {},
 }: HintDotPropsT) => {
   const [HintDot, hintDotProps] = getOverrides(overrides.Badge, StyledHintDot);
@@ -29,12 +30,16 @@ const HintDot = ({
 
   const anchor = getAnchorFromChildren(children);
 
-  // if the anchor is a string, we supply a default horizontalOffset
+  // if the anchor is a string, we supply default offsets
   let horizontalOffset = horizontalOffsetProp;
   let verticalOffset = verticalOffsetProp;
-  if (!horizontalOffset && typeof anchor === 'string') {
-    horizontalOffset = '-14px';
-    verticalOffset = '-4px';
+  if (typeof anchor === 'string') {
+    if (!horizontalOffset) {
+      horizontalOffset = '-14px';
+    }
+    if (!verticalOffset) {
+      verticalOffset = '-4px';
+    }
   }
   return (
     <Root {...rootProps}>
@@ -46,7 +51,12 @@ const HintDot = ({
         $role={ROLE.hintDot}
         {...positionerProps}
       >
-        <HintDot {...hintDotProps} $color={color} $horizontalOffset={horizontalOffset} />
+        <HintDot
+          {...hintDotProps}
+          $color={color}
+          $horizontalOffset={horizontalOffset}
+          $hidden={hidden}
+        />
       </Positioner>
     </Root>
   );

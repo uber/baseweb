@@ -135,6 +135,52 @@ export const StyledRoot = styled<{}>('div', () => {
   };
 });
 
+export const StyledPositioner = styled<{
+  $role: RoleT,
+  $placement: PlacementT,
+  $horizontalOffset?: ?string,
+  $verticalOffset?: ?string,
+}>('div', ({ $theme, $role, $placement, $horizontalOffset, $verticalOffset }) => {
+  let positionStyle = POSITION_STYLES[$role][$placement];
+
+  // apply offsets to position style
+  if ($verticalOffset) {
+    if (
+      $placement === PLACEMENT.topLeft ||
+      $placement === PLACEMENT.top ||
+      $placement === PLACEMENT.topRight
+    ) {
+      positionStyle = { ...positionStyle, top: $verticalOffset };
+    }
+    if (
+      $placement === PLACEMENT.bottomLeft ||
+      $placement === PLACEMENT.bottom ||
+      $placement === PLACEMENT.bottomRight
+    ) {
+      positionStyle = { ...positionStyle, bottom: $verticalOffset };
+    }
+  }
+  if ($horizontalOffset) {
+    if (
+      $placement === PLACEMENT.topLeft ||
+      $placement === PLACEMENT.top ||
+      $placement === PLACEMENT.bottomLeft ||
+      $placement === PLACEMENT.bottom
+    ) {
+      positionStyle = { ...positionStyle, left: $horizontalOffset };
+    }
+    if ($placement === PLACEMENT.topRight || $placement === PLACEMENT.bottomRight) {
+      positionStyle = { ...positionStyle, right: $horizontalOffset };
+    }
+  }
+
+  return {
+    ...positionStyle,
+    position: 'absolute',
+    height: 'unset',
+  };
+});
+
 export const StyledBadge = styled<{
   $shape?: ShapeT,
   $color?: ColorT,
@@ -184,56 +230,11 @@ export const StyledNotificationCircle = styled<{
   };
 });
 
-export const StyledPositioner = styled<{
-  $role: RoleT,
-  $placement: PlacementT,
-  $horizontalOffset?: ?string,
-  $verticalOffset?: ?string,
-}>('div', ({ $theme, $role, $placement, $horizontalOffset, $verticalOffset }) => {
-  let positionStyle = POSITION_STYLES[$role][$placement];
-
-  // apply offsets to position style
-  if ($verticalOffset) {
-    if (
-      $placement === PLACEMENT.topLeft ||
-      $placement === PLACEMENT.top ||
-      $placement === PLACEMENT.topRight
-    ) {
-      positionStyle = { ...positionStyle, top: $verticalOffset };
-    }
-    if (
-      $placement === PLACEMENT.bottomLeft ||
-      $placement === PLACEMENT.bottom ||
-      $placement === PLACEMENT.bottomRight
-    ) {
-      positionStyle = { ...positionStyle, bottom: $verticalOffset };
-    }
-  }
-  if ($horizontalOffset) {
-    if (
-      $placement === PLACEMENT.topLeft ||
-      $placement === PLACEMENT.top ||
-      $placement === PLACEMENT.bottomLeft ||
-      $placement === PLACEMENT.bottom
-    ) {
-      positionStyle = { ...positionStyle, left: $horizontalOffset };
-    }
-    if ($placement === PLACEMENT.topRight || $placement === PLACEMENT.bottomRight) {
-      positionStyle = { ...positionStyle, right: $horizontalOffset };
-    }
-  }
-
-  return {
-    ...positionStyle,
-    position: 'absolute',
-    height: 'unset',
-  };
-});
-
-export const StyledHintDot = styled<{ $color: ColorT }>(
+export const StyledHintDot = styled<{ $color: ColorT, $hidden?: boolean }>(
   'div',
-  ({ $theme, $color = COLOR.accent }) => {
+  ({ $theme, $color = COLOR.accent, $hidden }) => {
     return {
+      visibility: $hidden ? 'hidden' : 'inherit',
       backgroundColor: $theme.colors[$color],
       boxSizing: 'content-box',
       height: '8px',
