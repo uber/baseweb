@@ -54,15 +54,17 @@ export type PropsT = {
   sublist?: boolean;
 };
 
+export type LabelOverrides = {
+  LabelContent?: OverrideT;
+  LabelDescription?: OverrideT;
+  LabelSublistContent?: OverrideT;
+};
+
 export type LabelPropsT = {
   children: React.ReactNode;
   description?: React.ReactNode;
   sublist?: boolean;
-  overrides?: {
-    LabelContent?: OverrideT;
-    LabelDescription?: OverrideT;
-    LabelSublistContent?: OverrideT;
-  };
+  overrides?: LabelOverrides;
 };
 
 export type HeadingOverridesT = {

@@ -11,6 +11,15 @@ import { SIZE } from '../input';
 
 import type { ChangeEvent } from 'react';
 
+export type ComboboxOverrides = {
+  Root?: OverrideT;
+  InputContainer?: OverrideT;
+  Input?: OverrideT;
+  Popover?: OverrideT;
+  ListBox?: OverrideT;
+  ListItem?: OverrideT;
+};
+
 export type PropsT<OptionT = unknown> = {
   // Controls if the input value will be updated while keyboard navigating. Defaults to true.
   autocomplete?: boolean;
@@ -47,14 +56,7 @@ export type PropsT<OptionT = unknown> = {
   onSubmit?: (a: { closeListbox: () => void; value: string }) => unknown;
   // Data to populate list items in the dropdown menu.
   options: OptionT[];
-  overrides?: {
-    Root?: OverrideT;
-    InputContainer?: OverrideT;
-    Input?: OverrideT;
-    Popover?: OverrideT;
-    ListBox?: OverrideT;
-    ListItem?: OverrideT;
-  };
+  overrides?: ComboboxOverrides;
   // Proxies value through to Input component.
   positive?: boolean;
   // Configures the height of input and list item elements.
