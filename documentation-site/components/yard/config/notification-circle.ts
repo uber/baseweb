@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import { NotificationCircle, COLOR, PLACEMENT } from 'baseui/badge';
 import { Skeleton } from 'baseui/skeleton';
-import Check from 'baseui/icon/check';
+import { Check } from 'baseui/icon';
 import { PropTypes } from 'react-view';
 import { TConfig } from '../types';
 
