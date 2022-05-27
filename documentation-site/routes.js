@@ -271,6 +271,10 @@ const routes = [
         title: 'Progress & Validation',
         subNav: [
           {
+            title: 'Empty State',
+            itemId: '/components/empty-state',
+          },
+          {
             title: 'Notification',
             itemId: '/components/notification',
           },
