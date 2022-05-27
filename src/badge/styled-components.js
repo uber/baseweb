@@ -178,6 +178,7 @@ export const StyledPositioner = styled<{
     ...positionStyle,
     position: 'absolute',
     height: 'unset',
+    lineHeight: 'unset',
   };
 });
 
