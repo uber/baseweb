@@ -1,4 +1,4 @@
-import { HeaderNavigationOverrides } from 'baseui/header-navigation';
+import { HeaderNavigationOverrides } from '../header-navigation';
 import * as React from 'react';
 import { StyletronComponent } from 'styletron-react';
 import { Override } from '../overrides';
