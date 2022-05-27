@@ -31,8 +31,9 @@ export declare const STATE_CHANGE_TYPE: {
   open: 'open';
   close: 'close';
 };
-export type ANIMATE_IN_TIME = 20;
-export type ANIMATE_OUT_TIME = 0;
+
+export const ANIMATE_IN_TIME = 20;
+export const ANIMATE_OUT_TIME = 0;
 
 export type StateReducer = (
   stateChangeType: typeof STATE_CHANGE_TYPE[keyof typeof STATE_CHANGE_TYPE],
