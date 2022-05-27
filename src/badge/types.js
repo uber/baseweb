@@ -22,7 +22,7 @@ export type BadgeOverridesT = {
 };
 
 export type BadgePropsT = {
-  content: ?React.Node,
+  content: React.Node,
   hierarchy?: HierarchyT,
   shape?: ShapeT,
   color?: ColorT,
@@ -35,7 +35,7 @@ export type BadgePropsT = {
 };
 
 export type NotificationCirclePropsT = {
-  content: ?React.Node,
+  content: React.Node,
   color?: ColorT,
   placement?: PlacementT,
   hidden?: boolean,
