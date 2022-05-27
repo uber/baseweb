@@ -20,13 +20,7 @@ export interface AvatarProps {
   src?: string;
 }
 
-export interface AvatarState {
-  noImageAvailable: boolean;
-}
-
-export class Avatar extends React.Component<AvatarProps, AvatarState> {
-  handleError(): void;
-}
+export declare const Avatar: React.FC<AvatarProps>;
 
 export declare const StyledAvatar: StyletronComponent<any>;
 export declare const StyledInitials: StyletronComponent<any>;
