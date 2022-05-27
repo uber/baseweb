@@ -1,5 +1,5 @@
 import { StyletronComponent } from 'styletron-react';
-import { Sizing } from '../theme.ts';
+import { Sizing } from '../theme';
 
 export enum SIZE {
   small = 'small',
