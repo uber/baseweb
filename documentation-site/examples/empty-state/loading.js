@@ -1,3 +1,4 @@
+// @flow
 import * as React from 'react';
 import {useStyletron} from 'baseui';
 import {Spinner} from 'baseui/spinner';
