@@ -1,0 +1,32 @@
+<!--
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import Layout from '../../components/layout';
+
+import EmptyState from 'examples/empty-state/empty-state.js';
+import Loading from 'examples/empty-state/loading.js';
+
+export default Layout;
+
+# Empty State
+
+Empty states are messages that users see when there is no data or content to show. They can appear
+during onboarding and first time use, after successfully clearing a cue of tasks, and sometimes
+during movements of failure.
+
+## Examples
+
+Use an empty state for educational messages, success states and cleared states, or failure states.
+
+<Example title="Empty state" path="empty-state/empty-state.js">
+  <EmptyState />
+</Example>
+
+<Example title="Loading" path="empty-state/loading.js">
+  <Loading />
+</Example>
