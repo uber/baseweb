@@ -73,6 +73,14 @@ async function analyzeAccessibility(page, options = { rules: [] }) {
             enabled: false,
           },
           {
+            id: 'landmark-one-main',
+            enabled: false,
+          },
+          {
+            id: 'bypass',
+            enabled: false,
+          },
+          {
             id: 'page-has-heading-one',
             enabled: false,
           },
