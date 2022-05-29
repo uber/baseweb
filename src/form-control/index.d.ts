@@ -29,12 +29,3 @@ export interface FormControlProps {
 }
 
 export class FormControl extends React.Component<FormControlProps, FormControlState> {}
-
-export interface FormControlChildProps {
-  'aria-describedby': string | null;
-  'aria-errormessage': string | null;
-  key: React.Key;
-  disabled: boolean;
-  error: boolean;
-  positive: boolean;
-}
