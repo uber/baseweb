@@ -11,13 +11,11 @@ import type {
   Typography,
   ZIndex,
 } from '../theme';
-import type {
-  StyledFn as StyletronStyledFn,
-  StyleObject,
-  StyletronComponent,
-  WithStyleFn as StyletronWithStyleFn,
-} from 'styletron-react';
+import type { StyleObject, StyletronComponent } from 'styletron-react';
 import * as React from 'react';
+
+type StyletronStyledFn = typeof import('styletron-react').styled;
+type StyletronWithStyleFn = typeof import('styletron-react').withStyle;
 
 export function expandBorderStyles(borderStyles: Border): StyleObject;
 
