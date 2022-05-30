@@ -27,7 +27,7 @@ const ARROW_DOWN = 40;
 
 // aria 1.1 spec: https://www.w3.org/TR/wai-aria-practices/#combobox
 // aria 1.2 spec: https://www.w3.org/TR/wai-aria-practices-1.2/#combobox
-function Combobox<OptionT>(props: ComboboxProps<Option>) {
+function Combobox<Option>(props: ComboboxProps<Option>) {
   const {
     autocomplete = true,
     disabled = false,

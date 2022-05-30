@@ -16,7 +16,7 @@ export type Columns = typeof COLUMNS[keyof typeof COLUMNS];
 
 // These options are available on all column kinds. Most have additional
 // unique options depending on the data visualization requirements.
-export type SharedColumnOptions<ValueT> = {
+export type SharedColumnOptions<Value> = {
   cellBlockAlign?: 'start' | 'center' | 'end';
   fillWidth?: boolean;
   filterable?: boolean;
@@ -27,7 +27,7 @@ export type SharedColumnOptions<ValueT> = {
   title: string;
 };
 
-export type RenderCell<ValueT> = React.ComponentType<{
+export type RenderCell<Value> = React.ComponentType<{
   value: Value;
   isMeasured?: boolean;
   isSelected?: boolean;
@@ -37,19 +37,19 @@ export type RenderCell<ValueT> = React.ComponentType<{
   y: number;
 }>;
 
-export type RenderFilter<ValueT, FilterParamsT> = React.ComponentType<{
+export type RenderFilter<Value, FilterParams> = React.ComponentType<{
   close: () => void;
   data: Value[];
-  filterParams?: FilterParamsT;
-  setFilter: (a: FilterParamsT) => void;
+  filterParams?: FilterParams;
+  setFilter: (a: FilterParams) => void;
 }>;
 
-export type ColumnOptions<ValueT = any, FilterParamsT = any> = {
+export type ColumnOptions<Value = any, FilterParams = any> = {
   kind: Columns;
   sortable: boolean;
   renderCell: RenderCell<Value>;
-  renderFilter: RenderFilter<Value, FilterParamsT>;
-  buildFilter: (a: FilterParamsT) => (a: Value) => boolean;
+  renderFilter: RenderFilter<Value, FilterParams>;
+  buildFilter: (a: FilterParams) => (a: Value) => boolean;
   textQueryFilter?: (b: string, a: Value) => boolean;
   sortFn: (b: Value, a: Value) => number;
 } & SharedColumnOptions<Value>;

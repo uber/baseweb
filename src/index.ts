@@ -30,5 +30,5 @@ export {
 export { default as LocaleProvider } from './locale';
 export { default as BaseProvider } from './helpers/base-provider';
 export { getOverrides, mergeOverrides } from './helpers/overrides';
-export type { PrimitivesT } from './themes';
-export type { ThemeT } from './styles';
+export type { Primitives } from './themes';
+export type { Theme } from './styles';

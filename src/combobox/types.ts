@@ -20,7 +20,7 @@ export type ComboboxOverrides = {
   ListItem?: Override;
 };
 
-export type ComboboxProps<OptionT = unknown> = {
+export type ComboboxProps<Option = unknown> = {
   // Controls if the input value will be updated while keyboard navigating. Defaults to true.
   autocomplete?: boolean;
   // Disallows text input and listbox opening.

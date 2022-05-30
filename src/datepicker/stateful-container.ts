@@ -16,18 +16,18 @@ import type {
 } from './types';
 
 type InputProps<T> = CalendarProps<T> | DatepickerProps<T>;
-type DatepickerProps<T> = StatefulContainerProps<InputProps<T>, T>;
+type Props<T> = StatefulContainerProps<InputProps<T>, T>;
 
-class StatefulContainer<T = Date> extends React.Component<DatepickerProps<T>, ContainerState<T>> {
+class StatefulContainer<T = Date> extends React.Component<Props<T>, ContainerState<T>> {
   static defaultProps: {
     stateReducer: StateReducer<unknown>;
-  } & Partial<DatepickerProps<unknown>> = {
+  } & Partial<Props<unknown>> = {
     initialState: {},
     stateReducer: (type, nextState) => nextState,
     onChange: () => {},
   };
 
-  constructor(props: DatepickerProps<T>) {
+  constructor(props: Props<T>) {
     super(props);
     const value = props.range ? [] : (null as T | undefined | null);
     this.state = { value, ...props.initialState };

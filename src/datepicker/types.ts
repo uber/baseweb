@@ -315,8 +315,8 @@ export type StateReducer<T = Date> = (
   currentState: ContainerState<T>
 ) => ContainerState<T>;
 
-export type StatefulContainerProps<PropsT, T = Date> = {
-  children: (a: DatepickerProps) => React.ReactNode;
+export type StatefulContainerProps<Props, T = Date> = {
+  children: (a: Props) => React.ReactNode;
   /** Initial state of an uncontrolled datepicker component. */
   initialState?: ContainerState<T>;
   /** A state change handler. */
@@ -332,8 +332,8 @@ export type StatefulContainerProps<PropsT, T = Date> = {
   range?: boolean;
 };
 
-export type StatefulDatepickerProps<PropsT, T = Date> = Omit<
-  StatefulContainerProps<DatepickerProps, T>,
+export type StatefulDatepickerProps<Props, T = Date> = Omit<
+  StatefulContainerProps<Props, T>,
   'children'
 >;
 

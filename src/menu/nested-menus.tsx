@@ -9,12 +9,12 @@ import * as React from 'react';
 
 import type { NestedMenuRef, NestedMenuContextProps } from './types';
 
-type StateT = {
+type State = {
   nestedMenuHoverIndex: number;
   menus: NestedMenuRef[];
 };
 
-type PropsT = {
+type Props = {
   children: React.ReactNode;
 };
 
@@ -38,7 +38,7 @@ function isSame(a?: HTMLElement | null, b?: HTMLElement | null) {
   return a.isSameNode(b);
 }
 
-export default class NestedMenus extends React.Component<PropsT, StateT> {
+export default class NestedMenus extends React.Component<Props, State> {
   state = { menus: [], nestedMenuHoverIndex: -1 };
   mountRef = React.createRef() as {
     current: HTMLElement | null;

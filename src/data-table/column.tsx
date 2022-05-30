@@ -11,9 +11,9 @@ import { useStyletron } from '../styles';
 
 import type { ColumnOptions } from './types';
 
-function Column<ValueT, FilterParamsT>(
-  options: ColumnOptions<Value, FilterParamsT>
-): ColumnOptions<Value, FilterParamsT> {
+function Column<Value, FilterParams>(
+  options: ColumnOptions<Value, FilterParams>
+): ColumnOptions<Value, FilterParams> {
   return {
     kind: options.kind,
     buildFilter: options.buildFilter || (() => () => true),

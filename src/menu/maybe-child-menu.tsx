@@ -13,7 +13,7 @@ import type { Override } from '../helpers/overrides';
 import { getOverrides, mergeOverrides } from '../helpers/overrides';
 import type { Item } from './types';
 
-type PropsT = {
+type Props = {
   getChildMenu: ((item: Item) => React.ReactNode) | undefined | null;
   isOpen: boolean;
   item: Item;
@@ -25,7 +25,7 @@ type PropsT = {
   };
 };
 
-const MaybeChildMenu: React.FC<PropsT> = (props): React.ReactElement => {
+const MaybeChildMenu: React.FC<Props> = (props): React.ReactElement => {
   if (!props.getChildMenu) {
     // @ts-expect-error todo(flow->ts): children should be of type ReactElement or null
     return props.children;

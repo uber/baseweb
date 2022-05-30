@@ -4,7 +4,7 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import type { BreakpointsT } from '../styles/types';
+import type { Breakpoints } from '../styles';
 
 /**
  * Helper function that generates media queries based on breakpoint, e.g.
@@ -13,7 +13,7 @@ import type { BreakpointsT } from '../styles/types';
 export const getMediaQuery = (breakpoint: number): string =>
   `@media screen and (min-width: ${breakpoint}px)`;
 
-export const getMediaQueries = (breakpoints: BreakpointsT): string[] =>
+export const getMediaQueries = (breakpoints: Breakpoints): string[] =>
   Object.keys(breakpoints)
     .map((key) => breakpoints[key])
     .sort((a, b) => a - b)

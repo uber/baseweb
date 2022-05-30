@@ -11,9 +11,9 @@ import { StatefulContainer, ACCESSIBILITY_TYPE, PLACEMENT, TRIGGER_TYPE } from '
 import { POPOVER_MARGIN } from '../popover/constants';
 
 import { Helper } from './helper';
-import type { StatefulPropsT } from './types';
+import type { StatefulProps } from './types';
 
-export function StatefulHelper(props: StatefulPropsT) {
+export function StatefulHelper(props: StatefulProps) {
   const { children, ...restProps } = props;
   return (
     <StatefulContainer {...restProps}>

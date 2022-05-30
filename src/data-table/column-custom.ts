@@ -10,17 +10,17 @@ import type { ColumnOptions, RenderCell, RenderFilter, SharedColumnOptions } fro
 
 // I could not re-use the ColumnT type to build this.. tried to spread the ColumnT
 // and define renderFilter, etc. to optional, but required status was maintained.
-type Options<ValueT, FilterParamsT> = {
+type Options<Value, FilterParams> = {
   renderCell: RenderCell<Value>;
-  renderFilter?: RenderFilter<Value, FilterParamsT>;
-  buildFilter?: (a: FilterParamsT) => (a: Value) => boolean;
+  renderFilter?: RenderFilter<Value, FilterParams>;
+  buildFilter?: (a: FilterParams) => (a: Value) => boolean;
   textQueryFilter?: (b: string, a: Value) => boolean;
   sortFn?: (b: Value, a: Value) => number;
 } & SharedColumnOptions<Value>;
 
-function CustomColumn<ValueT, FilterParamsT>(
-  options: Options<Value, FilterParamsT>
-): ColumnOptions<Value, FilterParamsT> {
+function CustomColumn<Value, FilterParams>(
+  options: Options<Value, FilterParams>
+): ColumnOptions<Value, FilterParams> {
   // @ts-expect-error todo(flow->ts) types does not much
   return Column({ kind: COLUMNS.CUSTOM, ...options });
 }

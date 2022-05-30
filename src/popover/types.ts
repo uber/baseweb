@@ -10,7 +10,7 @@ import type { Override } from '../helpers/overrides';
 import type { TetherPlacement } from '../layer';
 import { ACCESSIBILITY_TYPE, STATE_CHANGE_TYPE, TRIGGER_TYPE } from './constants';
 
-export type { PopperDataObjectT, PopperOffsetT, PopperOptionsT } from '../layer';
+export type { PopperDataObject, PopperOffset, PopperOptions } from '../layer';
 
 export type PopoverPlacement = TetherPlacement;
 export type TriggerType = keyof typeof TRIGGER_TYPE;
