@@ -12,6 +12,7 @@ const { mount } = require('../../../e2e/helpers');
 
 const { expect, test } = require('@playwright/test');
 const format = require('date-fns/format');
+const subMonths = require('date-fns/subMonths');
 
 const selectors = {
   input: 'input',
@@ -22,8 +23,7 @@ const selectors = {
 };
 
 const now = new Date();
-const monthAgo = new Date();
-monthAgo.setMonth(monthAgo.getMonth() - 1);
+const monthAgo = subMonths(now, 1);
 
 test.describe('Stateful Datepicker Quick Select', () => {
   test('can quick select with keyboard', async ({ page }) => {
