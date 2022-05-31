@@ -83,7 +83,7 @@
     "@date-io/luxon": "^2.7.0",
     "@date-io/moment": "^2.7.0",
     "@dubstep/core": "^3.5.3",
-    "@ladle/react": "^0.10.2",
+    "@ladle/react": "^0.16.0",
     "@mdx-js/tag": "^0.20.0",
     "@octokit/rest": "^16.33.1",
     "@playwright/test": "^1.19.2",
