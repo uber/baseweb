@@ -108,18 +108,11 @@ function Below({ action, backgroundColor, color }) {
     return null;
   }
 
-  if (action.icon) {
-    return (
-      <Button
-        aria-label={action.label}
-        colors={{ backgroundColor, color }}
-        onClick={action.onClick}
-        size={BUTTON_SIZE.compact}
-        shape={BUTTON_SHAPE.circle}
-      >
-        {action.icon({ size: theme.sizing.scale600 })}
-      </Button>
-    );
+  if (__DEV__) {
+    if (action.icon) {
+      console.error('Banner ACTION_POSITION.below must not have an icon.');
+      return null;
+    }
   }
 
   if (action.label) {

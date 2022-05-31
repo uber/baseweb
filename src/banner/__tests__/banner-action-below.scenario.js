@@ -34,26 +34,6 @@ export function Scenario() {
             kind={kind}
             title="Headline text"
             action={{
-              label: 'dismiss',
-              icon: ({ size }) => <Delete size={size} />,
-              onClick: () => {},
-              position: ACTION_POSITION.below,
-            }}
-            artwork={{ icon: ({ size }) => <DeleteAlt size={size} /> }}
-          >
-            Paragraph text
-          </Banner>
-        ))}
-      </div>
-
-      <div style={{ width: '300px' }}>
-        {variants.map(([hierarchy, kind], i) => (
-          <Banner
-            key={i}
-            hierarchy={hierarchy}
-            kind={kind}
-            title="Headline text"
-            action={{
               label: 'Label',
               onClick: () => {},
               position: ACTION_POSITION.below,
