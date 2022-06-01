@@ -1,6 +1,6 @@
-import {Table, DIVIDER, SIZE} from 'baseui/table-semantic';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
+import { Table, DIVIDER, SIZE } from 'baseui/table-semantic';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
 
 const TableSemanticConfig: TConfig = {
   componentName: 'Table',
@@ -14,11 +14,7 @@ const TableSemanticConfig: TConfig = {
     DIVIDER,
     SIZE,
   },
-  theme: [
-    'tableHeadBackgroundColor',
-    'tableBackground',
-    'tableStripedBackground',
-  ],
+  theme: ['tableHeadBackgroundColor', 'tableBackground', 'tableStripedBackground'],
   props: {
     columns: {
       value: `['Name', 'Age', 'Address']`,

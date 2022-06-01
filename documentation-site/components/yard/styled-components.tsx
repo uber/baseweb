@@ -1,15 +1,15 @@
 import * as React from 'react';
-import {useStyletron} from 'baseui';
-import {StatefulTabs, Tab} from 'baseui/tabs-motion';
+import { useStyletron } from 'baseui';
+import { StatefulTabs, Tab } from 'baseui/tabs-motion';
 
 export const YardTabs: React.FC<{
   children: React.ReactNode;
   initialTab?: string;
-}> = ({children, initialTab = '0'}) => {
+}> = ({ children, initialTab = '0' }) => {
   const [, theme] = useStyletron();
   return (
     <StatefulTabs
-      initialState={{activeKey: initialTab}}
+      initialState={{ activeKey: initialTab }}
       overrides={{
         Root: {
           style: {
@@ -25,12 +25,12 @@ export const YardTabs: React.FC<{
   );
 };
 
-export const YardTab: React.FC<any> = props => {
+export const YardTab: React.FC<any> = (props) => {
   return (
     <Tab
       {...props}
       overrides={{
-        Tab: {style: ({$theme}) => $theme.typography.LabelLarge},
+        Tab: { style: ({ $theme }) => $theme.typography.LabelLarge },
       }}
     />
   );

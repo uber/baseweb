@@ -15,6 +15,7 @@ const highlightCode = (
     {({ tokens, getLineProps, getTokenProps }) => (
       <React.Fragment>
         {tokens.map((line, i) => (
+          // eslint-disable-next-line react/jsx-key
           <div {...getLineProps({ line, key: i })}>
             {line.map((token, key) => {
               const tokenProps = getTokenProps({ token, key });
@@ -22,6 +23,7 @@ const highlightCode = (
               if (transformToken) {
                 return transformToken(tokenProps);
               }
+              // eslint-disable-next-line react/jsx-key
               return <span {...tokenProps} />;
             })}
           </div>
@@ -96,4 +98,5 @@ const Editor: React.FC<TEditorProps> = ({
     </div>
   );
 };
+
 export default Editor;

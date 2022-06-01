@@ -1,14 +1,12 @@
 import * as React from 'react';
-import {StyleObject} from 'styletron-react';
-import {Theme} from './theme';
+import { StyleObject } from 'styletron-react';
+import { Theme } from './theme';
 
 type StyleOverride<T> =
   | StyleObject
-  | ((props: {$theme: Theme} & React.PropsWithChildren<T>) => StyleObject);
+  | ((props: { $theme: Theme } & React.PropsWithChildren<T>) => StyleObject);
 
-type ComponentOverride<T> =
-  | React.ComponentType<T>
-  | React.RefForwardingComponent<T>;
+type ComponentOverride<T> = React.ComponentType<T> | React.RefForwardingComponent<T>;
 
 interface OverrideObject<T> {
   component?: ComponentOverride<T>;

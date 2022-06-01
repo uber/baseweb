@@ -1,7 +1,7 @@
 import * as React from 'react';
-import {StyletronComponent} from 'styletron-react';
-import {CSSLengthUnitT} from '../theme';
-import {Override} from '../overrides';
+import { StyletronComponent } from 'styletron-react';
+import { CSSLengthUnitT } from '../theme';
+import { Override } from '../overrides';
 
 export enum ALIGNMENT {
   start = 'flex-start',

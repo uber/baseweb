@@ -1,7 +1,7 @@
-import {ProgressSteps, NumberedStep} from 'baseui/progress-steps';
-import {Button} from 'baseui/button';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
+import { ProgressSteps, NumberedStep } from 'baseui/progress-steps';
+import { Button } from 'baseui/button';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
 
 import ProgressStepsConfig from './progress-steps';
 
@@ -31,8 +31,8 @@ const ProgressStepsNumberedConfig: TConfig = {
       type: PropTypes.ReactNode,
       description: `An array of Tab components.`,
       imports: {
-        'baseui/progress-steps': {named: ['NumberedStep']},
-        'baseui/button': {named: ['Button']},
+        'baseui/progress-steps': { named: ['NumberedStep'] },
+        'baseui/button': { named: ['Button'] },
       },
       propHook: ProgressStepsConfig.props.children.propHook,
     },

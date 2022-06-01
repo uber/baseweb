@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {StyletronComponent} from 'styletron-react';
+import { StyletronComponent } from 'styletron-react';
 
 export interface LinkProps
   extends React.DetailedHTMLProps<

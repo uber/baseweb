@@ -1,6 +1,6 @@
-import {Avatar} from 'baseui/avatar';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
+import { Avatar } from 'baseui/avatar';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
 
 const avatarProps = require('!!extract-react-types-loader!../../../../src/avatar/avatar.js');
 
@@ -11,7 +11,7 @@ const AvatarConfig: TConfig = {
       named: ['Avatar'],
     },
   },
-  scope: {Avatar},
+  scope: { Avatar },
   theme: [],
   props: {
     name: {
@@ -26,8 +26,7 @@ const AvatarConfig: TConfig = {
         'Defines the width/height of the image. Accepts labels from theme.sizing, or passes value to height/width.',
     },
     src: {
-      value:
-        'https://avatars.dicebear.com/api/human/yard.svg?width=285&mood=happy',
+      value: 'https://avatars.dicebear.com/api/human/yard.svg?width=285&mood=happy',
       type: PropTypes.String,
       description: 'Image to display.',
     },

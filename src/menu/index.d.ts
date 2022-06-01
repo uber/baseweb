@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {StyletronComponent} from 'styletron-react';
-import {Override} from '../overrides';
+import { StyletronComponent } from 'styletron-react';
+import { Override } from '../overrides';
 
 export interface KEY_STRINGS {
   ArrowUp: 'ArrowUp';
@@ -79,13 +79,10 @@ export type OnItemSelect = (args: {
 export type StateReducer = (
   changeType: STATE_CHANGE_TYPES[keyof STATE_CHANGE_TYPES],
   changes: StatefulContainerState,
-  currentState: StatefulContainerState,
+  currentState: StatefulContainerState
 ) => StatefulContainerState;
 
-export type GetRequiredItemProps = (
-  item: any,
-  index: number,
-) => RenderItemProps;
+export type GetRequiredItemProps = (item: any, index: number) => RenderItemProps;
 
 export type RenderProps = StatefulContainerState & {
   items: ItemsT;
@@ -193,10 +190,7 @@ export interface NestedMenuProps {
 export interface NestedMenuState {
   menus: Array<React.Ref<HTMLElement>>;
 }
-export class NestedMenus extends React.Component<
-  NestedMenuProps,
-  NestedMenuState
-> {
+export class NestedMenus extends React.Component<NestedMenuProps, NestedMenuState> {
   addMenuToNesting(ref: React.Ref<HTMLElement>): void;
   removeMenuFromNesting(ref: React.Ref<HTMLElement>): void;
   findMenuIndexByRef(ref: React.Ref<HTMLElement>): number;

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {StyletronComponent} from 'styletron-react';
-import {Override} from '../overrides';
+import { StyletronComponent } from 'styletron-react';
+import { Override } from '../overrides';
 
 export interface KIND {
   info: 'info';
@@ -25,18 +25,9 @@ export interface IToaster {
   getRef: () => React.Ref<typeof ToasterContainer>;
   show: (children: React.ReactNode, props: Readonly<ToastProps>) => React.Key;
   info: (children: React.ReactNode, props: Readonly<ToastProps>) => React.Key;
-  positive: (
-    children: React.ReactNode,
-    props: Readonly<ToastProps>,
-  ) => React.Key;
-  warning: (
-    children: React.ReactNode,
-    props: Readonly<ToastProps>,
-  ) => React.Key;
-  negative: (
-    children: React.ReactNode,
-    props: Readonly<ToastProps>,
-  ) => React.Key;
+  positive: (children: React.ReactNode, props: Readonly<ToastProps>) => React.Key;
+  warning: (children: React.ReactNode, props: Readonly<ToastProps>) => React.Key;
+  negative: (children: React.ReactNode, props: Readonly<ToastProps>) => React.Key;
   update: (key: React.Key, props: Readonly<ToastProps>) => void;
   clear: (key?: React.Key) => void;
 }
@@ -66,7 +57,7 @@ export class ToasterContainer extends React.Component<
   Readonly<ToasterProps>,
   ToasterContainerState
 > {
-  getToastProps(props: ToastProps): Readonly<ToastProps> & {key: React.Key};
+  getToastProps(props: ToastProps): Readonly<ToastProps> & { key: React.Key };
   show(props: ToastProps): React.Key;
   update(key: React.Key, props: ToastProps): void;
   dismiss(key: React.Key): void;
@@ -74,8 +65,8 @@ export class ToasterContainer extends React.Component<
   clear(key: React.Key): void;
   internalOnClose(key: React.Key): void;
   getOnCloseHandler(key: React.Key, onClose?: () => any): () => any;
-  renderToast(toastProps: ToastProps & {key: React.Key}): React.ReactNode;
-  getSharedProps(): {$placement: PLACEMENT[keyof PLACEMENT]};
+  renderToast(toastProps: ToastProps & { key: React.Key }): React.ReactNode;
+  getSharedProps(): { $placement: PLACEMENT[keyof PLACEMENT] };
 }
 
 export interface SharedStylePropsArg {
@@ -99,9 +90,7 @@ export interface ToastOverrides {
 export interface ToastProps {
   autoHideDuration?: number;
   autoFocus?: Boolean;
-  children?:
-    | ((args: {dismiss: () => void}) => React.ReactNode)
-    | React.ReactNode;
+  children?: ((args: { dismiss: () => void }) => React.ReactNode) | React.ReactNode;
   closeable?: boolean;
   kind?: KIND[keyof KIND];
   notificationType?: TYPE[keyof TYPE];

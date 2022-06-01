@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {LightTheme as LT, DarkTheme as DT} from './baseui/themes';
+import { LightTheme as LT, DarkTheme as DT } from './baseui/themes';
 
 const LightTheme: any = LT;
 const DarkTheme: any = DT;
@@ -110,14 +110,7 @@ const TYPO = [
   'DisplayLarge',
 ];
 
-const BORDERS = [
-  'border100',
-  'border200',
-  'border300',
-  'border400',
-  'border500',
-  'border600',
-];
+const BORDERS = ['border100', 'border200', 'border300', 'border400', 'border500', 'border600'];
 
 const RADII = ['radius100', 'radius200', 'radius300', 'radius400', 'radius500'];
 
@@ -135,9 +128,9 @@ const ANIMATION = [
 
 const LIGHTING = ['shadow400', 'shadow500', 'shadow600', 'shadow700'];
 
-const ColorCell: React.FC<{color: string}> = ({color}) => (
+const ColorCell: React.FC<{ color: string }> = ({ color }) => (
   <td>
-    <div style={{display: 'flex', alignItems: 'center'}}>
+    <div style={{ display: 'flex', alignItems: 'center' }}>
       <div
         style={{
           backgroundColor: color,
@@ -169,25 +162,25 @@ const Themeval: React.FC<{}> = () => {
       style={{
         fontSize: '12px',
         marginTop: '16px',
-        fontFamily:
-          'Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;',
+        fontFamily: 'Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;',
       }}
     >
       <a
-        style={{marginLeft: '26px'}}
+        style={{ marginLeft: '26px' }}
         href="https://baseweb.design/guides/theming/"
         target="_blank"
+        rel="noreferrer"
       >
         Base Theming Docs
       </a>
-      <table style={{borderSpacing: '10px 0px', margin: '16px'}}>
-        <thead style={{textAlign: 'left', fontSize: '14px'}}>
-          <th style={{paddingBottom: '10px'}}>theme.sizing</th>
-          <th style={{paddingBottom: '10px'}}> </th>
-          <th style={{paddingBottom: '10px'}}> </th>
+      <table style={{ borderSpacing: '10px 0px', margin: '16px' }}>
+        <thead style={{ textAlign: 'left', fontSize: '14px' }}>
+          <th style={{ paddingBottom: '10px' }}>theme.sizing</th>
+          <th style={{ paddingBottom: '10px' }}> </th>
+          <th style={{ paddingBottom: '10px' }}> </th>
         </thead>
         <tbody>
-          {SIZING.map(scale => (
+          {SIZING.map((scale) => (
             <tr>
               <td>{scale}</td>
               <td>{LightTheme.sizing[scale]}</td>
@@ -216,14 +209,14 @@ const Themeval: React.FC<{}> = () => {
           ))}
         </tbody>
       </table>
-      <table style={{borderSpacing: '10px 0px', margin: '16px'}}>
-        <thead style={{textAlign: 'left', fontSize: '14px'}}>
-          <th style={{paddingBottom: '10px'}}>theme.colors</th>
-          <th style={{paddingBottom: '10px'}}>LightTheme</th>
-          <th style={{paddingBottom: '10x'}}>DarkTheme</th>
+      <table style={{ borderSpacing: '10px 0px', margin: '16px' }}>
+        <thead style={{ textAlign: 'left', fontSize: '14px' }}>
+          <th style={{ paddingBottom: '10px' }}>theme.colors</th>
+          <th style={{ paddingBottom: '10px' }}>LightTheme</th>
+          <th style={{ paddingBottom: '10x' }}>DarkTheme</th>
         </thead>
         <tbody>
-          {COLORS.map(color => (
+          {COLORS.map((color) => (
             <tr>
               <td>{color}</td>
               <ColorCell color={LightTheme.colors[color]} />
@@ -232,14 +225,14 @@ const Themeval: React.FC<{}> = () => {
           ))}
         </tbody>
       </table>
-      <table style={{borderSpacing: '10px 0px', margin: '16px 16px 8px 16px'}}>
-        <thead style={{textAlign: 'left', fontSize: '14px'}}>
-          <th style={{paddingBottom: '10px'}}>theme.typography</th>
+      <table style={{ borderSpacing: '10px 0px', margin: '16px 16px 8px 16px' }}>
+        <thead style={{ textAlign: 'left', fontSize: '14px' }}>
+          <th style={{ paddingBottom: '10px' }}>theme.typography</th>
         </thead>
         <tbody>
-          {TYPO.map(typo => (
+          {TYPO.map((typo) => (
             <tr>
-              <td style={{...LightTheme.typography[typo]}}>{typo}</td>
+              <td style={{ ...LightTheme.typography[typo] }}>{typo}</td>
             </tr>
           ))}
         </tbody>
@@ -252,13 +245,13 @@ const Themeval: React.FC<{}> = () => {
       >
         Usage: <code>{'<div css={{ ...theme.typography.LabelXSmall}} />'}</code>
       </div>
-      <table style={{borderSpacing: '10px 0px', margin: '16px'}}>
-        <thead style={{textAlign: 'left', fontSize: '14px'}}>
-          <th style={{paddingBottom: '10px'}}>theme.breakpoints</th>
-          <th style={{paddingBottom: '10px'}}></th>
+      <table style={{ borderSpacing: '10px 0px', margin: '16px' }}>
+        <thead style={{ textAlign: 'left', fontSize: '14px' }}>
+          <th style={{ paddingBottom: '10px' }}>theme.breakpoints</th>
+          <th style={{ paddingBottom: '10px' }}></th>
         </thead>
         <tbody>
-          {MEDIA.map(media => (
+          {MEDIA.map((media) => (
             <tr>
               <td>{media}</td>
               <td>{LightTheme.breakpoints[media]}</td>
@@ -266,13 +259,13 @@ const Themeval: React.FC<{}> = () => {
           ))}
         </tbody>
       </table>
-      <table style={{borderSpacing: '10px 0px', margin: '16px'}}>
-        <thead style={{textAlign: 'left', fontSize: '14px'}}>
-          <th style={{paddingBottom: '10px'}}>theme.mediaQuery</th>
-          <th style={{paddingBottom: '10px'}}></th>
+      <table style={{ borderSpacing: '10px 0px', margin: '16px' }}>
+        <thead style={{ textAlign: 'left', fontSize: '14px' }}>
+          <th style={{ paddingBottom: '10px' }}>theme.mediaQuery</th>
+          <th style={{ paddingBottom: '10px' }}></th>
         </thead>
         <tbody>
-          {MEDIA.map(media => (
+          {MEDIA.map((media) => (
             <tr>
               <td>{media}</td>
               <td>{LightTheme.mediaQuery[media]}</td>
@@ -281,17 +274,17 @@ const Themeval: React.FC<{}> = () => {
         </tbody>
       </table>
 
-      <table style={{borderSpacing: '10px 0px', margin: '16px 16px 8px 16px'}}>
-        <thead style={{textAlign: 'left', fontSize: '14px'}}>
-          <th style={{paddingBottom: '10px'}}>theme.borders</th>
-          <th style={{paddingBottom: '10px'}}>LightTheme</th>
-          <th style={{paddingBottom: '10px'}}>DarkTheme</th>
+      <table style={{ borderSpacing: '10px 0px', margin: '16px 16px 8px 16px' }}>
+        <thead style={{ textAlign: 'left', fontSize: '14px' }}>
+          <th style={{ paddingBottom: '10px' }}>theme.borders</th>
+          <th style={{ paddingBottom: '10px' }}>LightTheme</th>
+          <th style={{ paddingBottom: '10px' }}>DarkTheme</th>
         </thead>
         <tbody>
-          {BORDERS.map(border => (
+          {BORDERS.map((border) => (
             <tr>
               <td>{border}</td>
-              <td style={{backgroundColor: 'white'}}>
+              <td style={{ backgroundColor: 'white' }}>
                 <div
                   style={{
                     ...LightTheme.borders[border],
@@ -301,7 +294,7 @@ const Themeval: React.FC<{}> = () => {
                   }}
                 />
               </td>
-              <td style={{backgroundColor: 'black'}}>
+              <td style={{ backgroundColor: 'black' }}>
                 <div
                   style={{
                     ...DarkTheme.borders[border],
@@ -321,19 +314,16 @@ const Themeval: React.FC<{}> = () => {
           ...LightTheme.typography.ParagraphXSmall,
         }}
       >
-        Usage:{' '}
-        <code>
-          {'<div css={{ ...expandBorderStyles(theme.borders.border400)}} />'}
-        </code>
+        Usage: <code>{'<div css={{ ...expandBorderStyles(theme.borders.border400)}} />'}</code>
       </div>
-      <table style={{borderSpacing: '10px 0px', margin: '16px 16px 8px 16px'}}>
-        <thead style={{textAlign: 'left', fontSize: '14px'}}>
-          <th style={{paddingBottom: '10px'}}>theme.borders</th>
-          <th style={{paddingBottom: '10px'}}></th>
-          <th style={{paddingBottom: '10px'}}></th>
+      <table style={{ borderSpacing: '10px 0px', margin: '16px 16px 8px 16px' }}>
+        <thead style={{ textAlign: 'left', fontSize: '14px' }}>
+          <th style={{ paddingBottom: '10px' }}>theme.borders</th>
+          <th style={{ paddingBottom: '10px' }}></th>
+          <th style={{ paddingBottom: '10px' }}></th>
         </thead>
         <tbody>
-          {RADII.map(radius => (
+          {RADII.map((radius) => (
             <tr>
               <td>{radius}</td>
               <td>
@@ -363,13 +353,13 @@ const Themeval: React.FC<{}> = () => {
           ))}
         </tbody>
       </table>
-      <table style={{borderSpacing: '10px 0px', margin: '16px'}}>
-        <thead style={{textAlign: 'left', fontSize: '14px'}}>
-          <th style={{paddingBottom: '10px'}}>theme.animation</th>
-          <th style={{paddingBottom: '10px'}}></th>
+      <table style={{ borderSpacing: '10px 0px', margin: '16px' }}>
+        <thead style={{ textAlign: 'left', fontSize: '14px' }}>
+          <th style={{ paddingBottom: '10px' }}>theme.animation</th>
+          <th style={{ paddingBottom: '10px' }}></th>
         </thead>
         <tbody>
-          {ANIMATION.map(ani => (
+          {ANIMATION.map((ani) => (
             <tr>
               <td>{ani}</td>
               <td>{LightTheme.animation[ani]}</td>
@@ -377,18 +367,18 @@ const Themeval: React.FC<{}> = () => {
           ))}
         </tbody>
       </table>
-      <table style={{borderSpacing: '10px 0px', margin: '16px'}}>
-        <thead style={{textAlign: 'left', fontSize: '14px'}}>
-          <th style={{paddingBottom: '10px'}}>theme.lighting</th>
-          <th style={{paddingBottom: '10px'}}></th>
-          <th style={{paddingBottom: '10px'}}></th>
+      <table style={{ borderSpacing: '10px 0px', margin: '16px' }}>
+        <thead style={{ textAlign: 'left', fontSize: '14px' }}>
+          <th style={{ paddingBottom: '10px' }}>theme.lighting</th>
+          <th style={{ paddingBottom: '10px' }}></th>
+          <th style={{ paddingBottom: '10px' }}></th>
         </thead>
         <tbody>
-          {LIGHTING.map(light => (
+          {LIGHTING.map((light) => (
             <tr>
               <td>{light}</td>
               <td>{LightTheme.lighting[light]}</td>
-              <td style={{backgroundColor: 'white'}}>
+              <td style={{ backgroundColor: 'white' }}>
                 <div
                   style={{
                     margin: '10px',
@@ -401,11 +391,11 @@ const Themeval: React.FC<{}> = () => {
               <td>LightTheme</td>
             </tr>
           ))}
-          {LIGHTING.map(light => (
+          {LIGHTING.map((light) => (
             <tr>
               <td>{light}</td>
               <td>{DarkTheme.lighting[light]}</td>
-              <td style={{backgroundColor: 'black'}}>
+              <td style={{ backgroundColor: 'black' }}>
                 <div
                   style={{
                     margin: '10px',
@@ -420,7 +410,7 @@ const Themeval: React.FC<{}> = () => {
           ))}
         </tbody>
       </table>
-      <h3 style={{marginLeft: '26px'}}>theme.dir - auto, rtl, ltr</h3>
+      <h3 style={{ marginLeft: '26px' }}>theme.dir - auto, rtl, ltr</h3>
     </div>
   );
 };

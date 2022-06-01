@@ -46,10 +46,7 @@ export interface TetherProps {
   arrowRef?: React.Ref<HTMLElement>;
   popperRef?: React.Ref<HTMLElement>;
   children: React.ReactNode;
-  onPopperUpdate?: (
-    offsets: NormalizedOffsets,
-    popper: PopperDataObject,
-  ) => any;
+  onPopperUpdate?: (offsets: NormalizedOffsets, popper: PopperDataObject) => any;
   placement?: TETHER_PLACEMENT[keyof TETHER_PLACEMENT];
   popperOptions?: any;
 }

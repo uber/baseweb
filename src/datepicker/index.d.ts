@@ -1,10 +1,7 @@
 import * as React from 'react';
-import {StyletronComponent} from 'styletron-react';
-import {Option} from '../select';
-import {SIZE} from '../input';
-import {Override} from '../overrides';
-import {Locale} from '../locale';
-import {any} from 'prop-types';
+import { Option } from '../select';
+import { SIZE } from '../input';
+import { Override } from '../overrides';
 
 export interface STATE_CHANGE_TYPE {
   change: 'change';
@@ -21,11 +18,11 @@ export interface ORIENTATION {
   vertical: 'vertical';
 }
 
-export type onChange = (args: {date: Date | Date[]}) => any;
+export type onChange = (args: { date: Date | Date[] }) => any;
 export type StateReducer = (
   stateType: STATE_CHANGE_TYPE[keyof STATE_CHANGE_TYPE],
   nextState: ContainerState,
-  currentState: ContainerState,
+  currentState: ContainerState
 ) => ContainerState;
 
 export interface ContainerState {
@@ -42,11 +39,8 @@ export class StatefulContainer extends React.Component<
   StatefulContainerProps<CalendarProps | DatepickerProps>,
   ContainerState
 > {
-  onChange(data: {date: Date | Date[]}): void;
-  internalSetState(
-    type: STATE_CHANGE_TYPE[keyof STATE_CHANGE_TYPE],
-    changes: ContainerState,
-  ): void;
+  onChange(data: { date: Date | Date[] }): void;
+  internalSetState(type: STATE_CHANGE_TYPE[keyof STATE_CHANGE_TYPE], changes: ContainerState): void;
 }
 
 export interface QuickSelectOption {
@@ -70,11 +64,11 @@ export interface CalendarProps {
   maxDate?: Date;
   minDate?: Date;
   monthsShown?: number;
-  onDayClick?: (args: {date: Date; event: Event}) => any;
-  onDayMouseOver?: (args: {date: Date; event: Event}) => any;
-  onDayMouseLeave?: (args: {date: Date; event: Event}) => any;
-  onMonthChange?: (args: {date: Date}) => any;
-  onYearChange?: (args: {date: Date}) => any;
+  onDayClick?: (args: { date: Date; event: Event }) => any;
+  onDayMouseOver?: (args: { date: Date; event: Event }) => any;
+  onDayMouseLeave?: (args: { date: Date; event: Event }) => any;
+  onMonthChange?: (args: { date: Date }) => any;
+  onYearChange?: (args: { date: Date }) => any;
   onChange?: onChange;
   onQuickSelectChange?: (option?: QuickSelectOption) => any;
   orientation?: ORIENTATION[keyof ORIENTATION];
@@ -97,24 +91,21 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
   getDateInView(): Date;
   handleMonthChange(date: Date): void;
   handleYearChange(date: Date): void;
-  changeMonth({date}: {date: Date}): void;
-  changeYear({date}: {date: Date}): void;
+  changeMonth({ date }: { date: Date }): void;
+  changeYear({ date }: { date: Date }): void;
   renderCalendarHeader(date: Date, order: number): React.ReactNode;
   onKeyDown(event: KeyboardEvent): void;
   handleArrowKey(key: string): void;
   focusCalendar(): void;
   blurCalendar(): void;
   handleTabbing(event: KeyboardEvent): void;
-  onDayMouseOver(data: {event: Event; date: Date}): void;
-  onDayMouseLeave(data: {event: Event; date: Date}): void;
-  handleDateChange(data: {date: Date | Date[]}): void;
+  onDayMouseOver(data: { event: Event; date: Date }): void;
+  onDayMouseLeave(data: { event: Event; date: Date }): void;
+  handleDateChange(data: { date: Date | Date[] }): void;
   handleTimeChange(time: Date, index: number): void;
   setHighlightedDate(date: Date): void;
   renderMonths(): React.ReactNode[];
-  renderTimeSelect(
-    value: Date,
-    onChange: (...args: any) => any,
-  ): React.ReactNode;
+  renderTimeSelect(value: Date, onChange: (...args: any) => any): React.ReactNode;
   renderQuickSelect(): React.ReactNode;
 }
 
@@ -181,18 +172,12 @@ export interface DatepickerState {
   lastActiveElm?: HTMLElement;
 }
 
-declare function formatDate(
-  date: Date | Date[],
-  formatString: string,
-): string | string[];
+declare function formatDate(date: Date | Date[], formatString: string): string | string[];
 
-export {formatDate};
+export { formatDate };
 
-export class Datepicker extends React.Component<
-  DatepickerProps,
-  DatepickerState
-> {
-  onChange(data: {date: Date | Date[]}): void;
+export class Datepicker extends React.Component<DatepickerProps, DatepickerState> {
+  onChange(data: { date: Date | Date[] }): void;
   formatDate(date: Date | Date[], formatString: string): string | string[];
   formatDisplayValue(date: Date | Date[]): string;
   open(): void;
@@ -202,15 +187,13 @@ export class Datepicker extends React.Component<
   handleKeyDown(event: KeyboardEvent): void;
   focusCalendar(): void;
 }
-export {Datepicker as DatePicker};
+export { Datepicker as DatePicker };
 
 export type StatefulDatepickerProps<T> = T &
-  StatefulContainerProps<T> & {children?: (args: T) => React.ReactNode};
-export const StatefulDatepicker: React.FC<
-  StatefulDatepickerProps<DatepickerProps>
->;
+  StatefulContainerProps<T> & { children?: (args: T) => React.ReactNode };
+export const StatefulDatepicker: React.FC<StatefulDatepickerProps<DatepickerProps>>;
 
-export {StatefulDatepicker as StatefulDatePicker};
+export { StatefulDatepicker as StatefulDatePicker };
 
 export interface TimezonePickerProps {
   date?: Date;
@@ -218,18 +201,15 @@ export interface TimezonePickerProps {
   positive?: boolean;
   error?: boolean;
   mapLabels?: (args: Option) => React.ReactNode;
-  onChange?: (value: {id: string; label: string; offset: number}) => any;
-  overrides?: {Select?: Override<any>};
+  onChange?: (value: { id: string; label: string; offset: number }) => any;
+  overrides?: { Select?: Override<any> };
   value?: string;
 }
 export interface TimezonePickerState {
   timezones: Option[];
   value?: string;
 }
-export class TimezonePicker extends React.Component<
-  TimezonePickerProps,
-  TimezonePickerState
-> {
+export class TimezonePicker extends React.Component<TimezonePickerProps, TimezonePickerState> {
   buildTimezones(compareDate: Date): string[];
 }
 

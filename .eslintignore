@@ -14,3 +14,4 @@ public
 out
 packages/eslint-plugin-baseui/__tests__/example-config
 __artifacts__
+packages/baseweb-vscode-extension

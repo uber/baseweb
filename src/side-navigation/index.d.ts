@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {StyletronComponent} from 'styletron-react';
-import {Override} from '../overrides';
+import { StyletronComponent } from 'styletron-react';
+import { Override } from '../overrides';
 
 export interface STATE_CHANGE_TYPE {
   change: 'change';
@@ -25,7 +25,7 @@ export interface NavigationProps {
   activeItemId: string;
   activePredicate?: (item: any, activeItemId: string) => boolean;
   items?: Item[];
-  onChange?: (args: {item: any; event: React.SyntheticEvent<any>}) => any;
+  onChange?: (args: { item: any; event: React.SyntheticEvent<any> }) => any;
   overrides?: NavigationOverrides;
   mapItem?: (item: Item) => Item;
 }
@@ -44,7 +44,7 @@ export interface NavItemProps {
   $level?: number;
   $selectable?: boolean;
   item: Item;
-  onSelect?: (args: {item: any; event: Event | KeyboardEvent}) => any;
+  onSelect?: (args: { item: any; event: Event | KeyboardEvent }) => any;
   overrides?: NavItemOverrides;
 }
 

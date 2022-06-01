@@ -1,11 +1,11 @@
 import * as React from 'react';
-import {StyletronComponent} from 'styletron-react';
-import {Override} from '../overrides';
+import { StyletronComponent } from 'styletron-react';
+import { Override } from '../overrides';
 
 export interface TreeViewOverrides extends TreeLabelOverrides {
   Root?: Override<{}>;
-  TreeItemList?: Override<{$isChildNode?: boolean}>;
-  TreeItem?: Override<{$isLeafNode?: boolean}>;
+  TreeItemList?: Override<{ $isChildNode?: boolean }>;
+  TreeItem?: Override<{ $isLeafNode?: boolean }>;
   TreeLabel?: Override<TreeLabelProps>;
 }
 
@@ -68,14 +68,10 @@ export const StyledItemContent: StyletronComponent<any>;
 export const StyledIconContainer: StyletronComponent<any>;
 
 type TGetId = (node: TreeNode) => string | number;
-type toggleIsExpandedT = (
-  data: TreeNode[],
-  toggledNode: TreeNode,
-  getId?: TGetId,
-) => TreeNode[];
+type toggleIsExpandedT = (data: TreeNode[], toggledNode: TreeNode, getId?: TGetId) => TreeNode[];
 
 export const toggleIsExpanded: toggleIsExpandedT;
 export const TreeLabelInteractable: React.FC<{
-  overrides?: {LabelInteractable: Override<any>};
+  overrides?: { LabelInteractable: Override<any> };
   children?: React.ReactNode;
 }>;

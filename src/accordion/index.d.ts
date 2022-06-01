@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {StyletronComponent} from 'styletron-react';
-import {Override} from '../overrides';
+import { StyletronComponent } from 'styletron-react';
+import { Override } from '../overrides';
 
 export interface STATE_CHANGE_TYPE {
   expand: 'expand';
@@ -26,7 +26,7 @@ export interface SharedProps {
 export type StateReducer<T> = (
   stateChangeType: STATE_CHANGE_TYPE[keyof STATE_CHANGE_TYPE],
   nextState: T,
-  currentState: T,
+  currentState: T
 ) => T;
 
 export interface AccordionProps {
@@ -34,7 +34,7 @@ export interface AccordionProps {
   children: React.ReactNode;
   disabled?: boolean;
   initialState?: AccordionState;
-  onChange?: (args: {expanded: React.Key[]}) => any;
+  onChange?: (args: { expanded: React.Key[] }) => any;
   overrides?: AccordionOverrides<SharedProps>;
   stateReducer?: StateReducer<AccordionState>;
   renderAll?: boolean;
@@ -45,7 +45,7 @@ export type StatelessAccordionProps = {
   children: React.ReactNode;
   disabled?: boolean;
   expanded: React.Key[];
-  onChange?: (args: {expanded: React.Key[]; key: React.Key}) => any;
+  onChange?: (args: { expanded: React.Key[]; key: React.Key }) => any;
   overrides?: AccordionOverrides<SharedProps> & PanelOverrides<SharedProps>;
   renderAll?: boolean;
 };
@@ -58,10 +58,7 @@ export interface AccordionState {
 
 export class Accordion extends React.Component<AccordionProps, AccordionState> {
   onPanelChange(key: React.Key, onChange: () => any, ...args: any): void;
-  internalSetState(
-    type: STATE_CHANGE_TYPE[keyof STATE_CHANGE_TYPE],
-    changes: AccordionState,
-  ): void;
+  internalSetState(type: STATE_CHANGE_TYPE[keyof STATE_CHANGE_TYPE], changes: AccordionState): void;
   getItems(): React.ReactNode;
 }
 
@@ -78,7 +75,7 @@ export interface SharedPanelProps {
   children: React.ReactNode;
   disabled?: boolean;
   key?: React.Key;
-  onChange?: (args: {expanded: boolean}) => any;
+  onChange?: (args: { expanded: boolean }) => any;
   onClick?: (e: Event) => any;
   onKeyDown?: (e: KeyboardEvent) => any;
   overrides?: PanelOverrides<SharedProps>;
@@ -88,11 +85,11 @@ export interface SharedPanelProps {
 
 export interface SharedStatefulPanelContainerProps {
   initialState?: PanelState;
-  onChange?: (args: {expanded: boolean}) => any;
+  onChange?: (args: { expanded: boolean }) => any;
   stateReducer?: StateReducer<PanelState>;
 }
 
-export type PanelProps = SharedPanelProps & {expanded?: boolean};
+export type PanelProps = SharedPanelProps & { expanded?: boolean };
 
 export class Panel extends React.Component<PanelProps> {
   onClick(e: Event): void;
@@ -100,8 +97,7 @@ export class Panel extends React.Component<PanelProps> {
   getSharedProps(): SharedProps;
 }
 
-export type StatefulPanelProps = SharedPanelProps &
-  SharedStatefulPanelContainerProps;
+export type StatefulPanelProps = SharedPanelProps & SharedStatefulPanelContainerProps;
 
 export const StatefulPanel: React.FC<StatefulPanelProps>;
 
@@ -118,10 +114,7 @@ export class StatefulPanelContainer extends React.Component<
   PanelState
 > {
   onChange(args: any): void;
-  internalSetState(
-    type: STATE_CHANGE_TYPE[keyof STATE_CHANGE_TYPE],
-    changes: PanelState,
-  ): void;
+  internalSetState(type: STATE_CHANGE_TYPE[keyof STATE_CHANGE_TYPE], changes: PanelState): void;
 }
 
 export const StyledRoot: StyletronComponent<any>;

@@ -1,4 +1,4 @@
-import {PropTypes} from 'react-view';
+import { PropTypes } from 'react-view';
 
 const changeHandlers = {
   onBlur: {
@@ -66,4 +66,4 @@ const changeHandlers = {
   },
 };
 
-export {changeHandlers};
+export { changeHandlers };

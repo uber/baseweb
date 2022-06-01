@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {StyletronComponent} from 'styletron-react';
+import { StyletronComponent } from 'styletron-react';
 import {
   ACCESSIBILITY_TYPE,
   PLACEMENT,
@@ -14,11 +14,9 @@ export type StatefulTooltipProps = StatefulPopoverProps;
 export const StatefulTooltip: React.FC<StatefulTooltipProps>;
 
 export type StatefulTooltipContainerProps = StatefulPopoverContainerProps;
-export class StatefulContainer extends React.Component<
-  StatefulTooltipContainerProps
-> {}
+export class StatefulContainer extends React.Component<StatefulTooltipContainerProps> {}
 
-export {ACCESSIBILITY_TYPE, PLACEMENT, TRIGGER_TYPE};
+export { ACCESSIBILITY_TYPE, PLACEMENT, TRIGGER_TYPE };
 
 export type TooltipProps = PopoverProps;
 export class Tooltip extends React.Component<TooltipProps> {}

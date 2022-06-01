@@ -107,5 +107,20 @@ module.exports = {
         'jest/no-identical-title': 'off',
       },
     },
+    {
+      files: ['**/*.ts', '**/*.tsx', '**/*.d.ts'],
+      parser: '@typescript-eslint/parser',
+      plugins: ['@typescript-eslint'],
+      rules: {
+        'flowtype/require-valid-file-annotation': 'off',
+        'flowtype/space-after-type-colon': 'off',
+        'flowtype/no-types-missing-file-annotation': 'off',
+        'header/header': 'off',
+        'import/extensions': 'off',
+        'cup/no-undef': 'off',
+        'no-unused-vars': 'off',
+        'no-redeclare': 'off',
+      },
+    },
   ],
 };

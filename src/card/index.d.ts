@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {StyletronComponent} from 'styletron-react';
-import {Override} from '../overrides';
+import { StyletronComponent } from 'styletron-react';
+import { Override } from '../overrides';
 
 export interface CardOverrides {
   Action?: Override<any>;
@@ -14,14 +14,16 @@ export interface CardOverrides {
 export interface CardProps {
   readonly action?: React.ReactNode;
   readonly children?: React.ReactNode;
-  readonly hasThumbnail?: (props: {readonly thumbnail?: string}) => boolean;
-  readonly headerImage?: string | React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>;
+  readonly hasThumbnail?: (props: { readonly thumbnail?: string }) => boolean;
+  readonly headerImage?:
+    | string
+    | React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>;
   readonly overrides?: CardOverrides;
   readonly thumbnail?: string;
   readonly title?: React.ReactNode;
 }
 export const Card: React.FC<CardProps>;
-export type hasThumbnail = (props: {readonly thumbnail?: string}) => boolean;
+export type hasThumbnail = (props: { readonly thumbnail?: string }) => boolean;
 
 export const StyledAction: StyletronComponent<any>;
 export const StyledBody: StyletronComponent<any>;

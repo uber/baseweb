@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {BlockProps} from '../block';
+import { BlockProps } from '../block';
 
 export const DisplayLarge: React.FC<BlockProps>;
 export const DisplayMedium: React.FC<BlockProps>;

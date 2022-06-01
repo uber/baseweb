@@ -1,6 +1,6 @@
-import {Spinner} from 'baseui/spinner';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
+import { Spinner } from 'baseui/spinner';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
 
 const SpinnerConfig: TConfig = {
   componentName: 'Spinner',
@@ -9,7 +9,7 @@ const SpinnerConfig: TConfig = {
       named: ['Spinner'],
     },
   },
-  scope: {Spinner},
+  scope: { Spinner },
   theme: [],
   props: {
     $size: {

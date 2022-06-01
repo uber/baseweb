@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {StyletronComponent} from 'styletron-react';
+import { StyletronComponent } from 'styletron-react';
 import {
   BaseInputProps,
   StatefulContainer,
@@ -27,16 +27,15 @@ export interface SIZE {
 
 export class Textarea extends React.Component<TextareaProps> {}
 
-export type StatefulTextareaProps = TextareaProps &
-  StatefulContainerProps & {children?: never};
+export type StatefulTextareaProps = TextareaProps & StatefulContainerProps & { children?: never };
 
 export const StatefulTextarea: React.FC<StatefulTextareaProps>;
 
-export {StatefulContainer};
+export { StatefulContainer };
 
 export const StyledTextareaContainer: StyletronComponent<any>;
 export const StyledTextarea: StyletronComponent<any>;
 
 export const ADJOINED: ADJOINED;
 export const SIZE: SIZE;
-export {STATE_CHANGE_TYPE};
+export { STATE_CHANGE_TYPE };

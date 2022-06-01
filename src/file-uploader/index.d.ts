@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {StyletronComponent} from 'styletron-react';
-import {Override} from '../overrides';
+import { StyletronComponent } from 'styletron-react';
+import { Override } from '../overrides';
 
 export interface FileUploaderOverrides<T> {
   Root?: Override<T>;
@@ -26,16 +26,16 @@ export interface StyleProps {
 export type DropFilesEventHandler = (
   accepted: File[],
   rejected: File[],
-  event: React.SyntheticEvent<HTMLElement>,
+  event: React.SyntheticEvent<HTMLElement>
 ) => any;
 
 export type DropFileEventHandler = (
   acceptedOrRejected: File[],
-  event: React.SyntheticEvent<HTMLElement>,
+  event: React.SyntheticEvent<HTMLElement>
 ) => any;
 
 export type GetDataTransferItems = (
-  event: React.SyntheticEvent<any>,
+  event: React.SyntheticEvent<any>
 ) => Promise<Array<File | DataTransferItem>>;
 
 export interface FileUploaderProps {

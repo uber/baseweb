@@ -1,16 +1,16 @@
 import omit from 'just-omit';
-import {PaymentCard} from 'baseui/payment-card';
-import {ADJOINED, SIZE} from 'baseui/input';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
-import {theme, inputProps} from './input';
+import { PaymentCard } from 'baseui/payment-card';
+import { ADJOINED, SIZE } from 'baseui/input';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
+import { theme, inputProps } from './input';
 
 const paymentCardProps = require('!!extract-react-types-loader!../../../../src/payment-card/payment-card.js');
 
 const PaymentCardConfig: TConfig = {
   componentName: 'PaymentCard',
   imports: {
-    'baseui/payment-card': {named: ['PaymentCard']},
+    'baseui/payment-card': { named: ['PaymentCard'] },
   },
   scope: {
     PaymentCard,
@@ -23,13 +23,7 @@ const PaymentCardConfig: TConfig = {
       ...inputProps.value,
       value: '',
     },
-    ...omit(inputProps, [
-      'type',
-      'startEnhancer',
-      'endEnhancer',
-      'value',
-      'placeholder',
-    ]),
+    ...omit(inputProps, ['type', 'startEnhancer', 'endEnhancer', 'value', 'placeholder']),
     placeholder: {
       ...inputProps.placeholder,
       value: 'Please enter your credit card number...',
