@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {StyletronComponent} from 'styletron-react';
-import {Override} from '../overrides';
+import { StyletronComponent } from 'styletron-react';
+import { Override } from '../overrides';
 
 // constants
 
@@ -67,7 +67,7 @@ interface TabsProps {
   orientation?: ORIENTATION[keyof ORIENTATION];
   activateOnFocus?: boolean;
   renderAll?: boolean;
-  onChange?: (params: {activeKey: React.Key}) => void;
+  onChange?: (params: { activeKey: React.Key }) => void;
   overrides?: TabsOverrides;
   uid?: string;
 }

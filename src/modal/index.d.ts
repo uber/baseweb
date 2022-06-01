@@ -1,7 +1,7 @@
 import * as React from 'react';
-import {StyletronComponent} from 'styletron-react';
-import {ButtonProps} from '../button';
-import {Override} from '../overrides';
+import { StyletronComponent } from 'styletron-react';
+import { ButtonProps } from '../button';
+import { Override } from '../overrides';
 
 export interface SIZE {
   default: 'default';
@@ -44,15 +44,12 @@ export interface ModalProps {
   animate?: boolean;
   autoFocus?: boolean;
   focusLock?: boolean;
-  returnFocus?:
-    | boolean
-    | FocusOptions
-    | ((returnTo: Element) => boolean | FocusOptions);
+  returnFocus?: boolean | FocusOptions | ((returnTo: Element) => boolean | FocusOptions);
   children?: React.ReactNode;
   closeable?: boolean;
   isOpen?: boolean;
   mountNode?: HTMLElement;
-  onClose?: (args: {closeSource?: CLOSE_SOURCE[keyof CLOSE_SOURCE]}) => any;
+  onClose?: (args: { closeSource?: CLOSE_SOURCE[keyof CLOSE_SOURCE] }) => any;
   overrides?: ModalOverrides;
   role?: ROLE[keyof ROLE];
   size?: SIZE[keyof SIZE];
@@ -77,18 +74,16 @@ export class Modal extends React.Component<ModalProps, ModalState> {
   restoreLastFocus(): void;
   autoFocus(): void;
   animateOutComplete(): void;
-  getSharedProps(): SharedStylePropsArg & {children: React.ReactNode};
+  getSharedProps(): SharedStylePropsArg & { children: React.ReactNode };
   getMountNode(): HTMLElement;
   getChildren(): React.ReactNode;
   getRef(component: string): React.Ref<any>;
   renderModal(): React.ReactNode;
 }
 
-export class ModalButton extends React.Component<
-  ButtonProps & {autoFocus?: boolean}
-> {}
+export class ModalButton extends React.Component<ButtonProps & { autoFocus?: boolean }> {}
 
-export class FocusOnce extends React.Component<{children: React.ReactNode}> {}
+export class FocusOnce extends React.Component<{ children: React.ReactNode }> {}
 
 export const StyledRoot: StyletronComponent<any>;
 export const StyledDialog: StyletronComponent<any>;

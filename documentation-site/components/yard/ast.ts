@@ -1,7 +1,7 @@
 import generate from '@babel/generator';
 import traverse from '@babel/traverse';
 import * as t from '@babel/types';
-import {parse} from 'react-view';
+import { parse } from 'react-view';
 
 export function toggleOverrideSharedProps(code: string, sharedProps: string[]) {
   let result: string = '';
@@ -18,12 +18,10 @@ export function toggleOverrideSharedProps(code: string, sharedProps: string[]) {
           newParams = properties.map((prop: any) => prop.key.name);
         }
 
-        const shouldWeAddSharedProps = newParams.every(
-          name => !sharedProps.includes(name),
-        );
+        const shouldWeAddSharedProps = newParams.every((name) => !sharedProps.includes(name));
 
         if (shouldWeAddSharedProps) {
-          sharedProps.forEach(param => {
+          sharedProps.forEach((param) => {
             if (!newParams.includes(param)) {
               newParams.push(param);
             }
@@ -31,26 +29,16 @@ export function toggleOverrideSharedProps(code: string, sharedProps: string[]) {
           path.node.params = [
             //@ts-ignore
             t.objectPattern(
-              newParams.map(param =>
-                t.objectProperty(
-                  t.identifier(param),
-                  t.identifier(param),
-                  false,
-                  true,
-                ),
-              ),
+              newParams.map((param) =>
+                t.objectProperty(t.identifier(param), t.identifier(param), false, true)
+              )
             ),
           ];
         } else {
           path.node.params = [
             //@ts-ignore
             t.objectPattern([
-              t.objectProperty(
-                t.identifier('$theme'),
-                t.identifier('$theme'),
-                false,
-                true,
-              ),
+              t.objectProperty(t.identifier('$theme'), t.identifier('$theme'), false, true),
             ]),
           ];
         }

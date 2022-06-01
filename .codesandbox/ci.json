@@ -4,5 +4,5 @@
     "baseui": "dist"
   },
   "sandboxes": ["basic-usage-9olot"],
-  "node": "14"
+  "node": "16"
 }

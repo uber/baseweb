@@ -1,7 +1,7 @@
-import {ListItem, ListItemLabel, ARTWORK_SIZES, SHAPE} from 'baseui/list';
-import {Check} from 'baseui/icon';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
+import { ListItem, ListItemLabel, ARTWORK_SIZES, SHAPE } from 'baseui/list';
+import { Check } from 'baseui/icon';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
 
 const listItemProps = require('!!extract-react-types-loader!../../../../src/list/list-item.js');
 const listItemLabelProps = require('!!extract-react-types-loader!../../../../src/list/list-item-label.js');

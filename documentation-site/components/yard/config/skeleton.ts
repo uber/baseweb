@@ -1,6 +1,6 @@
-import {Skeleton} from 'baseui/skeleton';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
+import { Skeleton } from 'baseui/skeleton';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
 
 const skeletonProps = require('!!extract-react-types-loader!../../../../src/pin-code/pin-code.js');
 

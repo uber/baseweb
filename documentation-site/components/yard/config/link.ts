@@ -1,6 +1,6 @@
-import {StyledLink} from 'baseui/link';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
+import { StyledLink } from 'baseui/link';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
 
 const LinkConfig: TConfig = {
   componentName: 'StyledLink',
@@ -9,7 +9,7 @@ const LinkConfig: TConfig = {
       named: ['StyledLink'],
     },
   },
-  scope: {StyledLink},
+  scope: { StyledLink },
   theme: ['linkText', 'linkVisited', 'linkHover', 'linkActive'],
   props: {
     children: {

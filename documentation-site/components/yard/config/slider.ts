@@ -4,16 +4,16 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import {Slider} from 'baseui/slider';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
+import { Slider } from 'baseui/slider';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
 
 const sliderProps = require('!!extract-react-types-loader!../../../../src/slider/slider.js');
 
 const SliderConfig: TConfig = {
   componentName: 'Slider',
   imports: {
-    'baseui/slider': {named: ['Slider']},
+    'baseui/slider': { named: ['Slider'] },
   },
   scope: {
     Slider,
@@ -49,22 +49,19 @@ const SliderConfig: TConfig = {
       value: undefined,
       type: PropTypes.Number,
       placeholder: '0',
-      description:
-        'The minimum allowed value of the slider. Cannot not be bigger than max.',
+      description: 'The minimum allowed value of the slider. Cannot not be bigger than max.',
     },
     max: {
       value: undefined,
       placeholder: '100',
       type: PropTypes.Number,
-      description:
-        'The maximum allowed value of the slider. Cannot not be smaller than min.',
+      description: 'The maximum allowed value of the slider. Cannot not be smaller than min.',
     },
     step: {
       value: undefined,
       placeholder: '1',
       type: PropTypes.Number,
-      description:
-        'The granularity the slider can step through value. Default step is 1.',
+      description: 'The granularity the slider can step through value. Default step is 1.',
     },
     marks: {
       value: false,
@@ -85,8 +82,7 @@ const SliderConfig: TConfig = {
       value: undefined,
       placeholder: '(value) => `${value}:00 AM',
       type: PropTypes.Function,
-      description:
-        'Used to transform the thumb value/min/max labels into a user-friendly label.',
+      description: 'Used to transform the thumb value/min/max labels into a user-friendly label.',
     },
     overrides: {
       value: undefined,

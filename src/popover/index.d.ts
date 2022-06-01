@@ -1,7 +1,7 @@
 import * as React from 'react';
-import {StyletronComponent} from 'styletron-react';
-import {Override} from '../overrides';
-import {NormalizedOffsets, PopperDataObject, TetherPlacement} from '../layer';
+import { StyletronComponent } from 'styletron-react';
+import { Override } from '../overrides';
+import { NormalizedOffsets, PopperDataObject, TetherPlacement } from '../layer';
 
 export interface ACCESSIBILITY_TYPE {
   none: 'none';
@@ -37,12 +37,12 @@ export type ANIMATE_OUT_TIME = 0;
 export type StateReducer = (
   stateChangeType: STATE_CHANGE_TYPE[keyof STATE_CHANGE_TYPE],
   nextState: State,
-  currentState: State,
+  currentState: State
 ) => State;
 
 export type StatefulPopoverProps = BasePopoverProps & {
   children?: React.ReactNode;
-  content?: React.ReactNode | ((args: {close: () => void}) => React.ReactNode);
+  content?: React.ReactNode | ((args: { close: () => void }) => React.ReactNode);
   dismissOnClickOutside?: boolean;
   dismissOnEsc?: boolean;
   initialState?: State;
@@ -53,15 +53,12 @@ export type StatefulPopoverProps = BasePopoverProps & {
 export const StatefulPopover: React.FC<StatefulPopoverProps>;
 
 export type StatefulPopoverContainerProps = StatefulPopoverProps & {
-  children: (props: PopoverProps & {children: never}) => React.ReactNode;
+  children: (props: PopoverProps & { children: never }) => React.ReactNode;
 };
 export interface State {
   isOpen: boolean;
 }
-export class StatefulContainer extends React.Component<
-  StatefulPopoverContainerProps,
-  State
-> {
+export class StatefulContainer extends React.Component<StatefulPopoverContainerProps, State> {
   onBlur(): void;
   onClick(): void;
   onClickOutside(): void;
@@ -72,10 +69,7 @@ export class StatefulContainer extends React.Component<
   onContentClose(): void;
   open(): void;
   close(): void;
-  internalSetState(
-    type: STATE_CHANGE_TYPE[keyof STATE_CHANGE_TYPE],
-    changes: State,
-  ): void;
+  internalSetState(type: STATE_CHANGE_TYPE[keyof STATE_CHANGE_TYPE], changes: State): void;
 }
 
 export interface SharedStylePropsArg {
@@ -97,7 +91,7 @@ export interface BasePopoverProps {
   focusLock?: boolean;
   autoFocus?: boolean;
   focusOptions?: FocusOptions;
-  returnFocus?: boolean | FocusOptions | ((returnTo: Element) => (boolean | FocusOptions));
+  returnFocus?: boolean | FocusOptions | ((returnTo: Element) => boolean | FocusOptions);
   'data-baseweb'?: string;
   id?: string;
   ignoreBoundary?: boolean;
@@ -138,17 +132,12 @@ export interface PopoverPrivateState {
   isLayerMounted: boolean;
   isMounted: boolean;
 }
-export class Popover extends React.Component<
-  PopoverProps,
-  PopoverPrivateState
-> {
+export class Popover extends React.Component<PopoverProps, PopoverPrivateState> {
   init(prevProps: PopoverProps, prevState: PopoverPrivateState): void;
-  getDefaultState(
-    props: PopoverProps,
-  ): {
+  getDefaultState(props: PopoverProps): {
     isAnimating: false;
-    arrowOffset: {left: 0; top: 0};
-    popoverOffset: {left: 0; top: 0};
+    arrowOffset: { left: 0; top: 0 };
+    popoverOffset: { left: 0; top: 0 };
     placement: PLACEMENT[keyof PLACEMENT];
     isMounted: false;
     isLayerMounted: false;
@@ -162,10 +151,7 @@ export class Popover extends React.Component<
   onPopoverMouseEnter(): void;
   onPopoverMouseLeave(): void;
   onKeyPress(evt: KeyboardEvent): void;
-  onPopperUpdate(
-    normalizedOffsets: NormalizedOffsets,
-    data: PopperDataObject,
-  ): void;
+  onPopperUpdate(normalizedOffsets: NormalizedOffsets, data: PopperDataObject): void;
   triggerOnMouseLeaveWithDelay(): void;
   triggerOnMouseLeave(): void;
   triggerOnMouseEnterWithDelay(): void;
@@ -181,7 +167,7 @@ export class Popover extends React.Component<
   getPopoverIdAttr(): string | null;
   getAnchorProps(): object;
   getPopoverBodyProps(): object;
-  getSharedProps(): SharedStylePropsArg & {children?: React.ReactNode};
+  getSharedProps(): SharedStylePropsArg & { children?: React.ReactNode };
   getAnchorFromChildren(): React.ReactNode;
   renderAnchor(): React.ReactNode;
   renderPopover(): React.ReactNode;

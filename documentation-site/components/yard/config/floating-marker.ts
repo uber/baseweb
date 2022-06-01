@@ -4,8 +4,8 @@ import {
   FLOATING_MARKER_ANCHOR_POSITIONS,
   FLOATING_MARKER_ANCHOR_TYPES,
 } from 'baseui/map-marker';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
 
 const floatingMarkerPropsType = require('!!extract-react-types-loader!../../../../src/map-marker/floating-marker.js');
 
@@ -60,15 +60,13 @@ export const floatingMarkerProps = {
     value: undefined,
     placeholder: '() => <span>$</span>',
     type: PropTypes.Function,
-    description:
-      'Icon or element to render in the leading slot (before the label).',
+    description: 'Icon or element to render in the leading slot (before the label).',
   },
   endEnhancer: {
     value: undefined,
     placeholder: '() => <span>?</span>',
     type: PropTypes.Function,
-    description:
-      'Icon or element to render in the trailing slot (after the label).',
+    description: 'Icon or element to render in the trailing slot (after the label).',
   },
 };
 

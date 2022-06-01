@@ -1,6 +1,6 @@
-import {Navigation} from 'baseui/side-navigation';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
+import { Navigation } from 'baseui/side-navigation';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
 
 const sideNavProps = require('!!extract-react-types-loader!../../../../src/side-navigation/nav.js');
 
@@ -39,7 +39,7 @@ const SideNavigationConfig: TConfig = {
       named: ['Navigation'],
     },
   },
-  scope: {Navigation},
+  scope: { Navigation },
   theme: [],
   props: {
     items: {
@@ -78,13 +78,7 @@ const SideNavigationConfig: TConfig = {
       type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
       custom: {
-        names: [
-          'Root',
-          'NavItemContainer',
-          'NavLink',
-          'NavItem',
-          'SubNavContainer',
-        ],
+        names: ['Root', 'NavItemContainer', 'NavLink', 'NavItem', 'SubNavContainer'],
         sharedProps: {
           $active: {
             type: PropTypes.Boolean,

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import {Override} from '../overrides';
+import { Override } from '../overrides';
 
 declare const DURATION: {
   infinite: number;
@@ -17,11 +17,11 @@ declare const PLACEMENT: {
   bottom: 'bottom';
   bottomLeft: 'bottomLeft';
 };
-export {DURATION, PLACEMENT};
+export { DURATION, PLACEMENT };
 
-export type DurationT = (typeof DURATION)[keyof typeof DURATION];
+export type DurationT = typeof DURATION[keyof typeof DURATION];
 
-export type PlacementT = (typeof PLACEMENT)[keyof typeof PLACEMENT];
+export type PlacementT = typeof PLACEMENT[keyof typeof PLACEMENT];
 
 export type SnackbarElementOverridesT = {
   Root?: Override<any>;
@@ -40,7 +40,7 @@ export type SnackbarElementPropsT = {
   message: React.ReactNode;
   overrides?: SnackbarElementOverridesT;
   progress?: boolean;
-  startEnhancer?: React.FC<{size: number}>;
+  startEnhancer?: React.FC<{ size: number }>;
 };
 
 export type SnackbarProviderPropsT = {

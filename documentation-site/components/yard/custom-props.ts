@@ -1,11 +1,11 @@
 import * as t from '@babel/types';
 import template from '@babel/template';
 import generate from '@babel/generator';
-import {formatCode, parse} from 'react-view';
+import { formatCode, parse } from 'react-view';
 
 export type TCustomPropFields = {
   names: string[];
-  sharedProps: {[key: string]: string | {type: string; description: string}};
+  sharedProps: { [key: string]: string | { type: string; description: string } };
 };
 
 const parseOverridesInner = (overrides: any, acc: any) => {
@@ -28,10 +28,7 @@ const parseOverridesInner = (overrides: any, acc: any) => {
               nestedValue: {},
               active: true,
             };
-            parseOverridesInner(
-              subprop.value.properties,
-              acc[overrideName].nestedValue,
-            );
+            parseOverridesInner(subprop.value.properties, acc[overrideName].nestedValue);
           }
         });
       }
@@ -57,7 +54,7 @@ type TGenerateValue = {
 
 const generateOverrides = (value: TGenerateValue) => {
   const activeValues = Object.entries(value).filter(
-    ([, val]) => val.active && (val.style || val.nestedValue),
+    ([, val]) => val.active && (val.style || val.nestedValue)
   );
   if (activeValues.length === 0) return null;
   const keys: any = activeValues.map(([key, val]) => {
@@ -71,23 +68,19 @@ const generateOverrides = (value: TGenerateValue) => {
         t.objectExpression([
           t.objectProperty(
             t.identifier('props'),
-            t.objectExpression([
-              t.objectProperty(
-                t.identifier('overrides'),
-                nestedOverride as any,
-              ),
-            ]),
+            t.objectExpression([t.objectProperty(t.identifier('overrides'), nestedOverride as any)])
           ),
-        ]),
+        ])
       );
     }
     return t.objectProperty(
       t.identifier(key),
       t.objectExpression([
-        t.objectProperty(t.identifier('style'), template.expression(
-          val.style as string,
-        )({}) as any),
-      ]),
+        t.objectProperty(
+          t.identifier('style'),
+          template.expression(val.style as string)({}) as any
+        ),
+      ])
     );
   });
   const keysWithoutNulls = keys.filter((val: any) => !!val);

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Override} from '../overrides';
+import { Override } from '../overrides';
 
 export interface FLOATING_MARKER_ANCHOR_POSITIONS {
   none: 'none';
@@ -66,12 +66,14 @@ interface PINHEAD_TYPES {
   fixed: 'fixed';
 }
 
-export type AnchorPositionsT = FLOATING_MARKER_ANCHOR_POSITIONS[keyof FLOATING_MARKER_ANCHOR_POSITIONS];
+export type AnchorPositionsT =
+  FLOATING_MARKER_ANCHOR_POSITIONS[keyof FLOATING_MARKER_ANCHOR_POSITIONS];
 export type NeedleSizeT = NEEDLE_SIZES[keyof NEEDLE_SIZES];
 export type PinHeadT = PINHEAD_TYPES[keyof PINHEAD_TYPES];
 export type PinHeadSizeT = PINHEAD_SIZES_SHAPES[keyof PINHEAD_SIZES_SHAPES];
 export type FloatingMarkerSizeT = FLOATING_MARKER_SIZES[keyof FLOATING_MARKER_SIZES];
-export type FloatingMarkerAnchorTypeT = FLOATING_MARKER_ANCHOR_TYPES[keyof FLOATING_MARKER_ANCHOR_TYPES];
+export type FloatingMarkerAnchorTypeT =
+  FLOATING_MARKER_ANCHOR_TYPES[keyof FLOATING_MARKER_ANCHOR_TYPES];
 export type BadgeEnhancerSizeT = BADGE_ENHANCER_SIZES[keyof BADGE_ENHANCER_SIZES];
 export type LabelEnhancerPositionT = LABEL_ENHANCER_POSITIONS[keyof LABEL_ENHANCER_POSITIONS];
 export type KindT = KIND[keyof KIND];
@@ -117,7 +119,7 @@ export type LabelEhancerComponentT = LabelEnhancerT & {
 
 export type BadgeEnhancerT = {
   badgeEnhancerSize?: BadgeEnhancerSizeT | null;
-  badgeEnhancerContent?: (props: {size: number}) => React.ReactNode;
+  badgeEnhancerContent?: (props: { size: number }) => React.ReactNode;
 };
 
 export type BadgeEnhancerComponentT = BadgeEnhancerT & {
@@ -136,8 +138,8 @@ export type FixedMarkerPropsT = BadgeEnhancerT &
     size?: PinHeadSizeT;
     needle?: NeedleSizeT;
     label?: string;
-    startEnhancer?: (props: {size: number}) => React.ReactNode;
-    endEnhancer?: (props: {size: number}) => React.ReactNode;
+    startEnhancer?: (props: { size: number }) => React.ReactNode;
+    endEnhancer?: (props: { size: number }) => React.ReactNode;
     kind?: KindT;
     color?: string;
     background?: string;
@@ -165,8 +167,8 @@ export type FloatingMarkerOverridesT = {
 export type FloatingMarkerPropsT = {
   label?: string;
   anchor?: AnchorPositionsT;
-  endEnhancer?: (props: {size: number}) => React.ReactNode;
-  startEnhancer?: (props: {size: number}) => React.ReactNode;
+  endEnhancer?: (props: { size: number }) => React.ReactNode;
+  startEnhancer?: (props: { size: number }) => React.ReactNode;
   anchorType?: FloatingMarkerAnchorTypeT;
   size?: FloatingMarkerSizeT;
   overrides?: FloatingMarkerOverridesT;
@@ -176,8 +178,8 @@ export type PinHeadPropsT = BadgeEnhancerT &
   LabelEnhancerT & {
     size?: PinHeadSizeT;
     label?: string;
-    endEnhancer?: (props: {size: number}) => React.ReactNode;
-    startEnhancer?: (props: {size: number}) => React.ReactNode;
+    endEnhancer?: (props: { size: number }) => React.ReactNode;
+    startEnhancer?: (props: { size: number }) => React.ReactNode;
     color?: string;
     background?: string;
     type?: PinHeadT;

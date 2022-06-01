@@ -1,10 +1,7 @@
 import * as React from 'react';
-import {StyletronComponent} from 'styletron-react';
-import {Override} from '../overrides';
-import {
-  arrayMove as arrayMoveT,
-  arrayRemove as arrayRemoveT,
-} from 'react-movable';
+import { StyletronComponent } from 'styletron-react';
+import { Override } from '../overrides';
+import { arrayMove as arrayMoveT, arrayRemove as arrayRemoveT } from 'react-movable';
 
 // export {arrayMove, arrayRemove} from 'react-movable';
 
@@ -15,7 +12,7 @@ export interface STATE_CHANGE_TYPE {
 export type StateReducer = (
   stateChangeType: STATE_CHANGE_TYPE[keyof STATE_CHANGE_TYPE],
   nextState: State,
-  currentState: State,
+  currentState: State
 ) => State;
 
 export interface StatefulListProps {
@@ -23,13 +20,7 @@ export interface StatefulListProps {
   stateReducer?: StateReducer;
   removable?: boolean;
   removableByMove?: boolean;
-  onChange?: (
-    params: {
-      newState: React.ReactNode[];
-      oldIndex: number;
-      newIndex: number;
-    },
-  ) => any;
+  onChange?: (params: { newState: React.ReactNode[]; oldIndex: number; newIndex: number }) => any;
   overrides?: ListOverrides;
 }
 
@@ -43,15 +34,9 @@ export type StatefulComponentContainerProps = StatefulListProps & {
   children: React.ReactNode;
 };
 
-export class StatefulListContainer extends React.Component<
-  StatefulComponentContainerProps,
-  State
-> {
-  onChange({oldIndex, newIndex}: {oldIndex: number; newIndex: number}): void;
-  internalSetState(
-    type: STATE_CHANGE_TYPE[keyof STATE_CHANGE_TYPE],
-    changes: State,
-  ): void;
+export class StatefulListContainer extends React.Component<StatefulComponentContainerProps, State> {
+  onChange({ oldIndex, newIndex }: { oldIndex: number; newIndex: number }): void;
+  internalSetState(type: STATE_CHANGE_TYPE[keyof STATE_CHANGE_TYPE], changes: State): void;
 }
 
 export interface SharedStylePropsArgT {
@@ -75,7 +60,7 @@ export interface ListProps {
   removable?: boolean;
   removableByMove?: boolean;
   items?: React.ReactNode[];
-  onChange?: (args: {oldIndex: number; newIndex: number}) => any;
+  onChange?: (args: { oldIndex: number; newIndex: number }) => any;
   overrides?: ListOverrides;
 }
 

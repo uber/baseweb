@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Override} from '../overrides';
+import { Override } from '../overrides';
 
 export interface AppNavBarOverridesT {
   Root?: Override<any>;
@@ -64,5 +64,5 @@ export const POSITION: POSITION;
 export const setItemActive: (
   items: NavItemT[],
   item: NavItemT,
-  getUniqueueIdentifier?: (currentItem: NavItemT) => string | number,
+  getUniqueueIdentifier?: (currentItem: NavItemT) => string | number
 ) => NavItemT[];

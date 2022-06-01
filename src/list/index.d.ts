@@ -1,7 +1,7 @@
-import {HeaderNavigationOverrides} from 'baseui/header-navigation';
+import { HeaderNavigationOverrides } from 'baseui/header-navigation';
 import * as React from 'react';
-import {StyletronComponent} from 'styletron-react';
-import {Override} from '../overrides';
+import { StyletronComponent } from 'styletron-react';
+import { Override } from '../overrides';
 
 export interface ARTWORK_SIZES {
   SMALL: 'SMALL';
@@ -72,9 +72,7 @@ export interface MenuAdapterPropsT extends PropsT {
   $disabled: boolean;
 }
 
-export const ListItem: React.ForwardRefExoticComponent<
-  PropsT & React.RefAttributes<HTMLLIElement>
->;
+export const ListItem: React.ForwardRefExoticComponent<PropsT & React.RefAttributes<HTMLLIElement>>;
 export const ListItemLabel: React.FC<LabelPropsT>;
 export const MenuAdapter: React.FC<MenuAdapterPropsT>;
 

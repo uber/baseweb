@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {BlockProps, Responsive, Scale} from '../block';
+import { BlockProps, Responsive, Scale } from '../block';
 
 export interface FlexGridProps extends BlockProps {
   flexGridColumnCount?: Responsive<number>;

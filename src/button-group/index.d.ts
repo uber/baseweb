@@ -1,9 +1,9 @@
 import * as React from 'react';
-import {StyledFn, StyletronComponent} from 'styletron-react';
-import {SHAPE, SIZE, KIND} from '../button';
-import {Override} from '../overrides';
+import { StyletronComponent } from 'styletron-react';
+import { SHAPE, SIZE, KIND } from '../button';
+import { Override } from '../overrides';
 
-export {SHAPE, SIZE};
+export { SHAPE, SIZE };
 
 export interface MODE {
   checkbox: 'checkbox';
@@ -46,19 +46,12 @@ export interface State {
 
 export interface StatefulButtonGroupProps extends ButtonGroupProps {
   initialState?: InitialState;
-  stateReducer?: (
-    stateType: STATE_CHANGE_TYPE,
-    nextState: State,
-    currentState: State,
-  ) => State;
+  stateReducer?: (stateType: STATE_CHANGE_TYPE, nextState: State, currentState: State) => State;
 }
 
 export const StatefulButtonGroup: React.FC<StatefulButtonGroupProps>;
 
-export class StatefulContainer extends React.Component<
-  StatefulButtonGroupProps,
-  State
-> {
+export class StatefulContainer extends React.Component<StatefulButtonGroupProps, State> {
   changeState(nextState: State): void;
   onClick(event: React.MouseEvent<HTMLButtonElement>, index: number): void;
 }

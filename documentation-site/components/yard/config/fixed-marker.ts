@@ -6,9 +6,9 @@ import {
   BADGE_ENHANCER_SIZES,
   LABEL_ENHANCER_POSITIONS,
 } from 'baseui/map-marker';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
-import {Check, Upload, Search} from 'baseui/icon';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
+import { Check, Upload, Search } from 'baseui/icon';
 
 const fixedMarkerPropsType = require('!!extract-react-types-loader!../../../../src/map-marker/fixed-marker.js');
 
@@ -23,8 +23,7 @@ export const fixedMarkerProps = {
   dragging: {
     value: false,
     type: PropTypes.Boolean,
-    description:
-      'Renders the component with circular shadow to represent dragging.',
+    description: 'Renders the component with circular shadow to represent dragging.',
     defaultValue: false,
   },
   size: {
@@ -57,8 +56,7 @@ export const fixedMarkerProps = {
     value: '({size}) => <Upload size={size}/>',
     placeholder: '({size}) => <Upload size={size}/>',
     type: PropTypes.Function,
-    description:
-      'Icon or element to render in the leading slot (before the label).',
+    description: 'Icon or element to render in the leading slot (before the label).',
     imports: {
       'baseui/icon': {
         named: ['Upload'],
@@ -69,8 +67,7 @@ export const fixedMarkerProps = {
     value: undefined,
     placeholder: '({size}) => <Search size={size}/>',
     type: PropTypes.Function,
-    description:
-      'Icon or element to render in the trailing slot (after the label).',
+    description: 'Icon or element to render in the trailing slot (after the label).',
     imports: {
       'baseui/icon': {
         named: ['Search'],

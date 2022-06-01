@@ -1,20 +1,14 @@
 import * as React from 'react';
-import {useStyletron} from 'baseui';
-import {StyledLink} from 'baseui/link';
-import {Input} from 'baseui/input';
-import {Radio, RadioGroup} from 'baseui/radio';
-import {Checkbox} from 'baseui/checkbox';
-import {Select, SIZE} from 'baseui/select';
-import {StatefulTooltip} from 'baseui/tooltip';
+import { useStyletron } from 'baseui';
+import { StyledLink } from 'baseui/link';
+import { Input } from 'baseui/input';
+import { Radio, RadioGroup } from 'baseui/radio';
+import { Checkbox } from 'baseui/checkbox';
+import { Select, SIZE } from 'baseui/select';
+import { StatefulTooltip } from 'baseui/tooltip';
 
 import Editor from './editor';
-import {
-  assertUnreachable,
-  useValueDebounce,
-  PropTypes,
-  Error,
-  TPropValue,
-} from 'react-view';
+import { assertUnreachable, useValueDebounce, PropTypes, Error, TPropValue } from 'react-view';
 
 const getTooltip = (description: string, type: string, name: string) => (
   <span>
@@ -25,21 +19,18 @@ const getTooltip = (description: string, type: string, name: string) => (
   </span>
 );
 
-const Spacing: React.FC<{children: React.ReactNode}> = ({children}) => {
+const Spacing: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [css, theme] = useStyletron();
-  return (
-    <div className={css({margin: `${theme.sizing.scale400} 0`})}>
-      {children}
-    </div>
-  );
+  return <div className={css({ margin: `${theme.sizing.scale400} 0` })}>{children}</div>;
 };
 
 const Label: React.FC<{
   children: React.ReactNode;
   tooltip: React.ReactNode;
-}> = ({children, tooltip}) => {
+}> = ({ children, tooltip }) => {
   const [css, theme] = useStyletron();
   return (
+    // eslint-disable-next-line jsx-a11y/label-has-associated-control
     <label
       className={css({
         ...theme.typography.font250,
@@ -69,7 +60,7 @@ const Knob: React.SFC<{
   val: TPropValue;
   set: (val: TPropValue) => void;
   type: PropTypes;
-  options?: {[key: string]: string};
+  options?: { [key: string]: string };
   placeholder?: string;
   enumName?: string;
 }> = ({
@@ -111,7 +102,7 @@ const Knob: React.SFC<{
           <Label tooltip={getTooltip(description, type, name)}>{name}</Label>
           <Input
             error={Boolean(error)}
-            onChange={event => set((event.target as HTMLInputElement).value)}
+            onChange={(event) => set((event.target as HTMLInputElement).value)}
             placeholder={placeholder}
             size="compact"
             value={val ? String(val) : undefined}
@@ -149,12 +140,16 @@ const Knob: React.SFC<{
         </Spacing>
       );
     case PropTypes.Enum:
+      // eslint-disable-next-line no-case-declarations
       const optionsKeys = Object.keys(options);
+      // eslint-disable-next-line no-case-declarations
       const numberOfOptions = optionsKeys.length;
-      const selectOptions = optionsKeys.map(key => ({
+      // eslint-disable-next-line no-case-declarations
+      const selectOptions = optionsKeys.map((key) => ({
         id: key,
         option: options[key],
       }));
+      // eslint-disable-next-line no-case-declarations
       const valueKey = val && String(val).split('.')[1];
       return (
         <Spacing>
@@ -165,32 +160,32 @@ const Knob: React.SFC<{
               align="horizontal"
               overrides={{
                 RadioGroupRoot: {
-                  style: ({$theme}) => ({
+                  style: ({ $theme }) => ({
                     flexWrap: 'wrap',
                     marginTop: 0,
                     marginBottom: $theme.sizing.scale300,
                   }),
                 },
               }}
-              onChange={e => {
+              onChange={(e) => {
                 globalSet((e.target as HTMLInputElement).value);
               }}
               value={String(val)}
             >
-              {Object.keys(options).map(opt => (
+              {Object.keys(options).map((opt) => (
                 <Radio
                   key={opt}
                   value={`${enumName || name.toUpperCase()}.${opt}`}
                   overrides={{
                     Root: {
-                      style: ({$theme}) => ({
+                      style: ({ $theme }) => ({
                         marginRight: $theme.sizing.scale600,
                         marginTop: 0,
                         marginBottom: 0,
                       }),
                     },
                     Label: {
-                      style: ({$theme}) => $theme.typography.font250,
+                      style: ({ $theme }) => $theme.typography.font250,
                     },
                   }}
                 >
@@ -203,10 +198,10 @@ const Knob: React.SFC<{
               size={SIZE.compact}
               options={selectOptions}
               clearable={false}
-              value={[{id: valueKey || '', option: valueKey}]}
+              value={[{ id: valueKey || '', option: valueKey }]}
               labelKey="option"
               valueKey="id"
-              onChange={({value}) => {
+              onChange={({ value }) => {
                 globalSet(`${enumName || name.toUpperCase()}.${value[0].id}`);
               }}
             />
@@ -222,7 +217,7 @@ const Knob: React.SFC<{
         <Spacing>
           <Label tooltip={getTooltip(description, type, name)}>{name}</Label>
           <Editor
-            onChange={code => {
+            onChange={(code) => {
               globalSet(code);
             }}
             code={val ? String(val) : ''}

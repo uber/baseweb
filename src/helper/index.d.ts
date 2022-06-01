@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {StyletronComponent} from 'styletron-react';
+import { StyletronComponent } from 'styletron-react';
 
 import {
   ACCESSIBILITY_TYPE,
@@ -20,7 +20,7 @@ export type HelperStepsPropsT = {
   onNext: () => any;
 };
 
-export {ACCESSIBILITY_TYPE, PLACEMENT, TRIGGER_TYPE};
+export { ACCESSIBILITY_TYPE, PLACEMENT, TRIGGER_TYPE };
 
 export const StyledArrow: StyletronComponent<any>;
 export const StyledBody: StyletronComponent<any>;
