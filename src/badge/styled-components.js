@@ -132,6 +132,7 @@ export const StyledRoot = styled<{}>('div', () => {
   return {
     position: 'relative',
     display: 'inline-block',
+    lineHeight: 'initial',
   };
 });
 
@@ -177,8 +178,7 @@ export const StyledPositioner = styled<{
   return {
     ...positionStyle,
     position: 'absolute',
-    height: 'unset',
-    lineHeight: 'unset',
+    lineHeight: 'initial',
   };
 });
 
