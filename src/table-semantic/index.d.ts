@@ -2,18 +2,18 @@ import * as React from 'react';
 import { StyletronComponent } from 'styletron-react';
 import { Override } from '../overrides';
 
-export interface DIVIDER {
+export declare const DIVIDER: {
   horizontal: 'horizontal';
   vertical: 'vertical';
   grid: 'grid';
   clean: 'clean';
-}
+};
 
-export interface SIZE {
+export declare const SIZE: {
   compact: 'compact';
   default: 'default';
   spacious: 'spacious';
-}
+};
 
 export interface TableOverrides {
   Root?: Override<any>;
@@ -31,12 +31,12 @@ export interface TableProps {
   overrides?: TableOverrides;
   columns: Array<React.ReactNode>;
   data: React.ReactNode[][];
-  divider?: DIVIDER[keyof DIVIDER];
+  divider?: typeof DIVIDER[keyof typeof DIVIDER];
   horizontalScrollWidth?: string;
   isLoading?: boolean;
   loadingMessage?: React.ReactNode | (() => React.ReactNode);
   emptyMessage?: React.ReactNode | (() => React.ReactNode);
-  size?: SIZE[keyof SIZE];
+  size?: typeof SIZE[keyof typeof SIZE];
 }
 export class Table extends React.Component<TableProps> {}
 
@@ -58,7 +58,7 @@ export interface TableBuilderProps<RowT> {
   isLoading?: boolean;
   loadingMessage?: React.ReactNode | (() => React.ReactNode);
   emptyMessage?: React.ReactNode | (() => React.ReactNode);
-  size?: SIZE[keyof SIZE];
+  size?: typeof SIZE[keyof typeof SIZE];
 }
 export class TableBuilder<RowT> extends React.Component<TableBuilderProps<RowT>> {}
 
@@ -81,20 +81,17 @@ export interface TableBuilderColumnProps<RowT> {
 }
 export class TableBuilderColumn<RowT> extends React.Component<TableBuilderColumnProps<RowT>> {}
 
-export const StyledRoot: StyletronComponent<any>;
-export const StyledTable: StyletronComponent<any>;
-export const StyledTableHead: StyletronComponent<any>;
-export const StyledTableHeadRow: StyletronComponent<any>;
-export const StyledTableHeadCell: StyletronComponent<any>;
-export const StyledTableHeadCellSortable: StyletronComponent<any>;
-export const StyledTableBody: StyletronComponent<any>;
-export const StyledTableBodyRow: StyletronComponent<any>;
-export const StyledTableBodyCell: StyletronComponent<any>;
-export const StyledTableLoadingMessage: StyletronComponent<any>;
-export const StyledTableEmptyMessage: StyletronComponent<any>;
-export const StyledSortAscIcon: StyletronComponent<any>;
-export const StyledSortDescIcon: StyletronComponent<any>;
-export const StyledSortNoneIcon: StyletronComponent<any>;
-
-export const DIVIDER: DIVIDER;
-export const SIZE: SIZE;
+export declare const StyledRoot: StyletronComponent<any>;
+export declare const StyledTable: StyletronComponent<any>;
+export declare const StyledTableHead: StyletronComponent<any>;
+export declare const StyledTableHeadRow: StyletronComponent<any>;
+export declare const StyledTableHeadCell: StyletronComponent<any>;
+export declare const StyledTableHeadCellSortable: StyletronComponent<any>;
+export declare const StyledTableBody: StyletronComponent<any>;
+export declare const StyledTableBodyRow: StyletronComponent<any>;
+export declare const StyledTableBodyCell: StyletronComponent<any>;
+export declare const StyledTableLoadingMessage: StyletronComponent<any>;
+export declare const StyledTableEmptyMessage: StyletronComponent<any>;
+export declare const StyledSortAscIcon: StyletronComponent<any>;
+export declare const StyledSortDescIcon: StyletronComponent<any>;
+export declare const StyledSortNoneIcon: StyletronComponent<any>;

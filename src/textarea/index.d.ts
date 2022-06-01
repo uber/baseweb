@@ -13,29 +13,27 @@ export interface TextareaProps extends BaseInputProps<HTMLTextAreaElement> {
   maxLength?: number;
 }
 
-export interface ADJOINED {
+export declare const ADJOINED: {
   none: 'none';
   left: 'left';
   right: 'right';
   both: 'both';
-}
-export interface SIZE {
+};
+export declare const SIZE: {
   default: 'default';
   compact: 'compact';
   large: 'large';
-}
+};
 
 export class Textarea extends React.Component<TextareaProps> {}
 
 export type StatefulTextareaProps = TextareaProps & StatefulContainerProps & { children?: never };
 
-export const StatefulTextarea: React.FC<StatefulTextareaProps>;
+export declare const StatefulTextarea: React.FC<StatefulTextareaProps>;
 
 export { StatefulContainer };
 
-export const StyledTextareaContainer: StyletronComponent<any>;
-export const StyledTextarea: StyletronComponent<any>;
+export declare const StyledTextareaContainer: StyletronComponent<any>;
+export declare const StyledTextarea: StyletronComponent<any>;
 
-export const ADJOINED: ADJOINED;
-export const SIZE: SIZE;
 export { STATE_CHANGE_TYPE };

@@ -5,16 +5,16 @@ import { Override } from '../overrides';
 
 export { SHAPE, SIZE };
 
-export interface MODE {
+export declare const MODE: {
   checkbox: 'checkbox';
   radio: 'radio';
-}
+};
 
-export interface STATE_CHANGE_TYPE {
+export declare const STATE_CHANGE_TYPE: {
   change: 'change';
-}
+};
 
-export const StyledRoot: StyletronComponent<any>;
+export declare const StyledRoot: StyletronComponent<any>;
 
 export interface ButtonGroupOverrides {
   Root?: Override<any>;
@@ -25,16 +25,16 @@ export interface ButtonGroupProps {
   'aria-label'?: string;
   children: React.ReactNode;
   disabled?: boolean;
-  mode?: MODE[keyof MODE];
+  mode?: typeof MODE[keyof typeof MODE];
   onClick?: (event: React.MouseEvent<HTMLButtonElement>, index: number) => any;
   overrides?: ButtonGroupOverrides;
   selected?: number | number[];
-  shape?: SHAPE[keyof SHAPE];
-  size?: SIZE[keyof SIZE];
-  kind?: KIND[keyof KIND];
+  shape?: typeof SHAPE[keyof typeof SHAPE];
+  size?: typeof SIZE[keyof typeof SIZE];
+  kind?: typeof KIND[keyof typeof KIND];
 }
 
-export const ButtonGroup: React.FC<ButtonGroupProps>;
+export declare const ButtonGroup: React.FC<ButtonGroupProps>;
 
 export interface InitialState {
   selected: number | number[];
@@ -46,15 +46,16 @@ export interface State {
 
 export interface StatefulButtonGroupProps extends ButtonGroupProps {
   initialState?: InitialState;
-  stateReducer?: (stateType: STATE_CHANGE_TYPE, nextState: State, currentState: State) => State;
+  stateReducer?: (
+    stateType: typeof STATE_CHANGE_TYPE[keyof typeof STATE_CHANGE_TYPE],
+    nextState: State,
+    currentState: State
+  ) => State;
 }
 
-export const StatefulButtonGroup: React.FC<StatefulButtonGroupProps>;
+export declare const StatefulButtonGroup: React.FC<StatefulButtonGroupProps>;
 
 export class StatefulContainer extends React.Component<StatefulButtonGroupProps, State> {
   changeState(nextState: State): void;
   onClick(event: React.MouseEvent<HTMLButtonElement>, index: number): void;
 }
-
-export const MODE: MODE;
-export const STATE_CHANGE_TYPE: STATE_CHANGE_TYPE;

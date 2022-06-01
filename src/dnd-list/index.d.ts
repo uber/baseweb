@@ -5,12 +5,12 @@ import { arrayMove as arrayMoveT, arrayRemove as arrayRemoveT } from 'react-mova
 
 // export {arrayMove, arrayRemove} from 'react-movable';
 
-export interface STATE_CHANGE_TYPE {
+export declare const STATE_CHANGE_TYPE: {
   change: 'change';
-}
+};
 
 export type StateReducer = (
-  stateChangeType: STATE_CHANGE_TYPE[keyof STATE_CHANGE_TYPE],
+  stateChangeType: typeof STATE_CHANGE_TYPE[keyof typeof STATE_CHANGE_TYPE],
   nextState: State,
   currentState: State
 ) => State;
@@ -24,7 +24,7 @@ export interface StatefulListProps {
   overrides?: ListOverrides;
 }
 
-export const StatefulList: React.FC<StatefulListProps>;
+export declare const StatefulList: React.FC<StatefulListProps>;
 
 export interface State {
   items: React.ReactNode[];
@@ -36,7 +36,10 @@ export type StatefulComponentContainerProps = StatefulListProps & {
 
 export class StatefulListContainer extends React.Component<StatefulComponentContainerProps, State> {
   onChange({ oldIndex, newIndex }: { oldIndex: number; newIndex: number }): void;
-  internalSetState(type: STATE_CHANGE_TYPE[keyof STATE_CHANGE_TYPE], changes: State): void;
+  internalSetState(
+    type: typeof STATE_CHANGE_TYPE[keyof typeof STATE_CHANGE_TYPE],
+    changes: State
+  ): void;
 }
 
 export interface SharedStylePropsArgT {
@@ -66,13 +69,12 @@ export interface ListProps {
 
 export class List extends React.Component<ListProps> {}
 
-export const StyledRoot: StyletronComponent<any>;
-export const StyledList: StyletronComponent<any>;
-export const StyledItem: StyletronComponent<any>;
-export const StyledDragHandle: StyletronComponent<any>;
-export const StyledCloseHandle: StyletronComponent<any>;
-export const StyledLabel: StyletronComponent<any>;
+export declare const StyledRoot: StyletronComponent<any>;
+export declare const StyledList: StyletronComponent<any>;
+export declare const StyledItem: StyletronComponent<any>;
+export declare const StyledDragHandle: StyletronComponent<any>;
+export declare const StyledCloseHandle: StyletronComponent<any>;
+export declare const StyledLabel: StyletronComponent<any>;
 
-export const STATE_CHANGE_TYPE: STATE_CHANGE_TYPE;
-export const arrayMove: typeof arrayMoveT;
-export const arrayRemove: typeof arrayRemoveT;
+export declare const arrayMove: typeof arrayMoveT;
+export declare const arrayRemove: typeof arrayRemoveT;

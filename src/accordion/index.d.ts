@@ -2,9 +2,9 @@ import * as React from 'react';
 import { StyletronComponent } from 'styletron-react';
 import { Override } from '../overrides';
 
-export interface STATE_CHANGE_TYPE {
+export declare const STATE_CHANGE_TYPE: {
   expand: 'expand';
-}
+};
 
 export interface AccordionOverrides<T> {
   Content?: Override<T>;
@@ -24,7 +24,7 @@ export interface SharedProps {
 }
 
 export type StateReducer<T> = (
-  stateChangeType: STATE_CHANGE_TYPE[keyof STATE_CHANGE_TYPE],
+  stateChangeType: typeof STATE_CHANGE_TYPE[keyof typeof STATE_CHANGE_TYPE],
   nextState: T,
   currentState: T
 ) => T;
@@ -50,7 +50,7 @@ export type StatelessAccordionProps = {
   renderAll?: boolean;
 };
 
-export const StatelessAccordion: React.FC<StatelessAccordionProps>;
+export declare const StatelessAccordion: React.FC<StatelessAccordionProps>;
 
 export interface AccordionState {
   expanded: React.Key[];
@@ -58,7 +58,10 @@ export interface AccordionState {
 
 export class Accordion extends React.Component<AccordionProps, AccordionState> {
   onPanelChange(key: React.Key, onChange: () => any, ...args: any): void;
-  internalSetState(type: STATE_CHANGE_TYPE[keyof STATE_CHANGE_TYPE], changes: AccordionState): void;
+  internalSetState(
+    type: typeof STATE_CHANGE_TYPE[keyof typeof STATE_CHANGE_TYPE],
+    changes: AccordionState
+  ): void;
   getItems(): React.ReactNode;
 }
 
@@ -99,7 +102,7 @@ export class Panel extends React.Component<PanelProps> {
 
 export type StatefulPanelProps = SharedPanelProps & SharedStatefulPanelContainerProps;
 
-export const StatefulPanel: React.FC<StatefulPanelProps>;
+export declare const StatefulPanel: React.FC<StatefulPanelProps>;
 
 export type StatefulPanelContainerProps = SharedStatefulPanelContainerProps & {
   children: React.ReactNode;
@@ -114,15 +117,16 @@ export class StatefulPanelContainer extends React.Component<
   PanelState
 > {
   onChange(args: any): void;
-  internalSetState(type: STATE_CHANGE_TYPE[keyof STATE_CHANGE_TYPE], changes: PanelState): void;
+  internalSetState(
+    type: typeof STATE_CHANGE_TYPE[keyof typeof STATE_CHANGE_TYPE],
+    changes: PanelState
+  ): void;
 }
 
-export const StyledRoot: StyletronComponent<any>;
-export const StyledPanelContainer: StyletronComponent<any>;
-export const StyledHeader: StyletronComponent<any>;
-export const StyledContent: StyletronComponent<any>;
-export const StyledContentAnimationContainer: StyletronComponent<any>;
-export const StyledToggleIcon: StyletronComponent<any>;
-export const StyledToggleIconGroup: StyletronComponent<any>;
-
-export const STATE_CHANGE_TYPE: STATE_CHANGE_TYPE;
+export declare const StyledRoot: StyletronComponent<any>;
+export declare const StyledPanelContainer: StyletronComponent<any>;
+export declare const StyledHeader: StyletronComponent<any>;
+export declare const StyledContent: StyletronComponent<any>;
+export declare const StyledContentAnimationContainer: StyletronComponent<any>;
+export declare const StyledToggleIcon: StyletronComponent<any>;
+export declare const StyledToggleIconGroup: StyletronComponent<any>;

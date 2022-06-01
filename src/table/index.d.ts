@@ -23,7 +23,7 @@ export interface SortableHeadCellProps {
   title: React.ReactNode;
   fillClickTarget?: boolean;
 }
-export const SortableHeadCell: React.FC<SortableHeadCellProps>;
+export declare const SortableHeadCell: React.FC<SortableHeadCellProps>;
 
 export interface TableProps {
   columns: Array<string | React.ReactNode>;
@@ -52,17 +52,17 @@ export interface FilterProps {
   overrides?: FilterOverrides;
   returnFocus?: boolean;
 }
-export const Filter: React.FC<FilterProps>;
+export declare const Filter: React.FC<FilterProps>;
 
-export const StyledTable: StyletronComponent<any>;
-export const StyledFilterButton: StyletronComponent<any>;
-export const StyledFilterContent: StyletronComponent<any>;
-export const StyledFilterHeading: StyletronComponent<any>;
-export const StyledFilterFooter: StyletronComponent<any>;
-export const StyledHead: StyletronComponent<any>;
-export const StyledHeadCell: StyletronComponent<any>;
-export const StyledBody: StyletronComponent<any>;
-export const StyledRow: StyletronComponent<any>;
-export const StyledCell: StyletronComponent<any>;
-export const StyledAction: StyletronComponent<any>;
-export const StyledSortableLabel: StyletronComponent<any>;
+export declare const StyledTable: StyletronComponent<any>;
+export declare const StyledFilterButton: StyletronComponent<any>;
+export declare const StyledFilterContent: StyletronComponent<any>;
+export declare const StyledFilterHeading: StyletronComponent<any>;
+export declare const StyledFilterFooter: StyletronComponent<any>;
+export declare const StyledHead: StyletronComponent<any>;
+export declare const StyledHeadCell: StyletronComponent<any>;
+export declare const StyledBody: StyletronComponent<any>;
+export declare const StyledRow: StyletronComponent<any>;
+export declare const StyledCell: StyletronComponent<any>;
+export declare const StyledAction: StyletronComponent<any>;
+export declare const StyledSortableLabel: StyletronComponent<any>;

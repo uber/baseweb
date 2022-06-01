@@ -2,30 +2,30 @@ import * as React from 'react';
 import { StyletronComponent } from 'styletron-react';
 import { Override } from '../overrides';
 
-export interface STATE_CHANGE_TYPE {
+export declare const STATE_CHANGE_TYPE: {
   change: 'change';
-}
-export interface ADJOINED {
+};
+export declare const ADJOINED: {
   none: 'none';
   left: 'left';
   right: 'right';
   both: 'both';
-}
-export interface SIZE {
+};
+export declare const SIZE: {
   mini: 'mini';
   default: 'default';
   compact: 'compact';
   large: 'large';
-}
+};
 
-export interface CUSTOM_INPUT_TYPE {
+export declare const CUSTOM_INPUT_TYPE: {
   textarea: 'textarea';
-}
+};
 
-export interface ENHANCER_POSITION {
+export declare const ENHANCER_POSITION: {
   start: 'start';
   end: 'end';
-}
+};
 
 export interface BaseInputOverrides<T> {
   InputContainer?: Override<T>;
@@ -39,7 +39,7 @@ export interface BaseInputProps<T> {
   'aria-label'?: string;
   'aria-labelledby'?: string;
   'aria-describedby'?: string;
-  adjoined?: ADJOINED[keyof ADJOINED];
+  adjoined?: typeof ADJOINED[keyof typeof ADJOINED];
   autoComplete?: string;
   autoFocus?: boolean;
   clearable?: boolean;
@@ -63,7 +63,7 @@ export interface BaseInputProps<T> {
   overrides?: BaseInputOverrides<SharedProps>;
   placeholder?: string;
   required?: boolean;
-  size?: SIZE[keyof SIZE];
+  size?: typeof SIZE[keyof typeof SIZE];
   type?: string;
   value?: string | number;
   rows?: number;
@@ -100,12 +100,12 @@ export type SharedProps = {
   /** Renders UI in 'positive' state */
   $positive: boolean;
   /** Defines styles for inputs that are grouped with other controls. */
-  $adjoined: keyof ADJOINED;
+  $adjoined: typeof ADJOINED[keyof typeof ADJOINED];
   /** Renders UI in provided size. */
-  $size: keyof SIZE;
+  $size: typeof SIZE[keyof typeof SIZE];
   /** Renders UI in 'required' state */
   $required: boolean;
-  $position: keyof ENHANCER_POSITION;
+  $position: typeof ENHANCER_POSITION[keyof typeof ENHANCER_POSITION];
   /** Defines if has a clearable or MaskToggleButton at the end */
   $hasIconTrailing: boolean;
 };
@@ -136,13 +136,13 @@ export interface MaskedInputProps extends InputProps {
   maskChar?: string;
 }
 
-export const MaskedInput: React.FC<MaskedInputProps>;
+export declare const MaskedInput: React.FC<MaskedInputProps>;
 
 export interface StatefulContainerProps {
   children?: React.ReactNode;
   initialState?: State;
   stateReducer?: (
-    stateType: STATE_CHANGE_TYPE[keyof STATE_CHANGE_TYPE],
+    stateType: typeof STATE_CHANGE_TYPE[keyof typeof STATE_CHANGE_TYPE],
     nextState: State,
     currentState: State
   ) => State;
@@ -151,18 +151,12 @@ export interface StatefulContainerProps {
 
 export type StatefulInputProps = InputProps & StatefulContainerProps & { children?: never };
 
-export const StatefulInput: React.FC<StatefulInputProps>;
-export const StatefulContainer: React.FC<StatefulContainerProps>;
+export declare const StatefulInput: React.FC<StatefulInputProps>;
+export declare const StatefulContainer: React.FC<StatefulContainerProps>;
 
-export const StyledRoot: StyletronComponent<any>;
-export const StyledInputEnhancer: StyletronComponent<any>;
-export const StyledStartEnhancer: StyletronComponent<any>;
-export const StyledEndEnhancer: StyletronComponent<any>;
-export const StyledInputContainer: StyletronComponent<any>;
-export const StyledInput: StyletronComponent<any>;
-
-export const STATE_CHANGE_TYPE: STATE_CHANGE_TYPE;
-export const CUSTOM_INPUT_TYPE: CUSTOM_INPUT_TYPE;
-export const ADJOINED: ADJOINED;
-export const SIZE: SIZE;
-export const ENHANCER_POSITION: ENHANCER_POSITION;
+export declare const StyledRoot: StyletronComponent<any>;
+export declare const StyledInputEnhancer: StyletronComponent<any>;
+export declare const StyledStartEnhancer: StyletronComponent<any>;
+export declare const StyledEndEnhancer: StyletronComponent<any>;
+export declare const StyledInputContainer: StyletronComponent<any>;
+export declare const StyledInput: StyletronComponent<any>;
