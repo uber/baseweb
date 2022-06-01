@@ -44,19 +44,4 @@ describe('banner', () => {
     fireEvent.click(button);
     expect(handleClick.mock.calls.length).toBe(1);
   });
-
-  it('calls click handler on below icon button', () => {
-    const label = 'label';
-    const handleClick = jest.fn();
-    const { container } = render(
-      <Banner
-        action={{ label, icon: () => null, onClick: handleClick, position: ACTION_POSITION.below }}
-      >
-        message
-      </Banner>
-    );
-    const button = getByLabelText(container, label);
-    fireEvent.click(button);
-    expect(handleClick.mock.calls.length).toBe(1);
-  });
 });

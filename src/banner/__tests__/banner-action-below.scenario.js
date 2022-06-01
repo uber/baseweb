@@ -9,7 +9,6 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import { Banner, ACTION_POSITION, HIERARCHY, KIND } from '../index.js';
-import Delete from '../../icon/delete.js';
 import DeleteAlt from '../../icon/delete-alt.js';
 
 const variants = [

@@ -102,8 +102,6 @@ function Leading({ artwork }) {
 }
 
 function Below({ action, backgroundColor, color }) {
-  const [, theme] = useStyletron();
-
   if (!action || action.position !== ACTION_POSITION.below) {
     return null;
   }
