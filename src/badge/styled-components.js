@@ -75,14 +75,29 @@ const DEFAULT_HINT_DOT_PLACEMENT = {
 
 const POSITION_STYLES = Object.freeze({
   [ROLE.badge]: {
-    [PLACEMENT.topLeft]: {
-      top: '16px',
-      left: '16px',
-    },
     [PLACEMENT.top]: {
       top: '-10px',
       left: '50%',
       transform: 'translateX(-50%)',
+    },
+    [PLACEMENT.bottom]: {
+      bottom: '-10px',
+      left: '50%',
+      transform: 'translateX(-50%)',
+    },
+    [PLACEMENT.topEdge]: {
+      top: 0,
+      left: '50%',
+      transform: 'translateX(-50%)',
+    },
+    [PLACEMENT.bottomEdge]: {
+      bottom: 0,
+      left: '50%',
+      transform: 'translateX(-50%)',
+    },
+    [PLACEMENT.topLeft]: {
+      top: '16px',
+      left: '16px',
     },
     [PLACEMENT.topRight]: {
       top: '16px',
@@ -92,14 +107,42 @@ const POSITION_STYLES = Object.freeze({
       bottom: '16px',
       right: '16px',
     },
-    [PLACEMENT.bottom]: {
-      bottom: '-10px',
-      left: '50%',
-      transform: 'translateX(-50%)',
-    },
+
     [PLACEMENT.bottomLeft]: {
       bottom: '16px',
       left: '16px',
+    },
+    [PLACEMENT.topLeftEdge]: {
+      top: 0,
+      left: '16px',
+    },
+    [PLACEMENT.topRightEdge]: {
+      top: 0,
+      right: '16px',
+    },
+    [PLACEMENT.bottomRightEdge]: {
+      bottom: 0,
+      right: '16px',
+    },
+    [PLACEMENT.bottomLeftEdge]: {
+      bottom: 0,
+      left: '16px',
+    },
+    [PLACEMENT.leftTopEdge]: {
+      top: '16px',
+      left: 0,
+    },
+    [PLACEMENT.rightTopEdge]: {
+      top: '16px',
+      right: 0,
+    },
+    [PLACEMENT.rightBottomEdge]: {
+      bottom: '16px',
+      right: 0,
+    },
+    [PLACEMENT.leftBottomEdge]: {
+      bottom: '16px',
+      left: 0,
     },
   },
   [ROLE.notificationCircle]: {
@@ -110,9 +153,19 @@ const POSITION_STYLES = Object.freeze({
     [PLACEMENT.topRight]: DEFAULT_NOTIFICATION_CIRCLE_PLACEMENT,
     // NotificationCircle can only be placed topLeft or topRight, other values fall back to topRight
     [PLACEMENT.top]: DEFAULT_NOTIFICATION_CIRCLE_PLACEMENT,
-    [PLACEMENT.bottomRight]: DEFAULT_NOTIFICATION_CIRCLE_PLACEMENT,
     [PLACEMENT.bottom]: DEFAULT_NOTIFICATION_CIRCLE_PLACEMENT,
+    [PLACEMENT.topEdge]: DEFAULT_NOTIFICATION_CIRCLE_PLACEMENT,
+    [PLACEMENT.bottomEdge]: DEFAULT_NOTIFICATION_CIRCLE_PLACEMENT,
+    [PLACEMENT.bottomRight]: DEFAULT_NOTIFICATION_CIRCLE_PLACEMENT,
     [PLACEMENT.bottomLeft]: DEFAULT_NOTIFICATION_CIRCLE_PLACEMENT,
+    [PLACEMENT.topLeftEdge]: DEFAULT_NOTIFICATION_CIRCLE_PLACEMENT,
+    [PLACEMENT.topRightEdge]: DEFAULT_NOTIFICATION_CIRCLE_PLACEMENT,
+    [PLACEMENT.bottomRightEdge]: DEFAULT_NOTIFICATION_CIRCLE_PLACEMENT,
+    [PLACEMENT.bottomLeftEdge]: DEFAULT_NOTIFICATION_CIRCLE_PLACEMENT,
+    [PLACEMENT.leftTopEdge]: DEFAULT_NOTIFICATION_CIRCLE_PLACEMENT,
+    [PLACEMENT.rightTopEdge]: DEFAULT_NOTIFICATION_CIRCLE_PLACEMENT,
+    [PLACEMENT.rightBottomEdge]: DEFAULT_NOTIFICATION_CIRCLE_PLACEMENT,
+    [PLACEMENT.leftBottomEdge]: DEFAULT_NOTIFICATION_CIRCLE_PLACEMENT,
   },
   [ROLE.hintDot]: {
     [PLACEMENT.topLeft]: {
@@ -122,9 +175,19 @@ const POSITION_STYLES = Object.freeze({
     [PLACEMENT.topRight]: DEFAULT_HINT_DOT_PLACEMENT,
     // HintDot can only be placed topLeft or topRight, other values fall back to topRight
     [PLACEMENT.top]: DEFAULT_HINT_DOT_PLACEMENT,
-    [PLACEMENT.bottomRight]: DEFAULT_HINT_DOT_PLACEMENT,
     [PLACEMENT.bottom]: DEFAULT_HINT_DOT_PLACEMENT,
+    [PLACEMENT.topEdge]: DEFAULT_HINT_DOT_PLACEMENT,
+    [PLACEMENT.bottomEdge]: DEFAULT_HINT_DOT_PLACEMENT,
+    [PLACEMENT.bottomRight]: DEFAULT_HINT_DOT_PLACEMENT,
     [PLACEMENT.bottomLeft]: DEFAULT_HINT_DOT_PLACEMENT,
+    [PLACEMENT.topLeftEdge]: DEFAULT_HINT_DOT_PLACEMENT,
+    [PLACEMENT.topRightEdge]: DEFAULT_HINT_DOT_PLACEMENT,
+    [PLACEMENT.bottomRightEdge]: DEFAULT_HINT_DOT_PLACEMENT,
+    [PLACEMENT.bottomLeftEdge]: DEFAULT_HINT_DOT_PLACEMENT,
+    [PLACEMENT.leftTopEdge]: DEFAULT_HINT_DOT_PLACEMENT,
+    [PLACEMENT.rightTopEdge]: DEFAULT_HINT_DOT_PLACEMENT,
+    [PLACEMENT.rightBottomEdge]: DEFAULT_HINT_DOT_PLACEMENT,
+    [PLACEMENT.leftBottomEdge]: DEFAULT_HINT_DOT_PLACEMENT,
   },
 });
 
@@ -144,7 +207,6 @@ export const StyledPositioner = styled<{
 }>('div', ({ $theme, $role, $placement, $horizontalOffset, $verticalOffset }) => {
   let positionStyle = POSITION_STYLES[$role][$placement];
 
-  // apply offsets to position style
   if ($verticalOffset) {
     if (
       $placement === PLACEMENT.topLeft ||
@@ -161,6 +223,7 @@ export const StyledPositioner = styled<{
       positionStyle = { ...positionStyle, bottom: $verticalOffset };
     }
   }
+
   if ($horizontalOffset) {
     if (
       $placement === PLACEMENT.topLeft ||

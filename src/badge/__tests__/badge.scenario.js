@@ -16,8 +16,8 @@ export const Box = styled<{}>('div', ({ $theme }) => ({
   borderTopLeftRadius: $theme.borders.surfaceBorderRadius,
   borderTopRightRadius: $theme.borders.surfaceBorderRadius,
   backgroundColor: $theme.colors.primaryA,
-  height: '186px',
-  width: '328px',
+  height: '140px',
+  width: '220px',
   color: 'white',
   display: 'flex',
   justifyContent: 'center',
@@ -35,26 +35,74 @@ export function Scenario() {
   return (
     <div>
       <div style={layout}>
-        <Badge placement={PLACEMENT.topLeft} content="Badge">
-          <Box>topLeft</Box>
-        </Badge>
         <Badge placement={PLACEMENT.top} content="Badge">
           <Box>top</Box>
         </Badge>
-        <Badge placement={PLACEMENT.topRight} content="Badge">
-          <Box>topRight</Box>
+
+        <Badge placement={PLACEMENT.topEdge} content="Badge">
+          <Box>topEdge</Box>
+        </Badge>
+
+        <Badge placement={PLACEMENT.bottom} content="Badge">
+          <Box>bottom</Box>
+        </Badge>
+
+        <Badge placement={PLACEMENT.bottomEdge} content="Badge">
+          <Box>bottomEdge</Box>
         </Badge>
       </div>
 
       <div style={layout}>
+        <Badge placement={PLACEMENT.topLeft} content="Badge">
+          <Box>topLeft</Box>
+        </Badge>
+
+        <Badge placement={PLACEMENT.topRight} content="Badge">
+          <Box>topRight</Box>
+        </Badge>
+
+        <Badge placement={PLACEMENT.bottomRight} content="Badge">
+          <Box>bottomRight</Box>
+        </Badge>
+
         <Badge placement={PLACEMENT.bottomLeft} content="Badge">
           <Box>bottomLeft</Box>
         </Badge>
-        <Badge placement={PLACEMENT.bottom} content="Badge">
-          <Box>bottom</Box>
+      </div>
+
+      <div style={layout}>
+        <Badge placement={PLACEMENT.topLeftEdge} content="Badge">
+          <Box>topLeftEdge</Box>
         </Badge>
-        <Badge placement={PLACEMENT.bottomRight} content="Badge">
-          <Box>bottomRight</Box>
+
+        <Badge placement={PLACEMENT.topRightEdge} content="Badge">
+          <Box>topRightEdge</Box>
+        </Badge>
+
+        <Badge placement={PLACEMENT.bottomRightEdge} content="Badge">
+          <Box>bottomRightEdge</Box>
+        </Badge>
+
+        <Badge placement={PLACEMENT.bottomLeftEdge} content="Badge">
+          <Box>bottomLeftEdge</Box>
+        </Badge>
+      </div>
+
+      <div style={layout}>
+        <Badge placement={PLACEMENT.leftTopEdge} content="Badge">
+          <Box>leftTopEdge</Box>
+        </Badge>
+
+        <Badge placement={PLACEMENT.rightTopEdge} content="Badge">
+          <Box>rightTopEdge</Box>
+        </Badge>
+
+        <Badge placement={PLACEMENT.rightBottomEdge} content="Badge">
+          <Box>rightBottomEdge</Box>
+        </Badge>
+
+        <Badge placement={PLACEMENT.leftBottomEdge} content="Badge">
+          <Box>leftBottomEdge</Box>
         </Badge>
       </div>
 
@@ -67,13 +115,13 @@ export function Scenario() {
         >
           <Box>
             <div>topLeft</div>
-            <div>0, 0</div>
+            <div>Offsets: 0, 0</div>
           </Box>
         </Badge>
         <Badge placement={PLACEMENT.top} content="Badge" horizontalOffset="50%" verticalOffset="0">
           <Box>
             <div>top</div>
-            <div>50%, 0</div>
+            <div>Offsets: 50%, 0</div>
           </Box>
         </Badge>
         <Badge
@@ -84,7 +132,7 @@ export function Scenario() {
         >
           <Box>
             <div>topRight</div>
-            <div>0, -10px</div>
+            <div>Offsets: 0, -10px</div>
           </Box>
         </Badge>
       </div>
@@ -98,19 +146,19 @@ export function Scenario() {
         >
           <Box>
             <div>bottomLeft</div>
-            <div>10%, 10%</div>
+            <div>Offsets: 10%, 10%</div>
           </Box>
         </Badge>
         <Badge placement={PLACEMENT.bottom} content="Badge" horizontalOffset="0" verticalOffset="0">
           <Box>
             <div>bottom</div>
-            <div>0, 0</div>
+            <div>Offsets: 0, 0</div>
           </Box>
         </Badge>
         <Badge placement={PLACEMENT.bottomRight} content="Badge" verticalOffset="30px">
           <Box>
             <div>bottomRight</div>
-            <div>default, 30px</div>
+            <div>Offsets: default, 30px</div>
           </Box>
         </Badge>
       </div>
