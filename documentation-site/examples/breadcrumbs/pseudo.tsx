@@ -1,14 +1,13 @@
 import * as React from 'react';
 import {Breadcrumbs} from 'baseui/breadcrumbs';
 import {StyledLink as Link} from 'baseui/link';
-import {StyleObject} from 'styletron-react';
 
 export default function Example() {
   return (
     <Breadcrumbs
       overrides={{
         ListItem: {
-          style: ({$itemIndex, $theme}): StyleObject => {
+          style: ({$itemIndex, $theme}) => {
             if ($itemIndex === 0) return {};
             return {
               ':before': {
