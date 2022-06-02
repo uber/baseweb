@@ -105,6 +105,7 @@ export const StyledPrimaryMenuContainer = styled<{}>('div', ({ $theme }) => {
     flexWrap: 'nowrap',
     justifyContent: 'flex-end',
     alignItems: 'stretch',
+    paddingInlineEnd: $theme.sizing.scale1000,
   };
 });
 

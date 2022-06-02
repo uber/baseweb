@@ -9,7 +9,6 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import { getOverrides } from '../helpers/overrides.js';
-import { Cell, Grid } from '../layout-grid/index.js';
 import { useStyletron } from '../styles/index.js';
 import { isFocusVisible } from '../utils/focusVisible.js';
 
@@ -93,8 +92,8 @@ function SecondaryMenu(props) {
 
   return (
     <SubnavContainer {...subnavContainerProps}>
-      <Grid>
-        <Cell span={[0, 8, 12]}>
+      <div>
+        <div>
           <SecondaryMenuContainer
             role="navigation"
             aria-label="Secondary navigation"
@@ -112,8 +111,8 @@ function SecondaryMenu(props) {
               />
             ))}
           </SecondaryMenuContainer>
-        </Cell>
-      </Grid>
+        </div>
+      </div>
     </SubnavContainer>
   );
 }
@@ -161,14 +160,12 @@ export default function AppNavBar(props: AppNavBarPropsT) {
           },
         })}
       >
-        <Grid>
-          <Cell span={[4, 8, 0]}>
-            <Spacing {...spacingProps}>
-              {mainItems.length || userItems.length ? <MobileNav {...props} /> : null}
-              <AppName {...appNameProps}>{title}</AppName>
-            </Spacing>
-          </Cell>
-        </Grid>
+        <div>
+          <Spacing {...spacingProps}>
+            {mainItems.length || userItems.length ? <MobileNav {...props} /> : null}
+            <AppName {...appNameProps}>{title}</AppName>
+          </Spacing>
+        </div>
 
         {secondaryMenu && mobileSubNavPosition === POSITION.horizontal && (
           <SecondaryMenu
@@ -183,19 +180,26 @@ export default function AppNavBar(props: AppNavBarPropsT) {
       {/* Desktop Nav Experience */}
       <div
         className={css({
+          margin: 'auto',
+          maxWidth: `${theme.breakpoints.large}px`,
           [`@media screen and (max-width: ${theme.breakpoints.large - 1}px)`]: {
             display: 'none',
           },
         })}
       >
-        <Grid>
-          <Cell span={[0, 3, 3]}>
-            <Spacing {...spacingProps}>
-              {/* Replace with a Logo renderer */}
-              <AppName {...appNameProps}>{title}</AppName>
-            </Spacing>
-          </Cell>
-          <Cell span={userItems.length ? [0, 4, 8] : [0, 5, 9]}>
+        <div
+          className={css({
+            alignItems: 'center',
+            display: 'flex',
+            justifyContent: 'space-between',
+            paddingBlockStart: '18px',
+            paddingBlockEnd: '18px',
+          })}
+        >
+          {/* Replace with a Logo renderer */}
+          <AppName {...appNameProps}>{title}</AppName>
+
+          <div className={css({ alignItems: 'center', display: 'flex' })}>
             <PrimaryMenuContainer
               role="navigation"
               aria-label="Main navigation"
@@ -221,24 +225,20 @@ export default function AppNavBar(props: AppNavBarPropsT) {
                 );
               })}
             </PrimaryMenuContainer>
-          </Cell>
 
-          {userItems.length ? (
-            <Cell span={[0, 1, 1]}>
-              <Spacing {...spacingProps}>
-                <UserMenu
-                  mapItemToNode={mapItemToNode}
-                  onItemSelect={onUserItemSelect}
-                  overrides={overrides}
-                  username={username}
-                  usernameSubtitle={usernameSubtitle}
-                  userImgUrl={userImgUrl}
-                  userItems={userItems}
-                />
-              </Spacing>
-            </Cell>
-          ) : null}
-        </Grid>
+            {userItems.length ? (
+              <UserMenu
+                mapItemToNode={mapItemToNode}
+                onItemSelect={onUserItemSelect}
+                overrides={overrides}
+                username={username}
+                usernameSubtitle={usernameSubtitle}
+                userImgUrl={userImgUrl}
+                userItems={userItems}
+              />
+            ) : null}
+          </div>
+        </div>
 
         {secondaryMenu && desktopSubNavPosition === POSITION.horizontal && (
           <SecondaryMenu
