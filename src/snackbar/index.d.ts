@@ -52,9 +52,9 @@ export type SnackbarProviderPropsT = {
   defaultDuration?: DurationT;
 };
 
-export const SnackbarElement: React.FC<SnackbarElementPropsT>;
-export const SnackbarProvider: React.FC<SnackbarProviderPropsT>;
-export const useSnackbar: () => {
+export declare const SnackbarElement: React.FC<SnackbarElementPropsT>;
+export declare const SnackbarProvider: React.FC<SnackbarProviderPropsT>;
+export declare const useSnackbar: () => {
   enqueue: (elementProps: SnackbarElementPropsT, duration?: DurationT) => any;
   dequeue: () => any;
 };

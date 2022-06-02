@@ -2,14 +2,14 @@ import * as React from 'react';
 import { StyletronComponent } from 'styletron-react';
 import { Override } from '../overrides';
 
-export interface STATE_TYPE {
+export declare const STATE_TYPE: {
   change: 'CHANGE';
-}
+};
 
-export interface ALIGN {
+export declare const ALIGN: {
   vertical: 'vertical';
   horizontal: 'horizontal';
-}
+};
 
 export type StateReducer = (
   stateType: string,
@@ -46,7 +46,7 @@ export interface StatefulRadioGroupProps {
   align?: 'horizontal' | 'vertical';
 }
 
-export const StatefulRadioGroup: React.FC<StatefulRadioGroupProps>;
+export declare const StatefulRadioGroup: React.FC<StatefulRadioGroupProps>;
 
 export interface RadioGroupProps {
   'aria-describedby'?: string;
@@ -125,13 +125,10 @@ export class Radio extends React.Component<RadioProps, RadioState> {
   onBlur(event: React.FocusEvent<HTMLInputElement>): void;
 }
 
-export const StyledRoot: StyletronComponent<any>;
-export const StyledLabel: StyletronComponent<any>;
-export const StyledInput: StyletronComponent<any>;
-export const StyledDescription: StyletronComponent<any>;
-export const StyledRadioMarkInner: StyletronComponent<any>;
-export const StyledRadioMarkOuter: StyletronComponent<any>;
-export const StyledRadioGroupRoot: StyletronComponent<any>;
-
-export const STATE_TYPE: STATE_TYPE;
-export const ALIGN: ALIGN;
+export declare const StyledRoot: StyletronComponent<any>;
+export declare const StyledLabel: StyletronComponent<any>;
+export declare const StyledInput: StyletronComponent<any>;
+export declare const StyledDescription: StyletronComponent<any>;
+export declare const StyledRadioMarkInner: StyletronComponent<any>;
+export declare const StyledRadioMarkOuter: StyletronComponent<any>;
+export declare const StyledRadioGroupRoot: StyletronComponent<any>;

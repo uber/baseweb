@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Override } from '../overrides';
-import { $StyleProp } from 'styletron-react';
+import { StyleObject } from 'styletron-react';
 
 export type Responsive<T> = T | T[];
 
@@ -216,7 +216,7 @@ export interface BlockProps {
   children?: React.ReactNode;
   className?: String;
   as?: React.ElementType;
-  $style?: $StyleProp<BlockProps>;
+  $style?: StyleObject | ((props: BlockProps) => StyleObject);
   overrides?: BlockOverrides;
   color?: Responsive<string>;
   backgroundAttachment?: Responsive<string>;
@@ -319,4 +319,4 @@ export interface BlockProps {
   bottom?: Responsive<Scale>;
 }
 
-export const Block: React.FC<BlockProps>;
+export declare const Block: React.FC<BlockProps>;

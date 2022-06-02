@@ -2,34 +2,34 @@ import * as React from 'react';
 import { StyletronComponent } from 'styletron-react';
 import { Override } from '../overrides';
 
-export interface STATE_TYPE {
+export declare const STATE_TYPE: {
   change: 'CHANGE';
-}
-export interface STYLE_TYPE {
+};
+export declare const STYLE_TYPE: {
   default: 'default';
   toggle: 'toggle';
   toggle_round: 'toggle';
-}
+};
 
-export interface LABEL_PLACEMENT {
+export declare const LABEL_PLACEMENT: {
   top: 'top';
   right: 'right';
   bottom: 'bottom';
   left: 'left';
-}
+};
 
 type initialState = {
   checked?: boolean;
   isIndeterminate?: boolean;
 };
 
-export const StyledRoot: StyletronComponent<any>;
-export const StyledCheckmark: StyletronComponent<any>;
-export const StyledLabel: StyletronComponent<any>;
-export const StyledInput: StyletronComponent<any>;
-export const StyledToggle: StyletronComponent<any>;
-export const StyledToggleInner: StyletronComponent<any>;
-export const StyledToggleTrack: StyletronComponent<any>;
+export declare const StyledRoot: StyletronComponent<any>;
+export declare const StyledCheckmark: StyletronComponent<any>;
+export declare const StyledLabel: StyletronComponent<any>;
+export declare const StyledInput: StyletronComponent<any>;
+export declare const StyledToggle: StyletronComponent<any>;
+export declare const StyledToggleInner: StyletronComponent<any>;
+export declare const StyledToggleTrack: StyletronComponent<any>;
 
 export type StateReducer = (
   stateType: string,
@@ -51,7 +51,7 @@ export interface StatefulContainerProps {
   autoFocus?: boolean;
 }
 
-export const StatefulContainer: React.FC<StatefulContainerProps>;
+export declare const StatefulContainer: React.FC<StatefulContainerProps>;
 
 export interface StatefulCheckboxProps {
   overrides?: CheckboxOverrides;
@@ -64,7 +64,7 @@ export interface StatefulCheckboxProps {
   children?: React.ReactNode;
   initialState?: initialState;
   autoFocus?: boolean;
-  checkmarkType?: STYLE_TYPE[keyof STYLE_TYPE];
+  checkmarkType?: typeof STYLE_TYPE[keyof typeof STYLE_TYPE];
   onChange?: React.FormEventHandler<HTMLInputElement>;
   onMouseEnter?: React.MouseEventHandler<HTMLInputElement>;
   onMouseLeave?: React.MouseEventHandler<HTMLInputElement>;
@@ -72,7 +72,7 @@ export interface StatefulCheckboxProps {
   onBlur?: React.FocusEventHandler<HTMLInputElement>;
 }
 
-export const StatefulCheckbox: React.FC<StatefulCheckboxProps>;
+export declare const StatefulCheckbox: React.FC<StatefulCheckboxProps>;
 
 export interface CheckboxOverrides {
   Checkmark?: Override<any>;
@@ -101,7 +101,7 @@ export interface CheckboxProps {
   value?: string;
   isIndeterminate?: boolean;
   labelPlacement?: 'top' | 'right' | 'bottom' | 'left';
-  checkmarkType?: STYLE_TYPE[keyof STYLE_TYPE];
+  checkmarkType?: typeof STYLE_TYPE[keyof typeof STYLE_TYPE];
   title?: string;
   ariaLabel?: string;
   'aria-label'?: string;
@@ -128,7 +128,3 @@ export class Checkbox extends React.Component<CheckboxProps, CheckboxState> {
   onFocus(event: React.FocusEvent<HTMLInputElement>): void;
   onBlur(event: React.FocusEvent<HTMLInputElement>): void;
 }
-
-export const STATE_TYPE: STATE_TYPE;
-export const STYLE_TYPE: STYLE_TYPE;
-export const LABEL_PLACEMENT: LABEL_PLACEMENT;

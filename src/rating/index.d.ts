@@ -48,6 +48,6 @@ export interface StyledRatingItemProps {
   $isSelected: boolean;
   $index: number;
 }
-export const StyledRoot: StyletronComponent<StyledRootProps>;
-export const StyledStar: StyletronComponent<StyledRatingItemProps>;
-export const StyledEmoticon: StyletronComponent<StyledRatingItemProps>;
+export declare const StyledRoot: StyletronComponent<StyledRootProps>;
+export declare const StyledStar: StyletronComponent<StyledRatingItemProps>;
+export declare const StyledEmoticon: StyletronComponent<StyledRatingItemProps>;

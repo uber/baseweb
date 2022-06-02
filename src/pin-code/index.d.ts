@@ -28,7 +28,7 @@ export interface StatefulContainerProps {
   children?: React.ReactNode;
   initialState?: State;
   stateReducer?: (
-    type: STATE_CHANGE_TYPE[keyof STATE_CHANGE_TYPE],
+    type: typeof STATE_CHANGE_TYPE[keyof typeof STATE_CHANGE_TYPE],
     nextState: State,
     currentState: State
   ) => State;
@@ -38,6 +38,6 @@ export interface StatefulContainerProps {
 export type StatefulPinCodeProps = Partial<PinCodeProps> &
   StatefulContainerProps & { children?: never; overrides?: PinCodeOverrides };
 
-export const StatefulPinCode: React.FC<StatefulPinCodeProps>;
-export const StatefulContainer: React.FC<StatefulContainerProps>;
+export declare const StatefulPinCode: React.FC<StatefulPinCodeProps>;
+export declare const StatefulContainer: React.FC<StatefulContainerProps>;
 export class PinCode extends React.Component<PinCodeProps> {}
