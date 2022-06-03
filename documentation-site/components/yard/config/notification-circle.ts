@@ -57,8 +57,8 @@ const NotificationCircleConfig: TConfig = {
       description: `Sets visibility to "hidden".`,
     },
     placement: {
-      value: 'PLACEMENT.upperRight',
-      defaultValue: 'PLACEMENT.upperRight',
+      value: 'PLACEMENT.topRight',
+      defaultValue: 'PLACEMENT.topRight',
       options: {
         [PLACEMENT.topLeft]: [PLACEMENT.topLeft],
         [PLACEMENT.topRight]: [PLACEMENT.topRight],

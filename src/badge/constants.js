@@ -25,17 +25,15 @@ export const COLOR = Object.freeze({
 });
 
 export const PLACEMENT = Object.freeze({
-  top: 'top',
-  bottom: 'bottom',
-  topEdge: 'topEdge',
-  bottomEdge: 'bottomEdge',
   topLeft: 'topLeft',
   topRight: 'topRight',
   bottomRight: 'bottomRight',
   bottomLeft: 'bottomLeft',
   topLeftEdge: 'topLeftEdge',
+  topEdge: 'topEdge',
   topRightEdge: 'topRightEdge',
   bottomRightEdge: 'bottomRightEdge',
+  bottomEdge: 'bottomEdge',
   bottomLeftEdge: 'bottomLeftEdge',
   leftTopEdge: 'leftTopEdge',
   rightTopEdge: 'rightTopEdge',

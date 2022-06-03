@@ -31,11 +31,15 @@ const Badge = ({
 
   const anchor = getAnchorFromChildren(children);
 
+  const VALID_RECT_PLACEMENTS = [
+    PLACEMENT.topLeft,
+    PLACEMENT.topRight,
+    PLACEMENT.bottomRight,
+    PLACEMENT.bottomLeft,
+  ];
+
   if (__DEV__) {
-    if (
-      shape === SHAPE.rectangle &&
-      (placement === PLACEMENT.top || placement === PLACEMENT.bottom)
-    ) {
+    if (shape === SHAPE.rectangle && !VALID_RECT_PLACEMENTS.includes(placement)) {
       console.warn('Rectangle badges should only be placed in a corner or used inline');
     }
     if (shape === SHAPE.rectangle && hierarchy === HIERARCHY.secondary && anchor) {

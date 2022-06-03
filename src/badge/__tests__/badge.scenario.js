@@ -35,24 +35,6 @@ export function Scenario() {
   return (
     <div>
       <div style={layout}>
-        <Badge placement={PLACEMENT.top} content="Badge">
-          <Box>top</Box>
-        </Badge>
-
-        <Badge placement={PLACEMENT.topEdge} content="Badge">
-          <Box>topEdge</Box>
-        </Badge>
-
-        <Badge placement={PLACEMENT.bottom} content="Badge">
-          <Box>bottom</Box>
-        </Badge>
-
-        <Badge placement={PLACEMENT.bottomEdge} content="Badge">
-          <Box>bottomEdge</Box>
-        </Badge>
-      </div>
-
-      <div style={layout}>
         <Badge placement={PLACEMENT.topLeft} content="Badge">
           <Box>topLeft</Box>
         </Badge>
@@ -75,12 +57,22 @@ export function Scenario() {
           <Box>topLeftEdge</Box>
         </Badge>
 
+        <Badge placement={PLACEMENT.topEdge} content="Badge">
+          <Box>topEdge</Box>
+        </Badge>
+
         <Badge placement={PLACEMENT.topRightEdge} content="Badge">
           <Box>topRightEdge</Box>
         </Badge>
+      </div>
 
+      <div style={layout}>
         <Badge placement={PLACEMENT.bottomRightEdge} content="Badge">
           <Box>bottomRightEdge</Box>
+        </Badge>
+
+        <Badge placement={PLACEMENT.bottomEdge} content="Badge">
+          <Box>bottomEdge</Box>
         </Badge>
 
         <Badge placement={PLACEMENT.bottomLeftEdge} content="Badge">
@@ -118,12 +110,6 @@ export function Scenario() {
             <div>Offsets: 0, 0</div>
           </Box>
         </Badge>
-        <Badge placement={PLACEMENT.top} content="Badge" horizontalOffset="50%" verticalOffset="0">
-          <Box>
-            <div>top</div>
-            <div>Offsets: 50%, 0</div>
-          </Box>
-        </Badge>
         <Badge
           placement={PLACEMENT.topRight}
           content="Badge"
@@ -135,9 +121,6 @@ export function Scenario() {
             <div>Offsets: 0, -10px</div>
           </Box>
         </Badge>
-      </div>
-
-      <div style={layout}>
         <Badge
           placement={PLACEMENT.bottomLeft}
           content="Badge"
@@ -147,12 +130,6 @@ export function Scenario() {
           <Box>
             <div>bottomLeft</div>
             <div>Offsets: 10%, 10%</div>
-          </Box>
-        </Badge>
-        <Badge placement={PLACEMENT.bottom} content="Badge" horizontalOffset="0" verticalOffset="0">
-          <Box>
-            <div>bottom</div>
-            <div>Offsets: 0, 0</div>
           </Box>
         </Badge>
         <Badge placement={PLACEMENT.bottomRight} content="Badge" verticalOffset="30px">

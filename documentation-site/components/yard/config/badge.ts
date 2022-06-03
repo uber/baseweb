@@ -57,8 +57,8 @@ const BadgeConfig: TConfig = {
       description: `Sets visibility to "hidden".`,
     },
     placement: {
-      value: 'PLACEMENT.upperRight',
-      defaultValue: 'PLACEMENT.upperRight',
+      value: 'PLACEMENT.topRight',
+      defaultValue: 'PLACEMENT.topRight',
       options: PLACEMENT,
       type: PropTypes.Enum,
       description: 'Determines the placement of the badge relative to the anchor',

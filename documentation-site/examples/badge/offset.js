@@ -19,7 +19,7 @@ export default function Example() {
         content="Promotion"
         shape={SHAPE.pill}
         color={COLOR.positive}
-        placement={PLACEMENT.bottom}
+        placement={PLACEMENT.bottomEdge}
         verticalOffset="8px"
       >
         <div style={styles}>

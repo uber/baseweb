@@ -75,23 +75,13 @@ const DEFAULT_HINT_DOT_PLACEMENT = {
 
 const POSITION_STYLES = Object.freeze({
   [ROLE.badge]: {
-    [PLACEMENT.top]: {
-      top: '-10px',
-      left: '50%',
-      transform: 'translateX(-50%)',
-    },
-    [PLACEMENT.bottom]: {
-      bottom: '-10px',
-      left: '50%',
-      transform: 'translateX(-50%)',
-    },
     [PLACEMENT.topEdge]: {
-      top: 0,
+      top: '-8px',
       left: '50%',
       transform: 'translateX(-50%)',
     },
     [PLACEMENT.bottomEdge]: {
-      bottom: 0,
+      bottom: '-8px',
       left: '50%',
       transform: 'translateX(-50%)',
     },
@@ -113,36 +103,36 @@ const POSITION_STYLES = Object.freeze({
       left: '16px',
     },
     [PLACEMENT.topLeftEdge]: {
-      top: 0,
+      top: '-8px',
       left: '16px',
     },
     [PLACEMENT.topRightEdge]: {
-      top: 0,
+      top: '-8px',
       right: '16px',
     },
     [PLACEMENT.bottomRightEdge]: {
-      bottom: 0,
+      bottom: '-8px',
       right: '16px',
     },
     [PLACEMENT.bottomLeftEdge]: {
-      bottom: 0,
+      bottom: '-8px',
       left: '16px',
     },
     [PLACEMENT.leftTopEdge]: {
       top: '16px',
-      left: 0,
+      left: '-8px',
     },
     [PLACEMENT.rightTopEdge]: {
       top: '16px',
-      right: 0,
+      right: '-8px',
     },
     [PLACEMENT.rightBottomEdge]: {
       bottom: '16px',
-      right: 0,
+      right: '-8px',
     },
     [PLACEMENT.leftBottomEdge]: {
       bottom: '16px',
-      left: 0,
+      left: '-8px',
     },
   },
   [ROLE.notificationCircle]: {
@@ -152,8 +142,6 @@ const POSITION_STYLES = Object.freeze({
     },
     [PLACEMENT.topRight]: DEFAULT_NOTIFICATION_CIRCLE_PLACEMENT,
     // NotificationCircle can only be placed topLeft or topRight, other values fall back to topRight
-    [PLACEMENT.top]: DEFAULT_NOTIFICATION_CIRCLE_PLACEMENT,
-    [PLACEMENT.bottom]: DEFAULT_NOTIFICATION_CIRCLE_PLACEMENT,
     [PLACEMENT.topEdge]: DEFAULT_NOTIFICATION_CIRCLE_PLACEMENT,
     [PLACEMENT.bottomEdge]: DEFAULT_NOTIFICATION_CIRCLE_PLACEMENT,
     [PLACEMENT.bottomRight]: DEFAULT_NOTIFICATION_CIRCLE_PLACEMENT,
@@ -174,8 +162,6 @@ const POSITION_STYLES = Object.freeze({
     },
     [PLACEMENT.topRight]: DEFAULT_HINT_DOT_PLACEMENT,
     // HintDot can only be placed topLeft or topRight, other values fall back to topRight
-    [PLACEMENT.top]: DEFAULT_HINT_DOT_PLACEMENT,
-    [PLACEMENT.bottom]: DEFAULT_HINT_DOT_PLACEMENT,
     [PLACEMENT.topEdge]: DEFAULT_HINT_DOT_PLACEMENT,
     [PLACEMENT.bottomEdge]: DEFAULT_HINT_DOT_PLACEMENT,
     [PLACEMENT.bottomRight]: DEFAULT_HINT_DOT_PLACEMENT,
@@ -199,6 +185,43 @@ export const StyledRoot = styled<{}>('div', () => {
   };
 });
 
+const TOP_PLACEMENTS = [
+  PLACEMENT.topLeft,
+  PLACEMENT.topRight,
+  PLACEMENT.topLeftEdge,
+  PLACEMENT.topEdge,
+  PLACEMENT.topRightEdge,
+  PLACEMENT.leftTopEdge,
+  PLACEMENT.rightTopEdge,
+];
+const BOTTOM_PLACEMENTS = [
+  PLACEMENT.bottomLeft,
+  PLACEMENT.bottomRight,
+  PLACEMENT.bottomLeftEdge,
+  PLACEMENT.bottomEdge,
+  PLACEMENT.bottomRightEdge,
+  PLACEMENT.leftBottomEdge,
+  PLACEMENT.rightBottomEdge,
+];
+const LEFT_PLACEMENTS = [
+  PLACEMENT.topLeft,
+  PLACEMENT.topLeftEdge,
+  PLACEMENT.topEdge,
+  PLACEMENT.bottomLeft,
+  PLACEMENT.bottomLeftEdge,
+  PLACEMENT.bottomEdge,
+  PLACEMENT.leftTopEdge,
+  PLACEMENT.leftBottomEdge,
+];
+const RIGHT_PLACEMENTS = [
+  PLACEMENT.topRight,
+  PLACEMENT.topRightEdge,
+  PLACEMENT.bottomRight,
+  PLACEMENT.bottomRightEdge,
+  PLACEMENT.rightTopEdge,
+  PLACEMENT.rightBottomEdge,
+];
+
 export const StyledPositioner = styled<{
   $role: RoleT,
   $placement: PlacementT,
@@ -208,32 +231,19 @@ export const StyledPositioner = styled<{
   let positionStyle = POSITION_STYLES[$role][$placement];
 
   if ($verticalOffset) {
-    if (
-      $placement === PLACEMENT.topLeft ||
-      $placement === PLACEMENT.top ||
-      $placement === PLACEMENT.topRight
-    ) {
+    if (TOP_PLACEMENTS.includes($placement)) {
       positionStyle = { ...positionStyle, top: $verticalOffset };
     }
-    if (
-      $placement === PLACEMENT.bottomLeft ||
-      $placement === PLACEMENT.bottom ||
-      $placement === PLACEMENT.bottomRight
-    ) {
+    if (BOTTOM_PLACEMENTS.includes($placement)) {
       positionStyle = { ...positionStyle, bottom: $verticalOffset };
     }
   }
 
   if ($horizontalOffset) {
-    if (
-      $placement === PLACEMENT.topLeft ||
-      $placement === PLACEMENT.top ||
-      $placement === PLACEMENT.bottomLeft ||
-      $placement === PLACEMENT.bottom
-    ) {
+    if (LEFT_PLACEMENTS.includes($placement)) {
       positionStyle = { ...positionStyle, left: $horizontalOffset };
     }
-    if ($placement === PLACEMENT.topRight || $placement === PLACEMENT.bottomRight) {
+    if (RIGHT_PLACEMENTS.includes($placement)) {
       positionStyle = { ...positionStyle, right: $horizontalOffset };
     }
   }
