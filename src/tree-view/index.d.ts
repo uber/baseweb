@@ -1,11 +1,11 @@
 import * as React from 'react';
-import {StyletronComponent} from 'styletron-react';
-import {Override} from '../overrides';
+import { StyletronComponent } from 'styletron-react';
+import { Override } from '../overrides';
 
 export interface TreeViewOverrides extends TreeLabelOverrides {
   Root?: Override<{}>;
-  TreeItemList?: Override<{$isChildNode?: boolean}>;
-  TreeItem?: Override<{$isLeafNode?: boolean}>;
+  TreeItemList?: Override<{ $isChildNode?: boolean }>;
+  TreeItem?: Override<{ $isLeafNode?: boolean }>;
   TreeLabel?: Override<TreeLabelProps>;
 }
 
@@ -56,26 +56,22 @@ export interface TreeViewProps {
   singleExpanded?: boolean;
 }
 
-export const TreeView: React.FC<TreeViewProps>;
+export declare const TreeView: React.FC<TreeViewProps>;
 
-export const StatefulTreeView: React.FC<TreeViewProps>;
+export declare const StatefulTreeView: React.FC<TreeViewProps>;
 
-export const TreeLabel: React.FC<TreeLabelProps>;
+export declare const TreeLabel: React.FC<TreeLabelProps>;
 
-export const StyledTreeItemList: StyletronComponent<any>;
-export const StyledTreeItem: StyletronComponent<any>;
-export const StyledItemContent: StyletronComponent<any>;
-export const StyledIconContainer: StyletronComponent<any>;
+export declare const StyledTreeItemList: StyletronComponent<any>;
+export declare const StyledTreeItem: StyletronComponent<any>;
+export declare const StyledItemContent: StyletronComponent<any>;
+export declare const StyledIconContainer: StyletronComponent<any>;
 
 type TGetId = (node: TreeNode) => string | number;
-type toggleIsExpandedT = (
-  data: TreeNode[],
-  toggledNode: TreeNode,
-  getId?: TGetId,
-) => TreeNode[];
+type toggleIsExpandedT = (data: TreeNode[], toggledNode: TreeNode, getId?: TGetId) => TreeNode[];
 
-export const toggleIsExpanded: toggleIsExpandedT;
-export const TreeLabelInteractable: React.FC<{
-  overrides?: {LabelInteractable: Override<any>};
+export declare const toggleIsExpanded: toggleIsExpandedT;
+export declare const TreeLabelInteractable: React.FC<{
+  overrides?: { LabelInteractable: Override<any> };
   children?: React.ReactNode;
 }>;

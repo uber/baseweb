@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {StyletronComponent} from 'styletron-react';
-import {Override} from '../overrides';
+import { StyletronComponent } from 'styletron-react';
+import { Override } from '../overrides';
 
 export interface BreadcrumbsOverrides {
   Root?: Override<any>;
@@ -18,7 +18,7 @@ export interface BreadcrumbsProps {
   showTrailingSeparator?: boolean;
 }
 
-export const Breadcrumbs: React.FC<BreadcrumbsProps>;
+export declare const Breadcrumbs: React.FC<BreadcrumbsProps>;
 
-export const StyledRoot: StyletronComponent<any>;
-export const StyledSeparator: StyletronComponent<any>;
+export declare const StyledRoot: StyletronComponent<any>;
+export declare const StyledSeparator: StyletronComponent<any>;

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {StyletronComponent} from 'styletron-react';
-import {Override} from '../overrides';
+import { StyletronComponent } from 'styletron-react';
+import { Override } from '../overrides';
 
 export interface FileUploaderOverrides<T> {
   Root?: Override<T>;
@@ -26,16 +26,16 @@ export interface StyleProps {
 export type DropFilesEventHandler = (
   accepted: File[],
   rejected: File[],
-  event: React.SyntheticEvent<HTMLElement>,
+  event: React.SyntheticEvent<HTMLElement>
 ) => any;
 
 export type DropFileEventHandler = (
   acceptedOrRejected: File[],
-  event: React.SyntheticEvent<HTMLElement>,
+  event: React.SyntheticEvent<HTMLElement>
 ) => any;
 
 export type GetDataTransferItems = (
-  event: React.SyntheticEvent<any>,
+  event: React.SyntheticEvent<any>
 ) => Promise<Array<File | DataTransferItem>>;
 
 export interface FileUploaderProps {
@@ -67,10 +67,10 @@ export interface FileUploaderProps {
   progressAmount?: number;
   progressMessage?: string;
 }
-export const FileUploader: React.FC<FileUploaderProps>;
+export declare const FileUploader: React.FC<FileUploaderProps>;
 
-export const StyledRoot: StyletronComponent<any>;
-export const StyledFileDragAndDrop: StyletronComponent<any>;
-export const StyledContentMessage: StyletronComponent<any>;
-export const StyledErrorMessage: StyletronComponent<any>;
-export const StyledHiddenInput: StyletronComponent<any>;
+export declare const StyledRoot: StyletronComponent<any>;
+export declare const StyledFileDragAndDrop: StyletronComponent<any>;
+export declare const StyledContentMessage: StyletronComponent<any>;
+export declare const StyledErrorMessage: StyletronComponent<any>;
+export declare const StyledHiddenInput: StyletronComponent<any>;

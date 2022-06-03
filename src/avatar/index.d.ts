@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {StyletronComponent} from 'styletron-react';
-import {Override} from '../overrides';
+import { StyletronComponent } from 'styletron-react';
+import { Override } from '../overrides';
 
 export interface AvatarOverrides<T> {
   Avatar?: Override<T>;
@@ -20,14 +20,8 @@ export interface AvatarProps {
   src?: string;
 }
 
-export interface AvatarState {
-  noImageAvailable: boolean;
-}
+export declare const Avatar: React.FC<AvatarProps>;
 
-export class Avatar extends React.Component<AvatarProps, AvatarState> {
-  handleError(): void;
-}
-
-export const StyledAvatar: StyletronComponent<any>;
-export const StyledInitials: StyletronComponent<any>;
-export const StyledRoot: StyletronComponent<any>;
+export declare const StyledAvatar: StyletronComponent<any>;
+export declare const StyledInitials: StyletronComponent<any>;
+export declare const StyledRoot: StyletronComponent<any>;

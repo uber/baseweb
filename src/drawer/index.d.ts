@@ -1,40 +1,40 @@
 import * as React from 'react';
-import {StyletronComponent} from 'styletron-react';
-import {Override} from '../overrides';
+import { StyletronComponent } from 'styletron-react';
+import { Override } from '../overrides';
 
-export interface SIZE {
+export declare const SIZE: {
   default: 'default';
   full: 'full';
   auto: 'auto';
-}
+};
 
-export interface SIZE_DIMENSIONS {
+export declare const SIZE_DIMENSIONS: {
   default: '500px';
   full: '100%';
   auto: 'auto';
-}
+};
 
-export interface ANCHOR {
+export declare const ANCHOR: {
   left: 'left';
   right: 'right';
   top: 'top';
   bottom: 'bottom';
-}
+};
 
-export interface CLOSE_SOURCE {
+export declare const CLOSE_SOURCE: {
   closeButton: 'closeButton';
   backdrop: 'backdrop';
   escape: 'escape';
-}
+};
 
 export interface SharedStylePropsArg {
   children?: React.ReactNode;
   $animating?: boolean;
   $isVisible?: boolean;
   $isOpen?: boolean;
-  $size?: SIZE[keyof SIZE];
+  $size?: typeof SIZE[keyof typeof SIZE];
   $closeable?: boolean;
-  $anchor?: ANCHOR[keyof ANCHOR];
+  $anchor?: typeof ANCHOR[keyof typeof ANCHOR];
 }
 
 export interface DrawerOverrides {
@@ -53,10 +53,10 @@ export interface DrawerProps {
   renderAll?: boolean;
   isOpen?: boolean;
   mountNode?: HTMLElement;
-  onClose?: (args: {closeSource?: CLOSE_SOURCE[keyof CLOSE_SOURCE]}) => any;
+  onClose?: (args: { closeSource?: typeof CLOSE_SOURCE[keyof typeof CLOSE_SOURCE] }) => any;
   overrides?: DrawerOverrides;
-  size?: SIZE[keyof SIZE] | string;
-  anchor?: ANCHOR[keyof ANCHOR] | string;
+  size?: typeof SIZE[keyof typeof SIZE] | string;
+  anchor?: typeof ANCHOR[keyof typeof ANCHOR] | string;
   showBackdrop?: boolean;
   onBackdropClick?: (event: React.MouseEvent<HTMLElement>) => any;
   onEscapeKeyDown?: (event: React.KeyboardEvent<HTMLElement>) => any;
@@ -76,21 +76,16 @@ export class Drawer extends React.Component<DrawerProps, DrawerState> {
   clearTimers(): void;
   didOpen(): void;
   didClose(): void;
-  triggerClose(source: CLOSE_SOURCE[keyof CLOSE_SOURCE]): void;
+  triggerClose(source: typeof CLOSE_SOURCE[keyof typeof CLOSE_SOURCE]): void;
   animateOutComplete(): void;
-  getSharedProps(): SharedStylePropsArg & {children: React.ReactNode};
+  getSharedProps(): SharedStylePropsArg & { children: React.ReactNode };
   getChildren(): React.ReactNode;
   getRef(component: string): React.Ref<any>;
   renderDrawer(): React.ReactNode;
 }
 
-export const StyledRoot: StyletronComponent<any>;
-export const StyledBackdrop: StyletronComponent<any>;
-export const StyledDrawerContainer: StyletronComponent<any>;
-export const StyledDrawerBody: StyletronComponent<any>;
-export const StyledClose: StyletronComponent<any>;
-
-export const SIZE: SIZE;
-export const ANCHOR: ANCHOR;
-export const SIZE_DIMENSIONS: SIZE_DIMENSIONS;
-export const CLOSE_SOURCE: CLOSE_SOURCE;
+export declare const StyledRoot: StyletronComponent<any>;
+export declare const StyledBackdrop: StyletronComponent<any>;
+export declare const StyledDrawerContainer: StyletronComponent<any>;
+export declare const StyledDrawerBody: StyletronComponent<any>;
+export declare const StyledClose: StyletronComponent<any>;

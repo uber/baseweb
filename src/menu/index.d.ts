@@ -1,8 +1,8 @@
 import * as React from 'react';
-import {StyletronComponent} from 'styletron-react';
-import {Override} from '../overrides';
+import { StyletronComponent } from 'styletron-react';
+import { Override } from '../overrides';
 
-export interface KEY_STRINGS {
+export declare const KEY_STRINGS: {
   ArrowUp: 'ArrowUp';
   ArrowDown: 'ArrowDown';
   ArrowLeft: 'ArrowLeft';
@@ -11,8 +11,8 @@ export interface KEY_STRINGS {
   Space: ' ';
   Escape: 'Escape';
   Backspace: 'Backspace';
-}
-export interface STATE_CHANGE_TYPES {
+};
+export declare const STATE_CHANGE_TYPES: {
   click: 'click';
   moveUp: 'moveUp';
   moveDown: 'moveDown';
@@ -21,12 +21,12 @@ export interface STATE_CHANGE_TYPES {
   reset: 'reset';
   character: 'character';
   enter: 'enter';
-}
+};
 
-export interface OPTION_LIST_SIZE {
+export declare const OPTION_LIST_SIZE: {
   default: 'default';
   compact: 'compact';
-}
+};
 
 export interface MenuOverrides {
   EmptyState?: Override<any>;
@@ -48,7 +48,7 @@ export interface MenuOverrides {
 }
 
 export interface MenuProps extends BaseMenuPropsT {
-  size?: keyof OPTION_LIST_SIZE;
+  size?: typeof OPTION_LIST_SIZE[keyof typeof OPTION_LIST_SIZE];
   overrides?: MenuOverrides;
 }
 
@@ -77,15 +77,12 @@ export type OnItemSelect = (args: {
 }) => any;
 
 export type StateReducer = (
-  changeType: STATE_CHANGE_TYPES[keyof STATE_CHANGE_TYPES],
+  changeType: typeof STATE_CHANGE_TYPES[keyof typeof STATE_CHANGE_TYPES],
   changes: StatefulContainerState,
-  currentState: StatefulContainerState,
+  currentState: StatefulContainerState
 ) => StatefulContainerState;
 
-export type GetRequiredItemProps = (
-  item: any,
-  index: number,
-) => RenderItemProps;
+export type GetRequiredItemProps = (item: any, index: number) => RenderItemProps;
 
 export type RenderProps = StatefulContainerState & {
   items: ItemsT;
@@ -126,7 +123,7 @@ export interface OptionListProps extends BaseMenuPropsT {
   getChildMenu?: (item: any) => React.ReactNode;
   onMouseDown?: (event: MouseEvent) => any;
   onMouseEnter?: (event: MouseEvent) => any;
-  size?: OPTION_LIST_SIZE[keyof OPTION_LIST_SIZE];
+  size?: typeof OPTION_LIST_SIZE[keyof typeof OPTION_LIST_SIZE];
   overrides?: {
     ListItem?: Override<any>;
     ChildMenuPopover?: Override<any>;
@@ -141,7 +138,7 @@ export interface OptionListProps extends BaseMenuPropsT {
   id?: string;
   role?: string;
 }
-export const OptionList: React.FC<OptionListProps>;
+export declare const OptionList: React.FC<OptionListProps>;
 
 export interface OptionProfileProps extends BaseMenuPropsT {
   item: any;
@@ -165,7 +162,7 @@ export interface OptionProfileProps extends BaseMenuPropsT {
   };
   $isHighlighted?: boolean;
 }
-export const OptionProfile: React.FC<OptionProfileProps>;
+export declare const OptionProfile: React.FC<OptionProfileProps>;
 
 export interface SharedStatelessProps {
   activedescendantId?: string;
@@ -185,7 +182,7 @@ export interface SharedStatelessProps {
 }
 
 export type StatelessMenuProps = SharedStatelessProps & MenuProps;
-export const Menu: React.FC<StatelessMenuProps>;
+export declare const Menu: React.FC<StatelessMenuProps>;
 
 export interface NestedMenuProps {
   children: React.ReactNode;
@@ -193,10 +190,7 @@ export interface NestedMenuProps {
 export interface NestedMenuState {
   menus: Array<React.Ref<HTMLElement>>;
 }
-export class NestedMenus extends React.Component<
-  NestedMenuProps,
-  NestedMenuState
-> {
+export class NestedMenus extends React.Component<NestedMenuProps, NestedMenuState> {
   addMenuToNesting(ref: React.Ref<HTMLElement>): void;
   removeMenuFromNesting(ref: React.Ref<HTMLElement>): void;
   findMenuIndexByRef(ref: React.Ref<HTMLElement>): number;
@@ -206,17 +200,13 @@ export class NestedMenus extends React.Component<
   isNestedMenuVisible(ref: React.Ref<HTMLElement>): boolean;
 }
 
-export const StyledEmptyState: StyletronComponent<any>;
-export const StyledList: StyletronComponent<any>;
-export const StyledListItem: StyletronComponent<any>;
-export const StyledListItemProfile: StyletronComponent<any>;
-export const StyledProfileImgContainer: StyletronComponent<any>;
-export const StyledProfileImg: StyletronComponent<any>;
-export const StyledProfileLabelsContainer: StyletronComponent<any>;
-export const StyledProfileTitle: StyletronComponent<any>;
-export const StyledProfileSubtitle: StyletronComponent<any>;
-export const StyledProfileBody: StyletronComponent<any>;
-
-export const KEY_STRINGS: KEY_STRINGS;
-export const STATE_CHANGE_TYPES: STATE_CHANGE_TYPES;
-export const OPTION_LIST_SIZE: OPTION_LIST_SIZE;
+export declare const StyledEmptyState: StyletronComponent<any>;
+export declare const StyledList: StyletronComponent<any>;
+export declare const StyledListItem: StyletronComponent<any>;
+export declare const StyledListItemProfile: StyletronComponent<any>;
+export declare const StyledProfileImgContainer: StyletronComponent<any>;
+export declare const StyledProfileImg: StyletronComponent<any>;
+export declare const StyledProfileLabelsContainer: StyletronComponent<any>;
+export declare const StyledProfileTitle: StyletronComponent<any>;
+export declare const StyledProfileSubtitle: StyletronComponent<any>;
+export declare const StyledProfileBody: StyletronComponent<any>;

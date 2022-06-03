@@ -1,7 +1,25 @@
 import * as React from 'react';
-import {StyletronComponent} from 'styletron-react';
-import {CSSLengthUnitT} from '../theme';
-import {Override} from '../overrides';
+import { StyletronComponent } from 'styletron-react';
+import { Override } from '../overrides';
+
+export type CSSLengthUnitT =
+  | 'cm'
+  | 'mm'
+  | 'Q'
+  | 'in'
+  | 'pc'
+  | 'px'
+  | 'pt'
+  | 'em'
+  | 'ex'
+  | 'ch'
+  | 'rem'
+  | 'lh'
+  | 'vw'
+  | 'vh'
+  | 'vmin'
+  | 'vmax'
+  | '%';
 
 export enum ALIGNMENT {
   start = 'flex-start',
@@ -74,7 +92,7 @@ export type StyledCellProps = {
   $span?: Responsive<number>;
 };
 
-export const Grid: React.FunctionComponent<GridProps>;
-export const Cell: React.FunctionComponent<CellProps>;
-export const StyledGrid: StyletronComponent<StyledGridProps>;
-export const StyledCell: StyletronComponent<StyledCellProps>;
+export declare const Grid: React.FunctionComponent<GridProps>;
+export declare const Cell: React.FunctionComponent<CellProps>;
+export declare const StyledGrid: StyletronComponent<StyledGridProps>;
+export declare const StyledCell: StyletronComponent<StyledCellProps>;

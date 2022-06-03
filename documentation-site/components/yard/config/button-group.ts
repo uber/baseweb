@@ -4,10 +4,10 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import {ButtonGroup, MODE, SIZE, SHAPE} from 'baseui/button-group';
-import {Button} from 'baseui/button';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
+import { ButtonGroup, MODE, SIZE, SHAPE } from 'baseui/button-group';
+import { Button } from 'baseui/button';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
 
 const buttonGroupProps = require('!!extract-react-types-loader!../../../../src/button-group/button-group.js');
 const buttonProps = require('!!extract-react-types-loader!../../../../src/button/button.js');
@@ -54,8 +54,7 @@ const ButtonGroupConfig: TConfig = {
   ],
   props: {
     children: {
-      value:
-        '<Button>One</Button>\n<Button>Two</Button>\n<Button>Three</Button>',
+      value: '<Button>One</Button>\n<Button>Two</Button>\n<Button>Three</Button>',
       type: PropTypes.ReactNode,
       description: 'Buttons within the group',
       imports: {

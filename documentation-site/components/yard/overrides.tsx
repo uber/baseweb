@@ -1,10 +1,10 @@
 import * as React from 'react';
-import {StatelessAccordion as Accordion, Panel} from 'baseui/accordion';
-import {useStyletron} from 'baseui';
-import {TConfig} from './types';
+import { StatelessAccordion as Accordion, Panel } from 'baseui/accordion';
+import { useStyletron } from 'baseui';
+import { TConfig } from './types';
 import NestedTooltip from './nested-tooltip';
 
-import Override, {getHighlightStyles} from './override';
+import Override, { getHighlightStyles } from './override';
 
 type TOverridesProps = {
   set: any;
@@ -49,18 +49,17 @@ const Overrides: React.FC<TOverridesProps> = ({
         style: null,
       };
     }
-    overridesObj[stringKey]['nested'] =
-      typeof key === 'string' ? undefined : key;
+    overridesObj[stringKey].nested = typeof key === 'string' ? undefined : key;
   });
 
   const getNewState = (expanded: (string | number)[]) => {
-    const returnValue: any = {...overrides.value};
+    const returnValue: any = { ...overrides.value };
     if (overrides.value) {
-      Object.keys(overrides.value).forEach(key => {
-        returnValue[key]['active'] = false;
+      Object.keys(overrides.value).forEach((key) => {
+        returnValue[key].active = false;
       });
     }
-    expanded.forEach(key => {
+    expanded.forEach((key) => {
       if (overridesObj[key].nestedValue || overridesObj[key].nested) {
         if (!returnValue[key]) {
           returnValue[key] = {
@@ -76,18 +75,18 @@ const Overrides: React.FC<TOverridesProps> = ({
           style: overridesObj[key].style,
         };
       }
-      returnValue[key]['active'] = true;
+      returnValue[key].active = true;
     });
     return returnValue;
   };
 
-  const handleChange = ({expanded}: {expanded: (string | number)[]}) => {
+  const handleChange = ({ expanded }: { expanded: (string | number)[] }) => {
     const newState = getNewState(expanded);
     set(Object.keys(newState).length > 0 ? newState : undefined);
   };
 
   const expanded = Object.keys(overrides.value ? overrides.value : {})
-    .map(key => {
+    .map((key) => {
       const override = overrides.value[key];
       if (override.active) {
         return key;
@@ -95,7 +94,7 @@ const Overrides: React.FC<TOverridesProps> = ({
         return null;
       }
     })
-    .filter(val => !!val);
+    .filter((val) => !!val);
 
   return (
     <React.Fragment>
@@ -132,8 +131,8 @@ const Overrides: React.FC<TOverridesProps> = ({
         onChange={handleChange}
         accordion={false}
       >
-        {Object.keys(overridesObj).map(overrideKey => {
-          const {nested} = overridesObj[overrideKey];
+        {Object.keys(overridesObj).map((overrideKey) => {
+          const { nested } = overridesObj[overrideKey];
           return (
             <Panel
               key={overrideKey}
@@ -141,10 +140,7 @@ const Overrides: React.FC<TOverridesProps> = ({
                 <span>
                   {overrideKey}
                   {nested ? (
-                    <NestedTooltip
-                      name={componentName}
-                      nestedName={nested.componentName}
-                    />
+                    <NestedTooltip name={componentName} nestedName={nested.componentName} />
                   ) : null}
                 </span>
               }
@@ -165,13 +161,11 @@ const Overrides: React.FC<TOverridesProps> = ({
                       {
                         ...getNewState(expanded as string[]),
                         [overrideKey]: {
-                          active: Object.entries(propValue).some(
-                            ([, val]: any) => val.active,
-                          ),
+                          active: Object.entries(propValue).some(([, val]: any) => val.active),
                           nestedValue: propValue,
                         },
                       },
-                      'overrides',
+                      'overrides'
                     );
                   }}
                   isNested

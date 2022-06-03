@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Override} from '../overrides';
+import { Override } from '../overrides';
 
 export interface AppNavBarOverridesT {
   Root?: Override<any>;
@@ -31,8 +31,8 @@ export type NavItemT = {
   children?: NavItemT[];
   navExitIcon?: React.ComponentType<any>;
   navPosition?: {
-    desktop?: POSITION[keyof POSITION];
-    mobile?: POSITION[keyof POSITION];
+    desktop?: typeof POSITION[keyof typeof POSITION];
+    mobile?: typeof POSITION[keyof typeof POSITION];
   };
 };
 
@@ -53,16 +53,15 @@ export type AppNavBarPropsT = UserMenuPropsT & {
   title?: React.ReactNode;
 };
 
-export interface POSITION {
+export declare const POSITION: {
   horizontal: 'horizontal';
   vertical: 'vertical';
-}
+};
 
 export class AppNavBar extends React.Component<AppNavBarPropsT> {}
-export const POSITION: POSITION;
 
-export const setItemActive: (
+export declare const setItemActive: (
   items: NavItemT[],
   item: NavItemT,
-  getUniqueueIdentifier?: (currentItem: NavItemT) => string | number,
+  getUniqueueIdentifier?: (currentItem: NavItemT) => string | number
 ) => NavItemT[];

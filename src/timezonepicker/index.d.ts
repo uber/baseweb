@@ -1,7 +1,7 @@
 import * as React from 'react';
-import {Option} from '../select';
-import {SIZE} from '../input';
-import {Override} from '../overrides';
+import { Option } from '../select';
+import { SIZE } from '../input';
+import { Override } from '../overrides';
 
 export interface Timezone {
   id: string;
@@ -22,16 +22,13 @@ export interface TimezonePickerProps {
   onChange?: (value: Timezone) => any;
   overrides?: TimezoneOverrides;
   value?: string;
-  size?: SIZE[keyof SIZE];
+  size?: typeof SIZE[keyof typeof SIZE];
   includeAbbreviations?: boolean;
 }
 export interface TimezonePickerState {
   timezones: Option[];
   value?: string;
 }
-export class TimezonePicker extends React.Component<
-  TimezonePickerProps,
-  TimezonePickerState
-> {
+export class TimezonePicker extends React.Component<TimezonePickerProps, TimezonePickerState> {
   buildTimezones(compareDate: Date): string[];
 }

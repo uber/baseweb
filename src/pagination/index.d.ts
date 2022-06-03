@@ -1,14 +1,14 @@
 import * as React from 'react';
-import {StyletronComponent} from 'styletron-react';
-import {Override} from '../overrides';
-import {Locale} from '../locale';
-import {SIZE} from '../input';
+import { StyletronComponent } from 'styletron-react';
+import { Override } from '../overrides';
+import { Locale } from '../locale';
+import { SIZE } from '../input';
 
-export {SIZE};
+export { SIZE };
 
-export interface STATE_CHANGE_TYPE {
+export declare const STATE_CHANGE_TYPE: {
   change: 'change';
-}
+};
 
 export interface Labels {
   prevButton?: string;
@@ -21,9 +21,9 @@ export interface State {
 }
 
 export type StateReducer = (
-  changeType: STATE_CHANGE_TYPE[keyof STATE_CHANGE_TYPE],
+  changeType: typeof STATE_CHANGE_TYPE[keyof typeof STATE_CHANGE_TYPE],
   changes: State,
-  currentState: State,
+  currentState: State
 ) => State;
 
 export interface PaginationOverrides {
@@ -36,9 +36,9 @@ export interface PaginationOverrides {
 }
 
 export interface Callbacks {
-  onPrevClick?: (args: {event: any}) => any;
-  onNextClick?: (args: {event: any}) => any;
-  onPageChange?: (args: {nextPage: number; prevPage: number}) => any;
+  onPrevClick?: (args: { event: any }) => any;
+  onNextClick?: (args: { event: any }) => any;
+  onPageChange?: (args: { nextPage: number; prevPage: number }) => any;
 }
 
 export interface PaginationProps extends Callbacks {
@@ -46,7 +46,7 @@ export interface PaginationProps extends Callbacks {
   currentPage: number;
   labels?: Labels;
   overrides?: PaginationOverrides;
-  size?: SIZE[keyof SIZE];
+  size?: typeof SIZE[keyof typeof SIZE];
 }
 
 export interface PageOption {
@@ -55,7 +55,7 @@ export interface PageOption {
 
 export class Pagination extends React.PureComponent<PaginationProps> {
   getMenuOptions(numPages: number): [];
-  onMenuItemSelect(data: {value: ReadonlyArray<PageOption>}): void;
+  onMenuItemSelect(data: { value: ReadonlyArray<PageOption> }): void;
   onPrevClick(event: React.SyntheticEvent<any>): void;
   onNextClick(event: React.SyntheticEvent<any>): void;
   constructAriaWayfinderLabel(locale: Locale, prefix: string): string;
@@ -69,7 +69,7 @@ export interface StatefulPaginationProps extends Callbacks {
   overrides?: PaginationOverrides;
 }
 
-export const StatefulPagination: React.FC<StatefulPaginationProps>;
+export declare const StatefulPagination: React.FC<StatefulPaginationProps>;
 
 export interface StatefulContainerProps {
   children: React.ReactNode;
@@ -79,18 +79,14 @@ export interface StatefulContainerProps {
   onPageChange?: Callbacks['onPageChange'];
 }
 
-export class StatefulContainer extends React.Component<
-  StatefulContainerProps,
-  State
-> {
+export class StatefulContainer extends React.Component<StatefulContainerProps, State> {
   internalSetState(
-    changeType: STATE_CHANGE_TYPE[keyof STATE_CHANGE_TYPE],
-    changes: State,
+    changeType: typeof STATE_CHANGE_TYPE[keyof typeof STATE_CHANGE_TYPE],
+    changes: State
   ): void;
-  onPageChange(args: {nextPage: number}): void;
+  onPageChange(args: { nextPage: number }): void;
 }
 
-export const StyledRoot: StyletronComponent<any>;
-export const StyledMaxLabel: StyletronComponent<any>;
-export const StyledDropdownContainer: StyletronComponent<any>;
-export const STATE_CHANGE_TYPE: STATE_CHANGE_TYPE;
+export declare const StyledRoot: StyletronComponent<any>;
+export declare const StyledMaxLabel: StyletronComponent<any>;
+export declare const StyledDropdownContainer: StyletronComponent<any>;

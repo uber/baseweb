@@ -1,12 +1,12 @@
 import * as React from 'react';
-import {Override} from '../overrides';
+import { Override } from '../overrides';
 
-export interface SIZE {
+export declare const SIZE: {
   compact: 'compact';
   default: 'default';
   large: 'large';
   mini: 'mini';
-}
+};
 
 export interface ComboboxOverrides {
   Root?: Override<any>;
@@ -20,10 +20,7 @@ export interface ComboboxOverrides {
 export type PropsT<OptionT = any> = {
   autocomplete?: boolean;
   disabled?: boolean;
-  mapOptionToNode?: (option: {
-    isSelected: boolean;
-    option: OptionT;
-  }) => React.ReactNode;
+  mapOptionToNode?: (option: { isSelected: boolean; option: OptionT }) => React.ReactNode;
   mapOptionToString: (option: OptionT) => string;
   id?: string;
   name?: string;
@@ -31,12 +28,11 @@ export type PropsT<OptionT = any> = {
   onBlur?: (event: React.FocusEvent<HTMLInputElement>) => any;
   onChange?: (value: string, option: OptionT | null) => any;
   onFocus?: (event: React.FocusEvent<HTMLInputElement>) => any;
-  onSubmit?: (params: {closeListbox: () => void; value: string}) => any;
+  onSubmit?: (params: { closeListbox: () => void; value: string }) => any;
   options: OptionT[];
   overrides?: ComboboxOverrides;
-  size?: SIZE[keyof SIZE];
+  size?: typeof SIZE[keyof typeof SIZE];
   value: string;
 };
 
-export const Combobox: React.FC<PropsT>;
-export const SIZE: SIZE;
+export declare const Combobox: React.FC<PropsT>;

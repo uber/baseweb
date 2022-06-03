@@ -1,54 +1,46 @@
 import * as React from 'react';
-import {StyletronComponent} from 'styletron-react';
-import {Override} from '../overrides';
+import { StyletronComponent } from 'styletron-react';
+import { Override } from '../overrides';
 
-export interface KIND {
+export declare const KIND: {
   info: 'info';
   positive: 'positive';
   warning: 'warning';
   negative: 'negative';
-}
-export interface PLACEMENT {
+};
+
+export declare const PLACEMENT: {
   topLeft: 'topLeft';
   top: 'top';
   topRight: 'topRight';
   bottomRight: 'bottomRight';
   bottom: 'bottom';
   bottomLeft: 'bottomLeft';
-}
-export interface TYPE {
+};
+export declare const TYPE: {
   inline: 'inline';
   toast: 'toast';
-}
+};
 
 export interface IToaster {
   getRef: () => React.Ref<typeof ToasterContainer>;
   show: (children: React.ReactNode, props: Readonly<ToastProps>) => React.Key;
   info: (children: React.ReactNode, props: Readonly<ToastProps>) => React.Key;
-  positive: (
-    children: React.ReactNode,
-    props: Readonly<ToastProps>,
-  ) => React.Key;
-  warning: (
-    children: React.ReactNode,
-    props: Readonly<ToastProps>,
-  ) => React.Key;
-  negative: (
-    children: React.ReactNode,
-    props: Readonly<ToastProps>,
-  ) => React.Key;
+  positive: (children: React.ReactNode, props: Readonly<ToastProps>) => React.Key;
+  warning: (children: React.ReactNode, props: Readonly<ToastProps>) => React.Key;
+  negative: (children: React.ReactNode, props: Readonly<ToastProps>) => React.Key;
   update: (key: React.Key, props: Readonly<ToastProps>) => void;
   clear: (key?: React.Key) => void;
 }
 
-export const toaster: IToaster;
+export declare const toaster: IToaster;
 
 export interface ToasterContainerState {
   isMounted: boolean;
   toasts: Readonly<ToastProps>;
 }
 export interface ToasterSharedStylePropsArg {
-  $placement?: PLACEMENT[keyof PLACEMENT];
+  $placement?: typeof PLACEMENT[keyof typeof PLACEMENT];
 }
 export interface ToasterOverrides {
   Root?: Override<ToasterSharedStylePropsArg>;
@@ -58,7 +50,7 @@ export interface ToasterOverrides {
 }
 export interface ToasterProps {
   overrides?: ToasterOverrides;
-  placement?: PLACEMENT[keyof PLACEMENT];
+  placement?: typeof PLACEMENT[keyof typeof PLACEMENT];
   usePortal?: boolean;
   autoHideDuration?: number;
 }
@@ -66,7 +58,7 @@ export class ToasterContainer extends React.Component<
   Readonly<ToasterProps>,
   ToasterContainerState
 > {
-  getToastProps(props: ToastProps): Readonly<ToastProps> & {key: React.Key};
+  getToastProps(props: ToastProps): Readonly<ToastProps> & { key: React.Key };
   show(props: ToastProps): React.Key;
   update(key: React.Key, props: ToastProps): void;
   dismiss(key: React.Key): void;
@@ -74,13 +66,13 @@ export class ToasterContainer extends React.Component<
   clear(key: React.Key): void;
   internalOnClose(key: React.Key): void;
   getOnCloseHandler(key: React.Key, onClose?: () => any): () => any;
-  renderToast(toastProps: ToastProps & {key: React.Key}): React.ReactNode;
-  getSharedProps(): {$placement: PLACEMENT[keyof PLACEMENT]};
+  renderToast(toastProps: ToastProps & { key: React.Key }): React.ReactNode;
+  getSharedProps(): { $placement: typeof PLACEMENT[keyof typeof PLACEMENT] };
 }
 
 export interface SharedStylePropsArg {
-  $kind?: KIND[keyof KIND];
-  $type?: TYPE[keyof TYPE];
+  $kind?: typeof KIND[keyof typeof KIND];
+  $type?: typeof TYPE[keyof typeof TYPE];
   $closeable?: boolean;
   $isRendered?: boolean;
   $isVisible?: boolean;
@@ -99,12 +91,10 @@ export interface ToastOverrides {
 export interface ToastProps {
   autoHideDuration?: number;
   autoFocus?: Boolean;
-  children?:
-    | ((args: {dismiss: () => void}) => React.ReactNode)
-    | React.ReactNode;
+  children?: ((args: { dismiss: () => void }) => React.ReactNode) | React.ReactNode;
   closeable?: boolean;
-  kind?: KIND[keyof KIND];
-  notificationType?: TYPE[keyof TYPE];
+  kind?: typeof KIND[keyof typeof KIND];
+  notificationType?: typeof TYPE[keyof typeof TYPE];
   onClose?: () => any;
   onBlur?: (e: Event) => any;
   onFocus?: (e: Event) => any;
@@ -128,10 +118,6 @@ export class Toast extends React.Component<ToastProps, ToastPrivateState> {
   getSharedProps(): Readonly<SharedStylePropsArg>;
 }
 
-export const Root: StyletronComponent<any>;
-export const Body: StyletronComponent<any>;
-export const CloseIconSvg: StyletronComponent<any>;
-
-export const KIND: KIND;
-export const PLACEMENT: PLACEMENT;
-export const TYPE: TYPE;
+export declare const Root: StyletronComponent<any>;
+export declare const Body: StyletronComponent<any>;
+export declare const CloseIconSvg: StyletronComponent<any>;

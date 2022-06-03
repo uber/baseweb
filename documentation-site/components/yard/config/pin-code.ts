@@ -1,8 +1,8 @@
 import omit from 'just-omit';
-import {PinCode, SIZE} from 'baseui/pin-code';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
-import inputConfig, {theme, inputProps} from './input';
+import { PinCode, SIZE } from 'baseui/pin-code';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
+import inputConfig, { theme, inputProps } from './input';
 
 const pinCodeProps = require('!!extract-react-types-loader!../../../../src/pin-code/pin-code.js');
 

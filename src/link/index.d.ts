@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {StyletronComponent} from 'styletron-react';
+import { StyletronComponent } from 'styletron-react';
 
 export interface LinkProps
   extends React.DetailedHTMLProps<
@@ -10,4 +10,4 @@ export interface LinkProps
   target?: '_self' | '_blank' | '_parent' | '_top';
 }
 
-export const StyledLink: StyletronComponent<LinkProps>;
+export declare const StyledLink: StyletronComponent<LinkProps>;

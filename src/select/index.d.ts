@@ -7,15 +7,15 @@ import { Locale } from '../locale';
 
 export { SIZE } from '../input';
 
-export interface TYPE {
+export declare const TYPE: {
   select: 'select';
   search: 'search';
-}
-export interface STATE_CHANGE_TYPE {
+};
+export declare const STATE_CHANGE_TYPE: {
   select: 'select';
   remove: 'remove';
   clear: 'clear';
-}
+};
 
 export interface Option {
   readonly id?: string | number;
@@ -134,8 +134,8 @@ export interface SelectProps {
   placeholder?: React.ReactNode;
   required?: boolean;
   searchable?: boolean;
-  size?: SIZE[keyof SIZE];
-  type?: TYPE[keyof TYPE];
+  size?: typeof SIZE[keyof typeof SIZE];
+  type?: typeof TYPE[keyof typeof TYPE];
   value?: Value;
   valueKey?: string;
   mountNode?: HTMLElement;
@@ -202,13 +202,13 @@ export class Select extends React.Component<SelectProps, SelectState> {
     $multi: boolean;
     $required: boolean;
     $searchable: boolean;
-    $size: SIZE[keyof SIZE];
-    $type: TYPE[keyof TYPE];
+    $size: typeof SIZE[keyof typeof SIZE];
+    $type: typeof TYPE[keyof typeof TYPE];
   };
 }
 
-export const SingleValue: React.FC<any>;
-export const MultiValue: React.FC<any>;
+export declare const SingleValue: React.FC<any>;
+export declare const MultiValue: React.FC<any>;
 
 export interface AutosizeInputOverrides {
   Input?: Override<any>;
@@ -218,7 +218,7 @@ export interface AutosizeInputProps {
   defaultValue?: string;
   inputRef?: React.Ref<any>;
   overrides?: AutosizeInputOverrides;
-  $size?: SIZE[keyof SIZE];
+  $size?: typeof SIZE[keyof typeof SIZE];
 }
 export interface AutosizeInputState {
   inputWidth: number;
@@ -259,8 +259,8 @@ export interface DropdownProps {
   overrides?: DropdownOverrides;
   required?: boolean;
   searchable?: boolean;
-  size?: SIZE[keyof SIZE];
-  type?: TYPE[keyof TYPE];
+  size?: typeof SIZE[keyof typeof SIZE];
+  type?: typeof TYPE[keyof typeof TYPE];
   value?: Value;
   valueKey?: string;
   width?: number;
@@ -273,8 +273,8 @@ export class SelectDropdown extends React.Component<DropdownProps> {
     $multi: boolean;
     $required: boolean;
     $searchable: boolean;
-    $size: SIZE[keyof SIZE];
-    $type: TYPE[keyof TYPE];
+    $size: typeof SIZE[keyof typeof SIZE];
+    $type: typeof TYPE[keyof typeof TYPE];
     $width: number;
   };
   getItemLabel(option: { [key: string]: any }): React.ReactNode;
@@ -288,13 +288,13 @@ export type StateReducer = (stateType: string, nextState: State, currentState: S
 export interface OnChangeParams {
   value: Value;
   option?: Option;
-  type?: STATE_CHANGE_TYPE[keyof STATE_CHANGE_TYPE];
+  type?: typeof STATE_CHANGE_TYPE[keyof typeof STATE_CHANGE_TYPE];
 }
 export type StatefulSelectProps = SelectProps & {
   initialState?: State;
   stateReducer?: StateReducer;
 };
-export const StatefulSelect: React.FC<StatefulSelectProps>;
+export declare const StatefulSelect: React.FC<StatefulSelectProps>;
 
 export interface StatefulContainerProps {
   overrides?: SelectOverrides;
@@ -308,22 +308,19 @@ export class StatefulSelectContainer extends React.Component<StatefulContainerPr
   internalSetState(params: OnChangeParams): void;
 }
 
-export const StyledRoot: StyletronComponent<any>;
-export const StyledControlContainer: StyletronComponent<any>;
-export const StyledValueContainer: StyletronComponent<any>;
-export const StyledPlaceholder: StyletronComponent<any>;
-export const StyledSingleValue: StyletronComponent<any>;
-export const StyledInputContainer: StyletronComponent<any>;
-export const StyledInput: StyletronComponent<any>;
-export const StyledInputSizer: StyletronComponent<any>;
-export const StyledIconsContainer: StyletronComponent<any>;
-export const StyledSelectArrow: StyletronComponent<any>;
-export const StyledClearIcon: StyletronComponent<any>;
-export const StyledSearchIconContainer: StyletronComponent<any>;
-export const StyledDropdownContainer: StyletronComponent<any>;
-export const StyledDropdown: StyletronComponent<any>;
-export const StyledDropdownListItem: StyletronComponent<any>;
-export const StyledOptionContent: StyletronComponent<any>;
-
-export const TYPE: TYPE;
-export const STATE_CHANGE_TYPE: STATE_CHANGE_TYPE;
+export declare const StyledRoot: StyletronComponent<any>;
+export declare const StyledControlContainer: StyletronComponent<any>;
+export declare const StyledValueContainer: StyletronComponent<any>;
+export declare const StyledPlaceholder: StyletronComponent<any>;
+export declare const StyledSingleValue: StyletronComponent<any>;
+export declare const StyledInputContainer: StyletronComponent<any>;
+export declare const StyledInput: StyletronComponent<any>;
+export declare const StyledInputSizer: StyletronComponent<any>;
+export declare const StyledIconsContainer: StyletronComponent<any>;
+export declare const StyledSelectArrow: StyletronComponent<any>;
+export declare const StyledClearIcon: StyletronComponent<any>;
+export declare const StyledSearchIconContainer: StyletronComponent<any>;
+export declare const StyledDropdownContainer: StyletronComponent<any>;
+export declare const StyledDropdown: StyletronComponent<any>;
+export declare const StyledDropdownListItem: StyletronComponent<any>;
+export declare const StyledOptionContent: StyletronComponent<any>;

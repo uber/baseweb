@@ -1,7 +1,7 @@
 import * as React from 'react';
-import {Option} from '../select';
-import {SIZE} from '../input';
-import {Override} from '../overrides';
+import { Option } from '../select';
+import { SIZE } from '../input';
+import { Override } from '../overrides';
 
 export interface TimePickerOverrides {
   Select?: Override<any>;
@@ -19,7 +19,7 @@ export interface TimePickerProps {
   placeholder?: string;
   step?: number;
   value?: Date | null;
-  size?: SIZE[keyof SIZE];
+  size?: typeof SIZE[keyof typeof SIZE];
   minTime?: Date;
   maxTime?: Date;
   ignoreMinMaxDateComponent?: boolean;
@@ -28,10 +28,7 @@ export interface TimePickerState {
   steps: number[];
   value?: Option;
 }
-export class TimePicker extends React.Component<
-  TimePickerProps,
-  TimePickerState
-> {
+export class TimePicker extends React.Component<TimePickerProps, TimePickerState> {
   handleChange(steps: number): void;
   buildSteps(): number[];
   buildSelectedOption(value: Date, format: string): object;

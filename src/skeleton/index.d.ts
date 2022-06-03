@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Override} from '../overrides';
+import { Override } from '../overrides';
 
 export type SkeletonOverrides = {
   Root?: Override<any>;

@@ -1,7 +1,7 @@
-import {TimezonePicker} from 'baseui/timezonepicker';
-import {SIZE} from 'baseui/input';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
+import { TimezonePicker } from 'baseui/timezonepicker';
+import { SIZE } from 'baseui/input';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
 import inputConfig from './input';
 import selectConfig from './select';
 
@@ -10,7 +10,7 @@ const timezonePickerProps = require('!!extract-react-types-loader!../../../../sr
 const TimezonepickerConfig: TConfig = {
   componentName: 'TimezonePicker',
   imports: {
-    'baseui/timezonepicker': {named: ['TimezonePicker']},
+    'baseui/timezonepicker': { named: ['TimezonePicker'] },
   },
   scope: {
     TimezonePicker,

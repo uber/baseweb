@@ -1,7 +1,7 @@
 import * as React from 'react';
-import {StyletronComponent} from 'styletron-react';
+import { StyletronComponent } from 'styletron-react';
 import * as valid from 'card-validator';
-import {Override} from '../overrides';
+import { Override } from '../overrides';
 import {
   SIZE,
   StatefulContainer,
@@ -10,19 +10,19 @@ import {
   StatefulContainerProps,
 } from '../input';
 
-export {SIZE, StatefulContainer};
+export { SIZE, StatefulContainer };
 
-export {valid};
+export { valid };
 
 export type PaymentCardOverrides = InputOverrides & {
   IconWrapper?: Override<any>;
 };
 
-export type PaymentCardProps = InputProps & {overrides?: PaymentCardOverrides};
+export type PaymentCardProps = InputProps & { overrides?: PaymentCardOverrides };
 export type StatefulPaymentCardProps = InputProps &
-  StatefulContainerProps & {children?: never; overrides?: PaymentCardOverrides};
+  StatefulContainerProps & { children?: never; overrides?: PaymentCardOverrides };
 
-export const StatefulPaymentCard: React.FC<StatefulPaymentCardProps>;
+export declare const StatefulPaymentCard: React.FC<StatefulPaymentCardProps>;
 export class PaymentCard extends React.Component<PaymentCardProps> {}
 
-export const StyledIconWrapper: StyletronComponent<any>;
+export declare const StyledIconWrapper: StyletronComponent<any>;

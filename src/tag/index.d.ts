@@ -1,8 +1,8 @@
 import * as React from 'react';
-import {StyletronComponent} from 'styletron-react';
-import {Override} from '../overrides';
+import { StyletronComponent } from 'styletron-react';
+import { Override } from '../overrides';
 
-export interface KIND {
+export declare const KIND: {
   custom: 'custom';
   neutral: 'neutral';
   primary: 'primary';
@@ -19,19 +19,19 @@ export interface KIND {
   green: 'green';
   purple: 'purple';
   brown: 'brown';
-}
+};
 
-export interface VARIANT {
+export declare const VARIANT: {
   solid: 'solid';
   light: 'light';
   outlined: 'outlined';
-}
+};
 
-export interface SIZE {
+export declare const SIZE: {
   small: 'small';
   medium: 'medium';
   large: 'large';
-}
+};
 
 export interface TagOverrides {
   Root?: Override<any>;
@@ -47,12 +47,12 @@ export interface TagProps {
   disabled?: boolean;
   isFocused?: boolean;
   isHovered?: boolean;
-  kind?: KIND[keyof KIND];
-  variant?: VARIANT[keyof VARIANT];
+  kind?: typeof KIND[keyof typeof KIND];
+  variant?: typeof VARIANT[keyof typeof VARIANT];
   children?: React.ReactNode;
   title?: string;
   color?: string;
-  size?: SIZE[keyof SIZE];
+  size?: typeof SIZE[keyof typeof SIZE];
   onActionClick?: (e: Event, children?: React.ReactNode) => any;
   onActionKeyDown?: (e: Event, children?: React.ReactNode) => any;
   onClick?: (event: Event) => any;
@@ -65,10 +65,6 @@ export class Tag extends React.Component<TagProps> {
   handleActionKeyDown(event: KeyboardEvent): void;
 }
 
-export const StyledRoot: StyletronComponent<any>;
-export const StyledAction: StyletronComponent<any>;
-export const StyledText: StyletronComponent<any>;
-
-export const KIND: KIND;
-export const VARIANT: VARIANT;
-export const SIZE: SIZE;
+export declare const StyledRoot: StyletronComponent<any>;
+export declare const StyledAction: StyletronComponent<any>;
+export declare const StyledText: StyletronComponent<any>;

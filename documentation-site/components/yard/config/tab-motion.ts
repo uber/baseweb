@@ -1,6 +1,6 @@
-import {Tabs, Tab, ORIENTATION, FILL} from 'baseui/tabs-motion';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
+import { Tabs, Tab, ORIENTATION, FILL } from 'baseui/tabs-motion';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
 
 // This is only used for the props table atm.
 
@@ -9,7 +9,7 @@ const tabProps = require('!!extract-react-types-loader!../../../../src/tabs-moti
 const TabConfig: TConfig = {
   componentName: 'Tab',
   imports: {
-    'baseui/tabs-motion': {named: ['Tab']},
+    'baseui/tabs-motion': { named: ['Tab'] },
   },
   scope: {
     Tabs,

@@ -1,7 +1,7 @@
 import * as React from 'react';
-import {StyletronComponent} from 'styletron-react';
-import {Override} from '../overrides';
-import {Theme} from '../theme';
+import { StyletronComponent } from 'styletron-react';
+import { Override } from '../overrides';
+import { Theme } from '../theme';
 
 export interface RatingState {
   previewIndex?: number;
@@ -16,7 +16,7 @@ export interface StarRatingProps {
   value?: number;
   numItems?: number;
   readOnly?: boolean;
-  onChange?: (args: {value: number}) => any;
+  onChange?: (args: { value: number }) => any;
   size?: number;
 }
 
@@ -24,7 +24,7 @@ export interface EmoticonRatingProps {
   overrides?: RatingOverrides;
   value?: number;
   readOnly?: boolean;
-  onChange?: (args: {value: number}) => any;
+  onChange?: (args: { value: number }) => any;
   size?: number;
 }
 export class StarRating extends React.Component<StarRatingProps, RatingState> {
@@ -33,10 +33,7 @@ export class StarRating extends React.Component<StarRatingProps, RatingState> {
   renderRatingContents(): React.ReactNode[];
 }
 
-export class EmoticonRating extends React.Component<
-  EmoticonRatingProps,
-  RatingState
-> {
+export class EmoticonRating extends React.Component<EmoticonRatingProps, RatingState> {
   selectItem(value: number): void;
   updatePreview(previewIndex?: number): void;
   renderRatingContents(): React.ReactNode[];
@@ -51,6 +48,6 @@ export interface StyledRatingItemProps {
   $isSelected: boolean;
   $index: number;
 }
-export const StyledRoot: StyletronComponent<StyledRootProps>;
-export const StyledStar: StyletronComponent<StyledRatingItemProps>;
-export const StyledEmoticon: StyletronComponent<StyledRatingItemProps>;
+export declare const StyledRoot: StyletronComponent<StyledRootProps>;
+export declare const StyledStar: StyletronComponent<StyledRatingItemProps>;
+export declare const StyledEmoticon: StyletronComponent<StyledRatingItemProps>;

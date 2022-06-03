@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {StyletronComponent} from 'styletron-react';
-import {Override} from '../overrides';
+import { StyletronComponent } from 'styletron-react';
+import { Override } from '../overrides';
 
 export interface CardOverrides {
   Action?: Override<any>;
@@ -14,20 +14,22 @@ export interface CardOverrides {
 export interface CardProps {
   readonly action?: React.ReactNode;
   readonly children?: React.ReactNode;
-  readonly hasThumbnail?: (props: {readonly thumbnail?: string}) => boolean;
-  readonly headerImage?: string | React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>;
+  readonly hasThumbnail?: (props: { readonly thumbnail?: string }) => boolean;
+  readonly headerImage?:
+    | string
+    | React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>;
   readonly overrides?: CardOverrides;
   readonly thumbnail?: string;
   readonly title?: React.ReactNode;
 }
-export const Card: React.FC<CardProps>;
-export type hasThumbnail = (props: {readonly thumbnail?: string}) => boolean;
+export declare const Card: React.FC<CardProps>;
+export type hasThumbnail = (props: { readonly thumbnail?: string }) => boolean;
 
-export const StyledAction: StyletronComponent<any>;
-export const StyledBody: StyletronComponent<any>;
-export const StyledContents: StyletronComponent<any>;
-export const StyledHeaderImage: StyletronComponent<any>;
-export const StyledThumbnail: StyletronComponent<any>;
-export const StyledTitle: StyletronComponent<any>;
-export const StyledRoot: StyletronComponent<any>;
-export const StyledWrapper: StyletronComponent<any>;
+export declare const StyledAction: StyletronComponent<any>;
+export declare const StyledBody: StyletronComponent<any>;
+export declare const StyledContents: StyletronComponent<any>;
+export declare const StyledHeaderImage: StyletronComponent<any>;
+export declare const StyledThumbnail: StyletronComponent<any>;
+export declare const StyledTitle: StyletronComponent<any>;
+export declare const StyledRoot: StyletronComponent<any>;
+export declare const StyledWrapper: StyletronComponent<any>;

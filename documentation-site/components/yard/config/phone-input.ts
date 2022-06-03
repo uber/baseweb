@@ -1,15 +1,13 @@
-import {PhoneInput, COUNTRIES, SIZE} from 'baseui/phone-input';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
+import { PhoneInput, COUNTRIES, SIZE } from 'baseui/phone-input';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
 import selectConfig from './select';
-import inputConfig from './input';
-
-import {theme} from './input';
+import inputConfig, { theme } from './input';
 
 const phoneInputProps = require('!!extract-react-types-loader!../../../../src/phone-input/phone-input.js');
 
-const countriesEnum: {[key: string]: string} = {};
-Object.values(COUNTRIES).forEach(country => {
+const countriesEnum: { [key: string]: string } = {};
+Object.values(COUNTRIES).forEach((country) => {
   countriesEnum[country.id] = country.label;
 });
 
@@ -132,7 +130,7 @@ const PhoneInputConfig: TConfig = {
       description: 'Lets you customize all aspects of the component.',
       custom: {
         names: [
-          {...selectConfig, componentName: 'CountrySelect'},
+          { ...selectConfig, componentName: 'CountrySelect' },
           'CountrySelectContainer',
           'CountrySelectDropdown',
           'CountrySelectDropdownDialcodeColumn',

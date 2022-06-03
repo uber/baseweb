@@ -1,5 +1,5 @@
-import {TProp} from 'react-view';
-import {TProviderValue} from './provider';
+import { TProp } from 'react-view';
+import { TProviderValue } from './provider';
 
 export type TPropValueOverrides = {
   [key: string]: {
@@ -9,11 +9,11 @@ export type TPropValueOverrides = {
 };
 
 export const countProps = (
-  props: {[key: string]: TProp},
-  propsConfig: {[key: string]: TProp},
+  props: { [key: string]: TProp },
+  propsConfig: { [key: string]: TProp }
 ) => {
   let changedProps = 0;
-  Object.keys(props).forEach(prop => {
+  Object.keys(props).forEach((prop) => {
     if (
       prop !== 'overrides' &&
       props[prop].value !== '' &&
@@ -32,7 +32,7 @@ export const countOverrides = (overrides: any) => {
     return 0;
   }
   const existingOverrides = overrides.value ? Object.keys(overrides.value) : [];
-  return existingOverrides.filter(key => overrides.value[key].active).length;
+  return existingOverrides.filter((key) => overrides.value[key].active).length;
 };
 
 export const countThemeValues = (themeState: TProviderValue) => {

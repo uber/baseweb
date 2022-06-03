@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Tag, VARIANT} from 'baseui/tag';
 
-const variants = Object.keys(VARIANT) as (keyof VARIANT)[];
+const variants = Object.values(VARIANT);
 const onClick = (kind: string) => alert(`${kind} tag is clicked`);
 
 export default function Example() {
