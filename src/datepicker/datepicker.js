@@ -427,11 +427,12 @@ export default class Datepicker<T = Date> extends React.Component<DatepickerProp
     );
   };
 
-  componentDidUpdate(prevProps: DatepickerPropsT<T>) {
+  componentDidUpdate(prevProps: DatepickerPropsT<T>, prevState: StateT) {
     if (prevProps.value !== this.props.value) {
-      this.setState({
-        inputValue: this.formatDisplayValue(this.props.value),
-      });
+      const inputValue = this.formatDisplayValue(this.props.value);
+      if (prevState.inputValue !== inputValue) {
+        this.setState({ inputValue });
+      }
     }
   }
 

@@ -7,97 +7,70 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import InputMask from 'react-input-mask';
+// $FlowFixMe
+import { IMaskMixin } from 'react-imask';
 
 import Input from './input.js';
-import { Input as StyledInput } from './styled-components.js';
+import MaskedInputDeprecated from './masked-input-deprecated.js';
 import type { MaskedInputPropsT } from './types.js';
 
-const MaskOverride = React.forwardRef<MaskedInputPropsT, HTMLInputElement>(
-  (
-    {
-      // do nothing with these - we just don't want to pass it to the InputMask, as
-      // it does not have these properties
-      startEnhancer,
-      endEnhancer,
-      error,
-      positive,
-      // below are props that are used by the masked-input
-      onChange,
-      onFocus,
-      onBlur,
-      value,
-      disabled,
-      readOnly,
-      ...restProps
-    }: MaskedInputPropsT,
-    ref
-  ) => {
-    return (
-      <InputMask
-        onChange={onChange}
-        onFocus={onFocus}
-        onBlur={onBlur}
-        value={value}
-        disabled={disabled}
-        readOnly={readOnly}
-        {...restProps}
-      >
-        {(props) => (
-          <StyledInput
-            ref={ref}
-            onChange={onChange}
-            onFocus={onFocus}
-            onBlur={onBlur}
-            value={value}
-            disabled={disabled}
-            readOnly={readOnly}
-            {...props}
-          />
-        )}
-      </InputMask>
-    );
-  }
-);
-MaskOverride.displayName = 'MaskOverride';
+// converts react-input-mask (RIM) templates to imask (IM) templates
+// RIM specifies numerical digits as '9' characters and IM uses '0'
+// '9' characters escaped by a backslash are interpreted as literals
+// https://github.com/sanniassin/react-input-mask#mask
+// https://imask.js.org/guide.html#masked-pattern
+function transformMask(input) {
+  let output = '';
+  let index = 0;
 
-export default function MaskedInput({
-  mask,
-  maskChar,
-  overrides: { Input: inputOverride = {}, ...restOverrides } = {},
-  ...restProps
-}: MaskedInputPropsT) {
-  let componentOverride = MaskOverride;
-  let propsOverride = {};
-  let styleOverride = {};
+  while (index < input.length) {
+    const char = input[index];
+    const next = input[index + 1];
 
-  if (typeof inputOverride === 'function') {
-    componentOverride = inputOverride;
-  } else if (typeof inputOverride === 'object') {
-    componentOverride = inputOverride.component || componentOverride;
-    propsOverride = inputOverride.props || {};
-    styleOverride = inputOverride.style || {};
+    if (char === '\\' && next === '9') {
+      output += '9';
+      index += 1;
+    } else if (char === '9') {
+      output += '0';
+    } else if (char === '0') {
+      output += '\\0';
+    } else {
+      output += char;
+    }
+
+    index += 1;
   }
 
-  if (typeof propsOverride === 'object') {
-    propsOverride = {
-      ...propsOverride,
-      mask: propsOverride.mask || mask,
-      maskChar: propsOverride.maskChar || maskChar,
-    };
-  }
-
-  const nextOverrides = {
-    Input: {
-      component: componentOverride,
-      props: propsOverride,
-      style: styleOverride,
-    },
-    ...restOverrides,
-  };
-  return <Input {...restProps} overrides={nextOverrides} />;
+  return output;
 }
 
-MaskedInput.defaultProps = {
-  maskChar: ' ',
-};
+const MaskedInputInner = IMaskMixin(({ inputRef, ...props }) => {
+  return <Input inputRef={inputRef} {...props} />;
+});
+
+export default function MaskedInput(props: MaskedInputPropsT) {
+  if (props.maskChar) {
+    if (__DEV__) {
+      console.error("[baseui] 'maskChar' prop is deprecated from the MaskedInput component");
+    }
+    return <MaskedInputDeprecated {...props} />;
+  }
+
+  const { mask, maskChar, onChange, ...restProps } = props;
+
+  function handleAccept(value, maskRef, event) {
+    if (event && onChange) {
+      onChange(event);
+    }
+  }
+
+  return (
+    <MaskedInputInner
+      mask={mask ? transformMask(mask) : undefined}
+      // mask={'\\a\\000'}
+      // mask="\a\000"
+      onAccept={handleAccept}
+      {...restProps}
+    />
+  );
+}

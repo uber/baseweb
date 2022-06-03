@@ -10,14 +10,24 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import { MaskedInput } from '../index.js';
 
+function Instance({ initialValue = '1234', ...props }) {
+  const [value, setValue] = React.useState(initialValue);
+  return <MaskedInput value={value} onChange={(e) => setValue(e.target.value)} {...props} />;
+}
+
 export function Scenario() {
-  const [value, setValue] = React.useState('20000101');
   return (
-    <MaskedInput
-      autoFocus
-      mask="9999/99/99"
-      value={value}
-      onChange={(e) => setValue(e.target.value)}
-    />
+    <div>
+      <Instance mask="(99 99" initialValue="" />
+      <Instance mask="(99 99" />
+      <Instance mask="/99 99" />
+      <Instance mask="+99 99" />
+      <Instance mask="(99 99" />
+      <Instance mask="-99 99" />
+      <Instance mask={'\\a\\999'} />
+      <Instance mask={'\\a\\90099 99'} />
+      <Instance mask="99/99/9999" initialValue="10202021" />
+      <Instance mask="+1 (999) 999-9999" initialValue="01234567891" />
+    </div>
   );
 }

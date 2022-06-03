@@ -216,6 +216,7 @@
     "popper.js": "^1.16.0",
     "react-dropzone": "^9.0.0",
     "react-focus-lock": "^2.7.1",
+    "react-imask": "^6.4.2",
     "react-input-mask": "^2.0.4",
     "react-is": "^16.8.6",
     "react-movable": "^2.5.4",
