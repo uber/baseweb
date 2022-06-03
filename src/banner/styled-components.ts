@@ -8,11 +8,14 @@ import { styled } from '../styles/index';
 import { ACTION_POSITION } from './constants';
 import type { ActionPositionT } from './types';
 
-export const StyledRoot = styled<{
-  $backgroundColor: string;
-  $color: string;
-  $nested: boolean;
-}>('div', ({ $theme, $backgroundColor, $color, $nested }) => {
+export const StyledRoot = styled<
+  'div',
+  {
+    $backgroundColor: string;
+    $color: string;
+    $nested: boolean;
+  }
+>('div', ({ $theme, $backgroundColor, $color, $nested }) => {
   const radius = $nested ? $theme.borders.radius300 : $theme.borders.radius400;
   return {
     backgroundColor: $backgroundColor,
@@ -29,9 +32,12 @@ export const StyledRoot = styled<{
   };
 });
 
-export const StyledLeadingContent = styled<{
-  $includesArtwork: boolean;
-}>('div', ({ $theme, $includesArtwork }) => {
+export const StyledLeadingContent = styled<
+  'div',
+  {
+    $includesArtwork: boolean;
+  }
+>('div', ({ $theme, $includesArtwork }) => {
   return {
     alignItems: 'center',
     display: 'flex',
@@ -39,9 +45,12 @@ export const StyledLeadingContent = styled<{
   };
 });
 
-export const StyledMessageContent = styled<{
-  $actionPosition: ActionPositionT;
-}>('div', ({ $theme, $actionPosition }) => {
+export const StyledMessageContent = styled<
+  'div',
+  {
+    $actionPosition: ActionPositionT;
+  }
+>('div', ({ $theme, $actionPosition }) => {
   return {
     display: 'flex',
     flexDirection: 'column',
@@ -51,7 +60,7 @@ export const StyledMessageContent = styled<{
   };
 });
 
-export const StyledTrailingContent = styled<{}>('div', ({ $theme }) => {
+export const StyledTrailingContent = styled<'div', {}>('div', ({ $theme }) => {
   return {
     display: 'flex',
     gridRowEnd: 'span 2',
@@ -59,9 +68,12 @@ export const StyledTrailingContent = styled<{}>('div', ({ $theme }) => {
   };
 });
 
-export const StyledBelowContent = styled<{
-  $actionPosition: ActionPositionT;
-}>('div', ({ $theme, $actionPosition }) => {
+export const StyledBelowContent = styled<
+  'div',
+  {
+    $actionPosition: ActionPositionT;
+  }
+>('div', ({ $theme, $actionPosition }) => {
   return {
     gridColumnStart: 2,
     paddingBlockStart: $actionPosition === ACTION_POSITION.below ? $theme.sizing.scale300 : null,
@@ -69,15 +81,15 @@ export const StyledBelowContent = styled<{
   };
 });
 
-export const StyledTitle = styled<{}>('div', ({ $theme }) => {
+export const StyledTitle = styled<'div', {}>('div', ({ $theme }) => {
   return $theme.typography.LabelMedium;
 });
 
-export const StyledMessage = styled<{}>('div', ({ $theme }) => {
+export const StyledMessage = styled<'div', {}>('div', ({ $theme }) => {
   return $theme.typography.ParagraphMedium;
 });
 
-export const StyledTrailingButtonContainer = styled<{}>('div', ({ $theme }) => {
+export const StyledTrailingButtonContainer = styled<'div', {}>('div', ({ $theme }) => {
   return {
     display: 'flex',
     alignItems: 'center',
@@ -85,9 +97,12 @@ export const StyledTrailingButtonContainer = styled<{}>('div', ({ $theme }) => {
   };
 });
 
-export const StyledTrailingIconButton = styled<{
-  $nested: boolean;
-}>('button', ({ $theme, $nested }) => {
+export const StyledTrailingIconButton = styled<
+  'button',
+  {
+    $nested: boolean;
+  }
+>('button', ({ $theme, $nested }) => {
   const radius = $nested ? $theme.borders.radius300 : $theme.borders.radius400;
   return {
     alignItems: 'center',
