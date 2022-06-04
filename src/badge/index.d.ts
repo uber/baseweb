@@ -2,25 +2,25 @@ import * as React from 'react';
 import { StyletronComponent } from 'styletron-react';
 import { Override } from '../overrides';
 
-export interface HIERARCHY {
+export declare const HIERARCHY: {
   primary: 'primary';
   secondary: 'secondary';
-}
+};
 
-export interface SHAPE {
+export declare const SHAPE: {
   pill: 'pill';
   rectangle: 'rectangle';
-}
+};
 
-export interface COLOR {
+export declare const COLOR: {
   accent: 'accent';
   primary: 'primary';
   positive: 'positive';
   negative: 'negative';
   warning: 'warning';
-}
+};
 
-export interface PLACEMENT {
+export declare const PLACEMENT: {
   topLeft: 'topLeft';
   topRight: 'topRight';
   bottomRight: 'bottomRight';
@@ -35,12 +35,12 @@ export interface PLACEMENT {
   rightTopEdge: 'rightTopEdge';
   rightBottomEdge: 'rightBottomEdge';
   leftBottomEdge: 'leftBottomEdge';
-}
+};
 
-export type HierarchyT = HIERARCHY[keyof HIERARCHY];
-export type ShapeT = SHAPE[keyof SHAPE];
-export type ColorT = COLOR[keyof COLOR];
-export type PlacementT = PLACEMENT[keyof PLACEMENT];
+export type HierarchyT = typeof HIERARCHY[keyof typeof HIERARCHY];
+export type ShapeT = typeof SHAPE[keyof typeof SHAPE];
+export type ColorT = typeof COLOR[keyof typeof COLOR];
+export type PlacementT = typeof PLACEMENT[keyof typeof PLACEMENT];
 
 export type BadgeOverridesT = {
   Root?: Override<any>;
@@ -81,17 +81,12 @@ export type HintDotPropsT = {
   children?: React.ReactNode;
 };
 
-export const StyledRoot: StyletronComponent<any>;
-export const StyledPositioner: StyletronComponent<any>;
-export const StyledBadge: StyletronComponent<any>;
-export const StyledNotificationCircle: StyletronComponent<any>;
-export const StyledHintDot: StyletronComponent<any>;
+export declare const StyledRoot: StyletronComponent<any>;
+export declare const StyledPositioner: StyletronComponent<any>;
+export declare const StyledBadge: StyletronComponent<any>;
+export declare const StyledNotificationCircle: StyletronComponent<any>;
+export declare const StyledHintDot: StyletronComponent<any>;
 
-export const Badge: React.FC<BadgePropsT>;
-export const NotificationCircle: React.FC<NotificationCirclePropsT>;
-export const HintDot: React.FC<HintDotPropsT>;
-
-export const HIERARCHY: HIERARCHY;
-export const SHAPE: SHAPE;
-export const COLOR: COLOR;
-export const PLACEMENT: PLACEMENT;
+export declare const Badge: React.FC<BadgePropsT>;
+export declare const NotificationCircle: React.FC<NotificationCirclePropsT>;
+export declare const HintDot: React.FC<HintDotPropsT>;
