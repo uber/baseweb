@@ -176,7 +176,7 @@ const POSITION_STYLES = Object.freeze({
   },
 });
 
-export const StyledRoot = styled<{}>('div', () => {
+export const StyledRoot = styled<'div', {}>('div', () => {
   return {
     position: 'relative',
     display: 'inline-block',
@@ -221,12 +221,15 @@ const RIGHT_PLACEMENTS = [
   PLACEMENT.rightBottomEdge,
 ];
 
-export const StyledPositioner = styled<{
-  $role: RoleT;
-  $placement: PlacementT;
-  $horizontalOffset?: string | null;
-  $verticalOffset?: string | null;
-}>('div', ({ $theme, $role, $placement, $horizontalOffset, $verticalOffset }) => {
+export const StyledPositioner = styled<
+  'div',
+  {
+    $role: RoleT;
+    $placement: PlacementT;
+    $horizontalOffset?: string | null;
+    $verticalOffset?: string | null;
+  }
+>('div', ({ $theme, $role, $placement, $horizontalOffset, $verticalOffset }) => {
   let positionStyle = POSITION_STYLES[$role][$placement];
 
   if ($verticalOffset) {
@@ -254,12 +257,15 @@ export const StyledPositioner = styled<{
   };
 });
 
-export const StyledBadge = styled<{
-  $shape?: ShapeT;
-  $color?: ColorT;
-  $hierarchy?: HierarchyT;
-  $hidden?: boolean;
-}>(
+export const StyledBadge = styled<
+  'div',
+  {
+    $shape?: ShapeT;
+    $color?: ColorT;
+    $hierarchy?: HierarchyT;
+    $hidden?: boolean;
+  }
+>(
   'div',
   ({
     $theme,
@@ -286,10 +292,13 @@ export const StyledBadge = styled<{
   }
 );
 
-export const StyledNotificationCircle = styled<{
-  $color?: ColorT;
-  $hidden?: boolean;
-}>('div', ({ $theme, $color = COLOR.accent, $hidden }) => {
+export const StyledNotificationCircle = styled<
+  'div',
+  {
+    $color?: ColorT;
+    $hidden?: boolean;
+  }
+>('div', ({ $theme, $color = COLOR.accent, $hidden }) => {
   return {
     visibility: $hidden ? 'hidden' : 'inherit',
     height: $theme.sizing.scale700,
@@ -303,10 +312,13 @@ export const StyledNotificationCircle = styled<{
   };
 });
 
-export const StyledHintDot = styled<{
-  $color: ColorT;
-  $hidden?: boolean;
-}>('div', ({ $theme, $color = COLOR.accent, $hidden }) => {
+export const StyledHintDot = styled<
+  'div',
+  {
+    $color: ColorT;
+    $hidden?: boolean;
+  }
+>('div', ({ $theme, $color = COLOR.accent, $hidden }) => {
   return {
     visibility: $hidden ? 'hidden' : 'inherit',
     backgroundColor: $theme.colors[$color],
