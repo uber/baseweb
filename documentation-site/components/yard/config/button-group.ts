@@ -9,8 +9,8 @@ import { Button } from 'baseui/button';
 import { PropTypes } from 'react-view';
 import { TConfig } from '../types';
 
-const buttonGroupProps = require('!!extract-react-types-loader!../../../../src/button-group/button-group.js');
-const buttonProps = require('!!extract-react-types-loader!../../../../src/button/button.js');
+const buttonGroupProps = require('!!extract-react-types-loader!../../../../src/button-group/button-group');
+const buttonProps = require('!!extract-react-types-loader!../../../../src/button/button');
 
 const ButtonGroupConfig: TConfig = {
   componentName: 'ButtonGroup',

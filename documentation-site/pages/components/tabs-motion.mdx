@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
-import {Notification, KIND} from 'baseui/notification';
+import { Notification, KIND } from 'baseui/notification';
 
 import Example from '../../components/example';
 import Layout from '../../components/layout';
@@ -39,7 +39,7 @@ Tabs are a navigational element that allows users to easily move between groups 
 
 <Yard
   placeholderHeight={100}
-  compilerStyles={{width: '100%', marginBottom: '1rem'}}
+  compilerStyles={{ width: '100%', marginBottom: '1rem' }}
   {...tabsYardConfig}
 />
 
@@ -81,10 +81,7 @@ We use the index of each Tab to provide default keys. You can however, pass in y
 
 By default, when a Tab receives focus it will activate the Tab and show the corresponding TabPanel. You can change this by setting `activateOnFocus` to `false`. In the example above, focus a Tab and then use the directional keys to move focus to other Tabs. To activate the Tab you need to press `Enter` or the space bar.
 
-<Example
-  title="Vertical orientation"
-  path="tabs-motion/vertical-orientation.js"
->
+<Example title="Vertical orientation" path="tabs-motion/vertical-orientation.js">
   <VerticalOrientationExample />
 </Example>
 
@@ -161,13 +158,13 @@ The Tabs component set the id values of the individual Tab components it control
 <ApiTable
   title="Tabs props"
   config={tabsYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/tabs-motion/tabs.js')}
+  types={require('!!extract-react-types-loader!../../../src/tabs-motion/tabs')}
 />
 
 <ApiTable
   title="Tab props"
   config={tabYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/tabs-motion/tab.js')}
+  types={require('!!extract-react-types-loader!../../../src/tabs-motion/tab')}
 />
 
 <Exports component={TabsExports} title="Exports" path="baseui/tabs-motion" />

@@ -9,7 +9,7 @@ import { Skeleton } from 'baseui/skeleton';
 import { PropTypes } from 'react-view';
 import { TConfig } from '../types';
 
-const badgeProps = require('!!extract-react-types-loader!../../../../src/badge/badge.js');
+const badgeProps = require('!!extract-react-types-loader!../../../../src/badge/badge');
 
 const BadgeConfig: TConfig = {
   componentName: 'Badge',

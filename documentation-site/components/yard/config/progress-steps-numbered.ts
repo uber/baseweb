@@ -5,9 +5,9 @@ import { TConfig } from '../types';
 
 import ProgressStepsConfig from './progress-steps';
 
-const progressStepsProps = require('!!extract-react-types-loader!../../../../src/progress-steps/progress-steps.js');
-const numberedStepProps = require('!!extract-react-types-loader!../../../../src/progress-steps/numbered-step.js');
-const buttonProps = require('!!extract-react-types-loader!../../../../src/button/button.js');
+const progressStepsProps = require('!!extract-react-types-loader!../../../../src/progress-steps/progress-steps');
+const numberedStepProps = require('!!extract-react-types-loader!../../../../src/progress-steps/numbered-step');
+const buttonProps = require('!!extract-react-types-loader!../../../../src/button/button');
 
 const ProgressStepsNumberedConfig: TConfig = {
   ...ProgressStepsConfig,

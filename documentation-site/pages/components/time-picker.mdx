@@ -29,10 +29,7 @@ export default Layout;
   <Timepicker />
 </Example>
 
-<Example
-  title="Timepicker Min/Max Times"
-  path="timepicker/timepicker-minmax.js"
->
+<Example title="Timepicker Min/Max Times" path="timepicker/timepicker-minmax.js">
   <TimepickerMinMax />
 </Example>
 
@@ -41,11 +38,7 @@ export default Layout;
 <ApiTable
   title="Timepicker props"
   config={timepickerConfig}
-  types={require('!!extract-react-types-loader!../../../src/timepicker/timepicker.js')}
+  types={require('!!extract-react-types-loader!../../../src/timepicker/timepicker')}
 />
 
-<Exports
-  component={TimepickerExports}
-  title="Timepicker exports"
-  path="baseui/timepicker"
-/>
+<Exports component={TimepickerExports} title="Timepicker exports" path="baseui/timepicker" />

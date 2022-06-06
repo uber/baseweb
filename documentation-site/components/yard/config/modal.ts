@@ -3,7 +3,7 @@ import { KIND as ButtonKind } from 'baseui/button';
 import { PropTypes } from 'react-view';
 import { TConfig } from '../types';
 
-const modalProps = require('!!extract-react-types-loader!../../../../src/modal/modal.js');
+const modalProps = require('!!extract-react-types-loader!../../../../src/modal/modal');
 
 const ModalConfig: TConfig = {
   componentName: 'Modal',

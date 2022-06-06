@@ -32,10 +32,7 @@ export default Layout;
   <Sizes />
 </Example>
 
-<Example
-  title="Drawer with renderAll for SSR / SEO"
-  path="drawer/ssr-render-all.js"
->
+<Example title="Drawer with renderAll for SSR / SEO" path="drawer/ssr-render-all.js">
   <SSRRenderAll />
 </Example>
 
@@ -55,11 +52,7 @@ We have built in functionality based on the recommendations for dialogs and draw
 <ApiTable
   title="Drawer props"
   config={drawerYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/drawer/drawer.js')}
+  types={require('!!extract-react-types-loader!../../../src/drawer/drawer')}
 />
 
-<Exports
-  component={DrawerExports}
-  title="Drawer exports"
-  path="baseui/drawer"
-/>
+<Exports component={DrawerExports} title="Drawer exports" path="baseui/drawer" />

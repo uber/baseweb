@@ -5,8 +5,8 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
-import {Notification, KIND} from 'baseui/notification';
-import {StatefulTabs, Tab} from 'baseui/tabs';
+import { Notification, KIND } from 'baseui/notification';
+import { StatefulTabs, Tab } from 'baseui/tabs';
 import * as TabsExports from 'baseui/tabs';
 
 import Example from '../../components/example';
@@ -26,12 +26,11 @@ import ApiTable from '../../components/api-table';
 
 export default Layout;
 
-<Notification overrides={{Body: {style: {width: 'auto'}}}} kind={KIND.warning}>
-  This component is deprecated and will be removed in our next major version,
-  slated for late 2021. We recommend using our new{' '}
-  <a href="/components/tabs-motion">Tabs (Motion)</a> component. It has an
-  animated highlight and is compliant with the WAI-ARIA 1.1 Specification. The
-  APIs are almost identical so give it a try!
+<Notification overrides={{ Body: { style: { width: 'auto' } } }} kind={KIND.warning}>
+  This component is deprecated and will be removed in our next major version, slated for late 2021.
+  We recommend using our new <a href="/components/tabs-motion">Tabs (Motion)</a> component. It has
+  an animated highlight and is compliant with the WAI-ARIA 1.1 Specification. The APIs are almost
+  identical so give it a try!
 </Notification>
 
 # Tabs
@@ -80,7 +79,7 @@ We use tab order to provide default keys for each tab. You can however, pass in 
 <ApiTable
   title="Tabs props"
   config={tabsYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/tabs/tabs.js')}
+  types={require('!!extract-react-types-loader!../../../src/tabs/tabs')}
 />
 
 <Exports component={TabsExports} title="Tabs exports" path="baseui/tabs" />

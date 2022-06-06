@@ -58,11 +58,7 @@ This utility relies on unique label values to operate but can be customized foll
 <ApiTable
   title="AppNavBar"
   config={appNavBarYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/app-nav-bar/app-nav-bar.js')}
+  types={require('!!extract-react-types-loader!../../../src/app-nav-bar/app-nav-bar')}
 />
 
-<Exports
-  component={AppNavBarExports}
-  title="Navigation bar exports"
-  path="baseui/app-nav-bar"
-/>
+<Exports component={AppNavBarExports} title="Navigation bar exports" path="baseui/app-nav-bar" />

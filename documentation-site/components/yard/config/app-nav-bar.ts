@@ -3,7 +3,7 @@ import { ChevronDown, Delete, Overflow, Upload } from 'baseui/icon';
 import { PropTypes } from 'react-view';
 import { TConfig } from '../types';
 
-const navBarProps = require('!!extract-react-types-loader!../../../../src/app-nav-bar/app-nav-bar.js');
+const navBarProps = require('!!extract-react-types-loader!../../../../src/app-nav-bar/app-nav-bar');
 
 const NavigationBarConfig: TConfig = {
   componentName: 'AppNavBar',

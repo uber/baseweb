@@ -4,7 +4,7 @@ import { PropTypes } from 'react-view';
 import { TConfig } from '../types';
 import { theme, inputProps } from './input';
 
-const textareaProps = require('!!extract-react-types-loader!../../../../src/textarea/textarea.js');
+const textareaProps = require('!!extract-react-types-loader!../../../../src/textarea/textarea');
 
 const TextareaConfig: TConfig = {
   componentName: 'Textarea',

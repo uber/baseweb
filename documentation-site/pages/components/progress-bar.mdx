@@ -16,7 +16,7 @@ import CustomLabel from 'examples/progress-bar/custom-label.js';
 import Customization from 'examples/progress-bar/overrides.js';
 import ProgressBarRounded from 'examples/progress-bar/rounded.js';
 
-import {ProgressBar} from 'baseui/progress-bar';
+import { ProgressBar } from 'baseui/progress-bar';
 import * as ProgressBarExports from 'baseui/progress-bar';
 
 import Yard from '../../components/yard/index';
@@ -45,24 +45,15 @@ Indicates a wait time for actions - either within an experience flow or loading 
   <Basic />
 </Example>
 
-<Example
-  title="Progress bar with Negative Color"
-  path="progress-bar/negative.js"
->
+<Example title="Progress bar with Negative Color" path="progress-bar/negative.js">
   <Negative />
 </Example>
 
-<Example
-  title="Progress bar with Visible Label"
-  path="progress-bar/with-label.js"
->
+<Example title="Progress bar with Visible Label" path="progress-bar/with-label.js">
   <WithLabel />
 </Example>
 
-<Example
-  title="Progress bar with Custom Label"
-  path="progress-bar/custom-label.js"
->
+<Example title="Progress bar with Custom Label" path="progress-bar/custom-label.js">
   <CustomLabel />
 </Example>
 
@@ -83,11 +74,7 @@ There also is a rounded version of the progress bar
 <ApiTable
   title="Progress Bar props"
   config={progressBarYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/progress-bar/progressbar.js')}
+  types={require('!!extract-react-types-loader!../../../src/progress-bar/progressbar')}
 />
 
-<Exports
-  component={ProgressBarExports}
-  title="Progress Bar exports"
-  path="baseui/progress-bar"
-/>
+<Exports component={ProgressBarExports} title="Progress Bar exports" path="baseui/progress-bar" />

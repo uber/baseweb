@@ -2,7 +2,7 @@ import { TreeView, toggleIsExpanded } from 'baseui/tree-view';
 import { PropTypes } from 'react-view';
 import { TConfig } from '../types';
 
-const treeViewProps = require('!!extract-react-types-loader!../../../../src/tree-view/tree-view.js');
+const treeViewProps = require('!!extract-react-types-loader!../../../../src/tree-view/tree-view');
 
 const TreeViewConfig: TConfig = {
   componentName: 'TreeView',

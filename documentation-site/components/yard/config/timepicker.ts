@@ -12,7 +12,7 @@ import inputConfig from './input';
 import selectConfig from './select';
 import { startOfDay } from 'date-fns';
 
-const timepickerProps = require('!!extract-react-types-loader!../../../../src/timepicker/timepicker.js');
+const timepickerProps = require('!!extract-react-types-loader!../../../../src/timepicker/timepicker');
 
 const TimepickerConfig: TConfig = {
   componentName: 'TimePicker',
