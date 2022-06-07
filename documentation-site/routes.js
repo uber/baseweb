@@ -201,6 +201,18 @@ const routes = [
             itemId: '/components/avatar',
           },
           {
+            title: 'Badge',
+            itemId: '/components/badge',
+          },
+          {
+            title: 'Badge - NotificationCircle',
+            itemId: '/components/notification-circle',
+          },
+          {
+            title: 'Badge - HintDot',
+            itemId: '/components/hint-dot',
+          },
+          {
             title: 'Drag and Drop List',
             itemId: '/components/dnd-list',
           },
@@ -258,6 +270,10 @@ const routes = [
       {
         title: 'Progress & Validation',
         subNav: [
+          {
+            title: 'Banner',
+            itemId: '/components/banner',
+          },
           {
             title: 'Empty State',
             itemId: '/components/empty-state',

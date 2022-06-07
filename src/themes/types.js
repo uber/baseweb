@@ -173,6 +173,15 @@ export type SemanticColorTokensT = {|
 |};
 
 export type ComponentColorTokensT = {|
+  bannerActionLowInfo: string,
+  bannerActionLowNegative: string,
+  bannerActionLowPositive: string,
+  bannerActionLowWarning: string,
+  bannerActionHighInfo: string,
+  bannerActionHighNegative: string,
+  bannerActionHighPositive: string,
+  bannerActionHighWarning: string,
+
   // Buttons
   buttonPrimaryFill: string,
   buttonPrimaryText: string,

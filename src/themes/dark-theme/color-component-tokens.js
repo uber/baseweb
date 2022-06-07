@@ -16,6 +16,15 @@ const tagHoverBackground = `rgba(255, 255, 255, 0.2)`;
 // Due to the legacy `createTheme` type the values
 // need to be overrideable through primitives
 export default (themePrimitives: ColorTokensT = colorTokens): ComponentColorTokensT => ({
+  bannerActionLowInfo: themePrimitives.accent600,
+  bannerActionLowNegative: themePrimitives.negative600,
+  bannerActionLowPositive: themePrimitives.positive600,
+  bannerActionLowWarning: themePrimitives.warning600,
+  bannerActionHighInfo: themePrimitives.accent500,
+  bannerActionHighNegative: themePrimitives.negative600,
+  bannerActionHighPositive: themePrimitives.positive600,
+  bannerActionHighWarning: themePrimitives.warning600,
+
   // Buttons
   buttonPrimaryFill: themePrimitives.primary,
   buttonPrimaryText: themePrimitives.black,
