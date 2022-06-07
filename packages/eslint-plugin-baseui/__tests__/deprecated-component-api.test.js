@@ -376,28 +376,6 @@ const tests = {
       errors: [{ messageId: MESSAGES.modalBackdrop.id }],
     },
 
-    // Spinner
-    {
-      code: `
-        import { Spinner } from "baseui/spinner"
-        export default function() {
-          return <Spinner />
-        }
-      `,
-      errors: [{ messageId: MESSAGES.deprecateSpinner.id }],
-    },
-
-    // Spinner renamed
-    {
-      code: `
-        import { Spinner as BaseSpinner } from "baseui/spinner"
-        export default function() {
-          return <BaseSpinner />
-        }
-      `,
-      errors: [{ messageId: MESSAGES.deprecateSpinner.id }],
-    },
-
     // Button - minimal kind
     // Prop as imported constant
     {
