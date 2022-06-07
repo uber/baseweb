@@ -4,6 +4,8 @@ import { Override } from '../overrides';
 export interface AppNavBarOverridesT {
   Root?: Override<any>;
   AppName?: Override<any>;
+  DesktopMenu?: Override<any>;
+  DesktopMenuContainer?: Override<any>;
   MainMenuItem?: Override<any>;
   PrimaryMenuContainer?: Override<any>;
   ProfileTileContainer?: Override<any>;

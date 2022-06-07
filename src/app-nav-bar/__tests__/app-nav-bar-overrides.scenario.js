@@ -97,6 +97,9 @@ export function Scenario() {
           style: { ...expandBorderStyles('dashed 2px green') },
         },
 
+        DesktopMenu: { style: { ...expandBorderStyles('dashed 2px pink') } },
+        DesktopMenuContainer: { style: { ...expandBorderStyles('dashed 2px tomato') } },
+
         MainMenuItem: { style: { ...expandBorderStyles('dashed 2px blue') } },
         SubnavContainer: { style: { ...expandBorderStyles('dashed 2px purple') } },
         SecondaryMenuContainer: {

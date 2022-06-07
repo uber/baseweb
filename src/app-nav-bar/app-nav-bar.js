@@ -19,10 +19,11 @@ import {
   StyledRoot,
   StyledSpacing,
   StyledPrimaryMenuContainer,
-  StyledSubnavContainer,
   StyledSecondaryMenuContainer,
   StyledAppName,
   StyledMainMenuItem,
+  StyledDesktopMenuContainer,
+  StyledDesktopMenu,
 } from './styled-components.js';
 import type { AppNavBarPropsT } from './types.js';
 import { defaultMapItemToNode, mapItemsActive } from './utils.js';
@@ -81,39 +82,29 @@ function MainMenuItem(props) {
 function SecondaryMenu(props) {
   const { items = [], mapItemToNode, onSelect, overrides = {} } = props;
 
-  const [SubnavContainer, subnavContainerProps] = getOverrides(
-    overrides.SubnavContainer,
-    StyledSubnavContainer
-  );
   const [SecondaryMenuContainer, secondaryMenuContainerProps] = getOverrides(
     overrides.SecondaryMenuContainer,
     StyledSecondaryMenuContainer
   );
 
   return (
-    <SubnavContainer {...subnavContainerProps}>
-      <div>
-        <div>
-          <SecondaryMenuContainer
-            role="navigation"
-            aria-label="Secondary navigation"
-            {...secondaryMenuContainerProps}
-          >
-            {items.map((item, index) => (
-              // Replace with a menu item renderer
-              <MainMenuItem
-                mapItemToNode={mapItemToNode}
-                item={item}
-                kind={KIND.secondary}
-                key={index}
-                onSelect={onSelect}
-                overrides={overrides}
-              />
-            ))}
-          </SecondaryMenuContainer>
-        </div>
-      </div>
-    </SubnavContainer>
+    <SecondaryMenuContainer
+      role="navigation"
+      aria-label="Secondary navigation"
+      {...secondaryMenuContainerProps}
+    >
+      {items.map((item, index) => (
+        // Replace with a menu item renderer
+        <MainMenuItem
+          mapItemToNode={mapItemToNode}
+          item={item}
+          kind={KIND.secondary}
+          key={index}
+          onSelect={onSelect}
+          overrides={overrides}
+        />
+      ))}
+    </SecondaryMenuContainer>
   );
 }
 
@@ -145,6 +136,11 @@ export default function AppNavBar(props: AppNavBarPropsT) {
     overrides.PrimaryMenuContainer,
     StyledPrimaryMenuContainer
   );
+  const [DesktopMenuContainer, desktopMenuContainerProps] = getOverrides(
+    overrides.DesktopMenuContainer,
+    StyledDesktopMenuContainer
+  );
+  const [DesktopMenu, desktopMenuProps] = getOverrides(overrides.DesktopMenu, StyledDesktopMenu);
 
   let secondaryMenu;
   let desktopSubNavPosition = POSITION.horizontal;
@@ -160,12 +156,10 @@ export default function AppNavBar(props: AppNavBarPropsT) {
           },
         })}
       >
-        <div>
-          <Spacing {...spacingProps}>
-            {mainItems.length || userItems.length ? <MobileNav {...props} /> : null}
-            <AppName {...appNameProps}>{title}</AppName>
-          </Spacing>
-        </div>
+        <Spacing {...spacingProps}>
+          {mainItems.length || userItems.length ? <MobileNav {...props} /> : null}
+          <AppName {...appNameProps}>{title}</AppName>
+        </Spacing>
 
         {secondaryMenu && mobileSubNavPosition === POSITION.horizontal && (
           <SecondaryMenu
@@ -180,26 +174,16 @@ export default function AppNavBar(props: AppNavBarPropsT) {
       {/* Desktop Nav Experience */}
       <div
         className={css({
-          margin: 'auto',
-          maxWidth: `${theme.breakpoints.large}px`,
           [`@media screen and (max-width: ${theme.breakpoints.large - 1}px)`]: {
             display: 'none',
           },
         })}
       >
-        <div
-          className={css({
-            alignItems: 'center',
-            display: 'flex',
-            justifyContent: 'space-between',
-            paddingBlockStart: '18px',
-            paddingBlockEnd: '18px',
-          })}
-        >
-          {/* Replace with a Logo renderer */}
-          <AppName {...appNameProps}>{title}</AppName>
+        <DesktopMenuContainer {...desktopMenuContainerProps}>
+          <DesktopMenu {...desktopMenuProps}>
+            {/* Replace with a Logo renderer */}
+            <AppName {...appNameProps}>{title}</AppName>
 
-          <div className={css({ alignItems: 'center', display: 'flex' })}>
             <PrimaryMenuContainer
               role="navigation"
               aria-label="Main navigation"
@@ -237,8 +221,8 @@ export default function AppNavBar(props: AppNavBarPropsT) {
                 userItems={userItems}
               />
             ) : null}
-          </div>
-        </div>
+          </DesktopMenu>
+        </DesktopMenuContainer>
 
         {secondaryMenu && desktopSubNavPosition === POSITION.horizontal && (
           <SecondaryMenu

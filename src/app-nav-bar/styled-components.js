@@ -46,17 +46,10 @@ export const StyledRoot = styled<{}>('div', (props) => {
     ...$theme.typography.font300,
     boxSizing: 'border-box',
     backgroundColor: $theme.colors.backgroundPrimary,
-    boxShadow: '0px 1px 0px rgba(0, 0, 0, 0.08)',
-    width: '100%',
   };
 });
 
-export const StyledSubnavContainer = styled<{}>('div', ({ $theme }) => {
-  return {
-    boxSizing: 'border-box',
-    boxShadow: '0px -1px 0px rgba(0, 0, 0, 0.08)',
-  };
-});
+export const StyledSubnavContainer = styled('div', {});
 
 export const StyledSpacing = styled<{}>('div', (props) => {
   const { $theme } = props;
@@ -102,6 +95,7 @@ export const StyledPrimaryMenuContainer = styled<{}>('div', ({ $theme }) => {
     height: '100%',
     display: 'flex',
     flexDirection: 'row',
+    flexGrow: 1,
     flexWrap: 'nowrap',
     justifyContent: 'flex-end',
     alignItems: 'stretch',
@@ -156,6 +150,8 @@ export const StyledSecondaryMenuContainer = styled<{}>('div', ({ $theme }) => {
     flexDirection: 'row',
     flexWrap: 'nowrap',
     justifyContent: 'flex-start',
+    margin: 'auto',
+    maxWidth: `${$theme.breakpoints.large}px`,
     alignItems: 'stretch',
     overflow: 'auto',
   };
@@ -197,5 +193,25 @@ export const StyledUserProfileInfoContainer = styled<{}>('div', ({ $theme }) => 
   return {
     boxSizing: 'border-box',
     alignSelf: 'center',
+  };
+});
+
+export const StyledDesktopMenuContainer = styled<{}>('div', ({ $theme }) => {
+  return {
+    borderBottomWidth: '1px',
+    borderBottomStyle: 'solid',
+    borderBottomColor: `${$theme.colors.borderOpaque}`,
+  };
+});
+
+export const StyledDesktopMenu = styled<{}>('div', ({ $theme }) => {
+  return {
+    alignItems: 'center',
+    display: 'flex',
+    justifyContent: 'space-between',
+    margin: 'auto',
+    maxWidth: `${$theme.breakpoints.large}px`,
+    paddingBlockStart: '18px',
+    paddingBlockEnd: '18px',
   };
 });
