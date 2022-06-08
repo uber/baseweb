@@ -1,5 +1,5 @@
 import { StyletronComponent } from 'styletron-react';
-import { Sizing } from '../theme.ts';
+import { Sizing } from '../theme';
 
 export enum SIZE {
   small = 'small',
@@ -14,4 +14,4 @@ export interface SpinnerProps {
   $size?: number | string | SIZE | Sizing;
 }
 
-export const Spinner: StyletronComponent<SpinnerProps>;
+export declare const Spinner: StyletronComponent<SpinnerProps>;

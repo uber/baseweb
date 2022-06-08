@@ -10,7 +10,7 @@ export interface ProgressStepsProps {
   children?: React.ReactNode;
   current?: number;
 }
-export const ProgressSteps: React.FC<ProgressStepsProps>;
+export declare const ProgressSteps: React.FC<ProgressStepsProps>;
 
 export interface StepOverrides {
   Root?: Override<any>;
@@ -30,7 +30,7 @@ export interface StepProps {
   overrides?: StepOverrides;
   children?: React.ReactNode;
 }
-export const Step: React.FC<StepProps>;
+export declare const Step: React.FC<StepProps>;
 
 export interface NumberedStepOverrides {
   Root?: Override<any>;
@@ -51,21 +51,21 @@ export interface NumberedStepProps {
   children?: React.ReactNode;
   step?: React.ReactNode;
 }
-export const NumberedStep: React.FC<NumberedStepProps>;
+export declare const NumberedStep: React.FC<NumberedStepProps>;
 
 export interface StyleProps {
   $isActive?: boolean;
   $isCompleted?: boolean;
   $disabled?: boolean;
 }
-export const StyledProgressSteps: StyletronComponent<StyleProps>;
-export const StyledStep: StyletronComponent<StyleProps>;
-export const StyledIcon: StyletronComponent<StyleProps>;
-export const StyledInnerIcon: StyletronComponent<StyleProps>;
-export const StyledContent: StyletronComponent<StyleProps>;
-export const StyledContentTitle: StyletronComponent<StyleProps>;
-export const StyledContentTail: StyletronComponent<StyleProps>;
-export const StyledContentDescription: StyletronComponent<StyleProps>;
-export const StyledNumberStep: StyletronComponent<StyleProps>;
-export const StyledNumberIcon: StyletronComponent<StyleProps>;
-export const StyledNumberContentTail: StyletronComponent<StyleProps>;
+export declare const StyledProgressSteps: StyletronComponent<StyleProps>;
+export declare const StyledStep: StyletronComponent<StyleProps>;
+export declare const StyledIcon: StyletronComponent<StyleProps>;
+export declare const StyledInnerIcon: StyletronComponent<StyleProps>;
+export declare const StyledContent: StyletronComponent<StyleProps>;
+export declare const StyledContentTitle: StyletronComponent<StyleProps>;
+export declare const StyledContentTail: StyletronComponent<StyleProps>;
+export declare const StyledContentDescription: StyletronComponent<StyleProps>;
+export declare const StyledNumberStep: StyletronComponent<StyleProps>;
+export declare const StyledNumberIcon: StyletronComponent<StyleProps>;
+export declare const StyledNumberContentTail: StyletronComponent<StyleProps>;

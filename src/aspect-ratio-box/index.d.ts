@@ -8,4 +8,4 @@ export interface AspectRatioBoxProps extends BlockProps {
 }
 
 export class AspectRatioBox extends React.Component<AspectRatioBoxProps> {}
-export const AspectRatioBoxBody: React.FC<BlockProps>;
+export declare const AspectRatioBoxBody: React.FC<BlockProps>;

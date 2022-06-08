@@ -22,7 +22,7 @@ export interface TimezonePickerProps {
   onChange?: (value: Timezone) => any;
   overrides?: TimezoneOverrides;
   value?: string;
-  size?: SIZE[keyof SIZE];
+  size?: typeof SIZE[keyof typeof SIZE];
   includeAbbreviations?: boolean;
 }
 export interface TimezonePickerState {

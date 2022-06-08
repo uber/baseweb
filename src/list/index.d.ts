@@ -1,25 +1,20 @@
-import { HeaderNavigationOverrides } from 'baseui/header-navigation';
+import { HeaderNavigationOverrides } from '../header-navigation';
 import * as React from 'react';
 import { StyletronComponent } from 'styletron-react';
 import { Override } from '../overrides';
 
-export interface ARTWORK_SIZES {
+export declare const ARTWORK_SIZES: {
   SMALL: 'SMALL';
   MEDIUM: 'MEDIUM';
   LARGE: 'LARGE';
-}
-export const ARTWORK_SIZES: ARTWORK_SIZES;
-export type ArtworkSizesT =
-  | ARTWORK_SIZES['SMALL']
-  | ARTWORK_SIZES['MEDIUM']
-  | ARTWORK_SIZES['LARGE'];
+};
+export type ArtworkSizesT = typeof ARTWORK_SIZES[keyof typeof ARTWORK_SIZES];
 
-export interface SHAPE {
+export declare const SHAPE: {
   DEFAULT: 'DEFAULT';
   ROUND: 'ROUND';
-}
-export const SHAPE: SHAPE;
-export type ShapeT = SHAPE['DEFAULT'] | SHAPE['ROUND'];
+};
+export type ShapeT = typeof SHAPE[keyof typeof SHAPE];
 
 export interface StyledRootPropsT {
   $shape: ShapeT;
@@ -72,14 +67,16 @@ export interface MenuAdapterPropsT extends PropsT {
   $disabled: boolean;
 }
 
-export const ListItem: React.ForwardRefExoticComponent<PropsT & React.RefAttributes<HTMLLIElement>>;
-export const ListItemLabel: React.FC<LabelPropsT>;
-export const MenuAdapter: React.FC<MenuAdapterPropsT>;
+export declare const ListItem: React.ForwardRefExoticComponent<
+  PropsT & React.RefAttributes<HTMLLIElement>
+>;
+export declare const ListItemLabel: React.FC<LabelPropsT>;
+export declare const MenuAdapter: React.FC<MenuAdapterPropsT>;
 
-export const StyledRoot: StyletronComponent<{}>;
-export const StyledContent: StyletronComponent<StyledContentPropsT>;
-export const StyledEndEnhancerContainer: StyletronComponent<{}>;
-export const StyledArtworkContainer: StyletronComponent<StyledArtworkContainerPropsT>;
+export declare const StyledRoot: StyletronComponent<{}>;
+export declare const StyledContent: StyletronComponent<StyledContentPropsT>;
+export declare const StyledEndEnhancerContainer: StyletronComponent<{}>;
+export declare const StyledArtworkContainer: StyletronComponent<StyledArtworkContainerPropsT>;
 
 export interface HeadingPropsT {
   heading: React.ReactNode;
@@ -98,14 +95,14 @@ export type StyledHeadingHeadingPropsT = {
   $maxLines: 1 | 2;
 };
 
-export const ListHeading: React.ForwardRefExoticComponent<
+export declare const ListHeading: React.ForwardRefExoticComponent<
   HeadingPropsT & React.RefAttributes<HTMLLIElement>
 >;
 
-export const StyledHeadingRoot: StyletronComponent<{}>;
-export const StyledHeadingContent: StyletronComponent<{}>;
-export const StyledHeadingContentRow: StyletronComponent<{}>;
-export const StyledHeadingMainHeading: StyletronComponent<StyledHeadingHeadingPropsT>;
-export const StyledHeadingSubHeading: StyletronComponent<StyledHeadingHeadingPropsT>;
-export const StyledHeadingEndEnhancerContainer: StyletronComponent<StyledHeadingEndEnhancerContainerPropsT>;
-export const StyledHeadingEndEnhancerDescriptionContainer: StyletronComponent<{}>;
+export declare const StyledHeadingRoot: StyletronComponent<{}>;
+export declare const StyledHeadingContent: StyletronComponent<{}>;
+export declare const StyledHeadingContentRow: StyletronComponent<{}>;
+export declare const StyledHeadingMainHeading: StyletronComponent<StyledHeadingHeadingPropsT>;
+export declare const StyledHeadingSubHeading: StyletronComponent<StyledHeadingHeadingPropsT>;
+export declare const StyledHeadingEndEnhancerContainer: StyletronComponent<StyledHeadingEndEnhancerContainerPropsT>;
+export declare const StyledHeadingEndEnhancerDescriptionContainer: StyletronComponent<{}>;

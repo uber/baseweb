@@ -22,7 +22,7 @@ export type PaymentCardProps = InputProps & { overrides?: PaymentCardOverrides }
 export type StatefulPaymentCardProps = InputProps &
   StatefulContainerProps & { children?: never; overrides?: PaymentCardOverrides };
 
-export const StatefulPaymentCard: React.FC<StatefulPaymentCardProps>;
+export declare const StatefulPaymentCard: React.FC<StatefulPaymentCardProps>;
 export class PaymentCard extends React.Component<PaymentCardProps> {}
 
-export const StyledIconWrapper: StyletronComponent<any>;
+export declare const StyledIconWrapper: StyletronComponent<any>;

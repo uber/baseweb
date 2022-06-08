@@ -6,9 +6,9 @@ import { SIZE } from '../input';
 
 export { SIZE };
 
-export interface STATE_CHANGE_TYPE {
+export declare const STATE_CHANGE_TYPE: {
   change: 'change';
-}
+};
 
 export interface Labels {
   prevButton?: string;
@@ -21,7 +21,7 @@ export interface State {
 }
 
 export type StateReducer = (
-  changeType: STATE_CHANGE_TYPE[keyof STATE_CHANGE_TYPE],
+  changeType: typeof STATE_CHANGE_TYPE[keyof typeof STATE_CHANGE_TYPE],
   changes: State,
   currentState: State
 ) => State;
@@ -46,7 +46,7 @@ export interface PaginationProps extends Callbacks {
   currentPage: number;
   labels?: Labels;
   overrides?: PaginationOverrides;
-  size?: SIZE[keyof SIZE];
+  size?: typeof SIZE[keyof typeof SIZE];
 }
 
 export interface PageOption {
@@ -69,7 +69,7 @@ export interface StatefulPaginationProps extends Callbacks {
   overrides?: PaginationOverrides;
 }
 
-export const StatefulPagination: React.FC<StatefulPaginationProps>;
+export declare const StatefulPagination: React.FC<StatefulPaginationProps>;
 
 export interface StatefulContainerProps {
   children: React.ReactNode;
@@ -80,11 +80,13 @@ export interface StatefulContainerProps {
 }
 
 export class StatefulContainer extends React.Component<StatefulContainerProps, State> {
-  internalSetState(changeType: STATE_CHANGE_TYPE[keyof STATE_CHANGE_TYPE], changes: State): void;
+  internalSetState(
+    changeType: typeof STATE_CHANGE_TYPE[keyof typeof STATE_CHANGE_TYPE],
+    changes: State
+  ): void;
   onPageChange(args: { nextPage: number }): void;
 }
 
-export const StyledRoot: StyletronComponent<any>;
-export const StyledMaxLabel: StyletronComponent<any>;
-export const StyledDropdownContainer: StyletronComponent<any>;
-export const STATE_CHANGE_TYPE: STATE_CHANGE_TYPE;
+export declare const StyledRoot: StyletronComponent<any>;
+export declare const StyledMaxLabel: StyletronComponent<any>;
+export declare const StyledDropdownContainer: StyletronComponent<any>;

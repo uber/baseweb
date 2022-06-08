@@ -4,14 +4,14 @@ import { SIZE, InputProps } from '../input';
 import { OnChangeParams } from '../select';
 import { Override } from '../overrides';
 
-export interface STATE_CHANGE_TYPE {
+export declare const STATE_CHANGE_TYPE: {
   textChange: 'textChange';
   countryChange: 'countryChange';
-}
+};
 
 export { SIZE };
 
-export interface COUNTRIES {
+export declare const COUNTRIES: {
   AF: { label: 'Afghanistan (‫افغانستان‬‎)'; id: 'AF'; dialCode: '+93' };
   AL: { label: 'Albania (Shqipëri)'; id: 'AL'; dialCode: '+355' };
   DZ: { label: 'Algeria (‫الجزائر‬‎)'; id: 'DZ'; dialCode: '+213' };
@@ -309,7 +309,7 @@ export interface COUNTRIES {
   ZM: { label: 'Zambia'; id: 'ZM'; dialCode: '+260' };
   ZW: { label: 'Zimbabwe'; id: 'ZW'; dialCode: '+263' };
   AX: { label: 'Åland Islands'; id: 'AX'; dialCode: '+358' };
-}
+};
 
 export interface PhoneInputOverrides {
   Input?: Override<any>;
@@ -329,17 +329,17 @@ export interface PhoneInputProps extends InputProps {
   onTextChange?: (event: React.SyntheticEvent<HTMLInputElement>) => any;
   onCountryChange?: (event: OnChangeParams) => any;
   mapIsoToLabel?: (iso: string) => string;
-  size?: SIZE[keyof SIZE];
+  size?: typeof SIZE[keyof typeof SIZE];
   maxDropdownHeight?: string;
   maxDropdownWidth?: string;
   overrides?: PhoneInputOverrides;
 }
-export const PhoneInput: React.FC<PhoneInputProps>;
+export declare const PhoneInput: React.FC<PhoneInputProps>;
 
 export interface PhoneInputLiteProps extends PhoneInputProps {
   countries: { [key: string]: Country };
 }
-export const PhoneInputLite: React.FC<PhoneInputLiteProps>;
+export declare const PhoneInputLite: React.FC<PhoneInputLiteProps>;
 
 export interface StatefulPhoneInputProps {
   'aria-label'?: string;
@@ -350,7 +350,7 @@ export interface StatefulPhoneInputProps {
   mapIsoToLabel?: (iso: string) => string;
   overrides?: PhoneInputOverrides;
 }
-export const StatefulPhoneInput: React.FC<StatefulPhoneInputProps>;
+export declare const StatefulPhoneInput: React.FC<StatefulPhoneInputProps>;
 
 export type StateReducer = (type: StateChange, nextState: State, currentState: State) => State;
 export interface StatefulPhoneInputContainerProps {
@@ -364,7 +364,7 @@ export interface StatefulPhoneInputContainerProps {
   overrides?: PhoneInputOverrides;
 }
 export interface Country {
-  id: keyof COUNTRIES;
+  id: keyof typeof COUNTRIES;
   label: string;
   dialCode: string;
 }
@@ -372,7 +372,7 @@ export interface State {
   text?: string;
   country: Readonly<Country>;
 }
-export type StateChange = STATE_CHANGE_TYPE[keyof STATE_CHANGE_TYPE];
+export type StateChange = typeof STATE_CHANGE_TYPE[keyof typeof STATE_CHANGE_TYPE];
 export class StatefulPhoneInputContainer extends React.Component<
   StatefulPhoneInputContainerProps,
   State
@@ -387,7 +387,7 @@ export interface CountrySelectProps {
   country?: Country;
   inputRef?: React.Ref<HTMLInputElement>;
   onCountryChange?: (event: OnChangeParams) => any;
-  size?: SIZE[keyof SIZE];
+  size?: typeof SIZE[keyof typeof SIZE];
   maxDropdownWidth?: string;
   maxDropdownHeight?: string;
   mapIsoToLabel?: (iso: string) => string;
@@ -402,7 +402,7 @@ export interface CountrySelectProps {
     FlagContainer?: Override<any>;
   };
 }
-export const CountrySelect: React.FC<CountrySelectProps>;
+export declare const CountrySelect: React.FC<CountrySelectProps>;
 
 export interface CountrySelectDropdownProps {
   children?: Readonly<React.ReactNode[]>;
@@ -418,25 +418,23 @@ export interface CountrySelectDropdownProps {
     FlagContainer?: Override<any>;
   };
 }
-export const CountrySelectDropdown: React.RefForwardingComponent<CountrySelectDropdownProps>;
+export declare const CountrySelectDropdown: React.RefForwardingComponent<CountrySelectDropdownProps>;
 
 export interface FlagProps {
-  iso: COUNTRIES[keyof COUNTRIES];
+  iso: typeof COUNTRIES[keyof typeof COUNTRIES];
   width?: string;
 }
-export const Flag: React.FC<FlagProps>;
+export declare const Flag: React.FC<FlagProps>;
 
-export const StyledFlag: StyletronComponent<any>;
-export const StyledRoot: StyletronComponent<any>;
-export const StyledDialCode: StyletronComponent<any>;
-export const StyledCountrySelectContainer: StyletronComponent<any>;
-export const StyledCountrySelectDropdownContainer: StyletronComponent<any>;
-export const StyledCountrySelectDropdownListItem: StyletronComponent<any>;
-export const StyledCountrySelectDropdownFlagColumn: StyletronComponent<any>;
-export const StyledCountrySelectDropdownNameColumn: StyletronComponent<any>;
-export const StyledCountrySelectDropdownDialcodeColumn: StyletronComponent<any>;
+export declare const StyledFlag: StyletronComponent<any>;
+export declare const StyledRoot: StyletronComponent<any>;
+export declare const StyledDialCode: StyletronComponent<any>;
+export declare const StyledCountrySelectContainer: StyletronComponent<any>;
+export declare const StyledCountrySelectDropdownContainer: StyletronComponent<any>;
+export declare const StyledCountrySelectDropdownListItem: StyletronComponent<any>;
+export declare const StyledCountrySelectDropdownFlagColumn: StyletronComponent<any>;
+export declare const StyledCountrySelectDropdownNameColumn: StyletronComponent<any>;
+export declare const StyledCountrySelectDropdownDialcodeColumn: StyletronComponent<any>;
 
-export const DEFAULT_MAX_DROPDOWN_WIDTH: '400px';
-export const DEFAULT_MAX_DROPDOWN_HEIGHT: '400px';
-export const STATE_CHANGE_TYPE: STATE_CHANGE_TYPE;
-export const COUNTRIES: COUNTRIES;
+export declare const DEFAULT_MAX_DROPDOWN_WIDTH: '400px';
+export declare const DEFAULT_MAX_DROPDOWN_HEIGHT: '400px';

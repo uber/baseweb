@@ -50,7 +50,6 @@ module.exports = {
     fixable: 'code',
     messages: {
       [MESSAGES.replace.id]: MESSAGES.replace.message,
-      [MESSAGES.deprecateSpinner.id]: MESSAGES.deprecateSpinner.message,
       [MESSAGES.buttonKindMinimal.id]: MESSAGES.buttonKindMinimal.message,
       [MESSAGES.modalBackdrop.id]: MESSAGES.modalBackdrop.message,
       [MESSAGES.radioGroupOverrides.id]: MESSAGES.radioGroupOverrides.message,
@@ -113,18 +112,6 @@ module.exports = {
             specifier.type !== 'ImportNamespaceSpecifier' &&
             specifier.type !== 'ImportDefaultSpecifier'
           ) {
-            // Spinner
-            // Ex: import {Spinner} from "baseui/spinner";
-            // Note, we are not replacing Spinner because the new API
-            // is not compatible.
-            if (isImporting(specifier, 'Spinner', 'baseui/spinner')) {
-              context.report({
-                node: specifier.imported,
-                messageId: MESSAGES.deprecateSpinner.id,
-              });
-              return;
-            }
-
             // These can be referenced later on by instances of components.
             if (isImporting(specifier, 'Accordion', 'baseui/accordion')) return;
             if (isImporting(specifier, 'Modal', 'baseui/modal')) return;

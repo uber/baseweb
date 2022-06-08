@@ -19,7 +19,7 @@ export interface TimePickerProps {
   placeholder?: string;
   step?: number;
   value?: Date | null;
-  size?: SIZE[keyof SIZE];
+  size?: typeof SIZE[keyof typeof SIZE];
   minTime?: Date;
   maxTime?: Date;
   ignoreMinMaxDateComponent?: boolean;

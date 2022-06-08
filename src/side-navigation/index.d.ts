@@ -2,9 +2,9 @@ import * as React from 'react';
 import { StyletronComponent } from 'styletron-react';
 import { Override } from '../overrides';
 
-export interface STATE_CHANGE_TYPE {
+export declare const STATE_CHANGE_TYPE: {
   change: 'change';
-}
+};
 
 export interface Item {
   title: React.ReactNode;
@@ -53,10 +53,8 @@ export class NavItem extends React.Component<NavItemProps> {
   handleKeyDown(event: React.KeyboardEvent): void;
 }
 
-export const StyledRoot: StyletronComponent<any>;
-export const StyledNavItemContainer: StyletronComponent<any>;
-export const StyledNavLink: StyletronComponent<any>;
-export const StyledNavItem: StyletronComponent<any>;
-export const StyledSubNavContainer: StyletronComponent<any>;
-
-export const STATE_CHANGE_TYPE: STATE_CHANGE_TYPE;
+export declare const StyledRoot: StyletronComponent<any>;
+export declare const StyledNavItemContainer: StyletronComponent<any>;
+export declare const StyledNavLink: StyletronComponent<any>;
+export declare const StyledNavItem: StyletronComponent<any>;
+export declare const StyledSubNavContainer: StyletronComponent<any>;

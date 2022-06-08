@@ -22,9 +22,9 @@ export type HelperStepsPropsT = {
 
 export { ACCESSIBILITY_TYPE, PLACEMENT, TRIGGER_TYPE };
 
-export const StyledArrow: StyletronComponent<any>;
-export const StyledBody: StyletronComponent<any>;
+export declare const StyledArrow: StyletronComponent<any>;
+export declare const StyledBody: StyletronComponent<any>;
 
-export const Unstable_Helper: React.FC<PropsT>;
-export const Unstable_StatefulHelper: React.FC<StatefulPropsT>;
-export const Unstable_HelperSteps: React.FC<HelperStepsPropsT>;
+export declare const Unstable_Helper: React.FC<PropsT>;
+export declare const Unstable_StatefulHelper: React.FC<StatefulPropsT>;
+export declare const Unstable_HelperSteps: React.FC<HelperStepsPropsT>;

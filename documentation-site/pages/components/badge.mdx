@@ -1,0 +1,72 @@
+<!--
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import Layout from '../../components/layout';
+import Exports from '../../components/exports';
+
+import { Badge } from 'baseui/badge';
+import * as BadgeExports from 'baseui/badge';
+
+import Yard from '../../components/yard/index';
+import badgeYardConfig from '../../components/yard/config/badge';
+import ApiTable from '../../components/api-table';
+
+import PrimaryInline from 'examples/badge/primary-inline.js';
+import SecondaryInline from 'examples/badge/secondary-inline.js';
+import Offset from 'examples/badge/offset.js';
+
+export default Layout;
+
+# Badge
+
+<Yard placeholderHeight={34} {...badgeYardConfig} />
+
+Badges are small supplemental elements that highlight feature information or promotions within a user flow.
+
+Badge content should generally be 3 words or less.
+
+## Hierarchy
+
+Primary badges are bright in color to grab a user’s attention to an entry point of either a new product/feature, promotion or alert. Another usage is for transit lines. Avoid using multiple primary badges in the same view.
+
+Secondary badges should be part of the content inside the component. They are often meta data, highlighted information or simplified information.
+
+## Badges vs Tags
+
+Badges can often be confused with tags. Although the two components are similar, the main difference is that tags are actionable and badges are not.
+
+## Examples
+
+<Example title="Primary inline badge" path="badge/primary-inline.js">
+  <PrimaryInline />
+</Example>
+
+When placing badges inline, avoid pill badges as they may be confused with buttons.
+
+<Example title="Secondary inline badge" path="badge/secondary-inline.js">
+  <SecondaryInline />
+</Example>
+
+<Example title="Offsets" path="badge/offset.js">
+  <Offset />
+</Example>
+
+There may be situations where it makes sense to deviate from the standard badge placement options. Use the offset props to manually position a badge.
+
+- `horizontalOffset` sets the `right` CSS attribute when `placement` is `topRight` or `bottomRight`. Otherwise it sets the `left` attribute.
+- `verticalOffset` sets the `top` CSS attribute when `placement` is `topLeft`, `top`, or `topRight`. Otherwise it sets the `bottom` attribute.
+
+## API
+
+<ApiTable
+  title="Badge props"
+  config={badgeYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/badge/badge.js')}
+/>
+
+<Exports component={BadgeExports} title="Badge exports" path="baseui/badge" />

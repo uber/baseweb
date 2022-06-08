@@ -10,4 +10,4 @@ export interface LinkProps
   target?: '_self' | '_blank' | '_parent' | '_top';
 }
 
-export const StyledLink: StyletronComponent<LinkProps>;
+export declare const StyledLink: StyletronComponent<LinkProps>;
