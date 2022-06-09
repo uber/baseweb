@@ -94,6 +94,9 @@ function esbuildFlowPlugin(
 }
 
 const viteConfig = async ({ mode }) => ({
+  // when built in CI, change the base URL so baseweb.design/ladle works
+  // eslint-disable-next-line cup/no-undef
+  base: process.env.BUILDKITE_COMMIT ? '/ladle/' : '/',
   plugins: [flowPlugin()],
   define: {
     __BROWSER__: true,
