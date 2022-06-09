@@ -14,6 +14,8 @@ import type { OverrideT } from '../helpers/overrides.js';
 export type OverridesT = {
   Root?: OverrideT,
   AppName?: OverrideT,
+  DesktopMenu?: OverrideT,
+  DesktopMenuContainer?: OverrideT,
   MainMenuItem?: OverrideT,
   PrimaryMenuContainer?: OverrideT,
   ProfileTileContainer?: OverrideT,
