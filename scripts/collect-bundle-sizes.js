@@ -109,7 +109,7 @@ async function downloadMasterBundleSizeData() {
 }
 
 async function main() {
-  execSync('yarn ladle build --out build-ladle --stories src/**/*.scenario.js', {
+  execSync('yarn ladle build --outDir build-ladle --stories src/**/*.scenario.js', {
     stdio: 'inherit',
   });
   const ladle = spawn('yarn', ['static-server', 'build-ladle', '--port', PORT]);
