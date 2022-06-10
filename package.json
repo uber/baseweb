@@ -237,7 +237,9 @@
   "resolutions": {
     "@types/react": "16.8.23",
     "@types/jest/jest-diff": "^25.1.0",
-    "@types/jest/pretty-format": "^25.1.0"
+    "@types/jest/pretty-format": "^25.1.0",
+    "@vitejs/plugin-react": "2.0.0-alpha.2",
+    "vite": "3.0.0-alpha.10"
   },
   "husky": {
     "hooks": {

@@ -144,7 +144,7 @@
     semver "^5.4.1"
     source-map "^0.5.0"
 
-"@babel/core@^7.17.10", "@babel/core@^7.17.8":
+"@babel/core@^7.17.8", "@babel/core@^7.18.0":
   version "7.18.2"
   resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.18.2.tgz#87b2fcd7cce9becaa7f5acebdc4f09f3dd19d876"
   integrity sha512-A8pri1YJiC5UnkdrWcmfZTJTV85b4UXTAfImGmCfYmax4TR9Cw8sDS0MOk++Gp2mE/BefVJ5nwy5yzqNJbP/DQ==
@@ -1849,7 +1849,7 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.12.13"
 
-"@babel/plugin-transform-react-jsx-self@^7.16.7":
+"@babel/plugin-transform-react-jsx-self@^7.17.12":
   version "7.17.12"
   resolved "https://registry.yarnpkg.com/@babel/plugin-transform-react-jsx-self/-/plugin-transform-react-jsx-self-7.17.12.tgz#7f2e9b8c08d6a4204733138d8c29d4dba4bb66c2"
   integrity sha512-7S9G2B44EnYOx74mue02t1uD8ckWZ/ee6Uz/qfdzc35uWHX5NgRy9i+iJSb2LFRgMd+QV9zNcStQaazzzZ3n3Q==
@@ -1881,7 +1881,7 @@
     "@babel/plugin-syntax-jsx" "^7.12.13"
     "@babel/types" "^7.12.13"
 
-"@babel/plugin-transform-react-jsx@^7.16.7", "@babel/plugin-transform-react-jsx@^7.17.12", "@babel/plugin-transform-react-jsx@^7.17.3":
+"@babel/plugin-transform-react-jsx@^7.16.7", "@babel/plugin-transform-react-jsx@^7.17.12":
   version "7.17.12"
   resolved "https://registry.yarnpkg.com/@babel/plugin-transform-react-jsx/-/plugin-transform-react-jsx-7.17.12.tgz#2aa20022709cd6a3f40b45d60603d5f269586dba"
   integrity sha512-Lcaw8bxd1DKht3thfD4A12dqo1X16he1Lm8rIv8sTwjAYNInRS1qHa9aJoqvzpscItXvftKDCfaEQzwoVyXpEQ==
@@ -4539,15 +4539,15 @@
     "@typescript-eslint/types" "5.26.0"
     eslint-visitor-keys "^3.3.0"
 
-"@vitejs/plugin-react@^1.3.0":
-  version "1.3.2"
-  resolved "https://registry.yarnpkg.com/@vitejs/plugin-react/-/plugin-react-1.3.2.tgz#2fcf0b6ce9bcdcd4cec5c760c199779d5657ece1"
-  integrity sha512-aurBNmMo0kz1O4qRoY+FM4epSA39y3ShWGuqfLRA/3z0oEJAdtoSfgA3aO98/PCCHAqMaduLxIxErWrVKIFzXA==
+"@vitejs/plugin-react@2.0.0-alpha.2", "@vitejs/plugin-react@^1.3.0":
+  version "2.0.0-alpha.2"
+  resolved "https://registry.yarnpkg.com/@vitejs/plugin-react/-/plugin-react-2.0.0-alpha.2.tgz#fc1cc9e7aa1144c2b87ff6bc7c13f75c460ed2b8"
+  integrity sha512-NKJIeXMB0t6Eyu9YP8HHU7RMtUsIGr8vTRYeHYqWTIKE23cRTIShJfNXdz7tTz6oE8RLllCoYoz1Ldj0d8dbCg==
   dependencies:
-    "@babel/core" "^7.17.10"
-    "@babel/plugin-transform-react-jsx" "^7.17.3"
+    "@babel/core" "^7.18.0"
+    "@babel/plugin-transform-react-jsx" "^7.17.12"
     "@babel/plugin-transform-react-jsx-development" "^7.16.7"
-    "@babel/plugin-transform-react-jsx-self" "^7.16.7"
+    "@babel/plugin-transform-react-jsx-self" "^7.17.12"
     "@babel/plugin-transform-react-jsx-source" "^7.16.7"
     "@rollup/pluginutils" "^4.2.1"
     react-refresh "^0.13.0"
@@ -9577,7 +9577,7 @@ esbuild-windows-arm64@0.14.43:
   resolved "https://registry.yarnpkg.com/esbuild-windows-arm64/-/esbuild-windows-arm64-0.14.43.tgz#3caed1b430d394d7a7836407b9d36c4750246e76"
   integrity sha512-7ZlD7bo++kVRblJEoG+cepljkfP8bfuTPz5fIXzptwnPaFwGS6ahvfoYzY7WCf5v/1nX2X02HDraVItTgbHnKw==
 
-esbuild@^0.14.27:
+esbuild@^0.14.38:
   version "0.14.43"
   resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.14.43.tgz#c227d585c512d3e0f23b88f50b8e16501147f647"
   integrity sha512-Uf94+kQmy/5jsFwKWiQB4hfo/RkM9Dh7b79p8yqd1tshULdr25G2szLz631NoH3s2ujnKEKVD16RmOxvCNKRFA==
@@ -15889,7 +15889,7 @@ postcss@^7.0.32:
     source-map "^0.6.1"
     supports-color "^6.1.0"
 
-postcss@^8.4.13:
+postcss@^8.4.14:
   version "8.4.14"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.14.tgz#ee9274d5622b4858c1007a74d76e42e56fd21caf"
   integrity sha512-E398TUmfAYFPBSdzgeieK2Y1+1cpdxJx8yXbK/m57nRhKSmk1GB2tO4lbLBtlkfPQTDKfe4Xqv1ASWPpayPEig==
@@ -17478,7 +17478,7 @@ rollup-pluginutils@^2.8.2:
   dependencies:
     estree-walker "^0.6.1"
 
-rollup@^2.59.0:
+rollup@^2.72.1:
   version "2.75.6"
   resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.75.6.tgz#ac4dc8600f95942a0180f61c7c9d6200e374b439"
   integrity sha512-OEf0TgpC9vU6WGROJIk1JA3LR5vk/yvqlzxqdrE2CzzXnqKXNzbAwlWUXis8RS3ZPe7LAq+YUxsRa0l3r27MLA==
@@ -19701,15 +19701,15 @@ vite-tsconfig-paths@^3.4.1:
     recrawl-sync "^2.0.3"
     tsconfig-paths "^4.0.0"
 
-vite@^2.9.6:
-  version "2.9.10"
-  resolved "https://registry.yarnpkg.com/vite/-/vite-2.9.10.tgz#f574d96655622c2e0fbc662edd0ed199c60fe91a"
-  integrity sha512-TwZRuSMYjpTurLqXspct+HZE7ONiW9d+wSWgvADGxhDPPyoIcNywY+RX4ng+QpK30DCa1l/oZgi2PLZDibhzbQ==
+vite@3.0.0-alpha.10, vite@^2.9.6:
+  version "3.0.0-alpha.10"
+  resolved "https://registry.yarnpkg.com/vite/-/vite-3.0.0-alpha.10.tgz#c6811e809463edb57254a45d342a3a3901e037b8"
+  integrity sha512-ihF4TE3+xvgmGaSIYrfxBfJqqXESAehkIBv8L/xG9OzNaUiGrOF2CUqsmnVQOJ/pFBAAMmLNgG75Mqbdzo7W6A==
   dependencies:
-    esbuild "^0.14.27"
-    postcss "^8.4.13"
+    esbuild "^0.14.38"
+    postcss "^8.4.14"
     resolve "^1.22.0"
-    rollup "^2.59.0"
+    rollup "^2.72.1"
   optionalDependencies:
     fsevents "~2.3.2"
 
