@@ -3465,10 +3465,10 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
-"@ladle/react@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@ladle/react/-/react-1.0.0.tgz#c738e8c68a872e0c5f5a5678d83b94627552276b"
-  integrity sha512-iK8J7feisdZSchIBHAQ9DRTf/o3Sbv4En+/3PlK6rie0P9Ltm0YJICem2cjucNzsXOX+HsEvKBC13x/T2SW74w==
+"@ladle/react@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@ladle/react/-/react-1.0.1.tgz#1b93a0b4e243186439910dc80b4e605934baaf8f"
+  integrity sha512-hXT1wsHpQN0svMB12QmGKDO8Amt1vdqKDU7bnETXAw5YfLJ9362SfyeUYbz3JQ1fW1JHOC92ljSXfNP+RSKIFA==
   dependencies:
     "@babel/code-frame" "^7.16.7"
     "@babel/core" "^7.17.8"
