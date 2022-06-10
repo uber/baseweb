@@ -32,7 +32,7 @@ export type { StyletronComponent };
 type StyleFn<DefaultTheme> = {
   <
     C extends keyof JSX.IntrinsicElements | React.ComponentType<any>,
-    P extends object,
+    P extends {},
     Theme = DefaultTheme
   >(
     component: C,
