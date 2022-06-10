@@ -103,8 +103,8 @@ export function styled(ElementName: string | React.ComponentType<any>, objOrFn: 
 export const withStyle = styled;
 
 export function withWrapper(
-  StyledElement: StyletronComponent<any>,
-  wrapperFn: (a: StyletronComponent<any>) => (a: any) => any
+  StyledElement: StyletronComponent<any, any>,
+  wrapperFn: (a: StyletronComponent<any, any>) => (a: any) => any
 ) {
   // eslint-disable-next-line react/display-name
   return React.forwardRef<any, any>((props, ref) =>

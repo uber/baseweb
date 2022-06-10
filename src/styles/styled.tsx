@@ -43,15 +43,15 @@ type StyleFn<DefaultTheme> = {
             $theme: Theme;
           }
         ) => StyleObject)
-  ): StyletronComponent<React.ComponentProps<C> & P>;
+  ): StyletronComponent<C, P>;
   <C extends keyof JSX.IntrinsicElements | React.ComponentType<any>>(
     component: C,
     style: StyleObject
-  ): StyletronComponent<React.ComponentProps<C>>;
+  ): StyletronComponent<C, {}>;
 };
 
 type WithStyleFn<DefaultTheme> = {
-  <C extends StyletronComponent<any>, P extends object, Theme = DefaultTheme>(
+  <C extends StyletronComponent<any, any>, P extends object, Theme = DefaultTheme>(
     component: C,
     style:
       | ((
@@ -60,10 +60,8 @@ type WithStyleFn<DefaultTheme> = {
           }
         ) => StyleObject)
       | StyleObject
-  ): StyletronComponent<React.ComponentProps<C> & P>;
-  <C extends StyletronComponent<any>>(component: C, style: StyleObject): StyletronComponent<
-    React.ComponentProps<C>
-  >;
+  ): StyletronComponent<C, P>;
+  <C extends StyletronComponent<any, any>>(component: C, style: StyleObject): C;
 };
 
 /* eslint-enable flowtype/generic-spacing */
@@ -102,15 +100,15 @@ export const useStyletron = createThemedUseStyletron<ThemeT>();
 
 export function withWrapper(
   // flowlint-next-line unclear-type:off
-  StyledElement: StyletronComponent<any>,
+  StyledElement: StyletronComponent<any, any>,
   wrapperFn: (
     // flowlint-next-line unclear-type:off
     // flowlint-next-line unclear-type:off
-    a: StyletronComponent<any>
+    a: StyletronComponent<any, any>
   ) => (a: any) => any
 ) {
   // flowlint-next-line unclear-type:off
-  return styletronWithWrapper<StyletronComponent<any>, any>(StyledElement, (Styled) => {
+  return styletronWithWrapper<StyletronComponent<any, any>, any>(StyledElement, (Styled) => {
     // eslint-disable-next-line react/display-name
     return React.forwardRef((props, ref) => (
       <ThemeContext.Consumer>
