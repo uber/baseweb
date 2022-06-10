@@ -200,13 +200,13 @@ export class NestedMenus extends React.Component<NestedMenuProps, NestedMenuStat
   isNestedMenuVisible(ref: React.Ref<HTMLElement>): boolean;
 }
 
-export declare const StyledEmptyState: StyletronComponent<any>;
-export declare const StyledList: StyletronComponent<any>;
-export declare const StyledListItem: StyletronComponent<any>;
-export declare const StyledListItemProfile: StyletronComponent<any>;
-export declare const StyledProfileImgContainer: StyletronComponent<any>;
-export declare const StyledProfileImg: StyletronComponent<any>;
-export declare const StyledProfileLabelsContainer: StyletronComponent<any>;
-export declare const StyledProfileTitle: StyletronComponent<any>;
-export declare const StyledProfileSubtitle: StyletronComponent<any>;
-export declare const StyledProfileBody: StyletronComponent<any>;
+export declare const StyledEmptyState: StyletronComponent<any, any>;
+export declare const StyledList: StyletronComponent<any, any>;
+export declare const StyledListItem: StyletronComponent<any, any>;
+export declare const StyledListItemProfile: StyletronComponent<any, any>;
+export declare const StyledProfileImgContainer: StyletronComponent<any, any>;
+export declare const StyledProfileImg: StyletronComponent<any, any>;
+export declare const StyledProfileLabelsContainer: StyletronComponent<any, any>;
+export declare const StyledProfileTitle: StyletronComponent<any, any>;
+export declare const StyledProfileSubtitle: StyletronComponent<any, any>;
+export declare const StyledProfileBody: StyletronComponent<any, any>;

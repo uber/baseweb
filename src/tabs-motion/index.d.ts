@@ -30,13 +30,13 @@ export declare const isRTL: (direction: string) => boolean;
 
 // styled-components
 
-export declare const StyledRoot: StyletronComponent<any>;
-export declare const StyledTabList: StyletronComponent<any>;
-export declare const StyledTab: StyletronComponent<any>;
-export declare const StyledArtworkContainer: StyletronComponent<any>;
-export declare const StyledTabBorder: StyletronComponent<any>;
-export declare const StyledTabHighlight: StyletronComponent<any>;
-export declare const StyledTabPanel: StyletronComponent<any>;
+export declare const StyledRoot: StyletronComponent<any, any>;
+export declare const StyledTabList: StyletronComponent<any, any>;
+export declare const StyledTab: StyletronComponent<any, any>;
+export declare const StyledArtworkContainer: StyletronComponent<any, any>;
+export declare const StyledTabBorder: StyletronComponent<any, any>;
+export declare const StyledTabHighlight: StyletronComponent<any, any>;
+export declare const StyledTabPanel: StyletronComponent<any, any>;
 
 // tabs
 

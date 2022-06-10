@@ -53,8 +53,8 @@ export class NavItem extends React.Component<NavItemProps> {
   handleKeyDown(event: React.KeyboardEvent): void;
 }
 
-export declare const StyledRoot: StyletronComponent<any>;
-export declare const StyledNavItemContainer: StyletronComponent<any>;
-export declare const StyledNavLink: StyletronComponent<any>;
-export declare const StyledNavItem: StyletronComponent<any>;
-export declare const StyledSubNavContainer: StyletronComponent<any>;
+export declare const StyledRoot: StyletronComponent<any, any>;
+export declare const StyledNavItemContainer: StyletronComponent<any, any>;
+export declare const StyledNavLink: StyletronComponent<any, any>;
+export declare const StyledNavItem: StyletronComponent<any, any>;
+export declare const StyledSubNavContainer: StyletronComponent<any, any>;

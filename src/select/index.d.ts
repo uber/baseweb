@@ -308,19 +308,19 @@ export class StatefulSelectContainer extends React.Component<StatefulContainerPr
   internalSetState(params: OnChangeParams): void;
 }
 
-export declare const StyledRoot: StyletronComponent<any>;
-export declare const StyledControlContainer: StyletronComponent<any>;
-export declare const StyledValueContainer: StyletronComponent<any>;
-export declare const StyledPlaceholder: StyletronComponent<any>;
-export declare const StyledSingleValue: StyletronComponent<any>;
-export declare const StyledInputContainer: StyletronComponent<any>;
-export declare const StyledInput: StyletronComponent<any>;
-export declare const StyledInputSizer: StyletronComponent<any>;
-export declare const StyledIconsContainer: StyletronComponent<any>;
-export declare const StyledSelectArrow: StyletronComponent<any>;
-export declare const StyledClearIcon: StyletronComponent<any>;
-export declare const StyledSearchIconContainer: StyletronComponent<any>;
-export declare const StyledDropdownContainer: StyletronComponent<any>;
-export declare const StyledDropdown: StyletronComponent<any>;
-export declare const StyledDropdownListItem: StyletronComponent<any>;
-export declare const StyledOptionContent: StyletronComponent<any>;
+export declare const StyledRoot: StyletronComponent<any, any>;
+export declare const StyledControlContainer: StyletronComponent<any, any>;
+export declare const StyledValueContainer: StyletronComponent<any, any>;
+export declare const StyledPlaceholder: StyletronComponent<any, any>;
+export declare const StyledSingleValue: StyletronComponent<any, any>;
+export declare const StyledInputContainer: StyletronComponent<any, any>;
+export declare const StyledInput: StyletronComponent<any, any>;
+export declare const StyledInputSizer: StyletronComponent<any, any>;
+export declare const StyledIconsContainer: StyletronComponent<any, any>;
+export declare const StyledSelectArrow: StyletronComponent<any, any>;
+export declare const StyledClearIcon: StyletronComponent<any, any>;
+export declare const StyledSearchIconContainer: StyletronComponent<any, any>;
+export declare const StyledDropdownContainer: StyletronComponent<any, any>;
+export declare const StyledDropdown: StyletronComponent<any, any>;
+export declare const StyledDropdownListItem: StyletronComponent<any, any>;
+export declare const StyledOptionContent: StyletronComponent<any, any>;

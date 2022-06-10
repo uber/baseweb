@@ -20,5 +20,5 @@ export interface BreadcrumbsProps {
 
 export declare const Breadcrumbs: React.FC<BreadcrumbsProps>;
 
-export declare const StyledRoot: StyletronComponent<any>;
-export declare const StyledSeparator: StyletronComponent<any>;
+export declare const StyledRoot: StyletronComponent<any, any>;
+export declare const StyledSeparator: StyletronComponent<any, any>;

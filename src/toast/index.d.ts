@@ -118,6 +118,6 @@ export class Toast extends React.Component<ToastProps, ToastPrivateState> {
   getSharedProps(): Readonly<SharedStylePropsArg>;
 }
 
-export declare const Root: StyletronComponent<any>;
-export declare const Body: StyletronComponent<any>;
-export declare const CloseIconSvg: StyletronComponent<any>;
+export declare const Root: StyletronComponent<any, any>;
+export declare const Body: StyletronComponent<any, any>;
+export declare const CloseIconSvg: StyletronComponent<any, any>;

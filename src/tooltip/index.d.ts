@@ -21,6 +21,6 @@ export { ACCESSIBILITY_TYPE, PLACEMENT, TRIGGER_TYPE };
 export type TooltipProps = PopoverProps;
 export class Tooltip extends React.Component<TooltipProps> {}
 
-export declare const StyledArrow: StyletronComponent<any>;
-export declare const StyledBody: StyletronComponent<any>;
-export declare const StyledInner: StyletronComponent<any>;
+export declare const StyledArrow: StyletronComponent<any, any>;
+export declare const StyledBody: StyletronComponent<any, any>;
+export declare const StyledInner: StyletronComponent<any, any>;

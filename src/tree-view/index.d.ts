@@ -62,10 +62,10 @@ export declare const StatefulTreeView: React.FC<TreeViewProps>;
 
 export declare const TreeLabel: React.FC<TreeLabelProps>;
 
-export declare const StyledTreeItemList: StyletronComponent<any>;
-export declare const StyledTreeItem: StyletronComponent<any>;
-export declare const StyledItemContent: StyletronComponent<any>;
-export declare const StyledIconContainer: StyletronComponent<any>;
+export declare const StyledTreeItemList: StyletronComponent<any, any>;
+export declare const StyledTreeItem: StyletronComponent<any, any>;
+export declare const StyledItemContent: StyletronComponent<any, any>;
+export declare const StyledIconContainer: StyletronComponent<any, any>;
 
 type TGetId = (node: TreeNode) => string | number;
 type toggleIsExpandedT = (data: TreeNode[], toggledNode: TreeNode, getId?: TGetId) => TreeNode[];

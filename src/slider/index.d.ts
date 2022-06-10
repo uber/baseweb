@@ -82,11 +82,11 @@ export class StatefulContainer extends React.Component<StatefulContainerProps, S
   internalSetState(type: 'change', { value }: State): void;
 }
 
-export declare const StyledRoot: StyletronComponent<any>;
-export declare const StyledTrack: StyletronComponent<any>;
-export declare const StyledInnerTrack: StyletronComponent<any>;
-export declare const StyledThumb: StyletronComponent<any>;
-export declare const StyledInnerThumb: StyletronComponent<any>;
-export declare const StyledTick: StyletronComponent<any>;
-export declare const StyledTickBar: StyletronComponent<any>;
-export declare const StyledMark: StyletronComponent<any>;
+export declare const StyledRoot: StyletronComponent<any, any>;
+export declare const StyledTrack: StyletronComponent<any, any>;
+export declare const StyledInnerTrack: StyletronComponent<any, any>;
+export declare const StyledThumb: StyletronComponent<any, any>;
+export declare const StyledInnerThumb: StyletronComponent<any, any>;
+export declare const StyledTick: StyletronComponent<any, any>;
+export declare const StyledTickBar: StyletronComponent<any, any>;
+export declare const StyledMark: StyletronComponent<any, any>;

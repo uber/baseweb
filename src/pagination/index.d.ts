@@ -87,6 +87,6 @@ export class StatefulContainer extends React.Component<StatefulContainerProps, S
   onPageChange(args: { nextPage: number }): void;
 }
 
-export declare const StyledRoot: StyletronComponent<any>;
-export declare const StyledMaxLabel: StyletronComponent<any>;
-export declare const StyledDropdownContainer: StyletronComponent<any>;
+export declare const StyledRoot: StyletronComponent<any, any>;
+export declare const StyledMaxLabel: StyletronComponent<any, any>;
+export declare const StyledDropdownContainer: StyletronComponent<any, any>;

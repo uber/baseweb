@@ -33,7 +33,7 @@ export declare const StatefulTextarea: React.FC<StatefulTextareaProps>;
 
 export { StatefulContainer };
 
-export declare const StyledTextareaContainer: StyletronComponent<any>;
-export declare const StyledTextarea: StyletronComponent<any>;
+export declare const StyledTextareaContainer: StyletronComponent<any, any>;
+export declare const StyledTextarea: StyletronComponent<any, any>;
 
 export { STATE_CHANGE_TYPE };

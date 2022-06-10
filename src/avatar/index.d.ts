@@ -22,6 +22,6 @@ export interface AvatarProps {
 
 export declare const Avatar: React.FC<AvatarProps>;
 
-export declare const StyledAvatar: StyletronComponent<any>;
-export declare const StyledInitials: StyletronComponent<any>;
-export declare const StyledRoot: StyletronComponent<any>;
+export declare const StyledAvatar: StyletronComponent<any, any>;
+export declare const StyledInitials: StyletronComponent<any, any>;
+export declare const StyledRoot: StyletronComponent<any, any>;

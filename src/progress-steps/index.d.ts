@@ -58,14 +58,14 @@ export interface StyleProps {
   $isCompleted?: boolean;
   $disabled?: boolean;
 }
-export declare const StyledProgressSteps: StyletronComponent<StyleProps>;
-export declare const StyledStep: StyletronComponent<StyleProps>;
-export declare const StyledIcon: StyletronComponent<StyleProps>;
-export declare const StyledInnerIcon: StyletronComponent<StyleProps>;
-export declare const StyledContent: StyletronComponent<StyleProps>;
-export declare const StyledContentTitle: StyletronComponent<StyleProps>;
-export declare const StyledContentTail: StyletronComponent<StyleProps>;
-export declare const StyledContentDescription: StyletronComponent<StyleProps>;
-export declare const StyledNumberStep: StyletronComponent<StyleProps>;
-export declare const StyledNumberIcon: StyletronComponent<StyleProps>;
-export declare const StyledNumberContentTail: StyletronComponent<StyleProps>;
+export declare const StyledProgressSteps: StyletronComponent<any, StyleProps>;
+export declare const StyledStep: StyletronComponent<any, StyleProps>;
+export declare const StyledIcon: StyletronComponent<any, StyleProps>;
+export declare const StyledInnerIcon: StyletronComponent<any, StyleProps>;
+export declare const StyledContent: StyletronComponent<any, StyleProps>;
+export declare const StyledContentTitle: StyletronComponent<any, StyleProps>;
+export declare const StyledContentTail: StyletronComponent<any, StyleProps>;
+export declare const StyledContentDescription: StyletronComponent<any, StyleProps>;
+export declare const StyledNumberStep: StyletronComponent<any, StyleProps>;
+export declare const StyledNumberIcon: StyletronComponent<any, StyleProps>;
+export declare const StyledNumberContentTail: StyletronComponent<any, StyleProps>;

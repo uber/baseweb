@@ -154,9 +154,9 @@ export type StatefulInputProps = InputProps & StatefulContainerProps & { childre
 export declare const StatefulInput: React.FC<StatefulInputProps>;
 export declare const StatefulContainer: React.FC<StatefulContainerProps>;
 
-export declare const StyledRoot: StyletronComponent<any>;
-export declare const StyledInputEnhancer: StyletronComponent<any>;
-export declare const StyledStartEnhancer: StyletronComponent<any>;
-export declare const StyledEndEnhancer: StyletronComponent<any>;
-export declare const StyledInputContainer: StyletronComponent<any>;
-export declare const StyledInput: StyletronComponent<any>;
+export declare const StyledRoot: StyletronComponent<any, any>;
+export declare const StyledInputEnhancer: StyletronComponent<any, any>;
+export declare const StyledStartEnhancer: StyletronComponent<any, any>;
+export declare const StyledEndEnhancer: StyletronComponent<any, any>;
+export declare const StyledInputContainer: StyletronComponent<any, any>;
+export declare const StyledInput: StyletronComponent<any, any>;
