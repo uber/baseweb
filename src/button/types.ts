@@ -58,5 +58,5 @@ export type SharedStylePropsT = {
   $size?: keyof typeof SIZE;
   $isLoading?: boolean;
   $disabled?: boolean;
-  $isFocusVisible: boolean;
+  $isFocusVisible?: boolean;
 };

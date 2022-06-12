@@ -18,12 +18,12 @@ import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible';
 
 import type { ButtonPropsT, SharedStylePropsT } from './types';
 
-import type { SyntheticEvent, ComponentProps } from 'react';
+import type { SyntheticEvent, ComponentProps, ComponentPropsWithoutRef } from 'react';
 
 class Button extends React.Component<
   ButtonPropsT & {
     forwardedRef: React.Ref<HTMLElement>;
-  } & Omit<ComponentProps<'button'>, keyof ButtonPropsT | 'ref'>,
+  } & ComponentPropsWithoutRef<'button'>,
   {
     isFocusVisible: boolean;
   }
@@ -129,9 +129,18 @@ class Button extends React.Component<
   }
 }
 
+interface ButtonComponentType {
+  <C extends React.ElementType = 'button'>(
+    props: ButtonPropsT &
+      SharedStylePropsT &
+      Omit<React.ComponentProps<C>, keyof ButtonPropsT | keyof SharedStylePropsT>
+  ): JSX.Element;
+  displayName?: string;
+}
+
 const ForwardedButton = React.forwardRef<
   HTMLElement,
   Omit<ComponentProps<typeof Button>, 'forwardedRef'>
->((props, ref) => <Button forwardedRef={ref} {...props} />);
+>((props, ref) => <Button forwardedRef={ref} {...props} />) as ButtonComponentType;
 ForwardedButton.displayName = 'Button';
 export default ForwardedButton;
