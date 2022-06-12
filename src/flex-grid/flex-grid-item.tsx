@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Block } from '../block';
+import { Block, type StyledBlockPropsT } from '../block';
 import { mergeOverrides } from '../helpers/overrides';
 import { getMediaQueries, getMediaQuery } from '../helpers/responsive-helpers';
 import type { FlexGridItemPropsT } from './types';
@@ -170,7 +170,6 @@ const FlexGridItem: React.FC<FlexGridItemPropsT & { forwardedRef: React.Ref<HTML
       ref={forwardedRef as any}
       as={as}
       overrides={blockOverrides}
-      // @ts-expect-error
       $flexGridColumnCount={flexGridColumnCount}
       $flexGridColumnGap={flexGridColumnGap}
       $flexGridRowGap={flexGridRowGap}
@@ -183,9 +182,16 @@ const FlexGridItem: React.FC<FlexGridItemPropsT & { forwardedRef: React.Ref<HTML
     </Block>
   );
 };
-
+interface FlexGridItemComponentType<D extends React.ElementType> {
+  <C extends React.ElementType = D>(
+    props: FlexGridItemPropsT<C> &
+      (React.ComponentProps<C> extends { ref?: infer R } ? { ref?: R } : {}) &
+      Omit<StyledBlockPropsT & React.ComponentProps<C>, keyof FlexGridItemPropsT>
+  ): JSX.Element;
+  displayName?: string;
+}
 const FlexGridItemComponent = React.forwardRef<HTMLElement, FlexGridItemPropsT>(
   (props: FlexGridItemPropsT, ref) => <FlexGridItem {...props} forwardedRef={ref} />
-);
+) as FlexGridItemComponentType<'div'>;
 FlexGridItemComponent.displayName = 'FlexGridItem';
 export default FlexGridItemComponent;

@@ -6,28 +6,26 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Block } from '../block/index';
+import { Block, type BlockComponentType, type StyledBlockPropsT } from '../block/index';
 import { flattenFragments } from '../helpers/react-helpers';
 import { getOverrides } from '../helpers/overrides';
 import type { FlexGridPropsT } from './types';
-import type { ComponentProps } from 'react';
 
-export const BaseFlexGrid = React.forwardRef<HTMLElement, ComponentProps<typeof Block>>(
-  ({ display, flexWrap, ...restProps }, ref) => (
-    //$FlowFixMe
-    <Block
-      display={display || 'flex'}
-      flexWrap={flexWrap || flexWrap === false ? flexWrap : true}
-      data-baseweb="flex-grid"
-      {...restProps}
-      ref={ref}
-    />
-  )
-);
+export const BaseFlexGrid = React.forwardRef(({ display, flexWrap, ...restProps }, ref) => (
+  //$FlowFixMe
+  <Block
+    display={display || 'flex'}
+    flexWrap={flexWrap || flexWrap === false ? flexWrap : true}
+    data-baseweb="flex-grid"
+    {...restProps}
+    ref={ref}
+  />
+)) as BlockComponentType<'div'>;
 BaseFlexGrid.displayName = 'BaseFlexGrid';
 
 const FlexGrid: React.FC<
-  ComponentProps<typeof BaseFlexGrid> & FlexGridPropsT & { forwardedRef: React.Ref<HTMLElement> }
+  React.ComponentPropsWithoutRef<typeof BaseFlexGrid> &
+    FlexGridPropsT & { forwardedRef: React.Ref<HTMLDivElement> }
 > = ({
   forwardedRef,
   children,
@@ -73,9 +71,17 @@ const FlexGrid: React.FC<
   );
 };
 
-const FlexGridComponent = React.forwardRef<
-  HTMLElement,
-  Omit<React.ComponentProps<typeof FlexGrid>, 'forwardedRef'>
->((props: FlexGridPropsT, ref) => <FlexGrid {...props} forwardedRef={ref} />);
+interface FlexGridComponentType<D extends React.ElementType> {
+  <C extends React.ElementType = D>(
+    props: FlexGridPropsT<C> &
+      (React.ComponentProps<C> extends { ref?: infer R } ? { ref?: R } : {}) &
+      Omit<StyledBlockPropsT & React.ComponentProps<C>, keyof FlexGridPropsT>
+  ): JSX.Element;
+  displayName?: string;
+}
+
+const FlexGridComponent = React.forwardRef((props: FlexGridPropsT, ref) => (
+  <FlexGrid {...props} forwardedRef={ref as any} />
+)) as FlexGridComponentType<'div'>;
 FlexGridComponent.displayName = 'FlexGrid';
 export default FlexGridComponent;

@@ -6,15 +6,16 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Block } from '../block';
+import { Block, StyledBlockPropsT, BlockPropsT } from '../block';
 
-export const AspectRatioBoxBody: React.FC<React.ComponentProps<typeof Block>> = ({
-  position,
-  top,
-  bottom,
-  width,
-  ...restProps
-}) => (
+interface AspectRatioBoxBodyComponentType<D extends React.ElementType> {
+  <C extends React.ElementType = D>(
+    props: BlockPropsT<C> & Omit<StyledBlockPropsT & React.ComponentProps<C>, keyof BlockPropsT>
+  ): JSX.Element;
+  displayName?: string;
+}
+
+export const AspectRatioBoxBody = (({ position, top, bottom, width, ...restProps }) => (
   <Block
     data-baseweb="aspect-ratio-box-body"
     position={position || 'absolute'}
@@ -23,6 +24,6 @@ export const AspectRatioBoxBody: React.FC<React.ComponentProps<typeof Block>> = 
     width={width || '100%'}
     {...restProps}
   />
-);
+)) as AspectRatioBoxBodyComponentType<'div'>;
 
 export default AspectRatioBoxBody;

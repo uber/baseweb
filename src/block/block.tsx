@@ -6,11 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 
 import * as React from 'react';
-import type { BlockPropsT } from './types';
+import type { BlockComponentType, BlockPropsT, StyledBlockPropsT } from './types';
 import { StyledBlock } from './styled-components';
 import { getOverrides } from '../helpers/overrides';
-import type { ComponentProps } from 'react';
-import { StyledBlockPropsT } from './types';
 
 const Block: React.FC<
   BlockPropsT & { forwardedRef?: React.Ref<HTMLElement> } & Omit<
@@ -172,8 +170,9 @@ const Block: React.FC<
   );
 };
 
-const BlockComponent = React.forwardRef<HTMLElement, ComponentProps<typeof Block>>((props, ref) => (
+const BlockComponent = React.forwardRef<any, any>((props, ref) => (
   <Block {...props} forwardedRef={ref} />
-));
+)) as BlockComponentType<'div'>;
+
 BlockComponent.displayName = 'Block';
 export default BlockComponent;
