@@ -27,7 +27,7 @@ const config = {
     },
   ],
   retries: process.env.CI ? 2 : 0,
-  testMatch: ['**/__tests__/*.e2e.js', '**/__tests__/*.e2e.mjs'],
+  testMatch: ['**/__tests__/*.e2e.js'],
   use: {
     screenshot: 'only-on-failure',
     trace: 'on-first-retry',

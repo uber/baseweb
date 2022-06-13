@@ -29,5 +29,16 @@ test('Utils - getSharedProps', () => {
     isFocused: true,
   };
   // $FlowFixMe
-  expect(getSharedProps(props, state)).toMatchSnapshot('getSharedProps returns correct object');
+  expect(getSharedProps(props, state)).toMatchInlineSnapshot(`
+    Object {
+      "$adjoined": "none",
+      "$disabled": false,
+      "$error": false,
+      "$isFocused": true,
+      "$isReadOnly": false,
+      "$positive": false,
+      "$required": false,
+      "$size": "default",
+    }
+  `);
 });

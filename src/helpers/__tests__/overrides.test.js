@@ -36,18 +36,25 @@ describe('Helpers - Overrides', () => {
       props: { propName: 'propsValue' },
       style: { color: 'blue' },
     };
-    expect(getOverrideProps(null)).toMatchSnapshot('returns empty object when no overrides');
-    expect(getOverrideProps(CustomComponent)).toMatchSnapshot(
-      'returns empty object when override is a component'
-    );
-    expect(getOverrideProps(override)).toMatchSnapshot(
-      'returns correct object when override has props and styles'
-    );
+    expect(getOverrideProps(null)).toMatchInlineSnapshot(`Object {}`);
+    expect(getOverrideProps(CustomComponent)).toMatchInlineSnapshot(`Object {}`);
+    expect(getOverrideProps(override)).toMatchInlineSnapshot(`
+      Object {
+        "$style": Object {
+          "color": "blue",
+        },
+        "propName": "propsValue",
+      }
+    `);
     expect(
       getOverrideProps({
         props: () => null,
       })
-    ).toMatchSnapshot('returns correct object when props is a function which return null');
+    ).toMatchInlineSnapshot(`
+      Object {
+        "$style": undefined,
+      }
+    `);
   });
 
   test('toObjectOverride', () => {

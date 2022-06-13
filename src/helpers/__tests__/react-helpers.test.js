@@ -20,9 +20,31 @@ describe('Helpers - ReactHelpers', () => {
         </React.Fragment>
       </ul>
     );
-    expect(flattenFragments(list.props.children)).toMatchSnapshot('no wrapper');
+    expect(flattenFragments(list.props.children)).toMatchInlineSnapshot(`
+      Array [
+        <li>
+          Item 1
+        </li>,
+        <li>
+          Item 2
+        </li>,
+      ]
+    `);
 
     const Wrapper = (props) => <b {...props} />;
-    expect(flattenFragments(list.props.children, Wrapper)).toMatchSnapshot('with wrapper');
+    expect(flattenFragments(list.props.children, Wrapper)).toMatchInlineSnapshot(`
+      Array [
+        <Wrapper>
+          <li>
+            Item 1
+          </li>
+        </Wrapper>,
+        <Wrapper>
+          <li>
+            Item 2
+          </li>
+        </Wrapper>,
+      ]
+    `);
   });
 });

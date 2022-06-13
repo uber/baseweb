@@ -102,14 +102,14 @@ async function preparePageForSnapshot(
   // The screenshot dimensions will use the scroll height of the page but clamp the width.
   await page.setViewportSize({
     width: VIEWPORT_WIDTH[viewport],
-    height: await getPageScrollHeight(),
+    height: await getPageScrollHeight(page),
   });
 
   // Bad, but lets let things settle down after resizing.
   await waitForTimeout(100);
 }
 
-async function getPageScrollHeight() {
+async function getPageScrollHeight(page) {
   // Snapshots should have fixed widths but allow for scrolling in the y dimension.
   // We use the raw Chrome Devtools Protocol to get the scroll height of page.
   try {

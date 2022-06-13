@@ -30,6 +30,34 @@ describe('FlexGrid', () => {
         <MockFlexGridItem>Item 2</MockFlexGridItem>
       </FlexGrid>
     );
-    expect(prettyDOM(baseElement)).toMatchSnapshot('FlexGridItem with flexGridColumnCount');
+    expect(prettyDOM(baseElement)).toMatchInlineSnapshot(`
+      "[36m<body>[39m
+        [36m<div>[39m
+          [36m<div[39m
+            [33mdata-baseweb[39m=[32m\\"flex-grid\\"[39m
+            [33mstyled-component[39m=[32m\\"true\\"[39m
+            [33mtest-style[39m=[32m\\"{
+        \\\\\\"display\\\\\\": \\\\\\"flex\\\\\\",
+        \\\\\\"flexWrap\\\\\\": \\\\\\"wrap\\\\\\"
+      }\\"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mflex-grid-column-count[39m=[32m\\"4\\"[39m
+              [33mflex-grid-item-count[39m=[32m\\"2\\"[39m
+              [33mflex-grid-item-index[39m=[32m\\"0\\"[39m
+            [36m>[39m
+              [0mItem 1[0m
+            [36m</div>[39m
+            [36m<div[39m
+              [33mflex-grid-column-count[39m=[32m\\"4\\"[39m
+              [33mflex-grid-item-count[39m=[32m\\"2\\"[39m
+              [33mflex-grid-item-index[39m=[32m\\"1\\"[39m
+            [36m>[39m
+              [0mItem 2[0m
+            [36m</div>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+      [36m</body>[39m"
+    `);
   });
 });
