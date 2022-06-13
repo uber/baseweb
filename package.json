@@ -24,7 +24,7 @@
     "build:copy-files": "shx cp README.md dist/README.md",
     "build:copy-flow-files": "node ./scripts/flow-copy-src.js",
     "build:copy-ts-files": "node ./scripts/ts-copy.js",
-    "build:package-json": "shx cp package.json dist/package.json && node ./scripts/build-package-json.js",
+    "build:package-json": "shx cp package.json dist/package.json && shx cp .npmrc dist/.npmrc && node ./scripts/build-package-json.js",
     "build:cjs": "cross-env NODE_ENV=production BABEL_ENV=cjs babel ./src --out-dir ./dist --ignore **.test.js,**/__tests__/**,**/e2e.js,**/template-component/**,**/test/**",
     "build:esm": "cross-env NODE_ENV=production BABEL_ENV=esm babel ./src --out-dir ./dist/esm --ignore **.test.js,**/__tests__/**,**/e2e.js,**/template-component/**,**/test/**",
     "build:es": "cross-env NODE_ENV=production BABEL_ENV=es babel ./src --out-dir ./dist/es --ignore **.test.js,**/__tests__/**,**/e2e.js,**/template-component/**,**/test/**",
