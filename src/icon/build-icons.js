@@ -91,7 +91,7 @@ async function generateNewIcons() {
       );
 
     fs.writeFileSync(
-      path.resolve(__dirname, `./${svgFile}.ts`),
+      path.resolve(__dirname, `./${svgFile}.tsx`),
       prettier.format(result, { parser: 'typescript', ...prettierOptions })
     );
   });

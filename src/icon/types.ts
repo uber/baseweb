@@ -29,4 +29,4 @@ export type IconPropsT = React.SVGAttributes<SVGElement> & {
   /** Allows you to set the SVG `<title>` label, which is used for accessibility */
   title?: string;
   overrides?: OverridesT;
-};
+} & StyledComponentArgsT;

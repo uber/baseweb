@@ -24,7 +24,6 @@ function Alert(props: IconPropsT, ref) {
     overrides && overrides.Svg ? toObjectOverride(overrides.Svg) : {}
   );
   return (
-    // $FlowExpectedError[cannot-spread-inexact]
     <Icon
       viewBox="0 0 24 24"
       ref={ref}
@@ -43,4 +42,4 @@ function Alert(props: IconPropsT, ref) {
   );
 }
 
-export default React.forwardRef<unknown, IconPropsT>(Alert);
+export default React.forwardRef<SVGSVGElement, IconPropsT>(Alert);

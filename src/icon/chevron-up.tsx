@@ -24,7 +24,6 @@ function ChevronUp(props: IconPropsT, ref) {
     overrides && overrides.Svg ? toObjectOverride(overrides.Svg) : {}
   );
   return (
-    // $FlowExpectedError[cannot-spread-inexact]
     <Icon
       viewBox="0 0 24 24"
       ref={ref}
@@ -44,4 +43,4 @@ function ChevronUp(props: IconPropsT, ref) {
   );
 }
 
-export default React.forwardRef<unknown, IconPropsT>(ChevronUp);
+export default React.forwardRef<SVGSVGElement, IconPropsT>(ChevronUp);

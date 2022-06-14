@@ -38,4 +38,4 @@ const Icon: React.FC<IconPropsT> = (props, ref) => {
   );
 };
 
-export default React.forwardRef<unknown, IconPropsT>(Icon);
+export default React.forwardRef<SVGSVGElement, IconPropsT>(Icon);

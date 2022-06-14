@@ -49,7 +49,7 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
   animateOutCompleteTimer: TimeoutID | undefined | null;
   closeRef:
     | {
-        current: SVGElement | HTMLElement | undefined | null;
+        current: SVGSVGElement | undefined | null;
       }
     | undefined
     | null;

@@ -24,7 +24,6 @@ function TriangleRight(props: IconPropsT, ref) {
     overrides && overrides.Svg ? toObjectOverride(overrides.Svg) : {}
   );
   return (
-    // $FlowExpectedError[cannot-spread-inexact]
     <Icon
       viewBox="0 0 24 24"
       ref={ref}
@@ -39,4 +38,4 @@ function TriangleRight(props: IconPropsT, ref) {
   );
 }
 
-export default React.forwardRef<unknown, IconPropsT>(TriangleRight);
+export default React.forwardRef<SVGSVGElement, IconPropsT>(TriangleRight);
