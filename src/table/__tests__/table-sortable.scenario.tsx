@@ -16,7 +16,7 @@ import {
   SORT_DIRECTION,
 } from '..';
 
-const DATA = [
+const DATA: Array<[string, number]> = [
   ['Marlyn', 10],
   ['Luther', 15],
   ['Kiera', 13],

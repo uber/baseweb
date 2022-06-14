@@ -128,7 +128,7 @@ describe('styled flow', () => {
 
     const a = styled<'div', P>('div', (props) => {
       console.log(props.hello);
-      // $FlowFixMe
+      // @ts-expect-error
       console.log(props.world);
       return { color: 'blue' };
     });
@@ -137,7 +137,7 @@ describe('styled flow', () => {
   test('it provides flow error if accessing property not defined in default theme type', () => {
     const a = styled('div', (props) => {
       console.log(props.$theme.colors.primary400);
-      // $FlowFixMe
+      // @ts-expect-error
       console.log(props.$theme.colors.primary9000);
       return { color: 'blue' };
     });
@@ -160,7 +160,7 @@ describe('styled flow', () => {
 
     const a = styled<typeof C, P>(C, (props) => {
       console.log(props.hello);
-      // $FlowFixMe
+      // @ts-expect-error
       console.log(props.world);
       return { color: 'red' };
     });
@@ -177,9 +177,9 @@ describe('themedStyled flow', () => {
 
     const themedStyled = createThemedStyled<T>();
 
-    const a = themedStyled<{}>('div', (props) => {
+    const a = themedStyled<'div', {}>('div', (props) => {
       console.log(props.$theme.colors.custom400);
-      // $FlowFixMe
+      // @ts-expect-error
       console.log(props.$theme.colors.custom9000);
       return { color: 'blue' };
     });
@@ -198,9 +198,9 @@ describe('themedStyled flow', () => {
       hello: string;
     };
 
-    const a = themedStyled<P>('div', (props) => {
+    const a = themedStyled<'div', P>('div', (props) => {
       console.log(props.hello);
-      // $FlowFixMe
+      // @ts-expect-error
       console.log(props.world);
       return { color: 'blue' };
     });
@@ -223,7 +223,7 @@ describe('withStyle flow', () => {
 
     const b = withStyle<typeof a, Q>(a, (props) => {
       console.log(props.world);
-      // $FlowFixMe
+      // @ts-expect-error
       console.log(props.hello);
       return { color: 'green' };
     });
@@ -232,14 +232,14 @@ describe('withStyle flow', () => {
   test('it provides flow error if accessing property not defined in default theme type', () => {
     const a = styled('div', (props) => {
       console.log(props.$theme.colors.primary400);
-      // $FlowFixMe
+      // @ts-expect-error
       console.log(props.$theme.colors.primary9000);
       return { color: 'blue' };
     });
 
     const b = withStyle<typeof a, {}>(a, (props) => {
       console.log(props.$theme.colors.primary400);
-      // $FlowFixMe
+      // @ts-expect-error
       console.log(props.$theme.colors.primary9000);
       return { color: 'green' };
     });
@@ -267,13 +267,13 @@ describe('themedWithStyle flow', () => {
     const themedStyled = createThemedStyled<T>();
     const themedWithStyle = createThemedWithStyle<T>();
 
-    const a = themedStyled<{}>('div', (props) => {
+    const a = themedStyled<'div', {}>('div', (props) => {
       return { color: 'blue' };
     });
 
     const b = themedWithStyle<typeof a, {}>(a, (props) => {
       console.log(props.$theme.colors.custom400);
-      // $FlowFixMe
+      // @ts-expect-error
       console.log(props.$theme.colors.custom9000);
       return { color: 'green' };
     });
@@ -289,7 +289,7 @@ describe('themedWithStyle flow', () => {
     const themedStyled = createThemedStyled<T>();
     const themedWithStyle = createThemedWithStyle<T>();
 
-    const a = themedStyled<{}>('div', (props) => {
+    const a = themedStyled<'div', {}>('div', (props) => {
       return { color: 'blue' };
     });
 
@@ -299,7 +299,7 @@ describe('themedWithStyle flow', () => {
 
     const b = themedWithStyle<typeof a, P>(a, (props) => {
       console.log(props.hello);
-      // $FlowFixMe
+      // @ts-expect-error
       console.log(props.world);
       return { color: 'green' };
     });
@@ -310,7 +310,7 @@ describe('useStyletron flow', () => {
   test('it provides flow error if argument is not a StyleObject', () => {
     function A() {
       const [css] = useStyletron();
-      // $FlowFixMe
+      // @ts-expect-error
       return <div className={css(false)}>hello</div>;
     }
   });
@@ -322,7 +322,7 @@ describe('useStyletron flow', () => {
         <div
           className={css({
             color: theme.colors.primary400,
-            // $FlowFixMe
+            // @ts-expect-error
             backgroundColor: theme.colors.primary9000,
           })}
         >
@@ -345,7 +345,7 @@ describe('themedUseStyletron flow', () => {
 
     function A() {
       const [css] = themedUseStyletron();
-      // $FlowFixMe
+      // @ts-expect-error
       return <div className={css(false)}>hello</div>;
     }
   });
@@ -365,7 +365,7 @@ describe('themedUseStyletron flow', () => {
         <div
           className={css({
             color: theme.colors.custom400,
-            // $FlowFixMe
+            // @ts-expect-error
             backgroundColor: theme.colors.custom9000,
           })}
         >
@@ -386,7 +386,7 @@ describe('longhand border properties', () => {
       };
     });
 
-    // $FlowFixMe
+    // @ts-expect-error
     const StringBorderStyleType = styled('div', ({ $theme }) => {
       return {
         borderTopWidth: $theme.borders.border100.borderWidth,

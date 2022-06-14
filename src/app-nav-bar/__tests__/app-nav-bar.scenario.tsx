@@ -11,10 +11,10 @@ import Delete from '../../icon/delete';
 import Upload from '../../icon/upload';
 import Overflow from '../../icon/overflow';
 
-import { AppNavBar, setItemActive } from '..';
+import { AppNavBar, NavItemT, setItemActive } from '..';
 
 export function Scenario() {
-  const [mainItems, setMainItems] = React.useState([
+  const [mainItems, setMainItems] = React.useState<NavItemT[]>([
     { icon: Upload, label: 'Primary A' },
     { icon: Upload, label: 'Primary B' },
     {

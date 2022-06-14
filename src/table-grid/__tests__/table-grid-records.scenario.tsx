@@ -19,7 +19,7 @@ type EventT = [Date, string];
 // [pr title, pr link, description, release kind, author]
 type RowT = [string, string, string, string, string, EventT[]];
 
-const row = [
+const row: RowT = [
   'feat(docs-site): theme editor POC',
   'https://github.com/uber/baseweb/pull/1296',
   `integrates an inline theme editor for the base web documentation site user can edit a theme

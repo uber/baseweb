@@ -47,7 +47,7 @@ describe('StatefulPopoverContainer', () => {
         isOpen: true,
       },
     };
-    const children = jest.fn(() => null);
+    const children = jest.fn((arg) => null);
 
     render(<StatefulContainer {...props}>{children}</StatefulContainer>);
 
@@ -71,7 +71,7 @@ describe('StatefulPopoverContainer', () => {
         isOpen: true,
       },
     };
-    const children = jest.fn(() => null);
+    const children = jest.fn((arg) => null);
 
     render(<StatefulContainer {...props}>{children}</StatefulContainer>);
 
@@ -87,7 +87,7 @@ describe('StatefulPopoverContainer', () => {
         isOpen: true,
       },
     };
-    const children = jest.fn(() => null);
+    const children = jest.fn((arg) => null);
 
     render(<StatefulContainer {...props}>{children}</StatefulContainer>);
 
@@ -110,7 +110,7 @@ describe('StatefulPopoverContainer', () => {
         isOpen: true,
       },
     };
-    const children = jest.fn(() => null);
+    const children = jest.fn((arg) => null);
 
     render(<StatefulContainer {...props}>{children}</StatefulContainer>);
 
@@ -124,7 +124,7 @@ describe('StatefulPopoverContainer', () => {
       content: jest.fn(),
       triggerType: TRIGGER_TYPE.hover,
     };
-    const children = jest.fn(() => null);
+    const children = jest.fn((arg) => null);
 
     render(<StatefulContainer {...props}>{children}</StatefulContainer>);
 
@@ -163,7 +163,7 @@ describe('StatefulPopoverContainer', () => {
       content: jest.fn(),
       triggerType: TRIGGER_TYPE.click,
     };
-    const children = jest.fn(() => null);
+    const children = jest.fn((arg) => null);
 
     render(<StatefulContainer {...props}>{children}</StatefulContainer>);
 
@@ -191,7 +191,7 @@ describe('StatefulPopoverContainer', () => {
       onOpen: jest.fn(),
       onClose: jest.fn(),
     };
-    const children = jest.fn(() => null);
+    const children = jest.fn((arg) => null);
 
     render(<StatefulContainer {...props}>{children}</StatefulContainer>);
 
@@ -214,7 +214,7 @@ describe('StatefulPopoverContainer', () => {
       content: jest.fn(),
       stateReducer: null,
     };
-    const children = jest.fn(() => null);
+    const children = jest.fn((arg) => null);
 
     render(
       // $FlowFixMe - Allow null stateReducer for the sake of testing

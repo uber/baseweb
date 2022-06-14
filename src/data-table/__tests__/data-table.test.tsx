@@ -14,6 +14,7 @@ import {
   CategoricalColumn,
   NumericalColumn,
   StringColumn,
+  ControlRefT,
 } from '../index';
 
 // NOTE: data-table waits for container dimension measurements before rendering. Jsdom only
@@ -88,7 +89,7 @@ const ROWS = [
 
 describe('Data Table', () => {
   it('renders expected number of rows', async () => {
-    const controlRef = React.createRef();
+    const controlRef = React.createRef() as ControlRefT;
     const { container } = render(
       <TestBaseProvider>
         <div style={{ height: '800px', width: '900px' }}>

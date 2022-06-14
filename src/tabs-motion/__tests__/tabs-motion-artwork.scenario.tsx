@@ -13,7 +13,7 @@ import { Button, KIND } from '../../button';
 import { ArrowUp, ArrowRight, ArrowDown, ArrowLeft } from '../../icon';
 
 export function Scenario() {
-  const [activeKey, setActiveKey] = React.useState('0');
+  const [activeKey, setActiveKey] = React.useState<React.Key>('0');
   return (
     <Tabs activeKey={activeKey} onChange={({ activeKey }) => setActiveKey(activeKey)}>
       <Tab title="Robot" artwork={(props) => <ArrowUp {...props} />}>

@@ -11,7 +11,7 @@ import { Button } from '../../button';
 
 export function Scenario() {
   const controlRef = React.useRef(null);
-  const [value, setValue] = React.useState([]);
+  const [value, setValue] = React.useState<any>([]);
 
   const options = [
     { id: 'a', label: 'apples' },

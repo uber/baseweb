@@ -34,10 +34,10 @@ const data = [
 function Instance({ size }) {
   return (
     <TableBuilder data={data} size={size}>
-      <TableBuilderColumn id="bar" header="Produce" sortable>
+      <TableBuilderColumn<any> id="bar" header="Produce" sortable>
         {(row) => <a href={row.url}>{row.bar}</a>}
       </TableBuilderColumn>
-      <TableBuilderColumn id="foo" header="Quantity" numeric sortable>
+      <TableBuilderColumn<any> id="foo" header="Quantity" numeric sortable>
         {(row) => row.foo}
       </TableBuilderColumn>
     </TableBuilder>

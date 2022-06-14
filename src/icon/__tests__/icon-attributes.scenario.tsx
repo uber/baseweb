@@ -10,9 +10,10 @@ import { ThemeProvider } from '../../styles';
 import { createLightTheme, lightThemePrimitives } from '../../themes';
 import Upload from '../upload';
 import Check from '../check';
+import { IconPropsT } from 'baseui/icon';
 
 // Simulate roughly how our own icons are distributed
-const Triangle = React.forwardRef((props, ref) => {
+const Triangle = React.forwardRef<SVGElement, IconPropsT>((props, ref) => {
   const { title, size = '1em', ...restProps } = props;
   return (
     <svg
@@ -56,7 +57,14 @@ export function Scenario() {
       />
 
       {/* A custom implementation */}
-      <Upload size={100} color="red" $testing="123" data-testing="123" />
+
+      <Upload
+        size={100}
+        color="red"
+        // @ts-expect-error
+        $testing="123"
+        data-testing="123"
+      />
     </ThemeProvider>
   );
 }

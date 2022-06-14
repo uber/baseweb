@@ -8,7 +8,7 @@ import * as React from 'react';
 import { Select } from '..';
 
 export function Scenario() {
-  const [value, setValue] = React.useState([]);
+  const [value, setValue] = React.useState<any>([]);
   return (
     <div>
       <div id="maintain-after-blur">

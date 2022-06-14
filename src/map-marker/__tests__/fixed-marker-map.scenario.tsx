@@ -53,7 +53,7 @@ export function Scenario() {
   const [endEnhancer, setEndEnhancer] = React.useState(false);
 
   const [locations, setLocations] = React.useState([
-    { position: [uberHq.longitude, uberHq.latitude], dragging: false },
+    { position: [uberHq.longitude, uberHq.latitude] as [number, number], dragging: false },
   ]);
 
   const [showPointDebug, setShowPointDebug] = React.useState(true);

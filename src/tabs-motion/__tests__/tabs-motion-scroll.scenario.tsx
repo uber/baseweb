@@ -11,7 +11,7 @@ import * as React from 'react';
 import { Tab, Tabs } from '..';
 
 export function Scenario() {
-  const [activeKey, setActiveKey] = React.useState('8');
+  const [activeKey, setActiveKey] = React.useState<React.Key>('8');
   return (
     <Tabs activeKey={activeKey} onChange={({ activeKey }) => setActiveKey(activeKey)}>
       <Tab title="One">One</Tab>

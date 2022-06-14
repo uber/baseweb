@@ -38,8 +38,8 @@ describe('Table Semantic Builder', () => {
   it('renders expected number of rows', () => {
     const { container } = render(
       <TableBuilder data={DATA}>
-        <TableBuilderColumn header="Foo">{(row) => row.foo}</TableBuilderColumn>
-        <TableBuilderColumn header="Bar">
+        <TableBuilderColumn<any> header="Foo">{(row) => row.foo}</TableBuilderColumn>
+        <TableBuilderColumn<any> header="Bar">
           {(row) => <a href={row.url}>{row.bar}</a>}
         </TableBuilderColumn>
         <TableBuilderColumn>{(row) => 'Hey'}</TableBuilderColumn>
@@ -52,8 +52,8 @@ describe('Table Semantic Builder', () => {
   it('renders expected number of columns', () => {
     const { container } = render(
       <TableBuilder data={DATA}>
-        <TableBuilderColumn header="Foo">{(row) => row.foo}</TableBuilderColumn>
-        <TableBuilderColumn header="Bar">
+        <TableBuilderColumn<any> header="Foo">{(row) => row.foo}</TableBuilderColumn>
+        <TableBuilderColumn<any> header="Bar">
           {(row) => <a href={row.url}>{row.bar}</a>}
         </TableBuilderColumn>
         <TableBuilderColumn>{(row) => 'Hey'}</TableBuilderColumn>
@@ -66,8 +66,8 @@ describe('Table Semantic Builder', () => {
   it('renders expected number of anchors', () => {
     const { container } = render(
       <TableBuilder data={DATA}>
-        <TableBuilderColumn header="Foo">{(row) => row.foo}</TableBuilderColumn>
-        <TableBuilderColumn header="Bar">
+        <TableBuilderColumn<any> header="Foo">{(row) => row.foo}</TableBuilderColumn>
+        <TableBuilderColumn<any> header="Bar">
           {(row) => <a href={row.url}>{row.bar}</a>}
         </TableBuilderColumn>
         <TableBuilderColumn>{(row) => 'Hey'}</TableBuilderColumn>
@@ -92,10 +92,10 @@ describe('Table Semantic Builder', () => {
           SortNoneIcon: { props: { 'data-testid': 'sort-none-icon' } },
         }}
       >
-        <TableBuilderColumn header="Foo" id="foo" numeric sortable>
+        <TableBuilderColumn<any> header="Foo" id="foo" numeric sortable>
           {(row) => row.foo}
         </TableBuilderColumn>
-        <TableBuilderColumn header="Bar" id="bar" sortable>
+        <TableBuilderColumn<any> header="Bar" id="bar" sortable>
           {(row) => <a href={row.url}>{row.bar}</a>}
         </TableBuilderColumn>
       </TableBuilder>
@@ -118,10 +118,10 @@ describe('Table Semantic Builder', () => {
           SortNoneIcon: { props: { 'data-testid': 'sort-none-icon' } },
         }}
       >
-        <TableBuilderColumn header="Foo" id="foo" numeric sortable>
+        <TableBuilderColumn<any> header="Foo" id="foo" numeric sortable>
           {(row) => row.foo}
         </TableBuilderColumn>
-        <TableBuilderColumn header="Bar" id="bar" sortable>
+        <TableBuilderColumn<any> header="Bar" id="bar" sortable>
           {(row) => <a href={row.url}>{row.bar}</a>}
         </TableBuilderColumn>
       </TableBuilder>
@@ -142,10 +142,10 @@ describe('Table Semantic Builder', () => {
           SortNoneIcon: { props: { 'data-testid': 'sort-none-icon' } },
         }}
       >
-        <TableBuilderColumn header="Foo" id="foo" numeric sortable>
+        <TableBuilderColumn<any> header="Foo" id="foo" numeric sortable>
           {(row) => row.foo}
         </TableBuilderColumn>
-        <TableBuilderColumn header="Bar" id="bar" sortable>
+        <TableBuilderColumn<any> header="Bar" id="bar" sortable>
           {(row) => <a href={row.url}>{row.bar}</a>}
         </TableBuilderColumn>
       </TableBuilder>
@@ -161,10 +161,10 @@ describe('Table Semantic Builder', () => {
 
     const { container } = render(
       <TableBuilder data={DATA} onSort={mockOnSort}>
-        <TableBuilderColumn header="Foo" id="foo" sortable>
+        <TableBuilderColumn<any> header="Foo" id="foo" sortable>
           {(row) => row.foo}
         </TableBuilderColumn>
-        <TableBuilderColumn header="Bar" id="bar" sortable>
+        <TableBuilderColumn<any> header="Bar" id="bar" sortable>
           {(row) => <a href={row.url}>{row.bar}</a>}
         </TableBuilderColumn>
       </TableBuilder>
@@ -190,9 +190,9 @@ describe('Table Semantic Builder', () => {
   });
 
   it('exposes row and column data to overrides', () => {
-    const mockTableHeadCellStyle = jest.fn(() => null);
-    const mockTableBodyRowStyle = jest.fn(() => null);
-    const mockTableBodyCellStyle = jest.fn(() => null);
+    const mockTableHeadCellStyle = jest.fn((arg) => null);
+    const mockTableBodyRowStyle = jest.fn((arg) => null);
+    const mockTableBodyCellStyle = jest.fn((arg) => null);
 
     render(
       <TableBuilder
@@ -209,10 +209,10 @@ describe('Table Semantic Builder', () => {
           },
         }}
       >
-        <TableBuilderColumn header="Foo" id="foo">
+        <TableBuilderColumn<any> header="Foo" id="foo">
           {(row) => row.foo}
         </TableBuilderColumn>
-        <TableBuilderColumn header="Bar" id="bar">
+        <TableBuilderColumn<any> header="Bar" id="bar">
           {(row) => <a href={row.url}>{row.bar}</a>}
         </TableBuilderColumn>
       </TableBuilder>
@@ -254,10 +254,14 @@ describe('Table Semantic Builder', () => {
   it('renders aria label for column header', () => {
     const { container } = render(
       <TableBuilder data={DATA}>
-        <TableBuilderColumn header={<span>Foo</span>} tableHeadAriaLabel="Foo Aria Label" sortable>
+        <TableBuilderColumn<any>
+          header={<span>Foo</span>}
+          tableHeadAriaLabel="Foo Aria Label"
+          sortable
+        >
           {(row) => row.foo}
         </TableBuilderColumn>
-        <TableBuilderColumn header="Bar" sortable>
+        <TableBuilderColumn<any> header="Bar" sortable>
           {(row) => <a href={row.url}>{row.bar}</a>}
         </TableBuilderColumn>
         <TableBuilderColumn>{(row) => 'Hey'}</TableBuilderColumn>
@@ -272,8 +276,8 @@ describe('Table Semantic Builder', () => {
   it('renders loading message', () => {
     const { container } = render(
       <TableBuilder data={DATA} isLoading={true}>
-        <TableBuilderColumn header="Foo">{(row) => row.foo}</TableBuilderColumn>
-        <TableBuilderColumn header="Bar">
+        <TableBuilderColumn<any> header="Foo">{(row) => row.foo}</TableBuilderColumn>
+        <TableBuilderColumn<any> header="Bar">
           {(row) => <a href={row.url}>{row.bar}</a>}
         </TableBuilderColumn>
         <TableBuilderColumn>{(row) => 'Hey'}</TableBuilderColumn>
@@ -285,8 +289,8 @@ describe('Table Semantic Builder', () => {
   it('renders empty message', () => {
     const { container } = render(
       <TableBuilder data={[]} emptyMessage="No data">
-        <TableBuilderColumn header="Foo">{(row) => row.foo}</TableBuilderColumn>
-        <TableBuilderColumn header="Bar">
+        <TableBuilderColumn<any> header="Foo">{(row) => row.foo}</TableBuilderColumn>
+        <TableBuilderColumn<any> header="Bar">
           {(row) => <a href={row.url}>{row.bar}</a>}
         </TableBuilderColumn>
         <TableBuilderColumn>{(row) => 'Hey'}</TableBuilderColumn>
@@ -298,8 +302,8 @@ describe('Table Semantic Builder', () => {
   it('does not render unset empty message', () => {
     const { container } = render(
       <TableBuilder data={[]}>
-        <TableBuilderColumn header="Foo">{(row) => row.foo}</TableBuilderColumn>
-        <TableBuilderColumn header="Bar">
+        <TableBuilderColumn<any> header="Foo">{(row) => row.foo}</TableBuilderColumn>
+        <TableBuilderColumn<any> header="Bar">
           {(row) => <a href={row.url}>{row.bar}</a>}
         </TableBuilderColumn>
         <TableBuilderColumn>{(row) => 'Hey'}</TableBuilderColumn>

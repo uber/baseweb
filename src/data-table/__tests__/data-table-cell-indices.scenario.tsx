@@ -15,6 +15,7 @@ const columns = new Array(30).fill(undefined).map((_, index) =>
   CustomColumn({
     title: `column ${index}`,
     mapDataToValue: () => null,
+    // @ts-expect-error
     renderCell: ({ x, y }) => {
       return `${x}, ${y}`;
     },

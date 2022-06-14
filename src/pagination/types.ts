@@ -64,6 +64,7 @@ export type StatefulPaginationPropsT = CallbacksT & {
   /** Initial state populated into the component */
   initialState?: StatefulContainerStateT;
   overrides?: OverridesT;
+  size?: SizeT;
 };
 
 export type StatefulContainerPropsT = {

@@ -8,7 +8,7 @@ import React from 'react';
 
 import { AspectRatioBox, AspectRatioBoxBody } from '..';
 
-const bodyProps = {
+const bodyProps: React.ComponentProps<typeof AspectRatioBoxBody> = {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',

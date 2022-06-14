@@ -60,10 +60,10 @@ describe('setDropdownOpen', function () {
       { id: 'b', label: 'b' },
       { id: 'c', label: 'c' },
     ];
-    const controlRef = React.createRef();
+    const controlRef = React.createRef() as ControlRefT;
 
     const TestCase = () => {
-      const [value, setValue] = React.useState([]);
+      const [value, setValue] = React.useState<any>([]);
 
       return (
         <BaseProvider theme={LightTheme}>
@@ -113,10 +113,10 @@ describe('setInputValue', function () {
       { id: 'b', label: 'unicorns' },
       { id: 'c', label: 'elves' },
     ];
-    const controlRef = React.createRef();
+    const controlRef = React.createRef() as ControlRefT;
 
     const TestCase = () => {
-      const [value, setValue] = React.useState([]);
+      const [value, setValue] = React.useState<any>([]);
 
       return (
         <BaseProvider theme={LightTheme}>

@@ -16,7 +16,7 @@ function getColumn(index) {
   });
 }
 
-const rows = new Array(5).fill().map((_, i) => ({ id: i, data: {} }));
+const rows = new Array(5).fill(undefined).map((_, i) => ({ id: i, data: {} }));
 
 export function Scenario() {
   const [columns, setColumns] = React.useState([getColumn(0), getColumn(1)]);

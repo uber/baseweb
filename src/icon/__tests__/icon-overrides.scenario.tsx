@@ -10,10 +10,12 @@ import DeleteIcon from '../delete';
 import PlusIcon from '../plus';
 import { ThemeProvider, LightTheme, styled } from '../..';
 import { getSvgStyles } from '../../icon/styled-components';
+import { IconPropsT } from 'baseui/icon';
 
-const XSmallFilled = ({ title, ...props }) => {
+const XSmallFilled = ({ title, size, color, ...props }: IconPropsT) => {
   return (
-    <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none">
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <title>{title}</title>
       <path
         d="M18.1 8.1l-2.2-2.2-3.9 4-3.9-4-2.2 2.2 4 3.9-4 3.9 2.2 2.2 3.9-4 3.9 4 2.2-2.2-4-3.9 4-3.9z"
         fill="currentColor"

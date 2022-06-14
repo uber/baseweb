@@ -9,7 +9,7 @@ import * as React from 'react';
 import { StyledTable, StyledBodyCell, SortableHeadCell, SORT_DIRECTION } from '..';
 import { useCellNavigation } from './shared';
 
-const DATA = [
+const DATA: Array<[string, number]> = [
   ['Marlyn', 10],
   ['Luther', 15],
   ['Kiera', 13],

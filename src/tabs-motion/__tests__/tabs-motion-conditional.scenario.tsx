@@ -43,7 +43,7 @@ class ErrorBoundary extends React.Component<
 }
 
 export function Scenario() {
-  const [activeKey, setActiveKey] = React.useState('monster');
+  const [activeKey, setActiveKey] = React.useState<React.Key>('monster');
   const [show, setShow] = React.useState(false);
   return (
     <React.Fragment>

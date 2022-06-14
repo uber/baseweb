@@ -54,7 +54,7 @@ describe('Stateful select', function () {
       },
     };
     render(<StatefulSelect {...props} />);
-    // $FlowFixMe
+    // @ts-expect-error
     const { overrides } = Select.mock.calls[0][0];
     expect(overrides).toEqual(props.overrides);
     expect(Select).toHaveBeenCalled();

@@ -5,9 +5,9 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
-import { Select } from '..';
+import { OptionT, Select } from '..';
 
-const COLORS = [
+const COLORS: OptionT[] = [
   { label: 'AliceBlue', id: '#F0F8FF' },
   { label: 'AntiqueWhite', id: '#FAEBD7' },
   { label: 'Aqua', id: '#00FFFF' },
@@ -17,7 +17,7 @@ const COLORS = [
 ];
 
 export function Scenario() {
-  const [value, setValue] = React.useState([]);
+  const [value, setValue] = React.useState<any>([]);
   const [searchResults, setSearchResults] = React.useState([]);
   return (
     <Select
@@ -28,7 +28,9 @@ export function Scenario() {
         setSearchResults([]);
         setTimeout(() => {
           setSearchResults(
-            COLORS.filter((color) => color.label.toLowerCase().indexOf(value.toLowerCase()) > -1)
+            COLORS.filter(
+              (color) => (color.label as string).toLowerCase().indexOf(value.toLowerCase()) > -1
+            )
           );
         });
       }}

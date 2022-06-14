@@ -11,7 +11,7 @@ import { StatefulContainer, MODE } from '..';
 
 describe('ButtonGroup StatefulContainer', () => {
   it('provides expected props to children render function', () => {
-    const children = jest.fn(() => <div>children</div>);
+    const children = jest.fn((arg) => <div>children</div>);
     render(<StatefulContainer>{children}</StatefulContainer>);
 
     const actual = children.mock.calls[0][0];

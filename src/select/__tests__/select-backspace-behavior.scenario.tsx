@@ -8,8 +8,8 @@ import * as React from 'react';
 import { Select } from '..';
 
 export function Scenario() {
-  const [first, setFirst] = React.useState([]);
-  const [second, setSecond] = React.useState([]);
+  const [first, setFirst] = React.useState<any>([]);
+  const [second, setSecond] = React.useState<any>([]);
 
   return (
     <div>

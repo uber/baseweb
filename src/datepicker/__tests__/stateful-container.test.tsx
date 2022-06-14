@@ -16,11 +16,12 @@ describe('StatefulComponentContainer', () => {
   });
 
   it('passes provided event handlers to children', () => {
-    const children = jest.fn(() => null);
+    const children = jest.fn((arg) => null);
     const onDayMouseOver = jest.fn();
     const onDayMouseLeave = jest.fn();
     render(
       <StatefulContainer
+        // @ts-expect-error
         onDayMouseOver={onDayMouseOver}
         onDayMouseLeave={onDayMouseLeave}
         initialState={{ value: new Date(2019, 2, 10) }}

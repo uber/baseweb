@@ -11,7 +11,7 @@ import * as React from 'react';
 import { Tab, Tabs, ORIENTATION } from '..';
 
 export function Scenario() {
-  const [activeKey, setActiveKey] = React.useState(5);
+  const [activeKey, setActiveKey] = React.useState<React.Key>(5);
   return (
     <Tabs
       activeKey={activeKey}

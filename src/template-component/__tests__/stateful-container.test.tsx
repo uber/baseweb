@@ -10,7 +10,7 @@ import { StatefulContainer } from '..';
 
 describe('StatefulComponentContainer', () => {
   test('provides expected arguments to children fn', () => {
-    const children = jest.fn(() => null);
+    const children = jest.fn((arg) => null);
     render(<StatefulContainer>{children}</StatefulContainer>);
     expect(children).toHaveBeenCalledTimes(1);
     expect(children.mock.calls[0][0]).toHaveProperty('prop', true);

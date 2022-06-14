@@ -13,7 +13,7 @@ import { Button, KIND } from '../../button';
 import { ThemeProvider, LightTheme } from '../..';
 
 export function Scenario() {
-  const [activeKey, setActiveKey] = React.useState('0');
+  const [activeKey, setActiveKey] = React.useState<React.Key>('0');
   return (
     <ThemeProvider theme={{ ...LightTheme, direction: 'rtl' }}>
       <div dir="rtl">

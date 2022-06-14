@@ -108,7 +108,7 @@ const panelOverrides = {
   },
 };
 
-const DATA = [
+const DATA: Array<[string, string, string, number, number, { title: string; data: string }]> = [
   [
     'Marlyn',
     'Engineering',

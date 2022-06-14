@@ -12,7 +12,7 @@ import { Tab, Tabs } from '..';
 import { Button, KIND } from '../../button';
 
 export function Scenario() {
-  const [activeKey, setActiveKey] = React.useState('0');
+  const [activeKey, setActiveKey] = React.useState<React.Key>('0');
   return (
     <Tabs activeKey={activeKey} onChange={({ activeKey }) => setActiveKey(activeKey)}>
       <Tab title="Robot">

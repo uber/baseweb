@@ -12,7 +12,7 @@ export function Scenario() {
   return (
     <table>
       <tbody>
-        {Object.keys(KIND).map((kind) => {
+        {Object.values(KIND).map((kind) => {
           return (
             <tr key={kind}>
               <td>

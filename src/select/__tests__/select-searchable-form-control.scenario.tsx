@@ -19,7 +19,7 @@ const options = [
 ];
 
 export function Scenario() {
-  const [value, setValue] = React.useState([]);
+  const [value, setValue] = React.useState<any>([]);
 
   return (
     <div>

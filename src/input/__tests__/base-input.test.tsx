@@ -71,7 +71,7 @@ describe('base-input', () => {
   it('applies ref from inputRef prop', () => {
     const onFocus = jest.fn();
     function TestCase() {
-      const ref = React.useRef();
+      const ref = React.useRef<any>();
       React.useEffect(() => {
         if (ref.current) {
           ref.current.focus();

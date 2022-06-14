@@ -9,7 +9,7 @@ import Accordion from '../stateless-accordion';
 import Panel from '../panel';
 
 export function Scenario() {
-  const [expanded, setExpanded] = React.useState(['L1', 'L2']);
+  const [expanded, setExpanded] = React.useState<React.Key[]>(['L1', 'L2']);
   return (
     <Accordion
       accordion={false} // Open multiple panels simultaneously

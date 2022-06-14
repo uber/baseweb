@@ -15,7 +15,7 @@ import { Button, KIND } from '../../button';
 // scroll position.
 
 export function Scenario() {
-  const [activeKey, setActiveKey] = React.useState('0');
+  const [activeKey, setActiveKey] = React.useState<React.Key>('0');
   return (
     <React.Fragment>
       <div style={{ height: '50vh' }} />

@@ -9,7 +9,7 @@ import * as React from 'react';
 import { Tab, Tabs } from '..';
 
 export function Scenario() {
-  const [activeKey, setActiveKey] = React.useState(1);
+  const [activeKey, setActiveKey] = React.useState<React.Key>(1);
   return (
     <React.Fragment>
       <input id="first-focus" type="text" />

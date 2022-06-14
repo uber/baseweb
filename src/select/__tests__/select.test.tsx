@@ -12,6 +12,7 @@ import { TestBaseProvider } from '../../test/test-utils';
 
 import Select from '../select';
 import { STATE_CHANGE_TYPE } from '../constants';
+import { type ControlRefT } from '..';
 
 describe('Select component', function () {
   // flowlint-next-line unclear-type:off
@@ -85,7 +86,7 @@ describe('Select component', function () {
 
   it('sets controlRef from props', () => {
     function TestCase() {
-      const ref = React.useRef();
+      const ref = React.useRef() as ControlRefT;
       React.useEffect(() => {
         if (ref.current) {
           ref.current.focus();

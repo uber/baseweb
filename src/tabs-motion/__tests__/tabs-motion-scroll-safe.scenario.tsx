@@ -15,7 +15,7 @@ import { Button, KIND } from '../../button';
 // component on initial mount.
 
 export function Scenario() {
-  const [activeKey, setActiveKey] = React.useState('8');
+  const [activeKey, setActiveKey] = React.useState<React.Key>('8');
   return (
     <React.Fragment>
       <div style={{ marginTop: '200vh' }}>

@@ -12,7 +12,7 @@ import { Tag, SIZE } from '../../tag/index';
 import Check from '../../icon/check';
 import { styled } from '../../styles/index';
 
-export const Box = styled<{}>('div', ({ $theme }) => ({
+export const Box = styled<'div', {}>('div', ({ $theme }) => ({
   borderTopLeftRadius: $theme.borders.surfaceBorderRadius,
   borderTopRightRadius: $theme.borders.surfaceBorderRadius,
   backgroundColor: $theme.colors.primaryA,

@@ -11,7 +11,7 @@ import { StatefulPanelContainer } from '..';
 
 describe('StatefulPanelContainer', () => {
   it('provides expected props to children function', () => {
-    const children = jest.fn(() => null);
+    const children = jest.fn((arg) => null);
     render(
       <StatefulPanelContainer initialState={{ expanded: true }}>{children}</StatefulPanelContainer>
     );

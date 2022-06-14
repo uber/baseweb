@@ -11,15 +11,15 @@ import { StatefulContainer } from '..';
 
 describe('Stateful container', function () {
   it('should provide all needed props to children render func', function () {
-    const children = jest.fn(() => null);
+    const children = jest.fn((arg) => null);
+    // @ts-expect-error - Point of this test is to check a missing prop
     render(<StatefulContainer foo="bar">{children}</StatefulContainer>);
     const props = children.mock.calls[0][0];
-    //$FlowExpectedError[prop-missing] - Point of this test is to check a missing prop
     expect(props.foo).toBe('bar');
   });
 
   it('should provide initial state as part of state', function () {
-    const children = jest.fn(() => null);
+    const children = jest.fn((arg) => null);
     render(<StatefulContainer initialState={{ checked: true }}>{children}</StatefulContainer>);
     const props = children.mock.calls[0][0];
     expect(props.checked).toBe(true);
@@ -37,6 +37,7 @@ describe('Stateful container', function () {
       <StatefulContainer
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
+        // @ts-expect-error - Point of this test is to check a missing prop
         onMouseUp={onMouseUp}
         onMouseDown={onMouseDown}
         onFocus={onFocus}
@@ -45,13 +46,14 @@ describe('Stateful container', function () {
         {({
           onMouseEnter,
           onMouseLeave,
-          //$FlowExpectedError[prop-missing] - Point of this test is to check a missing prop
+          // @ts-expect-error - Point of this test is to check a missing prop
           onMouseUp,
-          //$FlowExpectedError[prop-missing] - Point of this test is to check a missing prop
+          // @ts-expect-error - Point of this test is to check a missing prop
           onMouseDown,
           onFocus,
           onBlur,
         }) => (
+          // @ts-expect-error incorrect prop types
           <input
             {...{
               onMouseEnter,

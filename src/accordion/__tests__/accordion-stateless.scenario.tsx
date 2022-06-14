@@ -9,7 +9,7 @@ import * as React from 'react';
 import { StatelessAccordion, Panel } from '..';
 
 export function Scenario() {
-  const [expanded, setExpanded] = React.useState(['P1', 'P2']);
+  const [expanded, setExpanded] = React.useState<React.Key[]>(['P1', 'P2']);
   return (
     <StatelessAccordion
       expanded={expanded}

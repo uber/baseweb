@@ -33,7 +33,7 @@ function IconsContainerOverride({ children, onCustomClick, ...props }) {
 }
 
 export function Scenario() {
-  const [value, setValue] = React.useState([]);
+  const [value, setValue] = React.useState<any>([]);
   const [count, setCount] = React.useState(0);
 
   const onCustomClick = React.useCallback(() => {

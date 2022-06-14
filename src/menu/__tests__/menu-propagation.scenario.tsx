@@ -13,7 +13,7 @@ export function Scenario() {
     event.stopPropagation();
   }
   return (
-    <div role="button" tabIndex="0" onKeyDown={handleParentKeyDown}>
+    <div role="button" tabIndex={0} onKeyDown={handleParentKeyDown}>
       <StatefulMenu
         items={[
           { label: 'Item One' },

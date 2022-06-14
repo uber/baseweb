@@ -50,7 +50,7 @@ function Child({ placement }) {
 }
 
 export function Scenario() {
-  const [placement, setPlacement] = React.useState(PLACEMENT.top);
+  const [placement, setPlacement] = React.useState<any>(PLACEMENT.top);
   return (
     <div>
       <SnackbarProvider placement={placement}>
