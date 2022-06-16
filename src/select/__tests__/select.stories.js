@@ -36,6 +36,7 @@ import { Scenario as SelectClickTriggersBlur } from './select-click-triggers-blu
 import { Scenario as SelectDefault } from './select.scenario.js';
 import { Scenario as SelectControlRefSetDropdownOpen } from './select-controlref-set-dropdown-open.scenario.js';
 import { Scenario as SelectControlRefSetInputValue } from './select-controlref-set-input-value.scenario.js';
+import { Scenario as SelectManyOptions } from './select-many-options.scenario.js';
 
 export const AsyncOptions = () => <SelectAsyncOptions />;
 export const BackspaceBehavior = () => <SelectBackspaceBehavior />;
@@ -66,3 +67,4 @@ export const Select = () => <SelectDefault />;
 export const ControlRefSetDropdownOpen = () => <SelectControlRefSetDropdownOpen />;
 export const ControlRefSetInputValue = () => <SelectControlRefSetInputValue />;
 export const ClickTriggersBlur = () => <SelectClickTriggersBlur />;
+export const ManyOptions = () => <SelectManyOptions />;
