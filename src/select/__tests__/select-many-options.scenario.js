@@ -25,10 +25,8 @@ const ListItem = withStyle(StyledDropdownListItem, {
 const FixedSizeListItem = ({ data, index, style }) => {
   const { item, overrides, ...restChildProps } = data[index].props;
   return (
-    //$FlowExpectedError[cannot-spread-inexact]
     <ListItem
       key={item.id}
-      //$FlowExpectedError[cannot-spread-inexact]
       style={{
         boxSizing: 'border-box',
         ...style,
