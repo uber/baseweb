@@ -316,10 +316,8 @@ class Select extends React.Component<PropsT, SelectStateT> {
       ) {
         return;
       }
-    } else if (event.type !== 'blur') {
-      if (containsNode(this.anchor.current, event.target)) {
-        return;
-      }
+    } else if (containsNode(this.anchor.current, event.target)) {
+      return;
     }
 
     if (this.props.onBlur) {
