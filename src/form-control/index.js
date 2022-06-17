@@ -9,6 +9,7 @@ LICENSE file in the root directory of this source tree.
 export { default as FormControl } from './form-control.js';
 export {
   Label as StyledLabel,
+  LabelContainer as StyledLabelContainer,
   Caption as StyledCaption,
   ControlContainer as StyledControlContainer,
 } from './styled-components.js';

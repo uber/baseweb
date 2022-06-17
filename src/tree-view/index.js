@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 export { default as TreeView } from './tree-view.js';
 export { default as StatefulTreeView } from './stateful-tree-view.js';
+export { default as StatefulContainer } from './stateful-container.js';
 
 export type * from './types.js';
 

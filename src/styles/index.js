@@ -18,6 +18,6 @@ export {
   withWrapper,
 } from './styled.js';
 export { hexToRgb, expandBorderStyles } from './util.js';
-export { default as ThemeProvider } from './theme-provider.js';
+export { default as ThemeProvider, ThemeContext } from './theme-provider.js';
 export const ThemeConsumer = ThemeContext.Consumer;
 export type * from './types.js';

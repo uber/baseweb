@@ -10,4 +10,5 @@ LICENSE file in the root directory of this source tree.
 export { default as StarRating } from './star-rating.js';
 export { default as EmoticonRating } from './emoticon-rating.js';
 export * from './styled-components.js';
+export * from './svg-icons.js';
 export type * from './types.js';

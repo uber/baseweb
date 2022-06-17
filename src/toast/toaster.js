@@ -229,7 +229,7 @@ const toaster = {
     if (toasterInstance) {
       return toasterInstance.show({ ...props, children });
     } else if (__DEV__) {
-      throw new Error(
+      console.error(
         'Please make sure to add the ToasterContainer to your application, and it is mounted, before adding toasts! You can find more information here: https://baseweb.design/components/toast'
       );
     }

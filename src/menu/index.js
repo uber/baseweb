@@ -19,6 +19,7 @@ export {
   StyledList,
   StyledListItem,
   StyledListItemProfile,
+  StyledOptgroupHeader,
   StyledProfileImgContainer,
   StyledProfileImg,
   StyledProfileLabelsContainer,

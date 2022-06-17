@@ -33,6 +33,8 @@ export {
   StyledDropdownListItem,
   StyledOptionContent,
 } from './styled-components.js';
+export { default as defaultProps } from './default-props.js';
 export { default as filterOptions } from './utils/default-filter-options.js';
+export { normalizeOptions } from './utils/index.js';
 export { SIZE, TYPE, STATE_CHANGE_TYPE } from './constants.js';
 export type * from './types.js';

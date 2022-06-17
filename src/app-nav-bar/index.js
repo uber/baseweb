@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 export { default as AppNavBar } from './app-nav-bar.js';
+export { default as UserProfileTile } from './user-profile-tile.js';
 export { POSITION } from './constants.js';
 export * from './styled-components.js';
 export * from './types.js';
