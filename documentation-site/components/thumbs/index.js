@@ -72,6 +72,7 @@ export { default as SvgTooltip } from './components/Tooltip.js';
 //Map Marker
 export { default as SvgFixedMarker } from './components/FixedMarker.js';
 export { default as SvgFloatingMarker } from './components/FloatingMarker.js';
+export { default as SvgFloatingRouteMarker } from './components/FloatingRouteMarker.js';
 
 // Utility
 export { default as SvgAspectRatioBox } from './components/AspectRatioBox.js';

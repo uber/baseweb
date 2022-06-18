@@ -220,3 +220,70 @@ export const KIND = Object.freeze({
   accent: 'accent',
   negative: 'negative',
 });
+
+export const FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS = {
+  topLeft: 'top-left',
+  topRight: 'top-right',
+  topCenter: 'top-center',
+  bottomLeft: 'bottom-left',
+  bottomRight: 'bottom-right',
+  bottomCenter: 'bottom-center',
+  leftCenter: 'left-center',
+  rightCenter: 'right-center',
+};
+
+export const FLOATING_ROUTE_MARKER_POINTER_POSITIONS = {
+  [FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.topLeft]: {
+    transform: `translate(-33.33%, -33.33%)`,
+  },
+  [FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.topRight]: {
+    right: 0,
+    transform: `translate(33.33%, -33.33%)`,
+  },
+  [FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.topCenter]: {
+    right: '50%',
+    transform: `translate(50%, -100%) rotate(180deg)`,
+  },
+  [FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.bottomLeft]: {
+    transform: `translate(-33.33%, 33.33%)`,
+    bottom: 0,
+  },
+  [FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.bottomRight]: {
+    right: 0,
+    transform: `translate(33.33%, 33.33%)`,
+    bottom: 0,
+  },
+  [FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.bottomCenter]: {
+    bottom: 0,
+    right: '50%',
+    transform: `translate(50%, 100%)`,
+  },
+  [FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.leftCenter]: {
+    top: '50%',
+    transform: `translate(0%, -50%) rotate(90deg)`,
+  },
+  [FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.rightCenter]: {
+    left: '100%',
+    top: '50%',
+    transform: `translate(0%, -50%) rotate(270deg)`,
+    transformOrigin: 'center',
+  },
+};
+
+export const FLOATING_ROUTE_MARKER_POINTER_TYPES = {
+  diagonal: 'diagonal',
+  standard: 'standard',
+};
+
+export const FLOATING_ROUTE_MARKER_POINTER_TYPE_WRAPPER_SIZES = {
+  [FLOATING_ROUTE_MARKER_POINTER_TYPES.diagonal]: {
+    height: '24',
+    width: '24',
+    viewBox: '0 0 24 24',
+  },
+  [FLOATING_ROUTE_MARKER_POINTER_TYPES.standard]: {
+    height: '10',
+    width: '18',
+    viewBox: '0 0 18 10',
+  },
+};

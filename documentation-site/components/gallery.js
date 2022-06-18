@@ -231,6 +231,10 @@ const COMPONENTS = {
       href: '/components/floating-marker',
       Component: thumbnails.SvgFloatingMarker,
     },
+    {
+      href: '/components/floating-route-marker',
+      Component: thumbnails.SvgFloatingRouteMarker,
+    },
   ],
   Utility: [
     {

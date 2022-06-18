@@ -301,8 +301,51 @@ export const StyledContentItem = styled<{
     display: 'flex',
     alignItems: 'center',
     textAlign: 'center',
-    lineHeight: `${$height}px`,
+
     height: `${$height}px`,
+    color: $color,
+    ...($height && {
+      lineHeight: `${$height}px`,
+    }),
+  };
+});
+
+export const StyledFloatingRouteMarkerRoot = styled<{
+  $height: number,
+  $background: string,
+  $gridTemplateColumns: string,
+}>('div', ({ $theme, $height, $background, $gridTemplateColumns }) => {
+  return {
+    position: 'absolute',
+    backgroundColor: $background,
+    height: `${$height}px`,
+    display: 'grid',
+    gridTemplateColumns: $gridTemplateColumns,
+    gap: '8px',
+    boxShadow: $theme.lighting.shadow600,
+    whiteSpace: 'nowrap',
+    borderRadius: `${8}px`,
+    padding: `${4}px ${8}px`,
+    transition: `${$theme.animation.timing300} ${$theme.animation.easeOutCurve} all`,
+  };
+});
+
+export const StyledLabelContent = styled<{
+  $color: string,
+  $height: number,
+  $size: PinHeadSizeT,
+}>('div', ({ $theme, $color, $height, $size }) => {
+  return {
+    ...$theme.typography[LABEL_SIZES[$size]],
+    display: 'flex',
+    flexDirection: 'column',
+  };
+});
+
+export const StyledLabel = styled<{
+  $color: string,
+}>('div', ({ $theme, $color }) => {
+  return {
     color: $color,
   };
 });

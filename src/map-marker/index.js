@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 export { default as FixedMarker } from './fixed-marker.js';
 export { default as FloatingMarker } from './floating-marker.js';
+export { default as FloatingRouteMarker } from './floating-route-marker.js';
 
 export {
   FLOATING_MARKER_ANCHOR_POSITIONS,

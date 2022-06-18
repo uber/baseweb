@@ -11,9 +11,13 @@ import { Scenario as FloatingMarkerStory } from './floating-marker.scenario.js';
 import { Scenario as FloatingMarkerMapStory } from './floating-marker-map.scenario.js';
 import { Scenario as FixedMarkerMapStory } from './fixed-marker-map.scenario.js';
 import { Scenario as EatsPickupMarkerStory } from './eats-pickup-marker.scenario.js';
+import { Scenario as FloatingRouteMarkerStory } from './floating-route-marker.scenario.js';
+import { Scenario as FloatingRouteMarkerMapStory } from './floating-route-marker-map.scenario.js';
 
 export const FixedMarker = () => <FixedMarkerStory />;
 export const FloatingMarker = () => <FloatingMarkerStory />;
 export const FloatingMarkerMap = () => <FloatingMarkerMapStory />;
 export const FixedMarkerMap = () => <FixedMarkerMapStory />;
 export const EatsPickupMarker = () => <EatsPickupMarkerStory />;
+export const FloatingRouteMarker = () => <FloatingRouteMarkerStory />;
+export const FloatingRouteMarkerMap = () => <FloatingRouteMarkerMapStory />;
