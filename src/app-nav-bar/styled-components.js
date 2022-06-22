@@ -151,7 +151,7 @@ export const StyledSecondaryMenuContainer = styled<{}>('div', ({ $theme }) => {
     flexWrap: 'nowrap',
     justifyContent: 'flex-start',
     margin: 'auto',
-    maxWidth: `${$theme.breakpoints.large}px`,
+    maxWidth: `${$theme.grid.maxWidth}px`,
     alignItems: 'stretch',
     overflow: 'auto',
   };
@@ -210,7 +210,7 @@ export const StyledDesktopMenu = styled<{}>('div', ({ $theme }) => {
     display: 'flex',
     justifyContent: 'space-between',
     margin: 'auto',
-    maxWidth: `${$theme.breakpoints.large}px`,
+    maxWidth: `${$theme.grid.maxWidth}px`,
     paddingBlockStart: '18px',
     paddingBlockEnd: '18px',
   };
