@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import { styled, withStyle } from '../styles/index.js';
+import { getMediaQueries } from '../helpers/responsive-helpers.js';
 import { StyledListItem } from '../menu/index.js';
 import { KIND } from './constants.js';
 
@@ -143,7 +144,9 @@ export const StyledMainMenuItem = styled<{
 });
 
 export const StyledSecondaryMenuContainer = styled<{}>('div', ({ $theme }) => {
-  return {
+  const mediaQueries = getMediaQueries($theme.breakpoints);
+
+  const style = {
     boxSizing: 'border-box',
     height: '100%',
     display: 'flex',
@@ -155,6 +158,19 @@ export const StyledSecondaryMenuContainer = styled<{}>('div', ({ $theme }) => {
     alignItems: 'stretch',
     overflow: 'auto',
   };
+
+  for (let i = 0; i < mediaQueries.length; i++) {
+    const margin = Array.isArray($theme.grid.margins)
+      ? $theme.grid.margins[i]
+      : $theme.grid.margins;
+
+    style[mediaQueries[i]] = {
+      paddingInlineStart: margin + 'px',
+      paddingInlineEnd: margin + 'px',
+    };
+  }
+
+  return style;
 });
 
 export const StyledUserMenuButton = StyledButton;
@@ -205,7 +221,9 @@ export const StyledDesktopMenuContainer = styled<{}>('div', ({ $theme }) => {
 });
 
 export const StyledDesktopMenu = styled<{}>('div', ({ $theme }) => {
-  return {
+  const mediaQueries = getMediaQueries($theme.breakpoints);
+
+  const style = {
     alignItems: 'center',
     display: 'flex',
     justifyContent: 'space-between',
@@ -214,4 +232,19 @@ export const StyledDesktopMenu = styled<{}>('div', ({ $theme }) => {
     paddingBlockStart: '18px',
     paddingBlockEnd: '18px',
   };
+
+  for (let i = 0; i < mediaQueries.length; i++) {
+    const margin = Array.isArray($theme.grid.margins)
+      ? $theme.grid.margins[i]
+      : $theme.grid.margins;
+
+    style[mediaQueries[i]] = {
+      paddingInlineStart: margin + 'px',
+      paddingInlineEnd: margin + 'px',
+    };
+  }
+
+  console.log(style);
+
+  return style;
 });
