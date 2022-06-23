@@ -97,13 +97,15 @@ const FileUploaderConfig: TConfig = {
       description: 'Lets you customize all aspects of the component.',
       custom: {
         names: [
-          'Root',
           { ...buttonConfig, componentName: 'ButtonComponent' },
+          { ...buttonConfig, componentName: 'CancelButtonComponent' },
+          { ...buttonConfig, componentName: 'RetryButtonComponent' },
           'ContentMessage',
           'ErrorMessage',
           'FileDragAndDrop',
           'HiddenInput',
           'Spinner',
+          'ProgressBar',
         ],
         sharedProps: {},
       },
