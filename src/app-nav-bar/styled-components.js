@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import { styled, withStyle } from '../styles/index.js';
+import { getMediaQueries } from '../helpers/responsive-helpers.js';
 import { StyledListItem } from '../menu/index.js';
 import { KIND } from './constants.js';
 
@@ -42,11 +43,47 @@ const StyledButton = styled<{ $isFocusVisible: boolean }>(
 
 export const StyledRoot = styled<{}>('div', (props) => {
   const { $theme } = props;
-  return {
+  const mediaQueries = getMediaQueries($theme.breakpoints);
+  const breakpoints = Object.values($theme.breakpoints).sort();
+  const margins = [];
+  if (Array.isArray($theme.grid.margins)) {
+    for (let i = 0; i < breakpoints.length; i++) {
+      const margin = $theme.grid.margins[i];
+      if (margin == null) {
+        margins.push($theme.grid.margins[$theme.grid.margins.length - 1]);
+      } else {
+        margins.push(margin);
+      }
+    }
+  } else {
+    for (let i = 0; i < breakpoints.length; i++) {
+      margins.push($theme.grid.margins);
+    }
+  }
+
+  const style = {
     ...$theme.typography.font300,
     boxSizing: 'border-box',
     backgroundColor: $theme.colors.backgroundPrimary,
+    borderBottomWidth: '1px',
+    borderBottomStyle: 'solid',
+    borderBottomColor: `${$theme.colors.borderOpaque}`,
+    paddingInlineStart: margins[0] + 'px',
+    paddingInlineEnd: margins[0] + 'px',
   };
+
+  for (let i = 1; i < mediaQueries.length; i++) {
+    const margin = Array.isArray($theme.grid.margins)
+      ? $theme.grid.margins[i]
+      : $theme.grid.margins;
+
+    style[mediaQueries[i]] = {
+      paddingInlineStart: margin + 'px',
+      paddingInlineEnd: margin + 'px',
+    };
+  }
+
+  return style;
 });
 
 export const StyledSubnavContainer = styled('div', {});
@@ -151,7 +188,7 @@ export const StyledSecondaryMenuContainer = styled<{}>('div', ({ $theme }) => {
     flexWrap: 'nowrap',
     justifyContent: 'flex-start',
     margin: 'auto',
-    maxWidth: `${$theme.breakpoints.large}px`,
+    maxWidth: `${$theme.grid.maxWidth}px`,
     alignItems: 'stretch',
     overflow: 'auto',
   };
@@ -197,11 +234,7 @@ export const StyledUserProfileInfoContainer = styled<{}>('div', ({ $theme }) => 
 });
 
 export const StyledDesktopMenuContainer = styled<{}>('div', ({ $theme }) => {
-  return {
-    borderBottomWidth: '1px',
-    borderBottomStyle: 'solid',
-    borderBottomColor: `${$theme.colors.borderOpaque}`,
-  };
+  return {};
 });
 
 export const StyledDesktopMenu = styled<{}>('div', ({ $theme }) => {
@@ -210,7 +243,7 @@ export const StyledDesktopMenu = styled<{}>('div', ({ $theme }) => {
     display: 'flex',
     justifyContent: 'space-between',
     margin: 'auto',
-    maxWidth: `${$theme.breakpoints.large}px`,
+    maxWidth: `${$theme.grid.maxWidth}px`,
     paddingBlockStart: '18px',
     paddingBlockEnd: '18px',
   };

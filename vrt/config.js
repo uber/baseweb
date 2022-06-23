@@ -30,6 +30,12 @@ const config = {
           });
         },
       },
+      {
+        name: 'largeViewport',
+        behavior: async (page) => {
+          await page.setViewportSize({ width: 1600, height: 800 });
+        },
+      },
     ],
   },
   // repeated plain openedMenu with overridden icon scenario
