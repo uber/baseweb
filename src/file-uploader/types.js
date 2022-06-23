@@ -26,7 +26,10 @@ export type OverridesT = {
   ProgressMessage?: OverrideT,
   ErrorMessage?: OverrideT,
   ButtonComponent?: OverrideT,
+  CancelButtonComponent?: OverrideT,
+  RetryButtonComponent?: OverrideT,
   Spinner?: OverrideT,
+  ProgressBar?: OverrideT,
 };
 
 export type PropsT = {|
