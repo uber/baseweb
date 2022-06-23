@@ -58,7 +58,17 @@ function FileUploader(props: PropsT) {
   const [HiddenInput, hiddenInputProps] = getOverrides(overrides.HiddenInput, StyledHiddenInput);
   const [ButtonComponent, buttonProps] = getOverrides(overrides.ButtonComponent, Button);
 
+  const [RetryButtonComponent, retryButtonProps] = getOverrides(
+    overrides.RetryButtonComponent,
+    Button
+  );
+  const [CancelButtonComponent, cancelButtonProps] = getOverrides(
+    overrides.CancelButtonComponent,
+    Button
+  );
+
   const [SpinnerComponent, spinnerProps] = getOverrides(overrides.Spinner, Spinner);
+  const [ProgressBarComponent, progressBarProps] = getOverrides(overrides.ProgressBar, ProgressBar);
 
   const afterFileDrop = !!(props.progressAmount || props.progressMessage || props.errorMessage);
 
@@ -130,7 +140,7 @@ function FileUploader(props: PropsT) {
                        * future. We do not want to flash the spinner in this case.
                        */}
                       {typeof props.progressAmount === 'number' ? (
-                        <ProgressBar
+                        <ProgressBarComponent
                           value={props.progressAmount}
                           overrides={{
                             BarProgress: {
@@ -141,6 +151,7 @@ function FileUploader(props: PropsT) {
                               }),
                             },
                           }}
+                          {...progressBarProps}
                         />
                       ) : props.errorMessage ? null : (
                         <SpinnerComponent
@@ -159,7 +170,7 @@ function FileUploader(props: PropsT) {
                         </ContentMessage>
                       )}
                       {props.errorMessage ? (
-                        <ButtonComponent
+                        <RetryButtonComponent
                           kind={KIND.tertiary}
                           onClick={() => {
                             props.onRetry && props.onRetry();
@@ -167,11 +178,12 @@ function FileUploader(props: PropsT) {
                           aria-invalid={Boolean(props.errorMessage)}
                           aria-describedby={props['aria-describedby']}
                           aria-errormessage={props.errorMessage}
+                          {...retryButtonProps}
                         >
                           {locale.fileuploader.retry}
-                        </ButtonComponent>
+                        </RetryButtonComponent>
                       ) : (
-                        <ButtonComponent
+                        <CancelButtonComponent
                           kind={KIND.tertiary}
                           onClick={() => {
                             props.onCancel && props.onCancel();
@@ -184,9 +196,10 @@ function FileUploader(props: PropsT) {
                               }),
                             },
                           }}
+                          {...cancelButtonProps}
                         >
                           {locale.fileuploader.cancel}
-                        </ButtonComponent>
+                        </CancelButtonComponent>
                       )}
                     </React.Fragment>
                   )}
