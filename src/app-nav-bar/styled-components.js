@@ -41,13 +41,49 @@ const StyledButton = styled<{ $isFocusVisible: boolean }>(
   })
 );
 
-export const StyledRoot = styled<{}>('div', (props) => {
-  const { $theme } = props;
-  return {
+export const StyledRoot = styled<{}>('div', ({ $theme }) => {
+  const mediaQueries = getMediaQueries($theme.breakpoints);
+
+  const breakpoints = Object.values($theme.breakpoints).sort();
+  const margins = [];
+  if (Array.isArray($theme.grid.margins)) {
+    for (let i = 0; i < breakpoints.length; i++) {
+      const margin = $theme.grid.margins[i];
+      if (margin == null) {
+        margins.push($theme.grid.margins[$theme.grid.margins.length - 1]);
+      } else {
+        margins.push(margin);
+      }
+    }
+  } else {
+    for (const breakpoint of $theme.breakpoints) {
+      margins.push($theme.grid.margins);
+    }
+  }
+
+  const style = {
     ...$theme.typography.font300,
     boxSizing: 'border-box',
     backgroundColor: $theme.colors.backgroundPrimary,
+    borderBottomWidth: '1px',
+    borderBottomStyle: 'solid',
+    borderBottomColor: `${$theme.colors.borderOpaque}`,
+    paddingInlineStart: margins[0] + 'px',
+    paddingInlineEnd: margins[0] + 'px',
   };
+
+  for (let i = 1; i < mediaQueries.length; i++) {
+    const margin = Array.isArray($theme.grid.margins)
+      ? $theme.grid.margins[i]
+      : $theme.grid.margins;
+
+    style[mediaQueries[i]] = {
+      paddingInlineStart: margin + 'px',
+      paddingInlineEnd: margin + 'px',
+    };
+  }
+
+  return style;
 });
 
 export const StyledSubnavContainer = styled('div', {});
@@ -144,9 +180,7 @@ export const StyledMainMenuItem = styled<{
 });
 
 export const StyledSecondaryMenuContainer = styled<{}>('div', ({ $theme }) => {
-  const mediaQueries = getMediaQueries($theme.breakpoints);
-
-  const style = {
+  return {
     boxSizing: 'border-box',
     height: '100%',
     display: 'flex',
@@ -158,19 +192,6 @@ export const StyledSecondaryMenuContainer = styled<{}>('div', ({ $theme }) => {
     alignItems: 'stretch',
     overflow: 'auto',
   };
-
-  for (let i = 0; i < mediaQueries.length; i++) {
-    const margin = Array.isArray($theme.grid.margins)
-      ? $theme.grid.margins[i]
-      : $theme.grid.margins;
-
-    style[mediaQueries[i]] = {
-      paddingInlineStart: margin + 'px',
-      paddingInlineEnd: margin + 'px',
-    };
-  }
-
-  return style;
 });
 
 export const StyledUserMenuButton = StyledButton;
@@ -213,17 +234,11 @@ export const StyledUserProfileInfoContainer = styled<{}>('div', ({ $theme }) => 
 });
 
 export const StyledDesktopMenuContainer = styled<{}>('div', ({ $theme }) => {
-  return {
-    borderBottomWidth: '1px',
-    borderBottomStyle: 'solid',
-    borderBottomColor: `${$theme.colors.borderOpaque}`,
-  };
+  return {};
 });
 
 export const StyledDesktopMenu = styled<{}>('div', ({ $theme }) => {
-  const mediaQueries = getMediaQueries($theme.breakpoints);
-
-  const style = {
+  return {
     alignItems: 'center',
     display: 'flex',
     justifyContent: 'space-between',
@@ -232,19 +247,4 @@ export const StyledDesktopMenu = styled<{}>('div', ({ $theme }) => {
     paddingBlockStart: '18px',
     paddingBlockEnd: '18px',
   };
-
-  for (let i = 0; i < mediaQueries.length; i++) {
-    const margin = Array.isArray($theme.grid.margins)
-      ? $theme.grid.margins[i]
-      : $theme.grid.margins;
-
-    style[mediaQueries[i]] = {
-      paddingInlineStart: margin + 'px',
-      paddingInlineEnd: margin + 'px',
-    };
-  }
-
-  console.log(style);
-
-  return style;
 });
