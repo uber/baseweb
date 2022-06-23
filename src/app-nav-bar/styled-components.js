@@ -41,9 +41,9 @@ const StyledButton = styled<{ $isFocusVisible: boolean }>(
   })
 );
 
-export const StyledRoot = styled<{}>('div', ({ $theme }) => {
+export const StyledRoot = styled<{}>('div', (props) => {
+  const { $theme } = props;
   const mediaQueries = getMediaQueries($theme.breakpoints);
-
   const breakpoints = Object.values($theme.breakpoints).sort();
   const margins = [];
   if (Array.isArray($theme.grid.margins)) {
@@ -56,7 +56,7 @@ export const StyledRoot = styled<{}>('div', ({ $theme }) => {
       }
     }
   } else {
-    for (const breakpoint of $theme.breakpoints) {
+    for (let i = 0; i < breakpoints.length; i++) {
       margins.push($theme.grid.margins);
     }
   }
