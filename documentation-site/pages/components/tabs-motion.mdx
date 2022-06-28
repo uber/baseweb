@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
-import {Notification, KIND} from 'baseui/notification';
+import { Notification, KIND } from 'baseui/notification';
 
 import Example from '../../components/example';
 import Layout from '../../components/layout';
@@ -27,6 +27,7 @@ import AlignmentExample from 'examples/tabs-motion/alignment.js';
 import RefsExample from 'examples/tabs-motion/refs.js';
 import StatefulExample from 'examples/tabs-motion/stateful.js';
 import TabOverrideExample from 'examples/tabs-motion/tab-override.js';
+import EndEnhancer from 'examples/tabs-motion/enhancer.js';
 
 import * as TabsExports from 'baseui/tabs-motion';
 import ApiTable from '../../components/api-table';
@@ -39,7 +40,7 @@ Tabs are a navigational element that allows users to easily move between groups 
 
 <Yard
   placeholderHeight={100}
-  compilerStyles={{width: '100%', marginBottom: '1rem'}}
+  compilerStyles={{ width: '100%', marginBottom: '1rem' }}
   {...tabsYardConfig}
 />
 
@@ -81,10 +82,13 @@ We use the index of each Tab to provide default keys. You can however, pass in y
 
 By default, when a Tab receives focus it will activate the Tab and show the corresponding TabPanel. You can change this by setting `activateOnFocus` to `false`. In the example above, focus a Tab and then use the directional keys to move focus to other Tabs. To activate the Tab you need to press `Enter` or the space bar.
 
-<Example
-  title="Vertical orientation"
-  path="tabs-motion/vertical-orientation.js"
->
+<Example title="End Enhancer" path="tabs-motion/enhancer.js">
+  <EndEnhancer />
+</Example>
+
+An `endEnhancer` can be used with horizontal orientation. `endEnhancer` is ignored when orientation is vertical.
+
+<Example title="Vertical orientation" path="tabs-motion/vertical-orientation.js">
   <VerticalOrientationExample />
 </Example>
 

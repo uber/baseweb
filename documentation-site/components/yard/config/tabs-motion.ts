@@ -102,7 +102,7 @@ const TabsConfig: TConfig = {
       type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
       custom: {
-        names: ['Root', 'TabList', 'TabHighlight', 'TabBorder'],
+        names: ['Root', 'TabList', 'TabHighlight', 'TabBorder', 'TabBar', 'EndEnhancerContainer'],
         sharedProps: {
           $orientation: 'orientation',
           $fill: 'fill',
@@ -115,6 +115,12 @@ const TabsConfig: TConfig = {
       type: PropTypes.String,
       description:
         'Unique id supplied to the Tabs component, and a prefix for the individual Tab components, to ensure both accessibility and SSR safety.',
+    },
+    endEnhancer: {
+      value: undefined,
+      placeholder: '() => <span>🦊</span>',
+      type: PropTypes.Function,
+      description: `A component rendered at the end of the tab bar.`,
     },
   },
   mapTokensToProps: {
