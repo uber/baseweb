@@ -37,6 +37,8 @@ export declare const StyledArtworkContainer: StyletronComponent<any, any>;
 export declare const StyledTabBorder: StyletronComponent<any, any>;
 export declare const StyledTabHighlight: StyletronComponent<any, any>;
 export declare const StyledTabPanel: StyletronComponent<any, any>;
+export declare const StyledEndEnhancer: StyletronComponent<any, any>;
+export declare const StyledTabBar: StyletronComponent<any, any>;
 
 // tabs
 
@@ -55,6 +57,10 @@ interface TabsOverrides {
     $animate?: boolean;
   }>;
   TabBorder?: Override<{
+    $orientation?: ORIENTATION;
+  }>;
+  EndEnhancer?: Override<{}>;
+  TabBar?: Override<{
     $orientation?: ORIENTATION;
   }>;
 }

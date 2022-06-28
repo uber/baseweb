@@ -25,6 +25,7 @@ import { Scenario as TabsMotionStateful } from './tabs-motion-stateful.scenario.
 import { Scenario as TabsMotionVerticalPageScroll } from './tabs-motion-vertical-pageScroll.scenario.js';
 import { Scenario as TabsMotionVertical } from './tabs-motion-vertical.scenario.js';
 import { Scenario as TabsMotionDefault } from './tabs-motion.scenario.js';
+import { Scenario as TabsMotionEndEnhancer } from './tabs-motion-end-enhancer.scenario.js';
 
 export const Align = () => <TabsMotionAlign />;
 export const Artwork = () => <TabsMotionArtwork />;
@@ -44,3 +45,4 @@ export const Stateful = () => <TabsMotionStateful />;
 export const VerticalPageScroll = () => <TabsMotionVerticalPageScroll />;
 export const Vertical = () => <TabsMotionVertical />;
 export const TabsMotion = () => <TabsMotionDefault />;
+export const EndEnhancer = () => <TabsMotionEndEnhancer />;

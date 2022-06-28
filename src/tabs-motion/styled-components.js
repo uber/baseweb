@@ -137,6 +137,25 @@ export const StyledTab = styled<{
   }
 );
 
+export const StyledEndEnhancerContainer = styled<{}>('div', ({ $theme }) => {
+  const marginDirection: string = $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
+  return {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    [marginDirection]: $theme.sizing.scale600,
+  };
+});
+
+export const StyledTabBar = styled<{ $orientation?: OrientationT }>(
+  'div',
+  ({ $theme, $orientation }) => ({
+    display: 'flex',
+    justifyContent: 'space-between',
+    ...($orientation === ORIENTATION.horizontal ? { width: '100%' } : {}),
+  })
+);
+
 export const StyledArtworkContainer = styled<{ $orientation?: OrientationT }>(
   'div',
   ({ $theme, $orientation = ORIENTATION.horizontal }) => {
