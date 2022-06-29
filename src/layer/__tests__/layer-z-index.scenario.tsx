@@ -55,9 +55,9 @@ export class Scenario extends React.Component<
     };
   }
 > {
-  anchorRef1 = React.createRef<HTMLElement>();
+  anchorRef1 = React.createRef<HTMLButtonElement>();
   popperRef1 = React.createRef<HTMLElement>();
-  anchorRef2 = React.createRef<HTMLElement>();
+  anchorRef2 = React.createRef<HTMLButtonElement>();
   popperRef2 = React.createRef<HTMLElement>();
 
   state = {
@@ -69,7 +69,8 @@ export class Scenario extends React.Component<
     offset2: { top: 0, left: 0 },
   };
 
-  onPopperUpdate = (order: number, normalizedOffsets: NormalizedOffsetsT) => {
+  onPopperUpdate = (order: 1 | 2, normalizedOffsets: NormalizedOffsetsT, _) => {
+    // @ts-expect-error partial state update
     this.setState({
       [`offset${order}`]: normalizedOffsets.popper,
     });

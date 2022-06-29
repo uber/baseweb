@@ -30,10 +30,12 @@ class ErrorBoundary extends React.Component<
   }
 
   componentDidMount() {
+    // @ts-expect-error
     window.__e2e__error = false;
   }
 
   componentDidCatch(error) {
+    // @ts-expect-error
     window.__e2e__error = true;
   }
 

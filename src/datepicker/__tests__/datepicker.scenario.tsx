@@ -76,6 +76,7 @@ export function Scenario() {
 
       <span>Moment</span>
       <Datepicker
+        // @ts-expect-error todo(flow->ts)
         adapter={adapter}
         aria-label="Select a date"
         aria-describedby="moment-datepicker"

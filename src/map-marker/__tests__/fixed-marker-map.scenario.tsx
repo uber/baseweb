@@ -60,7 +60,7 @@ export function Scenario() {
 
   const [labelEnhancerText, setLabelEnhancerText] = React.useState('Uber Eats');
 
-  const [labelEnhancerPosition, setLabelEnhancerPosition] = React.useState([
+  const [labelEnhancerPosition, setLabelEnhancerPosition] = React.useState<any>([
     labelEnhancerPositions[0],
   ]);
 
@@ -69,8 +69,8 @@ export function Scenario() {
     zoom: 14,
   });
 
-  const [pinheadSize, setPinheadSize] = React.useState([pinheadSizes[6]]);
-  const [needleSize, setNeedleSize] = React.useState([needleSizes[3]]);
+  const [pinheadSize, setPinheadSize] = React.useState<any>([pinheadSizes[6]]);
+  const [needleSize, setNeedleSize] = React.useState<any>([needleSizes[3]]);
   const onMarkerDragStart = React.useCallback((index) => {
     setLocations((l) => {
       const copy = JSON.parse(JSON.stringify(l));
@@ -229,7 +229,7 @@ export function Scenario() {
                   },
                 }}
                 badgeEnhancerSize={BADGE_ENHANCER_SIZES.mediumText}
-                badgeEnhancerContent={() => 'hello'}
+                badgeEnhancerContent={() => <>hello</>}
                 labelEnhancerContent={labelEnhancerText}
                 // $FlowFixMe Mismatch between general type and enum
                 labelEnhancerPosition={labelEnhancerPosition[0].id}

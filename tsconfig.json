@@ -108,7 +108,10 @@
 
     /* Completeness */
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
-    // "skipLibCheck": true,                             /* Skip type checking all .d.ts files. */
+    // todo: figure better way to resolve conflict in:
+    //  - node_modules/@date-io/date-fns/type/index.d.ts
+    //  - node_modules/@date-io/moment/type/index.d.ts
+    "skipLibCheck": true /* Skip type checking all .d.ts files. */
   },
   "exclude": [
     "dist",

@@ -186,7 +186,7 @@ export function Scenario() {
                   : LABEL_ENHANCER_POSITIONS.none
               }
               badgeEnhancerSize={BADGE_ENHANCER_SIZES.mediumText}
-              badgeEnhancerContent={() => 'New'}
+              badgeEnhancerContent={() => <>New</>}
             />
           </Marker>
         </ReactMapGL>

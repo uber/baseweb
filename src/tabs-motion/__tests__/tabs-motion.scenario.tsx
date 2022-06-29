@@ -12,8 +12,10 @@ import * as React from 'react';
 import { Tab, Tabs } from '..';
 import { Button, KIND } from '../../button';
 
+// @ts-expect-error
 window.__e2e__mounted = false;
 const Mounty = () => {
+  // @ts-expect-error
   window.__e2e__mounted = true;
   return null;
 };

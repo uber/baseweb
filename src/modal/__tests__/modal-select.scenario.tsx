@@ -17,12 +17,7 @@ export function Scenario() {
       <Button onClick={() => setIsOpen(true)} className="open-modal-button">
         Open Modal
       </Button>
-      <Modal
-        isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
-        overrides={{ Backdrop: { props: { 'data-e2e': 'backdrop' } } }}
-        unstable_ModalBackdropScroll
-      >
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
         <ModalHeader>Hello world</ModalHeader>
         <ModalBody>
           <StatefulSelect

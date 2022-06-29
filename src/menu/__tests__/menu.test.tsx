@@ -21,6 +21,7 @@ function getSharedProps() {
 
 describe('Menu Stateless Component', () => {
   it('renders basic menu', () => {
+    // @ts-expect-error todo(flow->ts)
     const { container } = render(<Menu {...getSharedProps()} />);
 
     const list = container.querySelector('ul');
@@ -40,6 +41,7 @@ describe('Menu Stateless Component', () => {
         },
       },
     };
+    // @ts-expect-error todo(flow->ts)
     const { container } = render(<Menu {...props} />);
     const options = getAllByTestId(container, 'option');
     expect(options.length).toBe(2);

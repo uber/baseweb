@@ -21,6 +21,7 @@ export function Scenario() {
       <form
         onSubmit={(event) => {
           event.preventDefault();
+          // @ts-expect-error
           window.__e2e__formSubmitted__ = true;
           return false;
         }}

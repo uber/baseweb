@@ -31,7 +31,7 @@ export function Scenario() {
   const [label, setLabel] = React.useState('Uber HQ');
   const [startEnhancer, setStartEnhancer] = React.useState(true);
   const [endEnhancer, setEndEnhancer] = React.useState(false);
-  const [floatingMarkerAnchorType, setFloatingMarkerAnchorType] = React.useState([
+  const [floatingMarkerAnchorType, setFloatingMarkerAnchorType] = React.useState<any>([
     floatingMarkerAnchorTypes[0],
   ]);
 
@@ -46,7 +46,6 @@ export function Scenario() {
             id: `floating / ${size} / ${position}`,
             content: (
               <FloatingMarker
-                title="map marker"
                 size={size}
                 key={i}
                 label={label}

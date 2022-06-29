@@ -47,11 +47,11 @@ export function Scenario() {
 
   const [labelEnhancerText, setLabelEnhancerText] = React.useState('Uber Eats');
 
-  const [labelEnhancerPosition, setLabelEnhancerPosition] = React.useState([
+  const [labelEnhancerPosition, setLabelEnhancerPosition] = React.useState<any>([
     labelEnhancerPositions[0],
   ]);
 
-  const [badgeEnhancerSize, setBadgeEnhancerSize] = React.useState([badgeEnhancerSizes[0]]);
+  const [badgeEnhancerSize, setBadgeEnhancerSize] = React.useState<any>([badgeEnhancerSizes[0]]);
 
   const BadgeEnhancerContent =
     badgeEnhancerSize[0].id === BADGE_ENHANCER_SIZES.mediumText

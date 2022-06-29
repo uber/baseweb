@@ -23,6 +23,7 @@ import { Popover, ACCESSIBILITY_TYPE, TRIGGER_TYPE } from '..';
 import { styled } from '../../styles';
 
 jest.mock('react-uid', () => ({
+  // @ts-expect-error todo(flow->ts)
   ...jest.requireActual('react-uid'),
 }));
 const reactuid = require('react-uid');
@@ -98,8 +99,8 @@ describe('Popover', () => {
       </div>
     );
     // eslint-disable-next-line react/display-name
-    const FocusMe = React.forwardRef((props, ref) => {
-      const el = React.useRef(null);
+    const FocusMe = React.forwardRef<HTMLDivElement, {}>((props, ref) => {
+      const el = React.useRef<HTMLButtonElement>(null);
       React.useEffect(() => {
         el.current && el.current.focus();
       });

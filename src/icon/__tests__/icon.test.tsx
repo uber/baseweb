@@ -37,6 +37,7 @@ describe('Icon', () => {
     // $FlowFixMe
     console.error = jest.fn();
     render(
+      // @ts-expect-error not existing attribute
       <Icon $test="123">
         <path
           fillRule="evenodd"
@@ -45,7 +46,7 @@ describe('Icon', () => {
         />
       </Icon>
     );
-    // $FlowFixMe
+    // @ts-expect-error
     expect(console.error.mock.calls.length).toBe(0);
     // $FlowFixMe
     console.error = consoleError;

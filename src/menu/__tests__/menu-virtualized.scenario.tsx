@@ -10,10 +10,7 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import { withStyle } from 'styletron-react';
 import { StatefulMenu, OptionList, StyledList } from '..';
-//flowlint-next-line untyped-import:off
-import List from 'react-virtualized/dist/commonjs/List';
-//flowlint-next-line untyped-import:off
-import AutoSizer from 'react-virtualized/dist/commonjs/AutoSizer';
+import { List, AutoSizer } from 'react-virtualized';
 
 const ITEMS = [...new Array(1500)].map((_, index) => ({
   label: `item number: ${index + 1}`,
@@ -37,6 +34,7 @@ const VirtualList = React.forwardRef<HTMLUListElement, any>((props, ref) => {
               <OptionList
                 key={key}
                 style={style}
+                // @ts-expect-error todo(flow->ts) type error in react 17
                 {...children[index].props}
                 overrides={{
                   ListItem: {

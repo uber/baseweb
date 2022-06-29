@@ -296,6 +296,7 @@ export type StateChangeTypeT =
 export type ContainerStateT<T = Date> = {
   /** Selected `Date`. If `range` is set, `value` is an array of 2 values. */
   value?: T | undefined | null | Array<T | undefined | null>;
+  highlightedDate?: T | null;
 };
 
 export type NavigationContainerStateT<T = Date> = {

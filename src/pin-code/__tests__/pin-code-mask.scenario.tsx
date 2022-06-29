@@ -12,12 +12,7 @@ export function Scenario() {
   const [values, setValues] = React.useState(['', '', '', '']);
   return (
     <div>
-      <StatefulPinCode
-        values={values}
-        onChange={({ values }) => setValues(values)}
-        clearOnEscape
-        mask="*"
-      />
+      <StatefulPinCode values={values} onChange={({ values }) => setValues(values)} mask="*" />
 
       <p data-testid="pinCodeValue">password:{values.join(' ')} </p>
     </div>

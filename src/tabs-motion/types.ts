@@ -74,4 +74,5 @@ export type TabPropsT = {
       color: IconPropsT['color'];
     } & IconPropsT
   >;
+  disabled?: boolean;
 };
