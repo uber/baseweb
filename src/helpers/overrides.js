@@ -99,7 +99,7 @@ export function toObjectOverride<T>(_override: OverrideT): OverrideObjectT {
  */
 // flowlint unclear-type:off
 export function getOverrides<T>(
-  override: Object,
+  _override: Object,
   defaultComponent: React.ComponentType<any>
 ): [React.ComponentType<any>, T] {
   const Component = getOverride(_override) || defaultComponent;
