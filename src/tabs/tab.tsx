@@ -9,12 +9,12 @@ import { getOverrides } from '../helpers/overrides';
 import { Tab as StyledTab } from './styled-components';
 import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible';
 
-import type { TabPropsT, SharedStylePropsArgT } from './types';
+import type { TabProps, SharedStylePropsArg } from './types';
 
 import type { SyntheticEvent } from 'react';
 
 class TabComponent extends React.Component<
-  TabPropsT,
+  TabProps,
   {
     isFocusVisible: boolean;
   }
@@ -66,7 +66,7 @@ class TabComponent extends React.Component<
     return;
   };
 
-  getSharedProps(): SharedStylePropsArgT {
+  getSharedProps(): SharedStylePropsArg {
     const { disabled, active, $orientation } = this.props;
     return {
       $disabled: disabled,

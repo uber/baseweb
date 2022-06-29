@@ -8,15 +8,15 @@ import { styled } from '../styles';
 import { BADGE_ENHANCER_STYLES, FLOATING_MARKER_ANCHOR_POSITIONS, LABEL_SIZES } from './constants';
 
 import type {
-  AnchorPositionsT,
-  LabelEnhancerPositionT,
-  BadgeEnhancerSizeT,
-  BadgePositionT,
-  PinHeadSizeT,
+  AnchorPositions,
+  LabelEnhancerPosition,
+  BadgeEnhancerSize,
+  BadgePosition,
+  PinHeadSize,
 } from './types';
 import type { StyleObject } from 'styletron-react';
 
-export const getAnchorTransform = (anchor: AnchorPositionsT, anchorSize: number) =>
+export const getAnchorTransform = (anchor: AnchorPositions, anchorSize: number) =>
   ({
     [FLOATING_MARKER_ANCHOR_POSITIONS.none]: ``,
     [FLOATING_MARKER_ANCHOR_POSITIONS.topLeft]: `translate(${anchorSize}px, ${anchorSize}px)`,
@@ -84,7 +84,7 @@ export const StyledFloatingMarkerRoot = styled<
 export const StyledFloatingMarkerPinHeadContainer = styled<
   'div',
   {
-    $anchor: AnchorPositionsT;
+    $anchor: AnchorPositions;
     $anchorSize: number;
   }
 >('div', ({ $theme, $anchor, $anchorSize }) => ({
@@ -224,7 +224,7 @@ export const StyledPinHead = styled<
 export const StyledStrokedLabelContainer = styled<
   'div',
   {
-    $position: LabelEnhancerPositionT;
+    $position: LabelEnhancerPosition;
     $labelOffset: number;
   }
 >('div', ({ $position, $theme, $labelOffset }) => {
@@ -273,8 +273,8 @@ export const StyledStrokedLabel = styled<
   'div',
   {
     $stroked: boolean;
-    $position: LabelEnhancerPositionT;
-    $size: PinHeadSizeT;
+    $position: LabelEnhancerPosition;
+    $size: PinHeadSize;
   }
 >('div', ({ $theme, $size }) => {
   const strokeWidth = 1.5;
@@ -304,8 +304,8 @@ export const StyledStrokedLabel = styled<
 export const StyledBadgeEnhancerRoot = styled<
   'div',
   {
-    $size: BadgeEnhancerSizeT;
-    $position: BadgePositionT;
+    $size: BadgeEnhancerSize;
+    $position: BadgePosition;
   }
 >('div', ({ $theme, $size, $position }) => {
   const { x, y } = $position;
@@ -334,7 +334,7 @@ export const StyledContentItem = styled<
   {
     $color: string;
     $height: number;
-    $size: PinHeadSizeT;
+    $size: PinHeadSize;
   }
 >('div', ({ $theme, $color, $height, $size }) => {
   return {

@@ -6,50 +6,50 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import type { OverrideT } from '../helpers/overrides';
+import type { Override } from '../helpers/overrides';
 import { SIZE, DIVIDER } from './constants';
 
-export type SizeT = keyof typeof SIZE;
-export type DividerT = keyof typeof DIVIDER;
+export type Size = keyof typeof SIZE;
+export type Divider = keyof typeof DIVIDER;
 
-export type OverridesT = {
-  Root?: OverrideT;
-  Table?: OverrideT;
-  TableHead?: OverrideT;
-  TableHeadRow?: OverrideT;
-  TableHeadCell?: OverrideT;
-  TableBody?: OverrideT;
-  TableBodyRow?: OverrideT;
-  TableBodyCell?: OverrideT;
-  TableLoadingMessage?: OverrideT;
-  TableEmptyMessage?: OverrideT;
+export type TableOverrides = {
+  Root?: Override;
+  Table?: Override;
+  TableHead?: Override;
+  TableHeadRow?: Override;
+  TableHeadCell?: Override;
+  TableBody?: Override;
+  TableBodyRow?: Override;
+  TableBodyCell?: Override;
+  TableLoadingMessage?: Override;
+  TableEmptyMessage?: Override;
 };
 
-export type TablePropsT = {
-  overrides?: OverridesT;
+export type TableProps = {
+  overrides?: TableOverrides;
   columns: Array<React.ReactNode>;
   data: Array<Array<React.ReactNode>>;
-  divider?: DividerT;
+  divider?: Divider;
   horizontalScrollWidth?: string;
   isLoading?: boolean;
   loadingMessage?: React.ReactNode | (() => React.ReactNode);
   emptyMessage?: React.ReactNode | (() => React.ReactNode);
-  size?: SizeT;
+  size?: Size;
 };
 
-export type BuilderOverridesT = {
-  TableHeadCellSortable?: OverrideT;
-  SortIconContainer?: OverrideT;
-  SortAscIcon?: OverrideT;
-  SortDescIcon?: OverrideT;
-  SortNoneIcon?: OverrideT;
-} & OverridesT;
+export type BuilderOverrides = {
+  TableHeadCellSortable?: Override;
+  SortIconContainer?: Override;
+  SortAscIcon?: Override;
+  SortDescIcon?: Override;
+  SortNoneIcon?: Override;
+} & TableOverrides;
 
-export type TableBuilderPropsT<RowT> = {
-  overrides?: BuilderOverridesT;
+export type TableBuilderProps<RowT> = {
+  overrides?: BuilderOverrides;
   children?: React.ReactNode;
   data: Array<RowT>;
-  divider?: DividerT;
+  divider?: Divider;
   horizontalScrollWidth?: string;
   sortColumn?: string | null;
   sortOrder?: 'ASC' | 'DESC' | null;
@@ -57,20 +57,20 @@ export type TableBuilderPropsT<RowT> = {
   isLoading?: boolean;
   loadingMessage?: React.ReactNode | (() => React.ReactNode);
   emptyMessage?: React.ReactNode | (() => React.ReactNode);
-  size?: SizeT;
+  size?: Size;
 };
 
-export type ColumnOverridesT = {
-  TableHeadCell?: OverrideT;
-  TableHeadCellSortable?: OverrideT;
-  TableBodyCell?: OverrideT;
-  SortAscIcon?: OverrideT;
-  SortDescIcon?: OverrideT;
-  SortNoneIcon?: OverrideT;
+export type ColumnOverrides = {
+  TableHeadCell?: Override;
+  TableHeadCellSortable?: Override;
+  TableBodyCell?: Override;
+  SortAscIcon?: Override;
+  SortDescIcon?: Override;
+  SortNoneIcon?: Override;
 };
 
-export type TableBuilderColumnPropsT<RowT> = {
-  overrides?: ColumnOverridesT;
+export type TableBuilderColumnProps<RowT> = {
+  overrides?: ColumnOverrides;
   children: (row: RowT, rowIndex?: number) => React.ReactNode;
   id?: string;
   header?: React.ReactNode;

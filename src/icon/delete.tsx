@@ -11,9 +11,9 @@ import { useStyletron } from '../styles';
 import { mergeOverride, toObjectOverride } from '../helpers/overrides';
 
 import Icon from './icon';
-import type { IconPropsT } from './types';
+import type { IconProps } from './types';
 
-function Delete(props: IconPropsT, ref) {
+function Delete(props: IconProps, ref) {
   const [, theme] = useStyletron();
   const { title = 'Delete', size, color, overrides = {}, ...restProps } = props;
   const SvgOverride = mergeOverride(
@@ -42,4 +42,4 @@ function Delete(props: IconPropsT, ref) {
   );
 }
 
-export default React.forwardRef<SVGSVGElement, IconPropsT>(Delete);
+export default React.forwardRef<SVGSVGElement, IconProps>(Delete);

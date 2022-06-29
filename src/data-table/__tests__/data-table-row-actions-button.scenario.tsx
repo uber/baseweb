@@ -10,17 +10,17 @@ import BooleanColumn from '../column-boolean';
 import NumericalColumn from '../column-numerical';
 import { StatefulDataTable } from '../stateful-data-table';
 
-type RowDataT = [boolean, number];
+type RowData = [boolean, number];
 
 const columns = [
   BooleanColumn({
     title: 'boolean value',
-    mapDataToValue: (data: RowDataT) => data[0],
+    mapDataToValue: (data: RowData) => data[0],
   }),
 
   NumericalColumn({
     title: 'numerical value',
-    mapDataToValue: (data: RowDataT) => data[1],
+    mapDataToValue: (data: RowData) => data[1],
   }),
 ];
 

@@ -11,9 +11,9 @@ import { useStyletron } from '../styles';
 import { mergeOverride, toObjectOverride } from '../helpers/overrides';
 
 import Icon from './icon';
-import type { IconPropsT } from './types';
+import type { IconProps } from './types';
 
-function ArrowDown(props: IconPropsT, ref) {
+function ArrowDown(props: IconProps, ref) {
   const [, theme] = useStyletron();
   const { title = 'Arrow Down', size, color, overrides = {}, ...restProps } = props;
   const SvgOverride = mergeOverride(
@@ -42,4 +42,4 @@ function ArrowDown(props: IconPropsT, ref) {
   );
 }
 
-export default React.forwardRef<SVGSVGElement, IconPropsT>(ArrowDown);
+export default React.forwardRef<SVGSVGElement, IconProps>(ArrowDown);

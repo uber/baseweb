@@ -11,7 +11,7 @@ import Delete from '../../icon/delete';
 import Upload from '../../icon/upload';
 import Overflow from '../../icon/overflow';
 
-import { AppNavBar, NavItemT, setItemActive } from '..';
+import { AppNavBar, NavItem, setItemActive } from '..';
 
 const expandBorderStyles = (str) => {
   const val = str.split(' ');
@@ -32,7 +32,7 @@ const expandBorderStyles = (str) => {
 };
 
 export function Scenario() {
-  const [mainItems, setMainItems] = React.useState<NavItemT[]>([
+  const [mainItems, setMainItems] = React.useState<NavItem[]>([
     { icon: Upload, label: 'Primary A' },
     { icon: Upload, label: 'Primary B' },
     {

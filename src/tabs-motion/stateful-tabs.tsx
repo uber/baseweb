@@ -9,9 +9,9 @@ import * as React from 'react';
 import { Tabs } from './tabs';
 import { STATE_CHANGE_TYPE } from './constants';
 
-import type { StatefulTabsPropsT, StatefulTabsStateT, StatefulTabsReducerT } from './types';
+import type { StatefulTabsProps, StatefulTabsState, StatefulTabsReducer } from './types';
 
-const getInitialState = (children: React.ReactNode, initialState?: StatefulTabsStateT) => {
+const getInitialState = (children: React.ReactNode, initialState?: StatefulTabsState) => {
   if (initialState && initialState.activeKey) {
     return initialState;
   } else {
@@ -24,14 +24,14 @@ const getInitialState = (children: React.ReactNode, initialState?: StatefulTabsS
   }
 };
 
-const defaultStateReducer: StatefulTabsReducerT = (state, action) => {
+const defaultStateReducer: StatefulTabsReducer = (state, action) => {
   if (action.type === STATE_CHANGE_TYPE.change) {
     return { activeKey: action.payload };
   }
   return state;
 };
 
-export function StatefulTabs(props: StatefulTabsPropsT) {
+export function StatefulTabs(props: StatefulTabsProps) {
   const {
     children,
     initialState,

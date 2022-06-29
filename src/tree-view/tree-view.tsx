@@ -19,14 +19,14 @@ import {
   defaultGetId,
   getCharMatchId,
 } from './utils';
-import type { TreeViewPropsT, TreeNodeT, TreeNodeIdT } from './types';
+import type { TreeViewProps, TreeNodeData, TreeNodeId } from './types';
 import { isFocusVisible } from '../utils/focusVisible';
 
 import { getOverride, getOverrideProps } from '../helpers/overrides';
 
 import type { SyntheticEvent } from 'react';
 
-export default function TreeView(props: TreeViewPropsT) {
+export default function TreeView(props: TreeViewProps) {
   const {
     data,
     indentGuides = false,
@@ -44,10 +44,10 @@ export default function TreeView(props: TreeViewPropsT) {
   const [typeAheadChars, setTypeAheadChars] = React.useState('');
   const timeOutRef = React.useRef(null);
   const treeItemRefs: {
-    [key in TreeNodeIdT]: React.Ref<HTMLLIElement>;
+    [key in TreeNodeId]: React.Ref<HTMLLIElement>;
   } = {};
 
-  const focusTreeItem = (id: TreeNodeIdT | null) => {
+  const focusTreeItem = (id: TreeNodeId | null) => {
     if (!id) return;
     setSelectedNodeId(id);
 
@@ -57,7 +57,7 @@ export default function TreeView(props: TreeViewPropsT) {
     if (node) node.focus();
   };
 
-  const onKeyDown = (e: KeyboardEvent, node: TreeNodeT) => {
+  const onKeyDown = (e: KeyboardEvent, node: TreeNodeData) => {
     const elementId = (e.target as any as HTMLLIElement).getAttribute('data-nodeid');
     // this check prevents bubbling
     if (elementId !== getId(node) && parseInt(elementId) !== getId(node)) {
@@ -159,7 +159,7 @@ export default function TreeView(props: TreeViewPropsT) {
           addRef={(id, ref) => {
             treeItemRefs[id] = ref;
           }}
-          removeRef={(id: TreeNodeIdT) => {
+          removeRef={(id: TreeNodeId) => {
             delete treeItemRefs[id];
           }}
           isFocusVisible={focusVisible}

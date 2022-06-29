@@ -9,15 +9,15 @@ import * as React from 'react';
 import { Popover } from '../popover';
 import { mergeOverrides } from '../helpers/overrides';
 import baseDefaultProps from './default-props';
-import type { TooltipPropsT } from './types';
+import type { TooltipProps } from './types';
 import {
   Arrow as StyledArrow,
   Body as StyledBody,
   Inner as StyledInner,
 } from './styled-components';
 
-class Tooltip extends React.Component<TooltipPropsT> {
-  static defaultProps: Partial<TooltipPropsT> = {
+class Tooltip extends React.Component<TooltipProps> {
+  static defaultProps: Partial<TooltipProps> = {
     ...baseDefaultProps,
   };
 

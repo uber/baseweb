@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 import { getOverride, getOverrideProps } from '../helpers/overrides';
-import type { PropsT, DefaultPropsT, StatelessStateT } from './types';
+import type { CheckboxProps, DefaultProps, CheckboxState } from './types';
 import {
   Checkmark as StyledCheckmark,
   Input as StyledInput,
@@ -22,8 +22,8 @@ import type { ChangeEvent } from 'react';
 
 const stopPropagation = (e) => e.stopPropagation();
 
-class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
-  static defaultProps: DefaultPropsT = {
+class StatelessCheckbox extends React.Component<CheckboxProps, CheckboxState> {
+  static defaultProps: DefaultProps = {
     overrides: {}, // todo(flow->ts): missing field in flow types
     checked: false,
     containsInteractiveElement: false,

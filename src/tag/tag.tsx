@@ -14,7 +14,7 @@ import {
 } from './styled-components';
 import { KIND, VARIANT, SIZE } from './constants';
 import { getTextFromChildren } from './utils';
-import type { PropsT, SharedPropsArgT } from './types';
+import type { TagProps, SharedPropsArg } from './types';
 import DeleteIcon from '../icon/delete';
 import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible';
 
@@ -24,7 +24,7 @@ import type { SyntheticEvent } from 'react';
 // Delete requires modifying Delete's viewbox to prevent visual regressions.
 const ModifiedViewBoxDeleteIcon = (props) => <DeleteIcon viewBox="5 5 13.186 13.186" {...props} />;
 
-const Tag = React.forwardRef<HTMLSpanElement, PropsT>((props, ref) => {
+const Tag = React.forwardRef<HTMLSpanElement, TagProps>((props, ref) => {
   const {
     children,
     closeable = true,
@@ -101,7 +101,7 @@ const Tag = React.forwardRef<HTMLSpanElement, PropsT>((props, ref) => {
           onActionClick(event);
         },
       };
-  const sharedProps: SharedPropsArgT = {
+  const sharedProps: SharedPropsArg = {
     $clickable: clickable,
     $closeable: closeable,
     $color: color,

@@ -7,19 +7,19 @@ LICENSE file in the root directory of this source tree.
 
 import type { ReactNode } from 'react';
 
-import type { OverrideT } from '../helpers/overrides';
+import type { Override } from '../helpers/overrides';
 
-export type OverridesT = {
-  Root?: OverrideT;
-  Separator?: OverrideT;
-  List?: OverrideT;
-  ListItem?: OverrideT;
-  Icon?: OverrideT;
+export type BreadcrumbsOverrides = {
+  Root?: Override;
+  Separator?: Override;
+  List?: Override;
+  ListItem?: Override;
+  Icon?: Override;
 };
 
-export type BreadcrumbsPropsT = {
+export type BreadcrumbsProps = {
   children?: ReactNode;
-  overrides?: OverridesT;
+  overrides?: BreadcrumbsOverrides;
   ariaLabel?: string;
   'aria-label'?: string;
   /** Whether to show a trailing separator after the last breadcrumb. */

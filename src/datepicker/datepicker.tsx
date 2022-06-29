@@ -18,10 +18,10 @@ import {
   StyledStartDate,
   StyledEndDate,
 } from './styled-components';
-import type { DatepickerPropsT, InputRoleT } from './types';
+import type { DatepickerProps, InputRole } from './types';
 import DateHelpers from './utils/date-helpers';
 import dateFnsAdapter from './utils/date-fns-adapter';
-import type { LocaleT } from '../locale';
+import type { Locale } from '../locale';
 import { INPUT_ROLE, RANGED_CALENDAR_BEHAVIOR } from './constants';
 
 import type { ChangeEvent } from 'react';
@@ -44,16 +44,16 @@ const combineSeparatedInputs = (newInputValue, prevCombinedInputValue = '', inpu
   return inputValue;
 };
 
-type StateT = {
+type DatepickerState = {
   calendarFocused: boolean;
   isOpen: boolean;
-  selectedInput: InputRoleT | undefined | null;
+  selectedInput: InputRole | undefined | null;
   isPseudoFocused: boolean;
   lastActiveElm: HTMLElement | undefined | null;
   inputValue?: string;
 };
 
-export default class Datepicker<T = Date> extends React.Component<DatepickerPropsT<T>, StateT> {
+export default class Datepicker<T = Date> extends React.Component<DatepickerProps<T>, DatepickerState> {
   static defaultProps = {
     'aria-describedby': 'datepicker--screenreader--message--input',
     value: null,
@@ -65,7 +65,7 @@ export default class Datepicker<T = Date> extends React.Component<DatepickerProp
 
   dateHelpers: DateHelpers<T>;
 
-  constructor(props: DatepickerPropsT<T>) {
+  constructor(props: DatepickerProps<T>) {
     super(props);
     this.dateHelpers = new DateHelpers(props.adapter);
     this.state = {
@@ -167,7 +167,7 @@ export default class Datepicker<T = Date> extends React.Component<DatepickerProp
       isPseudoFocused,
       ...(calendarFocused === null ? {} : { calendarFocused }),
       inputValue: this.formatDisplayValue(nextDate),
-    } as StateT);
+    } as DatepickerState);
 
     this.handleChange(nextDate);
   };
@@ -230,7 +230,7 @@ export default class Datepicker<T = Date> extends React.Component<DatepickerProp
     return this.formatDate(date, formatString);
   };
 
-  open = (inputRole?: InputRoleT) => {
+  open = (inputRole?: InputRole) => {
     this.setState(
       {
         isOpen: true,
@@ -286,7 +286,7 @@ export default class Datepicker<T = Date> extends React.Component<DatepickerProp
     return '9999/99/99';
   };
 
-  handleInputChange = (event: ChangeEvent<HTMLInputElement>, inputRole?: InputRoleT) => {
+  handleInputChange = (event: ChangeEvent<HTMLInputElement>, inputRole?: InputRole) => {
     const inputValue =
       this.props.range && this.props.separateRangeInputs
         ? combineSeparatedInputs(event.currentTarget.value, this.state.inputValue, inputRole)
@@ -407,7 +407,7 @@ export default class Datepicker<T = Date> extends React.Component<DatepickerProp
       this.setState({
         calendarFocused: true,
         lastActiveElm,
-      } as StateT);
+      } as DatepickerState);
     }
   };
 
@@ -424,7 +424,7 @@ export default class Datepicker<T = Date> extends React.Component<DatepickerProp
     );
   };
 
-  componentDidUpdate(prevProps: DatepickerPropsT<T>) {
+  componentDidUpdate(prevProps: DatepickerProps<T>) {
     if (prevProps.value !== this.props.value) {
       this.setState({
         inputValue: this.formatDisplayValue(this.props.value),
@@ -432,7 +432,7 @@ export default class Datepicker<T = Date> extends React.Component<DatepickerProp
     }
   }
 
-  renderInputComponent(locale: LocaleT, inputRole?: InputRoleT) {
+  renderInputComponent(locale: Locale, inputRole?: InputRole) {
     const { overrides = {} } = this.props;
 
     const [InputComponent, inputProps] = getOverrides(overrides.Input, MaskedInput);

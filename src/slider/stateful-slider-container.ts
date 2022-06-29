@@ -7,17 +7,17 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { STATE_CHANGE_TYPE } from './constants';
 import type {
-  StatefulContainerPropsT,
-  StateReducerT,
-  StateT,
-  ParamsT,
-  ChangeActionT,
+  StatefulContainerProps,
+  StateReducer,
+  State,
+  Params,
+  ChangeAction,
 } from './types';
 
-const defaultStateReducer: StateReducerT = (type, nextState) => nextState;
+const defaultStateReducer: StateReducer = (type, nextState) => nextState;
 
-class StatefulSliderContainer extends React.Component<StatefulContainerPropsT, StateT> {
-  constructor(props: StatefulContainerPropsT) {
+class StatefulSliderContainer extends React.Component<StatefulContainerProps, State> {
+  constructor(props: StatefulContainerProps) {
     super(props);
     this.state = {
       value:
@@ -46,7 +46,7 @@ class StatefulSliderContainer extends React.Component<StatefulContainerPropsT, S
     return this.props.onFinalChange({ ...params });
   };
 
-  internalSetState = (type: ChangeActionT, { value }: ParamsT) => {
+  internalSetState = (type: ChangeAction, { value }: Params) => {
     const nextState = { value };
     const { stateReducer } = this.props;
     const newState = stateReducer(type, nextState, this.state);

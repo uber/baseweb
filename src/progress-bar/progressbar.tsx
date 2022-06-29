@@ -16,10 +16,10 @@ import {
   StyledInfiniteBar,
 } from './styled-components';
 
-import type { ProgressBarPropsT } from './types';
+import type { ProgressBarProps } from './types';
 
 class ProgressBar extends React.Component<
-  ProgressBarPropsT & {
+  ProgressBarProps & {
     forwardedRef: any;
   }
 > {
@@ -130,8 +130,8 @@ class ProgressBar extends React.Component<
   }
 }
 
-const ForwardedProgressBar = React.forwardRef<HTMLDivElement, Partial<ProgressBarPropsT>>(
-  (props: ProgressBarPropsT, ref) => (
+const ForwardedProgressBar = React.forwardRef<HTMLDivElement, Partial<ProgressBarProps>>(
+  (props: ProgressBarProps, ref) => (
     //$FlowExpectedError[cannot-spread-inexact]
     <ProgressBar forwardedRef={ref} {...props} />
   )

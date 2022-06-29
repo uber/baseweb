@@ -5,84 +5,84 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import type { ComponentType } from 'react';
-import type { IconPropsT } from '../icon';
+import type { IconProps } from '../icon';
 
 import type {
-  ColorTokensT,
-  ComponentColorTokensT,
-  SemanticColorTokensT,
-  AnimationT,
-  BreakpointsT,
-  BorderT,
-  BordersT,
-  FontT,
-  GridT,
-  LightingT,
-  MediaQueryT,
-  SizingT,
-  TypographyT,
-  ZIndexT,
+  ColorTokens,
+  ComponentColorTokens,
+  SemanticColorTokens,
+  Animation,
+  Breakpoints,
+  Border,
+  Borders,
+  Font,
+  Grid,
+  Lighting,
+  MediaQuery,
+  Sizing,
+  Typography,
+  ZIndex,
 } from '../themes';
 
 export type {
-  AnimationT,
-  BreakpointsT,
-  BorderT,
-  BordersT,
-  FontT as Font,
-  GridT,
-  LightingT,
-  MediaQueryT,
-  SizingT,
-  TypographyT,
-  ZIndexT,
+  Animation,
+  Breakpoints,
+  Border,
+  Borders,
+  Font as Font,
+  Grid,
+  Lighting,
+  MediaQuery,
+  Sizing,
+  Typography,
+  ZIndex,
 };
 
-export type ColorsT = {} & ColorTokensT & ComponentColorTokensT & SemanticColorTokensT;
+export type Colors = {} & ColorTokens & ComponentColorTokens & SemanticColorTokens;
 
-export type ThemeT = {
+export type Theme = {
   name: string;
-  animation: AnimationT;
-  borders: BordersT;
-  breakpoints: BreakpointsT;
-  colors: ColorsT;
+  animation: Animation;
+  borders: Borders;
+  breakpoints: Breakpoints;
+  colors: Colors;
   direction: 'auto' | 'rtl' | 'ltr';
-  grid: GridT;
-  icons?: IconT;
-  lighting: LightingT;
-  mediaQuery: MediaQueryT;
-  sizing: SizingT;
-  typography: TypographyT;
-  zIndex: ZIndexT;
+  grid: Grid;
+  icons?: Icon;
+  lighting: Lighting;
+  mediaQuery: MediaQuery;
+  sizing: Sizing;
+  typography: Typography;
+  zIndex: ZIndex;
 };
 
-export type IconT = {
-  Alert?: ComponentType<IconPropsT>;
-  ArrowDown?: ComponentType<IconPropsT>;
-  ArrowLeft?: ComponentType<IconPropsT>;
-  ArrowRight?: ComponentType<IconPropsT>;
-  ArrowUp?: ComponentType<IconPropsT>;
-  Blank?: ComponentType<IconPropsT>;
-  CheckIndeterminate?: ComponentType<IconPropsT>;
-  Check?: ComponentType<IconPropsT>;
-  ChevronDown?: ComponentType<IconPropsT>;
-  ChevronUp?: ComponentType<IconPropsT>;
-  ChevronLeft?: ComponentType<IconPropsT>;
-  ChevronRight?: ComponentType<IconPropsT>;
-  DeleteAlt?: ComponentType<IconPropsT>;
-  Delete?: ComponentType<IconPropsT>;
-  Filter?: ComponentType<IconPropsT>;
-  Grab?: ComponentType<IconPropsT>;
-  Hide?: ComponentType<IconPropsT>;
-  Menu?: ComponentType<IconPropsT>;
-  Overflow?: ComponentType<IconPropsT>;
-  Plus?: ComponentType<IconPropsT>;
-  Search?: ComponentType<IconPropsT>;
-  Show?: ComponentType<IconPropsT>;
-  Spinner?: ComponentType<IconPropsT>;
-  TriangleDown?: ComponentType<IconPropsT>;
-  TriangleLeft?: ComponentType<IconPropsT>;
-  TriangleRight?: ComponentType<IconPropsT>;
-  TriangleUp?: ComponentType<IconPropsT>;
-  Upload?: ComponentType<IconPropsT>;
+export type Icon = {
+  Alert?: ComponentType<IconProps>;
+  ArrowDown?: ComponentType<IconProps>;
+  ArrowLeft?: ComponentType<IconProps>;
+  ArrowRight?: ComponentType<IconProps>;
+  ArrowUp?: ComponentType<IconProps>;
+  Blank?: ComponentType<IconProps>;
+  CheckIndeterminate?: ComponentType<IconProps>;
+  Check?: ComponentType<IconProps>;
+  ChevronDown?: ComponentType<IconProps>;
+  ChevronUp?: ComponentType<IconProps>;
+  ChevronLeft?: ComponentType<IconProps>;
+  ChevronRight?: ComponentType<IconProps>;
+  DeleteAlt?: ComponentType<IconProps>;
+  Delete?: ComponentType<IconProps>;
+  Filter?: ComponentType<IconProps>;
+  Grab?: ComponentType<IconProps>;
+  Hide?: ComponentType<IconProps>;
+  Menu?: ComponentType<IconProps>;
+  Overflow?: ComponentType<IconProps>;
+  Plus?: ComponentType<IconProps>;
+  Search?: ComponentType<IconProps>;
+  Show?: ComponentType<IconProps>;
+  Spinner?: ComponentType<IconProps>;
+  TriangleDown?: ComponentType<IconProps>;
+  TriangleLeft?: ComponentType<IconProps>;
+  TriangleRight?: ComponentType<IconProps>;
+  TriangleUp?: ComponentType<IconProps>;
+  Upload?: ComponentType<IconProps>;
 };

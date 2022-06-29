@@ -9,7 +9,7 @@ import ChevronDown from '../icon/chevron-down';
 import ChevronUp from '../icon/chevron-up';
 import { styled, withStyle, expandBorderStyles } from '../styles';
 import { SIZE, DIVIDER } from './constants';
-import type { SizeT, DividerT } from './types';
+import type { Size, Divider } from './types';
 
 function sizeToCellPadding($theme, $size) {
   if ($size === SIZE.compact) {
@@ -20,11 +20,11 @@ function sizeToCellPadding($theme, $size) {
   return $theme.sizing.scale600;
 }
 
-type StyledRootPropsT = {
-  $divider?: DividerT;
+type StyledRootProps = {
+  $divider?: Divider;
 };
 
-export const StyledRoot = styled<'div', StyledRootPropsT>('div', ({ $theme, $divider }) => {
+export const StyledRoot = styled<'div', StyledRootProps>('div', ({ $theme, $divider }) => {
   const borderStyles: {} =
     $divider === DIVIDER.grid || $divider === DIVIDER.vertical
       ? expandBorderStyles($theme.borders.border300)
@@ -49,11 +49,11 @@ export const StyledRoot = styled<'div', StyledRootPropsT>('div', ({ $theme, $div
   };
 });
 
-type StyledTablePropsT = {
+type StyledTableProps = {
   $width?: string | null;
 };
 
-export const StyledTable = styled<'table', StyledTablePropsT>('table', ({ $theme, $width }) => {
+export const StyledTable = styled<'table', StyledTableProps>('table', ({ $theme, $width }) => {
   return {
     borderSpacing: '0',
     boxSizing: 'border-box',
@@ -70,15 +70,15 @@ export const StyledTableHeadRow = styled('tr', ({ $theme }) => {
   return {};
 });
 
-type StyledTableHeadCellPropsT = {
+type StyledTableHeadCellProps = {
   $col?: {};
   $colIndex?: number | null;
-  $divider?: DividerT;
+  $divider?: Divider;
   $isNumeric?: boolean | null;
-  $size?: SizeT;
+  $size?: Size;
 };
 
-export const StyledTableHeadCell = styled<'th', StyledTableHeadCellPropsT>(
+export const StyledTableHeadCell = styled<'th', StyledTableHeadCellProps>(
   'th',
   ({ $theme, $size, $divider, $isNumeric }) => {
     const borderDir: string = $theme.direction === 'rtl' ? 'Left' : 'Right';
@@ -116,13 +116,13 @@ export const StyledTableHeadCell = styled<'th', StyledTableHeadCellPropsT>(
   }
 );
 
-type StyledTableHeadCellSortablePropsT = {
+type StyledTableHeadCellSortableProps = {
   $isFocusVisible: boolean;
-} & StyledTableHeadCellPropsT;
+} & StyledTableHeadCellProps;
 
 export const StyledTableHeadCellSortable = withStyle<
   typeof StyledTableHeadCell,
-  StyledTableHeadCellSortablePropsT
+  StyledTableHeadCellSortableProps
 >(StyledTableHeadCell, ({ $theme, $isFocusVisible }) => {
   return {
     cursor: 'pointer',
@@ -181,13 +181,13 @@ export const StyledTableBody = styled('tbody', ({ $theme }) => {
   return {};
 });
 
-type StyledTableBodyRowPropsT = {
+type StyledTableBodyRowProps = {
   $col?: {};
   $colIndex?: number | null;
-  $divider?: DividerT;
+  $divider?: Divider;
 };
 
-export const StyledTableBodyRow = styled<'tr', StyledTableBodyRowPropsT>('tr', ({ $theme }) => {
+export const StyledTableBodyRow = styled<'tr', StyledTableBodyRowProps>('tr', ({ $theme }) => {
   return {
     ':hover': {
       backgroundColor: $theme.colors.tableStripedBackground,
@@ -195,19 +195,19 @@ export const StyledTableBodyRow = styled<'tr', StyledTableBodyRowPropsT>('tr', (
   };
 });
 
-type StyledTableBodyCellPropsT = {
+type StyledTableBodyCellProps = {
   $col?: {};
   $colIndex?: number | null;
-  $divider?: DividerT;
+  $divider?: Divider;
   $row?: {};
   $rowIndex?: number | null;
-  $size?: SizeT;
+  $size?: Size;
   $isNumeric?: boolean | null;
   $isLastRow?: boolean | null;
   $isSortable?: boolean | null;
 };
 
-export const StyledTableBodyCell = styled<'td', StyledTableBodyCellPropsT>(
+export const StyledTableBodyCell = styled<'td', StyledTableBodyCellProps>(
   'td',
   ({ $theme, $size, $divider, $isNumeric, $isLastRow, $isSortable }) => {
     const borderDir: string = $theme.direction === 'rtl' ? 'Left' : 'Right';

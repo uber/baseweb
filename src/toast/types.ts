@@ -6,45 +6,45 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import type { OverrideT } from '../helpers/overrides';
+import type { Override } from '../helpers/overrides';
 import { KIND, PLACEMENT, TYPE } from './constants';
 
-export type KindTypeT = typeof KIND[keyof typeof KIND];
-export type NotificationTypeT = typeof TYPE[keyof typeof TYPE];
-export type PlacementTypeT = typeof PLACEMENT[keyof typeof PLACEMENT];
+export type KindType = typeof KIND[keyof typeof KIND];
+export type NotificationType = typeof TYPE[keyof typeof TYPE];
+export type PlacementType = typeof PLACEMENT[keyof typeof PLACEMENT];
 
-export type SharedStylePropsArgT = {
+export type SharedStylePropsArg = {
   $closeable: boolean;
   $isFocusVisible: boolean;
   $isRendered: boolean;
   $isVisible: boolean;
-  $kind: KindTypeT;
-  $type: NotificationTypeT;
+  $kind: KindType;
+  $type: NotificationType;
 };
 
-export type ToasterSharedStylePropsArgT = {
-  $placement: PlacementTypeT;
+export type ToasterSharedStylePropsArg = {
+  $placement: PlacementType;
 };
 
-export type OverridesT = {
-  Body?: OverrideT;
-  CloseIcon?: OverrideT;
-  InnerContainer?: OverrideT;
+export type ToastOverrides = {
+  Body?: Override;
+  CloseIcon?: Override;
+  InnerContainer?: Override;
 };
 
-export type ComponentRenderPropT = (props: { dismiss: () => void }) => React.ReactNode;
+export type ComponentRenderProp = (props: { dismiss: () => void }) => React.ReactNode;
 
-export type ChildT = React.ReactNode;
+export type Child = React.ReactNode;
 
-export type ChildrenT = React.ReactNode;
+export type Children = React.ReactNode;
 
-export type ToastPrivateStateT = {
+export type ToastPrivateState = {
   isFocusVisible: boolean;
   isRendered: boolean;
   isVisible: boolean;
 };
 
-export type ToastPropsT = {
+export type ToastProps = {
   /** This is a private property to detect manual changes to a toast
    *  i.e. calling toaster.info() with the same key twice
    *  currently the change detection is used to reset the autohide timer
@@ -63,33 +63,33 @@ export type ToastPropsT = {
    *  receives a dismiss method that can be called to
    * dismiss the notification and can be used as a
    * handler for an action inside the toast content. */
-  children: ChildrenT | ComponentRenderPropT;
+  children: Children | ComponentRenderProp;
   /** When set to true a close button is displayed and the notification can be dismissed by a user. */
   closeable?: boolean;
   'data-baseweb'?: string;
   key?: React.Key;
   /** Defines the type of notification. */
-  kind?: KindTypeT;
-  notificationType?: NotificationTypeT;
+  kind?: KindType;
+  notificationType?: NotificationType;
   /** A callback function called when a notification is dismissed. */
   onBlur?: (e: React.FocusEvent) => unknown;
   onClose?: () => unknown;
   onFocus?: (e: React.FocusEvent) => unknown;
   onMouseEnter?: (e: React.MouseEvent) => unknown;
   onMouseLeave?: (e: React.MouseEvent) => unknown;
-  overrides?: OverridesT;
+  overrides?: ToastOverrides;
 };
 
-export type ToastPropsShapeT = Partial<Omit<ToastPropsT, 'children'>>;
+export type ToastPropsShape = Partial<Omit<ToastProps, 'children'>>;
 
-export type ToasterOverridesT = {
-  Root?: OverrideT;
-  ToastBody?: OverrideT;
-  ToastCloseIcon?: OverrideT;
-  ToastInnerContainer?: OverrideT;
+export type ToasterOverrides = {
+  Root?: Override;
+  ToastBody?: Override;
+  ToastCloseIcon?: Override;
+  ToastInnerContainer?: Override;
 };
 
-export type ToasterPropsT = {
+export type ToasterProps = {
   /** If true, the toast close icon will receive focus on mount
       and restore focus to previously focused element on unmount.
       This should only be used when there is no autoHideDuration
@@ -102,13 +102,13 @@ export type ToasterPropsT = {
   children: React.ReactNode;
   /** When set to true a close button is displayed and the notification can be dismissed by a user. */
   closeable: boolean;
-  overrides: ToasterOverridesT;
-  placement: PlacementTypeT;
+  overrides: ToasterOverrides;
+  placement: PlacementType;
   /** Defines if updating a toast resets the autohide timer */
   resetAutoHideTimerOnUpdate?: boolean;
   usePortal: boolean;
 };
-export type ToasterContainerStateT = {
+export type ToasterContainerState = {
   isMounted: boolean;
-  toasts: Array<ToastPropsT>;
+  toasts: Array<ToastProps>;
 };

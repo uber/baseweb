@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 
 import { styled } from '../styles';
-import type { StylePropsT } from './types';
+import type { StyleProps } from './types';
 
 export const StyledProgressSteps = styled('ol', ({ $theme }) => {
   return {
@@ -20,7 +20,7 @@ export const StyledProgressSteps = styled('ol', ({ $theme }) => {
   };
 });
 
-export const StyledStep = styled<'li', StylePropsT>('li', ({ $theme }) => {
+export const StyledStep = styled<'li', StyleProps>('li', ({ $theme }) => {
   return {
     listStyleType: 'none',
     position: 'relative',
@@ -28,7 +28,7 @@ export const StyledStep = styled<'li', StylePropsT>('li', ({ $theme }) => {
   };
 });
 
-export const StyledIconContainer = styled<'div', StylePropsT>(
+export const StyledIconContainer = styled<'div', StyleProps>(
   'div',
   ({ $theme, $isActive, $isCompleted, $disabled }) => {
     let currentColor = $theme.colors.backgroundPrimary;
@@ -66,7 +66,7 @@ export const StyledIconContainer = styled<'div', StylePropsT>(
   }
 );
 
-export const StyledIcon = styled<'div', StylePropsT>(
+export const StyledIcon = styled<'div', StyleProps>(
   'div',
   ({ $theme, $isActive, $isCompleted, $disabled }) => {
     let currentColor = $theme.colors.mono400;
@@ -100,7 +100,7 @@ export const StyledIcon = styled<'div', StylePropsT>(
   }
 );
 
-export const StyledInnerIcon = styled<'div', StylePropsT>('div', ({ $theme }) => {
+export const StyledInnerIcon = styled<'div', StyleProps>('div', ({ $theme }) => {
   return {
     width: $theme.sizing.scale300,
     height: $theme.sizing.scale300,
@@ -114,14 +114,14 @@ export const StyledInnerIcon = styled<'div', StylePropsT>('div', ({ $theme }) =>
   };
 });
 
-export const StyledContent = styled<'div', StylePropsT>('div', ({ $theme }) => {
+export const StyledContent = styled<'div', StyleProps>('div', ({ $theme }) => {
   const marginDir: string = $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
   return {
     [marginDir]: $theme.sizing.scale1600,
   };
 });
 
-export const StyledContentTitle = styled<'div', StylePropsT>(
+export const StyledContentTitle = styled<'div', StyleProps>(
   'div',
   ({ $theme, $isActive, $isCompleted }) => {
     let color = $theme.colors.primary400;
@@ -141,7 +141,7 @@ export const StyledContentTitle = styled<'div', StylePropsT>(
   }
 );
 
-export const StyledContentTail = styled<'div', StylePropsT>(
+export const StyledContentTail = styled<'div', StyleProps>(
   'div',
   ({ $theme, $isCompleted, $isActive }) => {
     let currentColor = $theme.colors.mono400;
@@ -173,13 +173,13 @@ export const StyledContentTail = styled<'div', StylePropsT>(
   }
 );
 
-export const StyledContentDescription = styled<'div', StylePropsT>('div', ({ $theme }) => {
+export const StyledContentDescription = styled<'div', StyleProps>('div', ({ $theme }) => {
   return {
     marginBottom: $theme.sizing.scale700,
   };
 });
 
-export const StyledNumberStep = styled<'li', StylePropsT>('li', ({ $theme }) => {
+export const StyledNumberStep = styled<'li', StyleProps>('li', ({ $theme }) => {
   return {
     listStyleType: 'none',
     position: 'relative',
@@ -187,7 +187,7 @@ export const StyledNumberStep = styled<'li', StylePropsT>('li', ({ $theme }) => 
   };
 });
 
-export const StyledNumberIcon = styled<'div', StylePropsT>(
+export const StyledNumberIcon = styled<'div', StyleProps>(
   'div',
   ({ $theme, $isActive, $isCompleted, $disabled }) => {
     let backgroundColor = $theme.colors.mono400;
@@ -231,7 +231,7 @@ export const StyledNumberIcon = styled<'div', StylePropsT>(
   }
 );
 
-export const StyledNumberContentTail = styled<'div', StylePropsT>(
+export const StyledNumberContentTail = styled<'div', StyleProps>(
   'div',
   ({ $theme, $isActive, $isCompleted, $disabled }) => {
     let currentColor = $theme.colors.mono300;

@@ -9,10 +9,10 @@ import * as React from 'react';
 import { getOverrides } from '../helpers/overrides';
 import { Root as StyledRoot } from './styled-components';
 import { STATE_CHANGE_TYPE } from './constants';
-import type { AccordionPropsT, AccordionStateT, StateChangeTypeT } from './types';
+import type { AccordionProps, AccordionState, StateChangeType } from './types';
 
-export default class Accordion extends React.Component<AccordionPropsT, AccordionStateT> {
-  static defaultProps: Partial<AccordionPropsT> = {
+export default class Accordion extends React.Component<AccordionProps, AccordionState> {
+  static defaultProps: Partial<AccordionProps> = {
     accordion: true,
     disabled: false,
     initialState: {
@@ -53,7 +53,7 @@ export default class Accordion extends React.Component<AccordionPropsT, Accordio
     if (typeof onChange === 'function') onChange(...args);
   }
 
-  internalSetState(type: StateChangeTypeT, changes: AccordionStateT) {
+  internalSetState(type: StateChangeType, changes: AccordionState) {
     const { stateReducer, onChange } = this.props;
     const newState = stateReducer(type, changes, this.state);
     this.setState(newState);

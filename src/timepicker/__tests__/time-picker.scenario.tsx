@@ -9,7 +9,7 @@ import React, { useState } from 'react';
 import { startOfDay } from 'date-fns';
 
 import { TimePicker } from '..';
-import { SizeT, SIZE } from '../../input';
+import { Size, SIZE } from '../../input';
 import MomentUtils from '@date-io/moment';
 
 const momentAdapter = new MomentUtils({});
@@ -24,7 +24,7 @@ const overrides = {
 };
 
 const Controlled = ({
-  size = 'default' as SizeT,
+  size = 'default' as Size,
   initialDate,
   creatable = false,
   onChange = () => {},
@@ -52,7 +52,7 @@ const Controlled = ({
 };
 
 const MomentControlled = ({
-  size = 'default' as SizeT,
+  size = 'default' as Size,
   initialDate,
   creatable = false,
   onChange = () => {},

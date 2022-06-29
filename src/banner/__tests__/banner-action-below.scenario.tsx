@@ -6,10 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Banner, ACTION_POSITION, HIERARCHY, KIND, HierarchyT, KindT } from '../index';
+import { Banner, ACTION_POSITION, HIERARCHY, KIND, Hierarchy, Kind } from '../index';
 import DeleteAlt from '../../icon/delete-alt';
 
-const variants: Array<[HierarchyT, KindT]> = [
+const variants: Array<[Hierarchy, Kind]> = [
   [HIERARCHY.low, KIND.info],
   [HIERARCHY.low, KIND.negative],
   [HIERARCHY.low, KIND.positive],

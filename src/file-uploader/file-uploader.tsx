@@ -22,7 +22,7 @@ import {
   StyledErrorMessage,
   StyledHiddenInput,
 } from './styled-components';
-import type { PropsT } from './types';
+import type { FileUploaderProps } from './types';
 
 import type { SyntheticEvent } from 'react';
 
@@ -33,7 +33,7 @@ function prependStyleProps(styleProps) {
   }, {});
 }
 
-function FileUploader(props: PropsT) {
+function FileUploader(props: FileUploaderProps) {
   const { overrides = {} } = props;
   const [, theme] = useStyletron();
 

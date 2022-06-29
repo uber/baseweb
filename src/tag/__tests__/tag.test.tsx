@@ -8,7 +8,7 @@ import * as React from 'react';
 import { render, fireEvent, getByTestId } from '@testing-library/react';
 
 import { Tag } from '..';
-import type { TagKindT } from '..';
+import type { TagKind } from '..';
 
 describe('Tag', () => {
   it('renders provided children', () => {
@@ -58,7 +58,7 @@ describe('Tag', () => {
   it('passes flow check with tag enum', function () {
     // https://github.com/uber/baseweb/issues/1910
     // eslint-disable-next-line no-unused-vars
-    function TagWrapper(props: { kind: TagKindT }) {
+    function TagWrapper(props: { kind: TagKind }) {
       return <Tag kind={props.kind} />;
     }
   });

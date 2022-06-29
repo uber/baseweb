@@ -18,9 +18,9 @@ import {
   StyledContentDescription,
 } from './styled-components';
 
-import type { StepPropsT } from './types';
+import type { StepProps } from './types';
 
-function Step({ overrides = {}, isCompleted, isActive, isLast, title, children }: StepPropsT) {
+function Step({ overrides = {}, isCompleted, isActive, isLast, title, children }: StepProps) {
   const [Root, rootProps] = getOverrides(overrides.Root, StyledStep);
   const [IconContainer, iconContainerProps] = getOverrides(
     overrides.IconContainer,

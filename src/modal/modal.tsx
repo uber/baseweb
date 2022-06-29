@@ -21,13 +21,13 @@ import {
 } from './styled-components';
 import { CloseIcon } from './close-icon';
 
-import type { ModalPropsT, ModalStateT, SharedStylePropsArgT, CloseSourceT } from './types';
+import type { ModalProps, ModalState, SharedStylePropsArg, CloseSource } from './types';
 import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible';
 
 import type { SyntheticEvent } from 'react';
 
-class Modal extends React.Component<ModalPropsT, ModalStateT> {
-  static defaultProps: Partial<ModalPropsT> = {
+class Modal extends React.Component<ModalProps, ModalState> {
+  static defaultProps: Partial<ModalProps> = {
     animate: true,
     autoFocus: true,
     focusLock: true,
@@ -70,7 +70,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     this.clearTimers();
   }
 
-  componentDidUpdate(prevProps: ModalPropsT, prevState: ModalStateT) {
+  componentDidUpdate(prevProps: ModalProps, prevState: ModalState) {
     const { isOpen } = this.props;
     if (
       // If isOpen is changing *or* we just mounted and modal should be open
@@ -178,7 +178,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     this.animateOutTimer = setTimeout(this.animateOutComplete, 500);
   }
 
-  triggerClose(source?: CloseSourceT) {
+  triggerClose(source?: CloseSource) {
     // If there's no source, it just means the isOpen prop changed. No need to call onClose.
     if (this.props.onClose && source) {
       this.props.onClose({
@@ -193,7 +193,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     });
   };
 
-  getSharedProps(): Omit<SharedStylePropsArgT, 'children'> {
+  getSharedProps(): Omit<SharedStylePropsArg, 'children'> {
     const { animate, isOpen, size, role, closeable } = this.props;
     return {
       $animate: animate,

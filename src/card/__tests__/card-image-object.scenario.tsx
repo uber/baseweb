@@ -6,13 +6,13 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Card, type ImagePropsT, StyledBody } from '..';
+import { Card, type ImageProps, StyledBody } from '..';
 import { header as headerImg, thumbnail as thumbnailImg } from '../images';
 import { styled } from '../../styles';
 
 const Container = styled('div', { width: '328px' });
 
-const headerImage: ImagePropsT = {
+const headerImage: ImageProps = {
   src: headerImg,
   srcSet: `${thumbnailImg}, ${headerImg} 1.5x`,
   alt: 'Card Alt Entry',

@@ -8,9 +8,9 @@ import * as React from 'react';
 
 import StatefulContainer from './stateful-container';
 import TreeView from './tree-view';
-import type { TreeViewPropsT } from './types';
+import type { TreeViewProps } from './types';
 
-export default function StatefulTreeView(props: TreeViewPropsT) {
+export default function StatefulTreeView(props: TreeViewProps) {
   return (
     <StatefulContainer {...props}>
       {(treeViewProps) => <TreeView {...treeViewProps} />}

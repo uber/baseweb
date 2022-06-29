@@ -12,9 +12,9 @@ import TriangleDown from '../icon/triangle-down';
 
 import { SORT_DIRECTION } from './constants';
 import { StyledHeadCell, StyledSortableLabel } from './styled-components';
-import type { SortDirectionT, HeadCellPropsT } from './types';
+import type { SortDirection, HeadCellProps } from './types';
 
-function SortDirectionIcon({ direction }: { direction: SortDirectionT }) {
+function SortDirectionIcon({ direction }: { direction: SortDirection }) {
   switch (direction) {
     case SORT_DIRECTION.ASC:
       return <TriangleUp title="Sort ascending" />;
@@ -26,9 +26,9 @@ function SortDirectionIcon({ direction }: { direction: SortDirectionT }) {
 }
 export const SortableHeadCellFactory = (
   // @ts-expect-error todo(flow->ts) this assignment is not correct title property is declared as ReactNode but then it is used on div element… which is not correct
-  CustomHeadCell: React.ComponentType<HeadCellPropsT> = StyledHeadCell
+  CustomHeadCell: React.ComponentType<HeadCellProps> = StyledHeadCell
 ) => {
-  return function SortableHeadCell(props: HeadCellPropsT) {
+  return function SortableHeadCell(props: HeadCellProps) {
     const { overrides = {}, fillClickTarget, disabled } = props;
 
     const [HeadCell, headCellProps] = getOverrides(overrides.HeadCell, CustomHeadCell);

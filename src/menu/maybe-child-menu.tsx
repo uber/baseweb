@@ -9,19 +9,19 @@ import * as React from 'react';
 
 import { NestedMenuContext } from './nested-menus';
 import { Popover } from '../popover';
-import type { OverrideT } from '../helpers/overrides';
+import type { Override } from '../helpers/overrides';
 import { getOverrides, mergeOverrides } from '../helpers/overrides';
-import type { ItemT } from './types';
+import type { Item } from './types';
 
 type PropsT = {
-  getChildMenu: ((item: ItemT) => React.ReactNode) | undefined | null;
+  getChildMenu: ((item: Item) => React.ReactNode) | undefined | null;
   isOpen: boolean;
-  item: ItemT;
+  item: Item;
   resetParentMenu: () => void;
   renderAll?: boolean;
   onClick?: (event: React.MouseEvent) => unknown;
   overrides?: {
-    ChildMenuPopover?: OverrideT;
+    ChildMenuPopover?: Override;
   };
 };
 

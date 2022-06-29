@@ -9,13 +9,13 @@ import * as React from 'react';
 import { default as StatefulContainer } from './stateful-checkbox-container';
 // eslint-disable-next-line import/no-named-default
 import { default as Checkbox } from './checkbox';
-import type { StatefulContainerChildPropsT, StatefulCheckboxPropsT } from './types';
+import type { StatefulContainerChildProps, StatefulCheckboxProps } from './types';
 // Styled elements
 
-const StatefulCheckbox = function (props: StatefulCheckboxPropsT) {
+const StatefulCheckbox = function (props: StatefulCheckboxProps) {
   return (
     <StatefulContainer {...props}>
-      {(childrenProps: StatefulContainerChildPropsT) => (
+      {(childrenProps: StatefulContainerChildProps) => (
         <Checkbox {...childrenProps}>{props.children}</Checkbox>
       )}
     </StatefulContainer>

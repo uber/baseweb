@@ -5,11 +5,11 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-import type { NavItemT } from './types';
+import type { NavItem } from './types';
 
-type GetUniqueIdentifierT = (a: NavItemT) => string | number;
+type GetUniqueIdentifier = (a: NavItem) => string | number;
 
-export function defaultMapItemToNode(item: NavItemT) {
+export function defaultMapItemToNode(item: NavItem) {
   if (__DEV__) {
     if (!item.label) {
       throw Error(
@@ -20,7 +20,7 @@ export function defaultMapItemToNode(item: NavItemT) {
   return item.label;
 }
 
-function defaultGetUniqueIdentifier(item: NavItemT) {
+function defaultGetUniqueIdentifier(item: NavItem) {
   if (__DEV__) {
     if (!item.label) {
       throw Error(
@@ -31,8 +31,8 @@ function defaultGetUniqueIdentifier(item: NavItemT) {
   return item.label;
 }
 
-export function mapItemsActive(items: NavItemT[], predicate: (a: NavItemT) => boolean) {
-  return items.map<NavItemT>((current) => {
+export function mapItemsActive(items: NavItem[], predicate: (a: NavItem) => boolean) {
+  return items.map<NavItem>((current) => {
     if (predicate(current)) {
       current.active = true;
     } else {
@@ -51,9 +51,9 @@ export function mapItemsActive(items: NavItemT[], predicate: (a: NavItemT) => bo
 }
 
 export function setItemActive(
-  items: NavItemT[],
-  item: NavItemT,
-  getUniqueIdentifier: GetUniqueIdentifierT = defaultGetUniqueIdentifier
+  items: NavItem[],
+  item: NavItem,
+  getUniqueIdentifier: GetUniqueIdentifier = defaultGetUniqueIdentifier
 ) {
   return mapItemsActive(
     items,

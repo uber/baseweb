@@ -8,9 +8,9 @@ import * as React from 'react';
 import { UIDReset } from 'react-uid';
 import { LayersManager } from '../layer';
 import { ThemeProvider } from '../styles';
-import type { BaseProviderPropsT } from './types';
+import type { BaseProviderProps } from './types';
 
-const BaseProvider = (props: BaseProviderPropsT) => {
+const BaseProvider = (props: BaseProviderProps) => {
   const { children, overrides, theme, zIndex } = props;
   return (
     <LayersManager zIndex={zIndex} overrides={overrides}>

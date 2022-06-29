@@ -16,7 +16,7 @@ import {
   RadioMarkOuter as StyledRadioMarkOuter,
   Description as StyledDescription,
 } from './styled-components';
-import type { RadioPropsT, RadioStateT } from './types';
+import type { RadioProps, RadioState } from './types';
 
 import type { ChangeEvent } from 'react';
 
@@ -30,7 +30,7 @@ function isLabelBottomRight(labelPlacement) {
 
 const stopPropagation = (e) => e.stopPropagation();
 
-class Radio extends React.Component<RadioPropsT, RadioStateT> {
+class Radio extends React.Component<RadioProps, RadioState> {
   static defaultProps = {
     overrides: {},
     containsInteractiveElement: false,

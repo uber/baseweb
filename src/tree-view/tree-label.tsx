@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import React from 'react';
 import { ThemeContext } from '../styles/theme-provider';
-import type { TreeLabelT, SharedStylePropsT } from './types';
+import type { TreeLabelProps, SharedStyleProps } from './types';
 import { StyledIconContainer, StyledItemContent } from './styled-components';
 import ChevronRight from '../icon/chevron-right';
 import ChevronDown from '../icon/chevron-down';
@@ -16,7 +16,7 @@ import { getOverride, getOverrideProps, getOverrides } from '../helpers/override
 
 import type { ComponentType } from 'react';
 
-const TreeLabel: ComponentType<TreeLabelT> = ({
+const TreeLabel: ComponentType<TreeLabelProps> = ({
   hasChildren,
   isExpanded,
   label,
@@ -26,7 +26,7 @@ const TreeLabel: ComponentType<TreeLabelT> = ({
   isFocusVisible,
   ...props
 }) => {
-  const sharedProps: SharedStylePropsT = {
+  const sharedProps: SharedStyleProps = {
     $isExpanded: !!isExpanded,
     $isSelected: !!isSelected,
     $isFocusVisible: !!isFocusVisible,

@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import { styled, withStyle } from '../styles';
 import { StyledRoot as StyledInputRoot, StyledInput as StyledInputInput, SIZE } from '../input';
-import type { SizeT } from '../input';
+import type { Size } from '../input';
 
 export const StyledRoot = styled('div', {
   display: 'flex',
@@ -16,7 +16,7 @@ export const StyledRoot = styled('div', {
 export const StyledInputOverrideRoot = withStyle<
   typeof StyledInputRoot,
   {
-    $size: SizeT;
+    $size: Size;
   }
 >(StyledInputRoot, ({ $size = SIZE.default }) => {
   const width = {

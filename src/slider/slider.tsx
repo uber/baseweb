@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 import { Range } from 'react-range';
-import type { PropsT } from './types';
+import type { SliderProps } from './types';
 import { isFocusVisible as focusVisible, forkFocus, forkBlur } from '../utils/focusVisible';
 import {
   Root as StyledRoot,
@@ -48,7 +48,7 @@ function Slider({
   persistentThumb = false,
   valueToLabel = (label) => label,
   value: providedValue,
-}: PropsT) {
+}: SliderProps) {
   const theme = React.useContext(ThemeContext);
 
   const [isHovered0, setIsHovered0] = React.useState(false);

@@ -8,7 +8,7 @@ import * as React from 'react';
 
 import { MODE, STATE_CHANGE_TYPE } from './constants';
 
-import type { StatefulContainerPropsT, StateT } from './types';
+import type { StatefulContainerProps, State } from './types';
 
 import type { SyntheticEvent } from 'react';
 
@@ -19,22 +19,22 @@ function isSelectedDefined(selected) {
 
 function defaultStateReducer(
   type: typeof STATE_CHANGE_TYPE[keyof typeof STATE_CHANGE_TYPE],
-  nextState: StateT,
-  currentState: StateT
+  nextState: State,
+  currentState: State
 ) {
   return nextState;
 }
 
-export default class StatefulContainer extends React.Component<StatefulContainerPropsT, StateT> {
+export default class StatefulContainer extends React.Component<StatefulContainerProps, State> {
   static defaultProps = {
     initialState: { selected: [] },
     stateReducer: defaultStateReducer,
   };
 
-  constructor(props: StatefulContainerPropsT) {
+  constructor(props: StatefulContainerProps) {
     super(props);
 
-    const { initialState = {} as StateT } = props;
+    const { initialState = {} as State } = props;
     const { selected = [] } = initialState;
 
     this.state = {
@@ -42,7 +42,7 @@ export default class StatefulContainer extends React.Component<StatefulContainer
     };
   }
 
-  changeState = (nextState: StateT) => {
+  changeState = (nextState: State) => {
     if (this.props.stateReducer) {
       this.setState(this.props.stateReducer(STATE_CHANGE_TYPE.change, nextState, this.state));
     } else {

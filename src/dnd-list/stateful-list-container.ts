@@ -6,17 +6,17 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 import type {
-  StateT,
-  StatefulComponentContainerPropsT,
-  StateChangeTypeT,
-  StateReducerT,
+  State,
+  StatefulComponentContainerProps,
+  StateChangeType,
+  StateReducer,
 } from './types';
 import { arrayMove, arrayRemove } from 'react-movable';
 
-const defaultStateReducer: StateReducerT = (type, nextState) => nextState;
+const defaultStateReducer: StateReducer = (type, nextState) => nextState;
 
-class StatefulListContainer extends React.Component<StatefulComponentContainerPropsT, StateT> {
-  static defaultProps: Partial<StatefulComponentContainerPropsT> = {
+class StatefulListContainer extends React.Component<StatefulComponentContainerProps, State> {
+  static defaultProps: Partial<StatefulComponentContainerProps> = {
     initialState: { items: [] },
     stateReducer: defaultStateReducer,
     onChange: () => {},
@@ -49,7 +49,7 @@ class StatefulListContainer extends React.Component<StatefulComponentContainerPr
     this.internalSetState('change', { items: newItemsState });
   };
 
-  internalSetState(type: StateChangeTypeT, changes: StateT) {
+  internalSetState(type: StateChangeType, changes: State) {
     const { stateReducer } = this.props;
     this.setState((prevState) => stateReducer(type, changes, prevState));
   }

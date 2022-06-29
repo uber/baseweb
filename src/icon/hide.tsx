@@ -11,9 +11,9 @@ import { useStyletron } from '../styles';
 import { mergeOverride, toObjectOverride } from '../helpers/overrides';
 
 import Icon from './icon';
-import type { IconPropsT } from './types';
+import type { IconProps } from './types';
 
-function Hide(props: IconPropsT, ref) {
+function Hide(props: IconProps, ref) {
   const [, theme] = useStyletron();
   const { title = 'Hide', size, color, overrides = {}, ...restProps } = props;
   const SvgOverride = mergeOverride(
@@ -38,4 +38,4 @@ function Hide(props: IconPropsT, ref) {
   );
 }
 
-export default React.forwardRef<SVGSVGElement, IconPropsT>(Hide);
+export default React.forwardRef<SVGSVGElement, IconProps>(Hide);

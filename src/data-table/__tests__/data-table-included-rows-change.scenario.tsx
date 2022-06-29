@@ -8,12 +8,12 @@ import * as React from 'react';
 
 import { StatefulDataTable, BooleanColumn } from '..';
 
-type RowDataT = [boolean, string, number, string, Date];
+type RowData = [boolean, string, number, string, Date];
 
 const columns = [
   BooleanColumn({
     title: 'boolean-column',
-    mapDataToValue: (data: RowDataT) => data[0],
+    mapDataToValue: (data: RowData) => data[0],
   }),
 ];
 

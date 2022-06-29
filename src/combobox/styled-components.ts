@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import { SIZE } from '../input';
 import { styled } from '../styles';
-import type { FontT } from '../themes/types';
+import type { Font } from '../themes/types';
 
 export const StyledRoot = styled('div', {});
 
@@ -37,11 +37,11 @@ function buildStylesForSize(
   | ({
       height: string;
       paddingLeft?: string;
-    } & FontT)
+    } & Font)
   | ({
       height: string;
       paddingRight?: string;
-    } & FontT) {
+    } & Font) {
   const paddingDir: string = theme.direction === 'rtl' ? 'paddingRight' : 'paddingLeft';
   switch (size) {
     case SIZE.mini:

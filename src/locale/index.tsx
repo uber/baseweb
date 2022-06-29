@@ -7,13 +7,13 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import extend from 'just-extend';
 
-import type { LocaleT } from './types';
+import type { Locale } from './types';
 import en_US from './en_US';
 
-export const LocaleContext: React.Context<LocaleT> = React.createContext(en_US);
+export const LocaleContext: React.Context<Locale> = React.createContext(en_US);
 
 const LocaleProvider = (props: {
-  locale: Partial<LocaleT>;
+  locale: Partial<Locale>;
   children: React.ReactNode | undefined | null;
 }) => {
   const { locale, children } = props;
@@ -24,4 +24,4 @@ const LocaleProvider = (props: {
 
 export default LocaleProvider;
 
-export type { LocaleT };
+export type { Locale };

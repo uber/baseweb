@@ -21,10 +21,10 @@ import { Tag } from '../../tag';
 import { StyledTable, StyledHeadCell, StyledBodyCell } from '..';
 import { useCellNavigation } from './shared';
 
-type StatusT = 'running' | 'passed' | 'failed';
-type RowT = [string, StatusT, Date, string, string, string, TaskT[]];
-type TaskT = [string, StatusT, Date, string, string];
-function buildRow(status: StatusT): RowT {
+type Status = 'running' | 'passed' | 'failed';
+type Row = [string, Status, Date, string, string, string, Task[]];
+type Task = [string, Status, Date, string, string];
+function buildRow(status: Status): Row {
   return [
     'Baseui Github CI Job',
     status,
@@ -118,7 +118,7 @@ const data = [
   buildRow('passed'),
 ];
 
-function statusToTagKind(status: StatusT) {
+function statusToTagKind(status: Status) {
   switch (status) {
     case 'running': {
       return 'primary';
@@ -135,7 +135,7 @@ function statusToTagKind(status: StatusT) {
   }
 }
 
-function Tasks(props: { tasks: TaskT[] }) {
+function Tasks(props: { tasks: Task[] }) {
   const [css] = useStyletron();
   return (
     <div
@@ -182,13 +182,13 @@ const Truncate = styled('div', {
   whiteSpace: 'nowrap',
 });
 
-type RowPropsT = {
+type RowProps = {
   getCellProps: (a: number) => {};
   striped: boolean;
-  row: RowT;
+  row: Row;
 };
 
-function Row(props: RowPropsT) {
+function Row(props: RowProps) {
   const [expanded, setExpanded] = React.useState(false);
   return (
     <>

@@ -11,9 +11,9 @@ import { useStyletron } from '../styles';
 import { mergeOverride, toObjectOverride } from '../helpers/overrides';
 
 import Icon from './icon';
-import type { IconPropsT } from './types';
+import type { IconProps } from './types';
 
-function CheckIndeterminate(props: IconPropsT, ref) {
+function CheckIndeterminate(props: IconProps, ref) {
   const [, theme] = useStyletron();
   const { title = 'Check Indeterminate', size, color, overrides = {}, ...restProps } = props;
   const SvgOverride = mergeOverride(
@@ -43,4 +43,4 @@ function CheckIndeterminate(props: IconPropsT, ref) {
   );
 }
 
-export default React.forwardRef<SVGSVGElement, IconPropsT>(CheckIndeterminate);
+export default React.forwardRef<SVGSVGElement, IconProps>(CheckIndeterminate);

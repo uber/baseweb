@@ -19,9 +19,9 @@ import {
 } from './styled-components';
 import { getOverrides } from '../helpers/overrides';
 // Types
-import type { OptionProfilePropsT } from './types';
+import type { OptionProfileProps } from './types';
 
-function OptionProfile(props: OptionProfilePropsT, ref: React.RefObject<any>) {
+function OptionProfile(props: OptionProfileProps, ref: React.RefObject<any>) {
   const {
     item,
     getChildMenu,
@@ -93,7 +93,7 @@ function OptionProfile(props: OptionProfilePropsT, ref: React.RefObject<any>) {
   );
 }
 
-const forwarded = React.forwardRef<HTMLElement, OptionProfilePropsT>(OptionProfile);
+const forwarded = React.forwardRef<HTMLElement, OptionProfileProps>(OptionProfile);
 forwarded.displayName = 'OptionProfile';
 
 export default forwarded;

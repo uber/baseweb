@@ -9,7 +9,7 @@ import * as React from 'react';
 import { useStyletron } from '../styles';
 
 import HeaderCell from './header-cell';
-import type { ColumnT, RowT } from './types';
+import type { ColumnOptions, Row } from './types';
 import { useRef } from 'react';
 
 // Measures the column header + sampled data
@@ -69,12 +69,12 @@ function MeasureColumn({ sampleIndexes, column, columnIndex, rows, isSelectable,
   );
 }
 
-type MeasureColumnWidthsPropsT = {
-  columns: ColumnT[];
+type MeasureColumnWidthsProps = {
+  columns: ColumnOptions[];
   // if selectable, measure the first column with checkbox included
   isSelectable: boolean;
   onWidthsChange: (a: number[]) => void;
-  rows: RowT[];
+  rows: Row[];
   widths: number[];
 };
 
@@ -109,7 +109,7 @@ export default function MeasureColumnWidths({
   widths,
   isSelectable,
   onWidthsChange,
-}: MeasureColumnWidthsPropsT) {
+}: MeasureColumnWidthsProps) {
   const [css] = useStyletron();
 
   const widthMap = React.useMemo(() => {

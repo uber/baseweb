@@ -28,15 +28,15 @@ import defaultProps from './default-props';
 import { useUID } from 'react-uid';
 
 import type {
-  AnchorPropsT,
-  PopoverPropsT,
-  PopoverPrivateStateT,
-  SharedStylePropsArgT,
+  AnchorProps,
+  PopoverProps,
+  PopoverPrivateState,
+  SharedStylePropsArg,
 } from './types';
-import type { PopperDataObjectT, NormalizedOffsetsT } from '../layer/types';
+import type { PopperDataObject, NormalizedOffsets } from '../layer/types';
 
-class PopoverInner extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
-  static defaultProps: Partial<PopoverPropsT> = defaultProps;
+class PopoverInner extends React.Component<PopoverProps, PopoverPrivateState> {
+  static defaultProps: Partial<PopoverProps> = defaultProps;
 
   /* eslint-disable react/sort-comp */
   animateInTimer?: TimeoutID | undefined | null;
@@ -60,7 +60,7 @@ class PopoverInner extends React.Component<PopoverPropsT, PopoverPrivateStateT> 
     this.setState({ isMounted: true });
   }
 
-  componentDidUpdate(prevProps: PopoverPropsT, prevState: PopoverPrivateStateT) {
+  componentDidUpdate(prevProps: PopoverProps, prevState: PopoverPrivateState) {
     this.init(prevProps, prevState);
     if (
       this.props.autoFocus &&
@@ -83,7 +83,7 @@ class PopoverInner extends React.Component<PopoverPropsT, PopoverPrivateStateT> 
     }
   }
 
-  init(prevProps: PopoverPropsT, prevState: PopoverPrivateStateT) {
+  init(prevProps: PopoverProps, prevState: PopoverPrivateState) {
     if (
       this.props.isOpen !== prevProps.isOpen ||
       this.state.isMounted !== prevState.isMounted ||
@@ -108,7 +108,7 @@ class PopoverInner extends React.Component<PopoverPropsT, PopoverPrivateStateT> 
     this.clearTimers();
   }
 
-  getDefaultState(props: PopoverPropsT) {
+  getDefaultState(props: PopoverProps) {
     return {
       isAnimating: false,
       arrowOffset: { left: 0, top: 0 },
@@ -188,7 +188,7 @@ class PopoverInner extends React.Component<PopoverPropsT, PopoverPrivateStateT> 
     this.triggerOnMouseLeaveWithDelay(e);
   };
 
-  onPopperUpdate = (normalizedOffsets: NormalizedOffsetsT, data: PopperDataObjectT) => {
+  onPopperUpdate = (normalizedOffsets: NormalizedOffsets, data: PopperDataObject) => {
     const placement = fromPopperPlacement(data.placement) || PLACEMENT.top;
     this.setState({
       arrowOffset: normalizedOffsets.arrow,
@@ -286,7 +286,7 @@ class PopoverInner extends React.Component<PopoverPropsT, PopoverPrivateStateT> 
   getAnchorProps() {
     const { isOpen } = this.props;
 
-    const anchorProps: AnchorPropsT = {
+    const anchorProps: AnchorProps = {
       'aria-haspopup': true,
       'aria-expanded': isOpen ? true : false,
       // @ts-expect-error todo(flow->ts): should it be here?
@@ -334,7 +334,7 @@ class PopoverInner extends React.Component<PopoverPropsT, PopoverPrivateStateT> 
     return bodyProps;
   }
 
-  getSharedProps(): Omit<SharedStylePropsArgT, 'children'> {
+  getSharedProps(): Omit<SharedStylePropsArg, 'children'> {
     const { isOpen, showArrow, popoverMargin = POPOVER_MARGIN } = this.props;
     const { isAnimating, arrowOffset, popoverOffset, placement } = this.state;
     return {
@@ -487,7 +487,7 @@ class PopoverInner extends React.Component<PopoverPropsT, PopoverPrivateStateT> 
 
 // Remove when Popover is converted to a functional component.
 const Popover = (
-  props: PopoverPropsT & {
+  props: PopoverProps & {
     innerRef?: React.Ref<HTMLElement>;
   }
 ) => {

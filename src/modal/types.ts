@@ -6,26 +6,26 @@ LICENSE file in the root directory of this source tree.
 */
 /* eslint-disable flowtype/generic-spacing */
 import * as React from 'react';
-import type { OverrideT } from '../helpers/overrides';
+import type { Override } from '../helpers/overrides';
 import { SIZE, ROLE, CLOSE_SOURCE } from './constants';
 
-export type SizeT = keyof typeof SIZE;
-export type SizePropT = SizeT | number | string;
+export type Size = keyof typeof SIZE;
+export type SizeProp = Size | number | string;
 
-export type RoleT = keyof typeof ROLE;
-export type RolePropT = RoleT | string;
+export type Role = keyof typeof ROLE;
+export type RoleProp = Role | string;
 
-export type CloseSourceT = keyof typeof CLOSE_SOURCE;
+export type CloseSource = keyof typeof CLOSE_SOURCE;
 
-export type OverridesT = {
-  Root?: OverrideT;
-  Dialog?: OverrideT;
-  DialogContainer?: OverrideT;
-  Close?: OverrideT;
+export type ModalOverrides = {
+  Root?: Override;
+  Dialog?: Override;
+  DialogContainer?: Override;
+  Close?: Override;
 };
 
 // Props shared by all flavors of modal
-export type ModalPropsT = {
+export type ModalProps = {
   /** Sets whether the Modal should be displayed by easing in and out */
   animate: boolean;
   /** If true, focus will shift to the first interactive element within the modal.
@@ -55,29 +55,29 @@ export type ModalPropsT = {
   mountNode?: HTMLElement;
   /** A callback that is invoked when the modal will close.
    * Callback is passed a constant identifying what triggered the close. */
-  onClose?: (a: { closeSource?: CloseSourceT }) => unknown;
-  overrides: OverridesT;
+  onClose?: (a: { closeSource?: CloseSource }) => unknown;
+  overrides: ModalOverrides;
   /** Which accessibility role this modal should have. */
-  role: RolePropT;
+  role: RoleProp;
   /** Controls the size of the modal (primarily width).
    * Can be a SIZE constant or css width property value. */
-  size: SizePropT;
+  size: SizeProp;
 };
 
-export type ModalPropsWithoutChildrenT = Omit<ModalPropsT, 'children'>;
+export type ModalPropsWithoutChildren = Omit<ModalProps, 'children'>;
 
-export type ModalStateT = {
+export type ModalState = {
   isVisible: boolean;
   mounted: boolean;
   isFocusVisible: boolean;
 };
 
-export type SharedStylePropsArgT = {
+export type SharedStylePropsArg = {
   $animate: boolean;
   $isVisible: boolean;
   $isOpen: boolean;
-  $size: SizePropT;
-  $role: RolePropT;
+  $size: SizeProp;
+  $role: RoleProp;
   $closeable: boolean;
   $isFocusVisible: boolean;
 };

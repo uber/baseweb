@@ -18,4 +18,4 @@ export {
 
 // Flow
 export * from './types';
-export type { FileUploaderLocaleT } from './locale';
+export type { FileUploaderLocale } from './locale';

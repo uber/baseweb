@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import { styled } from '../styles/index';
 import { ACTION_POSITION } from './constants';
-import type { ActionPositionT } from './types';
+import type { ActionPosition } from './types';
 
 export const StyledRoot = styled<
   'div',
@@ -48,7 +48,7 @@ export const StyledLeadingContent = styled<
 export const StyledMessageContent = styled<
   'div',
   {
-    $actionPosition: ActionPositionT;
+    $actionPosition: ActionPosition;
   }
 >('div', ({ $theme, $actionPosition }) => {
   return {
@@ -71,7 +71,7 @@ export const StyledTrailingContent = styled<'div', {}>('div', ({ $theme }) => {
 export const StyledBelowContent = styled<
   'div',
   {
-    $actionPosition: ActionPositionT;
+    $actionPosition: ActionPosition;
   }
 >('div', ({ $theme, $actionPosition }) => {
   return {

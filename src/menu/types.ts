@@ -5,54 +5,54 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
-import type { OverrideT } from '../helpers/overrides';
+import type { Override } from '../helpers/overrides';
 import { STATE_CHANGE_TYPES, OPTION_LIST_SIZE } from './constants';
 
 import type { SyntheticEvent, FocusEvent, MouseEvent } from 'react';
 
-export type ItemT = any;
-export type ArrayItemsT = ReadonlyArray<ItemT>;
-export type GroupedItemsT = {
-  __ungrouped: ArrayItemsT;
-  [x: string]: ArrayItemsT;
+export type Item = any;
+export type ArrayItems = ReadonlyArray<Item>;
+export type GroupedItems = {
+  __ungrouped: ArrayItems;
+  [x: string]: ArrayItems;
 };
-export type ItemsT = ArrayItemsT | GroupedItemsT;
+export type Items = ArrayItems | GroupedItems;
 
-export type GetItemLabelFnT = (item: ItemT) => React.ReactNode;
+export type GetItemLabelFn = (item: Item) => React.ReactNode;
 
-export type GetProfileItemLabelsFnT = (item: ItemT) => {
+export type GetProfileItemLabelsFn = (item: Item) => {
   title?: string;
   subtitle?: string;
   body?: string;
 };
 
-export type GetProfileItemImgFnT = (item: ItemT) => string | React.ComponentType<any>;
+export type GetProfileItemImgFn = (item: Item) => string | React.ComponentType<any>;
 
-export type GetProfileItemImgTextFnT = (item: ItemT) => string;
+export type GetProfileItemImgTextFn = (item: Item) => string;
 
-export type SetRootRefFnT = (ref: React.RefObject<typeof HTMLElement>) => void;
+export type SetRootRefFn = (ref: React.RefObject<typeof HTMLElement>) => void;
 
-export type RootRefT = {
+export type RootRef = {
   current: null | HTMLElement;
 };
 
-export type OnItemSelectFnT = (a: {
-  item: ItemT;
+export type OnItemSelectFn = (a: {
+  item: Item;
   event?: SyntheticEvent<HTMLElement> | KeyboardEvent;
 }) => unknown;
 
-export type ProfileOverridesT = {
-  List?: OverrideT;
-  ListItemProfile?: OverrideT;
-  ProfileImgContainer?: OverrideT;
-  ProfileImg?: OverrideT;
-  ProfileLabelsContainer?: OverrideT;
-  ProfileTitle?: OverrideT;
-  ProfileSubtitle?: OverrideT;
-  ProfileBody?: OverrideT;
+export type ProfileOverrides = {
+  List?: Override;
+  ListItemProfile?: Override;
+  ProfileImgContainer?: Override;
+  ProfileImg?: Override;
+  ProfileLabelsContainer?: Override;
+  ProfileTitle?: Override;
+  ProfileSubtitle?: Override;
+  ProfileBody?: Override;
 };
 
-export type RenderItemPropsT = {
+export type RenderItemProps = {
   disabled?: boolean;
   ref?: React.RefObject<typeof HTMLElement>;
   id?: string | null;
@@ -64,15 +64,15 @@ export type RenderItemPropsT = {
   resetMenu?: () => void;
 };
 
-export type GetRequiredItemPropsFnT = (item: ItemT, index: number) => RenderItemPropsT;
+export type GetRequiredItemPropsFn = (item: Item, index: number) => RenderItemProps;
 
-export type StateReducerFnT = (
+export type StateReducerFn = (
   changeType: keyof typeof STATE_CHANGE_TYPES | undefined | null,
-  changes: Partial<StatefulContainerStateT>,
-  currentState: StatefulContainerStateT
-) => StatefulContainerStateT;
+  changes: Partial<StatefulContainerState>,
+  currentState: StatefulContainerState
+) => StatefulContainerState;
 
-export type StatefulContainerStateT = {
+export type StatefulContainerState = {
   // id of the currently highlighted item (from keyboard control)
   activedescendantId?: string | null;
   // index of currently highlighted item (from keyboard control)
@@ -82,7 +82,7 @@ export type StatefulContainerStateT = {
   isFocused: boolean;
 };
 
-export type InitialStateT = {
+export type InitialState = {
   // id of the currently highlighted item (from keyboard control)
   activedescendantId?: string | null;
   // index of currently highlighted item (from keyboard control)
@@ -92,9 +92,9 @@ export type InitialStateT = {
   isFocused?: boolean;
 };
 
-export type RenderPropsT = StatefulContainerStateT & {
-  items: ItemsT;
-  getRequiredItemProps: GetRequiredItemPropsFnT;
+export type RenderProps = StatefulContainerState & {
+  items: Items;
+  getRequiredItemProps: GetRequiredItemPropsFn;
 };
 
 /**
@@ -104,22 +104,22 @@ export type RenderPropsT = StatefulContainerStateT & {
  * marked as required because otherwise defaultProps will not work properly
  */
 
-export type StatefulContainerPropsT = {
+export type StatefulContainerProps = {
   /** List of menu items. */
-  items: ItemsT;
+  items: Items;
   /** Initial state of the stateful menu. */
-  initialState: InitialStateT;
+  initialState: InitialState;
   /** State reducer to intercept state changes and return new internal state */
-  stateReducer: StateReducerFnT;
+  stateReducer: StateReducerFn;
   /** Function to get props for each rendered item. This will have some defaults needed for keyboard
    * bindings to work properly. Every rendered item should call this.
    */
-  getRequiredItemProps: GetRequiredItemPropsFnT;
+  getRequiredItemProps: GetRequiredItemPropsFn;
   onActiveDescendantChange?: (id?: string) => unknown;
   /** Callback executed on menu item clicks. */
-  onItemSelect: OnItemSelectFnT;
+  onItemSelect: OnItemSelectFn;
   /** Ref for the menu container element. Used to capture key events for navigation */
-  rootRef?: RootRefT;
+  rootRef?: RootRef;
   /** Node for menu's keyboard listener. Default is null and keyboard handlers will listen on menu root. */
   keyboardControlNode: {
     current: HTMLElement | null;
@@ -127,7 +127,7 @@ export type StatefulContainerPropsT = {
   /** whether has keyboard type-ahead function */
   typeAhead: boolean;
   /** Child as function pattern. */
-  children: (a: RenderPropsT) => React.ReactNode;
+  children: (a: RenderProps) => React.ReactNode;
   addMenuToNesting?: (ref: { current: HTMLElement | null }) => void;
   removeMenuFromNesting?: (ref: { current: HTMLElement | null }) => void;
   getParentMenu?: (ref: { current: HTMLElement | null }) =>
@@ -147,29 +147,29 @@ export type StatefulContainerPropsT = {
   forceHighlight: boolean;
 };
 
-export type MenuPropsT = {
+export type MenuProps = {
   overrides?: {
-    EmptyState?: OverrideT;
-    List?: OverrideT;
-    Option?: OverrideT;
-    OptgroupHeader?: OverrideT;
-    ListItem?: OverrideT;
+    EmptyState?: Override;
+    List?: Override;
+    Option?: Override;
+    OptgroupHeader?: Override;
+    ListItem?: Override;
   };
   /** Renders all menu content for SEO purposes regardless of menu  state */
   renderAll?: boolean;
 };
 
-export type MenuProfilePropsT = {
+export type MenuProfileProps = {
   /** Returns an object consisting of title, subtitle, and body to render menu item */
-  getProfileItemLabels: GetProfileItemLabelsFnT;
+  getProfileItemLabels: GetProfileItemLabelsFn;
   /** Returns either an image source url, or a full React component to render as the image. */
-  getProfileItemImg: GetProfileItemImgFnT;
+  getProfileItemImg: GetProfileItemImgFn;
   /** Returns the alt text for the image */
-  getProfileItemImgText: GetProfileItemImgTextFnT;
-  overrides?: ProfileOverridesT;
+  getProfileItemImgText: GetProfileItemImgTextFn;
+  overrides?: ProfileOverrides;
 };
 
-export type SharedStatelessPropsT = {
+export type SharedStatelessProps = {
   /** Id of the highlighted menu item. */
   activedescendantId?: string | null;
   /** Function to get props for each rendered item. This will have some defaults needed for keyboard
@@ -177,42 +177,42 @@ export type SharedStatelessPropsT = {
    */
   /** Passed to the top level menu element. */
   'aria-label'?: string;
-  getRequiredItemProps?: GetRequiredItemPropsFnT;
+  getRequiredItemProps?: GetRequiredItemPropsFn;
   isFocused?: boolean;
   handleMouseLeave?: (event: MouseEvent<HTMLElement>) => unknown;
   /** Index of highlighted menu item. */
   highlightedIndex?: number;
   /** List of menu items. */
-  items: ItemsT;
+  items: Items;
   /** Message to be displayed if no menu items are passed in. */
   noResultsMsg?: React.ReactNode;
   onBlur?: (event: FocusEvent<HTMLElement>) => unknown;
   onFocus?: (event: FocusEvent<HTMLElement>) => unknown;
   /** Ref for the menu container element. Used to capture key events for navigation */
-  rootRef?: RootRefT;
+  rootRef?: RootRef;
   focusMenu?: (event: FocusEvent | MouseEvent | KeyboardEvent) => unknown;
   unfocusMenu?: () => unknown;
   handleKeyDown?: (event: KeyboardEvent) => unknown;
 };
 
-export type StatefulMenuPropsT = {
+export type StatefulMenuProps = {
   /** List of menu items. */
-  items: ItemsT;
+  items: Items;
   /** Initial state of the stateful menu. */
-  initialState?: InitialStateT;
+  initialState?: InitialState;
   /** State reducer to intercept state changes and return new internal state */
-  stateReducer?: StateReducerFnT;
+  stateReducer?: StateReducerFn;
   /** Function to get props for each rendered item. This will have some defaults needed for keyboard
    * bindings to work properly. Every rendered item should call this.
    */
-  getRequiredItemProps?: GetRequiredItemPropsFnT;
+  getRequiredItemProps?: GetRequiredItemPropsFn;
   onActiveDescendantChange?: (id?: string) => unknown;
   /** Callback executed on menu item clicks. */
-  onItemSelect?: OnItemSelectFnT;
+  onItemSelect?: OnItemSelectFn;
   /** Ref for the menu container element. Used to capture key events for navigation */
-  rootRef?: RootRefT;
+  rootRef?: RootRef;
   /** Child as function pattern. */
-  children?: (a: RenderPropsT) => React.ReactNode;
+  children?: (a: RenderProps) => React.ReactNode;
   /** whether has keyboard type-ahead function */
   typeAhead?: boolean;
   addMenuToNesting?: (ref: { current: HTMLElement | null }) => void;
@@ -231,21 +231,21 @@ export type StatefulMenuPropsT = {
     | null;
   nestedMenuHoverIndex?: number;
   isNestedMenuVisible?: (ref: { current: HTMLElement | null }) => boolean;
-} & MenuPropsT;
+} & MenuProps;
 
-export type StatefulMenuProfilePropsT = StatefulContainerPropsT & MenuProfilePropsT;
+export type StatefulMenuProfileProps = StatefulContainerProps & MenuProfileProps;
 
-export type StatelessMenuPropsT = SharedStatelessPropsT & MenuPropsT;
+export type StatelessMenuProps = SharedStatelessProps & MenuProps;
 
-export type StatelessMenuProfilePropsT = SharedStatelessPropsT & MenuProfilePropsT;
+export type StatelessMenuProfileProps = SharedStatelessProps & MenuProfileProps;
 
-export type OptionListPropsT = {
+export type OptionListProps = {
   /** Item to parse and render. */
-  item: ItemT;
+  item: Item;
   /** Function used to get the string label for each item. */
-  getItemLabel: GetItemLabelFnT;
+  getItemLabel: GetItemLabelFn;
   /** Used to render a sub menu at this menu item. You'll often render another menu from this function. */
-  getChildMenu?: (item: ItemT) => React.ReactNode;
+  getChildMenu?: (item: Item) => React.ReactNode;
   onClick?: (event: MouseEvent) => unknown;
   /** Callback used to change highlighted index in stateful menu. */
   onMouseDown?: (event: MouseEvent) => unknown;
@@ -254,9 +254,9 @@ export type OptionListPropsT = {
   /** Renders UI in defined scale. */
   size?: keyof typeof OPTION_LIST_SIZE;
   overrides?: {
-    ListItem?: OverrideT;
-    ListItemAnchor?: OverrideT;
-    ChildMenuPopover?: OverrideT;
+    ListItem?: Override;
+    ListItemAnchor?: Override;
+    ChildMenuPopover?: Override;
   };
   renderHrefAsAnchor?: boolean;
   /** Utility to reset menu to default state. Useful for rendering child menus. */
@@ -279,26 +279,26 @@ export type OptionListPropsT = {
   role?: string;
 };
 
-export type OptionProfilePropsT = {
+export type OptionProfileProps = {
   /** Item to parse and render. */
-  item: ItemT;
+  item: Item;
   /** Used to render a sub menu at this menu item. You'll often render another menu from this function. */
-  getChildMenu?: (item: ItemT) => React.ReactNode;
+  getChildMenu?: (item: Item) => React.ReactNode;
   /** Returns an object consisting of title, subtitle, and body to render menu item */
-  getProfileItemLabels: GetProfileItemLabelsFnT;
+  getProfileItemLabels: GetProfileItemLabelsFn;
   /** Returns either an image source url, or a full React component to render as the image. */
-  getProfileItemImg: GetProfileItemImgFnT;
+  getProfileItemImg: GetProfileItemImgFn;
   /** Returns the alt text for the image */
-  getProfileItemImgText: GetProfileItemImgTextFnT;
+  getProfileItemImgText: GetProfileItemImgTextFn;
   overrides?: {
-    ListItemProfile?: OverrideT;
-    ProfileImgContainer?: OverrideT;
-    ProfileImg?: OverrideT;
-    ProfileLabelsContainer?: OverrideT;
-    ProfileTitle?: OverrideT;
-    ProfileSubtitle?: OverrideT;
-    ProfileBody?: OverrideT;
-    ChildMenuPopover?: OverrideT;
+    ListItemProfile?: Override;
+    ProfileImgContainer?: Override;
+    ProfileImg?: Override;
+    ProfileLabelsContainer?: Override;
+    ProfileTitle?: Override;
+    ProfileSubtitle?: Override;
+    ProfileBody?: Override;
+    ChildMenuPopover?: Override;
   };
   /** Utility to reset menu to default state. Useful for rendering child menus. */
   resetMenu?: () => void;
@@ -308,15 +308,15 @@ export type OptionProfilePropsT = {
   renderAll?: boolean;
 };
 
-export type NestedMenuRefT = {
+export type NestedMenuRef = {
   current: HTMLElement | null;
 };
-export type NestedMenuContextT = {
-  addMenuToNesting: (ref: NestedMenuRefT) => void;
-  removeMenuFromNesting: (ref: NestedMenuRefT) => void;
-  getParentMenu: (ref: NestedMenuRefT) => NestedMenuRefT | undefined | null;
-  getChildMenu: (ref: NestedMenuRefT) => NestedMenuRefT | undefined | null;
+export type NestedMenuContextProps = {
+  addMenuToNesting: (ref: NestedMenuRef) => void;
+  removeMenuFromNesting: (ref: NestedMenuRef) => void;
+  getParentMenu: (ref: NestedMenuRef) => NestedMenuRef | undefined | null;
+  getChildMenu: (ref: NestedMenuRef) => NestedMenuRef | undefined | null;
   nestedMenuHoverIndex: number;
-  isNestedMenuVisible: (ref: NestedMenuRefT) => boolean;
-  mountRef: NestedMenuRefT;
+  isNestedMenuVisible: (ref: NestedMenuRef) => boolean;
+  mountRef: NestedMenuRef;
 };

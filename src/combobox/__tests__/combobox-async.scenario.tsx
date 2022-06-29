@@ -9,12 +9,12 @@ import * as React from 'react';
 import { useStyletron } from '../../styles';
 import { Combobox } from '..';
 
-type OptionT = {
+type Option = {
   label: string;
   id: string;
 };
 
-const asyncOptions: OptionT[] = [
+const asyncOptions: Option[] = [
   { label: 'AliceBlue', id: '#F0F8FF' },
   { label: 'AntiqueWhite', id: '#FAEBD7' },
   { label: 'Aqua', id: '#00FFFF' },
@@ -73,7 +73,7 @@ const asyncOptions: OptionT[] = [
   { label: 'MediumSlateBlue', id: '7B68EE' },
 ];
 
-function mapOptionToString(option: OptionT): string {
+function mapOptionToString(option: Option): string {
   return option.label;
 }
 

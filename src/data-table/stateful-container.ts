@@ -7,9 +7,9 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import { SORT_DIRECTIONS } from './constants';
-import type { ColumnT, StatefulContainerPropsT } from './types';
+import type { ColumnOptions, StatefulContainerProps } from './types';
 
-function useDuplicateColumnTitleWarning(columns: ColumnT[]) {
+function useDuplicateColumnTitleWarning(columns: ColumnOptions[]) {
   React.useEffect(() => {
     if (__DEV__) {
       const titles = columns.reduce((set, column) => set.add(column.title), new Set());
@@ -43,7 +43,7 @@ function useSortParameters(initialSortIndex = -1, initialSortDirection = null) {
   return [sortIndex, sortDirection, handleSort];
 }
 
-export const StatefulContainer: React.FC<StatefulContainerPropsT> = (props) => {
+export const StatefulContainer: React.FC<StatefulContainerProps> = (props) => {
   useDuplicateColumnTitleWarning(props.columns);
   const [sortIndex, sortDirection, handleSort] = useSortParameters(
     props.initialSortIndex,

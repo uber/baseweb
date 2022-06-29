@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import { styled } from '../styles';
-import type { StylePropsT } from './types';
+import type { StyleProps } from './types';
 
 const DEFAULT = 0;
 const HOVERED = 1;
@@ -119,7 +119,7 @@ function getLabelColor(props) {
   return $disabled ? colors.contentSecondary : colors.contentPrimary;
 }
 
-export const RadioGroupRoot = styled<'div', StylePropsT>('div', (props) => {
+export const RadioGroupRoot = styled<'div', StyleProps>('div', (props) => {
   const { $disabled, $align } = props;
   return {
     display: 'flex',
@@ -131,7 +131,7 @@ export const RadioGroupRoot = styled<'div', StylePropsT>('div', (props) => {
   };
 });
 
-export const Root = styled<'label', StylePropsT>('label', (props) => {
+export const Root = styled<'label', StyleProps>('label', (props) => {
   const { $disabled, $hasDescription, $labelPlacement, $theme, $align } = props;
   const { sizing } = $theme;
   const isHorizontal = $align === 'horizontal';
@@ -148,7 +148,7 @@ export const Root = styled<'label', StylePropsT>('label', (props) => {
   };
 });
 
-export const RadioMarkInner = styled<'div', StylePropsT>('div', (props) => {
+export const RadioMarkInner = styled<'div', StyleProps>('div', (props) => {
   const { animation, sizing } = props.$theme;
 
   return {
@@ -164,7 +164,7 @@ export const RadioMarkInner = styled<'div', StylePropsT>('div', (props) => {
   };
 });
 
-export const RadioMarkOuter = styled<'div', StylePropsT>('div', (props) => {
+export const RadioMarkOuter = styled<'div', StyleProps>('div', (props) => {
   const { animation, sizing } = props.$theme;
 
   return {
@@ -192,7 +192,7 @@ export const RadioMarkOuter = styled<'div', StylePropsT>('div', (props) => {
   };
 });
 
-export const Label = styled<'div', StylePropsT>('div', (props) => {
+export const Label = styled<'div', StyleProps>('div', (props) => {
   const {
     $theme: { typography },
   } = props;
@@ -220,7 +220,7 @@ export const Input = styled('input', {
   position: 'absolute',
 });
 
-export const Description = styled<'div', StylePropsT>('div', (props) => {
+export const Description = styled<'div', StyleProps>('div', (props) => {
   const { $theme, $align } = props;
   const isHorizontal = $align === 'horizontal';
   const marginBefore = $theme.direction === 'rtl' ? 'Right' : 'Left';

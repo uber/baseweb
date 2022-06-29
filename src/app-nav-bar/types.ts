@@ -7,37 +7,37 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { POSITION } from './constants';
 
-import type { OverrideT } from '../helpers/overrides';
+import type { Override } from '../helpers/overrides';
 
-export type OverridesT = {
-  Root?: OverrideT;
-  AppName?: OverrideT;
-  DesktopMenu?: OverrideT;
-  DesktopMenuContainer?: OverrideT;
-  MainMenuItem?: OverrideT;
-  PrimaryMenuContainer?: OverrideT;
-  ProfileTileContainer?: OverrideT;
-  SecondaryMenuContainer?: OverrideT;
-  Spacing?: OverrideT;
-  SubnavContainer?: OverrideT;
-  UserMenuProfileListItem?: OverrideT;
-  UserProfileInfoContainer?: OverrideT;
-  UserProfilePictureContainer?: OverrideT;
-  UserProfileTileContainer?: OverrideT;
+export type AppNavBarOverrides = {
+  Root?: Override;
+  AppName?: Override;
+  DesktopMenu?: Override;
+  DesktopMenuContainer?: Override;
+  MainMenuItem?: Override;
+  PrimaryMenuContainer?: Override;
+  ProfileTileContainer?: Override;
+  SecondaryMenuContainer?: Override;
+  Spacing?: Override;
+  SubnavContainer?: Override;
+  UserMenuProfileListItem?: Override;
+  UserProfileInfoContainer?: Override;
+  UserProfilePictureContainer?: Override;
+  UserProfileTileContainer?: Override;
   // nested overrides
-  MobileDrawer?: OverrideT;
-  MobileMenu?: OverrideT;
-  SideMenuButton?: OverrideT;
-  UserMenuButton?: OverrideT;
-  UserMenu?: OverrideT;
+  MobileDrawer?: Override;
+  MobileMenu?: Override;
+  SideMenuButton?: Override;
+  UserMenuButton?: Override;
+  UserMenu?: Override;
 };
 
-export type NavItemT = {
+export type NavItem = {
   active?: boolean;
   icon?: React.ComponentType<any>;
   info?: any;
   label: string;
-  children?: NavItemT[];
+  children?: NavItem[];
   navExitIcon?: React.ComponentType<any>;
   navPosition?: {
     desktop?: typeof POSITION[keyof typeof POSITION];
@@ -45,19 +45,19 @@ export type NavItemT = {
   };
 };
 
-export type UserMenuPropsT = {
-  userItems?: NavItemT[];
+export type UserMenuProps = {
+  userItems?: NavItem[];
   username?: string;
   usernameSubtitle?: React.ReactNode;
   userImgUrl?: string;
-  onUserItemSelect?: (a: NavItemT) => unknown;
+  onUserItemSelect?: (a: NavItem) => unknown;
 };
 
-export type AppNavBarPropsT = {
-  isMainItemActive?: (a: NavItemT) => boolean;
-  mainItems?: NavItemT[];
-  mapItemToNode?: (a: NavItemT) => React.ReactNode;
-  onMainItemSelect?: (a: NavItemT) => unknown;
-  overrides?: OverridesT;
+export type AppNavBarProps = {
+  isMainItemActive?: (a: NavItem) => boolean;
+  mainItems?: NavItem[];
+  mapItemToNode?: (a: NavItem) => React.ReactNode;
+  onMainItemSelect?: (a: NavItem) => unknown;
+  overrides?: AppNavBarOverrides;
   title?: React.ReactNode;
-} & UserMenuPropsT;
+} & UserMenuProps;

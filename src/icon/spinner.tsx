@@ -11,9 +11,9 @@ import { useStyletron } from '../styles';
 import { mergeOverride, toObjectOverride } from '../helpers/overrides';
 
 import Icon from './icon';
-import type { IconPropsT } from './types';
+import type { IconProps } from './types';
 
-function Spinner(props: IconPropsT, ref) {
+function Spinner(props: IconProps, ref) {
   const [, theme] = useStyletron();
   const { title = 'Spinner', size, color, overrides = {}, ...restProps } = props;
   const SvgOverride = mergeOverride(
@@ -48,4 +48,4 @@ function Spinner(props: IconPropsT, ref) {
   );
 }
 
-export default React.forwardRef<SVGSVGElement, IconPropsT>(Spinner);
+export default React.forwardRef<SVGSVGElement, IconProps>(Spinner);

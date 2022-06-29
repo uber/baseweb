@@ -4,28 +4,28 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import type { OverrideT } from '../helpers/overrides';
+import type { Override } from '../helpers/overrides';
 import { STATE_CHANGE_TYPE } from './constants';
 
 import type { ReactNode } from 'react';
 
-export type ChangeActionT = keyof typeof STATE_CHANGE_TYPE;
-export type ParamsT = {
+export type ChangeAction = keyof typeof STATE_CHANGE_TYPE;
+export type Params = {
   value: Array<number>;
 };
-export type OverridesT = {
-  Root?: OverrideT;
-  Track?: OverrideT;
-  InnerTrack?: OverrideT;
-  Tick?: OverrideT;
-  TickBar?: OverrideT;
-  Thumb?: OverrideT;
-  InnerThumb?: OverrideT;
-  ThumbValue?: OverrideT;
-  Mark?: OverrideT;
+export type SliderOverrides = {
+  Root?: Override;
+  Track?: Override;
+  InnerTrack?: Override;
+  Tick?: Override;
+  TickBar?: Override;
+  Thumb?: Override;
+  InnerThumb?: Override;
+  ThumbValue?: Override;
+  Mark?: Override;
 };
 
-export type PropsT = {
+export type SliderProps = {
   /** Position of the thumbs. It can be a single point (one thumb) or 2 points array (range thumbs). */
   value: Array<number>;
   /** The minimum allowed value of the slider. Should not be bigger than max. */
@@ -34,7 +34,7 @@ export type PropsT = {
   max?: number;
   /** The granularity the slider can step through value. Default step is 1. */
   step?: number;
-  overrides?: OverridesT;
+  overrides?: SliderOverrides;
   /** Disable control from being changed. */
   disabled?: boolean;
   /** Display a mark at each step. */
@@ -44,39 +44,39 @@ export type PropsT = {
   /** Function to change the numeric value to a user friendly value. Also applied to min/max labels. */
   valueToLabel?: (value: number) => ReactNode;
   /** Handler for events on trigger element, each time thumbs change selection, which is passed in `value`. */
-  onChange?: (a: ParamsT) => unknown;
+  onChange?: (a: Params) => unknown;
   /** Handler for events on trigger element, each time thumbs finish changing selection, which is passed in `value`. */
-  onFinalChange?: (a: ParamsT) => unknown;
+  onFinalChange?: (a: Params) => unknown;
 };
 
-export type StateT = {
+export type State = {
   value: Array<number>;
 };
 
-export type StateReducerT = (stateType: string, nextState: StateT, currentState: StateT) => StateT;
+export type StateReducer = (stateType: string, nextState: State, currentState: State) => State;
 
-export type StatefulContainerPropsT = {
-  overrides?: OverridesT;
-  children: (a: PropsT) => ReactNode;
+export type StatefulContainerProps = {
+  overrides?: SliderOverrides;
+  children: (a: SliderProps) => ReactNode;
   min: number;
   max: number;
   step: number;
   /** Initial state populated into the component */
-  initialState?: StateT;
+  initialState?: State;
   /** Reducer function to manipulate internal state updates. */
-  stateReducer: StateReducerT;
+  stateReducer: StateReducer;
   /** Handler for events on trigger element, each time thumbs change selection, which is passed in `value`. */
-  onChange: (a: {} & ParamsT) => unknown;
+  onChange: (a: {} & Params) => unknown;
   /** Handler for events on trigger element, each time thumbs finish changing selection, which is passed in `value`. */
-  onFinalChange: (a: {} & ParamsT) => unknown;
+  onFinalChange: (a: {} & Params) => unknown;
 };
 
-export type StatefulSliderPropsT = {
+export type StatefulSliderProps = {
   /** Initial state populated into the component */
-  initialState?: StateT;
-} & Omit<PropsT, 'value'>;
+  initialState?: State;
+} & Omit<SliderProps, 'value'>;
 
-export type StylePropsT = {
+export type StyleProps = {
   $disabled?: boolean;
   $isDragged?: boolean;
   $marks?: boolean;

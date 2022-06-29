@@ -15,7 +15,7 @@ import {
   Caption as StyledCaption,
   ControlContainer as StyledControlContainer,
 } from './styled-components';
-import type { FormControlPropsT, FormControlStateT, StylePropsT } from './types';
+import type { FormControlProps, FormControlState, StyleProps } from './types';
 
 function chooseRenderedHint(caption, error, positive, sharedProps) {
   if (!!error && typeof error !== 'boolean') {
@@ -33,7 +33,7 @@ function chooseRenderedHint(caption, error, positive, sharedProps) {
   return null;
 }
 
-export default class FormControl extends React.Component<FormControlPropsT, FormControlStateT> {
+export default class FormControl extends React.Component<FormControlProps, FormControlState> {
   static defaultProps = {
     overrides: {},
     label: null,
@@ -64,7 +64,7 @@ export default class FormControl extends React.Component<FormControlPropsT, Form
     // @ts-expect-error todo(flow->ts): looks dangerous
     const onlyChildProps = React.Children.only(children).props;
 
-    const sharedProps: StylePropsT = {
+    const sharedProps: StyleProps = {
       $disabled: !!disabled,
       $error: !!error,
       $positive: !!positive,

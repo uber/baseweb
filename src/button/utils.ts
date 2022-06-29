@@ -4,7 +4,7 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import type { ButtonPropsT, SharedStylePropsT } from './types';
+import type { ButtonProps, SharedStyleProps } from './types';
 
 export function getSharedProps({
   colors,
@@ -14,7 +14,7 @@ export function getSharedProps({
   kind,
   shape,
   size,
-}: ButtonPropsT): Partial<SharedStylePropsT> {
+}: ButtonProps): Partial<SharedStyleProps> {
   return {
     $colors: colors,
     $disabled: disabled,

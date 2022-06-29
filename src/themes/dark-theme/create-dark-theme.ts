@@ -17,19 +17,19 @@ import lighting from '../shared/lighting';
 import mediaQuery from '../shared/media-query';
 import sizing from '../shared/sizing';
 
-import type { PrimitivesT, ColorTokensT } from '../types';
-import type { ThemeT } from '../../styles/types';
+import type { Primitives, ColorTokens } from '../types';
+import type { Theme } from '../../styles/types';
 
 export default function createDarkTheme(
   // Used to derive typography and color theme properties
-  primitives: Partial<PrimitivesT> = {},
+  primitives: Partial<Primitives> = {},
   // Used to override default theme property values derived from primitives
   overrides?: {}
-): ThemeT {
+): Theme {
   // Extract font tokens and color tokens from primitives
   const { primaryFontFamily, ...customColorTokens } = primitives;
   // Assemble color tokens by overriding defaults with custom color tokens
-  const colorTokens: ColorTokensT = {
+  const colorTokens: ColorTokens = {
     ...defaultColorTokens,
     ...customColorTokens,
   };

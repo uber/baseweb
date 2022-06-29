@@ -5,81 +5,81 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
-import type { OverrideT } from '../helpers/overrides';
+import type { Override } from '../helpers/overrides';
 
 import type { SyntheticEvent } from 'react';
 
-export type TreeLabelOverridesT = {
-  TreeItemContent?: OverrideT;
-  IconContainer?: OverrideT;
-  ExpandIcon?: OverrideT;
-  CollapseIcon?: OverrideT;
-  LeafIconContainer?: OverrideT;
-  LeafIcon?: OverrideT;
+export type TreeLabelOverrides = {
+  TreeItemContent?: Override;
+  IconContainer?: Override;
+  ExpandIcon?: Override;
+  CollapseIcon?: Override;
+  LeafIconContainer?: Override;
+  LeafIcon?: Override;
 };
 
-export type TreeViewOverridesT = {
-  Root?: OverrideT;
-  TreeItemList?: OverrideT;
-  TreeItem?: OverrideT;
-  TreeLabel?: OverrideT;
-} & TreeLabelOverridesT;
+export type TreeViewOverrides = {
+  Root?: Override;
+  TreeItemList?: Override;
+  TreeItem?: Override;
+  TreeLabel?: Override;
+} & TreeLabelOverrides;
 
-export type TreeNodeIdT = number | string;
+export type TreeNodeId = number | string;
 
-export type TreeNodeT<T = any> = {
-  id?: TreeNodeIdT;
-  children?: TreeNodeT[];
+export type TreeNodeData<T = any> = {
+  id?: TreeNodeId;
+  children?: TreeNodeData[];
   isExpanded?: boolean;
-  label: ((node: TreeNodeT) => React.ReactNode) | string;
+  label: ((node: TreeNodeData) => React.ReactNode) | string;
   info?: T;
   [key: string]: any;
 };
 
-export type TreeLabelT = {
+export type TreeLabelProps = {
   hasChildren: boolean;
   isExpanded?: boolean;
   isSelected?: boolean;
   isFocusVisible?: boolean;
-  label: ((node: TreeNodeT) => React.ReactNode) | string;
-  overrides?: TreeLabelOverridesT;
-  node: TreeNodeT;
+  label: ((node: TreeNodeData) => React.ReactNode) | string;
+  overrides?: TreeLabelOverrides;
+  node: TreeNodeData;
 };
 
-export type SharedStylePropsT = {
+export type SharedStyleProps = {
   $hasChildren: boolean;
   $isExpanded: boolean;
   $isSelected: boolean;
   $isFocusVisible: boolean;
 };
 
-export type TreeNodePropsT = {
-  node: TreeNodeT;
-  getId: (node: TreeNodeT) => TreeNodeIdT;
-  onToggle?: (node: TreeNodeT) => void;
-  overrides?: TreeViewOverridesT;
+export type TreeNodeProps = {
+  node: TreeNodeData;
+  getId: (node: TreeNodeData) => TreeNodeId;
+  onToggle?: (node: TreeNodeData) => void;
+  overrides?: TreeViewOverrides;
   renderAll?: boolean;
-  onKeyDown?: (e: KeyboardEvent, node: TreeNodeT) => unknown;
+  onKeyDown?: (e: KeyboardEvent, node: TreeNodeData) => unknown;
   onFocus?: (event: SyntheticEvent) => unknown;
   onBlur?: (event: SyntheticEvent) => unknown;
-  selectedNodeId?: TreeNodeIdT;
-  addRef: (id: TreeNodeIdT, ref: React.Ref<HTMLLIElement>) => unknown;
-  removeRef: (id: TreeNodeIdT) => unknown;
+  selectedNodeId?: TreeNodeId;
+  addRef: (id: TreeNodeId, ref: React.Ref<HTMLLIElement>) => unknown;
+  removeRef: (id: TreeNodeId) => unknown;
   isFocusVisible?: boolean;
   indentGuides?: boolean;
 };
 
-export type StatefulContainerPropsT = {
-  children: (props: TreeViewPropsT) => React.ReactNode;
-} & TreeViewPropsT;
+export type StatefulContainerProps = {
+  children: (props: TreeViewProps) => React.ReactNode;
+} & TreeViewProps;
 
-export type TreeViewPropsT = {
-  data: TreeNodeT[];
+export type TreeViewProps = {
+  data: TreeNodeData[];
   indentGuides?: boolean;
-  onToggle?: (node: TreeNodeT) => void;
-  overrides?: TreeViewOverridesT;
+  onToggle?: (node: TreeNodeData) => void;
+  overrides?: TreeViewOverrides;
   renderAll?: boolean;
-  getId?: (node: TreeNodeT) => TreeNodeIdT;
+  getId?: (node: TreeNodeData) => TreeNodeId;
   // will set isExpanded to false on sibling nodes when toggling isExpanded to true for one node
   // note: will NOT affect pre-set data. If you start with multiple sibling nodes open it will be open until you toggle one of them to isExpanded
   singleExpanded?: boolean;

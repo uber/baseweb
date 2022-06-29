@@ -13,9 +13,9 @@ import Check from '../icon/check';
 import { Button, KIND, SHAPE } from '../button';
 import { useStyletron } from '../styles';
 
-import type { HelperStepsPropsT } from './types';
+import type { HelperStepsProps } from './types';
 
-export function HelperSteps({ index, length, onFinish, onPrev, onNext }: HelperStepsPropsT) {
+export function HelperSteps({ index, length, onFinish, onPrev, onNext }: HelperStepsProps) {
   const [css, theme] = useStyletron();
 
   const isLast = index === length - 1;

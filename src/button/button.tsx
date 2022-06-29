@@ -16,12 +16,12 @@ import { defaultProps } from './default-props';
 import { getOverrides } from '../helpers/overrides';
 import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible';
 
-import type { ButtonPropsT, SharedStylePropsT } from './types';
+import type { ButtonProps, SharedStyleProps } from './types';
 
 import type { SyntheticEvent, ComponentProps, ComponentPropsWithoutRef } from 'react';
 
 class Button extends React.Component<
-  ButtonPropsT & {
+  ButtonProps & {
     forwardedRef: React.Ref<HTMLElement>;
   } & ComponentPropsWithoutRef<'button'>,
   {
@@ -77,15 +77,15 @@ class Button extends React.Component<
       overrides.BaseButton || overrides.Root,
       StyledBaseButton
     );
-    const [LoadingSpinner, loadingSpinnerProps] = getOverrides<SharedStylePropsT>(
+    const [LoadingSpinner, loadingSpinnerProps] = getOverrides<SharedStyleProps>(
       overrides.LoadingSpinner,
       StyledLoadingSpinner
     );
-    const [LoadingSpinnerContainer, loadingSpinnerContainerProps] = getOverrides<SharedStylePropsT>(
+    const [LoadingSpinnerContainer, loadingSpinnerContainerProps] = getOverrides<SharedStyleProps>(
       overrides.LoadingSpinnerContainer,
       StyledLoadingSpinnerContainer
     );
-    const sharedProps: SharedStylePropsT = {
+    const sharedProps: SharedStyleProps = {
       ...getSharedProps(this.props),
       $isFocusVisible: this.state.isFocusVisible,
     };
@@ -131,9 +131,9 @@ class Button extends React.Component<
 
 interface ButtonComponentType {
   <C extends React.ElementType = 'button'>(
-    props: ButtonPropsT &
-      SharedStylePropsT &
-      Omit<React.ComponentProps<C>, keyof ButtonPropsT | keyof SharedStylePropsT> & {
+    props: ButtonProps &
+      SharedStyleProps &
+      Omit<React.ComponentProps<C>, keyof ButtonProps | keyof SharedStyleProps> & {
         $as?: C;
       }
   ): JSX.Element;

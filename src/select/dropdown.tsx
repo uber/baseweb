@@ -12,12 +12,12 @@ import {
   StyledOptionContent,
 } from './styled-components';
 import { StatefulMenu } from '../menu';
-import type { DropdownPropsT, OptionT, ValueT } from './types';
+import type { DropdownProps, Option, Value } from './types';
 import { getOverrides, mergeOverrides } from '../helpers/overrides';
 
 import type { SyntheticEvent } from 'react';
 
-function groupOptions(options: ValueT) {
+function groupOptions(options: Value) {
   return options.reduce(
     (groups, option) => {
       if (option.__optgroup) {
@@ -35,7 +35,7 @@ function groupOptions(options: ValueT) {
   );
 }
 
-export default class SelectDropdown extends React.Component<DropdownPropsT> {
+export default class SelectDropdown extends React.Component<DropdownProps> {
   getSharedProps() {
     const { error, isLoading, multi, required, size, searchable, type, width } = this.props;
     return {
@@ -90,7 +90,7 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
   getHighlightedIndex = () => {
     const { value, options, valueKey } = this.props;
     // Highlight only first value as menu supports only a single highlight index
-    let firstValue: OptionT = {};
+    let firstValue: Option = {};
 
     if (Array.isArray(value) && value.length > 0) {
       firstValue = value[0];

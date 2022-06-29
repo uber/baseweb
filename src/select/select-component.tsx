@@ -12,7 +12,7 @@ import DeleteAlt from '../icon/delete-alt';
 import TriangleDownIcon from '../icon/triangle-down';
 import SearchIconComponent from '../icon/search';
 import { LocaleContext } from '../locale';
-import type { LocaleT } from '../locale';
+import type { Locale } from '../locale';
 import { Popover, PLACEMENT } from '../popover';
 import { UIDConsumer } from 'react-uid';
 
@@ -30,7 +30,7 @@ import {
   StyledSearchIconContainer,
   StyledLoadingIndicator,
 } from './styled-components';
-import type { PropsT, SelectStateT, ValueT, OptionT, ChangeActionT } from './types';
+import type { SelectProps, SelectState, Value, Option, ChangeAction } from './types';
 import { expandValue, normalizeOptions } from './utils';
 
 import type { SyntheticEvent, ChangeEvent } from 'react';
@@ -63,7 +63,7 @@ export function isInteractive(rootTarget: EventTarget, rootElement: Element) {
   return false;
 }
 
-class Select extends React.Component<PropsT, SelectStateT> {
+class Select extends React.Component<SelectProps, SelectState> {
   static defaultProps = defaultProps;
 
   // anchor is a ref that refers to the outermost element rendered when the dropdown menu is not
@@ -92,9 +92,9 @@ class Select extends React.Component<PropsT, SelectStateT> {
   // the select components can accept an array of options or an object where properties are optgroups
   // and values are arrays of options. this class property is constructed and updated in a normalized
   // shape where optgroup titles are stored on the option in the __optgroup field.
-  options: ValueT = [];
+  options: Value = [];
 
-  constructor(props: PropsT) {
+  constructor(props: SelectProps) {
     super(props);
     this.options = normalizeOptions(props.options);
   }
@@ -129,7 +129,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     }
   }
 
-  componentDidUpdate(prevProps: PropsT, prevState: SelectStateT) {
+  componentDidUpdate(prevProps: SelectProps, prevState: SelectState) {
     if (__BROWSER__) {
       if (prevState.isOpen !== this.state.isOpen) {
         if (this.state.isOpen) {
@@ -446,11 +446,11 @@ class Select extends React.Component<PropsT, SelectStateT> {
   };
 
   getOptionLabel = (
-    locale: LocaleT,
+    locale: Locale,
     {
       option,
     }: {
-      option: OptionT;
+      option: Option;
       optionState: {
         $selected: boolean;
         $disabled: boolean;
@@ -462,14 +462,14 @@ class Select extends React.Component<PropsT, SelectStateT> {
       ? `${locale.select.create} “${option[this.props.labelKey]}”`
       : option[this.props.labelKey];
 
-  getValueLabel = ({ option }: { option: OptionT }): React.ReactNode => {
+  getValueLabel = ({ option }: { option: Option }): React.ReactNode => {
     return option[this.props.labelKey];
   };
 
   /**
    * Extends the value into an array from the given options
    */
-  getValueArray(value: ValueT): Array<OptionT> {
+  getValueArray(value: Value): Array<Option> {
     if (!Array.isArray(value)) {
       if (value === null || value === undefined) return [];
       value = [value];
@@ -477,7 +477,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     return value.map((value) => expandValue(value, this.props));
   }
 
-  setValue(value: ValueT, option: OptionT | undefined | null, type: ChangeActionT) {
+  setValue(value: Value, option: Option | undefined | null, type: ChangeAction) {
     if (this.props.onChange) {
       this.props.onChange({
         value,
@@ -511,7 +511,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     }
   };
 
-  selectValue = ({ item }: { item: OptionT }) => {
+  selectValue = ({ item }: { item: Option }) => {
     if (item.disabled) {
       return;
     }
@@ -550,7 +550,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     }
   };
 
-  addValue = (item: OptionT) => {
+  addValue = (item: Option) => {
     const valueArray = [...this.props.value];
     this.setValue(valueArray.concat(item), item, STATE_CHANGE_TYPE.select);
   };
@@ -583,7 +583,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     return item;
   };
 
-  removeValue = (item: OptionT) => {
+  removeValue = (item: Option) => {
     const valueArray = [...this.props.value];
     this.setValue(
       valueArray.filter((i) => i[this.props.valueKey] !== item[this.props.valueKey]),
@@ -650,9 +650,9 @@ class Select extends React.Component<PropsT, SelectStateT> {
   }
 
   renderValue(
-    valueArray: ValueT,
+    valueArray: Value,
     isOpen: boolean,
-    locale: LocaleT
+    locale: Locale
   ): React.ReactNode | undefined | null | Array<React.ReactNode | undefined | null> {
     const { overrides = {} } = this.props;
     const sharedProps = this.getSharedProps();
@@ -869,7 +869,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     );
   }
 
-  filterOptions(excludeOptions?: ValueT | null) {
+  filterOptions(excludeOptions?: Value | null) {
     const filterValue = this.state.inputValue.trim();
     // apply filter function
     if (this.props.filterOptions) {

@@ -10,7 +10,7 @@ import { StyledMonth } from './styled-components';
 import dateFnsAdapter from './utils/date-fns-adapter';
 import DateHelpers from './utils/date-helpers';
 import { getOverrides } from '../helpers/overrides';
-import type { MonthPropsT } from './types';
+import type { MonthProps } from './types';
 import { DENSITY } from './constants';
 
 const defaultProps = {
@@ -37,12 +37,12 @@ const defaultProps = {
 
 const CALENDAR_MAX_ROWS = 6;
 
-export default class CalendarMonth<T = Date> extends React.Component<MonthPropsT<T>> {
+export default class CalendarMonth<T = Date> extends React.Component<MonthProps<T>> {
   static defaultProps = defaultProps;
 
   dateHelpers: DateHelpers<T>;
 
-  constructor(props: MonthPropsT<T>) {
+  constructor(props: MonthProps<T>) {
     super(props);
     this.dateHelpers = new DateHelpers(props.adapter);
   }

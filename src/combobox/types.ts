@@ -6,21 +6,21 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import type { OverrideT } from '../helpers/overrides';
+import type { Override } from '../helpers/overrides';
 import { SIZE } from '../input';
 
 import type { ChangeEvent } from 'react';
 
 export type ComboboxOverrides = {
-  Root?: OverrideT;
-  InputContainer?: OverrideT;
-  Input?: OverrideT;
-  Popover?: OverrideT;
-  ListBox?: OverrideT;
-  ListItem?: OverrideT;
+  Root?: Override;
+  InputContainer?: Override;
+  Input?: Override;
+  Popover?: Override;
+  ListBox?: Override;
+  ListItem?: Override;
 };
 
-export type PropsT<OptionT = unknown> = {
+export type ComboboxProps<OptionT = unknown> = {
   // Controls if the input value will be updated while keyboard navigating. Defaults to true.
   autocomplete?: boolean;
   // Disallows text input and listbox opening.
@@ -32,11 +32,11 @@ export type PropsT<OptionT = unknown> = {
   // Used to render a custom node besides the default.
   mapOptionToNode?: React.ComponentType<{
     isSelected: boolean;
-    option: OptionT;
+    option: Option;
   }>;
   // Options are often fetched from remote server, provides a simple way to
   // map whatever value the client gets into a visible string in the list item.
-  mapOptionToString: (a: OptionT) => string;
+  mapOptionToString: (a: Option) => string;
   id?: string;
   name?: string;
   // A ref to access the inner Input component.
@@ -48,14 +48,14 @@ export type PropsT<OptionT = unknown> = {
   // suggested option, that option will be provided as the second function parameter.
   // Otherwise the second parameter will be null.
   // TODO(v11): consider consolidating function params into a single object bag.
-  onChange: (b: string, a: OptionT | null) => unknown;
+  onChange: (b: string, a: Option | null) => unknown;
   // Called when input enters focus.
   onFocus?: (a: ChangeEvent<HTMLInputElement>) => unknown;
   // Called when no option is selected and the enter key is pressed. An argument to this
   // function is another function to close the listbox if needed.
   onSubmit?: (a: { closeListbox: () => void; value: string }) => unknown;
   // Data to populate list items in the dropdown menu.
-  options: OptionT[];
+  options: Option[];
   overrides?: ComboboxOverrides;
   // Proxies value through to Input component.
   positive?: boolean;

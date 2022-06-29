@@ -9,15 +9,15 @@ import * as React from 'react';
 import { STATE_CHANGE_TYPE } from './constants';
 import { clamp } from './utils';
 // Types
-import type { StatefulContainerPropsT, StatefulContainerStateT } from './types';
+import type { StatefulContainerProps, StatefulContainerState } from './types';
 
 const initialState = {
   currentPage: 1,
 };
 
 export default class PaginationStatefulContainer extends React.Component<
-  StatefulContainerPropsT,
-  StatefulContainerStateT
+  StatefulContainerProps,
+  StatefulContainerState
 > {
   static defaultProps = {
     initialState,
@@ -27,7 +27,7 @@ export default class PaginationStatefulContainer extends React.Component<
   state = this.props.initialState || initialState;
 
   // Internal set state function that will also invoke stateReducer
-  internalSetState(changeType: keyof typeof STATE_CHANGE_TYPE, changes: StatefulContainerStateT) {
+  internalSetState(changeType: keyof typeof STATE_CHANGE_TYPE, changes: StatefulContainerState) {
     const { stateReducer } = this.props;
     if (stateReducer) {
       this.setState(stateReducer(changeType, changes, this.state));
@@ -36,7 +36,7 @@ export default class PaginationStatefulContainer extends React.Component<
     }
   }
 
-  onPageChange: StatefulContainerPropsT['onPageChange'] = ({ nextPage }) => {
+  onPageChange: StatefulContainerProps['onPageChange'] = ({ nextPage }) => {
     const { numPages, onPageChange } = this.props;
     const { currentPage } = this.state;
     const clamped = clamp(nextPage, 1, numPages);

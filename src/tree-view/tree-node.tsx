@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import { StyledTreeItemList, StyledTreeItem } from './styled-components';
-import type { TreeNodePropsT } from './types';
+import type { TreeNodeProps } from './types';
 
 import StyledTreeLabel from './tree-label';
 
@@ -16,7 +16,7 @@ import { getOverride, getOverrideProps } from '../helpers/overrides';
 
 import type { SyntheticEvent } from 'react';
 
-export default class TreeNode extends React.Component<TreeNodePropsT> {
+export default class TreeNode extends React.Component<TreeNodeProps> {
   treeItemRef = React.createRef<HTMLLIElement>();
 
   componentDidMount() {

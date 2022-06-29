@@ -6,10 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 import sharedBorders from '../shared/borders';
 import deepMerge from '../../utils/deep-merge';
-import type { BordersT } from '../types';
+import type { Borders } from '../types';
 
 // Override border colors for the dark theme
-const borders: BordersT = deepMerge({}, sharedBorders, {
+const borders: Borders = deepMerge({}, sharedBorders, {
   border100: {
     borderColor: 'hsla(0, 0%, 100%, 0.04)',
   },

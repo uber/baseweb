@@ -7,9 +7,9 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import StatefulContainer from '../input/stateful-container';
 import PaymentCard from './payment-card';
-import type { StatefulPaymentCardPropsT } from './types';
+import type { StatefulPaymentCardProps } from './types';
 
-export default function StatefulPaymentCard(props: StatefulPaymentCardPropsT) {
+export default function StatefulPaymentCard(props: StatefulPaymentCardProps) {
   return (
     <StatefulContainer {...props}>
       {(childrenProps: any) => <PaymentCard {...childrenProps} />}

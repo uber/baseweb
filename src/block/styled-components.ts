@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 import { getMediaQueries } from '../helpers/responsive-helpers';
 import { styled } from '../styles';
 import type { BreakpointsT } from '../styles/types';
-import type { StyledBlockPropsT } from './types';
+import type { StyledBlockProps } from './types';
 
 // styletron will throw when value is undefined. if so, replace with null
 function constrainToNull(value) {
@@ -62,7 +62,7 @@ function getFontValue(obj, key) {
   return obj[key];
 }
 
-export const StyledBlock = styled<'div', StyledBlockPropsT>('div', (props) => {
+export const StyledBlock = styled<'div', StyledBlockProps>('div', (props) => {
   const { breakpoints, colors, typography, sizing } = props.$theme;
 
   const get = <O extends object, K extends keyof O>(obj: O, key: K) => obj[key];

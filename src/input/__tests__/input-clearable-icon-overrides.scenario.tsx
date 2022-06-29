@@ -7,9 +7,9 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import { ThemeProvider, LightTheme } from '../../index';
 import { StatefulInput } from '../index';
-import { IconPropsT } from '../../icon';
+import { IconProps } from '../../icon';
 
-const XSmallFilled = ({ title, size, color, ...props }: IconPropsT) => {
+const XSmallFilled = ({ title, size, color, ...props }: IconProps) => {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
       <title>{title}</title>

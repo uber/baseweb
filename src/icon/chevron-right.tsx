@@ -11,9 +11,9 @@ import { useStyletron } from '../styles';
 import { mergeOverride, toObjectOverride } from '../helpers/overrides';
 
 import Icon from './icon';
-import type { IconPropsT } from './types';
+import type { IconProps } from './types';
 
-function ChevronRight(props: IconPropsT, ref) {
+function ChevronRight(props: IconProps, ref) {
   const [, theme] = useStyletron();
   const { title = 'Right', size, color, overrides = {}, ...restProps } = props;
   const SvgOverride = mergeOverride(
@@ -42,4 +42,4 @@ function ChevronRight(props: IconPropsT, ref) {
   );
 }
 
-export default React.forwardRef<SVGSVGElement, IconPropsT>(ChevronRight);
+export default React.forwardRef<SVGSVGElement, IconProps>(ChevronRight);

@@ -10,11 +10,11 @@ import defaultProps from './default-props';
 import { StyledPhoneInputRoot, StyledDialCode } from './styled-components';
 import { Input as DefaultInput } from '../input';
 import { getOverrides, mergeOverrides } from '../helpers/overrides';
-import type { LitePropsT } from './types';
+import type { PhoneInputLiteProps } from './types';
 
 PhoneInputLite.defaultProps = defaultProps;
 
-export default function PhoneInputLite(props: LitePropsT) {
+export default function PhoneInputLite(props: PhoneInputLiteProps) {
   const {
     'aria-label': ariaLabel,
     'aria-labelledby': ariaLabelledBy,

@@ -7,19 +7,19 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 
 import type {
-  ChangeEventT,
-  StatefulPinCodeContainerPropsT,
-  StatefulPinCodeContainerStateT,
-  StateReducerT,
+  ChangeEvent,
+  StatefulPinCodeContainerProps,
+  StatefulPinCodeContainerState,
+  StateReducer,
 } from './types';
 import defaultProps from './default-props';
 import { STATE_CHANGE_TYPE } from '../input';
 
-const stateReducer: StateReducerT = (type, nextState) => nextState;
+const stateReducer: StateReducer = (type, nextState) => nextState;
 
 export default class StatefulPinCodeContainer extends React.Component<
-  StatefulPinCodeContainerPropsT,
-  StatefulPinCodeContainerStateT
+  StatefulPinCodeContainerProps,
+  StatefulPinCodeContainerState
 > {
   static defaultProps = {
     initialState: { values: defaultProps.values },
@@ -29,7 +29,7 @@ export default class StatefulPinCodeContainer extends React.Component<
 
   state = this.props.initialState;
 
-  handleChange = ({ values, event }: ChangeEventT) => {
+  handleChange = ({ values, event }: ChangeEvent) => {
     this.props.onChange({ values, event });
     const nextState = this.props.stateReducer(STATE_CHANGE_TYPE.change, { values }, this.state);
     this.setState(nextState);

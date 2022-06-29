@@ -15,18 +15,18 @@ import { StyledRoot, StyledMaxLabel, StyledDropdownContainer } from './styled-co
 import ChevronLeft from '../icon/chevron-left';
 import ChevronRight from '../icon/chevron-right';
 import { getOverrides } from '../helpers/overrides';
-import type { PaginationPropsT } from './types';
-import type { LocaleT } from '../locale';
+import type { PaginationProps } from './types';
+import type { Locale } from '../locale';
 import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible';
 
 import type { SyntheticEvent } from 'react';
 
-type PageOptionT = {
+type PageOption = {
   label: number;
 };
 
 export default class Pagination extends React.PureComponent<
-  PaginationPropsT,
+  PaginationProps,
   {
     isFocusVisible: boolean;
   }
@@ -57,7 +57,7 @@ export default class Pagination extends React.PureComponent<
     return menuOptions;
   });
 
-  onMenuItemSelect = (data: { value: ReadonlyArray<PageOptionT> }) => {
+  onMenuItemSelect = (data: { value: ReadonlyArray<PageOption> }) => {
     const item = data.value[0];
     const { onPageChange, currentPage } = this.props;
     const page = item.label;
@@ -82,7 +82,7 @@ export default class Pagination extends React.PureComponent<
     }
   };
 
-  constructAriaWayfinderLabel = (locale: LocaleT, prefix: string) => {
+  constructAriaWayfinderLabel = (locale: Locale, prefix: string) => {
     const { currentPage, numPages, labels } = this.props;
     return (
       prefix +

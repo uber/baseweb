@@ -6,52 +6,52 @@ LICENSE file in the root directory of this source tree.
 */
 /* eslint-disable flowtype/generic-spacing */
 import * as React from 'react';
-import type { OverrideT } from '../helpers/overrides';
+import type { Override } from '../helpers/overrides';
 import { STATE_CHANGE_TYPE } from './constants';
 
-export type StateT = {
+export type State = {
   prop: boolean;
 };
 
-export type StateChangeTypeT = keyof typeof STATE_CHANGE_TYPE;
+export type StateChangeType = keyof typeof STATE_CHANGE_TYPE;
 
-export type StateReducerT = (
-  stateChangeType: StateChangeTypeT,
-  nextState: StateT,
-  currentState: StateT
-) => StateT;
+export type StateReducer = (
+  stateChangeType: StateChangeType,
+  nextState: State,
+  currentState: State
+) => State;
 
-export type ComponentRenderPropT = (props: {}) => React.ReactNode;
+export type ComponentRenderProp = (props: {}) => React.ReactNode;
 
-export type OverridesT = {
-  Root?: OverrideT;
+export type Overrides = {
+  Root?: Override;
 };
 
-export type ChildT = React.ReactNode;
+export type Child = React.ReactNode;
 
-export type ChildrenT = Array<ChildT> | ChildT;
+export type Children = Array<Child> | Child;
 
 // Props shared by all flavors of component
-export type ComponentPropsT = {
-  children: ChildrenT;
+export type ComponentProps = {
+  children: Children;
   prop?: boolean;
   onClick?: () => void;
-  overrides?: OverridesT;
+  overrides?: Overrides;
 };
 
 // Props for stateful component
-export type StatefulComponentPropsT = ComponentPropsT & {
-  children: ChildrenT;
-  initialState?: StateT;
-  stateReducer?: StateReducerT;
+export type StatefulComponentProps = ComponentProps & {
+  children: Children;
+  initialState?: State;
+  stateReducer?: StateReducer;
 };
 
 // Props for stateful container
-export type StatefulComponentContainerPropsT = Omit<StatefulComponentPropsT, 'children'> & {
-  initialState?: StateT;
-  children: (props: Omit<ComponentPropsT, 'children'>) => React.ReactNode;
+export type StatefulComponentContainerProps = Omit<StatefulComponentProps, 'children'> & {
+  initialState?: State;
+  children: (props: Omit<ComponentProps, 'children'>) => React.ReactNode;
 };
 
-export type SharedStylePropsT = {
+export type SharedStyleProps = {
   $prop: boolean;
 };

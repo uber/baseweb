@@ -11,9 +11,9 @@ import { useStyletron } from '../styles';
 import { mergeOverride, toObjectOverride } from '../helpers/overrides';
 
 import Icon from './icon';
-import type { IconPropsT } from './types';
+import type { IconProps } from './types';
 
-function Upload(props: IconPropsT, ref) {
+function Upload(props: IconProps, ref) {
   const [, theme] = useStyletron();
   const { title = 'Upload', size, color, overrides = {}, ...restProps } = props;
   const SvgOverride = mergeOverride(
@@ -42,4 +42,4 @@ function Upload(props: IconPropsT, ref) {
   );
 }
 
-export default React.forwardRef<SVGSVGElement, IconPropsT>(Upload);
+export default React.forwardRef<SVGSVGElement, IconProps>(Upload);

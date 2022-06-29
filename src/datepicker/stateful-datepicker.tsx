@@ -7,13 +7,13 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import StatefulContainer from './stateful-container';
 import Datepicker from './datepicker';
-import type { StatefulDatepickerPropsT, DatepickerPropsT } from './types';
+import type { StatefulDatepickerProps, DatepickerProps } from './types';
 
-type PropsT<T> = StatefulDatepickerPropsT<DatepickerPropsT<T>, T> &
-  Omit<DatepickerPropsT<T>, keyof StatefulDatepickerPropsT<DatepickerPropsT<T>, T>>;
+type DatepickerProps<T> = StatefulDatepickerProps<DatepickerProps<T>, T> &
+  Omit<DatepickerProps<T>, keyof StatefulDatepickerProps<DatepickerProps<T>, T>>;
 
-class StatefulComponent<T = Date> extends React.Component<PropsT<T>> {
-  static defaultProps: PropsT<any> = {
+class StatefulComponent<T = Date> extends React.Component<DatepickerProps<T>> {
+  static defaultProps: DatepickerProps<any> = {
     initialState: {},
     stateReducer: (type, nextState) => nextState,
     onChange: () => {},
