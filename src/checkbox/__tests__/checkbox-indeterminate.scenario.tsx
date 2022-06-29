@@ -24,7 +24,6 @@ class GroupList extends React.Component<
     return (
       <Block>
         <Checkbox
-          components={{}}
           onChange={(e) => {
             const nextCheckboxes = [e.target.checked, e.target.checked];
             this.setState({ checkboxes: nextCheckboxes });

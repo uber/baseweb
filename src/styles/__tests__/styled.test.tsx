@@ -57,13 +57,13 @@ test('styled', () => {
 });
 
 test('styled can be called with single string argument', () => {
-  const ADiv = styled('div');
+  const ADiv = styled('div', {});
   expect(ADiv).toBeTruthy();
   render(<ADiv />);
 });
 
 test('styled override prop', () => {
-  const StyledMockButton = styled('button', {
+  const StyledMockButton = styled<'button', { $color? }>('button', {
     color: 'red',
   });
 

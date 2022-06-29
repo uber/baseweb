@@ -185,7 +185,7 @@ export type PropsT = {
   startOpen?: boolean;
   /** Options to be displayed in the dropdown. If an option has a
    * disabled prop value set to true it will be rendered as a disabled option in the dropdown. */
-  options: OptionsT;
+  options?: OptionsT;
   overrides?: OverridesT;
   /** Sets the placeholder. */
   placeholder?: React.ReactNode;
@@ -201,7 +201,7 @@ export type PropsT = {
   type?: TypeT;
   /** A current selected value(s). If a selected value has a clearableValue
    * prop set to true it will be rendered as a disabled selected option that can't be cleared. */
-  value: ValueT;
+  value?: ValueT;
   // flowlint-next-line unclear-type:off
   valueComponent?: React.ComponentType<any>;
   /** Defines a key name for an option's unique identifier value.

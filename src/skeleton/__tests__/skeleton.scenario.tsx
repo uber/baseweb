@@ -13,7 +13,7 @@ export function Scenario() {
   return (
     <div className={css({ width: '1000px', display: 'flex', flexWrap: 'wrap' })}>
       {Array(8)
-        .fill()
+        .fill(undefined)
         .map((item, index) => (
           <div className={css({ margin: '10px' })} key={index}>
             <Skeleton

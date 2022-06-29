@@ -16,7 +16,7 @@ describe('side-navigation stateful-container', () => {
       onChange: jest.fn(),
       stateReducer: jest.fn(),
     };
-    const children = jest.fn(() => null);
+    const children = jest.fn((props) => null);
 
     render(<StatefulContainer {...props}>{children}</StatefulContainer>);
     expect(children).toHaveBeenCalledTimes(1);

@@ -11,7 +11,7 @@ import { Popover } from '..';
 // https://github.com/uber/baseweb/issues/4617
 export function Scenario() {
   const [isOpen, setIsOpen] = React.useState(false);
-  const [triggerType, setTriggerType] = React.useState('hover');
+  const [triggerType, setTriggerType] = React.useState<'hover' | 'click'>('hover');
 
   return (
     <div>

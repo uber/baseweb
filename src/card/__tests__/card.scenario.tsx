@@ -19,7 +19,7 @@ export function Scenario() {
     <Container>
       <Card>
         <StyledThumbnail src={thumbnail} alt="my-image" />
-        <StyledTitle $hasThumbnail={true}>Card Title Entry</StyledTitle>
+        <StyledTitle>Card Title Entry</StyledTitle>
         <StyledBody>Card text</StyledBody>
         <StyledAction>
           <Button style={{ width: '100%' }}>Button Label</Button>

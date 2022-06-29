@@ -197,7 +197,7 @@ const helpers: DateHelpers<Date> = Object.keys(dateHelpers).reduce((memo, method
       return dateHelpersReturn;
     },
   };
-}, {});
+}, {} as DateHelpers<Date>);
 
 const MIDNIGHT = new Date(2019, 3, 19);
 describe('Datepicker utils', () => {
@@ -654,7 +654,6 @@ describe('getEffectiveMinDate', () => {
       expect(
         helpers.getEffectiveMinDate({
           minDate,
-          maxDate: null,
           includeDates: null,
         })
       ).toEqual(minDate);
@@ -665,7 +664,6 @@ describe('getEffectiveMinDate', () => {
       expect(
         helpers.getEffectiveMinDate({
           includeDates,
-          maxDate: null,
           minDate: null,
         })
       ).toEqual(includeDates[0]);
@@ -691,7 +689,6 @@ describe('getEffectiveMaxDate', () => {
       expect(
         helpers.getEffectiveMaxDate({
           maxDate,
-          minDate: null,
           includeDates: null,
         })
       ).toEqual(maxDate);
@@ -702,7 +699,6 @@ describe('getEffectiveMaxDate', () => {
       expect(
         helpers.getEffectiveMaxDate({
           includeDates,
-          minDate: null,
           maxDate: null,
         })
       ).toEqual(includeDates[2]);

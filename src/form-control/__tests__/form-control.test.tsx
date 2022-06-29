@@ -91,9 +91,8 @@ describe('FormControl - Label and Caption for controls', () => {
     expect(queryByText(container, positive)).toBeNull();
     getByText(container, error);
 
-    // $FlowFixMe
+    // @ts-expect-error
     expect(console.warn.mock.calls.length).toBe(1);
-    // $FlowFixMe
     console.warn = consoleWarn;
   });
 

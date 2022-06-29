@@ -36,7 +36,7 @@ const FixedSizeListItem = ({ data, index, style }) => {
   );
 };
 // eslint-disable-next-line react/display-name
-const VirtualDropdown = React.forwardRef((props, ref) => {
+const VirtualDropdown = React.forwardRef<HTMLUListElement, any>((props, ref) => {
   const children = React.Children.toArray(props.children);
   if (!children[0] || !children[0].props.item) {
     return (
@@ -70,7 +70,7 @@ for (let i = 0; i < 10000; i += 1) {
 }
 
 export function Scenario() {
-  const [value, setValue] = React.useState([]);
+  const [value, setValue] = React.useState<any>([]);
   return (
     <Select
       options={options}

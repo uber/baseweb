@@ -35,8 +35,8 @@ const badgeEnhancerSizes = Object.keys(BADGE_ENHANCER_SIZES)
     id: x,
   }));
 
-const BadgeEnhancerIcon = ({ size }) => <Search size={size} />;
-const BadgeEnhancerText = ({ size }) => 'Search';
+const BadgeEnhancerIcon: React.FC<{ size: number }> = ({ size }) => <Search size={size} />;
+const BadgeEnhancerText: React.FC<{ size: number }> = ({ size }) => <>Search</>;
 
 export function Scenario() {
   const markers = [];

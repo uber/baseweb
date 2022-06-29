@@ -33,7 +33,7 @@ describe('StatefulListContainer', () => {
       onChange: jest.fn(),
       stateReducer: jest.fn(),
     };
-    const children = jest.fn(() => null);
+    const children = jest.fn((props) => null);
     const event = {
       newIndex: undefined,
       newState: [undefined],
@@ -61,7 +61,7 @@ describe('StatefulListContainer', () => {
       },
       stateReducer: jest.fn(),
     };
-    const children = jest.fn(() => null);
+    const children = jest.fn((props) => null);
 
     render(<StatefulListContainer {...props}>{children}</StatefulListContainer>);
 

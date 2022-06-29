@@ -167,26 +167,10 @@ export type StatefulContainerPropsT = {
 };
 
 export type StatefulCheckboxPropsT = {
-  overrides?: OverridesT;
-  /** Component or String value for label of checkbox. */
-  children?: ReactNode;
-  /** Indicates if this checkbox children contain an interactive element (prevents the label from moving focus from the child element to the radio button) */
-  containsInteractiveElement?: boolean;
   /** Defines the components initial state value */
   initialState?: StateT;
-  /** Focus the checkbox on initial render. */
-  autoFocus?: boolean;
-  /** Handler for change events on trigger element. */
-  onChange?: (e: ChangeEvent<HTMLInputElement>) => unknown;
-  /** Handler for mouseenter events on trigger element. */
-  onMouseEnter?: (e: ChangeEvent<HTMLInputElement>) => unknown;
-  /** Handler for mouseleave events on trigger element. */
-  onMouseLeave?: (e: ChangeEvent<HTMLInputElement>) => unknown;
-  /** Handler for focus events on trigger element. */
-  onFocus?: (e: ChangeEvent<HTMLInputElement>) => unknown;
-  /** Handler for blur events on trigger element. */
-  onBlur?: (e: ChangeEvent<HTMLInputElement>) => unknown;
-};
+} & Omit<PropsT, 'value' | keyof DefaultPropsT> &
+  Partial<DefaultPropsT>;
 
 export type SharedStylePropsT = {
   $isFocused: boolean;

@@ -120,7 +120,7 @@ class DateHelpers<T> {
     return adapter.startOfWeek(adapter.date(date));
   };
   // flowlint-next-line unclear-type:off
-  formatDate: (c: T, b: string, a: any) => string = (date, formatString, locale) => {
+  formatDate: (c: T, b: string, a?: any) => string = (date, formatString, locale) => {
     const adapter = locale ? this.getAdapterWithNewLocale(locale) : this.adapter;
     return adapter.formatByString(date, formatString);
   };
@@ -221,7 +221,7 @@ class DateHelpers<T> {
       return this.adapter.isAfter(date, maxDate) ? date : maxDate;
     });
   };
-  getEffectiveMinDate: (a: { minDate?: T; includeDates?: Array<T> }) => T = ({
+  getEffectiveMinDate: (a: { minDate?: T | null; includeDates?: Array<T> }) => T = ({
     minDate,
     includeDates,
   }) => {
@@ -239,7 +239,7 @@ class DateHelpers<T> {
     // but flow isn't smart enough to see that all of the conditions are covered
     return this.adapter.date();
   };
-  getEffectiveMaxDate: (a: { maxDate?: T; includeDates?: Array<T> }) => T = ({
+  getEffectiveMaxDate: (a: { maxDate?: T | null; includeDates?: Array<T> }) => T = ({
     maxDate,
     includeDates,
   }) => {

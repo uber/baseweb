@@ -10,7 +10,7 @@ import { Select } from '../../select';
 import { Checkbox } from '../../checkbox';
 
 const LabelSelect = (node) => {
-  const [value, setValue] = React.useState();
+  const [value, setValue] = React.useState<any>();
   return (
     <TreeLabelInteractable>
       <Select
@@ -33,7 +33,7 @@ const LabelSelect = (node) => {
 };
 
 const LabelCheckbox = (node) => {
-  const [value, setValue] = React.useState();
+  const [value, setValue] = React.useState<any>();
   return (
     <TreeLabelInteractable>
       <Checkbox checked={value} onChange={(e) => setValue(e.target.checked)}>

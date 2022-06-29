@@ -29,7 +29,7 @@ export type ImagePropsT = {
   naturalWidth?: number;
   sizes?: string;
   src?: string;
-  srcset?: string;
+  srcSet?: string;
   useMap?: string;
   width?: number;
 };

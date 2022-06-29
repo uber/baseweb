@@ -21,7 +21,7 @@ describe('radio-group', () => {
 
     getByRole(container, 'radiogroup');
 
-    const inputs = container.querySelectorAll('input');
+    const inputs = Array.from(container.querySelectorAll('input'));
     for (let input of inputs) {
       expect(input).toHaveProperty('checked', false);
     }

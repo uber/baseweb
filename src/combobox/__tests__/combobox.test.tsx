@@ -377,7 +377,7 @@ describe('combobox', () => {
   });
 
   it('forwards inputRef from props', () => {
-    const inputRef = React.createRef();
+    const inputRef = React.createRef<HTMLButtonElement>();
     let isFocused = false;
     const onFocus = () => {
       isFocused = true;

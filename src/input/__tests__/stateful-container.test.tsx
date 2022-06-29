@@ -18,7 +18,7 @@ describe('stateful-container', () => {
 
   it('provides onChange handler to children fn', () => {
     const onChange = jest.fn();
-    const children = jest.fn(() => null);
+    const children = jest.fn((props) => null);
     render(<StatefulContainer onChange={onChange}>{children}</StatefulContainer>);
     act(() => children.mock.calls[0][0].onChange({ target: { value: 'a' } }));
     expect(onChange).toBeCalledTimes(1);

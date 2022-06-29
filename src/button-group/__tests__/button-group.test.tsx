@@ -26,7 +26,7 @@ describe('ButtonGroup', () => {
   it('click event on child element triggers parent handler', () => {
     const handler = jest.fn();
     const { container } = buildSimpleWrapper({ onClick: handler });
-    const buttons = container.querySelectorAll('button');
+    const buttons = Array.from(container.querySelectorAll('button'));
     for (let button of buttons) {
       fireEvent.click(button);
     }
@@ -43,7 +43,8 @@ describe('ButtonGroup', () => {
       </ButtonGroup>
     );
 
-    const [first, second] = container.querySelectorAll('button');
+    const buttons = Array.from(container.querySelectorAll('button'));
+    const [first, second] = buttons;
 
     fireEvent.click(first);
     expect(parentHandler).toHaveBeenCalledTimes(1);
@@ -67,7 +68,7 @@ describe('ButtonGroup', () => {
   it('sets no children as selected if selected prop is null value', () => {
     //$FlowFixMe
     const { container } = buildSimpleWrapper({ selected: null });
-    const buttons = container.querySelectorAll('button');
+    const buttons = Array.from(container.querySelectorAll('button'));
     for (let button of buttons) {
       expect(button.getAttribute('aria-checked')).toBe('false');
     }
@@ -75,7 +76,7 @@ describe('ButtonGroup', () => {
 
   it('sets no children as selected if selected prop is empty array', () => {
     const { container } = buildSimpleWrapper({ selected: [] });
-    const buttons = container.querySelectorAll('button');
+    const buttons = Array.from(container.querySelectorAll('button'));
     for (let button of buttons) {
       expect(button.getAttribute('aria-checked')).toBe('false');
     }
@@ -84,7 +85,7 @@ describe('ButtonGroup', () => {
   it('sets appropriate child as selected if selected prop is a number', () => {
     const selectedIndex = 2;
     const { container } = buildSimpleWrapper({ selected: selectedIndex });
-    const buttons = container.querySelectorAll('button');
+    const buttons = Array.from(container.querySelectorAll('button'));
     for (let i = 0; i < buttons.length; i++) {
       const button = buttons[i];
       expect(button.getAttribute('aria-checked')).toBe(i === selectedIndex ? 'true' : 'false');

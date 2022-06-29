@@ -8,7 +8,7 @@ import * as React from 'react';
 import { Select } from '..';
 
 export function Scenario() {
-  const [value, setValue] = React.useState([{ id: 'Beige', color: '#F5F5DC' }]);
+  const [value, setValue] = React.useState<any>([{ id: 'Beige', color: '#F5F5DC' }]);
   return (
     <Select
       options={[

@@ -37,7 +37,7 @@ const uberHq = {
   longitude: -122.38856031220648,
 };
 
-const defaultLocation = [uberHq.longitude, uberHq.latitude];
+const defaultLocation = [uberHq.longitude, uberHq.latitude] as [number, number];
 
 export function Scenario() {
   const [label, setLabel] = React.useState('Uber HQ');
