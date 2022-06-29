@@ -105,9 +105,9 @@
     "@types/lodash": "^4.14.141",
     "@types/node": "^12.6.8",
     "@types/prettier": "^1.18.0",
-    "@types/react": "^16.8.23",
-    "@types/react-dom": "^16.8.4",
-    "@types/react-is": "^16.7.1",
+    "@types/react": "^17.0.2",
+    "@types/react-dom": "^17.0.2",
+    "@types/react-is": "^17.0.2",
     "@types/react-virtualized": "^9.21.3",
     "@types/react-window": "^1.8.1",
     "@types/webpack": "^4.41.32",
@@ -235,7 +235,7 @@
     "styletron-react": ">=5.2.2 < 7"
   },
   "resolutions": {
-    "@types/react": "16.8.23",
+    "@types/react": "^17.0.2",
     "@types/jest/jest-diff": "^25.1.0",
     "@types/jest/pretty-format": "^25.1.0"
   },
