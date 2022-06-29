@@ -23,13 +23,13 @@ type initialState = {
   isIndeterminate?: boolean;
 };
 
-export declare const StyledRoot: StyletronComponent<any>;
-export declare const StyledCheckmark: StyletronComponent<any>;
-export declare const StyledLabel: StyletronComponent<any>;
-export declare const StyledInput: StyletronComponent<any>;
-export declare const StyledToggle: StyletronComponent<any>;
-export declare const StyledToggleInner: StyletronComponent<any>;
-export declare const StyledToggleTrack: StyletronComponent<any>;
+export declare const StyledRoot: StyletronComponent<any, any>;
+export declare const StyledCheckmark: StyletronComponent<any, any>;
+export declare const StyledLabel: StyletronComponent<any, any>;
+export declare const StyledInput: StyletronComponent<any, any>;
+export declare const StyledToggle: StyletronComponent<any, any>;
+export declare const StyledToggleInner: StyletronComponent<any, any>;
+export declare const StyledToggleTrack: StyletronComponent<any, any>;
 
 export type StateReducer = (
   stateType: string,

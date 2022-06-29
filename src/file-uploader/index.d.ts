@@ -69,8 +69,8 @@ export interface FileUploaderProps {
 }
 export declare const FileUploader: React.FC<FileUploaderProps>;
 
-export declare const StyledRoot: StyletronComponent<any>;
-export declare const StyledFileDragAndDrop: StyletronComponent<any>;
-export declare const StyledContentMessage: StyletronComponent<any>;
-export declare const StyledErrorMessage: StyletronComponent<any>;
-export declare const StyledHiddenInput: StyletronComponent<any>;
+export declare const StyledRoot: StyletronComponent<any, any>;
+export declare const StyledFileDragAndDrop: StyletronComponent<any, any>;
+export declare const StyledContentMessage: StyletronComponent<any, any>;
+export declare const StyledErrorMessage: StyletronComponent<any, any>;
+export declare const StyledHiddenInput: StyletronComponent<any, any>;

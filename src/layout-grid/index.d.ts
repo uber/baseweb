@@ -94,5 +94,5 @@ export type StyledCellProps = {
 
 export declare const Grid: React.FunctionComponent<GridProps>;
 export declare const Cell: React.FunctionComponent<CellProps>;
-export declare const StyledGrid: StyletronComponent<StyledGridProps>;
-export declare const StyledCell: StyletronComponent<StyledCellProps>;
+export declare const StyledGrid: StyletronComponent<any, StyledGridProps>;
+export declare const StyledCell: StyletronComponent<any, StyledCellProps>;

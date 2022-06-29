@@ -177,10 +177,10 @@ export class Popover extends React.Component<PopoverProps, PopoverPrivateState> 
   renderPopover(): React.ReactNode;
 }
 
-export declare const StyledArrow: StyletronComponent<any>;
-export declare const StyledBody: StyletronComponent<any>;
-export declare const StyledInner: StyletronComponent<any>;
-export declare const StyledPadding: StyletronComponent<any>;
+export declare const StyledArrow: StyletronComponent<any, any>;
+export declare const StyledBody: StyletronComponent<any, any>;
+export declare const StyledInner: StyletronComponent<any, any>;
+export declare const StyledPadding: StyletronComponent<any, any>;
 
 export declare const POPOVER_MARGIN: 8;
 export declare const ARROW_SIZE: 6;

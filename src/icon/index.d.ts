@@ -21,7 +21,7 @@ export interface IconProps {
 
 export declare const Icon: React.FC<IconProps>;
 
-export declare const StyledSvg: StyletronComponent<any>;
+export declare const StyledSvg: StyletronComponent<any, any>;
 
 export declare const Alert: React.FC<IconProps>;
 export declare const ArrowDown: React.FC<IconProps>;

@@ -25,4 +25,4 @@ export type StatefulPaymentCardProps = InputProps &
 export declare const StatefulPaymentCard: React.FC<StatefulPaymentCardProps>;
 export class PaymentCard extends React.Component<PaymentCardProps> {}
 
-export declare const StyledIconWrapper: StyletronComponent<any>;
+export declare const StyledIconWrapper: StyletronComponent<any, any>;

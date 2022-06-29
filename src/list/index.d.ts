@@ -73,10 +73,10 @@ export declare const ListItem: React.ForwardRefExoticComponent<
 export declare const ListItemLabel: React.FC<LabelPropsT>;
 export declare const MenuAdapter: React.FC<MenuAdapterPropsT>;
 
-export declare const StyledRoot: StyletronComponent<{}>;
-export declare const StyledContent: StyletronComponent<StyledContentPropsT>;
-export declare const StyledEndEnhancerContainer: StyletronComponent<{}>;
-export declare const StyledArtworkContainer: StyletronComponent<StyledArtworkContainerPropsT>;
+export declare const StyledRoot: StyletronComponent<any, {}>;
+export declare const StyledContent: StyletronComponent<any, StyledContentPropsT>;
+export declare const StyledEndEnhancerContainer: StyletronComponent<any, {}>;
+export declare const StyledArtworkContainer: StyletronComponent<any, StyledArtworkContainerPropsT>;
 
 export interface HeadingPropsT {
   heading: React.ReactNode;
@@ -99,10 +99,13 @@ export declare const ListHeading: React.ForwardRefExoticComponent<
   HeadingPropsT & React.RefAttributes<HTMLLIElement>
 >;
 
-export declare const StyledHeadingRoot: StyletronComponent<{}>;
-export declare const StyledHeadingContent: StyletronComponent<{}>;
-export declare const StyledHeadingContentRow: StyletronComponent<{}>;
-export declare const StyledHeadingMainHeading: StyletronComponent<StyledHeadingHeadingPropsT>;
-export declare const StyledHeadingSubHeading: StyletronComponent<StyledHeadingHeadingPropsT>;
-export declare const StyledHeadingEndEnhancerContainer: StyletronComponent<StyledHeadingEndEnhancerContainerPropsT>;
-export declare const StyledHeadingEndEnhancerDescriptionContainer: StyletronComponent<{}>;
+export declare const StyledHeadingRoot: StyletronComponent<any, {}>;
+export declare const StyledHeadingContent: StyletronComponent<any, {}>;
+export declare const StyledHeadingContentRow: StyletronComponent<any, {}>;
+export declare const StyledHeadingMainHeading: StyletronComponent<any, StyledHeadingHeadingPropsT>;
+export declare const StyledHeadingSubHeading: StyletronComponent<any, StyledHeadingHeadingPropsT>;
+export declare const StyledHeadingEndEnhancerContainer: StyletronComponent<
+  any,
+  StyledHeadingEndEnhancerContainerPropsT
+>;
+export declare const StyledHeadingEndEnhancerDescriptionContainer: StyletronComponent<any, {}>;
