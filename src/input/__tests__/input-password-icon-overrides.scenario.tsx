@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import { ThemeProvider, LightTheme } from '../../index';
 import { Scenario as InputPassword } from './input-password.scenario';
-import { IconPropsT } from 'baseui/icon';
+import { IconPropsT } from '../../icon';
 
 const XSmallFilled = ({ title, size, color, ...props }: IconPropsT) => {
   return (

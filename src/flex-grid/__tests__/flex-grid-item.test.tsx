@@ -14,7 +14,6 @@ import FlexGridItem, {
 } from '../flex-grid-item';
 import { LightTheme } from '../../themes';
 import type { ResponsiveT, ScaleT } from '../../block';
-import { ThemeT } from 'baseui';
 
 describe('FlexGridItem', () => {
   test('flexGridItemMediaQueryStyle', () => {

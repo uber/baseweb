@@ -9,7 +9,7 @@ import * as React from 'react';
 import { ThemeProvider, LightTheme } from '../../index';
 import { StyledLink } from '../../link/index';
 import { Breadcrumbs } from '../index';
-import { IconPropsT } from 'baseui/icon';
+import { IconPropsT } from '../../icon';
 
 const XSmallFilled = ({ title, size, color, ...props }: IconPropsT) => {
   return (
