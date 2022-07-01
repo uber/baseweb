@@ -4,18 +4,16 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 
-import { Block } from '../../block/index.js';
-import { Button, KIND } from '../../button/index.js';
-import TriangleDown from '../../icon/triangle-down.js';
-import { StatefulMenu } from '../../menu/index.js';
-import { Pagination } from '../../pagination/index.js';
-import { StatefulPopover, PLACEMENT } from '../../popover/index.js';
+import { Block } from '../../block/index';
+import { Button, KIND } from '../../button/index';
+import TriangleDown from '../../icon/triangle-down';
+import { StatefulMenu } from '../../menu/index';
+import { Pagination } from '../../pagination/index';
+import { StatefulPopover, PLACEMENT } from '../../popover/index';
 
-import { Table } from '../index.js';
+import { Table } from '../index';
 
 const COLUMNS = [...new Array(5)].map(() => 'Label');
 const DATA = [...new Array(45)].map((_, i) => [...new Array(5)].map(() => `row: ${i + 1}`));

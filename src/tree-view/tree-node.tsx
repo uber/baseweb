@@ -5,16 +5,16 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-// @flow
-
 import * as React from 'react';
 
-import { StyledTreeItemList, StyledTreeItem } from './styled-components.js';
-import type { TreeNodePropsT } from './types.js';
+import { StyledTreeItemList, StyledTreeItem } from './styled-components';
+import type { TreeNodePropsT } from './types';
 
-import StyledTreeLabel from './tree-label.js';
+import StyledTreeLabel from './tree-label';
 
-import { getOverride, getOverrideProps } from '../helpers/overrides.js';
+import { getOverride, getOverrideProps } from '../helpers/overrides';
+
+import type { SyntheticEvent } from 'react';
 
 export default class TreeNode extends React.Component<TreeNodePropsT> {
   treeItemRef = React.createRef<HTMLLIElement>();
@@ -34,7 +34,7 @@ export default class TreeNode extends React.Component<TreeNodePropsT> {
     }
   };
 
-  onFocus = (e: SyntheticEvent<>) => {
+  onFocus = (e: SyntheticEvent) => {
     if (e && e.target !== this.treeItemRef.current) return;
     const { onFocus } = this.props;
     if (onFocus) {

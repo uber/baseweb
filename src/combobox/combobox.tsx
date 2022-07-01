@@ -4,14 +4,12 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 
-import { Input, SIZE } from '../input/index.js';
-import { scrollItemIntoView } from '../menu/utils.js';
-import { getOverrides } from '../helpers/overrides.js';
-import { Popover, PLACEMENT } from '../popover/index.js';
+import { Input, SIZE } from '../input/index';
+import { scrollItemIntoView } from '../menu/utils';
+import { getOverrides } from '../helpers/overrides';
+import { Popover, PLACEMENT } from '../popover/index';
 import { useUIDSeed } from 'react-uid';
 
 import {
@@ -19,8 +17,8 @@ import {
   StyledInputContainer,
   StyledListBox,
   StyledListItem,
-} from './styled-components.js';
-import type { PropsT } from './types.js';
+} from './styled-components';
+import type { PropsT } from './types';
 
 const ENTER = 13;
 const ESCAPE = 27;
@@ -175,7 +173,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
       // EventTarget which is a super type of Node. Passing an EventTarget seems
       // to work fine, assuming the flow type is too strict.
       // flowlint-next-line unclear-type:off
-      listboxRef.current.contains((event.relatedTarget: any))
+      listboxRef.current.contains(event.relatedTarget as any)
     ) {
       return;
     }
@@ -245,7 +243,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
   return (
     <Root
       // flowlint-next-line unclear-type:off
-      ref={(rootRef: any)}
+      ref={rootRef as any}
       {...rootProps}
     >
       <OverriddenPopover
@@ -263,7 +261,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
             tabIndex="-1"
             id={listboxId}
             // flowlint-next-line unclear-type:off
-            ref={(listboxRef: any)}
+            ref={listboxRef as any}
             role="listbox"
             aria-label={listBoxLabel}
             $width={listboxWidth}
@@ -282,7 +280,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
                   key={index}
                   onClick={() => handleOptionClick(index)}
                   // flowlint-next-line unclear-type:off
-                  ref={isSelected ? (selectedOptionRef: any) : null}
+                  ref={isSelected ? (selectedOptionRef as any) : null}
                   role="option"
                   $isSelected={isSelected}
                   $size={size}

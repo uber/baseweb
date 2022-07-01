@@ -4,11 +4,9 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 
-import { Avatar } from '../index.js';
+import { Avatar } from '../index';
 
 const src = 'https://avatars.dicebear.com/api/human/yard.svg?width=285&mood=happy';
 

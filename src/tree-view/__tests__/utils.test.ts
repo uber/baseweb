@@ -4,7 +4,6 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 import {
   getPrevId,
   getParentId,
@@ -14,10 +13,10 @@ import {
   getExpandableSiblings,
   getCharMatchId,
   defaultGetId as getId,
-} from '../utils.js';
-import type { TreeNodeT } from '../types.js';
+} from '../utils';
+import type { TreeNodeT } from '../types';
 
-const data: TreeNodeT<>[] = [
+const data: TreeNodeT[] = [
   {
     id: 1,
     label: 'Label 1',

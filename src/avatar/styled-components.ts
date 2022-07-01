@@ -4,10 +4,8 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
-import { styled } from '../styles/index.js';
-import type { AvatarStylePropsT, RootStylePropsT, InitialsStylePropsT } from './types.js';
+import { styled } from '../styles/index';
+import type { AvatarStylePropsT, RootStylePropsT, InitialsStylePropsT } from './types';
 
 function getSize(props) {
   const { $size, $theme } = props;
@@ -46,7 +44,7 @@ export const Root = styled<RootStylePropsT>('div', (props) => {
   const { $didImageFailToLoad } = props;
   const themedSize = getSize(props);
 
-  return ({
+  return {
     backgroundColor: $didImageFailToLoad ? props.$theme.colors.primary : null,
     borderTopLeftRadius: '50%',
     borderTopRightRadius: '50%',
@@ -59,5 +57,5 @@ export const Root = styled<RootStylePropsT>('div', (props) => {
     // since image is not rendered, set the height/width
     height: $didImageFailToLoad ? themedSize : null,
     width: $didImageFailToLoad ? themedSize : null,
-  }: {});
+  } as {};
 });

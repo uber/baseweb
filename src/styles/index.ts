@@ -4,9 +4,7 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
-import { ThemeContext } from './theme-provider.js';
+import { ThemeContext } from './theme-provider';
 
 export {
   createThemedStyled,
@@ -16,8 +14,8 @@ export {
   withStyle,
   useStyletron,
   withWrapper,
-} from './styled.js';
-export { hexToRgb, expandBorderStyles } from './util.js';
-export { default as ThemeProvider } from './theme-provider.js';
+} from './styled';
+export { hexToRgb, expandBorderStyles } from './util';
+export { default as ThemeProvider } from './theme-provider';
 export const ThemeConsumer = ThemeContext.Consumer;
-export type * from './types.js';
+export * from './types';

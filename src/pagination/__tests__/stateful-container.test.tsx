@@ -4,20 +4,19 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 /* eslint-env browser */
 import * as React from 'react';
 import { act } from 'react-dom/test-utils';
 import { render } from '@testing-library/react';
 
-import { STATE_CHANGE_TYPE } from '../constants.js';
-import StatefulContainer from '../stateful-container.js';
+import { STATE_CHANGE_TYPE } from '../constants';
+import StatefulContainer from '../stateful-container';
 
 const mockChildrenFn = jest.fn().mockImplementation(() => <div />);
 const mockOnPageChangeFn = jest.fn();
 const mockStateReducerFn = jest
   .fn() // flowlint-next-line unclear-type:off
-  .mockImplementation((changeType, changes) => (changes: any));
+  .mockImplementation((changeType, changes) => changes as any);
 
 function getSharedProps() {
   return {

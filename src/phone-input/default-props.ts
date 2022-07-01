@@ -4,8 +4,7 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-import { SIZE, DEFAULT_MAX_DROPDOWN_HEIGHT, DEFAULT_MAX_DROPDOWN_WIDTH } from './constants.js';
+import { SIZE, DEFAULT_MAX_DROPDOWN_HEIGHT, DEFAULT_MAX_DROPDOWN_WIDTH } from './constants';
 
 const defaultProps = {
   'aria-label': 'Please enter a phone number without the country dial code.',

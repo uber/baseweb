@@ -4,11 +4,9 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import React from 'react';
 
-import { useStyletron } from '../styles/index.js';
+import { useStyletron } from '../styles/index';
 
 export function matchesQuery(text: string, query: string): boolean {
   return text.toLowerCase().includes(query.toLowerCase());
@@ -45,7 +43,7 @@ export function splitByQuery(text: string, query: string): string[] {
   return substrings;
 }
 
-export function HighlightCellText(props: { text: string, query: string }) {
+export function HighlightCellText(props: { text: string; query: string }) {
   const [css, theme] = useStyletron();
 
   if (!props.query) {

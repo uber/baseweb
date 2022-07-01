@@ -4,18 +4,20 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 import * as React from 'react';
-import type { TextareaPropsT } from './types.js';
-import { mergeOverrides, getOverrides } from '../helpers/overrides.js';
-import { BaseInput, SIZE, CUSTOM_INPUT_TYPE } from '../input/index.js';
-import {
-  StyledTextAreaRoot,
-  StyledTextarea,
-  StyledTextareaContainer,
-} from './styled-components.js';
+import type { TextareaPropsT } from './types';
+import { mergeOverrides, getOverrides } from '../helpers/overrides';
+import { BaseInput, SIZE, CUSTOM_INPUT_TYPE } from '../input/index';
+import { StyledTextAreaRoot, StyledTextarea, StyledTextareaContainer } from './styled-components';
 
-class Textarea extends React.Component<TextareaPropsT, { isFocused: boolean }> {
+import type { FocusEvent } from 'react';
+
+class Textarea extends React.Component<
+  TextareaPropsT,
+  {
+    isFocused: boolean;
+  }
+> {
   static defaultProps = {
     autoFocus: false,
     disabled: false,
@@ -39,14 +41,14 @@ class Textarea extends React.Component<TextareaPropsT, { isFocused: boolean }> {
     isFocused: (this.props.autoFocus && !this.props.readOnly) || false,
   };
 
-  onFocus = (e: SyntheticFocusEvent<HTMLTextAreaElement>) => {
+  onFocus = (e: FocusEvent<HTMLTextAreaElement>) => {
     if (!this.props.readOnly) {
       this.setState({ isFocused: true });
       this.props.onFocus(e);
     }
   };
 
-  onBlur = (e: SyntheticFocusEvent<HTMLTextAreaElement>) => {
+  onBlur = (e: FocusEvent<HTMLTextAreaElement>) => {
     if (!this.props.readOnly) {
       this.setState({ isFocused: false });
       this.props.onBlur(e);

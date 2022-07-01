@@ -4,26 +4,27 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 import * as React from 'react';
 
-import { MaskedInput } from '../input/index.js';
-import { Popover, PLACEMENT } from '../popover/index.js';
-import Calendar from './calendar.js';
-import { getOverrides } from '../helpers/overrides.js';
-import getInterpolatedString from '../helpers/i18n-interpolation.js';
-import { LocaleContext } from '../locale/index.js';
+import { MaskedInput } from '../input/index';
+import { Popover, PLACEMENT } from '../popover/index';
+import Calendar from './calendar';
+import { getOverrides } from '../helpers/overrides';
+import getInterpolatedString from '../helpers/i18n-interpolation';
+import { LocaleContext } from '../locale/index';
 import {
   StyledInputWrapper,
   StyledInputLabel,
   StyledStartDate,
   StyledEndDate,
-} from './styled-components.js';
-import type { DatepickerPropsT, InputRoleT } from './types.js';
-import DateHelpers from './utils/date-helpers.js';
-import dateFnsAdapter from './utils/date-fns-adapter.js';
-import type { LocaleT } from '../locale/types.js';
-import { INPUT_ROLE, RANGED_CALENDAR_BEHAVIOR } from './constants.js';
+} from './styled-components';
+import type { DatepickerPropsT, InputRoleT } from './types';
+import DateHelpers from './utils/date-helpers';
+import dateFnsAdapter from './utils/date-fns-adapter';
+import type { LocaleT } from '../locale/types';
+import { INPUT_ROLE, RANGED_CALENDAR_BEHAVIOR } from './constants';
+
+import type { ChangeEvent } from 'react';
 
 export const DEFAULT_DATE_FORMAT = 'yyyy/MM/dd';
 
@@ -43,14 +44,14 @@ const combineSeparatedInputs = (newInputValue, prevCombinedInputValue = '', inpu
   return inputValue;
 };
 
-type StateT = {|
-  calendarFocused: boolean,
-  isOpen: boolean,
-  selectedInput: ?InputRoleT,
-  isPseudoFocused: boolean,
-  lastActiveElm: ?HTMLElement,
-  inputValue?: string,
-|};
+type StateT = {
+  calendarFocused: boolean;
+  isOpen: boolean;
+  selectedInput: InputRoleT | undefined | null;
+  isPseudoFocused: boolean;
+  lastActiveElm: HTMLElement | undefined | null;
+  inputValue?: string;
+};
 
 export default class Datepicker<T = Date> extends React.Component<DatepickerPropsT<T>, StateT> {
   static defaultProps = {
@@ -60,7 +61,7 @@ export default class Datepicker<T = Date> extends React.Component<DatepickerProp
     adapter: dateFnsAdapter,
   };
 
-  calendar: ?HTMLElement;
+  calendar: HTMLElement | undefined | null;
 
   dateHelpers: DateHelpers<T>;
 
@@ -78,14 +79,16 @@ export default class Datepicker<T = Date> extends React.Component<DatepickerProp
     };
   }
 
-  handleChange: (?T | $ReadOnlyArray<?T>) => void = (date) => {
+  handleChange: (a: T | undefined | null | ReadonlyArray<T | undefined | null>) => void = (
+    date
+  ) => {
     const onChange = this.props.onChange;
     const onRangeChange = this.props.onRangeChange;
 
     if (Array.isArray(date)) {
       if (onChange && date.every(Boolean)) {
         // flowlint-next-line unclear-type:off
-        onChange({ date: ((date: any): Array<T>) });
+        onChange({ date: date as any as Array<T> });
       }
 
       if (onRangeChange) {
@@ -102,7 +105,9 @@ export default class Datepicker<T = Date> extends React.Component<DatepickerProp
     }
   };
 
-  onCalendarSelect: ({ +date: ?T | Array<?T> }) => void = (data) => {
+  onCalendarSelect: (a: {
+    readonly date: T | undefined | null | Array<T | undefined | null>;
+  }) => void = (data) => {
     let isOpen = false;
     let isPseudoFocused = false;
     let calendarFocused = false;
@@ -143,7 +148,7 @@ export default class Datepicker<T = Date> extends React.Component<DatepickerProp
 
     // Time selectors previously caused the calendar popover to close.
     // The check below refrains from closing the popover if only times changed.
-    const onlyTimeChanged = (prev: ?T, next: ?T) => {
+    const onlyTimeChanged = (prev?: T | null, next?: T | null) => {
       if (!prev || !next) return false;
       const p = this.dateHelpers.format(prev, 'keyboardDate');
       const n = this.dateHelpers.format(next, 'keyboardDate');
@@ -181,7 +186,10 @@ export default class Datepicker<T = Date> extends React.Component<DatepickerProp
     return (this.getMask() || formatString).split(INPUT_DELIMITER)[0].replace(/[0-9]|[a-z]/g, ' ');
   }
 
-  formatDate(date: ?T | $ReadOnlyArray<?T>, formatString: string) {
+  formatDate(
+    date: T | undefined | null | ReadonlyArray<T | undefined | null>,
+    formatString: string
+  ) {
     const format = (date: T) => {
       if (formatString === DEFAULT_DATE_FORMAT) {
         return this.dateHelpers.format(date, 'slashDate', this.props.locale);
@@ -204,7 +212,9 @@ export default class Datepicker<T = Date> extends React.Component<DatepickerProp
     }
   }
 
-  formatDisplayValue: (?T | $ReadOnlyArray<?T>) => string = (date) => {
+  formatDisplayValue: (a: T | undefined | null | ReadonlyArray<T | undefined | null>) => string = (
+    date
+  ) => {
     const { displayValueAtRangeIndex, formatDisplayValue, range } = this.props;
     const formatString = this.normalizeDashes(this.props.formatString);
 
@@ -289,7 +299,7 @@ export default class Datepicker<T = Date> extends React.Component<DatepickerProp
     return '9999/99/99';
   };
 
-  handleInputChange = (event: SyntheticInputEvent<HTMLInputElement>, inputRole?: InputRoleT) => {
+  handleInputChange = (event: ChangeEvent<HTMLInputElement>, inputRole?: InputRoleT) => {
     const inputValue =
       this.props.range && this.props.separateRangeInputs
         ? combineSeparatedInputs(event.currentTarget.value, this.state.inputValue, inputRole)

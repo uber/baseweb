@@ -5,14 +5,12 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-// @flow
-
 import * as React from 'react';
 
-import Upload from '../../icon/upload.js';
-import { useStyletron } from '../../styles/index.js';
+import Upload from '../../icon/upload';
+import { useStyletron } from '../../styles/index';
 
-import { SnackbarElement } from '../index.js';
+import { SnackbarElement } from '../index';
 
 export function Scenario() {
   const [css] = useStyletron();

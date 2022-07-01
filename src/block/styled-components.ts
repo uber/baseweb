@@ -5,12 +5,10 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-// @flow
-
-import { getMediaQueries } from '../helpers/responsive-helpers.js';
-import { styled } from '../styles/index.js';
-import type { BreakpointsT } from '../styles/types.js';
-import type { StyledBlockPropsT } from './types.js';
+import { getMediaQueries } from '../helpers/responsive-helpers';
+import { styled } from '../styles/index';
+import type { BreakpointsT } from '../styles/types';
+import type { StyledBlockPropsT } from './types';
 
 // styletron will throw when value is undefined. if so, replace with null
 function constrainToNull(value) {
@@ -21,11 +19,11 @@ function constrainToNull(value) {
 }
 
 type ApplyParams = {
-  property: string,
+  property: string;
   // flowlint-next-line unclear-type:off
-  value?: any | Array<any>,
+  value?: any | Array<any>;
   // flowlint-next-line unclear-type:off
-  transform?: Function,
+  transform?: Function;
 };
 
 function build(breakpoints: BreakpointsT) {

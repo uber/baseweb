@@ -4,13 +4,11 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
-import { Button, SIZE as BUTTON_SIZE, SHAPE as BUTTON_SHAPE } from '../button/index.js';
-import { getOverrides } from '../helpers/overrides.js';
-import { useStyletron } from '../styles/index.js';
-import { ACTION_POSITION, ARTWORK_TYPE, HIERARCHY, KIND } from './constants.js';
+import { Button, SIZE as BUTTON_SIZE, SHAPE as BUTTON_SHAPE } from '../button/index';
+import { getOverrides } from '../helpers/overrides';
+import { useStyletron } from '../styles/index';
+import { ACTION_POSITION, ARTWORK_TYPE, HIERARCHY, KIND } from './constants';
 import {
   StyledRoot,
   StyledLeadingContent,
@@ -21,8 +19,8 @@ import {
   StyledTrailingContent,
   StyledTrailingButtonContainer,
   StyledTrailingIconButton,
-} from './styled-components.js';
-import type { PropsT } from './types.js';
+} from './styled-components';
+import type { PropsT } from './types';
 
 function low(theme, kind) {
   switch (kind) {

@@ -4,16 +4,16 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 export default {
   accordion: {
     collapse: 'Colapsar',
     expand: 'Expandir',
   },
+
   breadcrumbs: {
     ariaLabel: 'Navegación',
   },
+
   datepicker: {
     ariaLabel: 'Selecciona una fecha.',
     ariaLabelRange: 'Selecciona un rango de fechas.',
@@ -47,6 +47,7 @@ export default {
     selectedLabel: 'Seleccionada.',
     chooseLabel: 'Elegir',
   },
+
   datatable: {
     emptyState:
       'Ninguna fila coincide con los criterios de filtro definidos. Elimine uno o más filtros para ver más datos.',
@@ -81,9 +82,11 @@ export default {
     booleanColumnTrueShort: 'V',
     booleanColumnFalseShort: 'F',
   },
+
   buttongroup: {
     ariaLabel: 'grupo de botones',
   },
+
   fileuploader: {
     dropFilesToUpload: 'Arrastra archivos aquí para subir...',
     or: '',
@@ -91,27 +94,33 @@ export default {
     retry: 'Reintentar',
     cancel: 'Cancelar',
   },
+
   menu: {
     noResultsMsg: 'Sin resultados',
     parentMenuItemAriaLabel:
       'Actualmente se encuentra en un elemento que abre un cuadro de lista anidado. Presione la flecha derecha para ingresar a ese elemento y la flecha izquierda para regresar.',
   },
+
   modal: {
     close: 'Cerrar',
   },
+
   drawer: {
     close: 'Cerrar',
   },
+
   pagination: {
     prev: 'Anterior',
     next: 'Siguiente',
     preposition: 'de',
   },
+
   select: {
     noResultsMsg: 'Sin resultados',
     placeholder: 'Seleccionar...',
     create: 'Crear',
   },
+
   toast: {
     close: 'Cerrar',
   },

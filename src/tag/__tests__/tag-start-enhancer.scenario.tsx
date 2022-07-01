@@ -4,12 +4,11 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 /* global alert */
 import * as React from 'react';
-import { Upload } from '../../icon/index.js';
-import { useStyletron } from '../../styles/index.js';
-import { Tag, KIND, SIZE, VARIANT } from '../index.js';
+import { Upload } from '../../icon/index';
+import { useStyletron } from '../../styles/index';
+import { Tag, KIND, SIZE, VARIANT } from '../index';
 
 const customColor = '#26c6da';
 

@@ -4,7 +4,6 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 import * as React from 'react';
 
 import {
@@ -20,17 +19,21 @@ import {
   StyledTableLoadingMessage,
   StyledTableEmptyMessage,
   StyledSortIconContainer,
-} from './styled-components.js';
-import { getOverrides } from '../helpers/overrides.js';
-import Blank from '../icon/blank.js';
-import ChevronDown from '../icon/chevron-down.js';
-import ChevronUp from '../icon/chevron-up.js';
-import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible.js';
-import type { TableBuilderPropsT } from './types.js';
+} from './styled-components';
+import { getOverrides } from '../helpers/overrides';
+import Blank from '../icon/blank';
+import ChevronDown from '../icon/chevron-down';
+import ChevronUp from '../icon/chevron-up';
+import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible';
+import type { TableBuilderPropsT } from './types';
+
+import type { SyntheticEvent } from 'react';
 
 export default class TableBuilder<T> extends React.Component<
   TableBuilderPropsT<T>,
-  { isFocusVisible: boolean }
+  {
+    isFocusVisible: boolean;
+  }
 > {
   static defaultProps = {
     data: [],
@@ -41,13 +44,13 @@ export default class TableBuilder<T> extends React.Component<
     isFocusVisible: false,
   };
 
-  handleFocus = (event: SyntheticEvent<>) => {
+  handleFocus = (event: SyntheticEvent) => {
     if (isFocusVisible(event)) {
       this.setState({ isFocusVisible: true });
     }
   };
 
-  handleBlur = (event: SyntheticEvent<>) => {
+  handleBlur = (event: SyntheticEvent) => {
     if (this.state.isFocusVisible !== false) {
       this.setState({ isFocusVisible: false });
     }

@@ -4,20 +4,19 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-import colorTokens from './color-tokens.js';
-import getSemanticColorTokens from './color-semantic-tokens.js';
-import getComponentColorTokens from './color-component-tokens.js';
-import borders from '../shared/borders.js';
-import lighting from '../shared/lighting.js';
-import getTypography from '../shared/typography.js';
-import animation from '../shared/animation.js';
-import breakpoints from '../shared/breakpoints.js';
-import grid from '../shared/grid.js';
-import mediaQuery from '../shared/media-query.js';
-import sizing from '../shared/sizing.js';
+import colorTokens from './color-tokens';
+import getSemanticColorTokens from './color-semantic-tokens';
+import getComponentColorTokens from './color-component-tokens';
+import borders from '../shared/borders';
+import lighting from '../shared/lighting';
+import getTypography from '../shared/typography';
+import animation from '../shared/animation';
+import breakpoints from '../shared/breakpoints';
+import grid from '../shared/grid';
+import mediaQuery from '../shared/media-query';
+import sizing from '../shared/sizing';
 
-import type { ThemeT } from '../../styles/types.js';
+import type { ThemeT } from '../../styles/types';
 
 export const LightTheme: ThemeT = {
   name: 'light-theme',

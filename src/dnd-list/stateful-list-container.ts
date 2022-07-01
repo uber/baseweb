@@ -4,20 +4,19 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 import * as React from 'react';
 import type {
   StateT,
   StatefulComponentContainerPropsT,
   StateChangeTypeT,
   StateReducerT,
-} from './types.js';
+} from './types';
 import { arrayMove, arrayRemove } from 'react-movable';
 
 const defaultStateReducer: StateReducerT = (type, nextState) => nextState;
 
 class StatefulListContainer extends React.Component<StatefulComponentContainerPropsT, StateT> {
-  static defaultProps: $Shape<StatefulComponentContainerPropsT> = {
+  static defaultProps: Partial<StatefulComponentContainerPropsT> = {
     initialState: { items: [] },
     stateReducer: defaultStateReducer,
     onChange: () => {},
@@ -33,9 +32,9 @@ class StatefulListContainer extends React.Component<StatefulComponentContainerPr
     newIndex,
     targetRect,
   }: {
-    oldIndex: number,
-    newIndex: number,
-    targetRect: ClientRect,
+    oldIndex: number;
+    newIndex: number;
+    targetRect: ClientRect;
   }) => {
     const newItemsState =
       newIndex === -1

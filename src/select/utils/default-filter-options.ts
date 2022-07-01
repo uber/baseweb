@@ -4,8 +4,7 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-import type { OptionT, ValueT } from '../types.js';
+import type { OptionT, ValueT } from '../types';
 
 const escapeRegExp = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
@@ -14,13 +13,13 @@ const isValid = (value) => {
 };
 
 type defaultPropsT = {
-  filterOption: ?(option: OptionT, filterValue: string) => boolean,
-  ignoreCase: boolean,
-  labelKey: string,
-  matchPos: 'any' | 'start',
-  matchProp: 'any' | 'label' | 'value',
-  trimFilter: boolean,
-  valueKey: string,
+  filterOption: ((option: OptionT, filterValue: string) => boolean) | undefined | null;
+  ignoreCase: boolean;
+  labelKey: string;
+  matchPos: 'any' | 'start';
+  matchProp: 'any' | 'label' | 'value';
+  trimFilter: boolean;
+  valueKey: string;
 };
 
 const defaultProps: defaultPropsT = {
@@ -36,8 +35,8 @@ const defaultProps: defaultPropsT = {
 const filterOptions = (
   options: ValueT,
   filterValue: string,
-  excludeOptions: ?ValueT,
-  newProps: ?$Shape<defaultPropsT>
+  excludeOptions?: ValueT | null,
+  newProps?: Partial<defaultPropsT> | null
 ) => {
   const props = {
     ...defaultProps,

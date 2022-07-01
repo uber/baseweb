@@ -5,12 +5,10 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-// @flow
-
 import React from 'react';
 
-import { StatefulPopover } from '../../popover/index.js';
-import { StatefulMenu, NestedMenus } from '../index.js';
+import { StatefulPopover } from '../../popover/index';
+import { StatefulMenu, NestedMenus } from '../index';
 
 const OPEN_RECENT = 'Open Recent ->';
 const NEW_BREAKPOINT = 'New Breakpoint ->';

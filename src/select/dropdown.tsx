@@ -4,17 +4,18 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 import * as React from 'react';
 import {
   StyledDropdownContainer,
   StyledDropdown,
   StyledDropdownListItem,
   StyledOptionContent,
-} from './styled-components.js';
-import { StatefulMenu } from '../menu/index.js';
-import type { DropdownPropsT, OptionT, ValueT } from './types.js';
-import { getOverrides, mergeOverrides } from '../helpers/overrides.js';
+} from './styled-components';
+import { StatefulMenu } from '../menu/index';
+import type { DropdownPropsT, OptionT, ValueT } from './types';
+import { getOverrides, mergeOverrides } from '../helpers/overrides';
+
+import type { SyntheticEvent } from 'react';
 
 function groupOptions(options: ValueT) {
   return options.reduce(
@@ -48,7 +49,7 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
     };
   }
   // flowlint-next-line unclear-type:off
-  getItemLabel = (option: { [string]: any }) => {
+  getItemLabel = (option: { [x: string]: any }) => {
     const { getOptionLabel, overrides = {}, value, valueKey } = this.props;
 
     const [OptionContent, optionContentProps] = getOverrides(
@@ -82,7 +83,7 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
     );
   };
 
-  onMouseDown = (e: SyntheticEvent<>) => {
+  onMouseDown = (e: SyntheticEvent) => {
     e.nativeEvent.stopImmediatePropagation();
   };
 

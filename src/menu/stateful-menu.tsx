@@ -4,15 +4,14 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 /* eslint-disable react/prefer-stateless-function */
 import * as React from 'react';
 
-import Menu from './menu.js';
-import { NestedMenuContext } from './nested-menus.js';
-import StatefulContainer from './stateful-container.js';
+import Menu from './menu';
+import { NestedMenuContext } from './nested-menus';
+import StatefulContainer from './stateful-container';
 
-import type { StatefulMenuPropsT } from './types.js';
+import type { StatefulMenuPropsT } from './types';
 
 export default class StatefulMenu extends React.PureComponent<StatefulMenuPropsT> {
   render() {

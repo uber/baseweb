@@ -4,22 +4,20 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
-import type { BlockPropsT, ResponsiveT, ScaleT } from '../block/types.js';
+import type { BlockPropsT, ResponsiveT, ScaleT } from '../block/types';
 
 export type FlexGridPropsT = {
   /** Number of equal-width columns to allow for */
-  flexGridColumnCount?: ResponsiveT<number>,
+  flexGridColumnCount?: ResponsiveT<number>;
   /** Grid gap between columns */
-  flexGridColumnGap?: ResponsiveT<ScaleT>,
+  flexGridColumnGap?: ResponsiveT<ScaleT>;
   /** Grid gap between rows */
-  flexGridRowGap?: ResponsiveT<ScaleT>,
+  flexGridRowGap?: ResponsiveT<ScaleT>;
 } & BlockPropsT;
 
 export type FlexGridItemPropsT = {
   /** Index of item in FlexGrid, used to determine gaps **/
-  flexGridItemIndex?: number,
+  flexGridItemIndex?: number;
   /** Total count of items in FlexGrid, used to determine gaps **/
-  flexGridItemCount?: number,
+  flexGridItemCount?: number;
 } & FlexGridPropsT;

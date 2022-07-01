@@ -4,33 +4,32 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 import * as React from 'react';
 import * as valid from 'card-validator';
 
-import { addGaps, getCaretPosition } from './utils.js';
+import { addGaps, getCaretPosition } from './utils';
 
-import { getOverrides } from '../helpers/overrides.js';
-import { Input, SIZE } from '../input/index.js';
-import { ThemeContext } from '../styles/theme-provider.js';
+import { getOverrides } from '../helpers/overrides';
+import { Input, SIZE } from '../input/index';
+import { ThemeContext } from '../styles/theme-provider';
 
-import AmexIcon from './icons/amex.js';
-import DinersClubIcon from './icons/dinersclub.js';
-import DiscoverIcon from './icons/discover.js';
-import EloIcon from './icons/elo.js';
-import GenericIcon from './icons/generic.js';
-import JcbIcon from './icons/jcb.js';
-import MaestroIcon from './icons/maestro.js';
-import MastercardIcon from './icons/mastercard.js';
-import UnionPayIcon from './icons/unionpay.js';
-import VisaIcon from './icons/visa.js';
-import UatpIcon from './icons/uatp.js';
+import AmexIcon from './icons/amex';
+import DinersClubIcon from './icons/dinersclub';
+import DiscoverIcon from './icons/discover';
+import EloIcon from './icons/elo';
+import GenericIcon from './icons/generic';
+import JcbIcon from './icons/jcb';
+import MaestroIcon from './icons/maestro';
+import MastercardIcon from './icons/mastercard';
+import UnionPayIcon from './icons/unionpay';
+import VisaIcon from './icons/visa';
+import UatpIcon from './icons/uatp';
 
-import { IconWrapper as StyledIconWrapper } from './styled-components.js';
+import { IconWrapper as StyledIconWrapper } from './styled-components';
 
-import type { PaymentCardPropsT } from './types.js';
+import type { PaymentCardPropsT } from './types';
 
-import { CUSTOM_CARDS_CONFIGURATION } from './custom-cards.config.js';
+import { CUSTOM_CARDS_CONFIGURATION } from './custom-cards.config';
 
 const CardTypeToComponent = {
   visa: VisaIcon,
@@ -48,7 +47,7 @@ const CardTypeToComponent = {
 
 class PaymentCard extends React.Component<PaymentCardPropsT> {
   caretPosition = 0;
-  inRef: ?HTMLInputElement = null;
+  inRef: HTMLInputElement | undefined | null = null;
 
   static defaultProps = {
     autoComplete: 'cc-number',
@@ -93,7 +92,7 @@ class PaymentCard extends React.Component<PaymentCardPropsT> {
 
     const validatedValue = valid.number(value);
     let gaps: number[] = [];
-    let type: ?string = undefined;
+    let type: string | undefined | null = undefined;
     if (validatedValue.card) {
       gaps = validatedValue.card.gaps || [];
       type = validatedValue.card.type;

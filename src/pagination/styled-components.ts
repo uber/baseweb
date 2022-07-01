@@ -4,8 +4,7 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-import { styled } from '../styles/index.js';
+import { styled } from '../styles/index';
 
 export const StyledRoot = styled<{}>('div', ({ $theme }) => ({
   display: 'flex',
@@ -23,17 +22,16 @@ export const StyledMaxLabel = styled<{}>('span', ({ $theme }) => {
   };
 });
 
-export const StyledDropdownContainer = styled<{ $isFocusVisible: boolean }>(
-  'div',
-  ({ $theme, $isFocusVisible }) => {
-    const marginStartDir: string = $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
-    const marginEndDir: string = $theme.direction === 'rtl' ? 'marginLeft' : 'marginRight';
+export const StyledDropdownContainer = styled<{
+  $isFocusVisible: boolean;
+}>('div', ({ $theme, $isFocusVisible }) => {
+  const marginStartDir: string = $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
+  const marginEndDir: string = $theme.direction === 'rtl' ? 'marginLeft' : 'marginRight';
 
-    return {
-      position: 'relative',
-      outline: $isFocusVisible ? `3px solid ${$theme.colors.accent}` : 'none',
-      [marginStartDir]: $theme.sizing.scale600,
-      [marginEndDir]: $theme.sizing.scale300,
-    };
-  }
-);
+  return {
+    position: 'relative',
+    outline: $isFocusVisible ? `3px solid ${$theme.colors.accent}` : 'none',
+    [marginStartDir]: $theme.sizing.scale600,
+    [marginEndDir]: $theme.sizing.scale300,
+  };
+});

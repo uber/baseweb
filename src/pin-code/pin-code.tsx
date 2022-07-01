@@ -4,19 +4,13 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import React from 'react';
 import MultiRef from 'react-multi-ref';
-import defaultProps from './default-props.js';
-import {
-  StyledRoot,
-  StyledInputOverrideRoot,
-  StyledInputOverrideInput,
-} from './styled-components.js';
-import type { PropsT, StateT } from './types.js';
-import { getOverrides, mergeOverrides } from '../helpers/overrides.js';
-import { Input as DefaultInput } from '../input/index.js';
+import defaultProps from './default-props';
+import { StyledRoot, StyledInputOverrideRoot, StyledInputOverrideInput } from './styled-components';
+import type { PropsT, StateT } from './types';
+import { getOverrides, mergeOverrides } from '../helpers/overrides';
+import { Input as DefaultInput } from '../input/index';
 
 export default class PinCode extends React.Component<PropsT, StateT> {
   static defaultProps = defaultProps;

@@ -4,12 +4,10 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
-import { Select, StyledDropdownListItem } from '../index.js';
-import { withStyle } from '../../index.js';
-import { StyledList, StyledEmptyState } from '../../menu/index.js';
+import { Select, StyledDropdownListItem } from '../index';
+import { withStyle } from '../../index';
+import { StyledList, StyledEmptyState } from '../../menu/index';
 import { FixedSizeList } from 'react-window';
 
 const LIST_ITEM_HEIGHT = 36;

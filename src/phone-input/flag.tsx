@@ -4,24 +4,22 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import React from 'react';
 
-import * as flags from './flags/index.js';
-import { styled } from '../styles/index.js';
-import { SIZE } from './constants.js';
-import type { CountryIsoT, SizeT } from './types.js';
+import * as flags from './flags/index';
+import { styled } from '../styles/index';
+import { SIZE } from './constants';
+import type { CountryIsoT, SizeT } from './types';
 
 type SizeStyleProps = {
-  $size?: SizeT,
+  $size?: SizeT;
 };
 
 export default function Flag(props: {
-  $iso: CountryIsoT,
+  $iso: CountryIsoT;
   // remove `iso` prop in the next major version
-  iso?: CountryIsoT,
-  width?: string,
+  iso?: CountryIsoT;
+  width?: string;
 }) {
   const { $iso, iso: oldIsoProp, width = '16px', ...restProps } = props;
   const iso: CountryIsoT = oldIsoProp || $iso;

@@ -4,11 +4,10 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-import { styled } from '../styles/index.js';
-import { KIND, SIZE, SHAPE } from './constants.js';
-import type { SharedStylePropsT } from './types.js';
-import type { FontT } from '../themes/types.js';
+import { styled } from '../styles/index';
+import { KIND, SIZE, SHAPE } from './constants';
+import type { SharedStylePropsT } from './types';
+import type { FontT } from '../themes/types';
 
 export const BaseButton = styled<SharedStylePropsT>(
   'button',
@@ -276,22 +275,23 @@ function getPaddingStyles({ $theme, $size, $shape }) {
   }
 }
 
-type ColorStylesT = {|
-  color?: string,
-  backgroundColor?: string,
+type ColorStylesT = {
+  color?: string;
+  backgroundColor?: string;
   ':hover'?: {
-    boxShadow?: string,
-    backgroundColor?: string,
-  },
+    boxShadow?: string;
+    backgroundColor?: string;
+  };
   ':focus'?: {
-    boxShadow?: string,
-    backgroundColor?: string,
-  },
+    boxShadow?: string;
+    backgroundColor?: string;
+  };
   ':active'?: {
-    boxShadow?: string,
-    backgroundColor?: string,
-  },
-|};
+    boxShadow?: string;
+    backgroundColor?: string;
+  };
+};
+
 function getColorStyles({
   $theme,
   $colors,
@@ -380,12 +380,12 @@ function getColorStyles({
 }
 
 function getShapeStyles({ $shape, $size }): {
-  height?: string,
-  width?: string,
-  paddingTop?: number,
-  paddingBottom?: number,
-  paddingLeft?: number,
-  paddingRight?: number,
+  height?: string;
+  width?: string;
+  paddingTop?: number;
+  paddingBottom?: number;
+  paddingLeft?: number;
+  paddingRight?: number;
 } {
   if ($shape === SHAPE.circle || $shape === SHAPE.square) {
     let height, width;

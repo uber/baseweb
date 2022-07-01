@@ -4,18 +4,17 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 import * as React from 'react';
-import ChevronRight from '../icon/chevron-right.js';
-import ChevronLeft from '../icon/chevron-left.js';
-import ChevronDown from '../icon/chevron-down.js';
-import dateFnsAdapter from './utils/date-fns-adapter.js';
-import DateHelpers from './utils/date-helpers.js';
-import { getFilteredMonthItems } from './utils/calendar-header-helpers.js';
-import { StatefulMenu } from '../menu/index.js';
-import { Popover } from '../popover/index.js';
-import { LocaleContext } from '../locale/index.js';
-import { ThemeContext } from '../styles/theme-provider.js';
+import ChevronRight from '../icon/chevron-right';
+import ChevronLeft from '../icon/chevron-left';
+import ChevronDown from '../icon/chevron-down';
+import dateFnsAdapter from './utils/date-fns-adapter';
+import DateHelpers from './utils/date-helpers';
+import { getFilteredMonthItems } from './utils/calendar-header-helpers';
+import { StatefulMenu } from '../menu/index';
+import { Popover } from '../popover/index';
+import { LocaleContext } from '../locale/index';
+import { ThemeContext } from '../styles/theme-provider';
 import {
   StyledCalendarHeader,
   StyledMonthHeader,
@@ -24,13 +23,15 @@ import {
   StyledNextButton,
   StyledPrevButton,
   StyledWeekdayHeader,
-} from './styled-components.js';
-import { DENSITY, ORIENTATION, WEEKDAYS } from './constants.js';
-import { getOverrides, mergeOverrides } from '../helpers/overrides.js';
-import type { HeaderPropsT } from './types.js';
-import type { LocaleT } from '../locale/types.js';
-import type { ThemeT } from '../styles/types.js';
-import { forkBlur, forkFocus, isFocusVisible } from '../utils/focusVisible.js';
+} from './styled-components';
+import { DENSITY, ORIENTATION, WEEKDAYS } from './constants';
+import { getOverrides, mergeOverrides } from '../helpers/overrides';
+import type { HeaderPropsT } from './types';
+import type { LocaleT } from '../locale/types';
+import type { ThemeT } from '../styles/types';
+import { forkBlur, forkFocus, isFocusVisible } from '../utils/focusVisible';
+
+import type { SyntheticEvent } from 'react';
 
 const navBtnStyle = ({ $theme }) => ({
   cursor: 'pointer',
@@ -53,9 +54,9 @@ function idToYearMonth(id) {
 export default class CalendarHeader<T = Date> extends React.Component<
   HeaderPropsT<T>,
   {
-    isMonthDropdownOpen: boolean,
-    isYearDropdownOpen: boolean,
-    isFocusVisible: boolean,
+    isMonthDropdownOpen: boolean;
+    isYearDropdownOpen: boolean;
+    isFocusVisible: boolean;
   }
 > {
   static defaultProps = {
@@ -68,8 +69,16 @@ export default class CalendarHeader<T = Date> extends React.Component<
   };
 
   dateHelpers: DateHelpers<T>;
-  monthItems: Array<{ id: string, label: string, disabled?: boolean }>;
-  yearItems: Array<{ id: string, label: string, disabled?: boolean }>;
+  monthItems: Array<{
+    id: string;
+    label: string;
+    disabled?: boolean;
+  }>;
+  yearItems: Array<{
+    id: string;
+    label: string;
+    disabled?: boolean;
+  }>;
 
   constructor(props: HeaderPropsT<T>) {
     super(props);
@@ -213,7 +222,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
     return orientation === ORIENTATION.horizontal && monthsShown > 1;
   };
 
-  isHiddenPaginationButton = (direction: $Values<typeof DIRECTION>) => {
+  isHiddenPaginationButton = (direction: typeof DIRECTION[keyof typeof DIRECTION]) => {
     const { monthsShown, order } = this.props;
 
     if (!!monthsShown && this.isMultiMonthHorizontal()) {
@@ -229,19 +238,19 @@ export default class CalendarHeader<T = Date> extends React.Component<
     return false;
   };
 
-  handleFocus = (event: SyntheticEvent<>) => {
+  handleFocus = (event: SyntheticEvent) => {
     if (isFocusVisible(event)) {
       this.setState({ isFocusVisible: true });
     }
   };
 
-  handleBlur = (event: SyntheticEvent<>) => {
+  handleBlur = (event: SyntheticEvent) => {
     if (this.state.isFocusVisible !== false) {
       this.setState({ isFocusVisible: false });
     }
   };
 
-  renderPreviousMonthButton = ({ locale, theme }: { locale: LocaleT, theme: ThemeT }) => {
+  renderPreviousMonthButton = ({ locale, theme }: { locale: LocaleT; theme: ThemeT }) => {
     const date = this.getDateProp();
     const { overrides = {}, density } = this.props;
     const allPrevDaysDisabled = this.dateHelpers.monthDisabledBefore(date, this.props);
@@ -293,7 +302,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
     );
   };
 
-  renderNextMonthButton = ({ locale, theme }: { locale: LocaleT, theme: ThemeT }) => {
+  renderNextMonthButton = ({ locale, theme }: { locale: LocaleT; theme: ThemeT }) => {
     const date = this.getDateProp();
     const { overrides = {}, density } = this.props;
     const allNextDaysDisabled = this.dateHelpers.monthDisabledAfter(date, this.props);

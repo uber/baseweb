@@ -4,16 +4,16 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 export default {
   accordion: {
     collapse: 'Daralt',
     expand: 'Genişlet',
   },
+
   breadcrumbs: {
     ariaLabel: 'Navigasyon',
   },
+
   datepicker: {
     ariaLabel: 'Bir tarih seçin.',
     ariaLabelRange: 'Bir tarih aralığı seçin',
@@ -47,6 +47,7 @@ export default {
     selectedLabel: 'Seçildi.',
     chooseLabel: 'Seç',
   },
+
   datatable: {
     emptyState:
       'Tanımlanan filtre kriterleriyle eşleşen satır yok. Daha fazla veri görüntülemek için lütfen bir veya daha fazla filtreyi kaldırın.',
@@ -83,9 +84,11 @@ export default {
     booleanColumnTrueShort: 'D',
     booleanColumnFalseShort: 'Y',
   },
+
   buttongroup: {
     ariaLabel: 'buton grup',
   },
+
   fileuploader: {
     dropFilesToUpload: 'Dosyaları yüklemek için buraya bırakın...',
     or: '',
@@ -93,27 +96,33 @@ export default {
     retry: 'Yüklemeyi Yeniden Dene',
     cancel: 'İptal',
   },
+
   menu: {
     noResultsMsg: 'Sonuç yok',
     parentMenuItemAriaLabel:
       'Şu anda iç içe bir liste kutusu açan bir öğedesiniz. Bu öğeye girmek için sağ ok ve geri dönmek için sol ok tuşuna basın.',
   },
+
   modal: {
     close: 'Kapat',
   },
+
   drawer: {
     close: 'Kapat',
   },
+
   pagination: {
     prev: 'Önceki',
     next: 'Sonraki',
     preposition: 'nın',
   },
+
   select: {
     noResultsMsg: 'Sonuç bulunamadı',
     placeholder: 'Seç...',
     create: 'Oluştur',
   },
+
   toast: {
     close: 'Kapat',
   },

@@ -4,18 +4,16 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 import { isFragment } from 'react-is';
 
 export const flattenFragments = (
-  children?: React.Node,
+  children?: React.ReactNode,
   ChildWrapper?: React.ComponentType<{}>,
   depth: number = 0
-): React.Node[] =>
+): React.ReactNode[] =>
   React.Children.toArray(children).reduce(
-    (acc: React.Node[], child: React.Node, i: number): React.Node[] => {
+    (acc: React.ReactNode[], child: React.ReactNode, i: number): React.ReactNode[] => {
       if (isFragment(child)) {
         acc.push(
           // $FlowFixMe

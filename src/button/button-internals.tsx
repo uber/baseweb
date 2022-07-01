@@ -4,17 +4,16 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 import * as React from 'react';
 import * as ReactIs from 'react-is';
 import {
   StartEnhancer as StyledStartEnhancer,
   EndEnhancer as StyledEndEnhancer,
-} from './styled-components.js';
-import { getSharedProps } from './utils.js';
-import { getOverrides } from '../helpers/overrides.js';
+} from './styled-components';
+import { getSharedProps } from './utils';
+import { getOverrides } from '../helpers/overrides';
 
-import type { ButtonPropsT } from './types.js';
+import type { ButtonPropsT } from './types';
 
 function RenderEnhancer(props) {
   const { Enhancer, ...restProps } = props;

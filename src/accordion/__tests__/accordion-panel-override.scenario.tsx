@@ -4,13 +4,11 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 
-import { Accordion, Panel } from '../index.js';
+import { Accordion, Panel } from '../index';
 
-import { createTheme, lightThemePrimitives, ThemeProvider } from '../../index.js';
+import { createTheme, lightThemePrimitives, ThemeProvider } from '../../index';
 
 const themeWithIcons = createTheme(
   {

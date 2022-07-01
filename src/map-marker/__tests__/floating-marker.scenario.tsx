@@ -4,23 +4,21 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
-import { FloatingMarker } from '../index.js';
+import { FloatingMarker } from '../index';
 import {
   FLOATING_MARKER_ANCHOR_POSITIONS,
   FLOATING_MARKER_SIZES,
   FLOATING_MARKER_ANCHOR_TYPES,
-} from '../constants.js';
-import TileGrid from './tile-grid.js';
-import { Checkbox, LABEL_PLACEMENT } from '../../checkbox/index.js';
-import { Input } from '../../input/index.js';
-import Upload from '../../icon/upload.js';
-import Search from '../../icon/search.js';
-import { Select } from '../../select/index.js';
+} from '../constants';
+import TileGrid from './tile-grid';
+import { Checkbox, LABEL_PLACEMENT } from '../../checkbox/index';
+import { Input } from '../../input/index';
+import Upload from '../../icon/upload';
+import Search from '../../icon/search';
+import { Select } from '../../select/index';
 
-import type { FloatingMarkerSizeT, AnchorPositionsT } from '../types.js';
+import type { FloatingMarkerSizeT, AnchorPositionsT } from '../types';
 
 const floatingMarkerAnchorTypes = Object.keys(FLOATING_MARKER_ANCHOR_TYPES)
   .map((key) => FLOATING_MARKER_ANCHOR_TYPES[key])

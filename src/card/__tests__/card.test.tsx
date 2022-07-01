@@ -4,12 +4,11 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 import * as React from 'react';
 import { render } from '@testing-library/react';
 
-import { Card } from '../index.js';
-import { header as headerImg, thumbnail as thumbnailImg } from '../images.js';
+import { Card } from '../index';
+import { header as headerImg, thumbnail as thumbnailImg } from '../images';
 
 test('Card - basic functionality', () => {
   const props = {

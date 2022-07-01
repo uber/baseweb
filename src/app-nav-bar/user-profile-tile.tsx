@@ -4,21 +4,23 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
-import { Avatar } from '../avatar/index.js';
-import { getOverrides } from '../helpers/overrides.js';
-import { LabelMedium, ParagraphSmall } from '../typography/index.js';
+import { Avatar } from '../avatar/index';
+import { getOverrides } from '../helpers/overrides';
+import { LabelMedium, ParagraphSmall } from '../typography/index';
 
 import {
   StyledUserProfileTileContainer,
   StyledUserProfilePictureContainer,
   StyledUserProfileInfoContainer,
-} from './styled-components.js';
-import type { OverridesT, UserMenuPropsT } from './types.js';
+} from './styled-components';
+import type { OverridesT, UserMenuPropsT } from './types';
 
-export default function UserProfileTile(props: {| ...UserMenuPropsT, overrides: OverridesT |}) {
+export default function UserProfileTile(
+  props: {
+    overrides: OverridesT;
+  } & UserMenuPropsT
+) {
   const { overrides = {}, username, usernameSubtitle, userImgUrl } = props;
 
   const [UserProfileTileContainer, userProfileTileContainerProps] = getOverrides(

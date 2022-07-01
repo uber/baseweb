@@ -4,12 +4,11 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 import * as React from 'react';
-import { Layer, LayersManager, TetherBehavior, TETHER_PLACEMENT } from '../index.js';
-import { Block } from '../../block/index.js';
-import { Button } from '../../button/index.js';
-import type { NormalizedOffsetsT } from '../../layer/types.js';
+import { Layer, LayersManager, TetherBehavior, TETHER_PLACEMENT } from '../index';
+import { Block } from '../../block/index';
+import { Button } from '../../button/index';
+import type { NormalizedOffsetsT } from '../../layer/types';
 
 function BlockComponent(props) {
   const { children, forwardedRef, offset, color, ...restProps } = props;
@@ -42,12 +41,18 @@ function BlockComponent(props) {
 export class Scenario extends React.Component<
   {},
   {
-    isFirstOpen: boolean,
-    isSecondOpen: boolean,
-    isFirstMounted: boolean,
-    isSecondMounted: boolean,
-    offset1: { top: number, left: number },
-    offset2: { top: number, left: number },
+    isFirstOpen: boolean;
+    isSecondOpen: boolean;
+    isFirstMounted: boolean;
+    isSecondMounted: boolean;
+    offset1: {
+      top: number;
+      left: number;
+    };
+    offset2: {
+      top: number;
+      left: number;
+    };
   }
 > {
   anchorRef1 = React.createRef<HTMLElement>();

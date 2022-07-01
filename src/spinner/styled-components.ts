@@ -4,10 +4,9 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-import { styled } from '../styles/index.js';
-import { SIZE } from './constants.js';
-import type { SpinnerPropsT } from './types.js';
+import { styled } from '../styles/index';
+import { SIZE } from './constants';
+import type { SpinnerPropsT } from './types';
 
 const spin = {
   from: {

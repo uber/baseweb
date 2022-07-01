@@ -4,17 +4,15 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 
-import { Block } from '../block/index.js';
-import { mergeOverrides } from '../helpers/overrides.js';
-import { getMediaQueries, getMediaQuery } from '../helpers/responsive-helpers.js';
-import type { FlexGridItemPropsT } from './types.js';
-import type { ResponsiveT, ScaleT } from '../block/index.js';
-import type { StyleOverrideT } from '../helpers/overrides.js';
-import type { ThemeT } from '../styles/index.js';
+import { Block } from '../block/index';
+import { mergeOverrides } from '../helpers/overrides';
+import { getMediaQueries, getMediaQuery } from '../helpers/responsive-helpers';
+import type { FlexGridItemPropsT } from './types';
+import type { ResponsiveT, ScaleT } from '../block/index';
+import type { StyleOverrideT } from '../helpers/overrides';
+import type { ThemeT } from '../styles/index';
 
 export const flexGridItemMediaQueryStyle = ({
   $theme,
@@ -24,12 +22,12 @@ export const flexGridItemMediaQueryStyle = ({
   flexGridItemIndex: itemIndex,
   flexGridItemCount: itemCount,
 }: {
-  $theme: ThemeT,
-  flexGridColumnCount: number,
-  flexGridColumnGap: ScaleT,
-  flexGridRowGap: ScaleT,
-  flexGridItemIndex: number,
-  flexGridItemCount: number,
+  $theme: ThemeT;
+  flexGridColumnCount: number;
+  flexGridColumnGap: ScaleT;
+  flexGridRowGap: ScaleT;
+  flexGridItemIndex: number;
+  flexGridItemCount: number;
 }) => {
   // 0px needed for calc() to behave properly
   const colGap = $theme.sizing[flexGridColumnGap] || flexGridColumnGap || '0px';
@@ -62,7 +60,10 @@ export const flexGridItemMediaQueryStyle = ({
   });
 };
 
-export const getResponsiveValue = <T>(responsive?: ResponsiveT<T>, i: number): ?T => {
+export const getResponsiveValue = <T extends any>(
+  responsive: ResponsiveT<T> | undefined | null,
+  i: number
+): T | undefined | null => {
   if (!responsive) {
     return null;
   }
@@ -80,12 +81,12 @@ export const flexGridItemStyle = ({
   $flexGridItemCount,
   $theme,
 }: {
-  $flexGridColumnCount?: ResponsiveT<number>,
-  $flexGridColumnGap?: ResponsiveT<ScaleT>,
-  $flexGridRowGap?: ResponsiveT<ScaleT>,
-  $flexGridItemIndex?: number,
-  $flexGridItemCount?: number,
-  $theme: ThemeT,
+  $flexGridColumnCount?: ResponsiveT<number>;
+  $flexGridColumnGap?: ResponsiveT<ScaleT>;
+  $flexGridRowGap?: ResponsiveT<ScaleT>;
+  $flexGridItemIndex?: number;
+  $flexGridItemCount?: number;
+  $theme: ThemeT;
 }): StyleOverrideT => {
   const baseFlexGridItemStyle = { flexGrow: 1 };
   const mediaQueries = getMediaQueries($theme.breakpoints);
@@ -155,7 +156,9 @@ const FlexGridItem = ({
   flexGridItemCount,
   ...restProps
 }: // flowlint-next-line unclear-type:off
-FlexGridItemPropsT & { forwardedRef: any }): React.Node => {
+FlexGridItemPropsT & {
+  forwardedRef: any;
+}): React.ReactNode => {
   const flexGridItemOverrides = {
     Block: {
       style: flexGridItemStyle,
@@ -169,7 +172,7 @@ FlexGridItemPropsT & { forwardedRef: any }): React.Node => {
       // coerced to any because of how react components are typed.
       // cannot guarantee an html element
       // flowlint-next-line unclear-type:off
-      ref={(forwardedRef: any)}
+      ref={forwardedRef as any}
       as={as}
       overrides={blockOverrides}
       $flexGridColumnCount={flexGridColumnCount}
@@ -185,7 +188,7 @@ FlexGridItemPropsT & { forwardedRef: any }): React.Node => {
   );
 };
 
-const FlexGridItemComponent = React.forwardRef<FlexGridItemPropsT, HTMLElement>(
+const FlexGridItemComponent = React.forwardRef<HTMLElement, FlexGridItemPropsT>(
   (props: FlexGridItemPropsT, ref) => <FlexGridItem {...props} forwardedRef={ref} />
 );
 FlexGridItemComponent.displayName = 'FlexGridItem';

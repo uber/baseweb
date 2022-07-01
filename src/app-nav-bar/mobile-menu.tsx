@@ -4,22 +4,20 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 
-import { Button } from '../button/index.js';
-import { Drawer, ANCHOR } from '../drawer/index.js';
-import { getOverrides, mergeOverrides } from '../helpers/overrides.js';
-import ArrowLeft from '../icon/arrow-left.js';
-import MenuIcon from '../icon/menu.js';
-import { MenuAdapter, ListItemLabel, ARTWORK_SIZES } from '../list/index.js';
-import { StatefulMenu } from '../menu/index.js';
+import { Button } from '../button/index';
+import { Drawer, ANCHOR } from '../drawer/index';
+import { getOverrides, mergeOverrides } from '../helpers/overrides';
+import ArrowLeft from '../icon/arrow-left';
+import MenuIcon from '../icon/menu';
+import { MenuAdapter, ListItemLabel, ARTWORK_SIZES } from '../list/index';
+import { StatefulMenu } from '../menu/index';
 
-import { StyledSideMenuButton, StyledUserMenuProfileListItem } from './styled-components.js';
-import type { AppNavBarPropsT } from './types.js';
-import UserProfileTile from './user-profile-tile.js';
-import { defaultMapItemToNode } from './utils.js';
+import { StyledSideMenuButton, StyledUserMenuProfileListItem } from './styled-components';
+import type { AppNavBarPropsT } from './types';
+import UserProfileTile from './user-profile-tile';
+import { defaultMapItemToNode } from './utils';
 
 const USER_TITLE_ITEM = 'USER_TITLE_ITEM';
 const USER_MENU_ITEM = 'USER_MENU_ITEM';

@@ -4,17 +4,16 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 import * as React from 'react';
-import { styled, withWrapper } from '../styles/index.js';
-import { OPTION_LIST_SIZE } from './constants.js';
+import { styled, withWrapper } from '../styles/index';
+import { OPTION_LIST_SIZE } from './constants';
 
 type StyledPropsT = {
-  $disabled?: boolean,
-  $isFocused?: boolean,
-  $isFocusVisible?: boolean,
-  $isHighlighted?: boolean,
-  $size?: $Keys<typeof OPTION_LIST_SIZE>,
+  $disabled?: boolean;
+  $isFocused?: boolean;
+  $isFocusVisible?: boolean;
+  $isHighlighted?: boolean;
+  $size?: keyof typeof OPTION_LIST_SIZE;
 };
 
 export const StyledList = styled<StyledPropsT>('ul', ({ $theme, $isFocusVisible }) => {

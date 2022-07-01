@@ -4,14 +4,12 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import React from 'react';
-import { columns, rows } from './data-table.scenario.js';
-import { DataTable } from '../index.js';
+import { columns, rows } from './data-table.scenario';
+import { DataTable } from '../index';
 
-import Alert from '../../icon/alert.js';
-import Check from '../../icon/check.js';
+import Alert from '../../icon/alert';
+import Check from '../../icon/check';
 
 const rowActions = [
   {

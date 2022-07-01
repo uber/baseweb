@@ -4,21 +4,20 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-import { DEFAULT_MONTHS } from '../constants.js';
+import { DEFAULT_MONTHS } from '../constants';
 
 export type OptionT = {
-  id: string,
-  label: string,
-  disabled?: boolean,
+  id: string;
+  label: string;
+  disabled?: boolean;
 };
 
 type GetMonthItemsArgsT = {
-  filterMonthsList: number[] | null,
-  formatMonthLabel: (number) => string,
+  filterMonthsList: number[] | null;
+  formatMonthLabel: (a: number) => string;
 };
 
-const getDefaultMonthItems = (formatMonthLabel: (number) => string) =>
+const getDefaultMonthItems = (formatMonthLabel: (a: number) => string) =>
   DEFAULT_MONTHS.map<OptionT>((month) => ({
     id: month.toString(),
     label: formatMonthLabel(month),

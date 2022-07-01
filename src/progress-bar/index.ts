@@ -4,10 +4,9 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-export { default as ProgressBar } from './progressbar.js';
-export { default as ProgressBarRounded } from './progressbar-rounded.js';
-export { SIZE } from './constants.js';
+export { default as ProgressBar } from './progressbar';
+export { default as ProgressBarRounded } from './progressbar-rounded';
+export { SIZE } from './constants';
 // Styled elements
 export {
   StyledRoot,
@@ -21,6 +20,6 @@ export {
   StyledProgressBarRoundedTrackBackground,
   StyledProgressBarRoundedTrackForeground,
   StyledProgressBarRoundedText,
-} from './styled-components.js';
+} from './styled-components';
 // Flow
-export type * from './types.js';
+export * from './types';

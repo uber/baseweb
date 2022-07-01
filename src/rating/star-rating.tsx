@@ -5,14 +5,14 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-// @flow
-
 import * as React from 'react';
-import type { StarRatingPropsT, RatingStateT } from './types.js';
-import { StyledRoot, StyledStar } from './styled-components.js';
-import { getOverrides } from '../helpers/overrides.js';
-import { ARROW_UP, ARROW_DOWN, ARROW_LEFT, ARROW_RIGHT } from './utils.js';
-import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible.js';
+import type { StarRatingPropsT, RatingStateT } from './types';
+import { StyledRoot, StyledStar } from './styled-components';
+import { getOverrides } from '../helpers/overrides';
+import { ARROW_UP, ARROW_DOWN, ARROW_LEFT, ARROW_RIGHT } from './utils';
+import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible';
+
+import type { SyntheticEvent } from 'react';
 
 class StarRating extends React.Component<StarRatingPropsT, RatingStateT> {
   static defaultProps = {
@@ -34,13 +34,13 @@ class StarRating extends React.Component<StarRatingPropsT, RatingStateT> {
     this.setState({ previewIndex });
   };
 
-  handleFocus = (event: SyntheticEvent<>) => {
+  handleFocus = (event: SyntheticEvent) => {
     if (isFocusVisible(event)) {
       this.setState({ isFocusVisible: true });
     }
   };
 
-  handleBlur = (event: SyntheticEvent<>) => {
+  handleBlur = (event: SyntheticEvent) => {
     if (this.state.isFocusVisible !== false) {
       this.setState({ isFocusVisible: false });
     }
@@ -63,7 +63,7 @@ class StarRating extends React.Component<StarRatingPropsT, RatingStateT> {
           role="radio"
           title="rating"
           // flowlint-next-line unclear-type:off
-          ref={(starRef: any)}
+          ref={starRef as any}
           tabIndex={isFocusable ? '0' : '-1'}
           aria-setsize={numItems}
           aria-checked={x <= value}

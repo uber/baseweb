@@ -4,12 +4,11 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 /* eslint-disable */
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 
-import Button from '../button.js';
+import Button from '../button';
 
 test('Clicking a button should work', () => {
   const onClick = jest.fn();

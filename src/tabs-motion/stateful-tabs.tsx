@@ -5,15 +5,13 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-// @flow
-
 import * as React from 'react';
-import { Tabs } from './tabs.js';
-import { STATE_CHANGE_TYPE } from './constants.js';
+import { Tabs } from './tabs';
+import { STATE_CHANGE_TYPE } from './constants';
 
-import type { StatefulTabsPropsT, StatefulTabsStateT, StatefulTabsReducerT } from './types.js';
+import type { StatefulTabsPropsT, StatefulTabsStateT, StatefulTabsReducerT } from './types';
 
-const getInitialState = (children: React.Node, initialState?: StatefulTabsStateT) => {
+const getInitialState = (children: React.ReactNode, initialState?: StatefulTabsStateT) => {
   if (initialState && initialState.activeKey) {
     return initialState;
   } else {

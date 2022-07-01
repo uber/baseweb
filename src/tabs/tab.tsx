@@ -4,15 +4,21 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 import * as React from 'react';
-import { getOverrides } from '../helpers/overrides.js';
-import { Tab as StyledTab } from './styled-components.js';
-import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible.js';
+import { getOverrides } from '../helpers/overrides';
+import { Tab as StyledTab } from './styled-components';
+import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible';
 
-import type { TabPropsT, SharedStylePropsArgT } from './types.js';
+import type { TabPropsT, SharedStylePropsArgT } from './types';
 
-class TabComponent extends React.Component<TabPropsT, { isFocusVisible: boolean }> {
+import type { SyntheticEvent } from 'react';
+
+class TabComponent extends React.Component<
+  TabPropsT,
+  {
+    isFocusVisible: boolean;
+  }
+> {
   static defaultProps = {
     disabled: false,
     expanded: false,
@@ -24,13 +30,13 @@ class TabComponent extends React.Component<TabPropsT, { isFocusVisible: boolean 
 
   state = { isFocusVisible: false };
 
-  handleFocus = (event: SyntheticEvent<>) => {
+  handleFocus = (event: SyntheticEvent) => {
     if (isFocusVisible(event)) {
       this.setState({ isFocusVisible: true });
     }
   };
 
-  handleBlur = (event: SyntheticEvent<>) => {
+  handleBlur = (event: SyntheticEvent) => {
     if (this.state.isFocusVisible !== false) {
       this.setState({ isFocusVisible: false });
     }

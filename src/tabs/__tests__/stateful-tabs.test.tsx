@@ -4,12 +4,11 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 import * as React from 'react';
 import { render, fireEvent, getByText, queryByText } from '@testing-library/react';
 
-import { StatefulTabs, Tab } from '../index.js';
-import { STATE_CHANGE_TYPE } from '../constants.js';
+import { StatefulTabs, Tab } from '../index';
+import { STATE_CHANGE_TYPE } from '../constants';
 
 describe('StatefulTabs', () => {
   const Component = (props) => (

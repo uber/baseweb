@@ -4,19 +4,17 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
-import { styled } from '../styles/index.js';
-import { getSvgStyles } from '../icon/styled-components.js';
-import { KIND, PLACEMENT, TYPE } from './constants.js';
+import { styled } from '../styles/index';
+import { getSvgStyles } from '../icon/styled-components';
+import { KIND, PLACEMENT, TYPE } from './constants';
 import {
   type SharedStylePropsArgT,
   type ToasterSharedStylePropsArgT,
   type KindTypeT,
   type NotificationTypeT,
   type PlacementTypeT,
-} from './types.js';
-import type { ThemeT } from '../styles/types.js';
+} from './types';
+import type { ThemeT } from '../styles/types';
 import type { StyleObject } from 'styletron-standard';
 
 function getBackgroundColor(kind: KindTypeT, type: NotificationTypeT, theme: ThemeT) {
@@ -99,7 +97,12 @@ export function getPlacement(placement: PlacementTypeT) {
 
 export const Root = styled<ToasterSharedStylePropsArgT>(
   'div',
-  ({ $placement, $theme }: ToasterSharedStylePropsArgT & { $theme: ThemeT }) => {
+  ({
+    $placement,
+    $theme,
+  }: ToasterSharedStylePropsArgT & {
+    $theme: ThemeT;
+  }) => {
     return {
       pointerEvents: 'none',
       position: 'fixed',
@@ -116,14 +119,22 @@ export const Root = styled<ToasterSharedStylePropsArgT>(
 );
 
 export const InnerContainer = styled<SharedStylePropsArgT>(
-  'div',
-  // eslint-disable-next-line no-empty-pattern
-  ({}: SharedStylePropsArgT & { $theme: ThemeT }) => ({})
+  'div', // eslint-disable-next-line no-empty-pattern
+  ({}: SharedStylePropsArgT & {
+    $theme: ThemeT;
+  }) => ({})
 );
 
 export const Body = styled<SharedStylePropsArgT>(
   'div',
-  ({ $isVisible, $kind, $type, $theme }: SharedStylePropsArgT & { $theme: ThemeT }) => {
+  ({
+    $isVisible,
+    $kind,
+    $type,
+    $theme,
+  }: SharedStylePropsArgT & {
+    $theme: ThemeT;
+  }) => {
     const isInline = $type === TYPE.inline;
     return {
       ...$theme.typography.font300,
@@ -153,11 +164,12 @@ export const Body = styled<SharedStylePropsArgT>(
   }
 );
 
-export const CloseIconSvg = styled<{
-  ...SharedStylePropsArgT,
-  $size: number | string,
-  $color: string,
-}>(
+export const CloseIconSvg = styled<
+  {
+    $size: number | string;
+    $color: string;
+  } & SharedStylePropsArgT
+>(
   'svg',
   ({
     $theme,
@@ -166,9 +178,9 @@ export const CloseIconSvg = styled<{
     $isFocusVisible,
   }: SharedStylePropsArgT & {
     // flowlint-next-line unclear-type:off
-    $size: any,
-    $color: string,
-    $theme: ThemeT,
+    $size: any;
+    $color: string;
+    $theme: ThemeT;
   }): StyleObject => ({
     ...getSvgStyles({ $theme, $size, $color }),
     cursor: 'pointer',

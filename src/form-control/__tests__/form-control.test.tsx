@@ -5,14 +5,13 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-// @flow
 import * as React from 'react';
 import { render, getByTestId, getByText, queryByText } from '@testing-library/react';
-import FormControl from '../form-control.js';
-import { Input } from '../../input/index.js';
-import { Textarea } from '../../textarea/index.js';
-import { Checkbox } from '../../checkbox/index.js';
-import { RadioGroup, Radio } from '../../radio/index.js';
+import FormControl from '../form-control';
+import { Input } from '../../input/index';
+import { Textarea } from '../../textarea/index';
+import { Checkbox } from '../../checkbox/index';
+import { RadioGroup, Radio } from '../../radio/index';
 
 describe('FormControl - Label and Caption for controls', () => {
   it('Renders label, caption, and error for the Input component', () => {

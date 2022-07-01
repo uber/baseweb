@@ -4,12 +4,10 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import React from 'react';
 
-import { Button, SIZE } from '../../button/index.js';
-import { StatefulButtonGroup, MODE } from '../index.js';
+import { Button, SIZE } from '../../button/index';
+import { StatefulButtonGroup, MODE } from '../index';
 
 export function Scenario() {
   return (

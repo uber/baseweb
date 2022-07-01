@@ -4,11 +4,10 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 import * as React from 'react';
 import { render, getByRole, getByText } from '@testing-library/react';
 
-import { ProgressBar } from '../index.js';
+import { ProgressBar } from '../index';
 
 describe('Stateless progress bar', function () {
   it('should render component', () => {

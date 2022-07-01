@@ -4,24 +4,22 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import React from 'react';
 import { format } from 'date-fns';
 
-import { Button } from '../../button/index.js';
-import { Heading, HeadingLevel } from '../../heading/index.js';
-import ChevronDown from '../../icon/chevron-down.js';
-import ChevronRight from '../../icon/chevron-right.js';
-import Overflow from '../../icon/overflow.js';
-import { StyledLink } from '../../link/index.js';
-import { StatefulMenu } from '../../menu/index.js';
-import { StatefulPopover, PLACEMENT } from '../../popover/index.js';
-import { styled, withStyle, useStyletron } from '../../styles/index.js';
-import { Tag } from '../../tag/index.js';
+import { Button } from '../../button/index';
+import { Heading, HeadingLevel } from '../../heading/index';
+import ChevronDown from '../../icon/chevron-down';
+import ChevronRight from '../../icon/chevron-right';
+import Overflow from '../../icon/overflow';
+import { StyledLink } from '../../link/index';
+import { StatefulMenu } from '../../menu/index';
+import { StatefulPopover, PLACEMENT } from '../../popover/index';
+import { styled, withStyle, useStyletron } from '../../styles/index';
+import { Tag } from '../../tag/index';
 
-import { StyledTable, StyledHeadCell, StyledBodyCell } from '../index.js';
-import { useCellNavigation } from './shared.js';
+import { StyledTable, StyledHeadCell, StyledBodyCell } from '../index';
+import { useCellNavigation } from './shared';
 
 type StatusT = 'running' | 'passed' | 'failed';
 type RowT = [string, StatusT, Date, string, string, string, TaskT[]];
@@ -184,11 +182,11 @@ const Truncate = styled('div', {
   whiteSpace: 'nowrap',
 });
 
-type RowPropsT = {|
-  getCellProps: (number) => {},
-  striped: boolean,
-  row: RowT,
-|};
+type RowPropsT = {
+  getCellProps: (a: number) => {};
+  striped: boolean;
+  row: RowT;
+};
 
 function Row(props: RowPropsT) {
   const [expanded, setExpanded] = React.useState(false);

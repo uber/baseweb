@@ -5,16 +5,14 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-// @flow
-
 /* global window */
 
 import * as React from 'react';
 import { useUID } from 'react-uid';
-import { useStyletron } from '../styles/index.js';
-import { getOverrides } from '../helpers/overrides.js';
-import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible.js';
-import { ORIENTATION, FILL } from './constants.js';
+import { useStyletron } from '../styles/index';
+import { getOverrides } from '../helpers/overrides';
+import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible';
+import { ORIENTATION, FILL } from './constants';
 import {
   StyledRoot,
   StyledTabList,
@@ -23,10 +21,12 @@ import {
   StyledTabHighlight,
   StyledTabBorder,
   StyledTabPanel,
-} from './styled-components.js';
-import { getTabId, getTabPanelId, isVertical, isHorizontal, isRTL } from './utils.js';
+} from './styled-components';
+import { getTabId, getTabPanelId, isVertical, isHorizontal, isRTL } from './utils';
 
-import type { TabsPropsT } from './types.js';
+import type { TabsPropsT } from './types';
+
+import type { SyntheticEvent } from 'react';
 
 const KEYBOARD_ACTION = {
   next: 'next',
@@ -349,13 +349,13 @@ function InternalTab({
 
   // Keyboard focus styling
   const [focusVisible, setFocusVisible] = React.useState(false);
-  const handleFocus = React.useCallback((event: SyntheticEvent<>) => {
+  const handleFocus = React.useCallback((event: SyntheticEvent) => {
     if (isFocusVisible(event)) {
       setFocusVisible(true);
     }
   }, []);
   const handleBlur = React.useCallback(
-    (event: SyntheticEvent<>) => {
+    (event: SyntheticEvent) => {
       if (focusVisible !== false) {
         setFocusVisible(false);
       }
@@ -381,7 +381,7 @@ function InternalTab({
     const currentTabIndex = availableTabs.indexOf(event.target);
     const action = parseKeyDown(event);
     if (action) {
-      let nextTab: ?HTMLButtonElement;
+      let nextTab: HTMLButtonElement | undefined | null;
       if (action === KEYBOARD_ACTION.previous) {
         if (availableTabs[currentTabIndex - 1]) {
           nextTab = availableTabs[currentTabIndex - 1];

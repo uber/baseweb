@@ -4,23 +4,22 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 /* eslint-disable cup/no-undef */
 import * as React from 'react';
 
-import { getOverrides, mergeOverrides } from '../helpers/overrides.js';
-import DeleteAlt from '../icon/delete-alt.js';
-import TriangleDownIcon from '../icon/triangle-down.js';
-import SearchIconComponent from '../icon/search.js';
-import { LocaleContext } from '../locale/index.js';
-import type { LocaleT } from '../locale/types.js';
-import { Popover, PLACEMENT } from '../popover/index.js';
+import { getOverrides, mergeOverrides } from '../helpers/overrides';
+import DeleteAlt from '../icon/delete-alt';
+import TriangleDownIcon from '../icon/triangle-down';
+import SearchIconComponent from '../icon/search';
+import { LocaleContext } from '../locale/index';
+import type { LocaleT } from '../locale/types';
+import { Popover, PLACEMENT } from '../popover/index';
 import { UIDConsumer } from 'react-uid';
 
-import AutosizeInput from './autosize-input.js';
-import { TYPE, STATE_CHANGE_TYPE, SIZE } from './constants.js';
-import defaultProps from './default-props.js';
-import SelectDropdown from './dropdown.js';
+import AutosizeInput from './autosize-input';
+import { TYPE, STATE_CHANGE_TYPE, SIZE } from './constants';
+import defaultProps from './default-props';
+import SelectDropdown from './dropdown';
 import {
   StyledRoot,
   StyledControlContainer,
@@ -30,9 +29,11 @@ import {
   StyledIconsContainer,
   StyledSearchIconContainer,
   StyledLoadingIndicator,
-} from './styled-components.js';
-import type { PropsT, SelectStateT, ValueT, OptionT, ChangeActionT, ReactRefT } from './types.js';
-import { expandValue, normalizeOptions } from './utils/index.js';
+} from './styled-components';
+import type { PropsT, SelectStateT, ValueT, OptionT, ChangeActionT, ReactRefT } from './types';
+import { expandValue, normalizeOptions } from './utils/index';
+
+import type { SyntheticEvent, ChangeEvent } from 'react';
 
 function Noop() {
   return null;
@@ -45,13 +46,13 @@ const isLeftClick = (event) =>
 const containsNode = (parent, child) => {
   if (__BROWSER__) {
     // flowlint-next-line unclear-type:off
-    return child && parent && parent.contains((child: any));
+    return child && parent && parent.contains(child as any);
   }
 };
 
 export function isInteractive(rootTarget: EventTarget, rootElement: Element) {
   if (rootTarget instanceof Element) {
-    let target: ?Element = rootTarget;
+    let target: Element | undefined | null = rootTarget;
     while (target && target !== rootElement) {
       const role = target.getAttribute('role');
       if (role === 'button' || role === 'link') {
@@ -72,7 +73,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
   // dropdown is a ref that refers to the popover element. This is required so that we can check if
   // clicks are on/off the dropdown element.
   dropdown: ReactRefT<HTMLElement> = React.createRef<HTMLElement>();
-  input: React.ElementRef<typeof HTMLInputElement>;
+  input: React.RefObject<typeof HTMLInputElement>;
   // dragging is a flag to track whether a mobile device is currently scrolling versus clicking.
   dragging: boolean;
   // focusAfterClear is a flag to indicate that the dropdowm menu should open after a selected
@@ -347,7 +348,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     }
   };
 
-  handleInputChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
+  handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     let newInputValue = event.target.value;
     this.setState({
       inputValue: newInputValue,
@@ -450,19 +451,19 @@ class Select extends React.Component<PropsT, SelectStateT> {
     {
       option,
     }: {
-      option: OptionT,
+      option: OptionT;
       optionState: {
-        $selected: boolean,
-        $disabled: boolean,
-        $isHighlighted: boolean,
-      },
+        $selected: boolean;
+        $disabled: boolean;
+        $isHighlighted: boolean;
+      };
     }
-  ): React.Node =>
+  ): React.ReactNode =>
     option.isCreatable
       ? `${locale.select.create} “${option[this.props.labelKey]}”`
       : option[this.props.labelKey];
 
-  getValueLabel = ({ option }: { option: OptionT }): React.Node => {
+  getValueLabel = ({ option }: { option: OptionT }): React.ReactNode => {
     return option[this.props.labelKey];
   };
 
@@ -477,7 +478,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     return value.map((value) => expandValue(value, this.props));
   }
 
-  setValue(value: ValueT, option: ?OptionT, type: ChangeActionT) {
+  setValue(value: ValueT, option: OptionT | undefined | null, type: ChangeActionT) {
     if (this.props.onChange) {
       this.props.onChange({
         value,
@@ -496,7 +497,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
   };
 
   //flowlint-next-line unclear-type:off
-  handleInputRef = (input: React.ElementRef<any>) => {
+  handleInputRef = (input: React.RefObject<any>) => {
     this.input = input;
 
     if (typeof this.props.inputRef === 'function') {
@@ -652,7 +653,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     valueArray: ValueT,
     isOpen: boolean,
     locale: LocaleT
-  ): ?React.Node | Array<?React.Node> {
+  ): React.ReactNode | undefined | null | Array<React.ReactNode | undefined | null> {
     const { overrides = {} } = this.props;
     const sharedProps = this.getSharedProps();
     const renderLabel = this.props.getValueLabel || this.getValueLabel;
@@ -868,7 +869,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     );
   }
 
-  filterOptions(excludeOptions: ?ValueT) {
+  filterOptions(excludeOptions?: ValueT | null) {
     const filterValue = this.state.inputValue.trim();
     // apply filter function
     if (this.props.filterOptions) {

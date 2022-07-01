@@ -4,19 +4,18 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-import { styled } from '../styles/index.js';
-import type { ThemeT, Font } from '../styles/types.js';
+import { styled } from '../styles/index';
+import type { ThemeT, Font } from '../styles/types';
 import type { StyleObject } from 'styletron-standard';
-import { ADJOINED, SIZE } from './constants.js';
-import type { SharedPropsT, SizeT } from './types.js';
-import type { SharedStylePropsT } from '../textarea/types.js';
-import DeleteAlt from '../icon/delete-alt.js';
+import { ADJOINED, SIZE } from './constants';
+import type { SharedPropsT, SizeT } from './types';
+import type { SharedStylePropsT } from '../textarea/types';
+import DeleteAlt from '../icon/delete-alt';
 
 export const StyledMaskToggleButton = styled<{
-  $size: SizeT,
-  $isFocusVisible: boolean,
-  $theme: ThemeT,
+  $size: SizeT;
+  $isFocusVisible: boolean;
+  $theme: ThemeT;
 }>('button', ({ $theme, $size, $isFocusVisible }) => {
   const pad = {
     [SIZE.mini]: $theme.sizing.scale400,
@@ -41,9 +40,9 @@ export const StyledMaskToggleButton = styled<{
 });
 
 export const StyledClearIconContainer = styled<{
-  $size: SizeT,
-  $alignTop: boolean,
-  $theme: ThemeT,
+  $size: SizeT;
+  $alignTop: boolean;
+  $theme: ThemeT;
 }>('div', ({ $alignTop = false, $size, $theme }) => {
   const pad = {
     [SIZE.mini]: $theme.sizing.scale200,
@@ -62,23 +61,25 @@ export const StyledClearIconContainer = styled<{
   };
 });
 
-export const StyledClearIcon = styled<typeof DeleteAlt, { $isFocusVisible: boolean }>(
-  DeleteAlt,
-  ({ $theme, $isFocusVisible }) => ({
-    cursor: 'pointer',
-    outline: $isFocusVisible ? `solid 3px ${$theme.colors.accent}` : 'none',
-  })
-);
+export const StyledClearIcon = styled<
+  typeof DeleteAlt,
+  {
+    $isFocusVisible: boolean;
+  }
+>(DeleteAlt, ({ $theme, $isFocusVisible }) => ({
+  cursor: 'pointer',
+  outline: $isFocusVisible ? `solid 3px ${$theme.colors.accent}` : 'none',
+}));
 
 function getInputPadding(
   size,
   sizing
-): {|
-  paddingTop: string,
-  paddingBottom: string,
-  paddingLeft: string,
-  paddingRight: string,
-|} {
+): {
+  paddingTop: string;
+  paddingBottom: string;
+  paddingLeft: string;
+  paddingRight: string;
+} {
   return {
     [SIZE.mini]: {
       paddingTop: sizing.scale100,
@@ -113,7 +114,10 @@ function getRootPadding(
   sizing,
   direction,
   hasIconTrailing
-): {| paddingLeft: string, paddingRight: string |} {
+): {
+  paddingLeft: string;
+  paddingRight: string;
+} {
   let ifLeftPad =
     adjoined === ADJOINED.both ||
     (adjoined === ADJOINED.left && direction !== 'rtl') ||
@@ -145,13 +149,13 @@ function getRootColors(
   $error,
   $positive = false,
   colors
-): {|
-  borderLeftColor: string,
-  borderRightColor: string,
-  borderTopColor: string,
-  borderBottomColor: string,
-  backgroundColor: string,
-|} {
+): {
+  borderLeftColor: string;
+  borderRightColor: string;
+  borderTopColor: string;
+  borderBottomColor: string;
+  backgroundColor: string;
+} {
   if ($disabled) {
     return {
       borderLeftColor: colors.inputFillDisabled,
@@ -201,12 +205,12 @@ function getRootColors(
   };
 }
 
-function getRootBorderRadius(radius): {|
-  borderTopLeftRadius: string,
-  borderBottomLeftRadius: string,
-  borderTopRightRadius: string,
-  borderBottomRightRadius: string,
-|} {
+function getRootBorderRadius(radius): {
+  borderTopLeftRadius: string;
+  borderBottomLeftRadius: string;
+  borderTopRightRadius: string;
+  borderBottomRightRadius: string;
+} {
   return {
     borderTopLeftRadius: radius,
     borderBottomLeftRadius: radius,
@@ -216,14 +220,14 @@ function getRootBorderRadius(radius): {|
 }
 
 export const getRootStyles = (props: {
-  $adjoined: $Keys<typeof ADJOINED>,
-  $isFocused: boolean,
-  $error: boolean,
-  $disabled: boolean,
-  $positive: boolean,
-  $size: SizeT,
-  $theme: ThemeT,
-  $hasIconTrailing: boolean,
+  $adjoined: keyof typeof ADJOINED;
+  $isFocused: boolean;
+  $error: boolean;
+  $disabled: boolean;
+  $positive: boolean;
+  $size: SizeT;
+  $theme: ThemeT;
+  $hasIconTrailing: boolean;
 }) => {
   const {
     $isFocused,
@@ -263,10 +267,11 @@ export const Root = styled<SharedPropsT>('div', getRootStyles);
 
 // InputEnhancer
 
-type InputEnhancerStyles = {|
-  paddingRight: string,
-  paddingLeft: string,
-|};
+type InputEnhancerStyles = {
+  paddingRight: string;
+  paddingLeft: string;
+};
+
 function getInputEnhancerPadding($size, sizing): InputEnhancerStyles {
   return {
     [SIZE.mini]: {
@@ -383,12 +388,12 @@ function getInputContainerColors($disabled, $isFocused, $error, $positive, color
 }
 
 export const getInputContainerStyles = (props: {
-  $isFocused: boolean,
-  $error: boolean,
-  $disabled: boolean,
-  $positive: boolean,
-  $size: SizeT,
-  $theme: ThemeT,
+  $isFocused: boolean;
+  $error: boolean;
+  $disabled: boolean;
+  $positive: boolean;
+  $size: SizeT;
+  $theme: ThemeT;
 }) => {
   const {
     $isFocused,
@@ -416,12 +421,14 @@ function getInputColors(
   $isFocused,
   $error,
   colors
-): {|
-  color: string,
-  '-webkit-text-fill-color'?: string,
-  caretColor: string,
-  '::placeholder': {| color: string |},
-|} {
+): {
+  color: string;
+  '-webkit-text-fill-color'?: string;
+  caretColor: string;
+  '::placeholder': {
+    color: string;
+  };
+} {
   if ($disabled) {
     return {
       color: colors.inputTextDisabled,
@@ -443,7 +450,13 @@ function getInputColors(
 }
 
 export const getInputStyles = (
-  props: (SharedPropsT & { $theme: ThemeT }) | (SharedStylePropsT & { $theme: ThemeT })
+  props:
+    | (SharedPropsT & {
+        $theme: ThemeT;
+      })
+    | (SharedStylePropsT & {
+        $theme: ThemeT;
+      })
 ): StyleObject => {
   const {
     $disabled,

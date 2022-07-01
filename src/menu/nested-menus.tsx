@@ -5,18 +5,17 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-// @flow
-
 import * as React from 'react';
 
-import type { NestedMenuRefT, NestedMenuContextT } from './types.js';
+import type { NestedMenuRefT, NestedMenuContextT } from './types';
 
 type StateT = {
-  nestedMenuHoverIndex: number,
-  menus: NestedMenuRefT[],
+  nestedMenuHoverIndex: number;
+  menus: NestedMenuRefT[];
 };
+
 type PropsT = {
-  children: React.Node,
+  children: React.ReactNode;
 };
 
 export const NestedMenuContext: React.Context<NestedMenuContextT> = React.createContext({
@@ -29,7 +28,7 @@ export const NestedMenuContext: React.Context<NestedMenuContextT> = React.create
   mountRef: { current: null },
 });
 
-function isSame(a: ?HTMLElement, b: ?HTMLElement) {
+function isSame(a?: HTMLElement | null, b?: HTMLElement | null) {
   if (!a || !b) {
     return false;
   }
@@ -39,7 +38,9 @@ function isSame(a: ?HTMLElement, b: ?HTMLElement) {
 
 export default class NestedMenus extends React.Component<PropsT, StateT> {
   state = { menus: [], nestedMenuHoverIndex: -1 };
-  mountRef = (React.createRef(): { current: HTMLElement | null });
+  mountRef = React.createRef() as {
+    current: HTMLElement | null;
+  };
   mouseLeaveTimeoueId = null;
 
   handleMenuMouseLeave = (event: MouseEvent) => {
@@ -100,12 +101,12 @@ export default class NestedMenus extends React.Component<PropsT, StateT> {
     return this.state.menus.findIndex((r) => isSame(r.current, ref.current));
   };
 
-  getParentMenu = (ref: NestedMenuRefT): ?NestedMenuRefT => {
+  getParentMenu = (ref: NestedMenuRefT): NestedMenuRefT | undefined | null => {
     const index = this.findMenuIndexByRef(ref) - 1;
     return this.state.menus[index];
   };
 
-  getChildMenu = (ref: NestedMenuRefT): ?NestedMenuRefT => {
+  getChildMenu = (ref: NestedMenuRefT): NestedMenuRefT | undefined | null => {
     const index = this.findMenuIndexByRef(ref) + 1;
     return this.state.menus[index];
   };

@@ -4,27 +4,28 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 /* global document */
 import * as React from 'react';
-import { getOverrides, mergeOverrides } from '../helpers/overrides.js';
-import DeleteIcon from '../icon/delete.js';
+import { getOverrides, mergeOverrides } from '../helpers/overrides';
+import DeleteIcon from '../icon/delete';
 import {
   Body as StyledBody,
   CloseIconSvg as StyledCloseIcon,
   InnerContainer as StyledInnerContainer,
-} from './styled-components.js';
-import { KIND, TYPE } from './constants.js';
-import { LocaleContext } from '../locale/index.js';
+} from './styled-components';
+import { KIND, TYPE } from './constants';
+import { LocaleContext } from '../locale/index';
 
 import type {
   ToastPropsT,
   ToastPropsShapeT,
   ToastPrivateStateT,
   SharedStylePropsArgT,
-} from './types.js';
-import type { OverridesT } from '../icon/index.js';
-import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible.js';
+} from './types';
+import type { OverridesT } from '../icon/index';
+import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible';
+
+import type { SyntheticEvent } from 'react';
 
 class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
   static defaultProps: ToastPropsShapeT = {
@@ -43,11 +44,16 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
     overrides: {},
   };
 
-  autoHideTimeout: ?TimeoutID;
-  animateInTimer: ?TimeoutID;
-  animateOutCompleteTimer: ?TimeoutID;
-  closeRef: ?{ current: ?mixed };
-  previouslyFocusedElement: ?HTMLElement;
+  autoHideTimeout: TimeoutID | undefined | null;
+  animateInTimer: TimeoutID | undefined | null;
+  animateOutCompleteTimer: TimeoutID | undefined | null;
+  closeRef:
+    | {
+        current: unknown | undefined | null;
+      }
+    | undefined
+    | null;
+  previouslyFocusedElement: HTMLElement | undefined | null;
 
   state = {
     isVisible: false,
@@ -92,13 +98,13 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
     this.clearTimeout();
   }
 
-  handleFocus = (event: SyntheticEvent<>) => {
+  handleFocus = (event: SyntheticEvent) => {
     if (isFocusVisible(event)) {
       this.setState({ isFocusVisible: true });
     }
   };
 
-  handleBlur = (event: SyntheticEvent<>) => {
+  handleBlur = (event: SyntheticEvent) => {
     if (this.state.isFocusVisible !== false) {
       this.setState({ isFocusVisible: false });
     }
@@ -128,7 +134,7 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
     }, 0);
   };
 
-  animateOut = (callback: () => mixed = () => {}) => {
+  animateOut = (callback: () => unknown = () => {}) => {
     this.setState({ isVisible: false });
     // Remove the toast from the DOM after animation finishes
     this.animateOutCompleteTimer = setTimeout(() => {
@@ -168,7 +174,7 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
     typeof this.props.onMouseLeave === 'function' && this.props.onMouseLeave(e);
   };
 
-  getSharedProps(): $Shape<SharedStylePropsArgT> {
+  getSharedProps(): Partial<SharedStylePropsArgT> {
     const { kind, notificationType, closeable } = this.props;
     const { isRendered, isVisible } = this.state;
     return {

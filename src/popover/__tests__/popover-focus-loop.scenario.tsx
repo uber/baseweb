@@ -4,10 +4,8 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
-import { StatefulPopover } from '../index.js';
+import { StatefulPopover } from '../index';
 
 // addresses https://github.com/uber/baseweb/issues/2685
 // infinite loop between focusing the content and the anchor element

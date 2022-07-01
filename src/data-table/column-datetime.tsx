@@ -4,8 +4,6 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 import format from 'date-fns/format/index.js';
 import getYear from 'date-fns/getYear/index.js';
@@ -17,9 +15,9 @@ import isBefore from 'date-fns/isBefore/index.js';
 import isEqual from 'date-fns/isEqual/index.js';
 import set from 'date-fns/set/index.js';
 
-import { Button, SIZE } from '../button/index.js';
-import { ButtonGroup, MODE } from '../button-group/index.js';
-import { Checkbox } from '../checkbox/index.js';
+import { Button, SIZE } from '../button/index';
+import { ButtonGroup, MODE } from '../button-group/index';
+import { Checkbox } from '../checkbox/index';
 import {
   applyDateToTime,
   applyTimeToDate,
@@ -28,24 +26,23 @@ import {
   getQuarterInLocale,
   getStartOfWeek,
   addDays,
-} from '../datepicker/utils/index.js';
-import { Datepicker } from '../datepicker/index.js';
-import { TimePicker } from '../timepicker/index.js';
-import { useStyletron } from '../styles/index.js';
-import { Select, type ValueT } from '../select/index.js';
+} from '../datepicker/utils/index';
+import { Datepicker } from '../datepicker/index';
+import { TimePicker } from '../timepicker/index';
+import { useStyletron } from '../styles/index';
+import { Select, type ValueT } from '../select/index';
 
-import Column from './column.js';
-import { COLUMNS, DATETIME_OPERATIONS } from './constants.js';
-import FilterShell from './filter-shell.js';
-import type { ColumnT, SharedColumnOptionsT } from './types.js';
-import { LocaleContext } from '../locale/index.js';
+import Column from './column';
+import { COLUMNS, DATETIME_OPERATIONS } from './constants';
+import FilterShell from './filter-shell';
+import type { ColumnT, SharedColumnOptionsT } from './types';
+import { LocaleContext } from '../locale/index';
 
-type OptionsT = {|
-  ...SharedColumnOptionsT<Date>,
-  formatString?: string,
+type OptionsT = {
+  formatString?: string;
   // flowlint-next-line unclear-type:off
-  locale?: any,
-|};
+  locale?: any;
+} & SharedColumnOptionsT<Date>;
 
 type DatetimeOperationsT =
   | typeof DATETIME_OPERATIONS.RANGE_DATETIME
@@ -57,13 +54,13 @@ type DatetimeOperationsT =
   | typeof DATETIME_OPERATIONS.HALF
   | typeof DATETIME_OPERATIONS.YEAR;
 
-type FilterParametersT = {|
-  operation: DatetimeOperationsT,
-  range: Date[],
-  selection: number[],
-  description: string,
-  exclude: boolean,
-|};
+type FilterParametersT = {
+  operation: DatetimeOperationsT;
+  range: Date[];
+  selection: number[];
+  description: string;
+  exclude: boolean;
+};
 
 type DatetimeColumnT = ColumnT<Date, FilterParametersT>;
 
@@ -254,7 +251,7 @@ function DatetimeFilter(props) {
       onApply={() => {
         if (isRange) {
           // flowlint-next-line unclear-type:off
-          const op: DatetimeOperationsT = (rangeOperator[0].id: any);
+          const op: DatetimeOperationsT = rangeOperator[0].id as any;
 
           let description = '';
           if (op === DATETIME_OPERATIONS.RANGE_DATETIME) {
@@ -282,7 +279,7 @@ function DatetimeFilter(props) {
 
         if (isCategorical) {
           // flowlint-next-line unclear-type:off
-          const op: DatetimeOperationsT = (categoricalOperator[0].id: any);
+          const op: DatetimeOperationsT = categoricalOperator[0].id as any;
 
           let selection: number[] = [];
           let operatorLocaleLabelKey = '';
@@ -363,7 +360,7 @@ function DatetimeFilter(props) {
               value={rangeOperator}
               onChange={(params) => setRangeOperator(params.value)}
               // flowlint-next-line unclear-type:off
-              mountNode={(mountNode.current: any)}
+              mountNode={mountNode.current as any}
               options={RANGE_OPERATIONS.map((op) => ({
                 label: locale.datatable[op.localeLabelKey],
                 id: op.id,
@@ -377,7 +374,7 @@ function DatetimeFilter(props) {
                 rangeOperator[0].id === DATETIME_OPERATIONS.RANGE_DATE) && (
                 <Datepicker
                   // flowlint-next-line unclear-type:off
-                  mountNode={(mountNode.current: any)}
+                  mountNode={mountNode.current as any}
                   value={rangeDates}
                   onChange={({ date }) => {
                     if (Array.isArray(date)) {
@@ -458,7 +455,7 @@ function DatetimeFilter(props) {
                 id: op.id,
               }))}
               // flowlint-next-line unclear-type:off
-              mountNode={(mountNode.current: any)}
+              mountNode={mountNode.current as any}
               size="compact"
               clearable={false}
             />

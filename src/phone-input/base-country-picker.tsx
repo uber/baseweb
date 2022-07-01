@@ -4,8 +4,6 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import React, { useState } from 'react';
 
 import {
@@ -15,14 +13,14 @@ import {
   StyledCountrySelectDropdownFlagColumn as DefaultFlagColumn,
   StyledCountrySelectDropdownNameColumn as DefaultNameColumn,
   StyledCountrySelectDropdownDialcodeColumn as DefaultDialcodeColumn,
-} from './styled-components.js';
-import { SingleSelect as DefaultSelect } from '../select/index.js';
-import { PLACEMENT } from '../popover/index.js';
-import { getOverrides, mergeOverrides } from '../helpers/overrides.js';
-import defaultProps from './default-props.js';
-import { iso2FlagEmoji } from './utils.js';
+} from './styled-components';
+import { SingleSelect as DefaultSelect } from '../select/index';
+import { PLACEMENT } from '../popover/index';
+import { getOverrides, mergeOverrides } from '../helpers/overrides';
+import defaultProps from './default-props';
+import { iso2FlagEmoji } from './utils';
 
-import type { CountryT, CountrySelectPropsT } from './types.js';
+import type { CountryT, CountrySelectPropsT } from './types';
 
 CountryPicker.defaultProps = {
   disabled: defaultProps.disabled,

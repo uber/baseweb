@@ -4,13 +4,12 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 /* eslint-env browser */
 
 import * as React from 'react';
 import { render } from '@testing-library/react';
-import { Icon } from '../index.js';
-import * as Icons from '../icon-exports.js';
+import { Icon } from '../index';
+import * as Icons from '../icon-exports';
 
 describe('Icon', () => {
   it('renders an icon with viewBox and title', () => {

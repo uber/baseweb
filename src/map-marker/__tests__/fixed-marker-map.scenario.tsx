@@ -4,26 +4,24 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
-import { FixedMarker } from '../index.js';
-import { Checkbox, LABEL_PLACEMENT } from '../../checkbox/index.js';
+import { FixedMarker } from '../index';
+import { Checkbox, LABEL_PLACEMENT } from '../../checkbox/index';
 import {
   PINHEAD_SIZES_SHAPES,
   NEEDLE_SIZES,
   BADGE_ENHANCER_SIZES,
   LABEL_ENHANCER_POSITIONS,
-} from '../constants.js';
-import TileGrid from './tile-grid.js';
-import { Input } from '../../input/index.js';
-import Upload from '../../icon/upload.js';
-import Search from '../../icon/search.js';
-import { Select } from '../../select/index.js';
+} from '../constants';
+import TileGrid from './tile-grid';
+import { Input } from '../../input/index';
+import Upload from '../../icon/upload';
+import Search from '../../icon/search';
+import { Select } from '../../select/index';
 import ReactMapGL, { Marker } from 'react-map-gl';
-import { Button } from '../../button/index.js';
-import { useStyletron } from '../../styles/index.js';
-import { getMapStyle } from './map-style.js';
+import { Button } from '../../button/index';
+import { useStyletron } from '../../styles/index';
+import { getMapStyle } from './map-style';
 
 const uberHq = {
   latitude: 37.768495131168336,

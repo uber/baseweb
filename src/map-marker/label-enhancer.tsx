@@ -4,16 +4,15 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 import * as React from 'react';
-import { getOverrides } from '../helpers/overrides.js';
+import { getOverrides } from '../helpers/overrides';
 import {
   RelativeContainer,
   StyledStrokedLabel,
   StyledStrokedLabelContainer,
-} from './styled-components.js';
-import { LABEL_ENHANCER_POSITIONS } from './constants.js';
-import type { LabelEhancerComponentT } from './types.js';
+} from './styled-components';
+import { LABEL_ENHANCER_POSITIONS } from './constants';
+import type { LabelEhancerComponentT } from './types';
 
 const LabelEnhancer = ({
   labelEnhancerContent,

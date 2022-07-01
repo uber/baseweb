@@ -4,15 +4,14 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-import { styled } from '../styles/index.js';
-import type { PlacementT, ColorT, ShapeT, RoleT, HierarchyT } from './types.js';
-import { COLOR, SHAPE, ROLE, PLACEMENT, HIERARCHY } from './constants.js';
+import { styled } from '../styles/index';
+import type { PlacementT, ColorT, ShapeT, RoleT, HierarchyT } from './types';
+import { COLOR, SHAPE, ROLE, PLACEMENT, HIERARCHY } from './constants';
 
-function getColorStyles({ $theme, $hierarchy, $color }): {|
-  color: string,
-  backgroundColor: string,
-|} {
+function getColorStyles({ $theme, $hierarchy, $color }): {
+  color: string;
+  backgroundColor: string;
+} {
   const COLOR_STYLES = {
     [HIERARCHY.primary]: {
       [COLOR.accent]: {
@@ -223,10 +222,10 @@ const RIGHT_PLACEMENTS = [
 ];
 
 export const StyledPositioner = styled<{
-  $role: RoleT,
-  $placement: PlacementT,
-  $horizontalOffset?: ?string,
-  $verticalOffset?: ?string,
+  $role: RoleT;
+  $placement: PlacementT;
+  $horizontalOffset?: string | null;
+  $verticalOffset?: string | null;
 }>('div', ({ $theme, $role, $placement, $horizontalOffset, $verticalOffset }) => {
   let positionStyle = POSITION_STYLES[$role][$placement];
 
@@ -256,10 +255,10 @@ export const StyledPositioner = styled<{
 });
 
 export const StyledBadge = styled<{
-  $shape?: ShapeT,
-  $color?: ColorT,
-  $hierarchy?: HierarchyT,
-  $hidden?: boolean,
+  $shape?: ShapeT;
+  $color?: ColorT;
+  $hierarchy?: HierarchyT;
+  $hidden?: boolean;
 }>(
   'div',
   ({
@@ -288,8 +287,8 @@ export const StyledBadge = styled<{
 );
 
 export const StyledNotificationCircle = styled<{
-  $color?: ColorT,
-  $hidden?: boolean,
+  $color?: ColorT;
+  $hidden?: boolean;
 }>('div', ({ $theme, $color = COLOR.accent, $hidden }) => {
   return {
     visibility: $hidden ? 'hidden' : 'inherit',
@@ -304,18 +303,18 @@ export const StyledNotificationCircle = styled<{
   };
 });
 
-export const StyledHintDot = styled<{ $color: ColorT, $hidden?: boolean }>(
-  'div',
-  ({ $theme, $color = COLOR.accent, $hidden }) => {
-    return {
-      visibility: $hidden ? 'hidden' : 'inherit',
-      backgroundColor: $theme.colors[$color],
-      boxSizing: 'content-box',
-      height: '8px',
-      width: '8px',
-      borderRadius: '50%',
-      border: `4px solid ${$theme.colors.backgroundPrimary}`,
-      ...getColorStyles({ $theme, $hierarchy: HIERARCHY.primary, $color }),
-    };
-  }
-);
+export const StyledHintDot = styled<{
+  $color: ColorT;
+  $hidden?: boolean;
+}>('div', ({ $theme, $color = COLOR.accent, $hidden }) => {
+  return {
+    visibility: $hidden ? 'hidden' : 'inherit',
+    backgroundColor: $theme.colors[$color],
+    boxSizing: 'content-box',
+    height: '8px',
+    width: '8px',
+    borderRadius: '50%',
+    border: `4px solid ${$theme.colors.backgroundPrimary}`,
+    ...getColorStyles({ $theme, $hierarchy: HIERARCHY.primary, $color }),
+  };
+});

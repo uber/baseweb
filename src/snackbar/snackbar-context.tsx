@@ -5,23 +5,21 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-// @flow
-
 import * as React from 'react';
 
-import { Layer } from '../layer/index.js';
-import { getOverrides } from '../helpers/overrides.js';
-import { useStyletron } from '../styles/index.js';
+import { Layer } from '../layer/index';
+import { getOverrides } from '../helpers/overrides';
+import { useStyletron } from '../styles/index';
 
-import { DURATION, PLACEMENT } from './constants.js';
-import SnackbarElement from './snackbar-element.js';
-import { StyledPlacementContainer } from './styled-components.js';
-import type { SnackbarElementPropsT, SnackbarProviderPropsT, DurationT } from './types.js';
+import { DURATION, PLACEMENT } from './constants';
+import SnackbarElement from './snackbar-element';
+import { StyledPlacementContainer } from './styled-components';
+import type { SnackbarElementPropsT, SnackbarProviderPropsT, DurationT } from './types';
 
-type ContextT = {|
-  enqueue: (elementProps: SnackbarElementPropsT, duration?: DurationT) => void,
-  dequeue: () => void,
-|};
+type ContextT = {
+  enqueue: (elementProps: SnackbarElementPropsT, duration?: DurationT) => void;
+  dequeue: () => void;
+};
 
 function fallbackHandler() {
   if (__DEV__) {

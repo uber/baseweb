@@ -4,10 +4,9 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 /* flowlint unclear-type:off */
 
-import { ARROW_SIZE } from '../constants.js';
+import { ARROW_SIZE } from '../constants';
 import {
   capitalize,
   fromPopperPlacement,
@@ -18,7 +17,7 @@ import {
   getStartPosition,
   isVerticalPosition,
   splitPlacement,
-} from '../utils.js';
+} from '../utils';
 
 describe('Popover utils', () => {
   describe('getOppositePosition', () => {
@@ -60,10 +59,10 @@ describe('Popover utils', () => {
       expect(splitPlacement('top')).toEqual(['top']);
       expect(splitPlacement('topLeft')).toEqual(['top', 'left']);
       expect(splitPlacement('auto')).toEqual(['auto']);
-      expect(splitPlacement(('': any))).toEqual([]);
+      expect(splitPlacement('' as any)).toEqual([]);
     });
     test('splitPlacement should handle empty input', () => {
-      expect(splitPlacement(('': any))).toEqual([]);
+      expect(splitPlacement('' as any)).toEqual([]);
     });
   });
 

@@ -4,11 +4,9 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 import { List, AutoSizer } from 'react-virtualized';
-import defaultProps from './default-props.js';
+import defaultProps from './default-props';
 import {
   StyledFlagContainer,
   StyledCountrySelectDropdownContainer as DefaultContainer,
@@ -16,14 +14,14 @@ import {
   StyledCountrySelectDropdownFlagColumn as DefaultFlagColumn,
   StyledCountrySelectDropdownNameColumn as DefaultNameColumn,
   StyledCountrySelectDropdownDialcodeColumn as DefaultDialcodeColumn,
-} from './styled-components.js';
-import { LocaleContext } from '../locale/index.js';
-import { StyledEmptyState } from '../menu/styled-components.js';
-import { getOverrides } from '../helpers/overrides.js';
-import { iso2FlagEmoji } from './utils.js';
+} from './styled-components';
+import { LocaleContext } from '../locale/index';
+import { StyledEmptyState } from '../menu/styled-components';
+import { getOverrides } from '../helpers/overrides';
+import { iso2FlagEmoji } from './utils';
 
-import type { CountrySelectDropdownPropsT, ReactRefT } from './types.js';
-import type { LocaleT } from '../locale/types.js';
+import type { CountrySelectDropdownPropsT, ReactRefT } from './types';
+import type { LocaleT } from '../locale/types';
 
 CountrySelectDropdown.defaultProps = {
   maxDropdownHeight: defaultProps.maxDropdownHeight,
@@ -32,7 +30,7 @@ CountrySelectDropdown.defaultProps = {
 
 function CountrySelectDropdown(
   props: CountrySelectDropdownPropsT & {
-    $forwardedRef: ReactRefT<HTMLElement> | ((null | HTMLElement) => mixed),
+    $forwardedRef: ReactRefT<HTMLElement> | ((a: null | HTMLElement) => unknown);
   }
 ) {
   const {
@@ -131,7 +129,7 @@ function CountrySelectDropdown(
   );
 }
 
-const CountrySelectDropdownFwd = React.forwardRef<CountrySelectDropdownPropsT, HTMLElement>(
+const CountrySelectDropdownFwd = React.forwardRef<HTMLElement, CountrySelectDropdownPropsT>(
   (props, ref) => <CountrySelectDropdown {...props} $forwardedRef={ref} />
 );
 CountrySelectDropdownFwd.displayName = 'CountrySelectDropdownFwd';

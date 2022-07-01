@@ -4,42 +4,39 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 
-import { Button, SIZE } from '../button/index.js';
-import { ButtonGroup, MODE } from '../button-group/index.js';
-import { Input, SIZE as INPUT_SIZE } from '../input/index.js';
-import { useStyletron } from '../styles/index.js';
+import { Button, SIZE } from '../button/index';
+import { ButtonGroup, MODE } from '../button-group/index';
+import { Input, SIZE as INPUT_SIZE } from '../input/index';
+import { useStyletron } from '../styles/index';
 
-import Column from './column.js';
-import { COLUMNS, NUMERICAL_FORMATS, MAX_BIN_COUNT, HISTOGRAM_SIZE } from './constants.js';
-import FilterShell, { type ExcludeKind } from './filter-shell.js';
-import type { ColumnT, SharedColumnOptionsT } from './types.js';
-import { LocaleContext } from '../locale/index.js';
+import Column from './column';
+import { COLUMNS, NUMERICAL_FORMATS, MAX_BIN_COUNT, HISTOGRAM_SIZE } from './constants';
+import FilterShell, { type ExcludeKind } from './filter-shell';
+import type { ColumnT, SharedColumnOptionsT } from './types';
+import { LocaleContext } from '../locale/index';
 import { bin, max as maxFunc, extent, scaleLinear, median, bisector } from 'd3';
-import { Slider } from '../slider/index.js';
+import { Slider } from '../slider/index';
 
 type NumericalFormats =
   | typeof NUMERICAL_FORMATS.DEFAULT
   | typeof NUMERICAL_FORMATS.ACCOUNTING
   | typeof NUMERICAL_FORMATS.PERCENTAGE;
 
-type OptionsT = {|
-  ...SharedColumnOptionsT<number>,
-  format?: NumericalFormats | ((value: number) => string),
-  highlight?: (number) => boolean,
-  precision?: number,
-|};
+type OptionsT = {
+  format?: NumericalFormats | ((value: number) => string);
+  highlight?: (a: number) => boolean;
+  precision?: number;
+} & SharedColumnOptionsT<number>;
 
-type FilterParametersT = {|
-  lowerValue: number,
-  upperValue: number,
-  description: string,
-  exclude: boolean,
-  excludeKind: ExcludeKind,
-|};
+type FilterParametersT = {
+  lowerValue: number;
+  upperValue: number;
+  description: string;
+  exclude: boolean;
+  excludeKind: ExcludeKind;
+};
 
 type NumericalColumnT = ColumnT<number, FilterParametersT>;
 
@@ -458,7 +455,7 @@ const defaultOptions = {
   sortable: true,
   filterable: true,
   format: NUMERICAL_FORMATS.DEFAULT,
-  highlight: ((n) => false: (number) => boolean),
+  highlight: ((n) => false) as (a: number) => boolean,
   precision: 0,
 };
 
@@ -479,7 +476,7 @@ function NumericalColumn(options: OptionsT): NumericalColumnT {
     normalizedOptions.format === NUMERICAL_FORMATS.ACCOUNTING &&
     (options.highlight === null || options.highlight === undefined)
   ) {
-    normalizedOptions.highlight = (n: number) => (n < 0: boolean);
+    normalizedOptions.highlight = (n: number) => (n < 0) as boolean;
   }
 
   return Column({

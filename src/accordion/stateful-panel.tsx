@@ -4,11 +4,10 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 import * as React from 'react';
-import StatefulContainer from './stateful-panel-container.js';
-import Panel from './panel.js';
-import type { StatefulPanelPropsT } from './types.js';
+import StatefulContainer from './stateful-panel-container';
+import Panel from './panel';
+import type { StatefulPanelPropsT } from './types';
 
 export default function StatefulPanel(props: StatefulPanelPropsT) {
   const { children, ...restProps } = props;

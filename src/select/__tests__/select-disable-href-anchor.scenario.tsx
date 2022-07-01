@@ -4,11 +4,9 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import React from 'react';
 
-import { StatefulSelect } from '../index.js';
+import { StatefulSelect } from '../index';
 
 // Menu component will render items with an href prop as an anchor.
 // This does not make sense for Select, so ensure that it does not work.

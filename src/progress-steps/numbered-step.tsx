@@ -5,10 +5,8 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-// @flow
-
 import * as React from 'react';
-import { getOverrides } from '../helpers/overrides.js';
+import { getOverrides } from '../helpers/overrides';
 import {
   StyledNumberStep,
   StyledNumberIcon,
@@ -16,10 +14,10 @@ import {
   StyledContentTitle,
   StyledNumberContentTail,
   StyledContentDescription,
-} from './styled-components.js';
-import Check from '../icon/check.js';
+} from './styled-components';
+import Check from '../icon/check';
 
-import type { NumberedStepPropsT } from './types.js';
+import type { NumberedStepPropsT } from './types';
 
 function NumberedStep({
   overrides = {},

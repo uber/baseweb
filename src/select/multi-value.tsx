@@ -4,10 +4,9 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 import * as React from 'react';
-import { getOverrides } from '../helpers/overrides.js';
-import { Tag, VARIANT as TAG_VARIANT } from '../tag/index.js';
+import { getOverrides } from '../helpers/overrides';
+import { Tag, VARIANT as TAG_VARIANT } from '../tag/index';
 
 // flowlint-next-line unclear-type:off
 export default function MultiValue(props: any) {

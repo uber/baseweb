@@ -4,17 +4,15 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 import Dropzone from 'react-dropzone';
 
-import { LocaleContext } from '../locale/index.js';
-import { useStyletron } from '../styles/index.js';
-import { Button, KIND, SHAPE, SIZE as BUTTON_SIZE } from '../button/index.js';
-import { getOverrides } from '../helpers/overrides.js';
-import { ProgressBar } from '../progress-bar/index.js';
-import { Spinner, SIZE as SPINNER_SIZE } from '../spinner/index.js';
+import { LocaleContext } from '../locale/index';
+import { useStyletron } from '../styles/index';
+import { Button, KIND, SHAPE, SIZE as BUTTON_SIZE } from '../button/index';
+import { getOverrides } from '../helpers/overrides';
+import { ProgressBar } from '../progress-bar/index';
+import { Spinner, SIZE as SPINNER_SIZE } from '../spinner/index';
 
 import {
   StyledRoot,
@@ -23,8 +21,10 @@ import {
   StyledContentSeparator,
   StyledErrorMessage,
   StyledHiddenInput,
-} from './styled-components.js';
-import type { PropsT } from './types.js';
+} from './styled-components';
+import type { PropsT } from './types';
+
+import type { SyntheticEvent } from 'react';
 
 function prependStyleProps(styleProps) {
   return Object.keys(styleProps).reduce((nextStyleProps, currentKey) => {
@@ -84,8 +84,8 @@ function FileUploader(props: PropsT) {
         });
 
         const getRootPropsArgs: {
-          onClick?: (SyntheticEvent<HTMLElement>) => void,
-          tabIndex: string,
+          onClick?: (a: SyntheticEvent<HTMLElement>) => void;
+          tabIndex: string;
         } = {
           ...(props.disableClick ? { onClick: (evt) => evt.preventDefault() } : {}),
           tabIndex: '-1',

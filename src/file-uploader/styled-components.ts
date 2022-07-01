@@ -4,17 +4,15 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
-import { styled } from '../styles/index.js';
-import type { StylePropsT } from './types.js';
+import { styled } from '../styles/index';
+import type { StylePropsT } from './types';
 
 export const StyledFileDragAndDrop = styled<StylePropsT>('div', (props) => {
   const borderColor = props.$isDragActive
     ? props.$theme.colors.borderAccent
     : props.$theme.colors.fileUploaderBorderColorDefault;
   const borderStyle = props.$afterFileDrop ? 'none' : 'dashed';
-  return ({
+  return {
     alignItems: 'center',
     backgroundColor: props.$isDragActive
       ? props.$theme.colors.backgroundLightAccent
@@ -46,7 +44,7 @@ export const StyledFileDragAndDrop = styled<StylePropsT>('div', (props) => {
       : props.$theme.sizing.scale900,
     paddingLeft: props.$theme.sizing.scale800,
     width: '100%',
-  }: {});
+  } as {};
 });
 
 export const StyledContentMessage = styled<StylePropsT>(
@@ -61,7 +59,7 @@ export const StyledContentMessage = styled<StylePropsT>(
         : null,
       marginTop: $afterFileDrop ? $theme.sizing.scale100 : null,
       marginBottom: $afterFileDrop ? $theme.sizing.scale100 : null,
-    }: {})
+    } as {})
 );
 
 export const StyledContentSeparator = StyledContentMessage;
@@ -74,7 +72,7 @@ export const StyledErrorMessage = styled<StylePropsT>(
       color: props.$theme.colors.negative,
       marginTop: props.$afterFileDrop ? props.$theme.sizing.scale100 : null,
       marginBottom: props.$afterFileDrop ? props.$theme.sizing.scale100 : null,
-    }: {})
+    } as {})
 );
 
 export const StyledRoot = styled<StylePropsT>('div', (props) => ({

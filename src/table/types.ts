@@ -4,73 +4,71 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 
-import { SORT_DIRECTION } from './constants.js';
-import type { OverrideT } from '../helpers/overrides.js';
+import { SORT_DIRECTION } from './constants';
+import type { OverrideT } from '../helpers/overrides';
 
-export type SortDirectionT = ?$Keys<typeof SORT_DIRECTION>;
+export type SortDirectionT = keyof typeof SORT_DIRECTION | undefined | null;
 
-export type HeadCellPropsT = {|
+export type HeadCellPropsT = {
   /** Aria label applied to the sort button. */
-  ariaLabel?: string,
-  'aria-label'?: string,
+  ariaLabel?: string;
+  'aria-label'?: string;
   /** Additional content to fill head cell. Most likely used for a filter button. */
-  children?: React.Node,
+  children?: React.ReactNode;
   /** Visually indicates sort direction. Displays a chevron next to column title. */
-  direction: SortDirectionT,
+  direction: SortDirectionT;
   /** Disabled click-to-sort. Renders column title in muted color. */
-  disabled?: boolean,
+  disabled?: boolean;
   /** Callback for when column title is clicked to trigger sort. */
-  onSort?: () => mixed,
+  onSort?: () => unknown;
   overrides?: {
-    HeadCell?: OverrideT,
-    SortableLabel?: OverrideT,
-  },
+    HeadCell?: OverrideT;
+    SortableLabel?: OverrideT;
+  };
   /** Column title. */
-  title: React.Node,
+  title: React.ReactNode;
   /** FillClickTarget enable click to sort on whitespace in a header cell. */
-  fillClickTarget?: boolean,
-|};
+  fillClickTarget?: boolean;
+};
 
-export type TablePropsT = {|
+export type TablePropsT = {
   /** Table columns. Data passed to each header cell. */
-  columns: Array<string | React.Node>,
+  columns: Array<string | React.ReactNode>;
   /** Table rows. Data passed to each row and cell */
-  data: Array<Array<React.Node>>,
+  data: Array<Array<React.ReactNode>>;
   /** Table width fills this provided value. */
-  horizontalScrollWidth?: string,
+  horizontalScrollWidth?: string;
   /** Renders the table in a loading state. Not implemented, yet. */
-  isLoading?: boolean,
-|};
+  isLoading?: boolean;
+};
 
-export type FilterProps = {|
+export type FilterProps = {
   /** Displays the filter icon in an active state. */
-  active?: boolean,
+  active?: boolean;
   /** Arbitrary content to display in the filter popover. You will likely want to add checkboxes
    * or similar inputs to control filtering.
    */
-  children: React.Node,
+  children: React.ReactNode;
   /** Disables the icon click action. Filter menu does not open when clicked. */
-  disabled?: boolean,
+  disabled?: boolean;
   /** Adds a button to close the filter menu. */
-  hasCloseButton?: boolean,
+  hasCloseButton?: boolean;
   /** Callback for when the filter closes. */
-  onClose?: () => mixed,
+  onClose?: () => unknown;
   /** Callback for when the filter opens. */
-  onOpen?: () => mixed,
+  onOpen?: () => unknown;
   /** Callback for when the 'reset' button is clicked. */
-  onReset?: () => mixed,
+  onReset?: () => unknown;
   /** Callback for when the 'select all' button is clicked. */
-  onSelectAll?: () => mixed,
+  onSelectAll?: () => unknown;
   overrides?: {
-    MenuButton?: OverrideT,
-    Content?: OverrideT,
-    Heading?: OverrideT,
-    Footer?: OverrideT,
-  },
+    MenuButton?: OverrideT;
+    Content?: OverrideT;
+    Heading?: OverrideT;
+    Footer?: OverrideT;
+  };
   /** Determines whether focus is returned to Filter menu button. */
-  returnFocus?: boolean,
-|};
+  returnFocus?: boolean;
+};

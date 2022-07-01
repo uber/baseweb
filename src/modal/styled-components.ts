@@ -4,16 +4,16 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-import { styled } from '../styles/index.js';
-import { SIZE, SIZE_WIDTHS } from './constants.js';
-import type { SharedStylePropsArgT, SizePropT } from './types.js';
+import { styled } from '../styles/index';
+import { SIZE, SIZE_WIDTHS } from './constants';
+import type { SharedStylePropsArgT, SizePropT } from './types';
 
-type SizeStyleT = {|
-  maxWidth: string | number,
-  width?: ?(string | number),
-  alignSelf?: string,
-|};
+type SizeStyleT = {
+  maxWidth: string | number;
+  width?: string | number | null;
+  alignSelf?: string;
+};
+
 function getSizeStyles($size: SizePropT): SizeStyleT {
   const styles: SizeStyleT = {
     maxWidth: '100%',
@@ -73,7 +73,7 @@ export const DialogContainer = styled<SharedStylePropsArgT>('div', (props) => {
 
 export const Dialog = styled<SharedStylePropsArgT>('div', (props) => {
   const { $animate, $isOpen, $isVisible, $size, $theme } = props;
-  return ({
+  return {
     position: 'relative',
     backgroundColor: $theme.colors.backgroundPrimary,
     borderTopLeftRadius: $theme.borders.radius500,
@@ -104,7 +104,7 @@ export const Dialog = styled<SharedStylePropsArgT>('div', (props) => {
     ':focus': {
       outline: 'none',
     },
-  }: {});
+  } as {};
 });
 
 export const Close = styled<SharedStylePropsArgT>('button', (props) => {

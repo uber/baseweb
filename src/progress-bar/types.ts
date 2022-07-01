@@ -4,76 +4,75 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 import * as React from 'react';
-import type { OverrideT } from '../helpers/overrides.js';
-import { SIZE } from './constants.js';
+import type { OverrideT } from '../helpers/overrides';
+import { SIZE } from './constants';
 
-export type SizeT = $Keys<typeof SIZE>;
+export type SizeT = keyof typeof SIZE;
 
 export type OverridesT = {
-  Root?: OverrideT,
-  BarContainer?: OverrideT,
-  Bar?: OverrideT,
-  BarProgress?: OverrideT,
-  InfiniteBar?: OverrideT,
-  Label?: OverrideT,
+  Root?: OverrideT;
+  BarContainer?: OverrideT;
+  Bar?: OverrideT;
+  BarProgress?: OverrideT;
+  InfiniteBar?: OverrideT;
+  Label?: OverrideT;
 };
 
 export type ProgressBarPropsT = {
   /** The accessible label for the progress bar (getProgressLabel will be used if not provided) */
-  ariaLabel?: string,
-  'aria-label'?: string,
-  children?: React.Node,
+  ariaLabel?: string;
+  'aria-label'?: string;
+  children?: React.ReactNode;
   /** Error message for screen-reader users**/
-  errorMessage?: string,
+  errorMessage?: string;
   /** The function that returns a progress bar label to display. */
-  getProgressLabel: (value: number, maxValue: number, minValue: number) => React.Node,
+  getProgressLabel: (value: number, maxValue: number, minValue: number) => React.ReactNode;
   /** If set to true, there’s and infinite loading animation. */
-  infinite: boolean,
-  overrides?: OverridesT,
+  infinite: boolean;
+  overrides?: OverridesT;
   /** If set to false, label is hidden and `getProgressLabel` is ignored. */
-  showLabel: boolean,
+  showLabel: boolean;
   /** Defines the size (thickness) of the progress bar. */
-  size: SizeT,
+  size: SizeT;
   /** Renders a sectional progress bar. Value should be set to a positive number larger than one. */
-  steps: number,
+  steps: number;
   /** A custom completion value. Should be replaced by maxValue prop. */
-  successValue: number,
+  successValue: number;
   /** Maximum possible value. */
-  maxValue: number,
+  maxValue: number;
   /** Minimum possible value. */
-  minValue: number,
+  minValue: number;
   /** The value between `0` and `100 | successValue` of the progress indicator. */
-  value: number,
+  value: number;
 };
 
 export type StylePropsT = {
-  $infinite: boolean,
-  $index: number,
-  $size: SizeT,
-  $steps: number,
-  $successValue: number,
-  $minValue: number,
-  $maxValue: number,
-  $value: number,
+  $infinite: boolean;
+  $index: number;
+  $size: SizeT;
+  $steps: number;
+  $successValue: number;
+  $minValue: number;
+  $maxValue: number;
+  $value: number;
 };
 
 export type ProgressBarRoundedPropsT = {
   /** A number between 0 and 1 inclusive. Example: 0.75. */
-  progress?: number,
+  progress?: number;
   /** The size of the progress bar. */
-  size?: SizeT,
+  size?: SizeT;
   /** Toggle animating progress. */
-  animate?: boolean,
+  animate?: boolean;
   /** Toggle container rendering as a block or inline. */
-  inline?: boolean,
+  inline?: boolean;
   /** Overrides for sub-nodes in the rendering tree. */
   overrides?: {
-    Root?: OverrideT,
-    Svg?: OverrideT,
-    TrackBackground?: OverrideT,
-    TrackForeground?: OverrideT,
-    Text?: OverrideT,
-  },
+    Root?: OverrideT;
+    Svg?: OverrideT;
+    TrackBackground?: OverrideT;
+    TrackForeground?: OverrideT;
+    Text?: OverrideT;
+  };
 };

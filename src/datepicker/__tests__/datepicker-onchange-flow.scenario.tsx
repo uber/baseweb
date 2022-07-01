@@ -4,18 +4,16 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
-import { Datepicker } from '../index.js';
+import { Datepicker } from '../index';
 
 // regression test for onChange and onRangeChange type definitions
 export function Scenario() {
   const [singleInferred, setSingleInferred] = React.useState();
   const [rangeInferred, setRangeInferred] = React.useState([]);
   const [monomorphic, setMonomorphic] = React.useState<Array<Date>>([]);
-  const [polymorphic, setPolymorphic] = React.useState<Array<?Date>>([]);
-  const [covariant, setCovariant] = React.useState<$ReadOnlyArray<?Date>>([]);
+  const [polymorphic, setPolymorphic] = React.useState<Array<Date | undefined | null>>([]);
+  const [covariant, setCovariant] = React.useState<ReadonlyArray<Date | undefined | null>>([]);
 
   return (
     <div>

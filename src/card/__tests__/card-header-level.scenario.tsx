@@ -4,14 +4,12 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 
-import { Heading, HeadingLevel } from '../../heading/index.js';
-import { Card, StyledBody } from '../index.js';
-import { styled } from '../../styles/index.js';
-import { header } from '../images.js';
+import { Heading, HeadingLevel } from '../../heading/index';
+import { Card, StyledBody } from '../index';
+import { styled } from '../../styles/index';
+import { header } from '../images';
 
 const Container = styled('div', { width: '328px' });
 

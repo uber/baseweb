@@ -4,48 +4,48 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 
-import { Checkbox } from '../checkbox/index.js';
-import { useStyletron } from '../styles/index.js';
-import ChevronDown from '../icon/chevron-down.js';
-import ChevronUp from '../icon/chevron-up.js';
+import { Checkbox } from '../checkbox/index';
+import { useStyletron } from '../styles/index';
+import ChevronDown from '../icon/chevron-down';
+import ChevronUp from '../icon/chevron-up';
 
-import { SORT_DIRECTIONS } from './constants.js';
-import type { SortDirectionsT } from './types.js';
-import { isFocusVisible } from '../utils/focusVisible.js';
+import { SORT_DIRECTIONS } from './constants';
+import type { SortDirectionsT } from './types';
+import { isFocusVisible } from '../utils/focusVisible';
 
-type HeaderCellPropsT = {|
-  index: number,
-  isHovered: boolean,
-  isMeasured?: boolean,
-  isSelectable: boolean,
-  isSelectedAll: boolean,
-  isSelectedIndeterminate: boolean,
-  onMouseEnter: (number) => void,
-  onMouseLeave: (number) => void,
-  onSelectAll: () => void,
-  onSelectNone: () => void,
-  onSort: (number) => void,
-  sortable: boolean,
-  sortDirection: SortDirectionsT,
-  title: string,
-|};
+import type { SyntheticEvent } from 'react';
 
-const HeaderCell = React.forwardRef<HeaderCellPropsT, HTMLDivElement>((props, ref) => {
+type HeaderCellPropsT = {
+  index: number;
+  isHovered: boolean;
+  isMeasured?: boolean;
+  isSelectable: boolean;
+  isSelectedAll: boolean;
+  isSelectedIndeterminate: boolean;
+  onMouseEnter: (a: number) => void;
+  onMouseLeave: (a: number) => void;
+  onSelectAll: () => void;
+  onSelectNone: () => void;
+  onSort: (a: number) => void;
+  sortable: boolean;
+  sortDirection: SortDirectionsT;
+  title: string;
+};
+
+const HeaderCell = React.forwardRef<HTMLDivElement, HeaderCellPropsT>((props, ref) => {
   const [css, theme] = useStyletron();
   const [focusVisible, setFocusVisible] = React.useState(false);
   const checkboxRef = React.useRef(null);
 
-  const handleFocus = (event: SyntheticEvent<>) => {
+  const handleFocus = (event: SyntheticEvent) => {
     if (isFocusVisible(event)) {
       setFocusVisible(true);
     }
   };
 
-  const handleBlur = (event: SyntheticEvent<>) => {
+  const handleBlur = (event: SyntheticEvent) => {
     if (focusVisible !== false) {
       setFocusVisible(false);
     }

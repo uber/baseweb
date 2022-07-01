@@ -4,19 +4,17 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import React from 'react';
 
-import { Block } from '../../block/index.js';
-import ArrowDown from '../../icon/arrow-down.js';
-import ArrowUp from '../../icon/arrow-up.js';
-import Search from '../../icon/search.js';
-import Plus from '../../icon/plus.js';
-import Delete from '../../icon/delete.js';
-import Overflow from '../../icon/overflow.js';
-import { StatefulPanel } from '../../accordion/index.js';
-import { withStyle } from '../../styles/index.js';
+import { Block } from '../../block/index';
+import ArrowDown from '../../icon/arrow-down';
+import ArrowUp from '../../icon/arrow-up';
+import Search from '../../icon/search';
+import Plus from '../../icon/plus';
+import Delete from '../../icon/delete';
+import Overflow from '../../icon/overflow';
+import { StatefulPanel } from '../../accordion/index';
+import { withStyle } from '../../styles/index';
 
 import {
   StyledTable,
@@ -26,7 +24,7 @@ import {
   StyledRow,
   StyledCell,
   StyledAction,
-} from '../index.js';
+} from '../index';
 
 const StyledHeadingCell = withStyle(StyledCell, {
   paddingTop: 0,

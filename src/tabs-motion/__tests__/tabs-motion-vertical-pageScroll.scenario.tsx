@@ -5,13 +5,11 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-// @flow
-
 /* eslint-disable jsx-a11y/accessible-emoji */
 
 import * as React from 'react';
-import { Tab, Tabs, ORIENTATION } from '../index.js';
-import { Button, KIND } from '../../button/index.js';
+import { Tab, Tabs, ORIENTATION } from '../index';
+import { Button, KIND } from '../../button/index';
 
 // This scenario ensures the up/down directional keys do not move the page
 // scroll position.

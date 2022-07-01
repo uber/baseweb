@@ -4,13 +4,13 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 
-import { MODE, STATE_CHANGE_TYPE } from './constants.js';
+import { MODE, STATE_CHANGE_TYPE } from './constants';
 
-import type { StatefulContainerPropsT, StateT } from './types.js';
+import type { StatefulContainerPropsT, StateT } from './types';
+
+import type { SyntheticEvent } from 'react';
 
 // handles the case where selected = 0
 function isSelectedDefined(selected) {
@@ -18,7 +18,7 @@ function isSelectedDefined(selected) {
 }
 
 function defaultStateReducer(
-  type: $Values<typeof STATE_CHANGE_TYPE>,
+  type: typeof STATE_CHANGE_TYPE[keyof typeof STATE_CHANGE_TYPE],
   nextState: StateT,
   currentState: StateT
 ) {

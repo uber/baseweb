@@ -4,16 +4,15 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 import * as React from 'react';
-import Day from './day.js';
-import { StyledWeek } from './styled-components.js';
-import { WEEKDAYS } from './constants.js';
-import dateFnsAdapter from './utils/date-fns-adapter.js';
-import DateHelpers from './utils/date-helpers.js';
+import Day from './day';
+import { StyledWeek } from './styled-components';
+import { WEEKDAYS } from './constants';
+import dateFnsAdapter from './utils/date-fns-adapter';
+import DateHelpers from './utils/date-helpers';
 
-import { getOverrides } from '../helpers/overrides.js';
-import type { WeekPropsT } from './types.js';
+import { getOverrides } from '../helpers/overrides';
+import type { WeekPropsT } from './types';
 
 export default class Week<T = Date> extends React.Component<WeekPropsT<T>> {
   static defaultProps = {

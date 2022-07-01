@@ -5,8 +5,6 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-// @flow
-
 import * as React from 'react';
 import { render, getByText } from '@testing-library/react';
 
@@ -24,7 +22,7 @@ import {
   LabelMedium,
   ParagraphLarge,
   ParagraphMedium,
-} from '../index.js';
+} from '../index';
 
 function getStyle(element) {
   return JSON.parse(element.getAttribute('test-style') || '');

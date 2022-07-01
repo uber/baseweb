@@ -4,15 +4,13 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 
-import ListItem from './list-item.js';
-import type { MenuAdapterPropsT } from './types.js';
-import { mergeOverrides } from '../helpers/overrides.js';
+import ListItem from './list-item';
+import type { MenuAdapterPropsT } from './types';
+import { mergeOverrides } from '../helpers/overrides';
 
-const MenuAdapter = React.forwardRef<MenuAdapterPropsT, HTMLLIElement>((props, ref) => {
+const MenuAdapter = React.forwardRef<HTMLLIElement, MenuAdapterPropsT>((props, ref) => {
   return (
     <ListItem
       ref={ref}

@@ -4,11 +4,10 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 import * as React from 'react';
 // Files
-import { STATE_CHANGE_TYPES, KEY_STRINGS } from './constants.js';
-import { scrollItemIntoView } from './utils.js';
+import { STATE_CHANGE_TYPES, KEY_STRINGS } from './constants';
+import { scrollItemIntoView } from './utils';
 // Types
 import type {
   StatefulContainerPropsT,
@@ -17,8 +16,10 @@ import type {
   RenderPropsT,
   StateReducerFnT,
   ItemT,
-} from './types.js';
+} from './types';
 import { useUIDSeed } from 'react-uid';
+
+import type { MouseEvent } from 'react';
 
 const DEFAULT_PROPS = {
   // keeping it in defaultProps to satisfy Flow
@@ -28,8 +29,10 @@ const DEFAULT_PROPS = {
     isFocused: false,
   },
   typeAhead: true,
-  keyboardControlNode: ({ current: null }: { current: null | HTMLElement }),
-  stateReducer: ((changeType, changes) => changes: StateReducerFnT),
+  keyboardControlNode: { current: null } as {
+    current: null | HTMLElement;
+  },
+  stateReducer: ((changeType, changes) => changes) as StateReducerFnT,
   onItemSelect: () => {},
   getRequiredItemProps: () => ({}),
   children: () => null,
@@ -44,8 +47,10 @@ const DEFAULT_PROPS = {
 };
 
 class MenuStatefulContainerInner extends React.Component<
-  StatefulContainerPropsT & { uidSeed: (item: number) => string } & {
-    getRequiredItemProps: GetRequiredItemPropsFnT,
+  StatefulContainerPropsT & {
+    uidSeed: (item: number) => string;
+  } & {
+    getRequiredItemProps: GetRequiredItemPropsFnT;
   },
   StatefulContainerStateT
 > {
@@ -58,7 +63,9 @@ class MenuStatefulContainerInner extends React.Component<
 
   // We need to have access to the root component user renders
   // to correctly facilitate keyboard scrolling behavior
-  rootRef = (React.createRef<HTMLElement>(): { current: null | HTMLElement });
+  rootRef = React.createRef<HTMLElement>() as {
+    current: null | HTMLElement;
+  };
   keyboardControlNode = this.props.keyboardControlNode.current;
   getItems() {
     if (Array.isArray(this.props.items)) {
@@ -147,7 +154,9 @@ class MenuStatefulContainerInner extends React.Component<
   }
 
   // One array to hold all list item refs
-  refList: Array<{ current: null | HTMLElement }> = [];
+  refList: Array<{
+    current: null | HTMLElement;
+  }> = [];
   // list of ids applied to list items. used to set aria-activedescendant
   optionIds: string[] = [];
   //characters input from keyboard, will automatically be clear after some time
@@ -158,8 +167,8 @@ class MenuStatefulContainerInner extends React.Component<
   // Internal set state function that will also invoke stateReducer
 
   internalSetState(
-    changeType: $Keys<typeof STATE_CHANGE_TYPES>,
-    changes: $Shape<StatefulContainerStateT>
+    changeType: keyof typeof STATE_CHANGE_TYPES,
+    changes: Partial<StatefulContainerStateT>
   ) {
     const { stateReducer } = this.props;
 
@@ -323,7 +332,7 @@ class MenuStatefulContainerInner extends React.Component<
     }
   };
 
-  handleItemClick = (index: number, item: ItemT, event: SyntheticMouseEvent<HTMLElement>) => {
+  handleItemClick = (index: number, item: ItemT, event: MouseEvent<HTMLElement>) => {
     if (this.props.onItemSelect && !item.disabled) {
       this.props.onItemSelect({ item, event });
       this.internalSetState(STATE_CHANGE_TYPES.click, {
@@ -340,7 +349,7 @@ class MenuStatefulContainerInner extends React.Component<
     });
   };
 
-  handleMouseLeave = (event: SyntheticMouseEvent<HTMLElement>) => {};
+  handleMouseLeave = (event: MouseEvent<HTMLElement>) => {};
 
   getRequiredItemProps: GetRequiredItemPropsFnT = (item, index) => {
     let itemRef = this.refList[index];
@@ -424,20 +433,18 @@ class MenuStatefulContainerInner extends React.Component<
       ...restProps
     } = this.props;
 
-    return this.props.children(
-      ({
-        ...restProps,
-        rootRef: this.props.rootRef ? this.props.rootRef : this.rootRef,
-        activedescendantId: this.optionIds[this.state.highlightedIndex],
-        getRequiredItemProps: (item, index) => this.getRequiredItemProps(item, index),
-        handleMouseLeave: this.handleMouseLeave,
-        highlightedIndex: this.state.highlightedIndex,
-        isFocused: this.state.isFocused,
-        handleKeyDown: this.props.keyboardControlNode.current ? (event) => {} : this.onKeyDown,
-        focusMenu: this.focusMenu,
-        unfocusMenu: this.unfocusMenu,
-      }: RenderPropsT)
-    );
+    return this.props.children({
+      ...restProps,
+      rootRef: this.props.rootRef ? this.props.rootRef : this.rootRef,
+      activedescendantId: this.optionIds[this.state.highlightedIndex],
+      getRequiredItemProps: (item, index) => this.getRequiredItemProps(item, index),
+      handleMouseLeave: this.handleMouseLeave,
+      highlightedIndex: this.state.highlightedIndex,
+      isFocused: this.state.isFocused,
+      handleKeyDown: this.props.keyboardControlNode.current ? (event) => {} : this.onKeyDown,
+      focusMenu: this.focusMenu,
+      unfocusMenu: this.unfocusMenu,
+    } as RenderPropsT);
   }
 }
 

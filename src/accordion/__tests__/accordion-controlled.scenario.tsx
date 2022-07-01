@@ -4,11 +4,9 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
-import Accordion from '../stateless-accordion.js';
-import Panel from '../panel.js';
+import Accordion from '../stateless-accordion';
+import Panel from '../panel';
 
 export function Scenario() {
   const [expanded, setExpanded] = React.useState(['L1', 'L2']);

@@ -4,12 +4,10 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 import { render, fireEvent, getByText } from '@testing-library/react';
 
-import { Avatar } from '../index.js';
+import { Avatar } from '../index';
 
 // manually trigger src load error. jsdom will not fire a load event
 // https://github.com/jsdom/jsdom/issues/1816#issuecomment-310106280

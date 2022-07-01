@@ -4,31 +4,30 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 
-import { StyledLink } from '../link/index.js';
-import { useStyletron } from '../styles/index.js';
+import { StyledLink } from '../link/index';
+import { useStyletron } from '../styles/index';
 
-import Column from './column.js';
-import { COLUMNS } from './constants.js';
-import type { ColumnT, SharedColumnOptionsT } from './types.js';
+import Column from './column';
+import { COLUMNS } from './constants';
+import type { ColumnT, SharedColumnOptionsT } from './types';
 
-type ValueT = { content: string, href: string };
+type ValueT = {
+  content: string;
+  href: string;
+};
 
-type ReplacementElementAs = React.AbstractComponent<{|
-  href: string,
-  children: string,
-|}>;
+type ReplacementElementAs = React.ComponentType<{
+  href: string;
+  children: string;
+}>;
 
-type OptionsT = {|
-  ...SharedColumnOptionsT<ValueT>,
-  elementAs?: ReplacementElementAs | string,
-|};
+type OptionsT = {
+  elementAs?: ReplacementElementAs | string;
+} & SharedColumnOptionsT<ValueT>;
 
 type FilterParametersT = {};
-
 type AnchorColumnT = ColumnT<ValueT, FilterParametersT>;
 
 function AnchorFilter(props) {

@@ -4,15 +4,13 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
-import { useStyletron } from '../styles/index.js';
-import { getOverrides } from '../helpers/overrides.js';
-import { StyledHintDot, StyledRoot, StyledPositioner } from './styled-components.js';
-import type { HintDotPropsT } from './types.js';
-import { PLACEMENT, ROLE } from './constants.js';
-import { getAnchorFromChildren } from './utils.js';
+import { useStyletron } from '../styles/index';
+import { getOverrides } from '../helpers/overrides';
+import { StyledHintDot, StyledRoot, StyledPositioner } from './styled-components';
+import type { HintDotPropsT } from './types';
+import { PLACEMENT, ROLE } from './constants';
+import { getAnchorFromChildren } from './utils';
 
 const HintDot = ({
   children,

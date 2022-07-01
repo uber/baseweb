@@ -5,8 +5,6 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-// @flow
-
 import * as React from 'react';
 
 import {
@@ -28,9 +26,9 @@ import {
   MonoDisplaySmall,
   MonoDisplayMedium,
   MonoDisplayLarge,
-} from '../index.js';
+} from '../index';
 
-import { useStyletron } from '../../styles/index.js';
+import { useStyletron } from '../../styles/index';
 
 export function Scenario() {
   const [css, theme] = useStyletron();

@@ -4,14 +4,12 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 
-import DeleteIcon from '../delete.js';
-import PlusIcon from '../plus.js';
-import { ThemeProvider, LightTheme, styled } from '../../index.js';
-import { getSvgStyles } from '../../icon/styled-components.js';
+import DeleteIcon from '../delete';
+import PlusIcon from '../plus';
+import { ThemeProvider, LightTheme, styled } from '../../index';
+import { getSvgStyles } from '../../icon/styled-components';
 
 const XSmallFilled = ({ title, ...props }) => {
   return (

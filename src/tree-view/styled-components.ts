@@ -5,14 +5,12 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-// @flow
-
-import { styled } from '../styles/index.js';
+import { styled } from '../styles/index';
 
 export const StyledTreeItemList = styled<{
-  $indentGuides?: boolean,
-  $isChildNode?: boolean,
-  $expanded?: boolean,
+  $indentGuides?: boolean;
+  $isChildNode?: boolean;
+  $expanded?: boolean;
 }>('ul', ({ $theme, $indentGuides, $isChildNode, $expanded = true }) => {
   const direction: string = $theme.direction === 'rtl' ? 'Right' : 'Left';
   return {
@@ -31,7 +29,9 @@ export const StyledTreeItemList = styled<{
   };
 });
 
-export const StyledTreeItem = styled<{ $isLeafNode?: boolean }>('li', ({ $theme, $isLeafNode }) => {
+export const StyledTreeItem = styled<{
+  $isLeafNode?: boolean;
+}>('li', ({ $theme, $isLeafNode }) => {
   return {
     cursor: $isLeafNode ? 'auto' : 'pointer',
     marginTop: 0,
@@ -49,8 +49,8 @@ export const StyledTreeItem = styled<{ $isLeafNode?: boolean }>('li', ({ $theme,
 });
 
 export const StyledItemContent = styled<{
-  $isSelected: boolean,
-  $isFocusVisible: boolean,
+  $isSelected: boolean;
+  $isFocusVisible: boolean;
 }>('div', ({ $theme, $isSelected, $isFocusVisible }) => {
   return {
     ...$theme.typography.font300,

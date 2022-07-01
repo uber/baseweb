@@ -4,11 +4,9 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 
-import { getOverrides } from '../helpers/overrides.js';
+import { getOverrides } from '../helpers/overrides';
 
 import {
   Root as StyledRoot,
@@ -17,8 +15,10 @@ import {
   RadioMarkInner as StyledRadioMarkInner,
   RadioMarkOuter as StyledRadioMarkOuter,
   Description as StyledDescription,
-} from './styled-components.js';
-import type { RadioPropsT, RadioStateT } from './types.js';
+} from './styled-components';
+import type { RadioPropsT, RadioStateT } from './types';
+
+import type { ChangeEvent } from 'react';
 
 function isLabelTopLeft(labelPlacement) {
   return labelPlacement === 'top' || labelPlacement === 'left';
@@ -60,22 +60,22 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
     }
   }
 
-  onMouseEnter = (e: SyntheticInputEvent<HTMLInputElement>) => {
+  onMouseEnter = (e: ChangeEvent<HTMLInputElement>) => {
     this.setState({ isHovered: true });
     this.props.onMouseEnter && this.props.onMouseEnter(e);
   };
 
-  onMouseLeave = (e: SyntheticInputEvent<HTMLInputElement>) => {
+  onMouseLeave = (e: ChangeEvent<HTMLInputElement>) => {
     this.setState({ isHovered: false });
     this.props.onMouseLeave && this.props.onMouseLeave(e);
   };
 
-  onMouseDown = (e: SyntheticInputEvent<HTMLInputElement>) => {
+  onMouseDown = (e: ChangeEvent<HTMLInputElement>) => {
     this.setState({ isActive: true });
     this.props.onMouseDown && this.props.onMouseDown(e);
   };
 
-  onMouseUp = (e: SyntheticInputEvent<HTMLInputElement>) => {
+  onMouseUp = (e: ChangeEvent<HTMLInputElement>) => {
     this.setState({ isActive: false });
     this.props.onMouseUp && this.props.onMouseUp(e);
   };

@@ -4,31 +4,32 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 /* flowlint unclear-type:off */
 
 import * as React from 'react';
 import { getInitialStyle } from 'styletron-standard';
-import { LightTheme } from '../../themes/index.js';
-import createMockTheme from '../../test/create-mock-theme.js';
-import type { ThemeT } from '../../styles/types.js';
-import type { StyletronComponent } from '../styled.js';
+import { LightTheme } from '../../themes/index';
+import createMockTheme from '../../test/create-mock-theme';
+import type { ThemeT } from '../../styles/types';
+import type { StyletronComponent } from '../styled';
 
-type ObjOrFnT = {} | (({}) => {});
+type ObjOrFnT = {} | ((a: {}) => {});
 
 type PropsT = {
-  $style?: ObjOrFnT,
-  $theme?: ThemeT,
-  forwardedRef: any,
+  $style?: ObjOrFnT;
+  $theme?: ThemeT;
+  forwardedRef: any;
 };
 
-type StateT = { styles?: {} };
+type StateT = {
+  styles?: {};
+};
 
 const MOCK_THEME = createMockTheme(LightTheme);
 const IDENTITY = (x) => x;
 
 export function useStyletron() {
-  function css(styles: Object) {
+  function css(styles: any) {
     return {
       label: 'useStyletron mock describes the applied css properties',
       ...styles,
@@ -38,7 +39,7 @@ export function useStyletron() {
   return [css, MOCK_THEME];
 }
 
-export function styled(ElementName: string | React.ComponentType<{}>, objOrFn?: ObjOrFnT = {}) {
+export function styled(ElementName: string | React.ComponentType<{}>, objOrFn: ObjOrFnT = {}) {
   class MockStyledComponent extends React.Component<PropsT, StateT> {
     static displayName = 'MockStyledComponent';
 
@@ -94,7 +95,7 @@ export function styled(ElementName: string | React.ComponentType<{}>, objOrFn?: 
     base: ElementName,
   };
 
-  return React.forwardRef<PropsT, HTMLElement>((props, ref) => (
+  return React.forwardRef<HTMLElement, PropsT>((props, ref) => (
     <MockStyledComponent forwardedRef={ref} {...props} />
   ));
 }
@@ -103,7 +104,7 @@ export const withStyle = styled;
 
 export function withWrapper(
   StyledElement: StyletronComponent<any>,
-  wrapperFn: (StyletronComponent<any>) => (any) => any
+  wrapperFn: (a: StyletronComponent<any>) => (a: any) => any
 ) {
   // eslint-disable-next-line react/display-name
   return React.forwardRef<any, any>((props, ref) =>

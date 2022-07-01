@@ -4,13 +4,11 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 
-import { TimezonePicker } from '../index.js';
-import { TestBaseProvider } from '../../test/test-utils.js';
+import { TimezonePicker } from '../index';
+import { TestBaseProvider } from '../../test/test-utils';
 
 const mockedDate = new Date('2021-01-01T00:00:00Z');
 const Example = ({ setDate }) => {

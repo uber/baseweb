@@ -4,13 +4,11 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 
 import { FormProvider, useForm, Controller } from 'react-hook-form';
-import { StatefulCheckbox, Checkbox, LABEL_PLACEMENT } from '../index.js';
-import { Heading, HeadingLevel } from '../../heading/index.js';
+import { StatefulCheckbox, Checkbox, LABEL_PLACEMENT } from '../index';
+import { Heading, HeadingLevel } from '../../heading/index';
 
 const StatefulCheckboxExample = () => {
   const form = useForm({

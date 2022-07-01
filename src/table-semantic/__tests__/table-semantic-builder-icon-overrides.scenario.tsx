@@ -4,11 +4,9 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import React from 'react';
-import { ThemeProvider, LightTheme } from '../../index.js';
-import { Scenario as TableSemanticBuilder } from './table-semantic-builder.scenario.js';
+import { ThemeProvider, LightTheme } from '../../index';
+import { Scenario as TableSemanticBuilder } from './table-semantic-builder.scenario';
 
 const XSmallFilled = ({ title, size, color, ...props }) => {
   return (

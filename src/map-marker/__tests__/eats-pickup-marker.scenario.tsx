@@ -4,8 +4,6 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import React, { useState } from 'react';
 import {
   FixedMarker,
@@ -13,14 +11,14 @@ import {
   NEEDLE_SIZES,
   BADGE_ENHANCER_SIZES,
   LABEL_ENHANCER_POSITIONS,
-} from '../index.js';
-import TileGrid from './tile-grid.js';
+} from '../index';
+import TileGrid from './tile-grid';
 import ReactMapGL, { Marker } from 'react-map-gl';
-import Upload from '../../icon/upload.js';
-import Search from '../../icon/search.js';
-import Show from '../../icon/show.js';
-import { useStyletron } from '../../styles/index.js';
-import { getMapStyle } from './map-style.js';
+import Upload from '../../icon/upload';
+import Search from '../../icon/search';
+import Show from '../../icon/show';
+import { useStyletron } from '../../styles/index';
+import { getMapStyle } from './map-style';
 
 const uberHq = {
   latitude: 37.768495131168336,

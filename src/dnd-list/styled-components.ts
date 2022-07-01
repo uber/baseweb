@@ -4,9 +4,8 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-import { styled } from '../styles/index.js';
-import type { SharedStylePropsArgT } from './types.js';
+import { styled } from '../styles/index';
+import type { SharedStylePropsArgT } from './types';
 
 /**
  * Main component container element
@@ -19,18 +18,18 @@ export const Root = styled<SharedStylePropsArgT>('div', ({ $theme }) => {
 Root.displayName = 'StyledRoot';
 
 export const List = styled<SharedStylePropsArgT>('ul', ({ $isDragged }) => {
-  return ({
+  return {
     paddingLeft: 0,
     cursor: $isDragged ? 'grabbing' : null,
     pointerEvents: $isDragged ? 'none' : 'auto',
-  }: {});
+  } as {};
 });
 List.displayName = 'StyledList';
 
 export const Item = styled<SharedStylePropsArgT>(
   'li',
   ({ $isDragged, $isSelected, $theme, $isFocusVisible }) => {
-    return ({
+    return {
       ':hover':
         !$isDragged && !$isSelected
           ? {
@@ -79,7 +78,7 @@ export const Item = styled<SharedStylePropsArgT>(
       borderBottomColor: $isDragged || $isSelected ? $theme.colors.primary : 'transparent',
       borderLeftColor: $isDragged || $isSelected ? $theme.colors.primary : 'transparent',
       borderRightColor: $isDragged || $isSelected ? $theme.colors.primary : 'transparent',
-    }: {});
+    } as {};
   }
 );
 List.displayName = 'StyledItem';

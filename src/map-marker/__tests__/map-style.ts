@@ -4,19 +4,19 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 type GeoJSONPointFeature = {
-  type: 'Feature',
+  type: 'Feature';
   geometry: {
-    type: 'Point',
-    coordinates: [number, number],
-  },
+    type: 'Point';
+    coordinates: [number, number];
+  };
 };
 
 export function getMapStyle(
   locations: Array<[number, number]>,
-  options: { showPointDebug: boolean }
+  options: {
+    showPointDebug: boolean;
+  }
 ) {
   return {
     version: 8,

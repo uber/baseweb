@@ -4,9 +4,7 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
-import type { BorderT, Globals, LineStyle } from '../themes/types.js';
+import type { BorderT, Globals, LineStyle } from '../themes/types';
 
 export function hexToRgb(hex: string = '', alpha: string = '1') {
   const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
@@ -29,20 +27,20 @@ export const ellipsisText = {
   wordWrap: 'normal',
 };
 
-export function expandBorderStyles(borderStyles: BorderT): {|
-  borderTopStyle: Globals | LineStyle,
-  borderTopWidth: string,
-  borderTopColor: string,
-  borderBottomWidth: string,
-  borderBottomStyle: Globals | LineStyle,
-  borderBottomColor: string,
-  borderLeftWidth: string,
-  borderLeftStyle: Globals | LineStyle,
-  borderLeftColor: string,
-  borderRightWidth: string,
-  borderRightStyle: Globals | LineStyle,
-  borderRightColor: string,
-|} {
+export function expandBorderStyles(borderStyles: BorderT): {
+  borderTopStyle: Globals | LineStyle;
+  borderTopWidth: string;
+  borderTopColor: string;
+  borderBottomWidth: string;
+  borderBottomStyle: Globals | LineStyle;
+  borderBottomColor: string;
+  borderLeftWidth: string;
+  borderLeftStyle: Globals | LineStyle;
+  borderLeftColor: string;
+  borderRightWidth: string;
+  borderRightStyle: Globals | LineStyle;
+  borderRightColor: string;
+} {
   return {
     borderTopWidth: borderStyles.borderWidth,
     borderTopStyle: borderStyles.borderStyle,

@@ -4,16 +4,15 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 import type {
   ColorTokensT,
   CoreSemanticColorTokensT,
   CoreExtensionSemanticColorTokensT,
   SemanticColorTokensT,
-} from '../types.js';
-import colorTokens from './color-tokens.js';
-import { hexToRgb as hexToRgba } from '../../styles/util.js';
-import colors from '../../tokens/colors.js';
+} from '../types';
+import colorTokens from './color-tokens';
+import { hexToRgb as hexToRgba } from '../../styles/util';
+import colors from '../../tokens/colors';
 
 export default (
   // themePrimitives or foundation colors

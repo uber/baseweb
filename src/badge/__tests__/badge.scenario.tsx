@@ -4,13 +4,11 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 
-import { PLACEMENT } from '../constants.js';
-import { Badge } from '../index.js';
-import { styled } from '../../styles/index.js';
+import { PLACEMENT } from '../constants';
+import { Badge } from '../index';
+import { styled } from '../../styles/index';
 
 export const Box = styled<{}>('div', ({ $theme }) => ({
   borderTopLeftRadius: $theme.borders.surfaceBorderRadius,

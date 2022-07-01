@@ -4,19 +4,18 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 import * as React from 'react';
 import type {
   StateT,
   StatefulComponentContainerPropsT,
   StateChangeTypeT,
   StateReducerT,
-} from './types.js';
+} from './types';
 
 const defaultStateReducer: StateReducerT = (type, nextState) => nextState;
 
 class StatefulContainer extends React.Component<StatefulComponentContainerPropsT, StateT> {
-  static defaultProps: $Shape<StatefulComponentContainerPropsT> = {
+  static defaultProps: Partial<StatefulComponentContainerPropsT> = {
     initialState: { prop: true },
     stateReducer: defaultStateReducer,
   };

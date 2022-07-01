@@ -4,21 +4,23 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 
-import { LocaleContext } from '../locale/index.js';
-import { getOverrides } from '../helpers/overrides.js';
+import { LocaleContext } from '../locale/index';
+import { getOverrides } from '../helpers/overrides';
 
-import { OPTION_LIST_SIZE } from './constants.js';
-import MaybeChildMenu from './maybe-child-menu.js';
-import { StyledListItem, StyledListItemAnchor } from './styled-components.js';
-import type { OptionListPropsT } from './types.js';
+import { OPTION_LIST_SIZE } from './constants';
+import MaybeChildMenu from './maybe-child-menu';
+import { StyledListItem, StyledListItemAnchor } from './styled-components';
+import type { OptionListPropsT } from './types';
 
 function OptionList(
   props: OptionListPropsT,
-  ref?: { current: null | HTMLElement, ... } | ((null | HTMLElement) => mixed)
+  ref?:
+    | {
+        current: null | HTMLElement;
+      }
+    | ((a: null | HTMLElement) => unknown)
 ) {
   const {
     getChildMenu,
@@ -110,7 +112,7 @@ function compare(prevProps, nextProps) {
   );
 }
 
-const forwarded = React.forwardRef<OptionListPropsT, HTMLElement>(OptionList);
+const forwarded = React.forwardRef<HTMLElement, OptionListPropsT>(OptionList);
 forwarded.displayName = 'OptionList';
 
 export default React.memo<OptionListPropsT>(forwarded, compare);

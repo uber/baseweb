@@ -4,13 +4,11 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 import { render, getByTestId, fireEvent, queryByTestId, getByText } from '@testing-library/react';
-import { TestBaseProvider } from '../../test/test-utils.js';
+import { TestBaseProvider } from '../../test/test-utils';
 
-import { Calendar } from '../index.js';
+import { Calendar } from '../index';
 
 describe('Component', () => {
   it('does not display quick select if quickSelect is false', () => {
@@ -59,12 +57,12 @@ describe('Component', () => {
     const quickSelect = container.querySelector('[data-baseweb="select"]')?.firstChild;
     if (quickSelect) {
       //flowlint-next-line unclear-type:off
-      fireEvent.click(((quickSelect: any): HTMLElement));
+      fireEvent.click(quickSelect as any as HTMLElement);
     }
     fireEvent.click(
       await getByText(
         //flowlint-next-line unclear-type:off
-        ((container.parentElement: any): HTMLElement),
+        container.parentElement as any as HTMLElement,
         'Past Week'
       )
     );

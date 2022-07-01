@@ -4,7 +4,6 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 /* eslint-disable import/extensions */
 
 import defaultAdapter from './date-fns-adapter';
@@ -39,15 +38,15 @@ export const getEffectiveMaxDate = defaultDateHelpers.getEffectiveMaxDate;
 export const applyTimeToDate = defaultDateHelpers.applyTimeToDate;
 export const applyDateToTime = defaultDateHelpers.applyDateToTime;
 
-const createDirtySetter = (setter: (Date, number) => Date) => {
+const createDirtySetter = (setter: (b: Date, a: number) => Date) => {
   return (dirtyDate: DirtyDate, number: number) => setter(wrapDate(dirtyDate), number);
 };
 
-const createDirtyGetter = (getter: (Date) => number) => {
+const createDirtyGetter = (getter: (a: Date) => number) => {
   return (dirtyDate: DirtyDate) => getter(wrapDate(dirtyDate));
 };
 
-const createDirtyCompare = (compare: (Date, Date) => boolean) => {
+const createDirtyCompare = (compare: (b: Date, a: Date) => boolean) => {
   return (fromDirty: DirtyDate, toDirty: DirtyDate) => {
     return compare(wrapDate(fromDirty), wrapDate(toDirty));
   };
@@ -88,5 +87,5 @@ export const isBefore = createDirtyCompare(defaultDateHelpers.isBefore);
 export const isAfter = createDirtyCompare(defaultDateHelpers.isAfter);
 
 // flowlint-next-line unclear-type:off
-export const format = (date: Date, format: string, locale: ?any) =>
+export const format = (date: Date, format: string, locale?: any | null) =>
   defaultDateHelpers.format(date, format, locale);

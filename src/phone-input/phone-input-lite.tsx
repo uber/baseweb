@@ -4,14 +4,13 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 import React, { useRef } from 'react';
-import CountryPicker from './country-picker.js';
-import defaultProps from './default-props.js';
-import { StyledPhoneInputRoot, StyledDialCode } from './styled-components.js';
-import { Input as DefaultInput } from '../input/index.js';
-import { getOverrides, mergeOverrides } from '../helpers/overrides.js';
-import type { LitePropsT } from './types.js';
+import CountryPicker from './country-picker';
+import defaultProps from './default-props';
+import { StyledPhoneInputRoot, StyledDialCode } from './styled-components';
+import { Input as DefaultInput } from '../input/index';
+import { getOverrides, mergeOverrides } from '../helpers/overrides';
+import type { LitePropsT } from './types';
 
 PhoneInputLite.defaultProps = defaultProps;
 

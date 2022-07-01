@@ -4,17 +4,15 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import React from 'react';
-import { Scenario as TableSemanticBuilder } from './table-semantic-builder.scenario.js';
-import { Scenario as TableSemanticBuilderIconOverrides } from './table-semantic-builder-icon-overrides.scenario.js';
-import { Scenario as TableSemanticCompose } from './table-semantic-compose.scenario.js';
-import { Scenario as TableSemanticDefault } from './table-semantic.scenario.js';
-import { Scenario as TableSemanticDivider } from './table-semantic-divider.scenario.js';
-import { Scenario as TableSemanticSize } from './table-semantic-size.scenario.js';
-import { Scenario as TableSemanticBuilderSize } from './table-semantic-builder-size.scenario.js';
-import { Scenario as TableSemanticBuilderDivider } from './table-semantic-builder-divider.scenario.js';
+import { Scenario as TableSemanticBuilder } from './table-semantic-builder.scenario';
+import { Scenario as TableSemanticBuilderIconOverrides } from './table-semantic-builder-icon-overrides.scenario';
+import { Scenario as TableSemanticCompose } from './table-semantic-compose.scenario';
+import { Scenario as TableSemanticDefault } from './table-semantic.scenario';
+import { Scenario as TableSemanticDivider } from './table-semantic-divider.scenario';
+import { Scenario as TableSemanticSize } from './table-semantic-size.scenario';
+import { Scenario as TableSemanticBuilderSize } from './table-semantic-builder-size.scenario';
+import { Scenario as TableSemanticBuilderDivider } from './table-semantic-builder-divider.scenario';
 
 export const Builder = () => <TableSemanticBuilder />;
 export const BuilderIconOverrides = () => <TableSemanticBuilderIconOverrides />;

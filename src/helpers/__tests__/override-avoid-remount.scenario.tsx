@@ -4,16 +4,18 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 
-import { styled } from '../../styles/index.js';
-import { getOverrides, type OverrideT } from '../overrides.js';
+import { styled } from '../../styles/index';
+import { getOverrides, type OverrideT } from '../overrides';
 
 const StyledBase = styled('div', {});
 
-function Child(props: { overrides: { Base: OverrideT } }) {
+function Child(props: {
+  overrides: {
+    Base: OverrideT;
+  };
+}) {
   const [Base, baseProps] = getOverrides(props.overrides.Base, StyledBase);
   return (
     <div>

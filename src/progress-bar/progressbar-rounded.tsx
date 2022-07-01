@@ -4,19 +4,18 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 /* global window */
 import * as React from 'react';
-import { SIZE } from './constants.js';
+import { SIZE } from './constants';
 import {
   StyledProgressBarRoundedRoot,
   StyledProgressBarRoundedSvg,
   StyledProgressBarRoundedTrackBackground,
   StyledProgressBarRoundedTrackForeground,
   StyledProgressBarRoundedText,
-} from './styled-components.js';
-import { useOverrides } from '../helpers/overrides.js';
-import type { ProgressBarRoundedPropsT } from './types.js';
+} from './styled-components';
+import { useOverrides } from '../helpers/overrides';
+import type { ProgressBarRoundedPropsT } from './types';
 
 const defaults = {
   Root: StyledProgressBarRoundedRoot,

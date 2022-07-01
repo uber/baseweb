@@ -4,31 +4,30 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 /* eslint-disable cup/no-undef */
 import * as React from 'react';
 import { isValidElementType } from 'react-is';
-import deepMerge from '../utils/deep-merge.js';
+import deepMerge from '../utils/deep-merge';
 
-export type ConfigurationOverrideFunctionT = ({}) => ?{};
+export type ConfigurationOverrideFunctionT = (a: {}) => {} | undefined | null;
 export type ConfigurationOverrideObjectT = {};
 
 export type ConfigurationOverrideT = ConfigurationOverrideObjectT | ConfigurationOverrideFunctionT;
 
 export type StyleOverrideT = ConfigurationOverrideT;
 
-export type OverrideObjectT = {|
+export type OverrideObjectT = {
   // flowlint-next-line unclear-type:off
-  component?: ?React.ComponentType<any>,
-  props?: ?ConfigurationOverrideT,
-  style?: ?ConfigurationOverrideT,
-|};
+  component?: React.ComponentType<any> | null;
+  props?: ConfigurationOverrideT | null;
+  style?: ConfigurationOverrideT | null;
+};
 
 // flowlint-next-line unclear-type:off
 export type OverrideT = OverrideObjectT | React.ComponentType<any>;
 
 export type OverridesT = {
-  [string]: OverrideT,
+  [x: string]: OverrideT;
 };
 
 /**
@@ -45,7 +44,7 @@ export function getOverride(_override: any): any {
     // Remove this 'any' once this flow issue is fixed:
     // https://github.com/facebook/flow/issues/6666
     // flowlint-next-line unclear-type:off
-    return (_override: any).component;
+    return (_override as any).component;
   }
 
   // null/undefined
@@ -56,7 +55,7 @@ export function getOverride(_override: any): any {
  * Given an override argument, returns the override props that should be passed
  * to the component when rendering it.
  */
-export function getOverrideProps<T>(_override: ?OverrideT): T {
+export function getOverrideProps<T>(_override?: OverrideT | null): T {
   if (_override && typeof _override === 'object') {
     if (typeof _override.props === 'object') {
       //$FlowFixMe
@@ -83,7 +82,7 @@ export function toObjectOverride<T>(_override: OverrideT): OverrideObjectT {
   if (isValidElementType(_override)) {
     return {
       // flowlint-next-line unclear-type:off
-      component: ((_override: any): React.ComponentType<T>),
+      component: _override as any as React.ComponentType<T>,
     };
   }
 
@@ -91,7 +90,7 @@ export function toObjectOverride<T>(_override: OverrideT): OverrideObjectT {
   // catch React.StatelessFunctionalComponent
   // (probably related to https://github.com/facebook/flow/issues/6666)
   // flowlint-next-line unclear-type:off
-  return ((_override || {}: any): OverrideObjectT);
+  return _override || ({} as any as OverrideObjectT);
 }
 
 /**
@@ -99,7 +98,7 @@ export function toObjectOverride<T>(_override: OverrideT): OverrideObjectT {
  */
 // flowlint unclear-type:off
 export function getOverrides<T>(
-  _override: Object,
+  _override: any,
   defaultComponent: React.ComponentType<any>
 ): [React.ComponentType<any>, T] {
   const Component = getOverride(_override) || defaultComponent;
@@ -135,7 +134,7 @@ export function getOverrides<T>(
  * overrides into a child component, but also accept further overrides from
  * from upstream. See `mergeOverride` below.
  */
-export function mergeOverrides(target?: OverridesT = {}, source?: OverridesT = {}): OverridesT {
+export function mergeOverrides(target: OverridesT = {}, source: OverridesT = {}): OverridesT {
   const merged = Object.assign({}, target, source);
   const allIdentifiers = Object.keys(merged);
   // const allIdentifiers = Object.keys({...target, ...source});
@@ -190,15 +189,16 @@ export function mergeConfigurationOverrides(
 // Lil' hook for memoized unpacking of overrides
 export function useOverrides(
   defaults: {
-    // flowlint-next-line unclear-type:off
-    [string]: React.ComponentType<any>,
+    [x: string]: React.ComponentType<any>;
   },
-  overrides?: OverridesT = {}
+  overrides: OverridesT = {}
 ) {
   return React.useMemo(
     () =>
       // flowlint-next-line unclear-type:off
-      Object.keys(defaults).reduce<{ [string]: [React.ComponentType<any>, {}] }>((obj, key) => {
+      Object.keys(defaults).reduce<{
+        [x: string]: [React.ComponentType<any>, {}];
+      }>((obj, key) => {
         obj[key] = getOverrides(overrides[key], defaults[key]);
         return obj;
       }, {}),

@@ -4,13 +4,11 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 
-import { Button } from '../../button/index.js';
-import { StatefulSelect } from '../../select/index.js';
-import { Modal, ModalBody, ModalHeader } from '../index.js';
+import { Button } from '../../button/index';
+import { StatefulSelect } from '../../select/index';
+import { Modal, ModalBody, ModalHeader } from '../index';
 
 export function Scenario() {
   const [isOpen, setIsOpen] = React.useState(true);

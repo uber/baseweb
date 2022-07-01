@@ -5,12 +5,10 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-// @flow
-
 import * as React from 'react';
-import type { BlockPropsT } from './types.js';
-import { StyledBlock } from './styled-components.js';
-import { getOverrides } from '../helpers/overrides.js';
+import type { BlockPropsT } from './types';
+import { StyledBlock } from './styled-components';
+import { getOverrides } from '../helpers/overrides';
 
 function Block({
   forwardedRef,
@@ -91,7 +89,7 @@ function Block({
       // coerced to any because because of how react components are typed.
       // cannot guarantee an html element
       // flowlint-next-line unclear-type:off
-      ref={(forwardedRef: any)}
+      ref={forwardedRef as any}
       $as={as}
       $color={color}
       $backgroundAttachment={backgroundAttachment}
@@ -167,7 +165,7 @@ function Block({
   );
 }
 
-const BlockComponent = React.forwardRef<BlockPropsT, HTMLElement>((props: BlockPropsT, ref) => (
+const BlockComponent = React.forwardRef<HTMLElement, BlockPropsT>((props: BlockPropsT, ref) => (
   <Block {...props} forwardedRef={ref} />
 ));
 BlockComponent.displayName = 'Block';

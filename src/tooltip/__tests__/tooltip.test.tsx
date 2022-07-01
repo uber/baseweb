@@ -4,13 +4,12 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 import * as React from 'react';
 import { render, findByText, fireEvent, getByText } from '@testing-library/react';
 
-import { TestBaseProvider } from '../../test/test-utils.js';
+import { TestBaseProvider } from '../../test/test-utils';
 
-import { Tooltip, ACCESSIBILITY_TYPE, PLACEMENT, TRIGGER_TYPE } from '../index.js';
+import { Tooltip, ACCESSIBILITY_TYPE, PLACEMENT, TRIGGER_TYPE } from '../index';
 
 describe('Tooltip', () => {
   it('basic render', async () => {

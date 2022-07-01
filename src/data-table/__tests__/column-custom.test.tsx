@@ -4,12 +4,10 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import { CustomColumn } from '../index.js';
+import { CustomColumn } from '../index';
 
 describe('custom column', () => {
   it('is not sortable by default', () => {
@@ -76,7 +74,14 @@ describe('custom column', () => {
   });
 
   it('cell renders according to provided renderCell', () => {
-    const column = CustomColumn<{ color: string }, { description: string }>({
+    const column = CustomColumn<
+      {
+        color: string;
+      },
+      {
+        description: string;
+      }
+    >({
       title: 'column',
       renderCell: function CustomCell(props) {
         return <div>{props.value.color}</div>;

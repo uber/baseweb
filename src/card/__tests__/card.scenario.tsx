@@ -4,15 +4,13 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 
-import { Card, StyledAction, StyledBody, StyledThumbnail, StyledTitle } from '../index.js';
-import { Button } from '../../button/index.js';
-import { styled } from '../../styles/index.js';
+import { Card, StyledAction, StyledBody, StyledThumbnail, StyledTitle } from '../index';
+import { Button } from '../../button/index';
+import { styled } from '../../styles/index';
 
-import { thumbnail } from '../images.js';
+import { thumbnail } from '../images';
 
 const Container = styled('div', { width: '328px' });
 

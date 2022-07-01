@@ -4,18 +4,16 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 
-import { getOverrides } from '../helpers/overrides.js';
+import { getOverrides } from '../helpers/overrides';
 
 import {
   Avatar as StyledAvatar,
   Initials as StyledInitials,
   Root as StyledRoot,
-} from './styled-components.js';
-import type { PropsT } from './types.js';
+} from './styled-components';
+import type { PropsT } from './types';
 
 function getInitials(name) {
   const words = name.split(' ');

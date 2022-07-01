@@ -5,9 +5,8 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-// @flow
 import * as React from 'react';
-import { getOverride, getOverrideProps } from '../helpers/overrides.js';
+import { getOverride, getOverrideProps } from '../helpers/overrides';
 import { UIDConsumer } from 'react-uid';
 import {
   Label as StyledLabel,
@@ -15,8 +14,8 @@ import {
   LabelContainer as StyledLabelContainer,
   Caption as StyledCaption,
   ControlContainer as StyledControlContainer,
-} from './styled-components.js';
-import type { FormControlPropsT, FormControlStateT, StylePropsT } from './types.js';
+} from './styled-components';
+import type { FormControlPropsT, FormControlStateT, StylePropsT } from './types';
 
 function chooseRenderedHint(caption, error, positive, sharedProps) {
   if (!!error && typeof error !== 'boolean') {
@@ -91,9 +90,9 @@ export default class FormControl extends React.Component<FormControlPropsT, Form
     if (counter) {
       // inferred values are preferred but if the user specifies the value
       // that is then used as the default.
-      let maxLength: ?number = null;
-      let length: ?number = null;
-      let counterError: ?boolean = null;
+      let maxLength: number | undefined | null = null;
+      let length: number | undefined | null = null;
+      let counterError: boolean | undefined | null = null;
 
       if (typeof counter === 'object') {
         length = counter.length;

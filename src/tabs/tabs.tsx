@@ -4,19 +4,18 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 import * as React from 'react';
-import { getOverrides, mergeOverrides } from '../helpers/overrides.js';
+import { getOverrides, mergeOverrides } from '../helpers/overrides';
 import {
   Root as StyledRoot,
   TabBar as StyledTabBar,
   TabContent as StyledTabContent,
-} from './styled-components.js';
-import type { TabsPropsT, SharedStylePropsArgT } from './types.js';
-import { ORIENTATION } from './constants.js';
+} from './styled-components';
+import type { TabsPropsT, SharedStylePropsArgT } from './types';
+import { ORIENTATION } from './constants';
 
 export default class Tabs extends React.Component<TabsPropsT> {
-  static defaultProps: $Shape<TabsPropsT> = {
+  static defaultProps: Partial<TabsPropsT> = {
     disabled: false,
     onChange: () => {},
     overrides: {},

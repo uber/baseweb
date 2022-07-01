@@ -5,14 +5,13 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 /* global document */
-// @flow
 import * as React from 'react';
 import { render, fireEvent, getByTestId } from '@testing-library/react';
 
-import { TestBaseProvider } from '../../test/test-utils.js';
+import { TestBaseProvider } from '../../test/test-utils';
 
-import Select from '../select.js';
-import { STATE_CHANGE_TYPE } from '../constants.js';
+import Select from '../select';
+import { STATE_CHANGE_TYPE } from '../constants';
 
 describe('Select component', function () {
   // flowlint-next-line unclear-type:off

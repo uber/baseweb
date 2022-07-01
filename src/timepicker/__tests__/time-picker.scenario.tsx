@@ -4,14 +4,12 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import React, { useState } from 'react';
 // eslint-disable-next-line import/extensions
 import { startOfDay } from 'date-fns';
 
-import { TimePicker } from '../index.js';
-import { SIZE } from '../../input/index.js';
+import { TimePicker } from '../index';
+import { SIZE } from '../../input/index';
 import MomentUtils from '@date-io/moment';
 
 const momentAdapter = new MomentUtils({});

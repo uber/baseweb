@@ -4,29 +4,30 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 /* global document */
 /* eslint-disable cup/no-undef */
 import * as React from 'react';
 import FocusLock from 'react-focus-lock';
 
-import { LocaleContext } from '../locale/index.js';
-import { getOverrides } from '../helpers/overrides.js';
-import { Layer } from '../layer/index.js';
-import { SIZE, ROLE, CLOSE_SOURCE } from './constants.js';
+import { LocaleContext } from '../locale/index';
+import { getOverrides } from '../helpers/overrides';
+import { Layer } from '../layer/index';
+import { SIZE, ROLE, CLOSE_SOURCE } from './constants';
 import {
   Root as StyledRoot,
   Dialog as StyledDialog,
   DialogContainer as StyledDialogContainer,
   Close as StyledClose,
-} from './styled-components.js';
-import { CloseIcon } from './close-icon.js';
+} from './styled-components';
+import { CloseIcon } from './close-icon';
 
-import type { ModalPropsT, ModalStateT, SharedStylePropsArgT, CloseSourceT } from './types.js';
-import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible.js';
+import type { ModalPropsT, ModalStateT, SharedStylePropsArgT, CloseSourceT } from './types';
+import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible';
+
+import type { SyntheticEvent } from 'react';
 
 class Modal extends React.Component<ModalPropsT, ModalStateT> {
-  static defaultProps: $Shape<ModalPropsT> = {
+  static defaultProps: Partial<ModalPropsT> = {
     animate: true,
     autoFocus: true,
     focusLock: true,
@@ -39,11 +40,11 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     size: SIZE.default,
   };
 
-  animateOutTimer: ?TimeoutID;
-  animateStartTimer: ?AnimationFrameID;
+  animateOutTimer: TimeoutID | undefined | null;
+  animateStartTimer: AnimationFrameID | undefined | null;
   dialogContainerRef = React.createRef<HTMLElement>();
-  lastFocus: ?HTMLElement = null;
-  lastMountNodeOverflowStyle: ?string = null;
+  lastFocus: HTMLElement | undefined | null = null;
+  lastMountNodeOverflowStyle: string | undefined | null = null;
   rootRef = React.createRef<HTMLElement>();
 
   state = {
@@ -84,13 +85,13 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     }
   }
 
-  handleFocus = (event: SyntheticEvent<>) => {
+  handleFocus = (event: SyntheticEvent) => {
     if (isFocusVisible(event)) {
       this.setState({ isFocusVisible: true });
     }
   };
 
-  handleBlur = (event: SyntheticEvent<>) => {
+  handleBlur = (event: SyntheticEvent) => {
     if (this.state.isFocusVisible !== false) {
       this.setState({ isFocusVisible: false });
     }
@@ -192,7 +193,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     });
   };
 
-  getSharedProps(): $Diff<SharedStylePropsArgT, { children?: React.Node }> {
+  getSharedProps(): Omit<SharedStylePropsArgT, 'children'> {
     const { animate, isOpen, size, role, closeable } = this.props;
     return {
       $animate: animate,
@@ -212,7 +213,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     }
     // Flow thinks body could be null (cast through any)
     // flowlint-next-line unclear-type:off
-    return ((document.body: any): HTMLBodyElement);
+    return document.body as any as HTMLBodyElement;
   }
 
   getChildren() {
@@ -254,13 +255,13 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
             <Root
               data-baseweb="modal"
               // flowlint-next-line unclear-type:off
-              ref={(this.rootRef: any)}
+              ref={this.rootRef as any}
               {...sharedProps}
               {...rootProps}
             >
               <DialogContainer
                 // flowlint-next-line unclear-type:off
-                ref={(this.dialogContainerRef: any)}
+                ref={this.dialogContainerRef as any}
                 {...sharedProps}
                 {...dialogContainerProps}
               >

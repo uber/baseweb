@@ -4,14 +4,12 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 
-import { ThemeProvider } from '../../styles/index.js';
-import { createLightTheme, lightThemePrimitives } from '../../themes/index.js';
-import Upload from '../upload.js';
-import Check from '../check.js';
+import { ThemeProvider } from '../../styles/index';
+import { createLightTheme, lightThemePrimitives } from '../../themes/index';
+import Upload from '../upload';
+import Check from '../check';
 
 // Simulate roughly how our own icons are distributed
 const Triangle = React.forwardRef((props, ref) => {

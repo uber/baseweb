@@ -4,14 +4,12 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 
-import { useStyletron } from '../styles/index.js';
+import { useStyletron } from '../styles/index';
 
-import HeaderCell from './header-cell.js';
-import type { ColumnT, RowT } from './types.js';
+import HeaderCell from './header-cell';
+import type { ColumnT, RowT } from './types';
 import { useRef } from 'react';
 
 // Measures the column header + sampled data
@@ -70,13 +68,14 @@ function MeasureColumn({ sampleIndexes, column, columnIndex, rows, isSelectable,
     </div>
   );
 }
+
 type MeasureColumnWidthsPropsT = {
-  columns: ColumnT<>[],
+  columns: ColumnT[];
   // if selectable, measure the first column with checkbox included
-  isSelectable: boolean,
-  onWidthsChange: (number[]) => void,
-  rows: RowT[],
-  widths: number[],
+  isSelectable: boolean;
+  onWidthsChange: (a: number[]) => void;
+  rows: RowT[];
+  widths: number[];
 };
 
 const MAX_SAMPLE_SIZE = 50;

@@ -4,10 +4,9 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 import * as React from 'react';
-import { useStyletron, type ThemeT } from '../styles/index.js';
-import { getOverrides } from '../helpers/overrides.js';
+import { useStyletron, type ThemeT } from '../styles/index';
+import { getOverrides } from '../helpers/overrides';
 import {
   PINHEAD_TYPES,
   NEEDLE_SIZES,
@@ -16,16 +15,16 @@ import {
   KIND,
   dragShadowHeight,
   dragShadowMarginTop,
-} from './constants.js';
-import PinHead from './pin-head.js';
-import Needle from './needle.js';
-import DragShadow from './drag-shadow.js';
-import { StyledFixedMarkerDragContainer, StyledFixedMarkerRoot } from './styled-components.js';
-import type { FixedMarkerPropsT, KindT } from './types.js';
+} from './constants';
+import PinHead from './pin-head';
+import Needle from './needle';
+import DragShadow from './drag-shadow';
+import { StyledFixedMarkerDragContainer, StyledFixedMarkerRoot } from './styled-components';
+import type { FixedMarkerPropsT, KindT } from './types';
 
 type Colors = {
-  color: string,
-  backgroundColor: string,
+  color: string;
+  backgroundColor: string;
 };
 
 function getColors(kind: KindT, theme: ThemeT): Colors {

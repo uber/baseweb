@@ -4,11 +4,10 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 import * as React from 'react';
 import FocusLock, { MoveFocusInside } from 'react-focus-lock';
 
-import { getOverride, getOverrideProps } from '../helpers/overrides.js';
+import { getOverride, getOverrideProps } from '../helpers/overrides';
 import {
   ACCESSIBILITY_TYPE,
   PLACEMENT,
@@ -16,16 +15,16 @@ import {
   ANIMATE_OUT_TIME,
   ANIMATE_IN_TIME,
   POPOVER_MARGIN,
-} from './constants.js';
-import { Layer, TetherBehavior } from '../layer/index.js';
+} from './constants';
+import { Layer, TetherBehavior } from '../layer/index';
 import {
   Arrow as StyledArrow,
   Body as StyledBody,
   Inner as StyledInner,
   Hidden,
-} from './styled-components.js';
-import { fromPopperPlacement } from './utils.js';
-import defaultProps from './default-props.js';
+} from './styled-components';
+import { fromPopperPlacement } from './utils';
+import defaultProps from './default-props';
 import { useUID } from 'react-uid';
 
 import type {
@@ -34,18 +33,18 @@ import type {
   PopoverPrivateStateT,
   SharedStylePropsArgT,
   ReactRefT,
-} from './types.js';
-import type { PopperDataObjectT, NormalizedOffsetsT } from '../layer/types.js';
+} from './types';
+import type { PopperDataObjectT, NormalizedOffsetsT } from '../layer/types';
 
 class PopoverInner extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
-  static defaultProps: $Shape<PopoverPropsT> = defaultProps;
+  static defaultProps: Partial<PopoverPropsT> = defaultProps;
 
   /* eslint-disable react/sort-comp */
-  animateInTimer: ?TimeoutID;
-  animateOutTimer: ?TimeoutID;
-  animateOutCompleteTimer: ?TimeoutID;
-  onMouseEnterTimer: ?TimeoutID;
-  onMouseLeaveTimer: ?TimeoutID;
+  animateInTimer: TimeoutID | undefined | null;
+  animateOutTimer: TimeoutID | undefined | null;
+  animateOutCompleteTimer: TimeoutID | undefined | null;
+  onMouseEnterTimer: TimeoutID | undefined | null;
+  onMouseLeaveTimer: TimeoutID | undefined | null;
   anchorRef = React.createRef<HTMLElement>();
   popperRef = React.createRef<HTMLElement>();
   arrowRef = React.createRef<HTMLElement>();
@@ -336,7 +335,7 @@ class PopoverInner extends React.Component<PopoverPropsT, PopoverPrivateStateT> 
     return bodyProps;
   }
 
-  getSharedProps(): $Diff<SharedStylePropsArgT, { children?: React.Node }> {
+  getSharedProps(): Omit<SharedStylePropsArgT, 'children'> {
     const { isOpen, showArrow, popoverMargin = POPOVER_MARGIN } = this.props;
     const { isAnimating, arrowOffset, popoverOffset, placement } = this.state;
     return {
@@ -379,7 +378,7 @@ class PopoverInner extends React.Component<PopoverPropsT, PopoverPrivateStateT> 
     return <span {...anchorProps}>{anchor}</span>;
   }
 
-  renderPopover(renderedContent: React.Node) {
+  renderPopover(renderedContent: React.ReactNode) {
     const { showArrow, overrides = {} } = this.props;
 
     const { Arrow: ArrowOverride, Body: BodyOverride, Inner: InnerOverride } = overrides;
@@ -488,7 +487,11 @@ class PopoverInner extends React.Component<PopoverPropsT, PopoverPrivateStateT> 
 }
 
 // Remove when Popover is converted to a functional component.
-const Popover = (props: PopoverPropsT & { innerRef?: ReactRefT<HTMLElement> }) => {
+const Popover = (
+  props: PopoverPropsT & {
+    innerRef?: ReactRefT<HTMLElement>;
+  }
+) => {
   const { innerRef } = props;
   const gID = useUID();
   //$FlowExpectedError[cannot-spread-inexact]

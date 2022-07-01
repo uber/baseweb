@@ -4,29 +4,32 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 import * as React from 'react';
 import memoize from 'memoize-one';
 // Files
-import { LocaleContext } from '../locale/index.js';
-import { ThemeContext } from '../styles/theme-provider.js';
-import { Select as BaseSelect } from '../select/index.js';
-import { Button, KIND } from '../button/index.js';
-import { StyledRoot, StyledMaxLabel, StyledDropdownContainer } from './styled-components.js';
-import ChevronLeft from '../icon/chevron-left.js';
-import ChevronRight from '../icon/chevron-right.js';
-import { getOverrides } from '../helpers/overrides.js';
-import type { PaginationPropsT } from './types.js';
-import type { LocaleT } from '../locale/types.js';
-import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible.js';
+import { LocaleContext } from '../locale/index';
+import { ThemeContext } from '../styles/theme-provider';
+import { Select as BaseSelect } from '../select/index';
+import { Button, KIND } from '../button/index';
+import { StyledRoot, StyledMaxLabel, StyledDropdownContainer } from './styled-components';
+import ChevronLeft from '../icon/chevron-left';
+import ChevronRight from '../icon/chevron-right';
+import { getOverrides } from '../helpers/overrides';
+import type { PaginationPropsT } from './types';
+import type { LocaleT } from '../locale/types';
+import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible';
+
+import type { SyntheticEvent } from 'react';
 
 type PageOptionT = {
-  label: number,
+  label: number;
 };
 
 export default class Pagination extends React.PureComponent<
   PaginationPropsT,
-  { isFocusVisible: boolean }
+  {
+    isFocusVisible: boolean;
+  }
 > {
   static defaultProps = {
     labels: {},
@@ -34,13 +37,13 @@ export default class Pagination extends React.PureComponent<
   };
 
   state = { isFocusVisible: false };
-  handleFocus = (event: SyntheticEvent<>) => {
+  handleFocus = (event: SyntheticEvent) => {
     if (isFocusVisible(event)) {
       this.setState({ isFocusVisible: true });
     }
   };
 
-  handleBlur = (event: SyntheticEvent<>) => {
+  handleBlur = (event: SyntheticEvent) => {
     if (this.state.isFocusVisible !== false) {
       this.setState({ isFocusVisible: false });
     }
@@ -54,7 +57,7 @@ export default class Pagination extends React.PureComponent<
     return menuOptions;
   });
 
-  onMenuItemSelect = (data: { value: $ReadOnlyArray<PageOptionT> }) => {
+  onMenuItemSelect = (data: { value: ReadonlyArray<PageOptionT> }) => {
     const item = data.value[0];
     const { onPageChange, currentPage } = this.props;
     const page = item.label;
@@ -63,7 +66,7 @@ export default class Pagination extends React.PureComponent<
     }
   };
 
-  onPrevClick = (event: SyntheticEvent<>) => {
+  onPrevClick = (event: SyntheticEvent) => {
     const { currentPage, onPageChange, onPrevClick } = this.props;
     if (currentPage > 1) {
       onPageChange && onPageChange({ nextPage: currentPage - 1, prevPage: currentPage });
@@ -71,7 +74,7 @@ export default class Pagination extends React.PureComponent<
     }
   };
 
-  onNextClick = (event: SyntheticEvent<>) => {
+  onNextClick = (event: SyntheticEvent) => {
     const { currentPage, numPages, onPageChange, onNextClick } = this.props;
     if (currentPage < numPages) {
       onPageChange && onPageChange({ nextPage: currentPage + 1, prevPage: currentPage });

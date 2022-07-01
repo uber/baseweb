@@ -4,12 +4,10 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 
-import { Banner, ACTION_POSITION, HIERARCHY, KIND } from '../index.js';
-import DeleteAlt from '../../icon/delete-alt.js';
+import { Banner, ACTION_POSITION, HIERARCHY, KIND } from '../index';
+import DeleteAlt from '../../icon/delete-alt';
 
 const variants = [
   [HIERARCHY.low, KIND.info],

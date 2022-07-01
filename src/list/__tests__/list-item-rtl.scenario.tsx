@@ -4,15 +4,13 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 
-import { Button } from '../../button/index.js';
-import Check from '../../icon/check.js';
-import ChevronRight from '../../icon/chevron-right.js';
-import Search from '../../icon/search.js';
-import { ListItem, ListItemLabel, ARTWORK_SIZES } from '../index.js';
+import { Button } from '../../button/index';
+import Check from '../../icon/check';
+import ChevronRight from '../../icon/chevron-right';
+import Search from '../../icon/search';
+import { ListItem, ListItemLabel, ARTWORK_SIZES } from '../index';
 
 export function Scenario() {
   return (

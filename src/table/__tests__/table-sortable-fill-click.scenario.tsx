@@ -4,8 +4,6 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 
 import {
@@ -16,7 +14,7 @@ import {
   StyledCell,
   SortableHeadCell,
   SORT_DIRECTION,
-} from '../index.js';
+} from '../index';
 
 const DATA = [
   ['Marlyn', 10],
@@ -45,7 +43,7 @@ const DATA = [
 export class Scenario extends React.Component<any, any> {
   state = { nameDirection: null, ageDirection: null };
 
-  handleSort = (title: string, prevDirection: ?string) => {
+  handleSort = (title: string, prevDirection?: string | null) => {
     let nextDirection = null;
     if (prevDirection === SORT_DIRECTION.ASC) {
       nextDirection = SORT_DIRECTION.DESC;

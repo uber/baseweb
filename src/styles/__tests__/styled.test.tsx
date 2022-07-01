@@ -5,12 +5,11 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 /* eslint-disable */
-// @flow
 import * as React from 'react';
 import { render, getByTestId } from '@testing-library/react';
 
-import { withStyletronProvider, withThemeProvider } from '../../test/test-utils.js';
-import { LightTheme } from '../../themes/index.js';
+import { withStyletronProvider, withThemeProvider } from '../../test/test-utils';
+import { LightTheme } from '../../themes/index';
 
 import {
   styled,
@@ -20,7 +19,7 @@ import {
   useStyletron,
   createThemedUseStyletron,
   withWrapper,
-} from '../styled.js';
+} from '../styled';
 
 jest.unmock('../styled.js');
 
@@ -123,7 +122,10 @@ test('styled override prop', () => {
 
 describe('styled flow', () => {
   test('it provides flow error if accessing property not defined in props type', () => {
-    type P = { hello: string };
+    type P = {
+      hello: string;
+    };
+
     const a = styled<P>('div', (props) => {
       console.log(props.hello);
       // $FlowFixMe
@@ -153,7 +155,10 @@ describe('styled flow', () => {
       return <div className={props.className}>test</div>;
     }
 
-    type P = { hello: string };
+    type P = {
+      hello: string;
+    };
+
     const a = styled<typeof C, P>(C, (props) => {
       console.log(props.hello);
       // $FlowFixMe
@@ -165,7 +170,12 @@ describe('styled flow', () => {
 
 describe('themedStyled flow', () => {
   test('it provides flow error if accessing property not defined in custom theme type', () => {
-    type T = { colors: { custom400: string } };
+    type T = {
+      colors: {
+        custom400: string;
+      };
+    };
+
     const themedStyled = createThemedStyled<T>();
 
     const a = themedStyled<{}>('div', (props) => {
@@ -177,10 +187,18 @@ describe('themedStyled flow', () => {
   });
 
   test('it provides props flow error using createThemedStyled', () => {
-    type T = { colors: { custom400: string } };
+    type T = {
+      colors: {
+        custom400: string;
+      };
+    };
+
     const themedStyled = createThemedStyled<T>();
 
-    type P = { hello: string };
+    type P = {
+      hello: string;
+    };
+
     const a = themedStyled<P>('div', (props) => {
       console.log(props.hello);
       // $FlowFixMe
@@ -192,12 +210,18 @@ describe('themedStyled flow', () => {
 
 describe('withStyle flow', () => {
   test('it provides flow error if accessing property not defined in props type', () => {
-    type P = { hello: string };
+    type P = {
+      hello: string;
+    };
+
     const a = styled<P>('div', (props) => {
       return { color: 'blue' };
     });
 
-    type Q = { world: string };
+    type Q = {
+      world: string;
+    };
+
     const b = withStyle<typeof a, Q>(a, (props) => {
       console.log(props.world);
       // $FlowFixMe
@@ -235,7 +259,12 @@ describe('withStyle flow', () => {
 
 describe('themedWithStyle flow', () => {
   test('it provides flow error if accessing property not defined in custom theme type', () => {
-    type T = { colors: { custom400: string } };
+    type T = {
+      colors: {
+        custom400: string;
+      };
+    };
+
     const themedStyled = createThemedStyled<T>();
     const themedWithStyle = createThemedWithStyle<T>();
 
@@ -252,7 +281,12 @@ describe('themedWithStyle flow', () => {
   });
 
   test('it provides props flow error using createThemedStyled', () => {
-    type T = { colors: { custom400: string } };
+    type T = {
+      colors: {
+        custom400: string;
+      };
+    };
+
     const themedStyled = createThemedStyled<T>();
     const themedWithStyle = createThemedWithStyle<T>();
 
@@ -260,7 +294,10 @@ describe('themedWithStyle flow', () => {
       return { color: 'blue' };
     });
 
-    type P = { hello: string };
+    type P = {
+      hello: string;
+    };
+
     const b = themedWithStyle<typeof a, P>(a, (props) => {
       console.log(props.hello);
       // $FlowFixMe
@@ -299,7 +336,12 @@ describe('useStyletron flow', () => {
 
 describe('themedUseStyletron flow', () => {
   test('it provides flow error if argument is not a StyleObject', () => {
-    type T = { colors: { custom400: string } };
+    type T = {
+      colors: {
+        custom400: string;
+      };
+    };
+
     const themedUseStyletron = createThemedUseStyletron<T>();
 
     function A() {
@@ -311,7 +353,12 @@ describe('themedUseStyletron flow', () => {
 
   test('it provides flow error if accessing property not defined in default theme type', () => {
     function A() {
-      type T = { colors: { custom400: string } };
+      type T = {
+        colors: {
+          custom400: string;
+        };
+      };
+
       const themedUseStyletron = createThemedUseStyletron<T>();
 
       const [css, theme] = themedUseStyletron();

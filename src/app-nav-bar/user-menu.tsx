@@ -4,23 +4,21 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 
-import { Avatar } from '../avatar/index.js';
-import { Button } from '../button/index.js';
-import { getOverrides, mergeOverrides } from '../helpers/overrides.js';
-import ChevronDownSmallFilled from '../icon/chevron-down.js';
-import ChevronUpSmallFilled from '../icon/chevron-up.js';
-import { MenuAdapter, ListItemLabel, ARTWORK_SIZES } from '../list/index.js';
-import { StatefulMenu, StyledList } from '../menu/index.js';
-import { StatefulPopover, PLACEMENT, TRIGGER_TYPE } from '../popover/index.js';
+import { Avatar } from '../avatar/index';
+import { Button } from '../button/index';
+import { getOverrides, mergeOverrides } from '../helpers/overrides';
+import ChevronDownSmallFilled from '../icon/chevron-down';
+import ChevronUpSmallFilled from '../icon/chevron-up';
+import { MenuAdapter, ListItemLabel, ARTWORK_SIZES } from '../list/index';
+import { StatefulMenu, StyledList } from '../menu/index';
+import { StatefulPopover, PLACEMENT, TRIGGER_TYPE } from '../popover/index';
 
-import { StyledUserMenuButton, StyledUserMenuProfileListItem } from './styled-components.js';
-import type { UserMenuPropsT, NavItemT, OverridesT } from './types.js';
-import UserProfileTile from './user-profile-tile.js';
-import { defaultMapItemToNode } from './utils.js';
+import { StyledUserMenuButton, StyledUserMenuProfileListItem } from './styled-components';
+import type { UserMenuPropsT, NavItemT, OverridesT } from './types';
+import UserProfileTile from './user-profile-tile';
+import { defaultMapItemToNode } from './utils';
 
 const MENU_ITEM_WIDTH = '275px';
 
@@ -37,12 +35,13 @@ const UserMenuListItem = React.forwardRef((props, ref) => {
 
 const svgStyleOverride = ({ $theme }) => ({ paddingLeft: $theme.sizing.scale200 });
 
-export default function UserMenuComponent(props: {|
-  ...UserMenuPropsT,
-  mapItemToNode: (NavItemT) => React.Node,
-  onItemSelect: (NavItemT) => mixed,
-  overrides: OverridesT,
-|}) {
+export default function UserMenuComponent(
+  props: {
+    mapItemToNode: (a: NavItemT) => React.ReactNode;
+    onItemSelect: (a: NavItemT) => unknown;
+    overrides: OverridesT;
+  } & UserMenuPropsT
+) {
   // isOpen is used for displaying different arrow icons in open or closed state
   const [isOpen, setIsOpen] = React.useState(false);
   const { userItems = [], username, userImgUrl, overrides = {} } = props;

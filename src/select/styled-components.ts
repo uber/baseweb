@@ -4,15 +4,13 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
+import { styled, withStyle } from '../styles/index';
+import { TYPE, SIZE } from './constants';
+import { StyledList, StyledListItem } from '../menu/index';
+import { Spinner } from '../spinner/index';
 
-import { styled, withStyle } from '../styles/index.js';
-import { TYPE, SIZE } from './constants.js';
-import { StyledList, StyledListItem } from '../menu/index.js';
-import { Spinner } from '../spinner/index.js';
-
-import type { SharedStylePropsArgT } from './types.js';
-import { ellipsisText } from '../styles/util.js';
+import type { SharedStylePropsArgT } from './types';
+import { ellipsisText } from '../styles/util';
 
 function getFont(size = SIZE.default, typography) {
   return {
@@ -93,11 +91,11 @@ export const StyledDropdownListItem = StyledListItem;
 export const StyledOptionContent = styled<SharedStylePropsArgT>('div', (props) => {
   const { $isHighlighted, $selected, $disabled, $theme } = props;
 
-  return ({
+  return {
     cursor: $disabled ? 'not-allowed' : 'pointer',
     color: $selected && !$isHighlighted ? $theme.colors.menuFontSelected : null,
     fontWeight: $selected ? 'bold' : 'normal',
-  }: {});
+  } as {};
 });
 
 export const StyledRoot = styled<SharedStylePropsArgT>('div', (props) => {

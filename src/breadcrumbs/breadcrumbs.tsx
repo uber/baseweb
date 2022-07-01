@@ -5,17 +5,15 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-// @flow
-
 import React, { Children } from 'react';
 
-import { LocaleContext } from '../locale/index.js';
-import { ThemeContext } from '../styles/theme-provider.js';
-import ChevronRight from '../icon/chevron-right.js';
-import ChevronLeft from '../icon/chevron-left.js';
-import type { BreadcrumbsPropsT } from './types.js';
-import { StyledList, StyledListItem, StyledRoot, StyledSeparator } from './styled-components.js';
-import { getOverrides, mergeOverrides } from '../helpers/overrides.js';
+import { LocaleContext } from '../locale/index';
+import { ThemeContext } from '../styles/theme-provider';
+import ChevronRight from '../icon/chevron-right';
+import ChevronLeft from '../icon/chevron-left';
+import type { BreadcrumbsPropsT } from './types';
+import { StyledList, StyledListItem, StyledRoot, StyledSeparator } from './styled-components';
+import { getOverrides, mergeOverrides } from '../helpers/overrides';
 
 export function Breadcrumbs(props: BreadcrumbsPropsT) {
   const { overrides = {}, showTrailingSeparator = false } = props;

@@ -4,21 +4,19 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import React from 'react';
 
-import { getOverrides } from '../helpers/overrides.js';
+import { getOverrides } from '../helpers/overrides';
 
-import { ARTWORK_SIZES, SHAPE } from './constants.js';
+import { ARTWORK_SIZES, SHAPE } from './constants';
 import {
   StyledRoot,
   StyledContent,
   StyledEndEnhancerContainer,
   StyledArtworkContainer,
-} from './styled-components.js';
-import type { PropsT } from './types.js';
-import { artworkSizeToValue } from './utils.js';
+} from './styled-components';
+import type { PropsT } from './types';
+import { artworkSizeToValue } from './utils';
 
 const ListItem = React.forwardRef<PropsT, HTMLLIElement>((props: PropsT, ref) => {
   const { overrides = {} } = props;
@@ -56,7 +54,7 @@ const ListItem = React.forwardRef<PropsT, HTMLLIElement>((props: PropsT, ref) =>
   return (
     <Root
       // flowlint-next-line unclear-type:off
-      ref={(ref: any)}
+      ref={ref as any}
       $shape={props.shape || SHAPE.DEFAULT}
       aria-label={props['aria-label']}
       aria-selected={props['aria-selected']}

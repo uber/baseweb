@@ -4,14 +4,13 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 import tint from 'polished/lib/color/tint.js';
 import shade from 'polished/lib/color/shade.js';
 
-import { styled, type ThemeT } from '../styles/index.js';
-import { KIND, VARIANT, SIZE } from './constants.js';
-import type { SharedPropsArgT } from './types.js';
-import { colors as colorTokens } from '../tokens/index.js';
+import { styled, type ThemeT } from '../styles/index';
+import { KIND, VARIANT, SIZE } from './constants';
+import type { SharedPropsArgT } from './types';
+import { colors as colorTokens } from '../tokens/index';
 
 export function customOnRamp(color?: string, unit?: string) {
   switch (unit) {
@@ -257,14 +256,18 @@ const getColorStateFromProps = (props) => {
 
 export const Action = styled<SharedPropsArgT>(
   'span',
-  (props: SharedPropsArgT & { $theme: ThemeT }) => {
+  (
+    props: SharedPropsArgT & {
+      $theme: ThemeT;
+    }
+  ) => {
     const { $theme, $disabled, $size = SIZE.small } = props;
     const bottomRadiusDir: string =
       $theme.direction === 'rtl' ? 'borderBottomLeftRadius' : 'borderBottomRightRadius';
     const topRadiusDir: string =
       $theme.direction === 'rtl' ? 'borderTopLeftRadius' : 'borderTopRightRadius';
     const marginDir: string = $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
-    return ({
+    return {
       alignItems: 'center',
       [bottomRadiusDir]: $theme.borders.useRoundedCorners ? $theme.borders.radius400 : 0,
       [topRadiusDir]: $theme.borders.useRoundedCorners ? $theme.borders.radius400 : 0,
@@ -279,13 +282,18 @@ export const Action = styled<SharedPropsArgT>(
       transitionProperty: 'all',
       transitionDuration: 'background-color',
       transitionTimingFunction: $theme.animation.easeOutCurve,
-    }: {});
+    } as {};
   }
 );
 
 export const StartEnhancerContainer = styled<SharedPropsArgT>(
   'div',
-  ({ $theme, $size = SIZE.small }: SharedPropsArgT & { $theme: ThemeT }) => {
+  ({
+    $theme,
+    $size = SIZE.small,
+  }: SharedPropsArgT & {
+    $theme: ThemeT;
+  }) => {
     let paddingMagnitude = $theme.sizing.scale300;
     if ($size === SIZE.medium) {
       paddingMagnitude = $theme.sizing.scale400;
@@ -305,7 +313,11 @@ export const StartEnhancerContainer = styled<SharedPropsArgT>(
 
 export const Text = styled<SharedPropsArgT>(
   'span',
-  (props: SharedPropsArgT & { $theme: ThemeT }) => {
+  (
+    props: SharedPropsArgT & {
+      $theme: ThemeT;
+    }
+  ) => {
     const { $theme } = props;
 
     return {
@@ -320,7 +332,11 @@ export const Text = styled<SharedPropsArgT>(
 
 export const Root = styled<SharedPropsArgT>(
   'span',
-  (props: SharedPropsArgT & { $theme: ThemeT }) => {
+  (
+    props: SharedPropsArgT & {
+      $theme: ThemeT;
+    }
+  ) => {
     const {
       $theme,
       $kind = KIND.primary,
@@ -343,7 +359,7 @@ export const Root = styled<SharedPropsArgT>(
       $theme,
       $color
     );
-    return ({
+    return {
       ...{
         [SIZE.small]: $theme.typography.LabelSmall,
         [SIZE.medium]: $theme.typography.LabelMedium,
@@ -406,6 +422,6 @@ export const Root = styled<SharedPropsArgT>(
                   }`
                 : 'none',
             },
-    }: {});
+    } as {};
   }
 );

@@ -4,66 +4,67 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
-import type { OverrideT } from '../helpers/overrides.js';
-import { SIZE, STATE_CHANGE_TYPE } from '../input/index.js';
+import type { OverrideT } from '../helpers/overrides';
+import { SIZE, STATE_CHANGE_TYPE } from '../input/index';
 
-export type ChangeEventT = { values: string[], event: InputEvent };
+export type ChangeEventT = {
+  values: string[];
+  event: InputEvent;
+};
 
 export type PropsT = {
   /** Sets aria-label attribute for each input element. */
-  'aria-label': ?string,
+  'aria-label': string | undefined | null;
   /** Sets aria-labelledby attribute for each input element. */
-  'aria-labelledby': ?string,
+  'aria-labelledby': string | undefined | null;
   /** Sets aria-describedby attribute for each input element. */
-  'aria-describedby': ?string,
+  'aria-describedby': string | undefined | null;
   /** Sets autocomplete attribute for each input element. */
-  autoComplete: ?string,
+  autoComplete: string | undefined | null;
   /** If true, the first input will be focused upon mounting. */
-  autoFocus: boolean,
+  autoFocus: boolean;
   /** Render the component in a disabled state. */
-  disabled: boolean,
+  disabled: boolean;
   /** Renders the component in an error state. */
-  error: boolean,
+  error: boolean;
   /** Sets the base id string that will be applied to the id attribute of each input element. The index of the input will be appended to this base string. Ex: `id="foo"` -> `id="foo-1"`, `id="foo-2",` etc... */
-  id: ?string,
+  id: string | undefined | null;
   /** Sets the name attribute of each input element. */
-  name: ?string,
+  name: string | undefined | null;
   /** A handler for when any pin code input changes value. */
-  onChange: (ChangeEventT) => mixed,
+  onChange: (a: ChangeEventT) => unknown;
   overrides: {
-    Root?: OverrideT,
-    Input?: OverrideT,
-  },
+    Root?: OverrideT;
+    Input?: OverrideT;
+  };
   /** Sets the placeholder text for each pin code input element. */
-  placeholder: string,
+  placeholder: string;
   /** Renders the component in a positive state. */
-  positive: boolean,
+  positive: boolean;
   /** Sets the required attribute of each pin code input element. */
-  required: boolean,
+  required: boolean;
   /** Renders the component at a given size. */
-  size: $Keys<typeof SIZE>,
+  size: keyof typeof SIZE;
   /** If true, when a pin code input receives a valid value, focus will be transferred to the next pin code input (until the end of the inputs). */
-  manageFocus: boolean,
+  manageFocus: boolean;
   /** An array of values respective to each pin code input. */
-  values: string[],
+  values: string[];
   /** Mask for pin code. Default is no mask. Set it true then mask is ".". Also accept string input as customized mask style. */
-  mask: boolean | string,
+  mask: boolean | string;
 };
 
 // Stateful stuff below
 
 export type StateT = {
-  hasFocus: boolean,
+  hasFocus: boolean;
 };
 
 export type StatefulPinCodeContainerStateT = {
-  values: string[],
+  values: string[];
 };
 
-export type StateChangeT = $Keys<typeof STATE_CHANGE_TYPE>;
+export type StateChangeT = keyof typeof STATE_CHANGE_TYPE;
 
 export type StateReducerT = (
   type: StateChangeT,
@@ -72,14 +73,14 @@ export type StateReducerT = (
 ) => StatefulPinCodeContainerStateT;
 
 export type StatefulPinCodePropsT = PropsT & {
-  initialState?: StatefulPinCodeContainerStateT,
-  onChange?: (event: ChangeEventT) => mixed,
-  stateReducer?: StateReducerT,
+  initialState?: StatefulPinCodeContainerStateT;
+  onChange?: (event: ChangeEventT) => unknown;
+  stateReducer?: StateReducerT;
 };
 
 export type StatefulPinCodeContainerPropsT = PropsT & {
-  children: (PropsT) => React.Node,
-  initialState: StatefulPinCodeContainerStateT,
-  onChange: (event: ChangeEventT) => mixed,
-  stateReducer: StateReducerT,
+  children: (a: PropsT) => React.ReactNode;
+  initialState: StatefulPinCodeContainerStateT;
+  onChange: (event: ChangeEventT) => unknown;
+  stateReducer: StateReducerT;
 };

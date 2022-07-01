@@ -4,26 +4,23 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
-import { styled } from '../styles/index.js';
-import type { ThemeT } from '../styles/types.js';
-import type { StyledComponentArgsT } from './types.js';
+import { styled } from '../styles/index';
+import type { ThemeT } from '../styles/types';
+import type { StyledComponentArgsT } from './types';
 
 export function getSvgStyles({
   $theme,
   $size,
   $color,
 }: {
-  ...StyledComponentArgsT,
-  $theme: ThemeT,
-}): {|
-  display: string,
-  fill: string,
-  color: string,
-  height: string,
-  width: string,
-|} {
+  $theme: ThemeT;
+} & StyledComponentArgsT): {
+  display: string;
+  fill: string;
+  color: string;
+  height: string;
+  width: string;
+} {
   let size = $theme.sizing.scale600;
   if ($size) {
     if ($theme.sizing[$size]) {

@@ -4,14 +4,12 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 import { render, fireEvent, queryByTestId, getByText } from '@testing-library/react';
 
-import { TestBaseProvider } from '../../test/test-utils.js';
+import { TestBaseProvider } from '../../test/test-utils';
 
-import { Filter } from '../index.js';
+import { Filter } from '../index';
 
 describe('Table-Filter', () => {
   it('does not display filter content by default', () => {

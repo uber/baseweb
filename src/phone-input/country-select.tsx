@@ -4,21 +4,19 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 // The `CountrySelect` component is not designed to be used
 // as a standalone component and we should deprecate it
 // in the next v11 major version in favor of `CountryPicker`.
 // The `DialCode` rendering should be a part of the composed
 // non-split phone input.
 import React from 'react';
-import { StyledDialCode, StyledCountrySelectContainer } from './styled-components.js';
-import BaseCountryPicker from './base-country-picker.js';
-import { SingleSelect as DefaultSelect } from '../select/index.js';
-import { getOverrides, mergeOverrides } from '../helpers/overrides.js';
-import defaultProps from './default-props.js';
+import { StyledDialCode, StyledCountrySelectContainer } from './styled-components';
+import BaseCountryPicker from './base-country-picker';
+import { SingleSelect as DefaultSelect } from '../select/index';
+import { getOverrides, mergeOverrides } from '../helpers/overrides';
+import defaultProps from './default-props';
 
-import type { CountrySelectPropsT } from './types.js';
+import type { CountrySelectPropsT } from './types';
 
 CountrySelect.defaultProps = {
   disabled: defaultProps.disabled,

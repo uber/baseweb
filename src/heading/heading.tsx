@@ -4,12 +4,10 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
-import Block from '../block/block.js';
-import { LevelContext } from './heading-level.js';
-import type { HeadingPropsT } from './types.js';
+import Block from '../block/block';
+import { LevelContext } from './heading-level';
+import type { HeadingPropsT } from './types';
 
 const FONTS = ['', 'font1050', 'font950', 'font850', 'font750', 'font650', 'font550'];
 

@@ -4,8 +4,6 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 
 import {
@@ -15,11 +13,11 @@ import {
   StyledBody,
   StyledRow,
   StyledCell,
-} from './styled-components.js';
+} from './styled-components';
 
-import { ProgressBar } from '../progress-bar/index.js';
+import { ProgressBar } from '../progress-bar/index';
 
-import type { TablePropsT } from './types.js';
+import type { TablePropsT } from './types';
 
 export default class Table extends React.Component<TablePropsT> {
   static defaultProps = {

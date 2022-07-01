@@ -4,15 +4,13 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import React from 'react';
 import { act } from 'react-dom/test-utils';
 import { render, fireEvent } from '@testing-library/react';
 
-import { TestBaseProvider } from '../../test/test-utils.js';
+import { TestBaseProvider } from '../../test/test-utils';
 
-import { Combobox } from '../index.js';
+import { Combobox } from '../index';
 
 const options = ['A', 'B', 'C', 'D', 'E', 'F'];
 

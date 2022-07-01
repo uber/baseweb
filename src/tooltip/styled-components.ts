@@ -4,11 +4,10 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-import { styled } from '../styles/index.js';
-import { getBodyStyles, getArrowStyles, getInnerStyles } from '../popover/styled-components.js';
-import { getEndPosition } from '../popover/utils.js';
-import type { SharedStylePropsArgT } from '../popover/types.js';
+import { styled } from '../styles/index';
+import { getBodyStyles, getArrowStyles, getInnerStyles } from '../popover/styled-components';
+import { getEndPosition } from '../popover/utils';
+import type { SharedStylePropsArgT } from '../popover/types';
 
 /**
  * We want to reuse the default Popover styles and add our overrides

@@ -4,9 +4,8 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-import colorTokens from './color-tokens.js';
-import type { ColorTokensT, ComponentColorTokensT } from '../types.js';
+import colorTokens from './color-tokens';
+import type { ColorTokensT, ComponentColorTokensT } from '../types';
 
 const tagHoverBackground = `rgba(0, 0, 0, 0.08)`;
 
@@ -27,6 +26,7 @@ export default (themePrimitives: ColorTokensT = colorTokens): ComponentColorToke
 
   // Buttons
   buttonPrimaryFill: themePrimitives.primary,
+
   buttonPrimaryText: themePrimitives.white,
   buttonPrimaryHover: themePrimitives.primary700,
   buttonPrimaryActive: themePrimitives.primary600,
@@ -34,7 +34,6 @@ export default (themePrimitives: ColorTokensT = colorTokens): ComponentColorToke
   buttonPrimarySelectedText: themePrimitives.white,
   buttonPrimarySpinnerForeground: themePrimitives.accent,
   buttonPrimarySpinnerBackground: themePrimitives.primaryB,
-
   buttonSecondaryFill: themePrimitives.primary100,
   buttonSecondaryText: themePrimitives.primary,
   buttonSecondaryHover: themePrimitives.primary200,
@@ -43,7 +42,6 @@ export default (themePrimitives: ColorTokensT = colorTokens): ComponentColorToke
   buttonSecondarySelectedText: themePrimitives.primary,
   buttonSecondarySpinnerForeground: themePrimitives.accent,
   buttonSecondarySpinnerBackground: themePrimitives.primaryB,
-
   buttonTertiaryFill: 'transparent',
   buttonTertiaryText: themePrimitives.primary,
   buttonTertiaryHover: themePrimitives.primary50,
@@ -54,7 +52,6 @@ export default (themePrimitives: ColorTokensT = colorTokens): ComponentColorToke
   buttonTertiaryDisabledActiveText: themePrimitives.mono600,
   buttonTertiarySpinnerForeground: themePrimitives.accent,
   buttonTertiarySpinnerBackground: themePrimitives.primary100,
-
   buttonDisabledFill: themePrimitives.mono200,
   buttonDisabledText: themePrimitives.mono600,
   buttonDisabledActiveFill: themePrimitives.mono700,
@@ -64,10 +61,12 @@ export default (themePrimitives: ColorTokensT = colorTokens): ComponentColorToke
 
   // Breadcrumbs
   breadcrumbsText: themePrimitives.mono900,
+
   breadcrumbsSeparatorFill: themePrimitives.mono700,
 
   // Datepicker
   calendarBackground: themePrimitives.mono100,
+
   calendarForeground: themePrimitives.mono1000,
   calendarForegroundDisabled: themePrimitives.mono500,
   calendarHeaderBackground: themePrimitives.white,
@@ -84,10 +83,12 @@ export default (themePrimitives: ColorTokensT = colorTokens): ComponentColorToke
 
   // Combobox
   comboboxListItemFocus: themePrimitives.mono200,
+
   comboboxListItemHover: themePrimitives.mono300,
 
   // FileUploader
   fileUploaderBackgroundColor: themePrimitives.mono200,
+
   fileUploaderBackgroundColorActive: themePrimitives.primary50,
   fileUploaderBorderColorActive: themePrimitives.primary,
   fileUploaderBorderColorDefault: themePrimitives.mono500,
@@ -95,22 +96,26 @@ export default (themePrimitives: ColorTokensT = colorTokens): ComponentColorToke
 
   // Links
   linkText: themePrimitives.primary,
+
   linkVisited: themePrimitives.primary700,
   linkHover: themePrimitives.primary600,
   linkActive: themePrimitives.primary500,
 
   // List
   listHeaderFill: themePrimitives.white,
+
   listBodyFill: themePrimitives.white,
 
   // ProgressSteps
   progressStepsCompletedText: themePrimitives.white,
+
   progressStepsCompletedFill: themePrimitives.primary,
   progressStepsActiveText: themePrimitives.white,
   progressStepsActiveFill: themePrimitives.primary,
 
   // Toggle
   toggleFill: themePrimitives.white,
+
   toggleFillChecked: themePrimitives.primary,
   toggleFillDisabled: themePrimitives.mono600,
   toggleTrackFill: themePrimitives.mono400,
@@ -118,31 +123,28 @@ export default (themePrimitives: ColorTokensT = colorTokens): ComponentColorToke
 
   // Tick
   tickFill: themePrimitives.mono100,
+
   tickFillHover: themePrimitives.mono200,
   tickFillActive: themePrimitives.mono300,
-
   tickFillSelected: themePrimitives.primary,
   tickFillSelectedHover: themePrimitives.primary700,
   tickFillSelectedHoverActive: themePrimitives.primary600,
-
   tickFillError: themePrimitives.negative50,
   tickFillErrorHover: themePrimitives.negative100,
   tickFillErrorHoverActive: themePrimitives.negative200,
   tickFillErrorSelected: themePrimitives.negative400,
   tickFillErrorSelectedHover: themePrimitives.negative500,
   tickFillErrorSelectedHoverActive: themePrimitives.negative600,
-
   tickFillDisabled: themePrimitives.mono600,
-
   tickBorder: themePrimitives.mono700,
   tickBorderError: themePrimitives.negative400,
-
   tickMarkFill: themePrimitives.white,
   tickMarkFillError: themePrimitives.white,
   tickMarkFillDisabled: themePrimitives.mono100,
 
   // Slider/Toggle
   sliderTrackFill: 'transparent',
+
   sliderHandleFill: themePrimitives.primaryA,
   sliderHandleFillDisabled: themePrimitives.primary400,
   sliderHandleInnerFill: themePrimitives.primaryA,
@@ -155,6 +157,7 @@ export default (themePrimitives: ColorTokensT = colorTokens): ComponentColorToke
 
   // Inputs
   inputBorder: themePrimitives.mono300,
+
   inputFill: themePrimitives.mono300,
   inputFillError: themePrimitives.negative50,
   inputFillDisabled: themePrimitives.mono200,
@@ -171,6 +174,7 @@ export default (themePrimitives: ColorTokensT = colorTokens): ComponentColorToke
 
   // Menu
   menuFill: themePrimitives.mono100,
+
   menuFillHover: themePrimitives.mono200,
   menuFontDefault: themePrimitives.mono800,
   menuFontDisabled: themePrimitives.mono500,
@@ -179,15 +183,18 @@ export default (themePrimitives: ColorTokensT = colorTokens): ComponentColorToke
 
   // Modal
   modalCloseColor: themePrimitives.mono1000,
+
   modalCloseColorHover: themePrimitives.mono800,
   modalCloseColorFocus: themePrimitives.mono800,
 
   // Tab
   tabBarFill: themePrimitives.mono200,
+
   tabColor: themePrimitives.mono800,
 
   // Notification
   notificationInfoBackground: themePrimitives.accent50,
+
   notificationInfoText: themePrimitives.primaryA,
   notificationPositiveBackground: themePrimitives.positive50,
   notificationPositiveText: themePrimitives.primaryA,
@@ -200,12 +207,15 @@ export default (themePrimitives: ColorTokensT = colorTokens): ComponentColorToke
 
   // Custom ramps
   tagFontDisabledRampUnit: '100',
+
   tagSolidFontRampUnit: '0',
   tagSolidRampUnit: '400',
   tagOutlinedFontRampUnit: '400',
   tagOutlinedRampUnit: '200',
+
   // Deprecated
   tagSolidHoverRampUnit: '50',
+
   tagSolidActiveRampUnit: '100',
   tagSolidDisabledRampUnit: '50',
   tagSolidFontHoverRampUnit: '500',
@@ -220,13 +230,16 @@ export default (themePrimitives: ColorTokensT = colorTokens): ComponentColorToke
 
   // Neutral
   tagNeutralFontDisabled: themePrimitives.mono600,
+
   tagNeutralOutlinedDisabled: themePrimitives.mono400,
   tagNeutralSolidFont: themePrimitives.white,
   tagNeutralSolidBackground: themePrimitives.black,
   tagNeutralOutlinedBackground: themePrimitives.mono600,
   tagNeutralOutlinedFont: themePrimitives.black,
+
   // Deprecated
   tagNeutralSolidHover: themePrimitives.mono300,
+
   tagNeutralSolidActive: themePrimitives.mono400,
   tagNeutralSolidDisabled: themePrimitives.mono200,
   tagNeutralSolidFontHover: themePrimitives.mono900,
@@ -242,13 +255,16 @@ export default (themePrimitives: ColorTokensT = colorTokens): ComponentColorToke
 
   // Primary
   tagPrimaryFontDisabled: themePrimitives.primary400,
+
   tagPrimaryOutlinedDisabled: themePrimitives.primary200,
   tagPrimarySolidFont: themePrimitives.white,
   tagPrimarySolidBackground: themePrimitives.primary,
   tagPrimaryOutlinedFontHover: themePrimitives.primary,
   tagPrimaryOutlinedFont: themePrimitives.primary,
+
   // Deprecated
   tagPrimarySolidHover: themePrimitives.primary100,
+
   tagPrimarySolidActive: themePrimitives.primary200,
   tagPrimarySolidDisabled: themePrimitives.primary50,
   tagPrimarySolidFontHover: themePrimitives.primary700,
@@ -264,13 +280,16 @@ export default (themePrimitives: ColorTokensT = colorTokens): ComponentColorToke
 
   // Accent
   tagAccentFontDisabled: themePrimitives.accent200,
+
   tagAccentOutlinedDisabled: themePrimitives.accent200,
   tagAccentSolidFont: themePrimitives.white,
   tagAccentSolidBackground: themePrimitives.accent400,
   tagAccentOutlinedBackground: themePrimitives.accent200,
   tagAccentOutlinedFont: themePrimitives.accent400,
+
   // Deprecated
   tagAccentSolidHover: themePrimitives.accent50,
+
   tagAccentSolidActive: themePrimitives.accent100,
   tagAccentSolidDisabled: themePrimitives.accent50,
   tagAccentSolidFontHover: themePrimitives.accent500,
@@ -286,13 +305,16 @@ export default (themePrimitives: ColorTokensT = colorTokens): ComponentColorToke
 
   // Positive
   tagPositiveFontDisabled: themePrimitives.positive200,
+
   tagPositiveOutlinedDisabled: themePrimitives.positive200,
   tagPositiveSolidFont: themePrimitives.white,
   tagPositiveSolidBackground: themePrimitives.positive400,
   tagPositiveOutlinedBackground: themePrimitives.positive200,
   tagPositiveOutlinedFont: themePrimitives.positive400,
+
   // Deprecated
   tagPositiveSolidHover: themePrimitives.positive50,
+
   tagPositiveSolidActive: themePrimitives.positive100,
   tagPositiveSolidDisabled: themePrimitives.positive50,
   tagPositiveSolidFontHover: themePrimitives.positive500,
@@ -308,13 +330,16 @@ export default (themePrimitives: ColorTokensT = colorTokens): ComponentColorToke
 
   // Warning
   tagWarningFontDisabled: themePrimitives.warning300,
+
   tagWarningOutlinedDisabled: themePrimitives.warning300,
   tagWarningSolidFont: themePrimitives.warning700,
   tagWarningSolidBackground: themePrimitives.warning400,
   tagWarningOutlinedBackground: themePrimitives.warning300,
   tagWarningOutlinedFont: themePrimitives.warning600,
+
   // Deprecated
   tagWarningSolidHover: themePrimitives.warning50,
+
   tagWarningSolidActive: themePrimitives.warning100,
   tagWarningSolidDisabled: themePrimitives.warning50,
   tagWarningSolidFontHover: themePrimitives.warning500,
@@ -330,13 +355,16 @@ export default (themePrimitives: ColorTokensT = colorTokens): ComponentColorToke
 
   // Negative
   tagNegativeFontDisabled: themePrimitives.negative200,
+
   tagNegativeOutlinedDisabled: themePrimitives.negative200,
   tagNegativeSolidFont: themePrimitives.white,
   tagNegativeSolidBackground: themePrimitives.negative400,
   tagNegativeOutlinedBackground: themePrimitives.negative200,
   tagNegativeOutlinedFont: themePrimitives.negative400,
+
   // Deprecated
   tagNegativeSolidHover: themePrimitives.negative50,
+
   tagNegativeSolidActive: themePrimitives.negative100,
   tagNegativeSolidDisabled: themePrimitives.negative50,
   tagNegativeSolidFontHover: themePrimitives.negative500,
@@ -352,6 +380,7 @@ export default (themePrimitives: ColorTokensT = colorTokens): ComponentColorToke
 
   // Table
   tableHeadBackgroundColor: themePrimitives.mono100,
+
   tableBackground: themePrimitives.mono100,
   tableStripedBackground: themePrimitives.mono200,
   tableFilter: themePrimitives.mono600,
@@ -361,6 +390,7 @@ export default (themePrimitives: ColorTokensT = colorTokens): ComponentColorToke
 
   // Toast
   toastText: themePrimitives.white,
+
   toastPrimaryText: themePrimitives.white,
   toastInfoBackground: themePrimitives.accent400,
   toastInfoText: themePrimitives.white,
@@ -379,5 +409,6 @@ export default (themePrimitives: ColorTokensT = colorTokens): ComponentColorToke
 
   // Tooltip
   tooltipBackground: themePrimitives.mono900,
+
   tooltipText: themePrimitives.mono100,
 });

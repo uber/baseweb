@@ -4,19 +4,19 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-import { styled } from '../styles/index.js';
-import getDayStateCode from './utils/day-state.js';
-import type { SharedStylePropsT, CalendarPropsT } from './types.js';
-import { ORIENTATION, DENSITY, INPUT_ROLE } from './constants.js';
+import { styled } from '../styles/index';
+import getDayStateCode from './utils/day-state';
+import type { SharedStylePropsT, CalendarPropsT } from './types';
+import { ORIENTATION, DENSITY, INPUT_ROLE } from './constants';
 
 /**
  * Main component container element
  */
-export const StyledInputWrapper = styled<{
-  ...SharedStylePropsT,
-  $separateRangeInputs: boolean,
-}>('div', (props) => {
+export const StyledInputWrapper = styled<
+  {
+    $separateRangeInputs: boolean;
+  } & SharedStylePropsT
+>('div', (props) => {
   const { $separateRangeInputs } = props;
 
   return {
@@ -60,7 +60,7 @@ export const StyledRoot = styled<SharedStylePropsT>('div', (props) => {
 });
 
 export const StyledMonthContainer = styled<{
-  $orientation: $PropertyType<CalendarPropsT<Date>, 'orientation'>,
+  $orientation: CalendarPropsT<Date>['orientation'];
 }>('div', (props) => {
   const { $orientation } = props;
   return {
@@ -437,7 +437,7 @@ export const StyledDay = styled<SharedStylePropsT>('div', (props) => {
       : startDate !== null && typeof startDate !== 'undefined';
   const shouldHighlightRange = $range && !($hasLockedBehavior && !oppositeInputIsPopulated);
 
-  return ({
+  return {
     ...($density === DENSITY.high ? typography.ParagraphSmall : typography.ParagraphMedium),
     boxSizing: 'border-box',
     position: 'relative',
@@ -546,8 +546,8 @@ export const StyledDay = styled<SharedStylePropsT>('div', (props) => {
         }
       : // a hack to make flow happy, otherwise it complains about complexity
         // flowlint-next-line unclear-type:off
-        ({}: any)),
-  }: {});
+        ({} as any)),
+  } as {};
 });
 
 export const StyledDayLabel = styled<SharedStylePropsT>('div', (props) => {
@@ -566,7 +566,7 @@ export const StyledWeekdayHeader = styled<SharedStylePropsT>('div', (props) => {
     $theme: { typography, colors, sizing },
     $density,
   } = props;
-  return ({
+  return {
     ...typography.LabelMedium,
     color: colors.contentTertiary,
     boxSizing: 'border-box',
@@ -587,5 +587,5 @@ export const StyledWeekdayHeader = styled<SharedStylePropsT>('div', (props) => {
     marginLeft: 0,
     marginRight: 0,
     backgroundColor: 'transparent',
-  }: {});
+  } as {};
 });

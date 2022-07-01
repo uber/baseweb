@@ -5,12 +5,10 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-// @flow
-
 import * as React from 'react';
 import { render, fireEvent, getByRole, getAllByRole } from '@testing-library/react';
 
-import { EmoticonRating } from '../index.js';
+import { EmoticonRating } from '../index';
 
 describe('EmoticonRating', () => {
   it('applies correct accessibility attributes to the root element', () => {

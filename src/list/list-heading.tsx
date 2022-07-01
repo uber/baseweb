@@ -4,12 +4,10 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import React from 'react';
 import * as ReactIs from 'react-is';
 
-import { getOverrides } from '../helpers/overrides.js';
+import { getOverrides } from '../helpers/overrides';
 
 import {
   StyledHeadingRoot,
@@ -19,8 +17,8 @@ import {
   StyledHeadingEndEnhancerDescriptionContainer,
   StyledHeadingMainHeading,
   StyledHeadingSubHeading,
-} from './styled-components.js';
-import type { HeadingPropsT } from './types.js';
+} from './styled-components';
+import type { HeadingPropsT } from './types';
 
 function RenderNode(props) {
   const { component, ...restProps } = props;
@@ -82,7 +80,7 @@ const ListHeading = React.forwardRef<HeadingPropsT, HTMLLIElement>((props: Headi
   return (
     <Root
       // flowlint-next-line unclear-type:off
-      ref={(ref: any)}
+      ref={ref as any}
       {...rootProps}
     >
       <Content {...contentProps}>

@@ -4,8 +4,6 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import React from 'react';
 
 import type {
@@ -13,9 +11,9 @@ import type {
   StatefulPinCodeContainerPropsT,
   StatefulPinCodeContainerStateT,
   StateReducerT,
-} from './types.js';
-import defaultProps from './default-props.js';
-import { STATE_CHANGE_TYPE } from '../input/index.js';
+} from './types';
+import defaultProps from './default-props';
+import { STATE_CHANGE_TYPE } from '../input/index';
 
 const stateReducer: StateReducerT = (type, nextState) => nextState;
 

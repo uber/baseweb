@@ -4,17 +4,15 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 
-import { Block } from '../block/index.js';
-import { flattenFragments } from '../helpers/react-helpers.js';
-import { getOverrides } from '../helpers/overrides.js';
-import type { BlockPropsT } from '../block/types.js';
-import type { FlexGridPropsT } from './types.js';
+import { Block } from '../block/index';
+import { flattenFragments } from '../helpers/react-helpers';
+import { getOverrides } from '../helpers/overrides';
+import type { BlockPropsT } from '../block/types';
+import type { FlexGridPropsT } from './types';
 
-export const BaseFlexGrid = React.forwardRef<BlockPropsT, HTMLElement>(
+export const BaseFlexGrid = React.forwardRef<HTMLElement, BlockPropsT>(
   ({ display, flexWrap, ...restProps }, ref) => (
     //$FlowFixMe
     <Block
@@ -37,14 +35,14 @@ const FlexGrid = ({
   flexGridColumnGap,
   flexGridRowGap,
   ...restProps
-}): React.Node => {
+}): React.ReactNode => {
   const [FlexGrid, flexGridProps] = getOverrides(overrides && overrides.Block, BaseFlexGrid);
   return (
     <FlexGrid
       // coerced to any because of how react components are typed.
       // cannot guarantee an html element
       // flowlint-next-line unclear-type:off
-      ref={(forwardedRef: any)}
+      ref={forwardedRef as any}
       as={as}
       {...restProps}
       {...flexGridProps}
@@ -53,9 +51,9 @@ const FlexGrid = ({
         // flatten fragments so FlexGrid correctly iterates over fragments’ children
         flattenFragments(children).map(
           (
-            child: React.Node,
+            child: React.ReactNode,
             flexGridItemIndex: number,
-            { length: flexGridItemCount }: React.Node[]
+            { length: flexGridItemCount }: React.ReactNode[]
           ) => {
             // $FlowFixMe https://github.com/facebook/flow/issues/4864
             return React.cloneElement(child, {
@@ -72,7 +70,7 @@ const FlexGrid = ({
   );
 };
 
-const FlexGridComponent = React.forwardRef<FlexGridPropsT, HTMLElement>(
+const FlexGridComponent = React.forwardRef<HTMLElement, FlexGridPropsT>(
   (props: FlexGridPropsT, ref) => <FlexGrid {...props} forwardedRef={ref} />
 );
 FlexGridComponent.displayName = 'FlexGrid';

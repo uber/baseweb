@@ -4,18 +4,19 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 import React from 'react';
 // needs to be removed from here
-import { COUNTRIES, STATE_CHANGE_TYPE } from './constants.js';
+import { COUNTRIES, STATE_CHANGE_TYPE } from './constants';
 import type {
   StatefulPhoneInputContainerPropsT,
   StateT,
   StateReducerT,
   StateChangeT,
-} from './types.js';
-import defaultProps from './default-props.js';
-import type { OnChangeParamsT } from '../select/types.js';
+} from './types';
+import defaultProps from './default-props';
+import type { OnChangeParamsT } from '../select/types';
+
+import type { ChangeEvent } from 'react';
 
 const defaultStateReducer: StateReducerT = (type, nextState) => nextState;
 
@@ -36,11 +37,11 @@ export default class StatefulPhoneInputContainer extends React.Component<
 
   state = { text: '', country: COUNTRIES.US, ...this.props.initialState };
 
-  internalSetState = (type: StateChangeT, nextState: $Shape<StateT>) => {
+  internalSetState = (type: StateChangeT, nextState: Partial<StateT>) => {
     this.setState(this.props.stateReducer(type, nextState, this.state));
   };
 
-  onTextChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
+  onTextChange = (event: ChangeEvent<HTMLInputElement>) => {
     this.props.onTextChange(event);
     this.internalSetState(STATE_CHANGE_TYPE.textChange, {
       text: event.target.value,

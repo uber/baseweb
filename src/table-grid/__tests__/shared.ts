@@ -4,9 +4,9 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
+
+import type { KeyboardEvent } from 'react';
 
 export function useCellNavigation() {
   const cells = React.useRef([]);
@@ -58,7 +58,7 @@ export function useCellNavigation() {
   const DOWN = [0, 1];
   const LEFT = [-1, 0];
 
-  function nextInDirection(origin, direction: Point): ?Point {
+  function nextInDirection(origin, direction: Point): Point | undefined | null {
     function vAdd(a: Point, b: Point) {
       return [a[0] + b[0], a[1] + b[1]];
     }
@@ -85,7 +85,7 @@ export function useCellNavigation() {
     return null;
   }
 
-  function handleKeyDown(event: SyntheticKeyboardEvent<HTMLElement>) {
+  function handleKeyDown(event: KeyboardEvent<HTMLElement>) {
     let direction = [0, 0];
     switch (event.key) {
       case 'ArrowUp':
@@ -119,7 +119,7 @@ export function useCellNavigation() {
     return function (column: number, row: number) {
       const isAddressable = column === columnIndex && row === rowIndex;
       return {
-        ref: (r: ?HTMLElement) => register(r, column, row),
+        ref: (r?: HTMLElement | null) => register(r, column, row),
         tabIndex: isAddressable ? 0 : -1,
         onFocus: () => {
           setColumnIndex(column);

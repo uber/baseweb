@@ -4,13 +4,11 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
-import Block from '../block/block.js';
-import type { BlockPropsT } from '../block/types.js';
+import Block from '../block/block';
+import type { BlockPropsT } from '../block/types';
 
-export const DisplayLarge = React.forwardRef<BlockPropsT, HTMLElement>((props, ref) => (
+export const DisplayLarge = React.forwardRef<HTMLElement, BlockPropsT>((props, ref) => (
   // $FlowExpectedError[cannot-spread-inexact]
   <Block
     data-baseweb="typo-displaylarge"
@@ -22,7 +20,7 @@ export const DisplayLarge = React.forwardRef<BlockPropsT, HTMLElement>((props, r
 ));
 DisplayLarge.displayName = 'DisplayLarge';
 
-export const DisplayMedium = React.forwardRef<BlockPropsT, HTMLElement>((props, ref) => (
+export const DisplayMedium = React.forwardRef<HTMLElement, BlockPropsT>((props, ref) => (
   // $FlowExpectedError[cannot-spread-inexact]
   <Block
     data-baseweb="typo-displaymedium"
@@ -34,7 +32,7 @@ export const DisplayMedium = React.forwardRef<BlockPropsT, HTMLElement>((props, 
 ));
 DisplayMedium.displayName = 'DisplayMedium';
 
-export const DisplaySmall = React.forwardRef<BlockPropsT, HTMLElement>((props, ref) => (
+export const DisplaySmall = React.forwardRef<HTMLElement, BlockPropsT>((props, ref) => (
   // $FlowExpectedError[cannot-spread-inexact]
   <Block
     data-baseweb="typo-displaysmall"
@@ -46,7 +44,7 @@ export const DisplaySmall = React.forwardRef<BlockPropsT, HTMLElement>((props, r
 ));
 DisplaySmall.displayName = 'DisplaySmall';
 
-export const DisplayXSmall = React.forwardRef<BlockPropsT, HTMLElement>((props, ref) => (
+export const DisplayXSmall = React.forwardRef<HTMLElement, BlockPropsT>((props, ref) => (
   // $FlowExpectedError[cannot-spread-inexact]
   <Block
     data-baseweb="typo-displayxsmall"
@@ -58,7 +56,7 @@ export const DisplayXSmall = React.forwardRef<BlockPropsT, HTMLElement>((props, 
 ));
 DisplayXSmall.displayName = 'DisplayXSmall';
 
-export const HeadingXXLarge = React.forwardRef<BlockPropsT, HTMLElement>((props, ref) => (
+export const HeadingXXLarge = React.forwardRef<HTMLElement, BlockPropsT>((props, ref) => (
   // $FlowExpectedError[cannot-spread-inexact]
   <Block
     data-baseweb="typo-headingxxlarge"
@@ -71,7 +69,7 @@ export const HeadingXXLarge = React.forwardRef<BlockPropsT, HTMLElement>((props,
 ));
 HeadingXXLarge.displayName = 'HeadingXXLarge';
 
-export const HeadingXLarge = React.forwardRef<BlockPropsT, HTMLElement>((props, ref) => (
+export const HeadingXLarge = React.forwardRef<HTMLElement, BlockPropsT>((props, ref) => (
   // $FlowExpectedError[cannot-spread-inexact]
   <Block
     data-baseweb="typo-headingxlarge"
@@ -84,7 +82,7 @@ export const HeadingXLarge = React.forwardRef<BlockPropsT, HTMLElement>((props, 
 ));
 HeadingXLarge.displayName = 'HeadingXLarge';
 
-export const HeadingLarge = React.forwardRef<BlockPropsT, HTMLElement>((props, ref) => (
+export const HeadingLarge = React.forwardRef<HTMLElement, BlockPropsT>((props, ref) => (
   // $FlowExpectedError[cannot-spread-inexact]
   <Block
     data-baseweb="typo-headinglarge"
@@ -97,7 +95,7 @@ export const HeadingLarge = React.forwardRef<BlockPropsT, HTMLElement>((props, r
 ));
 HeadingLarge.displayName = 'HeadingLarge';
 
-export const HeadingMedium = React.forwardRef<BlockPropsT, HTMLElement>((props, ref) => (
+export const HeadingMedium = React.forwardRef<HTMLElement, BlockPropsT>((props, ref) => (
   // $FlowExpectedError[cannot-spread-inexact]
   <Block
     data-baseweb="typo-headingmedium"
@@ -110,7 +108,7 @@ export const HeadingMedium = React.forwardRef<BlockPropsT, HTMLElement>((props, 
 ));
 HeadingMedium.displayName = 'HeadingMedium';
 
-export const HeadingSmall = React.forwardRef<BlockPropsT, HTMLElement>((props, ref) => (
+export const HeadingSmall = React.forwardRef<HTMLElement, BlockPropsT>((props, ref) => (
   // $FlowExpectedError[cannot-spread-inexact]
   <Block
     data-baseweb="typo-headingsmall"
@@ -123,7 +121,7 @@ export const HeadingSmall = React.forwardRef<BlockPropsT, HTMLElement>((props, r
 ));
 HeadingSmall.displayName = 'HeadingSmall';
 
-export const HeadingXSmall = React.forwardRef<BlockPropsT, HTMLElement>((props, ref) => (
+export const HeadingXSmall = React.forwardRef<HTMLElement, BlockPropsT>((props, ref) => (
   // $FlowExpectedError[cannot-spread-inexact]
   <Block
     data-baseweb="typo-headingxsmall"
@@ -136,7 +134,7 @@ export const HeadingXSmall = React.forwardRef<BlockPropsT, HTMLElement>((props, 
 ));
 HeadingXSmall.displayName = 'HeadingXSmall';
 
-export const LabelLarge = React.forwardRef<BlockPropsT, HTMLElement>((props, ref) => (
+export const LabelLarge = React.forwardRef<HTMLElement, BlockPropsT>((props, ref) => (
   // $FlowExpectedError[cannot-spread-inexact]
   <Block
     data-baseweb="typo-labellarge"
@@ -148,7 +146,7 @@ export const LabelLarge = React.forwardRef<BlockPropsT, HTMLElement>((props, ref
 ));
 LabelLarge.displayName = 'LabelLarge';
 
-export const LabelMedium = React.forwardRef<BlockPropsT, HTMLElement>((props, ref) => (
+export const LabelMedium = React.forwardRef<HTMLElement, BlockPropsT>((props, ref) => (
   // $FlowExpectedError[cannot-spread-inexact]
   <Block
     data-baseweb="typo-labelmedium"
@@ -160,7 +158,7 @@ export const LabelMedium = React.forwardRef<BlockPropsT, HTMLElement>((props, re
 ));
 LabelMedium.displayName = 'LabelMedium';
 
-export const LabelSmall = React.forwardRef<BlockPropsT, HTMLElement>((props, ref) => (
+export const LabelSmall = React.forwardRef<HTMLElement, BlockPropsT>((props, ref) => (
   // $FlowExpectedError[cannot-spread-inexact]
   <Block
     data-baseweb="typo-labelsmall"
@@ -172,7 +170,7 @@ export const LabelSmall = React.forwardRef<BlockPropsT, HTMLElement>((props, ref
 ));
 LabelSmall.displayName = 'LabelSmall';
 
-export const LabelXSmall = React.forwardRef<BlockPropsT, HTMLElement>((props, ref) => (
+export const LabelXSmall = React.forwardRef<HTMLElement, BlockPropsT>((props, ref) => (
   // $FlowExpectedError[cannot-spread-inexact]
   <Block
     data-baseweb="typo-labelxsmall"
@@ -184,7 +182,7 @@ export const LabelXSmall = React.forwardRef<BlockPropsT, HTMLElement>((props, re
 ));
 LabelXSmall.displayName = 'LabelXSmall';
 
-export const ParagraphLarge = React.forwardRef<BlockPropsT, HTMLElement>((props, ref) => (
+export const ParagraphLarge = React.forwardRef<HTMLElement, BlockPropsT>((props, ref) => (
   // $FlowExpectedError[cannot-spread-inexact]
   <Block
     data-baseweb="typo-paragraphlarge"
@@ -197,7 +195,7 @@ export const ParagraphLarge = React.forwardRef<BlockPropsT, HTMLElement>((props,
 ));
 ParagraphLarge.displayName = 'ParagraphLarge';
 
-export const ParagraphMedium = React.forwardRef<BlockPropsT, HTMLElement>((props, ref) => (
+export const ParagraphMedium = React.forwardRef<HTMLElement, BlockPropsT>((props, ref) => (
   // $FlowExpectedError[cannot-spread-inexact]
   <Block
     data-baseweb="typo-paragraphmedium"
@@ -210,7 +208,7 @@ export const ParagraphMedium = React.forwardRef<BlockPropsT, HTMLElement>((props
 ));
 ParagraphMedium.displayName = 'ParagraphMedium';
 
-export const ParagraphSmall = React.forwardRef<BlockPropsT, HTMLElement>((props, ref) => (
+export const ParagraphSmall = React.forwardRef<HTMLElement, BlockPropsT>((props, ref) => (
   // $FlowExpectedError[cannot-spread-inexact]
   <Block
     data-baseweb="typo-paragraphsmall"
@@ -223,7 +221,7 @@ export const ParagraphSmall = React.forwardRef<BlockPropsT, HTMLElement>((props,
 ));
 ParagraphSmall.displayName = 'ParagraphSmall';
 
-export const ParagraphXSmall = React.forwardRef<BlockPropsT, HTMLElement>((props, ref) => (
+export const ParagraphXSmall = React.forwardRef<HTMLElement, BlockPropsT>((props, ref) => (
   // $FlowExpectedError[cannot-spread-inexact]
   <Block
     data-baseweb="typo-paragraphxsmall"
@@ -236,7 +234,7 @@ export const ParagraphXSmall = React.forwardRef<BlockPropsT, HTMLElement>((props
 ));
 ParagraphXSmall.displayName = 'ParagraphXSmall';
 
-export const MonoDisplayLarge = React.forwardRef<BlockPropsT, HTMLElement>((props, ref) => (
+export const MonoDisplayLarge = React.forwardRef<HTMLElement, BlockPropsT>((props, ref) => (
   // $FlowExpectedError[cannot-spread-inexact]
   <Block
     data-baseweb="typo-monodisplaylarge"
@@ -248,7 +246,7 @@ export const MonoDisplayLarge = React.forwardRef<BlockPropsT, HTMLElement>((prop
 ));
 MonoDisplayLarge.displayName = 'MonoDisplayLarge';
 
-export const MonoDisplayMedium = React.forwardRef<BlockPropsT, HTMLElement>((props, ref) => (
+export const MonoDisplayMedium = React.forwardRef<HTMLElement, BlockPropsT>((props, ref) => (
   // $FlowExpectedError[cannot-spread-inexact]
   <Block
     data-baseweb="typo-monodisplaymedium"
@@ -260,7 +258,7 @@ export const MonoDisplayMedium = React.forwardRef<BlockPropsT, HTMLElement>((pro
 ));
 MonoDisplayMedium.displayName = 'MonoDisplayMedium';
 
-export const MonoDisplaySmall = React.forwardRef<BlockPropsT, HTMLElement>((props, ref) => (
+export const MonoDisplaySmall = React.forwardRef<HTMLElement, BlockPropsT>((props, ref) => (
   // $FlowExpectedError[cannot-spread-inexact]
   <Block
     data-baseweb="typo-monodisplaysmall"
@@ -272,7 +270,7 @@ export const MonoDisplaySmall = React.forwardRef<BlockPropsT, HTMLElement>((prop
 ));
 MonoDisplaySmall.displayName = 'MonoDisplaySmall';
 
-export const MonoDisplayXSmall = React.forwardRef<BlockPropsT, HTMLElement>((props, ref) => (
+export const MonoDisplayXSmall = React.forwardRef<HTMLElement, BlockPropsT>((props, ref) => (
   // $FlowExpectedError[cannot-spread-inexact]
   <Block
     data-baseweb="typo-monodisplayxsmall"
@@ -284,7 +282,7 @@ export const MonoDisplayXSmall = React.forwardRef<BlockPropsT, HTMLElement>((pro
 ));
 MonoDisplayXSmall.displayName = 'MonoDisplayXSmall';
 
-export const MonoHeadingXXLarge = React.forwardRef<BlockPropsT, HTMLElement>((props, ref) => (
+export const MonoHeadingXXLarge = React.forwardRef<HTMLElement, BlockPropsT>((props, ref) => (
   // $FlowExpectedError[cannot-spread-inexact]
   <Block
     data-baseweb="typo-monoheadingxxlarge"
@@ -297,7 +295,7 @@ export const MonoHeadingXXLarge = React.forwardRef<BlockPropsT, HTMLElement>((pr
 ));
 MonoHeadingXXLarge.displayName = 'MonoHeadingXXLarge';
 
-export const MonoHeadingXLarge = React.forwardRef<BlockPropsT, HTMLElement>((props, ref) => (
+export const MonoHeadingXLarge = React.forwardRef<HTMLElement, BlockPropsT>((props, ref) => (
   // $FlowExpectedError[cannot-spread-inexact]
   <Block
     data-baseweb="typo-monoheadingxlarge"
@@ -310,7 +308,7 @@ export const MonoHeadingXLarge = React.forwardRef<BlockPropsT, HTMLElement>((pro
 ));
 MonoHeadingXLarge.displayName = 'MonoHeadingXLarge';
 
-export const MonoHeadingLarge = React.forwardRef<BlockPropsT, HTMLElement>((props, ref) => (
+export const MonoHeadingLarge = React.forwardRef<HTMLElement, BlockPropsT>((props, ref) => (
   // $FlowExpectedError[cannot-spread-inexact]
   <Block
     data-baseweb="typo-monoheadinglarge"
@@ -323,7 +321,7 @@ export const MonoHeadingLarge = React.forwardRef<BlockPropsT, HTMLElement>((prop
 ));
 MonoHeadingLarge.displayName = 'MonoHeadingLarge';
 
-export const MonoHeadingMedium = React.forwardRef<BlockPropsT, HTMLElement>((props, ref) => (
+export const MonoHeadingMedium = React.forwardRef<HTMLElement, BlockPropsT>((props, ref) => (
   // $FlowExpectedError[cannot-spread-inexact]
   <Block
     data-baseweb="typo-monoheadingmedium"
@@ -336,7 +334,7 @@ export const MonoHeadingMedium = React.forwardRef<BlockPropsT, HTMLElement>((pro
 ));
 MonoHeadingMedium.displayName = 'MonoHeadingMedium';
 
-export const MonoHeadingSmall = React.forwardRef<BlockPropsT, HTMLElement>((props, ref) => (
+export const MonoHeadingSmall = React.forwardRef<HTMLElement, BlockPropsT>((props, ref) => (
   // $FlowExpectedError[cannot-spread-inexact]
   <Block
     data-baseweb="typo-monoheadingsmall"
@@ -349,7 +347,7 @@ export const MonoHeadingSmall = React.forwardRef<BlockPropsT, HTMLElement>((prop
 ));
 MonoHeadingSmall.displayName = 'MonoHeadingSmall';
 
-export const MonoHeadingXSmall = React.forwardRef<BlockPropsT, HTMLElement>((props, ref) => (
+export const MonoHeadingXSmall = React.forwardRef<HTMLElement, BlockPropsT>((props, ref) => (
   // $FlowExpectedError[cannot-spread-inexact]
   <Block
     data-baseweb="typo-monoheadingxsmall"
@@ -362,7 +360,7 @@ export const MonoHeadingXSmall = React.forwardRef<BlockPropsT, HTMLElement>((pro
 ));
 MonoHeadingXSmall.displayName = 'MonoHeadingXSmall';
 
-export const MonoLabelLarge = React.forwardRef<BlockPropsT, HTMLElement>((props, ref) => (
+export const MonoLabelLarge = React.forwardRef<HTMLElement, BlockPropsT>((props, ref) => (
   // $FlowExpectedError[cannot-spread-inexact]
   <Block
     data-baseweb="typo-monolabellarge"
@@ -374,7 +372,7 @@ export const MonoLabelLarge = React.forwardRef<BlockPropsT, HTMLElement>((props,
 ));
 MonoLabelLarge.displayName = 'MonoLabelLarge';
 
-export const MonoLabelMedium = React.forwardRef<BlockPropsT, HTMLElement>((props, ref) => (
+export const MonoLabelMedium = React.forwardRef<HTMLElement, BlockPropsT>((props, ref) => (
   // $FlowExpectedError[cannot-spread-inexact]
   <Block
     data-baseweb="typo-monolabelmedium"
@@ -386,7 +384,7 @@ export const MonoLabelMedium = React.forwardRef<BlockPropsT, HTMLElement>((props
 ));
 MonoLabelMedium.displayName = 'MonoLabelMedium';
 
-export const MonoLabelSmall = React.forwardRef<BlockPropsT, HTMLElement>((props, ref) => (
+export const MonoLabelSmall = React.forwardRef<HTMLElement, BlockPropsT>((props, ref) => (
   // $FlowExpectedError[cannot-spread-inexact]
   <Block
     data-baseweb="typo-monolabelsmall"
@@ -398,7 +396,7 @@ export const MonoLabelSmall = React.forwardRef<BlockPropsT, HTMLElement>((props,
 ));
 MonoLabelSmall.displayName = 'MonoLabelSmall';
 
-export const MonoLabelXSmall = React.forwardRef<BlockPropsT, HTMLElement>((props, ref) => (
+export const MonoLabelXSmall = React.forwardRef<HTMLElement, BlockPropsT>((props, ref) => (
   // $FlowExpectedError[cannot-spread-inexact]
   <Block
     data-baseweb="typo-monolabelxsmall"
@@ -410,7 +408,7 @@ export const MonoLabelXSmall = React.forwardRef<BlockPropsT, HTMLElement>((props
 ));
 MonoLabelXSmall.displayName = 'MonoLabelXSmall';
 
-export const MonoParagraphLarge = React.forwardRef<BlockPropsT, HTMLElement>((props, ref) => (
+export const MonoParagraphLarge = React.forwardRef<HTMLElement, BlockPropsT>((props, ref) => (
   // $FlowExpectedError[cannot-spread-inexact]
   <Block
     data-baseweb="typo-monoparagraphlarge"
@@ -423,7 +421,7 @@ export const MonoParagraphLarge = React.forwardRef<BlockPropsT, HTMLElement>((pr
 ));
 MonoParagraphLarge.displayName = 'MonoParagraphLarge';
 
-export const MonoParagraphMedium = React.forwardRef<BlockPropsT, HTMLElement>((props, ref) => (
+export const MonoParagraphMedium = React.forwardRef<HTMLElement, BlockPropsT>((props, ref) => (
   // $FlowExpectedError[cannot-spread-inexact]
   <Block
     data-baseweb="typo-monoparagraphmedium"
@@ -436,7 +434,7 @@ export const MonoParagraphMedium = React.forwardRef<BlockPropsT, HTMLElement>((p
 ));
 MonoParagraphMedium.displayName = 'MonoParagraphMedium';
 
-export const MonoParagraphSmall = React.forwardRef<BlockPropsT, HTMLElement>((props, ref) => (
+export const MonoParagraphSmall = React.forwardRef<HTMLElement, BlockPropsT>((props, ref) => (
   // $FlowExpectedError[cannot-spread-inexact]
   <Block
     data-baseweb="typo-monoparagraphsmall"
@@ -449,7 +447,7 @@ export const MonoParagraphSmall = React.forwardRef<BlockPropsT, HTMLElement>((pr
 ));
 MonoParagraphSmall.displayName = 'MonoParagraphSmall';
 
-export const MonoParagraphXSmall = React.forwardRef<BlockPropsT, HTMLElement>((props, ref) => (
+export const MonoParagraphXSmall = React.forwardRef<HTMLElement, BlockPropsT>((props, ref) => (
   // $FlowExpectedError[cannot-spread-inexact]
   <Block
     data-baseweb="typo-monoparagraphxsmall"

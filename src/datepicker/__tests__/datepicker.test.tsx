@@ -4,7 +4,6 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 import * as React from 'react';
 import MockDate from 'mockdate';
 import {
@@ -17,9 +16,9 @@ import {
   getByText,
 } from '@testing-library/react';
 
-import { TestBaseProvider } from '../../test/test-utils.js';
+import { TestBaseProvider } from '../../test/test-utils';
 import { addDays } from 'date-fns';
-import { Datepicker, ORIENTATION } from '../index.js';
+import { Datepicker, ORIENTATION } from '../index';
 
 describe('Datepicker', () => {
   beforeEach(() => {
@@ -284,13 +283,13 @@ describe('Datepicker', () => {
 
     const prev = queryAllByTestId(container, 'prev-button').filter(
       //flowlint-next-line unclear-type:off
-      (el) => !((el: any): HTMLButtonElement).disabled
+      (el) => !(el as any as HTMLButtonElement).disabled
     );
     expect(prev.length).toBe(1);
 
     const next = queryAllByTestId(container, 'next-button').filter(
       //flowlint-next-line unclear-type:off
-      (el) => !((el: any): HTMLButtonElement).disabled
+      (el) => !(el as any as HTMLButtonElement).disabled
     );
     expect(next.length).toBe(1);
 

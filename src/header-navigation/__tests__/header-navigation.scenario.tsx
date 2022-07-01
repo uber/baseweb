@@ -4,8 +4,6 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 
 import {
@@ -13,10 +11,10 @@ import {
   ALIGN,
   StyledNavigationItem as NavigationItem,
   StyledNavigationList as NavigationList,
-} from '../index.js';
-import { Button } from '../../button/index.js';
-import { StyledLink as Link } from '../../link/index.js';
-import Menu from '../../icon/menu.js';
+} from '../index';
+import { Button } from '../../button/index';
+import { StyledLink as Link } from '../../link/index';
+import Menu from '../../icon/menu';
 
 export function Scenario() {
   return (

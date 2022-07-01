@@ -5,17 +5,15 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // global Intl
-// @flow
-
 import * as React from 'react';
 import { format, getTimezoneOffset } from 'date-fns-tz';
 
-import { getOverrides, mergeOverrides } from '../helpers/overrides.js';
-import { LocaleContext } from '../locale/index.js';
-import { Select } from '../select/index.js';
+import { getOverrides, mergeOverrides } from '../helpers/overrides';
+import { LocaleContext } from '../locale/index';
+import { Select } from '../select/index';
 
-import type { TimezonePickerPropsT, TimezonePickerStateT, TimezoneT } from './types.js';
-import { zones } from './tzdata.js';
+import type { TimezonePickerPropsT, TimezonePickerStateT, TimezoneT } from './types';
+import { zones } from './tzdata';
 
 class TimezonePicker extends React.Component<TimezonePickerPropsT, TimezonePickerStateT> {
   state = { timezones: [], value: null };

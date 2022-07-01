@@ -5,13 +5,11 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-// @flow
-
 import * as React from 'react';
 import { render, fireEvent, getByText, queryByText } from '@testing-library/react';
 
-import ProgressSteps from '../progress-steps.js';
-import Step from '../step.js';
+import ProgressSteps from '../progress-steps';
+import Step from '../step';
 
 describe('ProgressSteps', () => {
   it('can navigate between steps', () => {

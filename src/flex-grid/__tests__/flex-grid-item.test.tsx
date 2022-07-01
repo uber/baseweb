@@ -4,8 +4,6 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 import { render } from '@testing-library/react';
 
@@ -13,9 +11,9 @@ import FlexGridItem, {
   flexGridItemMediaQueryStyle,
   flexGridItemStyle,
   getResponsiveValue,
-} from '../flex-grid-item.js';
-import { LightTheme } from '../../themes/index.js';
-import type { ResponsiveT, ScaleT } from '../../block/index.js';
+} from '../flex-grid-item';
+import { LightTheme } from '../../themes/index';
+import type { ResponsiveT, ScaleT } from '../../block/index';
 
 describe('FlexGridItem', () => {
   test('flexGridItemMediaQueryStyle', () => {
@@ -146,12 +144,12 @@ describe('FlexGridItem', () => {
         $flexGridItemCount,
         snapshotName,
       }: {
-        $flexGridColumnCount?: ResponsiveT<number>,
-        $flexGridColumnGap?: ResponsiveT<ScaleT>,
-        $flexGridRowGap?: ResponsiveT<ScaleT>,
-        $flexGridItemIndex?: number,
-        $flexGridItemCount?: number,
-        snapshotName: string,
+        $flexGridColumnCount?: ResponsiveT<number>;
+        $flexGridColumnGap?: ResponsiveT<ScaleT>;
+        $flexGridRowGap?: ResponsiveT<ScaleT>;
+        $flexGridItemIndex?: number;
+        $flexGridItemCount?: number;
+        snapshotName: string;
       }) => {
         expect(
           flexGridItemStyle({

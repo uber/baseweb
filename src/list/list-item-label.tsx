@@ -4,18 +4,16 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import React from 'react';
 
-import { getOverrides } from '../helpers/overrides.js';
+import { getOverrides } from '../helpers/overrides';
 
 import {
   StyledLabelContent,
   StyledLabelDescription,
   StyledLabelSublistContent,
-} from './styled-components.js';
-import type { LabelPropsT } from './types.js';
+} from './styled-components';
+import type { LabelPropsT } from './types';
 
 function ListItemLabel(props: LabelPropsT) {
   const { overrides = {} } = props;

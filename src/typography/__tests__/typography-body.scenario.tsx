@@ -5,8 +5,6 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-// @flow
-
 import * as React from 'react';
 
 import {
@@ -16,7 +14,7 @@ import {
   LabelMedium,
   ParagraphLarge,
   ParagraphMedium,
-} from '../index.js';
+} from '../index';
 
 const bodyString =
   "Never in all their history have men been able truly to conceive of the world as one: a single sphere, a globe, having the qualities of a globe, a round earth in which all the directions eventually meet, in which there is no center because every point, or none, is center — an equal earth which all men occupy as equals. The airman's earth, if free men make it, will be truly round: a globe in practice, not in theory.";

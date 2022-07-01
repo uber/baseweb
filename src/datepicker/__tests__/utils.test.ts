@@ -4,7 +4,6 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 /* eslint-disable import/extensions */
 import { es } from 'date-fns/locale/index.js';
 import * as utilsHelpers from '../utils/index';
@@ -187,8 +186,8 @@ const helpers: DateHelpers<Date> = Object.keys(dateHelpers).reduce((memo, method
         const adapterString = Object.keys(differingAdapterMap).reduce((memo, name) => {
           return `${memo}${name}: ${
             //$FlowFixMe
-            differingAdapterMap[name]
             //$FlowFixMe
+            differingAdapterMap[name]
           } date-fns: ${defaultGetComparisonValue(dateHelpersReturn)}\n`;
         }, '');
         throw new Error(

@@ -5,10 +5,9 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-// @flow
-import { styled } from '../styles/index.js';
+import { styled } from '../styles/index';
 
-import type { SharedStylePropsT } from './types.js';
+import type { SharedStylePropsT } from './types';
 
 function getBorderColor(props) {
   const { $disabled, $checked, $error, $isIndeterminate, $theme, $isFocusVisible } = props;
@@ -145,7 +144,7 @@ export const Checkmark = styled<SharedStylePropsT>('span', (props) => {
   const borderRadius = $theme.borders.inputBorderRadius;
   const borderColor = getBorderColor(props);
 
-  return ({
+  return {
     flex: '0 0 auto',
     transitionDuration: animation.timing200,
     transitionTimingFunction: animation.easeOutCurve,
@@ -187,19 +186,19 @@ export const Checkmark = styled<SharedStylePropsT>('span', (props) => {
     marginBottom: $theme.sizing.scale0,
     marginLeft: $theme.sizing.scale0,
     marginRight: $theme.sizing.scale0,
-  }: {});
+  } as {};
 });
 
 export const Label = styled<SharedStylePropsT>('div', (props) => {
   const { $theme } = props;
   const { typography } = $theme;
-  return ({
+  return {
     verticalAlign: 'middle',
     ...getLabelPadding(props),
     color: getLabelColor(props),
     ...typography.LabelMedium,
     lineHeight: '24px',
-  }: {});
+  } as {};
 });
 
 // tricky style for focus event cause display: none doesn't work

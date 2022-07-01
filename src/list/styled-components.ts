@@ -4,18 +4,16 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
-import { styled, expandBorderStyles } from '../styles/index.js';
+import { styled, expandBorderStyles } from '../styles/index';
 
 import type {
   StyledRootPropsT,
   StyledContentPropsT,
   StyledArtworkContainerPropsT,
   StyledHeadingHeadingPropsT,
-} from './types.js';
-import { artworkSizeToValue } from './utils.js';
-import { SHAPE } from './constants.js';
+} from './types';
+import { artworkSizeToValue } from './utils';
+import { SHAPE } from './constants';
 
 export const StyledRoot = styled<StyledRootPropsT>('li', ({ $theme, $shape }) => {
   return {
@@ -86,7 +84,7 @@ export const StyledArtworkContainer = styled<StyledArtworkContainerPropsT>(
   }
 );
 
-export const StyledLabelContent = styled<{||}>('p', ({ $theme }) => {
+export const StyledLabelContent = styled<{}>('p', ({ $theme }) => {
   return {
     ...$theme.typography.LabelMedium,
     color: $theme.colors.contentPrimary,
@@ -95,7 +93,7 @@ export const StyledLabelContent = styled<{||}>('p', ({ $theme }) => {
   };
 });
 
-export const StyledLabelDescription = styled<{||}>('p', ({ $theme }) => {
+export const StyledLabelDescription = styled<{}>('p', ({ $theme }) => {
   return {
     ...$theme.typography.ParagraphSmall,
     color: $theme.colors.contentPrimary,
@@ -104,7 +102,7 @@ export const StyledLabelDescription = styled<{||}>('p', ({ $theme }) => {
   };
 });
 
-export const StyledLabelSublistContent = styled<{||}>('p', ({ $theme }) => {
+export const StyledLabelSublistContent = styled<{}>('p', ({ $theme }) => {
   return {
     ...$theme.typography.LabelMedium,
     color: $theme.colors.contentPrimary,
@@ -150,8 +148,7 @@ export const StyledHeadingContentRow = styled('div', {
 });
 
 export const StyledHeadingMainHeading = styled<StyledHeadingHeadingPropsT>(
-  'p',
-  // $FlowFixMe - suppressing due to webkit properties
+  'p', // $FlowFixMe - suppressing due to webkit properties
   ({ $maxLines = 1, $theme }) => {
     return {
       ...$theme.typography.HeadingSmall,
@@ -168,8 +165,7 @@ export const StyledHeadingMainHeading = styled<StyledHeadingHeadingPropsT>(
 );
 
 export const StyledHeadingSubHeading = styled<StyledHeadingHeadingPropsT>(
-  'p',
-  // $FlowFixMe - suppressing due to webkit properties
+  'p', // $FlowFixMe - suppressing due to webkit properties
   ({ $maxLines = 1, $theme }) => {
     return {
       ...$theme.typography.ParagraphLarge,
@@ -185,17 +181,16 @@ export const StyledHeadingSubHeading = styled<StyledHeadingHeadingPropsT>(
   }
 );
 
-export const StyledHeadingEndEnhancerContainer = styled<{ $isText: boolean }>(
-  'div',
-  ({ $isText, $theme }) => ({
-    ...$theme.typography.LabelMedium,
-    display: 'flex',
-    alignItems: $isText ? 'flex-end' : 'center',
-    whiteSpace: 'nowrap',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-  })
-);
+export const StyledHeadingEndEnhancerContainer = styled<{
+  $isText: boolean;
+}>('div', ({ $isText, $theme }) => ({
+  ...$theme.typography.LabelMedium,
+  display: 'flex',
+  alignItems: $isText ? 'flex-end' : 'center',
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+}));
 
 export const StyledHeadingEndEnhancerDescriptionContainer = styled<{}>('p', ({ $theme }) => ({
   ...$theme.typography.ParagraphMedium,

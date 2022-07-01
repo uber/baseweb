@@ -4,43 +4,41 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
-export type DataTableLocaleT = {|
-  emptyState: string,
-  loadingState: string,
-  searchAriaLabel: string,
-  filterAdd: string,
-  filterExclude: string,
-  filterExcludeRange: string,
-  filterExcludeValue: string,
-  filterApply: string,
-  filterAppliedTo: string,
-  optionsLabel: string,
-  optionsSearch: string,
-  optionsEmpty: string,
-  categoricalFilterSelectAll: string,
-  categoricalFilterSelectClear: string,
-  categoricalFilterEmpty: string,
-  datetimeFilterRange: string,
-  datetimeFilterRangeDatetime: string,
-  datetimeFilterRangeDate: string,
-  datetimeFilterRangeTime: string,
-  datetimeFilterCategorical: string,
-  datetimeFilterCategoricalWeekday: string,
-  datetimeFilterCategoricalMonth: string,
-  datetimeFilterCategoricalQuarter: string,
-  datetimeFilterCategoricalHalf: string,
-  datetimeFilterCategoricalFirstHalf: string,
-  datetimeFilterCategoricalSecondHalf: string,
-  datetimeFilterCategoricalYear: string,
-  numericalFilterRange: string,
-  numericalFilterSingleValue: string,
-  booleanFilterTrue: string,
-  booleanFilterFalse: string,
-  booleanColumnTrueShort: string,
-  booleanColumnFalseShort: string,
-|};
+export type DataTableLocaleT = {
+  emptyState: string;
+  loadingState: string;
+  searchAriaLabel: string;
+  filterAdd: string;
+  filterExclude: string;
+  filterExcludeRange: string;
+  filterExcludeValue: string;
+  filterApply: string;
+  filterAppliedTo: string;
+  optionsLabel: string;
+  optionsSearch: string;
+  optionsEmpty: string;
+  categoricalFilterSelectAll: string;
+  categoricalFilterSelectClear: string;
+  categoricalFilterEmpty: string;
+  datetimeFilterRange: string;
+  datetimeFilterRangeDatetime: string;
+  datetimeFilterRangeDate: string;
+  datetimeFilterRangeTime: string;
+  datetimeFilterCategorical: string;
+  datetimeFilterCategoricalWeekday: string;
+  datetimeFilterCategoricalMonth: string;
+  datetimeFilterCategoricalQuarter: string;
+  datetimeFilterCategoricalHalf: string;
+  datetimeFilterCategoricalFirstHalf: string;
+  datetimeFilterCategoricalSecondHalf: string;
+  datetimeFilterCategoricalYear: string;
+  numericalFilterRange: string;
+  numericalFilterSingleValue: string;
+  booleanFilterTrue: string;
+  booleanFilterFalse: string;
+  booleanColumnTrueShort: string;
+  booleanColumnFalseShort: string;
+};
 
 const locale = {
   emptyState:

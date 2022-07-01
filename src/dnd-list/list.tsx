@@ -4,9 +4,8 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 import * as React from 'react';
-import { getOverrides } from '../helpers/overrides.js';
+import { getOverrides } from '../helpers/overrides';
 import {
   Root as StyledRoot,
   List as StyledList,
@@ -14,37 +13,44 @@ import {
   DragHandle as StyledDragHandle,
   CloseHandle as StyledCloseHandle,
   Label as StyledLabel,
-} from './styled-components.js';
+} from './styled-components';
 import { List as MovableList } from 'react-movable';
-import Grab from '../icon/grab.js';
-import Delete from '../icon/delete.js';
-import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible.js';
-import { Layer } from '../layer/index.js';
+import Grab from '../icon/grab';
+import Delete from '../icon/delete';
+import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible';
+import { Layer } from '../layer/index';
 
-import type { ListPropsT, SharedStylePropsArgT } from './types.js';
+import type { ListPropsT, SharedStylePropsArgT } from './types';
 
-const ItemLayer = ({ children, dragged }: { children: React.Node, dragged: boolean }) => {
+import type { SyntheticEvent } from 'react';
+
+const ItemLayer = ({ children, dragged }: { children: React.ReactNode; dragged: boolean }) => {
   if (!dragged) {
     return children;
   }
   return <Layer>{children}</Layer>;
 };
 
-class StatelessList extends React.Component<ListPropsT, { isFocusVisible: boolean }> {
-  static defaultProps: $Shape<ListPropsT> = {
+class StatelessList extends React.Component<
+  ListPropsT,
+  {
+    isFocusVisible: boolean;
+  }
+> {
+  static defaultProps: Partial<ListPropsT> = {
     items: [],
     onChange: () => {},
   };
 
   state = { isFocusVisible: false };
 
-  handleFocus = (event: SyntheticEvent<>) => {
+  handleFocus = (event: SyntheticEvent) => {
     if (isFocusVisible(event)) {
       this.setState({ isFocusVisible: true });
     }
   };
 
-  handleBlur = (event: SyntheticEvent<>) => {
+  handleBlur = (event: SyntheticEvent) => {
     if (this.state.isFocusVisible !== false) {
       this.setState({ isFocusVisible: false });
     }

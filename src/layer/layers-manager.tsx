@@ -4,12 +4,11 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 import * as React from 'react';
-import { styled } from '../styles/index.js';
-import { getOverrides } from '../helpers/overrides.js';
-import type { LayersManagerPropsT, LayersManagerStateT, LayersContextT } from './types.js';
-import { initFocusVisible } from '../utils/focusVisible.js';
+import { styled } from '../styles/index';
+import { getOverrides } from '../helpers/overrides';
+import type { LayersManagerPropsT, LayersManagerStateT, LayersContextT } from './types';
+import { initFocusVisible } from '../utils/focusVisible';
 
 const StyledAppContainer = styled('div', {});
 const StyledLayersContainer = styled('div', {});
@@ -39,12 +38,12 @@ export default class LayersManager extends React.Component<
 > {
   host: {
     // flowlint-next-line unclear-type:off
-    current: React.ElementRef<any> | null,
+    current: React.RefObject<any> | null;
   } = React.createRef();
 
   containerRef: {
     // flowlint-next-line unclear-type:off
-    current: React.ElementRef<any> | null,
+    current: React.RefObject<any> | null;
   } = React.createRef();
 
   constructor(props: LayersManagerPropsT) {
@@ -87,13 +86,13 @@ export default class LayersManager extends React.Component<
     }
   };
 
-  onAddEscapeHandler = (escapeKeyHandler: () => mixed) => {
+  onAddEscapeHandler = (escapeKeyHandler: () => unknown) => {
     this.setState((prev) => {
       return { escapeKeyHandlers: [...prev.escapeKeyHandlers, escapeKeyHandler] };
     });
   };
 
-  onRemoveEscapeHandler = (escapeKeyHandler: () => mixed) => {
+  onRemoveEscapeHandler = (escapeKeyHandler: () => unknown) => {
     this.setState((prev) => {
       return {
         escapeKeyHandlers: prev.escapeKeyHandlers.filter((handler) => handler !== escapeKeyHandler),
@@ -101,13 +100,13 @@ export default class LayersManager extends React.Component<
     });
   };
 
-  onAddDocClickHandler = (docClickHandler: (event: MouseEvent) => mixed) => {
+  onAddDocClickHandler = (docClickHandler: (event: MouseEvent) => unknown) => {
     this.setState((prev) => {
       return { docClickHandlers: [...prev.docClickHandlers, docClickHandler] };
     });
   };
 
-  onRemoveDocClickHandler = (docClickHandler: (event: MouseEvent) => mixed) => {
+  onRemoveDocClickHandler = (docClickHandler: (event: MouseEvent) => unknown) => {
     this.setState((prev) => {
       return {
         docClickHandlers: prev.docClickHandlers.filter((handler) => handler !== docClickHandler),

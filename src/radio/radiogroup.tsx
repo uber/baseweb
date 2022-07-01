@@ -4,14 +4,15 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 import * as React from 'react';
 
-import { getOverrides } from '../helpers/overrides.js';
+import { getOverrides } from '../helpers/overrides';
 
-import { RadioGroupRoot as StyledRadioGroupRoot } from './styled-components.js';
-import type { PropsT, DefaultPropsT, StatelessStateT } from './types.js';
-import { isFocusVisible } from '../utils/focusVisible.js';
+import { RadioGroupRoot as StyledRadioGroupRoot } from './styled-components';
+import type { PropsT, DefaultPropsT, StatelessStateT } from './types';
+import { isFocusVisible } from '../utils/focusVisible';
+
+import type { ChangeEvent } from 'react';
 
 class StatelessRadioGroup extends React.Component<PropsT, StatelessStateT> {
   static defaultProps: DefaultPropsT = {
@@ -33,7 +34,7 @@ class StatelessRadioGroup extends React.Component<PropsT, StatelessStateT> {
 
   state = { isFocusVisible: false, focusedRadioIndex: -1 };
 
-  handleFocus = (event: SyntheticInputEvent<HTMLInputElement>, index: number) => {
+  handleFocus = (event: ChangeEvent<HTMLInputElement>, index: number) => {
     if (isFocusVisible(event)) {
       this.setState({ isFocusVisible: true });
     }
@@ -41,7 +42,7 @@ class StatelessRadioGroup extends React.Component<PropsT, StatelessStateT> {
     this.props.onFocus && this.props.onFocus(event);
   };
 
-  handleBlur = (event: SyntheticInputEvent<HTMLInputElement>, index: number) => {
+  handleBlur = (event: ChangeEvent<HTMLInputElement>, index: number) => {
     if (this.state.isFocusVisible !== false) {
       this.setState({ isFocusVisible: false });
     }
@@ -87,8 +88,8 @@ class StatelessRadioGroup extends React.Component<PropsT, StatelessStateT> {
             tabIndex: (index === 0 && !this.props.value) || checked ? '0' : '-1',
             labelPlacement: this.props.labelPlacement,
             name: this.props.name,
-            onBlur: (e: SyntheticInputEvent<HTMLInputElement>) => this.handleBlur(e, index),
-            onFocus: (e: SyntheticInputEvent<HTMLInputElement>) => this.handleFocus(e, index),
+            onBlur: (e: ChangeEvent<HTMLInputElement>) => this.handleBlur(e, index),
+            onFocus: (e: ChangeEvent<HTMLInputElement>) => this.handleFocus(e, index),
             onChange: this.props.onChange,
             onMouseEnter: this.props.onMouseEnter,
             onMouseLeave: this.props.onMouseLeave,

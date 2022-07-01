@@ -4,26 +4,24 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 
-import { Tag, KIND as TAG_KIND } from '../../tag/index.js';
+import { Tag, KIND as TAG_KIND } from '../../tag/index';
 
-import CategoricalColumn from '../column-categorical.js';
-import CustomColumn from '../column-custom.js';
-import StringColumn from '../column-string.js';
-import { StatefulDataTable } from '../stateful-data-table.js';
+import CategoricalColumn from '../column-categorical';
+import CustomColumn from '../column-custom';
+import StringColumn from '../column-string';
+import { StatefulDataTable } from '../stateful-data-table';
 
-import AnimalData from './animal-data.js';
+import AnimalData from './animal-data';
 
 type RowDataT = {
-  Name: string,
-  Kingdom: string,
-  Phylum: string,
-  Class: string,
-  Order: string,
-  Family: string,
+  Name: string;
+  Kingdom: string;
+  Phylum: string;
+  Class: string;
+  Order: string;
+  Family: string;
 };
 
 const columns = [

@@ -4,16 +4,14 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 
-import ChevronDown from '../../icon/chevron-down.js';
-import Delete from '../../icon/delete.js';
-import Upload from '../../icon/upload.js';
-import Overflow from '../../icon/overflow.js';
+import ChevronDown from '../../icon/chevron-down';
+import Delete from '../../icon/delete';
+import Upload from '../../icon/upload';
+import Overflow from '../../icon/overflow';
 
-import { AppNavBar, setItemActive } from '../index.js';
+import { AppNavBar, setItemActive } from '../index';
 
 export function Scenario() {
   const [mainItems, setMainItems] = React.useState([

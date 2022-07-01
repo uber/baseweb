@@ -4,19 +4,16 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 
-import { useStyletron } from '../styles/index.js';
+import { useStyletron } from '../styles/index';
 
-import Column from './column.js';
-import { COLUMNS } from './constants.js';
-import type { ColumnT } from './types.js';
+import Column from './column';
+import { COLUMNS } from './constants';
+import type { ColumnT } from './types';
 
 type ValueT = null;
 type FilterParametersT = {};
-
 type RowIndexColumnT = ColumnT<ValueT, FilterParametersT>;
 
 function RowIndexFilter() {

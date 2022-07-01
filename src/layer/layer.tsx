@@ -4,15 +4,16 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 /* global document */
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import { styled } from '../styles/index.js';
-import { LayersContext, Consumer } from './layers-manager.js';
-import type { LayerPropsT, LayerComponentPropsT, LayerStateT } from './types.js';
+import { styled } from '../styles/index';
+import { LayersContext, Consumer } from './layers-manager';
+import type { LayerPropsT, LayerComponentPropsT, LayerStateT } from './types';
 
-const Container = styled<{ $zIndex?: number }>('div', ({ $zIndex }) => ({
+const Container = styled<{
+  $zIndex?: number;
+}>('div', ({ $zIndex }) => ({
   position: 'absolute',
   top: 0,
   left: 0,

@@ -4,10 +4,9 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-import sharedBorders from '../shared/borders.js';
-import deepMerge from '../../utils/deep-merge.js';
-import type { BordersT } from '../types.js';
+import sharedBorders from '../shared/borders';
+import deepMerge from '../../utils/deep-merge';
+import type { BordersT } from '../types';
 
 // Override border colors for the dark theme
 const borders: BordersT = deepMerge({}, sharedBorders, {

@@ -4,12 +4,10 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
-import { StatefulTreeView, TreeLabelInteractable } from '../index.js';
-import { Select } from '../../select/index.js';
-import { Checkbox } from '../../checkbox/index.js';
+import { StatefulTreeView, TreeLabelInteractable } from '../index';
+import { Select } from '../../select/index';
+import { Checkbox } from '../../checkbox/index';
 
 const LabelSelect = (node) => {
   const [value, setValue] = React.useState();

@@ -4,14 +4,12 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 
-import { StatefulRadioGroup, RadioGroup, Radio } from '../index.js';
+import { StatefulRadioGroup, RadioGroup, Radio } from '../index';
 
 describe('radio-group', () => {
   it('sets expected child radio checked', () => {

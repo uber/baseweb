@@ -4,17 +4,16 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 import * as React from 'react';
-import { StyledDay, StyledDayLabel } from './styled-components.js';
-import dateFnsAdapter from './utils/date-fns-adapter.js';
-import DateHelpers from './utils/date-helpers.js';
-import { getOverrides } from '../helpers/overrides.js';
-import type { DayPropsT, DayStateT } from './types.js';
-import { LocaleContext } from '../locale/index.js';
-import type { LocaleT } from '../locale/types.js';
-import { isFocusVisible } from '../utils/focusVisible.js';
-import { INPUT_ROLE } from './constants.js';
+import { StyledDay, StyledDayLabel } from './styled-components';
+import dateFnsAdapter from './utils/date-fns-adapter';
+import DateHelpers from './utils/date-helpers';
+import { getOverrides } from '../helpers/overrides';
+import type { DayPropsT, DayStateT } from './types';
+import { LocaleContext } from '../locale/index';
+import type { LocaleT } from '../locale/types';
+import { isFocusVisible } from '../utils/focusVisible';
+import { INPUT_ROLE } from './constants';
 
 export default class Day<T = Date> extends React.Component<DayPropsT<T>, DayStateT> {
   static defaultProps = {
@@ -33,7 +32,7 @@ export default class Day<T = Date> extends React.Component<DayPropsT<T>, DayStat
     value: null,
   };
 
-  dayElm: React.ElementRef<typeof HTMLElement>;
+  dayElm: React.RefObject<typeof HTMLElement>;
 
   state = {
     isHovered: false,
@@ -78,7 +77,7 @@ export default class Day<T = Date> extends React.Component<DayPropsT<T>, DayStat
    * Note: time values are incorporated into new day/date values downstream in `Calendar`.
    * Note: Situations where Start Dates are after End Dates are handled downstream in `Datepicker`.
    * */
-  onSelect: (T) => void = (selectedDate) => {
+  onSelect: (a: T) => void = (selectedDate) => {
     const { range, value } = this.props;
 
     let nextDate;
@@ -234,7 +233,7 @@ export default class Day<T = Date> extends React.Component<DayPropsT<T>, DayStat
     }
   }
 
-  clampToDayStart: (T) => T = (dt) => {
+  clampToDayStart: (a: T) => T = (dt) => {
     const { setSeconds, setMinutes, setHours } = this.dateHelpers;
     return setSeconds(setMinutes(setHours(dt, 0), 0), 0);
   };
@@ -374,11 +373,11 @@ export default class Day<T = Date> extends React.Component<DayPropsT<T>, DayStat
 
   getAriaLabel(
     sharedProps: {
-      $disabled: boolean,
-      $range: boolean,
-      $selected: boolean,
-      $startDate: boolean,
-      $endDate: boolean,
+      $disabled: boolean;
+      $range: boolean;
+      $selected: boolean;
+      $startDate: boolean;
+      $endDate: boolean;
     },
     localeContext: LocaleT
   ) {

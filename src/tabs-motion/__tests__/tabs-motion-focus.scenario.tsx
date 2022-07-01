@@ -5,10 +5,8 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-// @flow
-
 import * as React from 'react';
-import { Tab, Tabs } from '../index.js';
+import { Tab, Tabs } from '../index';
 
 export function Scenario() {
   const [activeKey, setActiveKey] = React.useState(1);

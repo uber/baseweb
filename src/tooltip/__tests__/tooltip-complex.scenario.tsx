@@ -4,14 +4,12 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 
-import { StatefulTooltip } from '../index.js';
-import { StyledLink } from '../../link/index.js';
-import { DarkTheme } from '../../themes/index.js';
-import { ThemeProvider, useStyletron } from '../../styles/index.js';
+import { StatefulTooltip } from '../index';
+import { StyledLink } from '../../link/index';
+import { DarkTheme } from '../../themes/index';
+import { ThemeProvider, useStyletron } from '../../styles/index';
 
 function ComplexContent() {
   return (

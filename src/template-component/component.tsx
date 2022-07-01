@@ -4,21 +4,20 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 /* eslint-disable cup/no-undef */
 import * as React from 'react';
-import { getOverride, getOverrideProps } from '../helpers/overrides.js';
-import { Root as StyledRoot } from './styled-components.js';
+import { getOverride, getOverrideProps } from '../helpers/overrides';
+import { Root as StyledRoot } from './styled-components';
 
-import type { ComponentPropsT, SharedStylePropsT } from './types.js';
+import type { ComponentPropsT, SharedStylePropsT } from './types';
 
 class Component extends React.Component<ComponentPropsT> {
-  static defaultProps: $Shape<ComponentPropsT> = {
+  static defaultProps: Partial<ComponentPropsT> = {
     prop: true,
     onClick: () => {},
   };
 
-  getSharedProps(): $Diff<SharedStylePropsT, { children?: React.Node }> {
+  getSharedProps(): Omit<SharedStylePropsT, 'children'> {
     const { prop } = this.props;
     return {
       $prop: Boolean(prop),

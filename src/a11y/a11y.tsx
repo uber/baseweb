@@ -4,18 +4,17 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 /* global document cancelIdleCallback requestIdleCallback */
 
 import * as React from 'react';
 import axe from 'axe-core';
 
-import { Layer, TetherBehavior, TETHER_PLACEMENT } from '../layer/index.js';
-import { ParagraphSmall, ParagraphXSmall } from '../typography/index.js';
-import { styled } from '../styles/index.js';
-import { ThemeContext } from '../styles/theme-provider.js';
+import { Layer, TetherBehavior, TETHER_PLACEMENT } from '../layer/index';
+import { ParagraphSmall, ParagraphXSmall } from '../typography/index';
+import { styled } from '../styles/index';
+import { ThemeContext } from '../styles/theme-provider';
 
-import type { ViolationPropsT } from './types.js';
+import type { ViolationPropsT } from './types';
 
 function validateNode(node) {
   return new Promise((resolve, reject) => {
@@ -40,19 +39,19 @@ function segmentViolationsByNode(violations) {
   return Object.entries(nodes);
 }
 
-const ViolationContainer = styled<{ $top: string, $left: string }>(
-  'div',
-  ({ $theme, $top, $left }) => {
-    return {
-      backgroundColor: $theme.colors.mono100,
-      boxShadow: $theme.lighting.shadow600,
-      position: 'absolute',
-      padding: $theme.sizing.scale400,
-      top: $top,
-      left: $left,
-    };
-  }
-);
+const ViolationContainer = styled<{
+  $top: string;
+  $left: string;
+}>('div', ({ $theme, $top, $left }) => {
+  return {
+    backgroundColor: $theme.colors.mono100,
+    boxShadow: $theme.lighting.shadow600,
+    position: 'absolute',
+    padding: $theme.sizing.scale400,
+    top: $top,
+    left: $left,
+  };
+});
 
 function Violation(props: ViolationPropsT) {
   const [offset, setOffset] = React.useState({ top: 0, left: 0 });
@@ -108,7 +107,7 @@ function Violation(props: ViolationPropsT) {
   );
 }
 
-export default function A11y(props: { children: React.Node }) {
+export default function A11y(props: { children: React.ReactNode }) {
   const [violations, setViolations] = React.useState([]);
   const [idleID, setIdleID] = React.useState(null);
   const child = React.useRef(null);
@@ -134,7 +133,7 @@ export default function A11y(props: { children: React.Node }) {
       <div>
         {violationsByNode.map(([node, violations], index) => (
           // flowlint-next-line unclear-type:off
-          <Violation target={node} violations={(violations: any)} key={index} />
+          <Violation target={node} violations={violations as any} key={index} />
         ))}
       </div>
     </>

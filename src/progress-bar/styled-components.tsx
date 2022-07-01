@@ -4,11 +4,10 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-import { styled, hexToRgb, withWrapper } from '../styles/index.js';
-import { SIZE } from './constants.js';
+import { styled, hexToRgb, withWrapper } from '../styles/index';
+import { SIZE } from './constants';
 
-import type { StylePropsT, SizeT } from './types.js';
+import type { StylePropsT, SizeT } from './types';
 import React from 'react';
 
 function getBarHeight(size) {
@@ -28,20 +27,20 @@ export const StyledRoot = styled<StylePropsT>('div', (props) => {
 export const StyledBarContainer = styled<StylePropsT>('div', (props) => {
   const { $theme } = props;
   const { sizing } = $theme;
-  return ({
+  return {
     display: 'flex',
     marginLeft: sizing.scale500,
     marginRight: sizing.scale500,
     marginTop: sizing.scale500,
     marginBottom: sizing.scale500,
-  }: {});
+  } as {};
 });
 
 export const StyledBar = styled<StylePropsT>('div', (props) => {
   const { $theme, $size, $steps } = props;
   const { colors, sizing, borders } = $theme;
   const borderRadius = borders.useRoundedCorners ? sizing.scale0 : 0;
-  return ({
+  return {
     borderTopLeftRadius: borderRadius,
     borderTopRightRadius: borderRadius,
     borderBottomRightRadius: borderRadius,
@@ -58,7 +57,7 @@ export const StyledBar = styled<StylePropsT>('div', (props) => {
             marginLeft: '0',
           },
         }),
-  }: {});
+  } as {};
 });
 
 export const StyledBarProgress = styled<StylePropsT>('div', (props) => {
@@ -134,7 +133,10 @@ export const StyledBarProgress = styled<StylePropsT>('div', (props) => {
   };
 });
 
-export const StyledInfiniteBar = styled<{ $isLeft?: boolean, $size: SizeT }>('div', (props) => {
+export const StyledInfiniteBar = styled<{
+  $isLeft?: boolean;
+  $size: SizeT;
+}>('div', (props) => {
   const { $theme, $isLeft = false, $size = SIZE.medium } = props;
   const { colors, sizing, borders } = $theme;
   const borderRadius = borders.useRoundedCorners ? sizing.scale0 : 0;
@@ -232,8 +234,8 @@ const PROGRESS_BAR_ROUNDED_SIZES = {
 };
 
 export const StyledProgressBarRoundedRoot = styled<{
-  $size: SizeT,
-  $inline: boolean,
+  $size: SizeT;
+  $inline: boolean;
 }>('div', ({ $size, $inline }) => {
   return {
     width: PROGRESS_BAR_ROUNDED_SIZES[$size].width + 'px',
@@ -246,7 +248,7 @@ export const StyledProgressBarRoundedRoot = styled<{
 });
 
 const _StyledProgressBarRoundedSvg = styled<{
-  $size: SizeT,
+  $size: SizeT;
 }>('svg', ({ $size }) => {
   return {
     width: PROGRESS_BAR_ROUNDED_SIZES[$size].width + 'px',
@@ -273,7 +275,7 @@ export const StyledProgressBarRoundedSvg = withWrapper(
 );
 
 const _StyledProgressBarRoundedTrackBackground = styled<{
-  $size: SizeT,
+  $size: SizeT;
 }>('path', ({ $theme, $size }) => {
   return {
     stroke: $theme.colors.backgroundTertiary,
@@ -290,10 +292,10 @@ export const StyledProgressBarRoundedTrackBackground = withWrapper(
 );
 
 const _StyledProgressBarRoundedTrackForeground = styled<{
-  $size: SizeT,
-  $visible: boolean,
-  $pathLength: number,
-  $pathProgress: number,
+  $size: SizeT;
+  $visible: boolean;
+  $pathLength: number;
+  $pathProgress: number;
 }>('path', ({ $theme, $size, $visible, $pathLength, $pathProgress }) => {
   return {
     visibility: $visible ? 'visible' : 'hidden',
@@ -313,7 +315,7 @@ export const StyledProgressBarRoundedTrackForeground = withWrapper(
 );
 
 export const StyledProgressBarRoundedText = styled<{
-  $size: SizeT,
+  $size: SizeT;
 }>('div', ({ $theme, $size }) => {
   return {
     color: $theme.colors.contentPrimary,

@@ -5,8 +5,6 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 /* global document */
-// @flow
-
 import * as React from 'react';
 import { act } from 'react-dom/test-utils';
 import {
@@ -19,11 +17,11 @@ import {
   waitForElementToBeRemoved,
 } from '@testing-library/react';
 
-import { toaster, ToasterContainer } from '../index.js';
+import { toaster, ToasterContainer } from '../index';
 
 const getBody = (): HTMLBodyElement => {
   //flowlint-next-line unclear-type:off
-  return ((document.body: any): HTMLBodyElement);
+  return document.body as any as HTMLBodyElement;
 };
 
 describe('toaster', () => {

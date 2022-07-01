@@ -4,10 +4,8 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
-import { ARTWORK_SIZES } from './constants.js';
-import type { ArtworkSizesT } from './types.js';
+import { ARTWORK_SIZES } from './constants';
+import type { ArtworkSizesT } from './types';
 
 export function artworkSizeToValue(artworkSize: ArtworkSizesT, isSublist: boolean) {
   if (isSublist) {

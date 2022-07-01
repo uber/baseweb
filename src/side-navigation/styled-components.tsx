@@ -4,10 +4,9 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 import * as React from 'react';
-import { styled, hexToRgb, withWrapper } from '../styles/index.js';
-import type { SharedPropsT } from './types.js';
+import { styled, hexToRgb, withWrapper } from '../styles/index';
+import type { SharedPropsT } from './types';
 
 export const StyledRoot = styled<SharedPropsT>('nav', (props) => {
   const {
@@ -30,24 +29,23 @@ export const StyledRoot = styled<SharedPropsT>('nav', (props) => {
 
 export const StyledNavItemContainer = styled('li', {});
 
-export const StyledNavLink = styled<{ $isFocusVisible: boolean }>(
-  'a',
-  ({ $theme, $isFocusVisible }) => ({
-    color: 'inherit',
-    outline: 'none',
-    textDecoration: 'none',
-    ':focus > div': $isFocusVisible
-      ? {
-          outline: `3px solid ${$theme.colors.accent}`,
-          outlineOffset: '-3px',
-          borderLeftColor: 'transparent',
-          borderTopColor: 'transparent',
-          borderRightColor: 'transparent',
-          borderBottomColor: 'transparent',
-        }
-      : { outline: 'none' },
-  })
-);
+export const StyledNavLink = styled<{
+  $isFocusVisible: boolean;
+}>('a', ({ $theme, $isFocusVisible }) => ({
+  color: 'inherit',
+  outline: 'none',
+  textDecoration: 'none',
+  ':focus > div': $isFocusVisible
+    ? {
+        outline: `3px solid ${$theme.colors.accent}`,
+        outlineOffset: '-3px',
+        borderLeftColor: 'transparent',
+        borderTopColor: 'transparent',
+        borderRightColor: 'transparent',
+        borderBottomColor: 'transparent',
+      }
+    : { outline: 'none' },
+}));
 
 export const StyledNavItemElement = styled<SharedPropsT>('div', (props) => {
   const {
@@ -78,7 +76,7 @@ export const StyledNavItemElement = styled<SharedPropsT>('div', (props) => {
     hoverColor = null;
   }
 
-  return ({
+  return {
     backgroundColor: $active ? colors.backgroundInversePrimary : 'transparent',
     backgroundImage: $active ? `linear-gradient(0deg, ${bgImgGradient}, ${bgImgGradient})` : null,
     boxSizing: 'border-box',
@@ -98,7 +96,7 @@ export const StyledNavItemElement = styled<SharedPropsT>('div', (props) => {
     ':focus': {
       color: $selectable ? colors.primary : null,
     },
-  }: {});
+  } as {};
 });
 
 export const StyledNavItem = withWrapper(

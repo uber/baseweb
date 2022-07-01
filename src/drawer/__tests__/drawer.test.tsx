@@ -4,14 +4,13 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 /* eslint-env browser */
 
 import * as React from 'react';
 import { render, fireEvent, getByTestId, queryByText } from '@testing-library/react';
-import { Drawer, CLOSE_SOURCE } from '../index.js';
+import { Drawer, CLOSE_SOURCE } from '../index';
 
-jest.mock('../../layer/index.js', () => {
+jest.mock('../../layer/index', () => {
   return {
     Layer: jest.fn().mockImplementation((props) => {
       return props.children;

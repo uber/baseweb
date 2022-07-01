@@ -4,16 +4,15 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 /* global document */
 /* eslint-disable cup/no-undef */
 import * as React from 'react';
 import FocusLock from 'react-focus-lock';
 
-import { LocaleContext } from '../locale/index.js';
-import { getOverrides } from '../helpers/overrides.js';
-import { Layer } from '../layer/index.js';
-import { SIZE, CLOSE_SOURCE, ANCHOR } from './constants.js';
+import { LocaleContext } from '../locale/index';
+import { getOverrides } from '../helpers/overrides';
+import { Layer } from '../layer/index';
+import { SIZE, CLOSE_SOURCE, ANCHOR } from './constants';
 import {
   StyledRoot,
   StyledBackdrop,
@@ -21,8 +20,8 @@ import {
   StyledDrawerBody,
   StyledClose,
   Hidden,
-} from './styled-components.js';
-import { CloseIcon } from './close-icon.js';
+} from './styled-components';
+import { CloseIcon } from './close-icon';
 
 import type {
   DrawerPropsT,
@@ -30,11 +29,13 @@ import type {
   SharedStylePropsArgT,
   CloseSourceT,
   ElementRefT,
-} from './types.js';
-import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible.js';
+} from './types';
+import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible';
+
+import type { SyntheticEvent } from 'react';
 
 class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
-  static defaultProps: $Shape<DrawerPropsT> = {
+  static defaultProps: Partial<DrawerPropsT> = {
     animate: true,
     closeable: true,
     isOpen: false,
@@ -46,11 +47,13 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
     renderAll: false,
   };
 
-  animateOutTimer: ?TimeoutID;
-  animateStartTimer: ?AnimationFrameID;
-  lastFocus: ?HTMLElement = null;
-  lastMountNodeOverflowStyle: ?string = null;
-  _refs: { [string]: ElementRefT } = {};
+  animateOutTimer: TimeoutID | undefined | null;
+  animateStartTimer: AnimationFrameID | undefined | null;
+  lastFocus: HTMLElement | undefined | null = null;
+  lastMountNodeOverflowStyle: string | undefined | null = null;
+  _refs: {
+    [x: string]: ElementRefT;
+  } = {};
 
   state = {
     isVisible: false,
@@ -82,13 +85,13 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
     }
   }
 
-  handleFocus = (event: SyntheticEvent<>) => {
+  handleFocus = (event: SyntheticEvent) => {
     if (isFocusVisible(event)) {
       this.setState({ isFocusVisible: true });
     }
   };
 
-  handleBlur = (event: SyntheticEvent<>) => {
+  handleBlur = (event: SyntheticEvent) => {
     if (this.state.isFocusVisible !== false) {
       this.setState({ isFocusVisible: false });
     }
@@ -120,7 +123,7 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
     }
     // Flow thinks body could be null (cast through any)
     // flowlint-next-line unclear-type:off
-    return ((document.body: any): HTMLBodyElement);
+    return document.body as any as HTMLBodyElement;
   }
 
   onEscape = () => {
@@ -195,7 +198,7 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
     });
   };
 
-  getSharedProps(): $Diff<SharedStylePropsArgT, { children?: React.Node }> {
+  getSharedProps(): Omit<SharedStylePropsArgT, 'children'> {
     const { animate, isOpen, size, closeable, anchor, showBackdrop } = this.props;
     return {
       $animating: animate,
@@ -221,7 +224,7 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
     return this._refs[component];
   }
 
-  renderDrawer(renderedContent: React.Node) {
+  renderDrawer(renderedContent: React.ReactNode) {
     const { overrides = {}, closeable, autoFocus } = this.props;
 
     const {

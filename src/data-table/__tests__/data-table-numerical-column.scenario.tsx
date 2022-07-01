@@ -4,14 +4,12 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 
-import { NUMERICAL_FORMATS, NumericalColumn } from '../index.js';
+import { NUMERICAL_FORMATS, NumericalColumn } from '../index';
 import { randomLcg, randomBinomial, randomLogNormal, randomInt } from 'd3';
 
-import { precisionData } from './precision-data.js';
+import { precisionData } from './precision-data';
 
 const Filter = NumericalColumn({
   title: 'categorical-column',

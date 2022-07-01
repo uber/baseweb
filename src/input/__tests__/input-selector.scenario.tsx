@@ -4,15 +4,13 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 
-import { FormControl } from '../../form-control/index.js';
-import { Select } from '../../select/index.js';
-import { useStyletron } from '../../styles/index.js';
+import { FormControl } from '../../form-control/index';
+import { Select } from '../../select/index';
+import { useStyletron } from '../../styles/index';
 
-import { Input } from '../index.js';
+import { Input } from '../index';
 
 function SelectAtStart(props) {
   const [css] = useStyletron();

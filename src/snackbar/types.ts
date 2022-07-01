@@ -5,13 +5,13 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-// @flow
-
 import * as React from 'react';
 
-import type { OverrideT } from '../helpers/overrides.js';
+import type { OverrideT } from '../helpers/overrides';
 
-import { DURATION, PLACEMENT } from './constants.js';
+import { DURATION, PLACEMENT } from './constants';
+
+import type { SyntheticEvent } from 'react';
 
 export type DurationT =
   | typeof DURATION.infinite
@@ -28,41 +28,40 @@ export type PlacementT =
   | typeof PLACEMENT.bottomRight;
 
 export type SnackbarElementOverridesT = {
-  Root?: OverrideT,
-  Content?: OverrideT,
-  StartEnhancerContainer?: OverrideT,
-  Spinner?: OverrideT,
-  Message?: OverrideT,
-  WrapActionButtonContainer?: OverrideT,
-  ActionButtonContainer?: OverrideT,
+  Root?: OverrideT;
+  Content?: OverrideT;
+  StartEnhancerContainer?: OverrideT;
+  Spinner?: OverrideT;
+  Message?: OverrideT;
+  WrapActionButtonContainer?: OverrideT;
+  ActionButtonContainer?: OverrideT;
 };
 
-export type SnackbarElementPropsT = {|
+export type SnackbarElementPropsT = {
   // message displayed in button
-  actionMessage?: string,
+  actionMessage?: string;
   // function executed on button click
-  actionOnClick?: (SyntheticEvent<HTMLButtonElement>) => mixed,
+  actionOnClick?: (a: SyntheticEvent<HTMLButtonElement>) => unknown;
   // if action button preset focus it, defaults to true
-  focus?: boolean,
+  focus?: boolean;
   // primary message displayed in snackbar
-  message: React.Node,
-  overrides?: SnackbarElementOverridesT,
+  message: React.ReactNode;
+  overrides?: SnackbarElementOverridesT;
   // renders spinner in start enhancer position
-  progress?: boolean,
+  progress?: boolean;
   // renders element as message prefix, takes precedence over progress prop
-  startEnhancer?: React.AbstractComponent<{|
-    size: number,
-  |}>,
-|};
+  startEnhancer?: React.ComponentType<{
+    size: number;
+  }>;
+};
 
-export type SnackbarProviderPropsT = {|
-  children?: React.Node,
+export type SnackbarProviderPropsT = {
+  children?: React.ReactNode;
   overrides?: {
-    ...SnackbarElementOverridesT,
-    PlacementContainer?: OverrideT,
-  },
+    PlacementContainer?: OverrideT;
+  } & SnackbarElementOverridesT;
   // location on page where snackbar will render
-  placement?: PlacementT,
+  placement?: PlacementT;
   // default display duration
-  defaultDuration?: DurationT,
-|};
+  defaultDuration?: DurationT;
+};

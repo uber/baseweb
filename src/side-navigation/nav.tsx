@@ -4,16 +4,21 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
-import { getOverrides } from '../helpers/overrides.js';
-import NavItem from './nav-item.js';
-import { StyledRoot, StyledNavItemContainer, StyledSubNavContainer } from './styled-components.js';
-import type { NavPropsT, Item } from './types.js';
-import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible.js';
+import { getOverrides } from '../helpers/overrides';
+import NavItem from './nav-item';
+import { StyledRoot, StyledNavItemContainer, StyledSubNavContainer } from './styled-components';
+import type { NavPropsT, Item } from './types';
+import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible';
 
-export default class SideNav extends React.Component<NavPropsT, { isFocusVisible: boolean }> {
+import type { SyntheticEvent } from 'react';
+
+export default class SideNav extends React.Component<
+  NavPropsT,
+  {
+    isFocusVisible: boolean;
+  }
+> {
   static defaultProps = {
     activeItemId: '/',
     activePredicate: null,
@@ -23,13 +28,13 @@ export default class SideNav extends React.Component<NavPropsT, { isFocusVisible
   };
   state = { isFocusVisible: false };
 
-  handleFocus = (event: SyntheticEvent<>) => {
+  handleFocus = (event: SyntheticEvent) => {
     if (isFocusVisible(event)) {
       this.setState({ isFocusVisible: true });
     }
   };
 
-  handleBlur = (event: SyntheticEvent<>) => {
+  handleBlur = (event: SyntheticEvent) => {
     if (this.state.isFocusVisible !== false) {
       this.setState({ isFocusVisible: false });
     }

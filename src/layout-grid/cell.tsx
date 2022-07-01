@@ -4,13 +4,11 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import React from 'react';
-import { getOverrides } from '../helpers/overrides.js';
-import { StyledCell as DefaultStyledCell } from './styled-components.js';
-import { GridContext } from './grid.js';
-import type { CellPropsT } from './types.js';
+import { getOverrides } from '../helpers/overrides';
+import { StyledCell as DefaultStyledCell } from './styled-components';
+import { GridContext } from './grid';
+import type { CellPropsT } from './types';
 
 export default function Cell({
   align,

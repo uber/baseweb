@@ -4,7 +4,6 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 import * as React from 'react';
 import {
   ACCESSIBILITY_TYPE,
@@ -12,19 +11,19 @@ import {
   STATE_CHANGE_TYPE,
   TRIGGER_TYPE,
   POPOVER_MARGIN,
-} from './constants.js';
+} from './constants';
 import type {
   PopoverPropsWithoutChildrenT,
   StateT,
   StatefulPopoverContainerPropsT,
   StateChangeTypeT,
   StateReducerT,
-} from './types.js';
+} from './types';
 
 const defaultStateReducer: StateReducerT = (type, nextState) => nextState;
 
 class StatefulContainer extends React.Component<StatefulPopoverContainerPropsT, StateT> {
-  static defaultProps: $Shape<StatefulPopoverContainerPropsT> = {
+  static defaultProps: Partial<StatefulPopoverContainerPropsT> = {
     accessibilityType: ACCESSIBILITY_TYPE.menu,
     ignoreBoundary: false,
     overrides: {},

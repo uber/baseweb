@@ -4,13 +4,12 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 /* eslint-env node */
 import * as React from 'react';
 import { render, fireEvent, getByTestId, getByText } from '@testing-library/react';
 
-import { ALIGN, Radio, StatefulRadioGroup } from '../index.js';
-import { Select } from '../../select/index.js';
+import { ALIGN, Radio, StatefulRadioGroup } from '../index';
+import { Select } from '../../select/index';
 
 describe('Radio', () => {
   it('calls provided handlers', () => {
@@ -57,7 +56,7 @@ describe('Radio', () => {
     );
 
     const select = container.querySelector('[data-baseweb="select"]');
-    const radio = ((container.querySelector('input[type="radio"]'): any): HTMLInputElement); //flowlint-line unclear-type:off
+    const radio = container.querySelector('input[type="radio"]') as any as HTMLInputElement; //flowlint-line unclear-type:off
     expect(radio.checked).toBe(false);
     if (select) fireEvent.click(select);
     expect(radio.checked).toBe(false);

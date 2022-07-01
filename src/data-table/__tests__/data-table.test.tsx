@@ -4,19 +4,17 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 import { render, fireEvent, getAllByRole, getByText } from '@testing-library/react';
 
-import { TestBaseProvider } from '../../test/test-utils.js';
+import { TestBaseProvider } from '../../test/test-utils';
 import {
   StatefulDataTable,
   BooleanColumn,
   CategoricalColumn,
   NumericalColumn,
   StringColumn,
-} from '../index.js';
+} from '../index';
 
 // NOTE: data-table waits for container dimension measurements before rendering. Jsdom only
 // returns 0 for dimension properties and methods. Mocking here so that cell rendering proceeds.

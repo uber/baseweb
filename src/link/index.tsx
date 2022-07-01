@@ -4,21 +4,22 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 // Styled elements
 import * as React from 'react';
-import { Link } from './styled-components.js';
-import { withWrapper } from '../styles/index.js';
-import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible.js';
+import { Link } from './styled-components';
+import { withWrapper } from '../styles/index';
+import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible';
+
+import type { SyntheticEvent } from 'react';
 
 function LinkFocus(props) {
   const [focusVisible, setFocusVisible] = React.useState(false);
-  const handleFocus = (event: SyntheticEvent<>) => {
+  const handleFocus = (event: SyntheticEvent) => {
     if (isFocusVisible(event)) {
       setFocusVisible(true);
     }
   };
-  const handleBlur = (event: SyntheticEvent<>) => {
+  const handleBlur = (event: SyntheticEvent) => {
     if (focusVisible !== false) {
       setFocusVisible(false);
     }

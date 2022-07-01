@@ -4,15 +4,14 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 import * as React from 'react';
-import Week from './week.js';
-import { StyledMonth } from './styled-components.js';
-import dateFnsAdapter from './utils/date-fns-adapter.js';
-import DateHelpers from './utils/date-helpers.js';
-import { getOverrides } from '../helpers/overrides.js';
-import type { MonthPropsT } from './types.js';
-import { DENSITY } from './constants.js';
+import Week from './week';
+import { StyledMonth } from './styled-components';
+import dateFnsAdapter from './utils/date-fns-adapter';
+import DateHelpers from './utils/date-helpers';
+import { getOverrides } from '../helpers/overrides';
+import type { MonthPropsT } from './types';
+import { DENSITY } from './constants';
 
 const defaultProps = {
   dateLabel: null,
@@ -52,7 +51,7 @@ export default class CalendarMonth<T = Date> extends React.Component<MonthPropsT
     return this.props.date || this.dateHelpers.date();
   };
 
-  isWeekInMonth: (T) => boolean = (startOfWeek) => {
+  isWeekInMonth: (a: T) => boolean = (startOfWeek) => {
     const date = this.getDateProp();
     const endOfWeek = this.dateHelpers.addDays(startOfWeek, 6);
     return (

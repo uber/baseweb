@@ -4,18 +4,19 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 import React from 'react';
-import { ThemeContext } from '../styles/theme-provider.js';
-import type { TreeLabelT, SharedStylePropsT } from './types.js';
-import { StyledIconContainer, StyledItemContent } from './styled-components.js';
-import ChevronRight from '../icon/chevron-right.js';
-import ChevronDown from '../icon/chevron-down.js';
-import ChevronLeft from '../icon/chevron-left.js';
-import BlankIcon from '../icon/blank.js';
-import { getOverride, getOverrideProps, getOverrides } from '../helpers/overrides.js';
+import { ThemeContext } from '../styles/theme-provider';
+import type { TreeLabelT, SharedStylePropsT } from './types';
+import { StyledIconContainer, StyledItemContent } from './styled-components';
+import ChevronRight from '../icon/chevron-right';
+import ChevronDown from '../icon/chevron-down';
+import ChevronLeft from '../icon/chevron-left';
+import BlankIcon from '../icon/blank';
+import { getOverride, getOverrideProps, getOverrides } from '../helpers/overrides';
 
-const TreeLabel: React$ComponentType<TreeLabelT> = ({
+import type { ComponentType } from 'react';
+
+const TreeLabel: ComponentType<TreeLabelT> = ({
   hasChildren,
   isExpanded,
   label,

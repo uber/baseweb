@@ -4,12 +4,10 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 
-import Block from '../block/block.js';
-import type { BlockPropsT } from '../block/types.js';
+import Block from '../block/block';
+import type { BlockPropsT } from '../block/types';
 
 export const AspectRatioBoxBody = ({
   position,
@@ -17,7 +15,7 @@ export const AspectRatioBoxBody = ({
   bottom,
   width,
   ...restProps
-}: $Exact<BlockPropsT>): React.Node => (
+}: BlockPropsT): React.ReactNode => (
   <Block
     data-baseweb="aspect-ratio-box-body"
     position={position || 'absolute'}

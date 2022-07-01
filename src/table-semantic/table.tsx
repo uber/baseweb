@@ -4,7 +4,6 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 import * as React from 'react';
 
 import {
@@ -18,10 +17,10 @@ import {
   StyledTableBodyCell,
   StyledTableLoadingMessage,
   StyledTableEmptyMessage,
-} from './styled-components.js';
-import { getOverrides } from '../helpers/overrides.js';
+} from './styled-components';
+import { getOverrides } from '../helpers/overrides';
 
-import type { TablePropsT } from './types.js';
+import type { TablePropsT } from './types';
 
 export default class Table extends React.Component<TablePropsT> {
   static defaultProps = {

@@ -4,22 +4,23 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 /* eslint-disable cup/no-undef */
 import * as React from 'react';
-import { StyledInput, StyledInputSizer } from './styled-components.js';
-import { getOverrides } from '../helpers/overrides.js';
-import type { AutosizeInputPropsT, AutosizeInputStateT } from './types.js';
+import { StyledInput, StyledInputSizer } from './styled-components';
+import { getOverrides } from '../helpers/overrides';
+import type { AutosizeInputPropsT, AutosizeInputStateT } from './types';
 
 export default class AutosizeInput extends React.Component<
   AutosizeInputPropsT,
   AutosizeInputStateT
 > {
   mounted: boolean;
-  sizer: ?HTMLElement;
+  sizer: HTMLElement | undefined | null;
 
   static defaultProps = {
-    inputRef: (React.createRef(): { current: HTMLInputElement | null }),
+    inputRef: React.createRef() as {
+      current: HTMLInputElement | null;
+    },
     value: '',
     overrides: {},
   };
@@ -36,7 +37,7 @@ export default class AutosizeInput extends React.Component<
   componentWillUnmount() {
     this.mounted = false;
   }
-  sizerRef = (el: ?HTMLElement) => {
+  sizerRef = (el?: HTMLElement | null) => {
     this.sizer = el;
   };
   updateInputWidth() {

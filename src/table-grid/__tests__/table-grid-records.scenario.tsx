@@ -4,16 +4,14 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import React from 'react';
 import { format } from 'date-fns';
 
-import { StyledLink } from '../../link/index.js';
-import { useStyletron } from '../../styles/index.js';
+import { StyledLink } from '../../link/index';
+import { useStyletron } from '../../styles/index';
 
-import { StyledTable, StyledHeadCell, StyledBodyCell } from '../index.js';
-import { useCellNavigation } from './shared.js';
+import { StyledTable, StyledHeadCell, StyledBodyCell } from '../index';
+import { useCellNavigation } from './shared';
 
 // [date, event description]
 type EventT = [Date, string];

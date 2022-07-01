@@ -4,14 +4,12 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
-import { getOverrides } from '../helpers/overrides.js';
-import { StyledNotificationCircle, StyledRoot, StyledPositioner } from './styled-components.js';
-import type { NotificationCirclePropsT } from './types.js';
-import { PLACEMENT, ROLE } from './constants.js';
-import { getAnchorFromChildren } from './utils.js';
+import { getOverrides } from '../helpers/overrides';
+import { StyledNotificationCircle, StyledRoot, StyledPositioner } from './styled-components';
+import type { NotificationCirclePropsT } from './types';
+import { PLACEMENT, ROLE } from './constants';
+import { getAnchorFromChildren } from './utils';
 
 const NotificationCircle = ({
   children,

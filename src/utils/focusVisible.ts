@@ -1,3 +1,4 @@
+import type { SyntheticEvent } from 'react';
 /*
 Copyright (c) Uber Technologies, Inc.
 
@@ -5,7 +6,6 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-// @flow
 // based on:
 // - https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/utils/focusVisible.js
 // - https://github.com/WICG/focus-visible/blob/v4.1.5/src/focus-visible.js
@@ -155,9 +155,9 @@ export const forkFocus =
   (
     // flowlint-next-line unclear-type:off
     rootProps: any,
-    handler: (e: SyntheticEvent<>) => void
+    handler: (e: SyntheticEvent) => void
   ) =>
-  (e: SyntheticEvent<>) => {
+  (e: SyntheticEvent) => {
     if (typeof rootProps.onFocus === 'function') {
       rootProps.onFocus(e);
     }
@@ -168,9 +168,9 @@ export const forkBlur =
   (
     // flowlint-next-line unclear-type:off
     rootProps: any,
-    handler: (e: SyntheticEvent<>) => void
+    handler: (e: SyntheticEvent) => void
   ) =>
-  (e: SyntheticEvent<>) => {
+  (e: SyntheticEvent) => {
     if (typeof rootProps.onBlur === 'function') {
       rootProps.onBlur(e);
     }

@@ -4,12 +4,10 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import React from 'react';
 
-import { Select } from '../index.js';
-import { Button } from '../../button/index.js';
+import { Select } from '../index';
+import { Button } from '../../button/index';
 
 export function Scenario() {
   const controlRef = React.useRef(null);

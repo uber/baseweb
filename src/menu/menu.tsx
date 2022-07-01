@@ -4,18 +4,19 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 import * as React from 'react';
-import { LocaleContext } from '../locale/index.js';
+import { LocaleContext } from '../locale/index';
 // Components
-import { StyledList, StyledEmptyState, StyledOptgroupHeader } from './styled-components.js';
-import OptionList from './option-list.js';
-import { getOverrides } from '../helpers/overrides.js';
+import { StyledList, StyledEmptyState, StyledOptgroupHeader } from './styled-components';
+import OptionList from './option-list';
+import { getOverrides } from '../helpers/overrides';
 // Types
-import type { StatelessMenuPropsT } from './types.js';
-import type { LocaleT } from '../locale/types.js';
+import type { StatelessMenuPropsT } from './types';
+import type { LocaleT } from '../locale/types';
 
-import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible.js';
+import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible';
+
+import type { SyntheticEvent } from 'react';
 
 export default function Menu(props: StatelessMenuPropsT) {
   const {
@@ -30,13 +31,13 @@ export default function Menu(props: StatelessMenuPropsT) {
   } = props;
 
   const [focusVisible, setFocusVisible] = React.useState(false);
-  const handleFocus = (event: SyntheticEvent<>) => {
+  const handleFocus = (event: SyntheticEvent) => {
     if (isFocusVisible(event)) {
       setFocusVisible(true);
     }
   };
 
-  const handleBlur = (event: SyntheticEvent<>) => {
+  const handleBlur = (event: SyntheticEvent) => {
     if (focusVisible !== false) {
       setFocusVisible(false);
     }

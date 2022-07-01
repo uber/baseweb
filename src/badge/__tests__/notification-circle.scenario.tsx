@@ -4,15 +4,13 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 
-import { PLACEMENT } from '../constants.js';
-import { NotificationCircle } from '../index.js';
-import { Tag, SIZE } from '../../tag/index.js';
-import Check from '../../icon/check.js';
-import { styled } from '../../styles/index.js';
+import { PLACEMENT } from '../constants';
+import { NotificationCircle } from '../index';
+import { Tag, SIZE } from '../../tag/index';
+import Check from '../../icon/check';
+import { styled } from '../../styles/index';
 
 export const Box = styled<{}>('div', ({ $theme }) => ({
   borderTopLeftRadius: $theme.borders.surfaceBorderRadius,

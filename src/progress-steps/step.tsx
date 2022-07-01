@@ -5,10 +5,8 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-// @flow
-
 import * as React from 'react';
-import { getOverrides } from '../helpers/overrides.js';
+import { getOverrides } from '../helpers/overrides';
 import {
   StyledStep,
   StyledIconContainer,
@@ -18,9 +16,9 @@ import {
   StyledContentTitle,
   StyledContentTail,
   StyledContentDescription,
-} from './styled-components.js';
+} from './styled-components';
 
-import type { StepPropsT } from './types.js';
+import type { StepPropsT } from './types';
 
 function Step({ overrides = {}, isCompleted, isActive, isLast, title, children }: StepPropsT) {
   const [Root, rootProps] = getOverrides(overrides.Root, StyledStep);

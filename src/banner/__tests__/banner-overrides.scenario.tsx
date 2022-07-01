@@ -4,13 +4,11 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 
-import { Banner, ACTION_POSITION } from '../index.js';
-import Delete from '../../icon/delete.js';
-import DeleteAlt from '../../icon/delete-alt.js';
+import { Banner, ACTION_POSITION } from '../index';
+import Delete from '../../icon/delete';
+import DeleteAlt from '../../icon/delete-alt';
 
 function override(color) {
   return {

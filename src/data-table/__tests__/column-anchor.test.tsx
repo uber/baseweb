@@ -4,12 +4,10 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import { AnchorColumn } from '../index.js';
+import { AnchorColumn } from '../index';
 
 describe('anchor column', () => {
   it('is sortable by default', () => {

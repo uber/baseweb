@@ -5,13 +5,11 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-// @flow
+import { Spinner } from '../spinner/index';
+import { styled, withStyle } from '../styles/index';
 
-import { Spinner } from '../spinner/index.js';
-import { styled, withStyle } from '../styles/index.js';
-
-import { PLACEMENT } from './constants.js';
-import type { PlacementT } from './types.js';
+import { PLACEMENT } from './constants';
+import type { PlacementT } from './types';
 
 export const StyledRoot = styled<{}>('div', ({ $theme }) => {
   return {
@@ -43,20 +41,24 @@ export const StyledStartEnhancerContainer = styled<{}>('span', ({ $theme }) => {
   };
 });
 
-export const StyledSpinner = withStyle<typeof Spinner, { $height: number, $width: number }>(
-  Spinner,
-  ({ $height, $width }) => {
-    return {
-      boxSizing: 'border-box',
-      height: `${$height}px`,
-      width: `${$width}px`,
-    };
+export const StyledSpinner = withStyle<
+  typeof Spinner,
+  {
+    $height: number;
+    $width: number;
   }
-);
+>(Spinner, ({ $height, $width }) => {
+  return {
+    boxSizing: 'border-box',
+    height: `${$height}px`,
+    width: `${$width}px`,
+  };
+});
 
-export const StyledMessage = styled<{ $hasSuffix: boolean }>(
-  'p',
-  //$FlowExpectedError[incompatible-shape]
+export const StyledMessage = styled<{
+  $hasSuffix: boolean;
+}>(
+  'p', //$FlowExpectedError[incompatible-shape]
   ({ $theme, $hasSuffix }) => {
     const prefixPadding: string = $theme.direction === 'rtl' ? 'paddingRight' : 'paddingLeft';
     const suffixPadding: string = $theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight';
@@ -129,9 +131,9 @@ function placementRules(placement) {
 }
 
 export const StyledPlacementContainer = styled<{
-  $animating: boolean,
-  $placement: PlacementT,
-  $translateHeight: number,
+  $animating: boolean;
+  $placement: PlacementT;
+  $translateHeight: number;
 }>('div', ({ $animating, $placement, $translateHeight, $theme }) => {
   return {
     ...placementRules($placement),

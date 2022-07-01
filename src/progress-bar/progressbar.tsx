@@ -4,10 +4,9 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 import * as React from 'react';
-import { getOverrides } from '../helpers/overrides.js';
-import { SIZE } from './constants.js';
+import { getOverrides } from '../helpers/overrides';
+import { SIZE } from './constants';
 import {
   StyledRoot,
   StyledBarContainer,
@@ -15,13 +14,15 @@ import {
   StyledLabel,
   StyledBarProgress,
   StyledInfiniteBar,
-} from './styled-components.js';
+} from './styled-components';
 
-import type { ProgressBarPropsT } from './types.js';
+import type { ProgressBarPropsT } from './types';
 
 class ProgressBar extends React.Component<
   // flowlint-next-line unclear-type:off
-  ProgressBarPropsT & { forwardedRef: any }
+  ProgressBarPropsT & {
+    forwardedRef: any;
+  }
 > {
   static defaultProps = {
     getProgressLabel: (value: number, maxValue: number, minValue: number) =>
@@ -130,7 +131,7 @@ class ProgressBar extends React.Component<
   }
 }
 
-const ForwardedProgressBar = React.forwardRef<$Shape<ProgressBarPropsT>, HTMLDivElement>(
+const ForwardedProgressBar = React.forwardRef<HTMLDivElement, Partial<ProgressBarPropsT>>(
   (props: ProgressBarPropsT, ref) => (
     //$FlowExpectedError[cannot-spread-inexact]
     <ProgressBar forwardedRef={ref} {...props} />

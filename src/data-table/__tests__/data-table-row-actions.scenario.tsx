@@ -4,17 +4,15 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 
-import CategoricalColumn from '../column-categorical.js';
-import NumericalColumn from '../column-numerical.js';
-import StringColumn from '../column-string.js';
-import { NUMERICAL_FORMATS } from '../constants.js';
-import { StatefulDataTable } from '../stateful-data-table.js';
+import CategoricalColumn from '../column-categorical';
+import NumericalColumn from '../column-numerical';
+import StringColumn from '../column-string';
+import { NUMERICAL_FORMATS } from '../constants';
+import { StatefulDataTable } from '../stateful-data-table';
 
-import { ArrowUp } from '../../icon/index.js';
+import { ArrowUp } from '../../icon/index';
 
 type RowDataT = [string, string, number, number, number, number];
 

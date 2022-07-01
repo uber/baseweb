@@ -4,15 +4,13 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import React, { useState } from 'react';
 import { isAfter, isBefore } from 'date-fns';
 
-import { useStyletron } from '../../styles/index.js';
-import { FormControl } from '../../form-control/index.js';
-import ArrowRight from '../../icon/arrow-right.js';
-import { Datepicker, TimePicker } from '../index.js';
+import { useStyletron } from '../../styles/index';
+import { FormControl } from '../../form-control/index';
+import ArrowRight from '../../icon/arrow-right';
+import { Datepicker, TimePicker } from '../index';
 
 const START_DATE = new Date(2019, 3, 1, 12, 0, 0);
 const END_DATE = new Date(2019, 3, 10, 16, 0, 0);
@@ -29,7 +27,7 @@ function printTime(dt) {
 
 export function Scenario() {
   const [css, theme] = useStyletron();
-  const [dates, setDates] = useState<Array<?Date>>([START_DATE, END_DATE]);
+  const [dates, setDates] = useState<Array<Date | undefined | null>>([START_DATE, END_DATE]);
 
   const inputGap = theme.sizing.scale300;
 
@@ -50,7 +48,7 @@ export function Scenario() {
                 value={dates}
                 // typecast to any because if datepicker is range, value is always array type
                 // flowlint-next-line unclear-type:off
-                onChange={({ date }) => setDates((date: any))}
+                onChange={({ date }) => setDates(date as any)}
                 timeSelectStart
                 range
                 placeholder="Start Date"
@@ -102,7 +100,7 @@ export function Scenario() {
                 value={dates}
                 // typecast to any because if datepicker is range, value is always array type
                 // flowlint-next-line unclear-type:off
-                onChange={({ date }) => setDates((date: any))}
+                onChange={({ date }) => setDates(date as any)}
                 timeSelectEnd
                 range
                 placeholder="End Date"

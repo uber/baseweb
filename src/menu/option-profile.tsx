@@ -5,10 +5,9 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-// @flow
 import * as React from 'react';
 // Components
-import MaybeChildMenu from './maybe-child-menu.js';
+import MaybeChildMenu from './maybe-child-menu';
 import {
   StyledListItemProfile,
   StyledProfileImgContainer,
@@ -17,13 +16,13 @@ import {
   StyledProfileTitle,
   StyledProfileSubtitle,
   StyledProfileBody,
-} from './styled-components.js';
-import { getOverrides } from '../helpers/overrides.js';
+} from './styled-components';
+import { getOverrides } from '../helpers/overrides';
 // Types
-import type { OptionProfilePropsT } from './types.js';
+import type { OptionProfilePropsT } from './types';
 
 // flowlint-next-line unclear-type:off
-function OptionProfile(props: OptionProfilePropsT, ref: React.ElementRef<any>) {
+function OptionProfile(props: OptionProfilePropsT, ref: React.RefObject<any>) {
   const {
     item,
     getChildMenu,
@@ -94,7 +93,7 @@ function OptionProfile(props: OptionProfilePropsT, ref: React.ElementRef<any>) {
   );
 }
 
-const forwarded = React.forwardRef<OptionProfilePropsT, HTMLElement>(OptionProfile);
+const forwarded = React.forwardRef<HTMLElement, OptionProfilePropsT>(OptionProfile);
 forwarded.displayName = 'OptionProfile';
 
 export default forwarded;

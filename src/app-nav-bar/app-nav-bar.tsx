@@ -4,17 +4,15 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 
-import { getOverrides } from '../helpers/overrides.js';
-import { useStyletron } from '../styles/index.js';
-import { isFocusVisible } from '../utils/focusVisible.js';
+import { getOverrides } from '../helpers/overrides';
+import { useStyletron } from '../styles/index';
+import { isFocusVisible } from '../utils/focusVisible';
 
-import { KIND, POSITION } from './constants.js';
-import MobileNav from './mobile-menu.js';
-import UserMenu from './user-menu.js';
+import { KIND, POSITION } from './constants';
+import MobileNav from './mobile-menu';
+import UserMenu from './user-menu';
 import {
   StyledRoot,
   StyledSpacing,
@@ -24,9 +22,9 @@ import {
   StyledMainMenuItem,
   StyledDesktopMenuContainer,
   StyledDesktopMenu,
-} from './styled-components.js';
-import type { AppNavBarPropsT } from './types.js';
-import { defaultMapItemToNode, mapItemsActive } from './utils.js';
+} from './styled-components';
+import type { AppNavBarPropsT } from './types';
+import { defaultMapItemToNode, mapItemsActive } from './utils';
 
 function MainMenuItem(props) {
   const { item, kind = KIND.primary, mapItemToNode, onSelect, overrides = {} } = props;

@@ -4,8 +4,6 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import isEqual from 'date-fns/isEqual/index.js';
@@ -13,9 +11,9 @@ import isSameDay from 'date-fns/isSameDay/index.js';
 import isSameHour from 'date-fns/isSameHour/index.js';
 import isSameMinute from 'date-fns/isSameMinute/index.js';
 
-import { TestBaseProvider } from '../../test/test-utils.js';
+import { TestBaseProvider } from '../../test/test-utils';
 
-import { DatetimeColumn, DATETIME_OPERATIONS } from '../index.js';
+import { DatetimeColumn, DATETIME_OPERATIONS } from '../index';
 
 const padZero = (n) => (n < 10 ? `0${n}` : n);
 

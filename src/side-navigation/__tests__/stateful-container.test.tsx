@@ -4,11 +4,10 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 import * as React from 'react';
 import { render } from '@testing-library/react';
 
-import StatefulContainer from '../stateful-container.js';
+import StatefulContainer from '../stateful-container';
 
 describe('side-navigation stateful-container', () => {
   it('provides expected props to child fn', () => {

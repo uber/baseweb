@@ -4,13 +4,12 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 import * as React from 'react';
-import { Tag, SIZE } from '../index.js';
-import Alert from '../../icon/alert.js';
-import ArrowLeft from '../../icon/arrow-left.js';
-import ThemeProvider from '../../styles/theme-provider.js';
-import { createTheme, lightThemePrimitives } from '../../index.js';
+import { Tag, SIZE } from '../index';
+import Alert from '../../icon/alert';
+import ArrowLeft from '../../icon/arrow-left';
+import ThemeProvider from '../../styles/theme-provider';
+import { createTheme, lightThemePrimitives } from '../../index';
 
 const themeWithIcons = createTheme(
   {

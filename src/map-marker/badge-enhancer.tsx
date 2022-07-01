@@ -5,17 +5,16 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-// @flow
 import * as React from 'react';
-import type { BadgeEnhancerComponentT } from './types.js';
-import { getOverrides } from '../helpers/overrides.js';
-import { StyledBadgeEnhancerRoot } from './styled-components.js';
+import type { BadgeEnhancerComponentT } from './types';
+import { getOverrides } from '../helpers/overrides';
+import { StyledBadgeEnhancerRoot } from './styled-components';
 import {
   PINHEAD_TYPES,
   BADGE_ENHANCER_SIZES,
   BADGE_ENHANCER_POSITIONS,
   BADGE_ENHANCER_CONTENT_SIZE,
-} from './constants.js';
+} from './constants';
 
 const BadgeEnhancer = ({
   pinHeadSize,

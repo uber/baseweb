@@ -4,11 +4,9 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
-import { styled } from '../../styles/index.js';
-import { Checkbox } from '../../checkbox/index.js';
+import { styled } from '../../styles/index';
+import { Checkbox } from '../../checkbox/index';
 import {
   Filter,
   StyledTable,
@@ -17,7 +15,7 @@ import {
   StyledBody,
   StyledRow,
   StyledCell,
-} from '../index.js';
+} from '../index';
 
 const FilterCheckbox = (props) => (
   <Checkbox

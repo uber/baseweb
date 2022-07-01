@@ -5,17 +5,15 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-// @flow
-
 export type {
   PopoverPropsT as PropsT,
   StatefulPopoverPropsT as StatefulPropsT,
-} from '../popover/index.js';
+} from '../popover/index';
 
-export type HelperStepsPropsT = {|
-  index: number,
-  length: number,
-  onFinish: () => mixed,
-  onPrev: () => mixed,
-  onNext: () => mixed,
-|};
+export type HelperStepsPropsT = {
+  index: number;
+  length: number;
+  onFinish: () => unknown;
+  onPrev: () => unknown;
+  onNext: () => unknown;
+};

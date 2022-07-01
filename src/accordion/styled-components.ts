@@ -4,10 +4,9 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-import { styled } from '../styles/index.js';
-import { getSvgStyles } from '../icon/styled-components.js';
-import type { SharedStylePropsArgT } from './types.js';
+import { styled } from '../styles/index';
+import { getSvgStyles } from '../icon/styled-components';
+import type { SharedStylePropsArgT } from './types';
 
 /**
  * Main component container element
@@ -115,7 +114,9 @@ export const Content = styled<SharedStylePropsArgT>('div', (props) => {
 });
 
 export const ContentAnimationContainer = styled<
-  { $height: string | number } & SharedStylePropsArgT
+  {
+    $height: string | number;
+  } & SharedStylePropsArgT
 >('div', (props) => {
   const {
     $height,

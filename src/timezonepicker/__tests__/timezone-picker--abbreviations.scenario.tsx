@@ -4,12 +4,10 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 
-import { Block } from '../../block/index.js';
-import { TimezonePicker } from '../index.js';
+import { Block } from '../../block/index';
+import { TimezonePicker } from '../index';
 
 const daylight = new Date(2019, 3, 1);
 const standard = new Date(2019, 2, 1);

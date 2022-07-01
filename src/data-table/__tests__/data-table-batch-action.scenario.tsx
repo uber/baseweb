@@ -4,16 +4,14 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 
-import Alert from '../../icon/alert.js';
-import Check from '../../icon/check.js';
+import Alert from '../../icon/alert';
+import Check from '../../icon/check';
 
-import BooleanColumn from '../column-boolean.js';
-import NumericalColumn from '../column-numerical.js';
-import { StatefulDataTable } from '../stateful-data-table.js';
+import BooleanColumn from '../column-boolean';
+import NumericalColumn from '../column-numerical';
+import { StatefulDataTable } from '../stateful-data-table';
 
 type RowDataT = [number, boolean];
 

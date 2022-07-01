@@ -4,27 +4,25 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
+import animation from '../shared/animation';
+import borders from './borders';
+import breakpoints from '../shared/breakpoints';
+import deepMerge from '../../utils/deep-merge';
+import defaultColorTokens from './color-tokens';
+import getComponentColorTokens from './color-component-tokens';
+import getSemanticColorTokens from './color-semantic-tokens';
+import getTypography from '../shared/typography';
+import grid from '../shared/grid';
+import lighting from '../shared/lighting';
+import mediaQuery from '../shared/media-query';
+import sizing from '../shared/sizing';
 
-import animation from '../shared/animation.js';
-import borders from './borders.js';
-import breakpoints from '../shared/breakpoints.js';
-import deepMerge from '../../utils/deep-merge.js';
-import defaultColorTokens from './color-tokens.js';
-import getComponentColorTokens from './color-component-tokens.js';
-import getSemanticColorTokens from './color-semantic-tokens.js';
-import getTypography from '../shared/typography.js';
-import grid from '../shared/grid.js';
-import lighting from '../shared/lighting.js';
-import mediaQuery from '../shared/media-query.js';
-import sizing from '../shared/sizing.js';
-
-import type { PrimitivesT, ColorTokensT } from '../types.js';
-import type { ThemeT } from '../../styles/types.js';
+import type { PrimitivesT, ColorTokensT } from '../types';
+import type { ThemeT } from '../../styles/types';
 
 export default function createDarkTheme(
   // Used to derive typography and color theme properties
-  primitives?: $Shape<PrimitivesT> = {},
+  primitives: Partial<PrimitivesT> = {},
   // Used to override default theme property values derived from primitives
   overrides?: {}
 ): ThemeT {

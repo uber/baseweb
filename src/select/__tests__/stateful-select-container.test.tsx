@@ -4,13 +4,12 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 import * as React from 'react';
 import { act } from 'react-dom/test-utils';
 import { render } from '@testing-library/react';
 
-import { StatefulSelectContainer } from '../index.js';
-import { STATE_CHANGE_TYPE } from '../constants.js';
+import { StatefulSelectContainer } from '../index';
+import { STATE_CHANGE_TYPE } from '../constants';
 
 describe('StatefulSelectContainer', function () {
   let props = {};

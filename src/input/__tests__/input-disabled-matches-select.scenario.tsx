@@ -5,12 +5,10 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-// @flow
-
 import * as React from 'react';
 
-import { Input } from '../../input/index.js';
-import { Select } from '../../select/index.js';
+import { Input } from '../../input/index';
+import { Select } from '../../select/index';
 
 export function Scenario() {
   return (

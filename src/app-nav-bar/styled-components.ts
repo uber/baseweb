@@ -4,42 +4,39 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
+import { styled, withStyle } from '../styles/index';
+import { getMediaQueries } from '../helpers/responsive-helpers';
+import { StyledListItem } from '../menu/index';
+import { KIND } from './constants';
 
-import { styled, withStyle } from '../styles/index.js';
-import { getMediaQueries } from '../helpers/responsive-helpers.js';
-import { StyledListItem } from '../menu/index.js';
-import { KIND } from './constants.js';
-
-const StyledButton = styled<{ $isFocusVisible: boolean }>(
-  'button',
-  ({ $theme, $isFocusVisible }) => ({
-    boxSizing: 'border-box',
-    display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'nowrap',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'transparent',
-    color: $theme.colors.contentPrimary,
-    borderLeftWidth: 0,
-    borderTopWidth: 0,
-    borderRightWidth: 0,
-    borderBottomWidth: 0,
-    paddingTop: '0',
-    paddingBottom: '0',
-    paddingLeft: '0',
-    paddingRight: '0',
-    marginLeft: 0,
-    marginTop: 0,
-    marginRight: 0,
-    marginBottom: 0,
-    outline: $isFocusVisible ? `3px solid ${$theme.colors.accent}` : 'none',
-    outlineOffset: '-3px',
-    WebkitAppearance: 'none',
-    cursor: 'pointer',
-  })
-);
+const StyledButton = styled<{
+  $isFocusVisible: boolean;
+}>('button', ({ $theme, $isFocusVisible }) => ({
+  boxSizing: 'border-box',
+  display: 'flex',
+  flexDirection: 'row',
+  flexWrap: 'nowrap',
+  justifyContent: 'center',
+  alignItems: 'center',
+  backgroundColor: 'transparent',
+  color: $theme.colors.contentPrimary,
+  borderLeftWidth: 0,
+  borderTopWidth: 0,
+  borderRightWidth: 0,
+  borderBottomWidth: 0,
+  paddingTop: '0',
+  paddingBottom: '0',
+  paddingLeft: '0',
+  paddingRight: '0',
+  marginLeft: 0,
+  marginTop: 0,
+  marginRight: 0,
+  marginBottom: 0,
+  outline: $isFocusVisible ? `3px solid ${$theme.colors.accent}` : 'none',
+  outlineOffset: '-3px',
+  WebkitAppearance: 'none',
+  cursor: 'pointer',
+}));
 
 export const StyledRoot = styled<{}>('div', (props) => {
   const { $theme } = props;
@@ -141,9 +138,9 @@ export const StyledPrimaryMenuContainer = styled<{}>('div', ({ $theme }) => {
 });
 
 export const StyledMainMenuItem = styled<{
-  $active?: boolean,
-  $isFocusVisible: boolean,
-  $kind: $Values<typeof KIND>,
+  $active?: boolean;
+  $isFocusVisible: boolean;
+  $kind: typeof KIND[keyof typeof KIND];
 }>('div', (props) => {
   const {
     $active,

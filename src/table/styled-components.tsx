@@ -4,10 +4,9 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 import * as React from 'react';
 
-import { styled, withWrapper, expandBorderStyles } from '../styles/index.js';
+import { styled, withWrapper, expandBorderStyles } from '../styles/index';
 
 const StyledTableElement = styled<{}>('div', ({ $theme }) => {
   return {
@@ -33,8 +32,8 @@ export const StyledTable = withWrapper(
 );
 
 type HorizontalStyleProps = {
-  $width?: string,
-  $cursor?: string,
+  $width?: string;
+  $cursor?: string;
 };
 
 const StyledHeadElement = styled<HorizontalStyleProps>('div', ({ $theme, $width }) => {
@@ -108,12 +107,12 @@ export const StyledSortableLabel = styled<{}>('button', ({ $theme }) => {
 });
 
 const StyledBodyElement = styled<HorizontalStyleProps>('div', ({ $width }) => {
-  return ({
+  return {
     width: $width ? $width : '100%',
     overflowX: 'hidden',
     overflowY: 'overlay',
     flex: 1,
-  }: {});
+  } as {};
 });
 
 export const StyledBody = withWrapper(
@@ -137,7 +136,9 @@ export const StyledRow = withWrapper(
     }
 );
 
-type CellStyledProps = { $striped?: boolean };
+type CellStyledProps = {
+  $striped?: boolean;
+};
 
 const StyledCellElement = styled<CellStyledProps>('div', ({ $theme, $striped }) => {
   return {
@@ -162,8 +163,8 @@ export const StyledCell = withWrapper(
 );
 
 export const StyledFilterButton = styled<{
-  $disabled?: boolean,
-  $active?: boolean,
+  $disabled?: boolean;
+  $active?: boolean;
 }>('button', (props) => {
   function getIconColor() {
     if (props.$disabled) {

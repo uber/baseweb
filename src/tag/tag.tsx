@@ -4,26 +4,27 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 import * as React from 'react';
-import { getOverrides } from '../helpers/overrides.js';
+import { getOverrides } from '../helpers/overrides';
 import {
   Action as StyledAction,
   Root as StyledRoot,
   StartEnhancerContainer as StyledStartEnhancerContainer,
   Text as StyledText,
-} from './styled-components.js';
-import { KIND, VARIANT, SIZE } from './constants.js';
-import { getTextFromChildren } from './utils.js';
-import type { PropsT, SharedPropsArgT } from './types.js';
-import DeleteIcon from '../icon/delete.js';
-import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible.js';
+} from './styled-components';
+import { KIND, VARIANT, SIZE } from './constants';
+import { getTextFromChildren } from './utils';
+import type { PropsT, SharedPropsArgT } from './types';
+import DeleteIcon from '../icon/delete';
+import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible';
+
+import type { SyntheticEvent } from 'react';
 
 // Previously, Tag used a hardcoded SVG as its 'close' icon. Replacing it with
 // Delete requires modifying Delete's viewbox to prevent visual regressions.
 const ModifiedViewBoxDeleteIcon = (props) => <DeleteIcon viewBox="5 5 13.186 13.186" {...props} />;
 
-const Tag = React.forwardRef<PropsT, HTMLSpanElement>((props, ref) => {
+const Tag = React.forwardRef<HTMLSpanElement, PropsT>((props, ref) => {
   const {
     children,
     closeable = true,
@@ -44,13 +45,13 @@ const Tag = React.forwardRef<PropsT, HTMLSpanElement>((props, ref) => {
   } = props;
   const [focusVisible, setFocusVisible] = React.useState(false);
 
-  function handleFocus(event: SyntheticEvent<>) {
+  function handleFocus(event: SyntheticEvent) {
     if (isFocusVisible(event)) {
       setFocusVisible(true);
     }
   }
 
-  function handleBlur(event: SyntheticEvent<>) {
+  function handleBlur(event: SyntheticEvent) {
     if (focusVisible !== false) {
       setFocusVisible(false);
     }
@@ -126,7 +127,7 @@ const Tag = React.forwardRef<PropsT, HTMLSpanElement>((props, ref) => {
   return (
     <Root
       // flowlint-next-line unclear-type:off
-      ref={(ref: any)}
+      ref={ref as any}
       data-baseweb="tag"
       aria-label={
         isButton && closeable

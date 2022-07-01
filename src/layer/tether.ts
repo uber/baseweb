@@ -4,13 +4,12 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 import * as React from 'react';
 import Popper from 'popper.js';
 import type { Instance as PopperInstance } from 'popper.js';
-import { toPopperPlacement, parsePopperOffset } from './utils.js';
-import { TETHER_PLACEMENT } from './constants.js';
-import type { TetherPropsT, TetherStateT, PopperDataObjectT } from './types.js';
+import { toPopperPlacement, parsePopperOffset } from './utils';
+import { TETHER_PLACEMENT } from './constants';
+import type { TetherPropsT, TetherStateT, PopperDataObjectT } from './types';
 
 class Tether extends React.Component<TetherPropsT, TetherStateT> {
   static defaultProps = {
@@ -21,7 +20,7 @@ class Tether extends React.Component<TetherPropsT, TetherStateT> {
     popperOptions: {},
   };
 
-  popper: ?PopperInstance;
+  popper: PopperInstance | undefined | null;
   popperHeight = 0;
   popperWidth = 0;
   anchorHeight = 0;

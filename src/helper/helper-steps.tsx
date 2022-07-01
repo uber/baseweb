@@ -5,17 +5,15 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-// @flow
-
 import * as React from 'react';
 
-import ArrowLeft from '../icon/arrow-left.js';
-import ArrowRight from '../icon/arrow-right.js';
-import Check from '../icon/check.js';
-import { Button, KIND, SHAPE } from '../button/index.js';
-import { useStyletron } from '../styles/index.js';
+import ArrowLeft from '../icon/arrow-left';
+import ArrowRight from '../icon/arrow-right';
+import Check from '../icon/check';
+import { Button, KIND, SHAPE } from '../button/index';
+import { useStyletron } from '../styles/index';
 
-import type { HelperStepsPropsT } from './types.js';
+import type { HelperStepsPropsT } from './types';
 
 export function HelperSteps({ index, length, onFinish, onPrev, onNext }: HelperStepsPropsT) {
   const [css, theme] = useStyletron();

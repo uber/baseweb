@@ -4,7 +4,6 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 /* eslint-env browser */
 
 import * as React from 'react';
@@ -18,10 +17,10 @@ import {
   waitForElementToBeRemoved,
 } from '@testing-library/react';
 
-import { TestBaseProvider } from '../../test/test-utils.js';
-import { Popover, ACCESSIBILITY_TYPE, TRIGGER_TYPE } from '../index.js';
+import { TestBaseProvider } from '../../test/test-utils';
+import { Popover, ACCESSIBILITY_TYPE, TRIGGER_TYPE } from '../index';
 
-import { styled } from '../../styles/index.js';
+import { styled } from '../../styles/index';
 
 jest.mock('react-uid', () => ({
   ...jest.requireActual('react-uid'),
@@ -133,12 +132,12 @@ describe('Popover', () => {
     fireEvent.click(getByText(container, anchorContent));
     await findByText(container, contentContent);
     // flowlint-next-line unclear-type:off
-    expect((document.activeElement: any).id).toEqual(firstInputId);
+    expect((document.activeElement as any).id).toEqual(firstInputId);
 
     fireEvent.click(getByText(container, anchorContent));
     expect(document.activeElement).not.toBeNull();
     // flowlint-next-line unclear-type:off
-    expect((document.activeElement: any).id).toEqual(buttonId);
+    expect((document.activeElement as any).id).toEqual(buttonId);
   });
 
   it('text as anchor', () => {

@@ -4,17 +4,15 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
-import { styled } from '../styles/index.js';
-import { getMediaQueries } from '../helpers/responsive-helpers.js';
-import { BEHAVIOR } from './constants.js';
+import { styled } from '../styles/index';
+import { getMediaQueries } from '../helpers/responsive-helpers';
+import { BEHAVIOR } from './constants';
 import type {
   ResponsiveT,
   StyledGridPropsT,
   StyledGridWrapperPropsT,
   StyledCellPropsT,
-} from './types.js';
+} from './types';
 
 export const StyledGridWrapper = styled<StyledGridWrapperPropsT>(
   'div',
@@ -148,7 +146,7 @@ function getResponsiveNumber<T>(responsive: ResponsiveT<T>, i: number): number {
   return typeof res === 'number' ? res : 0;
 }
 
-function getResponsiveValue<T>(responsive: ResponsiveT<T>, i: number): ?T {
+function getResponsiveValue<T>(responsive: ResponsiveT<T>, i: number): T | undefined | null {
   if (!responsive) {
     return null;
   }

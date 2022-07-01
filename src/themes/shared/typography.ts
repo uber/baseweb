@@ -4,8 +4,7 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-import type { TypographyT, FontTokensT } from '../types.js';
+import type { TypographyT, FontTokensT } from '../types';
 
 export const defaultFontTokens: FontTokensT = {
   primaryFontFamily: 'system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif',
@@ -13,7 +12,7 @@ export const defaultFontTokens: FontTokensT = {
 
 const monoFontFamily = '"Lucida Console", Monaco, monospace';
 
-export default (fontTokens?: FontTokensT = defaultFontTokens): TypographyT => {
+export default (fontTokens: FontTokensT = defaultFontTokens): TypographyT => {
   const font100 = {
     fontFamily: fontTokens.primaryFontFamily,
     fontSize: '12px',

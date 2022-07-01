@@ -4,7 +4,6 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-export { default as colors } from './colors.js';
+export { default as colors } from './colors';
 
-export type * from './types.js';
+export * from './types';

@@ -4,15 +4,13 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import React from 'react';
-import BaseCountryPicker from './base-country-picker.js';
-import { SIZE } from './constants.js';
-import { SingleSelect as DefaultSelect } from '../select/index.js';
-import { getOverrides, mergeOverrides } from '../helpers/overrides.js';
-import defaultProps from './default-props.js';
-import type { CountrySelectPropsT } from './types.js';
+import BaseCountryPicker from './base-country-picker';
+import { SIZE } from './constants';
+import { SingleSelect as DefaultSelect } from '../select/index';
+import { getOverrides, mergeOverrides } from '../helpers/overrides';
+import defaultProps from './default-props';
+import type { CountrySelectPropsT } from './types';
 
 CountryPicker.defaultProps = {
   disabled: defaultProps.disabled,

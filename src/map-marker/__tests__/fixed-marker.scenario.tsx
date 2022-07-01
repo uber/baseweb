@@ -4,24 +4,22 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
-import { FixedMarker } from '../index.js';
-import { Checkbox, LABEL_PLACEMENT } from '../../checkbox/index.js';
+import { FixedMarker } from '../index';
+import { Checkbox, LABEL_PLACEMENT } from '../../checkbox/index';
 import {
   PINHEAD_SIZES_SHAPES,
   NEEDLE_SIZES,
   BADGE_ENHANCER_SIZES,
   LABEL_ENHANCER_POSITIONS,
-} from '../constants.js';
-import TileGrid from './tile-grid.js';
-import { Input } from '../../input/index.js';
-import Upload from '../../icon/upload.js';
-import Search from '../../icon/search.js';
-import { Select } from '../../select/index.js';
+} from '../constants';
+import TileGrid from './tile-grid';
+import { Input } from '../../input/index';
+import Upload from '../../icon/upload';
+import Search from '../../icon/search';
+import { Select } from '../../select/index';
 
-import type { PinHeadSizeT, NeedleSizeT } from '../types.js';
+import type { PinHeadSizeT, NeedleSizeT } from '../types';
 
 const labelEnhancerPositions = Object.keys(LABEL_ENHANCER_POSITIONS)
   .map((key) => LABEL_ENHANCER_POSITIONS[key])

@@ -4,10 +4,9 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 import * as React from 'react';
-import { getOverride, getOverrideProps } from '../helpers/overrides.js';
-import type { PropsT, DefaultPropsT, StatelessStateT } from './types.js';
+import { getOverride, getOverrideProps } from '../helpers/overrides';
+import type { PropsT, DefaultPropsT, StatelessStateT } from './types';
 import {
   Checkmark as StyledCheckmark,
   Input as StyledInput,
@@ -15,9 +14,11 @@ import {
   Root as StyledRoot,
   Toggle as StyledToggle,
   ToggleTrack as StyledToggleTrack,
-} from './styled-components.js';
-import { STYLE_TYPE } from './constants.js';
-import { isFocusVisible } from '../utils/focusVisible.js';
+} from './styled-components';
+import { STYLE_TYPE } from './constants';
+import { isFocusVisible } from '../utils/focusVisible';
+
+import type { ChangeEvent } from 'react';
 
 const stopPropagation = (e) => e.stopPropagation();
 
@@ -56,27 +57,27 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
     }
   }
 
-  onMouseEnter = (e: SyntheticInputEvent<HTMLInputElement>) => {
+  onMouseEnter = (e: ChangeEvent<HTMLInputElement>) => {
     this.setState({ isHovered: true });
     this.props.onMouseEnter(e);
   };
 
-  onMouseLeave = (e: SyntheticInputEvent<HTMLInputElement>) => {
+  onMouseLeave = (e: ChangeEvent<HTMLInputElement>) => {
     this.setState({ isHovered: false, isActive: false });
     this.props.onMouseLeave(e);
   };
 
-  onMouseDown = (e: SyntheticInputEvent<HTMLInputElement>) => {
+  onMouseDown = (e: ChangeEvent<HTMLInputElement>) => {
     this.setState({ isActive: true });
     this.props.onMouseDown(e);
   };
 
-  onMouseUp = (e: SyntheticInputEvent<HTMLInputElement>) => {
+  onMouseUp = (e: ChangeEvent<HTMLInputElement>) => {
     this.setState({ isActive: false });
     this.props.onMouseUp(e);
   };
 
-  onFocus = (e: SyntheticInputEvent<HTMLInputElement>) => {
+  onFocus = (e: ChangeEvent<HTMLInputElement>) => {
     this.setState({ isFocused: true });
     this.props.onFocus(e);
     if (isFocusVisible(e)) {
@@ -84,7 +85,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
     }
   };
 
-  onBlur = (e: SyntheticInputEvent<HTMLInputElement>) => {
+  onBlur = (e: ChangeEvent<HTMLInputElement>) => {
     this.setState({ isFocused: false });
     this.props.onBlur(e);
     if (this.state.isFocusVisible !== false) {

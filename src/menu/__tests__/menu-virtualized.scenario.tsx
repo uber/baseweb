@@ -4,14 +4,12 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 // this vrt was created to ensure that changes to the menu component do not cause the
 // virtualized example to regress. while this is not an explicit part of baseui's api,
 // pushing a change that would break applications using this example would be quite painful
 import React from 'react';
 import { withStyle } from 'styletron-react';
-import { StatefulMenu, OptionList, StyledList } from '../index.js';
+import { StatefulMenu, OptionList, StyledList } from '../index';
 //flowlint-next-line untyped-import:off
 import List from 'react-virtualized/dist/commonjs/List';
 //flowlint-next-line untyped-import:off

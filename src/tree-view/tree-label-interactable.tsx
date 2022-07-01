@@ -4,14 +4,17 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 import React from 'react';
-import { StyledLabelInteractable } from './styled-components.js';
-import { getOverride } from '../helpers/overrides.js';
-import type { OverrideT } from '../helpers/overrides.js';
+import { StyledLabelInteractable } from './styled-components';
+import { getOverride } from '../helpers/overrides';
+import type { OverrideT } from '../helpers/overrides';
 
-const TreeLabelInteractable: React$ComponentType<{
-  overrides?: { LabelInteractable: OverrideT },
+import type { ComponentType } from 'react';
+
+const TreeLabelInteractable: ComponentType<{
+  overrides?: {
+    LabelInteractable: OverrideT;
+  };
 }> = ({ overrides = {}, ...props }) => {
   const LabelInteractable = getOverride(overrides.LabelInteractable) || StyledLabelInteractable;
   return (

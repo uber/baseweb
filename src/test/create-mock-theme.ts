@@ -4,8 +4,6 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 /**
  * Given a real theme, creates a mock theme object where the values are
  * just strings representing the theme value. These mock objects are

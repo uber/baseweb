@@ -4,8 +4,6 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 export const precisionData = [
   47.495391879854, 47.6089272638337, 47.6329303740695, 47.615055251438, 47.6260370206084,
   47.646177929119, 47.6209717351505, 47.5404657734197, 47.6064029682991, 47.4981088764036,

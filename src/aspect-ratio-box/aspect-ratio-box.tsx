@@ -4,13 +4,11 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 
-import { Block } from '../block/index.js';
-import { mergeOverrides } from '../helpers/overrides.js';
-import type { AspectRatioBoxPropsT } from './types.js';
+import { Block } from '../block/index';
+import { mergeOverrides } from '../helpers/overrides';
+import type { AspectRatioBoxPropsT } from './types';
 
 const aspectRatioBoxStyle = ({ $aspectRatio }) => ({
   position: 'relative',
@@ -36,7 +34,9 @@ const AspectRatioBox = ({
   overrides = {},
   ...restProps
 }: // flowlint-next-line unclear-type:off
-AspectRatioBoxPropsT & { forwardedRef: any }): React.Node => {
+AspectRatioBoxPropsT & {
+  forwardedRef: any;
+}): React.ReactNode => {
   const aspectRatioBoxOverrides = {
     Block: {
       style: aspectRatioBoxStyle,
@@ -48,7 +48,7 @@ AspectRatioBoxPropsT & { forwardedRef: any }): React.Node => {
       // coerced to any because of how react components are typed.
       // cannot guarantee an html element
       // flowlint-next-line unclear-type:off
-      ref={(forwardedRef: any)}
+      ref={forwardedRef as any}
       overrides={blockOverrides}
       $aspectRatio={aspectRatio}
       data-baseweb="aspect-ratio-box"
@@ -57,7 +57,7 @@ AspectRatioBoxPropsT & { forwardedRef: any }): React.Node => {
   );
 };
 
-const AspectRatioBoxComponent = React.forwardRef<AspectRatioBoxPropsT, HTMLElement>(
+const AspectRatioBoxComponent = React.forwardRef<HTMLElement, AspectRatioBoxPropsT>(
   (props: AspectRatioBoxPropsT, ref) => <AspectRatioBox {...props} forwardedRef={ref} />
 );
 AspectRatioBoxComponent.displayName = 'AspectRatioBox';

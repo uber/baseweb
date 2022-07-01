@@ -4,12 +4,10 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 
-import { TimePicker } from '../index.js';
+import { TimePicker } from '../index';
 
 const TIME = new Date(2019, 3, 19, 1, 30);
 const overrides = {

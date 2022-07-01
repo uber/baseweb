@@ -4,10 +4,9 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 /* eslint-disable import/prefer-default-export */
-import { ARROW_SIZE, PLACEMENT } from './constants.js';
-import type { OffsetT, PopoverPlacementT } from './types.js';
+import { ARROW_SIZE, PLACEMENT } from './constants';
+import type { OffsetT, PopoverPlacementT } from './types';
 
 const OPPOSITE_POSITIONS = {
   top: 'bottom',
@@ -59,7 +58,7 @@ export function fromPopperPlacement(placement: string): PopoverPlacementT | null
  */
 export function splitPlacement(placement: PopoverPlacementT): string[] {
   const matches = placement.match(/^([a-z]+)([A-Z][a-z]+)?/) || [];
-  return (matches: string[])
+  return (matches as string[])
     .slice(1, 3)
     .filter(Boolean)
     .map((s) => s.toLowerCase());

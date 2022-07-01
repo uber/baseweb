@@ -5,11 +5,9 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-/* @flow */
-
 import * as React from 'react';
-import { getOverride, getOverrideProps } from '../helpers/overrides.js';
-import { LevelContext } from '../heading/index.js';
+import { getOverride, getOverrideProps } from '../helpers/overrides';
+import { LevelContext } from '../heading/index';
 import {
   Action as StyledAction,
   Body as StyledBody,
@@ -18,11 +16,11 @@ import {
   Root as StyledRoot,
   Thumbnail as StyledThumbnail,
   Title as StyledTitle,
-} from './styled-components.js';
+} from './styled-components';
 
-import type { CardsPropsT } from './types.js';
+import type { CardsPropsT } from './types';
 
-export function hasThumbnail(props: { +thumbnail?: string }) {
+export function hasThumbnail(props: { readonly thumbnail?: string }) {
   return !!props.thumbnail;
 }
 

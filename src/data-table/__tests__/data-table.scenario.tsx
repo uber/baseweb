@@ -4,11 +4,9 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 
-import { useStyletron } from '../../styles/index.js';
+import { useStyletron } from '../../styles/index';
 
 import {
   AnchorColumn,
@@ -21,7 +19,7 @@ import {
   COLUMNS,
   NUMERICAL_FORMATS,
   StatefulDataTable,
-} from '../index.js';
+} from '../index';
 
 type RowDataT = [
   string,
@@ -30,11 +28,16 @@ type RowDataT = [
   number,
   number,
   Date,
-  { color: string },
+  {
+    color: string;
+  },
   string,
   boolean,
   string,
-  { content: string, href: string }
+  {
+    content: string;
+    href: string;
+  }
 ];
 
 // https://gist.github.com/6174/6062387
@@ -141,8 +144,14 @@ export const columns = [
   }),
 
   CustomColumn<
-    { color: string },
-    { selection: Set<string>, exclude: boolean, description: string }
+    {
+      color: string;
+    },
+    {
+      selection: Set<string>;
+      exclude: boolean;
+      description: string;
+    }
   >({
     title: 'custom color',
     filterable: true,

@@ -4,13 +4,11 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 
-import { Block } from '../../block/index.js';
-import { LabelMedium } from '../../typography/index.js';
-import { Datepicker, TimePicker, TimezonePicker } from '../index.js';
+import { Block } from '../../block/index';
+import { LabelMedium } from '../../typography/index';
+import { Datepicker, TimePicker, TimezonePicker } from '../index';
 
 const DATE = new Date('2019-07-03T12:00:00Z');
 

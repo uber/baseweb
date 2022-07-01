@@ -4,7 +4,6 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 /* eslint-disable import/prefer-default-export */
 
 // Helps scroll a list item into view when cycling through list via
@@ -18,11 +17,11 @@ LICENSE file in the root directory of this source tree.
 // I imagine the browser can debounce the `node.scrollIntoView` calls. Callers of this function
 // will likely want to debounce themselves.
 export function scrollItemIntoView(
-  child: ?HTMLElement,
+  child: HTMLElement | undefined | null,
   parent: HTMLElement,
   isFirst?: boolean,
   isLast?: boolean,
-  scrollAlignInView?: 'auto' | 'center' = 'auto'
+  scrollAlignInView: 'auto' | 'center' = 'auto'
 ) {
   if (!child) return;
 

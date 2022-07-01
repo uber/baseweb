@@ -4,13 +4,11 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 
-import { FormControl } from '../index.js';
-import { Input, StatefulInput, SIZE } from '../../input/index.js';
-import { Textarea } from '../../textarea/index.js';
+import { FormControl } from '../index';
+import { Input, StatefulInput, SIZE } from '../../input/index';
+import { Textarea } from '../../textarea/index';
 
 export function Scenario() {
   const [value, setValue] = React.useState('');

@@ -5,12 +5,10 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-// @flow
-
 import React from 'react';
 import { render, getByText } from '@testing-library/react';
 
-import { SnackbarElement } from '../index.js';
+import { SnackbarElement } from '../index';
 
 describe('snackbar-element', () => {
   it('renders text content', () => {

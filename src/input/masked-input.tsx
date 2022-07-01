@@ -4,26 +4,27 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-
 import * as React from 'react';
 import InputMask from 'react-input-mask';
 
-import Input from './input.js';
-import { Input as StyledInput } from './styled-components.js';
-import type { MaskedInputPropsT } from './types.js';
+import Input from './input';
+import { Input as StyledInput } from './styled-components';
+import type { MaskedInputPropsT } from './types';
 
-const MaskOverride = React.forwardRef<MaskedInputPropsT, HTMLInputElement>(
+const MaskOverride = React.forwardRef<HTMLInputElement, MaskedInputPropsT>(
   (
     {
       // do nothing with these - we just don't want to pass it to the InputMask, as
       // it does not have these properties
       startEnhancer,
+
       endEnhancer,
       error,
       positive,
+
       // below are props that are used by the masked-input
       onChange,
+
       onFocus,
       onBlur,
       value,

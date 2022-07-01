@@ -4,13 +4,12 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 import * as React from 'react';
 // Files
-import { STATE_CHANGE_TYPE } from './constants.js';
-import { clamp } from './utils.js';
+import { STATE_CHANGE_TYPE } from './constants';
+import { clamp } from './utils';
 // Types
-import type { StatefulContainerPropsT, StatefulContainerStateT } from './types.js';
+import type { StatefulContainerPropsT, StatefulContainerStateT } from './types';
 
 const initialState = {
   currentPage: 1,
@@ -28,7 +27,7 @@ export default class PaginationStatefulContainer extends React.Component<
   state = this.props.initialState || initialState;
 
   // Internal set state function that will also invoke stateReducer
-  internalSetState(changeType: $Keys<typeof STATE_CHANGE_TYPE>, changes: StatefulContainerStateT) {
+  internalSetState(changeType: keyof typeof STATE_CHANGE_TYPE, changes: StatefulContainerStateT) {
     const { stateReducer } = this.props;
     if (stateReducer) {
       this.setState(stateReducer(changeType, changes, this.state));
@@ -37,7 +36,7 @@ export default class PaginationStatefulContainer extends React.Component<
     }
   }
 
-  onPageChange: $PropertyType<StatefulContainerPropsT, 'onPageChange'> = ({ nextPage }) => {
+  onPageChange: StatefulContainerPropsT['onPageChange'] = ({ nextPage }) => {
     const { numPages, onPageChange } = this.props;
     const { currentPage } = this.state;
     const clamped = clamp(nextPage, 1, numPages);
