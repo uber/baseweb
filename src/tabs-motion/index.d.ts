@@ -76,6 +76,7 @@ interface TabsProps {
   onChange?: (params: { activeKey: React.Key }) => void;
   overrides?: TabsOverrides;
   uid?: string;
+  endEnhancer?: React.ReactNode;
 }
 
 export declare const Tabs: React.FC<TabsProps>;
