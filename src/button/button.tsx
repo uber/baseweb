@@ -133,7 +133,9 @@ interface ButtonComponentType {
   <C extends React.ElementType = 'button'>(
     props: ButtonPropsT &
       SharedStylePropsT &
-      Omit<React.ComponentProps<C>, keyof ButtonPropsT | keyof SharedStylePropsT>
+      Omit<React.ComponentProps<C>, keyof ButtonPropsT | keyof SharedStylePropsT> & {
+        $as?: C;
+      }
   ): JSX.Element;
   displayName?: string;
 }
