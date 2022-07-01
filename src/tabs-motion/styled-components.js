@@ -29,6 +29,16 @@ export const StyledRoot = styled<{ $orientation?: OrientationT }>(
   }
 );
 
+export const StyledTabBar = styled<{ $hasEndEnhancer: boolean }>(
+  'div',
+  ({ $theme, $hasEndEnhancer }) =>
+    $hasEndEnhancer
+      ? {
+          display: 'flex',
+        }
+      : {}
+);
+
 export const StyledTabList = styled<{
   $orientation?: OrientationT,
   $fill?: FillT,
@@ -147,10 +157,6 @@ export const StyledEndEnhancerContainer = styled<{}>('div', ({ $theme }) => {
     [marginDirection]: $theme.sizing.scale600,
   };
 });
-
-export const StyledTabBar = styled<{}>('div', ({ $theme }) => ({
-  display: 'flex',
-}));
 
 export const StyledArtworkContainer = styled<{ $orientation?: OrientationT }>(
   'div',

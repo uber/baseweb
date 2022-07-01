@@ -236,7 +236,7 @@ export function Tabs({
 
   return (
     <Root {...sharedStylingProps} {...RootProps}>
-      <StyledTabBar>
+      <StyledTabBar $hasEndEnhancer={Boolean(endEnhancer)}>
         <TabList
           data-baseweb="tab-list"
           role="tablist"
