@@ -264,7 +264,6 @@ export function Tabs({
               />
             );
           })}
-
           <TabHighlight
             data-baseweb="tab-highlight"
             $length={highlightLayout.length}
