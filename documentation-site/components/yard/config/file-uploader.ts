@@ -74,7 +74,7 @@ const FileUploaderConfig: TConfig = {
       acc[current] = {
         value: undefined,
         type: PropTypes.Function,
-        description: `Called when the ${current} even is triggered.`,
+        description: `Called when the ${current} event is triggered.`,
         hidden: true,
       };
       return acc;
