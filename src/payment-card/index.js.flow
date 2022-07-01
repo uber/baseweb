@@ -5,11 +5,47 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-export { default as StatefulPaymentCard } from './stateful-payment-card.js';
-export { default as StatefulContainer } from '../input/stateful-container.js';
-export { default as PaymentCard } from './payment-card.js';
+import * as React from 'react';
+import type { StyletronComponent } from '../styles/styled';
+import type { InputComponentsT, InputPropsT, SizeT, StInputPropsDiffT } from '../input';
+import type { OverrideT } from '../helpers/overrides';
+
+export { StatefulContainer, SIZE } from '../input';
+
 export { default as valid } from 'card-validator';
-export { SIZE } from '../input/index.js';
+
+export type PaymentCardComponentsT = {
+  ...InputComponentsT,
+  IconWrapper?: OverrideT,
+};
+
+export type PaymentCardPropsT = {
+  ...InputPropsT,
+  overrides: PaymentCardComponentsT,
+};
+
+export type StatefulPaymentCardPropsT = {
+  ...StInputPropsDiffT,
+  overrides?: PaymentCardComponentsT,
+};
+
+declare export var StatefulPaymentCard: React.StatelessFunctionalComponent<StatefulPaymentCardPropsT>;
+
+declare export class PaymentCard extends React.Component<PaymentCardPropsT> {
+  static defaultProps: {
+    autoComplete: $FlowFixMe,
+    autoFocus: $FlowFixMe,
+    disabled: $FlowFixMe,
+    name: $FlowFixMe,
+    error: $FlowFixMe,
+    onBlur: $FlowFixMe,
+    onFocus: $FlowFixMe,
+    overrides: $FlowFixMe,
+    required: $FlowFixMe,
+    size: $FlowFixMe,
+    startEnhancer: $FlowFixMe,
+    endEnhancer: $FlowFixMe,
+  };
+}
 // Styled elements
-export { IconWrapper as StyledIconWrapper } from './styled-components.js';
-export type * from './types.js';
+declare export var StyledIconWrapper: StyletronComponent<{ $size: SizeT }>;

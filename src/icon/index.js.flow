@@ -5,7 +5,61 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-export { default as Icon } from './icon.js';
-export { Svg as StyledSvg } from './styled-components.js';
-export * from './icon-exports.js';
-export type * from './types.js';
+import * as React from 'react';
+import type { StyletronComponent } from '../styles/styled';
+import type { OverrideT } from '../helpers/overrides';
+
+export type OverridesT = {
+  Svg?: OverrideT,
+};
+
+export type SizeT = number | string;
+export type ColorT = string;
+
+export type StyledComponentArgsT = {
+  $size?: SizeT,
+  $color?: ColorT,
+};
+
+export type IconPropsT = {
+  children?: React.Node,
+  /** Size of element, will be passed to the svg width/height style. Can also be a value included in */
+  size?: SizeT,
+  /** Color of icon, will be used as svg fill */
+  color?: ColorT,
+  /** Allows you to set the SVG `<title>` label, which is used for accessibility */
+  title?: string,
+  overrides?: OverridesT,
+};
+
+declare export var Icon: React.AbstractComponent<IconPropsT, mixed>;
+declare export var StyledSvg: StyletronComponent<StyledComponentArgsT>;
+
+declare export var Alert: React.AbstractComponent<IconPropsT, mixed>;
+declare export var ArrowDown: React.AbstractComponent<IconPropsT, mixed>;
+declare export var ArrowLeft: React.AbstractComponent<IconPropsT, mixed>;
+declare export var ArrowRight: React.AbstractComponent<IconPropsT, mixed>;
+declare export var ArrowUp: React.AbstractComponent<IconPropsT, mixed>;
+declare export var Blank: React.AbstractComponent<IconPropsT, mixed>;
+declare export var CheckIndeterminate: React.AbstractComponent<IconPropsT, mixed>;
+declare export var Check: React.AbstractComponent<IconPropsT, mixed>;
+declare export var ChevronDown: React.AbstractComponent<IconPropsT, mixed>;
+declare export var ChevronLeft: React.AbstractComponent<IconPropsT, mixed>;
+declare export var ChevronRight: React.AbstractComponent<IconPropsT, mixed>;
+declare export var ChevronUp: React.AbstractComponent<IconPropsT, mixed>;
+declare export var DeleteAlt: React.AbstractComponent<IconPropsT, mixed>;
+declare export var Delete: React.AbstractComponent<IconPropsT, mixed>;
+declare export var Filter: React.AbstractComponent<IconPropsT, mixed>;
+declare export var Grab: React.AbstractComponent<IconPropsT, mixed>;
+declare export var Hide: React.AbstractComponent<IconPropsT, mixed>;
+declare export var Menu: React.AbstractComponent<IconPropsT, mixed>;
+declare export var Overflow: React.AbstractComponent<IconPropsT, mixed>;
+declare export var Plus: React.AbstractComponent<IconPropsT, mixed>;
+declare export var Search: React.AbstractComponent<IconPropsT, mixed>;
+declare export var Show: React.AbstractComponent<IconPropsT, mixed>;
+declare export var Spinner: React.AbstractComponent<IconPropsT, mixed>;
+declare export var TriangleDown: React.AbstractComponent<IconPropsT, mixed>;
+declare export var TriangleLeft: React.AbstractComponent<IconPropsT, mixed>;
+declare export var TriangleRight: React.AbstractComponent<IconPropsT, mixed>;
+declare export var TriangleUp: React.AbstractComponent<IconPropsT, mixed>;
+declare export var Upload: React.AbstractComponent<IconPropsT, mixed>;

@@ -5,9 +5,24 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import { StyledSpinner } from './styled-components.js';
+import * as React from 'react';
+import type { StyletronComponent } from '../styles/styled';
+import type { SizingT } from '../themes';
 
-export { StyledSpinner as Spinner };
-export { SIZE } from './constants.js';
-// Flow
-export type * from './types.js';
+export type SizeT = $Keys<typeof SIZE>;
+
+export type SpinnerPropsT = {
+  /** Color of progress indicator */
+  $color?: string,
+  /** Width of the progress indicator "stroke".  */
+  $borderWidth?: number | string | $Keys<SizingT> | SizeT,
+  /** Height/width of the box the indicator will appear in. */
+  $size?: number | string | $Keys<SizingT> | SizeT,
+};
+
+declare export var Spinner: StyletronComponent<SpinnerPropsT>;
+declare export var SIZE: {
+  small: 'small',
+  medium: 'medium',
+  large: 'large',
+};

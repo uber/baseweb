@@ -6,17 +6,96 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-export { default as FileUploader } from './file-uploader.js';
+import * as React from 'react';
+import type { StyletronComponent } from '../styles/styled';
 
-// Styled elements
-export {
-  StyledRoot,
-  StyledFileDragAndDrop,
-  StyledContentMessage,
-  StyledContentSeparator,
-  StyledErrorMessage,
-  StyledHiddenInput,
-} from './styled-components.js';
+import type { OverrideT } from '../helpers/overrides';
 
 // Flow
-export type * from './types.js';
+
+export type StylePropsT = {|
+  $afterFileDrop: boolean,
+  $isDisabled: boolean,
+  $isDragActive: boolean,
+  $isDragAccept: boolean,
+  $isDragReject: boolean,
+  $isFocused: boolean,
+|};
+
+export type OverridesT = {
+  Root?: OverrideT,
+  FileDragAndDrop?: OverrideT,
+  ContentMessage?: OverrideT,
+  ContentSeparator?: OverrideT,
+  HiddenInput?: OverrideT,
+  ProgressMessage?: OverrideT,
+  ErrorMessage?: OverrideT,
+  ButtonComponent?: OverrideT,
+  CancelButtonComponent?: OverrideT,
+  RetryButtonComponent?: OverrideT,
+  Spinner?: OverrideT,
+  ProgressBar?: OverrideT,
+};
+
+export type PropsT = {|
+  // react-dropzone: https://github.com/react-dropzone/react-dropzone/blob/master/typings/react-dropzone.d.ts
+  accept?: string | string[],
+  /** Disallow clicking on the dropzone container to open file dialog */
+  disableClick?: boolean,
+  disabled?: boolean,
+  getDataTransferItems?: GetDataTransferItemsT,
+  maxSize?: number,
+  minSize?: number,
+  multiple?: boolean,
+  name?: string,
+  onClick?: (event: SyntheticMouseEvent<HTMLElement>) => mixed,
+  onFocus?: (event: SyntheticFocusEvent<HTMLElement>) => mixed,
+  onBlur?: (event: SyntheticFocusEvent<HTMLElement>) => mixed,
+  onKeyDown?: (event: SyntheticKeyboardEvent<HTMLElement>) => mixed,
+  onDragStart?: (event: SyntheticDragEvent<HTMLElement>) => mixed,
+  onDragEnter?: (event: SyntheticDragEvent<HTMLElement>) => mixed,
+  onDragOver?: (event: SyntheticDragEvent<HTMLElement>) => mixed,
+  onDragLeave?: (event: SyntheticDragEvent<HTMLElement>) => mixed,
+  onDrop?: DropFilesEventHandlerT,
+  onDropAccepted?: DropFileEventHandlerT,
+  onDropRejected?: DropFileEventHandlerT,
+  onFileDialogCancel?: () => mixed,
+  preventDropOnDocument?: boolean,
+  'aria-describedby'?: string,
+
+  // Error message to be displayed
+  errorMessage?: string,
+  onCancel?: () => mixed,
+  onRetry?: () => mixed,
+  overrides?: OverridesT,
+  progressAmount?: number,
+  progressMessage?: string,
+|};
+
+export type DropFilesEventHandlerT = (
+  accepted: File[],
+  rejected: File[],
+  event: SyntheticDragEvent<HTMLElement>
+) => mixed;
+
+type DropFileEventHandlerT = (
+  acceptedOrRejected: File[],
+  event: SyntheticDragEvent<HTMLElement>
+) => mixed;
+
+type DataTransferEventT =
+  | SyntheticDragEvent<HTMLElement>
+  | SyntheticInputEvent<HTMLInputElement>
+  | SyntheticDragEvent<any> //flowlint-line unclear-type:off
+  | SyntheticEvent<any>; //flowlint-line unclear-type:off
+type GetDataTransferItemsT = (event: DataTransferEventT) => Promise<Array<File | DataTransferItem>>;
+
+declare export var FileUploader: React.ComponentType<PropsT>;
+
+// Styled elements
+declare export var StyledFileDragAndDrop: StyletronComponent<StylePropsT>;
+declare export var StyledContentMessage: StyletronComponent<StylePropsT>;
+declare export var StyledContentSeparator: StyletronComponent<StylePropsT>;
+declare export var StyledErrorMessage: StyletronComponent<StylePropsT>;
+declare export var StyledRoot: StyletronComponent<StylePropsT>;
+declare export var StyledHiddenInput: StyletronComponent<{}>;

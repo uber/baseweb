@@ -6,18 +6,115 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-export { default as TreeView } from './tree-view.js';
-export { default as StatefulTreeView } from './stateful-tree-view.js';
+import * as React from 'react';
+import type { StyletronComponent } from '../styles/styled';
+import type { OverrideT } from '../helpers/overrides';
 
-export type * from './types.js';
+export type ReactRefT<T> = { current: null | T } | {| current: null | T |};
 
-export {
-  StyledTreeItemList,
-  StyledTreeItem,
-  StyledItemContent,
-  StyledIconContainer,
-} from './styled-components.js';
+export type TreeLabelOverridesT = {
+  TreeItemContent?: OverrideT,
+  IconContainer?: OverrideT,
+  ExpandIcon?: OverrideT,
+  CollapseIcon?: OverrideT,
+  LeafIconContainer?: OverrideT,
+  LeafIcon?: OverrideT,
+};
 
-export { default as TreeLabel } from './tree-label.js';
-export { default as TreeLabelInteractable } from './tree-label-interactable.js';
-export { toggleIsExpanded } from './utils.js';
+export type TreeViewOverridesT = {
+  ...TreeLabelOverridesT,
+  Root?: OverrideT,
+  TreeItemList?: OverrideT,
+  TreeItem?: OverrideT,
+  TreeLabel?: OverrideT,
+};
+
+export type TreeNodeIdT = number | string;
+
+// flowlint-next-line unclear-type:off
+export type TreeNodeT<T = any> = {
+  id?: TreeNodeIdT,
+  children?: TreeNodeT<>[],
+  isExpanded?: boolean,
+  label: ((node: TreeNodeT<>) => React.Node) | string,
+  info?: T,
+  // flowlint-next-line unclear-type:off
+  [key: string]: any,
+};
+
+export type TreeLabelT = {
+  hasChildren: boolean,
+  isExpanded?: boolean,
+  isSelected?: boolean,
+  isFocusVisible?: boolean,
+  label: ((node: TreeNodeT<>) => React.Node) | string,
+  overrides?: TreeLabelOverridesT,
+  node: TreeNodeT<>,
+};
+
+export type SharedStylePropsT = {
+  $hasChildren: boolean,
+  $isExpanded: boolean,
+  $isSelected: boolean,
+  $isFocusVisible: boolean,
+};
+
+export type TreeNodePropsT = {
+  node: TreeNodeT<>,
+  getId: (node: TreeNodeT<>) => TreeNodeIdT,
+  onToggle?: (node: TreeNodeT<>) => void,
+  overrides?: TreeViewOverridesT,
+  renderAll?: boolean,
+  onKeyDown?: (e: KeyboardEvent, node: TreeNodeT<>) => mixed,
+  onFocus?: (event: SyntheticEvent<>) => mixed,
+  onBlur?: (event: SyntheticEvent<>) => mixed,
+  selectedNodeId?: TreeNodeIdT,
+  addRef: (id: TreeNodeIdT, ref: ReactRefT<HTMLLIElement>) => mixed,
+  removeRef: (id: TreeNodeIdT) => mixed,
+  isFocusVisible?: boolean,
+  indentGuides?: boolean,
+};
+
+export type StatefulContainerPropsT = {
+  ...TreeViewPropsT,
+  children: (props: TreeViewPropsT) => React.Node,
+};
+
+export type TreeViewPropsT = {|
+  data: TreeNodeT<>[],
+  indentGuides?: boolean,
+  onToggle?: (node: TreeNodeT<>) => void,
+  overrides?: TreeViewOverridesT,
+  renderAll?: boolean,
+  getId?: (node: TreeNodeT<>) => TreeNodeIdT,
+
+  // will set isExpanded to false on sibling nodes when toggling isExpanded to true for one node
+  // note: will NOT affect pre-set data. If you start with multiple sibling nodes open it will be open until you toggle one of them to isExpanded
+  singleExpanded?: boolean,
+|};
+
+declare export var TreeView: React.StatelessFunctionalComponent<TreeViewPropsT>;
+declare export var StatefulTreeView: React.StatelessFunctionalComponent<TreeViewPropsT>;
+
+declare export var StyledTreeItemList: StyletronComponent<{
+  $indentGuides?: boolean,
+  $isChildNode?: boolean,
+  $expanded?: boolean,
+}>;
+declare export var StyledTreeItem: StyletronComponent<{ $isLeafNode?: boolean }>;
+declare export var StyledItemContent: StyletronComponent<{
+  $isSelected: boolean,
+  $isFocusVisible: boolean,
+}>;
+declare export var StyledIconContainer: StyletronComponent<{}>;
+
+declare export var TreeLabel: React.ComponentType<TreeLabelT>;
+declare export var TreeLabelInteractable: React.ComponentType<{
+  overrides?: { LabelInteractable: OverrideT },
+}>;
+
+declare export var toggleIsExpanded: (
+  arr: TreeNodeT<>[],
+  toggledNode: TreeNodeT<>,
+  getId?: (node: TreeNodeT<>) => TreeNodeIdT
+) => TreeNodeT<>[];

@@ -5,34 +5,425 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-export { default as Select } from './select.js';
-export { default as SingleSelect } from './single-select.js';
-export { default as MultiSelect } from './multi-select.js';
-export { default as SingleValue } from './value.js';
-export { default as MultiValue } from './multi-value.js';
-export { default as AutosizeInput } from './autosize-input.js';
-export { default as SelectDropdown } from './dropdown.js';
-export { default as StatefulSelect } from './stateful-select.js';
-export { default as StatefulSelectContainer } from './stateful-select-container.js';
+import * as React from 'react';
+import type { StyletronComponent } from '../styles/styled';
+import { StyledList, StyledListItem } from '../menu';
+import { SIZE } from '../input';
+import type { OverrideT } from '../helpers/overrides';
+import type { OnItemSelectFnT } from '../menu';
+
+declare export var TYPE: {
+  select: 'select',
+  search: 'search',
+};
+
+declare export var STATE_CHANGE_TYPE: {
+  select: 'select',
+  remove: 'remove',
+  clear: 'clear',
+};
+
+export { SIZE, TYPE, STATE_CHANGE_TYPE };
+
+export type ChangeActionT = $Keys<typeof STATE_CHANGE_TYPE>;
+export type SizeT = $Keys<typeof SIZE>;
+export type TypeT = $Keys<typeof TYPE>;
+export type ReactRefT<T> = { current: null | T } | {| current: null | T |};
+
+export type OptionT = $ReadOnly<{
+  id?: string | number,
+  label?: React.Node,
+  disabled?: boolean,
+  clearableValue?: boolean,
+  isCreatable?: boolean,
+  __optgroup?: string,
+  // flowlint-next-line unclear-type:off
+  [string]: any,
+}>;
+
+export type ValueT = $ReadOnlyArray<OptionT>;
+export type OptgroupsT = { __ungrouped: ValueT, [string]: ValueT };
+export type OptionsT = ?ValueT | OptgroupsT;
+
+export type OnChangeParamsT = {
+  value: ValueT,
+  option: ?OptionT,
+  type: ChangeActionT,
+};
+
+export type OverridesT = {
+  Root?: OverrideT,
+  ControlContainer?: OverrideT,
+  Placeholder?: OverrideT,
+  ValueContainer?: OverrideT,
+  SingleValue?: OverrideT,
+  MultiValue?: OverrideT,
+  Tag?: OverrideT,
+  InputContainer?: OverrideT,
+  Input?: OverrideT,
+  IconsContainer?: OverrideT,
+  SelectArrow?: OverrideT,
+  ClearIcon?: OverrideT,
+  LoadingIndicator?: OverrideT,
+  SearchIconContainer?: OverrideT,
+  SearchIcon?: OverrideT,
+  Popover?: OverrideT,
+  DropdownContainer?: OverrideT,
+  Dropdown?: OverrideT,
+  DropdownOption?: OverrideT,
+  DropdownListItem?: OverrideT,
+  OptionContent?: OverrideT,
+  StatefulMenu?: OverrideT,
+};
+
+export type OverridesDropdownT = {
+  DropdownContainer?: OverrideT,
+  Dropdown?: OverrideT,
+  // Not a styled component
+  DropdownOption?: OverrideT,
+  DropdownListItem?: OverrideT,
+  OptionContent?: OverrideT,
+  StatefulMenu?: OverrideT,
+};
+
+type ImperativeMethodsT = {|
+  setDropdownOpen: (boolean) => mixed,
+  setInputValue: (string) => void,
+  setInputFocus: () => void,
+  setInputBlur: () => void,
+  // these below are for backwards compatibility and may be removed. Don't use them.
+  focus: () => void,
+  blur: () => void,
+|};
+export type ControlRefT = {
+  current: ImperativeMethodsT | null,
+};
+
+export type PropsT = {
+  'aria-label': ?string,
+  'aria-describedby': ?string,
+  'aria-errormessage': ?string,
+  'aria-labelledby': ?string,
+  /** Defines if select element is focused on the first mount. */
+  autoFocus: boolean,
+  /** Defines if options can be removed by pressing backspace. If you have customized labels, it will remove the option entirely, otherwise, it starts removing characters from the end of the string. */
+  backspaceRemoves: boolean,
+  /** By default, backspace will only remove the last character of the input value. If true, the input value will be cleared. */
+  backspaceClearsInputValue?: boolean,
+  /** Defines if the select value can be cleared. If true a clear icon is rendered when a value is set. */
+  clearable: boolean,
+  /** Defines if the menu closes after a selection if made. */
+  closeOnSelect: boolean,
+  /** Defines if new options can be created along with choosing existing options. */
+  creatable: boolean,
+  /** Defines if options can be removed by pressing backspace. */
+  deleteRemoves: boolean,
+  /** Defines if the control is disabled. */
+  disabled: boolean,
+  /** Defines if the control is in error state. */
+  error: boolean,
+  /** Defines if the control is in positive state. */
+  positive: boolean,
+  /** Defines if the value is cleared when escape is pressed and the dropdown is closed. */
+  escapeClearsValue: boolean,
+  /** Defaults to filterOptions that excludes selected options for
+   * multi select. A custom method to filter options to be displayed in the dropdown. */
+  filterOptions: ?(
+    options: ValueT,
+    filterValue: string,
+    excludeOptions: ?ValueT,
+    { valueKey: string, labelKey: string }
+  ) => ValueT,
+  /** Defines if currently selected options are filtered out in the dropdown options. */
+  filterOutSelected: boolean,
+  /** A custom method to get a display value for a dropdown option. */
+  getOptionLabel: ?({
+    option: OptionT,
+    optionState: {
+      $selected: boolean,
+      $disabled: boolean,
+      $isHighlighted: boolean,
+    },
+  }) => React.Node,
+  /** A custom method to get a display value for a selected option. */
+  getValueLabel: ?({ option: OptionT }) => React.Node,
+  /** Sets the id attribute of the internal input element. Allows for usage with labels. */
+  id?: string,
+  /** Defines if the comparison for a new creatable value should be case-insensitive. */
+  ignoreCase?: boolean,
+  inputRef?: ReactRefT<HTMLInputElement>,
+  /** An imperative handle exposing internal methods. */
+  controlRef?: ControlRefT,
+  /** Defines if the select is in a loading (async) state. */
+  isLoading: boolean,
+  /** Defines an option key for a default label value. */
+  labelKey: string,
+  /** Sets max height of the dropdown list. */
+  maxDropdownHeight: string,
+  /** Defines if multiple options can be selected. */
+  multi: boolean,
+  /** Message to be displayed if no options is found for a search query. */
+  noResultsMsg?: React.Node,
+  onBlur: (e: Event) => mixed,
+  /** Defines if the input value is reset to an empty string when a blur event happens on the select. */
+  onBlurResetsInput: boolean,
+  /** change handler of the select to be called when a value is changed. */
+  onChange: (params: OnChangeParamsT) => mixed,
+  onFocus: (e: SyntheticEvent<HTMLElement>) => mixed,
+  onInputChange: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
+  /** Defines if the input value is reset to an empty string when dropdown is closed. */
+  onCloseResetsInput: boolean,
+  /** Defines if the input value is reset to an empty string when a selection is made. */
+  onSelectResetsInput: boolean,
+  /** A function that is called when the dropdown opens. */
+  onOpen: ?() => mixed,
+  /** A function that is called when the dropdown closes. */
+  onClose: ?() => mixed,
+  /** Defines if the dropdown opens on a click event on the select. */
+  openOnClick: boolean,
+  /** If true, opens the dropdown when the select mounts. */
+  startOpen: boolean,
+  /** Options to be displayed in the dropdown. If an option has a
+   * disabled prop value set to true it will be rendered as a disabled option in the dropdown. */
+  options: OptionsT,
+  overrides: OverridesT,
+  /** Sets the placeholder. */
+  placeholder?: React.Node,
+  /** Defines if the select field is required to have a selection. */
+  required: boolean,
+  /** Defines if the search functionality is enabled. */
+  searchable: boolean,
+  /** Defines the size (scale) of dropdown menu items. See the Menu component API. */
+  size: SizeT,
+  /** Defines type of the component to be in select or search mode.
+   * When set to TYPE.search the search icon is rendered on the
+   * left and the select arrow icon is not rendered. */
+  type: TypeT,
+  /** A current selected value(s). If a selected value has a clearableValue
+   * prop set to true it will be rendered as a disabled selected option that can't be cleared. */
+  value: ValueT,
+  // flowlint-next-line unclear-type:off
+  valueComponent?: React.ComponentType<any>,
+  /** Defines a key name for an option's unique identifier value.
+   * The value of the `valueKey` prop is used to identify what options are selected
+   * or removed from the selection, it also used for default filtering out the
+   * selected options from the dropdown list. */
+  valueKey: string,
+  /** Where to mount the popover */
+  mountNode?: HTMLElement,
+};
+
+export type SelectStateT = {
+  activeDescendant: ?string,
+  inputValue: string,
+  isFocused: boolean,
+  isOpen: boolean,
+  isPseudoFocused: boolean,
+};
+
+export type StateT = {
+  value: ValueT,
+};
+
+export type StateReducerT = (stateType: string, nextState: StateT, currentState: StateT) => StateT;
+
+export type StatefulContainerPropsT = {
+  overrides: OverridesT,
+  children: (PropsT) => React$Node,
+  initialState: StateT,
+  stateReducer: StateReducerT,
+  onChange: (params: OnChangeParamsT) => mixed,
+};
+
+export type StatefulSelectPropsT = PropsT & {
+  overrides?: OverridesT,
+  initialState?: StateT,
+  stateReducer?: StateReducerT,
+  onChange?: (params: OnChangeParamsT) => mixed,
+};
+
+export type DropdownPropsT = {
+  error: boolean,
+  getOptionLabel: ({
+    option: OptionT,
+    optionState: {
+      $selected: boolean,
+      $disabled: boolean,
+      $isHighlighted: boolean,
+    },
+  }) => React.Node,
+  id?: string,
+  innerRef: ReactRefT<HTMLElement>,
+  isLoading: boolean,
+  labelKey: string,
+  maxDropdownHeight: string,
+  multi: boolean,
+  noResultsMsg?: React.Node,
+  onActiveDescendantChange?: (id?: string) => mixed,
+  onItemSelect: OnItemSelectFnT,
+  options: ValueT,
+  overrides?: OverridesDropdownT,
+  required: boolean,
+  searchable: boolean,
+  size: SizeT,
+  type: TypeT,
+  value: ValueT,
+  valueKey: string,
+  width: ?number,
+  keyboardControlNode?: ReactRefT<HTMLElement>,
+};
+
+export type AutosizeInputOverridesT = {
+  Input?: OverrideT,
+};
+
+export type AutosizeInputPropsT = {
+  value: string,
+  defaultValue?: string,
+  inputRef: () => void,
+  overrides: AutosizeInputOverridesT,
+  $size: SizeT,
+};
+
+export type AutosizeInputStateT = {
+  inputWidth: number,
+};
+
+export type SharedStylePropsArgT = {
+  $clearable?: boolean,
+  $creatable?: boolean,
+  $disabled?: boolean,
+  $error?: boolean,
+  $positive?: boolean,
+  $isFocused?: boolean,
+  $isLoading?: boolean,
+  $isOpen?: boolean,
+  $isPseudoFocused?: boolean,
+  $multi?: boolean,
+  $required?: boolean,
+  $searchable?: boolean,
+  $size?: SizeT,
+  $type?: TypeT,
+  $width?: string,
+  $maxHeight?: string,
+  $isHighlighted?: boolean,
+  $selected?: boolean,
+  $isEmpty?: boolean,
+};
+
+type SelectDefaultProps = {
+  'aria-label': $FlowFixMe,
+  'aria-describedby': $FlowFixMe,
+  'aria-errormessage': $FlowFixMe,
+  'aria-labelledby': $FlowFixMe,
+  autoFocus: $FlowFixMe,
+  backspaceRemoves: $FlowFixMe,
+  clearable: $FlowFixMe,
+  closeOnSelect: $FlowFixMe,
+  creatable: $FlowFixMe,
+  deleteRemoves: $FlowFixMe,
+  disabled: $FlowFixMe,
+  error: $FlowFixMe,
+  positive: $FlowFixMe,
+  escapeClearsValue: $FlowFixMe,
+  filterOptions: $FlowFixMe,
+  filterOutSelected: $FlowFixMe,
+  getOptionLabel: $FlowFixMe,
+  getValueLabel: $FlowFixMe,
+  ignoreCase: $FlowFixMe,
+  isLoading: $FlowFixMe,
+  labelKey: $FlowFixMe,
+  maxDropdownHeight: $FlowFixMe,
+  multi: $FlowFixMe,
+  onBlur: $FlowFixMe,
+  onBlurResetsInput: $FlowFixMe,
+  onChange: $FlowFixMe,
+  onFocus: $FlowFixMe,
+  onInputChange: $FlowFixMe,
+  onCloseResetsInput: $FlowFixMe,
+  onSelectResetsInput: $FlowFixMe,
+  onOpen: $FlowFixMe,
+  onClose: $FlowFixMe,
+  openOnClick: $FlowFixMe,
+  startOpen: $FlowFixMe,
+  options: $FlowFixMe,
+  overrides: $FlowFixMe,
+  required: $FlowFixMe,
+  searchable: $FlowFixMe,
+  size: $FlowFixMe,
+  type: $FlowFixMe,
+  value: $FlowFixMe,
+  valueKey: $FlowFixMe,
+};
+
+declare class SelectComponent extends React.Component<PropsT, SelectStateT> {
+  static defaultProps: SelectDefaultProps;
+}
+declare export var Select: React.StatelessFunctionalComponent<
+  React.ElementConfig<typeof SelectComponent>
+>;
+declare export var SingleSelect: React.StatelessFunctionalComponent<$Shape<PropsT>>;
+declare export var MultiSelect: React.StatelessFunctionalComponent<$Shape<PropsT>>;
+declare export var SingleValue: React.StatelessFunctionalComponent<$FlowFixMe>;
+declare export var MultiValue: React.StatelessFunctionalComponent<$FlowFixMe>;
+
+declare export class AutosizeInput
+  extends React.Component<AutosizeInputPropsT, AutosizeInputStateT>
+{
+  static defaultProps: {
+    inputRef: $FlowFixMe,
+    value: $FlowFixMe,
+    overrides: $FlowFixMe,
+  };
+}
+declare export var SelectDropdown: React.ComponentType<DropdownPropsT>;
+
+declare export var StatefulSelect: {
+  (props: StatefulSelectPropsT): React.Node,
+  defaultProps: SelectDefaultProps,
+};
+
+declare export class StatefulSelectContainer
+  extends React.Component<StatefulContainerPropsT, StateT>
+{
+  static defaultProps: {
+    initialState: $FlowFixMe,
+    onChange: $FlowFixMe,
+    overrides: $FlowFixMe,
+    stateReducer: $FlowFixMe,
+  };
+}
+
 // Styled elements
-export {
-  StyledRoot,
-  StyledControlContainer,
-  StyledValueContainer,
-  StyledPlaceholder,
-  StyledSingleValue,
-  StyledInputContainer,
-  StyledInput,
-  StyledInputSizer,
-  StyledIconsContainer,
-  StyledSelectArrow,
-  StyledClearIcon,
-  StyledSearchIconContainer,
-  StyledDropdownContainer,
-  StyledDropdown,
-  StyledDropdownListItem,
-  StyledOptionContent,
-} from './styled-components.js';
-export { default as filterOptions } from './utils/default-filter-options.js';
-export { SIZE, TYPE, STATE_CHANGE_TYPE } from './constants.js';
-export type * from './types.js';
+declare export var StyledRoot: StyletronComponent<SharedStylePropsArgT>;
+declare export var StyledControlContainer: StyletronComponent<SharedStylePropsArgT>;
+declare export var StyledValueContainer: StyletronComponent<SharedStylePropsArgT>;
+declare export var StyledPlaceholder: StyletronComponent<SharedStylePropsArgT>;
+declare export var StyledSingleValue: StyletronComponent<SharedStylePropsArgT>;
+declare export var StyledInputContainer: StyletronComponent<SharedStylePropsArgT>;
+declare export var StyledInput: StyletronComponent<SharedStylePropsArgT>;
+declare export var StyledInputSizer: StyletronComponent<SharedStylePropsArgT>;
+declare export var StyledIconsContainer: StyletronComponent<SharedStylePropsArgT>;
+declare export var StyledSelectArrow: StyletronComponent<SharedStylePropsArgT>;
+declare export var StyledClearIcon: StyletronComponent<SharedStylePropsArgT>;
+declare export var StyledSearchIconContainer: StyletronComponent<SharedStylePropsArgT>;
+declare export var StyledDropdownContainer: StyletronComponent<SharedStylePropsArgT>;
+declare export var StyledDropdown: typeof StyledList;
+declare export var StyledDropdownListItem: typeof StyledListItem;
+declare export var StyledOptionContent: StyletronComponent<SharedStylePropsArgT>;
+
+type defaultPropsT = {
+  filterOption: ?(option: OptionT, filterValue: string) => boolean,
+  ignoreCase: boolean,
+  labelKey: string,
+  matchPos: 'any' | 'start',
+  matchProp: 'any' | 'label' | 'value',
+  trimFilter: boolean,
+  valueKey: string,
+};
+declare export function filterOptions(
+  options: ValueT,
+  filterValue: string,
+  excludeOptions: ?ValueT,
+  newProps: ?$Shape<defaultPropsT>
+): ValueT;

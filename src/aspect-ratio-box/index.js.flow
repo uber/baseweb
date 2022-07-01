@@ -6,6 +6,13 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-export { default as AspectRatioBox } from './aspect-ratio-box.js';
-export { default as AspectRatioBoxBody } from './aspect-ratio-box-body.js';
-export type * from './types.js';
+import * as React from 'react';
+import type { BlockPropsT } from '../block';
+
+export type AspectRatioBoxPropsT = {
+  /** Aspect ratio is width divided by height. */
+  +aspectRatio?: number,
+} & BlockPropsT;
+
+declare export var AspectRatioBox: React.AbstractComponent<AspectRatioBoxPropsT, HTMLElement>;
+declare export var AspectRatioBoxBody: React.ComponentType<BlockPropsT>;

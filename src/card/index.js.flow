@@ -6,16 +6,63 @@ LICENSE file in the root directory of this source tree.
 */
 
 /* @flow */
+import * as React from 'react';
+import type { StyletronComponent } from '../styles/styled';
+import type { OverrideT } from '../helpers/overrides';
+import type { Node } from 'react';
 
-export { default as Card, hasThumbnail } from './card.js';
-export {
-  Action as StyledAction,
-  Body as StyledBody,
-  Contents as StyledContents,
-  HeaderImage as StyledHeaderImage,
-  Thumbnail as StyledThumbnail,
-  Title as StyledTitle,
-  Root as StyledRoot,
-  Root as StyledWrapper,
-} from './styled-components.js';
-export type * from './types.js';
+export type CardComponentsT = {
+  Action?: OverrideT,
+  Body?: OverrideT,
+  Contents?: OverrideT,
+  HeaderImage?: OverrideT,
+  Root?: OverrideT,
+  Thumbnail?: OverrideT,
+  Title?: OverrideT,
+};
+
+export type ImagePropsT = {
+  alt?: string,
+  complete?: boolean,
+  crossOrigin?: string,
+  currentSrc?: string,
+  height?: number,
+  decode?: Promise<void>,
+  isMap?: boolean,
+  naturalHeight?: number,
+  naturalWidth?: number,
+  sizes?: string,
+  src?: string,
+  srcset?: string,
+  useMap?: string,
+  width?: number,
+};
+
+export type CardsPropsT = {
+  /** Contents to be rendered at the bottom of the Card. Used to organize UI which enables user action. */
+  +action?: Node,
+  /** Content to be rendered within the Card body. */
+  +children?: Node,
+  /** Function that takes Card props and returns a boolean that represents if a thumbnail will be rendered. */
+  +hasThumbnail: ({ +thumbnail?: string }) => boolean,
+  /** Image to be positioned at the top of the Card. Can be a string representing the img src or an object with img attrs */
+  +headerImage?: string | ImagePropsT,
+  +overrides: CardComponentsT,
+  /** Image src that by default is rendered to the side of children content. */
+  +thumbnail?: string,
+  /** Content to render above the body content. */
+  +title?: Node,
+};
+
+declare export function hasThumbnail(props: { +thumbnail?: string }): boolean;
+
+declare export var Card: React.ComponentType<$Shape<CardsPropsT>>;
+
+declare export var StyledAction: StyletronComponent<{}>;
+declare export var StyledBody: StyletronComponent<{}>;
+declare export var StyledContents: StyletronComponent<{}>;
+declare export var StyledHeaderImage: StyletronComponent<{}>;
+declare export var StyledThumbnail: StyletronComponent<{}>;
+declare export var StyledTitle: StyletronComponent<{}>;
+declare export var StyledRoot: StyletronComponent<{}>;
+declare export var StyledWrapper: StyletronComponent<{}>;

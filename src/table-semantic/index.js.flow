@@ -5,26 +5,165 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-export { default as Table } from './table.js';
-export { default as TableBuilder } from './table-builder.js';
-export { default as TableBuilderColumn } from './table-builder-column.js';
-export { DIVIDER, SIZE } from './constants.js';
+import * as React from 'react';
+import type { StyletronComponent } from '../styles/styled';
+import { ChevronUp, ChevronDown, Blank } from '../icon';
+import type { OverrideT } from '../helpers/overrides';
+
+declare export var DIVIDER: {
+  horizontal: 'horizontal',
+  vertical: 'vertical',
+  grid: 'grid',
+  clean: 'clean',
+};
+
+declare export var SIZE: {
+  compact: 'compact',
+  default: 'default',
+  spacious: 'spacious',
+};
+
+export type SizeT = $Keys<typeof SIZE>;
+export type DividerT = $Keys<typeof DIVIDER>;
+
+export type OverridesT = {
+  Root?: OverrideT,
+  Table?: OverrideT,
+  TableHead?: OverrideT,
+  TableHeadRow?: OverrideT,
+  TableHeadCell?: OverrideT,
+  TableBody?: OverrideT,
+  TableBodyRow?: OverrideT,
+  TableBodyCell?: OverrideT,
+  TableLoadingMessage?: OverrideT,
+  TableEmptyMessage?: OverrideT,
+};
+
+export type TablePropsT = {
+  overrides?: OverridesT,
+  columns: Array<React.Node>,
+  data: Array<Array<React.Node>>,
+  divider?: DividerT,
+  horizontalScrollWidth?: string,
+  isLoading?: boolean,
+  loadingMessage?: React.Node | (() => React.Node),
+  emptyMessage?: React.Node | (() => React.Node),
+  size?: SizeT,
+};
+
+export type BuilderOverridesT = {
+  ...OverridesT,
+  TableHeadCellSortable?: OverrideT,
+  SortIconContainer?: OverrideT,
+  SortAscIcon?: OverrideT,
+  SortDescIcon?: OverrideT,
+  SortNoneIcon?: OverrideT,
+};
+
+export type TableBuilderPropsT<RowT> = {
+  overrides?: BuilderOverridesT,
+  children?: React.Node,
+  data: Array<RowT>,
+  divider?: DividerT,
+  horizontalScrollWidth?: string,
+  sortColumn?: ?string,
+  sortOrder?: 'ASC' | 'DESC' | null,
+  onSort?: (columnId: string) => void,
+  isLoading?: boolean,
+  loadingMessage?: React.Node | (() => React.Node),
+  emptyMessage?: React.Node | (() => React.Node),
+  size?: SizeT,
+};
+
+export type ColumnOverridesT = {
+  TableHeadCell?: OverrideT,
+  TableHeadCellSortable?: OverrideT,
+  TableBodyCell?: OverrideT,
+  SortAscIcon?: OverrideT,
+  SortDescIcon?: OverrideT,
+  SortNoneIcon?: OverrideT,
+};
+
+export type TableBuilderColumnPropsT<RowT> = {
+  overrides?: ColumnOverridesT,
+  children: (row: RowT, rowIndex?: number) => React.Node,
+  id?: string,
+  header?: React.Node,
+  numeric?: boolean,
+  sortable?: boolean,
+  tableHeadAriaLabel?: string,
+};
+
+declare export class Table extends React.Component<TablePropsT> {
+  static defaultProps: {
+    columns: $FlowFixMe,
+    data: $FlowFixMe,
+    loadingMessage: $FlowFixMe,
+  };
+}
+
+declare export class TableBuilder<T>
+  extends React.Component<TableBuilderPropsT<T>, { isFocusVisible: boolean }>
+{
+  static defaultProps: {
+    data: $FlowFixMe,
+    loadingMessage: $FlowFixMe,
+  };
+}
+
+declare export class TableBuilderColumn<T> extends React.Component<TableBuilderColumnPropsT<T>> {
+  // Renderless component. See TableBuilder.
+}
+
 // Styled elements
-export {
-  StyledRoot,
-  StyledTable,
-  StyledTableHead,
-  StyledTableHeadRow,
-  StyledTableHeadCell,
-  StyledTableHeadCellSortable,
-  StyledTableBody,
-  StyledTableBodyRow,
-  StyledTableBodyCell,
-  StyledTableLoadingMessage,
-  StyledTableEmptyMessage,
-  StyledSortAscIcon,
-  StyledSortDescIcon,
-  StyledSortNoneIcon,
-} from './styled-components.js';
-// Flow
-export type * from './types.js';
+type StyledRootPropsT = {
+  $divider?: DividerT,
+};
+declare export var StyledRoot: StyletronComponent<StyledRootPropsT>;
+type StyledTablePropsT = {
+  $width?: ?string,
+};
+declare export var StyledTable: StyletronComponent<StyledTablePropsT>;
+declare export var StyledTableHead: StyletronComponent<{}>;
+declare export var StyledTableHeadRow: StyletronComponent<{}>;
+type StyledTableHeadCellPropsT = {
+  $col?: {},
+  $colIndex?: ?number,
+  $divider?: DividerT,
+  $isNumeric?: ?boolean,
+  $size?: SizeT,
+};
+declare export var StyledTableHeadCell: StyletronComponent<StyledTableHeadCellPropsT>;
+type StyledTableHeadCellSortablePropsT = {
+  ...StyledTableHeadCellPropsT,
+  $isFocusVisible: boolean,
+};
+type ExtractPropTypes = <T>(StyletronComponent<T>) => T;
+declare export var StyledTableHeadCellSortable: StyletronComponent<
+  $Call<ExtractPropTypes, typeof StyledTableHeadCell> & StyledTableHeadCellSortablePropsT
+>;
+declare export var StyledSortIconContainer: StyletronComponent<{}>;
+declare export var StyledSortAscIcon: typeof ChevronUp;
+declare export var StyledSortDescIcon: typeof ChevronDown;
+declare export var StyledSortNoneIcon: typeof Blank;
+declare export var StyledTableBody: StyletronComponent<{}>;
+type StyledTableBodyRowPropsT = {
+  $col?: {},
+  $colIndex?: ?number,
+  $divider?: DividerT,
+};
+declare export var StyledTableBodyRow: StyletronComponent<StyledTableBodyRowPropsT>;
+type StyledTableBodyCellPropsT = {
+  $col?: {},
+  $colIndex?: ?number,
+  $divider?: DividerT,
+  $row?: {},
+  $rowIndex?: ?number,
+  $size?: SizeT,
+  $isNumeric?: ?boolean,
+  $isLastRow?: ?boolean,
+  $isSortable?: ?boolean,
+};
+declare export var StyledTableBodyCell: StyletronComponent<StyledTableBodyCellPropsT>;
+declare export var StyledTableLoadingMessage: StyletronComponent<{}>;
+declare export var StyledTableEmptyMessage: typeof StyledTableLoadingMessage;

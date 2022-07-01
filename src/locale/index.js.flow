@@ -6,18 +6,145 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import extend from 'just-extend';
 
-import type { LocaleT } from './types.js';
-import en_US from './en_US.js';
+type AccordionLocaleT = {|
+  collapse: string,
+  expand: string,
+|};
 
-export const LocaleContext: React.Context<LocaleT> = React.createContext(en_US);
+type BreadcrumbLocaleT = {|
+  ariaLabel: string,
+|};
 
-const LocaleProvider = (props: { locale: $Shape<LocaleT>, children: ?React.Node }) => {
-  const { locale, children } = props;
-  return (
-    <LocaleContext.Provider value={extend({}, en_US, locale)}>{children}</LocaleContext.Provider>
-  );
-};
+type DatepickerLocaleT = {|
+  ariaLabel: string,
+  ariaLabelRange: string,
+  ariaLabelCalendar: string,
+  ariaRoleDescriptionCalendarMonth: string,
+  nextMonth: string,
+  previousMonth: string,
+  pastWeek: string,
+  pastMonth: string,
+  pastThreeMonths: string,
+  pastSixMonths: string,
+  pastYear: string,
+  pastTwoYears: string,
+  screenReaderMessageInput: string,
+  selectedDate: string,
+  selectedDateRange: string,
+  selectSecondDatePrompt: string,
+  quickSelectLabel: string,
+  quickSelectAriaLabel: string,
+  quickSelectPlaceholder: string,
+  timeSelectEndLabel: string,
+  timeSelectStartLabel: string,
+  timePickerAriaLabel12Hour: string,
+  timePickerAriaLabel24Hour: string,
+  timezonePickerAriaLabel: string,
+  selectedStartDateLabel: string,
+  selectedEndDateLabel: string,
+  dateNotAvailableLabel: string,
+  dateAvailableLabel: string,
+  selectedLabel: string,
+  chooseLabel: string,
+|};
 
+type DataTableLocaleT = {|
+  emptyState: string,
+  loadingState: string,
+  searchAriaLabel: string,
+  filterAdd: string,
+  filterExclude: string,
+  filterExcludeRange: string,
+  filterExcludeValue: string,
+  filterApply: string,
+  filterAppliedTo: string,
+  optionsLabel: string,
+  optionsSearch: string,
+  optionsEmpty: string,
+  categoricalFilterSelectAll: string,
+  categoricalFilterSelectClear: string,
+  categoricalFilterEmpty: string,
+  datetimeFilterRange: string,
+  datetimeFilterRangeDatetime: string,
+  datetimeFilterRangeDate: string,
+  datetimeFilterRangeTime: string,
+  datetimeFilterCategorical: string,
+  datetimeFilterCategoricalWeekday: string,
+  datetimeFilterCategoricalMonth: string,
+  datetimeFilterCategoricalQuarter: string,
+  datetimeFilterCategoricalHalf: string,
+  datetimeFilterCategoricalFirstHalf: string,
+  datetimeFilterCategoricalSecondHalf: string,
+  datetimeFilterCategoricalYear: string,
+  numericalFilterRange: string,
+  numericalFilterSingleValue: string,
+  booleanFilterTrue: string,
+  booleanFilterFalse: string,
+  booleanColumnTrueShort: string,
+  booleanColumnFalseShort: string,
+|};
+
+type ButtonGroupLocaleT = {|
+  ariaLabel: string,
+|};
+
+type FileUploaderLocaleT = {|
+  dropFilesToUpload: string,
+  or: string,
+  browseFiles: string,
+  retry: string,
+  cancel: string,
+|};
+
+type MenuLocaleT = {|
+  noResultsMsg: string,
+  parentMenuItemAriaLabel: string,
+|};
+
+type ModalLocaleT = {|
+  close: string,
+|};
+
+type DrawerLocaleT = {|
+  close: string,
+|};
+
+type PaginationLocaleT = {|
+  prev: string,
+  next: string,
+  preposition: string,
+|};
+
+type SelectLocaleT = {|
+  // Remove noResultsMsg prop in the next major version
+  noResultsMsg: string,
+  placeholder: string,
+  create: string,
+|};
+
+type ToastLocaleT = {|
+  close: string,
+|};
+
+export type LocaleT = {|
+  accordion: AccordionLocaleT,
+  breadcrumbs: BreadcrumbLocaleT,
+  datepicker: DatepickerLocaleT,
+  datatable: DataTableLocaleT,
+  buttongroup: ButtonGroupLocaleT,
+  fileuploader: FileUploaderLocaleT,
+  menu: MenuLocaleT,
+  modal: ModalLocaleT,
+  drawer: DrawerLocaleT,
+  pagination: PaginationLocaleT,
+  select: SelectLocaleT,
+  toast: ToastLocaleT,
+|};
+
+declare export var LocaleContext: React.Context<LocaleT>;
+declare var LocaleProvider: React.StatelessFunctionalComponent<{
+  locale: $Shape<LocaleT>,
+  children: ?React.Node,
+}>;
 export default LocaleProvider;

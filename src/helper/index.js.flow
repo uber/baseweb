@@ -7,9 +7,51 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-export { ACCESSIBILITY_TYPE, PLACEMENT, TRIGGER_TYPE } from './constants.js';
-export { Helper as Unstable_Helper } from './helper.js';
-export { HelperSteps as Unstable_HelperSteps } from './helper-steps.js';
-export { StatefulHelper as Unstable_StatefulHelper } from './stateful-helper.js';
-export * from './styled-components.js';
-export type * from './types.js';
+import * as React from 'react';
+import type { StyletronComponent } from '../styles/styled';
+import type {
+  BasePopoverPropsT,
+  SharedStylePropsArgT,
+  PopoverPropsT as PropsT,
+  StatefulPopoverPropsT as StatefulPropsT,
+} from '../popover';
+
+export { ACCESSIBILITY_TYPE, PLACEMENT, TRIGGER_TYPE } from '../popover';
+
+export type { PropsT, StatefulPropsT };
+export type HelperStepsPropsT = {|
+  index: number,
+  length: number,
+  onFinish: () => mixed,
+  onPrev: () => mixed,
+  onNext: () => mixed,
+|};
+
+declare export var Unstable_Helper: {
+  (props: PropsT): React.Node,
+  defaultProps: {
+    ...$Shape<BasePopoverPropsT>,
+    placement: $FlowFixMe,
+    showArrow: $FlowFixMe,
+  },
+};
+declare export var Unstable_HelperSteps: React.StatelessFunctionalComponent<HelperStepsPropsT>;
+declare export var Unstable_StatefulHelper: {
+  (props: StatefulPropsT): React.Node,
+  defaultProps: {
+    accessibilityType: $FlowFixMe,
+    ignoreBoundary: $FlowFixMe,
+    overrides: $FlowFixMe,
+    onMouseEnterDelay: $FlowFixMe,
+    onMouseLeaveDelay: $FlowFixMe,
+    placement: $FlowFixMe,
+    showArrow: $FlowFixMe,
+    triggerType: $FlowFixMe,
+    dismissOnClickOutside: $FlowFixMe,
+    dismissOnEsc: $FlowFixMe,
+    stateReducer: $FlowFixMe,
+    popoverMargin: $FlowFixMe,
+  },
+};
+declare export var StyledBody: StyletronComponent<SharedStylePropsArgT>;
+declare export var StyledArrow: StyletronComponent<SharedStylePropsArgT>;

@@ -5,12 +5,115 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-export { default as Badge } from './badge.js';
-export { default as NotificationCircle } from './notification-circle.js';
-export { default as HintDot } from './hint-dot.js';
+import * as React from 'react';
+import type {StyletronComponent} from '../styles/styled';
+import type {OverrideT} from '../helpers/overrides';
 
-export { HIERARCHY, SHAPE, COLOR, PLACEMENT } from './constants.js';
+declare export var Badge: React.StatelessFunctionalComponent<BadgePropsT>;
+declare export var NotificationCircle: React.StatelessFunctionalComponent<NotificationCirclePropsT>;
+declare export var HintDot: React.StatelessFunctionalComponent<HintDotPropsT>;
 
-export * from './styled-components.js';
+declare export var HIERARCHY: {
+  primary: 'primary',
+  secondary: 'secondary',
+};
 
-export type * from './types.js';
+declare export var SHAPE: {
+  pill: 'pill',
+  rectangle: 'rectangle',
+};
+
+declare export var COLOR: {
+  accent: 'accent',
+  primary: 'primary',
+  positive: 'positive',
+  negative: 'negative',
+  warning: 'warning',
+};
+
+declare export var PLACEMENT: {
+  topLeft: 'topLeft',
+  topRight: 'topRight',
+  bottomRight: 'bottomRight',
+  bottomLeft: 'bottomLeft',
+  topLeftEdge: 'topLeftEdge',
+  topEdge: 'topEdge',
+  topRightEdge: 'topRightEdge',
+  bottomRightEdge: 'bottomRightEdge',
+  bottomEdge: 'bottomEdge',
+  bottomLeftEdge: 'bottomLeftEdge',
+  leftTopEdge: 'leftTopEdge',
+  rightTopEdge: 'rightTopEdge',
+  rightBottomEdge: 'rightBottomEdge',
+  leftBottomEdge: 'leftBottomEdge',
+};
+
+declare var ROLE: {
+  badge: 'badge',
+  notificationCircle: 'notificationCircle',
+  hintDot: 'hintDot',
+};
+
+export type HierarchyT = $Values<typeof HIERARCHY>;
+export type ShapeT = $Values<typeof SHAPE>;
+export type ColorT = $Values<typeof COLOR>;
+export type PlacementT = $Values<typeof PLACEMENT>;
+export type RoleT = $Values<typeof ROLE>;
+
+export type BadgeOverridesT = {
+  Root?: OverrideT,
+  Positioner?: OverrideT,
+  Badge?: OverrideT,
+};
+
+export type BadgePropsT = {
+  content: React.Node,
+  hierarchy?: HierarchyT,
+  shape?: ShapeT,
+  color?: ColorT,
+  placement?: PlacementT,
+  hidden?: boolean,
+  horizontalOffset?: string,
+  verticalOffset?: string,
+  overrides?: BadgeOverridesT,
+  children?: React.Node,
+};
+
+export type NotificationCirclePropsT = {
+  content: React.Node,
+  color?: ColorT,
+  placement?: PlacementT,
+  hidden?: boolean,
+  horizontalOffset?: string,
+  verticalOffset?: string,
+  overrides?: BadgeOverridesT,
+  children?: React.Node,
+};
+
+export type HintDotPropsT = {
+  color?: ColorT,
+  hidden?: boolean,
+  horizontalOffset?: string,
+  verticalOffset?: string,
+  overrides?: BadgeOverridesT,
+  children?: React.Node,
+};
+
+declare export var StyledRoot: StyletronComponent<{}>;
+declare export var StyledPositioner: StyletronComponent<{
+  $role: RoleT,
+  $placement: PlacementT,
+  $horizontalOffset?: ?string,
+  $verticalOffset?: ?string,
+}>;
+declare export var StyledBadge: StyletronComponent<{
+  $shape?: ShapeT,
+  $color?: ColorT,
+  $hierarchy?: HierarchyT,
+  $hidden?: boolean,
+}>;
+declare export var StyledNotificationCircle: StyletronComponent<{
+  $color?: ColorT,
+  $hidden?: boolean,
+}>;
+declare export var StyledHintDot: StyletronComponent<{ $color: ColorT, $hidden?: boolean }>;

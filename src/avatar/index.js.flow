@@ -6,14 +6,42 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-export { default as Avatar } from './avatar.js';
+import * as React from 'react';
+import type { StyletronComponent } from '../styles/styled';
+import type { OverrideT } from '../helpers/overrides';
 
-// Styled elements
-export {
-  Avatar as StyledAvatar,
-  Initials as StyledInitials,
-  Root as StyledRoot,
-} from './styled-components.js';
+export type InitialsStylePropsT = {};
+export type AvatarStylePropsT = {
+  $didImageFailToLoad?: boolean,
+  $imageLoaded?: boolean,
+  $size?: string,
+};
+export type RootStylePropsT = {
+  $didImageFailToLoad: boolean,
+  $size?: string,
+};
+export type StylePropsT = RootStylePropsT;
 
-// Flow
-export type * from './types.js';
+export type OverridesT = {
+  Avatar?: OverrideT,
+  Initials?: OverrideT,
+  Root?: OverrideT,
+};
+
+export type PropsT = {|
+  /** Bypasses initial generation from provided name with this value. */
+  initials?: string,
+  /** Defines an alternative text description of the image. */
+  name?: string,
+  overrides?: OverridesT,
+  /** Defines the width/height of the image. Accepts labels from theme.sizing, or passes value to height/width. */
+  size?: string,
+  /** Image to display. */
+  src?: string,
+|};
+
+declare export var Avatar: React.ComponentType<PropsT>;
+
+declare export var StyledAvatar: StyletronComponent<AvatarStylePropsT>;
+declare export var StyledInitials: StyletronComponent<InitialsStylePropsT>;
+declare export var StyledRoot: StyletronComponent<RootStylePropsT>;

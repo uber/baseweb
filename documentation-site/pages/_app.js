@@ -19,7 +19,7 @@ import {
   LightTheme,
   LightThemeMove,
 } from 'baseui';
-import type { BreakpointsT, ThemeT } from 'baseui/styles/types';
+import type { BreakpointsT, ThemeT } from 'baseui/styles';
 
 import App from 'next/app';
 import Head from 'next/head';

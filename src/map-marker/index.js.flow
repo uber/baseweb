@@ -5,21 +5,251 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-export { default as FixedMarker } from './fixed-marker';
-export { default as FloatingMarker } from './floating-marker';
-export { default as LocationPuck } from './location-puck';
-export {
-  FLOATING_MARKER_ANCHOR_POSITIONS,
-  FLOATING_MARKER_SIZES,
-  FLOATING_MARKER_ANCHOR_TYPES,
-  NEEDLE_SIZES,
-  PINHEAD_SIZES_SHAPES,
-  BADGE_ENHANCER_SIZES,
-  LABEL_ENHANCER_POSITIONS,
-  KIND,
-  LOCATION_PUCK_SIZES,
-  LOCATION_PUCK_TYPES,
-  PINHEAD_DIMENSIONS,
-} from './constants.js';
+import * as React from 'react';
+import type { OverrideT } from '../helpers/overrides.js';
 
-export type * from './types.js';
+declare export var NEEDLE_SIZES: {
+  none: 'none',
+  short: 'short',
+  medium: 'medium',
+  tall: 'tall',
+};
+declare export var PINHEAD_SIZES_SHAPES: {
+  xxSmallCircle: 'xx-small-circle',
+  xxSmallSquare: 'xx-small-square',
+  xSmallCircle: 'x-small-circle',
+  xSmallSquare: 'x-small-square',
+  small: 'small',
+  medium: 'medium',
+  large: 'large',
+};
+declare var PINHEAD_TYPES: {
+  floating: 'floating',
+  fixed: 'fixed',
+};
+declare export var FLOATING_MARKER_SIZES: {
+  small: 'small',
+  medium: 'medium',
+  large: 'large',
+};
+declare export var FLOATING_MARKER_ANCHOR_POSITIONS: {
+  none: 'none',
+  topLeft: 'top-left',
+  topRight: 'top-right',
+  bottomRight: 'bottom-right',
+  bottomLeft: 'bottom-left',
+};
+declare export var FLOATING_MARKER_ANCHOR_TYPES: {
+  circle: 'circle',
+  square: 'square',
+  xxSmallCircle: 'xx-small-circle',
+  xxSmallSquare: 'xx-small-square',
+};
+declare export var LABEL_ENHANCER_POSITIONS: {
+  none: 'none',
+  top: 'top',
+  left: 'left',
+  right: 'right',
+  bottom: 'bottom',
+};
+declare export var BADGE_ENHANCER_SIZES: {
+  none: 'none',
+  xSmall: 'x-small',
+  small: 'small',
+  mediumText: 'medium-text',
+  mediumIcon: 'medium-icon',
+};
+declare export var KIND: {
+  default: 'default',
+  accent: 'accent',
+  negative: 'negative',
+};
+declare export var PINHEAD_DIMENSIONS: {[size: PinHeadSizeT]: { height: number, icon: number }};
+
+declare export var LOCATION_PUCK_SIZES: {
+  small: 'small',
+  medium: 'medium',
+  large: 'large',
+};
+
+declare export var LOCATION_PUCK_TYPES: {
+  consumer: 'consumer',
+  earner: 'earner',
+};
+
+declare export var EARNER_LOCATION_PUCK_CORE_SCALES: {[size: LocationPuckSizeT]: string};
+
+export type AnchorPositionsT = $Values<typeof FLOATING_MARKER_ANCHOR_POSITIONS>;
+
+export type NeedleSizeT = $Values<typeof NEEDLE_SIZES>;
+
+export type PinHeadT = $Values<typeof PINHEAD_TYPES>;
+
+export type PinHeadSizeT = $Values<typeof PINHEAD_SIZES_SHAPES>;
+
+export type FloatingMarkerSizeT = $Values<typeof FLOATING_MARKER_SIZES>;
+
+/* eslint-disable flowtype/generic-spacing*/
+export type FloatingMarkerAnchorTypeT = $Values<typeof FLOATING_MARKER_ANCHOR_TYPES>;
+
+export type BadgeEnhancerSizeT = $Values<typeof BADGE_ENHANCER_SIZES>;
+
+export type LabelEnhancerPositionT = $Values<typeof LABEL_ENHANCER_POSITIONS>;
+
+export type KindT = $Values<typeof KIND>;
+
+export type LocationPuckSizeT = $Values<typeof LOCATION_PUCK_SIZES>;
+export type LocationPuckTypeT = $Values<typeof LOCATION_PUCK_TYPES>;
+
+export type FixedMarkerOverridesT = {
+  Root?: OverrideT,
+  InnerAnchor?: OverrideT,
+  OuterAnchor?: OverrideT,
+  PinHead?: OverrideT,
+  PinHeadContent?: OverrideT,
+  PinHeadContainer?: OverrideT,
+  Needle?: OverrideT,
+  DragShadow?: OverrideT,
+  DragShadowContainer?: OverrideT,
+  DragContainer?: OverrideT,
+  BadgeEnhancer?: OverrideT,
+  LabelEnhancer?: OverrideT,
+  LabelEnhancerContainer?: OverrideT,
+};
+
+export type NeedlePropsT = {
+  size: NeedleSizeT,
+  background?: string,
+  overrides: FixedMarkerOverridesT,
+};
+
+export type ItemPropsT = {
+  children?: React.Node,
+  color?: string,
+  size?: number,
+};
+
+export type LabelEnhancerT = {|
+  labelEnhancerContent?: string,
+  labelEnhancerPosition?: LabelEnhancerPositionT,
+|};
+
+export type LabelEhancerComponentT = {
+  ...LabelEnhancerT,
+  needleHeight: number,
+  size: PinHeadSizeT,
+  overrides?: FixedMarkerOverridesT,
+};
+
+export type BadgeEnhancerT = {|
+  badgeEnhancerSize?: BadgeEnhancerSizeT | null,
+  badgeEnhancerContent?: React.AbstractComponent<{| size: number |}>,
+|};
+
+export type BadgeEnhancerComponentT = {
+  ...BadgeEnhancerT,
+  pinHeadSize: PinHeadSizeT,
+  markerType: PinHeadT,
+  overrides: FixedMarkerOverridesT,
+};
+export type BadgePositionT = {
+  x: number,
+  y: number,
+};
+
+export type FixedMarkerPropsT = {|
+  size?: PinHeadSizeT,
+  needle?: NeedleSizeT,
+  label?: string,
+  startEnhancer?: React.AbstractComponent<{| size: number |}>,
+  endEnhancer?: React.AbstractComponent<{| size: number |}>,
+  kind?: KindT,
+  dragging?: boolean,
+  overrides?: FixedMarkerOverridesT,
+  ...BadgeEnhancerT,
+  ...LabelEnhancerT,
+|};
+
+export type FloatingMarkerOverridesT = {
+  Root?: OverrideT,
+  InnerAnchor?: OverrideT,
+  OuterAnchor?: OverrideT,
+  PinHead?: OverrideT,
+  PinHeadContent?: OverrideT,
+  PinHeadContainer?: OverrideT,
+  AnchorContainer?: OverrideT,
+  Needle?: OverrideT,
+  DragShadow?: OverrideT,
+  DragShadowContainer?: OverrideT,
+  DragContainer?: OverrideT,
+  BadgeEnhancer?: OverrideT,
+  LabelEnhancer?: OverrideT,
+  LabelEnhancerContainer?: OverrideT,
+};
+
+export type FloatingMarkerPropsT = {
+  label?: string,
+  anchor?: AnchorPositionsT,
+  endEnhancer?: React.AbstractComponent<{| size: number |}>,
+  startEnhancer?: React.AbstractComponent<{| size: number |}>,
+  anchorType?: FloatingMarkerAnchorTypeT,
+  size?: FloatingMarkerSizeT,
+  overrides?: FloatingMarkerOverridesT,
+};
+
+export type PinHeadPropsT = {
+  size?: PinHeadSizeT,
+  label?: string,
+  endEnhancer?: React.AbstractComponent<{| size: number |}>,
+  startEnhancer?: React.AbstractComponent<{| size: number |}>,
+  color: string,
+  background: string,
+  type?: PinHeadT,
+  anchorType?: FloatingMarkerAnchorTypeT,
+  needle?: NeedleSizeT,
+  overrides?: FloatingMarkerOverridesT | FixedMarkerOverridesT,
+  ...BadgeEnhancerT,
+  ...LabelEnhancerT,
+};
+
+export type DragShadowPropsT = {
+  background: string,
+  dragging: boolean,
+  height: number,
+  overrides: FixedMarkerOverridesT,
+};
+
+
+export type LocationPuckOverridesT = {
+  Root?: OverrideT,
+  LocationPuckApproximation?: OverrideT,
+  ConsumerLocationPuckCore?: OverrideT,
+  EarnerLocationPuckCore?: OverrideT,
+};
+
+export type LocationPuckPropsT = {
+  size?: LocationPuckSizeT,
+  heading?: number,
+  confidenceRadius?: number,
+  showHeading?: boolean,
+  type?: LocationPuckTypeT,
+  overrides?: LocationPuckOverridesT,
+};
+
+export type ConsumerLocationPuckPropsT = {
+  heading: number,
+  confidenceRadius?: number,
+  showHeading?: boolean,
+  overrides: LocationPuckOverridesT,
+};
+
+export type EarnerLocationPuckPropsT = {
+  heading: number,
+  confidenceRadius?: number,
+  size: LocationPuckSizeT,
+  overrides?: LocationPuckOverridesT,
+};
+
+declare export var FixedMarker: React.StatelessFunctionalComponent<FixedMarkerPropsT>;
+declare export var FloatingMarker: React.StatelessFunctionalComponent<FloatingMarkerPropsT>;
+declare export var LocationPuck: React.StatelessFunctionalComponent<LocationPuckPropsT>;

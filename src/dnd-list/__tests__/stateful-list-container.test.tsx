@@ -36,9 +36,9 @@ describe('StatefulListContainer', () => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const children = jest.fn((props) => null);
     const event = {
-      newIndex: undefined,
+      newIndex: 1,
       newState: [undefined],
-      oldIndex: undefined,
+      oldIndex: 1,
     };
 
     render(<StatefulListContainer {...props}>{children}</StatefulListContainer>);
@@ -50,7 +50,9 @@ describe('StatefulListContainer', () => {
     expect(childrenOnChangeProp).not.toBe(props.onChange);
 
     // user's onChange handler is called
-    act(() => childrenOnChangeProp(event));
+    act(() => {
+      childrenOnChangeProp(event);
+    });
     expect(props.onChange).toHaveBeenCalledTimes(1);
     expect(props.onChange).toHaveBeenLastCalledWith(event);
   });

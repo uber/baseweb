@@ -7,10 +7,117 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-export * from './constants.js';
-export * from './stateful-tabs.js';
-export * from './styled-components.js';
-export * from './tab.js';
-export * from './tabs.js';
-export * from './utils.js';
-export type * from './types.js';
+import * as React from 'react';
+import type { StyletronComponent } from '../styles/styled';
+import type { OverrideT } from '../helpers/overrides';
+import type { IconPropsT } from '../icon';
+
+declare export var ORIENTATION: {
+  vertical: 'vertical',
+  horizontal: 'horizontal',
+};
+declare export var FILL: {
+  fixed: 'fixed',
+  intrinsic: 'intrinsic',
+};
+declare export var STATE_CHANGE_TYPE: {
+  change: 'change',
+};
+
+export type OrientationT = $Values<typeof ORIENTATION>;
+export type FillT = $Values<typeof FILL>;
+export type StateChangeT = $Values<typeof STATE_CHANGE_TYPE>;
+
+export type TabsOverridesT = {
+  Root?: OverrideT,
+  TabList?: OverrideT,
+  TabHighlight?: OverrideT,
+  TabBorder?: OverrideT,
+};
+
+export type TabOverridesT = {
+  Tab?: OverrideT,
+  ArtworkContainer?: OverrideT,
+  TabPanel?: OverrideT,
+};
+
+export type StatefulTabsStateT = {|
+  activeKey: React.Key,
+|};
+
+export type StatefulTabsActionT = {|
+  type: StateChangeT,
+  payload: React.Key,
+|};
+
+export type StatefulTabsReducerT = (
+  state: StatefulTabsStateT,
+  action: StatefulTabsActionT
+) => StatefulTabsStateT;
+
+export type onChangeT = (params: { activeKey: React.Key }) => void;
+
+export type TabsPropsT = {|
+  children: React.Node,
+  activeKey?: React.Key,
+  disabled?: boolean,
+  fill?: FillT,
+  orientation?: OrientationT,
+  activateOnFocus?: boolean,
+  onChange?: onChangeT,
+  overrides?: TabsOverridesT,
+  renderAll?: boolean,
+  uid?: string,
+|};
+
+export type StatefulTabsPropsT = {|
+  ...TabsPropsT,
+  initialState?: StatefulTabsStateT,
+  stateReducer?: StatefulTabsReducerT,
+|};
+
+export type TabPropsT = {
+  title?: React.Node,
+  key?: React.Key,
+  tabRef?: React.Ref<'button'>,
+  overrides?: TabOverridesT,
+  children?: React.Node,
+  artwork?: React.AbstractComponent<{
+    ...IconPropsT,
+    size: $PropertyType<IconPropsT, 'size'>,
+    color: $PropertyType<IconPropsT, 'color'>,
+  }>,
+};
+
+declare export var StatefulTabs: React.StatelessFunctionalComponent<StatefulTabsPropsT>;
+declare export var StyledRoot: StyletronComponent<{ $orientation?: OrientationT }>;
+declare export var StyledTabList: StyletronComponent<{
+  $orientation?: OrientationT,
+  $fill?: FillT,
+}>;
+declare export var StyledTab: StyletronComponent<{
+  $orientation?: OrientationT,
+  $fill?: FillT,
+  $focusVisible?: boolean,
+  $isActive?: boolean,
+}>;
+declare export var StyledArtworkContainer: StyletronComponent<{ $orientation?: OrientationT }>;
+declare export var StyledTabBorder: StyletronComponent<{ $orientation?: OrientationT }>;
+declare export var StyledTabHighlight: StyletronComponent<{
+  $orientation?: OrientationT,
+  $length?: number,
+  $distance?: number,
+  $animate?: boolean,
+}>;
+declare export var StyledTabPanel: StyletronComponent<{ $pad: boolean }>;
+
+declare export var Tab: React.StatelessFunctionalComponent<TabPropsT>;
+declare export var Tabs: React.StatelessFunctionalComponent<TabsPropsT>;
+
+declare export var getTabId: (uid: string, key: React.Key) => string;
+declare export var getTabPanelId: (uid: string, key: React.Key) => string;
+declare export var isHorizontal: (orientation: OrientationT) => boolean;
+declare export var isVertical: (orientation: OrientationT) => boolean;
+declare export var isRTL: (direction: string) => boolean;
+declare export var isIntrinsic: (fill: FillT) => boolean;
+declare export var isFixed: (fill: FillT) => boolean;

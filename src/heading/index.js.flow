@@ -5,6 +5,18 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-export { default as HeadingLevel, LevelContext } from './heading-level.js';
-export { default as Heading } from './heading.js';
-export type * from './types.js';
+import * as React from 'react';
+import type { BlockPropsT } from '../block';
+
+export type HeadingPropsT = {
+  /** Set and fix the style level independently on the hierarchy context. */
+  styleLevel?: number,
+} & BlockPropsT;
+export type HeadingLevelPropsT = {
+  /** Content to be rendered in the HeadingLevel. */
+  children: React.Node,
+};
+
+declare export var LevelContext: React.Context<number>;
+declare export var HeadingLevel: React.ComponentType<HeadingLevelPropsT>;
+declare export var Heading: React.ComponentType<HeadingPropsT>;

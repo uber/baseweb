@@ -5,20 +5,132 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-export { default as Slider } from './slider.js';
-export { default as StatefulSlider } from './stateful-slider.js';
-export { default as StatefulContainer } from './stateful-slider-container.js';
-// Styled elements
-export {
-  Root as StyledRoot,
-  Track as StyledTrack,
-  InnerTrack as StyledInnerTrack,
-  Thumb as StyledThumb,
-  InnerThumb as StyledInnerThumb,
-  Tick as StyledTick,
-  TickBar as StyledTickBar,
-  ThumbValue as StyledThumbValue,
-  Mark as StyledMark,
-} from './styled-components.js';
+import * as React from 'react';
+import type { StyletronComponent } from '../styles/styled';
+import type { OverrideT } from '../helpers/overrides';
 
-export type * from './types.js';
+declare var STATE_CHANGE_TYPE: {
+  change: 'change',
+  finalChange: 'finalChange',
+};
+
+export type ChangeActionT = $Keys<typeof STATE_CHANGE_TYPE>;
+export type ParamsT = {
+  value: Array<number>,
+};
+export type OverridesT = {
+  Root?: OverrideT,
+  Track?: OverrideT,
+  InnerTrack?: OverrideT,
+  Tick?: OverrideT,
+  TickBar?: OverrideT,
+  Thumb?: OverrideT,
+  InnerThumb?: OverrideT,
+  ThumbValue?: OverrideT,
+  Mark?: OverrideT,
+};
+
+export type PropsT = {
+  /** Position of the thumbs. It can be a single point (one thumb) or 2 points array (range thumbs). */
+  value: Array<number>,
+  /** The minimum allowed value of the slider. Should not be bigger than max. */
+  min?: number,
+  /** The maximum allowed value of the slider. Should not be smaller than min. */
+  max?: number,
+  /** The granularity the slider can step through value. Default step is 1. */
+  step?: number,
+  overrides?: OverridesT,
+  /** Disable control from being changed. */
+  disabled?: boolean,
+  /** Display a mark at each step. */
+  marks?: boolean,
+  /** Always display the selected value/thumb/label. */
+  persistentThumb?: boolean,
+  /** Function to change the numeric value to a user friendly value. Also applied to min/max labels. */
+  valueToLabel?: (value: number) => React$Node,
+  /** Handler for events on trigger element, each time thumbs change selection, which is passed in `value`. */
+  onChange?: ({
+    ...ParamsT,
+  }) => mixed,
+  /** Handler for events on trigger element, each time thumbs finish changing selection, which is passed in `value`. */
+  onFinalChange?: ({
+    ...ParamsT,
+  }) => mixed,
+};
+
+export type StateT = {|
+  value: Array<number>,
+|};
+
+export type StateReducerT = (stateType: string, nextState: StateT, currentState: StateT) => StateT;
+
+export type StatefulContainerPropsT = {
+  overrides?: OverridesT,
+  children: (PropsT) => React$Node,
+  min: number,
+  max: number,
+  step: number,
+  /** Initial state populated into the component */
+  initialState?: StateT,
+  /** Reducer function to manipulate internal state updates. */
+  stateReducer: StateReducerT,
+  /** Handler for events on trigger element, each time thumbs change selection, which is passed in `value`. */
+  onChange: ({ ...ParamsT }) => mixed,
+  /** Handler for events on trigger element, each time thumbs finish changing selection, which is passed in `value`. */
+  onFinalChange: ({ ...ParamsT }) => mixed,
+};
+
+export type StatefulSliderPropsT = {
+  overrides?: OverridesT,
+  /** Initial state populated into the component */
+  initialState?: StateT,
+  min?: number,
+  max?: number,
+  step?: number,
+  marks?: boolean,
+  /** Always display the selected value/thumb/label. */
+  persistentThumb?: boolean,
+  /** Function to change the numeric value to a user friendly value. Also applied to min/max labels. */
+  valueToLabel?: (value: number) => React$Node,
+  /** Handler for events on trigger element, each time thumbs change selection, which is passed in `value`. */
+  onChange?: ({ ...ParamsT }) => mixed,
+  /** Handler for events on trigger element, each time thumbs finish changing selection, which is passed in `value`. */
+  onFinalChange?: ({ ...ParamsT }) => mixed,
+};
+
+export type StylePropsT = {
+  $disabled?: boolean,
+  $isDragged?: boolean,
+  $marks?: boolean,
+  $max?: number,
+  $min?: number,
+  $thumbIndex?: number,
+  $value?: Array<number>,
+  $isFocusVisible?: boolean,
+};
+
+declare export var Slider: React.StatelessFunctionalComponent<PropsT>;
+declare export var StatefulSlider: React.StatelessFunctionalComponent<StatefulSliderPropsT>;
+
+declare export class StatefulContainer extends React.Component<StatefulContainerPropsT, StateT> {
+  static defaultProps: {
+    stateReducer: $FlowFixMe,
+    min: $FlowFixMe,
+    max: $FlowFixMe,
+    step: $FlowFixMe,
+    marks: $FlowFixMe,
+    onChange: $FlowFixMe,
+    onFinalChange: $FlowFixMe,
+  };
+}
+
+// Styled elements
+declare export var StyledRoot: StyletronComponent<{}>;
+declare export var StyledTrack: StyletronComponent<StylePropsT>;
+declare export var StyledInnerTrack: StyletronComponent<StylePropsT>;
+declare export var StyledThumb: StyletronComponent<StylePropsT>;
+declare export var StyledInnerThumb: StyletronComponent<StylePropsT>;
+declare export var StyledTick: StyletronComponent<StylePropsT>;
+declare export var StyledTickBar: StyletronComponent<StylePropsT>;
+declare export var StyledThumbValue: StyletronComponent<StylePropsT>;
+declare export var StyledMark: StyletronComponent<StylePropsT>;

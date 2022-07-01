@@ -6,9 +6,104 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-export { default as AppNavBar } from './app-nav-bar.js';
-export { POSITION } from './constants.js';
-export * from './styled-components.js';
-export * from './types.js';
+import * as React from 'react';
+import type { StyletronComponent } from '../styles/styled';
+import { StyledListItem } from '../menu';
+import type { OverrideT } from '../helpers/overrides';
 
-export { setItemActive } from './utils.js';
+export type OverridesT = {
+  Root?: OverrideT,
+  AppName?: OverrideT,
+  DesktopMenu?: OverrideT,
+  DesktopMenuContainer?: OverrideT,
+  MainMenuItem?: OverrideT,
+  PrimaryMenuContainer?: OverrideT,
+  ProfileTileContainer?: OverrideT,
+  SecondaryMenuContainer?: OverrideT,
+  Spacing?: OverrideT,
+  SubnavContainer?: OverrideT,
+  UserMenuProfileListItem?: OverrideT,
+  UserProfileInfoContainer?: OverrideT,
+  UserProfilePictureContainer?: OverrideT,
+  UserProfileTileContainer?: OverrideT,
+
+  // nested overrides
+  MobileDrawer?: OverrideT,
+  MobileMenu?: OverrideT,
+  SideMenuButton?: OverrideT,
+  UserMenuButton?: OverrideT,
+  UserMenu?: OverrideT,
+};
+
+export type NavItemT = {|
+  active?: boolean,
+  // flowlint-next-line unclear-type:off
+  icon?: React.AbstractComponent<any>,
+  // flowlint-next-line unclear-type:off
+  info?: any,
+  label: string,
+  children?: NavItemT[],
+  // flowlint-next-line unclear-type:off
+  navExitIcon?: React.AbstractComponent<any>,
+  navPosition?: {
+    desktop?: $Values<typeof POSITION>,
+    mobile?: $Values<typeof POSITION>,
+  },
+|};
+
+export type UserMenuPropsT = {|
+  userItems?: NavItemT[],
+  username?: string,
+  usernameSubtitle?: React.Node,
+  userImgUrl?: string,
+  onUserItemSelect?: (NavItemT) => mixed,
+|};
+
+export type AppNavBarPropsT = {|
+  ...UserMenuPropsT,
+  isMainItemActive?: (NavItemT) => boolean,
+  mainItems?: NavItemT[],
+  mapItemToNode?: (NavItemT) => React.Node,
+  onMainItemSelect?: (NavItemT) => mixed,
+  overrides?: OverridesT,
+  title?: React.Node,
+|};
+
+declare export var AppNavBar: React.ComponentType<AppNavBarPropsT>;
+
+declare export var KIND: {
+  primary: 'primary',
+  secondary: 'secondary',
+};
+
+declare export var POSITION: {
+  horizontal: 'horizontal',
+  vertical: 'vertical',
+};
+
+declare export var StyledRoot: StyletronComponent<{}>;
+declare export var StyledSubnavContainer: StyletronComponent<{}>;
+declare export var StyledSpacing: StyletronComponent<{}>;
+declare export var StyledAppName: StyletronComponent<{}>;
+declare export var StyledSideMenuButton: StyletronComponent<{ $isFocusVisible: boolean }>;
+declare export var StyledPrimaryMenuContainer: StyletronComponent<{}>;
+declare export var StyledMainMenuItem: StyletronComponent<{
+  $active?: boolean,
+  $isFocusVisible: boolean,
+  $kind: $Values<typeof KIND>,
+}>;
+declare export var StyledSecondaryMenuContainer: StyletronComponent<{}>;
+declare export var StyledUserMenuButton: StyletronComponent<{ $isFocusVisible: boolean }>;
+declare export var StyledUserMenuProfileListItem: typeof StyledListItem;
+declare export var StyledUserProfileTileContainer: StyletronComponent<{}>;
+declare export var StyledUserProfilePictureContainer: StyletronComponent<{}>;
+declare export var StyledUserProfileInfoContainer: StyletronComponent<{}>;
+declare export var StyledDesktopMenuContainer: StyletronComponent<{}>;
+declare export var StyledDesktopMenu: StyletronComponent<{}>;
+
+type GetUniqueIdentifierT = (NavItemT) => string | number;
+declare export function setItemActive(
+  items: NavItemT[],
+  item: NavItemT,
+  getUniqueIdentifier?: GetUniqueIdentifierT
+): NavItemT[];

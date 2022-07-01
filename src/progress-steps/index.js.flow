@@ -7,8 +7,117 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-export { default as ProgressSteps } from './progress-steps.js';
-export { default as Step } from './step.js';
-export { default as NumberedStep } from './numbered-step.js';
-export * from './styled-components.js';
-export type * from './types.js';
+import * as React from 'react';
+import type { Node } from 'react';
+import type { StyletronComponent } from '../styles/styled';
+import type { OverrideT } from '../helpers/overrides';
+
+export type ProgressStepsOverridesT = {
+  Root?: OverrideT,
+  StepRoot?: OverrideT,
+  IconContainer?: OverrideT,
+  Icon?: OverrideT,
+  InnerIcon?: OverrideT,
+  Tail?: OverrideT,
+  Content?: OverrideT,
+  Title?: OverrideT,
+  Description?: OverrideT,
+};
+
+export type ProgressStepsPropsT = {
+  overrides?: ProgressStepsOverridesT,
+  children?: Node,
+  /** Defines the current active step index. */
+  current: number,
+};
+
+export type StepOverridesT = {
+  Root?: OverrideT,
+  IconContainer?: OverrideT,
+  Icon?: OverrideT,
+  InnerIcon?: OverrideT,
+  Tail?: OverrideT,
+  Content?: OverrideT,
+  Title?: OverrideT,
+  Description?: OverrideT,
+};
+
+export type StepPropsT = {
+  /** The title of the Step. */
+  title?: Node,
+  /** Defines if the step is completed. Overriden by ProgressSteps, if used. */
+  isCompleted: boolean,
+  /** Defines if the step is currently active. */
+  isActive?: boolean,
+  /** Defines if the step is the last item displayed. Overriden by ProgressSteps, if used. */
+  isLast: boolean,
+  overrides?: StepOverridesT,
+  children?: Node,
+};
+
+export type NumberedStepOverridesT = {
+  Root?: OverrideT,
+  IconContainer?: OverrideT,
+  Icon?: OverrideT,
+  InnerIcon?: OverrideT,
+  Tail?: OverrideT,
+  Content?: OverrideT,
+  Title?: OverrideT,
+  Description?: OverrideT,
+};
+
+export type NumberedStepPropsT = {
+  /** The title of the Step. */
+  title?: string,
+  /** Defines if the step is completed. */
+  isCompleted: boolean,
+  /** Defines if the step is currently active. */
+  isActive?: boolean,
+  /** Defines if the step is the last item displayed. */
+  isLast: boolean,
+  overrides?: NumberedStepOverridesT,
+  children?: Node,
+  /** The number displayed as the step number */
+  step?: Node,
+};
+
+export type StylePropsT = {
+  $isActive: boolean,
+  $isCompleted: boolean,
+  $disabled: boolean,
+};
+
+declare export var ProgressSteps: {
+  (props: ProgressStepsPropsT): React.Node,
+  defaultProps: {
+    current: number,
+  },
+};
+declare export var Step: {
+  (props: StepPropsT): React.Node,
+  defaultProps: {
+    isCompleted: boolean,
+    isLast: boolean,
+  },
+};
+
+declare export var NumberedStep: {
+  (props: NumberedStepPropsT): React.Node,
+  defaultProps: {
+    isCompleted: boolean,
+    isLast: boolean,
+  },
+};
+
+declare export var StyledProgressSteps: StyletronComponent<{}>;
+declare export var StyledStep: StyletronComponent<StylePropsT>;
+declare export var StyledIconContainer: StyletronComponent<StylePropsT>;
+declare export var StyledIcon: StyletronComponent<StylePropsT>;
+declare export var StyledInnerIcon: StyletronComponent<StylePropsT>;
+declare export var StyledContent: StyletronComponent<StylePropsT>;
+declare export var StyledContentTitle: StyletronComponent<StylePropsT>;
+declare export var StyledContentTail: StyletronComponent<StylePropsT>;
+declare export var StyledContentDescription: StyletronComponent<StylePropsT>;
+declare export var StyledNumberStep: StyletronComponent<StylePropsT>;
+declare export var StyledNumberIcon: StyletronComponent<StylePropsT>;
+declare export var StyledNumberContentTail: StyletronComponent<StylePropsT>;

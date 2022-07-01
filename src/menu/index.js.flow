@@ -5,26 +5,376 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-export { default as StatefulMenu } from './stateful-menu.js';
-export { default as StatefulContainer } from './stateful-container.js';
-export { default as OptionList } from './option-list.js';
-export { default as OptionProfile } from './option-profile.js';
-export { default as Menu } from './menu.js';
-export { default as NestedMenus, NestedMenuContext } from './nested-menus.js';
-// Constants
-export { KEY_STRINGS, STATE_CHANGE_TYPES } from './constants.js';
+import * as React from 'react';
+import type { StyletronComponent } from '../styles/styled';
+import type { OverrideT } from '../helpers/overrides';
+
+declare export var STATE_CHANGE_TYPES: {
+  click: 'click',
+  moveUp: 'moveUp',
+  moveDown: 'moveDown',
+  mouseEnter: 'mouseEnter',
+  mouseLeave: 'mouseLeave',
+  focus: 'focus',
+  reset: 'reset',
+  character: 'character',
+  enter: 'enter',
+};
+
+declare export var KEY_STRINGS: {
+  ArrowUp: 'ArrowUp',
+  ArrowDown: 'ArrowDown',
+  ArrowLeft: 'ArrowLeft',
+  ArrowRight: 'ArrowRight',
+  Enter: 'Enter',
+  Space: ' ',
+  Escape: 'Escape',
+  Backspace: 'Backspace',
+  Home: 'Home',
+  End: 'End',
+};
+
+declare var OPTION_LIST_SIZE: {
+  default: 'default',
+  compact: 'compact',
+};
+
+// flowlint-next-line unclear-type:off
+export type ItemT = any;
+export type ArrayItemsT = $ReadOnlyArray<ItemT>;
+export type GroupedItemsT = { __ungrouped: ArrayItemsT, [string]: ArrayItemsT };
+export type ItemsT = ArrayItemsT | GroupedItemsT;
+
+export type GetItemLabelFnT = (item: ItemT) => React.Node;
+
+export type GetProfileItemLabelsFnT = (item: ItemT) => {
+  title?: string,
+  subtitle?: string,
+  body?: string,
+};
+
+export type GetProfileItemImgFnT = (
+  item: ItemT // flowlint-next-line unclear-type:off
+) => string | React.ComponentType<any>;
+
+export type GetProfileItemImgTextFnT = (item: ItemT) => string;
+
+export type SetRootRefFnT = (ref: React.ElementRef<typeof HTMLElement>) => void;
+
+export type RootRefT = { current: null | HTMLElement };
+
+export type OnItemSelectFnT = ({
+  item: ItemT,
+  event?: SyntheticEvent<HTMLElement> | KeyboardEvent,
+}) => mixed;
+
+export type ProfileOverridesT = {
+  List?: OverrideT,
+  ListItemProfile?: OverrideT,
+  ProfileImgContainer?: OverrideT,
+  ProfileImg?: OverrideT,
+  ProfileLabelsContainer?: OverrideT,
+  ProfileTitle?: OverrideT,
+  ProfileSubtitle?: OverrideT,
+  ProfileBody?: OverrideT,
+};
+
+export type RenderItemPropsT = {
+  disabled?: boolean,
+  ref?: React.ElementRef<typeof HTMLElement>,
+  id?: ?string,
+  isFocused?: boolean,
+  // indicates when the item is visually focused
+  isHighlighted?: boolean,
+  onClick?: (event: SyntheticMouseEvent<HTMLElement>) => mixed,
+  onMouseEnter?: (event: SyntheticMouseEvent<HTMLElement>) => mixed,
+  resetMenu?: () => mixed,
+};
+
+export type GetRequiredItemPropsFnT = (item: ItemT, index: number) => $Shape<RenderItemPropsT>;
+
+export type StateReducerFnT = (
+  changeType: ?$Keys<typeof STATE_CHANGE_TYPES>,
+  changes: StatefulContainerStateT,
+  currentState: StatefulContainerStateT
+) => StatefulContainerStateT;
+
+export type StatefulContainerStateT = {
+  // id of the currently highlighted item (from keyboard control)
+  activedescendantId?: ?string,
+  // index of currently highlighted item (from keyboard control)
+  highlightedIndex: number,
+  // indicates when the menu can be navigated by keyboard and affects menu item option rendering
+  // see https://github.com/uber/baseweb/issues/993 for a description.
+  isFocused: boolean,
+};
+
+export type InitialStateT = {
+  // id of the currently highlighted item (from keyboard control)
+  activedescendantId?: ?string,
+  // index of currently highlighted item (from keyboard control)
+  highlightedIndex?: number,
+  // indicates when the menu can be navigated by keyboard and affects menu item option rendering
+  // see https://github.com/uber/baseweb/issues/993 for a description.
+  isFocused?: boolean,
+};
+
+export type RenderPropsT = StatefulContainerStateT & {
+  items: ItemsT,
+  getRequiredItemProps: GetRequiredItemPropsFnT,
+};
+
+/**
+ * Component Prop Types
+ * ====================
+ * Required and Optional are split into separate object types, and internals are all
+ * marked as required because otherwise defaultProps will not work properly
+ */
+
+export type StatefulContainerPropsT = {
+  /** List of menu items. */
+  items: ItemsT,
+  /** Initial state of the stateful menu. */
+  initialState: InitialStateT,
+  /** State reducer to intercept state changes and return new internal state */
+  stateReducer: StateReducerFnT,
+  /** Function to get props for each rendered item. This will have some defaults needed for keyboard
+   * bindings to work properly. Every rendered item should call this.
+   */
+  getRequiredItemProps: GetRequiredItemPropsFnT,
+  onActiveDescendantChange?: (id?: string) => mixed,
+  /** Callback executed on menu item clicks. */
+  onItemSelect: OnItemSelectFnT,
+  /** Ref for the menu container element. Used to capture key events for navigation */
+  rootRef?: RootRefT,
+  /** Node for menu's keyboard listener. Default is null and keyboard handlers will listen on menu root. */
+  keyboardControlNode: { current: HTMLElement | null },
+  /** whether has keyboard type-ahead function */
+  typeAhead: boolean,
+  /** Child as function pattern. */
+  children: (RenderPropsT) => React.Node,
+  addMenuToNesting?: (ref: { current: HTMLElement | null }) => void,
+  removeMenuFromNesting?: (ref: { current: HTMLElement | null }) => void,
+  getParentMenu?: (ref: { current: HTMLElement | null }) => ?{
+    current: HTMLElement | null,
+  },
+  getChildMenu?: (ref: { current: HTMLElement | null }) => ?{
+    current: HTMLElement | null,
+  },
+  nestedMenuHoverIndex?: number,
+  isNestedMenuVisible?: (ref: { current: HTMLElement | null }) => boolean,
+  forceHighlight: boolean,
+};
+
+export type MenuPropsT = {
+  overrides?: {
+    EmptyState?: OverrideT,
+    List?: OverrideT,
+    Option?: OverrideT,
+    OptgroupHeader?: OverrideT,
+    ListItem?: OverrideT,
+  },
+  /** Renders all menu content for SEO purposes regardless of menu  state */
+  renderAll?: boolean,
+};
+
+export type MenuProfilePropsT = {
+  /** Returns an object consisting of title, subtitle, and body to render menu item */
+  getProfileItemLabels: GetProfileItemLabelsFnT,
+  /** Returns either an image source url, or a full React component to render as the image. */
+  getProfileItemImg: GetProfileItemImgFnT,
+  /** Returns the alt text for the image */
+  getProfileItemImgText: GetProfileItemImgTextFnT,
+  overrides?: ProfileOverridesT,
+};
+
+export type SharedStatelessPropsT = {
+  /** Id of the highlighted menu item. */
+  activedescendantId?: ?string,
+  /** Function to get props for each rendered item. This will have some defaults needed for keyboard
+   * bindings to work properly. Every rendered item should call this.
+   */
+  /** Passed to the top level menu element. */
+  'aria-label'?: string,
+  getRequiredItemProps?: GetRequiredItemPropsFnT,
+  isFocused?: boolean,
+  handleMouseLeave?: (event: SyntheticMouseEvent<HTMLElement>) => mixed,
+  /** Index of highlighted menu item. */
+  highlightedIndex?: number,
+  /** List of menu items. */
+  items: ItemsT,
+  /** Message to be displayed if no menu items are passed in. */
+  noResultsMsg?: React.Node,
+  onBlur?: (event: SyntheticFocusEvent<HTMLElement>) => mixed,
+  onFocus?: (event: SyntheticFocusEvent<HTMLElement>) => mixed,
+  /** Ref for the menu container element. Used to capture key events for navigation */
+  rootRef?: RootRefT,
+  focusMenu?: (event: FocusEvent | MouseEvent | KeyboardEvent) => mixed,
+  unfocusMenu?: () => mixed,
+  handleKeyDown?: (event: KeyboardEvent) => mixed,
+};
+
+export type StatefulMenuPropsT = {
+  /** List of menu items. */
+  items: ItemsT,
+  /** Initial state of the stateful menu. */
+  initialState?: InitialStateT,
+  /** State reducer to intercept state changes and return new internal state */
+  stateReducer?: StateReducerFnT,
+  /** Function to get props for each rendered item. This will have some defaults needed for keyboard
+   * bindings to work properly. Every rendered item should call this.
+   */
+  getRequiredItemProps?: GetRequiredItemPropsFnT,
+  onActiveDescendantChange?: (id?: string) => mixed,
+  /** Callback executed on menu item clicks. */
+  onItemSelect?: OnItemSelectFnT,
+  /** Ref for the menu container element. Used to capture key events for navigation */
+  rootRef?: RootRefT,
+  /** Child as function pattern. */
+  children?: (RenderPropsT) => React.Node,
+  /** whether has keyboard type-ahead function */
+  typeAhead?: boolean,
+  addMenuToNesting?: (ref: { current: HTMLElement | null }) => void,
+  removeMenuFromNesting?: (ref: { current: HTMLElement | null }) => void,
+  getParentMenu?: (ref: { current: HTMLElement | null }) => ?{
+    current: HTMLElement | null,
+  },
+  getChildMenu?: (ref: { current: HTMLElement | null }) => ?{
+    current: HTMLElement | null,
+  },
+  nestedMenuHoverIndex?: number,
+  isNestedMenuVisible?: (ref: { current: HTMLElement | null }) => boolean,
+} & MenuPropsT;
+
+export type StatefulMenuProfilePropsT = StatefulContainerPropsT & MenuProfilePropsT;
+
+export type StatelessMenuPropsT = SharedStatelessPropsT & MenuPropsT;
+
+export type StatelessMenuProfilePropsT = SharedStatelessPropsT & MenuProfilePropsT;
+
+export type OptionListPropsT = {
+  /** Item to parse and render. */
+  item: ItemT,
+  /** Function used to get the string label for each item. */
+  getItemLabel: GetItemLabelFnT,
+  /** Used to render a sub menu at this menu item. You'll often render another menu from this function. */
+  getChildMenu?: (item: ItemT) => React.Node,
+  onClick?: (event: MouseEvent) => mixed,
+  /** Callback used to change highlighted index in stateful menu. */
+  onMouseDown?: (event: MouseEvent) => mixed,
+  /** Callback used to change highlighted index in stateful menu. */
+  onMouseEnter?: (event: MouseEvent) => mixed,
+  /** Renders UI in defined scale. */
+  size?: $Keys<typeof OPTION_LIST_SIZE>,
+  overrides?: {
+    ListItem?: OverrideT,
+    ListItemAnchor?: OverrideT,
+    ChildMenuPopover?: OverrideT,
+  },
+  renderHrefAsAnchor?: boolean,
+  /** Utility to reset menu to default state. Useful for rendering child menus. */
+  resetMenu?: () => void,
+  /** Renders UI in 'highlighted' state. */
+  $isHighlighted?: boolean,
+  /** Is the parent menu focused. determines if highlighted item should be blue or black */
+  $isFocused?: boolean,
+  /** Renders all menu content for SEO purposes regardless of menu  state */
+  renderAll?: boolean,
+  /** Is the item disabled */
+  $disabled?: boolean,
+  /** Is the item disabled */
+  'aria-disabled'?: boolean,
+  /** Is the item selected */
+  'aria-selected'?: boolean,
+  /** Id of the item */
+  id?: string,
+  /** Accessibility role of the item */
+  role?: string,
+};
+
+export type OptionProfilePropsT = {
+  /** Item to parse and render. */
+  item: ItemT,
+  /** Used to render a sub menu at this menu item. You'll often render another menu from this function. */
+  getChildMenu?: (item: ItemT) => React.Node,
+  /** Returns an object consisting of title, subtitle, and body to render menu item */
+  getProfileItemLabels: GetProfileItemLabelsFnT,
+  /** Returns either an image source url, or a full React component to render as the image. */
+  getProfileItemImg: GetProfileItemImgFnT,
+  /** Returns the alt text for the image */
+  getProfileItemImgText: GetProfileItemImgTextFnT,
+  overrides?: {
+    ListItemProfile?: OverrideT,
+    ProfileImgContainer?: OverrideT,
+    ProfileImg?: OverrideT,
+    ProfileLabelsContainer?: OverrideT,
+    ProfileTitle?: OverrideT,
+    ProfileSubtitle?: OverrideT,
+    ProfileBody?: OverrideT,
+    ChildMenuPopover?: OverrideT,
+  },
+  /** Utility to reset menu to default state. Useful for rendering child menus. */
+  resetMenu?: () => void,
+  /** Renders UI in 'highlighted' state. */
+  $isHighlighted?: boolean,
+  /** Renders all menu content for SEO purposes regardless of menu  state */
+  renderAll?: boolean,
+};
+
+export type NestedMenuRefT = { current: HTMLElement | null };
+export type NestedMenuContextT = {|
+  addMenuToNesting: (ref: NestedMenuRefT) => void,
+  removeMenuFromNesting: (ref: NestedMenuRefT) => void,
+  getParentMenu: (ref: NestedMenuRefT) => ?NestedMenuRefT,
+  getChildMenu: (ref: NestedMenuRefT) => ?NestedMenuRefT,
+  nestedMenuHoverIndex: number,
+  isNestedMenuVisible: (ref: NestedMenuRefT) => boolean,
+  mountRef: NestedMenuRefT,
+|};
+
+declare export var StatefulMenu: React.ComponentType<StatefulMenuPropsT>;
+declare export var StatefulContainer: {
+  (props: StatefulContainerPropsT): React.Node,
+  defaultProps: {
+    initialState: $FlowFixMe,
+    typeAhead: $FlowFixMe,
+    keyboardControlNode: $FlowFixMe,
+    stateReducer: $FlowFixMe,
+    onItemSelect: $FlowFixMe,
+    getRequiredItemProps: $FlowFixMe,
+    children: $FlowFixMe,
+    addMenuToNesting: $FlowFixMe,
+    removeMenuFromNesting: $FlowFixMe,
+    getParentMenu: $FlowFixMe,
+    getChildMenu: $FlowFixMe,
+    nestedMenuHoverIndex: $FlowFixMe,
+    isNestedMenuVisible: $FlowFixMe,
+    forceHighlight: $FlowFixMe,
+  },
+};
+declare export var OptionList: React.StatelessFunctionalComponent<OptionListPropsT>;
+declare export var OptionProfile: React.AbstractComponent<OptionProfilePropsT, HTMLElement>;
+declare export var Menu: React.StatelessFunctionalComponent<StatelessMenuPropsT>;
+declare export var NestedMenuContext: React.Context<NestedMenuContextT>;
+declare export var NestedMenus: React.ComponentType<{
+  children: React.Node,
+}>;
+
 // Styled elements
-export {
-  StyledEmptyState,
-  StyledList,
-  StyledListItem,
-  StyledListItemProfile,
-  StyledProfileImgContainer,
-  StyledProfileImg,
-  StyledProfileLabelsContainer,
-  StyledProfileTitle,
-  StyledProfileSubtitle,
-  StyledProfileBody,
-} from './styled-components.js';
-// Flow
-export type * from './types.js';
+type StyledPropsT = {
+  $disabled?: boolean,
+  $isFocused?: boolean,
+  $isFocusVisible?: boolean,
+  $isHighlighted?: boolean,
+  $size?: $Keys<typeof OPTION_LIST_SIZE>,
+};
+declare export var StyledEmptyState: StyletronComponent<StyledPropsT>;
+declare export var StyledList: StyletronComponent<StyledPropsT>;
+declare export var StyledListItem: StyletronComponent<StyledPropsT>;
+declare export var StyledListItemProfile: StyletronComponent<StyledPropsT>;
+declare export var StyledProfileImgContainer: StyletronComponent<{}>;
+declare export var StyledProfileImg: StyletronComponent<{}>;
+declare export var StyledProfileLabelsContainer: StyletronComponent<StyledPropsT>;
+declare export var StyledProfileTitle: StyletronComponent<StyledPropsT>;
+declare export var StyledProfileSubtitle: StyletronComponent<StyledPropsT>;
+declare export var StyledProfileBody: StyletronComponent<StyledPropsT>;

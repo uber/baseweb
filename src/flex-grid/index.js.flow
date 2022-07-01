@@ -6,6 +6,24 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-export { default as FlexGrid } from './flex-grid.js';
-export { default as FlexGridItem } from './flex-grid-item.js';
-export type * from './types.js';
+import * as React from 'react';
+import type { BlockPropsT, ResponsiveT, ScaleT } from '../block';
+
+export type FlexGridPropsT = {
+  /** Number of equal-width columns to allow for */
+  flexGridColumnCount?: ResponsiveT<number>,
+  /** Grid gap between columns */
+  flexGridColumnGap?: ResponsiveT<ScaleT>,
+  /** Grid gap between rows */
+  flexGridRowGap?: ResponsiveT<ScaleT>,
+} & BlockPropsT;
+
+export type FlexGridItemPropsT = {
+  /** Index of item in FlexGrid, used to determine gaps **/
+  flexGridItemIndex?: number,
+  /** Total count of items in FlexGrid, used to determine gaps **/
+  flexGridItemCount?: number,
+} & FlexGridPropsT;
+
+declare export var FlexGrid: React.AbstractComponent<FlexGridPropsT, HTMLElement>;
+declare export var FlexGridItem: React.AbstractComponent<FlexGridItemPropsT, HTMLElement>;

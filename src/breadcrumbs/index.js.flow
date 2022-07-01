@@ -7,6 +7,30 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-export { default as Breadcrumbs } from './breadcrumbs.js';
-export * from './styled-components.js';
-export type * from './types.js';
+import * as React from 'react';
+import type { OverrideT } from '../helpers/overrides.js';
+import type { StyletronComponent } from '../styles/styled';
+
+export type OverridesT = {
+  Root?: OverrideT,
+  Separator?: OverrideT,
+  List?: OverrideT,
+  ListItem?: OverrideT,
+  Icon?: OverrideT,
+};
+
+export type BreadcrumbsPropsT = {|
+  children?: React.Node,
+  overrides?: OverridesT,
+  ariaLabel?: string,
+  'aria-label'?: string,
+  /** Whether to show a trailing separator after the last breadcrumb. */
+  showTrailingSeparator?: boolean,
+|};
+
+declare export var Breadcrumbs: React.ComponentType<BreadcrumbsPropsT>;
+
+declare export var StyledRoot: StyletronComponent<{}>;
+declare export var StyledList: StyletronComponent<{}>;
+declare export var StyledListItem: StyletronComponent<{}>;
+declare export var StyledSeparator: StyletronComponent<{}>;

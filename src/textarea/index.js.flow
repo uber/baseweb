@@ -5,10 +5,88 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-export { default as Textarea } from './textarea.js';
-export { default as StatefulTextarea } from './stateful-textarea.js';
-export { default as StatefulContainer } from './stateful-container.js';
+import * as React from 'react';
+import type { StyletronComponent } from '../styles/styled';
+import { ADJOINED, SIZE } from '../input';
+import type { BaseInputPropsT, StateReducerT, StateT } from '../input';
+import type { OverrideT } from '../helpers/overrides';
+
+export { SIZE, STATE_CHANGE_TYPE } from '../input';
+
+type SyntheticTextareaEvent = SyntheticEvent<HTMLTextAreaElement>;
+
+export type SizeT = $Keys<typeof SIZE>;
+
+export type SharedStylePropsT = {
+  $adjoined: $Keys<typeof ADJOINED>,
+  $disabled: boolean,
+  $error: boolean,
+  $isFocused: boolean,
+  $isReadOnly: boolean,
+  $positive?: boolean,
+  $required: boolean,
+  $size: SizeT,
+};
+
+type BaseTextAreaPropsT = BaseInputPropsT<HTMLTextAreaElement>;
+
+export type TextareaOverridesT = {
+  ...$PropertyType<BaseTextAreaPropsT, 'overrides'>,
+  Root?: OverrideT,
+};
+
+export type TextareaPropsT = {
+  ...BaseTextAreaPropsT,
+  overrides?: TextareaOverridesT,
+  /** Sets the size and number of visible text lines
+   of the textarea element. */
+  rows?: number,
+  maxLength?: number,
+};
+
+export type StatefulContainerPropsT = {
+  // flowlint-next-line unclear-type:off
+  children: (props: any) => React.Node,
+  initialState?: StateT,
+  stateReducer?: StateReducerT,
+  onChange?: (e: SyntheticTextareaEvent) => mixed,
+  onKeyDown?: (e: SyntheticTextareaEvent) => mixed,
+  onKeyPress?: (e: SyntheticTextareaEvent) => mixed,
+  onKeyUp?: (e: SyntheticTextareaEvent) => mixed,
+};
+
+type OmitPropsT = {
+  // flowlint-next-line unclear-type:off
+  children: (props: any) => React.Node,
+};
+
+type FullStPropsT = TextareaPropsT & StatefulContainerPropsT;
+
+export type StatefulTextareaPropsT = $Shape<$Diff<FullStPropsT, OmitPropsT>>;
+
+declare export class Textarea extends React.Component<TextareaPropsT, { isFocused: boolean }> {
+  static defaultProps: {
+    autoFocus: $FlowFixMe,
+    disabled: $FlowFixMe,
+    readOnly: $FlowFixMe,
+    error: $FlowFixMe,
+    name: $FlowFixMe,
+    onBlur: $FlowFixMe,
+    onChange: $FlowFixMe,
+    onKeyDown: $FlowFixMe,
+    onKeyPress: $FlowFixMe,
+    onKeyUp: $FlowFixMe,
+    onFocus: $FlowFixMe,
+    overrides: $FlowFixMe,
+    placeholder: $FlowFixMe,
+    required: $FlowFixMe,
+    rows: $FlowFixMe,
+    size: $FlowFixMe,
+  };
+}
+declare export var StatefulTextarea: React.StatelessFunctionalComponent<StatefulTextareaPropsT>;
+
+export { StatefulContainer } from '../input';
 // Styled elements
-export { StyledTextareaContainer, StyledTextarea } from './styled-components.js';
-export { STATE_CHANGE_TYPE, SIZE } from './constants.js';
-export type * from './types.js';
+declare export var StyledTextareaContainer: StyletronComponent<SharedStylePropsT>;
+declare export var StyledTextarea: StyletronComponent<SharedStylePropsT>;

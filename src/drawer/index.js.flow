@@ -5,7 +5,121 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-export { default as Drawer } from './drawer.js';
-export { SIZE, SIZE_DIMENSION, ANCHOR, CLOSE_SOURCE } from './constants.js';
-export * from './styled-components.js';
-export type * from './types.js';
+import * as React from 'react';
+import type { StyletronComponent } from '../styles/styled';
+import type { OverrideT } from '../helpers/overrides';
+import { styled } from '../styles/index';
+
+declare export var SIZE: { [key: SizeT]: SizePropT };
+// declare export var SIZE: {
+//   default: 'default',
+//   full: 'full',
+//   auto: 'auto',
+// };
+
+declare export var ANCHOR: { [key: AnchorT]: AnchorPropT };
+// declare export var ANCHOR: {
+//   left: 'left',
+//   right: 'right',
+//   top: 'top',
+//   bottom: 'bottom',
+// };
+
+declare export var SIZE_DIMENSION: {
+  default: string,
+  full: string,
+  auto: string,
+};
+
+declare export var CLOSE_SOURCE: {
+  closeButton: 'closeButton',
+  backdrop: 'backdrop',
+  escape: 'escape',
+};
+
+export type SizeT = $Keys<typeof SIZE>;
+export type SizePropT = SizeT | string;
+
+export type AnchorT = $Keys<typeof ANCHOR>;
+export type AnchorPropT = AnchorT | string;
+
+export type CloseSourceT = $Keys<typeof CLOSE_SOURCE>;
+
+export type OverridesT = {
+  Root?: OverrideT,
+  Backdrop?: OverrideT,
+  DrawerBody?: OverrideT,
+  DrawerContainer?: OverrideT,
+  Close?: OverrideT,
+};
+
+// flowlint-next-line unclear-type:off
+export type ElementRefT = { current: React.ElementRef<any> | null };
+
+// Props shared by all flavors of modal
+export type DrawerPropsT = {
+  /** Sets whether the Drawer should be displayed by easing in and out */
+  animate: boolean,
+  isOpen: boolean,
+  /** If true, focus will shift to the first interactive element within the drawer.
+   * If false, the drawer container itself will receive focus.
+   * Moving focus into a newly opened drawer is important for accessibility purposes, so please be careful!
+   */
+  autoFocus: boolean,
+  /** Renders all drawer content for SEO purposes regardless of drawer isOpen state */
+  renderAll?: boolean,
+  /** Where to mount the modal */
+  mountNode?: HTMLElement,
+  /** Drawer content. The children-as-function API may be preferable
+   * for performance reasons (wont render until opened) */
+  children?: React.Node | (() => React.Node),
+  /** Whether the modal should be closeable by the user
+   *  (either via escape, backdrop click, etc). You can set this to
+   * false if your modal has an action that the user must take before closing.*/
+  closeable: boolean,
+
+  onClose?: ({
+    closeSource?: CloseSourceT,
+  }) => mixed,
+  overrides: OverridesT,
+  /** Controls the size of the modal (primarily width).
+   * Can be a SIZE constant or css width property value. */
+  size: SizePropT,
+  anchor: AnchorPropT,
+  /** Whether the backdrop should be present */
+  showBackdrop: boolean,
+  /**Function to be called when backdrop is clicked */
+  onBackdropClick?: (e: Event) => mixed,
+  onEscapeKeyDown?: (e: Event) => mixed,
+};
+
+export type DrawerPropsWithoutChildrenT = $Diff<DrawerPropsT, { children: ?React.Node }>;
+
+export type DrawerStateT = {
+  isVisible: boolean,
+  mounted: boolean,
+  isFocusVisible: boolean,
+};
+
+export type SharedStylePropsArgT = {
+  children?: React.Node,
+  $animating: boolean,
+  $isVisible: boolean,
+  $isOpen: boolean,
+  $size: SizePropT,
+  $closeable: boolean,
+  $anchor: AnchorPropT,
+  $isFocusVisible: boolean,
+  $showBackdrop: boolean,
+};
+
+declare export class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
+  static defaultProps: $Shape<DrawerPropsT>;
+}
+
+declare export var StyledRoot: StyletronComponent<SharedStylePropsArgT>;
+declare export var StyledBackdrop: StyletronComponent<SharedStylePropsArgT>;
+declare export var StyledDrawerContainer: StyletronComponent<SharedStylePropsArgT>;
+declare export var StyledDrawerBody: StyletronComponent<SharedStylePropsArgT>;
+declare export var StyledClose: StyletronComponent<SharedStylePropsArgT>;
+declare export var Hidden: StyletronComponent<{}>;

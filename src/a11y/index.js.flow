@@ -6,4 +6,6 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-export { default as Unstable_A11y } from './a11y.js';
+import * as React from 'react';
+
+declare export var Unstable_A11y: React.ComponentType<{ children: React.Node }>;

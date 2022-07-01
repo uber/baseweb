@@ -5,17 +5,62 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-export { default as StatefulTooltip } from './stateful-tooltip.js';
-export { default as StatefulContainer } from './stateful-tooltip-container.js';
-export { default as Tooltip } from './tooltip.js';
-// Constants
-export { ACCESSIBILITY_TYPE, PLACEMENT, TRIGGER_TYPE, STATE_CHANGE_TYPE } from './constants.js';
-// Styled elements
-export {
-  Arrow as StyledArrow,
-  Body as StyledBody,
-  Inner as StyledInner,
-} from './styled-components.js';
+import * as React from 'react';
+import type { StyletronComponent } from '../styles/styled';
+import type {
+  SharedStylePropsArgT,
+  AccessibilityTypeT,
+  BasePopoverPropsT as BaseTooltipPropsT,
+  ChildT,
+  ChildrenT,
+  ContentRenderPropT,
+  OverridesT,
+  PopoverPlacementT as TooltipPlacementT,
+  PopoverPropsT as TooltipPropsT,
+  PopoverPropsWithoutChildrenT as TooltipPropsWithoutChildrenT,
+  StateChangeTypeT,
+  StateT,
+  StatefulContentRenderPropT,
+  StatefulPopoverPropsT as StatefulTooltipPropsT,
+  StatefulPopoverContainerPropsT as StatefulTooltipContainerPropsT,
+  StateReducerT,
+  TriggerTypeT,
+} from '../popover';
 
-// Flow
-export type * from './types.js';
+export type {
+  AccessibilityTypeT,
+  BaseTooltipPropsT,
+  ChildT,
+  ChildrenT,
+  ContentRenderPropT,
+  OverridesT,
+  TooltipPropsT,
+  StateT,
+  StateChangeTypeT,
+  StateReducerT,
+  StatefulContentRenderPropT,
+  StatefulTooltipPropsT,
+  StatefulTooltipContainerPropsT,
+  TooltipPlacementT,
+  TooltipPropsWithoutChildrenT,
+  TriggerTypeT,
+};
+
+declare export var StatefulTooltip: {
+  (props: StatefulTooltipPropsT): React.Node,
+  defaultProps: $Shape<StatefulTooltipContainerPropsT>,
+};
+declare export class StatefulContainer extends React.Component<StatefulTooltipContainerPropsT> {
+  static defaultProps: $Shape<StatefulTooltipContainerPropsT>;
+}
+declare export class Tooltip extends React.Component<TooltipPropsT> {
+  static defaultProps: $Shape<TooltipPropsT>;
+}
+
+// Constants
+export { ACCESSIBILITY_TYPE, PLACEMENT, TRIGGER_TYPE, STATE_CHANGE_TYPE } from '../popover';
+
+// Styled elements
+declare export var StyledArrow: StyletronComponent<SharedStylePropsArgT>;
+declare export var StyledBody: StyletronComponent<SharedStylePropsArgT>;
+declare export var StyledInner: StyletronComponent<SharedStylePropsArgT>;

@@ -5,16 +5,90 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-export { default as Button } from './button.js';
+import * as React from 'react';
+import type { StyletronComponent } from '../styles/styled';
+import type { OverrideT } from '../helpers/overrides';
+
 // Constants
-export { KIND, SIZE, SHAPE } from './constants.js';
-// Styled elements
-export {
-  BaseButton as StyledBaseButton,
-  StartEnhancer as StyledStartEnhancer,
-  EndEnhancer as StyledEndEnhancer,
-  LoadingSpinner as StyledLoadingSpinner,
-  LoadingSpinnerContainer as StyledLoadingSpinnerContainer,
-} from './styled-components.js';
+declare export var KIND: {
+  primary: 'primary',
+  secondary: 'secondary',
+  tertiary: 'tertiary',
+};
+
+declare export var SHAPE: {
+  default: 'default',
+  pill: 'pill',
+  round: 'round',
+  circle: 'circle',
+  square: 'square',
+};
+
+declare export var SIZE: {
+  mini: 'mini',
+  default: 'default',
+  compact: 'compact',
+  large: 'large',
+};
+
 // Types
-export type * from './types.js';
+export type ReactRefT<T> = { current: null | T } | {| current: null | T |};
+
+export type OverridesT = {
+  Root?: OverrideT,
+  BaseButton?: OverrideT,
+  StartEnhancer?: OverrideT,
+  EndEnhancer?: OverrideT,
+  LoadingSpinnerContainer?: OverrideT,
+  LoadingSpinner?: OverrideT,
+};
+
+export type CustomColorsT = {|
+  backgroundColor: string,
+  color: string,
+|};
+
+export type ButtonPropsT = {
+  children?: React$Node,
+  colors?: CustomColorsT,
+  disabled?: boolean,
+  /** A helper rendered at the end of the button. */
+  // flowlint-next-line unclear-type:off
+  endEnhancer?: React.Node | React.AbstractComponent<any>,
+  /** Show loading button style and spinner. */
+  isLoading?: boolean,
+  /** Indicates that the button is selected */
+  isSelected?: boolean,
+  /** Defines the kind (purpose) of a button */
+  kind?: $Keys<typeof KIND>,
+  onClick?: (SyntheticEvent<HTMLButtonElement>) => mixed,
+  overrides?: OverridesT,
+  /** Defines the shape of the button */
+  shape?: $Keys<typeof SHAPE>,
+  /** Defines the size of the button */
+  size?: $Keys<typeof SIZE>,
+  /** A helper rendered at the start of the button. */
+  // flowlint-next-line unclear-type:off
+  startEnhancer?: React.Node | React.AbstractComponent<any>,
+  type?: 'submit' | 'reset' | 'button',
+};
+
+export type SharedStylePropsT = {
+  $colors?: CustomColorsT,
+  $kind?: $Keys<typeof KIND>,
+  $isSelected?: boolean,
+  $shape?: $Keys<typeof SHAPE>,
+  $size?: $Keys<typeof SIZE>,
+  $isLoading?: boolean,
+  $disabled?: boolean,
+  $isFocusVisible: boolean,
+};
+
+declare export var Button: React.AbstractComponent<ButtonPropsT, HTMLButtonElement>;
+
+// Styled elements
+declare export var StyledBaseButton: StyletronComponent<SharedStylePropsT>;
+declare export var StyledEndEnhancer: StyletronComponent<SharedStylePropsT>;
+declare export var StyledStartEnhancer: StyletronComponent<SharedStylePropsT>;
+declare export var StyledLoadingSpinnerContainer: StyletronComponent<SharedStylePropsT>;
+declare export var StyledLoadingSpinner: StyletronComponent<SharedStylePropsT>;

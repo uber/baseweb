@@ -5,9 +5,125 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-export { default as Navigation } from './nav.js';
-export { default as NavItem } from './nav-item.js';
+import * as React from 'react';
+import type { StyletronComponent } from '../styles/styled';
+import type { OverrideT } from '../helpers/overrides';
+
+declare var STATE_CHANGE_TYPE: {
+  change: 'change',
+};
+
+export type StateTypeT = $Values<typeof STATE_CHANGE_TYPE>;
+
+export type StateT = {
+  activeItemId?: string,
+};
+
+export type StateReducerT = (
+  stateType: StateTypeT,
+  nextState: StateT,
+  currentState: StateT
+) => StateT;
+
+export type SharedPropsT = {
+  /** Defines if the nav item is currently selected */
+  $active: boolean,
+  /** Defines the nesting level of the rendered nav item */
+  $level: number,
+  /** Defines if the nav item is selectable/clickable */
+  $selectable: boolean,
+  /** Defines if the nav item is disabled */
+  $disabled: boolean,
+};
+
+export type NavPropsT = {
+  /** Defines the current active itemId. Used for the default calculation of the $active prop */
+  activeItemId: string,
+  /**
+   Is called on the nav item render to test if the item is currently selected.
+   If returns true the item will be rendered as an active one
+   */
+  activePredicate: ?(item: Item, activeItemId: string) => boolean,
+  /** List of navigation items */
+  items: Item[],
+  /** Used as a performance optimization if many nav items are rendered. Function provided to
+   *  NavItem component's React.memo call.
+   */
+  itemMemoizationComparator?: (NavItemPropsT, NavItemPropsT) => boolean,
+  /** onChange handler that is called when a nav item is selected */
+  onChange?: ({ item: Item, event: Event | KeyboardEvent }) => mixed,
+  /** Overrides for the internal elements and components */
+  overrides: {
+    Root?: OverrideT,
+    NavItemContainer?: OverrideT,
+    NavLink?: OverrideT,
+    NavItem?: OverrideT,
+    SubNavContainer?: OverrideT,
+  },
+  /** Optional transform function that is called for each Item */
+  mapItem: ?(item: Item) => Item,
+};
+
+export type Item = {
+  /** Navigation item's title to render */
+  title: React.Node,
+  /**
+   Identifier for the navigation item.
+   Can be a path value or an action name.
+   It's also used in the default `activePredicate` to
+   identify a currently active item
+   */
+  itemId?: string,
+  /** A list of sub-navigation items */
+  subNav?: Item[],
+  /** Renders the item in disabled state */
+  disabled?: boolean,
+};
+
+export type NavItemPropsT = SharedPropsT & {
+  item: Item,
+  /** Used as a performance optimization if many nav items are rendered. Function provided to
+   *  NavItem component's React.memo call.
+   */
+  itemMemoizationComparator?: (NavItemPropsT, NavItemPropsT) => boolean,
+  onSelect?: ({ item: Item, event: Event | KeyboardEvent }) => mixed,
+  overrides: {
+    NavLink?: OverrideT,
+    NavItem?: OverrideT,
+  },
+};
+
+export type StatefulContainerPropsT = {
+  children: (NavPropsT) => React.Node,
+  /** Initial state of an uncontrolled component. */
+  initialState?: StateT,
+  /** A state change handler. Used to override default state transitions. */
+  stateReducer?: StateReducerT,
+  onChange?: ({ item: Item, event: Event | KeyboardEvent }) => mixed,
+};
+
+type ExcludeT = {
+  children: (NavPropsT) => React.Node,
+};
+
+export type StatefulNavPropsT = $Diff<StatefulContainerPropsT, ExcludeT>;
+
+declare export class Navigation extends React.Component<NavPropsT, { isFocusVisible: boolean }> {
+  static defaultProps: {
+    activeItemId: $FlowFixMe,
+    activePredicate: $FlowFixMe,
+    items: $FlowFixMe,
+    overrides: $FlowFixMe,
+    mapItem: $FlowFixMe,
+  };
+}
+
+declare export var NavItem: React.StatelessFunctionalComponent<NavItemPropsT>;
+
 // Styled elements
-export * from './styled-components.js';
-// Types
-export type * from './types.js';
+declare export var StyledRoot: StyletronComponent<SharedPropsT>;
+declare export var StyledNavItemContainer: StyletronComponent<{}>;
+declare export var StyledNavLink: StyletronComponent<{ $isFocusVisible: boolean }>;
+declare export var StyledNavItemElement: StyletronComponent<SharedPropsT>;
+declare export var StyledNavItem: typeof StyledNavItemElement;
+declare export var StyledSubNavContainer: StyletronComponent<{}>;

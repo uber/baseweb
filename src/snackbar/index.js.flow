@@ -7,17 +7,103 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-export { DURATION, PLACEMENT } from './constants.js';
-export { default as SnackbarElement } from './snackbar-element.js';
-export { default as SnackbarProvider, useSnackbar } from './snackbar-context.js';
-export {
-  StyledRoot,
-  StyledContent,
-  StyledStartEnhancerContainer,
-  StyledSpinner,
-  StyledMessage,
-  StyledWrapActionButtonContainer,
-  StyledActionButtonContainer,
-  StyledPlacementContainer,
-} from './styled-components.js';
-export type * from './types.js';
+import * as React from 'react';
+import type { StyletronComponent } from '../styles/styled';
+import type { OverrideT } from '../helpers/overrides';
+import { Spinner } from '../spinner';
+
+declare export var DURATION: {
+  infinite: number,
+  short: number,
+  medium: number,
+  long: number,
+};
+
+declare export var PLACEMENT: {
+  topLeft: 'topLeft',
+  top: 'top',
+  topRight: 'topRight',
+  bottomRight: 'bottomRight',
+  bottom: 'bottom',
+  bottomLeft: 'bottomLeft',
+};
+
+export type DurationT =
+  | typeof DURATION.infinite
+  | typeof DURATION.short
+  | typeof DURATION.medium
+  | typeof DURATION.long;
+
+export type PlacementT =
+  | typeof PLACEMENT.topLeft
+  | typeof PLACEMENT.top
+  | typeof PLACEMENT.topRight
+  | typeof PLACEMENT.bottomLeft
+  | typeof PLACEMENT.bottom
+  | typeof PLACEMENT.bottomRight
+  // added because that is what it was previously inferred into
+  | string;
+
+export type SnackbarElementOverridesT = {
+  Root?: OverrideT,
+  Content?: OverrideT,
+  StartEnhancerContainer?: OverrideT,
+  Spinner?: OverrideT,
+  Message?: OverrideT,
+  WrapActionButtonContainer?: OverrideT,
+  ActionButtonContainer?: OverrideT,
+};
+
+export type SnackbarElementPropsT = {|
+  // message displayed in button
+  actionMessage?: string,
+  // function executed on button click
+  actionOnClick?: (SyntheticEvent<HTMLButtonElement>) => mixed,
+  // if action button preset focus it, defaults to true
+  focus?: boolean,
+  // primary message displayed in snackbar
+  message: React.Node,
+  overrides?: SnackbarElementOverridesT,
+  // renders spinner in start enhancer position
+  progress?: boolean,
+  // renders element as message prefix, takes precedence over progress prop
+  startEnhancer?: React.AbstractComponent<{|
+    size: number,
+  |}>,
+|};
+
+export type SnackbarProviderPropsT = {|
+  children?: React.Node,
+  overrides?: {
+    ...SnackbarElementOverridesT,
+    PlacementContainer?: OverrideT,
+  },
+  // location on page where snackbar will render
+  placement?: PlacementT,
+  // default display duration
+  defaultDuration?: DurationT,
+|};
+
+declare export var SnackbarElement: React.StatelessFunctionalComponent<SnackbarElementPropsT>;
+declare export var SnackbarProvider: React.StatelessFunctionalComponent<SnackbarProviderPropsT>;
+type ContextT = {|
+  enqueue: (elementProps: SnackbarElementPropsT, duration?: DurationT) => void,
+  dequeue: () => void,
+|};
+declare export function useSnackbar(): ContextT;
+
+declare export var StyledRoot: StyletronComponent<{}>;
+declare export var StyledContent: StyletronComponent<{}>;
+declare export var StyledStartEnhancerContainer: StyletronComponent<{}>;
+type ExtractPropTypes = <T>(StyletronComponent<T>) => T;
+declare export var StyledSpinner: StyletronComponent<
+  $Call<ExtractPropTypes, typeof Spinner> & { $height: number, $width: number }
+>;
+declare export var StyledMessage: StyletronComponent<{ $hasSuffix: boolean }>;
+declare export var StyledWrapActionButtonContainer: StyletronComponent<{}>;
+declare export var StyledActionButtonContainer: StyletronComponent<{}>;
+declare export var StyledPlacementContainer: StyletronComponent<{
+  $animating: boolean,
+  $placement: PlacementT,
+  $translateHeight: number,
+}>;

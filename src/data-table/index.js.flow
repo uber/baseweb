@@ -5,22 +5,308 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
+import * as React from 'react';
 
-export { DataTable } from './data-table.js';
-export { StatefulContainer } from './stateful-container.js';
-export { StatefulDataTable } from './stateful-data-table.js';
-export { DataTable as Unstable_DataTable } from './data-table.js';
-export { StatefulContainer as Unstable_StatefulContainer } from './stateful-container.js';
-export { StatefulDataTable as Unstable_StatefulDataTable } from './stateful-data-table.js';
-export { default as AnchorColumn } from './column-anchor.js';
-export { default as BooleanColumn } from './column-boolean.js';
-export { default as CategoricalColumn } from './column-categorical.js';
-export { default as CustomColumn } from './column-custom.js';
-export { default as DatetimeColumn } from './column-datetime.js';
-export { default as NumericalColumn } from './column-numerical.js';
-export { default as RowIndexColumn } from './column-row-index.js';
-export { default as StringColumn } from './column-string.js';
+type ExcludeKind = 'value' | 'range';
 
-export { COLUMNS, DATETIME_OPERATIONS, NUMERICAL_FORMATS, SORT_DIRECTIONS } from './constants.js';
+declare export var COLUMNS: {
+  ANCHOR: 'ANCHOR',
+  BOOLEAN: 'BOOLEAN',
+  CATEGORICAL: 'CATEGORICAL',
+  CUSTOM: 'CUSTOM',
+  DATETIME: 'DATETIME',
+  NUMERICAL: 'NUMERICAL',
+  ROW_INDEX: 'ROW_INDEX',
+  STRING: 'STRING',
+};
 
-export type * from './types.js';
+declare export var NUMERICAL_FORMATS: {
+  DEFAULT: 'DEFAULT',
+  ACCOUNTING: 'ACCOUNTING',
+  PERCENTAGE: 'PERCENTAGE',
+};
+
+declare export var DATETIME_OPERATIONS: {
+  RANGE_DATETIME: 'RANGE_DATETIME',
+  RANGE_DATE: 'RANGE_DATE',
+  RANGE_TIME: 'RANGE_TIME',
+  WEEKDAY: 'WEEKDAY',
+  MONTH: 'MONTH',
+  QUARTER: 'QUARTER',
+  HALF: 'HALF',
+  YEAR: 'YEAR',
+};
+
+declare export var SORT_DIRECTIONS: {
+  ASC: 'ASC',
+  DESC: 'DESC',
+};
+
+export type SortDirectionsT = typeof SORT_DIRECTIONS.ASC | typeof SORT_DIRECTIONS.DESC | null;
+
+export type ColumnsT =
+  | typeof COLUMNS.ANCHOR
+  | typeof COLUMNS.BOOLEAN
+  | typeof COLUMNS.CATEGORICAL
+  | typeof COLUMNS.CUSTOM
+  | typeof COLUMNS.DATETIME
+  | typeof COLUMNS.NUMERICAL
+  | typeof COLUMNS.STRING;
+
+// These options are available on all column kinds. Most have additional
+// unique options depending on the data visualization requirements.
+export type SharedColumnOptionsT<ValueT> = {|
+  cellBlockAlign?: 'start' | 'center' | 'end',
+  fillWidth?: boolean,
+  filterable?: boolean,
+  // flowlint-next-line unclear-type:off
+  mapDataToValue: (data: any) => ValueT,
+  maxWidth?: number,
+  minWidth?: number,
+  sortable?: boolean,
+  title: string,
+|};
+
+export type RenderCellT<ValueT> = React.AbstractComponent<{
+  value: ValueT,
+  isMeasured?: boolean,
+  isSelected?: boolean,
+  onSelect?: () => void,
+  textQuery?: string,
+  x: number,
+  y: number,
+}>;
+
+export type RenderFilterT<ValueT, FilterParamsT> = React.AbstractComponent<{|
+  close: () => void,
+  data: ValueT[],
+  filterParams?: FilterParamsT,
+  setFilter: (FilterParamsT) => void,
+|}>;
+
+// flowlint-next-line unclear-type:off
+export type ColumnT<ValueT = any, FilterParamsT = any> = {|
+  ...SharedColumnOptionsT<ValueT>,
+  kind: ColumnsT,
+  sortable: boolean,
+  renderCell: RenderCellT<ValueT>,
+  renderFilter: RenderFilterT<ValueT, FilterParamsT>,
+  buildFilter: (FilterParamsT) => (ValueT) => boolean,
+  textQueryFilter?: (string, ValueT) => boolean,
+  sortFn: (ValueT, ValueT) => number,
+|};
+
+export type RowT = {
+  id: number | string,
+  // flowlint-next-line unclear-type:off
+  data: any,
+};
+
+export type BatchActionT = {|
+  label: string,
+  onClick: ({
+    clearSelection: () => mixed,
+    event: SyntheticEvent<HTMLButtonElement>,
+    selection: RowT[],
+  }) => mixed,
+  renderIcon?: React.AbstractComponent<{| size: number |}>,
+|};
+
+export type RowActionT = {|
+  label: string,
+  onClick: ({ event: SyntheticEvent<HTMLButtonElement>, row: RowT }) => mixed,
+  renderIcon: React.AbstractComponent<{| size: number |}>,
+  renderButton?: React.AbstractComponent<{||}>,
+|};
+
+type ImperativeMethodsT = {|
+  getRows: () => RowT[],
+|};
+export type ControlRefT = {
+  current: ImperativeMethodsT | null,
+};
+
+export type StatefulDataTablePropsT = {|
+  batchActions?: BatchActionT[],
+  columns: ColumnT<>[],
+  emptyMessage?: string | React.AbstractComponent<{||}>,
+  filterable?: boolean,
+  initialFilters?: Map<string, { description: string }>,
+  initialSelectedRowIds?: Set<number | string>,
+  initialSortIndex?: number,
+  initialSortDirection?: SortDirectionsT,
+  loading?: boolean,
+  loadingMessage?: string | React.AbstractComponent<{||}>,
+  onFilterAdd?: (string, { description: string }) => mixed,
+  onFilterRemove?: (string) => mixed,
+  onIncludedRowsChange?: (rows: RowT[]) => void,
+  onRowHighlightChange?: (rowIndex: number, row: RowT) => void,
+  onSelectionChange?: (RowT[]) => mixed,
+  resizableColumnWidths?: boolean,
+  rows: RowT[],
+  rowActions?: RowActionT[] | ((RowT) => RowActionT[]),
+  rowHeight?: number,
+  rowHighlightIndex?: number,
+  searchable?: boolean,
+  controlRef?: ControlRefT,
+|};
+
+export type DataTablePropsT = {|
+  ...StatefulDataTablePropsT,
+  emptyMessage?: string | React.AbstractComponent<{||}>,
+  filters?: Map<string, { description: string }>,
+  loading?: boolean,
+  loadingMessage?: string | React.AbstractComponent<{||}>,
+  onIncludedRowsChange?: (rows: RowT[]) => void,
+  onRowHighlightChange?: (rowIndex: number, row: RowT) => void,
+  onSelectMany?: (rows: RowT[]) => void,
+  onSelectNone?: () => void,
+  onSelectOne?: (row: RowT) => void,
+  onSort?: (columnIndex: number) => void,
+  resizableColumnWidths?: boolean,
+  rowHighlightIndex?: number,
+  selectedRowIds?: Set<string | number>,
+  sortIndex?: number,
+  sortDirection?: SortDirectionsT,
+  textQuery?: string,
+|};
+
+export type StatefulContainerPropsT = {|
+  ...StatefulDataTablePropsT,
+  children: ({|
+    filters: Map<string, { description: string }>,
+    onFilterAdd: (title: string, filterParams: { description: string }) => void,
+    onFilterRemove: (title: string) => void,
+    onIncludedRowsChange: (rows: RowT[]) => void,
+    onRowHighlightChange: (rowIndex: number, row: RowT) => void,
+    onSelectMany: (rows: RowT[]) => void,
+    onSelectNone: () => void,
+    onSelectOne: (row: RowT) => void,
+    onSort: (columnIndex: number) => void,
+    onTextQueryChange: (query: string) => void,
+    resizableColumnWidths: boolean,
+    rowHighlightIndex?: number,
+    selectedRowIds: Set<string | number>,
+    sortIndex: number,
+    sortDirection: SortDirectionsT,
+    textQuery: string,
+  |}) => React.Node,
+|};
+
+declare export var DataTable: React.ComponentType<DataTablePropsT>;
+declare export var StatefulContainer: React.ComponentType<StatefulContainerPropsT>;
+declare export var StatefulDataTable: React.ComponentType<StatefulDataTablePropsT>;
+declare export var Unstable_DataTable: React.ComponentType<DataTablePropsT>;
+declare export var Unstable_StatefulContainer: React.ComponentType<StatefulContainerPropsT>;
+declare export var Unstable_StatefulDataTable: React.ComponentType<StatefulDataTablePropsT>;
+
+type AnchorColumnValueT = { content: string, href: string };
+type ReplacementElementAs = React.AbstractComponent<{|
+  href: string,
+  children: string,
+|}>;
+type AnchorColumnOptionsT = {|
+  ...SharedColumnOptionsT<AnchorColumnValueT>,
+  elementAs?: ReplacementElementAs | string,
+|};
+type AnchorColumnFilterParametersT = {};
+type AnchorColumnT = ColumnT<AnchorColumnValueT, AnchorColumnFilterParametersT>;
+declare export function AnchorColumn(options: AnchorColumnOptionsT): AnchorColumnT;
+
+type BooleanColumnOptionsT = {|
+  ...SharedColumnOptionsT<boolean>,
+|};
+type BooleanColumnFilterParametersT = {|
+  selection: Set<boolean>,
+  description: string,
+  exclude: boolean,
+|};
+type BooleanColumnT = ColumnT<boolean, BooleanColumnFilterParametersT>;
+declare export function BooleanColumn(options: BooleanColumnOptionsT): BooleanColumnT;
+
+type CategoricalColumnOptionsT = {|
+  ...SharedColumnOptionsT<string>,
+|};
+type CategoricalColumnFilterParametersT = {|
+  description: string,
+  exclude: boolean,
+  selection: Set<string>,
+|};
+type CategoricalColumnT = ColumnT<string, CategoricalColumnFilterParametersT>;
+declare export function CategoricalColumn(options: CategoricalColumnOptionsT): CategoricalColumnT;
+
+type CustomColumnOptionsT<ValueT, FilterParamsT> = {|
+  ...SharedColumnOptionsT<ValueT>,
+  renderCell: RenderCellT<ValueT>,
+  renderFilter?: RenderFilterT<ValueT, FilterParamsT>,
+  buildFilter?: (FilterParamsT) => (ValueT) => boolean,
+  textQueryFilter?: (string, ValueT) => boolean,
+  sortFn?: (ValueT, ValueT) => number,
+|};
+declare export function CustomColumn<ValueT, FilterParamsT>(
+  options: CustomColumnOptionsT<ValueT, FilterParamsT>
+): ColumnT<ValueT, FilterParamsT>;
+
+type DatetimeColumnOptionsT = {|
+  ...SharedColumnOptionsT<Date>,
+  formatString?: string,
+  // flowlint-next-line unclear-type:off
+  locale?: any,
+|};
+type DatetimeOperationsT =
+  | typeof DATETIME_OPERATIONS.RANGE_DATETIME
+  | typeof DATETIME_OPERATIONS.RANGE_DATE
+  | typeof DATETIME_OPERATIONS.RANGE_TIME
+  | typeof DATETIME_OPERATIONS.WEEKDAY
+  | typeof DATETIME_OPERATIONS.MONTH
+  | typeof DATETIME_OPERATIONS.QUARTER
+  | typeof DATETIME_OPERATIONS.HALF
+  | typeof DATETIME_OPERATIONS.YEAR;
+
+type DatetimeColumnFilterParametersT = {|
+  operation: DatetimeOperationsT,
+  range: Date[],
+  selection: number[],
+  description: string,
+  exclude: boolean,
+|};
+type DatetimeColumnT = ColumnT<Date, DatetimeColumnFilterParametersT>;
+declare export function DatetimeColumn(options: DatetimeColumnOptionsT): DatetimeColumnT;
+
+type NumericalFormats =
+  | typeof NUMERICAL_FORMATS.DEFAULT
+  | typeof NUMERICAL_FORMATS.ACCOUNTING
+  | typeof NUMERICAL_FORMATS.PERCENTAGE;
+type NumericalColumnOptionsT = {|
+  ...SharedColumnOptionsT<number>,
+  format?: NumericalFormats | ((value: number) => string),
+  highlight?: (number) => boolean,
+  precision?: number,
+|};
+type NumericalColumnFilterParametersT = {|
+  lowerValue: number,
+  upperValue: number,
+  description: string,
+  exclude: boolean,
+  excludeKind: ExcludeKind,
+|};
+type NumericalColumnT = ColumnT<number, NumericalColumnFilterParametersT>;
+declare export function NumericalColumn(options: NumericalColumnOptionsT): NumericalColumnT;
+
+type RowIndexColumnValueT = null;
+type RowIndexColumnFilterParametersT = {};
+type RowIndexColumnT = ColumnT<RowIndexColumnValueT, RowIndexColumnFilterParametersT>;
+declare export function RowIndexColumn(): RowIndexColumnT;
+
+type StringColumnOptionsT = {|
+  ...SharedColumnOptionsT<string>,
+  lineClamp?: number,
+|};
+
+type StringColumnFilterParametersT = {|
+  description: string,
+  exclude: boolean,
+|};
+
+type StringColumnT = ColumnT<string, StringColumnFilterParametersT>;
+declare export function StringColumn(options: StringColumnOptionsT): StringColumnT;

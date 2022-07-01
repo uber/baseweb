@@ -5,25 +5,111 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-export { default as SortableHeadCell, SortableHeadCellFactory } from './sortable-head-cell.js';
-export { default as Table } from './table.js';
-export { default as Filter } from './filter.js';
+import * as React from 'react';
+import type { StyletronComponent } from '../styles/styled';
+import type { OverrideT } from '../helpers/overrides';
 // Constants
-export { SORT_DIRECTION } from './constants.js';
+declare export var SORT_DIRECTION: {
+  ASC: 'ASC',
+  DESC: 'DESC',
+};
+
+export type SortDirectionT = ?$Keys<typeof SORT_DIRECTION>;
+
+export type HeadCellPropsT = {|
+  /** Aria label applied to the sort button. */
+  ariaLabel?: string,
+  'aria-label'?: string,
+  /** Additional content to fill head cell. Most likely used for a filter button. */
+  children?: React.Node,
+  /** Visually indicates sort direction. Displays a chevron next to column title. */
+  direction: SortDirectionT,
+  /** Disabled click-to-sort. Renders column title in muted color. */
+  disabled?: boolean,
+  /** Callback for when column title is clicked to trigger sort. */
+  onSort?: () => mixed,
+  overrides?: {
+    HeadCell?: OverrideT,
+    SortableLabel?: OverrideT,
+  },
+  /** Column title. */
+  title: React.Node,
+  /** FillClickTarget enable click to sort on whitespace in a header cell. */
+  fillClickTarget?: boolean,
+|};
+
+export type TablePropsT = {|
+  /** Table columns. Data passed to each header cell. */
+  columns: Array<string | React.Node>,
+  /** Table rows. Data passed to each row and cell */
+  data: Array<Array<React.Node>>,
+  /** Table width fills this provided value. */
+  horizontalScrollWidth?: string,
+  /** Renders the table in a loading state. Not implemented, yet. */
+  isLoading?: boolean,
+|};
+
+export type FilterProps = {|
+  /** Displays the filter icon in an active state. */
+  active?: boolean,
+  /** Arbitrary content to display in the filter popover. You will likely want to add checkboxes
+   * or similar inputs to control filtering.
+   */
+  children: React.Node,
+  /** Disables the icon click action. Filter menu does not open when clicked. */
+  disabled?: boolean,
+  /** Adds a button to close the filter menu. */
+  hasCloseButton?: boolean,
+  /** Callback for when the filter closes. */
+  onClose?: () => mixed,
+  /** Callback for when the filter opens. */
+  onOpen?: () => mixed,
+  /** Callback for when the 'reset' button is clicked. */
+  onReset?: () => mixed,
+  /** Callback for when the 'select all' button is clicked. */
+  onSelectAll?: () => mixed,
+  overrides?: {
+    MenuButton?: OverrideT,
+    Content?: OverrideT,
+    Heading?: OverrideT,
+    Footer?: OverrideT,
+  },
+  /** Determines whether focus is returned to Filter menu button. */
+  returnFocus?: boolean,
+|};
+
+declare export var SortableHeadCellFactory: (
+  CustomHeadCell?: React.ComponentType<HeadCellPropsT>
+) => React.StatelessFunctionalComponent<HeadCellPropsT>;
+declare export var SortableHeadCell: React.StatelessFunctionalComponent<HeadCellPropsT>;
+
+declare export class Table extends React.Component<TablePropsT> {
+  static defaultProps: {|
+    columns: $FlowFixMe,
+    data: $FlowFixMe,
+    isLoading: $FlowFixMe,
+  |};
+}
+
+declare export var Filter: React.StatelessFunctionalComponent<FilterProps>;
+
 // Styled elements
-export {
-  StyledTable,
-  StyledFilterButton,
-  StyledFilterContent,
-  StyledFilterHeading,
-  StyledFilterFooter,
-  StyledHead,
-  StyledHeadCell,
-  StyledBody,
-  StyledRow,
-  StyledCell,
-  StyledAction,
-  StyledSortableLabel,
-} from './styled-components.js';
-// Flow
-export type * from './types.js';
+type HorizontalStyleProps = {
+  $width?: string,
+  $cursor?: string,
+};
+declare export var StyledTable: StyletronComponent<{}>;
+declare export var StyledHead: StyletronComponent<HorizontalStyleProps>;
+declare export var StyledFilterButton: StyletronComponent<{
+  $disabled?: boolean,
+  $active?: boolean,
+}>;
+declare export var StyledFilterContent: StyletronComponent<{}>;
+declare export var StyledFilterHeading: StyletronComponent<{}>;
+declare export var StyledFilterFooter: StyletronComponent<{}>;
+declare export var StyledHeadCell: StyletronComponent<HorizontalStyleProps>;
+declare export var StyledBody: StyletronComponent<HorizontalStyleProps>;
+declare export var StyledRow: StyletronComponent<{}>;
+declare export var StyledCell: StyletronComponent<{ $striped?: boolean }>;
+declare export var StyledAction: StyletronComponent<{}>;
+declare export var StyledSortableLabel: StyletronComponent<{}>;
