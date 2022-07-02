@@ -29,7 +29,7 @@ export default class Accordion extends React.Component<AccordionPropsT, Accordio
     ...this.props.initialState,
   };
 
-  itemRefs = [];
+  itemRefs: React.RefObject<HTMLDivElement>[] = [];
 
   //flowlint-next-line unclear-type:off
   onPanelChange(key: React.Key, onChange: (...args: any[]) => {}, ...args: Array<any>) {

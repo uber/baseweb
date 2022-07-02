@@ -9,8 +9,8 @@ import { styled } from '../styles';
 export const Link = styled<
   'a',
   {
-    $isAnimateUnderline: boolean;
-    $isFocusVisible: boolean;
+    $isAnimateUnderline?: boolean;
+    $isFocusVisible?: boolean;
   }
 >('a', ({ $theme, $isAnimateUnderline, $isFocusVisible }) => {
   const { colors, typography, animation, direction } = $theme;

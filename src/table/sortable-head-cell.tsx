@@ -25,6 +25,7 @@ function SortDirectionIcon({ direction }: { direction: SortDirectionT }) {
   }
 }
 export const SortableHeadCellFactory = (
+  // @ts-expect-error todo(flow->ts) this assignment is not correct title property is declared as ReactNode but then it is used on div element… which is not correct
   CustomHeadCell: React.ComponentType<HeadCellPropsT> = StyledHeadCell
 ) => {
   return function SortableHeadCell(props: HeadCellPropsT) {

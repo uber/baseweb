@@ -102,7 +102,7 @@ export const StyledNavItemElement = styled<'div', SharedPropsT>('div', (props) =
   };
 });
 
-export const StyledNavItem = withWrapper(
+export const StyledNavItem = withWrapper<typeof StyledNavItemElement, { item? }>(
   StyledNavItemElement,
   (Styled) =>
     function StyledNav({ item, ...restProps }) {

@@ -96,7 +96,10 @@ export const StyledCountrySelectDropdownListItemElement = withStyle<typeof Style
   }
 );
 
-export const StyledCountrySelectDropdownListItem = withWrapper(
+export const StyledCountrySelectDropdownListItem = withWrapper<
+  typeof StyledCountrySelectDropdownListItemElement,
+  { item? }
+>(
   StyledCountrySelectDropdownListItemElement,
   (Styled) =>
     function StyledCountrySelectDropdownListItem({ item, ...restProps }) {

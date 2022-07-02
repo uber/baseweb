@@ -27,7 +27,7 @@ function LinkFocus(props) {
   return props.children({ focusVisible, handleFocus, handleBlur });
 }
 
-export const StyledLink = withWrapper(
+export const StyledLink = withWrapper<typeof Link, { animateUnderline?: boolean }>(
   Link,
   (Styled) =>
     function StyledLink({ animateUnderline, ...restProps }) {

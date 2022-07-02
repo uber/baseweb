@@ -131,7 +131,7 @@ export const StyledListItemElement = styled<'li', StyledPropsT>('li', (props) =>
   };
 });
 
-export const StyledListItem = withWrapper(
+export const StyledListItem = withWrapper<typeof StyledListItemElement, { item? }>(
   StyledListItemElement,
   (Styled) =>
     function StyledListItem({ item, ...restProps }) {

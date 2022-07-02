@@ -51,16 +51,16 @@ type StyleFn<DefaultTheme> = {
 };
 
 type WithStyleFn<DefaultTheme> = {
-  <C extends StyletronComponent<any, any>, P extends object, Theme = DefaultTheme>(
+  <C extends StyletronComponent<any, any>, P extends {}, Theme = DefaultTheme>(
     component: C,
     style:
       | ((
           props: Omit<P, '$theme'> & {
             $theme: Theme;
-          }
+          } & React.ComponentProps<C>
         ) => StyleObject)
       | StyleObject
-  ): StyletronComponent<C, P>;
+  ): C extends StyletronComponent<infer CC, infer PP> ? StyletronComponent<CC, P & PP> : never;
   <C extends StyletronComponent<any, any>>(component: C, style: StyleObject): C;
 };
 
@@ -98,21 +98,22 @@ export function createThemedUseStyletron<Theme>(): UseStyletronFn<Theme> {
 
 export const useStyletron = createThemedUseStyletron<ThemeT>();
 
-export function withWrapper(
-  // flowlint-next-line unclear-type:off
-  StyledElement: StyletronComponent<any, any>,
+export function withWrapper<C extends StyletronComponent<any, any>, Props>(
+  StyledElement: C,
   wrapperFn: (
-    // flowlint-next-line unclear-type:off
-    // flowlint-next-line unclear-type:off
-    a: StyletronComponent<any, any>
-  ) => (a: any) => any
-) {
-  // flowlint-next-line unclear-type:off
-  return styletronWithWrapper<StyletronComponent<any, any>, any>(StyledElement, (Styled) => {
+    component: C
+  ) => (
+    props: Props & (C extends StyletronComponent<any, infer CP> ? CP : never)
+  ) => React.ReactElement
+): C extends StyletronComponent<infer D, infer P> ? StyletronComponent<D, P & Props> : never {
+  return styletronWithWrapper(StyledElement, (Styled) => {
     // eslint-disable-next-line react/display-name
-    return React.forwardRef((props, ref) => (
+    return React.forwardRef<any, React.ComponentProps<C> & Props>((props, ref) => (
       <ThemeContext.Consumer>
-        {(theme) => wrapperFn(Styled)({ ref: ref, ...props, $theme: theme })}
+        {(theme) =>
+          // @ts-ignore
+          wrapperFn(Styled)({ ref: ref, ...props, $theme: theme })
+        }
       </ThemeContext.Consumer>
     ));
   });

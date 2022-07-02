@@ -14,7 +14,7 @@ type Props = {
  * Wrap an element in FocusOnce that would normally not receive tab focus.
  * This is useful for placing initial focus in a Modal or FocusLock.
  * */
-export default function FocusOnce(props: Props) {
+export default function FocusOnce(props: Props): React.ReactElement {
   const [tabIndex, setTabIndex] = React.useState('0');
   const child = React.Children.only(props.children);
   // @ts-expect-error todo: children type should restrict children to elements only
