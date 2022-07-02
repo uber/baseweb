@@ -95,7 +95,7 @@ export const StyledOptionContent = styled<'div', SharedStylePropsArgT>('div', (p
     cursor: $disabled ? 'not-allowed' : 'pointer',
     color: $selected && !$isHighlighted ? $theme.colors.menuFontSelected : null,
     fontWeight: $selected ? 'bold' : 'normal',
-  } as {};
+  };
 });
 
 export const StyledRoot = styled<'div', SharedStylePropsArgT>('div', (props) => {

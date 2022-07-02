@@ -44,36 +44,31 @@ export const StyledFileDragAndDrop = styled<'div', StylePropsT>('div', (props) =
       : props.$theme.sizing.scale900,
     paddingLeft: props.$theme.sizing.scale800,
     width: '100%',
-  } as {};
+  };
 });
 
 export const StyledContentMessage = styled<'div', StylePropsT>(
   'div',
-  ({ $theme, $afterFileDrop, $isDragActive }) =>
-    ({
-      ...($afterFileDrop ? $theme.typography.LabelMedium : $theme.typography.LabelSmall),
-      color: $afterFileDrop
-        ? $theme.colors.contentPrimary
-        : $isDragActive
-        ? $theme.colors.contentAccent
-        : null,
-      marginTop: $afterFileDrop ? $theme.sizing.scale100 : null,
-      marginBottom: $afterFileDrop ? $theme.sizing.scale100 : null,
-    } as {})
+  ({ $theme, $afterFileDrop, $isDragActive }) => ({
+    ...($afterFileDrop ? $theme.typography.LabelMedium : $theme.typography.LabelSmall),
+    color: $afterFileDrop
+      ? $theme.colors.contentPrimary
+      : $isDragActive
+      ? $theme.colors.contentAccent
+      : null,
+    marginTop: $afterFileDrop ? $theme.sizing.scale100 : null,
+    marginBottom: $afterFileDrop ? $theme.sizing.scale100 : null,
+  })
 );
 
 export const StyledContentSeparator = StyledContentMessage;
 
-export const StyledErrorMessage = styled<'div', StylePropsT>(
-  'div',
-  (props) =>
-    ({
-      ...props.$theme.typography.LabelMedium,
-      color: props.$theme.colors.negative,
-      marginTop: props.$afterFileDrop ? props.$theme.sizing.scale100 : null,
-      marginBottom: props.$afterFileDrop ? props.$theme.sizing.scale100 : null,
-    } as {})
-);
+export const StyledErrorMessage = styled<'div', StylePropsT>('div', (props) => ({
+  ...props.$theme.typography.LabelMedium,
+  color: props.$theme.colors.negative,
+  marginTop: props.$afterFileDrop ? props.$theme.sizing.scale100 : null,
+  marginBottom: props.$afterFileDrop ? props.$theme.sizing.scale100 : null,
+}));
 
 export const StyledRoot = styled<'div', StylePropsT>('div', (props) => ({
   ...props.$theme.typography.font300,

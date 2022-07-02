@@ -7,12 +7,9 @@ LICENSE file in the root directory of this source tree.
 import { styled } from '../styles';
 import { SIZE, SIZE_WIDTHS } from './constants';
 import type { SharedStylePropsArgT, SizePropT } from './types';
+import type { StyleObject } from 'styletron-react';
 
-type SizeStyleT = {
-  maxWidth: string | number;
-  width?: string | number | null;
-  alignSelf?: string;
-};
+type SizeStyleT = Pick<StyleObject, 'maxWidth' | 'width' | 'alignSelf'>;
 
 function getSizeStyles($size: SizePropT): SizeStyleT {
   const styles: SizeStyleT = {
@@ -71,7 +68,7 @@ export const DialogContainer = styled<'div', SharedStylePropsArgT>('div', (props
   };
 });
 
-export const Dialog = styled<'div', SharedStylePropsArgT>('div', (props) => {
+export const Dialog = styled<'div', SharedStylePropsArgT>('div', (props): StyleObject => {
   const { $animate, $isOpen, $isVisible, $size, $theme } = props;
   return {
     position: 'relative',
@@ -104,7 +101,7 @@ export const Dialog = styled<'div', SharedStylePropsArgT>('div', (props) => {
     ':focus': {
       outline: 'none',
     },
-  } as {};
+  };
 });
 
 export const Close = styled<'button', SharedStylePropsArgT>('button', (props) => {

@@ -186,7 +186,7 @@ export const Checkmark = styled<'span', SharedStylePropsT>('span', (props) => {
     marginBottom: $theme.sizing.scale0,
     marginLeft: $theme.sizing.scale0,
     marginRight: $theme.sizing.scale0,
-  } as {};
+  };
 });
 
 export const Label = styled<'div', SharedStylePropsT>('div', (props) => {
@@ -198,7 +198,7 @@ export const Label = styled<'div', SharedStylePropsT>('div', (props) => {
     color: getLabelColor(props),
     ...typography.LabelMedium,
     lineHeight: '24px',
-  } as {};
+  };
 });
 
 // tricky style for focus event cause display: none doesn't work

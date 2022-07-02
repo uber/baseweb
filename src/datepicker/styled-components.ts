@@ -555,7 +555,7 @@ export const StyledDay = styled<'div', SharedStylePropsT>('div', (props) => {
       : // a hack to make flow happy, otherwise it complains about complexity
         // flowlint-next-line unclear-type:off
         ({} as any)),
-  } as {};
+  };
 });
 
 export const StyledDayLabel = styled<'div', SharedStylePropsT>('div', (props) => {
@@ -595,5 +595,5 @@ export const StyledWeekdayHeader = styled<'div', SharedStylePropsT>('div', (prop
     marginLeft: 0,
     marginRight: 0,
     backgroundColor: 'transparent',
-  } as {};
+  };
 });

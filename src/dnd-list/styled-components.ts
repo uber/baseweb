@@ -22,7 +22,7 @@ export const List = styled<'ul', SharedStylePropsArgT>('ul', ({ $isDragged }) =>
     paddingLeft: 0,
     cursor: $isDragged ? 'grabbing' : null,
     pointerEvents: $isDragged ? 'none' : 'auto',
-  } as {};
+  };
 });
 List.displayName = 'StyledList';
 
@@ -78,7 +78,7 @@ export const Item = styled<'li', SharedStylePropsArgT>(
       borderBottomColor: $isDragged || $isSelected ? $theme.colors.primary : 'transparent',
       borderLeftColor: $isDragged || $isSelected ? $theme.colors.primary : 'transparent',
       borderRightColor: $isDragged || $isSelected ? $theme.colors.primary : 'transparent',
-    } as {};
+    };
   }
 );
 List.displayName = 'StyledItem';

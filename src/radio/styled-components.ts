@@ -148,7 +148,7 @@ export const Root = styled<'label', StylePropsT>('label', (props) => {
     marginTop: sizing.scale200,
     [`margin${marginAfter}`]: isHorizontal ? sizing.scale200 : null,
     marginBottom: $hasDescription && !isHorizontal ? null : sizing.scale200,
-  } as {};
+  };
 });
 
 export const RadioMarkInner = styled<'div', StylePropsT>('div', (props) => {
@@ -192,7 +192,7 @@ export const RadioMarkOuter = styled<'div', StylePropsT>('div', (props) => {
     flexShrink: 0,
     transitionDuration: animation.timing200,
     transitionTimingFunction: animation.easeOutCurve,
-  } as {};
+  };
 });
 
 export const Label = styled<'div', StylePropsT>('div', (props) => {

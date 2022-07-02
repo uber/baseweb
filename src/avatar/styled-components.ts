@@ -57,5 +57,5 @@ export const Root = styled<'div', RootStylePropsT>('div', (props) => {
     // since image is not rendered, set the height/width
     height: $didImageFailToLoad ? themedSize : null,
     width: $didImageFailToLoad ? themedSize : null,
-  } as {};
+  };
 });

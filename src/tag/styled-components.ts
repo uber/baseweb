@@ -282,7 +282,7 @@ export const Action = styled<'span', SharedPropsArgT>(
       transitionProperty: 'all',
       transitionDuration: 'background-color',
       transitionTimingFunction: $theme.animation.easeOutCurve,
-    } as {};
+    };
   }
 );
 
@@ -422,6 +422,6 @@ export const Root = styled<'span', SharedPropsArgT>(
                   }`
                 : 'none',
             },
-    } as {};
+    };
   }
 );

@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import { styled, withWrapper, expandBorderStyles } from '../styles';
+import type { StyleObject } from 'styletron-react';
 
 const StyledTableElement = styled('div', ({ $theme }) => {
   return {
@@ -106,13 +107,14 @@ export const StyledSortableLabel = styled('button', ({ $theme }) => {
   };
 });
 
-const StyledBodyElement = styled<'div', HorizontalStyleProps>('div', ({ $width }) => {
+const StyledBodyElement = styled<'div', HorizontalStyleProps>('div', ({ $width }): StyleObject => {
   return {
     width: $width ? $width : '100%',
     overflowX: 'hidden',
+    // @ts-expect-error todo(flow->ts) looks to be incorrect value
     overflowY: 'overlay',
     flex: 1,
-  } as {};
+  };
 });
 
 export const StyledBody = withWrapper(

@@ -34,7 +34,7 @@ export const StyledBarContainer = styled<'div', StylePropsT>('div', (props) => {
     marginRight: sizing.scale500,
     marginTop: sizing.scale500,
     marginBottom: sizing.scale500,
-  } as {};
+  };
 });
 
 export const StyledBar = styled<'div', StylePropsT>('div', (props) => {
@@ -58,7 +58,7 @@ export const StyledBar = styled<'div', StylePropsT>('div', (props) => {
             marginLeft: '0',
           },
         }),
-  } as {};
+  };
 });
 
 export const StyledBarProgress = styled<'div', StylePropsT>('div', (props) => {

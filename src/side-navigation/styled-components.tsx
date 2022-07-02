@@ -99,7 +99,7 @@ export const StyledNavItemElement = styled<'div', SharedPropsT>('div', (props) =
     ':focus': {
       color: $selectable ? colors.primary : null,
     },
-  } as {};
+  };
 });
 
 export const StyledNavItem = withWrapper(
