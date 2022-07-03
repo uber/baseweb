@@ -123,10 +123,10 @@ export class StatefulPanelContainer extends React.Component<
   ): void;
 }
 
-export declare const StyledRoot: StyletronComponent<any, any>;
-export declare const StyledPanelContainer: StyletronComponent<any, any>;
-export declare const StyledHeader: StyletronComponent<any, any>;
-export declare const StyledContent: StyletronComponent<any, any>;
-export declare const StyledContentAnimationContainer: StyletronComponent<any, any>;
-export declare const StyledToggleIcon: StyletronComponent<any, any>;
-export declare const StyledToggleIconGroup: StyletronComponent<any, any>;
+export declare const StyledRoot: StyletronComponent<any>;
+export declare const StyledPanelContainer: StyletronComponent<any>;
+export declare const StyledHeader: StyletronComponent<any>;
+export declare const StyledContent: StyletronComponent<any>;
+export declare const StyledContentAnimationContainer: StyletronComponent<any>;
+export declare const StyledToggleIcon: StyletronComponent<any>;
+export declare const StyledToggleIconGroup: StyletronComponent<any>;

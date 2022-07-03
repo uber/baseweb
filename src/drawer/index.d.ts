@@ -84,8 +84,8 @@ export class Drawer extends React.Component<DrawerProps, DrawerState> {
   renderDrawer(): React.ReactNode;
 }
 
-export declare const StyledRoot: StyletronComponent<any, any>;
-export declare const StyledBackdrop: StyletronComponent<any, any>;
-export declare const StyledDrawerContainer: StyletronComponent<any, any>;
-export declare const StyledDrawerBody: StyletronComponent<any, any>;
-export declare const StyledClose: StyletronComponent<any, any>;
+export declare const StyledRoot: StyletronComponent<any>;
+export declare const StyledBackdrop: StyletronComponent<any>;
+export declare const StyledDrawerContainer: StyletronComponent<any>;
+export declare const StyledDrawerBody: StyletronComponent<any>;
+export declare const StyledClose: StyletronComponent<any>;

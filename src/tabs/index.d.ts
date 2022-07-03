@@ -85,7 +85,7 @@ export class Tab extends React.Component<TabProps> {
   getSharedProps(): SharedProps;
 }
 
-export declare const StyledRoot: StyletronComponent<any, any>;
-export declare const StyledTab: StyletronComponent<any, any>;
-export declare const StyledTabBar: StyletronComponent<any, any>;
-export declare const StyledTabContent: StyletronComponent<any, any>;
+export declare const StyledRoot: StyletronComponent<any>;
+export declare const StyledTab: StyletronComponent<any>;
+export declare const StyledTabBar: StyletronComponent<any>;
+export declare const StyledTabContent: StyletronComponent<any>;

@@ -37,10 +37,10 @@ export interface Theme {
 type UseStyletronFn<Theme> = () => [(arg: StyleObject) => string, Theme];
 export function createThemedUseStyletron<Theme>(): UseStyletronFn<Theme>;
 export declare const useStyletron: UseStyletronFn<Theme>;
-export function withWrapper<C extends StyletronComponent<any, any>, P extends object>(
+export function withWrapper<C extends StyletronComponent<any>, P extends object>(
   component: C,
   wrapper: (component: C) => React.ComponentType<P>
-): StyletronComponent<C, P>;
+): StyletronComponent<P>;
 
 export function styled<
   P extends object,
@@ -49,26 +49,26 @@ export function styled<
 >(
   component: C,
   styledFn: StyleObject | ((props: { $theme: T } & P) => StyleObject)
-): StyletronComponent<C, P>;
-export function withStyle<C extends StyletronComponent<any, any>, P extends object, T = Theme>(
+): StyletronComponent<P>;
+export function withStyle<C extends StyletronComponent<any>, P extends object, T = Theme>(
   component: C,
   styledFn: StyleObject | ((props: { $theme: T } & P) => StyleObject)
-): StyletronComponent<C, P>;
+): StyletronComponent<P>;
 
 export interface StyledFn<T> extends StyletronStyledFn {
   <C extends keyof JSX.IntrinsicElements | React.ComponentType<any>, P extends object>(
     component: C,
     style: (props: { $theme: T } & P) => StyleObject
-  ): StyletronComponent<C, P>;
+  ): StyletronComponent<P>;
 }
 
 export function createThemedStyled<Theme>(): StyledFn<Theme>;
 
 export interface WithStyleFn<T = Theme> extends StyletronWithStyleFn {
-  <C extends StyletronComponent<any, any>, P extends object, T1 = T>(
+  <C extends StyletronComponent<any>, P extends object, T1 = T>(
     component: C,
     style: (props: P & { $theme: T1 }) => StyleObject
-  ): StyletronComponent<C, P>;
+  ): StyletronComponent<P>;
 }
 
 export function createThemedWithStyle<Theme>(): WithStyleFn<Theme>;

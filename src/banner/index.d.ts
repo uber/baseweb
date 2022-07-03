@@ -57,14 +57,14 @@ export interface PropsT {
   title?: React.ReactNode;
 }
 
-export declare const StyledBelowContent: StyletronComponent<any, any>;
-export declare const StyledLeadingContent: StyletronComponent<any, any>;
-export declare const StyledMessage: StyletronComponent<any, any>;
-export declare const StyledMessageContent: StyletronComponent<any, any>;
-export declare const StyledRoot: StyletronComponent<any, any>;
-export declare const StyledTitle: StyletronComponent<any, any>;
-export declare const StyledTrailingContent: StyletronComponent<any, any>;
-export declare const StyledTrailingButtonContainer: StyletronComponent<any, any>;
-export declare const StyledTrailingIconButton: StyletronComponent<any, any>;
+export declare const StyledBelowContent: StyletronComponent<any>;
+export declare const StyledLeadingContent: StyletronComponent<any>;
+export declare const StyledMessage: StyletronComponent<any>;
+export declare const StyledMessageContent: StyletronComponent<any>;
+export declare const StyledRoot: StyletronComponent<any>;
+export declare const StyledTitle: StyletronComponent<any>;
+export declare const StyledTrailingContent: StyletronComponent<any>;
+export declare const StyledTrailingButtonContainer: StyletronComponent<any>;
+export declare const StyledTrailingIconButton: StyletronComponent<any>;
 
 export declare const Banner: React.FC<PropsT>;

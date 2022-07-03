@@ -426,15 +426,15 @@ export interface FlagProps {
 }
 export declare const Flag: React.FC<FlagProps>;
 
-export declare const StyledFlag: StyletronComponent<any, any>;
-export declare const StyledRoot: StyletronComponent<any, any>;
-export declare const StyledDialCode: StyletronComponent<any, any>;
-export declare const StyledCountrySelectContainer: StyletronComponent<any, any>;
-export declare const StyledCountrySelectDropdownContainer: StyletronComponent<any, any>;
-export declare const StyledCountrySelectDropdownListItem: StyletronComponent<any, any>;
-export declare const StyledCountrySelectDropdownFlagColumn: StyletronComponent<any, any>;
-export declare const StyledCountrySelectDropdownNameColumn: StyletronComponent<any, any>;
-export declare const StyledCountrySelectDropdownDialcodeColumn: StyletronComponent<any, any>;
+export declare const StyledFlag: StyletronComponent<any>;
+export declare const StyledRoot: StyletronComponent<any>;
+export declare const StyledDialCode: StyletronComponent<any>;
+export declare const StyledCountrySelectContainer: StyletronComponent<any>;
+export declare const StyledCountrySelectDropdownContainer: StyletronComponent<any>;
+export declare const StyledCountrySelectDropdownListItem: StyletronComponent<any>;
+export declare const StyledCountrySelectDropdownFlagColumn: StyletronComponent<any>;
+export declare const StyledCountrySelectDropdownNameColumn: StyletronComponent<any>;
+export declare const StyledCountrySelectDropdownDialcodeColumn: StyletronComponent<any>;
 
 export declare const DEFAULT_MAX_DROPDOWN_WIDTH: '400px';
 export declare const DEFAULT_MAX_DROPDOWN_HEIGHT: '400px';

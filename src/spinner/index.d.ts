@@ -14,4 +14,4 @@ export interface SpinnerProps {
   $size?: number | string | SIZE | Sizing;
 }
 
-export declare const Spinner: StyletronComponent<any, SpinnerProps>;
+export declare const Spinner: StyletronComponent<SpinnerProps>;

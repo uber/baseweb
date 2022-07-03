@@ -25,11 +25,11 @@ export interface CardProps {
 export declare const Card: React.FC<CardProps>;
 export type hasThumbnail = (props: { readonly thumbnail?: string }) => boolean;
 
-export declare const StyledAction: StyletronComponent<any, any>;
-export declare const StyledBody: StyletronComponent<any, any>;
-export declare const StyledContents: StyletronComponent<any, any>;
-export declare const StyledHeaderImage: StyletronComponent<any, any>;
-export declare const StyledThumbnail: StyletronComponent<any, any>;
-export declare const StyledTitle: StyletronComponent<any, any>;
-export declare const StyledRoot: StyletronComponent<any, any>;
-export declare const StyledWrapper: StyletronComponent<any, any>;
+export declare const StyledAction: StyletronComponent<any>;
+export declare const StyledBody: StyletronComponent<any>;
+export declare const StyledContents: StyletronComponent<any>;
+export declare const StyledHeaderImage: StyletronComponent<any>;
+export declare const StyledThumbnail: StyletronComponent<any>;
+export declare const StyledTitle: StyletronComponent<any>;
+export declare const StyledRoot: StyletronComponent<any>;
+export declare const StyledWrapper: StyletronComponent<any>;

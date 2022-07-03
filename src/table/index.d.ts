@@ -54,15 +54,15 @@ export interface FilterProps {
 }
 export declare const Filter: React.FC<FilterProps>;
 
-export declare const StyledTable: StyletronComponent<any, any>;
-export declare const StyledFilterButton: StyletronComponent<any, any>;
-export declare const StyledFilterContent: StyletronComponent<any, any>;
-export declare const StyledFilterHeading: StyletronComponent<any, any>;
-export declare const StyledFilterFooter: StyletronComponent<any, any>;
-export declare const StyledHead: StyletronComponent<any, any>;
-export declare const StyledHeadCell: StyletronComponent<any, any>;
-export declare const StyledBody: StyletronComponent<any, any>;
-export declare const StyledRow: StyletronComponent<any, any>;
-export declare const StyledCell: StyletronComponent<any, any>;
-export declare const StyledAction: StyletronComponent<any, any>;
-export declare const StyledSortableLabel: StyletronComponent<any, any>;
+export declare const StyledTable: StyletronComponent<any>;
+export declare const StyledFilterButton: StyletronComponent<any>;
+export declare const StyledFilterContent: StyletronComponent<any>;
+export declare const StyledFilterHeading: StyletronComponent<any>;
+export declare const StyledFilterFooter: StyletronComponent<any>;
+export declare const StyledHead: StyletronComponent<any>;
+export declare const StyledHeadCell: StyletronComponent<any>;
+export declare const StyledBody: StyletronComponent<any>;
+export declare const StyledRow: StyletronComponent<any>;
+export declare const StyledCell: StyletronComponent<any>;
+export declare const StyledAction: StyletronComponent<any>;
+export declare const StyledSortableLabel: StyletronComponent<any>;

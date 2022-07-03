@@ -125,10 +125,10 @@ export class Radio extends React.Component<RadioProps, RadioState> {
   onBlur(event: React.FocusEvent<HTMLInputElement>): void;
 }
 
-export declare const StyledRoot: StyletronComponent<any, any>;
-export declare const StyledLabel: StyletronComponent<any, any>;
-export declare const StyledInput: StyletronComponent<any, any>;
-export declare const StyledDescription: StyletronComponent<any, any>;
-export declare const StyledRadioMarkInner: StyletronComponent<any, any>;
-export declare const StyledRadioMarkOuter: StyletronComponent<any, any>;
-export declare const StyledRadioGroupRoot: StyletronComponent<any, any>;
+export declare const StyledRoot: StyletronComponent<any>;
+export declare const StyledLabel: StyletronComponent<any>;
+export declare const StyledInput: StyletronComponent<any>;
+export declare const StyledDescription: StyletronComponent<any>;
+export declare const StyledRadioMarkInner: StyletronComponent<any>;
+export declare const StyledRadioMarkOuter: StyletronComponent<any>;
+export declare const StyledRadioGroupRoot: StyletronComponent<any>;

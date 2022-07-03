@@ -14,7 +14,7 @@ export declare const STATE_CHANGE_TYPE: {
   change: 'change';
 };
 
-export declare const StyledRoot: StyletronComponent<any, any>;
+export declare const StyledRoot: StyletronComponent<any>;
 
 export interface ButtonGroupOverrides {
   Root?: Override<any>;

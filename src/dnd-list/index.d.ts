@@ -69,12 +69,12 @@ export interface ListProps {
 
 export class List extends React.Component<ListProps> {}
 
-export declare const StyledRoot: StyletronComponent<any, any>;
-export declare const StyledList: StyletronComponent<any, any>;
-export declare const StyledItem: StyletronComponent<any, any>;
-export declare const StyledDragHandle: StyletronComponent<any, any>;
-export declare const StyledCloseHandle: StyletronComponent<any, any>;
-export declare const StyledLabel: StyletronComponent<any, any>;
+export declare const StyledRoot: StyletronComponent<any>;
+export declare const StyledList: StyletronComponent<any>;
+export declare const StyledItem: StyletronComponent<any>;
+export declare const StyledDragHandle: StyletronComponent<any>;
+export declare const StyledCloseHandle: StyletronComponent<any>;
+export declare const StyledLabel: StyletronComponent<any>;
 
 export declare const arrayMove: typeof arrayMoveT;
 export declare const arrayRemove: typeof arrayRemoveT;

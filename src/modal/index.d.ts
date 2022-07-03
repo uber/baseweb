@@ -85,10 +85,10 @@ export class ModalButton extends React.Component<ButtonProps & { autoFocus?: boo
 
 export class FocusOnce extends React.Component<{ children: React.ReactNode }> {}
 
-export declare const StyledRoot: StyletronComponent<any, any>;
-export declare const StyledDialog: StyletronComponent<any, any>;
-export declare const StyledDialogContainer: StyletronComponent<any, any>;
-export declare const StyledClose: StyletronComponent<any, any>;
-export declare const ModalHeader: StyletronComponent<any, any>;
-export declare const ModalBody: StyletronComponent<any, any>;
-export declare const ModalFooter: StyletronComponent<any, any>;
+export declare const StyledRoot: StyletronComponent<any>;
+export declare const StyledDialog: StyletronComponent<any>;
+export declare const StyledDialogContainer: StyletronComponent<any>;
+export declare const StyledClose: StyletronComponent<any>;
+export declare const ModalHeader: StyletronComponent<any>;
+export declare const ModalBody: StyletronComponent<any>;
+export declare const ModalFooter: StyletronComponent<any>;

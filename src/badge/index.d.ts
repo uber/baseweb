@@ -81,11 +81,11 @@ export type HintDotPropsT = {
   children?: React.ReactNode;
 };
 
-export declare const StyledRoot: StyletronComponent<any, any>;
-export declare const StyledPositioner: StyletronComponent<any, any>;
-export declare const StyledBadge: StyletronComponent<any, any>;
-export declare const StyledNotificationCircle: StyletronComponent<any, any>;
-export declare const StyledHintDot: StyletronComponent<any, any>;
+export declare const StyledRoot: StyletronComponent<any>;
+export declare const StyledPositioner: StyletronComponent<any>;
+export declare const StyledBadge: StyletronComponent<any>;
+export declare const StyledNotificationCircle: StyletronComponent<any>;
+export declare const StyledHintDot: StyletronComponent<any>;
 
 export declare const Badge: React.FC<BadgePropsT>;
 export declare const NotificationCircle: React.FC<NotificationCirclePropsT>;

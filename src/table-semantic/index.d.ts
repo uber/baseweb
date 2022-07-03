@@ -81,17 +81,17 @@ export interface TableBuilderColumnProps<RowT> {
 }
 export class TableBuilderColumn<RowT> extends React.Component<TableBuilderColumnProps<RowT>> {}
 
-export declare const StyledRoot: StyletronComponent<any, any>;
-export declare const StyledTable: StyletronComponent<any, any>;
-export declare const StyledTableHead: StyletronComponent<any, any>;
-export declare const StyledTableHeadRow: StyletronComponent<any, any>;
-export declare const StyledTableHeadCell: StyletronComponent<any, any>;
-export declare const StyledTableHeadCellSortable: StyletronComponent<any, any>;
-export declare const StyledTableBody: StyletronComponent<any, any>;
-export declare const StyledTableBodyRow: StyletronComponent<any, any>;
-export declare const StyledTableBodyCell: StyletronComponent<any, any>;
-export declare const StyledTableLoadingMessage: StyletronComponent<any, any>;
-export declare const StyledTableEmptyMessage: StyletronComponent<any, any>;
-export declare const StyledSortAscIcon: StyletronComponent<any, any>;
-export declare const StyledSortDescIcon: StyletronComponent<any, any>;
-export declare const StyledSortNoneIcon: StyletronComponent<any, any>;
+export declare const StyledRoot: StyletronComponent<any>;
+export declare const StyledTable: StyletronComponent<any>;
+export declare const StyledTableHead: StyletronComponent<any>;
+export declare const StyledTableHeadRow: StyletronComponent<any>;
+export declare const StyledTableHeadCell: StyletronComponent<any>;
+export declare const StyledTableHeadCellSortable: StyletronComponent<any>;
+export declare const StyledTableBody: StyletronComponent<any>;
+export declare const StyledTableBodyRow: StyletronComponent<any>;
+export declare const StyledTableBodyCell: StyletronComponent<any>;
+export declare const StyledTableLoadingMessage: StyletronComponent<any>;
+export declare const StyledTableEmptyMessage: StyletronComponent<any>;
+export declare const StyledSortAscIcon: StyletronComponent<any>;
+export declare const StyledSortDescIcon: StyletronComponent<any>;
+export declare const StyledSortNoneIcon: StyletronComponent<any>;
