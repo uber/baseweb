@@ -29,10 +29,10 @@ export const StyledRoot = styled<{ $orientation?: OrientationT }>(
   }
 );
 
-export const StyledTabBar = styled<{ $hasEndEnhancer: boolean }>(
+export const StyledTabBar = styled<{ $hasEndEnhancer: boolean, $orientation: OrientationT }>(
   'div',
-  ({ $theme, $hasEndEnhancer }) =>
-    $hasEndEnhancer
+  ({ $theme, $hasEndEnhancer, $orientation }) =>
+    $hasEndEnhancer || !isHorizontal($orientation)
       ? {
           display: 'flex',
         }
