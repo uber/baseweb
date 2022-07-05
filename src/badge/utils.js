@@ -9,7 +9,7 @@ import * as React from 'react';
 
 export const getAnchorFromChildren = (children: ?React.Node) => {
   const childArray = React.Children.toArray(children);
-  if (childArray.length !== 1) {
+  if (childArray.length > 1) {
     // eslint-disable-next-line no-console
     console.error(
       `[baseui] No more than 1 child may be passed to Badge, found ${childArray.length} children`
