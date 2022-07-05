@@ -79,4 +79,5 @@ export type TableBuilderColumnPropsT<RowT> = {
   numeric?: boolean,
   sortable?: boolean,
   tableHeadAriaLabel?: string,
+  divider?: DividerT,
 };
