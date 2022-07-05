@@ -18551,26 +18551,26 @@ styled-jsx@3.3.2:
     stylis "3.5.4"
     stylis-rule-sheet "0.0.10"
 
-styletron-engine-atomic@^1.5.0-beta.1:
-  version "1.5.0-beta.1"
-  resolved "https://registry.npmjs.org/styletron-engine-atomic/-/styletron-engine-atomic-1.5.0-beta.1.tgz#dcf8845193b5cf49158ad5fc5c040d65da3ff12f"
-  integrity sha512-wpGK9uTjfnnCYm9pJOBEvPP14qqrylBUgDo3MOFgMAL4jSmDlxEcVu0G2qR0hdKu7ri0PiLu4x6ZSHPoWApMHA==
+styletron-engine-atomic@^1.5.0-beta.2:
+  version "1.5.0-beta.2"
+  resolved "https://registry.yarnpkg.com/styletron-engine-atomic/-/styletron-engine-atomic-1.5.0-beta.2.tgz#a0df2711b663f1fb56a04a83828744c5bc767556"
+  integrity sha512-JsS2+HhCe23IHXCwdsqvBCqIb4/pOQbvKiDg4IUSpp5GNt9hhyGgwTzjNpy1Po6Ihmmj3VS50ZwaSNGYmYcf0g==
   dependencies:
     inline-style-prefixer "^5.1.0"
-    styletron-standard "^3.1.0-beta.1"
+    styletron-standard "^3.1.0-beta.2"
 
-styletron-react@^6.1.0-beta.1:
-  version "6.1.0-beta.1"
-  resolved "https://registry.npmjs.org/styletron-react/-/styletron-react-6.1.0-beta.1.tgz#8e8bb4f83b507e364982922f9842c554f026567b"
-  integrity sha512-x9Zx2GyDEWF9eJyqjt4dUUbvRH+q65xoaBss04jYfCxzGXpV1HnxFlX7a77VWpnnzj+yCm5ArFqI1Ntl3RzjQA==
+styletron-react@^6.1.0-beta.2:
+  version "6.1.0-beta.2"
+  resolved "https://registry.yarnpkg.com/styletron-react/-/styletron-react-6.1.0-beta.2.tgz#2f0411bf11a00870783e9d239e41491e9d48cd86"
+  integrity sha512-ohaOWaA1xJ+mrCpySOcRi2281+57xOOJuxvH5/B/3tTTHA+xhLbb+YUp4pMgjAMqJchCDPsk0PRejsB+HmVuDQ==
   dependencies:
     prop-types "^15.6.0"
-    styletron-standard "^3.1.0-beta.1"
+    styletron-standard "^3.1.0-beta.2"
 
-styletron-standard@^3.1.0-beta.1:
-  version "3.1.0-beta.1"
-  resolved "https://registry.npmjs.org/styletron-standard/-/styletron-standard-3.1.0-beta.1.tgz#0dc57728ad0d718f033bd3198bb29ef52fdec9d6"
-  integrity sha512-xaYLAhxH+LjhpkMTNjUzPKRoes+Luqq74adwT1fy01O8P7c1gHqTNOJBSjLrA8KUEgiF7dkZVzHOTnpNkeKDqg==
+styletron-standard@^3.1.0-beta.2:
+  version "3.1.0-beta.2"
+  resolved "https://registry.yarnpkg.com/styletron-standard/-/styletron-standard-3.1.0-beta.2.tgz#9cb03534ea604ee844b2d5839e1d6f1f6fb0058a"
+  integrity sha512-qR1EdYu4xGcmH+qXmBueA/34UOavcgG3J6jGOr9BQiqwRFSNehNnGFXmLYyoyAlyidrcYuXXcUaGvREc6v1qdQ==
   dependencies:
     "@rtsao/csstype" "2.6.5-forked.0"
     csstype "^3.0.0"
