@@ -10,8 +10,6 @@ LICENSE file in the root directory of this source tree.
 
 const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
 
-const { expect, test } = require('@playwright/test');
-
 const selectors = {
   twelveHour: '[data-e2e="12-hour"]',
   twentyFourHour: '[data-e2e="24-hour"]',
@@ -28,15 +26,15 @@ const selectors = {
   value: '[data-id="selected"]',
 };
 
-test.describe('TimePicker', () => {
-  test('passes basic a11y tests', async ({ page }) => {
+describe('TimePicker', () => {
+  it('passes basic a11y tests', async () => {
     await mount(page, 'timepicker--time-picker');
     await page.waitForSelector(selectors.twelveHour);
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
-  test('is renders expected 12 hour format times', async ({ page }) => {
+  it('is renders expected 12 hour format times', async () => {
     await mount(page, 'timepicker--time-picker');
     await page.waitForSelector(selectors.twelveHour);
     await page.click(`${selectors.twelveHour} ${selectors.input}`);
@@ -66,7 +64,7 @@ test.describe('TimePicker', () => {
     expect(minutes).toBe('minute: 0');
   });
 
-  test('it renders only times within the min/max range', async ({ page }) => {
+  it('date - it renders only times within the min/max range', async () => {
     await mount(page, 'timepicker--time-picker');
     await page.waitForSelector(selectors.minMaxTime);
     await page.click(`${selectors.minMaxTime} ${selectors.input}`);
@@ -93,7 +91,7 @@ test.describe('TimePicker', () => {
     expect(minutes).toBe('minute: 0');
   });
 
-  test('is renders expected 24 hour format times with custom step', async ({ page }) => {
+  it('date - renders expected 24 hour format times with custom step', async () => {
     await mount(page, 'timepicker--time-picker');
     await page.waitForSelector(selectors.twentyFourHour);
     await page.click(`${selectors.twentyFourHour} ${selectors.input}`);
@@ -124,7 +122,7 @@ test.describe('TimePicker', () => {
     expect(minutes).toBe('minute: 0');
   });
 
-  test('renders a date that is not one of the steps', async ({ page }) => {
+  it('renders a date that is not one of the steps', async () => {
     await mount(page, 'timepicker--time-picker');
     await page.waitForSelector(selectors.twelveHourCreatable);
     await page.waitForSelector(selectors.twentyFourHourCreatable);
@@ -143,10 +141,8 @@ test.describe('TimePicker', () => {
     expect(twentyFourHourValue).toBe('01:11');
   });
 
-  test.describe('creatable', () => {
-    test('shows both AM and PM options when a 12-hour time without meridiem is entered', async ({
-      page,
-    }) => {
+  describe('creatable', () => {
+    it('shows both AM and PM options when a 12-hour time without meridiem is entered', async () => {
       await mount(page, 'timepicker--time-picker');
       await page.waitForSelector(selectors.twelveHourCreatable);
       await page.click(`${selectors.twelveHourCreatable} ${selectors.input}`);
@@ -162,9 +158,7 @@ test.describe('TimePicker', () => {
       expect(option2).toBe('3:33 PM');
     });
 
-    test('shows AM option when a 12-hour time with partial meridiem is entered', async ({
-      page,
-    }) => {
+    it('shows AM option when a 12-hour time with partial meridiem is entered', async () => {
       await mount(page, 'timepicker--time-picker');
       await page.waitForSelector(selectors.twelveHourCreatable);
       await page.click(`${selectors.twelveHourCreatable} ${selectors.input}`);
@@ -178,7 +172,7 @@ test.describe('TimePicker', () => {
       expect(option1).toBe('3:33 AM');
     });
 
-    test('generates the correct seconds for 12PM', async ({ page }) => {
+    it('generates the correct seconds for 12PM', async () => {
       await mount(page, 'timepicker--time-picker');
       await page.waitForSelector(selectors.twelveHourCreatable);
       await page.click(`${selectors.twelveHourCreatable} ${selectors.input}`);
@@ -207,7 +201,7 @@ test.describe('TimePicker', () => {
       expect(minutes).toBe('minute: 11');
     });
 
-    test('generates the correct seconds for 12AM', async ({ page }) => {
+    it('generates the correct seconds for 12AM', async () => {
       await mount(page, 'timepicker--time-picker');
       await page.waitForSelector(selectors.twelveHourCreatable);
       await page.click(`${selectors.twelveHourCreatable} ${selectors.input}`);
@@ -224,9 +218,7 @@ test.describe('TimePicker', () => {
       expect(value).toBe('12:22 AM');
     });
 
-    test('shows an option when a 24 hour time without leading zero is entered', async ({
-      page,
-    }) => {
+    it('shows an option when a 24 hour time without leading zero is entered', async () => {
       await mount(page, 'timepicker--time-picker');
       await page.waitForSelector(selectors.twentyFourHourCreatable);
       await page.click(`${selectors.twentyFourHourCreatable} ${selectors.input}`);
@@ -240,9 +232,7 @@ test.describe('TimePicker', () => {
       expect(option1).toBe('03:33');
     });
 
-    test('shows only one option when a time is entered that matches an existing option', async ({
-      page,
-    }) => {
+    it('shows only one option when a time is entered that matches an existing option', async () => {
       await mount(page, 'timepicker--time-picker');
       await page.waitForSelector(selectors.twentyFourHourCreatable);
       await page.click(`${selectors.twentyFourHourCreatable} ${selectors.input}`);
@@ -256,8 +246,8 @@ test.describe('TimePicker', () => {
       expect(option1).toBe('00:15');
     });
   });
-  test.describe('when using moment', () => {
-    test('is renders expected 24 hour format times with custom step', async ({ page }) => {
+  describe('when using moment', () => {
+    it('moment - renders expected 24 hour format times with custom step', async () => {
       await mount(page, 'timepicker--time-picker');
       await page.waitForSelector(selectors.twentyFourHourMoment);
       await page.click(`${selectors.twentyFourHourMoment} ${selectors.input}`);
@@ -288,7 +278,7 @@ test.describe('TimePicker', () => {
       expect(minutes).toBe('minute: 0');
     });
 
-    test('it renders only times within the min/max range', async ({ page }) => {
+    it('moment - it renders only times within the min/max range', async () => {
       await mount(page, 'timepicker--time-picker');
       await page.waitForSelector(selectors.minMaxTimeMoment);
       await page.click(`${selectors.minMaxTimeMoment} ${selectors.input}`);
