@@ -256,8 +256,9 @@ test.describe('TimePicker', () => {
       expect(option1).toBe('00:15');
     });
   });
+
   test.describe('when using moment', () => {
-    test('is renders expected 24 hour format times with custom step', async ({ page }) => {
+    test('moment - is renders expected 24 hour format times with custom step', async ({ page }) => {
       await mount(page, 'timepicker--time-picker');
       await page.waitForSelector(selectors.twentyFourHourMoment);
       await page.click(`${selectors.twentyFourHourMoment} ${selectors.input}`);
@@ -288,7 +289,7 @@ test.describe('TimePicker', () => {
       expect(minutes).toBe('minute: 0');
     });
 
-    test('it renders only times within the min/max range', async ({ page }) => {
+    test('moment - it renders only times within the min/max range', async ({ page }) => {
       await mount(page, 'timepicker--time-picker');
       await page.waitForSelector(selectors.minMaxTimeMoment);
       await page.click(`${selectors.minMaxTimeMoment} ${selectors.input}`);
