@@ -70,6 +70,8 @@ module.exports = {
     ],
     'import/no-duplicates': 2,
     'import/newline-after-import': 2,
+    'jest/no-identical-title': 2,
+    'jest/no-focused-tests': 2,
     'import/first': 2,
     'dot-notation': 2,
   },
