@@ -18,7 +18,6 @@ export {
   BADGE_ENHANCER_SIZES,
   LABEL_ENHANCER_POSITIONS,
   KIND,
-  PINHEAD_DIMENSIONS,
 } from './constants.js';
 
 export type * from './types.js';
