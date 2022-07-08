@@ -17,11 +17,13 @@ function expectEnvironmentVariable(name) {
   if (!process.env[name]) {
     throw new Error(`Missing environment variable: ${name}`);
   }
+  return process.env[name];
 }
 
 async function createBuild(token, commitHash) {
   const body = {
     commit: 'HEAD',
+    branch: 'baseui-sync-remote-task',
     message: '[baseui-sync] Triggered from CI',
     meta_data: { task: 'baseui-sync' },
     env: {
@@ -48,10 +50,10 @@ async function createBuild(token, commitHash) {
 }
 
 async function main() {
-  expectEnvironmentVariable('BUILDKITE_API_TOKEN');
-  expectEnvironmentVariable('BUILDKITE_COMMIT');
+  const token = expectEnvironmentVariable('BUILDKITE_API_TOKEN');
+  const commitHash = expectEnvironmentVariable('BUILDKITE_COMMIT');
 
-  const build = await createBuild(process.env.BUILDKITE_API_TOKEN, process.env.BUILDKITE_COMMIT);
+  const build = await createBuild(token, commitHash);
   console.log(`View sync build at ${build.web_url}`);
 }
 
