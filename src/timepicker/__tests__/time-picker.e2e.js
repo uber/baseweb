@@ -8,194 +8,139 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const { mount, analyzeAccessibility, isSameNode } = require('../../../e2e/helpers');
+const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
 
 const { expect, test } = require('@playwright/test');
 
-const getTabs = (page) => page.$$('[role=tab]');
-
-const getTabPanels = (page) => page.$$('[role=tabpanel]');
-
-const isHidden = (page, t) => {
-  return page.evaluate((tab) => tab.hidden, t);
+const selectors = {
+  twelveHour: '[data-e2e="12-hour"]',
+  twentyFourHour: '[data-e2e="24-hour"]',
+  twentyFourHourMoment: '[data-e2e="24-hour-moment"]',
+  twelveHourCreatable: '[data-e2e="12-hour-creatable"]',
+  twentyFourHourCreatable: '[data-e2e="24-hour-creatable"]',
+  minMaxTime: '[data-e2e="with-min-and-max-time"]',
+  minMaxTimeMoment: '[data-e2e="with-min-and-max-time-moment"]',
+  hours: '[data-e2e="hours"]',
+  minutes: '[data-e2e="minutes"]',
+  input: 'input[role="combobox"]',
+  dropdown: '[role="listbox"]',
+  option: '[role="option"]',
+  value: '[data-id="selected"]',
 };
 
-const isSelected = (page, t) => {
-  return page.evaluate((tab) => tab.getAttribute('aria-selected') === 'true', t);
-};
-
-const isActiveEl = async (page, el) => {
-  const activeEl = await page.evaluateHandle(`document.activeElement`);
-  const result = await isSameNode(activeEl, el);
-  activeEl.dispose();
-  return result;
-};
-
-test.describe('tabs', () => {
+test.describe('TimePicker', () => {
   test('passes basic a11y tests', async ({ page }) => {
-    await mount(page, 'tabs-motion--tabs-motion');
-    await page.waitForSelector('[role="tab"]');
+    await mount(page, 'timepicker--time-picker');
+    await page.waitForSelector(selectors.twelveHour);
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
-  test('only the selected tab has visible content', async ({ page }) => {
-    await mount(page, 'tabs-motion--tabs-motion');
-    const tabs = await getTabs(page);
-    const tabPanels = await getTabPanels(page);
-    expect(await isSelected(page, tabs[0])).toBeTruthy();
-    expect(await isHidden(page, tabPanels[0])).toBeFalsy();
-    expect(await isSelected(page, tabs[1])).toBeFalsy();
-    expect(await isHidden(page, tabPanels[1])).toBeTruthy();
-    expect(await isSelected(page, tabs[2])).toBeFalsy();
-    expect(await isHidden(page, tabPanels[2])).toBeTruthy();
-  });
-
-  test('*click* selects tab', async ({ page }) => {
-    await mount(page, 'tabs-motion--tabs-motion');
-    const tabs = await getTabs(page);
-    expect(await isSelected(page, tabs[0])).toBeTruthy();
-    await tabs[1].click();
-    expect(await isSelected(page, tabs[1])).toBeTruthy();
-  });
-
-  test('*click* does not select disabled tab', async ({ page }) => {
-    await mount(page, 'tabs-motion--disabled');
-    const tabs = await getTabs(page);
-    expect(await isSelected(page, tabs[0])).toBeTruthy();
-    await tabs[1].click({ force: true });
-    expect(await isSelected(page, tabs[0])).toBeTruthy();
-  });
-
-  test('does not mount non selected tab content', async ({ page }) => {
-    await mount(page, 'tabs-motion--tabs-motion');
-    const tabs = await getTabs(page);
-    expect(await isSelected(page, tabs[0])).toBeTruthy();
-    expect(await page.evaluate(`window.__e2e__mounted`)).toBe(false);
-  });
-
-  test('[renderAll] mounts non selected tab content', async ({ page }) => {
-    await mount(page, 'tabs-motion--render-all');
-    const tabs = await getTabs(page);
-    expect(await isSelected(page, tabs[0])).toBeTruthy();
-    expect(await page.evaluate(`window.__e2e__mounted`)).toBe(true);
-  });
-
-  test('{regression} conditional tab does not throw error', async ({ page }) => {
-    await mount(page, 'tabs-motion--conditional');
-    const button = await page.$('#toggle-robot-tab');
-    let firstTab = await page.$('#tabs-conditional-tab-robot');
-    expect(firstTab).toBeFalsy();
-    await button.click();
-    firstTab = await page.$('#tabs-conditional-tab-robot');
-    expect(firstTab).toBeTruthy();
-    expect(await page.evaluate(`window.__e2e__error`)).toBe(false);
-  });
-
-  test('*tab* moves focus to active tab', async ({ page }) => {
-    await mount(page, 'tabs-motion--focus');
-    const firstFocusElement = await page.$('#first-focus');
-    await firstFocusElement.focus();
-    expect(await isActiveEl(page, firstFocusElement)).toBeTruthy();
-    await page.keyboard.press('Tab');
-    const tabs = await getTabs(page);
-    expect(await isActiveEl(page, tabs[1])).toBeTruthy();
-  });
-
-  test('*tab* moves focus to tab content', async ({ page }) => {
-    await mount(page, 'tabs-motion--focus');
-    const tabs = await getTabs(page);
-    await tabs[1].focus();
-    expect(await isActiveEl(page, tabs[1])).toBeTruthy();
-    await page.keyboard.press('Tab');
-    const tabContent = await page.$('#tab-content');
-    expect(await isActiveEl(page, tabContent)).toBeTruthy();
-  });
-
-  test('*direction* moves focus to tab and selects tab', async ({ page }) => {
-    await mount(page, 'tabs-motion--tabs-motion');
-    const tabs = await getTabs(page);
-    await tabs[0].focus();
-    expect(await isActiveEl(page, tabs[0])).toBeTruthy();
-    expect(await isSelected(page, tabs[0])).toBeTruthy();
-    await page.keyboard.press('ArrowRight');
-    expect(await isActiveEl(page, tabs[1])).toBeTruthy();
-    expect(await isSelected(page, tabs[1])).toBeTruthy();
-  });
-
-  test('*direction* moves focus to tab and *enter* selects tab when [manual]', async ({ page }) => {
-    await mount(page, 'tabs-motion--manual');
-    const tabs = await getTabs(page);
-    await tabs[0].focus();
-    expect(await isActiveEl(page, tabs[0])).toBeTruthy();
-    expect(await isSelected(page, tabs[0])).toBeTruthy();
-    await page.keyboard.press('ArrowRight');
-    expect(await isActiveEl(page, tabs[1])).toBeTruthy();
-    expect(await isSelected(page, tabs[0])).toBeTruthy();
+  test('is renders expected 12 hour format times', async ({ page }) => {
+    await mount(page, 'timepicker--time-picker');
+    await page.waitForSelector(selectors.twelveHour);
+    await page.click(`${selectors.twelveHour} ${selectors.input}`);
+    await page.waitForSelector(selectors.dropdown);
+    await page.keyboard.press('ArrowDown');
+    await page.keyboard.press('ArrowDown');
+    await page.keyboard.press('ArrowDown');
+    await page.keyboard.press('ArrowDown');
     await page.keyboard.press('Enter');
-    expect(await isSelected(page, tabs[1])).toBeTruthy();
+
+    const value = await page.$eval(
+      `${selectors.twelveHour} ${selectors.value}`,
+      (select) => select.textContent
+    );
+    expect(value).toBe('1:00 AM');
+
+    const hours = await page.$eval(
+      `${selectors.twelveHour} ${selectors.hours}`,
+      (select) => select.textContent
+    );
+    expect(hours).toBe('hour: 1');
+
+    const minutes = await page.$eval(
+      `${selectors.twelveHour} ${selectors.minutes}`,
+      (select) => select.textContent
+    );
+    expect(minutes).toBe('minute: 0');
   });
 
-  test('*direction* moves focus to tab and *space* selects tab when [manual]', async ({ page }) => {
-    await mount(page, 'tabs-motion--manual');
-    const tabs = await getTabs(page);
-    await tabs[0].focus();
-    expect(await isActiveEl(page, tabs[0])).toBeTruthy();
-    expect(await isSelected(page, tabs[0])).toBeTruthy();
-    await page.keyboard.press('ArrowRight');
-    expect(await isActiveEl(page, tabs[1])).toBeTruthy();
-    expect(await isSelected(page, tabs[0])).toBeTruthy();
-    await page.keyboard.press('Space');
-    expect(await isSelected(page, tabs[1])).toBeTruthy();
+  test('it renders only times within the min/max range', async ({ page }) => {
+    await mount(page, 'timepicker--time-picker');
+    await page.waitForSelector(selectors.minMaxTime);
+    await page.click(`${selectors.minMaxTime} ${selectors.input}`);
+    await page.waitForSelector(selectors.dropdown);
+    await page.keyboard.press('ArrowDown');
+    await page.keyboard.press('Enter');
+
+    const value = await page.$eval(
+      `${selectors.minMaxTime} ${selectors.value}`,
+      (select) => select.textContent
+    );
+    expect(value).toBe('10:00');
+
+    const hours = await page.$eval(
+      `${selectors.minMaxTime} ${selectors.hours}`,
+      (select) => select.textContent
+    );
+    expect(hours).toBe('hour: 10');
+
+    const minutes = await page.$eval(
+      `${selectors.minMaxTime} ${selectors.minutes}`,
+      (select) => select.textContent
+    );
+    expect(minutes).toBe('minute: 0');
   });
 
-  test('*direction* moves focus and skips disabled tabs', async ({ page }) => {
-    await mount(page, 'tabs-motion--disabled');
-    const tabs = await getTabs(page);
-    await tabs[0].focus();
-    expect(await isActiveEl(page, tabs[0])).toBeTruthy();
-    expect(await isSelected(page, tabs[0])).toBeTruthy();
-    await page.keyboard.press('ArrowRight');
-    expect(await isActiveEl(page, tabs[2])).toBeTruthy();
-    expect(await isSelected(page, tabs[2])).toBeTruthy();
+  test('is renders expected 24 hour format times with custom step', async ({ page }) => {
+    await mount(page, 'timepicker--time-picker');
+    await page.waitForSelector(selectors.twentyFourHour);
+    await page.click(`${selectors.twentyFourHour} ${selectors.input}`);
+    await page.waitForSelector(selectors.dropdown);
+    await page.keyboard.press('ArrowDown');
+    await page.keyboard.press('ArrowDown');
+    await page.keyboard.press('ArrowDown');
+    await page.keyboard.press('ArrowDown');
+    await page.keyboard.press('Enter');
+
+    const value = await page.$eval(
+      `${selectors.twentyFourHour} ${selectors.value}`,
+      (select) => select.textContent
+    );
+
+    expect(value).toBe('02:00');
+
+    const hours = await page.$eval(
+      `${selectors.twentyFourHour} ${selectors.hours}`,
+      (select) => select.textContent
+    );
+    expect(hours).toBe('hour: 2');
+
+    const minutes = await page.$eval(
+      `${selectors.twentyFourHour} ${selectors.minutes}`,
+      (select) => select.textContent
+    );
+    expect(minutes).toBe('minute: 0');
   });
 
-  test.describe('ltr', () => {
-    test('*direction* moves focus to next tab', async ({ page }) => {
-      await mount(page, 'tabs-motion--tabs-motion');
-      const tabs = await getTabs(page);
-      await tabs[0].focus();
-      expect(await isActiveEl(page, tabs[0])).toBeTruthy();
-      await page.keyboard.press('ArrowRight');
-      expect(await isActiveEl(page, tabs[1])).toBeTruthy();
-    });
+  test('renders a date that is not one of the steps', async ({ page }) => {
+    await mount(page, 'timepicker--time-picker');
+    await page.waitForSelector(selectors.twelveHourCreatable);
+    await page.waitForSelector(selectors.twentyFourHourCreatable);
 
-    test('*direction* moves focus to previous tab', async ({ page }) => {
-      await mount(page, 'tabs-motion--tabs-motion');
-      const tabs = await getTabs(page);
-      await tabs[1].focus();
-      expect(await isActiveEl(page, tabs[1])).toBeTruthy();
-      await page.keyboard.press('ArrowLeft');
-      expect(await isActiveEl(page, tabs[0])).toBeTruthy();
-    });
+    const twelveHourValue = await page.$eval(
+      `${selectors.twelveHourCreatable} ${selectors.value}`,
+      (select) => select.textContent
+    );
 
-    test('*direction* moves focus to first tab', async ({ page }) => {
-      await mount(page, 'tabs-motion--tabs-motion');
-      const tabs = await getTabs(page);
-      await tabs[2].focus();
-      expect(await isActiveEl(page, tabs[2])).toBeTruthy();
-      await page.keyboard.press('ArrowRight');
-      expect(await isActiveEl(page, tabs[0])).toBeTruthy();
-    });
+    const twentyFourHourValue = await page.$eval(
+      `${selectors.twentyFourHourCreatable} ${selectors.value}`,
+      (select) => select.textContent
+    );
 
-    test('*direction* moves focus to last tab', async ({ page }) => {
-      await mount(page, 'tabs-motion--tabs-motion');
-      const tabs = await getTabs(page);
-      await tabs[0].focus();
-      expect(await isActiveEl(page, tabs[0])).toBeTruthy();
-      await page.keyboard.press('ArrowLeft');
-      expect(await isActiveEl(page, tabs[2])).toBeTruthy();
-    });
+    expect(twelveHourValue).toBe('1:11 AM');
+    expect(twentyFourHourValue).toBe('01:11');
   });
 
   test.describe('when using moment', () => {
@@ -226,34 +171,135 @@ test.describe('tabs', () => {
       await page.click(`${selectors.minMaxTimeMoment} ${selectors.input}`);
       await page.waitForSelector(selectors.dropdown);
       await page.keyboard.press('ArrowDown');
-      expect(await isActiveEl(page, tabs[1])).toBeTruthy();
+      await page.keyboard.press('Enter');
+
+      const value = await page.$eval(
+        `${selectors.twelveHourCreatable} ${selectors.value}`,
+        (select) => select.textContent
+      );
+
+      expect(value).toBe('12:11 PM');
+
+      const hours = await page.$eval(
+        `${selectors.twelveHourCreatable} ${selectors.hours}`,
+        (select) => select.textContent
+      );
+      expect(hours).toBe('hour: 12');
+
+      const minutes = await page.$eval(
+        `${selectors.twelveHourCreatable} ${selectors.minutes}`,
+        (select) => select.textContent
+      );
+      expect(minutes).toBe('minute: 11');
     });
 
-    test('*direction* moves focus to previous tab', async ({ page }) => {
-      await mount(page, 'tabs-motion--vertical');
-      const tabs = await getTabs(page);
-      await tabs[1].focus();
-      expect(await isActiveEl(page, tabs[1])).toBeTruthy();
-      await page.keyboard.press('ArrowUp');
-      expect(await isActiveEl(page, tabs[0])).toBeTruthy();
-    });
-
-    test('*direction* moves focus to first tab', async ({ page }) => {
-      await mount(page, 'tabs-motion--vertical');
-      const tabs = await getTabs(page);
-      await tabs[2].focus();
-      expect(await isActiveEl(page, tabs[2])).toBeTruthy();
+    test('generates the correct seconds for 12AM', async ({ page }) => {
+      await mount(page, 'timepicker--time-picker');
+      await page.waitForSelector(selectors.twelveHourCreatable);
+      await page.click(`${selectors.twelveHourCreatable} ${selectors.input}`);
+      await page.waitForSelector(selectors.dropdown);
+      await page.keyboard.type('12:22am');
       await page.keyboard.press('ArrowDown');
-      expect(await isActiveEl(page, tabs[0])).toBeTruthy();
+      await page.keyboard.press('Enter');
+
+      const value = await page.$eval(
+        `${selectors.twelveHourCreatable} ${selectors.value}`,
+        (select) => select.textContent
+      );
+
+      expect(value).toBe('12:22 AM');
     });
 
-    test('*direction* moves focus to last tab', async ({ page }) => {
-      await mount(page, 'tabs-motion--vertical');
-      const tabs = await getTabs(page);
-      await tabs[0].focus();
-      expect(await isActiveEl(page, tabs[0])).toBeTruthy();
-      await page.keyboard.press('ArrowUp');
-      expect(await isActiveEl(page, tabs[2])).toBeTruthy();
+    test('shows an option when a 24 hour time without leading zero is entered', async ({
+      page,
+    }) => {
+      await mount(page, 'timepicker--time-picker');
+      await page.waitForSelector(selectors.twentyFourHourCreatable);
+      await page.click(`${selectors.twentyFourHourCreatable} ${selectors.input}`);
+      await page.waitForSelector(selectors.dropdown);
+      await page.keyboard.type('3:33');
+
+      const options = await page.$$(`${selectors.option}`);
+
+      expect(options.length).toBe(1);
+      const option1 = await page.evaluate((e) => e.textContent, options[0]);
+      expect(option1).toBe('03:33');
+    });
+
+    test('shows only one option when a time is entered that matches an existing option', async ({
+      page,
+    }) => {
+      await mount(page, 'timepicker--time-picker');
+      await page.waitForSelector(selectors.twentyFourHourCreatable);
+      await page.click(`${selectors.twentyFourHourCreatable} ${selectors.input}`);
+      await page.waitForSelector(selectors.dropdown);
+      await page.keyboard.type('00:15');
+
+      const options = await page.$$(`${selectors.option}`);
+
+      expect(options.length).toBe(1);
+      const option1 = await page.evaluate((e) => e.textContent, options[0]);
+      expect(option1).toBe('00:15');
+    });
+  });
+
+  test.describe('when using moment', () => {
+    test('moment - is renders expected 24 hour format times with custom step', async ({ page }) => {
+      await mount(page, 'timepicker--time-picker');
+      await page.waitForSelector(selectors.twentyFourHourMoment);
+      await page.click(`${selectors.twentyFourHourMoment} ${selectors.input}`);
+      await page.waitForSelector(selectors.dropdown);
+      await page.keyboard.press('ArrowDown');
+      await page.keyboard.press('ArrowDown');
+      await page.keyboard.press('ArrowDown');
+      await page.keyboard.press('ArrowDown');
+      await page.keyboard.press('Enter');
+
+      const value = await page.$eval(
+        `${selectors.twentyFourHourMoment} ${selectors.value}`,
+        (select) => select.textContent
+      );
+
+      expect(value).toBe('02:00');
+
+      const hours = await page.$eval(
+        `${selectors.twentyFourHourMoment} ${selectors.hours}`,
+        (select) => select.textContent
+      );
+      expect(hours).toBe('hour: 2');
+
+      const minutes = await page.$eval(
+        `${selectors.twentyFourHourMoment} ${selectors.minutes}`,
+        (select) => select.textContent
+      );
+      expect(minutes).toBe('minute: 0');
+    });
+
+    test('moment - it renders only times within the min/max range', async ({ page }) => {
+      await mount(page, 'timepicker--time-picker');
+      await page.waitForSelector(selectors.minMaxTimeMoment);
+      await page.click(`${selectors.minMaxTimeMoment} ${selectors.input}`);
+      await page.waitForSelector(selectors.dropdown);
+      await page.keyboard.press('ArrowDown');
+      await page.keyboard.press('Enter');
+
+      const value = await page.$eval(
+        `${selectors.minMaxTimeMoment} ${selectors.value}`,
+        (select) => select.textContent
+      );
+      expect(value).toBe('10:00');
+
+      const hours = await page.$eval(
+        `${selectors.minMaxTimeMoment} ${selectors.hours}`,
+        (select) => select.textContent
+      );
+      expect(hours).toBe('hour: 10');
+
+      const minutes = await page.$eval(
+        `${selectors.minMaxTimeMoment} ${selectors.minutes}`,
+        (select) => select.textContent
+      );
+      expect(minutes).toBe('minute: 0');
     });
   });
 });
