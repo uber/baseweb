@@ -12,7 +12,7 @@ export { StatefulDataTable } from './stateful-data-table.js';
 export { DataTable as Unstable_DataTable } from './data-table.js';
 export { StatefulContainer as Unstable_StatefulContainer } from './stateful-container.js';
 export { StatefulDataTable as Unstable_StatefulDataTable } from './stateful-data-table.js';
-import { HighlightCellText } from './text-search.js';
+export { HighlightCellText } from './text-search.js';
 export { default as AnchorColumn } from './column-anchor.js';
 export { default as BooleanColumn } from './column-boolean.js';
 export { default as CategoricalColumn, CategoricalFilter } from './column-categorical.js';
