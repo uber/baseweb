@@ -143,33 +143,47 @@ test.describe('TimePicker', () => {
     expect(twentyFourHourValue).toBe('01:11');
   });
 
-  test.describe('when using moment', () => {
-    test('moment - is renders expected 24 hour format times with custom step', async ({ page }) => {
+  test.describe('creatable', () => {
+    test('shows both AM and PM options when a 12-hour time without meridiem is entered', async ({
+      page,
+    }) => {
       await mount(page, 'timepicker--time-picker');
-      await page.waitForSelector(selectors.twentyFourHourMoment);
-      await page.click(`${selectors.twentyFourHourMoment} ${selectors.input}`);
+      await page.waitForSelector(selectors.twelveHourCreatable);
+      await page.click(`${selectors.twelveHourCreatable} ${selectors.input}`);
       await page.waitForSelector(selectors.dropdown);
-      await page.keyboard.press('ArrowDown');
-      await page.keyboard.press('ArrowDown');
-      await page.keyboard.press('ArrowDown');
-      await page.keyboard.press('ArrowDown');
-      await page.keyboard.press('Enter');
+      await page.keyboard.type('3:33');
 
-  test.describe('rtl', () => {
-    test('*direction* moves focus to next tab', async ({ page }) => {
-      await mount(page, 'tabs-motion--tabs-motion', 'light', true);
-      const tabs = await getTabs(page);
-      await tabs[0].focus();
-      expect(await isActiveEl(page, tabs[0])).toBeTruthy();
-      await page.keyboard.press('ArrowLeft');
-      expect(await isActiveEl(page, tabs[1])).toBeTruthy();
+      const options = await page.$$(`${selectors.option}`);
+
+      expect(options.length).toBe(2);
+      const option1 = await page.evaluate((e) => e.textContent, options[0]);
+      const option2 = await page.evaluate((e) => e.textContent, options[1]);
+      expect(option1).toBe('3:33 AM');
+      expect(option2).toBe('3:33 PM');
     });
 
-    test('moment - it renders only times within the min/max range', async ({ page }) => {
+    test('shows AM option when a 12-hour time with partial meridiem is entered', async ({
+      page,
+    }) => {
       await mount(page, 'timepicker--time-picker');
-      await page.waitForSelector(selectors.minMaxTimeMoment);
-      await page.click(`${selectors.minMaxTimeMoment} ${selectors.input}`);
+      await page.waitForSelector(selectors.twelveHourCreatable);
+      await page.click(`${selectors.twelveHourCreatable} ${selectors.input}`);
       await page.waitForSelector(selectors.dropdown);
+      await page.keyboard.type('3:33a');
+
+      const options = await page.$$(`${selectors.option}`);
+
+      expect(options.length).toBe(1);
+      const option1 = await page.evaluate((e) => e.textContent, options[0]);
+      expect(option1).toBe('3:33 AM');
+    });
+
+    test('generates the correct seconds for 12PM', async ({ page }) => {
+      await mount(page, 'timepicker--time-picker');
+      await page.waitForSelector(selectors.twelveHourCreatable);
+      await page.click(`${selectors.twelveHourCreatable} ${selectors.input}`);
+      await page.waitForSelector(selectors.dropdown);
+      await page.keyboard.type('12:11pm');
       await page.keyboard.press('ArrowDown');
       await page.keyboard.press('Enter');
 
