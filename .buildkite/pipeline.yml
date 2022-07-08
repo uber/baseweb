@@ -101,6 +101,15 @@ steps:
     agents:
       queue: workers
 
+  - name: sync-web-code
+    command: 'node scripts/sync-web-code.js'
+    if: build.branch == "master"
+    plugins:
+      'docker-compose#v3.0.3':
+        run: baseui
+    agents:
+      queue: workers
+
   # vscode extension deployment disabled until we can refresh the azure token
   # - name: deploy-vscode
   #   command: './deploy-vscode.sh'
