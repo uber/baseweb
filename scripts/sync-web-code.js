@@ -23,7 +23,6 @@ function expectEnvironmentVariable(name) {
 async function createBuild(token, commitHash) {
   const body = {
     commit: 'HEAD',
-    branch: 'baseui-sync-remote-task',
     message: '[baseui-sync] Triggered from CI',
     meta_data: { task: 'baseui-sync' },
     env: {
