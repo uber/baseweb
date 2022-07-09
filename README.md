@@ -22,11 +22,12 @@ On npm, you can find Base Web as `baseui`.
 
 Add `baseui` and its peer dependencies to your project:
 
+Using yarn:
 ```bash
-# using yarn
 yarn add baseui styletron-react styletron-engine-monolithic
-
-# using npm
+```
+Using npm:
+```bash
 npm install baseui styletron-react styletron-engine-monolithic
 ```
 
