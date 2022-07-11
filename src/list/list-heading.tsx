@@ -78,11 +78,7 @@ const ListHeading = React.forwardRef<HTMLLIElement, HeadingPropsT>((props: Headi
   }
 
   return (
-    <Root
-      // flowlint-next-line unclear-type:off
-      ref={ref as any}
-      {...rootProps}
-    >
+    <Root ref={ref as any} {...rootProps}>
       <Content {...contentProps}>
         {/* ----- Top Row -------------------------- */}
         <StyledHeadingContentRow>

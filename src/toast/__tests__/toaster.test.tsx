@@ -20,7 +20,6 @@ import {
 import { toaster, ToasterContainer } from '..';
 
 const getBody = (): HTMLBodyElement => {
-  //flowlint-next-line unclear-type:off
   return document.body as any as HTMLBodyElement;
 };
 

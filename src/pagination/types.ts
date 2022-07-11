@@ -18,13 +18,10 @@ export type SizeT = keyof typeof SIZE;
 
 export type CallbacksT = {
   /** Callback for prev button click. */
-  //flowlint-next-line unclear-type:off
   onPrevClick?: (a: { event: any }) => any;
   /** Callback for next button click. */
-  //flowlint-next-line unclear-type:off
   onNextClick?: (a: { event: any }) => any;
   /** Callback for when page changes. */
-  //flowlint-next-line unclear-type:off
   onPageChange?: (a: { nextPage: number; prevPage: number }) => any;
 };
 
@@ -68,7 +65,6 @@ export type StatefulPaginationPropsT = CallbacksT & {
 };
 
 export type StatefulContainerPropsT = {
-  //flowlint-next-line unclear-type:off
   children: any;
   numPages: number;
   /** Reducer function to manipulate internal state updates. */

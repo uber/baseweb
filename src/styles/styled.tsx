@@ -72,14 +72,12 @@ export function createThemedStyled<Theme>(): StyleFn<Theme> {
     wrapper,
     getInitialStyle,
     driver,
-    // flowlint-next-line unclear-type:off
   }) as any as StyleFn<Theme>;
 }
 
 export const styled = createThemedStyled<ThemeT>();
 
 export function createThemedWithStyle<Theme>(): WithStyleFn<Theme> {
-  // flowlint-next-line unclear-type:off
   return styletronWithStyle as any as WithStyleFn<Theme>;
 }
 
@@ -89,7 +87,6 @@ type UseStyletronFn<Theme> = () => [(a: StyleObject) => string, Theme];
 
 export function createThemedUseStyletron<Theme>(): UseStyletronFn<Theme> {
   return function () {
-    // flowlint-next-line unclear-type:off
     const theme = React.useContext(ThemeContext) as any as Theme;
     const [css] = styletronUseStyletron();
     return [css, theme];

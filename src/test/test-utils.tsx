@@ -32,7 +32,6 @@ export const withThemeProvider = (Component: React.ComponentType<{}>) =>
     );
   };
 
-// flowlint-next-line unclear-type:off
 export const withAll = (Component: () => React.ReactElement<any>) => {
   return (
     <StyletronProvider value={engine}>

@@ -29,7 +29,6 @@ class StatefulContainer extends React.Component<StatefulContainerPropsT, StateT>
       onChange(params);
     }
   };
-  // flowlint-next-line unclear-type:off
   internalSetState = (type: StateTypeT, item: any) => {
     let nextState = {};
     if (type === STATE_CHANGE_TYPE.change) {

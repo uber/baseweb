@@ -49,7 +49,6 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
       $width: width,
     };
   }
-  // flowlint-next-line unclear-type:off
   getItemLabel = (option: { [x: string]: any }) => {
     const { getOptionLabel, overrides = {}, value, valueKey } = this.props;
 

@@ -24,7 +24,6 @@ function Child(props: {
   );
 }
 
-// flowlint-next-line unclear-type:off
 function BaseOverride(props: any) {
   return <input onChange={props.onChange} value={props.value} />;
 }

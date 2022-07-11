@@ -39,7 +39,6 @@ const DATA: Array<[string, number]> = [
   ['Neil', 27],
 ];
 
-// flowlint-next-line unclear-type:off
 export class Scenario extends React.Component<any, any> {
   state = { nameDirection: null, ageDirection: null };
 

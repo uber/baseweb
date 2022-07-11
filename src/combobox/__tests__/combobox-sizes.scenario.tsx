@@ -23,7 +23,6 @@ const options: OptionT[] = [
   { label: 'Beige', id: '#F5F5DC' },
 ];
 
-// flowlint-next-line unclear-type:off
 function Instance({ size }: any) {
   const [css, theme] = useStyletron();
   const [value, setValue] = React.useState('');

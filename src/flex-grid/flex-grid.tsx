@@ -41,7 +41,6 @@ const FlexGrid: React.FC<
     <FlexGrid
       // coerced to any because of how react components are typed.
       // cannot guarantee an html element
-      // flowlint-next-line unclear-type:off
       ref={forwardedRef}
       as={as}
       {...restProps}

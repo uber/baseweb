@@ -93,7 +93,6 @@ const Block: React.FC<
     <BaseBlock
       // coerced to any because because of how react components are typed.
       // cannot guarantee an html element
-      // flowlint-next-line unclear-type:off
       ref={forwardedRef as any}
       $as={as}
       $color={color}

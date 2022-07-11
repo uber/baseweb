@@ -43,7 +43,6 @@ export type OnChangeHandlerT = (a: { activeKey: React.Key }) => unknown;
 
 export type TabsPropsT = {
   /** An array of Tab components. */
-  // flowlint-next-line unclear-type:off
   children: Array<React.ReactElement<any>> | React.ReactElement<any>;
   /**  Key of the the tab to be selected. */
   activeKey: React.Key;

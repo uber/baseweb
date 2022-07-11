@@ -199,9 +199,7 @@ function Options(props: OptionsPropsT) {
 
 type PropsT = {
   columns: ColumnT[];
-  // flowlint-next-line unclear-type:off
   filters: Map<string, any>;
-  // flowlint-next-line unclear-type:off
   rows: any[];
   onSetFilter: (
     columnTitle: string,

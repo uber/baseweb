@@ -39,7 +39,6 @@ const DATA = [
   ['Neil', 27],
 ];
 
-// flowlint-next-line unclear-type:off
 export class Scenario extends React.Component<any, any> {
   render() {
     return (

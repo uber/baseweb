@@ -10,7 +10,6 @@ import { LabelSmall } from '../../typography';
 import { Block } from '../../block';
 
 type TileGridPropsT = {
-  // flowlint-next-line unclear-type:off
   children?: Array<any>;
   customizerOptions: Array<React.ReactNode>;
   cols: number;

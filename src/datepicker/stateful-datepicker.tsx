@@ -22,11 +22,7 @@ class StatefulComponent<T = Date> extends React.Component<PropsT<T>> {
     return (
       <StatefulContainer {...this.props}>
         {(extendedProps) => (
-          <Datepicker
-            {...extendedProps}
-            // flowlint-next-line unclear-type:off
-            onChange={extendedProps.onChange as any}
-          />
+          <Datepicker {...extendedProps} onChange={extendedProps.onChange as any} />
         )}
       </StatefulContainer>
     );

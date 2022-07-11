@@ -21,7 +21,6 @@ import type {
   TimePickerStateT as TimePickerStateTBase,
 } from '../timepicker/types';
 
-// flowlint-next-line unclear-type:off
 type LocaleT = any; // see https://github.com/date-fns/date-fns/blob/master/src/locale/index.js.flow
 
 export type DensityT = keyof typeof DENSITY;
@@ -259,7 +258,6 @@ export type DatepickerPropsT<T = Date> = {
 } & CalendarPropsT<T>;
 
 export type SharedStylePropsT = {
-  // flowlint-next-line unclear-type:off
   $date: any;
   $disabled: boolean | undefined | null;
   $density: DensityT;

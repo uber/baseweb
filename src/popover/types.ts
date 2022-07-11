@@ -86,7 +86,6 @@ export type BasePopoverPropsT = {
   /** Popper options override
    * https://github.com/popperjs/popper.js/blob/v1.x/docs/_includes/popper-documentation.md
    */
-  // flowlint-next-line unclear-type:off
   popperOptions?: any;
   /** Renders all popover content for SEO purposes regardless of popover isOpen state */
   renderAll?: boolean;

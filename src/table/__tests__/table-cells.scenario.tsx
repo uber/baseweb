@@ -31,7 +31,6 @@ const StyledHeadingCell = withStyle(StyledCell, {
   paddingBottom: 0,
 });
 
-// flowlint-next-line unclear-type:off
 const StyledDeltaCell = withStyle<typeof StyledCell, any>(StyledCell, (props) => ({
   // @ts-expect-error todo(flow->ts) this probably can be removed
   ...props.$theme.typography.font500,

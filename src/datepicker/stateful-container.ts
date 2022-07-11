@@ -42,7 +42,6 @@ class StatefulContainer<T = Date> extends React.Component<PropsT<T>, ContainerSt
       if (onChange) {
         if (Array.isArray(date)) {
           if (date.every(Boolean)) {
-            // flowlint-next-line unclear-type:off
             onChange({ date: date as any as Array<T> });
           }
         } else {

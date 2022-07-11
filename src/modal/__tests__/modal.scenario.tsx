@@ -19,7 +19,6 @@ export function Scenario({ closeable = true }) {
   React.useEffect(() => {
     setIsOpen(true);
   }, []);
-  // flowlint-next-line unclear-type:off
   const modalRoot = React.useRef<any>(null);
 
   return (

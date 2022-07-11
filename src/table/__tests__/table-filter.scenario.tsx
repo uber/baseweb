@@ -36,7 +36,6 @@ const FilterCheckbox = (props) => (
   </Checkbox>
 );
 
-// flowlint-next-line unclear-type:off
 class FilterTable extends React.Component<any, any> {
   state = {
     filters: [],

@@ -25,7 +25,6 @@ export type OverridesT = {
   Close?: OverrideT;
 };
 
-// flowlint-next-line unclear-type:off
 export type ElementRefT = {
   current: any | null;
 };

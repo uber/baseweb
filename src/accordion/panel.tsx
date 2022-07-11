@@ -92,7 +92,6 @@ const Panel = (
     },
     [expanded, disabled, onChange, onKeyDown]
   );
-  // flowlint-next-line unclear-type:off
   const _animateRef = React.useRef<any>(null);
 
   React.useEffect(() => {

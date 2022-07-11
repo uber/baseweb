@@ -90,7 +90,6 @@ export type StyledHeadingHeadingPropsT = {
 };
 
 export type MenuAdapterPropsT = {
-  // flowlint-next-line unclear-type:off
   item?: any;
   onMouseEnter?: (a: MouseEvent) => unknown;
   onClick?: (a: MouseEvent) => unknown;

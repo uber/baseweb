@@ -39,7 +39,6 @@ export type mapIsoToLabelT = (iso: string) => string;
 // Props
 
 export type CountrySelectDropdownPropsT = {
-  //flowlint-next-line unclear-type:off
   children: Array<React.ReactElement<any>>;
   $country: CountryT;
   $mapIsoToLabel?: mapIsoToLabelT;

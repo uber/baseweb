@@ -282,13 +282,11 @@ describe('Datepicker', () => {
     expect(calendar.length).toBe(monthsShown);
 
     const prev = queryAllByTestId(container, 'prev-button').filter(
-      //flowlint-next-line unclear-type:off
       (el) => !(el as any as HTMLButtonElement).disabled
     );
     expect(prev.length).toBe(1);
 
     const next = queryAllByTestId(container, 'next-button').filter(
-      //flowlint-next-line unclear-type:off
       (el) => !(el as any as HTMLButtonElement).disabled
     );
     expect(next.length).toBe(1);

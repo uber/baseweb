@@ -24,11 +24,7 @@ class StatefulComponent<T = Date> extends React.Component<PropsT<T>> {
     return (
       <StatefulContainer {...this.props}>
         {(extendedProps) => (
-          <Calendar
-            {...extendedProps}
-            // flowlint-next-line unclear-type:off
-            onChange={extendedProps.onChange as any}
-          />
+          <Calendar {...extendedProps} onChange={extendedProps.onChange as any} />
         )}
       </StatefulContainer>
     );

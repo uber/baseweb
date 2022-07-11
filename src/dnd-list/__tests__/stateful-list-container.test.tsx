@@ -66,7 +66,6 @@ describe('StatefulListContainer', () => {
     render(<StatefulListContainer {...props}>{children}</StatefulListContainer>);
 
     props.stateReducer.mockReturnValueOnce({ items: ['Item 2', 'Item 1'] });
-    // flowlint-next-line unclear-type:off
     const targetRect: any = {};
     act(() => {
       children.mock.calls[0][0].onChange({

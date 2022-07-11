@@ -85,7 +85,6 @@ export default class Datepicker<T = Date> extends React.Component<DatepickerProp
 
     if (Array.isArray(date)) {
       if (onChange && date.every(Boolean)) {
-        // flowlint-next-line unclear-type:off
         onChange({ date: date as any as Array<T> });
       }
 

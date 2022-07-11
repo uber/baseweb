@@ -61,7 +61,6 @@ class EmoticonRating extends React.Component<EmoticonRatingPropsT, RatingStateT>
         <Emoticon
           key={x}
           role="radio"
-          // flowlint-next-line unclear-type:off
           ref={starRef as any}
           tabIndex={isFocusable ? '0' : '-1'}
           aria-setsize={5}

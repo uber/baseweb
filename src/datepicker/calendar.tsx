@@ -484,7 +484,6 @@ export default class Calendar<T = Date> extends React.Component<
     );
   };
 
-  // flowlint-next-line unclear-type:off
   renderTimeSelect: (c: T | undefined | null, b: Function, a: string) => React.ReactNode = (
     value,
     onChange,

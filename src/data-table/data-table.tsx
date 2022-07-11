@@ -238,7 +238,6 @@ function Header(props: HeaderProps) {
   const [css, theme] = useStyletron();
   const [startResizePos, setStartResizePos] = React.useState(0);
   const [endResizePos, setEndResizePos] = React.useState(0);
-  // flowlint-next-line unclear-type:off
   const headerCellRef = React.useRef<any>(null);
 
   const RULER_OFFSET = 2;
@@ -670,7 +669,6 @@ export function DataTable({
   );
 
   // We use state for our ref, to allow hooks to  update when the ref changes.
-  // flowlint-next-line unclear-type:off
   const [gridRef, setGridRef] = React.useState<VariableSizeGrid | undefined | null>(null);
   const [measuredWidths, setMeasuredWidths] = React.useState(columns.map(() => 0));
   const [resizeDeltas, setResizeDeltas] = React.useState(columns.map(() => 0));
@@ -1005,7 +1003,6 @@ export function DataTable({
             }}
           >
             <VariableSizeGrid
-              // flowlint-next-line unclear-type:off
               ref={setGridRef as any}
               overscanRowCount={10}
               overscanColumnCount={5}

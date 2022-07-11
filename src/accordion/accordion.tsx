@@ -31,7 +31,6 @@ export default class Accordion extends React.Component<AccordionPropsT, Accordio
 
   itemRefs: React.RefObject<HTMLDivElement>[] = [];
 
-  //flowlint-next-line unclear-type:off
   onPanelChange(key: React.Key, onChange: (...args: any[]) => {}, ...args: Array<any>) {
     let activeKeys = this.state.expanded;
     const { accordion } = this.props;
@@ -104,7 +103,6 @@ export default class Accordion extends React.Component<AccordionPropsT, Accordio
   getItems() {
     const { expanded } = this.state;
     const { accordion, disabled, children, renderAll, overrides } = this.props;
-    // flowlint-next-line unclear-type:off
     return React.Children.map(children, (child: any, index) => {
       if (!child) return;
 

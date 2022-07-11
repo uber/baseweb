@@ -44,7 +44,6 @@ const AspectRatioBox: React.FC<any & { forwardedRef: React.Ref<any> }> = ({
     <Block
       // coerced to any because of how react components are typed.
       // cannot guarantee an html element
-      // flowlint-next-line unclear-type:off
       ref={forwardedRef as any}
       overrides={blockOverrides}
       $aspectRatio={aspectRatio}

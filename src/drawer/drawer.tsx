@@ -122,7 +122,6 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
       return mountNode;
     }
     // Flow thinks body could be null (cast through any)
-    // flowlint-next-line unclear-type:off
     return document.body as any as HTMLBodyElement;
   }
 

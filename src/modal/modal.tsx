@@ -212,7 +212,6 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
       return mountNode;
     }
     // Flow thinks body could be null (cast through any)
-    // flowlint-next-line unclear-type:off
     return document.body as any as HTMLBodyElement;
   }
 
@@ -252,15 +251,8 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
             returnFocus={returnFocus}
             autoFocus={autoFocus}
           >
-            <Root
-              data-baseweb="modal"
-              // flowlint-next-line unclear-type:off
-              ref={this.rootRef as any}
-              {...sharedProps}
-              {...rootProps}
-            >
+            <Root data-baseweb="modal" ref={this.rootRef as any} {...sharedProps} {...rootProps}>
               <DialogContainer
-                // flowlint-next-line unclear-type:off
                 ref={this.dialogContainerRef as any}
                 {...sharedProps}
                 {...dialogContainerProps}

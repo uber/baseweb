@@ -42,7 +42,6 @@ export type TextareaPropsT = {
 } & BaseTextAreaPropsT;
 
 export type StatefulContainerPropsT = {
-  // flowlint-next-line unclear-type:off
   children: (props: any) => React.ReactNode;
   initialState?: StateT;
   stateReducer?: StateReducerT;
@@ -53,7 +52,6 @@ export type StatefulContainerPropsT = {
 };
 
 type OmitPropsT = {
-  // flowlint-next-line unclear-type:off
   children: (props: any) => React.ReactNode;
 };
 

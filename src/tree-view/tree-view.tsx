@@ -58,7 +58,6 @@ export default function TreeView(props: TreeViewPropsT) {
   };
 
   const onKeyDown = (e: KeyboardEvent, node: TreeNodeT) => {
-    // flowlint-next-line unclear-type:off
     const elementId = (e.target as any as HTMLLIElement).getAttribute('data-nodeid');
     // this check prevents bubbling
     if (elementId !== getId(node) && parseInt(elementId) !== getId(node)) {

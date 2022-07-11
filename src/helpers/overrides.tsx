@@ -18,13 +18,11 @@ export type ConfigurationOverrideT = ConfigurationOverrideObjectT | Configuratio
 export type StyleOverrideT = ConfigurationOverrideT;
 
 export type OverrideObjectT = {
-  // flowlint-next-line unclear-type:off
   component?: React.ComponentType<any> | null;
   props?: ConfigurationOverrideT | null;
   style?: ConfigurationOverrideT | null;
 };
 
-// flowlint-next-line unclear-type:off
 export type OverrideT =
   | OverrideObjectT
   | (React.ComponentType<any> & {
@@ -40,7 +38,6 @@ export type OverridesT = {
 /**
  * Given an override argument, returns the component implementation override if it exists
  */
-// flowlint-next-line unclear-type:off
 export function getOverride(_override: any): any {
   if (isValidElementType(_override)) {
     return _override;
@@ -50,7 +47,6 @@ export function getOverride(_override: any): any {
   if (_override && typeof _override === 'object') {
     // Remove this 'any' once this flow issue is fixed:
     // https://github.com/facebook/flow/issues/6666
-    // flowlint-next-line unclear-type:off
     return (_override as any).component;
   }
 
@@ -88,7 +84,6 @@ export function getOverrideProps<T>(_override?: OverrideT | null): T {
 export function toObjectOverride<T>(_override?: OverrideT): OverrideObjectT {
   if (isValidElementType(_override)) {
     return {
-      // flowlint-next-line unclear-type:off
       component: _override as any as React.ComponentType<T>,
     };
   }
@@ -96,7 +91,6 @@ export function toObjectOverride<T>(_override?: OverrideT): OverrideObjectT {
   // Flow can't figure out that typeof 'function' above will
   // catch React.StatelessFunctionalComponent
   // (probably related to https://github.com/facebook/flow/issues/6666)
-  // flowlint-next-line unclear-type:off
   return _override || ({} as any as OverrideObjectT);
 }
 
@@ -201,7 +195,6 @@ export function useOverrides(
 ) {
   return React.useMemo(
     () =>
-      // flowlint-next-line unclear-type:off
       Object.keys(defaults).reduce<{
         [x: string]: [React.ComponentType<any>, {}];
       }>((obj, key) => {

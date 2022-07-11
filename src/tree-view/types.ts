@@ -27,7 +27,6 @@ export type TreeViewOverridesT = {
 
 export type TreeNodeIdT = number | string;
 
-// flowlint-next-line unclear-type:off
 export type TreeNodeT<T = any> = {
   id?: TreeNodeIdT;
   children?: TreeNodeT[];

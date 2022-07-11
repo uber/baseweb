@@ -17,7 +17,6 @@ const overrides = {
   },
 };
 
-// flowlint-next-line unclear-type:off
 class Controlled extends React.Component<any, any> {
   state = { value: { id: 'Asia/Tokyo' } };
 

@@ -12,7 +12,6 @@ import { Datepicker, TimePicker, TimezonePicker } from '..';
 
 const DATE = new Date(2019, 3, 1);
 
-// flowlint-next-line unclear-type:off
 export class Scenario extends React.Component<any, any> {
   state = {
     date: DATE,

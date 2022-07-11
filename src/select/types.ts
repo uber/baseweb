@@ -201,7 +201,6 @@ export type PropsT = {
   /** A current selected value(s). If a selected value has a clearableValue
    * prop set to true it will be rendered as a disabled selected option that can't be cleared. */
   value?: ValueT;
-  // flowlint-next-line unclear-type:off
   valueComponent?: React.ComponentType<any>;
   /** Defines a key name for an option's unique identifier value.
    * The value of the `valueKey` prop is used to identify what options are selected

@@ -10,7 +10,6 @@ import { STATE_CHANGE_TYPES, OPTION_LIST_SIZE } from './constants';
 
 import type { SyntheticEvent, FocusEvent, MouseEvent } from 'react';
 
-// flowlint-next-line unclear-type:off
 export type ItemT = any;
 export type ArrayItemsT = ReadonlyArray<ItemT>;
 export type GroupedItemsT = {
@@ -27,10 +26,7 @@ export type GetProfileItemLabelsFnT = (item: ItemT) => {
   body?: string;
 };
 
-export type GetProfileItemImgFnT = (
-  // flowlint-next-line unclear-type:off
-  item: ItemT
-) => string | React.ComponentType<any>;
+export type GetProfileItemImgFnT = (item: ItemT) => string | React.ComponentType<any>;
 
 export type GetProfileItemImgTextFnT = (item: ItemT) => string;
 

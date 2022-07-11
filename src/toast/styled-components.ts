@@ -184,7 +184,6 @@ export const CloseIconSvg = styled<
     $color,
     $isFocusVisible,
   }: SharedStylePropsArgT & {
-    // flowlint-next-line unclear-type:off
     $size: any;
     $color: string;
     $theme: ThemeT;

@@ -14,9 +14,7 @@ import StatefulContainer from '../stateful-container';
 
 const mockChildrenFn = jest.fn().mockImplementation(() => <div />);
 const mockOnPageChangeFn = jest.fn();
-const mockStateReducerFn = jest
-  .fn() // flowlint-next-line unclear-type:off
-  .mockImplementation((changeType, changes) => changes as any);
+const mockStateReducerFn = jest.fn().mockImplementation((changeType, changes) => changes as any);
 
 function getSharedProps() {
   return {

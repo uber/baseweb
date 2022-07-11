@@ -172,7 +172,6 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
       // NOTE(chase): Contains method expects a Node type, but relatedTarget is
       // EventTarget which is a super type of Node. Passing an EventTarget seems
       // to work fine, assuming the flow type is too strict.
-      // flowlint-next-line unclear-type:off
       listboxRef.current.contains(event.relatedTarget as any)
     ) {
       return;
@@ -242,11 +241,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
     getOverrides(overrides.Popover, Popover);
 
   return (
-    <Root
-      // flowlint-next-line unclear-type:off
-      ref={rootRef as any}
-      {...rootProps}
-    >
+    <Root ref={rootRef as any} {...rootProps}>
       <OverriddenPopover
         // React-focus-lock used in Popover used to skip non-tabbable elements (`tabIndex=-1`) elements for focus, we had ListBox with tabIndex to disable focus on
         // the ListBox, but we can just disable autoFocus (as ListBox / ListItem should not be focusable) (and input is also not autoFocused).
@@ -261,7 +256,6 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
             // TabIndex attribute exists to exclude option clicks from triggering onBlur event actions.
             tabIndex="-1"
             id={listboxId}
-            // flowlint-next-line unclear-type:off
             ref={listboxRef as any}
             role="listbox"
             aria-label={listBoxLabel}
@@ -280,7 +274,6 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
                   id={isSelected ? activeDescendantId : null}
                   key={index}
                   onClick={() => handleOptionClick(index)}
-                  // flowlint-next-line unclear-type:off
                   ref={isSelected ? (selectedOptionRef as any) : null}
                   role="option"
                   $isSelected={isSelected}

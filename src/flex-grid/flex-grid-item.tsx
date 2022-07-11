@@ -166,7 +166,6 @@ const FlexGridItem: React.FC<FlexGridItemPropsT & { forwardedRef: React.Ref<HTML
     <Block
       // coerced to any because of how react components are typed.
       // cannot guarantee an html element
-      // flowlint-next-line unclear-type:off
       ref={forwardedRef as any}
       as={as}
       overrides={blockOverrides}

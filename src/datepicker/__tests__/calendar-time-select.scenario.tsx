@@ -12,7 +12,6 @@ const DATE = new Date('2019-02-22T10:00:00Z');
 const TIME = new Date(DATE);
 TIME.setHours(12, 0, 0);
 
-// flowlint-next-line unclear-type:off
 export class Scenario extends React.Component<any, any> {
   state = { date: DATE, time: TIME };
 
