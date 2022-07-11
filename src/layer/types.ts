@@ -56,7 +56,7 @@ export type LayerPropsT = {
   onEscape?: () => unknown;
   /** Handler called when mousedown event happens on the document.
     Only the top most layer's handler is called. */
-  onDocumentClick?: (event: React.MouseEvent) => unknown;
+  onDocumentClick?: (event: MouseEvent) => unknown;
   /** A handler that is called when the Layer is mounted. */
   onMount?: () => unknown;
   /** A handler that is called when the Layer is unmounted. */
@@ -73,7 +73,7 @@ export type LayerComponentPropsT = {
   isHoverLayer?: boolean;
   mountNode?: HTMLElement;
   onEscape?: () => unknown;
-  onDocumentClick?: (event: React.MouseEvent) => unknown;
+  onDocumentClick?: (event: MouseEvent) => unknown;
   onMount?: () => unknown;
   onUnmount?: () => unknown;
   zIndex?: number;

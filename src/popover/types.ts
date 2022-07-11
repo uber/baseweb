@@ -113,7 +113,7 @@ export type PopoverPropsT = BasePopoverPropsT & {
   /** Whether or not to show the popover. */
   isOpen: boolean;
   /** Handler for clicks outside the anchor/popover elements. */
-  onClickOutside?: (event: React.MouseEvent) => unknown;
+  onClickOutside?: (event: MouseEvent) => unknown;
   /** Handler for click events on trigger element. */
   onEsc?: () => unknown;
 };

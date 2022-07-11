@@ -232,8 +232,7 @@ class PopoverInner extends React.Component<PopoverPropsT, PopoverPrivateStateT> 
     }
   };
 
-  onDocumentClick = (evt: React.MouseEvent) => {
-    //@ts-expect-error todo(flow->ts) $FlowFixMe
+  onDocumentClick = (evt: MouseEvent) => {
     const target = evt.composedPath ? evt.composedPath()[0] : evt.target;
     const popper = this.popperRef.current;
     const anchor = this.anchorRef.current;

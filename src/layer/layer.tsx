@@ -99,7 +99,7 @@ class LayerComponent extends React.Component<LayerComponentPropsT, LayerStateT> 
     }
   };
 
-  onDocumentClick = (event: React.MouseEvent) => {
+  onDocumentClick = (event: MouseEvent) => {
     if (this.props.onDocumentClick) {
       this.props.onDocumentClick(event);
     }
