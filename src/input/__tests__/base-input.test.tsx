@@ -11,7 +11,6 @@ import { BaseInput } from '..';
 
 describe('base-input', () => {
   it('basic render', () => {
-    // $FlowFixMe
     const { container } = render(<BaseInput />);
     expect(container.querySelector('input')).not.toBeNull();
   });
@@ -24,7 +23,6 @@ describe('base-input', () => {
     const onKeyUp = jest.fn();
 
     const { container } = render(
-      // $FlowFixMe
       <BaseInput
         onFocus={onFocus}
         onBlur={onBlur}
@@ -53,7 +51,6 @@ describe('base-input', () => {
   });
 
   it('BaseInput - should not take default value prop', () => {
-    // $FlowFixMe
     const { container } = render(<BaseInput />);
     // Guard against passing default value prop
     expect(container.querySelector('input')?.value).toBe('');
@@ -61,10 +58,7 @@ describe('base-input', () => {
 
   it('calls focus handler when autoFocus is true', () => {
     const onFocus = jest.fn();
-    render(
-      // $FlowFixMe
-      <BaseInput autoFocus onFocus={onFocus} />
-    );
+    render(<BaseInput autoFocus onFocus={onFocus} />);
     expect(onFocus).toBeCalledTimes(1);
   });
 
@@ -77,7 +71,6 @@ describe('base-input', () => {
           ref.current.focus();
         }
       }, []);
-      // $FlowFixMe
       return <BaseInput inputRef={ref} onFocus={onFocus} />;
     }
 
@@ -86,7 +79,6 @@ describe('base-input', () => {
   });
 
   it('applies expected autocomplete attribute if type is password', () => {
-    // $FlowFixMe
     const { container } = render(<BaseInput type="password" />);
     const input = container.querySelector('input');
     expect(input?.getAttribute('autocomplete')).toBe('new-password');
@@ -94,10 +86,7 @@ describe('base-input', () => {
 
   it('applies provided autocomplete attribute', () => {
     const autocomplete = 'current-password';
-    const { container } = render(
-      // $FlowFixMe
-      <BaseInput autoComplete={autocomplete} type="password" />
-    );
+    const { container } = render(<BaseInput autoComplete={autocomplete} type="password" />);
     const input = container.querySelector('input');
     expect(input?.getAttribute('autocomplete')).toBe(autocomplete);
   });

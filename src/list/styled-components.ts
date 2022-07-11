@@ -151,7 +151,7 @@ export const StyledHeadingContentRow = styled('div', {
 });
 
 export const StyledHeadingMainHeading = styled<'p', StyledHeadingHeadingPropsT>(
-  'p', // $FlowFixMe - suppressing due to webkit properties
+  'p',
   ({ $maxLines = 1, $theme }) => {
     return {
       ...$theme.typography.HeadingSmall,
@@ -168,7 +168,7 @@ export const StyledHeadingMainHeading = styled<'p', StyledHeadingHeadingPropsT>(
 );
 
 export const StyledHeadingSubHeading = styled<'p', StyledHeadingHeadingPropsT>(
-  'p', // $FlowFixMe - suppressing due to webkit properties
+  'p',
   ({ $maxLines = 1, $theme }) => {
     return {
       ...$theme.typography.ParagraphLarge,

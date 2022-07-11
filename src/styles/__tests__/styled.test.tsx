@@ -248,7 +248,6 @@ describe('withStyle flow', () => {
     const a = styled('div', (props) => {
       return { color: 'red' };
     });
-    // $FlowFixMe
     const b = withStyle<typeof a, {}>(a, (props) => {
       return { invalid: 'true' };
     });

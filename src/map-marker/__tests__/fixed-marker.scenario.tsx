@@ -127,7 +127,6 @@ export function Scenario() {
           options={labelEnhancerPositions}
           value={labelEnhancerPosition}
           placeholder="Select an anchor position"
-          // $FlowFixMe Mismatch between general type and enum
           onChange={(params) => setLabelEnhancerPosition(params.value)}
           key="anchor-position"
         />,
@@ -152,7 +151,6 @@ export function Scenario() {
           options={badgeEnhancerSizes}
           value={badgeEnhancerSize}
           placeholder="Select an anchor position"
-          // $FlowFixMe Mismatch between general type and enum
           onChange={(params) => setBadgeEnhancerSize(params.value)}
           key="badge-enhancer-size"
         />,

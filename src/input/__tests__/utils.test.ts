@@ -27,6 +27,5 @@ test('Utils - getSharedProps', () => {
   const state = {
     isFocused: true,
   };
-  // $FlowFixMe
   expect(getSharedProps(props, state)).toMatchSnapshot('getSharedProps returns correct object');
 });

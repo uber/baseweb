@@ -33,7 +33,6 @@ function useResizeObserver(
   React.useLayoutEffect(() => {
     if (__BROWSER__) {
       if (ref.current) {
-        //$FlowFixMe
         const observer = new ResizeObserver(callback);
         observer.observe(ref.current);
         return () => observer.disconnect();

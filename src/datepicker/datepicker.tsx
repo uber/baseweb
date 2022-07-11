@@ -67,7 +67,6 @@ export default class Datepicker<T = Date> extends React.Component<DatepickerProp
 
   constructor(props: DatepickerPropsT<T>) {
     super(props);
-    //$FlowFixMe[incompatible-call]
     this.dateHelpers = new DateHelpers(props.adapter);
     this.state = {
       calendarFocused: false,
@@ -124,13 +123,7 @@ export default class Datepicker<T = Date> extends React.Component<DatepickerProp
           } else {
             nextDate = [start, start];
           }
-        } else if (
-          this.dateHelpers.dateRangeIncludesDates(
-            // $FlowFixMe Cannot call `this.dateHelpers.dateRangeIncludesDates` with `nextDate` bound to the first parameter because  read-only array type [1] is incompatible with  array type [2]
-            nextDate,
-            this.props.excludeDates
-          )
-        ) {
+        } else if (this.dateHelpers.dateRangeIncludesDates(nextDate, this.props.excludeDates)) {
           nextDate = this.props.value;
           isOpen = true;
         }
@@ -596,10 +589,7 @@ export default class Datepicker<T = Date> extends React.Component<DatepickerProp
                   this.props.value[0] && this.props.value[1]
                   ? getInterpolatedString(locale.datepicker.selectedDateRange, {
                       startDate: this.formatDisplayValue(this.props.value[0]),
-                      endDate: this.formatDisplayValue(
-                        // $FlowFixMe
-                        this.props.value[1]
-                      ),
+                      endDate: this.formatDisplayValue(this.props.value[1]),
                     })
                   : // A single date selected in a range picker
                     `${getInterpolatedString(locale.datepicker.selectedDate, {

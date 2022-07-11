@@ -684,7 +684,7 @@ export function DataTable({
   const resetAfterColumnIndex = React.useCallback(
     (columnIndex) => {
       if (gridRef) {
-        // $FlowFixMe trigger react-window to layout the elements again
+        // trigger react-window to layout the elements again
         gridRef.resetAfterColumnIndex(columnIndex, true);
       }
     },
@@ -903,7 +903,6 @@ export function DataTable({
     setRowHighlightIndex(nextIndex);
     if (gridRef) {
       if (nextIndex >= 0) {
-        // $FlowFixMe - unable to get react-window types
         gridRef.scrollToItem({ rowIndex: nextIndex });
       }
       if (onRowHighlightChange) {

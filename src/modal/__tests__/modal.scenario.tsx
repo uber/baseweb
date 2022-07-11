@@ -9,7 +9,6 @@ import * as React from 'react';
 import { Button } from '../../button';
 import { Modal, ModalHeader, ModalBody, ModalFooter, ModalButton, SIZE } from '..';
 
-// $FlowFixMe
 export function Scenario({ closeable = true }) {
   const [isOpen, setIsOpen] = React.useState(false);
 

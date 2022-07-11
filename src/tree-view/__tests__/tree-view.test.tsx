@@ -96,7 +96,6 @@ describe('TreeView Component', () => {
     const { getByText } = render(<TreeView {...getSharedProps()} />);
     const node = getByText('Node 1').parentElement;
     const preventDefault = jest.fn();
-    //$FlowFixMe
     fireEvent.keyDown(node, {
       key: 'C',
       ctrlKey: true,

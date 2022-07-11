@@ -66,7 +66,6 @@ describe('ButtonGroup', () => {
   });
 
   it('sets no children as selected if selected prop is null value', () => {
-    //$FlowFixMe
     const { container } = buildSimpleWrapper({ selected: null });
     const buttons = Array.from(container.querySelectorAll('button'));
     for (let button of buttons) {

@@ -12,7 +12,6 @@ import { getOverrides } from '../helpers/overrides';
 import type { FlexGridPropsT } from './types';
 
 export const BaseFlexGrid = React.forwardRef(({ display, flexWrap, ...restProps }, ref) => (
-  //$FlowFixMe
   <Block
     display={display || 'flex'}
     flexWrap={flexWrap || flexWrap === false ? flexWrap : true}
@@ -55,7 +54,6 @@ const FlexGrid: React.FC<
             flexGridItemIndex: number,
             { length: flexGridItemCount }: React.ReactNode[]
           ) => {
-            // $FlowFixMe https://github.com/facebook/flow/issues/4864
             return React.cloneElement(child, {
               flexGridColumnCount,
               flexGridColumnGap,

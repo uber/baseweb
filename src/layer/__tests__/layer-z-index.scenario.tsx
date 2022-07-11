@@ -102,7 +102,6 @@ export class Scenario extends React.Component<
               <TetherBehavior
                 anchorRef={this.anchorRef1.current}
                 popperRef={this.popperRef1.current}
-                // $FlowFixMe
                 onPopperUpdate={(...args) => this.onPopperUpdate(1, ...args)}
                 placement={TETHER_PLACEMENT.right}
               >
@@ -134,7 +133,6 @@ export class Scenario extends React.Component<
                 <TetherBehavior
                   anchorRef={this.anchorRef2.current}
                   popperRef={this.popperRef2.current}
-                  // $FlowFixMe
                   onPopperUpdate={(...args) => this.onPopperUpdate(2, ...args)}
                   placement={TETHER_PLACEMENT.right}
                 >

@@ -28,7 +28,6 @@ export default function Avatar({
   size = 'scale1000',
   src,
 }: PropsT) {
-  // $FlowFixMe
   const imageRef = React.useRef<HTMLImageElement>(null);
   const [imageLoaded, setImageLoaded] = React.useState(false);
 

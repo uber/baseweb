@@ -20,15 +20,7 @@ const spin = {
 
 export const StyledSpinner = styled<'i', SpinnerPropsT>(
   'i',
-  ({
-    //$FlowFixMe
-    $theme,
-    $color = $theme.colors.contentAccent,
-    //$FlowFixMe
-    $borderWidth,
-    //$FlowFixMe
-    $size = SIZE.medium,
-  }) => {
+  ({ $theme, $color = $theme.colors.contentAccent, $borderWidth, $size = SIZE.medium }) => {
     let borderSize = {
       large: $theme.sizing.scale300,
       medium: $theme.sizing.scale100,

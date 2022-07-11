@@ -30,10 +30,8 @@ function RenderNode(props) {
     return Component;
   }
   if (ReactIs.isValidElementType(Component)) {
-    // $FlowFixMe
     return <Component {...restProps} />;
   }
-  // $FlowFixMe
   return Component;
 }
 

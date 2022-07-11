@@ -22,7 +22,6 @@ export const BaseButton = styled<'button', SharedStylePropsT>(
     $isSelected,
     $disabled,
     $isFocusVisible,
-    //$FlowFixMe
   }) => ({
     display: 'inline-flex',
     // need to maintain button width while showing loading spinner

@@ -75,7 +75,6 @@ class MenuStatefulContainerInner extends React.Component<
     }
     const optgroups = Object.keys(this.props.items);
     return optgroups.reduce((output, optgroup) => {
-      // $FlowFixMe already checked above that items is grouped shape
       return output.concat(this.props.items[optgroup]);
     }, []);
   }
@@ -258,7 +257,6 @@ class MenuStatefulContainerInner extends React.Component<
     if (this.refList[nextIndex]) {
       scrollItemIntoView(
         this.refList[nextIndex].current,
-        // $FlowFixMe
         rootRef.current,
         nextIndex === 0,
         nextIndex === list.length - 1
@@ -315,7 +313,6 @@ class MenuStatefulContainerInner extends React.Component<
     if (this.refList[nextIndex]) {
       scrollItemIntoView(
         this.refList[nextIndex].current,
-        // $FlowFixMe
         rootRef.current,
         nextIndex === 0,
         nextIndex === this.getItems().length - 1

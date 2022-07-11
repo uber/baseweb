@@ -51,9 +51,7 @@ describe('Helpers - Overrides', () => {
 
   test('toObjectOverride', () => {
     const CustomComponent = getMockComponent();
-    // $FlowFixMe - Calling toObjectOverride with no args
     expect(toObjectOverride()).toEqual({});
-    // $FlowFixMe - Calling toObjectOverride with null
     expect(toObjectOverride(null)).toEqual({});
     expect(toObjectOverride(CustomComponent)).toEqual({
       component: CustomComponent,
@@ -211,7 +209,6 @@ describe('Helpers - Overrides', () => {
 
   test('dynamic prop overrides', () => {
     const consoleWarn = console.warn;
-    // $FlowFixMe
     console.warn = jest.fn();
 
     function DefaultComponent(props) {
@@ -230,13 +227,11 @@ describe('Helpers - Overrides', () => {
 
     // @ts-expect-error
     expect(console.warn.mock.calls.length).toBe(1);
-    // $FlowFixMe
     console.warn = consoleWarn;
   });
 
   test('dynamic prop with component overrides', () => {
     const consoleWarn = console.warn;
-    // $FlowFixMe
     console.warn = jest.fn();
 
     function DefaultComponent(props) {
@@ -262,13 +257,11 @@ describe('Helpers - Overrides', () => {
 
     // @ts-expect-error
     expect(console.warn.mock.calls.length).toBe(1);
-    // $FlowFixMe
     console.warn = consoleWarn;
   });
 
   test('dynamic prop with style overrides', () => {
     const consoleWarn = console.warn;
-    // $FlowFixMe
     console.warn = jest.fn();
 
     function DefaultComponent(props) {
@@ -299,7 +292,6 @@ describe('Helpers - Overrides', () => {
 
     // @ts-expect-error
     expect(console.warn.mock.calls.length).toBe(1);
-    // $FlowFixMe
     console.warn = consoleWarn;
   });
 });

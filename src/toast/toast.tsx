@@ -78,7 +78,6 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
     ) {
       // todo(flow->ts): double check if typecast is correct
       this.previouslyFocusedElement = document.activeElement as HTMLElement | SVGElement;
-      // $FlowFixMe: CloseIcon is `mixed` type so doesn't like `focus` call.
       this.closeRef.current.focus();
       this.setState({ isFocusVisible: true });
     }
@@ -205,7 +204,6 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
 
     const closeIconOverrides: OverridesT = mergeOverrides(
       { Svg: { component: CloseIcon } },
-      // $FlowFixMe
       { Svg: CloseIconOverride }
     );
 

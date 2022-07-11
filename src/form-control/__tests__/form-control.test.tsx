@@ -70,7 +70,6 @@ describe('FormControl - Label and Caption for controls', () => {
 
   it('Renders error if error and positive and caption are provided', () => {
     const consoleWarn = console.warn;
-    // $FlowFixMe
     console.warn = jest.fn();
 
     const label = 'Label test';

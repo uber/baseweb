@@ -137,9 +137,7 @@ const getDiffereningAdapterMap = (runAdapter, value) => {
     const currentValue = getComparisonValue(runAdapter(helpers, convertArgs));
     if (currentValue !== comparisonValue) {
       return {
-        //$FlowFixMe
         ...memo,
-        //$FlowFixMe
         [name]: currentValue,
       };
     }
@@ -156,25 +154,17 @@ const getDiffereningAdapterMap = (runAdapter, value) => {
 // To make it possible to easily compare dates across libraries, all date objects
 // are converted to iso strings before being passed into expect
 
-//$FlowFixMe
 const helpers: DateHelpers<Date> = Object.keys(dateHelpers).reduce((memo, methodName) => {
   return {
     ...memo,
-    //$FlowFixMe
     [methodName]: (...args) => {
-      //$FlowFixMe
       const dateHelpersReturn = dateHelpers[methodName](...args);
-      if (
-        //$FlowFixMe
-        !utilsHelpers[methodName] &&
-        excludedFromChecks.includes(methodName)
-      ) {
+      if (!utilsHelpers[methodName] && excludedFromChecks.includes(methodName)) {
         return dateHelpersReturn;
       }
 
       const differingAdapterMap = getDiffereningAdapterMap((helpers, convertArgs) => {
         const convertedArgs = convertArgs(args);
-        //$FlowFixMe
         return helpers[methodName](...convertedArgs);
       }, dateHelpersReturn);
 
@@ -186,8 +176,6 @@ const helpers: DateHelpers<Date> = Object.keys(dateHelpers).reduce((memo, method
       if (Object.keys(differingAdapterMap).length > 0) {
         const adapterString = Object.keys(differingAdapterMap).reduce((memo, name) => {
           return `${memo}${name}: ${
-            //$FlowFixMe
-            //$FlowFixMe
             differingAdapterMap[name]
           } date-fns: ${defaultGetComparisonValue(dateHelpersReturn)}\n`;
         }, '');

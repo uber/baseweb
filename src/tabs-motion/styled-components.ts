@@ -57,7 +57,6 @@ export const StyledTabList = styled<
   }
   if (isIntrinsic($fill)) {
     style['::-webkit-scrollbar'] = { display: 'none' };
-    // $FlowFixMe: property missing in StyleObject
     style['-ms-overflow-style'] = 'none';
     style.scrollbarWidth = 'none';
     if (isHorizontal($orientation)) {

@@ -103,7 +103,6 @@ export function Scenario() {
           options={floatingMarkerAnchorTypes}
           value={floatingMarkerAnchorType}
           placeholder="Select an anchor type"
-          // $FlowFixMe Mismatch between general type and enum
           onChange={(params) => setFloatingMarkerAnchorType(params.value)}
           key="anchor-type"
         />,

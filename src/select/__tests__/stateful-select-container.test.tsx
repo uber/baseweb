@@ -31,14 +31,12 @@ describe('StatefulSelectContainer', function () {
   });
 
   it('provides props to children render func', function () {
-    //$FlowFixMe
     render(<StatefulSelectContainer {...props} />);
     const actualProps = props.children.mock.calls[0][0];
     expect(actualProps).toHaveProperty('value', props.initialState.value);
   });
 
   it('calls onChange handler with correct params', function () {
-    //$FlowFixMe
     render(<StatefulSelectContainer {...props} />);
     const newValue = { id: 'id2', label: 'label2' };
     const params = {

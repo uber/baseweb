@@ -74,7 +74,6 @@ const StyledHighlightLabel = withStyle<
   };
 
   if (!props.$isFirst) {
-    // $FlowFixMe
     style.paddingLeft = null;
   }
 

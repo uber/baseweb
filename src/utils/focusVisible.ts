@@ -101,7 +101,6 @@ function prepare(doc) {
   doc.addEventListener('visibilitychange', handleVisibilityChange, true);
 }
 
-//$FlowFixMe
 export function teardown(doc) {
   doc.removeEventListener('keydown', handleKeyDown, true);
   doc.removeEventListener('mousedown', handlePointerDown, true);
@@ -110,7 +109,6 @@ export function teardown(doc) {
   doc.removeEventListener('visibilitychange', handleVisibilityChange, true);
 }
 
-//$FlowFixMe
 export function isFocusVisible(event) {
   try {
     return event.target.matches(':focus-visible');
@@ -143,7 +141,6 @@ export function handleBlurVisible() {
   }
 }
 
-//$FlowFixMe
 export function initFocusVisible(node) {
   if (!initialized && node != null) {
     initialized = true;

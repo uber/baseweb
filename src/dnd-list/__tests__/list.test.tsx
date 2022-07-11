@@ -10,7 +10,6 @@ import { render, getAllByTestId } from '@testing-library/react';
 import { List } from '..';
 
 describe('List', () => {
-  //$FlowFixMe
   console.warn = jest.fn(); // eslint-disable-line
   it('basic render', () => {
     const { container } = render(

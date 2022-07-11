@@ -459,7 +459,6 @@ export const getInputStyles = (
     $size,
     $theme: { colors, sizing, typography },
   } = props;
-  //$FlowFixMe
   return {
     boxSizing: 'border-box',
     backgroundColor: 'transparent',

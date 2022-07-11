@@ -104,7 +104,6 @@ class TimezonePicker extends React.Component<TimezonePickerPropsT, TimezonePicke
     let options = this.state.timezones;
     if (this.props.mapLabels) {
       options = options.map((option) => {
-        // $FlowFixMe - TimezoneT.label is a string, but mapLabels can return a React.Node
         option.label = this.props.mapLabels(option);
         return option;
       });

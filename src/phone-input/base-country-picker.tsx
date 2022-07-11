@@ -74,7 +74,6 @@ export default function CountryPicker(props: CountrySelectPropsT) {
     $size: size,
   };
   const options = Object.values(props.countries);
-  // $FlowFixMe
   const scrollIndex = options.findIndex((opt) => opt.id === country.id);
   const baseSelectOverrides = {
     Root: {

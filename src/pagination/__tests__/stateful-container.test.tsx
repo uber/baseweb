@@ -68,7 +68,6 @@ describe('Pagination StatefulContainer', () => {
       ...getSharedProps(),
       stateReducer: null,
     };
-    // $FlowFixMe
     render(<StatefulContainer {...props} />);
     act(() => mockChildrenFn.mock.calls[0][0].onPageChange({ nextPage: 2 }));
     expect(mockChildrenFn.mock.calls[1][0]).toHaveProperty('currentPage', 2);

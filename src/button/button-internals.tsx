@@ -21,10 +21,8 @@ function RenderEnhancer(props) {
     return Enhancer;
   }
   if (ReactIs.isValidElementType(Enhancer)) {
-    // $FlowFixMe
     return <Enhancer {...restProps} />;
   }
-  // $FlowFixMe
   return Enhancer;
 }
 

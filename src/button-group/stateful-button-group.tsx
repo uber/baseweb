@@ -14,10 +14,7 @@ export default function StatefulButtonGroup(props: StatefulPropsT) {
   const { children, initialState, ...restProps } = props;
   return (
     <StatefulContainer initialState={initialState} {...restProps}>
-      {({ ...containerProps }) => (
-        //$FlowFixMe
-        <ButtonGroup {...containerProps}>{props.children}</ButtonGroup>
-      )}
+      {({ ...containerProps }) => <ButtonGroup {...containerProps}>{props.children}</ButtonGroup>}
     </StatefulContainer>
   );
 }

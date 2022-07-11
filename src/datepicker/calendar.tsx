@@ -65,7 +65,6 @@ export default class Calendar<T = Date> extends React.Component<
     super(props);
 
     const { highlightedDate, value, adapter } = this.props;
-    //$FlowFixMe
     this.dateHelpers = new DateHelpers(adapter);
     const dateInView = this.getDateInView();
     let time = [];

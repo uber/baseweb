@@ -7,7 +7,6 @@ LICENSE file in the root directory of this source tree.
 import type { PopperOptionsT } from '../types';
 
 const destroy = jest.fn();
-// $FlowFixMe
 const mock = jest
   .fn()
   .mockImplementation((anchor: HTMLElement, popover: HTMLElement, options: PopperOptionsT) => {

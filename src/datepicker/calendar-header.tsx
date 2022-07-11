@@ -82,7 +82,6 @@ export default class CalendarHeader<T = Date> extends React.Component<
 
   constructor(props: HeaderPropsT<T>) {
     super(props);
-    //$FlowFixMe
     this.dateHelpers = new DateHelpers(props.adapter);
     this.monthItems = [];
     this.yearItems = [];
@@ -190,7 +189,6 @@ export default class CalendarHeader<T = Date> extends React.Component<
 
   increaseMonth = () => {
     if (this.props.onMonthChange) {
-      // $FlowFixMe
       this.props.onMonthChange({
         date: this.dateHelpers.addMonths(
           this.getDateProp(),
@@ -205,7 +203,6 @@ export default class CalendarHeader<T = Date> extends React.Component<
 
   decreaseMonth = () => {
     if (this.props.onMonthChange) {
-      // $FlowFixMe
       this.props.onMonthChange({
         date: this.dateHelpers.subMonths(this.getDateProp(), 1),
       });

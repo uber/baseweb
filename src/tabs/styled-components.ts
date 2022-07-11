@@ -9,7 +9,6 @@ import { ORIENTATION } from './constants';
 import type { SharedStylePropsArgT } from './types';
 import type { StyleObject } from 'styletron-standard';
 
-// $FlowFixMe https://github.com/facebook/flow/issues/7745
 export const Root = styled<'div', SharedStylePropsArgT>('div', (props) => {
   const { $orientation } = props;
   return {
@@ -18,7 +17,6 @@ export const Root = styled<'div', SharedStylePropsArgT>('div', (props) => {
   };
 });
 
-// $FlowFixMe https://github.com/facebook/flow/issues/7745
 export const Tab = styled<'div', SharedStylePropsArgT>('div', (props) => {
   const {
     $disabled,
@@ -60,7 +58,6 @@ export const Tab = styled<'div', SharedStylePropsArgT>('div', (props) => {
   return style;
 });
 
-// $FlowFixMe https://github.com/facebook/flow/issues/7745
 export const TabBar = styled<'div', SharedStylePropsArgT>('div', (props) => {
   const {
     $orientation,
@@ -75,7 +72,6 @@ export const TabBar = styled<'div', SharedStylePropsArgT>('div', (props) => {
   };
 });
 
-// $FlowFixMe https://github.com/facebook/flow/issues/7745
 export const TabContent = styled<'div', SharedStylePropsArgT>('div', (props) => {
   const {
     $active,

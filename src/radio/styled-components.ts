@@ -119,20 +119,17 @@ function getLabelColor(props) {
   return $disabled ? colors.contentSecondary : colors.contentPrimary;
 }
 
-export const RadioGroupRoot = styled<'div', StylePropsT>(
-  'div', // $FlowFixMe - suppressing due to webkit property
-  (props) => {
-    const { $disabled, $align } = props;
-    return {
-      display: 'flex',
-      flexWrap: 'wrap',
-      flexDirection: $align === 'horizontal' ? 'row' : 'column',
-      alignItems: $align === 'horizontal' ? 'center' : 'flex-start',
-      cursor: $disabled ? 'not-allowed' : 'pointer',
-      '-webkit-tap-highlight-color': 'transparent',
-    };
-  }
-);
+export const RadioGroupRoot = styled<'div', StylePropsT>('div', (props) => {
+  const { $disabled, $align } = props;
+  return {
+    display: 'flex',
+    flexWrap: 'wrap',
+    flexDirection: $align === 'horizontal' ? 'row' : 'column',
+    alignItems: $align === 'horizontal' ? 'center' : 'flex-start',
+    cursor: $disabled ? 'not-allowed' : 'pointer',
+    '-webkit-tap-highlight-color': 'transparent',
+  };
+});
 
 export const Root = styled<'label', StylePropsT>('label', (props) => {
   const { $disabled, $hasDescription, $labelPlacement, $theme, $align } = props;

@@ -34,7 +34,6 @@ describe('Icon', () => {
   it('does not pass extraneous attributes to svg elements', () => {
     // an exception
     const consoleError = console.error;
-    // $FlowFixMe
     console.error = jest.fn();
     render(
       // @ts-expect-error not existing attribute
@@ -48,7 +47,6 @@ describe('Icon', () => {
     );
     // @ts-expect-error
     expect(console.error.mock.calls.length).toBe(0);
-    // $FlowFixMe
     console.error = consoleError;
   });
 
