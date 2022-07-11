@@ -21,7 +21,7 @@ import {
   withWrapper,
 } from '../styled';
 
-jest.unmock('../styled.js');
+jest.unmock('../styled');
 
 describe('withWrapper', () => {
   it('preserves non styletron props when extending with "withStyle"', () => {
