@@ -57,7 +57,7 @@ type WithStyleFn<DefaultTheme> = {
       | ((
           props: Omit<P, '$theme'> & {
             $theme: Theme;
-          } & React.ComponentProps<C>
+          } & (C extends StyletronComponent<infer CC, infer PP> ? PP : never)
         ) => StyleObject)
       | StyleObject
   ): C extends StyletronComponent<infer CC, infer PP> ? StyletronComponent<CC, P & PP> : never;

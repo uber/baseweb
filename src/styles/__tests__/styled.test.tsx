@@ -208,7 +208,7 @@ describe('themedStyled flow', () => {
 });
 
 describe('withStyle flow', () => {
-  test('it provides flow error if accessing property not defined in props type', () => {
+  test('does not provide type error when accessing property defined in wrapped props type', () => {
     type P = {
       hello: string;
     };
@@ -223,7 +223,6 @@ describe('withStyle flow', () => {
 
     const b = withStyle<typeof a, Q>(a, (props) => {
       console.log(props.world);
-      // @ts-expect-error
       console.log(props.hello);
       return { color: 'green' };
     });
