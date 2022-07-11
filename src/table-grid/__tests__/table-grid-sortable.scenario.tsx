@@ -83,7 +83,7 @@ export function Scenario() {
   }, [nameDirection, ageDirection]);
 
   return (
-    <StyledTable tabIndex="0" role="grid" $gridTemplateColumns="repeat(2,1fr)">
+    <StyledTable tabIndex={0} role="grid" $gridTemplateColumns="repeat(2,1fr)">
       <SortableHeadCell
         title="Name"
         direction={nameDirection}

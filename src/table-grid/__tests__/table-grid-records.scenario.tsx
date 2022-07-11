@@ -47,7 +47,7 @@ export function Scenario() {
     <div className={css({ height: '600px' })}>
       <StyledTable
         role="grid"
-        tabIndex="0"
+        tabIndex={0}
         $gridTemplateColumns="auto minmax(auto, 500px) repeat(4, auto)"
       >
         <StyledHeadCell {...getCellProps(0, 0)}>Name</StyledHeadCell>

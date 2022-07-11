@@ -30,7 +30,7 @@ export function Scenario() {
   return (
     <div className={css({ height: '750px', width: '900px' })}>
       <StyledTable
-        tabIndex="0"
+        tabIndex={0}
         role="grid"
         $gridTemplateColumns="minmax(400px, max-content) 200px 200px 200px 200px 200px"
       >

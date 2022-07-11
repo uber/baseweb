@@ -260,7 +260,7 @@ export function Scenario() {
         </div>
       </HeadingLevel>
 
-      <StyledTable tabIndex="0" role="grid" $gridTemplateColumns="auto auto max-content auto auto">
+      <StyledTable tabIndex={0} role="grid" $gridTemplateColumns="auto auto max-content auto auto">
         <StyledHeadCell {...getCellProps(0, 0)}>Job Name</StyledHeadCell>
         <StyledHeadCell {...getCellProps(1, 0)}>Status</StyledHeadCell>
         <StyledHeadCell {...getCellProps(2, 0)}>Pull Request</StyledHeadCell>
