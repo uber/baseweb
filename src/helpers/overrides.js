@@ -35,39 +35,39 @@ export type OverridesT = {
  * Given an override argument, returns the component implementation override if it exists
  */
 // flowlint-next-line unclear-type:off
-export function getOverride(override: any): any {
-  if (isValidElementType(override)) {
-    return override;
+export function getOverride(_override: any): any {
+  if (isValidElementType(_override)) {
+    return _override;
   }
 
   // Check if override is OverrideObjectT
-  if (override && typeof override === 'object') {
+  if (_override && typeof _override === 'object') {
     // Remove this 'any' once this flow issue is fixed:
     // https://github.com/facebook/flow/issues/6666
     // flowlint-next-line unclear-type:off
-    return (override: any).component;
+    return (_override: any).component;
   }
 
   // null/undefined
-  return override;
+  return _override;
 }
 
 /**
  * Given an override argument, returns the override props that should be passed
  * to the component when rendering it.
  */
-export function getOverrideProps<T>(override: ?OverrideT): T {
-  if (override && typeof override === 'object') {
-    if (typeof override.props === 'object') {
+export function getOverrideProps<T>(_override: ?OverrideT): T {
+  if (_override && typeof _override === 'object') {
+    if (typeof _override.props === 'object') {
       //$FlowFixMe
       return {
-        ...override.props,
-        $style: override.style,
+        ..._override.props,
+        $style: _override.style,
       };
     } else {
       //$FlowFixMe
       return {
-        $style: override.style,
+        $style: _override.style,
       };
     }
   }
@@ -79,11 +79,11 @@ export function getOverrideProps<T>(override: ?OverrideT): T {
  * Coerces an override argument into an override object
  * (sometimes it is just an override component)
  */
-export function toObjectOverride<T>(override: OverrideT): OverrideObjectT {
-  if (isValidElementType(override)) {
+export function toObjectOverride<T>(_override: OverrideT): OverrideObjectT {
+  if (isValidElementType(_override)) {
     return {
       // flowlint-next-line unclear-type:off
-      component: ((override: any): React.ComponentType<T>),
+      component: ((_override: any): React.ComponentType<T>),
     };
   }
 
@@ -91,7 +91,7 @@ export function toObjectOverride<T>(override: OverrideT): OverrideObjectT {
   // catch React.StatelessFunctionalComponent
   // (probably related to https://github.com/facebook/flow/issues/6666)
   // flowlint-next-line unclear-type:off
-  return ((override || {}: any): OverrideObjectT);
+  return ((_override || {}: any): OverrideObjectT);
 }
 
 /**
@@ -99,12 +99,12 @@ export function toObjectOverride<T>(override: OverrideT): OverrideObjectT {
  */
 // flowlint unclear-type:off
 export function getOverrides<T>(
-  override: Object,
+  _override: Object,
   defaultComponent: React.ComponentType<any>
 ): [React.ComponentType<any>, T] {
-  const Component = getOverride(override) || defaultComponent;
+  const Component = getOverride(_override) || defaultComponent;
 
-  if (override && typeof override === 'object' && typeof override.props === 'function') {
+  if (_override && typeof _override === 'object' && typeof _override.props === 'function') {
     // TODO(v11)
     if (__DEV__) {
       console.warn(
@@ -113,9 +113,9 @@ export function getOverrides<T>(
       );
     }
     const DynamicOverride = React.forwardRef((props, ref) => {
-      const mappedProps = override.props(props);
+      const mappedProps = _override.props(props);
       const nextProps: T = getOverrideProps<T>({
-        ...override,
+        ..._override,
         props: mappedProps,
       });
       return <Component ref={ref} {...nextProps} />;
@@ -125,7 +125,7 @@ export function getOverrides<T>(
     return [DynamicOverride, {}];
   }
 
-  const props = getOverrideProps<T>(override);
+  const props = getOverrideProps<T>(_override);
   return [Component, props];
 }
 /* flowlint unclear-type:error */
