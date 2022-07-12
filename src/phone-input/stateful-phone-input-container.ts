@@ -18,7 +18,7 @@ import type { OnChangeParamsT } from '../select';
 
 import type { ChangeEvent } from 'react';
 
-// @ts-expect-error todo: possible bug
+// @ts-expect-error todo(flow->ts): possible bug
 const defaultStateReducer: StateReducerT = (type, nextState) => nextState;
 
 export default class StatefulPhoneInputContainer extends React.Component<

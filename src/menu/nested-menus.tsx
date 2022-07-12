@@ -21,9 +21,9 @@ type PropsT = {
 export const NestedMenuContext = React.createContext<NestedMenuContextT>({
   addMenuToNesting: () => {},
   removeMenuFromNesting: () => {},
-  // @ts-expect-error todo: incorrect default value
+  // @ts-expect-error todo(flow->ts): incorrect default value
   getParentMenu: () => {},
-  // @ts-expect-error todo: incorrect default value
+  // @ts-expect-error todo(flow->ts): incorrect default value
   getChildMenu: () => {},
   nestedMenuHoverIndex: -1,
   isNestedMenuVisible: () => false,

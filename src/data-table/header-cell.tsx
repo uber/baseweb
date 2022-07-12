@@ -59,7 +59,7 @@ const HeaderCell = React.forwardRef<HTMLDivElement, HeaderCellPropsT>((props, re
     <div
       ref={ref}
       role="button"
-      tabIndex={0 /* todo: bug string in js */}
+      tabIndex={0}
       className={css({
         ...theme.typography.font350,
         alignItems: 'center',

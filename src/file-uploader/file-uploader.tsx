@@ -73,7 +73,7 @@ function FileUploader(props: PropsT) {
   const afterFileDrop = !!(props.progressAmount || props.progressMessage || props.errorMessage);
 
   return (
-    // @ts-expect-error todo: dropzone api
+    // @ts-expect-error todo(flow->ts): dropzone api
     <Dropzone {...props} disabled={props.disabled || afterFileDrop}>
       {(renderProps) => {
         const { getRootProps, getInputProps, open, ...styleProps } = renderProps;
@@ -89,7 +89,6 @@ function FileUploader(props: PropsT) {
           tabIndex: number;
         } = {
           ...(props.disableClick ? { onClick: (evt) => evt.preventDefault() } : {}),
-          // todo(flow->ts): backport tabIndex should be a number
           tabIndex: -1,
         };
 

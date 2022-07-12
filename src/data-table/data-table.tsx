@@ -573,7 +573,7 @@ const InnerTableElement = React.forwardRef<
               const RowActionIcon = rowAction.renderIcon;
               return (
                 <Button
-                  // @ts-expect-error todo: alt on button?
+                  // @ts-expect-error todo(flow->ts): alt on button?
                   alt={rowAction.label}
                   key={rowAction.label}
                   onClick={(event) =>

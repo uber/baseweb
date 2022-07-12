@@ -135,10 +135,10 @@ class PaymentCard extends React.Component<PaymentCardPropsT> {
                 this.props.value ? String(this.props.value) : '',
                 e.target.selectionStart
               );
-              // @ts-expect-error todo: looks dangerous
+              // @ts-expect-error todo(flow->ts): looks dangerous
               this.caretPosition = position;
               this.inRef = e.target;
-              // @ts-expect-error todo: looks dangerous
+              // @ts-expect-error todo(flow->ts): looks dangerous
               e.target.value = value;
               onChange && onChange(e);
             }}

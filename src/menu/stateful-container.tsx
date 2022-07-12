@@ -58,7 +58,7 @@ class MenuStatefulContainerInner extends React.Component<
   static defaultProps = DEFAULT_PROPS;
 
   state: StatefulContainerStateT = {
-    // @ts-expect-error todo: probably MenuStatefulContainer should be used instead of this.constructor
+    // @ts-expect-error todo(flow->ts): probably MenuStatefulContainer should be used instead of this.constructor
     ...this.constructor.defaultProps.initialState,
     ...this.props.initialState,
   };

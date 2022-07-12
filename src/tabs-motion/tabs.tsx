@@ -370,7 +370,7 @@ function InternalTab({
   );
 
   // Keyboard focus management
-  // @ts-expect-error todo: deps are required
+  // @ts-expect-error todo(flow->ts): deps are required
   const handleKeyDown = React.useCallback((event) => {
     // WAI-ARIA 1.1
     // https://www.w3.org/TR/wai-aria-practices-1.1/#tabpanel

@@ -27,13 +27,13 @@ type PropsT = {
 
 const MaybeChildMenu: React.FC<PropsT> = (props): React.ReactElement => {
   if (!props.getChildMenu) {
-    // @ts-expect-error todo: children should be of type ReactElement or null
+    // @ts-expect-error todo(flow->ts): children should be of type ReactElement or null
     return props.children;
   }
 
   const ChildMenu = props.getChildMenu(props.item);
   if (!ChildMenu) {
-    // @ts-expect-error todo: children should be of type ReactElement or null
+    // @ts-expect-error todo(flow->ts): children should be of type ReactElement or null
     return props.children;
   }
   const { overrides = {} } = props;
