@@ -287,8 +287,8 @@ class PopoverInner extends React.Component<PopoverPropsT, PopoverPrivateStateT> 
     const { isOpen } = this.props;
 
     const anchorProps: AnchorPropsT = {
-      'aria-haspopup': 'true',
-      'aria-expanded': isOpen ? 'true' : 'false',
+      'aria-haspopup': true,
+      'aria-expanded': isOpen ? true : false,
       // @ts-expect-error todo(flow->ts): should it be here?
       key: 'popover-anchor',
       ref: this.anchorRef,
@@ -374,7 +374,6 @@ class PopoverInner extends React.Component<PopoverPropsT, PopoverPrivateStateT> 
     if (typeof anchor === 'object' && isValidElement) {
       return React.cloneElement(anchor, anchorProps);
     }
-    // @ts-expect-error todo(flow->ts): type of anchorProps is not strict enough
     return <span {...anchorProps}>{anchor}</span>;
   }
 

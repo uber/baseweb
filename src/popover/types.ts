@@ -187,12 +187,12 @@ export type SharedStylePropsArgT = {} & ArrowStylePropsArgT & BodyStylePropsArgT
 export type AnchorPropsT = {
   'aria-controls'?: string | null;
   'aria-describedby'?: string | null;
-  'aria-expanded'?: string;
-  'aria-haspopup'?: string;
+  'aria-expanded'?: boolean;
+  'aria-haspopup'?: boolean;
   'aria-owns'?: string | null;
   id?: string | null;
   onBlur?: (e: React.FocusEvent) => unknown;
-  onClick?: (e: React.SyntheticEvent) => unknown;
+  onClick?: (e: React.MouseEvent) => unknown;
   onFocus?: (e: React.FocusEvent) => unknown;
   onMouseEnter?: (e: React.MouseEvent) => unknown;
   onMouseLeave?: (e: React.MouseEvent) => unknown;
