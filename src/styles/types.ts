@@ -54,13 +54,6 @@ export type ThemeT = {
   sizing: SizingT;
   typography: TypographyT;
   zIndex: ZIndexT;
-  // Remove this section in next v11 major version
-  // https://github.com/uber/baseweb/pull/1184
-  // todo: tooltip is already not there
-  // tooltip: {
-  //   backgroundColor: string;
-  // };
-  // ^^^^^^^
 };
 
 export type IconT = {

@@ -18,13 +18,13 @@ export type TypeT = keyof typeof TYPE;
 
 export type OptionT = Readonly<{
   id?: string | number;
-  // todo: React.ReactNode might be incorrect: given implementation - only string would work correctly
+  // todo(flow->ts): React.ReactNode might be incorrect, but it works https://codesandbox.io/s/base-web-select-forked-kfzx07?file=/src/example.js
   label?: React.ReactNode;
   disabled?: boolean;
   clearableValue?: boolean;
   isCreatable?: boolean;
   __optgroup?: string;
-  // todo: probably this should be deleted, but that will require to clarify other types
+  // todo(flow->ts): probably this should be deleted, but that will require to clarify other types
   [x: string]: any;
 }>;
 
@@ -64,7 +64,6 @@ export type OverridesT = {
   DropdownListItem?: OverrideT;
   OptionContent?: OverrideT;
   StatefulMenu?: OverrideT;
-  // todo: backport
   StyledClearIcon?: OverrideT;
 };
 

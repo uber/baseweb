@@ -25,8 +25,6 @@ import type {
 import type { OverridesT } from '../icon';
 import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible';
 
-import type { SyntheticEvent } from 'react';
-
 class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
   static defaultProps: ToastPropsShapeT = {
     autoFocus: false,
@@ -78,7 +76,7 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
       this.closeRef.current.focus &&
       typeof this.closeRef.current.focus === 'function'
     ) {
-      // todo: doublecheck if typecast is correct
+      // todo(flow->ts): double check if typecast is correct
       this.previouslyFocusedElement = document.activeElement as HTMLElement | SVGElement;
       // $FlowFixMe: CloseIcon is `mixed` type so doesn't like `focus` call.
       this.closeRef.current.focus();

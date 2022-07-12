@@ -41,6 +41,7 @@ export type DefaultPropsT = {
   onMouseUp: (e: ChangeEvent<HTMLInputElement>) => unknown;
   onFocus: (e: ChangeEvent<HTMLInputElement>) => unknown;
   onBlur: (e: ChangeEvent<HTMLInputElement>) => unknown;
+  containsInteractiveElement?: boolean;
 };
 
 export type PropsT = {

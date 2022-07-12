@@ -84,6 +84,4 @@ export type StateReducerT = (
 ) => StateT;
 
 // general
-type ClickHandlerT = (...args: any[]) => void;
-// todo: causes type errors, and does not look right
-// type ClickHandlerT = (event: SyntheticEvent<HTMLButtonElement>, index: number) => unknown;
+type ClickHandlerT = (event: SyntheticEvent<HTMLButtonElement>, index: number) => unknown;

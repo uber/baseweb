@@ -91,7 +91,7 @@ class PaymentCard extends React.Component<PaymentCardPropsT> {
     const { IconWrapper: IconWrapperOverride, ...restOverrides } = overrides;
     const [IconWrapper, iconWrapperProps] = getOverrides(IconWrapperOverride, StyledIconWrapper);
 
-    // todo: maybe incorrect typecast
+    // todo(flow->ts): maybe incorrect typecast, should it be `${value}`?
     const validatedValue = valid.number(value as string);
     let gaps: number[] = [];
     let type: string | undefined | null = undefined;

@@ -134,7 +134,6 @@ function Options(props: OptionsPropsT) {
         onKeyDown={props.onKeyDown}
         onFocus={handleFocus}
         onBlur={handleBlur}
-        // todo: tabIndex should be a number
         tabIndex={0}
         role="listbox"
         aria-activedescendant={`bui-${buiRef.current[props.highlightIndex]}`}

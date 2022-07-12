@@ -23,7 +23,10 @@ describe('ButtonGroup StatefulContainer', () => {
     const onClick = jest.fn();
     const { container } = render(
       <StatefulContainer onClick={onClick}>
-        {(childProps) => <div {...childProps}>children</div>}
+        {(childProps) => (
+          // @ts-expect-error childProps.onClick is incompatible with onClick for div element
+          <div {...childProps}>children</div>
+        )}
       </StatefulContainer>
     );
     const div = container.querySelector('div');
@@ -38,7 +41,10 @@ describe('ButtonGroup StatefulContainer', () => {
     const stateReducer = jest.fn();
     const { container } = render(
       <StatefulContainer onClick={onClick} stateReducer={stateReducer}>
-        {(childProps) => <div {...childProps}>children</div>}
+        {(childProps) => (
+          // @ts-expect-error childProps.onClick is incompatible with onClick for div element
+          <div {...childProps}>children</div>
+        )}
       </StatefulContainer>
     );
     const div = container.querySelector('div');
@@ -53,7 +59,10 @@ describe('ButtonGroup StatefulContainer', () => {
     const stateReducer = jest.fn();
     const { container } = render(
       <StatefulContainer mode={MODE.radio} onClick={onClick} stateReducer={stateReducer}>
-        {(childProps) => <div {...childProps}>children</div>}
+        {(childProps) => (
+          // @ts-expect-error childProps.onClick is incompatible with onClick for div element
+          <div {...childProps}>children</div>
+        )}
       </StatefulContainer>
     );
     const div = container.querySelector('div');

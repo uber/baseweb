@@ -889,8 +889,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
       this.props.creatable &&
       this.options.concat(this.props.value).every(filterDoesNotMatchOption)
     ) {
-      // todo:
-      // @ts-expect-error - this.options is typed as a read-only array
+      // @ts-expect-error todo(flow->ts) this.options is typed as a read-only array
       this.options.push({
         id: filterValue,
         [this.props.labelKey]: filterValue,

@@ -183,7 +183,7 @@ export type StatefulRadioGroupPropsT = {
 };
 
 export type StylePropsT = {
-  $align?: string; // todo: incorrect flow type - 'horizontal' is expected
+  $align?: string; // todo(flow->ts): can be improved - 'horizontal'|'vertical' is expected (the values are coming from ALIGN constants)
   $checked: boolean;
   $disabled: boolean;
   $hasDescription: boolean;

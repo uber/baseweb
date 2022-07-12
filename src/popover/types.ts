@@ -197,7 +197,6 @@ export type AnchorPropsT = {
   onFocus?: (e: React.FocusEvent) => unknown;
   onMouseEnter?: (e: React.MouseEvent) => unknown;
   onMouseLeave?: (e: React.MouseEvent) => unknown;
-  // todo(flow->ts) <any>
   ref?: React.Ref<HTMLElement>;
   tabIndex?: number;
 };

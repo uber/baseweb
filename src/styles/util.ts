@@ -28,7 +28,6 @@ export const ellipsisText = {
   wordWrap: 'normal',
 } as const;
 
-// todo(flow->ts) backport
 export function expandBorderStyles(borderStyles: BorderT): StyleObject {
   return {
     borderTopWidth: borderStyles.borderWidth,

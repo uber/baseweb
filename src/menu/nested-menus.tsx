@@ -18,11 +18,12 @@ type PropsT = {
   children: React.ReactNode;
 };
 
-// @ts-expect-error todo: incorrect default value
-export const NestedMenuContext: React.Context<NestedMenuContextT> = React.createContext({
+export const NestedMenuContext = React.createContext<NestedMenuContextT>({
   addMenuToNesting: () => {},
   removeMenuFromNesting: () => {},
+  // @ts-expect-error todo: incorrect default value
   getParentMenu: () => {},
+  // @ts-expect-error todo: incorrect default value
   getChildMenu: () => {},
   nestedMenuHoverIndex: -1,
   isNestedMenuVisible: () => false,

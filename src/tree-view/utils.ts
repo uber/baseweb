@@ -184,7 +184,6 @@ export const matchString = (
     let label = nodes[i].label;
     if (label && typeof label === 'string') {
       if (
-        // todo(flowts) backport
         (matchPrefix && label.toUpperCase().indexOf(chars.toUpperCase()) === 0) ||
         (!matchPrefix && label.toUpperCase().indexOf(chars.toUpperCase()) > 0)
       ) {

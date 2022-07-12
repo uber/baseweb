@@ -9,7 +9,6 @@ import { getOverrides } from '../helpers/overrides';
 import { StyledNavLink, StyledNavItem } from './styled-components';
 import type { NavItemPropsT } from './types';
 
-//todo:
 type SharedProps = Omit<
   React.ComponentProps<typeof StyledNavLink> & React.ComponentProps<typeof NavItem>,
   'onSelect' | 'item' | 'overrides' | 'itemMemoizationComparator'

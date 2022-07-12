@@ -422,13 +422,7 @@ export const getInputContainerStyles = (props: {
 
 export const InputContainer = styled<'div', SharedPropsT>('div', getInputContainerStyles);
 
-function getInputColors(
-  $disabled,
-  $isFocused,
-  $error,
-  colors
-  // todo(flow->ts) backport
-): StyleObject {
+function getInputColors($disabled, $isFocused, $error, colors): StyleObject {
   if ($disabled) {
     return {
       color: colors.inputTextDisabled,
