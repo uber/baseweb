@@ -49,6 +49,7 @@ export default (
     backgroundStateDisabled: colors.gray800,
     backgroundOverlayDark: hexToRgba(colors.black, '0.3'),
     backgroundOverlayLight: hexToRgba(colors.black, '0.08'),
+    backgroundOverlayArt: hexToRgba(colors.black, '0.16'),
     backgroundAccent: foundation.accent,
     backgroundNegative: foundation.negative,
     backgroundWarning: foundation.warning,

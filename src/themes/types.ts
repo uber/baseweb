@@ -119,6 +119,7 @@ export type CoreExtensionSemanticColorTokensT = {
   backgroundStateDisabled: string;
   backgroundOverlayDark: string | undefined | null;
   backgroundOverlayLight: string | undefined | null;
+  backgroundOverlayArt: string | undefined | null;
   backgroundAccent: string;
   backgroundNegative: string;
   backgroundWarning: string;
