@@ -8,4 +8,4 @@ export const SIZE = {
   cell: 'cell',
   section: 'section',
   module: 'module',
-};
+} as const;

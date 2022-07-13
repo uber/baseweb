@@ -8,7 +8,8 @@ import { styled } from '../styles/index';
 import { SIZE } from './constants';
 import type { DividerPropsT } from './types';
 
-export const StyledDivider = styled<DividerPropsT>('hr', ({ $theme, $size = SIZE.section }) => {
+export const StyledDivider = styled<'hr', DividerPropsT>('hr', (props) => {
+  const { $theme, $size = SIZE.section } = props;
   const borderResetStyles = {
     borderRight: 'none',
     borderBottom: 'none',
