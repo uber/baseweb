@@ -131,32 +131,29 @@ export const StyledMonthHeader = styled<'div', SharedStyleProps>('div', (props) 
   };
 });
 
-export const StyledMonthYearSelectButton = styled<'button', SharedStyleProps>(
-  'button',
-  (props) => {
-    const {
-      $theme: { typography, colors },
-      $isFocusVisible,
-      $density,
-    } = props;
-    return {
-      ...($density === DENSITY.high ? typography.LabelMedium : typography.LabelLarge),
-      alignItems: 'center',
-      backgroundColor: 'transparent',
-      borderLeftWidth: 0,
-      borderRightWidth: 0,
-      borderTopWidth: 0,
-      borderBottomWidth: 0,
-      color: colors.calendarHeaderForeground,
-      cursor: 'pointer',
-      display: 'flex',
-      outline: 'none',
-      ':focus': {
-        boxShadow: $isFocusVisible ? `0 0 0 3px ${colors.accent}` : 'none',
-      },
-    };
-  }
-);
+export const StyledMonthYearSelectButton = styled<'button', SharedStyleProps>('button', (props) => {
+  const {
+    $theme: { typography, colors },
+    $isFocusVisible,
+    $density,
+  } = props;
+  return {
+    ...($density === DENSITY.high ? typography.LabelMedium : typography.LabelLarge),
+    alignItems: 'center',
+    backgroundColor: 'transparent',
+    borderLeftWidth: 0,
+    borderRightWidth: 0,
+    borderTopWidth: 0,
+    borderBottomWidth: 0,
+    color: colors.calendarHeaderForeground,
+    cursor: 'pointer',
+    display: 'flex',
+    outline: 'none',
+    ':focus': {
+      boxShadow: $isFocusVisible ? `0 0 0 3px ${colors.accent}` : 'none',
+    },
+  };
+});
 
 export const StyledMonthYearSelectIconContainer = styled('span', (props) => {
   const marginDirection: string = props.$theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';

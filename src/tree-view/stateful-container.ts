@@ -11,7 +11,10 @@ type StateType = {
   data: TreeNodeData[];
 };
 
-const findSiblings = (node: TreeNodeData, children: TreeNodeData[]): TreeNodeData[] | undefined | null => {
+const findSiblings = (
+  node: TreeNodeData,
+  children: TreeNodeData[]
+): TreeNodeData[] | undefined | null => {
   if (children.indexOf(node) !== -1) {
     return children;
   }

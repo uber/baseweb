@@ -27,12 +27,7 @@ import { fromPopperPlacement } from './utils';
 import defaultProps from './default-props';
 import { useUID } from 'react-uid';
 
-import type {
-  AnchorProps,
-  PopoverProps,
-  PopoverPrivateState,
-  SharedStylePropsArg,
-} from './types';
+import type { AnchorProps, PopoverProps, PopoverPrivateState, SharedStylePropsArg } from './types';
 import type { PopperDataObject, NormalizedOffsets } from '../layer/types';
 
 class PopoverInner extends React.Component<PopoverProps, PopoverPrivateState> {

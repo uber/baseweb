@@ -7,12 +7,7 @@ LICENSE file in the root directory of this source tree.
 import { styled } from '../styles';
 import { getMediaQueries } from '../helpers/responsive-helpers';
 import { BEHAVIOR } from './constants';
-import type {
-  Responsive,
-  StyledGridProps,
-  StyledGridWrapperProps,
-  StyledCellProps,
-} from './types';
+import type { Responsive, StyledGridProps, StyledGridWrapperProps, StyledCellProps } from './types';
 
 export const StyledGridWrapper = styled<'div', StyledGridWrapperProps>(
   'div',

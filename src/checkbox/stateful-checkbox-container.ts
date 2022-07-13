@@ -17,7 +17,10 @@ import type { ChangeEvent } from 'react';
 
 const defaultStateReducer: StateReducer = (type, nextState) => nextState;
 
-class StatefulCheckboxContainer extends React.Component<StatefulContainerProps, CheckboxReducerState> {
+class StatefulCheckboxContainer extends React.Component<
+  StatefulContainerProps,
+  CheckboxReducerState
+> {
   static defaultProps: DefaultStatefulProps = {
     initialState: {
       checked: false,

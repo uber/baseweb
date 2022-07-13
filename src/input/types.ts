@@ -29,11 +29,7 @@ export type State = {
   value?: string | number;
 };
 
-export type StateReducer = (
-  stateType: StateType,
-  nextState: State,
-  currentState: State
-) => State;
+export type StateReducer = (stateType: StateType, nextState: State, currentState: State) => State;
 
 export type SharedProps = {
   /** Renders UI in 'focus' state */

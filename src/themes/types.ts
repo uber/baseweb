@@ -157,8 +157,7 @@ export type CoreExtensionSemanticColorTokens = {
   membership: string;
 };
 
-export type SemanticColorTokens = {} & CoreSemanticColorTokens &
-  CoreExtensionSemanticColorTokens;
+export type SemanticColorTokens = {} & CoreSemanticColorTokens & CoreExtensionSemanticColorTokens;
 
 export type ComponentColorTokens = {
   bannerActionLowInfo: string;

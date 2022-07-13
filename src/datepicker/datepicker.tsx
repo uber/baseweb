@@ -53,7 +53,10 @@ type DatepickerState = {
   inputValue?: string;
 };
 
-export default class Datepicker<T = Date> extends React.Component<DatepickerProps<T>, DatepickerState> {
+export default class Datepicker<T = Date> extends React.Component<
+  DatepickerProps<T>,
+  DatepickerState
+> {
   static defaultProps = {
     'aria-describedby': 'datepicker--screenreader--message--input',
     value: null,

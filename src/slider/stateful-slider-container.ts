@@ -6,13 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 import { STATE_CHANGE_TYPE } from './constants';
-import type {
-  StatefulContainerProps,
-  StateReducer,
-  State,
-  Params,
-  ChangeAction,
-} from './types';
+import type { StatefulContainerProps, StateReducer, State, Params, ChangeAction } from './types';
 
 const defaultStateReducer: StateReducer = (type, nextState) => nextState;
 

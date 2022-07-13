@@ -32,10 +32,7 @@ export const LayersContext = React.createContext<LayersContextProps>({
 export const Provider = LayersContext.Provider;
 export const Consumer = LayersContext.Consumer;
 
-export default class LayersManager extends React.Component<
-  LayersManagerProps,
-  LayersManagerState
-> {
+export default class LayersManager extends React.Component<LayersManagerProps, LayersManagerState> {
   host = React.createRef<HTMLElement>();
 
   containerRef = React.createRef<any>();

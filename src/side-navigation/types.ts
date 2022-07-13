@@ -15,11 +15,7 @@ export type State = {
   activeItemId?: string;
 };
 
-export type StateReducer = (
-  stateType: StateType,
-  nextState: State,
-  currentState: State
-) => State;
+export type StateReducer = (stateType: StateType, nextState: State, currentState: State) => State;
 
 export type SharedProps = {
   /** Defines if the nav item is currently selected */

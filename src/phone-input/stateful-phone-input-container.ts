@@ -7,12 +7,7 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 // needs to be removed from here
 import { COUNTRIES, STATE_CHANGE_TYPE } from './constants';
-import type {
-  StatefulPhoneInputContainerProps,
-  State,
-  StateReducer,
-  StateChange,
-} from './types';
+import type { StatefulPhoneInputContainerProps, State, StateReducer, StateChange } from './types';
 import defaultProps from './default-props';
 import type { OnChangeParams } from '../select';
 

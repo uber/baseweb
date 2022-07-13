@@ -16,12 +16,7 @@ import {
 import { KIND, TYPE } from './constants';
 import { LocaleContext } from '../locale';
 
-import type {
-  ToastProps,
-  ToastPropsShape,
-  ToastPrivateState,
-  SharedStylePropsArg,
-} from './types';
+import type { ToastProps, ToastPropsShape, ToastPrivateState, SharedStylePropsArg } from './types';
 import type { IconOverrides } from '../icon';
 import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible';
 
