@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 
 import * as React from 'react';
-import { Checkbox } from '../index';
+import { Checkbox } from '..';
 
 export function Scenario() {
   const [checkboxes, setCheckboxes] = React.useState([false, false, false, false]);

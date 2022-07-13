@@ -13,13 +13,13 @@ export const COLUMNS = Object.freeze({
   NUMERICAL: 'NUMERICAL',
   ROW_INDEX: 'ROW_INDEX',
   STRING: 'STRING',
-});
+} as const);
 
 export const NUMERICAL_FORMATS = Object.freeze({
   DEFAULT: 'DEFAULT',
   ACCOUNTING: 'ACCOUNTING',
   PERCENTAGE: 'PERCENTAGE',
-});
+} as const);
 
 export const DATETIME_OPERATIONS = Object.freeze({
   RANGE_DATETIME: 'RANGE_DATETIME',
@@ -30,12 +30,12 @@ export const DATETIME_OPERATIONS = Object.freeze({
   QUARTER: 'QUARTER',
   HALF: 'HALF',
   YEAR: 'YEAR',
-});
+} as const);
 
 export const SORT_DIRECTIONS = Object.freeze({
   ASC: 'ASC',
   DESC: 'DESC',
-});
+} as const);
 
 // If modifying this, take a look at the histogram and adjust. see HISTOGRAM_SIZE
 export const FILTER_SHELL_WIDTH = '320px';

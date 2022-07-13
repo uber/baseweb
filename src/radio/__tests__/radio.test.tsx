@@ -8,8 +8,8 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { render, fireEvent, getByTestId, getByText } from '@testing-library/react';
 
-import { ALIGN, Radio, StatefulRadioGroup } from '../index';
-import { Select } from '../../select/index';
+import { ALIGN, Radio, StatefulRadioGroup } from '..';
+import { Select } from '../../select';
 
 describe('Radio', () => {
   it('calls provided handlers', () => {

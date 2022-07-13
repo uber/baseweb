@@ -6,13 +6,13 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { useStyletron } from '../styles/index';
+import { useStyletron } from '../styles';
 
 import { CategoricalFilter } from './column-categorical';
 import Column from './column';
 import { COLUMNS } from './constants';
 import type { ColumnT, SharedColumnOptionsT } from './types';
-import { LocaleContext } from '../locale/index';
+import { LocaleContext } from '../locale';
 
 type OptionsT = {} & SharedColumnOptionsT<boolean>;
 
@@ -33,7 +33,7 @@ function mapSelection<X, Y>(selection: Set<X>, transform: (a: X) => Y): Set<Y> {
 function BooleanFilter(props) {
   const locale = React.useContext(LocaleContext);
 
-  let selectionString = new Set();
+  let selectionString = new Set<string>();
   if (props.filterParams && props.filterParams.selection) {
     selectionString = mapSelection(props.filterParams.selection, (i) =>
       i ? locale.datatable.booleanFilterTrue : locale.datatable.booleanFilterFalse

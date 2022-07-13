@@ -21,7 +21,7 @@ import NonCloseable from 'examples/tag/non-closeable.js';
 import ClickableNonCloseable from 'examples/tag/clickable-non-closeable.js';
 import CustomColor from 'examples/tag/custom-color.js';
 
-import {Tag} from 'baseui/tag';
+import { Tag } from 'baseui/tag';
 import * as TagExports from 'baseui/tag';
 
 import Yard from '../../components/yard/index';
@@ -82,10 +82,7 @@ In addition to the "semantic" `kind` colors, you can also use "primitive" colors
   <NonCloseable />
 </Example>
 
-<Example
-  title="Tag non-closeable/clickable"
-  path="tag/clickable-non-closeable.js"
->
+<Example title="Tag non-closeable/clickable" path="tag/clickable-non-closeable.js">
   <ClickableNonCloseable />
 </Example>
 
@@ -104,7 +101,7 @@ In addition to the "semantic" `kind` colors, you can also use "primitive" colors
 <ApiTable
   title="Tag props"
   config={tagYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/tag/tag.js')}
+  types={require('!!extract-react-types-loader!../../../src/tag/tag')}
 />
 
 <Exports component={TagExports} title="Tag exports" path="baseui/tag" />

@@ -8,8 +8,8 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import type { OverrideT } from '../helpers/overrides';
 
-import type { OptionT } from '../select/index';
-import type { SizeT } from '../input/types';
+import type { OptionT } from '../select';
+import type { SizeT } from '../input';
 
 export type TimezonePickerStateT = {
   /** List of timezones from the IANA database. */
@@ -41,7 +41,8 @@ export type TimezonePickerPropsT = {
    * Customize the option's label. Useful for translations and optionally mapping from
    * 'America/Los_Angeles' to 'Pacific Time'.
    */
-  mapLabels?: (a: OptionT) => React.ReactNode;
+  // todo(flow->ts): to double-check if change is correct - previously return type was React.ReactNode, but given implementation - only string looks expected to work correctly
+  mapLabels?: (option: OptionT) => string;
   /** Callback for when the timezone selection changes. */
   onChange?: (value?: TimezoneT | null) => unknown;
   overrides?: {

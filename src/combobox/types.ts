@@ -7,17 +7,18 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import type { OverrideT } from '../helpers/overrides';
-import { SIZE } from '../input/index';
+import { SIZE } from '../input';
 
 import type { ChangeEvent } from 'react';
 
-export type ReactRefT<T> =
-  | {
-      current: null | T;
-    }
-  | {
-      current: null | T;
-    };
+export type ComboboxOverrides = {
+  Root?: OverrideT;
+  InputContainer?: OverrideT;
+  Input?: OverrideT;
+  Popover?: OverrideT;
+  ListBox?: OverrideT;
+  ListItem?: OverrideT;
+};
 
 export type PropsT<OptionT = unknown> = {
   // Controls if the input value will be updated while keyboard navigating. Defaults to true.
@@ -39,7 +40,8 @@ export type PropsT<OptionT = unknown> = {
   id?: string;
   name?: string;
   // A ref to access the inner Input component.
-  inputRef?: ReactRefT<HTMLElement>;
+  // todo(flow->ts)  <any>
+  inputRef?: React.Ref<HTMLElement>;
   // Called when input loses focus.
   onBlur?: (a: ChangeEvent<HTMLInputElement>) => unknown;
   // Called when input value changes or option is selected. If user selects a
@@ -54,14 +56,7 @@ export type PropsT<OptionT = unknown> = {
   onSubmit?: (a: { closeListbox: () => void; value: string }) => unknown;
   // Data to populate list items in the dropdown menu.
   options: OptionT[];
-  overrides?: {
-    Root?: OverrideT;
-    InputContainer?: OverrideT;
-    Input?: OverrideT;
-    Popover?: OverrideT;
-    ListBox?: OverrideT;
-    ListItem?: OverrideT;
-  };
+  overrides?: ComboboxOverrides;
   // Proxies value through to Input component.
   positive?: boolean;
   // Configures the height of input and list item elements.

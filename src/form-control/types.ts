@@ -25,11 +25,11 @@ export type OverridesT = {
   ControlContainer?: OverrideT;
 };
 export type FormControlPropsT = {
-  overrides: OverridesT;
+  overrides?: OverridesT;
   /** A label rendered above the input field. */
-  label: React.ReactNode | ((props: {}) => React.ReactNode) | undefined | null;
+  label?: React.ReactNode | ((props: {}) => React.ReactNode) | undefined | null;
   /** A caption rendered below the input field. */
-  caption: React.ReactNode | ((props: {}) => React.ReactNode) | undefined | null;
+  caption?: React.ReactNode | ((props: {}) => React.ReactNode) | undefined | null;
   /** Displays label in light gray color if true */
   disabled?: boolean;
   /** Error state of the input. If an error prop passed it will be rendered in place of caption as an error message. */

@@ -9,8 +9,8 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable jsx-a11y/accessible-emoji */
 
 import * as React from 'react';
-import { Tab, Tabs } from '../index';
-import { Button, KIND } from '../../button/index';
+import { Tab, Tabs } from '..';
+import { Button, KIND } from '../../button';
 
 class ErrorBoundary extends React.Component<
   {
@@ -30,10 +30,12 @@ class ErrorBoundary extends React.Component<
   }
 
   componentDidMount() {
+    // @ts-expect-error
     window.__e2e__error = false;
   }
 
   componentDidCatch(error) {
+    // @ts-expect-error
     window.__e2e__error = true;
   }
 
@@ -43,7 +45,7 @@ class ErrorBoundary extends React.Component<
 }
 
 export function Scenario() {
-  const [activeKey, setActiveKey] = React.useState('monster');
+  const [activeKey, setActiveKey] = React.useState<React.Key>('monster');
   const [show, setShow] = React.useState(false);
   return (
     <React.Fragment>

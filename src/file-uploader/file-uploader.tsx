@@ -7,12 +7,12 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import Dropzone from 'react-dropzone';
 
-import { LocaleContext } from '../locale/index';
-import { useStyletron } from '../styles/index';
-import { Button, KIND, SHAPE, SIZE as BUTTON_SIZE } from '../button/index';
+import { LocaleContext } from '../locale';
+import { useStyletron } from '../styles';
+import { Button, KIND, SHAPE, SIZE as BUTTON_SIZE } from '../button';
 import { getOverrides } from '../helpers/overrides';
-import { ProgressBar } from '../progress-bar/index';
-import { Spinner, SIZE as SPINNER_SIZE } from '../spinner/index';
+import { ProgressBar } from '../progress-bar';
+import { Spinner, SIZE as SPINNER_SIZE } from '../spinner';
 
 import {
   StyledRoot,
@@ -73,6 +73,7 @@ function FileUploader(props: PropsT) {
   const afterFileDrop = !!(props.progressAmount || props.progressMessage || props.errorMessage);
 
   return (
+    // @ts-expect-error todo(flow->ts): dropzone api
     <Dropzone {...props} disabled={props.disabled || afterFileDrop}>
       {(renderProps) => {
         const { getRootProps, getInputProps, open, ...styleProps } = renderProps;
@@ -85,10 +86,10 @@ function FileUploader(props: PropsT) {
 
         const getRootPropsArgs: {
           onClick?: (a: SyntheticEvent<HTMLElement>) => void;
-          tabIndex: string;
+          tabIndex: number;
         } = {
           ...(props.disableClick ? { onClick: (evt) => evt.preventDefault() } : {}),
-          tabIndex: '-1',
+          tabIndex: -1,
         };
 
         return (

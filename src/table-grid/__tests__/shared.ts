@@ -53,13 +53,13 @@ export function useCellNavigation() {
 
   type Point = [number, number];
 
-  const UP = [0, -1];
-  const RIGHT = [1, 0];
-  const DOWN = [0, 1];
-  const LEFT = [-1, 0];
+  const UP: Point = [0, -1];
+  const RIGHT: Point = [1, 0];
+  const DOWN: Point = [0, 1];
+  const LEFT: Point = [-1, 0];
 
   function nextInDirection(origin, direction: Point): Point | undefined | null {
-    function vAdd(a: Point, b: Point) {
+    function vAdd(a: Point, b: Point): Point {
       return [a[0] + b[0], a[1] + b[1]];
     }
     let next = vAdd(origin, direction);
@@ -86,7 +86,7 @@ export function useCellNavigation() {
   }
 
   function handleKeyDown(event: KeyboardEvent<HTMLElement>) {
-    let direction = [0, 0];
+    let direction: Point = [0, 0];
     switch (event.key) {
       case 'ArrowUp':
         event.preventDefault();

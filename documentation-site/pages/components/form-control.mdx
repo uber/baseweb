@@ -17,8 +17,8 @@ import SelectExample from 'examples/form-control/select.js';
 import ValidationExample from 'examples/form-control/validation.js';
 import Kinds from 'examples/form-control/kinds.js';
 
-import {FormControl} from 'baseui/form-control';
-import {StatefulInput} from 'baseui/input';
+import { FormControl } from 'baseui/form-control';
+import { StatefulInput } from 'baseui/input';
 import * as FormControlExports from 'baseui/form-control';
 
 import Yard from '../../components/yard/index';
@@ -50,7 +50,7 @@ If that child has an `id` prop, the `label` in the form control will assign the 
 <Example
   title="Validation example (with email)"
   path="form-control/validation.js"
-  additionalPackages={{'email-validator': '2.0.4'}}
+  additionalPackages={{ 'email-validator': '2.0.4' }}
 >
   <ValidationExample />
 </Example>
@@ -86,11 +86,7 @@ The example above showcases this behavior.
 <ApiTable
   title="Form Control props"
   config={formControlYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/form-control/form-control.js')}
+  types={require('!!extract-react-types-loader!../../../src/form-control/form-control')}
 />
 
-<Exports
-  component={FormControlExports}
-  title="Form Control exports"
-  path="baseui/form-control"
-/>
+<Exports component={FormControlExports} title="Form Control exports" path="baseui/form-control" />

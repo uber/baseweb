@@ -6,11 +6,16 @@ LICENSE file in the root directory of this source tree.
 */
 
 import * as React from 'react';
-import type { BlockPropsT } from './types';
+import type { BlockComponentType, BlockPropsT, StyledBlockPropsT } from './types';
 import { StyledBlock } from './styled-components';
 import { getOverrides } from '../helpers/overrides';
 
-function Block({
+const Block: React.FC<
+  BlockPropsT & { forwardedRef?: React.Ref<HTMLElement> } & Omit<
+      StyledBlockPropsT & JSX.IntrinsicElements['div'],
+      keyof BlockPropsT
+    >
+> = ({
   forwardedRef,
   children,
   as = 'div',
@@ -81,14 +86,13 @@ function Block({
   textOverflow,
   whiteSpace,
   ...restProps
-}) {
+}) => {
   const [BaseBlock, baseBlockProps] = getOverrides(overrides.Block, StyledBlock);
 
   return (
     <BaseBlock
       // coerced to any because because of how react components are typed.
       // cannot guarantee an html element
-      // flowlint-next-line unclear-type:off
       ref={forwardedRef as any}
       $as={as}
       $color={color}
@@ -163,10 +167,11 @@ function Block({
       {children}
     </BaseBlock>
   );
-}
+};
 
-const BlockComponent = React.forwardRef<HTMLElement, BlockPropsT>((props: BlockPropsT, ref) => (
+const BlockComponent = React.forwardRef<any, any>((props, ref) => (
   <Block {...props} forwardedRef={ref} />
-));
+)) as BlockComponentType<'div'>;
+
 BlockComponent.displayName = 'Block';
 export default BlockComponent;

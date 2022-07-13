@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Card, StyledAction, StyledBody, StyledThumbnail, StyledTitle } from '../index';
-import { Button } from '../../button/index';
-import { styled } from '../../styles/index';
+import { Card, StyledAction, StyledBody, StyledThumbnail, StyledTitle } from '..';
+import { Button } from '../../button';
+import { styled } from '../../styles';
 
 import { thumbnail } from '../images';
 
@@ -19,7 +19,7 @@ export function Scenario() {
     <Container>
       <Card>
         <StyledThumbnail src={thumbnail} alt="my-image" />
-        <StyledTitle $hasThumbnail={true}>Card Title Entry</StyledTitle>
+        <StyledTitle>Card Title Entry</StyledTitle>
         <StyledBody>Card text</StyledBody>
         <StyledAction>
           <Button style={{ width: '100%' }}>Button Label</Button>

@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import React from 'react';
 
-import { StatefulSelect } from '../index';
+import { StatefulSelect } from '..';
 
 // Menu component will render items with an href prop as an anchor.
 // This does not make sense for Select, so ensure that it does not work.

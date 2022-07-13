@@ -14,9 +14,7 @@ import StatefulContainer from '../stateful-container';
 
 const mockChildrenFn = jest.fn().mockImplementation(() => <div />);
 const mockOnPageChangeFn = jest.fn();
-const mockStateReducerFn = jest
-  .fn() // flowlint-next-line unclear-type:off
-  .mockImplementation((changeType, changes) => changes as any);
+const mockStateReducerFn = jest.fn().mockImplementation((changeType, changes) => changes as any);
 
 function getSharedProps() {
   return {
@@ -70,7 +68,6 @@ describe('Pagination StatefulContainer', () => {
       ...getSharedProps(),
       stateReducer: null,
     };
-    // $FlowFixMe
     render(<StatefulContainer {...props} />);
     act(() => mockChildrenFn.mock.calls[0][0].onPageChange({ nextPage: 2 }));
     expect(mockChildrenFn.mock.calls[1][0]).toHaveProperty('currentPage', 2);

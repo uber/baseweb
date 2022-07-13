@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { StatefulSelect } from '../index';
+import { StatefulSelect } from '..';
 
 const options = {
   __ungrouped: [{ id: 'Black', color: '#000000' }],

@@ -4,7 +4,7 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import { styled } from '../styles/index';
+import { styled } from '../styles';
 import type { StylePropsT } from './types';
 
 const DEFAULT = 0;
@@ -119,22 +119,19 @@ function getLabelColor(props) {
   return $disabled ? colors.contentSecondary : colors.contentPrimary;
 }
 
-export const RadioGroupRoot = styled<StylePropsT>(
-  'div', // $FlowFixMe - suppressing due to webkit property
-  (props) => {
-    const { $disabled, $align } = props;
-    return {
-      display: 'flex',
-      flexWrap: 'wrap',
-      flexDirection: $align === 'horizontal' ? 'row' : 'column',
-      alignItems: $align === 'horizontal' ? 'center' : 'flex-start',
-      cursor: $disabled ? 'not-allowed' : 'pointer',
-      '-webkit-tap-highlight-color': 'transparent',
-    };
-  }
-);
+export const RadioGroupRoot = styled<'div', StylePropsT>('div', (props) => {
+  const { $disabled, $align } = props;
+  return {
+    display: 'flex',
+    flexWrap: 'wrap',
+    flexDirection: $align === 'horizontal' ? 'row' : 'column',
+    alignItems: $align === 'horizontal' ? 'center' : 'flex-start',
+    cursor: $disabled ? 'not-allowed' : 'pointer',
+    '-webkit-tap-highlight-color': 'transparent',
+  };
+});
 
-export const Root = styled<StylePropsT>('label', (props) => {
+export const Root = styled<'label', StylePropsT>('label', (props) => {
   const { $disabled, $hasDescription, $labelPlacement, $theme, $align } = props;
   const { sizing } = $theme;
   const isHorizontal = $align === 'horizontal';
@@ -148,10 +145,10 @@ export const Root = styled<StylePropsT>('label', (props) => {
     marginTop: sizing.scale200,
     [`margin${marginAfter}`]: isHorizontal ? sizing.scale200 : null,
     marginBottom: $hasDescription && !isHorizontal ? null : sizing.scale200,
-  } as {};
+  };
 });
 
-export const RadioMarkInner = styled<StylePropsT>('div', (props) => {
+export const RadioMarkInner = styled<'div', StylePropsT>('div', (props) => {
   const { animation, sizing } = props.$theme;
 
   return {
@@ -167,7 +164,7 @@ export const RadioMarkInner = styled<StylePropsT>('div', (props) => {
   };
 });
 
-export const RadioMarkOuter = styled<StylePropsT>('div', (props) => {
+export const RadioMarkOuter = styled<'div', StylePropsT>('div', (props) => {
   const { animation, sizing } = props.$theme;
 
   return {
@@ -192,10 +189,10 @@ export const RadioMarkOuter = styled<StylePropsT>('div', (props) => {
     flexShrink: 0,
     transitionDuration: animation.timing200,
     transitionTimingFunction: animation.easeOutCurve,
-  } as {};
+  };
 });
 
-export const Label = styled<StylePropsT>('div', (props) => {
+export const Label = styled<'div', StylePropsT>('div', (props) => {
   const {
     $theme: { typography },
   } = props;
@@ -223,7 +220,7 @@ export const Input = styled('input', {
   position: 'absolute',
 });
 
-export const Description = styled<StylePropsT>('div', (props) => {
+export const Description = styled<'div', StylePropsT>('div', (props) => {
   const { $theme, $align } = props;
   const isHorizontal = $align === 'horizontal';
   const marginBefore = $theme.direction === 'rtl' ? 'Right' : 'Left';

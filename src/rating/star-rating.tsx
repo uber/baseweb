@@ -21,7 +21,7 @@ class StarRating extends React.Component<StarRatingPropsT, RatingStateT> {
     readOnly: false,
   };
 
-  state = { isFocusVisible: false, previewIndex: undefined };
+  state = { isFocusVisible: false, previewIndex: undefined } as RatingStateT;
 
   selectItem = (value: number) => {
     const { onChange } = this.props;
@@ -62,7 +62,6 @@ class StarRating extends React.Component<StarRatingPropsT, RatingStateT> {
           key={x}
           role="radio"
           title="rating"
-          // flowlint-next-line unclear-type:off
           ref={starRef as any}
           tabIndex={isFocusable ? '0' : '-1'}
           aria-setsize={numItems}

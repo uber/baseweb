@@ -3,8 +3,8 @@ import { Button } from 'baseui/button';
 import { PropTypes } from 'react-view';
 import { TConfig } from '../types';
 
-const cardProps = require('!!extract-react-types-loader!../../../../src/card/card.js');
-const buttonProps = require('!!extract-react-types-loader!../../../../src/button/button.js');
+const cardProps = require('!!extract-react-types-loader!../../../../src/card/card');
+const buttonProps = require('!!extract-react-types-loader!../../../../src/button/button');
 
 const CardConfig: TConfig = {
   componentName: 'Card',

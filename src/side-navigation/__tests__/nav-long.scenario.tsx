@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Navigation } from '../index';
+import { Navigation } from '..';
 
 function createItems(floor) {
   const nav = [];

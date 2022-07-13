@@ -9,7 +9,7 @@ import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 
-import { StatefulRadioGroup, RadioGroup, Radio } from '../index';
+import { StatefulRadioGroup, RadioGroup, Radio } from '..';
 
 describe('radio-group', () => {
   it('sets expected child radio checked', () => {

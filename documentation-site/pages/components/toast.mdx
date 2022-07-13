@@ -13,7 +13,7 @@ import ToastNotification from 'examples/toast/toast-notification.js';
 import ToastSameKeyNotification from 'examples/toast/toast-same-key-notification.js';
 import ToastCloseFromOutside from 'examples/toast/toast-close-from-outside.js';
 
-import {Toast} from 'baseui/toast';
+import { Toast } from 'baseui/toast';
 import * as ToastExports from 'baseui/toast';
 import Yard from '../../components/yard/index';
 import toastYardConfig from '../../components/yard/config/toast';
@@ -49,10 +49,7 @@ If a toast with an identical key already exists, that toast's contents will be u
 
 ## Examples
 
-<Example
-  title="Toast Notification Basic Usage"
-  path="toast/toast-notification.js"
->
+<Example title="Toast Notification Basic Usage" path="toast/toast-notification.js">
   <ToastNotification />
 </Example>
 
@@ -63,10 +60,7 @@ If a toast with an identical key already exists, that toast's contents will be u
   <ToastSameKeyNotification />
 </Example>
 
-<Example
-  title="Toast Being Closed From Outside"
-  path="toast/toast-close-from-outside.js"
->
+<Example title="Toast Being Closed From Outside" path="toast/toast-close-from-outside.js">
   <ToastCloseFromOutside />
 </Example>
 
@@ -75,7 +69,7 @@ If a toast with an identical key already exists, that toast's contents will be u
 <ApiTable
   title="Toast props"
   config={toastYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/toast/toast.js')}
+  types={require('!!extract-react-types-loader!../../../src/toast/toast')}
 />
 
 <Exports component={ToastExports} title="Toast exports" path="baseui/toast" />

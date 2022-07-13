@@ -11,9 +11,9 @@ import { getOverrides, mergeOverrides } from '../helpers/overrides';
 import DeleteAlt from '../icon/delete-alt';
 import TriangleDownIcon from '../icon/triangle-down';
 import SearchIconComponent from '../icon/search';
-import { LocaleContext } from '../locale/index';
-import type { LocaleT } from '../locale/types';
-import { Popover, PLACEMENT } from '../popover/index';
+import { LocaleContext } from '../locale';
+import type { LocaleT } from '../locale';
+import { Popover, PLACEMENT } from '../popover';
 import { UIDConsumer } from 'react-uid';
 
 import AutosizeInput from './autosize-input';
@@ -30,8 +30,8 @@ import {
   StyledSearchIconContainer,
   StyledLoadingIndicator,
 } from './styled-components';
-import type { PropsT, SelectStateT, ValueT, OptionT, ChangeActionT, ReactRefT } from './types';
-import { expandValue, normalizeOptions } from './utils/index';
+import type { PropsT, SelectStateT, ValueT, OptionT, ChangeActionT } from './types';
+import { expandValue, normalizeOptions } from './utils';
 
 import type { SyntheticEvent, ChangeEvent } from 'react';
 
@@ -45,7 +45,6 @@ const isLeftClick = (event) =>
 
 const containsNode = (parent, child) => {
   if (__BROWSER__) {
-    // flowlint-next-line unclear-type:off
     return child && parent && parent.contains(child as any);
   }
 };
@@ -69,11 +68,11 @@ class Select extends React.Component<PropsT, SelectStateT> {
 
   // anchor is a ref that refers to the outermost element rendered when the dropdown menu is not
   // open. This is required so that we can check if clicks are on/off the anchor element.
-  anchor: ReactRefT<HTMLElement> = React.createRef<HTMLElement>();
+  anchor = React.createRef<HTMLElement>();
   // dropdown is a ref that refers to the popover element. This is required so that we can check if
   // clicks are on/off the dropdown element.
-  dropdown: ReactRefT<HTMLElement> = React.createRef<HTMLElement>();
-  input: React.RefObject<typeof HTMLInputElement>;
+  dropdown = React.createRef<HTMLElement>();
+  input?: HTMLInputElement;
   // dragging is a flag to track whether a mobile device is currently scrolling versus clicking.
   dragging: boolean;
   // focusAfterClear is a flag to indicate that the dropdowm menu should open after a selected
@@ -309,7 +308,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     this.openAfterFocus = false;
   };
 
-  handleBlur = (event: FocusEvent | MouseEvent) => {
+  handleBlur = (event: React.FocusEvent | MouseEvent) => {
     if (event.relatedTarget) {
       if (
         containsNode(this.anchor.current, event.relatedTarget) ||
@@ -496,17 +495,18 @@ class Select extends React.Component<PropsT, SelectStateT> {
     }
   };
 
-  //flowlint-next-line unclear-type:off
-  handleInputRef = (input: React.RefObject<any>) => {
+  handleInputRef = (input: HTMLInputElement) => {
     this.input = input;
 
     if (typeof this.props.inputRef === 'function') {
       this.props.inputRef(input);
     } else if (this.props.inputRef) {
+      // @ts-expect-error todo(flow->ts) MutableRefObject
       this.props.inputRef.current = input;
     }
 
     if (this.props.controlRef && typeof this.props.controlRef === 'function') {
+      // @ts-expect-error todo(flow->ts) according to types this code is not reachable
       this.props.controlRef(input);
     }
   };
@@ -887,7 +887,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
       this.props.creatable &&
       this.options.concat(this.props.value).every(filterDoesNotMatchOption)
     ) {
-      // $FlowFixMe - this.options is typed as a read-only array
+      // @ts-expect-error todo(flow->ts) this.options is typed as a read-only array
       this.options.push({
         id: filterValue,
         [this.props.labelKey]: filterValue,
@@ -988,7 +988,6 @@ class Select extends React.Component<PropsT, SelectStateT> {
                 // apply the ref to the Root component below it would be overwritten before the popover
                 // renders it. Using this strategy, we will get a ref to the popover, then reuse its
                 // anchorRef so we can check if clicks are on the select component or not.
-                // flowlint-next-line unclear-type:off
                 innerRef={(ref: any) => {
                   if (!ref) return;
                   this.anchor = ref.anchorRef;

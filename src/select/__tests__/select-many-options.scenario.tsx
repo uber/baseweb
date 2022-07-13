@@ -36,12 +36,18 @@ const FixedSizeListItem = ({ data, index, style }) => {
   );
 };
 // eslint-disable-next-line react/display-name
-const VirtualDropdown = React.forwardRef((props, ref) => {
+const VirtualDropdown = React.forwardRef<HTMLUListElement, any>((props, ref) => {
   const children = React.Children.toArray(props.children);
+  // @ts-expect-error todo(flow->ts) type error in react 17
   if (!children[0] || !children[0].props.item) {
     return (
       <StyledList $style={{ height: EMPTY_LIST_HEIGHT + 'px' }} ref={ref}>
-        <StyledEmptyState {...children[0].props} />
+        <StyledEmptyState
+          {
+            // @ts-expect-error todo(flow->ts) type error in react 17
+            ...children[0].props
+          }
+        />
       </StyledList>
     );
   }
@@ -70,7 +76,7 @@ for (let i = 0; i < 10000; i += 1) {
 }
 
 export function Scenario() {
-  const [value, setValue] = React.useState([]);
+  const [value, setValue] = React.useState<any>([]);
   return (
     <Select
       options={options}

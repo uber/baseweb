@@ -8,7 +8,7 @@ import * as React from 'react';
 import { act } from 'react-dom/test-utils';
 import { render } from '@testing-library/react';
 
-import { StatefulContainer, PLACEMENT, TRIGGER_TYPE } from '../index';
+import { StatefulContainer, PLACEMENT, TRIGGER_TYPE } from '..';
 
 describe('StatefulPopoverContainer', () => {
   it('basic render', () => {
@@ -47,7 +47,7 @@ describe('StatefulPopoverContainer', () => {
         isOpen: true,
       },
     };
-    const children = jest.fn(() => null);
+    const children = jest.fn((arg) => null);
 
     render(<StatefulContainer {...props}>{children}</StatefulContainer>);
 
@@ -57,7 +57,6 @@ describe('StatefulPopoverContainer', () => {
     expect(firstRender).toHaveProperty('onClickOutside');
 
     // Check that onClickOutside callback properly updates component state
-    // $FlowFixMe - Flow can't infer that expect() above ensures non-nullity
     act(() => firstRender.onClickOutside());
     const secondRender = children.mock.calls[1][0];
     expect(secondRender).toHaveProperty('isOpen', false);
@@ -71,7 +70,7 @@ describe('StatefulPopoverContainer', () => {
         isOpen: true,
       },
     };
-    const children = jest.fn(() => null);
+    const children = jest.fn((arg) => null);
 
     render(<StatefulContainer {...props}>{children}</StatefulContainer>);
 
@@ -87,7 +86,7 @@ describe('StatefulPopoverContainer', () => {
         isOpen: true,
       },
     };
-    const children = jest.fn(() => null);
+    const children = jest.fn((arg) => null);
 
     render(<StatefulContainer {...props}>{children}</StatefulContainer>);
 
@@ -96,7 +95,6 @@ describe('StatefulPopoverContainer', () => {
     expect(firstRender).toHaveProperty('onEsc');
 
     // Check that onEsc callback properly updates component state
-    // $FlowFixMe - Flow can't use expect() to refine type to non-null
     act(() => firstRender.onEsc());
     const secondRender = children.mock.calls[1][0];
     expect(secondRender).toHaveProperty('isOpen', false);
@@ -110,7 +108,7 @@ describe('StatefulPopoverContainer', () => {
         isOpen: true,
       },
     };
-    const children = jest.fn(() => null);
+    const children = jest.fn((arg) => null);
 
     render(<StatefulContainer {...props}>{children}</StatefulContainer>);
 
@@ -124,7 +122,7 @@ describe('StatefulPopoverContainer', () => {
       content: jest.fn(),
       triggerType: TRIGGER_TYPE.hover,
     };
-    const children = jest.fn(() => null);
+    const children = jest.fn((arg) => null);
 
     render(<StatefulContainer {...props}>{children}</StatefulContainer>);
 
@@ -137,22 +135,18 @@ describe('StatefulPopoverContainer', () => {
     expect(first).toHaveProperty('onBlur');
     expect(first).toHaveProperty('onClick', undefined);
 
-    // $FlowFixMe - Flow can't use expect() to refine type to non-null
     act(() => first.onMouseEnter());
     const second = children.mock.calls[1][0];
     expect(second).toHaveProperty('isOpen', true);
 
-    // $FlowFixMe - Flow can't use expect() to refine type to non-null
     act(() => second.onMouseLeave());
     const third = children.mock.calls[2][0];
     expect(third).toHaveProperty('isOpen', false);
 
-    // $FlowFixMe - Flow can't use expect() to refine type to non-null
     act(() => third.onFocus());
     const fourth = children.mock.calls[3][0];
     expect(fourth).toHaveProperty('isOpen', true);
 
-    // $FlowFixMe - Flow can't use expect() to refine type to non-null
     act(() => fourth.onBlur());
     const fifth = children.mock.calls[4][0];
     expect(fifth).toHaveProperty('isOpen', false);
@@ -163,7 +157,7 @@ describe('StatefulPopoverContainer', () => {
       content: jest.fn(),
       triggerType: TRIGGER_TYPE.click,
     };
-    const children = jest.fn(() => null);
+    const children = jest.fn((arg) => null);
 
     render(<StatefulContainer {...props}>{children}</StatefulContainer>);
 
@@ -175,12 +169,10 @@ describe('StatefulPopoverContainer', () => {
     expect(first).toHaveProperty('onFocus', undefined);
     expect(first).toHaveProperty('onBlur', undefined);
 
-    // $FlowFixMe
     act(() => first.onClick());
     const second = children.mock.calls[1][0];
     expect(second).toHaveProperty('isOpen', true);
 
-    // $FlowFixMe
     act(() => second.onClick());
     const third = children.mock.calls[2][0];
     expect(third).toHaveProperty('isOpen', false);
@@ -191,11 +183,10 @@ describe('StatefulPopoverContainer', () => {
       onOpen: jest.fn(),
       onClose: jest.fn(),
     };
-    const children = jest.fn(() => null);
+    const children = jest.fn((arg) => null);
 
     render(<StatefulContainer {...props}>{children}</StatefulContainer>);
 
-    // $FlowFixMe
     act(() => children.mock.calls[0][0].onClick());
     expect(props.onOpen).toHaveBeenCalledTimes(1);
     expect(props.onClose).toHaveBeenCalledTimes(0);
@@ -203,7 +194,6 @@ describe('StatefulPopoverContainer', () => {
     props.onOpen.mockClear();
     props.onClose.mockClear();
 
-    // $FlowFixMe
     act(() => children.mock.calls[0][0].onClick());
     expect(props.onOpen).toHaveBeenCalledTimes(0);
     expect(props.onClose).toHaveBeenCalledTimes(1);
@@ -214,15 +204,11 @@ describe('StatefulPopoverContainer', () => {
       content: jest.fn(),
       stateReducer: null,
     };
-    const children = jest.fn(() => null);
+    const children = jest.fn((arg) => null);
 
-    render(
-      // $FlowFixMe - Allow null stateReducer for the sake of testing
-      <StatefulContainer {...props}>{children}</StatefulContainer>
-    );
+    render(<StatefulContainer {...props}>{children}</StatefulContainer>);
 
     expect(children.mock.calls[0][0]).toHaveProperty('isOpen', false);
-    // $FlowFixMe
     act(() => children.mock.calls[0][0].onClick());
     expect(children.mock.calls[1][0]).toHaveProperty('isOpen', true);
   });

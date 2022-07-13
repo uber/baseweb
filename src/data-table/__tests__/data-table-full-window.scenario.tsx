@@ -12,7 +12,7 @@ import {
   CategoricalColumn,
   NumericalColumn,
   StringColumn,
-} from '../index';
+} from '..';
 
 type RowDataT = [boolean, string, number, string];
 

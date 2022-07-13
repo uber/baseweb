@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { StarRating } from '../index';
+import { StarRating } from '..';
 
 export class Scenario extends React.Component<
   {},

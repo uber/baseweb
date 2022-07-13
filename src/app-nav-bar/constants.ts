@@ -7,9 +7,9 @@ LICENSE file in the root directory of this source tree.
 export const POSITION = {
   horizontal: 'horizontal',
   vertical: 'vertical',
-};
+} as const;
 
 export const KIND = {
   primary: 'primary',
   secondary: 'secondary',
-};
+} as const;

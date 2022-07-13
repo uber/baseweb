@@ -8,3 +8,4 @@ LICENSE file in the root directory of this source tree.
 export { default as Breadcrumbs } from './breadcrumbs';
 export * from './styled-components';
 export * from './types';
+export type { BreadcrumbLocaleT } from './locale';

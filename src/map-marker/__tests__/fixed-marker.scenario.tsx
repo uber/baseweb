@@ -5,8 +5,8 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
-import { FixedMarker } from '../index';
-import { Checkbox, LABEL_PLACEMENT } from '../../checkbox/index';
+import { FixedMarker } from '..';
+import { Checkbox, LABEL_PLACEMENT } from '../../checkbox';
 import {
   PINHEAD_SIZES_SHAPES,
   NEEDLE_SIZES,
@@ -14,10 +14,10 @@ import {
   LABEL_ENHANCER_POSITIONS,
 } from '../constants';
 import TileGrid from './tile-grid';
-import { Input } from '../../input/index';
+import { Input } from '../../input';
 import Upload from '../../icon/upload';
 import Search from '../../icon/search';
-import { Select } from '../../select/index';
+import { Select } from '../../select';
 
 import type { PinHeadSizeT, NeedleSizeT } from '../types';
 
@@ -35,8 +35,8 @@ const badgeEnhancerSizes = Object.keys(BADGE_ENHANCER_SIZES)
     id: x,
   }));
 
-const BadgeEnhancerIcon = ({ size }) => <Search size={size} />;
-const BadgeEnhancerText = ({ size }) => 'Search';
+const BadgeEnhancerIcon: React.FC<{ size: number }> = ({ size }) => <Search size={size} />;
+const BadgeEnhancerText: React.FC<{ size: number }> = ({ size }) => <>Search</>;
 
 export function Scenario() {
   const markers = [];
@@ -47,11 +47,11 @@ export function Scenario() {
 
   const [labelEnhancerText, setLabelEnhancerText] = React.useState('Uber Eats');
 
-  const [labelEnhancerPosition, setLabelEnhancerPosition] = React.useState([
+  const [labelEnhancerPosition, setLabelEnhancerPosition] = React.useState<any>([
     labelEnhancerPositions[0],
   ]);
 
-  const [badgeEnhancerSize, setBadgeEnhancerSize] = React.useState([badgeEnhancerSizes[0]]);
+  const [badgeEnhancerSize, setBadgeEnhancerSize] = React.useState<any>([badgeEnhancerSizes[0]]);
 
   const BadgeEnhancerContent =
     badgeEnhancerSize[0].id === BADGE_ENHANCER_SIZES.mediumText
@@ -127,7 +127,6 @@ export function Scenario() {
           options={labelEnhancerPositions}
           value={labelEnhancerPosition}
           placeholder="Select an anchor position"
-          // $FlowFixMe Mismatch between general type and enum
           onChange={(params) => setLabelEnhancerPosition(params.value)}
           key="anchor-position"
         />,
@@ -152,7 +151,6 @@ export function Scenario() {
           options={badgeEnhancerSizes}
           value={badgeEnhancerSize}
           placeholder="Select an anchor position"
-          // $FlowFixMe Mismatch between general type and enum
           onChange={(params) => setBadgeEnhancerSize(params.value)}
           key="badge-enhancer-size"
         />,

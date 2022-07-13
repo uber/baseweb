@@ -60,9 +60,7 @@ function Slider({
     if (focusVisible(event)) {
       setIsFocusVisible(true);
     }
-    const index =
-      // flowlint-next-line unclear-type:off
-      (event.target as any).parentNode.firstChild === event.target ? 0 : 1;
+    const index = (event.target as any).parentNode.firstChild === event.target ? 0 : 1;
     setFocusedThumbIndex(index);
   }, []);
   const handleBlur = React.useCallback((event: SyntheticEvent) => {

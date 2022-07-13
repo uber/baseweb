@@ -24,17 +24,13 @@ function getSharedProps() {
     items: mockItems,
     onItemSelect: mockItemSelect,
     children: mockChildrenFn,
-    stateReducer: jest
-      .fn() // flowlint-next-line unclear-type:off
-      .mockImplementation((changeType, changes) => changes as any),
+    stateReducer: jest.fn().mockImplementation((changeType, changes) => changes as any),
   };
 }
 
 describe('Menu StatefulContainer', () => {
   beforeAll(() => {
-    // $FlowFixMe
     document.addEventListener = jest.fn();
-    // $FlowFixMe
     document.removeEventListener = jest.fn();
   });
 
@@ -43,9 +39,7 @@ describe('Menu StatefulContainer', () => {
   });
 
   afterAll(() => {
-    // $FlowFixMe
     document.addEventListener = originalAddEventListener;
-    // $FlowFixMe
     document.removeEventListener = originalRemoveEventListener;
   });
 
@@ -85,7 +79,6 @@ describe('Menu StatefulContainer', () => {
     render(<StatefulContainer {...getSharedProps()} />);
     const item = mockItems[0];
     const result = mockChildrenFn.mock.calls[0][0];
-    // $FlowFixMe
     const props = result.getRequiredItemProps(item, 0);
 
     expect(props).toHaveProperty('disabled', false);
@@ -161,7 +154,6 @@ describe('Menu StatefulContainer', () => {
     render(<StatefulContainer {...props} />);
 
     act(() => {
-      // $FlowFixMe
       mockChildrenFn.mock.calls[0][0].handleKeyDown({
         key: KEY_STRINGS.ArrowUp,
         preventDefault: jest.fn(),
@@ -170,7 +162,6 @@ describe('Menu StatefulContainer', () => {
     expect(mockChildrenFn.mock.calls[1][0].highlightedIndex).toBe(0);
 
     act(() => {
-      // $FlowFixMe
       mockChildrenFn.mock.calls[0][0].handleKeyDown({
         key: KEY_STRINGS.ArrowDown,
         preventDefault: jest.fn(),
@@ -184,7 +175,6 @@ describe('Menu StatefulContainer', () => {
     render(<StatefulContainer {...props} />);
 
     act(() => {
-      // $FlowFixMe
       mockChildrenFn.mock.calls[0][0].handleKeyDown({
         key: KEY_STRINGS.Enter,
         preventDefault: jest.fn(),
@@ -193,7 +183,6 @@ describe('Menu StatefulContainer', () => {
     expect(mockItemSelect.mock.calls.length).toBe(0);
 
     act(() => {
-      // $FlowFixMe
       mockChildrenFn.mock.calls[0][0].handleKeyDown({
         key: KEY_STRINGS.ArrowDown,
         preventDefault: jest.fn(),
@@ -201,7 +190,6 @@ describe('Menu StatefulContainer', () => {
     });
 
     act(() => {
-      // $FlowFixMe
       mockChildrenFn.mock.calls[1][0].handleKeyDown({
         key: KEY_STRINGS.Enter,
         preventDefault: jest.fn(),
@@ -220,7 +208,6 @@ describe('Menu StatefulContainer', () => {
     expect(mockChildrenFn.mock.calls[0][0]).toHaveProperty('highlightedIndex', -1);
 
     act(() => {
-      // $FlowFixMe
       mockChildrenFn.mock.calls[0][0].handleKeyDown({
         key: 'a',
         preventDefault: jest.fn(),
@@ -229,7 +216,6 @@ describe('Menu StatefulContainer', () => {
     expect(mockItemSelect.mock.calls.length).toBe(0);
 
     act(() => {
-      // $FlowFixMe
       mockChildrenFn.mock.calls[1][0].handleKeyDown({
         key: KEY_STRINGS.Enter,
         preventDefault: jest.fn(),
@@ -250,7 +236,6 @@ describe('Menu StatefulContainer', () => {
 
     expect(() =>
       act(() => {
-        // $FlowFixMe
         mockChildrenFn.mock.calls[0][0].handleKeyDown({
           key: 'z',
           preventDefault: jest.fn(),

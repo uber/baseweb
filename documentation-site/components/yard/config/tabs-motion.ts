@@ -8,8 +8,8 @@ import { Tabs, Tab, ORIENTATION, FILL } from 'baseui/tabs-motion';
 import { PropTypes } from 'react-view';
 import { TConfig } from '../types';
 
-const tabsProps = require('!!extract-react-types-loader!../../../../src/tabs-motion/tabs.js');
-const tabProps = require('!!extract-react-types-loader!../../../../src/tabs-motion/tab.js');
+const tabsProps = require('!!extract-react-types-loader!../../../../src/tabs-motion/tabs');
+const tabProps = require('!!extract-react-types-loader!../../../../src/tabs-motion/tab');
 
 const TabsConfig: TConfig = {
   componentName: 'Tabs',

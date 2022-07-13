@@ -11,14 +11,6 @@ import type { OverrideT } from '../helpers/overrides';
 
 import type { ReactNode, SyntheticEvent } from 'react';
 
-export type ReactRefT<T> =
-  | {
-      current: null | T;
-    }
-  | {
-      current: null | T;
-    };
-
 export type OverridesT = {
   Root?: OverrideT;
   BaseButton?: OverrideT;
@@ -38,7 +30,6 @@ export type ButtonPropsT = {
   colors?: CustomColorsT;
   disabled?: boolean;
   /** A helper rendered at the end of the button. */
-  // flowlint-next-line unclear-type:off
   endEnhancer?: React.ReactNode | React.ComponentType<any>;
   /** Show loading button style and spinner. */
   isLoading?: boolean;
@@ -53,7 +44,6 @@ export type ButtonPropsT = {
   /** Defines the size of the button */
   size?: keyof typeof SIZE;
   /** A helper rendered at the start of the button. */
-  // flowlint-next-line unclear-type:off
   startEnhancer?: React.ReactNode | React.ComponentType<any>;
   type?: 'submit' | 'reset' | 'button';
 };
@@ -66,5 +56,5 @@ export type SharedStylePropsT = {
   $size?: keyof typeof SIZE;
   $isLoading?: boolean;
   $disabled?: boolean;
-  $isFocusVisible: boolean;
+  $isFocusVisible?: boolean;
 };

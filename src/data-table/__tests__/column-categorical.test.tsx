@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 
-import { CategoricalColumn } from '../index';
+import { CategoricalColumn } from '..';
 
 describe('categorical column', () => {
   it('is sortable by default', () => {
@@ -87,7 +87,6 @@ describe('categorical column', () => {
 
     const checkboxes = container.querySelectorAll('input[type="checkbox"]');
     fireEvent.click(checkboxes[0]);
-    // flowlint-next-line unclear-type:off
     expect((checkboxes[0] as any as HTMLInputElement).checked).toBe(true);
 
     fireEvent.click(getByText('Apply'));
@@ -117,11 +116,8 @@ describe('categorical column', () => {
     fireEvent.click(getByText('Select All'));
 
     const checkboxes = container.querySelectorAll('input[type="checkbox"]');
-    // flowlint-next-line unclear-type:off
     expect((checkboxes[0] as any as HTMLInputElement).checked).toBe(true);
-    // flowlint-next-line unclear-type:off
     expect((checkboxes[1] as any as HTMLInputElement).checked).toBe(true);
-    // flowlint-next-line unclear-type:off
     expect((checkboxes[2] as any as HTMLInputElement).checked).toBe(true);
   });
 
@@ -142,11 +138,8 @@ describe('categorical column', () => {
     fireEvent.click(checkboxes[0]);
     fireEvent.click(getByText('Clear'));
 
-    // flowlint-next-line unclear-type:off
     expect((checkboxes[0] as any as HTMLInputElement).checked).toBe(false);
-    // flowlint-next-line unclear-type:off
     expect((checkboxes[1] as any as HTMLInputElement).checked).toBe(false);
-    // flowlint-next-line unclear-type:off
     expect((checkboxes[2] as any as HTMLInputElement).checked).toBe(false);
   });
 

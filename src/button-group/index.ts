@@ -9,7 +9,7 @@ export { default as StatefulButtonGroup } from './stateful-button-group';
 export { default as StatefulContainer } from './stateful-container';
 
 // Constants
-export { SIZE, SHAPE } from '../button/constants';
+export { SIZE, SHAPE } from '../button';
 export { MODE, STATE_CHANGE_TYPE } from './constants';
 
 // Styled elements
@@ -17,3 +17,4 @@ export { StyledRoot } from './styled-components';
 
 // Types
 export * from './types';
+export type { ButtonGroupLocaleT } from './locale';

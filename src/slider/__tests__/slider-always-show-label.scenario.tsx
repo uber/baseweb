@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import { Slider, StatefulSlider } from '../index';
+import { Slider, StatefulSlider } from '..';
 
 export function Scenario() {
   const [rangeValue, setRangeValue] = React.useState([10, 70]);

@@ -20,7 +20,7 @@ class EmoticonRating extends React.Component<EmoticonRatingPropsT, RatingStateT>
     readOnly: false,
   };
 
-  state = { isFocusVisible: false, previewIndex: undefined };
+  state = { isFocusVisible: false, previewIndex: undefined } as RatingStateT;
 
   selectItem = (value: number) => {
     const { onChange } = this.props;
@@ -61,7 +61,6 @@ class EmoticonRating extends React.Component<EmoticonRatingPropsT, RatingStateT>
         <Emoticon
           key={x}
           role="radio"
-          // flowlint-next-line unclear-type:off
           ref={starRef as any}
           tabIndex={isFocusable ? '0' : '-1'}
           aria-setsize={5}

@@ -5,14 +5,14 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
-import { LocaleContext } from '../locale/index';
+import { LocaleContext } from '../locale';
 // Components
 import { StyledList, StyledEmptyState, StyledOptgroupHeader } from './styled-components';
 import OptionList from './option-list';
 import { getOverrides } from '../helpers/overrides';
 // Types
-import type { StatelessMenuPropsT } from './types';
-import type { LocaleT } from '../locale/types';
+import type { RenderItemPropsT, StatelessMenuPropsT } from './types';
+import type { LocaleT } from '../locale';
 
 import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible';
 
@@ -64,7 +64,7 @@ export default function Menu(props: StatelessMenuPropsT) {
       }
       const groupItems = groupedItems[optgroup].map((item, index) => {
         itemIndex = itemIndex + 1;
-        const { getRequiredItemProps = (item, index) => ({}) } = props;
+        const { getRequiredItemProps = (item, index) => ({} as RenderItemPropsT) } = props;
 
         const {
           disabled,

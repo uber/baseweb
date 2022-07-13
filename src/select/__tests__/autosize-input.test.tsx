@@ -12,7 +12,7 @@ import AutosizeInput from '../autosize-input';
 describe('AutosizeInput component', function () {
   it('renders correctly', function () {
     const { container } = render(
-      // $FlowFixMe
+      // @ts-expect-error
       <AutosizeInput value="test" onChange={jest.fn()} />
     );
     const input = container.querySelector('input');

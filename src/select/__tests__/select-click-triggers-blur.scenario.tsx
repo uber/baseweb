@@ -9,7 +9,7 @@ import { Select } from '../index';
 
 export function Scenario() {
   const [showSelect, setShowSelect] = React.useState(false);
-  const [value, setValue] = React.useState([]);
+  const [value, setValue] = React.useState<any>([]);
 
   const handleClick = () => {
     setShowSelect(true);

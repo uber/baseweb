@@ -11,7 +11,7 @@ import {
   StyledDropdownListItem,
   StyledOptionContent,
 } from './styled-components';
-import { StatefulMenu } from '../menu/index';
+import { StatefulMenu } from '../menu';
 import type { DropdownPropsT, OptionT, ValueT } from './types';
 import { getOverrides, mergeOverrides } from '../helpers/overrides';
 
@@ -22,6 +22,7 @@ function groupOptions(options: ValueT) {
     (groups, option) => {
       if (option.__optgroup) {
         if (!groups[option.__optgroup]) {
+          // @ts-expect-error todo(flow->ts): modifying what is declared as readonly array
           groups[option.__optgroup] = [];
         }
         groups[option.__optgroup].push(option);
@@ -48,7 +49,6 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
       $width: width,
     };
   }
-  // flowlint-next-line unclear-type:off
   getItemLabel = (option: { [x: string]: any }) => {
     const { getOptionLabel, overrides = {}, value, valueKey } = this.props;
 

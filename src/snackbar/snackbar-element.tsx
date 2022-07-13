@@ -7,9 +7,9 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import { Button, KIND, SHAPE } from '../button/index';
+import { Button, KIND, SHAPE } from '../button';
 import { getOverrides } from '../helpers/overrides';
-import { useStyletron } from '../styles/index';
+import { useStyletron } from '../styles';
 
 import {
   StyledRoot,
@@ -22,45 +22,43 @@ import {
 } from './styled-components';
 import type { SnackbarElementPropsT } from './types';
 
-const ActionButton = React.forwardRef(
-  // flowlint-next-line unclear-type:off
-  ({ onClick, message, overrides = {} }, ref: any) => {
-    const [, theme] = useStyletron();
-    const [ActionButtonContainer, actionButtonContainerProps] = getOverrides(
-      overrides.ActionButtonContainer,
-      StyledActionButtonContainer
-    );
-    return (
-      <ActionButtonContainer {...actionButtonContainerProps}>
-        <Button
-          ref={ref}
-          overrides={{
-            BaseButton: {
-              style: {
-                color: theme.colors.contentInversePrimary,
-                marginRight: theme.direction === 'rtl' ? null : theme.sizing.scale100,
-                marginLeft: theme.direction === 'rtl' ? theme.sizing.scale100 : null,
-                width: '100%',
-                whiteSpace: 'nowrap',
-                ':hover': {
-                  backgroundColor: theme.colors.borderInverseTransparent,
-                },
-                ':active': {
-                  backgroundColor: theme.colors.backgroundInverseSecondary,
-                },
+// todo(flow->ts): types
+const ActionButton = React.forwardRef<any, any>(({ onClick, message, overrides = {} }, ref) => {
+  const [, theme] = useStyletron();
+  const [ActionButtonContainer, actionButtonContainerProps] = getOverrides(
+    overrides.ActionButtonContainer,
+    StyledActionButtonContainer
+  );
+  return (
+    <ActionButtonContainer {...actionButtonContainerProps}>
+      <Button
+        ref={ref}
+        overrides={{
+          BaseButton: {
+            style: {
+              color: theme.colors.contentInversePrimary,
+              marginRight: theme.direction === 'rtl' ? null : theme.sizing.scale100,
+              marginLeft: theme.direction === 'rtl' ? theme.sizing.scale100 : null,
+              width: '100%',
+              whiteSpace: 'nowrap',
+              ':hover': {
+                backgroundColor: theme.colors.borderInverseTransparent,
+              },
+              ':active': {
+                backgroundColor: theme.colors.backgroundInverseSecondary,
               },
             },
-          }}
-          kind={KIND.tertiary}
-          onClick={onClick}
-          shape={SHAPE.pill}
-        >
-          {message}
-        </Button>
-      </ActionButtonContainer>
-    );
-  }
-);
+          },
+        }}
+        kind={KIND.tertiary}
+        onClick={onClick}
+        shape={SHAPE.pill}
+      >
+        {message}
+      </Button>
+    </ActionButtonContainer>
+  );
+});
 ActionButton.displayName = 'ActionButton';
 
 export default function SnackbarElement({

@@ -1,4 +1,4 @@
-import type { SyntheticEvent } from 'react';
+import * as React from 'react';
 /*
 Copyright (c) Uber Technologies, Inc.
 
@@ -101,7 +101,6 @@ function prepare(doc) {
   doc.addEventListener('visibilitychange', handleVisibilityChange, true);
 }
 
-//$FlowFixMe
 export function teardown(doc) {
   doc.removeEventListener('keydown', handleKeyDown, true);
   doc.removeEventListener('mousedown', handlePointerDown, true);
@@ -110,7 +109,6 @@ export function teardown(doc) {
   doc.removeEventListener('visibilitychange', handleVisibilityChange, true);
 }
 
-//$FlowFixMe
 export function isFocusVisible(event) {
   try {
     return event.target.matches(':focus-visible');
@@ -143,7 +141,6 @@ export function handleBlurVisible() {
   }
 }
 
-//$FlowFixMe
 export function initFocusVisible(node) {
   if (!initialized && node != null) {
     initialized = true;
@@ -152,12 +149,7 @@ export function initFocusVisible(node) {
 }
 
 export const forkFocus =
-  (
-    // flowlint-next-line unclear-type:off
-    rootProps: any,
-    handler: (e: SyntheticEvent) => void
-  ) =>
-  (e: SyntheticEvent) => {
+  (rootProps: any, handler: (e: React.FocusEvent) => void) => (e: React.FocusEvent) => {
     if (typeof rootProps.onFocus === 'function') {
       rootProps.onFocus(e);
     }
@@ -165,12 +157,7 @@ export const forkFocus =
   };
 
 export const forkBlur =
-  (
-    // flowlint-next-line unclear-type:off
-    rootProps: any,
-    handler: (e: SyntheticEvent) => void
-  ) =>
-  (e: SyntheticEvent) => {
+  (rootProps: any, handler: (e: React.FocusEvent) => void) => (e: React.FocusEvent) => {
     if (typeof rootProps.onBlur === 'function') {
       rootProps.onBlur(e);
     }

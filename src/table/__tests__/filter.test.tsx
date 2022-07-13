@@ -9,7 +9,7 @@ import { render, fireEvent, queryByTestId, getByText } from '@testing-library/re
 
 import { TestBaseProvider } from '../../test/test-utils';
 
-import { Filter } from '../index';
+import { Filter } from '..';
 
 describe('Table-Filter', () => {
   it('does not display filter content by default', () => {

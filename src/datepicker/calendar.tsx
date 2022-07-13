@@ -5,9 +5,9 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
-import { FormControl } from '../form-control/index';
-import { LocaleContext } from '../locale/index';
-import { Select } from '../select/index';
+import { FormControl } from '../form-control';
+import { LocaleContext } from '../locale';
+import { Select } from '../select';
 import CalendarHeader from './calendar-header';
 import Month from './month';
 import TimePicker from '../timepicker/timepicker';
@@ -28,7 +28,7 @@ export default class Calendar<T = Date> extends React.Component<
   CalendarPropsT<T>,
   CalendarInternalState<T>
 > {
-  static defaultProps: {
+  static defaultProps: CalendarPropsT<unknown> & {
     adapter: DateIOAdapter<Date>;
   } = {
     autoFocusCalendar: false,
@@ -59,13 +59,12 @@ export default class Calendar<T = Date> extends React.Component<
 
   dateHelpers: DateHelpers<T>;
 
-  calendar: React.RefObject<typeof HTMLElement>;
+  calendar: HTMLElement;
 
   constructor(props: CalendarPropsT<T>) {
     super(props);
 
     const { highlightedDate, value, adapter } = this.props;
-    //$FlowFixMe
     this.dateHelpers = new DateHelpers(adapter);
     const dateInView = this.getDateInView();
     let time = [];
@@ -135,9 +134,7 @@ export default class Calendar<T = Date> extends React.Component<
     return monthDelta >= 0 && monthDelta < (this.props.monthsShown || 1);
   }
 
-  getSingleDate(
-    value: T | undefined | null | ReadonlyArray<T | undefined | null>
-  ): T | undefined | null {
+  getSingleDate(value: T | undefined | null | Array<T | undefined | null>): T | undefined | null {
     // need to check this.props.range but flow would complain
     // at the return value in the else clause
     if (Array.isArray(value)) {
@@ -301,7 +298,7 @@ export default class Calendar<T = Date> extends React.Component<
         // need to look for any tabindex >= 0 and ideally for not disabled
         // focusable by default elements like input, button, etc.
         const focusable = this.state.rootElement
-          ? this.state.rootElement.querySelectorAll('[tabindex="0"]')
+          ? this.state.rootElement.querySelectorAll<HTMLElement>('[tabindex="0"]')
           : null;
         const length = focusable ? focusable.length : 0;
         if (event.shiftKey) {
@@ -486,7 +483,6 @@ export default class Calendar<T = Date> extends React.Component<
     );
   };
 
-  // flowlint-next-line unclear-type:off
   renderTimeSelect: (c: T | undefined | null, b: Function, a: string) => React.ReactNode = (
     value,
     onChange,

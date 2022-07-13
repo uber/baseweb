@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import React from 'react';
 
-import { Select, SIZE } from '../index';
+import { Select, SIZE } from '..';
 
 const options = [
   { id: 'AliceBlue', color: '#F0F8FF' },

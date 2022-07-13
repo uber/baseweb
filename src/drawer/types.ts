@@ -25,9 +25,8 @@ export type OverridesT = {
   Close?: OverrideT;
 };
 
-// flowlint-next-line unclear-type:off
 export type ElementRefT = {
-  current: React.RefObject<any> | null;
+  current: any | null;
 };
 
 // Props shared by all flavors of modal

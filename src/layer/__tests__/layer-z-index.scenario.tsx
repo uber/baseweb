@@ -5,9 +5,9 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
-import { Layer, LayersManager, TetherBehavior, TETHER_PLACEMENT } from '../index';
-import { Block } from '../../block/index';
-import { Button } from '../../button/index';
+import { Layer, LayersManager, TetherBehavior, TETHER_PLACEMENT } from '..';
+import { Block } from '../../block';
+import { Button } from '../../button';
 import type { NormalizedOffsetsT } from '../../layer/types';
 
 function BlockComponent(props) {
@@ -55,9 +55,9 @@ export class Scenario extends React.Component<
     };
   }
 > {
-  anchorRef1 = React.createRef<HTMLElement>();
+  anchorRef1 = React.createRef<HTMLButtonElement>();
   popperRef1 = React.createRef<HTMLElement>();
-  anchorRef2 = React.createRef<HTMLElement>();
+  anchorRef2 = React.createRef<HTMLButtonElement>();
   popperRef2 = React.createRef<HTMLElement>();
 
   state = {
@@ -69,7 +69,8 @@ export class Scenario extends React.Component<
     offset2: { top: 0, left: 0 },
   };
 
-  onPopperUpdate = (order: number, normalizedOffsets: NormalizedOffsetsT) => {
+  onPopperUpdate = (order: 1 | 2, normalizedOffsets: NormalizedOffsetsT, _) => {
+    // @ts-expect-error partial state update
     this.setState({
       [`offset${order}`]: normalizedOffsets.popper,
     });
@@ -101,7 +102,6 @@ export class Scenario extends React.Component<
               <TetherBehavior
                 anchorRef={this.anchorRef1.current}
                 popperRef={this.popperRef1.current}
-                // $FlowFixMe
                 onPopperUpdate={(...args) => this.onPopperUpdate(1, ...args)}
                 placement={TETHER_PLACEMENT.right}
               >
@@ -133,7 +133,6 @@ export class Scenario extends React.Component<
                 <TetherBehavior
                   anchorRef={this.anchorRef2.current}
                   popperRef={this.popperRef2.current}
-                  // $FlowFixMe
                   onPopperUpdate={(...args) => this.onPopperUpdate(2, ...args)}
                   placement={TETHER_PLACEMENT.right}
                 >

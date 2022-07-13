@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import { getInitialStyle } from 'styletron-standard';
-import { LightTheme } from '../../themes/index';
+import { LightTheme } from '../../themes';
 import createMockTheme from '../../test/create-mock-theme';
 import type { ThemeT } from '../../styles/types';
 import type { StyletronComponent } from '../styled';
@@ -39,11 +39,11 @@ export function useStyletron() {
   return [css, MOCK_THEME];
 }
 
-export function styled(ElementName: string | React.ComponentType<{}>, objOrFn: ObjOrFnT = {}) {
+export function styled(ElementName: string | React.ComponentType<any>, objOrFn: ObjOrFnT = {}) {
   class MockStyledComponent extends React.Component<PropsT, StateT> {
     static displayName = 'MockStyledComponent';
 
-    state = {};
+    state = {} as StateT;
 
     static getDerivedStateFromProps(props: PropsT) {
       const styleFnArg = {
@@ -88,7 +88,7 @@ export function styled(ElementName: string | React.ComponentType<{}>, objOrFn: O
     }
   }
 
-  // $FlowFixMe
+  // @ts-expect-error
   MockStyledComponent.__STYLETRON__ = {
     getInitialStyle,
     wrapper: IDENTITY,
@@ -103,8 +103,8 @@ export function styled(ElementName: string | React.ComponentType<{}>, objOrFn: O
 export const withStyle = styled;
 
 export function withWrapper(
-  StyledElement: StyletronComponent<any>,
-  wrapperFn: (a: StyletronComponent<any>) => (a: any) => any
+  StyledElement: StyletronComponent<any, any>,
+  wrapperFn: (a: StyletronComponent<any, any>) => (a: any) => any
 ) {
   // eslint-disable-next-line react/display-name
   return React.forwardRef<any, any>((props, ref) =>

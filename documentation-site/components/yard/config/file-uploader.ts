@@ -3,7 +3,7 @@ import { PropTypes } from 'react-view';
 import { TConfig } from '../types';
 import buttonConfig from './button';
 
-const fileUploaderProps = require('!!extract-react-types-loader!../../../../src/file-uploader/file-uploader.js');
+const fileUploaderProps = require('!!extract-react-types-loader!../../../../src/file-uploader/file-uploader');
 
 const changeHandlers = [
   'onClick',

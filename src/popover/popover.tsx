@@ -16,7 +16,7 @@ import {
   ANIMATE_IN_TIME,
   POPOVER_MARGIN,
 } from './constants';
-import { Layer, TetherBehavior } from '../layer/index';
+import { Layer, TetherBehavior } from '../layer';
 import {
   Arrow as StyledArrow,
   Body as StyledBody,
@@ -32,7 +32,6 @@ import type {
   PopoverPropsT,
   PopoverPrivateStateT,
   SharedStylePropsArgT,
-  ReactRefT,
 } from './types';
 import type { PopperDataObjectT, NormalizedOffsetsT } from '../layer/types';
 
@@ -40,11 +39,11 @@ class PopoverInner extends React.Component<PopoverPropsT, PopoverPrivateStateT> 
   static defaultProps: Partial<PopoverPropsT> = defaultProps;
 
   /* eslint-disable react/sort-comp */
-  animateInTimer: TimeoutID | undefined | null;
-  animateOutTimer: TimeoutID | undefined | null;
-  animateOutCompleteTimer: TimeoutID | undefined | null;
-  onMouseEnterTimer: TimeoutID | undefined | null;
-  onMouseLeaveTimer: TimeoutID | undefined | null;
+  animateInTimer?: TimeoutID | undefined | null;
+  animateOutTimer?: TimeoutID | undefined | null;
+  animateOutCompleteTimer?: TimeoutID | undefined | null;
+  onMouseEnterTimer?: TimeoutID | undefined | null;
+  onMouseLeaveTimer?: TimeoutID | undefined | null;
   anchorRef = React.createRef<HTMLElement>();
   popperRef = React.createRef<HTMLElement>();
   arrowRef = React.createRef<HTMLElement>();
@@ -155,13 +154,13 @@ class PopoverInner extends React.Component<PopoverPropsT, PopoverPrivateStateT> 
     });
   }
 
-  onAnchorClick = (e: Event) => {
+  onAnchorClick = (e: React.MouseEvent) => {
     if (this.props.onClick) {
       this.props.onClick(e);
     }
   };
 
-  onAnchorMouseEnter = (e: Event) => {
+  onAnchorMouseEnter = (e: React.MouseEvent) => {
     // First clear any existing close timers, this ensures that the user can
     // move their mouse from the popover back to anchor without it hiding
     if (this.onMouseLeaveTimer) {
@@ -171,7 +170,7 @@ class PopoverInner extends React.Component<PopoverPropsT, PopoverPrivateStateT> 
     this.triggerOnMouseEnterWithDelay(e);
   };
 
-  onAnchorMouseLeave = (e: Event) => {
+  onAnchorMouseLeave = (e: React.MouseEvent) => {
     // Clear any existing open timer, otherwise popover could be stuck open
     if (this.onMouseEnterTimer) {
       clearTimeout(this.onMouseEnterTimer);
@@ -185,7 +184,7 @@ class PopoverInner extends React.Component<PopoverPropsT, PopoverPrivateStateT> 
     }
   };
 
-  onPopoverMouseLeave = (e: Event) => {
+  onPopoverMouseLeave = (e: React.MouseEvent<any>) => {
     this.triggerOnMouseLeaveWithDelay(e);
   };
 
@@ -203,7 +202,7 @@ class PopoverInner extends React.Component<PopoverPropsT, PopoverPrivateStateT> 
     return data;
   };
 
-  triggerOnMouseLeaveWithDelay(e: Event) {
+  triggerOnMouseLeaveWithDelay(e: React.MouseEvent) {
     const { onMouseLeaveDelay } = this.props;
     if (onMouseLeaveDelay) {
       this.onMouseLeaveTimer = setTimeout(() => this.triggerOnMouseLeave(e), onMouseLeaveDelay);
@@ -212,13 +211,13 @@ class PopoverInner extends React.Component<PopoverPropsT, PopoverPrivateStateT> 
     this.triggerOnMouseLeave(e);
   }
 
-  triggerOnMouseLeave = (e: Event) => {
+  triggerOnMouseLeave = (e: React.MouseEvent) => {
     if (this.props.onMouseLeave) {
       this.props.onMouseLeave(e);
     }
   };
 
-  triggerOnMouseEnterWithDelay(e: Event) {
+  triggerOnMouseEnterWithDelay(e: React.MouseEvent) {
     const { onMouseEnterDelay } = this.props;
     if (onMouseEnterDelay) {
       this.onMouseEnterTimer = setTimeout(() => this.triggerOnMouseEnter(e), onMouseEnterDelay);
@@ -227,14 +226,13 @@ class PopoverInner extends React.Component<PopoverPropsT, PopoverPrivateStateT> 
     this.triggerOnMouseEnter(e);
   }
 
-  triggerOnMouseEnter = (e: Event) => {
+  triggerOnMouseEnter = (e: React.MouseEvent) => {
     if (this.props.onMouseEnter) {
       this.props.onMouseEnter(e);
     }
   };
 
   onDocumentClick = (evt: MouseEvent) => {
-    //$FlowFixMe
     const target = evt.composedPath ? evt.composedPath()[0] : evt.target;
     const popper = this.popperRef.current;
     const anchor = this.anchorRef.current;
@@ -289,8 +287,9 @@ class PopoverInner extends React.Component<PopoverPropsT, PopoverPrivateStateT> 
     const { isOpen } = this.props;
 
     const anchorProps: AnchorPropsT = {
-      'aria-haspopup': 'true',
-      'aria-expanded': isOpen ? 'true' : 'false',
+      'aria-haspopup': true,
+      'aria-expanded': isOpen ? true : false,
+      // @ts-expect-error todo(flow->ts): should it be here?
       key: 'popover-anchor',
       ref: this.anchorRef,
     };
@@ -318,7 +317,7 @@ class PopoverInner extends React.Component<PopoverPropsT, PopoverPrivateStateT> 
   }
 
   getPopoverBodyProps() {
-    const bodyProps = {};
+    const bodyProps: React.HTMLAttributes<'body'> = {};
 
     const popoverId = this.getPopoverIdAttr();
     if (this.isAccessibilityTypeMenu()) {
@@ -489,13 +488,19 @@ class PopoverInner extends React.Component<PopoverPropsT, PopoverPrivateStateT> 
 // Remove when Popover is converted to a functional component.
 const Popover = (
   props: PopoverPropsT & {
-    innerRef?: ReactRefT<HTMLElement>;
+    innerRef?: React.Ref<HTMLElement>;
   }
 ) => {
   const { innerRef } = props;
   const gID = useUID();
-  //$FlowExpectedError[cannot-spread-inexact]
-  return <PopoverInner id={props.id || gID} ref={innerRef} {...props} />;
+  return (
+    <PopoverInner
+      id={props.id || gID}
+      // @ts-expect-error
+      ref={innerRef}
+      {...props}
+    />
+  );
 };
 
 Popover.defaultProps = defaultProps;

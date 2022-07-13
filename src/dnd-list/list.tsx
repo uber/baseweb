@@ -18,15 +18,18 @@ import { List as MovableList } from 'react-movable';
 import Grab from '../icon/grab';
 import Delete from '../icon/delete';
 import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible';
-import { Layer } from '../layer/index';
+import { Layer } from '../layer';
 
 import type { ListPropsT, SharedStylePropsArgT } from './types';
 
 import type { SyntheticEvent } from 'react';
 
-const ItemLayer = ({ children, dragged }: { children: React.ReactNode; dragged: boolean }) => {
+const ItemLayer: React.FC<{ children: React.ReactNode; dragged: boolean }> = ({
+  children,
+  dragged,
+}) => {
   if (!dragged) {
-    return children;
+    return <>{children}</>;
   }
   return <Layer>{children}</Layer>;
 };

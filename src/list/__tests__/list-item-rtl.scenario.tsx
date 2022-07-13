@@ -6,11 +6,11 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Button } from '../../button/index';
+import { Button } from '../../button';
 import Check from '../../icon/check';
 import ChevronRight from '../../icon/chevron-right';
 import Search from '../../icon/search';
-import { ListItem, ListItemLabel, ARTWORK_SIZES } from '../index';
+import { ListItem, ListItemLabel, ARTWORK_SIZES } from '..';
 
 export function Scenario() {
   return (

@@ -29,7 +29,6 @@ class StatefulContainer extends React.Component<StatefulContainerPropsT, StateT>
       onChange(params);
     }
   };
-  // flowlint-next-line unclear-type:off
   internalSetState = (type: StateTypeT, item: any) => {
     let nextState = {};
     if (type === STATE_CHANGE_TYPE.change) {
@@ -45,7 +44,7 @@ class StatefulContainer extends React.Component<StatefulContainerPropsT, StateT>
     // eslint-disable-next-line no-unused-vars
     const { children, initialState, stateReducer, ...restProps } = this.props;
     const { onChange } = this;
-    // $FlowFixMe
+    // @ts-expect-error
     return children({
       ...restProps,
       ...this.state,

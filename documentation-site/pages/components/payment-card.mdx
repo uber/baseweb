@@ -14,12 +14,12 @@ import Uncontrolled from 'examples/payment-card/uncontrolled.js';
 import DefaultValue from 'examples/payment-card/defaultvalue.js';
 import Form from 'examples/payment-card/form.js';
 
-import {StatefulPaymentCard} from 'baseui/payment-card';
+import { StatefulPaymentCard } from 'baseui/payment-card';
 
 import * as PaymentCardExports from 'baseui/payment-card';
 import * as InputExports from 'baseui/input';
 
-import {Table} from 'baseui/table';
+import { Table } from 'baseui/table';
 
 import Yard from '../../components/yard/index';
 import paymentCardYardConfig from '../../components/yard/config/payment-card';
@@ -69,10 +69,7 @@ This component is based on the [Input](/components/input) component. All of the 
 If you'd like to add further validations, check out the [card-validator](https://www.npmjs.com/package/card-validator)
 package that Base Web uses under the hood too.
 
-<Example
-  title="Stateful (uncontrolled) usage"
-  path="payment-card/uncontrolled.js"
->
+<Example title="Stateful (uncontrolled) usage" path="payment-card/uncontrolled.js">
   <Uncontrolled />
 </Example>
 
@@ -83,13 +80,9 @@ As with many of our components, there is also an [uncontrolled](https://reactjs.
 <ApiTable
   title="Payment Card props"
   config={paymentCardYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/payment-card/payment-card.js')}
+  types={require('!!extract-react-types-loader!../../../src/payment-card/payment-card')}
 />
 
-<Exports
-  component={PaymentCardExports}
-  title="Payment Card exports"
-  path="baseui/payment-card"
-/>
+<Exports component={PaymentCardExports} title="Payment Card exports" path="baseui/payment-card" />
 
 <Exports component={InputExports} title="Input exports" path="baseui/input" />

@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { NUMERICAL_FORMATS, NumericalColumn } from '../index';
+import { NUMERICAL_FORMATS, NumericalColumn } from '..';
 import { randomLcg, randomBinomial, randomLogNormal, randomInt } from 'd3';
 
 import { precisionData } from './precision-data';
@@ -38,10 +38,13 @@ const randGen = randomLcg(42);
 
 const smallData = [1, 2, 2, 3, 4, 4, 4];
 
-const defaultData = Array.from({ length: 300 }, randomBinomial.source(randGen)(80, 0.9));
+const defaultData: number[] = Array.from({ length: 300 }, randomBinomial.source(randGen)(80, 0.9));
 
-const accountingData = Array.from({ length: 300 }, randomLogNormal.source(randGen)(5, 0.5));
-const probabilityData = Array.from({ length: 300 }, randomInt.source(randGen)(0, 100));
+const accountingData: number[] = Array.from(
+  { length: 300 },
+  randomLogNormal.source(randGen)(5, 0.5)
+);
+const probabilityData: number[] = Array.from({ length: 300 }, randomInt.source(randGen)(0, 100));
 
 export function Scenario() {
   return (

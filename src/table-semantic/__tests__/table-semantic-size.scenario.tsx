@@ -5,8 +5,8 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import React from 'react';
-import { useStyletron } from '../../styles/index';
-import { Table, SIZE } from '../index';
+import { useStyletron } from '../../styles';
+import { Table, SIZE } from '..';
 
 const COLUMNS = ['Name', 'Age', 'Address'];
 

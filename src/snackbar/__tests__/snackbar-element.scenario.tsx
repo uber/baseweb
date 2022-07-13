@@ -8,9 +8,9 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import Upload from '../../icon/upload';
-import { useStyletron } from '../../styles/index';
+import { useStyletron } from '../../styles';
 
-import { SnackbarElement } from '../index';
+import { SnackbarElement } from '..';
 
 export function Scenario() {
   const [css] = useStyletron();

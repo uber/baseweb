@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import { getSharedProps } from '../utils';
-import { ADJOINED, SIZE } from '../index';
+import { ADJOINED, SIZE } from '..';
 
 test('Utils - getSharedProps', () => {
   const props = {
@@ -27,6 +27,5 @@ test('Utils - getSharedProps', () => {
   const state = {
     isFocused: true,
   };
-  // $FlowFixMe
   expect(getSharedProps(props, state)).toMatchSnapshot('getSharedProps returns correct object');
 });

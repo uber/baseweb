@@ -32,7 +32,7 @@ export default function StatefulPagination({
 StatefulPagination.defaultProps = {
   initialState: {
     currentPage: 1,
-  }, //flowlint-next-line unclear-type:off
+  },
   stateReducer: (changeType: any, changes: any) => changes,
   overrides: {},
 };

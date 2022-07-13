@@ -8,9 +8,9 @@ export const ARTWORK_SIZES = {
   SMALL: 'SMALL',
   MEDIUM: 'MEDIUM',
   LARGE: 'LARGE',
-};
+} as const;
 
 export const SHAPE = {
   DEFAULT: 'DEFAULT',
   ROUND: 'ROUND',
-};
+} as const;

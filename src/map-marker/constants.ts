@@ -9,14 +9,14 @@ export const NEEDLE_SIZES = Object.freeze({
   short: 'short',
   medium: 'medium',
   tall: 'tall',
-});
+} as const);
 
 export const NEEDLE_HEIGHTS = Object.freeze({
   [NEEDLE_SIZES.none]: 0,
   [NEEDLE_SIZES.short]: 4,
   [NEEDLE_SIZES.medium]: 12,
   [NEEDLE_SIZES.tall]: 20,
-});
+} as const);
 
 export const PINHEAD_SIZES_SHAPES = Object.freeze({
   xxSmallCircle: 'xx-small-circle',
@@ -26,7 +26,7 @@ export const PINHEAD_SIZES_SHAPES = Object.freeze({
   small: 'small',
   medium: 'medium',
   large: 'large',
-});
+} as const);
 
 export const xSmallPinheadDimension = {
   height: 16,
@@ -50,13 +50,13 @@ export const PINHEAD_DIMENSIONS = Object.freeze({
 export const PINHEAD_TYPES = Object.freeze({
   floating: 'floating',
   fixed: 'fixed',
-});
+} as const);
 
 export const FLOATING_MARKER_SIZES = Object.freeze({
   small: 'small',
   medium: 'medium',
   large: 'large',
-});
+} as const);
 
 export const FLOATING_MARKER_ANCHOR_POSITIONS = Object.freeze({
   none: 'none',
@@ -64,14 +64,14 @@ export const FLOATING_MARKER_ANCHOR_POSITIONS = Object.freeze({
   topRight: 'top-right',
   bottomRight: 'bottom-right',
   bottomLeft: 'bottom-left',
-});
+} as const);
 
 export const FLOATING_MARKER_ANCHOR_TYPES = Object.freeze({
   circle: 'circle',
   square: 'square',
   xxSmallCircle: 'xx-small-circle',
   xxSmallSquare: 'xx-small-square',
-});
+} as const);
 
 export const dragShadowHeight = 4;
 export const dragShadowMarginTop = 6;
@@ -95,7 +95,7 @@ export const LABEL_ENHANCER_POSITIONS = Object.freeze({
   left: 'left',
   right: 'right',
   bottom: 'bottom',
-});
+} as const);
 
 export const BADGE_ENHANCER_SIZES = Object.freeze({
   none: 'none',
@@ -103,7 +103,7 @@ export const BADGE_ENHANCER_SIZES = Object.freeze({
   small: 'small',
   mediumText: 'medium-text',
   mediumIcon: 'medium-icon',
-});
+} as const);
 
 const xSmallPinheadBadge = {
   [BADGE_ENHANCER_SIZES.none]: null,
@@ -203,7 +203,7 @@ export const BADGE_ENHANCER_STYLES = {
     justifyContent: 'center',
     boxSizing: 'border-box',
   },
-};
+} as const;
 
 export const BADGE_ENHANCER_CONTENT_SIZE = {
   [BADGE_ENHANCER_SIZES.none]: 0,
@@ -217,4 +217,4 @@ export const KIND = Object.freeze({
   default: 'default',
   accent: 'accent',
   negative: 'negative',
-});
+} as const);

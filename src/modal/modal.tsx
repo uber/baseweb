@@ -9,9 +9,9 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import FocusLock from 'react-focus-lock';
 
-import { LocaleContext } from '../locale/index';
+import { LocaleContext } from '../locale';
 import { getOverrides } from '../helpers/overrides';
-import { Layer } from '../layer/index';
+import { Layer } from '../layer';
 import { SIZE, ROLE, CLOSE_SOURCE } from './constants';
 import {
   Root as StyledRoot,
@@ -56,7 +56,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
   componentDidMount() {
     this.setState({ mounted: true });
     if (__DEV__) {
-      // $FlowFixMe: flow complains that this prop doesn't exist
+      // @ts-expect-error checking for property with incorrect name
       if (this.props.closable) {
         console.warn(
           'The property `closable` is not supported on the Modal. Did you mean `closeable`?'
@@ -212,7 +212,6 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
       return mountNode;
     }
     // Flow thinks body could be null (cast through any)
-    // flowlint-next-line unclear-type:off
     return document.body as any as HTMLBodyElement;
   }
 
@@ -252,15 +251,8 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
             returnFocus={returnFocus}
             autoFocus={autoFocus}
           >
-            <Root
-              data-baseweb="modal"
-              // flowlint-next-line unclear-type:off
-              ref={this.rootRef as any}
-              {...sharedProps}
-              {...rootProps}
-            >
+            <Root data-baseweb="modal" ref={this.rootRef as any} {...sharedProps} {...rootProps}>
               <DialogContainer
-                // flowlint-next-line unclear-type:off
                 ref={this.dialogContainerRef as any}
                 {...sharedProps}
                 {...dialogContainerProps}

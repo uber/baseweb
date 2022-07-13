@@ -10,7 +10,7 @@ import { Select } from '../index';
 
 export function Scenario() {
   const inputRef = React.useRef(null);
-  const [selectValue, setSelectValue] = React.useState([]);
+  const [selectValue, setSelectValue] = React.useState<any>([]);
 
   const options = [
     { id: 'a', label: 'apples' },

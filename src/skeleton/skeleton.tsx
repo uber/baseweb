@@ -30,7 +30,7 @@ class Skeleton extends React.Component<SkeletonPropsT> {
           {...rootProps}
         >
           {Array(this.props.rows)
-            .fill()
+            .fill(undefined)
             .map((item, index) => (
               <Row
                 $animation={this.props.animation}

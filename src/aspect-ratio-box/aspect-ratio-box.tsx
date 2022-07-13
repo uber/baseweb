@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Block } from '../block/index';
+import { Block, type StyledBlockPropsT } from '../block';
 import { mergeOverrides } from '../helpers/overrides';
 import type { AspectRatioBoxPropsT } from './types';
 
@@ -28,15 +28,12 @@ const aspectRatioBoxStyle = ({ $aspectRatio }) => ({
   },
 });
 
-const AspectRatioBox = ({
+const AspectRatioBox: React.FC<any & { forwardedRef: React.Ref<any> }> = ({
   forwardedRef,
   aspectRatio = 1,
   overrides = {},
   ...restProps
-}: // flowlint-next-line unclear-type:off
-AspectRatioBoxPropsT & {
-  forwardedRef: any;
-}): React.ReactNode => {
+}) => {
   const aspectRatioBoxOverrides = {
     Block: {
       style: aspectRatioBoxStyle,
@@ -47,7 +44,6 @@ AspectRatioBoxPropsT & {
     <Block
       // coerced to any because of how react components are typed.
       // cannot guarantee an html element
-      // flowlint-next-line unclear-type:off
       ref={forwardedRef as any}
       overrides={blockOverrides}
       $aspectRatio={aspectRatio}
@@ -57,8 +53,17 @@ AspectRatioBoxPropsT & {
   );
 };
 
-const AspectRatioBoxComponent = React.forwardRef<HTMLElement, AspectRatioBoxPropsT>(
-  (props: AspectRatioBoxPropsT, ref) => <AspectRatioBox {...props} forwardedRef={ref} />
-);
+interface AspectRatioCoxComponentType<D extends React.ElementType> {
+  <C extends React.ElementType = D>(
+    props: AspectRatioBoxPropsT<C> &
+      (React.ComponentProps<C> extends { ref?: infer R } ? { ref?: R } : {}) &
+      Omit<StyledBlockPropsT & React.ComponentProps<C>, keyof AspectRatioBoxPropsT>
+  ): JSX.Element;
+  displayName?: string;
+}
+
+const AspectRatioBoxComponent = React.forwardRef((props, ref) => (
+  <AspectRatioBox {...props} forwardedRef={ref} />
+)) as AspectRatioCoxComponentType<'div'>;
 AspectRatioBoxComponent.displayName = 'AspectRatioBox';
 export default AspectRatioBoxComponent;

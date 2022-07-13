@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { StatefulDataTable, NumericalColumn, StringColumn } from '../index';
+import { StatefulDataTable, NumericalColumn, StringColumn } from '..';
 import { randomLcg } from 'd3';
 
 type RowDataT = [string, number];

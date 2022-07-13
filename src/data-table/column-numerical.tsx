@@ -6,18 +6,18 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Button, SIZE } from '../button/index';
-import { ButtonGroup, MODE } from '../button-group/index';
-import { Input, SIZE as INPUT_SIZE } from '../input/index';
-import { useStyletron } from '../styles/index';
+import { Button, SIZE } from '../button';
+import { ButtonGroup, MODE } from '../button-group';
+import { Input, SIZE as INPUT_SIZE } from '../input';
+import { useStyletron } from '../styles';
 
 import Column from './column';
 import { COLUMNS, NUMERICAL_FORMATS, MAX_BIN_COUNT, HISTOGRAM_SIZE } from './constants';
 import FilterShell, { type ExcludeKind } from './filter-shell';
 import type { ColumnT, SharedColumnOptionsT } from './types';
-import { LocaleContext } from '../locale/index';
+import { LocaleContext } from '../locale';
 import { bin, max as maxFunc, extent, scaleLinear, median, bisector } from 'd3';
-import { Slider } from '../slider/index';
+import { Slider } from '../slider';
 
 type NumericalFormats =
   | typeof NUMERICAL_FORMATS.DEFAULT
@@ -49,7 +49,7 @@ function format(value: number, options) {
   if (typeof options.format === 'function') {
     return options.format(value);
   }
-  let formatted = value.toString();
+  let formatted: string | number = value.toString();
   switch (options.format) {
     case NUMERICAL_FORMATS.ACCOUNTING: {
       const abs = Math.abs(value);
@@ -78,14 +78,23 @@ function validateInput(input) {
 
 const bisect = bisector((d) => d.x0);
 
-const Histogram = React.memo(function Histogram({
+type HistogramProps = {
+  data;
+  lower: number;
+  upper: number;
+  isRange: boolean;
+  exclude;
+  precision;
+};
+
+const Histogram = React.memo<any>(function Histogram({
   data,
   lower,
   upper,
   isRange,
   exclude,
   precision,
-}) {
+}: HistogramProps) {
   const [css, theme] = useStyletron();
 
   const { bins, xScale, yScale } = React.useMemo(() => {
@@ -261,7 +270,9 @@ function NumericalFilter(props) {
       excludeKind={excludeKind}
       onApply={() => {
         if (isRange) {
+          // @ts-expect-error todo(flow->ts)
           const lowerValue = parseFloat(inputValueLower);
+          // @ts-expect-error todo(flow->ts)
           const upperValue = parseFloat(inputValueUpper);
           props.setFilter({
             description: `≥ ${lowerValue} and ≤ ${upperValue}`,
@@ -271,6 +282,7 @@ function NumericalFilter(props) {
             excludeKind,
           });
         } else {
+          // @ts-expect-error todo(flow->ts)
           const value = parseFloat(inputValueLower);
           props.setFilter({
             description: `= ${value}`,
@@ -396,9 +408,9 @@ function NumericalFilter(props) {
           onChange={(event) => {
             if (validateInput(event.target.value)) {
               isRange
-                ? // $FlowFixMe - we know it is a number by now
+                ? // @ts-expect-error - we know it is a number by now
                   setLower(event.target.value)
-                : // $FlowFixMe - we know it is a number by now
+                : // @ts-expect-error - we know it is a number by now
                   setSingle(event.target.value);
             }
           }}
@@ -417,7 +429,7 @@ function NumericalFilter(props) {
             value={inputValueUpper}
             onChange={(event) => {
               if (validateInput(event.target.value)) {
-                // $FlowFixMe - we know it is a number by now
+                // @ts-expect-error - we know it is a number by now
                 setUpper(event.target.value);
               }
             }}

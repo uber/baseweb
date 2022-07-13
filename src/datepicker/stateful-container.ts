@@ -20,8 +20,8 @@ type PropsT<T> = StatefulContainerPropsT<InputProps<T>, T>;
 
 class StatefulContainer<T = Date> extends React.Component<PropsT<T>, ContainerStateT<T>> {
   static defaultProps: {
-    stateReducer: StateReducerT<T>;
-  } = {
+    stateReducer: StateReducerT<unknown>;
+  } & Partial<PropsT<unknown>> = {
     initialState: {},
     stateReducer: (type, nextState) => nextState,
     onChange: () => {},
@@ -42,7 +42,6 @@ class StatefulContainer<T = Date> extends React.Component<PropsT<T>, ContainerSt
       if (onChange) {
         if (Array.isArray(date)) {
           if (date.every(Boolean)) {
-            // flowlint-next-line unclear-type:off
             onChange({ date: date as any as Array<T> });
           }
         } else {

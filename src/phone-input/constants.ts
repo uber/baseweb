@@ -10,9 +10,9 @@ export const DEFAULT_MAX_DROPDOWN_HEIGHT = '400px';
 export const STATE_CHANGE_TYPE = {
   textChange: 'textChange',
   countryChange: 'countryChange',
-};
+} as const;
 
-export { SIZE } from '../input/constants';
+export { SIZE } from '../input';
 
 // List originally from [jackocnr/intl-tel-input](https://github.com/jackocnr/intl-tel-input)
 export const COUNTRIES = {
@@ -317,4 +317,4 @@ export const COUNTRIES = {
   ZM: { label: 'Zambia', id: 'ZM', dialCode: '+260' },
   ZW: { label: 'Zimbabwe', id: 'ZW', dialCode: '+263' },
   AX: { label: 'Åland Islands', id: 'AX', dialCode: '+358' },
-};
+} as const;

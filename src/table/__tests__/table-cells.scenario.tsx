@@ -6,15 +6,15 @@ LICENSE file in the root directory of this source tree.
 */
 import React from 'react';
 
-import { Block } from '../../block/index';
+import { Block } from '../../block';
 import ArrowDown from '../../icon/arrow-down';
 import ArrowUp from '../../icon/arrow-up';
 import Search from '../../icon/search';
 import Plus from '../../icon/plus';
 import Delete from '../../icon/delete';
 import Overflow from '../../icon/overflow';
-import { StatefulPanel } from '../../accordion/index';
-import { withStyle } from '../../styles/index';
+import { StatefulPanel } from '../../accordion';
+import { withStyle } from '../../styles';
 
 import {
   StyledTable,
@@ -24,15 +24,15 @@ import {
   StyledRow,
   StyledCell,
   StyledAction,
-} from '../index';
+} from '..';
 
 const StyledHeadingCell = withStyle(StyledCell, {
   paddingTop: 0,
   paddingBottom: 0,
 });
 
-// flowlint-next-line unclear-type:off
 const StyledDeltaCell = withStyle<typeof StyledCell, any>(StyledCell, (props) => ({
+  // @ts-expect-error todo(flow->ts) this probably can be removed
   ...props.$theme.typography.font500,
   alignItems: 'center',
   backgroundColor: props.$isNegative
@@ -108,7 +108,7 @@ const panelOverrides = {
   },
 };
 
-const DATA = [
+const DATA: Array<[string, string, string, number, number, { title: string; data: string }]> = [
   [
     'Marlyn',
     'Engineering',

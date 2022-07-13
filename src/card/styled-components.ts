@@ -5,26 +5,27 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-import { styled, expandBorderStyles } from '../styles/index';
+import { styled, expandBorderStyles } from '../styles';
+import type { StyleObject } from 'styletron-standard';
 
-export const Action = styled<{}>('div', ({ $theme }) => ({
+export const Action = styled('div', ({ $theme }) => ({
   ...$theme.typography.LabelMedium,
 }));
 
-export const Body = styled<{}>('div', ({ $theme }) => ({
+export const Body = styled('div', ({ $theme }) => ({
   marginBottom: $theme.sizing.scale600,
   color: $theme.colors.contentPrimary,
   ...$theme.typography.ParagraphMedium,
 }));
 
-export const Contents = styled<{}>('div', ({ $theme }) => ({
+export const Contents = styled('div', ({ $theme }) => ({
   marginLeft: $theme.sizing.scale600,
   marginTop: $theme.sizing.scale600,
   marginRight: $theme.sizing.scale600,
   marginBottom: $theme.sizing.scale600,
 }));
 
-export const HeaderImage = styled<{}>('img', ({ $theme }) => ({
+export const HeaderImage = styled('img', ({ $theme }) => ({
   borderTopLeftRadius: $theme.borders.surfaceBorderRadius,
   borderTopRightRadius: $theme.borders.surfaceBorderRadius,
   objectFit: 'contain',
@@ -33,7 +34,7 @@ export const HeaderImage = styled<{}>('img', ({ $theme }) => ({
 
 // by using the section tag, we can keep the h1 for the title
 // https://html.spec.whatwg.org/multipage/sections.html#headings-and-sections
-export const Root = styled<{}>('section', ({ $theme }) => ({
+export const Root = styled('section', ({ $theme }) => ({
   borderLeftWidth: '2px',
   borderTopWidth: '2px',
   borderRightWidth: '2px',
@@ -54,7 +55,7 @@ export const Root = styled<{}>('section', ({ $theme }) => ({
   overflow: 'hidden',
 }));
 
-export const Thumbnail = styled<{}>('img', ({ $theme }) => ({
+export const Thumbnail = styled('img', ({ $theme }) => ({
   float: 'right',
   height: $theme.sizing.scale2400,
   width: $theme.sizing.scale2400,
@@ -67,7 +68,7 @@ export const Thumbnail = styled<{}>('img', ({ $theme }) => ({
   margin: `0 0 ${$theme.sizing.scale500} ${$theme.sizing.scale500}`,
 }));
 
-export const Title = styled<{}>('h1', ({ $theme }) => ({
+export const Title = styled('h1', ({ $theme }) => ({
   ...$theme.typography.HeadingSmall,
   color: $theme.colors.contentPrimary,
   marginLeft: 0,

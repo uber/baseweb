@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 import { render, getByTestId } from '@testing-library/react';
-import { StatefulList } from '../index';
+import { StatefulList } from '..';
 
 describe('StatefulList', () => {
   it('basic render', () => {

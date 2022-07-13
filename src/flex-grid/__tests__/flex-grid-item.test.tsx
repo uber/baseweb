@@ -12,12 +12,19 @@ import FlexGridItem, {
   flexGridItemStyle,
   getResponsiveValue,
 } from '../flex-grid-item';
-import { LightTheme } from '../../themes/index';
-import type { ResponsiveT, ScaleT } from '../../block/index';
+import { LightTheme } from '../../themes';
+import type { ResponsiveT, ScaleT } from '../../block';
 
 describe('FlexGridItem', () => {
   test('flexGridItemMediaQueryStyle', () => {
-    const testProps = [
+    const testProps: Array<{
+      flexGridColumnCount: number;
+      flexGridColumnGap: ScaleT;
+      flexGridRowGap: ScaleT;
+      flexGridItemIndex: number;
+      flexGridItemCount: number;
+      snapshotName: string;
+    }> = [
       {
         flexGridColumnCount: 2,
         flexGridColumnGap: 0,
@@ -91,7 +98,7 @@ describe('FlexGridItem', () => {
   });
 
   test('getResponsiveValue', () => {
-    const testCases = [
+    const testCases: Array<{ testCase: [any, number]; expected }> = [
       { testCase: [null, 0], expected: null },
       { testCase: [null, 1], expected: null },
       { testCase: ['10px', 0], expected: '10px' },

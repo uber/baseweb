@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
-import { LocaleContext } from '../locale/index';
+import { LocaleContext } from '../locale';
 import { getOverrides } from '../helpers/overrides';
 import {
   PanelContainer as StyledPanelContainer,
@@ -36,7 +36,12 @@ const Panel = (
   }: PanelPropsT,
   ref
 ) => {
-  const [localState, setLocalState] = React.useState({
+  const [localState, setLocalState] = React.useState<{
+    expanded: boolean;
+    elementHeight: number | string;
+    isFocusVisible: boolean;
+    animationInProgress: boolean;
+  }>({
     expanded,
     isFocusVisible: false,
     elementHeight: 0,
@@ -87,7 +92,6 @@ const Panel = (
     },
     [expanded, disabled, onChange, onKeyDown]
   );
-  // flowlint-next-line unclear-type:off
   const _animateRef = React.useRef<any>(null);
 
   React.useEffect(() => {
@@ -101,7 +105,7 @@ const Panel = (
           expanded,
           animationInProgress: true,
         });
-      } else if (parseInt(localState.elementHeight) !== height) {
+      } else if (parseInt(localState.elementHeight as string) !== height) {
         // After the second render (where child elements were added to the Content)
         //the Content height now reflects the true height. This kicks off the actual
         //animation.

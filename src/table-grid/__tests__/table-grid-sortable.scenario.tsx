@@ -6,10 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { StyledTable, StyledBodyCell, SortableHeadCell, SORT_DIRECTION } from '../index';
+import { StyledTable, StyledBodyCell, SortableHeadCell, SORT_DIRECTION } from '..';
 import { useCellNavigation } from './shared';
 
-const DATA = [
+const DATA: Array<[string, number]> = [
   ['Marlyn', 10],
   ['Luther', 15],
   ['Kiera', 13],
@@ -83,7 +83,7 @@ export function Scenario() {
   }, [nameDirection, ageDirection]);
 
   return (
-    <StyledTable tabIndex="0" role="grid" $gridTemplateColumns="repeat(2,1fr)">
+    <StyledTable tabIndex={0} role="grid" $gridTemplateColumns="repeat(2,1fr)">
       <SortableHeadCell
         title="Name"
         direction={nameDirection}

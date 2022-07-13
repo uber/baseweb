@@ -6,11 +6,11 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 import type { OverrideT } from '../helpers/overrides';
-import { SIZE, STATE_CHANGE_TYPE } from '../input/index';
+import { SIZE, STATE_CHANGE_TYPE } from '../input';
 
 export type ChangeEventT = {
   values: string[];
-  event: InputEvent;
+  event: any;
 };
 
 export type PropsT = {

@@ -8,7 +8,7 @@ import { Tag, KIND, VARIANT, SIZE } from 'baseui/tag';
 import { PropTypes } from 'react-view';
 import { TConfig } from '../types';
 
-const tagProps = require('!!extract-react-types-loader!../../../../src/tag/tag.js');
+const tagProps = require('!!extract-react-types-loader!../../../../src/tag/tag');
 
 const TagConfig: TConfig = {
   componentName: 'Tag',

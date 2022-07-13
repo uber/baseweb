@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { StatefulMenu, NestedMenus } from '../index';
+import { StatefulMenu, NestedMenus } from '..';
 
 const OPEN_RECENT = 'Open Recent ->';
 const NEW_BREAKPOINT = 'New Breakpoint ->';

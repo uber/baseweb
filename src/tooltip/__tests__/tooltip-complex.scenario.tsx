@@ -6,10 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { StatefulTooltip } from '../index';
-import { StyledLink } from '../../link/index';
-import { DarkTheme } from '../../themes/index';
-import { ThemeProvider, useStyletron } from '../../styles/index';
+import { StatefulTooltip } from '..';
+import { StyledLink } from '../../link';
+import { DarkTheme } from '../../themes';
+import { ThemeProvider, useStyletron } from '../../styles';
 
 function ComplexContent() {
   return (

@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 /* global alert */
 import * as React from 'react';
-import { Upload } from '../../icon/index';
-import { useStyletron } from '../../styles/index';
-import { Tag, KIND, SIZE, VARIANT } from '../index';
+import { Upload } from '../../icon';
+import { useStyletron } from '../../styles';
+import { Tag, KIND, SIZE, VARIANT } from '..';
 
 const customColor = '#26c6da';
 

@@ -7,10 +7,10 @@ LICENSE file in the root directory of this source tree.
 import React, { useState } from 'react';
 import { isAfter, isBefore } from 'date-fns';
 
-import { useStyletron } from '../../styles/index';
-import { FormControl } from '../../form-control/index';
+import { useStyletron } from '../../styles';
+import { FormControl } from '../../form-control';
 import ArrowRight from '../../icon/arrow-right';
-import { Datepicker, TimePicker } from '../index';
+import { Datepicker, TimePicker } from '..';
 
 const START_DATE = new Date(2019, 3, 1, 12, 0, 0);
 const END_DATE = new Date(2019, 3, 10, 16, 0, 0);
@@ -47,7 +47,6 @@ export function Scenario() {
               <Datepicker
                 value={dates}
                 // typecast to any because if datepicker is range, value is always array type
-                // flowlint-next-line unclear-type:off
                 onChange={({ date }) => setDates(date as any)}
                 timeSelectStart
                 range
@@ -99,7 +98,6 @@ export function Scenario() {
               <Datepicker
                 value={dates}
                 // typecast to any because if datepicker is range, value is always array type
-                // flowlint-next-line unclear-type:off
                 onChange={({ date }) => setDates(date as any)}
                 timeSelectEnd
                 range

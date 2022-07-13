@@ -7,11 +7,11 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 
-import { StatefulContainer, MODE } from '../index';
+import { StatefulContainer, MODE } from '..';
 
 describe('ButtonGroup StatefulContainer', () => {
   it('provides expected props to children render function', () => {
-    const children = jest.fn(() => <div>children</div>);
+    const children = jest.fn((arg) => <div>children</div>);
     render(<StatefulContainer>{children}</StatefulContainer>);
 
     const actual = children.mock.calls[0][0];
@@ -23,7 +23,10 @@ describe('ButtonGroup StatefulContainer', () => {
     const onClick = jest.fn();
     const { container } = render(
       <StatefulContainer onClick={onClick}>
-        {(childProps) => <div {...childProps}>children</div>}
+        {(childProps) => (
+          // @ts-expect-error childProps.onClick is incompatible with onClick for div element
+          <div {...childProps}>children</div>
+        )}
       </StatefulContainer>
     );
     const div = container.querySelector('div');
@@ -38,7 +41,10 @@ describe('ButtonGroup StatefulContainer', () => {
     const stateReducer = jest.fn();
     const { container } = render(
       <StatefulContainer onClick={onClick} stateReducer={stateReducer}>
-        {(childProps) => <div {...childProps}>children</div>}
+        {(childProps) => (
+          // @ts-expect-error childProps.onClick is incompatible with onClick for div element
+          <div {...childProps}>children</div>
+        )}
       </StatefulContainer>
     );
     const div = container.querySelector('div');
@@ -53,7 +59,10 @@ describe('ButtonGroup StatefulContainer', () => {
     const stateReducer = jest.fn();
     const { container } = render(
       <StatefulContainer mode={MODE.radio} onClick={onClick} stateReducer={stateReducer}>
-        {(childProps) => <div {...childProps}>children</div>}
+        {(childProps) => (
+          // @ts-expect-error childProps.onClick is incompatible with onClick for div element
+          <div {...childProps}>children</div>
+        )}
       </StatefulContainer>
     );
     const div = container.querySelector('div');

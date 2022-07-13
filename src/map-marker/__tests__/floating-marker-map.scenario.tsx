@@ -5,17 +5,17 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
-import { FloatingMarker } from '../index';
+import { FloatingMarker } from '..';
 import { FLOATING_MARKER_ANCHOR_POSITIONS, FLOATING_MARKER_ANCHOR_TYPES } from '../constants';
 import TileGrid from './tile-grid';
-import { Checkbox, LABEL_PLACEMENT } from '../../checkbox/index';
-import { Input } from '../../input/index';
+import { Checkbox, LABEL_PLACEMENT } from '../../checkbox';
+import { Input } from '../../input';
 import Upload from '../../icon/upload';
 import Search from '../../icon/search';
-import { Select } from '../../select/index';
+import { Select } from '../../select';
 import ReactMapGL, { Marker } from 'react-map-gl';
-import { Button } from '../../button/index';
-import { useStyletron } from '../../styles/index';
+import { Button } from '../../button';
+import { useStyletron } from '../../styles';
 import { getMapStyle } from './map-style';
 
 const floatingMarkerAnchorTypes = Object.keys(FLOATING_MARKER_ANCHOR_TYPES)
@@ -37,17 +37,17 @@ const uberHq = {
   longitude: -122.38856031220648,
 };
 
-const defaultLocation = [uberHq.longitude, uberHq.latitude];
+const defaultLocation = [uberHq.longitude, uberHq.latitude] as [number, number];
 
 export function Scenario() {
   const [label, setLabel] = React.useState('Uber HQ');
   const [startEnhancer, setStartEnhancer] = React.useState(true);
   const [endEnhancer, setEndEnhancer] = React.useState(false);
-  const [floatingMarkerAnchorType, setFloatingMarkerAnchorType] = React.useState([
+  const [floatingMarkerAnchorType, setFloatingMarkerAnchorType] = React.useState<any>([
     floatingMarkerAnchorTypes[0],
   ]);
 
-  const [floatingMarkerAnchorPosition, setFloatingMarkerAnchorPosition] = React.useState([
+  const [floatingMarkerAnchorPosition, setFloatingMarkerAnchorPosition] = React.useState<any>([
     floatingMarkerAnchorPositions[0],
   ]);
 
@@ -145,7 +145,6 @@ export function Scenario() {
                         : {},
                   },
                 }}
-                // $FlowFixMe Mismatch between general type and enum
                 anchorType={floatingMarkerAnchorType[0].id}
                 label={label}
                 startEnhancer={
@@ -162,7 +161,6 @@ export function Scenario() {
                       }
                     : undefined
                 }
-                // $FlowFixMe Mismatch between general type and enum
                 anchor={floatingMarkerAnchorPosition[0].id}
               />
             </Marker>

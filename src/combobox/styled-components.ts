@@ -4,17 +4,20 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import { SIZE } from '../input/index';
-import { styled } from '../styles/index';
+import { SIZE } from '../input';
+import { styled } from '../styles';
 import type { FontT } from '../themes/types';
 
 export const StyledRoot = styled('div', {});
 
 export const StyledInputContainer = styled('div', {});
 
-export const StyledListBox = styled<{
-  $width: string;
-}>('ul', ({ $theme, $width }) => {
+export const StyledListBox = styled<
+  'ul',
+  {
+    $width: string;
+  }
+>('ul', ({ $theme, $width }) => {
   return {
     backgroundColor: $theme.colors.backgroundPrimary,
     marginBlockStart: 'unset',
@@ -69,10 +72,13 @@ function buildStylesForSize(
   }
 }
 
-export const StyledListItem = styled<{
-  $isSelected: boolean;
-  $size: keyof typeof SIZE;
-}>('li', ({ $isSelected, $theme, $size }) => {
+export const StyledListItem = styled<
+  'li',
+  {
+    $isSelected: boolean;
+    $size: keyof typeof SIZE;
+  }
+>('li', ({ $isSelected, $theme, $size }) => {
   return {
     ...buildStylesForSize($size, $theme),
     alignItems: 'center',

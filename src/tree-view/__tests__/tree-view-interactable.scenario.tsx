@@ -5,12 +5,12 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
-import { StatefulTreeView, TreeLabelInteractable } from '../index';
-import { Select } from '../../select/index';
-import { Checkbox } from '../../checkbox/index';
+import { StatefulTreeView, TreeLabelInteractable } from '..';
+import { Select } from '../../select';
+import { Checkbox } from '../../checkbox';
 
 const LabelSelect = (node) => {
-  const [value, setValue] = React.useState();
+  const [value, setValue] = React.useState<any>();
   return (
     <TreeLabelInteractable>
       <Select
@@ -33,7 +33,7 @@ const LabelSelect = (node) => {
 };
 
 const LabelCheckbox = (node) => {
-  const [value, setValue] = React.useState();
+  const [value, setValue] = React.useState<any>();
   return (
     <TreeLabelInteractable>
       <Checkbox checked={value} onChange={(e) => setValue(e.target.checked)}>

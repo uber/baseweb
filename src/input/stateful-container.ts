@@ -12,7 +12,7 @@ import type { ChangeEvent } from 'react';
 
 const defaultStateReducer: StateReducerT = (type, nextState) => nextState;
 
-class StatefulContainer<T extends EventTarget> extends React.Component<
+class StatefulContainer<T extends HTMLInputElement | HTMLTextAreaElement> extends React.Component<
   StatefulContainerPropsT<T>,
   StateT
 > {

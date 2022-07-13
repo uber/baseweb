@@ -12,13 +12,15 @@ export {
   default as StatefulDatepicker,
   default as StatefulDatePicker,
 } from './stateful-datepicker';
-export { default as TimePicker } from '../timepicker/timepicker';
-export { default as TimezonePicker } from '../timezonepicker/timezone-picker';
 // Util functions
-export { formatDate } from './utils/index';
+export { formatDate } from './utils';
 // Constants
 export { ORIENTATION, STATE_CHANGE_TYPE } from './constants';
 // Styled elements
 export * from './styled-components';
+// Dependency components and their types
+export * from '../timepicker';
+export * from '../timezonepicker';
 // Flow
 export * from './types';
+export type { DatepickerLocaleT } from './locale';

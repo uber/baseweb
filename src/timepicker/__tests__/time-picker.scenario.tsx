@@ -8,8 +8,8 @@ import React, { useState } from 'react';
 // eslint-disable-next-line import/extensions
 import { startOfDay } from 'date-fns';
 
-import { TimePicker } from '../index';
-import { SIZE } from '../../input/index';
+import { TimePicker } from '..';
+import { SizeT, SIZE } from '../../input';
 import MomentUtils from '@date-io/moment';
 
 const momentAdapter = new MomentUtils({});
@@ -24,7 +24,7 @@ const overrides = {
 };
 
 const Controlled = ({
-  size = 'default',
+  size = 'default' as SizeT,
   initialDate,
   creatable = false,
   onChange = () => {},
@@ -52,7 +52,7 @@ const Controlled = ({
 };
 
 const MomentControlled = ({
-  size = 'default',
+  size = 'default' as SizeT,
   initialDate,
   creatable = false,
   onChange = () => {},
@@ -63,6 +63,7 @@ const MomentControlled = ({
   return (
     <React.Fragment>
       <TimePicker
+        // @ts-expect-error todo(flow->ts)
         adapter={momentAdapter}
         value={time}
         onChange={(time) => {

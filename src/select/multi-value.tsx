@@ -6,9 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 import { getOverrides } from '../helpers/overrides';
-import { Tag, VARIANT as TAG_VARIANT } from '../tag/index';
+import { Tag, VARIANT as TAG_VARIANT } from '../tag';
 
-// flowlint-next-line unclear-type:off
 export default function MultiValue(props: any) {
   const { overrides = {}, removeValue, ...restProps } = props;
   // todo(v11): remove the MultiValue override in favor of Tag

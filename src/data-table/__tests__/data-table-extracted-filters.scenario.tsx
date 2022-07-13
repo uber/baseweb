@@ -6,10 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { useStyletron } from '../../styles/index';
-import { LabelXSmall } from '../../typography/index';
+import { useStyletron } from '../../styles';
+import { LabelXSmall } from '../../typography';
 
-import { DataTable, StatefulContainer, CategoricalColumn, StringColumn } from '../index';
+import { DataTable, StatefulContainer, CategoricalColumn, StringColumn } from '..';
 
 import AnimalData from './animal-data';
 

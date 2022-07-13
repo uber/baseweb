@@ -16,7 +16,7 @@ import VaryingHeights from 'examples/dnd-list/varyingHeights.js';
 import CustomDragHandle from 'examples/dnd-list/customDragHandle.js';
 import OverrideLabel from 'examples/dnd-list/overrideLabel.js';
 
-import {StatefulList} from 'baseui/dnd-list';
+import { StatefulList } from 'baseui/dnd-list';
 import * as ListExports from 'baseui/dnd-list';
 import Yard from '../../components/yard/index';
 import dndListYardConfig from '../../components/yard/config/dnd-list';
@@ -54,31 +54,19 @@ This component also supports iOS and Android browsers and screen readers.
   <Basic />
 </Example>
 
-<Example
-  title="Drag and Drop with removable items"
-  path="dnd-list/removable.js"
->
+<Example title="Drag and Drop with removable items" path="dnd-list/removable.js">
   <Removable />
 </Example>
 
-<Example
-  title="Drag and Drop with varying heights"
-  path="dnd-list/varyingHeights.js"
->
+<Example title="Drag and Drop with varying heights" path="dnd-list/varyingHeights.js">
   <VaryingHeights />
 </Example>
 
-<Example
-  title="Drag and Drop with custom drag handle"
-  path="dnd-list/customDragHandle.js"
->
+<Example title="Drag and Drop with custom drag handle" path="dnd-list/customDragHandle.js">
   <CustomDragHandle />
 </Example>
 
-<Example
-  title="Drag and Drop with label override"
-  path="dnd-list/overrideLabel.js"
->
+<Example title="Drag and Drop with label override" path="dnd-list/overrideLabel.js">
   <OverrideLabel />
 </Example>
 
@@ -87,11 +75,7 @@ This component also supports iOS and Android browsers and screen readers.
 <ApiTable
   title="Dnd List props"
   config={dndListYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/dnd-list/list.js')}
+  types={require('!!extract-react-types-loader!../../../src/dnd-list/list')}
 />
 
-<Exports
-  component={ListExports}
-  title="Dnd List exports"
-  path="baseui/dnd-list"
-/>
+<Exports component={ListExports} title="Dnd List exports" path="baseui/dnd-list" />

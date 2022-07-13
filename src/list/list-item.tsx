@@ -18,7 +18,7 @@ import {
 import type { PropsT } from './types';
 import { artworkSizeToValue } from './utils';
 
-const ListItem = React.forwardRef<PropsT, HTMLLIElement>((props: PropsT, ref) => {
+const ListItem = React.forwardRef<HTMLLIElement, PropsT>((props: PropsT, ref) => {
   const { overrides = {} } = props;
   const Artwork = props.artwork;
   const EndEnhancer = props.endEnhancer;
@@ -53,7 +53,6 @@ const ListItem = React.forwardRef<PropsT, HTMLLIElement>((props: PropsT, ref) =>
 
   return (
     <Root
-      // flowlint-next-line unclear-type:off
       ref={ref as any}
       $shape={props.shape || SHAPE.DEFAULT}
       aria-label={props['aria-label']}
@@ -79,11 +78,13 @@ const ListItem = React.forwardRef<PropsT, HTMLLIElement>((props: PropsT, ref) =>
       )}
       <Content $mLeft={!Artwork} $sublist={!!props.sublist} {...contentProps}>
         {props.children}
-        {EndEnhancer && EndEnhancer !== 0 && (
-          <EndEnhancerContainer {...endEnhancerContainerProps}>
-            <EndEnhancer />
-          </EndEnhancerContainer>
-        )}
+        {EndEnhancer &&
+          // @ts-expect-error todo(flow->ts) it is not expected to be a number
+          EndEnhancer !== 0 && (
+            <EndEnhancerContainer {...endEnhancerContainerProps}>
+              <EndEnhancer />
+            </EndEnhancerContainer>
+          )}
       </Content>
     </Root>
   );

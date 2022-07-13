@@ -8,7 +8,7 @@ import { TConfig } from '../types';
 
 import { changeHandlers } from './common/common';
 
-const popoverProps = require('!!extract-react-types-loader!../../../../src/popover/stateful-popover.js');
+const popoverProps = require('!!extract-react-types-loader!../../../../src/popover/stateful-popover');
 
 const PopoverConfig: TConfig = {
   componentName: 'StatefulPopover',

@@ -44,9 +44,9 @@ export type PropsT = {
   /** Function to change the numeric value to a user friendly value. Also applied to min/max labels. */
   valueToLabel?: (value: number) => ReactNode;
   /** Handler for events on trigger element, each time thumbs change selection, which is passed in `value`. */
-  onChange?: (a: {} & ParamsT) => unknown;
+  onChange?: (a: ParamsT) => unknown;
   /** Handler for events on trigger element, each time thumbs finish changing selection, which is passed in `value`. */
-  onFinalChange?: (a: {} & ParamsT) => unknown;
+  onFinalChange?: (a: ParamsT) => unknown;
 };
 
 export type StateT = {
@@ -72,22 +72,9 @@ export type StatefulContainerPropsT = {
 };
 
 export type StatefulSliderPropsT = {
-  overrides?: OverridesT;
   /** Initial state populated into the component */
   initialState?: StateT;
-  min?: number;
-  max?: number;
-  step?: number;
-  marks?: boolean;
-  /** Always display the selected value/thumb/label. */
-  persistentThumb?: boolean;
-  /** Function to change the numeric value to a user friendly value. Also applied to min/max labels. */
-  valueToLabel?: (value: number) => ReactNode;
-  /** Handler for events on trigger element, each time thumbs change selection, which is passed in `value`. */
-  onChange?: (a: {} & ParamsT) => unknown;
-  /** Handler for events on trigger element, each time thumbs finish changing selection, which is passed in `value`. */
-  onFinalChange?: (a: {} & ParamsT) => unknown;
-};
+} & Omit<PropsT, 'value'>;
 
 export type StylePropsT = {
   $disabled?: boolean;

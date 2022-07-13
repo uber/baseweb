@@ -22,8 +22,8 @@ import StatefulRadio from 'examples/button-group/stateful-radio.js';
 import StatefulCheckbox from 'examples/button-group/stateful-checkbox.js';
 import Wrappable from 'examples/button-group/wrappable.js';
 
-import {Button} from 'baseui/button';
-import {ButtonGroup} from 'baseui/button-group';
+import { Button } from 'baseui/button';
+import { ButtonGroup } from 'baseui/button-group';
 import * as ButtonGroupExports from 'baseui/button-group';
 
 import Yard from '../../components/yard/index';
@@ -94,10 +94,7 @@ You can disable the entire button group as in the example above. Or you can disa
 
 You can add the override `flex-wrap: wrap` to button group so as to make it wrap on smaller screens as in the example above.
 
-<Example
-  title="Stateful (uncontrolled) with radio mode"
-  path="button-group/stateful-radio.js"
->
+<Example title="Stateful (uncontrolled) with radio mode" path="button-group/stateful-radio.js">
   <StatefulRadio />
 </Example>
 
@@ -115,11 +112,7 @@ As with many of our components, there is also an [uncontrolled](https://reactjs.
 <ApiTable
   title="ButtonGroup props"
   config={buttonGroupYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/button-group/button-group.js')}
+  types={require('!!extract-react-types-loader!../../../src/button-group/button-group')}
 />
 
-<Exports
-  component={ButtonGroupExports}
-  title="ButtonGroup exports"
-  path="baseui/button-group"
-/>
+<Exports component={ButtonGroupExports} title="ButtonGroup exports" path="baseui/button-group" />

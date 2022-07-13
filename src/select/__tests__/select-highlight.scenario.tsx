@@ -5,10 +5,10 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
-import { Select } from '../index';
+import { Select } from '..';
 
 export function Scenario() {
-  const [value, setValue] = React.useState([{ id: 'Beige', color: '#F5F5DC' }]);
+  const [value, setValue] = React.useState<any>([{ id: 'Beige', color: '#F5F5DC' }]);
   return (
     <Select
       options={[

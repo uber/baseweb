@@ -9,7 +9,7 @@ import { render, getByTestId, getByText } from '@testing-library/react';
 
 import { TestBaseProvider } from '../../test/test-utils';
 
-import { Layer, LayersManager } from '../index';
+import { Layer, LayersManager } from '..';
 
 describe('Layer', () => {
   it('renders layer content', () => {

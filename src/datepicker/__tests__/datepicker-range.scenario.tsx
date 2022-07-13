@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { StyledDay, StatefulDatepicker } from '../index';
+import { StyledDay, StatefulDatepicker } from '..';
 
 export function Scenario() {
   return (

@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Checkbox } from '../checkbox/index';
-import { useStyletron } from '../styles/index';
+import { Checkbox } from '../checkbox';
+import { useStyletron } from '../styles';
 
 import type { ColumnT } from './types';
 
@@ -24,8 +24,9 @@ function Column<ValueT, FilterParamsT>(
     mapDataToValue: options.mapDataToValue,
     maxWidth: options.maxWidth,
     minWidth: options.minWidth,
+    // todo(flow->ts) add proper type annotation
     // eslint-disable-next-line react/display-name
-    renderCell: React.forwardRef((props, ref) => {
+    renderCell: React.forwardRef((props, ref: any) => {
       const [css, theme] = useStyletron();
       const ProvidedCell = options.renderCell;
 

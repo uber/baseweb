@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Datepicker } from '../index';
-import { Button } from '../../button/index';
+import { Datepicker } from '..';
+import { Button } from '../../button';
 import MomentUtils from '@date-io/moment';
 import moment from 'moment';
 
@@ -76,6 +76,7 @@ export function Scenario() {
 
       <span>Moment</span>
       <Datepicker
+        // @ts-expect-error todo(flow->ts)
         adapter={adapter}
         aria-label="Select a date"
         aria-describedby="moment-datepicker"

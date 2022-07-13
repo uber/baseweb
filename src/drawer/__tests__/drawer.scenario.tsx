@@ -5,8 +5,8 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
-import { Button } from '../../button/index';
-import { Drawer, SIZE, ANCHOR } from '../index';
+import { Button } from '../../button';
+import { Drawer, SIZE, ANCHOR } from '..';
 
 export function Scenario() {
   const [isOpen, setIsOpen] = React.useState(true);

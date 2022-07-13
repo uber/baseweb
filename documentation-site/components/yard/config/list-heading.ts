@@ -3,7 +3,7 @@ import { Button, SIZE, SHAPE } from 'baseui/button';
 import { PropTypes } from 'react-view';
 import { TConfig } from '../types';
 
-const listHeadingProps = require('!!extract-react-types-loader!../../../../src/list/list-heading.js');
+const listHeadingProps = require('!!extract-react-types-loader!../../../../src/list/list-heading');
 
 const ListHeadingConfig: TConfig = {
   componentName: 'ListHeading',

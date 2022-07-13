@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { StyledLink } from '../link/index';
-import { useStyletron } from '../styles/index';
+import { StyledLink } from '../link';
+import { useStyletron } from '../styles';
 
 import Column from './column';
 import { COLUMNS } from './constants';

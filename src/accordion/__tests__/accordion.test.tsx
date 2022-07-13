@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { render, fireEvent, getByText, getByTestId, queryAllByText } from '@testing-library/react';
 
-import { Accordion, Panel } from '../index';
+import { Accordion, Panel } from '..';
 
 describe('Accordion', () => {
   it('renders basic configuration', () => {
@@ -31,7 +31,6 @@ describe('Accordion', () => {
     const second = getByText(container, 'Accordion panel 2');
     if (second) fireEvent.click(second);
     fireEvent.transitionEnd(
-      //flowlint-next-line unclear-type:off
       getByTestId(first.parentElement as any as HTMLElement, 'transitionDiv')
     );
     expect(queryAllByText(container, 'panel 1').length).toBe(0);

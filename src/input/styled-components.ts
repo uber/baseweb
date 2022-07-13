@@ -4,7 +4,7 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import { styled } from '../styles/index';
+import { styled } from '../styles';
 import type { ThemeT, Font } from '../styles/types';
 import type { StyleObject } from 'styletron-standard';
 import { ADJOINED, SIZE } from './constants';
@@ -12,11 +12,14 @@ import type { SharedPropsT, SizeT } from './types';
 import type { SharedStylePropsT } from '../textarea/types';
 import DeleteAlt from '../icon/delete-alt';
 
-export const StyledMaskToggleButton = styled<{
-  $size: SizeT;
-  $isFocusVisible: boolean;
-  $theme: ThemeT;
-}>('button', ({ $theme, $size, $isFocusVisible }) => {
+export const StyledMaskToggleButton = styled<
+  'button',
+  {
+    $size: SizeT;
+    $isFocusVisible: boolean;
+    $theme: ThemeT;
+  }
+>('button', ({ $theme, $size, $isFocusVisible }) => {
   const pad = {
     [SIZE.mini]: $theme.sizing.scale400,
     [SIZE.compact]: $theme.sizing.scale400,
@@ -39,11 +42,14 @@ export const StyledMaskToggleButton = styled<{
   };
 });
 
-export const StyledClearIconContainer = styled<{
-  $size: SizeT;
-  $alignTop: boolean;
-  $theme: ThemeT;
-}>('div', ({ $alignTop = false, $size, $theme }) => {
+export const StyledClearIconContainer = styled<
+  'div',
+  {
+    $size: SizeT;
+    $alignTop: boolean;
+    $theme: ThemeT;
+  }
+>('div', ({ $alignTop = false, $size, $theme }) => {
   const pad = {
     [SIZE.mini]: $theme.sizing.scale200,
     [SIZE.compact]: $theme.sizing.scale200,
@@ -221,14 +227,14 @@ function getRootBorderRadius(radius): {
 
 export const getRootStyles = (props: {
   $adjoined: keyof typeof ADJOINED;
-  $isFocused: boolean;
-  $error: boolean;
-  $disabled: boolean;
-  $positive: boolean;
+  $isFocused?: boolean;
+  $error?: boolean;
+  $disabled?: boolean;
+  $positive?: boolean;
   $size: SizeT;
   $theme: ThemeT;
-  $hasIconTrailing: boolean;
-}) => {
+  $hasIconTrailing?: boolean;
+}): StyleObject => {
   const {
     $isFocused,
     $adjoined,
@@ -263,7 +269,7 @@ export const getRootStyles = (props: {
   };
 };
 
-export const Root = styled<SharedPropsT>('div', getRootStyles);
+export const Root = styled<'div', SharedPropsT>('div', getRootStyles);
 
 // InputEnhancer
 
@@ -328,7 +334,7 @@ function getInputEnhancerColors($disabled, $isFocused, $error, $positive, colors
   };
 }
 
-export const InputEnhancer = styled<SharedPropsT>('div', (props) => {
+export const InputEnhancer = styled<'div', SharedPropsT>('div', (props) => {
   const {
     $size,
     $disabled,
@@ -352,7 +358,7 @@ export const InputEnhancer = styled<SharedPropsT>('div', (props) => {
 
 // InputContainer
 
-function getInputContainerColors($disabled, $isFocused, $error, $positive, colors) {
+function getInputContainerColors($disabled, $isFocused, $error, $positive, colors): StyleObject {
   if ($disabled) {
     return {
       color: colors.inputTextDisabled,
@@ -388,13 +394,13 @@ function getInputContainerColors($disabled, $isFocused, $error, $positive, color
 }
 
 export const getInputContainerStyles = (props: {
-  $isFocused: boolean;
-  $error: boolean;
-  $disabled: boolean;
-  $positive: boolean;
+  $isFocused?: boolean;
+  $error?: boolean;
+  $disabled?: boolean;
+  $positive?: boolean;
   $size: SizeT;
   $theme: ThemeT;
-}) => {
+}): StyleObject => {
   const {
     $isFocused,
     $error,
@@ -414,21 +420,9 @@ export const getInputContainerStyles = (props: {
   };
 };
 
-export const InputContainer = styled<SharedPropsT>('div', getInputContainerStyles);
+export const InputContainer = styled<'div', SharedPropsT>('div', getInputContainerStyles);
 
-function getInputColors(
-  $disabled,
-  $isFocused,
-  $error,
-  colors
-): {
-  color: string;
-  '-webkit-text-fill-color'?: string;
-  caretColor: string;
-  '::placeholder': {
-    color: string;
-  };
-} {
+function getInputColors($disabled, $isFocused, $error, colors): StyleObject {
   if ($disabled) {
     return {
       color: colors.inputTextDisabled,
@@ -465,7 +459,6 @@ export const getInputStyles = (
     $size,
     $theme: { colors, sizing, typography },
   } = props;
-  //$FlowFixMe
   return {
     boxSizing: 'border-box',
     backgroundColor: 'transparent',
@@ -494,4 +487,4 @@ export const getInputStyles = (
   };
 };
 
-export const Input = styled<SharedPropsT>('input', getInputStyles);
+export const Input = styled<'input', SharedPropsT>('input', getInputStyles);

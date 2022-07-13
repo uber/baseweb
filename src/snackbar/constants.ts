@@ -19,4 +19,4 @@ export const PLACEMENT = {
   bottomRight: 'bottomRight',
   bottom: 'bottom',
   bottomLeft: 'bottomLeft',
-};
+} as const;

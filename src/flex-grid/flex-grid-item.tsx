@@ -6,13 +6,13 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Block } from '../block/index';
+import { Block, type StyledBlockPropsT } from '../block';
 import { mergeOverrides } from '../helpers/overrides';
 import { getMediaQueries, getMediaQuery } from '../helpers/responsive-helpers';
 import type { FlexGridItemPropsT } from './types';
-import type { ResponsiveT, ScaleT } from '../block/index';
+import type { ResponsiveT, ScaleT } from '../block';
 import type { StyleOverrideT } from '../helpers/overrides';
-import type { ThemeT } from '../styles/index';
+import type { ThemeT } from '../styles';
 
 export const flexGridItemMediaQueryStyle = ({
   $theme,
@@ -120,11 +120,9 @@ export const flexGridItemStyle = ({
   // - {mobile, small, medium}
   // - {mobile, small, medium, large}
   return [...Array(maxResponsiveLength).keys()].reduce((acc, i) => {
-    const [flexGridColumnCountValue, flexGridColumnGapValue, flexGridRowGapValue] = [
-      $flexGridColumnCount,
-      $flexGridColumnGap,
-      $flexGridRowGap,
-    ].map((r) => getResponsiveValue(r, i));
+    const flexGridColumnCountValue = getResponsiveValue($flexGridColumnCount, i);
+    const flexGridColumnGapValue = getResponsiveValue($flexGridColumnGap, i);
+    const flexGridRowGapValue = getResponsiveValue($flexGridRowGap, i);
     const mediaQuery =
       i === 0
         ? // Custom media query needed so :nth-child styles don't conflict
@@ -144,7 +142,7 @@ export const flexGridItemStyle = ({
   }, baseFlexGridItemStyle);
 };
 
-const FlexGridItem = ({
+const FlexGridItem: React.FC<FlexGridItemPropsT & { forwardedRef: React.Ref<HTMLElement> }> = ({
   forwardedRef,
   children,
   as,
@@ -155,10 +153,7 @@ const FlexGridItem = ({
   flexGridItemIndex,
   flexGridItemCount,
   ...restProps
-}: // flowlint-next-line unclear-type:off
-FlexGridItemPropsT & {
-  forwardedRef: any;
-}): React.ReactNode => {
+}) => {
   const flexGridItemOverrides = {
     Block: {
       style: flexGridItemStyle,
@@ -171,7 +166,6 @@ FlexGridItemPropsT & {
     <Block
       // coerced to any because of how react components are typed.
       // cannot guarantee an html element
-      // flowlint-next-line unclear-type:off
       ref={forwardedRef as any}
       as={as}
       overrides={blockOverrides}
@@ -187,9 +181,16 @@ FlexGridItemPropsT & {
     </Block>
   );
 };
-
+interface FlexGridItemComponentType<D extends React.ElementType> {
+  <C extends React.ElementType = D>(
+    props: FlexGridItemPropsT<C> &
+      (React.ComponentProps<C> extends { ref?: infer R } ? { ref?: R } : {}) &
+      Omit<StyledBlockPropsT & React.ComponentProps<C>, keyof FlexGridItemPropsT>
+  ): JSX.Element;
+  displayName?: string;
+}
 const FlexGridItemComponent = React.forwardRef<HTMLElement, FlexGridItemPropsT>(
   (props: FlexGridItemPropsT, ref) => <FlexGridItem {...props} forwardedRef={ref} />
-);
+) as FlexGridItemComponentType<'div'>;
 FlexGridItemComponent.displayName = 'FlexGridItem';
 export default FlexGridItemComponent;

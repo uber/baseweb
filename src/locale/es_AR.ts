@@ -4,7 +4,9 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-export default {
+import { LocaleT } from './types';
+
+const es_AR: LocaleT = {
   accordion: {
     collapse: 'Colapsar',
     expand: 'Expandir',
@@ -56,6 +58,8 @@ export default {
     filterAdd: 'Añadir filtro',
     filterExclude: 'Excluir',
     filterApply: 'Aplicar',
+    filterExcludeRange: 'Excluir rango',
+    filterExcludeValue: 'Excluir valor',
     filterAppliedTo: 'filtro aplicado a',
     optionsLabel: 'Selecciona una columna para filtrar',
     optionsSearch: 'Busque una columna para filtrar por...',
@@ -125,3 +129,4 @@ export default {
     close: 'Cerrar',
   },
 };
+export default es_AR;

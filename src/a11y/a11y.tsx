@@ -9,15 +9,15 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import axe from 'axe-core';
 
-import { Layer, TetherBehavior, TETHER_PLACEMENT } from '../layer/index';
-import { ParagraphSmall, ParagraphXSmall } from '../typography/index';
-import { styled } from '../styles/index';
+import { Layer, TetherBehavior, TETHER_PLACEMENT } from '../layer';
+import { ParagraphSmall, ParagraphXSmall } from '../typography';
+import { styled } from '../styles';
 import { ThemeContext } from '../styles/theme-provider';
 
 import type { ViolationPropsT } from './types';
 
-function validateNode(node) {
-  return new Promise((resolve, reject) => {
+function validateNode(node: HTMLElement) {
+  return new Promise<axe.Result[]>((resolve, reject) => {
     axe.run(node, { reporter: 'v2' }, (error, results) => {
       if (error) reject(error);
       resolve(results.violations);
@@ -25,12 +25,16 @@ function validateNode(node) {
   });
 }
 
-function segmentViolationsByNode(violations) {
+function segmentViolationsByNode(violations: axe.Result[]): Array<[string, axe.Result[]]> {
   const nodes = violations.reduce((map, violation) => {
     violation.nodes.forEach((node) => {
+      // @ts-expect-error todo(flow-ts) node.target is an Array
       if (!map[node.target]) {
+        // @ts-expect-error todo(flow-ts) node.target is an Array
         map[node.target] = [violation];
       } else {
+        // todo(flow->ts) node.target is an Array
+        // @ts-expect-error todo(flow-ts) result of Array.push is not Array
         map[node.target] = map[node.target].push(violation);
       }
     });
@@ -39,10 +43,13 @@ function segmentViolationsByNode(violations) {
   return Object.entries(nodes);
 }
 
-const ViolationContainer = styled<{
-  $top: string;
-  $left: string;
-}>('div', ({ $theme, $top, $left }) => {
+const ViolationContainer = styled<
+  'div',
+  {
+    $top: string;
+    $left: string;
+  }
+>('div', ({ $theme, $top, $left }) => {
   return {
     backgroundColor: $theme.colors.mono100,
     boxShadow: $theme.lighting.shadow600,
@@ -108,9 +115,9 @@ function Violation(props: ViolationPropsT) {
 }
 
 export default function A11y(props: { children: React.ReactNode }) {
-  const [violations, setViolations] = React.useState([]);
+  const [violations, setViolations] = React.useState<axe.Result[]>([]);
   const [idleID, setIdleID] = React.useState(null);
-  const child = React.useRef(null);
+  const child = React.useRef<HTMLSpanElement>(null);
   React.useEffect(() => {
     if (child.current) {
       if (idleID) {
@@ -132,8 +139,7 @@ export default function A11y(props: { children: React.ReactNode }) {
       <span ref={child}>{props.children}</span>
       <div>
         {violationsByNode.map(([node, violations], index) => (
-          // flowlint-next-line unclear-type:off
-          <Violation target={node} violations={violations as any} key={index} />
+          <Violation target={node} violations={violations} key={index} />
         ))}
       </div>
     </>

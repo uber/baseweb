@@ -8,7 +8,7 @@ import { Slider } from 'baseui/slider';
 import { PropTypes } from 'react-view';
 import { TConfig } from '../types';
 
-const sliderProps = require('!!extract-react-types-loader!../../../../src/slider/slider.js');
+const sliderProps = require('!!extract-react-types-loader!../../../../src/slider/slider');
 
 const SliderConfig: TConfig = {
   componentName: 'Slider',

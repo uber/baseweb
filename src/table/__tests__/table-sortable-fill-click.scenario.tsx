@@ -14,9 +14,9 @@ import {
   StyledCell,
   SortableHeadCell,
   SORT_DIRECTION,
-} from '../index';
+} from '..';
 
-const DATA = [
+const DATA: Array<[string, number]> = [
   ['Marlyn', 10],
   ['Luther', 15],
   ['Kiera', 13],
@@ -39,7 +39,6 @@ const DATA = [
   ['Neil', 27],
 ];
 
-// flowlint-next-line unclear-type:off
 export class Scenario extends React.Component<any, any> {
   state = { nameDirection: null, ageDirection: null };
 
@@ -68,7 +67,6 @@ export class Scenario extends React.Component<any, any> {
 
   getSortedData = () => {
     if (this.state.nameDirection) {
-      // $FlowFixMe
       const sorted = DATA.slice(0).sort((a, b) => a[0].localeCompare(b[0]));
 
       if (this.state.nameDirection === SORT_DIRECTION.ASC) {

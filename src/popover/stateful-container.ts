@@ -44,7 +44,7 @@ class StatefulContainer extends React.Component<StatefulPopoverContainerPropsT, 
     ...this.props.initialState,
   };
 
-  onBlur = (e: Event) => {
+  onBlur = (e: React.FocusEvent) => {
     if (this.props.onBlur) {
       this.props.onBlur(e);
     }
@@ -54,7 +54,7 @@ class StatefulContainer extends React.Component<StatefulPopoverContainerPropsT, 
     this.close();
   };
 
-  onClick = (e: Event) => {
+  onClick = (e: React.SyntheticEvent) => {
     if (this.props.onClick) {
       this.props.onClick(e);
     }
@@ -73,21 +73,21 @@ class StatefulContainer extends React.Component<StatefulPopoverContainerPropsT, 
     this.close();
   };
 
-  onFocus = (e: Event) => {
+  onFocus = (e: React.FocusEvent) => {
     if (this.props.onFocus) {
       this.props.onFocus(e);
     }
     this.open();
   };
 
-  onMouseEnter = (e: Event) => {
+  onMouseEnter = (e: React.MouseEvent) => {
     if (this.props.onMouseEnter) {
       this.props.onMouseEnter(e);
     }
     this.open();
   };
 
-  onMouseLeave = (e: Event) => {
+  onMouseLeave = (e: React.MouseEvent) => {
     if (this.props.onMouseLeave) {
       this.props.onMouseLeave(e);
     }

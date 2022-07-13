@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 import React from 'react';
 
-import { FlexGrid, FlexGridItem } from '../index';
+import { FlexGrid, FlexGridItem } from '..';
 
-const itemProps = {
+const itemProps: React.ComponentProps<typeof FlexGridItem> = {
   backgroundColor: 'mono300',
   height: 'scale1000',
   display: 'flex',
@@ -16,7 +16,7 @@ const itemProps = {
   justifyContent: 'center',
 };
 
-const narrowItemProps = {
+const narrowItemProps: React.ComponentProps<typeof FlexGridItem> = {
   ...itemProps,
   overrides: {
     Block: {

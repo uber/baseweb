@@ -6,13 +6,12 @@ LICENSE file in the root directory of this source tree.
 */
 import React from 'react';
 
-import { Block } from '../../block/index';
-import { FormControl } from '../../form-control/index';
-import { Datepicker, TimePicker, TimezonePicker } from '../index';
+import { Block } from '../../block';
+import { FormControl } from '../../form-control';
+import { Datepicker, TimePicker, TimezonePicker } from '..';
 
 const DATE = new Date(2019, 3, 1);
 
-// flowlint-next-line unclear-type:off
 export class Scenario extends React.Component<any, any> {
   state = {
     date: DATE,

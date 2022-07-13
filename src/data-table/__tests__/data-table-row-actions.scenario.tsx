@@ -12,7 +12,7 @@ import StringColumn from '../column-string';
 import { NUMERICAL_FORMATS } from '../constants';
 import { StatefulDataTable } from '../stateful-data-table';
 
-import { ArrowUp } from '../../icon/index';
+import { ArrowUp } from '../../icon';
 
 type RowDataT = [string, string, number, number, number, number];
 

@@ -12,7 +12,6 @@ import type { StatefulPaymentCardPropsT } from './types';
 export default function StatefulPaymentCard(props: StatefulPaymentCardPropsT) {
   return (
     <StatefulContainer {...props}>
-      {/* flowlint-next-line unclear-type:off */}
       {(childrenProps: any) => <PaymentCard {...childrenProps} />}
     </StatefulContainer>
   );

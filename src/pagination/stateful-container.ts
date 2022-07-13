@@ -20,7 +20,7 @@ export default class PaginationStatefulContainer extends React.Component<
   StatefulContainerStateT
 > {
   static defaultProps = {
-    initialState, //flowlint-next-line unclear-type:off
+    initialState,
     stateReducer: (changeType: any, changes: any) => changes,
   };
 

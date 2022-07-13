@@ -6,7 +6,7 @@ import { TConfig } from '../types';
 
 import { changeHandlers } from './common/common';
 
-const inputPropsType = require('!!extract-react-types-loader!../../../../src/input/input.js');
+const inputPropsType = require('!!extract-react-types-loader!../../../../src/input/input');
 
 export const theme = [
   'inputBorder',

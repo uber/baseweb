@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { styled } from '../../styles/index';
+import { styled } from '../../styles';
 import { getOverrides, type OverrideT } from '../overrides';
 
 const StyledBase = styled('div', {});
@@ -24,7 +24,6 @@ function Child(props: {
   );
 }
 
-// flowlint-next-line unclear-type:off
 function BaseOverride(props: any) {
   return <input onChange={props.onChange} value={props.value} />;
 }

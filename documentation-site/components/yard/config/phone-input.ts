@@ -4,7 +4,7 @@ import { TConfig } from '../types';
 import selectConfig from './select';
 import inputConfig, { theme } from './input';
 
-const phoneInputProps = require('!!extract-react-types-loader!../../../../src/phone-input/phone-input.js');
+const phoneInputProps = require('!!extract-react-types-loader!../../../../src/phone-input/phone-input');
 
 const countriesEnum: { [key: string]: string } = {};
 Object.values(COUNTRIES).forEach((country) => {

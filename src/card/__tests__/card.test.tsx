@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { render } from '@testing-library/react';
 
-import { Card } from '../index';
+import { Card } from '..';
 import { header as headerImg, thumbnail as thumbnailImg } from '../images';
 
 test('Card - basic functionality', () => {

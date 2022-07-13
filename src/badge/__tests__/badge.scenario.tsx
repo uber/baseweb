@@ -10,7 +10,7 @@ import { PLACEMENT } from '../constants';
 import { Badge } from '../index';
 import { styled } from '../../styles/index';
 
-export const Box = styled<{}>('div', ({ $theme }) => ({
+export const Box = styled<'div', {}>('div', ({ $theme }) => ({
   borderTopLeftRadius: $theme.borders.surfaceBorderRadius,
   borderTopRightRadius: $theme.borders.surfaceBorderRadius,
   backgroundColor: $theme.colors.primaryA,

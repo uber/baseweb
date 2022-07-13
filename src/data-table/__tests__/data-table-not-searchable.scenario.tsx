@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { StatefulDataTable, BooleanColumn, CategoricalColumn, NumericalColumn } from '../index';
+import { StatefulDataTable, BooleanColumn, CategoricalColumn, NumericalColumn } from '..';
 
 type RowDataT = [boolean, string, number, string, Date];
 

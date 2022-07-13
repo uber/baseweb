@@ -8,7 +8,7 @@ import React, { useRef } from 'react';
 import CountryPicker from './country-picker';
 import defaultProps from './default-props';
 import { StyledPhoneInputRoot, StyledDialCode } from './styled-components';
-import { Input as DefaultInput } from '../input/index';
+import { Input as DefaultInput } from '../input';
 import { getOverrides, mergeOverrides } from '../helpers/overrides';
 import type { LitePropsT } from './types';
 

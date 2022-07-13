@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 
-import { NumericalColumn, NUMERICAL_FORMATS } from '../index';
+import { NumericalColumn, NUMERICAL_FORMATS } from '..';
 
 describe('numerical column', () => {
   it('is sortable by default', () => {

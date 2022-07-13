@@ -13,13 +13,6 @@ import type { ReactNode, ChangeEvent } from 'react';
 
 export type LabelPlacementT = 'top' | 'right' | 'bottom' | 'left';
 export type AlignT = keyof typeof ALIGN;
-export type ReactRefT<T> =
-  | {
-      current: null | T;
-    }
-  | {
-      current: null | T;
-    };
 
 export type RadioOverridesT = {
   RadioMarkInner?: OverrideT;
@@ -34,14 +27,7 @@ export type RadioGroupOverridesT = {
   RadioGroupRoot?: OverrideT;
 };
 
-export type DefaultPropsT = {
-  value: string;
-  disabled: boolean;
-  error: boolean;
-  autoFocus: boolean;
-  labelPlacement: LabelPlacementT;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => unknown;
-};
+export type DefaultPropsT = Partial<PropsT>;
 
 export type PropsT = {
   /** Id of element which contains a related caption */
@@ -112,7 +98,7 @@ export type RadioPropsT = {
   /** Disable the checkbox from being changed. */
   disabled?: boolean;
   /** Used to get a ref to the input element. Useful for programmatically focusing the input */
-  inputRef?: ReactRefT<HTMLInputElement>;
+  inputRef?: React.RefObject<HTMLInputElement>;
   /** Renders checkbox in errored state. */
   error?: boolean;
   /** Is radio focused / active? */
@@ -197,7 +183,7 @@ export type StatefulRadioGroupPropsT = {
 };
 
 export type StylePropsT = {
-  $align?: boolean;
+  $align?: string; // todo(flow->ts): can be improved - 'horizontal'|'vertical' is expected (the values are coming from ALIGN constants)
   $checked: boolean;
   $disabled: boolean;
   $hasDescription: boolean;

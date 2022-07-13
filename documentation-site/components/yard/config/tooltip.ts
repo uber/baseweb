@@ -7,7 +7,7 @@ import { Block } from 'baseui/block';
 
 import PopoverConfig from './popover';
 
-const tooltipProps = require('!!extract-react-types-loader!../../../../src/popover/stateful-popover.js');
+const tooltipProps = require('!!extract-react-types-loader!../../../../src/popover/stateful-popover');
 
 const TooltipConfig: TConfig = {
   ...PopoverConfig,

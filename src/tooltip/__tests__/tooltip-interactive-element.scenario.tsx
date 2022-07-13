@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { StatefulTooltip } from '../index';
-import { Button } from '../../button/index';
+import { StatefulTooltip } from '..';
+import { Button } from '../../button';
 
 export function Scenario() {
   return (

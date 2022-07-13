@@ -12,7 +12,7 @@ import { Input } from '../../input/index';
 
 export function Scenario() {
   const controlRef = React.useRef(null);
-  const [selectValue, setSelectValue] = React.useState([]);
+  const [selectValue, setSelectValue] = React.useState<any>([]);
   const [inputValue, setInputValue] = React.useState('apples');
 
   const options = [

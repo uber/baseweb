@@ -11,9 +11,9 @@ import ChevronDown from '../icon/chevron-down';
 import dateFnsAdapter from './utils/date-fns-adapter';
 import DateHelpers from './utils/date-helpers';
 import { getFilteredMonthItems } from './utils/calendar-header-helpers';
-import { StatefulMenu } from '../menu/index';
-import { Popover } from '../popover/index';
-import { LocaleContext } from '../locale/index';
+import { StatefulMenu } from '../menu';
+import { Popover } from '../popover';
+import { LocaleContext } from '../locale';
 import { ThemeContext } from '../styles/theme-provider';
 import {
   StyledCalendarHeader,
@@ -27,7 +27,7 @@ import {
 import { DENSITY, ORIENTATION, WEEKDAYS } from './constants';
 import { getOverrides, mergeOverrides } from '../helpers/overrides';
 import type { HeaderPropsT } from './types';
-import type { LocaleT } from '../locale/types';
+import type { LocaleT } from '../locale';
 import type { ThemeT } from '../styles/types';
 import { forkBlur, forkFocus, isFocusVisible } from '../utils/focusVisible';
 
@@ -45,7 +45,7 @@ const MAX_MONTH = 11;
 const DIRECTION = {
   NEXT: 'next',
   PREVIOUS: 'previous',
-};
+} as const;
 
 function idToYearMonth(id) {
   return id.split('-').map(Number);
@@ -82,7 +82,6 @@ export default class CalendarHeader<T = Date> extends React.Component<
 
   constructor(props: HeaderPropsT<T>) {
     super(props);
-    //$FlowFixMe
     this.dateHelpers = new DateHelpers(props.adapter);
     this.monthItems = [];
     this.yearItems = [];
@@ -190,7 +189,6 @@ export default class CalendarHeader<T = Date> extends React.Component<
 
   increaseMonth = () => {
     if (this.props.onMonthChange) {
-      // $FlowFixMe
       this.props.onMonthChange({
         date: this.dateHelpers.addMonths(
           this.getDateProp(),
@@ -205,7 +203,6 @@ export default class CalendarHeader<T = Date> extends React.Component<
 
   decreaseMonth = () => {
     if (this.props.onMonthChange) {
-      // $FlowFixMe
       this.props.onMonthChange({
         date: this.dateHelpers.subMonths(this.getDateProp(), 1),
       });

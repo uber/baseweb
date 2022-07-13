@@ -14,7 +14,7 @@ import {
   waitForElementToBeRemoved,
 } from '@testing-library/react';
 
-import { Toast } from '../index';
+import { Toast } from '..';
 
 describe('Toast', () => {
   it('basic toast functionality', () => {

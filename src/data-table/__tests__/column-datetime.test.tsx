@@ -13,7 +13,7 @@ import isSameMinute from 'date-fns/isSameMinute/index.js';
 
 import { TestBaseProvider } from '../../test/test-utils';
 
-import { DatetimeColumn, DATETIME_OPERATIONS } from '../index';
+import { DatetimeColumn, DATETIME_OPERATIONS } from '..';
 
 const padZero = (n) => (n < 10 ? `0${n}` : n);
 

@@ -12,13 +12,11 @@ export const flattenFragments = (
   ChildWrapper?: React.ComponentType<{}>,
   depth: number = 0
 ): React.ReactNode[] =>
+  // @ts-expect-error
   React.Children.toArray(children).reduce(
     (acc: React.ReactNode[], child: React.ReactNode, i: number): React.ReactNode[] => {
       if (isFragment(child)) {
-        acc.push(
-          // $FlowFixMe
-          ...flattenFragments(child.props.children, ChildWrapper, depth + 1)
-        );
+        acc.push(...flattenFragments(child.props.children, ChildWrapper, depth + 1));
       } else if (React.isValidElement(child)) {
         if (ChildWrapper) {
           acc.push(<ChildWrapper key={`${depth}.${i}`}>{child}</ChildWrapper>);

@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Button } from '../../button/index';
-import { StatefulSelect } from '../../select/index';
-import { Modal, ModalBody, ModalHeader } from '../index';
+import { Button } from '../../button';
+import { StatefulSelect } from '../../select';
+import { Modal, ModalBody, ModalHeader } from '..';
 
 export function Scenario() {
   const [isOpen, setIsOpen] = React.useState(true);
@@ -17,12 +17,7 @@ export function Scenario() {
       <Button onClick={() => setIsOpen(true)} className="open-modal-button">
         Open Modal
       </Button>
-      <Modal
-        isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
-        overrides={{ Backdrop: { props: { 'data-e2e': 'backdrop' } } }}
-        unstable_ModalBackdropScroll
-      >
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
         <ModalHeader>Hello world</ModalHeader>
         <ModalBody>
           <StatefulSelect

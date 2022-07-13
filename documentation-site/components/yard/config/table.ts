@@ -2,7 +2,7 @@ import { Table } from 'baseui/table';
 import { PropTypes } from 'react-view';
 import { TConfig } from '../types';
 
-const tableProps = require('!!extract-react-types-loader!../../../../src/table/table.js');
+const tableProps = require('!!extract-react-types-loader!../../../../src/table/table');
 
 const TableConfig: TConfig = {
   componentName: 'Table',

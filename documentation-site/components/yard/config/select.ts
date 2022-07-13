@@ -8,7 +8,7 @@ import popoverConfig from './popover';
 import spinnerConfig from './spinner';
 import iconConfig from './icon';
 
-const selectProps = require('!!extract-react-types-loader!../../../../src/select/select.js');
+const selectProps = require('!!extract-react-types-loader!../../../../src/select/select');
 
 const SelectConfig: TConfig = {
   componentName: 'Select',

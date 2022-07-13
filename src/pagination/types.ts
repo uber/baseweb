@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import type { OverrideT } from '../helpers/overrides';
 import { STATE_CHANGE_TYPE } from './constants';
-import { SIZE } from '../input/constants';
+import { SIZE } from '../input';
 
 export type LabelsT = {
   prevButton?: string;
@@ -18,13 +18,10 @@ export type SizeT = keyof typeof SIZE;
 
 export type CallbacksT = {
   /** Callback for prev button click. */
-  //flowlint-next-line unclear-type:off
   onPrevClick?: (a: { event: any }) => any;
   /** Callback for next button click. */
-  //flowlint-next-line unclear-type:off
   onNextClick?: (a: { event: any }) => any;
   /** Callback for when page changes. */
-  //flowlint-next-line unclear-type:off
   onPageChange?: (a: { nextPage: number; prevPage: number }) => any;
 };
 
@@ -64,10 +61,10 @@ export type StatefulPaginationPropsT = CallbacksT & {
   /** Initial state populated into the component */
   initialState?: StatefulContainerStateT;
   overrides?: OverridesT;
+  size?: SizeT;
 };
 
 export type StatefulContainerPropsT = {
-  //flowlint-next-line unclear-type:off
   children: any;
   numPages: number;
   /** Reducer function to manipulate internal state updates. */

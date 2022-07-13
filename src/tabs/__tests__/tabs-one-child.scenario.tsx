@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import React from 'react';
 
-import { StatefulTabs, Tab } from '../index';
+import { StatefulTabs, Tab } from '..';
 
 export function Scenario() {
   return (

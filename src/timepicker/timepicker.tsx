@@ -7,9 +7,9 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import { getOverrides, mergeOverrides } from '../helpers/overrides';
-import { LocaleContext } from '../locale/index';
-import type { OnChangeParamsT, OptionT } from '../select/index';
-import { filterOptions, Select } from '../select/index';
+import { LocaleContext } from '../locale';
+import type { OnChangeParamsT, OptionT } from '../select';
+import { filterOptions, Select } from '../select';
 import DateHelpers from '../datepicker/utils/date-helpers';
 import dateFnsAdapter from '../datepicker/utils/date-fns-adapter';
 import type { TimePickerDefaultPropsT, TimePickerPropsT, TimePickerStateT } from './types';
@@ -223,7 +223,9 @@ class TimePicker<T = Date> extends React.Component<TimePickerPropsT<T>, TimePick
     const maxDate = this.props.adapter.toJsDate(max);
     const midnightDate = this.props.adapter.toJsDate(dayStart);
     return {
+      // @ts-expect-error todo(flow->ts)
       start: (minDate - midnightDate) / 1000,
+      // @ts-expect-error todo(flow->ts)
       end: (maxDate - midnightDate) / 1000,
     };
   };

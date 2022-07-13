@@ -6,10 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Button, SIZE as BUTTON_SIZE } from '../button/index';
-import { Checkbox, STYLE_TYPE } from '../checkbox/index';
-import { useStyletron } from '../styles/index';
-import { LocaleContext } from '../locale/index';
+import { Button, SIZE as BUTTON_SIZE } from '../button';
+import { Checkbox, STYLE_TYPE } from '../checkbox';
+import { useStyletron } from '../styles';
+import { LocaleContext } from '../locale';
 import { FILTER_SHELL_WIDTH } from './constants';
 
 export type ExcludeKind = 'value' | 'range';

@@ -2,7 +2,7 @@ import { StatefulMenu } from 'baseui/menu';
 import { PropTypes } from 'react-view';
 import { TConfig } from '../types';
 
-const menuProps = require('!!extract-react-types-loader!../../../../src/menu/stateful-menu.js');
+const menuProps = require('!!extract-react-types-loader!../../../../src/menu/stateful-menu');
 
 const items = `[
   {label: 'Item One'},

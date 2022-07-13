@@ -37,7 +37,7 @@ describe('Menu Utils - scrollItemIntoView', () => {
       offsetTop: 50,
     };
 
-    // $FlowFixMe <-- this is because we are not testing with full elements.
+    // @ts-expect-error <-- this is because we are not testing with full elements.
     Utils.scrollItemIntoView(child, parent);
     expect(parent.scrollTop).toBe(50);
   });
@@ -76,7 +76,7 @@ describe('Menu Utils - scrollItemIntoView', () => {
       offsetTop: 100,
     };
 
-    // $FlowFixMe <-- this is because we are not testing with full elements.
+    // @ts-expect-error <-- this is because we are not testing with full elements.
     Utils.scrollItemIntoView(child, parent);
     expect(parent.scrollTop).toBe(100);
   });
@@ -111,7 +111,7 @@ describe('Menu Utils - scrollItemIntoView', () => {
       offsetTop: 0,
     };
 
-    // $FlowFixMe <-- this is because we are not testing with full elements.
+    // @ts-expect-error <-- this is because we are not testing with full elements.
     Utils.scrollItemIntoView(child, parent);
     expect(parent.scrollTop).toBe(0);
   });
@@ -150,7 +150,7 @@ describe('Menu Utils - scrollItemIntoView', () => {
       offsetTop: 0,
     };
 
-    // $FlowFixMe <-- this is because we are not testing with full elements.
+    // @ts-expect-error <-- this is because we are not testing with full elements.
     Utils.scrollItemIntoView(child, parent);
     expect(parent.scrollTop).toBe(0);
   });
@@ -201,7 +201,7 @@ describe('Menu Utils - scrollItemIntoView', () => {
       offsetTop: 200,
     };
 
-    // $FlowFixMe <-- this is because we are not testing with full elements.
+    // @ts-expect-error <-- this is because we are not testing with full elements.
     Utils.scrollItemIntoView(child, parent, false, false, 'center');
     expect(parent.scrollTop).toBe(150);
   });
@@ -252,7 +252,7 @@ describe('Menu Utils - scrollItemIntoView', () => {
       offsetTop: 100,
     };
 
-    // $FlowFixMe <-- this is because we are not testing with full elements.
+    // @ts-expect-error <-- this is because we are not testing with full elements.
     Utils.scrollItemIntoView(child, parent, false, false, 'center');
     expect(parent.scrollTop).toBe(50);
   });

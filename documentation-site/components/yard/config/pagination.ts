@@ -3,7 +3,7 @@ import { PropTypes } from 'react-view';
 import { TConfig } from '../types';
 import selectConfig from './select';
 
-const paginationProps = require('!!extract-react-types-loader!../../../../src/pagination/pagination.js');
+const paginationProps = require('!!extract-react-types-loader!../../../../src/pagination/pagination');
 
 const PaginationConfig: TConfig = {
   componentName: 'Pagination',

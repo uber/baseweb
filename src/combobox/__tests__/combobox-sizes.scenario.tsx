@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { useStyletron } from '../../styles/index';
-import { Combobox } from '../index';
+import { useStyletron } from '../../styles';
+import { Combobox } from '..';
 
 type OptionT = {
   label: string;
@@ -23,7 +23,6 @@ const options: OptionT[] = [
   { label: 'Beige', id: '#F5F5DC' },
 ];
 
-// flowlint-next-line unclear-type:off
 function Instance({ size }: any) {
   const [css, theme] = useStyletron();
   const [value, setValue] = React.useState('');

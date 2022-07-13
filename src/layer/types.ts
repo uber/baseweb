@@ -25,7 +25,7 @@ export type LayersManagerStateT = {
 };
 
 export type LayersContextT = {
-  host: HTMLElement | undefined | null;
+  host?: HTMLElement | null;
   zIndex?: number;
   addEscapeHandler: (a: () => unknown) => void;
   removeEscapeHandler: (a: () => unknown) => void;
@@ -138,7 +138,6 @@ export type TetherPropsT = {
   /** Options to be passes to the Popper on its initialization.
    Refer to the [Popper documentation](https://github.com/popperjs/popper.js/blob/v1.x/docs/_includes/popper-documentation.md)
    for the full list of available options. */
-  // flowlint-next-line unclear-type:off
   popperOptions: any;
 };
 

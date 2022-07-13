@@ -9,11 +9,8 @@ LICENSE file in the root directory of this source tree.
 // pushing a change that would break applications using this example would be quite painful
 import React from 'react';
 import { withStyle } from 'styletron-react';
-import { StatefulMenu, OptionList, StyledList } from '../index';
-//flowlint-next-line untyped-import:off
-import List from 'react-virtualized/dist/commonjs/List';
-//flowlint-next-line untyped-import:off
-import AutoSizer from 'react-virtualized/dist/commonjs/AutoSizer';
+import { StatefulMenu, OptionList, StyledList } from '..';
+import { List, AutoSizer } from 'react-virtualized';
 
 const ITEMS = [...new Array(1500)].map((_, index) => ({
   label: `item number: ${index + 1}`,
@@ -22,7 +19,7 @@ const ITEMS = [...new Array(1500)].map((_, index) => ({
 const Container = withStyle(StyledList, { height: '500px' });
 
 // eslint-disable-next-line react/display-name
-const VirtualList = React.forwardRef((props, ref) => {
+const VirtualList = React.forwardRef<HTMLUListElement, any>((props, ref) => {
   const children = React.Children.toArray(props.children);
   return (
     <Container {...props} ref={ref}>
@@ -37,6 +34,7 @@ const VirtualList = React.forwardRef((props, ref) => {
               <OptionList
                 key={key}
                 style={style}
+                // @ts-expect-error todo(flow->ts) type error in react 17
                 {...children[index].props}
                 overrides={{
                   ListItem: {

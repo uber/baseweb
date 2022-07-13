@@ -18,4 +18,4 @@ export const TETHER_PLACEMENT = {
   leftBottom: 'leftBottom',
   left: 'left',
   leftTop: 'leftTop',
-};
+} as const;

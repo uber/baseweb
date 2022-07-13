@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import React from 'react';
 import { columns, rows } from './data-table.scenario';
-import { DataTable } from '../index';
+import { DataTable } from '..';
 
 import Alert from '../../icon/alert';
 import Check from '../../icon/check';

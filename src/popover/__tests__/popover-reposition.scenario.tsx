@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { useStyletron } from '../../styles/index';
-import { Button } from '../../button/index';
-import { StatefulPopover, TRIGGER_TYPE, PLACEMENT } from '../index';
+import { useStyletron } from '../../styles';
+import { Button } from '../../button';
+import { StatefulPopover, TRIGGER_TYPE, PLACEMENT } from '..';
 
 export function Scenario() {
   const [css] = useStyletron();

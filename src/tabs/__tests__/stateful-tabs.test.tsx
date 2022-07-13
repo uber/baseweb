@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { render, fireEvent, getByText, queryByText } from '@testing-library/react';
 
-import { StatefulTabs, Tab } from '../index';
+import { StatefulTabs, Tab } from '..';
 import { STATE_CHANGE_TYPE } from '../constants';
 
 describe('StatefulTabs', () => {

@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 import React from 'react';
 
-import { StatefulInput, SIZE } from '../index';
-import { Block } from '../../block/index';
-import { Button } from '../../button/index';
+import { StatefulInput, SIZE } from '..';
+import { Block } from '../../block';
+import { Button } from '../../button';
 
 export function Scenario() {
   return (

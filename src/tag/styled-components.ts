@@ -7,10 +7,10 @@ LICENSE file in the root directory of this source tree.
 import tint from 'polished/lib/color/tint.js';
 import shade from 'polished/lib/color/shade.js';
 
-import { styled, type ThemeT } from '../styles/index';
+import { styled, type ThemeT } from '../styles';
 import { KIND, VARIANT, SIZE } from './constants';
 import type { SharedPropsArgT } from './types';
-import { colors as colorTokens } from '../tokens/index';
+import { colors as colorTokens } from '../tokens';
 
 export function customOnRamp(color?: string, unit?: string) {
   switch (unit) {
@@ -45,7 +45,7 @@ const COLOR_STATE = {
   disabled: 'disabled',
   solid: 'solid',
   outline: 'outline',
-};
+} as const;
 
 // Probably best to bake this into the theme once we hit our next major.
 const pick = (theme, light, dark) => (theme.name && theme.name.includes('dark') ? dark : light);
@@ -254,7 +254,7 @@ const getColorStateFromProps = (props) => {
   return COLOR_STATE.outline;
 };
 
-export const Action = styled<SharedPropsArgT>(
+export const Action = styled<'span', SharedPropsArgT>(
   'span',
   (
     props: SharedPropsArgT & {
@@ -282,11 +282,11 @@ export const Action = styled<SharedPropsArgT>(
       transitionProperty: 'all',
       transitionDuration: 'background-color',
       transitionTimingFunction: $theme.animation.easeOutCurve,
-    } as {};
+    };
   }
 );
 
-export const StartEnhancerContainer = styled<SharedPropsArgT>(
+export const StartEnhancerContainer = styled<'div', SharedPropsArgT>(
   'div',
   ({
     $theme,
@@ -311,7 +311,7 @@ export const StartEnhancerContainer = styled<SharedPropsArgT>(
   }
 );
 
-export const Text = styled<SharedPropsArgT>(
+export const Text = styled<'span', SharedPropsArgT>(
   'span',
   (
     props: SharedPropsArgT & {
@@ -330,7 +330,7 @@ export const Text = styled<SharedPropsArgT>(
   }
 );
 
-export const Root = styled<SharedPropsArgT>(
+export const Root = styled<'span', SharedPropsArgT>(
   'span',
   (
     props: SharedPropsArgT & {
@@ -422,6 +422,6 @@ export const Root = styled<SharedPropsArgT>(
                   }`
                 : 'none',
             },
-    } as {};
+    };
   }
 );

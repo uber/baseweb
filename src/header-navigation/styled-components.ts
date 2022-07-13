@@ -4,10 +4,10 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import { styled } from '../styles/index';
+import { styled } from '../styles';
 import { ALIGN } from './constants';
 
-export const Root = styled<{}>('nav', (props) => {
+export const Root = styled('nav', (props) => {
   const { $theme } = props;
   const {
     sizing: { scale500 },
@@ -26,7 +26,7 @@ export const Root = styled<{}>('nav', (props) => {
   };
 });
 
-export const NavigationItem = styled<{}>('li', (props) => {
+export const NavigationItem = styled('li', (props) => {
   const { $theme } = props;
   const {
     sizing: { scale800 },
@@ -37,9 +37,12 @@ export const NavigationItem = styled<{}>('li', (props) => {
   };
 });
 
-export const NavigationList = styled<{
-  $align: typeof ALIGN[keyof typeof ALIGN];
-}>('ul', (props) => {
+export const NavigationList = styled<
+  'ul',
+  {
+    $align: typeof ALIGN[keyof typeof ALIGN];
+  }
+>('ul', (props) => {
   const { $align, $theme } = props;
   const aligned = $align === ALIGN.right || $align === ALIGN.left;
   const {

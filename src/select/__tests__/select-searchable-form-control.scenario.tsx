@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { FormControl } from '../../form-control/index';
-import { Select } from '../index';
+import { FormControl } from '../../form-control';
+import { Select } from '..';
 
 const options = [
   { label: 'AliceBlue', id: '#F0F8FF' },
@@ -19,7 +19,7 @@ const options = [
 ];
 
 export function Scenario() {
-  const [value, setValue] = React.useState([]);
+  const [value, setValue] = React.useState<any>([]);
 
   return (
     <div>
