@@ -18,7 +18,7 @@ import {
 
 import { TestBaseProvider } from '../../test/test-utils';
 import { addDays } from 'date-fns';
-import { Datepicker, ORIENTATION } from '../index';
+import { Datepicker, ORIENTATION } from '..';
 
 describe('Datepicker', () => {
   beforeEach(() => {
@@ -143,9 +143,7 @@ describe('Datepicker', () => {
     const day = getByText(container, '1');
     fireEvent.click(day);
 
-    // $FlowFixMe
     expect(onChange.mock.calls[1][0].date.length).toBe(1);
-    // $FlowFixMe
     expect(onChange.mock.calls[1][0].date[0]).toEqual(new Date('2019/11/1'));
 
     const after = queryByTestId(container, 'calendar');
@@ -282,13 +280,11 @@ describe('Datepicker', () => {
     expect(calendar.length).toBe(monthsShown);
 
     const prev = queryAllByTestId(container, 'prev-button').filter(
-      //flowlint-next-line unclear-type:off
       (el) => !(el as any as HTMLButtonElement).disabled
     );
     expect(prev.length).toBe(1);
 
     const next = queryAllByTestId(container, 'next-button').filter(
-      //flowlint-next-line unclear-type:off
       (el) => !(el as any as HTMLButtonElement).disabled
     );
     expect(next.length).toBe(1);

@@ -19,7 +19,7 @@ import {
   defaultGetId,
   getCharMatchId,
 } from './utils';
-import type { TreeViewPropsT, TreeNodeT, TreeNodeIdT, ReactRefT } from './types';
+import type { TreeViewPropsT, TreeNodeT, TreeNodeIdT } from './types';
 import { isFocusVisible } from '../utils/focusVisible';
 
 import { getOverride, getOverrideProps } from '../helpers/overrides';
@@ -44,7 +44,7 @@ export default function TreeView(props: TreeViewPropsT) {
   const [typeAheadChars, setTypeAheadChars] = React.useState('');
   const timeOutRef = React.useRef(null);
   const treeItemRefs: {
-    [key in TreeNodeIdT]: ReactRefT<HTMLLIElement>;
+    [key in TreeNodeIdT]: React.Ref<HTMLLIElement>;
   } = {};
 
   const focusTreeItem = (id: TreeNodeIdT | null) => {
@@ -52,12 +52,12 @@ export default function TreeView(props: TreeViewPropsT) {
     setSelectedNodeId(id);
 
     const refs = treeItemRefs[id];
+    // @ts-expect-error
     const node = refs && refs.current;
     if (node) node.focus();
   };
 
   const onKeyDown = (e: KeyboardEvent, node: TreeNodeT) => {
-    // flowlint-next-line unclear-type:off
     const elementId = (e.target as any as HTMLLIElement).getAttribute('data-nodeid');
     // this check prevents bubbling
     if (elementId !== getId(node) && parseInt(elementId) !== getId(node)) {

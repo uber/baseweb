@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { render, fireEvent, getByText } from '@testing-library/react';
 
-import { Button } from '../index';
+import { Button } from '..';
 
 describe('Button Component', () => {
   test('basic render', () => {

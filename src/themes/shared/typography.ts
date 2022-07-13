@@ -4,7 +4,7 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import type { TypographyT, FontTokensT } from '../types';
+import type { TypographyT, FontTokensT, FontT } from '../types';
 
 export const defaultFontTokens: FontTokensT = {
   primaryFontFamily: 'system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif',
@@ -13,109 +13,109 @@ export const defaultFontTokens: FontTokensT = {
 const monoFontFamily = '"Lucida Console", Monaco, monospace';
 
 export default (fontTokens: FontTokensT = defaultFontTokens): TypographyT => {
-  const font100 = {
+  const font100: FontT = {
     fontFamily: fontTokens.primaryFontFamily,
     fontSize: '12px',
     fontWeight: 'normal',
     lineHeight: '20px',
   };
-  const font150 = {
+  const font150: FontT = {
     fontFamily: fontTokens.primaryFontFamily,
     fontSize: '12px',
     fontWeight: 500,
     lineHeight: '16px',
   };
-  const font200 = {
+  const font200: FontT = {
     fontFamily: fontTokens.primaryFontFamily,
     fontSize: '14px',
     fontWeight: 'normal',
     lineHeight: '20px',
   };
-  const font250 = {
+  const font250: FontT = {
     fontFamily: fontTokens.primaryFontFamily,
     fontSize: '14px',
     fontWeight: 500,
     lineHeight: '16px',
   };
-  const font300 = {
+  const font300: FontT = {
     fontFamily: fontTokens.primaryFontFamily,
     fontSize: '16px',
     fontWeight: 'normal',
     lineHeight: '24px',
   };
-  const font350 = {
+  const font350: FontT = {
     fontFamily: fontTokens.primaryFontFamily,
     fontSize: '16px',
     fontWeight: 500,
     lineHeight: '20px',
   };
-  const font400 = {
+  const font400: FontT = {
     fontFamily: fontTokens.primaryFontFamily,
     fontSize: '18px',
     fontWeight: 'normal',
     lineHeight: '28px',
   };
-  const font450 = {
+  const font450: FontT = {
     fontFamily: fontTokens.primaryFontFamily,
     fontSize: '18px',
     fontWeight: 500,
     lineHeight: '24px',
   };
-  const font550 = {
+  const font550: FontT = {
     fontFamily: fontTokens.primaryFontFamily,
     fontSize: '20px',
     fontWeight: 500,
     lineHeight: '28px',
   };
-  const font650 = {
+  const font650: FontT = {
     fontFamily: fontTokens.primaryFontFamily,
     fontSize: '24px',
     fontWeight: 500,
     lineHeight: '32px',
   };
-  const font750 = {
+  const font750: FontT = {
     fontFamily: fontTokens.primaryFontFamily,
     fontSize: '28px',
     fontWeight: 500,
     lineHeight: '36px',
   };
-  const font850 = {
+  const font850: FontT = {
     fontFamily: fontTokens.primaryFontFamily,
     fontSize: '32px',
     fontWeight: 500,
     lineHeight: '40px',
   };
-  const font950 = {
+  const font950: FontT = {
     fontFamily: fontTokens.primaryFontFamily,
     fontSize: '36px',
     fontWeight: 500,
     lineHeight: '44px',
   };
-  const font1050 = {
+  const font1050: FontT = {
     fontFamily: fontTokens.primaryFontFamily,
     fontSize: '40px',
     fontWeight: 500,
     lineHeight: '52px',
   };
-  const font1150 = {
+  const font1150: FontT = {
     fontFamily: fontTokens.primaryFontFamily,
     fontSize: '36px',
     fontWeight: 500,
     lineHeight: '44px',
   };
-  const font1250 = {
+  const font1250: FontT = {
     fontFamily: fontTokens.primaryFontFamily,
     fontSize: '44px',
     fontWeight: 500,
     lineHeight: '52px',
   };
-  const font1350 = {
+  const font1350: FontT = {
     fontFamily: fontTokens.primaryFontFamily,
     fontSize: '52px',
     fontWeight: 500,
     lineHeight: '64px',
   };
-  const font1450 = {
+  const font1450: FontT = {
     fontFamily: fontTokens.primaryFontFamily,
     fontSize: '96px',
     fontWeight: 500,

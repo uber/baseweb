@@ -23,3 +23,5 @@ const LocaleProvider = (props: {
 };
 
 export default LocaleProvider;
+
+export type { LocaleT };

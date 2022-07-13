@@ -10,7 +10,7 @@ import BooleanColumn from '../column-boolean';
 import NumericalColumn from '../column-numerical';
 import { StatefulDataTable } from '../stateful-data-table';
 
-import { ArrowUp, ArrowDown, Check } from '../../icon/index';
+import { ArrowUp, ArrowDown, Check } from '../../icon';
 
 type RowDataT = [boolean, number];
 

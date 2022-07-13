@@ -14,7 +14,7 @@ export {
   createThemedUseStyletron,
   ThemeProvider,
   ThemeConsumer,
-} from './styles/index';
+} from './styles';
 export {
   createTheme,
   createDarkTheme,
@@ -26,9 +26,9 @@ export {
   DarkThemeMove,
   LightTheme,
   LightThemeMove,
-} from './themes/index';
-export { default as LocaleProvider } from './locale/index';
+} from './themes';
+export { default as LocaleProvider } from './locale';
 export { default as BaseProvider } from './helpers/base-provider';
 export { getOverrides, mergeOverrides } from './helpers/overrides';
-export type { PrimitivesT } from './themes/types';
-export type { ThemeT } from './styles/types';
+export type { PrimitivesT } from './themes';
+export type { ThemeT } from './styles';

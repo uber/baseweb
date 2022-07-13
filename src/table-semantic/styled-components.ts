@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import Blank from '../icon/blank';
 import ChevronDown from '../icon/chevron-down';
 import ChevronUp from '../icon/chevron-up';
-import { styled, withStyle, expandBorderStyles } from '../styles/index';
+import { styled, withStyle, expandBorderStyles } from '../styles';
 import { SIZE, DIVIDER } from './constants';
 import type { SizeT, DividerT } from './types';
 
@@ -24,7 +24,7 @@ type StyledRootPropsT = {
   $divider?: DividerT;
 };
 
-export const StyledRoot = styled<StyledRootPropsT>('div', ({ $theme, $divider }) => {
+export const StyledRoot = styled<'div', StyledRootPropsT>('div', ({ $theme, $divider }) => {
   const borderStyles: {} =
     $divider === DIVIDER.grid || $divider === DIVIDER.vertical
       ? expandBorderStyles($theme.borders.border300)
@@ -53,7 +53,7 @@ type StyledTablePropsT = {
   $width?: string | null;
 };
 
-export const StyledTable = styled<StyledTablePropsT>('table', ({ $theme, $width }) => {
+export const StyledTable = styled<'table', StyledTablePropsT>('table', ({ $theme, $width }) => {
   return {
     borderSpacing: '0',
     boxSizing: 'border-box',
@@ -62,11 +62,11 @@ export const StyledTable = styled<StyledTablePropsT>('table', ({ $theme, $width 
   };
 });
 
-export const StyledTableHead = styled<{}>('thead', ({ $theme }) => {
+export const StyledTableHead = styled('thead', ({ $theme }) => {
   return {};
 });
 
-export const StyledTableHeadRow = styled<{}>('tr', ({ $theme }) => {
+export const StyledTableHeadRow = styled('tr', ({ $theme }) => {
   return {};
 });
 
@@ -78,7 +78,7 @@ type StyledTableHeadCellPropsT = {
   $size?: SizeT;
 };
 
-export const StyledTableHeadCell = styled<StyledTableHeadCellPropsT>(
+export const StyledTableHeadCell = styled<'th', StyledTableHeadCellPropsT>(
   'th',
   ({ $theme, $size, $divider, $isNumeric }) => {
     const borderDir: string = $theme.direction === 'rtl' ? 'Left' : 'Right';
@@ -138,7 +138,7 @@ export const StyledTableHeadCellSortable = withStyle<
   };
 });
 
-export const StyledSortIconContainer = styled<{}>('span', ({ $theme }) => {
+export const StyledSortIconContainer = styled('span', ({ $theme }) => {
   return {
     display: 'flex',
     alignItems: 'center',
@@ -177,7 +177,7 @@ export const StyledSortNoneIcon = styled<typeof Blank, {}>(Blank, ({ $theme }) =
   };
 });
 
-export const StyledTableBody = styled<{}>('tbody', ({ $theme }) => {
+export const StyledTableBody = styled('tbody', ({ $theme }) => {
   return {};
 });
 
@@ -187,7 +187,7 @@ type StyledTableBodyRowPropsT = {
   $divider?: DividerT;
 };
 
-export const StyledTableBodyRow = styled<StyledTableBodyRowPropsT>('tr', ({ $theme }) => {
+export const StyledTableBodyRow = styled<'tr', StyledTableBodyRowPropsT>('tr', ({ $theme }) => {
   return {
     ':hover': {
       backgroundColor: $theme.colors.tableStripedBackground,
@@ -207,7 +207,7 @@ type StyledTableBodyCellPropsT = {
   $isSortable?: boolean | null;
 };
 
-export const StyledTableBodyCell = styled<StyledTableBodyCellPropsT>(
+export const StyledTableBodyCell = styled<'td', StyledTableBodyCellPropsT>(
   'td',
   ({ $theme, $size, $divider, $isNumeric, $isLastRow, $isSortable }) => {
     const borderDir: string = $theme.direction === 'rtl' ? 'Left' : 'Right';
@@ -240,7 +240,7 @@ export const StyledTableBodyCell = styled<StyledTableBodyCellPropsT>(
   }
 );
 
-export const StyledTableLoadingMessage = styled<{}>('div', ({ $theme }) => {
+export const StyledTableLoadingMessage = styled<'div', {}>('div', ({ $theme }) => {
   return {
     ...$theme.typography.ParagraphSmall,
     color: $theme.colors.contentPrimary,

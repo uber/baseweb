@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Button, SHAPE, SIZE } from '../index';
+import { Button, SHAPE, SIZE } from '..';
 import Upload from '../../icon/upload';
 import ChevronRight from '../../icon/chevron-right';
 

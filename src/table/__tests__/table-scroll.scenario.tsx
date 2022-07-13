@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Table } from '../index';
+import { Table } from '..';
 
 export function Scenario() {
   return (
@@ -16,7 +16,7 @@ export function Scenario() {
         data={[...new Array(40)].map(() =>
           [...new Array(10)].map((val, index) => (
             // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
-            <div key={index} tabIndex="0">
+            <div key={index} tabIndex={0}>
               Cell Data
             </div>
           ))

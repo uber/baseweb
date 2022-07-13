@@ -8,31 +8,32 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import { NestedMenuContext } from './nested-menus';
-import { Popover } from '../popover/index';
+import { Popover } from '../popover';
 import type { OverrideT } from '../helpers/overrides';
 import { getOverrides, mergeOverrides } from '../helpers/overrides';
 import type { ItemT } from './types';
 
 type PropsT = {
-  children: React.ReactNode;
   getChildMenu: ((item: ItemT) => React.ReactNode) | undefined | null;
   isOpen: boolean;
   item: ItemT;
   resetParentMenu: () => void;
   renderAll?: boolean;
-  onClick?: (event: MouseEvent) => unknown;
+  onClick?: (event: React.MouseEvent) => unknown;
   overrides?: {
     ChildMenuPopover?: OverrideT;
   };
 };
 
-export default function MaybeChildMenu(props: PropsT) {
+const MaybeChildMenu: React.FC<PropsT> = (props): React.ReactElement => {
   if (!props.getChildMenu) {
+    // @ts-expect-error todo(flow->ts): children should be of type ReactElement or null
     return props.children;
   }
 
   const ChildMenu = props.getChildMenu(props.item);
   if (!ChildMenu) {
+    // @ts-expect-error todo(flow->ts): children should be of type ReactElement or null
     return props.children;
   }
   const { overrides = {} } = props;
@@ -80,4 +81,5 @@ export default function MaybeChildMenu(props: PropsT) {
       }}
     </NestedMenuContext.Consumer>
   );
-}
+};
+export default MaybeChildMenu;

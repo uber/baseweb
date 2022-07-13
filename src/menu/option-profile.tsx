@@ -21,7 +21,6 @@ import { getOverrides } from '../helpers/overrides';
 // Types
 import type { OptionProfilePropsT } from './types';
 
-// flowlint-next-line unclear-type:off
 function OptionProfile(props: OptionProfilePropsT, ref: React.RefObject<any>) {
   const {
     item,
@@ -64,6 +63,7 @@ function OptionProfile(props: OptionProfilePropsT, ref: React.RefObject<any>) {
 
   return (
     <MaybeChildMenu
+      // @ts-expect-error todo(flow->ts)
       ref={ref}
       getChildMenu={getChildMenu}
       isOpen={!!$isHighlighted}

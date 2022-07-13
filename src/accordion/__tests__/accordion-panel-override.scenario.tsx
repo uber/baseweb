@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Accordion, Panel } from '../index';
+import { Accordion, Panel } from '..';
 
-import { createTheme, lightThemePrimitives, ThemeProvider } from '../../index';
+import { createTheme, lightThemePrimitives, ThemeProvider } from '../..';
 
 const themeWithIcons = createTheme(
   {

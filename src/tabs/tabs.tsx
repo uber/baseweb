@@ -30,7 +30,6 @@ export default class Tabs extends React.Component<TabsPropsT> {
 
   getTabs() {
     const { activeKey, disabled, orientation, children, overrides = {} } = this.props;
-    // flowlint-next-line unclear-type:off
     const tabs = React.Children.map(children, (child: any, index) => {
       if (!child) return;
 
@@ -54,7 +53,6 @@ export default class Tabs extends React.Component<TabsPropsT> {
     const { activeKey, disabled, orientation, children, overrides = {}, renderAll } = this.props;
     const { TabContent: TabContentOverride } = overrides;
     const [TabContent, tabContentProps] = getOverrides(TabContentOverride, StyledTabContent);
-    // flowlint-next-line unclear-type:off
     const tabs = React.Children.map(children, (child: any, index) => {
       if (!child) return;
       const key = child.key || String(index);

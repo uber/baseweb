@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Datepicker } from '../index';
+import { Datepicker } from '..';
 
 export function Scenario() {
   const [date, setDate] = React.useState(new Date('2020/01/10'));

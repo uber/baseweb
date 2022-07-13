@@ -18,7 +18,7 @@ import StepMinMax from 'examples/slider/step-min-max.js';
 import CustomTicks from 'examples/slider/custom-ticks.js';
 import Customization from 'examples/slider/overrides.js';
 
-import {StatefulSlider as Slider} from 'baseui/slider';
+import { StatefulSlider as Slider } from 'baseui/slider';
 import * as SliderExports from 'baseui/slider';
 
 import Yard from '../../components/yard/index';
@@ -29,11 +29,7 @@ export default Layout;
 
 # Slider
 
-<Yard
-  placeholderHeight={90}
-  compilerStyles={{marginTop: '56px'}}
-  {...sliderYardConfig}
-/>
+<Yard placeholderHeight={90} compilerStyles={{ marginTop: '56px' }} {...sliderYardConfig} />
 
 Control input with sliding axis to choose a single value or range between min and max values.
 
@@ -100,11 +96,7 @@ As with many of our components, there is also an [uncontrolled](https://reactjs.
 <ApiTable
   title="Slider props"
   config={sliderYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/slider/slider.js')}
+  types={require('!!extract-react-types-loader!../../../src/slider/slider')}
 />
 
-<Exports
-  component={SliderExports}
-  title="Slider exports"
-  path="baseui/slider"
-/>
+<Exports component={SliderExports} title="Slider exports" path="baseui/slider" />

@@ -15,9 +15,9 @@ import isBefore from 'date-fns/isBefore/index.js';
 import isEqual from 'date-fns/isEqual/index.js';
 import set from 'date-fns/set/index.js';
 
-import { Button, SIZE } from '../button/index';
-import { ButtonGroup, MODE } from '../button-group/index';
-import { Checkbox } from '../checkbox/index';
+import { Button, SIZE } from '../button';
+import { ButtonGroup, MODE } from '../button-group';
+import { Checkbox } from '../checkbox';
 import {
   applyDateToTime,
   applyTimeToDate,
@@ -26,21 +26,21 @@ import {
   getQuarterInLocale,
   getStartOfWeek,
   addDays,
-} from '../datepicker/utils/index';
-import { Datepicker } from '../datepicker/index';
-import { TimePicker } from '../timepicker/index';
-import { useStyletron } from '../styles/index';
-import { Select, type ValueT } from '../select/index';
+} from '../datepicker/utils';
+import { Datepicker } from '../datepicker';
+import { TimePicker } from '../timepicker';
+import { useStyletron } from '../styles';
+import { Select, type ValueT } from '../select';
 
 import Column from './column';
 import { COLUMNS, DATETIME_OPERATIONS } from './constants';
 import FilterShell from './filter-shell';
 import type { ColumnT, SharedColumnOptionsT } from './types';
-import { LocaleContext } from '../locale/index';
+import { LocaleContext } from '../locale';
+import type { ComponentProps } from 'react';
 
 type OptionsT = {
   formatString?: string;
-  // flowlint-next-line unclear-type:off
   locale?: any;
 } & SharedColumnOptionsT<Date>;
 
@@ -228,7 +228,6 @@ function DatetimeFilter(props) {
   const [categoricalOperator, setCategoricalOperator] = React.useState<ValueT>([
     initialState.categoricalOperator,
   ]);
-  // flowlint-next-line unclear-type:off
   const [rangeDates, setRangeDates] = React.useState<any>(
     initialState.rangeDates.length
       ? initialState.rangeDates
@@ -250,7 +249,6 @@ function DatetimeFilter(props) {
       onExcludeChange={() => setExclude(!exclude)}
       onApply={() => {
         if (isRange) {
-          // flowlint-next-line unclear-type:off
           const op: DatetimeOperationsT = rangeOperator[0].id as any;
 
           let description = '';
@@ -278,7 +276,6 @@ function DatetimeFilter(props) {
         }
 
         if (isCategorical) {
-          // flowlint-next-line unclear-type:off
           const op: DatetimeOperationsT = categoricalOperator[0].id as any;
 
           let selection: number[] = [];
@@ -359,7 +356,6 @@ function DatetimeFilter(props) {
             <Select
               value={rangeOperator}
               onChange={(params) => setRangeOperator(params.value)}
-              // flowlint-next-line unclear-type:off
               mountNode={mountNode.current as any}
               options={RANGE_OPERATIONS.map((op) => ({
                 label: locale.datatable[op.localeLabelKey],
@@ -373,7 +369,6 @@ function DatetimeFilter(props) {
               {(rangeOperator[0].id === DATETIME_OPERATIONS.RANGE_DATETIME ||
                 rangeOperator[0].id === DATETIME_OPERATIONS.RANGE_DATE) && (
                 <Datepicker
-                  // flowlint-next-line unclear-type:off
                   mountNode={mountNode.current as any}
                   value={rangeDates}
                   onChange={({ date }) => {
@@ -454,7 +449,6 @@ function DatetimeFilter(props) {
                 label: locale.datatable[op.localeLabelKey],
                 id: op.id,
               }))}
-              // flowlint-next-line unclear-type:off
               mountNode={mountNode.current as any}
               size="compact"
               clearable={false}

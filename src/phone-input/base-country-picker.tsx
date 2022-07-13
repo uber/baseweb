@@ -4,7 +4,7 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import React, { useState } from 'react';
+import React, { ComponentProps, useState } from 'react';
 
 import {
   StyledRoot,
@@ -14,8 +14,8 @@ import {
   StyledCountrySelectDropdownNameColumn as DefaultNameColumn,
   StyledCountrySelectDropdownDialcodeColumn as DefaultDialcodeColumn,
 } from './styled-components';
-import { SingleSelect as DefaultSelect } from '../select/index';
-import { PLACEMENT } from '../popover/index';
+import { SingleSelect as DefaultSelect } from '../select';
+import { PLACEMENT } from '../popover';
 import { getOverrides, mergeOverrides } from '../helpers/overrides';
 import defaultProps from './default-props';
 import { iso2FlagEmoji } from './utils';
@@ -34,14 +34,16 @@ CountryPicker.defaultProps = {
   required: defaultProps.required,
 };
 
-const DropdownListItem = React.forwardRef((props, ref) => {
-  const { children, ...rest } = props;
-  return (
-    <DefaultListItem ref={ref} {...rest}>
-      {props.children}
-    </DefaultListItem>
-  );
-});
+const DropdownListItem = React.forwardRef<HTMLLIElement, ComponentProps<typeof DefaultListItem>>(
+  (props, ref) => {
+    const { children, ...rest } = props;
+    return (
+      <DefaultListItem ref={ref} {...rest}>
+        {props.children}
+      </DefaultListItem>
+    );
+  }
+);
 DropdownListItem.displayName = 'DropdownListItem';
 
 function DropdownOptionContent(props) {
@@ -72,7 +74,6 @@ export default function CountryPicker(props: CountrySelectPropsT) {
     $size: size,
   };
   const options = Object.values(props.countries);
-  // $FlowFixMe
   const scrollIndex = options.findIndex((opt) => opt.id === country.id);
   const baseSelectOverrides = {
     Root: {

@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 
-import { Component } from '../index';
+import { Component } from '..';
 
 describe('Component', () => {
   it('calls onClick handler when clicked', () => {

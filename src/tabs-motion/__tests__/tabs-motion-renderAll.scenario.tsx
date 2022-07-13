@@ -9,17 +9,19 @@ LICENSE file in the root directory of this source tree.
 /* global window */
 
 import * as React from 'react';
-import { Tab, Tabs } from '../index';
-import { Button, KIND } from '../../button/index';
+import { Tab, Tabs } from '..';
+import { Button, KIND } from '../../button';
 
+// @ts-expect-error
 window.__e2e__mounted = false;
 const Mounty = () => {
+  // @ts-expect-error
   window.__e2e__mounted = true;
   return null;
 };
 
 export function Scenario() {
-  const [activeKey, setActiveKey] = React.useState(0);
+  const [activeKey, setActiveKey] = React.useState<React.Key>(0);
   return (
     <Tabs activeKey={activeKey} onChange={({ activeKey }) => setActiveKey(activeKey)} renderAll>
       <Tab title="Robot">

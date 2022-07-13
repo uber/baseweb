@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { render, fireEvent, getByText } from '@testing-library/react';
 
-import { Avatar } from '../index';
+import { Avatar } from '..';
 
 // manually trigger src load error. jsdom will not fire a load event
 // https://github.com/jsdom/jsdom/issues/1816#issuecomment-310106280

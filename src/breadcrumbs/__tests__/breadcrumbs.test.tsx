@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { render, queryAllByTestId } from '@testing-library/react';
 
-import { StyledLink } from '../../link/index';
+import { StyledLink } from '../../link';
 import { Breadcrumbs } from '../breadcrumbs';
 
 describe('Breadcrumbs', () => {

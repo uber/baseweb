@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { AppNavBar } from '../index';
+import { AppNavBar } from '..';
 
 const mainItems = [
   { label: 'Primary A' },

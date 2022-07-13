@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Block } from '../../block/index';
-import { Checkbox } from '../index';
+import { Block } from '../../block';
+import { Checkbox } from '..';
 
 class GroupList extends React.Component<
   {},
@@ -24,7 +24,6 @@ class GroupList extends React.Component<
     return (
       <Block>
         <Checkbox
-          components={{}}
           onChange={(e) => {
             const nextCheckboxes = [e.target.checked, e.target.checked];
             this.setState({ checkboxes: nextCheckboxes });

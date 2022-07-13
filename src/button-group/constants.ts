@@ -7,8 +7,8 @@ LICENSE file in the root directory of this source tree.
 export const MODE = Object.freeze({
   radio: 'radio',
   checkbox: 'checkbox',
-});
+} as const);
 
 export const STATE_CHANGE_TYPE = Object.freeze({
   change: 'change',
-});
+} as const);

@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import { render, getByText } from '@testing-library/react';
 
-import { SnackbarElement } from '../index';
+import { SnackbarElement } from '..';
 
 describe('snackbar-element', () => {
   it('renders text content', () => {

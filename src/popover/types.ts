@@ -7,21 +7,14 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/generic-spacing */
 import * as React from 'react';
 import type { OverrideT } from '../helpers/overrides';
-import type { TetherPlacementT } from '../layer/types';
+import type { TetherPlacementT } from '../layer';
 import { ACCESSIBILITY_TYPE, STATE_CHANGE_TYPE, TRIGGER_TYPE } from './constants';
 
-export type { PopperDataObjectT, PopperOffsetT, PopperOptionsT } from '../layer/types';
+export type { PopperDataObjectT, PopperOffsetT, PopperOptionsT } from '../layer';
 
 export type PopoverPlacementT = TetherPlacementT;
 export type TriggerTypeT = keyof typeof TRIGGER_TYPE;
 export type AccessibilityTypeT = keyof typeof ACCESSIBILITY_TYPE;
-export type ReactRefT<T> =
-  | {
-      current: null | T;
-    }
-  | {
-      current: null | T;
-    };
 
 export type StateT = {
   isOpen: boolean;
@@ -47,7 +40,7 @@ export type OverridesT = {
 
 // re-exports to maintain same public interface
 export type ChildT = React.ReactNode;
-export type ChildrenT = React.ChildrenArray<ChildT>;
+export type ChildrenT = Array<ChildT> | ChildT;
 
 // Props shared by all flavors of popover
 export type BasePopoverPropsT = {
@@ -72,19 +65,19 @@ export type BasePopoverPropsT = {
   /** Where to mount the popover */
   mountNode?: HTMLElement;
   /** Handler for blur events on trigger element. */
-  onBlur?: (e: Event) => unknown;
+  onBlur?: (e: React.FocusEvent) => unknown;
   /** Handler for click events on trigger element. */
-  onClick?: (e: Event) => unknown;
+  onClick?: (e: React.SyntheticEvent) => unknown;
   /** Handler for 'Esc' keypress events */
-  onFocus?: (e: Event) => unknown;
+  onFocus?: (e: React.FocusEvent) => unknown;
   /** Pass FocusOptions for focusing (used as `HtmlElement.focus(focusOptions)`) */
   focusOptions?: FocusOptions;
   /** Handler for mouseenter events on trigger element. */
-  onMouseEnter?: (e: Event) => unknown;
+  onMouseEnter?: (e: React.MouseEvent) => unknown;
   /** Number of milliseconds to wait before showing the popover after mouse enters the trigger element (for triggerType `hover`). */
   onMouseEnterDelay?: number;
   /** Handler for mouseleave events on trigger element. */
-  onMouseLeave?: (e: Event) => unknown;
+  onMouseLeave?: (e: React.MouseEvent) => unknown;
   /** Number of milliseconds to wait before showing the popover after mouse leaves the trigger element (for triggerType `hover`). */
   onMouseLeaveDelay?: number;
   overrides?: OverridesT;
@@ -93,7 +86,6 @@ export type BasePopoverPropsT = {
   /** Popper options override
    * https://github.com/popperjs/popper.js/blob/v1.x/docs/_includes/popper-documentation.md
    */
-  // flowlint-next-line unclear-type:off
   popperOptions?: any;
   /** Renders all popover content for SEO purposes regardless of popover isOpen state */
   renderAll?: boolean;
@@ -195,15 +187,15 @@ export type SharedStylePropsArgT = {} & ArrowStylePropsArgT & BodyStylePropsArgT
 export type AnchorPropsT = {
   'aria-controls'?: string | null;
   'aria-describedby'?: string | null;
-  'aria-expanded'?: string;
-  'aria-haspopup'?: string;
+  'aria-expanded'?: boolean;
+  'aria-haspopup'?: boolean;
   'aria-owns'?: string | null;
   id?: string | null;
-  onBlur?: (e: Event) => unknown;
-  onClick?: (e: Event) => unknown;
-  onFocus?: (e: Event) => unknown;
-  onMouseEnter?: (e: Event) => unknown;
-  onMouseLeave?: (e: Event) => unknown;
-  ref?: ReactRefT<HTMLElement>;
+  onBlur?: (e: React.FocusEvent) => unknown;
+  onClick?: (e: React.MouseEvent) => unknown;
+  onFocus?: (e: React.FocusEvent) => unknown;
+  onMouseEnter?: (e: React.MouseEvent) => unknown;
+  onMouseLeave?: (e: React.MouseEvent) => unknown;
+  ref?: React.Ref<HTMLElement>;
   tabIndex?: number;
 };

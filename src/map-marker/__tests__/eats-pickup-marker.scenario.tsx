@@ -11,13 +11,13 @@ import {
   NEEDLE_SIZES,
   BADGE_ENHANCER_SIZES,
   LABEL_ENHANCER_POSITIONS,
-} from '../index';
+} from '..';
 import TileGrid from './tile-grid';
 import ReactMapGL, { Marker } from 'react-map-gl';
 import Upload from '../../icon/upload';
 import Search from '../../icon/search';
 import Show from '../../icon/show';
-import { useStyletron } from '../../styles/index';
+import { useStyletron } from '../../styles';
 import { getMapStyle } from './map-style';
 
 const uberHq = {
@@ -186,7 +186,7 @@ export function Scenario() {
                   : LABEL_ENHANCER_POSITIONS.none
               }
               badgeEnhancerSize={BADGE_ENHANCER_SIZES.mediumText}
-              badgeEnhancerContent={() => 'New'}
+              badgeEnhancerContent={() => <>New</>}
             />
           </Marker>
         </ReactMapGL>

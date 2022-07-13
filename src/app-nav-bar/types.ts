@@ -34,13 +34,10 @@ export type OverridesT = {
 
 export type NavItemT = {
   active?: boolean;
-  // flowlint-next-line unclear-type:off
   icon?: React.ComponentType<any>;
-  // flowlint-next-line unclear-type:off
   info?: any;
   label: string;
   children?: NavItemT[];
-  // flowlint-next-line unclear-type:off
   navExitIcon?: React.ComponentType<any>;
   navPosition?: {
     desktop?: typeof POSITION[keyof typeof POSITION];

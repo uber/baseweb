@@ -4,12 +4,13 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import { styled } from '../styles/index';
+import { styled } from '../styles';
 import { KIND, SIZE, SHAPE } from './constants';
 import type { SharedStylePropsT } from './types';
 import type { FontT } from '../themes/types';
+import type { StyleObject } from 'styletron-standard';
 
-export const BaseButton = styled<SharedStylePropsT>(
+export const BaseButton = styled<'button', SharedStylePropsT>(
   'button',
   ({
     $theme,
@@ -21,7 +22,6 @@ export const BaseButton = styled<SharedStylePropsT>(
     $isSelected,
     $disabled,
     $isFocusVisible,
-    //$FlowFixMe
   }) => ({
     display: 'inline-flex',
     // need to maintain button width while showing loading spinner
@@ -67,7 +67,7 @@ export const BaseButton = styled<SharedStylePropsT>(
   })
 );
 
-export const EndEnhancer = styled<SharedStylePropsT>('div', ({ $theme }) => {
+export const EndEnhancer = styled<'div', SharedStylePropsT>('div', ({ $theme }) => {
   const marginDirection: string = $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
   return {
     display: 'flex',
@@ -75,7 +75,7 @@ export const EndEnhancer = styled<SharedStylePropsT>('div', ({ $theme }) => {
   };
 });
 
-export const StartEnhancer = styled<SharedStylePropsT>('div', ({ $theme }) => {
+export const StartEnhancer = styled<'div', SharedStylePropsT>('div', ({ $theme }) => {
   const marginDirection: string = $theme.direction === 'rtl' ? 'marginLeft' : 'marginRight';
   return {
     display: 'flex',
@@ -83,25 +83,28 @@ export const StartEnhancer = styled<SharedStylePropsT>('div', ({ $theme }) => {
   };
 });
 
-export const LoadingSpinnerContainer = styled<SharedStylePropsT>('div', ({ $theme, $size }) => {
-  // we don't have a theming value for this
-  let margins = '3px';
-  if ($size === SIZE.mini || $size === SIZE.compact) {
-    margins = $theme.sizing.scale0;
-  }
-  if ($size === SIZE.large) {
-    margins = $theme.sizing.scale100;
-  }
+export const LoadingSpinnerContainer = styled<'div', SharedStylePropsT>(
+  'div',
+  ({ $theme, $size }) => {
+    // we don't have a theming value for this
+    let margins = '3px';
+    if ($size === SIZE.mini || $size === SIZE.compact) {
+      margins = $theme.sizing.scale0;
+    }
+    if ($size === SIZE.large) {
+      margins = $theme.sizing.scale100;
+    }
 
-  return {
-    lineHeight: 0,
-    position: 'static',
-    marginBottom: margins,
-    marginTop: margins,
-  };
-});
+    return {
+      lineHeight: 0,
+      position: 'static',
+      marginBottom: margins,
+      marginTop: margins,
+    };
+  }
+);
 
-export const LoadingSpinner = styled<SharedStylePropsT>(
+export const LoadingSpinner = styled<'span', SharedStylePropsT>(
   'span',
   ({ $theme, $kind, $disabled, $size }) => {
     const { foreground, background } = getLoadingSpinnerColors({

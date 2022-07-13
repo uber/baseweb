@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import React, { useState, useMemo } from 'react';
-import { TableBuilder, TableBuilderColumn } from '../index';
+import { TableBuilder, TableBuilderColumn } from '..';
 
 export function Scenario() {
   const [sortColumn, setSortColumn] = useState('bar');
@@ -168,10 +168,10 @@ export function Scenario() {
       sortOrder={sortAsc ? 'ASC' : 'DESC'}
       onSort={handleSort}
     >
-      <TableBuilderColumn id="bar" header="Produce" sortable>
+      <TableBuilderColumn<any> id="bar" header="Produce" sortable>
         {(row) => <a href={row.url}>{row.bar}</a>}
       </TableBuilderColumn>
-      <TableBuilderColumn id="foo" header="Quantity" numeric sortable>
+      <TableBuilderColumn<any> id="foo" header="Quantity" numeric sortable>
         {(row) => row.foo}
       </TableBuilderColumn>
     </TableBuilder>

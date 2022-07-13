@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
-import { ThemeProvider, LightTheme } from '../../index';
+import { ThemeProvider, LightTheme } from '../..';
 import { Scenario as BasicInputScenario } from './input.scenario';
 import { Scenario as ClearableScenario } from './input-clearable.scenario';
 import { Scenario as PasswordScenario } from './input-password.scenario';

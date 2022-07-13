@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import React from 'react';
-import { Grid, Cell, ALIGNMENT } from '../index';
+import { Grid, Cell, ALIGNMENT } from '..';
 import Inner from './inner';
 
 export function Scenario() {

@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
-import {Notification, KIND} from 'baseui/notification';
+import { Notification, KIND } from 'baseui/notification';
 
 import Example from '../../components/example';
 import API from '../../components/api';
@@ -20,12 +20,11 @@ import Override from 'examples/block/override.js';
 
 export default Layout;
 
-<Notification overrides={{Body: {style: {width: 'auto'}}}} kind={KIND.warning}>
-  We recommend using the <a href="/components/use-styletron">useStyletron</a>{' '}
-  hook to apply css styles to your html elements. It allows for simpler patterns
-  with less custom api to learn. It aligns much closer to basic html/css without
-  React and maintains the efficient inline benefits of using the Block
-  component.
+<Notification overrides={{ Body: { style: { width: 'auto' } } }} kind={KIND.warning}>
+  We recommend using the <a href="/components/use-styletron">useStyletron</a> hook to apply css
+  styles to your html elements. It allows for simpler patterns with less custom api to learn. It
+  aligns much closer to basic html/css without React and maintains the efficient inline benefits of
+  using the Block component.
 </Notification>
 
 # Block
@@ -85,9 +84,6 @@ margin-top: 10px;
 
 ## API
 
-<API
-  heading="Block API"
-  api={require('!!extract-react-types-loader!../../../src/block/block.js')}
-/>
+<API heading="Block API" api={require('!!extract-react-types-loader!../../../src/block/block')} />
 
 <Exports component={BlockExports} title="Block exports" path="baseui/block" />

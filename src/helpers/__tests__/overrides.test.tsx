@@ -51,9 +51,7 @@ describe('Helpers - Overrides', () => {
 
   test('toObjectOverride', () => {
     const CustomComponent = getMockComponent();
-    // $FlowFixMe - Calling toObjectOverride with no args
     expect(toObjectOverride()).toEqual({});
-    // $FlowFixMe - Calling toObjectOverride with null
     expect(toObjectOverride(null)).toEqual({});
     expect(toObjectOverride(CustomComponent)).toEqual({
       component: CustomComponent,
@@ -134,7 +132,7 @@ describe('Helpers - Overrides', () => {
     const override2 = { style: () => ({ color: 'blue' }) };
     const result = mergeOverride(override1, override2);
     expect(typeof result.style).toBe('function');
-    // $FlowFixMe style should be a function here
+    // @ts-expect-error style should be a function here
     expect(result.style()).toEqual({
       color: 'blue',
       textTransform: 'uppercase',
@@ -148,7 +146,7 @@ describe('Helpers - Overrides', () => {
     const override2 = { props: () => ({ prop1: 'newValue' }) };
     const result = mergeOverride(override1, override2);
     expect(typeof result.props).toBe('function');
-    // $FlowFixMe props should be a function here
+    // @ts-expect-error props should be a function here
     expect(result.props()).toEqual({
       prop1: 'newValue',
       prop2: 'val2',
@@ -174,15 +172,15 @@ describe('Helpers - Overrides', () => {
     expect(result1).toEqual(expectedResult);
 
     expect(typeof result2).toBe('function');
-    // $FlowFixMe result should be a function here
+    // @ts-expect-error result should be a function here
     expect(result2()).toEqual(expectedResult);
 
     expect(typeof result3).toBe('function');
-    // $FlowFixMe result should be a function here
+    // @ts-expect-error result should be a function here
     expect(result3()).toEqual(expectedResult);
 
     expect(typeof result4).toBe('function');
-    // $FlowFixMe result should be a function here
+    // @ts-expect-error result should be a function here
     expect(result4()).toEqual(expectedResult);
   });
 
@@ -211,7 +209,6 @@ describe('Helpers - Overrides', () => {
 
   test('dynamic prop overrides', () => {
     const consoleWarn = console.warn;
-    // $FlowFixMe
     console.warn = jest.fn();
 
     function DefaultComponent(props) {
@@ -228,15 +225,13 @@ describe('Helpers - Overrides', () => {
     const element = container.querySelector('div');
     expect(element?.textContent).toBe('default 2');
 
-    // $FlowFixMe
+    // @ts-expect-error
     expect(console.warn.mock.calls.length).toBe(1);
-    // $FlowFixMe
     console.warn = consoleWarn;
   });
 
   test('dynamic prop with component overrides', () => {
     const consoleWarn = console.warn;
-    // $FlowFixMe
     console.warn = jest.fn();
 
     function DefaultComponent(props) {
@@ -260,15 +255,13 @@ describe('Helpers - Overrides', () => {
     const element = container.querySelector('div');
     expect(element?.textContent).toBe('custom 3');
 
-    // $FlowFixMe
+    // @ts-expect-error
     expect(console.warn.mock.calls.length).toBe(1);
-    // $FlowFixMe
     console.warn = consoleWarn;
   });
 
   test('dynamic prop with style overrides', () => {
     const consoleWarn = console.warn;
-    // $FlowFixMe
     console.warn = jest.fn();
 
     function DefaultComponent(props) {
@@ -297,9 +290,8 @@ describe('Helpers - Overrides', () => {
     expect(element?.getAttribute('style')).toBe('background-color: blue;');
     expect(element?.textContent).toBe('custom 3');
 
-    // $FlowFixMe
+    // @ts-expect-error
     expect(console.warn.mock.calls.length).toBe(1);
-    // $FlowFixMe
     console.warn = consoleWarn;
   });
 });

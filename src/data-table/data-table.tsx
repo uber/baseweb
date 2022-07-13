@@ -13,15 +13,15 @@ import {
   SHAPE as BUTTON_SHAPES,
   SIZE as BUTTON_SIZES,
   KIND as BUTTON_KINDS,
-} from '../button/index';
-import { useStyletron } from '../styles/index';
-import { Tooltip, PLACEMENT } from '../tooltip/index';
+} from '../button';
+import { useStyletron } from '../styles';
+import { Tooltip, PLACEMENT } from '../tooltip';
 
 import { SORT_DIRECTIONS } from './constants';
 import HeaderCell from './header-cell';
 import MeasureColumnWidths from './measure-column-widths';
 import type { ColumnT, DataTablePropsT, RowT, SortDirectionsT, RowActionT } from './types';
-import { LocaleContext } from '../locale/index';
+import { LocaleContext } from '../locale';
 
 // consider pulling this out to a prop if useful.
 const HEADER_ROW_HEIGHT = 48;
@@ -59,13 +59,7 @@ type HeaderContextT = {
 type CellPlacementPropsT = {
   columnIndex: number;
   rowIndex: number;
-  style: {
-    position: string;
-    height: number;
-    width: number;
-    top: number;
-    left: number;
-  };
+  style: React.CSSProperties;
   data: {
     columns: ColumnT[];
     columnHighlightIndex: number;
@@ -81,7 +75,7 @@ type CellPlacementPropsT = {
 
 const sum = (ns) => ns.reduce((s, n) => s + n, 0);
 
-function CellPlacement({ columnIndex, rowIndex, data, style }) {
+function CellPlacement({ columnIndex, rowIndex, data, style }: CellPlacementPropsT) {
   const [css, theme] = useStyletron();
 
   // ignores the table header row
@@ -182,10 +176,7 @@ function compareCellPlacement(prevProps, nextProps) {
 
   return false;
 }
-const CellPlacementMemo = React.memo<CellPlacementPropsT, unknown>(
-  CellPlacement,
-  compareCellPlacement
-);
+const CellPlacementMemo = React.memo<CellPlacementPropsT>(CellPlacement, compareCellPlacement);
 CellPlacementMemo.displayName = 'CellPlacement';
 
 const HeaderContext = React.createContext<HeaderContextT>({
@@ -247,7 +238,6 @@ function Header(props: HeaderProps) {
   const [css, theme] = useStyletron();
   const [startResizePos, setStartResizePos] = React.useState(0);
   const [endResizePos, setEndResizePos] = React.useState(0);
-  // flowlint-next-line unclear-type:off
   const headerCellRef = React.useRef<any>(null);
 
   const RULER_OFFSET = 2;
@@ -582,6 +572,7 @@ const InnerTableElement = React.forwardRef<
               const RowActionIcon = rowAction.renderIcon;
               return (
                 <Button
+                  // @ts-expect-error todo(flow->ts): alt on button?
                   alt={rowAction.label}
                   key={rowAction.label}
                   onClick={(event) =>
@@ -618,8 +609,8 @@ InnerTableElement.displayName = 'InnerTableElement';
 
 function MeasureScrollbarWidth(props) {
   const [css] = useStyletron();
-  const outerRef = React.useRef();
-  const innerRef = React.useRef();
+  const outerRef = React.useRef<HTMLDivElement | undefined>();
+  const innerRef = React.useRef<HTMLDivElement | undefined>();
   React.useEffect(() => {
     if (outerRef.current && innerRef.current) {
       const width = outerRef.current.offsetWidth - innerRef.current.offsetWidth;
@@ -678,8 +669,7 @@ export function DataTable({
   );
 
   // We use state for our ref, to allow hooks to  update when the ref changes.
-  // flowlint-next-line unclear-type:off
-  const [gridRef, setGridRef] = React.useState<VariableSizeGrid<any> | undefined | null>(null);
+  const [gridRef, setGridRef] = React.useState<VariableSizeGrid | undefined | null>(null);
   const [measuredWidths, setMeasuredWidths] = React.useState(columns.map(() => 0));
   const [resizeDeltas, setResizeDeltas] = React.useState(columns.map(() => 0));
   React.useEffect(() => {
@@ -694,7 +684,7 @@ export function DataTable({
   const resetAfterColumnIndex = React.useCallback(
     (columnIndex) => {
       if (gridRef) {
-        // $FlowFixMe trigger react-window to layout the elements again
+        // trigger react-window to layout the elements again
         gridRef.resetAfterColumnIndex(columnIndex, true);
       }
     },
@@ -744,7 +734,7 @@ export function DataTable({
   );
 
   const sortedIndices = React.useMemo(() => {
-    let toSort = allRows.map((r, i) => [r, i]);
+    let toSort = allRows.map((r, i): [DataTablePropsT['rows'][number], number] => [r, i]);
     const index = sortIndex;
 
     if (index !== null && index !== undefined && index !== -1 && columns[index]) {
@@ -913,7 +903,6 @@ export function DataTable({
     setRowHighlightIndex(nextIndex);
     if (gridRef) {
       if (nextIndex >= 0) {
-        // $FlowFixMe - unable to get react-window types
         gridRef.scrollToItem({ rowIndex: nextIndex });
       }
       if (onRowHighlightChange) {
@@ -1013,7 +1002,6 @@ export function DataTable({
             }}
           >
             <VariableSizeGrid
-              // flowlint-next-line unclear-type:off
               ref={setGridRef as any}
               overscanRowCount={10}
               overscanColumnCount={5}

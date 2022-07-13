@@ -5,7 +5,7 @@ import { PropTypes } from 'react-view';
 import { TConfig } from '../types';
 import { theme, inputProps } from './input';
 
-const paymentCardProps = require('!!extract-react-types-loader!../../../../src/payment-card/payment-card.js');
+const paymentCardProps = require('!!extract-react-types-loader!../../../../src/payment-card/payment-card');
 
 const PaymentCardConfig: TConfig = {
   componentName: 'PaymentCard',

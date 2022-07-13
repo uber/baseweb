@@ -2,7 +2,7 @@ import { Skeleton } from 'baseui/skeleton';
 import { PropTypes } from 'react-view';
 import { TConfig } from '../types';
 
-const skeletonProps = require('!!extract-react-types-loader!../../../../src/pin-code/pin-code.js');
+const skeletonProps = require('!!extract-react-types-loader!../../../../src/pin-code/pin-code');
 
 const SkeletonConfig: TConfig = {
   componentName: 'Skeleton',

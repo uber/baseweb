@@ -15,13 +15,14 @@ import {
   StyledCountrySelectDropdownNameColumn as DefaultNameColumn,
   StyledCountrySelectDropdownDialcodeColumn as DefaultDialcodeColumn,
 } from './styled-components';
-import { LocaleContext } from '../locale/index';
+import { LocaleContext } from '../locale';
 import { StyledEmptyState } from '../menu/styled-components';
 import { getOverrides } from '../helpers/overrides';
 import { iso2FlagEmoji } from './utils';
 
-import type { CountrySelectDropdownPropsT, ReactRefT } from './types';
-import type { LocaleT } from '../locale/types';
+import type { CountrySelectDropdownPropsT } from './types';
+import type { LocaleT } from '../locale';
+import type { ComponentProps } from 'react';
 
 CountrySelectDropdown.defaultProps = {
   maxDropdownHeight: defaultProps.maxDropdownHeight,
@@ -30,7 +31,8 @@ CountrySelectDropdown.defaultProps = {
 
 function CountrySelectDropdown(
   props: CountrySelectDropdownPropsT & {
-    $forwardedRef: ReactRefT<HTMLElement> | ((a: null | HTMLElement) => unknown);
+    // todo(flow->ts) $forwardedRef: React.Ref<any>;
+    $forwardedRef: React.Ref<HTMLElement> | ((a: null | HTMLElement) => unknown);
   }
 ) {
   const {
@@ -81,7 +83,11 @@ function CountrySelectDropdown(
 
   const children = React.Children.toArray(props.children);
   const scrollIndex = Math.min(
-    children.findIndex((opt) => opt.props.item.id === country.id) + 5,
+    children.findIndex(
+      (opt) =>
+        // @ts-expect-error todo(flow->ts) type issue introduced in react 17
+        opt.props.item.id === country.id
+    ) + 5,
     children.length - 1
   );
   return (
@@ -98,7 +104,9 @@ function CountrySelectDropdown(
               scrollToIndex={scrollIndex}
               rowRenderer={({ index, key, style }) => {
                 // resetMenu and getItemLabel should not end up on native html elements
-                const { item, resetMenu, getItemLabel, ...rest } = children[index].props;
+                const { item, resetMenu, getItemLabel, ...rest } =
+                  // @ts-expect-error todo(flow->ts) type issue introduced in react 17
+                  children[index].props;
                 const { id: iso, label, dialCode } = item;
                 return (
                   <ListItem
@@ -129,8 +137,9 @@ function CountrySelectDropdown(
   );
 }
 
-const CountrySelectDropdownFwd = React.forwardRef<HTMLElement, CountrySelectDropdownPropsT>(
-  (props, ref) => <CountrySelectDropdown {...props} $forwardedRef={ref} />
-);
+const CountrySelectDropdownFwd = React.forwardRef<
+  HTMLElement,
+  ComponentProps<typeof CountrySelectDropdown>
+>((props, ref) => <CountrySelectDropdown {...props} $forwardedRef={ref} />);
 CountrySelectDropdownFwd.displayName = 'CountrySelectDropdownFwd';
 export default CountrySelectDropdownFwd;

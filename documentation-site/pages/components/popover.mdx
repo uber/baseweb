@@ -21,10 +21,10 @@ import Customization from 'examples/popover/overrides.js';
 import AnchorRefHandling from 'examples/popover/ref-handling.js';
 import SSRRenderAll from 'examples/popover/ssr-render-all.js';
 
-import {Popover, PLACEMENT} from 'baseui/popover';
+import { Popover, PLACEMENT } from 'baseui/popover';
 import * as PopoverExports from 'baseui/popover';
-import {Block} from 'baseui/block';
-import {ParagraphSmall, LabelSmall} from 'baseui/typography';
+import { Block } from 'baseui/block';
+import { ParagraphSmall, LabelSmall } from 'baseui/typography';
 
 import Yard from '../../components/yard/index';
 import popoverYardConfig from '../../components/yard/config/popover';
@@ -113,11 +113,7 @@ directly to Popover's contents, as this will cause unexpected behavior.
 <ApiTable
   title="Popover props"
   config={popoverYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/popover/popover.js')}
+  types={require('!!extract-react-types-loader!../../../src/popover/popover')}
 />
 
-<Exports
-  component={PopoverExports}
-  title="Popover exports"
-  path="baseui/popover"
-/>
+<Exports component={PopoverExports} title="Popover exports" path="baseui/popover" />

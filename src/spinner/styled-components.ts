@@ -4,9 +4,10 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import { styled } from '../styles/index';
+import { styled } from '../styles';
 import { SIZE } from './constants';
 import type { SpinnerPropsT } from './types';
+import { StyleObject } from 'styletron-react';
 
 const spin = {
   from: {
@@ -17,17 +18,9 @@ const spin = {
   },
 };
 
-export const StyledSpinner = styled<SpinnerPropsT>(
+export const StyledSpinner = styled<'i', SpinnerPropsT>(
   'i',
-  ({
-    //$FlowFixMe
-    $theme,
-    $color = $theme.colors.contentAccent,
-    //$FlowFixMe
-    $borderWidth,
-    //$FlowFixMe
-    $size = SIZE.medium,
-  }) => {
+  ({ $theme, $color = $theme.colors.contentAccent, $borderWidth, $size = SIZE.medium }) => {
     let borderSize = {
       large: $theme.sizing.scale300,
       medium: $theme.sizing.scale100,
@@ -42,12 +35,14 @@ export const StyledSpinner = styled<SpinnerPropsT>(
     if (!borderSize) {
       borderSize = $theme.sizing[$borderWidth];
       if (!borderSize) {
+        // @ts-expect-error todo(flow->ts) avoid mixing string with number
         borderSize = `${parseInt($borderWidth)}px`;
       }
     }
     if (!boxSize) {
       boxSize = $theme.sizing[$size];
       if (!boxSize) {
+        // @ts-expect-error todo(flow->ts) avoid mixing string with number
         boxSize = `${parseInt($size)}px`;
       }
     }

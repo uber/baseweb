@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { render, fireEvent, getByRole } from '@testing-library/react';
 
-import { StatefulRadioGroup, Radio } from '../index';
+import { StatefulRadioGroup, Radio } from '..';
 
 describe('radio-group', () => {
   it('sets clicked child checked', () => {
@@ -21,7 +21,7 @@ describe('radio-group', () => {
 
     getByRole(container, 'radiogroup');
 
-    const inputs = container.querySelectorAll('input');
+    const inputs = Array.from(container.querySelectorAll('input'));
     for (let input of inputs) {
       expect(input).toHaveProperty('checked', false);
     }

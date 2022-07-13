@@ -16,7 +16,6 @@ function applyErrorDetails(message) {
 }
 
 let error = console.error;
-// $FlowFixMe
 console.error = function (message) {
   error.apply(console, arguments);
   throw new Error(applyErrorDetails(message));
@@ -27,8 +26,10 @@ function applyWarningDetails(message) {
 }
 
 let warn = console.warn;
-// $FlowFixMe
 console.warn = function (message) {
   warn.apply(console, arguments);
   throw new Error(applyWarningDetails(message));
 };
+
+// All files must be modules when the '--isolatedModules' flag is provided.
+export {};

@@ -4,7 +4,9 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import type { ResponsiveT, CSSLengthUnitT } from '../layout-grid/types';
+import type { Properties } from 'csstype';
+
+import type { ResponsiveT, CSSLengthUnitT } from '../layout-grid';
 
 export type Globals = '-moz-initial' | 'inherit' | 'initial' | 'revert' | 'unset';
 export type LineStyle =
@@ -619,10 +621,10 @@ export type AnimationT = {
 };
 
 export type BorderT = {
-  borderColor: string;
+  borderColor: Properties['borderColor'];
   // longhand border-style properties do not accept string values
-  borderStyle: Globals | LineStyle;
-  borderWidth: string;
+  borderStyle: Properties['borderLeftStyle'];
+  borderWidth: Properties['borderWidth'];
 };
 
 export type BordersT = {

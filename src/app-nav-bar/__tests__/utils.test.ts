@@ -4,7 +4,7 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import { setItemActive } from '../index';
+import { setItemActive } from '..';
 
 describe('setItemActive', () => {
   it('sets specified item active', () => {
@@ -32,15 +32,11 @@ describe('setItemActive', () => {
     const nextItems = setItemActive(items, nextActive);
 
     expect(nextItems[0].active).toBe(false);
-    // $FlowFixMe - children may be undefined
     expect(nextItems[0].children[0].active).toBe(false);
-    // $FlowFixMe - children may be undefined
     expect(nextItems[0].children[1].active).toBe(false);
 
     expect(nextItems[1].active).toBe(true);
-    // $FlowFixMe - children may be undefined
     expect(nextItems[1].children[0].active).toBe(false);
-    // $FlowFixMe - children may be undefined
     expect(nextItems[1].children[1].active).toBe(true);
   });
 
@@ -61,15 +57,11 @@ describe('setItemActive', () => {
     const nextItems = setItemActive(items, nextActive);
 
     expect(nextItems[0].active).toBe(true);
-    // $FlowFixMe - children may be undefined
     expect(nextItems[0].children[0].active).toBe(true);
-    // $FlowFixMe - children may be undefined
     expect(nextItems[0].children[1].active).toBe(false);
 
     expect(nextItems[1].active).toBe(false);
-    // $FlowFixMe - children may be undefined
     expect(nextItems[1].children[0].active).toBe(false);
-    // $FlowFixMe - children may be undefined
     expect(nextItems[1].children[1].active).toBe(false);
   });
 

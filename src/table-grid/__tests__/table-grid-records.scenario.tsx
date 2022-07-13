@@ -7,10 +7,10 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import { format } from 'date-fns';
 
-import { StyledLink } from '../../link/index';
-import { useStyletron } from '../../styles/index';
+import { StyledLink } from '../../link';
+import { useStyletron } from '../../styles';
 
-import { StyledTable, StyledHeadCell, StyledBodyCell } from '../index';
+import { StyledTable, StyledHeadCell, StyledBodyCell } from '..';
 import { useCellNavigation } from './shared';
 
 // [date, event description]
@@ -19,7 +19,7 @@ type EventT = [Date, string];
 // [pr title, pr link, description, release kind, author]
 type RowT = [string, string, string, string, string, EventT[]];
 
-const row = [
+const row: RowT = [
   'feat(docs-site): theme editor POC',
   'https://github.com/uber/baseweb/pull/1296',
   `integrates an inline theme editor for the base web documentation site user can edit a theme
@@ -47,7 +47,7 @@ export function Scenario() {
     <div className={css({ height: '600px' })}>
       <StyledTable
         role="grid"
-        tabIndex="0"
+        tabIndex={0}
         $gridTemplateColumns="auto minmax(auto, 500px) repeat(4, auto)"
       >
         <StyledHeadCell {...getCellProps(0, 0)}>Name</StyledHeadCell>

@@ -5,8 +5,8 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
-import { useStyletron } from '../../styles/index';
-import { Button, SHAPE } from '../index';
+import { useStyletron } from '../../styles';
+import { Button, SHAPE } from '..';
 
 function Container({ backgroundColor, children }) {
   const [css] = useStyletron();

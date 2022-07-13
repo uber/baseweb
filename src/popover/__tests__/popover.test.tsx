@@ -18,11 +18,12 @@ import {
 } from '@testing-library/react';
 
 import { TestBaseProvider } from '../../test/test-utils';
-import { Popover, ACCESSIBILITY_TYPE, TRIGGER_TYPE } from '../index';
+import { Popover, ACCESSIBILITY_TYPE, TRIGGER_TYPE } from '..';
 
-import { styled } from '../../styles/index';
+import { styled } from '../../styles';
 
 jest.mock('react-uid', () => ({
+  // @ts-expect-error todo(flow->ts)
   ...jest.requireActual('react-uid'),
 }));
 const reactuid = require('react-uid');
@@ -98,8 +99,8 @@ describe('Popover', () => {
       </div>
     );
     // eslint-disable-next-line react/display-name
-    const FocusMe = React.forwardRef((props, ref) => {
-      const el = React.useRef(null);
+    const FocusMe = React.forwardRef<HTMLDivElement, {}>((props, ref) => {
+      const el = React.useRef<HTMLButtonElement>(null);
       React.useEffect(() => {
         el.current && el.current.focus();
       });
@@ -131,12 +132,10 @@ describe('Popover', () => {
 
     fireEvent.click(getByText(container, anchorContent));
     await findByText(container, contentContent);
-    // flowlint-next-line unclear-type:off
     expect((document.activeElement as any).id).toEqual(firstInputId);
 
     fireEvent.click(getByText(container, anchorContent));
     expect(document.activeElement).not.toBeNull();
-    // flowlint-next-line unclear-type:off
     expect((document.activeElement as any).id).toEqual(buttonId);
   });
 

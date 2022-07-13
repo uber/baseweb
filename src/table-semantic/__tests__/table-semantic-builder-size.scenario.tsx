@@ -5,8 +5,8 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import React from 'react';
-import { useStyletron } from '../../styles/index';
-import { TableBuilder, TableBuilderColumn, SIZE } from '../index';
+import { useStyletron } from '../../styles';
+import { TableBuilder, TableBuilderColumn, SIZE } from '..';
 
 const data = [
   {
@@ -34,10 +34,10 @@ const data = [
 function Instance({ size }) {
   return (
     <TableBuilder data={data} size={size}>
-      <TableBuilderColumn id="bar" header="Produce" sortable>
+      <TableBuilderColumn<any> id="bar" header="Produce" sortable>
         {(row) => <a href={row.url}>{row.bar}</a>}
       </TableBuilderColumn>
-      <TableBuilderColumn id="foo" header="Quantity" numeric sortable>
+      <TableBuilderColumn<any> id="foo" header="Quantity" numeric sortable>
         {(row) => row.foo}
       </TableBuilderColumn>
     </TableBuilder>

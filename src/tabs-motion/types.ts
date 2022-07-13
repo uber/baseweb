@@ -9,7 +9,7 @@ import * as React from 'react';
 import { ORIENTATION, FILL, STATE_CHANGE_TYPE } from './constants';
 
 import type { OverrideT } from '../helpers/overrides';
-import type { IconPropsT } from '../icon/types';
+import type { IconPropsT } from '../icon';
 
 export type OrientationT = typeof ORIENTATION[keyof typeof ORIENTATION];
 export type FillT = typeof FILL[keyof typeof FILL];
@@ -65,7 +65,7 @@ export type StatefulTabsPropsT = {
 export type TabPropsT = {
   title?: React.ReactNode;
   key?: React.Key;
-  tabRef?: React.Ref<'button'>;
+  tabRef?: React.Ref<HTMLButtonElement>;
   overrides?: TabOverridesT;
   children?: React.ReactNode;
   artwork?: React.ComponentType<
@@ -74,4 +74,5 @@ export type TabPropsT = {
       color: IconPropsT['color'];
     } & IconPropsT
   >;
+  disabled?: boolean;
 };

@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { render, getByText, queryByText } from '@testing-library/react';
 
-import { Table } from '../index';
+import { Table } from '..';
 
 const COLUMNS = ['ID', 'First Name', 'Last Name', 'Age', 'Address'];
 
@@ -31,9 +31,9 @@ describe('Table Semantic', () => {
   });
 
   it('exposes row and column data to overrides', () => {
-    const mockTableHeadCellStyle = jest.fn(() => null);
-    const mockTableBodyRowStyle = jest.fn(() => null);
-    const mockTableBodyCellStyle = jest.fn(() => null);
+    const mockTableHeadCellStyle = jest.fn((arg) => null);
+    const mockTableBodyRowStyle = jest.fn((arg) => null);
+    const mockTableBodyCellStyle = jest.fn((arg) => null);
 
     render(
       <Table

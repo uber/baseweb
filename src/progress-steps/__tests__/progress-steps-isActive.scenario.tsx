@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Block } from '../../block/index';
-import { ProgressSteps, Step } from '../index';
+import { Block } from '../../block';
+import { ProgressSteps, Step } from '..';
 
 export function Scenario() {
   return (

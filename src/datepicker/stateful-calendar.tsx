@@ -9,12 +9,14 @@ import StatefulContainer from './stateful-container';
 import Calendar from './calendar';
 import type { CalendarPropsT, StatefulDatepickerPropsT } from './types';
 
-type PropsT<T> = StatefulDatepickerPropsT<CalendarPropsT<T>>;
+type PropsT<T> = StatefulDatepickerPropsT<CalendarPropsT<T>> &
+  Omit<CalendarPropsT<T>, keyof StatefulDatepickerPropsT<CalendarPropsT<T>>>;
 
 class StatefulComponent<T = Date> extends React.Component<PropsT<T>> {
-  static defaultProps: PropsT<T> = {
+  static defaultProps: PropsT<unknown> = {
     initialState: {},
     stateReducer: (type, nextState) => nextState,
+    // @ts-expect-error todo(flow->ts) might be onSelect can be removed
     onSelect: () => {},
   };
 
@@ -22,11 +24,7 @@ class StatefulComponent<T = Date> extends React.Component<PropsT<T>> {
     return (
       <StatefulContainer {...this.props}>
         {(extendedProps) => (
-          <Calendar
-            {...extendedProps}
-            // flowlint-next-line unclear-type:off
-            onChange={extendedProps.onChange as any}
-          />
+          <Calendar {...extendedProps} onChange={extendedProps.onChange as any} />
         )}
       </StatefulContainer>
     );

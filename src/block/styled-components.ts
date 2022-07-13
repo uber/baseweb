@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 
 import { getMediaQueries } from '../helpers/responsive-helpers';
-import { styled } from '../styles/index';
+import { styled } from '../styles';
 import type { BreakpointsT } from '../styles/types';
 import type { StyledBlockPropsT } from './types';
 
@@ -20,9 +20,7 @@ function constrainToNull(value) {
 
 type ApplyParams = {
   property: string;
-  // flowlint-next-line unclear-type:off
   value?: any | Array<any>;
-  // flowlint-next-line unclear-type:off
   transform?: Function;
 };
 
@@ -64,10 +62,10 @@ function getFontValue(obj, key) {
   return obj[key];
 }
 
-export const StyledBlock = styled<StyledBlockPropsT>('div', (props) => {
+export const StyledBlock = styled<'div', StyledBlockPropsT>('div', (props) => {
   const { breakpoints, colors, typography, sizing } = props.$theme;
 
-  const get = (obj, key) => obj[key];
+  const get = <O extends object, K extends keyof O>(obj: O, key: K) => obj[key];
   const getScale = (size) => sizing[size] || size;
 
   const styles = build(breakpoints);

@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import { SnackbarProvider, useSnackbar, DURATION, PLACEMENT } from '../index';
+import { SnackbarProvider, useSnackbar, DURATION, PLACEMENT } from '..';
 
 function Child({ placement }) {
   const { enqueue } = useSnackbar();
@@ -50,7 +50,7 @@ function Child({ placement }) {
 }
 
 export function Scenario() {
-  const [placement, setPlacement] = React.useState(PLACEMENT.top);
+  const [placement, setPlacement] = React.useState<any>(PLACEMENT.top);
   return (
     <div>
       <SnackbarProvider placement={placement}>

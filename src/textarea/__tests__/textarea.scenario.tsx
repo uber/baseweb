@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { StatefulTextarea } from '../index';
+import { StatefulTextarea } from '..';
 
 export function Scenario() {
   return (

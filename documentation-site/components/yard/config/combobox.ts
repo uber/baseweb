@@ -4,7 +4,7 @@ import { TConfig } from '../types';
 import inputConfig from './input';
 import popoverConfig from './popover';
 
-const comboboxProps = require('!!extract-react-types-loader!../../../../src/combobox/combobox.js');
+const comboboxProps = require('!!extract-react-types-loader!../../../../src/combobox/combobox');
 
 const ComboboxConfig: TConfig = {
   componentName: 'Combobox',

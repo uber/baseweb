@@ -7,13 +7,13 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import { useStyletron } from '../../styles/index';
+import { useStyletron } from '../../styles';
 
 import {
   Unstable_StatefulHelper as StatefulHelper,
   Unstable_HelperSteps as HelperSteps,
   PLACEMENT,
-} from '../index';
+} from '..';
 
 function Content({ index, length, onPrev, onNext, onFinish }) {
   const [css] = useStyletron();

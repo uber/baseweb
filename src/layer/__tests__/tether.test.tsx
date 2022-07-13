@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { render, getByText } from '@testing-library/react';
 
-import { TetherBehavior } from '../index';
+import { TetherBehavior } from '..';
 
 describe('TetherBehavior', () => {
   it('renders tether content', () => {

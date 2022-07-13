@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 /* eslint-disable */
 import * as React from 'react';
-import { StyledInitials, StyledRoot, Avatar } from '../index';
+import { StyledInitials, StyledRoot, Avatar } from '..';
 
 describe('Avatar styled Components flow', () => {
   test('it runs without flow error when we override Initials', () => {
@@ -25,7 +25,7 @@ describe('Avatar styled Components flow', () => {
   test('it provides flow error if we not provide all required props for StyledRoot', () => {
     const CustomRoot = (props) => {
       const { children, ...rest } = props;
-      // $FlowFixMe missing $didImageFailToLoad prop
+      // @ts-expect-error missing $didImageFailToLoad prop
       const BrokenCustomRootComponent = <Root>{props.children}</Root>;
       const CustomRootComponent = <StyledRoot {...rest}>{props.children}</StyledRoot>;
       return CustomRootComponent;

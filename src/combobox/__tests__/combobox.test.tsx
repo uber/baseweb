@@ -10,7 +10,7 @@ import { render, fireEvent } from '@testing-library/react';
 
 import { TestBaseProvider } from '../../test/test-utils';
 
-import { Combobox } from '../index';
+import { Combobox } from '..';
 
 const options = ['A', 'B', 'C', 'D', 'E', 'F'];
 
@@ -377,7 +377,7 @@ describe('combobox', () => {
   });
 
   it('forwards inputRef from props', () => {
-    const inputRef = React.createRef();
+    const inputRef = React.createRef<HTMLButtonElement>();
     let isFocused = false;
     const onFocus = () => {
       isFocused = true;

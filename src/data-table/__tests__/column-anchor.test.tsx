@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import { AnchorColumn } from '../index';
+import { AnchorColumn } from '..';
 
 describe('anchor column', () => {
   it('is sortable by default', () => {

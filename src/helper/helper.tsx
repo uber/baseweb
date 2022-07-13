@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import { Popover, PLACEMENT } from '../popover/index';
+import { Popover, PLACEMENT } from '../popover';
 import { mergeOverrides } from '../helpers/overrides';
 
 import { StyledArrow, StyledBody } from './styled-components';
@@ -30,7 +30,6 @@ export function Helper(props: PropsT) {
   );
 
   return (
-    //$FlowFixMe
     <Popover
       data-baseweb="helper"
       {...restProps}

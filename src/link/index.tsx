@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // Styled elements
 import * as React from 'react';
 import { Link } from './styled-components';
-import { withWrapper } from '../styles/index';
+import { withWrapper } from '../styles';
 import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible';
 
 import type { SyntheticEvent } from 'react';
@@ -27,7 +27,7 @@ function LinkFocus(props) {
   return props.children({ focusVisible, handleFocus, handleBlur });
 }
 
-export const StyledLink = withWrapper(
+export const StyledLink = withWrapper<typeof Link, { animateUnderline?: boolean }>(
   Link,
   (Styled) =>
     function StyledLink({ animateUnderline, ...restProps }) {

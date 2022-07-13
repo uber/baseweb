@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { FormControl } from '../../form-control/index';
-import { useStyletron } from '../../styles/index';
-import { Combobox } from '../index';
+import { FormControl } from '../../form-control';
+import { useStyletron } from '../../styles';
+import { Combobox } from '..';
 
 type OptionT = {
   label: string;

@@ -5,18 +5,18 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
-import { FloatingMarker } from '../index';
+import { FloatingMarker } from '..';
 import {
   FLOATING_MARKER_ANCHOR_POSITIONS,
   FLOATING_MARKER_SIZES,
   FLOATING_MARKER_ANCHOR_TYPES,
 } from '../constants';
 import TileGrid from './tile-grid';
-import { Checkbox, LABEL_PLACEMENT } from '../../checkbox/index';
-import { Input } from '../../input/index';
+import { Checkbox, LABEL_PLACEMENT } from '../../checkbox';
+import { Input } from '../../input';
 import Upload from '../../icon/upload';
 import Search from '../../icon/search';
-import { Select } from '../../select/index';
+import { Select } from '../../select';
 
 import type { FloatingMarkerSizeT, AnchorPositionsT } from '../types';
 
@@ -31,7 +31,7 @@ export function Scenario() {
   const [label, setLabel] = React.useState('Uber HQ');
   const [startEnhancer, setStartEnhancer] = React.useState(true);
   const [endEnhancer, setEndEnhancer] = React.useState(false);
-  const [floatingMarkerAnchorType, setFloatingMarkerAnchorType] = React.useState([
+  const [floatingMarkerAnchorType, setFloatingMarkerAnchorType] = React.useState<any>([
     floatingMarkerAnchorTypes[0],
   ]);
 
@@ -46,7 +46,6 @@ export function Scenario() {
             id: `floating / ${size} / ${position}`,
             content: (
               <FloatingMarker
-                title="map marker"
                 size={size}
                 key={i}
                 label={label}
@@ -104,7 +103,6 @@ export function Scenario() {
           options={floatingMarkerAnchorTypes}
           value={floatingMarkerAnchorType}
           placeholder="Select an anchor type"
-          // $FlowFixMe Mismatch between general type and enum
           onChange={(params) => setFloatingMarkerAnchorType(params.value)}
           key="anchor-type"
         />,

@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { useStyletron } from '../../styles/index';
+import { useStyletron } from '../../styles';
 
 import {
   AnchorColumn,
@@ -19,7 +19,7 @@ import {
   COLUMNS,
   NUMERICAL_FORMATS,
   StatefulDataTable,
-} from '../index';
+} from '..';
 
 type RowDataT = [
   string,
@@ -183,9 +183,9 @@ export const columns = [
     },
     renderFilter: function ColorFilter(props) {
       const [css] = useStyletron();
-      const [selection, setSelection] = React.useState(new Set());
+      const [selection, setSelection] = React.useState(new Set<string>());
       const colors = React.useMemo(() => {
-        return props.data.reduce((set, item) => set.add(item.color), new Set());
+        return props.data.reduce((set, item) => set.add(item.color), new Set<any>());
       }, [props.data]);
 
       return (

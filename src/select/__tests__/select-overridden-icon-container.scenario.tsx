@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Select, StyledIconsContainer, TYPE } from '../index';
+import { Select, StyledIconsContainer, TYPE } from '..';
 
 const options = [
   { label: 'AliceBlue', id: '#F0F8FF' },
@@ -33,7 +33,7 @@ function IconsContainerOverride({ children, onCustomClick, ...props }) {
 }
 
 export function Scenario() {
-  const [value, setValue] = React.useState([]);
+  const [value, setValue] = React.useState<any>([]);
   const [count, setCount] = React.useState(0);
 
   const onCustomClick = React.useCallback(() => {

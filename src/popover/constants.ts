@@ -18,23 +18,24 @@ export const PLACEMENT = {
   leftBottom: 'leftBottom',
   left: 'left',
   leftTop: 'leftTop',
-};
+} as const;
 
 export const TRIGGER_TYPE = {
   click: 'click',
   hover: 'hover',
-};
+} as const;
 
 export const STATE_CHANGE_TYPE = {
   open: 'open',
   close: 'close',
-};
+} as const;
 
 export const ACCESSIBILITY_TYPE = {
   none: 'none',
   menu: 'menu',
   tooltip: 'tooltip',
-};
+} as const;
+
 export const POPOVER_MARGIN = 8;
 
 export const ARROW_SIZE = 6;

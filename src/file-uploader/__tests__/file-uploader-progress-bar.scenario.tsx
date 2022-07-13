@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { FileUploader } from '../index';
+import { FileUploader } from '..';
 
 export function Scenario() {
   return <FileUploader progressAmount={40} progressMessage="Uploading... 8.24 of 45.08MB" />;

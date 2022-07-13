@@ -62,7 +62,7 @@ class DateHelpers<T> {
       locale: instance.locale,
     });
     const updateOptions = updateOptionsBase || defaultGetOptions;
-    const UtilsClass = adapter.constructor;
+    const UtilsClass: any = adapter.constructor;
     const className = adapter.constructor.name;
     // This ensures that if the adapter class isn't
     // supported it just falls back the default formats
@@ -88,8 +88,7 @@ class DateHelpers<T> {
       )
     );
   };
-  // flowlint-next-line unclear-type:off
-  format: (c: T, b: string, a: any) => string = (date, format, locale) => {
+  format: (c: T, b: string, a?: any) => string = (date, format, locale) => {
     const adapter = locale ? this.getAdapterWithNewLocale(locale) : this.adapter;
 
     return adapter.format(date, format);
@@ -113,31 +112,25 @@ class DateHelpers<T> {
     var monthDiff = this.adapter.getMonth(fromDate) - this.adapter.getMonth(toDate);
     return yearDiff * 12 + monthDiff;
   };
-  // flowlint-next-line unclear-type:off
-  getStartOfWeek: (b: T, a: any) => T = (date, locale) => {
+  getStartOfWeek: (b: T, a?: any) => T = (date, locale) => {
     const adapter = locale ? this.getAdapterWithNewLocale(locale) : this.adapter;
     // rewrapping this date here ensures that the locale will be taken into account in all adapters
     return adapter.startOfWeek(adapter.date(date));
   };
-  // flowlint-next-line unclear-type:off
-  formatDate: (c: T, b: string, a: any) => string = (date, formatString, locale) => {
+  formatDate: (c: T, b: string, a?: any) => string = (date, formatString, locale) => {
     const adapter = locale ? this.getAdapterWithNewLocale(locale) : this.adapter;
     return adapter.formatByString(date, formatString);
   };
-  // flowlint-next-line unclear-type:off
   getWeekdayMinInLocale: (b: T, a: any) => string = (date, locale) => {
     return this.getAdapterWithNewLocale(locale).format(date, 'weekdaymin');
   };
-  // flowlint-next-line unclear-type:off
   getMonthInLocale: (b: number, a: any) => string = (monthNumber, locale) => {
     const localeAdapter = this.getAdapterWithNewLocale(locale);
     return localeAdapter.format(localeAdapter.setMonth(localeAdapter.date(), monthNumber), 'month');
   };
-  // flowlint-next-line unclear-type:off
   getWeekdayInLocale: (b: T, a: any) => string = (date, locale) => {
     return this.getAdapterWithNewLocale(locale).format(date, 'weekday');
   };
-  // flowlint-next-line unclear-type:off
   getQuarterInLocale: (b: number, a: any) => string = (quarterNumber, locale) => {
     const localeAdapter = this.getAdapterWithNewLocale(locale);
     return localeAdapter.format(
@@ -221,10 +214,10 @@ class DateHelpers<T> {
       return this.adapter.isAfter(date, maxDate) ? date : maxDate;
     });
   };
-  getEffectiveMinDate: (a: {
-    minDate: T | undefined | null;
-    includeDates: Array<T> | undefined | null;
-  }) => T = ({ minDate, includeDates }) => {
+  getEffectiveMinDate: (a: { minDate?: T | null; includeDates?: Array<T> }) => T = ({
+    minDate,
+    includeDates,
+  }) => {
     if (includeDates && minDate) {
       let minDates = includeDates.filter((includeDate) =>
         this.isOnOrAfterDay(includeDate, minDate)
@@ -239,10 +232,10 @@ class DateHelpers<T> {
     // but flow isn't smart enough to see that all of the conditions are covered
     return this.adapter.date();
   };
-  getEffectiveMaxDate: (a: {
-    maxDate: T | undefined | null;
-    includeDates: Array<T> | undefined | null;
-  }) => T = ({ maxDate, includeDates }) => {
+  getEffectiveMaxDate: (a: { maxDate?: T | null; includeDates?: Array<T> }) => T = ({
+    maxDate,
+    includeDates,
+  }) => {
     if (includeDates && maxDate) {
       let maxDates = includeDates.filter((includeDate) =>
         this.isOnOrBeforeDay(includeDate, maxDate)
@@ -260,8 +253,8 @@ class DateHelpers<T> {
   monthDisabledBefore: (
     b: T,
     a: {
-      minDate: T | undefined | null;
-      includeDates: Array<T> | undefined | null;
+      minDate?: T | undefined | null;
+      includeDates?: Array<T> | undefined | null;
     }
   ) => boolean = (day, { minDate, includeDates } = {}) => {
     const previousMonth = this.subMonths(day, 1);
@@ -277,8 +270,8 @@ class DateHelpers<T> {
   monthDisabledAfter: (
     b: T,
     a: {
-      maxDate: T | undefined | null;
-      includeDates: Array<T> | undefined | null;
+      maxDate?: T | undefined | null;
+      includeDates?: Array<T> | undefined | null;
     }
   ) => boolean = (day, { maxDate, includeDates } = {}) => {
     const nextMonth = this.adapter.addMonths(day, 1);
@@ -317,11 +310,11 @@ class DateHelpers<T> {
   isDayDisabled: (
     b: T,
     a: {
-      minDate: T | undefined | null;
-      maxDate: T | undefined | null;
-      excludeDates: Array<T> | undefined | null;
-      includeDates: Array<T> | undefined | null;
-      filterDate: ((day: T) => boolean) | undefined | null;
+      minDate?: T | undefined | null;
+      maxDate?: T | undefined | null;
+      excludeDates?: Array<T> | undefined | null;
+      includeDates?: Array<T> | undefined | null;
+      filterDate?: ((day: T) => boolean) | undefined | null;
     }
   ) => boolean = (day, { minDate, maxDate, excludeDates, includeDates, filterDate } = {}) => {
     return (
@@ -350,8 +343,8 @@ class DateHelpers<T> {
   isOutOfBounds: (
     b: T,
     a: {
-      minDate: T | undefined | null;
-      maxDate: T | undefined | null;
+      minDate?: T | undefined | null;
+      maxDate?: T | undefined | null;
     }
   ) => boolean = (day, { minDate, maxDate } = {}) => {
     return (
@@ -359,13 +352,11 @@ class DateHelpers<T> {
       (!!maxDate && !this.isOnOrBeforeDay(day, maxDate))
     );
   };
-  // flowlint-next-line unclear-type:off
   parseString: (c: string, b: string, a?: any | null) => T = (string, formatString, locale) => {
     const adapter = locale ? this.getAdapterWithNewLocale(locale) : this.adapter;
 
     return adapter.parse(string, formatString);
   };
-  // flowlint-next-line unclear-type:off
   parse: (c: string, b: string, a?: any | null) => T = (string, format, locale) => {
     const adapter = locale ? this.getAdapterWithNewLocale(locale) : this.adapter;
 

@@ -4,7 +4,8 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import { styled } from '../styles/index';
+import { styled } from '../styles';
+import type { StyleObject } from 'styletron-standard';
 
 function getAnimationColor(props) {
   const { $theme } = props;
@@ -24,7 +25,7 @@ function getAnimationColor(props) {
     ${$theme.colors.backgroundTertiary})`;
 }
 
-const animationStyle = {
+const animationStyle: StyleObject = {
   animationTimingFunction: 'ease-out',
   animationDuration: '1.5s',
   animationIterationCount: 'infinite',
@@ -39,12 +40,15 @@ const animationStyle = {
   },
 };
 
-export const StyledRoot = styled<{
-  $rows?: number;
-  $animation?: boolean;
-  $height?: string;
-  $width?: string;
-}>('div', (props) => {
+export const StyledRoot = styled<
+  'div',
+  {
+    $rows?: number;
+    $animation?: boolean;
+    $height?: string;
+    $width?: string;
+  }
+>('div', (props) => {
   if (typeof props.$rows === 'number' && props.$rows !== 0) {
     return {
       display: 'flex',
@@ -63,10 +67,13 @@ export const StyledRoot = styled<{
   };
 });
 
-export const StyledRow = styled<{
-  $animation?: boolean;
-  $isLastRow: boolean;
-}>('div', (props) => {
+export const StyledRow = styled<
+  'div',
+  {
+    $animation?: boolean;
+    $isLastRow: boolean;
+  }
+>('div', (props) => {
   return {
     ...(props.$animation
       ? { ...animationStyle, backgroundImage: getAnimationColor(props) }

@@ -7,11 +7,11 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { render } from '@testing-library/react';
 
-import { StatefulPanelContainer } from '../index';
+import { StatefulPanelContainer } from '..';
 
 describe('StatefulPanelContainer', () => {
   it('provides expected props to children function', () => {
-    const children = jest.fn(() => null);
+    const children = jest.fn((arg) => null);
     render(
       <StatefulPanelContainer initialState={{ expanded: true }}>{children}</StatefulPanelContainer>
     );

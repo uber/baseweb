@@ -14,7 +14,7 @@ import {
   HeadingMedium,
   HeadingSmall,
   HeadingXSmall,
-} from '../index';
+} from '..';
 
 const textString = 'We ignite opportunity by setting the world in motion.';
 

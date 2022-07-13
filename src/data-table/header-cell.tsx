@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Checkbox } from '../checkbox/index';
-import { useStyletron } from '../styles/index';
+import { Checkbox } from '../checkbox';
+import { useStyletron } from '../styles';
 import ChevronDown from '../icon/chevron-down';
 import ChevronUp from '../icon/chevron-up';
 
@@ -24,8 +24,8 @@ type HeaderCellPropsT = {
   isSelectable: boolean;
   isSelectedAll: boolean;
   isSelectedIndeterminate: boolean;
-  onMouseEnter: (a: number) => void;
-  onMouseLeave: (a: number) => void;
+  onMouseEnter: (a: any) => void;
+  onMouseLeave: (a: any) => void;
   onSelectAll: () => void;
   onSelectNone: () => void;
   onSort: (a: number) => void;
@@ -59,7 +59,7 @@ const HeaderCell = React.forwardRef<HTMLDivElement, HeaderCellPropsT>((props, re
     <div
       ref={ref}
       role="button"
-      tabIndex="0"
+      tabIndex={0}
       className={css({
         ...theme.typography.font350,
         alignItems: 'center',

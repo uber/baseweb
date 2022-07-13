@@ -8,7 +8,7 @@ import * as React from 'react';
 import { render, getByTestId, fireEvent, queryByTestId, getByText } from '@testing-library/react';
 import { TestBaseProvider } from '../../test/test-utils';
 
-import { Calendar } from '../index';
+import { Calendar } from '..';
 
 describe('Component', () => {
   it('does not display quick select if quickSelect is false', () => {
@@ -56,16 +56,9 @@ describe('Component', () => {
     );
     const quickSelect = container.querySelector('[data-baseweb="select"]')?.firstChild;
     if (quickSelect) {
-      //flowlint-next-line unclear-type:off
       fireEvent.click(quickSelect as any as HTMLElement);
     }
-    fireEvent.click(
-      await getByText(
-        //flowlint-next-line unclear-type:off
-        container.parentElement as any as HTMLElement,
-        'Past Week'
-      )
-    );
+    fireEvent.click(await getByText(container.parentElement as any as HTMLElement, 'Past Week'));
     expect(onQuickSelectChange).toHaveBeenCalledWith(expect.objectContaining({ id: 'Past Week' }));
   });
 });

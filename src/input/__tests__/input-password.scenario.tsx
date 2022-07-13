@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 /* global window */
 
 import React from 'react';
-import { StatefulInput, SIZE } from '../index';
+import { StatefulInput, SIZE } from '..';
 
 export function Scenario() {
   return (
@@ -21,6 +21,7 @@ export function Scenario() {
       <form
         onSubmit={(event) => {
           event.preventDefault();
+          // @ts-expect-error
           window.__e2e__formSubmitted__ = true;
           return false;
         }}

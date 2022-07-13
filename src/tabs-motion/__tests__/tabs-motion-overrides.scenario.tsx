@@ -8,9 +8,9 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable jsx-a11y/accessible-emoji */
 
 import * as React from 'react';
-import { Tab, Tabs } from '../index';
-import { Button, KIND } from '../../button/index';
-import { ArrowUp, ArrowRight, ArrowLeft } from '../../icon/index';
+import { Tab, Tabs } from '..';
+import { Button, KIND } from '../../button';
+import { ArrowUp, ArrowRight, ArrowLeft } from '../../icon';
 
 const TabOverrides = {
   Tab: { style: { backgroundColor: 'aquamarine' } },
@@ -21,7 +21,7 @@ const TabOverrides = {
 };
 
 export function Scenario() {
-  const [activeKey, setActiveKey] = React.useState('0');
+  const [activeKey, setActiveKey] = React.useState<React.Key>('0');
   return (
     <Tabs
       activeKey={activeKey}

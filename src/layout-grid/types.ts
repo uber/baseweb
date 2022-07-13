@@ -51,7 +51,7 @@ export type GridPropsT = {
   /** Grid container behavior beyond max width. Fluid will continue to expand. Fixed will limit grid container to max width and center the container horizontally within parent element. */
   behavior?: BehaviorT;
   /** Children should be Cells. */
-  children: React.ReactNode;
+  children: React.ReactElement | React.ReactElement[];
   /** Gap on either side of grid container at each breakpoint. */
   gridMargins?: ResponsiveT<number>;
   /** Maximum width of the grid container. Does not include Margins. Only applies when `behavior` is `fluid`. */

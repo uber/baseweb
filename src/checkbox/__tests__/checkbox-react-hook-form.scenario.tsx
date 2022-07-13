@@ -7,8 +7,8 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import { FormProvider, useForm, Controller } from 'react-hook-form';
-import { StatefulCheckbox, Checkbox, LABEL_PLACEMENT } from '../index';
-import { Heading, HeadingLevel } from '../../heading/index';
+import { StatefulCheckbox, Checkbox, LABEL_PLACEMENT } from '..';
+import { Heading, HeadingLevel } from '../../heading';
 
 const StatefulCheckboxExample = () => {
   const form = useForm({
@@ -28,9 +28,10 @@ const StatefulCheckboxExample = () => {
       <form onSubmit={form.handleSubmit(handleSubmit)}>
         <StatefulCheckbox
           {...checkboxA}
+          // @ts-expect-error todo(flow->ts) type mismatch
           inputRef={refA}
           labelPlacement={LABEL_PLACEMENT.right}
-          initialState={{ checked: true, indeterminate: false }}
+          initialState={{ checked: true, isIndeterminate: false }}
         >
           Baseweb StatefulCheckbox
         </StatefulCheckbox>
@@ -68,6 +69,7 @@ const CheckboxWithControllerExample = () => {
             <Checkbox
               {...rest}
               checked={value}
+              // @ts-expect-error todo(flow->ts) type mismatch
               inputRef={ref}
               labelPlacement={LABEL_PLACEMENT.right}
             >

@@ -5,10 +5,10 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
-import { styled, hexToRgb, withWrapper } from '../styles/index';
+import { styled, hexToRgb, withWrapper } from '../styles';
 import type { SharedPropsT } from './types';
 
-export const StyledRoot = styled<SharedPropsT>('nav', (props) => {
+export const StyledRoot = styled<'nav', SharedPropsT>('nav', (props) => {
   const {
     $theme: { colors, typography },
   } = props;
@@ -29,9 +29,12 @@ export const StyledRoot = styled<SharedPropsT>('nav', (props) => {
 
 export const StyledNavItemContainer = styled('li', {});
 
-export const StyledNavLink = styled<{
-  $isFocusVisible: boolean;
-}>('a', ({ $theme, $isFocusVisible }) => ({
+export const StyledNavLink = styled<
+  'a',
+  {
+    $isFocusVisible: boolean;
+  }
+>('a', ({ $theme, $isFocusVisible }) => ({
   color: 'inherit',
   outline: 'none',
   textDecoration: 'none',
@@ -47,7 +50,7 @@ export const StyledNavLink = styled<{
     : { outline: 'none' },
 }));
 
-export const StyledNavItemElement = styled<SharedPropsT>('div', (props) => {
+export const StyledNavItemElement = styled<'div', SharedPropsT>('div', (props) => {
   const {
     $active,
     $selectable,
@@ -96,10 +99,10 @@ export const StyledNavItemElement = styled<SharedPropsT>('div', (props) => {
     ':focus': {
       color: $selectable ? colors.primary : null,
     },
-  } as {};
+  };
 });
 
-export const StyledNavItem = withWrapper(
+export const StyledNavItem = withWrapper<typeof StyledNavItemElement, { item? }>(
   StyledNavItemElement,
   (Styled) =>
     function StyledNav({ item, ...restProps }) {

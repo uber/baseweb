@@ -70,11 +70,7 @@ to provide a placeholder, but can be applied to any Input props.
 <ApiTable
   title="Combobox props"
   config={comboboxYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/combobox/combobox.js')}
+  types={require('!!extract-react-types-loader!../../../src/combobox/combobox')}
 />
 
-<Exports
-  component={ComboboxExports}
-  title="Combobox exports"
-  path="baseui/combobox"
-/>
+<Exports component={ComboboxExports} title="Combobox exports" path="baseui/combobox" />

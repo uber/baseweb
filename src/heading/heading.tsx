@@ -5,14 +5,16 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
-import Block from '../block/block';
+import { Block } from '../block';
 import { LevelContext } from './heading-level';
 import type { HeadingPropsT } from './types';
 
 const FONTS = ['', 'font1050', 'font950', 'font850', 'font750', 'font650', 'font550'];
 
-//$FlowFixMe
-const Heading = ({ styleLevel, ...restProps }: HeadingPropsT) => (
+const Heading: React.FC<HeadingPropsT & React.ComponentPropsWithoutRef<typeof Block>> = ({
+  styleLevel,
+  ...restProps
+}) => (
   <LevelContext.Consumer>
     {(level) => {
       if (level === 0) {
@@ -27,7 +29,7 @@ const Heading = ({ styleLevel, ...restProps }: HeadingPropsT) => (
       return (
         <Block
           data-baseweb="heading"
-          as={`h${level}`}
+          as={`h${level}` as React.ElementType}
           font={styleLevel ? FONTS[styleLevel] : FONTS[level]}
           color="contentPrimary"
           {...restProps}

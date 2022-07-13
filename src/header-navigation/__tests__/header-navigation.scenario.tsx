@@ -11,9 +11,9 @@ import {
   ALIGN,
   StyledNavigationItem as NavigationItem,
   StyledNavigationList as NavigationList,
-} from '../index';
-import { Button } from '../../button/index';
-import { StyledLink as Link } from '../../link/index';
+} from '..';
+import { Button } from '../../button';
+import { StyledLink as Link } from '../../link';
 import Menu from '../../icon/menu';
 
 export function Scenario() {

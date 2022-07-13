@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { PhoneInput, COUNTRIES, StyledFlag } from '../../phone-input/index';
-import type { CountryIsoT } from '../../phone-input/index';
+import { PhoneInput, COUNTRIES, StyledFlag } from '../../phone-input';
+import type { CountryIsoT } from '../../phone-input';
 
 function CustomFlag(props: { children: React.ReactNode; $iso: CountryIsoT }) {
   const { children, ...rest } = props;
@@ -25,7 +25,6 @@ export function Scenario() {
       onTextChange={(event) => {
         setText(event.currentTarget.value);
       }}
-      // flowlint-next-line unclear-type:off
       onCountryChange={(event: any) => {
         setCountry(event.option);
       }}

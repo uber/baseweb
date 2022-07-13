@@ -9,10 +9,10 @@ export const DIVIDER = Object.freeze({
   vertical: 'vertical',
   grid: 'grid',
   clean: 'clean',
-});
+} as const);
 
 export const SIZE = Object.freeze({
   compact: 'compact',
   default: 'default',
   spacious: 'spacious',
-});
+} as const);

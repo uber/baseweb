@@ -14,7 +14,7 @@ import {
   InnerContainer as StyledInnerContainer,
 } from './styled-components';
 import { KIND, TYPE } from './constants';
-import { LocaleContext } from '../locale/index';
+import { LocaleContext } from '../locale';
 
 import type {
   ToastPropsT,
@@ -22,10 +22,8 @@ import type {
   ToastPrivateStateT,
   SharedStylePropsArgT,
 } from './types';
-import type { OverridesT } from '../icon/index';
+import type { OverridesT } from '../icon';
 import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible';
-
-import type { SyntheticEvent } from 'react';
 
 class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
   static defaultProps: ToastPropsShapeT = {
@@ -49,11 +47,11 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
   animateOutCompleteTimer: TimeoutID | undefined | null;
   closeRef:
     | {
-        current: unknown | undefined | null;
+        current: SVGSVGElement | undefined | null;
       }
     | undefined
     | null;
-  previouslyFocusedElement: HTMLElement | undefined | null;
+  previouslyFocusedElement: SVGElement | HTMLElement | undefined | null;
 
   state = {
     isVisible: false,
@@ -78,8 +76,8 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
       this.closeRef.current.focus &&
       typeof this.closeRef.current.focus === 'function'
     ) {
-      this.previouslyFocusedElement = document.activeElement;
-      // $FlowFixMe: CloseIcon is `mixed` type so doesn't like `focus` call.
+      // todo(flow->ts): double check if typecast is correct
+      this.previouslyFocusedElement = document.activeElement as HTMLElement | SVGElement;
       this.closeRef.current.focus();
       this.setState({ isFocusVisible: true });
     }
@@ -98,13 +96,13 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
     this.clearTimeout();
   }
 
-  handleFocus = (event: SyntheticEvent) => {
+  handleFocus = (event: React.FocusEvent) => {
     if (isFocusVisible(event)) {
       this.setState({ isFocusVisible: true });
     }
   };
 
-  handleBlur = (event: SyntheticEvent) => {
+  handleBlur = (event: React.FocusEvent) => {
     if (this.state.isFocusVisible !== false) {
       this.setState({ isFocusVisible: false });
     }
@@ -150,26 +148,26 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
     }
   };
 
-  onFocus = (e: Event) => {
+  onFocus = (e: React.FocusEvent) => {
     if (!this.state.isVisible) return;
     clearTimeout(this.autoHideTimeout);
     clearTimeout(this.animateOutCompleteTimer);
     typeof this.props.onFocus === 'function' && this.props.onFocus(e);
   };
 
-  onMouseEnter = (e: Event) => {
+  onMouseEnter = (e: React.MouseEvent) => {
     if (!this.state.isVisible) return;
     clearTimeout(this.autoHideTimeout);
     clearTimeout(this.animateOutCompleteTimer);
     typeof this.props.onMouseEnter === 'function' && this.props.onMouseEnter(e);
   };
 
-  onBlur = (e: Event) => {
+  onBlur = (e: React.FocusEvent) => {
     this.startTimeout();
     typeof this.props.onBlur === 'function' && this.props.onBlur(e);
   };
 
-  onMouseLeave = (e: Event) => {
+  onMouseLeave = (e: React.MouseEvent) => {
     this.startTimeout();
     typeof this.props.onMouseLeave === 'function' && this.props.onMouseLeave(e);
   };
@@ -206,7 +204,6 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
 
     const closeIconOverrides: OverridesT = mergeOverrides(
       { Svg: { component: CloseIcon } },
-      // $FlowFixMe
       { Svg: CloseIconOverride }
     );
 

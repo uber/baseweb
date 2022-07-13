@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Spinner, SIZE } from '../index';
-import { useStyletron } from '../../styles/index';
+import { Spinner, SIZE } from '..';
+import { useStyletron } from '../../styles';
 
 export function Scenario() {
   const [, theme] = useStyletron();

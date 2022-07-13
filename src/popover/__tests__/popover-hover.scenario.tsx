@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Button } from '../../button/index';
-import { StatefulPopover, TRIGGER_TYPE, PLACEMENT } from '../index';
+import { Button } from '../../button';
+import { StatefulPopover, TRIGGER_TYPE, PLACEMENT } from '..';
 
 export function Scenario() {
   return (

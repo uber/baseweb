@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 import { SIZE } from './constants';
-import { styled, withStyle, withWrapper } from '../styles/index';
-import { StyledList } from '../menu/index';
-import { StyledDropdownListItem, StyledRoot as SelectStyledRoot } from '../select/index';
+import { styled, withStyle, withWrapper } from '../styles';
+import { StyledList } from '../menu';
+import { StyledDropdownListItem, StyledRoot as SelectStyledRoot } from '../select';
 import defaultProps from '../select/default-props';
 import type { SizeT } from './types';
 
@@ -23,7 +23,7 @@ type HeightStyleProps = {
 // The root element of the PhoneInputNext
 export const StyledPhoneInputRoot = styled('div', { display: 'flex' });
 
-export const StyledFlagContainer = styled<SizeStyleProps>(
+export const StyledFlagContainer = styled<'span', SizeStyleProps>(
   'span',
   ({ $size = SIZE.default, $theme: { sizing } }) => {
     const sizeToFont = {
@@ -57,7 +57,7 @@ export const StyledRoot = withStyle<typeof SelectStyledRoot, SizeStyleProps>(
   }
 );
 
-export const StyledDialCode = styled<{}>('div', ({ $theme: { direction, sizing } }) => {
+export const StyledDialCode = styled('div', ({ $theme: { direction, sizing } }) => {
   const marginDir: string = direction === 'rtl' ? 'marginRight' : 'marginLeft';
   return {
     [marginDir]: sizing.scale100,
@@ -96,7 +96,10 @@ export const StyledCountrySelectDropdownListItemElement = withStyle<typeof Style
   }
 );
 
-export const StyledCountrySelectDropdownListItem = withWrapper(
+export const StyledCountrySelectDropdownListItem = withWrapper<
+  typeof StyledCountrySelectDropdownListItemElement,
+  { item? }
+>(
   StyledCountrySelectDropdownListItemElement,
   (Styled) =>
     function StyledCountrySelectDropdownListItem({ item, ...restProps }) {
@@ -104,7 +107,7 @@ export const StyledCountrySelectDropdownListItem = withWrapper(
     }
 );
 
-export const StyledCountrySelectDropdownFlagColumn = styled<{}>(
+export const StyledCountrySelectDropdownFlagColumn = styled(
   'div',
   ({ $theme: { direction, sizing } }) => {
     const paddingDir: string = direction === 'rtl' ? 'paddingRight' : 'paddingLeft';
@@ -116,7 +119,7 @@ export const StyledCountrySelectDropdownFlagColumn = styled<{}>(
   }
 );
 
-export const StyledCountrySelectDropdownNameColumn = styled<{}>(
+export const StyledCountrySelectDropdownNameColumn = styled(
   'div',
   ({ $theme: { direction, sizing } }) => {
     const paddingDir: string = direction === 'rtl' ? 'paddingRight' : 'paddingLeft';
@@ -126,7 +129,7 @@ export const StyledCountrySelectDropdownNameColumn = styled<{}>(
   }
 );
 
-export const StyledCountrySelectDropdownDialcodeColumn = styled<{}>(
+export const StyledCountrySelectDropdownDialcodeColumn = styled(
   'div',
   ({ $theme: { direction, sizing } }) => {
     const paddingDir: string = direction === 'rtl' ? 'paddingLeft' : 'paddingRight';

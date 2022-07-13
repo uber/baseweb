@@ -7,22 +7,29 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/generic-spacing */
 import type {
   AccessibilityTypeT,
-  BasePopoverPropsT as BaseTooltipPropsT,
+  BasePopoverPropsT,
   ChildT,
   ChildrenT,
   ContentRenderPropT,
   OverridesT,
-  PopoverPlacementT as TooltipPlacementT,
-  PopoverPropsT as TooltipPropsT,
-  PopoverPropsWithoutChildrenT as TooltipPropsWithoutChildrenT,
+  PopoverPlacementT,
+  PopoverPropsT,
+  PopoverPropsWithoutChildrenT,
   StateChangeTypeT,
   StateT,
   StatefulContentRenderPropT,
-  StatefulPopoverPropsT as StatefulTooltipPropsT,
-  StatefulPopoverContainerPropsT as StatefulTooltipContainerPropsT,
+  StatefulPopoverPropsT,
+  StatefulPopoverContainerPropsT,
   StateReducerT,
   TriggerTypeT,
-} from '../popover/types';
+} from '../popover';
+
+type BaseTooltipPropsT = BasePopoverPropsT;
+type TooltipPlacementT = PopoverPlacementT;
+type TooltipPropsT = PopoverPropsT;
+type TooltipPropsWithoutChildrenT = PopoverPropsWithoutChildrenT;
+type StatefulTooltipPropsT = StatefulPopoverPropsT;
+type StatefulTooltipContainerPropsT = StatefulPopoverContainerPropsT;
 
 export type {
   AccessibilityTypeT,

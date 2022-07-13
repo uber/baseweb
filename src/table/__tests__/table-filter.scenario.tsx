@@ -5,8 +5,8 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
-import { styled } from '../../styles/index';
-import { Checkbox } from '../../checkbox/index';
+import { styled } from '../../styles';
+import { Checkbox } from '../../checkbox';
 import {
   Filter,
   StyledTable,
@@ -15,7 +15,7 @@ import {
   StyledBody,
   StyledRow,
   StyledCell,
-} from '../index';
+} from '..';
 
 const FilterCheckbox = (props) => (
   <Checkbox
@@ -36,7 +36,6 @@ const FilterCheckbox = (props) => (
   </Checkbox>
 );
 
-// flowlint-next-line unclear-type:off
 class FilterTable extends React.Component<any, any> {
   state = {
     filters: [],

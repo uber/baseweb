@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { useStyletron } from '../styles/index';
+import { useStyletron } from '../styles';
 
 import HeaderCell from './header-cell';
 import type { ColumnT, RowT } from './types';
@@ -16,7 +16,7 @@ import { useRef } from 'react';
 function MeasureColumn({ sampleIndexes, column, columnIndex, rows, isSelectable, onLayout }) {
   const [css] = useStyletron();
 
-  const ref = useRef();
+  const ref = useRef<HTMLDivElement>();
 
   React.useEffect(() => {
     if (__BROWSER__) {

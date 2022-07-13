@@ -24,7 +24,7 @@ import PinCodeStateful from 'examples/pin-code/stateful.js';
 import PinCodeMask from 'examples/pin-code/mask.js';
 
 import * as PinCodeExports from 'baseui/pin-code/index.js';
-import {StatefulPinCode} from 'baseui/pin-code/index.js';
+import { StatefulPinCode } from 'baseui/pin-code/index.js';
 
 import Yard from '../../components/yard/index';
 import pinYardConfig from '../../components/yard/config/pin-code';
@@ -162,11 +162,7 @@ As with many of our components, there is also an [uncontrolled](https://reactjs.
 <ApiTable
   title="Pin Code props"
   config={pinYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/pin-code/pin-code.js')}
+  types={require('!!extract-react-types-loader!../../../src/pin-code/pin-code')}
 />
 
-<Exports
-  component={PinCodeExports}
-  title="Pin Code exports"
-  path="baseui/pin-code"
-/>
+<Exports component={PinCodeExports} title="Pin Code exports" path="baseui/pin-code" />

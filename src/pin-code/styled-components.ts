@@ -4,10 +4,9 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import { styled, withStyle } from '../styles/index';
-import { Root as StyledInputRoot, Input as StyledInputInput } from '../input/styled-components';
-import type { SizeT } from '../input/types';
-import { SIZE } from '../input/constants';
+import { styled, withStyle } from '../styles';
+import { StyledRoot as StyledInputRoot, StyledInput as StyledInputInput, SIZE } from '../input';
+import type { SizeT } from '../input';
 
 export const StyledRoot = styled('div', {
   display: 'flex',

@@ -4,7 +4,7 @@ import { PropTypes } from 'react-view';
 import { TConfig } from '../types';
 import iconConfig from './icon';
 
-const breadcrumbsProps = require('!!extract-react-types-loader!../../../../src/breadcrumbs/breadcrumbs.js');
+const breadcrumbsProps = require('!!extract-react-types-loader!../../../../src/breadcrumbs/breadcrumbs');
 
 const BreadcrumbsConfig: TConfig = {
   componentName: 'Breadcrumbs',

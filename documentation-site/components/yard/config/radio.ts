@@ -12,8 +12,8 @@ import { TConfig } from '../types';
 
 import { changeHandlers } from './common/common';
 
-const radioProps = require('!!extract-react-types-loader!../../../../src/radio/radio.js');
-const radioGroupProps = require('!!extract-react-types-loader!../../../../src/radio/radiogroup.js');
+const radioProps = require('!!extract-react-types-loader!../../../../src/radio/radio');
+const radioGroupProps = require('!!extract-react-types-loader!../../../../src/radio/radiogroup');
 
 const RadioGroupConfig: TConfig = {
   componentName: 'RadioGroup',

@@ -22,7 +22,7 @@ import Password from 'examples/input/password.js';
 import BasicUncontrolled from 'examples/input/basic-uncontrolled.js';
 import WithSelect from 'examples/input/with-select.js';
 
-import {StatefulInput} from 'baseui/input';
+import { StatefulInput } from 'baseui/input';
 import * as InputExports from 'baseui/input';
 
 import Yard from '../../components/yard/index';
@@ -127,10 +127,7 @@ In the example above we use `overrides` to add "tag" functionality to our input.
   <WithSelect />
 </Example>
 
-<Example
-  title="Stateful (uncontrolled) usage"
-  path="input/basic-uncontrolled.js"
->
+<Example title="Stateful (uncontrolled) usage" path="input/basic-uncontrolled.js">
   <BasicUncontrolled />
 </Example>
 
@@ -141,7 +138,7 @@ As with many of our components, there is also an [uncontrolled](https://reactjs.
 <ApiTable
   title="Input props"
   config={inputYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/input/input.js')}
+  types={require('!!extract-react-types-loader!../../../src/input/input')}
 />
 
 <Exports component={InputExports} title="Input exports" path="baseui/input" />

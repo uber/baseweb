@@ -6,10 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Button } from '../../button/index';
-import { Modal, ModalHeader, ModalBody, ModalFooter, ModalButton, SIZE } from '../index';
+import { Button } from '../../button';
+import { Modal, ModalHeader, ModalBody, ModalFooter, ModalButton, SIZE } from '..';
 
-// $FlowFixMe
 export function Scenario({ closeable = true }) {
   const [isOpen, setIsOpen] = React.useState(false);
 
@@ -19,7 +18,6 @@ export function Scenario({ closeable = true }) {
   React.useEffect(() => {
     setIsOpen(true);
   }, []);
-  // flowlint-next-line unclear-type:off
   const modalRoot = React.useRef<any>(null);
 
   return (

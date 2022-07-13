@@ -19,7 +19,6 @@ import {
 import type { ProgressBarPropsT } from './types';
 
 class ProgressBar extends React.Component<
-  // flowlint-next-line unclear-type:off
   ProgressBarPropsT & {
     forwardedRef: any;
   }

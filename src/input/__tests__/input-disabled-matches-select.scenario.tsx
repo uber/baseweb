@@ -7,8 +7,8 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import { Input } from '../../input/index';
-import { Select } from '../../select/index';
+import { Input } from '../../input';
+import { Select } from '../../select';
 
 export function Scenario() {
   return (

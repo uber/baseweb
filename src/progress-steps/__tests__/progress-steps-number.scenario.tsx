@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Block } from '../../block/index';
-import { Button } from '../../button/index';
-import { ProgressSteps, NumberedStep } from '../index';
+import { Block } from '../../block';
+import { Button } from '../../button';
+import { ProgressSteps, NumberedStep } from '..';
 
 export class Scenario extends React.Component<
   {},

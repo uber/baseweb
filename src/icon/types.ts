@@ -20,7 +20,7 @@ export type StyledComponentArgsT = {
   $color?: ColorT;
 };
 
-export type IconPropsT = {
+export type IconPropsT = React.SVGAttributes<SVGElement> & {
   children?: React.ReactNode;
   /** Size of element, will be passed to the svg width/height style. Can also be a value included in */
   size?: SizeT;
@@ -29,4 +29,4 @@ export type IconPropsT = {
   /** Allows you to set the SVG `<title>` label, which is used for accessibility */
   title?: string;
   overrides?: OverridesT;
-};
+} & StyledComponentArgsT;

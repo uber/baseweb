@@ -34,10 +34,14 @@
     "baseUrl": "./" /* Specify the base directory to resolve non-relative module names. */,
     "paths": {
       "baseui": ["./src"],
-      "baseui/*": ["./src/*"]
+      "baseui/*": ["./src/*"],
+      "resize-observer-polyfill": ["./src/types/resize-observer-polyfill"]
     } /* Specify a set of entries that re-map imports to additional lookup locations. */,
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
-    // "typeRoots": [],                                  /* Specify multiple folders that act like './node_modules/@types'. */
+    "typeRoots": [
+      "src/types",
+      "node_modules/@types"
+    ] /* Specify multiple folders that act like './node_modules/@types'. */,
     // "types": [],                                      /* Specify type package names to be included without being referenced in a source file. */
     // "allowUmdGlobalAccess": true,                     /* Allow accessing UMD globals from modules. */
     // "moduleSuffixes": [],                             /* List of file name suffixes to search when resolving a module. */
@@ -104,7 +108,10 @@
 
     /* Completeness */
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
-    // "skipLibCheck": true,                             /* Skip type checking all .d.ts files. */
+    // todo: figure better way to resolve conflict in:
+    //  - node_modules/@date-io/date-fns/type/index.d.ts
+    //  - node_modules/@date-io/moment/type/index.d.ts
+    "skipLibCheck": true /* Skip type checking all .d.ts files. */
   },
   "exclude": [
     "dist",
@@ -116,7 +123,7 @@
     "packages/baseweb-vscode-extension",
     "build",
     "packages/**/*",
-    // remove when adding test type coverage
-    "src/*/__tests__/**/*"
+    // remove after fixing types in documentation
+    "documentation-site"
   ]
 }

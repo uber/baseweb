@@ -14,7 +14,7 @@ export const STATE_CHANGE_TYPES = {
   reset: 'reset',
   character: 'character',
   enter: 'enter',
-};
+} as const;
 
 export const KEY_STRINGS = {
   ArrowUp: 'ArrowUp',
@@ -27,9 +27,9 @@ export const KEY_STRINGS = {
   Backspace: 'Backspace',
   Home: 'Home',
   End: 'End',
-};
+} as const;
 
 export const OPTION_LIST_SIZE = {
   default: 'default',
   compact: 'compact',
-};
+} as const;

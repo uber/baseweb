@@ -9,7 +9,12 @@ import { getOverrides } from '../helpers/overrides';
 import { StyledNavLink, StyledNavItem } from './styled-components';
 import type { NavItemPropsT } from './types';
 
-class NavItem extends React.Component<NavItemPropsT> {
+type SharedProps = Omit<
+  React.ComponentProps<typeof StyledNavLink> & React.ComponentProps<typeof NavItem>,
+  'onSelect' | 'item' | 'overrides' | 'itemMemoizationComparator'
+>;
+
+class NavItem extends React.Component<NavItemPropsT & SharedProps> {
   static defaultProps = {
     overrides: {},
     onSelect: () => {},
@@ -68,4 +73,4 @@ function compare(prevProps, nextProps) {
   return false;
 }
 
-export default React.memo<NavItemPropsT>(NavItem, compare);
+export default React.memo(NavItem, compare);

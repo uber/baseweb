@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Button } from '../../button/index';
+import { Button } from '../../button';
 import Upload from '../upload';
 
 export function Scenario() {

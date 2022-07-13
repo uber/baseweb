@@ -29,7 +29,7 @@ export type OverridesT = {
 
 export type ChildT = React.ReactNode;
 
-export type ChildrenT = React.ChildrenArray<ChildT>;
+export type ChildrenT = Array<ChildT> | ChildT;
 
 // Props shared by all flavors of component
 export type ComponentPropsT = {

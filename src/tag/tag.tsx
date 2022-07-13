@@ -126,7 +126,6 @@ const Tag = React.forwardRef<HTMLSpanElement, PropsT>((props, ref) => {
 
   return (
     <Root
-      // flowlint-next-line unclear-type:off
       ref={ref as any}
       data-baseweb="tag"
       aria-label={
@@ -143,11 +142,13 @@ const Tag = React.forwardRef<HTMLSpanElement, PropsT>((props, ref) => {
       onFocus={forkFocus(rootProps, handleFocus)}
       onBlur={forkBlur(rootProps, handleBlur)}
     >
-      {StartEnhancer && StartEnhancer !== 0 && (
-        <StartEnhancerContainer {...startEnhancerContainerProps}>
-          <StartEnhancer />
-        </StartEnhancerContainer>
-      )}
+      {StartEnhancer &&
+        // @ts-expect-error todo(flow->ts) it is not expected to be a number
+        StartEnhancer !== 0 && (
+          <StartEnhancerContainer {...startEnhancerContainerProps}>
+            <StartEnhancer />
+          </StartEnhancerContainer>
+        )}
 
       <Text title={titleText} {...textProps}>
         {children}

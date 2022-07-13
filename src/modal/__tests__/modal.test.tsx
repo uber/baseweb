@@ -9,10 +9,10 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { render, fireEvent, getByTestId, getByText, queryByText } from '@testing-library/react';
 
-import { StatefulSelect } from '../../select/index';
+import { StatefulSelect } from '../../select';
 import { TestBaseProvider } from '../../test/test-utils';
 
-import { Modal, ModalBody, CLOSE_SOURCE } from '../index';
+import { Modal, ModalBody, CLOSE_SOURCE } from '..';
 
 describe('Modal', () => {
   it('renders nothing when closed', () => {

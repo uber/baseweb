@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/generic-spacing */
 import * as React from 'react';
 import type { OverrideT } from '../helpers/overrides';
-import type { SizeT } from '../input/types';
+import type { SizeT } from '../input';
 import {
   INPUT_ROLE,
   ORIENTATION,
@@ -21,9 +21,6 @@ import type {
   TimePickerStateT as TimePickerStateTBase,
 } from '../timepicker/types';
 
-import type { OptionT } from '../select/index';
-
-// flowlint-next-line unclear-type:off
 type LocaleT = any; // see https://github.com/date-fns/date-fns/blob/master/src/locale/index.js.flow
 
 export type DensityT = keyof typeof DENSITY;
@@ -93,7 +90,7 @@ export type DayPropsT<T = Date> = {
   onMouseLeave: (a: { event: Event; date: T }) => unknown;
   overrides?: DatepickerOverridesT;
   peekNextMonth: boolean;
-  value: T | undefined | null | ReadonlyArray<T | undefined | null>;
+  value: T | undefined | null | Array<T | undefined | null>;
 };
 
 export type DayStateT = {
@@ -125,7 +122,7 @@ export type WeekPropsT<T = Date> = {
   onChange?: (a: { readonly date: T | undefined | null | Array<T | undefined | null> }) => unknown;
   overrides?: DatepickerOverridesT;
   peekNextMonth: boolean;
-  value: T | undefined | null | ReadonlyArray<T | undefined | null>;
+  value: T | undefined | null | Array<T | undefined | null>;
   hasLockedBehavior: boolean;
   selectedInput?: InputRoleT;
 };
@@ -203,7 +200,7 @@ export type CalendarPropsT<T = Date> = {
   /** Defines if tabbing inside the calendar is circled within it. */
   trapTabbing?: boolean;
   /** Currently selected date. */
-  value?: T | undefined | null | ReadonlyArray<T | undefined | null>;
+  value?: T | undefined | null | Array<T | undefined | null>;
   fixedHeight?: boolean;
   /** Determines whether user clicked startDate or endDate input to trigger calendar open */
   selectedInput?: InputRoleT;
@@ -234,10 +231,10 @@ export type DatepickerPropsT<T = Date> = {
   clearable?: boolean;
   displayValueAtRangeIndex?: number;
   formatDisplayValue?: (
-    date: T | undefined | null | ReadonlyArray<T | undefined | null>,
+    date: T | undefined | null | Array<T | undefined | null>,
     formatString: string
   ) => string;
-  formatString: string;
+  formatString?: string;
   /** Where to mount the popover */
   mountNode?: HTMLElement;
   /** When single picker, fn is always called. When range picker, fn is called when start and end date are selected. */
@@ -257,11 +254,10 @@ export type DatepickerPropsT<T = Date> = {
   separateRangeInputs?: boolean;
   startDateLabel?: string;
   endDateLabel?: string;
-  value?: T | undefined | null | ReadonlyArray<T | undefined | null>;
+  value?: T | undefined | null | Array<T | undefined | null>;
 } & CalendarPropsT<T>;
 
 export type SharedStylePropsT = {
-  // flowlint-next-line unclear-type:off
   $date: any;
   $disabled: boolean | undefined | null;
   $density: DensityT;
@@ -297,7 +293,8 @@ export type StateChangeTypeT =
 
 export type ContainerStateT<T = Date> = {
   /** Selected `Date`. If `range` is set, `value` is an array of 2 values. */
-  value?: T | undefined | null | ReadonlyArray<T | undefined | null>;
+  value?: T | undefined | null | Array<T | undefined | null>;
+  highlightedDate?: T | null;
 };
 
 export type NavigationContainerStateT<T = Date> = {
@@ -321,9 +318,9 @@ export type StateReducerT<T = Date> = (
 export type StatefulContainerPropsT<PropsT, T = Date> = {
   children: (a: PropsT) => React.ReactNode;
   /** Initial state of an uncontrolled datepicker component. */
-  initialState: ContainerStateT<T>;
+  initialState?: ContainerStateT<T>;
   /** A state change handler. */
-  stateReducer: StateReducerT<T>;
+  stateReducer?: StateReducerT<T>;
   /** When single picker, fn is called when date/time is selected. When range picker, fn is called when both start and end are selected. */
   onChange?: (a: { date: T | undefined | null | Array<T> }) => unknown;
   /** When single picker, fn is called when date/time is selected. When range picker, fn is called when either start or end date changes. */
@@ -339,50 +336,6 @@ export type StatefulDatepickerPropsT<PropsT, T = Date> = Omit<
   StatefulContainerPropsT<PropsT, T>,
   'children'
 >;
-
-export type TimePickerPropsT<T = Date> = TimePickerPropsTBase<T>;
-export type TimePickerStateT = TimePickerStateTBase;
-
-export type TimezonePickerStateT = {
-  /** List of timezones from the IANA database. */
-  timezones: OptionT[];
-  /** Value provided to the select component. */
-  value: string | undefined | null;
-};
-export type TimezonePickerPropsT = {
-  /**
-   * If not provided, defaults to new Date(). Important to note that the timezone picker only
-   * displays options related to the provided date. Take Pacific Time for example. On March 9th,
-   * Pacific Time equates to the more specific Pacific Standard Time. On March 10th, it operates on
-   * Pacific Daylight Time. The timezone picker will never display PST and PDT together. If you need
-   * exact specificity, provide a date. Otherwise it will default to the relevant timezone at render.
-   */
-  date?: Date;
-  /**
-   * Customize the option's label. Useful for translations and optionally mapping from
-   * 'America/Los_Angeles' to 'Pacific Time'.
-   */
-  mapLabels?: (a: OptionT) => React.ReactNode;
-  /** Callback for when the timezone selection changes. */
-  onChange?: (
-    value?: {
-      id: string;
-      label: string;
-      offset: number;
-    } | null
-  ) => unknown;
-  overrides?: {
-    Select?: OverrideT;
-  };
-  /**
-   * Optional value that can be provided to fully control the component. If not provided,
-   * TimezonePicker will manage state internally.
-   */
-  value?: string | null;
-  disabled?: boolean;
-  error?: boolean;
-  positive?: boolean;
-};
 
 export type InputRoleT = typeof INPUT_ROLE[keyof typeof INPUT_ROLE] | undefined | null;
 

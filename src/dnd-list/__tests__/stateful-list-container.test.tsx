@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { act } from 'react-dom/test-utils';
 import { render } from '@testing-library/react';
-import { StatefulListContainer, STATE_CHANGE_TYPE } from '../index';
+import { StatefulListContainer, STATE_CHANGE_TYPE } from '..';
 
 describe('StatefulListContainer', () => {
   it('basic render', () => {
@@ -33,7 +33,7 @@ describe('StatefulListContainer', () => {
       onChange: jest.fn(),
       stateReducer: jest.fn(),
     };
-    const children = jest.fn(() => null);
+    const children = jest.fn((props) => null);
     const event = {
       newIndex: undefined,
       newState: [undefined],
@@ -61,12 +61,11 @@ describe('StatefulListContainer', () => {
       },
       stateReducer: jest.fn(),
     };
-    const children = jest.fn(() => null);
+    const children = jest.fn((props) => null);
 
     render(<StatefulListContainer {...props}>{children}</StatefulListContainer>);
 
     props.stateReducer.mockReturnValueOnce({ items: ['Item 2', 'Item 1'] });
-    // flowlint-next-line unclear-type:off
     const targetRect: any = {};
     act(() => {
       children.mock.calls[0][0].onChange({

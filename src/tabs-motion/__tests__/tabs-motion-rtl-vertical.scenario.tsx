@@ -8,12 +8,12 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable jsx-a11y/accessible-emoji */
 
 import * as React from 'react';
-import { Tab, Tabs, ORIENTATION } from '../index';
-import { Button, KIND } from '../../button/index';
-import { ThemeProvider, LightTheme } from '../../index';
+import { Tab, Tabs, ORIENTATION } from '..';
+import { Button, KIND } from '../../button';
+import { ThemeProvider, LightTheme } from '../..';
 
 export function Scenario() {
-  const [activeKey, setActiveKey] = React.useState('0');
+  const [activeKey, setActiveKey] = React.useState<React.Key>('0');
   return (
     <ThemeProvider theme={{ ...LightTheme, direction: 'rtl' }}>
       <div dir="rtl">

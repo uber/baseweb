@@ -9,8 +9,8 @@ import { Provider as StyletronProvider } from 'styletron-react';
 import { Client as Styletron } from 'styletron-engine-atomic';
 
 import BaseProvider from '../helpers/base-provider';
-import { ThemeProvider } from '../styles/index';
-import { LightTheme } from '../themes/index';
+import { ThemeProvider } from '../styles';
+import { LightTheme } from '../themes';
 
 const engine = new Styletron();
 
@@ -32,7 +32,6 @@ export const withThemeProvider = (Component: React.ComponentType<{}>) =>
     );
   };
 
-// flowlint-next-line unclear-type:off
 export const withAll = (Component: () => React.ReactElement<any>) => {
   return (
     <StyletronProvider value={engine}>

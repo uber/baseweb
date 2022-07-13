@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { StatefulInput } from '../index';
-import { Block } from '../../block/index';
+import { StatefulInput } from '..';
+import { Block } from '../../block';
 import Search from '../../icon/search';
 
 export function Scenario() {

@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { FormControl } from '../index';
-import { Input, StatefulInput, SIZE } from '../../input/index';
-import { Textarea } from '../../textarea/index';
+import { FormControl } from '..';
+import { Input, StatefulInput, SIZE } from '../../input';
+import { Textarea } from '../../textarea';
 
 export function Scenario() {
   const [value, setValue] = React.useState('');

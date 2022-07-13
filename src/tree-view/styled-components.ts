@@ -5,13 +5,16 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-import { styled } from '../styles/index';
+import { styled } from '../styles';
 
-export const StyledTreeItemList = styled<{
-  $indentGuides?: boolean;
-  $isChildNode?: boolean;
-  $expanded?: boolean;
-}>('ul', ({ $theme, $indentGuides, $isChildNode, $expanded = true }) => {
+export const StyledTreeItemList = styled<
+  'ul',
+  {
+    $indentGuides?: boolean;
+    $isChildNode?: boolean;
+    $expanded?: boolean;
+  }
+>('ul', ({ $theme, $indentGuides, $isChildNode, $expanded = true }) => {
   const direction: string = $theme.direction === 'rtl' ? 'Right' : 'Left';
   return {
     marginTop: 0,
@@ -29,9 +32,12 @@ export const StyledTreeItemList = styled<{
   };
 });
 
-export const StyledTreeItem = styled<{
-  $isLeafNode?: boolean;
-}>('li', ({ $theme, $isLeafNode }) => {
+export const StyledTreeItem = styled<
+  'li',
+  {
+    $isLeafNode?: boolean;
+  }
+>('li', ({ $theme, $isLeafNode }) => {
   return {
     cursor: $isLeafNode ? 'auto' : 'pointer',
     marginTop: 0,
@@ -48,10 +54,13 @@ export const StyledTreeItem = styled<{
   };
 });
 
-export const StyledItemContent = styled<{
-  $isSelected: boolean;
-  $isFocusVisible: boolean;
-}>('div', ({ $theme, $isSelected, $isFocusVisible }) => {
+export const StyledItemContent = styled<
+  'div',
+  {
+    $isSelected: boolean;
+    $isFocusVisible: boolean;
+  }
+>('div', ({ $theme, $isSelected, $isFocusVisible }) => {
   return {
     ...$theme.typography.font300,
     alignItems: 'center',
@@ -74,7 +83,7 @@ export const StyledItemContent = styled<{
   };
 });
 
-export const StyledIconContainer = styled<{}>('div', ({ $theme }) => {
+export const StyledIconContainer = styled('div', ({ $theme }) => {
   const marginDirection: string = $theme.direction === 'rtl' ? 'marginLeft' : 'marginRight';
   return {
     alignItems: 'center',
@@ -86,7 +95,7 @@ export const StyledIconContainer = styled<{}>('div', ({ $theme }) => {
   };
 });
 
-export const StyledNoIconContainer = styled<{}>('div', ({ $theme }) => {
+export const StyledNoIconContainer = styled('div', ({ $theme }) => {
   const marginDirection: string = $theme.direction === 'rtl' ? 'marginLeft' : 'marginRight';
   return {
     alignItems: 'center',
@@ -100,6 +109,6 @@ export const StyledNoIconContainer = styled<{}>('div', ({ $theme }) => {
   };
 });
 
-export const StyledLabelInteractable = styled<{}>('div', () => ({
+export const StyledLabelInteractable = styled('div', () => ({
   width: '100%',
 }));

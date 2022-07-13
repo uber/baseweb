@@ -181,10 +181,11 @@ export const matchString = (
   matchPrefix: boolean
 ) => {
   for (let i = 0; i < nodes.length; i++) {
-    if (nodes[i].label && typeof nodes[i].label === 'string') {
+    let label = nodes[i].label;
+    if (label && typeof label === 'string') {
       if (
-        (matchPrefix && nodes[i].label.toUpperCase().indexOf(chars.toUpperCase()) === 0) ||
-        (!matchPrefix && nodes[i].label.toUpperCase().indexOf(chars.toUpperCase()) > 0)
+        (matchPrefix && label.toUpperCase().indexOf(chars.toUpperCase()) === 0) ||
+        (!matchPrefix && label.toUpperCase().indexOf(chars.toUpperCase()) > 0)
       ) {
         return getId(nodes[i]);
       }

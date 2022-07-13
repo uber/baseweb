@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import { getOverrides } from '../helpers/overrides';
-import { useStyletron } from '../styles/index';
+import { useStyletron } from '../styles';
 import { isFocusVisible } from '../utils/focusVisible';
 
 import { KIND, POSITION } from './constants';
@@ -141,8 +141,8 @@ export default function AppNavBar(props: AppNavBarPropsT) {
   const [DesktopMenu, desktopMenuProps] = getOverrides(overrides.DesktopMenu, StyledDesktopMenu);
 
   let secondaryMenu;
-  let desktopSubNavPosition = POSITION.horizontal;
-  let mobileSubNavPosition = POSITION.vertical;
+  let desktopSubNavPosition: typeof POSITION[keyof typeof POSITION] = POSITION.horizontal;
+  let mobileSubNavPosition: typeof POSITION[keyof typeof POSITION] = POSITION.vertical;
 
   return (
     <Root {...rootProps} data-baseweb="app-nav-bar">
@@ -159,14 +159,16 @@ export default function AppNavBar(props: AppNavBarPropsT) {
           <AppName {...appNameProps}>{title}</AppName>
         </Spacing>
 
-        {secondaryMenu && mobileSubNavPosition === POSITION.horizontal && (
-          <SecondaryMenu
-            items={secondaryMenu}
-            mapItemToNode={mapItemToNode}
-            onSelect={onMainItemSelect}
-            overrides={overrides}
-          />
-        )}
+        {secondaryMenu &&
+          // @ts-expect-error todo(flow->ts) always false
+          mobileSubNavPosition === POSITION.horizontal && (
+            <SecondaryMenu
+              items={secondaryMenu}
+              mapItemToNode={mapItemToNode}
+              onSelect={onMainItemSelect}
+              overrides={overrides}
+            />
+          )}
       </div>
 
       {/* Desktop Nav Experience */}

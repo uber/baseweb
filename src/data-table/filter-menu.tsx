@@ -5,47 +5,47 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import React from 'react';
-import { Button, SHAPE, SIZE } from '../button/index';
-import { Filter as FilterIcon } from '../icon/index';
-import { Input, SIZE as INPUT_SIZE } from '../input/index';
-import { Popover, PLACEMENT } from '../popover/index';
-import { useStyletron } from '../styles/index';
+import { Button, SHAPE, SIZE } from '../button';
+import { Filter as FilterIcon } from '../icon';
+import { Input, SIZE as INPUT_SIZE } from '../input';
+import { Popover, PLACEMENT } from '../popover';
+import { useStyletron } from '../styles';
 import { useUIDSeed } from 'react-uid';
 
 import { COLUMNS } from './constants';
 import { matchesQuery } from './text-search';
 import type { ColumnT } from './types';
-import { LocaleContext } from '../locale/index';
+import { LocaleContext } from '../locale';
 
 import { isFocusVisible } from '../utils/focusVisible';
 
 import type { SyntheticEvent } from 'react';
 
-function ColumnIcon(props: { column: ColumnT }) {
+const ColumnIcon: React.FC<{ column: ColumnT }> = (props) => {
   if (props.column.kind === COLUMNS.BOOLEAN) {
-    return '01';
+    return <>01</>;
   }
 
   if (props.column.kind === COLUMNS.CATEGORICAL) {
-    return 'abc';
+    return <>abc</>;
   }
 
   if (props.column.kind === COLUMNS.DATETIME) {
-    return 'dt';
+    return <>dt</>;
   }
 
   if (props.column.kind === COLUMNS.NUMERICAL) {
-    return '#';
+    return <>#</>;
   }
 
   return <FilterIcon />;
-}
+};
 
 type OptionsPropsT = {
   columns: ColumnT[];
   highlightIndex: number;
   onClick: (a: ColumnT) => void;
-  onKeyDown: (a: KeyboardEvent) => void;
+  onKeyDown: (a: React.KeyboardEvent) => void;
   onMouseEnter: (a: number) => void;
   onQueryChange: (a: string) => void;
   query: string;
@@ -134,7 +134,7 @@ function Options(props: OptionsPropsT) {
         onKeyDown={props.onKeyDown}
         onFocus={handleFocus}
         onBlur={handleBlur}
-        tabIndex="0"
+        tabIndex={0}
         role="listbox"
         aria-activedescendant={`bui-${buiRef.current[props.highlightIndex]}`}
         className={css({
@@ -199,9 +199,7 @@ function Options(props: OptionsPropsT) {
 
 type PropsT = {
   columns: ColumnT[];
-  // flowlint-next-line unclear-type:off
   filters: Map<string, any>;
-  // flowlint-next-line unclear-type:off
   rows: any[];
   onSetFilter: (
     columnTitle: string,

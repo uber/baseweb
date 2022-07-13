@@ -25,7 +25,6 @@ function Instance({ startDate }) {
         new Date('2022-04-13'),
       ]}
       range
-      highlightDate={new Date('2022-03-05')}
       maxDate={new Date('2022-05-14')}
       minDate={new Date('2022-03-05')}
       overrides={{

@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { render, fireEvent, getByRole, getAllByRole } from '@testing-library/react';
 
-import { EmoticonRating } from '../index';
+import { EmoticonRating } from '..';
 
 describe('EmoticonRating', () => {
   it('applies correct accessibility attributes to the root element', () => {

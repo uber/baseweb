@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import { Scenario as Checkbox } from './checkbox.scenario';
-import { ThemeProvider, LightTheme } from '../../index';
+import { ThemeProvider, LightTheme } from '../..';
 
 export function Scenario() {
   return (

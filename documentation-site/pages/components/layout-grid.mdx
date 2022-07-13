@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
-import {Table} from 'baseui/table-semantic';
+import { Table } from 'baseui/table-semantic';
 import API from '../../components/api';
 import Example from '../../components/example';
 import Exports from '../../components/exports';
@@ -220,18 +220,8 @@ That said, we provide `overrides` just in case your imagination surpasses our AP
 
 ## API
 
-<API
-  heading="Grid"
-  api={require('!!extract-react-types-loader!../../../src/layout-grid/grid.js')}
-/>
+<API heading="Grid" api={require('!!extract-react-types-loader!../../../src/layout-grid/grid')} />
 
-<API
-  heading="Cell"
-  api={require('!!extract-react-types-loader!../../../src/layout-grid/cell.js')}
-/>
+<API heading="Cell" api={require('!!extract-react-types-loader!../../../src/layout-grid/cell')} />
 
-<Exports
-  component={LayoutGridExports}
-  title="Layout Grid exports"
-  path="baseui/layout-grid"
-/>
+<Exports component={LayoutGridExports} title="Layout Grid exports" path="baseui/layout-grid" />

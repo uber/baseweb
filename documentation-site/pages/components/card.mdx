@@ -13,8 +13,8 @@ import CardBasic from 'examples/card/basic.js';
 import CardWithImageCta from 'examples/card/image-cta.js';
 import CardWithThumbnailCta from 'examples/card/thumbnail-cta.js';
 
-import {Card, StyledBody, StyledAction, StyledThumbnail} from 'baseui/card';
-import {Button} from 'baseui/button';
+import { Card, StyledBody, StyledAction, StyledThumbnail } from 'baseui/card';
+import { Button } from 'baseui/button';
 import * as CardExports from 'baseui/card';
 
 import Yard from '../../components/yard/index';
@@ -42,10 +42,7 @@ The entire card can become an active click-target.
   <CardWithImageCta />
 </Example>
 
-<Example
-  title="Card with thumbnail and call to action"
-  path="card/thumbnail-cta.js"
->
+<Example title="Card with thumbnail and call to action" path="card/thumbnail-cta.js">
   <CardWithThumbnailCta />
 </Example>
 
@@ -54,7 +51,7 @@ The entire card can become an active click-target.
 <ApiTable
   title="Card props"
   config={cardYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/card/card.js')}
+  types={require('!!extract-react-types-loader!../../../src/card/card')}
 />
 
 <Exports component={CardExports} title="Card exports" path="baseui/card" />

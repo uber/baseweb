@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 import type { ElementType, ReactNode } from 'react';
 import type { OverrideT } from '../helpers/overrides';
+import * as React from 'react';
 
 export type OverridesT = {
   Block?: OverrideT;
@@ -220,10 +221,10 @@ export type WhiteSpaceT =
   | 'initial'
   | 'unset';
 
-export type BlockPropsT = {
+export type BlockPropsT<T extends ElementType = ElementType> = {
   children?: ReactNode;
   /** Modifies the base element used to render the block. */
-  as?: ElementType;
+  as?: T;
   overrides?: OverridesT;
   /** Accepts all themeable color properties (`primary200`, etc.). */
   color?: ResponsiveT<string>;
@@ -332,11 +333,9 @@ export type BlockPropsT = {
   textOverflow?: ResponsiveT<string>;
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/white-space */
   whiteSpace?: ResponsiveT<WhiteSpaceT>;
-  src?: string;
 };
 
 export type StyledBlockPropsT = {
-  $as?: ElementType;
   $color?: ResponsiveT<string>;
   $backgroundAttachment?: ResponsiveT<string>;
   $backgroundClip?: ResponsiveT<string>;
@@ -403,3 +402,12 @@ export type StyledBlockPropsT = {
   $textOverflow?: ResponsiveT<string>;
   $whiteSpace?: ResponsiveT<WhiteSpaceT>;
 };
+
+export interface BlockComponentType<D extends React.ElementType> {
+  <C extends React.ElementType = D>(
+    props: BlockPropsT<C> &
+      (React.ComponentProps<C> extends { ref?: infer R } ? { ref?: R } : {}) &
+      Omit<StyledBlockPropsT & React.ComponentProps<C>, keyof BlockPropsT>
+  ): JSX.Element;
+  displayName?: string;
+}

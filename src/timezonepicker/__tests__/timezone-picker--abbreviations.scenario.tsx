@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Block } from '../../block/index';
-import { TimezonePicker } from '../index';
+import { Block } from '../../block';
+import { TimezonePicker } from '..';
 
 const daylight = new Date(2019, 3, 1);
 const standard = new Date(2019, 2, 1);
@@ -17,7 +17,6 @@ const overrides = {
   },
 };
 
-// flowlint-next-line unclear-type:off
 class Controlled extends React.Component<any, any> {
   state = { value: { id: 'Asia/Tokyo' } };
 

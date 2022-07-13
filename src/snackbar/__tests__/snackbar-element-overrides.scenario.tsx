@@ -9,7 +9,7 @@ import * as React from 'react';
 
 import Upload from '../../icon/upload';
 
-import { SnackbarElement } from '../index';
+import { SnackbarElement } from '..';
 
 export function Scenario() {
   return (

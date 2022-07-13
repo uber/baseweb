@@ -9,7 +9,7 @@ import { render, findByText, fireEvent, getByText } from '@testing-library/react
 
 import { TestBaseProvider } from '../../test/test-utils';
 
-import { Tooltip, ACCESSIBILITY_TYPE, PLACEMENT, TRIGGER_TYPE } from '../index';
+import { Tooltip, ACCESSIBILITY_TYPE, PLACEMENT, TRIGGER_TYPE } from '..';
 
 describe('Tooltip', () => {
   it('basic render', async () => {

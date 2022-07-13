@@ -6,20 +6,21 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Button, SIZE, KIND } from '../button/index';
-import { ButtonGroup } from '../button-group/index';
-import { Checkbox, StyledLabel } from '../checkbox/index';
+import { Button, SIZE, KIND } from '../button';
+import { ButtonGroup } from '../button-group';
+import { Checkbox, StyledLabel } from '../checkbox';
 import Search from '../icon/search';
-import { Input, SIZE as INPUT_SIZE } from '../input/index';
-import { useStyletron, withStyle } from '../styles/index';
-import { LabelSmall } from '../typography/index';
+import { Input, SIZE as INPUT_SIZE } from '../input';
+import { useStyletron, withStyle } from '../styles';
+import { LabelSmall } from '../typography';
 
 import Column from './column';
 import { COLUMNS } from './constants';
 import type { ColumnT, SharedColumnOptionsT } from './types';
-import { LocaleContext } from '../locale/index';
+import { LocaleContext } from '../locale';
 import FilterShell from './filter-shell';
 import { matchesQuery, splitByQuery, HighlightCellText } from './text-search';
+import type { StyleObject } from 'styletron-standard';
 
 type OptionsT = {} & SharedColumnOptionsT<string>;
 
@@ -61,8 +62,11 @@ function FilterQuickControls(props: { onSelectAll: () => void; onClearSelection:
   );
 }
 
-const StyledHighlightLabel = withStyle(StyledLabel, (props) => {
-  const style = {
+const StyledHighlightLabel = withStyle<
+  typeof StyledLabel,
+  { $isActive: boolean; $isFirst: boolean }
+>(StyledLabel, (props) => {
+  const style: StyleObject = {
     whiteSpace: 'pre',
     color: props.$isActive
       ? props.$theme.colors.contentPrimary
@@ -70,7 +74,6 @@ const StyledHighlightLabel = withStyle(StyledLabel, (props) => {
   };
 
   if (!props.$isFirst) {
-    // $FlowFixMe
     style.paddingLeft = null;
   }
 
@@ -117,8 +120,8 @@ export function CategoricalFilter(props: CategoricalFilterProps) {
     props.filterParams ? props.filterParams.exclude : false
   );
   const [query, setQuery] = React.useState('');
-  const categories = React.useMemo(() => {
-    return props.data.reduce((set, category) => set.add(category), new Set());
+  const categories: Set<string> = React.useMemo(() => {
+    return props.data.reduce((set, category) => set.add(category), new Set<string>());
   }, [props.data]);
 
   const checkboxStyles = css({ marginBottom: theme.sizing.scale200 });
@@ -192,6 +195,7 @@ export function CategoricalFilter(props: CategoricalFilterProps) {
                   setSelection(new Set(selection));
                 }}
                 overrides={{
+                  // @ts-expect-error
                   Label: { component: HighlightCheckboxLabel, props: { query } },
                 }}
               >

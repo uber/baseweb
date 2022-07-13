@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 
-import { MaskedInput } from '../index';
+import { MaskedInput } from '..';
 
 describe('masked-input', () => {
   it('renders input element', () => {

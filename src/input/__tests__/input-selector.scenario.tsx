@@ -6,11 +6,11 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { FormControl } from '../../form-control/index';
-import { Select } from '../../select/index';
-import { useStyletron } from '../../styles/index';
+import { FormControl } from '../../form-control';
+import { Select } from '../../select';
+import { useStyletron } from '../../styles';
 
-import { Input } from '../index';
+import { Input } from '..';
 
 function SelectAtStart(props) {
   const [css] = useStyletron();

@@ -6,9 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-// flowlint-next-line unclear-type:off
-export default function (Component: any, displayName: string) {
-  // flowlint-next-line unclear-type:off
+export default function <C extends React.ComponentType>(Component: C, displayName: string): C {
   const DeprecatedComponent = React.forwardRef<any, any>((props, ref) => {
     if (__DEV__) {
       console.warn(
@@ -18,5 +16,6 @@ export default function (Component: any, displayName: string) {
     return <Component {...props} ref={ref} />;
   });
   DeprecatedComponent.displayName = 'DeprecatedComponent';
+  // @ts-ignore
   return DeprecatedComponent;
 }

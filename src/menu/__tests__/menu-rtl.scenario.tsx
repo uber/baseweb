@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
-import { ThemeProvider, LightTheme } from '../../index';
+import { ThemeProvider, LightTheme } from '../..';
 import { Scenario as MenuScenario } from './menu.scenario';
 import { Scenario as MenuNestedScenario } from './menu-child.scenario';
 

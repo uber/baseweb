@@ -6,13 +6,13 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Button, KIND } from '../index';
+import { Button, KIND } from '..';
 
 export function Scenario() {
   return (
     <table>
       <tbody>
-        {Object.keys(KIND).map((kind) => {
+        {Object.values(KIND).map((kind) => {
           return (
             <tr key={kind}>
               <td>

@@ -135,3 +135,4 @@ function isEnhancer(enhancer): boolean {
 }
 
 export default Input;
+export { default as StatefulContainer } from './stateful-container';

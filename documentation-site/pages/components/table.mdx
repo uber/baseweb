@@ -60,10 +60,7 @@ components, a visually similar table, but implemented with [css-grid](https://de
   <Sortable />
 </Example>
 
-<Example
-  title="Table with fixed width column"
-  path="table/fixed-width-column.js"
->
+<Example title="Table with fixed width column" path="table/fixed-width-column.js">
   <FixedWidthColumn />
 </Example>
 
@@ -82,7 +79,7 @@ components, a visually similar table, but implemented with [css-grid](https://de
 <Example
   title="Using react-vis"
   path="table/graph.js"
-  additionalPackages={{'react-vis': '1.11.6'}}
+  additionalPackages={{ 'react-vis': '1.11.6' }}
 >
   <Graph />
 </Example>
@@ -96,7 +93,7 @@ contain `react-virtualized` internally. You will need to install it yourself.
 <Example
   title="Table with virtualized table body"
   path="table/virtual.js"
-  additionalPackages={{'react-virtualized': '^9.21.0'}}
+  additionalPackages={{ 'react-virtualized': '^9.21.0' }}
 >
   <Virtual />
 </Example>
@@ -104,7 +101,7 @@ contain `react-virtualized` internally. You will need to install it yourself.
 <Example
   title="Table with virtualized horizontal scroll"
   path="table/virtual-horizontal-scroll.js"
-  additionalPackages={{'react-virtualized': '^9.21.0'}}
+  additionalPackages={{ 'react-virtualized': '^9.21.0' }}
 >
   <VirtualHorizontal />
 </Example>
@@ -114,7 +111,7 @@ contain `react-virtualized` internally. You will need to install it yourself.
 <ApiTable
   title="Table props"
   config={tableYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/table/table.js')}
+  types={require('!!extract-react-types-loader!../../../src/table/table')}
 />
 
 <Exports component={TableExports} title="Table exports" path="baseui/table" />

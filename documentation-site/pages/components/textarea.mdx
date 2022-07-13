@@ -16,7 +16,7 @@ import TextareaRef from 'examples/textarea/ref.js';
 import TextareaResizable from 'examples/textarea/resizable.js';
 import TextareaStateful from 'examples/textarea/stateful.js';
 
-import {StatefulTextarea as Textarea, SIZE} from 'baseui/textarea';
+import { StatefulTextarea as Textarea, SIZE } from 'baseui/textarea';
 import * as TextareaExports from 'baseui/textarea';
 
 import Yard from '../../components/yard/index';
@@ -64,11 +64,7 @@ As with many of our components, there is also an [uncontrolled](https://reactjs.
 <ApiTable
   title="Textarea props"
   config={textareaYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/textarea/textarea.js')}
+  types={require('!!extract-react-types-loader!../../../src/textarea/textarea')}
 />
 
-<Exports
-  component={TextareaExports}
-  title="Textarea exports"
-  path="baseui/textarea"
-/>
+<Exports component={TextareaExports} title="Textarea exports" path="baseui/textarea" />

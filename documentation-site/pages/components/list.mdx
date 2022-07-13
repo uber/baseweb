@@ -15,9 +15,9 @@ import Enhancers from 'examples/list/enhancers.js';
 import Sublist from 'examples/list/sublist.js';
 import MenuAdapter from 'examples/list/menu-adapter.js';
 
-import {Button} from 'baseui/button';
+import { Button } from 'baseui/button';
 import Search from 'baseui/icon/search';
-import {ListItem, ListItemLabel} from 'baseui/list';
+import { ListItem, ListItemLabel } from 'baseui/list';
 import * as ListExports from 'baseui/list';
 
 import Yard from '../../components/yard/index';
@@ -71,7 +71,7 @@ If your app renders hundreds of `ListItem`s at a time, it may be desirable to av
 <ApiTable
   title="List props"
   config={listItemYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/list/list-item.js')}
+  types={require('!!extract-react-types-loader!../../../src/list/list-item')}
 />
 
 <Exports component={ListExports} title="List exports" path="baseui/list" />

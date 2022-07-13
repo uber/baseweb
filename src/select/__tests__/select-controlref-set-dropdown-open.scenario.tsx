@@ -6,12 +6,12 @@ LICENSE file in the root directory of this source tree.
 */
 import React from 'react';
 
-import { Select } from '../index';
-import { Button } from '../../button/index';
+import { Select } from '..';
+import { Button } from '../../button';
 
 export function Scenario() {
   const controlRef = React.useRef(null);
-  const [value, setValue] = React.useState([]);
+  const [value, setValue] = React.useState<any>([]);
 
   const options = [
     { id: 'a', label: 'apples' },

@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 import React from 'react';
 
-import { useStyletron } from '../../styles/index';
+import { useStyletron } from '../../styles';
 
-import { StyledTable, StyledHeadCell, StyledBodyCell } from '../index';
+import { StyledTable, StyledHeadCell, StyledBodyCell } from '..';
 
 import { useCellNavigation } from './shared';
 
@@ -30,7 +30,7 @@ export function Scenario() {
   return (
     <div className={css({ height: '750px', width: '900px' })}>
       <StyledTable
-        tabIndex="0"
+        tabIndex={0}
         role="grid"
         $gridTemplateColumns="minmax(400px, max-content) 200px 200px 200px 200px 200px"
       >

@@ -8,15 +8,21 @@ import * as React from 'react';
 import { act } from 'react-dom/test-utils';
 import { render } from '@testing-library/react';
 
-import { StatefulSelectContainer } from '../index';
+import { StatefulSelectContainer } from '..';
 import { STATE_CHANGE_TYPE } from '../constants';
 
 describe('StatefulSelectContainer', function () {
-  let props = {};
+  let props: {
+    children: jest.Mock<JSX.Element, [any]>;
+    initialState: { value: { id: string; label: string }[] };
+    stateReducer: jest.Mock<any, any>;
+    overrides: {};
+    onChange: jest.Mock<any, any>;
+  };
 
   beforeEach(function () {
     props = {
-      children: jest.fn(() => <div>test</div>),
+      children: jest.fn((arg) => <div>test</div>),
       initialState: { value: [{ id: 'id', label: 'label' }] },
       stateReducer: jest.fn(),
       overrides: {},
@@ -25,14 +31,12 @@ describe('StatefulSelectContainer', function () {
   });
 
   it('provides props to children render func', function () {
-    //$FlowFixMe
     render(<StatefulSelectContainer {...props} />);
     const actualProps = props.children.mock.calls[0][0];
     expect(actualProps).toHaveProperty('value', props.initialState.value);
   });
 
   it('calls onChange handler with correct params', function () {
-    //$FlowFixMe
     render(<StatefulSelectContainer {...props} />);
     const newValue = { id: 'id2', label: 'label2' };
     const params = {

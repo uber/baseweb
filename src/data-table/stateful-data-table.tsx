@@ -12,17 +12,17 @@ import {
   SHAPE as BUTTON_SHAPES,
   SIZE as BUTTON_SIZES,
   KIND as BUTTON_KINDS,
-} from '../button/index';
+} from '../button';
 import Search from '../icon/search';
-import { Input, SIZE as INPUT_SIZES } from '../input/index';
-import { Popover } from '../popover/index';
-import { useStyletron } from '../styles/index';
-import { Tag } from '../tag/index';
+import { Input, SIZE as INPUT_SIZES } from '../input';
+import { Popover } from '../popover';
+import { useStyletron } from '../styles';
+import { Tag } from '../tag';
 import FilterMenu from './filter-menu';
 import { DataTable } from './data-table';
 import { StatefulContainer } from './stateful-container';
 import type { StatefulDataTablePropsT } from './types';
-import { LocaleContext } from '../locale/index';
+import { LocaleContext } from '../locale';
 
 function useResizeObserver(
   ref: {
@@ -33,7 +33,6 @@ function useResizeObserver(
   React.useLayoutEffect(() => {
     if (__BROWSER__) {
       if (ref.current) {
-        //$FlowFixMe
         const observer = new ResizeObserver(callback);
         observer.observe(ref.current);
         return () => observer.disconnect();

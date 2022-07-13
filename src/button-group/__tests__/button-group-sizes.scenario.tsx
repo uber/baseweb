@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 import React from 'react';
 
-import { Button, SIZE } from '../../button/index';
-import { StatefulButtonGroup, MODE } from '../index';
+import { Button, SIZE } from '../../button';
+import { StatefulButtonGroup, MODE } from '..';
 
 export function Scenario() {
   return (

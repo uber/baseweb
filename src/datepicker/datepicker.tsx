@@ -6,12 +6,12 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { MaskedInput } from '../input/index';
-import { Popover, PLACEMENT } from '../popover/index';
+import { MaskedInput } from '../input';
+import { Popover, PLACEMENT } from '../popover';
 import Calendar from './calendar';
 import { getOverrides } from '../helpers/overrides';
 import getInterpolatedString from '../helpers/i18n-interpolation';
-import { LocaleContext } from '../locale/index';
+import { LocaleContext } from '../locale';
 import {
   StyledInputWrapper,
   StyledInputLabel,
@@ -21,7 +21,7 @@ import {
 import type { DatepickerPropsT, InputRoleT } from './types';
 import DateHelpers from './utils/date-helpers';
 import dateFnsAdapter from './utils/date-fns-adapter';
-import type { LocaleT } from '../locale/types';
+import type { LocaleT } from '../locale';
 import { INPUT_ROLE, RANGED_CALENDAR_BEHAVIOR } from './constants';
 
 import type { ChangeEvent } from 'react';
@@ -67,7 +67,6 @@ export default class Datepicker<T = Date> extends React.Component<DatepickerProp
 
   constructor(props: DatepickerPropsT<T>) {
     super(props);
-    //$FlowFixMe[incompatible-call]
     this.dateHelpers = new DateHelpers(props.adapter);
     this.state = {
       calendarFocused: false,
@@ -79,15 +78,12 @@ export default class Datepicker<T = Date> extends React.Component<DatepickerProp
     };
   }
 
-  handleChange: (a: T | undefined | null | ReadonlyArray<T | undefined | null>) => void = (
-    date
-  ) => {
+  handleChange: (a: T | undefined | null | Array<T | undefined | null>) => void = (date) => {
     const onChange = this.props.onChange;
     const onRangeChange = this.props.onRangeChange;
 
     if (Array.isArray(date)) {
       if (onChange && date.every(Boolean)) {
-        // flowlint-next-line unclear-type:off
         onChange({ date: date as any as Array<T> });
       }
 
@@ -127,13 +123,7 @@ export default class Datepicker<T = Date> extends React.Component<DatepickerProp
           } else {
             nextDate = [start, start];
           }
-        } else if (
-          this.dateHelpers.dateRangeIncludesDates(
-            // $FlowFixMe Cannot call `this.dateHelpers.dateRangeIncludesDates` with `nextDate` bound to the first parameter because  read-only array type [1] is incompatible with  array type [2]
-            nextDate,
-            this.props.excludeDates
-          )
-        ) {
+        } else if (this.dateHelpers.dateRangeIncludesDates(nextDate, this.props.excludeDates)) {
           nextDate = this.props.value;
           isOpen = true;
         }
@@ -177,7 +167,7 @@ export default class Datepicker<T = Date> extends React.Component<DatepickerProp
       isPseudoFocused,
       ...(calendarFocused === null ? {} : { calendarFocused }),
       inputValue: this.formatDisplayValue(nextDate),
-    });
+    } as StateT);
 
     this.handleChange(nextDate);
   };
@@ -186,10 +176,7 @@ export default class Datepicker<T = Date> extends React.Component<DatepickerProp
     return (this.getMask() || formatString).split(INPUT_DELIMITER)[0].replace(/[0-9]|[a-z]/g, ' ');
   }
 
-  formatDate(
-    date: T | undefined | null | ReadonlyArray<T | undefined | null>,
-    formatString: string
-  ) {
+  formatDate(date: T | undefined | null | Array<T | undefined | null>, formatString: string) {
     const format = (date: T) => {
       if (formatString === DEFAULT_DATE_FORMAT) {
         return this.dateHelpers.format(date, 'slashDate', this.props.locale);
@@ -212,7 +199,7 @@ export default class Datepicker<T = Date> extends React.Component<DatepickerProp
     }
   }
 
-  formatDisplayValue: (a: T | undefined | null | ReadonlyArray<T | undefined | null>) => string = (
+  formatDisplayValue: (a: T | undefined | null | Array<T | undefined | null>) => string = (
     date
   ) => {
     const { displayValueAtRangeIndex, formatDisplayValue, range } = this.props;
@@ -420,7 +407,7 @@ export default class Datepicker<T = Date> extends React.Component<DatepickerProp
       this.setState({
         calendarFocused: true,
         lastActiveElm,
-      });
+      } as StateT);
     }
   };
 
@@ -602,10 +589,7 @@ export default class Datepicker<T = Date> extends React.Component<DatepickerProp
                   this.props.value[0] && this.props.value[1]
                   ? getInterpolatedString(locale.datepicker.selectedDateRange, {
                       startDate: this.formatDisplayValue(this.props.value[0]),
-                      endDate: this.formatDisplayValue(
-                        // $FlowFixMe
-                        this.props.value[1]
-                      ),
+                      endDate: this.formatDisplayValue(this.props.value[1]),
                     })
                   : // A single date selected in a range picker
                     `${getInterpolatedString(locale.datepicker.selectedDate, {

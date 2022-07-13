@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { StatefulDataTable, CategoricalColumn } from '../index';
-import { useStyletron } from '../../styles/index';
+import { StatefulDataTable, CategoricalColumn } from '..';
+import { useStyletron } from '../../styles';
 
 export function Scenario() {
   const [css, theme] = useStyletron();

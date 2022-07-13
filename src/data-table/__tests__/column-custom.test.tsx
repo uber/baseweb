@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import { CustomColumn } from '../index';
+import { CustomColumn } from '..';
 
 describe('custom column', () => {
   it('is not sortable by default', () => {

@@ -7,10 +7,9 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { render, getAllByTestId } from '@testing-library/react';
 
-import { List } from '../index';
+import { List } from '..';
 
 describe('List', () => {
-  //$FlowFixMe
   console.warn = jest.fn(); // eslint-disable-line
   it('basic render', () => {
     const { container } = render(

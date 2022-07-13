@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { render, getByRole, getAllByRole } from '@testing-library/react';
 
-import { Table } from '../index';
+import { Table } from '..';
 
 const DATA = [
   ['1', 'Sarah', 'Brown', 31, '100 Broadway st. New York City, New York'],

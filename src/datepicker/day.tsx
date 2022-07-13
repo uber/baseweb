@@ -10,8 +10,8 @@ import dateFnsAdapter from './utils/date-fns-adapter';
 import DateHelpers from './utils/date-helpers';
 import { getOverrides } from '../helpers/overrides';
 import type { DayPropsT, DayStateT } from './types';
-import { LocaleContext } from '../locale/index';
-import type { LocaleT } from '../locale/types';
+import { LocaleContext } from '../locale';
+import type { LocaleT } from '../locale';
 import { isFocusVisible } from '../utils/focusVisible';
 import { INPUT_ROLE } from './constants';
 
@@ -32,7 +32,7 @@ export default class Day<T = Date> extends React.Component<DayPropsT<T>, DayStat
     value: null,
   };
 
-  dayElm: React.RefObject<typeof HTMLElement>;
+  dayElm: HTMLElement;
 
   state = {
     isHovered: false,

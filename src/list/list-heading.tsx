@@ -30,10 +30,8 @@ function RenderNode(props) {
     return Component;
   }
   if (ReactIs.isValidElementType(Component)) {
-    // $FlowFixMe
     return <Component {...restProps} />;
   }
-  // $FlowFixMe
   return Component;
 }
 
@@ -41,7 +39,7 @@ function isMaxLinesValid(maxLines) {
   return maxLines === 1 || maxLines === 2;
 }
 
-const ListHeading = React.forwardRef<HeadingPropsT, HTMLLIElement>((props: HeadingPropsT, ref) => {
+const ListHeading = React.forwardRef<HTMLLIElement, HeadingPropsT>((props: HeadingPropsT, ref) => {
   const { overrides = {}, maxLines } = props;
   const EndEnhancer = props.endEnhancer;
   const EndEnhancerDescription = props.endEnhancerDescription;
@@ -78,11 +76,7 @@ const ListHeading = React.forwardRef<HeadingPropsT, HTMLLIElement>((props: Headi
   }
 
   return (
-    <Root
-      // flowlint-next-line unclear-type:off
-      ref={ref as any}
-      {...rootProps}
-    >
+    <Root ref={ref as any} {...rootProps}>
       <Content {...contentProps}>
         {/* ----- Top Row -------------------------- */}
         <StyledHeadingContentRow>

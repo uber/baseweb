@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Avatar } from '../index';
+import { Avatar } from '..';
 
 const src = 'https://avatars.dicebear.com/api/human/yard.svg?width=285&mood=happy';
 

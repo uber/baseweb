@@ -61,7 +61,6 @@ const filterOptions = (
     props.ignoreCase ? 'i' : ''
   );
 
-  // $FlowFixMe
   return options.filter((option) => {
     if (excludeValues.has(option[props.valueKey])) return false;
     if (props.filterOption) return props.filterOption.call(undefined, option, filterValue);

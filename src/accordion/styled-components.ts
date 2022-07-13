@@ -4,7 +4,7 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import { styled } from '../styles/index';
+import { styled } from '../styles';
 import { getSvgStyles } from '../icon/styled-components';
 import type { SharedStylePropsArgT } from './types';
 
@@ -20,7 +20,7 @@ export const Root = styled('ul', {
   width: '100%',
 });
 
-export const PanelContainer = styled<SharedStylePropsArgT>('li', (props) => {
+export const PanelContainer = styled<'li', SharedStylePropsArgT>('li', (props) => {
   const {
     $expanded,
     $theme: { colors },
@@ -34,7 +34,7 @@ export const PanelContainer = styled<SharedStylePropsArgT>('li', (props) => {
   };
 });
 
-export const Header = styled<SharedStylePropsArgT>('div', (props) => {
+export const Header = styled<'div', SharedStylePropsArgT>('div', (props) => {
   const {
     $disabled,
     $isFocusVisible,
@@ -64,7 +64,7 @@ export const Header = styled<SharedStylePropsArgT>('div', (props) => {
   };
 });
 
-export const ToggleIcon = styled<SharedStylePropsArgT>('svg', (props) => {
+export const ToggleIcon = styled<'svg', SharedStylePropsArgT>('svg', (props) => {
   const { $theme, $disabled, $color } = props;
   return {
     ...getSvgStyles(props),
@@ -74,7 +74,7 @@ export const ToggleIcon = styled<SharedStylePropsArgT>('svg', (props) => {
   };
 });
 
-export const ToggleIconGroup = styled<SharedStylePropsArgT>('g', (props) => {
+export const ToggleIconGroup = styled<'g', SharedStylePropsArgT>('g', (props) => {
   const { $theme, $expanded } = props;
   return {
     transform: $expanded ? 'rotate(0)' : 'rotate(-90deg)',
@@ -85,7 +85,7 @@ export const ToggleIconGroup = styled<SharedStylePropsArgT>('g', (props) => {
   };
 });
 
-export const Content = styled<SharedStylePropsArgT>('div', (props) => {
+export const Content = styled<'div', SharedStylePropsArgT>('div', (props) => {
   const {
     $theme: { animation, colors, sizing, typography },
     $expanded,
@@ -114,6 +114,7 @@ export const Content = styled<SharedStylePropsArgT>('div', (props) => {
 });
 
 export const ContentAnimationContainer = styled<
+  'div',
   {
     $height: string | number;
   } & SharedStylePropsArgT

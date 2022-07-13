@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import React from 'react';
 
-import { useStyletron } from '../styles/index';
+import { useStyletron } from '../styles';
 
 export function matchesQuery(text: string, query: string): boolean {
   return text.toLowerCase().includes(query.toLowerCase());
@@ -43,15 +43,15 @@ export function splitByQuery(text: string, query: string): string[] {
   return substrings;
 }
 
-export function HighlightCellText(props: { text: string; query: string }) {
+export const HighlightCellText: React.FC<{ text: string; query: string }> = (props) => {
   const [css, theme] = useStyletron();
 
   if (!props.query) {
-    return props.text;
+    return <>props.text</>;
   }
 
   return (
-    <React.Fragment>
+    <>
       {splitByQuery(props.text, props.query).map((el, i) => {
         if (matchesQuery(el, props.query)) {
           return (
@@ -63,6 +63,6 @@ export function HighlightCellText(props: { text: string; query: string }) {
 
         return el;
       })}
-    </React.Fragment>
+    </>
   );
-}
+};

@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 
-import { TimezonePicker } from '../index';
+import { TimezonePicker } from '..';
 import { TestBaseProvider } from '../../test/test-utils';
 
 const mockedDate = new Date('2021-01-01T00:00:00Z');

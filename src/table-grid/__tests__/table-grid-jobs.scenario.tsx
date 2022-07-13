@@ -7,18 +7,18 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import { format } from 'date-fns';
 
-import { Button } from '../../button/index';
-import { Heading, HeadingLevel } from '../../heading/index';
+import { Button } from '../../button';
+import { Heading, HeadingLevel } from '../../heading';
 import ChevronDown from '../../icon/chevron-down';
 import ChevronRight from '../../icon/chevron-right';
 import Overflow from '../../icon/overflow';
-import { StyledLink } from '../../link/index';
-import { StatefulMenu } from '../../menu/index';
-import { StatefulPopover, PLACEMENT } from '../../popover/index';
-import { styled, withStyle, useStyletron } from '../../styles/index';
-import { Tag } from '../../tag/index';
+import { StyledLink } from '../../link';
+import { StatefulMenu } from '../../menu';
+import { StatefulPopover, PLACEMENT } from '../../popover';
+import { styled, withStyle, useStyletron } from '../../styles';
+import { Tag } from '../../tag';
 
-import { StyledTable, StyledHeadCell, StyledBodyCell } from '../index';
+import { StyledTable, StyledHeadCell, StyledBodyCell } from '..';
 import { useCellNavigation } from './shared';
 
 type StatusT = 'running' | 'passed' | 'failed';
@@ -260,7 +260,7 @@ export function Scenario() {
         </div>
       </HeadingLevel>
 
-      <StyledTable tabIndex="0" role="grid" $gridTemplateColumns="auto auto max-content auto auto">
+      <StyledTable tabIndex={0} role="grid" $gridTemplateColumns="auto auto max-content auto auto">
         <StyledHeadCell {...getCellProps(0, 0)}>Job Name</StyledHeadCell>
         <StyledHeadCell {...getCellProps(1, 0)}>Status</StyledHeadCell>
         <StyledHeadCell {...getCellProps(2, 0)}>Pull Request</StyledHeadCell>

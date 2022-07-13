@@ -9,14 +9,14 @@ import * as React from 'react';
 import { format, getTimezoneOffset } from 'date-fns-tz';
 
 import { getOverrides, mergeOverrides } from '../helpers/overrides';
-import { LocaleContext } from '../locale/index';
-import { Select } from '../select/index';
+import { LocaleContext } from '../locale';
+import { Select } from '../select';
 
 import type { TimezonePickerPropsT, TimezonePickerStateT, TimezoneT } from './types';
 import { zones } from './tzdata';
 
 class TimezonePicker extends React.Component<TimezonePickerPropsT, TimezonePickerStateT> {
-  state = { timezones: [], value: null };
+  state = { timezones: [], value: null } as TimezonePickerStateT;
 
   componentDidMount() {
     const timezones = this.buildTimezones(this.props.date || new Date());
@@ -104,7 +104,6 @@ class TimezonePicker extends React.Component<TimezonePickerPropsT, TimezonePicke
     let options = this.state.timezones;
     if (this.props.mapLabels) {
       options = options.map((option) => {
-        // $FlowFixMe - TimezoneT.label is a string, but mapLabels can return a React.Node
         option.label = this.props.mapLabels(option);
         return option;
       });

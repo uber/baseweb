@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import { useUID } from 'react-uid';
-import { useStyletron } from '../styles/index';
+import { useStyletron } from '../styles';
 import { getOverrides } from '../helpers/overrides';
 import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible';
 import { ORIENTATION, FILL } from './constants';
@@ -31,7 +31,7 @@ import type { SyntheticEvent } from 'react';
 const KEYBOARD_ACTION = {
   next: 'next',
   previous: 'previous',
-};
+} as const;
 
 const getLayoutParams = (el, orientation) => {
   if (!el) {
@@ -126,7 +126,7 @@ export function Tabs({
   }, [activeKey]);
 
   // Positioning the highlight.
-  const activeTabRef = React.useRef();
+  const activeTabRef = React.useRef<HTMLElement>();
   const [highlightLayout, setHighlightLayout] = React.useState({
     length: 0,
     distance: 0,
@@ -151,9 +151,13 @@ export function Tabs({
     if (activeTabRef.current) {
       if (
         isHorizontal(orientation)
-          ? activeTabRef.current.parentNode.scrollWidth >
+          ? // @ts-expect-error todo(flow->ts) maybe parentElement?
+            activeTabRef.current.parentNode.scrollWidth >
+            // @ts-expect-error todo(flow->ts) maybe parentElement?
             activeTabRef.current.parentNode.clientWidth
-          : activeTabRef.current.parentNode.scrollHeight >
+          : // @ts-expect-error todo(flow->ts) maybe parentElement?
+            activeTabRef.current.parentNode.scrollHeight >
+            // @ts-expect-error todo(flow->ts) maybe parentElement?
             activeTabRef.current.parentNode.clientHeight
       ) {
         if (keyUpdated > 1) {
@@ -223,7 +227,8 @@ export function Tabs({
         {...sharedStylingProps}
         {...TabListProps}
       >
-        {React.Children.map(children, (child, index) => {
+        {/*todo(flow->ts): children might be other the ReactElement*/}
+        {React.Children.map(children, (child: React.ReactElement, index) => {
           if (!child) return;
           return (
             <InternalTab
@@ -262,7 +267,8 @@ export function Tabs({
         {...sharedStylingProps}
         {...TabBorderProps}
       />
-      {React.Children.map(children, (child, index) => {
+      {/*todo(flow->ts): children might be other the ReactElement*/}
+      {React.Children.map(children, (child: React.ReactElement, index) => {
         if (!child) return;
         return (
           <InternalTabPanel
@@ -364,6 +370,7 @@ function InternalTab({
   );
 
   // Keyboard focus management
+  // @ts-expect-error todo(flow->ts): deps are required
   const handleKeyDown = React.useCallback((event) => {
     // WAI-ARIA 1.1
     // https://www.w3.org/TR/wai-aria-practices-1.1/#tabpanel

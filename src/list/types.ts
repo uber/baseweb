@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import type { OverrideT } from '../helpers/overrides';
-import type { IconPropsT } from '../icon/types';
+import type { IconPropsT } from '../icon';
 import { ARTWORK_SIZES, SHAPE } from './constants';
 
 export type ArtworkSizesT =
@@ -54,15 +54,17 @@ export type PropsT = {
   sublist?: boolean;
 };
 
+export type LabelOverrides = {
+  LabelContent?: OverrideT;
+  LabelDescription?: OverrideT;
+  LabelSublistContent?: OverrideT;
+};
+
 export type LabelPropsT = {
   children: React.ReactNode;
   description?: React.ReactNode;
   sublist?: boolean;
-  overrides?: {
-    LabelContent?: OverrideT;
-    LabelDescription?: OverrideT;
-    LabelSublistContent?: OverrideT;
-  };
+  overrides?: LabelOverrides;
 };
 
 export type HeadingOverridesT = {
@@ -88,7 +90,6 @@ export type StyledHeadingHeadingPropsT = {
 };
 
 export type MenuAdapterPropsT = {
-  // flowlint-next-line unclear-type:off
   item?: any;
   onMouseEnter?: (a: MouseEvent) => unknown;
   onClick?: (a: MouseEvent) => unknown;

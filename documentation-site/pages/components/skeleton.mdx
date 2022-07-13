@@ -9,7 +9,7 @@ import Example from '../../components/example';
 import Layout from '../../components/layout';
 import Exports from '../../components/exports';
 
-import {Skeleton} from 'baseui/skeleton';
+import { Skeleton } from 'baseui/skeleton';
 import * as SkeletonExports from 'baseui/skeleton';
 
 import SkeletonBasic from 'examples/skeleton/basic.js';
@@ -60,11 +60,7 @@ You can customize the sub elements' shape and position through `overrides.Row`.
 <ApiTable
   title="Skeleton props"
   config={skeletonYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/skeleton/skeleton.js')}
+  types={require('!!extract-react-types-loader!../../../src/skeleton/skeleton')}
 />
 
-<Exports
-  component={SkeletonExports}
-  title="Skeleton exports"
-  path="baseui/skeleton"
-/>
+<Exports component={SkeletonExports} title="Skeleton exports" path="baseui/skeleton" />

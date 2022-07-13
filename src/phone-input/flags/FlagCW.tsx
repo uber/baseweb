@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-export default function FlagCW(props: unknown) {
+export default function FlagCW(props: React.ComponentProps<'img'>) {
   return (
     <img
       src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAD8AAAAtBAMAAADrb658AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAhUExURQRBowI4kAAygQM8mf7GPP3HRPX2916DvzRirs7Y6JSs0hV7gYIAAAEzSURBVDjL3Yw9SwNBEIZHFuJHlc02lkl+wRzTaJdCewvtrRauEwJuKxyI6ayipRI4xF/pO3ObFObukiKNvszOOx/PDtFfUdoFfPevj1NMD33AyTKWTx07h3B0Gl9dlxRwg3jPUMuamUgcL17exbkzRsJbG2vhmGCVXLDIc+WExQgz0cAJQRZVvbKFyQw8BqQcXkrLtzS3HVt2GaXGZRFjLCvZ0gbgOsYP6QHkMpbSChRZgxhdKCSoLItoNyR0Vj2u6nlQohDgsCJoyxQ8Koy+wvmnDUODmYLHBciDOioQKHWKjG9eESbUiOBVQSNYawTaIeWxt4MZbXCdeQVatWY6AX9IYDJqojEo997SHhfu+nVzAOCqU9eaZrTpbu39rmc9FzIw7deYJtORRratGO++8C+AH9cyvn12jY3gAAAAAElFTkSuQmCC"

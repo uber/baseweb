@@ -6,8 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Avatar } from '../index';
-// $FlowFixMe
+import { Avatar } from '..';
 import imageFile from './static/adorable.png';
 
 export function Scenario() {

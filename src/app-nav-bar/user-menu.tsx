@@ -6,14 +6,14 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Avatar } from '../avatar/index';
-import { Button } from '../button/index';
+import { Avatar } from '../avatar';
+import { Button } from '../button';
 import { getOverrides, mergeOverrides } from '../helpers/overrides';
 import ChevronDownSmallFilled from '../icon/chevron-down';
 import ChevronUpSmallFilled from '../icon/chevron-up';
-import { MenuAdapter, ListItemLabel, ARTWORK_SIZES } from '../list/index';
-import { StatefulMenu, StyledList } from '../menu/index';
-import { StatefulPopover, PLACEMENT, TRIGGER_TYPE } from '../popover/index';
+import { MenuAdapter, ListItemLabel, ARTWORK_SIZES } from '../list';
+import { StatefulMenu, StyledList } from '../menu';
+import { StatefulPopover, PLACEMENT, TRIGGER_TYPE } from '../popover';
 
 import { StyledUserMenuButton, StyledUserMenuProfileListItem } from './styled-components';
 import type { UserMenuPropsT, NavItemT, OverridesT } from './types';
@@ -23,7 +23,7 @@ import { defaultMapItemToNode } from './utils';
 const MENU_ITEM_WIDTH = '275px';
 
 // eslint-disable-next-line react/display-name
-const UserMenuListItem = React.forwardRef((props, ref) => {
+const UserMenuListItem = React.forwardRef<any, any>((props, ref) => {
   const { item, mapItemToNode = defaultMapItemToNode } = props;
   // Replace with a user menu item renderer
   return (
