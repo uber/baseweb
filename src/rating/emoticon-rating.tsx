@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 
 import * as React from 'react';
-import type { EmoticonRatingPropsT, RatingStateT } from './types';
+import type { EmoticonRatingProps, RatingState } from './types';
 import { StyledRoot, StyledEmoticon } from './styled-components';
 import { getOverrides } from '../helpers/overrides';
 import { ARROW_UP, ARROW_DOWN, ARROW_LEFT, ARROW_RIGHT } from './utils';
@@ -14,13 +14,13 @@ import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible';
 
 import type { SyntheticEvent } from 'react';
 
-class EmoticonRating extends React.Component<EmoticonRatingPropsT, RatingStateT> {
+class EmoticonRating extends React.Component<EmoticonRatingProps, RatingState> {
   static defaultProps = {
     overrides: {},
     readOnly: false,
   };
 
-  state = { isFocusVisible: false, previewIndex: undefined } as RatingStateT;
+  state = { isFocusVisible: false, previewIndex: undefined } as RatingState;
 
   selectItem = (value: number) => {
     const { onChange } = this.props;

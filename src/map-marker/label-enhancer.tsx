@@ -12,7 +12,7 @@ import {
   StyledStrokedLabelContainer,
 } from './styled-components';
 import { LABEL_ENHANCER_POSITIONS } from './constants';
-import type { LabelEhancerComponentT } from './types';
+import type { LabelEhancerComponent } from './types';
 
 const LabelEnhancer = ({
   labelEnhancerContent,
@@ -20,7 +20,7 @@ const LabelEnhancer = ({
   needleHeight,
   size,
   overrides = {},
-}: LabelEhancerComponentT) => {
+}: LabelEhancerComponent) => {
   if (!labelEnhancerPosition || labelEnhancerPosition === LABEL_ENHANCER_POSITIONS.none) {
     return null;
   }

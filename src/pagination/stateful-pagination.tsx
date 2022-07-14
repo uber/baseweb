@@ -8,7 +8,7 @@ import * as React from 'react';
 
 import Pagination from './pagination';
 import StatefulContainer from './stateful-container';
-import type { StatefulPaginationPropsT } from './types';
+import type { StatefulPaginationProps } from './types';
 
 export default function StatefulPagination({
   numPages,
@@ -16,7 +16,7 @@ export default function StatefulPagination({
   stateReducer,
   onPageChange,
   ...props
-}: StatefulPaginationPropsT) {
+}: StatefulPaginationProps) {
   return (
     <StatefulContainer
       numPages={numPages}

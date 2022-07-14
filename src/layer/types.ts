@@ -6,25 +6,25 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 import { TETHER_PLACEMENT } from './constants';
-import type { OverrideT } from '../helpers/overrides';
+import type { Override } from '../helpers/overrides';
 
 /** LayersManager */
-export type LayersManagerPropsT = {
+export type LayersManagerProps = {
   children: React.ReactNode;
   overrides?: {
-    AppContainer?: OverrideT;
-    LayersContainer?: OverrideT;
+    AppContainer?: Override;
+    LayersContainer?: Override;
   };
   // z-index to be set for all the layers.
   zIndex?: number;
 };
 
-export type LayersManagerStateT = {
+export type LayersManagerState = {
   escapeKeyHandlers: Array<() => unknown>;
   docClickHandlers: Array<(event: MouseEvent) => unknown>;
 };
 
-export type LayersContextT = {
+export type LayersContextProps = {
   host?: HTMLElement | null;
   zIndex?: number;
   addEscapeHandler: (a: () => unknown) => void;
@@ -34,7 +34,7 @@ export type LayersContextT = {
 };
 
 /** Layer */
-export type LayerPropsT = {
+export type LayerProps = {
   /** Content to be rendered in the Layer. */
   children: React.ReactNode;
   /** A DOM element where the Layer will be inserted into as a child.
@@ -66,7 +66,7 @@ export type LayerPropsT = {
   zIndex?: number;
 };
 
-export type LayerComponentPropsT = {
+export type LayerComponentProps = {
   children: React.ReactNode;
   host: HTMLElement | undefined | null;
   index?: number;
@@ -79,49 +79,49 @@ export type LayerComponentPropsT = {
   zIndex?: number;
 };
 
-export type LayerStateT = {
+export type LayerState = {
   container: HTMLElement | undefined | null;
 };
 
 /** TetherBehavior */
-export type TetherPlacementT = keyof typeof TETHER_PLACEMENT;
+export type TetherPlacement = keyof typeof TETHER_PLACEMENT;
 
-export type NormalizedOffsetT = {
+export type NormalizedOffset = {
   top: number;
   left: number;
 };
 
-export type NormalizedOffsetsT = {
-  arrow?: NormalizedOffsetT;
-  popper: NormalizedOffsetT;
+export type NormalizedOffsets = {
+  arrow?: NormalizedOffset;
+  popper: NormalizedOffset;
 };
 
-export type PopperOffsetT = {
+export type PopperOffset = {
   top?: number | null;
   left?: number | null;
 };
 
-export type PopperDataObjectT = {
+export type PopperDataObject = {
   offsets: {
-    arrow?: PopperOffsetT;
-    popper: PopperOffsetT;
+    arrow?: PopperOffset;
+    popper: PopperOffset;
   };
   placement: string;
 };
 
-export type PopperOptionsT = {
+export type PopperOptions = {
   placement: string;
   modifiers: {
     arrow: {};
     computeStyle: {};
     applyStyle: {};
     applyReactStyle: {
-      fn: (data: PopperDataObjectT) => void;
+      fn: (data: PopperDataObject) => void;
     };
   };
 };
 
-export type TetherPropsT = {
+export type TetherProps = {
   /** The reference element used to position the popper. */
   anchorRef: HTMLElement | undefined | null;
   /** The arrow element that is passed as an arrow modifier to alter
@@ -132,15 +132,15 @@ export type TetherPropsT = {
   /** Content to be rendered in the Popper. */
   children: React.ReactNode;
   /** A handler that is called when popper positioning changes. */
-  onPopperUpdate: (b: NormalizedOffsetsT, a: PopperDataObjectT) => unknown;
+  onPopperUpdate: (b: NormalizedOffsets, a: PopperDataObject) => unknown;
   /** Recommended placement of the popper. */
-  placement: TetherPlacementT;
+  placement: TetherPlacement;
   /** Options to be passes to the Popper on its initialization.
    Refer to the [Popper documentation](https://github.com/popperjs/popper.js/blob/v1.x/docs/_includes/popper-documentation.md)
    for the full list of available options. */
   popperOptions: any;
 };
 
-export type TetherStateT = {
+export type TetherState = {
   isMounted: boolean;
 };

@@ -9,7 +9,7 @@ import * as React from 'react';
 import { StatefulDataTable, NumericalColumn, StringColumn } from '..';
 import { randomLcg } from 'd3';
 
-type RowDataT = [string, number];
+type RowData = [string, number];
 
 const randGen = randomLcg(42);
 
@@ -20,14 +20,14 @@ const genColumns = (count) => {
       ? StringColumn({
           title: 'string-column-' + i,
           minWidth: 20,
-          mapDataToValue: (data: RowDataT) => {
+          mapDataToValue: (data: RowData) => {
             return data[index];
           },
         })
       : NumericalColumn({
           title: 'numerical-column-' + i,
           minWidth: 20,
-          mapDataToValue: (data: RowDataT) => +data[index],
+          mapDataToValue: (data: RowData) => +data[index],
         });
   });
 };

@@ -11,11 +11,11 @@ import {
   TabBar as StyledTabBar,
   TabContent as StyledTabContent,
 } from './styled-components';
-import type { TabsPropsT, SharedStylePropsArgT } from './types';
+import type { TabsProps, SharedStylePropsArg } from './types';
 import { ORIENTATION } from './constants';
 
-export default class Tabs extends React.Component<TabsPropsT> {
-  static defaultProps: Partial<TabsPropsT> = {
+export default class Tabs extends React.Component<TabsProps> {
+  static defaultProps: Partial<TabsProps> = {
     disabled: false,
     onChange: () => {},
     overrides: {},
@@ -77,7 +77,7 @@ export default class Tabs extends React.Component<TabsPropsT> {
     return tabs;
   }
 
-  getSharedProps(): SharedStylePropsArgT {
+  getSharedProps(): SharedStylePropsArg {
     const { disabled, orientation } = this.props;
     return {
       $disabled: disabled,

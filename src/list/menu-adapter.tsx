@@ -7,10 +7,10 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import ListItem from './list-item';
-import type { MenuAdapterPropsT } from './types';
+import type { MenuAdapterProps } from './types';
 import { mergeOverrides } from '../helpers/overrides';
 
-const MenuAdapter = React.forwardRef<HTMLLIElement, MenuAdapterPropsT>((props, ref) => {
+const MenuAdapter = React.forwardRef<HTMLLIElement, MenuAdapterProps>((props, ref) => {
   return (
     <ListItem
       ref={ref}

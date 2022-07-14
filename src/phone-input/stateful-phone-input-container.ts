@@ -7,23 +7,18 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 // needs to be removed from here
 import { COUNTRIES, STATE_CHANGE_TYPE } from './constants';
-import type {
-  StatefulPhoneInputContainerPropsT,
-  StateT,
-  StateReducerT,
-  StateChangeT,
-} from './types';
+import type { StatefulPhoneInputContainerProps, State, StateReducer, StateChange } from './types';
 import defaultProps from './default-props';
-import type { OnChangeParamsT } from '../select';
+import type { OnChangeParams } from '../select';
 
 import type { ChangeEvent } from 'react';
 
 // @ts-expect-error todo(flow->ts): possible bug
-const defaultStateReducer: StateReducerT = (type, nextState) => nextState;
+const defaultStateReducer: StateReducer = (type, nextState) => nextState;
 
 export default class StatefulPhoneInputContainer extends React.Component<
-  StatefulPhoneInputContainerPropsT,
-  StateT
+  StatefulPhoneInputContainerProps,
+  State
 > {
   static defaultProps = {
     initialState: {
@@ -36,9 +31,9 @@ export default class StatefulPhoneInputContainer extends React.Component<
     overrides: {},
   };
 
-  state: StateT = { text: '', country: COUNTRIES.US, ...this.props.initialState };
+  state: State = { text: '', country: COUNTRIES.US, ...this.props.initialState };
 
-  internalSetState = (type: StateChangeT, nextState: Partial<StateT>) => {
+  internalSetState = (type: StateChange, nextState: Partial<State>) => {
     this.setState(this.props.stateReducer(type, nextState, this.state));
   };
 
@@ -49,7 +44,7 @@ export default class StatefulPhoneInputContainer extends React.Component<
     });
   };
 
-  onCountryChange = (event: OnChangeParamsT) => {
+  onCountryChange = (event: OnChangeParams) => {
     this.props.onCountryChange(event);
     if (event.option && event.option.id) {
       this.internalSetState(STATE_CHANGE_TYPE.countryChange, {

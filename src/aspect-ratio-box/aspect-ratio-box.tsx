@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Block, type StyledBlockPropsT } from '../block';
+import { Block, type StyledBlockProps } from '../block';
 import { mergeOverrides } from '../helpers/overrides';
-import type { AspectRatioBoxPropsT } from './types';
+import type { AspectRatioBoxProps } from './types';
 
 const aspectRatioBoxStyle = ({ $aspectRatio }) => ({
   position: 'relative',
@@ -55,9 +55,9 @@ const AspectRatioBox: React.FC<any & { forwardedRef: React.Ref<any> }> = ({
 
 interface AspectRatioCoxComponentType<D extends React.ElementType> {
   <C extends React.ElementType = D>(
-    props: AspectRatioBoxPropsT<C> &
+    props: AspectRatioBoxProps<C> &
       (React.ComponentProps<C> extends { ref?: infer R } ? { ref?: R } : {}) &
-      Omit<StyledBlockPropsT & React.ComponentProps<C>, keyof AspectRatioBoxPropsT>
+      Omit<StyledBlockProps & React.ComponentProps<C>, keyof AspectRatioBoxProps>
   ): JSX.Element;
   displayName?: string;
 }

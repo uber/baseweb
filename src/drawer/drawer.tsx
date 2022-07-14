@@ -24,18 +24,18 @@ import {
 import { CloseIcon } from './close-icon';
 
 import type {
-  DrawerPropsT,
-  DrawerStateT,
-  SharedStylePropsArgT,
-  CloseSourceT,
-  ElementRefT,
+  DrawerProps,
+  DrawerState,
+  SharedStylePropsArg,
+  CloseSource,
+  ElementRef,
 } from './types';
 import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible';
 
 import type { SyntheticEvent } from 'react';
 
-class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
-  static defaultProps: Partial<DrawerPropsT> = {
+class Drawer extends React.Component<DrawerProps, DrawerState> {
+  static defaultProps: Partial<DrawerProps> = {
     animate: true,
     closeable: true,
     isOpen: false,
@@ -52,7 +52,7 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
   lastFocus: HTMLElement | undefined | null = null;
   lastMountNodeOverflowStyle: string | undefined | null = null;
   _refs: {
-    [x: string]: ElementRefT;
+    [x: string]: ElementRef;
   } = {};
 
   state = {
@@ -70,7 +70,7 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
     this.clearTimers();
   }
 
-  componentDidUpdate(prevProps: DrawerPropsT, prevState: DrawerStateT) {
+  componentDidUpdate(prevProps: DrawerProps, prevState: DrawerState) {
     const { isOpen } = this.props;
     if (
       // If isOpen is changing *or* we just mounted and drawer should be open
@@ -182,7 +182,7 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
     this.animateOutTimer = setTimeout(this.animateOutComplete, 500);
   }
 
-  triggerClose(source?: CloseSourceT) {
+  triggerClose(source?: CloseSource) {
     // If there's no source, it just means the isOpen prop changed. No need to call onClose.
     if (this.props.onClose && source) {
       this.props.onClose({
@@ -197,7 +197,7 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
     });
   };
 
-  getSharedProps(): Omit<SharedStylePropsArgT, 'children'> {
+  getSharedProps(): Omit<SharedStylePropsArg, 'children'> {
     const { animate, isOpen, size, closeable, anchor, showBackdrop } = this.props;
     return {
       $animating: animate,
@@ -216,7 +216,7 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
     return typeof children === 'function' ? children() : children;
   }
 
-  getRef(component: string): ElementRefT {
+  getRef(component: string): ElementRef {
     if (!this._refs[component]) {
       this._refs[component] = React.createRef();
     }

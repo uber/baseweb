@@ -11,18 +11,18 @@ import { useStyletron } from '../styles';
 import Column from './column';
 import { COLUMNS } from './constants';
 import { HighlightCellText } from './text-search';
-import type { ColumnT, SharedColumnOptionsT } from './types';
+import type { ColumnOptions, SharedColumnOptions } from './types';
 
-type OptionsT = {
+type Options = {
   lineClamp?: number;
-} & SharedColumnOptionsT<string>;
+} & SharedColumnOptions<string>;
 
-type FilterParametersT = {
+type FilterParameters = {
   description: string;
   exclude: boolean;
 };
 
-type StringColumnT = ColumnT<string, FilterParametersT>;
+type StringColumn = ColumnOptions<string, FilterParameters>;
 
 function StringFilter(props) {
   return <div>not implemented for string column</div>;
@@ -48,7 +48,7 @@ function StringCell(props) {
   );
 }
 
-function StringColumn(options: OptionsT): StringColumnT {
+function StringColumn(options: Options): StringColumn {
   return Column({
     kind: COLUMNS.STRING,
     cellBlockAlign: options.cellBlockAlign,

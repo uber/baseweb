@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {useStyletron} from 'baseui';
-//@ts-ignore
 import * as Icons from 'baseui/icon/icon-exports';
 
 function makeImportStatement(key: string) {

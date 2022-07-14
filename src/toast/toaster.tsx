@@ -17,15 +17,15 @@ import {
   InnerContainer as StyledInnerContainer,
 } from './styled-components';
 import Toast from './toast';
-import type { ToasterPropsT, ToastPropsShapeT, ToasterContainerStateT, ToastPropsT } from './types';
+import type { ToasterProps, ToastPropsShape, ToasterContainerState, ToastProps } from './types';
 
 let toasterRef: ToasterContainer | undefined;
 
 export class ToasterContainer extends React.Component<
-  Partial<ToasterPropsT>,
-  ToasterContainerStateT
+  Partial<ToasterProps>,
+  ToasterContainerState
 > {
-  static defaultProps: ToasterPropsT = {
+  static defaultProps: ToasterProps = {
     autoFocus: false,
     autoHideDuration: 0,
     children: null,
@@ -36,7 +36,7 @@ export class ToasterContainer extends React.Component<
     usePortal: true,
   };
 
-  constructor(props: ToasterPropsT) {
+  constructor(props: ToasterProps) {
     super(props);
 
     toasterRef = this;
@@ -56,8 +56,8 @@ export class ToasterContainer extends React.Component<
   }
 
   getToastProps = (
-    props: ToastPropsT
-  ): ToastPropsT & {
+    props: ToastProps
+  ): ToastProps & {
     key: React.Key;
   } => {
     const { autoFocus, autoHideDuration, closeable } = this.props;
@@ -66,7 +66,7 @@ export class ToasterContainer extends React.Component<
   };
 
   // @ts-expect-error todo(flow->ts): default value does not look correct and also probably do is never used
-  show = (props: ToastPropsT = {}): React.Key => {
+  show = (props: ToastProps = {}): React.Key => {
     if (this.state.toasts.map((t) => t.key).includes(props.key)) {
       this.update(props.key, props);
       return props.key;
@@ -78,7 +78,7 @@ export class ToasterContainer extends React.Component<
     return toastProps.key;
   };
 
-  update = (key: React.Key, props: ToastPropsT): void => {
+  update = (key: React.Key, props: ToastProps): void => {
     this.setState(({ toasts }) => {
       const updatedToasts = toasts.map((toast) => {
         if (toast.key === key) {
@@ -136,7 +136,7 @@ export class ToasterContainer extends React.Component<
   };
 
   renderToast = (
-    toastProps: ToastPropsT & {
+    toastProps: ToastProps & {
       key: React.Key;
     }
   ): React.ReactNode => {
@@ -226,7 +226,7 @@ const toaster = {
   },
   show: function (
     children: React.ReactNode,
-    props: ToastPropsShapeT = {}
+    props: ToastPropsShape = {}
   ): React.Key | undefined | null {
     // toasts can not be added until Toaster is mounted
     // no SSR for the `toaster.show()`
@@ -239,19 +239,19 @@ const toaster = {
       );
     }
   },
-  info: function (children: React.ReactNode, props: ToastPropsShapeT = {}): React.Key {
+  info: function (children: React.ReactNode, props: ToastPropsShape = {}): React.Key {
     return this.show(children, { ...props, kind: KIND.info });
   },
-  positive: function (children: React.ReactNode, props: ToastPropsShapeT = {}): React.Key {
+  positive: function (children: React.ReactNode, props: ToastPropsShape = {}): React.Key {
     return this.show(children, { ...props, kind: KIND.positive });
   },
-  warning: function (children: React.ReactNode, props: ToastPropsShapeT = {}): React.Key {
+  warning: function (children: React.ReactNode, props: ToastPropsShape = {}): React.Key {
     return this.show(children, { ...props, kind: KIND.warning });
   },
-  negative: function (children: React.ReactNode, props: ToastPropsShapeT = {}): React.Key {
+  negative: function (children: React.ReactNode, props: ToastPropsShape = {}): React.Key {
     return this.show(children, { ...props, kind: KIND.negative });
   },
-  update: function (key: React.Key, props: Partial<ToastPropsT>): void {
+  update: function (key: React.Key, props: Partial<ToastProps>): void {
     const toasterInstance = this.getRef();
     if (toasterInstance) {
       toasterInstance.update(key, props);

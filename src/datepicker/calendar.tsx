@@ -21,14 +21,14 @@ import {
 import dateFnsAdapter from './utils/date-fns-adapter';
 import DateHelpers from './utils/date-helpers';
 import { getOverrides, mergeOverrides } from '../helpers/overrides';
-import type { CalendarPropsT, CalendarInternalState } from './types';
+import type { CalendarProps, CalendarInternalState } from './types';
 import { DENSITY, ORIENTATION } from './constants';
 
 export default class Calendar<T = Date> extends React.Component<
-  CalendarPropsT<T>,
+  CalendarProps<T>,
   CalendarInternalState<T>
 > {
-  static defaultProps: CalendarPropsT<unknown> & {
+  static defaultProps: CalendarProps<unknown> & {
     adapter: DateIOAdapter<Date>;
   } = {
     autoFocusCalendar: false,
@@ -61,7 +61,7 @@ export default class Calendar<T = Date> extends React.Component<
 
   calendar: HTMLElement;
 
-  constructor(props: CalendarPropsT<T>) {
+  constructor(props: CalendarProps<T>) {
     super(props);
 
     const { highlightedDate, value, adapter } = this.props;
@@ -93,7 +93,7 @@ export default class Calendar<T = Date> extends React.Component<
     }
   }
 
-  componentDidUpdate(prevProps: CalendarPropsT<T>) {
+  componentDidUpdate(prevProps: CalendarProps<T>) {
     if (
       this.props.highlightedDate &&
       !this.dateHelpers.isSameDay(this.props.highlightedDate, prevProps.highlightedDate)

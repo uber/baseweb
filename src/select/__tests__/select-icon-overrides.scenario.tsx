@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { ThemeProvider, LightTheme } from '../../index';
 import { StatefulSelect, TYPE } from '../index';
-import { IconPropsT } from '../../icon';
+import { IconProps } from '../../icon';
 
 const options = [
   { id: 'AliceBlue', color: '#F0F8FF' },
@@ -18,7 +18,7 @@ const options = [
   { id: 'Beige', color: '#F5F5DC' },
 ];
 
-const XSmallFilled = ({ title, size, color, ...props }: IconPropsT) => {
+const XSmallFilled = ({ title, size, color, ...props }: IconProps) => {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
       <title>{title}</title>

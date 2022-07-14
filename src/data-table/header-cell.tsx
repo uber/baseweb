@@ -12,12 +12,12 @@ import ChevronDown from '../icon/chevron-down';
 import ChevronUp from '../icon/chevron-up';
 
 import { SORT_DIRECTIONS } from './constants';
-import type { SortDirectionsT } from './types';
+import type { SortDirections } from './types';
 import { isFocusVisible } from '../utils/focusVisible';
 
 import type { SyntheticEvent } from 'react';
 
-type HeaderCellPropsT = {
+type HeaderCellProps = {
   index: number;
   isHovered: boolean;
   isMeasured?: boolean;
@@ -30,11 +30,11 @@ type HeaderCellPropsT = {
   onSelectNone: () => void;
   onSort: (a: number) => void;
   sortable: boolean;
-  sortDirection: SortDirectionsT;
+  sortDirection: SortDirections;
   title: string;
 };
 
-const HeaderCell = React.forwardRef<HTMLDivElement, HeaderCellPropsT>((props, ref) => {
+const HeaderCell = React.forwardRef<HTMLDivElement, HeaderCellProps>((props, ref) => {
   const [css, theme] = useStyletron();
   const [focusVisible, setFocusVisible] = React.useState(false);
   const checkboxRef = React.useRef(null);

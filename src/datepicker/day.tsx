@@ -9,13 +9,13 @@ import { StyledDay, StyledDayLabel } from './styled-components';
 import dateFnsAdapter from './utils/date-fns-adapter';
 import DateHelpers from './utils/date-helpers';
 import { getOverrides } from '../helpers/overrides';
-import type { DayPropsT, DayStateT } from './types';
+import type { DayProps, DayState } from './types';
 import { LocaleContext } from '../locale';
-import type { LocaleT } from '../locale';
+import type { Locale } from '../locale';
 import { isFocusVisible } from '../utils/focusVisible';
 import { INPUT_ROLE } from './constants';
 
-export default class Day<T = Date> extends React.Component<DayPropsT<T>, DayStateT> {
+export default class Day<T = Date> extends React.Component<DayProps<T>, DayState> {
   static defaultProps = {
     disabled: false,
     highlighted: false,
@@ -41,7 +41,7 @@ export default class Day<T = Date> extends React.Component<DayPropsT<T>, DayStat
 
   dateHelpers: DateHelpers<T>;
 
-  constructor(props: DayPropsT<T>) {
+  constructor(props: DayProps<T>) {
     super(props);
     this.dateHelpers = new DateHelpers(props.adapter);
   }
@@ -54,7 +54,7 @@ export default class Day<T = Date> extends React.Component<DayPropsT<T>, DayStat
     }
   }
 
-  componentDidUpdate(prevProps: DayPropsT<T>) {
+  componentDidUpdate(prevProps: DayProps<T>) {
     if (this.dayElm && this.props.focusedCalendar) {
       if (this.props.highlighted || (!this.props.highlightedDate && this.isSelected())) {
         this.dayElm.focus();
@@ -379,7 +379,7 @@ export default class Day<T = Date> extends React.Component<DayPropsT<T>, DayStat
       $startDate: boolean;
       $endDate: boolean;
     },
-    localeContext: LocaleT
+    localeContext: Locale
   ) {
     const date = this.getDateProp();
     return `${
@@ -415,7 +415,7 @@ export default class Day<T = Date> extends React.Component<DayPropsT<T>, DayStat
     ) : (
       // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
       <LocaleContext.Consumer>
-        {(locale: LocaleT) => (
+        {(locale: Locale) => (
           <Day
             aria-label={this.getAriaLabel(sharedProps, locale)}
             ref={(dayElm) => {

@@ -9,7 +9,7 @@ import { TYPE, SIZE } from './constants';
 import { StyledList, StyledListItem } from '../menu';
 import { Spinner } from '../spinner';
 
-import type { SharedStylePropsArgT } from './types';
+import type { SharedStylePropsArg } from './types';
 import { ellipsisText } from '../styles/util';
 
 function getFont(size: keyof typeof SIZE = SIZE.default, typography) {
@@ -78,7 +78,7 @@ function getControlPadding(props) {
   }[$size];
 }
 
-export const StyledDropdownContainer = styled<'div', SharedStylePropsArgT>('div', (props) => {
+export const StyledDropdownContainer = styled<'div', SharedStylePropsArg>('div', (props) => {
   return {
     width: `${String(props.$width)}px`,
   };
@@ -88,7 +88,7 @@ export const StyledDropdown = StyledList;
 
 export const StyledDropdownListItem = StyledListItem;
 
-export const StyledOptionContent = styled<'div', SharedStylePropsArgT>('div', (props) => {
+export const StyledOptionContent = styled<'div', SharedStylePropsArg>('div', (props) => {
   const { $isHighlighted, $selected, $disabled, $theme } = props;
 
   return {
@@ -98,7 +98,7 @@ export const StyledOptionContent = styled<'div', SharedStylePropsArgT>('div', (p
   };
 });
 
-export const StyledRoot = styled<'div', SharedStylePropsArgT>('div', (props) => {
+export const StyledRoot = styled<'div', SharedStylePropsArg>('div', (props) => {
   const {
     $theme: { typography },
     $size,
@@ -173,7 +173,7 @@ function getControlContainerColors(
   };
 }
 
-export const StyledControlContainer = styled<'div', SharedStylePropsArgT>('div', (props) => {
+export const StyledControlContainer = styled<'div', SharedStylePropsArg>('div', (props) => {
   const {
     $disabled,
     $error,
@@ -217,7 +217,7 @@ export const StyledControlContainer = styled<'div', SharedStylePropsArgT>('div',
   };
 });
 
-export const StyledValueContainer = styled<'div', SharedStylePropsArgT>('div', (props) => {
+export const StyledValueContainer = styled<'div', SharedStylePropsArg>('div', (props) => {
   const padding = getControlPadding(props);
   return {
     boxSizing: 'border-box',
@@ -233,7 +233,7 @@ export const StyledValueContainer = styled<'div', SharedStylePropsArgT>('div', (
   };
 });
 
-export const StyledPlaceholder = styled<'div', SharedStylePropsArgT>('div', (props) => {
+export const StyledPlaceholder = styled<'div', SharedStylePropsArg>('div', (props) => {
   const {
     $disabled,
     $theme: { colors },
@@ -247,7 +247,7 @@ export const StyledPlaceholder = styled<'div', SharedStylePropsArgT>('div', (pro
   };
 });
 
-export const StyledSingleValue = styled<'div', SharedStylePropsArgT>('div', (props) => {
+export const StyledSingleValue = styled<'div', SharedStylePropsArg>('div', (props) => {
   const {
     $searchable,
     $size,
@@ -266,7 +266,7 @@ export const StyledSingleValue = styled<'div', SharedStylePropsArgT>('div', (pro
   };
 });
 
-export const StyledInputContainer = styled<'div', SharedStylePropsArgT>('div', (props) => {
+export const StyledInputContainer = styled<'div', SharedStylePropsArg>('div', (props) => {
   const {
     $size,
     $searchable,
@@ -299,7 +299,7 @@ export const StyledInputContainer = styled<'div', SharedStylePropsArgT>('div', (
   };
 });
 
-export const StyledInput = styled<'input', SharedStylePropsArgT>('input', (props) => {
+export const StyledInput = styled<'input', SharedStylePropsArg>('input', (props) => {
   const {
     $theme: { colors, typography },
     $size,
@@ -331,7 +331,7 @@ export const StyledInput = styled<'input', SharedStylePropsArgT>('input', (props
   };
 });
 
-export const StyledInputSizer = styled<'div', SharedStylePropsArgT>(
+export const StyledInputSizer = styled<'div', SharedStylePropsArg>(
   'div',
   ({ $size, $theme, $theme: { typography } }) => {
     const dir: string = $theme.direction === 'rtl' ? 'right' : 'left';
@@ -348,7 +348,7 @@ export const StyledInputSizer = styled<'div', SharedStylePropsArgT>(
   }
 );
 
-export const StyledIconsContainer = styled<'div', SharedStylePropsArgT>(
+export const StyledIconsContainer = styled<'div', SharedStylePropsArg>(
   'div',
   ({ $theme, $theme: { sizing } }) => {
     const paddingDir: string = $theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight';
@@ -374,7 +374,7 @@ function getSvgStyles({ $theme }) {
   };
 }
 
-export const StyledSelectArrow = styled<'svg', SharedStylePropsArgT>('svg', (props) => {
+export const StyledSelectArrow = styled<'svg', SharedStylePropsArg>('svg', (props) => {
   const { $theme, $disabled, $size } = props;
   const { colors } = $theme;
 
@@ -398,7 +398,7 @@ export const StyledSelectArrow = styled<'svg', SharedStylePropsArgT>('svg', (pro
   };
 });
 
-export const StyledClearIcon = styled<'svg', SharedStylePropsArgT>('svg', (props) => {
+export const StyledClearIcon = styled<'svg', SharedStylePropsArg>('svg', (props) => {
   const { $theme, $size } = props;
   const { colors } = $theme;
 
@@ -436,7 +436,7 @@ export const StyledLoadingIndicator = withStyle<typeof Spinner, {}>(Spinner, ({ 
   };
 });
 
-export const StyledSearchIconContainer = styled<'div', SharedStylePropsArgT>('div', (props) => {
+export const StyledSearchIconContainer = styled<'div', SharedStylePropsArg>('div', (props) => {
   const { $disabled, $theme } = props;
   const { colors, sizing } = $theme;
   const dir: string = $theme.direction === 'rtl' ? 'right' : 'left';

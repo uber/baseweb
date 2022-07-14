@@ -7,9 +7,9 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import SelectComponent from './select-component';
 import MultiValue from './multi-value';
-import type { PropsT } from './types';
+import type { SelectProps } from './types';
 
-function MultiSelect(props: Partial<PropsT>) {
+function MultiSelect(props: Partial<SelectProps>) {
   return <SelectComponent {...props} multi={true} valueComponent={MultiValue} />;
 }
 

@@ -10,25 +10,25 @@ import { COLUMNS, SORT_DIRECTIONS } from './constants';
 
 import type { SyntheticEvent } from 'react';
 
-export type SortDirectionsT = typeof SORT_DIRECTIONS[keyof typeof SORT_DIRECTIONS];
+export type SortDirections = typeof SORT_DIRECTIONS[keyof typeof SORT_DIRECTIONS];
 
-export type ColumnsT = typeof COLUMNS[keyof typeof COLUMNS];
+export type Columns = typeof COLUMNS[keyof typeof COLUMNS];
 
 // These options are available on all column kinds. Most have additional
 // unique options depending on the data visualization requirements.
-export type SharedColumnOptionsT<ValueT> = {
+export type SharedColumnOptions<Value> = {
   cellBlockAlign?: 'start' | 'center' | 'end';
   fillWidth?: boolean;
   filterable?: boolean;
-  mapDataToValue: (data: any) => ValueT;
+  mapDataToValue: (data: any) => Value;
   maxWidth?: number;
   minWidth?: number;
   sortable?: boolean;
   title: string;
 };
 
-export type RenderCellT<ValueT> = React.ComponentType<{
-  value: ValueT;
+export type RenderCell<Value> = React.ComponentType<{
+  value: Value;
   isMeasured?: boolean;
   isSelected?: boolean;
   onSelect?: () => void;
@@ -37,34 +37,34 @@ export type RenderCellT<ValueT> = React.ComponentType<{
   y: number;
 }>;
 
-export type RenderFilterT<ValueT, FilterParamsT> = React.ComponentType<{
+export type RenderFilter<Value, FilterParams> = React.ComponentType<{
   close: () => void;
-  data: ValueT[];
-  filterParams?: FilterParamsT;
-  setFilter: (a: FilterParamsT) => void;
+  data: Value[];
+  filterParams?: FilterParams;
+  setFilter: (a: FilterParams) => void;
 }>;
 
-export type ColumnT<ValueT = any, FilterParamsT = any> = {
-  kind: ColumnsT;
+export type ColumnOptions<Value = any, FilterParams = any> = {
+  kind: Columns;
   sortable: boolean;
-  renderCell: RenderCellT<ValueT>;
-  renderFilter: RenderFilterT<ValueT, FilterParamsT>;
-  buildFilter: (a: FilterParamsT) => (a: ValueT) => boolean;
-  textQueryFilter?: (b: string, a: ValueT) => boolean;
-  sortFn: (b: ValueT, a: ValueT) => number;
-} & SharedColumnOptionsT<ValueT>;
+  renderCell: RenderCell<Value>;
+  renderFilter: RenderFilter<Value, FilterParams>;
+  buildFilter: (a: FilterParams) => (a: Value) => boolean;
+  textQueryFilter?: (b: string, a: Value) => boolean;
+  sortFn: (b: Value, a: Value) => number;
+} & SharedColumnOptions<Value>;
 
-export type RowT = {
+export type Row = {
   id: number | string;
   data: any;
 };
 
-export type BatchActionT = {
+export type BatchAction = {
   label: string;
   onClick: (a: {
     clearSelection: () => unknown;
     event: SyntheticEvent<HTMLButtonElement>;
-    selection: RowT[];
+    selection: Row[];
   }) => unknown;
   renderIcon?: React.ComponentType<
     {
@@ -73,9 +73,9 @@ export type BatchActionT = {
   >;
 };
 
-export type RowActionT = {
+export type RowAction = {
   label: string;
-  onClick: (a: { event: SyntheticEvent<HTMLButtonElement>; row: RowT }) => unknown;
+  onClick: (a: { event: SyntheticEvent<HTMLButtonElement>; row: Row }) => unknown;
   renderIcon: React.ComponentType<
     {
       size: number;
@@ -84,17 +84,17 @@ export type RowActionT = {
   renderButton?: React.ComponentType<{}>;
 };
 
-export type ImperativeMethodsT = {
-  getRows: () => RowT[];
+export type ImperativeMethods = {
+  getRows: () => Row[];
 };
 
-export type ControlRefT = {
-  current: ImperativeMethodsT | null;
+export type ControlRef = {
+  current: ImperativeMethods | null;
 };
 
-export type StatefulDataTablePropsT = {
-  batchActions?: BatchActionT[];
-  columns: ColumnT[];
+export type StatefulDataTableProps = {
+  batchActions?: BatchAction[];
+  columns: ColumnOptions[];
   emptyMessage?: string | React.ComponentType<{}>;
   filterable?: boolean;
   initialFilters?: Map<
@@ -105,7 +105,7 @@ export type StatefulDataTablePropsT = {
   >;
   initialSelectedRowIds?: Set<number | string>;
   initialSortIndex?: number;
-  initialSortDirection?: SortDirectionsT;
+  initialSortDirection?: SortDirections;
   loading?: boolean;
   loadingMessage?: string | React.ComponentType<{}>;
   onFilterAdd?: (
@@ -115,19 +115,19 @@ export type StatefulDataTablePropsT = {
     }
   ) => unknown;
   onFilterRemove?: (a: string) => unknown;
-  onIncludedRowsChange?: (rows: RowT[]) => void;
-  onRowHighlightChange?: (rowIndex: number, row: RowT) => void;
-  onSelectionChange?: (a: RowT[]) => unknown;
+  onIncludedRowsChange?: (rows: Row[]) => void;
+  onRowHighlightChange?: (rowIndex: number, row: Row) => void;
+  onSelectionChange?: (a: Row[]) => unknown;
   resizableColumnWidths?: boolean;
-  rows: RowT[];
-  rowActions?: RowActionT[] | ((a: RowT) => RowActionT[]);
+  rows: Row[];
+  rowActions?: RowAction[] | ((a: Row) => RowAction[]);
   rowHeight?: number;
   rowHighlightIndex?: number;
   searchable?: boolean;
-  controlRef?: ControlRefT;
+  controlRef?: ControlRef;
 };
 
-export type DataTablePropsT = {
+export type DataTableProps = {
   emptyMessage?: string | React.ComponentType<{}>;
   filters?: Map<
     string,
@@ -137,21 +137,21 @@ export type DataTablePropsT = {
   >;
   loading?: boolean;
   loadingMessage?: string | React.ComponentType<{}>;
-  onIncludedRowsChange?: (rows: RowT[]) => void;
-  onRowHighlightChange?: (rowIndex: number, row: RowT) => void;
-  onSelectMany?: (rows: RowT[]) => void;
+  onIncludedRowsChange?: (rows: Row[]) => void;
+  onRowHighlightChange?: (rowIndex: number, row: Row) => void;
+  onSelectMany?: (rows: Row[]) => void;
   onSelectNone?: () => void;
-  onSelectOne?: (row: RowT) => void;
+  onSelectOne?: (row: Row) => void;
   onSort?: (columnIndex: number) => void;
   resizableColumnWidths?: boolean;
   rowHighlightIndex?: number;
   selectedRowIds?: Set<string | number>;
   sortIndex?: number;
-  sortDirection?: SortDirectionsT;
+  sortDirection?: SortDirections;
   textQuery?: string;
-} & StatefulDataTablePropsT;
+} & StatefulDataTableProps;
 
-export type StatefulContainerPropsT = {
+export type StatefulContainerProps = {
   children: (a: {
     filters: Map<
       string,
@@ -166,18 +166,18 @@ export type StatefulContainerPropsT = {
       }
     ) => void;
     onFilterRemove: (title: string) => void;
-    onIncludedRowsChange: (rows: RowT[]) => void;
-    onRowHighlightChange: (rowIndex: number, row: RowT) => void;
-    onSelectMany: (rows: RowT[]) => void;
+    onIncludedRowsChange: (rows: Row[]) => void;
+    onRowHighlightChange: (rowIndex: number, row: Row) => void;
+    onSelectMany: (rows: Row[]) => void;
     onSelectNone: () => void;
-    onSelectOne: (row: RowT) => void;
+    onSelectOne: (row: Row) => void;
     onSort: (columnIndex: number) => void;
     onTextQueryChange: (query: string) => void;
     resizableColumnWidths: boolean;
     rowHighlightIndex?: number;
     selectedRowIds: Set<string | number>;
     sortIndex: number;
-    sortDirection: SortDirectionsT;
+    sortDirection: SortDirections;
     textQuery: string;
   }) => React.ReactNode;
-} & StatefulDataTablePropsT;
+} & StatefulDataTableProps;

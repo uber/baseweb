@@ -12,9 +12,9 @@ import {
   StyledGridWrapper as DefaultStyledGridWrapper,
 } from './styled-components';
 
-import type { GridPropsT, SharedGridPropsT } from './types';
+import type { GridProps, SharedGridProps } from './types';
 
-export const GridContext: React.Context<SharedGridPropsT> = React.createContext({});
+export const GridContext: React.Context<SharedGridProps> = React.createContext({});
 
 export default function Grid({
   align,
@@ -28,7 +28,7 @@ export default function Grid({
   gridStyle = STYLE.default,
   gridUnit,
   overrides = {},
-}: GridPropsT) {
+}: GridProps) {
   const [StyledGrid, overrideProps] = getOverrides(overrides.Grid, DefaultStyledGrid);
   const [StyledGridWrapper, wrapperProps] = getOverrides(
     overrides.GridWrapper,

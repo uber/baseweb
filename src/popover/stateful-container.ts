@@ -13,17 +13,17 @@ import {
   POPOVER_MARGIN,
 } from './constants';
 import type {
-  PopoverPropsWithoutChildrenT,
-  StateT,
-  StatefulPopoverContainerPropsT,
-  StateChangeTypeT,
-  StateReducerT,
+  PopoverPropsWithoutChildren,
+  State,
+  StatefulPopoverContainerProps,
+  StateChangeType,
+  StateReducer,
 } from './types';
 
-const defaultStateReducer: StateReducerT = (type, nextState) => nextState;
+const defaultStateReducer: StateReducer = (type, nextState) => nextState;
 
-class StatefulContainer extends React.Component<StatefulPopoverContainerPropsT, StateT> {
-  static defaultProps: Partial<StatefulPopoverContainerPropsT> = {
+class StatefulContainer extends React.Component<StatefulPopoverContainerProps, State> {
+  static defaultProps: Partial<StatefulPopoverContainerProps> = {
     accessibilityType: ACCESSIBILITY_TYPE.menu,
     ignoreBoundary: false,
     overrides: {},
@@ -116,7 +116,7 @@ class StatefulContainer extends React.Component<StatefulPopoverContainerPropsT, 
     }
   }
 
-  internalSetState(type: StateChangeTypeT, changes: StateT) {
+  internalSetState(type: StateChangeType, changes: State) {
     const { stateReducer } = this.props;
     if (typeof stateReducer !== 'function') {
       this.setState(changes);
@@ -171,7 +171,7 @@ class StatefulContainer extends React.Component<StatefulPopoverContainerPropsT, 
       focusOptions,
     } = this.props;
 
-    const popoverProps: PopoverPropsWithoutChildrenT = {
+    const popoverProps: PopoverPropsWithoutChildren = {
       accessibilityType,
       animateOutTime,
       autoFocus,

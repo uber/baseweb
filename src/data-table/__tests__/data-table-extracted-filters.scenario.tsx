@@ -13,40 +13,40 @@ import { DataTable, StatefulContainer, CategoricalColumn, StringColumn } from '.
 
 import AnimalData from './animal-data';
 
-type RowDataT = [string, string, string, string, string, string];
+type RowData = [string, string, string, string, string, string];
 
 const columns = [
   StringColumn({
     title: 'Name',
     minWidth: 300,
-    mapDataToValue: (data: RowDataT) => data[0],
+    mapDataToValue: (data: RowData) => data[0],
   }),
 
   CategoricalColumn({
     title: 'Kingdom',
-    mapDataToValue: (data: RowDataT) => data[1],
+    mapDataToValue: (data: RowData) => data[1],
   }),
 
   CategoricalColumn({
     title: 'Phylum',
     minWidth: 90,
-    mapDataToValue: (data: RowDataT) => data[2],
+    mapDataToValue: (data: RowData) => data[2],
   }),
 
   CategoricalColumn({
     title: 'Class',
     minWidth: 120,
-    mapDataToValue: (data: RowDataT) => data[3],
+    mapDataToValue: (data: RowData) => data[3],
   }),
 
   CategoricalColumn({
     title: 'Order',
-    mapDataToValue: (data: RowDataT) => data[4],
+    mapDataToValue: (data: RowData) => data[4],
   }),
 
   CategoricalColumn({
     title: 'Family',
-    mapDataToValue: (data: RowDataT) => data[5],
+    mapDataToValue: (data: RowData) => data[5],
   }),
 ];
 

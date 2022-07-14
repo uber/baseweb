@@ -5,9 +5,9 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import { ACCESSIBILITY_TYPE, PLACEMENT, TRIGGER_TYPE } from './constants';
-import type { BaseTooltipPropsT } from './types';
+import type { BaseTooltipProps } from './types';
 
-const baseDefaultProps: Partial<BaseTooltipPropsT> = {
+const baseDefaultProps: Partial<BaseTooltipProps> = {
   accessibilityType: ACCESSIBILITY_TYPE.tooltip,
   focusLock: false,
   autoFocus: false,

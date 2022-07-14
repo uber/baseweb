@@ -4,7 +4,7 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import type { OverrideT } from '../helpers/overrides';
+import type { Override } from '../helpers/overrides';
 
 import type {
   SyntheticEvent,
@@ -15,7 +15,7 @@ import type {
   DragEvent,
 } from 'react';
 
-export type StylePropsT = {
+export type StyleProps = {
   $afterFileDrop: boolean;
   $isDisabled: boolean;
   $isDragActive: boolean;
@@ -24,28 +24,28 @@ export type StylePropsT = {
   $isFocused: boolean;
 };
 
-export type OverridesT = {
-  Root?: OverrideT;
-  FileDragAndDrop?: OverrideT;
-  ContentMessage?: OverrideT;
-  ContentSeparator?: OverrideT;
-  HiddenInput?: OverrideT;
-  ProgressMessage?: OverrideT;
-  ErrorMessage?: OverrideT;
-  ButtonComponent?: OverrideT;
-  CancelButtonComponent?: OverrideT;
-  RetryButtonComponent?: OverrideT;
-  Spinner?: OverrideT;
-  ProgressBar?: OverrideT;
+export type FileUploaderOverrides = {
+  Root?: Override;
+  FileDragAndDrop?: Override;
+  ContentMessage?: Override;
+  ContentSeparator?: Override;
+  HiddenInput?: Override;
+  ProgressMessage?: Override;
+  ErrorMessage?: Override;
+  ButtonComponent?: Override;
+  CancelButtonComponent?: Override;
+  RetryButtonComponent?: Override;
+  Spinner?: Override;
+  ProgressBar?: Override;
 };
 
-export type PropsT = {
+export type FileUploaderProps = {
   // react-dropzone: https://github.com/react-dropzone/react-dropzone/blob/master/typings/react-dropzone.d.ts
   accept?: string | string[];
   /** Disallow clicking on the dropzone container to open file dialog */
   disableClick?: boolean;
   disabled?: boolean;
-  getDataTransferItems?: GetDataTransferItemsT;
+  getDataTransferItems?: GetDataTransferItems;
   maxSize?: number;
   minSize?: number;
   multiple?: boolean;
@@ -58,9 +58,9 @@ export type PropsT = {
   onDragEnter?: (event: DragEvent<HTMLElement>) => unknown;
   onDragOver?: (event: DragEvent<HTMLElement>) => unknown;
   onDragLeave?: (event: DragEvent<HTMLElement>) => unknown;
-  onDrop?: DropFilesEventHandlerT;
-  onDropAccepted?: DropFileEventHandlerT;
-  onDropRejected?: DropFileEventHandlerT;
+  onDrop?: DropFilesEventHandler;
+  onDropAccepted?: DropFileEventHandler;
+  onDropRejected?: DropFileEventHandler;
   onFileDialogCancel?: () => unknown;
   preventDropOnDocument?: boolean;
   'aria-describedby'?: string;
@@ -68,23 +68,23 @@ export type PropsT = {
   errorMessage?: string;
   onCancel?: () => unknown;
   onRetry?: () => unknown;
-  overrides?: OverridesT;
+  overrides?: FileUploaderOverrides;
   progressAmount?: number;
   progressMessage?: string;
 };
 
-export type DropFilesEventHandlerT = (
+export type DropFilesEventHandler = (
   accepted: File[],
   rejected: File[],
   event: DragEvent<HTMLElement>
 ) => unknown;
 
-type DropFileEventHandlerT = (acceptedOrRejected: File[], event: DragEvent<HTMLElement>) => unknown;
+type DropFileEventHandler = (acceptedOrRejected: File[], event: DragEvent<HTMLElement>) => unknown;
 
-type DataTransferEventT =
+type DataTransferEvent =
   | DragEvent<HTMLElement>
   | ChangeEvent<HTMLInputElement> //flowlint-line unclear-type:off
   | DragEvent<any>
   | SyntheticEvent<any>; //flowlint-line unclear-type:off
 
-type GetDataTransferItemsT = (event: DataTransferEventT) => Promise<Array<File | DataTransferItem>>;
+type GetDataTransferItems = (event: DataTransferEvent) => Promise<Array<File | DataTransferItem>>;

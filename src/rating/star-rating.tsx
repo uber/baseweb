@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 
 import * as React from 'react';
-import type { StarRatingPropsT, RatingStateT } from './types';
+import type { StarRatingProps, RatingState } from './types';
 import { StyledRoot, StyledStar } from './styled-components';
 import { getOverrides } from '../helpers/overrides';
 import { ARROW_UP, ARROW_DOWN, ARROW_LEFT, ARROW_RIGHT } from './utils';
@@ -14,14 +14,14 @@ import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible';
 
 import type { SyntheticEvent } from 'react';
 
-class StarRating extends React.Component<StarRatingPropsT, RatingStateT> {
+class StarRating extends React.Component<StarRatingProps, RatingState> {
   static defaultProps = {
     overrides: {},
     numItems: 5,
     readOnly: false,
   };
 
-  state = { isFocusVisible: false, previewIndex: undefined } as RatingStateT;
+  state = { isFocusVisible: false, previewIndex: undefined } as RatingState;
 
   selectItem = (value: number) => {
     const { onChange } = this.props;

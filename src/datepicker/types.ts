@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 /* eslint-disable flowtype/generic-spacing */
 import * as React from 'react';
-import type { OverrideT } from '../helpers/overrides';
-import type { SizeT } from '../input';
+import type { Override } from '../helpers/overrides';
+import type { Size } from '../input';
 import {
   INPUT_ROLE,
   ORIENTATION,
@@ -17,67 +17,67 @@ import {
 } from './constants';
 import type { DateIOAdapter } from './utils/types';
 import type {
-  TimePickerPropsT as TimePickerPropsTBase,
-  TimePickerStateT as TimePickerStateTBase,
+  TimePickerProps as TimePickerPropsTBase,
+  TimePickerState as TimePickerStateTBase,
 } from '../timepicker/types';
 
-type LocaleT = any; // see https://github.com/date-fns/date-fns/blob/master/src/locale/index.js.flow
+type Locale = any; // see https://github.com/date-fns/date-fns/blob/master/src/locale/index.js.flow
 
-export type DensityT = keyof typeof DENSITY;
+export type Density = keyof typeof DENSITY;
 
-export type DatepickerOverridesT = {
-  Root?: OverrideT;
+export type DatepickerOverrides = {
+  Root?: Override;
   /** Override for reused Select component. QuickSelect is **not a styled  element** but a react component that can be replaced */
-  QuickSelect?: OverrideT;
-  QuickSelectContainer?: OverrideT;
+  QuickSelect?: Override;
+  QuickSelectContainer?: Override;
   /** Override for reused Select component. QuickSelectFormControl is **not a styled  element** but a react component that can be replaced */
-  QuickSelectFormControl?: OverrideT;
+  QuickSelectFormControl?: Override;
   /** Override for reused TimePicker component. TimeSelect is **not a styled  element** but a react component that can be replaced */
-  TimeSelect?: OverrideT;
-  TimeSelectContainer?: OverrideT;
+  TimeSelect?: Override;
+  TimeSelectContainer?: Override;
   /** Override for reused Select component. TimeSelectFormControl is **not a styled  element** but a react component that can be replaced */
-  TimeSelectFormControl?: OverrideT;
-  CalendarContainer?: OverrideT;
-  CalendarHeader?: OverrideT;
-  PrevButton?: OverrideT;
-  PrevButtonIcon?: OverrideT;
-  NextButton?: OverrideT;
-  NextButtonIcon?: OverrideT;
-  MonthContainer?: OverrideT;
-  MonthHeader?: OverrideT;
-  MonthYearSelectButton?: OverrideT;
-  MonthYearSelectIconContainer?: OverrideT;
-  MonthYearSelectPopover?: OverrideT;
-  MonthYearSelectStatefulMenu?: OverrideT;
-  WeekdayHeader?: OverrideT;
-  Month?: OverrideT;
-  Week?: OverrideT;
-  Day?: OverrideT;
-  DayLabel?: OverrideT;
+  TimeSelectFormControl?: Override;
+  CalendarContainer?: Override;
+  CalendarHeader?: Override;
+  PrevButton?: Override;
+  PrevButtonIcon?: Override;
+  NextButton?: Override;
+  NextButtonIcon?: Override;
+  MonthContainer?: Override;
+  MonthHeader?: Override;
+  MonthYearSelectButton?: Override;
+  MonthYearSelectIconContainer?: Override;
+  MonthYearSelectPopover?: Override;
+  MonthYearSelectStatefulMenu?: Override;
+  WeekdayHeader?: Override;
+  Month?: Override;
+  Week?: Override;
+  Day?: Override;
+  DayLabel?: Override;
   /** Override for reused Input component. Input is **not a styled  element** but a react component that can be replaced */
-  Input?: OverrideT;
-  InputWrapper?: OverrideT;
+  Input?: Override;
+  InputWrapper?: Override;
   /** Override for reused Popover component. Popover is **not a styled  element** but a react component that can be replaced */
-  Popover?: OverrideT;
-  StartDate?: OverrideT;
-  EndDate?: OverrideT;
-  InputLabel?: OverrideT;
+  Popover?: Override;
+  StartDate?: Override;
+  EndDate?: Override;
+  InputLabel?: Override;
 };
 
-export type DayPropsT<T = Date> = {
+export type DayProps<T = Date> = {
   disabled: boolean;
   date: T;
   dateLabel: ((day: T) => React.ReactNode) | undefined | null;
-  density: DensityT;
+  density: Density;
   filterDate: ((day: T) => boolean) | undefined | null;
   highlightedDate: T | undefined | null;
   includeDates: Array<T> | undefined | null;
   highlighted: boolean;
   range: boolean;
   hasLockedBehavior: boolean;
-  selectedInput: InputRoleT;
+  selectedInput: InputRole;
   focusedCalendar: boolean;
-  locale: LocaleT | undefined | null;
+  locale: Locale | undefined | null;
   maxDate: T | undefined | null;
   adapter: DateIOAdapter<T>;
   minDate: T | undefined | null;
@@ -88,20 +88,20 @@ export type DayPropsT<T = Date> = {
   onClick: (a: { event: Event; date: T }) => unknown;
   onMouseOver: (a: { event: Event; date: T }) => unknown;
   onMouseLeave: (a: { event: Event; date: T }) => unknown;
-  overrides?: DatepickerOverridesT;
+  overrides?: DatepickerOverrides;
   peekNextMonth: boolean;
   value: T | undefined | null | Array<T | undefined | null>;
 };
 
-export type DayStateT = {
+export type DayState = {
   isHovered: boolean;
   isFocusVisible: boolean;
 };
 
-export type WeekPropsT<T = Date> = {
+export type WeekProps<T = Date> = {
   date: T;
   dateLabel: ((date: T) => React.ReactNode) | undefined | null;
-  density: DensityT;
+  density: Density;
   excludeDates: Array<T> | undefined | null;
   filterDate: ((day: T) => boolean) | undefined | null;
   // highlighted while keyboard navigating or hovered
@@ -109,7 +109,7 @@ export type WeekPropsT<T = Date> = {
   includeDates: Array<T> | undefined | null;
   focusedCalendar: boolean;
   range?: boolean;
-  locale: LocaleT | undefined | null;
+  locale: Locale | undefined | null;
   maxDate: T | undefined | null;
   minDate: T | undefined | null;
   adapter: DateIOAdapter<T>;
@@ -120,16 +120,16 @@ export type WeekPropsT<T = Date> = {
   onDayMouseOver: (a: { date: T; event: Event }) => unknown;
   onDayMouseLeave: (a: { date: T; event: Event }) => unknown;
   onChange?: (a: { readonly date: T | undefined | null | Array<T | undefined | null> }) => unknown;
-  overrides?: DatepickerOverridesT;
+  overrides?: DatepickerOverrides;
   peekNextMonth: boolean;
   value: T | undefined | null | Array<T | undefined | null>;
   hasLockedBehavior: boolean;
-  selectedInput?: InputRoleT;
+  selectedInput?: InputRole;
 };
 
-export type MonthPropsT<T = Date> = {
+export type MonthProps<T = Date> = {
   fixedHeight?: boolean;
-} & WeekPropsT<T>;
+} & WeekProps<T>;
 
 export type CalendarInternalState<T = Date> = {
   highlightedDate: T;
@@ -140,11 +140,11 @@ export type CalendarInternalState<T = Date> = {
   time: Array<T | undefined | null>;
 };
 
-export type CalendarPropsT<T = Date> = {
+export type CalendarProps<T = Date> = {
   /** Defines if the calendar is set to be focused on an initial render. */
   autoFocusCalendar?: boolean;
   /** Determines the density of the calendar */
-  density?: DensityT;
+  density?: Density;
   /** A list of dates to disable. */
   excludeDates?: Array<T> | null;
   /** Display select for quickly choosing date ranges. `range` must be true as well. */
@@ -164,7 +164,7 @@ export type CalendarPropsT<T = Date> = {
   /** Determines whether startDate and endDate should be updated independently of eachother */
   hasLockedBehavior?: boolean;
   /** A locale object. See `date-fns` for more details https://github.com/date-fns/date-fns/tree/master/src/locale. */
-  locale?: LocaleT | null;
+  locale?: Locale | null;
   /** A max date that is selectable. */
   maxDate?: T | null;
   /** A min date that is selectable. */
@@ -190,7 +190,7 @@ export type CalendarPropsT<T = Date> = {
   onQuickSelectChange?: (option?: QuickSelectOption<T>) => unknown;
   /** Sets the orientation of the calendar when multiple months are displayed */
   orientation?: typeof ORIENTATION[keyof typeof ORIENTATION];
-  overrides?: DatepickerOverridesT;
+  overrides?: DatepickerOverrides;
   /** Defines if dates outside of the range of the current month are displayed. */
   peekNextMonth?: boolean;
   /** Determines if `TimePicker` component will be enabled for start time */
@@ -203,10 +203,10 @@ export type CalendarPropsT<T = Date> = {
   value?: T | undefined | null | Array<T | undefined | null>;
   fixedHeight?: boolean;
   /** Determines whether user clicked startDate or endDate input to trigger calendar open */
-  selectedInput?: InputRoleT;
+  selectedInput?: InputRole;
 };
 
-export type HeaderPropsT<T = Date> = CalendarPropsT<T> & {
+export type HeaderProps<T = Date> = CalendarProps<T> & {
   date: T;
   order: number;
 };
@@ -217,12 +217,12 @@ export type QuickSelectOption<T> = {
   endDate?: T;
 };
 
-export type DatepickerPropsT<T = Date> = {
+export type DatepickerProps<T = Date> = {
   'aria-label'?: string;
   'aria-labelledby'?: string;
   'aria-describedby'?: string | null;
   disabled?: boolean;
-  size?: SizeT;
+  size?: Size;
   /** Renders UI in 'error' state. */
   error?: boolean;
   positive?: boolean;
@@ -249,18 +249,18 @@ export type DatepickerPropsT<T = Date> = {
   }) => unknown;
   mask?: string | null;
   /** Determines whether startDate and endDate should be updated independently of eachother */
-  rangedCalendarBehavior?: RangedCalendarBehaviorT;
+  rangedCalendarBehavior?: RangedCalendarBehavior;
   /** Determines if startDate and endDate should be separated into two input fields. Ignored if `range` is not true. */
   separateRangeInputs?: boolean;
   startDateLabel?: string;
   endDateLabel?: string;
   value?: T | undefined | null | Array<T | undefined | null>;
-} & CalendarPropsT<T>;
+} & CalendarProps<T>;
 
-export type SharedStylePropsT = {
+export type SharedStyleProps = {
   $date: any;
   $disabled: boolean | undefined | null;
-  $density: DensityT;
+  $density: Density;
   $endDate: boolean | undefined | null;
   $endOfMonth: boolean | undefined | null;
   $isHighlighted: boolean | undefined | null;
@@ -280,24 +280,24 @@ export type SharedStylePropsT = {
   $hasRangeOnRight: boolean | undefined | null;
   $hasRangeSelected: boolean | undefined | null;
   $hasLockedBehavior: boolean;
-  $selectedInput: InputRoleT;
+  $selectedInput: InputRole;
   $value: Date | Array<Date>;
   $order: number | undefined | null;
   $hasDateLabel: boolean | undefined | null;
 };
 
-export type StateChangeTypeT =
+export type StateChangeType =
   | typeof STATE_CHANGE_TYPE[keyof typeof STATE_CHANGE_TYPE]
   | undefined
   | null;
 
-export type ContainerStateT<T = Date> = {
+export type ContainerState<T = Date> = {
   /** Selected `Date`. If `range` is set, `value` is an array of 2 values. */
   value?: T | undefined | null | Array<T | undefined | null>;
   highlightedDate?: T | null;
 };
 
-export type NavigationContainerStateT<T = Date> = {
+export type NavigationContainerState<T = Date> = {
   // indicates a highlighted date on hover and keyboard navigation
   highlightedDate?: T | null;
   // used to disable keyboard navigation when a month or year select
@@ -309,18 +309,18 @@ export type NavigationContainerStateT<T = Date> = {
   lastHighlightedDate?: T;
 };
 
-export type StateReducerT<T = Date> = (
-  stateType: StateChangeTypeT,
-  nextState: ContainerStateT<T>,
-  currentState: ContainerStateT<T>
-) => ContainerStateT<T>;
+export type StateReducer<T = Date> = (
+  stateType: StateChangeType,
+  nextState: ContainerState<T>,
+  currentState: ContainerState<T>
+) => ContainerState<T>;
 
-export type StatefulContainerPropsT<PropsT, T = Date> = {
-  children: (a: PropsT) => React.ReactNode;
+export type StatefulContainerProps<Props, T = Date> = {
+  children: (a: Props) => React.ReactNode;
   /** Initial state of an uncontrolled datepicker component. */
-  initialState?: ContainerStateT<T>;
+  initialState?: ContainerState<T>;
   /** A state change handler. */
-  stateReducer?: StateReducerT<T>;
+  stateReducer?: StateReducer<T>;
   /** When single picker, fn is called when date/time is selected. When range picker, fn is called when both start and end are selected. */
   onChange?: (a: { date: T | undefined | null | Array<T> }) => unknown;
   /** When single picker, fn is called when date/time is selected. When range picker, fn is called when either start or end date changes. */
@@ -332,14 +332,14 @@ export type StatefulContainerPropsT<PropsT, T = Date> = {
   range?: boolean;
 };
 
-export type StatefulDatepickerPropsT<PropsT, T = Date> = Omit<
-  StatefulContainerPropsT<PropsT, T>,
+export type StatefulDatepickerProps<Props, T = Date> = Omit<
+  StatefulContainerProps<Props, T>,
   'children'
 >;
 
-export type InputRoleT = typeof INPUT_ROLE[keyof typeof INPUT_ROLE] | undefined | null;
+export type InputRole = typeof INPUT_ROLE[keyof typeof INPUT_ROLE] | undefined | null;
 
-export type RangedCalendarBehaviorT =
+export type RangedCalendarBehavior =
   | typeof RANGED_CALENDAR_BEHAVIOR[keyof typeof RANGED_CALENDAR_BEHAVIOR]
   | undefined
   | null;

@@ -6,26 +6,26 @@ LICENSE file in the root directory of this source tree.
 */
 
 import * as React from 'react';
-import type { OverrideT } from '../helpers/overrides';
+import type { Override } from '../helpers/overrides';
 
-export type FormControlStateT = {
+export type FormControlState = {
   captionId: string;
 };
 
-export type OverridesT = {
+export type FormControlOverrides = {
   /** Customizes the label element. */
-  Label?: OverrideT;
+  Label?: Override;
   /** Customizes the label end enhancer element. */
-  LabelEndEnhancer?: OverrideT;
+  LabelEndEnhancer?: Override;
   /** Customizes the label container element. */
-  LabelContainer?: OverrideT;
+  LabelContainer?: Override;
   /** Customizes the caption element. */
-  Caption?: OverrideT;
+  Caption?: Override;
   /** Customizes the container element. */
-  ControlContainer?: OverrideT;
+  ControlContainer?: Override;
 };
-export type FormControlPropsT = {
-  overrides?: OverridesT;
+export type FormControlProps = {
+  overrides?: FormControlOverrides;
   /** A label rendered above the input field. */
   label?: React.ReactNode | ((props: {}) => React.ReactNode) | undefined | null;
   /** A caption rendered below the input field. */
@@ -51,7 +51,7 @@ export type FormControlPropsT = {
   children: React.ReactNode;
 };
 
-export type StylePropsT = {
+export type StyleProps = {
   $disabled?: boolean;
   $error?: boolean;
   $positive?: boolean;

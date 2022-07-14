@@ -12,11 +12,11 @@ import { getOverrides, mergeOverrides } from '../helpers/overrides';
 import { LocaleContext } from '../locale';
 import { Select } from '../select';
 
-import type { TimezonePickerPropsT, TimezonePickerStateT, TimezoneT } from './types';
+import type { TimezonePickerProps, TimezonePickerState, Timezone } from './types';
 import { zones } from './tzdata';
 
-class TimezonePicker extends React.Component<TimezonePickerPropsT, TimezonePickerStateT> {
-  state = { timezones: [], value: null } as TimezonePickerStateT;
+class TimezonePicker extends React.Component<TimezonePickerProps, TimezonePickerState> {
+  state = { timezones: [], value: null } as TimezonePickerState;
 
   componentDidMount() {
     const timezones = this.buildTimezones(this.props.date || new Date());
@@ -36,7 +36,7 @@ class TimezonePicker extends React.Component<TimezonePickerPropsT, TimezonePicke
     }
   }
 
-  componentDidUpdate(prevProps: TimezonePickerPropsT) {
+  componentDidUpdate(prevProps: TimezonePickerProps) {
     const prevTime = prevProps.date ? prevProps.date.getTime() : 0;
     const nextTime = this.props.date ? this.props.date.getTime() : 0;
     if (prevTime !== nextTime) {
@@ -48,8 +48,8 @@ class TimezonePicker extends React.Component<TimezonePickerPropsT, TimezonePicke
     }
   }
 
-  buildTimezones = (compareDate: Date): TimezoneT[] => {
-    const timezones: TimezoneT[] = [];
+  buildTimezones = (compareDate: Date): Timezone[] => {
+    const timezones: Timezone[] = [];
     for (const zoneName of zones) {
       try {
         const offset = getTimezoneOffset(zoneName, compareDate) / 3_600_000;

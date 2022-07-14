@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import { styled } from '../styles';
 import { SIZE } from './constants';
-import type { SpinnerPropsT } from './types';
+import type { SpinnerProps } from './types';
 import { StyleObject } from 'styletron-react';
 
 const spin = {
@@ -18,7 +18,7 @@ const spin = {
   },
 };
 
-export const StyledSpinner = styled<'i', SpinnerPropsT>(
+export const StyledSpinner = styled<'i', SpinnerProps>(
   'i',
   ({ $theme, $color = $theme.colors.contentAccent, $borderWidth, $size = SIZE.medium }) => {
     let borderSize = {

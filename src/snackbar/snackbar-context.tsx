@@ -14,10 +14,10 @@ import { useStyletron } from '../styles';
 import { DURATION, PLACEMENT } from './constants';
 import SnackbarElement from './snackbar-element';
 import { StyledPlacementContainer } from './styled-components';
-import type { SnackbarElementPropsT, SnackbarProviderPropsT, DurationT } from './types';
+import type { SnackbarElementProps, SnackbarProviderProps, Duration } from './types';
 
-type ContextT = {
-  enqueue: (elementProps: SnackbarElementPropsT, duration?: DurationT) => void;
+type Context = {
+  enqueue: (elementProps: SnackbarElementProps, duration?: Duration) => void;
   dequeue: () => void;
 };
 
@@ -27,7 +27,7 @@ function fallbackHandler() {
   }
 }
 
-export const SnackbarContext: React.Context<ContextT> = React.createContext({
+export const SnackbarContext: React.Context<Context> = React.createContext({
   enqueue: fallbackHandler,
   dequeue: fallbackHandler,
 });
@@ -50,7 +50,7 @@ export default function SnackbarProvider({
   overrides = {},
   placement,
   defaultDuration = DURATION.short,
-}: SnackbarProviderPropsT) {
+}: SnackbarProviderProps) {
   const [css] = useStyletron();
 
   const [snackbars, setSnackbars] = React.useState([]);

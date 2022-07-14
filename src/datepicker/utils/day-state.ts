@@ -4,7 +4,7 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import type { SharedStylePropsT } from '../types';
+import type { SharedStyleProps } from '../types';
 
 /**
   r == range - date range can be selected
@@ -28,7 +28,7 @@ import type { SharedStylePropsT } from '../types';
 //  r  d  h  s  rS sD eD pS rH pH rR rL sM eM oM
 //  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1
 
-export default function getDayStateCode(props: SharedStylePropsT) {
+export default function getDayStateCode(props: SharedStyleProps) {
   const {
     $range = false,
     $disabled = false,

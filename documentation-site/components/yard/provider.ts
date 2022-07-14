@@ -1,6 +1,6 @@
 import * as t from '@babel/types';
 import traverse from '@babel/traverse';
-import { Theme } from 'baseui/theme';
+import { Theme } from 'baseui';
 
 import { TProvider, getAstJsxElement } from 'react-view';
 

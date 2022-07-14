@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 import { styled } from '../styles';
 
 import { PLACEMENT } from '../popover';
-import type { OffsetT, PopoverPlacementT, SharedStylePropsArgT } from '../popover/types';
+import type { Offset, PopoverPlacement, SharedStylePropsArg } from '../popover/types';
 import { getBodyStyles } from '../popover/styled-components';
 import { getPopoverMarginStyles, splitPlacement } from '../popover/utils';
 
@@ -122,7 +122,7 @@ function position(offsets, placement, width, height) {
   return {};
 }
 
-function clampArrowStyle(offsets: OffsetT, placement: PopoverPlacementT, color: string) {
+function clampArrowStyle(offsets: Offset, placement: PopoverPlacement, color: string) {
   if (placement === PLACEMENT.auto) {
     return {};
   } else if (
@@ -156,7 +156,7 @@ function clampArrowStyle(offsets: OffsetT, placement: PopoverPlacementT, color: 
   }
 }
 
-export const StyledBody = styled<'div', SharedStylePropsArgT>('div', (props) => {
+export const StyledBody = styled<'div', SharedStylePropsArg>('div', (props) => {
   return {
     ...getBodyStyles(props),
     ...getPopoverMarginStyles(
@@ -168,7 +168,7 @@ export const StyledBody = styled<'div', SharedStylePropsArgT>('div', (props) => 
   };
 });
 
-export const StyledArrow = styled<'div', SharedStylePropsArgT>('div', (props) => {
+export const StyledArrow = styled<'div', SharedStylePropsArg>('div', (props) => {
   return {
     ...clampArrowStyle(props.$arrowOffset, props.$placement, props.$theme.colors.backgroundPrimary),
   };

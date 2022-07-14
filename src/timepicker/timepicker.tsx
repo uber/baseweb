@@ -8,19 +8,19 @@ import * as React from 'react';
 
 import { getOverrides, mergeOverrides } from '../helpers/overrides';
 import { LocaleContext } from '../locale';
-import type { OnChangeParamsT, OptionT } from '../select';
+import type { OnChangeParams, Option } from '../select';
 import { filterOptions, Select } from '../select';
 import DateHelpers from '../datepicker/utils/date-helpers';
 import dateFnsAdapter from '../datepicker/utils/date-fns-adapter';
-import type { TimePickerDefaultPropsT, TimePickerPropsT, TimePickerStateT } from './types';
+import type { TimePickerDefaultProps, TimePickerProps, TimePickerState } from './types';
 
 const MINUTE = 60;
 const HOUR = MINUTE * 60;
 const DAY = HOUR * 24;
 const NOON = DAY / 2;
 
-class TimePicker<T = Date> extends React.Component<TimePickerPropsT<T>, TimePickerStateT> {
-  static defaultProps: TimePickerDefaultPropsT = {
+class TimePicker<T = Date> extends React.Component<TimePickerProps<T>, TimePickerState> {
+  static defaultProps: TimePickerDefaultProps = {
     format: '12',
     step: 900,
     creatable: false,
@@ -31,7 +31,7 @@ class TimePicker<T = Date> extends React.Component<TimePickerPropsT<T>, TimePick
 
   state = { steps: [], value: null };
 
-  constructor(props: TimePickerPropsT<T>) {
+  constructor(props: TimePickerProps<T>) {
     super(props);
     this.dateHelpers = new DateHelpers(props.adapter);
   }
@@ -67,7 +67,7 @@ class TimePicker<T = Date> extends React.Component<TimePickerPropsT<T>, TimePick
     }
   }
 
-  componentDidUpdate(prevProps: TimePickerPropsT<T>) {
+  componentDidUpdate(prevProps: TimePickerProps<T>) {
     const formatChanged = prevProps.format !== this.props.format;
     const stepChanged = prevProps.step !== this.props.step;
     const adapterChanged = prevProps.adapter !== this.props.adapter;
@@ -85,7 +85,7 @@ class TimePicker<T = Date> extends React.Component<TimePickerPropsT<T>, TimePick
     }
   }
 
-  onChange = (params: OnChangeParamsT) => {
+  onChange = (params: OnChangeParams) => {
     this.setState({ value: params.value[0] });
     if (params.value.length === 0) {
       if (this.props.nullable) {
@@ -124,7 +124,7 @@ class TimePicker<T = Date> extends React.Component<TimePickerPropsT<T>, TimePick
    * Converts a time string, e.g. 10:00, to one or more possible TimePicker
    * options representing that time.
    */
-  stringToOptions: (a: string, format?: '12' | '24') => Array<OptionT> = (str, format = '12') => {
+  stringToOptions: (a: string, format?: '12' | '24') => Array<Option> = (str, format = '12') => {
     // leading zero is optional, AM/PM is optional
     const twelveHourRegex = /^(1[0-2]|0?[1-9]):([0-5][0-9]) ?([AaPp][Mm]?)?$/;
     // leading zero is optional
@@ -274,7 +274,7 @@ class TimePicker<T = Date> extends React.Component<TimePickerPropsT<T>, TimePick
     return filterOptions(options, filterValue, excludeOptions, newProps);
   };
 
-  buildSelectedOption: (b: T, a: '12' | undefined | null | '24') => OptionT = (
+  buildSelectedOption: (b: T, a: '12' | undefined | null | '24') => Option = (
     value,
     format = '12'
   ) => {

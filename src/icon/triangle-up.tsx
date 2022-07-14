@@ -11,9 +11,9 @@ import { useStyletron } from '../styles';
 import { mergeOverride, toObjectOverride } from '../helpers/overrides';
 
 import Icon from './icon';
-import type { IconPropsT } from './types';
+import type { IconProps } from './types';
 
-function TriangleUp(props: IconPropsT, ref) {
+function TriangleUp(props: IconProps, ref) {
   const [, theme] = useStyletron();
   const { title = 'Triangle Up', size, color, overrides = {}, ...restProps } = props;
   const SvgOverride = mergeOverride(
@@ -38,4 +38,4 @@ function TriangleUp(props: IconPropsT, ref) {
   );
 }
 
-export default React.forwardRef<SVGSVGElement, IconPropsT>(TriangleUp);
+export default React.forwardRef<SVGSVGElement, IconProps>(TriangleUp);

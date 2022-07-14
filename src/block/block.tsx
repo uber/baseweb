@@ -6,14 +6,14 @@ LICENSE file in the root directory of this source tree.
 */
 
 import * as React from 'react';
-import type { BlockComponentType, BlockPropsT, StyledBlockPropsT } from './types';
+import type { BlockComponentType, BlockProps, StyledBlockProps } from './types';
 import { StyledBlock } from './styled-components';
 import { getOverrides } from '../helpers/overrides';
 
 const Block: React.FC<
-  BlockPropsT & { forwardedRef?: React.Ref<HTMLElement> } & Omit<
-      StyledBlockPropsT & JSX.IntrinsicElements['div'],
-      keyof BlockPropsT
+  BlockProps & { forwardedRef?: React.Ref<HTMLElement> } & Omit<
+      StyledBlockProps & JSX.IntrinsicElements['div'],
+      keyof BlockProps
     >
 > = ({
   forwardedRef,

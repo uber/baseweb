@@ -10,9 +10,9 @@ import { render, fireEvent } from '@testing-library/react';
 import { Button } from '../../button';
 
 import { ButtonGroup } from '..';
-import type { PropsT } from '../types';
+import type { ButtonGroupProps } from '../types';
 
-function buildSimpleWrapper(props: Partial<PropsT> = {}) {
+function buildSimpleWrapper(props: Partial<ButtonGroupProps> = {}) {
   return render(
     <ButtonGroup {...props}>
       <Button />

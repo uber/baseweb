@@ -6,16 +6,16 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 import type {
-  StateT,
-  StatefulComponentContainerPropsT,
-  StateChangeTypeT,
-  StateReducerT,
+  State,
+  StatefulComponentContainerProps,
+  StateChangeType,
+  StateReducer,
 } from './types';
 
-const defaultStateReducer: StateReducerT = (type, nextState) => nextState;
+const defaultStateReducer: StateReducer = (type, nextState) => nextState;
 
-class StatefulContainer extends React.Component<StatefulComponentContainerPropsT, StateT> {
-  static defaultProps: Partial<StatefulComponentContainerPropsT> = {
+class StatefulContainer extends React.Component<StatefulComponentContainerProps, State> {
+  static defaultProps: Partial<StatefulComponentContainerProps> = {
     initialState: { prop: true },
     stateReducer: defaultStateReducer,
   };
@@ -32,7 +32,7 @@ class StatefulContainer extends React.Component<StatefulComponentContainerPropsT
     this.internalSetState('click', { prop: !this.state.prop });
   };
 
-  internalSetState(type: StateChangeTypeT, changes: StateT) {
+  internalSetState(type: StateChangeType, changes: State) {
     const { stateReducer } = this.props;
     if (typeof stateReducer !== 'function') {
       this.setState(changes);

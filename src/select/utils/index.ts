@@ -4,9 +4,9 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import type { PropsT, OptionT, OptionsT, OptgroupsT, ValueT } from '../types';
+import type { SelectProps, Option, Options, Optgroups, Value } from '../types';
 
-function groupedOptionsToArray(groupedOptions: OptgroupsT): ValueT {
+function groupedOptionsToArray(groupedOptions: Optgroups): Value {
   return Object.keys(groupedOptions).reduce((arr, optgroup) => {
     const optgroupOptions = groupedOptions[optgroup];
     return arr.concat(
@@ -20,19 +20,19 @@ function groupedOptionsToArray(groupedOptions: OptgroupsT): ValueT {
   }, []);
 }
 
-export function normalizeOptions(options: OptionsT): ValueT {
+export function normalizeOptions(options: Options): Value {
   if (options) {
     if (Array.isArray(options)) {
       return options;
     } else {
-      return groupedOptionsToArray(options as OptgroupsT);
+      return groupedOptionsToArray(options as Optgroups);
     }
   }
 
   return [];
 }
 
-export const expandValue = (value: OptionT, props: Partial<PropsT>): OptionT => {
+export const expandValue = (value: Option, props: Partial<SelectProps>): Option => {
   if (!props.options) return value;
 
   const normalizedOptions = normalizeOptions(props.options);

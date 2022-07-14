@@ -10,18 +10,18 @@ import * as React from 'react';
 import { getInitialStyle } from 'styletron-standard';
 import { LightTheme } from '../../themes';
 import createMockTheme from '../../test/create-mock-theme';
-import type { ThemeT } from '../../styles/types';
+import type { Theme } from '../../styles/types';
 import type { StyletronComponent } from '../styled';
 
-type ObjOrFnT = {} | ((a: {}) => {});
+type ObjOrFn = {} | ((a: {}) => {});
 
-type PropsT = {
-  $style?: ObjOrFnT;
-  $theme?: ThemeT;
+type Props = {
+  $style?: ObjOrFn;
+  $theme?: Theme;
   forwardedRef: any;
 };
 
-type StateT = {
+type State = {
   styles?: {};
 };
 
@@ -39,13 +39,13 @@ export function useStyletron() {
   return [css, MOCK_THEME];
 }
 
-export function styled(ElementName: string | React.ComponentType<any>, objOrFn: ObjOrFnT = {}) {
-  class MockStyledComponent extends React.Component<PropsT, StateT> {
+export function styled(ElementName: string | React.ComponentType<any>, objOrFn: ObjOrFn = {}) {
+  class MockStyledComponent extends React.Component<Props, State> {
     static displayName = 'MockStyledComponent';
 
-    state = {} as StateT;
+    state = {} as State;
 
-    static getDerivedStateFromProps(props: PropsT) {
+    static getDerivedStateFromProps(props: Props) {
       const styleFnArg = {
         ...props,
         // If we use defaultProps, $theme unnecessarily ends up in snapshots
@@ -95,7 +95,7 @@ export function styled(ElementName: string | React.ComponentType<any>, objOrFn: 
     base: ElementName,
   };
 
-  return React.forwardRef<HTMLElement, PropsT>((props, ref) => (
+  return React.forwardRef<HTMLElement, Props>((props, ref) => (
     <MockStyledComponent forwardedRef={ref} {...props} />
   ));
 }

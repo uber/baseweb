@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
-import type { TextareaPropsT } from './types';
+import type { TextareaProps } from './types';
 import { mergeOverrides, getOverrides } from '../helpers/overrides';
 import { BaseInput, SIZE, CUSTOM_INPUT_TYPE } from '../input';
 import { StyledTextAreaRoot, StyledTextarea, StyledTextareaContainer } from './styled-components';
@@ -13,7 +13,7 @@ import { StyledTextAreaRoot, StyledTextarea, StyledTextareaContainer } from './s
 import type { FocusEvent } from 'react';
 
 class Textarea extends React.Component<
-  TextareaPropsT,
+  TextareaProps,
   {
     isFocused: boolean;
   }

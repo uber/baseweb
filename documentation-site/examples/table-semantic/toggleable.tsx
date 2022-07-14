@@ -7,7 +7,13 @@ import {
 } from 'baseui/table-semantic';
 
 export default function Example() {
-  const [data, setData] = useState([
+  type Row={
+    foo: number,
+    bar: string,
+    url: string,
+    selected: boolean,
+  };
+  const [data, setData] = useState<Row[]>([
     {
       foo: 10,
       bar: 'banana',
@@ -67,19 +73,19 @@ export default function Example() {
           />
         }
       >
-        {row => (
+        {(row:Row) => (
           <Checkbox
-            name={row.foo}
+            name={''+row.foo}
             checked={row.selected}
             onChange={toggle}
           />
         )}
       </TableBuilderColumn>
       <TableBuilderColumn header="Produce">
-        {row => <Link href={row.url}>{row.bar}</Link>}
+        {(row:Row) => <Link href={row.url}>{row.bar}</Link>}
       </TableBuilderColumn>
       <TableBuilderColumn header="Quantity" numeric>
-        {row => row.foo}
+        {(row:Row) => row.foo}
       </TableBuilderColumn>
     </TableBuilder>
   );

@@ -15,10 +15,10 @@ import {
   StyledEndEnhancerContainer,
   StyledArtworkContainer,
 } from './styled-components';
-import type { PropsT } from './types';
+import type { ListProps } from './types';
 import { artworkSizeToValue } from './utils';
 
-const ListItem = React.forwardRef<HTMLLIElement, PropsT>((props: PropsT, ref) => {
+const ListItem = React.forwardRef<HTMLLIElement, ListProps>((props: ListProps, ref) => {
   const { overrides = {} } = props;
   const Artwork = props.artwork;
   const EndEnhancer = props.endEnhancer;

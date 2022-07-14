@@ -16,4 +16,4 @@ export {
 } from './styled-components';
 // Flow
 export * from './types';
-export type { ToastLocaleT } from './locale';
+export type { ToastLocale } from './locale';

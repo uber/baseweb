@@ -5,19 +5,19 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import { styled } from '../styles';
-import type { SharedStylePropsArgT } from './types';
+import type { SharedStylePropsArg } from './types';
 
 /**
  * Main component container element
  */
-export const Root = styled<'div', SharedStylePropsArgT>('div', ({ $theme }) => {
+export const Root = styled<'div', SharedStylePropsArg>('div', ({ $theme }) => {
   return {
     width: '100%',
   };
 });
 Root.displayName = 'StyledRoot';
 
-export const List = styled<'ul', SharedStylePropsArgT>('ul', ({ $isDragged }) => {
+export const List = styled<'ul', SharedStylePropsArg>('ul', ({ $isDragged }) => {
   return {
     paddingLeft: 0,
     cursor: $isDragged ? 'grabbing' : null,
@@ -26,7 +26,7 @@ export const List = styled<'ul', SharedStylePropsArgT>('ul', ({ $isDragged }) =>
 });
 List.displayName = 'StyledList';
 
-export const Item = styled<'li', SharedStylePropsArgT>(
+export const Item = styled<'li', SharedStylePropsArg>(
   'li',
   ({ $isDragged, $isSelected, $theme, $isFocusVisible }) => {
     return {
@@ -83,7 +83,7 @@ export const Item = styled<'li', SharedStylePropsArgT>(
 );
 List.displayName = 'StyledItem';
 
-export const DragHandle = styled<'div', SharedStylePropsArgT>('div', ({ $theme }) => {
+export const DragHandle = styled<'div', SharedStylePropsArg>('div', ({ $theme }) => {
   const marginDir: string = $theme.direction === 'rtl' ? 'marginLeft' : 'marginRight';
   return {
     [marginDir]: $theme.sizing.scale600,
@@ -95,7 +95,7 @@ export const DragHandle = styled<'div', SharedStylePropsArgT>('div', ({ $theme }
 });
 DragHandle.displayName = 'StyledDragHandle';
 
-export const CloseHandle = styled<'button', SharedStylePropsArgT>(
+export const CloseHandle = styled<'button', SharedStylePropsArg>(
   'button',
   ({ $theme, $isFocusVisible }) => {
     const marginDir: string = $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
@@ -123,7 +123,7 @@ export const CloseHandle = styled<'button', SharedStylePropsArgT>(
 );
 CloseHandle.displayName = 'StyledCloseHandle';
 
-export const Label = styled<'div', SharedStylePropsArgT>('div', ({ $theme }) => ({
+export const Label = styled<'div', SharedStylePropsArg>('div', ({ $theme }) => ({
   flexGrow: 1,
   ...$theme.typography.font300,
 }));

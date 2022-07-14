@@ -17,7 +17,7 @@ import {
 } from './styled-components';
 import Check from '../icon/check';
 
-import type { NumberedStepPropsT } from './types';
+import type { NumberedStepProps } from './types';
 
 function NumberedStep({
   overrides = {},
@@ -27,7 +27,7 @@ function NumberedStep({
   title,
   step,
   children,
-}: NumberedStepPropsT) {
+}: NumberedStepProps) {
   const [Root, rootProps] = getOverrides(overrides.Root, StyledNumberStep);
   const [Icon, iconProps] = getOverrides(overrides.Icon, StyledNumberIcon);
   const [Tail, tailProps] = getOverrides(overrides.Tail, StyledNumberContentTail);

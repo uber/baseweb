@@ -5,9 +5,9 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import { ACCESSIBILITY_TYPE, PLACEMENT, TRIGGER_TYPE } from './constants';
-import type { BasePopoverPropsT } from './types';
+import type { BasePopoverProps } from './types';
 
-const baseDefaultProps: Partial<BasePopoverPropsT> = {
+const baseDefaultProps: Partial<BasePopoverProps> = {
   accessibilityType: ACCESSIBILITY_TYPE.menu,
   focusLock: false,
   autoFocus: true,

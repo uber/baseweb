@@ -12,7 +12,7 @@ import { TestBaseProvider } from '../../test/test-utils';
 
 import Select from '../select';
 import { STATE_CHANGE_TYPE } from '../constants';
-import { type ControlRefT } from '..';
+import { type ControlRef } from '..';
 
 describe('Select component', function () {
   let props: any = {};
@@ -85,7 +85,7 @@ describe('Select component', function () {
 
   it('sets controlRef from props', () => {
     function TestCase() {
-      const ref = React.useRef() as ControlRefT;
+      const ref = React.useRef() as ControlRef;
       React.useEffect(() => {
         if (ref.current) {
           ref.current.focus();

@@ -20,7 +20,7 @@ export default function Example() {
   return (
     <RadioGroup
       name="overrides"
-      onChange={e => setValue(e.target.value)}
+      onChange={(e) => setValue(e.target.value)}
       value={value}
     >
       <Radio overrides={radioOverrides} value="1">

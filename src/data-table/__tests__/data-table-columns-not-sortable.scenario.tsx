@@ -15,37 +15,37 @@ import {
   StringColumn,
 } from '..';
 
-type RowDataT = [boolean, string, number, string, Date];
+type RowData = [boolean, string, number, string, Date];
 
 export function Scenario() {
   const columns = [
     BooleanColumn({
       title: 'boolean-column',
-      mapDataToValue: (data: RowDataT) => data[0],
+      mapDataToValue: (data: RowData) => data[0],
       sortable: false,
     }),
 
     CategoricalColumn({
       title: 'categorical-column',
-      mapDataToValue: (data: RowDataT) => data[1],
+      mapDataToValue: (data: RowData) => data[1],
       sortable: false,
     }),
 
     NumericalColumn({
       title: 'numerical-column',
-      mapDataToValue: (data: RowDataT) => data[2],
+      mapDataToValue: (data: RowData) => data[2],
       sortable: false,
     }),
 
     StringColumn({
       title: 'string-column',
-      mapDataToValue: (data: RowDataT) => data[3],
+      mapDataToValue: (data: RowData) => data[3],
       sortable: false,
     }),
 
     DatetimeColumn({
       title: 'datetime-column',
-      mapDataToValue: (data: RowDataT) => data[4],
+      mapDataToValue: (data: RowData) => data[4],
       sortable: false,
     }),
   ];

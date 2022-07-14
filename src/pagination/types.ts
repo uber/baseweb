@@ -4,19 +4,19 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import type { OverrideT } from '../helpers/overrides';
+import type { Override } from '../helpers/overrides';
 import { STATE_CHANGE_TYPE } from './constants';
 import { SIZE } from '../input';
 
-export type LabelsT = {
+export type Labels = {
   prevButton?: string;
   nextButton?: string;
   preposition?: string;
 };
 
-export type SizeT = keyof typeof SIZE;
+export type Size = keyof typeof SIZE;
 
-export type CallbacksT = {
+export type Callbacks = {
   /** Callback for prev button click. */
   onPrevClick?: (a: { event: any }) => any;
   /** Callback for next button click. */
@@ -25,56 +25,56 @@ export type CallbacksT = {
   onPageChange?: (a: { nextPage: number; prevPage: number }) => any;
 };
 
-export type StateReducerFnT = (
+export type StateReducerFn = (
   changeType: keyof typeof STATE_CHANGE_TYPE,
-  changes: StatefulContainerStateT,
-  currentState: StatefulContainerStateT
-) => StatefulContainerStateT;
+  changes: StatefulContainerState,
+  currentState: StatefulContainerState
+) => StatefulContainerState;
 
-export type OverridesT = {
-  Root?: OverrideT;
-  PrevButton?: OverrideT;
-  NextButton?: OverrideT;
-  MaxLabel?: OverrideT;
-  DropdownContainer?: OverrideT;
-  Select?: OverrideT;
+export type PaginationOverrides = {
+  Root?: Override;
+  PrevButton?: Override;
+  NextButton?: Override;
+  MaxLabel?: Override;
+  DropdownContainer?: Override;
+  Select?: Override;
 };
 
-export type PaginationPropsT = CallbacksT & {
+export type PaginationProps = Callbacks & {
   /** Max number of pages. */
   numPages: number;
   /** The current page. */
   currentPage: number;
   /** Set of labels to use for the buttons and preposition. */
-  labels?: LabelsT;
-  overrides?: OverridesT;
-  size?: SizeT;
+  labels?: Labels;
+  overrides?: PaginationOverrides;
+  size?: Size;
 };
 
-export type StatefulPaginationPropsT = CallbacksT & {
+export type StatefulPaginationProps = Callbacks & {
   /** Max number of pages. */
   numPages: number;
   /** Set of labels to use for the buttons and preposition. */
-  labels?: LabelsT;
+  labels?: Labels;
   /** Reducer function to manipulate internal state updates. */
-  stateReducer?: StateReducerFnT;
+  stateReducer?: StateReducerFn;
   /** Initial state populated into the component */
-  initialState?: StatefulContainerStateT;
-  overrides?: OverridesT;
-  size?: SizeT;
+  initialState?: StatefulContainerState;
+  overrides?: PaginationOverrides;
+  size?: Size;
 };
 
-export type StatefulContainerPropsT = {
+export type StatefulContainerProps = {
   children: any;
   numPages: number;
   /** Reducer function to manipulate internal state updates. */
-  stateReducer?: StateReducerFnT;
+  stateReducer?: StateReducerFn;
   /** Initial state populated into the component */
-  initialState?: StatefulContainerStateT;
+  initialState?: StatefulContainerState;
   /** Callback for when page changes. */
-  onPageChange?: CallbacksT['onPageChange'];
+  onPageChange?: Callbacks['onPageChange'];
 };
 
-export type StatefulContainerStateT = {
+export type StatefulContainerState = {
   currentPage: number;
 };

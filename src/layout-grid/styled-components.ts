@@ -7,14 +7,9 @@ LICENSE file in the root directory of this source tree.
 import { styled } from '../styles';
 import { getMediaQueries } from '../helpers/responsive-helpers';
 import { BEHAVIOR } from './constants';
-import type {
-  ResponsiveT,
-  StyledGridPropsT,
-  StyledGridWrapperPropsT,
-  StyledCellPropsT,
-} from './types';
+import type { Responsive, StyledGridProps, StyledGridWrapperProps, StyledCellProps } from './types';
 
-export const StyledGridWrapper = styled<'div', StyledGridWrapperPropsT>(
+export const StyledGridWrapper = styled<'div', StyledGridWrapperProps>(
   'div',
   ({
     $theme,
@@ -31,7 +26,7 @@ export const StyledGridWrapper = styled<'div', StyledGridWrapperPropsT>(
   })
 );
 
-export const StyledGrid = styled<'div', StyledGridPropsT>(
+export const StyledGrid = styled<'div', StyledGridProps>(
   'div',
   ({
     $theme,
@@ -77,7 +72,7 @@ export const StyledGrid = styled<'div', StyledGridPropsT>(
   }
 );
 
-export const StyledCell = styled<'div', StyledCellPropsT>(
+export const StyledCell = styled<'div', StyledCellProps>(
   'div',
   ({
     $theme,
@@ -141,12 +136,12 @@ export const StyledCell = styled<'div', StyledCellPropsT>(
   }
 );
 
-function getResponsiveNumber<T>(responsive: ResponsiveT<T>, i: number): number {
+function getResponsiveNumber<T>(responsive: Responsive<T>, i: number): number {
   const res = getResponsiveValue(responsive, i);
   return typeof res === 'number' ? res : 0;
 }
 
-function getResponsiveValue<T>(responsive: ResponsiveT<T>, i: number): T | undefined | null {
+function getResponsiveValue<T>(responsive: Responsive<T>, i: number): T | undefined | null {
   if (!responsive) {
     return null;
   }

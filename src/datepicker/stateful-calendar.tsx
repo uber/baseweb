@@ -7,13 +7,13 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import StatefulContainer from './stateful-container';
 import Calendar from './calendar';
-import type { CalendarPropsT, StatefulDatepickerPropsT } from './types';
+import type { CalendarProps, StatefulDatepickerProps } from './types';
 
-type PropsT<T> = StatefulDatepickerPropsT<CalendarPropsT<T>> &
-  Omit<CalendarPropsT<T>, keyof StatefulDatepickerPropsT<CalendarPropsT<T>>>;
+type DatepickerProps<T> = StatefulDatepickerProps<CalendarProps<T>> &
+  Omit<CalendarProps<T>, keyof StatefulDatepickerProps<CalendarProps<T>>>;
 
-class StatefulComponent<T = Date> extends React.Component<PropsT<T>> {
-  static defaultProps: PropsT<unknown> = {
+class StatefulComponent<T = Date> extends React.Component<DatepickerProps<T>> {
+  static defaultProps: DatepickerProps<unknown> = {
     initialState: {},
     stateReducer: (type, nextState) => nextState,
     // @ts-expect-error todo(flow->ts) might be onSelect can be removed

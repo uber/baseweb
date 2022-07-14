@@ -20,7 +20,7 @@ import Delete from '../icon/delete';
 import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible';
 import { Layer } from '../layer';
 
-import type { ListPropsT, SharedStylePropsArgT } from './types';
+import type { ListProps, SharedStylePropsArg } from './types';
 
 import type { SyntheticEvent } from 'react';
 
@@ -35,12 +35,12 @@ const ItemLayer: React.FC<{ children: React.ReactNode; dragged: boolean }> = ({
 };
 
 class StatelessList extends React.Component<
-  ListPropsT,
+  ListProps,
   {
     isFocusVisible: boolean;
   }
 > {
-  static defaultProps: Partial<ListPropsT> = {
+  static defaultProps: Partial<ListProps> = {
     items: [],
     onChange: () => {},
   };
@@ -95,7 +95,7 @@ class StatelessList extends React.Component<
             </List>
           )}
           renderItem={({ value, props, isDragged, isSelected, isOutOfBounds, index }) => {
-            const sharedProps: SharedStylePropsArgT = {
+            const sharedProps: SharedStylePropsArg = {
               $isRemovable: isRemovable,
               $isRemovableByMove: isRemovableByMove,
               $isDragged: isDragged,

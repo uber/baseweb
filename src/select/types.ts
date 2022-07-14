@@ -6,17 +6,17 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import type { OverrideT } from '../helpers/overrides';
+import type { Override } from '../helpers/overrides';
 import { STATE_CHANGE_TYPE, SIZE, TYPE } from './constants';
-import type { OnItemSelectFnT } from '../menu';
+import type { OnItemSelectFn } from '../menu';
 
 import type { ReactNode, SyntheticEvent, ChangeEvent } from 'react';
 
-export type ChangeActionT = keyof typeof STATE_CHANGE_TYPE;
-export type SizeT = keyof typeof SIZE;
-export type TypeT = keyof typeof TYPE;
+export type ChangeAction = keyof typeof STATE_CHANGE_TYPE;
+export type Size = keyof typeof SIZE;
+export type Type = keyof typeof TYPE;
 
-export type OptionT = Readonly<{
+export type Option = Readonly<{
   id?: string | number;
   // todo(flow->ts): React.ReactNode might be incorrect, but it works https://codesandbox.io/s/base-web-select-forked-kfzx07?file=/src/example.js
   label?: React.ReactNode;
@@ -28,56 +28,56 @@ export type OptionT = Readonly<{
   [x: string]: any;
 }>;
 
-export type ValueT = ReadonlyArray<OptionT>;
-export type OptgroupsT = {
-  __ungrouped?: ValueT;
-  [x: string]: ValueT;
+export type Value = ReadonlyArray<Option>;
+export type Optgroups = {
+  __ungrouped?: Value;
+  [x: string]: Value;
 };
-export type OptionsT = ValueT | undefined | null | OptgroupsT;
+export type Options = Value | undefined | null | Optgroups;
 
-export type OnChangeParamsT = {
-  value: ValueT;
-  option: OptionT | undefined | null;
-  type: ChangeActionT;
-};
-
-export type OverridesT = {
-  Root?: OverrideT;
-  ControlContainer?: OverrideT;
-  Placeholder?: OverrideT;
-  ValueContainer?: OverrideT;
-  SingleValue?: OverrideT;
-  MultiValue?: OverrideT;
-  Tag?: OverrideT;
-  InputContainer?: OverrideT;
-  Input?: OverrideT;
-  IconsContainer?: OverrideT;
-  SelectArrow?: OverrideT;
-  ClearIcon?: OverrideT;
-  LoadingIndicator?: OverrideT;
-  SearchIconContainer?: OverrideT;
-  SearchIcon?: OverrideT;
-  Popover?: OverrideT;
-  DropdownContainer?: OverrideT;
-  Dropdown?: OverrideT;
-  DropdownOption?: OverrideT;
-  DropdownListItem?: OverrideT;
-  OptionContent?: OverrideT;
-  StatefulMenu?: OverrideT;
-  StyledClearIcon?: OverrideT;
+export type OnChangeParams = {
+  value: Value;
+  option: Option | undefined | null;
+  type: ChangeAction;
 };
 
-export type OverridesDropdownT = {
-  DropdownContainer?: OverrideT;
-  Dropdown?: OverrideT;
+export type SelectOverrides = {
+  Root?: Override;
+  ControlContainer?: Override;
+  Placeholder?: Override;
+  ValueContainer?: Override;
+  SingleValue?: Override;
+  MultiValue?: Override;
+  Tag?: Override;
+  InputContainer?: Override;
+  Input?: Override;
+  IconsContainer?: Override;
+  SelectArrow?: Override;
+  ClearIcon?: Override;
+  LoadingIndicator?: Override;
+  SearchIconContainer?: Override;
+  SearchIcon?: Override;
+  Popover?: Override;
+  DropdownContainer?: Override;
+  Dropdown?: Override;
+  DropdownOption?: Override;
+  DropdownListItem?: Override;
+  OptionContent?: Override;
+  StatefulMenu?: Override;
+  StyledClearIcon?: Override;
+};
+
+export type OverridesDropdown = {
+  DropdownContainer?: Override;
+  Dropdown?: Override;
   // Not a styled component
-  DropdownOption?: OverrideT;
-  DropdownListItem?: OverrideT;
-  OptionContent?: OverrideT;
-  StatefulMenu?: OverrideT;
+  DropdownOption?: Override;
+  DropdownListItem?: Override;
+  OptionContent?: Override;
+  StatefulMenu?: Override;
 };
 
-export type ImperativeMethodsT = {
+export type ImperativeMethods = {
   setDropdownOpen: (a: boolean) => unknown;
   setInputValue: (a: string) => void;
   setInputFocus: () => void;
@@ -87,11 +87,11 @@ export type ImperativeMethodsT = {
   blur: () => void;
 };
 
-export type ControlRefT = {
-  current: ImperativeMethodsT | null;
+export type ControlRef = {
+  current: ImperativeMethods | null;
 };
 
-export type PropsT = {
+export type SelectProps = {
   'aria-label'?: string | null;
   'aria-describedby'?: string | null;
   'aria-errormessage'?: string | null;
@@ -122,21 +122,21 @@ export type PropsT = {
    * multi select. A custom method to filter options to be displayed in the dropdown. */
   filterOptions?:
     | ((
-        options: ValueT,
+        options: Value,
         filterValue: string,
-        excludeOptions: ValueT | undefined | null,
+        excludeOptions: Value | undefined | null,
         a: {
           valueKey: string;
           labelKey: string;
         }
-      ) => ValueT)
+      ) => Value)
     | null;
   /** Defines if currently selected options are filtered out in the dropdown options. */
   filterOutSelected?: boolean;
   /** A custom method to get a display value for a dropdown option. */
   getOptionLabel?:
     | ((a: {
-        option: OptionT;
+        option: Option;
         optionState: {
           $selected: boolean;
           $disabled: boolean;
@@ -145,14 +145,14 @@ export type PropsT = {
       }) => React.ReactNode)
     | null;
   /** A custom method to get a display value for a selected option. */
-  getValueLabel?: ((a: { option: OptionT; index?: number }) => React.ReactNode) | null;
+  getValueLabel?: ((a: { option: Option; index?: number }) => React.ReactNode) | null;
   /** Sets the id attribute of the internal input element. Allows for usage with labels. */
   id?: string;
   /** Defines if the comparison for a new creatable value should be case-insensitive. */
   ignoreCase?: boolean;
   inputRef?: React.Ref<HTMLInputElement>;
   /** An imperative handle exposing internal methods. */
-  controlRef?: ControlRefT;
+  controlRef?: ControlRef;
   /** Defines if the select is in a loading (async) state. */
   isLoading?: boolean;
   /** Defines an option key for a default label value. */
@@ -167,7 +167,7 @@ export type PropsT = {
   /** Defines if the input value is reset to an empty string when a blur event happens on the select. */
   onBlurResetsInput?: boolean;
   /** change handler of the select to be called when a value is changed. */
-  onChange?: (params: OnChangeParamsT) => unknown;
+  onChange?: (params: OnChangeParams) => unknown;
   onFocus?: (e: SyntheticEvent<HTMLElement>) => unknown;
   onInputChange?: (e: ChangeEvent<HTMLInputElement>) => unknown;
   /** Defines if the input value is reset to an empty string when dropdown is closed. */
@@ -184,8 +184,8 @@ export type PropsT = {
   startOpen?: boolean;
   /** Options to be displayed in the dropdown. If an option has a
    * disabled prop value set to true it will be rendered as a disabled option in the dropdown. */
-  options?: OptionsT;
-  overrides?: OverridesT;
+  options?: Options;
+  overrides?: SelectOverrides;
   /** Sets the placeholder. */
   placeholder?: React.ReactNode;
   /** Defines if the select field is required to have a selection. */
@@ -193,14 +193,14 @@ export type PropsT = {
   /** Defines if the search functionality is enabled. */
   searchable?: boolean;
   /** Defines the size (scale) of dropdown menu items. See the Menu component API. */
-  size?: SizeT;
+  size?: Size;
   /** Defines type of the component to be in select or search mode.
    * When set to TYPE.search the search icon is rendered on the
    * left and the select arrow icon is not rendered. */
-  type?: TypeT;
+  type?: Type;
   /** A current selected value(s). If a selected value has a clearableValue
    * prop set to true it will be rendered as a disabled selected option that can't be cleared. */
-  value?: ValueT;
+  value?: Value;
   valueComponent?: React.ComponentType<any>;
   /** Defines a key name for an option's unique identifier value.
    * The value of the `valueKey` prop is used to identify what options are selected
@@ -211,7 +211,7 @@ export type PropsT = {
   mountNode?: HTMLElement;
 };
 
-export type SelectStateT = {
+export type SelectState = {
   activeDescendant: string | undefined | null;
   inputValue: string;
   isFocused: boolean;
@@ -219,34 +219,34 @@ export type SelectStateT = {
   isPseudoFocused: boolean;
 };
 
-export type StateT = {
-  value: ValueT;
+export type State = {
+  value: Value;
 };
 
-export type StateReducerT = (stateType: string, nextState: StateT, currentState: StateT) => StateT;
+export type StateReducer = (stateType: string, nextState: State, currentState: State) => State;
 
-export type StatefulContainerPropsT = {
-  overrides: OverridesT;
-  children: (a: PropsT) => ReactNode;
-  initialState: StateT;
-  stateReducer: StateReducerT;
-  onChange: (params: OnChangeParamsT) => unknown;
+export type StatefulContainerProps = {
+  overrides: SelectOverrides;
+  children: (a: SelectProps) => ReactNode;
+  initialState: State;
+  stateReducer: StateReducer;
+  onChange: (params: OnChangeParams) => unknown;
 };
 
-export declare type StatefulSelectPropsT = Omit<
-  PropsT,
+export declare type StatefulSelectProps = Omit<
+  SelectProps,
   'onChange' | 'overrides' | 'initialState' | 'stateReducer'
 > & {
-  overrides?: OverridesT;
-  initialState?: StateT;
-  stateReducer?: StateReducerT;
-  onChange?: (params: OnChangeParamsT) => unknown;
+  overrides?: SelectOverrides;
+  initialState?: State;
+  stateReducer?: StateReducer;
+  onChange?: (params: OnChangeParams) => unknown;
 };
 
-export type DropdownPropsT = {
+export type DropdownProps = {
   error: boolean;
   getOptionLabel: (a: {
-    option: OptionT;
+    option: Option;
     optionState: {
       $selected: boolean;
       $disabled: boolean;
@@ -261,36 +261,36 @@ export type DropdownPropsT = {
   multi: boolean;
   noResultsMsg?: React.ReactNode;
   onActiveDescendantChange?: (id?: string) => unknown;
-  onItemSelect: OnItemSelectFnT;
-  options: ValueT;
-  overrides?: OverridesDropdownT;
+  onItemSelect: OnItemSelectFn;
+  options: Value;
+  overrides?: OverridesDropdown;
   required: boolean;
   searchable: boolean;
-  size: SizeT;
-  type: TypeT;
-  value: ValueT;
+  size: Size;
+  type: Type;
+  value: Value;
   valueKey: string;
   width: number | undefined | null;
   keyboardControlNode?: React.Ref<HTMLElement>;
 };
 
-export type AutosizeInputOverridesT = {
-  Input?: OverrideT;
+export type AutosizeInputOverrides = {
+  Input?: Override;
 };
 
-export type AutosizeInputPropsT = {
+export type AutosizeInputProps = {
   value: string;
   defaultValue?: string;
   inputRef: (ref: any) => any;
-  overrides: AutosizeInputOverridesT;
-  $size: SizeT;
+  overrides: AutosizeInputOverrides;
+  $size: Size;
 };
 
-export type AutosizeInputStateT = {
+export type AutosizeInputState = {
   inputWidth: number;
 };
 
-export type SharedStylePropsArgT = {
+export type SharedStylePropsArg = {
   $clearable?: boolean;
   $creatable?: boolean;
   $disabled?: boolean;
@@ -303,8 +303,8 @@ export type SharedStylePropsArgT = {
   $multi?: boolean;
   $required?: boolean;
   $searchable?: boolean;
-  $size?: SizeT;
-  $type?: TypeT;
+  $size?: Size;
+  $type?: Type;
   $width?: string;
   $maxHeight?: string;
   $isHighlighted?: boolean;

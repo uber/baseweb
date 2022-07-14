@@ -8,9 +8,9 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { getOverrides } from '../helpers/overrides';
 import { StyledProgressSteps } from './styled-components';
-import type { ProgressStepsPropsT, StepPropsT } from './types';
+import type { ProgressStepsProps, StepProps } from './types';
 
-function ProgressSteps({ overrides = {}, current, children }: ProgressStepsPropsT) {
+function ProgressSteps({ overrides = {}, current, children }: ProgressStepsProps) {
   const [Root, rootProps] = getOverrides(overrides.Root, StyledProgressSteps);
   const numChildren = React.Children.count(children);
   const modifiedChildren = React.Children.map(children, (child: any, index) => {
@@ -30,7 +30,7 @@ function ProgressSteps({ overrides = {}, current, children }: ProgressStepsProps
         Root: overrides.StepRoot,
         ...childOverrides,
       },
-    } as StepPropsT);
+    } as StepProps);
   });
 
   return (

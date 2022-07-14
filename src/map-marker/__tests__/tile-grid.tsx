@@ -9,13 +9,13 @@ import { useStyletron } from '../../styles';
 import { LabelSmall } from '../../typography';
 import { Block } from '../../block';
 
-type TileGridPropsT = {
+type TileGridProps = {
   children?: Array<any>;
   customizerOptions: Array<React.ReactNode>;
   cols: number;
 };
 
-const TileGrid = ({ children, customizerOptions, cols }: TileGridPropsT) => {
+const TileGrid = ({ children, customizerOptions, cols }: TileGridProps) => {
   const [, theme] = useStyletron();
   const {
     colors: { contentSecondary },

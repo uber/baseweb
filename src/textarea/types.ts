@@ -6,17 +6,17 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import type { OverrideT } from '../helpers/overrides';
-import type { BaseInputPropsT, StateReducerT, StateT } from '../input';
+import type { Override } from '../helpers/overrides';
+import type { BaseInputProps, StateReducer, State } from '../input';
 import { ADJOINED, SIZE } from '../input';
 
 import type { SyntheticEvent } from 'react';
 
 type SyntheticTextareaEvent = SyntheticEvent<HTMLTextAreaElement>;
 
-export type SizeT = keyof typeof SIZE;
+export type Size = keyof typeof SIZE;
 
-export type SharedStylePropsT = {
+export type SharedStyleProps = {
   $adjoined: keyof typeof ADJOINED;
   $disabled?: boolean;
   $error?: boolean;
@@ -24,37 +24,37 @@ export type SharedStylePropsT = {
   $isReadOnly?: boolean;
   $positive?: boolean;
   $required?: boolean;
-  $size: SizeT;
+  $size: Size;
 };
 
-type BaseTextAreaPropsT = BaseInputPropsT<HTMLTextAreaElement>;
+type BaseTextAreaProps = BaseInputProps<HTMLTextAreaElement>;
 
-export type TextareaOverridesT = {
-  Root?: OverrideT;
-} & BaseTextAreaPropsT['overrides'];
+export type TextareaOverrides = {
+  Root?: Override;
+} & BaseTextAreaProps['overrides'];
 
-export type TextareaPropsT = {
-  overrides?: TextareaOverridesT;
+export type TextareaProps = {
+  overrides?: TextareaOverrides;
   /** Sets the size and number of visible text lines
    of the textarea element. */
   rows?: number;
   maxLength?: number;
-} & BaseTextAreaPropsT;
+} & BaseTextAreaProps;
 
-export type StatefulContainerPropsT = {
+export type StatefulContainerProps = {
   children: (props: any) => React.ReactNode;
-  initialState?: StateT;
-  stateReducer?: StateReducerT;
+  initialState?: State;
+  stateReducer?: StateReducer;
   onChange?: (e: SyntheticTextareaEvent) => unknown;
   onKeyDown?: (e: SyntheticTextareaEvent) => unknown;
   onKeyPress?: (e: SyntheticTextareaEvent) => unknown;
   onKeyUp?: (e: SyntheticTextareaEvent) => unknown;
 };
 
-type OmitPropsT = {
+type OmitProps = {
   children: (props: any) => React.ReactNode;
 };
 
-type FullStPropsT = TextareaPropsT & StatefulContainerPropsT;
+type FullStProps = TextareaProps & StatefulContainerProps;
 
-export type StatefulTextareaPropsT = Partial<Omit<FullStPropsT, keyof OmitPropsT>>;
+export type StatefulTextareaProps = Partial<Omit<FullStProps, keyof OmitProps>>;

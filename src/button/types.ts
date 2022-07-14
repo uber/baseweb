@@ -7,27 +7,27 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import { KIND, SIZE, SHAPE } from './constants';
-import type { OverrideT } from '../helpers/overrides';
+import type { Override } from '../helpers/overrides';
 
 import type { ReactNode, SyntheticEvent } from 'react';
 
-export type OverridesT = {
-  Root?: OverrideT;
-  BaseButton?: OverrideT;
-  StartEnhancer?: OverrideT;
-  EndEnhancer?: OverrideT;
-  LoadingSpinnerContainer?: OverrideT;
-  LoadingSpinner?: OverrideT;
+export type ButtonOverrides = {
+  Root?: Override;
+  BaseButton?: Override;
+  StartEnhancer?: Override;
+  EndEnhancer?: Override;
+  LoadingSpinnerContainer?: Override;
+  LoadingSpinner?: Override;
 };
 
-export type CustomColorsT = {
+export type CustomColors = {
   backgroundColor: string;
   color: string;
 };
 
-export type ButtonPropsT = {
+export type ButtonProps = {
   children?: ReactNode;
-  colors?: CustomColorsT;
+  colors?: CustomColors;
   disabled?: boolean;
   /** A helper rendered at the end of the button. */
   endEnhancer?: React.ReactNode | React.ComponentType<any>;
@@ -38,7 +38,7 @@ export type ButtonPropsT = {
   /** Defines the kind (purpose) of a button */
   kind?: keyof typeof KIND;
   onClick?: (a: SyntheticEvent<HTMLButtonElement>) => unknown;
-  overrides?: OverridesT;
+  overrides?: ButtonOverrides;
   /** Defines the shape of the button */
   shape?: keyof typeof SHAPE;
   /** Defines the size of the button */
@@ -48,8 +48,8 @@ export type ButtonPropsT = {
   type?: 'submit' | 'reset' | 'button';
 };
 
-export type SharedStylePropsT = {
-  $colors?: CustomColorsT;
+export type SharedStyleProps = {
+  $colors?: CustomColors;
   $kind?: keyof typeof KIND;
   $isSelected?: boolean;
   $shape?: keyof typeof SHAPE;

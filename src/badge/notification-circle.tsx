@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { getOverrides } from '../helpers/overrides';
 import { StyledNotificationCircle, StyledRoot, StyledPositioner } from './styled-components';
-import type { NotificationCirclePropsT } from './types';
+import type { NotificationCircleProps } from './types';
 import { PLACEMENT, ROLE } from './constants';
 import { getAnchorFromChildren } from './utils';
 
@@ -20,7 +20,7 @@ const NotificationCircle = ({
   verticalOffset,
   hidden,
   overrides = {},
-}: NotificationCirclePropsT) => {
+}: NotificationCircleProps) => {
   const [NotificationCircle, NotificationCircleProps] = getOverrides(
     overrides.Badge,
     StyledNotificationCircle

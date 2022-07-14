@@ -14,14 +14,14 @@ import { useUIDSeed } from 'react-uid';
 
 import { COLUMNS } from './constants';
 import { matchesQuery } from './text-search';
-import type { ColumnT } from './types';
+import type { ColumnOptions } from './types';
 import { LocaleContext } from '../locale';
 
 import { isFocusVisible } from '../utils/focusVisible';
 
 import type { SyntheticEvent } from 'react';
 
-const ColumnIcon: React.FC<{ column: ColumnT }> = (props) => {
+const ColumnIcon: React.FC<{ column: ColumnOptions }> = (props) => {
   if (props.column.kind === COLUMNS.BOOLEAN) {
     return <>01</>;
   }
@@ -41,10 +41,10 @@ const ColumnIcon: React.FC<{ column: ColumnT }> = (props) => {
   return <FilterIcon />;
 };
 
-type OptionsPropsT = {
-  columns: ColumnT[];
+type OptionsProps = {
+  columns: ColumnOptions[];
   highlightIndex: number;
-  onClick: (a: ColumnT) => void;
+  onClick: (a: ColumnOptions) => void;
   onKeyDown: (a: React.KeyboardEvent) => void;
   onMouseEnter: (a: number) => void;
   onQueryChange: (a: string) => void;
@@ -52,7 +52,7 @@ type OptionsPropsT = {
   searchable: boolean;
 };
 
-function Options(props: OptionsPropsT) {
+function Options(props: OptionsProps) {
   const [css, theme] = useStyletron();
   const locale = React.useContext(LocaleContext);
   const inputRef = React.useRef(null);
@@ -197,8 +197,8 @@ function Options(props: OptionsPropsT) {
   );
 }
 
-type PropsT = {
-  columns: ColumnT[];
+type Props = {
+  columns: ColumnOptions[];
   filters: Map<string, any>;
   rows: any[];
   onSetFilter: (
@@ -209,7 +209,7 @@ type PropsT = {
   ) => void;
 };
 
-function FilterMenu(props: PropsT) {
+function FilterMenu(props: Props) {
   const [, theme] = useStyletron();
   const locale = React.useContext(LocaleContext);
   const [isOpen, setIsOpen] = React.useState(false);

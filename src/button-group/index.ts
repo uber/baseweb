@@ -17,4 +17,4 @@ export { StyledRoot } from './styled-components';
 
 // Types
 export * from './types';
-export type { ButtonGroupLocaleT } from './locale';
+export type { ButtonGroupLocale } from './locale';

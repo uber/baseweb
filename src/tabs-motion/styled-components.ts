@@ -10,12 +10,12 @@ import { ORIENTATION, FILL } from './constants';
 import { isHorizontal, isVertical, isRTL, isIntrinsic, isFixed } from './utils';
 
 import type { StyleObject } from 'styletron-standard';
-import type { OrientationT, FillT } from './types';
+import type { Orientation, Fill } from './types';
 
 export const StyledRoot = styled<
   'div',
   {
-    $orientation?: OrientationT;
+    $orientation?: Orientation;
   }
 >('div', ({ $theme, $orientation = ORIENTATION.horizontal }) => {
   const style: StyleObject = {
@@ -32,8 +32,8 @@ export const StyledRoot = styled<
 export const StyledTabList = styled<
   'div',
   {
-    $orientation?: OrientationT;
-    $fill?: FillT;
+    $orientation?: Orientation;
+    $fill?: Fill;
   }
 >('div', ({ $theme, $fill = FILL.intrinsic, $orientation = ORIENTATION.horizontal }) => {
   const style: StyleObject = {
@@ -71,8 +71,8 @@ export const StyledTabList = styled<
 export const StyledTab = styled<
   'button',
   {
-    $orientation?: OrientationT;
-    $fill?: FillT;
+    $orientation?: Orientation;
+    $fill?: Fill;
     $focusVisible?: boolean;
     $isActive?: boolean;
   }
@@ -145,7 +145,7 @@ export const StyledTab = styled<
 export const StyledArtworkContainer = styled<
   'div',
   {
-    $orientation?: OrientationT;
+    $orientation?: Orientation;
   }
 >('div', ({ $theme, $orientation = ORIENTATION.horizontal }) => {
   const style: StyleObject = {
@@ -162,7 +162,7 @@ export const StyledArtworkContainer = styled<
 export const StyledTabBorder = styled<
   'div',
   {
-    $orientation?: OrientationT;
+    $orientation?: Orientation;
   }
 >('div', ({ $theme, $orientation = ORIENTATION.horizontal }) => {
   const style: StyleObject = {
@@ -180,7 +180,7 @@ export const StyledTabBorder = styled<
 export const StyledTabHighlight = styled<
   'div',
   {
-    $orientation?: OrientationT;
+    $orientation?: Orientation;
     $length?: number;
     $distance?: number;
     $animate?: boolean;

@@ -3,17 +3,20 @@ import {styled} from 'baseui';
 import {Select, Value} from 'baseui/select';
 import {expandBorderStyles} from 'baseui/styles';
 
-const ColorSwatch = styled('div', (props: any) => {
-  return {
-    width: props.$theme.sizing.scale300,
-    height: props.$theme.sizing.scale300,
-    marginRight: props.$theme.sizing.scale200,
-    display: 'inline-block',
-    backgroundColor: props.$color,
-    verticalAlign: 'baseline',
-    ...expandBorderStyles(props.$theme.borders.border400),
-  };
-});
+const ColorSwatch = styled<'div', {$color: string}>(
+  'div',
+  (props) => {
+    return {
+      width: props.$theme.sizing.scale300,
+      height: props.$theme.sizing.scale300,
+      marginRight: props.$theme.sizing.scale200,
+      display: 'inline-block',
+      backgroundColor: props.$color,
+      verticalAlign: 'baseline',
+      ...expandBorderStyles(props.$theme.borders.border400),
+    };
+  },
+);
 
 const getLabel = ({option}: any) => {
   return (
@@ -38,7 +41,7 @@ function CustomLabel() {
       ]}
       labelKey="id"
       valueKey="color"
-      onChange={options => setValue(options.value)}
+      onChange={(options) => setValue(options.value)}
       value={value}
       getOptionLabel={getLabel}
       getValueLabel={getLabel}

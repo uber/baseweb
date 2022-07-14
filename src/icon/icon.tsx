@@ -8,9 +8,9 @@ import * as React from 'react';
 import { getOverrides } from '../helpers/overrides';
 import { Svg as StyledSvg } from './styled-components';
 import omitDollarPrefixedKeys from './omit-dollar-prefixed-keys';
-import type { IconPropsT } from './types';
+import type { IconProps } from './types';
 
-const Icon = (props: IconPropsT, ref) => {
+const Icon = (props: IconProps, ref) => {
   const { children, title, size, color, overrides = {}, ...restProps } = props;
   const [Svg, overrideProps] = getOverrides(overrides.Svg, StyledSvg);
   // Determine how/which props are passed based on if the component is a Styletron component.
@@ -38,4 +38,4 @@ const Icon = (props: IconPropsT, ref) => {
   );
 };
 
-export default React.forwardRef<SVGSVGElement, IconPropsT>(Icon);
+export default React.forwardRef<SVGSVGElement, IconProps>(Icon);

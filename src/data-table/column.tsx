@@ -9,11 +9,11 @@ import * as React from 'react';
 import { Checkbox } from '../checkbox';
 import { useStyletron } from '../styles';
 
-import type { ColumnT } from './types';
+import type { ColumnOptions } from './types';
 
-function Column<ValueT, FilterParamsT>(
-  options: ColumnT<ValueT, FilterParamsT>
-): ColumnT<ValueT, FilterParamsT> {
+function Column<Value, FilterParams>(
+  options: ColumnOptions<Value, FilterParams>
+): ColumnOptions<Value, FilterParams> {
   return {
     kind: options.kind,
     buildFilter: options.buildFilter || (() => () => true),

@@ -4,12 +4,12 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import type { PopperOptionsT } from '../types';
+import type { PopperOptions } from '../types';
 
 const destroy = jest.fn();
 const mock = jest
   .fn()
-  .mockImplementation((anchor: HTMLElement, popover: HTMLElement, options: PopperOptionsT) => {
+  .mockImplementation((anchor: HTMLElement, popover: HTMLElement, options: PopperOptions) => {
     const onPopperUpdate = options.modifiers.applyReactStyle.fn;
     return {
       options,

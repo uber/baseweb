@@ -20,7 +20,7 @@ import {
   StyledWrapActionButtonContainer,
   StyledActionButtonContainer,
 } from './styled-components';
-import type { SnackbarElementPropsT } from './types';
+import type { SnackbarElementProps } from './types';
 
 // todo(flow->ts): types
 const ActionButton = React.forwardRef<any, any>(({ onClick, message, overrides = {} }, ref) => {
@@ -69,7 +69,7 @@ export default function SnackbarElement({
   overrides = {},
   progress,
   startEnhancer: StartEnhancer,
-}: SnackbarElementPropsT) {
+}: SnackbarElementProps) {
   const [css] = useStyletron();
 
   const rootRef = React.useRef(null);

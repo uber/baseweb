@@ -13,14 +13,14 @@ import FlexGridItem, {
   getResponsiveValue,
 } from '../flex-grid-item';
 import { LightTheme } from '../../themes';
-import type { ResponsiveT, ScaleT } from '../../block';
+import type { Responsive, Scale } from '../../block';
 
 describe('FlexGridItem', () => {
   test('flexGridItemMediaQueryStyle', () => {
     const testProps: Array<{
       flexGridColumnCount: number;
-      flexGridColumnGap: ScaleT;
-      flexGridRowGap: ScaleT;
+      flexGridColumnGap: Scale;
+      flexGridRowGap: Scale;
       flexGridItemIndex: number;
       flexGridItemCount: number;
       snapshotName: string;
@@ -151,9 +151,9 @@ describe('FlexGridItem', () => {
         $flexGridItemCount,
         snapshotName,
       }: {
-        $flexGridColumnCount?: ResponsiveT<number>;
-        $flexGridColumnGap?: ResponsiveT<ScaleT>;
-        $flexGridRowGap?: ResponsiveT<ScaleT>;
+        $flexGridColumnCount?: Responsive<number>;
+        $flexGridColumnGap?: Responsive<Scale>;
+        $flexGridRowGap?: Responsive<Scale>;
         $flexGridItemIndex?: number;
         $flexGridItemCount?: number;
         snapshotName: string;

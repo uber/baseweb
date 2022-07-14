@@ -7,9 +7,9 @@ LICENSE file in the root directory of this source tree.
 import tint from 'polished/lib/color/tint.js';
 import shade from 'polished/lib/color/shade.js';
 
-import { styled, type ThemeT } from '../styles';
+import { styled, type Theme } from '../styles';
 import { KIND, VARIANT, SIZE } from './constants';
-import type { SharedPropsArgT } from './types';
+import type { SharedPropsArg } from './types';
 import { colors as colorTokens } from '../tokens';
 
 export function customOnRamp(color?: string, unit?: string) {
@@ -254,11 +254,11 @@ const getColorStateFromProps = (props) => {
   return COLOR_STATE.outline;
 };
 
-export const Action = styled<'span', SharedPropsArgT>(
+export const Action = styled<'span', SharedPropsArg>(
   'span',
   (
-    props: SharedPropsArgT & {
-      $theme: ThemeT;
+    props: SharedPropsArg & {
+      $theme: Theme;
     }
   ) => {
     const { $theme, $disabled, $size = SIZE.small } = props;
@@ -286,13 +286,13 @@ export const Action = styled<'span', SharedPropsArgT>(
   }
 );
 
-export const StartEnhancerContainer = styled<'div', SharedPropsArgT>(
+export const StartEnhancerContainer = styled<'div', SharedPropsArg>(
   'div',
   ({
     $theme,
     $size = SIZE.small,
-  }: SharedPropsArgT & {
-    $theme: ThemeT;
+  }: SharedPropsArg & {
+    $theme: Theme;
   }) => {
     let paddingMagnitude = $theme.sizing.scale300;
     if ($size === SIZE.medium) {
@@ -311,11 +311,11 @@ export const StartEnhancerContainer = styled<'div', SharedPropsArgT>(
   }
 );
 
-export const Text = styled<'span', SharedPropsArgT>(
+export const Text = styled<'span', SharedPropsArg>(
   'span',
   (
-    props: SharedPropsArgT & {
-      $theme: ThemeT;
+    props: SharedPropsArg & {
+      $theme: Theme;
     }
   ) => {
     const { $theme } = props;
@@ -330,11 +330,11 @@ export const Text = styled<'span', SharedPropsArgT>(
   }
 );
 
-export const Root = styled<'span', SharedPropsArgT>(
+export const Root = styled<'span', SharedPropsArg>(
   'span',
   (
-    props: SharedPropsArgT & {
-      $theme: ThemeT;
+    props: SharedPropsArg & {
+      $theme: Theme;
     }
   ) => {
     const {

@@ -9,12 +9,12 @@ import * as React from 'react';
 import { useStyletron } from '../../styles';
 import { Combobox } from '..';
 
-type OptionT = {
+type Option = {
   label: string;
   id: string;
 };
 
-const options: OptionT[] = [
+const options: Option[] = [
   { label: 'AliceBlue', id: '#F0F8FF' },
   { label: 'AntiqueWhite', id: '#FAEBD7' },
   { label: 'Aqua', id: '#00FFFF' },
@@ -78,7 +78,7 @@ export function Scenario() {
   const [css] = useStyletron();
   const [value, setValue] = React.useState('');
 
-  function mapOptionToString(option: OptionT): string {
+  function mapOptionToString(option: Option): string {
     return option.label;
   }
 

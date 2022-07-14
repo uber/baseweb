@@ -9,9 +9,9 @@ import { LightTheme } from '../light-theme/light-theme';
 import { typography as moveTypography, fontTokens as moveFontTokens } from './typography';
 import getTypography from '../shared/typography';
 
-import type { ThemeT } from '../../styles/types';
+import type { Theme } from '../../styles/types';
 
-export const LightThemeMove: ThemeT = deepMerge({}, LightTheme, {
+export const LightThemeMove: Theme = deepMerge({}, LightTheme, {
   name: 'light-theme-with-move',
   // For the move theme we need to override typography values
   // in the default lightTheme with a font values that reference

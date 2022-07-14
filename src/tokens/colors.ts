@@ -4,9 +4,9 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import type { ColorTokensT } from './types';
+import type { ColorTokens } from './types';
 
-const colors: ColorTokensT = {
+const colors: ColorTokens = {
   white: '#FFFFFF',
   gray50: '#F6F6F6',
   gray100: '#EEEEEE',

@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 import { styled } from '../styles';
 
-import type { SharedStylePropsT } from './types';
+import type { SharedStyleProps } from './types';
 
 function getBorderColor(props) {
   const { $disabled, $checked, $error, $isIndeterminate, $theme, $isFocusVisible } = props;
@@ -108,7 +108,7 @@ function getLabelColor(props) {
   return $disabled ? colors.contentSecondary : colors.contentPrimary;
 }
 
-export const Root = styled<'label', SharedStylePropsT>('label', (props) => {
+export const Root = styled<'label', SharedStyleProps>('label', (props) => {
   const { $disabled, $labelPlacement } = props;
   return {
     flexDirection: $labelPlacement === 'top' || $labelPlacement === 'bottom' ? 'column' : 'row',
@@ -119,7 +119,7 @@ export const Root = styled<'label', SharedStylePropsT>('label', (props) => {
   };
 });
 
-export const Checkmark = styled<'span', SharedStylePropsT>('span', (props) => {
+export const Checkmark = styled<'span', SharedStyleProps>('span', (props) => {
   const { $checked, $disabled, $error, $isIndeterminate, $theme, $isFocusVisible } = props;
   const { sizing, animation } = $theme;
 
@@ -189,7 +189,7 @@ export const Checkmark = styled<'span', SharedStylePropsT>('span', (props) => {
   };
 });
 
-export const Label = styled<'div', SharedStylePropsT>('div', (props) => {
+export const Label = styled<'div', SharedStyleProps>('div', (props) => {
   const { $theme } = props;
   const { typography } = $theme;
   return {
@@ -212,7 +212,7 @@ export const Input = styled('input', {
   position: 'absolute',
 });
 
-export const Toggle = styled<'div', SharedStylePropsT>('div', (props) => {
+export const Toggle = styled<'div', SharedStyleProps>('div', (props) => {
   let backgroundColor = props.$theme.colors.toggleFill;
   if (props.$disabled) {
     backgroundColor = props.$theme.colors.toggleFillDisabled;
@@ -243,7 +243,7 @@ export const Toggle = styled<'div', SharedStylePropsT>('div', (props) => {
   };
 });
 
-export const ToggleTrack = styled<'div', SharedStylePropsT>('div', (props) => {
+export const ToggleTrack = styled<'div', SharedStyleProps>('div', (props) => {
   let backgroundColor = props.$theme.colors.toggleTrackFill;
   if (props.$disabled) {
     backgroundColor = props.$theme.colors.toggleTrackFillDisabled;

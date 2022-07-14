@@ -7,12 +7,12 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import StatefulContainer from './stateful-container';
 import Textarea from './textarea';
-import type { StatefulTextareaPropsT, TextareaPropsT } from './types';
+import type { StatefulTextareaProps, TextareaProps } from './types';
 
-export default function StatefulTextarea(props: StatefulTextareaPropsT) {
+export default function StatefulTextarea(props: StatefulTextareaProps) {
   return (
     <StatefulContainer {...props}>
-      {(childrenProps) => <Textarea {...(childrenProps as TextareaPropsT)} />}
+      {(childrenProps) => <Textarea {...(childrenProps as TextareaProps)} />}
     </StatefulContainer>
   );
 }

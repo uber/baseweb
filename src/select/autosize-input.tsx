@@ -8,12 +8,12 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { StyledInput, StyledInputSizer } from './styled-components';
 import { getOverrides } from '../helpers/overrides';
-import type { AutosizeInputPropsT, AutosizeInputStateT } from './types';
+import type { AutosizeInputProps, AutosizeInputState } from './types';
 import type { ComponentProps } from 'react';
 
 export default class AutosizeInput extends React.Component<
-  AutosizeInputPropsT & Omit<ComponentProps<typeof StyledInput>, keyof AutosizeInputPropsT>,
-  AutosizeInputStateT
+  AutosizeInputProps & Omit<ComponentProps<typeof StyledInput>, keyof AutosizeInputProps>,
+  AutosizeInputState
 > {
   mounted: boolean;
   sizer: HTMLElement | undefined | null;
@@ -32,7 +32,7 @@ export default class AutosizeInput extends React.Component<
     this.mounted = true;
     this.updateInputWidth();
   }
-  componentDidUpdate(prevProps: AutosizeInputPropsT, prevState: AutosizeInputStateT) {
+  componentDidUpdate(prevProps: AutosizeInputProps, prevState: AutosizeInputState) {
     this.updateInputWidth();
   }
   componentWillUnmount() {
