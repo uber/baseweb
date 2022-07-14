@@ -7,9 +7,9 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import { styled } from '../styles/index.js';
 import { SIZE } from './constants.js';
-import type { DividerPropsT } from './types.js';
+import type { DividerProps } from './types.js';
 
-export const StyledDivider = styled<DividerPropsT>('hr', ({ $theme, $size = SIZE.section }) => {
+export const StyledDivider = styled<DividerProps>('hr', ({ $theme, $size = SIZE.section }) => {
   const borderResetStyles = {
     borderRightWidth: 0,
     borderBottomWidth: 0,

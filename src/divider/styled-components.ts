@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 import { styled } from '../styles/index';
 import { SIZE } from './constants';
-import type { DividerPropsT } from './types';
+import type { DividerProps } from './types';
 
-export const StyledDivider = styled<'hr', DividerPropsT>('hr', (props) => {
+export const StyledDivider = styled<'hr', DividerProps>('hr', (props) => {
   const { $theme, $size = SIZE.section } = props;
   const borderResetStyles = {
     borderRightWidth: 0,

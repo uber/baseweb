@@ -6,6 +6,6 @@ LICENSE file in the root directory of this source tree.
 */
 import { SIZE } from './constants';
 
-export type DividerPropsT = {
+export type DividerProps = {
   $size?: keyof typeof SIZE;
 };
