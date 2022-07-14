@@ -23,5 +23,3 @@ export { STATE_TYPE, STYLE_TYPE, LABEL_PLACEMENT } from './constants';
 
 // Flow
 export * from './types';
-/** @deprecated use CheckboxReducerState instead. To be removed in future versions.*/
-export type initialState = CheckboxReducerState;
