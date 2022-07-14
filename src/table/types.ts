@@ -11,6 +11,10 @@ import type { Override } from '../helpers/overrides';
 
 export type SortDirection = keyof typeof SORT_DIRECTION | undefined | null;
 
+export type HeadCellOverrides = {
+  HeadCell?: Override;
+  SortableLabel?: Override;
+};
 export type HeadCellProps = {
   /** Aria label applied to the sort button. */
   ariaLabel?: string;
@@ -23,10 +27,7 @@ export type HeadCellProps = {
   disabled?: boolean;
   /** Callback for when column title is clicked to trigger sort. */
   onSort?: () => unknown;
-  overrides?: {
-    HeadCell?: Override;
-    SortableLabel?: Override;
-  };
+  overrides?: HeadCellOverrides;
   /** Column title. */
   title: React.ReactNode;
   /** FillClickTarget enable click to sort on whitespace in a header cell. */
@@ -44,6 +45,12 @@ export type TableProps = {
   isLoading?: boolean;
 };
 
+export type FilterOverrides = {
+  MenuButton?: Override;
+  Content?: Override;
+  Heading?: Override;
+  Footer?: Override;
+};
 export type FilterProps = {
   /** Displays the filter icon in an active state. */
   active?: boolean;
@@ -63,12 +70,7 @@ export type FilterProps = {
   onReset?: () => unknown;
   /** Callback for when the 'select all' button is clicked. */
   onSelectAll?: () => unknown;
-  overrides?: {
-    MenuButton?: Override;
-    Content?: Override;
-    Heading?: Override;
-    Footer?: Override;
-  };
+  overrides?: FilterOverrides;
   /** Determines whether focus is returned to Filter menu button. */
   returnFocus?: boolean;
 };
