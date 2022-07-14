@@ -10,32 +10,44 @@ import type { DividerProps } from './types';
 
 export const StyledDivider = styled<'hr', DividerProps>('hr', (props) => {
   const { $theme, $size = SIZE.section } = props;
-  const borderResetStyles = {
-    borderRightWidth: 0,
-    borderBottomWidth: 0,
-    borderLeftWidth: 0,
-  };
-
   if ($size === SIZE.cell) {
     return {
-      ...borderResetStyles,
       borderTopWidth: '1px',
       borderTopColor: $theme.colors.borderOpaque,
       borderTopStyle: 'solid',
+      // base styles
+      borderRightWidth: 0,
+      borderBottomWidth: 0,
+      borderLeftWidth: 0,
+      borderRightStyle: 'none',
+      borderBottomStyle: 'none',
+      borderLeftStyle: 'none',
     };
   }
   if ($size === SIZE.module) {
     return {
-      ...borderResetStyles,
       borderTopWidth: '8px',
       borderTopColor: $theme.colors.backgroundTertiary,
       borderTopStyle: 'solid',
+      // base styles
+      borderRightWidth: 0,
+      borderBottomWidth: 0,
+      borderLeftWidth: 0,
+      borderRightStyle: 'none',
+      borderBottomStyle: 'none',
+      borderLeftStyle: 'none',
     };
   }
   return {
-    ...borderResetStyles,
     borderTopWidth: '2px',
     borderTopColor: $theme.colors.borderOpaque,
     borderTopStyle: 'solid',
+    // base styles
+    borderRightWidth: 0,
+    borderBottomWidth: 0,
+    borderLeftWidth: 0,
+    borderRightStyle: 'none',
+    borderBottomStyle: 'none',
+    borderLeftStyle: 'none',
   };
 });
