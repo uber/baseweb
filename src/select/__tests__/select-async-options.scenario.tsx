@@ -5,9 +5,9 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
-import { OptionT, Select } from '..';
+import { Option, Select } from '..';
 
-const COLORS: OptionT[] = [
+const COLORS: Option[] = [
   { label: 'AliceBlue', id: '#F0F8FF' },
   { label: 'AntiqueWhite', id: '#FAEBD7' },
   { label: 'Aqua', id: '#00FFFF' },

@@ -13,7 +13,7 @@ import {
 import { getSharedProps } from './utils';
 import { getOverrides } from '../helpers/overrides';
 
-import type { ButtonPropsT } from './types';
+import type { ButtonProps } from './types';
 
 function RenderEnhancer(props) {
   const { Enhancer, ...restProps } = props;
@@ -26,7 +26,7 @@ function RenderEnhancer(props) {
   return Enhancer;
 }
 
-export default function ButtonInternals(props: ButtonPropsT) {
+export default function ButtonInternals(props: ButtonProps) {
   const { children, overrides = {}, startEnhancer, endEnhancer } = props;
   const [StartEnhancer, startEnhancerProps] = getOverrides(
     overrides.StartEnhancer,

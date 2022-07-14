@@ -16,7 +16,7 @@ import { StatefulMenu, StyledList } from '../menu';
 import { StatefulPopover, PLACEMENT, TRIGGER_TYPE } from '../popover';
 
 import { StyledUserMenuButton, StyledUserMenuProfileListItem } from './styled-components';
-import type { UserMenuPropsT, NavItemT, OverridesT } from './types';
+import type { UserMenuProps, NavItem, AppNavBarOverrides } from './types';
 import UserProfileTile from './user-profile-tile';
 import { defaultMapItemToNode } from './utils';
 
@@ -37,10 +37,10 @@ const svgStyleOverride = ({ $theme }) => ({ paddingLeft: $theme.sizing.scale200 
 
 export default function UserMenuComponent(
   props: {
-    mapItemToNode: (a: NavItemT) => React.ReactNode;
-    onItemSelect: (a: NavItemT) => unknown;
-    overrides: OverridesT;
-  } & UserMenuPropsT
+    mapItemToNode: (a: NavItem) => React.ReactNode;
+    onItemSelect: (a: NavItem) => unknown;
+    overrides: AppNavBarOverrides;
+  } & UserMenuProps
 ) {
   // isOpen is used for displaying different arrow icons in open or closed state
   const [isOpen, setIsOpen] = React.useState(false);

@@ -6,19 +6,14 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 import { STATE_TYPE } from './constants';
-import type {
-  StatefulContainerPropsT,
-  StateReducerT,
-  DefaultStatefulPropsT,
-  StateT,
-} from './types';
+import type { StatefulContainerProps, StateReducer, DefaultStatefulProps, State } from './types';
 
 import type { ChangeEvent } from 'react';
 
-const defaultStateReducer: StateReducerT = (type, nextState) => nextState;
+const defaultStateReducer: StateReducer = (type, nextState) => nextState;
 
-class StatefulRadioGroupContainer extends React.Component<StatefulContainerPropsT, StateT> {
-  static defaultProps: DefaultStatefulPropsT = {
+class StatefulRadioGroupContainer extends React.Component<StatefulContainerProps, State> {
+  static defaultProps: DefaultStatefulProps = {
     initialState: {
       value: '',
     },
@@ -26,7 +21,7 @@ class StatefulRadioGroupContainer extends React.Component<StatefulContainerProps
     onChange: () => {},
   };
 
-  constructor(props: StatefulContainerPropsT) {
+  constructor(props: StatefulContainerProps) {
     super(props);
     const { initialState } = this.props;
     this.state = {

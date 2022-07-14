@@ -9,20 +9,20 @@ import React from 'react';
 import * as flags from './flags';
 import { styled } from '../styles';
 import { SIZE } from './constants';
-import type { CountryIsoT, SizeT } from './types';
+import type { CountryIso, Size } from './types';
 
 type SizeStyleProps = {
-  $size?: SizeT;
+  $size?: Size;
 };
 
 export default function Flag(props: {
-  $iso: CountryIsoT;
+  $iso: CountryIso;
   // remove `iso` prop in the next major version
-  iso?: CountryIsoT;
+  iso?: CountryIso;
   width?: string;
 }) {
   const { $iso, iso: oldIsoProp, width = '16px', ...restProps } = props;
-  const iso: CountryIsoT = oldIsoProp || $iso;
+  const iso: CountryIso = oldIsoProp || $iso;
   const FlagComponent = flags[`Flag${iso.toUpperCase()}`];
   //$FlowExpectedError[cannot-spread-inexact]
   return <FlagComponent width={width} data-iso={iso} {...restProps} />;

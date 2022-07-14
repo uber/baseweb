@@ -11,9 +11,9 @@ import { Popover, PLACEMENT } from '../popover';
 import { mergeOverrides } from '../helpers/overrides';
 
 import { StyledArrow, StyledBody } from './styled-components';
-import type { PropsT } from './types';
+import type { Props } from './types';
 
-export function Helper(props: PropsT) {
+export function Helper(props: Props) {
   const { overrides = {}, placement, ...restProps } = props;
 
   const mergedOverrides = mergeOverrides(

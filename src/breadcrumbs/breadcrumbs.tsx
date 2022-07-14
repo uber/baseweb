@@ -11,11 +11,11 @@ import { LocaleContext } from '../locale';
 import { ThemeContext } from '../styles/theme-provider';
 import ChevronRight from '../icon/chevron-right';
 import ChevronLeft from '../icon/chevron-left';
-import type { BreadcrumbsPropsT } from './types';
+import type { BreadcrumbsProps } from './types';
 import { StyledList, StyledListItem, StyledRoot, StyledSeparator } from './styled-components';
 import { getOverrides, mergeOverrides } from '../helpers/overrides';
 
-export function Breadcrumbs(props: BreadcrumbsPropsT) {
+export function Breadcrumbs(props: BreadcrumbsProps) {
   const { overrides = {}, showTrailingSeparator = false } = props;
   const childrenArray = Children.toArray(props.children);
   const childrenWithSeparators = [];

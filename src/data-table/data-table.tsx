@@ -20,17 +20,17 @@ import { Tooltip, PLACEMENT } from '../tooltip';
 import { SORT_DIRECTIONS } from './constants';
 import HeaderCell from './header-cell';
 import MeasureColumnWidths from './measure-column-widths';
-import type { ColumnT, DataTablePropsT, RowT, SortDirectionsT, RowActionT } from './types';
+import type { ColumnOptions, DataTableProps, Row, SortDirections, RowAction } from './types';
 import { LocaleContext } from '../locale';
 
 // consider pulling this out to a prop if useful.
 const HEADER_ROW_HEIGHT = 48;
 
-type HeaderContextT = {
-  columns: ColumnT[];
+type HeaderContext = {
+  columns: ColumnOptions[];
   columnHighlightIndex: number;
   emptyMessage: string | React.ComponentType<{}>;
-  filters: DataTablePropsT['filters'];
+  filters: DataTableProps['filters'];
   loading: boolean;
   loadingMessage: string | React.ComponentType<{}>;
   isScrollingX: boolean;
@@ -45,37 +45,37 @@ type HeaderContextT = {
   onSelectNone: () => void;
   onSort: (a: number) => void;
   resizableColumnWidths: boolean;
-  rowActions: RowActionT[] | ((a: RowT) => RowActionT[]);
+  rowActions: RowAction[] | ((a: Row) => RowAction[]);
   rowHeight: number;
   rowHighlightIndex: number;
-  rows: RowT[];
+  rows: Row[];
   scrollLeft: number;
   sortIndex: number;
-  sortDirection: SortDirectionsT;
+  sortDirection: SortDirections;
   tableHeight: number;
   widths: number[];
 };
 
-type CellPlacementPropsT = {
+type CellPlacementProps = {
   columnIndex: number;
   rowIndex: number;
   style: React.CSSProperties;
   data: {
-    columns: ColumnT[];
+    columns: ColumnOptions[];
     columnHighlightIndex: number;
     isSelectable: boolean;
     isRowSelected: (a: string | number) => boolean;
-    onRowMouseEnter: (b: number, a: RowT) => void;
-    onSelectOne: (a: RowT) => void;
+    onRowMouseEnter: (b: number, a: Row) => void;
+    onSelectOne: (a: Row) => void;
     rowHighlightIndex: number;
-    rows: RowT[];
+    rows: Row[];
     textQuery: string;
   };
 };
 
 const sum = (ns) => ns.reduce((s, n) => s + n, 0);
 
-function CellPlacement({ columnIndex, rowIndex, data, style }: CellPlacementPropsT) {
+function CellPlacement({ columnIndex, rowIndex, data, style }: CellPlacementProps) {
   const [css, theme] = useStyletron();
 
   // ignores the table header row
@@ -176,10 +176,10 @@ function compareCellPlacement(prevProps, nextProps) {
 
   return false;
 }
-const CellPlacementMemo = React.memo<CellPlacementPropsT>(CellPlacement, compareCellPlacement);
+const CellPlacementMemo = React.memo<CellPlacementProps>(CellPlacement, compareCellPlacement);
 CellPlacementMemo.displayName = 'CellPlacement';
 
-const HeaderContext = React.createContext<HeaderContextT>({
+const HeaderContext = React.createContext<HeaderContext>({
   columns: [],
   columnHighlightIndex: -1,
   emptyMessage: '',
@@ -230,7 +230,7 @@ type HeaderProps = {
   resizeMaxWidth: number;
   resizeMinWidth: number;
   sortIndex: number;
-  sortDirection: SortDirectionsT;
+  sortDirection: SortDirections;
   tableHeight: number;
 };
 
@@ -654,7 +654,7 @@ export function DataTable({
   sortDirection,
   textQuery = '',
   controlRef,
-}: DataTablePropsT) {
+}: DataTableProps) {
   const [, theme] = useStyletron();
   const locale = React.useContext(LocaleContext);
 
@@ -734,7 +734,7 @@ export function DataTable({
   );
 
   const sortedIndices = React.useMemo(() => {
-    let toSort = allRows.map((r, i): [DataTablePropsT['rows'][number], number] => [r, i]);
+    let toSort = allRows.map((r, i): [DataTableProps['rows'][number], number] => [r, i]);
     const index = sortIndex;
 
     if (index !== null && index !== undefined && index !== -1 && columns[index]) {

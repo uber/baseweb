@@ -6,34 +6,34 @@ LICENSE file in the root directory of this source tree.
 */
 /* eslint-disable flowtype/generic-spacing */
 import * as React from 'react';
-import type { OverrideT } from '../helpers/overrides';
+import type { Override } from '../helpers/overrides';
 import { STATE_CHANGE_TYPE } from './constants';
 
-export type StateT = {
+export type State = {
   items: Array<React.ReactNode>;
 };
 
-export type StateChangeTypeT = typeof STATE_CHANGE_TYPE[keyof typeof STATE_CHANGE_TYPE];
+export type StateChangeType = typeof STATE_CHANGE_TYPE[keyof typeof STATE_CHANGE_TYPE];
 
-export type StateReducerT = (
-  stateChangeType: StateChangeTypeT,
-  nextState: StateT,
-  currentState: StateT
-) => StateT;
+export type StateReducer = (
+  stateChangeType: StateChangeType,
+  nextState: State,
+  currentState: State
+) => State;
 
-export type OverridesT = {
-  Root?: OverrideT;
-  List?: OverrideT;
-  Item?: OverrideT;
-  DragHandle?: OverrideT;
-  CloseHandle?: OverrideT;
-  Label?: OverrideT;
+export type ListOverrides = {
+  Root?: Override;
+  List?: Override;
+  Item?: Override;
+  DragHandle?: Override;
+  CloseHandle?: Override;
+  Label?: Override;
 };
 
-type ChildrenT = Array<React.ReactNode> | React.ReactNode;
+type Children = Array<React.ReactNode> | React.ReactNode;
 
 // Props shared by all flavors of component
-export type ListPropsT = {
+export type ListProps = {
   /** Set if the list items should be removable */
   removable?: boolean;
   /** Set if the list items should be removable by dragging them far left or right */
@@ -42,15 +42,15 @@ export type ListPropsT = {
   items: Array<React.ReactNode>;
   /** Handler for when drag and drop is finished and order changed or item is deleted (newIndex would be -1 in that case) */
   onChange: (a: { oldIndex: number; newIndex: number }) => unknown;
-  overrides?: OverridesT;
+  overrides?: ListOverrides;
 };
 
 // Props for stateful component
-export type StatefulListPropsT = {
+export type StatefulListProps = {
   /** Initial state populated into the component */
-  initialState?: StateT;
+  initialState?: State;
   /** Reducer function to manipulate internal state updates. */
-  stateReducer?: StateReducerT;
+  stateReducer?: StateReducer;
   /** Set if the list items should be removable */
   removable?: boolean;
   /** Set if the list items should be removable by dragging them far left or right */
@@ -62,16 +62,16 @@ export type StatefulListPropsT = {
     newIndex: number;
     targetRect: ClientRect;
   }) => unknown;
-  overrides?: OverridesT;
+  overrides?: ListOverrides;
 };
 
 // Props for stateful container
-export type StatefulComponentContainerPropsT = Omit<StatefulListPropsT, 'children'> & {
-  initialState?: StateT;
-  children: (props: Omit<ListPropsT, 'children'>) => React.ReactNode;
+export type StatefulComponentContainerProps = Omit<StatefulListProps, 'children'> & {
+  initialState?: State;
+  children: (props: Omit<ListProps, 'children'>) => React.ReactNode;
 };
 
-export type SharedStylePropsArgT = {
+export type SharedStylePropsArg = {
   $isDragged: boolean;
   $isSelected: boolean;
   $isFocusVisible: boolean;

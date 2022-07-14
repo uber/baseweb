@@ -11,14 +11,14 @@ import { StyledList, StyledEmptyState, StyledOptgroupHeader } from './styled-com
 import OptionList from './option-list';
 import { getOverrides } from '../helpers/overrides';
 // Types
-import type { RenderItemPropsT, StatelessMenuPropsT } from './types';
-import type { LocaleT } from '../locale';
+import type { RenderItemProps, StatelessMenuProps } from './types';
+import type { Locale } from '../locale';
 
 import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible';
 
 import type { SyntheticEvent } from 'react';
 
-export default function Menu(props: StatelessMenuPropsT) {
+export default function Menu(props: StatelessMenuProps) {
   const {
     overrides = {},
     'aria-label': ariaLabel = 'Menu',
@@ -64,7 +64,7 @@ export default function Menu(props: StatelessMenuPropsT) {
       }
       const groupItems = groupedItems[optgroup].map((item, index) => {
         itemIndex = itemIndex + 1;
-        const { getRequiredItemProps = (item, index) => ({} as RenderItemPropsT) } = props;
+        const { getRequiredItemProps = (item, index) => ({} as RenderItemProps) } = props;
 
         const {
           disabled,
@@ -101,7 +101,7 @@ export default function Menu(props: StatelessMenuPropsT) {
 
   return (
     <LocaleContext.Consumer>
-      {(locale: LocaleT) => (
+      {(locale: Locale) => (
         <List
           aria-activedescendant={props.activedescendantId || null}
           role="listbox"

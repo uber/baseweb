@@ -20,7 +20,7 @@ import { getOverrides, mergeOverrides } from '../helpers/overrides';
 import defaultProps from './default-props';
 import { iso2FlagEmoji } from './utils';
 
-import type { CountryT, CountrySelectPropsT } from './types';
+import type { Country, CountrySelectProps } from './types';
 
 CountryPicker.defaultProps = {
   disabled: defaultProps.disabled,
@@ -50,7 +50,7 @@ function DropdownOptionContent(props) {
   return <>{props.children}</>;
 }
 
-export default function CountryPicker(props: CountrySelectPropsT) {
+export default function CountryPicker(props: CountrySelectProps) {
   const {
     country,
     disabled,
@@ -195,7 +195,7 @@ export default function CountryPicker(props: CountrySelectPropsT) {
           </>
         );
       }}
-      getValueLabel={(value: { option: CountryT }) => {
+      getValueLabel={(value: { option: Country }) => {
         const iso = value.option.id;
         return (
           <FlagContainer $iso={iso} data-iso={iso} {...sharedProps} {...flagContainerProps}>

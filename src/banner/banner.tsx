@@ -20,7 +20,7 @@ import {
   StyledTrailingButtonContainer,
   StyledTrailingIconButton,
 } from './styled-components';
-import type { PropsT } from './types';
+import type { BannerProps } from './types';
 
 function low(theme, kind) {
   switch (kind) {
@@ -184,7 +184,7 @@ export function Banner({
   overrides = {},
   nested = false,
   title,
-}: PropsT) {
+}: BannerProps) {
   const [, theme] = useStyletron();
   const styles = hierarchy === HIERARCHY.high ? high(theme, kind) : low(theme, kind);
   const actionPosition = action && action.position ? action.position : ACTION_POSITION.trailing;

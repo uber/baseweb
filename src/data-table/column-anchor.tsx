@@ -11,9 +11,9 @@ import { useStyletron } from '../styles';
 
 import Column from './column';
 import { COLUMNS } from './constants';
-import type { ColumnT, SharedColumnOptionsT } from './types';
+import type { ColumnOptions, SharedColumnOptions } from './types';
 
-type ValueT = {
+type Value = {
   content: string;
   href: string;
 };
@@ -23,12 +23,12 @@ type ReplacementElementAs = React.ComponentType<{
   children: string;
 }>;
 
-type OptionsT = {
+type Options = {
   elementAs?: ReplacementElementAs | string;
-} & SharedColumnOptionsT<ValueT>;
+} & SharedColumnOptions<Value>;
 
-type FilterParametersT = {};
-type AnchorColumnT = ColumnT<ValueT, FilterParametersT>;
+type FilterParameters = {};
+type AnchorColumn = ColumnOptions<Value, FilterParameters>;
 
 function AnchorFilter(props) {
   return <div>not implemented for anchor column</div>;
@@ -52,7 +52,7 @@ function AnchorCell(props) {
   );
 }
 
-function AnchorColumn(options: OptionsT): AnchorColumnT {
+function AnchorColumn(options: Options): AnchorColumn {
   return Column({
     kind: COLUMNS.ANCHOR,
     buildFilter: function (params) {

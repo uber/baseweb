@@ -11,9 +11,9 @@ import { useStyletron } from '../styles';
 import { mergeOverride, toObjectOverride } from '../helpers/overrides';
 
 import Icon from './icon';
-import type { IconPropsT } from './types';
+import type { IconProps } from './types';
 
-function ArrowRight(props: IconPropsT, ref) {
+function ArrowRight(props: IconProps, ref) {
   const [, theme] = useStyletron();
   const { title = 'Arrow Right', size, color, overrides = {}, ...restProps } = props;
   const SvgOverride = mergeOverride(
@@ -42,4 +42,4 @@ function ArrowRight(props: IconPropsT, ref) {
   );
 }
 
-export default React.forwardRef<SVGSVGElement, IconPropsT>(ArrowRight);
+export default React.forwardRef<SVGSVGElement, IconProps>(ArrowRight);

@@ -10,7 +10,7 @@ import { CategoricalColumn, StringColumn, BooleanColumn, StatefulDataTable } fro
 
 import AnimalData from './animal-data';
 
-type RowDataT = {
+type RowData = {
   isSelected: boolean;
   Name: string;
   Kingdom: string;
@@ -24,39 +24,39 @@ const columns = [
   StringColumn({
     title: 'Name',
     minWidth: 300,
-    mapDataToValue: (data: RowDataT) => data.Name,
+    mapDataToValue: (data: RowData) => data.Name,
   }),
 
   BooleanColumn({
     title: 'Is Selected',
-    mapDataToValue: (data: RowDataT) => data.isSelected,
+    mapDataToValue: (data: RowData) => data.isSelected,
   }),
 
   CategoricalColumn({
     title: 'Kingdom',
-    mapDataToValue: (data: RowDataT) => data.Kingdom,
+    mapDataToValue: (data: RowData) => data.Kingdom,
   }),
 
   CategoricalColumn({
     title: 'Phylum',
     minWidth: 90,
-    mapDataToValue: (data: RowDataT) => data.Phylum,
+    mapDataToValue: (data: RowData) => data.Phylum,
   }),
 
   CategoricalColumn({
     title: 'Class',
     minWidth: 120,
-    mapDataToValue: (data: RowDataT) => data.Class,
+    mapDataToValue: (data: RowData) => data.Class,
   }),
 
   CategoricalColumn({
     title: 'Order',
-    mapDataToValue: (data: RowDataT) => data.Order,
+    mapDataToValue: (data: RowData) => data.Order,
   }),
 
   CategoricalColumn({
     title: 'Family',
-    mapDataToValue: (data: RowDataT) => data.Family,
+    mapDataToValue: (data: RowData) => data.Family,
   }),
 ];
 

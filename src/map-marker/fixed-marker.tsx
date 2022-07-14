@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
-import { useStyletron, type ThemeT } from '../styles';
+import { useStyletron, type Theme } from '../styles';
 import { getOverrides } from '../helpers/overrides';
 import {
   PINHEAD_TYPES,
@@ -20,14 +20,14 @@ import PinHead from './pin-head';
 import Needle from './needle';
 import DragShadow from './drag-shadow';
 import { StyledFixedMarkerDragContainer, StyledFixedMarkerRoot } from './styled-components';
-import type { FixedMarkerPropsT, KindT, PinHeadSizeT } from './types';
+import type { FixedMarkerProps, Kind, PinHeadSize } from './types';
 
 type Colors = {
   color: string;
   backgroundColor: string;
 };
 
-function getColors(kind: KindT, theme: ThemeT): Colors {
+function getColors(kind: Kind, theme: Theme): Colors {
   if (kind === KIND.accent) {
     return {
       color: theme.colors.contentInversePrimary,
@@ -60,7 +60,7 @@ const FixedMarker = ({
   badgeEnhancerSize = null,
   badgeEnhancerContent = null,
   ...restProps
-}: FixedMarkerPropsT) => {
+}: FixedMarkerProps) => {
   const [, theme] = useStyletron();
   const { color, backgroundColor } = getColors(kind, theme);
 
@@ -78,14 +78,14 @@ const FixedMarker = ({
   const renderNeedle =
     needle !== NEEDLE_SIZES.none &&
     !(
-      [PINHEAD_SIZES_SHAPES.xxSmallCircle, PINHEAD_SIZES_SHAPES.xxSmallSquare] as PinHeadSizeT[]
+      [PINHEAD_SIZES_SHAPES.xxSmallCircle, PINHEAD_SIZES_SHAPES.xxSmallSquare] as PinHeadSize[]
     ).includes(size);
 
   if (__DEV__) {
     if (
       needle !== NEEDLE_SIZES.none &&
       (
-        [PINHEAD_SIZES_SHAPES.xxSmallCircle, PINHEAD_SIZES_SHAPES.xxSmallSquare] as PinHeadSizeT[]
+        [PINHEAD_SIZES_SHAPES.xxSmallCircle, PINHEAD_SIZES_SHAPES.xxSmallSquare] as PinHeadSize[]
       ).includes(size)
     ) {
       console.warn(
@@ -93,7 +93,7 @@ const FixedMarker = ({
       );
     }
   }
-  const enhancers: Pick<FixedMarkerPropsT, 'startEnhancer' | 'endEnhancer'> = {};
+  const enhancers: Pick<FixedMarkerProps, 'startEnhancer' | 'endEnhancer'> = {};
   if (startEnhancer) {
     enhancers.startEnhancer = startEnhancer;
   }

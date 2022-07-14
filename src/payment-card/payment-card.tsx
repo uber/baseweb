@@ -27,7 +27,7 @@ import UatpIcon from './icons/uatp';
 
 import { IconWrapper as StyledIconWrapper } from './styled-components';
 
-import type { PaymentCardPropsT } from './types';
+import type { PaymentCardProps } from './types';
 
 import { CUSTOM_CARDS_CONFIGURATION } from './custom-cards.config';
 
@@ -45,7 +45,7 @@ const CardTypeToComponent = {
   uatp: UatpIcon,
 };
 
-class PaymentCard extends React.Component<PaymentCardPropsT> {
+class PaymentCard extends React.Component<PaymentCardProps> {
   caretPosition = 0;
   inRef: HTMLInputElement | HTMLTextAreaElement | null = null;
 
@@ -64,7 +64,7 @@ class PaymentCard extends React.Component<PaymentCardPropsT> {
     endEnhancer: null,
   };
 
-  constructor(props: PaymentCardPropsT) {
+  constructor(props: PaymentCardProps) {
     super(props);
     // For adding new custom card type, add card config to custom-cards.config.js
     CUSTOM_CARDS_CONFIGURATION.forEach((cardTypeConfig) =>
@@ -73,7 +73,7 @@ class PaymentCard extends React.Component<PaymentCardPropsT> {
     );
   }
 
-  componentDidUpdate(prevProps: PaymentCardPropsT) {
+  componentDidUpdate(prevProps: PaymentCardProps) {
     if (this.inRef && prevProps.value !== this.props.value) {
       this.inRef.setSelectionRange(this.caretPosition, this.caretPosition);
     }

@@ -7,18 +7,21 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { STATE_TYPE } from './constants';
 import type {
-  StatefulContainerPropsT,
-  StateReducerT,
-  DefaultStatefulPropsT,
-  StateT,
+  StatefulContainerProps,
+  StateReducer,
+  DefaultStatefulProps,
+  CheckboxReducerState,
 } from './types';
 
 import type { ChangeEvent } from 'react';
 
-const defaultStateReducer: StateReducerT = (type, nextState) => nextState;
+const defaultStateReducer: StateReducer = (type, nextState) => nextState;
 
-class StatefulCheckboxContainer extends React.Component<StatefulContainerPropsT, StateT> {
-  static defaultProps: DefaultStatefulPropsT = {
+class StatefulCheckboxContainer extends React.Component<
+  StatefulContainerProps,
+  CheckboxReducerState
+> {
+  static defaultProps: DefaultStatefulProps = {
     initialState: {
       checked: false,
       isIndeterminate: false,
@@ -31,7 +34,7 @@ class StatefulCheckboxContainer extends React.Component<StatefulContainerPropsT,
     onBlur: () => {},
   };
 
-  constructor(props: StatefulContainerPropsT) {
+  constructor(props: StatefulContainerProps) {
     super(props);
     const { initialState } = this.props;
     this.state = {

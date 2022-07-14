@@ -7,14 +7,14 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { getOverrides } from '../helpers/overrides';
 import { StyledNavLink, StyledNavItem } from './styled-components';
-import type { NavItemPropsT } from './types';
+import type { NavItemProps } from './types';
 
 type SharedProps = Omit<
   React.ComponentProps<typeof StyledNavLink> & React.ComponentProps<typeof NavItem>,
   'onSelect' | 'item' | 'overrides' | 'itemMemoizationComparator'
 >;
 
-class NavItem extends React.Component<NavItemPropsT & SharedProps> {
+class NavItem extends React.Component<NavItemProps & SharedProps> {
   static defaultProps = {
     overrides: {},
     onSelect: () => {},

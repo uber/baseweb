@@ -8,7 +8,7 @@ import * as React from 'react';
 import { useStyletron } from '../styles/index';
 import { getOverrides } from '../helpers/overrides';
 import { StyledHintDot, StyledRoot, StyledPositioner } from './styled-components';
-import type { HintDotPropsT } from './types';
+import type { HintDotProps } from './types';
 import { PLACEMENT, ROLE } from './constants';
 import { getAnchorFromChildren } from './utils';
 
@@ -19,7 +19,7 @@ const HintDot = ({
   verticalOffset: verticalOffsetProp,
   hidden,
   overrides = {},
-}: HintDotPropsT) => {
+}: HintDotProps) => {
   const [HintDot, hintDotProps] = getOverrides(overrides.Badge, StyledHintDot);
   const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
   const [Positioner, positionerProps] = getOverrides(overrides.Positioner, StyledPositioner);

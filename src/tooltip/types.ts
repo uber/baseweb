@@ -6,46 +6,46 @@ LICENSE file in the root directory of this source tree.
 */
 /* eslint-disable flowtype/generic-spacing */
 import type {
-  AccessibilityTypeT,
-  BasePopoverPropsT,
-  ChildT,
-  ChildrenT,
-  ContentRenderPropT,
-  OverridesT,
-  PopoverPlacementT,
-  PopoverPropsT,
-  PopoverPropsWithoutChildrenT,
-  StateChangeTypeT,
-  StateT,
-  StatefulContentRenderPropT,
-  StatefulPopoverPropsT,
-  StatefulPopoverContainerPropsT,
-  StateReducerT,
-  TriggerTypeT,
+  AccessibilityType,
+  BasePopoverProps,
+  Child,
+  Children,
+  ContentRenderProp,
+  PopoverOverrides,
+  PopoverPlacement,
+  PopoverProps,
+  PopoverPropsWithoutChildren,
+  StateChangeType,
+  State,
+  StatefulContentRenderProp,
+  StatefulPopoverProps,
+  StatefulPopoverContainerProps,
+  StateReducer,
+  TriggerType,
 } from '../popover';
 
-type BaseTooltipPropsT = BasePopoverPropsT;
-type TooltipPlacementT = PopoverPlacementT;
-type TooltipPropsT = PopoverPropsT;
-type TooltipPropsWithoutChildrenT = PopoverPropsWithoutChildrenT;
-type StatefulTooltipPropsT = StatefulPopoverPropsT;
-type StatefulTooltipContainerPropsT = StatefulPopoverContainerPropsT;
+type BaseTooltipProps = BasePopoverProps;
+type TooltipPlacement = PopoverPlacement;
+type TooltipProps = PopoverProps;
+type TooltipPropsWithoutChildren = PopoverPropsWithoutChildren;
+type StatefulTooltipProps = StatefulPopoverProps;
+type StatefulTooltipContainerProps = StatefulPopoverContainerProps;
 
 export type {
-  AccessibilityTypeT,
-  BaseTooltipPropsT,
-  ChildT,
-  ChildrenT,
-  ContentRenderPropT,
-  OverridesT,
-  TooltipPropsT,
-  StateT,
-  StateChangeTypeT,
-  StateReducerT,
-  StatefulContentRenderPropT,
-  StatefulTooltipPropsT,
-  StatefulTooltipContainerPropsT,
-  TooltipPlacementT,
-  TooltipPropsWithoutChildrenT,
-  TriggerTypeT,
+  AccessibilityType,
+  BaseTooltipProps,
+  Child,
+  Children,
+  ContentRenderProp,
+  PopoverOverrides,
+  TooltipProps,
+  State,
+  StateChangeType,
+  StateReducer,
+  StatefulContentRenderProp,
+  StatefulTooltipProps,
+  StatefulTooltipContainerProps,
+  TooltipPlacement,
+  TooltipPropsWithoutChildren,
+  TriggerType,
 };

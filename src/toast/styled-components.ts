@@ -8,16 +8,16 @@ import { styled } from '../styles';
 import { getSvgStyles } from '../icon/styled-components';
 import { KIND, PLACEMENT, TYPE } from './constants';
 import {
-  type SharedStylePropsArgT,
-  type ToasterSharedStylePropsArgT,
-  type KindTypeT,
-  type NotificationTypeT,
-  type PlacementTypeT,
+  type SharedStylePropsArg,
+  type ToasterSharedStylePropsArg,
+  type KindType,
+  type NotificationType,
+  type PlacementType,
 } from './types';
-import type { ThemeT } from '../styles/types';
+import type { Theme } from '../styles/types';
 import type { StyleObject } from 'styletron-standard';
 
-function getBackgroundColor(kind: KindTypeT, type: NotificationTypeT, theme: ThemeT) {
+function getBackgroundColor(kind: KindType, type: NotificationType, theme: Theme) {
   const isInline = type === TYPE.inline;
   return {
     [KIND.info]: isInline
@@ -35,7 +35,7 @@ function getBackgroundColor(kind: KindTypeT, type: NotificationTypeT, theme: The
   }[kind];
 }
 
-function getFontColor(kind: KindTypeT, type: NotificationTypeT, theme: ThemeT) {
+function getFontColor(kind: KindType, type: NotificationType, theme: Theme) {
   const isInline = type === TYPE.inline;
   if (isInline) {
     return {
@@ -54,7 +54,7 @@ function getFontColor(kind: KindTypeT, type: NotificationTypeT, theme: ThemeT) {
   }[kind];
 }
 
-export function getPlacement(placement: PlacementTypeT): StyleObject {
+export function getPlacement(placement: PlacementType): StyleObject {
   switch (placement) {
     case PLACEMENT.topLeft:
       return {
@@ -101,13 +101,13 @@ export function getPlacement(placement: PlacementTypeT): StyleObject {
   }
 }
 
-export const Root = styled<'div', ToasterSharedStylePropsArgT>(
+export const Root = styled<'div', ToasterSharedStylePropsArg>(
   'div',
   ({
     $placement,
     $theme,
-  }: ToasterSharedStylePropsArgT & {
-    $theme: ThemeT;
+  }: ToasterSharedStylePropsArg & {
+    $theme: Theme;
   }) => {
     return {
       pointerEvents: 'none',
@@ -124,22 +124,22 @@ export const Root = styled<'div', ToasterSharedStylePropsArgT>(
   }
 );
 
-export const InnerContainer = styled<'div', SharedStylePropsArgT>(
+export const InnerContainer = styled<'div', SharedStylePropsArg>(
   'div', // eslint-disable-next-line no-empty-pattern
-  ({}: SharedStylePropsArgT & {
-    $theme: ThemeT;
+  ({}: SharedStylePropsArg & {
+    $theme: Theme;
   }) => ({})
 );
 
-export const Body = styled<'div', SharedStylePropsArgT>(
+export const Body = styled<'div', SharedStylePropsArg>(
   'div',
   ({
     $isVisible,
     $kind,
     $type,
     $theme,
-  }: SharedStylePropsArgT & {
-    $theme: ThemeT;
+  }: SharedStylePropsArg & {
+    $theme: Theme;
   }) => {
     const isInline = $type === TYPE.inline;
     return {
@@ -175,7 +175,7 @@ export const CloseIconSvg = styled<
   {
     $size: number | string;
     $color: string;
-  } & SharedStylePropsArgT
+  } & SharedStylePropsArg
 >(
   'svg',
   ({
@@ -183,10 +183,10 @@ export const CloseIconSvg = styled<
     $size,
     $color,
     $isFocusVisible,
-  }: SharedStylePropsArgT & {
+  }: SharedStylePropsArg & {
     $size: any;
     $color: string;
-    $theme: ThemeT;
+    $theme: Theme;
   }) => ({
     ...getSvgStyles({ $theme, $size, $color }),
     cursor: 'pointer',

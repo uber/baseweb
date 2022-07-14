@@ -16,9 +16,9 @@ import drawer from '../drawer/locale';
 import pagination from '../pagination/locale';
 import select from '../select/locale';
 import toast from '../toast/locale';
-import { LocaleT } from './types';
+import { Locale } from './types';
 
-const en_US: LocaleT = {
+const en_US: Locale = {
   accordion,
   breadcrumbs,
   datepicker,

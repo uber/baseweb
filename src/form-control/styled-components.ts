@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 
 import { styled } from '../styles';
-import type { StylePropsT } from './types';
+import type { StyleProps } from './types';
 
-export const Label = styled<'label', StylePropsT>('label', (props) => {
+export const Label = styled<'label', StyleProps>('label', (props) => {
   const {
     $disabled,
     $theme: { colors, typography },
@@ -25,7 +25,7 @@ export const Label = styled<'label', StylePropsT>('label', (props) => {
   };
 });
 
-export const LabelContainer = styled<'span', StylePropsT>('span', ({ $theme: { sizing } }) => ({
+export const LabelContainer = styled<'span', StyleProps>('span', ({ $theme: { sizing } }) => ({
   display: 'flex',
   width: '100%',
   marginTop: sizing.scale300,
@@ -34,7 +34,7 @@ export const LabelContainer = styled<'span', StylePropsT>('span', ({ $theme: { s
   marginLeft: 0,
 }));
 
-export const LabelEndEnhancer = styled<'span', StylePropsT>(
+export const LabelEndEnhancer = styled<'span', StyleProps>(
   'span',
   ({ $disabled, $counterError, $theme: { colors, typography } }) => ({
     ...typography.font100,
@@ -48,7 +48,7 @@ export const LabelEndEnhancer = styled<'span', StylePropsT>(
   })
 );
 
-export const Caption = styled<'div', StylePropsT>('div', (props) => {
+export const Caption = styled<'div', StyleProps>('div', (props) => {
   const {
     $error,
     $positive,
@@ -76,7 +76,7 @@ export const Caption = styled<'div', StylePropsT>('div', (props) => {
   };
 });
 
-export const ControlContainer = styled<'div', StylePropsT>('div', (props) => {
+export const ControlContainer = styled<'div', StyleProps>('div', (props) => {
   const {
     $theme: { sizing },
   } = props;

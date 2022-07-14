@@ -6,27 +6,27 @@ LICENSE file in the root directory of this source tree.
 */
 /* eslint-disable flowtype/generic-spacing */
 import * as React from 'react';
-import type { OverrideT } from '../helpers/overrides';
+import type { Override } from '../helpers/overrides';
 
-export type OverridesT = {
-  Svg?: OverrideT;
+export type IconOverrides = {
+  Svg?: Override;
 };
 
-export type SizeT = number | string;
-export type ColorT = string;
+export type Size = number | string;
+export type Color = string;
 
-export type StyledComponentArgsT = {
-  $size?: SizeT;
-  $color?: ColorT;
+export type StyledComponentArgs = {
+  $size?: Size;
+  $color?: Color;
 };
 
-export type IconPropsT = React.SVGAttributes<SVGElement> & {
+export type IconProps = React.SVGAttributes<SVGElement> & {
   children?: React.ReactNode;
   /** Size of element, will be passed to the svg width/height style. Can also be a value included in */
-  size?: SizeT;
+  size?: Size;
   /** Color of icon, will be used as svg fill */
-  color?: ColorT;
+  color?: Color;
   /** Allows you to set the SVG `<title>` label, which is used for accessibility */
   title?: string;
-  overrides?: OverridesT;
-} & StyledComponentArgsT;
+  overrides?: IconOverrides;
+} & StyledComponentArgs;

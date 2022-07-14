@@ -14,7 +14,7 @@ import {
   CategoricalColumn,
   NumericalColumn,
   StringColumn,
-  ControlRefT,
+  ControlRef,
 } from '../index';
 
 // NOTE: data-table waits for container dimension measurements before rendering. Jsdom only
@@ -40,27 +40,27 @@ if (__BROWSER__) {
   });
 }
 
-type RowDataT = [boolean, string, number, string];
+type RowData = [boolean, string, number, string];
 
 const COLUMNS = [
   BooleanColumn({
     title: 'boolean',
-    mapDataToValue: (data: RowDataT) => data[0],
+    mapDataToValue: (data: RowData) => data[0],
   }),
 
   CategoricalColumn({
     title: 'color',
-    mapDataToValue: (data: RowDataT) => data[1],
+    mapDataToValue: (data: RowData) => data[1],
   }),
 
   NumericalColumn({
     title: 'number',
-    mapDataToValue: (data: RowDataT) => data[2],
+    mapDataToValue: (data: RowData) => data[2],
   }),
 
   StringColumn({
     title: 'description',
-    mapDataToValue: (data: RowDataT) => data[3],
+    mapDataToValue: (data: RowData) => data[3],
   }),
 ];
 
@@ -89,7 +89,7 @@ const ROWS = [
 
 describe('Data Table', () => {
   it('renders expected number of rows', async () => {
-    const controlRef = React.createRef() as ControlRefT;
+    const controlRef = React.createRef() as ControlRef;
     const { container } = render(
       <TestBaseProvider>
         <div style={{ height: '800px', width: '900px' }}>

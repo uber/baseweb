@@ -5,8 +5,8 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import { styled } from '../styles';
-import type { ThemeT } from '../styles/types';
-import type { StyledComponentArgsT } from './types';
+import type { Theme } from '../styles/types';
+import type { StyledComponentArgs } from './types';
 import type { StyleObject } from 'styletron-standard';
 
 export function getSvgStyles({
@@ -14,7 +14,7 @@ export function getSvgStyles({
   $size,
   $color,
 }: {
-  $theme: ThemeT;
+  $theme: Theme;
   $size?;
   $color?;
 }): StyleObject {
@@ -47,4 +47,4 @@ export function getSvgStyles({
   };
 }
 
-export const Svg = styled<'svg', StyledComponentArgsT>('svg', getSvgStyles);
+export const Svg = styled<'svg', StyledComponentArgs>('svg', getSvgStyles);

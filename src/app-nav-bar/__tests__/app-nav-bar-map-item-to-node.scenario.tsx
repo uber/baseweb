@@ -8,12 +8,12 @@ import * as React from 'react';
 
 import { useStyletron } from '../../styles';
 
-import { AppNavBar, NavItemT, setItemActive } from '..';
+import { AppNavBar, NavItem, setItemActive } from '..';
 
 export function Scenario() {
   const [css] = useStyletron();
 
-  const [mainItems, setMainItems] = React.useState<NavItemT[]>([
+  const [mainItems, setMainItems] = React.useState<NavItem[]>([
     { label: 'main one', info: { color: 'blue' } },
     { label: 'main two', info: { color: 'red' } },
     { label: 'main three', info: { color: 'purple' } },

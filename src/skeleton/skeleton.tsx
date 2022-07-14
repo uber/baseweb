@@ -6,11 +6,11 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 import { getOverrides } from '../helpers/overrides';
-import type { SkeletonPropsT } from './types';
+import type { SkeletonProps } from './types';
 import { StyledRoot, StyledRow } from './styled-components';
 
-class Skeleton extends React.Component<SkeletonPropsT> {
-  static defaultProps: SkeletonPropsT = {
+class Skeleton extends React.Component<SkeletonProps> {
+  static defaultProps: SkeletonProps = {
     rows: 0,
     animation: false,
   };

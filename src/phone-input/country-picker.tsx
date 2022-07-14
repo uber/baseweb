@@ -10,7 +10,7 @@ import { SIZE } from './constants';
 import { SingleSelect as DefaultSelect } from '../select';
 import { getOverrides, mergeOverrides } from '../helpers/overrides';
 import defaultProps from './default-props';
-import type { CountrySelectPropsT } from './types';
+import type { CountrySelectProps } from './types';
 
 CountryPicker.defaultProps = {
   disabled: defaultProps.disabled,
@@ -24,7 +24,7 @@ CountryPicker.defaultProps = {
   required: defaultProps.required,
 };
 
-export default function CountryPicker(props: CountrySelectPropsT) {
+export default function CountryPicker(props: CountrySelectProps) {
   const { overrides } = props;
   const baseSelectOverrides = {
     Root: {

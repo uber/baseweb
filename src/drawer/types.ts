@@ -6,31 +6,31 @@ LICENSE file in the root directory of this source tree.
 */
 /* eslint-disable flowtype/generic-spacing */
 import * as React from 'react';
-import type { OverrideT } from '../helpers/overrides';
+import type { Override } from '../helpers/overrides';
 import { SIZE, CLOSE_SOURCE, ANCHOR } from './constants';
 
-export type SizeT = keyof typeof SIZE;
-export type SizePropT = SizeT | string;
+export type Size = keyof typeof SIZE;
+export type SizeProp = Size | string;
 
-export type AnchorT = keyof typeof ANCHOR;
-export type AnchorPropT = AnchorT | string;
+export type Anchor = keyof typeof ANCHOR;
+export type AnchorProp = Anchor | string;
 
-export type CloseSourceT = keyof typeof CLOSE_SOURCE;
+export type CloseSource = keyof typeof CLOSE_SOURCE;
 
-export type OverridesT = {
-  Root?: OverrideT;
-  Backdrop?: OverrideT;
-  DrawerBody?: OverrideT;
-  DrawerContainer?: OverrideT;
-  Close?: OverrideT;
+export type DrawerOverrides = {
+  Root?: Override;
+  Backdrop?: Override;
+  DrawerBody?: Override;
+  DrawerContainer?: Override;
+  Close?: Override;
 };
 
-export type ElementRefT = {
+export type ElementRef = {
   current: any | null;
 };
 
 // Props shared by all flavors of modal
-export type DrawerPropsT = {
+export type DrawerProps = {
   /** Sets whether the Drawer should be displayed by easing in and out */
   animate: boolean;
   isOpen: boolean;
@@ -50,12 +50,12 @@ export type DrawerPropsT = {
    *  (either via escape, backdrop click, etc). You can set this to
    * false if your modal has an action that the user must take before closing.*/
   closeable: boolean;
-  onClose?: (a: { closeSource?: CloseSourceT }) => unknown;
-  overrides: OverridesT;
+  onClose?: (a: { closeSource?: CloseSource }) => unknown;
+  overrides: DrawerOverrides;
   /** Controls the size of the modal (primarily width).
    * Can be a SIZE constant or css width property value. */
-  size: SizePropT;
-  anchor: AnchorPropT;
+  size: SizeProp;
+  anchor: AnchorProp;
   /** Whether the backdrop should be present */
   showBackdrop: boolean;
   /**Function to be called when backdrop is clicked */
@@ -63,22 +63,22 @@ export type DrawerPropsT = {
   onEscapeKeyDown?: (e: Event) => unknown;
 };
 
-export type DrawerPropsWithoutChildrenT = Omit<DrawerPropsT, 'children'>;
+export type DrawerPropsWithoutChildren = Omit<DrawerProps, 'children'>;
 
-export type DrawerStateT = {
+export type DrawerState = {
   isVisible: boolean;
   mounted: boolean;
   isFocusVisible: boolean;
 };
 
-export type SharedStylePropsArgT = {
+export type SharedStylePropsArg = {
   children?: React.ReactNode;
   $animating: boolean;
   $isVisible: boolean;
   $isOpen: boolean;
-  $size: SizePropT;
+  $size: SizeProp;
   $closeable: boolean;
-  $anchor: AnchorPropT;
+  $anchor: AnchorProp;
   $isFocusVisible: boolean;
   $showBackdrop: boolean;
 };

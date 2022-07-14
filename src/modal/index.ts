@@ -18,4 +18,4 @@ export {
   ModalFooter,
 } from './styled-components';
 export * from './types';
-export type { ModalLocaleT } from './locale';
+export type { ModalLocale } from './locale';

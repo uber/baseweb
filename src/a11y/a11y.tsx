@@ -14,7 +14,7 @@ import { ParagraphSmall, ParagraphXSmall } from '../typography';
 import { styled } from '../styles';
 import { ThemeContext } from '../styles/theme-provider';
 
-import type { ViolationPropsT } from './types';
+import type { ViolationProps } from './types';
 
 function validateNode(node: HTMLElement) {
   return new Promise<axe.Result[]>((resolve, reject) => {
@@ -60,7 +60,7 @@ const ViolationContainer = styled<
   };
 });
 
-function Violation(props: ViolationPropsT) {
+function Violation(props: ViolationProps) {
   const [offset, setOffset] = React.useState({ top: 0, left: 0 });
   const [anchor, setAnchor] = React.useState(null);
   const [popper, setPopper] = React.useState(null);

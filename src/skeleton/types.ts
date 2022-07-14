@@ -4,15 +4,15 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import type { OverrideT } from '../helpers/overrides';
+import type { Override } from '../helpers/overrides';
 
-export type OverridesT = {
-  Row?: OverrideT;
-  Root?: OverrideT;
+export type SkeletonOverrides = {
+  Row?: Override;
+  Root?: Override;
 };
 
-export type SkeletonPropsT = {
-  overrides?: OverridesT;
+export type SkeletonProps = {
+  overrides?: SkeletonOverrides;
   /** Defines the number of row element in a skeleton */
   rows: number;
   /** Defines if the skeleton has an animation default is false*/

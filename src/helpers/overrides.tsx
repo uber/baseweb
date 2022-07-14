@@ -10,29 +10,29 @@ import { isValidElementType } from 'react-is';
 import deepMerge from '../utils/deep-merge';
 
 // Object -> any
-export type ConfigurationOverrideFunctionT = (a: any) => any | undefined | null;
-export type ConfigurationOverrideObjectT = { [k: string]: any };
+export type ConfigurationOverrideFunction = (a: any) => any | undefined | null;
+export type ConfigurationOverrideObject = { [k: string]: any };
 
-export type ConfigurationOverrideT = ConfigurationOverrideObjectT | ConfigurationOverrideFunctionT;
+export type ConfigurationOverride = ConfigurationOverrideObject | ConfigurationOverrideFunction;
 
-export type StyleOverrideT = ConfigurationOverrideT;
+export type StyleOverride = ConfigurationOverride;
 
-export type OverrideObjectT = {
+export type OverrideObject = {
   component?: React.ComponentType<any> | null;
-  props?: ConfigurationOverrideT | null;
-  style?: ConfigurationOverrideT | null;
+  props?: ConfigurationOverride | null;
+  style?: ConfigurationOverride | null;
 };
 
-export type OverrideT =
-  | OverrideObjectT
+export type Override =
+  | OverrideObject
   | (React.ComponentType<any> & {
       component?: undefined;
       props?: undefined;
       style?: undefined;
     });
 
-export type OverridesT = {
-  [x: string]: OverrideT;
+export type Overrides = {
+  [x: string]: Override;
 };
 
 /**
@@ -58,7 +58,7 @@ export function getOverride(_override: any): any {
  * Given an override argument, returns the override props that should be passed
  * to the component when rendering it.
  */
-export function getOverrideProps<T>(_override?: OverrideT | null): T {
+export function getOverrideProps<T>(_override?: Override | null): T {
   if (_override && typeof _override === 'object') {
     if (typeof _override.props === 'object') {
       //@ts-expect-error
@@ -81,7 +81,7 @@ export function getOverrideProps<T>(_override?: OverrideT | null): T {
  * Coerces an override argument into an override object
  * (sometimes it is just an override component)
  */
-export function toObjectOverride<T>(_override?: OverrideT): OverrideObjectT {
+export function toObjectOverride<T>(_override?: Override): OverrideObject {
   if (isValidElementType(_override)) {
     return {
       component: _override as any as React.ComponentType<T>,
@@ -91,7 +91,7 @@ export function toObjectOverride<T>(_override?: OverrideT): OverrideObjectT {
   // Flow can't figure out that typeof 'function' above will
   // catch React.StatelessFunctionalComponent
   // (probably related to https://github.com/facebook/flow/issues/6666)
-  return _override || ({} as any as OverrideObjectT);
+  return _override || ({} as any as OverrideObject);
 }
 
 /**
@@ -134,7 +134,7 @@ export function getOverrides<T = { [k: string]: any }>(
  * overrides into a child component, but also accept further overrides from
  * from upstream. See `mergeOverride` below.
  */
-export function mergeOverrides(target: OverridesT = {}, source: OverridesT = {}): OverridesT {
+export function mergeOverrides(target: Overrides = {}, source: Overrides = {}): Overrides {
   const merged = Object.assign({}, target, source);
   const allIdentifiers = Object.keys(merged);
   // const allIdentifiers = Object.keys({...target, ...source});
@@ -150,7 +150,7 @@ export function mergeOverrides(target: OverridesT = {}, source: OverridesT = {})
  * - Component implementation from the source (parent) replaces target
  * - Props and styles are both deep merged
  */
-export function mergeOverride(target: OverrideObjectT, source: OverrideObjectT): OverrideObjectT {
+export function mergeOverride(target: OverrideObject, source: OverrideObject): OverrideObject {
   // Shallow merge should handle `component`
   const merged = { ...target, ...source };
   if (target.props && source.props) {
@@ -168,9 +168,9 @@ export function mergeOverride(target: OverrideObjectT, source: OverrideObjectT):
  * function that deep merges the result of each style override
  */
 export function mergeConfigurationOverrides(
-  target: ConfigurationOverrideT,
-  source: ConfigurationOverrideT
-): ConfigurationOverrideT {
+  target: ConfigurationOverride,
+  source: ConfigurationOverride
+): ConfigurationOverride {
   // Simple case of both objects
   if (typeof target === 'object' && typeof source === 'object') {
     return deepMerge({}, target, source);
@@ -191,7 +191,7 @@ export function useOverrides(
   defaults: {
     [x: string]: React.ComponentType<any>;
   },
-  overrides: OverridesT = {}
+  overrides: Overrides = {}
 ) {
   return React.useMemo(
     () =>

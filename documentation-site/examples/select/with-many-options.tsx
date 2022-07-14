@@ -1,6 +1,11 @@
 import * as React from 'react';
 import {withStyle} from 'baseui';
-import {Select, StyledDropdownListItem, Value} from 'baseui/select';
+import {
+  Option,
+  Select,
+  StyledDropdownListItem,
+  Value,
+} from 'baseui/select';
 import {
   StyledList,
   StyledEmptyState,
@@ -33,6 +38,7 @@ const FixedSizeListItem = ({
   return (
     <ListItem
       key={item.id}
+      // @ts-ignore todo: is this working? to adjust styletron props if so
       style={{
         boxSizing: 'border-box',
         ...style,
@@ -44,50 +50,52 @@ const FixedSizeListItem = ({
   );
 };
 
-const VirtualDropdown = React.forwardRef((props: any, ref) => {
-  const children = React.Children.toArray(props.children);
+const VirtualDropdown = React.forwardRef<HTMLUListElement, any>(
+  (props: any, ref) => {
+    const children = React.Children.toArray(props.children);
 
-  if (!children[0] || !children[0].props.item) {
+    if (!children[0] || !children[0].props.item) {
+      return (
+        <StyledList
+          $style={{height: EMPTY_LIST_HEIGHT + 'px'}}
+          ref={ref}
+        >
+          <StyledEmptyState {...children[0].props} />
+        </StyledList>
+      );
+    }
+
+    const height = Math.min(
+      MAX_LIST_HEIGHT,
+      children.length * LIST_ITEM_HEIGHT,
+    );
+
     return (
-      <StyledList
-        $style={{height: EMPTY_LIST_HEIGHT + 'px'}}
-        ref={ref}
-      >
-        <StyledEmptyState {...children[0].props} />
+      <StyledList ref={ref}>
+        <FixedSizeList
+          width="100%"
+          height={height}
+          itemCount={children.length}
+          itemData={children}
+          itemKey={(
+            index: number,
+            data: {props: OptionListProps}[],
+          ) => data[index].props.item.id}
+          itemSize={LIST_ITEM_HEIGHT}
+        >
+          {FixedSizeListItem}
+        </FixedSizeList>
       </StyledList>
     );
-  }
+  },
+);
 
-  const height = Math.min(
-    MAX_LIST_HEIGHT,
-    children.length * LIST_ITEM_HEIGHT,
-  );
-
-  return (
-    <StyledList ref={ref}>
-      <FixedSizeList
-        width="100%"
-        height={height}
-        itemCount={children.length}
-        itemData={children}
-        itemKey={(
-          index: number,
-          data: {props: OptionListProps}[],
-        ) => data[index].props.item.id}
-        itemSize={LIST_ITEM_HEIGHT}
-      >
-        {FixedSizeListItem}
-      </FixedSizeList>
-    </StyledList>
-  );
-});
-
-const options: {id: number; label: number}[] = [];
+const options: Option[] = [];
 
 for (let i = 0; i < 10000; i += 1) {
   options.push({
     id: i,
-    label: i,
+    label: '' + i,
   });
 }
 

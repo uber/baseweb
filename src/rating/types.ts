@@ -4,16 +4,16 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import type { ThemeT } from '../styles/types';
-import type { OverrideT } from '../helpers/overrides';
+import type { Theme } from '../styles/types';
+import type { Override } from '../helpers/overrides';
 
-export type RatingOverridesT = {
-  Root?: OverrideT;
-  Item?: OverrideT;
+export type RatingOverrides = {
+  Root?: Override;
+  Item?: Override;
 };
 
-export type StarRatingPropsT = {
-  overrides?: RatingOverridesT;
+export type StarRatingProps = {
+  overrides?: RatingOverrides;
   /** The current rating value. */
   value?: number;
   /** The total number of items to display. */
@@ -24,8 +24,8 @@ export type StarRatingPropsT = {
   size?: number;
 };
 
-export type EmoticonRatingPropsT = {
-  overrides?: RatingOverridesT;
+export type EmoticonRatingProps = {
+  overrides?: RatingOverrides;
   /** The current rating value. */
   value?: number;
   readOnly?: boolean;
@@ -34,17 +34,17 @@ export type EmoticonRatingPropsT = {
   size?: number;
 };
 
-export type RatingStateT = {
+export type RatingState = {
   previewIndex?: number;
   isFocusVisible?: boolean;
 };
 
-export type StyledRootPropsT = {
-  $theme: ThemeT;
+export type StyledRootProps = {
+  $theme: Theme;
 };
 
-export type StyledRatingItemPropsT = {
-  $theme: ThemeT;
+export type StyledRatingItemProps = {
+  $theme: Theme;
   $isActive: boolean;
   $isPartialActive: boolean;
   $isSelected: boolean;

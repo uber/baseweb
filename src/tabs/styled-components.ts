@@ -6,10 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 import { styled } from '../styles';
 import { ORIENTATION } from './constants';
-import type { SharedStylePropsArgT } from './types';
+import type { SharedStylePropsArg } from './types';
 import type { StyleObject } from 'styletron-standard';
 
-export const Root = styled<'div', SharedStylePropsArgT>('div', (props) => {
+export const Root = styled<'div', SharedStylePropsArg>('div', (props) => {
   const { $orientation } = props;
   return {
     display: 'flex',
@@ -17,7 +17,7 @@ export const Root = styled<'div', SharedStylePropsArgT>('div', (props) => {
   };
 });
 
-export const Tab = styled<'div', SharedStylePropsArgT>('div', (props) => {
+export const Tab = styled<'div', SharedStylePropsArg>('div', (props) => {
   const {
     $disabled,
     $active,
@@ -58,7 +58,7 @@ export const Tab = styled<'div', SharedStylePropsArgT>('div', (props) => {
   return style;
 });
 
-export const TabBar = styled<'div', SharedStylePropsArgT>('div', (props) => {
+export const TabBar = styled<'div', SharedStylePropsArg>('div', (props) => {
   const {
     $orientation,
     $theme: { colors, sizing },
@@ -72,7 +72,7 @@ export const TabBar = styled<'div', SharedStylePropsArgT>('div', (props) => {
   };
 });
 
-export const TabContent = styled<'div', SharedStylePropsArgT>('div', (props) => {
+export const TabContent = styled<'div', SharedStylePropsArg>('div', (props) => {
   const {
     $active,
     $theme: { sizing, typography },

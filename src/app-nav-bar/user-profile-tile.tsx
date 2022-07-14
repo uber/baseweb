@@ -14,12 +14,12 @@ import {
   StyledUserProfilePictureContainer,
   StyledUserProfileInfoContainer,
 } from './styled-components';
-import type { OverridesT, UserMenuPropsT } from './types';
+import type { AppNavBarOverrides, UserMenuProps } from './types';
 
 export default function UserProfileTile(
   props: {
-    overrides: OverridesT;
-  } & UserMenuPropsT
+    overrides: AppNavBarOverrides;
+  } & UserMenuProps
 ) {
   const { overrides = {}, username, usernameSubtitle, userImgUrl } = props;
 

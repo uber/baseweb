@@ -20,8 +20,8 @@ import { StyledEmptyState } from '../menu/styled-components';
 import { getOverrides } from '../helpers/overrides';
 import { iso2FlagEmoji } from './utils';
 
-import type { CountrySelectDropdownPropsT } from './types';
-import type { LocaleT } from '../locale';
+import type { CountrySelectDropdownProps } from './types';
+import type { Locale } from '../locale';
 import type { ComponentProps } from 'react';
 
 CountrySelectDropdown.defaultProps = {
@@ -30,7 +30,7 @@ CountrySelectDropdown.defaultProps = {
 };
 
 function CountrySelectDropdown(
-  props: CountrySelectDropdownPropsT & {
+  props: CountrySelectDropdownProps & {
     // todo(flow->ts) $forwardedRef: React.Ref<any>;
     $forwardedRef: React.Ref<HTMLElement> | ((a: null | HTMLElement) => unknown);
   }
@@ -74,7 +74,7 @@ function CountrySelectDropdown(
   if (!props.children.length) {
     return (
       <LocaleContext.Consumer>
-        {(locale: LocaleT) => (
+        {(locale: Locale) => (
           <EmptyState {...emptyStateProps}>{noResultsMsg || locale.menu.noResultsMsg}</EmptyState>
         )}
       </LocaleContext.Consumer>

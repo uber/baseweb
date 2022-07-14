@@ -12,7 +12,7 @@ import { getOverrides } from '../helpers/overrides';
 import { LocaleContext } from '../locale';
 
 import { StyledRoot } from './styled-components';
-import type { PropsT } from './types';
+import type { ButtonGroupProps } from './types';
 
 function isIndexSelected(selected, index) {
   if (!Array.isArray(selected) && typeof selected !== 'number') {
@@ -26,7 +26,7 @@ function isIndexSelected(selected, index) {
   return selected === index;
 }
 
-export default class ButtonGroup extends React.Component<PropsT> {
+export default class ButtonGroup extends React.Component<ButtonGroupProps> {
   childRefs: {
     [key: number]: React.RefObject<any>;
   } = {};

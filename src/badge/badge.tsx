@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { getOverrides } from '../helpers/overrides';
 import { StyledBadge, StyledRoot, StyledPositioner } from './styled-components';
-import type { BadgePropsT } from './types';
+import type { BadgeProps } from './types';
 import { PLACEMENT, ROLE, SHAPE, HIERARCHY } from './constants';
 import { getAnchorFromChildren } from './utils';
 
@@ -22,7 +22,7 @@ const Badge = ({
   verticalOffset,
   hidden,
   overrides = {},
-}: BadgePropsT) => {
+}: BadgeProps) => {
   const [Badge, badgeProps] = getOverrides(overrides.Badge, StyledBadge);
   const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
   const [Positioner, positionerProps] = getOverrides(overrides.Positioner, StyledPositioner);

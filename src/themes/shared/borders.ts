@@ -4,11 +4,11 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import type { BordersT } from '../types';
+import type { Borders } from '../types';
 
 // borderColor is defaulted to the light theme values.
 // Dark theme overrides the border colors.
-const borders: BordersT = {
+const borders: Borders = {
   border100: {
     borderColor: 'hsla(0, 0%, 0%, 0.04)',
     borderStyle: 'solid',

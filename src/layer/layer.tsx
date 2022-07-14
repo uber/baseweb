@@ -9,7 +9,7 @@ import * as React from 'react';
 import ReactDOM from 'react-dom';
 import { styled } from '../styles';
 import { LayersContext, Consumer } from './layers-manager';
-import type { LayerPropsT, LayerComponentPropsT, LayerStateT } from './types';
+import type { LayerProps, LayerComponentProps, LayerState } from './types';
 
 const Container = styled<
   'div',
@@ -24,7 +24,7 @@ const Container = styled<
   zIndex: $zIndex || null,
 }));
 
-class LayerComponent extends React.Component<LayerComponentPropsT, LayerStateT> {
+class LayerComponent extends React.Component<LayerComponentProps, LayerState> {
   static contextType: typeof LayersContext = LayersContext;
 
   state = { container: null };
@@ -139,7 +139,7 @@ class LayerComponent extends React.Component<LayerComponentPropsT, LayerStateT> 
   }
 }
 
-export default function Layer(props: LayerPropsT) {
+export default function Layer(props: LayerProps) {
   return (
     <Consumer>
       {({ host, zIndex }) => <LayerComponent {...props} host={host} zIndex={zIndex} />}

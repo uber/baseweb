@@ -11,7 +11,7 @@ import defaultProps from './default-props';
 import { StyledPhoneInputRoot, StyledDialCode } from './styled-components';
 import { Input as DefaultInput } from '../input';
 import { getOverrides, mergeOverrides } from '../helpers/overrides';
-import type { LitePropsT } from './types';
+import type { PhoneInputLiteProps } from './types';
 
 PhoneInputNext.defaultProps = {
   ...defaultProps,
@@ -19,7 +19,7 @@ PhoneInputNext.defaultProps = {
   clearable: true,
 };
 
-export default function PhoneInputNext(props: LitePropsT) {
+export default function PhoneInputNext(props: PhoneInputLiteProps) {
   const {
     'aria-label': ariaLabel,
     'aria-labelledby': ariaLabelledBy,

@@ -18,7 +18,7 @@ import Upload from '../../icon/upload';
 import Search from '../../icon/search';
 import { Select } from '../../select';
 
-import type { FloatingMarkerSizeT, AnchorPositionsT } from '../types';
+import type { FloatingMarkerSize, AnchorPositions } from '../types';
 
 const floatingMarkerAnchorTypes = Object.keys(FLOATING_MARKER_ANCHOR_TYPES)
   .map((key) => FLOATING_MARKER_ANCHOR_TYPES[key])
@@ -38,10 +38,10 @@ export function Scenario() {
   const markers = [];
   Object.keys(FLOATING_MARKER_SIZES)
     .map((key) => FLOATING_MARKER_SIZES[key])
-    .forEach((size: FloatingMarkerSizeT, i: number) => {
+    .forEach((size: FloatingMarkerSize, i: number) => {
       Object.keys(FLOATING_MARKER_ANCHOR_POSITIONS)
         .map((key) => FLOATING_MARKER_ANCHOR_POSITIONS[key])
-        .forEach((position: AnchorPositionsT, x: number) => {
+        .forEach((position: AnchorPositions, x: number) => {
           markers.push({
             id: `floating / ${size} / ${position}`,
             content: (

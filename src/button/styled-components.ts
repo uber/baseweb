@@ -6,11 +6,11 @@ LICENSE file in the root directory of this source tree.
 */
 import { styled } from '../styles';
 import { KIND, SIZE, SHAPE } from './constants';
-import type { SharedStylePropsT } from './types';
-import type { FontT } from '../themes/types';
+import type { SharedStyleProps } from './types';
+import type { Font } from '../themes/types';
 import type { StyleObject } from 'styletron-standard';
 
-export const BaseButton = styled<'button', SharedStylePropsT>(
+export const BaseButton = styled<'button', SharedStyleProps>(
   'button',
   ({
     $theme,
@@ -67,7 +67,7 @@ export const BaseButton = styled<'button', SharedStylePropsT>(
   })
 );
 
-export const EndEnhancer = styled<'div', SharedStylePropsT>('div', ({ $theme }) => {
+export const EndEnhancer = styled<'div', SharedStyleProps>('div', ({ $theme }) => {
   const marginDirection: string = $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
   return {
     display: 'flex',
@@ -75,7 +75,7 @@ export const EndEnhancer = styled<'div', SharedStylePropsT>('div', ({ $theme }) 
   };
 });
 
-export const StartEnhancer = styled<'div', SharedStylePropsT>('div', ({ $theme }) => {
+export const StartEnhancer = styled<'div', SharedStyleProps>('div', ({ $theme }) => {
   const marginDirection: string = $theme.direction === 'rtl' ? 'marginLeft' : 'marginRight';
   return {
     display: 'flex',
@@ -83,7 +83,7 @@ export const StartEnhancer = styled<'div', SharedStylePropsT>('div', ({ $theme }
   };
 });
 
-export const LoadingSpinnerContainer = styled<'div', SharedStylePropsT>(
+export const LoadingSpinnerContainer = styled<'div', SharedStyleProps>(
   'div',
   ({ $theme, $size }) => {
     // we don't have a theming value for this
@@ -104,7 +104,7 @@ export const LoadingSpinnerContainer = styled<'div', SharedStylePropsT>(
   }
 );
 
-export const LoadingSpinner = styled<'span', SharedStylePropsT>(
+export const LoadingSpinner = styled<'span', SharedStyleProps>(
   'span',
   ({ $theme, $kind, $disabled, $size }) => {
     const { foreground, background } = getLoadingSpinnerColors({
@@ -210,7 +210,7 @@ function getBorderRadiiStyles({ $theme, $size, $shape }) {
   };
 }
 
-function getFontStyles({ $theme, $size }): FontT {
+function getFontStyles({ $theme, $size }): Font {
   switch ($size) {
     case SIZE.mini:
       return $theme.typography.font150;
@@ -278,7 +278,7 @@ function getPaddingStyles({ $theme, $size, $shape }) {
   }
 }
 
-type ColorStylesT = {
+type ColorStyles = {
   color?: string;
   backgroundColor?: string;
   ':hover'?: {
@@ -302,7 +302,7 @@ function getColorStyles({
   $isSelected,
   $kind,
   $disabled,
-}): ColorStylesT {
+}): ColorStyles {
   if ($colors) {
     return {
       color: $colors.color,

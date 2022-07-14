@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { styled } from '../styles';
 import { getOverrides } from '../helpers/overrides';
-import type { LayersManagerPropsT, LayersManagerStateT, LayersContextT } from './types';
+import type { LayersManagerProps, LayersManagerState, LayersContextProps } from './types';
 import { initFocusVisible } from '../utils/focusVisible';
 
 const StyledAppContainer = styled('div', {});
@@ -21,7 +21,7 @@ function defaultEventHandlerFn() {
   }
 }
 
-export const LayersContext = React.createContext<LayersContextT>({
+export const LayersContext = React.createContext<LayersContextProps>({
   addEscapeHandler: defaultEventHandlerFn,
   removeEscapeHandler: defaultEventHandlerFn,
   addDocClickHandler: defaultEventHandlerFn,
@@ -32,15 +32,12 @@ export const LayersContext = React.createContext<LayersContextT>({
 export const Provider = LayersContext.Provider;
 export const Consumer = LayersContext.Consumer;
 
-export default class LayersManager extends React.Component<
-  LayersManagerPropsT,
-  LayersManagerStateT
-> {
+export default class LayersManager extends React.Component<LayersManagerProps, LayersManagerState> {
   host = React.createRef<HTMLElement>();
 
   containerRef = React.createRef<any>();
 
-  constructor(props: LayersManagerPropsT) {
+  constructor(props: LayersManagerProps) {
     super(props);
     this.state = { escapeKeyHandlers: [], docClickHandlers: [] };
   }

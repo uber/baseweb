@@ -6,11 +6,11 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Block, StyledBlockPropsT, BlockPropsT } from '../block';
+import { Block, StyledBlockProps, BlockProps } from '../block';
 
 interface AspectRatioBoxBodyComponentType<D extends React.ElementType> {
   <C extends React.ElementType = D>(
-    props: BlockPropsT<C> & Omit<StyledBlockPropsT & React.ComponentProps<C>, keyof BlockPropsT>
+    props: BlockProps<C> & Omit<StyledBlockProps & React.ComponentProps<C>, keyof BlockProps>
   ): JSX.Element;
   displayName?: string;
 }

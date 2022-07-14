@@ -9,7 +9,7 @@ import { Spinner } from '../spinner';
 import { styled, withStyle } from '../styles';
 
 import { PLACEMENT } from './constants';
-import type { PlacementT } from './types';
+import type { Placement } from './types';
 import type { StyleObject } from 'styletron-standard';
 
 export const StyledRoot = styled('div', ({ $theme }) => {
@@ -138,7 +138,7 @@ export const StyledPlacementContainer = styled<
   'div',
   {
     $animating: boolean;
-    $placement: PlacementT;
+    $placement: Placement;
     $translateHeight: number;
   }
 >('div', ({ $animating, $placement, $translateHeight, $theme }) => {

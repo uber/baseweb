@@ -5,23 +5,19 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
-import type { OverrideT } from '../helpers/overrides';
+import type { Override } from '../helpers/overrides';
 import { STATE_CHANGE_TYPE } from './constants';
 
 const stateChangeType = Object.freeze(STATE_CHANGE_TYPE);
-export type StateTypeT = typeof stateChangeType[keyof typeof stateChangeType];
+export type StateType = typeof stateChangeType[keyof typeof stateChangeType];
 
-export type StateT = {
+export type State = {
   activeItemId?: string;
 };
 
-export type StateReducerT = (
-  stateType: StateTypeT,
-  nextState: StateT,
-  currentState: StateT
-) => StateT;
+export type StateReducer = (stateType: StateType, nextState: State, currentState: State) => State;
 
-export type SharedPropsT = {
+export type SharedProps = {
   /** Defines if the nav item is currently selected */
   $active: boolean;
   /** Defines the nesting level of the rendered nav item */
@@ -32,7 +28,7 @@ export type SharedPropsT = {
   $disabled: boolean;
 };
 
-export type NavPropsT = {
+export type NavProps = {
   /** Defines the current active itemId. Used for the default calculation of the $active prop */
   activeItemId: string;
   /**
@@ -45,16 +41,16 @@ export type NavPropsT = {
   /** Used as a performance optimization if many nav items are rendered. Function provided to
    *  NavItem component's React.memo call.
    */
-  itemMemoizationComparator?: (b: NavItemPropsT, a: NavItemPropsT) => boolean;
+  itemMemoizationComparator?: (b: NavItemProps, a: NavItemProps) => boolean;
   /** onChange handler that is called when a nav item is selected */
   onChange?: (a: { item: Item; event: Event | KeyboardEvent }) => unknown;
   /** Overrides for the internal elements and components */
   overrides: {
-    Root?: OverrideT;
-    NavItemContainer?: OverrideT;
-    NavLink?: OverrideT;
-    NavItem?: OverrideT;
-    SubNavContainer?: OverrideT;
+    Root?: Override;
+    NavItemContainer?: Override;
+    NavLink?: Override;
+    NavItem?: Override;
+    SubNavContainer?: Override;
   };
   /** Optional transform function that is called for each Item */
   mapItem: ((item: Item) => Item) | undefined | null;
@@ -76,30 +72,30 @@ export type Item = {
   disabled?: boolean;
 };
 
-export type NavItemPropsT = SharedPropsT & {
+export type NavItemProps = SharedProps & {
   item: Item;
   /** Used as a performance optimization if many nav items are rendered. Function provided to
    *  NavItem component's React.memo call.
    */
-  itemMemoizationComparator?: (b: NavItemPropsT, a: NavItemPropsT) => boolean;
+  itemMemoizationComparator?: (b: NavItemProps, a: NavItemProps) => boolean;
   onSelect?: (a: { item: Item; event: Event | KeyboardEvent }) => unknown;
   overrides: {
-    NavLink?: OverrideT;
-    NavItem?: OverrideT;
+    NavLink?: Override;
+    NavItem?: Override;
   };
 };
 
-export type StatefulContainerPropsT = {
-  children: (a: NavPropsT) => React.ReactNode;
+export type StatefulContainerProps = {
+  children: (a: NavProps) => React.ReactNode;
   /** Initial state of an uncontrolled component. */
-  initialState?: StateT;
+  initialState?: State;
   /** A state change handler. Used to override default state transitions. */
-  stateReducer?: StateReducerT;
+  stateReducer?: StateReducer;
   onChange?: (a: { item: Item; event: Event | KeyboardEvent }) => unknown;
 };
 
-type ExcludeT = {
-  children: (a: NavPropsT) => React.ReactNode;
+type Exclude = {
+  children: (a: NavProps) => React.ReactNode;
 };
 
-export type StatefulNavPropsT = Omit<StatefulContainerPropsT, keyof ExcludeT>;
+export type StatefulNavProps = Omit<StatefulContainerProps, keyof Exclude>;

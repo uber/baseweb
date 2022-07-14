@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 import { styled, hexToRgb, withWrapper } from '../styles';
-import type { SharedPropsT } from './types';
+import type { SharedProps } from './types';
 
-export const StyledRoot = styled<'nav', SharedPropsT>('nav', (props) => {
+export const StyledRoot = styled<'nav', SharedProps>('nav', (props) => {
   const {
     $theme: { colors, typography },
   } = props;
@@ -50,7 +50,7 @@ export const StyledNavLink = styled<
     : { outline: 'none' },
 }));
 
-export const StyledNavItemElement = styled<'div', SharedPropsT>('div', (props) => {
+export const StyledNavItemElement = styled<'div', SharedProps>('div', (props) => {
   const {
     $active,
     $selectable,

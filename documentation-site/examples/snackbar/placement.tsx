@@ -9,11 +9,11 @@ import {
   SnackbarProvider,
   useSnackbar,
   PLACEMENT,
-  PlacementT,
+  Placement,
 } from 'baseui/snackbar';
 
-const options = (Object.keys(PLACEMENT) as Array<PlacementT>).map(
-  key => {
+const options = (Object.keys(PLACEMENT) as Array<Placement>).map(
+  (key) => {
     return {label: PLACEMENT[key], id: PLACEMENT[key]};
   },
 );
@@ -31,7 +31,7 @@ function Child({placement}: {placement: string}) {
 
 export default function Parent() {
   const [css] = useStyletron();
-  const [placement, setPlacement] = React.useState<PlacementT>(
+  const [placement, setPlacement] = React.useState<Placement>(
     PLACEMENT.top,
   );
 
@@ -42,7 +42,7 @@ export default function Parent() {
           <Select
             options={options}
             onChange={({value}) =>
-              setPlacement(value[0].id as PlacementT)
+              setPlacement(value[0].id as Placement)
             }
             value={[{id: placement}]}
             clearable={false}

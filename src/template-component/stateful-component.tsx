@@ -7,9 +7,9 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import StatefulContainer from './stateful-container';
 import Component from './component';
-import type { StatefulComponentPropsT } from './types';
+import type { StatefulComponentProps } from './types';
 
-function StatefulComponent(props: StatefulComponentPropsT) {
+function StatefulComponent(props: StatefulComponentProps) {
   const { children, ...restProps } = props;
   return (
     <StatefulContainer {...restProps}>

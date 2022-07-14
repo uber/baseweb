@@ -23,7 +23,7 @@ import {
   StyledDesktopMenuContainer,
   StyledDesktopMenu,
 } from './styled-components';
-import type { AppNavBarPropsT } from './types';
+import type { AppNavBarProps } from './types';
 import { defaultMapItemToNode, mapItemsActive } from './utils';
 
 function MainMenuItem(props) {
@@ -106,7 +106,7 @@ function SecondaryMenu(props) {
   );
 }
 
-export default function AppNavBar(props: AppNavBarPropsT) {
+export default function AppNavBar(props: AppNavBarProps) {
   const [css, theme] = useStyletron();
   const {
     title,

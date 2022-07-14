@@ -5,16 +5,16 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
-import type { OverrideT } from '../helpers/overrides';
+import type { Override } from '../helpers/overrides';
 import { STATE_CHANGE_TYPE, ADJOINED, SIZE, ENHANCER_POSITION } from './constants';
 
 import type { SyntheticEvent, ChangeEvent, FocusEvent, KeyboardEvent } from 'react';
 
-export type AdjoinedT = keyof typeof ADJOINED;
-export type SizeT = keyof typeof SIZE;
-export type StateTypeT = keyof typeof STATE_CHANGE_TYPE;
+export type Adjoined = keyof typeof ADJOINED;
+export type Size = keyof typeof SIZE;
+export type StateType = keyof typeof STATE_CHANGE_TYPE;
 
-export type InternalStateT = {
+export type InternalState = {
   /** Renders UI in 'focus' state */
   isFocused?: boolean;
   /** Renders input in 'masked' state if type equals "password" */
@@ -25,17 +25,13 @@ export type InternalStateT = {
   isFocusVisibleForMaskToggle?: boolean;
 };
 
-export type StateT = {
+export type State = {
   value?: string | number;
 };
 
-export type StateReducerT = (
-  stateType: StateTypeT,
-  nextState: StateT,
-  currentState: StateT
-) => StateT;
+export type StateReducer = (stateType: StateType, nextState: State, currentState: State) => State;
 
-export type SharedPropsT = {
+export type SharedProps = {
   /** Renders UI in 'focus' state */
   $isFocused?: boolean;
   /** Renders UI in 'readOnly' state */
@@ -47,9 +43,9 @@ export type SharedPropsT = {
   /** Renders UI in 'positive' state */
   $positive?: boolean;
   /** Defines styles for inputs that are grouped with other controls. */
-  $adjoined: AdjoinedT;
+  $adjoined: Adjoined;
   /** Renders UI in provided size. */
-  $size: SizeT;
+  $size: Size;
   /** Renders UI in 'required' state */
   $required?: boolean;
   $position?: keyof typeof ENHANCER_POSITION;
@@ -57,25 +53,25 @@ export type SharedPropsT = {
   $hasIconTrailing?: boolean;
 };
 
-export type BaseInputComponentsT = {
-  InputContainer?: OverrideT;
-  Input?: OverrideT;
-  Before?: OverrideT;
-  After?: OverrideT;
-  ClearIcon?: OverrideT;
-  ClearIconContainer?: OverrideT;
-  MaskToggleButton?: OverrideT;
-  MaskToggleShowIcon?: OverrideT;
-  MaskToggleHideIcon?: OverrideT;
+export type BaseInputComponents = {
+  InputContainer?: Override;
+  Input?: Override;
+  Before?: Override;
+  After?: Override;
+  ClearIcon?: Override;
+  ClearIconContainer?: Override;
+  MaskToggleButton?: Override;
+  MaskToggleShowIcon?: Override;
+  MaskToggleHideIcon?: Override;
 };
 
-export type InputComponentsT = {
-  Root?: OverrideT;
-  StartEnhancer?: OverrideT;
-  EndEnhancer?: OverrideT;
-} & BaseInputComponentsT;
+export type InputComponents = {
+  Root?: Override;
+  StartEnhancer?: Override;
+  EndEnhancer?: Override;
+} & BaseInputComponents;
 
-export type BaseInputPropsT<T> = {
+export type BaseInputProps<T> = {
   'aria-activedescendant'?: string;
   'aria-autocomplete'?: string;
   'aria-controls'?: string;
@@ -90,7 +86,7 @@ export type BaseInputPropsT<T> = {
   /** Sets aria-describedby attribute. */
   'aria-describedby'?: string;
   /** Defines styles for inputs that are grouped with other controls. */
-  adjoined?: AdjoinedT;
+  adjoined?: Adjoined;
   /** Determines if browser should provide value suggestions. */
   autoComplete?: string;
   /** If true the input will be focused on the first mount. */
@@ -123,14 +119,14 @@ export type BaseInputPropsT<T> = {
   clearOnEscape?: boolean;
   maxLength?: number;
   onClear?: (e: SyntheticEvent<T>) => void;
-  overrides?: BaseInputComponentsT;
+  overrides?: BaseInputComponents;
   placeholder?: string;
   /** Renders component in 'required' state. */
   required?: boolean;
   /** Input role attribute. */
   role?: string;
   /** Renders component in provided size. */
-  size?: SizeT;
+  size?: Size;
   /** Input type attribute. */
   type?: string;
   /** Input value attribute. */
@@ -146,58 +142,58 @@ export type BaseInputPropsT<T> = {
   readOnly?: boolean;
 };
 
-export type InputPropsT = {
-  overrides?: InputComponentsT;
+export type InputProps = {
+  overrides?: InputComponents;
   /** An input helper rendered before and attached to the input field. */
-  startEnhancer?: React.ReactNode | ((props: SharedPropsT) => React.ReactNode);
+  startEnhancer?: React.ReactNode | ((props: SharedProps) => React.ReactNode);
   /** An input helper rendered after and attached to the input field. */
-  endEnhancer?: React.ReactNode | ((props: SharedPropsT) => React.ReactNode);
+  endEnhancer?: React.ReactNode | ((props: SharedProps) => React.ReactNode);
   /** Handler for the `focus` event. */
   onFocus?: (e: FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   /** Handler for the `blur` event. */
   onBlur?: (e: FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
-} & BaseInputPropsT<HTMLInputElement | HTMLTextAreaElement>;
+} & BaseInputProps<HTMLInputElement | HTMLTextAreaElement>;
 
-export type MaskedInputPropsT = Partial<
+export type MaskedInputProps = Partial<
   {
     /** See mask examples here: https://github.com/sanniassin/react-input-mask */
     mask?: string;
     /** Character to render for unfilled mask element. */
     maskChar?: string;
-  } & InputPropsT
+  } & InputProps
 >;
 
-export type StatefulContainerChildrenPropsT<T> = {
+export type StatefulContainerChildrenProps<T> = {
   onChange: (e: ChangeEvent<T>) => void;
   /** If true, adds a clear value icon button to the end of the input container. */
   clearable?: boolean;
-} & StatefulInputPropsT;
+} & StatefulInputProps;
 
-export type StatefulContainerPropsT<T> = {
-  children: (props: StatefulContainerChildrenPropsT<T>) => React.ReactNode;
+export type StatefulContainerProps<T> = {
+  children: (props: StatefulContainerChildrenProps<T>) => React.ReactNode;
   /** Initial state of an uncontrolled input component. */
-  initialState?: StateT;
+  initialState?: State;
   /** A state change handler. Used to override default state transitions. */
-  stateReducer?: StateReducerT;
+  stateReducer?: StateReducer;
   onChange?: (e: ChangeEvent<T>) => void;
   /** If true, adds a clear value icon button to the end of the input container. */
   clearable?: boolean;
 } & {
-  overrides?: InputComponentsT;
-} & Omit<InputPropsT, 'overrides' | 'children'>;
+  overrides?: InputComponents;
+} & Omit<InputProps, 'overrides' | 'children'>;
 
-type OmitPropsT = {
-  overrides: InputComponentsT;
+type OmitProps = {
+  overrides: InputComponents;
   children:
-    | ((props: StatefulContainerChildrenPropsT<HTMLInputElement>) => React.ReactNode)
+    | ((props: StatefulContainerChildrenProps<HTMLInputElement>) => React.ReactNode)
     | undefined
     | null;
 };
 
-type FullStPropsT = InputPropsT & StatefulContainerPropsT<HTMLInputElement | HTMLTextAreaElement>;
+type FullStProps = InputProps & StatefulContainerProps<HTMLInputElement | HTMLTextAreaElement>;
 
-export type StInputPropsDiffT = Omit<FullStPropsT, 'overrides' | 'children'>;
+export type StInputPropsDiff = Omit<FullStProps, 'overrides' | 'children'>;
 
-export type StatefulInputPropsT = {
-  overrides?: InputComponentsT;
-} & StInputPropsDiffT;
+export type StatefulInputProps = {
+  overrides?: InputComponents;
+} & StInputPropsDiff;

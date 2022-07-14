@@ -8,18 +8,18 @@ import * as React from 'react';
 
 import { StatefulDataTable, BooleanColumn, CategoricalColumn } from '..';
 
-type RowDataT = [boolean, string];
+type RowData = [boolean, string];
 
 export function Scenario() {
   const columns = [
     BooleanColumn({
       title: 'first',
-      mapDataToValue: (data: RowDataT) => data[0],
+      mapDataToValue: (data: RowData) => data[0],
     }),
 
     CategoricalColumn({
       title: 'second',
-      mapDataToValue: (data: RowDataT) => data[1],
+      mapDataToValue: (data: RowData) => data[1],
     }),
   ];
 

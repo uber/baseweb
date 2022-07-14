@@ -14,9 +14,9 @@ import {
   getCharMatchId,
   defaultGetId as getId,
 } from '../utils';
-import type { TreeNodeT } from '../types';
+import type { TreeNodeData } from '../types';
 
-const data: TreeNodeT[] = [
+const data: TreeNodeData[] = [
   {
     id: 1,
     label: 'Label 1',

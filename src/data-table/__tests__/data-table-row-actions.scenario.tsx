@@ -14,37 +14,37 @@ import { StatefulDataTable } from '../stateful-data-table';
 
 import { ArrowUp } from '../../icon';
 
-type RowDataT = [string, string, number, number, number, number];
+type RowData = [string, string, number, number, number, number];
 
 const columns = [
-  StringColumn({ title: 'Movie', mapDataToValue: (data: RowDataT) => data[0] }),
+  StringColumn({ title: 'Movie', mapDataToValue: (data: RowData) => data[0] }),
   CategoricalColumn({
     title: 'Genre',
-    mapDataToValue: (data: RowDataT) => data[1],
+    mapDataToValue: (data: RowData) => data[1],
   }),
 
   NumericalColumn({
     title: 'Production Budget (millions)',
     format: NUMERICAL_FORMATS.ACCOUNTING,
-    mapDataToValue: (data: RowDataT) => data[2],
+    mapDataToValue: (data: RowData) => data[2],
   }),
 
   NumericalColumn({
     title: 'Box Office (millions)',
     format: NUMERICAL_FORMATS.ACCOUNTING,
-    mapDataToValue: (data: RowDataT) => data[3],
+    mapDataToValue: (data: RowData) => data[3],
   }),
 
   NumericalColumn({
     title: 'ROI',
     precision: 2,
-    mapDataToValue: (data: RowDataT) => data[4],
+    mapDataToValue: (data: RowData) => data[4],
   }),
 
   NumericalColumn({
     title: 'Rating IMDB',
     precision: 2,
-    mapDataToValue: (data: RowDataT) => data[5],
+    mapDataToValue: (data: RowData) => data[5],
   }),
 ];
 

@@ -7,13 +7,13 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import { SIZE, SHAPE, KIND } from '../button';
-import type { OverrideT } from '../helpers/overrides';
+import type { Override } from '../helpers/overrides';
 import { MODE, STATE_CHANGE_TYPE } from './constants';
 
 import type { SyntheticEvent } from 'react';
 
 // button-group
-export type PropsT = {
+export type ButtonGroupProps = {
   /** Accessible label. */
   ariaLabel?: string;
   'aria-label'?: string;
@@ -32,8 +32,8 @@ export type PropsT = {
    * own click handler, the local handler will be called first, then
    * this handler will trigger.
    */
-  onClick?: ClickHandlerT;
-  overrides?: OverridesT;
+  onClick?: ClickHandler;
+  overrides?: ButtonGroupOverrides;
   /**
    * Index or array of indices of the selected Button(s).
    * Primarily for use with controlled components with a `mode` prop defined.
@@ -47,41 +47,41 @@ export type PropsT = {
   kind?: typeof KIND[keyof typeof KIND];
 };
 
-type OverridesT = {
-  Root?: OverrideT;
+type ButtonGroupOverrides = {
+  Root?: Override;
 };
 
 // stateful-group
 // eslint-disable-next-line flowtype/generic-spacing
-export type StatefulPropsT = Omit<
+export type StatefulButtonGroupProps = Omit<
   {
     initialState?: {
       selected: number | Array<number>;
     };
-    stateReducer?: StateReducerT;
-  } & PropsT,
+    stateReducer?: StateReducer;
+  } & ButtonGroupProps,
   'selected'
 >;
 
 // stateful-container
-export type StatefulContainerPropsT = {
+export type StatefulContainerProps = {
   children: (
     props: {
-      onClick: ClickHandlerT;
+      onClick: ClickHandler;
       selected: number | Array<number>;
-    } & Omit<PropsT, 'children'>
+    } & Omit<ButtonGroupProps, 'children'>
   ) => React.ReactNode;
-} & Omit<StatefulPropsT, 'children'>;
+} & Omit<StatefulButtonGroupProps, 'children'>;
 
-export type StateT = {
+export type State = {
   selected: Array<number>;
 };
 
-export type StateReducerT = (
+export type StateReducer = (
   stateType: typeof STATE_CHANGE_TYPE[keyof typeof STATE_CHANGE_TYPE],
-  nextState: StateT,
-  currentState: StateT
-) => StateT;
+  nextState: State,
+  currentState: State
+) => State;
 
 // general
-type ClickHandlerT = (event: SyntheticEvent<HTMLButtonElement>, index: number) => unknown;
+type ClickHandler = (event: SyntheticEvent<HTMLButtonElement>, index: number) => unknown;

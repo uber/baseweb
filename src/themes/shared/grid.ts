@@ -4,9 +4,9 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import type { GridT } from '../types';
+import type { Grid } from '../types';
 
-const grid: GridT = {
+const grid: Grid = {
   columns: [4, 8, 12],
   gutters: [16, 36, 36],
   margins: [16, 36, 64],

@@ -27,4 +27,4 @@ export {
 } from './styled-components';
 // Flow
 export * from './types';
-export type { MenuLocaleT } from './locale';
+export type { MenuLocale } from './locale';

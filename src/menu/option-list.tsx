@@ -12,10 +12,10 @@ import { getOverrides } from '../helpers/overrides';
 import { OPTION_LIST_SIZE } from './constants';
 import MaybeChildMenu from './maybe-child-menu';
 import { StyledListItem, StyledListItemAnchor } from './styled-components';
-import type { OptionListPropsT } from './types';
+import type { OptionListProps } from './types';
 
 function OptionList(
-  props: OptionListPropsT,
+  props: OptionListProps,
   ref?:
     | {
         current: null | HTMLElement;
@@ -112,7 +112,7 @@ function compare(prevProps, nextProps) {
   );
 }
 
-const forwarded = React.forwardRef<HTMLElement, OptionListPropsT>(OptionList);
+const forwarded = React.forwardRef<HTMLElement, OptionListProps>(OptionList);
 forwarded.displayName = 'OptionList';
 
-export default React.memo<OptionListPropsT>(forwarded, compare);
+export default React.memo<OptionListProps>(forwarded, compare);

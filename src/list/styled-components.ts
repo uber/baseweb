@@ -7,15 +7,15 @@ LICENSE file in the root directory of this source tree.
 import { styled, expandBorderStyles } from '../styles';
 
 import type {
-  StyledRootPropsT,
-  StyledContentPropsT,
-  StyledArtworkContainerPropsT,
-  StyledHeadingHeadingPropsT,
+  StyledRootProps,
+  StyledContentProps,
+  StyledArtworkContainerProps,
+  StyledHeadingHeadingProps,
 } from './types';
 import { artworkSizeToValue } from './utils';
 import { SHAPE } from './constants';
 
-export const StyledRoot = styled<'li', StyledRootPropsT>('li', ({ $theme, $shape }) => {
+export const StyledRoot = styled<'li', StyledRootProps>('li', ({ $theme, $shape }) => {
   return {
     alignItems: 'center',
     backgroundColor: $theme.colors.backgroundPrimary,
@@ -30,7 +30,7 @@ export const StyledRoot = styled<'li', StyledRootPropsT>('li', ({ $theme, $shape
   };
 });
 
-export const StyledContent = styled<'div', StyledContentPropsT>(
+export const StyledContent = styled<'div', StyledContentProps>(
   'div',
   ({ $mLeft, $sublist, $theme }) => {
     return {
@@ -61,7 +61,7 @@ export const StyledEndEnhancerContainer = styled('div', {
   display: 'flex',
 });
 
-export const StyledArtworkContainer = styled<'div', StyledArtworkContainerPropsT>(
+export const StyledArtworkContainer = styled<'div', StyledArtworkContainerProps>(
   'div',
   ({ $artworkSize, $sublist, $theme }) => {
     let sizeValue: number =
@@ -114,7 +114,7 @@ export const StyledLabelSublistContent = styled('p', ({ $theme }) => {
   };
 });
 
-export const StyledHeadingRoot = styled<'div', StyledRootPropsT>('div', ({ $theme }) => {
+export const StyledHeadingRoot = styled<'div', StyledRootProps>('div', ({ $theme }) => {
   return {
     display: 'flex',
     alignItems: 'center',
@@ -150,7 +150,7 @@ export const StyledHeadingContentRow = styled('div', {
   width: '100%',
 });
 
-export const StyledHeadingMainHeading = styled<'p', StyledHeadingHeadingPropsT>(
+export const StyledHeadingMainHeading = styled<'p', StyledHeadingHeadingProps>(
   'p',
   ({ $maxLines = 1, $theme }) => {
     return {
@@ -167,7 +167,7 @@ export const StyledHeadingMainHeading = styled<'p', StyledHeadingHeadingPropsT>(
   }
 );
 
-export const StyledHeadingSubHeading = styled<'p', StyledHeadingHeadingPropsT>(
+export const StyledHeadingSubHeading = styled<'p', StyledHeadingHeadingProps>(
   'p',
   ({ $maxLines = 1, $theme }) => {
     return {

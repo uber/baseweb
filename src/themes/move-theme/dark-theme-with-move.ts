@@ -9,9 +9,9 @@ import { DarkTheme } from '../dark-theme/dark-theme';
 import { typography as moveTypography, fontTokens as moveFontTokens } from './typography';
 import getTypography from '../shared/typography';
 
-import type { ThemeT } from '../../styles/types';
+import type { Theme } from '../../styles/types';
 
-export const DarkThemeMove: ThemeT = deepMerge({}, DarkTheme, {
+export const DarkThemeMove: Theme = deepMerge({}, DarkTheme, {
   name: 'dark-theme-with-move',
   // For the move theme we need to override typography values
   // in the default darkTheme with a font values that reference

@@ -4,13 +4,13 @@ import {useStyletron} from 'baseui';
 import {
   AppNavBar,
   setItemActive,
-  NavItemT,
+  NavItem,
 } from 'baseui/app-nav-bar';
 
 export default function Example() {
   const [css] = useStyletron();
 
-  const [mainItems, setMainItems] = React.useState<NavItemT[]>([
+  const [mainItems, setMainItems] = React.useState<NavItem[]>([
     {label: 'main one', info: {color: 'blue'}},
     {label: 'main two', info: {color: 'red'}},
   ]);
@@ -20,8 +20,8 @@ export default function Example() {
     {label: 'user two', info: {color: 'yellow'}},
   ];
 
-  function handleMainItemSelect(item: NavItemT) {
-    setMainItems(prev => setItemActive(prev, item));
+  function handleMainItemSelect(item: NavItem) {
+    setMainItems((prev) => setItemActive(prev, item));
   }
 
   return (
@@ -29,7 +29,7 @@ export default function Example() {
       title="Title"
       mainItems={mainItems}
       userItems={userItems}
-      mapItemToNode={item => (
+      mapItemToNode={(item) => (
         <div
           className={css({
             border: `dashed 2px ${

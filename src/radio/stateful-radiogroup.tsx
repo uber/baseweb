@@ -9,16 +9,16 @@ import * as React from 'react';
 import StatefulContainer from './stateful-radiogroup-container';
 // eslint-disable-next-line import/no-named-default
 import RadioGroup from './radiogroup';
-import type { PropsT, StatefulRadioGroupPropsT } from './types';
+import type { Props, StatefulRadioGroupProps } from './types';
 // Styled elements
 
 const StatefulRadioGroup = function (
-  props: StatefulRadioGroupPropsT & Omit<PropsT, keyof StatefulRadioGroupPropsT>
+  props: StatefulRadioGroupProps & Omit<Props, keyof StatefulRadioGroupProps>
 ) {
   const { children, ...restProps } = props;
   return (
     <StatefulContainer {...restProps}>
-      {(childrenProps: PropsT) => <RadioGroup {...childrenProps}>{children}</RadioGroup>}
+      {(childrenProps: Props) => <RadioGroup {...childrenProps}>{children}</RadioGroup>}
     </StatefulContainer>
   );
 };

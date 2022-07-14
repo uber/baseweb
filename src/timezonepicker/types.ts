@@ -6,19 +6,19 @@ LICENSE file in the root directory of this source tree.
 */
 /* eslint-disable flowtype/generic-spacing */
 import * as React from 'react';
-import type { OverrideT } from '../helpers/overrides';
+import type { Override } from '../helpers/overrides';
 
-import type { OptionT } from '../select';
-import type { SizeT } from '../input';
+import type { Option } from '../select';
+import type { Size } from '../input';
 
-export type TimezonePickerStateT = {
+export type TimezonePickerState = {
   /** List of timezones from the IANA database. */
-  timezones: TimezoneT[];
+  timezones: Timezone[];
   /** Value provided to the select component. */
   value: string | undefined | null;
 };
 
-export type TimezoneT = {
+export type Timezone = {
   id: string;
   label: string;
   /**
@@ -28,7 +28,7 @@ export type TimezoneT = {
    */
   offset: number;
 };
-export type TimezonePickerPropsT = {
+export type TimezonePickerProps = {
   /**
    * If not provided, defaults to new Date(). Important to note that the timezone picker only
    * displays options related to the provided date. Take Pacific Time for example. On March 9th,
@@ -42,11 +42,11 @@ export type TimezonePickerPropsT = {
    * 'America/Los_Angeles' to 'Pacific Time'.
    */
   // todo(flow->ts): to double-check if change is correct - previously return type was React.ReactNode, but given implementation - only string looks expected to work correctly
-  mapLabels?: (option: OptionT) => string;
+  mapLabels?: (option: Option) => string;
   /** Callback for when the timezone selection changes. */
-  onChange?: (value?: TimezoneT | null) => unknown;
+  onChange?: (value?: Timezone | null) => unknown;
   overrides?: {
-    Select?: OverrideT;
+    Select?: Override;
   };
   /**
    * Optional value that can be provided to fully control the component. If not provided,
@@ -56,6 +56,6 @@ export type TimezonePickerPropsT = {
   disabled?: boolean;
   error?: boolean;
   positive?: boolean;
-  size?: SizeT;
+  size?: Size;
   includeAbbreviations?: boolean;
 };

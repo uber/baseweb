@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import { styled } from '../styles';
 import { getBodyStyles, getArrowStyles, getInnerStyles } from '../popover/styled-components';
 import { getEndPosition } from '../popover/utils';
-import type { SharedStylePropsArgT } from '../popover';
+import type { SharedStylePropsArg } from '../popover';
 
 /**
  * We want to reuse the default Popover styles and add our overrides
@@ -20,7 +20,7 @@ import type { SharedStylePropsArgT } from '../popover';
  * We could create our own withStyleDeep that also takes the $style
  * prop into account
  */
-export const Body = styled<'div', SharedStylePropsArgT>('div', (props) => ({
+export const Body = styled<'div', SharedStylePropsArg>('div', (props) => ({
   ...getBodyStyles(props),
   backgroundColor: props.$theme.colors.tooltipBackground,
   borderTopLeftRadius: props.$theme.borders.radius300,
@@ -34,7 +34,7 @@ export const Body = styled<'div', SharedStylePropsArgT>('div', (props) => ({
   transform: getEndPosition(props.$popoverOffset),
 }));
 
-export const Inner = styled<'div', SharedStylePropsArgT>('div', (props) => ({
+export const Inner = styled<'div', SharedStylePropsArg>('div', (props) => ({
   ...getInnerStyles(props),
   backgroundColor: props.$theme.colors.tooltipBackground,
   borderTopLeftRadius: props.$theme.borders.radius300,
@@ -49,7 +49,7 @@ export const Inner = styled<'div', SharedStylePropsArgT>('div', (props) => ({
   color: props.$theme.colors.tooltipText,
 }));
 
-export const Arrow = styled<'div', SharedStylePropsArgT>('div', (props) => ({
+export const Arrow = styled<'div', SharedStylePropsArg>('div', (props) => ({
   ...getArrowStyles(props),
   backgroundColor: props.$theme.colors.tooltipBackground,
 }));

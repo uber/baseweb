@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 
 import { styled } from '../styles';
-import type { StyledRootPropsT, StyledRatingItemPropsT } from './types';
+import type { StyledRootProps, StyledRatingItemProps } from './types';
 import {
   starSVG,
   angryRatingSVG,
@@ -17,7 +17,7 @@ import {
 } from './svg-icons';
 import type { StyleObject } from 'styletron-standard';
 
-export const StyledRoot = styled<'ul', StyledRootPropsT>('ul', ({ $theme }) => {
+export const StyledRoot = styled<'ul', StyledRootProps>('ul', ({ $theme }) => {
   return {
     marginLeft: 0,
     marginRight: 0,
@@ -34,7 +34,7 @@ export const StyledRoot = styled<'ul', StyledRootPropsT>('ul', ({ $theme }) => {
   };
 });
 
-export const StyledStar = styled<'li', StyledRatingItemPropsT>(
+export const StyledStar = styled<'li', StyledRatingItemProps>(
   'li',
   ({ $theme, $isActive, $isPartialActive, $isSelected, $isFocusVisible, $isReadOnly, $size }) => {
     let starStroke = $theme.colors.ratingStroke;
@@ -99,7 +99,7 @@ export const StyledStar = styled<'li', StyledRatingItemPropsT>(
   }
 );
 
-export const StyledEmoticon = styled<'li', StyledRatingItemPropsT>(
+export const StyledEmoticon = styled<'li', StyledRatingItemProps>(
   'li',
   ({ $theme, $isActive, $isSelected, $index = 1, $isFocusVisible, $isReadOnly, $size }) => {
     let emoticonFill = $theme.colors.ratingInactiveFill;

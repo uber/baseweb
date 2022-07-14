@@ -24,7 +24,7 @@ import {
   LabelXSmall,
   ParagraphSmall,
 } from 'baseui/typography';
-import {Theme} from 'baseui/theme';
+import {Theme} from 'baseui';
 
 const StyledHeadingCell = withStyle(StyledCell, {
   paddingTop: 0,

@@ -10,9 +10,9 @@ import DeleteIcon from '../delete';
 import PlusIcon from '../plus';
 import { ThemeProvider, LightTheme, styled } from '../..';
 import { getSvgStyles } from '../../icon/styled-components';
-import { IconPropsT } from 'baseui/icon';
+import { IconProps } from 'baseui/icon';
 
-const XSmallFilled = ({ title, size, color, ...props }: IconPropsT) => {
+const XSmallFilled = ({ title, size, color, ...props }: IconProps) => {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
       <title>{title}</title>

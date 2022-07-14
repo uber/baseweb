@@ -7,12 +7,12 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import StatefulContainer from './stateful-container';
 import Input from './input';
-import type { InputPropsT, StatefulInputPropsT } from './types';
+import type { InputProps, StatefulInputProps } from './types';
 
-export default function StatefulInput(props: StatefulInputPropsT) {
+export default function StatefulInput(props: StatefulInputProps) {
   return (
     <StatefulContainer {...props}>
-      {(childrenProps: InputPropsT) => <Input {...childrenProps} />}
+      {(childrenProps: InputProps) => <Input {...childrenProps} />}
     </StatefulContainer>
   );
 }

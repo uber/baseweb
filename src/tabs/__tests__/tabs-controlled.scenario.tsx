@@ -8,11 +8,11 @@ import * as React from 'react';
 
 import { Tabs, Tab } from '..';
 
-type StateT = {
+type State = {
   activeKey: string;
 };
 
-export class Scenario extends React.Component<{}, StateT> {
+export class Scenario extends React.Component<{}, State> {
   state = {
     activeKey: '0',
   };

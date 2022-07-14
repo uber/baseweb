@@ -8,7 +8,12 @@ import {
 export default function Example() {
   const [sortColumn, setSortColumn] = useState('bar');
   const [sortAsc, setSortAsc] = useState(true);
-  const [data] = useState([
+  type Row = {
+    foo: number,
+    bar: string,
+    url: string,
+  };
+  const [data] = useState<Row[]>([
     {
       foo: 10,
       bar: 'banana',
@@ -57,7 +62,7 @@ export default function Example() {
       onSort={handleSort}
     >
       <TableBuilderColumn id="bar" header="Produce" sortable>
-        {row => <Link href={row.url}>{row.bar}</Link>}
+        {(row: Row) => <Link href={row.url}>{row.bar}</Link>}
       </TableBuilderColumn>
       <TableBuilderColumn
         id="foo"
@@ -65,7 +70,7 @@ export default function Example() {
         numeric
         sortable
       >
-        {row => row.foo}
+        {(row: Row) => row.foo}
       </TableBuilderColumn>
     </TableBuilder>
   );

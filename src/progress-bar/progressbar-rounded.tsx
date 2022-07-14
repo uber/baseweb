@@ -15,7 +15,7 @@ import {
   StyledProgressBarRoundedText,
 } from './styled-components';
 import { useOverrides } from '../helpers/overrides';
-import type { ProgressBarRoundedPropsT } from './types';
+import type { ProgressBarRoundedProps } from './types';
 
 const defaults = {
   Root: StyledProgressBarRoundedRoot,
@@ -42,7 +42,7 @@ function ProgressBarRounded({
   inline = false,
   overrides = {},
   ...restProps
-}: ProgressBarRoundedPropsT) {
+}: ProgressBarRoundedProps) {
   const {
     Root: [Root, rootProps],
     Svg: [Svg, svgProps],

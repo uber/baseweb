@@ -8,7 +8,7 @@ import React from 'react';
 import { getOverrides } from '../helpers/overrides';
 import { StyledCell as DefaultStyledCell } from './styled-components';
 import { GridContext } from './grid';
-import type { CellPropsT } from './types';
+import type { CellProps } from './types';
 
 export default function Cell({
   align,
@@ -21,7 +21,7 @@ export default function Cell({
   skip,
   span,
   overrides = {},
-}: CellPropsT) {
+}: CellProps) {
   const [StyledCell, overrideProps] = getOverrides(overrides.Cell, DefaultStyledCell);
   const gridContext = React.useContext(GridContext);
   return (

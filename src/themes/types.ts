@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import type { Properties } from 'csstype';
 
-import type { ResponsiveT, CSSLengthUnitT } from '../layout-grid';
+import type { Responsive, CSSLengthUnit } from '../layout-grid';
 
 export type Globals = '-moz-initial' | 'inherit' | 'initial' | 'revert' | 'unset';
 export type LineStyle =
@@ -21,7 +21,7 @@ export type LineStyle =
   | 'ridge'
   | 'solid';
 
-export type ColorTokensT = {
+export type ColorTokens = {
   // Primary Palette
   primaryA: string;
   primaryB: string;
@@ -92,7 +92,7 @@ export type ColorTokensT = {
   ratingStroke: string;
 };
 
-export type CoreSemanticColorTokensT = {
+export type CoreSemanticColorTokens = {
   // Background
   backgroundPrimary: string;
   backgroundSecondary: string;
@@ -114,7 +114,7 @@ export type CoreSemanticColorTokensT = {
   borderInverseTransparent: string | undefined | null;
   borderInverseSelected: string;
 };
-export type CoreExtensionSemanticColorTokensT = {
+export type CoreExtensionSemanticColorTokens = {
   // Backgrounds
   backgroundStateDisabled: string;
   backgroundOverlayDark: string | undefined | null;
@@ -157,10 +157,9 @@ export type CoreExtensionSemanticColorTokensT = {
   membership: string;
 };
 
-export type SemanticColorTokensT = {} & CoreSemanticColorTokensT &
-  CoreExtensionSemanticColorTokensT;
+export type SemanticColorTokens = {} & CoreSemanticColorTokens & CoreExtensionSemanticColorTokens;
 
-export type ComponentColorTokensT = {
+export type ComponentColorTokens = {
   bannerActionLowInfo: string;
   bannerActionLowNegative: string;
   bannerActionLowPositive: string;
@@ -476,77 +475,77 @@ export type ComponentColorTokensT = {
   tooltipText: string;
 };
 
-export type FontTokensT = {
+export type FontTokens = {
   primaryFontFamily: string;
 };
 
 // TODO(#2318) Deprecate in the next major version
-export type PrimitivesT = {} & ColorTokensT & FontTokensT;
+export type Primitives = {} & ColorTokens & FontTokens;
 
-export type FontT = {
+export type Font = {
   fontFamily: string;
   fontWeight: Globals | 'bold' | 'normal' | 'bolder' | 'lighter' | number;
   fontSize: string;
   lineHeight: string | number;
 };
-export type TypographyT = {
-  font100: FontT;
-  font150: FontT;
-  font200: FontT;
-  font250: FontT;
-  font300: FontT;
-  font350: FontT;
-  font400: FontT;
-  font450: FontT;
-  font550: FontT;
-  font650: FontT;
-  font750: FontT;
-  font850: FontT;
-  font950: FontT;
-  font1050: FontT;
-  font1150: FontT;
-  font1250: FontT;
-  font1350: FontT;
-  font1450: FontT;
-  ParagraphXSmall: FontT;
-  ParagraphSmall: FontT;
-  ParagraphMedium: FontT;
-  ParagraphLarge: FontT;
-  LabelXSmall: FontT;
-  LabelSmall: FontT;
-  LabelMedium: FontT;
-  LabelLarge: FontT;
-  HeadingXSmall: FontT;
-  HeadingSmall: FontT;
-  HeadingMedium: FontT;
-  HeadingLarge: FontT;
-  HeadingXLarge: FontT;
-  HeadingXXLarge: FontT;
-  DisplayXSmall: FontT;
-  DisplaySmall: FontT;
-  DisplayMedium: FontT;
-  DisplayLarge: FontT;
-  MonoParagraphXSmall: FontT;
-  MonoParagraphSmall: FontT;
-  MonoParagraphMedium: FontT;
-  MonoParagraphLarge: FontT;
-  MonoLabelXSmall: FontT;
-  MonoLabelSmall: FontT;
-  MonoLabelMedium: FontT;
-  MonoLabelLarge: FontT;
-  MonoHeadingXSmall: FontT;
-  MonoHeadingSmall: FontT;
-  MonoHeadingMedium: FontT;
-  MonoHeadingLarge: FontT;
-  MonoHeadingXLarge: FontT;
-  MonoHeadingXXLarge: FontT;
-  MonoDisplayXSmall: FontT;
-  MonoDisplaySmall: FontT;
-  MonoDisplayMedium: FontT;
-  MonoDisplayLarge: FontT;
+export type Typography = {
+  font100: Font;
+  font150: Font;
+  font200: Font;
+  font250: Font;
+  font300: Font;
+  font350: Font;
+  font400: Font;
+  font450: Font;
+  font550: Font;
+  font650: Font;
+  font750: Font;
+  font850: Font;
+  font950: Font;
+  font1050: Font;
+  font1150: Font;
+  font1250: Font;
+  font1350: Font;
+  font1450: Font;
+  ParagraphXSmall: Font;
+  ParagraphSmall: Font;
+  ParagraphMedium: Font;
+  ParagraphLarge: Font;
+  LabelXSmall: Font;
+  LabelSmall: Font;
+  LabelMedium: Font;
+  LabelLarge: Font;
+  HeadingXSmall: Font;
+  HeadingSmall: Font;
+  HeadingMedium: Font;
+  HeadingLarge: Font;
+  HeadingXLarge: Font;
+  HeadingXXLarge: Font;
+  DisplayXSmall: Font;
+  DisplaySmall: Font;
+  DisplayMedium: Font;
+  DisplayLarge: Font;
+  MonoParagraphXSmall: Font;
+  MonoParagraphSmall: Font;
+  MonoParagraphMedium: Font;
+  MonoParagraphLarge: Font;
+  MonoLabelXSmall: Font;
+  MonoLabelSmall: Font;
+  MonoLabelMedium: Font;
+  MonoLabelLarge: Font;
+  MonoHeadingXSmall: Font;
+  MonoHeadingSmall: Font;
+  MonoHeadingMedium: Font;
+  MonoHeadingLarge: Font;
+  MonoHeadingXLarge: Font;
+  MonoHeadingXXLarge: Font;
+  MonoDisplayXSmall: Font;
+  MonoDisplaySmall: Font;
+  MonoDisplayMedium: Font;
+  MonoDisplayLarge: Font;
 };
 
-export type SizingT = {
+export type Sizing = {
   scale0: string;
   scale100: string;
   scale200: string;
@@ -571,19 +570,19 @@ export type SizingT = {
   scale4800: string;
 };
 
-export type BreakpointsT = {
+export type Breakpoints = {
   small: number;
   medium: number;
   large: number;
 };
 
-export type MediaQueryT = {
+export type MediaQuery = {
   small: string;
   medium: string;
   large: string;
 };
 
-export type LightingT = {
+export type Lighting = {
   shadow400: string;
   shadow500: string;
   shadow600: string;
@@ -601,7 +600,7 @@ export type LightingT = {
   deepBelow: string;
 };
 
-export type AnimationT = {
+export type Animation = {
   timing100: string;
   timing200: string;
   timing300: string;
@@ -621,20 +620,20 @@ export type AnimationT = {
   linearCurve: string;
 };
 
-export type BorderT = {
+export type Border = {
   borderColor: Properties['borderColor'];
   // longhand border-style properties do not accept string values
   borderStyle: Properties['borderLeftStyle'];
   borderWidth: Properties['borderWidth'];
 };
 
-export type BordersT = {
-  border100: BorderT;
-  border200: BorderT;
-  border300: BorderT;
-  border400: BorderT;
-  border500: BorderT;
-  border600: BorderT;
+export type Borders = {
+  border100: Border;
+  border200: Border;
+  border300: Border;
+  border400: Border;
+  border500: Border;
+  border600: Border;
   radius100: string;
   radius200: string;
   radius300: string;
@@ -648,16 +647,16 @@ export type BordersT = {
   tagBorderRadius: string;
 };
 
-export type GridT = {
-  columns: ResponsiveT<number>;
-  gutters: ResponsiveT<number>;
-  margins: ResponsiveT<number>;
-  gaps: ResponsiveT<number>;
+export type Grid = {
+  columns: Responsive<number>;
+  gutters: Responsive<number>;
+  margins: Responsive<number>;
+  gaps: Responsive<number>;
   maxWidth: number;
-  unit: CSSLengthUnitT;
+  unit: CSSLengthUnit;
 };
 
 // TODO(#2318) Deprecate in the next major
-export type ZIndexT = {
+export type ZIndex = {
   modal: number;
 };

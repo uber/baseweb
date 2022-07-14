@@ -5,9 +5,9 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import { ARTWORK_SIZES } from './constants';
-import type { ArtworkSizesT } from './types';
+import type { ArtworkSizes } from './types';
 
-export function artworkSizeToValue(artworkSize: ArtworkSizesT, isSublist: boolean) {
+export function artworkSizeToValue(artworkSize: ArtworkSizes, isSublist: boolean) {
   if (isSublist) {
     switch (artworkSize) {
       case ARTWORK_SIZES.LARGE:

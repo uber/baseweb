@@ -14,7 +14,7 @@ import { useStyletron } from '../styles';
 import Column from './column';
 import { COLUMNS, NUMERICAL_FORMATS, MAX_BIN_COUNT, HISTOGRAM_SIZE } from './constants';
 import FilterShell, { type ExcludeKind } from './filter-shell';
-import type { ColumnT, SharedColumnOptionsT } from './types';
+import type { ColumnOptions, SharedColumnOptions } from './types';
 import { LocaleContext } from '../locale';
 import { bin, max as maxFunc, extent, scaleLinear, median, bisector } from 'd3';
 import { Slider } from '../slider';
@@ -24,13 +24,13 @@ type NumericalFormats =
   | typeof NUMERICAL_FORMATS.ACCOUNTING
   | typeof NUMERICAL_FORMATS.PERCENTAGE;
 
-type OptionsT = {
+type Options = {
   format?: NumericalFormats | ((value: number) => string);
   highlight?: (a: number) => boolean;
   precision?: number;
-} & SharedColumnOptionsT<number>;
+} & SharedColumnOptions<number>;
 
-type FilterParametersT = {
+type FilterParameters = {
   lowerValue: number;
   upperValue: number;
   description: string;
@@ -38,7 +38,7 @@ type FilterParametersT = {
   excludeKind: ExcludeKind;
 };
 
-type NumericalColumnT = ColumnT<number, FilterParametersT>;
+type NumericalColumn = ColumnOptions<number, FilterParameters>;
 
 function roundToFixed(value: number, precision: number) {
   const k = Math.pow(10, precision);
@@ -471,7 +471,7 @@ const defaultOptions = {
   precision: 0,
 };
 
-function NumericalColumn(options: OptionsT): NumericalColumnT {
+function NumericalColumn(options: Options): NumericalColumn {
   const normalizedOptions = {
     ...defaultOptions,
     ...options,

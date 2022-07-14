@@ -4,9 +4,9 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import type { AnimationT } from '../types';
+import type { Animation } from '../types';
 
-const animation: AnimationT = {
+const animation: Animation = {
   timing100: '100ms',
   timing200: '200ms',
   timing300: '300ms',

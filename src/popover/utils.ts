@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 /* eslint-disable import/prefer-default-export */
 import { ARROW_SIZE, PLACEMENT } from './constants';
-import type { OffsetT, PopoverPlacementT } from './types';
+import type { Offset, PopoverPlacement } from './types';
 
 const OPPOSITE_POSITIONS = {
   top: 'bottom',
@@ -44,7 +44,7 @@ export function capitalize(str: string): string {
  * Opposite of function above, converts from Popper.js placement
  * to our placement prop
  */
-export function fromPopperPlacement(placement: string): PopoverPlacementT | null {
+export function fromPopperPlacement(placement: string): PopoverPlacement | null {
   const popoverPlacement: string = placement
     .replace(/(top|bottom)-start$/, '$1Left')
     .replace(/(top|bottom)-end$/, '$1Right')
@@ -56,7 +56,7 @@ export function fromPopperPlacement(placement: string): PopoverPlacementT | null
 /**
  * Splits something like 'topLeft' to ['top', 'left'] for easier usage
  */
-export function splitPlacement(placement: PopoverPlacementT): string[] {
+export function splitPlacement(placement: PopoverPlacement): string[] {
   const matches = placement.match(/^([a-z]+)([A-Z][a-z]+)?/) || [];
   return (matches as string[])
     .slice(1, 3)
@@ -70,7 +70,7 @@ export function splitPlacement(placement: PopoverPlacementT): string[] {
  */
 export function getPopoverMarginStyles(
   arrowSize: number,
-  placement: PopoverPlacementT,
+  placement: PopoverPlacement,
   popoverMargin: number
 ) {
   const [position] = splitPlacement(placement);
@@ -88,8 +88,8 @@ export function getPopoverMarginStyles(
  * Returns CSS rules for the popover animation start keyframe
  */
 export function getStartPosition(
-  offset: OffsetT,
-  placement: PopoverPlacementT,
+  offset: Offset,
+  placement: PopoverPlacement,
   arrowSize: number,
   popoverMargin: number
 ) {
@@ -107,14 +107,14 @@ export function getStartPosition(
 /**
  * Returns CSS rules for the popover animation end keyframe
  */
-export function getEndPosition(offset: OffsetT) {
+export function getEndPosition(offset: Offset) {
   return `translate3d(${offset.left}px, ${offset.top}px, 0)`;
 }
 
 /**
  * Returns top/left styles to position the popover arrow
  */
-export function getArrowPositionStyles(offsets: OffsetT, placement: PopoverPlacementT) {
+export function getArrowPositionStyles(offsets: Offset, placement: PopoverPlacement) {
   const [position] = splitPlacement(placement);
   const oppositePosition = getOppositePosition(position);
   if (!oppositePosition) {

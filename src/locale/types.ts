@@ -4,30 +4,30 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import type { AccordionLocaleT } from '../accordion';
-import type { BreadcrumbLocaleT } from '../breadcrumbs';
-import type { DatepickerLocaleT } from '../datepicker';
-import type { DataTableLocaleT } from '../data-table';
-import type { ButtonGroupLocaleT } from '../button-group';
-import type { FileUploaderLocaleT } from '../file-uploader';
-import type { MenuLocaleT } from '../menu';
-import type { ModalLocaleT } from '../modal';
-import type { DrawerLocaleT } from '../drawer';
-import type { PaginationLocaleT } from '../pagination';
-import type { SelectLocaleT } from '../select';
-import type { ToastLocaleT } from '../toast';
+import type { AccordionLocale } from '../accordion';
+import type { BreadcrumbLocale } from '../breadcrumbs';
+import type { DatepickerLocale } from '../datepicker';
+import type { DataTableLocale } from '../data-table';
+import type { ButtonGroupLocale } from '../button-group';
+import type { FileUploaderLocale } from '../file-uploader';
+import type { MenuLocale } from '../menu';
+import type { ModalLocale } from '../modal';
+import type { DrawerLocale } from '../drawer';
+import type { PaginationLocale } from '../pagination';
+import type { SelectLocale } from '../select';
+import type { ToastLocale } from '../toast';
 
-export type LocaleT = {
-  accordion: AccordionLocaleT;
-  breadcrumbs: BreadcrumbLocaleT;
-  datepicker: DatepickerLocaleT;
-  datatable: DataTableLocaleT;
-  buttongroup: ButtonGroupLocaleT;
-  fileuploader: FileUploaderLocaleT;
-  menu: MenuLocaleT;
-  modal: ModalLocaleT;
-  drawer: DrawerLocaleT;
-  pagination: PaginationLocaleT;
-  select: SelectLocaleT;
-  toast: ToastLocaleT;
+export type Locale = {
+  accordion: AccordionLocale;
+  breadcrumbs: BreadcrumbLocale;
+  datepicker: DatepickerLocale;
+  datatable: DataTableLocale;
+  buttongroup: ButtonGroupLocale;
+  fileuploader: FileUploaderLocale;
+  menu: MenuLocale;
+  modal: ModalLocale;
+  drawer: DrawerLocale;
+  pagination: PaginationLocale;
+  select: SelectLocale;
+  toast: ToastLocale;
 };

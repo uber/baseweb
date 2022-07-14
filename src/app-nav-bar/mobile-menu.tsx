@@ -11,11 +11,11 @@ import { Drawer, ANCHOR } from '../drawer';
 import { getOverrides, mergeOverrides } from '../helpers/overrides';
 import ArrowLeft from '../icon/arrow-left';
 import MenuIcon from '../icon/menu';
-import { MenuAdapter, ListItemLabel, ARTWORK_SIZES, MenuAdapterPropsT } from '../list';
+import { MenuAdapter, ListItemLabel, ARTWORK_SIZES, MenuAdapterProps } from '../list';
 import { StatefulMenu } from '../menu';
 
 import { StyledSideMenuButton, StyledUserMenuProfileListItem } from './styled-components';
-import type { AppNavBarPropsT } from './types';
+import type { AppNavBarProps } from './types';
 import UserProfileTile from './user-profile-tile';
 import { defaultMapItemToNode } from './utils';
 
@@ -65,7 +65,7 @@ const MobileNavMenuItem = React.forwardRef<HTMLLIElement, any>((props, ref) => {
   );
 });
 
-export default function MobileMenu(props: AppNavBarPropsT) {
+export default function MobileMenu(props: AppNavBarProps) {
   const { mainItems = [], userItems = [], mapItemToNode, overrides = {}, ...rest } = props;
 
   const items = [

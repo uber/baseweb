@@ -6,94 +6,94 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import type { OverrideT } from '../helpers/overrides';
-import type { IconPropsT } from '../icon';
+import type { Override } from '../helpers/overrides';
+import type { IconProps } from '../icon';
 import { ARTWORK_SIZES, SHAPE } from './constants';
 
-export type ArtworkSizesT =
+export type ArtworkSizes =
   | typeof ARTWORK_SIZES.SMALL
   | typeof ARTWORK_SIZES.MEDIUM
   | typeof ARTWORK_SIZES.LARGE;
 
-export type ShapeT = typeof SHAPE.DEFAULT | typeof SHAPE.ROUND;
+export type Shape = typeof SHAPE.DEFAULT | typeof SHAPE.ROUND;
 
-export type StyledRootPropsT = {
-  $shape: ShapeT;
+export type StyledRootProps = {
+  $shape: Shape;
 };
-export type StyledArtworkContainerPropsT = {
-  $artworkSize: ArtworkSizesT | number;
+export type StyledArtworkContainerProps = {
+  $artworkSize: ArtworkSizes | number;
   $sublist?: boolean;
 };
-export type StyledContentPropsT = {
+export type StyledContentProps = {
   $mLeft: boolean;
   $sublist: boolean;
 };
 
-export type OverridesT = {
-  Root?: OverrideT;
-  ArtworkContainer?: OverrideT;
-  Content?: OverrideT;
-  EndEnhancerContainer?: OverrideT;
+export type ListOverrides = {
+  Root?: Override;
+  ArtworkContainer?: Override;
+  Content?: Override;
+  EndEnhancerContainer?: Override;
 };
 
-export type PropsT = {
+export type ListProps = {
   artwork?: React.ComponentType<
     {
-      size: IconPropsT['size'];
-    } & IconPropsT
+      size: IconProps['size'];
+    } & IconProps
   >;
-  artworkSize?: ArtworkSizesT | number;
-  shape?: ShapeT;
+  artworkSize?: ArtworkSizes | number;
+  shape?: Shape;
   children: React.ReactNode;
   endEnhancer?: React.ComponentType<{}>;
   'aria-label'?: string;
   'aria-selected'?: boolean;
   id?: String;
-  overrides?: OverridesT;
+  overrides?: ListOverrides;
   role?: string;
   sublist?: boolean;
 };
 
 export type LabelOverrides = {
-  LabelContent?: OverrideT;
-  LabelDescription?: OverrideT;
-  LabelSublistContent?: OverrideT;
+  LabelContent?: Override;
+  LabelDescription?: Override;
+  LabelSublistContent?: Override;
 };
 
-export type LabelPropsT = {
+export type LabelProps = {
   children: React.ReactNode;
   description?: React.ReactNode;
   sublist?: boolean;
   overrides?: LabelOverrides;
 };
 
-export type HeadingOverridesT = {
-  Root?: OverrideT;
-  Content?: OverrideT;
-  HeadingContainer?: OverrideT;
-  SubHeadingContainer?: OverrideT;
-  EndEnhancerContainer?: OverrideT;
-  EndEnhancerDescriptionContainer?: OverrideT;
+export type HeadingOverrides = {
+  Root?: Override;
+  Content?: Override;
+  HeadingContainer?: Override;
+  SubHeadingContainer?: Override;
+  EndEnhancerContainer?: Override;
+  EndEnhancerDescriptionContainer?: Override;
 };
 
-export type HeadingPropsT = {
+export type HeadingProps = {
   heading: React.ReactNode | React.ComponentType<{}>;
   subHeading?: React.ReactNode | React.ComponentType<{}>;
   endEnhancer?: React.ReactNode | React.ComponentType<{}>;
   endEnhancerDescription?: React.ReactNode | React.ComponentType<{}>;
-  overrides?: HeadingOverridesT;
+  overrides?: HeadingOverrides;
   maxLines?: 1 | 2;
 };
 
-export type StyledHeadingHeadingPropsT = {
+export type StyledHeadingHeadingProps = {
   $maxLines: number;
 };
 
-export type MenuAdapterPropsT = {
+export type MenuAdapterProps = {
   item?: any;
   onMouseEnter?: (a: MouseEvent) => unknown;
   onClick?: (a: MouseEvent) => unknown;
   $size?: string;
   $isHighlighted?: boolean;
   $disabled?: boolean;
-} & PropsT;
+} & ListProps;

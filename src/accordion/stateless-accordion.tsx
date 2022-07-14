@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { getOverrides } from '../helpers/overrides';
 import { Root as StyledRoot } from './styled-components';
-import type { StatelessAccordionPropsT } from './types';
+import type { StatelessAccordionProps } from './types';
 
 function StatelessAccordion({
   accordion = true,
@@ -17,7 +17,7 @@ function StatelessAccordion({
   onChange,
   overrides = {},
   renderAll,
-}: StatelessAccordionPropsT) {
+}: StatelessAccordionProps) {
   const { Root: RootOverrides, ...PanelOverrides } = overrides;
   const [Root, rootProps] = getOverrides(RootOverrides, StyledRoot);
   return (

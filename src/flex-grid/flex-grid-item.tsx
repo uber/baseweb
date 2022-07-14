@@ -6,13 +6,13 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Block, type StyledBlockPropsT } from '../block';
+import { Block, type StyledBlockProps } from '../block';
 import { mergeOverrides } from '../helpers/overrides';
 import { getMediaQueries, getMediaQuery } from '../helpers/responsive-helpers';
-import type { FlexGridItemPropsT } from './types';
-import type { ResponsiveT, ScaleT } from '../block';
-import type { StyleOverrideT } from '../helpers/overrides';
-import type { ThemeT } from '../styles';
+import type { FlexGridItemProps } from './types';
+import type { Responsive, Scale } from '../block';
+import type { StyleOverride } from '../helpers/overrides';
+import type { Theme } from '../styles';
 
 export const flexGridItemMediaQueryStyle = ({
   $theme,
@@ -22,10 +22,10 @@ export const flexGridItemMediaQueryStyle = ({
   flexGridItemIndex: itemIndex,
   flexGridItemCount: itemCount,
 }: {
-  $theme: ThemeT;
+  $theme: Theme;
   flexGridColumnCount: number;
-  flexGridColumnGap: ScaleT;
-  flexGridRowGap: ScaleT;
+  flexGridColumnGap: Scale;
+  flexGridRowGap: Scale;
   flexGridItemIndex: number;
   flexGridItemCount: number;
 }) => {
@@ -61,7 +61,7 @@ export const flexGridItemMediaQueryStyle = ({
 };
 
 export const getResponsiveValue = <T extends any>(
-  responsive: ResponsiveT<T> | undefined | null,
+  responsive: Responsive<T> | undefined | null,
   i: number
 ): T | undefined | null => {
   if (!responsive) {
@@ -81,13 +81,13 @@ export const flexGridItemStyle = ({
   $flexGridItemCount,
   $theme,
 }: {
-  $flexGridColumnCount?: ResponsiveT<number>;
-  $flexGridColumnGap?: ResponsiveT<ScaleT>;
-  $flexGridRowGap?: ResponsiveT<ScaleT>;
+  $flexGridColumnCount?: Responsive<number>;
+  $flexGridColumnGap?: Responsive<Scale>;
+  $flexGridRowGap?: Responsive<Scale>;
   $flexGridItemIndex?: number;
   $flexGridItemCount?: number;
-  $theme: ThemeT;
-}): StyleOverrideT => {
+  $theme: Theme;
+}): StyleOverride => {
   const baseFlexGridItemStyle = { flexGrow: 1 };
   const mediaQueries = getMediaQueries($theme.breakpoints);
 
@@ -142,7 +142,7 @@ export const flexGridItemStyle = ({
   }, baseFlexGridItemStyle);
 };
 
-const FlexGridItem: React.FC<FlexGridItemPropsT & { forwardedRef: React.Ref<HTMLElement> }> = ({
+const FlexGridItem: React.FC<FlexGridItemProps & { forwardedRef: React.Ref<HTMLElement> }> = ({
   forwardedRef,
   children,
   as,
@@ -183,14 +183,14 @@ const FlexGridItem: React.FC<FlexGridItemPropsT & { forwardedRef: React.Ref<HTML
 };
 interface FlexGridItemComponentType<D extends React.ElementType> {
   <C extends React.ElementType = D>(
-    props: FlexGridItemPropsT<C> &
+    props: FlexGridItemProps<C> &
       (React.ComponentProps<C> extends { ref?: infer R } ? { ref?: R } : {}) &
-      Omit<StyledBlockPropsT & React.ComponentProps<C>, keyof FlexGridItemPropsT>
+      Omit<StyledBlockProps & React.ComponentProps<C>, keyof FlexGridItemProps>
   ): JSX.Element;
   displayName?: string;
 }
-const FlexGridItemComponent = React.forwardRef<HTMLElement, FlexGridItemPropsT>(
-  (props: FlexGridItemPropsT, ref) => <FlexGridItem {...props} forwardedRef={ref} />
+const FlexGridItemComponent = React.forwardRef<HTMLElement, FlexGridItemProps>(
+  (props: FlexGridItemProps, ref) => <FlexGridItem {...props} forwardedRef={ref} />
 ) as FlexGridItemComponentType<'div'>;
 FlexGridItemComponent.displayName = 'FlexGridItem';
 export default FlexGridItemComponent;

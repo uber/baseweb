@@ -5,9 +5,9 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import { styled } from '../styles';
-import type { StylePropsT } from './types';
+import type { StyleProps } from './types';
 
-export const StyledFileDragAndDrop = styled<'div', StylePropsT>('div', (props) => {
+export const StyledFileDragAndDrop = styled<'div', StyleProps>('div', (props) => {
   const borderColor = props.$isDragActive
     ? props.$theme.colors.borderAccent
     : props.$theme.colors.fileUploaderBorderColorDefault;
@@ -47,7 +47,7 @@ export const StyledFileDragAndDrop = styled<'div', StylePropsT>('div', (props) =
   };
 });
 
-export const StyledContentMessage = styled<'div', StylePropsT>(
+export const StyledContentMessage = styled<'div', StyleProps>(
   'div',
   ({ $theme, $afterFileDrop, $isDragActive }) => ({
     ...($afterFileDrop ? $theme.typography.LabelMedium : $theme.typography.LabelSmall),
@@ -63,14 +63,14 @@ export const StyledContentMessage = styled<'div', StylePropsT>(
 
 export const StyledContentSeparator = StyledContentMessage;
 
-export const StyledErrorMessage = styled<'div', StylePropsT>('div', (props) => ({
+export const StyledErrorMessage = styled<'div', StyleProps>('div', (props) => ({
   ...props.$theme.typography.LabelMedium,
   color: props.$theme.colors.negative,
   marginTop: props.$afterFileDrop ? props.$theme.sizing.scale100 : null,
   marginBottom: props.$afterFileDrop ? props.$theme.sizing.scale100 : null,
 }));
 
-export const StyledRoot = styled<'div', StylePropsT>('div', (props) => ({
+export const StyledRoot = styled<'div', StyleProps>('div', (props) => ({
   ...props.$theme.typography.font300,
   color: props.$theme.colors.fileUploaderMessageColor,
 }));

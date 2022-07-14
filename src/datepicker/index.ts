@@ -23,4 +23,4 @@ export * from '../timepicker';
 export * from '../timezonepicker';
 // Flow
 export * from './types';
-export type { DatepickerLocaleT } from './locale';
+export type { DatepickerLocale } from './locale';

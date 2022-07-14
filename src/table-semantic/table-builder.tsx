@@ -25,12 +25,12 @@ import Blank from '../icon/blank';
 import ChevronDown from '../icon/chevron-down';
 import ChevronUp from '../icon/chevron-up';
 import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible';
-import type { TableBuilderPropsT } from './types';
+import type { TableBuilderProps } from './types';
 
 import type { SyntheticEvent } from 'react';
 
 export default class TableBuilder<T> extends React.Component<
-  TableBuilderPropsT<T>,
+  TableBuilderProps<T>,
   {
     isFocusVisible: boolean;
   }

@@ -7,9 +7,9 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import StatefulContainer from './stateful-panel-container';
 import Panel from './panel';
-import type { StatefulPanelPropsT } from './types';
+import type { StatefulPanelProps } from './types';
 
-export default function StatefulPanel(props: StatefulPanelPropsT) {
+export default function StatefulPanel(props: StatefulPanelProps) {
   const { children, ...restProps } = props;
   return (
     <StatefulContainer {...restProps}>

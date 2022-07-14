@@ -22,4 +22,4 @@ export { default as StringColumn } from './column-string';
 export { COLUMNS, DATETIME_OPERATIONS, NUMERICAL_FORMATS, SORT_DIRECTIONS } from './constants';
 
 export * from './types';
-export type { DataTableLocaleT } from './locale';
+export type { DataTableLocale } from './locale';

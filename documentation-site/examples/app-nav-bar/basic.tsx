@@ -6,13 +6,13 @@ import {ChevronDown, Delete, Overflow, Upload} from 'baseui/icon';
 import {
   AppNavBar,
   setItemActive,
-  NavItemT,
+  NavItem,
 } from 'baseui/app-nav-bar';
 
 export default function Example() {
   const [css] = useStyletron();
 
-  const [mainItems, setMainItems] = React.useState<NavItemT[]>([
+  const [mainItems, setMainItems] = React.useState<NavItem[]>([
     {icon: Upload, label: 'Primary A'},
     {icon: Upload, label: 'Primary B'},
     {
@@ -52,13 +52,13 @@ export default function Example() {
 
   const [isNavVisible, setIsNavVisible] = React.useState(false);
 
-  function handleMainItemSelect(item: NavItemT) {
-    setMainItems(prev => setItemActive(prev, item));
+  function handleMainItemSelect(item: NavItem) {
+    setMainItems((prev) => setItemActive(prev, item));
   }
 
   return (
     <React.Fragment>
-      <Button onClick={() => setIsNavVisible(prev => !prev)}>
+      <Button onClick={() => setIsNavVisible((prev) => !prev)}>
         {isNavVisible ? 'Hide' : 'Show'} navigation bar
       </Button>
       {isNavVisible && (
@@ -77,7 +77,7 @@ export default function Example() {
               mainItems={mainItems}
               userItems={userItems}
               onMainItemSelect={handleMainItemSelect}
-              onUserItemSelect={item => console.log('user', item)}
+              onUserItemSelect={(item) => console.log('user', item)}
               username="Umka Marshmallow"
               usernameSubtitle="5.0"
               userImgUrl=""

@@ -7,13 +7,13 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import { StyledLabelInteractable } from './styled-components';
 import { getOverride } from '../helpers/overrides';
-import type { OverrideT } from '../helpers/overrides';
+import type { Override } from '../helpers/overrides';
 
 import type { ComponentType } from 'react';
 
 const TreeLabelInteractable: ComponentType<{
   overrides?: {
-    LabelInteractable: OverrideT;
+    LabelInteractable: Override;
   };
 }> = ({ overrides = {}, ...props }) => {
   const LabelInteractable = getOverride(overrides.LabelInteractable) || StyledLabelInteractable;

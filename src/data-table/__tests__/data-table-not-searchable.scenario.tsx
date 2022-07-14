@@ -8,23 +8,23 @@ import * as React from 'react';
 
 import { StatefulDataTable, BooleanColumn, CategoricalColumn, NumericalColumn } from '..';
 
-type RowDataT = [boolean, string, number, string, Date];
+type RowData = [boolean, string, number, string, Date];
 
 export function Scenario() {
   const columns = [
     BooleanColumn({
       title: 'boolean-column',
-      mapDataToValue: (data: RowDataT) => data[0],
+      mapDataToValue: (data: RowData) => data[0],
     }),
 
     CategoricalColumn({
       title: 'categorical-column',
-      mapDataToValue: (data: RowDataT) => data[1],
+      mapDataToValue: (data: RowData) => data[1],
     }),
 
     NumericalColumn({
       title: 'numerical-column',
-      mapDataToValue: (data: RowDataT) => data[2],
+      mapDataToValue: (data: RowData) => data[2],
     }),
   ];
 

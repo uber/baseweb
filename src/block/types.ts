@@ -6,16 +6,16 @@ LICENSE file in the root directory of this source tree.
 */
 
 import type { ElementType, ReactNode } from 'react';
-import type { OverrideT } from '../helpers/overrides';
+import type { Override } from '../helpers/overrides';
 import * as React from 'react';
 
-export type OverridesT = {
-  Block?: OverrideT;
+export type BlockOverrides = {
+  Block?: Override;
 };
 
-export type ResponsiveT<T> = T | Array<T>;
+export type Responsive<T> = T | Array<T>;
 
-type AlignContentT =
+type AlignContent =
   | 'center'
   | 'start'
   | 'end'
@@ -34,7 +34,7 @@ type AlignContentT =
   | 'inherit'
   | 'initial'
   | 'unset';
-type AlignItemsT =
+type AlignItems =
   | 'normal'
   | 'stretch'
   | 'center'
@@ -52,7 +52,7 @@ type AlignItemsT =
   | 'inherit'
   | 'initial'
   | 'unset';
-type AlignSelfT =
+type AlignSelf =
   | 'auto'
   | 'normal'
   | 'center'
@@ -71,7 +71,7 @@ type AlignSelfT =
   | 'inherit'
   | 'initial'
   | 'unset';
-type FlexDirectionT =
+type FlexDirection =
   | 'row'
   | 'row-reverse'
   | 'column'
@@ -79,8 +79,8 @@ type FlexDirectionT =
   | 'inherit'
   | 'initial'
   | 'unset';
-type FlexT = number | string;
-type DisplayT =
+type Flex = number | string;
+type Display =
   | 'block'
   | 'inline'
   | 'run-in'
@@ -122,7 +122,7 @@ type DisplayT =
   | 'inherit'
   | 'initial'
   | 'unset';
-type GridAutoFlowT =
+type GridAutoFlow =
   | 'row'
   | 'column'
   | 'dense'
@@ -131,7 +131,7 @@ type GridAutoFlowT =
   | 'inherit'
   | 'initial'
   | 'unset';
-type JustifyContentT =
+type JustifyContent =
   | 'center'
   | 'start'
   | 'end'
@@ -149,7 +149,7 @@ type JustifyContentT =
   | 'initial'
   | 'unset';
 
-type JustifyItemsT =
+type JustifyItems =
   /* Basic keywords */
   | 'auto'
   | 'normal'
@@ -175,7 +175,7 @@ type JustifyItemsT =
   | 'initial'
   | 'unset';
 
-type JustifySelfT =
+type JustifySelf =
   | 'auto'
   | 'normal'
   | 'stretch'
@@ -196,8 +196,8 @@ type JustifySelfT =
   | 'inherit'
   | 'initial'
   | 'unset';
-type PositionT = 'static' | 'absolute' | 'relative' | 'fixed' | 'sticky';
-type OverflowT =
+type Position = 'static' | 'absolute' | 'relative' | 'fixed' | 'sticky';
+type Overflow =
   | 'visible'
   | 'hidden'
   | 'scroll'
@@ -208,9 +208,9 @@ type OverflowT =
   | 'initial'
   | 'unset';
 
-export type ScaleT = 0 | string;
+export type Scale = 0 | string;
 
-export type WhiteSpaceT =
+export type WhiteSpace =
   | 'normal'
   | 'nowrap'
   | 'pre'
@@ -221,193 +221,193 @@ export type WhiteSpaceT =
   | 'initial'
   | 'unset';
 
-export type BlockPropsT<T extends ElementType = ElementType> = {
+export type BlockProps<T extends ElementType = ElementType> = {
   children?: ReactNode;
   /** Modifies the base element used to render the block. */
   as?: T;
-  overrides?: OverridesT;
+  overrides?: BlockOverrides;
   /** Accepts all themeable color properties (`primary200`, etc.). */
-  color?: ResponsiveT<string>;
+  color?: Responsive<string>;
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/background-attachment */
-  backgroundAttachment?: ResponsiveT<string>;
+  backgroundAttachment?: Responsive<string>;
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/background-clip */
-  backgroundClip?: ResponsiveT<string>;
+  backgroundClip?: Responsive<string>;
   /** Accepts all themeable color properties (`primary200`, etc.). */
-  backgroundColor?: ResponsiveT<string>;
+  backgroundColor?: Responsive<string>;
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/background-image */
-  backgroundImage?: ResponsiveT<string>;
+  backgroundImage?: Responsive<string>;
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/background-origin */
-  backgroundOrigin?: ResponsiveT<string>;
+  backgroundOrigin?: Responsive<string>;
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/background-position */
-  backgroundPosition?: ResponsiveT<string>;
+  backgroundPosition?: Responsive<string>;
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/background-repeat */
-  backgroundRepeat?: ResponsiveT<string>;
+  backgroundRepeat?: Responsive<string>;
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/background-size */
-  backgroundSize?: ResponsiveT<string>;
+  backgroundSize?: Responsive<string>;
   /** Accepts all themeable font properties (`font200`, etc.). */
   font?: string | Array<string>;
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/align-content */
-  alignContent?: ResponsiveT<AlignContentT>;
+  alignContent?: Responsive<AlignContent>;
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/align-items */
-  alignItems?: ResponsiveT<AlignItemsT>;
+  alignItems?: Responsive<AlignItems>;
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/align-self */
-  alignSelf?: ResponsiveT<AlignSelfT>;
+  alignSelf?: Responsive<AlignSelf>;
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction */
-  flexDirection?: ResponsiveT<FlexDirectionT>;
+  flexDirection?: Responsive<FlexDirection>;
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/display */
-  display?: ResponsiveT<DisplayT>;
+  display?: Responsive<Display>;
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/flex */
-  flex?: ResponsiveT<FlexT>;
+  flex?: Responsive<Flex>;
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid */
-  grid?: ResponsiveT<string>;
+  grid?: Responsive<string>;
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-area */
-  gridArea?: ResponsiveT<string>;
+  gridArea?: Responsive<string>;
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-columns */
-  gridAutoColumns?: ResponsiveT<string>;
+  gridAutoColumns?: Responsive<string>;
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-flow */
-  gridAutoFlow?: ResponsiveT<GridAutoFlowT>;
+  gridAutoFlow?: Responsive<GridAutoFlow>;
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-rows */
-  gridAutoRows?: ResponsiveT<string>;
+  gridAutoRows?: Responsive<string>;
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column */
-  gridColumn?: ResponsiveT<string>;
+  gridColumn?: Responsive<string>;
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column-end */
-  gridColumnEnd?: ResponsiveT<string>;
+  gridColumnEnd?: Responsive<string>;
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column-gap */
-  gridColumnGap?: ResponsiveT<ScaleT>;
+  gridColumnGap?: Responsive<Scale>;
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column-start */
-  gridColumnStart?: ResponsiveT<string>;
+  gridColumnStart?: Responsive<string>;
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-gap */
-  gridGap?: ResponsiveT<ScaleT>;
+  gridGap?: Responsive<Scale>;
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-row */
-  gridRow?: ResponsiveT<string>;
+  gridRow?: Responsive<string>;
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-row-end */
-  gridRowEnd?: ResponsiveT<string>;
+  gridRowEnd?: Responsive<string>;
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-row-gap */
-  gridRowGap?: ResponsiveT<ScaleT>;
+  gridRowGap?: Responsive<Scale>;
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-row-start */
-  gridRowStart?: ResponsiveT<string>;
+  gridRowStart?: Responsive<string>;
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template */
-  gridTemplate?: ResponsiveT<string>;
+  gridTemplate?: Responsive<string>;
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-areas */
-  gridTemplateAreas?: ResponsiveT<string>;
+  gridTemplateAreas?: Responsive<string>;
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns */
-  gridTemplateColumns?: ResponsiveT<string>;
+  gridTemplateColumns?: Responsive<string>;
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-rows */
-  gridTemplateRows?: ResponsiveT<string>;
+  gridTemplateRows?: Responsive<string>;
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content */
-  justifyContent?: ResponsiveT<JustifyContentT>;
+  justifyContent?: Responsive<JustifyContent>;
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/justify-items */
-  justifyItems?: ResponsiveT<JustifyItemsT>;
+  justifyItems?: Responsive<JustifyItems>;
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/justify-self */
-  justifySelf?: ResponsiveT<JustifySelfT>;
-  position?: ResponsiveT<PositionT>;
-  width?: ResponsiveT<ScaleT>;
-  minWidth?: ResponsiveT<ScaleT>;
-  maxWidth?: ResponsiveT<ScaleT>;
-  height?: ResponsiveT<ScaleT>;
-  minHeight?: ResponsiveT<ScaleT>;
-  maxHeight?: ResponsiveT<ScaleT>;
-  overflow?: ResponsiveT<OverflowT>;
-  margin?: ResponsiveT<ScaleT>;
-  marginTop?: ResponsiveT<ScaleT>;
-  marginRight?: ResponsiveT<ScaleT>;
-  marginBottom?: ResponsiveT<ScaleT>;
-  marginLeft?: ResponsiveT<ScaleT>;
-  padding?: ResponsiveT<ScaleT>;
-  paddingTop?: ResponsiveT<ScaleT>;
-  paddingRight?: ResponsiveT<ScaleT>;
-  paddingBottom?: ResponsiveT<ScaleT>;
-  paddingLeft?: ResponsiveT<ScaleT>;
+  justifySelf?: Responsive<JustifySelf>;
+  position?: Responsive<Position>;
+  width?: Responsive<Scale>;
+  minWidth?: Responsive<Scale>;
+  maxWidth?: Responsive<Scale>;
+  height?: Responsive<Scale>;
+  minHeight?: Responsive<Scale>;
+  maxHeight?: Responsive<Scale>;
+  overflow?: Responsive<Overflow>;
+  margin?: Responsive<Scale>;
+  marginTop?: Responsive<Scale>;
+  marginRight?: Responsive<Scale>;
+  marginBottom?: Responsive<Scale>;
+  marginLeft?: Responsive<Scale>;
+  padding?: Responsive<Scale>;
+  paddingTop?: Responsive<Scale>;
+  paddingRight?: Responsive<Scale>;
+  paddingBottom?: Responsive<Scale>;
+  paddingLeft?: Responsive<Scale>;
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/place-content */
-  placeContent?: ResponsiveT<string>;
+  placeContent?: Responsive<string>;
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/place-items */
-  placeItems?: ResponsiveT<string>;
+  placeItems?: Responsive<string>;
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/place-self */
-  placeSelf?: ResponsiveT<string>;
-  flexWrap?: ResponsiveT<boolean>;
-  left?: ResponsiveT<ScaleT>;
-  top?: ResponsiveT<ScaleT>;
-  right?: ResponsiveT<ScaleT>;
-  bottom?: ResponsiveT<ScaleT>;
+  placeSelf?: Responsive<string>;
+  flexWrap?: Responsive<boolean>;
+  left?: Responsive<Scale>;
+  top?: Responsive<Scale>;
+  right?: Responsive<Scale>;
+  bottom?: Responsive<Scale>;
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/text-overflow */
-  textOverflow?: ResponsiveT<string>;
+  textOverflow?: Responsive<string>;
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/white-space */
-  whiteSpace?: ResponsiveT<WhiteSpaceT>;
+  whiteSpace?: Responsive<WhiteSpace>;
 };
 
-export type StyledBlockPropsT = {
-  $color?: ResponsiveT<string>;
-  $backgroundAttachment?: ResponsiveT<string>;
-  $backgroundClip?: ResponsiveT<string>;
-  $backgroundColor?: ResponsiveT<string>;
-  $backgroundImage?: ResponsiveT<string>;
-  $backgroundOrigin?: ResponsiveT<string>;
-  $backgroundPosition?: ResponsiveT<string>;
-  $backgroundRepeat?: ResponsiveT<string>;
-  $backgroundSize?: ResponsiveT<string>;
-  $font?: ResponsiveT<string>;
-  $alignContent?: ResponsiveT<AlignContentT>;
-  $alignItems?: ResponsiveT<AlignItemsT>;
-  $alignSelf?: ResponsiveT<AlignSelfT>;
-  $flexDirection?: ResponsiveT<FlexDirectionT>;
-  $display?: ResponsiveT<DisplayT>;
-  $flex?: ResponsiveT<FlexT>;
-  $grid?: ResponsiveT<string>;
-  $gridArea?: ResponsiveT<string>;
-  $gridAutoColumns?: ResponsiveT<string>;
-  $gridAutoFlow?: ResponsiveT<GridAutoFlowT>;
-  $gridAutoRows?: ResponsiveT<string>;
-  $gridColumn?: ResponsiveT<string>;
-  $gridColumnEnd?: ResponsiveT<string>;
-  $gridColumnGap?: ResponsiveT<ScaleT>;
-  $gridColumnStart?: ResponsiveT<string>;
-  $gridGap?: ResponsiveT<ScaleT>;
-  $gridRow?: ResponsiveT<string>;
-  $gridRowEnd?: ResponsiveT<string>;
-  $gridRowGap?: ResponsiveT<ScaleT>;
-  $gridRowStart?: ResponsiveT<string>;
-  $gridTemplate?: ResponsiveT<string>;
-  $gridTemplateAreas?: ResponsiveT<string>;
-  $gridTemplateColumns?: ResponsiveT<string>;
-  $gridTemplateRows?: ResponsiveT<string>;
-  $justifyContent?: ResponsiveT<JustifyContentT>;
-  $justifyItems?: ResponsiveT<JustifyItemsT>;
-  $justifySelf?: ResponsiveT<JustifySelfT>;
-  $position?: ResponsiveT<PositionT>;
-  $width?: ResponsiveT<ScaleT>;
-  $minWidth?: ResponsiveT<ScaleT>;
-  $maxWidth?: ResponsiveT<ScaleT>;
-  $height?: ResponsiveT<ScaleT>;
-  $minHeight?: ResponsiveT<ScaleT>;
-  $maxHeight?: ResponsiveT<ScaleT>;
-  $overflow?: ResponsiveT<OverflowT>;
-  $margin?: ResponsiveT<ScaleT>;
-  $marginTop?: ResponsiveT<ScaleT>;
-  $marginRight?: ResponsiveT<ScaleT>;
-  $marginBottom?: ResponsiveT<ScaleT>;
-  $marginLeft?: ResponsiveT<ScaleT>;
-  $padding?: ResponsiveT<ScaleT>;
-  $paddingTop?: ResponsiveT<ScaleT>;
-  $paddingRight?: ResponsiveT<ScaleT>;
-  $paddingBottom?: ResponsiveT<ScaleT>;
-  $paddingLeft?: ResponsiveT<ScaleT>;
-  $placeContent?: ResponsiveT<string>;
-  $placeItems?: ResponsiveT<string>;
-  $placeSelf?: ResponsiveT<string>;
-  $flexWrap?: ResponsiveT<boolean>;
-  $left?: ResponsiveT<ScaleT>;
-  $top?: ResponsiveT<ScaleT>;
-  $right?: ResponsiveT<ScaleT>;
-  $bottom?: ResponsiveT<ScaleT>;
-  $textOverflow?: ResponsiveT<string>;
-  $whiteSpace?: ResponsiveT<WhiteSpaceT>;
+export type StyledBlockProps = {
+  $color?: Responsive<string>;
+  $backgroundAttachment?: Responsive<string>;
+  $backgroundClip?: Responsive<string>;
+  $backgroundColor?: Responsive<string>;
+  $backgroundImage?: Responsive<string>;
+  $backgroundOrigin?: Responsive<string>;
+  $backgroundPosition?: Responsive<string>;
+  $backgroundRepeat?: Responsive<string>;
+  $backgroundSize?: Responsive<string>;
+  $font?: Responsive<string>;
+  $alignContent?: Responsive<AlignContent>;
+  $alignItems?: Responsive<AlignItems>;
+  $alignSelf?: Responsive<AlignSelf>;
+  $flexDirection?: Responsive<FlexDirection>;
+  $display?: Responsive<Display>;
+  $flex?: Responsive<Flex>;
+  $grid?: Responsive<string>;
+  $gridArea?: Responsive<string>;
+  $gridAutoColumns?: Responsive<string>;
+  $gridAutoFlow?: Responsive<GridAutoFlow>;
+  $gridAutoRows?: Responsive<string>;
+  $gridColumn?: Responsive<string>;
+  $gridColumnEnd?: Responsive<string>;
+  $gridColumnGap?: Responsive<Scale>;
+  $gridColumnStart?: Responsive<string>;
+  $gridGap?: Responsive<Scale>;
+  $gridRow?: Responsive<string>;
+  $gridRowEnd?: Responsive<string>;
+  $gridRowGap?: Responsive<Scale>;
+  $gridRowStart?: Responsive<string>;
+  $gridTemplate?: Responsive<string>;
+  $gridTemplateAreas?: Responsive<string>;
+  $gridTemplateColumns?: Responsive<string>;
+  $gridTemplateRows?: Responsive<string>;
+  $justifyContent?: Responsive<JustifyContent>;
+  $justifyItems?: Responsive<JustifyItems>;
+  $justifySelf?: Responsive<JustifySelf>;
+  $position?: Responsive<Position>;
+  $width?: Responsive<Scale>;
+  $minWidth?: Responsive<Scale>;
+  $maxWidth?: Responsive<Scale>;
+  $height?: Responsive<Scale>;
+  $minHeight?: Responsive<Scale>;
+  $maxHeight?: Responsive<Scale>;
+  $overflow?: Responsive<Overflow>;
+  $margin?: Responsive<Scale>;
+  $marginTop?: Responsive<Scale>;
+  $marginRight?: Responsive<Scale>;
+  $marginBottom?: Responsive<Scale>;
+  $marginLeft?: Responsive<Scale>;
+  $padding?: Responsive<Scale>;
+  $paddingTop?: Responsive<Scale>;
+  $paddingRight?: Responsive<Scale>;
+  $paddingBottom?: Responsive<Scale>;
+  $paddingLeft?: Responsive<Scale>;
+  $placeContent?: Responsive<string>;
+  $placeItems?: Responsive<string>;
+  $placeSelf?: Responsive<string>;
+  $flexWrap?: Responsive<boolean>;
+  $left?: Responsive<Scale>;
+  $top?: Responsive<Scale>;
+  $right?: Responsive<Scale>;
+  $bottom?: Responsive<Scale>;
+  $textOverflow?: Responsive<string>;
+  $whiteSpace?: Responsive<WhiteSpace>;
 };
 
 export interface BlockComponentType<D extends React.ElementType> {
   <C extends React.ElementType = D>(
-    props: BlockPropsT<C> &
+    props: BlockProps<C> &
       (React.ComponentProps<C> extends { ref?: infer R } ? { ref?: R } : {}) &
-      Omit<StyledBlockPropsT & React.ComponentProps<C>, keyof BlockPropsT>
+      Omit<StyledBlockProps & React.ComponentProps<C>, keyof BlockProps>
   ): JSX.Element;
   displayName?: string;
 }

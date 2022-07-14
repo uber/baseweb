@@ -6,10 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 import { ThemeProvider, LightTheme } from '../../index';
-import { AppNavBar, NavItemT, setItemActive } from '../index';
-import { IconPropsT } from '../../icon';
+import { AppNavBar, NavItem, setItemActive } from '../index';
+import { IconProps } from '../../icon';
 
-const XSmallFilled = ({ title, size, color, ...props }: IconPropsT) => {
+const XSmallFilled = ({ title, size, color, ...props }: IconProps) => {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
       <title>{title}</title>
@@ -22,7 +22,7 @@ const XSmallFilled = ({ title, size, color, ...props }: IconPropsT) => {
 };
 
 export function Scenario() {
-  const [mainItems, setMainItems] = React.useState<NavItemT[]>([
+  const [mainItems, setMainItems] = React.useState<NavItem[]>([
     { label: 'Primary A' },
     { label: 'Primary B' },
     {

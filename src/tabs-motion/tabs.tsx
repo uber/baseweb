@@ -24,7 +24,7 @@ import {
 } from './styled-components';
 import { getTabId, getTabPanelId, isVertical, isHorizontal, isRTL } from './utils';
 
-import type { TabsPropsT } from './types';
+import type { TabsProps } from './types';
 
 import type { SyntheticEvent } from 'react';
 
@@ -99,7 +99,7 @@ export function Tabs({
   overrides = {},
   renderAll = false,
   uid: customUid = null,
-}: TabsPropsT) {
+}: TabsProps) {
   // Create unique id prefix for this tabs component
   const generatedUid = useUID();
   const uid = customUid || generatedUid;

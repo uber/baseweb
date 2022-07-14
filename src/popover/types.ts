@@ -6,48 +6,48 @@ LICENSE file in the root directory of this source tree.
 */
 /* eslint-disable flowtype/generic-spacing */
 import * as React from 'react';
-import type { OverrideT } from '../helpers/overrides';
-import type { TetherPlacementT } from '../layer';
+import type { Override } from '../helpers/overrides';
+import type { TetherPlacement } from '../layer';
 import { ACCESSIBILITY_TYPE, STATE_CHANGE_TYPE, TRIGGER_TYPE } from './constants';
 
-export type { PopperDataObjectT, PopperOffsetT, PopperOptionsT } from '../layer';
+export type { PopperDataObject, PopperOffset, PopperOptions } from '../layer';
 
-export type PopoverPlacementT = TetherPlacementT;
-export type TriggerTypeT = keyof typeof TRIGGER_TYPE;
-export type AccessibilityTypeT = keyof typeof ACCESSIBILITY_TYPE;
+export type PopoverPlacement = TetherPlacement;
+export type TriggerType = keyof typeof TRIGGER_TYPE;
+export type AccessibilityType = keyof typeof ACCESSIBILITY_TYPE;
 
-export type StateT = {
+export type State = {
   isOpen: boolean;
 };
 
-export type StateChangeTypeT = keyof typeof STATE_CHANGE_TYPE;
+export type StateChangeType = keyof typeof STATE_CHANGE_TYPE;
 
-export type StateReducerT = (
-  stateChangeType: StateChangeTypeT,
-  nextState: StateT,
-  currentState: StateT
-) => StateT;
+export type StateReducer = (
+  stateChangeType: StateChangeType,
+  nextState: State,
+  currentState: State
+) => State;
 
-export type ContentRenderPropT = () => React.ReactNode;
+export type ContentRenderProp = () => React.ReactNode;
 
-export type StatefulContentRenderPropT = (a: { close: () => void }) => React.ReactNode;
+export type StatefulContentRenderProp = (a: { close: () => void }) => React.ReactNode;
 
-export type OverridesT = {
-  Body?: OverrideT;
-  Arrow?: OverrideT;
-  Inner?: OverrideT;
+export type PopoverOverrides = {
+  Body?: Override;
+  Arrow?: Override;
+  Inner?: Override;
 };
 
 // re-exports to maintain same public interface
-export type ChildT = React.ReactNode;
-export type ChildrenT = Array<ChildT> | ChildT;
+export type Child = React.ReactNode;
+export type Children = Array<Child> | Child;
 
 // Props shared by all flavors of popover
-export type BasePopoverPropsT = {
+export type BasePopoverProps = {
   /** Controls how this popover behaves for screen readers and other assistive devices.
    * See the A11Y section at the bottom of this document for more details.
    */
-  accessibilityType?: AccessibilityTypeT;
+  accessibilityType?: AccessibilityType;
   /** How long should be fade out animation in ms, default 0ms */
   animateOutTime?: number;
   /** If true, focus will shift to the first interactive element within the popover.
@@ -80,9 +80,9 @@ export type BasePopoverPropsT = {
   onMouseLeave?: (e: React.MouseEvent) => unknown;
   /** Number of milliseconds to wait before showing the popover after mouse leaves the trigger element (for triggerType `hover`). */
   onMouseLeaveDelay?: number;
-  overrides?: OverridesT;
+  overrides?: PopoverOverrides;
   /** How to position the popover relative to the target. */
-  placement: TetherPlacementT;
+  placement: TetherPlacement;
   /** Popper options override
    * https://github.com/popperjs/popper.js/blob/v1.x/docs/_includes/popper-documentation.md
    */
@@ -96,19 +96,19 @@ export type BasePopoverPropsT = {
   /** Whether or not to show the arrow pointing from the popover to the trigger. */
   showArrow?: boolean;
   /** Whether to toggle the popover when trigger is clicked or hovered. */
-  triggerType: TriggerTypeT;
+  triggerType: TriggerType;
   /** Margin of the popover */
   popoverMargin?: number;
 };
 
 // Props for stateless render logic
-export type PopoverPropsT = BasePopoverPropsT & {
+export type PopoverProps = BasePopoverProps & {
   /** Content that should trigger the popover to be shown (also acts as the anchor against
    * which the popover will be positioned).
    */
   children: React.ReactNode;
   /** Content to render within the popover when it's shown. */
-  content: React.ReactNode | ContentRenderPropT;
+  content: React.ReactNode | ContentRenderProp;
   /** Whether or not to show the popover. */
   isOpen: boolean;
   /** Handler for clicks outside the anchor/popover elements. */
@@ -118,73 +118,73 @@ export type PopoverPropsT = BasePopoverPropsT & {
 };
 
 // Props for stateful wrapper
-export type StatefulPopoverPropsT = BasePopoverPropsT & {
+export type StatefulPopoverProps = BasePopoverProps & {
   /** Content that should trigger the popover to be shown (also acts as the anchor against
    * which the popover will be positioned).
    */
   children: React.ReactNode;
   /** Content to render within the popover when it's shown. */
-  content: React.ReactNode | StatefulContentRenderPropT;
+  content: React.ReactNode | StatefulContentRenderProp;
   /** Whether to hide the popover when the user clicks anywhere outside the trigger/popover. */
   dismissOnClickOutside: boolean;
   /** Whether to hide the popover when the user presses the escape key. */
   dismissOnEsc: boolean;
   /** Initial state populated into the component */
-  initialState?: StateT;
+  initialState?: State;
   /** Event handler when popover is hidden. */
   onClose?: () => unknown;
   /** Event handler when popover is shown. */
   onOpen?: () => unknown;
   /** Reducer function to manipulate internal state updates. */
-  stateReducer?: StateReducerT;
+  stateReducer?: StateReducer;
 };
 
 // Props for state container
-export type StatefulPopoverContainerPropsT = Omit<StatefulPopoverPropsT, 'children'> & {
-  children: (props: Omit<PopoverPropsT, 'children'>) => React.ReactNode;
+export type StatefulPopoverContainerProps = Omit<StatefulPopoverProps, 'children'> & {
+  children: (props: Omit<PopoverProps, 'children'>) => React.ReactNode;
 };
 
-export type PopoverPropsWithoutChildrenT = Omit<PopoverPropsT, 'children'>;
+export type PopoverPropsWithoutChildren = Omit<PopoverProps, 'children'>;
 
-export type OffsetT = {
+export type Offset = {
   top: number;
   left: number;
 };
 
-export type PopoverPrivateStateT = {
+export type PopoverPrivateState = {
   isAnimating: boolean;
-  arrowOffset: OffsetT;
-  popoverOffset: OffsetT;
-  placement: TetherPlacementT;
+  arrowOffset: Offset;
+  popoverOffset: Offset;
+  placement: TetherPlacement;
   isLayerMounted: boolean;
   isMounted: boolean;
   autoFocusAfterPositioning: boolean;
 };
 
-export type ArrowStylePropsArgT = {
-  $arrowOffset: OffsetT;
-  $placement: TetherPlacementT;
+export type ArrowStylePropsArg = {
+  $arrowOffset: Offset;
+  $placement: TetherPlacement;
 };
 
-export type BodyStylePropsArgT = {
+export type BodyStylePropsArg = {
   $animationDuration: number;
   $isAnimating: boolean;
   $isHoverTrigger: boolean;
   $isOpen: boolean;
-  $popoverOffset: OffsetT;
-  $placement: TetherPlacementT;
+  $popoverOffset: Offset;
+  $placement: TetherPlacement;
   $showArrow: boolean;
   $popoverMargin: number;
 };
 
-export type InnerStylePropsArgT = {};
+export type InnerStylePropsArg = {};
 /*
  * Can't use Intersection types because of https://github.com/facebook/flow/issues/7946
  * export type SharedStylePropsArgT = ArrowStylePropsArgT & BodyStylePropsArgT & InnerStylePropsArgT;
  */
-export type SharedStylePropsArgT = {} & ArrowStylePropsArgT & BodyStylePropsArgT;
+export type SharedStylePropsArg = {} & ArrowStylePropsArg & BodyStylePropsArg;
 
-export type AnchorPropsT = {
+export type AnchorProps = {
   'aria-controls'?: string | null;
   'aria-describedby'?: string | null;
   'aria-expanded'?: boolean;
