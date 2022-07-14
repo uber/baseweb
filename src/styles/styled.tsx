@@ -115,3 +115,10 @@ export function withWrapper<C extends StyletronComponent<any, any>, Props>(
     ));
   });
 }
+
+/** @deprecated use StyleFn instead. To be removed in future versions.*/
+export type StyletronStyledFn<T> = StyleFn<T>;
+/** @deprecated use WithStyleFn instead. To be removed in future versions.*/
+export type StyletronWithStyleFn<T> = WithStyleFn<T>;
+/** @deprecated use StyleFn instead. To be removed in future versions.*/
+export type StyledFn<T> = StyleFn<T>;

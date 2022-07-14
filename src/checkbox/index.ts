@@ -4,6 +4,8 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
+import type { CheckboxReducerState } from './types';
+
 export { default as StatefulCheckbox } from './stateful-checkbox';
 export { default as StatefulContainer } from './stateful-checkbox-container';
 export { default as Checkbox } from './checkbox';
@@ -21,3 +23,5 @@ export { STATE_TYPE, STYLE_TYPE, LABEL_PLACEMENT } from './constants';
 
 // Flow
 export * from './types';
+/** @deprecated use CheckboxReducerState instead. To be removed in future versions.*/
+export type initialState = CheckboxReducerState;
