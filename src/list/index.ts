@@ -45,3 +45,7 @@ export type MenuAdapterPropsT = MenuAdapterProps;
 export type HeadingPropsT = HeadingProps;
 /** @deprecated use StyledHeadingHeadingProps instead. To be removed in future versions.*/
 export type StyledHeadingHeadingPropsT = StyledHeadingHeadingProps;
+/** @deprecated To be removed in future versions.*/
+export type StyledHeadingEndEnhancerContainerPropsT = {
+  $isText: boolean;
+};
