@@ -28,7 +28,14 @@ export type SharedProps = {
   $disabled: boolean;
 };
 
-export type NavProps = {
+export type NavigationOverrides = {
+  Root?: Override;
+  NavItemContainer?: Override;
+  NavLink?: Override;
+  NavItem?: Override;
+  SubNavContainer?: Override;
+};
+export type NavigationProps = {
   /** Defines the current active itemId. Used for the default calculation of the $active prop */
   activeItemId: string;
   /**
@@ -45,13 +52,7 @@ export type NavProps = {
   /** onChange handler that is called when a nav item is selected */
   onChange?: (a: { item: Item; event: Event | KeyboardEvent }) => unknown;
   /** Overrides for the internal elements and components */
-  overrides: {
-    Root?: Override;
-    NavItemContainer?: Override;
-    NavLink?: Override;
-    NavItem?: Override;
-    SubNavContainer?: Override;
-  };
+  overrides: NavigationOverrides;
   /** Optional transform function that is called for each Item */
   mapItem: ((item: Item) => Item) | undefined | null;
 };
@@ -72,6 +73,10 @@ export type Item = {
   disabled?: boolean;
 };
 
+export type NavItemOverrides = {
+  NavLink?: Override;
+  NavItem?: Override;
+};
 export type NavItemProps = SharedProps & {
   item: Item;
   /** Used as a performance optimization if many nav items are rendered. Function provided to
@@ -79,14 +84,11 @@ export type NavItemProps = SharedProps & {
    */
   itemMemoizationComparator?: (b: NavItemProps, a: NavItemProps) => boolean;
   onSelect?: (a: { item: Item; event: Event | KeyboardEvent }) => unknown;
-  overrides: {
-    NavLink?: Override;
-    NavItem?: Override;
-  };
+  overrides: NavItemOverrides;
 };
 
 export type StatefulContainerProps = {
-  children: (a: NavProps) => React.ReactNode;
+  children: (a: NavigationProps) => React.ReactNode;
   /** Initial state of an uncontrolled component. */
   initialState?: State;
   /** A state change handler. Used to override default state transitions. */
@@ -95,7 +97,7 @@ export type StatefulContainerProps = {
 };
 
 type Exclude = {
-  children: (a: NavProps) => React.ReactNode;
+  children: (a: NavigationProps) => React.ReactNode;
 };
 
 export type StatefulNavProps = Omit<StatefulContainerProps, keyof Exclude>;
