@@ -4,7 +4,7 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import type { StatefulButtonGroupProps } from '../../legacy-dts/button-group';
+import type { StatefulButtonGroupProps } from './types';
 
 export { default as ButtonGroup } from './button-group';
 export { default as StatefulButtonGroup } from './stateful-button-group';

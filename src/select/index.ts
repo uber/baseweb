@@ -5,7 +5,6 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import type { Optgroups, Options } from './types';
-import { SelectProps } from '../../legacy-dts/select';
 
 export { default as Select } from './select';
 export { default as SingleSelect } from './single-select';
