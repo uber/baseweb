@@ -84,6 +84,19 @@ export type CountrySelectProps = {
   size: Size;
 };
 
+export type PhoneInputOverrides = {
+  Root?: Override;
+  Input?: Override;
+  CountrySelectContainer?: Override;
+  CountrySelectDropdown?: Override;
+  CountrySelectDropdownListItem?: Override;
+  CountrySelectDropdownFlagColumn?: Override;
+  CountrySelectDropdownNameColumn?: Override;
+  CountrySelectDropdownDialcodeColumn?: Override;
+  DialCode?: Override;
+  CountrySelect?: Override;
+  FlagContainer?: Override;
+};
 export type PhoneInputProps = {
   /** Sets aria-label attribute of the input element. */
   'aria-label': string | undefined | null;
@@ -111,19 +124,7 @@ export type PhoneInputProps = {
   onCountryChange: (event: OnChangeParams) => unknown;
   /** A handler for the input element's change events. */
   onTextChange: (event: ChangeEvent<HTMLInputElement>) => unknown;
-  overrides: {
-    Root?: Override;
-    Input?: Override;
-    CountrySelectContainer?: Override;
-    CountrySelectDropdown?: Override;
-    CountrySelectDropdownListItem?: Override;
-    CountrySelectDropdownFlagColumn?: Override;
-    CountrySelectDropdownNameColumn?: Override;
-    CountrySelectDropdownDialcodeColumn?: Override;
-    DialCode?: Override;
-    CountrySelect?: Override;
-    FlagContainer?: Override;
-  };
+  overrides: PhoneInputOverrides;
   /** Sets the placeholder text for the input element.  */
   placeholder?: string;
   /** Renders component in 'positive' state. */
