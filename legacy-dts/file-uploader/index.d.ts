@@ -11,7 +11,10 @@ export interface FileUploaderOverrides<T> {
   ProgressMessage?: Override<T>;
   ErrorMessage?: Override<T>;
   ButtonComponent?: Override<T>;
+  CancelButtonComponent?: Override<T>;
+  RetryButtonComponent?: Override<T>;
   Spinner?: Override<T>;
+  ProgressBar?: Override<T>;
 }
 
 export interface StyleProps {
