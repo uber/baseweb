@@ -27,9 +27,9 @@ export type RadioGroupOverrides = {
   RadioGroupRoot?: Override;
 };
 
-export type DefaultProps = Partial<Props>;
+export type DefaultProps = Partial<RadioGroupProps>;
 
-export type Props = {
+export type RadioGroupProps = {
   /** Id of element which contains a related caption */
   'aria-describedby'?: string;
   /** Id of element which contains a related error message */
@@ -151,7 +151,7 @@ export type StatelessState = {
 
 export type DefaultStatefulProps = {
   initialState: State;
-  children?: (props: Props) => React.ReactNode;
+  children?: (props: RadioGroupProps) => React.ReactNode;
   stateReducer: StateReducer;
   onChange: (e: ChangeEvent<HTMLInputElement>) => unknown;
 };
@@ -159,7 +159,7 @@ export type DefaultStatefulProps = {
 export type StatefulContainerProps = {
   overrides?: RadioGroupOverrides;
   /** Should return `RadioGroup` instance with standard or customized inner elements. */
-  children?: (props: Props) => React.ReactNode;
+  children?: (props: RadioGroupProps) => React.ReactNode;
   /** Initial state populated into the component */
   initialState?: State;
   /** Reducer function to manipulate internal state updates. */
