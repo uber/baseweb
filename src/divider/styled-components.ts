@@ -11,25 +11,31 @@ import type { DividerPropsT } from './types';
 export const StyledDivider = styled<'hr', DividerPropsT>('hr', (props) => {
   const { $theme, $size = SIZE.section } = props;
   const borderResetStyles = {
-    borderRight: 'none',
-    borderBottom: 'none',
-    borderLeft: 'none',
+    borderRightWidth: 0,
+    borderBottomWidth: 0,
+    borderLeftWidth: 0,
   };
 
   if ($size === SIZE.cell) {
     return {
       ...borderResetStyles,
-      borderTop: `1px solid ${$theme.colors.borderOpaque}`,
+      borderTopWidth: '1px',
+      borderTopColor: $theme.colors.borderOpaque,
+      borderTopStyle: 'solid',
     };
   }
   if ($size === SIZE.module) {
     return {
       ...borderResetStyles,
-      borderTop: `8px solid ${$theme.colors.backgroundTertiary}`,
+      borderTopWidth: '8px',
+      borderTopColor: $theme.colors.backgroundTertiary,
+      borderTopStyle: 'solid',
     };
   }
   return {
     ...borderResetStyles,
-    borderTop: `2px solid ${$theme.colors.borderOpaque}`,
+    borderTopWidth: '2px',
+    borderTopColor: $theme.colors.borderOpaque,
+    borderTopStyle: 'solid',
   };
 });
