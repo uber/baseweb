@@ -56,6 +56,7 @@ const COLORS = [
   'backgroundStateDisabled',
   'backgroundOverlayDark',
   'backgroundOverlayLight',
+  'backgroundOverlayArt',
   'backgroundAccent',
   'backgroundNegative',
   'backgroundWarning',
