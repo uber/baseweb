@@ -29,7 +29,7 @@ export type {
   Breakpoints,
   Border,
   Borders,
-  Font as Font,
+  Font,
   Grid,
   Lighting,
   MediaQuery,
