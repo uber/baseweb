@@ -5,6 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
+import { isElement, isPortal } from 'react-is';
 import { getOverrides } from '../helpers/overrides';
 import { Root as StyledRoot } from './styled-components';
 import type { StatelessAccordionProps } from './types';
@@ -24,10 +25,8 @@ function StatelessAccordion({
     <Root data-baseweb="accordion" {...rootProps}>
       {React.Children.map(children, (child, index) => {
         let normalizedChild =
-          typeof child === 'object' ? (
-            (child as  // skip {} from type definition
-              | React.ReactElement<any, string | React.JSXElementConstructor<any>>
-              | React.ReactPortal)
+          isElement(child) || isPortal(child) ? (
+            child
           ) : (
             // if primitive value - wrap it in a fragment
             <>{child}</>
