@@ -54,15 +54,13 @@ export type OnChangeHandler = (a: { expanded: boolean }) => unknown;
 
 export type AccordionOnChangeHandler = (a: { expanded: Array<React.Key> }) => unknown;
 
-type Children = Array<React.ReactElement<any>> | React.ReactElement<any>;
-
 export type AccordionProps = {
   /** Determines how many panels may be expanded at a time. If set to
    * true it will collapse a current panel when a new panel is expanded.
    * If set to false more than one panel may be expanded at a time. */
   accordion?: boolean;
   /** Accordion expandable items. See Panel API below for reference. */
-  children: Children;
+  children: React.ReactNode;
   /** If set to true all its children panels will be disabled from toggling. */
   disabled?: boolean;
   initialState?: AccordionState;
@@ -91,7 +89,7 @@ export type StatelessAccordionProps = {
    * If set to false more than one panel may be expanded at a time. */
   accordion?: boolean;
   /** Accordion expandable items. See Panel API below for reference. */
-  children: Children;
+  children: React.ReactNode;
   /** If set to true all its children panels will be disabled from toggling. */
   disabled?: boolean;
   /** List of Panel keys which are expanded. */
