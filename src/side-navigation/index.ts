@@ -10,3 +10,5 @@ export { default as NavItem } from './nav-item';
 export * from './styled-components';
 // Types
 export * from './types';
+/** @deprecated type is already removed*/
+type NavItemOverrides = never;

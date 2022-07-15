@@ -147,14 +147,15 @@ export type StatefulContainerProps = {
   forceHighlight: boolean;
 };
 
+export type MenuOverrides = {
+  EmptyState?: Override;
+  List?: Override;
+  Option?: Override;
+  OptgroupHeader?: Override;
+  ListItem?: Override;
+};
 export type MenuProps = {
-  overrides?: {
-    EmptyState?: Override;
-    List?: Override;
-    Option?: Override;
-    OptgroupHeader?: Override;
-    ListItem?: Override;
-  };
+  overrides?: MenuOverrides;
   /** Renders all menu content for SEO purposes regardless of menu  state */
   renderAll?: boolean;
 };

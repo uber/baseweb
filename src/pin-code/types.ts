@@ -13,7 +13,11 @@ export type ChangeEvent = {
   event: any;
 };
 
-export type Props = {
+export type PinCodeOverrides = {
+  Root?: Override;
+  Input?: Override;
+};
+export type PinCodeProps = {
   /** Sets aria-label attribute for each input element. */
   'aria-label': string | undefined | null;
   /** Sets aria-labelledby attribute for each input element. */
@@ -34,10 +38,7 @@ export type Props = {
   name: string | undefined | null;
   /** A handler for when any pin code input changes value. */
   onChange: (a: ChangeEvent) => unknown;
-  overrides: {
-    Root?: Override;
-    Input?: Override;
-  };
+  overrides: PinCodeOverrides;
   /** Sets the placeholder text for each pin code input element. */
   placeholder: string;
   /** Renders the component in a positive state. */
@@ -72,14 +73,14 @@ export type StateReducer = (
   currentState: StatefulPinCodeContainerState
 ) => StatefulPinCodeContainerState;
 
-export type StatefulPinCodeProps = Props & {
+export type StatefulPinCodeProps = PinCodeProps & {
   initialState?: StatefulPinCodeContainerState;
   onChange?: (event: ChangeEvent) => unknown;
   stateReducer?: StateReducer;
 };
 
-export type StatefulPinCodeContainerProps = Props & {
-  children: (a: Props) => React.ReactNode;
+export type StatefulPinCodeContainerProps = PinCodeProps & {
+  children: (a: PinCodeProps) => React.ReactNode;
   initialState: StatefulPinCodeContainerState;
   onChange: (event: ChangeEvent) => unknown;
   stateReducer: StateReducer;

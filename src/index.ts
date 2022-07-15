@@ -31,4 +31,8 @@ export { default as LocaleProvider } from './locale';
 export { default as BaseProvider } from './helpers/base-provider';
 export { getOverrides, mergeOverrides } from './helpers/overrides';
 export type { Primitives } from './themes';
-export type { Theme } from './styles';
+export type { Theme, ThemeProviderProps } from './styles';
+
+export { type StyledFn, type StyletronWithStyleFn as WithStyleFn } from './styles/styled';
+export { type LocaleProviderProps } from './locale';
+export { type BaseProviderOverrides, type BaseProviderProps } from './helpers/types';

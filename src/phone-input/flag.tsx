@@ -15,12 +15,13 @@ type SizeStyleProps = {
   $size?: Size;
 };
 
-export default function Flag(props: {
+export type FlagProps = {
   $iso: CountryIso;
   // remove `iso` prop in the next major version
   iso?: CountryIso;
   width?: string;
-}) {
+};
+export default function Flag(props: FlagProps) {
   const { $iso, iso: oldIsoProp, width = '16px', ...restProps } = props;
   const iso: CountryIso = oldIsoProp || $iso;
   const FlagComponent = flags[`Flag${iso.toUpperCase()}`];

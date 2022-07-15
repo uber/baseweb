@@ -47,3 +47,6 @@ export const StyledLink = withWrapper<typeof Link, { animateUnderline?: boolean 
       );
     }
 );
+
+/** @deprecated To be removed in future versions.*/
+export type LinkProps = React.ComponentProps<typeof StyledLink>;

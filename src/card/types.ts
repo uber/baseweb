@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import type { ReactNode } from 'react';
 import type { Override } from '../helpers/overrides';
 
-export type CardComponents = {
+export type CardOverrides = {
   Action?: Override;
   Body?: Override;
   Contents?: Override;
@@ -43,7 +43,7 @@ export type CardProps = {
   readonly hasThumbnail: (a: { readonly thumbnail?: string }) => boolean;
   /** Image to be positioned at the top of the Card. Can be a string representing the img src or an object with img attrs */
   readonly headerImage?: string | ImageProps;
-  readonly overrides: CardComponents;
+  readonly overrides: CardOverrides;
   /** Image src that by default is rendered to the side of children content. */
   readonly thumbnail?: string;
   /** Content to render above the body content. */

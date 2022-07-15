@@ -5,6 +5,8 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
+import type { CardProps } from './types';
+
 export { default as Card, hasThumbnail } from './card';
 export {
   Action as StyledAction,
@@ -17,3 +19,5 @@ export {
   Root as StyledWrapper,
 } from './styled-components';
 export * from './types';
+/** @deprecated To be removed in future versions */
+type hasThumbnail = CardProps['hasThumbnail'];
