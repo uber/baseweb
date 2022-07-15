@@ -6,16 +6,17 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import { withWrapper } from '../styles/index.js';
+import type {StyletronComponent} from '../styles/styled';
 
-import { StyledDivider as StyledDividerElement } from './styled-components.js';
+export type DividerProps = {
+  /** Thickness of the divider. */
+  $size?: $Keys<typeof SIZE>,
+};
 
-export * from './constants.js';
+export const SIZE = {
+  cell: 'cell',
+  section: 'section',
+  module: 'module',
+};
 
-export const StyledDivider = withWrapper(
-  StyledDividerElement,
-  (StyledComponent) =>
-    function StyledDivider(props) {
-      return <StyledComponent aria-hidden="true" {...props} />;
-    }
-);
+declare export var StyledDivider: StyletronComponent<DividerProps>;
