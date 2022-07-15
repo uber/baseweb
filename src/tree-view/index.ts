@@ -23,7 +23,7 @@ export { default as TreeLabel } from './tree-label';
 export { default as TreeLabelInteractable } from './tree-label-interactable';
 export { toggleIsExpanded };
 /** @deprecated use TreeNodeData instead. To be removed in future versions.*/
-export type TreeNode = TreeNodeData;
+export type TreeNode<T = any> = TreeNodeData<T>;
 /** @deprecated To be removed in future versions.*/
 type TGetId = Parameters<toggleIsExpandedT>[2];
 /** @deprecated To be removed in future versions.*/
