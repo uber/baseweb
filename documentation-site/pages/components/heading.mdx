@@ -7,7 +7,6 @@ LICENSE file in the root directory of this source tree.
 
 import Example from '../../components/example';
 import Exports from '../../components/exports';
-import API from '../../components/api';
 import Layout from '../../components/layout';
 
 import * as HeadingExports from 'baseui/heading';
@@ -40,17 +39,5 @@ Ideally, the user will use the default styles but sometimes it might make sense 
 <Example title="Decouple and fix heading styles" path="heading/decouple-styles.js">
   <DecoupleStyles />
 </Example>
-
-## API
-
-<API
-  heading="HeadingLevel API"
-  api={require('!!extract-react-types-loader!../../../src/heading/heading-level')}
-/>
-
-<API
-  heading="Heading API"
-  api={require('!!extract-react-types-loader!../../../src/heading/heading')}
-/>
 
 <Exports component={HeadingExports} title="Heading exports" path="baseui/heading" />

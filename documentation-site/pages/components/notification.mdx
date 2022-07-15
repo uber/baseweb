@@ -20,7 +20,6 @@ import { Notification } from 'baseui/notification';
 import * as NotificationExports from 'baseui/notification';
 import Yard from '../../components/yard/index';
 import notificationYardConfig from '../../components/yard/config/notification';
-import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -64,14 +63,6 @@ they'll be used in.
 <Example title="Notification with Custom Dismiss" path="notification/custom-dismiss.js">
   <CustomDismiss />
 </Example>
-
-## API
-
-<ApiTable
-  title="Notification props"
-  config={notificationYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/notification/notification')}
-/>
 
 <Exports
   component={NotificationExports}

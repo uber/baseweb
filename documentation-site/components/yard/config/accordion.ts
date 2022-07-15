@@ -8,9 +8,6 @@ import { Accordion, Panel } from 'baseui/accordion';
 import { PropTypes } from 'react-view';
 import { TConfig } from '../types';
 
-const accordionProps = require('!!extract-react-types-loader!../../../../src/accordion/accordion');
-const panelProps = require('!!extract-react-types-loader!../../../../src/accordion/panel');
-
 const AccordionConfig: TConfig = {
   componentName: 'Accordion',
   imports: {
@@ -72,10 +69,6 @@ const AccordionConfig: TConfig = {
         },
       },
     },
-  },
-  mapTokensToProps: {
-    Accordion: accordionProps,
-    Panel: panelProps,
   },
 };
 

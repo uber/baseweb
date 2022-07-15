@@ -10,8 +10,6 @@ import { PropTypes } from 'react-view';
 import { TConfig } from '../types';
 import { Check, Upload, Search } from 'baseui/icon';
 
-const fixedMarkerPropsType = require('!!extract-react-types-loader!../../../../src/map-marker/fixed-marker');
-
 export const theme = [];
 
 export const fixedMarkerProps = {
@@ -176,9 +174,6 @@ const FixedMarkerConfig: TConfig = {
         sharedProps: {},
       },
     },
-  },
-  mapTokensToProps: {
-    FixedMarker: fixedMarkerPropsType,
   },
 };
 

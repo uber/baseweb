@@ -17,7 +17,6 @@ import { Toast } from 'baseui/toast';
 import * as ToastExports from 'baseui/toast';
 import Yard from '../../components/yard/index';
 import toastYardConfig from '../../components/yard/config/toast';
-import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -63,13 +62,5 @@ If a toast with an identical key already exists, that toast's contents will be u
 <Example title="Toast Being Closed From Outside" path="toast/toast-close-from-outside.js">
   <ToastCloseFromOutside />
 </Example>
-
-## API
-
-<ApiTable
-  title="Toast props"
-  config={toastYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/toast/toast')}
-/>
 
 <Exports component={ToastExports} title="Toast exports" path="baseui/toast" />

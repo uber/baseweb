@@ -27,7 +27,6 @@ import Code from '../../components/code';
 
 import Yard from '../../components/yard/index';
 import menuYardConfig from '../../components/yard/config/menu';
-import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -193,14 +192,6 @@ The provided id will be set as a value for the item container's `id` attribute t
       </Code>
     </React.Fragment>
   )}
-/>
-
-## API
-
-<ApiTable
-  title="Menu props"
-  config={menuYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/menu/menu')}
 />
 
 <Exports component={MenuExports} title="Menu exports" path="baseui/menu" />

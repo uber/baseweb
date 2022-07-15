@@ -2,9 +2,6 @@ import { Tabs, Tab, ORIENTATION } from 'baseui/tabs';
 import { PropTypes } from 'react-view';
 import { TConfig } from '../types';
 
-const tabsProps = require('!!extract-react-types-loader!../../../../src/tabs/tabs');
-const tabProps = require('!!extract-react-types-loader!../../../../src/tabs/tab');
-
 const TabsConfig: TConfig = {
   componentName: 'Tabs',
   imports: {
@@ -84,10 +81,6 @@ const TabsConfig: TConfig = {
         },
       },
     },
-  },
-  mapTokensToProps: {
-    Tabs: tabsProps,
-    Tab: tabProps,
   },
 };
 

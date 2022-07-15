@@ -5,8 +5,6 @@ import { PropTypes } from 'react-view';
 import { TConfig } from '../types';
 import { theme, inputProps } from './input';
 
-const paymentCardProps = require('!!extract-react-types-loader!../../../../src/payment-card/payment-card');
-
 const PaymentCardConfig: TConfig = {
   componentName: 'PaymentCard',
   imports: {
@@ -48,9 +46,6 @@ const PaymentCardConfig: TConfig = {
         },
       },
     },
-  },
-  mapTokensToProps: {
-    PaymentCard: paymentCardProps,
   },
 };
 

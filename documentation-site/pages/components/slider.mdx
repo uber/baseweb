@@ -23,7 +23,6 @@ import * as SliderExports from 'baseui/slider';
 
 import Yard from '../../components/yard/index';
 import sliderYardConfig from '../../components/yard/config/slider';
-import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -90,13 +89,5 @@ The component is also **optimized for iOS and Android devices**.
 </Example>
 
 As with many of our components, there is also an [uncontrolled](https://reactjs.org/docs/uncontrolled-components.html) version, `StatefulSlider`, which manages its own state.
-
-## API
-
-<ApiTable
-  title="Slider props"
-  config={sliderYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/slider/slider')}
-/>
 
 <Exports component={SliderExports} title="Slider exports" path="baseui/slider" />

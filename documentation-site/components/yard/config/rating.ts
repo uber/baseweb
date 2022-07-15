@@ -8,8 +8,6 @@ import { StarRating } from 'baseui/rating';
 import { PropTypes } from 'react-view';
 import { TConfig } from '../types';
 
-const starRatingProps = require('!!extract-react-types-loader!../../../../src/rating/star-rating');
-
 const ratingConfig: TConfig = {
   componentName: 'StarRating',
   imports: {
@@ -72,9 +70,6 @@ const ratingConfig: TConfig = {
         },
       },
     },
-  },
-  mapTokensToProps: {
-    StarRating: starRatingProps,
   },
 };
 

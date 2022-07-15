@@ -19,7 +19,6 @@ import { Block } from 'baseui/block';
 import Yard from '../../components/yard/index';
 import progressStepsYardConfig from '../../components/yard/config/progress-steps';
 import progressStepsNumberedYardConfig from '../../components/yard/config/progress-steps-numbered';
-import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -47,14 +46,6 @@ list type provides the user with a sense of awareness around progress and the st
 <Example title="Progress Steps Numbered Usage" path="progress-steps/numbered.js">
   <ProgressStepsNumbered />
 </Example>
-
-## API
-
-<ApiTable
-  title="Progress Steps props"
-  config={progressStepsYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/progress-steps/progress-steps')}
-/>
 
 <Exports
   component={ProgressStepsExports}

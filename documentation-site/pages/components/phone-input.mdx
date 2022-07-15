@@ -23,7 +23,6 @@ import WithNestedOverrides from 'examples/phone-input/nested-overrides.js';
 
 import Yard from '../../components/yard/index';
 import phoneInputYardConfig from '../../components/yard/config/phone-input';
-import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -83,13 +82,5 @@ COUNTRIES: {
     data={Object.values(COUNTRIES).map((c) => [c.id, c.label, c.dialCode])}
   />
 </Block>
-
-## API
-
-<ApiTable
-  title="Phone Input props"
-  config={phoneInputYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/phone-input/phone-input')}
-/>
 
 <Exports component={PhoneInputExports} title="Phone Input exports" path="baseui/phone-input" />

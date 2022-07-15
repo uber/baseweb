@@ -2,8 +2,6 @@ import { Skeleton } from 'baseui/skeleton';
 import { PropTypes } from 'react-view';
 import { TConfig } from '../types';
 
-const skeletonProps = require('!!extract-react-types-loader!../../../../src/pin-code/pin-code');
-
 const SkeletonConfig: TConfig = {
   componentName: 'Skeleton',
   imports: {
@@ -47,9 +45,6 @@ const SkeletonConfig: TConfig = {
         sharedProps: {},
       },
     },
-  },
-  mapTokensToProps: {
-    Skeleton: skeletonProps,
   },
 };
 
