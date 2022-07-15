@@ -28,6 +28,9 @@ export type Timezone = {
    */
   offset: number;
 };
+export type TimezonePickerOverrides = {
+  Select?: Override;
+};
 export type TimezonePickerProps = {
   /**
    * If not provided, defaults to new Date(). Important to note that the timezone picker only
@@ -45,9 +48,7 @@ export type TimezonePickerProps = {
   mapLabels?: (option: Option) => string;
   /** Callback for when the timezone selection changes. */
   onChange?: (value?: Timezone | null) => unknown;
-  overrides?: {
-    Select?: Override;
-  };
+  overrides?: TimezonePickerOverrides;
   /**
    * Optional value that can be provided to fully control the component. If not provided,
    * TimezonePicker will manage state internally.

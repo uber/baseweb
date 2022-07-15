@@ -23,7 +23,7 @@ export type OverrideObject = {
   style?: ConfigurationOverride | null;
 };
 
-export type Override =
+export type Override<T = any> =
   | OverrideObject
   | (React.ComponentType<any> & {
       component?: undefined;
@@ -31,7 +31,7 @@ export type Override =
       style?: undefined;
     });
 
-export type Overrides = {
+export type Overrides<T = any> = {
   [x: string]: Override;
 };
 

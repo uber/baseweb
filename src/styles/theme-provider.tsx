@@ -11,7 +11,8 @@ import type { Theme } from './types';
 
 export const ThemeContext: React.Context<Theme> = React.createContext(LightTheme);
 
-const ThemeProvider = (props: { theme: Theme; children: React.ReactNode | undefined | null }) => {
+export type ThemeProviderProps = { theme: Theme };
+const ThemeProvider: React.FC<ThemeProviderProps> = (props) => {
   const { theme, children } = props;
   return <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>;
 };

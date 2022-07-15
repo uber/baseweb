@@ -58,6 +58,14 @@ export type StyleProps = {
   $value: number;
 };
 
+export type ProgressBarRoundedOverrides = {
+  Root?: Override;
+  Svg?: Override;
+  TrackBackground?: Override;
+  TrackForeground?: Override;
+  Text?: Override;
+};
+
 export type ProgressBarRoundedProps = {
   /** A number between 0 and 1 inclusive. Example: 0.75. */
   progress?: number;
@@ -68,11 +76,5 @@ export type ProgressBarRoundedProps = {
   /** Toggle container rendering as a block or inline. */
   inline?: boolean;
   /** Overrides for sub-nodes in the rendering tree. */
-  overrides?: {
-    Root?: Override;
-    Svg?: Override;
-    TrackBackground?: Override;
-    TrackForeground?: Override;
-    Text?: Override;
-  };
+  overrides?: ProgressBarRoundedOverrides;
 };

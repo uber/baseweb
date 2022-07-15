@@ -362,6 +362,10 @@ const routes = [
             itemId: '/components/block',
           },
           {
+            title: 'Divider',
+            itemId: '/components/divider',
+          },
+          {
             title: 'FlexGrid',
             itemId: '/components/flex-grid',
           },

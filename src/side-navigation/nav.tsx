@@ -8,13 +8,13 @@ import * as React from 'react';
 import { getOverrides } from '../helpers/overrides';
 import NavItem from './nav-item';
 import { StyledRoot, StyledNavItemContainer, StyledSubNavContainer } from './styled-components';
-import type { NavProps, Item } from './types';
+import type { NavigationProps, Item } from './types';
 import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible';
 
 import type { SyntheticEvent } from 'react';
 
 export default class SideNav extends React.Component<
-  NavProps,
+  NavigationProps,
   {
     isFocusVisible: boolean;
   }

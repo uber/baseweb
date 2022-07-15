@@ -9,12 +9,12 @@ import * as React from 'react';
 import { getOverrides } from '../helpers/overrides';
 
 import { RadioGroupRoot as StyledRadioGroupRoot } from './styled-components';
-import type { Props, DefaultProps, StatelessState } from './types';
+import type { RadioGroupProps, DefaultProps, StatelessState } from './types';
 import { isFocusVisible } from '../utils/focusVisible';
 
 import type { ChangeEvent } from 'react';
 
-class StatelessRadioGroup extends React.Component<Props, StatelessState> {
+class StatelessRadioGroup extends React.Component<RadioGroupProps, StatelessState> {
   static defaultProps: DefaultProps = {
     name: '',
     value: '',

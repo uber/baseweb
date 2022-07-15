@@ -45,6 +45,12 @@ export type SharedGridProps = {
   /** Modify the CSS length unit used to measure columns and rows. Defaults to theme value. */
   gridUnit?: CSSLengthUnit;
 };
+
+export type GridOverrides = {
+  Grid?: Override;
+  GridWrapper?: Override;
+};
+
 export type GridProps = {
   /** Control vertical alignment of cells at each breakpoint. */
   align?: Responsive<Alignment>;
@@ -59,10 +65,7 @@ export type GridProps = {
   /** Style for your grid. The `default` style will pull values from the theme, while other styles have preset values that are unaffected by the theme. **/
   gridStyle?: GridStyle;
   /** Overrides for your grid. */
-  overrides?: {
-    Grid?: Override;
-    GridWrapper?: Override;
-  };
+  overrides?: GridOverrides;
 } & SharedGridProps;
 
 export type StyledGridWrapperProps = {
@@ -93,6 +96,9 @@ export type StyledGridProps = {
   $gridStyle?: GridStyle;
 };
 
+export type CellOverrides = {
+  Cell?: Override;
+};
 export type CellProps = {
   /** Control vertical alignment of individual cell at each breakpoint. Limited proxy for `align-self` CSS property. */
   align?: Responsive<Alignment>;
@@ -105,9 +111,7 @@ export type CellProps = {
   /** Control number of columns the cell should span. */
   span?: Responsive<number>;
   /** Overrides for a single cell. */
-  overrides?: {
-    Cell?: Override;
-  };
+  overrides?: CellOverrides;
 } & SharedGridProps;
 
 export type StyledCellProps = {

@@ -10,15 +10,16 @@ import type { Option } from '../select';
 import type { Size } from '../input';
 import type { DateIOAdapter } from '../datepicker/utils/types';
 
+export type TimePickerOverrides = {
+  Select?: Override;
+};
 export type TimePickerProps<T = Date> = {
   /** Render options in AM/PM format or 24 hour format. Defaults to 12 hour. */
   adapter: DateIOAdapter<T>;
   format?: '12' | '24';
   /** Callback for when time selection changes. */
   onChange?: (a: T | null) => unknown;
-  overrides?: {
-    Select?: Override;
-  };
+  overrides?: TimePickerOverrides;
   /** Set to true to allow times that aren't displayed in the options list to be entered manually. Defaults to false. */
   creatable?: boolean;
   /** Amount of seconds between each option time. Defaults to 900 (15 minutes). */

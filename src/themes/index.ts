@@ -12,6 +12,7 @@ import createDarkTheme from './dark-theme/create-dark-theme';
 import createLightTheme from './light-theme/create-light-theme';
 import darkThemePrimitives from './dark-theme/primitives';
 import lightThemePrimitives from './light-theme/primitives';
+import type { ColorTokens, Primitives } from './types';
 
 export {
   createDarkTheme,
@@ -27,3 +28,7 @@ export {
 };
 
 export * from './types';
+/** @deprecated use ColorTokens instead. To be removed in future versions.*/
+export type Colors = ColorTokens;
+/** @deprecated use Primitives instead. To be removed in future versions.*/
+export type ThemePrimitives = Primitives;

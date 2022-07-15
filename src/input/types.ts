@@ -53,7 +53,7 @@ export type SharedProps = {
   $hasIconTrailing?: boolean;
 };
 
-export type BaseInputComponents = {
+export type BaseInputOverrides = {
   InputContainer?: Override;
   Input?: Override;
   Before?: Override;
@@ -65,11 +65,11 @@ export type BaseInputComponents = {
   MaskToggleHideIcon?: Override;
 };
 
-export type InputComponents = {
+export type InputOverrides = {
   Root?: Override;
   StartEnhancer?: Override;
   EndEnhancer?: Override;
-} & BaseInputComponents;
+} & BaseInputOverrides;
 
 export type BaseInputProps<T> = {
   'aria-activedescendant'?: string;
@@ -119,7 +119,7 @@ export type BaseInputProps<T> = {
   clearOnEscape?: boolean;
   maxLength?: number;
   onClear?: (e: SyntheticEvent<T>) => void;
-  overrides?: BaseInputComponents;
+  overrides?: BaseInputOverrides;
   placeholder?: string;
   /** Renders component in 'required' state. */
   required?: boolean;
@@ -143,7 +143,7 @@ export type BaseInputProps<T> = {
 };
 
 export type InputProps = {
-  overrides?: InputComponents;
+  overrides?: InputOverrides;
   /** An input helper rendered before and attached to the input field. */
   startEnhancer?: React.ReactNode | ((props: SharedProps) => React.ReactNode);
   /** An input helper rendered after and attached to the input field. */
@@ -179,11 +179,11 @@ export type StatefulContainerProps<T> = {
   /** If true, adds a clear value icon button to the end of the input container. */
   clearable?: boolean;
 } & {
-  overrides?: InputComponents;
+  overrides?: InputOverrides;
 } & Omit<InputProps, 'overrides' | 'children'>;
 
 type OmitProps = {
-  overrides: InputComponents;
+  overrides: InputOverrides;
   children:
     | ((props: StatefulContainerChildrenProps<HTMLInputElement>) => React.ReactNode)
     | undefined
@@ -195,5 +195,5 @@ type FullStProps = InputProps & StatefulContainerProps<HTMLInputElement | HTMLTe
 export type StInputPropsDiff = Omit<FullStProps, 'overrides' | 'children'>;
 
 export type StatefulInputProps = {
-  overrides?: InputComponents;
+  overrides?: InputOverrides;
 } & StInputPropsDiff;
