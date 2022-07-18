@@ -21,7 +21,6 @@ import * as ProgressBarExports from 'baseui/progress-bar';
 
 import Yard from '../../components/yard/index';
 import progressBarYardConfig from '../../components/yard/config/progress-bar';
-import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -68,13 +67,5 @@ There also is a rounded version of the progress bar
 <Example title="Basic Usage" path="progress-bar/rounded.js">
   <ProgressBarRounded />
 </Example>
-
-## API
-
-<ApiTable
-  title="Progress Bar props"
-  config={progressBarYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/progress-bar/progressbar')}
-/>
 
 <Exports component={ProgressBarExports} title="Progress Bar exports" path="baseui/progress-bar" />

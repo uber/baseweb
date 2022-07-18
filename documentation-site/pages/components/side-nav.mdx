@@ -17,7 +17,6 @@ import * as NavExports from 'baseui/side-navigation';
 
 import Yard from '../../components/yard/index';
 import sideNavYardConfig from '../../components/yard/config/side-nav';
-import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -76,13 +75,5 @@ a `React.memo` call on the `NavItem` component. See React's
 [documentation](https://reactjs.org/docs/react-api.html#reactmemo) for more information on how
 this works. Take care to ensure that you diff all of the props you care about. While powerful,
 intervening in React's default update schedule can lead to unexpected results.
-
-## API
-
-<ApiTable
-  title="Side Navigation props"
-  config={sideNavYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/side-navigation/nav')}
-/>
 
 <Exports component={NavExports} title="Side Navigation exports" path="baseui/side-navigation" />

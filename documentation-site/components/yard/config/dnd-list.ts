@@ -2,8 +2,6 @@ import { List, arrayMove, arrayRemove } from 'baseui/dnd-list';
 import { PropTypes } from 'react-view';
 import { TConfig } from '../types';
 
-const listProps = require('!!extract-react-types-loader!../../../../src/dnd-list/list');
-
 const dndListConfig: TConfig = {
   componentName: 'List',
   imports: {
@@ -78,9 +76,6 @@ const dndListConfig: TConfig = {
         },
       },
     },
-  },
-  mapTokensToProps: {
-    List: listProps,
   },
 };
 

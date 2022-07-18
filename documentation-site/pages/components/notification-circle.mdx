@@ -14,7 +14,6 @@ import * as NotificationCircleExports from 'baseui/badge';
 
 import Yard from '../../components/yard/index';
 import notificationCircleYardConfig from '../../components/yard/config/notification-circle';
-import ApiTable from '../../components/api-table';
 
 import Inline from 'examples/notification-circle/inline.js';
 import Offset from 'examples/notification-circle/offset.js';
@@ -44,14 +43,6 @@ There may be situations where it makes sense to deviate from the standard placem
 
 - `horizontalOffset` sets the `right` CSS attribute when `placement` is `topRight` and the `left` attribute when placement is `topLeft`.
 - `verticalOffset` sets the `top` CSS attribute.
-
-## API
-
-<ApiTable
-  title="NotificationCircle props"
-  config={notificationCircleYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/badge/badge')}
-/>
 
 <Exports
   component={NotificationCircleExports}

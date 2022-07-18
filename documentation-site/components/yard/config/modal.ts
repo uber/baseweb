@@ -3,8 +3,6 @@ import { KIND as ButtonKind } from 'baseui/button';
 import { PropTypes } from 'react-view';
 import { TConfig } from '../types';
 
-const modalProps = require('!!extract-react-types-loader!../../../../src/modal/modal');
-
 const ModalConfig: TConfig = {
   componentName: 'Modal',
   imports: {
@@ -133,9 +131,6 @@ const ModalConfig: TConfig = {
         },
       },
     },
-  },
-  mapTokensToProps: {
-    Modal: modalProps,
   },
 };
 

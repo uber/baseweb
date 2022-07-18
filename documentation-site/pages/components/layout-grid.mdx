@@ -6,7 +6,6 @@ LICENSE file in the root directory of this source tree.
 -->
 
 import { Table } from 'baseui/table-semantic';
-import API from '../../components/api';
 import Example from '../../components/example';
 import Exports from '../../components/exports';
 import Layout from '../../components/layout';
@@ -217,11 +216,5 @@ You can also pass through props (`props`) or an alternate component implementati
 Note, you may not need to use `overrides` at all. You can get pretty far by styling an element wrapping `Grid` or immediately inside of a `Cell`. `Grid` and `Cell` are meant to help align your content; generally they should not require styling of their own.
 
 That said, we provide `overrides` just in case your imagination surpasses our API 🚀.
-
-## API
-
-<API heading="Grid" api={require('!!extract-react-types-loader!../../../src/layout-grid/grid')} />
-
-<API heading="Cell" api={require('!!extract-react-types-loader!../../../src/layout-grid/cell')} />
 
 <Exports component={LayoutGridExports} title="Layout Grid exports" path="baseui/layout-grid" />

@@ -23,7 +23,6 @@ import * as FormControlExports from 'baseui/form-control';
 
 import Yard from '../../components/yard/index';
 import formControlYardConfig from '../../components/yard/config/form-control';
-import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -80,13 +79,5 @@ Note, for a `Radio`/`RadioGroup`, the actual label is the accompanying text on t
 The `positive` and `error` props accept both `boolean` and `string` values.
 If you pass a `string`, it will be used as the `caption` of the form control, overriding any value passed to the `caption` prop.
 The example above showcases this behavior.
-
-## API
-
-<ApiTable
-  title="Form Control props"
-  config={formControlYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/form-control/form-control')}
-/>
 
 <Exports component={FormControlExports} title="Form Control exports" path="baseui/form-control" />
