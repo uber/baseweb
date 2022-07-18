@@ -13,9 +13,10 @@
     "baseUrl": "./",
     "paths": {
       // todo: maybe use dist to improve performance
-      "baseui": ["../src"],
-      "baseui/*": ["../src/*"]
+      "baseui": ["../dist"],
+      "baseui/*": ["../dist/*"]
     }
   },
-  "include": ["next-env.d.ts", "./**/*.ts", "./**/*.tsx"]
+  "include": ["next-env.d.ts", "./**/*.ts", "./**/*.tsx"],
+  "exclude": ["node_modules"]
 }
