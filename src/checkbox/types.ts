@@ -66,7 +66,7 @@ export type CheckboxProps = {
   /** Renders checkbox in errored state. */
   error?: boolean;
   /** Used to get a ref to the input element. Useful for programmatically focusing the input */
-  inputRef: React.RefObject<HTMLInputElement>;
+  inputRef?: React.RefObject<HTMLInputElement>;
   /** Focus the checkbox on initial render. */
   autoFocus?: boolean;
   /** Passed to the input element type attribute */
@@ -80,23 +80,23 @@ export type CheckboxProps = {
   /** How to position the label relative to the checkbox itself. */
   labelPlacement?: LabelPlacement;
   /** Renders UI as checkmark or toggle switch. */
-  checkmarkType: StyleType;
+  checkmarkType?: StyleType;
   /** Text to display in native OS tooltip on long hover. */
   title?: string | null;
   /** Handler for change events on trigger element. */
   onChange?: (e: ChangeEvent<HTMLInputElement>) => unknown;
   /** Handler for mouseenter events on trigger element. */
-  onMouseEnter: (e: ChangeEvent<HTMLInputElement>) => unknown;
+  onMouseEnter?: (e: ChangeEvent<HTMLInputElement>) => unknown;
   /** Handler for mouseleave events on trigger element. */
-  onMouseLeave: (e: ChangeEvent<HTMLInputElement>) => unknown;
+  onMouseLeave?: (e: ChangeEvent<HTMLInputElement>) => unknown;
   /** Handler for mousedown events on trigger element. */
-  onMouseDown: (e: ChangeEvent<HTMLInputElement>) => unknown;
+  onMouseDown?: (e: ChangeEvent<HTMLInputElement>) => unknown;
   /** Handler for mouseup events on trigger element. */
-  onMouseUp: (e: ChangeEvent<HTMLInputElement>) => unknown;
+  onMouseUp?: (e: ChangeEvent<HTMLInputElement>) => unknown;
   /** handler for focus events on trigger element. */
-  onFocus: (e: ChangeEvent<HTMLInputElement>) => unknown;
+  onFocus?: (e: ChangeEvent<HTMLInputElement>) => unknown;
   /** handler for blur events on trigger element. */
-  onBlur: (e: ChangeEvent<HTMLInputElement>) => unknown;
+  onBlur?: (e: ChangeEvent<HTMLInputElement>) => unknown;
 };
 
 export type CheckboxState = {
