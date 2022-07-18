@@ -8,9 +8,6 @@ import { Tabs, Tab, ORIENTATION, FILL } from 'baseui/tabs-motion';
 import { PropTypes } from 'react-view';
 import { TConfig } from '../types';
 
-const tabsProps = require('!!extract-react-types-loader!../../../../src/tabs-motion/tabs');
-const tabProps = require('!!extract-react-types-loader!../../../../src/tabs-motion/tab');
-
 const TabsConfig: TConfig = {
   componentName: 'Tabs',
   imports: {
@@ -116,10 +113,6 @@ const TabsConfig: TConfig = {
       description:
         'Unique id supplied to the Tabs component, and a prefix for the individual Tab components, to ensure both accessibility and SSR safety.',
     },
-  },
-  mapTokensToProps: {
-    Tabs: tabsProps,
-    Tab: tabProps,
   },
 };
 

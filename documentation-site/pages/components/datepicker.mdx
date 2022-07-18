@@ -32,7 +32,6 @@ import * as DatepickerExports from 'baseui/datepicker';
 
 import Yard from '../../components/yard/index';
 import datepickerConfig from '../../components/yard/config/datepicker';
-import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -143,13 +142,5 @@ In this example we use a [nested override](/guides/understanding-overrides/#over
 </Example>
 
 Here we use the most flexible and complex [override by component replacement](/guides/understanding-overrides/#override-the-entire-subcomponent) where we wrap a components onChange handler to subscribe to the datepicker event when a quick selection is picked.
-
-## API
-
-<ApiTable
-  title="Datepicker props"
-  config={datepickerConfig}
-  types={require('!!extract-react-types-loader!../../../src/datepicker/calendar')}
-/>
 
 <Exports component={DatepickerExports} title="Datepicker exports" path="baseui/datepicker" />

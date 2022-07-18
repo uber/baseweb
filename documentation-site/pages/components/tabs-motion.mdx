@@ -29,7 +29,6 @@ import StatefulExample from 'examples/tabs-motion/stateful.js';
 import TabOverrideExample from 'examples/tabs-motion/tab-override.js';
 
 import * as TabsExports from 'baseui/tabs-motion';
-import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -152,19 +151,5 @@ To get around this potential issue we use a [`ResizeObserver`](https://developer
 ### Server Side Rendering
 
 The Tabs component set the id values of the individual Tab components it controls in order to update aria attributes for accessibility. To do this, [`react-uid`](https://www.npmjs.com/package/react-uid) is used to generate a unique ID value when constructed but is not SSR friendly. To get around this, you can set the `uid` property of the Tabs component which will be used as to generate the Tab and id values.
-
-## API
-
-<ApiTable
-  title="Tabs props"
-  config={tabsYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/tabs-motion/tabs')}
-/>
-
-<ApiTable
-  title="Tab props"
-  config={tabYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/tabs-motion/tab')}
-/>
 
 <Exports component={TabsExports} title="Exports" path="baseui/tabs-motion" />

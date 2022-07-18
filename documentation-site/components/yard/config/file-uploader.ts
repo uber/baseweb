@@ -3,8 +3,6 @@ import { PropTypes } from 'react-view';
 import { TConfig } from '../types';
 import buttonConfig from './button';
 
-const fileUploaderProps = require('!!extract-react-types-loader!../../../../src/file-uploader/file-uploader');
-
 const changeHandlers = [
   'onClick',
   'onFocus',
@@ -110,9 +108,6 @@ const FileUploaderConfig: TConfig = {
         sharedProps: {},
       },
     },
-  },
-  mapTokensToProps: {
-    FileUploader: fileUploaderProps,
   },
 };
 

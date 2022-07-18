@@ -16,8 +16,6 @@ import formControlConfig from './form-control';
 import timepickerConfig from './timepicker';
 import selectConfig from './select';
 
-const datepickerProps = require('!!extract-react-types-loader!../../../../src/datepicker/datepicker');
-
 const DatepickerConfig: TConfig = {
   componentName: 'DatePicker',
   imports: {
@@ -399,9 +397,6 @@ const DatepickerConfig: TConfig = {
         },
       },
     },
-  },
-  mapTokensToProps: {
-    Datepicker: datepickerProps,
   },
 };
 

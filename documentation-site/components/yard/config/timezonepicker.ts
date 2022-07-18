@@ -5,8 +5,6 @@ import { TConfig } from '../types';
 import inputConfig from './input';
 import selectConfig from './select';
 
-const timezonePickerProps = require('!!extract-react-types-loader!../../../../src/timezonepicker/timezone-picker');
-
 const TimezonepickerConfig: TConfig = {
   componentName: 'TimezonePicker',
   imports: {
@@ -59,9 +57,6 @@ const TimezonepickerConfig: TConfig = {
         sharedProps: {},
       },
     },
-  },
-  mapTokensToProps: {
-    TimezonePicker: timezonePickerProps,
   },
 };
 

@@ -8,8 +8,6 @@ import { Button, KIND, SIZE, SHAPE } from 'baseui/button';
 import { PropTypes } from 'react-view';
 import { TConfig } from '../types';
 
-const buttonProps = require('!!extract-react-types-loader!../../../../src/button/button');
-
 const ButtonConfig: TConfig = {
   componentName: 'Button',
   imports: {
@@ -147,9 +145,6 @@ const ButtonConfig: TConfig = {
         },
       },
     },
-  },
-  mapTokensToProps: {
-    Button: buttonProps,
   },
 };
 

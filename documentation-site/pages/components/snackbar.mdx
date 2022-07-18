@@ -8,7 +8,6 @@ LICENSE file in the root directory of this source tree.
 import Example from '../../components/example';
 import Layout from '../../components/layout';
 import Exports from '../../components/exports';
-import API from '../../components/api.js';
 
 import LineLengths from 'examples/snackbar/line-lengths.js';
 import InfiniteDuration from 'examples/snackbar/infinite-duration.js';
@@ -66,17 +65,5 @@ using the button to dismiss the snackbar since it will time out on its own.
 <Example title="Action button usage" path="snackbar/action-button-usage.js">
   <ActionButtonUsage />
 </Example>
-
-## API
-
-<API
-  heading="SnackbarProvider API"
-  api={require('!!extract-react-types-loader!../../../src/snackbar/snackbar-context')}
-/>
-
-<API
-  heading="SnackbarElement API"
-  api={require('!!extract-react-types-loader!../../../src/snackbar/snackbar-element')}
-/>
 
 <Exports component={SnackbarExports} title="Snackbar exports" path="baseui/snackbar" />

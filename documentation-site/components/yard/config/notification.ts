@@ -4,8 +4,6 @@ import { PropTypes } from 'react-view';
 import { TConfig } from '../types';
 import { changeHandlers } from './common/common';
 
-const notificationProps = require('!!extract-react-types-loader!../../../../src/notification/notification');
-
 const NotificationConfig: TConfig = {
   componentName: 'Notification',
   imports: {
@@ -83,9 +81,6 @@ const NotificationConfig: TConfig = {
         },
       },
     },
-  },
-  mapTokensToProps: {
-    Notification: notificationProps,
   },
 };
 

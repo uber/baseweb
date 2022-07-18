@@ -24,7 +24,6 @@ import Yard from '../../components/yard/index';
 import listItemYardConfig from '../../components/yard/config/list-item';
 import listItemLabelYardConfig from '../../components/yard/config/list-item-label';
 import listHeadingYardConfig from '../../components/yard/config/list-heading';
-import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -65,13 +64,5 @@ If your app renders hundreds of `ListItem`s at a time, it may be desirable to av
 <Example title="Usage with Menu" path="list/menu-adapter.js">
   <MenuAdapter />
 </Example>
-
-## API
-
-<ApiTable
-  title="List props"
-  config={listItemYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/list/list-item')}
-/>
 
 <Exports component={ListExports} title="List exports" path="baseui/list" />

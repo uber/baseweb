@@ -10,8 +10,6 @@ import { PropTypes } from 'react-view';
 import { TConfig } from '../types';
 import { changeHandlers } from './common/common';
 
-const checkboxProps = require('!!extract-react-types-loader!../../../../src/checkbox/checkbox');
-
 const CheckboxConfig: TConfig = {
   componentName: 'Checkbox',
   imports: {
@@ -178,9 +176,6 @@ const CheckboxConfig: TConfig = {
         },
       },
     },
-  },
-  mapTokensToProps: {
-    Checkbox: checkboxProps,
   },
 };
 

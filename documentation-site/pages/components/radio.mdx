@@ -21,7 +21,6 @@ import * as RadioExports from 'baseui/radio';
 
 import Yard from '../../components/yard/index';
 import radioYardConfig from '../../components/yard/config/radio';
-import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -62,13 +61,5 @@ Radios are used when only one choice may be selected in a series of options.
 </Example>
 
 As with many of our components, there is also an [uncontrolled](https://reactjs.org/docs/uncontrolled-components.html) version, `StatefulRadioGroup`, which manages its own state.
-
-## API
-
-<ApiTable
-  title="Radio props"
-  config={radioYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/radio/radio')}
-/>
 
 <Exports component={RadioExports} title="Radio exports" path="baseui/radio" />

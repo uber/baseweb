@@ -20,7 +20,6 @@ import { FloatingMarkerSizingTable } from '../../components/map-marker-sizing-ta
 
 import Yard from '../../components/yard/index';
 import floatingMarkerYardConfig from '../../components/yard/config/floating-marker';
-import ApiTable from '../../components/api-table';
 
 import * as FloatingMarkerExports from 'baseui/map-marker';
 
@@ -116,14 +115,6 @@ A large floating marker with a square anchor and start enhancer. Because the flo
 </Example>
 
 A floating map marker rendered inside of a [react-map-gl](https://visgl.github.io/react-map-gl/) view. In order to use a floating map marker in react-map-gl, wrap the floating marker with a [`<Marker/>`](https://visgl.github.io/react-map-gl/docs/api-reference/marker) component. In order to properly center the marker on the intended position, translate the marker using an override on the `Root`.
-
-## API
-
-<ApiTable
-  title="Input props"
-  config={floatingMarkerYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/map-marker/floating-marker')}
-/>
 
 <Exports
   component={FloatingMarkerExports}

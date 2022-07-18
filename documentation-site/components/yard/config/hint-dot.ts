@@ -8,8 +8,6 @@ import { HintDot, COLOR } from 'baseui/badge';
 import { PropTypes } from 'react-view';
 import { TConfig } from '../types';
 
-const hintDotProps = require('!!extract-react-types-loader!../../../../src/badge/badge');
-
 const HintDotConfig: TConfig = {
   componentName: 'HintDot',
   imports: {
@@ -72,9 +70,6 @@ const HintDotConfig: TConfig = {
         },
       },
     },
-  },
-  mapTokensToProps: {
-    Badge: hintDotProps,
   },
 };
 

@@ -2,10 +2,6 @@ import { Tabs, Tab, ORIENTATION, FILL } from 'baseui/tabs-motion';
 import { PropTypes } from 'react-view';
 import { TConfig } from '../types';
 
-// This is only used for the props table atm.
-
-const tabProps = require('!!extract-react-types-loader!../../../../src/tabs-motion/tab');
-
 const TabConfig: TConfig = {
   componentName: 'Tab',
   imports: {
@@ -58,9 +54,6 @@ const TabConfig: TConfig = {
       type: PropTypes.ReactNode,
       description: `The content of the TabPanel.`,
     },
-  },
-  mapTokensToProps: {
-    Tab: tabProps,
   },
 };
 

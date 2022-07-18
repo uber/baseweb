@@ -20,7 +20,6 @@ import { StatefulList } from 'baseui/dnd-list';
 import * as ListExports from 'baseui/dnd-list';
 import Yard from '../../components/yard/index';
 import dndListYardConfig from '../../components/yard/config/dnd-list';
-import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -69,13 +68,5 @@ This component also supports iOS and Android browsers and screen readers.
 <Example title="Drag and Drop with label override" path="dnd-list/overrideLabel.js">
   <OverrideLabel />
 </Example>
-
-## API
-
-<ApiTable
-  title="Dnd List props"
-  config={dndListYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/dnd-list/list')}
-/>
 
 <Exports component={ListExports} title="Dnd List exports" path="baseui/dnd-list" />
