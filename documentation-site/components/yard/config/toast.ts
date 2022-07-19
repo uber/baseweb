@@ -10,10 +10,6 @@ import { Block } from 'baseui/block';
 import { PropTypes } from 'react-view';
 import { TConfig } from '../types';
 
-const toasterContainerProps = require('!!extract-react-types-loader!../../../../src/toast/toaster');
-const buttonProps = require('!!extract-react-types-loader!../../../../src/button/button');
-const blockProps = require('!!extract-react-types-loader!../../../../src/block/block');
-
 const toastConfig: TConfig = {
   componentName: 'ToasterContainer',
   imports: {
@@ -123,11 +119,6 @@ const toastConfig: TConfig = {
         },
       },
     },
-  },
-  mapTokensToProps: {
-    ToasterContainer: toasterContainerProps,
-    Button: buttonProps,
-    Block: blockProps,
   },
 };
 

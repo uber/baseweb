@@ -24,7 +24,6 @@ import EmptyMessage from 'examples/table-semantic/empty-message.js';
 
 import Yard from '../../components/yard/index';
 import tableYardConfig from '../../components/yard/config/table-semantic';
-import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -82,14 +81,6 @@ you should use the virtualized scrolling features of the div-based
 <Example title="Table with empty message" path="table-semantic/empty-message.js">
   <EmptyMessage />
 </Example>
-
-## API
-
-<ApiTable
-  title="Table Semantic props"
-  config={tableYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/table-semantic/table')}
-/>
 
 <Exports
   component={TableSemanticExports}

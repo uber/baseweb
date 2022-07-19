@@ -4,8 +4,6 @@ import { PropTypes } from 'react-view';
 import { TConfig } from '../types';
 import inputConfig, { theme, inputProps } from './input';
 
-const pinCodeProps = require('!!extract-react-types-loader!../../../../src/pin-code/pin-code');
-
 const PincodeConfig: TConfig = {
   componentName: 'PinCode',
   imports: {
@@ -67,9 +65,6 @@ const PincodeConfig: TConfig = {
         sharedProps: {},
       },
     },
-  },
-  mapTokensToProps: {
-    PinCode: pinCodeProps,
   },
 };
 

@@ -22,7 +22,6 @@ import TabsOverrides from 'examples/tabs/overrides.js';
 
 import Yard from '../../components/yard/index';
 import tabsYardConfig from '../../components/yard/config/tabs';
-import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -73,13 +72,5 @@ We use tab order to provide default keys for each tab. You can however, pass in 
 <Example title="Tabs Overrides" path="tabs/overrides.js">
   <TabsOverrides />
 </Example>
-
-## API
-
-<ApiTable
-  title="Tabs props"
-  config={tabsYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/tabs/tabs')}
-/>
 
 <Exports component={TabsExports} title="Tabs exports" path="baseui/tabs" />

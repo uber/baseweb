@@ -9,9 +9,6 @@ import { Button } from 'baseui/button';
 import { PropTypes } from 'react-view';
 import { TConfig } from '../types';
 
-const buttonGroupProps = require('!!extract-react-types-loader!../../../../src/button-group/button-group');
-const buttonProps = require('!!extract-react-types-loader!../../../../src/button/button');
-
 const ButtonGroupConfig: TConfig = {
   componentName: 'ButtonGroup',
   imports: {
@@ -133,10 +130,6 @@ const ButtonGroupConfig: TConfig = {
         sharedProps: {},
       },
     },
-  },
-  mapTokensToProps: {
-    ButtonGroup: buttonGroupProps,
-    Button: buttonProps,
   },
 };
 

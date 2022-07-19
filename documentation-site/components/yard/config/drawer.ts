@@ -2,8 +2,6 @@ import { Drawer, ANCHOR, SIZE } from 'baseui/drawer';
 import { PropTypes } from 'react-view';
 import { TConfig } from '../types';
 
-const drawerProps = require('!!extract-react-types-loader!../../../../src/drawer/drawer');
-
 const DrawerConfig: TConfig = {
   componentName: 'Drawer',
   imports: {
@@ -129,9 +127,6 @@ const DrawerConfig: TConfig = {
         },
       },
     },
-  },
-  mapTokensToProps: {
-    Drawer: drawerProps,
   },
 };
 

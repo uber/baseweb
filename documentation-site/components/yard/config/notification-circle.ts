@@ -10,8 +10,6 @@ import { Check } from 'baseui/icon';
 import { PropTypes } from 'react-view';
 import { TConfig } from '../types';
 
-const notificationCircleProps = require('!!extract-react-types-loader!../../../../src/badge/badge');
-
 const NotificationCircleConfig: TConfig = {
   componentName: 'NotificationCircle',
   imports: {
@@ -97,9 +95,6 @@ const NotificationCircleConfig: TConfig = {
         },
       },
     },
-  },
-  mapTokensToProps: {
-    Badge: notificationCircleProps,
   },
 };
 

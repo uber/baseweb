@@ -26,7 +26,6 @@ import * as TagExports from 'baseui/tag';
 
 import Yard from '../../components/yard/index';
 import tagYardConfig from '../../components/yard/config/tag';
-import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -95,13 +94,5 @@ In addition to the "semantic" `kind` colors, you can also use "primitive" colors
 - When the tag is closable or clickable and not disabled it gets the role button and is focusable.
 - Closable tag can be closed by pressing `backspace` or `delete`.
 - Clickable tag can be clicked by pressing `enter`.
-
-## API
-
-<ApiTable
-  title="Tag props"
-  config={tagYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/tag/tag')}
-/>
 
 <Exports component={TagExports} title="Tag exports" path="baseui/tag" />

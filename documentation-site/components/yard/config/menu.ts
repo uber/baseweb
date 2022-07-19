@@ -2,8 +2,6 @@ import { StatefulMenu } from 'baseui/menu';
 import { PropTypes } from 'react-view';
 import { TConfig } from '../types';
 
-const menuProps = require('!!extract-react-types-loader!../../../../src/menu/stateful-menu');
-
 const items = `[
   {label: 'Item One'},
   {label: 'Item Two'},
@@ -86,9 +84,6 @@ const MenuConfig: TConfig = {
         sharedProps: {},
       },
     },
-  },
-  mapTokensToProps: {
-    StatefulMenu: menuProps,
   },
 };
 

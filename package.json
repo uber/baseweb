@@ -141,8 +141,6 @@
     "eslint-plugin-prettier": "3.1.4",
     "eslint-plugin-react": "^7.27.0",
     "eslint-plugin-react-hooks": "3.0.0",
-    "extract-react-types": "^0.26.0",
-    "extract-react-types-loader": "^0.3.13",
     "flow-bin": "0.131.0",
     "flow-remove-types": "^2.179.0",
     "globby": "^10.0.1",

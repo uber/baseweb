@@ -31,7 +31,6 @@ import ActionButtons from './action-buttons';
 import Knobs from './knobs';
 import { YardTabs, YardTab } from './styled-components';
 import { countProps, countOverrides, countThemeValues } from './utils';
-import PropsTooltip from './props-tooltip';
 import { TYardProps } from './types';
 
 const Yard: React.FC<TYardProps> = ({
@@ -42,7 +41,6 @@ const Yard: React.FC<TYardProps> = ({
   props,
   theme,
   imports,
-  mapTokensToProps,
   initialTab,
 }) => {
   const [css, baseTheme] = useStyletron();
@@ -144,16 +142,7 @@ const Yard: React.FC<TYardProps> = ({
       ) : (
         <Knobs {...params.knobProps} />
       )}
-      <Editor
-        {...params.editorProps}
-        transformToken={(tokenProps) => {
-          const token = tokenProps.children.trim();
-          if (mapTokensToProps && mapTokensToProps[token]) {
-            return <PropsTooltip {...tokenProps} typeDefinition={mapTokensToProps[token]} />;
-          }
-          return <span {...tokenProps} />;
-        }}
-      />
+      <Editor {...params.editorProps} />
       <Error {...params.errorProps} />
       <ActionButtons
         {...params.actions}

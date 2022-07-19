@@ -3,9 +3,6 @@ import { Check } from 'baseui/icon';
 import { PropTypes } from 'react-view';
 import { TConfig } from '../types';
 
-const listItemProps = require('!!extract-react-types-loader!../../../../src/list/list-item');
-const listItemLabelProps = require('!!extract-react-types-loader!../../../../src/list/list-item-label');
-
 const ListItemConfig: TConfig = {
   componentName: 'ListItem',
   imports: {
@@ -87,10 +84,6 @@ const ListItemConfig: TConfig = {
         },
       },
     },
-  },
-  mapTokensToProps: {
-    ListItem: listItemProps,
-    ListItemLabel: listItemLabelProps,
   },
 };
 

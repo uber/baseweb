@@ -3,8 +3,6 @@ import { PropTypes } from 'react-view';
 import { TConfig } from '../types';
 import selectConfig from './select';
 
-const paginationProps = require('!!extract-react-types-loader!../../../../src/pagination/pagination');
-
 const PaginationConfig: TConfig = {
   componentName: 'Pagination',
   imports: {
@@ -63,9 +61,6 @@ const PaginationConfig: TConfig = {
         sharedProps: {},
       },
     },
-  },
-  mapTokensToProps: {
-    Pagination: paginationProps,
   },
 };
 

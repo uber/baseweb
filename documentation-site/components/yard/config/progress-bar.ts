@@ -8,8 +8,6 @@ import { ProgressBar, SIZE } from 'baseui/progress-bar';
 import { PropTypes } from 'react-view';
 import { TConfig } from '../types';
 
-const progressBarProps = require('!!extract-react-types-loader!../../../../src/progress-bar/progressbar');
-
 const ProgressBarConfig: TConfig = {
   componentName: 'ProgressBar',
   imports: {
@@ -97,9 +95,6 @@ const ProgressBarConfig: TConfig = {
         },
       },
     },
-  },
-  mapTokensToProps: {
-    ProgressBar: progressBarProps,
   },
 };
 

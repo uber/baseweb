@@ -7,8 +7,6 @@ import { Block } from 'baseui/block';
 
 import PopoverConfig from './popover';
 
-const tooltipProps = require('!!extract-react-types-loader!../../../../src/popover/stateful-popover');
-
 const TooltipConfig: TConfig = {
   ...PopoverConfig,
   componentName: 'StatefulTooltip',
@@ -58,9 +56,6 @@ const TooltipConfig: TConfig = {
       type: PropTypes.ReactNode,
       description: `The content that will trigger the popover.`,
     },
-  },
-  mapTokensToProps: {
-    StatefulTooltip: tooltipProps,
   },
 };
 
