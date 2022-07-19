@@ -85,7 +85,7 @@
     "@date-io/luxon": "^2.7.0",
     "@date-io/moment": "^2.7.0",
     "@dubstep/core": "^3.5.3",
-    "@ladle/react": "^1.0.1",
+    "@ladle/react": "^2.0.0",
     "@mdx-js/tag": "^0.20.0",
     "@octokit/rest": "^16.33.1",
     "@playwright/test": "^1.22.2",
@@ -142,7 +142,6 @@
     "eslint-plugin-react": "^7.27.0",
     "eslint-plugin-react-hooks": "3.0.0",
     "flow-bin": "0.131.0",
-    "flow-remove-types": "^2.179.0",
     "globby": "^10.0.1",
     "husky": "^3.0.0",
     "isomorphic-fetch": "^2.2.1",
@@ -185,11 +184,12 @@
     "react-view": "^2.3.3",
     "react-vis": "^1.11.6",
     "remove-flow-types-loader": "^1.1.0",
-    "rollup-pluginutils": "^2.8.2",
     "semver": "^6.2.0",
+    "sharp": "^0.30.7",
     "shx": "^0.3.2",
     "static-server": "^2.2.1",
     "styletron-engine-atomic": "^1.5.0-beta.2",
+    "styletron-engine-monolithic": "^1.0.0-beta.2",
     "styletron-react": "^6.1.0-beta.2",
     "styletron-standard": "^3.1.0-beta.2",
     "tar": "^5.0.0",
@@ -244,8 +244,8 @@
     }
   },
   "volta": {
-    "node": "14.15.4",
-    "yarn": "1.19.1"
+    "node": "16.15.0",
+    "yarn": "1.22.18"
   },
   "engines": {
     "node": ">=10.x"

@@ -1,7 +1,7 @@
 import * as React from 'react';
-import {Provider as StyletronProvider} from 'styletron-react';
-import {Client as Styletron} from 'styletron-engine-atomic';
-import {LightTheme, DarkTheme} from '../src/themes/index.js';
+import { Provider as StyletronProvider } from 'styletron-react';
+import { Client as Styletron } from 'styletron-engine-monolithic';
+import { LightTheme, DarkTheme } from '../src/themes/index.js';
 import BaseProvider from '../src/helpers/base-provider.js';
 
 const engine = new Styletron();
@@ -11,7 +11,7 @@ export const Provider: React.FC<{
     theme: string;
     rtl: string;
   };
-}> = ({children, globalState}) => {
+}> = ({ children, globalState }) => {
   return (
     <StyletronProvider value={engine}>
       <BaseProvider
