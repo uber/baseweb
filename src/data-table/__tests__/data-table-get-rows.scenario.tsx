@@ -14,27 +14,27 @@ import {
   StatefulDataTable,
 } from '../index';
 
-type RowDataT = [boolean, string, number, string];
+type RowData = [boolean, string, number, string];
 
 const COLUMNS = [
   BooleanColumn({
     title: 'boolean',
-    mapDataToValue: (data: RowDataT) => data[0],
+    mapDataToValue: (data: RowData) => data[0],
   }),
 
   CategoricalColumn({
     title: 'color',
-    mapDataToValue: (data: RowDataT) => data[1],
+    mapDataToValue: (data: RowData) => data[1],
   }),
 
   NumericalColumn({
     title: 'number',
-    mapDataToValue: (data: RowDataT) => data[2],
+    mapDataToValue: (data: RowData) => data[2],
   }),
 
   StringColumn({
     title: 'description',
-    mapDataToValue: (data: RowDataT) => data[3],
+    mapDataToValue: (data: RowData) => data[3],
   }),
 ];
 

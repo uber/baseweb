@@ -38,6 +38,7 @@ export function toggleOverrideSharedProps(code: string, sharedProps: string[]) {
           path.node.params = [
             //@ts-ignore
             t.objectPattern([
+              //@ts-ignore
               t.objectProperty(t.identifier('$theme'), t.identifier('$theme'), false, true),
             ]),
           ];

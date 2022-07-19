@@ -24,7 +24,7 @@ import {
 } from './constants';
 import BadgeEnhancer from './badge-enhancer';
 import LabelEnhancer from './label-enhancer';
-import type { PinHeadPropsT } from './types';
+import type { PinHeadProps } from './types';
 
 const PinHead = ({
   size = PINHEAD_SIZES_SHAPES.medium,
@@ -41,7 +41,7 @@ const PinHead = ({
   badgeEnhancerSize,
   badgeEnhancerContent,
   overrides = {},
-}: PinHeadPropsT) => {
+}: PinHeadProps) => {
   const activeElements = [label, StartEnhancer, EndEnhancer].filter((x) => x);
   const gridTemplateColumns = activeElements.map(() => 'auto').join(' ');
   const forceCircle = activeElements.length === 1 && !label;

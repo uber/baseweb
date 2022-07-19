@@ -7,27 +7,27 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { STATE_CHANGE_TYPE } from './constants';
 import type {
-  CalendarPropsT,
-  ContainerStateT,
-  DatepickerPropsT,
-  StatefulContainerPropsT,
-  StateChangeTypeT,
-  StateReducerT,
+  CalendarProps,
+  ContainerState,
+  DatepickerProps,
+  StatefulContainerProps,
+  StateChangeType,
+  StateReducer,
 } from './types';
 
-type InputProps<T> = CalendarPropsT<T> | DatepickerPropsT<T>;
-type PropsT<T> = StatefulContainerPropsT<InputProps<T>, T>;
+type InputProps<T> = CalendarProps<T> | DatepickerProps<T>;
+type Props<T> = StatefulContainerProps<InputProps<T>, T>;
 
-class StatefulContainer<T = Date> extends React.Component<PropsT<T>, ContainerStateT<T>> {
+class StatefulContainer<T = Date> extends React.Component<Props<T>, ContainerState<T>> {
   static defaultProps: {
-    stateReducer: StateReducerT<unknown>;
-  } & Partial<PropsT<unknown>> = {
+    stateReducer: StateReducer<unknown>;
+  } & Partial<Props<unknown>> = {
     initialState: {},
     stateReducer: (type, nextState) => nextState,
     onChange: () => {},
   };
 
-  constructor(props: PropsT<T>) {
+  constructor(props: Props<T>) {
     super(props);
     const value = props.range ? [] : (null as T | undefined | null);
     this.state = { value, ...props.initialState };
@@ -55,7 +55,7 @@ class StatefulContainer<T = Date> extends React.Component<PropsT<T>, ContainerSt
       }
     };
 
-  internalSetState(type: StateChangeTypeT, changes: ContainerStateT<T>) {
+  internalSetState(type: StateChangeType, changes: ContainerState<T>) {
     const { stateReducer } = this.props;
     this.setState((prevState) => stateReducer(type, changes, prevState));
   }

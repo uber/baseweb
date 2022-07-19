@@ -5,20 +5,21 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 /* eslint-disable flowtype/generic-spacing */
-import type { OverrideT } from '../helpers/overrides';
-import type { OptionT } from '../select';
-import type { SizeT } from '../input';
+import type { Override } from '../helpers/overrides';
+import type { Option } from '../select';
+import type { Size } from '../input';
 import type { DateIOAdapter } from '../datepicker/utils/types';
 
-export type TimePickerPropsT<T = Date> = {
+export type TimePickerOverrides = {
+  Select?: Override;
+};
+export type TimePickerProps<T = Date> = {
   /** Render options in AM/PM format or 24 hour format. Defaults to 12 hour. */
   adapter: DateIOAdapter<T>;
   format?: '12' | '24';
   /** Callback for when time selection changes. */
   onChange?: (a: T | null) => unknown;
-  overrides?: {
-    Select?: OverrideT;
-  };
+  overrides?: TimePickerOverrides;
   /** Set to true to allow times that aren't displayed in the options list to be entered manually. Defaults to false. */
   creatable?: boolean;
   /** Amount of seconds between each option time. Defaults to 900 (15 minutes). */
@@ -33,7 +34,7 @@ export type TimePickerPropsT<T = Date> = {
   positive?: boolean;
   nullable?: boolean;
   placeholder?: string;
-  size?: SizeT;
+  size?: Size;
   minTime?: T;
   maxTime?: T;
   /**
@@ -46,14 +47,14 @@ export type TimePickerPropsT<T = Date> = {
    */
   ignoreMinMaxDateComponent?: boolean;
 };
-export type TimePickerStateT = {
+export type TimePickerState = {
   /** List of times (in seconds) displayed in the dropdown menu. */
   steps: number[];
   /** Internal value of the selected time as an integer since midnight (0) */
-  value: OptionT | undefined | null;
+  value: Option | undefined | null;
 };
 
-export type TimePickerDefaultPropsT = {
+export type TimePickerDefaultProps = {
   format: '12';
   step: 900;
   creatable: false;

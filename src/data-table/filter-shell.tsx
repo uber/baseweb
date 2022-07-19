@@ -14,7 +14,7 @@ import { FILTER_SHELL_WIDTH } from './constants';
 
 export type ExcludeKind = 'value' | 'range';
 
-type PropsT = {
+type Props = {
   children: React.ReactNode;
   exclude: boolean;
   excludeKind?: ExcludeKind;
@@ -22,7 +22,7 @@ type PropsT = {
   onApply: () => void;
 };
 
-function FilterShell(props: PropsT) {
+function FilterShell(props: Props) {
   const [css, theme] = useStyletron();
   const locale = React.useContext(LocaleContext);
   let excludeText;

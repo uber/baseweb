@@ -4,9 +4,9 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import type { FontTokensT } from '../types';
+import type { FontTokens } from '../types';
 
-export const fontTokens: FontTokensT = {
+export const fontTokens: FontTokens = {
   primaryFontFamily: 'UberMoveText, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif',
 };
 

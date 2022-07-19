@@ -8,14 +8,14 @@ import React from 'react';
 import StatefulPhoneInputContainer from './stateful-phone-input-container';
 import PhoneInput from './phone-input';
 import defaultProps from './default-props';
-import type { PropsT, StatefulPhoneInputPropsT } from './types';
+import type { PhoneInputProps, StatefulPhoneInputProps } from './types';
 
 StatefulPhoneInput.defaultProps = defaultProps;
 
-export default function StatefulPhoneInput(props: StatefulPhoneInputPropsT) {
+export default function StatefulPhoneInput(props: StatefulPhoneInputProps) {
   return (
     <StatefulPhoneInputContainer {...props}>
-      {(childrenProps: PropsT) => <PhoneInput {...childrenProps} />}
+      {(childrenProps: PhoneInputProps) => <PhoneInput {...childrenProps} />}
     </StatefulPhoneInputContainer>
   );
 }

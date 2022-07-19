@@ -16,7 +16,7 @@ import { SingleSelect as DefaultSelect } from '../select';
 import { getOverrides, mergeOverrides } from '../helpers/overrides';
 import defaultProps from './default-props';
 
-import type { CountrySelectPropsT } from './types';
+import type { CountrySelectProps } from './types';
 
 CountrySelect.defaultProps = {
   disabled: defaultProps.disabled,
@@ -30,7 +30,7 @@ CountrySelect.defaultProps = {
   required: defaultProps.required,
 };
 
-export default function CountrySelect(props: CountrySelectPropsT) {
+export default function CountrySelect(props: CountrySelectProps) {
   const { country, disabled, error, overrides, positive, required, size } = props;
   const sharedProps = {
     $disabled: disabled,

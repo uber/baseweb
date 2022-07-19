@@ -10,17 +10,17 @@ import { STATE_CHANGE_TYPES, KEY_STRINGS } from './constants';
 import { scrollItemIntoView } from './utils';
 // Types
 import type {
-  StatefulContainerPropsT,
-  StatefulContainerStateT,
-  GetRequiredItemPropsFnT,
-  RenderPropsT,
-  StateReducerFnT,
-  ItemT,
+  StatefulContainerProps,
+  StatefulContainerState,
+  GetRequiredItemPropsFn,
+  RenderProps,
+  StateReducerFn,
+  Item,
 } from './types';
 import { useUIDSeed } from 'react-uid';
 
 import type { MouseEvent } from 'react';
-import { RenderItemPropsT } from './types';
+import { RenderItemProps } from './types';
 
 const DEFAULT_PROPS = {
   // keeping it in defaultProps to satisfy Flow
@@ -33,7 +33,7 @@ const DEFAULT_PROPS = {
   keyboardControlNode: { current: null } as {
     current: null | HTMLElement;
   },
-  stateReducer: ((changeType, changes) => changes) as StateReducerFnT,
+  stateReducer: ((changeType, changes) => changes) as StateReducerFn,
   onItemSelect: () => {},
   getRequiredItemProps: () => ({}),
   children: () => null,
@@ -48,16 +48,16 @@ const DEFAULT_PROPS = {
 };
 
 class MenuStatefulContainerInner extends React.Component<
-  StatefulContainerPropsT & {
+  StatefulContainerProps & {
     uidSeed: (item: number) => string;
   } & {
-    getRequiredItemProps: GetRequiredItemPropsFnT;
+    getRequiredItemProps: GetRequiredItemPropsFn;
   },
-  StatefulContainerStateT
+  StatefulContainerState
 > {
   static defaultProps = DEFAULT_PROPS;
 
-  state: StatefulContainerStateT = {
+  state: StatefulContainerState = {
     // @ts-expect-error todo(flow->ts): probably MenuStatefulContainer should be used instead of this.constructor
     ...this.constructor.defaultProps.initialState,
     ...this.props.initialState,
@@ -118,7 +118,7 @@ class MenuStatefulContainerInner extends React.Component<
     }
   }
 
-  componentDidUpdate(prevProps: StatefulContainerPropsT, prevState: StatefulContainerStateT) {
+  componentDidUpdate(prevProps: StatefulContainerProps, prevState: StatefulContainerState) {
     if (__BROWSER__) {
       if (!prevState.isFocused && this.state.isFocused) {
         if (this.keyboardControlNode)
@@ -169,7 +169,7 @@ class MenuStatefulContainerInner extends React.Component<
 
   internalSetState(
     changeType: keyof typeof STATE_CHANGE_TYPES,
-    changes: Partial<StatefulContainerStateT>
+    changes: Partial<StatefulContainerState>
   ) {
     const { stateReducer } = this.props;
 
@@ -331,7 +331,7 @@ class MenuStatefulContainerInner extends React.Component<
     }
   };
 
-  handleItemClick = (index: number, item: ItemT, event: React.MouseEvent<HTMLElement>) => {
+  handleItemClick = (index: number, item: Item, event: React.MouseEvent<HTMLElement>) => {
     if (this.props.onItemSelect && !item.disabled) {
       this.props.onItemSelect({ item, event });
       this.internalSetState(STATE_CHANGE_TYPES.click, {
@@ -350,7 +350,7 @@ class MenuStatefulContainerInner extends React.Component<
 
   handleMouseLeave = (event: MouseEvent<HTMLElement>) => {};
 
-  getRequiredItemProps: GetRequiredItemPropsFnT = (item, index) => {
+  getRequiredItemProps: GetRequiredItemPropsFn = (item, index) => {
     let itemRef = this.refList[index];
     if (!itemRef) {
       itemRef = React.createRef();
@@ -378,7 +378,7 @@ class MenuStatefulContainerInner extends React.Component<
             onMouseEnter: this.handleMouseEnter.bind(this, index),
           }),
       ...requiredItemProps,
-    } as RenderItemPropsT;
+    } as RenderItemProps;
   };
 
   focusMenu = (event: FocusEvent | MouseEvent | KeyboardEvent) => {
@@ -443,12 +443,12 @@ class MenuStatefulContainerInner extends React.Component<
       handleKeyDown: this.props.keyboardControlNode.current ? (event) => {} : this.onKeyDown,
       focusMenu: this.focusMenu,
       unfocusMenu: this.unfocusMenu,
-    } as RenderPropsT);
+    } as RenderProps);
   }
 }
 
 // Remove when MenuStatefulContainer is converted to a functional component.
-const MenuStatefulContainer = (props: StatefulContainerPropsT) => {
+const MenuStatefulContainer = (props: StatefulContainerProps) => {
   //$FlowExpectedError[cannot-spread-inexact]
   return <MenuStatefulContainerInner uidSeed={useUIDSeed()} {...props} />;
 };

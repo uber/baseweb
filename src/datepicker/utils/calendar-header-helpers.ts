@@ -6,25 +6,25 @@ LICENSE file in the root directory of this source tree.
 */
 import { DEFAULT_MONTHS } from '../constants';
 
-export type OptionT = {
+export type Option = {
   id: string;
   label: string;
   disabled?: boolean;
 };
 
-type GetMonthItemsArgsT = {
+type GetMonthItemsArgs = {
   filterMonthsList: number[] | null;
   formatMonthLabel: (a: number) => string;
 };
 
 const getDefaultMonthItems = (formatMonthLabel: (a: number) => string) =>
-  DEFAULT_MONTHS.map<OptionT>((month) => ({
+  DEFAULT_MONTHS.map<Option>((month) => ({
     id: month.toString(),
     label: formatMonthLabel(month),
   }));
 
-export const filterMonthItems = (monthItems: OptionT[], filterList: number[]) =>
-  monthItems.map<OptionT>((month) => {
+export const filterMonthItems = (monthItems: Option[], filterList: number[]) =>
+  monthItems.map<Option>((month) => {
     if (!filterList.includes(Number(month.id))) {
       return {
         ...month,
@@ -37,7 +37,7 @@ export const filterMonthItems = (monthItems: OptionT[], filterList: number[]) =>
 export const getFilteredMonthItems = ({
   filterMonthsList,
   formatMonthLabel,
-}: GetMonthItemsArgsT) => {
+}: GetMonthItemsArgs) => {
   let monthItems = getDefaultMonthItems(formatMonthLabel);
 
   if (filterMonthsList) {

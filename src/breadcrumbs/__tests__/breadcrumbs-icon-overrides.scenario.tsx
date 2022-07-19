@@ -9,9 +9,9 @@ import * as React from 'react';
 import { ThemeProvider, LightTheme } from '../../index';
 import { StyledLink } from '../../link/index';
 import { Breadcrumbs } from '../index';
-import { IconPropsT } from '../../icon';
+import { IconProps } from '../../icon';
 
-const XSmallFilled = ({ title, size, color, ...props }: IconPropsT) => {
+const XSmallFilled = ({ title, size, color, ...props }: IconProps) => {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
       <title>{title}</title>

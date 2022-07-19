@@ -4,7 +4,7 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import type { BorderT } from '../themes';
+import type { Border } from '../themes';
 import type { StyleObject } from 'styletron-react';
 
 export function hexToRgb(hex: string = '', alpha: string = '1') {
@@ -28,7 +28,7 @@ export const ellipsisText = {
   wordWrap: 'normal',
 } as const;
 
-export function expandBorderStyles(borderStyles: BorderT): StyleObject {
+export function expandBorderStyles(borderStyles: Border): StyleObject {
   return {
     borderTopWidth: borderStyles.borderWidth,
     borderTopStyle: borderStyles.borderStyle,

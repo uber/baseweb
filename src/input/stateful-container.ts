@@ -6,15 +6,15 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 import { STATE_CHANGE_TYPE } from './constants';
-import type { StatefulContainerPropsT, StateT, StateReducerT, StateTypeT } from './types';
+import type { StatefulContainerProps, State, StateReducer, StateType } from './types';
 
 import type { ChangeEvent } from 'react';
 
-const defaultStateReducer: StateReducerT = (type, nextState) => nextState;
+const defaultStateReducer: StateReducer = (type, nextState) => nextState;
 
 class StatefulContainer<T extends HTMLInputElement | HTMLTextAreaElement> extends React.Component<
-  StatefulContainerPropsT<T>,
-  StateT
+  StatefulContainerProps<T>,
+  State
 > {
   static defaultProps = {
     initialState: {},
@@ -23,7 +23,7 @@ class StatefulContainer<T extends HTMLInputElement | HTMLTextAreaElement> extend
     onClear: () => {},
   };
 
-  state: StateT = {
+  state: State = {
     value: '',
     ...this.props.initialState,
   };
@@ -34,7 +34,7 @@ class StatefulContainer<T extends HTMLInputElement | HTMLTextAreaElement> extend
     this.props.onChange(e);
   };
 
-  internalSetState = (type: StateTypeT, nextState: StateT) => {
+  internalSetState = (type: StateType, nextState: State) => {
     const newState = this.props.stateReducer(type, nextState, this.state);
     this.setState(newState);
   };

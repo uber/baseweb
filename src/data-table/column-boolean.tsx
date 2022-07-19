@@ -11,18 +11,18 @@ import { useStyletron } from '../styles';
 import { CategoricalFilter } from './column-categorical';
 import Column from './column';
 import { COLUMNS } from './constants';
-import type { ColumnT, SharedColumnOptionsT } from './types';
+import type { ColumnOptions, SharedColumnOptions } from './types';
 import { LocaleContext } from '../locale';
 
-type OptionsT = {} & SharedColumnOptionsT<boolean>;
+type Options = {} & SharedColumnOptions<boolean>;
 
-type FilterParametersT = {
+type FilterParameters = {
   selection: Set<boolean>;
   description: string;
   exclude: boolean;
 };
 
-type BooleanColumnT = ColumnT<boolean, FilterParametersT>;
+type BooleanColumn = ColumnOptions<boolean, FilterParameters>;
 
 function mapSelection<X, Y>(selection: Set<X>, transform: (a: X) => Y): Set<Y> {
   const coercedSelection = new Set<Y>();
@@ -85,7 +85,7 @@ function BooleanCell(props) {
   );
 }
 
-function BooleanColumn(options: OptionsT): BooleanColumnT {
+function BooleanColumn(options: Options): BooleanColumn {
   return Column({
     kind: COLUMNS.BOOLEAN,
     buildFilter: function (params) {

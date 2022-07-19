@@ -6,30 +6,30 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import type { OverrideT } from '../helpers/overrides';
+import type { Override } from '../helpers/overrides';
 import { ALIGN } from './constants';
 
 import type { ReactNode, ChangeEvent } from 'react';
 
-export type LabelPlacementT = 'top' | 'right' | 'bottom' | 'left';
-export type AlignT = keyof typeof ALIGN;
+export type LabelPlacement = 'top' | 'right' | 'bottom' | 'left';
+export type Align = keyof typeof ALIGN;
 
-export type RadioOverridesT = {
-  RadioMarkInner?: OverrideT;
-  RadioMarkOuter?: OverrideT;
-  Label?: OverrideT;
-  Root?: OverrideT;
-  Input?: OverrideT;
-  Description?: OverrideT;
+export type RadioOverrides = {
+  RadioMarkInner?: Override;
+  RadioMarkOuter?: Override;
+  Label?: Override;
+  Root?: Override;
+  Input?: Override;
+  Description?: Override;
 };
 
-export type RadioGroupOverridesT = {
-  RadioGroupRoot?: OverrideT;
+export type RadioGroupOverrides = {
+  RadioGroupRoot?: Override;
 };
 
-export type DefaultPropsT = Partial<PropsT>;
+export type DefaultProps = Partial<RadioGroupProps>;
 
-export type PropsT = {
+export type RadioGroupProps = {
   /** Id of element which contains a related caption */
   'aria-describedby'?: string;
   /** Id of element which contains a related error message */
@@ -45,7 +45,7 @@ export type PropsT = {
    */
   'aria-labelledby'?: string;
   // This prop will be deprecated in the next major update. Pass overrides to the 'Radio' component instead.
-  overrides?: RadioGroupOverridesT;
+  overrides?: RadioGroupOverrides;
   /** As `children` in React native approach represents radio buttons inside of Radio Group. Can use `Radio` from this package. */
   children?: Array<React.ReactNode>;
   /** The value of radio button, which is preselected. */
@@ -59,11 +59,11 @@ export type PropsT = {
   /** Set to be focused (active) on selected\checked radio. */
   autoFocus?: boolean;
   /** How to position radio buttons in the group. */
-  align?: AlignT;
+  align?: Align;
   /** String value for the name of RadioGroup, it is used to group buttons. If missed default is random ID string. */
   name?: string;
   /** How to position the label relative to the radio itself. */
-  labelPlacement?: LabelPlacementT;
+  labelPlacement?: LabelPlacement;
   /** Unique id for RadioGroup, help ARIA to identify element */
   id?: string;
   /** Handler for change events on trigger element. */
@@ -78,15 +78,15 @@ export type PropsT = {
   onBlur?: (e: ChangeEvent<HTMLInputElement>) => unknown;
 };
 
-export type StateT = {
+export type State = {
   value?: string;
 };
 
-export type RadioPropsT = {
+export type RadioProps = {
   /** Focus the radio on initial render. */
   autoFocus?: boolean;
   /** How the radio will be displayed along with its description. Controls spacing */
-  align?: AlignT;
+  align?: Align;
   /** Check or uncheck the control. */
   checked?: boolean;
   /** Label of radio. */
@@ -123,7 +123,7 @@ export type RadioPropsT = {
   onMouseDown?: (e: ChangeEvent<HTMLInputElement>) => unknown;
   /** Handler for mouseup events on trigger element. */
   onMouseUp?: (e: ChangeEvent<HTMLInputElement>) => unknown;
-  overrides?: RadioOverridesT;
+  overrides?: RadioOverrides;
   /** Marks the checkbox as required. */
   required?: boolean;
   /** Passed to the input element value attribute */
@@ -132,57 +132,57 @@ export type RadioPropsT = {
   tabIndex?: string;
 };
 
-export type RadioStateT = {
+export type RadioState = {
   isActive: boolean;
   isHovered: boolean;
 };
 
-export type StateReducerT = (
+export type StateReducer = (
   stateType: string,
-  nextState: StateT,
-  currentState: StateT,
+  nextState: State,
+  currentState: State,
   event: ChangeEvent<HTMLInputElement>
-) => StateT;
+) => State;
 
-export type StatelessStateT = {
+export type StatelessState = {
   isFocusVisible: boolean;
   focusedRadioIndex: number;
 };
 
-export type DefaultStatefulPropsT = {
-  initialState: StateT;
-  children?: (props: PropsT) => React.ReactNode;
-  stateReducer: StateReducerT;
+export type DefaultStatefulProps = {
+  initialState: State;
+  children?: (props: RadioGroupProps) => React.ReactNode;
+  stateReducer: StateReducer;
   onChange: (e: ChangeEvent<HTMLInputElement>) => unknown;
 };
 
-export type StatefulContainerPropsT = {
-  overrides?: RadioGroupOverridesT;
+export type StatefulContainerProps = {
+  overrides?: RadioGroupOverrides;
   /** Should return `RadioGroup` instance with standard or customized inner elements. */
-  children?: (props: PropsT) => React.ReactNode;
+  children?: (props: RadioGroupProps) => React.ReactNode;
   /** Initial state populated into the component */
-  initialState?: StateT;
+  initialState?: State;
   /** Reducer function to manipulate internal state updates. */
-  stateReducer: StateReducerT;
+  stateReducer: StateReducer;
   /** Handler for change events on trigger element. */
   onChange?: (e: ChangeEvent<HTMLInputElement>) => unknown;
   /** Set to be focused (active) on selected\checked radio. */
   autoFocus?: boolean;
 };
 
-export type StatefulRadioGroupPropsT = {
-  overrides?: RadioGroupOverridesT;
+export type StatefulRadioGroupProps = {
+  overrides?: RadioGroupOverrides;
   /** A list of `Radio` components. */
   children?: Array<React.ReactNode>;
   /** Initial state populated into the component */
-  initialState?: StateT;
+  initialState?: State;
   /** Set to be focused (active) on selected\checked radio. */
   autoFocus?: boolean;
   /** Handler for change events on trigger element. */
   onChange?: (e: ChangeEvent<HTMLInputElement>) => unknown;
 };
 
-export type StylePropsT = {
+export type StyleProps = {
   $align?: string; // todo(flow->ts): can be improved - 'horizontal'|'vertical' is expected (the values are coming from ALIGN constants)
   $checked: boolean;
   $disabled: boolean;
@@ -192,7 +192,7 @@ export type StylePropsT = {
   $isFocused: boolean;
   $isFocusVisible: boolean;
   $isHovered: boolean;
-  $labelPlacement: LabelPlacementT;
+  $labelPlacement: LabelPlacement;
   $required: boolean;
   $value: string;
 };

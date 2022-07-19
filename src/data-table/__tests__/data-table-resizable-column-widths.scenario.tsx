@@ -15,7 +15,7 @@ import { StatefulDataTable } from '../stateful-data-table';
 
 import AnimalData from './animal-data';
 
-type RowDataT = {
+type RowData = {
   Name: string;
   Kingdom: string;
   Phylum: string;
@@ -28,18 +28,18 @@ const columns = [
   StringColumn({
     title: 'Name',
     minWidth: 300,
-    mapDataToValue: (data: RowDataT) => data.Name,
+    mapDataToValue: (data: RowData) => data.Name,
   }),
 
   CategoricalColumn({
     title: 'Kingdom',
-    mapDataToValue: (data: RowDataT) => data.Kingdom,
+    mapDataToValue: (data: RowData) => data.Kingdom,
   }),
 
   CustomColumn({
     title: 'Phylum',
     minWidth: 90,
-    mapDataToValue: (data: RowDataT) => data.Phylum,
+    mapDataToValue: (data: RowData) => data.Phylum,
     textQueryFilter: function (textQuery, data) {
       return data.toLowerCase().includes(textQuery.toLowerCase());
     },
@@ -68,17 +68,17 @@ const columns = [
   CategoricalColumn({
     title: 'Class',
     minWidth: 120,
-    mapDataToValue: (data: RowDataT) => data.Class,
+    mapDataToValue: (data: RowData) => data.Class,
   }),
 
   CategoricalColumn({
     title: 'Order',
-    mapDataToValue: (data: RowDataT) => data.Order,
+    mapDataToValue: (data: RowData) => data.Order,
   }),
 
   CategoricalColumn({
     title: 'Family',
-    mapDataToValue: (data: RowDataT) => data.Family,
+    mapDataToValue: (data: RowData) => data.Family,
   }),
 ];
 

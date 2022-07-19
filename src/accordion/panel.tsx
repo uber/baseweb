@@ -17,7 +17,7 @@ import {
 } from './styled-components';
 import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible';
 
-import type { PanelPropsT } from './types';
+import type { PanelProps } from './types';
 
 import type { SyntheticEvent } from 'react';
 
@@ -33,7 +33,7 @@ const Panel = (
     overrides = {},
     title = '',
     renderAll = false,
-  }: PanelPropsT,
+  }: PanelProps,
   ref
 ) => {
   const [localState, setLocalState] = React.useState<{
@@ -232,6 +232,6 @@ const Panel = (
   );
 };
 
-const ForwardedPanel = React.forwardRef<HTMLElement, PanelPropsT>(Panel);
+const ForwardedPanel = React.forwardRef<HTMLElement, PanelProps>(Panel);
 ForwardedPanel.displayName = 'Panel';
 export default ForwardedPanel;

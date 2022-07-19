@@ -7,10 +7,10 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { StatefulContainer as StatefulPopoverContainer } from '../popover';
 import baseDefaultProps from './default-props';
-import type { StatefulTooltipContainerPropsT } from './types';
+import type { StatefulTooltipContainerProps } from './types';
 
-class StatefulContainer extends React.Component<StatefulTooltipContainerPropsT> {
-  static defaultProps: Partial<StatefulTooltipContainerPropsT> = {
+class StatefulContainer extends React.Component<StatefulTooltipContainerProps> {
+  static defaultProps: Partial<StatefulTooltipContainerProps> = {
     ...baseDefaultProps,
   };
 

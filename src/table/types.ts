@@ -7,33 +7,34 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import { SORT_DIRECTION } from './constants';
-import type { OverrideT } from '../helpers/overrides';
+import type { Override } from '../helpers/overrides';
 
-export type SortDirectionT = keyof typeof SORT_DIRECTION | undefined | null;
+export type SortDirection = keyof typeof SORT_DIRECTION | undefined | null;
 
-export type HeadCellPropsT = {
+export type HeadCellOverrides = {
+  HeadCell?: Override;
+  SortableLabel?: Override;
+};
+export type HeadCellProps = {
   /** Aria label applied to the sort button. */
   ariaLabel?: string;
   'aria-label'?: string;
   /** Additional content to fill head cell. Most likely used for a filter button. */
   children?: React.ReactNode;
   /** Visually indicates sort direction. Displays a chevron next to column title. */
-  direction: SortDirectionT;
+  direction: SortDirection;
   /** Disabled click-to-sort. Renders column title in muted color. */
   disabled?: boolean;
   /** Callback for when column title is clicked to trigger sort. */
   onSort?: () => unknown;
-  overrides?: {
-    HeadCell?: OverrideT;
-    SortableLabel?: OverrideT;
-  };
+  overrides?: HeadCellOverrides;
   /** Column title. */
   title: React.ReactNode;
   /** FillClickTarget enable click to sort on whitespace in a header cell. */
   fillClickTarget?: boolean;
 };
 
-export type TablePropsT = {
+export type TableProps = {
   /** Table columns. Data passed to each header cell. */
   columns: Array<string | React.ReactNode>;
   /** Table rows. Data passed to each row and cell */
@@ -44,6 +45,12 @@ export type TablePropsT = {
   isLoading?: boolean;
 };
 
+export type FilterOverrides = {
+  MenuButton?: Override;
+  Content?: Override;
+  Heading?: Override;
+  Footer?: Override;
+};
 export type FilterProps = {
   /** Displays the filter icon in an active state. */
   active?: boolean;
@@ -63,12 +70,7 @@ export type FilterProps = {
   onReset?: () => unknown;
   /** Callback for when the 'select all' button is clicked. */
   onSelectAll?: () => unknown;
-  overrides?: {
-    MenuButton?: OverrideT;
-    Content?: OverrideT;
-    Heading?: OverrideT;
-    Footer?: OverrideT;
-  };
+  overrides?: FilterOverrides;
   /** Determines whether focus is returned to Filter menu button. */
   returnFocus?: boolean;
 };

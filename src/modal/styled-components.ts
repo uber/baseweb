@@ -6,13 +6,13 @@ LICENSE file in the root directory of this source tree.
 */
 import { styled } from '../styles';
 import { SIZE, SIZE_WIDTHS } from './constants';
-import type { SharedStylePropsArgT, SizePropT } from './types';
+import type { SharedStylePropsArg, SizeProp } from './types';
 import type { StyleObject } from 'styletron-react';
 
-type SizeStyleT = Pick<StyleObject, 'maxWidth' | 'width' | 'alignSelf'>;
+type SizeStyle = Pick<StyleObject, 'maxWidth' | 'width' | 'alignSelf'>;
 
-function getSizeStyles($size: SizePropT): SizeStyleT {
-  const styles: SizeStyleT = {
+function getSizeStyles($size: SizeProp): SizeStyle {
+  const styles: SizeStyle = {
     maxWidth: '100%',
     width: null,
   };
@@ -31,7 +31,7 @@ function getSizeStyles($size: SizePropT): SizeStyleT {
   return styles;
 }
 
-export const Root = styled<'div', SharedStylePropsArgT>('div', (props) => {
+export const Root = styled<'div', SharedStylePropsArg>('div', (props) => {
   const { $isOpen } = props;
   return {
     position: 'fixed',
@@ -44,7 +44,7 @@ export const Root = styled<'div', SharedStylePropsArgT>('div', (props) => {
   };
 });
 
-export const DialogContainer = styled<'div', SharedStylePropsArgT>('div', (props) => {
+export const DialogContainer = styled<'div', SharedStylePropsArg>('div', (props) => {
   const { $animate, $isOpen, $isVisible, $theme } = props;
   const animationRules = {
     transitionProperty: 'opacity',
@@ -68,7 +68,7 @@ export const DialogContainer = styled<'div', SharedStylePropsArgT>('div', (props
   };
 });
 
-export const Dialog = styled<'div', SharedStylePropsArgT>('div', (props): StyleObject => {
+export const Dialog = styled<'div', SharedStylePropsArg>('div', (props): StyleObject => {
   const { $animate, $isOpen, $isVisible, $size, $theme } = props;
   return {
     position: 'relative',
@@ -104,7 +104,7 @@ export const Dialog = styled<'div', SharedStylePropsArgT>('div', (props): StyleO
   };
 });
 
-export const Close = styled<'button', SharedStylePropsArgT>('button', (props) => {
+export const Close = styled<'button', SharedStylePropsArg>('button', (props) => {
   const { $theme, $isFocusVisible } = props;
   const dir: string = $theme.direction === 'rtl' ? 'left' : 'right';
   return {

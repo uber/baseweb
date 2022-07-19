@@ -30,21 +30,21 @@ import {
 import { Datepicker } from '../datepicker';
 import { TimePicker } from '../timepicker';
 import { useStyletron } from '../styles';
-import { Select, type ValueT } from '../select';
+import { Select, type Value } from '../select';
 
 import Column from './column';
 import { COLUMNS, DATETIME_OPERATIONS } from './constants';
 import FilterShell from './filter-shell';
-import type { ColumnT, SharedColumnOptionsT } from './types';
+import type { ColumnOptions, SharedColumnOptions } from './types';
 import { LocaleContext } from '../locale';
 import type { ComponentProps } from 'react';
 
-type OptionsT = {
+type Options = {
   formatString?: string;
   locale?: any;
-} & SharedColumnOptionsT<Date>;
+} & SharedColumnOptions<Date>;
 
-type DatetimeOperationsT =
+type DatetimeOperations =
   | typeof DATETIME_OPERATIONS.RANGE_DATETIME
   | typeof DATETIME_OPERATIONS.RANGE_DATE
   | typeof DATETIME_OPERATIONS.RANGE_TIME
@@ -54,15 +54,15 @@ type DatetimeOperationsT =
   | typeof DATETIME_OPERATIONS.HALF
   | typeof DATETIME_OPERATIONS.YEAR;
 
-type FilterParametersT = {
-  operation: DatetimeOperationsT;
+type FilterParameters = {
+  operation: DatetimeOperations;
   range: Date[];
   selection: number[];
   description: string;
   exclude: boolean;
 };
 
-type DatetimeColumnT = ColumnT<Date, FilterParametersT>;
+type DatetimeColumn = ColumnOptions<Date, FilterParameters>;
 
 const DATE_FORMAT = 'MM-dd-yyyy';
 const MASK = '99-99-9999 - 99-99-9999';
@@ -224,8 +224,8 @@ function DatetimeFilter(props) {
 
   const [exclude, setExclude] = React.useState(initialState.exclude);
   const [comparatorIndex, setComparatorIndex] = React.useState(initialState.comparatorIndex);
-  const [rangeOperator, setRangeOperator] = React.useState<ValueT>([initialState.rangeOperator]);
-  const [categoricalOperator, setCategoricalOperator] = React.useState<ValueT>([
+  const [rangeOperator, setRangeOperator] = React.useState<Value>([initialState.rangeOperator]);
+  const [categoricalOperator, setCategoricalOperator] = React.useState<Value>([
     initialState.categoricalOperator,
   ]);
   const [rangeDates, setRangeDates] = React.useState<any>(
@@ -249,7 +249,7 @@ function DatetimeFilter(props) {
       onExcludeChange={() => setExclude(!exclude)}
       onApply={() => {
         if (isRange) {
-          const op: DatetimeOperationsT = rangeOperator[0].id as any;
+          const op: DatetimeOperations = rangeOperator[0].id as any;
 
           let description = '';
           if (op === DATETIME_OPERATIONS.RANGE_DATETIME) {
@@ -276,7 +276,7 @@ function DatetimeFilter(props) {
         }
 
         if (isCategorical) {
-          const op: DatetimeOperationsT = categoricalOperator[0].id as any;
+          const op: DatetimeOperations = categoricalOperator[0].id as any;
 
           let selection: number[] = [];
           let operatorLocaleLabelKey = '';
@@ -556,7 +556,7 @@ const defaultOptions = {
   formatString: FORMAT_STRING,
 };
 
-function DatetimeColumn(options: OptionsT): DatetimeColumnT {
+function DatetimeColumn(options: Options): DatetimeColumn {
   const normalizedOptions = {
     ...defaultOptions,
     ...options,

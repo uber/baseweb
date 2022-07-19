@@ -5,9 +5,10 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
+import { isElement, isPortal } from 'react-is';
 import { getOverrides } from '../helpers/overrides';
 import { Root as StyledRoot } from './styled-components';
-import type { StatelessAccordionPropsT } from './types';
+import type { StatelessAccordionProps } from './types';
 
 function StatelessAccordion({
   accordion = true,
@@ -17,15 +18,22 @@ function StatelessAccordion({
   onChange,
   overrides = {},
   renderAll,
-}: StatelessAccordionPropsT) {
+}: StatelessAccordionProps) {
   const { Root: RootOverrides, ...PanelOverrides } = overrides;
   const [Root, rootProps] = getOverrides(RootOverrides, StyledRoot);
   return (
     <Root data-baseweb="accordion" {...rootProps}>
       {React.Children.map(children, (child, index) => {
-        const key = child.key || String(index);
-        return React.cloneElement(child, {
-          disabled: child.props.disabled || disabled,
+        let normalizedChild =
+          isElement(child) || isPortal(child) ? (
+            child
+          ) : (
+            // if primitive value - wrap it in a fragment
+            <>{child}</>
+          );
+        const key = normalizedChild.key || String(index);
+        return React.cloneElement(normalizedChild, {
+          disabled: normalizedChild.props.disabled || disabled,
           expanded: expanded.includes(key),
           key,
           onChange:
@@ -49,7 +57,7 @@ function StatelessAccordion({
                   onChange({ key, expanded: next });
                 }
               : onChange,
-          overrides: child.props.overrides || PanelOverrides,
+          overrides: normalizedChild.props.overrides || PanelOverrides,
           renderAll,
         });
       })}

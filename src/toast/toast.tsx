@@ -16,17 +16,12 @@ import {
 import { KIND, TYPE } from './constants';
 import { LocaleContext } from '../locale';
 
-import type {
-  ToastPropsT,
-  ToastPropsShapeT,
-  ToastPrivateStateT,
-  SharedStylePropsArgT,
-} from './types';
-import type { OverridesT } from '../icon';
+import type { ToastProps, ToastPropsShape, ToastPrivateState, SharedStylePropsArg } from './types';
+import type { IconOverrides } from '../icon';
 import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible';
 
-class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
-  static defaultProps: ToastPropsShapeT = {
+class Toast extends React.Component<ToastProps, ToastPrivateState> {
+  static defaultProps: ToastPropsShape = {
     autoFocus: false,
     autoHideDuration: 0,
     closeable: true,
@@ -59,7 +54,7 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
     isFocusVisible: false,
   };
 
-  constructor(props: ToastPropsT) {
+  constructor(props: ToastProps) {
     super(props);
     this.closeRef = React.createRef();
     this.previouslyFocusedElement = null;
@@ -83,7 +78,7 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
     }
   }
 
-  componentDidUpdate(prevProps: ToastPropsT) {
+  componentDidUpdate(prevProps: ToastProps) {
     if (
       this.props.autoHideDuration !== prevProps.autoHideDuration ||
       this.props.__updated !== prevProps.__updated
@@ -172,7 +167,7 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
     typeof this.props.onMouseLeave === 'function' && this.props.onMouseLeave(e);
   };
 
-  getSharedProps(): Partial<SharedStylePropsArgT> {
+  getSharedProps(): Partial<SharedStylePropsArg> {
     const { kind, notificationType, closeable } = this.props;
     const { isRendered, isVisible } = this.state;
     return {
@@ -202,7 +197,7 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
 
     const [CloseIcon, closeIconProps] = getOverrides(CloseIconOverride, StyledCloseIcon);
 
-    const closeIconOverrides: OverridesT = mergeOverrides(
+    const closeIconOverrides: IconOverrides = mergeOverrides(
       { Svg: { component: CloseIcon } },
       { Svg: CloseIconOverride }
     );

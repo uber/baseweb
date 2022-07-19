@@ -11,7 +11,7 @@ import BaseProvider from '../../helpers/base-provider';
 import { LightTheme } from '../../themes/index';
 
 import { StatefulSelect, Select } from '../index';
-import type { ControlRefT } from '../types';
+import type { ControlRef } from '../types';
 
 describe('setDropdownOpen', function () {
   it('opens and closes dropdown with StatefulSelect', () => {
@@ -20,7 +20,7 @@ describe('setDropdownOpen', function () {
       { id: 'b', label: 'b' },
       { id: 'c', label: 'c' },
     ];
-    const controlRef: ControlRefT = React.createRef();
+    const controlRef: ControlRef = React.createRef();
 
     const { container } = render(
       <BaseProvider theme={LightTheme}>
@@ -60,7 +60,7 @@ describe('setDropdownOpen', function () {
       { id: 'b', label: 'b' },
       { id: 'c', label: 'c' },
     ];
-    const controlRef = React.createRef() as ControlRefT;
+    const controlRef = React.createRef() as ControlRef;
 
     const TestCase = () => {
       const [value, setValue] = React.useState<any>([]);
@@ -113,7 +113,7 @@ describe('setInputValue', function () {
       { id: 'b', label: 'unicorns' },
       { id: 'c', label: 'elves' },
     ];
-    const controlRef = React.createRef() as ControlRefT;
+    const controlRef = React.createRef() as ControlRef;
 
     const TestCase = () => {
       const [value, setValue] = React.useState<any>([]);

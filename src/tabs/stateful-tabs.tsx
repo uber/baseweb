@@ -7,10 +7,10 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import Tabs from './tabs';
 import { STATE_CHANGE_TYPE } from './constants';
-import type { StatefulTabsPropsT, StatefulTabsStateT, StateChangeTypeT } from './types';
+import type { StatefulTabsProps, StatefulTabsState, StateChangeType } from './types';
 
-export default class StatefulTabs extends React.Component<StatefulTabsPropsT, StatefulTabsStateT> {
-  static defaultProps: Partial<StatefulTabsPropsT> = {
+export default class StatefulTabs extends React.Component<StatefulTabsProps, StatefulTabsState> {
+  static defaultProps: Partial<StatefulTabsProps> = {
     disabled: false,
     onChange: () => {},
     overrides: {},
@@ -21,11 +21,11 @@ export default class StatefulTabs extends React.Component<StatefulTabsPropsT, St
     activeKey: this.getInitialKey(),
   };
 
-  onTabChange = (newState: StatefulTabsStateT) => {
+  onTabChange = (newState: StatefulTabsState) => {
     this.internalSetState(STATE_CHANGE_TYPE.change, newState);
   };
 
-  internalSetState(type: StateChangeTypeT, changes: StatefulTabsStateT) {
+  internalSetState(type: StateChangeType, changes: StatefulTabsState) {
     const { stateReducer, onChange } = this.props;
     const newState = stateReducer(type, changes, this.state);
     this.setState(newState);

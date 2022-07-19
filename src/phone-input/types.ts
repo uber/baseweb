@@ -6,85 +6,98 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 import { STATE_CHANGE_TYPE, SIZE, COUNTRIES } from './constants';
-import type { OverrideT } from '../helpers/overrides';
-import type { OnChangeParamsT } from '../select';
+import type { Override } from '../helpers/overrides';
+import type { OnChangeParams } from '../select';
 
 import type { ChangeEvent } from 'react';
 
-export type SizeT = keyof typeof SIZE;
-export type CountryIsoT = keyof typeof COUNTRIES;
-export type CountriesT = Readonly<CountryT>;
+export type Size = keyof typeof SIZE;
+export type CountryIso = keyof typeof COUNTRIES;
+export type Countries = Readonly<Country>;
 
-export type CountryT = Readonly<{
+export type Country = Readonly<{
   dialCode: string;
-  id: CountryIsoT;
+  id: CountryIso;
   label: string;
 }>;
 
-export type StateT = {
-  country: CountryT;
+export type State = {
+  country: Country;
   text: string;
 };
 
-export type StateChangeT = keyof typeof STATE_CHANGE_TYPE;
+export type StateChange = keyof typeof STATE_CHANGE_TYPE;
 
-export type StateReducerT = (
-  type: StateChangeT,
-  nextState: Partial<StateT>,
-  currentState: StateT
-) => StateT;
+export type StateReducer = (
+  type: StateChange,
+  nextState: Partial<State>,
+  currentState: State
+) => State;
 
-export type mapIsoToLabelT = (iso: string) => string;
+export type mapIsoToLabel = (iso: string) => string;
 
 // Props
 
-export type CountrySelectDropdownPropsT = {
+export type CountrySelectDropdownProps = {
   children: Array<React.ReactElement<any>>;
-  $country: CountryT;
-  $mapIsoToLabel?: mapIsoToLabelT;
+  $country: Country;
+  $mapIsoToLabel?: mapIsoToLabel;
   $maxDropdownHeight: string;
   $noResultsMsg: string;
   $overrides: {
-    CountrySelectContainer?: OverrideT;
-    CountrySelectDropdown?: OverrideT;
-    CountrySelectDropdownListItem?: OverrideT;
-    CountrySelectDropdownFlagColumn?: OverrideT;
-    CountrySelectDropdownNameColumn?: OverrideT;
-    CountrySelectDropdownDialcodeColumn?: OverrideT;
-    FlagContainer?: OverrideT;
-    EmptyState?: OverrideT;
+    CountrySelectContainer?: Override;
+    CountrySelectDropdown?: Override;
+    CountrySelectDropdownListItem?: Override;
+    CountrySelectDropdownFlagColumn?: Override;
+    CountrySelectDropdownNameColumn?: Override;
+    CountrySelectDropdownDialcodeColumn?: Override;
+    FlagContainer?: Override;
+    EmptyState?: Override;
   };
 };
 
-export type CountrySelectPropsT = {
+export type CountrySelectProps = {
   countries: {
-    [x: string]: CountryT;
+    [x: string]: Country;
   };
-  country: CountryT;
+  country: Country;
   disabled: boolean;
   error: boolean;
   inputRef: React.RefObject<HTMLInputElement>;
-  onCountryChange: (event: OnChangeParamsT) => unknown;
-  mapIsoToLabel?: mapIsoToLabelT;
+  onCountryChange: (event: OnChangeParams) => unknown;
+  mapIsoToLabel?: mapIsoToLabel;
   maxDropdownHeight: string;
   maxDropdownWidth: string;
   overrides: {
-    CountrySelectContainer?: OverrideT;
-    CountrySelectDropdown?: OverrideT;
-    CountrySelectDropdownListItem?: OverrideT;
-    CountrySelectDropdownFlagColumn?: OverrideT;
-    CountrySelectDropdownNameColumn?: OverrideT;
-    CountrySelectDropdownDialcodeColumn?: OverrideT;
-    DialCode?: OverrideT;
-    CountrySelect?: OverrideT;
-    FlagContainer?: OverrideT;
+    CountrySelectContainer?: Override;
+    CountrySelectDropdown?: Override;
+    CountrySelectDropdownListItem?: Override;
+    CountrySelectDropdownFlagColumn?: Override;
+    CountrySelectDropdownNameColumn?: Override;
+    CountrySelectDropdownDialcodeColumn?: Override;
+    DialCode?: Override;
+    CountrySelect?: Override;
+    FlagContainer?: Override;
   };
   positive: boolean;
   required: boolean;
-  size: SizeT;
+  size: Size;
 };
 
-export type PropsT = {
+export type PhoneInputOverrides = {
+  Root?: Override;
+  Input?: Override;
+  CountrySelectContainer?: Override;
+  CountrySelectDropdown?: Override;
+  CountrySelectDropdownListItem?: Override;
+  CountrySelectDropdownFlagColumn?: Override;
+  CountrySelectDropdownNameColumn?: Override;
+  CountrySelectDropdownDialcodeColumn?: Override;
+  DialCode?: Override;
+  CountrySelect?: Override;
+  FlagContainer?: Override;
+};
+export type PhoneInputProps = {
   /** Sets aria-label attribute of the input element. */
   'aria-label': string | undefined | null;
   /** Sets aria-labelledby attribute of the input element. */
@@ -92,7 +105,7 @@ export type PropsT = {
   /** Sets aria-describedby attribute of the input element. */
   'aria-describedby': string | undefined | null;
   /** Defines the value of the country select. */
-  country: CountryT;
+  country: Country;
   /** Defines if the component is disabled. */
   disabled: boolean;
   /** Renders component in 'error' state. */
@@ -104,26 +117,14 @@ export type PropsT = {
   /** Sets the max width of the country select dropdown. */
   maxDropdownWidth: string;
   /** Function for mapping ISO codes to country names. Useful for localization of the country select dropdown. */
-  mapIsoToLabel?: mapIsoToLabelT;
+  mapIsoToLabel?: mapIsoToLabel;
   /** Sets the name attribute of the input element. */
   name: string | undefined | null;
   /** A handler for the country select's change events. */
-  onCountryChange: (event: OnChangeParamsT) => unknown;
+  onCountryChange: (event: OnChangeParams) => unknown;
   /** A handler for the input element's change events. */
   onTextChange: (event: ChangeEvent<HTMLInputElement>) => unknown;
-  overrides: {
-    Root?: OverrideT;
-    Input?: OverrideT;
-    CountrySelectContainer?: OverrideT;
-    CountrySelectDropdown?: OverrideT;
-    CountrySelectDropdownListItem?: OverrideT;
-    CountrySelectDropdownFlagColumn?: OverrideT;
-    CountrySelectDropdownNameColumn?: OverrideT;
-    CountrySelectDropdownDialcodeColumn?: OverrideT;
-    DialCode?: OverrideT;
-    CountrySelect?: OverrideT;
-    FlagContainer?: OverrideT;
-  };
+  overrides: PhoneInputOverrides;
   /** Sets the placeholder text for the input element.  */
   placeholder?: string;
   /** Renders component in 'positive' state. */
@@ -131,30 +132,30 @@ export type PropsT = {
   /** Sets the 'required' attribute of the input element. The country select will always have a value so does has no need for 'require'. */
   required: boolean;
   /** Sets the size of the component. */
-  size: SizeT;
+  size: Size;
   /** Defines the value of the input element. */
   text: string;
   /** Defines if the input value is clearable. */
   clearable?: boolean;
 };
 
-export type LitePropsT = {
+export type PhoneInputLiteProps = {
   countries: {
-    [x: string]: CountryT;
+    [x: string]: Country;
   };
-} & PropsT;
+} & PhoneInputProps;
 
-export type StatefulPhoneInputContainerPropsT = {
-  children: (a: PropsT) => React.ReactNode;
-  initialState: StateT;
-  stateReducer: StateReducerT;
+export type StatefulPhoneInputContainerProps = {
+  children: (a: PhoneInputProps) => React.ReactNode;
+  initialState: State;
+  stateReducer: StateReducer;
   onTextChange: (event: ChangeEvent<HTMLInputElement>) => unknown;
-  onCountryChange: (event: OnChangeParamsT) => unknown;
-} & PropsT;
+  onCountryChange: (event: OnChangeParams) => unknown;
+} & PhoneInputProps;
 
-export type StatefulPhoneInputPropsT = PropsT & {
-  initialState?: StateT;
-  stateReducer?: StateReducerT;
+export type StatefulPhoneInputProps = PhoneInputProps & {
+  initialState?: State;
+  stateReducer?: StateReducer;
   onTextChange?: (event: ChangeEvent<HTMLInputElement>) => unknown;
-  onCountryChange?: (event: OnChangeParamsT) => unknown;
+  onCountryChange?: (event: OnChangeParams) => unknown;
 };

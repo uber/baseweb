@@ -6,73 +6,71 @@ LICENSE file in the root directory of this source tree.
 */
 /* eslint-disable flowtype/generic-spacing */
 import * as React from 'react';
-import type { OverrideT } from '../helpers/overrides';
+import type { Override } from '../helpers/overrides';
 import { STATE_CHANGE_TYPE } from './constants';
 
-export type AccordionStateT = {
+export type AccordionState = {
   expanded: Array<React.Key>;
 };
 
-export type PanelStateT = {
+export type PanelState = {
   expanded: boolean;
 };
 
-export type StateChangeTypeT = keyof typeof STATE_CHANGE_TYPE;
+export type StateChangeType = keyof typeof STATE_CHANGE_TYPE;
 
-export type StateReducerT = (
-  stateChangeType: StateChangeTypeT,
-  nextState: AccordionStateT,
-  currentState: AccordionStateT
-) => AccordionStateT;
+export type StateReducer = (
+  stateChangeType: StateChangeType,
+  nextState: AccordionState,
+  currentState: AccordionState
+) => AccordionState;
 
-export type PanelStateReducerT = (
-  stateChangeType: StateChangeTypeT,
-  nextState: PanelStateT,
-  currentState: PanelStateT
-) => PanelStateT;
+export type PanelStateReducer = (
+  stateChangeType: StateChangeType,
+  nextState: PanelState,
+  currentState: PanelState
+) => PanelState;
 
-export type AccordionOverridesT = {
-  Content?: OverrideT;
-  ContentAnimationContainer?: OverrideT;
-  Header?: OverrideT;
-  PanelContainer?: OverrideT;
-  Root?: OverrideT;
-  ToggleIcon?: OverrideT;
-  ToggleIconGroup?: OverrideT;
+export type AccordionOverrides = {
+  Content?: Override;
+  ContentAnimationContainer?: Override;
+  Header?: Override;
+  PanelContainer?: Override;
+  Root?: Override;
+  ToggleIcon?: Override;
+  ToggleIconGroup?: Override;
 };
 
-export type PanelOverridesT = {
-  PanelContainer?: OverrideT;
-  Header?: OverrideT;
-  ToggleIcon?: OverrideT;
-  ToggleIconGroup?: OverrideT;
-  Content?: OverrideT;
-  ContentAnimationContainer?: OverrideT;
+export type PanelOverrides = {
+  PanelContainer?: Override;
+  Header?: Override;
+  ToggleIcon?: Override;
+  ToggleIconGroup?: Override;
+  Content?: Override;
+  ContentAnimationContainer?: Override;
 };
 
-export type OnChangeHandlerT = (a: { expanded: boolean }) => unknown;
+export type OnChangeHandler = (a: { expanded: boolean }) => unknown;
 
-export type AccordionOnChangeHandlerT = (a: { expanded: Array<React.Key> }) => unknown;
+export type AccordionOnChangeHandler = (a: { expanded: Array<React.Key> }) => unknown;
 
-type ChildrenT = Array<React.ReactElement<any>> | React.ReactElement<any>;
-
-export type AccordionPropsT = {
+export type AccordionProps = {
   /** Determines how many panels may be expanded at a time. If set to
    * true it will collapse a current panel when a new panel is expanded.
    * If set to false more than one panel may be expanded at a time. */
   accordion?: boolean;
   /** Accordion expandable items. See Panel API below for reference. */
-  children: ChildrenT;
+  children: React.ReactNode;
   /** If set to true all its children panels will be disabled from toggling. */
   disabled?: boolean;
-  initialState?: AccordionStateT;
+  initialState?: AccordionState;
   /** Handler called each time a panel is toggled. expanded prop is an array
    * of Panel keys that are currently expanded. */
-  onChange?: AccordionOnChangeHandlerT;
-  overrides?: AccordionOverridesT;
+  onChange?: AccordionOnChangeHandler;
+  overrides?: AccordionOverrides;
   /** Handler called each time the component state changes.
    * Used to override default state-change functionality. */
-  stateReducer: StateReducerT;
+  stateReducer: StateReducer;
   /**
    * Allows users to render all child content whether a panel is expanded or not
    * for SEO purposed
@@ -80,25 +78,25 @@ export type AccordionPropsT = {
   renderAll?: boolean;
 };
 
-export type StatelessAccordionOnChangeHandlerT = (a: {
+export type StatelessAccordionOnChangeHandler = (a: {
   expanded: Array<React.Key>;
   key: React.Key;
 }) => unknown;
 
-export type StatelessAccordionPropsT = {
+export type StatelessAccordionProps = {
   /** Determines how many panels may be expanded at a time. If set to
    * true it will collapse a current panel when a new panel is expanded.
    * If set to false more than one panel may be expanded at a time. */
   accordion?: boolean;
   /** Accordion expandable items. See Panel API below for reference. */
-  children: ChildrenT;
+  children: React.ReactNode;
   /** If set to true all its children panels will be disabled from toggling. */
   disabled?: boolean;
   /** List of Panel keys which are expanded. */
   expanded: Array<React.Key>;
   /** Handler called each time a panel is toggled. */
-  onChange?: StatelessAccordionOnChangeHandlerT;
-  overrides?: AccordionOverridesT & PanelOverridesT;
+  onChange?: StatelessAccordionOnChangeHandler;
+  overrides?: AccordionOverrides & PanelOverrides;
   /**
    * Allows users to render all child content whether a panel is expanded or not
    * for SEO purposed
@@ -111,7 +109,7 @@ export type StatelessAccordionPropsT = {
   renderAll?: boolean;
 };
 
-type SharedPanelPropsT = {
+type SharedPanelProps = {
   /** The content visible when Panel is expanded. */
   children: React.ReactNode;
   /** Defaults to the disabled value provided by the parent Accordion component. */
@@ -124,12 +122,12 @@ type SharedPanelPropsT = {
    * Must be unique across children of the Accordion. */
   key?: React.Key;
   /** Handler for individual Panel change events. */
-  onChange?: OnChangeHandlerT;
+  onChange?: OnChangeHandler;
   /** Handler for the Header's click events. */
   onClick?: (e: Event) => unknown;
   /** Handler for the Header's keyDown events. */
   onKeyDown?: (e: KeyboardEvent) => unknown;
-  overrides?: PanelOverridesT;
+  overrides?: PanelOverrides;
   /** The title of an accordion panel. */
   title?: React.ReactNode;
   /**
@@ -144,29 +142,29 @@ type SharedPanelPropsT = {
   renderAll?: boolean;
 };
 
-export type PanelPropsT = SharedPanelPropsT & {
+export type PanelProps = SharedPanelProps & {
   /** Defines if the panel is expanded. If set to true the panel is rendered expanded. */
   expanded?: boolean;
 };
 
 // Props for panel stateful container
-type SharedStatefulPanelContainerPropsT = {
+type SharedStatefulPanelContainerProps = {
   /** Initial state of a stateful panel component.
    * The expanded prop indicates if the panel is initially expanded.
    * If set to true the panel will be expanded initially */
-  initialState?: PanelStateT;
-  onChange?: OnChangeHandlerT;
-  stateReducer?: PanelStateReducerT;
+  initialState?: PanelState;
+  onChange?: OnChangeHandler;
+  stateReducer?: PanelStateReducer;
 };
 
-export type StatefulPanelContainerPropsT = SharedStatefulPanelContainerPropsT & {
-  children: (props: Omit<PanelPropsT, 'children'>) => React.ReactNode;
+export type StatefulPanelContainerProps = SharedStatefulPanelContainerProps & {
+  children: (props: Omit<PanelProps, 'children'>) => React.ReactNode;
 };
 
 // Props for stateful panel
-export type StatefulPanelPropsT = SharedStatefulPanelContainerPropsT & SharedPanelPropsT;
+export type StatefulPanelProps = SharedStatefulPanelContainerProps & SharedPanelProps;
 
-export type SharedStylePropsArgT = {
+export type SharedStylePropsArg = {
   $color?: string;
   $disabled: boolean | undefined | null;
   $expanded?: boolean | null;

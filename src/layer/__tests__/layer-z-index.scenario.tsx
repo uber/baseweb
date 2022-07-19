@@ -8,7 +8,7 @@ import * as React from 'react';
 import { Layer, LayersManager, TetherBehavior, TETHER_PLACEMENT } from '..';
 import { Block } from '../../block';
 import { Button } from '../../button';
-import type { NormalizedOffsetsT } from '../../layer/types';
+import type { NormalizedOffsets } from '../../layer/types';
 
 function BlockComponent(props) {
   const { children, forwardedRef, offset, color, ...restProps } = props;
@@ -69,7 +69,7 @@ export class Scenario extends React.Component<
     offset2: { top: 0, left: 0 },
   };
 
-  onPopperUpdate = (order: 1 | 2, normalizedOffsets: NormalizedOffsetsT, _) => {
+  onPopperUpdate = (order: 1 | 2, normalizedOffsets: NormalizedOffsets, _) => {
     // @ts-expect-error partial state update
     this.setState({
       [`offset${order}`]: normalizedOffsets.popper,

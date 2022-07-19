@@ -7,11 +7,11 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { Block } from '../block';
 import { LevelContext } from './heading-level';
-import type { HeadingPropsT } from './types';
+import type { HeadingProps } from './types';
 
 const FONTS = ['', 'font1050', 'font950', 'font850', 'font750', 'font650', 'font550'];
 
-const Heading: React.FC<HeadingPropsT & React.ComponentPropsWithoutRef<typeof Block>> = ({
+const Heading: React.FC<HeadingProps & React.ComponentPropsWithoutRef<typeof Block>> = ({
   styleLevel,
   ...restProps
 }) => (

@@ -6,39 +6,39 @@ LICENSE file in the root directory of this source tree.
 */
 
 import type { ReactNode } from 'react';
-import type { OverrideT } from '../helpers/overrides';
+import type { Override } from '../helpers/overrides';
 
-export type ProgressStepsOverridesT = {
-  Root?: OverrideT;
-  StepRoot?: OverrideT;
-  IconContainer?: OverrideT;
-  Icon?: OverrideT;
-  InnerIcon?: OverrideT;
-  Tail?: OverrideT;
-  Content?: OverrideT;
-  Title?: OverrideT;
-  Description?: OverrideT;
+export type ProgressStepsOverrides = {
+  Root?: Override;
+  StepRoot?: Override;
+  IconContainer?: Override;
+  Icon?: Override;
+  InnerIcon?: Override;
+  Tail?: Override;
+  Content?: Override;
+  Title?: Override;
+  Description?: Override;
 };
 
-export type ProgressStepsPropsT = {
-  overrides?: ProgressStepsOverridesT;
+export type ProgressStepsProps = {
+  overrides?: ProgressStepsOverrides;
   children?: ReactNode;
   /** Defines the current active step index. */
   current: number;
 };
 
-export type StepOverridesT = {
-  Root?: OverrideT;
-  IconContainer?: OverrideT;
-  Icon?: OverrideT;
-  InnerIcon?: OverrideT;
-  Tail?: OverrideT;
-  Content?: OverrideT;
-  Title?: OverrideT;
-  Description?: OverrideT;
+export type StepOverrides = {
+  Root?: Override;
+  IconContainer?: Override;
+  Icon?: Override;
+  InnerIcon?: Override;
+  Tail?: Override;
+  Content?: Override;
+  Title?: Override;
+  Description?: Override;
 };
 
-export type StepPropsT = {
+export type StepProps = {
   /** The title of the Step. */
   title?: ReactNode;
   /** Defines if the step is completed. Overriden by ProgressSteps, if used. */
@@ -47,22 +47,22 @@ export type StepPropsT = {
   isActive?: boolean;
   /** Defines if the step is the last item displayed. Overriden by ProgressSteps, if used. */
   isLast: boolean;
-  overrides?: StepOverridesT;
+  overrides?: StepOverrides;
   children?: ReactNode;
 };
 
-export type NumberedStepOverridesT = {
-  Root?: OverrideT;
-  IconContainer?: OverrideT;
-  Icon?: OverrideT;
-  InnerIcon?: OverrideT;
-  Tail?: OverrideT;
-  Content?: OverrideT;
-  Title?: OverrideT;
-  Description?: OverrideT;
+export type NumberedStepOverrides = {
+  Root?: Override;
+  IconContainer?: Override;
+  Icon?: Override;
+  InnerIcon?: Override;
+  Tail?: Override;
+  Content?: Override;
+  Title?: Override;
+  Description?: Override;
 };
 
-export type NumberedStepPropsT = {
+export type NumberedStepProps = {
   /** The title of the Step. */
   title?: string;
   /** Defines if the step is completed. */
@@ -71,13 +71,13 @@ export type NumberedStepPropsT = {
   isActive?: boolean;
   /** Defines if the step is the last item displayed. */
   isLast: boolean;
-  overrides?: NumberedStepOverridesT;
+  overrides?: NumberedStepOverrides;
   children?: ReactNode;
   /** The number displayed as the step number */
   step?: ReactNode;
 };
 
-export type StylePropsT = {
+export type StyleProps = {
   $isActive: boolean;
   $isCompleted: boolean;
   $disabled: boolean;

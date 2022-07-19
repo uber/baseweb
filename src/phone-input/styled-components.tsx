@@ -10,10 +10,10 @@ import { styled, withStyle, withWrapper } from '../styles';
 import { StyledList } from '../menu';
 import { StyledDropdownListItem, StyledRoot as SelectStyledRoot } from '../select';
 import defaultProps from '../select/default-props';
-import type { SizeT } from './types';
+import type { Size } from './types';
 
 type SizeStyleProps = {
-  $size?: SizeT;
+  $size?: Size;
 };
 
 type HeightStyleProps = {

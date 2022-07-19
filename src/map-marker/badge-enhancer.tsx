@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 
 import * as React from 'react';
-import type { BadgeEnhancerComponentT } from './types';
+import type { BadgeEnhancerComponent } from './types';
 import { getOverrides } from '../helpers/overrides';
 import { StyledBadgeEnhancerRoot } from './styled-components';
 import {
@@ -22,7 +22,7 @@ const BadgeEnhancer = ({
   badgeEnhancerSize = BADGE_ENHANCER_SIZES.none,
   badgeEnhancerContent: BadgeEnhancerContent,
   overrides = {},
-}: BadgeEnhancerComponentT) => {
+}: BadgeEnhancerComponent) => {
   if (badgeEnhancerSize === null || badgeEnhancerSize == BADGE_ENHANCER_SIZES.none) {
     return null;
   }

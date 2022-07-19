@@ -10,11 +10,11 @@ import { useStyletron } from '../styles';
 
 import Column from './column';
 import { COLUMNS } from './constants';
-import type { ColumnT } from './types';
+import type { ColumnOptions } from './types';
 
-type ValueT = null;
-type FilterParametersT = {};
-type RowIndexColumnT = ColumnT<ValueT, FilterParametersT>;
+type Value = null;
+type FilterParameters = {};
+type RowIndexColumn = ColumnOptions<Value, FilterParameters>;
 
 function RowIndexFilter() {
   return <div>not implemented for row index column</div>;
@@ -35,7 +35,7 @@ function RowIndexCell(props) {
   );
 }
 
-function RowIndexColumn(): RowIndexColumnT {
+function RowIndexColumn(): RowIndexColumn {
   return Column({
     kind: COLUMNS.ROW_INDEX,
     buildFilter: () => () => true,

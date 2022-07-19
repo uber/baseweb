@@ -4,9 +4,9 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import type { LightingT } from '../types';
+import type { Lighting } from '../types';
 
-const lighting: LightingT = {
+const lighting: Lighting = {
   shadow400: '0 1px 4px hsla(0, 0%, 0%, 0.16)',
   shadow500: '0 2px 8px hsla(0, 0%, 0%, 0.16)',
   shadow600: '0 4px 16px hsla(0, 0%, 0%, 0.16)',

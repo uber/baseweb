@@ -11,7 +11,7 @@ import { StatefulDataTable } from '../stateful-data-table';
 
 import AnimalData from './animal-data';
 
-type RowDataT = {
+type RowData = {
   Name: string;
   loremIpsum: string;
 };
@@ -22,13 +22,13 @@ const columns = [
   StringColumn({
     title: 'Name',
     minWidth: 250,
-    mapDataToValue: (data: RowDataT) => data.Name,
+    mapDataToValue: (data: RowData) => data.Name,
   }),
 
   StringColumn({
     title: 'Vertically Center',
     minWidth: 250,
-    mapDataToValue: (data: RowDataT) => data.Name,
+    mapDataToValue: (data: RowData) => data.Name,
     cellBlockAlign: 'center',
   }),
 
@@ -36,7 +36,7 @@ const columns = [
     title: 'Long Text',
     maxWidth: 300,
     lineClamp: 3,
-    mapDataToValue: (data: RowDataT) => data.loremIpsum,
+    mapDataToValue: (data: RowData) => data.loremIpsum,
   }),
 ];
 

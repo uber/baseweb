@@ -13,7 +13,7 @@ import {
   StyledFloatingMarkerAnchorContainer,
   StyledFloatingMarkerPinHeadContainer,
 } from './styled-components';
-import type { FloatingMarkerPropsT } from './types';
+import type { FloatingMarkerProps } from './types';
 import {
   FLOATING_MARKER_ANCHOR_POSITIONS,
   PINHEAD_SIZES_SHAPES,
@@ -42,7 +42,7 @@ const FloatingMarker = ({
   startEnhancer,
   anchorType = FLOATING_MARKER_ANCHOR_TYPES.circle,
   overrides = {},
-}: FloatingMarkerPropsT) => {
+}: FloatingMarkerProps) => {
   const [, theme] = useStyletron();
   const {
     colors: { backgroundPrimary, backgroundInversePrimary, primaryA, primaryB },

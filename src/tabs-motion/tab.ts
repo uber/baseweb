@@ -5,8 +5,8 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-import type { TabPropsT } from './types';
+import type { TabProps } from './types';
 
-export function Tab(props: TabPropsT) {
+export function Tab(props: TabProps) {
   return null;
 }

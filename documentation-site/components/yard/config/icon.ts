@@ -2,8 +2,6 @@ import { ArrowUp } from 'baseui/icon';
 import { PropTypes } from 'react-view';
 import { TConfig } from '../types';
 
-const iconProps = require('!!extract-react-types-loader!../../../../src/icon/icon');
-
 const IconConfig: TConfig = {
   componentName: 'ArrowUp',
   imports: {
@@ -42,9 +40,6 @@ const IconConfig: TConfig = {
         },
       },
     },
-  },
-  mapTokensToProps: {
-    ArrowUp: iconProps,
   },
 };
 

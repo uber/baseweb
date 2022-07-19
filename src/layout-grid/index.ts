@@ -9,6 +9,7 @@ import Grid from './grid';
 import Cell from './cell';
 
 import DeprecatedHOC from '../utils/deprecated-component';
+import type { CSSLengthUnit } from './types';
 
 export { StyledGrid, StyledCell, Grid, Cell };
 export * from './constants';
@@ -20,3 +21,5 @@ export const Unstable_Grid = DeprecatedHOC(Grid, componentName);
 export const Unstable_Cell = DeprecatedHOC(Cell, componentName);
 
 export * from './types';
+/** @deprecated use CSSLengthUnit instead. To be removed in future versions.*/
+export type CSSLengthUnitT = CSSLengthUnit;

@@ -19,7 +19,7 @@ import Upload from '../../icon/upload';
 import Search from '../../icon/search';
 import { Select } from '../../select';
 
-import type { PinHeadSizeT, NeedleSizeT } from '../types';
+import type { PinHeadSize, NeedleSize } from '../types';
 
 const labelEnhancerPositions = Object.keys(LABEL_ENHANCER_POSITIONS)
   .map((key) => LABEL_ENHANCER_POSITIONS[key])
@@ -60,10 +60,10 @@ export function Scenario() {
 
   Object.keys(PINHEAD_SIZES_SHAPES)
     .map((key) => PINHEAD_SIZES_SHAPES[key])
-    .forEach((pinheadSize: PinHeadSizeT, i: number) => {
+    .forEach((pinheadSize: PinHeadSize, i: number) => {
       Object.keys(NEEDLE_SIZES)
         .map((key) => NEEDLE_SIZES[key])
-        .forEach((needleSize: NeedleSizeT, z: number) => {
+        .forEach((needleSize: NeedleSize, z: number) => {
           markers.push({
             id: `fixed / ${pinheadSize} / ${needleSize}`,
             content: (

@@ -20,7 +20,6 @@ import * as FileUploaderExports from 'baseui/file-uploader';
 
 import Yard from '../../components/yard/index';
 import fileUploaderYardConfig from '../../components/yard/config/file-uploader';
-import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -65,14 +64,6 @@ To learn more, read the corresponding [OWASP article on file uploads](https://ww
 <Example title="File uploader with overrides" path="file-uploader/overrides.js">
   <FileUploaderOverrides />
 </Example>
-
-## API
-
-<ApiTable
-  title="File uploader props"
-  config={fileUploaderYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/file-uploader/file-uploader')}
-/>
 
 <Exports
   component={FileUploaderExports}

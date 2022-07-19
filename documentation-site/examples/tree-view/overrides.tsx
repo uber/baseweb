@@ -1,14 +1,14 @@
 import * as React from 'react';
 import {
   TreeView,
-  TreeNode,
+  TreeNodeData,
   toggleIsExpanded,
 } from 'baseui/tree-view';
 import {Plus as PlusIcon} from 'baseui/icon';
 import {CheckIndeterminate as CheckIndeterminateIcon} from 'baseui/icon';
 import {Search as SearchIcon} from 'baseui/icon';
 
-const initialData: TreeNode[] = [
+const initialData: TreeNodeData[] = [
   {
     id: 1,
     label: 'Node 1',
@@ -69,8 +69,8 @@ export default function TreeViewOverrides() {
     <TreeView
       data={data}
       renderAll
-      onToggle={node =>
-        setData(prevData => toggleIsExpanded(prevData, node))
+      onToggle={(node) =>
+        setData((prevData) => toggleIsExpanded(prevData, node))
       }
       overrides={{
         IconContainer: {

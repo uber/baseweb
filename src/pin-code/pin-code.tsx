@@ -8,11 +8,11 @@ import React from 'react';
 import MultiRef from 'react-multi-ref';
 import defaultProps from './default-props';
 import { StyledRoot, StyledInputOverrideRoot, StyledInputOverrideInput } from './styled-components';
-import type { PropsT, StateT } from './types';
+import type { State, PinCodeProps } from './types';
 import { getOverrides, mergeOverrides } from '../helpers/overrides';
 import { Input as DefaultInput } from '../input';
 
-export default class PinCode extends React.Component<PropsT, StateT> {
+export default class PinCode extends React.Component<PinCodeProps, State> {
   static defaultProps = defaultProps;
 
   _inputRefs = new MultiRef<number, HTMLInputElement>();

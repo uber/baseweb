@@ -7,8 +7,6 @@ import {
 import { PropTypes } from 'react-view';
 import { TConfig } from '../types';
 
-const floatingMarkerPropsType = require('!!extract-react-types-loader!../../../../src/map-marker/floating-marker');
-
 export const theme = [];
 
 export const floatingMarkerProps = {
@@ -103,9 +101,6 @@ const FloatingMarkerConfig: TConfig = {
         sharedProps: {},
       },
     },
-  },
-  mapTokensToProps: {
-    FloatingMarker: floatingMarkerPropsType,
   },
 };
 

@@ -7,11 +7,12 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { LightTheme } from '../themes';
 
-import type { ThemeT } from './types';
+import type { Theme } from './types';
 
-export const ThemeContext: React.Context<ThemeT> = React.createContext(LightTheme);
+export const ThemeContext: React.Context<Theme> = React.createContext(LightTheme);
 
-const ThemeProvider = (props: { theme: ThemeT; children: React.ReactNode | undefined | null }) => {
+export type ThemeProviderProps = { theme: Theme };
+const ThemeProvider: React.FC<ThemeProviderProps> = (props) => {
   const { theme, children } = props;
   return <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>;
 };

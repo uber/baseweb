@@ -8,14 +8,14 @@ import React from 'react';
 import defaultProps from './default-props';
 import PinCode from './pin-code';
 import StatefulPinCodeContainer from './stateful-pin-code-container';
-import type { PropsT, StatefulPinCodePropsT } from './types';
+import type { PinCodeProps, StatefulPinCodeProps } from './types';
 
 StatefulPinCode.defaultProps = defaultProps;
 
-export default function StatefulPinCode(props: StatefulPinCodePropsT) {
+export default function StatefulPinCode(props: StatefulPinCodeProps) {
   return (
     <StatefulPinCodeContainer {...props}>
-      {(childrenProps: PropsT) => <PinCode {...childrenProps} />}
+      {(childrenProps: PinCodeProps) => <PinCode {...childrenProps} />}
     </StatefulPinCodeContainer>
   );
 }

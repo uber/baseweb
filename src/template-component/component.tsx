@@ -9,15 +9,15 @@ import * as React from 'react';
 import { getOverride, getOverrideProps } from '../helpers/overrides';
 import { Root as StyledRoot } from './styled-components';
 
-import type { ComponentPropsT, SharedStylePropsT } from './types';
+import type { ComponentProps, SharedStyleProps } from './types';
 
-class Component extends React.Component<ComponentPropsT> {
-  static defaultProps: Partial<ComponentPropsT> = {
+class Component extends React.Component<ComponentProps> {
+  static defaultProps: Partial<ComponentProps> = {
     prop: true,
     onClick: () => {},
   };
 
-  getSharedProps(): Omit<SharedStylePropsT, 'children'> {
+  getSharedProps(): Omit<SharedStyleProps, 'children'> {
     const { prop } = this.props;
     return {
       $prop: Boolean(prop),

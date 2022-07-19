@@ -11,9 +11,9 @@ import { useStyletron } from '../styles';
 import { mergeOverride, toObjectOverride } from '../helpers/overrides';
 
 import Icon from './icon';
-import type { IconPropsT } from './types';
+import type { IconProps } from './types';
 
-function ChevronDown(props: IconPropsT, ref) {
+function ChevronDown(props: IconProps, ref) {
   const [, theme] = useStyletron();
   const { title = 'Down', size, color, overrides = {}, ...restProps } = props;
   const SvgOverride = mergeOverride(
@@ -43,4 +43,4 @@ function ChevronDown(props: IconPropsT, ref) {
   );
 }
 
-export default React.forwardRef<SVGSVGElement, IconPropsT>(ChevronDown);
+export default React.forwardRef<SVGSVGElement, IconProps>(ChevronDown);

@@ -5,10 +5,10 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
-import { AppNavBar, NavItemT, setItemActive } from '..';
+import { AppNavBar, NavItem, setItemActive } from '..';
 
 export function Scenario() {
-  const [mainItems, setMainItems] = React.useState<NavItemT[]>([
+  const [mainItems, setMainItems] = React.useState<NavItem[]>([
     { label: 'label', info: { id: 1 } },
     { label: 'label', info: { id: 2 } },
     { label: 'label', info: { id: 3 } },

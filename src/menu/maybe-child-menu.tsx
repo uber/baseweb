@@ -9,23 +9,23 @@ import * as React from 'react';
 
 import { NestedMenuContext } from './nested-menus';
 import { Popover } from '../popover';
-import type { OverrideT } from '../helpers/overrides';
+import type { Override } from '../helpers/overrides';
 import { getOverrides, mergeOverrides } from '../helpers/overrides';
-import type { ItemT } from './types';
+import type { Item } from './types';
 
-type PropsT = {
-  getChildMenu: ((item: ItemT) => React.ReactNode) | undefined | null;
+type Props = {
+  getChildMenu: ((item: Item) => React.ReactNode) | undefined | null;
   isOpen: boolean;
-  item: ItemT;
+  item: Item;
   resetParentMenu: () => void;
   renderAll?: boolean;
   onClick?: (event: React.MouseEvent) => unknown;
   overrides?: {
-    ChildMenuPopover?: OverrideT;
+    ChildMenuPopover?: Override;
   };
 };
 
-const MaybeChildMenu: React.FC<PropsT> = (props): React.ReactElement => {
+const MaybeChildMenu: React.FC<Props> = (props): React.ReactElement => {
   if (!props.getChildMenu) {
     // @ts-expect-error todo(flow->ts): children should be of type ReactElement or null
     return props.children;

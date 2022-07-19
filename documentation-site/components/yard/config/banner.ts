@@ -8,8 +8,6 @@ import { Banner, ACTION_POSITION, ARTWORK_TYPE, HIERARCHY, KIND } from 'baseui/b
 import { PropTypes } from 'react-view';
 import { TConfig } from '../types';
 
-const bannerProps = require('!!extract-react-types-loader!../../../../src/banner/banner');
-
 const BannerConfig: TConfig = {
   componentName: 'Banner',
   imports: {
@@ -103,9 +101,6 @@ const BannerConfig: TConfig = {
         ],
       },
     },
-  },
-  mapTokensToProps: {
-    Banner: bannerProps,
   },
 };
 

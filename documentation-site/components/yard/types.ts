@@ -6,14 +6,12 @@ export type TConfig = {
   props: { [key: string]: TProp };
   theme: string[];
   imports: TImportsConfig;
-  mapTokensToProps?: { [key: string]: any };
 };
 
 export type TYardProps = TConfig & {
   componentName: string;
   placeholderHeight: number;
   queryStringName?: string;
-  mapTokensToProps?: { [key: string]: any };
   compilerStyles: { [key: string]: any };
   initialTab?: string;
 };

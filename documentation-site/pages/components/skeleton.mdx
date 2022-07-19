@@ -19,7 +19,6 @@ import SkeletonSubElements from 'examples/skeleton/subElements.js';
 
 import Yard from '../../components/yard/index';
 import skeletonYardConfig from '../../components/yard/config/skeleton';
-import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -54,13 +53,5 @@ You can change the shape and position of `Skeleton` through `overrides.Root`.
 Set `rows` to a positive number and `Skeleton` will generate multiple sub elements with the same shape inside the `Root`.
 The background color of `Root` will become transparent automatically when the `rows` equals to a positive number.
 You can customize the sub elements' shape and position through `overrides.Row`.
-
-## API
-
-<ApiTable
-  title="Skeleton props"
-  config={skeletonYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/skeleton/skeleton')}
-/>
 
 <Exports component={SkeletonExports} title="Skeleton exports" path="baseui/skeleton" />

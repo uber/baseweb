@@ -11,9 +11,9 @@ import { useStyletron } from '../styles';
 import { mergeOverride, toObjectOverride } from '../helpers/overrides';
 
 import Icon from './icon';
-import type { IconPropsT } from './types';
+import type { IconProps } from './types';
 
-function DeleteAlt(props: IconPropsT, ref) {
+function DeleteAlt(props: IconProps, ref) {
   const [, theme] = useStyletron();
   const { title = 'Delete Alt', size, color, overrides = {}, ...restProps } = props;
   const SvgOverride = mergeOverride(
@@ -42,4 +42,4 @@ function DeleteAlt(props: IconPropsT, ref) {
   );
 }
 
-export default React.forwardRef<SVGSVGElement, IconPropsT>(DeleteAlt);
+export default React.forwardRef<SVGSVGElement, IconProps>(DeleteAlt);

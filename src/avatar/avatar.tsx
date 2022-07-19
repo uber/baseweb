@@ -13,7 +13,7 @@ import {
   Initials as StyledInitials,
   Root as StyledRoot,
 } from './styled-components';
-import type { PropsT } from './types';
+import type { AvatarProps } from './types';
 
 function getInitials(name) {
   const words = name.split(' ');
@@ -27,7 +27,7 @@ export default function Avatar({
   overrides = {},
   size = 'scale1000',
   src,
-}: PropsT) {
+}: AvatarProps) {
   const imageRef = React.useRef<HTMLImageElement>(null);
   const [imageLoaded, setImageLoaded] = React.useState(false);
 

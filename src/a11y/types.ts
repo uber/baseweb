@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import type { Result } from 'axe-core';
 
-export type ViolationPropsT = {
+export type ViolationProps = {
   target: string;
   violations: Result[];
 };

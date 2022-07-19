@@ -21,7 +21,7 @@ import {
   StatefulDataTable,
 } from '..';
 
-type RowDataT = [
+type RowData = [
   string,
   number,
   number,
@@ -108,39 +108,39 @@ function makeRowsFromColumns(columns, rowCount) {
 export const columns = [
   CategoricalColumn({
     title: 'categorical',
-    mapDataToValue: (data: RowDataT) => data[0],
+    mapDataToValue: (data: RowData) => data[0],
   }),
 
   NumericalColumn({
     title: 'numerical',
     minWidth: 90,
-    mapDataToValue: (data: RowDataT) => data[1],
+    mapDataToValue: (data: RowData) => data[1],
   }),
 
   NumericalColumn({
     title: 'neg std',
     highlight: (n) => n < 0,
     minWidth: 90,
-    mapDataToValue: (data: RowDataT) => data[2],
+    mapDataToValue: (data: RowData) => data[2],
   }),
 
   NumericalColumn({
     title: 'accounting',
     format: NUMERICAL_FORMATS.ACCOUNTING,
     minWidth: 120,
-    mapDataToValue: (data: RowDataT) => data[3],
+    mapDataToValue: (data: RowData) => data[3],
   }),
 
   NumericalColumn({
     title: 'percent',
     format: NUMERICAL_FORMATS.PERCENTAGE,
     minWidth: 120,
-    mapDataToValue: (data: RowDataT) => data[4],
+    mapDataToValue: (data: RowData) => data[4],
   }),
 
   DatetimeColumn({
     title: 'datetime',
-    mapDataToValue: (data: RowDataT) => data[5],
+    mapDataToValue: (data: RowData) => data[5],
   }),
 
   CustomColumn<
@@ -157,7 +157,7 @@ export const columns = [
     filterable: true,
     sortable: true,
     minWidth: 120,
-    mapDataToValue: (data: RowDataT) => data[6],
+    mapDataToValue: (data: RowData) => data[6],
     renderCell: function Cell(props) {
       const [css] = useStyletron();
       return (
@@ -240,22 +240,22 @@ export const columns = [
   StringColumn({
     title: 'string',
     minWidth: 148,
-    mapDataToValue: (data: RowDataT) => data[7],
+    mapDataToValue: (data: RowData) => data[7],
   }),
 
   BooleanColumn({
     title: 'boolean',
-    mapDataToValue: (data: RowDataT) => data[8],
+    mapDataToValue: (data: RowData) => data[8],
   }),
 
   CategoricalColumn({
     title: 'second category',
-    mapDataToValue: (data: RowDataT) => data[9],
+    mapDataToValue: (data: RowData) => data[9],
   }),
 
   AnchorColumn({
     title: 'anchor',
-    mapDataToValue: (data: RowDataT) => data[10],
+    mapDataToValue: (data: RowData) => data[10],
   }),
 ];
 

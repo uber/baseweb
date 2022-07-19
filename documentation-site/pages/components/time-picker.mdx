@@ -15,7 +15,6 @@ import * as TimepickerExports from 'baseui/timepicker';
 
 import Yard from '../../components/yard/index';
 import timepickerConfig from '../../components/yard/config/timepicker';
-import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -32,13 +31,5 @@ export default Layout;
 <Example title="Timepicker Min/Max Times" path="timepicker/timepicker-minmax.js">
   <TimepickerMinMax />
 </Example>
-
-## API
-
-<ApiTable
-  title="Timepicker props"
-  config={timepickerConfig}
-  types={require('!!extract-react-types-loader!../../../src/timepicker/timepicker')}
-/>
 
 <Exports component={TimepickerExports} title="Timepicker exports" path="baseui/timepicker" />

@@ -6,10 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Block, type BlockComponentType, type StyledBlockPropsT } from '../block/index';
+import { Block, type BlockComponentType, type StyledBlockProps } from '../block/index';
 import { flattenFragments } from '../helpers/react-helpers';
 import { getOverrides } from '../helpers/overrides';
-import type { FlexGridPropsT } from './types';
+import type { FlexGridProps } from './types';
 
 export const BaseFlexGrid = React.forwardRef(({ display, flexWrap, ...restProps }, ref) => (
   <Block
@@ -24,7 +24,7 @@ BaseFlexGrid.displayName = 'BaseFlexGrid';
 
 const FlexGrid: React.FC<
   React.ComponentPropsWithoutRef<typeof BaseFlexGrid> &
-    FlexGridPropsT & { forwardedRef: React.Ref<HTMLDivElement> }
+    FlexGridProps & { forwardedRef: React.Ref<HTMLDivElement> }
 > = ({
   forwardedRef,
   children,
@@ -70,14 +70,14 @@ const FlexGrid: React.FC<
 
 interface FlexGridComponentType<D extends React.ElementType> {
   <C extends React.ElementType = D>(
-    props: FlexGridPropsT<C> &
+    props: FlexGridProps<C> &
       (React.ComponentProps<C> extends { ref?: infer R } ? { ref?: R } : {}) &
-      Omit<StyledBlockPropsT & React.ComponentProps<C>, keyof FlexGridPropsT>
+      Omit<StyledBlockProps & React.ComponentProps<C>, keyof FlexGridProps>
   ): JSX.Element;
   displayName?: string;
 }
 
-const FlexGridComponent = React.forwardRef((props: FlexGridPropsT, ref) => (
+const FlexGridComponent = React.forwardRef((props: FlexGridProps, ref) => (
   <FlexGrid {...props} forwardedRef={ref as any} />
 )) as FlexGridComponentType<'div'>;
 FlexGridComponent.displayName = 'FlexGrid';

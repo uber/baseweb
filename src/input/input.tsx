@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 import { getOverrides } from '../helpers/overrides';
-import type { InputPropsT, InternalStateT, AdjoinedT } from './types';
+import type { InputProps, InternalState, Adjoined } from './types';
 import { getSharedProps } from './utils';
 import BaseInput from './base-input';
 import { Root as StyledRoot, InputEnhancer as StyledInputEnhancer } from './styled-components';
@@ -14,7 +14,7 @@ import { SIZE, ADJOINED, ENHANCER_POSITION } from './constants';
 
 import type { FocusEvent } from 'react';
 
-class Input extends React.Component<InputPropsT, InternalStateT> {
+class Input extends React.Component<InputProps, InternalState> {
   static defaultProps = {
     autoComplete: 'on',
     autoFocus: false,
@@ -119,7 +119,7 @@ class Input extends React.Component<InputPropsT, InternalStateT> {
   }
 }
 
-function getAdjoinedProp(startEnhancer, endEnhancer): AdjoinedT {
+function getAdjoinedProp(startEnhancer, endEnhancer): Adjoined {
   if (isEnhancer(startEnhancer) && isEnhancer(endEnhancer)) {
     return ADJOINED.both;
   } else if (isEnhancer(startEnhancer)) {

@@ -131,6 +131,7 @@ export interface Colors {
   backgroundStateDisabled: string;
   backgroundOverlayDark: string;
   backgroundOverlayLight: string;
+  backgroundOverlayArt: string;
   backgroundAccent: string;
   backgroundNegative: string;
   backgroundWarning: string;

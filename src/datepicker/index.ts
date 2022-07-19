@@ -4,6 +4,9 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
+import type { SharedStyleProps } from './types';
+import { CalendarInternalState, StatefulContainerProps } from './types';
+
 export { default as StatefulContainer } from './stateful-container';
 export { default as Calendar } from './calendar';
 export { default as StatefulCalendar } from './stateful-calendar';
@@ -23,4 +26,10 @@ export * from '../timepicker';
 export * from '../timezonepicker';
 // Flow
 export * from './types';
-export type { DatepickerLocaleT } from './locale';
+export type { DatepickerLocale } from './locale';
+/** @deprecated use SharedStyleProps instead. To be removed in future versions.*/
+export type SharedStylePropsT = SharedStyleProps;
+/** @deprecated To be removed in future versions */
+type onChange = StatefulContainerProps<any>['onChange'];
+/** @deprecated To be removed in future versions */
+type CalendarState = CalendarInternalState<Date>;

@@ -17,7 +17,7 @@ import {
   StyledClearIconContainer,
   StyledMaskToggleButton,
 } from './styled-components';
-import type { BaseInputPropsT, InternalStateT } from './types';
+import type { BaseInputProps, InternalState } from './types';
 import { getSharedProps } from './utils';
 import Hide from '../icon/hide';
 import Show from '../icon/show';
@@ -29,8 +29,8 @@ import type { SyntheticEvent, FocusEvent } from 'react';
 const NullComponent = () => null;
 
 class BaseInput<T extends HTMLInputElement | HTMLTextAreaElement> extends React.Component<
-  BaseInputPropsT<T>,
-  InternalStateT
+  BaseInputProps<T>,
+  InternalState
 > {
   static defaultProps = {
     'aria-activedescendant': null,

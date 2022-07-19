@@ -9,9 +9,9 @@ import Popper from 'popper.js';
 
 import { toPopperPlacement, parsePopperOffset } from './utils';
 import { TETHER_PLACEMENT } from './constants';
-import type { TetherPropsT, TetherStateT, PopperDataObjectT } from './types';
+import type { TetherProps, TetherState, PopperDataObject } from './types';
 
-class Tether extends React.Component<TetherPropsT, TetherStateT> {
+class Tether extends React.Component<TetherProps, TetherState> {
   static defaultProps = {
     anchorRef: null,
     onPopperUpdate: () => null,
@@ -34,7 +34,7 @@ class Tether extends React.Component<TetherPropsT, TetherStateT> {
     this.setState({ isMounted: true });
   }
 
-  componentDidUpdate(prevProps: TetherPropsT, prevState: TetherStateT) {
+  componentDidUpdate(prevProps: TetherProps, prevState: TetherState) {
     // Handles the case where popover content changes size and creates a gap between the anchor and
     // the popover. Popper.js only schedules updates on resize and scroll events. In the case of
     // the Select component, when options were filtered in the dropdown menu it creates a gap
@@ -116,7 +116,7 @@ class Tether extends React.Component<TetherPropsT, TetherStateT> {
     });
   }
 
-  onPopperUpdate = (data: PopperDataObjectT) => {
+  onPopperUpdate = (data: PopperDataObject) => {
     const normalizedOffsets = {
       popper: parsePopperOffset(data.offsets.popper),
       arrow: data.offsets.arrow ? parsePopperOffset(data.offsets.arrow) : { top: 0, left: 0 },

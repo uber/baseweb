@@ -6,7 +6,6 @@ LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
 import Layout from '../../components/layout';
 import Exports from '../../components/exports';
 
@@ -59,17 +58,5 @@ Also, keep in mind that the margins won’t be set properly unless you have the 
 <Example title="FlexGrid responsive usage" path="flex-grid/responsive.js">
   <Responsive />
 </Example>
-
-## API
-
-<API
-  heading="FlexGrid API"
-  api={require('!!extract-react-types-loader!../../../src/flex-grid/flex-grid')}
-/>
-
-<API
-  heading="FlexGridItem API"
-  api={require('!!extract-react-types-loader!../../../src/flex-grid/flex-grid-item')}
-/>
 
 <Exports component={FlexGridExports} title="FlexGrid exports" path="baseui/flex-grid" />

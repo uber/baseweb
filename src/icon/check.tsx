@@ -11,9 +11,9 @@ import { useStyletron } from '../styles';
 import { mergeOverride, toObjectOverride } from '../helpers/overrides';
 
 import Icon from './icon';
-import type { IconPropsT } from './types';
+import type { IconProps } from './types';
 
-function Check(props: IconPropsT, ref) {
+function Check(props: IconProps, ref) {
   const [, theme] = useStyletron();
   const { title = 'Check', size, color, overrides = {}, ...restProps } = props;
   const SvgOverride = mergeOverride(
@@ -42,4 +42,4 @@ function Check(props: IconPropsT, ref) {
   );
 }
 
-export default React.forwardRef<SVGSVGElement, IconPropsT>(Check);
+export default React.forwardRef<SVGSVGElement, IconProps>(Check);

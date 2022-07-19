@@ -18,7 +18,7 @@ import {
   Title as StyledTitle,
 } from './styled-components';
 
-import type { CardsPropsT } from './types';
+import type { CardProps } from './types';
 
 export function hasThumbnail(props: { readonly thumbnail?: string }) {
   return !!props.thumbnail;
@@ -39,7 +39,7 @@ const SemanticTitle = ({ children, ...restProps }) => {
   );
 };
 
-function Card(props: CardsPropsT) {
+function Card(props: CardProps) {
   const {
     action,
     children,

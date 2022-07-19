@@ -12,9 +12,9 @@ import dateFnsAdapter from './utils/date-fns-adapter';
 import DateHelpers from './utils/date-helpers';
 
 import { getOverrides } from '../helpers/overrides';
-import type { WeekPropsT } from './types';
+import type { WeekProps } from './types';
 
-export default class Week<T = Date> extends React.Component<WeekPropsT<T>> {
+export default class Week<T = Date> extends React.Component<WeekProps<T>> {
   static defaultProps = {
     adapter: dateFnsAdapter,
     highlightedDate: null,
@@ -30,7 +30,7 @@ export default class Week<T = Date> extends React.Component<WeekPropsT<T>> {
 
   dateHelpers: DateHelpers<T>;
 
-  constructor(props: WeekPropsT<T>) {
+  constructor(props: WeekProps<T>) {
     super(props);
     this.dateHelpers = new DateHelpers(props.adapter);
   }

@@ -5,10 +5,10 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import type {
-  ColorTokensT,
-  CoreSemanticColorTokensT,
-  CoreExtensionSemanticColorTokensT,
-  SemanticColorTokensT,
+  ColorTokens,
+  CoreSemanticColorTokens,
+  CoreExtensionSemanticColorTokens,
+  SemanticColorTokens,
 } from '../types';
 import colorTokens from './color-tokens';
 import { hexToRgb as hexToRgba } from '../../styles/util';
@@ -16,9 +16,9 @@ import colors from '../../tokens/colors';
 
 export default (
   // themePrimitives or foundation colors
-  foundation: ColorTokensT = colorTokens
-): SemanticColorTokensT => {
-  const core: CoreSemanticColorTokensT = {
+  foundation: ColorTokens = colorTokens
+): SemanticColorTokens => {
+  const core: CoreSemanticColorTokens = {
     // Background
     backgroundPrimary: foundation.primaryB,
     backgroundSecondary: colors.gray50,
@@ -43,11 +43,12 @@ export default (
     borderInverseSelected: foundation.primaryB,
   };
 
-  const coreExtensions: CoreExtensionSemanticColorTokensT = {
+  const coreExtensions: CoreExtensionSemanticColorTokens = {
     // Backgrounds
     backgroundStateDisabled: colors.gray50,
     backgroundOverlayDark: hexToRgba(colors.black, '0.3'),
     backgroundOverlayLight: hexToRgba(colors.black, '0.08'),
+    backgroundOverlayArt: hexToRgba(colors.black, '0.00'),
     backgroundAccent: foundation.accent,
     backgroundNegative: foundation.negative,
     backgroundWarning: foundation.warning,

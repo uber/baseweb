@@ -4,6 +4,8 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
+import type { SharedStylePropsArg } from './types';
+
 export { default as Accordion } from './accordion';
 export { default as Panel } from './panel';
 export { default as StatefulPanel } from './stateful-panel';
@@ -23,4 +25,6 @@ export {
 } from './styled-components';
 // Flow
 export * from './types';
-export type { AccordionLocaleT } from './locale';
+export type { AccordionLocale } from './locale';
+/** @deprecated use SharedStylePropsArg instead. To be removed in future versions.*/
+export type SharedProps = SharedStylePropsArg;

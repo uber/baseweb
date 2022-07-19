@@ -45,7 +45,7 @@ export default function Example() {
                   {row[0]}
                 </StyledLink>
               </StyledBodyCell>
-              {(row[2] as Array<any>).map(
+              {(row[2] as any[]).map(
                 (event: [Date, string], index: number) => {
                   const striped = index % 2 === 0;
                   return (

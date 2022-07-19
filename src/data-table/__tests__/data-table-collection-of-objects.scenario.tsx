@@ -10,7 +10,7 @@ import { AnchorColumn, CategoricalColumn, NumericalColumn, StatefulDataTable } f
 
 import graphqlArrayData from './graphql-array-data';
 
-type RowDataT = {
+type RowData = {
   id: string;
   name: string;
   applicationTags: string;
@@ -23,7 +23,7 @@ type RowDataT = {
 const columns = [
   AnchorColumn({
     title: 'Application',
-    mapDataToValue: (data: RowDataT) => ({
+    mapDataToValue: (data: RowData) => ({
       content: data.name,
       href: `#id=${data.id}`,
     }),
@@ -36,7 +36,7 @@ const columns = [
     // eslint-disable-next-line react/display-name
     elementAs: ({ children }) => <div style={{ color: 'green' }}>{children}</div>,
     title: 'User',
-    mapDataToValue: (data: RowDataT) => ({
+    mapDataToValue: (data: RowData) => ({
       content: data.realUser,
       href: `#id=${data.realUser}`,
     }),
@@ -47,17 +47,17 @@ const columns = [
   CategoricalColumn({
     title: 'Source',
     minWidth: 90,
-    mapDataToValue: (data: RowDataT) => data.source,
+    mapDataToValue: (data: RowData) => data.source,
   }),
 
   NumericalColumn({
     title: 'CPU vCores',
-    mapDataToValue: (data: RowDataT) => data.allocatedVCores,
+    mapDataToValue: (data: RowData) => data.allocatedVCores,
   }),
 
   NumericalColumn({
     title: 'Memory GB',
-    mapDataToValue: (data: RowDataT) => data.allocatedGB,
+    mapDataToValue: (data: RowData) => data.allocatedGB,
   }),
 ];
 

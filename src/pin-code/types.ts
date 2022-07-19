@@ -5,15 +5,19 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
-import type { OverrideT } from '../helpers/overrides';
+import type { Override } from '../helpers/overrides';
 import { SIZE, STATE_CHANGE_TYPE } from '../input';
 
-export type ChangeEventT = {
+export type ChangeEvent = {
   values: string[];
   event: any;
 };
 
-export type PropsT = {
+export type PinCodeOverrides = {
+  Root?: Override;
+  Input?: Override;
+};
+export type PinCodeProps = {
   /** Sets aria-label attribute for each input element. */
   'aria-label': string | undefined | null;
   /** Sets aria-labelledby attribute for each input element. */
@@ -33,11 +37,8 @@ export type PropsT = {
   /** Sets the name attribute of each input element. */
   name: string | undefined | null;
   /** A handler for when any pin code input changes value. */
-  onChange: (a: ChangeEventT) => unknown;
-  overrides: {
-    Root?: OverrideT;
-    Input?: OverrideT;
-  };
+  onChange: (a: ChangeEvent) => unknown;
+  overrides: PinCodeOverrides;
   /** Sets the placeholder text for each pin code input element. */
   placeholder: string;
   /** Renders the component in a positive state. */
@@ -56,31 +57,31 @@ export type PropsT = {
 
 // Stateful stuff below
 
-export type StateT = {
+export type State = {
   hasFocus: boolean;
 };
 
-export type StatefulPinCodeContainerStateT = {
+export type StatefulPinCodeContainerState = {
   values: string[];
 };
 
-export type StateChangeT = keyof typeof STATE_CHANGE_TYPE;
+export type StateChange = keyof typeof STATE_CHANGE_TYPE;
 
-export type StateReducerT = (
-  type: StateChangeT,
-  nextState: StatefulPinCodeContainerStateT,
-  currentState: StatefulPinCodeContainerStateT
-) => StatefulPinCodeContainerStateT;
+export type StateReducer = (
+  type: StateChange,
+  nextState: StatefulPinCodeContainerState,
+  currentState: StatefulPinCodeContainerState
+) => StatefulPinCodeContainerState;
 
-export type StatefulPinCodePropsT = PropsT & {
-  initialState?: StatefulPinCodeContainerStateT;
-  onChange?: (event: ChangeEventT) => unknown;
-  stateReducer?: StateReducerT;
+export type StatefulPinCodeProps = PinCodeProps & {
+  initialState?: StatefulPinCodeContainerState;
+  onChange?: (event: ChangeEvent) => unknown;
+  stateReducer?: StateReducer;
 };
 
-export type StatefulPinCodeContainerPropsT = PropsT & {
-  children: (a: PropsT) => React.ReactNode;
-  initialState: StatefulPinCodeContainerStateT;
-  onChange: (event: ChangeEventT) => unknown;
-  stateReducer: StateReducerT;
+export type StatefulPinCodeContainerProps = PinCodeProps & {
+  children: (a: PinCodeProps) => React.ReactNode;
+  initialState: StatefulPinCodeContainerState;
+  onChange: (event: ChangeEvent) => unknown;
+  stateReducer: StateReducer;
 };

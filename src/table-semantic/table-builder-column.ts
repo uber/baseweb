@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import type { TableBuilderColumnPropsT } from './types';
+import type { TableBuilderColumnProps } from './types';
 
-export default class TableBuilderColumn<T> extends React.Component<TableBuilderColumnPropsT<T>> {
+export default class TableBuilderColumn<T> extends React.Component<TableBuilderColumnProps<T>> {
   // Renderless component. See TableBuilder.
 }

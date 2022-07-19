@@ -16,21 +16,21 @@ import { LabelSmall } from '../typography';
 
 import Column from './column';
 import { COLUMNS } from './constants';
-import type { ColumnT, SharedColumnOptionsT } from './types';
+import type { ColumnOptions, SharedColumnOptions } from './types';
 import { LocaleContext } from '../locale';
 import FilterShell from './filter-shell';
 import { matchesQuery, splitByQuery, HighlightCellText } from './text-search';
 import type { StyleObject } from 'styletron-standard';
 
-type OptionsT = {} & SharedColumnOptionsT<string>;
+type Options = {} & SharedColumnOptions<string>;
 
-type FilterParametersT = {
+type FilterParameters = {
   description: string;
   exclude: boolean;
   selection: Set<string>;
 };
 
-type CategoricalColumnT = ColumnT<string, FilterParametersT>;
+type CategoricalColumn = ColumnOptions<string, FilterParameters>;
 
 function InputBefore() {
   const [css, theme] = useStyletron();
@@ -106,8 +106,8 @@ function HighlightCheckboxLabel(props) {
 type CategoricalFilterProps = {
   data: string[];
   close: () => void;
-  setFilter: (a: FilterParametersT) => void;
-  filterParams?: FilterParametersT;
+  setFilter: (a: FilterParameters) => void;
+  filterParams?: FilterParameters;
 };
 
 export function CategoricalFilter(props: CategoricalFilterProps) {
@@ -228,7 +228,7 @@ function CategoricalCell(props) {
   );
 }
 
-function CategoricalColumn(options: OptionsT): CategoricalColumnT {
+function CategoricalColumn(options: Options): CategoricalColumn {
   return Column({
     kind: COLUMNS.CATEGORICAL,
     buildFilter: function (params) {

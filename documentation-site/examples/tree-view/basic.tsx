@@ -2,10 +2,10 @@ import * as React from 'react';
 import {
   TreeView,
   toggleIsExpanded,
-  TreeNode,
+  TreeNodeData,
 } from 'baseui/tree-view';
 
-const initialData: TreeNode[] = [
+const initialData: TreeNodeData[] = [
   {
     id: 1,
     label: 'Projects',
@@ -119,8 +119,8 @@ export default function TreeViewBasic() {
   return (
     <TreeView
       data={data}
-      onToggle={node =>
-        setData(prevData => toggleIsExpanded(prevData, node))
+      onToggle={(node) =>
+        setData((prevData) => toggleIsExpanded(prevData, node))
       }
     />
   );

@@ -7,18 +7,18 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import type { NestedMenuRefT, NestedMenuContextT } from './types';
+import type { NestedMenuRef, NestedMenuContextProps } from './types';
 
-type StateT = {
+export type NestedMenuState = {
   nestedMenuHoverIndex: number;
-  menus: NestedMenuRefT[];
+  menus: NestedMenuRef[];
 };
 
-type PropsT = {
+export type NestedMenuProps = {
   children: React.ReactNode;
 };
 
-export const NestedMenuContext = React.createContext<NestedMenuContextT>({
+export const NestedMenuContext = React.createContext<NestedMenuContextProps>({
   addMenuToNesting: () => {},
   removeMenuFromNesting: () => {},
   // @ts-expect-error todo(flow->ts): incorrect default value
@@ -38,7 +38,7 @@ function isSame(a?: HTMLElement | null, b?: HTMLElement | null) {
   return a.isSameNode(b);
 }
 
-export default class NestedMenus extends React.Component<PropsT, StateT> {
+export default class NestedMenus extends React.Component<NestedMenuProps, NestedMenuState> {
   state = { menus: [], nestedMenuHoverIndex: -1 };
   mountRef = React.createRef() as {
     current: HTMLElement | null;
@@ -66,7 +66,7 @@ export default class NestedMenus extends React.Component<PropsT, StateT> {
     }
   };
 
-  addMenuToNesting = (ref: NestedMenuRefT) => {
+  addMenuToNesting = (ref: NestedMenuRef) => {
     // check offsetHeight to determine if component is visible in the dom (0 means hidden)
     // we need to do this so that when we renderAll, the hidden seo-only child-menus don't
     // register themselves which would break the nesting logic
@@ -81,7 +81,7 @@ export default class NestedMenus extends React.Component<PropsT, StateT> {
     }
   };
 
-  removeMenuFromNesting = (ref: NestedMenuRefT) => {
+  removeMenuFromNesting = (ref: NestedMenuRef) => {
     this.setState((state) => {
       for (const r of this.state.menus) {
         if (r.current && isSame(r.current, ref.current)) {
@@ -99,21 +99,21 @@ export default class NestedMenus extends React.Component<PropsT, StateT> {
     });
   };
 
-  findMenuIndexByRef = (ref: NestedMenuRefT) => {
+  findMenuIndexByRef = (ref: NestedMenuRef) => {
     return this.state.menus.findIndex((r) => isSame(r.current, ref.current));
   };
 
-  getParentMenu = (ref: NestedMenuRefT): NestedMenuRefT | undefined | null => {
+  getParentMenu = (ref: NestedMenuRef): NestedMenuRef | undefined | null => {
     const index = this.findMenuIndexByRef(ref) - 1;
     return this.state.menus[index];
   };
 
-  getChildMenu = (ref: NestedMenuRefT): NestedMenuRefT | undefined | null => {
+  getChildMenu = (ref: NestedMenuRef): NestedMenuRef | undefined | null => {
     const index = this.findMenuIndexByRef(ref) + 1;
     return this.state.menus[index];
   };
 
-  isNestedMenuVisible = (ref: NestedMenuRefT): boolean => {
+  isNestedMenuVisible = (ref: NestedMenuRef): boolean => {
     const index = this.findMenuIndexByRef(ref);
     return index <= this.state.nestedMenuHoverIndex;
   };

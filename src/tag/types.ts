@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import type { OverrideT } from '../helpers/overrides';
+import type { Override } from '../helpers/overrides';
 import { KIND, VARIANT, SIZE } from './constants';
 
 import type { ReactNode } from 'react';
@@ -15,20 +15,20 @@ export const TagKind = Object.freeze(KIND);
 export const TagVariant = Object.freeze(VARIANT);
 export const TagSize = Object.freeze(SIZE);
 
-export type TagKindT = keyof typeof TagKind;
-export type TagVariantT = typeof TagVariant[keyof typeof TagVariant];
-export type TagSizeT = keyof typeof TagSize;
+export type TagKind = keyof typeof TagKind;
+export type TagVariant = typeof TagVariant[keyof typeof TagVariant];
+export type TagSize = keyof typeof TagSize;
 
-export type OverridesT = {
-  Root?: OverrideT;
-  Action?: OverrideT;
-  ActionIcon?: OverrideT;
-  StartEnhancerContainer?: OverrideT;
-  Text?: OverrideT;
+export type TagOverrides = {
+  Root?: Override;
+  Action?: Override;
+  ActionIcon?: Override;
+  StartEnhancerContainer?: Override;
+  Text?: Override;
 };
 
-export type PropsT = {
-  overrides?: OverridesT;
+export type TagProps = {
+  overrides?: TagOverrides;
   /** Include or exclude the "x" button and click action. */
   closeable?: boolean;
   /** Disable control from being changed. */
@@ -38,9 +38,9 @@ export type PropsT = {
   /** Deprecated. Will be removed in the next major version. */
   isHovered?: boolean;
   /** Defines tags look by purpose. Set it to one of KIND[key] values. Defaults to KIND.primary */
-  kind?: TagKindT;
+  kind?: TagKind;
   /** Defines tags look. Set it to one of VARIANT[key] values. Defaults to VARIANT.light */
-  variant?: TagVariantT;
+  variant?: TagVariant;
   /** Component or String value for label of tag. Default is empty string. */
   children?: ReactNode;
   /** The color theme to be applied to a Tag. Default is `KIND.primary`. */
@@ -56,11 +56,11 @@ export type PropsT = {
   /** onkeydown handler for the tag. */
   onKeyDown?: null | ((event: Event) => unknown);
   /** Determines the size of the Tag. */
-  size?: TagSizeT;
+  size?: TagSize;
   startEnhancer?: React.ComponentType<{}>;
 };
 
-export type SharedPropsArgT = {
+export type SharedPropsArg = {
   $clickable?: boolean;
   $closeable?: boolean;
   $color?: string;

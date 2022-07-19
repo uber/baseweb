@@ -26,9 +26,9 @@ import {
 } from './styled-components';
 import { DENSITY, ORIENTATION, WEEKDAYS } from './constants';
 import { getOverrides, mergeOverrides } from '../helpers/overrides';
-import type { HeaderPropsT } from './types';
-import type { LocaleT } from '../locale';
-import type { ThemeT } from '../styles/types';
+import type { HeaderProps } from './types';
+import type { Locale } from '../locale';
+import type { Theme } from '../styles/types';
 import { forkBlur, forkFocus, isFocusVisible } from '../utils/focusVisible';
 
 import type { SyntheticEvent } from 'react';
@@ -52,7 +52,7 @@ function idToYearMonth(id) {
 }
 
 export default class CalendarHeader<T = Date> extends React.Component<
-  HeaderPropsT<T>,
+  HeaderProps<T>,
   {
     isMonthDropdownOpen: boolean;
     isYearDropdownOpen: boolean;
@@ -80,7 +80,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
     disabled?: boolean;
   }>;
 
-  constructor(props: HeaderPropsT<T>) {
+  constructor(props: HeaderProps<T>) {
     super(props);
     this.dateHelpers = new DateHelpers(props.adapter);
     this.monthItems = [];
@@ -98,7 +98,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
     this.getMonthItems();
   }
 
-  componentDidUpdate(prevProps: HeaderPropsT<T>) {
+  componentDidUpdate(prevProps: HeaderProps<T>) {
     const selectedMonthDidChange =
       this.dateHelpers.getMonth(this.props.date) !== this.dateHelpers.getMonth(prevProps.date);
 
@@ -247,7 +247,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
     }
   };
 
-  renderPreviousMonthButton = ({ locale, theme }: { locale: LocaleT; theme: ThemeT }) => {
+  renderPreviousMonthButton = ({ locale, theme }: { locale: Locale; theme: Theme }) => {
     const date = this.getDateProp();
     const { overrides = {}, density } = this.props;
     const allPrevDaysDisabled = this.dateHelpers.monthDisabledBefore(date, this.props);
@@ -299,7 +299,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
     );
   };
 
-  renderNextMonthButton = ({ locale, theme }: { locale: LocaleT; theme: ThemeT }) => {
+  renderNextMonthButton = ({ locale, theme }: { locale: Locale; theme: Theme }) => {
     const date = this.getDateProp();
     const { overrides = {}, density } = this.props;
     const allNextDaysDisabled = this.dateHelpers.monthDisabledAfter(date, this.props);

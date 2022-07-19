@@ -11,9 +11,9 @@ import { useStyletron } from '../styles';
 import { mergeOverride, toObjectOverride } from '../helpers/overrides';
 
 import Icon from './icon';
-import type { IconPropsT } from './types';
+import type { IconProps } from './types';
 
-function Alert(props: IconPropsT, ref) {
+function Alert(props: IconProps, ref) {
   const [, theme] = useStyletron();
   const { title = 'Alert', size, color, overrides = {}, ...restProps } = props;
   const SvgOverride = mergeOverride(
@@ -42,4 +42,4 @@ function Alert(props: IconPropsT, ref) {
   );
 }
 
-export default React.forwardRef<SVGSVGElement, IconPropsT>(Alert);
+export default React.forwardRef<SVGSVGElement, IconProps>(Alert);

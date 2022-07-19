@@ -13,17 +13,17 @@ import BooleanColumn from '../column-boolean';
 import NumericalColumn from '../column-numerical';
 import { StatefulDataTable } from '../stateful-data-table';
 
-type RowDataT = [number, boolean];
+type RowData = [number, boolean];
 
 const columns = [
   NumericalColumn({
     title: 'row-id',
-    mapDataToValue: (data: RowDataT) => data[0],
+    mapDataToValue: (data: RowData) => data[0],
   }),
 
   BooleanColumn({
     title: 'is-it-flagged',
-    mapDataToValue: (data: RowDataT) => data[1],
+    mapDataToValue: (data: RowData) => data[1],
   }),
 ];
 

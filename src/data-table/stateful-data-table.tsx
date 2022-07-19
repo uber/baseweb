@@ -21,7 +21,7 @@ import { Tag } from '../tag';
 import FilterMenu from './filter-menu';
 import { DataTable } from './data-table';
 import { StatefulContainer } from './stateful-container';
-import type { StatefulDataTablePropsT } from './types';
+import type { StatefulDataTableProps } from './types';
 import { LocaleContext } from '../locale';
 
 function useResizeObserver(
@@ -144,7 +144,7 @@ function FilterTag(props) {
   );
 }
 
-export function StatefulDataTable(props: StatefulDataTablePropsT) {
+export function StatefulDataTable(props: StatefulDataTableProps) {
   const [css, theme] = useStyletron();
   const headlineRef = React.useRef(null);
   const [headlineHeight, setHeadlineHeight] = React.useState(64);

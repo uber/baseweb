@@ -14,12 +14,12 @@ import { StyledTable, StyledHeadCell, StyledBodyCell } from '..';
 import { useCellNavigation } from './shared';
 
 // [date, event description]
-type EventT = [Date, string];
+type Event = [Date, string];
 
 // [pr title, pr link, description, release kind, author]
-type RowT = [string, string, string, string, string, EventT[]];
+type Row = [string, string, string, string, string, Event[]];
 
-const row: RowT = [
+const row: Row = [
   'feat(docs-site): theme editor POC',
   'https://github.com/uber/baseweb/pull/1296',
   `integrates an inline theme editor for the base web documentation site user can edit a theme
@@ -38,7 +38,7 @@ const row: RowT = [
   ],
 ];
 
-const data: RowT[] = [row, row, row, row, row, row, row];
+const data: Row[] = [row, row, row, row, row, row, row];
 
 export function Scenario() {
   const [css] = useStyletron();

@@ -13,9 +13,9 @@ import {
   StyledLabelDescription,
   StyledLabelSublistContent,
 } from './styled-components';
-import type { LabelPropsT } from './types';
+import type { LabelProps } from './types';
 
-function ListItemLabel(props: LabelPropsT) {
+function ListItemLabel(props: LabelProps) {
   const { overrides = {} } = props;
 
   const [LabelSublistContent, labelSublistContentProps] = getOverrides(

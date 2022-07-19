@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import { styled } from '../styles/index';
-import type { PlacementT, ColorT, ShapeT, RoleT, HierarchyT } from './types';
+import type { Placement, Color, Shape, Role, Hierarchy } from './types';
 import { COLOR, SHAPE, ROLE, PLACEMENT, HIERARCHY } from './constants';
 
 function getColorStyles({ $theme, $hierarchy, $color }): {
@@ -224,8 +224,8 @@ const RIGHT_PLACEMENTS = [
 export const StyledPositioner = styled<
   'div',
   {
-    $role: RoleT;
-    $placement: PlacementT;
+    $role: Role;
+    $placement: Placement;
     $horizontalOffset?: string | null;
     $verticalOffset?: string | null;
   }
@@ -260,9 +260,9 @@ export const StyledPositioner = styled<
 export const StyledBadge = styled<
   'div',
   {
-    $shape?: ShapeT;
-    $color?: ColorT;
-    $hierarchy?: HierarchyT;
+    $shape?: Shape;
+    $color?: Color;
+    $hierarchy?: Hierarchy;
     $hidden?: boolean;
   }
 >(
@@ -295,7 +295,7 @@ export const StyledBadge = styled<
 export const StyledNotificationCircle = styled<
   'div',
   {
-    $color?: ColorT;
+    $color?: Color;
     $hidden?: boolean;
   }
 >('div', ({ $theme, $color = COLOR.accent, $hidden }) => {
@@ -315,7 +315,7 @@ export const StyledNotificationCircle = styled<
 export const StyledHintDot = styled<
   'div',
   {
-    $color: ColorT;
+    $color: Color;
     $hidden?: boolean;
   }
 >('div', ({ $theme, $color = COLOR.accent, $hidden }) => {

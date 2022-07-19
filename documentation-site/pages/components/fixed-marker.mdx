@@ -23,7 +23,6 @@ import { FixedMarkerSizingTable } from '../../components/map-marker-sizing-table
 
 import Yard from '../../components/yard/index';
 import fixedMarkerYardConfig from '../../components/yard/config/fixed-marker';
-import ApiTable from '../../components/api-table';
 
 import * as FixedMarkerExports from 'baseui/map-marker';
 
@@ -129,13 +128,5 @@ A fixed map marker rendered inside of a [react-map-gl](https://visgl.github.io/r
 </Example>
 
 A draggable fixed map marker rendered inside of a [react-map-gl](https://visgl.github.io/react-map-gl/) view. Everytime the marker is dragged, the `dragging` prop is updated and the marker position is updated.
-
-## API
-
-<ApiTable
-  title="Input props"
-  config={fixedMarkerYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/input/input')}
-/>
 
 <Exports component={FixedMarkerExports} title="Fixed Marker exports" path="baseui/map-marker" />

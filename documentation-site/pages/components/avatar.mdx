@@ -21,7 +21,6 @@ import { Block } from 'baseui/block';
 
 import Yard from '../../components/yard/index';
 import avatarYardConfig from '../../components/yard/config/avatar';
-import ApiTable from '../../components/api-table';
 
 <SEO
   description="The Avatar component adds additional visual information about a user."
@@ -63,13 +62,5 @@ The Avatar component adds additional visual information about a user.
 <Example title="Avatar with example overrides" path="avatar/override.js">
   <Override />
 </Example>
-
-## API
-
-<ApiTable
-  title="Avatar props"
-  config={avatarYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/avatar/avatar')}
-/>
 
 <Exports component={AvatarExports} title="Avatar exports" path="baseui/avatar" />

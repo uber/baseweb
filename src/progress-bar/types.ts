@@ -5,21 +5,21 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
-import type { OverrideT } from '../helpers/overrides';
+import type { Override } from '../helpers/overrides';
 import { SIZE } from './constants';
 
-export type SizeT = keyof typeof SIZE;
+export type Size = keyof typeof SIZE;
 
-export type OverridesT = {
-  Root?: OverrideT;
-  BarContainer?: OverrideT;
-  Bar?: OverrideT;
-  BarProgress?: OverrideT;
-  InfiniteBar?: OverrideT;
-  Label?: OverrideT;
+export type ProgressBarOverrides = {
+  Root?: Override;
+  BarContainer?: Override;
+  Bar?: Override;
+  BarProgress?: Override;
+  InfiniteBar?: Override;
+  Label?: Override;
 };
 
-export type ProgressBarPropsT = {
+export type ProgressBarProps = {
   /** The accessible label for the progress bar (getProgressLabel will be used if not provided) */
   ariaLabel?: string;
   'aria-label'?: string;
@@ -30,11 +30,11 @@ export type ProgressBarPropsT = {
   getProgressLabel: (value: number, maxValue: number, minValue: number) => React.ReactNode;
   /** If set to true, there’s and infinite loading animation. */
   infinite: boolean;
-  overrides?: OverridesT;
+  overrides?: ProgressBarOverrides;
   /** If set to false, label is hidden and `getProgressLabel` is ignored. */
   showLabel: boolean;
   /** Defines the size (thickness) of the progress bar. */
-  size: SizeT;
+  size: Size;
   /** Renders a sectional progress bar. Value should be set to a positive number larger than one. */
   steps: number;
   /** A custom completion value. Should be replaced by maxValue prop. */
@@ -47,10 +47,10 @@ export type ProgressBarPropsT = {
   value: number;
 };
 
-export type StylePropsT = {
+export type StyleProps = {
   $infinite: boolean;
   $index: number;
-  $size: SizeT;
+  $size: Size;
   $steps: number;
   $successValue: number;
   $minValue: number;
@@ -58,21 +58,23 @@ export type StylePropsT = {
   $value: number;
 };
 
-export type ProgressBarRoundedPropsT = {
+export type ProgressBarRoundedOverrides = {
+  Root?: Override;
+  Svg?: Override;
+  TrackBackground?: Override;
+  TrackForeground?: Override;
+  Text?: Override;
+};
+
+export type ProgressBarRoundedProps = {
   /** A number between 0 and 1 inclusive. Example: 0.75. */
   progress?: number;
   /** The size of the progress bar. */
-  size?: SizeT;
+  size?: Size;
   /** Toggle animating progress. */
   animate?: boolean;
   /** Toggle container rendering as a block or inline. */
   inline?: boolean;
   /** Overrides for sub-nodes in the rendering tree. */
-  overrides?: {
-    Root?: OverrideT;
-    Svg?: OverrideT;
-    TrackBackground?: OverrideT;
-    TrackForeground?: OverrideT;
-    Text?: OverrideT;
-  };
+  overrides?: ProgressBarRoundedOverrides;
 };

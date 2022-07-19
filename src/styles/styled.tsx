@@ -14,7 +14,7 @@ import {
 } from 'styletron-react';
 import { driver, getInitialStyle } from 'styletron-standard';
 import type { StyleObject } from 'styletron-standard';
-import type { ThemeT } from './types';
+import type { Theme } from './types';
 
 import { ThemeContext } from './theme-provider';
 
@@ -75,13 +75,13 @@ export function createThemedStyled<Theme>(): StyleFn<Theme> {
   }) as any as StyleFn<Theme>;
 }
 
-export const styled = createThemedStyled<ThemeT>();
+export const styled = createThemedStyled<Theme>();
 
 export function createThemedWithStyle<Theme>(): WithStyleFn<Theme> {
   return styletronWithStyle as any as WithStyleFn<Theme>;
 }
 
-export const withStyle = createThemedWithStyle<ThemeT>();
+export const withStyle = createThemedWithStyle<Theme>();
 
 type UseStyletronFn<Theme> = () => [(a: StyleObject) => string, Theme];
 
@@ -93,7 +93,7 @@ export function createThemedUseStyletron<Theme>(): UseStyletronFn<Theme> {
   };
 }
 
-export const useStyletron = createThemedUseStyletron<ThemeT>();
+export const useStyletron = createThemedUseStyletron<Theme>();
 
 export function withWrapper<C extends StyletronComponent<any, any>, Props>(
   StyledElement: C,
@@ -115,3 +115,10 @@ export function withWrapper<C extends StyletronComponent<any, any>, Props>(
     ));
   });
 }
+
+/** @deprecated use StyleFn instead. To be removed in future versions.*/
+export type StyletronStyledFn<T> = StyleFn<T>;
+/** @deprecated use WithStyleFn instead. To be removed in future versions.*/
+export type StyletronWithStyleFn<T> = WithStyleFn<T>;
+/** @deprecated use StyleFn instead. To be removed in future versions.*/
+export type StyledFn<T> = StyleFn<T>;

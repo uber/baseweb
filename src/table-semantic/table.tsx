@@ -20,9 +20,9 @@ import {
 } from './styled-components';
 import { getOverrides } from '../helpers/overrides';
 
-import type { TablePropsT } from './types';
+import type { TableProps } from './types';
 
-export default class Table extends React.Component<TablePropsT> {
+export default class Table extends React.Component<TableProps> {
   static defaultProps = {
     columns: [],
     data: [[]],

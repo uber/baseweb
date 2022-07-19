@@ -5,11 +5,11 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
-import type { StatefulContainerPropsT, StateReducerT, StateT, OnChangeParamsT } from './types';
+import type { StatefulContainerProps, StateReducer, State, OnChangeParams } from './types';
 
-const defaultStateReducer: StateReducerT = (type, nextState) => nextState;
+const defaultStateReducer: StateReducer = (type, nextState) => nextState;
 
-class StatefulSelectContainer extends React.Component<StatefulContainerPropsT, StateT> {
+class StatefulSelectContainer extends React.Component<StatefulContainerProps, State> {
   static defaultProps = {
     initialState: {
       value: [],
@@ -21,14 +21,14 @@ class StatefulSelectContainer extends React.Component<StatefulContainerPropsT, S
 
   state = { ...this.props.initialState };
 
-  onChange = (params: OnChangeParamsT) => {
+  onChange = (params: OnChangeParams) => {
     this.internalSetState(params);
     this.props.onChange(params);
   };
 
-  internalSetState = (params: OnChangeParamsT) => {
+  internalSetState = (params: OnChangeParams) => {
     const { stateReducer } = this.props;
-    const nextState: StateT = { value: params.value };
+    const nextState: State = { value: params.value };
     this.setState(stateReducer(params.type, nextState, this.state));
   };
 

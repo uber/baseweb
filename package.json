@@ -23,12 +23,12 @@
     "prebuild": "shx rm -rf dist",
     "build:copy-files": "shx cp README.md dist/README.md",
     "build:copy-flow-files": "node ./scripts/flow-copy-src.js",
-    "build:copy-ts-files": "node ./scripts/ts-copy.js",
+    "build:dts-files": "tsc -p tsconfig.dist.json",
     "build:package-json": "shx cp package.json dist/package.json && shx cp .npmrc dist/.npmrc && node ./scripts/build-package-json.js",
     "build:cjs": "cross-env NODE_ENV=production BABEL_ENV=cjs babel ./src --out-dir ./dist --extensions '.ts,.tsx,.js' --ignore **.test.*,**/__tests__/**,**/e2e.*,**/template-component/**,**/test/**",
     "build:esm": "cross-env NODE_ENV=production BABEL_ENV=esm babel ./src --out-dir ./dist/esm --extensions '.ts,.tsx,.js' --ignore **.test.*,**/__tests__/**,**/e2e.*,**/template-component/**,**/test/**",
     "build:es": "cross-env NODE_ENV=production BABEL_ENV=es babel ./src --out-dir ./dist/es --extensions '.ts,.tsx,.js' --ignore **.test.*,**/__tests__/**,**/e2e.*,**/template-component/**,**/test/**",
-    "build": "yarn build:cjs && yarn build:esm && yarn build:es && yarn build:copy-files && yarn build:copy-flow-files && yarn build:copy-ts-files && yarn build:package-json",
+    "build": "yarn build:cjs && yarn build:esm && yarn build:es && yarn build:copy-files && yarn build:dts-files && yarn build:copy-flow-files && yarn build:package-json",
     "build:docs-and-ladle": "yarn documentation:build && yarn ladle build && mv build public/ladle",
     "build:documentation-site-files": "node ./scripts/build-documentation-site-files.js",
     "unit-test": "yarn jest --coverage",
@@ -141,8 +141,6 @@
     "eslint-plugin-prettier": "3.1.4",
     "eslint-plugin-react": "^7.27.0",
     "eslint-plugin-react-hooks": "3.0.0",
-    "extract-react-types": "^0.26.0",
-    "extract-react-types-loader": "^0.3.13",
     "flow-bin": "0.131.0",
     "flow-remove-types": "^2.179.0",
     "globby": "^10.0.1",
@@ -232,7 +230,7 @@
   "peerDependencies": {
     "react": ">= 16.8.0 < 19",
     "react-dom": ">= 16.8.0 < 19",
-    "styletron-react": ">=5.2.2 < 7"
+    "styletron-react": ">=6.1.0 < 7"
   },
   "resolutions": {
     "@types/react": "^17.0.2",
