@@ -32,7 +32,7 @@ export type DefaultProps = {
   type: string;
   autoFocus: boolean;
   isIndeterminate: boolean;
-  inputRef: React.RefObject<HTMLInputElement>;
+  inputRef: React.Ref<HTMLInputElement>;
   checkmarkType: StyleType;
   onChange: (e: ChangeEvent<HTMLInputElement>) => unknown;
   onMouseEnter: (e: ChangeEvent<HTMLInputElement>) => unknown;
@@ -66,7 +66,7 @@ export type CheckboxProps = {
   /** Renders checkbox in errored state. */
   error?: boolean;
   /** Used to get a ref to the input element. Useful for programmatically focusing the input */
-  inputRef?: React.RefObject<HTMLInputElement>;
+  inputRef?: React.Ref<HTMLInputElement>;
   /** Focus the checkbox on initial render. */
   autoFocus?: boolean;
   /** Passed to the input element type attribute */

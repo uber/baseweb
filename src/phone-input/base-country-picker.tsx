@@ -216,7 +216,7 @@ export default function CountryPicker(props: CountrySelectProps) {
           );
         }
         // After choosing a country, shift focus to the text input
-        if (inputRef && inputRef.current) {
+        if (typeof inputRef === 'object' && inputRef.current) {
           inputRef.current.focus();
         }
       }}

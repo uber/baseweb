@@ -105,7 +105,7 @@ export type BaseInputProps<T> = {
   /** A  hint as to the type of data that might be entered by the user while editing the element or its contents. */
   inputMode?: string;
   /** A ref to access an input element. */
-  inputRef?: React.RefObject<T>;
+  inputRef?: React.Ref<T>;
   name?: string;
   onBlur?: (e: FocusEvent<T>) => void;
   onChange?: (e: ChangeEvent<T>) => void;

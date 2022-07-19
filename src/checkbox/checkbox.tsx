@@ -52,7 +52,7 @@ class StatelessCheckbox extends React.Component<CheckboxProps, CheckboxState> {
 
   componentDidMount() {
     const { autoFocus, inputRef } = this.props;
-    if (autoFocus && inputRef.current) {
+    if (autoFocus && typeof inputRef === 'object' && inputRef.current) {
       inputRef.current.focus();
     }
   }

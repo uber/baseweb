@@ -63,7 +63,7 @@ export type CountrySelectProps = {
   country: Country;
   disabled: boolean;
   error: boolean;
-  inputRef: React.RefObject<HTMLInputElement>;
+  inputRef: React.Ref<HTMLInputElement>;
   onCountryChange: (event: OnChangeParams) => unknown;
   mapIsoToLabel?: mapIsoToLabel;
   maxDropdownHeight: string;

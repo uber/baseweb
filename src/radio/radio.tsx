@@ -55,7 +55,11 @@ class Radio extends React.Component<RadioProps, RadioState> {
   };
 
   componentDidMount() {
-    if (this.props.autoFocus && this.props.inputRef?.current) {
+    if (
+      this.props.autoFocus &&
+      typeof this.props.inputRef === 'object' &&
+      this.props.inputRef.current
+    ) {
       this.props.inputRef.current.focus();
     }
   }

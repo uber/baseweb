@@ -80,7 +80,7 @@ class BaseInput<T extends HTMLInputElement | HTMLTextAreaElement> extends React.
 
   componentDidMount() {
     const { autoFocus, clearable } = this.props;
-    if (this.inputRef.current) {
+    if (typeof this.inputRef === 'object' && this.inputRef.current) {
       if (autoFocus) {
         this.inputRef.current.focus();
       }
@@ -92,28 +92,30 @@ class BaseInput<T extends HTMLInputElement | HTMLTextAreaElement> extends React.
 
   componentWillUnmount() {
     const { clearable } = this.props;
-    if (clearable && this.inputRef.current) {
+    if (clearable && typeof this.inputRef === 'object' && this.inputRef.current) {
       this.inputRef.current.removeEventListener('keydown', this.onInputKeyDown);
     }
   }
 
   clearValue() {
-    // trigger a fake input change event (as if all text was deleted)
-    const input = this.inputRef.current;
-    if (input) {
-      const nativeInputValue = Object.getOwnPropertyDescriptor(
-        this.props.type === CUSTOM_INPUT_TYPE.textarea
-          ? // todo(flow->ts): globals, not props of window object
-            HTMLTextAreaElement.prototype
-          : HTMLInputElement.prototype,
-        'value'
-      );
-      if (nativeInputValue) {
-        const nativeInputValueSetter = nativeInputValue.set;
-        if (nativeInputValueSetter) {
-          nativeInputValueSetter.call(input, '');
-          const event = createEvent('input');
-          input.dispatchEvent(event);
+    if (typeof this.inputRef === 'object' && this.inputRef.current) {
+      // trigger a fake input change event (as if all text was deleted)
+      const input = this.inputRef.current;
+      if (input) {
+        const nativeInputValue = Object.getOwnPropertyDescriptor(
+          this.props.type === CUSTOM_INPUT_TYPE.textarea
+            ? // todo(flow->ts): globals, not props of window object
+              HTMLTextAreaElement.prototype
+            : HTMLInputElement.prototype,
+          'value'
+        );
+        if (nativeInputValue) {
+          const nativeInputValueSetter = nativeInputValue.set;
+          if (nativeInputValueSetter) {
+            nativeInputValueSetter.call(input, '');
+            const event = createEvent('input');
+            input.dispatchEvent(event);
+          }
         }
       }
     }
@@ -123,6 +125,7 @@ class BaseInput<T extends HTMLInputElement | HTMLTextAreaElement> extends React.
     if (
       this.props.clearOnEscape &&
       e.key === 'Escape' &&
+      typeof this.inputRef === 'object' &&
       this.inputRef.current &&
       !this.props.readOnly
     ) {
@@ -133,9 +136,11 @@ class BaseInput<T extends HTMLInputElement | HTMLTextAreaElement> extends React.
   };
 
   onClearIconClick = () => {
-    if (this.inputRef.current) this.clearValue();
-    // return focus to the input after click
-    if (this.inputRef.current) this.inputRef.current.focus();
+    if (typeof this.inputRef === 'object' && this.inputRef.current) {
+      this.clearValue();
+      // return focus to the input after click
+      this.inputRef.current.focus();
+    }
   };
 
   onFocus = (e: FocusEvent<T>) => {

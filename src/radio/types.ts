@@ -98,7 +98,7 @@ export type RadioProps = {
   /** Disable the checkbox from being changed. */
   disabled?: boolean;
   /** Used to get a ref to the input element. Useful for programmatically focusing the input */
-  inputRef?: React.RefObject<HTMLInputElement>;
+  inputRef?: React.Ref<HTMLInputElement>;
   /** Renders checkbox in errored state. */
   error?: boolean;
   /** Is radio focused / active? */

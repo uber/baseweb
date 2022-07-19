@@ -28,7 +28,6 @@ const StatefulCheckboxExample = () => {
       <form onSubmit={form.handleSubmit(handleSubmit)}>
         <StatefulCheckbox
           {...checkboxA}
-          // @ts-expect-error todo(flow->ts) type mismatch
           inputRef={refA}
           labelPlacement={LABEL_PLACEMENT.right}
           initialState={{ checked: true, isIndeterminate: false }}
@@ -69,7 +68,6 @@ const CheckboxWithControllerExample = () => {
             <Checkbox
               {...rest}
               checked={value}
-              // @ts-expect-error todo(flow->ts) type mismatch
               inputRef={ref}
               labelPlacement={LABEL_PLACEMENT.right}
             >

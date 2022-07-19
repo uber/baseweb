@@ -30,7 +30,7 @@ export type GetProfileItemImgFn = (item: Item) => string | React.ComponentType<a
 
 export type GetProfileItemImgTextFn = (item: Item) => string;
 
-export type SetRootRefFn = (ref: React.RefObject<typeof HTMLElement>) => void;
+export type SetRootRefFn = (ref: React.Ref<typeof HTMLElement>) => void;
 
 export type RootRef = {
   current: null | HTMLElement;
