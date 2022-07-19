@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 
 import type { ElementType, ReactNode } from 'react';
+import type { StyleObject } from 'styletron-standard';
 import type { Override } from '../helpers/overrides';
 import * as React from 'react';
 
@@ -403,11 +404,17 @@ export type StyledBlockProps = {
   $whiteSpace?: Responsive<WhiteSpace>;
 };
 
+type BaseProps<P extends {}> = P & {
+  $style?: StyleObject | ((props: P) => StyleObject);
+  className?: string;
+};
+
+type AddStyletronRef<P extends { ref: any }> = P extends { ref: infer R } ? P & { $ref?: R } : P;
+
+type OverrideProps<D extends React.ElementType, P extends {}> = BaseProps<P> &
+  Omit<AddStyletronRef<React.ComponentProps<D>>, keyof BaseProps<P>>;
+
 export interface BlockComponentType<D extends React.ElementType> {
-  <C extends React.ElementType = D>(
-    props: BlockProps<C> &
-      (React.ComponentProps<C> extends { ref?: infer R } ? { ref?: R } : {}) &
-      Omit<StyledBlockProps & React.ComponentProps<C>, keyof BlockProps>
-  ): JSX.Element;
+  <C extends React.ElementType = D>(props: OverrideProps<C, BlockProps<C>>): JSX.Element;
   displayName?: string;
 }
