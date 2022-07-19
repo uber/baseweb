@@ -409,7 +409,7 @@ type BaseProps<P extends {}> = P & {
   className?: string;
 };
 
-type AddStyletronRef<P extends { ref: any }> = P extends { ref: infer R } ? P & { ref?: R } : P;
+type AddStyletronRef<P extends { ref: any }> = P extends { ref: infer R } ? P & { $ref?: R } : P;
 
 type OverrideProps<D extends React.ElementType, P extends {}> = BaseProps<P> &
   Omit<AddStyletronRef<React.ComponentProps<D>>, keyof BaseProps<P>>;
