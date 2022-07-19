@@ -2243,6 +2243,23 @@ const outlines = [
     ],
   },
   {
+    file: 'src/message-card/types.ts',
+    definitions: [
+      {
+        name: 'MessageCardOverrides',
+        lineStart: 12,
+        children: [
+          { name: 'Root', lineStart: 13 },
+          { name: 'ContentContainer', lineStart: 14 },
+          { name: 'HeadingContainer', lineStart: 15 },
+          { name: 'ParagraphContainer', lineStart: 16 },
+          { name: 'ButtonContainer', lineStart: 17 },
+          { name: 'Image', lineStart: 18 },
+        ],
+      },
+    ],
+  },
+  {
     file: 'src/modal/types.ts',
     definitions: [
       { name: 'Size', lineStart: 11, children: [] },
