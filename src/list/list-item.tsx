@@ -5,6 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import React from 'react';
+import * as ReactIs from 'react-is';
 
 import { getOverrides } from '../helpers/overrides';
 
@@ -17,6 +18,21 @@ import {
 } from './styled-components';
 import type { ListProps } from './types';
 import { artworkSizeToValue } from './utils';
+
+function RenderNode(props) {
+  const { component, ...restProps } = props;
+  const Component = component;
+  if (!Component) {
+    return null;
+  }
+  if (typeof Component === 'string') {
+    return Component;
+  }
+  if (ReactIs.isValidElementType(Component)) {
+    return <Component {...restProps} />;
+  }
+  return Component;
+}
 
 const ListItem = React.forwardRef<HTMLLIElement, ListProps>((props: ListProps, ref) => {
   const { overrides = {} } = props;
@@ -78,13 +94,11 @@ const ListItem = React.forwardRef<HTMLLIElement, ListProps>((props: ListProps, r
       )}
       <Content $mLeft={!Artwork} $sublist={!!props.sublist} {...contentProps}>
         {props.children}
-        {EndEnhancer &&
-          // @ts-expect-error todo(flow->ts) it is not expected to be a number
-          EndEnhancer !== 0 && (
-            <EndEnhancerContainer {...endEnhancerContainerProps}>
-              <EndEnhancer />
-            </EndEnhancerContainer>
-          )}
+        {EndEnhancer && (
+          <EndEnhancerContainer {...endEnhancerContainerProps}>
+            <RenderNode component={EndEnhancer} />
+          </EndEnhancerContainer>
+        )}
       </Content>
     </Root>
   );

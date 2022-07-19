@@ -45,7 +45,7 @@ export type ListProps = {
   artworkSize?: ArtworkSizes | number;
   shape?: Shape;
   children: React.ReactNode;
-  endEnhancer?: React.ComponentType<{}>;
+  endEnhancer?: React.ReactNode | React.ComponentType<{}>;
   'aria-label'?: string;
   'aria-selected'?: boolean;
   id?: String;
