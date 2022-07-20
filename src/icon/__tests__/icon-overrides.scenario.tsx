@@ -10,7 +10,7 @@ import DeleteIcon from '../delete';
 import PlusIcon from '../plus';
 import { ThemeProvider, LightTheme, styled } from '../..';
 import { getSvgStyles } from '../../icon/styled-components';
-import { IconProps } from 'baseui/icon';
+import type { IconProps } from '../';
 
 const XSmallFilled = ({ title, size, color, ...props }: IconProps) => {
   return (
