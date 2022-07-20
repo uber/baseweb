@@ -99,6 +99,7 @@ const BannerConfig: TConfig = {
           'TrailingButtonContainer',
           'TrailingIconButton',
         ],
+        sharedProps: [],
       },
     },
   },
