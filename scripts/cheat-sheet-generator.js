@@ -51,38 +51,38 @@ const path = require('path');
 
 function parseFileToOutline(code) {
   const types = [];
-  const ast = parse(code, { sourceType: 'module', plugins: ['flow'] });
+  const ast = parse(code, { sourceType: 'module', plugins: ['typescript'] });
   traverse(ast, {
     ExportNamedDeclaration(path) {
-      if (t.isTypeAlias(path.node.declaration)) {
+      if (t.isTSTypeAliasDeclaration(path.node.declaration)) {
         const typeNode = {
           name: path.node.declaration.id.name,
           lineStart: path.node.declaration.id.loc.start.line,
           children: [],
         };
 
-        if (t.isObjectTypeAnnotation(path.node.declaration.right)) {
-          typeNode.children = path.node.declaration.right.properties.map((property) => {
-            if (t.isObjectTypeProperty(property)) {
-              if (t.isLiteral(property.key)) {
-                return {
-                  name: property.key.value,
-                  lineStart: property.loc.start.line,
-                };
-              } else if (t.isIdentifier(property.key)) {
-                return {
-                  name: property.key.name,
-                  lineStart: property.loc.start.line,
-                };
-              }
-            } else if (t.isObjectTypeSpreadProperty(property)) {
+        if (t.isTSTypeLiteral(path.node.declaration.typeAnnotation)) {
+          typeNode.children = path.node.declaration.typeAnnotation.members.map((member) => {
+            if (t.isTSPropertySignature(member)) {
               return {
-                name: property.argument.id.name,
-                lineStart: property.loc.start.line,
+                name: member.key.name,
+                lineStart: member.key.loc.start.line,
+              };
+            } else if (t.isTSIndexSignature(member)) {
+              return {
+                name: 'index',
+                lineStart: member.loc.start.line,
+              };
+            } else if (t.isTSMethodSignature(member)) {
+              return {
+                name: member.key.name,
+                lineStart: member.key.loc.start.line,
               };
             }
+            throw new Error(`Unknown member type: ${member.type}`);
           });
         }
+
         types.push(typeNode);
       }
     },
@@ -94,7 +94,7 @@ function parseFileToOutline(code) {
 function generateCheatSheet() {
   const outlines = [];
 
-  const filepaths = globby.sync(['src/**/types.js']);
+  const filepaths = globby.sync(['src/**/types.ts']);
   filepaths.map((file) => {
     const from = path.join(__dirname, '../', file);
     const source = fs.readFileSync(from, 'utf-8');
