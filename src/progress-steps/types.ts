@@ -24,7 +24,7 @@ export type ProgressStepsProps = {
   overrides?: ProgressStepsOverrides;
   children?: ReactNode;
   /** Defines the current active step index. */
-  current: number;
+  current?: number;
 };
 
 export type StepOverrides = {
@@ -42,11 +42,11 @@ export type StepProps = {
   /** The title of the Step. */
   title?: ReactNode;
   /** Defines if the step is completed. Overriden by ProgressSteps, if used. */
-  isCompleted: boolean;
+  isCompleted?: boolean;
   /** Defines if the step is currently active. */
   isActive?: boolean;
   /** Defines if the step is the last item displayed. Overriden by ProgressSteps, if used. */
-  isLast: boolean;
+  isLast?: boolean;
   overrides?: StepOverrides;
   children?: ReactNode;
 };
@@ -66,11 +66,11 @@ export type NumberedStepProps = {
   /** The title of the Step. */
   title?: string;
   /** Defines if the step is completed. */
-  isCompleted: boolean;
+  isCompleted?: boolean;
   /** Defines if the step is currently active. */
   isActive?: boolean;
   /** Defines if the step is the last item displayed. */
-  isLast: boolean;
+  isLast?: boolean;
   overrides?: NumberedStepOverrides;
   children?: ReactNode;
   /** The number displayed as the step number */
@@ -78,7 +78,7 @@ export type NumberedStepProps = {
 };
 
 export type StyleProps = {
-  $isActive: boolean;
-  $isCompleted: boolean;
-  $disabled: boolean;
+  $isActive?: boolean;
+  $isCompleted?: boolean;
+  $disabled?: boolean;
 };
