@@ -21,7 +21,7 @@ export const Provider: React.FC<{
   };
 }> = ({ children, globalState }) => {
   const [engine, setEngine] = React.useState(
-    new Styletron({ container: getDocument(globalState.story).head })
+    () => new Styletron({ container: getDocument(globalState.story).head })
   );
 
   React.useEffect(() => {
