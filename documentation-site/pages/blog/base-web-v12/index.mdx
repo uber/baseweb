@@ -1,0 +1,27 @@
+import Layout from '../../../components/layout';
+import { Meta } from '../../../components/blog';
+import metadata from './metadata.json';
+
+export default Layout;
+
+<Meta data={metadata} />
+
+# Changes in Base Web@v12
+
+The latest Base Web major release transitions the source code to typescript. No breaking runtime changes
+have been included. For any project using plain javascript for flow, there should be no updates required.
+
+Many typescript types have been updated to drop the T suffix so PropsT is now Props in most instances.
+We've included backwards compatible aliases for t-suffixed types and those will be removed in a future
+major release. The main backwards incompatible change of note is when using the styled function and
+provide generic parameters. The params order is reversed from the previous release to align closer with
+styletron.
+
+```
+// v11
+const X = styled<{}, 'div'>('div', {})
+// v12
+const X = styled<'div', {}>('div', {})
+```
+
+Please file issues if any type errors are found.
