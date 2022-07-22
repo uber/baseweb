@@ -12,7 +12,8 @@ test('expandBorderStyles', () => {
     borderWidth: '3px',
     borderColor: 'red',
     borderStyle: 'solid',
-  };
+  } as const;
+
   expect(expandBorderStyles(shorthandStyles)).toEqual({
     borderTopWidth: '3px',
     borderTopStyle: 'solid',
