@@ -10,7 +10,7 @@ import { ThemeProvider } from '../../styles';
 import { createLightTheme, lightThemePrimitives } from '../../themes';
 import Upload from '../upload';
 import Check from '../check';
-import { IconProps } from 'baseui/icon';
+import type { IconProps } from '../';
 
 // Simulate roughly how our own icons are distributed
 const Triangle = React.forwardRef<SVGElement, IconProps>((props, ref) => {

@@ -73,7 +73,6 @@ function FileUploader(props: FileUploaderProps) {
   const afterFileDrop = !!(props.progressAmount || props.progressMessage || props.errorMessage);
 
   return (
-    // @ts-expect-error todo(flow->ts): dropzone api
     <Dropzone {...props} disabled={props.disabled || afterFileDrop}>
       {(renderProps) => {
         const { getRootProps, getInputProps, open, ...styleProps } = renderProps;
