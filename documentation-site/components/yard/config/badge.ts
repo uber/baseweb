@@ -111,11 +111,7 @@ const BadgeConfig: TConfig = {
       description: 'Lets you customize all aspects of the component.',
       custom: {
         names: ['Root', 'Badge', 'Positioner'],
-        sharedProps: {
-          $hierarchy: 'hierarchy',
-          $shape: 'shape',
-          $color: 'color',
-        },
+        sharedProps: [],
       },
     },
   },
