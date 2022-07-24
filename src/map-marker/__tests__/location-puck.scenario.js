@@ -7,30 +7,20 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {
-  LOCATION_PUCK_SIZES,
-  LOCATION_PUCK_TYPES,
-  LOCATION_PUCK_CONFIDENCES,
-} from '../constants.js';
+import { LOCATION_PUCK_SIZES, LOCATION_PUCK_TYPES } from '../constants.js';
 import TileGrid from './tile-grid.js';
 import { Slider } from '../../slider/index.js';
 import LocationPuck from '../location-puck.js';
 import type { LocationPuckSizeT, LocationPuckTypeT } from '../types.js';
-import { Select } from '../../select/index.js';
-
-const locationPuckConfidences = Object.keys(LOCATION_PUCK_CONFIDENCES)
-  .map((key) => LOCATION_PUCK_CONFIDENCES[key])
-  .map((x) => ({
-    label: x,
-    id: x,
-  }));
+import { Checkbox, LABEL_PLACEMENT } from '../../checkbox/index.js';
 
 export function Scenario() {
   const markers = [];
 
-  const [confidence, setConfidence] = React.useState([locationPuckConfidences[0]]);
+  const [confidenceRadius, setConfidenceRadius] = React.useState([100]);
 
   const [bearing, setBearing] = React.useState([0]);
+  const [showBearing, setShowBearing] = React.useState(true);
 
   Object.keys(LOCATION_PUCK_SIZES)
     .map((key) => LOCATION_PUCK_SIZES[key])
@@ -45,7 +35,8 @@ export function Scenario() {
                 size={size}
                 type={type}
                 bearing={bearing[0]}
-                confidence={confidence[0].id}
+                confidenceRadius={confidenceRadius[0]}
+                showBearing={showBearing}
               />
             ),
           });
@@ -63,13 +54,21 @@ export function Scenario() {
           max={360}
           key={'bearing'}
         />,
-        <Select
-          options={locationPuckConfidences}
-          value={confidence}
-          placeholder="Select a puck confidence"
-          onChange={(params) => setConfidence(params.value)}
-          key="confidence"
+        <Slider
+          value={confidenceRadius}
+          onChange={({ value }) => value && setConfidenceRadius(value)}
+          min={0}
+          max={500}
+          key={'confidence-radius'}
         />,
+        <Checkbox
+          checked={showBearing}
+          onChange={(e) => setShowBearing(e.target.checked)}
+          labelPlacement={LABEL_PLACEMENT.right}
+          key="dragging"
+        >
+          Show bearing
+        </Checkbox>,
       ]}
     >
       {markers}

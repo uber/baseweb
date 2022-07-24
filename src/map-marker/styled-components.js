@@ -5,13 +5,13 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
+import { number } from 'card-validator';
 import { styled } from '../styles/index.js';
 import {
   BADGE_ENHANCER_STYLES,
   FLOATING_MARKER_ANCHOR_POSITIONS,
   LABEL_SIZES,
   EARNER_LOCATION_PUCK_CORE_SCALES,
-  LOCATION_PUCK_CONFIDENCE_SIZES,
 } from './constants.js';
 
 import type {
@@ -21,7 +21,6 @@ import type {
   BadgePositionT,
   PinHeadSizeT,
   LocationPuckSizeT,
-  LocationPuckConfidenceT,
 } from './types.js';
 
 export const getAnchorTransform = (anchor: AnchorPositionsT, anchorSize: number) =>
@@ -340,12 +339,14 @@ export const StyledConsumerLocationPuckCore = styled<{}>('div', ({ $theme }) => 
 export const StyledLocationPuckApproximation = styled<{
   $color: string,
   $confidence: LocationPuckConfidenceT,
-}>('div', ({ $theme, $color, $confidence }) => {
+  $radius: number,
+}>('div', ({ $theme, $color, $radius }) => {
+  console.log($radius);
   return {
     background: $color,
     opacity: 0.12,
-    height: `${LOCATION_PUCK_CONFIDENCE_SIZES[$confidence]}px`,
-    width: `${LOCATION_PUCK_CONFIDENCE_SIZES[$confidence]}px`,
+    height: `${$radius / 2}px`,
+    width: `${$radius / 2}px`,
     borderRadius: `${10000}px `,
     position: 'absolute',
     transition: `${$theme.animation.timing300} ${$theme.animation.easeOutCurve} all`,

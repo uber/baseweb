@@ -9,11 +9,7 @@ LICENSE file in the root directory of this source tree.
 import ReactMapGL, { Marker } from 'react-map-gl';
 import { useStyletron } from '../../styles/index.js';
 import * as React from 'react';
-import {
-  LOCATION_PUCK_SIZES,
-  LOCATION_PUCK_TYPES,
-  LOCATION_PUCK_CONFIDENCES,
-} from '../constants.js';
+import { LOCATION_PUCK_SIZES, LOCATION_PUCK_TYPES } from '../constants.js';
 import TileGrid from './tile-grid.js';
 import { Slider } from '../../slider/index.js';
 import { Select } from '../../select/index.js';
@@ -34,13 +30,6 @@ const locationPuckTypes = Object.keys(LOCATION_PUCK_TYPES)
     id: x,
   }));
 
-const locationPuckConfidences = Object.keys(LOCATION_PUCK_CONFIDENCES)
-  .map((key) => LOCATION_PUCK_CONFIDENCES[key])
-  .map((x) => ({
-    label: x,
-    id: x,
-  }));
-
 const uberHq = {
   latitude: 37.768495131168336,
   longitude: -122.38856031220648,
@@ -49,7 +38,7 @@ const uberHq = {
 const defaultLocation = [uberHq.longitude, uberHq.latitude];
 
 export function Scenario() {
-  const [confidence, setConfidence] = React.useState([locationPuckConfidences[0]]);
+  const [confidenceRadius, setConfidenceRadius] = React.useState([0]);
   const [bearing, setBearing] = React.useState([0]);
   const [size, setSize] = React.useState([locationPuckSizes[0]]);
   const [type, setType] = React.useState([locationPuckTypes[0]]);
@@ -94,12 +83,12 @@ export function Scenario() {
             onChange={(params) => setType(params.value)}
             key="puck-type"
           />,
-          <Select
-            options={locationPuckConfidences}
-            value={confidence}
-            placeholder="Select a puck confidence"
-            onChange={(params) => setConfidence(params.value)}
-            key="confidence"
+          <Slider
+            value={confidenceRadius}
+            onChange={({ value }) => value && setConfidenceRadius(value)}
+            min={0}
+            max={500}
+            key={'confidence-radius'}
           />,
         ]}
       />
@@ -132,7 +121,7 @@ export function Scenario() {
                 // $FlowFixMe Mismatch between general type and enum
                 size={size[0].id}
                 // $FlowFixMe Mismatch between general type and enum
-                confidence={confidence[0].id}
+                confidenceRadius={confidenceRadius[0]}
                 // $FlowFixMe Mismatch between general type and enum
                 type={type[0].id}
               />
