@@ -2,8 +2,6 @@ import { LocationPuck, LOCATION_PUCK_TYPES, LOCATION_PUCK_SIZES } from 'baseui/m
 import { PropTypes } from 'react-view';
 import { TConfig } from '../types';
 
-const locationPuckPropsType = require('!!extract-react-types-loader!../../../../src/map-marker/location-puck.js');
-
 export const theme = [];
 
 export const locationPuckProps = {

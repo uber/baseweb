@@ -7,12 +7,12 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import { LOCATION_PUCK_SIZES, LOCATION_PUCK_TYPES } from '../constants.js';
-import TileGrid from './tile-grid.js';
-import { Slider } from '../../slider/index.js';
-import LocationPuck from '../location-puck.js';
-import type { LocationPuckSizeT, LocationPuckTypeT } from '../types.js';
-import { Checkbox, LABEL_PLACEMENT } from '../../checkbox/index.js';
+import { LOCATION_PUCK_SIZES, LOCATION_PUCK_TYPES } from '../constants';
+import TileGrid from './tile-grid';
+import { Slider } from '../../slider';
+import LocationPuck from '..';
+import type { LocationPuckSizeT, LocationPuckTypeT } from '../types';
+import { Checkbox, LABEL_PLACEMENT } from '../../checkbox';
 
 export function Scenario() {
   const markers = [];

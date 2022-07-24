@@ -338,10 +338,8 @@ export const StyledConsumerLocationPuckCore = styled<{}>('div', ({ $theme }) => 
  */
 export const StyledLocationPuckApproximation = styled<{
   $color: string,
-  $confidence: LocationPuckConfidenceT,
   $radius: number,
 }>('div', ({ $theme, $color, $radius }) => {
-  console.log($radius);
   return {
     background: $color,
     opacity: 0.12,

@@ -10,7 +10,6 @@ import Layout from '../../components/layout';
 import Exports from '../../components/exports';
 import Yard from '../../components/yard/index';
 import locationPuckYardConfig from '../../components/yard/config/location-puck';
-import ApiTable from '../../components/api-table';
 
 import ConsumerLocationPuck from 'examples/location-puck/consumer.js';
 import ConsumerLocationPuckConfidence from 'examples/location-puck/consumer-confidence.js';
@@ -85,11 +84,5 @@ An earner location puck.
 A consumer location puck rendered in a [react-map-gl](https://visgl.github.io/react-map-gl/) view. Everytime the marker is dragged, the `dragging` prop is updated and the marker position is updated.
 
 ## API
-
-<ApiTable
-  title="Location Puck props"
-  config={locationPuckYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/map-marker/location-puck.js')}
-/>
 
 <Exports component={LocationPuckExports} title="Loction Puck exports" path="baseui/map-marker" />

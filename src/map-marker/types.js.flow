@@ -171,7 +171,7 @@ export type LocationPuckPropsT = {
   size?: LocationPuckSizeT,
   bearing?: number,
   confidenceRadius?: number,
-  showBearing: boolean,
+  showBearing?: boolean,
   type?: LocationPuckTypeT,
   overrides?: LocationPuckOverridesT,
 };
@@ -179,7 +179,7 @@ export type LocationPuckPropsT = {
 export type ConsumerLocationPuckPropsT = {
   bearing: number,
   confidenceRadius?: number,
-  showBearing: boolean,
+  showBearing?: boolean,
   overrides: LocationPuckOverridesT,
 };
 export type EarnerLocationPuckPropsT = {

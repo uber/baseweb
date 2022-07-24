@@ -7,15 +7,15 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import ReactMapGL, { Marker } from 'react-map-gl';
-import { useStyletron } from '../../styles/index.js';
+import { useStyletron } from '../../styles';
 import * as React from 'react';
-import { LOCATION_PUCK_SIZES, LOCATION_PUCK_TYPES } from '../constants.js';
-import TileGrid from './tile-grid.js';
-import { Slider } from '../../slider/index.js';
-import { Select } from '../../select/index.js';
-import { Checkbox, LABEL_PLACEMENT } from '../../checkbox/index.js';
+import { LOCATION_PUCK_SIZES, LOCATION_PUCK_TYPES } from '../constants';
+import TileGrid from './tile-grid';
+import { Slider } from '../../slider';
+import { Select } from '../../select';
+import { Checkbox, LABEL_PLACEMENT } from '../../checkbox';
 
-import LocationPuck from '../location-puck.js';
+import LocationPuck from '..';
 
 const locationPuckSizes = Object.keys(LOCATION_PUCK_SIZES)
   .map((key) => LOCATION_PUCK_SIZES[key])
@@ -131,7 +131,6 @@ export function Scenario() {
                 bearing={bearing[0]}
                 // $FlowFixMe Mismatch between general type and enum
                 size={size[0].id}
-                // $FlowFixMe Mismatch between general type and enum
                 confidenceRadius={confidenceRadius[0]}
                 // $FlowFixMe Mismatch between general type and enum
                 type={type[0].id}
