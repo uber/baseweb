@@ -1,16 +1,12 @@
-import {ProgressSteps, Step} from 'baseui/progress-steps';
-import {Button} from 'baseui/button';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
-
-const progressStepsProps = require('!!extract-react-types-loader!../../../../src/progress-steps/progress-steps.js');
-const stepProps = require('!!extract-react-types-loader!../../../../src/progress-steps/step.js');
-const buttonProps = require('!!extract-react-types-loader!../../../../src/button/button.js');
+import { ProgressSteps, Step } from 'baseui/progress-steps';
+import { Button } from 'baseui/button';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
 
 const ProgressStepsConfig: TConfig = {
   componentName: 'ProgressSteps',
   imports: {
-    'baseui/progress-steps': {named: ['ProgressSteps']},
+    'baseui/progress-steps': { named: ['ProgressSteps'] },
   },
   scope: {
     ProgressSteps,
@@ -38,16 +34,13 @@ const ProgressStepsConfig: TConfig = {
       type: PropTypes.ReactNode,
       description: `An array of Tab components.`,
       imports: {
-        'baseui/progress-steps': {named: ['Step']},
-        'baseui/button': {named: ['Button']},
+        'baseui/progress-steps': { named: ['Step'] },
+        'baseui/button': { named: ['Button'] },
       },
-      propHook: ({getInstrumentOnChange, fnBodyAppend}) => ({
+      propHook: ({ getInstrumentOnChange, fnBodyAppend }) => ({
         JSXAttribute(path: any) {
           if (path.get('name').node.name === 'onClick') {
-            fnBodyAppend(
-              path.get('value'),
-              getInstrumentOnChange('1', 'current'),
-            );
+            fnBodyAppend(path.get('value'), getInstrumentOnChange('1', 'current'));
           }
         },
       }),
@@ -84,11 +77,6 @@ const ProgressStepsConfig: TConfig = {
         },
       },
     },
-  },
-  mapTokensToProps: {
-    ProgressSteps: progressStepsProps,
-    Step: stepProps,
-    Button: buttonProps,
   },
 };
 

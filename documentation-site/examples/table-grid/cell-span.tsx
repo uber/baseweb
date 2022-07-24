@@ -37,7 +37,7 @@ export default function Example() {
         <StyledHeadCell>Name</StyledHeadCell>
         <StyledHeadCell>Date</StyledHeadCell>
         <StyledHeadCell>Event</StyledHeadCell>
-        {data.map(row => {
+        {data.map((row) => {
           return (
             <React.Fragment>
               <StyledBodyCell $gridRow={`span ${row[2].length}`}>
@@ -45,7 +45,7 @@ export default function Example() {
                   {row[0]}
                 </StyledLink>
               </StyledBodyCell>
-              {(row[2] as Array<any>).map(
+              {(row[2] as any[]).map(
                 (event: [Date, string], index: number) => {
                   const striped = index % 2 === 0;
                   return (

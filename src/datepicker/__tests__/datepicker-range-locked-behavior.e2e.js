@@ -10,29 +10,32 @@ LICENSE file in the root directory of this source tree.
 
 const { mount } = require('../../../e2e/helpers');
 
+const { expect, test } = require('@playwright/test');
+
 const selectors = {
   input: 'input',
   calendar: '[data-baseweb="calendar"]',
-  day: '[aria-label="Choose Thursday, March 28th 2019. It\'s available."]',
-  day2: '[aria-label="Choose Sunday, March 10th 2019. It\'s available."]',
-  day3: '[aria-label="Choose Tuesday, March 26th 2019. It\'s available."]',
-  day4: '[aria-label="Choose Monday, April 1st 2019. It\'s available."]',
-  day5: '[aria-label="Choose Friday, March 8th 2019. It\'s available."]',
   timeSelect: '[data-id="time-select"]',
   timeSelectDropdown: '[role="listbox"]',
   timeSelectValue: '[data-id="selected"]',
   multiMonthInputs: '[data-id="multiMonthInputs"]',
 };
 
-describe('Datepicker, Range with Locked Behavior', () => {
-  it('selects End Date, then Start Date, then changes End Date', async () => {
+const mar8 = '[aria-label="Choose Friday, March 8th 2019. It\'s available."]';
+const mar28 = '[aria-label="Choose Thursday, March 28th 2019. It\'s available."]';
+const mar10 = '[aria-label="Choose Sunday, March 10th 2019. It\'s available."]';
+const mar26 = '[aria-label="Choose Tuesday, March 26th 2019. It\'s available."]';
+const Apr1 = '[aria-label="Choose Monday, April 1st 2019. It\'s available."]';
+
+test.describe('Datepicker, Range with Locked Behavior', () => {
+  test('selects End Date, then Start Date, then changes End Date', async ({ page }) => {
     await mount(page, 'datepicker--range-locked-behavior');
     const [startDateInput, endDateInput] = await page.$$(selectors.input);
 
     // select a day for the End Date
     endDateInput.click();
     await page.waitForSelector(selectors.calendar);
-    await page.click(selectors.day);
+    await page.click(mar28);
     await page.keyboard.press('Escape');
     const [startDateValue, endDateValue] = await page.$$eval(selectors.input, (inputs) =>
       inputs.map((input) => input.value)
@@ -43,7 +46,7 @@ describe('Datepicker, Range with Locked Behavior', () => {
     // select a day for the Start Date
     startDateInput.click();
     await page.waitForSelector(selectors.calendar);
-    await page.click(selectors.day2);
+    await page.click(mar10);
     await page.keyboard.press('Escape');
     const [startDateValue2, endDateValue2] = await page.$$eval(selectors.input, (inputs) =>
       inputs.map((input) => input.value)
@@ -54,7 +57,7 @@ describe('Datepicker, Range with Locked Behavior', () => {
     // attempt to select a new, invalid End Date (End Date remains unchanged)
     endDateInput.click();
     await page.waitForSelector(selectors.calendar);
-    await page.click(selectors.day5);
+    await page.click(mar8);
     await page.keyboard.press('Escape');
     const [startDateValue3, endDateValue3] = await page.$$eval(selectors.input, (inputs) =>
       inputs.map((input) => input.value)
@@ -65,7 +68,7 @@ describe('Datepicker, Range with Locked Behavior', () => {
     // select a new, valid End Date
     endDateInput.click();
     await page.waitForSelector(selectors.calendar);
-    await page.click(selectors.day3);
+    await page.click(mar26);
     await page.keyboard.press('Escape');
     const [startDateValue4, endDateValue4] = await page.$$eval(selectors.input, (inputs) =>
       inputs.map((input) => input.value)
@@ -73,14 +76,14 @@ describe('Datepicker, Range with Locked Behavior', () => {
     expect(startDateValue4).toBe('2019/03/10');
     expect(endDateValue4).toBe('2019/03/26');
   });
-  it('selects range in multi-month', async () => {
+  test('selects range in multi-month', async ({ page }) => {
     await mount(page, 'datepicker--range-locked-behavior');
     const [startDateInput, endDateInput] = await page.$$(selectors.multiMonthInputs);
 
     // select a day for Start Date
     startDateInput.click();
     await page.waitForSelector(selectors.calendar);
-    await page.click(selectors.day5);
+    await page.click(mar8);
     await page.keyboard.press('Escape');
     const startDateValue1 = await page.$eval(selectors.multiMonthInputs, (input) => input.value);
     expect(startDateValue1).toBe('2019/03/08');
@@ -88,7 +91,7 @@ describe('Datepicker, Range with Locked Behavior', () => {
     // select a different day for Start Date
     startDateInput.click();
     await page.waitForSelector(selectors.calendar);
-    await page.click(selectors.day2);
+    await page.click(mar10);
     await page.keyboard.press('Escape');
     const [startDateValue2, endDateValue2] = await page.$$eval(
       selectors.multiMonthInputs,
@@ -100,7 +103,7 @@ describe('Datepicker, Range with Locked Behavior', () => {
     // attempt to select an invalid day for End Date
     endDateInput.click();
     await page.waitForSelector(selectors.calendar);
-    await page.click(selectors.day5);
+    await page.click(mar8);
     await page.keyboard.press('Escape');
     const [startDateValue3, endDateValue3] = await page.$$eval(
       selectors.multiMonthInputs,
@@ -112,7 +115,7 @@ describe('Datepicker, Range with Locked Behavior', () => {
     // select a valid day for End Date
     endDateInput.click();
     await page.waitForSelector(selectors.calendar);
-    await page.click(selectors.day4);
+    await page.click(Apr1);
     await page.keyboard.press('Escape');
     const [startDateValue4, endDateValue4] = await page.$$eval(
       selectors.multiMonthInputs,
@@ -122,7 +125,7 @@ describe('Datepicker, Range with Locked Behavior', () => {
     expect(endDateValue4).toBe('2019/04/01');
   });
 
-  it('selected time is preserved when dates are changed', async () => {
+  test('selected time is preserved when dates are changed', async ({ page }) => {
     await mount(page, 'datepicker--range-locked-behavior');
     const [startDateInput, endDateInput] = await page.$$(selectors.input);
 
@@ -144,16 +147,16 @@ describe('Datepicker, Range with Locked Behavior', () => {
 
     // Select the start day
     await page.waitForSelector(selectors.calendar);
-    await page.waitForSelector(selectors.day2);
-    await page.click(selectors.day2);
+    await page.waitForSelector(mar10);
+    await page.click(mar10);
     await page.keyboard.press('Escape');
     const startDateValue1 = await page.$eval(selectors.input, (input) => input.value);
     expect(startDateValue1).toBe('2019/03/10');
 
     // Select the end day
     endDateInput.click();
-    await page.waitForSelector(selectors.day);
-    await page.click(selectors.day);
+    await page.waitForSelector(mar28);
+    await page.click(mar28);
     await page.keyboard.press('Escape');
     const [startDateValue2, endDateValue2] = await page.$$eval(selectors.input, (inputs) =>
       inputs.map((input) => input.value)
@@ -175,8 +178,8 @@ describe('Datepicker, Range with Locked Behavior', () => {
     // Open the calendar, change the start day
     startDateInput.click();
     await page.waitForSelector(selectors.calendar);
-    await page.waitForSelector(selectors.day5);
-    await page.click(selectors.day5);
+    await page.waitForSelector(mar8);
+    await page.click(mar8);
 
     // Open the calendar, check that the times are still correct
     startDateInput.click();

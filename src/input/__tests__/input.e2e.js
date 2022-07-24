@@ -10,6 +10,8 @@ LICENSE file in the root directory of this source tree.
 
 const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
 
+const { expect, test } = require('@playwright/test');
+
 const selectors = {
   input: '[data-e2e="input"]',
   clearIcon: '[data-e2e="clear-icon"]',
@@ -17,22 +19,22 @@ const selectors = {
   maskToggle: '[data-e2e="mask-toggle"]',
 };
 
-describe('input', () => {
-  it('passes basic a11y tests', async () => {
+test.describe('input', () => {
+  test('passes basic a11y tests', async ({ page }) => {
     await mount(page, 'input--input');
     await page.waitForSelector(selectors.input);
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
-  it('preset value is displayed', async () => {
+  test('preset value is displayed', async ({ page }) => {
     await mount(page, 'input--input');
     await page.waitForSelector(selectors.input);
     const value = await page.$eval(selectors.input, (input) => input.value);
     expect(value).toBe('uber');
   });
 
-  it('entered value is displayed', async () => {
+  test('entered value is displayed', async ({ page }) => {
     await mount(page, 'input--input');
     await page.waitForSelector(selectors.input);
 
@@ -42,15 +44,15 @@ describe('input', () => {
     expect(value).toBe('uber_good');
   });
 
-  describe('can clear values', () => {
-    it('shows a clear value icon', async () => {
+  test.describe('can clear values', () => {
+    test('shows a clear value icon', async ({ page }) => {
       await mount(page, 'input--clearable');
       await page.waitForSelector(selectors.clearIcon, {
-        visible: true,
+        state: 'visible',
       });
     });
 
-    it('with escape key', async () => {
+    test('with escape key', async ({ page }) => {
       await mount(page, 'input--clearable');
       await page.waitForSelector(selectors.input);
 
@@ -64,11 +66,11 @@ describe('input', () => {
       expect(inputValue).toBe('');
 
       await page.waitForSelector(selectors.clearIcon, {
-        hidden: true,
+        state: 'hidden',
       });
     });
 
-    it('not with escape key when its disabled', async () => {
+    test('not with escape key when its disabled', async ({ page }) => {
       await mount(page, 'input--clearable-noescape');
       await page.waitForSelector(selectors.input);
 
@@ -82,7 +84,7 @@ describe('input', () => {
       expect(inputValue).toBe('Thing');
     });
 
-    it('with delete icon', async () => {
+    test('with delete icon', async ({ page }) => {
       await mount(page, 'input--clearable');
       await page.waitForSelector(selectors.input);
 
@@ -95,11 +97,11 @@ describe('input', () => {
       expect(inputValue).toBe('');
 
       await page.waitForSelector(selectors.clearIcon, {
-        hidden: true,
+        state: 'hidden',
       });
     });
 
-    it('with delete icon via enter', async () => {
+    test('with delete icon via enter', async ({ page }) => {
       await mount(page, 'input--clearable');
       await page.waitForSelector(selectors.input);
 
@@ -113,11 +115,11 @@ describe('input', () => {
       expect(inputValue).toBe('');
 
       await page.waitForSelector(selectors.clearIcon, {
-        hidden: true,
+        state: 'hidden',
       });
     });
 
-    it('with delete icon via space', async () => {
+    test('with delete icon via space', async ({ page }) => {
       await mount(page, 'input--clearable');
       await page.waitForSelector(selectors.input);
 
@@ -131,13 +133,13 @@ describe('input', () => {
       expect(inputValue).toBe('');
 
       await page.waitForSelector(selectors.clearIcon, {
-        hidden: true,
+        state: 'hidden',
       });
     });
 
     // regression test for https://github.com/uber/baseweb/issues/1643
     // verify that the input receiving the clear event is cleared and not another input
-    it('clears the correct input', async () => {
+    test('clears the correct input', async ({ page }) => {
       await mount(page, 'input--clearable');
       await page.waitForSelector(selectors.input);
 
@@ -158,15 +160,15 @@ describe('input', () => {
     });
 
     // regression tests for https://github.com/uber/baseweb/issues/1662
-    describe('while in a form', () => {
-      beforeEach(async () => {
+    test.describe('while in a form', () => {
+      test.beforeEach(async ({ page }) => {
         await mount(page, 'input--password');
         await page.waitForSelector(selectors.input);
         // set global variable '__e2e__formSubmitted__' to false
         await page.evaluate(() => (window.__e2e__formSubmitted__ = false));
       });
 
-      it('while focusing input, "enter" does not toggle password masking', async () => {
+      test('while focusing input, "enter" does not toggle password masking', async ({ page }) => {
         // focus input
         await page.focus(selectors.input);
         // verify type is password, aka the text is masked
@@ -179,7 +181,7 @@ describe('input', () => {
         expect(await page.evaluate(() => window.__e2e__formSubmitted__)).toBe(true);
       });
 
-      it('while focusing mask toggle, "enter" does not submit the form', async () => {
+      test('while focusing mask toggle, "enter" does not submit the form', async ({ page }) => {
         // focus password mask toggle
         await page.focus(selectors.maskToggle);
         // verify type is password, aka the text is masked

@@ -8,8 +8,8 @@ import {
   NumericalColumn,
   StringColumn,
   NUMERICAL_FORMATS,
-  BatchActionT,
-  RowActionT,
+  BatchAction,
+  RowAction,
 } from 'baseui/data-table';
 
 type RowDataT = [
@@ -131,13 +131,13 @@ const initialRows = [
   ['X-Men: The Last Stand', false, 'Action', 210, 459, 2.2, 6.8],
   [`You've Got Mail`, false, 'Drama', 65, 251, 3.9, 6.3],
   ['Zookeeper', false, 'Romantic Comedy', 80, 170, 2.1, 5.0],
-].map(r => ({id: String(r[0]), data: r}));
+].map((r) => ({id: String(r[0]), data: r}));
 
 export default function Example() {
   const [rows, setRows] = React.useState(initialRows);
 
   function flagRows(ids: Array<string | number>) {
-    const nextRows = rows.map(row => {
+    const nextRows = rows.map((row) => {
       if (ids.includes(row.id)) {
         const nextData = [...row.data];
         nextData[1] = !nextData[1];
@@ -153,18 +153,18 @@ export default function Example() {
   }
 
   function removeRows(ids: Array<string | number>) {
-    const nextRows = rows.filter(row => !ids.includes(row.id));
+    const nextRows = rows.filter((row) => !ids.includes(row.id));
     setRows(nextRows);
   }
   function removeRow(id: string | number) {
     removeRows([id]);
   }
 
-  const batchActions: BatchActionT[] = [
+  const batchActions: BatchAction[] = [
     {
       label: 'Check',
       onClick: ({selection, clearSelection}) => {
-        flagRows(selection.map(r => r.id));
+        flagRows(selection.map((r) => r.id));
         clearSelection();
       },
       renderIcon: Check,
@@ -172,7 +172,7 @@ export default function Example() {
     {
       label: 'Remove',
       onClick: ({selection, clearSelection}) => {
-        removeRows(selection.map(r => r.id));
+        removeRows(selection.map((r) => r.id));
         clearSelection();
       },
       renderIcon: Alert,
@@ -183,7 +183,7 @@ export default function Example() {
     },
   ];
 
-  const rowActions: RowActionT[] = [
+  const rowActions: RowAction[] = [
     {
       label: 'Check',
       onClick: ({row}) => flagRow(row.id),

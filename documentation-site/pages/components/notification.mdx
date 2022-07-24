@@ -16,11 +16,10 @@ import Customization from 'examples/notification/overrides.js';
 import CustomDismiss from 'examples/notification/custom-dismiss.js';
 import FullWidth from 'examples/notification/full-width.js';
 
-import {Notification} from 'baseui/notification';
+import { Notification } from 'baseui/notification';
 import * as NotificationExports from 'baseui/notification';
 import Yard from '../../components/yard/index';
 import notificationYardConfig from '../../components/yard/config/notification';
-import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -29,7 +28,9 @@ export default Layout;
 <Yard placeholderHeight={68} {...notificationYardConfig} />
 
 Notifications provide important information inline with the content body within a view. These
-notifications do not self-dismiss and have the option to include a close “X”.
+notifications do not self-dismiss and have the option to include a close “X”. Notifications
+come out of the box with 0 margin. Margin should be added using overrides based on the context
+they'll be used in.
 
 ## When to use
 
@@ -43,17 +44,11 @@ notifications do not self-dismiss and have the option to include a close “X”
   <Basic />
 </Example>
 
-<Example
-  title="Notification with all Available Kinds"
-  path="notification/kinds.js"
->
+<Example title="Notification with all Available Kinds" path="notification/kinds.js">
   <Kinds />
 </Example>
 
-<Example
-  title="Notification Closeable example"
-  path="notification/closeable.js"
->
+<Example title="Notification Closeable example" path="notification/closeable.js">
   <Closeable />
 </Example>
 
@@ -65,20 +60,9 @@ notifications do not self-dismiss and have the option to include a close “X”
   <Customization />
 </Example>
 
-<Example
-  title="Notification with Custom Dismiss"
-  path="notification/custom-dismiss.js"
->
+<Example title="Notification with Custom Dismiss" path="notification/custom-dismiss.js">
   <CustomDismiss />
 </Example>
-
-## API
-
-<ApiTable
-  title="Notification props"
-  config={notificationYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/notification/notification.js')}
-/>
 
 <Exports
   component={NotificationExports}

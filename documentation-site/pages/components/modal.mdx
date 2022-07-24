@@ -18,7 +18,6 @@ import * as ModalExports from 'baseui/modal';
 
 import Yard from '../../components/yard/index';
 import modalYardConfig from '../../components/yard/config/modal';
-import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -99,13 +98,5 @@ Once the user tabs away, the element will be removed from the tab ordering.
 when multiple modals are dismissed at the same time. This is important to have the body
 scrolling restored in an expected way. See how the initial modal's `close` function is
 passed as a callback to the modal that is stacked on top of it `toggleConfirm(false, close)`.
-
-## API
-
-<ApiTable
-  title="Modal props"
-  config={modalYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/modal/modal.js')}
-/>
 
 <Exports component={ModalExports} title="Modal exports" path="baseui/modal" />

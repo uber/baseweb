@@ -1,8 +1,6 @@
-import {List, arrayMove, arrayRemove} from 'baseui/dnd-list';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
-
-const listProps = require('!!extract-react-types-loader!../../../../src/dnd-list/list.js');
+import { List, arrayMove, arrayRemove } from 'baseui/dnd-list';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
 
 const dndListConfig: TConfig = {
   componentName: 'List',
@@ -11,7 +9,7 @@ const dndListConfig: TConfig = {
       named: ['List', 'arrayMove', 'arrayRemove'],
     },
   },
-  scope: {List, arrayMove, arrayRemove},
+  scope: { List, arrayMove, arrayRemove },
   theme: [],
   props: {
     items: {
@@ -34,16 +32,14 @@ const dndListConfig: TConfig = {
       type: PropTypes.Function,
       description: 'MovableLists onChange handler.',
       propHook: {
-        what:
-          'JSON.stringify(newIndex === -1 ? arrayRemove(items, oldIndex) : arrayMove(items, oldIndex, newIndex))',
+        what: 'JSON.stringify(newIndex === -1 ? arrayRemove(items, oldIndex) : arrayMove(items, oldIndex, newIndex))',
         into: 'items',
       },
     },
     removableByMove: {
       value: undefined,
       type: PropTypes.Boolean,
-      description:
-        'Indicates if items can be removed from the list by dnd outside of the list.',
+      description: 'Indicates if items can be removed from the list by dnd outside of the list.',
     },
     overrides: {
       value: undefined,
@@ -71,8 +67,7 @@ const dndListConfig: TConfig = {
           },
           $isOutOfBounds: {
             type: PropTypes.Boolean,
-            description:
-              'Indicates if the item is being out of the list boundaries.',
+            description: 'Indicates if the item is being out of the list boundaries.',
           },
           $value: {
             type: PropTypes.Array,
@@ -81,9 +76,6 @@ const dndListConfig: TConfig = {
         },
       },
     },
-  },
-  mapTokensToProps: {
-    List: listProps,
   },
 };
 

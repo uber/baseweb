@@ -27,12 +27,11 @@ import NestedOverridePropMerge from 'examples/datepicker/with-callback-overrides
 import DatepickerWithMask from 'examples/datepicker/with-mask.js';
 import DatepickerNullMask from 'examples/datepicker/null-mask.js';
 
-import {StatefulCalendar} from 'baseui/datepicker';
+import { StatefulCalendar } from 'baseui/datepicker';
 import * as DatepickerExports from 'baseui/datepicker';
 
 import Yard from '../../components/yard/index';
 import datepickerConfig from '../../components/yard/config/datepicker';
-import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -60,10 +59,7 @@ A simple and reusable component to work with or select a date or a range of date
   <DatepickerInPopover />
 </Example>
 
-<Example
-  title="Datepicker with quick select actions"
-  path="datepicker/quick-select.js"
->
+<Example title="Datepicker with quick select actions" path="datepicker/quick-select.js">
   <DatepickerQuickSelect />
 </Example>
 
@@ -91,17 +87,11 @@ When using a custom mask `formatString` prop should be also set to match the mas
 
 Some date formats will operate better without a restrictive input mask. You can disable that feature by applying `null` to the mask prop.
 
-<Example
-  title="Calendar with time select actions"
-  path="datepicker/calendar-time-select.js"
->
+<Example title="Calendar with time select actions" path="datepicker/calendar-time-select.js">
   <DatepickerTimeSelect />
 </Example>
 
-<Example
-  title="Calendar with multiple months"
-  path="datepicker/calendar-multiple-months.js"
->
+<Example title="Calendar with multiple months" path="datepicker/calendar-multiple-months.js">
   <DatepickerMultipleMonths />
 </Example>
 
@@ -119,41 +109,26 @@ Some date formats will operate better without a restrictive input mask. You can 
   <RangeDatepickerSeparateInputs />
 </Example>
 
-<Example
-  title="Composed single pickers"
-  path="datepicker/composed-single-pickers.js"
->
+<Example title="Composed single pickers" path="datepicker/composed-single-pickers.js">
   <ComposedSinglePickers />
 </Example>
 
-<Example
-  title="Composed range pickers"
-  path="datepicker/composed-range-pickers.js"
->
+<Example title="Composed range pickers" path="datepicker/composed-range-pickers.js">
   <ComposedRangePickers />
 </Example>
 
-<Example
-  title="Datepicker states"
-  path="datepicker/datepickers-color-states.js"
->
+<Example title="Datepicker states" path="datepicker/datepickers-color-states.js">
   <DatepickersColorStates />
 </Example>
 
-<Example
-  title="Datepicker with timezone selection"
-  path="datepicker/datepicker-with-timezone.js"
->
-  This example works for most use-cases, however certain edge-cases are not
-  handled here. If this data is mission critical for your systems, consider
-  using Moment.js, and pass the date object from Moment.js to the datepicker.
+<Example title="Datepicker with timezone selection" path="datepicker/datepicker-with-timezone.js">
+  This example works for most use-cases, however certain edge-cases are not handled here. If this
+  data is mission critical for your systems, consider using Moment.js, and pass the date object from
+  Moment.js to the datepicker.
   <DatepickerTimezone />
 </Example>
 
-<Example
-  title="Overriding a nested component"
-  path="datepicker/nested-override.js"
->
+<Example title="Overriding a nested component" path="datepicker/nested-override.js">
   <NestedOverride />
 </Example>
 
@@ -168,16 +143,4 @@ In this example we use a [nested override](/guides/understanding-overrides/#over
 
 Here we use the most flexible and complex [override by component replacement](/guides/understanding-overrides/#override-the-entire-subcomponent) where we wrap a components onChange handler to subscribe to the datepicker event when a quick selection is picked.
 
-## API
-
-<ApiTable
-  title="Datepicker props"
-  config={datepickerConfig}
-  types={require('!!extract-react-types-loader!../../../src/datepicker/calendar.js')}
-/>
-
-<Exports
-  component={DatepickerExports}
-  title="Datepicker exports"
-  path="baseui/datepicker"
-/>
+<Exports component={DatepickerExports} title="Datepicker exports" path="baseui/datepicker" />

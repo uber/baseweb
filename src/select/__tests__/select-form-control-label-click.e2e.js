@@ -9,6 +9,8 @@ LICENSE file in the root directory of this source tree.
 
 const { mount } = require('../../../e2e/helpers');
 
+const { test } = require('@playwright/test');
+
 async function clickOutside(page) {
   const el = await page.$('#click-outside');
   await el.click();
@@ -29,171 +31,157 @@ async function isListboxOpen(page) {
 }
 
 async function isListboxClosed(page) {
-  await page.waitForSelector('ul[role="listbox"]', { hidden: true });
+  await page.waitForSelector('ul[role="listbox"]', { state: 'hidden' });
 }
 
-describe('select click open/close', () => {
-  describe('baseui form-control label', () => {
-    describe('non-searchable', () => {
-      it('label click', async () => {
-        await mount(page, 'select--searchable-form-control');
-        await clickLabelAtIndex(page, 0);
-        await isListboxOpen(page);
+test.describe('select click open/close', () => {
+  test('form-control non-searchable label click', async ({ page }) => {
+    await mount(page, 'select--searchable-form-control');
+    await clickLabelAtIndex(page, 0);
+    await isListboxOpen(page);
 
-        await clickOutside(page);
-        await isListboxClosed(page);
+    await clickOutside(page);
+    await isListboxClosed(page);
 
-        await clickLabelAtIndex(page, 0);
-        await isListboxOpen(page);
+    await clickLabelAtIndex(page, 0);
+    await isListboxOpen(page);
 
-        await clickOutside(page);
-        await isListboxClosed(page);
-      });
-
-      it('select click', async () => {
-        await mount(page, 'select--searchable-form-control');
-        await clickSelectAtIndex(page, 0);
-        await isListboxOpen(page);
-
-        await clickOutside(page);
-        await isListboxClosed(page);
-
-        await clickSelectAtIndex(page, 0);
-        await isListboxOpen(page);
-
-        await clickOutside(page);
-        await isListboxClosed(page);
-      });
-    });
-
-    describe('searchable', () => {
-      it('label click', async () => {
-        await mount(page, 'select--searchable-form-control');
-        await clickLabelAtIndex(page, 1);
-        await isListboxOpen(page);
-
-        await clickOutside(page);
-        await isListboxClosed(page);
-
-        await clickLabelAtIndex(page, 1);
-        await isListboxOpen(page);
-
-        await clickOutside(page);
-        await isListboxClosed(page);
-      });
-
-      it('select click', async () => {
-        await mount(page, 'select--searchable-form-control');
-        await clickSelectAtIndex(page, 1);
-        await isListboxOpen(page);
-
-        await clickOutside(page);
-        await isListboxClosed(page);
-
-        await clickSelectAtIndex(page, 1);
-        await isListboxOpen(page);
-
-        await clickOutside(page);
-        await isListboxClosed(page);
-      });
-    });
+    await clickOutside(page);
+    await isListboxClosed(page);
   });
 
-  describe('native label', () => {
-    describe('non-searchable', () => {
-      it('label click', async () => {
-        await mount(page, 'select--searchable-form-control');
-        await clickLabelAtIndex(page, 2);
-        await isListboxOpen(page);
+  test('form-control non-searchable select click', async ({ page }) => {
+    await mount(page, 'select--searchable-form-control');
+    await clickSelectAtIndex(page, 0);
+    await isListboxOpen(page);
 
-        await clickOutside(page);
-        await isListboxClosed(page);
+    await clickOutside(page);
+    await isListboxClosed(page);
 
-        await clickLabelAtIndex(page, 2);
-        await isListboxOpen(page);
+    await clickSelectAtIndex(page, 0);
+    await isListboxOpen(page);
 
-        await clickOutside(page);
-        await isListboxClosed(page);
-      });
-
-      it('select click', async () => {
-        await mount(page, 'select--searchable-form-control');
-        await clickSelectAtIndex(page, 2);
-        await isListboxOpen(page);
-
-        await clickOutside(page);
-        await isListboxClosed(page);
-
-        await clickSelectAtIndex(page, 2);
-        await isListboxOpen(page);
-
-        await clickOutside(page);
-        await isListboxClosed(page);
-      });
-    });
-
-    describe('searchable', () => {
-      it('label click', async () => {
-        await mount(page, 'select--searchable-form-control');
-        await clickLabelAtIndex(page, 3);
-        await isListboxOpen(page);
-
-        await clickOutside(page);
-        await isListboxClosed(page);
-
-        await clickLabelAtIndex(page, 3);
-        await isListboxOpen(page);
-
-        await clickOutside(page);
-        await isListboxClosed(page);
-      });
-
-      it('select click', async () => {
-        await mount(page, 'select--searchable-form-control');
-        await clickSelectAtIndex(page, 3);
-        await isListboxOpen(page);
-
-        await clickOutside(page);
-        await isListboxClosed(page);
-
-        await clickSelectAtIndex(page, 3);
-        await isListboxOpen(page);
-
-        await clickOutside(page);
-        await isListboxClosed(page);
-      });
-    });
+    await clickOutside(page);
+    await isListboxClosed(page);
   });
 
-  describe('no label', () => {
-    it('non-searchable', async () => {
-      await mount(page, 'select--searchable-form-control');
-      await clickSelectAtIndex(page, 4);
-      await isListboxOpen(page);
+  test('form-control searchable label click', async ({ page }) => {
+    await mount(page, 'select--searchable-form-control');
+    await clickLabelAtIndex(page, 1);
+    await isListboxOpen(page);
 
-      await clickOutside(page);
-      await isListboxClosed(page);
+    await clickOutside(page);
+    await isListboxClosed(page);
 
-      await clickSelectAtIndex(page, 4);
-      await isListboxOpen(page);
+    await clickLabelAtIndex(page, 1);
+    await isListboxOpen(page);
 
-      await clickOutside(page);
-      await isListboxClosed(page);
-    });
+    await clickOutside(page);
+    await isListboxClosed(page);
+  });
 
-    it('searchable', async () => {
-      await mount(page, 'select--searchable-form-control');
-      await clickSelectAtIndex(page, 5);
-      await isListboxOpen(page);
+  test('form-control searchable select click', async ({ page }) => {
+    await mount(page, 'select--searchable-form-control');
+    await clickSelectAtIndex(page, 1);
+    await isListboxOpen(page);
 
-      await clickOutside(page);
-      await isListboxClosed(page);
+    await clickOutside(page);
+    await isListboxClosed(page);
 
-      await clickSelectAtIndex(page, 5);
-      await isListboxOpen(page);
+    await clickSelectAtIndex(page, 1);
+    await isListboxOpen(page);
 
-      await clickOutside(page);
-      await isListboxClosed(page);
-    });
+    await clickOutside(page);
+    await isListboxClosed(page);
+  });
+
+  test('native non-searchable label click', async ({ page }) => {
+    await mount(page, 'select--searchable-form-control');
+    await clickLabelAtIndex(page, 2);
+    await isListboxOpen(page);
+
+    await clickOutside(page);
+    await isListboxClosed(page);
+
+    await clickLabelAtIndex(page, 2);
+    await isListboxOpen(page);
+
+    await clickOutside(page);
+    await isListboxClosed(page);
+  });
+
+  test('native non-searchable select click', async ({ page }) => {
+    await mount(page, 'select--searchable-form-control');
+    await clickSelectAtIndex(page, 2);
+    await isListboxOpen(page);
+
+    await clickOutside(page);
+    await isListboxClosed(page);
+
+    await clickSelectAtIndex(page, 2);
+    await isListboxOpen(page);
+
+    await clickOutside(page);
+    await isListboxClosed(page);
+  });
+
+  test('native searchable label click', async ({ page }) => {
+    await mount(page, 'select--searchable-form-control');
+    await clickLabelAtIndex(page, 3);
+    await isListboxOpen(page);
+
+    await clickOutside(page);
+    await isListboxClosed(page);
+
+    await clickLabelAtIndex(page, 3);
+    await isListboxOpen(page);
+
+    await clickOutside(page);
+    await isListboxClosed(page);
+  });
+
+  test('snative searchable elect click', async ({ page }) => {
+    await mount(page, 'select--searchable-form-control');
+    await clickSelectAtIndex(page, 3);
+    await isListboxOpen(page);
+
+    await clickOutside(page);
+    await isListboxClosed(page);
+
+    await clickSelectAtIndex(page, 3);
+    await isListboxOpen(page);
+
+    await clickOutside(page);
+    await isListboxClosed(page);
+  });
+
+  test('no-label non-searchable', async ({ page }) => {
+    await mount(page, 'select--searchable-form-control');
+    await clickSelectAtIndex(page, 4);
+    await isListboxOpen(page);
+
+    await clickOutside(page);
+    await isListboxClosed(page);
+
+    await clickSelectAtIndex(page, 4);
+    await isListboxOpen(page);
+
+    await clickOutside(page);
+    await isListboxClosed(page);
+  });
+
+  test('no-label searchable', async ({ page }) => {
+    await mount(page, 'select--searchable-form-control');
+    await clickSelectAtIndex(page, 5);
+    await isListboxOpen(page);
+
+    await clickOutside(page);
+    await isListboxClosed(page);
+
+    await clickSelectAtIndex(page, 5);
+    await isListboxOpen(page);
+
+    await clickOutside(page);
+    await isListboxClosed(page);
   });
 });

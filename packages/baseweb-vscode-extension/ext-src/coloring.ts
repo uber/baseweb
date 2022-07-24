@@ -1,13 +1,10 @@
 import * as vscode from 'vscode';
-import {LightTheme, DarkTheme} from 'baseui/themes';
+import { LightTheme, DarkTheme } from 'baseui/themes';
 
 function getContrastYIQ(color: string) {
   let hexcolor = color;
   if (hexcolor.length < 7) {
-    hexcolor = hexcolor.replace(
-      /#([0-9a-fA-F])([0-9a-fA-F])([0-9a-fA-F])/g,
-      '#$1$1$2$2$3$3',
-    );
+    hexcolor = hexcolor.replace(/#([0-9a-fA-F])([0-9a-fA-F])([0-9a-fA-F])/g, '#$1$1$2$2$3$3');
   }
   const r = parseInt(hexcolor.substr(1, 2), 16);
   const g = parseInt(hexcolor.substr(3, 2), 16);
@@ -37,17 +34,12 @@ export default (context: vscode.ExtensionContext) => {
   function getColorDecorationType(coloringStyle: string, colorVal: string) {
     const decorationType = vscode.window.createTextEditorDecorationType({
       borderWidth:
-        coloringStyle === 'border'
-          ? '2px'
-          : coloringStyle === 'underline'
-          ? '0 0 2px'
-          : '0',
+        coloringStyle === 'border' ? '2px' : coloringStyle === 'underline' ? '0 0 2px' : '0',
       borderStyle: 'solid',
       borderColor: colorVal,
-      backgroundColor:
-        coloringStyle === 'background' ? colorVal : 'transparent',
+      backgroundColor: coloringStyle === 'background' ? colorVal : 'transparent',
       ...(coloringStyle === 'background' && colorVal.startsWith('#')
-        ? {color: getContrastYIQ(colorVal)}
+        ? { color: getContrastYIQ(colorVal) }
         : {}),
     });
     return decorationType;
@@ -58,17 +50,11 @@ export default (context: vscode.ExtensionContext) => {
     if (!decorationTypeMap[colorVal]) {
       decorationTypeMap[colorVal] = {};
       decorationTypeMap[colorVal].style = coloringStyle;
-      decorationTypeMap[colorVal].type = getColorDecorationType(
-        coloringStyle,
-        colorVal,
-      );
+      decorationTypeMap[colorVal].type = getColorDecorationType(coloringStyle, colorVal);
       decorationTypeMap[colorVal].decorations = [];
     } else if (decorationTypeMap[colorVal].style !== coloringStyle) {
       decorationTypeMap[colorVal].style = coloringStyle;
-      decorationTypeMap[colorVal].type = getColorDecorationType(
-        coloringStyle,
-        colorVal,
-      );
+      decorationTypeMap[colorVal].type = getColorDecorationType(coloringStyle, colorVal);
     }
     return decorationTypeMap[colorVal];
   }
@@ -81,11 +67,8 @@ export default (context: vscode.ExtensionContext) => {
         keys.push(prop);
       }
     }
-    keys.forEach(key => {
-      activeEditor.setDecorations(
-        decorationTypeMap[key].type,
-        decorationTypeMap[key].decorations,
-      );
+    keys.forEach((key) => {
+      activeEditor.setDecorations(decorationTypeMap[key].type, decorationTypeMap[key].decorations);
     });
   }
 
@@ -97,12 +80,9 @@ export default (context: vscode.ExtensionContext) => {
         keys.push(prop);
       }
     }
-    keys.forEach(key => {
+    keys.forEach((key) => {
       decorationTypeMap[key].decorations = [];
-      activeEditor.setDecorations(
-        decorationTypeMap[key].type,
-        decorationTypeMap[key].decorations,
-      );
+      activeEditor.setDecorations(decorationTypeMap[key].type, decorationTypeMap[key].decorations);
     });
   }
 
@@ -134,8 +114,7 @@ export default (context: vscode.ExtensionContext) => {
     // Use the theme according to the current setting
     const theme = themeMode === 'Light' ? LightTheme : DarkTheme;
     // Get the coloring style setting
-    const coloringStyle: string =
-      workspaceConfig.get('theme.coloring.style') || '';
+    const coloringStyle: string = workspaceConfig.get('theme.coloring.style') || '';
 
     // RegExp for finding `colors.[THEME_PROP]`
     const regEx = /(^|\W)(colors\.)(\w+)/gm;
@@ -152,17 +131,13 @@ export default (context: vscode.ExtensionContext) => {
       }
       // It should never get to here if `!themeColorVal`
       // but adding a default `transparent` to satisfy types
-      const colorVal: string = isAcceptedColorValue(themeColorVal)
-        ? themeColorVal
-        : 'transparent';
+      const colorVal: string = isAcceptedColorValue(themeColorVal) ? themeColorVal : 'transparent';
       // Start position excluding the `colors.` part
       const startPos = activeEditor.document.positionAt(
-        match.index + match[1].length + match[2].length,
+        match.index + match[1].length + match[2].length
       );
       // End position of the match
-      const endPos = activeEditor.document.positionAt(
-        match.index + match[0].length,
-      );
+      const endPos = activeEditor.document.positionAt(match.index + match[0].length);
       // Create decoration for the current match position
       const decoration = {
         range: new vscode.Range(startPos, endPos),
@@ -171,10 +146,7 @@ export default (context: vscode.ExtensionContext) => {
       // Create and memoize a decoration type for the found color value
       // or pull a memoized decoration type if not the first match
       // for the color value and current coloring style setting
-      const memoizedDecorationType = getMemoizedDecorationType(
-        coloringStyle,
-        colorVal,
-      );
+      const memoizedDecorationType = getMemoizedDecorationType(coloringStyle, colorVal);
       // Add the decoration for the current match to the list
       memoizedDecorationType.decorations.push(decoration);
     }
@@ -183,14 +155,7 @@ export default (context: vscode.ExtensionContext) => {
 
     // Handle theme props other than colors
     // List of theme props we show hints for
-    const themeProps = [
-      'animation',
-      'borders',
-      'breakpoints',
-      'lighting',
-      'sizing',
-      'typography',
-    ];
+    const themeProps = ['animation', 'borders', 'breakpoints', 'lighting', 'sizing', 'typography'];
     for (let i = 0; i < themeProps.length; i++) {
       const regEx = new RegExp(`(\^|\\W)(${themeProps[i]}\\.)(\\w+)`, 'gm');
       // Find matches to decorate accordingly
@@ -203,12 +168,10 @@ export default (context: vscode.ExtensionContext) => {
         }
         // Start position excluding the `sizing.` part
         const startPos = activeEditor.document.positionAt(
-          match.index + match[1].length + match[2].length,
+          match.index + match[1].length + match[2].length
         );
         // End position of the match
-        const endPos = activeEditor.document.positionAt(
-          match.index + match[0].length,
-        );
+        const endPos = activeEditor.document.positionAt(match.index + match[0].length);
         // Create decoration for the current match position
         const decoration = {
           range: new vscode.Range(startPos, endPos),
@@ -235,7 +198,7 @@ export default (context: vscode.ExtensionContext) => {
   }
 
   // Subscribe for the settings change events
-  vscode.workspace.onDidChangeConfiguration(event => {
+  vscode.workspace.onDidChangeConfiguration((event) => {
     if (
       event.affectsConfiguration('baseweb.theme.coloring.enabled') ||
       event.affectsConfiguration('baseweb.theme.coloring.source') ||
@@ -246,23 +209,23 @@ export default (context: vscode.ExtensionContext) => {
   }),
     // Subscribe for active editor change events
     vscode.window.onDidChangeActiveTextEditor(
-      editor => {
+      (editor) => {
         activeEditor = editor;
         if (editor) {
           triggerUpdateDecorations();
         }
       },
       null,
-      context.subscriptions,
+      context.subscriptions
     );
   // Subscribe for document change events
   vscode.workspace.onDidChangeTextDocument(
-    event => {
+    (event) => {
       if (activeEditor && event.document === activeEditor.document) {
         triggerUpdateDecorations();
       }
     },
     null,
-    context.subscriptions,
+    context.subscriptions
   );
 };

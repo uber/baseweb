@@ -6,7 +6,6 @@ LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
 import Layout from '../../components/layout';
 import Exports from '../../components/exports';
 
@@ -34,19 +33,13 @@ Note: **FlexGrid** must contain **FlexGridItem** components as children in order
   <Basic />
 </Example>
 
-<Example
-  title="FlexGrid unequal (narrow) widths"
-  path="flex-grid/unequal-narrow.js"
->
+<Example title="FlexGrid unequal (narrow) widths" path="flex-grid/unequal-narrow.js">
   <UnequalNarrow />
 </Example>
 
 It is possible to achieve unequal-width items using **Block** style overrides.
 
-<Example
-  title="FlexGrid unequal (wide) widths"
-  path="flex-grid/unequal-wide.js"
->
+<Example title="FlexGrid unequal (wide) widths" path="flex-grid/unequal-wide.js">
   <UnequalWide />
 </Example>
 
@@ -66,20 +59,4 @@ Also, keep in mind that the margins won’t be set properly unless you have the 
   <Responsive />
 </Example>
 
-## API
-
-<API
-  heading="FlexGrid API"
-  api={require('!!extract-react-types-loader!../../../src/flex-grid/flex-grid.js')}
-/>
-
-<API
-  heading="FlexGridItem API"
-  api={require('!!extract-react-types-loader!../../../src/flex-grid/flex-grid-item.js')}
-/>
-
-<Exports
-  component={FlexGridExports}
-  title="FlexGrid exports"
-  path="baseui/flex-grid"
-/>
+<Exports component={FlexGridExports} title="FlexGrid exports" path="baseui/flex-grid" />

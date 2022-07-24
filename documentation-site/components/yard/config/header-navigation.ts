@@ -9,9 +9,6 @@ import { Button } from 'baseui/button';
 import { PropTypes } from 'react-view';
 import { TConfig } from '../types';
 
-const headerNavigationProps = require('!!extract-react-types-loader!../../../../src/header-navigation/header-navigation.js');
-const buttonProps = require('!!extract-react-types-loader!../../../../src/button/button.js');
-
 const HeaderNavigationConfig: TConfig = {
   componentName: 'HeaderNavigation',
   imports: {
@@ -66,10 +63,6 @@ const HeaderNavigationConfig: TConfig = {
         sharedProps: {},
       },
     },
-  },
-  mapTokensToProps: {
-    HeaderNavigation: headerNavigationProps,
-    Button: buttonProps,
   },
 };
 

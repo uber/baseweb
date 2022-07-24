@@ -1,8 +1,6 @@
-import {Drawer, ANCHOR, SIZE} from 'baseui/drawer';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
-
-const drawerProps = require('!!extract-react-types-loader!../../../../src/drawer/drawer.js');
+import { Drawer, ANCHOR, SIZE } from 'baseui/drawer';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
 
 const DrawerConfig: TConfig = {
   componentName: 'Drawer',
@@ -11,15 +9,14 @@ const DrawerConfig: TConfig = {
       named: ['Drawer'],
     },
   },
-  scope: {Drawer, ANCHOR, SIZE},
+  scope: { Drawer, ANCHOR, SIZE },
   theme: [],
   props: {
     animate: {
       value: undefined,
       defaultValue: true,
       type: PropTypes.Boolean,
-      description:
-        'Sets whether the Drawer should be displayed by easing in and out.',
+      description: 'Sets whether the Drawer should be displayed by easing in and out.',
       hidden: true,
     },
     isOpen: {
@@ -31,15 +28,13 @@ const DrawerConfig: TConfig = {
     autoFocus: {
       value: true,
       type: PropTypes.Boolean,
-      description:
-        'If true, focus will shift to the first interactive element within the drawer.',
+      description: 'If true, focus will shift to the first interactive element within the drawer.',
       hidden: true,
     },
     renderAll: {
       value: false,
       type: PropTypes.Boolean,
-      description:
-        'Renders all drawer content for SEO purposes regardless of drawer isOpen state.',
+      description: 'Renders all drawer content for SEO purposes regardless of drawer isOpen state.',
     },
     children: {
       value: '<div>drawer content</div>',
@@ -107,8 +102,7 @@ const DrawerConfig: TConfig = {
     mountNode: {
       value: undefined,
       type: PropTypes.Object,
-      description:
-        'Defines where to mount the drawer. It accepts an HTMLElement.',
+      description: 'Defines where to mount the drawer. It accepts an HTMLElement.',
       hidden: true,
     },
     overrides: {
@@ -133,9 +127,6 @@ const DrawerConfig: TConfig = {
         },
       },
     },
-  },
-  mapTokensToProps: {
-    Drawer: drawerProps,
   },
 };
 

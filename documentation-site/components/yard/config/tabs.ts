@@ -1,14 +1,11 @@
-import {Tabs, Tab, ORIENTATION} from 'baseui/tabs';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
-
-const tabsProps = require('!!extract-react-types-loader!../../../../src/tabs/tabs.js');
-const tabProps = require('!!extract-react-types-loader!../../../../src/tabs/tab.js');
+import { Tabs, Tab, ORIENTATION } from 'baseui/tabs';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
 
 const TabsConfig: TConfig = {
   componentName: 'Tabs',
   imports: {
-    'baseui/tabs': {named: ['Tabs']},
+    'baseui/tabs': { named: ['Tabs'] },
   },
   scope: {
     Tabs,
@@ -30,7 +27,7 @@ const TabsConfig: TConfig = {
       type: PropTypes.ReactNode,
       description: `An array of Tab components.`,
       imports: {
-        'baseui/tabs': {named: ['Tab']},
+        'baseui/tabs': { named: ['Tab'] },
       },
     },
     onChange: {
@@ -49,7 +46,7 @@ const TabsConfig: TConfig = {
       options: ORIENTATION,
       description: 'The orientation of the tab component.',
       imports: {
-        'baseui/tabs': {named: ['ORIENTATION']},
+        'baseui/tabs': { named: ['ORIENTATION'] },
       },
     },
     activeKey: {
@@ -66,8 +63,7 @@ const TabsConfig: TConfig = {
     renderAll: {
       value: false,
       type: PropTypes.Boolean,
-      description:
-        'Renders all tab content for SEO purposes regardless of tab active state.',
+      description: 'Renders all tab content for SEO purposes regardless of tab active state.',
     },
     overrides: {
       value: undefined,
@@ -85,10 +81,6 @@ const TabsConfig: TConfig = {
         },
       },
     },
-  },
-  mapTokensToProps: {
-    Tabs: tabsProps,
-    Tab: tabProps,
   },
 };
 

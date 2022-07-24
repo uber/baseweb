@@ -1,12 +1,12 @@
 import * as React from 'react';
 import {styled} from 'baseui';
-import {Theme} from 'baseui/theme';
+import {Theme} from 'baseui';
 
 type CustomTheme = Theme & {extraProp: string};
 
 const BlueDiv = styled<
-  {$color: keyof Theme['colors']},
   'div',
+  {$color: keyof Theme['colors']},
   CustomTheme
 >('div', ({$color, $theme}) => ({
   color: $theme.colors[$color],

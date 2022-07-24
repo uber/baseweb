@@ -8,7 +8,8 @@ LICENSE file in the root directory of this source tree.
 /*eslint-env node*/
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
+const { expect, test } = require('@playwright/test');
+const { mount, analyzeAccessibility, isSameNode } = require('../../../e2e/helpers');
 
 const selectors = {
   collapsed: '[aria-expanded=false]',
@@ -17,22 +18,22 @@ const selectors = {
   lastPanel: 'ul[data-baseweb="accordion"] li:last-of-type div:first-child',
 };
 
-describe('accordion', () => {
-  it('passes basic a11y tests', async () => {
+test.describe('accordion', () => {
+  test('passes basic a11y tests', async ({ page }) => {
     await mount(page, 'accordion--accordion');
     await page.waitForSelector('ul');
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
-  it('expands once the title is clicked', async () => {
+  test('expands once the title is clicked', async ({ page }) => {
     await mount(page, 'accordion--accordion');
     await page.click(selectors.collapsed);
     await page.waitForSelector(selectors.expanded);
-    await expect(page).toMatchElement('li', { text: 'panel 1' });
+    await expect(page.locator('li').first()).toHaveText('Accordion panel 1panel 1');
   });
 
-  it('collapses once expanded title is clicked', async () => {
+  test('collapses once expanded title is clicked', async ({ page }) => {
     await mount(page, 'accordion--accordion');
 
     const initialCount = await page.$$eval(selectors.collapsed, (panels) => panels.length);
@@ -45,7 +46,7 @@ describe('accordion', () => {
     expect(count).toBe(initialCount);
   });
 
-  it('correctly shifts focus when End and Home keys are pressed', async () => {
+  test('correctly shifts focus when End and Home keys are pressed', async ({ page }) => {
     await mount(page, 'accordion--accordion');
 
     await page.keyboard.press('Tab');
@@ -54,19 +55,17 @@ describe('accordion', () => {
     // eslint-disable-next-line cup/no-undef
     const activeEl = await page.evaluateHandle(() => window.document.activeElement);
     const lastPanel = await page.$(selectors.lastPanel);
-    const isLastPanelFocused = await page.evaluate((e1, e2) => e1 === e2, activeEl, lastPanel);
-    expect(isLastPanelFocused).toBe(true);
+    expect(await isSameNode(page, activeEl, lastPanel)).toBe(true);
 
     await page.keyboard.press('Home');
 
     // eslint-disable-next-line cup/no-undef
     const activeEl2 = await page.evaluateHandle(() => window.document.activeElement);
     const firstPanel = await page.$(selectors.collapsed);
-    const isFirstPanelFocused = await page.evaluate((e1, e2) => e1 === e2, activeEl2, firstPanel);
-    expect(isFirstPanelFocused).toBe(true);
+    expect(await isSameNode(page, activeEl2, firstPanel)).toBe(true);
   });
 
-  it('correctly shifts focus when Arrow Up and Arrow Down are pressed', async () => {
+  test('correctly shifts focus when Arrow Up and Arrow Down are pressed', async ({ page }) => {
     await mount(page, 'accordion--accordion');
 
     await page.keyboard.press('Tab');
@@ -75,19 +74,17 @@ describe('accordion', () => {
     // eslint-disable-next-line cup/no-undef
     const activeEl = await page.evaluateHandle(() => window.document.activeElement);
     const secondPanel = await page.$(selectors.secondPanel);
-    const isSecondPanelFocused = await page.evaluate((e1, e2) => e1 === e2, activeEl, secondPanel);
-    expect(isSecondPanelFocused).toBe(true);
+    expect(await isSameNode(page, activeEl, secondPanel)).toBe(true);
 
     await page.keyboard.press('ArrowUp');
 
     // eslint-disable-next-line cup/no-undef
     const activeEl2 = await page.evaluateHandle(() => window.document.activeElement);
     const firstPanel = await page.$(selectors.collapsed);
-    const isFirstPanelFocused = await page.evaluate((e1, e2) => e1 === e2, activeEl2, firstPanel);
-    expect(isFirstPanelFocused).toBe(true);
+    expect(await isSameNode(page, activeEl2, firstPanel)).toBe(true);
   });
 
-  it('only moves between panel headers, ignoring panel bodies', async () => {
+  test('only moves between panel headers, ignoring panel bodies', async ({ page }) => {
     await mount(page, 'accordion--accordion');
 
     await page.keyboard.press('Tab');
@@ -100,7 +97,6 @@ describe('accordion', () => {
     // eslint-disable-next-line cup/no-undef
     const activeEl = await page.evaluateHandle(() => window.document.activeElement);
     const firstPanel = await page.$(selectors.collapsed);
-    const isFirstPanelFocused = await page.evaluate((e1, e2) => e1 === e2, activeEl, firstPanel);
-    expect(isFirstPanelFocused).toBe(true);
+    expect(await isSameNode(page, activeEl, firstPanel)).toBe(true);
   });
 });

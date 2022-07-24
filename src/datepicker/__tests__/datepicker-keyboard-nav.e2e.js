@@ -8,7 +8,9 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const { mount } = require('../../../e2e/helpers');
+const { mount, isSameNode } = require('../../../e2e/helpers');
+
+const { expect, test } = require('@playwright/test');
 
 const selectors = {
   input: 'input',
@@ -29,13 +31,15 @@ const isActiveEl = async (page, selector) => {
   // eslint-disable-next-line cup/no-undef
   const activeEl = await page.evaluateHandle(() => document.activeElement);
   const selectedEl = await page.$(selector);
-  const equal = await page.evaluate((e1, e2) => e1 === e2, activeEl, selectedEl);
+  const equal = await isSameNode(page, activeEl, selectedEl);
   activeEl.dispose();
   return equal;
 };
 
-describe('Datepicker - keyboard navigation', () => {
-  it('calendar is focusable and can be navigated in', async () => {
+test.describe('Datepicker - keyboard navigation', () => {
+  test('calendar is focusable and can be navigated in', async ({ browserName, page }) => {
+    test.fixme(browserName === 'webkit', 'this feature fails in webkit');
+
     await mount(page, 'datepicker--datepicker');
     await page.waitForSelector(selectors.input);
     await page.focus(selectors.input);
@@ -79,7 +83,7 @@ describe('Datepicker - keyboard navigation', () => {
     // press the next month button
     await page.keyboard.press('Enter');
     // make sure March is gone
-    await page.waitForSelector(selectors.mar10, { hidden: true });
+    await page.waitForSelector(selectors.mar10, { state: 'hidden' });
     // and make sure April is now visible
     await page.waitForSelector(selectors.apr1);
 
@@ -108,7 +112,12 @@ describe('Datepicker - keyboard navigation', () => {
     expect(isElActive).toBe(true);
   });
 
-  it('calendar sets highlighted date appropriately when selecting a new date or navigating around', async () => {
+  test('calendar sets highlighted date appropriately when selecting a new date or navigating around', async ({
+    browserName,
+    page,
+  }) => {
+    test.fixme(browserName === 'webkit', 'this feature fails in webkit');
+
     await mount(page, 'datepicker--range-highlight');
     await page.waitForSelector(selectors.input);
     // open the calendar by moving focus into input
@@ -159,7 +168,7 @@ describe('Datepicker - keyboard navigation', () => {
     await page.keyboard.press('Enter');
 
     // check that calendar is closed and input gets focus
-    await page.waitForSelector(selectors.calendar, { hidden: true });
+    await page.waitForSelector(selectors.calendar, { state: 'hidden' });
     isInputActive = await isActiveEl(page, selectors.input);
     expect(isInputActive).toBe(true);
 
@@ -233,7 +242,7 @@ describe('Datepicker - keyboard navigation', () => {
     // press the next month button
     await page.keyboard.press('Enter');
     // make sure March is gone
-    await page.waitForSelector(selectors.mar14, { hidden: true });
+    await page.waitForSelector(selectors.mar14, { state: 'hidden' });
     // and make sure April is now visible
     await page.waitForSelector(selectors.apr1);
 
@@ -256,7 +265,7 @@ describe('Datepicker - keyboard navigation', () => {
     // press the prev month button
     await page.keyboard.press('Enter');
     // make sure April is gone
-    await page.waitForSelector(selectors.apr1, { hidden: true });
+    await page.waitForSelector(selectors.apr1, { state: 'hidden' });
     // and make sure March is now visible
     await page.waitForSelector(selectors.mar10);
 

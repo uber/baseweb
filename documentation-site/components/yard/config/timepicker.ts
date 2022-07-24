@@ -4,20 +4,18 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import {TimePicker} from 'baseui/timepicker';
-import {SIZE} from 'baseui/input';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
+import { TimePicker } from 'baseui/timepicker';
+import { SIZE } from 'baseui/input';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
 import inputConfig from './input';
 import selectConfig from './select';
-import {startOfDay} from 'date-fns';
-
-const timepickerProps = require('!!extract-react-types-loader!../../../../src/timepicker/timepicker.js');
+import { startOfDay } from 'date-fns';
 
 const TimepickerConfig: TConfig = {
   componentName: 'TimePicker',
   imports: {
-    'baseui/timepicker': {named: ['TimePicker']},
+    'baseui/timepicker': { named: ['TimePicker'] },
   },
   scope: {
     TimePicker,
@@ -69,8 +67,7 @@ const TimepickerConfig: TConfig = {
       value: undefined,
       type: PropTypes.Number,
       placeholder: '900',
-      description:
-        'Amount of seconds between each option time. Defaults to 900 (15 minutes).',
+      description: 'Amount of seconds between each option time. Defaults to 900 (15 minutes).',
     },
     minTime: {
       value: startOfDay(new Date()).toISOString(),
@@ -103,9 +100,6 @@ options will clamp to the date start and date end.
         sharedProps: {},
       },
     },
-  },
-  mapTokensToProps: {
-    TimePicker: timepickerProps,
   },
 };
 

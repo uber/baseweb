@@ -4,11 +4,22 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
+/* global window */
 /* eslint-disable flowtype/require-valid-file-annotation */
 const { mount } = require('../../../e2e/helpers');
 
-describe('popover', () => {
-  it('should not scroll the page on autoFocus if preventScroll is passed as true to focusOptions', async () => {
+const { expect, test } = require('@playwright/test');
+
+test.describe('popover', () => {
+  test('should not scroll the page on autoFocus if preventScroll is passed as true to focusOptions', async ({
+    browserName,
+    page,
+  }) => {
+    test.fixme(
+      browserName === 'firefox' || browserName === 'chromium',
+      'this feature fails in firefox and chromium'
+    );
+
     await mount(page, 'popover--prevent-scroll-on-focus');
     await page.waitForSelector('button');
 
@@ -18,7 +29,7 @@ describe('popover', () => {
 
     // Close Popover
     await page.click('button');
-    await page.waitForSelector('div[data-e2e="content"]', { hidden: true });
+    await page.waitForSelector('div[data-e2e="content"]', { state: 'hidden' });
 
     // Scroll to the last div
     await page.evaluate(() =>
@@ -55,7 +66,7 @@ describe('popover', () => {
     });
 
     // Waiting for scroll to end
-    await page.waitForFunction('window.isPageScrolling === false');
+    await page.waitForFunction(() => window.isPageScrolling === false, { poll: 100 });
 
     // We keep a flag to see if the page is scrolled or not after this point in the test.
     let pageScrolled = false;

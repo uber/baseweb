@@ -7,7 +7,13 @@ import {
 } from 'baseui/table-semantic';
 
 export default function Example() {
-  const [data, setData] = useState([
+  type Row = {
+    foo: number;
+    bar: string;
+    url: string;
+    selected: boolean;
+  };
+  const [data, setData] = useState<Row[]>([
     {
       foo: 10,
       bar: 'banana',
@@ -29,12 +35,12 @@ export default function Example() {
   ]);
 
   const hasAny = Boolean(data.length);
-  const hasAll = hasAny && data.every(x => x.selected);
-  const hasSome = hasAny && data.some(x => x.selected);
+  const hasAll = hasAny && data.every((x) => x.selected);
+  const hasSome = hasAny && data.some((x) => x.selected);
 
   function toggleAll() {
-    setData(data =>
-      data.map(row => ({
+    setData((data) =>
+      data.map((row) => ({
         ...row,
         selected: !hasAll,
       })),
@@ -44,8 +50,8 @@ export default function Example() {
   function toggle(event: any) {
     const {name, checked} = event.currentTarget;
 
-    setData(data =>
-      data.map(row => ({
+    setData((data) =>
+      data.map((row) => ({
         ...row,
         selected: String(row.foo) === name ? checked : row.selected,
       })),
@@ -67,19 +73,19 @@ export default function Example() {
           />
         }
       >
-        {row => (
+        {(row: Row) => (
           <Checkbox
-            name={row.foo}
+            name={'' + row.foo}
             checked={row.selected}
             onChange={toggle}
           />
         )}
       </TableBuilderColumn>
       <TableBuilderColumn header="Produce">
-        {row => <Link href={row.url}>{row.bar}</Link>}
+        {(row: Row) => <Link href={row.url}>{row.bar}</Link>}
       </TableBuilderColumn>
       <TableBuilderColumn header="Quantity" numeric>
-        {row => row.foo}
+        {(row: Row) => row.foo}
       </TableBuilderColumn>
     </TableBuilder>
   );

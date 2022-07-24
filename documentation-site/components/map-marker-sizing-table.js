@@ -7,8 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import { Table } from 'baseui/table-semantic';
-import { PINHEAD_SIZES_SHAPES, FLOATING_MARKER_SIZES } from 'baseui/map-marker';
-import { PINHEAD_DIMENSIONS } from '../../src/map-marker/constants';
+import { PINHEAD_SIZES_SHAPES, FLOATING_MARKER_SIZES, PINHEAD_DIMENSIONS } from 'baseui/map-marker';
 import { InlineCode } from './markdown-elements';
 
 export const FixedMarkerSizingTable = () => {

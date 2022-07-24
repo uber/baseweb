@@ -13,18 +13,18 @@ export default function Example() {
     <StyledRoot>
       <StyledTable>
         <StyledTableHeadRow>
-          <StyledTableHeadCell colSpan="2">
+          <StyledTableHeadCell colSpan={2}>
             Parent
           </StyledTableHeadCell>
-          <StyledTableHeadCell colSpan="2">
+          <StyledTableHeadCell colSpan={2}>
             Children
           </StyledTableHeadCell>
         </StyledTableHeadRow>
         <StyledTableBodyRow>
-          <StyledTableBodyCell rowSpan="3">
+          <StyledTableBodyCell rowSpan={3}>
             Sarah
           </StyledTableBodyCell>
-          <StyledTableBodyCell rowSpan="3">
+          <StyledTableBodyCell rowSpan={3}>
             Brown
           </StyledTableBodyCell>
           <StyledTableBodyCell>Sally</StyledTableBodyCell>
@@ -39,10 +39,10 @@ export default function Example() {
           <StyledTableBodyCell>Black</StyledTableBodyCell>
         </StyledTableBodyRow>
         <StyledTableBodyRow>
-          <StyledTableBodyCell rowSpan="2">
+          <StyledTableBodyCell rowSpan={2}>
             Jane
           </StyledTableBodyCell>
-          <StyledTableBodyCell rowSpan="2">
+          <StyledTableBodyCell rowSpan={2}>
             Smith
           </StyledTableBodyCell>
           <StyledTableBodyCell>Molly</StyledTableBodyCell>

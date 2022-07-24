@@ -2,15 +2,15 @@ import * as React from 'react';
 import {
   TreeView,
   TreeLabel,
-  TreeNode,
+  TreeNodeData,
   TreeLabelProps,
   toggleIsExpanded,
 } from 'baseui/tree-view';
 import {ChevronRight} from 'baseui/icon';
 import {ChevronDown} from 'baseui/icon';
 
-const CustomLabel = (node: TreeNode) => {
-  const Tag = (depth => {
+const CustomLabel = (node: TreeNodeData) => {
+  const Tag = ((depth) => {
     switch (depth) {
       case 1:
         return 'h1';
@@ -47,7 +47,7 @@ const CustomTreeLabel = (props: TreeLabelProps) => {
   );
 };
 
-const initialData: TreeNode[] = [
+const initialData: TreeNodeData[] = [
   {
     id: 1,
     depth: 1,
@@ -114,8 +114,8 @@ export default function TreeViewOverrides() {
   return (
     <TreeView
       data={data}
-      onToggle={node =>
-        setData(prevData => toggleIsExpanded(prevData, node))
+      onToggle={(node) =>
+        setData((prevData) => toggleIsExpanded(prevData, node))
       }
       overrides={{
         IconContainer: {

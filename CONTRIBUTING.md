@@ -30,11 +30,11 @@ yarn unit-test
 
 # to run a specific unit test:
 yarn unit-test src/button/__tests__/button.test.js
-````
+```
 
 ### End-to-end tests
 
-E2E test files end with a `.e2e.js` extension. These tests can launch a web page and interact with it using the [puppeteer](https://pptr.dev/) library. `mount` function calls within those tests reference the names of `.scenario.js` files. These tests require the baseui library to be compiled before running, so will involve a couple more steps than other testing strategies. If you make a change to library code, you will need to recompile before running e2e tests.
+E2E test files end with a `.e2e.js` extension. These tests can launch a web page and interact with it using the [playwright](https://playwright.dev/) library. `mount` function calls within those tests reference the names of `.scenario.js` files. These tests require the baseui library to be compiled before running, so will involve a couple more steps than other testing strategies. If you make a change to library code, you will need to recompile before running e2e tests.
 
 ```bash
 # in one shell build the library:

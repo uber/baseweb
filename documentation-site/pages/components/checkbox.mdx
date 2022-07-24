@@ -21,13 +21,12 @@ import ComponentOverrides from 'examples/checkbox/component-overrides.js';
 import Focus from 'examples/checkbox/focus.js';
 import Toggle from 'examples/checkbox/toggle.js';
 
-import {Block} from 'baseui/block';
-import {StatefulCheckbox, STYLE_TYPE} from 'baseui/checkbox';
+import { Block } from 'baseui/block';
+import { StatefulCheckbox, STYLE_TYPE } from 'baseui/checkbox';
 import * as CheckboxExports from 'baseui/checkbox';
 
 import Yard from '../../components/yard/index';
 import checkboxYardConfig from '../../components/yard/config/checkbox';
-import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -77,10 +76,7 @@ options. When engaged (on), Base Web toggles are colored and when disengaged (of
   <Customization />
 </Example>
 
-<Example
-  title="Overriding sub-components"
-  path="checkbox/component-overrides.js"
->
+<Example title="Overriding sub-components" path="checkbox/component-overrides.js">
   <ComponentOverrides />
 </Example>
 
@@ -92,25 +88,10 @@ options. When engaged (on), Base Web toggles are colored and when disengaged (of
   <Toggle />
 </Example>
 
-<Example
-  title="Stateful (uncontrolled) usage"
-  path="checkbox/basic-uncontrolled.js"
->
+<Example title="Stateful (uncontrolled) usage" path="checkbox/basic-uncontrolled.js">
   <Uncontrolled />
 </Example>
 
 As with many of our components, there is also an [uncontrolled](https://reactjs.org/docs/uncontrolled-components.html) version, `StatefulCheckbox`, which manages its own state.
 
-## API
-
-<ApiTable
-  title="Checkbox props"
-  config={checkboxYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/checkbox/checkbox.js')}
-/>
-
-<Exports
-  component={CheckboxExports}
-  title="Checkbox exports"
-  path="baseui/checkbox"
-/>
+<Exports component={CheckboxExports} title="Checkbox exports" path="baseui/checkbox" />

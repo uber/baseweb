@@ -45,6 +45,7 @@ export default function Example() {
                 if (item.label === SSR) {
                   return (
                     <StatefulMenu
+                      // @ts-ignore todo:
                       size="compact"
                       items={SSR_SUB_MENU}
                       overrides={{
@@ -57,6 +58,7 @@ export default function Example() {
                 if (item.label === SERVER) {
                   return (
                     <StatefulMenu
+                      // @ts-ignore todo:
                       size="compact"
                       items={SERVER_SUB_MENU}
                       overrides={{

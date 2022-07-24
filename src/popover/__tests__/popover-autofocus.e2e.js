@@ -9,30 +9,16 @@ LICENSE file in the root directory of this source tree.
 
 const { mount } = require('../../../e2e/helpers');
 
-const isActiveEl = async (page, selector) => {
-  // eslint-disable-next-line cup/no-undef
-  const activeEl = await page.evaluateHandle(() => document.activeElement);
-  const selectedEl = await page.$(selector);
-  const equal = await page.evaluate((e1, e2) => e1 === e2, activeEl, selectedEl);
-  activeEl.dispose();
-  return equal;
-};
+const { expect, test } = require('@playwright/test');
 
-const inputSelector = 'input';
-
-describe('popover', () => {
-  it('contents are auto-focused but not focus-locked', async () => {
+test.describe('popover', () => {
+  test('contents are auto-focused but not focus-locked', async ({ page }) => {
     await mount(page, 'popover--auto-focus-without-focus-lock');
-    await page.waitForSelector('button');
-    await page.click('button');
-    await page.waitForSelector(inputSelector);
 
-    const inputIsActiveOnOpening = await isActiveEl(page, inputSelector);
-    expect(inputIsActiveOnOpening).toBe(true);
-
+    await page.locator('button').click();
+    const input = page.locator('input');
+    await expect(input).toBeFocused();
     await page.keyboard.press('Tab');
-
-    const inputIsActiveAfterTabbingOut = await isActiveEl(page, inputSelector);
-    expect(inputIsActiveAfterTabbingOut).toBe(false);
+    await expect(input).not.toBeFocused();
   });
 });

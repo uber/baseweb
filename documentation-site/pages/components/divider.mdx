@@ -1,0 +1,35 @@
+<!--
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import Layout from '../../components/layout';
+import Exports from '../../components/exports';
+
+import { StyledDivider } from 'baseui/divider';
+import * as DividerExports from 'baseui/divider';
+import DividerBasic from 'examples/divider/basic.js';
+
+export default Layout;
+
+# Divider
+
+Dividers are visual indicators used to separate sections of content. Divider is available in
+three sizes via the `size` prop:
+
+1. `cell`: 1px thick. Use to divide individual cells in List items.
+2. `section`: 2px thick. Use between groups of List items.
+3. `module`: 8px thick. Use to group larger clusters of related sections.
+
+## Examples
+
+<Example title="Basic" path="divider/basic.js">
+  <DividerBasic />
+</Example>
+
+## API
+
+<Exports component={DividerExports} title="Divider exports" path="baseui/divider" />

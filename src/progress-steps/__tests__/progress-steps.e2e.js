@@ -10,21 +10,23 @@ LICENSE file in the root directory of this source tree.
 
 const { mount, analyzeAccessibility } = require('../../../e2e/helpers');
 
+const { expect, test } = require('@playwright/test');
+
 const selectors = {
   nextButton: '[data-e2e=button-next]',
   previousButton: '[data-e2e=button-previous]',
   contentAtPosition: (position) => `[data-e2e="content-${position}"]`,
 };
 
-describe('progress steps', () => {
-  it('passes basic a11y tests', async () => {
+test.describe('progress steps', () => {
+  test('passes basic a11y tests', async ({ page }) => {
     await mount(page, 'progress-steps--progress-steps');
     await page.waitForSelector(selectors.nextButton);
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
-  it('can be moved to the next step, and back too', async () => {
+  test('can be moved to the next step, and back too', async ({ page }) => {
     await mount(page, 'progress-steps--progress-steps');
     await page.waitForSelector(selectors.nextButton);
 

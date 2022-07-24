@@ -1,0 +1,36 @@
+<!--
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import Layout from '../../components/layout';
+import Exports from '../../components/exports';
+
+import { HintDot } from 'baseui/badge';
+import * as HintDotExports from 'baseui/badge';
+
+import Yard from '../../components/yard/index';
+import hintDotYardConfig from '../../components/yard/config/hint-dot';
+
+import Offset from 'examples/hint-dot/offset.js';
+
+export default Layout;
+
+# HintDot
+
+<Yard placeholderHeight={34} {...hintDotYardConfig} />
+
+HintDot is a subtle nudging badge pointing out something new. It is usually anchored to an entry point to another page. HintDot is placed on the trailing end of icons, components or text.
+
+## Examples
+
+<Example title="Offset" path="hint-dot/offset.js">
+  <Offset />
+</Example>
+
+There may be situations where it makes sense to deviate from the standard placement options. Use the offset props to manually position HintDot.
+
+<Exports component={HintDotExports} title="HintDot exports" path="baseui/badge" />

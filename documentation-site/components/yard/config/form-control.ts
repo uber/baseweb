@@ -4,18 +4,15 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import {FormControl} from 'baseui/form-control';
-import {Input} from 'baseui/input';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
-
-const formControlProps = require('!!extract-react-types-loader!../../../../src/form-control/form-control.js');
-const inputProps = require('!!extract-react-types-loader!../../../../src/input/input.js');
+import { FormControl } from 'baseui/form-control';
+import { Input } from 'baseui/input';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
 
 const TextareaConfig: TConfig = {
   componentName: 'FormControl',
   imports: {
-    'baseui/form-control': {named: ['FormControl']},
+    'baseui/form-control': { named: ['FormControl'] },
   },
   scope: {
     FormControl,
@@ -27,7 +24,7 @@ const TextareaConfig: TConfig = {
       value: '<Input />',
       type: PropTypes.ReactNode,
       description: 'Content wrapped by FormControl.',
-      imports: {'baseui/input': {named: ['Input']}},
+      imports: { 'baseui/input': { named: ['Input'] } },
     },
     label: {
       value: `() => 'label'`,
@@ -81,10 +78,6 @@ const TextareaConfig: TConfig = {
         },
       },
     },
-  },
-  mapTokensToProps: {
-    FormControl: formControlProps,
-    Input: inputProps,
   },
 };
 

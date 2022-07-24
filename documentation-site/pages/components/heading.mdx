@@ -7,7 +7,6 @@ LICENSE file in the root directory of this source tree.
 
 import Example from '../../components/example';
 import Exports from '../../components/exports';
-import API from '../../components/api';
 import Layout from '../../components/layout';
 
 import * as HeadingExports from 'baseui/heading';
@@ -15,7 +14,7 @@ import * as HeadingExports from 'baseui/heading';
 import Basic from 'examples/heading/basic.js';
 import DecoupleStyles from 'examples/heading/decouple-styles.js';
 
-import {Heading, HeadingLevel} from 'baseui/heading';
+import { Heading, HeadingLevel } from 'baseui/heading';
 
 export default Layout;
 
@@ -37,27 +36,8 @@ It is also possible to **decouple styles from the underlying `h1`-`h6` DOM eleme
 
 Ideally, the user will use the default styles but sometimes it might make sense to set a fixed style no matter in what context the component was placed. You can decouple styles from levels through the `styleLevel` prop. However, **the proper `h1, h2 ... h6` hierarchy always stays in place**.
 
-<Example
-  title="Decouple and fix heading styles"
-  path="heading/decouple-styles.js"
->
+<Example title="Decouple and fix heading styles" path="heading/decouple-styles.js">
   <DecoupleStyles />
 </Example>
 
-## API
-
-<API
-  heading="HeadingLevel API"
-  api={require('!!extract-react-types-loader!../../../src/heading/heading-level.js')}
-/>
-
-<API
-  heading="Heading API"
-  api={require('!!extract-react-types-loader!../../../src/heading/heading.js')}
-/>
-
-<Exports
-  component={HeadingExports}
-  title="Heading exports"
-  path="baseui/heading"
-/>
+<Exports component={HeadingExports} title="Heading exports" path="baseui/heading" />

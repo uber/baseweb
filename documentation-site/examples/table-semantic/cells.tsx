@@ -22,6 +22,8 @@ const ROW = {
   list: ['One', 'Two', 'Three'],
 };
 
+type Row = typeof ROW;
+
 const DATA = Array.from(new Array(20)).fill(ROW);
 
 function AvatarCell({
@@ -112,7 +114,7 @@ function TagsCell({tags}: {tags: Array<string>}) {
   const [css] = useStyletron();
   return (
     <div className={css({display: 'flex', alignItems: 'center'})}>
-      {tags.map(tag => {
+      {tags.map((tag) => {
         return (
           <Tag key={tag} closeable={false}>
             {tag}
@@ -155,8 +157,8 @@ export default function Example() {
       overrides={{Root: {style: {maxHeight: '300px'}}}}
       data={DATA}
     >
-      <TableBuilderColumn header="Avatar">
-        {row => (
+      <TableBuilderColumn<Row> header="Avatar">
+        {(row) => (
           <AvatarCell
             src={row.avatarSrc}
             title={row.name}
@@ -165,22 +167,24 @@ export default function Example() {
         )}
       </TableBuilderColumn>
 
-      <TableBuilderColumn header="Number positive">
-        {row => <NumberCell value={row.largeNumber} delta={0.51} />}
+      <TableBuilderColumn<Row> header="Number positive">
+        {(row) => (
+          <NumberCell value={row.largeNumber} delta={0.51} />
+        )}
       </TableBuilderColumn>
 
-      <TableBuilderColumn header="Number negative">
-        {row => (
+      <TableBuilderColumn<Row> header="Number negative">
+        {(row) => (
           <NumberCell value={row.largeNumber} delta={-0.51} />
         )}
       </TableBuilderColumn>
 
-      <TableBuilderColumn header="Tags">
-        {row => <TagsCell tags={row.list} />}
+      <TableBuilderColumn<Row> header="Tags">
+        {(row) => <TagsCell tags={row.list} />}
       </TableBuilderColumn>
 
-      <TableBuilderColumn header="Buttons">
-        {row => <ButtonsCell labels={row.list} />}
+      <TableBuilderColumn<Row> header="Buttons">
+        {(row) => <ButtonsCell labels={row.list} />}
       </TableBuilderColumn>
     </TableBuilder>
   );

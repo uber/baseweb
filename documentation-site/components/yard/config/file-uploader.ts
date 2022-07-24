@@ -1,9 +1,7 @@
-import {FileUploader} from 'baseui/file-uploader';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
+import { FileUploader } from 'baseui/file-uploader';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
 import buttonConfig from './button';
-
-const fileUploaderProps = require('!!extract-react-types-loader!../../../../src/file-uploader/file-uploader.js');
 
 const changeHandlers = [
   'onClick',
@@ -25,7 +23,7 @@ const changeHandlers = [
 const FileUploaderConfig: TConfig = {
   componentName: 'FileUploader',
   imports: {
-    'baseui/file-uploader': {named: ['FileUploader']},
+    'baseui/file-uploader': { named: ['FileUploader'] },
   },
   scope: {
     FileUploader,
@@ -51,14 +49,12 @@ const FileUploaderConfig: TConfig = {
     multiple: {
       value: undefined,
       type: PropTypes.Boolean,
-      description:
-        'Allow drag n drop (or selection from the file dialog) of multiple files',
+      description: 'Allow drag n drop (or selection from the file dialog) of multiple files',
     },
     disableClick: {
       value: undefined,
       type: PropTypes.Boolean,
-      description:
-        'Disallow clicking on the dropzone container to open file dialog.',
+      description: 'Disallow clicking on the dropzone container to open file dialog.',
     },
     disabled: {
       value: false,
@@ -76,7 +72,7 @@ const FileUploaderConfig: TConfig = {
       acc[current] = {
         value: undefined,
         type: PropTypes.Function,
-        description: `Called when the ${current} even is triggered.`,
+        description: `Called when the ${current} event is triggered.`,
         hidden: true,
       };
       return acc;
@@ -99,20 +95,19 @@ const FileUploaderConfig: TConfig = {
       description: 'Lets you customize all aspects of the component.',
       custom: {
         names: [
-          'Root',
-          {...buttonConfig, componentName: 'ButtonComponent'},
+          { ...buttonConfig, componentName: 'ButtonComponent' },
+          { ...buttonConfig, componentName: 'CancelButtonComponent' },
+          { ...buttonConfig, componentName: 'RetryButtonComponent' },
           'ContentMessage',
           'ErrorMessage',
           'FileDragAndDrop',
           'HiddenInput',
           'Spinner',
+          'ProgressBar',
         ],
         sharedProps: {},
       },
     },
-  },
-  mapTokensToProps: {
-    FileUploader: fileUploaderProps,
   },
 };
 

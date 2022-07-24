@@ -1,8 +1,6 @@
-import {Table} from 'baseui/table';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
-
-const tableProps = require('!!extract-react-types-loader!../../../../src/table/table.js');
+import { Table } from 'baseui/table';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
 
 const TableConfig: TConfig = {
   componentName: 'Table',
@@ -11,7 +9,7 @@ const TableConfig: TConfig = {
       named: ['Table'],
     },
   },
-  scope: {Table},
+  scope: { Table },
   theme: [
     'tableHeadBackgroundColor',
     'tableBackground',
@@ -60,9 +58,6 @@ const TableConfig: TConfig = {
         sharedProps: {},
       },
     },
-  },
-  mapTokensToProps: {
-    Table: tableProps,
   },
 };
 

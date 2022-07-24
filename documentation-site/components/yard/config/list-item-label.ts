@@ -1,8 +1,6 @@
-import {ListItemLabel} from 'baseui/list';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
-
-const listItemLabelProps = require('!!extract-react-types-loader!../../../../src/list/list-item-label.js');
+import { ListItemLabel } from 'baseui/list';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
 
 const ListItemLabelConfig: TConfig = {
   componentName: 'ListItemLabel',
@@ -44,9 +42,6 @@ const ListItemLabelConfig: TConfig = {
         },
       },
     },
-  },
-  mapTokensToProps: {
-    ListItemLabel: listItemLabelProps,
   },
 };
 

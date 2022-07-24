@@ -26,7 +26,6 @@ module.exports = {
     page: true,
     browser: true,
     context: true,
-    jestPuppeteer: true,
   },
   settings: {
     react: {
@@ -52,7 +51,8 @@ module.exports = {
       'error',
       { optionalDependencies: false, devDependencies: true },
     ],
-    'import/extensions': ['error', 'always', { ignorePackages: true }],
+    // todo: after typescript migration to remove import extensions where possible
+    'import/extensions': 'off',
     'prettier/prettier': [
       'error',
       {
@@ -63,7 +63,7 @@ module.exports = {
         singleQuote: true,
         trailingComma: 'es5',
         bracketSpacing: true,
-        jsxBracketSameLine: false,
+        bracketSameLine: false,
       },
     ],
     'import/prefer-default-export': ['off'],
@@ -76,8 +76,6 @@ module.exports = {
     ],
     'import/no-duplicates': 2,
     'import/newline-after-import': 2,
-    'jest/no-identical-title': 2,
-    'jest/no-focused-tests': 2,
     'import/first': 2,
     'dot-notation': 2,
   },
@@ -99,6 +97,27 @@ module.exports = {
       files: ['packages/eslint-plugin-baseui/**/*.js', 'packages/baseweb-vscode-extension/**/*.js'],
       rules: {
         'flowtype/require-valid-file-annotation': 'off',
+      },
+    },
+    {
+      files: ['**/*.e2e.js'],
+      rules: {
+        'flowtype/require-valid-file-annotation': 'off',
+      },
+    },
+    {
+      files: ['**/*.ts', '**/*.tsx', '**/*.d.ts'],
+      parser: '@typescript-eslint/parser',
+      plugins: ['@typescript-eslint'],
+      rules: {
+        'flowtype/require-valid-file-annotation': 'off',
+        'flowtype/space-after-type-colon': 'off',
+        'flowtype/no-types-missing-file-annotation': 'off',
+        'header/header': 'off',
+        'import/extensions': 'off',
+        'cup/no-undef': 'off',
+        'no-unused-vars': 'off',
+        'no-redeclare': 'off',
       },
     },
   ],
