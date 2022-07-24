@@ -18,16 +18,15 @@ export function Scenario() {
   const markers = [];
 
   const [confidenceRadius, setConfidenceRadius] = React.useState([100]);
-
   const [bearing, setBearing] = React.useState([0]);
   const [showBearing, setShowBearing] = React.useState(true);
 
   Object.keys(LOCATION_PUCK_SIZES)
     .map((key) => LOCATION_PUCK_SIZES[key])
-    .forEach((size: LocationPuckSizeT, i: number) => {
+    .forEach((size: LocationPuckSizeT) => {
       Object.keys(LOCATION_PUCK_TYPES)
         .map((key) => LOCATION_PUCK_TYPES[key])
-        .forEach((type: LocationPuckTypeT, z: number) => {
+        .forEach((type: LocationPuckTypeT) => {
           markers.push({
             id: `${size} / ${type}`,
             content: (
@@ -65,7 +64,7 @@ export function Scenario() {
           checked={showBearing}
           onChange={(e) => setShowBearing(e.target.checked)}
           labelPlacement={LABEL_PLACEMENT.right}
-          key="dragging"
+          key={'show-bearing'}
         >
           Show bearing
         </Checkbox>,

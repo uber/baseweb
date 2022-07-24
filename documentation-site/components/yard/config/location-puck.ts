@@ -23,14 +23,23 @@ export const locationPuckProps = {
   bearing: {
     value: 0,
     defaultValue: 0,
+    placeholder: '0',
     type: PropTypes.Number,
     description: 'Bearing (also known as heading or direction) of the user.',
+  },
+  showBearing: {
+    value: true,
+    defaultValue: true,
+    type: PropTypes.Boolean,
+    description: `Renders the bearing indicator. Set this value to false if bearing (heading) isn't available. This prop only applies to the consumer location puck.`,
   },
   confidenceRadius: {
     value: 0,
     defaultValue: 0,
+    placeholder: '0',
     type: PropTypes.Number,
-    description: 'Radius of the confidence circle',
+    description:
+      'Radius, in px, of the confidence circle. This circle represents the confidence level of the GPS signal.',
   },
   size: {
     value: 'LOCATION_PUCK_SIZES.medium',

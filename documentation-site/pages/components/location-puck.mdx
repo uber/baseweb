@@ -13,6 +13,7 @@ import locationPuckYardConfig from '../../components/yard/config/location-puck';
 import ApiTable from '../../components/api-table';
 
 import ConsumerLocationPuck from 'examples/location-puck/consumer.js';
+import ConsumerLocationPuckConfidence from 'examples/location-puck/consumer-confidence.js';
 import EarnerLocationPuck from 'examples/location-puck/earner.js';
 import ReactMapGL from 'examples/location-puck/react-map-gl.js';
 import FloatingMarkerContainer from '../../components/floating-marker-container';
@@ -38,15 +39,15 @@ A location puck is used to mark a user's location on the map.
 
 ## When to use
 
-Use the location puck to represent a user's current location on a map. Do not use this component if the user's current location is not being accessed. Do not use this component to represent anything other than a user's current location.
+Use the location puck to represent a user's current location on a map. Do not use this component if the user's current location is not available. Do not use this component to represent anything other than a user's current location.
 
 ## Guidelines
 
 The location puck comes in two types: `consumer` and `earner`.
 
-The `consumer` location puck should generally be used in top-down map views in consumer applications, such as Rides or Eats.
+The `consumer` location puck should generally be used in map views in consumer applications, such as Rides or Eats apps.
 
-The `earner` location puck should generally be navigation-based applications, such as Earner. The `earner` puck can be used for overview or turn-by-turn navigation use cases.
+The `earner` location puck should generally be used in navigation-based applications, such as the Earner app. The `earner` puck can be used for overview or turn-by-turn navigation use cases.
 
 ## Examples
 
@@ -57,6 +58,17 @@ The `earner` location puck should generally be navigation-based applications, su
 </Example>
 
 A consumer location puck.
+
+<Example
+  title="Consumer location puck with confidence level"
+  path="location-puck/consumer-confidence.js"
+>
+  <FloatingMarkerContainer>
+    <ConsumerLocationPuckConfidence />
+  </FloatingMarkerContainer>
+</Example>
+
+A consumer location puck with a manually set confidence level.
 
 <Example title="Earner location puck" path="location-puck/earner.js">
   <FloatingMarkerContainer>

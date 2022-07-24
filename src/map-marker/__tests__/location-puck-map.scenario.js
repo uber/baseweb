@@ -13,6 +13,7 @@ import { LOCATION_PUCK_SIZES, LOCATION_PUCK_TYPES } from '../constants.js';
 import TileGrid from './tile-grid.js';
 import { Slider } from '../../slider/index.js';
 import { Select } from '../../select/index.js';
+import { Checkbox, LABEL_PLACEMENT } from '../../checkbox/index.js';
 
 import LocationPuck from '../location-puck.js';
 
@@ -43,6 +44,8 @@ export function Scenario() {
   const [size, setSize] = React.useState([locationPuckSizes[0]]);
   const [type, setType] = React.useState([locationPuckTypes[0]]);
   const [locations, setLocations] = React.useState([defaultLocation]);
+  const [showBearing, setShowBearing] = React.useState(true);
+
   const [viewport, setViewport] = React.useState({
     ...uberHq,
     zoom: 14,
@@ -90,6 +93,14 @@ export function Scenario() {
             max={500}
             key={'confidence-radius'}
           />,
+          <Checkbox
+            checked={showBearing}
+            onChange={(e) => setShowBearing(e.target.checked)}
+            labelPlacement={LABEL_PLACEMENT.right}
+            key={'show-bearing'}
+          >
+            Show bearing
+          </Checkbox>,
         ]}
       />
       <div className={css({ backgroundColor: theme.colors.backgroundLightAccent })}>
@@ -124,6 +135,7 @@ export function Scenario() {
                 confidenceRadius={confidenceRadius[0]}
                 // $FlowFixMe Mismatch between general type and enum
                 type={type[0].id}
+                showBearing={showBearing}
               />
             </Marker>
           ))}

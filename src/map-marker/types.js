@@ -164,7 +164,6 @@ export type DragShadowPropsT = {
 export type LocationPuckOverridesT = {
   LocationPuckApproximation?: OverrideT,
   ConsumerLocationPuckCore?: OverrideT,
-
   EarnerLocationPuckCore?: OverrideT,
 };
 
@@ -187,5 +186,5 @@ export type EarnerLocationPuckPropsT = {
   bearing: number,
   confidenceRadius?: number,
   size: LocationPuckSizeT,
-  overrides: LocationPuckOverridesT,
+  overrides?: LocationPuckOverridesT,
 };

@@ -108,7 +108,12 @@ const EarnerLocationPuckHeading = ({ size, color, bearing }) => {
   );
 };
 
-const EarnerLocationPuck = ({ bearing, confidence, size, overrides }: EarnerLocationPuckPropsT) => {
+const EarnerLocationPuck = ({
+  bearing,
+  confidenceRadius,
+  size,
+  overrides,
+}: EarnerLocationPuckPropsT) => {
   const [, theme] = useStyletron();
   const color = theme.colors.contentPrimary;
   const [LocationPuckApproximation, locationPuckApproximationProps] = getOverrides(
@@ -124,7 +129,7 @@ const EarnerLocationPuck = ({ bearing, confidence, size, overrides }: EarnerLoca
     <LocationPuckContainer>
       <LocationPuckApproximation
         $color={color}
-        $confidence={confidence}
+        $radius={confidenceRadius}
         {...locationPuckApproximationProps}
       />
       <EarnerLocationPuckCore $color={color} $size={size} {...earnerLocationPuckCoreProps} />
