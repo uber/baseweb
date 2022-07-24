@@ -19,8 +19,6 @@ import Search from '../../icon/search.js';
 import ChevronRight from '../../icon/chevron-right.js';
 import { Select } from '../../select/index.js';
 
-// import type { FloatingMarkerSizeT, AnchorPositionsT } from '../types.js';
-
 const floatingRouteMarkerStates = [
   {
     label: 'true',

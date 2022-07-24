@@ -13,7 +13,8 @@ import TileGrid from './tile-grid.js';
 import { Checkbox, LABEL_PLACEMENT } from '../../checkbox/index.js';
 import { Input } from '../../input/index.js';
 import Upload from '../../icon/upload.js';
-import Search from '../../icon/search.js';
+import ChevronRight from '../../icon/chevron-right.js';
+
 import { Select } from '../../select/index.js';
 import ReactMapGL, { Marker } from 'react-map-gl';
 import { Button } from '../../button/index.js';
@@ -35,7 +36,9 @@ const floatingRouteMarkerAnchorPositions = Object.keys(FLOATING_ROUTE_MARKER_ANC
 const defaultLocation = [uberHq.longitude, uberHq.latitude];
 
 export function Scenario() {
-  const [label, setLabel] = React.useState('Uber HQ');
+  const [label, setLabel] = React.useState('13 min');
+  const [secondaryLabel, setSecondaryLabel] = React.useState('Cheaper');
+
   const [startEnhancer, setStartEnhancer] = React.useState(true);
   const [endEnhancer, setEndEnhancer] = React.useState(false);
 
@@ -68,7 +71,13 @@ export function Scenario() {
             clearOnEscape
             key="label"
           />,
-
+          <Input
+            value={secondaryLabel}
+            onChange={(e) => setSecondaryLabel(e.target.value)}
+            placeholder="Secondary Label"
+            clearOnEscape
+            key="secondary label"
+          />,
           <Checkbox
             checked={startEnhancer}
             onChange={(e) => setStartEnhancer(e.target.checked)}
@@ -125,6 +134,7 @@ export function Scenario() {
                   },
                 }}
                 label={label}
+                secondaryLabel={secondaryLabel}
                 startEnhancer={
                   startEnhancer
                     ? function renderEnhancer({ size }) {
@@ -135,7 +145,7 @@ export function Scenario() {
                 endEnhancer={
                   endEnhancer
                     ? function renderEnhancer({ size }) {
-                        return <Search size={size} />;
+                        return <ChevronRight size={size} />;
                       }
                     : undefined
                 }
