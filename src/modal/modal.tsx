@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 /* global document */
-/* eslint-disable cup/no-undef */
+
 import * as React from 'react';
 import FocusLock from 'react-focus-lock';
 
@@ -149,7 +149,6 @@ class Modal extends React.Component<ModalProps, ModalState> {
       clearTimeout(this.animateOutTimer);
     }
     if (this.animateStartTimer) {
-      // eslint-disable-next-line cup/no-undef
       cancelAnimationFrame(this.animateStartTimer);
     }
   }
@@ -167,7 +166,6 @@ class Modal extends React.Component<ModalProps, ModalState> {
 
     this.disableMountNodeScroll();
 
-    // eslint-disable-next-line cup/no-undef
     this.animateStartTimer = requestAnimationFrame(() => {
       this.setState({ isVisible: true });
     });

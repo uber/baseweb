@@ -29,7 +29,6 @@ export type PinHeadSize = typeof PINHEAD_SIZES_SHAPES[keyof typeof PINHEAD_SIZES
 
 export type FloatingMarkerSize = typeof FLOATING_MARKER_SIZES[keyof typeof FLOATING_MARKER_SIZES];
 
-/* eslint-disable flowtype/generic-spacing*/
 export type FloatingMarkerAnchorType =
   typeof FLOATING_MARKER_ANCHOR_TYPES[keyof typeof FLOATING_MARKER_ANCHOR_TYPES];
 

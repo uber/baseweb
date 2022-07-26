@@ -6,7 +6,6 @@ LICENSE file in the root directory of this source tree.
 */
 
 /* eslint-env node */
-/* eslint-disable flowtype/require-valid-file-annotation */
 
 const { t, withJsFiles } = require('@dubstep/core');
 

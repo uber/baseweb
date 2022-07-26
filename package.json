@@ -88,7 +88,7 @@
     "@ladle/react": "^2.0.2",
     "@mdx-js/tag": "^0.20.0",
     "@octokit/rest": "^16.33.1",
-    "@playwright/test": "^1.22.2",
+    "@playwright/test": "^1.24.0",
     "@svgr/cli": "^4.3.2",
     "@testing-library/dom": "^8.13.0",
     "@testing-library/jest-dom": "^5.16.3",

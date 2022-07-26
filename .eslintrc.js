@@ -33,17 +33,11 @@ module.exports = {
     },
   },
   extends: [
-    'plugin:flowtype/recommended',
     'plugin:react/recommended',
-    require.resolve('eslint-config-uber-universal-stage-3'),
     'plugin:jsx-a11y/recommended',
     'plugin:prettier/recommended',
-    'prettier/flowtype',
   ],
   rules: {
-    // Enforce flow file declarations
-    'flowtype/require-valid-file-annotation': ['error', 'always'],
-    'flowtype/space-after-type-colon': 'off',
     'react/jsx-filename-extension': 0,
     'react/prop-types': 0,
     // Enforces imports of external modules to be declared in the package.json
@@ -51,8 +45,6 @@ module.exports = {
       'error',
       { optionalDependencies: false, devDependencies: true },
     ],
-    // todo: after typescript migration to remove import extensions where possible
-    'import/extensions': 'off',
     'prettier/prettier': [
       'error',
       {
@@ -68,12 +60,7 @@ module.exports = {
     ],
     'import/prefer-default-export': ['off'],
     'header/header': [2, 'LICENSE-HEAD'],
-    'jsx-a11y/no-autofocus': [
-      2,
-      {
-        ignoreNonDOM: true,
-      },
-    ],
+    'jsx-a11y/no-autofocus': [2, { ignoreNonDOM: true }],
     'import/no-duplicates': 2,
     'import/newline-after-import': 2,
     'import/first': 2,
@@ -81,44 +68,15 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['*.test.js'],
-      rules: {
-        'flowtype/no-weak-types': 'off',
-      },
-    },
-    {
       files: ['documentation-site/**/*.js'],
       rules: {
-        'import/extensions': 'off',
         'react/display-name': 'off',
-      },
-    },
-    {
-      files: ['packages/eslint-plugin-baseui/**/*.js', 'packages/baseweb-vscode-extension/**/*.js'],
-      rules: {
-        'flowtype/require-valid-file-annotation': 'off',
-      },
-    },
-    {
-      files: ['**/*.e2e.js'],
-      rules: {
-        'flowtype/require-valid-file-annotation': 'off',
       },
     },
     {
       files: ['**/*.ts', '**/*.tsx', '**/*.d.ts'],
       parser: '@typescript-eslint/parser',
       plugins: ['@typescript-eslint'],
-      rules: {
-        'flowtype/require-valid-file-annotation': 'off',
-        'flowtype/space-after-type-colon': 'off',
-        'flowtype/no-types-missing-file-annotation': 'off',
-        'header/header': 'off',
-        'import/extensions': 'off',
-        'cup/no-undef': 'off',
-        'no-unused-vars': 'off',
-        'no-redeclare': 'off',
-      },
     },
   ],
 };
