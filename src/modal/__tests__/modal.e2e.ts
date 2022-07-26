@@ -61,6 +61,7 @@ test.describe('modal', () => {
       // disable tabindex rule because react-focus-lock uses tabindex to trap focus
       { id: 'tabindex', enabled: false },
     ]);
+    // @ts-expect-error todo(starr): unsure how to fix
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
 
     // close again

@@ -48,7 +48,7 @@ export class ToasterContainer extends React.Component<
 
   dismissHandlers = {};
 
-  toastId: number = 0;
+  toastId = 0;
 
   componentDidMount() {
     this.setState({ isMounted: true });

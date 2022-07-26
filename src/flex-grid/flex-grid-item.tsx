@@ -60,10 +60,7 @@ export const flexGridItemMediaQueryStyle = ({
   });
 };
 
-export const getResponsiveValue = <T extends any>(
-  responsive: Responsive<T> | undefined | null,
-  i: number
-): T | undefined | null => {
+export function getResponsiveValue<T>(responsive?: Responsive<T>, i: number): ?T {
   if (!responsive) {
     return null;
   }
@@ -71,7 +68,7 @@ export const getResponsiveValue = <T extends any>(
     return responsive;
   }
   return responsive[i] || responsive[responsive.length - 1];
-};
+}
 
 export const flexGridItemStyle = ({
   $flexGridColumnCount,

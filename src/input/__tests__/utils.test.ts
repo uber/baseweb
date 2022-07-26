@@ -27,5 +27,6 @@ test('Utils - getSharedProps', () => {
   const state = {
     isFocused: true,
   };
+  // eslint-disable-next-line jest/no-restricted-matchers
   expect(getSharedProps(props, state)).toMatchSnapshot('getSharedProps returns correct object');
 });

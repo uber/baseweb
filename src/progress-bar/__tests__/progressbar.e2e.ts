@@ -13,6 +13,7 @@ test.describe('Progress Bar', () => {
     await mount(page, 'progress-bar--progressbar');
     await page.waitForSelector('[role="progressbar"]');
     const accessibilityReport = await analyzeAccessibility(page);
+    // @ts-expect-error todo(starr): unsure how to fix
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 });

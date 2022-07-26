@@ -27,7 +27,7 @@ function wait(ms) {
 async function getCheckboxValues(element) {
   await wait(50); // briefly wait to give table state chance to update
   return element.$$eval('label[data-baseweb="checkbox"] input', (elements) =>
-    elements.map((el) => el.checked)
+    elements.map((el) => String(el.checked))
   );
 }
 
@@ -37,6 +37,7 @@ test.describe('data-table batch-actions', () => {
     const accessibilityReport = await analyzeAccessibility(page, [
       { id: 'aria-hidden-focus', enabled: false },
     ]);
+    // @ts-expect-error todo(starr): unsure how to fix
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 

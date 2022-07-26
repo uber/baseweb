@@ -13,6 +13,7 @@ test.describe('button', () => {
     await mount(page, 'button--button');
     await page.waitForSelector('button');
     const accessibilityReport = await analyzeAccessibility(page);
+    // @ts-expect-error todo(starr): unsure how to fix
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 });

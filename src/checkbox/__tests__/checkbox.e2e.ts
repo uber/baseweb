@@ -15,12 +15,14 @@ test.describe('checkbox', () => {
   test(`passes basic a11y tests`, async ({ page }) => {
     await mount(page, 'checkbox--indeterminate');
     const accessibilityReport = await analyzeAccessibility(page);
+    // @ts-expect-error todo(starr): unsure how to fix
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
   test(`passes basic a11y tests when unlabeled`, async ({ page }) => {
     await mount(page, 'checkbox--unlabeled');
     const accessibilityReport = await analyzeAccessibility(page);
+    // @ts-expect-error todo(starr): unsure how to fix
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
@@ -28,6 +30,7 @@ test.describe('checkbox', () => {
     await mount(page, 'checkbox--indeterminate');
     await page.waitForSelector(childLabel2);
     await page.click(childLabel2);
+    // @ts-expect-error
     const checked = await page.$eval(parentCheckbox, (input) => input.checked);
     expect(checked).toBe(true);
   });

@@ -18,6 +18,7 @@ test.describe('textarea', () => {
     await mount(page, 'textarea--textarea');
     await page.waitForSelector(selectors.textarea);
     const accessibilityReport = await analyzeAccessibility(page, [{ id: 'label', enabled: false }]);
+    // @ts-expect-error todo(starr): unsure how to fix
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 

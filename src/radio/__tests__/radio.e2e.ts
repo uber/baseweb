@@ -18,6 +18,7 @@ test.describe('radio', () => {
   test('passes basic a11y tests', async ({ page }) => {
     await mount(page, 'radio--radio');
     const accessibilityReport = await analyzeAccessibility(page);
+    // @ts-expect-error todo(starr): unsure how to fix
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 

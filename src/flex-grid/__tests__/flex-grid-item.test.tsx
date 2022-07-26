@@ -92,6 +92,7 @@ describe('FlexGridItem', () => {
             flexGridItemCount,
             $theme: LightTheme,
           })
+          // eslint-disable-next-line jest/no-restricted-matchers
         ).toMatchSnapshot(snapshotName);
       }
     );
@@ -167,6 +168,7 @@ describe('FlexGridItem', () => {
             $flexGridItemCount,
             $theme: LightTheme,
           })
+          // eslint-disable-next-line jest/no-restricted-matchers
         ).toMatchSnapshot(snapshotName);
       }
     );

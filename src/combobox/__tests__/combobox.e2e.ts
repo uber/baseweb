@@ -19,6 +19,7 @@ test.describe('combobox', () => {
     await mount(page, 'combobox--combobox');
     await page.waitForSelector(selectors.combobox);
     const accessibilityReport = await analyzeAccessibility(page);
+    // @ts-expect-error todo(starr): unsure how to fix
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
@@ -28,6 +29,7 @@ test.describe('combobox', () => {
     await page.click(selectors.combobox);
     await page.waitForSelector(selectors.listbox);
     const accessibilityReport = await analyzeAccessibility(page);
+    // @ts-expect-error todo(starr): unsure how to fix
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
@@ -39,6 +41,7 @@ test.describe('combobox', () => {
     await page.click(selectors.firstOption);
     await page.waitForSelector(selectors.listbox, { state: 'hidden' });
     const accessibilityReport = await analyzeAccessibility(page);
+    // @ts-expect-error todo(starr): unsure how to fix
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 });

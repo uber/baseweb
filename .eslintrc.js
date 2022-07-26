@@ -76,7 +76,22 @@ module.exports = {
     {
       files: ['**/*.ts', '**/*.tsx', '**/*.d.ts'],
       parser: '@typescript-eslint/parser',
+      extends: [
+        'plugin:@typescript-eslint/eslint-recommended',
+        'plugin:@typescript-eslint/recommended',
+        'plugin:import/typescript',
+      ],
       plugins: ['@typescript-eslint'],
+      rules: {
+        '@typescript-eslint/ban-types': 'off',
+        '@typescript-eslint/ban-ts-comment': 'off',
+        '@typescript-eslint/no-empty-function': 'off',
+        '@typescript-eslint/no-var-requires': 'off',
+        '@typescript-eslint/no-this-alias': 'off',
+        'prefer-rest-params': 'off',
+        'prefer-const': 'off',
+        'no-var': 'off',
+      },
     },
   ],
 };

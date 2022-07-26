@@ -20,6 +20,7 @@ test.describe('PaymentCard', () => {
 
   test('passes basic a11y tests', async ({ page }) => {
     const accessibilityReport = await analyzeAccessibility(page);
+    // @ts-expect-error todo(starr): unsure how to fix
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 

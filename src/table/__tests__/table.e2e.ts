@@ -12,6 +12,7 @@ test.describe('checkbox', () => {
   test(`passes basic a11y tests`, async ({ page }) => {
     await mount(page, 'table--sortable-fill-click');
     const accessibilityReport = await analyzeAccessibility(page);
+    // @ts-expect-error todo(starr): unsure how to fix
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 });

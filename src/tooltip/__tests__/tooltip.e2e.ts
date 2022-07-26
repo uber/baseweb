@@ -23,6 +23,7 @@ test.describe('tooltip', () => {
     accessibilityReport.violations = accessibilityReport.violations.filter(
       (v) => v.id !== 'tabindex'
     );
+    // @ts-expect-error todo(starr): unsure how to fix
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 });

@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import type { Border } from '../themes';
 import type { StyleObject } from 'styletron-react';
 
-export function hexToRgb(hex: string = '', alpha: string = '1') {
+export function hexToRgb(hex = '', alpha = '1') {
   const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
   hex = hex.replace(shorthandRegex, function (m, r, g, b) {
     return r + r + g + g + b + b;

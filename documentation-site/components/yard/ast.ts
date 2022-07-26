@@ -11,7 +11,7 @@ import * as t from '@babel/types';
 import { parse } from 'react-view';
 
 export function toggleOverrideSharedProps(code: string, sharedProps: string[]) {
-  let result: string = '';
+  let result = '';
   try {
     const ast: any = parse(code);
     traverse(ast, {

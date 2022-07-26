@@ -20,6 +20,7 @@ test.describe('input', () => {
     await mount(page, 'input--input');
     await page.waitForSelector(selectors.input);
     const accessibilityReport = await analyzeAccessibility(page);
+    // @ts-expect-error todo(starr): unsure how to fix
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 

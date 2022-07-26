@@ -28,6 +28,7 @@ test.describe('Datepicker', () => {
     await mount(page, 'datepicker--datepicker');
     await page.waitForSelector(selectors.input);
     const accessibilityReport = await analyzeAccessibility(page);
+    // @ts-expect-error todo(starr): unsure how to fix
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 

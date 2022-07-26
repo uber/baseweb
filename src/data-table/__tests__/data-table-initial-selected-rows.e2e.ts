@@ -15,6 +15,7 @@ test.describe('data table initial filters', () => {
     await page.waitForSelector(TABLE_ROOT);
     // cell 1x1 should have a label with checkbox checked
     const cell1x1 = await page.$(`${TABLE_ROOT} > div:nth-child(2) label > input`);
+    // @ts-expect-error
     expect(await cell1x1.evaluate((node) => node.checked)).toBe(true);
   });
 });

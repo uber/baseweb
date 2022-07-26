@@ -150,6 +150,7 @@ export function initFocusVisible(node) {
 }
 
 export const forkFocus =
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   (rootProps: any, handler: (e: React.FocusEvent) => void) => (e: React.FocusEvent) => {
     if (typeof rootProps.onFocus === 'function') {
       rootProps.onFocus(e);
@@ -158,6 +159,7 @@ export const forkFocus =
   };
 
 export const forkBlur =
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   (rootProps: any, handler: (e: React.FocusEvent) => void) => (e: React.FocusEvent) => {
     if (typeof rootProps.onBlur === 'function') {
       rootProps.onBlur(e);

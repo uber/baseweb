@@ -107,7 +107,7 @@ class Select extends React.Component<SelectProps, SelectState> {
     isPseudoFocused: false,
   };
 
-  isItMounted: boolean = false;
+  isItMounted = false;
 
   componentDidMount() {
     if (this.props.autoFocus) {

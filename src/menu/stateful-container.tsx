@@ -161,7 +161,7 @@ class MenuStatefulContainerInner extends React.Component<
   // list of ids applied to list items. used to set aria-activedescendant
   optionIds: string[] = [];
   //characters input from keyboard, will automatically be clear after some time
-  typeAheadChars: string = '';
+  typeAheadChars = '';
   //count time for each continuous keyboard input
   typeAheadTimeOut: null | TimeoutID = null;
 
