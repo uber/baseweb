@@ -11,6 +11,7 @@ import { Drawer, ANCHOR } from '../drawer';
 import { getOverrides, mergeOverrides } from '../helpers/overrides';
 import ArrowLeft from '../icon/arrow-left';
 import MenuIcon from '../icon/menu';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { MenuAdapter, ListItemLabel, ARTWORK_SIZES, MenuAdapterProps } from '../list';
 import { StatefulMenu } from '../menu';
 
@@ -23,7 +24,7 @@ const USER_TITLE_ITEM = 'USER_TITLE_ITEM';
 const USER_MENU_ITEM = 'USER_MENU_ITEM';
 const PARENT_MENU_ITEM = 'PARENT_MENU_ITEM';
 
-// eslint-disable-next-line react/display-name
+// eslint-disable-next-line @typescript-eslint/no-explicit-any,react/display-name
 const MobileNavMenuItem = React.forwardRef<HTMLLIElement, any>((props, ref) => {
   const { item, mapItemToNode = defaultMapItemToNode, overrides = {}, ...restProps } = props;
 
@@ -105,6 +106,7 @@ export default function MobileMenu(props: AppNavBarProps) {
   drawerProps.overrides = mergeOverrides(
     {
       DrawerBody: {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         style: ({ $theme }) => {
           return {
             marginTop: '0px',

@@ -84,7 +84,9 @@ type DropFileEventHandler = (acceptedOrRejected: File[], event: DragEvent<HTMLEl
 type DataTransferEvent =
   | DragEvent<HTMLElement>
   | ChangeEvent<HTMLInputElement>
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   | DragEvent<any>
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   | SyntheticEvent<any>;
 
 type GetDataTransferItems = (event: DataTransferEvent) => Promise<Array<File | DataTransferItem>>;

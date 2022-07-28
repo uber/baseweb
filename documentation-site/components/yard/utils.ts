@@ -34,6 +34,7 @@ export const countProps = (
   return changedProps;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const countOverrides = (overrides: any) => {
   if (!overrides) {
     return 0;

@@ -13,9 +13,7 @@ const SELECT_INPUT = 'div[data-baseweb="select"] input';
 test.describe('select backspace works as expected', () => {
   test('backspace one character', async ({ page }) => {
     await mount(page, 'select--backspace-behavior');
-    const selector = `#backspace-behavior ${SELECT_INPUT}`;
-    await page.waitForSelector(selector);
-    const input = await page.$(selector);
+    const input = page.locator('#backspace-behavior').locator(SELECT_INPUT);
 
     // Select AliceBlue
     await input.type('a');
@@ -23,15 +21,12 @@ test.describe('select backspace works as expected', () => {
 
     // Backspace on AliceBlue
     await page.keyboard.press('Backspace');
-    const backspaced = await page.$eval(selector, (i) => i.value);
-    expect(backspaced).toBe('AliceBlu');
+    await expect(input).toHaveValue('AliceBlu');
   });
 
   test('backspace clears input value', async ({ page }) => {
     await mount(page, 'select--backspace-behavior');
-    const selector = `#backspace-clears-input-value ${SELECT_INPUT}`;
-    await page.waitForSelector(selector);
-    const input = await page.$(selector);
+    const input = page.locator('#backspace-clears-input-value').locator(SELECT_INPUT);
 
     // Select AliceBlue
     await input.type('a');
@@ -39,7 +34,6 @@ test.describe('select backspace works as expected', () => {
 
     // Backspace on AliceBlue
     await page.keyboard.press('Backspace');
-    const backspaced = await page.$eval(selector, (i) => i.value);
-    expect(backspaced).toBe('');
+    await expect(input).toHaveValue('');
   });
 });

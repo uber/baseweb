@@ -37,10 +37,16 @@ test.describe('tree view', () => {
     const checkboxInput = '[data-baseweb="checkbox"] input';
     await mount(page, 'tree-view--interactable');
     await page.waitForSelector(checkbox);
-    let isChecked = await page.$eval(checkboxInput, (i) => i.checked);
+    let isChecked = await page.$eval(
+      checkboxInput,
+      (i) => i instanceof HTMLInputElement && i.checked === true
+    );
     expect(isChecked).toBe(false);
     await page.click(checkbox);
-    isChecked = await page.$eval(checkboxInput, (i) => i.checked);
+    isChecked = await page.$eval(
+      checkboxInput,
+      (i) => i instanceof HTMLInputElement && i.checked === true
+    );
     expect(isChecked).toBe(true);
   });
 

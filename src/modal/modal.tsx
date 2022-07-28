@@ -91,6 +91,7 @@ class Modal extends React.Component<ModalProps, ModalState> {
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   handleBlur = (event: SyntheticEvent) => {
     if (this.state.isFocusVisible !== false) {
       this.setState({ isFocusVisible: false });
@@ -210,6 +211,7 @@ class Modal extends React.Component<ModalProps, ModalState> {
       return mountNode;
     }
     // Flow thinks body could be null (cast through any)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return document.body as any as HTMLBodyElement;
   }
 
@@ -249,8 +251,10 @@ class Modal extends React.Component<ModalProps, ModalState> {
             returnFocus={returnFocus}
             autoFocus={autoFocus}
           >
+            {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
             <Root data-baseweb="modal" ref={this.rootRef as any} {...sharedProps} {...rootProps}>
               <DialogContainer
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 ref={this.dialogContainerRef as any}
                 {...sharedProps}
                 {...dialogContainerProps}

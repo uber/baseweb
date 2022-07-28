@@ -45,6 +45,7 @@ const ProgressStepsConfig: TConfig = {
         'baseui/button': { named: ['Button'] },
       },
       propHook: ({ getInstrumentOnChange, fnBodyAppend }) => ({
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         JSXAttribute(path: any) {
           if (path.get('name').node.name === 'onClick') {
             fnBodyAppend(path.get('value'), getInstrumentOnChange('1', 'current'));

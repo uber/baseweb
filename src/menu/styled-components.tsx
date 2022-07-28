@@ -134,6 +134,7 @@ export const StyledListItemElement = styled<'li', StyledProps>('li', (props) => 
 export const StyledListItem = withWrapper<typeof StyledListItemElement, { item? }>(
   StyledListItemElement,
   (Styled) =>
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     function StyledListItem({ item, ...restProps }) {
       return <Styled {...restProps} />;
     }

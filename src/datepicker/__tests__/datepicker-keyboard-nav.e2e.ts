@@ -147,6 +147,7 @@ test.describe('Datepicker - keyboard navigation', () => {
     expect(isMar12Active).toBe(true);
 
     // check that selected date shows up in the input
+    // @ts-expect-error
     let inputValue = await page.$eval(selectors.input, (input) => input.value);
     // get rid of any whitespaces in the value to compare
     expect(inputValue.replace(/\s/g, '')).toBe('2019/03/12–//');
@@ -168,6 +169,7 @@ test.describe('Datepicker - keyboard navigation', () => {
     expect(isInputActive).toBe(true);
 
     // check that selected date shows up in the input
+    // @ts-expect-error
     inputValue = await page.$eval(selectors.input, (input) => input.value);
     // get rid of any whitespaces in the value to compare
     expect(inputValue.replace(/\s/g, '')).toBe('2019/03/12–2019/03/16');

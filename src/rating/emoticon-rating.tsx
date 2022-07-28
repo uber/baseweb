@@ -39,6 +39,7 @@ class EmoticonRating extends React.Component<EmoticonRatingProps, RatingState> {
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   handleBlur = (event: SyntheticEvent) => {
     if (this.state.isFocusVisible !== false) {
       this.setState({ isFocusVisible: false });
@@ -61,6 +62,7 @@ class EmoticonRating extends React.Component<EmoticonRatingProps, RatingState> {
         <Emoticon
           key={x}
           role="radio"
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           ref={starRef as any}
           tabIndex={isFocusable ? '0' : '-1'}
           aria-setsize={5}

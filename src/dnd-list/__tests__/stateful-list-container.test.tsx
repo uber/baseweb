@@ -33,6 +33,7 @@ describe('StatefulListContainer', () => {
       onChange: jest.fn(),
       stateReducer: jest.fn(),
     };
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const children = jest.fn((props) => null);
     const event = {
       newIndex: undefined,
@@ -61,11 +62,13 @@ describe('StatefulListContainer', () => {
       },
       stateReducer: jest.fn(),
     };
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const children = jest.fn((props) => null);
 
     render(<StatefulListContainer {...props}>{children}</StatefulListContainer>);
 
     props.stateReducer.mockReturnValueOnce({ items: ['Item 2', 'Item 1'] });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const targetRect: any = {};
     act(() => {
       children.mock.calls[0][0].onChange({

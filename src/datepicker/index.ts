@@ -30,6 +30,8 @@ export type { DatepickerLocale } from './locale';
 /** @deprecated use SharedStyleProps instead. To be removed in future versions.*/
 export type SharedStylePropsT = SharedStyleProps;
 /** @deprecated To be removed in future versions */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars,@typescript-eslint/no-explicit-any
 type onChange = StatefulContainerProps<any>['onChange'];
 /** @deprecated To be removed in future versions */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 type CalendarState = CalendarInternalState<Date>;

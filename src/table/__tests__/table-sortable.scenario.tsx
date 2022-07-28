@@ -39,6 +39,7 @@ const DATA: Array<[string, number]> = [
   ['Neil', 27],
 ];
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export class Scenario extends React.Component<any, any> {
   state = { nameDirection: null, ageDirection: null };
 

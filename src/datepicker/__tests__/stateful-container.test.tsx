@@ -16,6 +16,7 @@ describe('StatefulComponentContainer', () => {
   });
 
   it('passes provided event handlers to children', () => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const children = jest.fn((arg) => null);
     const onDayMouseOver = jest.fn();
     const onDayMouseLeave = jest.fn();

@@ -29,6 +29,7 @@ export type ListOverrides = {
   Label?: Override;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 type Children = Array<React.ReactNode> | React.ReactNode;
 
 // Props shared by all flavors of component

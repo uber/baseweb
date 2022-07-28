@@ -85,6 +85,7 @@ export type BasePopoverProps = {
   /** Popper options override
    * https://github.com/popperjs/popper.js/blob/v1.x/docs/_includes/popper-documentation.md
    */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   popperOptions?: any;
   /** Renders all popover content for SEO purposes regardless of popover isOpen state */
   renderAll?: boolean;

@@ -21,6 +21,7 @@ import { getOverrides } from '../helpers/overrides';
 // Types
 import type { OptionProfileProps } from './types';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function OptionProfile(props: OptionProfileProps, ref: React.RefObject<any>) {
   const {
     item,

@@ -78,15 +78,10 @@ test.describe('toast', () => {
 
     expect(numberOfAlerts).toBe(1);
 
-    const toastContent = await page.$eval(selectors.toast, (toast) => {
-      return toast && toast.innerText;
-    });
-
-    expect(toastContent).not.toBeNull();
     // in the scenario, the original toast text is 'not updated'
     // it is only changed to 'updated' after the first toast has popped up
     // so we check to make sure the toast contains the updated text
-    expect(toastContent).toBe('updated');
+    await expect(page.locator(selectors.toast)).toHaveText('updated');
   });
 
   test('focuses toast dismiss when autofocus is active and refocuses previously focused element on close', async ({

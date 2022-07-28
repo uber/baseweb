@@ -168,9 +168,11 @@ export function Scenario() {
       sortOrder={sortAsc ? 'ASC' : 'DESC'}
       onSort={handleSort}
     >
+      {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
       <TableBuilderColumn<any> id="bar" header="Produce" sortable>
         {(row) => <a href={row.url}>{row.bar}</a>}
       </TableBuilderColumn>
+      {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
       <TableBuilderColumn<any> id="foo" header="Quantity" numeric sortable>
         {(row) => row.foo}
       </TableBuilderColumn>

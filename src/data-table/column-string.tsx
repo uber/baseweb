@@ -24,6 +24,7 @@ type FilterParameters = {
 
 type StringColumn = ColumnOptions<string, FilterParameters>;
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function StringFilter(props) {
   return <div>not implemented for string column</div>;
 }
@@ -52,7 +53,9 @@ function StringColumn(options: Options): StringColumn {
   return Column({
     kind: COLUMNS.STRING,
     cellBlockAlign: options.cellBlockAlign,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     buildFilter: function (params) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       return function (data) {
         return true;
       };

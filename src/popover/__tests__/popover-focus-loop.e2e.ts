@@ -16,9 +16,9 @@ test.describe('popover', () => {
     await page.waitForSelector('div[data-e2e="content"]');
 
     await page.click('button');
-    await page.waitForSelector('div[data-e2e="content"]', { hidden: false });
+    await page.waitForSelector('div[data-e2e="content"]');
     await page.click('button');
-    await page.waitForSelector('div[data-e2e="content"]', { hidden: false });
+    await page.waitForSelector('div[data-e2e="content"]');
 
     await page.mouse.move(200, 200);
     await page.hover('button');

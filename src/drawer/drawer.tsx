@@ -91,6 +91,7 @@ class Drawer extends React.Component<DrawerProps, DrawerState> {
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   handleBlur = (event: SyntheticEvent) => {
     if (this.state.isFocusVisible !== false) {
       this.setState({ isFocusVisible: false });
@@ -122,6 +123,7 @@ class Drawer extends React.Component<DrawerProps, DrawerState> {
       return mountNode;
     }
     // Flow thinks body could be null (cast through any)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return document.body as any as HTMLBodyElement;
   }
 

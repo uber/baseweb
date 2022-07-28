@@ -23,8 +23,10 @@ export { default as TreeLabel } from './tree-label';
 export { default as TreeLabelInteractable } from './tree-label-interactable';
 export { toggleIsExpanded };
 /** @deprecated use TreeNodeData instead. To be removed in future versions.*/
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type TreeNode<T = any> = TreeNodeData<T>;
 /** @deprecated To be removed in future versions.*/
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 type TGetId = Parameters<toggleIsExpandedT>[2];
 /** @deprecated To be removed in future versions.*/
 type toggleIsExpandedT = typeof toggleIsExpanded;

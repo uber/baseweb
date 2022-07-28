@@ -22,7 +22,7 @@ const isSelected = (page, t) => {
 
 const isActiveEl = async (page, el) => {
   const activeEl = await page.evaluateHandle(`document.activeElement`);
-  const result = await isSameNode(activeEl, el);
+  const result = await isSameNode(page, activeEl, el);
   activeEl.dispose();
   return result;
 };
@@ -89,7 +89,9 @@ test.describe('tabs', () => {
     expect(await page.evaluate(`window.__e2e__error`)).toBe(false);
   });
 
-  test('*tab* moves focus to active tab', async ({ page }) => {
+  test('*tab* moves focus to active tab', async ({ browserName, page }) => {
+    test.fixme(browserName === 'webkit', 'Fails on Safari');
+
     await mount(page, 'tabs-motion--focus');
     const firstFocusElement = await page.$('#first-focus');
     await firstFocusElement.focus();

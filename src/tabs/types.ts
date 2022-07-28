@@ -42,6 +42,7 @@ export type OnChangeHandler = (a: { activeKey: React.Key }) => unknown;
 
 export type TabsProps = {
   /** An array of Tab components. */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   children: Array<React.ReactElement<any>> | React.ReactElement<any>;
   /**  Key of the the tab to be selected. */
   activeKey: React.Key;

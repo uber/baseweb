@@ -23,6 +23,7 @@ const options: Option[] = [
   { label: 'Beige', id: '#F5F5DC' },
 ];
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function ReplacementNode({ isSelected, option }) {
   const [css] = useStyletron();
   return (

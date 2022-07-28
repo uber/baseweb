@@ -25,26 +25,25 @@ const monthAgo = subMonths(now, 1);
 test.describe('Stateful Datepicker Quick Select', () => {
   test('can quick select with keyboard', async ({ page }) => {
     await mount(page, 'datepicker--stateful-quick-select');
-    await page.waitForSelector(selectors.input);
-    await page.click(selectors.input);
-    await page.waitForSelector(selectors.calendar);
-    await page.click(selectors.quickSelect);
-    await page.waitForSelector(selectors.quickSelectMenu);
+    const input = page.locator(selectors.input);
+    await input.click();
+    const quickSelect = page.locator(selectors.quickSelect);
+    await quickSelect.click();
     await page.keyboard.press('ArrowDown');
     await page.keyboard.press('Enter');
-    const selectedValue = await page.$eval(selectors.input, (input) => input.value);
-    expect(selectedValue).toBe([monthAgo, now].map((d) => format(d, 'yyyy/MM/dd')).join(' – '));
+    const expectedValue = [monthAgo, now].map((d) => format(d, 'yyyy/MM/dd')).join(' – ');
+    await expect(input.first()).toHaveValue(expectedValue);
   });
 
   test('can quick select with mouse', async ({ page }) => {
     await mount(page, 'datepicker--stateful-quick-select');
-    await page.waitForSelector(selectors.input);
-    await page.click(selectors.input);
-    await page.waitForSelector(selectors.calendar);
-    await page.click(selectors.quickSelect);
-    await page.waitForSelector(selectors.quickSelectMenu);
-    await page.click(selectors.quickSelectPastMonth);
-    const selectedValue = await page.$eval(selectors.input, (input) => input.value);
-    expect(selectedValue).toBe([monthAgo, now].map((d) => format(d, 'yyyy/MM/dd')).join(' – '));
+    const input = page.locator(selectors.input);
+    await input.click();
+    const quickSelect = page.locator(selectors.quickSelect);
+    await quickSelect.click();
+    const quickSelectPastMonth = page.locator(selectors.quickSelectPastMonth);
+    await quickSelectPastMonth.click();
+    const expectedValue = [monthAgo, now].map((d) => format(d, 'yyyy/MM/dd')).join(' – ');
+    await expect(input.first()).toHaveValue(expectedValue);
   });
 });

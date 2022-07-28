@@ -179,6 +179,7 @@ class PopoverInner extends React.Component<PopoverProps, PopoverPrivateState> {
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onPopoverMouseLeave = (e: React.MouseEvent<any>) => {
     this.triggerOnMouseLeaveWithDelay(e);
   };

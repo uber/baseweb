@@ -49,6 +49,7 @@ export default class SelectDropdown extends React.Component<DropdownProps> {
       $width: width,
     };
   }
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   getItemLabel = (option: { [x: string]: any }) => {
     const { getOptionLabel, overrides = {}, value, valueKey } = this.props;
 

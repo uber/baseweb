@@ -42,6 +42,7 @@ class StatefulContainer<T = Date> extends React.Component<Props<T>, ContainerSta
       if (onChange) {
         if (Array.isArray(date)) {
           if (date.every(Boolean)) {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             onChange({ date: date as any as Array<T> });
           }
         } else {
@@ -61,6 +62,7 @@ class StatefulContainer<T = Date> extends React.Component<Props<T>, ContainerSta
   }
 
   render() {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { children, initialState, stateReducer, ...restProps } = this.props;
     return this.props.children({
       ...restProps,

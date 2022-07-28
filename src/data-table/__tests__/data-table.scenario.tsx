@@ -185,6 +185,7 @@ export const columns = [
       const [css] = useStyletron();
       const [selection, setSelection] = React.useState(new Set<string>());
       const colors = React.useMemo(() => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         return props.data.reduce((set, item) => set.add(item.color), new Set<any>());
       }, [props.data]);
 

@@ -17,17 +17,12 @@ const selectors = {
 test.describe('Datepicker, Int', () => {
   test('parses input with formatString', async ({ page }) => {
     await mount(page, 'datepicker--int');
-    await page.waitForSelector(selectors.input);
-    await page.click(selectors.input);
-
-    await page.keyboard.type('31.03.202');
-    await page.waitForSelector(selectors.day, { state: 'hidden' });
-
-    await page.keyboard.type('0');
-    const inputValue = await page.$eval(selectors.input, (input) => input.value);
-
-    expect(inputValue).toBe('31.03.2020');
-
-    await page.waitForSelector(selectors.day);
+    const input = page.locator(selectors.input);
+    await input.click();
+    await input.type('31.03.202');
+    await expect(page.locator(selectors.day)).toBeHidden();
+    await input.type('0');
+    await expect(input).toHaveValue('31.03.2020');
+    await expect(page.locator(selectors.day)).toBeVisible();
   });
 });

@@ -42,11 +42,11 @@ test.describe('PhoneInput', () => {
 
   test('displays a selected country flag and dial code by default', async ({ page }) => {
     // verify correct default flag shows up
-    const iso = await page.$eval(selectors.phoneInputFlag, (flag) => flag.getAttribute(`data-iso`));
-    expect(iso).toEqual(unitedStates.iso);
-    // verify correct default dialcode shows up
-    const dialcode = await page.$eval(selectors.phoneInputDialcode, (block) => block.innerText);
-    expect(dialcode).toEqual(unitedStates.dialCode);
+    const flag = page.locator(selectors.phoneInputFlag);
+    await expect(flag).toHaveAttribute('data-iso', unitedStates.iso);
+
+    const dialCode = page.locator(selectors.phoneInputDialcode);
+    await expect(dialCode).toHaveText(unitedStates.dialCode);
   });
 
   test('allows a user to open a dropdown containing country dial codes', async ({ page }) => {
@@ -71,8 +71,8 @@ test.describe('PhoneInput', () => {
     await page.keyboard.press('ArrowDown');
     await page.keyboard.press('Enter');
 
-    const dialcode = await page.$eval(selectors.phoneInputDialcode, (block) => block.innerText);
-    expect(dialcode).toEqual(unitedKingdom.dialCode);
+    const dialCode = page.locator(selectors.phoneInputDialcode);
+    await expect(dialCode).toHaveText(unitedKingdom.dialCode);
   });
 
   test('allows a user to select a country from the dropdown, which populates a dial code', async ({
@@ -89,10 +89,10 @@ test.describe('PhoneInput', () => {
       state: 'hidden',
     });
     // verify correct flag and dial code shows up
-    const iso = await page.$eval(selectors.phoneInputFlag, (flag) => flag.getAttribute('data-iso'));
-    expect(iso).toEqual(unitedKingdom.iso);
-    // verify correct dial code shows up
-    const dialcode = await page.$eval(selectors.phoneInputDialcode, (block) => block.innerText);
-    expect(dialcode).toEqual(unitedKingdom.dialCode);
+    const flag = page.locator(selectors.phoneInputFlag);
+    await expect(flag).toHaveAttribute('data-iso', unitedKingdom.iso);
+
+    const dialCode = page.locator(selectors.phoneInputDialcode);
+    await expect(dialCode).toHaveText(unitedKingdom.dialCode);
   });
 });

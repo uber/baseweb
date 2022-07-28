@@ -37,6 +37,7 @@ export const StyledStartDate = styled('div', ({ $theme }) => ({
   marginRight: $theme.sizing.scale300,
 }));
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const StyledEndDate = styled('div', ({ $theme }) => ({
   width: '100%',
 }));
@@ -196,6 +197,7 @@ export const StyledPrevButton = styled<'button', SharedStyleProps>('button', get
 
 export const StyledNextButton = styled<'button', SharedStyleProps>('button', getArrowBtnStyle);
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const StyledMonth = styled<'div', SharedStyleProps>('div', (props: SharedStyleProps) => {
   return {
     display: 'inline-block',
@@ -223,6 +225,7 @@ function generateDayStyles(defaultCode: string, defaultStyle) {
   };
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function getDayStyles(code, { colors }): any {
   const undefinedDayStyle = {
     ':before': { content: null },
@@ -549,6 +552,7 @@ export const StyledDay = styled<'div', SharedStyleProps>('div', (props) => {
           },
         }
       : // a hack to make flow happy, otherwise it complains about complexity
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         ({} as any)),
   };
 });

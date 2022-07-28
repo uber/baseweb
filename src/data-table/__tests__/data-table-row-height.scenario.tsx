@@ -40,6 +40,7 @@ const columns = [
   }),
 ];
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const rows = AnimalData.map((row, index) => {
   return {
     id: row.Name,

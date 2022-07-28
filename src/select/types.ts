@@ -25,6 +25,7 @@ export type Option = Readonly<{
   isCreatable?: boolean;
   __optgroup?: string;
   // todo(flow->ts): probably this should be deleted, but that will require to clarify other types
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [x: string]: any;
 }>;
 
@@ -201,6 +202,7 @@ export type SelectProps = {
   /** A current selected value(s). If a selected value has a clearableValue
    * prop set to true it will be rendered as a disabled selected option that can't be cleared. */
   value?: Value;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   valueComponent?: React.ComponentType<any>;
   /** Defines a key name for an option's unique identifier value.
    * The value of the `valueKey` prop is used to identify what options are selected
@@ -281,6 +283,7 @@ export type AutosizeInputOverrides = {
 export type AutosizeInputProps = {
   value: string;
   defaultValue?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   inputRef: (ref: any) => any;
   overrides: AutosizeInputOverrides;
   $size: Size;

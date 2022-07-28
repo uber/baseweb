@@ -32,6 +32,7 @@ export const YardTabs: React.FC<{
   );
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const YardTab: React.FC<any> = (props) => {
   return (
     <Tab

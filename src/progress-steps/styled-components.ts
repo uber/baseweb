@@ -20,6 +20,7 @@ export const StyledProgressSteps = styled('ol', ({ $theme }) => {
   };
 });
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const StyledStep = styled<'li', StyleProps>('li', ({ $theme }) => {
   return {
     listStyleType: 'none',
@@ -30,6 +31,7 @@ export const StyledStep = styled<'li', StyleProps>('li', ({ $theme }) => {
 
 export const StyledIconContainer = styled<'div', StyleProps>(
   'div',
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   ({ $theme, $isActive, $isCompleted, $disabled }) => {
     let currentColor = $theme.colors.backgroundPrimary;
     let size = $theme.sizing.scale500;
@@ -68,7 +70,7 @@ export const StyledIconContainer = styled<'div', StyleProps>(
 
 export const StyledIcon = styled<'div', StyleProps>(
   'div',
-  ({ $theme, $isActive, $isCompleted, $disabled }) => {
+  ({ $theme, $isActive, $isCompleted }) => {
     let currentColor = $theme.colors.mono400;
     let size = $theme.sizing.scale300;
 
@@ -179,7 +181,7 @@ export const StyledContentDescription = styled<'div', StyleProps>('div', ({ $the
   };
 });
 
-export const StyledNumberStep = styled<'li', StyleProps>('li', ({ $theme }) => {
+export const StyledNumberStep = styled<'li', StyleProps>('li', () => {
   return {
     listStyleType: 'none',
     position: 'relative',
@@ -189,7 +191,7 @@ export const StyledNumberStep = styled<'li', StyleProps>('li', ({ $theme }) => {
 
 export const StyledNumberIcon = styled<'div', StyleProps>(
   'div',
-  ({ $theme, $isActive, $isCompleted, $disabled }) => {
+  ({ $theme, $isActive, $isCompleted }) => {
     let backgroundColor = $theme.colors.mono400;
     let color = $theme.colors.contentStateDisabled;
     let size = $theme.sizing.scale950;
@@ -233,7 +235,7 @@ export const StyledNumberIcon = styled<'div', StyleProps>(
 
 export const StyledNumberContentTail = styled<'div', StyleProps>(
   'div',
-  ({ $theme, $isActive, $isCompleted, $disabled }) => {
+  ({ $theme, $isCompleted }) => {
     let currentColor = $theme.colors.mono300;
     let size = $theme.sizing.scale950;
     let titleFont = $theme.typography.LabelMedium;

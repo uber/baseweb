@@ -45,6 +45,7 @@ const isLeftClick = (event) =>
 
 const containsNode = (parent, child) => {
   if (__BROWSER__) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return child && parent && parent.contains(child as any);
   }
 };
@@ -651,7 +652,9 @@ class Select extends React.Component<SelectProps, SelectState> {
 
   renderValue(
     valueArray: Value,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     isOpen: boolean,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     locale: Locale
   ): React.ReactNode | undefined | null | Array<React.ReactNode | undefined | null> {
     const { overrides = {} } = this.props;
@@ -787,6 +790,7 @@ class Select extends React.Component<SelectProps, SelectState> {
       return;
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { $size, ...sharedProps } = this.getSharedProps();
     const { overrides = {} } = this.props;
     const [ClearIcon, clearIconProps] = getOverrides(overrides.ClearIcon, DeleteAlt);
@@ -817,6 +821,7 @@ class Select extends React.Component<SelectProps, SelectState> {
       return null;
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { $size, ...sharedProps } = this.getSharedProps();
     const { overrides = {} } = this.props;
     const [SelectArrow, selectArrowProps] = getOverrides(overrides.SelectArrow, TriangleDownIcon);
@@ -988,6 +993,7 @@ class Select extends React.Component<SelectProps, SelectState> {
                 // apply the ref to the Root component below it would be overwritten before the popover
                 // renders it. Using this strategy, we will get a ref to the popover, then reuse its
                 // anchorRef so we can check if clicks are on the select component or not.
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 innerRef={(ref: any) => {
                   if (!ref) return;
                   this.anchor = ref.anchorRef;

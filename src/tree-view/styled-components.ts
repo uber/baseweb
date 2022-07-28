@@ -37,6 +37,7 @@ export const StyledTreeItem = styled<
   {
     $isLeafNode?: boolean;
   }
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
 >('li', ({ $theme, $isLeafNode }) => {
   return {
     cursor: $isLeafNode ? 'auto' : 'pointer',

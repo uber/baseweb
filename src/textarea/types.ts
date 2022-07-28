@@ -42,6 +42,7 @@ export type TextareaProps = {
 } & BaseTextAreaProps;
 
 export type StatefulContainerProps = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   children: (props: any) => React.ReactNode;
   initialState?: State;
   stateReducer?: StateReducer;
@@ -52,6 +53,7 @@ export type StatefulContainerProps = {
 };
 
 type OmitProps = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   children: (props: any) => React.ReactNode;
 };
 

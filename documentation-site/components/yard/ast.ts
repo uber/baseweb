@@ -13,15 +13,18 @@ import { parse } from 'react-view';
 export function toggleOverrideSharedProps(code: string, sharedProps: string[]) {
   let result = '';
   try {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const ast: any = parse(code);
     traverse(ast, {
       ArrowFunctionExpression(path) {
         if (result !== '') return;
         if (path.node.params.length !== 1) return;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const firstParam: any = path.node.params[0];
         let newParams: string[] = [];
         if (firstParam.type === 'ObjectPattern') {
           const properties = firstParam.properties;
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           newParams = properties.map((prop: any) => prop.key.name);
         }
 

@@ -24,39 +24,33 @@ test.describe('textarea', () => {
 
   test('preset value is displayed', async ({ page }) => {
     await mount(page, 'textarea--textarea');
-    await page.waitForSelector(selectors.textarea);
-
-    const value = await page.$eval(selectors.textarea, (input) => input.value);
-    expect(value).toBe('initial value');
+    const textarea = page.locator(selectors.textarea);
+    await expect(textarea).toHaveValue('initial value');
   });
 
   test('entered value is displayed', async ({ page }) => {
     await mount(page, 'textarea--textarea');
-    await page.waitForSelector(selectors.textarea);
-    await page.click(selectors.textarea);
-    await page.keyboard.type('!');
-
-    const value = await page.$eval(selectors.textarea, (input) => input.value);
-    expect(value).toBe('initial value!');
+    const textarea = page.locator(selectors.textarea);
+    await textarea.click();
+    await textarea.type('1');
+    await expect(textarea).toHaveValue('initial value1');
   });
 
   test('can be cleared with a click', async ({ page }) => {
     await mount(page, 'textarea--textarea');
-    await page.waitForSelector(selectors.textarea);
-    await page.click(selectors.textarea);
-    await page.keyboard.type('Something or other');
-    await page.click(selectors.clearIcon);
-    const value = await page.$eval(selectors.textarea, (input) => input.value);
-    expect(value).toBe('');
+    const textarea = page.locator(selectors.textarea);
+    await textarea.click();
+    await textarea.type('Something or other');
+    await page.locator(selectors.clearIcon).click();
+    await expect(textarea).toHaveValue('');
   });
 
   test('can be cleared with escape', async ({ page }) => {
     await mount(page, 'textarea--textarea');
-    await page.waitForSelector(selectors.textarea);
-    await page.click(selectors.textarea);
-    await page.keyboard.type('Something or other');
+    const textarea = page.locator(selectors.textarea);
+    await textarea.click();
+    await textarea.type('Something or other');
     await page.keyboard.press('Escape');
-    const value = await page.$eval(selectors.textarea, (input) => input.value);
-    expect(value).toBe('');
+    await expect(textarea).toHaveValue('');
   });
 });

@@ -18,6 +18,7 @@ describe('stateful-container', () => {
 
   it('provides onChange handler to children fn', () => {
     const onChange = jest.fn();
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const children = jest.fn((props) => null);
     render(<StatefulContainer onChange={onChange}>{children}</StatefulContainer>);
     act(() => children.mock.calls[0][0].onChange({ target: { value: 'a' } }));

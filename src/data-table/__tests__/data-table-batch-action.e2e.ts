@@ -53,7 +53,7 @@ test.describe('data-table batch-actions', () => {
     const table = await getTable(page);
     await clickCheckboxAtRowIndex(table, 1);
     const actual = await getCheckboxValues(table);
-    const expected = [true, true, false, false, false, false];
+    const expected = ['true', 'true', 'false', 'false', 'false', 'false'];
     expect(matchArrayElements(actual, expected)).toBe(true);
   });
 
@@ -63,7 +63,7 @@ test.describe('data-table batch-actions', () => {
     await clickCheckboxAtRowIndex(table, 1);
     await clickCheckboxAtRowIndex(table, 1);
     const actual = await getCheckboxValues(table);
-    const expected = [false, false, false, false, false, false];
+    const expected = ['false', 'false', 'false', 'false', 'false', 'false'];
     expect(matchArrayElements(actual, expected)).toBe(true);
   });
 
@@ -72,7 +72,7 @@ test.describe('data-table batch-actions', () => {
     const table = await getTable(page);
     await clickCheckboxAtRowIndex(table, 0);
     const actual = await getCheckboxValues(table);
-    const expected = [true, true, true, true, true, true];
+    const expected = ['true', 'true', 'true', 'true', 'true', 'true'];
     expect(matchArrayElements(actual, expected)).toBe(true);
   });
 
@@ -82,7 +82,7 @@ test.describe('data-table batch-actions', () => {
     await clickCheckboxAtRowIndex(table, 0);
     await clickCheckboxAtRowIndex(table, 0);
     const actual = await getCheckboxValues(table);
-    const expected = [false, false, false, false, false, false];
+    const expected = ['false', 'false', 'false', 'false', 'false', 'false'];
     expect(matchArrayElements(actual, expected)).toBe(true);
   });
 
@@ -92,7 +92,7 @@ test.describe('data-table batch-actions', () => {
     await clickCheckboxAtRowIndex(table, 1);
     await clickCheckboxAtRowIndex(table, 0);
     const actual = await getCheckboxValues(table);
-    const expected = [false, false, false, false, false, false];
+    const expected = ['false', 'false', 'false', 'false', 'false', 'false'];
     expect(matchArrayElements(actual, expected)).toBe(true);
   });
 
@@ -105,7 +105,7 @@ test.describe('data-table batch-actions', () => {
     await button.click();
 
     const actual = await getCheckboxValues(table);
-    const expected = [false];
+    const expected = ['false'];
     expect(matchArrayElements(actual, expected)).toBe(true);
   });
 
@@ -141,7 +141,7 @@ test.describe('data-table batch-actions', () => {
     await button.click();
 
     const actual = await getCheckboxValues(table);
-    const expected = [false, false, false, false, false];
+    const expected = ['false', 'false', 'false', 'false', 'false'];
     expect(matchArrayElements(actual, expected)).toBe(true);
   });
 
@@ -151,14 +151,14 @@ test.describe('data-table batch-actions', () => {
     await clickCheckboxAtRowIndex(table, 1);
 
     const beforeActual = await getCheckboxValues(table);
-    const beforeExpected = [true, true, false, false, false, false];
+    const beforeExpected = ['true', 'true', 'false', 'false', 'false', 'false'];
     expect(matchArrayElements(beforeActual, beforeExpected)).toBe(true);
 
     const button = await page.$('button[aria-label="Flag"]');
     await button.click();
 
     const afterActual = await getCheckboxValues(table);
-    const afterExpected = [false, false, false, false, false, false];
+    const afterExpected = ['false', 'false', 'false', 'false', 'false', 'false'];
     expect(matchArrayElements(afterActual, afterExpected)).toBe(true);
   });
 });

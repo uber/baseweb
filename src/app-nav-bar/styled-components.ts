@@ -230,6 +230,7 @@ export const StyledUserProfilePictureContainer = styled('div', ({ $theme }) => {
   };
 });
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const StyledUserProfileInfoContainer = styled('div', ({ $theme }) => {
   return {
     boxSizing: 'border-box',
@@ -237,6 +238,7 @@ export const StyledUserProfileInfoContainer = styled('div', ({ $theme }) => {
   };
 });
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const StyledDesktopMenuContainer = styled('div', ({ $theme }) => {
   return {};
 });

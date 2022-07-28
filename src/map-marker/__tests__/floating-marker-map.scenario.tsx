@@ -43,10 +43,12 @@ export function Scenario() {
   const [label, setLabel] = React.useState('Uber HQ');
   const [startEnhancer, setStartEnhancer] = React.useState(true);
   const [endEnhancer, setEndEnhancer] = React.useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [floatingMarkerAnchorType, setFloatingMarkerAnchorType] = React.useState<any>([
     floatingMarkerAnchorTypes[0],
   ]);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [floatingMarkerAnchorPosition, setFloatingMarkerAnchorPosition] = React.useState<any>([
     floatingMarkerAnchorPositions[0],
   ]);

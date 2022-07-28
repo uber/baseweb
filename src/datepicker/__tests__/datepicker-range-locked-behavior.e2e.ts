@@ -26,99 +26,63 @@ const Apr1 = '[aria-label="Choose Monday, April 1st 2019. It\'s available."]';
 test.describe('Datepicker, Range with Locked Behavior', () => {
   test('selects End Date, then Start Date, then changes End Date', async ({ page }) => {
     await mount(page, 'datepicker--range-locked-behavior');
-    const [startDateInput, endDateInput] = await page.$$(selectors.input);
+    const inputs = page.locator(selectors.input);
+    const startDateInput = inputs.nth(0);
+    const endDateInput = inputs.nth(1);
 
-    // select a day for the End Date
-    endDateInput.click();
-    await page.waitForSelector(selectors.calendar);
-    await page.click(mar28);
+    await endDateInput.click();
+    await page.locator(mar28).click();
     await page.keyboard.press('Escape');
-    const [startDateValue, endDateValue] = await page.$$eval(selectors.input, (inputs) =>
-      inputs.map((input) => input.value)
-    );
-    expect(endDateValue).toBe('2019/03/28');
-    expect(startDateValue).toBe('    /  /  ');
+    await expect(endDateInput).toHaveValue('2019/03/28');
+    await expect(startDateInput).toHaveValue('    /  /  ');
 
-    // select a day for the Start Date
-    startDateInput.click();
-    await page.waitForSelector(selectors.calendar);
-    await page.click(mar10);
+    await startDateInput.click();
+    await page.locator(mar10).click();
     await page.keyboard.press('Escape');
-    const [startDateValue2, endDateValue2] = await page.$$eval(selectors.input, (inputs) =>
-      inputs.map((input) => input.value)
-    );
-    expect(startDateValue2).toBe('2019/03/10');
-    expect(endDateValue2).toBe('2019/03/28');
+    await expect(startDateInput).toHaveValue('2019/03/10');
+    await expect(endDateInput).toHaveValue('2019/03/28');
 
-    // attempt to select a new, invalid End Date (End Date remains unchanged)
-    endDateInput.click();
-    await page.waitForSelector(selectors.calendar);
-    await page.click(mar8);
+    await endDateInput.click();
+    await page.locator(mar8).click();
     await page.keyboard.press('Escape');
-    const [startDateValue3, endDateValue3] = await page.$$eval(selectors.input, (inputs) =>
-      inputs.map((input) => input.value)
-    );
-    expect(startDateValue3).toBe('2019/03/10');
-    expect(endDateValue3).toBe('2019/03/28');
+    await expect(startDateInput).toHaveValue('2019/03/10');
+    await expect(endDateInput).toHaveValue('2019/03/28');
 
-    // select a new, valid End Date
-    endDateInput.click();
-    await page.waitForSelector(selectors.calendar);
-    await page.click(mar26);
+    await endDateInput.click();
+    await page.locator(mar26).click();
     await page.keyboard.press('Escape');
-    const [startDateValue4, endDateValue4] = await page.$$eval(selectors.input, (inputs) =>
-      inputs.map((input) => input.value)
-    );
-    expect(startDateValue4).toBe('2019/03/10');
-    expect(endDateValue4).toBe('2019/03/26');
+    await expect(startDateInput).toHaveValue('2019/03/10');
+    await expect(endDateInput).toHaveValue('2019/03/26');
   });
+
   test('selects range in multi-month', async ({ page }) => {
     await mount(page, 'datepicker--range-locked-behavior');
-    const [startDateInput, endDateInput] = await page.$$(selectors.multiMonthInputs);
+    const inputs = page.locator(selectors.multiMonthInputs);
+    const startDateInput = inputs.nth(0);
+    const endDateInput = inputs.nth(1);
 
-    // select a day for Start Date
-    startDateInput.click();
-    await page.waitForSelector(selectors.calendar);
-    await page.click(mar8);
+    await startDateInput.click();
+    await page.locator(mar8).click();
     await page.keyboard.press('Escape');
-    const startDateValue1 = await page.$eval(selectors.multiMonthInputs, (input) => input.value);
-    expect(startDateValue1).toBe('2019/03/08');
+    await expect(startDateInput).toHaveValue('2019/03/08');
 
-    // select a different day for Start Date
-    startDateInput.click();
-    await page.waitForSelector(selectors.calendar);
-    await page.click(mar10);
+    await startDateInput.click();
+    await page.locator(mar10).click();
     await page.keyboard.press('Escape');
-    const [startDateValue2, endDateValue2] = await page.$$eval(
-      selectors.multiMonthInputs,
-      (inputs) => inputs.map((input) => input.value)
-    );
-    expect(startDateValue2).toBe('2019/03/10');
-    expect(endDateValue2).toBe('');
+    await expect(startDateInput).toHaveValue('2019/03/10');
+    await expect(endDateInput).toHaveValue('');
 
-    // attempt to select an invalid day for End Date
-    endDateInput.click();
-    await page.waitForSelector(selectors.calendar);
-    await page.click(mar8);
+    await endDateInput.click();
+    await page.locator(mar8).click();
     await page.keyboard.press('Escape');
-    const [startDateValue3, endDateValue3] = await page.$$eval(
-      selectors.multiMonthInputs,
-      (inputs) => inputs.map((input) => input.value)
-    );
-    expect(startDateValue3).toBe('2019/03/10');
-    expect(endDateValue3).toBe('');
+    await expect(startDateInput).toHaveValue('2019/03/10');
+    await expect(endDateInput).toHaveValue('');
 
-    // select a valid day for End Date
-    endDateInput.click();
-    await page.waitForSelector(selectors.calendar);
-    await page.click(Apr1);
+    await endDateInput.click();
+    await page.locator(Apr1).click();
     await page.keyboard.press('Escape');
-    const [startDateValue4, endDateValue4] = await page.$$eval(
-      selectors.multiMonthInputs,
-      (inputs) => inputs.map((input) => input.value)
-    );
-    expect(startDateValue4).toBe('2019/03/10');
-    expect(endDateValue4).toBe('2019/04/01');
+    await expect(startDateInput).toHaveValue('2019/03/10');
+    await expect(endDateInput).toHaveValue('2019/04/01');
   });
 
   test('selected time is preserved when dates are changed', async ({ page }) => {

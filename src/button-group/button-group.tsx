@@ -28,6 +28,7 @@ function isIndexSelected(selected, index) {
 
 export default class ButtonGroup extends React.Component<ButtonGroupProps> {
   childRefs: {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [key: number]: React.RefObject<any>;
   } = {};
   static defaultProps = {

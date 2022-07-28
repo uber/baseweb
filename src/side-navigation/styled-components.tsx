@@ -105,6 +105,7 @@ export const StyledNavItemElement = styled<'div', SharedProps>('div', (props) =>
 export const StyledNavItem = withWrapper<typeof StyledNavItemElement, { item? }>(
   StyledNavItemElement,
   (Styled) =>
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     function StyledNav({ item, ...restProps }) {
       return <Styled {...restProps} />;
     }

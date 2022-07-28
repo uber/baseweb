@@ -56,6 +56,7 @@ describe('Radio', () => {
     );
 
     const select = container.querySelector('[data-baseweb="select"]');
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const radio = container.querySelector('input[type="radio"]') as any as HTMLInputElement; //flowlint-line unclear-type:off
     expect(radio.checked).toBe(false);
     if (select) fireEvent.click(select);

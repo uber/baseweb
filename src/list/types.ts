@@ -90,6 +90,7 @@ export type StyledHeadingHeadingProps = {
 };
 
 export type MenuAdapterProps = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   item?: any;
   onMouseEnter?: (a: MouseEvent) => unknown;
   onClick?: (a: MouseEvent) => unknown;

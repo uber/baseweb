@@ -24,6 +24,7 @@ function Child(props: {
   );
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function BaseOverride(props: any) {
   return <input onChange={props.onChange} value={props.value} />;
 }

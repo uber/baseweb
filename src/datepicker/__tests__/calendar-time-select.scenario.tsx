@@ -12,6 +12,7 @@ const DATE = new Date('2019-02-22T10:00:00Z');
 const TIME = new Date(DATE);
 TIME.setHours(12, 0, 0);
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export class Scenario extends React.Component<any, any> {
   state = { date: DATE, time: TIME };
 

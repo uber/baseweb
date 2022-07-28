@@ -14,6 +14,7 @@ export function Scenario() {
     <Accordion
       accordion={false} // Open multiple panels simultaneously
       expanded={expanded}
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       onChange={({ key, expanded }) => setExpanded(expanded)} // Use key or expanded however you like
       overrides={{ Content: { style: { fontFamily: 'fantasy' } } }}
     >

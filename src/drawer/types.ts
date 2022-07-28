@@ -25,6 +25,7 @@ export type DrawerOverrides = {
 };
 
 export type ElementRef = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   current: any | null;
 };
 

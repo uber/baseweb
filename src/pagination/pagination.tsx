@@ -43,6 +43,7 @@ export default class Pagination extends React.PureComponent<
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   handleBlur = (event: SyntheticEvent) => {
     if (this.state.isFocusVisible !== false) {
       this.setState({ isFocusVisible: false });
@@ -66,6 +67,7 @@ export default class Pagination extends React.PureComponent<
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onPrevClick = (event: SyntheticEvent<any>) => {
     const { currentPage, onPageChange, onPrevClick } = this.props;
     if (currentPage > 1) {
@@ -74,6 +76,7 @@ export default class Pagination extends React.PureComponent<
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onNextClick = (event: SyntheticEvent<any>) => {
     const { currentPage, numPages, onPageChange, onNextClick } = this.props;
     if (currentPage < numPages) {

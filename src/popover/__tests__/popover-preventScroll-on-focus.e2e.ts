@@ -36,9 +36,13 @@ test.describe('popover', () => {
     // Could wait for few seconds but that would be unreliable
     await page.evaluate(() => {
       function scrollHandler() {
+        // @ts-expect-error
         window.isPageScrolling = true;
+        // @ts-expect-error
         clearTimeout(window.scrollTimer);
+        // @ts-expect-error
         window.scrollTimer = setTimeout(() => {
+          // @ts-expect-error
           window.isPageScrolling = false;
           window.removeEventListener('scroll', scrollHandler);
         }, 100);
@@ -58,6 +62,7 @@ test.describe('popover', () => {
     });
 
     // Waiting for scroll to end
+    // @ts-expect-error
     await page.waitForFunction(() => window.isPageScrolling === false, { poll: 100 });
 
     // We keep a flag to see if the page is scrolled or not after this point in the test.

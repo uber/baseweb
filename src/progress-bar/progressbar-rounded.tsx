@@ -61,6 +61,7 @@ function ProgressBarRounded({
   }, []);
 
   // Animation
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const animationFrameRef = React.useRef<any>();
   const [pathProgress, setPathProgress] = React.useState(0);
   React.useEffect(() => {

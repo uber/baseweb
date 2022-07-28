@@ -11,4 +11,5 @@ export * from './styled-components';
 // Types
 export * from './types';
 /** @deprecated type is already removed*/
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 type NavItemOverrides = never;

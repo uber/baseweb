@@ -60,7 +60,7 @@ export const flexGridItemMediaQueryStyle = ({
   });
 };
 
-export function getResponsiveValue<T>(responsive?: Responsive<T>, i: number): ?T {
+export function getResponsiveValue<T>(responsive?: Responsive<T>, i?: number): T | undefined {
   if (!responsive) {
     return null;
   }
@@ -163,6 +163,7 @@ const FlexGridItem: React.FC<FlexGridItemProps & { forwardedRef: React.Ref<HTMLE
     <Block
       // coerced to any because of how react components are typed.
       // cannot guarantee an html element
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ref={forwardedRef as any}
       as={as}
       overrides={blockOverrides}

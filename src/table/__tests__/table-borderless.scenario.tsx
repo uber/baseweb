@@ -39,6 +39,7 @@ const DATA = [
   ['Neil', 27],
 ];
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export class Scenario extends React.Component<any, any> {
   render() {
     return (

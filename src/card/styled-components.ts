@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 
 import { styled, expandBorderStyles } from '../styles';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import type { StyleObject } from 'styletron-standard';
 
 export const Action = styled('div', ({ $theme }) => ({

@@ -27,145 +27,108 @@ const selectors = {
 test.describe('Datepicker, Range', () => {
   test('selects range', async ({ page }) => {
     await mount(page, 'datepicker--range');
-    await page.waitForSelector(selectors.input);
-    await page.click(selectors.input);
-    await page.waitForSelector(selectors.calendar);
-    await page.click(selectors.day);
-    await page.waitForSelector(selectors.calendar);
-    const selectedValue1 = await page.$eval(selectors.input, (input) => input.value);
-    expect(selectedValue1).toBe('2019/03/10 –     /  /  ');
-    await page.click(selectors.day2);
-    await page.waitForSelector(selectors.calendar, {
-      state: 'hidden',
-    });
-    const selectedValue2 = await page.$eval(selectors.input, (input) => input.value);
-    expect(selectedValue2).toBe('2019/03/10 – 2019/03/28');
+    const input = page.locator(selectors.input).first();
+    await input.click();
+    const day = page.locator(selectors.day);
+    await day.click();
+    await expect(input).toHaveValue('2019/03/10 –     /  /  ');
+    const day2 = page.locator(selectors.day2);
+    await day2.click();
+    const calendar = page.locator(selectors.calendar);
+    await expect(calendar).toBeHidden();
+    await expect(input).toHaveValue('2019/03/10 – 2019/03/28');
   });
+
   test('selects range in multi-month', async ({ page }) => {
     await mount(page, 'datepicker--range-multi-month');
-    await page.waitForSelector(selectors.input);
-    await page.click(selectors.input);
-    await page.waitForSelector(selectors.calendar);
-    await page.click(selectors.day);
-    await page.waitForSelector(selectors.calendar);
-    const selectedValue1 = await page.$eval(selectors.input, (input) => input.value);
-    expect(selectedValue1).toBe('2019/03/10 –     /  /  ');
-    await page.click(selectors.day4);
-    await page.waitForSelector(selectors.calendar, {
-      state: 'hidden',
-    });
-    const selectedValue2 = await page.$eval(selectors.input, (input) => input.value);
-    expect(selectedValue2).toBe('2019/03/10 – 2019/04/01');
+    const input = page.locator(selectors.input).first();
+    await input.click();
+    const day = page.locator(selectors.day);
+    await day.click();
+    await expect(input).toHaveValue('2019/03/10 –     /  /  ');
+    const day4 = page.locator(selectors.day4);
+    await day4.click();
+    const calendar = page.locator(selectors.calendar);
+    await expect(calendar).toBeHidden();
+    await expect(input).toHaveValue('2019/03/10 – 2019/04/01');
   });
+
   test('selects range in multi-month - do not autoAdvance calendar months since selected date is in view', async ({
     page,
   }) => {
     await mount(page, 'datepicker--range-multi-month');
-    await page.waitForSelector(selectors.input);
-    await page.click(selectors.input);
-    await page.waitForSelector(selectors.calendar);
-    // datepicker should show 2 months - March and April
-    // we can see both a day in March and a day in April are rendered
-    await page.waitForSelector(selectors.day);
-    await page.click(selectors.day4);
-    await page.waitForSelector(selectors.calendar);
-    const selectedValue1 = await page.$eval(selectors.input, (input) => input.value);
-    expect(selectedValue1).toBe('2019/04/01 –     /  /  ');
-    // after clicking on a date in April, in the second month, the months should NOT change at all. March should still be visible, and May should not be rendered
-    // we finish off the test by clicking on a day in March (simulating clicking the "end" of the range first, then the "beginning" of the range last)
-    // await page.waitForSelector(selectors.day5, {hidden: true});
-    await page.waitForSelector(selectors.day);
-    await page.click(selectors.day);
-    await page.waitForSelector(selectors.calendar, {
-      state: 'hidden',
-    });
-    const selectedValue2 = await page.$eval(selectors.input, (input) => input.value);
-    expect(selectedValue2).toBe('2019/03/10 – 2019/04/01');
+    const input = page.locator(selectors.input).first();
+    await input.click();
+    const day4 = page.locator(selectors.day4);
+    await day4.click();
+    await expect(input).toHaveValue('2019/04/01 –     /  /  ');
+    const day = page.locator(selectors.day);
+    await day.click();
+    await expect(input).toHaveValue('2019/03/10 – 2019/04/01');
   });
+
   test('selected time is preserved when dates are changed', async ({ page }) => {
     await mount(page, 'datepicker--range');
-    await page.waitForSelector(selectors.input);
-    await page.click(selectors.input);
-    await page.waitForSelector(selectors.timeSelect);
+    const input = page.locator(selectors.input).first();
+    await input.click();
+    const timeSelects = page.locator(selectors.timeSelect);
+    const timeValues = page.locator(selectors.timeSelectValue);
 
-    let timeSelects = await page.$$(selectors.timeSelect);
-    // Set the start time
-    await timeSelects[0].click();
-    await page.waitForSelector(selectors.timeSelectDropdown);
+    const startTimeSelect = timeSelects.nth(0);
+    await startTimeSelect.click();
     await page.keyboard.type('12:30 AM');
     await page.keyboard.press('ArrowDown');
     await page.keyboard.press('Enter');
-    let timeSelectValue = await page.$$eval(
-      `${selectors.timeSelect} ${selectors.timeSelectValue}`,
-      (selects) => selects[0].textContent
-    );
-    expect(timeSelectValue).toBe('12:30 AM');
-    // Set the end time
-    await timeSelects[1].click();
-    await page.waitForSelector(selectors.timeSelectDropdown);
+    const startTimeValue = timeValues.nth(0);
+    await expect(startTimeValue).toHaveText('12:30 AM');
+
+    const endTimeSelect = timeSelects.nth(1);
+    await endTimeSelect.click();
     await page.keyboard.type('4:30 AM');
     await page.keyboard.press('ArrowDown');
     await page.keyboard.press('Enter');
-    let timeSelectValue2 = await page.$$eval(
-      `${selectors.timeSelect} ${selectors.timeSelectValue}`,
-      (selects) => selects[1].textContent
-    );
-    expect(timeSelectValue2).toBe('4:30 AM');
-    // Select the start day
-    await page.waitForSelector(selectors.calendar);
-    await page.waitForSelector(selectors.day);
-    await page.click(selectors.day);
-    const selectedValue1 = await page.$eval(selectors.input, (input) => input.value);
-    expect(selectedValue1).toBe('2019/03/10 –     /  /  ');
-    // Select the start day
-    await page.waitForSelector(selectors.day2);
-    await page.click(selectors.day2);
-    await page.waitForSelector(selectors.calendar, {
-      state: 'hidden',
-    });
-    const selectedValue2 = await page.$eval(selectors.input, (input) => input.value);
-    expect(selectedValue2).toBe('2019/03/10 – 2019/03/28');
-    await page.waitForSelector(selectors.calendar, { state: 'hidden' });
+    const endTimeValue = timeValues.nth(1);
+    await expect(endTimeValue).toHaveText('4:30 AM');
 
-    // Open the calendar again and check that the time is set correctly
-    await page.click(selectors.input);
-    await page.waitForSelector(selectors.timeSelect);
-    timeSelectValue = await page.$$eval(
-      `${selectors.timeSelect} ${selectors.timeSelectValue}`,
-      (selects) => selects[0].textContent
-    );
-    expect(timeSelectValue).toBe('12:30 AM');
-    // Set the end time
-    timeSelectValue2 = await page.$$eval(
-      `${selectors.timeSelect} ${selectors.timeSelectValue}`,
-      (selects) => selects[1].textContent
-    );
-    expect(timeSelectValue2).toBe('4:30 AM');
+    const day = page.locator(selectors.day);
+    await day.click();
+    await expect(input).toHaveValue('2019/03/10 –     /  /  ');
+
+    const day2 = page.locator(selectors.day2);
+    await day2.click();
+    await expect(input).toHaveValue('2019/03/10 – 2019/03/28');
+
+    const calendar = page.locator(selectors.calendar);
+    await expect(calendar).toBeHidden();
+
+    await input.click();
+    await expect(startTimeValue).toHaveText('12:30 AM');
+    await expect(endTimeValue).toHaveText('4:30 AM');
   });
 });
 
 test.describe('Datepicker, Range, null StartDate with valid EndDate', () => {
   test('displays NullDatePlaceholder in the input field', async ({ page }) => {
     await mount(page, 'datepicker--range-null-start-date');
-    const selectedValue1 = await page.$eval(selectors.input, (input) => input.value);
-    expect(selectedValue1).toBe('    /  /   – 2021/06/10');
+    const input = page.locator(selectors.input).first();
+    await expect(input).toHaveValue('    /  /   – 2021/06/10');
   });
+
   test('selects range when selected date is before EndDate', async ({ page }) => {
     await mount(page, 'datepicker--range-null-start-date');
-    await page.waitForSelector(selectors.input);
-    await page.click(selectors.input);
-    await page.waitForSelector(selectors.calendar);
-    await page.click(selectors.day6);
-    const selectedValue1 = await page.$eval(selectors.input, (input) => input.value);
-    expect(selectedValue1).toBe('2021/06/06 – 2021/06/10');
+    const input = page.locator(selectors.input).first();
+    await input.click();
+    const day = page.locator(selectors.day6);
+    await day.click();
+    await expect(input).toHaveValue('2021/06/06 – 2021/06/10');
   });
+
   test('selects range when selected date is after EndDate', async ({ page }) => {
     await mount(page, 'datepicker--range-null-start-date');
-    await page.waitForSelector(selectors.input);
-    await page.click(selectors.input);
-    await page.waitForSelector(selectors.calendar);
-    await page.click(selectors.day7);
-    const selectedValue1 = await page.$eval(selectors.input, (input) => input.value);
-    expect(selectedValue1).toBe('2021/06/10 – 2021/06/14');
+    const input = page.locator(selectors.input).first();
+    await input.click();
+    const day = page.locator(selectors.day7);
+    await day.click();
+    await expect(input).toHaveValue('2021/06/10 – 2021/06/14');
   });
 });

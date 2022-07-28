@@ -50,117 +50,96 @@ test.describe('Datepicker', () => {
 
   test('updates the calendar when a year selected from the dropdown', async ({ page }) => {
     await mount(page, 'datepicker--datepicker');
-    await page.waitForSelector(selectors.input);
-    await page.click(selectors.input);
-    const [, year] = await page.$$(selectors.monthYearSelectButton);
-
-    await year.click();
-    await page.waitForSelector(selectors.monthYearSelectMenu);
-    await page.$$eval('ul[role="listbox"] li', (items) => {
-      const option = items.find((item) => {
-        return item.textContent === '2018';
-      });
-      return option.click();
-    });
-
-    await page.waitForSelector(selectors.monthYearSelectMenu, { state: 'hidden' });
-    await page.waitForSelector(selectors.calendar);
-    await page.waitForSelector(selectors.day5);
+    const input = page.locator(selectors.input).first();
+    await input.click();
+    const yearSelect = page.locator(selectors.monthYearSelectButton).nth(1);
+    await yearSelect.click();
+    const yearSelectMenu = page.locator(selectors.monthYearSelectMenu);
+    await expect(yearSelectMenu).toBeVisible();
+    const option2018 = yearSelectMenu.locator('text="2018"');
+    await option2018.click();
+    await expect(yearSelectMenu).toBeHidden();
+    await expect(page.locator(selectors.day5)).toBeVisible();
   });
 
   test('updates the calendar when a month selected from the dropdown', async ({ page }) => {
     await mount(page, 'datepicker--datepicker');
-    await page.waitForSelector(selectors.input);
-    await page.click(selectors.input);
-    const [month] = await page.$$(selectors.monthYearSelectButton);
-
-    await month.click();
-    await page.waitForSelector(selectors.monthYearSelectMenu);
-    await page.$$eval('ul[role="listbox"] li', (items) => {
-      const option = items.find((item) => {
-        return item.textContent === 'July';
-      });
-      return option.click();
-    });
-
-    await page.waitForSelector(selectors.monthYearSelectMenu, { state: 'hidden' });
-    await page.waitForSelector(selectors.calendar);
-    await page.waitForSelector(selectors.day6);
+    const input = page.locator(selectors.input).first();
+    await input.click();
+    const monthSelect = page.locator(selectors.monthYearSelectButton).nth(0);
+    await monthSelect.click();
+    const monthSelectMenu = page.locator(selectors.monthYearSelectMenu);
+    await expect(monthSelectMenu).toBeVisible();
+    const optionJuly = monthSelectMenu.locator('text="July"');
+    await optionJuly.click();
+    await expect(monthSelectMenu).toBeHidden();
+    await expect(page.locator(selectors.day6)).toBeVisible();
   });
 
   test('disables previous month button if minimum month is selected', async ({ page }) => {
     await mount(page, 'datepicker--datepicker');
-    await page.waitForSelector(selectors.input);
-    await page.click(selectors.input);
-    const [month, year] = await page.$$(selectors.monthYearSelectButton);
+    const input = page.locator(selectors.input).first();
+    await input.click();
 
-    await year.click();
-    await page.waitForSelector(selectors.monthYearSelectMenu);
-    await page.$$eval('ul[role="listbox"] li', (items) => {
-      const option = items.find((item) => {
-        return item.textContent === '2000';
-      });
-      return option.click();
-    });
+    const monthSelect = page.locator(selectors.monthYearSelectButton).nth(0);
+    const yearSelect = page.locator(selectors.monthYearSelectButton).nth(1);
+    const selectMenu = page.locator(selectors.monthYearSelectMenu);
 
-    await month.click();
-    await page.waitForSelector(selectors.monthYearSelectMenu);
-    await page.$$eval('ul[role="listbox"] li', (items) => {
-      const option = items.find((item) => {
-        return item.textContent === 'January';
-      });
-      return option.click();
-    });
+    await yearSelect.click();
+    await expect(selectMenu).toBeVisible();
+    const option2000 = selectMenu.locator('text="2000"');
+    await option2000.click();
+    await expect(selectMenu).toBeHidden();
 
-    await page.click(selectors.leftArrow, { force: true });
-    const value = await page.$(selectors.monthYearSelectButton);
-    const text = await page.evaluate((element) => element.textContent, value);
-    expect(text).toBe('January');
+    await monthSelect.click();
+    await expect(selectMenu).toBeVisible();
+    const optionJanuary = selectMenu.locator('text="January"');
+    await optionJanuary.click();
+    await expect(selectMenu).toBeHidden();
+
+    const leftArrow = page.locator(selectors.leftArrow);
+    await leftArrow.click({ force: true });
+
+    await expect(monthSelect).toHaveText('January');
   });
 
   test('disables next month button if maximum month is selected', async ({ page }) => {
     await mount(page, 'datepicker--datepicker');
-    await page.waitForSelector(selectors.input);
-    await page.click(selectors.input);
-    const [month, year] = await page.$$(selectors.monthYearSelectButton);
+    const input = page.locator(selectors.input).first();
+    await input.click();
 
-    await year.click();
-    await page.waitForSelector(selectors.monthYearSelectMenu);
-    await page.$$eval('ul[role="listbox"] li', (items) => {
-      const option = items.find((item) => {
-        return item.textContent === '2030';
-      });
-      return option.click();
-    });
+    const monthSelect = page.locator(selectors.monthYearSelectButton).nth(0);
+    const yearSelect = page.locator(selectors.monthYearSelectButton).nth(1);
+    const selectMenu = page.locator(selectors.monthYearSelectMenu);
 
-    await month.click();
-    await page.waitForSelector(selectors.monthYearSelectMenu);
-    await page.$$eval('ul[role="listbox"] li', (items) => {
-      const option = items.find((item) => {
-        return item.textContent === 'December';
-      });
-      return option.click();
-    });
+    await yearSelect.click();
+    await expect(selectMenu).toBeVisible();
+    const option2030 = selectMenu.locator('text="2030"');
+    await option2030.click();
+    await expect(selectMenu).toBeHidden();
 
-    await page.click(selectors.rightArrow, { force: true });
-    const value = await page.$(selectors.monthYearSelectButton);
-    const text = await page.evaluate((element) => element.textContent, value);
-    expect(text).toBe('December');
+    await monthSelect.click();
+    await expect(selectMenu).toBeVisible();
+    const optionDecember = selectMenu.locator('text="December"');
+    await optionDecember.click();
+    await expect(selectMenu).toBeHidden();
+
+    const rightArrow = page.locator(selectors.rightArrow);
+    await rightArrow.click({ force: true });
+    await expect(monthSelect).toHaveText('December');
   });
 
   test('selects day when typed', async ({ page }) => {
     await mount(page, 'datepicker--datepicker');
-    await page.waitForSelector(selectors.input);
-    await page.click(selectors.input);
+    const input = page.locator(selectors.input).first();
+    await input.click();
 
     // input mask
-    let selectedValue = await page.$eval(selectors.input, (input) => input.value);
-    expect(selectedValue).toBe('    /  /  ');
+    await expect(input).toHaveValue('    /  /  ');
 
     // actual value
-    await page.type(selectors.input, '2019/03/10');
-    selectedValue = await page.$eval(selectors.input, (input) => input.value);
-    expect(selectedValue).toBe('2019/03/10');
+    await input.fill('2019/03/10');
+    await expect(input).toHaveValue('2019/03/10');
   });
 
   // TODO(williamernest): temporarily disable this test due to flakiness

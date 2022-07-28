@@ -26,19 +26,14 @@ test.describe('input', () => {
 
   test('preset value is displayed', async ({ page }) => {
     await mount(page, 'input--input');
-    await page.waitForSelector(selectors.input);
-    const value = await page.$eval(selectors.input, (input) => input.value);
-    expect(value).toBe('uber');
+    await expect(page.locator('input')).toHaveValue('uber');
   });
 
   test('entered value is displayed', async ({ page }) => {
     await mount(page, 'input--input');
-    await page.waitForSelector(selectors.input);
-
-    await page.keyboard.type('_good');
-
-    const value = await page.$eval(selectors.input, (input) => input.value);
-    expect(value).toBe('uber_good');
+    const input = await page.locator('input');
+    await input.type('_good');
+    await expect(input).toHaveValue('uber_good');
   });
 
   test.describe('can clear values', () => {
@@ -51,109 +46,68 @@ test.describe('input', () => {
 
     test('with escape key', async ({ page }) => {
       await mount(page, 'input--clearable');
-      await page.waitForSelector(selectors.input);
-
-      let inputValue = await page.$eval(selectors.input, (input) => input.value);
-      expect(inputValue).toBe('Thing');
-
-      await page.focus(selectors.input);
+      const input = page.locator(selectors.input);
+      await expect(input).toHaveValue('Thing');
+      await input.focus();
       await page.keyboard.press('Escape');
-
-      inputValue = await page.$eval(selectors.input, (input) => input.value);
-      expect(inputValue).toBe('');
-
-      await page.waitForSelector(selectors.clearIcon, {
-        state: 'hidden',
-      });
+      await expect(input).toHaveValue('');
+      const clearIcon = page.locator(selectors.clearIcon);
+      await expect(clearIcon).toBeHidden();
     });
 
     test('not with escape key when its disabled', async ({ page }) => {
       await mount(page, 'input--clearable-noescape');
-      await page.waitForSelector(selectors.input);
-
-      let inputValue = await page.$eval(selectors.input, (input) => input.value);
-      expect(inputValue).toBe('Thing');
-
-      await page.focus(selectors.input);
+      const input = page.locator(selectors.input);
+      await expect(input).toHaveValue('Thing');
+      await input.focus();
       await page.keyboard.press('Escape');
-
-      inputValue = await page.$eval(selectors.input, (input) => input.value);
-      expect(inputValue).toBe('Thing');
+      await expect(input).toHaveValue('Thing');
     });
 
     test('with delete icon', async ({ page }) => {
       await mount(page, 'input--clearable');
-      await page.waitForSelector(selectors.input);
-
-      let inputValue = await page.$eval(selectors.input, (input) => input.value);
-      expect(inputValue).toBe('Thing');
-
-      await page.click(selectors.clearIcon);
-
-      inputValue = await page.$eval(selectors.input, (input) => input.value);
-      expect(inputValue).toBe('');
-
-      await page.waitForSelector(selectors.clearIcon, {
-        state: 'hidden',
-      });
+      const input = page.locator(selectors.input);
+      await expect(input).toHaveValue('Thing');
+      const clearIcon = page.locator(selectors.clearIcon);
+      await clearIcon.click();
+      await expect(input).toHaveValue('');
+      await expect(clearIcon).toBeHidden();
     });
 
     test('with delete icon via enter', async ({ page }) => {
       await mount(page, 'input--clearable');
-      await page.waitForSelector(selectors.input);
-
-      let inputValue = await page.$eval(selectors.input, (input) => input.value);
-      expect(inputValue).toBe('Thing');
-
-      await page.focus(selectors.clearIcon);
+      const input = page.locator(selectors.input);
+      await expect(input).toHaveValue('Thing');
+      const clearIcon = page.locator(selectors.clearIcon);
+      await clearIcon.focus();
       await page.keyboard.press('Enter');
-
-      inputValue = await page.$eval(selectors.input, (input) => input.value);
-      expect(inputValue).toBe('');
-
-      await page.waitForSelector(selectors.clearIcon, {
-        state: 'hidden',
-      });
+      await expect(input).toHaveValue('');
+      await expect(clearIcon).toBeHidden();
     });
 
     test('with delete icon via space', async ({ page }) => {
       await mount(page, 'input--clearable');
-      await page.waitForSelector(selectors.input);
-
-      let inputValue = await page.$eval(selectors.input, (input) => input.value);
-      expect(inputValue).toBe('Thing');
-
-      await page.focus(selectors.clearIcon);
+      const input = page.locator(selectors.input);
+      await expect(input).toHaveValue('Thing');
+      const clearIcon = page.locator(selectors.clearIcon);
+      await clearIcon.focus();
       await page.keyboard.press(' ');
-
-      inputValue = await page.$eval(selectors.input, (input) => input.value);
-      expect(inputValue).toBe('');
-
-      await page.waitForSelector(selectors.clearIcon, {
-        state: 'hidden',
-      });
+      await expect(input).toHaveValue('');
+      await expect(clearIcon).toBeHidden();
     });
 
     // regression test for https://github.com/uber/baseweb/issues/1643
     // verify that the input receiving the clear event is cleared and not another input
     test('clears the correct input', async ({ page }) => {
       await mount(page, 'input--clearable');
-      await page.waitForSelector(selectors.input);
-
-      // verify first input value is "Thing"
-      expect(await page.$eval(selectors.input, (input) => input.value)).toBe('Thing');
-
-      // verify second input value is "Or other"
-      expect(await page.$eval(selectors.lastInput, (input) => input.value)).toBe('Or other');
-
-      // clear first input
-      await page.click(selectors.clearIcon);
-
-      // verify first input value is ""
-      expect(await page.$eval(selectors.input, (input) => input.value)).toBe('');
-
-      // verify second input value is still "Other"
-      expect(await page.$eval(selectors.lastInput, (input) => input.value)).toBe('Or other');
+      const first = page.locator(selectors.input);
+      await expect(first).toHaveValue('Thing');
+      const last = page.locator(selectors.lastInput);
+      await expect(last).toHaveValue('Or other');
+      const clearIcon = page.locator(selectors.clearIcon);
+      await clearIcon.click();
+      await expect(first).toHaveValue('');
+      await expect(last).toHaveValue('Or other');
     });
 
     // regression tests for https://github.com/uber/baseweb/issues/1662
@@ -162,32 +116,36 @@ test.describe('input', () => {
         await mount(page, 'input--password');
         await page.waitForSelector(selectors.input);
         // set global variable '__e2e__formSubmitted__' to false
+        // @ts-expect-error
         await page.evaluate(() => (window.__e2e__formSubmitted__ = false));
       });
 
       test('while focusing input, "enter" does not toggle password masking', async ({ page }) => {
         // focus input
-        await page.focus(selectors.input);
+        const input = page.locator(selectors.input);
+        await input.focus();
         // verify type is password, aka the text is masked
-        expect(await page.$eval(selectors.input, (input) => input.type)).toBe('password');
-        // hit enter
+        await expect(input).toHaveAttribute('type', 'password');
         await page.keyboard.press('Enter');
         // verify type is still password, aka the text is still masked
-        expect(await page.$eval(selectors.input, (input) => input.type)).toBe('password');
+        await expect(input).toHaveAttribute('type', 'password');
         // verify global variable '__e2e__formSubmitted__' is true
+        // @ts-expect-error
         expect(await page.evaluate(() => window.__e2e__formSubmitted__)).toBe(true);
       });
 
       test('while focusing mask toggle, "enter" does not submit the form', async ({ page }) => {
         // focus password mask toggle
-        await page.focus(selectors.maskToggle);
+        const maskToggle = page.locator(selectors.maskToggle);
+        await maskToggle.focus();
         // verify type is password, aka the text is masked
-        expect(await page.$eval(selectors.input, (input) => input.type)).toBe('password');
-        // hit enter
+        const input = page.locator(selectors.input);
+        await expect(input).toHaveAttribute('type', 'password');
         await page.keyboard.press('Enter');
         // verify type is now text, aka the text is not masked
-        expect(await page.$eval(selectors.input, (input) => input.type)).toBe('text');
+        await expect(input).toHaveAttribute('type', 'text');
         // verify global variable '__e2e__formSubmitted__' is still false
+        // @ts-expect-error
         expect(await page.evaluate(() => window.__e2e__formSubmitted__)).toBe(false);
       });
     });

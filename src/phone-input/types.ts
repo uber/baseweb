@@ -39,6 +39,7 @@ export type mapIsoToLabel = (iso: string) => string;
 // Props
 
 export type CountrySelectDropdownProps = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   children: Array<React.ReactElement<any>>;
   $country: Country;
   $mapIsoToLabel?: mapIsoToLabel;

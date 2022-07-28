@@ -38,11 +38,13 @@ describe('Table Semantic Builder', () => {
   it('renders expected number of rows', () => {
     const { container } = render(
       <TableBuilder data={DATA}>
+        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
         <TableBuilderColumn<any> header="Foo">{(row) => row.foo}</TableBuilderColumn>
+        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
         <TableBuilderColumn<any> header="Bar">
           {(row) => <a href={row.url}>{row.bar}</a>}
         </TableBuilderColumn>
-        <TableBuilderColumn>{(row) => 'Hey'}</TableBuilderColumn>
+        <TableBuilderColumn>{() => 'Hey'}</TableBuilderColumn>
       </TableBuilder>
     );
     const rows = container.querySelectorAll('tr');
@@ -52,11 +54,13 @@ describe('Table Semantic Builder', () => {
   it('renders expected number of columns', () => {
     const { container } = render(
       <TableBuilder data={DATA}>
+        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
         <TableBuilderColumn<any> header="Foo">{(row) => row.foo}</TableBuilderColumn>
+        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
         <TableBuilderColumn<any> header="Bar">
           {(row) => <a href={row.url}>{row.bar}</a>}
         </TableBuilderColumn>
-        <TableBuilderColumn>{(row) => 'Hey'}</TableBuilderColumn>
+        <TableBuilderColumn>{() => 'Hey'}</TableBuilderColumn>
       </TableBuilder>
     );
     const headCells = container.querySelectorAll('th');
@@ -66,10 +70,13 @@ describe('Table Semantic Builder', () => {
   it('renders expected number of anchors', () => {
     const { container } = render(
       <TableBuilder data={DATA}>
+        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
         <TableBuilderColumn<any> header="Foo">{(row) => row.foo}</TableBuilderColumn>
+        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
         <TableBuilderColumn<any> header="Bar">
           {(row) => <a href={row.url}>{row.bar}</a>}
         </TableBuilderColumn>
+        {/* eslint-disable-next-line @typescript-eslint/no-unused-vars */}
         <TableBuilderColumn>{(row) => 'Hey'}</TableBuilderColumn>
       </TableBuilder>
     );
@@ -92,9 +99,11 @@ describe('Table Semantic Builder', () => {
           SortNoneIcon: { props: { 'data-testid': 'sort-none-icon' } },
         }}
       >
+        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
         <TableBuilderColumn<any> header="Foo" id="foo" numeric sortable>
           {(row) => row.foo}
         </TableBuilderColumn>
+        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
         <TableBuilderColumn<any> header="Bar" id="bar" sortable>
           {(row) => <a href={row.url}>{row.bar}</a>}
         </TableBuilderColumn>
@@ -118,9 +127,11 @@ describe('Table Semantic Builder', () => {
           SortNoneIcon: { props: { 'data-testid': 'sort-none-icon' } },
         }}
       >
+        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
         <TableBuilderColumn<any> header="Foo" id="foo" numeric sortable>
           {(row) => row.foo}
         </TableBuilderColumn>
+        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
         <TableBuilderColumn<any> header="Bar" id="bar" sortable>
           {(row) => <a href={row.url}>{row.bar}</a>}
         </TableBuilderColumn>
@@ -142,9 +153,11 @@ describe('Table Semantic Builder', () => {
           SortNoneIcon: { props: { 'data-testid': 'sort-none-icon' } },
         }}
       >
+        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
         <TableBuilderColumn<any> header="Foo" id="foo" numeric sortable>
           {(row) => row.foo}
         </TableBuilderColumn>
+        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
         <TableBuilderColumn<any> header="Bar" id="bar" sortable>
           {(row) => <a href={row.url}>{row.bar}</a>}
         </TableBuilderColumn>
@@ -161,9 +174,11 @@ describe('Table Semantic Builder', () => {
 
     const { container } = render(
       <TableBuilder data={DATA} onSort={mockOnSort}>
+        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
         <TableBuilderColumn<any> header="Foo" id="foo" sortable>
           {(row) => row.foo}
         </TableBuilderColumn>
+        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
         <TableBuilderColumn<any> header="Bar" id="bar" sortable>
           {(row) => <a href={row.url}>{row.bar}</a>}
         </TableBuilderColumn>
@@ -190,8 +205,11 @@ describe('Table Semantic Builder', () => {
   });
 
   it('exposes row and column data to overrides', () => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const mockTableHeadCellStyle = jest.fn((arg) => null);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const mockTableBodyRowStyle = jest.fn((arg) => null);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const mockTableBodyCellStyle = jest.fn((arg) => null);
 
     render(
@@ -209,9 +227,11 @@ describe('Table Semantic Builder', () => {
           },
         }}
       >
+        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
         <TableBuilderColumn<any> header="Foo" id="foo">
           {(row) => row.foo}
         </TableBuilderColumn>
+        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
         <TableBuilderColumn<any> header="Bar" id="bar">
           {(row) => <a href={row.url}>{row.bar}</a>}
         </TableBuilderColumn>
@@ -254,6 +274,7 @@ describe('Table Semantic Builder', () => {
   it('renders aria label for column header', () => {
     const { container } = render(
       <TableBuilder data={DATA}>
+        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
         <TableBuilderColumn<any>
           header={<span>Foo</span>}
           tableHeadAriaLabel="Foo Aria Label"
@@ -261,10 +282,11 @@ describe('Table Semantic Builder', () => {
         >
           {(row) => row.foo}
         </TableBuilderColumn>
+        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
         <TableBuilderColumn<any> header="Bar" sortable>
           {(row) => <a href={row.url}>{row.bar}</a>}
         </TableBuilderColumn>
-        <TableBuilderColumn>{(row) => 'Hey'}</TableBuilderColumn>
+        <TableBuilderColumn>{() => 'Hey'}</TableBuilderColumn>
       </TableBuilder>
     );
 
@@ -276,11 +298,13 @@ describe('Table Semantic Builder', () => {
   it('renders loading message', () => {
     const { container } = render(
       <TableBuilder data={DATA} isLoading={true}>
+        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
         <TableBuilderColumn<any> header="Foo">{(row) => row.foo}</TableBuilderColumn>
+        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
         <TableBuilderColumn<any> header="Bar">
           {(row) => <a href={row.url}>{row.bar}</a>}
         </TableBuilderColumn>
-        <TableBuilderColumn>{(row) => 'Hey'}</TableBuilderColumn>
+        <TableBuilderColumn>{() => 'Hey'}</TableBuilderColumn>
       </TableBuilder>
     );
     getByText(container, 'Loading...');
@@ -289,11 +313,13 @@ describe('Table Semantic Builder', () => {
   it('renders empty message', () => {
     const { container } = render(
       <TableBuilder data={[]} emptyMessage="No data">
+        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
         <TableBuilderColumn<any> header="Foo">{(row) => row.foo}</TableBuilderColumn>
+        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
         <TableBuilderColumn<any> header="Bar">
           {(row) => <a href={row.url}>{row.bar}</a>}
         </TableBuilderColumn>
-        <TableBuilderColumn>{(row) => 'Hey'}</TableBuilderColumn>
+        <TableBuilderColumn>{() => 'Hey'}</TableBuilderColumn>
       </TableBuilder>
     );
     getByText(container, 'No data');
@@ -302,11 +328,13 @@ describe('Table Semantic Builder', () => {
   it('does not render unset empty message', () => {
     const { container } = render(
       <TableBuilder data={[]}>
+        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
         <TableBuilderColumn<any> header="Foo">{(row) => row.foo}</TableBuilderColumn>
+        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
         <TableBuilderColumn<any> header="Bar">
           {(row) => <a href={row.url}>{row.bar}</a>}
         </TableBuilderColumn>
-        <TableBuilderColumn>{(row) => 'Hey'}</TableBuilderColumn>
+        <TableBuilderColumn>{() => 'Hey'}</TableBuilderColumn>
       </TableBuilder>
     );
     expect(queryByText(container, 'Loading...')).toBeNull();

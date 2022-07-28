@@ -45,6 +45,7 @@ function MeasureColumn({ sampleIndexes, column, columnIndex, rows, isSelectable,
         onMouseLeave={() => {}}
         onSelectAll={() => {}}
         onSelectNone={() => {}}
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         onSort={(i) => {}}
         sortable={column.sortable}
         sortDirection={null}

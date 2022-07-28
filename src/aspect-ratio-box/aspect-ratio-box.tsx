@@ -28,6 +28,7 @@ const aspectRatioBoxStyle = ({ $aspectRatio }) => ({
   },
 });
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const AspectRatioBox: React.FC<any & { forwardedRef: React.Ref<any> }> = ({
   forwardedRef,
   aspectRatio = 1,
@@ -44,6 +45,7 @@ const AspectRatioBox: React.FC<any & { forwardedRef: React.Ref<any> }> = ({
     <Block
       // coerced to any because of how react components are typed.
       // cannot guarantee an html element
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ref={forwardedRef as any}
       overrides={blockOverrides}
       $aspectRatio={aspectRatio}

@@ -25,41 +25,29 @@ const selectors = {
 
 test.describe('Datepicker, Range', () => {
   test('is unable to select range that includes excluded date', async ({ page }) => {
-    const inputSelector = `#within-month ${selectors.input}`;
     await mount(page, 'datepicker--range-exclude-dates');
-    await page.waitForSelector(inputSelector);
-    await page.click(inputSelector);
-    await page.waitForSelector(selectors.calendar);
-    const selectedValue1 = await page.$eval(inputSelector, (input) => input.value);
-    expect(selectedValue1).toBe('2022/03/14 –     /  /  ');
-    await page.click(selectors.day2);
-    const selectedValue2 = await page.$eval(inputSelector, (input) => input.value);
-    expect(selectedValue2).toBe('2022/03/14 –     /  /  ');
-    await page.click(selectors.day3);
-    await page.waitForSelector(selectors.calendar, { state: 'hidden' });
-    const selectedValue3 = await page.$eval(inputSelector, (input) => input.value);
-    expect(selectedValue3).toBe('2022/03/14 – 2022/03/22');
+    const scenario = page.locator('#within-month');
+    const input = scenario.locator(selectors.input);
+    await input.click();
+    await expect(input).toHaveValue('2022/03/14 –     /  /  ');
+    await page.locator(selectors.day2).click();
+    await expect(input).toHaveValue('2022/03/14 –     /  /  ');
+    await page.locator(selectors.day3).click();
+    await expect(input).toHaveValue('2022/03/14 – 2022/03/22');
   });
 
   test('is unable to select range that includes excluded date, across months', async ({ page }) => {
-    const inputSelector = `#between-month ${selectors.input}`;
     await mount(page, 'datepicker--range-exclude-dates');
-    await page.waitForSelector(inputSelector);
-    await page.click(inputSelector);
-    await page.waitForSelector(selectors.calendar);
-    const selectedValue1 = await page.$eval(inputSelector, (input) => input.value);
-    expect(selectedValue1).toBe('2022/03/31 –     /  /  ');
-    await page.click(selectors.day3);
-    const selectedValue2 = await page.$eval(inputSelector, (input) => input.value);
-    expect(selectedValue2).toBe('2022/03/31 –     /  /  ');
-    await page.click(selectors.rightArrow);
-    await page.waitForSelector(selectors.day5);
-    await page.click(selectors.day5);
-    const selectedValue3 = await page.$eval(inputSelector, (input) => input.value);
-    expect(selectedValue3).toBe('2022/03/31 –     /  /  ');
-    await page.click(selectors.day6);
-    await page.waitForSelector(selectors.calendar, { state: 'hidden' });
-    const selectedValue4 = await page.$eval(inputSelector, (input) => input.value);
-    expect(selectedValue4).toBe('2022/03/31 – 2022/04/01');
+    const scenario = page.locator('#between-month');
+    const input = scenario.locator(selectors.input);
+    await input.click();
+    await expect(input).toHaveValue('2022/03/31 –     /  /  ');
+    await page.locator(selectors.day3).click();
+    await expect(input).toHaveValue('2022/03/31 –     /  /  ');
+    await page.locator(selectors.rightArrow).click();
+    await page.locator(selectors.day5).click();
+    await expect(input).toHaveValue('2022/03/31 –     /  /  ');
+    await page.locator(selectors.day6).click();
+    await expect(input).toHaveValue('2022/03/31 – 2022/04/01');
   });
 });

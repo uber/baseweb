@@ -348,6 +348,7 @@ class MenuStatefulContainerInner extends React.Component<
     });
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   handleMouseLeave = (event: MouseEvent<HTMLElement>) => {};
 
   getRequiredItemProps: GetRequiredItemPropsFn = (item, index) => {
@@ -420,14 +421,23 @@ class MenuStatefulContainerInner extends React.Component<
     // to the children (stateless menu)
 
     const {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       initialState,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       stateReducer,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       children,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       onItemSelect,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       addMenuToNesting,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       removeMenuFromNesting,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       getParentMenu,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       getChildMenu,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       forceHighlight,
       ...restProps
     } = this.props;
@@ -440,6 +450,7 @@ class MenuStatefulContainerInner extends React.Component<
       handleMouseLeave: this.handleMouseLeave,
       highlightedIndex: this.state.highlightedIndex,
       isFocused: this.state.isFocused,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       handleKeyDown: this.props.keyboardControlNode.current ? (event) => {} : this.onKeyDown,
       focusMenu: this.focusMenu,
       unfocusMenu: this.unfocusMenu,

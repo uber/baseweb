@@ -31,6 +31,7 @@ const StyledHeadingCell = withStyle(StyledCell, {
   paddingBottom: 0,
 });
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const StyledDeltaCell = withStyle<typeof StyledCell, any>(StyledCell, (props) => ({
   // @ts-expect-error todo(flow->ts) this probably can be removed
   ...props.$theme.typography.font500,

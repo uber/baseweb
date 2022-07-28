@@ -25,6 +25,7 @@ test.describe('tabs', () => {
     let states = [true, false, false];
 
     for (let i = 0; i < states.length; i++) {
+      // @ts-expect-error
       let visible = await page.$eval(`[aria-labelledby="${i}"]`, (input) => !!input.offsetParent);
       await expect(visible).toBe(states[i]);
     }
@@ -33,6 +34,7 @@ test.describe('tabs', () => {
     states = [false, true, false];
 
     for (let i = 0; i < states.length; i++) {
+      // @ts-expect-error
       let visible = await page.$eval(`[aria-labelledby="${i}"]`, (input) => !!input.offsetParent);
       await expect(visible).toBe(states[i]);
     }

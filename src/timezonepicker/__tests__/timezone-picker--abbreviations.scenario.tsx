@@ -17,6 +17,7 @@ const overrides = {
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 class Controlled extends React.Component<any, any> {
   state = { value: { id: 'Asia/Tokyo' } };
 

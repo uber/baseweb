@@ -21,6 +21,7 @@ export default class PaginationStatefulContainer extends React.Component<
 > {
   static defaultProps = {
     initialState,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     stateReducer: (changeType: any, changes: any) => changes,
   };
 

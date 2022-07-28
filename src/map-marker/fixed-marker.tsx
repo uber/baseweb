@@ -59,6 +59,7 @@ const FixedMarker = ({
   labelEnhancerPosition = LABEL_ENHANCER_POSITIONS.bottom,
   badgeEnhancerSize = null,
   badgeEnhancerContent = null,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   ...restProps
 }: FixedMarkerProps) => {
   const [, theme] = useStyletron();

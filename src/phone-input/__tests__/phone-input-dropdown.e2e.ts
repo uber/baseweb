@@ -56,7 +56,8 @@ test.describe('PhoneInput', () => {
     );
     expect(iso).toEqual(UK.iso);
     // verify correct dial code shows up
-    const dialcode = await page.$eval(selectors.phoneInputDialcode, (block) => block.innerText);
-    expect(dialcode).toEqual(UK.dialCode);
+
+    const dialCode = page.locator(selectors.phoneInputDialcode);
+    await expect(dialCode).toHaveText(UK.dialCode);
   });
 });

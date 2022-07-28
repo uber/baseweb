@@ -45,6 +45,7 @@ export default class NestedMenus extends React.Component<NestedMenuProps, Nested
   };
   mouseLeaveTimeoueId = null;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   handleMenuMouseLeave = (event: MouseEvent) => {
     this.mouseLeaveTimeoueId = setTimeout(() => {
       this.setState({ nestedMenuHoverIndex: -1 });

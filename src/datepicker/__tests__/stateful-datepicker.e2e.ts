@@ -41,14 +41,20 @@ test.describe('Stateful Datepicker', () => {
     await page.click(selectors.input);
     await page.waitForSelector(selectors.calendar);
     await page.waitForSelector(selectors.leftArrow);
-    let value = await page.$eval(selectors.leftArrow, (select) => select.disabled);
+    let value = await page.$eval(
+      selectors.leftArrow,
+      (select) => select instanceof HTMLButtonElement && select.disabled
+    );
     expect(value).toBe(false);
     await page.click(selectors.leftArrow);
     await page.waitForSelector(selectors.day, {
       state: 'hidden',
     });
     await page.waitForSelector(selectors.leftArrow);
-    value = await page.$eval(selectors.leftArrow, (select) => select.disabled);
+    value = await page.$eval(
+      selectors.leftArrow,
+      (select) => select instanceof HTMLButtonElement && select.disabled
+    );
     expect(value).toBe(true);
     await page.waitForSelector(selectors.selected);
     await page.click(selectors.selected);
@@ -56,10 +62,16 @@ test.describe('Stateful Datepicker', () => {
     await page.click(selectors.input);
     await page.waitForSelector(selectors.calendar);
     await page.waitForSelector(selectors.leftArrow);
-    value = await page.$eval(selectors.leftArrow, (select) => select.disabled);
+    value = await page.$eval(
+      selectors.leftArrow,
+      (select) => select instanceof HTMLButtonElement && select.disabled
+    );
     expect(value).toBe(true);
     await page.waitForSelector(selectors.rightArrow);
-    value = await page.$eval(selectors.rightArrow, (select) => select.disabled);
+    value = await page.$eval(
+      selectors.rightArrow,
+      (select) => select instanceof HTMLButtonElement && select.disabled
+    );
     expect(value).toBe(false);
   });
 

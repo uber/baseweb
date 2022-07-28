@@ -32,6 +32,7 @@ export default class AutosizeInput extends React.Component<
     this.mounted = true;
     this.updateInputWidth();
   }
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   componentDidUpdate(prevProps: AutosizeInputProps, prevState: AutosizeInputState) {
     this.updateInputWidth();
   }

@@ -62,6 +62,7 @@ const ColorInput: React.FC<{
       <div
         title={themeKey}
         className={css({
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           ...($theme.typography.font100 as any),
           color: $theme.colors.contentPrimary,
           marginLeft: $theme.sizing.scale300,

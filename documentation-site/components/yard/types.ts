@@ -9,6 +9,7 @@ import { TImportsConfig, TProp } from 'react-view';
 
 export type TConfig = {
   componentName: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   scope: { [key: string]: any };
   props: { [key: string]: TProp };
   theme: string[];
@@ -19,6 +20,7 @@ export type TYardProps = TConfig & {
   componentName: string;
   placeholderHeight: number;
   queryStringName?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   compilerStyles: { [key: string]: any };
   initialTab?: string;
 };

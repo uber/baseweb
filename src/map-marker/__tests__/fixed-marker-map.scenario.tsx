@@ -60,6 +60,7 @@ export function Scenario() {
 
   const [labelEnhancerText, setLabelEnhancerText] = React.useState('Uber Eats');
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [labelEnhancerPosition, setLabelEnhancerPosition] = React.useState<any>([
     labelEnhancerPositions[0],
   ]);
@@ -69,7 +70,9 @@ export function Scenario() {
     zoom: 14,
   });
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [pinheadSize, setPinheadSize] = React.useState<any>([pinheadSizes[6]]);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [needleSize, setNeedleSize] = React.useState<any>([needleSizes[3]]);
   const onMarkerDragStart = React.useCallback((index) => {
     setLocations((l) => {

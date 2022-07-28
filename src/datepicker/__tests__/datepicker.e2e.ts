@@ -63,44 +63,37 @@ test.describe('Datepicker', () => {
 
   test('selects day when clicked', async ({ page }) => {
     await mount(page, 'datepicker--datepicker');
-    await page.waitForSelector(selectors.input);
-    await page.click(selectors.input);
-    await page.waitForSelector(selectors.calendar);
-    await page.click(selectors.day);
-    await page.waitForSelector(selectors.calendar, {
-      state: 'hidden',
-    });
-
-    const selectedValue = await page.$eval(selectors.input, (input) => input.value);
-    expect(selectedValue).toBe('2019/03/10');
+    const input = page.locator(selectors.input).first();
+    await input.click();
+    const calendar = page.locator(selectors.calendar);
+    await expect(calendar).toBeVisible();
+    const day = page.locator(selectors.day);
+    await day.click();
+    await expect(calendar).toBeHidden();
+    await expect(input).toHaveValue('2019/03/10');
   });
 
   test('rerenders input if value is changed', async ({ page }) => {
     await mount(page, 'datepicker--datepicker');
-    await page.waitForSelector(selectors.input);
-    await page.click('button');
-
-    const selectedValue = await page.$eval(selectors.input, (input) => input.value);
-    expect(selectedValue).toBe('2019/07/01');
+    const input = page.locator(selectors.input).first();
+    await page.locator('button').click();
+    await expect(input).toHaveValue('2019/07/01');
   });
 
   test('input causes calendar to switch to appropriate month', async ({ page }) => {
     await mount(page, 'datepicker--datepicker');
-    await page.waitForSelector(selectors.input);
-    await page.click(selectors.input);
-    await page.waitForSelector(selectors.calendar);
-    // march should be visible
-    await page.waitForSelector(selectors.day);
+    const input = page.locator(selectors.input).first();
+    await input.click();
 
-    // we want to enter entire date but the onChange functionality only fires on key press so...
-    await page.$eval(selectors.input, (el) => (el.value = '2019/07/0'));
-    // also make sure the selected date isn't the date we're testing - selected/non-selected dates have different aria-labels
-    await page.keyboard.press('2');
+    const day = page.locator(selectors.day);
+    await expect(day).toBeVisible();
 
-    // make sure march is gone
-    await page.waitForSelector(selectors.day, { state: 'hidden' });
-    // and make sure july is now visible
-    await page.waitForSelector(selectors.day6);
+    await input.focus();
+    await input.fill('2019/07/0');
+    await input.type('2');
+
+    await expect(day).toBeHidden();
+    await expect(page.locator(selectors.day6)).toBeVisible();
   });
 
   test('month year dropdown opens on arrow down', async ({ page }) => {

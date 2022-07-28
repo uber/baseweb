@@ -31,6 +31,7 @@ export type { StyletronComponent };
 
 type StyleFn<DefaultTheme> = {
   <
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     C extends keyof JSX.IntrinsicElements | React.ComponentType<any>,
     P extends {},
     Theme = DefaultTheme
@@ -44,6 +45,7 @@ type StyleFn<DefaultTheme> = {
           }
         ) => StyleObject)
   ): StyletronComponent<C, P>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   <C extends keyof JSX.IntrinsicElements | React.ComponentType<any>>(
     component: C,
     style: StyleObject
@@ -51,6 +53,7 @@ type StyleFn<DefaultTheme> = {
 };
 
 type WithStyleFn<DefaultTheme> = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   <C extends StyletronComponent<any, any>, P extends {}, Theme = DefaultTheme>(
     component: C,
     style:
@@ -61,6 +64,7 @@ type WithStyleFn<DefaultTheme> = {
         ) => StyleObject)
       | StyleObject
   ): C extends StyletronComponent<infer CC, infer PP> ? StyletronComponent<CC, P & PP> : never;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   <C extends StyletronComponent<any, any>>(component: C, style: StyleObject): C;
 };
 
@@ -72,12 +76,14 @@ export function createThemedStyled<Theme>(): StyleFn<Theme> {
     wrapper,
     getInitialStyle,
     driver,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   }) as any as StyleFn<Theme>;
 }
 
 export const styled = createThemedStyled<Theme>();
 
 export function createThemedWithStyle<Theme>(): WithStyleFn<Theme> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return styletronWithStyle as any as WithStyleFn<Theme>;
 }
 
@@ -87,6 +93,7 @@ type UseStyletronFn<Theme> = () => [(a: StyleObject) => string, Theme];
 
 export function createThemedUseStyletron<Theme>(): UseStyletronFn<Theme> {
   return function () {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const theme = React.useContext(ThemeContext) as any as Theme;
     const [css] = styletronUseStyletron();
     return [css, theme];
@@ -95,16 +102,16 @@ export function createThemedUseStyletron<Theme>(): UseStyletronFn<Theme> {
 
 export const useStyletron = createThemedUseStyletron<Theme>();
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function withWrapper<C extends StyletronComponent<any, any>, Props>(
   StyledElement: C,
-  wrapperFn: (
-    component: C
-  ) => (
+  wrapperFn: (component: C) => (
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     props: Props & (C extends StyletronComponent<any, infer CP> ? CP : never)
   ) => React.ReactElement
 ): C extends StyletronComponent<infer D, infer P> ? StyletronComponent<D, P & Props> : never {
   return styletronWithWrapper(StyledElement, (Styled) => {
-    // eslint-disable-next-line react/display-name
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any,react/display-name
     return React.forwardRef<any, React.ComponentProps<C> & Props>((props, ref) => (
       <ThemeContext.Consumer>
         {(theme) =>

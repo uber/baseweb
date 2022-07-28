@@ -182,6 +182,7 @@ export type StatefulContainerProps<T> = {
   overrides?: InputOverrides;
 } & Omit<InputProps, 'overrides' | 'children'>;
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 type OmitProps = {
   overrides: InputOverrides;
   children:

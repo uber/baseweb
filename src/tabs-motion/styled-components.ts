@@ -17,6 +17,7 @@ export const StyledRoot = styled<
   {
     $orientation?: Orientation;
   }
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
 >('div', ({ $theme, $orientation = ORIENTATION.horizontal }) => {
   const style: StyleObject = {
     // Creates a stacking context so we can use z-index on the TabHighlight
@@ -83,6 +84,7 @@ export const StyledTab = styled<
     $orientation = ORIENTATION.horizontal,
     $fill = FILL.intrinsic,
     $focusVisible = false,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     $isActive = false,
   }) => {
     const style: StyleObject = {
@@ -147,6 +149,7 @@ export const StyledArtworkContainer = styled<
   {
     $orientation?: Orientation;
   }
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
 >('div', ({ $theme, $orientation = ORIENTATION.horizontal }) => {
   const style: StyleObject = {
     display: 'flex',

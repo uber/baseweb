@@ -30,14 +30,19 @@ const getEmptyStyles = (sharedProps: string[]) =>
 
 type TProps = {
   overrideKey: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   overrides: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   overridesObj: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   componentConfig: any;
   componentName: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   set: (args: any) => void;
 };
 
 const SharedPropsTooltip: React.FC<{
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   componentConfig: any;
   children: React.ReactNode;
 }> = ({ componentConfig, children }) => {

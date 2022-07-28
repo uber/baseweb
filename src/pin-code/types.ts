@@ -10,6 +10,7 @@ import { SIZE, STATE_CHANGE_TYPE } from '../input';
 
 export type ChangeEvent = {
   values: string[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   event: any;
 };
 

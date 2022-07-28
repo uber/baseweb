@@ -23,6 +23,7 @@ import {
 import type { SnackbarElementProps } from './types';
 
 // todo(flow->ts): types
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const ActionButton = React.forwardRef<any, any>(({ onClick, message, overrides = {} }, ref) => {
   const [, theme] = useStyletron();
   const [ActionButtonContainer, actionButtonContainerProps] = getOverrides(

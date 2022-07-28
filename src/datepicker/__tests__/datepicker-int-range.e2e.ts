@@ -20,18 +20,11 @@ const selectors = {
 test.describe('Datepicker, Int', () => {
   test('selects range - int', async ({ page }) => {
     await mount(page, 'datepicker--int-range');
-    await page.waitForSelector(selectors.input);
-    await page.click(selectors.input);
-    await page.waitForSelector(selectors.calendar);
-    await page.click(selectors.day);
-    await page.waitForSelector(selectors.calendar);
-    const selectedValue1 = await page.$eval(selectors.input, (input) => input.value);
-    expect(selectedValue1).toBe('2019 vasárnap 10');
-    await page.click(selectors.day2);
-    await page.waitForSelector(selectors.calendar, {
-      state: 'hidden',
-    });
-    const selectedValue2 = await page.$eval(selectors.input, (input) => input.value);
-    expect(selectedValue2).toBe('2019 vasárnap 10 – 2019 csütörtök 28');
+    const input = page.locator(selectors.input);
+    await input.click();
+    await page.locator(selectors.day).click();
+    await expect(input).toHaveValue('2019 vasárnap 10');
+    await page.locator(selectors.day2).click();
+    await expect(input).toHaveValue('2019 vasárnap 10 – 2019 csütörtök 28');
   });
 });

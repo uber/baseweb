@@ -31,16 +31,16 @@ test.describe('PinCode', () => {
   });
 
   test('can enter a pin code', async ({ page }) => {
-    const inputs = await page.$$(selectors.input);
-    await page.focus(selectors.input);
+    const inputs = page.locator(selectors.input);
+    await inputs.first().focus();
     await page.keyboard.press('1');
     await page.keyboard.press('2');
     await page.keyboard.press('3');
     await page.keyboard.press('4');
-    expect(await page.evaluate((el) => el.value, inputs[0])).toBe('1');
-    expect(await page.evaluate((el) => el.value, inputs[1])).toBe('2');
-    expect(await page.evaluate((el) => el.value, inputs[2])).toBe('3');
-    expect(await page.evaluate((el) => el.value, inputs[3])).toBe('4');
+    await expect(inputs.nth(0)).toHaveValue('1');
+    await expect(inputs.nth(1)).toHaveValue('2');
+    await expect(inputs.nth(2)).toHaveValue('3');
+    await expect(inputs.nth(3)).toHaveValue('4');
   });
 
   test('transfers focus to next input when a digit is entered', async ({ page }) => {
@@ -51,12 +51,12 @@ test.describe('PinCode', () => {
   });
 
   test('only accepts digits', async ({ page }) => {
-    const input = await page.$(selectors.input);
-    await page.focus(selectors.input);
+    const inputs = page.locator(selectors.input);
+    await inputs.first().focus();
     await page.keyboard.press('a');
-    expect(await page.evaluate((el) => el.value, input)).toBe('');
+    await expect(inputs.first()).toHaveValue('');
     await page.keyboard.press('1');
-    expect(await page.evaluate((el) => el.value, input)).toBe('1');
+    await expect(inputs.first()).toHaveValue('1');
   });
 
   test('deleting empty input transfers focus to previous input & clears that input', async ({
@@ -76,19 +76,19 @@ test.describe('PinCode', () => {
   // the input value. So long as you enter a digit, the input will
   // be updated.
   test('does not require text selection to update input value', async ({ page }) => {
-    const input = await page.$(selectors.input);
-    await page.focus(selectors.input);
+    const inputs = await page.locator(selectors.input);
+    await inputs.first().focus();
     await page.keyboard.press('1');
-    await page.focus(selectors.input);
+    await inputs.first().focus();
     // verify that cursor position does not matter by entering text on left side
     await page.keyboard.press('ArrowLeft'); // ensures no text is selected
     await page.keyboard.press('2');
-    expect(await page.evaluate((el) => el.value, input)).toBe('2');
+    await expect(inputs.first()).toHaveValue('2');
     // verify that cursor position does not matter by entering text on right side
-    await page.focus(selectors.input);
+    await inputs.first().focus();
     await page.keyboard.press('ArrowRight'); // ensures no text is selected
     await page.keyboard.press('3');
-    expect(await page.evaluate((el) => el.value, input)).toBe('3');
+    await expect(inputs.first()).toHaveValue('3');
   });
 });
 
@@ -99,18 +99,18 @@ test.describe('PinCodeMask', () => {
   });
 
   test('successfully masks', async ({ page }) => {
-    const inputs = await page.$$(selectors.input);
-    await page.focus(selectors.input);
+    const inputs = page.locator(selectors.input);
+    await inputs.first().focus();
     await page.keyboard.press('1');
     await page.keyboard.press('2');
     await page.keyboard.press('3');
     await page.keyboard.press('4');
-    expect(await page.evaluate((el) => el.value, inputs[0])).toBe('*');
-    expect(await page.evaluate((el) => el.value, inputs[1])).toBe('*');
-    expect(await page.evaluate((el) => el.value, inputs[2])).toBe('*');
-    expect(await page.evaluate((el) => el.value, inputs[3])).toBe('*');
+    await expect(inputs.nth(0)).toHaveValue('*');
+    await expect(inputs.nth(1)).toHaveValue('*');
+    await expect(inputs.nth(2)).toHaveValue('*');
+    await expect(inputs.nth(3)).toHaveValue('*');
 
-    const pinCodeValue = await page.$(selectors.pinCodeValue);
-    expect(await page.evaluate((el) => el.textContent, pinCodeValue)).toBe('password:1 2 3 4 ');
+    const pinCodeValue = page.locator(selectors.pinCodeValue);
+    await expect(pinCodeValue).toHaveText('password:1 2 3 4 ');
   });
 });

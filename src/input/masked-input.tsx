@@ -16,10 +16,14 @@ const MaskOverride = React.forwardRef<HTMLInputElement, MaskedInputProps>(
     {
       // do nothing with these - we just don't want to pass it to the InputMask, as
       // it does not have these properties
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       startEnhancer,
 
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       endEnhancer,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       error,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       positive,
 
       // below are props that are used by the masked-input
@@ -68,8 +72,11 @@ export default function MaskedInput({
   overrides: { Input: inputOverride = {}, ...restOverrides } = {},
   ...restProps
 }: MaskedInputProps) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let componentOverride: any = MaskOverride;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let propsOverride: any = {};
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let styleOverride: any = {};
 
   if (typeof inputOverride === 'function') {

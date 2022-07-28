@@ -30,6 +30,7 @@ test('overrides', () => {
         },
         type: PropTypes.Custom,
         description: '',
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } as any,
       'overrides',
       customProps
@@ -112,6 +113,7 @@ describe('get theme AST primitives', () => {
   test('getAstThemeWrapper', () => {
     expect(
       generate(
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         generateThemeWrapper({ inputFill: 'yellow' }, t.jsxText('Hey') as any, 'light-theme') as any
       ).code
     ).toBe(`<ThemeProvider theme={createTheme(light-theme, {
@@ -148,6 +150,7 @@ describe('getCode', () => {
             },
             type: PropTypes.Custom,
             description: '',
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
           } as any,
         },
         componentName: 'Input',

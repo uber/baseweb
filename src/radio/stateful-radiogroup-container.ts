@@ -47,8 +47,11 @@ class StatefulRadioGroupContainer extends React.Component<StatefulContainerProps
 
   render() {
     const {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       children = (childProps: {}) => null, // eslint-disable-line no-unused-vars
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       initialState, // eslint-disable-line no-unused-vars
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       stateReducer, // eslint-disable-line no-unused-vars
       ...restProps
     } = this.props;

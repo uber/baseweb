@@ -25,41 +25,40 @@ test.describe('PaymentCard', () => {
   });
 
   test('enter full credit card number', async ({ page }) => {
-    const input = await page.$(selectors.input);
+    const input = page.locator(selectors.input);
     await input.type('4111222233334444');
-    const value = await page.evaluate((element) => element.value, input);
-    expect(value).toBe('4111 2222 3333 4444');
+    await expect(input).toHaveValue('4111 2222 3333 4444');
   });
 
   test('add more digits in the middle of input', async ({ page }) => {
-    const input = await page.$(selectors.input);
+    const input = page.locator(selectors.input);
     await input.type('41112');
     await page.keyboard.press('ArrowLeft');
     await page.keyboard.press('ArrowLeft');
     await page.keyboard.press('ArrowLeft');
     await page.keyboard.press('5');
-    expect(await page.evaluate((el) => el.value, input)).toBe('4115 12');
+    await expect(input).toHaveValue('4115 12');
     await page.keyboard.press('6');
-    expect(await page.evaluate((el) => el.value, input)).toBe('4115 612');
+    await expect(input).toHaveValue('4115 612');
   });
 
   test('delete digits from the end of input', async ({ page }) => {
-    const input = await page.$(selectors.input);
+    const input = page.locator(selectors.input);
     await input.type('4111 2');
     await page.keyboard.press('Backspace');
-    expect(await page.evaluate((el) => el.value, input)).toBe('4111');
+    await expect(input).toHaveValue('4111');
     await page.keyboard.press('Backspace');
-    expect(await page.evaluate((el) => el.value, input)).toBe('411');
+    await expect(input).toHaveValue('411');
   });
 
   test('delete digits in the middle of input', async ({ page }) => {
-    const input = await page.$(selectors.input);
+    const input = page.locator(selectors.input);
     await input.type('4111 235');
     await page.keyboard.press('ArrowLeft');
     await page.keyboard.press('ArrowLeft');
     await page.keyboard.press('Backspace');
-    expect(await page.evaluate((el) => el.value, input)).toBe('4111 35');
+    await expect(input).toHaveValue('4111 35');
     await page.keyboard.press('Backspace');
-    expect(await page.evaluate((el) => el.value, input)).toBe('4113 5');
+    await expect(input).toHaveValue('4113 5');
   });
 });

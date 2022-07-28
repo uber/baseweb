@@ -60,9 +60,11 @@ function Slider({
     if (focusVisible(event)) {
       setIsFocusVisible(true);
     }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const index = (event.target as any).parentNode.firstChild === event.target ? 0 : 1;
     setFocusedThumbIndex(index);
   }, []);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleBlur = React.useCallback((event: SyntheticEvent) => {
     if (isFocusVisible !== false) {
       setIsFocusVisible(false);

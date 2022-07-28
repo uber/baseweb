@@ -15,12 +15,8 @@ test.describe('inputRef prop', () => {
     await mount(page, 'select--input-ref');
 
     // clicking on button will focus the input
-    await page.waitForSelector('button');
-    const button = await page.$('button');
-    await button.click();
-
+    await page.locator('button').click();
     await page.keyboard.press('a');
-    const value = await page.$eval(SELECT_INPUT, (i) => i.value);
-    expect(value).toBe('a');
+    await expect(page.locator(SELECT_INPUT)).toHaveValue('a');
   });
 });
