@@ -50,6 +50,14 @@ export interface TokenColors {
   green600: string;
   green700: string;
 
+  teal100: string;
+  teal200: string;
+  teal300: string;
+  teal400: string;
+  teal500: string;
+  teal600: string;
+  teal700: string;
+
   orange50: string;
   orange100: string;
   orange200: string;
@@ -68,6 +76,15 @@ export interface TokenColors {
   purple600: string;
   purple700: string;
 
+  magenta50: string;
+  magenta100: string;
+  magenta200: string;
+  magenta300: string;
+  magenta400: string;
+  magenta500: string;
+  magenta600: string;
+  magenta700: string;
+
   yellow50: string;
   yellow100: string;
   yellow200: string;
@@ -76,6 +93,15 @@ export interface TokenColors {
   yellow500: string;
   yellow600: string;
   yellow700: string;
+
+  lime50: string;
+  lime100: string;
+  lime200: string;
+  lime300: string;
+  lime400: string;
+  lime500: string;
+  lime600: string;
+  lime700: string;
 
   brown50: string;
   brown100: string;

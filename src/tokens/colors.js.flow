@@ -58,6 +58,15 @@ const colors: ColorTokensT = {
   yellow600: '#996F00',
   yellow700: '#674D1B',
 
+  lime50: '#F2F7ED',
+  lime100: '#E0ECD2',
+  lime200: '#BCD69D',
+  lime300: '#8BB956',
+  lime400: '#67A421',
+  lime500: '#4E7C19',
+  lime600: '#3D6213',
+  lime700: '#29410d',
+
   green50: '#E6F2ED',
   green100: '#ADDEC9',
   green200: '#66D19E',
@@ -66,6 +75,15 @@ const colors: ColorTokensT = {
   green500: '#03703C',
   green600: '#03582F',
   green700: '#10462D',
+
+  teal50: '#EDF5F7',
+  teal100: '#D2E8EC',
+  teal200: '#9DCDD6',
+  teal300: '#56A9B9',
+  teal400: '#218EA4',
+  teal500: '#196B7C',
+  teal600: '#135562',
+  teal700: '#0D3841',
 
   blue50: '#EFF3FE',
   blue100: '#D4E2FC',
@@ -93,6 +111,15 @@ const colors: ColorTokensT = {
   purple500: '#574191',
   purple600: '#453473',
   purple700: '#2E224C',
+
+  magenta50: '#F9F1F7',
+  magenta100: '#F2DDEB',
+  magenta200: '#E2B4D3',
+  magenta300: '#CE7EB3',
+  magenta400: '#BF569C',
+  magenta500: '#914176',
+  magenta600: '#72335D',
+  magenta700: '#4C223E',
 
   brown50: '#F6F0EA',
   brown100: '#EBE0DB',
