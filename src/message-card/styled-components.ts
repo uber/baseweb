@@ -5,7 +5,6 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import { styled } from '../styles';
-import { KIND } from '../button';
 import { IMAGE_LAYOUT, BACKGROUND_COLOR_TYPE, OBJECT_FIT } from './constants';
 
 export const StyledRoot = styled<
@@ -114,23 +113,3 @@ export const StyledParagraphContainer = styled('div', ({ $theme }) => ({
   ...$theme.typography.ParagraphSmall,
   marginTop: $theme.sizing.scale100,
 }));
-
-// TODO(luke): it seems bad to "re-type" the KIND enum. This should be exported from button.
-// TODO(luke): do you even need button container? maybe just use button?
-export const StyledButtonContainer = styled<'div', { $buttonKind: keyof typeof KIND }>(
-  'div',
-  ({ $theme, $buttonKind }) => {
-    const spacingStyle =
-      $buttonKind === KIND.tertiary
-        ? {
-            marginTop: $theme.sizing.scale100,
-            transform: `translateX(-${$theme.sizing.scale600})`,
-          }
-        : {
-            marginTop: $theme.sizing.scale500,
-          };
-    return {
-      ...spacingStyle,
-    };
-  }
-);
