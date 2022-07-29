@@ -7,7 +7,6 @@ LICENSE file in the root directory of this source tree.
 import { colors } from '../tokens';
 import { BACKGROUND_COLOR_TYPE } from './constants';
 
-// TODO(luke): maybe use object/map for faster lookup?
 const LIGHT_COLORS = [
   colors.red50,
   colors.red100,

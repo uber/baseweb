@@ -37,7 +37,7 @@ export const StyledRoot = styled<
       flexDirection: $imageLayout === IMAGE_LAYOUT.top ? 'column' : 'row',
       alignItems: 'stretch',
       width: '100%',
-      overflow: 'hidden', // TODO(luke.brennan): is this the best way to force the img to have same border radius as parent?
+      overflow: 'hidden',
       borderRadius: $theme.borders.radius400,
       backgroundColor: $backgroundColor,
       ...($backgroundColorType === BACKGROUND_COLOR_TYPE.light
@@ -99,7 +99,7 @@ export const StyledImage = styled<
 
 export const StyledContentContainer = styled('div', ({ $theme }) => ({
   paddingTop: $theme.sizing.scale600,
-  paddingRight: $theme.sizing.scale600,
+  paddingRight: $theme.sizing.scale300,
   paddingBottom: $theme.sizing.scale600,
   paddingLeft: $theme.sizing.scale600,
   width: '100%',
