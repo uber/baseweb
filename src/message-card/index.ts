@@ -6,3 +6,5 @@ LICENSE file in the root directory of this source tree.
 */
 export { default as MessageCard } from './message-card';
 export * from './constants';
+export * from './styled-components';
+export * from './types';

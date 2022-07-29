@@ -27,7 +27,7 @@ export interface MessageCardProps {
   backgroundColor?: string;
   backgroundColorType?: keyof typeof BACKGROUND_COLOR_TYPE;
   image?: {
-    src: React.ReactNode;
+    src: string;
     layout?: keyof typeof IMAGE_LAYOUT;
     objectFit?: keyof typeof OBJECT_FIT;
   };

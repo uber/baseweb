@@ -1,0 +1,71 @@
+/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+// @flow
+import * as React from 'react';
+import type { OverrideT } from '../helpers/overrides.js';
+import { type StyletronComponent } from 'styletron-react';
+import { KIND } from '../button';
+
+export interface BackgroundColorTypeT {
+  light: 'light';
+  dark: 'dark';
+}
+
+export interface ImageLayoutT {
+  top: 'top';
+  trailing: 'trailing';
+}
+
+export interface ObjectFitT {
+  none: 'none';
+  fill: 'fill';
+  cover: 'cover';
+  contain: 'contain';
+}
+
+export type MessageCardOverridesT = {
+  Root?: OverrideT,
+  ContentContainer?: OverrideT,
+  HeadingContainer?: OverrideT,
+  ParagraphContainer?: OverrideT,
+  Button?: OverrideT,
+  Image?: OverrideT,
+};
+
+export type MessageCardPropsT = {
+  onClick: (SyntheticEvent<HTMLButtonElement>) => mixed,
+  heading?: string,
+  paragraph?: string,
+  buttonLabel?: string,
+  buttonKind?: $Values<typeof KIND>,
+  backgroundColor?: string,
+  backgroundColorType?: BackgroundColorTypeT,
+  image?: {
+    src: string,
+    layout?: ImageLayoutT,
+    objectFit?: ObjectFitT,
+  },
+  overrides?: MessageCardOverridesT,
+};
+
+export type StyledRoot = StyletronComponent<
+  'button',
+  {
+    $backgroundColor: string,
+    $backgroundColorType: ?BackgroundColorTypeT,
+    $imageLayout: ImageLayoutT,
+  }
+>;
+export type StyledImage = StyletronComponent<
+  'img',
+  { $imageLayout: ImageLayoutT, $objectFit: ObjectFitT }
+>;
+export type StyledContentContainer = StyletronComponent<'div', {}>;
+export type StyledHeadingContainer = StyletronComponent<'div', {}>;
+export type StyledParagraphContainer = StyletronComponent<'div', {}>;
+
+export type MessageCard = React.Component<MessageCardPropsT>;
