@@ -14,7 +14,7 @@ export type MessageCardOverrides = {
   ContentContainer?: Override;
   HeadingContainer?: Override;
   ParagraphContainer?: Override;
-  ButtonContainer?: Override;
+  Button?: Override;
   Image?: Override;
 };
 

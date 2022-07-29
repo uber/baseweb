@@ -13,12 +13,11 @@ import {
   StyledContentContainer,
   StyledHeadingContainer,
   StyledParagraphContainer,
-  StyledButtonContainer,
 } from './styled-components';
 import { useStyletron } from '../styles/index.js';
 import { colors } from '../tokens';
 import type { MessageCardProps } from './types';
-import { Button, KIND, SHAPE } from '../button';
+import { Button as DefaultButton, KIND, SHAPE } from '../button';
 import { IMAGE_LAYOUT, BACKGROUND_COLOR_TYPE, OBJECT_FIT } from './constants';
 import { getBackgroundColorType } from './utils';
 
@@ -49,10 +48,7 @@ const MessageCard = ({
     StyledParagraphContainer
   );
   const [Image, ImageProps] = getOverrides(overrides.Image, StyledImage);
-  const [ButtonContainer, ButtonContainerProps] = getOverrides(
-    overrides.ButtonContainer,
-    StyledButtonContainer
-  );
+  const [Button, ButtonProps] = getOverrides(overrides.Button, DefaultButton);
 
   const [, theme] = useStyletron();
 
@@ -94,18 +90,31 @@ const MessageCard = ({
           <ParagraphContainer {...ParagraphContainerProps}>{paragraph}</ParagraphContainer>
         )}
         {buttonLabel && (
-          <ButtonContainer $buttonKind={buttonKind} {...ButtonContainerProps}>
-            <Button
-              kind={buttonKind}
-              shape={SHAPE.pill}
-              role="none"
-              tabIndex={-1}
-              colors={buttonColors}
-              overrides={{ BaseButton: { style: { pointerEvents: 'none' } } }}
-            >
-              {buttonLabel}
-            </Button>
-          </ButtonContainer>
+          <Button
+            kind={buttonKind}
+            shape={SHAPE.pill}
+            role="none"
+            tabIndex={-1}
+            colors={buttonColors}
+            overrides={{
+              BaseButton: {
+                style: {
+                  pointerEvents: 'none',
+                  ...(buttonKind === KIND.tertiary
+                    ? {
+                        marginTop: theme.sizing.scale100,
+                        transform: `translateX(-${theme.sizing.scale600})`,
+                      }
+                    : {
+                        marginTop: theme.sizing.scale500,
+                      }),
+                },
+              },
+            }}
+            {...ButtonProps}
+          >
+            {buttonLabel}
+          </Button>
         )}
       </ContentContainer>
     </Root>

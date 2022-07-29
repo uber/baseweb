@@ -2209,7 +2209,7 @@ const outlines = [
           { name: 'ContentContainer', lineStart: 14 },
           { name: 'HeadingContainer', lineStart: 15 },
           { name: 'ParagraphContainer', lineStart: 16 },
-          { name: 'ButtonContainer', lineStart: 17 },
+          { name: 'Button', lineStart: 17 },
           { name: 'Image', lineStart: 18 },
         ],
       },
