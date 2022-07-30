@@ -15,7 +15,7 @@ import { Slider } from '../../slider';
 import { Select } from '../../select';
 import { Checkbox, LABEL_PLACEMENT } from '../../checkbox';
 
-import LocationPuck from '..';
+import { LocationPuck } from '..';
 
 const locationPuckSizes = Object.keys(LOCATION_PUCK_SIZES)
   .map((key) => LOCATION_PUCK_SIZES[key])

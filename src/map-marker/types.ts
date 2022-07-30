@@ -15,6 +15,8 @@ import {
   BADGE_ENHANCER_SIZES,
   LABEL_ENHANCER_POSITIONS,
   KIND,
+  LOCATION_PUCK_SIZES,
+  LOCATION_PUCK_TYPES,
 } from './constants';
 import type { Override } from '../helpers/overrides';
 
@@ -40,6 +42,8 @@ export type LabelEnhancerPosition =
 
 export type Kind = typeof KIND[keyof typeof KIND];
 
+export type LocationPuckSize = typeof LOCATION_PUCK_SIZES[keyof typeof LOCATION_PUCK_SIZES];
+export type LocationPuckType = typeof LOCATION_PUCK_TYPES[keyof typeof LOCATION_PUCK_TYPES];
 export type FixedMarkerOverrides = {
   Root?: Override;
   InnerAnchor?: Override;
@@ -166,4 +170,32 @@ export type DragShadowProps = {
   dragging: boolean;
   height: number;
   overrides: FixedMarkerOverrides;
+};
+
+export type LocationPuckOverrides = {
+  LocationPuckApproximation?: Override;
+  ConsumerLocationPuckCore?: Override;
+  EarnerLocationPuckCore?: Override;
+};
+
+export type LocationPuckProps = {
+  size?: LocationPuckSize;
+  bearing?: number;
+  confidenceRadius?: number;
+  showBearing?: boolean;
+  type?: LocationPuckType;
+  overrides?: LocationPuckOverrides;
+};
+
+export type ConsumerLocationPuckProps = {
+  bearing: number;
+  confidenceRadius?: number;
+  showBearing?: boolean;
+  overrides: LocationPuckOverrides;
+};
+export type EarnerLocationPuckProps = {
+  bearing: number;
+  confidenceRadius?: number;
+  size: LocationPuckSize;
+  overrides?: LocationPuckOverrides;
 };

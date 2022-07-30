@@ -333,9 +333,6 @@ export const StyledConsumerLocationPuckCore = styled<{}>('div', ({ $theme }) => 
   };
 });
 
-/**
- * TODO: standardize approximation
- */
 export const StyledLocationPuckApproximation = styled<{
   $color: string,
   $radius: number,

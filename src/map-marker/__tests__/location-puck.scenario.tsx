@@ -10,7 +10,7 @@ import * as React from 'react';
 import { LOCATION_PUCK_SIZES, LOCATION_PUCK_TYPES } from '../constants';
 import TileGrid from './tile-grid';
 import { Slider } from '../../slider';
-import LocationPuck from '..';
+import { LocationPuck } from '..';
 import type { LocationPuckSizeT, LocationPuckTypeT } from '../types';
 import { Checkbox, LABEL_PLACEMENT } from '../../checkbox';
 
