@@ -4,7 +4,7 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-
+// @flow
 import * as React from 'react';
 import { Table } from 'baseui/table-semantic';
 import { PINHEAD_SIZES_SHAPES, FLOATING_MARKER_SIZES, PINHEAD_DIMENSIONS } from 'baseui/map-marker';
@@ -20,6 +20,7 @@ export const FixedMarkerSizingTable = () => {
     ]),
     ...PinheadShapeKeys.filter((x) => !x.includes('xSmall')).map((key, i) => [
       <InlineCode key={i}>{key}</InlineCode>,
+      //$FlowFixMe
       `${PINHEAD_DIMENSIONS[key].icon}px`,
     ]),
   ];

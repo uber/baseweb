@@ -74,7 +74,12 @@ const LocationPuckConfig: TConfig = {
       type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
       custom: {
-        names: ['LocationPuckApproximation', 'ConsumerLocationPuckCore', 'EarnerLocationPuckCore'],
+        names: [
+          'Root',
+          'LocationPuckApproximation',
+          'ConsumerLocationPuckCore',
+          'EarnerLocationPuckCore',
+        ],
         sharedProps: {},
       },
     },
