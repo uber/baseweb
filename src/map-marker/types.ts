@@ -173,6 +173,7 @@ export type DragShadowProps = {
 };
 
 export type LocationPuckOverrides = {
+  Root?: Override;
   LocationPuckApproximation?: Override;
   ConsumerLocationPuckCore?: Override;
   EarnerLocationPuckCore?: Override;

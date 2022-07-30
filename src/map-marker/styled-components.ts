@@ -18,7 +18,7 @@ import type {
   BadgeEnhancerSize,
   BadgePosition,
   PinHeadSize,
-  LocationPuckSizeT,
+  LocationPuckSize,
 } from './types';
 import type { StyleObject } from 'styletron-react';
 
@@ -399,7 +399,7 @@ export const StyledEarnerLocationPuckCore = styled<
   'div',
   {
     $color: string;
-    $size: LocationPuckSizeT;
+    $size: LocationPuckSize;
   }
 >('div', ({ $theme, $color, $size }) => {
   return {

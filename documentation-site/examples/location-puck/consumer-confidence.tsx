@@ -5,7 +5,7 @@ export default function Example() {
   return (
     <LocationPuck
       type={LOCATION_PUCK_TYPES.consumer}
-      confidenceRadius={20}
+      confidenceRadius={120}
     />
   );
 }

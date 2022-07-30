@@ -11,7 +11,7 @@ import { LOCATION_PUCK_SIZES, LOCATION_PUCK_TYPES } from '../constants';
 import TileGrid from './tile-grid';
 import { Slider } from '../../slider';
 import { LocationPuck } from '..';
-import type { LocationPuckSizeT, LocationPuckTypeT } from '../types';
+import type { LocationPuckSize, LocationPuckType } from '../types';
 import { Checkbox, LABEL_PLACEMENT } from '../../checkbox';
 
 export function Scenario() {
@@ -23,10 +23,10 @@ export function Scenario() {
 
   Object.keys(LOCATION_PUCK_SIZES)
     .map((key) => LOCATION_PUCK_SIZES[key])
-    .forEach((size: LocationPuckSizeT) => {
+    .forEach((size: LocationPuckSize) => {
       Object.keys(LOCATION_PUCK_TYPES)
         .map((key) => LOCATION_PUCK_TYPES[key])
-        .forEach((type: LocationPuckTypeT) => {
+        .forEach((type: LocationPuckType) => {
           markers.push({
             id: `${size} / ${type}`,
             content: (

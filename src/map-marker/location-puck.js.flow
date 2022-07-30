@@ -60,18 +60,19 @@ const ConsumerLocationPuck = ({
   overrides,
 }: ConsumerLocationPuckPropsT) => {
   const [, theme] = useStyletron();
+
+  const [Root, rootProps] = getOverrides(overrides.Root, LocationPuckContainer);
   const [ConsumerLocationPuckCore, consumerLocationPuckCoreProps] = getOverrides(
     overrides.ConsumerLocationPuckCore,
     StyledConsumerLocationPuckCore
   );
-
   const [LocationPuckApproximation, locationPuckApproximationProps] = getOverrides(
     overrides.LocationPuckApproximation,
     StyledLocationPuckApproximation
   );
 
   return (
-    <LocationPuckContainer>
+    <Root {...rootProps}>
       <LocationPuckApproximation
         $color={theme.colors.contentAccent}
         $radius={confidenceRadius}
@@ -79,7 +80,7 @@ const ConsumerLocationPuck = ({
       />
       <ConsumerLocationPuckCore {...consumerLocationPuckCoreProps} />
       {showHeading && <ConsumerLocationPuckHeading heading={heading} />}
-    </LocationPuckContainer>
+    </Root>
   );
 };
 
@@ -116,6 +117,8 @@ const EarnerLocationPuck = ({
 }: EarnerLocationPuckPropsT) => {
   const [, theme] = useStyletron();
   const color = theme.colors.contentPrimary;
+
+  const [Root, rootProps] = getOverrides(overrides.Root, LocationPuckContainer);
   const [LocationPuckApproximation, locationPuckApproximationProps] = getOverrides(
     overrides.LocationPuckApproximation,
     StyledLocationPuckApproximation
@@ -126,7 +129,7 @@ const EarnerLocationPuck = ({
   );
 
   return (
-    <LocationPuckContainer>
+    <Root {...rootProps}>
       <LocationPuckApproximation
         $color={color}
         $radius={confidenceRadius}
@@ -134,7 +137,7 @@ const EarnerLocationPuck = ({
       />
       <EarnerLocationPuckCore $color={color} $size={size} {...earnerLocationPuckCoreProps} />
       <EarnerLocationPuckHeading size={size} color={color} heading={heading} />
-    </LocationPuckContainer>
+    </Root>
   );
 };
 

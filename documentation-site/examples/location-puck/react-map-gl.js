@@ -24,6 +24,7 @@ export default function Example() {
     >
       <Marker {...userLocation}>
         <LocationPuck
+          confidenceRadius={120}
           overrides={{
             Root: {
               style: () => ({

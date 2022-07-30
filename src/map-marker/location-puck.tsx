@@ -14,9 +14,9 @@ import {
   EARNER_LOCATION_PUCK_CORE_SCALES,
 } from './constants';
 import type {
-  LocationPuckPropsT,
-  ConsumerLocationPuckPropsT,
-  EarnerLocationPuckPropsT,
+  LocationPuckProps,
+  ConsumerLocationPuckProps,
+  EarnerLocationPuckProps,
 } from './types';
 import {
   LocationPuckContainer,
@@ -58,8 +58,11 @@ const ConsumerLocationPuck = ({
   showHeading,
   confidenceRadius,
   overrides,
-}: ConsumerLocationPuckPropsT) => {
+}: ConsumerLocationPuckProps) => {
   const [, theme] = useStyletron();
+
+  const [Root, rootProps] = getOverrides(overrides.Root, LocationPuckContainer);
+
   const [ConsumerLocationPuckCore, consumerLocationPuckCoreProps] = getOverrides(
     overrides.ConsumerLocationPuckCore,
     StyledConsumerLocationPuckCore
@@ -71,7 +74,7 @@ const ConsumerLocationPuck = ({
   );
 
   return (
-    <LocationPuckContainer>
+    <Root {...rootProps}>
       <LocationPuckApproximation
         $color={theme.colors.contentAccent}
         $radius={confidenceRadius}
@@ -79,7 +82,7 @@ const ConsumerLocationPuck = ({
       />
       <ConsumerLocationPuckCore {...consumerLocationPuckCoreProps} />
       {showHeading && <ConsumerLocationPuckHeading heading={heading} />}
-    </LocationPuckContainer>
+    </Root>
   );
 };
 
@@ -113,9 +116,11 @@ const EarnerLocationPuck = ({
   confidenceRadius,
   size,
   overrides,
-}: EarnerLocationPuckPropsT) => {
+}: EarnerLocationPuckProps) => {
   const [, theme] = useStyletron();
   const color = theme.colors.contentPrimary;
+
+  const [Root, rootProps] = getOverrides(overrides.Root, LocationPuckContainer);
   const [LocationPuckApproximation, locationPuckApproximationProps] = getOverrides(
     overrides.LocationPuckApproximation,
     StyledLocationPuckApproximation
@@ -126,7 +131,7 @@ const EarnerLocationPuck = ({
   );
 
   return (
-    <LocationPuckContainer>
+    <Root {...rootProps}>
       <LocationPuckApproximation
         $color={color}
         $radius={confidenceRadius}
@@ -134,7 +139,7 @@ const EarnerLocationPuck = ({
       />
       <EarnerLocationPuckCore $color={color} $size={size} {...earnerLocationPuckCoreProps} />
       <EarnerLocationPuckHeading size={size} color={color} heading={heading} />
-    </LocationPuckContainer>
+    </Root>
   );
 };
 
@@ -145,7 +150,7 @@ const LocationPuck = ({
   confidenceRadius = 0,
   type = LOCATION_PUCK_TYPES.consumer,
   overrides = {},
-}: LocationPuckPropsT) => {
+}: LocationPuckProps) => {
   if (__DEV__) {
     if (size !== LOCATION_PUCK_SIZES.medium && type === LOCATION_PUCK_TYPES.consumer) {
       console.warn(`Location puck size can only be applied to type === LOCATION_PUCK_TYPES.earner`);
@@ -161,7 +166,6 @@ const LocationPuck = ({
     confidenceRadius,
     overrides,
   };
-  console.log(showHeading);
 
   return type === LOCATION_PUCK_TYPES.consumer ? (
     <ConsumerLocationPuck {...sharedProps} showHeading={showHeading} />
