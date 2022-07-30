@@ -76,15 +76,21 @@ export function Scenario() {
             options={locationPuckSizes}
             value={size}
             placeholder="Select a puck size"
+            // @ts-ignore
             onChange={(params) => setSize(params.value)}
             key="puck-size"
+            searchable={false}
+            clearable={false}
           />,
           <Select
             options={locationPuckTypes}
             value={type}
             placeholder="Select a puck type"
+            // @ts-ignore
             onChange={(params) => setType(params.value)}
             key="puck-type"
+            searchable={false}
+            clearable={false}
           />,
           <Slider
             value={confidenceRadius}

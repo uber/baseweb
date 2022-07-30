@@ -20,7 +20,7 @@ export const FixedMarkerSizingTable = () => {
     ]),
     ...PinheadShapeKeys.filter((x) => !x.includes('xSmall')).map((key, i) => [
       <InlineCode key={i}>{key}</InlineCode>,
-      //$FlowFixMe
+      // $FlowFixMe
       `${PINHEAD_DIMENSIONS[key].icon}px`,
     ]),
   ];
