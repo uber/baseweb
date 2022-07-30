@@ -180,21 +180,21 @@ export type LocationPuckOverrides = {
 
 export type LocationPuckProps = {
   size?: LocationPuckSize;
-  bearing?: number;
+  heading?: number;
   confidenceRadius?: number;
-  showBearing?: boolean;
+  showHeading?: boolean;
   type?: LocationPuckType;
   overrides?: LocationPuckOverrides;
 };
 
 export type ConsumerLocationPuckProps = {
-  bearing: number;
+  heading: number;
   confidenceRadius?: number;
-  showBearing?: boolean;
+  showHeading?: boolean;
   overrides: LocationPuckOverrides;
 };
 export type EarnerLocationPuckProps = {
-  bearing: number;
+  heading: number;
   confidenceRadius?: number;
   size: LocationPuckSize;
   overrides?: LocationPuckOverrides;

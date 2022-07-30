@@ -18,18 +18,18 @@ export const locationPuckProps = {
       },
     },
   },
-  bearing: {
+  heading: {
     value: 0,
     defaultValue: 0,
     placeholder: '0',
     type: PropTypes.Number,
-    description: 'Bearing (also known as heading or direction) of the user.',
+    description: 'Heading direction of the user.',
   },
-  showBearing: {
+  showHeading: {
     value: true,
     defaultValue: true,
     type: PropTypes.Boolean,
-    description: `Renders the bearing indicator. Set this value to false if bearing (heading) isn't available. This prop only applies to the consumer location puck.`,
+    description: `Renders the heading indicator. Set this value to false if heading isn't available. This prop only applies to the consumer location puck.`,
   },
   confidenceRadius: {
     value: 0,
@@ -78,9 +78,6 @@ const LocationPuckConfig: TConfig = {
         sharedProps: {},
       },
     },
-  },
-  mapTokensToProps: {
-    LocationPuck: locationPuckPropsType,
   },
 };
 

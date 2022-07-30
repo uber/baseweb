@@ -18,8 +18,8 @@ export function Scenario() {
   const markers = [];
 
   const [confidenceRadius, setConfidenceRadius] = React.useState([100]);
-  const [bearing, setBearing] = React.useState([0]);
-  const [showBearing, setShowBearing] = React.useState(true);
+  const [heading, setHeading] = React.useState([0]);
+  const [showHeading, setShowHeading] = React.useState(true);
 
   Object.keys(LOCATION_PUCK_SIZES)
     .map((key) => LOCATION_PUCK_SIZES[key])
@@ -33,9 +33,9 @@ export function Scenario() {
               <LocationPuck
                 size={size}
                 type={type}
-                bearing={bearing[0]}
+                heading={heading[0]}
                 confidenceRadius={confidenceRadius[0]}
-                showBearing={showBearing}
+                showHeading={showHeading}
               />
             ),
           });
@@ -47,11 +47,11 @@ export function Scenario() {
       cols={2}
       customizerOptions={[
         <Slider
-          value={bearing}
-          onChange={({ value }) => value && setBearing(value)}
+          value={heading}
+          onChange={({ value }) => value && setHeading(value)}
           min={0}
           max={360}
-          key={'bearing'}
+          key={'heading'}
         />,
         <Slider
           value={confidenceRadius}
@@ -61,12 +61,12 @@ export function Scenario() {
           key={'confidence-radius'}
         />,
         <Checkbox
-          checked={showBearing}
-          onChange={(e) => setShowBearing(e.target.checked)}
+          checked={showHeading}
+          onChange={(e) => setShowHeading(e.target.checked)}
           labelPlacement={LABEL_PLACEMENT.right}
-          key={'show-bearing'}
+          key={'show-heading'}
         >
-          Show bearing
+          Show heading
         </Checkbox>,
       ]}
     >

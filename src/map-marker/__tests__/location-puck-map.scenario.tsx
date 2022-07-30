@@ -40,11 +40,11 @@ const defaultLocation = [uberHq.longitude, uberHq.latitude];
 
 export function Scenario() {
   const [confidenceRadius, setConfidenceRadius] = React.useState([0]);
-  const [bearing, setBearing] = React.useState([0]);
+  const [heading, setHeading] = React.useState([0]);
   const [size, setSize] = React.useState([locationPuckSizes[0]]);
   const [type, setType] = React.useState([locationPuckTypes[0]]);
   const [locations, setLocations] = React.useState([defaultLocation]);
-  const [showBearing, setShowBearing] = React.useState(true);
+  const [showHeading, setShowHeading] = React.useState(true);
 
   const [viewport, setViewport] = React.useState({
     ...uberHq,
@@ -66,11 +66,11 @@ export function Scenario() {
         cols={7}
         customizerOptions={[
           <Slider
-            value={bearing}
-            onChange={({ value }) => value && setBearing(value)}
+            value={heading}
+            onChange={({ value }) => value && setHeading(value)}
             min={0}
             max={360}
-            key={'bearing'}
+            key={'heading'}
           />,
           <Select
             options={locationPuckSizes}
@@ -94,12 +94,12 @@ export function Scenario() {
             key={'confidence-radius'}
           />,
           <Checkbox
-            checked={showBearing}
-            onChange={(e) => setShowBearing(e.target.checked)}
+            checked={showHeading}
+            onChange={(e) => setShowHeading(e.target.checked)}
             labelPlacement={LABEL_PLACEMENT.right}
-            key={'show-bearing'}
+            key={'show-heading'}
           >
-            Show bearing
+            Show heading
           </Checkbox>,
         ]}
       />
@@ -128,13 +128,13 @@ export function Scenario() {
                     }),
                   },
                 }}
-                bearing={bearing[0]}
+                heading={heading[0]}
                 // $FlowFixMe Mismatch between general type and enum
                 size={size[0].id}
                 confidenceRadius={confidenceRadius[0]}
                 // $FlowFixMe Mismatch between general type and enum
                 type={type[0].id}
-                showBearing={showBearing}
+                showHeading={showHeading}
               />
             </Marker>
           ))}

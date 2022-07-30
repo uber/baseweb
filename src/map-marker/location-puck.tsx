@@ -25,7 +25,7 @@ import {
   StyledEarnerLocationPuckCore,
 } from './styled-components';
 
-const ConsumerLocationPuckHeading = ({ bearing }) => {
+const ConsumerLocationPuckHeading = ({ heading }) => {
   const [css, theme] = useStyletron();
   return (
     <svg
@@ -34,7 +34,7 @@ const ConsumerLocationPuckHeading = ({ bearing }) => {
         width: `${11}px`,
         position: 'absolute',
         color: theme.colors.contentAccent,
-        transform: `rotate(${bearing}deg) translateY(-16px)`,
+        transform: `rotate(${heading}deg) translateY(-16px)`,
         transition: `${theme.animation.timing300} ${theme.animation.easeOutCurve} all`,
       })}
       width="11"
@@ -54,8 +54,8 @@ const ConsumerLocationPuckHeading = ({ bearing }) => {
 };
 
 const ConsumerLocationPuck = ({
-  bearing,
-  showBearing,
+  heading,
+  showHeading,
   confidenceRadius,
   overrides,
 }: ConsumerLocationPuckPropsT) => {
@@ -78,19 +78,19 @@ const ConsumerLocationPuck = ({
         {...locationPuckApproximationProps}
       />
       <ConsumerLocationPuckCore {...consumerLocationPuckCoreProps} />
-      {showBearing && <ConsumerLocationPuckHeading bearing={bearing} />}
+      {showHeading && <ConsumerLocationPuckHeading heading={heading} />}
     </LocationPuckContainer>
   );
 };
 
-const EarnerLocationPuckHeading = ({ size, color, bearing }) => {
+const EarnerLocationPuckHeading = ({ size, color, heading }) => {
   const [css, theme] = useStyletron();
   return (
     <svg
       className={css({
         position: 'absolute',
         transition: `${theme.animation.timing300} ${theme.animation.easeOutCurve} all`,
-        transform: `rotate(${bearing}deg) scale(${EARNER_LOCATION_PUCK_CORE_SCALES[size]})`,
+        transform: `rotate(${heading}deg) scale(${EARNER_LOCATION_PUCK_CORE_SCALES[size]})`,
       })}
       width="72"
       height="72"
@@ -109,7 +109,7 @@ const EarnerLocationPuckHeading = ({ size, color, bearing }) => {
 };
 
 const EarnerLocationPuck = ({
-  bearing,
+  heading,
   confidenceRadius,
   size,
   overrides,
@@ -133,15 +133,15 @@ const EarnerLocationPuck = ({
         {...locationPuckApproximationProps}
       />
       <EarnerLocationPuckCore $color={color} $size={size} {...earnerLocationPuckCoreProps} />
-      <EarnerLocationPuckHeading size={size} color={color} bearing={bearing} />
+      <EarnerLocationPuckHeading size={size} color={color} heading={heading} />
     </LocationPuckContainer>
   );
 };
 
 const LocationPuck = ({
   size = LOCATION_PUCK_SIZES.medium,
-  bearing = 0,
-  showBearing = true,
+  heading = 0,
+  showHeading = true,
   confidenceRadius = 0,
   type = LOCATION_PUCK_TYPES.consumer,
   overrides = {},
@@ -151,19 +151,20 @@ const LocationPuck = ({
       console.warn(`Location puck size can only be applied to type === LOCATION_PUCK_TYPES.earner`);
     }
 
-    if (!showBearing && type === LOCATION_PUCK_TYPES.earner) {
-      console.warn(`Earner location puck must show the bearing indicator`);
+    if (!showHeading && type === LOCATION_PUCK_TYPES.earner) {
+      console.warn(`Earner location puck must show the heading indicator`);
     }
   }
 
   const sharedProps = {
-    bearing,
+    heading,
     confidenceRadius,
     overrides,
   };
+  console.log(showHeading);
 
   return type === LOCATION_PUCK_TYPES.consumer ? (
-    <ConsumerLocationPuck {...sharedProps} showBearing={showBearing} />
+    <ConsumerLocationPuck {...sharedProps} showHeading={showHeading} />
   ) : (
     <EarnerLocationPuck {...sharedProps} size={size} />
   );
