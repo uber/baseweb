@@ -1,0 +1,36 @@
+/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+// @flow
+
+import * as React from 'react';
+
+import type { ColumnT, SharedColumnOptionsT } from './';
+
+type OptionsT = {|
+  ...SharedColumnOptionsT<string>,
+|};
+
+type FilterParametersT = {|
+  description: string,
+  exclude: boolean,
+  selection: Set<string>,
+|};
+
+type CategoricalColumnT = ColumnT<string, FilterParametersT>;
+
+type CategoricalFilterProps = {
+  data: string[],
+  close: () => void,
+  setFilter: (FilterParametersT) => void,
+  filterParams?: FilterParametersT,
+};
+
+declare export function CategoricalFilter(props: CategoricalFilterProps): React.Node;
+
+declare function CategoricalColumn(options: OptionsT): CategoricalColumnT;
+
+export default CategoricalColumn;

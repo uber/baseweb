@@ -1,0 +1,160 @@
+/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+// @flow
+/* eslint-disable cup/no-undef */
+import * as React from 'react';
+
+import type { LocaleT } from '../locale';
+
+import type { PropsT, SelectStateT, ValueT, OptionT, ChangeActionT, ReactRefT } from './';
+
+declare export function isInteractive(rootTarget: EventTarget, rootElement: Element): boolean;
+
+declare class Select extends React.Component<PropsT, SelectStateT> {
+  static defaultProps: PropsT;
+
+  // anchor is a ref that refers to the outermost element rendered when the dropdown menu is not
+  // open. This is required so that we can check if clicks are on/off the anchor element.
+  anchor: ReactRefT<HTMLElement>;
+  // dropdown is a ref that refers to the popover element. This is required so that we can check if
+  // clicks are on/off the dropdown element.
+  dropdown: ReactRefT<HTMLElement>;
+  input: React.ElementRef<typeof HTMLInputElement>;
+  // dragging is a flag to track whether a mobile device is currently scrolling versus clicking.
+  dragging: boolean;
+  // focusAfterClear is a flag to indicate that the dropdowm menu should open after a selected
+  // option has been cleared.
+  focusAfterClear: boolean;
+  // openAfterFocus is a flag to indicate that the dropdown menu should open when the component is
+  // focused. Developers have the option to disable initial clicks opening the dropdown menu. If not
+  // disabled, clicks will set this flag to true. Upon focusing, look to this to see if the menu should
+  // be opened, or only focus.
+  openAfterFocus: boolean;
+  // When an item is selected, it also triggers handleClickOutside and since the selected item is
+  // already out of the menu (DOM), it will not recognize it as a subnode and triggers handleBlur
+  // that sets isOpen to false. That's a faulty logic causing visible problems when
+  // closeOnSelect is false. This flag helps to detect that selection was just made.
+  justSelected: boolean;
+
+  // the select components can accept an array of options or an object where properties are optgroups
+  // and values are arrays of options. this class property is constructed and updated in a normalized
+  // shape where optgroup titles are stored on the option in the __optgroup field.
+  options: ValueT;
+
+  constructor(props: PropsT): void;
+
+  state: SelectStateT;
+
+  isItMounted: boolean;
+
+  componentDidMount(): void;
+
+  componentDidUpdate(prevProps: PropsT, prevState: SelectStateT): void;
+
+  componentWillUnmount(): void;
+
+  focus(): void;
+
+  handleDropdownOpen(nextOpenState: boolean):void;
+
+  handleSetInputValue(newInputValue: string):void;
+
+  handleSetInputFocus():void;
+
+  handleSetInputBlur():void;
+
+  // Handle touch outside on mobile to dismiss menu, ensures that the
+  // touch target is not within the anchor DOM node.
+  handleTouchOutside: (event: TouchEvent) => void;
+
+  // Track dragging state to filter false-positive actions where a user
+  // intends to drag/scroll the page.
+  handleTouchMove: () => boolean;
+  handleTouchStart: () => boolean;
+  handleTouchEnd: (event: TouchEvent) => void;
+
+  handleClick: (event: MouseEvent | TouchEvent)=> void;
+
+  closeMenu(): void;
+
+  handleInputFocus: (event: SyntheticEvent<HTMLElement>) => void;
+
+  handleBlur: (event: FocusEvent | MouseEvent) => void;
+
+  handleClickOutside: (event: MouseEvent) => void;
+
+  handleInputChange: (event: SyntheticInputEvent<HTMLInputElement>) => void;
+
+  handleKeyDown: (event: KeyboardEvent) => void;
+
+  getOptionLabel: (
+    locale: LocaleT,
+    {
+      option: OptionT,
+      optionState: {
+        $selected: boolean,
+        $disabled: boolean,
+        $isHighlighted: boolean,
+      },
+    }
+  ) => React.Node;
+
+  getValueLabel: ({ option: OptionT }) => React.Node;
+
+  /**
+   * Extends the value into an array from the given options
+   */
+  getValueArray(value: ValueT): Array<OptionT>;
+
+  setValue(value: ValueT, option: ?OptionT, type: ChangeActionT): void;
+
+  handleActiveDescendantChange: (id?: string) => void;
+
+  //flowlint-next-line unclear-type:off
+  handleInputRef: (input: React.ElementRef<any>) => void;
+
+  selectValue: ({ item: OptionT }) => void;
+
+  addValue: (item: OptionT) => void;
+
+  backspaceValue: () => void;
+
+  popValue: () => ValueT;
+
+  removeValue: (item: OptionT) => void;
+
+  clearValue: (event: KeyboardEvent | MouseEvent | TouchEvent) => void;
+
+  shouldShowPlaceholder: () => boolean;
+
+  shouldShowValue: () => boolean;
+
+  renderLoading(): React.Node;
+
+  renderValue(
+    valueArray: ValueT,
+    isOpen: boolean,
+    locale: LocaleT
+  ): ?React.Node | Array<?React.Node>;
+
+  renderInput(listboxId: string): React.Node;
+
+  renderClear(): React.Node;
+
+  renderArrow(): React.Node;
+
+  renderSearch(): React.Node;
+
+  filterOptions(excludeOptions: ?ValueT): ValueT;
+
+  //flowlint-next-line unclear-type:off
+  getSharedProps(): any;
+
+  render(): React.Node;
+}
+
+export default Select;

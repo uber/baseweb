@@ -1,0 +1,85 @@
+/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+// @flow
+/* eslint-disable import/extensions */
+type DirtyDate = Date | number;
+
+// flowlint-next-line unclear-type:off
+declare export var formatDate: (Date, string, any) => string;
+// flowlint-next-line unclear-type:off
+declare export var getStartOfWeek: (Date, any) => Date
+declare export var getEndOfWeek: (Date) => Date;
+declare export var getStartOfMonth: (Date) => Date;
+declare export var getEndOfMonth: (Date) => Date;
+declare export var isSameYear: (?Date, ?Date) => boolean;
+declare export var isSameMonth: (?Date, ?Date) => boolean;
+declare export var isSameDay: (?Date, ?Date) => boolean;
+declare export var isDayInRange: (Date, Date, Date) => boolean;
+declare export var isStartOfMonth: (Date) => boolean;
+declare export var isEndOfMonth: (Date) => boolean;
+// flowlint-next-line unclear-type:off
+declare export var getWeekdayMinInLocale: (Date, any) => string;
+// flowlint-next-line unclear-type:off
+declare export var getMonthInLocale: (number, any) => string;
+// flowlint-next-line unclear-type:off
+declare export var getWeekdayInLocale: (Date, any) => string;
+// flowlint-next-line unclear-type:off
+declare export var getQuarterInLocale: (number, any) => string;
+declare export var isDayDisabled: (
+  Date,
+  {
+    minDate: ?Date,
+    maxDate: ?Date,
+    excludeDates: ?Array<Date>,
+    includeDates: ?Array<Date>,
+    filterDate: ?(day: Date) => boolean,
+  }
+) => boolean;
+declare export var isOutOfBounds: (Date, { minDate: ?Date, maxDate: ?Date }) => boolean;
+declare export var getEffectiveMinDate: ({ minDate: ?Date, includeDates: ?Array<Date> }) => Date;
+declare export var getEffectiveMaxDate: ({ maxDate: ?Date, includeDates: ?Array<Date> }) => Date;
+declare export var monthDisabledBefore: (Date, { minDate: ?Date, includeDates: ?Array<Date> }) => boolean;
+declare export var monthDisabledAfter: (Date, { maxDate: ?Date, includeDates: ?Array<Date> }) => boolean;
+declare export var applyTimeToDate: (?Date, Date) => Date;
+declare export var applyDateToTime: (?Date, Date) => Date;
+
+// ** Re-exported from date-fns **
+
+// these need to be able to accept either number or date
+// to maintain parity with the old exports
+
+// ** Date Setters **
+declare export var setSeconds: (dirtyDate: DirtyDate, number: number) => DirtyDate;
+declare export var setMinutes: (dirtyDate: DirtyDate, number: number) => DirtyDate;
+declare export var setHours: (dirtyDate: DirtyDate, number: number) => DirtyDate;
+declare export var setMonth: (dirtyDate: DirtyDate, number: number) => DirtyDate;
+declare export var setYear: (dirtyDate: DirtyDate, number: number) => DirtyDate;
+
+// ** Date Getters **
+declare export var getMinutes: (dirtyDate: DirtyDate) => number;
+declare export var getHours: (dirtyDate: DirtyDate) => number;
+declare export var getDate: (dirtyDate: DirtyDate) => number;
+declare export var getMonth: (dirtyDate: DirtyDate) => number;
+declare export var getYear: (dirtyDate: DirtyDate) => number;
+
+// ** Date Math
+declare export var addDays: (dirtyDate: DirtyDate, number: number) => DirtyDate;
+declare export var addWeeks: (dirtyDate: DirtyDate, number: number) => DirtyDate;
+declare export var addMonths: (dirtyDate: DirtyDate, number: number) => DirtyDate;
+declare export var addYears: (dirtyDate: DirtyDate, number: number) => DirtyDate;
+declare export var subDays: (dirtyDate: DirtyDate, number: number) => DirtyDate;
+declare export var subWeeks: (dirtyDate: DirtyDate, number: number) => DirtyDate;
+declare export var subMonths: (dirtyDate: DirtyDate, number: number) => DirtyDate;
+declare export var subYears: (dirtyDate: DirtyDate, number: number) => DirtyDate;
+
+// ** Date Comparison
+
+declare export var isBefore: (fromDirty: DirtyDate, toDirty: DirtyDate) => boolean;
+declare export var isAfter: (fromDirty: DirtyDate, toDirty: DirtyDate) => boolean;
+
+// flowlint-next-line unclear-type:off
+export var format: (date: Date, format: string, locale: ?any) => string;

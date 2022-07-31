@@ -1,0 +1,17 @@
+/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+declare export function starSVG(fillColor: string, strokeColor: string, size: number): string;
+
+declare export function angryRatingSVG(fillColor: string, size: number): string;
+
+declare export function sadRatingSVG(fillColor: string, size: number): string;
+
+declare export function neutralRatingSVG(fillColor: string, size: number): string;
+
+declare export function happyRatingSVG(fillColor: string, size: number): string;
+
+declare export function veryHappyRatingSVG(fillColor: string, size: number): string;

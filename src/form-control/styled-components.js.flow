@@ -1,0 +1,20 @@
+/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+
+// @flow
+import type { StylePropsT } from './';
+import type {StyletronComponent} from '../styles/styled';
+
+// not exported in index
+declare export var LabelContainer: StyletronComponent<StylePropsT>;
+declare export var LabelEndEnhancer: StyletronComponent<StylePropsT>;
+
+// exported in index
+declare export var StyledLabel: StyletronComponent<StylePropsT>;
+declare export var StyledCaption: StyletronComponent<StylePropsT>;
+declare export var StyledControlContainer: StyletronComponent<StylePropsT>;
+

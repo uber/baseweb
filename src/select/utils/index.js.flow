@@ -1,0 +1,11 @@
+/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+import type { SelectProps, Option, Options, Value } from '../types';
+
+declare export function normalizeOptions(options: Options): Value;
+
+declare export var expandValue: ((value: Option, props: Partial<SelectProps>)=> Option);

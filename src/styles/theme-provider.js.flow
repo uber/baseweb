@@ -6,8 +6,6 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import type { BaseProviderPropsT } from './types';
-
-declare var BaseProvider: React.StatelessFunctionalComponent<BaseProviderPropsT>;
-
-export default BaseProvider;
+import type { ThemeT } from './';
+declare export var ThemeContext: React.Context<ThemeT>;
+declare export default (props: { theme: ThemeT, children: ?React.Node }) => React.Node;

@@ -1,0 +1,41 @@
+/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+
+// @flow
+// based on:
+// - https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/utils/focusVisible.js
+// - https://github.com/WICG/focus-visible/blob/v4.1.5/src/focus-visible.js
+
+//$FlowFixMe
+declare export function teardown(doc): void;
+
+//$FlowFixMe
+declare export function isFocusVisible(event): boolean;
+
+/**
+ * Should be called if a blur event is fired on a focus-visible element
+ */
+declare export function handleBlurVisible(): void;
+
+//$FlowFixMe
+declare export function initFocusVisible(node): void;
+
+declare export var forkFocus:
+  (
+    // flowlint-next-line unclear-type:off
+    rootProps: any,
+    handler: (e: SyntheticEvent<>) => void
+  ) =>
+    ((e: SyntheticEvent<>) => void);
+
+declare export var forkBlur:
+  (
+    // flowlint-next-line unclear-type:off
+    rootProps: any,
+    handler: (e: SyntheticEvent<>) => void
+  ) =>
+    ((e: SyntheticEvent<>) => void);

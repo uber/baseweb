@@ -1,0 +1,17 @@
+/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+// @flow
+
+import type { BreakpointsT } from '../styles';
+
+/**
+ * Helper function that generates media queries based on breakpoint, e.g.
+ * getMediaQuery(720) => '@media screen and (min-width: 720px)'
+ */
+declare export var getMediaQuery: (breakpoint: number) => string;
+
+declare export var getMediaQueries: (breakpoints: BreakpointsT) => string[];

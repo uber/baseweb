@@ -1,0 +1,39 @@
+/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+// @flow
+import * as React from 'react';
+import type {StyletronComponent} from '../styles/styled';
+
+declare var OPTION_LIST_SIZE: {
+  default: 'default',
+  compact: 'compact',
+};
+
+type StyledPropsT = {
+  $disabled?: boolean,
+  $isFocused?: boolean,
+  $isFocusVisible?: boolean,
+  $isHighlighted?: boolean,
+  $size?: $Keys<typeof OPTION_LIST_SIZE>,
+};
+
+// not exported in index.js.flow
+declare export var StyledOptgroupHeader: StyletronComponent<{}>;
+declare export var StyledListItemAnchor: StyletronComponent<StyledPropsT>;
+declare export var StyledListItemElement: StyletronComponent<StyledPropsT>;
+
+// exported in index
+declare export var StyledEmptyState: StyletronComponent<StyledPropsT>;
+declare export var StyledList: StyletronComponent<StyledPropsT>;
+declare export var StyledListItem: StyletronComponent<StyledPropsT>;
+declare export var StyledListItemProfile: StyletronComponent<StyledPropsT>;
+declare export var StyledProfileImgContainer: StyletronComponent<{}>;
+declare export var StyledProfileImg: StyletronComponent<{}>;
+declare export var StyledProfileLabelsContainer: StyletronComponent<StyledPropsT>;
+declare export var StyledProfileTitle: StyletronComponent<StyledPropsT>;
+declare export var StyledProfileSubtitle: StyletronComponent<StyledPropsT>;
+declare export var StyledProfileBody: StyletronComponent<StyledPropsT>;
