@@ -42,13 +42,10 @@ export const flexGridItemMediaQueryStyle = ({
     // See https://github.com/uber/baseweb/pull/1748
     width: `calc(${widthCalc} - .5px)`,
     // Add colGap except at end of row
-    [marginDirection]:
-      colGapQuantity && //flowlint-line sketchy-number-and:off
-      ((itemIndex + 1) % colCount !== 0 ? colGap : 0),
+    [marginDirection]: colGapQuantity && ((itemIndex + 1) % colCount !== 0 ? colGap : 0),
     // Add rowGap except at end of column
     marginBottom:
-      rowGapQuantity && //flowlint-line sketchy-number-and:off
-      (~~(itemIndex / colCount) !== ~~((itemCount - 1) / colCount) ? rowGap : 0),
+      rowGapQuantity && (~~(itemIndex / colCount) !== ~~((itemCount - 1) / colCount) ? rowGap : 0),
     // Add space to make up for missing columns if last row ends early
     ...(itemIndex === itemCount - 1 && (itemIndex + 1) % colCount !== 0
       ? {

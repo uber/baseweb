@@ -30,7 +30,6 @@ const DATA: Array<Array<any>> = [
   ['Neil', 27],
 ];
 
-// flowlint-next-line unclear-type:off
 class SortableTable extends React.Component<any, any> {
   state = {nameDirection: null, ageDirection: null};
   handleSort = (

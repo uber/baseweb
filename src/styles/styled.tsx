@@ -68,9 +68,6 @@ type WithStyleFn<DefaultTheme> = {
   <C extends StyletronComponent<any, any>>(component: C, style: StyleObject): C;
 };
 
-/* eslint-enable flowtype/generic-spacing */
-/* flowlint unclear-type:error */
-
 export function createThemedStyled<Theme>(): StyleFn<Theme> {
   return createStyled({
     wrapper,

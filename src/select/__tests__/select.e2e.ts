@@ -194,7 +194,6 @@ test.describe('select', () => {
   test('creates multiple options', async ({ page }) => {
     await mount(page, 'select--creatable-multi');
     const input = page.locator(selectors.selectInput);
-    const selected = page.locator(selectors.selectedList);
     const listItems = page.locator(selectors.selectDropDown).locator('li');
 
     await input.click();

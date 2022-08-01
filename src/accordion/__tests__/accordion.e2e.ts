@@ -6,8 +6,6 @@ LICENSE file in the root directory of this source tree.
 */
 
 import { expect, test } from '@playwright/test';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import queryString from 'query-string';
 import { mount, analyzeAccessibility, isSameNode } from '../../test/integration';
 
 const selectors = {

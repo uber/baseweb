@@ -198,10 +198,7 @@ test.describe('menu-child', () => {
     await page.waitForSelector(childSelector, { state: 'attached' });
   });
 
-  test('child menu clicks do not close if inside popover content', async ({
-    browserName,
-    page,
-  }) => {
+  test('child menu clicks do not close if inside popover content', async ({ page }) => {
     await mount(page, 'menu--child-in-popover');
     const button = page.locator('button');
     const parent = page.locator(parentSelector);

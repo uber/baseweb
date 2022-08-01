@@ -141,7 +141,6 @@ export function getOverrides<T = { [k: string]: any }>(
   const props = getOverrideProps<T>(_override);
   return [Component, props];
 }
-/* flowlint unclear-type:error */
 
 /**
  * Merges two overrides objects – this is useful if you want to inject your own
