@@ -97,7 +97,6 @@ const FloatingRouteMarker = ({
   overrides = {},
   selected = false,
   anchor,
-  ...restProps
 }: FixedMarkerPropsT) => {
   const [, theme] = useStyletron();
 
@@ -141,8 +140,12 @@ const FloatingRouteMarker = ({
       )}
       {label && (
         <LabelContent $color={color} $size={size} {...labelContentProps}>
-          <PrimaryLabel $color={color}>{label}</PrimaryLabel>
-          <SecondaryLabel $color={secondaryLabelColor}>{secondaryLabel}</SecondaryLabel>
+          <PrimaryLabel $color={color} {...primaryLabelProps}>
+            {label}
+          </PrimaryLabel>
+          <SecondaryLabel $color={secondaryLabelColor} {...secondaryLabelProps}>
+            {secondaryLabel}
+          </SecondaryLabel>
         </LabelContent>
       )}
       {EndEnhancer && (
