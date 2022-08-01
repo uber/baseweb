@@ -149,7 +149,8 @@ function Tasks(props: { tasks: Task[] }) {
         <StyledHeadCell $sticky={false}>Status</StyledHeadCell>
         <StyledHeadCell $sticky={false}>Last Run</StyledHeadCell>
         <StyledHeadCell $sticky={false}>Details</StyledHeadCell>
-        {props.tasks.map((task, index) => {
+        {/* eslint-disable-next-line @typescript-eslint/no-unused-vars */}
+        {props.tasks.map((task) => {
           return (
             <>
               <StyledBodyCell>{task[0]}</StyledBodyCell>

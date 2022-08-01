@@ -92,12 +92,14 @@ describe('FlexGridItem', () => {
             flexGridItemCount,
             $theme: LightTheme,
           })
+          // eslint-disable-next-line jest/no-restricted-matchers
         ).toMatchSnapshot(snapshotName);
       }
     );
   });
 
   test('getResponsiveValue', () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const testCases: Array<{ testCase: [any, number]; expected }> = [
       { testCase: [null, 0], expected: null },
       { testCase: [null, 1], expected: null },
@@ -167,6 +169,7 @@ describe('FlexGridItem', () => {
             $flexGridItemCount,
             $theme: LightTheme,
           })
+          // eslint-disable-next-line jest/no-restricted-matchers
         ).toMatchSnapshot(snapshotName);
       }
     );

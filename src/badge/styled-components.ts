@@ -229,6 +229,7 @@ export const StyledPositioner = styled<
     $horizontalOffset?: string | null;
     $verticalOffset?: string | null;
   }
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
 >('div', ({ $theme, $role, $placement, $horizontalOffset, $verticalOffset }) => {
   let positionStyle = POSITION_STYLES[$role][$placement];
 

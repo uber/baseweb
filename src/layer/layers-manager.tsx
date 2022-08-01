@@ -35,6 +35,7 @@ export const Consumer = LayersContext.Consumer;
 export default class LayersManager extends React.Component<LayersManagerProps, LayersManagerState> {
   host = React.createRef<HTMLElement>();
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   containerRef = React.createRef<any>();
 
   constructor(props: LayersManagerProps) {

@@ -19,6 +19,7 @@ function getBarHeight(size) {
   }[size];
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const StyledRoot = styled<'div', StyleProps>('div', (props) => {
   return {
     width: '100%',

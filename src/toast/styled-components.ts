@@ -184,6 +184,7 @@ export const CloseIconSvg = styled<
     $color,
     $isFocusVisible,
   }: SharedStylePropsArg & {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     $size: any;
     $color: string;
     $theme: Theme;

@@ -56,8 +56,10 @@ describe('Component', () => {
     );
     const quickSelect = container.querySelector('[data-baseweb="select"]')?.firstChild;
     if (quickSelect) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       fireEvent.click(quickSelect as any as HTMLElement);
     }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     fireEvent.click(await getByText(container.parentElement as any as HTMLElement, 'Past Week'));
     expect(onQuickSelectChange).toHaveBeenCalledWith(expect.objectContaining({ id: 'Past Week' }));
   });

@@ -18,9 +18,11 @@ describe('Helpers - ReactHelpers', () => {
         </React.Fragment>
       </ul>
     );
+    // eslint-disable-next-line jest/no-restricted-matchers
     expect(flattenFragments(list.props.children)).toMatchSnapshot('no wrapper');
 
     const Wrapper = (props) => <b {...props} />;
+    // eslint-disable-next-line jest/no-restricted-matchers
     expect(flattenFragments(list.props.children, Wrapper)).toMatchSnapshot('with wrapper');
   });
 });

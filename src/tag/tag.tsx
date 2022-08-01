@@ -34,7 +34,9 @@ const Tag = React.forwardRef<HTMLSpanElement, TagProps>((props, ref) => {
     isFocused = false,
     isHovered = false,
     kind = KIND.primary,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     onActionClick = (event) => {},
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     onActionKeyDown = (event) => {},
     onClick = null,
     onKeyDown = null,
@@ -51,6 +53,7 @@ const Tag = React.forwardRef<HTMLSpanElement, TagProps>((props, ref) => {
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   function handleBlur(event: SyntheticEvent) {
     if (focusVisible !== false) {
       setFocusVisible(false);
@@ -126,6 +129,7 @@ const Tag = React.forwardRef<HTMLSpanElement, TagProps>((props, ref) => {
 
   return (
     <Root
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ref={ref as any}
       data-baseweb="tag"
       aria-label={

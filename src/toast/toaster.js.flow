@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 
 // @flow
-/* eslint-disable cup/no-undef */
+
 import * as React from 'react';
 import ReactDOM from 'react-dom';
 import { getOverrides, mergeOverrides } from '../helpers/overrides.js';

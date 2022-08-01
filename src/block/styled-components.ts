@@ -20,6 +20,7 @@ function constrainToNull(value) {
 
 type ApplyParams = {
   property: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   value?: any | Array<any>;
   transform?: Function;
 };

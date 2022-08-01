@@ -20,6 +20,7 @@ import type { ProgressBarProps } from './types';
 
 class ProgressBar extends React.Component<
   ProgressBarProps & {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     forwardedRef: any;
   }
 > {

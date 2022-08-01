@@ -53,6 +53,7 @@ const ListItem = React.forwardRef<HTMLLIElement, ListProps>((props: ListProps, r
 
   return (
     <Root
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ref={ref as any}
       $shape={props.shape || SHAPE.DEFAULT}
       aria-label={props['aria-label']}

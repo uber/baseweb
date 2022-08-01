@@ -20,4 +20,5 @@ export {
 } from './styled-components';
 export * from './types';
 /** @deprecated To be removed in future versions */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 type hasThumbnail = CardProps['hasThumbnail'];

@@ -27,12 +27,14 @@ export type TreeViewOverrides = {
 
 export type TreeNodeId = number | string;
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type TreeNodeData<T = any> = {
   id?: TreeNodeId;
   children?: TreeNodeData[];
   isExpanded?: boolean;
   label: ((node: TreeNodeData) => React.ReactNode) | string;
   info?: T;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
 };
 

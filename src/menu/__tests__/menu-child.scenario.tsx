@@ -76,6 +76,7 @@ const childMenu = (items) => (
 export function Scenario() {
   const [clickLog, setClickLog] = React.useState([]);
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   function handleClick({ item, event }) {
     setClickLog([...clickLog, item.label]);
   }

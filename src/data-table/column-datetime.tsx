@@ -37,10 +37,12 @@ import { COLUMNS, DATETIME_OPERATIONS } from './constants';
 import FilterShell from './filter-shell';
 import type { ColumnOptions, SharedColumnOptions } from './types';
 import { LocaleContext } from '../locale';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import type { ComponentProps } from 'react';
 
 type Options = {
   formatString?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   locale?: any;
 } & SharedColumnOptions<Date>;
 
@@ -228,6 +230,7 @@ function DatetimeFilter(props) {
   const [categoricalOperator, setCategoricalOperator] = React.useState<Value>([
     initialState.categoricalOperator,
   ]);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [rangeDates, setRangeDates] = React.useState<any>(
     initialState.rangeDates.length
       ? initialState.rangeDates
@@ -249,6 +252,7 @@ function DatetimeFilter(props) {
       onExcludeChange={() => setExclude(!exclude)}
       onApply={() => {
         if (isRange) {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           const op: DatetimeOperations = rangeOperator[0].id as any;
 
           let description = '';
@@ -276,6 +280,7 @@ function DatetimeFilter(props) {
         }
 
         if (isCategorical) {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           const op: DatetimeOperations = categoricalOperator[0].id as any;
 
           let selection: number[] = [];
@@ -356,6 +361,7 @@ function DatetimeFilter(props) {
             <Select
               value={rangeOperator}
               onChange={(params) => setRangeOperator(params.value)}
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
               mountNode={mountNode.current as any}
               options={RANGE_OPERATIONS.map((op) => ({
                 label: locale.datatable[op.localeLabelKey],
@@ -369,6 +375,7 @@ function DatetimeFilter(props) {
               {(rangeOperator[0].id === DATETIME_OPERATIONS.RANGE_DATETIME ||
                 rangeOperator[0].id === DATETIME_OPERATIONS.RANGE_DATE) && (
                 <Datepicker
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
                   mountNode={mountNode.current as any}
                   value={rangeDates}
                   onChange={({ date }) => {
@@ -449,6 +456,7 @@ function DatetimeFilter(props) {
                 label: locale.datatable[op.localeLabelKey],
                 id: op.id,
               }))}
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
               mountNode={mountNode.current as any}
               size="compact"
               clearable={false}

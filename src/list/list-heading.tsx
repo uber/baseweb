@@ -76,6 +76,7 @@ const ListHeading = React.forwardRef<HTMLLIElement, HeadingProps>((props: Headin
   }
 
   return (
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     <Root ref={ref as any} {...rootProps}>
       <Content {...contentProps}>
         {/* ----- Top Row -------------------------- */}

@@ -40,6 +40,7 @@ class StatefulContainer<T extends HTMLInputElement | HTMLTextAreaElement> extend
   };
 
   render() {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { children, initialState, stateReducer, ...restProps } = this.props;
     const { onChange } = this;
     return children({

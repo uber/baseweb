@@ -37,6 +37,7 @@ class NavItem extends React.Component<NavItemProps & SharedProps> {
   };
 
   render() {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { item, overrides, itemMemoizationComparator, ...sharedProps } = this.props;
 
     const [NavItem, itemProps] = getOverrides(overrides.NavItem, StyledNavItem);

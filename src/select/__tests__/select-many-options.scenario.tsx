@@ -21,6 +21,7 @@ const ListItem = withStyle(StyledDropdownListItem, {
 });
 
 const FixedSizeListItem = ({ data, index, style }) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { item, overrides, ...restChildProps } = data[index].props;
   return (
     <ListItem
@@ -35,7 +36,7 @@ const FixedSizeListItem = ({ data, index, style }) => {
     </ListItem>
   );
 };
-// eslint-disable-next-line react/display-name
+// eslint-disable-next-line react/display-name,@typescript-eslint/no-explicit-any
 const VirtualDropdown = React.forwardRef<HTMLUListElement, any>((props, ref) => {
   const children = React.Children.toArray(props.children);
   // @ts-expect-error todo(flow->ts) type error in react 17
@@ -76,6 +77,7 @@ for (let i = 0; i < 10000; i += 1) {
 }
 
 export function Scenario() {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [value, setValue] = React.useState<any>([]);
   return (
     <Select

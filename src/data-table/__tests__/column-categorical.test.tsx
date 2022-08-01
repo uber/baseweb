@@ -87,6 +87,7 @@ describe('categorical column', () => {
 
     const checkboxes = container.querySelectorAll('input[type="checkbox"]');
     fireEvent.click(checkboxes[0]);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     expect((checkboxes[0] as any as HTMLInputElement).checked).toBe(true);
 
     fireEvent.click(getByText('Apply'));
@@ -116,8 +117,11 @@ describe('categorical column', () => {
     fireEvent.click(getByText('Select All'));
 
     const checkboxes = container.querySelectorAll('input[type="checkbox"]');
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     expect((checkboxes[0] as any as HTMLInputElement).checked).toBe(true);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     expect((checkboxes[1] as any as HTMLInputElement).checked).toBe(true);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     expect((checkboxes[2] as any as HTMLInputElement).checked).toBe(true);
   });
 
@@ -138,8 +142,11 @@ describe('categorical column', () => {
     fireEvent.click(checkboxes[0]);
     fireEvent.click(getByText('Clear'));
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     expect((checkboxes[0] as any as HTMLInputElement).checked).toBe(false);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     expect((checkboxes[1] as any as HTMLInputElement).checked).toBe(false);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     expect((checkboxes[2] as any as HTMLInputElement).checked).toBe(false);
   });
 

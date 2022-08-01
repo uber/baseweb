@@ -34,6 +34,7 @@ export default class SideNav extends React.Component<
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   handleBlur = (event: SyntheticEvent) => {
     if (this.state.isFocusVisible !== false) {
       this.setState({ isFocusVisible: false });
@@ -96,7 +97,7 @@ export default class SideNav extends React.Component<
             />
             {item.subNav ? (
               <SubNavContainer role="list" {...sharedProps} {...subNavContainerProps}>
-                {item.subNav.map((subitem, idx) => {
+                {item.subNav.map((subitem) => {
                   return renderNavItem(subitem, level + 1, index);
                 })}
               </SubNavContainer>

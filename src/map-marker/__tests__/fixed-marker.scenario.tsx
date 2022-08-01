@@ -36,6 +36,7 @@ const badgeEnhancerSizes = Object.keys(BADGE_ENHANCER_SIZES)
   }));
 
 const BadgeEnhancerIcon: React.FC<{ size: number }> = ({ size }) => <Search size={size} />;
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const BadgeEnhancerText: React.FC<{ size: number }> = ({ size }) => <>Search</>;
 
 export function Scenario() {
@@ -47,10 +48,12 @@ export function Scenario() {
 
   const [labelEnhancerText, setLabelEnhancerText] = React.useState('Uber Eats');
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [labelEnhancerPosition, setLabelEnhancerPosition] = React.useState<any>([
     labelEnhancerPositions[0],
   ]);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [badgeEnhancerSize, setBadgeEnhancerSize] = React.useState<any>([badgeEnhancerSizes[0]]);
 
   const BadgeEnhancerContent =
@@ -63,6 +66,7 @@ export function Scenario() {
     .forEach((pinheadSize: PinHeadSize, i: number) => {
       Object.keys(NEEDLE_SIZES)
         .map((key) => NEEDLE_SIZES[key])
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         .forEach((needleSize: NeedleSize, z: number) => {
           markers.push({
             id: `fixed / ${pinheadSize} / ${needleSize}`,

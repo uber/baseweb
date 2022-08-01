@@ -13,6 +13,7 @@ import type { ProgressStepsProps, StepProps } from './types';
 function ProgressSteps({ overrides = {}, current, children }: ProgressStepsProps) {
   const [Root, rootProps] = getOverrides(overrides.Root, StyledProgressSteps);
   const numChildren = React.Children.count(children);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const modifiedChildren = React.Children.map(children, (child: any, index) => {
     if (!child) return;
 

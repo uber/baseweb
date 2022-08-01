@@ -10,6 +10,7 @@ import { render } from '@testing-library/react';
 import { StatefulContainer as StatefulSliderContainer } from '..';
 
 describe('Stateful Slider Container', function () {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let allProps: any, childFn;
 
   beforeEach(function () {

@@ -10,6 +10,7 @@ import { Select } from '../index';
 
 export function Scenario() {
   const inputRef = React.useRef(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [selectValue, setSelectValue] = React.useState<any>([]);
 
   const options = [

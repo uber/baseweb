@@ -32,6 +32,7 @@ export const withThemeProvider = (Component: React.ComponentType<{}>) =>
     );
   };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const withAll = (Component: () => React.ReactElement<any>) => {
   return (
     <StyletronProvider value={engine}>

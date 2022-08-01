@@ -187,6 +187,7 @@ class TimePicker<T = Date> extends React.Component<TimePickerProps<T>, TimePicke
   };
 
   getTimeWindowInSeconds = (
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     step: number
   ): {
     start: number;

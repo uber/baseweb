@@ -12,6 +12,7 @@ import { Input } from '../../input/index';
 
 export function Scenario() {
   const controlRef = React.useRef(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [selectValue, setSelectValue] = React.useState<any>([]);
   const [inputValue, setInputValue] = React.useState('apples');
 
@@ -37,6 +38,7 @@ export function Scenario() {
         />
         <div style={{ minWidth: '105px', marginLeft: '20px' }}>
           <Button
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             onClick={(e) => controlRef.current && controlRef.current.setInputValue(inputValue)}
             id={'setInputValueBtn'}
             shape={SHAPE.pill}

@@ -4,7 +4,7 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-/* eslint-disable cup/no-undef */
+
 import * as React from 'react';
 import { getOverrides } from '../helpers/overrides';
 import { Root as StyledRoot } from './styled-components';
@@ -31,6 +31,7 @@ export default class Accordion extends React.Component<AccordionProps, Accordion
 
   itemRefs: React.RefObject<HTMLDivElement>[] = [];
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onPanelChange(key: React.Key, onChange: (...args: any[]) => {}, ...args: Array<any>) {
     let activeKeys = this.state.expanded;
     const { accordion } = this.props;
@@ -103,6 +104,7 @@ export default class Accordion extends React.Component<AccordionProps, Accordion
   getItems() {
     const { expanded } = this.state;
     const { accordion, disabled, children, renderAll, overrides } = this.props;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return React.Children.map(children, (child: any, index) => {
       if (!child) return;
 

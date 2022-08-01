@@ -29,6 +29,8 @@ export {
 // Flow
 export * from './types';
 /** @deprecated use HeadCellOverrides instead. To be removed in future versions.*/
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 type SortableHeadCellOverrides = HeadCellOverrides;
 /** @deprecated use HeadCellProps instead. To be removed in future versions.*/
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 type SortableHeadCellProps = HeadCellProps;

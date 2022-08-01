@@ -11,7 +11,7 @@ import { Avatar } from '..';
 export function Scenario() {
   return (
     <React.Fragment>
-      {['scale800', 'scale1000', 'scale1200', 'scale1400', '64px'].map((size, index) => (
+      {['scale800', 'scale1000', 'scale1200', 'scale1400', '64px'].map((size) => (
         <Avatar name={`username`} size={size} src="https://not-a-real-image.png" key={size} />
       ))}
     </React.Fragment>

@@ -20,6 +20,7 @@ class ErrorBoundary extends React.Component<
     hasError: boolean;
   }
 > {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static getDerivedStateFromError(error) {
     return { hasError: true };
   }
@@ -34,6 +35,7 @@ class ErrorBoundary extends React.Component<
     window.__e2e__error = false;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   componentDidCatch(error) {
     // @ts-expect-error
     window.__e2e__error = true;

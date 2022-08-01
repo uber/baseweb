@@ -132,10 +132,12 @@ describe('Popover', () => {
 
     fireEvent.click(getByText(container, anchorContent));
     await findByText(container, contentContent);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     expect((document.activeElement as any).id).toEqual(firstInputId);
 
     fireEvent.click(getByText(container, anchorContent));
     expect(document.activeElement).not.toBeNull();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     expect((document.activeElement as any).id).toEqual(buttonId);
   });
 

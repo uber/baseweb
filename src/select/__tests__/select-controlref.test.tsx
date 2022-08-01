@@ -63,6 +63,7 @@ describe('setDropdownOpen', function () {
     const controlRef = React.createRef() as ControlRef;
 
     const TestCase = () => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const [value, setValue] = React.useState<any>([]);
 
       return (
@@ -116,6 +117,7 @@ describe('setInputValue', function () {
     const controlRef = React.createRef() as ControlRef;
 
     const TestCase = () => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const [value, setValue] = React.useState<any>([]);
 
       return (

@@ -1,3 +1,10 @@
+/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+
 import * as t from '@babel/types';
 import traverse from '@babel/traverse';
 import { Theme } from 'baseui';
@@ -7,6 +14,7 @@ import { TProvider, getAstJsxElement } from 'react-view';
 export const getThemeFromContext = (theme: Theme, themeConfig: string[]) => {
   const componentThemeObj: { [key: string]: string } = {};
   themeConfig.forEach((key) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     componentThemeObj[key] = (theme.colors as any)[key];
   });
   return componentThemeObj;
@@ -47,6 +55,7 @@ export const getProvider = (
 ): TProvider => {
   return {
     value: undefined,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     parse: (astRoot: any): TProviderValue => {
       const newThemeValues: { [key: string]: string } = {};
       traverse(astRoot, {
@@ -62,8 +71,10 @@ export const getProvider = (
             const colors = path.node.arguments[1].properties[0].value;
             colors.properties.forEach((prop: t.ObjectProperty) => {
               if (
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 initialThemeValues[(prop.key as any).name] !== (prop.value as t.StringLiteral).value
               ) {
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 newThemeValues[(prop.key as any).name] = (prop.value as t.StringLiteral).value;
               }
             });

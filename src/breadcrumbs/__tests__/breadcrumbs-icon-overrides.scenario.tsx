@@ -11,6 +11,7 @@ import { StyledLink } from '../../link/index';
 import { Breadcrumbs } from '../index';
 import { IconProps } from '../../icon';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const XSmallFilled = ({ title, size, color, ...props }: IconProps) => {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none">

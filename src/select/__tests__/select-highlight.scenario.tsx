@@ -8,6 +8,7 @@ import * as React from 'react';
 import { Select } from '..';
 
 export function Scenario() {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [value, setValue] = React.useState<any>([{ id: 'Beige', color: '#F5F5DC' }]);
   return (
     <Select

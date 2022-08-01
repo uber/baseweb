@@ -20,6 +20,7 @@ function isSelectedDefined(selected) {
 function defaultStateReducer(
   type: typeof STATE_CHANGE_TYPE[keyof typeof STATE_CHANGE_TYPE],
   nextState: State,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   currentState: State
 ) {
   return nextState;
@@ -75,6 +76,7 @@ export default class StatefulContainer extends React.Component<StatefulContainer
   };
 
   render() {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { initialState, stateReducer, ...props } = this.props;
     return this.props.children({
       ...props,

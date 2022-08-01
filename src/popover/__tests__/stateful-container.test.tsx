@@ -47,6 +47,7 @@ describe('StatefulPopoverContainer', () => {
         isOpen: true,
       },
     };
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const children = jest.fn((arg) => null);
 
     render(<StatefulContainer {...props}>{children}</StatefulContainer>);
@@ -70,6 +71,7 @@ describe('StatefulPopoverContainer', () => {
         isOpen: true,
       },
     };
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const children = jest.fn((arg) => null);
 
     render(<StatefulContainer {...props}>{children}</StatefulContainer>);
@@ -86,6 +88,7 @@ describe('StatefulPopoverContainer', () => {
         isOpen: true,
       },
     };
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const children = jest.fn((arg) => null);
 
     render(<StatefulContainer {...props}>{children}</StatefulContainer>);
@@ -108,6 +111,7 @@ describe('StatefulPopoverContainer', () => {
         isOpen: true,
       },
     };
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const children = jest.fn((arg) => null);
 
     render(<StatefulContainer {...props}>{children}</StatefulContainer>);
@@ -122,6 +126,7 @@ describe('StatefulPopoverContainer', () => {
       content: jest.fn(),
       triggerType: TRIGGER_TYPE.hover,
     };
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const children = jest.fn((arg) => null);
 
     render(<StatefulContainer {...props}>{children}</StatefulContainer>);
@@ -157,6 +162,7 @@ describe('StatefulPopoverContainer', () => {
       content: jest.fn(),
       triggerType: TRIGGER_TYPE.click,
     };
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const children = jest.fn((arg) => null);
 
     render(<StatefulContainer {...props}>{children}</StatefulContainer>);
@@ -183,6 +189,7 @@ describe('StatefulPopoverContainer', () => {
       onOpen: jest.fn(),
       onClose: jest.fn(),
     };
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const children = jest.fn((arg) => null);
 
     render(<StatefulContainer {...props}>{children}</StatefulContainer>);
@@ -204,6 +211,7 @@ describe('StatefulPopoverContainer', () => {
       content: jest.fn(),
       stateReducer: null,
     };
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const children = jest.fn((arg) => null);
 
     render(<StatefulContainer {...props}>{children}</StatefulContainer>);

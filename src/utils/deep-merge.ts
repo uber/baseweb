@@ -5,11 +5,11 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-/* flowlint unclear-type:off */
 export default function deepMerge(
   target?: {} | null,
   ...sources: Array<null | {} | undefined | null>
-): any {
+): // eslint-disable-next-line @typescript-eslint/no-explicit-any
+any {
   target = target || {};
   const len = sources.length;
   let obj;
@@ -33,9 +33,7 @@ export default function deepMerge(
   }
   return target;
 }
-/* flowlint unclear-type:error */
 
-/* eslint-disable-next-line flowtype/no-weak-types */
 function isCloneable(obj: unknown) {
   /* eslint-disable-next-line eqeqeq */
   return Array.isArray(obj) || {}.toString.call(obj) == '[object Object]';

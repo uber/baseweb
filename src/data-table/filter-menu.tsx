@@ -72,6 +72,7 @@ function Options(props: OptionsProps) {
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleBlur = (event: SyntheticEvent) => {
     if (focusVisible !== false) {
       setFocusVisible(false);
@@ -199,7 +200,9 @@ function Options(props: OptionsProps) {
 
 type Props = {
   columns: ColumnOptions[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   filters: Map<string, any>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   rows: any[];
   onSetFilter: (
     columnTitle: string,

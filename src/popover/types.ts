@@ -4,7 +4,6 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-/* eslint-disable flowtype/generic-spacing */
 import * as React from 'react';
 import type { Override } from '../helpers/overrides';
 import type { TetherPlacement } from '../layer';
@@ -86,6 +85,7 @@ export type BasePopoverProps = {
   /** Popper options override
    * https://github.com/popperjs/popper.js/blob/v1.x/docs/_includes/popper-documentation.md
    */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   popperOptions?: any;
   /** Renders all popover content for SEO purposes regardless of popover isOpen state */
   renderAll?: boolean;

@@ -10,6 +10,7 @@ import { StatefulContainer } from '..';
 
 describe('StatefulComponentContainer', () => {
   test('provides expected arguments to children fn', () => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const children = jest.fn((arg) => null);
     render(<StatefulContainer>{children}</StatefulContainer>);
     expect(children).toHaveBeenCalledTimes(1);

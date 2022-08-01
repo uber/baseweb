@@ -36,12 +36,14 @@ function MainMenuItem(props) {
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   function handleBlur(event) {
     if (focusVisible) {
       setFocusVisible(false);
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   function handleClick(event) {
     if (onSelect) {
       onSelect(item);
@@ -111,7 +113,9 @@ export default function AppNavBar(props: AppNavBarProps) {
   const {
     title,
     mapItemToNode = defaultMapItemToNode,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     onMainItemSelect = (item) => {},
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     onUserItemSelect = (item) => {},
     overrides = {},
     userItems = [],

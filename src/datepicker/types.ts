@@ -4,7 +4,6 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-/* eslint-disable flowtype/generic-spacing */
 import * as React from 'react';
 import type { Override } from '../helpers/overrides';
 import type { Size } from '../input';
@@ -17,10 +16,13 @@ import {
 } from './constants';
 import type { DateIOAdapter } from './utils/types';
 import type {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   TimePickerProps as TimePickerPropsTBase,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   TimePickerState as TimePickerStateTBase,
 } from '../timepicker/types';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Locale = any; // see https://github.com/date-fns/date-fns/blob/master/src/locale/index.js.flow
 
 export type Density = keyof typeof DENSITY;
@@ -258,6 +260,7 @@ export type DatepickerProps<T = Date> = {
 } & CalendarProps<T>;
 
 export type SharedStyleProps = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   $date: any;
   $disabled: boolean | undefined | null;
   $density: Density;

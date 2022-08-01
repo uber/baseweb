@@ -14,6 +14,7 @@ import StatefulContainer from '../stateful-container';
 
 const mockChildrenFn = jest.fn().mockImplementation(() => <div />);
 const mockOnPageChangeFn = jest.fn();
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const mockStateReducerFn = jest.fn().mockImplementation((changeType, changes) => changes as any);
 
 function getSharedProps() {

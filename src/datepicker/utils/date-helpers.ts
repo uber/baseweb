@@ -62,6 +62,7 @@ class DateHelpers<T> {
       locale: instance.locale,
     });
     const updateOptions = updateOptionsBase || defaultGetOptions;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const UtilsClass: any = adapter.constructor;
     const className = adapter.constructor.name;
     // This ensures that if the adapter class isn't
@@ -88,6 +89,7 @@ class DateHelpers<T> {
       )
     );
   };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   format: (c: T, b: string, a?: any) => string = (date, format, locale) => {
     const adapter = locale ? this.getAdapterWithNewLocale(locale) : this.adapter;
 
@@ -112,25 +114,31 @@ class DateHelpers<T> {
     var monthDiff = this.adapter.getMonth(fromDate) - this.adapter.getMonth(toDate);
     return yearDiff * 12 + monthDiff;
   };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   getStartOfWeek: (b: T, a?: any) => T = (date, locale) => {
     const adapter = locale ? this.getAdapterWithNewLocale(locale) : this.adapter;
     // rewrapping this date here ensures that the locale will be taken into account in all adapters
     return adapter.startOfWeek(adapter.date(date));
   };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   formatDate: (c: T, b: string, a?: any) => string = (date, formatString, locale) => {
     const adapter = locale ? this.getAdapterWithNewLocale(locale) : this.adapter;
     return adapter.formatByString(date, formatString);
   };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   getWeekdayMinInLocale: (b: T, a: any) => string = (date, locale) => {
     return this.getAdapterWithNewLocale(locale).format(date, 'weekdaymin');
   };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   getMonthInLocale: (b: number, a: any) => string = (monthNumber, locale) => {
     const localeAdapter = this.getAdapterWithNewLocale(locale);
     return localeAdapter.format(localeAdapter.setMonth(localeAdapter.date(), monthNumber), 'month');
   };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   getWeekdayInLocale: (b: T, a: any) => string = (date, locale) => {
     return this.getAdapterWithNewLocale(locale).format(date, 'weekday');
   };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   getQuarterInLocale: (b: number, a: any) => string = (quarterNumber, locale) => {
     const localeAdapter = this.getAdapterWithNewLocale(locale);
     return localeAdapter.format(
@@ -352,11 +360,13 @@ class DateHelpers<T> {
       (!!maxDate && !this.isOnOrBeforeDay(day, maxDate))
     );
   };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   parseString: (c: string, b: string, a?: any | null) => T = (string, formatString, locale) => {
     const adapter = locale ? this.getAdapterWithNewLocale(locale) : this.adapter;
 
     return adapter.parse(string, formatString);
   };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   parse: (c: string, b: string, a?: any | null) => T = (string, format, locale) => {
     const adapter = locale ? this.getAdapterWithNewLocale(locale) : this.adapter;
 

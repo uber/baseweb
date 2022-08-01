@@ -50,7 +50,9 @@ class StatefulSliderContainer extends React.Component<StatefulContainerProps, St
   render() {
     const {
       children,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       initialState, // eslint-disable-line no-unused-vars
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       stateReducer, // eslint-disable-line no-unused-vars
       ...restProps
     } = this.props;

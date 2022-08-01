@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 export default function <C extends React.ComponentType>(Component: C, displayName: string): C {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const DeprecatedComponent = React.forwardRef<any, any>((props, ref) => {
     if (__DEV__) {
       console.warn(

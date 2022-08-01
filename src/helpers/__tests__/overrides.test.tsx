@@ -4,7 +4,7 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-/* eslint-disable cup/no-undef */
+
 import * as React from 'react';
 import { render } from '@testing-library/react';
 import {
@@ -35,10 +35,13 @@ describe('Helpers - Overrides', () => {
       props: { propName: 'propsValue' },
       style: { color: 'blue' },
     };
+    // eslint-disable-next-line jest/no-restricted-matchers
     expect(getOverrideProps(null)).toMatchSnapshot('returns empty object when no overrides');
+    // eslint-disable-next-line jest/no-restricted-matchers
     expect(getOverrideProps(CustomComponent)).toMatchSnapshot(
       'returns empty object when override is a component'
     );
+    // eslint-disable-next-line jest/no-restricted-matchers
     expect(getOverrideProps(override)).toMatchSnapshot(
       'returns correct object when override has props and styles'
     );
@@ -46,6 +49,7 @@ describe('Helpers - Overrides', () => {
       getOverrideProps({
         props: () => null,
       })
+      // eslint-disable-next-line jest/no-restricted-matchers
     ).toMatchSnapshot('returns correct object when props is a function which return null');
   });
 

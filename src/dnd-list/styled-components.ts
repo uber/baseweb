@@ -10,6 +10,7 @@ import type { SharedStylePropsArg } from './types';
 /**
  * Main component container element
  */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const Root = styled<'div', SharedStylePropsArg>('div', ({ $theme }) => {
   return {
     width: '100%',

@@ -1,3 +1,10 @@
+/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+
 //@ts-ignore
 import { getAstPropValue, getCode } from 'react-view/dist/lib/code-generator';
 import { PropTypes } from 'react-view';
@@ -23,6 +30,7 @@ test('overrides', () => {
         },
         type: PropTypes.Custom,
         description: '',
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } as any,
       'overrides',
       customProps
@@ -105,6 +113,7 @@ describe('get theme AST primitives', () => {
   test('getAstThemeWrapper', () => {
     expect(
       generate(
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         generateThemeWrapper({ inputFill: 'yellow' }, t.jsxText('Hey') as any, 'light-theme') as any
       ).code
     ).toBe(`<ThemeProvider theme={createTheme(light-theme, {
@@ -141,6 +150,7 @@ describe('getCode', () => {
             },
             type: PropTypes.Custom,
             description: '',
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
           } as any,
         },
         componentName: 'Input',

@@ -52,7 +52,6 @@ type ButtonGroupOverrides = {
 };
 
 // stateful-group
-// eslint-disable-next-line flowtype/generic-spacing
 export type StatefulButtonGroupProps = Omit<
   {
     initialState?: {

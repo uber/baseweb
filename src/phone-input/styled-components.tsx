@@ -102,6 +102,7 @@ export const StyledCountrySelectDropdownListItem = withWrapper<
 >(
   StyledCountrySelectDropdownListItemElement,
   (Styled) =>
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     function StyledCountrySelectDropdownListItem({ item, ...restProps }) {
       return <Styled {...restProps} />;
     }

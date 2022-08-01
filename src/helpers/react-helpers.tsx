@@ -10,7 +10,7 @@ import { isFragment } from 'react-is';
 export const flattenFragments = (
   children?: React.ReactNode,
   ChildWrapper?: React.ComponentType<{}>,
-  depth: number = 0
+  depth = 0
 ): React.ReactNode[] =>
   // @ts-expect-error
   React.Children.toArray(children).reduce(

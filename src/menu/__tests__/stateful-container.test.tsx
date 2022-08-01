@@ -24,6 +24,7 @@ function getSharedProps() {
     items: mockItems,
     onItemSelect: mockItemSelect,
     children: mockChildrenFn,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     stateReducer: jest.fn().mockImplementation((changeType, changes) => changes as any),
   };
 }
@@ -113,6 +114,7 @@ describe('Menu StatefulContainer', () => {
   });
 
   it('getRequiredItemProps does not return onClick and onMouseEnter props for item set to disabled through getRequiredItemProps', () => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const getRequiredItemProps = jest.fn().mockImplementation((item) => ({ disabled: true }));
     render(<StatefulContainer {...getSharedProps()} getRequiredItemProps={getRequiredItemProps} />);
     const item = mockItems[0];
@@ -124,6 +126,7 @@ describe('Menu StatefulContainer', () => {
   });
 
   it('disabled prop value returned from getRequiredItemProps takes precedence over the one defined on item', () => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const getRequiredItemProps = jest.fn().mockImplementation((item) => ({ disabled: false }));
     render(<StatefulContainer {...getSharedProps()} getRequiredItemProps={getRequiredItemProps} />);
     const item = mockItems[1];
