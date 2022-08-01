@@ -4,7 +4,7 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-/* eslint-disable cup/no-undef */
+
 import * as React from 'react';
 import { StyledInput, StyledInputSizer } from './styled-components';
 import { getOverrides } from '../helpers/overrides';
@@ -32,6 +32,7 @@ export default class AutosizeInput extends React.Component<
     this.mounted = true;
     this.updateInputWidth();
   }
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   componentDidUpdate(prevProps: AutosizeInputProps, prevState: AutosizeInputState) {
     this.updateInputWidth();
   }

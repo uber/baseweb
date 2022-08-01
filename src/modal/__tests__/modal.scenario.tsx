@@ -18,6 +18,7 @@ export function Scenario({ closeable = true }) {
   React.useEffect(() => {
     setIsOpen(true);
   }, []);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const modalRoot = React.useRef<any>(null);
 
   return (

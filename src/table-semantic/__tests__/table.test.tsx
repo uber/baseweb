@@ -31,8 +31,11 @@ describe('Table Semantic', () => {
   });
 
   it('exposes row and column data to overrides', () => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const mockTableHeadCellStyle = jest.fn((arg) => null);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const mockTableBodyRowStyle = jest.fn((arg) => null);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const mockTableBodyCellStyle = jest.fn((arg) => null);
 
     render(

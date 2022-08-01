@@ -1,3 +1,10 @@
+/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+
 import { ProgressSteps, Step } from 'baseui/progress-steps';
 import { Button } from 'baseui/button';
 import { PropTypes } from 'react-view';
@@ -38,6 +45,7 @@ const ProgressStepsConfig: TConfig = {
         'baseui/button': { named: ['Button'] },
       },
       propHook: ({ getInstrumentOnChange, fnBodyAppend }) => ({
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         JSXAttribute(path: any) {
           if (path.get('name').node.name === 'onClick') {
             fnBodyAppend(path.get('value'), getInstrumentOnChange('1', 'current'));

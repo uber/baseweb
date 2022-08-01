@@ -11,6 +11,7 @@ import { Button } from '../../button';
 
 export function Scenario() {
   const controlRef = React.useRef(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [value, setValue] = React.useState<any>([]);
 
   const options = [

@@ -34,9 +34,11 @@ const data = [
 function Instance({ size }) {
   return (
     <TableBuilder data={data} size={size}>
+      {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
       <TableBuilderColumn<any> id="bar" header="Produce" sortable>
         {(row) => <a href={row.url}>{row.bar}</a>}
       </TableBuilderColumn>
+      {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
       <TableBuilderColumn<any> id="foo" header="Quantity" numeric sortable>
         {(row) => row.foo}
       </TableBuilderColumn>

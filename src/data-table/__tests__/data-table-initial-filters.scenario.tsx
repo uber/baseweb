@@ -58,7 +58,7 @@ export function Scenario() {
       >
         add log
         <ul>
-          {addLog.map(([title, params]) => (
+          {addLog.map(([title]) => (
             <li data-log="add" key={title}>
               add {title}
             </li>

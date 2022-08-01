@@ -8,6 +8,7 @@ import { styled } from '../styles';
 import { KIND, SIZE, SHAPE } from './constants';
 import type { SharedStyleProps } from './types';
 import type { Font } from '../themes/types';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import type { StyleObject } from 'styletron-standard';
 
 export const BaseButton = styled<'button', SharedStyleProps>(

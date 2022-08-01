@@ -18,7 +18,7 @@ const ITEMS = [...new Array(1500)].map((_, index) => ({
 
 const Container = withStyle(StyledList, { height: '500px' });
 
-// eslint-disable-next-line react/display-name
+// eslint-disable-next-line react/display-name,@typescript-eslint/no-explicit-any
 const VirtualList = React.forwardRef<HTMLUListElement, any>((props, ref) => {
   const children = React.Children.toArray(props.children);
   return (

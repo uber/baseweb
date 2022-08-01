@@ -312,8 +312,7 @@ If you have any components that make use of transitions or animations you are go
 When testing components that require interactions, you often need to wait for the UI to change before you can proceed to the next step in the interaction. It might be tempting to simply pad steps with arbitrary wait times, but this is a sure way to add flakiness to your test.
 
 ```js
-const { waitForTimeout } = require('../../../e2e/helpers/index.js');
-await waitForTimeout(250); // waits for 250ms before proceeding
+await page.waitForTimeout(250); // waits for 250ms before proceeding
 ```
 
 This should be a last resort as it will almost certainly flake at some point. When it does someone will probably just increase the wait duration- so over time these paddings accumulate. These can add up to make your test run unbearably slow. The preferable approach is to wait for assertions on the page to pass. Take this example from one of our interaction snapshots:

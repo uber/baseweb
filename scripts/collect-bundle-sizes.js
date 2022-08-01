@@ -7,7 +7,6 @@ LICENSE file in the root directory of this source tree.
 */
 
 /* eslint-env node */
-/* eslint-disable flowtype/require-valid-file-annotation */
 const { spawn, execSync } = require('child_process');
 const { mkdirSync, writeFileSync } = require('fs');
 const { resolve } = require('path');

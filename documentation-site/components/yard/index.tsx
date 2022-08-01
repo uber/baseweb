@@ -122,6 +122,7 @@ const Yard: React.FC<TYardProps> = ({
                 componentName={componentName}
                 componentConfig={props}
                 overrides={params.knobProps.state.overrides}
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 set={(propValue: any) => {
                   params.knobProps.set(propValue, 'overrides');
                 }}

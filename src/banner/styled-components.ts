@@ -60,6 +60,7 @@ export const StyledMessageContent = styled<
   };
 });
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const StyledTrailingContent = styled<'div', {}>('div', ({ $theme }) => {
   return {
     display: 'flex',

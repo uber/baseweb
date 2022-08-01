@@ -5,12 +5,11 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-/* eslint-disable flowtype/require-valid-file-annotation */
 /* eslint-env node */
 
 const { test, expect } = require('@playwright/test');
 const { config, getSnapshotConfig } = require('./config.js');
-const { mount, waitForTimeout, addTestStyles } = require('../e2e/helpers');
+const { mount, addTestStyles } = require('../src/test/integration');
 
 const THEME = {
   light: 'light',
@@ -67,7 +66,7 @@ scenarioNames.forEach((scenarioName) => {
       await interaction.behavior(page);
 
       // Bad, but lets let things settle down after the interaction.
-      await waitForTimeout(100);
+      await page.waitForTimeout(100);
 
       await snapshot(page, `${scenarioName}__${interaction.name}`);
     });
@@ -106,7 +105,7 @@ async function preparePageForSnapshot(
   });
 
   // Bad, but lets let things settle down after resizing.
-  await waitForTimeout(100);
+  await page.waitForTimeout(100);
 }
 
 async function getPageScrollHeight() {

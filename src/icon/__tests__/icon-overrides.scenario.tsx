@@ -12,6 +12,7 @@ import { ThemeProvider, LightTheme, styled } from '../..';
 import { getSvgStyles } from '../../icon/styled-components';
 import type { IconProps } from '../';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const XSmallFilled = ({ title, size, color, ...props }: IconProps) => {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none">

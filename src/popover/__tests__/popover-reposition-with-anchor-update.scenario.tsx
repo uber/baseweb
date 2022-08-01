@@ -9,6 +9,7 @@ import * as React from 'react';
 import { Select } from '../../select';
 
 export function Scenario() {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [value, setValue] = React.useState<any>([]);
   return (
     <div style={{ width: '200px' }}>

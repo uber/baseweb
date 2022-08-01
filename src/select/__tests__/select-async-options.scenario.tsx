@@ -17,6 +17,7 @@ const COLORS: Option[] = [
 ];
 
 export function Scenario() {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [value, setValue] = React.useState<any>([]);
   const [searchResults, setSearchResults] = React.useState([]);
   return (

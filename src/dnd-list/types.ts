@@ -4,7 +4,6 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-/* eslint-disable flowtype/generic-spacing */
 import * as React from 'react';
 import type { Override } from '../helpers/overrides';
 import { STATE_CHANGE_TYPE } from './constants';
@@ -30,6 +29,7 @@ export type ListOverrides = {
   Label?: Override;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 type Children = Array<React.ReactNode> | React.ReactNode;
 
 // Props shared by all flavors of component

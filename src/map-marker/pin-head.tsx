@@ -34,6 +34,7 @@ const PinHead = ({
   color,
   background,
   type = PINHEAD_TYPES.fixed,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   anchorType,
   needle = NEEDLE_SIZES.none,
   labelEnhancerContent,

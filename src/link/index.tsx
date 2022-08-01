@@ -19,6 +19,7 @@ function LinkFocus(props) {
       setFocusVisible(true);
     }
   };
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleBlur = (event: SyntheticEvent) => {
     if (focusVisible !== false) {
       setFocusVisible(false);

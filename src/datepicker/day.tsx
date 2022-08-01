@@ -54,6 +54,7 @@ export default class Day<T = Date> extends React.Component<DayProps<T>, DayState
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   componentDidUpdate(prevProps: DayProps<T>) {
     if (this.dayElm && this.props.focusedCalendar) {
       if (this.props.highlighted || (!this.props.highlightedDate && this.isSelected())) {

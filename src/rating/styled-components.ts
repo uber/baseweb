@@ -17,6 +17,7 @@ import {
 } from './svg-icons';
 import type { StyleObject } from 'styletron-standard';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const StyledRoot = styled<'ul', StyledRootProps>('ul', ({ $theme }) => {
   return {
     marginLeft: 0,

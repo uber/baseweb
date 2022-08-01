@@ -8,7 +8,9 @@ import * as React from 'react';
 import { Select } from '..';
 
 export function Scenario() {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [first, setFirst] = React.useState<any>([]);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [second, setSecond] = React.useState<any>([]);
 
   return (

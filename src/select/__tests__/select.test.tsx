@@ -15,6 +15,7 @@ import { STATE_CHANGE_TYPE } from '../constants';
 import { type ControlRef } from '..';
 
 describe('Select component', function () {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let props: any = {};
   const item = { id: 'id1', label: 'label1' };
   const options = [item, { id: 'id2', label: 'label2' }, { id: 'id3', label: 'bel3' }];

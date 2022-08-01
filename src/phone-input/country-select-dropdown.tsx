@@ -104,6 +104,7 @@ function CountrySelectDropdown(
               scrollToIndex={scrollIndex}
               rowRenderer={({ index, key, style }) => {
                 // resetMenu and getItemLabel should not end up on native html elements
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
                 const { item, resetMenu, getItemLabel, ...rest } =
                   // @ts-expect-error todo(flow->ts) type issue introduced in react 17
                   children[index].props;

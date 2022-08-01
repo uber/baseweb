@@ -48,6 +48,7 @@ export const StyledDragShadow = styled<
     $background: string;
     $width: number;
   }
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
 >('div', ({ $theme, $background, $width }) => ({
   backgroundColor: $background,
   borderRadius: '50%',
@@ -227,6 +228,7 @@ export const StyledStrokedLabelContainer = styled<
     $position: LabelEnhancerPosition;
     $labelOffset: number;
   }
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
 >('div', ({ $position, $theme, $labelOffset }) => {
   const staticLabelOffset = 4;
   const positions: Record<string, StyleObject> = {

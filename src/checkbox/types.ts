@@ -24,6 +24,7 @@ export type CheckboxOverrides = {
 };
 
 export type DefaultProps = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   overrides?: any;
   children?: ReactNode;
   checked: boolean;

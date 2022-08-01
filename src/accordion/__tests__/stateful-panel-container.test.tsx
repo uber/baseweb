@@ -11,6 +11,7 @@ import { StatefulPanelContainer } from '..';
 
 describe('StatefulPanelContainer', () => {
   it('provides expected props to children function', () => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const children = jest.fn((arg) => null);
     render(
       <StatefulPanelContainer initialState={{ expanded: true }}>{children}</StatefulPanelContainer>

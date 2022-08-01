@@ -87,6 +87,7 @@ export default class Datepicker<T = Date> extends React.Component<
 
     if (Array.isArray(date)) {
       if (onChange && date.every(Boolean)) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         onChange({ date: date as any as Array<T> });
       }
 

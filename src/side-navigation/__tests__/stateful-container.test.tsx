@@ -16,6 +16,7 @@ describe('side-navigation stateful-container', () => {
       onChange: jest.fn(),
       stateReducer: jest.fn(),
     };
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const children = jest.fn((props) => null);
 
     render(<StatefulContainer {...props}>{children}</StatefulContainer>);

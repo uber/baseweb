@@ -9,7 +9,9 @@ import { StatefulTreeView, TreeLabelInteractable } from '..';
 import { Select } from '../../select';
 import { Checkbox } from '../../checkbox';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const LabelSelect = (node) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [value, setValue] = React.useState<any>();
   return (
     <TreeLabelInteractable>
@@ -32,7 +34,9 @@ const LabelSelect = (node) => {
   );
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const LabelCheckbox = (node) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [value, setValue] = React.useState<any>();
   return (
     <TreeLabelInteractable>

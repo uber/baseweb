@@ -69,6 +69,7 @@ export class Scenario extends React.Component<
     offset2: { top: 0, left: 0 },
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   onPopperUpdate = (order: 1 | 2, normalizedOffsets: NormalizedOffsets, _) => {
     // @ts-expect-error partial state update
     this.setState({

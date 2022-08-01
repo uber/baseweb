@@ -23,4 +23,5 @@ export * from './types';
 /** @deprecated use StatefulTabsState instead. To be removed in future versions.*/
 export type State = StatefulTabsState;
 /** @deprecated use SharedStylePropsArg instead. To be removed in future versions.*/
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 type SharedProps = SharedStylePropsArg;

@@ -65,6 +65,7 @@ describe('base-input', () => {
   it('applies ref from inputRef prop', () => {
     const onFocus = jest.fn();
     function TestCase() {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const ref = React.useRef<any>();
       React.useEffect(() => {
         if (ref.current) {

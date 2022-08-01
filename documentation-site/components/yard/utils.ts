@@ -1,3 +1,10 @@
+/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+
 import { TProp } from 'react-view';
 import { TProviderValue } from './provider';
 
@@ -27,6 +34,7 @@ export const countProps = (
   return changedProps;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const countOverrides = (overrides: any) => {
   if (!overrides) {
     return 0;

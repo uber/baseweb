@@ -36,6 +36,7 @@ const FilterCheckbox = (props) => (
   </Checkbox>
 );
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 class FilterTable extends React.Component<any, any> {
   state = {
     filters: [],

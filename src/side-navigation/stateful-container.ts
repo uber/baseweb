@@ -29,6 +29,7 @@ class StatefulContainer extends React.Component<StatefulContainerProps, State> {
       onChange(params);
     }
   };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   internalSetState = (type: StateType, item: any) => {
     let nextState = {};
     if (type === STATE_CHANGE_TYPE.change) {
@@ -42,6 +43,7 @@ class StatefulContainer extends React.Component<StatefulContainerProps, State> {
 
   render() {
     // eslint-disable-next-line no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { children, initialState, stateReducer, ...restProps } = this.props;
     const { onChange } = this;
     // @ts-expect-error

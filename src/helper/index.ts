@@ -16,6 +16,8 @@ export * from './types';
 /** @deprecated use HelperStepsProps instead. To be removed in future versions.*/
 export type HelperStepsPropsT = HelperStepsProps;
 /** @deprecated use Props instead. To be removed in future versions.*/
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 type PropsT = Props;
 /** @deprecated use StatefulProps instead. To be removed in future versions.*/
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 type StatefulPropsT = StatefulProps;

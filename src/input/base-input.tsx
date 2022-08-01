@@ -4,6 +4,7 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 /* global window */
 
 import * as React from 'react';
@@ -169,6 +170,7 @@ class BaseInput<T extends HTMLInputElement | HTMLTextAreaElement> extends React.
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   handleBlurForMaskToggle = (event: SyntheticEvent) => {
     if (this.state.isFocusVisibleForMaskToggle !== false) {
       this.setState({ isFocusVisibleForMaskToggle: false });
@@ -224,6 +226,7 @@ class BaseInput<T extends HTMLInputElement | HTMLTextAreaElement> extends React.
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   handleBlurForClear = (event: SyntheticEvent) => {
     if (this.state.isFocusVisibleForClear !== false) {
       this.setState({ isFocusVisibleForClear: false });

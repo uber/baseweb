@@ -1,3 +1,10 @@
+/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+
 import * as React from 'react';
 import { useStyletron } from 'baseui';
 import { StatefulTooltip } from 'baseui/tooltip';
@@ -23,14 +30,19 @@ const getEmptyStyles = (sharedProps: string[]) =>
 
 type TProps = {
   overrideKey: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   overrides: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   overridesObj: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   componentConfig: any;
   componentName: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   set: (args: any) => void;
 };
 
 const SharedPropsTooltip: React.FC<{
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   componentConfig: any;
   children: React.ReactNode;
 }> = ({ componentConfig, children }) => {

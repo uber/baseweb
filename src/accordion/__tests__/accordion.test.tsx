@@ -31,6 +31,7 @@ describe('Accordion', () => {
     const second = getByText(container, 'Accordion panel 2');
     if (second) fireEvent.click(second);
     fireEvent.transitionEnd(
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       getByTestId(first.parentElement as any as HTMLElement, 'transitionDiv')
     );
     expect(queryAllByText(container, 'panel 1').length).toBe(0);

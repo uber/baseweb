@@ -53,6 +53,7 @@ type StyledTableProps = {
   $width?: string | null;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const StyledTable = styled<'table', StyledTableProps>('table', ({ $theme, $width }) => {
   return {
     borderSpacing: '0',
@@ -62,10 +63,12 @@ export const StyledTable = styled<'table', StyledTableProps>('table', ({ $theme,
   };
 });
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const StyledTableHead = styled('thead', ({ $theme }) => {
   return {};
 });
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const StyledTableHeadRow = styled('tr', ({ $theme }) => {
   return {};
 });
@@ -177,6 +180,7 @@ export const StyledSortNoneIcon = styled<typeof Blank, {}>(Blank, ({ $theme }) =
   };
 });
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const StyledTableBody = styled('tbody', ({ $theme }) => {
   return {};
 });

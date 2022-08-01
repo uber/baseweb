@@ -80,6 +80,7 @@ function getAnchorStyles(props: SharedStylePropsArg) {
   }
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const StyledRoot = styled<'div', SharedStylePropsArg>('div', (props) => {
   return {
     position: 'fixed',

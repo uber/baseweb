@@ -361,6 +361,7 @@ function InternalTab({
     }
   }, []);
   const handleBlur = React.useCallback(
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     (event: SyntheticEvent) => {
       if (focusVisible !== false) {
         setFocusVisible(false);

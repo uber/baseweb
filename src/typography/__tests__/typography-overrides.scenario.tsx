@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { DisplayLarge, DisplayMedium, DisplaySmall, DisplayXSmall } from '..';
 
 export function Scenario() {

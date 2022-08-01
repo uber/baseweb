@@ -179,6 +179,7 @@ class PopoverInner extends React.Component<PopoverProps, PopoverPrivateState> {
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onPopoverMouseLeave = (e: React.MouseEvent<any>) => {
     this.triggerOnMouseLeaveWithDelay(e);
   };
@@ -232,20 +233,10 @@ class PopoverInner extends React.Component<PopoverProps, PopoverPrivateState> {
     const popper = this.popperRef.current;
     const anchor = this.anchorRef.current;
     // Ignore document click if it came from popover or anchor
-    if (
-      !popper ||
-      popper === target ||
-      // eslint-disable-next-line cup/no-undef
-      (target instanceof Node && popper.contains(target))
-    ) {
+    if (!popper || popper === target || (target instanceof Node && popper.contains(target))) {
       return;
     }
-    if (
-      !anchor ||
-      anchor === target ||
-      // eslint-disable-next-line cup/no-undef
-      (target instanceof Node && popper.contains(target))
-    ) {
+    if (!anchor || anchor === target || (target instanceof Node && popper.contains(target))) {
       return;
     }
     if (this.props.onClickOutside) {

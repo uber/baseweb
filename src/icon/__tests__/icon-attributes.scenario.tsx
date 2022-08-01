@@ -13,6 +13,7 @@ import Check from '../check';
 import type { IconProps } from '../';
 
 // Simulate roughly how our own icons are distributed
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const Triangle = React.forwardRef<SVGElement, IconProps>((props, ref) => {
   const { title, size = '1em', ...restProps } = props;
   return (

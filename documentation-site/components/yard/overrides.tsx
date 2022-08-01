@@ -1,3 +1,10 @@
+/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+
 import * as React from 'react';
 import { StatelessAccordion as Accordion, Panel } from 'baseui/accordion';
 import { useStyletron } from 'baseui';
@@ -7,8 +14,11 @@ import NestedTooltip from './nested-tooltip';
 import Override, { getHighlightStyles } from './override';
 
 type TOverridesProps = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   set: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   overrides: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   componentConfig: any;
   componentName: string;
   isNested?: boolean;
@@ -34,8 +44,10 @@ const Overrides: React.FC<TOverridesProps> = ({
 
   const overridesObj: {
     [key: string]: {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       style: any;
       nested?: TConfig;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       nestedValue?: any;
     };
   } = {};
@@ -53,6 +65,7 @@ const Overrides: React.FC<TOverridesProps> = ({
   });
 
   const getNewState = (expanded: (string | number)[]) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const returnValue: any = { ...overrides.value };
     if (overrides.value) {
       Object.keys(overrides.value).forEach((key) => {
@@ -156,11 +169,13 @@ const Overrides: React.FC<TOverridesProps> = ({
                   }}
                   componentConfig={nested.props}
                   componentName={nested.componentName}
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
                   set={(propValue: any) => {
                     set(
                       {
                         ...getNewState(expanded as string[]),
                         [overrideKey]: {
+                          // eslint-disable-next-line @typescript-eslint/no-explicit-any
                           active: Object.entries(propValue).some(([, val]: any) => val.active),
                           nestedValue: propValue,
                         },

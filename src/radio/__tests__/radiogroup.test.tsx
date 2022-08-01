@@ -37,6 +37,7 @@ describe('radio-group', () => {
     );
 
     const inputs = container.querySelectorAll('input');
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     inputs.forEach((input, index) => {
       expect(input.disabled).toBe(true);
     });

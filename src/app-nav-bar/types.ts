@@ -34,10 +34,13 @@ export type AppNavBarOverrides = {
 
 export type NavItem = {
   active?: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   icon?: React.ComponentType<any>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   info?: any;
   label: string;
   children?: NavItem[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   navExitIcon?: React.ComponentType<any>;
   navPosition?: {
     desktop?: typeof POSITION[keyof typeof POSITION];

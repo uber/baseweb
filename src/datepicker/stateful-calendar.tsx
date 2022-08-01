@@ -24,6 +24,7 @@ class StatefulComponent<T = Date> extends React.Component<DatepickerProps<T>> {
     return (
       <StatefulContainer {...this.props}>
         {(extendedProps) => (
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           <Calendar {...extendedProps} onChange={extendedProps.onChange as any} />
         )}
       </StatefulContainer>

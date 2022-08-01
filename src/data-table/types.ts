@@ -20,6 +20,7 @@ export type SharedColumnOptions<Value> = {
   cellBlockAlign?: 'start' | 'center' | 'end';
   fillWidth?: boolean;
   filterable?: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   mapDataToValue: (data: any) => Value;
   maxWidth?: number;
   minWidth?: number;
@@ -44,6 +45,7 @@ export type RenderFilter<Value, FilterParams> = React.ComponentType<{
   setFilter: (a: FilterParams) => void;
 }>;
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type ColumnOptions<Value = any, FilterParams = any> = {
   kind: Columns;
   sortable: boolean;
@@ -56,6 +58,7 @@ export type ColumnOptions<Value = any, FilterParams = any> = {
 
 export type Row = {
   id: number | string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   data: any;
 };
 
@@ -69,6 +72,7 @@ export type BatchAction = {
   renderIcon?: React.ComponentType<
     {
       size: number;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } & any
   >;
 };
@@ -79,6 +83,7 @@ export type RowAction = {
   renderIcon: React.ComponentType<
     {
       size: number;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } & any
   >;
   renderButton?: React.ComponentType<{}>;
