@@ -6,7 +6,6 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { getOverrides } from '../helpers/overrides';
 import {
   StyledRoot,
   StyledImage,
@@ -14,23 +13,24 @@ import {
   StyledHeadingContainer,
   StyledParagraphContainer,
 } from './styled-components';
-import { useStyletron } from '../styles/index.js';
-import { colors } from '../tokens';
-import type { MessageCardProps } from './types';
 import { Button as DefaultButton, KIND, SHAPE } from '../button';
-import { IMAGE_LAYOUT, BACKGROUND_COLOR_TYPE, OBJECT_FIT } from './constants';
+import { useStyletron } from '../styles/index.js';
 import { getBackgroundColorType } from './utils';
+import { colors } from '../tokens';
+import { getOverrides } from '../helpers/overrides';
+import { IMAGE_LAYOUT, BACKGROUND_COLOR_TYPE, OBJECT_FIT } from './constants';
+import type { MessageCardProps } from './types';
 
 const MessageCard = ({
-  heading,
-  paragraph,
-  image,
-  buttonLabel,
-  buttonKind = KIND.secondary,
-  onClick,
   backgroundColor = colors.white,
   backgroundColorType: backgroundColorTypeProp,
+  buttonKind = KIND.secondary,
+  buttonLabel,
+  heading,
+  image,
+  onClick,
   overrides = {},
+  paragraph,
 }: MessageCardProps) => {
   const { src, layout = IMAGE_LAYOUT.top, objectFit = OBJECT_FIT.cover } = image || {};
 
@@ -52,13 +52,13 @@ const MessageCard = ({
 
   const [, theme] = useStyletron();
 
-  let backgroundColorType = getBackgroundColorType(backgroundColor) || backgroundColorTypeProp;
+  let backgroundColorType = backgroundColorTypeProp || getBackgroundColorType(backgroundColor);
   if (!backgroundColorType) {
     backgroundColorType = BACKGROUND_COLOR_TYPE.dark;
     if (__DEV__) {
       console.warn(
         `The provided value for 'backgroundColor', ${backgroundColor}, is not recognized as a \
-        Base Web color primitive. Please use the 'backgroundColorType' prop to indicate whether\
+        Base Web primitive color. Please use the 'backgroundColorType' prop to indicate whether\
          this color is light or dark so the rest of the component can be styled accordingly.`
       );
     }
@@ -83,7 +83,7 @@ const MessageCard = ({
       $imageLayout={layout}
       {...RootProps}
     >
-      {image && <Image $imageLayout={layout} src={src} $objectFit={objectFit} {...ImageProps} />}
+      {image && <Image src={src} $imageLayout={layout} $objectFit={objectFit} {...ImageProps} />}
       <ContentContainer {...ContentContainerProps}>
         {heading && <HeadingContainer {...HeadingContainerProps}>{heading}</HeadingContainer>}
         {paragraph && (

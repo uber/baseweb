@@ -11,17 +11,17 @@ export const StyledRoot = styled<
   'button',
   {
     $backgroundColor: string;
-    $backgroundColorType: keyof typeof BACKGROUND_COLOR_TYPE | undefined;
-    $imageLayout: keyof typeof IMAGE_LAYOUT;
+    $backgroundColorType: keyof typeof BACKGROUND_COLOR_TYPE;
+    $imageLayout: keyof typeof IMAGE_LAYOUT | undefined;
   }
 >(
   'button',
   ({ $theme, $backgroundColor, $backgroundColorType, $imageLayout = IMAGE_LAYOUT.top }) => {
     const lightBackgroundStyle = {
       color: $theme.colors.contentOnColorInverse,
-      borderColor: $theme.colors.borderOpaque,
-      borderWidth: $theme.sizing.scale0,
       borderStyle: 'solid',
+      borderWidth: $theme.sizing.scale0,
+      borderColor: $theme.colors.borderOpaque,
     };
     const darkBackgroundStyle = {
       color: $theme.colors.contentOnColor,
@@ -29,17 +29,17 @@ export const StyledRoot = styled<
     };
 
     return {
-      position: 'relative',
-      padding: '0',
-      textAlign: 'start',
+      alignItems: 'stretch',
+      backgroundColor: $backgroundColor,
+      borderRadius: $theme.borders.radius400,
       cursor: 'pointer',
       display: 'flex',
       flexDirection: $imageLayout === IMAGE_LAYOUT.top ? 'column' : 'row',
-      alignItems: 'stretch',
-      width: '100%',
       overflow: 'hidden',
-      borderRadius: $theme.borders.radius400,
-      backgroundColor: $backgroundColor,
+      padding: '0',
+      position: 'relative',
+      textAlign: 'start',
+      width: '100%',
       ...($backgroundColorType === BACKGROUND_COLOR_TYPE.light
         ? lightBackgroundStyle
         : darkBackgroundStyle),
@@ -81,8 +81,8 @@ export const StyledRoot = styled<
 
 export const StyledImage = styled<
   'img',
-  { $imageLayout: keyof typeof IMAGE_LAYOUT; $objectFit: keyof typeof OBJECT_FIT }
->('img', ({ $imageLayout, $objectFit = OBJECT_FIT.cover }) => {
+  { $imageLayout: keyof typeof IMAGE_LAYOUT; $objectFit: keyof typeof OBJECT_FIT | undefined }
+>('img', ({ $imageLayout = IMAGE_LAYOUT.top, $objectFit = OBJECT_FIT.cover }) => {
   if ($imageLayout === IMAGE_LAYOUT.top) {
     return {
       height: '132px',
@@ -98,11 +98,11 @@ export const StyledImage = styled<
 });
 
 export const StyledContentContainer = styled('div', ({ $theme }) => ({
+  width: '100%',
   paddingTop: $theme.sizing.scale600,
   paddingRight: $theme.sizing.scale300,
   paddingBottom: $theme.sizing.scale600,
   paddingLeft: $theme.sizing.scale600,
-  width: '100%',
 }));
 
 export const StyledHeadingContainer = styled('div', ({ $theme }) => ({
