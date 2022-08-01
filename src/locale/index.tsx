@@ -32,8 +32,12 @@ export type LocaleProviderProps = {
 
 const LocaleProvider: React.FC<LocaleProviderProps> = (props) => {
   const { locale, children } = props;
+  const parentLocale = React.useContext(LocaleContext) ?? {};
+
   return (
-    <LocaleContext.Provider value={extend({}, en_US, locale)}>{children}</LocaleContext.Provider>
+    <LocaleContext.Provider value={extend({}, en_US, parentLocale, locale)}>
+      {children}
+    </LocaleContext.Provider>
   );
 };
 
