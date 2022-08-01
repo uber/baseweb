@@ -20,9 +20,9 @@ export type MessageCardOverrides = {
 
 export interface MessageCardProps {
   onClick: (a: SyntheticEvent<HTMLButtonElement>) => unknown;
-  heading?: string;
-  paragraph?: string;
-  buttonLabel?: string;
+  heading?: React.ReactNode;
+  paragraph?: React.ReactNode;
+  buttonLabel?: React.ReactNode;
   buttonKind?: keyof typeof KIND;
   backgroundColor?: string;
   backgroundColorType?: keyof typeof BACKGROUND_COLOR_TYPE;
