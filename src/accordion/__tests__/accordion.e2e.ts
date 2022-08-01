@@ -20,7 +20,6 @@ test.describe('accordion', () => {
     await mount(page, 'accordion--accordion');
     await page.waitForSelector('ul');
     const accessibilityReport = await analyzeAccessibility(page);
-    // @ts-expect-error todo(starr): unsure how to fix
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 

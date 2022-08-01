@@ -19,7 +19,7 @@ test.describe('progress steps', () => {
     await mount(page, 'progress-steps--progress-steps');
     await page.waitForSelector(selectors.nextButton);
     const accessibilityReport = await analyzeAccessibility(page);
-    // @ts-expect-error todo(starr): unsure how to fix
+
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 

@@ -12,14 +12,14 @@ test.describe('file-uploader', () => {
   test('pre-drop passes basic a11y tests', async ({ page }) => {
     await mount(page, 'file-uploader--pre-drop');
     const accessibilityReport = await analyzeAccessibility(page);
-    // @ts-expect-error todo(starr): unsure how to fix
+
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
   test('post-drop passes basic a11y tests', async ({ page }) => {
     await mount(page, 'file-uploader--post-drop');
     const accessibilityReport = await analyzeAccessibility(page);
-    // @ts-expect-error todo(starr): unsure how to fix
+
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 });

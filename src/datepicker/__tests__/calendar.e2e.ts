@@ -40,7 +40,7 @@ test.describe('Calendar', () => {
   test('calendar passes basic a11y tests', async ({ page }) => {
     await mount(page, 'datepicker--calendar');
     await page.waitForSelector(selectors.calendar);
-    // @ts-expect-error todo(starr): unsure how to fix
+
     expect(await checkAccessibility(page)).toHaveNoAccessibilityIssues();
   });
   const waitTillDay = async (page) => {
@@ -55,7 +55,7 @@ test.describe('Calendar', () => {
     await page.keyboard.press('ArrowRight');
     const isDayActive = await isActiveEl(page, selectors.day);
     expect(isDayActive).toBe(true);
-    // @ts-expect-error todo(starr): unsure how to fix
+
     expect(await checkAccessibility(page)).toHaveNoAccessibilityIssues();
   });
   test('navigates to prev day on ArrowLeft key press', async ({ page }) => {
@@ -63,7 +63,7 @@ test.describe('Calendar', () => {
     await page.keyboard.press('ArrowLeft');
     const isDay1Active = await isActiveEl(page, selectors.day1);
     expect(isDay1Active).toBe(true);
-    // @ts-expect-error todo(starr): unsure how to fix
+
     expect(await checkAccessibility(page)).toHaveNoAccessibilityIssues();
   });
 
@@ -72,7 +72,7 @@ test.describe('Calendar', () => {
     await page.keyboard.press('ArrowUp');
     const isDay2Active = await isActiveEl(page, selectors.day2);
     expect(isDay2Active).toBe(true);
-    // @ts-expect-error todo(starr): unsure how to fix
+
     expect(await checkAccessibility(page)).toHaveNoAccessibilityIssues();
   });
 
@@ -81,7 +81,7 @@ test.describe('Calendar', () => {
     await page.keyboard.press('ArrowDown');
     const isDay3Active = await isActiveEl(page, selectors.day3);
     expect(isDay3Active).toBe(true);
-    // @ts-expect-error todo(starr): unsure how to fix
+
     expect(await checkAccessibility(page)).toHaveNoAccessibilityIssues();
   });
 
@@ -90,7 +90,7 @@ test.describe('Calendar', () => {
     await page.keyboard.press('Home');
     const isDay4Active = await isActiveEl(page, selectors.day4);
     expect(isDay4Active).toBe(true);
-    // @ts-expect-error todo(starr): unsure how to fix
+
     expect(await checkAccessibility(page)).toHaveNoAccessibilityIssues();
   });
   test('navigates to end of week on End key press', async ({ page }) => {
@@ -98,7 +98,7 @@ test.describe('Calendar', () => {
     await page.keyboard.press('End');
     const isDayActive = await isActiveEl(page, selectors.day);
     expect(isDayActive).toBe(true);
-    // @ts-expect-error todo(starr): unsure how to fix
+
     expect(await checkAccessibility(page)).toHaveNoAccessibilityIssues();
   });
   test('navigates to prev month on PageUp key press', async ({ page }) => {
@@ -106,7 +106,7 @@ test.describe('Calendar', () => {
     await page.keyboard.press('PageUp');
     const isDay6Active = await isActiveEl(page, selectors.day6);
     expect(isDay6Active).toBe(true);
-    // @ts-expect-error todo(starr): unsure how to fix
+
     expect(await checkAccessibility(page)).toHaveNoAccessibilityIssues();
   });
   test('navigates to next month on PageDown key press', async ({ page }) => {
@@ -114,7 +114,7 @@ test.describe('Calendar', () => {
     await page.keyboard.press('PageDown');
     const isDay5Active = await isActiveEl(page, selectors.day5);
     expect(isDay5Active).toBe(true);
-    // @ts-expect-error todo(starr): unsure how to fix
+
     expect(await checkAccessibility(page)).toHaveNoAccessibilityIssues();
   });
 });

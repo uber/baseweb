@@ -31,7 +31,7 @@ test.describe('PhoneInput', () => {
     const accessibilityReport = await analyzeAccessibility(page, [
       { id: 'autocomplete-valid', enabled: false },
     ]);
-    // @ts-expect-error todo(starr): unsure how to fix
+
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
