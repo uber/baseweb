@@ -202,20 +202,19 @@ test.describe('menu-child', () => {
     browserName,
     page,
   }) => {
-    test.fixme(
-      browserName === 'firefox' || browserName === 'webkit',
-      'this feature fails in firefox/webkit'
-    );
-
     await mount(page, 'menu--child-in-popover');
-    await page.click('button');
-    await page.waitForSelector(parentSelector);
-    await page.mouse.move(150, 159);
-    await page.waitForSelector(childSelector);
-    await page.mouse.click(450, 159);
-    await page.waitForSelector(childSelector);
-    await page.click('button');
-    await page.waitForSelector(childSelector, { state: 'hidden' });
+    const button = page.locator('button');
+    const parent = page.locator(parentSelector);
+    const child = page.locator(childSelector);
+
+    await button.click();
+    await expect(parent).toBeVisible();
+    await page.locator('text=Open Recent').hover();
+    await expect(child).toBeVisible();
+    await page.locator('text=Reopen Closed Editor').click();
+    await expect(child).toBeVisible();
+    await button.click();
+    await expect(child).toBeHidden();
   });
 
   test('keyboard navigation works when ancestor stopPropagations', async ({ page }) => {

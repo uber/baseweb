@@ -199,15 +199,15 @@ test.describe('select', () => {
 
     await input.click();
 
-    await input.type('Paris');
+    await input.fill('Paris');
     await listItems.first().click();
-    await expect(selected).toContainText('Paris', { useInnerText: true });
+    await expect(page.locator('text=Paris')).toBeVisible();
 
-    await input.type('London');
+    await input.fill('London');
     await listItems.first().click();
-    await expect(selected).toContainText('London', { useInnerText: true });
+    await expect(page.locator('text=London')).toBeVisible();
 
-    await input.type('Paris');
+    await input.fill('Paris');
     await expect(listItems.first()).toHaveText('No results');
   });
 
@@ -280,11 +280,11 @@ test.describe('select', () => {
   test('works with async options', async ({ page }) => {
     await mount(page, 'select--async-options');
     const input = page.locator(selectors.selectInput);
-    await input.type('Aqua');
+    await input.fill('Aqua');
     const dropdown = page.locator(selectors.selectDropDown);
     const listElements = dropdown.locator('li');
-    const actual = await listElements.allTextContents();
-    const expected = ['Aqua', 'Aquamarine'];
-    expect(matchArrayElements(actual, expected)).toBe(true);
+    await expect(listElements).toHaveCount(2);
+    await expect(listElements.nth(0)).toHaveText('Aqua');
+    await expect(listElements.nth(1)).toHaveText('Aquamarine');
   });
 });

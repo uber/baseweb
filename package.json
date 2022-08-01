@@ -36,7 +36,7 @@
     "e2e:serve": "static-server build-ladle --port 8080",
     "e2e:test": "playwright test",
     "e2e:test:ci": "PUPPETEER_TARGET_URL=http://e2e-server:8080 yarn e2e:test",
-    "vrt": "playwright test --config playwright-vrt.config.js",
+    "vrt": "playwright test --config playwright-vrt.config.ts",
     "vrt:docker:run": "docker-compose run e2e-test bash -c 'PUPPETEER_TARGET_URL=http://e2e-server:8080 yarn vrt'",
     "vrt:docker:update": "docker-compose run e2e-test bash -c 'PUPPETEER_TARGET_URL=http://e2e-server:8080 yarn vrt --update'",
     "vrt:ci": "PUPPETEER_TARGET_URL=http://e2e-server:8080 node ./vrt/ci.js",

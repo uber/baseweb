@@ -19,7 +19,7 @@ const selectors = {
 
 test.describe('accordion', () => {
   test('passes basic a11y tests', async ({ page }) => {
-    await page.goto('http://localhost:8080');
+    await mount(page, 'accordion--accordion');
     await page.waitForSelector('ul');
     const accessibilityReport = await analyzeAccessibility(page);
     // @ts-expect-error todo(starr): unsure how to fix
