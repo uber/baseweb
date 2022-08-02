@@ -133,6 +133,7 @@ steps:
     command: yarn e2e:test:ci
     artifact_paths:
       - 'test-results/**/*'
+      - '__artifacts__/playwright-report/**/*'
     plugins:
       'docker-compose#v3.0.3':
         run: e2e-test
@@ -146,6 +147,7 @@ steps:
     command: yarn upgrade react@^18.0.0 react-dom@^18.0.0 && yarn e2e:test:ci
     artifact_paths:
       - 'test-results/**/*'
+      - '__artifacts__/playwright-report/**/*'
     plugins:
       'docker-compose#v3.0.3':
         run: e2e-test
