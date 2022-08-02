@@ -10,8 +10,17 @@ import { devices } from '@playwright/test';
 import type { PlaywrightTestConfig } from '@playwright/test';
 import base from './playwright-base.config';
 
+const reporter = [];
+if (process.env.CI) {
+  reporter.push(['dot']);
+} else {
+  reporter.push(['list']);
+  reporter.push(['html', { open: 'never', outputFolder: './__artifacts__/playright-report' }]);
+}
+
 const config: PlaywrightTestConfig = {
   ...base,
+  reporter,
   testMatch: ['**/__tests__/*.e2e.ts'],
 };
 
