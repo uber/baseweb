@@ -72,6 +72,8 @@ export function getBodyStyles(
 
 export const Body = styled<'div', BodyStylePropsArg>('div', getBodyStyles);
 
+Body.displayName = 'Body';
+
 /**
  * Arrow shown between the popover and the anchor element
  */
@@ -94,6 +96,8 @@ export function getArrowStyles(
 
 export const Arrow = styled<'div', ArrowStylePropsArg>('div', getArrowStyles);
 
+Arrow.displayName = 'Arrow';
+
 /**
  * Extra div that holds the popover content. This extra element
  * is needed for the arrow–the arrow is just a 45deg rotated div,
@@ -114,6 +118,8 @@ export function getInnerStyles({ $theme }: { $theme: Theme }): StyleObject {
 
 export const Inner = styled<'div', InnerStylePropsArg>('div', getInnerStyles);
 
+Inner.displayName = 'Inner';
+
 /**
  * A drop-in component that provides the recommended padding
  * for popovers. Mostly a convenience for users so they don't
@@ -126,6 +132,9 @@ export const Padding = styled('div', {
   paddingBottom: '12px',
 });
 
+Padding.displayName = 'Padding';
+
 export const Hidden = styled('div', {
   display: 'none',
 });
+Hidden.displayName = 'Hidden';

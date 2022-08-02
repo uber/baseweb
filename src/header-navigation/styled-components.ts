@@ -26,6 +26,8 @@ export const Root = styled('nav', (props) => {
   };
 });
 
+Root.displayName = 'Root';
+
 export const NavigationItem = styled('li', (props) => {
   const { $theme } = props;
   const {
@@ -36,6 +38,8 @@ export const NavigationItem = styled('li', (props) => {
     paddingLeft: scale800,
   };
 });
+
+NavigationItem.displayName = 'NavigationItem';
 
 export const NavigationList = styled<
   'ul',
@@ -70,3 +74,4 @@ export const NavigationList = styled<
     marginRight: 0,
   };
 });
+NavigationList.displayName = 'NavigationList';

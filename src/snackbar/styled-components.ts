@@ -27,11 +27,15 @@ export const StyledRoot = styled('div', ({ $theme }) => {
   };
 });
 
+StyledRoot.displayName = 'StyledRoot';
+
 export const StyledContent = styled('div', {
   alignItems: 'center',
   display: 'inline-flex',
   width: '100%',
 });
+
+StyledContent.displayName = 'StyledContent';
 
 export const StyledStartEnhancerContainer = styled('span', ({ $theme }) => {
   const paddingDir: string = $theme.direction === 'rtl' ? 'paddingRight' : 'paddingLeft';
@@ -41,6 +45,8 @@ export const StyledStartEnhancerContainer = styled('span', ({ $theme }) => {
     [paddingDir]: $theme.sizing.scale600,
   };
 });
+
+StyledStartEnhancerContainer.displayName = 'StyledStartEnhancerContainer';
 
 export const StyledSpinner = withStyle<
   typeof Spinner,
@@ -55,6 +61,8 @@ export const StyledSpinner = withStyle<
     width: `${$width}px`,
   };
 });
+
+StyledSpinner.displayName = 'StyledSpinner';
 
 export const StyledMessage = styled<
   'p',
@@ -80,10 +88,14 @@ export const StyledMessage = styled<
   }
 );
 
+StyledMessage.displayName = 'StyledMessage';
+
 export const StyledWrapActionButtonContainer = styled('div', {
   display: 'flex',
   justifyContent: 'flex-end',
 });
+
+StyledWrapActionButtonContainer.displayName = 'StyledWrapActionButtonContainer';
 
 export const StyledActionButtonContainer = styled('div', ({ $theme }) => {
   const marginDir: string = $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
@@ -91,6 +103,8 @@ export const StyledActionButtonContainer = styled('div', ({ $theme }) => {
     [marginDir]: 'auto',
   };
 });
+
+StyledActionButtonContainer.displayName = 'StyledActionButtonContainer';
 
 function placementRules(placement): StyleObject {
   switch (placement) {
@@ -166,3 +180,4 @@ export const StyledPlacementContainer = styled<
     },
   };
 });
+StyledPlacementContainer.displayName = 'StyledPlacementContainer';

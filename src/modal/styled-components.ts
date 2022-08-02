@@ -44,6 +44,8 @@ export const Root = styled<'div', SharedStylePropsArg>('div', (props) => {
   };
 });
 
+Root.displayName = 'Root';
+
 export const DialogContainer = styled<'div', SharedStylePropsArg>('div', (props) => {
   const { $animate, $isOpen, $isVisible, $theme } = props;
   const animationRules = {
@@ -67,6 +69,8 @@ export const DialogContainer = styled<'div', SharedStylePropsArg>('div', (props)
     ...($animate ? animationRules : null),
   };
 });
+
+DialogContainer.displayName = 'DialogContainer';
 
 export const Dialog = styled<'div', SharedStylePropsArg>('div', (props): StyleObject => {
   const { $animate, $isOpen, $isVisible, $size, $theme } = props;
@@ -103,6 +107,8 @@ export const Dialog = styled<'div', SharedStylePropsArg>('div', (props): StyleOb
     },
   };
 });
+
+Dialog.displayName = 'Dialog';
 
 export const Close = styled<'button', SharedStylePropsArg>('button', (props) => {
   const { $theme, $isFocusVisible } = props;
@@ -152,6 +158,8 @@ export const Close = styled<'button', SharedStylePropsArg>('button', (props) => 
   };
 });
 
+Close.displayName = 'Close';
+
 export const ModalHeader = styled('div', ({ $theme }) => {
   const marginStartDir: string = $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
   const marginEndDir: string = $theme.direction === 'rtl' ? 'marginLeft' : 'marginRight';
@@ -167,6 +175,8 @@ export const ModalHeader = styled('div', ({ $theme }) => {
   };
 });
 
+ModalHeader.displayName = 'ModalHeader';
+
 export const ModalBody = styled('div', ({ $theme }) => ({
   ...$theme.typography.font200,
   color: $theme.colors.contentSecondary,
@@ -175,6 +185,8 @@ export const ModalBody = styled('div', ({ $theme }) => ({
   marginRight: $theme.sizing.scale800,
   marginBottom: $theme.sizing.scale700,
 }));
+
+ModalBody.displayName = 'ModalBody';
 
 export const ModalFooter = styled('div', ({ $theme }) => ({
   ...$theme.typography.font200,
@@ -185,3 +197,4 @@ export const ModalFooter = styled('div', ({ $theme }) => ({
   paddingBottom: $theme.sizing.scale500,
   textAlign: $theme.direction === 'rtl' ? 'left' : 'right',
 }));
+ModalFooter.displayName = 'ModalFooter';

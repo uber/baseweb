@@ -124,12 +124,16 @@ export const Root = styled<'div', ToasterSharedStylePropsArg>(
   }
 );
 
+Root.displayName = 'Root';
+
 export const InnerContainer = styled<'div', SharedStylePropsArg>(
   'div', // eslint-disable-next-line no-empty-pattern
   ({}: SharedStylePropsArg & {
     $theme: Theme;
   }) => ({})
 );
+
+InnerContainer.displayName = 'InnerContainer';
 
 export const Body = styled<'div', SharedStylePropsArg>(
   'div',
@@ -170,6 +174,8 @@ export const Body = styled<'div', SharedStylePropsArg>(
   }
 );
 
+Body.displayName = 'Body';
+
 export const CloseIconSvg = styled<
   'svg',
   {
@@ -196,3 +202,4 @@ export const CloseIconSvg = styled<
     outline: $isFocusVisible ? `3px solid ${$theme.colors.accent}` : 'none',
   })
 );
+CloseIconSvg.displayName = 'CloseIconSvg';

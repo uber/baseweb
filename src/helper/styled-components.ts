@@ -168,8 +168,11 @@ export const StyledBody = styled<'div', SharedStylePropsArg>('div', (props) => {
   };
 });
 
+StyledBody.displayName = 'StyledBody';
+
 export const StyledArrow = styled<'div', SharedStylePropsArg>('div', (props) => {
   return {
     ...clampArrowStyle(props.$arrowOffset, props.$placement, props.$theme.colors.backgroundPrimary),
   };
 });
+StyledArrow.displayName = 'StyledArrow';

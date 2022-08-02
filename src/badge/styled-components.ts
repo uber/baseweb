@@ -4,7 +4,7 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import { styled } from '../styles/index';
+import { styled } from '../styles';
 import type { Placement, Color, Shape, Role, Hierarchy } from './types';
 import { COLOR, SHAPE, ROLE, PLACEMENT, HIERARCHY } from './constants';
 
@@ -184,6 +184,8 @@ export const StyledRoot = styled<'div', {}>('div', () => {
   };
 });
 
+StyledRoot.displayName = 'StyledRoot';
+
 const TOP_PLACEMENTS = [
   PLACEMENT.topLeft,
   PLACEMENT.topRight,
@@ -258,6 +260,8 @@ export const StyledPositioner = styled<
   };
 });
 
+StyledPositioner.displayName = 'StyledPositioner';
+
 export const StyledBadge = styled<
   'div',
   {
@@ -293,6 +297,8 @@ export const StyledBadge = styled<
   }
 );
 
+StyledBadge.displayName = 'StyledBadge';
+
 export const StyledNotificationCircle = styled<
   'div',
   {
@@ -313,6 +319,8 @@ export const StyledNotificationCircle = styled<
   };
 });
 
+StyledNotificationCircle.displayName = 'StyledNotificationCircle';
+
 export const StyledHintDot = styled<
   'div',
   {
@@ -331,3 +339,4 @@ export const StyledHintDot = styled<
     ...getColorStyles({ $theme, $hierarchy: HIERARCHY.primary, $color }),
   };
 });
+StyledHintDot.displayName = 'StyledHintDot';

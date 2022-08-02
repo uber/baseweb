@@ -49,6 +49,8 @@ export const StyledRoot = styled<'div', StyledRootProps>('div', ({ $theme, $divi
   };
 });
 
+StyledRoot.displayName = 'StyledRoot';
+
 type StyledTableProps = {
   $width?: string | null;
 };
@@ -63,15 +65,21 @@ export const StyledTable = styled<'table', StyledTableProps>('table', ({ $theme,
   };
 });
 
+StyledTable.displayName = 'StyledTable';
+
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const StyledTableHead = styled('thead', ({ $theme }) => {
   return {};
 });
 
+StyledTableHead.displayName = 'StyledTableHead';
+
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const StyledTableHeadRow = styled('tr', ({ $theme }) => {
   return {};
 });
+
+StyledTableHeadRow.displayName = 'StyledTableHeadRow';
 
 type StyledTableHeadCellProps = {
   $col?: {};
@@ -119,6 +127,8 @@ export const StyledTableHeadCell = styled<'th', StyledTableHeadCellProps>(
   }
 );
 
+StyledTableHeadCell.displayName = 'StyledTableHeadCell';
+
 type StyledTableHeadCellSortableProps = {
   $isFocusVisible: boolean;
 } & StyledTableHeadCellProps;
@@ -141,6 +151,8 @@ export const StyledTableHeadCellSortable = withStyle<
   };
 });
 
+StyledTableHeadCellSortable.displayName = 'StyledTableHeadCellSortable';
+
 export const StyledSortIconContainer = styled('span', ({ $theme }) => {
   return {
     display: 'flex',
@@ -152,6 +164,8 @@ export const StyledSortIconContainer = styled('span', ({ $theme }) => {
   };
 });
 
+StyledSortIconContainer.displayName = 'StyledSortIconContainer';
+
 // No longer used, but will maintain for some time to support existing usage
 export const StyledSortAscIcon = styled<typeof ChevronUp, {}>(ChevronUp, ({ $theme }) => {
   return {
@@ -162,6 +176,8 @@ export const StyledSortAscIcon = styled<typeof ChevronUp, {}>(ChevronUp, ({ $the
   };
 });
 
+StyledSortAscIcon.displayName = 'StyledSortAscIcon';
+
 export const StyledSortDescIcon = styled<typeof ChevronDown, {}>(ChevronDown, ({ $theme }) => {
   return {
     position: 'absolute',
@@ -170,6 +186,8 @@ export const StyledSortDescIcon = styled<typeof ChevronDown, {}>(ChevronDown, ({
     transform: 'translateY(-50%)',
   };
 });
+
+StyledSortDescIcon.displayName = 'StyledSortDescIcon';
 
 export const StyledSortNoneIcon = styled<typeof Blank, {}>(Blank, ({ $theme }) => {
   return {
@@ -180,10 +198,14 @@ export const StyledSortNoneIcon = styled<typeof Blank, {}>(Blank, ({ $theme }) =
   };
 });
 
+StyledSortNoneIcon.displayName = 'StyledSortNoneIcon';
+
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const StyledTableBody = styled('tbody', ({ $theme }) => {
   return {};
 });
+
+StyledTableBody.displayName = 'StyledTableBody';
 
 type StyledTableBodyRowProps = {
   $col?: {};
@@ -198,6 +220,8 @@ export const StyledTableBodyRow = styled<'tr', StyledTableBodyRowProps>('tr', ({
     },
   };
 });
+
+StyledTableBodyRow.displayName = 'StyledTableBodyRow';
 
 type StyledTableBodyCellProps = {
   $col?: {};
@@ -244,6 +268,8 @@ export const StyledTableBodyCell = styled<'td', StyledTableBodyCellProps>(
   }
 );
 
+StyledTableBodyCell.displayName = 'StyledTableBodyCell';
+
 export const StyledTableLoadingMessage = styled<'div', {}>('div', ({ $theme }) => {
   return {
     ...$theme.typography.ParagraphSmall,
@@ -251,5 +277,7 @@ export const StyledTableLoadingMessage = styled<'div', {}>('div', ({ $theme }) =
     padding: $theme.sizing.scale600,
   };
 });
+
+StyledTableLoadingMessage.displayName = 'StyledTableLoadingMessage';
 
 export const StyledTableEmptyMessage = StyledTableLoadingMessage;

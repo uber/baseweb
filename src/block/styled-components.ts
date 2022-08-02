@@ -356,3 +356,4 @@ export const StyledBlock = styled<'div', StyledBlockProps>('div', (props) => {
 
   return styles.value();
 });
+StyledBlock.displayName = 'StyledBlock';

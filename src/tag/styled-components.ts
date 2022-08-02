@@ -313,6 +313,8 @@ export const Action = styled<'span', SharedPropsArg>(
   }
 );
 
+Action.displayName = 'Action';
+
 export const StartEnhancerContainer = styled<'div', SharedPropsArg>(
   'div',
   ({
@@ -338,6 +340,8 @@ export const StartEnhancerContainer = styled<'div', SharedPropsArg>(
   }
 );
 
+StartEnhancerContainer.displayName = 'StartEnhancerContainer';
+
 export const Text = styled<'span', SharedPropsArg>(
   'span',
   (
@@ -356,6 +360,8 @@ export const Text = styled<'span', SharedPropsArg>(
     };
   }
 );
+
+Text.displayName = 'Text';
 
 export const Root = styled<'span', SharedPropsArg>(
   'span',
@@ -452,3 +458,4 @@ export const Root = styled<'span', SharedPropsArg>(
     };
   }
 );
+Root.displayName = 'Root';

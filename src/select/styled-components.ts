@@ -84,6 +84,8 @@ export const StyledDropdownContainer = styled<'div', SharedStylePropsArg>('div',
   };
 });
 
+StyledDropdownContainer.displayName = 'StyledDropdownContainer';
+
 export const StyledDropdown = StyledList;
 
 export const StyledDropdownListItem = StyledListItem;
@@ -98,6 +100,8 @@ export const StyledOptionContent = styled<'div', SharedStylePropsArg>('div', (pr
   };
 });
 
+StyledOptionContent.displayName = 'StyledOptionContent';
+
 export const StyledRoot = styled<'div', SharedStylePropsArg>('div', (props) => {
   const {
     $theme: { typography },
@@ -110,6 +114,8 @@ export const StyledRoot = styled<'div', SharedStylePropsArg>('div', (props) => {
     width: '100%',
   };
 });
+
+StyledRoot.displayName = 'StyledRoot';
 
 function getControlContainerColors(
   $disabled,
@@ -217,6 +223,8 @@ export const StyledControlContainer = styled<'div', SharedStylePropsArg>('div', 
   };
 });
 
+StyledControlContainer.displayName = 'StyledControlContainer';
+
 export const StyledValueContainer = styled<'div', SharedStylePropsArg>('div', (props) => {
   const padding = getControlPadding(props);
   return {
@@ -233,6 +241,8 @@ export const StyledValueContainer = styled<'div', SharedStylePropsArg>('div', (p
   };
 });
 
+StyledValueContainer.displayName = 'StyledValueContainer';
+
 export const StyledPlaceholder = styled<'div', SharedStylePropsArg>('div', (props) => {
   const {
     $disabled,
@@ -246,6 +256,8 @@ export const StyledPlaceholder = styled<'div', SharedStylePropsArg>('div', (prop
     whiteSpace: 'nowrap',
   };
 });
+
+StyledPlaceholder.displayName = 'StyledPlaceholder';
 
 export const StyledSingleValue = styled<'div', SharedStylePropsArg>('div', (props) => {
   const {
@@ -265,6 +277,8 @@ export const StyledSingleValue = styled<'div', SharedStylePropsArg>('div', (prop
     ...ellipsisText,
   };
 });
+
+StyledSingleValue.displayName = 'StyledSingleValue';
 
 export const StyledInputContainer = styled<'div', SharedStylePropsArg>('div', (props) => {
   const {
@@ -299,6 +313,8 @@ export const StyledInputContainer = styled<'div', SharedStylePropsArg>('div', (p
   };
 });
 
+StyledInputContainer.displayName = 'StyledInputContainer';
+
 export const StyledInput = styled<'input', SharedStylePropsArg>('input', (props) => {
   const {
     $theme: { colors, typography },
@@ -331,6 +347,8 @@ export const StyledInput = styled<'input', SharedStylePropsArg>('input', (props)
   };
 });
 
+StyledInput.displayName = 'StyledInput';
+
 export const StyledInputSizer = styled<'div', SharedStylePropsArg>(
   'div',
   ({ $size, $theme, $theme: { typography } }) => {
@@ -348,6 +366,8 @@ export const StyledInputSizer = styled<'div', SharedStylePropsArg>(
   }
 );
 
+StyledInputSizer.displayName = 'StyledInputSizer';
+
 export const StyledIconsContainer = styled<'div', SharedStylePropsArg>(
   'div',
   ({ $theme, $theme: { sizing } }) => {
@@ -363,6 +383,8 @@ export const StyledIconsContainer = styled<'div', SharedStylePropsArg>(
     };
   }
 );
+
+StyledIconsContainer.displayName = 'StyledIconsContainer';
 
 function getSvgStyles({ $theme }) {
   return {
@@ -398,6 +420,8 @@ export const StyledSelectArrow = styled<'svg', SharedStylePropsArg>('svg', (prop
   };
 });
 
+StyledSelectArrow.displayName = 'StyledSelectArrow';
+
 export const StyledClearIcon = styled<'svg', SharedStylePropsArg>('svg', (props) => {
   const { $theme, $size } = props;
   const { colors } = $theme;
@@ -422,6 +446,8 @@ export const StyledClearIcon = styled<'svg', SharedStylePropsArg>('svg', (props)
   };
 });
 
+StyledClearIcon.displayName = 'StyledClearIcon';
+
 export const StyledLoadingIndicator = withStyle<typeof Spinner, {}>(Spinner, ({ $theme }) => {
   return {
     borderTopWidth: '2px',
@@ -435,6 +461,8 @@ export const StyledLoadingIndicator = withStyle<typeof Spinner, {}>(Spinner, ({ 
     height: '16px',
   };
 });
+
+StyledLoadingIndicator.displayName = 'StyledLoadingIndicator';
 
 export const StyledSearchIconContainer = styled<'div', SharedStylePropsArg>('div', (props) => {
   const { $disabled, $theme } = props;
@@ -452,3 +480,4 @@ export const StyledSearchIconContainer = styled<'div', SharedStylePropsArg>('div
     height: '100%',
   };
 });
+StyledSearchIconContainer.displayName = 'StyledSearchIconContainer';

@@ -19,6 +19,7 @@ export const Root = styled('ul', {
   paddingRight: 0,
   width: '100%',
 });
+Root.displayName = 'Root';
 
 export const PanelContainer = styled<'li', SharedStylePropsArg>('li', (props) => {
   const {
@@ -33,6 +34,7 @@ export const PanelContainer = styled<'li', SharedStylePropsArg>('li', (props) =>
     borderBottomColor: $expanded ? colors.mono500 : colors.mono400,
   };
 });
+PanelContainer.displayName = 'PanelContainer';
 
 export const Header = styled<'div', SharedStylePropsArg>('div', (props) => {
   const {
@@ -63,6 +65,7 @@ export const Header = styled<'div', SharedStylePropsArg>('div', (props) => {
     },
   };
 });
+Header.displayName = 'Header';
 
 export const ToggleIcon = styled<'svg', SharedStylePropsArg>('svg', (props) => {
   const { $theme, $disabled, $color } = props;
@@ -73,6 +76,7 @@ export const ToggleIcon = styled<'svg', SharedStylePropsArg>('svg', (props) => {
     cursor: $disabled ? 'not-allowed' : 'pointer',
   };
 });
+ToggleIcon.displayName = 'ToggleIcon';
 
 export const ToggleIconGroup = styled<'g', SharedStylePropsArg>('g', (props) => {
   const { $theme, $expanded } = props;
@@ -84,6 +88,7 @@ export const ToggleIconGroup = styled<'g', SharedStylePropsArg>('g', (props) => 
     transitionTimingFunction: $theme.animation.easeOutQuinticCurve,
   };
 });
+ToggleIconGroup.displayName = 'ToggleIconGroup';
 
 export const Content = styled<'div', SharedStylePropsArg>('div', (props) => {
   const {
@@ -112,6 +117,7 @@ export const Content = styled<'div', SharedStylePropsArg>('div', (props) => {
     transitionTimingFunction: animation.easeOutQuinticCurve,
   };
 });
+Content.displayName = 'Content';
 
 export const ContentAnimationContainer = styled<
   'div',
@@ -131,3 +137,4 @@ export const ContentAnimationContainer = styled<
     transitionTimingFunction: animation.easeOutQuinticCurve,
   };
 });
+ContentAnimationContainer.displayName = 'ContentAnimationContainer';

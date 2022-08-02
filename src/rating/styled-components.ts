@@ -35,6 +35,8 @@ export const StyledRoot = styled<'ul', StyledRootProps>('ul', ({ $theme }) => {
   };
 });
 
+StyledRoot.displayName = 'StyledRoot';
+
 export const StyledStar = styled<'li', StyledRatingItemProps>(
   'li',
   ({ $theme, $isActive, $isPartialActive, $isSelected, $isFocusVisible, $isReadOnly, $size }) => {
@@ -100,6 +102,8 @@ export const StyledStar = styled<'li', StyledRatingItemProps>(
   }
 );
 
+StyledStar.displayName = 'StyledStar';
+
 export const StyledEmoticon = styled<'li', StyledRatingItemProps>(
   'li',
   ({ $theme, $isActive, $isSelected, $index = 1, $isFocusVisible, $isReadOnly, $size }) => {
@@ -143,3 +147,4 @@ export const StyledEmoticon = styled<'li', StyledRatingItemProps>(
     return styles;
   }
 );
+StyledEmoticon.displayName = 'StyledEmoticon';
