@@ -30,6 +30,8 @@ export const StyledRoot = styled<
   return style;
 });
 
+StyledRoot.displayName = 'StyledRoot';
+
 export const StyledTabList = styled<
   'div',
   {
@@ -68,6 +70,8 @@ export const StyledTabList = styled<
   }
   return style;
 });
+
+StyledTabList.displayName = 'StyledTabList';
 
 export const StyledTab = styled<
   'button',
@@ -144,6 +148,8 @@ export const StyledTab = styled<
   }
 );
 
+StyledTab.displayName = 'StyledTab';
+
 export const StyledArtworkContainer = styled<
   'div',
   {
@@ -162,6 +168,8 @@ export const StyledArtworkContainer = styled<
   return style;
 });
 
+StyledArtworkContainer.displayName = 'StyledArtworkContainer';
+
 export const StyledTabBorder = styled<
   'div',
   {
@@ -179,6 +187,8 @@ export const StyledTabBorder = styled<
   }
   return style;
 });
+
+StyledTabBorder.displayName = 'StyledTabBorder';
 
 export const StyledTabHighlight = styled<
   'div',
@@ -227,6 +237,8 @@ export const StyledTabHighlight = styled<
   }
 );
 
+StyledTabHighlight.displayName = 'StyledTabHighlight';
+
 export const StyledTabPanel = styled<
   'div',
   {
@@ -245,3 +257,4 @@ export const StyledTabPanel = styled<
   }
   return style;
 });
+StyledTabPanel.displayName = 'StyledTabPanel';

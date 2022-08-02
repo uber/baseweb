@@ -20,6 +20,8 @@ export const StyledProgressSteps = styled('ol', ({ $theme }) => {
   };
 });
 
+StyledProgressSteps.displayName = 'StyledProgressSteps';
+
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const StyledStep = styled<'li', StyleProps>('li', ({ $theme }) => {
   return {
@@ -28,6 +30,8 @@ export const StyledStep = styled<'li', StyleProps>('li', ({ $theme }) => {
     overflow: 'visible',
   };
 });
+
+StyledStep.displayName = 'StyledStep';
 
 export const StyledIconContainer = styled<'div', StyleProps>(
   'div',
@@ -68,6 +72,8 @@ export const StyledIconContainer = styled<'div', StyleProps>(
   }
 );
 
+StyledIconContainer.displayName = 'StyledIconContainer';
+
 export const StyledIcon = styled<'div', StyleProps>(
   'div',
   ({ $theme, $isActive, $isCompleted }) => {
@@ -102,6 +108,8 @@ export const StyledIcon = styled<'div', StyleProps>(
   }
 );
 
+StyledIcon.displayName = 'StyledIcon';
+
 export const StyledInnerIcon = styled<'div', StyleProps>('div', ({ $theme }) => {
   return {
     width: $theme.sizing.scale300,
@@ -116,12 +124,16 @@ export const StyledInnerIcon = styled<'div', StyleProps>('div', ({ $theme }) => 
   };
 });
 
+StyledInnerIcon.displayName = 'StyledInnerIcon';
+
 export const StyledContent = styled<'div', StyleProps>('div', ({ $theme }) => {
   const marginDir: string = $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
   return {
     [marginDir]: $theme.sizing.scale1600,
   };
 });
+
+StyledContent.displayName = 'StyledContent';
 
 export const StyledContentTitle = styled<'div', StyleProps>(
   'div',
@@ -142,6 +154,8 @@ export const StyledContentTitle = styled<'div', StyleProps>(
     };
   }
 );
+
+StyledContentTitle.displayName = 'StyledContentTitle';
 
 export const StyledContentTail = styled<'div', StyleProps>(
   'div',
@@ -175,11 +189,15 @@ export const StyledContentTail = styled<'div', StyleProps>(
   }
 );
 
+StyledContentTail.displayName = 'StyledContentTail';
+
 export const StyledContentDescription = styled<'div', StyleProps>('div', ({ $theme }) => {
   return {
     marginBottom: $theme.sizing.scale700,
   };
 });
+
+StyledContentDescription.displayName = 'StyledContentDescription';
 
 export const StyledNumberStep = styled<'li', StyleProps>('li', () => {
   return {
@@ -188,6 +206,8 @@ export const StyledNumberStep = styled<'li', StyleProps>('li', () => {
     overflow: 'visible',
   };
 });
+
+StyledNumberStep.displayName = 'StyledNumberStep';
 
 export const StyledNumberIcon = styled<'div', StyleProps>(
   'div',
@@ -233,6 +253,8 @@ export const StyledNumberIcon = styled<'div', StyleProps>(
   }
 );
 
+StyledNumberIcon.displayName = 'StyledNumberIcon';
+
 export const StyledNumberContentTail = styled<'div', StyleProps>(
   'div',
   ({ $theme, $isCompleted }) => {
@@ -259,3 +281,4 @@ export const StyledNumberContentTail = styled<'div', StyleProps>(
     };
   }
 );
+StyledNumberContentTail.displayName = 'StyledNumberContentTail';

@@ -10,6 +10,7 @@ import { styled } from '../styles';
 import type { StyleProps } from './types';
 
 export const Root = styled('div', { position: 'relative', width: '100%' });
+Root.displayName = 'Root';
 Root.displayName = 'StyledRoot';
 
 export const Track = styled<'div', StyleProps>('div', (props) => {
@@ -33,6 +34,7 @@ export const Track = styled<'div', StyleProps>('div', (props) => {
     backgroundColor: $theme.colors.sliderTrackFill,
   };
 });
+Track.displayName = 'Track';
 Track.displayName = 'StyledTrack';
 
 export const InnerTrack = styled<'div', StyleProps>('div', (props) => {
@@ -67,6 +69,7 @@ export const InnerTrack = styled<'div', StyleProps>('div', (props) => {
     cursor: $disabled ? 'not-allowed' : 'inherit',
   };
 });
+InnerTrack.displayName = 'InnerTrack';
 InnerTrack.displayName = 'StyledInnerTrack';
 
 export const Mark = styled<'div', StyleProps>('div', (props) => {
@@ -77,6 +80,7 @@ export const Mark = styled<'div', StyleProps>('div', (props) => {
     marginLeft: '16px',
   };
 });
+Mark.displayName = 'Mark';
 Mark.displayName = 'StyledMark';
 
 export const Tick = styled<'div', StyleProps>('div', (props) => {
@@ -85,6 +89,7 @@ export const Tick = styled<'div', StyleProps>('div', (props) => {
     color: props.$theme.colors.contentPrimary,
   };
 });
+Tick.displayName = 'Tick';
 Tick.displayName = 'StyledTick';
 
 export const TickBar = styled<'div', StyleProps>('div', (props) => {
@@ -99,6 +104,7 @@ export const TickBar = styled<'div', StyleProps>('div', (props) => {
     paddingBottom: sizing.scale400,
   };
 });
+TickBar.displayName = 'TickBar';
 TickBar.displayName = 'StyledTickBar';
 
 export const Thumb = styled<'div', StyleProps>('div', (props) => {
@@ -131,6 +137,7 @@ export const Thumb = styled<'div', StyleProps>('div', (props) => {
     cursor: $disabled ? 'not-allowed' : 'inherit',
   };
 });
+Thumb.displayName = 'Thumb';
 Thumb.displayName = 'StyledThumb';
 
 export const InnerThumb = styled<'div', StyleProps>('div', (props) => {
@@ -145,6 +152,7 @@ export const InnerThumb = styled<'div', StyleProps>('div', (props) => {
       : $theme.colors.sliderHandleInnerFill,
   };
 });
+InnerThumb.displayName = 'InnerThumb';
 InnerThumb.displayName = 'StyledInnerThumb';
 
 export const ThumbValue = styled<'div', StyleProps>('div', (props) => {
@@ -168,4 +176,5 @@ export const ThumbValue = styled<'div', StyleProps>('div', (props) => {
     whiteSpace: 'nowrap',
   };
 });
+ThumbValue.displayName = 'ThumbValue';
 ThumbValue.displayName = 'StyledThumbValue';

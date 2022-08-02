@@ -67,6 +67,8 @@ export const StyledRoot = styled<
   };
 });
 
+StyledRoot.displayName = 'StyledRoot';
+
 export const StyledRow = styled<
   'div',
   {
@@ -83,3 +85,4 @@ export const StyledRow = styled<
     marginBottom: props.$isLastRow ? '0px' : '10px',
   };
 });
+StyledRow.displayName = 'StyledRow';

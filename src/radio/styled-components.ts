@@ -131,6 +131,8 @@ export const RadioGroupRoot = styled<'div', StyleProps>('div', (props) => {
   };
 });
 
+RadioGroupRoot.displayName = 'RadioGroupRoot';
+
 export const Root = styled<'label', StyleProps>('label', (props) => {
   const { $disabled, $hasDescription, $labelPlacement, $theme, $align } = props;
   const { sizing } = $theme;
@@ -148,6 +150,8 @@ export const Root = styled<'label', StyleProps>('label', (props) => {
   };
 });
 
+Root.displayName = 'Root';
+
 export const RadioMarkInner = styled<'div', StyleProps>('div', (props) => {
   const { animation, sizing } = props.$theme;
 
@@ -163,6 +167,8 @@ export const RadioMarkInner = styled<'div', StyleProps>('div', (props) => {
     width: props.$checked ? sizing.scale200 : sizing.scale550,
   };
 });
+
+RadioMarkInner.displayName = 'RadioMarkInner';
 
 export const RadioMarkOuter = styled<'div', StyleProps>('div', (props) => {
   const { animation, sizing } = props.$theme;
@@ -192,6 +198,8 @@ export const RadioMarkOuter = styled<'div', StyleProps>('div', (props) => {
   };
 });
 
+RadioMarkOuter.displayName = 'RadioMarkOuter';
+
 export const Label = styled<'div', StyleProps>('div', (props) => {
   const {
     $theme: { typography },
@@ -203,6 +211,8 @@ export const Label = styled<'div', StyleProps>('div', (props) => {
     ...typography.LabelMedium,
   };
 });
+
+Label.displayName = 'Label';
 
 // tricky style for focus event cause display: none doesn't work
 export const Input = styled('input', {
@@ -220,6 +230,8 @@ export const Input = styled('input', {
   position: 'absolute',
 });
 
+Input.displayName = 'Input';
+
 export const Description = styled<'div', StyleProps>('div', (props) => {
   const { $theme, $align } = props;
   const isHorizontal = $align === 'horizontal';
@@ -234,3 +246,4 @@ export const Description = styled<'div', StyleProps>('div', (props) => {
     maxWidth: '240px',
   };
 });
+Description.displayName = 'Description';

@@ -4,7 +4,7 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import { styled } from '../styles/index';
+import { styled } from '../styles';
 import { ACTION_POSITION } from './constants';
 import type { ActionPosition } from './types';
 
@@ -32,6 +32,8 @@ export const StyledRoot = styled<
   };
 });
 
+StyledRoot.displayName = 'StyledRoot';
+
 export const StyledLeadingContent = styled<
   'div',
   {
@@ -44,6 +46,8 @@ export const StyledLeadingContent = styled<
     paddingInlineStart: $includesArtwork ? $theme.sizing.scale600 : null,
   };
 });
+
+StyledLeadingContent.displayName = 'StyledLeadingContent';
 
 export const StyledMessageContent = styled<
   'div',
@@ -60,6 +64,8 @@ export const StyledMessageContent = styled<
   };
 });
 
+StyledMessageContent.displayName = 'StyledMessageContent';
+
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const StyledTrailingContent = styled<'div', {}>('div', ({ $theme }) => {
   return {
@@ -68,6 +74,8 @@ export const StyledTrailingContent = styled<'div', {}>('div', ({ $theme }) => {
     marginInlineStart: 'auto',
   };
 });
+
+StyledTrailingContent.displayName = 'StyledTrailingContent';
 
 export const StyledBelowContent = styled<
   'div',
@@ -82,13 +90,19 @@ export const StyledBelowContent = styled<
   };
 });
 
+StyledBelowContent.displayName = 'StyledBelowContent';
+
 export const StyledTitle = styled<'div', {}>('div', ({ $theme }) => {
   return $theme.typography.LabelMedium;
 });
 
+StyledTitle.displayName = 'StyledTitle';
+
 export const StyledMessage = styled<'div', {}>('div', ({ $theme }) => {
   return $theme.typography.ParagraphMedium;
 });
+
+StyledMessage.displayName = 'StyledMessage';
 
 export const StyledTrailingButtonContainer = styled<'div', {}>('div', ({ $theme }) => {
   return {
@@ -97,6 +111,8 @@ export const StyledTrailingButtonContainer = styled<'div', {}>('div', ({ $theme 
     paddingInlineEnd: $theme.sizing.scale600,
   };
 });
+
+StyledTrailingButtonContainer.displayName = 'StyledTrailingButtonContainer';
 
 export const StyledTrailingIconButton = styled<
   'button',
@@ -124,3 +140,4 @@ export const StyledTrailingIconButton = styled<
     },
   };
 });
+StyledTrailingIconButton.displayName = 'StyledTrailingIconButton';

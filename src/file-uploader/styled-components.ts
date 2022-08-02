@@ -47,6 +47,8 @@ export const StyledFileDragAndDrop = styled<'div', StyleProps>('div', (props) =>
   };
 });
 
+StyledFileDragAndDrop.displayName = 'StyledFileDragAndDrop';
+
 export const StyledContentMessage = styled<'div', StyleProps>(
   'div',
   ({ $theme, $afterFileDrop, $isDragActive }) => ({
@@ -61,6 +63,8 @@ export const StyledContentMessage = styled<'div', StyleProps>(
   })
 );
 
+StyledContentMessage.displayName = 'StyledContentMessage';
+
 export const StyledContentSeparator = StyledContentMessage;
 
 export const StyledErrorMessage = styled<'div', StyleProps>('div', (props) => ({
@@ -70,9 +74,14 @@ export const StyledErrorMessage = styled<'div', StyleProps>('div', (props) => ({
   marginBottom: props.$afterFileDrop ? props.$theme.sizing.scale100 : null,
 }));
 
+StyledErrorMessage.displayName = 'StyledErrorMessage';
+
 export const StyledRoot = styled<'div', StyleProps>('div', (props) => ({
   ...props.$theme.typography.font300,
   color: props.$theme.colors.fileUploaderMessageColor,
 }));
 
+StyledRoot.displayName = 'StyledRoot';
+
 export const StyledHiddenInput = styled('input', {});
+StyledHiddenInput.displayName = 'StyledHiddenInput';

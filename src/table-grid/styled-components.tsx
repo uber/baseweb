@@ -28,6 +28,8 @@ const StyledTableElement = withStyle<
   };
 });
 
+StyledTableElement.displayName = 'StyledTableElement';
+
 export const StyledTable = withWrapper(
   StyledTableElement,
   (StyledComponent) =>
@@ -57,6 +59,8 @@ export const StyledHeadCell = withStyle<
   };
 });
 
+StyledHeadCell.displayName = 'StyledHeadCell';
+
 export const StyledBodyCell = withStyle<
   typeof FlexStyledBodyCell,
   {
@@ -76,3 +80,4 @@ export const StyledBodyCell = withStyle<
     },
   };
 });
+StyledBodyCell.displayName = 'StyledBodyCell';

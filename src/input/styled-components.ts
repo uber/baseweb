@@ -42,6 +42,8 @@ export const StyledMaskToggleButton = styled<
   };
 });
 
+StyledMaskToggleButton.displayName = 'StyledMaskToggleButton';
+
 export const StyledClearIconContainer = styled<
   'div',
   {
@@ -67,6 +69,8 @@ export const StyledClearIconContainer = styled<
   };
 });
 
+StyledClearIconContainer.displayName = 'StyledClearIconContainer';
+
 export const StyledClearIcon = styled<
   typeof DeleteAlt,
   {
@@ -76,6 +80,8 @@ export const StyledClearIcon = styled<
   cursor: 'pointer',
   outline: $isFocusVisible ? `solid 3px ${$theme.colors.accent}` : 'none',
 }));
+
+StyledClearIcon.displayName = 'StyledClearIcon';
 
 function getInputPadding(
   size,
@@ -271,6 +277,8 @@ export const getRootStyles = (props: {
 
 export const Root = styled<'div', SharedProps>('div', getRootStyles);
 
+Root.displayName = 'Root';
+
 // InputEnhancer
 
 type InputEnhancerStyles = {
@@ -356,6 +364,8 @@ export const InputEnhancer = styled<'div', SharedProps>('div', (props) => {
   };
 });
 
+InputEnhancer.displayName = 'InputEnhancer';
+
 // InputContainer
 
 function getInputContainerColors($disabled, $isFocused, $error, $positive, colors): StyleObject {
@@ -421,6 +431,8 @@ export const getInputContainerStyles = (props: {
 };
 
 export const InputContainer = styled<'div', SharedProps>('div', getInputContainerStyles);
+
+InputContainer.displayName = 'InputContainer';
 
 function getInputColors($disabled, $isFocused, $error, colors): StyleObject {
   if ($disabled) {
@@ -488,3 +500,4 @@ export const getInputStyles = (
 };
 
 export const Input = styled<'input', SharedProps>('input', getInputStyles);
+Input.displayName = 'Input';

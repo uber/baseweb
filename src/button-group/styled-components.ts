@@ -22,3 +22,4 @@ export const StyledRoot = styled<
     marginRight: margin,
   };
 });
+StyledRoot.displayName = 'StyledRoot';

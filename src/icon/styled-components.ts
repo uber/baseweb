@@ -48,3 +48,4 @@ export function getSvgStyles({
 }
 
 export const Svg = styled<'svg', StyledComponentArgs>('svg', getSvgStyles);
+Svg.displayName = 'Svg';
