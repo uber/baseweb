@@ -14,7 +14,6 @@ test.describe('breadcrumbs', () => {
     await page.waitForSelector('a');
 
     const accessibilityReport = await analyzeAccessibility(page);
-    // @ts-expect-error todo(starr): unsure how to fix
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 });

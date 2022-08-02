@@ -12,7 +12,7 @@ test.describe('menu', () => {
   test('passes basic a11y tests', async ({ page }) => {
     await mount(page, 'menu--menu');
     const accessibilityReport = await analyzeAccessibility(page);
-    // @ts-expect-error todo(starr): unsure how to fix
+
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 });

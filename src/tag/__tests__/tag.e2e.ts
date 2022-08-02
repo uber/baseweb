@@ -17,7 +17,7 @@ test.describe('tag', () => {
         enabled: false,
       },
     ]);
-    // @ts-expect-error todo(starr): unsure how to fix
+
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 });

@@ -18,7 +18,7 @@ test.describe('Rating', () => {
     await mount(page, 'rating--star');
     await page.waitForSelector(selectors.container);
     const accessibilityReport = await analyzeAccessibility(page);
-    // @ts-expect-error todo(starr): unsure how to fix
+
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 

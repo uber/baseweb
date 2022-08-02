@@ -32,7 +32,7 @@ test.describe('tabs', () => {
     await mount(page, 'tabs-motion--tabs-motion');
     await page.waitForSelector('[role="tab"]');
     const accessibilityReport = await analyzeAccessibility(page);
-    // @ts-expect-error todo(starr): unsure how to fix
+
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 

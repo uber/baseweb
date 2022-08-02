@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import React from 'react';
-import { render, getByTestId } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import LocaleProvider, { LocaleContext } from '../index';
 import en_US from '../en_US';
 import tr_TR from '../tr_TR';
