@@ -13,9 +13,9 @@ import base from './playwright-base.config';
 const reporter = [];
 if (process.env.CI) {
   reporter.push(['dot']);
+  reporter.push(['html', { open: 'never', outputFolder: './__artifacts__/playright-report' }]);
 } else {
   reporter.push(['list']);
-  reporter.push(['html', { open: 'never', outputFolder: './__artifacts__/playright-report' }]);
 }
 
 const config: PlaywrightTestConfig = {
