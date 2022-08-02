@@ -15,7 +15,7 @@ test.describe('button-group', () => {
     await page.click('button');
 
     const accessibilityReport = await analyzeAccessibility(page);
-    // @ts-expect-error todo(starr): unsure how to fix
+
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
@@ -25,7 +25,7 @@ test.describe('button-group', () => {
     await page.click('button');
 
     const accessibilityReport = await analyzeAccessibility(page);
-    // @ts-expect-error todo(starr): unsure how to fix
+
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 });

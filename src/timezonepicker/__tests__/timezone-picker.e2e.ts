@@ -22,7 +22,7 @@ test.describe('TimezonePicker', () => {
     await mount(page, 'timezonepicker--timezone-picker');
     await page.waitForSelector(selectors.standard);
     const accessibilityReport = await analyzeAccessibility(page);
-    // @ts-expect-error todo(starr): unsure how to fix
+
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 

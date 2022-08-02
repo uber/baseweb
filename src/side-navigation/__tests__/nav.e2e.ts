@@ -22,7 +22,7 @@ test.describe('side navigation', () => {
         enabled: false,
       },
     ]);
-    // @ts-expect-error todo(starr): unsure how to fix
+
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 });
