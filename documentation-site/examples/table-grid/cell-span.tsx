@@ -37,7 +37,7 @@ export default function Example() {
         <StyledHeadCell>Name</StyledHeadCell>
         <StyledHeadCell>Date</StyledHeadCell>
         <StyledHeadCell>Event</StyledHeadCell>
-        {data.map(row => {
+        {data.map((row) => {
           return (
             <React.Fragment>
               <StyledBodyCell $gridRow={`span ${row[2].length}`}>

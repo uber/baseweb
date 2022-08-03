@@ -114,7 +114,7 @@ function TagsCell({tags}: {tags: Array<string>}) {
   const [css] = useStyletron();
   return (
     <div className={css({display: 'flex', alignItems: 'center'})}>
-      {tags.map(tag => {
+      {tags.map((tag) => {
         return (
           <Tag key={tag} closeable={false}>
             {tag}
@@ -158,7 +158,7 @@ export default function Example() {
       data={DATA}
     >
       <TableBuilderColumn<Row> header="Avatar">
-        {row => (
+        {(row) => (
           <AvatarCell
             src={row.avatarSrc}
             title={row.name}
@@ -168,21 +168,23 @@ export default function Example() {
       </TableBuilderColumn>
 
       <TableBuilderColumn<Row> header="Number positive">
-        {row => <NumberCell value={row.largeNumber} delta={0.51} />}
+        {(row) => (
+          <NumberCell value={row.largeNumber} delta={0.51} />
+        )}
       </TableBuilderColumn>
 
       <TableBuilderColumn<Row> header="Number negative">
-        {row => (
+        {(row) => (
           <NumberCell value={row.largeNumber} delta={-0.51} />
         )}
       </TableBuilderColumn>
 
       <TableBuilderColumn<Row> header="Tags">
-        {row => <TagsCell tags={row.list} />}
+        {(row) => <TagsCell tags={row.list} />}
       </TableBuilderColumn>
 
       <TableBuilderColumn<Row> header="Buttons">
-        {row => <ButtonsCell labels={row.list} />}
+        {(row) => <ButtonsCell labels={row.list} />}
       </TableBuilderColumn>
     </TableBuilder>
   );

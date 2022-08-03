@@ -28,10 +28,10 @@ export default function Example() {
   return (
     <TableBuilder data={DATA}>
       <TableBuilderColumn header="Produce">
-        {(row:Row) => <Link href={row.url}>{row.bar}</Link>}
+        {(row: Row) => <Link href={row.url}>{row.bar}</Link>}
       </TableBuilderColumn>
       <TableBuilderColumn header="Quantity" numeric>
-        {(row:Row) => row.foo}
+        {(row: Row) => row.foo}
       </TableBuilderColumn>
     </TableBuilder>
   );

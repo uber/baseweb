@@ -5,7 +5,7 @@ import * as Icons from 'baseui/icon/icon-exports';
 function makeImportStatement(key: string) {
   const path = key
     .split(/(?=[A-Z])/)
-    .map(word => word.toLowerCase())
+    .map((word) => word.toLowerCase())
     .join('-');
 
   return `import ${key} from 'baseui/icon/${path}'`;

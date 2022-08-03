@@ -9,9 +9,9 @@ export default function Example() {
   const [sortColumn, setSortColumn] = useState('bar');
   const [sortAsc, setSortAsc] = useState(true);
   type Row = {
-    foo: number,
-    bar: string,
-    url: string,
+    foo: number;
+    bar: string;
+    url: string;
   };
   const [data] = useState<Row[]>([
     {
@@ -47,7 +47,7 @@ export default function Example() {
 
   function handleSort(id: string) {
     if (id === sortColumn) {
-      setSortAsc(asc => !asc);
+      setSortAsc((asc) => !asc);
     } else {
       setSortColumn(id);
       setSortAsc(true);
