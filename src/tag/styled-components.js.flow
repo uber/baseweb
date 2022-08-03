@@ -5,7 +5,10 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
+
+// $FlowFixMe
 import tint from 'polished/lib/color/tint.js';
+// $FlowFixMe
 import shade from 'polished/lib/color/shade.js';
 
 import { styled, type ThemeT } from '../styles/index.js';
