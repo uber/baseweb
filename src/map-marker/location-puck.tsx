@@ -34,9 +34,11 @@ const ConsumerLocationPuckHeading = ({ heading }) => {
         width: `${11}px`,
         position: 'absolute',
         color: theme.colors.contentAccent,
-        transform: `rotate(${heading}deg) translateY(-16px)`,
         transition: `${theme.animation.timing300} ${theme.animation.easeOutCurve} all`,
       })}
+      style={{
+        transform: `rotate(${heading}deg) translateY(-16px)`,
+      }}
       width="11"
       height="6"
       viewBox="0 0 11 6"
@@ -93,8 +95,10 @@ const EarnerLocationPuckHeading = ({ size, color, heading }) => {
       className={css({
         position: 'absolute',
         transition: `${theme.animation.timing300} ${theme.animation.easeOutCurve} all`,
-        transform: `rotate(${heading}deg) scale(${EARNER_LOCATION_PUCK_CORE_SCALES[size]})`,
       })}
+      style={{
+        transform: `rotate(${heading}deg) scale(${EARNER_LOCATION_PUCK_CORE_SCALES[size]})`,
+      }}
       width="72"
       height="72"
       viewBox="0 0 72 72"
