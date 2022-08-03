@@ -10,7 +10,11 @@ import type { Font } from '../themes/types';
 
 export const StyledRoot = styled('div', {});
 
+StyledRoot.displayName = 'StyledRoot';
+
 export const StyledInputContainer = styled('div', {});
+
+StyledInputContainer.displayName = 'StyledInputContainer';
 
 export const StyledListBox = styled<
   'ul',
@@ -29,6 +33,8 @@ export const StyledListBox = styled<
     width: $width,
   };
 });
+
+StyledListBox.displayName = 'StyledListBox';
 
 function buildStylesForSize(
   size,
@@ -91,3 +97,4 @@ export const StyledListItem = styled<
     },
   };
 });
+StyledListItem.displayName = 'StyledListItem';

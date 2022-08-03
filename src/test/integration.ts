@@ -9,7 +9,7 @@ import type { ElementHandle, Page } from '@playwright/test';
 import { expect } from '@playwright/test';
 
 import axeCore from 'axe-core';
-import type { AxeResults, Rule, RunOptions } from 'axe-core';
+import type { AxeResults, Rule } from 'axe-core';
 import queryString from 'query-string';
 import { printReceived } from 'jest-matcher-utils';
 import { resolve } from 'path';
@@ -107,11 +107,6 @@ export function isSameNode(page: Page, a: ElementHandle, b: ElementHandle) {
   return page.evaluate(({ a, b }) => a === b, { a, b });
 }
 
-const defaultOptions = {
-  violationsThreshold: 0,
-  incompleteThreshold: 0,
-};
-
 const printInvalidNode = (node) =>
   `- ${printReceived(node.html)}\n\t${node.any.map((check) => check.message).join('\n\t')}`;
 
@@ -122,29 +117,19 @@ const printInvalidRule = (rule) =>
 
 // Add a new method to expect assertions with a very detailed error report
 expect.extend({
-  toHaveNoAccessibilityIssues(accessibilityReport: AxeResults, options?: RunOptions) {
-    let violations = [];
-    let incomplete = [];
-    const finalOptions = Object.assign({}, defaultOptions, options);
+  toHaveNoAccessibilityIssues(accessibilityReport: AxeResults) {
+    const messages = [];
 
-    if (accessibilityReport.violations.length > finalOptions.violationsThreshold) {
-      violations = [
-        `Expected to have no more than ${finalOptions.violationsThreshold} violations. Detected ${accessibilityReport.violations.length} violations:\n`,
-      ].concat(accessibilityReport.violations.map(printInvalidRule));
+    for (const violation of accessibilityReport.violations) {
+      messages.push(printInvalidRule(violation));
     }
-    if (accessibilityReport.incomplete.length > finalOptions.incompleteThreshold) {
-      incomplete = [
-        `Expected to have no more than ${finalOptions.incompleteThreshold} incomplete. Detected ${accessibilityReport.incomplete.length} incomplete:\n`,
-      ].concat(accessibilityReport.incomplete.map(printInvalidRule));
+    for (const incomplete of accessibilityReport.incomplete) {
+      messages.push(printInvalidRule(incomplete));
     }
-    const message = [].concat(violations, incomplete).join('\n');
-    const pass =
-      accessibilityReport.violations.length <= finalOptions.violationsThreshold &&
-      accessibilityReport.incomplete.length <= finalOptions.incompleteThreshold;
 
     return {
-      pass,
-      message: () => message,
+      pass: messages.length === 0,
+      message: () => messages.join('\n'),
     };
   },
 });

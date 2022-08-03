@@ -14,6 +14,8 @@ export const StyledRoot = styled('nav', ({ $theme }) => {
   };
 });
 
+StyledRoot.displayName = 'StyledRoot';
+
 export const StyledList = styled('ol', ({ $theme }) => {
   return {
     listStyleType: 'none',
@@ -23,12 +25,16 @@ export const StyledList = styled('ol', ({ $theme }) => {
   };
 });
 
+StyledList.displayName = 'StyledList';
+
 export const StyledListItem = styled('li', ({ $theme }) => {
   return {
     display: 'inline-block',
     ...$theme.typography.font350,
   };
 });
+
+StyledListItem.displayName = 'StyledListItem';
 
 export const StyledSeparator = styled('div', ({ $theme }) => {
   return {
@@ -39,3 +45,4 @@ export const StyledSeparator = styled('div', ({ $theme }) => {
     verticalAlign: 'middle',
   };
 });
+StyledSeparator.displayName = 'StyledSeparator';

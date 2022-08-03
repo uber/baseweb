@@ -17,6 +17,8 @@ export const Root = styled<'div', SharedStylePropsArg>('div', (props) => {
   };
 });
 
+Root.displayName = 'Root';
+
 export const Tab = styled<'div', SharedStylePropsArg>('div', (props) => {
   const {
     $disabled,
@@ -58,6 +60,8 @@ export const Tab = styled<'div', SharedStylePropsArg>('div', (props) => {
   return style;
 });
 
+Tab.displayName = 'Tab';
+
 export const TabBar = styled<'div', SharedStylePropsArg>('div', (props) => {
   const {
     $orientation,
@@ -71,6 +75,8 @@ export const TabBar = styled<'div', SharedStylePropsArg>('div', (props) => {
     backgroundColor: colors.tabBarFill,
   };
 });
+
+TabBar.displayName = 'TabBar';
 
 export const TabContent = styled<'div', SharedStylePropsArg>('div', (props) => {
   const {
@@ -86,3 +92,4 @@ export const TabContent = styled<'div', SharedStylePropsArg>('div', (props) => {
     paddingBottom: sizing.scale500,
   };
 });
+TabContent.displayName = 'TabContent';

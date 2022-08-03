@@ -24,7 +24,7 @@ test.describe('snackbar', () => {
   test('passes basic a11y tests', async ({ page }) => {
     await mount(page, 'snackbar--provider');
     const accessibilityReport = await analyzeAccessibility(page);
-    // @ts-expect-error todo(starr): unsure how to fix
+
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 

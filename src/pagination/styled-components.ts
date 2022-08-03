@@ -13,6 +13,8 @@ export const StyledRoot = styled('div', ({ $theme }) => ({
   ...$theme.typography.font350,
 }));
 
+StyledRoot.displayName = 'StyledRoot';
+
 export const StyledMaxLabel = styled('span', ({ $theme }) => {
   const marginStartDir: string = $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
   const marginEndDir: string = $theme.direction === 'rtl' ? 'marginLeft' : 'marginRight';
@@ -21,6 +23,8 @@ export const StyledMaxLabel = styled('span', ({ $theme }) => {
     [marginEndDir]: $theme.sizing.scale600,
   };
 });
+
+StyledMaxLabel.displayName = 'StyledMaxLabel';
 
 export const StyledDropdownContainer = styled<
   'div',
@@ -38,3 +42,4 @@ export const StyledDropdownContainer = styled<
     [marginEndDir]: $theme.sizing.scale300,
   };
 });
+StyledDropdownContainer.displayName = 'StyledDropdownContainer';

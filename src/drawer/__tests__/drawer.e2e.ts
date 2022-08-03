@@ -50,7 +50,7 @@ test.describe('drawer', () => {
 
     // drawer should be accessible
     const accessibilityReport = await analyzeAccessibility(page);
-    // @ts-expect-error todo(starr): unsure how to fix
+
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
 
     // close again

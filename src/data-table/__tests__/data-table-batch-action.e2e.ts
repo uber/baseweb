@@ -37,7 +37,7 @@ test.describe('data-table batch-actions', () => {
     const accessibilityReport = await analyzeAccessibility(page, [
       { id: 'aria-hidden-focus', enabled: false },
     ]);
-    // @ts-expect-error todo(starr): unsure how to fix
+
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 

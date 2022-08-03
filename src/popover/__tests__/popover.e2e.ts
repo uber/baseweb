@@ -24,7 +24,7 @@ test.describe('popover', () => {
     await mount(page, 'popover--popover');
     await page.waitForSelector(selectors.tooltip);
     const accessibilityReport = await analyzeAccessibility(page);
-    // @ts-expect-error todo(starr): unsure how to fix
+
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 

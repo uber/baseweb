@@ -24,6 +24,8 @@ const StyledTableElement = styled('div', ({ $theme }) => {
   };
 });
 
+StyledTableElement.displayName = 'StyledTableElement';
+
 export const StyledTable = withWrapper(
   StyledTableElement,
   (StyledComponent) =>
@@ -46,6 +48,8 @@ const StyledHeadElement = styled<'div', HorizontalStyleProps>('div', ({ $theme, 
     width: $width ? $width : '100%',
   };
 });
+
+StyledHeadElement.displayName = 'StyledHeadElement';
 
 export const StyledHead = withWrapper(
   StyledHeadElement,
@@ -78,6 +82,8 @@ const StyledHeadCellElement = styled<'div', HorizontalStyleProps>('div', ({ $the
   };
 });
 
+StyledHeadCellElement.displayName = 'StyledHeadCellElement';
+
 export const StyledHeadCell = withWrapper(
   StyledHeadCellElement,
   (StyledComponent) =>
@@ -107,6 +113,8 @@ export const StyledSortableLabel = styled('button', ({ $theme }) => {
   };
 });
 
+StyledSortableLabel.displayName = 'StyledSortableLabel';
+
 const StyledBodyElement = styled<'div', HorizontalStyleProps>('div', ({ $width }): StyleObject => {
   return {
     width: $width ? $width : '100%',
@@ -116,6 +124,8 @@ const StyledBodyElement = styled<'div', HorizontalStyleProps>('div', ({ $width }
     flex: 1,
   };
 });
+
+StyledBodyElement.displayName = 'StyledBodyElement';
 
 export const StyledBody = withWrapper(
   StyledBodyElement,
@@ -129,6 +139,8 @@ const StyledRowElement = styled('div', {
   display: 'flex',
   alignItems: 'center',
 });
+
+StyledRowElement.displayName = 'StyledRowElement';
 
 export const StyledRow = withWrapper(
   StyledRowElement,
@@ -155,6 +167,8 @@ const StyledCellElement = styled<'div', CellStyledProps>('div', ({ $theme, $stri
     paddingLeft: $theme.sizing.scale600,
   };
 });
+
+StyledCellElement.displayName = 'StyledCellElement';
 
 export const StyledCell = withWrapper(
   StyledCellElement,
@@ -209,6 +223,8 @@ export const StyledFilterButton = styled<
   };
 });
 
+StyledFilterButton.displayName = 'StyledFilterButton';
+
 export const StyledFilterContent = styled('div', ({ $theme }) => ({
   ...expandBorderStyles($theme.borders.border300),
   backgroundColor: $theme.colors.tableFilterBackground,
@@ -220,6 +236,8 @@ export const StyledFilterContent = styled('div', ({ $theme }) => ({
   overflow: 'auto',
 }));
 
+StyledFilterContent.displayName = 'StyledFilterContent';
+
 export const StyledFilterHeading = styled('div', ({ $theme }) => ({
   ...$theme.typography.font250,
   color: $theme.colors.tableFilterHeading,
@@ -228,6 +246,8 @@ export const StyledFilterHeading = styled('div', ({ $theme }) => ({
   paddingBottom: $theme.sizing.scale500,
   paddingLeft: $theme.sizing.scale600,
 }));
+
+StyledFilterHeading.displayName = 'StyledFilterHeading';
 
 export const StyledFilterFooter = styled('div', ({ $theme }) => ({
   backgroundColor: $theme.colors.tableFilterFooterBackground,
@@ -239,6 +259,8 @@ export const StyledFilterFooter = styled('div', ({ $theme }) => ({
   justifyContent: 'space-between',
   minWidth: '216px',
 }));
+
+StyledFilterFooter.displayName = 'StyledFilterFooter';
 
 export const StyledAction = styled('button', ({ $theme }) => {
   return {
@@ -259,3 +281,4 @@ export const StyledAction = styled('button', ({ $theme }) => {
     },
   };
 });
+StyledAction.displayName = 'StyledAction';

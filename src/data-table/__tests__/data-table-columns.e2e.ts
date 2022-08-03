@@ -23,7 +23,7 @@ test.describe('data table columns', () => {
     const accessibilityReport = await analyzeAccessibility(page, [
       { id: 'aria-hidden-focus', enabled: false },
     ]);
-    // @ts-expect-error todo(starr): unsure how to fix
+
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 

@@ -17,3 +17,11 @@ declare module '*.png' {
   const url: string;
   export default url;
 }
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+namespace PlaywrightTest {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  interface Matchers<R> {
+    toHaveNoAccessibilityIssues(): R;
+  }
+}

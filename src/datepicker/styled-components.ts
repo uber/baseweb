@@ -27,20 +27,28 @@ export const StyledInputWrapper = styled<
   };
 });
 
+StyledInputWrapper.displayName = 'StyledInputWrapper';
+
 export const StyledInputLabel = styled('div', ({ $theme }) => ({
   ...$theme.typography.LabelMedium,
   marginBottom: $theme.sizing.scale300,
 }));
+
+StyledInputLabel.displayName = 'StyledInputLabel';
 
 export const StyledStartDate = styled('div', ({ $theme }) => ({
   width: '100%',
   marginRight: $theme.sizing.scale300,
 }));
 
+StyledStartDate.displayName = 'StyledStartDate';
+
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const StyledEndDate = styled('div', ({ $theme }) => ({
   width: '100%',
 }));
+
+StyledEndDate.displayName = 'StyledEndDate';
 
 /**
  * Main component container element
@@ -62,6 +70,8 @@ export const StyledRoot = styled<'div', SharedStyleProps>('div', (props) => {
   };
 });
 
+StyledRoot.displayName = 'StyledRoot';
+
 export const StyledMonthContainer = styled<
   'div',
   {
@@ -74,6 +84,8 @@ export const StyledMonthContainer = styled<
     flexDirection: $orientation === ORIENTATION.vertical ? 'column' : 'row',
   };
 });
+
+StyledMonthContainer.displayName = 'StyledMonthContainer';
 
 export const StyledCalendarContainer = styled<'div', SharedStyleProps>('div', (props) => {
   const {
@@ -88,6 +100,8 @@ export const StyledCalendarContainer = styled<'div', SharedStyleProps>('div', (p
   };
 });
 
+StyledCalendarContainer.displayName = 'StyledCalendarContainer';
+
 export const StyledSelectorContainer = styled<'div', SharedStyleProps>('div', ({ $theme }) => {
   const textAlign = $theme.direction === 'rtl' ? 'right' : 'left';
   return {
@@ -97,6 +111,8 @@ export const StyledSelectorContainer = styled<'div', SharedStyleProps>('div', ({
     textAlign,
   };
 });
+
+StyledSelectorContainer.displayName = 'StyledSelectorContainer';
 
 export const StyledCalendarHeader = styled<'div', SharedStyleProps>('div', (props) => {
   const {
@@ -124,6 +140,8 @@ export const StyledCalendarHeader = styled<'div', SharedStyleProps>('div', (prop
   };
 });
 
+StyledCalendarHeader.displayName = 'StyledCalendarHeader';
+
 export const StyledMonthHeader = styled<'div', SharedStyleProps>('div', (props) => {
   return {
     color: props.$theme.colors.calendarHeaderForeground,
@@ -131,6 +149,8 @@ export const StyledMonthHeader = styled<'div', SharedStyleProps>('div', (props) 
     whiteSpace: 'nowrap',
   };
 });
+
+StyledMonthHeader.displayName = 'StyledMonthHeader';
 
 export const StyledMonthYearSelectButton = styled<'button', SharedStyleProps>('button', (props) => {
   const {
@@ -156,6 +176,8 @@ export const StyledMonthYearSelectButton = styled<'button', SharedStyleProps>('b
   };
 });
 
+StyledMonthYearSelectButton.displayName = 'StyledMonthYearSelectButton';
+
 export const StyledMonthYearSelectIconContainer = styled('span', (props) => {
   const marginDirection: string = props.$theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
   return {
@@ -164,6 +186,8 @@ export const StyledMonthYearSelectIconContainer = styled('span', (props) => {
     [marginDirection]: props.$theme.sizing.scale500,
   };
 });
+
+StyledMonthYearSelectIconContainer.displayName = 'StyledMonthYearSelectIconContainer';
 
 function getArrowBtnStyle({ $theme, $disabled, $isFocusVisible }): StyleObject {
   return {
@@ -195,7 +219,11 @@ function getArrowBtnStyle({ $theme, $disabled, $isFocusVisible }): StyleObject {
 
 export const StyledPrevButton = styled<'button', SharedStyleProps>('button', getArrowBtnStyle);
 
+StyledPrevButton.displayName = 'StyledPrevButton';
+
 export const StyledNextButton = styled<'button', SharedStyleProps>('button', getArrowBtnStyle);
+
+StyledNextButton.displayName = 'StyledNextButton';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const StyledMonth = styled<'div', SharedStyleProps>('div', (props: SharedStyleProps) => {
@@ -203,6 +231,8 @@ export const StyledMonth = styled<'div', SharedStyleProps>('div', (props: Shared
     display: 'inline-block',
   };
 });
+
+StyledMonth.displayName = 'StyledMonth';
 
 export const StyledWeek = styled<'div', SharedStyleProps>('div', (props) => {
   const {
@@ -214,6 +244,8 @@ export const StyledWeek = styled<'div', SharedStyleProps>('div', (props) => {
     marginBottom: sizing.scale0,
   };
 });
+
+StyledWeek.displayName = 'StyledWeek';
 
 function generateDayStyles(defaultCode: string, defaultStyle) {
   const codeForSM = defaultCode.substr(0, 12) + '1' + defaultCode.substr(12 + 1);
@@ -557,6 +589,8 @@ export const StyledDay = styled<'div', SharedStyleProps>('div', (props) => {
   };
 });
 
+StyledDay.displayName = 'StyledDay';
+
 export const StyledDayLabel = styled<'div', SharedStyleProps>('div', (props) => {
   const {
     $theme: { typography, colors },
@@ -567,6 +601,8 @@ export const StyledDayLabel = styled<'div', SharedStyleProps>('div', (props) => 
     color: $selected ? colors.contentInverseTertiary : colors.contentTertiary,
   };
 });
+
+StyledDayLabel.displayName = 'StyledDayLabel';
 
 export const StyledWeekdayHeader = styled<'div', SharedStyleProps>('div', (props) => {
   const {
@@ -596,3 +632,4 @@ export const StyledWeekdayHeader = styled<'div', SharedStyleProps>('div', (props
     backgroundColor: 'transparent',
   };
 });
+StyledWeekdayHeader.displayName = 'StyledWeekdayHeader';

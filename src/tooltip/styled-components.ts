@@ -34,6 +34,8 @@ export const Body = styled<'div', SharedStylePropsArg>('div', (props) => ({
   transform: getEndPosition(props.$popoverOffset),
 }));
 
+Body.displayName = 'Body';
+
 export const Inner = styled<'div', SharedStylePropsArg>('div', (props) => ({
   ...getInnerStyles(props),
   backgroundColor: props.$theme.colors.tooltipBackground,
@@ -49,7 +51,10 @@ export const Inner = styled<'div', SharedStylePropsArg>('div', (props) => ({
   color: props.$theme.colors.tooltipText,
 }));
 
+Inner.displayName = 'Inner';
+
 export const Arrow = styled<'div', SharedStylePropsArg>('div', (props) => ({
   ...getArrowStyles(props),
   backgroundColor: props.$theme.colors.tooltipBackground,
 }));
+Arrow.displayName = 'Arrow';

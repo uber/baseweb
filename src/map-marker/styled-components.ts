@@ -48,6 +48,8 @@ export const StyledDragShadowContainer = styled<
   boxShadow: $theme.lighting.shadow600,
 }));
 
+StyledDragShadowContainer.displayName = 'StyledDragShadowContainer';
+
 export const StyledDragShadow = styled<
   'div',
   {
@@ -64,6 +66,8 @@ export const StyledDragShadow = styled<
   bottom: 0,
 }));
 
+StyledDragShadow.displayName = 'StyledDragShadow';
+
 export const StyledNeedle = styled<
   'div',
   {
@@ -77,6 +81,8 @@ export const StyledNeedle = styled<
   boxShadow: $theme.lighting.shadow600,
 }));
 
+StyledNeedle.displayName = 'StyledNeedle';
+
 export const StyledFloatingMarkerRoot = styled<
   'div',
   {
@@ -87,6 +93,8 @@ export const StyledFloatingMarkerRoot = styled<
   height: `${$size}px`,
   width: `${$size}px`,
 }));
+
+StyledFloatingMarkerRoot.displayName = 'StyledFloatingMarkerRoot';
 
 export const StyledFloatingMarkerPinHeadContainer = styled<
   'div',
@@ -100,15 +108,21 @@ export const StyledFloatingMarkerPinHeadContainer = styled<
   transform: getAnchorTransform($anchor, $anchorSize),
 }));
 
+StyledFloatingMarkerPinHeadContainer.displayName = 'StyledFloatingMarkerPinHeadContainer';
+
 export const StyledFloatingMarkerAnchorContainer = styled('div', () => ({
   position: 'absolute',
 }));
+
+StyledFloatingMarkerAnchorContainer.displayName = 'StyledFloatingMarkerAnchorContainer';
 
 export const StyledFixedMarkerRoot = styled('div', () => ({
   display: 'flex',
   alignItems: 'center',
   flexDirection: 'column',
 }));
+
+StyledFixedMarkerRoot.displayName = 'StyledFixedMarkerRoot';
 
 export const StyledFixedMarkerDragContainer = styled<
   'div',
@@ -125,6 +139,8 @@ export const StyledFixedMarkerDragContainer = styled<
     flexDirection: 'column',
   };
 });
+
+StyledFixedMarkerDragContainer.displayName = 'StyledFixedMarkerDragContainer';
 
 export const StyledOuterXXSmallAnchor = styled<
   'div',
@@ -144,6 +160,8 @@ export const StyledOuterXXSmallAnchor = styled<
   boxShadow: $theme.lighting.shadow600,
 }));
 
+StyledOuterXXSmallAnchor.displayName = 'StyledOuterXXSmallAnchor';
+
 export const StyledInnerXXSmallAnchor = styled<
   'div',
   {
@@ -157,6 +175,8 @@ export const StyledInnerXXSmallAnchor = styled<
   width: `${$size}px`,
   borderRadius: $round ? '50%' : 0,
 }));
+
+StyledInnerXXSmallAnchor.displayName = 'StyledInnerXXSmallAnchor';
 
 export const StyledOuterXSmallAnchor = styled<
   'div',
@@ -176,6 +196,8 @@ export const StyledOuterXSmallAnchor = styled<
   boxShadow: $theme.lighting.shadow600,
 }));
 
+StyledOuterXSmallAnchor.displayName = 'StyledOuterXSmallAnchor';
+
 export const StyledInnerXSmallAnchor = styled<
   'div',
   {
@@ -189,6 +211,8 @@ export const StyledInnerXSmallAnchor = styled<
   width: `${$size}px`,
   borderRadius: $round ? '50%' : 0,
 }));
+
+StyledInnerXSmallAnchor.displayName = 'StyledInnerXSmallAnchor';
 
 export const StyledPinHead = styled<
   'div',
@@ -227,6 +251,8 @@ export const StyledPinHead = styled<
     }),
   };
 });
+
+StyledPinHead.displayName = 'StyledPinHead';
 
 export const StyledStrokedLabelContainer = styled<
   'div',
@@ -277,6 +303,8 @@ export const StyledStrokedLabelContainer = styled<
   };
 });
 
+StyledStrokedLabelContainer.displayName = 'StyledStrokedLabelContainer';
+
 export const StyledStrokedLabel = styled<
   'div',
   {
@@ -309,6 +337,8 @@ export const StyledStrokedLabel = styled<
   };
 });
 
+StyledStrokedLabel.displayName = 'StyledStrokedLabel';
+
 export const StyledBadgeEnhancerRoot = styled<
   'div',
   {
@@ -331,11 +361,15 @@ export const StyledBadgeEnhancerRoot = styled<
   };
 });
 
+StyledBadgeEnhancerRoot.displayName = 'StyledBadgeEnhancerRoot';
+
 export const RelativeContainer = styled('div', () => {
   return {
     position: 'relative',
   };
 });
+
+RelativeContainer.displayName = 'RelativeContainer';
 
 export const StyledContentItem = styled<
   'div',
@@ -356,6 +390,8 @@ export const StyledContentItem = styled<
   };
 });
 
+StyledContentItem.displayName = 'StyledContentItem';
+
 export const LocationPuckContainer = styled<'div', {}>('div', () => {
   return {
     position: 'relative',
@@ -364,6 +400,8 @@ export const LocationPuckContainer = styled<'div', {}>('div', () => {
     justifyContent: 'center',
   };
 });
+
+LocationPuckContainer.displayName = 'LocationPuckContainer';
 
 export const consumerLocationShadow = { boxShadow: `0px 2px 4px 0px rgba(67, 76, 123, 0.2)` };
 export const earnerLocationShadow = { boxShadow: `0px 3px 5px 0px rgba(67, 76, 123, 0.4)` };
@@ -397,6 +435,8 @@ export const StyledLocationPuckApproximation = styled<
   };
 });
 
+StyledLocationPuckApproximation.displayName = 'StyledLocationPuckApproximation';
+
 export const StyledEarnerLocationPuckCore = styled<
   'div',
   {
@@ -417,3 +457,5 @@ export const StyledEarnerLocationPuckCore = styled<
     boxSizing: 'border-box',
   };
 });
+
+StyledEarnerLocationPuckCore.displayName = 'StyledEarnerLocationPuckCore';

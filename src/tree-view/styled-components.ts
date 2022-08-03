@@ -32,6 +32,8 @@ export const StyledTreeItemList = styled<
   };
 });
 
+StyledTreeItemList.displayName = 'StyledTreeItemList';
+
 export const StyledTreeItem = styled<
   'li',
   {
@@ -54,6 +56,8 @@ export const StyledTreeItem = styled<
     outline: 'none',
   };
 });
+
+StyledTreeItem.displayName = 'StyledTreeItem';
 
 export const StyledItemContent = styled<
   'div',
@@ -84,6 +88,8 @@ export const StyledItemContent = styled<
   };
 });
 
+StyledItemContent.displayName = 'StyledItemContent';
+
 export const StyledIconContainer = styled('div', ({ $theme }) => {
   const marginDirection: string = $theme.direction === 'rtl' ? 'marginLeft' : 'marginRight';
   return {
@@ -95,6 +101,8 @@ export const StyledIconContainer = styled('div', ({ $theme }) => {
     [marginDirection]: $theme.sizing.scale200,
   };
 });
+
+StyledIconContainer.displayName = 'StyledIconContainer';
 
 export const StyledNoIconContainer = styled('div', ({ $theme }) => {
   const marginDirection: string = $theme.direction === 'rtl' ? 'marginLeft' : 'marginRight';
@@ -110,6 +118,9 @@ export const StyledNoIconContainer = styled('div', ({ $theme }) => {
   };
 });
 
+StyledNoIconContainer.displayName = 'StyledNoIconContainer';
+
 export const StyledLabelInteractable = styled('div', () => ({
   width: '100%',
 }));
+StyledLabelInteractable.displayName = 'StyledLabelInteractable';

@@ -55,3 +55,4 @@ export const Link = styled<
     },
   };
 });
+Link.displayName = 'Link';

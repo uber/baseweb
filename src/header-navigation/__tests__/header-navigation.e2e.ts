@@ -12,7 +12,7 @@ test.describe('header-navigation', () => {
   test(`passes basic a11y tests`, async ({ page }) => {
     await mount(page, 'header-navigation--header-navigation');
     const accessibilityReport = await analyzeAccessibility(page);
-    // @ts-expect-error todo(starr): unsure how to fix
+
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 });

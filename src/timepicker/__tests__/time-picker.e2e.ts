@@ -29,7 +29,7 @@ test.describe('TimePicker', () => {
     await mount(page, 'timepicker--time-picker');
     await page.waitForSelector(selectors.twelveHour);
     const accessibilityReport = await analyzeAccessibility(page);
-    // @ts-expect-error todo(starr): unsure how to fix
+
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 

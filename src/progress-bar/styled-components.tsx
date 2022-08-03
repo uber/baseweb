@@ -26,6 +26,8 @@ export const StyledRoot = styled<'div', StyleProps>('div', (props) => {
   };
 });
 
+StyledRoot.displayName = 'StyledRoot';
+
 export const StyledBarContainer = styled<'div', StyleProps>('div', (props) => {
   const { $theme } = props;
   const { sizing } = $theme;
@@ -37,6 +39,8 @@ export const StyledBarContainer = styled<'div', StyleProps>('div', (props) => {
     marginBottom: sizing.scale500,
   };
 });
+
+StyledBarContainer.displayName = 'StyledBarContainer';
 
 export const StyledBar = styled<'div', StyleProps>('div', (props) => {
   const { $theme, $size, $steps } = props;
@@ -61,6 +65,8 @@ export const StyledBar = styled<'div', StyleProps>('div', (props) => {
         }),
   };
 });
+
+StyledBar.displayName = 'StyledBar';
 
 export const StyledBarProgress = styled<'div', StyleProps>('div', (props) => {
   const { $theme, $value, $successValue, $steps, $index, $maxValue, $minValue = 0 } = props;
@@ -135,6 +141,8 @@ export const StyledBarProgress = styled<'div', StyleProps>('div', (props) => {
   };
 });
 
+StyledBarProgress.displayName = 'StyledBarProgress';
+
 export const StyledInfiniteBar = styled<
   'div',
   {
@@ -206,6 +214,8 @@ export const StyledInfiniteBar = styled<
   };
 });
 
+StyledInfiniteBar.displayName = 'StyledInfiniteBar';
+
 export const StyledLabel = styled<'div', StyleProps>('div', (props) => {
   return {
     textAlign: 'center',
@@ -213,6 +223,8 @@ export const StyledLabel = styled<'div', StyleProps>('div', (props) => {
     color: props.$theme.colors.contentTertiary,
   };
 });
+
+StyledLabel.displayName = 'StyledLabel';
 
 const PROGRESS_BAR_ROUNDED_SIZES = {
   [SIZE.large]: {
@@ -255,6 +267,8 @@ export const StyledProgressBarRoundedRoot = styled<
   };
 });
 
+StyledProgressBarRoundedRoot.displayName = 'StyledProgressBarRoundedRoot';
+
 const _StyledProgressBarRoundedSvg = styled<
   'svg',
   {
@@ -268,6 +282,8 @@ const _StyledProgressBarRoundedSvg = styled<
     fill: 'none',
   };
 });
+
+_StyledProgressBarRoundedSvg.displayName = '_StyledProgressBarRoundedSvg';
 
 export const StyledProgressBarRoundedSvg = withWrapper(
   _StyledProgressBarRoundedSvg,
@@ -297,6 +313,8 @@ const _StyledProgressBarRoundedTrackBackground = styled<
   };
 });
 
+_StyledProgressBarRoundedTrackBackground.displayName = '_StyledProgressBarRoundedTrackBackground';
+
 export const StyledProgressBarRoundedTrackBackground = withWrapper(
   _StyledProgressBarRoundedTrackBackground,
   (Styled) =>
@@ -323,6 +341,8 @@ const _StyledProgressBarRoundedTrackForeground = styled<
   };
 });
 
+_StyledProgressBarRoundedTrackForeground.displayName = '_StyledProgressBarRoundedTrackForeground';
+
 export const StyledProgressBarRoundedTrackForeground = withWrapper(
   _StyledProgressBarRoundedTrackForeground,
   (Styled) =>
@@ -342,3 +362,4 @@ export const StyledProgressBarRoundedText = styled<
     ...$theme.typography[PROGRESS_BAR_ROUNDED_SIZES[$size].typography],
   };
 });
+StyledProgressBarRoundedText.displayName = 'StyledProgressBarRoundedText';

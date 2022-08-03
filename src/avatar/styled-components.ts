@@ -31,6 +31,8 @@ export const Avatar = styled<'img', AvatarStyleProps>('img', (props) => {
   };
 });
 
+Avatar.displayName = 'Avatar';
+
 export const Initials = styled<'div', InitialsStyleProps>('div', (props) => ({
   ...props.$theme.typography.font300,
   color: props.$theme.colors.mono100,
@@ -39,6 +41,8 @@ export const Initials = styled<'div', InitialsStyleProps>('div', (props) => ({
   justifyContent: 'center',
   height: '100%',
 }));
+
+Initials.displayName = 'Initials';
 
 export const Root = styled<'div', RootStyleProps>('div', (props) => {
   const { $didImageFailToLoad } = props;
@@ -59,3 +63,4 @@ export const Root = styled<'div', RootStyleProps>('div', (props) => {
     width: $didImageFailToLoad ? themedSize : null,
   };
 });
+Root.displayName = 'Root';

@@ -119,6 +119,8 @@ export const Root = styled<'label', SharedStyleProps>('label', (props) => {
   };
 });
 
+Root.displayName = 'Root';
+
 export const Checkmark = styled<'span', SharedStyleProps>('span', (props) => {
   const { $checked, $disabled, $error, $isIndeterminate, $theme, $isFocusVisible } = props;
   const { sizing, animation } = $theme;
@@ -189,6 +191,8 @@ export const Checkmark = styled<'span', SharedStyleProps>('span', (props) => {
   };
 });
 
+Checkmark.displayName = 'Checkmark';
+
 export const Label = styled<'div', SharedStyleProps>('div', (props) => {
   const { $theme } = props;
   const { typography } = $theme;
@@ -201,6 +205,8 @@ export const Label = styled<'div', SharedStyleProps>('div', (props) => {
   };
 });
 
+Label.displayName = 'Label';
+
 // tricky style for focus event cause display: none doesn't work
 export const Input = styled('input', {
   opacity: 0,
@@ -211,6 +217,8 @@ export const Input = styled('input', {
   padding: 0,
   position: 'absolute',
 });
+
+Input.displayName = 'Input';
 
 export const Toggle = styled<'div', SharedStyleProps>('div', (props) => {
   let backgroundColor = props.$theme.colors.toggleFill;
@@ -243,6 +251,8 @@ export const Toggle = styled<'div', SharedStyleProps>('div', (props) => {
   };
 });
 
+Toggle.displayName = 'Toggle';
+
 export const ToggleTrack = styled<'div', SharedStyleProps>('div', (props) => {
   let backgroundColor = props.$theme.colors.toggleTrackFill;
   if (props.$disabled) {
@@ -266,3 +276,4 @@ export const ToggleTrack = styled<'div', SharedStyleProps>('div', (props) => {
     width: props.$theme.sizing.scale1000,
   };
 });
+ToggleTrack.displayName = 'ToggleTrack';

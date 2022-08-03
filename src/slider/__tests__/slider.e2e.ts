@@ -19,9 +19,6 @@ test.describe('slider', () => {
         enabled: false,
       },
     ]);
-    // @ts-expect-error todo(starr): unsure how to fix
-    expect(accessibilityReport).toHaveNoAccessibilityIssues({
-      knownViolations: ['aria-input-field-name'],
-    });
+    expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 });

@@ -23,6 +23,8 @@ type HeightStyleProps = {
 // The root element of the PhoneInputNext
 export const StyledPhoneInputRoot = styled('div', { display: 'flex' });
 
+StyledPhoneInputRoot.displayName = 'StyledPhoneInputRoot';
+
 export const StyledFlagContainer = styled<'span', SizeStyleProps>(
   'span',
   ({ $size = SIZE.default, $theme: { sizing } }) => {
@@ -37,6 +39,8 @@ export const StyledFlagContainer = styled<'span', SizeStyleProps>(
     };
   }
 );
+
+StyledFlagContainer.displayName = 'StyledFlagContainer';
 
 // An override component for the Select's Root styled element
 export const StyledRoot = withStyle<typeof SelectStyledRoot, SizeStyleProps>(
@@ -57,6 +61,8 @@ export const StyledRoot = withStyle<typeof SelectStyledRoot, SizeStyleProps>(
   }
 );
 
+StyledRoot.displayName = 'StyledRoot';
+
 export const StyledDialCode = styled('div', ({ $theme: { direction, sizing } }) => {
   const marginDir: string = direction === 'rtl' ? 'marginRight' : 'marginLeft';
   return {
@@ -66,10 +72,14 @@ export const StyledDialCode = styled('div', ({ $theme: { direction, sizing } }) 
   };
 });
 
+StyledDialCode.displayName = 'StyledDialCode';
+
 export const StyledCountrySelectContainer = styled('div', {
   display: 'flex',
   alignItems: 'center',
 });
+
+StyledCountrySelectContainer.displayName = 'StyledCountrySelectContainer';
 
 export const StyledCountrySelectDropdownContainer = withStyle<typeof StyledList, HeightStyleProps>(
   StyledList,
@@ -83,6 +93,8 @@ export const StyledCountrySelectDropdownContainer = withStyle<typeof StyledList,
   }
 );
 
+StyledCountrySelectDropdownContainer.displayName = 'StyledCountrySelectDropdownContainer';
+
 export const StyledCountrySelectDropdownListItemElement = withStyle<typeof StyledDropdownListItem>(
   StyledDropdownListItem,
   {
@@ -95,6 +107,9 @@ export const StyledCountrySelectDropdownListItemElement = withStyle<typeof Style
     height: '42px',
   }
 );
+
+StyledCountrySelectDropdownListItemElement.displayName =
+  'StyledCountrySelectDropdownListItemElement';
 
 export const StyledCountrySelectDropdownListItem = withWrapper<
   typeof StyledCountrySelectDropdownListItemElement,
@@ -120,6 +135,8 @@ export const StyledCountrySelectDropdownFlagColumn = styled(
   }
 );
 
+StyledCountrySelectDropdownFlagColumn.displayName = 'StyledCountrySelectDropdownFlagColumn';
+
 export const StyledCountrySelectDropdownNameColumn = styled(
   'div',
   ({ $theme: { direction, sizing } }) => {
@@ -129,6 +146,8 @@ export const StyledCountrySelectDropdownNameColumn = styled(
     };
   }
 );
+
+StyledCountrySelectDropdownNameColumn.displayName = 'StyledCountrySelectDropdownNameColumn';
 
 export const StyledCountrySelectDropdownDialcodeColumn = styled(
   'div',
@@ -141,3 +160,4 @@ export const StyledCountrySelectDropdownDialcodeColumn = styled(
     };
   }
 );
+StyledCountrySelectDropdownDialcodeColumn.displayName = 'StyledCountrySelectDropdownDialcodeColumn';
