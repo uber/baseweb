@@ -15,6 +15,7 @@ import deliveryLargeStrawberriesSvg from './images/deliveryLargeStrawberries.svg
 import deliveryLargeStrawberriesPng from './images/deliveryLargeStrawberries@3x.png';
 import earnerLargeRiderDriverSvg from './images/earnerLargeRiderDriver.svg';
 import earnerLargeRiderDriverPng from './images/earnerLargeRiderDriver@3x.png';
+import veniceJpg from './images/venice.jpg';
 
 export function Scenario() {
   const containerStyle = {
@@ -149,6 +150,17 @@ export function Scenario() {
             paragraph="ipsum lorem dopem topo logic hippos bananas and the rest"
             image={{ src: earnerLargeRiderDriverPng, layout: IMAGE_LAYOUT.trailing }}
             onClick={() => console.log('Gone')}
+            backgroundColor={colors.cobalt700}
+          />
+        </div>
+      </div>
+      <div style={rowStyle}>
+        <div style={containerStyle}>
+          <MessageCard
+            heading="Tall JPG image doesn't oversize"
+            buttonLabel="CTA!"
+            image={{ src: veniceJpg, layout: IMAGE_LAYOUT.trailing }}
+            onClick={() => console.log('CTA')}
             backgroundColor={colors.cobalt700}
           />
         </div>
