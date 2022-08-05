@@ -15,11 +15,18 @@ import {
 } from './styled-components';
 import { Button as DefaultButton, KIND, SHAPE } from '../button';
 import { useStyletron } from '../styles/index.js';
+import { ThemeProvider, LightTheme } from '../';
 import { getBackgroundColorType } from './utils';
 import { colors } from '../tokens';
 import { getOverrides } from '../helpers/overrides';
 import { IMAGE_LAYOUT, BACKGROUND_COLOR_TYPE } from './constants';
 import type { MessageCardProps } from './types';
+
+const ButtonAlwaysLightTheme = ({ children, ...restProps }) => (
+  <ThemeProvider theme={LightTheme}>
+    <DefaultButton {...restProps}>{children}</DefaultButton>
+  </ThemeProvider>
+);
 
 const MessageCard = ({
   backgroundColor = colors.white,
@@ -48,7 +55,7 @@ const MessageCard = ({
     StyledParagraphContainer
   );
   const [Image, ImageProps] = getOverrides(overrides.Image, StyledImage);
-  const [Button, ButtonProps] = getOverrides(overrides.Button, DefaultButton);
+  const [Button, ButtonProps] = getOverrides(overrides.Button, ButtonAlwaysLightTheme);
 
   const [, theme] = useStyletron();
 
