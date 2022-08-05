@@ -100,6 +100,7 @@ export const StyledImage = styled<
 
 export const StyledContentContainer = styled('div', ({ $theme }) => ({
   width: '100%',
+  boxSizing: 'border-box',
   paddingTop: $theme.sizing.scale600,
   paddingRight: $theme.sizing.scale300,
   paddingBottom: $theme.sizing.scale600,

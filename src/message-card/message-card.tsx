@@ -117,7 +117,10 @@ const MessageCard = ({
                   ...(buttonKind === KIND.tertiary
                     ? {
                         marginTop: theme.sizing.scale100,
-                        transform: `translateX(-${theme.sizing.scale600})`,
+                        transform:
+                          theme.direction === 'rtl'
+                            ? `translateX(${theme.sizing.scale600})`
+                            : `translateX(-${theme.sizing.scale600})`,
                       }
                     : {
                         marginTop: theme.sizing.scale500,
