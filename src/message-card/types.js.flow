@@ -47,7 +47,7 @@ export type MessageCardPropsT = {
   image?: {
     src: string,
     layout?: ImageLayoutT,
-    objectFit?: ObjectFitT,
+    backgroundPosition?: string,
   },
   overrides?: MessageCardOverridesT,
 };
@@ -62,7 +62,7 @@ export type StyledRoot = StyletronComponent<
 >;
 export type StyledImage = StyletronComponent<
   'img',
-  { $imageLayout: ImageLayoutT, $objectFit: ObjectFitT }
+  { $src: string, $imageLayout: ImageLayoutT, $backgroundPosition: string }
 >;
 export type StyledContentContainer = StyletronComponent<'div', {}>;
 export type StyledHeadingContainer = StyletronComponent<'div', {}>;

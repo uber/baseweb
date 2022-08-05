@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import type { SyntheticEvent } from 'react';
 import type { Override } from '../helpers/overrides';
 import { KIND } from '../button';
-import { BACKGROUND_COLOR_TYPE, IMAGE_LAYOUT, OBJECT_FIT } from './constants';
+import { BACKGROUND_COLOR_TYPE, IMAGE_LAYOUT } from './constants';
 
 export type MessageCardOverrides = {
   Root?: Override;
@@ -29,7 +29,7 @@ export interface MessageCardProps {
   image?: {
     src: string;
     layout?: keyof typeof IMAGE_LAYOUT;
-    objectFit?: keyof typeof OBJECT_FIT;
+    backgroundPosition?: string;
   };
   overrides?: MessageCardOverrides;
 }

@@ -18,7 +18,7 @@ import { useStyletron } from '../styles/index.js';
 import { getBackgroundColorType } from './utils';
 import { colors } from '../tokens';
 import { getOverrides } from '../helpers/overrides';
-import { IMAGE_LAYOUT, BACKGROUND_COLOR_TYPE, OBJECT_FIT } from './constants';
+import { IMAGE_LAYOUT, BACKGROUND_COLOR_TYPE } from './constants';
 import type { MessageCardProps } from './types';
 
 const MessageCard = ({
@@ -32,7 +32,7 @@ const MessageCard = ({
   overrides = {},
   paragraph,
 }: MessageCardProps) => {
-  const { src, layout = IMAGE_LAYOUT.top, objectFit = OBJECT_FIT.cover } = image || {};
+  const { src, layout = IMAGE_LAYOUT.top, backgroundPosition } = image || {};
 
   const [Root, RootProps] = getOverrides(overrides.Root, StyledRoot);
   const [ContentContainer, ContentContainerProps] = getOverrides(
@@ -83,7 +83,14 @@ const MessageCard = ({
       $imageLayout={layout}
       {...RootProps}
     >
-      {image && <Image src={src} $imageLayout={layout} $objectFit={objectFit} {...ImageProps} />}
+      {image && (
+        <Image
+          $src={src}
+          $imageLayout={layout}
+          $backgroundPosition={backgroundPosition}
+          {...ImageProps}
+        />
+      )}
       <ContentContainer {...ContentContainerProps}>
         {heading && <HeadingContainer {...HeadingContainerProps}>{heading}</HeadingContainer>}
         {paragraph && (

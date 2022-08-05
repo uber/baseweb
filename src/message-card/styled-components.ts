@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import { styled } from '../styles';
-import { IMAGE_LAYOUT, BACKGROUND_COLOR_TYPE, OBJECT_FIT } from './constants';
+import { IMAGE_LAYOUT, BACKGROUND_COLOR_TYPE } from './constants';
 
 export const StyledRoot = styled<
   'button',
@@ -80,20 +80,20 @@ export const StyledRoot = styled<
 );
 
 export const StyledImage = styled<
-  'img',
-  { $imageLayout: keyof typeof IMAGE_LAYOUT; $objectFit: keyof typeof OBJECT_FIT | undefined }
->('img', ({ $imageLayout = IMAGE_LAYOUT.top, $objectFit = OBJECT_FIT.cover }) => {
-  if ($imageLayout === IMAGE_LAYOUT.top) {
-    return {
-      height: '132px',
-      width: '100%',
-      objectFit: $objectFit,
-    };
+  'div',
+  {
+    $src: string;
+    $imageLayout: keyof typeof IMAGE_LAYOUT;
+    $backgroundPosition: string;
   }
+>('div', ({ $imageLayout = IMAGE_LAYOUT.top, $backgroundPosition = 'center', $src }) => {
   return {
-    width: '112px',
-    objectFit: $objectFit,
-    order: '1',
+    backgroundImage: `url(${$src})`,
+    backgroundSize: 'cover',
+    backgroundPosition: $backgroundPosition,
+    ...($imageLayout === IMAGE_LAYOUT.top
+      ? { height: '132px', width: '100%' }
+      : { width: '112px', order: '1' }),
   };
 });
 

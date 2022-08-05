@@ -8,7 +8,9 @@ import React from 'react';
 import { Scenario as MessageCardBasic } from './message-card.scenario';
 import { Scenario as MessageCardTrailingImage } from './message-card-trailing-image.scenario';
 import { Scenario as MessageCardSizes } from './message-card-sizes.scenario';
+import { Scenario as MessageCardImagePositions } from './message-card-image-positions.scenario';
 
 export const MessageCard = () => <MessageCardBasic />;
 export const TrailingImage = () => <MessageCardTrailingImage />;
 export const Sizes = () => <MessageCardSizes />;
+export const ImagePositions = () => <MessageCardImagePositions />;

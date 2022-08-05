@@ -13,10 +13,3 @@ export const IMAGE_LAYOUT = {
   top: 'top',
   trailing: 'trailing',
 } as const;
-
-export const OBJECT_FIT = {
-  none: 'none',
-  fill: 'fill',
-  cover: 'cover',
-  contain: 'contain',
-} as const;
