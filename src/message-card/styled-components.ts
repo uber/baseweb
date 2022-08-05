@@ -40,6 +40,7 @@ export const StyledRoot = styled<
       position: 'relative',
       textAlign: 'start',
       width: '100%',
+      boxShadow: `inset 999px 999px 0px ${$theme.colors.backgroundOverlayArt}`,
       ...($backgroundColorType === BACKGROUND_COLOR_TYPE.light
         ? lightBackgroundStyle
         : darkBackgroundStyle),
