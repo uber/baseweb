@@ -6,8 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import type { SyntheticEvent } from 'react';
 import type { Override } from '../helpers/overrides';
-import { KIND } from '../button';
-import { BACKGROUND_COLOR_TYPE, IMAGE_LAYOUT } from './constants';
+import { BACKGROUND_COLOR_TYPE, IMAGE_LAYOUT, BUTTON_KIND } from './constants';
 
 export type MessageCardOverrides = {
   Root?: Override;
@@ -23,7 +22,7 @@ export interface MessageCardProps {
   heading?: React.ReactNode;
   paragraph?: React.ReactNode;
   buttonLabel?: React.ReactNode;
-  buttonKind?: keyof typeof KIND;
+  buttonKind?: keyof typeof BUTTON_KIND;
   backgroundColor?: string;
   backgroundColorType?: keyof typeof BACKGROUND_COLOR_TYPE;
   image?: {

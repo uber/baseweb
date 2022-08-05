@@ -4,10 +4,10 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import { KIND } from '../../button';
 import * as React from 'react';
 import { colors } from '../../tokens';
 import { MessageCard } from '..';
+import { BUTTON_KIND } from '../constants';
 import deliveryHeroItalianSvg from './images/deliveryHeroItalian.svg';
 import deliveryHeroItalianPng from './images/deliveryHeroItalian@3x.png';
 import deliveryLargeStrawberriesSvg from './images/deliveryLargeStrawberries.svg';
@@ -62,7 +62,7 @@ export function Scenario() {
             heading="Heading"
             paragraph="ipsum lorem dopem topo logic hippos bananas and the rest"
             buttonLabel="Save now"
-            buttonKind={KIND.tertiary}
+            buttonKind={BUTTON_KIND.tertiary}
             image={{ src: deliveryHeroItalianPng }}
             onClick={() => console.log('Saved')}
             backgroundColor={colors.green300}
@@ -72,7 +72,7 @@ export function Scenario() {
           <MessageCard
             paragraph="ipsum lorem dopem topo logic hippos bananas and the rest"
             buttonLabel="Save now"
-            buttonKind={KIND.tertiary}
+            buttonKind={BUTTON_KIND.tertiary}
             image={{ src: deliveryLargeStrawberriesPng }}
             onClick={() => console.log('Saved')}
             backgroundColor={colors.white}
@@ -126,7 +126,7 @@ export function Scenario() {
             heading="Much longer heading"
             paragraph="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
             buttonLabel="Make it happen"
-            buttonKind={KIND.tertiary}
+            buttonKind={BUTTON_KIND.tertiary}
             image={{ src: deliveryHeroItalianPng }}
             onClick={() => console.log('Made it happen')}
             backgroundColor={colors.orange600}
@@ -136,7 +136,7 @@ export function Scenario() {
           <MessageCard
             paragraph="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
             buttonLabel="Go!"
-            buttonKind={KIND.tertiary}
+            buttonKind={BUTTON_KIND.tertiary}
             image={{ src: deliveryLargeStrawberriesPng }}
             onClick={() => console.log('Gone')}
             backgroundColor={colors.red700}

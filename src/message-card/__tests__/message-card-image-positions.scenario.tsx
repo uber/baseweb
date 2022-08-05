@@ -4,16 +4,10 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import { KIND } from '../../button';
 import * as React from 'react';
 import { colors } from '../../tokens';
 import { MessageCard, IMAGE_LAYOUT } from '..';
-import deliveryHeroItalianSvg from './images/deliveryHeroItalian.svg';
 import deliveryHeroItalianPng from './images/deliveryHeroItalian@3x.png';
-import deliveryLargeStrawberriesSvg from './images/deliveryLargeStrawberries.svg';
-import deliveryLargeStrawberriesPng from './images/deliveryLargeStrawberries@3x.png';
-import earnerLargeRiderDriverSvg from './images/earnerLargeRiderDriver.svg';
-import earnerLargeRiderDriverPng from './images/earnerLargeRiderDriver@3x.png';
 import veniceJpg from './images/venice.jpg';
 
 export function Scenario() {

@@ -13,13 +13,13 @@ import {
   StyledHeadingContainer,
   StyledParagraphContainer,
 } from './styled-components';
-import { Button as DefaultButton, KIND, SHAPE } from '../button';
+import { Button as DefaultButton, SHAPE } from '../button';
 import { useStyletron } from '../styles/index.js';
 import { ThemeProvider, LightTheme } from '../';
 import { getBackgroundColorType } from './utils';
 import { colors } from '../tokens';
 import { getOverrides } from '../helpers/overrides';
-import { IMAGE_LAYOUT, BACKGROUND_COLOR_TYPE } from './constants';
+import { IMAGE_LAYOUT, BACKGROUND_COLOR_TYPE, BUTTON_KIND } from './constants';
 import type { MessageCardProps } from './types';
 
 const ButtonAlwaysLightTheme = ({ children, ...restProps }) => (
@@ -31,7 +31,7 @@ const ButtonAlwaysLightTheme = ({ children, ...restProps }) => (
 const MessageCard = ({
   backgroundColor = colors.white,
   backgroundColorType: backgroundColorTypeProp,
-  buttonKind = KIND.secondary,
+  buttonKind = BUTTON_KIND.secondary,
   buttonLabel,
   heading,
   image,
@@ -72,13 +72,13 @@ const MessageCard = ({
   }
 
   let buttonColors;
-  if (buttonKind === KIND.tertiary && backgroundColorType === BACKGROUND_COLOR_TYPE.dark) {
+  if (buttonKind === BUTTON_KIND.tertiary && backgroundColorType === BACKGROUND_COLOR_TYPE.dark) {
     buttonColors = {
       color: theme.colors.contentOnColor,
       backgroundColor: theme.colors.buttonTertiaryFill,
     };
   }
-  if (buttonKind !== KIND.tertiary && backgroundColor !== colors.white) {
+  if (buttonKind !== BUTTON_KIND.tertiary && backgroundColor !== colors.white) {
     buttonColors = { backgroundColor: theme.colors.backgroundAlwaysLight };
   }
 
@@ -114,7 +114,7 @@ const MessageCard = ({
               BaseButton: {
                 style: {
                   pointerEvents: 'none',
-                  ...(buttonKind === KIND.tertiary
+                  ...(buttonKind === BUTTON_KIND.tertiary
                     ? {
                         marginTop: theme.sizing.scale100,
                         transform:

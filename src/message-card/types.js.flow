@@ -8,7 +8,6 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import type { OverrideT } from '../helpers/overrides.js';
 import { type StyletronComponent } from 'styletron-react';
-import { KIND } from '../button';
 
 export interface BackgroundColorTypeT {
   light: 'light';
@@ -20,11 +19,9 @@ export interface ImageLayoutT {
   trailing: 'trailing';
 }
 
-export interface ObjectFitT {
-  none: 'none';
-  fill: 'fill';
-  cover: 'cover';
-  contain: 'contain';
+export interface ButtonKindT {
+  secondary: 'secondary';
+  tertiary: 'tertiary';
 }
 
 export type MessageCardOverridesT = {
@@ -41,7 +38,7 @@ export type MessageCardPropsT = {
   heading?: string,
   paragraph?: string,
   buttonLabel?: string,
-  buttonKind?: $Values<typeof KIND>,
+  buttonKind?: ButtonKindT,
   backgroundColor?: string,
   backgroundColorType?: BackgroundColorTypeT,
   image?: {

@@ -2247,14 +2247,14 @@ const outlines = [
     definitions: [
       {
         name: 'MessageCardOverrides',
-        lineStart: 12,
+        lineStart: 11,
         children: [
-          { name: 'Root', lineStart: 13 },
-          { name: 'ContentContainer', lineStart: 14 },
-          { name: 'HeadingContainer', lineStart: 15 },
-          { name: 'ParagraphContainer', lineStart: 16 },
-          { name: 'Button', lineStart: 17 },
-          { name: 'Image', lineStart: 18 },
+          { name: 'Root', lineStart: 12 },
+          { name: 'ContentContainer', lineStart: 13 },
+          { name: 'HeadingContainer', lineStart: 14 },
+          { name: 'ParagraphContainer', lineStart: 15 },
+          { name: 'Button', lineStart: 16 },
+          { name: 'Image', lineStart: 17 },
         ],
       },
     ],
