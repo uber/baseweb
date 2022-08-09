@@ -358,7 +358,11 @@ class PopoverInner extends React.Component<PopoverProps, PopoverPrivateState> {
     if (typeof anchor === 'object' && isValidElement) {
       return React.cloneElement(anchor, anchorProps);
     }
-    return <span {...anchorProps}>{anchor}</span>;
+    return (
+      <span key="popover-anchor" {...anchorProps}>
+        {anchor}
+      </span>
+    );
   }
 
   renderPopover(renderedContent: React.ReactNode) {
