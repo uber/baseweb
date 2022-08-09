@@ -10,6 +10,7 @@ import { LabelSmall } from '../../typography';
 import { Block } from '../../block';
 
 type TileGridProps = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   children?: Array<any>;
   customizerOptions: Array<React.ReactNode>;
   cols: number;

@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 import { styled } from '../styles';
 import { SIZE } from './constants';
 import type { SpinnerProps } from './types';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { StyleObject } from 'styletron-react';
 
 const spin = {
@@ -72,3 +73,4 @@ export const StyledSpinner = styled<'i', SpinnerProps>(
     };
   }
 );
+StyledSpinner.displayName = 'StyledSpinner';

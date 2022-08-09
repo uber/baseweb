@@ -4,7 +4,7 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import { styled } from '../styles/index';
+import { styled } from '../styles';
 import { SIZE } from './constants';
 import type { DividerProps } from './types';
 
@@ -51,3 +51,4 @@ export const StyledDivider = styled<'hr', DividerProps>('hr', (props) => {
     borderLeftStyle: 'none',
   };
 });
+StyledDivider.displayName = 'StyledDivider';

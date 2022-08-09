@@ -342,6 +342,7 @@ export default class Calendar<T = Date> extends React.Component<
   handleDateChange: (a: {
     readonly date: T | undefined | null | Array<T | undefined | null>;
   }) => void = (data) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { onChange = (params) => {} } = this.props;
     let updatedDate = data.date;
     // Apply the currently selected time values (saved in state) to the updated date
@@ -375,6 +376,7 @@ export default class Calendar<T = Date> extends React.Component<
   };
 
   handleTimeChange = (time: T, index: number) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { onChange = (params) => {} } = this.props;
     // Save/update the time value in internal state
     const newTimeState = [...this.state.time];

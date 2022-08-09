@@ -1,10 +1,11 @@
-import * as React from 'react';
 /*
 Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
+
+import * as React from 'react';
 
 // based on:
 // - https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/utils/focusVisible.js
@@ -149,6 +150,7 @@ export function initFocusVisible(node) {
 }
 
 export const forkFocus =
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   (rootProps: any, handler: (e: React.FocusEvent) => void) => (e: React.FocusEvent) => {
     if (typeof rootProps.onFocus === 'function') {
       rootProps.onFocus(e);
@@ -157,6 +159,7 @@ export const forkFocus =
   };
 
 export const forkBlur =
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   (rootProps: any, handler: (e: React.FocusEvent) => void) => (e: React.FocusEvent) => {
     if (typeof rootProps.onBlur === 'function') {
       rootProps.onBlur(e);

@@ -24,7 +24,9 @@ type HeaderCellProps = {
   isSelectable: boolean;
   isSelectedAll: boolean;
   isSelectedIndeterminate: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onMouseEnter: (a: any) => void;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onMouseLeave: (a: any) => void;
   onSelectAll: () => void;
   onSelectNone: () => void;
@@ -45,6 +47,7 @@ const HeaderCell = React.forwardRef<HTMLDivElement, HeaderCellProps>((props, ref
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleBlur = (event: SyntheticEvent) => {
     if (focusVisible !== false) {
       setFocusVisible(false);
@@ -99,6 +102,7 @@ const HeaderCell = React.forwardRef<HTMLDivElement, HeaderCellProps>((props, ref
       {props.isSelectable && (
         <span className={css({ paddingRight: theme.sizing.scale300 })} ref={checkboxRef}>
           <Checkbox
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             onChange={(e) => {
               if (props.isSelectedAll || props.isSelectedIndeterminate) {
                 props.onSelectNone();

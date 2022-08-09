@@ -87,12 +87,14 @@ type HistogramProps = {
   precision;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Histogram = React.memo<any>(function Histogram({
   data,
   lower,
   upper,
   isRange,
   exclude,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   precision,
 }: HistogramProps) {
   const [css, theme] = useStyletron();
@@ -359,6 +361,7 @@ function NumericalFilter(props) {
             InnerThumb: function InnerThumb({ $value, $thumbIndex }) {
               return <React.Fragment>{$value[$thumbIndex]}</React.Fragment>;
             },
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             TickBar: ({ $min, $max }) => null, // we don't want the ticks
             ThumbValue: () => null,
             Root: {
@@ -369,7 +372,7 @@ function NumericalFilter(props) {
               }),
             },
             InnerTrack: {
-              style: ({ $theme }) => {
+              style: () => {
                 if (!isRange) {
                   return {
                     // For range selection we use the color as is, but when selecting the single value,
@@ -467,7 +470,7 @@ const defaultOptions = {
   sortable: true,
   filterable: true,
   format: NUMERICAL_FORMATS.DEFAULT,
-  highlight: ((n) => false) as (a: number) => boolean,
+  highlight: (() => false) as (a: number) => boolean,
   precision: 0,
 };
 

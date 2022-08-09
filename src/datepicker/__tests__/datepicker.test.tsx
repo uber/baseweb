@@ -280,11 +280,13 @@ describe('Datepicker', () => {
     expect(calendar.length).toBe(monthsShown);
 
     const prev = queryAllByTestId(container, 'prev-button').filter(
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (el) => !(el as any as HTMLButtonElement).disabled
     );
     expect(prev.length).toBe(1);
 
     const next = queryAllByTestId(container, 'next-button').filter(
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (el) => !(el as any as HTMLButtonElement).disabled
     );
     expect(next.length).toBe(1);

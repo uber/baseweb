@@ -80,6 +80,7 @@ function getAnchorStyles(props: SharedStylePropsArg) {
   }
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const StyledRoot = styled<'div', SharedStylePropsArg>('div', (props) => {
   return {
     position: 'fixed',
@@ -90,6 +91,8 @@ export const StyledRoot = styled<'div', SharedStylePropsArg>('div', (props) => {
     left: 0,
   };
 });
+
+StyledRoot.displayName = 'StyledRoot';
 
 export const StyledBackdrop = styled<'div', SharedStylePropsArg>('div', (props) => {
   const { $animating, $isOpen, $isVisible, $showBackdrop, $theme } = props;
@@ -115,6 +118,8 @@ export const StyledBackdrop = styled<'div', SharedStylePropsArg>('div', (props) 
   };
 });
 
+StyledBackdrop.displayName = 'StyledBackdrop';
+
 export const StyledDrawerContainer = styled<'div', SharedStylePropsArg>('div', (props) => {
   const { $animating, $isOpen, $isVisible, $theme } = props;
   return {
@@ -135,6 +140,8 @@ export const StyledDrawerContainer = styled<'div', SharedStylePropsArg>('div', (
   };
 });
 
+StyledDrawerContainer.displayName = 'StyledDrawerContainer';
+
 export const StyledDrawerBody = styled<'div', SharedStylePropsArg>('div', (props) => {
   const { $theme } = props;
   return {
@@ -148,6 +155,8 @@ export const StyledDrawerBody = styled<'div', SharedStylePropsArg>('div', (props
     width: '100%',
   };
 });
+
+StyledDrawerBody.displayName = 'StyledDrawerBody';
 
 export const StyledClose = styled<'button', SharedStylePropsArg>('button', (props) => {
   const { $theme, $isFocusVisible } = props;
@@ -197,6 +206,9 @@ export const StyledClose = styled<'button', SharedStylePropsArg>('button', (prop
   };
 });
 
+StyledClose.displayName = 'StyledClose';
+
 export const Hidden = styled('div', {
   display: 'none',
 });
+Hidden.displayName = 'Hidden';

@@ -13,16 +13,20 @@ import { STATE_CHANGE_TYPE } from '../constants';
 
 describe('StatefulSelectContainer', function () {
   let props: {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     children: jest.Mock<JSX.Element, [any]>;
     initialState: { value: { id: string; label: string }[] };
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     stateReducer: jest.Mock<any, any>;
     overrides: {};
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     onChange: jest.Mock<any, any>;
   };
 
   beforeEach(function () {
     props = {
-      children: jest.fn((arg) => <div>test</div>),
+      // @ts-expect-error
+      children: jest.fn(() => <div>test</div>),
       initialState: { value: [{ id: 'id', label: 'label' }] },
       stateReducer: jest.fn(),
       overrides: {},

@@ -9,6 +9,7 @@ import { Select } from '../index';
 
 export function Scenario() {
   const [showSelect, setShowSelect] = React.useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [value, setValue] = React.useState<any>([]);
 
   const handleClick = () => {

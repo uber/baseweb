@@ -409,6 +409,7 @@ type BaseProps<P extends {}> = P & {
   className?: string;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type AddStyletronRef<P extends { ref: any }> = P extends { ref: infer R } ? P & { $ref?: R } : P;
 
 type OverrideProps<D extends React.ElementType, P extends {}> = BaseProps<P> &

@@ -23,6 +23,7 @@ const options: Option[] = [
   { label: 'Beige', id: '#F5F5DC' },
 ];
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function Instance({ size }: any) {
   const [css, theme] = useStyletron();
   const [value, setValue] = React.useState('');

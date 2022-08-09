@@ -108,10 +108,13 @@ describe('TreeView Component', () => {
   it('TreeLabel override should override default icons as well', () => {
     const CustomTreeLabel = ({
       hasChildren,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       isSelected,
       isExpanded,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       isFocusVisible,
       label,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       overrides,
       node,
       ...props

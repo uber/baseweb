@@ -10,6 +10,7 @@ import { PhoneInput, COUNTRIES, StyledFlag } from '../../phone-input';
 import type { CountryIso } from '../../phone-input';
 
 function CustomFlag(props: { children: React.ReactNode; $iso: CountryIso }) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { children, ...rest } = props;
   //$FlowExpectedError[cannot-spread-inexact]
   return <StyledFlag iso={props.$iso} {...rest} />;
@@ -25,6 +26,7 @@ export function Scenario() {
       onTextChange={(event) => {
         setText(event.currentTarget.value);
       }}
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       onCountryChange={(event: any) => {
         setCountry(event.option);
       }}

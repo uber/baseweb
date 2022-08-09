@@ -40,6 +40,7 @@ class StarRating extends React.Component<StarRatingProps, RatingState> {
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   handleBlur = (event: SyntheticEvent) => {
     if (this.state.isFocusVisible !== false) {
       this.setState({ isFocusVisible: false });
@@ -62,6 +63,7 @@ class StarRating extends React.Component<StarRatingProps, RatingState> {
           key={x}
           role="radio"
           title="rating"
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           ref={starRef as any}
           tabIndex={isFocusable ? '0' : '-1'}
           aria-setsize={numItems}

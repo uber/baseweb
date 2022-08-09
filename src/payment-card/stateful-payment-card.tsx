@@ -12,6 +12,7 @@ import type { StatefulPaymentCardProps } from './types';
 export default function StatefulPaymentCard(props: StatefulPaymentCardProps) {
   return (
     <StatefulContainer {...props}>
+      {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
       {(childrenProps: any) => <PaymentCard {...childrenProps} />}
     </StatefulContainer>
   );

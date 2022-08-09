@@ -238,6 +238,7 @@ function Header(props: HeaderProps) {
   const [css, theme] = useStyletron();
   const [startResizePos, setStartResizePos] = React.useState(0);
   const [endResizePos, setEndResizePos] = React.useState(0);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const headerCellRef = React.useRef<any>(null);
 
   const RULER_OFFSET = 2;
@@ -280,6 +281,7 @@ function Header(props: HeaderProps) {
       }
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     function handleMouseUp(event: MouseEvent) {
       props.onResize(props.index, endResizePos - startResizePos);
       props.onResizeIndexChange(-1);
@@ -1002,6 +1004,7 @@ export function DataTable({
             }}
           >
             <VariableSizeGrid
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
               ref={setGridRef as any}
               overscanRowCount={10}
               overscanColumnCount={5}

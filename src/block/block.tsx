@@ -93,6 +93,7 @@ const Block: React.FC<
     <BaseBlock
       // coerced to any because because of how react components are typed.
       // cannot guarantee an html element
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ref={forwardedRef as any}
       $as={as}
       $color={color}
@@ -169,6 +170,7 @@ const Block: React.FC<
   );
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const BlockComponent = React.forwardRef<any, any>((props, ref) => (
   <Block {...props} forwardedRef={ref} />
 )) as BlockComponentType<'div'>;

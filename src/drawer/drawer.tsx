@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 /* global document */
-/* eslint-disable cup/no-undef */
+
 import * as React from 'react';
 import FocusLock from 'react-focus-lock';
 
@@ -91,6 +91,7 @@ class Drawer extends React.Component<DrawerProps, DrawerState> {
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   handleBlur = (event: SyntheticEvent) => {
     if (this.state.isFocusVisible !== false) {
       this.setState({ isFocusVisible: false });
@@ -122,6 +123,7 @@ class Drawer extends React.Component<DrawerProps, DrawerState> {
       return mountNode;
     }
     // Flow thinks body could be null (cast through any)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return document.body as any as HTMLBodyElement;
   }
 
@@ -153,7 +155,6 @@ class Drawer extends React.Component<DrawerProps, DrawerState> {
       clearTimeout(this.animateOutTimer);
     }
     if (this.animateStartTimer) {
-      // eslint-disable-next-line cup/no-undef
       cancelAnimationFrame(this.animateStartTimer);
     }
   }
@@ -171,7 +172,6 @@ class Drawer extends React.Component<DrawerProps, DrawerState> {
 
     this.disableMountNodeScroll();
 
-    // eslint-disable-next-line cup/no-undef
     this.animateStartTimer = requestAnimationFrame(() => {
       this.setState({ isVisible: true });
     });

@@ -8,7 +8,6 @@ LICENSE file in the root directory of this source tree.
 
 const viteConfig = async ({ mode }) => ({
   // when built in CI, change the base URL so baseweb.design/ladle works
-  // eslint-disable-next-line cup/no-undef
   base: process.env.CLOUDFLARE_BUILD ? '/ladle/' : '/',
   define: {
     __BROWSER__: true,

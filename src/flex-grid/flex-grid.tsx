@@ -78,6 +78,7 @@ interface FlexGridComponentType<D extends React.ElementType> {
 }
 
 const FlexGridComponent = React.forwardRef((props: FlexGridProps, ref) => (
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   <FlexGrid {...props} forwardedRef={ref as any} />
 )) as FlexGridComponentType<'div'>;
 FlexGridComponent.displayName = 'FlexGrid';

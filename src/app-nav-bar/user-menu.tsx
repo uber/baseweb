@@ -22,7 +22,7 @@ import { defaultMapItemToNode } from './utils';
 
 const MENU_ITEM_WIDTH = '275px';
 
-// eslint-disable-next-line react/display-name
+// eslint-disable-next-line @typescript-eslint/no-explicit-any,react/display-name
 const UserMenuListItem = React.forwardRef<any, any>((props, ref) => {
   const { item, mapItemToNode = defaultMapItemToNode } = props;
   // Replace with a user menu item renderer

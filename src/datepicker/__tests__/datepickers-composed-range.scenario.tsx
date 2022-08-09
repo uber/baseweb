@@ -47,6 +47,7 @@ export function Scenario() {
               <Datepicker
                 value={dates}
                 // typecast to any because if datepicker is range, value is always array type
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 onChange={({ date }) => setDates(date as any)}
                 timeSelectStart
                 range
@@ -98,6 +99,7 @@ export function Scenario() {
               <Datepicker
                 value={dates}
                 // typecast to any because if datepicker is range, value is always array type
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 onChange={({ date }) => setDates(date as any)}
                 timeSelectEnd
                 range

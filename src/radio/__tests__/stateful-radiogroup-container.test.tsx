@@ -11,6 +11,7 @@ import { StatefulContainer } from '..';
 
 describe('Stateful container', function () {
   it('passes additional props to children', () => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const children = jest.fn((arg) => null);
     // @ts-expect-error undeclared property
     render(<StatefulContainer foo="bar">{children}</StatefulContainer>);
@@ -18,6 +19,7 @@ describe('Stateful container', function () {
   });
 
   it('passes intial state to children', () => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const children = jest.fn((arg) => null);
     render(<StatefulContainer initialState={{ value: 'x' }}>{children}</StatefulContainer>);
     expect(children.mock.calls[0][0]).toHaveProperty('value', 'x');

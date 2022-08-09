@@ -36,6 +36,7 @@ CountryPicker.defaultProps = {
 
 const DropdownListItem = React.forwardRef<HTMLLIElement, ComponentProps<typeof DefaultListItem>>(
   (props, ref) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { children, ...rest } = props;
     return (
       <DefaultListItem ref={ref} {...rest}>
@@ -179,6 +180,7 @@ export default function CountryPicker(props: CountrySelectProps) {
     <Select
       clearable={false}
       disabled={disabled}
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       getOptionLabel={({ option, optionState }) => {
         const iso = option.id;
         return (

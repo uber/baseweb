@@ -21,4 +21,5 @@ export { StyledRoot } from './styled-components';
 export * from './types';
 export type { ButtonGroupLocale } from './locale';
 /** @deprecated To be removed in future versions */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 type InitialState = StatefulButtonGroupProps['initialState'];

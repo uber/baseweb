@@ -5,7 +5,6 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-/* eslint-disable flowtype/require-valid-file-annotation */
 /* eslint-env node */
 
 const routes = [
@@ -343,6 +342,10 @@ const routes = [
           {
             title: 'Floating Marker',
             itemId: '/components/floating-marker',
+          },
+          {
+            title: 'Location Puck',
+            itemId: '/components/location-puck',
           },
         ],
       },

@@ -10,6 +10,7 @@ import { STATE_CHANGE_TYPES, OPTION_LIST_SIZE } from './constants';
 
 import type { SyntheticEvent, FocusEvent, MouseEvent } from 'react';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type Item = any;
 export type ArrayItems = ReadonlyArray<Item>;
 export type GroupedItems = {
@@ -26,6 +27,7 @@ export type GetProfileItemLabelsFn = (item: Item) => {
   body?: string;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type GetProfileItemImgFn = (item: Item) => string | React.ComponentType<any>;
 
 export type GetProfileItemImgTextFn = (item: Item) => string;

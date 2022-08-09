@@ -12,6 +12,7 @@ import { Datepicker, TimePicker, TimezonePicker } from '..';
 
 const DATE = new Date(2019, 3, 1);
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export class Scenario extends React.Component<any, any> {
   state = {
     date: DATE,

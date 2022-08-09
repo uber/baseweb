@@ -14,3 +14,4 @@ export const Root = styled<'button', SharedStyleProps>('button', (props) => {
     cursor: 'pointer',
   };
 });
+Root.displayName = 'Root';

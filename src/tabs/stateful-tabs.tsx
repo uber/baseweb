@@ -46,6 +46,7 @@ export default class StatefulTabs extends React.Component<StatefulTabsProps, Sta
   }
 
   render() {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { initialState, stateReducer, ...restProps } = this.props;
     return <Tabs {...restProps} activeKey={this.state.activeKey} onChange={this.onTabChange} />;
   }

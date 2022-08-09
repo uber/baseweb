@@ -1,3 +1,10 @@
+/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+
 import { Modal, ModalHeader, ModalBody, ModalFooter, ModalButton, SIZE, ROLE } from 'baseui/modal';
 import { KIND as ButtonKind } from 'baseui/button';
 import { PropTypes } from 'react-view';

@@ -1,3 +1,10 @@
+/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+
 import * as React from 'react';
 import { useValueDebounce } from 'react-view';
 import { Input, SIZE } from 'baseui/input';
@@ -55,6 +62,7 @@ const ColorInput: React.FC<{
       <div
         title={themeKey}
         className={css({
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           ...($theme.typography.font100 as any),
           color: $theme.colors.contentPrimary,
           marginLeft: $theme.sizing.scale300,

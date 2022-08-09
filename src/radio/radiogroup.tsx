@@ -42,6 +42,7 @@ class StatelessRadioGroup extends React.Component<RadioGroupProps, StatelessStat
     this.props.onFocus && this.props.onFocus(event);
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   handleBlur = (event: ChangeEvent<HTMLInputElement>, index: number) => {
     if (this.state.isFocusVisible !== false) {
       this.setState({ isFocusVisible: false });

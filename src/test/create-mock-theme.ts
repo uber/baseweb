@@ -38,7 +38,7 @@ LICENSE file in the root directory of this source tree.
  *   }
  * }
  */
-export default function createMockTheme(base: {}, prefix: string = '$theme') {
+export default function createMockTheme(base: {}, prefix = '$theme') {
   const mock = {};
 
   Object.keys(base).forEach((key) => {

@@ -50,6 +50,7 @@ function Child({ placement }) {
 }
 
 export function Scenario() {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [placement, setPlacement] = React.useState<any>(PLACEMENT.top);
   return (
     <div>

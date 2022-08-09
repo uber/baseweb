@@ -8,6 +8,7 @@ import { styled } from '../styles';
 import { KIND, SIZE, SHAPE } from './constants';
 import type { SharedStyleProps } from './types';
 import type { Font } from '../themes/types';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import type { StyleObject } from 'styletron-standard';
 
 export const BaseButton = styled<'button', SharedStyleProps>(
@@ -67,6 +68,8 @@ export const BaseButton = styled<'button', SharedStyleProps>(
   })
 );
 
+BaseButton.displayName = 'BaseButton';
+
 export const EndEnhancer = styled<'div', SharedStyleProps>('div', ({ $theme }) => {
   const marginDirection: string = $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
   return {
@@ -75,6 +78,8 @@ export const EndEnhancer = styled<'div', SharedStyleProps>('div', ({ $theme }) =
   };
 });
 
+EndEnhancer.displayName = 'EndEnhancer';
+
 export const StartEnhancer = styled<'div', SharedStyleProps>('div', ({ $theme }) => {
   const marginDirection: string = $theme.direction === 'rtl' ? 'marginLeft' : 'marginRight';
   return {
@@ -82,6 +87,8 @@ export const StartEnhancer = styled<'div', SharedStyleProps>('div', ({ $theme })
     [marginDirection]: $theme.sizing.scale500,
   };
 });
+
+StartEnhancer.displayName = 'StartEnhancer';
 
 export const LoadingSpinnerContainer = styled<'div', SharedStyleProps>(
   'div',
@@ -103,6 +110,8 @@ export const LoadingSpinnerContainer = styled<'div', SharedStyleProps>(
     };
   }
 );
+
+LoadingSpinnerContainer.displayName = 'LoadingSpinnerContainer';
 
 export const LoadingSpinner = styled<'span', SharedStyleProps>(
   'span',
@@ -156,6 +165,8 @@ export const LoadingSpinner = styled<'span', SharedStyleProps>(
     };
   }
 );
+
+LoadingSpinner.displayName = 'LoadingSpinner';
 
 function getLoadingSpinnerColors({ $theme, $kind, $disabled }) {
   if ($disabled) {

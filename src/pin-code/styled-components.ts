@@ -13,6 +13,8 @@ export const StyledRoot = styled('div', {
   alignItems: 'center',
 });
 
+StyledRoot.displayName = 'StyledRoot';
+
 export const StyledInputOverrideRoot = withStyle<
   typeof StyledInputRoot,
   {
@@ -31,8 +33,11 @@ export const StyledInputOverrideRoot = withStyle<
   };
 });
 
+StyledInputOverrideRoot.displayName = 'StyledInputOverrideRoot';
+
 export const StyledInputOverrideInput = withStyle(StyledInputInput, {
   textAlign: 'center',
   paddingLeft: '0',
   paddingRight: '0',
 });
+StyledInputOverrideInput.displayName = 'StyledInputOverrideInput';

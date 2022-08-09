@@ -27,7 +27,11 @@ export const StyledRoot = styled<'nav', SharedProps>('nav', (props) => {
   };
 });
 
+StyledRoot.displayName = 'StyledRoot';
+
 export const StyledNavItemContainer = styled('li', {});
+
+StyledNavItemContainer.displayName = 'StyledNavItemContainer';
 
 export const StyledNavLink = styled<
   'a',
@@ -49,6 +53,8 @@ export const StyledNavLink = styled<
       }
     : { outline: 'none' },
 }));
+
+StyledNavLink.displayName = 'StyledNavLink';
 
 export const StyledNavItemElement = styled<'div', SharedProps>('div', (props) => {
   const {
@@ -102,9 +108,12 @@ export const StyledNavItemElement = styled<'div', SharedProps>('div', (props) =>
   };
 });
 
+StyledNavItemElement.displayName = 'StyledNavItemElement';
+
 export const StyledNavItem = withWrapper<typeof StyledNavItemElement, { item? }>(
   StyledNavItemElement,
   (Styled) =>
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     function StyledNav({ item, ...restProps }) {
       return <Styled {...restProps} />;
     }
@@ -121,3 +130,4 @@ export const StyledSubNavContainer = styled('ul', {
   paddingLeft: 0,
   paddingRight: 0,
 });
+StyledSubNavContainer.displayName = 'StyledSubNavContainer';

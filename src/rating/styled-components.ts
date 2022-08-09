@@ -17,6 +17,7 @@ import {
 } from './svg-icons';
 import type { StyleObject } from 'styletron-standard';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const StyledRoot = styled<'ul', StyledRootProps>('ul', ({ $theme }) => {
   return {
     marginLeft: 0,
@@ -33,6 +34,8 @@ export const StyledRoot = styled<'ul', StyledRootProps>('ul', ({ $theme }) => {
     },
   };
 });
+
+StyledRoot.displayName = 'StyledRoot';
 
 export const StyledStar = styled<'li', StyledRatingItemProps>(
   'li',
@@ -99,6 +102,8 @@ export const StyledStar = styled<'li', StyledRatingItemProps>(
   }
 );
 
+StyledStar.displayName = 'StyledStar';
+
 export const StyledEmoticon = styled<'li', StyledRatingItemProps>(
   'li',
   ({ $theme, $isActive, $isSelected, $index = 1, $isFocusVisible, $isReadOnly, $size }) => {
@@ -142,3 +147,4 @@ export const StyledEmoticon = styled<'li', StyledRatingItemProps>(
     return styles;
   }
 );
+StyledEmoticon.displayName = 'StyledEmoticon';

@@ -33,6 +33,7 @@ import { forkBlur, forkFocus, isFocusVisible } from '../utils/focusVisible';
 
 import type { SyntheticEvent } from 'react';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const navBtnStyle = ({ $theme }) => ({
   cursor: 'pointer',
 });
@@ -241,6 +242,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   handleBlur = (event: SyntheticEvent) => {
     if (this.state.isFocusVisible !== false) {
       this.setState({ isFocusVisible: false });

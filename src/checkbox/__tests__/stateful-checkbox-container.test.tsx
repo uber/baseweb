@@ -11,6 +11,7 @@ import { StatefulContainer } from '..';
 
 describe('Stateful container', function () {
   it('should provide all needed props to children render func', function () {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const children = jest.fn((arg) => null);
     // @ts-expect-error - Point of this test is to check a missing prop
     render(<StatefulContainer foo="bar">{children}</StatefulContainer>);
@@ -19,6 +20,7 @@ describe('Stateful container', function () {
   });
 
   it('should provide initial state as part of state', function () {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const children = jest.fn((arg) => null);
     render(<StatefulContainer initialState={{ checked: true }}>{children}</StatefulContainer>);
     const props = children.mock.calls[0][0];

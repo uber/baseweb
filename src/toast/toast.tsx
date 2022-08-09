@@ -97,6 +97,7 @@ class Toast extends React.Component<ToastProps, ToastPrivateState> {
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   handleBlur = (event: React.FocusEvent) => {
     if (this.state.isFocusVisible !== false) {
       this.setState({ isFocusVisible: false });

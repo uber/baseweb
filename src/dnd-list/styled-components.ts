@@ -10,11 +10,13 @@ import type { SharedStylePropsArg } from './types';
 /**
  * Main component container element
  */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const Root = styled<'div', SharedStylePropsArg>('div', ({ $theme }) => {
   return {
     width: '100%',
   };
 });
+Root.displayName = 'Root';
 Root.displayName = 'StyledRoot';
 
 export const List = styled<'ul', SharedStylePropsArg>('ul', ({ $isDragged }) => {
@@ -24,6 +26,7 @@ export const List = styled<'ul', SharedStylePropsArg>('ul', ({ $isDragged }) => 
     pointerEvents: $isDragged ? 'none' : 'auto',
   };
 });
+List.displayName = 'List';
 List.displayName = 'StyledList';
 
 export const Item = styled<'li', SharedStylePropsArg>(
@@ -81,6 +84,7 @@ export const Item = styled<'li', SharedStylePropsArg>(
     };
   }
 );
+Item.displayName = 'Item';
 List.displayName = 'StyledItem';
 
 export const DragHandle = styled<'div', SharedStylePropsArg>('div', ({ $theme }) => {
@@ -93,6 +97,7 @@ export const DragHandle = styled<'div', SharedStylePropsArg>('div', ({ $theme })
     alignItems: 'center',
   };
 });
+DragHandle.displayName = 'DragHandle';
 DragHandle.displayName = 'StyledDragHandle';
 
 export const CloseHandle = styled<'button', SharedStylePropsArg>(
@@ -121,10 +126,12 @@ export const CloseHandle = styled<'button', SharedStylePropsArg>(
     };
   }
 );
+CloseHandle.displayName = 'CloseHandle';
 CloseHandle.displayName = 'StyledCloseHandle';
 
 export const Label = styled<'div', SharedStylePropsArg>('div', ({ $theme }) => ({
   flexGrow: 1,
   ...$theme.typography.font300,
 }));
+Label.displayName = 'Label';
 Label.displayName = 'StyledLabel';

@@ -41,6 +41,7 @@ const StyledButton = styled<
   WebkitAppearance: 'none',
   cursor: 'pointer',
 }));
+StyledButton.displayName = 'StyledButton';
 
 export const StyledRoot = styled('div', (props) => {
   const { $theme } = props;
@@ -86,8 +87,10 @@ export const StyledRoot = styled('div', (props) => {
 
   return style;
 });
+StyledRoot.displayName = 'StyledRoot';
 
 export const StyledSubnavContainer = styled('div', {});
+StyledSubnavContainer.displayName = 'StyledSubnavContainer';
 
 export const StyledSpacing = styled('div', (props) => {
   const { $theme } = props;
@@ -104,6 +107,7 @@ export const StyledSpacing = styled('div', (props) => {
     },
   };
 });
+StyledSpacing.displayName = 'StyledSpacing';
 
 export const StyledAppName = styled('div', ({ $theme }) => ({
   ...$theme.typography.font550,
@@ -113,6 +117,7 @@ export const StyledAppName = styled('div', ({ $theme }) => ({
     ...$theme.typography.font650,
   },
 }));
+StyledAppName.displayName = 'StyledAppName';
 
 export const StyledSideMenuButton = withStyle<typeof StyledButton, {}>(
   StyledButton,
@@ -126,6 +131,7 @@ export const StyledSideMenuButton = withStyle<typeof StyledButton, {}>(
     paddingRight: $theme.sizing.scale100,
   })
 );
+StyledSideMenuButton.displayName = 'StyledSideMenuButton';
 
 export const StyledPrimaryMenuContainer = styled('div', ({ $theme }) => {
   return {
@@ -140,6 +146,7 @@ export const StyledPrimaryMenuContainer = styled('div', ({ $theme }) => {
     paddingInlineEnd: $theme.sizing.scale1000,
   };
 });
+StyledPrimaryMenuContainer.displayName = 'StyledPrimaryMenuContainer';
 
 export const StyledMainMenuItem = styled<
   'div',
@@ -182,6 +189,7 @@ export const StyledMainMenuItem = styled<
     },
   };
 });
+StyledMainMenuItem.displayName = 'StyledMainMenuItem';
 
 export const StyledSecondaryMenuContainer = styled('div', ({ $theme }) => {
   return {
@@ -197,8 +205,10 @@ export const StyledSecondaryMenuContainer = styled('div', ({ $theme }) => {
     overflow: 'auto',
   };
 });
+StyledSecondaryMenuContainer.displayName = 'StyledSecondaryMenuContainer';
 
 export const StyledUserMenuButton = StyledButton;
+StyledUserMenuButton.displayName = 'StyledUserMenuButton';
 
 export const StyledUserMenuProfileListItem = withStyle<typeof StyledListItem, {}>(
   StyledListItem,
@@ -208,6 +218,7 @@ export const StyledUserMenuProfileListItem = withStyle<typeof StyledListItem, {}
     ...($theme.direction === 'rtl' ? { paddingLeft: '0' } : { paddingRight: '0' }),
   })
 );
+StyledUserMenuProfileListItem.displayName = 'StyledUserMenuProfileListItem';
 
 export const StyledUserProfileTileContainer = styled('div', ({ $theme }) => {
   return {
@@ -221,6 +232,7 @@ export const StyledUserProfileTileContainer = styled('div', ({ $theme }) => {
     paddingBottom: $theme.sizing.scale650,
   };
 });
+StyledUserProfileTileContainer.displayName = 'StyledUserProfileTileContainer';
 
 export const StyledUserProfilePictureContainer = styled('div', ({ $theme }) => {
   return {
@@ -229,17 +241,22 @@ export const StyledUserProfilePictureContainer = styled('div', ({ $theme }) => {
       : { marginRight: $theme.sizing.scale600 }),
   };
 });
+StyledUserProfilePictureContainer.displayName = 'StyledUserProfilePictureContainer';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const StyledUserProfileInfoContainer = styled('div', ({ $theme }) => {
   return {
     boxSizing: 'border-box',
     alignSelf: 'center',
   };
 });
+StyledUserProfileInfoContainer.displayName = 'StyledUserProfileInfoContainer';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const StyledDesktopMenuContainer = styled('div', ({ $theme }) => {
   return {};
 });
+StyledDesktopMenuContainer.displayName = 'StyledDesktopMenuContainer';
 
 export const StyledDesktopMenu = styled('div', ({ $theme }) => {
   return {
@@ -252,3 +269,4 @@ export const StyledDesktopMenu = styled('div', ({ $theme }) => {
     paddingBlockEnd: '18px',
   };
 });
+StyledDesktopMenu.displayName = 'StyledDesktopMenu';

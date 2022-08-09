@@ -30,6 +30,7 @@ export type ButtonProps = {
   colors?: CustomColors;
   disabled?: boolean;
   /** A helper rendered at the end of the button. */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   endEnhancer?: React.ReactNode | React.ComponentType<any>;
   /** Show loading button style and spinner. */
   isLoading?: boolean;
@@ -44,6 +45,7 @@ export type ButtonProps = {
   /** Defines the size of the button */
   size?: keyof typeof SIZE;
   /** A helper rendered at the start of the button. */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   startEnhancer?: React.ReactNode | React.ComponentType<any>;
   type?: 'submit' | 'reset' | 'button';
 };

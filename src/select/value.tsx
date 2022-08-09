@@ -8,6 +8,7 @@ import * as React from 'react';
 import { StyledSingleValue } from './styled-components';
 import { getOverrides } from '../helpers/overrides';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function Value(props: any) {
   const { overrides = {}, ...restProps } = props;
   const [SingleValue, singleValueProps] = getOverrides(overrides.SingleValue, StyledSingleValue);

@@ -6,17 +6,22 @@ LICENSE file in the root directory of this source tree.
 */
 
 import { styled, expandBorderStyles } from '../styles';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import type { StyleObject } from 'styletron-standard';
 
 export const Action = styled('div', ({ $theme }) => ({
   ...$theme.typography.LabelMedium,
 }));
 
+Action.displayName = 'Action';
+
 export const Body = styled('div', ({ $theme }) => ({
   marginBottom: $theme.sizing.scale600,
   color: $theme.colors.contentPrimary,
   ...$theme.typography.ParagraphMedium,
 }));
+
+Body.displayName = 'Body';
 
 export const Contents = styled('div', ({ $theme }) => ({
   marginLeft: $theme.sizing.scale600,
@@ -25,12 +30,16 @@ export const Contents = styled('div', ({ $theme }) => ({
   marginBottom: $theme.sizing.scale600,
 }));
 
+Contents.displayName = 'Contents';
+
 export const HeaderImage = styled('img', ({ $theme }) => ({
   borderTopLeftRadius: $theme.borders.surfaceBorderRadius,
   borderTopRightRadius: $theme.borders.surfaceBorderRadius,
   objectFit: 'contain',
   maxWidth: '100%',
 }));
+
+HeaderImage.displayName = 'HeaderImage';
 
 // by using the section tag, we can keep the h1 for the title
 // https://html.spec.whatwg.org/multipage/sections.html#headings-and-sections
@@ -55,6 +64,8 @@ export const Root = styled('section', ({ $theme }) => ({
   overflow: 'hidden',
 }));
 
+Root.displayName = 'Root';
+
 export const Thumbnail = styled('img', ({ $theme }) => ({
   float: 'right',
   height: $theme.sizing.scale2400,
@@ -68,6 +79,8 @@ export const Thumbnail = styled('img', ({ $theme }) => ({
   margin: `0 0 ${$theme.sizing.scale500} ${$theme.sizing.scale500}`,
 }));
 
+Thumbnail.displayName = 'Thumbnail';
+
 export const Title = styled('h1', ({ $theme }) => ({
   ...$theme.typography.HeadingSmall,
   color: $theme.colors.contentPrimary,
@@ -80,3 +93,4 @@ export const Title = styled('h1', ({ $theme }) => ({
   paddingRight: 0,
   paddingBottom: 0,
 }));
+Title.displayName = 'Title';

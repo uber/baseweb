@@ -4,7 +4,6 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-/* flowlint unclear-type:off */
 
 import * as React from 'react';
 import { getInitialStyle } from 'styletron-standard';
@@ -18,6 +17,7 @@ type ObjOrFn = {} | ((a: {}) => {});
 type Props = {
   $style?: ObjOrFn;
   $theme?: Theme;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   forwardedRef: any;
 };
 
@@ -29,6 +29,7 @@ const MOCK_THEME = createMockTheme(LightTheme);
 const IDENTITY = (x) => x;
 
 export function useStyletron() {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function css(styles: any) {
     return {
       label: 'useStyletron mock describes the applied css properties',
@@ -39,6 +40,7 @@ export function useStyletron() {
   return [css, MOCK_THEME];
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function styled(ElementName: string | React.ComponentType<any>, objOrFn: ObjOrFn = {}) {
   class MockStyledComponent extends React.Component<Props, State> {
     static displayName = 'MockStyledComponent';
@@ -67,6 +69,7 @@ export function styled(ElementName: string | React.ComponentType<any>, objOrFn: 
     }
 
     getPassedProps() {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { forwardedRef, ...restProps } = this.props;
       return Object.keys(restProps).reduce((acc, key) => {
         if (key[0] !== '$') {
@@ -103,10 +106,12 @@ export function styled(ElementName: string | React.ComponentType<any>, objOrFn: 
 export const withStyle = styled;
 
 export function withWrapper(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   StyledElement: StyletronComponent<any, any>,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   wrapperFn: (a: StyletronComponent<any, any>) => (a: any) => any
 ) {
-  // eslint-disable-next-line react/display-name
+  // eslint-disable-next-line react/display-name,@typescript-eslint/no-explicit-any
   return React.forwardRef<any, any>((props, ref) =>
     wrapperFn(StyledElement)({ ref: ref, ...props, $theme: MOCK_THEME })
   );

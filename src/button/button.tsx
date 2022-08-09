@@ -47,6 +47,7 @@ class Button extends React.Component<
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   handleBlur = (event: SyntheticEvent) => {
     if (this.state.isFocusVisible !== false) {
       this.setState({ isFocusVisible: false });
@@ -56,16 +57,24 @@ class Button extends React.Component<
   render() {
     const {
       overrides = {},
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       size,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       kind,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       shape,
       isLoading,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       isSelected,
       // Removing from restProps
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       startEnhancer,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       endEnhancer,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       children,
       forwardedRef,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       colors,
       ...restProps
     } = this.props;

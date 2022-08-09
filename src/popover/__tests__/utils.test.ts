@@ -4,7 +4,6 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-/* flowlint unclear-type:off */
 
 import { ARROW_SIZE } from '../constants';
 import {
@@ -59,9 +58,11 @@ describe('Popover utils', () => {
       expect(splitPlacement('top')).toEqual(['top']);
       expect(splitPlacement('topLeft')).toEqual(['top', 'left']);
       expect(splitPlacement('auto')).toEqual(['auto']);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       expect(splitPlacement('' as any)).toEqual([]);
     });
     test('splitPlacement should handle empty input', () => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       expect(splitPlacement('' as any)).toEqual([]);
     });
   });
@@ -75,6 +76,7 @@ describe('Popover utils', () => {
     });
     test('isVerticalPosition should handle empty or null input', () => {
       expect(isVerticalPosition('')).toEqual(false);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const nullArg: any = null;
       expect(isVerticalPosition(nullArg)).toEqual(false);
     });

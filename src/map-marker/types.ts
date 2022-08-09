@@ -15,6 +15,8 @@ import {
   BADGE_ENHANCER_SIZES,
   LABEL_ENHANCER_POSITIONS,
   KIND,
+  LOCATION_PUCK_SIZES,
+  LOCATION_PUCK_TYPES,
 } from './constants';
 import type { Override } from '../helpers/overrides';
 
@@ -29,7 +31,6 @@ export type PinHeadSize = typeof PINHEAD_SIZES_SHAPES[keyof typeof PINHEAD_SIZES
 
 export type FloatingMarkerSize = typeof FLOATING_MARKER_SIZES[keyof typeof FLOATING_MARKER_SIZES];
 
-/* eslint-disable flowtype/generic-spacing*/
 export type FloatingMarkerAnchorType =
   typeof FLOATING_MARKER_ANCHOR_TYPES[keyof typeof FLOATING_MARKER_ANCHOR_TYPES];
 
@@ -40,6 +41,8 @@ export type LabelEnhancerPosition =
 
 export type Kind = typeof KIND[keyof typeof KIND];
 
+export type LocationPuckSize = typeof LOCATION_PUCK_SIZES[keyof typeof LOCATION_PUCK_SIZES];
+export type LocationPuckType = typeof LOCATION_PUCK_TYPES[keyof typeof LOCATION_PUCK_TYPES];
 export type FixedMarkerOverrides = {
   Root?: Override;
   InnerAnchor?: Override;
@@ -166,4 +169,33 @@ export type DragShadowProps = {
   dragging: boolean;
   height: number;
   overrides: FixedMarkerOverrides;
+};
+
+export type LocationPuckOverrides = {
+  Root?: Override;
+  LocationPuckApproximation?: Override;
+  ConsumerLocationPuckCore?: Override;
+  EarnerLocationPuckCore?: Override;
+};
+
+export type LocationPuckProps = {
+  size?: LocationPuckSize;
+  heading?: number;
+  confidenceRadius?: number;
+  showHeading?: boolean;
+  type?: LocationPuckType;
+  overrides?: LocationPuckOverrides;
+};
+
+export type ConsumerLocationPuckProps = {
+  heading: number;
+  confidenceRadius?: number;
+  showHeading?: boolean;
+  overrides: LocationPuckOverrides;
+};
+export type EarnerLocationPuckProps = {
+  heading: number;
+  confidenceRadius?: number;
+  size: LocationPuckSize;
+  overrides?: LocationPuckOverrides;
 };

@@ -40,6 +40,8 @@ export const StyledList = styled<'ul', StyledProps>('ul', ({ $theme, $isFocusVis
   };
 });
 
+StyledList.displayName = 'StyledList';
+
 function getFontColor(props) {
   if (props.$disabled) {
     return props.$theme.colors.menuFontDisabled;
@@ -86,6 +88,8 @@ export const StyledEmptyState = styled<'li', StyledProps>('li', (props) => {
   };
 });
 
+StyledEmptyState.displayName = 'StyledEmptyState';
+
 export const StyledOptgroupHeader = styled('li', (props) => {
   const paddingX = props.$theme.sizing.scale300;
   const paddingY = props.$theme.sizing.scale200;
@@ -98,12 +102,14 @@ export const StyledOptgroupHeader = styled('li', (props) => {
     paddingLeft: paddingX,
   };
 });
+StyledOptgroupHeader.displayName = 'StyledOptgroupHeader';
 export const StyledListItemAnchor = styled<'a', StyledProps>('a', (props) => {
   return {
     display: 'block',
     color: getFontColor(props),
   };
 });
+StyledListItemAnchor.displayName = 'StyledListItemAnchor';
 export const StyledListItemElement = styled<'li', StyledProps>('li', (props) => {
   const { $disabled, $theme, $size } = props;
   return {
@@ -131,9 +137,12 @@ export const StyledListItemElement = styled<'li', StyledProps>('li', (props) => 
   };
 });
 
+StyledListItemElement.displayName = 'StyledListItemElement';
+
 export const StyledListItem = withWrapper<typeof StyledListItemElement, { item? }>(
   StyledListItemElement,
   (Styled) =>
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     function StyledListItem({ item, ...restProps }) {
       return <Styled {...restProps} />;
     }
@@ -156,6 +165,8 @@ export const StyledListItemProfile = styled<'li', StyledProps>('li', ({ $theme }
   },
 }));
 
+StyledListItemProfile.displayName = 'StyledListItemProfile';
+
 export const StyledProfileImgContainer = styled('div', {
   width: '60px',
   height: '60px',
@@ -163,6 +174,8 @@ export const StyledProfileImgContainer = styled('div', {
   justifyContent: 'center',
   alignItems: 'center',
 });
+
+StyledProfileImgContainer.displayName = 'StyledProfileImgContainer';
 
 export const StyledProfileImg = styled('img', {
   width: '100%',
@@ -172,6 +185,8 @@ export const StyledProfileImg = styled('img', {
   borderBottomRightRadius: '50%',
   borderBottomLeftRadius: '50%',
 });
+
+StyledProfileImg.displayName = 'StyledProfileImg';
 
 export const StyledProfileLabelsContainer = styled<'div', StyledProps>(
   'div',
@@ -183,6 +198,8 @@ export const StyledProfileLabelsContainer = styled<'div', StyledProps>(
   })
 );
 
+StyledProfileLabelsContainer.displayName = 'StyledProfileLabelsContainer';
+
 export const StyledProfileTitle = styled<'h6', StyledProps>('h6', ({ $theme }) => ({
   ...$theme.typography.font350,
   color: $theme.colors.contentPrimary,
@@ -191,6 +208,8 @@ export const StyledProfileTitle = styled<'h6', StyledProps>('h6', ({ $theme }) =
   marginLeft: 0,
   marginRight: 0,
 }));
+
+StyledProfileTitle.displayName = 'StyledProfileTitle';
 
 export const StyledProfileSubtitle = styled<'p', StyledProps>('p', ({ $theme }) => ({
   ...$theme.typography.font200,
@@ -201,6 +220,8 @@ export const StyledProfileSubtitle = styled<'p', StyledProps>('p', ({ $theme }) 
   marginRight: 0,
 }));
 
+StyledProfileSubtitle.displayName = 'StyledProfileSubtitle';
+
 export const StyledProfileBody = styled<'p', StyledProps>('p', ({ $theme }) => ({
   ...$theme.typography.font100,
   color: $theme.colors.contentPrimary,
@@ -209,3 +230,4 @@ export const StyledProfileBody = styled<'p', StyledProps>('p', ({ $theme }) => (
   marginLeft: 0,
   marginRight: 0,
 }));
+StyledProfileBody.displayName = 'StyledProfileBody';

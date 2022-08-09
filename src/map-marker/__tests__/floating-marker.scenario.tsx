@@ -31,6 +31,7 @@ export function Scenario() {
   const [label, setLabel] = React.useState('Uber HQ');
   const [startEnhancer, setStartEnhancer] = React.useState(true);
   const [endEnhancer, setEndEnhancer] = React.useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [floatingMarkerAnchorType, setFloatingMarkerAnchorType] = React.useState<any>([
     floatingMarkerAnchorTypes[0],
   ]);
@@ -41,6 +42,7 @@ export function Scenario() {
     .forEach((size: FloatingMarkerSize, i: number) => {
       Object.keys(FLOATING_MARKER_ANCHOR_POSITIONS)
         .map((key) => FLOATING_MARKER_ANCHOR_POSITIONS[key])
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         .forEach((position: AnchorPositions, x: number) => {
           markers.push({
             id: `floating / ${size} / ${position}`,

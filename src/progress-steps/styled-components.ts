@@ -20,6 +20,9 @@ export const StyledProgressSteps = styled('ol', ({ $theme }) => {
   };
 });
 
+StyledProgressSteps.displayName = 'StyledProgressSteps';
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const StyledStep = styled<'li', StyleProps>('li', ({ $theme }) => {
   return {
     listStyleType: 'none',
@@ -28,8 +31,11 @@ export const StyledStep = styled<'li', StyleProps>('li', ({ $theme }) => {
   };
 });
 
+StyledStep.displayName = 'StyledStep';
+
 export const StyledIconContainer = styled<'div', StyleProps>(
   'div',
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   ({ $theme, $isActive, $isCompleted, $disabled }) => {
     let currentColor = $theme.colors.backgroundPrimary;
     let size = $theme.sizing.scale500;
@@ -66,9 +72,11 @@ export const StyledIconContainer = styled<'div', StyleProps>(
   }
 );
 
+StyledIconContainer.displayName = 'StyledIconContainer';
+
 export const StyledIcon = styled<'div', StyleProps>(
   'div',
-  ({ $theme, $isActive, $isCompleted, $disabled }) => {
+  ({ $theme, $isActive, $isCompleted }) => {
     let currentColor = $theme.colors.mono400;
     let size = $theme.sizing.scale300;
 
@@ -100,6 +108,8 @@ export const StyledIcon = styled<'div', StyleProps>(
   }
 );
 
+StyledIcon.displayName = 'StyledIcon';
+
 export const StyledInnerIcon = styled<'div', StyleProps>('div', ({ $theme }) => {
   return {
     width: $theme.sizing.scale300,
@@ -114,12 +124,16 @@ export const StyledInnerIcon = styled<'div', StyleProps>('div', ({ $theme }) => 
   };
 });
 
+StyledInnerIcon.displayName = 'StyledInnerIcon';
+
 export const StyledContent = styled<'div', StyleProps>('div', ({ $theme }) => {
   const marginDir: string = $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
   return {
     [marginDir]: $theme.sizing.scale1600,
   };
 });
+
+StyledContent.displayName = 'StyledContent';
 
 export const StyledContentTitle = styled<'div', StyleProps>(
   'div',
@@ -140,6 +154,8 @@ export const StyledContentTitle = styled<'div', StyleProps>(
     };
   }
 );
+
+StyledContentTitle.displayName = 'StyledContentTitle';
 
 export const StyledContentTail = styled<'div', StyleProps>(
   'div',
@@ -173,13 +189,17 @@ export const StyledContentTail = styled<'div', StyleProps>(
   }
 );
 
+StyledContentTail.displayName = 'StyledContentTail';
+
 export const StyledContentDescription = styled<'div', StyleProps>('div', ({ $theme }) => {
   return {
     marginBottom: $theme.sizing.scale700,
   };
 });
 
-export const StyledNumberStep = styled<'li', StyleProps>('li', ({ $theme }) => {
+StyledContentDescription.displayName = 'StyledContentDescription';
+
+export const StyledNumberStep = styled<'li', StyleProps>('li', () => {
   return {
     listStyleType: 'none',
     position: 'relative',
@@ -187,9 +207,11 @@ export const StyledNumberStep = styled<'li', StyleProps>('li', ({ $theme }) => {
   };
 });
 
+StyledNumberStep.displayName = 'StyledNumberStep';
+
 export const StyledNumberIcon = styled<'div', StyleProps>(
   'div',
-  ({ $theme, $isActive, $isCompleted, $disabled }) => {
+  ({ $theme, $isActive, $isCompleted }) => {
     let backgroundColor = $theme.colors.mono400;
     let color = $theme.colors.contentStateDisabled;
     let size = $theme.sizing.scale950;
@@ -231,9 +253,11 @@ export const StyledNumberIcon = styled<'div', StyleProps>(
   }
 );
 
+StyledNumberIcon.displayName = 'StyledNumberIcon';
+
 export const StyledNumberContentTail = styled<'div', StyleProps>(
   'div',
-  ({ $theme, $isActive, $isCompleted, $disabled }) => {
+  ({ $theme, $isCompleted }) => {
     let currentColor = $theme.colors.mono300;
     let size = $theme.sizing.scale950;
     let titleFont = $theme.typography.LabelMedium;
@@ -257,3 +281,4 @@ export const StyledNumberContentTail = styled<'div', StyleProps>(
     };
   }
 );
+StyledNumberContentTail.displayName = 'StyledNumberContentTail';

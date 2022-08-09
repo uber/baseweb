@@ -30,6 +30,7 @@ type Options = {
 type FilterParameters = {};
 type AnchorColumn = ColumnOptions<Value, FilterParameters>;
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function AnchorFilter(props) {
   return <div>not implemented for anchor column</div>;
 }
@@ -55,7 +56,9 @@ function AnchorCell(props) {
 function AnchorColumn(options: Options): AnchorColumn {
   return Column({
     kind: COLUMNS.ANCHOR,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     buildFilter: function (params) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       return function (data) {
         return true;
       };

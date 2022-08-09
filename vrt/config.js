@@ -5,7 +5,6 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-/* eslint-disable flowtype/require-valid-file-annotation */
 /* eslint-env node */
 
 const config = {
@@ -377,7 +376,7 @@ const config = {
       //     await page.waitForSelector('div[data-e2e="content"]', { state: 'hidden' });
       //     // Scroll to the last div
       //     await page.evaluate(() =>
-      //       // eslint-disable-next-line cup/no-undef
+      //
       //       document.querySelector('div[data-e2e-spacer="1"]').scrollIntoView()
       //     );
       //     // Listening to Scroll Event to determine if the page is still scrolling
@@ -385,7 +384,6 @@ const config = {
       //     await page.evaluate(() => {
       //       function scrollHandler() {
       //         // Disabling eslint checks on window / document as they would be executed in playwright
-      //         /* eslint-disable cup/no-undef */
       //         window.isPageScrolling = true;
       //         clearTimeout(window.scrollTimer);
       //         window.scrollTimer = setTimeout(() => {

@@ -20,6 +20,7 @@ import {
 import { toaster, ToasterContainer } from '..';
 
 const getBody = (): HTMLBodyElement => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return document.body as any as HTMLBodyElement;
 };
 

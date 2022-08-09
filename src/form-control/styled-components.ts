@@ -25,6 +25,8 @@ export const Label = styled<'label', StyleProps>('label', (props) => {
   };
 });
 
+Label.displayName = 'Label';
+
 export const LabelContainer = styled<'span', StyleProps>('span', ({ $theme: { sizing } }) => ({
   display: 'flex',
   width: '100%',
@@ -33,6 +35,8 @@ export const LabelContainer = styled<'span', StyleProps>('span', ({ $theme: { si
   marginBottom: sizing.scale300,
   marginLeft: 0,
 }));
+
+LabelContainer.displayName = 'LabelContainer';
 
 export const LabelEndEnhancer = styled<'span', StyleProps>(
   'span',
@@ -47,6 +51,8 @@ export const LabelEndEnhancer = styled<'span', StyleProps>(
       : colors.contentPrimary,
   })
 );
+
+LabelEndEnhancer.displayName = 'LabelEndEnhancer';
 
 export const Caption = styled<'div', StyleProps>('div', (props) => {
   const {
@@ -76,6 +82,8 @@ export const Caption = styled<'div', StyleProps>('div', (props) => {
   };
 });
 
+Caption.displayName = 'Caption';
+
 export const ControlContainer = styled<'div', StyleProps>('div', (props) => {
   const {
     $theme: { sizing },
@@ -85,3 +93,4 @@ export const ControlContainer = styled<'div', StyleProps>('div', (props) => {
     marginBottom: sizing.scale600,
   };
 });
+ControlContainer.displayName = 'ControlContainer';

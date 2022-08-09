@@ -27,3 +27,4 @@ export const IconWrapper = styled<
     alignItems: 'center',
   };
 });
+IconWrapper.displayName = 'IconWrapper';

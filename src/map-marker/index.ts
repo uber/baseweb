@@ -31,6 +31,7 @@ import type {
 
 export { default as FixedMarker } from './fixed-marker';
 export { default as FloatingMarker } from './floating-marker';
+export { default as LocationPuck } from './location-puck';
 
 export {
   FLOATING_MARKER_ANCHOR_POSITIONS,
@@ -42,6 +43,8 @@ export {
   LABEL_ENHANCER_POSITIONS,
   KIND,
   PINHEAD_DIMENSIONS,
+  LOCATION_PUCK_SIZES,
+  LOCATION_PUCK_TYPES,
 } from './constants';
 
 export * from './types';

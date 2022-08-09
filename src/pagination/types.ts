@@ -18,10 +18,13 @@ export type Size = keyof typeof SIZE;
 
 export type Callbacks = {
   /** Callback for prev button click. */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onPrevClick?: (a: { event: any }) => any;
   /** Callback for next button click. */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onNextClick?: (a: { event: any }) => any;
   /** Callback for when page changes. */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onPageChange?: (a: { nextPage: number; prevPage: number }) => any;
 };
 
@@ -65,6 +68,7 @@ export type StatefulPaginationProps = Callbacks & {
 };
 
 export type StatefulContainerProps = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   children: any;
   numPages: number;
   /** Reducer function to manipulate internal state updates. */

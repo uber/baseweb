@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 /* global document */
-/* eslint-disable cup/no-undef */
+
 import * as React from 'react';
 import FocusLock from 'react-focus-lock';
 
@@ -91,6 +91,7 @@ class Modal extends React.Component<ModalProps, ModalState> {
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   handleBlur = (event: SyntheticEvent) => {
     if (this.state.isFocusVisible !== false) {
       this.setState({ isFocusVisible: false });
@@ -149,7 +150,6 @@ class Modal extends React.Component<ModalProps, ModalState> {
       clearTimeout(this.animateOutTimer);
     }
     if (this.animateStartTimer) {
-      // eslint-disable-next-line cup/no-undef
       cancelAnimationFrame(this.animateStartTimer);
     }
   }
@@ -167,7 +167,6 @@ class Modal extends React.Component<ModalProps, ModalState> {
 
     this.disableMountNodeScroll();
 
-    // eslint-disable-next-line cup/no-undef
     this.animateStartTimer = requestAnimationFrame(() => {
       this.setState({ isVisible: true });
     });
@@ -212,6 +211,7 @@ class Modal extends React.Component<ModalProps, ModalState> {
       return mountNode;
     }
     // Flow thinks body could be null (cast through any)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return document.body as any as HTMLBodyElement;
   }
 
@@ -251,8 +251,10 @@ class Modal extends React.Component<ModalProps, ModalState> {
             returnFocus={returnFocus}
             autoFocus={autoFocus}
           >
+            {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
             <Root data-baseweb="modal" ref={this.rootRef as any} {...sharedProps} {...rootProps}>
               <DialogContainer
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 ref={this.dialogContainerRef as any}
                 {...sharedProps}
                 {...dialogContainerProps}

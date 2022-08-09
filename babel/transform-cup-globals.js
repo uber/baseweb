@@ -6,7 +6,6 @@ LICENSE file in the root directory of this source tree.
 */
 
 /* eslint-env node */
-/* eslint-disable flowtype/require-valid-file-annotation */
 
 module.exports = (babel) => {
   const t = babel.types;
@@ -54,4 +53,3 @@ module.exports = (babel) => {
     },
   };
 };
-/* eslint-enable flowtype/require-valid-file-annotation */

@@ -30,6 +30,8 @@ export const StyledRoot = styled<'li', StyledRootProps>('li', ({ $theme, $shape 
   };
 });
 
+StyledRoot.displayName = 'StyledRoot';
+
 export const StyledContent = styled<'div', StyledContentProps>(
   'div',
   ({ $mLeft, $sublist, $theme }) => {
@@ -56,10 +58,14 @@ export const StyledContent = styled<'div', StyledContentProps>(
   }
 );
 
+StyledContent.displayName = 'StyledContent';
+
 export const StyledEndEnhancerContainer = styled('div', {
   alignItems: 'center',
   display: 'flex',
 });
+
+StyledEndEnhancerContainer.displayName = 'StyledEndEnhancerContainer';
 
 export const StyledArtworkContainer = styled<'div', StyledArtworkContainerProps>(
   'div',
@@ -87,6 +93,8 @@ export const StyledArtworkContainer = styled<'div', StyledArtworkContainerProps>
   }
 );
 
+StyledArtworkContainer.displayName = 'StyledArtworkContainer';
+
 export const StyledLabelContent = styled('p', ({ $theme }) => {
   return {
     ...$theme.typography.LabelMedium,
@@ -95,6 +103,8 @@ export const StyledLabelContent = styled('p', ({ $theme }) => {
     marginBottom: 0,
   };
 });
+
+StyledLabelContent.displayName = 'StyledLabelContent';
 
 export const StyledLabelDescription = styled('p', ({ $theme }) => {
   return {
@@ -105,6 +115,8 @@ export const StyledLabelDescription = styled('p', ({ $theme }) => {
   };
 });
 
+StyledLabelDescription.displayName = 'StyledLabelDescription';
+
 export const StyledLabelSublistContent = styled('p', ({ $theme }) => {
   return {
     ...$theme.typography.LabelMedium,
@@ -113,6 +125,8 @@ export const StyledLabelSublistContent = styled('p', ({ $theme }) => {
     marginBottom: $theme.sizing.scale500,
   };
 });
+
+StyledLabelSublistContent.displayName = 'StyledLabelSublistContent';
 
 export const StyledHeadingRoot = styled<'div', StyledRootProps>('div', ({ $theme }) => {
   return {
@@ -124,6 +138,8 @@ export const StyledHeadingRoot = styled<'div', StyledRootProps>('div', ({ $theme
     minHeight: $theme.sizing.scale1600,
   };
 });
+
+StyledHeadingRoot.displayName = 'StyledHeadingRoot';
 
 export const StyledHeadingContent = styled('div', ({ $theme }) => {
   return {
@@ -144,11 +160,15 @@ export const StyledHeadingContent = styled('div', ({ $theme }) => {
   };
 });
 
+StyledHeadingContent.displayName = 'StyledHeadingContent';
+
 export const StyledHeadingContentRow = styled('div', {
   display: 'flex',
   justifyContent: 'space-between',
   width: '100%',
 });
+
+StyledHeadingContentRow.displayName = 'StyledHeadingContentRow';
 
 export const StyledHeadingMainHeading = styled<'p', StyledHeadingHeadingProps>(
   'p',
@@ -167,6 +187,8 @@ export const StyledHeadingMainHeading = styled<'p', StyledHeadingHeadingProps>(
   }
 );
 
+StyledHeadingMainHeading.displayName = 'StyledHeadingMainHeading';
+
 export const StyledHeadingSubHeading = styled<'p', StyledHeadingHeadingProps>(
   'p',
   ({ $maxLines = 1, $theme }) => {
@@ -184,6 +206,8 @@ export const StyledHeadingSubHeading = styled<'p', StyledHeadingHeadingProps>(
   }
 );
 
+StyledHeadingSubHeading.displayName = 'StyledHeadingSubHeading';
+
 export const StyledHeadingEndEnhancerContainer = styled<
   'div',
   {
@@ -198,6 +222,8 @@ export const StyledHeadingEndEnhancerContainer = styled<
   textOverflow: 'ellipsis',
 }));
 
+StyledHeadingEndEnhancerContainer.displayName = 'StyledHeadingEndEnhancerContainer';
+
 export const StyledHeadingEndEnhancerDescriptionContainer = styled('p', ({ $theme }) => ({
   ...$theme.typography.ParagraphMedium,
   marginTop: 0,
@@ -208,3 +234,5 @@ export const StyledHeadingEndEnhancerDescriptionContainer = styled('p', ({ $them
   overflow: 'hidden',
   textOverflow: 'ellipsis',
 }));
+StyledHeadingEndEnhancerDescriptionContainer.displayName =
+  'StyledHeadingEndEnhancerDescriptionContainer';

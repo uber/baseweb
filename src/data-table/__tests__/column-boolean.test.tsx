@@ -83,6 +83,7 @@ describe('boolean column', () => {
 
     const checkboxes = container.querySelectorAll('input[type="checkbox"]');
     fireEvent.click(checkboxes[0]);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     expect((checkboxes[0] as any as HTMLInputElement).checked).toBe(true);
 
     fireEvent.click(getByText('Apply'));

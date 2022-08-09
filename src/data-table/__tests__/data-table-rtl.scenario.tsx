@@ -14,6 +14,7 @@ import Check from '../../icon/check';
 const rowActions = [
   {
     label: 'Check',
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     onClick: ({ row }) => {},
     renderIcon: function RenderCheck({ size }) {
       return <Check size={size} />;
@@ -21,6 +22,7 @@ const rowActions = [
   },
   {
     label: 'Remove',
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     onClick: ({ row }) => {},
     renderIcon: function RenderAlert({ size }) {
       return <Alert size={size} />;

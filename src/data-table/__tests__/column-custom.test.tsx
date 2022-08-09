@@ -66,6 +66,7 @@ describe('custom column', () => {
       title: 'column',
       filterable: true,
       renderFilter: () => null,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       buildFilter: (params) => (value) => true,
       renderCell: () => null,
       mapDataToValue: () => null,

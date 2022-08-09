@@ -56,6 +56,7 @@ const Panel = (
     [localState]
   );
   const handleBlur = React.useCallback(
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     (event: SyntheticEvent) => {
       if (localState.isFocusVisible) {
         setLocalState({ ...localState, isFocusVisible: false });
@@ -92,6 +93,7 @@ const Panel = (
     },
     [expanded, disabled, onChange, onKeyDown]
   );
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const _animateRef = React.useRef<any>(null);
 
   React.useEffect(() => {

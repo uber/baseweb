@@ -26,6 +26,7 @@ export default function Menu(props: StatelessMenuProps) {
     focusMenu = () => {},
     unfocusMenu = () => {},
     handleMouseLeave = () => {},
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     handleKeyDown = (event: KeyboardEvent) => {},
     renderAll = false,
   } = props;
@@ -37,6 +38,7 @@ export default function Menu(props: StatelessMenuProps) {
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleBlur = (event: SyntheticEvent) => {
     if (focusVisible !== false) {
       setFocusVisible(false);
@@ -62,8 +64,10 @@ export default function Menu(props: StatelessMenuProps) {
           </OptgroupHeader>
         );
       }
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const groupItems = groupedItems[optgroup].map((item, index) => {
         itemIndex = itemIndex + 1;
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { getRequiredItemProps = (item, index) => ({} as RenderItemProps) } = props;
 
         const {

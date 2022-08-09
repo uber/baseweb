@@ -58,6 +58,7 @@ export default function TreeView(props: TreeViewProps) {
   };
 
   const onKeyDown = (e: KeyboardEvent, node: TreeNodeData) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const elementId = (e.target as any as HTMLLIElement).getAttribute('data-nodeid');
     // this check prevents bubbling
     if (elementId !== getId(node) && parseInt(elementId) !== getId(node)) {
@@ -132,6 +133,7 @@ export default function TreeView(props: TreeViewProps) {
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const onBlur = (event: SyntheticEvent) => {
     if (focusVisible) {
       setFocusVisible(false);

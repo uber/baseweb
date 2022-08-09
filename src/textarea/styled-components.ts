@@ -19,6 +19,8 @@ export const StyledTextAreaRoot = styled<'div', SharedStyleProps>(
   }
 );
 
+StyledTextAreaRoot.displayName = 'StyledTextAreaRoot';
+
 export const StyledTextareaContainer = styled<'div', SharedStyleProps>(
   'div',
   (
@@ -29,6 +31,8 @@ export const StyledTextareaContainer = styled<'div', SharedStyleProps>(
     ...getInputContainerStyles({ $positive: false, ...props }),
   })
 );
+
+StyledTextareaContainer.displayName = 'StyledTextareaContainer';
 
 export const StyledTextarea = styled<'textarea', SharedStyleProps>(
   'textarea',
@@ -41,3 +45,4 @@ export const StyledTextarea = styled<'textarea', SharedStyleProps>(
     resize: 'none',
   })
 );
+StyledTextarea.displayName = 'StyledTextarea';

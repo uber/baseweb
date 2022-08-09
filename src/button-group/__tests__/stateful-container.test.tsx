@@ -11,6 +11,7 @@ import { StatefulContainer, MODE } from '..';
 
 describe('ButtonGroup StatefulContainer', () => {
   it('provides expected props to children render function', () => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const children = jest.fn((arg) => <div>children</div>);
     render(<StatefulContainer>{children}</StatefulContainer>);
 

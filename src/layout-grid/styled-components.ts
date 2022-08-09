@@ -26,6 +26,8 @@ export const StyledGridWrapper = styled<'div', StyledGridWrapperProps>(
   })
 );
 
+StyledGridWrapper.displayName = 'StyledGridWrapper';
+
 export const StyledGrid = styled<'div', StyledGridProps>(
   'div',
   ({
@@ -71,6 +73,8 @@ export const StyledGrid = styled<'div', StyledGridProps>(
     };
   }
 );
+
+StyledGrid.displayName = 'StyledGrid';
 
 export const StyledCell = styled<'div', StyledCellProps>(
   'div',
@@ -135,6 +139,8 @@ export const StyledCell = styled<'div', StyledCellProps>(
     };
   }
 );
+
+StyledCell.displayName = 'StyledCell';
 
 function getResponsiveNumber<T>(responsive: Responsive<T>, i: number): number {
   const res = getResponsiveValue(responsive, i);

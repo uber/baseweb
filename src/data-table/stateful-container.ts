@@ -129,5 +129,6 @@ export const StatefulContainer: React.FC<StatefulContainerProps> = (props) => {
     sortIndex,
     sortDirection,
     textQuery,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   }) as any;
 };
