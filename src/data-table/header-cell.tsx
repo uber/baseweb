@@ -70,12 +70,12 @@ const HeaderCell = React.forwardRef<HTMLDivElement, HeaderCellProps>((props, ref
         display: props.isMeasured ? 'inline-flex' : 'flex',
         flexGrow: 1,
         height: '100%',
+        paddingLeft: theme.sizing.scale500,
       })}
     >
       {props.isSelectable && (
         <span
           className={css({
-            paddingLeft: theme.sizing.scale500,
             paddingRight: theme.sizing.scale300,
           })}
           ref={checkboxRef}
@@ -106,7 +106,7 @@ const HeaderCell = React.forwardRef<HTMLDivElement, HeaderCellProps>((props, ref
           height: '100%',
           outline: focusVisible ? `3px solid ${theme.colors.accent}` : 'none',
           outlineOffset: '-3px',
-          paddingLeft: theme.sizing.scale500,
+          // paddingLeft: theme.sizing.scale500,
           paddingRight: theme.sizing.scale500,
           whiteSpace: 'nowrap',
         })}
