@@ -1,9 +1,7 @@
 import * as React from 'react';
 import {MessageCard, IMAGE_LAYOUT} from 'baseui/message-card';
 import valley from './images/valley.jpg';
-import moto from './images/moto.jpg';
 import dinner from './images/dinner.jpg';
-import train from './images/train.jpg';
 import {colors} from 'baseui/tokens';
 
 export default function Example() {

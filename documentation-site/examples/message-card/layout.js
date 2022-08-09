@@ -2,7 +2,6 @@
 import * as React from 'react';
 import {MessageCard, IMAGE_LAYOUT} from 'baseui/message-card';
 import venice from './images/venice.jpg';
-import hamburger from './images/hamburger.jpg';
 import planet from './images/planet.jpg';
 import {colors} from 'baseui/tokens';
 
