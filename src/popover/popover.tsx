@@ -58,6 +58,7 @@ class PopoverInner extends React.Component<PopoverProps, PopoverPrivateState> {
   componentDidUpdate(prevProps: PopoverProps, prevState: PopoverPrivateState) {
     this.init(prevProps, prevState);
     if (
+      this.props.accessibilityType !== ACCESSIBILITY_TYPE.tooltip &&
       this.props.autoFocus &&
       !this.state.autoFocusAfterPositioning &&
       this.popperRef.current !== null &&
@@ -273,10 +274,6 @@ class PopoverInner extends React.Component<PopoverProps, PopoverPrivateState> {
     const { isOpen } = this.props;
 
     const anchorProps: AnchorProps = {
-      'aria-haspopup': true,
-      'aria-expanded': isOpen ? true : false,
-      // @ts-expect-error todo(flow->ts): should it be here?
-      key: 'popover-anchor',
       ref: this.anchorRef,
     };
 
@@ -284,6 +281,8 @@ class PopoverInner extends React.Component<PopoverProps, PopoverPrivateState> {
     if (this.isAccessibilityTypeMenu()) {
       const relationAttr = this.isClickTrigger() ? 'aria-controls' : 'aria-owns';
       anchorProps[relationAttr] = isOpen ? popoverId : null;
+      anchorProps['aria-haspopup'] = true;
+      anchorProps['aria-expanded'] = Boolean(isOpen);
     } else if (this.isAccessibilityTypeTooltip()) {
       anchorProps.id = this.getAnchorIdAttr();
       anchorProps['aria-describedby'] = isOpen ? popoverId : null;
@@ -310,7 +309,6 @@ class PopoverInner extends React.Component<PopoverProps, PopoverPrivateState> {
       bodyProps.id = popoverId;
     } else if (this.isAccessibilityTypeTooltip()) {
       bodyProps.id = popoverId;
-      bodyProps.role = 'tooltip';
     }
     if (this.isHoverTrigger()) {
       bodyProps.onMouseEnter = this.onPopoverMouseEnter;
@@ -440,7 +438,8 @@ class PopoverInner extends React.Component<PopoverProps, PopoverPrivateState> {
               onPopperUpdate={this.onPopperUpdate}
               placement={this.state.placement}
             >
-              {this.props.focusLock ? (
+              {this.props.focusLock &&
+              this.props.accessibilityType !== ACCESSIBILITY_TYPE.tooltip ? (
                 <FocusLock
                   disabled={!this.props.focusLock}
                   noFocusGuards={false}

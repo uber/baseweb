@@ -232,12 +232,12 @@ export function StatefulDataTable(props: StatefulDataTableProps) {
 
               {Boolean(selectedRowIds.size) && props.batchActions && (
                 <div
-                  style={{
+                  className={css({
                     display: 'flex',
                     alignItems: 'center',
-                    paddingTop: theme.sizing.scale400,
-                    paddingBottom: theme.sizing.scale400,
-                  }}
+                    paddingTop: theme.sizing.scale300,
+                    paddingBottom: theme.sizing.scale300,
+                  })}
                 >
                   {props.batchActions.map((action) => {
                     function onClick(event) {
