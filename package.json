@@ -90,7 +90,7 @@
     "@octokit/rest": "^16.33.1",
     "@playwright/test": "^1.24.0",
     "@svgr/cli": "^4.3.2",
-    "@testing-library/dom": "^8.13.0",
+    "@testing-library/dom": "^8.17.1",
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
