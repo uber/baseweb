@@ -31,6 +31,10 @@ class LayerComponent extends React.Component<LayerComponentProps, LayerState> {
 
   componentDidMount() {
     this.context.addEscapeHandler(this.onEscape);
+    this.context.addKeyDownHandler(this.onKeyDown);
+    this.context.addKeyUpHandler(this.onKeyUp);
+    this.context.addKeyPressHandler(this.onKeyPress);
+
     if (!this.props.isHoverLayer) {
       this.context.addDocClickHandler(this.onDocumentClick);
     }
@@ -78,6 +82,9 @@ class LayerComponent extends React.Component<LayerComponentProps, LayerState> {
 
   componentWillUnmount() {
     this.context.removeEscapeHandler(this.onEscape);
+    this.context.removeKeyDownHandler(this.onKeyDown);
+    this.context.removeKeyUpHandler(this.onKeyUp);
+    this.context.removeKeyPressHandler(this.onKeyPress);
     this.context.removeDocClickHandler(this.onDocumentClick);
 
     if (this.props.onUnmount) {
@@ -96,6 +103,24 @@ class LayerComponent extends React.Component<LayerComponentProps, LayerState> {
   onEscape = () => {
     if (this.props.onEscape) {
       this.props.onEscape();
+    }
+  };
+
+  onKeyDown = (event: KeyboardEvent) => {
+    if (this.props.onKeyDown) {
+      this.props.onKeyDown(event);
+    }
+  };
+
+  onKeyUp = (event: KeyboardEvent) => {
+    if (this.props.onKeyUp) {
+      this.props.onKeyUp(event);
+    }
+  };
+
+  onKeyPress = (event: KeyboardEvent) => {
+    if (this.props.onKeyPress) {
+      this.props.onKeyPress(event);
     }
   };
 

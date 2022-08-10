@@ -22,7 +22,10 @@ export type LayersManagerPropsT = {
 };
 
 export type LayersManagerStateT = {|
-  escapeKeyHandlers: Array<() => mixed>,
+  escapeKeyHandlers: Array < () => mixed >,
+  keyDownHandlers: Array < (event: KeyboardEvent) => mixed >,
+  keyUpHandlers: Array < (event: KeyboardEvent) => mixed >,
+  keyPressHandlers: Array < (event: KeyboardEvent) => mixed >,
   docClickHandlers: Array<(event: MouseEvent) => mixed>,
 |};
 
@@ -31,6 +34,12 @@ export type LayersContextT = {
   zIndex?: number,
   addEscapeHandler: (() => mixed) => void,
   removeEscapeHandler: (() => mixed) => void,
+  addKeyDownHandler: (() => mixed) => void,
+  removeKeyDownHandler: (() => mixed) => void,
+  addKeyUpHandler: (() => mixed) => void,
+  removeKeyUpHandler: (() => mixed) => void,
+  addKeyPressHandler: (() => mixed) => void,
+  removeKeyPressHandler: (() => mixed) => void,
   addDocClickHandler: (() => mixed) => void,
   removeDocClickHandler: (() => mixed) => void,
 };
@@ -56,6 +65,15 @@ export type LayerPropsT = {
   /** Handler called when escape key is pressed.
     Only the top most layer's handler is called. */
   onEscape?: () => mixed,
+  /** Handler called when key down event is happened.
+    Only the top most layer's handler is called. */
+  onKeyDown?: (event: KeyboardEvent) => mixed,
+  /** Handler called when key up event is happened.
+    Only the top most layer's handler is called. */
+  onKeyUp?: (event: KeyboardEvent) => mixed,
+  /** Handler called when key press event is happened.
+    Only the top most layer's handler is called. */
+  onKeyPress?: (event: KeyboardEvent) => mixed,
   /** Handler called when mousedown event happens on the document.
     Only the top most layer's handler is called. */
   onDocumentClick?: (event: MouseEvent) => mixed,
@@ -75,6 +93,9 @@ export type LayerComponentPropsT = {
   isHoverLayer?: boolean,
   mountNode?: HTMLElement,
   onEscape?: () => mixed,
+  onKeyDown?: (event: KeyboardEvent) => mixed,
+  onKeyUp?: (event: KeyboardEvent) => mixed,
+  onKeyPress?: (event: KeyboardEvent) => mixed,
   onDocumentClick?: (event: MouseEvent) => mixed,
   onMount?: () => mixed,
   onUnmount?: () => mixed,
