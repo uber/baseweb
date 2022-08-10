@@ -13,7 +13,7 @@ import {
   StyledHeadingContainer,
   StyledParagraphContainer,
 } from './styled-components';
-import { Button as DefaultButton, SHAPE } from '../button';
+import { Button as DefaultButton, SHAPE, SIZE } from '../button';
 import { useStyletron } from '../styles/index.js';
 import { ThemeProvider, LightTheme } from '../';
 import { getBackgroundColorType } from './utils';
@@ -107,6 +107,7 @@ const MessageCard = ({
           <Button
             kind={buttonKind}
             shape={SHAPE.pill}
+            size={SIZE.compact}
             role="none"
             tabIndex={-1}
             colors={buttonColors}
@@ -119,8 +120,8 @@ const MessageCard = ({
                         marginTop: theme.sizing.scale100,
                         transform:
                           theme.direction === 'rtl'
-                            ? `translateX(${theme.sizing.scale600})`
-                            : `translateX(-${theme.sizing.scale600})`,
+                            ? `translateX(${theme.sizing.scale500})`
+                            : `translateX(-${theme.sizing.scale500})`,
                       }
                     : {
                         marginTop: theme.sizing.scale500,
