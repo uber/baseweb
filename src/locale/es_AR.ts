@@ -85,6 +85,8 @@ const es_AR: Locale = {
     booleanFilterFalse: 'falso',
     booleanColumnTrueShort: 'V',
     booleanColumnFalseShort: 'F',
+    selectRow: 'Seleccionar fila',
+    selectAllRows: 'Seleccionar todas las filas',
   },
 
   buttongroup: {

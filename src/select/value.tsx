@@ -13,7 +13,7 @@ export default function Value(props: any) {
   const { overrides = {}, ...restProps } = props;
   const [SingleValue, singleValueProps] = getOverrides(overrides.SingleValue, StyledSingleValue);
   return (
-    <SingleValue aria-selected="true" {...restProps} {...singleValueProps}>
+    <SingleValue {...restProps} {...singleValueProps}>
       {props.children}
     </SingleValue>
   );
