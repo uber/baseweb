@@ -64,61 +64,61 @@ export default (fontTokens: FontTokens = defaultFontTokens): Typography => {
   const font550: Font = {
     fontFamily: fontTokens.primaryFontFamily,
     fontSize: '20px',
-    fontWeight: 500,
+    fontWeight: 700,
     lineHeight: '28px',
   };
   const font650: Font = {
     fontFamily: fontTokens.primaryFontFamily,
     fontSize: '24px',
-    fontWeight: 500,
+    fontWeight: 700,
     lineHeight: '32px',
   };
   const font750: Font = {
     fontFamily: fontTokens.primaryFontFamily,
     fontSize: '28px',
-    fontWeight: 500,
+    fontWeight: 700,
     lineHeight: '36px',
   };
   const font850: Font = {
     fontFamily: fontTokens.primaryFontFamily,
     fontSize: '32px',
-    fontWeight: 500,
+    fontWeight: 700,
     lineHeight: '40px',
   };
   const font950: Font = {
     fontFamily: fontTokens.primaryFontFamily,
     fontSize: '36px',
-    fontWeight: 500,
+    fontWeight: 700,
     lineHeight: '44px',
   };
   const font1050: Font = {
     fontFamily: fontTokens.primaryFontFamily,
     fontSize: '40px',
-    fontWeight: 500,
+    fontWeight: 700,
     lineHeight: '52px',
   };
   const font1150: Font = {
     fontFamily: fontTokens.primaryFontFamily,
     fontSize: '36px',
-    fontWeight: 500,
+    fontWeight: 700,
     lineHeight: '44px',
   };
   const font1250: Font = {
     fontFamily: fontTokens.primaryFontFamily,
     fontSize: '44px',
-    fontWeight: 500,
+    fontWeight: 700,
     lineHeight: '52px',
   };
   const font1350: Font = {
     fontFamily: fontTokens.primaryFontFamily,
     fontSize: '52px',
-    fontWeight: 500,
+    fontWeight: 700,
     lineHeight: '64px',
   };
   const font1450: Font = {
     fontFamily: fontTokens.primaryFontFamily,
     fontSize: '96px',
-    fontWeight: 500,
+    fontWeight: 700,
     lineHeight: '112px',
   };
 
