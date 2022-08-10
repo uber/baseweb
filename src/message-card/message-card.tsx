@@ -39,7 +39,7 @@ const MessageCard = ({
   overrides = {},
   paragraph,
 }: MessageCardProps) => {
-  const { src, layout = IMAGE_LAYOUT.top, backgroundPosition } = image || {};
+  const { src, layout = IMAGE_LAYOUT.top, backgroundPosition, ariaLabel } = image || {};
 
   const [Root, RootProps] = getOverrides(overrides.Root, StyledRoot);
   const [ContentContainer, ContentContainerProps] = getOverrides(
@@ -95,6 +95,8 @@ const MessageCard = ({
     >
       {image && (
         <Image
+          role="img"
+          ariaLabel={ariaLabel}
           $src={src}
           $imageLayout={layout}
           $backgroundPosition={backgroundPosition}

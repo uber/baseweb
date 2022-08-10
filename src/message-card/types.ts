@@ -29,6 +29,7 @@ export interface MessageCardProps {
     src: string;
     layout?: keyof typeof IMAGE_LAYOUT;
     backgroundPosition?: string;
+    ariaLabel: string;
   };
   overrides?: MessageCardOverrides;
 }

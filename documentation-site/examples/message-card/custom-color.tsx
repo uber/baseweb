@@ -13,7 +13,12 @@ export default function Example() {
       paragraph="Quisque sodales tempor metus."
       buttonLabel="Order"
       onClick={() => alert('Clicked 🙂')}
-      image={{src: hamburger, layout: IMAGE_LAYOUT.trailing}}
+      image={{
+        src: hamburger,
+        layout: IMAGE_LAYOUT.trailing,
+        ariaLabel:
+          'A deconstructed hamburger being literally thrown together',
+      }}
       backgroundColor="#101010"
       backgroundColorType={BACKGROUND_COLOR_TYPE.dark}
     />

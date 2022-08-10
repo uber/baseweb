@@ -12,7 +12,12 @@ export default function Example() {
         paragraph="Pellentesque velit purus, luctus non lorem in, rutrum ultricies quam."
         buttonLabel="Explore"
         onClick={() => alert('Clicked 🙂')}
-        image={{src: valley, backgroundPosition: '50% 65%'}}
+        image={{
+          src: valley,
+          backgroundPosition: '50% 65%',
+          ariaLabel:
+            'A woman hiking through a valley with a yellow backpack',
+        }}
         backgroundColor={colors.teal200}
         overrides={{Root: {style: {marginBottom: '30px'}}}}
       />
@@ -20,7 +25,12 @@ export default function Example() {
         paragraph="Pellentesque velit purus, luctus non lorem in, rutrum ultricies quam."
         buttonLabel="Explore"
         onClick={() => alert('Clicked 🙂')}
-        image={{src: valley, backgroundPosition: 'bottom'}}
+        image={{
+          src: valley,
+          backgroundPosition: 'bottom',
+          ariaLabel:
+            'A woman hiking through a valley with a yellow backpack',
+        }}
         backgroundColor={colors.teal200}
         overrides={{Root: {style: {marginBottom: '30px'}}}}
       />
@@ -33,6 +43,7 @@ export default function Example() {
           src: dinner,
           backgroundPosition: 'left center',
           layout: IMAGE_LAYOUT.trailing,
+          ariaLabel: 'A table with freshly prepared food',
         }}
         overrides={{Root: {style: {marginBottom: '30px'}}}}
       />
@@ -45,6 +56,7 @@ export default function Example() {
           src: dinner,
           backgroundPosition: 'center right',
           layout: IMAGE_LAYOUT.trailing,
+          ariaLabel: 'A table with freshly prepared food',
         }}
       />
     </div>

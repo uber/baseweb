@@ -15,7 +15,11 @@ export default function Example() {
         paragraph="Pellentesque velit purus, luctus non lorem in, rutrum ultricies quam."
         buttonLabel="Take me there"
         onClick={() => alert('Clicked 🙂')}
-        image={{src: valley}}
+        image={{
+          src: valley,
+          ariaLabel:
+            'A woman hiking through a valley with a yellow backpack',
+        }}
         backgroundColor={colors.teal200}
         overrides={{Root: {style: {marginBottom: '30px'}}}}
       />
@@ -25,7 +29,11 @@ export default function Example() {
         buttonLabel="Go!"
         buttonKind={BUTTON_KIND.tertiary}
         onClick={() => alert('Clicked 🙂')}
-        image={{src: moto}}
+        image={{
+          src: moto,
+          ariaLabel:
+            'Driving a motorcycle with a delivery container on the back',
+        }}
         backgroundColor={colors.purple600}
         overrides={{Root: {style: {marginBottom: '30px'}}}}
       />
@@ -34,7 +42,11 @@ export default function Example() {
         paragraph="Vivamus lobortis vestibulum bibendum. Duis malesuada ante purus, sit amet auctor felis commodo sed."
         buttonLabel="Learn more"
         onClick={() => alert('Clicked 🙂')}
-        image={{src: train}}
+        image={{
+          src: train,
+          ariaLabel:
+            'A train moving across an arched bridge through a green countryside',
+        }}
         backgroundColor={colors.white}
         overrides={{Root: {style: {marginBottom: '30px'}}}}
       />
@@ -44,7 +56,10 @@ export default function Example() {
         buttonLabel="Save now"
         buttonKind={BUTTON_KIND.tertiary}
         onClick={() => alert('Clicked 🙂')}
-        image={{src: dinner}}
+        image={{
+          src: dinner,
+          ariaLabel: 'A table with freshly prepared food',
+        }}
         backgroundColor={colors.brown500}
       />
     </div>

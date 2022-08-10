@@ -29,6 +29,7 @@ export function Scenario() {
             image={{
               src: veniceJpg,
               backgroundPosition: 'left top',
+              ariaLabel: 'Cruising down a Venetian canal in a gondola',
             }}
             onClick={() => console.log('Saved')}
             backgroundColor={colors.red200}
@@ -41,6 +42,7 @@ export function Scenario() {
             image={{
               src: veniceJpg,
               backgroundPosition: 'center top',
+              ariaLabel: 'Cruising down a Venetian canal in a gondola',
             }}
             onClick={() => console.log('Saved')}
             backgroundColor={colors.red200}
@@ -53,6 +55,7 @@ export function Scenario() {
             image={{
               src: veniceJpg,
               backgroundPosition: 'right top',
+              ariaLabel: 'Cruising down a Venetian canal in a gondola',
             }}
             onClick={() => console.log('Saved')}
             backgroundColor={colors.red200}
@@ -68,6 +71,7 @@ export function Scenario() {
             image={{
               src: veniceJpg,
               backgroundPosition: 'left center',
+              ariaLabel: 'Cruising down a Venetian canal in a gondola',
             }}
             onClick={() => console.log('Saved')}
             backgroundColor={colors.red200}
@@ -80,6 +84,7 @@ export function Scenario() {
             image={{
               src: veniceJpg,
               backgroundPosition: 'center center',
+              ariaLabel: 'Cruising down a Venetian canal in a gondola',
             }}
             onClick={() => console.log('Saved')}
             backgroundColor={colors.red200}
@@ -92,6 +97,7 @@ export function Scenario() {
             image={{
               src: veniceJpg,
               backgroundPosition: 'right center',
+              ariaLabel: 'Cruising down a Venetian canal in a gondola',
             }}
             onClick={() => console.log('Saved')}
             backgroundColor={colors.red200}
@@ -107,6 +113,7 @@ export function Scenario() {
             image={{
               src: veniceJpg,
               backgroundPosition: 'left bottom',
+              ariaLabel: 'Cruising down a Venetian canal in a gondola',
             }}
             onClick={() => console.log('Saved')}
             backgroundColor={colors.red200}
@@ -119,6 +126,7 @@ export function Scenario() {
             image={{
               src: veniceJpg,
               backgroundPosition: 'center bottom',
+              ariaLabel: 'Cruising down a Venetian canal in a gondola',
             }}
             onClick={() => console.log('Saved')}
             backgroundColor={colors.red200}
@@ -131,6 +139,7 @@ export function Scenario() {
             image={{
               src: veniceJpg,
               backgroundPosition: 'right bottom',
+              ariaLabel: 'Cruising down a Venetian canal in a gondola',
             }}
             onClick={() => console.log('Saved')}
             backgroundColor={colors.red200}
@@ -147,6 +156,7 @@ export function Scenario() {
               src: deliveryHeroItalianPng,
               layout: IMAGE_LAYOUT.trailing,
               backgroundPosition: 'left top',
+              ariaLabel: 'Illustration of an Italian meal with pizza and pasta on a picnic table',
             }}
             onClick={() => console.log('Saved')}
             backgroundColor={colors.red200}
@@ -160,6 +170,7 @@ export function Scenario() {
               src: deliveryHeroItalianPng,
               layout: IMAGE_LAYOUT.trailing,
               backgroundPosition: 'center top',
+              ariaLabel: 'Illustration of an Italian meal with pizza and pasta on a picnic table',
             }}
             onClick={() => console.log('Saved')}
             backgroundColor={colors.red200}
@@ -173,6 +184,7 @@ export function Scenario() {
               src: deliveryHeroItalianPng,
               layout: IMAGE_LAYOUT.trailing,
               backgroundPosition: 'right top',
+              ariaLabel: 'Illustration of an Italian meal with pizza and pasta on a picnic table',
             }}
             onClick={() => console.log('Saved')}
             backgroundColor={colors.red200}
@@ -189,6 +201,7 @@ export function Scenario() {
               src: deliveryHeroItalianPng,
               layout: IMAGE_LAYOUT.trailing,
               backgroundPosition: 'left center',
+              ariaLabel: 'Illustration of an Italian meal with pizza and pasta on a picnic table',
             }}
             onClick={() => console.log('Saved')}
             backgroundColor={colors.red200}
@@ -202,6 +215,7 @@ export function Scenario() {
               src: deliveryHeroItalianPng,
               layout: IMAGE_LAYOUT.trailing,
               backgroundPosition: 'center center',
+              ariaLabel: 'Illustration of an Italian meal with pizza and pasta on a picnic table',
             }}
             onClick={() => console.log('Saved')}
             backgroundColor={colors.red200}
@@ -215,6 +229,7 @@ export function Scenario() {
               src: deliveryHeroItalianPng,
               layout: IMAGE_LAYOUT.trailing,
               backgroundPosition: 'right center',
+              ariaLabel: 'Illustration of an Italian meal with pizza and pasta on a picnic table',
             }}
             onClick={() => console.log('Saved')}
             backgroundColor={colors.red200}
@@ -231,6 +246,7 @@ export function Scenario() {
               src: deliveryHeroItalianPng,
               layout: IMAGE_LAYOUT.trailing,
               backgroundPosition: 'left bottom',
+              ariaLabel: 'Illustration of an Italian meal with pizza and pasta on a picnic table',
             }}
             onClick={() => console.log('Saved')}
             backgroundColor={colors.red200}
@@ -244,6 +260,7 @@ export function Scenario() {
               src: deliveryHeroItalianPng,
               layout: IMAGE_LAYOUT.trailing,
               backgroundPosition: 'center bottom',
+              ariaLabel: 'Illustration of an Italian meal with pizza and pasta on a picnic table',
             }}
             onClick={() => console.log('Saved')}
             backgroundColor={colors.red200}
@@ -257,6 +274,7 @@ export function Scenario() {
               src: deliveryHeroItalianPng,
               layout: IMAGE_LAYOUT.trailing,
               backgroundPosition: 'right bottom',
+              ariaLabel: 'Illustration of an Italian meal with pizza and pasta on a picnic table',
             }}
             onClick={() => console.log('Saved')}
             backgroundColor={colors.red200}
@@ -273,6 +291,7 @@ export function Scenario() {
               src: deliveryHeroItalianPng,
               layout: IMAGE_LAYOUT.trailing,
               backgroundPosition: '25% 75%',
+              ariaLabel: 'Illustration of an Italian meal with pizza and pasta on a picnic table',
             }}
             onClick={() => console.log('Saved')}
             backgroundColor={colors.red200}
@@ -286,6 +305,7 @@ export function Scenario() {
               src: deliveryHeroItalianPng,
               layout: IMAGE_LAYOUT.trailing,
               backgroundPosition: '10px 20px',
+              ariaLabel: 'Illustration of an Italian meal with pizza and pasta on a picnic table',
             }}
             onClick={() => console.log('Saved')}
             backgroundColor={colors.red200}
@@ -299,6 +319,7 @@ export function Scenario() {
               src: deliveryHeroItalianPng,
               layout: IMAGE_LAYOUT.trailing,
               backgroundPosition: '-30% 25px',
+              ariaLabel: 'Illustration of an Italian meal with pizza and pasta on a picnic table',
             }}
             onClick={() => console.log('Saved')}
             backgroundColor={colors.red200}

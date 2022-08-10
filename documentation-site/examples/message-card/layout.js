@@ -13,7 +13,11 @@ export default function Example() {
         paragraph="Nam vitae maximus nibh."
         buttonLabel="Take me there"
         onClick={() => alert('Clicked 🙂')}
-        image={{src: venice, layout: IMAGE_LAYOUT.trailing}}
+        image={{
+          src: venice,
+          layout: IMAGE_LAYOUT.trailing,
+          ariaLabel: 'Cruising down a Venetian canal in a gondola',
+        }}
         backgroundColor={colors.purple300}
         overrides={{Root: {style: {marginBottom: '30px'}}}}
       />
@@ -22,7 +26,11 @@ export default function Example() {
         paragraph="Nam vitae maximus nibh, ac hendrerit lectus."
         buttonLabel="Learn more"
         onClick={() => alert('Clicked 🙂')}
-        image={{src: planet, layout: IMAGE_LAYOUT.trailing}}
+        image={{
+          src: planet,
+          layout: IMAGE_LAYOUT.trailing,
+          ariaLabel: 'A surreal digitally illustrated planet',
+        }}
       />
     </div>
   );
