@@ -13,7 +13,7 @@ describe('Single Value component', function () {
   it('renders StyledSingleValue', function () {
     const { container } = render(<SingleValue>test</SingleValue>);
     const element = getByText(container, 'test');
-    expect(element.getAttribute('aria-selected')).toBe('true');
+    expect(element).toBeTruthy();
   });
 
   it('renders custom SingleValue', function () {

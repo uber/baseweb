@@ -12,7 +12,6 @@ import {
   fireEvent,
   findByText,
   getByText,
-  getByRole,
   queryByText,
   waitForElementToBeRemoved,
 } from '@testing-library/react';
@@ -276,7 +275,7 @@ describe('Popover', () => {
     await findByText(container, content);
     expect(anchor.getAttribute('aria-describedby')).toBe(id);
 
-    const body = getByRole(container, 'tooltip');
-    expect(body.getAttribute('id')).toBe(id);
+    const body = container.querySelector('#' + id);
+    expect(body).toBeTruthy();
   });
 });

@@ -21,6 +21,9 @@ export type LayersManagerProps = {
 
 export type LayersManagerState = {
   escapeKeyHandlers: Array<() => unknown>;
+  keyDownHandlers: Array<(event: KeyboardEvent) => unknown>;
+  keyUpHandlers: Array<(event: KeyboardEvent) => unknown>;
+  keyPressHandlers: Array<(event: KeyboardEvent) => unknown>;
   docClickHandlers: Array<(event: MouseEvent) => unknown>;
 };
 
@@ -29,6 +32,12 @@ export type LayersContextProps = {
   zIndex?: number;
   addEscapeHandler: (a: () => unknown) => void;
   removeEscapeHandler: (a: () => unknown) => void;
+  addKeyDownHandler: (a: () => unknown) => void;
+  removeKeyDownHandler: (a: () => unknown) => void;
+  addKeyUpHandler: (a: () => unknown) => void;
+  removeKeyUpHandler: (a: () => unknown) => void;
+  addKeyPressHandler: (a: () => unknown) => void;
+  removeKeyPressHandler: (a: () => unknown) => void;
   addDocClickHandler: (a: () => unknown) => void;
   removeDocClickHandler: (a: () => unknown) => void;
 };
@@ -54,6 +63,15 @@ export type LayerProps = {
   /** Handler called when escape key is pressed.
     Only the top most layer's handler is called. */
   onEscape?: () => unknown;
+  /** Handler called when key down event is happened.
+    Only the top most layer's handler is called. */
+  onKeyDown?: (event: KeyboardEvent) => unknown;
+  /** Handler called when key up event is happened.
+    Only the top most layer's handler is called. */
+  onKeyUp?: (event: KeyboardEvent) => unknown;
+  /** Handler called when key press event is happened.
+    Only the top most layer's handler is called. */
+  onKeyPress?: (event: KeyboardEvent) => unknown;
   /** Handler called when mousedown event happens on the document.
     Only the top most layer's handler is called. */
   onDocumentClick?: (event: MouseEvent) => unknown;
@@ -73,6 +91,9 @@ export type LayerComponentProps = {
   isHoverLayer?: boolean;
   mountNode?: HTMLElement;
   onEscape?: () => unknown;
+  onKeyDown?: (event: KeyboardEvent) => unknown;
+  onKeyUp?: (event: KeyboardEvent) => unknown;
+  onKeyPress?: (event: KeyboardEvent) => unknown;
   onDocumentClick?: (event: MouseEvent) => unknown;
   onMount?: () => unknown;
   onUnmount?: () => unknown;
