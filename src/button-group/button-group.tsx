@@ -131,6 +131,32 @@ export default class ButtonGroup extends React.Component<ButtonGroupProps> {
                         return {};
                       }
 
+                      // Set Border Radious For Buttons According To The Button Position
+                      if (index === 0) {
+                        return {
+                          borderTopRightRadius: '0px',
+                          borderBottomRightRadius: '0px',
+                        };
+                      }
+
+                      if (index !== children.length - 1) {
+                        return {
+                          borderTopRightRadius: '0px',
+                          borderBottomRightRadius: '0px',
+                          borderTopLeftRadius: '0px',
+                          borderBottomLeftRadius: '0px',
+                          marginLeft: '1px',
+                        };
+                      }
+
+                      if (index === children.length - 1) {
+                        return {
+                          borderTopLeftRadius: '0px',
+                          borderBottomLeftRadius: '0px',
+                          marginLeft: '1px',
+                        };
+                      }
+
                       if (shape !== SHAPE.default) {
                         return {
                           marginLeft: $theme.sizing.scale100,
