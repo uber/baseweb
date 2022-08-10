@@ -85,6 +85,8 @@ const tr_TR: Locale = {
     booleanFilterFalse: 'yanlış',
     booleanColumnTrueShort: 'D',
     booleanColumnFalseShort: 'Y',
+    selectRow: 'satır seç',
+    selectAllRows: 'Tüm satırları seç',
   },
 
   buttongroup: {

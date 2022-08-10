@@ -13,7 +13,7 @@ import TriangleDownIcon from '../icon/triangle-down';
 import SearchIconComponent from '../icon/search';
 import { LocaleContext } from '../locale';
 import type { Locale } from '../locale';
-import { Popover, PLACEMENT } from '../popover';
+import { Popover, PLACEMENT, ACCESSIBILITY_TYPE } from '../popover';
 import { UIDConsumer } from 'react-uid';
 
 import AutosizeInput from './autosize-input';
@@ -651,11 +651,7 @@ class Select extends React.Component<SelectProps, SelectState> {
   }
 
   renderValue(
-    valueArray: Value,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    isOpen: boolean,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    locale: Locale
+    valueArray: Value
   ): React.ReactNode | undefined | null | Array<React.ReactNode | undefined | null> {
     const { overrides = {} } = this.props;
     const sharedProps = this.getSharedProps();
@@ -712,13 +708,10 @@ class Select extends React.Component<SelectProps, SelectState> {
     if (!this.props.searchable) {
       return (
         <InputContainer
-          role="listbox"
           aria-activedescendant={this.state.activeDescendant}
-          aria-expanded={isOpen}
           aria-describedby={this.props['aria-describedby']}
           aria-errormessage={this.props['aria-errormessage']}
           aria-disabled={this.props.disabled}
-          aria-label={label}
           aria-labelledby={this.props['aria-labelledby']}
           aria-owns={this.state.isOpen ? listboxId : null}
           aria-required={this.props.required || null}
@@ -998,6 +991,7 @@ class Select extends React.Component<SelectProps, SelectState> {
                   if (!ref) return;
                   this.anchor = ref.anchorRef;
                 }}
+                accessibilityType={ACCESSIBILITY_TYPE.none}
                 autoFocus={false}
                 focusLock={false}
                 mountNode={this.props.mountNode}
@@ -1052,7 +1046,7 @@ class Select extends React.Component<SelectProps, SelectState> {
                   >
                     {type === TYPE.search ? this.renderSearch() : null}
                     <ValueContainer {...sharedProps} {...valueContainerProps}>
-                      {this.renderValue(valueArray, isOpen, locale)}
+                      {this.renderValue(valueArray)}
                       {this.renderInput(listboxId)}
                       {this.shouldShowPlaceholder() ? (
                         <Placeholder {...sharedProps} {...placeholderProps}>

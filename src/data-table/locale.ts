@@ -38,6 +38,8 @@ export type DataTableLocale = {
   booleanFilterFalse: string;
   booleanColumnTrueShort: string;
   booleanColumnFalseShort: string;
+  selectRow: string;
+  selectAllRows: string;
 };
 
 const locale = {
@@ -75,6 +77,8 @@ const locale = {
   booleanFilterFalse: 'false',
   booleanColumnTrueShort: 'T',
   booleanColumnFalseShort: 'F',
+  selectRow: 'Select row',
+  selectAllRows: 'Select all rows',
 };
 
 export default locale;

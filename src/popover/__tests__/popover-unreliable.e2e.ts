@@ -11,7 +11,6 @@ import { mount } from '../../test/integration';
 const selectors = {
   popover: '[data-baseweb="popover"]',
   outsideOfPopover: '[data-e2e="outside-popover"]',
-  tooltip: '[role="tooltip"]',
   selectInput: 'input[role="combobox"]',
   selectDropDown: '[role="listbox"]',
   selectedList: '[data-id="selected"]',
@@ -24,7 +23,6 @@ test.describe('popover', () => {
     await mount(page, 'popover--select');
     await page.waitForSelector('button');
     await page.click('button');
-    await page.waitForSelector(selectors.tooltip);
     await page.waitForSelector(selectors.selectInput);
     await page.click(selectors.selectInput);
     await page.waitForSelector(selectors.selectDropDown);
@@ -41,7 +39,6 @@ test.describe('popover', () => {
     await mount(page, 'popover--select');
     await page.waitForSelector('button');
     await page.click('button');
-    await page.waitForSelector(selectors.tooltip);
     await page.waitForSelector(selectors.selectInput);
     await page.click(selectors.selectInput);
     await page.waitForSelector(selectors.selectDropDown);
