@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import { colors } from '../tokens';
 import { BACKGROUND_COLOR_TYPE } from './constants';
 
-const LIGHT_COLORS = [
+const LIGHT_COLORS = new Set([
   colors.red50,
   colors.red100,
   colors.red200,
@@ -66,9 +66,9 @@ const LIGHT_COLORS = [
   colors.gray200,
   colors.gray300,
   colors.gray400,
-];
+]);
 
-const DARK_COLORS = [
+const DARK_COLORS = new Set([
   colors.red400,
   colors.red500,
   colors.red600,
@@ -120,21 +120,21 @@ const DARK_COLORS = [
   colors.gray800,
   colors.gray900,
   colors.black,
-];
+]);
 
-const POOR_CONTRAST_COLORS = [colors.red300, colors.gray500, colors.yellow600];
+const POOR_CONTRAST_COLORS = new Set([colors.red300, colors.gray500, colors.yellow600]);
 
 export function getBackgroundColorType(backgroundColor: string) {
-  if (__DEV__ && POOR_CONTRAST_COLORS.includes(backgroundColor)) {
+  if (__DEV__ && POOR_CONTRAST_COLORS.has(backgroundColor)) {
     console.warn(
       `The provided value for backgroundColor, ${backgroundColor}, is not supported because \
         it does not pass accessibility contrast tests for either white or black text.`
     );
   }
-  if (LIGHT_COLORS.includes(backgroundColor)) {
+  if (LIGHT_COLORS.has(backgroundColor)) {
     return BACKGROUND_COLOR_TYPE.light;
   }
-  if (DARK_COLORS.includes(backgroundColor)) {
+  if (DARK_COLORS.has(backgroundColor)) {
     return BACKGROUND_COLOR_TYPE.dark;
   }
   return null;
