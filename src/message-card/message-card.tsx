@@ -79,7 +79,10 @@ const MessageCard = ({
     };
   }
   if (buttonKind !== BUTTON_KIND.tertiary && backgroundColor !== colors.white) {
-    buttonColors = { backgroundColor: theme.colors.backgroundAlwaysLight };
+    buttonColors = {
+      color: theme.colors.contentOnColorInverse,
+      backgroundColor: theme.colors.backgroundAlwaysLight,
+    };
   }
 
   return (
