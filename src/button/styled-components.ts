@@ -210,9 +210,7 @@ function getBorderRadiiStyles({ $theme, $size, $shape }) {
     }
   } else if ($shape === SHAPE.circle || $shape === SHAPE.round) {
     value = '50%';
-  }
-
-  if ($size === SIZE.mini) {
+  } else if ($size === SIZE.mini) {
     value = $theme.borders.radius200;
   }
 
