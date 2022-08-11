@@ -32,6 +32,7 @@ export type TimezonePickerOverrides = {
   Select?: Override;
 };
 export type TimezonePickerProps = {
+  additionalTimezones?: Timezone[];
   /**
    * If not provided, defaults to new Date(). Important to note that the timezone picker only
    * displays options related to the provided date. Take Pacific Time for example. On March 9th,
@@ -44,7 +45,6 @@ export type TimezonePickerProps = {
    * Customize the option's label. Useful for translations and optionally mapping from
    * 'America/Los_Angeles' to 'Pacific Time'.
    */
-  // todo(flow->ts): to double-check if change is correct - previously return type was React.ReactNode, but given implementation - only string looks expected to work correctly
   mapLabels?: (option: Option) => string;
   /** Callback for when the timezone selection changes. */
   onChange?: (value?: Timezone | null) => unknown;
