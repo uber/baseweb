@@ -207,7 +207,9 @@ type Overflow =
   | 'auto'
   | 'inherit'
   | 'initial'
-  | 'unset';
+  | 'unset'
+  | 'clip'
+  | 'overlay';
 
 export type Scale = 0 | string;
 

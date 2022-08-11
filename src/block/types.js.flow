@@ -216,7 +216,9 @@ type OverflowT =
   | 'auto'
   | 'inherit'
   | 'initial'
-  | 'unset';
+  | 'unset'
+  | 'clip'
+  | 'overlay';
 
 export type ScaleT = 0 | string;
 
