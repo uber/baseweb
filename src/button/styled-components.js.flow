@@ -200,6 +200,10 @@ function getBorderRadiiStyles({ $theme, $size, $shape }) {
     value = '50%';
   }
 
+  if ($size === SIZE.mini) {
+    value = $theme.borders.radius200;
+  }
+
   return {
     borderTopRightRadius: value,
     borderBottomRightRadius: value,
