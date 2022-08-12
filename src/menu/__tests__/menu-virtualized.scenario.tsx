@@ -10,7 +10,8 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import { withStyle } from 'styletron-react';
 import { StatefulMenu, OptionList, StyledList } from '..';
-import { List, AutoSizer } from 'react-virtualized';
+import AutoSizer from 'react-virtualized-auto-sizer';
+import { FixedSizeList as List } from 'react-window';
 
 const ITEMS = [...new Array(1500)].map((_, index) => ({
   label: `item number: ${index + 1}`,
@@ -25,14 +26,10 @@ const VirtualList = React.forwardRef<HTMLUListElement, any>((props, ref) => {
     <Container {...props} ref={ref}>
       <AutoSizer>
         {({ width }) => (
-          <List
-            role={props.role}
-            height={500}
-            rowCount={props.children.length}
-            rowHeight={36}
-            rowRenderer={({ index, key, style }) => (
+          <List height={500} width={width} itemCount={props.children.length} itemSize={36}>
+            {({ index, style }) => (
               <OptionList
-                key={key}
+                key={index}
                 style={style}
                 // @ts-expect-error todo(flow->ts) type error in react 17
                 {...children[index].props}
@@ -48,8 +45,7 @@ const VirtualList = React.forwardRef<HTMLUListElement, any>((props, ref) => {
                 }}
               />
             )}
-            width={width}
-          />
+          </List>
         )}
       </AutoSizer>
     </Container>
