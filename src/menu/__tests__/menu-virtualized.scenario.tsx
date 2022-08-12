@@ -26,13 +26,7 @@ const VirtualList = React.forwardRef<HTMLUListElement, any>((props, ref) => {
     <Container {...props} ref={ref}>
       <AutoSizer>
         {({ width }) => (
-          <List
-            role={props.role}
-            height={500}
-            width={width}
-            itemCount={props.children.length}
-            itemSize={36}
-          >
+          <List height={500} width={width} itemCount={props.children.length} itemSize={36}>
             {({ index, style }) => (
               <OptionList
                 key={index}
