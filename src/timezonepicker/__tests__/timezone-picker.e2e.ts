@@ -89,8 +89,6 @@ test.describe('TimezonePicker', () => {
     const label = '(GMT +0) UTC';
 
     const select = page.locator('[data-id="selected"]');
-    await expect(select).not.toHaveText(label);
-
     await select.click();
     const option = page.locator('[role="option"]').locator(`text=${label}`);
     await option.click();
