@@ -29,6 +29,16 @@ export const StyledRoot = styled<{ $orientation?: OrientationT }>(
   }
 );
 
+export const StyledTabBar = styled<{ $hasEndEnhancer: boolean, $orientation: OrientationT }>(
+  'div',
+  ({ $hasEndEnhancer, $orientation }) =>
+    $hasEndEnhancer || !isHorizontal($orientation)
+      ? {
+          display: 'flex',
+        }
+      : {}
+);
+
 export const StyledTabList = styled<{
   $orientation?: OrientationT,
   $fill?: FillT,
@@ -37,6 +47,7 @@ export const StyledTabList = styled<{
     position: 'relative',
     display: 'flex',
     flexWrap: 'nowrap',
+    flexGrow: 1,
   };
   if (isHorizontal($orientation)) {
     style.flexDirection = 'row';
@@ -136,6 +147,16 @@ export const StyledTab = styled<{
     return style;
   }
 );
+
+export const StyledEndEnhancerContainer = styled<{}>('div', ({ $theme }) => {
+  const marginDirection: string = $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
+  return {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    [marginDirection]: $theme.sizing.scale600,
+  };
+});
 
 export const StyledArtworkContainer = styled<{ $orientation?: OrientationT }>(
   'div',
