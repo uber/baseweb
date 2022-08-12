@@ -114,6 +114,7 @@ export const StyledListItemElement = styled<'li', StyledProps>('li', (props) => 
   const { $disabled, $theme, $size } = props;
   return {
     ...($size === OPTION_LIST_SIZE.compact ? $theme.typography.font100 : $theme.typography.font200),
+    boxSizing: 'border-box',
     position: 'relative',
     display: 'block',
     color: getFontColor(props),
