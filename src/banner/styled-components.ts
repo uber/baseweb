@@ -28,7 +28,10 @@ export const StyledRoot = styled<
     gridColumnGap: $theme.sizing.scale600,
     gridTemplateColumns: 'min-content auto min-content',
     gridTemplateRows: 'auto min-content',
-    margin: $theme.sizing.scale600,
+    marginTop: $theme.sizing.scale600,
+    marginRight: $theme.sizing.scale600,
+    marginBottom: $theme.sizing.scale600,
+    marginLeft: $theme.sizing.scale600,
   };
 });
 
