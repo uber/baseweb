@@ -83,4 +83,16 @@ test.describe('TimezonePicker', () => {
 
     expect(value).toBe('(GMT+3) Europe/Minsk');
   });
+
+  test('renders additional timezones', async ({ page }) => {
+    await mount(page, 'timezonepicker--timezone-picker-additional-timezones');
+    const label = '(GMT +0) UTC';
+
+    const select = page.locator('[data-id="selected"]');
+    await select.click();
+    const option = page.locator('[role="option"]').locator(`text=${label}`);
+    await option.click();
+
+    await expect(select).toHaveText(label);
+  });
 });
