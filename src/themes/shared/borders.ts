@@ -49,7 +49,9 @@ const borders: Borders = {
   /** Button, ButtonGroup */
   buttonBorderRadiusMini: '4px',
   buttonBorderRadius: '8px',
-  /** Input, Select, Textarea, Checkbox */
+  /** Checkbox */
+  checkboxBorderRadius: '0px',
+  /** Input, Select, Textarea */
   inputBorderRadiusMini: '4px',
   inputBorderRadius: '8px',
   /** Popover, Menu, Tooltip */
