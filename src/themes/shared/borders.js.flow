@@ -50,9 +50,9 @@ const borders: BordersT = {
   /** Button, ButtonGroup */
   buttonBorderRadius: '8px',
   /** Input, Select, Textarea, Checkbox */
-  inputBorderRadius: '0px',
+  inputBorderRadius: '8px',
   /** Popover, Menu, Tooltip */
-  popoverBorderRadius: '0px',
+  popoverBorderRadius: '8px',
   /** Card, Datepicker, Modal, Toast, Notification */
   surfaceBorderRadius: '0px',
   /** Tag */
