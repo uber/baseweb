@@ -102,7 +102,7 @@ export type BadgePosition = {
 export type FixedMarkerProps = {
   size?: PinHeadSize;
   needle?: NeedleSize;
-  label?: string;
+  label?: React.ReactNode;
   startEnhancer?: React.ComponentType<{
     size: number;
   }>;
@@ -133,7 +133,7 @@ export type FloatingMarkerOverrides = {
 };
 
 export type FloatingMarkerProps = {
-  label?: string;
+  label?: React.ReactNode;
   anchor?: AnchorPositions;
   endEnhancer?: React.ComponentType<{
     size: number;
@@ -148,7 +148,7 @@ export type FloatingMarkerProps = {
 
 export type PinHeadProps = {
   size?: PinHeadSize;
-  label?: string;
+  label?: React.ReactNode;
   endEnhancer?: React.ComponentType<{
     size: number;
   }>;
