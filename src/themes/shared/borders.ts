@@ -47,8 +47,10 @@ const borders: Borders = {
   /** Datepicker (Range), Progress Bar, Slider, Tag */
   useRoundedCorners: true,
   /** Button, ButtonGroup */
+  buttonBorderRadiusMini: '4px',
   buttonBorderRadius: '8px',
   /** Input, Select, Textarea, Checkbox */
+  inputBorderRadiusMini: '4px',
   inputBorderRadius: '8px',
   /** Popover, Menu, Tooltip */
   popoverBorderRadius: '8px',
