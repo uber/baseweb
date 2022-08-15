@@ -201,12 +201,19 @@ function getRootColors(
   };
 }
 
-function getRootBorderRadius(radius): {|
+function getRootBorderRadius(
+  size,
+  borders
+): {|
   borderTopLeftRadius: string,
   borderBottomLeftRadius: string,
   borderTopRightRadius: string,
   borderBottomRightRadius: string,
 |} {
+  let radius = borders.inputBorderRadius;
+  if (size === SIZE.mini) {
+    radius = borders.inputBorderRadiusMini;
+  }
   return {
     borderTopLeftRadius: radius,
     borderBottomLeftRadius: radius,
@@ -252,7 +259,7 @@ export const getRootStyles = (props: {
     transitionProperty: 'border',
     transitionDuration: animation.timing200,
     transitionTimingFunction: animation.easeOutCurve,
-    ...getRootBorderRadius(borders.inputBorderRadius),
+    ...getRootBorderRadius($size, borders),
     ...getFont($size, typography),
     ...getRootColors($disabled, $isFocused, $error, $positive, colors),
     ...getRootPadding($adjoined, $size, sizing, $theme.direction, $hasIconTrailing),

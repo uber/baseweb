@@ -210,7 +210,7 @@ function getBorderRadiiStyles({ $theme, $size, $shape }) {
   } else if ($shape === SHAPE.circle || $shape === SHAPE.round) {
     value = '50%';
   } else if ($size === SIZE.mini) {
-    value = $theme.borders.radius200;
+    value = $theme.borders.buttonBorderRadiusMini;
   }
 
   return {
