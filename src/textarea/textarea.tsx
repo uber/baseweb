@@ -75,6 +75,7 @@ class Textarea extends React.Component<
         $error={this.props.error}
         $positive={this.props.positive}
         $required={this.props.required}
+        $resize={this.props.resize}
         {...rootProps}
       >
         {/* $FlowFixMe */}
@@ -84,6 +85,7 @@ class Textarea extends React.Component<
           overrides={inputOverrides}
           onFocus={this.onFocus}
           onBlur={this.onBlur}
+          resize={this.props.resize}
         />
       </Root>
     );

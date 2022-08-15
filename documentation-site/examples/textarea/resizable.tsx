@@ -6,25 +6,9 @@ export default function Example() {
   return (
     <Textarea
       value={value}
-      onChange={e => setValue(e.currentTarget.value)}
+      onChange={(e) => setValue(e.currentTarget.value)}
       placeholder="Try resizing me..."
-      overrides={{
-        Input: {
-          style: {
-            maxHeight: '300px',
-            minHeight: '100px',
-            minWidth: '300px',
-            width: '100vw', // fill all available space up to parent max-width
-            resize: 'both',
-          },
-        },
-        InputContainer: {
-          style: {
-            maxWidth: '100%',
-            width: 'min-content',
-          },
-        },
-      }}
+      resize="both"
     />
   );
 }
