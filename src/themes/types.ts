@@ -644,6 +644,7 @@ export type Borders = {
   useRoundedCorners: boolean;
   buttonBorderRadius: string;
   buttonBorderRadiusMini: string;
+  checkboxBorderRadius: string;
   surfaceBorderRadius: string;
   inputBorderRadius: string;
   inputBorderRadiusMini: string;
