@@ -49,7 +49,7 @@ class TimezonePicker extends React.Component<TimezonePickerProps, TimezonePicker
   }
 
   buildTimezones = (compareDate: Date): Timezone[] => {
-    const timezones: Timezone[] = [];
+    let timezones: Timezone[] = [];
     for (const zoneName of zones) {
       try {
         const offset = getTimezoneOffset(zoneName, compareDate) / 3_600_000;
@@ -76,6 +76,10 @@ class TimezonePicker extends React.Component<TimezonePickerProps, TimezonePicker
         // Ignores timezones that are not available within a user's browser/operating system
         console.error(`failed to format zone name ${zoneName}`);
       }
+    }
+
+    if (this.props.additionalTimezones) {
+      timezones = timezones.concat(this.props.additionalTimezones);
     }
 
     // Sorts W -> E, prioritizes america. could be more nuanced based on system tz but simple for now
