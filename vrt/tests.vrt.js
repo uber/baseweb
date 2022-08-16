@@ -107,7 +107,8 @@ async function preparePageForSnapshot(
   // Bad, but lets let things settle down after resizing.
   await page.waitForTimeout(100);
 
-  await page.waitForLoadState('networkidle');
+  const isImageExtension = (p) => p.endsWith('.png') || p.endsWith('.jpg');
+  await page.waitForResponse((r) => isImageExtension(r.url()) && r.status() === 200);
 }
 
 async function getPageScrollHeight() {
