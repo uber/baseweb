@@ -120,6 +120,7 @@ const MessageCard = ({
             overrides={{
               BaseButton: {
                 style: {
+                  textAlign: 'center',
                   pointerEvents: 'none',
                   ...(buttonKind === BUTTON_KIND.tertiary
                     ? {
