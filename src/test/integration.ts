@@ -15,7 +15,7 @@ import { printReceived } from 'jest-matcher-utils';
 import { resolve } from 'path';
 import { realpathSync } from 'fs';
 
-const PATH_TO_AXE = './node_modules/axe-core/axe.min.js';
+const pathToAxe = require.resolve('axe-core/axe.min.js');
 const appDirectory = realpathSync(process.cwd());
 
 const resolvePath = (relativePath) => resolve(appDirectory, relativePath);
@@ -63,7 +63,7 @@ declare global {
 
 export async function analyzeAccessibility(page: Page, rules: Rule[] = []) {
   // Inject the axe script in our page
-  await page.addScriptTag({ path: resolvePath(PATH_TO_AXE) });
+  await page.addScriptTag({ path: resolvePath(pathToAxe) });
   // we make sure that axe is executed in the next tick after
   // the page emits the load event, giving priority for the
   // original JS to be evaluated
