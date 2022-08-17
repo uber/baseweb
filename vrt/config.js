@@ -692,6 +692,9 @@ const config = {
       },
     ],
   },
+  'message-card--image-positions': {
+    skip: true,
+  },
 };
 
 function getSnapshotConfig(scenarioName) {
