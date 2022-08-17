@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { Skeleton } from '..';
 import { useStyletron } from '../../styles';
-import imageFile from './static/adorable.png';
+import imageFile from './adorable.png';
 import { Avatar } from '../../avatar';
 
 export function Scenario() {
