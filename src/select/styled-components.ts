@@ -21,6 +21,27 @@ function getFont(size: keyof typeof SIZE = SIZE.default, typography) {
   }[size];
 }
 
+function getBorderRadius(
+  size,
+  borders
+): {
+  borderTopLeftRadius: string;
+  borderBottomLeftRadius: string;
+  borderTopRightRadius: string;
+  borderBottomRightRadius: string;
+} {
+  let radius = borders.inputBorderRadius;
+  if (size === SIZE.mini) {
+    radius = borders.inputBorderRadiusMini;
+  }
+  return {
+    borderTopLeftRadius: radius,
+    borderBottomLeftRadius: radius,
+    borderTopRightRadius: radius,
+    borderBottomRightRadius: radius,
+  };
+}
+
 function getControlPadding(props) {
   const {
     $theme,
@@ -188,13 +209,11 @@ export const StyledControlContainer = styled<'div', SharedStylePropsArg>('div', 
     $isPseudoFocused,
     $type,
     $searchable,
+    $size,
     $theme: { borders, colors, animation },
   } = props;
   return {
-    borderTopLeftRadius: borders.inputBorderRadius,
-    borderTopRightRadius: borders.inputBorderRadius,
-    borderBottomRightRadius: borders.inputBorderRadius,
-    borderBottomLeftRadius: borders.inputBorderRadius,
+    ...getBorderRadius($size, borders),
     boxSizing: 'border-box',
     overflow: 'hidden',
     width: '100%',

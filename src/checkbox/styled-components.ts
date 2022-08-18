@@ -143,7 +143,7 @@ export const Checkmark = styled<'span', SharedStyleProps>('span', (props) => {
     </svg>
   `);
 
-  const borderRadius = $theme.borders.inputBorderRadius;
+  const borderRadius = $theme.borders.checkboxBorderRadius;
   const borderColor = getBorderColor(props);
 
   return {
