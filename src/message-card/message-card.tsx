@@ -96,7 +96,7 @@ const MessageCard = ({
       {image && (
         <Image
           role="img"
-          ariaLabel={ariaLabel}
+          aria-label={ariaLabel}
           $src={src}
           $imageLayout={layout}
           $backgroundPosition={backgroundPosition}
@@ -110,6 +110,7 @@ const MessageCard = ({
         )}
         {buttonLabel && (
           <Button
+            $as="div"
             kind={buttonKind}
             shape={SHAPE.pill}
             size={SIZE.compact}
@@ -119,6 +120,7 @@ const MessageCard = ({
             overrides={{
               BaseButton: {
                 style: {
+                  textAlign: 'center',
                   pointerEvents: 'none',
                   ...(buttonKind === BUTTON_KIND.tertiary
                     ? {

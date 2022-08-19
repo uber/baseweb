@@ -18,7 +18,7 @@ export {
 // Util functions
 export { formatDate } from './utils';
 // Constants
-export { ORIENTATION, STATE_CHANGE_TYPE } from './constants';
+export { DENSITY, ORIENTATION, STATE_CHANGE_TYPE } from './constants';
 // Styled elements
 export * from './styled-components';
 // Dependency components and their types
