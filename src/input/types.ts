@@ -5,6 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
+import type { Properties } from 'csstype';
 import type { Override } from '../helpers/overrides';
 import { STATE_CHANGE_TYPE, ADJOINED, SIZE, ENHANCER_POSITION } from './constants';
 
@@ -48,6 +49,7 @@ export type SharedProps = {
   $size: Size;
   /** Renders UI in 'required' state */
   $required?: boolean;
+  $resize?: Properties['resize'];
   $position?: keyof typeof ENHANCER_POSITION;
   /** Defines if has a clearable or MaskToggleButton at the end */
   $hasIconTrailing?: boolean;
@@ -123,6 +125,7 @@ export type BaseInputProps<T> = {
   placeholder?: string;
   /** Renders component in 'required' state. */
   required?: boolean;
+  resize?: Properties['resize'];
   /** Input role attribute. */
   role?: string;
   /** Renders component in provided size. */

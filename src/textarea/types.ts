@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
-
+import type { Properties } from 'csstype';
 import type { Override } from '../helpers/overrides';
 import type { BaseInputProps, StateReducer, State } from '../input';
 import { ADJOINED, SIZE } from '../input';
@@ -24,6 +24,7 @@ export type SharedStyleProps = {
   $isReadOnly?: boolean;
   $positive?: boolean;
   $required?: boolean;
+  $resize?: Properties['resize'];
   $size: Size;
 };
 
@@ -35,6 +36,7 @@ export type TextareaOverrides = {
 
 export type TextareaProps = {
   overrides?: TextareaOverrides;
+  resize?: Properties['resize'];
   /** Sets the size and number of visible text lines
    of the textarea element. */
   rows?: number;
