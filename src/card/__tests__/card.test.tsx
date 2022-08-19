@@ -8,7 +8,7 @@ import * as React from 'react';
 import { render } from '@testing-library/react';
 
 import { Card } from '..';
-import { header as headerImg, thumbnail as thumbnailImg } from '../images';
+import { header as headerImg, thumbnail as thumbnailImg } from './images';
 
 test('Card - basic functionality', () => {
   const props = {

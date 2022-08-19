@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import type { StyledComponentArgs } from './types';
 
 export { default as Icon } from './icon';
-export { Svg as StyledSvg } from './styled-components';
+export { Svg as StyledSvg, getSvgStyles } from './styled-components';
 export * from './icon-exports';
 export * from './types';
 /** @deprecated use StyledComponentArgs instead. To be removed in future versions.*/

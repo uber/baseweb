@@ -11,7 +11,8 @@ import { TYPE, SIZE } from './constants.js';
 import { StyledList, StyledListItem } from '../menu/index.js';
 import { Spinner } from '../spinner/index.js';
 
-import type { SharedStylePropsArgT } from './types.js';
+import type { SizeT, SharedStylePropsArgT } from './types.js';
+import type { ThemeT } from '../styles/types.js';
 import { ellipsisText } from '../styles/util.js';
 
 function getFont(size = SIZE.default, typography) {
@@ -21,6 +22,27 @@ function getFont(size = SIZE.default, typography) {
     [SIZE.default]: typography.font300,
     [SIZE.large]: typography.font400,
   }[size];
+}
+
+function getBorderRadius(
+  size = SIZE.default,
+  borders
+): {|
+  borderTopLeftRadius: string,
+  borderBottomLeftRadius: string,
+  borderTopRightRadius: string,
+  borderBottomRightRadius: string,
+|} {
+  let radius = borders.inputBorderRadius;
+  if (size === SIZE.mini) {
+    radius = borders.inputBorderRadiusMini;
+  }
+  return {
+    borderTopLeftRadius: radius,
+    borderBottomLeftRadius: radius,
+    borderTopRightRadius: radius,
+    borderBottomRightRadius: radius,
+  };
 }
 
 function getControlPadding(props) {
@@ -184,13 +206,11 @@ export const StyledControlContainer = styled<SharedStylePropsArgT>('div', (props
     $isPseudoFocused,
     $type,
     $searchable,
+    $size,
     $theme: { borders, colors, animation },
   } = props;
   return {
-    borderTopLeftRadius: borders.inputBorderRadius,
-    borderTopRightRadius: borders.inputBorderRadius,
-    borderBottomRightRadius: borders.inputBorderRadius,
-    borderBottomLeftRadius: borders.inputBorderRadius,
+    ...getBorderRadius($size, borders),
     boxSizing: 'border-box',
     overflow: 'hidden',
     width: '100%',
