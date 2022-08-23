@@ -29,7 +29,7 @@ const defaultProps = {
   ignoreCase: true,
   isLoading: false,
   labelKey: 'label',
-  maxDropdownHeight: '900px',
+  maxDropdownHeight: '40vh',
   multi: false,
   onBlur: () => {},
   onBlurResetsInput: true,
