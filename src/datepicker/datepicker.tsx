@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import { MaskedInput } from '../input';
-import { Popover, PLACEMENT } from '../popover';
+import { Popover, PLACEMENT, ACCESSIBILITY_TYPE } from '../popover';
 import Calendar from './calendar';
 import { getOverrides } from '../helpers/overrides';
 import getInterpolatedString from '../helpers/i18n-interpolation';
@@ -503,6 +503,7 @@ export default class Datepicker<T = Date> extends React.Component<
         {(locale) => (
           <React.Fragment>
             <PopoverComponent
+              accessibilityType={ACCESSIBILITY_TYPE.none}
               focusLock={false}
               autoFocus={false}
               mountNode={this.props.mountNode}

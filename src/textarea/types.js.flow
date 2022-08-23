@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-
+import type { Property$Resize } from 'csstype';
 import type { OverrideT } from '../helpers/overrides.js';
 import type { BaseInputPropsT, StateReducerT, StateT } from '../input/types.js';
 import { ADJOINED, SIZE } from '../input/constants.js';
@@ -23,6 +23,7 @@ export type SharedStylePropsT = {
   $isReadOnly: boolean,
   $positive?: boolean,
   $required: boolean,
+  $resize?: Property$Resize,
   $size: SizeT,
 };
 
@@ -36,6 +37,7 @@ export type TextareaOverridesT = {
 export type TextareaPropsT = {
   ...BaseTextAreaPropsT,
   overrides?: TextareaOverridesT,
+  resize?: Property$Resize,
   /** Sets the size and number of visible text lines
    of the textarea element. */
   rows?: number,

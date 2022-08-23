@@ -10,7 +10,7 @@ import { Card, StyledAction, StyledBody, StyledThumbnail, StyledTitle } from '..
 import { Button } from '../../button';
 import { styled } from '../../styles';
 
-import { thumbnail } from '../images';
+import { thumbnail } from './images';
 
 const Container = styled('div', { width: '328px' });
 

@@ -30,6 +30,7 @@ export type TimezoneT = {
   offset: number,
 };
 export type TimezonePickerPropsT = {
+  additionalTimezones?: TimezoneT[],
   /**
    * If not provided, defaults to new Date(). Important to note that the timezone picker only
    * displays options related to the provided date. Take Pacific Time for example. On March 9th,

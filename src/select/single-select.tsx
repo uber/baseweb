@@ -9,8 +9,8 @@ import SelectComponent from './select-component';
 import Value from './value';
 import type { SelectProps } from './types';
 
-function MultiSelect(props: Partial<SelectProps>) {
+function SingleSelect(props: Partial<SelectProps>) {
   return <SelectComponent {...props} multi={false} valueComponent={Value} />;
 }
 
-export default MultiSelect;
+export default SingleSelect;

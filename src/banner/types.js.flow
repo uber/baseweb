@@ -33,6 +33,18 @@ export type ArtworkContentT = {|
   type?: ArtworkTypeT,
 |};
 
+export type OverridesT = {|
+  BelowContent?: OverrideT,
+  LeadingContent?: OverrideT,
+  Message?: OverrideT,
+  MessageContent?: OverrideT,
+  Root?: OverrideT,
+  Title?: OverrideT,
+  TrailingContent?: OverrideT,
+  TrailingButtonContainer?: OverrideT,
+  TrailingIconButton?: OverrideT,
+|};
+
 export type PropsT = {|
   // Provide a method to "accept", "dismiss", or otherwise interact with the message shown.
   action?: ActionContentT,
@@ -44,17 +56,7 @@ export type PropsT = {|
   hierarchy?: HierarchyT,
   // Determines color scheme and conveys message intent.
   kind?: KindT,
-  overrides?: {|
-    BelowContent?: OverrideT,
-    LeadingContent?: OverrideT,
-    Message?: OverrideT,
-    MessageContent?: OverrideT,
-    Root?: OverrideT,
-    Title?: OverrideT,
-    TrailingContent?: OverrideT,
-    TrailingButtonContainer?: OverrideT,
-    TrailingIconButton?: OverrideT,
-  |},
+  overrides?: OverridesT,
   // Used to make the banner visually distinct from its container element.
   nested?: boolean,
   // Bold text displayed when message content should be separated to two lines.

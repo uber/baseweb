@@ -22,38 +22,38 @@ const selectors = {
 test.describe('popover', () => {
   test('passes basic a11y tests', async ({ page }) => {
     await mount(page, 'popover--popover');
-    await page.waitForSelector(selectors.tooltip);
+    await expect(page.locator('button')).toBeVisible();
     const accessibilityReport = await analyzeAccessibility(page);
-
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
   test('hover opens the popover', async ({ page }) => {
     await mount(page, 'popover--hover');
-    await page.waitForSelector('button');
-    await page.hover('button');
-    await page.waitForSelector(selectors.tooltip);
+    await page.locator('button').hover();
+    const content = page.locator('text="content"');
+    await expect(content).toBeVisible();
     await page.mouse.move(200, 200);
-    await page.waitForSelector(selectors.tooltip, { state: 'hidden' });
+    await expect(content).toBeHidden();
   });
 
   test('opened popover can be closed with ESC', async ({ page }) => {
     await mount(page, 'popover--click');
-    await page.waitForSelector('button');
-    await page.click('button');
-    await page.waitForSelector(selectors.tooltip);
+    await page.locator('button').click();
+    const content = page.locator('text="content"');
+    await expect(content).toBeVisible();
     await page.keyboard.press('Escape');
-    await page.waitForSelector(selectors.tooltip, { state: 'hidden' });
+    await expect(content).toBeHidden();
   });
 
   test('allows interaction with select', async ({ page }) => {
     await mount(page, 'popover--select');
-    await page.waitForSelector('button');
-    await page.click('button');
-    await page.waitForSelector(selectors.tooltip);
-    await page.waitForSelector(selectors.selectInput);
-    await page.click(selectors.selectInput);
-    await page.waitForSelector(selectors.selectDropDown);
+    await page.locator('button').click();
+    const input = page.locator('input');
+    const listbox = page.locator('[role="listbox"]');
+    await expect(input).toBeVisible();
+    await input.click();
+    await expect(listbox).toBeVisible();
+
     // Both popovers opened at this point.
     // Make sure that layers rendered flat and not nested.
     const noNestedPopovers = await page.$$eval(selectors.popover, (popovers) => {
@@ -64,28 +64,23 @@ test.describe('popover', () => {
       return notNested;
     });
     expect(noNestedPopovers).toBe(true);
-    // Select an option from the select dropdown
-    const options = await page.$$(selectors.dropDownOption);
-    await options[0].click();
-    await page.waitForSelector(selectors.selectDropDown, { state: 'hidden' });
 
-    const selectedValue = await page.$eval(selectors.selectedList, (select) => select.textContent);
-    expect(selectedValue).toBe('AliceBlue');
-    // Click outside to close the initial popover
-    await page.click(selectors.outsideOfPopover);
-    await page.waitForSelector(selectors.selectInput, { state: 'hidden' });
+    const options = listbox.locator('[role="option"]');
+    await options.first().click();
+    await expect(listbox).toBeHidden();
+    await expect(page.locator('text="AliceBlue"')).toBeVisible();
+    await page.locator(selectors.outsideOfPopover).click();
+    await expect(input).toBeHidden();
   });
 
   test('renders content even when hidden: with renderAll prop', async ({ page }) => {
     await mount(page, 'popover--render-all');
-    await page.waitForSelector('button');
-    await page.waitForSelector(selectors.content, { state: 'attached' });
-    await page.click('button');
-    await page.waitForSelector(selectors.tooltip);
-    await page.waitForSelector(selectors.content);
+    const content = page.locator(selectors.content);
+    await content.waitFor({ state: 'attached' });
+    await page.locator('button').click();
+    await expect(content).toBeVisible();
     await page.keyboard.press('Escape');
-    await page.waitForSelector(selectors.tooltip, { state: 'hidden' });
-    await page.waitForSelector(selectors.content, { state: 'attached' });
+    await content.waitFor({ state: 'attached' });
   });
 
   test('updates position when width of popover changes', async ({ page }) => {

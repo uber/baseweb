@@ -643,8 +643,11 @@ export type Borders = {
   radius500: string;
   useRoundedCorners: boolean;
   buttonBorderRadius: string;
+  buttonBorderRadiusMini: string;
+  checkboxBorderRadius: string;
   surfaceBorderRadius: string;
   inputBorderRadius: string;
+  inputBorderRadiusMini: string;
   popoverBorderRadius: string;
   tagBorderRadius: string;
 };

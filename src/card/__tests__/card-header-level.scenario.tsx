@@ -9,7 +9,7 @@ import * as React from 'react';
 import { Heading, HeadingLevel } from '../../heading';
 import { Card, StyledBody } from '..';
 import { styled } from '../../styles';
-import { header } from '../images';
+import { header } from './images';
 
 const Container = styled('div', { width: '328px' });
 

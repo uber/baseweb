@@ -24,6 +24,12 @@ function defaultEventHandlerFn() {
 export const LayersContext = React.createContext<LayersContextProps>({
   addEscapeHandler: defaultEventHandlerFn,
   removeEscapeHandler: defaultEventHandlerFn,
+  addKeyDownHandler: defaultEventHandlerFn,
+  removeKeyDownHandler: defaultEventHandlerFn,
+  addKeyUpHandler: defaultEventHandlerFn,
+  removeKeyUpHandler: defaultEventHandlerFn,
+  addKeyPressHandler: defaultEventHandlerFn,
+  removeKeyPressHandler: defaultEventHandlerFn,
   addDocClickHandler: defaultEventHandlerFn,
   removeDocClickHandler: defaultEventHandlerFn,
   host: undefined,
@@ -40,7 +46,13 @@ export default class LayersManager extends React.Component<LayersManagerProps, L
 
   constructor(props: LayersManagerProps) {
     super(props);
-    this.state = { escapeKeyHandlers: [], docClickHandlers: [] };
+    this.state = {
+      escapeKeyHandlers: [],
+      keyDownHandlers: [],
+      keyUpHandlers: [],
+      keyPressHandlers: [],
+      docClickHandlers: [],
+    };
   }
 
   componentDidMount() {
@@ -48,7 +60,9 @@ export default class LayersManager extends React.Component<LayersManagerProps, L
     initFocusVisible(this.containerRef.current);
 
     if (__BROWSER__) {
+      document.addEventListener('keydown', this.onKeyDown);
       document.addEventListener('keyup', this.onKeyUp);
+      document.addEventListener('keypress', this.onKeyPress);
       // using mousedown event so that callback runs before events on children inside of the layer
       document.addEventListener('mousedown', this.onDocumentClick);
     }
@@ -56,7 +70,9 @@ export default class LayersManager extends React.Component<LayersManagerProps, L
 
   componentWillUnmount() {
     if (__BROWSER__) {
+      document.removeEventListener('keydown', this.onKeyDown);
       document.removeEventListener('keyup', this.onKeyUp);
+      document.removeEventListener('keypress', this.onKeyPress);
       document.removeEventListener('mousedown', this.onDocumentClick);
     }
   }
@@ -68,6 +84,13 @@ export default class LayersManager extends React.Component<LayersManagerProps, L
     }
   };
 
+  onKeyDown = (event: KeyboardEvent) => {
+    const keyDownHandler = this.state.keyDownHandlers[this.state.keyDownHandlers.length - 1];
+    if (keyDownHandler) {
+      keyDownHandler(event);
+    }
+  };
+
   onKeyUp = (event: KeyboardEvent) => {
     if (event.key === 'Escape') {
       const escapeKeyHandler =
@@ -75,6 +98,18 @@ export default class LayersManager extends React.Component<LayersManagerProps, L
       if (escapeKeyHandler) {
         escapeKeyHandler();
       }
+    }
+
+    const keyUpHandler = this.state.keyUpHandlers[this.state.keyUpHandlers.length - 1];
+    if (keyUpHandler) {
+      keyUpHandler(event);
+    }
+  };
+
+  onKeyPress = (event: KeyboardEvent) => {
+    const keyPressHandler = this.state.keyPressHandlers[this.state.keyPressHandlers.length - 1];
+    if (keyPressHandler) {
+      keyPressHandler(event);
     }
   };
 
@@ -88,6 +123,48 @@ export default class LayersManager extends React.Component<LayersManagerProps, L
     this.setState((prev) => {
       return {
         escapeKeyHandlers: prev.escapeKeyHandlers.filter((handler) => handler !== escapeKeyHandler),
+      };
+    });
+  };
+
+  onAddKeyDownHandler = (keyDownHandler: () => unknown) => {
+    this.setState((prev) => {
+      return { keyDownHandlers: [...prev.keyDownHandlers, keyDownHandler] };
+    });
+  };
+
+  onRemoveKeyDownHandler = (keyDownHandler: () => unknown) => {
+    this.setState((prev) => {
+      return {
+        keyDownHandlers: prev.keyDownHandlers.filter((handler) => handler !== keyDownHandler),
+      };
+    });
+  };
+
+  onAddKeyUpHandler = (keyUpHandler: () => unknown) => {
+    this.setState((prev) => {
+      return { keyUpHandlers: [...prev.keyUpHandlers, keyUpHandler] };
+    });
+  };
+
+  onRemoveKeyUpHandler = (keyUpHandler: () => unknown) => {
+    this.setState((prev) => {
+      return {
+        keyUpHandlers: prev.keyUpHandlers.filter((handler) => handler !== keyUpHandler),
+      };
+    });
+  };
+
+  onAddKeyPressHandler = (keyPressHandler: () => unknown) => {
+    this.setState((prev) => {
+      return { keyPressHandlers: [...prev.keyPressHandlers, keyPressHandler] };
+    });
+  };
+
+  onRemoveKeyPressHandler = (keyPressHandler: () => unknown) => {
+    this.setState((prev) => {
+      return {
+        keyPressHandlers: prev.keyPressHandlers.filter((handler) => handler !== keyPressHandler),
       };
     });
   };
@@ -134,6 +211,12 @@ export default class LayersManager extends React.Component<LayersManagerProps, L
                 zIndex: this.props.zIndex,
                 addEscapeHandler: this.onAddEscapeHandler,
                 removeEscapeHandler: this.onRemoveEscapeHandler,
+                addKeyDownHandler: this.onAddKeyDownHandler,
+                removeKeyDownHandler: this.onRemoveKeyDownHandler,
+                addKeyUpHandler: this.onAddKeyUpHandler,
+                removeKeyUpHandler: this.onRemoveKeyUpHandler,
+                addKeyPressHandler: this.onAddKeyPressHandler,
+                removeKeyPressHandler: this.onRemoveKeyPressHandler,
                 addDocClickHandler: this.onAddDocClickHandler,
                 removeDocClickHandler: this.onRemoveDocClickHandler,
               }}

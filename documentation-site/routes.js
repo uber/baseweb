@@ -232,6 +232,10 @@ const routes = [
             itemId: '/components/list',
           },
           {
+            title: 'Message Card',
+            itemId: '/components/message-card',
+          },
+          {
             title: 'Tag',
             itemId: '/components/tag',
           },

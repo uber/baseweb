@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
-import { render, getByTestId, getByText } from '@testing-library/react';
+import { render, getByTestId, getByText, fireEvent } from '@testing-library/react';
 
 import { TestBaseProvider } from '../../test/test-utils';
 
@@ -106,5 +106,22 @@ describe('Layer', () => {
     expect(layersContainer.children.length).toBe(2);
     expect(layersContainer.children[0].textContent).toBe(contentTwo);
     expect(layersContainer.children[1].textContent).toBe(contentOne);
+  });
+
+  it('passes keyboard events only to the last layer', () => {
+    const firstKeyHandler = jest.fn();
+    const secondKeyHandler = jest.fn();
+
+    const { container } = render(
+      <LayersManager>
+        <Layer onKeyPress={firstKeyHandler}>Layer 1</Layer>
+        <Layer onKeyPress={secondKeyHandler}>Layer 2</Layer>
+      </LayersManager>
+    );
+
+    fireEvent.keyPress(container, { key: 'Enter', code: 'Enter', charCode: 13 });
+
+    expect(firstKeyHandler).toBeCalledTimes(0);
+    expect(secondKeyHandler).toBeCalledTimes(1);
   });
 });
