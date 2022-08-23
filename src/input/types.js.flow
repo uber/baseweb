@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
+import type { Property$Resize } from 'csstype';
 import type { OverrideT } from '../helpers/overrides.js';
 import { STATE_CHANGE_TYPE, ADJOINED, SIZE, ENHANCER_POSITION } from './constants.js';
 
@@ -52,6 +53,7 @@ export type SharedPropsT = {|
   $size: SizeT,
   /** Renders UI in 'required' state */
   $required: boolean,
+  $resize?: Property$Resize,
   $position: $Keys<typeof ENHANCER_POSITION>,
   /** Defines if has a clearable or MaskToggleButton at the end */
   $hasIconTrailing: boolean,
@@ -128,6 +130,7 @@ export type BaseInputPropsT<T> = {|
   placeholder?: string,
   /** Renders component in 'required' state. */
   required: boolean,
+  resize?: Property$Resize,
   /** Input role attribute. */
   role?: string,
   /** Renders component in provided size. */

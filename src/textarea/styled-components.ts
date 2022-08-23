@@ -15,7 +15,10 @@ export const StyledTextAreaRoot = styled<'div', SharedStyleProps>(
       $theme: Theme;
     }
   ) => {
-    return getRootStyles({ $positive: false, ...props, $hasIconTrailing: false });
+    return {
+      ...getRootStyles({ $positive: false, ...props, $hasIconTrailing: false }),
+      width: props.$resize ? 'fit-content' : '100%',
+    };
   }
 );
 
@@ -27,9 +30,9 @@ export const StyledTextareaContainer = styled<'div', SharedStyleProps>(
     props: SharedStyleProps & {
       $theme: Theme;
     }
-  ) => ({
-    ...getInputContainerStyles({ $positive: false, ...props }),
-  })
+  ) => {
+    return getInputContainerStyles({ $positive: false, ...props });
+  }
 );
 
 StyledTextareaContainer.displayName = 'StyledTextareaContainer';
@@ -40,9 +43,11 @@ export const StyledTextarea = styled<'textarea', SharedStyleProps>(
     props: SharedStyleProps & {
       $theme: Theme;
     }
-  ) => ({
-    ...getInputStyles(props),
-    resize: 'none',
-  })
+  ) => {
+    return {
+      ...getInputStyles(props),
+      resize: props.$resize || 'none',
+    };
+  }
 );
 StyledTextarea.displayName = 'StyledTextarea';
