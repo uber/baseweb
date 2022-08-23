@@ -20,6 +20,8 @@ export type TabsOverrides = {
   TabList?: Override;
   TabHighlight?: Override;
   TabBorder?: Override;
+  EndEnhancerContainer?: Override;
+  StyledTabBar?: Override;
 };
 
 export type TabOverrides = {
@@ -55,6 +57,7 @@ export type TabsProps = {
   overrides?: TabsOverrides;
   renderAll?: boolean;
   uid?: string;
+  endEnhancer?: React.ReactNode;
 };
 
 export type StatefulTabsProps = {
