@@ -16,7 +16,7 @@ function getColorStyles({ $theme, $hierarchy, $color }): {|
   const COLOR_STYLES = {
     [HIERARCHY.primary]: {
       [COLOR.accent]: {
-        color: $theme.colors.contentInversePrimary,
+        color: $theme.colors.contentOnColor,
         backgroundColor: $theme.colors.backgroundAccent,
       },
       [COLOR.primary]: {
@@ -24,15 +24,15 @@ function getColorStyles({ $theme, $hierarchy, $color }): {|
         backgroundColor: $theme.colors.backgroundInversePrimary,
       },
       [COLOR.positive]: {
-        color: $theme.colors.contentInversePrimary,
+        color: $theme.colors.contentOnColor,
         backgroundColor: $theme.colors.backgroundPositive,
       },
       [COLOR.negative]: {
-        color: $theme.colors.contentInversePrimary,
+        color: $theme.colors.contentOnColor,
         backgroundColor: $theme.colors.backgroundNegative,
       },
       [COLOR.warning]: {
-        color: $theme.colors.primaryA,
+        color: $theme.colors.contentOnColorInverse,
         backgroundColor: $theme.colors.backgroundWarning,
       },
     },
