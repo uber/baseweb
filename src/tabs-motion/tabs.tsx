@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* global window */
 
 import * as React from 'react';
+import * as ReactIs from 'react-is';
 import { useUID } from 'react-uid';
 import { useStyletron } from '../styles';
 import { getOverrides } from '../helpers/overrides';
@@ -21,6 +22,8 @@ import {
   StyledTabHighlight,
   StyledTabBorder,
   StyledTabPanel,
+  StyledEndEnhancerContainer,
+  StyledTabBar,
 } from './styled-components';
 import { getTabId, getTabPanelId, isVertical, isHorizontal, isRTL } from './utils';
 
@@ -88,6 +91,16 @@ const scrollParentToCentreTarget = (targetNode) => {
   targetNode.parentNode.scroll(target.x, target.y);
 };
 
+function RenderEnhancer({ Enhancer }) {
+  if (typeof Enhancer === 'string') {
+    return Enhancer;
+  }
+  if (ReactIs.isValidElementType(Enhancer)) {
+    return <Enhancer />;
+  }
+  return Enhancer;
+}
+
 export function Tabs({
   activeKey = '0',
   disabled = false,
@@ -99,6 +112,7 @@ export function Tabs({
   overrides = {},
   renderAll = false,
   uid: customUid = null,
+  endEnhancer,
 }: TabsProps) {
   // Create unique id prefix for this tabs component
   const generatedUid = useUID();
@@ -115,6 +129,10 @@ export function Tabs({
   const [TabList, TabListProps] = getOverrides(TabListOverrides, StyledTabList);
   const [TabHighlight, TabHighlightProps] = getOverrides(TabHighlightOverrides, StyledTabHighlight);
   const [TabBorder, TabBorderProps] = getOverrides(TabBorderOverrides, StyledTabBorder);
+  const [EndEnhancerContainer, endEnhancerContainerProps] = getOverrides(
+    overrides.EndEnhancerContainer,
+    StyledEndEnhancerContainer
+  );
 
   // Count key updates
   // We disable a few things until after first mount:
@@ -220,46 +238,57 @@ export function Tabs({
 
   return (
     <Root {...sharedStylingProps} {...RootProps}>
-      <TabList
-        data-baseweb="tab-list"
-        role="tablist"
-        aria-orientation={orientation}
-        {...sharedStylingProps}
-        {...TabListProps}
-      >
-        {/*todo(flow->ts): children might be other the ReactElement*/}
-        {React.Children.map(children, (child: React.ReactElement, index) => {
-          if (!child) return;
-          return (
-            <InternalTab
-              childKey={child.key}
-              childIndex={index}
-              activeKey={activeKey}
-              orientation={orientation}
-              activeTabRef={activeTabRef}
-              updateHighlight={updateHighlight}
-              parseKeyDown={parseKeyDown}
-              activateOnFocus={activateOnFocus}
-              uid={uid}
-              disabled={disabled}
-              sharedStylingProps={sharedStylingProps}
-              onChange={onChange}
-              {...child.props}
-            />
-          );
-        })}
-        <TabHighlight
-          data-baseweb="tab-highlight"
-          $length={highlightLayout.length}
-          $distance={highlightLayout.distance}
-          // This avoids the tab sliding in from the side on mount
-          $animate={keyUpdated > 1}
-          aria-hidden="true"
-          role="presentation"
+      <StyledTabBar $hasEndEnhancer={Boolean(endEnhancer)} $orientation={orientation}>
+        <TabList
+          data-baseweb="tab-list"
+          role="tablist"
+          aria-orientation={orientation}
           {...sharedStylingProps}
-          {...TabHighlightProps}
-        />
-      </TabList>
+          {...TabListProps}
+        >
+          {/*todo(flow->ts): children might be other the ReactElement*/}
+          {React.Children.map(children, (child: React.ReactElement, index) => {
+            if (!child) return;
+            return (
+              <InternalTab
+                childKey={child.key}
+                childIndex={index}
+                activeKey={activeKey}
+                orientation={orientation}
+                activeTabRef={activeTabRef}
+                updateHighlight={updateHighlight}
+                parseKeyDown={parseKeyDown}
+                activateOnFocus={activateOnFocus}
+                uid={uid}
+                disabled={disabled}
+                sharedStylingProps={sharedStylingProps}
+                onChange={onChange}
+                {...child.props}
+              />
+            );
+          })}
+          <TabHighlight
+            data-baseweb="tab-highlight"
+            $length={highlightLayout.length}
+            $distance={highlightLayout.distance}
+            // This avoids the tab sliding in from the side on mount
+            $animate={keyUpdated > 1}
+            aria-hidden="true"
+            role="presentation"
+            {...sharedStylingProps}
+            {...TabHighlightProps}
+          />
+        </TabList>
+
+        {orientation === ORIENTATION.horizontal &&
+          endEnhancer !== null &&
+          endEnhancer !== undefined && (
+            <EndEnhancerContainer {...endEnhancerContainerProps} $orientation={orientation}>
+              <RenderEnhancer Enhancer={endEnhancer} />
+            </EndEnhancerContainer>
+          )}
+      </StyledTabBar>
+
       <TabBorder
         data-baseweb="tab-border"
         aria-hidden="true"
