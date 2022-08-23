@@ -315,6 +315,7 @@ class BaseInput<T extends HTMLInputElement | HTMLTextAreaElement> extends React.
     const [Input, inputProps] = getOverrides(InputOverride, StyledInput);
     const [Before, beforeProps] = getOverrides(BeforeOverride, NullComponent);
     const [After, afterProps] = getOverrides(AfterOverride, NullComponent);
+
     return (
       <InputContainer
         data-baseweb={this.props['data-baseweb'] || 'base-input'}

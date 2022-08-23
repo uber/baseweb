@@ -10,7 +10,7 @@ export function getSharedProps<T>(
   props: BaseInputProps<T> | InputProps,
   state: InternalState
 ): SharedProps {
-  const { disabled, error, positive, adjoined, size, required, readOnly } = props;
+  const { disabled, error, positive, adjoined, size, required, resize, readOnly } = props;
   const { isFocused } = state;
   return {
     $isFocused: isFocused,
@@ -20,6 +20,7 @@ export function getSharedProps<T>(
     $adjoined: adjoined,
     $size: size,
     $required: required,
+    $resize: resize,
     $isReadOnly: readOnly,
   };
 }

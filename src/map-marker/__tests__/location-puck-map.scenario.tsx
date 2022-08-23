@@ -115,7 +115,6 @@ export function Scenario() {
           width="100%"
           height="760px"
           onViewportChange={(viewport) => setViewport(viewport)}
-          mapboxApiAccessToken="pk.eyJ1IjoiYmFiYnN1YmVyIiwiYSI6ImNrdThqeGkxZTVwb3kyd3BpZGRlc2NlOXUifQ.qh-EtXm2DJQZVprWUJ-GFQ"
           onClick={({ lngLat }) => setLocations((existing) => [...existing, lngLat])}
         >
           {locations.map((x, i) => (
