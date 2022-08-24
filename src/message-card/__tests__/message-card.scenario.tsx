@@ -8,12 +8,12 @@ import * as React from 'react';
 import { colors } from '../../tokens';
 import { MessageCard } from '..';
 import { BUTTON_KIND } from '../constants';
-import deliveryHeroItalianSvg from './images/deliveryHeroItalian.svg';
-import deliveryHeroItalianPng from './images/deliveryHeroItalian@3x.png';
-import deliveryLargeStrawberriesSvg from './images/deliveryLargeStrawberries.svg';
-import deliveryLargeStrawberriesPng from './images/deliveryLargeStrawberries@3x.png';
-import earnerLargeRiderDriverSvg from './images/earnerLargeRiderDriver.svg';
-import earnerLargeRiderDriverPng from './images/earnerLargeRiderDriver@3x.png';
+import deliveryHeroItalianSvg from './deliveryHeroItalian.svg';
+import deliveryHeroItalianPng from './deliveryHeroItalian@3x.png';
+import deliveryLargeStrawberriesSvg from './deliveryLargeStrawberries.svg';
+import deliveryLargeStrawberriesPng from './deliveryLargeStrawberries@3x.png';
+import earnerLargeRiderDriverSvg from './earnerLargeRiderDriver.svg';
+import earnerLargeRiderDriverPng from './earnerLargeRiderDriver@3x.png';
 
 export function Scenario() {
   const containerStyle = {

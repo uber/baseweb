@@ -7,8 +7,8 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { colors } from '../../tokens';
 import { MessageCard, IMAGE_LAYOUT } from '..';
-import deliveryHeroItalianPng from './images/deliveryHeroItalian@3x.png';
-import veniceJpg from './images/venice.jpg';
+import deliveryHeroItalianPng from './deliveryHeroItalian@3x.png';
+import veniceJpg from './venice.jpg';
 
 export function Scenario() {
   const containerStyle = {
