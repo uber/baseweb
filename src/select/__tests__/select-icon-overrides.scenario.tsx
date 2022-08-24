@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { ThemeProvider, LightTheme } from '../../index';
 import { StatefulSelect, TYPE } from '../index';
-import { IconProps } from '../../icon';
+import type { IconProps } from '../../icon';
 
 const options = [
   { id: 'AliceBlue', color: '#F0F8FF' },

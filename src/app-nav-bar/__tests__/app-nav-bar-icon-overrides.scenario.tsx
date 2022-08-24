@@ -6,8 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 import { ThemeProvider, LightTheme } from '../../index';
-import { AppNavBar, NavItem, setItemActive } from '../index';
-import { IconProps } from '../../icon';
+import type { NavItem } from '../index';
+import { AppNavBar, setItemActive } from '../index';
+import type { IconProps } from '../../icon';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const XSmallFilled = ({ title, size, color, ...props }: IconProps) => {

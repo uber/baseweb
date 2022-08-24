@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import type { BlockProps, Responsive, Scale } from '../block';
-import { ElementType } from 'react';
+import type { ElementType } from 'react';
 
 export type FlexGridProps<T extends ElementType = ElementType> = {
   /** Number of equal-width columns to allow for */

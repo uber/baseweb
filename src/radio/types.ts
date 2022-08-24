@@ -4,12 +4,10 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import * as React from 'react';
+import type * as React from 'react';
 
 import type { Override } from '../helpers/overrides';
-import { ALIGN } from './constants';
-
-import type { ReactNode, ChangeEvent } from 'react';
+import type { ALIGN } from './constants';
 
 export type LabelPlacement = 'top' | 'right' | 'bottom' | 'left';
 export type Align = keyof typeof ALIGN;
@@ -67,15 +65,15 @@ export type RadioGroupProps = {
   /** Unique id for RadioGroup, help ARIA to identify element */
   id?: string;
   /** Handler for change events on trigger element. */
-  onChange?: (e: ChangeEvent<HTMLInputElement>) => unknown;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => unknown;
   /** Handler for mouseenter events on trigger element. */
-  onMouseEnter?: (e: ChangeEvent<HTMLInputElement>) => unknown;
+  onMouseEnter?: (e: React.ChangeEvent<HTMLInputElement>) => unknown;
   /** Handler for mouseleave events on trigger element. */
-  onMouseLeave?: (e: ChangeEvent<HTMLInputElement>) => unknown;
+  onMouseLeave?: (e: React.ChangeEvent<HTMLInputElement>) => unknown;
   /** Handler for focus events on trigger element. */
-  onFocus?: (e: ChangeEvent<HTMLInputElement>) => unknown;
+  onFocus?: (e: React.ChangeEvent<HTMLInputElement>) => unknown;
   /** Handler for blur events on trigger element. */
-  onBlur?: (e: ChangeEvent<HTMLInputElement>) => unknown;
+  onBlur?: (e: React.ChangeEvent<HTMLInputElement>) => unknown;
 };
 
 export type State = {
@@ -90,7 +88,7 @@ export type RadioProps = {
   /** Check or uncheck the control. */
   checked?: boolean;
   /** Label of radio. */
-  children?: ReactNode;
+  children?: React.ReactNode;
   /** Indicates if this radio children contain an interactive element (prevents the label from moving focus from the child element to the radio button) */
   containsInteractiveElement?: boolean;
   /** Add more detail about a radio element. */
@@ -110,19 +108,19 @@ export type RadioProps = {
   /** Passed to the input element name attribute */
   name?: string;
   /** handler for blur events on trigger element. */
-  onBlur?: (e: ChangeEvent<HTMLInputElement>) => unknown;
+  onBlur?: (e: React.ChangeEvent<HTMLInputElement>) => unknown;
   /** Handler for change events on trigger element. */
-  onChange?: (e: ChangeEvent<HTMLInputElement>) => unknown;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => unknown;
   /** handler for focus events on trigger element. */
-  onFocus?: (e: ChangeEvent<HTMLInputElement>) => unknown;
+  onFocus?: (e: React.ChangeEvent<HTMLInputElement>) => unknown;
   /** Handler for mouseenter events on trigger element. */
-  onMouseEnter?: (e: ChangeEvent<HTMLInputElement>) => unknown;
+  onMouseEnter?: (e: React.ChangeEvent<HTMLInputElement>) => unknown;
   /** Handler for mouseleave events on trigger element. */
-  onMouseLeave?: (e: ChangeEvent<HTMLInputElement>) => unknown;
+  onMouseLeave?: (e: React.ChangeEvent<HTMLInputElement>) => unknown;
   /** Handler for mousedown events on trigger element. */
-  onMouseDown?: (e: ChangeEvent<HTMLInputElement>) => unknown;
+  onMouseDown?: (e: React.ChangeEvent<HTMLInputElement>) => unknown;
   /** Handler for mouseup events on trigger element. */
-  onMouseUp?: (e: ChangeEvent<HTMLInputElement>) => unknown;
+  onMouseUp?: (e: React.ChangeEvent<HTMLInputElement>) => unknown;
   overrides?: RadioOverrides;
   /** Marks the checkbox as required. */
   required?: boolean;
@@ -141,7 +139,7 @@ export type StateReducer = (
   stateType: string,
   nextState: State,
   currentState: State,
-  event: ChangeEvent<HTMLInputElement>
+  event: React.ChangeEvent<HTMLInputElement>
 ) => State;
 
 export type StatelessState = {
@@ -153,7 +151,7 @@ export type DefaultStatefulProps = {
   initialState: State;
   children?: (props: RadioGroupProps) => React.ReactNode;
   stateReducer: StateReducer;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => unknown;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => unknown;
 };
 
 export type StatefulContainerProps = {
@@ -165,7 +163,7 @@ export type StatefulContainerProps = {
   /** Reducer function to manipulate internal state updates. */
   stateReducer: StateReducer;
   /** Handler for change events on trigger element. */
-  onChange?: (e: ChangeEvent<HTMLInputElement>) => unknown;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => unknown;
   /** Set to be focused (active) on selected\checked radio. */
   autoFocus?: boolean;
 };
@@ -179,7 +177,7 @@ export type StatefulRadioGroupProps = {
   /** Set to be focused (active) on selected\checked radio. */
   autoFocus?: boolean;
   /** Handler for change events on trigger element. */
-  onChange?: (e: ChangeEvent<HTMLInputElement>) => unknown;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => unknown;
 };
 
 export type StyleProps = {

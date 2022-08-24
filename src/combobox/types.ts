@@ -4,12 +4,10 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import * as React from 'react';
+import type * as React from 'react';
 
 import type { Override } from '../helpers/overrides';
-import { SIZE } from '../input';
-
-import type { ChangeEvent } from 'react';
+import type { SIZE } from '../input';
 
 export type ComboboxOverrides = {
   Root?: Override;
@@ -43,14 +41,14 @@ export type ComboboxProps<Option = unknown> = {
   // todo(flow->ts)  <any>
   inputRef?: React.Ref<HTMLElement>;
   // Called when input loses focus.
-  onBlur?: (a: ChangeEvent<HTMLInputElement>) => unknown;
+  onBlur?: (a: React.ChangeEvent<HTMLInputElement>) => unknown;
   // Called when input value changes or option is selected. If user selects a
   // suggested option, that option will be provided as the second function parameter.
   // Otherwise the second parameter will be null.
   // TODO(v11): consider consolidating function params into a single object bag.
   onChange: (b: string, a: Option | null) => unknown;
   // Called when input enters focus.
-  onFocus?: (a: ChangeEvent<HTMLInputElement>) => unknown;
+  onFocus?: (a: React.ChangeEvent<HTMLInputElement>) => unknown;
   // Called when no option is selected and the enter key is pressed. An argument to this
   // function is another function to close the listbox if needed.
   onSubmit?: (a: { closeListbox: () => void; value: string }) => unknown;

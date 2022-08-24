@@ -4,10 +4,8 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import * as React from 'react';
+import type * as React from 'react';
 import type { Override } from '../helpers/overrides';
-
-import type { SyntheticEvent } from 'react';
 
 export type TreeLabelOverrides = {
   TreeItemContent?: Override;
@@ -62,8 +60,8 @@ export type TreeNodeProps = {
   overrides?: TreeViewOverrides;
   renderAll?: boolean;
   onKeyDown?: (e: KeyboardEvent, node: TreeNodeData) => unknown;
-  onFocus?: (event: SyntheticEvent) => unknown;
-  onBlur?: (event: SyntheticEvent) => unknown;
+  onFocus?: (event: React.SyntheticEvent) => unknown;
+  onBlur?: (event: React.SyntheticEvent) => unknown;
   selectedNodeId?: TreeNodeId;
   addRef: (id: TreeNodeId, ref: React.Ref<HTMLLIElement>) => unknown;
   removeRef: (id: TreeNodeId) => unknown;

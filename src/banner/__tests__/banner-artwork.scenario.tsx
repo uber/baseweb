@@ -6,7 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Banner, ARTWORK_TYPE, HIERARCHY, KIND, Hierarchy, Kind } from '../index';
+import type { Hierarchy, Kind } from '../index';
+import { Banner, ARTWORK_TYPE, HIERARCHY, KIND } from '../index';
 import DeleteAlt from '../../icon/delete-alt';
 
 const variants: Array<[Hierarchy, Kind]> = [
