@@ -15,6 +15,7 @@ import { Scenario as MenuStateful } from './menu-stateful.scenario';
 import { Scenario as MenuVirtualized } from './menu-virtualized.scenario';
 import { Scenario as MenuDefault } from './menu.scenario';
 import { Scenario as MenuProfileMenu } from './menu-profile-menu.scenario';
+import { Scenario as MenuDividers } from './menu-dividers.scenario';
 
 export const ChildInPopover = () => <MenuChildInPopover />;
 export const ChildRenderAll = () => <MenuChildRenderAll />;
@@ -26,3 +27,4 @@ export const Stateful = () => <MenuStateful />;
 export const Virtualized = () => <MenuVirtualized />;
 export const Menu = () => <MenuDefault />;
 export const ProfileMenu = () => <MenuProfileMenu />;
+export const Dividers = () => <MenuDividers />;
