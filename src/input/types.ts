@@ -4,12 +4,10 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import * as React from 'react';
+import type * as React from 'react';
 import type { Properties } from 'csstype';
 import type { Override } from '../helpers/overrides';
-import { STATE_CHANGE_TYPE, ADJOINED, SIZE, ENHANCER_POSITION } from './constants';
-
-import type { SyntheticEvent, ChangeEvent, FocusEvent, KeyboardEvent } from 'react';
+import type { STATE_CHANGE_TYPE, ADJOINED, SIZE, ENHANCER_POSITION } from './constants';
 
 export type Adjoined = keyof typeof ADJOINED;
 export type Size = keyof typeof SIZE;
@@ -109,18 +107,18 @@ export type BaseInputProps<T> = {
   /** A ref to access an input element. */
   inputRef?: React.RefObject<T>;
   name?: string;
-  onBlur?: (e: FocusEvent<T>) => void;
-  onChange?: (e: ChangeEvent<T>) => void;
-  onKeyDown?: (e: KeyboardEvent<T>) => void;
-  onKeyPress?: (e: KeyboardEvent<T>) => void;
-  onKeyUp?: (e: KeyboardEvent<T>) => void;
-  onFocus?: (e: FocusEvent<T>) => void;
+  onBlur?: (e: React.FocusEvent<T>) => void;
+  onChange?: (e: React.ChangeEvent<T>) => void;
+  onKeyDown?: (e: React.KeyboardEvent<T>) => void;
+  onKeyPress?: (e: React.KeyboardEvent<T>) => void;
+  onKeyUp?: (e: React.KeyboardEvent<T>) => void;
+  onFocus?: (e: React.FocusEvent<T>) => void;
   /** If true, adds a clear value icon button to the end of the input container. */
   clearable?: boolean;
   /** If undefined or true, clears the input when the Escape button is pressed with the input focused. True by default. */
   clearOnEscape?: boolean;
   maxLength?: number;
-  onClear?: (e: SyntheticEvent<T>) => void;
+  onClear?: (e: React.SyntheticEvent<T>) => void;
   overrides?: BaseInputOverrides;
   placeholder?: string;
   /** Renders component in 'required' state. */
@@ -152,9 +150,9 @@ export type InputProps = {
   /** An input helper rendered after and attached to the input field. */
   endEnhancer?: React.ReactNode | ((props: SharedProps) => React.ReactNode);
   /** Handler for the `focus` event. */
-  onFocus?: (e: FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  onFocus?: (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   /** Handler for the `blur` event. */
-  onBlur?: (e: FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  onBlur?: (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 } & BaseInputProps<HTMLInputElement | HTMLTextAreaElement>;
 
 export type MaskedInputProps = Partial<
@@ -167,7 +165,7 @@ export type MaskedInputProps = Partial<
 >;
 
 export type StatefulContainerChildrenProps<T> = {
-  onChange: (e: ChangeEvent<T>) => void;
+  onChange: (e: React.ChangeEvent<T>) => void;
   /** If true, adds a clear value icon button to the end of the input container. */
   clearable?: boolean;
 } & StatefulInputProps;
@@ -178,7 +176,7 @@ export type StatefulContainerProps<T> = {
   initialState?: State;
   /** A state change handler. Used to override default state transitions. */
   stateReducer?: StateReducer;
-  onChange?: (e: ChangeEvent<T>) => void;
+  onChange?: (e: React.ChangeEvent<T>) => void;
   /** If true, adds a clear value icon button to the end of the input container. */
   clearable?: boolean;
 } & {

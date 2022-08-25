@@ -4,11 +4,9 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import * as React from 'react';
+import type * as React from 'react';
 import type { Override } from '../helpers/overrides';
-import { STYLE_TYPE } from './constants';
-
-import type { ReactNode, ChangeEvent } from 'react';
+import type { STYLE_TYPE } from './constants';
 
 export type LabelPlacement = 'top' | 'right' | 'bottom' | 'left';
 export type StyleType = keyof typeof STYLE_TYPE;
@@ -26,7 +24,7 @@ export type CheckboxOverrides = {
 export type DefaultProps = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   overrides?: any;
-  children?: ReactNode;
+  children?: React.ReactNode;
   checked: boolean;
   disabled: boolean;
   error: boolean;
@@ -35,13 +33,13 @@ export type DefaultProps = {
   isIndeterminate: boolean;
   inputRef: React.RefObject<HTMLInputElement>;
   checkmarkType: StyleType;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => unknown;
-  onMouseEnter: (e: ChangeEvent<HTMLInputElement>) => unknown;
-  onMouseLeave: (e: ChangeEvent<HTMLInputElement>) => unknown;
-  onMouseDown: (e: ChangeEvent<HTMLInputElement>) => unknown;
-  onMouseUp: (e: ChangeEvent<HTMLInputElement>) => unknown;
-  onFocus: (e: ChangeEvent<HTMLInputElement>) => unknown;
-  onBlur: (e: ChangeEvent<HTMLInputElement>) => unknown;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => unknown;
+  onMouseEnter: (e: React.ChangeEvent<HTMLInputElement>) => unknown;
+  onMouseLeave: (e: React.ChangeEvent<HTMLInputElement>) => unknown;
+  onMouseDown: (e: React.ChangeEvent<HTMLInputElement>) => unknown;
+  onMouseUp: (e: React.ChangeEvent<HTMLInputElement>) => unknown;
+  onFocus: (e: React.ChangeEvent<HTMLInputElement>) => unknown;
+  onBlur: (e: React.ChangeEvent<HTMLInputElement>) => unknown;
   containsInteractiveElement?: boolean;
 };
 
@@ -54,7 +52,7 @@ export type CheckboxProps = {
   ariaLabel?: string;
   'aria-label'?: string;
   /** Component or String value for label of checkbox. */
-  children?: ReactNode;
+  children?: React.ReactNode;
   /** Indicates if this checkbox children contain an interactive element (prevents the label from moving focus from the child element to the radio button) */
   containsInteractiveElement?: boolean;
   overrides?: CheckboxOverrides;
@@ -85,19 +83,19 @@ export type CheckboxProps = {
   /** Text to display in native OS tooltip on long hover. */
   title?: string | null;
   /** Handler for change events on trigger element. */
-  onChange?: (e: ChangeEvent<HTMLInputElement>) => unknown;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => unknown;
   /** Handler for mouseenter events on trigger element. */
-  onMouseEnter?: (e: ChangeEvent<HTMLInputElement>) => unknown;
+  onMouseEnter?: (e: React.ChangeEvent<HTMLInputElement>) => unknown;
   /** Handler for mouseleave events on trigger element. */
-  onMouseLeave?: (e: ChangeEvent<HTMLInputElement>) => unknown;
+  onMouseLeave?: (e: React.ChangeEvent<HTMLInputElement>) => unknown;
   /** Handler for mousedown events on trigger element. */
-  onMouseDown?: (e: ChangeEvent<HTMLInputElement>) => unknown;
+  onMouseDown?: (e: React.ChangeEvent<HTMLInputElement>) => unknown;
   /** Handler for mouseup events on trigger element. */
-  onMouseUp?: (e: ChangeEvent<HTMLInputElement>) => unknown;
+  onMouseUp?: (e: React.ChangeEvent<HTMLInputElement>) => unknown;
   /** handler for focus events on trigger element. */
-  onFocus?: (e: ChangeEvent<HTMLInputElement>) => unknown;
+  onFocus?: (e: React.ChangeEvent<HTMLInputElement>) => unknown;
   /** handler for blur events on trigger element. */
-  onBlur?: (e: ChangeEvent<HTMLInputElement>) => unknown;
+  onBlur?: (e: React.ChangeEvent<HTMLInputElement>) => unknown;
 };
 
 export type CheckboxState = {
@@ -116,54 +114,54 @@ export type StateReducer = (
   stateType: string,
   nextState: CheckboxReducerState,
   currentState: CheckboxReducerState,
-  event: ChangeEvent<HTMLInputElement>
+  event: React.ChangeEvent<HTMLInputElement>
 ) => CheckboxReducerState;
 
 export type StatefulContainerChildProps = {
   overrides?: CheckboxOverrides;
   /** Handler for change events on trigger element. */
-  onChange?: (e: ChangeEvent<HTMLInputElement>) => unknown;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => unknown;
   /** Handler for mouseenter events on trigger element. */
-  onMouseEnter?: (e: ChangeEvent<HTMLInputElement>) => unknown;
+  onMouseEnter?: (e: React.ChangeEvent<HTMLInputElement>) => unknown;
   /** Handler for mouseleave events on trigger element. */
-  onMouseLeave?: (e: ChangeEvent<HTMLInputElement>) => unknown;
+  onMouseLeave?: (e: React.ChangeEvent<HTMLInputElement>) => unknown;
   /** Handler for focus events on trigger element. */
-  onFocus?: (e: ChangeEvent<HTMLInputElement>) => unknown;
+  onFocus?: (e: React.ChangeEvent<HTMLInputElement>) => unknown;
   /** Handler for blur events on trigger element. */
-  onBlur?: (e: ChangeEvent<HTMLInputElement>) => unknown;
+  onBlur?: (e: React.ChangeEvent<HTMLInputElement>) => unknown;
   /** Focus the checkbox on initial render. */
   autoFocus?: boolean;
 } & CheckboxReducerState;
 
 export type DefaultStatefulProps = {
   initialState: CheckboxReducerState;
-  children?: (a: StatefulContainerChildProps) => ReactNode;
+  children?: (a: StatefulContainerChildProps) => React.ReactNode;
   stateReducer: StateReducer;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => unknown;
-  onMouseEnter: (e: ChangeEvent<HTMLInputElement>) => unknown;
-  onMouseLeave: (e: ChangeEvent<HTMLInputElement>) => unknown;
-  onFocus: (e: ChangeEvent<HTMLInputElement>) => unknown;
-  onBlur: (e: ChangeEvent<HTMLInputElement>) => unknown;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => unknown;
+  onMouseEnter: (e: React.ChangeEvent<HTMLInputElement>) => unknown;
+  onMouseLeave: (e: React.ChangeEvent<HTMLInputElement>) => unknown;
+  onFocus: (e: React.ChangeEvent<HTMLInputElement>) => unknown;
+  onBlur: (e: React.ChangeEvent<HTMLInputElement>) => unknown;
 };
 
 export type StatefulContainerProps = {
   overrides?: CheckboxOverrides;
   /** Component or String value for label of checkbox. */
-  children?: (a: StatefulContainerChildProps) => ReactNode;
+  children?: (a: StatefulContainerChildProps) => React.ReactNode;
   /** Defines the components initial state value */
   initialState?: CheckboxReducerState;
   /** A state change handler. Used to override default state transitions. */
   stateReducer: StateReducer;
   /** Handler for change events on trigger element. */
-  onChange?: (e: ChangeEvent<HTMLInputElement>) => unknown;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => unknown;
   /** Handler for mouseenter events on trigger element. */
-  onMouseEnter?: (e: ChangeEvent<HTMLInputElement>) => unknown;
+  onMouseEnter?: (e: React.ChangeEvent<HTMLInputElement>) => unknown;
   /** Handler for mouseleave events on trigger element. */
-  onMouseLeave?: (e: ChangeEvent<HTMLInputElement>) => unknown;
+  onMouseLeave?: (e: React.ChangeEvent<HTMLInputElement>) => unknown;
   /** Handler for focus events on trigger element. */
-  onFocus?: (e: ChangeEvent<HTMLInputElement>) => unknown;
+  onFocus?: (e: React.ChangeEvent<HTMLInputElement>) => unknown;
   /** Handler for blur events on trigger element. */
-  onBlur?: (e: ChangeEvent<HTMLInputElement>) => unknown;
+  onBlur?: (e: React.ChangeEvent<HTMLInputElement>) => unknown;
   /** Focus the checkbox on initial render. */
   autoFocus?: boolean;
 };

@@ -11,7 +11,8 @@ import Delete from '../../icon/delete';
 import Upload from '../../icon/upload';
 import Overflow from '../../icon/overflow';
 
-import { AppNavBar, NavItem, setItemActive } from '..';
+import type { NavItem } from '..';
+import { AppNavBar, setItemActive } from '..';
 
 export function Scenario() {
   const [mainItems, setMainItems] = React.useState<NavItem[]>([

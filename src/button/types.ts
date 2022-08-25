@@ -4,12 +4,10 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import * as React from 'react';
+import type * as React from 'react';
 
-import { KIND, SIZE, SHAPE } from './constants';
+import type { KIND, SIZE, SHAPE } from './constants';
 import type { Override } from '../helpers/overrides';
-
-import type { ReactNode, SyntheticEvent } from 'react';
 
 export type ButtonOverrides = {
   Root?: Override;
@@ -26,7 +24,7 @@ export type CustomColors = {
 };
 
 export type ButtonProps = {
-  children?: ReactNode;
+  children?: React.ReactNode;
   colors?: CustomColors;
   disabled?: boolean;
   /** A helper rendered at the end of the button. */
@@ -38,7 +36,7 @@ export type ButtonProps = {
   isSelected?: boolean;
   /** Defines the kind (purpose) of a button */
   kind?: keyof typeof KIND;
-  onClick?: (a: SyntheticEvent<HTMLButtonElement>) => unknown;
+  onClick?: (a: React.SyntheticEvent<HTMLButtonElement>) => unknown;
   overrides?: ButtonOverrides;
   /** Defines the shape of the button */
   shape?: keyof typeof SHAPE;

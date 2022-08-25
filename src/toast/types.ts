@@ -4,10 +4,10 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import * as React from 'react';
+import type * as React from 'react';
 
 import type { Override } from '../helpers/overrides';
-import { KIND, PLACEMENT, TYPE } from './constants';
+import type { KIND, PLACEMENT, TYPE } from './constants';
 
 export type KindType = typeof KIND[keyof typeof KIND];
 export type NotificationType = typeof TYPE[keyof typeof TYPE];

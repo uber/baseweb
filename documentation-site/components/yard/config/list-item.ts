@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 import { ListItem, ListItemLabel, ARTWORK_SIZES, SHAPE } from 'baseui/list';
 import { Check } from 'baseui/icon';
 import { PropTypes } from 'react-view';
-import { TConfig } from '../types';
+import type { TConfig } from '../types';
 
 const ListItemConfig: TConfig = {
   componentName: 'ListItem',

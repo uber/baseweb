@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 import { Table, DIVIDER, SIZE } from 'baseui/table-semantic';
 import { PropTypes } from 'react-view';
-import { TConfig } from '../types';
+import type { TConfig } from '../types';
 
 const TableSemanticConfig: TConfig = {
   componentName: 'Table',

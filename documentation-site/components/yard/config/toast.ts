@@ -8,7 +8,7 @@ import { toaster, ToasterContainer, PLACEMENT } from 'baseui/toast';
 import { Button, SIZE } from 'baseui/button';
 import { Block } from 'baseui/block';
 import { PropTypes } from 'react-view';
-import { TConfig } from '../types';
+import type { TConfig } from '../types';
 
 const toastConfig: TConfig = {
   componentName: 'ToasterContainer',

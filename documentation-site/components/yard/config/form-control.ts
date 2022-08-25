@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import { FormControl } from 'baseui/form-control';
 import { Input } from 'baseui/input';
 import { PropTypes } from 'react-view';
-import { TConfig } from '../types';
+import type { TConfig } from '../types';
 
 const TextareaConfig: TConfig = {
   componentName: 'FormControl',

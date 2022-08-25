@@ -21,8 +21,10 @@ import { Spinner } from 'baseui/spinner';
 import { useView, Compiler, Error } from 'react-view';
 
 // yard (baseweb customization of react-view)
-import { getProvider, getThemeFromContext, TProviderValue } from './provider';
-import { customProps, TCustomPropFields } from './custom-props';
+import type { TProviderValue } from './provider';
+import { getProvider, getThemeFromContext } from './provider';
+import type { TCustomPropFields } from './custom-props';
+import { customProps } from './custom-props';
 import ThemeEditor from './theme-editor';
 import Overrides from './overrides';
 import OverridesDescription from './overrides-description';
@@ -31,7 +33,7 @@ import ActionButtons from './action-buttons';
 import Knobs from './knobs';
 import { YardTabs, YardTab } from './styled-components';
 import { countProps, countOverrides, countThemeValues } from './utils';
-import { TYardProps } from './types';
+import type { TYardProps } from './types';
 
 const Yard: React.FC<TYardProps> = ({
   componentName,

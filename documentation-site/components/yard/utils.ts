@@ -5,8 +5,8 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-import { TProp } from 'react-view';
-import { TProviderValue } from './provider';
+import type { TProp } from 'react-view';
+import type { TProviderValue } from './provider';
 
 export type TPropValueOverrides = {
   [key: string]: {

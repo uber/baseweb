@@ -4,11 +4,9 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import * as React from 'react';
+import type * as React from 'react';
 import type { Override } from '../helpers/overrides';
-import { ACTION_POSITION, ARTWORK_TYPE, HIERARCHY, KIND } from './constants';
-
-import type { SyntheticEvent } from 'react';
+import type { ACTION_POSITION, ARTWORK_TYPE, HIERARCHY, KIND } from './constants';
 
 export type ActionPosition = typeof ACTION_POSITION[keyof typeof ACTION_POSITION];
 export type ArtworkType = typeof ARTWORK_TYPE[keyof typeof ARTWORK_TYPE];
@@ -21,7 +19,7 @@ export type ActionContent = {
   // If provided renders this icon instead of the text label.
   icon?: (a: { size: string }) => React.ReactNode;
   // Called when action button is activated.
-  onClick: (a: SyntheticEvent<HTMLButtonElement>) => unknown;
+  onClick: (a: React.SyntheticEvent<HTMLButtonElement>) => unknown;
   // Determines if action button is positioned trailing message or below.
   position?: ActionPosition;
 };

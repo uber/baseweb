@@ -5,12 +5,12 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
+import type { StyletronComponent } from 'styletron-react';
 import {
   createStyled,
   withStyle as styletronWithStyle,
   useStyletron as styletronUseStyletron,
   withWrapper as styletronWithWrapper,
-  StyletronComponent,
 } from 'styletron-react';
 import { driver, getInitialStyle } from 'styletron-standard';
 import type { StyleObject } from 'styletron-standard';
