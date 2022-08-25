@@ -1,8 +1,13 @@
-import {ArrowUp} from 'baseui/icon';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
+/*
+Copyright (c) Uber Technologies, Inc.
 
-const iconProps = require('!!extract-react-types-loader!../../../../src/icon/icon.js');
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+
+import { ArrowUp } from 'baseui/icon';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
 
 const IconConfig: TConfig = {
   componentName: 'ArrowUp',
@@ -11,7 +16,7 @@ const IconConfig: TConfig = {
       named: ['ArrowUp'],
     },
   },
-  scope: {ArrowUp},
+  scope: { ArrowUp },
   theme: [],
   props: {
     size: {
@@ -28,8 +33,7 @@ const IconConfig: TConfig = {
     title: {
       value: undefined,
       type: PropTypes.String,
-      description:
-        'Allows you to set the SVG <title> label, which is used for accessibility.',
+      description: 'Allows you to set the SVG <title> label, which is used for accessibility.',
     },
     overrides: {
       value: undefined,
@@ -43,9 +47,6 @@ const IconConfig: TConfig = {
         },
       },
     },
-  },
-  mapTokensToProps: {
-    ArrowUp: iconProps,
   },
 };
 

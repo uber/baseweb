@@ -1,24 +1,24 @@
+/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+
 import pick from 'just-pick';
-import {
-  StatefulPopover,
-  ACCESSIBILITY_TYPE,
-  PLACEMENT,
-  TRIGGER_TYPE,
-} from 'baseui/popover';
-import {Button} from 'baseui/button';
-import {Block} from 'baseui/block';
-import {Input} from 'baseui/input';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
+import { StatefulPopover, ACCESSIBILITY_TYPE, PLACEMENT, TRIGGER_TYPE } from 'baseui/popover';
+import { Button } from 'baseui/button';
+import { Block } from 'baseui/block';
+import { Input } from 'baseui/input';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
 
-import {changeHandlers} from './common/common';
-
-const popoverProps = require('!!extract-react-types-loader!../../../../src/popover/stateful-popover.js');
+import { changeHandlers } from './common/common';
 
 const PopoverConfig: TConfig = {
   componentName: 'StatefulPopover',
   imports: {
-    'baseui/popover': {named: ['StatefulPopover']},
+    'baseui/popover': { named: ['StatefulPopover'] },
   },
   scope: {
     Button,
@@ -61,8 +61,7 @@ const PopoverConfig: TConfig = {
       defaultValue: 'PLACEMENT.auto',
       options: PLACEMENT,
       type: PropTypes.Enum,
-      description:
-        'Controls how to position the popover relative to the target.',
+      description: 'Controls how to position the popover relative to the target.',
       imports: {
         'baseui/popover': {
           named: ['PLACEMENT'],
@@ -75,8 +74,7 @@ const PopoverConfig: TConfig = {
       options: TRIGGER_TYPE,
       enumName: 'TRIGGER_TYPE',
       type: PropTypes.Enum,
-      description:
-        'Controls how to position the popover relative to the target.',
+      description: 'Controls how to position the popover relative to the target.',
       imports: {
         'baseui/popover': {
           named: ['TRIGGER_TYPE'],
@@ -123,7 +121,7 @@ const PopoverConfig: TConfig = {
       value: undefined,
       type: PropTypes.Object,
       description:
-        "The FocusOption passed to documentElement.focus function. For Example, value = {preventScroll: true} | {preventScroll: false}. It works only if autoFocus is true.",
+        'The FocusOption passed to documentElement.focus function. For Example, value = {preventScroll: true} | {preventScroll: false}. It works only if autoFocus is true.',
       hidden: true,
     },
     accessibilityType: {
@@ -167,15 +165,13 @@ const PopoverConfig: TConfig = {
     ignoreBoundary: {
       value: undefined,
       type: PropTypes.Boolean,
-      description:
-        'If true, popover element will not avoid element boundaries.',
+      description: 'If true, popover element will not avoid element boundaries.',
       hidden: true,
     },
     mountNode: {
       value: undefined,
       type: PropTypes.Object,
-      description:
-        'Defines where to mount the popover. It accepts an HTMLElement.',
+      description: 'Defines where to mount the popover. It accepts an HTMLElement.',
       hidden: true,
     },
     popperOptions: {
@@ -185,13 +181,7 @@ const PopoverConfig: TConfig = {
         'Popper options override https://popper.js.org/popper-documentation.html#Popper.Defaults.',
       hidden: true,
     },
-    ...pick(changeHandlers, [
-      'onBlur',
-      'onFocus',
-      'onEsc',
-      'onMouseEnter',
-      'onMouseLeave',
-    ]),
+    ...pick(changeHandlers, ['onBlur', 'onFocus', 'onEsc', 'onMouseEnter', 'onMouseLeave']),
     overrides: {
       value: undefined,
       type: PropTypes.Custom,
@@ -212,9 +202,6 @@ const PopoverConfig: TConfig = {
         },
       },
     },
-  },
-  mapTokensToProps: {
-    StatefulPopover: popoverProps,
   },
 };
 

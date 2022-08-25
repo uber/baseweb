@@ -13,7 +13,7 @@ const fs = require('fs');
 const globby = require('globby');
 const path = require('path');
 
-const files = globby.sync(['src/**/*.ts']);
+const files = globby.sync(['legacy-dts/**/*.ts']);
 files.forEach((file) => {
   const from = path.join(__dirname, '../', file);
   const to = path.join(__dirname, '../', file.replace('src', 'dist'));

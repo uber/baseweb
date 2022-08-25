@@ -1,8 +1,13 @@
-import {Avatar} from 'baseui/avatar';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
+/*
+Copyright (c) Uber Technologies, Inc.
 
-const avatarProps = require('!!extract-react-types-loader!../../../../src/avatar/avatar.js');
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+
+import { Avatar } from 'baseui/avatar';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
 
 const AvatarConfig: TConfig = {
   componentName: 'Avatar',
@@ -11,7 +16,7 @@ const AvatarConfig: TConfig = {
       named: ['Avatar'],
     },
   },
-  scope: {Avatar},
+  scope: { Avatar },
   theme: [],
   props: {
     name: {
@@ -26,8 +31,7 @@ const AvatarConfig: TConfig = {
         'Defines the width/height of the image. Accepts labels from theme.sizing, or passes value to height/width.',
     },
     src: {
-      value:
-        'https://avatars.dicebear.com/api/human/yard.svg?width=285&mood=happy',
+      value: 'https://avatars.dicebear.com/api/human/yard.svg?width=285&mood=happy',
       type: PropTypes.String,
       description: 'Image to display.',
     },
@@ -46,9 +50,6 @@ const AvatarConfig: TConfig = {
         },
       },
     },
-  },
-  mapTokensToProps: {
-    Avatar: avatarProps,
   },
 };
 

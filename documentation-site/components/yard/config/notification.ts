@@ -1,10 +1,15 @@
-import pick from 'just-pick';
-import {Notification, KIND} from 'baseui/notification';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
-import {changeHandlers} from './common/common';
+/*
+Copyright (c) Uber Technologies, Inc.
 
-const notificationProps = require('!!extract-react-types-loader!../../../../src/notification/notification.js');
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+
+import pick from 'just-pick';
+import { Notification, KIND } from 'baseui/notification';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
+import { changeHandlers } from './common/common';
 
 const NotificationConfig: TConfig = {
   componentName: 'Notification',
@@ -83,9 +88,6 @@ const NotificationConfig: TConfig = {
         },
       },
     },
-  },
-  mapTokensToProps: {
-    Notification: notificationProps,
   },
 };
 

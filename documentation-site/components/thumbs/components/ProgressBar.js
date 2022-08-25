@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 /* THIS FILE IS AUTO-GENERATED. DO NOT MODIFY. */
-/* eslint-disable flowtype/require-valid-file-annotation */
+
 import React from 'react';
 export default function SvgProgressBar(props) {
   return (

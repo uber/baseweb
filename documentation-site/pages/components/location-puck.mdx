@@ -1,0 +1,100 @@
+<!--
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import Layout from '../../components/layout';
+import Exports from '../../components/exports';
+import Yard from '../../components/yard/index';
+import locationPuckYardConfig from '../../components/yard/config/location-puck';
+
+import ConsumerLocationPuck from 'examples/location-puck/consumer.js';
+import ConsumerLocationPuckConfidence from 'examples/location-puck/consumer-confidence.js';
+import ConsumerLocationPuckNoHeading from 'examples/location-puck/consumer-no-heading.js';
+import EarnerLocationPuck from 'examples/location-puck/earner.js';
+import ReactMapGL from 'examples/location-puck/react-map-gl.js';
+import FloatingMarkerContainer from '../../components/floating-marker-container';
+
+import * as LocationPuckExports from 'baseui/map-marker';
+
+export default Layout;
+
+# Location Puck
+
+<Yard
+  {...locationPuckYardConfig}
+  compilerStyles={{
+    paddingTop: '48px',
+    paddingBottom: '48px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  }}
+/>
+
+A location puck is used to mark the user's current location on a map.
+
+## When to use
+
+Use the location puck to represent a user's current location on a map. Do not use this component if the user's current location is not available. Do not use this component to represent anything other than a user's current location.
+
+## Guidelines
+
+The location puck comes in two types: `consumer` and `earner`.
+
+The `consumer` location puck should generally be used in map views in consumer applications, such as Rides or Eats apps.
+
+The `earner` location puck should generally be used in navigation-based applications, such as the Earner app. The `earner` puck can be used for overview or turn-by-turn navigation use cases.
+
+## Examples
+
+<Example title="Consumer location puck" path="location-puck/consumer.js">
+  <FloatingMarkerContainer>
+    <ConsumerLocationPuck />
+  </FloatingMarkerContainer>
+</Example>
+
+A consumer location puck.
+
+<Example
+  title="Consumer location puck with confidence level"
+  path="location-puck/consumer-confidence.js"
+>
+  <FloatingMarkerContainer>
+    <ConsumerLocationPuckConfidence />
+  </FloatingMarkerContainer>
+</Example>
+
+A consumer location puck with a manually set confidence level.
+
+<Example
+  title="Consumer location puck with no heading indicator"
+  path="location-puck/consumer-no-heading.js"
+>
+  <FloatingMarkerContainer>
+    <ConsumerLocationPuckNoHeading />
+  </FloatingMarkerContainer>
+</Example>
+
+A consumer location puck with no heading indicator. For desktop situations in which no heading is available.
+
+<Example title="Earner location puck" path="location-puck/earner.js">
+  <FloatingMarkerContainer>
+    <EarnerLocationPuck />
+  </FloatingMarkerContainer>
+</Example>
+
+An earner location puck.
+
+<Example title="Usage with react-map-gl" path="location-puck/react-map-gl.js">
+  <ReactMapGL />
+</Example>
+
+A consumer location puck rendered in a [react-map-gl](https://visgl.github.io/react-map-gl/) view.
+
+## API
+
+<Exports component={LocationPuckExports} title="Loction Puck exports" path="baseui/map-marker" />

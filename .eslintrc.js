@@ -26,7 +26,6 @@ module.exports = {
     page: true,
     browser: true,
     context: true,
-    jestPuppeteer: true,
   },
   settings: {
     react: {
@@ -34,17 +33,11 @@ module.exports = {
     },
   },
   extends: [
-    'plugin:flowtype/recommended',
     'plugin:react/recommended',
-    require.resolve('eslint-config-uber-universal-stage-3'),
     'plugin:jsx-a11y/recommended',
     'plugin:prettier/recommended',
-    'prettier/flowtype',
   ],
   rules: {
-    // Enforce flow file declarations
-    'flowtype/require-valid-file-annotation': ['error', 'always'],
-    'flowtype/space-after-type-colon': 'off',
     'react/jsx-filename-extension': 0,
     'react/prop-types': 0,
     // Enforces imports of external modules to be declared in the package.json
@@ -52,7 +45,6 @@ module.exports = {
       'error',
       { optionalDependencies: false, devDependencies: true },
     ],
-    'import/extensions': ['error', 'always', { ignorePackages: true }],
     'prettier/prettier': [
       'error',
       {
@@ -63,42 +55,42 @@ module.exports = {
         singleQuote: true,
         trailingComma: 'es5',
         bracketSpacing: true,
-        jsxBracketSameLine: false,
+        bracketSameLine: false,
       },
     ],
     'import/prefer-default-export': ['off'],
     'header/header': [2, 'LICENSE-HEAD'],
-    'jsx-a11y/no-autofocus': [
-      2,
-      {
-        ignoreNonDOM: true,
-      },
-    ],
+    'jsx-a11y/no-autofocus': [2, { ignoreNonDOM: true }],
     'import/no-duplicates': 2,
     'import/newline-after-import': 2,
-    'jest/no-identical-title': 2,
-    'jest/no-focused-tests': 2,
     'import/first': 2,
     'dot-notation': 2,
   },
   overrides: [
     {
-      files: ['*.test.js'],
-      rules: {
-        'flowtype/no-weak-types': 'off',
-      },
-    },
-    {
       files: ['documentation-site/**/*.js'],
       rules: {
-        'import/extensions': 'off',
         'react/display-name': 'off',
       },
     },
     {
-      files: ['packages/eslint-plugin-baseui/**/*.js', 'packages/baseweb-vscode-extension/**/*.js'],
+      files: ['**/*.ts', '**/*.tsx', '**/*.d.ts'],
+      parser: '@typescript-eslint/parser',
+      extends: [
+        'plugin:@typescript-eslint/eslint-recommended',
+        'plugin:@typescript-eslint/recommended',
+        'plugin:import/typescript',
+      ],
+      plugins: ['@typescript-eslint'],
       rules: {
-        'flowtype/require-valid-file-annotation': 'off',
+        '@typescript-eslint/ban-types': 'off',
+        '@typescript-eslint/ban-ts-comment': 'off',
+        '@typescript-eslint/no-empty-function': 'off',
+        '@typescript-eslint/no-var-requires': 'off',
+        '@typescript-eslint/no-this-alias': 'off',
+        'prefer-rest-params': 'off',
+        'prefer-const': 'off',
+        'no-var': 'off',
       },
     },
   ],

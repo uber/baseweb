@@ -1,13 +1,18 @@
+/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+
 import {
   FloatingMarker,
   FLOATING_MARKER_SIZES,
   FLOATING_MARKER_ANCHOR_POSITIONS,
   FLOATING_MARKER_ANCHOR_TYPES,
 } from 'baseui/map-marker';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
-
-const floatingMarkerPropsType = require('!!extract-react-types-loader!../../../../src/map-marker/floating-marker.js');
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
 
 export const theme = [];
 
@@ -60,15 +65,13 @@ export const floatingMarkerProps = {
     value: undefined,
     placeholder: '() => <span>$</span>',
     type: PropTypes.Function,
-    description:
-      'Icon or element to render in the leading slot (before the label).',
+    description: 'Icon or element to render in the leading slot (before the label).',
   },
   endEnhancer: {
     value: undefined,
     placeholder: '() => <span>?</span>',
     type: PropTypes.Function,
-    description:
-      'Icon or element to render in the trailing slot (after the label).',
+    description: 'Icon or element to render in the trailing slot (after the label).',
   },
 };
 
@@ -105,9 +108,6 @@ const FloatingMarkerConfig: TConfig = {
         sharedProps: {},
       },
     },
-  },
-  mapTokensToProps: {
-    FloatingMarker: floatingMarkerPropsType,
   },
 };
 

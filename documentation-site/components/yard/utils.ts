@@ -1,5 +1,12 @@
-import {TProp} from 'react-view';
-import {TProviderValue} from './provider';
+/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+
+import { TProp } from 'react-view';
+import { TProviderValue } from './provider';
 
 export type TPropValueOverrides = {
   [key: string]: {
@@ -9,11 +16,11 @@ export type TPropValueOverrides = {
 };
 
 export const countProps = (
-  props: {[key: string]: TProp},
-  propsConfig: {[key: string]: TProp},
+  props: { [key: string]: TProp },
+  propsConfig: { [key: string]: TProp }
 ) => {
   let changedProps = 0;
-  Object.keys(props).forEach(prop => {
+  Object.keys(props).forEach((prop) => {
     if (
       prop !== 'overrides' &&
       props[prop].value !== '' &&
@@ -27,12 +34,13 @@ export const countProps = (
   return changedProps;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const countOverrides = (overrides: any) => {
   if (!overrides) {
     return 0;
   }
   const existingOverrides = overrides.value ? Object.keys(overrides.value) : [];
-  return existingOverrides.filter(key => overrides.value[key].active).length;
+  return existingOverrides.filter((key) => overrides.value[key].active).length;
 };
 
 export const countThemeValues = (themeState: TProviderValue) => {

@@ -7,12 +7,11 @@ LICENSE file in the root directory of this source tree.
 */
 
 /* eslint-env node */
-/* eslint-disable flowtype/require-valid-file-annotation */
 const { spawn, execSync } = require('child_process');
 const { mkdirSync, writeFileSync } = require('fs');
 const { resolve } = require('path');
 const fetch = require('node-fetch').default;
-const puppeteer = require('puppeteer');
+const { chromium } = require('playwright');
 
 const PORT = 8080;
 const LADLE_URL = `http://localhost:${PORT}`;
@@ -38,7 +37,7 @@ async function waitForPort(port) {
 
 async function measurePageBytesReceived(browser, url) {
   const page = await browser.newPage();
-  const client = await page.target().createCDPSession();
+  const client = await page.context().newCDPSession(page);
   await client.send('Network.enable');
 
   let bytesReceived = 0;
@@ -109,7 +108,7 @@ async function downloadMasterBundleSizeData() {
 }
 
 async function main() {
-  execSync('yarn ladle build --out build-ladle --stories src/**/*.scenario.js', {
+  execSync('yarn ladle build --outDir build-ladle --stories src/**/*.scenario.js', {
     stdio: 'inherit',
   });
   const ladle = spawn('yarn', ['static-server', 'build-ladle', '--port', PORT]);
@@ -124,7 +123,7 @@ async function main() {
   }
 
   const metadata = await metaResponse.json();
-  const browser = await puppeteer.launch({
+  const browser = await chromium.launch({
     args: ['--no-sandbox', '--disable-setuid-sandbox'],
   });
   const sizes = {};

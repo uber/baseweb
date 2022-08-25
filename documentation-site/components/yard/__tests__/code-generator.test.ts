@@ -1,3 +1,10 @@
+/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+
 //@ts-ignore
 import { getAstPropValue, getCode } from 'react-view/dist/lib/code-generator';
 import { PropTypes } from 'react-view';
@@ -23,108 +30,90 @@ test('overrides', () => {
         },
         type: PropTypes.Custom,
         description: '',
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } as any,
       'overrides',
       customProps
     )
-  ).toEqual({
-    properties: [
-      {
-        computed: false,
-        decorators: null,
-        key: {
-          name: 'Root',
-          type: 'Identifier',
-        },
-        shorthand: false,
-        type: 'ObjectProperty',
-        value: {
-          properties: [
-            {
-              computed: false,
-              decorators: null,
-              key: {
-                name: 'style',
-                type: 'Identifier',
-              },
-              shorthand: false,
-              type: 'ObjectProperty',
-              value: {
-                async: false,
-                body: {
-                  body: [
-                    {
-                      body: {
-                        expression: {
-                          extra: {
-                            raw: "'black'",
-                            rawValue: 'black',
+  ).toMatchInlineSnapshot(`
+    Object {
+      "properties": Array [
+        Object {
+          "computed": false,
+          "decorators": null,
+          "key": Object {
+            "name": "Root",
+            "type": "Identifier",
+          },
+          "shorthand": false,
+          "type": "ObjectProperty",
+          "value": Object {
+            "properties": Array [
+              Object {
+                "computed": false,
+                "decorators": null,
+                "key": Object {
+                  "name": "style",
+                  "type": "Identifier",
+                },
+                "shorthand": false,
+                "type": "ObjectProperty",
+                "value": Object {
+                  "async": false,
+                  "body": Object {
+                    "body": Array [
+                      Object {
+                        "body": Object {
+                          "expression": Object {
+                            "extra": Object {
+                              "raw": "'black'",
+                              "rawValue": "black",
+                            },
+                            "loc": undefined,
+                            "type": "StringLiteral",
+                            "value": "black",
                           },
-                          innerComments: undefined,
-                          leadingComments: undefined,
-                          loc: undefined,
-                          trailingComments: undefined,
-                          type: 'StringLiteral',
-                          value: 'black',
+                          "loc": undefined,
+                          "type": "ExpressionStatement",
                         },
-                        extra: {},
-                        innerComments: undefined,
-                        leadingComments: undefined,
-                        loc: undefined,
-                        trailingComments: undefined,
-                        type: 'ExpressionStatement',
+                        "label": Object {
+                          "loc": undefined,
+                          "name": "color",
+                          "type": "Identifier",
+                        },
+                        "loc": undefined,
+                        "type": "LabeledStatement",
                       },
-                      extra: {},
-                      innerComments: undefined,
-                      label: {
-                        extra: {},
-                        innerComments: undefined,
-                        leadingComments: undefined,
-                        loc: undefined,
-                        name: 'color',
-                        trailingComments: undefined,
-                        type: 'Identifier',
-                      },
-                      leadingComments: undefined,
-                      loc: undefined,
-                      trailingComments: undefined,
-                      type: 'LabeledStatement',
-                    },
-                  ],
-                  directives: [],
-                  extra: {},
-                  innerComments: undefined,
-                  leadingComments: undefined,
-                  loc: undefined,
-                  trailingComments: undefined,
-                  type: 'BlockStatement',
+                    ],
+                    "directives": Array [],
+                    "loc": undefined,
+                    "type": "BlockStatement",
+                  },
+                  "extra": Object {
+                    "parenStart": 0,
+                    "parenthesized": true,
+                  },
+                  "generator": false,
+                  "loc": undefined,
+                  "params": Array [],
+                  "type": "ArrowFunctionExpression",
                 },
-                extra: {
-                  parenStart: 0,
-                  parenthesized: true,
-                },
-                generator: false,
-                innerComments: undefined,
-                leadingComments: undefined,
-                loc: undefined,
-                params: [],
-                trailingComments: undefined,
-                type: 'ArrowFunctionExpression',
               },
-            },
-          ],
-          type: 'ObjectExpression',
+            ],
+            "type": "ObjectExpression",
+          },
         },
-      },
-    ],
-    type: 'ObjectExpression',
-  });
+      ],
+      "type": "ObjectExpression",
+    }
+  `);
 });
 
 describe('get theme AST primitives', () => {
   test('getAstThemeWrapper', () => {
     expect(
       generate(
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         generateThemeWrapper({ inputFill: 'yellow' }, t.jsxText('Hey') as any, 'light-theme') as any
       ).code
     ).toBe(`<ThemeProvider theme={createTheme(light-theme, {
@@ -161,6 +150,7 @@ describe('getCode', () => {
             },
             type: PropTypes.Custom,
             description: '',
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
           } as any,
         },
         componentName: 'Input',

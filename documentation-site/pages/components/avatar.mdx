@@ -15,13 +15,12 @@ import Error from 'examples/avatar/error.js';
 import Override from 'examples/avatar/override.js';
 import Initials from 'examples/avatar/initials.js';
 
-import {Avatar} from 'baseui/avatar';
+import { Avatar } from 'baseui/avatar';
 import * as AvatarExports from 'baseui/avatar';
-import {Block} from 'baseui/block';
+import { Block } from 'baseui/block';
 
 import Yard from '../../components/yard/index';
 import avatarYardConfig from '../../components/yard/config/avatar';
-import ApiTable from '../../components/api-table';
 
 <SEO
   description="The Avatar component adds additional visual information about a user."
@@ -64,16 +63,4 @@ The Avatar component adds additional visual information about a user.
   <Override />
 </Example>
 
-## API
-
-<ApiTable
-  title="Avatar props"
-  config={avatarYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/avatar/avatar.js')}
-/>
-
-<Exports
-  component={AvatarExports}
-  title="Avatar exports"
-  path="baseui/avatar"
-/>
+<Exports component={AvatarExports} title="Avatar exports" path="baseui/avatar" />

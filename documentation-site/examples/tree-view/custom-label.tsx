@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {
   TreeView,
-  TreeNode,
+  TreeNodeData,
   toggleIsExpanded,
 } from 'baseui/tree-view';
 import {styled} from 'baseui';
@@ -16,7 +16,7 @@ const Price = styled('span', {
   marginLeft: 'auto',
 });
 
-const customLabel = (node: TreeNode) => {
+const customLabel = (node: TreeNodeData) => {
   return (
     <Label>
       <span>{node.info && node.info.name}</span>
@@ -25,7 +25,7 @@ const customLabel = (node: TreeNode) => {
   );
 };
 
-const initialData: TreeNode[] = [
+const initialData: TreeNodeData[] = [
   {
     label: customLabel,
     isExpanded: true,
@@ -54,14 +54,16 @@ const initialData: TreeNode[] = [
 
 export default function CustomLabelledTreeView() {
   const [data, setData] = React.useState(initialData);
-  const getId = (node: TreeNode) => node.info.name;
+  const getId = (node: TreeNodeData) => node.info.name;
 
   return (
     <TreeView
       data={data}
       getId={getId}
-      onToggle={node =>
-        setData(prevData => toggleIsExpanded(prevData, node, getId))
+      onToggle={(node) =>
+        setData((prevData) =>
+          toggleIsExpanded(prevData, node, getId),
+        )
       }
     />
   );

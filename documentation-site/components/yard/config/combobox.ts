@@ -1,15 +1,20 @@
-import {Combobox, SIZE} from 'baseui/combobox';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
+/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+
+import { Combobox, SIZE } from 'baseui/combobox';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
 import inputConfig from './input';
 import popoverConfig from './popover';
-
-const comboboxProps = require('!!extract-react-types-loader!../../../../src/combobox/combobox.js');
 
 const ComboboxConfig: TConfig = {
   componentName: 'Combobox',
   imports: {
-    'baseui/combobox': {named: ['Combobox']},
+    'baseui/combobox': { named: ['Combobox'] },
   },
   scope: {
     Combobox,
@@ -83,8 +88,7 @@ const ComboboxConfig: TConfig = {
       value: true,
       defaultValue: true,
       type: PropTypes.Boolean,
-      description:
-        'Controls if keyboard navigation should temporarily update input value.',
+      description: 'Controls if keyboard navigation should temporarily update input value.',
     },
     disabled: {
       value: false,
@@ -120,7 +124,7 @@ const ComboboxConfig: TConfig = {
           'InputContainer',
           'ListBox',
           'ListItem',
-          {...popoverConfig, componentName: 'Popover'},
+          { ...popoverConfig, componentName: 'Popover' },
         ],
         sharedProps: {
           $isSelected: {
@@ -131,9 +135,6 @@ const ComboboxConfig: TConfig = {
         },
       },
     },
-  },
-  mapTokensToProps: {
-    Combobox: comboboxProps,
   },
 };
 

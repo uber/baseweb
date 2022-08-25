@@ -1,8 +1,13 @@
-import {StatefulMenu} from 'baseui/menu';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
+/*
+Copyright (c) Uber Technologies, Inc.
 
-const menuProps = require('!!extract-react-types-loader!../../../../src/menu/stateful-menu.js');
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+
+import { StatefulMenu } from 'baseui/menu';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
 
 const items = `[
   {label: 'Item One'},
@@ -40,7 +45,7 @@ const MenuConfig: TConfig = {
       named: ['StatefulMenu'],
     },
   },
-  scope: {StatefulMenu},
+  scope: { StatefulMenu },
   theme: [
     'menuFill',
     'menuFillHover',
@@ -64,14 +69,12 @@ const MenuConfig: TConfig = {
     renderAll: {
       value: false,
       type: PropTypes.Boolean,
-      description:
-        'Renders all menu content for SEO purposes regardless of menu state.',
+      description: 'Renders all menu content for SEO purposes regardless of menu state.',
     },
     noResultsMsg: {
       value: undefined,
       type: PropTypes.ReactNode,
-      description:
-        'Message to be displayed if no options is found for a search query.',
+      description: 'Message to be displayed if no options is found for a search query.',
       hidden: true,
     },
     overrides: {
@@ -80,7 +83,7 @@ const MenuConfig: TConfig = {
       description: 'Lets you customize all aspects of the component.',
       custom: {
         names: [
-          {...OptionConfig, componentName: 'Option'},
+          { ...OptionConfig, componentName: 'Option' },
           'List',
           'EmptyState',
           'OptgroupHeader',
@@ -88,9 +91,6 @@ const MenuConfig: TConfig = {
         sharedProps: {},
       },
     },
-  },
-  mapTokensToProps: {
-    StatefulMenu: menuProps,
   },
 };
 

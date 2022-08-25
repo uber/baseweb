@@ -1,6 +1,13 @@
-import {Spinner} from 'baseui/spinner';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
+/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+
+import { Spinner } from 'baseui/spinner';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
 
 const SpinnerConfig: TConfig = {
   componentName: 'Spinner',
@@ -9,7 +16,7 @@ const SpinnerConfig: TConfig = {
       named: ['Spinner'],
     },
   },
-  scope: {Spinner},
+  scope: { Spinner },
   theme: [],
   props: {
     $size: {

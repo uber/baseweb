@@ -1,8 +1,13 @@
-import {Table} from 'baseui/table';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
+/*
+Copyright (c) Uber Technologies, Inc.
 
-const tableProps = require('!!extract-react-types-loader!../../../../src/table/table.js');
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+
+import { Table } from 'baseui/table';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
 
 const TableConfig: TConfig = {
   componentName: 'Table',
@@ -11,7 +16,7 @@ const TableConfig: TConfig = {
       named: ['Table'],
     },
   },
-  scope: {Table},
+  scope: { Table },
   theme: [
     'tableHeadBackgroundColor',
     'tableBackground',
@@ -60,9 +65,6 @@ const TableConfig: TConfig = {
         sharedProps: {},
       },
     },
-  },
-  mapTokensToProps: {
-    Table: tableProps,
   },
 };
 

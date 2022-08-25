@@ -50,7 +50,7 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
+
 `);
     file.push('export const zones = [');
     for (const zone of zones) {
@@ -58,7 +58,7 @@ LICENSE file in the root directory of this source tree.
     }
     file.push('];\n');
 
-    const tzdataPath = path.join(__dirname, 'tzdata.js');
+    const tzdataPath = path.join(__dirname, 'tzdata.ts');
     await fs.promises.writeFile(tzdataPath, file.join('\n'));
 
     // $FlowFixMe - flow is not aware of recursive option

@@ -7,13 +7,13 @@ LICENSE file in the root directory of this source tree.
 
 import Example from '../../components/example';
 import Layout from '../../components/layout';
-import {DocLink} from '../../components/markdown-elements';
+import { DocLink } from '../../components/markdown-elements';
 import Exports from '../../components/exports';
 
-import {StatefulPhoneInput, COUNTRIES} from 'baseui/phone-input/index.js';
+import { StatefulPhoneInput, COUNTRIES } from 'baseui/phone-input/index.js';
 import * as PhoneInputExports from 'baseui/phone-input/index.js';
-import {Table} from 'baseui/table/index.js';
-import {Block} from 'baseui/block/index.js';
+import { Table } from 'baseui/table/index.js';
+import { Block } from 'baseui/block/index.js';
 
 import PhoneInputBasic from 'examples/phone-input/basic.js';
 import PhoneInputUncontrolled from 'examples/phone-input/uncontrolled.js';
@@ -23,7 +23,6 @@ import WithNestedOverrides from 'examples/phone-input/nested-overrides.js';
 
 import Yard from '../../components/yard/index';
 import phoneInputYardConfig from '../../components/yard/config/phone-input';
-import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -57,10 +56,7 @@ It contains a dropdown which allows the user to choose from a list of countries 
 
 Click [here](/guides/understanding-overrides//#override-nested-components) to learn more about nested overrides.
 
-<Example
-  title="Stateful (uncontrolled) usage"
-  path="phone-input/uncontrolled.js"
->
+<Example title="Stateful (uncontrolled) usage" path="phone-input/uncontrolled.js">
   <PhoneInputUncontrolled />
 </Example>
 
@@ -83,20 +79,8 @@ COUNTRIES: {
 <Block height="400px">
   <Table
     columns={['ID', 'Label', 'Dial Code']}
-    data={Object.values(COUNTRIES).map(c => [c.id, c.label, c.dialCode])}
+    data={Object.values(COUNTRIES).map((c) => [c.id, c.label, c.dialCode])}
   />
 </Block>
 
-## API
-
-<ApiTable
-  title="Phone Input props"
-  config={phoneInputYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/phone-input/phone-input.js')}
-/>
-
-<Exports
-  component={PhoneInputExports}
-  title="Phone Input exports"
-  path="baseui/phone-input"
-/>
+<Exports component={PhoneInputExports} title="Phone Input exports" path="baseui/phone-input" />

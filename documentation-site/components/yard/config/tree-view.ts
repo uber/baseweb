@@ -1,13 +1,18 @@
-import {TreeView, toggleIsExpanded} from 'baseui/tree-view';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
+/*
+Copyright (c) Uber Technologies, Inc.
 
-const treeViewProps = require('!!extract-react-types-loader!../../../../src/tree-view/tree-view.js');
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+
+import { TreeView, toggleIsExpanded } from 'baseui/tree-view';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
 
 const TreeViewConfig: TConfig = {
   componentName: 'TreeView',
   imports: {
-    'baseui/tree-view': {named: ['TreeView', 'toggleIsExpanded']},
+    'baseui/tree-view': { named: ['TreeView', 'toggleIsExpanded'] },
   },
   scope: {
     TreeView,
@@ -92,16 +97,14 @@ const TreeViewConfig: TConfig = {
       description: 'Displays indent guides',
     },
     onToggle: {
-      value:
-        'node => {\n  setData(prevData => toggleIsExpanded(prevData, node))\n}',
+      value: 'node => {\n  setData(prevData => toggleIsExpanded(prevData, node))\n}',
       type: PropTypes.Function,
       description: `Called every time an tree item is clicked.`,
     },
     renderAll: {
       value: false,
       type: PropTypes.Boolean,
-      description:
-        'Renders all tab content for SEO purposes regardless of tab active state.',
+      description: 'Renders all tab content for SEO purposes regardless of tab active state.',
     },
     overrides: {
       value: undefined,
@@ -138,9 +141,6 @@ const TreeViewConfig: TConfig = {
         },
       },
     },
-  },
-  mapTokensToProps: {
-    TreeView: treeViewProps,
   },
 };
 

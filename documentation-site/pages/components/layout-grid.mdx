@@ -5,8 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
-import {Table} from 'baseui/table-semantic';
-import API from '../../components/api';
+import { Table } from 'baseui/table-semantic';
 import Example from '../../components/example';
 import Exports from '../../components/exports';
 import Layout from '../../components/layout';
@@ -218,20 +217,4 @@ Note, you may not need to use `overrides` at all. You can get pretty far by styl
 
 That said, we provide `overrides` just in case your imagination surpasses our API 🚀.
 
-## API
-
-<API
-  heading="Grid"
-  api={require('!!extract-react-types-loader!../../../src/layout-grid/grid.js')}
-/>
-
-<API
-  heading="Cell"
-  api={require('!!extract-react-types-loader!../../../src/layout-grid/cell.js')}
-/>
-
-<Exports
-  component={LayoutGridExports}
-  title="Layout Grid exports"
-  path="baseui/layout-grid"
-/>
+<Exports component={LayoutGridExports} title="Layout Grid exports" path="baseui/layout-grid" />

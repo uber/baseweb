@@ -1,16 +1,19 @@
-import {ProgressSteps, Step} from 'baseui/progress-steps';
-import {Button} from 'baseui/button';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
+/*
+Copyright (c) Uber Technologies, Inc.
 
-const progressStepsProps = require('!!extract-react-types-loader!../../../../src/progress-steps/progress-steps.js');
-const stepProps = require('!!extract-react-types-loader!../../../../src/progress-steps/step.js');
-const buttonProps = require('!!extract-react-types-loader!../../../../src/button/button.js');
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+
+import { ProgressSteps, Step } from 'baseui/progress-steps';
+import { Button } from 'baseui/button';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
 
 const ProgressStepsConfig: TConfig = {
   componentName: 'ProgressSteps',
   imports: {
-    'baseui/progress-steps': {named: ['ProgressSteps']},
+    'baseui/progress-steps': { named: ['ProgressSteps'] },
   },
   scope: {
     ProgressSteps,
@@ -38,16 +41,14 @@ const ProgressStepsConfig: TConfig = {
       type: PropTypes.ReactNode,
       description: `An array of Tab components.`,
       imports: {
-        'baseui/progress-steps': {named: ['Step']},
-        'baseui/button': {named: ['Button']},
+        'baseui/progress-steps': { named: ['Step'] },
+        'baseui/button': { named: ['Button'] },
       },
-      propHook: ({getInstrumentOnChange, fnBodyAppend}) => ({
+      propHook: ({ getInstrumentOnChange, fnBodyAppend }) => ({
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         JSXAttribute(path: any) {
           if (path.get('name').node.name === 'onClick') {
-            fnBodyAppend(
-              path.get('value'),
-              getInstrumentOnChange('1', 'current'),
-            );
+            fnBodyAppend(path.get('value'), getInstrumentOnChange('1', 'current'));
           }
         },
       }),
@@ -84,11 +85,6 @@ const ProgressStepsConfig: TConfig = {
         },
       },
     },
-  },
-  mapTokensToProps: {
-    ProgressSteps: progressStepsProps,
-    Step: stepProps,
-    Button: buttonProps,
   },
 };
 

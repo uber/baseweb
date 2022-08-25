@@ -14,6 +14,8 @@ export default function Example() {
       <Input placeholder="Input in an positive state" positive />
       <br />
       <Input placeholder="Disabled input" disabled />
+      <br />
+      <Input placeholder="ReadOnly input" readOnly />
     </React.Fragment>
   );
 }

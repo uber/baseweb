@@ -7,7 +7,6 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-/* eslint-disable flowtype/require-valid-file-annotation */
 /* eslint-env node*/
 const fs = require('fs');
 const path = require('path');
@@ -67,7 +66,7 @@ async function generateNewIcons() {
   svgs.forEach(async (svgFilename) => {
     const svgFile = svgFilename.split('.')[0];
     const componentName = pascalCase(svgFile);
-    iconExports.push(`export {default as ${componentName}} from './${svgFile}.js';`);
+    iconExports.push(`export {default as ${componentName}} from './${svgFile}';`);
 
     const svgFileContents = fs.readFileSync(
       path.resolve(__dirname, `./svg/${svgFilename}`),
@@ -91,14 +90,14 @@ async function generateNewIcons() {
       );
 
     fs.writeFileSync(
-      path.resolve(__dirname, `./${svgFile}.js`),
-      prettier.format(result, { parser: 'flow', ...prettierOptions })
+      path.resolve(__dirname, `./${svgFile}.tsx`),
+      prettier.format(result, { parser: 'typescript', ...prettierOptions })
     );
   });
 
   fs.writeFileSync(
-    path.resolve(__dirname, `./icon-exports.js`),
-    `/*\nCopyright (c) Uber Technologies, Inc.\n\nThis source code is licensed under the MIT license found in the\nLICENSE file in the root directory of this source tree.\n*/\n// @flow\n${iconExports.join(
+    path.resolve(__dirname, `./icon-exports.ts`),
+    `/*\nCopyright (c) Uber Technologies, Inc.\n\nThis source code is licensed under the MIT license found in the\nLICENSE file in the root directory of this source tree.\n*/\n${iconExports.join(
       '\n'
     )}\n`
   );

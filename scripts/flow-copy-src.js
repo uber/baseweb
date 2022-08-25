@@ -17,23 +17,23 @@ const glob = require('glob');
 const src = path.resolve(__dirname, '../src');
 const dist = path.resolve(__dirname, '../dist');
 const ignore = [
-  '**/*.test.js',
-  '**/*.setup.js',
-  '**/*.scenario.js',
-  '**/*stories.js',
-  'test/**/*.js',
+  '**/*.test.*',
+  '**/*.setup.*',
+  '**/*.scenario.*',
+  '**/*stories.*',
+  'test/**/*.*',
   '**/__tests__/*',
-  '**/__mocks__/*.js',
-  '**/e2e.js',
-  'coverage/**/*.js',
-  '**/*examples.js',
+  '**/__mocks__/*.*',
+  '**/e2e.*',
+  'coverage/**/*.*',
+  '**/*examples.*',
   'template-component/*',
   'test/*',
   'codemods/*',
 ];
 
 async function run() {
-  const filepaths = glob.sync('**/*.js', { cwd: src, ignore });
+  const filepaths = glob.sync('**/*.js.flow', { cwd: src, ignore });
 
   const sourceCodes = await Promise.all(
     filepaths.map(async (filepath) => {
@@ -51,7 +51,7 @@ declare var __BROWSER__: boolean;
     filepaths.map(async (filepath, index) => {
       const destination = path.resolve(dist, filepath);
       const sourceCode = sourceCodes[index];
-      return fs.writeFile(`${destination}.flow`, sourceCode);
+      return fs.writeFile(destination, sourceCode);
     })
   );
 }

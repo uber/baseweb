@@ -1,9 +1,14 @@
-import {ListHeading} from 'baseui/list';
-import {Button, SIZE, SHAPE} from 'baseui/button';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
+/*
+Copyright (c) Uber Technologies, Inc.
 
-const listHeadingProps = require('!!extract-react-types-loader!../../../../src/list/list-heading.js');
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+
+import { ListHeading } from 'baseui/list';
+import { Button, SIZE, SHAPE } from 'baseui/button';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
 
 const ListHeadingConfig: TConfig = {
   componentName: 'ListHeading',
@@ -31,11 +36,9 @@ const ListHeadingConfig: TConfig = {
       description: 'Sub-heading content, lower-left side of the container',
     },
     endEnhancer: {
-      value:
-        '() => <Button size={SIZE.compact} shape={SHAPE.pill}>Action</Button>',
+      value: '() => <Button size={SIZE.compact} shape={SHAPE.pill}>Action</Button>',
       type: PropTypes.ReactNode,
-      description:
-        'Content to be rendered in the upper-right side of the container',
+      description: 'Content to be rendered in the upper-right side of the container',
       imports: {
         'baseui/button': {
           named: ['Button', 'SIZE'],
@@ -46,14 +49,12 @@ const ListHeadingConfig: TConfig = {
       value: undefined,
       placeholder: '"Description"',
       type: PropTypes.ReactNode,
-      description:
-        'Content to be rendered in the lower-right side of the container',
+      description: 'Content to be rendered in the lower-right side of the container',
     },
     maxLines: {
       value: 1,
       type: PropTypes.Number,
-      description:
-        'The maximum number of lines for Header and Subheader (limited to 1 or 2)',
+      description: 'The maximum number of lines for Header and Subheader (limited to 1 or 2)',
     },
     overrides: {
       value: undefined,
@@ -71,15 +72,11 @@ const ListHeadingConfig: TConfig = {
         sharedProps: {
           $maxLines: {
             type: PropTypes.Number,
-            description:
-              'The maximum number of lines for Header and Subheader (limited to 1 or 2)',
+            description: 'The maximum number of lines for Header and Subheader (limited to 1 or 2)',
           },
         },
       },
     },
-  },
-  mapTokensToProps: {
-    ListHeading: listHeadingProps,
   },
 };
 

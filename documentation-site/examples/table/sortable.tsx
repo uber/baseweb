@@ -8,6 +8,7 @@ import {
   StyledCell,
   SortableHeadCell,
   SORT_DIRECTION,
+  SortDirection,
 } from 'baseui/table';
 
 const DATA = [
@@ -33,7 +34,7 @@ const DATA = [
   ['Neil', 27],
 ];
 
-type DirectionT = SORT_DIRECTION | null;
+type DirectionT = SortDirection | null;
 
 export default class SortableTable extends React.Component<
   {},

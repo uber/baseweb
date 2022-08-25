@@ -1,10 +1,14 @@
-import {ListItem, ListItemLabel, ARTWORK_SIZES, SHAPE} from 'baseui/list';
-import {Check} from 'baseui/icon';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
+/*
+Copyright (c) Uber Technologies, Inc.
 
-const listItemProps = require('!!extract-react-types-loader!../../../../src/list/list-item.js');
-const listItemLabelProps = require('!!extract-react-types-loader!../../../../src/list/list-item-label.js');
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+
+import { ListItem, ListItemLabel, ARTWORK_SIZES, SHAPE } from 'baseui/list';
+import { Check } from 'baseui/icon';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
 
 const ListItemConfig: TConfig = {
   componentName: 'ListItem',
@@ -87,10 +91,6 @@ const ListItemConfig: TConfig = {
         },
       },
     },
-  },
-  mapTokensToProps: {
-    ListItem: listItemProps,
-    ListItemLabel: listItemLabelProps,
   },
 };
 

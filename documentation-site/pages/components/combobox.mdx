@@ -5,7 +5,6 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
-import ApiTable from '../../components/api-table';
 import Example from '../../components/example';
 import Exports from '../../components/exports';
 import Layout from '../../components/layout';
@@ -65,16 +64,4 @@ to provide a placeholder, but can be applied to any Input props.
   <Focus />
 </Example>
 
-## API
-
-<ApiTable
-  title="Combobox props"
-  config={comboboxYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/combobox/combobox.js')}
-/>
-
-<Exports
-  component={ComboboxExports}
-  title="Combobox exports"
-  path="baseui/combobox"
-/>
+<Exports component={ComboboxExports} title="Combobox exports" path="baseui/combobox" />

@@ -1,16 +1,21 @@
-import {TimezonePicker} from 'baseui/timezonepicker';
-import {SIZE} from 'baseui/input';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
+/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+
+import { TimezonePicker } from 'baseui/timezonepicker';
+import { SIZE } from 'baseui/input';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
 import inputConfig from './input';
 import selectConfig from './select';
-
-const timezonePickerProps = require('!!extract-react-types-loader!../../../../src/timezonepicker/timezone-picker.js');
 
 const TimezonepickerConfig: TConfig = {
   componentName: 'TimezonePicker',
   imports: {
-    'baseui/timezonepicker': {named: ['TimezonePicker']},
+    'baseui/timezonepicker': { named: ['TimezonePicker'] },
   },
   scope: {
     TimezonePicker,
@@ -59,9 +64,6 @@ const TimezonepickerConfig: TConfig = {
         sharedProps: {},
       },
     },
-  },
-  mapTokensToProps: {
-    TimezonePicker: timezonePickerProps,
   },
 };
 

@@ -1,8 +1,13 @@
-import {ListItemLabel} from 'baseui/list';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
+/*
+Copyright (c) Uber Technologies, Inc.
 
-const listItemLabelProps = require('!!extract-react-types-loader!../../../../src/list/list-item-label.js');
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+
+import { ListItemLabel } from 'baseui/list';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
 
 const ListItemLabelConfig: TConfig = {
   componentName: 'ListItemLabel',
@@ -44,9 +49,6 @@ const ListItemLabelConfig: TConfig = {
         },
       },
     },
-  },
-  mapTokensToProps: {
-    ListItemLabel: listItemLabelProps,
   },
 };
 

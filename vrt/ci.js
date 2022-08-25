@@ -5,7 +5,6 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-/* eslint-disable flowtype/require-valid-file-annotation */
 /* eslint-env node */
 
 const { execSync } = require('child_process');
@@ -46,7 +45,6 @@ main();
 
 async function main() {
   if (!buildIsValid()) return;
-  installChromium();
   if (buildWasTriggeredByPR()) {
     configureGit();
     runTestsWithUpdates();
@@ -64,11 +62,6 @@ function buildIsValid() {
   } else {
     return true;
   }
-}
-
-function installChromium() {
-  log(`Add Puppeteer package to trigger Chromium installation script.`);
-  execSync(`yarn add puppeteer@^9.1.1`);
 }
 
 function buildWasTriggeredByPR() {
@@ -302,7 +295,7 @@ function pushChangesToGitHub() {
       `This will overwrite any existing snapshot branch.`
   );
   execSync(`git checkout -b ${SNAPSHOT_BRANCH_NAME}`);
-  execSync(`git add vrt/__image_snapshots__/`);
+  execSync(`git add vrt/tests.vrt.js-snapshots/`);
   log(`Committing updated snapshots to ${SNAPSHOT_BRANCH_NAME}.`);
   execSync(
     `git commit -m "test(vrt): update visual snapshots for ${ORIGINAL_COMMIT_SHORT_HASH} [skip ci]"`
@@ -314,7 +307,7 @@ function pushChangesToGitHub() {
 function someSnapshotsWereUpdated() {
   const stdout = execSync(`git status --porcelain`).toString();
   const changedFiles = stdout.split(`\n`);
-  const updatedSnapshots = changedFiles.filter((s) => s.match(/vrt\/__image_snapshots__\//));
+  const updatedSnapshots = changedFiles.filter((s) => s.match(/vrt\/tests.vrt.js-snapshots\//));
   const result = updatedSnapshots.length > 0;
   if (result) {
     log(`Some snapshots were updated.`);

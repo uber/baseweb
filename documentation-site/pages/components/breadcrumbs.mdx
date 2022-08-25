@@ -13,13 +13,12 @@ import SEO from '../../components/meta-seo';
 import BasicBreadcrumbs from 'examples/breadcrumbs/basic.js';
 import PseudoBreadcrumbs from 'examples/breadcrumbs/pseudo.js';
 
-import {Breadcrumbs} from 'baseui/breadcrumbs';
+import { Breadcrumbs } from 'baseui/breadcrumbs';
 import * as BreadcrumbsExports from 'baseui/breadcrumbs';
-import {StyledLink as Link} from 'baseui/link';
+import { StyledLink as Link } from 'baseui/link';
 
 import Yard from '../../components/yard/index';
 import breadcrumbsYardConfig from '../../components/yard/config/breadcrumbs';
-import ApiTable from '../../components/api-table';
 
 <SEO
   description="The Breadcrumbs component is a secondary navigation scheme that reveals the user’s location in an application."
@@ -41,25 +40,10 @@ the user’s location in an application.
   <BasicBreadcrumbs />
 </Example>
 
-<Example
-  title="Breadcrumbs with pseudo separators"
-  path="breadcrumbs/pseudo.js"
->
+<Example title="Breadcrumbs with pseudo separators" path="breadcrumbs/pseudo.js">
   <PseudoBreadcrumbs />
 </Example>
 
 This is the recommended approach where SEO/Accessibility is important.
 
-## API
-
-<ApiTable
-  title="Breadcrumbs props"
-  config={breadcrumbsYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/breadcrumbs/breadcrumbs.js')}
-/>
-
-<Exports
-  component={BreadcrumbsExports}
-  title="Breadcrumbs exports"
-  path="baseui/breadcrumbs"
-/>
+<Exports component={BreadcrumbsExports} title="Breadcrumbs exports" path="baseui/breadcrumbs" />

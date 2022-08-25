@@ -8,7 +8,7 @@ export default function Example() {
       <FixedMarker
         startEnhancer={({size}) => <Show size={size} />}
         badgeEnhancerSize={BADGE_ENHANCER_SIZES.mediumText}
-        badgeEnhancerContent={() => 'New'}
+        badgeEnhancerContent={() => <>New</>}
         overrides={{
           BadgeEnhancer: {
             style: {

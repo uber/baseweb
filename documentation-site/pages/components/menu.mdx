@@ -20,14 +20,13 @@ import VirtualList from 'examples/menu/virtual-list.js';
 import Href from 'examples/menu/href.js';
 
 import Overrides from '../../components/overrides';
-import {StatefulMenu, OptionProfile} from 'baseui/menu';
+import { StatefulMenu, OptionProfile } from 'baseui/menu';
 import * as MenuExports from 'baseui/menu';
-import {Block} from 'baseui/block';
+import { Block } from 'baseui/block';
 import Code from '../../components/code';
 
 import Yard from '../../components/yard/index';
 import menuYardConfig from '../../components/yard/config/menu';
-import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -77,10 +76,7 @@ The provided id will be set as a value for the item container's `id` attribute t
   <Child />
 </Example>
 
-<Example
-  title="Menu with Child Menu renderAll (SSR / SEO)"
-  path="menu/child-render-all.js"
->
+<Example title="Menu with Child Menu renderAll (SSR / SEO)" path="menu/child-render-all.js">
   <ChildRenderAll />
 </Example>
 
@@ -91,7 +87,7 @@ The provided id will be set as a value for the item container's `id` attribute t
 <Example
   title="Menu with Long Items List"
   path="menu/virtual-list.js"
-  additionalPackages={{'react-virtualized': '^9.21.0'}}
+  additionalPackages={{ 'react-virtualized': '^9.21.0' }}
 >
   <VirtualList />
 </Example>
@@ -105,30 +101,28 @@ The provided id will be set as a value for the item container's `id` attribute t
 <Overrides
   name="Menu"
   component={MenuExports}
-  renderExample={props => (
+  renderExample={(props) => (
     <React.Fragment>
       <Block marginBottom="scale600">
         <StatefulMenu
           items={[
-            {label: 'Item One'},
-            {label: 'Item Two'},
-            {label: 'Item Three', disabled: true},
-            {label: 'Item Four', disabled: true},
-            {label: 'Item Five'},
-            {label: 'Item Six'},
+            { label: 'Item One' },
+            { label: 'Item Two' },
+            { label: 'Item Three', disabled: true },
+            { label: 'Item Four', disabled: true },
+            { label: 'Item Five' },
+            { label: 'Item Six' },
           ]}
           onItemSelect={console.log}
           overrides={props.overrides}
         />
       </Block>
       <p>
-        <b>Note:</b> <i>baseui/menu</i> supports and exports two types of
-        options: <b>OptionList</b> (default) and <b>OptionProfile</b>. You can
-        opt-in into OptionProfile (example rendered below) by overriding the{' '}
-        <strong>Option</strong> key. Since each override is an another
-        component, you can pass additional overrides (
-        <strong>all Profile* components</strong>) to it as well and that's what
-        we do below.
+        <b>Note:</b> <i>baseui/menu</i> supports and exports two types of options: <b>OptionList</b>{' '}
+        (default) and <b>OptionProfile</b>. You can opt-in into OptionProfile (example rendered
+        below) by overriding the <strong>Option</strong> key. Since each override is an another
+        component, you can pass additional overrides (<strong>all Profile* components</strong>) to
+        it as well and that's what we do below.
       </p>
       <StatefulMenu
         items={[...new Array(4)].map(() => ({
@@ -142,21 +136,21 @@ The provided id will be set as a value for the item container's `id` attribute t
           Option: {
             component: OptionProfile,
             props: {
-              getProfileItemLabels: ({title, subtitle, body}) => ({
+              getProfileItemLabels: ({ title, subtitle, body }) => ({
                 title,
                 subtitle,
                 body,
               }),
-              getProfileItemImg: item => item.imgUrl,
-              getProfileItemImgText: item => item.title,
+              getProfileItemImg: (item) => item.imgUrl,
+              getProfileItemImgText: (item) => item.title,
               overrides: props.overrides,
             },
           },
         }}
       />
       <Block marginTop="scale600" marginBottom="scale600">
-        <strong>Source Code</strong> (override objects are empty just to
-        demonstrate their placement)
+        <strong>Source Code</strong> (override objects are empty just to demonstrate their
+        placement)
       </Block>
       <Code>
         {`import {StatefulMenu, OptionProfile} from 'baseui/menu';
@@ -198,14 +192,6 @@ The provided id will be set as a value for the item container's `id` attribute t
       </Code>
     </React.Fragment>
   )}
-/>
-
-## API
-
-<ApiTable
-  title="Menu props"
-  config={menuYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/menu/menu.js')}
 />
 
 <Exports component={MenuExports} title="Menu exports" path="baseui/menu" />

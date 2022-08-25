@@ -16,11 +16,10 @@ import StartEnhancer from 'examples/floating-marker/start-enhancer.js';
 import SmallNoAnchor from 'examples/floating-marker/small-no-anchor.js';
 import LargeSquareAnchorStartEnhancer from 'examples/floating-marker/large-square-anchor-start-enhancer.js';
 import ReactMapGL from 'examples/floating-marker/react-map-gl.js';
-import {FloatingMarkerSizingTable} from '../../components/map-marker-sizing-table.js';
+import { FloatingMarkerSizingTable } from '../../components/map-marker-sizing-table.js';
 
 import Yard from '../../components/yard/index';
 import floatingMarkerYardConfig from '../../components/yard/config/floating-marker';
-import ApiTable from '../../components/api-table';
 
 import * as FloatingMarkerExports from 'baseui/map-marker';
 
@@ -92,10 +91,7 @@ A large floating map marker with only a label. Anchor is rendered on the top rig
 
 A floating map marker with a label and start enhancer. Anchor is rendered on the bottom right of the marker.
 
-<Example
-  title="Small marker with no anchor"
-  path="floating-marker/small-no-anchor.js"
->
+<Example title="Small marker with no anchor" path="floating-marker/small-no-anchor.js">
   <FloatingMarkerContainer>
     <SmallNoAnchor />
   </FloatingMarkerContainer>
@@ -119,14 +115,6 @@ A large floating marker with a square anchor and start enhancer. Because the flo
 </Example>
 
 A floating map marker rendered inside of a [react-map-gl](https://visgl.github.io/react-map-gl/) view. In order to use a floating map marker in react-map-gl, wrap the floating marker with a [`<Marker/>`](https://visgl.github.io/react-map-gl/docs/api-reference/marker) component. In order to properly center the marker on the intended position, translate the marker using an override on the `Root`.
-
-## API
-
-<ApiTable
-  title="Input props"
-  config={floatingMarkerYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/map-marker/floating-marker.js')}
-/>
 
 <Exports
   component={FloatingMarkerExports}

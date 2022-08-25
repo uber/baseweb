@@ -1,13 +1,16 @@
-import {ProgressSteps, NumberedStep} from 'baseui/progress-steps';
-import {Button} from 'baseui/button';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
+/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+
+import { ProgressSteps, NumberedStep } from 'baseui/progress-steps';
+import { Button } from 'baseui/button';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
 
 import ProgressStepsConfig from './progress-steps';
-
-const progressStepsProps = require('!!extract-react-types-loader!../../../../src/progress-steps/progress-steps.js');
-const numberedStepProps = require('!!extract-react-types-loader!../../../../src/progress-steps/numbered-step.js');
-const buttonProps = require('!!extract-react-types-loader!../../../../src/button/button.js');
 
 const ProgressStepsNumberedConfig: TConfig = {
   ...ProgressStepsConfig,
@@ -31,16 +34,11 @@ const ProgressStepsNumberedConfig: TConfig = {
       type: PropTypes.ReactNode,
       description: `An array of Tab components.`,
       imports: {
-        'baseui/progress-steps': {named: ['NumberedStep']},
-        'baseui/button': {named: ['Button']},
+        'baseui/progress-steps': { named: ['NumberedStep'] },
+        'baseui/button': { named: ['Button'] },
       },
       propHook: ProgressStepsConfig.props.children.propHook,
     },
-  },
-  mapTokensToProps: {
-    ProgressSteps: progressStepsProps,
-    NumberedStep: numberedStepProps,
-    Button: buttonProps,
   },
 };
 

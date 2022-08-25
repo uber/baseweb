@@ -6,19 +6,16 @@ LICENSE file in the root directory of this source tree.
 */
 import pick from 'just-pick';
 
-import {Radio, RadioGroup, ALIGN} from 'baseui/radio';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
+import { Radio, RadioGroup, ALIGN } from 'baseui/radio';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
 
-import {changeHandlers} from './common/common';
-
-const radioProps = require('!!extract-react-types-loader!../../../../src/radio/radio.js');
-const radioGroupProps = require('!!extract-react-types-loader!../../../../src/radio/radiogroup.js');
+import { changeHandlers } from './common/common';
 
 const RadioGroupConfig: TConfig = {
   componentName: 'RadioGroup',
   imports: {
-    'baseui/radio': {named: ['RadioGroup']},
+    'baseui/radio': { named: ['RadioGroup'] },
   },
   scope: {
     Radio,
@@ -75,7 +72,7 @@ const RadioGroupConfig: TConfig = {
       type: PropTypes.ReactNode,
       description: 'Radios within the RadioGroup',
       imports: {
-        'baseui/radio': {named: ['Radio']},
+        'baseui/radio': { named: ['Radio'] },
       },
     },
     name: {
@@ -138,12 +135,7 @@ const RadioGroupConfig: TConfig = {
       description: `Sets aria-labelledby attribute.`,
       hidden: true,
     },
-    ...pick(changeHandlers, [
-      'onBlur',
-      'onFocus',
-      'onMouseLeave',
-      'onMouseEnter',
-    ]),
+    ...pick(changeHandlers, ['onBlur', 'onFocus', 'onMouseLeave', 'onMouseEnter']),
     overrides: {
       value: undefined,
       type: PropTypes.Custom,
@@ -173,10 +165,6 @@ const RadioGroupConfig: TConfig = {
         },
       },
     },
-  },
-  mapTokensToProps: {
-    Radio: radioProps,
-    RadioGroup: radioGroupProps,
   },
 };
 

@@ -22,7 +22,6 @@ import { Accordion, Panel } from 'baseui/accordion';
 
 import Yard from '../../components/yard/index';
 import accordionYardConfig from '../../components/yard/config/accordion';
-import ApiTable from '../../components/api-table';
 
 <SEO
   description="Accordions display a list of high-level options that can expand/contract to reveal more detailed information."
@@ -76,14 +75,6 @@ If you want to control the `expanded` state of the accordion panels yourself, yo
 The `onChange` handler is called when one of the `Panels` would ordinarily be opened. It passes both the `key` of the `Panel` that caused the handler to fire as well as an updated `expanded` list. You can choose to use the new `expanded` list or `key` however you like to update your state. Note, by default the new `expanded` list will assume only one panel can be open at a time, but if you pass `accordion={false}` the `expanded` list will assume multiple can be open simultaneously.
 
 The `StatelessAccordion` gives you the flexibility to control the accordion as you like while still offering some convenience to cover the normal use cases.
-
-## API
-
-<ApiTable
-  title="Accordion props"
-  config={accordionYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/accordion/accordion.js')}
-/>
 
 **Note:** the `Panel` has the same overrides as `Accordion`, with the exception of the `Root` subcomponent.
 

@@ -1,8 +1,13 @@
-import {Navigation} from 'baseui/side-navigation';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
+/*
+Copyright (c) Uber Technologies, Inc.
 
-const sideNavProps = require('!!extract-react-types-loader!../../../../src/side-navigation/nav.js');
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+
+import { Navigation } from 'baseui/side-navigation';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
 
 const items = `[
   {
@@ -39,7 +44,7 @@ const SideNavigationConfig: TConfig = {
       named: ['Navigation'],
     },
   },
-  scope: {Navigation},
+  scope: { Navigation },
   theme: [],
   props: {
     items: {
@@ -78,13 +83,7 @@ const SideNavigationConfig: TConfig = {
       type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
       custom: {
-        names: [
-          'Root',
-          'NavItemContainer',
-          'NavLink',
-          'NavItem',
-          'SubNavContainer',
-        ],
+        names: ['Root', 'NavItemContainer', 'NavLink', 'NavItem', 'SubNavContainer'],
         sharedProps: {
           $active: {
             type: PropTypes.Boolean,
@@ -101,9 +100,6 @@ const SideNavigationConfig: TConfig = {
         },
       },
     },
-  },
-  mapTokensToProps: {
-    Navigation: sideNavProps,
   },
 };
 

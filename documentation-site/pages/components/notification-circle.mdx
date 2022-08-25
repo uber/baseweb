@@ -1,0 +1,51 @@
+<!--
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import Layout from '../../components/layout';
+import Exports from '../../components/exports';
+
+import { NotificationCircle } from 'baseui/badge';
+import * as NotificationCircleExports from 'baseui/badge';
+
+import Yard from '../../components/yard/index';
+import notificationCircleYardConfig from '../../components/yard/config/notification-circle';
+
+import Inline from 'examples/notification-circle/inline.js';
+import Offset from 'examples/notification-circle/offset.js';
+
+export default Layout;
+
+# NotificationCircle
+
+<Yard placeholderHeight={34} {...notificationCircleYardConfig} />
+
+NotificationCircle is a type of badge. It can be used to display numbers (e.g. the number of notifications or new content). If the supplied number exceeds 9, NotificationCircle displays “9+” instead of going into double digits.
+It can also display icons to act as an indicator.
+
+## Examples
+
+<Example title="Inline notification circle" path="notification-circle/inline.js">
+  <Inline />
+</Example>
+
+When placing the NotificationCircle badge inline, avoid icons, as they may cause the badge to be confused with a button.
+
+<Example title="Offset" path="notification-circle/offset.js">
+  <Offset />
+</Example>
+
+There may be situations where it makes sense to deviate from the standard placement options. Use the offset props to manually position NotificationCircle.
+
+- `horizontalOffset` sets the `right` CSS attribute when `placement` is `topRight` and the `left` attribute when placement is `topLeft`.
+- `verticalOffset` sets the `top` CSS attribute.
+
+<Exports
+  component={NotificationCircleExports}
+  title="NotificationCircle exports"
+  path="baseui/badge"
+/>

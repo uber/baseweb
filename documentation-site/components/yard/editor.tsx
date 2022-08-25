@@ -1,3 +1,10 @@
+/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+
 import * as React from 'react';
 import SimpleEditor from 'react-simple-code-editor';
 import Highlight, { Prism } from 'prism-react-renderer';
@@ -15,6 +22,7 @@ const highlightCode = (
     {({ tokens, getLineProps, getTokenProps }) => (
       <React.Fragment>
         {tokens.map((line, i) => (
+          // eslint-disable-next-line react/jsx-key
           <div {...getLineProps({ line, key: i })}>
             {line.map((token, key) => {
               const tokenProps = getTokenProps({ token, key });
@@ -22,6 +30,7 @@ const highlightCode = (
               if (transformToken) {
                 return transformToken(tokenProps);
               }
+              // eslint-disable-next-line react/jsx-key
               return <span {...tokenProps} />;
             })}
           </div>
@@ -96,4 +105,5 @@ const Editor: React.FC<TEditorProps> = ({
     </div>
   );
 };
+
 export default Editor;

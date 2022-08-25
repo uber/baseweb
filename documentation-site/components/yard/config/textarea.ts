@@ -1,15 +1,20 @@
-import omit from 'just-omit';
-import {Textarea, SIZE} from 'baseui/textarea';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
-import {theme, inputProps} from './input';
+/*
+Copyright (c) Uber Technologies, Inc.
 
-const textareaProps = require('!!extract-react-types-loader!../../../../src/textarea/textarea.js');
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+
+import omit from 'just-omit';
+import { Textarea, SIZE } from 'baseui/textarea';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
+import { theme, inputProps } from './input';
 
 const TextareaConfig: TConfig = {
   componentName: 'Textarea',
   imports: {
-    'baseui/textarea': {named: ['Textarea']},
+    'baseui/textarea': { named: ['Textarea'] },
   },
   scope: {
     Textarea,
@@ -38,6 +43,7 @@ const TextareaConfig: TConfig = {
             type: PropTypes.Boolean,
             description: 'True when the component is focused.',
           },
+          $isReadOnly: 'readOnly',
           $disabled: 'disabled',
           $error: 'error',
           $positive: 'positive',
@@ -47,9 +53,6 @@ const TextareaConfig: TConfig = {
         },
       },
     },
-  },
-  mapTokensToProps: {
-    Textarea: textareaProps,
   },
 };
 

@@ -6,7 +6,6 @@ LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
 import Layout from '../../components/layout';
 import Exports from '../../components/exports';
 
@@ -94,21 +93,16 @@ greater than the highest `z-index` value of all top level stacking contexts in y
   <TetherBasic />
 </Example>
 
-## API
+## Layer events
 
-<API
-  heading="Layer API"
-  api={require('!!extract-react-types-loader!../../../src/layer/layer.js')}
-/>
+The `Layer` component supports the following events:
 
-<API
-  heading="LayersManager API"
-  api={require('!!extract-react-types-loader!../../../src/layer/layers-manager.js')}
-/>
+- onEscape
+- onDocumentClick
+- onKeyDown
+- onKeyPress
+- onKeyUp
 
-<API
-  heading="Tether API"
-  api={require('!!extract-react-types-loader!../../../src/layer/tether.js')}
-/>
+Events are handled by `LayerManager` and passed only to the top-most `Layer`. That means that the event handler function will be triggered only for the active layer.
 
 <Exports component={LayerExports} title="Layer exports" path="baseui/layer" />

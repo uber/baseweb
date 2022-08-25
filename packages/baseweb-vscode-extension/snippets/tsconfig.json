@@ -12,9 +12,6 @@
     "isolatedModules": true,
     "paths": {
       "baseui/*": ["./dist/*"],
-      "!!extract-react-types-loader*": [
-        "./packages/baseweb-vscode-extension/snippets/mock"
-      ],
       "just-omit": ["./documentation-site/@types/just-omit"]
     }
   },

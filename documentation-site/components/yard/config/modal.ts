@@ -1,29 +1,20 @@
-import {
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  ModalButton,
-  SIZE,
-  ROLE,
-} from 'baseui/modal';
-import {KIND as ButtonKind} from 'baseui/button';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
+/*
+Copyright (c) Uber Technologies, Inc.
 
-const modalProps = require('!!extract-react-types-loader!../../../../src/modal/modal.js');
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+
+import { Modal, ModalHeader, ModalBody, ModalFooter, ModalButton, SIZE, ROLE } from 'baseui/modal';
+import { KIND as ButtonKind } from 'baseui/button';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
 
 const ModalConfig: TConfig = {
   componentName: 'Modal',
   imports: {
     'baseui/modal': {
-      named: [
-        'Modal',
-        'ModalHeader',
-        'ModalBody',
-        'ModalFooter',
-        'ModalButton',
-      ],
+      named: ['Modal', 'ModalHeader', 'ModalBody', 'ModalFooter', 'ModalButton'],
     },
     'baseui/button': {
       named: ['KIND as ButtonKind'],
@@ -79,15 +70,13 @@ const ModalConfig: TConfig = {
     animate: {
       value: true,
       type: PropTypes.Boolean,
-      description:
-        'Sets whether the Modal should be displayed by easing in and out.',
+      description: 'Sets whether the Modal should be displayed by easing in and out.',
       hidden: true,
     },
     autoFocus: {
       value: true,
       type: PropTypes.Boolean,
-      description:
-        'If true, focus will shift to the first interactive element within the modal.',
+      description: 'If true, focus will shift to the first interactive element within the modal.',
       hidden: true,
     },
     focusLock: {
@@ -149,9 +138,6 @@ const ModalConfig: TConfig = {
         },
       },
     },
-  },
-  mapTokensToProps: {
-    Modal: modalProps,
   },
 };
 

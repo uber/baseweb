@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 -->
 
 import Layout from '../../components/layout';
-import {Notification} from 'baseui/notification';
+import { Notification } from 'baseui/notification';
 
 export default Layout;
 
@@ -25,12 +25,7 @@ yarn add baseui styletron-engine-atomic styletron-react
 npm install baseui styletron-engine-atomic styletron-react
 ```
 
-Base Web ships with both Flow and TypeScript support. Styletron ships only with Flow. If you use
-TypeScript, however, there are external TypeScript declarations:
-
-```bash
-yarn add @types/styletron-standard @types/styletron-react @types/styletron-engine-atomic
-```
+Base Web ships with both Flow and TypeScript support.
 
 Our React components don't use [PropTypes](https://reactjs.org/docs/typechecking-with-proptypes.html).
 
@@ -99,10 +94,10 @@ In order to use Base Web, you need to do a small setup and wrap the root of your
 application with `StyletronProvider` and [`BaseProvider`](https://baseweb.design/components/base-provider) components:
 
 ```javascript
-import {Client as Styletron} from 'styletron-engine-atomic';
-import {Provider as StyletronProvider} from 'styletron-react';
-import {LightTheme, BaseProvider, styled} from 'baseui';
-import {StatefulInput} from 'baseui/input';
+import { Client as Styletron } from 'styletron-engine-atomic';
+import { Provider as StyletronProvider } from 'styletron-react';
+import { LightTheme, BaseProvider, styled } from 'baseui';
+import { StatefulInput } from 'baseui/input';
 
 const engine = new Styletron();
 
@@ -128,12 +123,12 @@ export default function Hello() {
 
 <Notification
   overrides={{
-    Body: {style: {width: 'auto'}},
+    Body: { style: { width: 'auto' } },
   }}
 >
-  Your application might be wrapping the root only with ThemeProvider. You
-  should use BaseProvider instead to support correct layering. Please note that
-  this component adds an <b>additional div</b> that could impact your layout.
+  Your application might be wrapping the root only with ThemeProvider. You should use BaseProvider
+  instead to support correct layering. Please note that this component adds an <b>additional div</b>{' '}
+  that could impact your layout.
 </Notification>
 
 There are detailed guides for Styletron/Base Web setup for the following frameworks:

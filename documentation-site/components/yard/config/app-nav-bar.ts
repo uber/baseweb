@@ -1,9 +1,14 @@
-import {AppNavBar, setItemActive} from 'baseui/app-nav-bar';
-import {ChevronDown, Delete, Overflow, Upload} from 'baseui/icon';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
+/*
+Copyright (c) Uber Technologies, Inc.
 
-const navBarProps = require('!!extract-react-types-loader!../../../../src/app-nav-bar/app-nav-bar.js');
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+
+import { AppNavBar, setItemActive } from 'baseui/app-nav-bar';
+import { ChevronDown, Delete, Overflow, Upload } from 'baseui/icon';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
 
 const NavigationBarConfig: TConfig = {
   componentName: 'AppNavBar',
@@ -52,8 +57,7 @@ const NavigationBarConfig: TConfig = {
     },
 
     onMainItemSelect: {
-      value:
-        '(item) => {\n setMainItems(prev =>\n   setItemActive(prev, item)\n )\n}',
+      value: '(item) => {\n setMainItems(prev =>\n   setItemActive(prev, item)\n )\n}',
       type: PropTypes.Function,
       description: 'Handler called when a menu item is selected.',
     },
@@ -120,9 +124,6 @@ const NavigationBarConfig: TConfig = {
         sharedProps: {},
       },
     },
-  },
-  mapTokensToProps: {
-    AppNavBar: navBarProps,
   },
 };
 

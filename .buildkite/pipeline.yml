@@ -1,13 +1,22 @@
 steps:
   # Build the image in a single place for all parallel steps to leverage the same image.
-  - name: ':docker: :package: build'
+  - name: ':docker: :package: build web-base-image'
     plugins:
       'docker-compose#v3.0.3':
         build:
           - baseui
-          - e2e-test
           - e2e-server
           - e2e-server-healthy
+        image-repository: 027047743804.dkr.ecr.us-east-2.amazonaws.com/uber
+        env: DOCKER_BUILDKIT=1
+    agents:
+      queue: builders
+
+  - name: ':docker: :package: build playwright'
+    plugins:
+      'docker-compose#v3.0.3':
+        build:
+          - e2e-test
         image-repository: 027047743804.dkr.ecr.us-east-2.amazonaws.com/uber
         env: DOCKER_BUILDKIT=1
     agents:
@@ -59,7 +68,7 @@ steps:
       queue: workers
 
   - name: ':react: react@18 unit-test'
-    command: yarn upgrade react@^18.0.0 react-dom@^18.0.0 @testing-library/react@alpha && yarn unit-test
+    command: yarn upgrade react@^18.0.0 react-dom@^18.0.0 @testing-library/react@13.3.0 && yarn unit-test
     plugins:
       'docker-compose#v3.0.3':
         run: baseui
@@ -92,6 +101,15 @@ steps:
     agents:
       queue: workers
 
+  - name: sync-web-code
+    command: 'node scripts/sync-web-code.js'
+    if: build.branch == "master"
+    plugins:
+      'docker-compose#v3.0.3':
+        run: baseui
+    agents:
+      queue: workers
+
   # vscode extension deployment disabled until we can refresh the azure token
   # - name: deploy-vscode
   #   command: './deploy-vscode.sh'
@@ -112,11 +130,9 @@ steps:
       queue: workers
 
   - name: e2e
-    # we have to install puppeteer here to trigger the install.js script
-    # and also to make sure we do not add this to the released build artifact
     command: yarn e2e:test:ci
     artifact_paths:
-      - '__artifacts__/*.png'
+      - 'test-results/**/*'
     plugins:
       'docker-compose#v3.0.3':
         run: e2e-test
@@ -129,7 +145,7 @@ steps:
   - name: ':react: react@18 e2e'
     command: yarn upgrade react@^18.0.0 react-dom@^18.0.0 && yarn e2e:test:ci
     artifact_paths:
-      - '__artifacts__/*.png'
+      - 'test-results/**/*'
     plugins:
       'docker-compose#v3.0.3':
         run: e2e-test
@@ -142,7 +158,7 @@ steps:
   - name: vrt
     command: yarn vrt:ci
     artifact_paths:
-      - '__artifacts__/*.png'
+      - 'test-results/**/*'
     plugins:
       'docker-compose#v3.0.3':
         run: e2e-test
@@ -160,7 +176,7 @@ steps:
       - exit_status: 2
     plugins:
       'docker-compose#v3.0.3':
-        run: baseui
+        run: e2e-test
     agents:
       queue: workers
 

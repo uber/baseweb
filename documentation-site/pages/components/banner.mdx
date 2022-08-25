@@ -1,0 +1,48 @@
+<!--
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import Layout from '../../components/layout';
+import Exports from '../../components/exports';
+import Yard from '../../components/yard/index';
+import bannerYardConfig from '../../components/yard/config/banner';
+
+import Action from 'examples/banner/action.js';
+import Artwork from 'examples/banner/artwork.js';
+import Variants from 'examples/banner/variants.js';
+
+import * as BannerExports from 'baseui/banner';
+
+export default Layout;
+
+# Banner
+
+<Yard placeholderHeight={52} {...bannerYardConfig} />
+
+A Banner is a contextual message used to communicate a state that is specific to a page or feature.
+They can be at the top of a page or in line with other content. Use Banner for inline callouts,
+form validation, and warning/success/failure states. For ephemeral feedback messaging, use the
+[Snackbar](/components/snackbar) instead.
+
+## Examples
+
+Banners come in high and low contrast color combinations depending on the severity of the message.
+Use lower contrast for messages with lower severity. Use higher contrast for messages with higher severity.
+
+<Example title="Color schemes" path="banner/variants.js">
+  <Variants />
+</Example>
+
+<Example title="Artwork" path="banner/artwork.js">
+  <Artwork />
+</Example>
+
+<Example title="Action" path="banner/action.js">
+  <Action />
+</Example>
+
+<Exports component={BannerExports} title="Banner exports" path="baseui/banner" />

@@ -12,13 +12,12 @@ import Exports from '../../components/exports';
 import Stateful from 'examples/tooltip/stateful.js';
 import StatefulComplexContent from 'examples/tooltip/stateful-complex-content.js';
 
-import {StatefulTooltip} from 'baseui/tooltip';
+import { StatefulTooltip } from 'baseui/tooltip';
 import * as TooltipExports from 'baseui/tooltip';
-import {styled} from 'baseui';
+import { styled } from 'baseui';
 
 import Yard from '../../components/yard/index';
 import tooltipYardConfig from '../../components/yard/config/tooltip';
-import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -45,14 +44,6 @@ Motion helps to reinforce its origin position.
 </Example>
 
 Keep in mind that the tooltip's background may not have enough contrast with your content. In these situations, you can either wrap your content in a theme or override the styles for individual components.
-
-## API
-
-<ApiTable
-  title="Tooltip props"
-  config={tooltipYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/tooltip/tooltip.js')}
-/>
 
 <Exports
   component={TooltipExports}

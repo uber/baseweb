@@ -21,12 +21,11 @@ import NonCloseable from 'examples/tag/non-closeable.js';
 import ClickableNonCloseable from 'examples/tag/clickable-non-closeable.js';
 import CustomColor from 'examples/tag/custom-color.js';
 
-import {Tag} from 'baseui/tag';
+import { Tag } from 'baseui/tag';
 import * as TagExports from 'baseui/tag';
 
 import Yard from '../../components/yard/index';
 import tagYardConfig from '../../components/yard/config/tag';
-import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -82,10 +81,7 @@ In addition to the "semantic" `kind` colors, you can also use "primitive" colors
   <NonCloseable />
 </Example>
 
-<Example
-  title="Tag non-closeable/clickable"
-  path="tag/clickable-non-closeable.js"
->
+<Example title="Tag non-closeable/clickable" path="tag/clickable-non-closeable.js">
   <ClickableNonCloseable />
 </Example>
 
@@ -98,13 +94,5 @@ In addition to the "semantic" `kind` colors, you can also use "primitive" colors
 - When the tag is closable or clickable and not disabled it gets the role button and is focusable.
 - Closable tag can be closed by pressing `backspace` or `delete`.
 - Clickable tag can be clicked by pressing `enter`.
-
-## API
-
-<ApiTable
-  title="Tag props"
-  config={tagYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/tag/tag.js')}
-/>
 
 <Exports component={TagExports} title="Tag exports" path="baseui/tag" />

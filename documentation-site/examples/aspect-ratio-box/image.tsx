@@ -9,6 +9,7 @@ export default function Example() {
     <AspectRatioBox width="scale1400">
       <AspectRatioBoxBody
         as="img"
+        // @ts-ignore
         src="https://avatars.dicebear.com/api/human/aspect.svg?width=285&mood=happy"
       />
     </AspectRatioBox>

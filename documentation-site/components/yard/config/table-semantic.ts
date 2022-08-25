@@ -1,6 +1,13 @@
-import {Table, DIVIDER, SIZE} from 'baseui/table-semantic';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
+/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+
+import { Table, DIVIDER, SIZE } from 'baseui/table-semantic';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
 
 const TableSemanticConfig: TConfig = {
   componentName: 'Table',
@@ -14,11 +21,7 @@ const TableSemanticConfig: TConfig = {
     DIVIDER,
     SIZE,
   },
-  theme: [
-    'tableHeadBackgroundColor',
-    'tableBackground',
-    'tableStripedBackground',
-  ],
+  theme: ['tableHeadBackgroundColor', 'tableBackground', 'tableStripedBackground'],
   props: {
     columns: {
       value: `['Name', 'Age', 'Address']`,

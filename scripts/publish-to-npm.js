@@ -55,9 +55,9 @@ function copyPackageJSONVersionFromRoot(filepath) {
 function publishBaseui(tag) {
   console.log('--- Publishing baseui to NPM');
   spawnSync('yarn', ['build'], { stdio: 'inherit', cwd: ROOT_DIR });
-  spawnSync('npm', ['publish', 'dist', '--registry', 'https://registry.npmjs.org', '--tag', tag], {
+  spawnSync('npm', ['publish', '--registry', 'https://registry.npmjs.org', '--tag', tag], {
     stdio: 'inherit',
-    cwd: ROOT_DIR,
+    cwd: path.join(ROOT_DIR, 'dist'),
   });
 }
 

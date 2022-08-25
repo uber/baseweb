@@ -1,8 +1,13 @@
-import {Skeleton} from 'baseui/skeleton';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
+/*
+Copyright (c) Uber Technologies, Inc.
 
-const skeletonProps = require('!!extract-react-types-loader!../../../../src/pin-code/pin-code.js');
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+
+import { Skeleton } from 'baseui/skeleton';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
 
 const SkeletonConfig: TConfig = {
   componentName: 'Skeleton',
@@ -47,9 +52,6 @@ const SkeletonConfig: TConfig = {
         sharedProps: {},
       },
     },
-  },
-  mapTokensToProps: {
-    Skeleton: skeletonProps,
   },
 };
 

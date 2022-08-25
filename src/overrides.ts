@@ -1,23 +1,10 @@
-import * as React from 'react';
-import {StyleObject} from 'styletron-react';
-import {Theme} from './theme';
+/*
+Copyright (c) Uber Technologies, Inc.
 
-type StyleOverride<T> =
-  | StyleObject
-  | ((props: {$theme: Theme} & React.PropsWithChildren<T>) => StyleObject);
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
 
-type ComponentOverride<T> =
-  | React.ComponentType<T>
-  | React.RefForwardingComponent<T>;
+import type { Override, Overrides } from './helpers/overrides';
 
-interface OverrideObject<T> {
-  component?: ComponentOverride<T>;
-  props?: any;
-  style?: StyleOverride<T>;
-}
-
-export type Override<T> = OverrideObject<T> | React.ComponentType<T>;
-
-export interface Overrides<T> {
-  [key: string]: Override<T>;
-}
+export type { Override, Overrides };

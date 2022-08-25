@@ -16,7 +16,6 @@ import SSRRenderAll from 'examples/drawer/ssr-render-all.js';
 
 import Yard from '../../components/yard/index';
 import drawerYardConfig from '../../components/yard/config/drawer';
-import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -32,10 +31,7 @@ export default Layout;
   <Sizes />
 </Example>
 
-<Example
-  title="Drawer with renderAll for SSR / SEO"
-  path="drawer/ssr-render-all.js"
->
+<Example title="Drawer with renderAll for SSR / SEO" path="drawer/ssr-render-all.js">
   <SSRRenderAll />
 </Example>
 
@@ -50,16 +46,4 @@ We have built in functionality based on the recommendations for dialogs and draw
 - Background is not be scrollable while drawer is open (position: fixed).
 - Upon closing, focus should return to element that triggered drawer.
 
-## API
-
-<ApiTable
-  title="Drawer props"
-  config={drawerYardConfig}
-  types={require('!!extract-react-types-loader!../../../src/drawer/drawer.js')}
-/>
-
-<Exports
-  component={DrawerExports}
-  title="Drawer exports"
-  path="baseui/drawer"
-/>
+<Exports component={DrawerExports} title="Drawer exports" path="baseui/drawer" />

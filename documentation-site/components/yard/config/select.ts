@@ -1,3 +1,10 @@
+/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+
 import pick from 'just-pick';
 import { Select, SIZE, TYPE } from 'baseui/select';
 import { PropTypes } from 'react-view';
@@ -7,8 +14,6 @@ import tagConfig from './tag';
 import popoverConfig from './popover';
 import spinnerConfig from './spinner';
 import iconConfig from './icon';
-
-const selectProps = require('!!extract-react-types-loader!../../../../src/select/select.js');
 
 const SelectConfig: TConfig = {
   componentName: 'Select',
@@ -412,9 +417,6 @@ const SelectConfig: TConfig = {
         },
       },
     },
-  },
-  mapTokensToProps: {
-    Select: selectProps,
   },
 };
 

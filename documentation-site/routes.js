@@ -5,7 +5,6 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-/* eslint-disable flowtype/require-valid-file-annotation */
 /* eslint-env node */
 
 const routes = [
@@ -201,6 +200,18 @@ const routes = [
             itemId: '/components/avatar',
           },
           {
+            title: 'Badge',
+            itemId: '/components/badge',
+          },
+          {
+            title: 'Badge - NotificationCircle',
+            itemId: '/components/notification-circle',
+          },
+          {
+            title: 'Badge - HintDot',
+            itemId: '/components/hint-dot',
+          },
+          {
             title: 'Drag and Drop List',
             itemId: '/components/dnd-list',
           },
@@ -219,6 +230,10 @@ const routes = [
           {
             title: 'List',
             itemId: '/components/list',
+          },
+          {
+            title: 'Message Card',
+            itemId: '/components/message-card',
           },
           {
             title: 'Tag',
@@ -258,6 +273,14 @@ const routes = [
       {
         title: 'Progress & Validation',
         subNav: [
+          {
+            title: 'Banner',
+            itemId: '/components/banner',
+          },
+          {
+            title: 'Empty State',
+            itemId: '/components/empty-state',
+          },
           {
             title: 'Notification',
             itemId: '/components/notification',
@@ -324,6 +347,10 @@ const routes = [
             title: 'Floating Marker',
             itemId: '/components/floating-marker',
           },
+          {
+            title: 'Location Puck',
+            itemId: '/components/location-puck',
+          },
         ],
       },
       {
@@ -340,6 +367,10 @@ const routes = [
           {
             title: 'Block',
             itemId: '/components/block',
+          },
+          {
+            title: 'Divider',
+            itemId: '/components/divider',
           },
           {
             title: 'FlexGrid',

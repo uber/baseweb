@@ -1,6 +1,13 @@
-import {StyledLink} from 'baseui/link';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
+/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+
+import { StyledLink } from 'baseui/link';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
 
 const LinkConfig: TConfig = {
   componentName: 'StyledLink',
@@ -9,7 +16,7 @@ const LinkConfig: TConfig = {
       named: ['StyledLink'],
     },
   },
-  scope: {StyledLink},
+  scope: { StyledLink },
   theme: ['linkText', 'linkVisited', 'linkHover', 'linkActive'],
   props: {
     children: {

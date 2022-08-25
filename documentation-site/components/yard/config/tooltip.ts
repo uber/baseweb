@@ -1,16 +1,16 @@
-import {
-  StatefulTooltip,
-  ACCESSIBILITY_TYPE,
-  PLACEMENT,
-  TRIGGER_TYPE,
-} from 'baseui/tooltip';
-import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
-import {Button} from 'baseui/button';
-import {Input} from 'baseui/input';
-import {Block} from 'baseui/block';
+/*
+Copyright (c) Uber Technologies, Inc.
 
-const tooltipProps = require('!!extract-react-types-loader!../../../../src/popover/stateful-popover.js');
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+
+import { StatefulTooltip, ACCESSIBILITY_TYPE, PLACEMENT, TRIGGER_TYPE } from 'baseui/tooltip';
+import { PropTypes } from 'react-view';
+import { TConfig } from '../types';
+import { Button } from 'baseui/button';
+import { Input } from 'baseui/input';
+import { Block } from 'baseui/block';
 
 import PopoverConfig from './popover';
 
@@ -18,7 +18,7 @@ const TooltipConfig: TConfig = {
   ...PopoverConfig,
   componentName: 'StatefulTooltip',
   imports: {
-    'baseui/tooltip': {named: ['StatefulTooltip']},
+    'baseui/tooltip': { named: ['StatefulTooltip'] },
   },
   scope: {
     Button,
@@ -63,9 +63,6 @@ const TooltipConfig: TConfig = {
       type: PropTypes.ReactNode,
       description: `The content that will trigger the popover.`,
     },
-  },
-  mapTokensToProps: {
-    StatefulTooltip: tooltipProps,
   },
 };
 
