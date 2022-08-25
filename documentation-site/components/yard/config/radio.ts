@@ -8,7 +8,7 @@ import pick from 'just-pick';
 
 import { Radio, RadioGroup, ALIGN } from 'baseui/radio';
 import { PropTypes } from 'react-view';
-import { TConfig } from '../types';
+import type { TConfig } from '../types';
 
 import { changeHandlers } from './common/common';
 

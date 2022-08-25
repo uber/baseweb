@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 import { StatefulTooltip, ACCESSIBILITY_TYPE, PLACEMENT, TRIGGER_TYPE } from 'baseui/tooltip';
 import { PropTypes } from 'react-view';
-import { TConfig } from '../types';
+import type { TConfig } from '../types';
 import { Button } from 'baseui/button';
 import { Input } from 'baseui/input';
 import { Block } from 'baseui/block';

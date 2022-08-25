@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 import { ProgressSteps, NumberedStep } from 'baseui/progress-steps';
 import { Button } from 'baseui/button';
 import { PropTypes } from 'react-view';
-import { TConfig } from '../types';
+import type { TConfig } from '../types';
 
 import ProgressStepsConfig from './progress-steps';
 

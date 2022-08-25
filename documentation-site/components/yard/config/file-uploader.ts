@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 import { FileUploader } from 'baseui/file-uploader';
 import { PropTypes } from 'react-view';
-import { TConfig } from '../types';
+import type { TConfig } from '../types';
 import buttonConfig from './button';
 
 const changeHandlers = [

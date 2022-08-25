@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 import { StyledDivider, SIZE } from 'baseui/divider';
 import { PropTypes } from 'react-view';
-import { TConfig } from '../types';
+import type { TConfig } from '../types';
 
 const DividerConfig: TConfig = {
   componentName: 'StyledDivider',

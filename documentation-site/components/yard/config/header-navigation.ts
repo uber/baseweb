@@ -14,7 +14,7 @@ import {
 import { StyledLink } from 'baseui/link';
 import { Button } from 'baseui/button';
 import { PropTypes } from 'react-view';
-import { TConfig } from '../types';
+import type { TConfig } from '../types';
 
 const HeaderNavigationConfig: TConfig = {
   componentName: 'HeaderNavigation',

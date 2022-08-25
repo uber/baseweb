@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import { Tag, KIND, VARIANT, SIZE } from 'baseui/tag';
 import { PropTypes } from 'react-view';
-import { TConfig } from '../types';
+import type { TConfig } from '../types';
 
 const TagConfig: TConfig = {
   componentName: 'Tag',
