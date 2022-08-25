@@ -240,10 +240,9 @@ export const StyledMenuDivider = styled<'li', StyledProps>('li', ({ $theme }) =>
   borderBottomColor: $theme.borders.border300.borderColor,
   marginTop: $theme.sizing.scale100,
   marginBottom: $theme.sizing.scale100,
-  marginLeft: 'auto',
-  marginRight: 'auto',
+  marginLeft: $theme.sizing.scale500,
+  marginRight: $theme.sizing.scale500,
   listStyle: 'none',
   height: 0,
-  width: '90%',
 }));
 StyledProfileBody.displayName = 'StyledMenuDivider';

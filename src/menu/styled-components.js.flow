@@ -218,9 +218,8 @@ export const StyledMenuDivider = styled<StyledPropsT>('li', ({ $theme }) => ({
   borderBottomColor: $theme.borders.border300.borderColor,
   marginTop: $theme.sizing.scale100,
   marginBottom: $theme.sizing.scale100,
-  marginLeft: 'auto',
-  marginRight: 'auto',
+  marginLeft: $theme.sizing.scale600,
+  marginRight: $theme.sizing.scale600,
   listStyle: 'none',
   height: 0,
-  width: '90%',
 }));

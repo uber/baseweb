@@ -39,6 +39,7 @@ export {
   StyledProfileTitle,
   StyledProfileSubtitle,
   StyledProfileBody,
+  StyledMenuDivider,
 } from './styled-components';
 // Flow
 export * from './types';
