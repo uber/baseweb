@@ -9,7 +9,8 @@ import React, { useState } from 'react';
 import { startOfDay } from 'date-fns';
 
 import { TimePicker } from '..';
-import { Size, SIZE } from '../../input';
+import type { Size } from '../../input';
+import { SIZE } from '../../input';
 import MomentUtils from '@date-io/moment';
 
 const momentAdapter = new MomentUtils({});

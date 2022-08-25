@@ -4,12 +4,10 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import * as React from 'react';
-import { STATE_CHANGE_TYPE, SIZE, COUNTRIES } from './constants';
+import type * as React from 'react';
+import type { STATE_CHANGE_TYPE, SIZE, COUNTRIES } from './constants';
 import type { Override } from '../helpers/overrides';
 import type { OnChangeParams } from '../select';
-
-import type { ChangeEvent } from 'react';
 
 export type Size = keyof typeof SIZE;
 export type CountryIso = keyof typeof COUNTRIES;
@@ -124,7 +122,7 @@ export type PhoneInputProps = {
   /** A handler for the country select's change events. */
   onCountryChange: (event: OnChangeParams) => unknown;
   /** A handler for the input element's change events. */
-  onTextChange: (event: ChangeEvent<HTMLInputElement>) => unknown;
+  onTextChange: (event: React.ChangeEvent<HTMLInputElement>) => unknown;
   overrides: PhoneInputOverrides;
   /** Sets the placeholder text for the input element.  */
   placeholder?: string;
@@ -150,13 +148,13 @@ export type StatefulPhoneInputContainerProps = {
   children: (a: PhoneInputProps) => React.ReactNode;
   initialState: State;
   stateReducer: StateReducer;
-  onTextChange: (event: ChangeEvent<HTMLInputElement>) => unknown;
+  onTextChange: (event: React.ChangeEvent<HTMLInputElement>) => unknown;
   onCountryChange: (event: OnChangeParams) => unknown;
 } & PhoneInputProps;
 
 export type StatefulPhoneInputProps = PhoneInputProps & {
   initialState?: State;
   stateReducer?: StateReducer;
-  onTextChange?: (event: ChangeEvent<HTMLInputElement>) => unknown;
+  onTextChange?: (event: React.ChangeEvent<HTMLInputElement>) => unknown;
   onCountryChange?: (event: OnChangeParams) => unknown;
 };

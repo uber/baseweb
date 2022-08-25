@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import { StarRating } from 'baseui/rating';
 import { PropTypes } from 'react-view';
-import { TConfig } from '../types';
+import type { TConfig } from '../types';
 
 const ratingConfig: TConfig = {
   componentName: 'StarRating',

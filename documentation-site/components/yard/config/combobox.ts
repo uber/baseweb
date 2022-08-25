@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 import { Combobox, SIZE } from 'baseui/combobox';
 import { PropTypes } from 'react-view';
-import { TConfig } from '../types';
+import type { TConfig } from '../types';
 import inputConfig from './input';
 import popoverConfig from './popover';
 

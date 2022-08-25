@@ -6,7 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Block, StyledBlockProps, BlockProps } from '../block';
+import type { StyledBlockProps, BlockProps } from '../block';
+import { Block } from '../block';
 
 interface AspectRatioBoxBodyComponentType<D extends React.ElementType> {
   <C extends React.ElementType = D>(

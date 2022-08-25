@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 import pick from 'just-pick';
 import { Notification, KIND } from 'baseui/notification';
 import { PropTypes } from 'react-view';
-import { TConfig } from '../types';
+import type { TConfig } from '../types';
 import { changeHandlers } from './common/common';
 
 const NotificationConfig: TConfig = {

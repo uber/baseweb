@@ -12,7 +12,7 @@ import {
   FLOATING_MARKER_ANCHOR_TYPES,
 } from 'baseui/map-marker';
 import { PropTypes } from 'react-view';
-import { TConfig } from '../types';
+import type { TConfig } from '../types';
 
 export const theme = [];
 

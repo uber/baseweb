@@ -11,7 +11,7 @@ import { Button } from 'baseui/button';
 import { Block } from 'baseui/block';
 import { Input } from 'baseui/input';
 import { PropTypes } from 'react-view';
-import { TConfig } from '../types';
+import type { TConfig } from '../types';
 
 import { changeHandlers } from './common/common';
 

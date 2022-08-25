@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 import { PhoneInput, COUNTRIES, SIZE } from 'baseui/phone-input';
 import { PropTypes } from 'react-view';
-import { TConfig } from '../types';
+import type { TConfig } from '../types';
 import selectConfig from './select';
 import inputConfig, { theme } from './input';
 

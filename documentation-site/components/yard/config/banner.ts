@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import { Banner, ACTION_POSITION, ARTWORK_TYPE, HIERARCHY, KIND } from 'baseui/banner';
 import { PropTypes } from 'react-view';
-import { TConfig } from '../types';
+import type { TConfig } from '../types';
 
 const BannerConfig: TConfig = {
   componentName: 'Banner',

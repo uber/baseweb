@@ -9,7 +9,7 @@ import omit from 'just-omit';
 import { PaymentCard } from 'baseui/payment-card';
 import { ADJOINED, SIZE } from 'baseui/input';
 import { PropTypes } from 'react-view';
-import { TConfig } from '../types';
+import type { TConfig } from '../types';
 import { theme, inputProps } from './input';
 
 const PaymentCardConfig: TConfig = {

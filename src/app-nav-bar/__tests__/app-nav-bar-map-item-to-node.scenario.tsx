@@ -8,7 +8,8 @@ import * as React from 'react';
 
 import { useStyletron } from '../../styles';
 
-import { AppNavBar, NavItem, setItemActive } from '..';
+import type { NavItem } from '..';
+import { AppNavBar, setItemActive } from '..';
 
 export function Scenario() {
   const [css] = useStyletron();

@@ -5,13 +5,11 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-import * as React from 'react';
+import type * as React from 'react';
 
 import type { Override } from '../helpers/overrides';
 
-import { DURATION, PLACEMENT } from './constants';
-
-import type { SyntheticEvent } from 'react';
+import type { DURATION, PLACEMENT } from './constants';
 
 export type Duration =
   | typeof DURATION.infinite
@@ -41,7 +39,7 @@ export type SnackbarElementProps = {
   // message displayed in button
   actionMessage?: string;
   // function executed on button click
-  actionOnClick?: (a: SyntheticEvent<HTMLButtonElement>) => unknown;
+  actionOnClick?: (a: React.SyntheticEvent<HTMLButtonElement>) => unknown;
   // if action button preset focus it, defaults to true
   focus?: boolean;
   // primary message displayed in snackbar

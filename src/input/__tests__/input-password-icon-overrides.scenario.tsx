@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import { ThemeProvider, LightTheme } from '../../index';
 import { Scenario as InputPassword } from './input-password.scenario';
-import { IconProps } from '../../icon';
+import type { IconProps } from '../../icon';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const XSmallFilled = ({ title, size, color, ...props }: IconProps) => {
