@@ -153,6 +153,7 @@ export type MenuOverrides = {
   Option?: Override;
   OptgroupHeader?: Override;
   ListItem?: Override;
+  MenuDivider?: Override;
 };
 export type MenuProps = {
   overrides?: MenuOverrides;

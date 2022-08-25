@@ -18,6 +18,7 @@ import ChildRenderAll from 'examples/menu/child-render-all.js';
 import Grouped from 'examples/menu/grouped.js';
 import VirtualList from 'examples/menu/virtual-list.js';
 import Href from 'examples/menu/href.js';
+import Dividers from 'examples/menu/dividers.js';
 
 import Overrides from '../../components/overrides';
 import { StatefulMenu, OptionProfile } from 'baseui/menu';
@@ -96,6 +97,10 @@ The provided id will be set as a value for the item container's `id` attribute t
   <Href />
 </Example>
 
+<Example title="Menu with Dividers" path="menu/dividers.js">
+  <Dividers />
+</Example>
+
 ## Overrides
 
 <Overrides
@@ -108,8 +113,10 @@ The provided id will be set as a value for the item container's `id` attribute t
           items={[
             { label: 'Item One' },
             { label: 'Item Two' },
+            { divider: true },
             { label: 'Item Three', disabled: true },
             { label: 'Item Four', disabled: true },
+            { divider: true },
             { label: 'Item Five' },
             { label: 'Item Six' },
           ]}

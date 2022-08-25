@@ -210,3 +210,16 @@ export const StyledProfileBody = styled<StyledPropsT>('p', ({ $theme }) => ({
   marginLeft: 0,
   marginRight: 0,
 }));
+
+export const StyledMenuDivider = styled<StyledPropsT>('li', ({ $theme }) => ({
+  color: $theme.colors.contentPrimary,
+  borderBottomWidth: $theme.borders.border300.borderWidth,
+  borderBottomStyle: $theme.borders.border300.borderStyle,
+  borderBottomColor: $theme.borders.border300.borderColor,
+  marginTop: $theme.sizing.scale100,
+  marginBottom: $theme.sizing.scale100,
+  marginLeft: $theme.sizing.scale600,
+  marginRight: $theme.sizing.scale600,
+  listStyle: 'none',
+  height: 0,
+}));

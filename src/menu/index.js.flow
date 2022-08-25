@@ -25,6 +25,7 @@ export {
   StyledProfileTitle,
   StyledProfileSubtitle,
   StyledProfileBody,
+  StyledMenuDivider,
 } from './styled-components.js';
 // Flow
 export type * from './types.js';
