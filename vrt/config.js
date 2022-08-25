@@ -145,6 +145,18 @@ const config = {
       },
     ],
   },
+  'data-table--column-width-resize': {
+    interactions: [
+      {
+        name: 'resize columns',
+        behavior: async (page) => {
+          const button = page.locator('text="make strings long"');
+          await button.click(button);
+          await page.locator(`text="${a.repeat(40)}"`).waitFor();
+        },
+      },
+    ],
+  },
   'data-table--extracted-highlight': {
     interactions: [
       {
