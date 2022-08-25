@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { StatelessAccordion as Accordion, Panel } from 'baseui/accordion';
 import { useStyletron } from 'baseui';
-import { TConfig } from './types';
+import type { TConfig } from './types';
 import NestedTooltip from './nested-tooltip';
 
 import Override, { getHighlightStyles } from './override';

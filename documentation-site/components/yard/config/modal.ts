@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 import { Modal, ModalHeader, ModalBody, ModalFooter, ModalButton, SIZE, ROLE } from 'baseui/modal';
 import { KIND as ButtonKind } from 'baseui/button';
 import { PropTypes } from 'react-view';
-import { TConfig } from '../types';
+import type { TConfig } from '../types';
 
 const ModalConfig: TConfig = {
   componentName: 'Modal',

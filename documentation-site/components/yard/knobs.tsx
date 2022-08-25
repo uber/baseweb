@@ -9,7 +9,8 @@ import * as React from 'react';
 import { useStyletron } from 'baseui';
 import { Button, KIND, SIZE } from 'baseui/button';
 
-import { TPropValue, TKnobsProps, PropTypes } from 'react-view';
+import type { TPropValue, TKnobsProps } from 'react-view';
+import { PropTypes } from 'react-view';
 import Knob from './knob';
 
 const KnobColumn: React.FC<TKnobsProps & { knobNames: string[] }> = ({

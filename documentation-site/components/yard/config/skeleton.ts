@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 import { Skeleton } from 'baseui/skeleton';
 import { PropTypes } from 'react-view';
-import { TConfig } from '../types';
+import type { TConfig } from '../types';
 
 const SkeletonConfig: TConfig = {
   componentName: 'Skeleton',

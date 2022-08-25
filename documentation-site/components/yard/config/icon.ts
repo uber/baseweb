@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 import { ArrowUp } from 'baseui/icon';
 import { PropTypes } from 'react-view';
-import { TConfig } from '../types';
+import type { TConfig } from '../types';
 
 const IconConfig: TConfig = {
   componentName: 'ArrowUp',

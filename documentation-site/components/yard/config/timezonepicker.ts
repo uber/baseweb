@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 import { TimezonePicker } from 'baseui/timezonepicker';
 import { SIZE } from 'baseui/input';
 import { PropTypes } from 'react-view';
-import { TConfig } from '../types';
+import type { TConfig } from '../types';
 import inputConfig from './input';
 import selectConfig from './select';
 

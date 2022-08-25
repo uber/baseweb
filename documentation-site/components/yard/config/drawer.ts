@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 import { Drawer, ANCHOR, SIZE } from 'baseui/drawer';
 import { PropTypes } from 'react-view';
-import { TConfig } from '../types';
+import type { TConfig } from '../types';
 
 const DrawerConfig: TConfig = {
   componentName: 'Drawer',

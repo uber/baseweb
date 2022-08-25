@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import { ProgressBar, SIZE } from 'baseui/progress-bar';
 import { PropTypes } from 'react-view';
-import { TConfig } from '../types';
+import type { TConfig } from '../types';
 
 const ProgressBarConfig: TConfig = {
   componentName: 'ProgressBar',

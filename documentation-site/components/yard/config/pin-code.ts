@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 import omit from 'just-omit';
 import { PinCode, SIZE } from 'baseui/pin-code';
 import { PropTypes } from 'react-view';
-import { TConfig } from '../types';
+import type { TConfig } from '../types';
 import inputConfig, { theme, inputProps } from './input';
 
 const PincodeConfig: TConfig = {

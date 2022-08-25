@@ -4,11 +4,9 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import * as React from 'react';
+import type * as React from 'react';
 
-import { COLUMNS, SORT_DIRECTIONS } from './constants';
-
-import type { SyntheticEvent } from 'react';
+import type { COLUMNS, SORT_DIRECTIONS } from './constants';
 
 export type SortDirections = typeof SORT_DIRECTIONS[keyof typeof SORT_DIRECTIONS];
 
@@ -66,7 +64,7 @@ export type BatchAction = {
   label: string;
   onClick: (a: {
     clearSelection: () => unknown;
-    event: SyntheticEvent<HTMLButtonElement>;
+    event: React.SyntheticEvent<HTMLButtonElement>;
     selection: Row[];
   }) => unknown;
   renderIcon?: React.ComponentType<
@@ -79,7 +77,7 @@ export type BatchAction = {
 
 export type RowAction = {
   label: string;
-  onClick: (a: { event: SyntheticEvent<HTMLButtonElement>; row: Row }) => unknown;
+  onClick: (a: { event: React.SyntheticEvent<HTMLButtonElement>; row: Row }) => unknown;
   renderIcon: React.ComponentType<
     {
       size: number;

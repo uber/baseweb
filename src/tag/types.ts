@@ -4,12 +4,10 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import * as React from 'react';
+import type * as React from 'react';
 
 import type { Override } from '../helpers/overrides';
 import { KIND, VARIANT, SIZE } from './constants';
-
-import type { ReactNode } from 'react';
 
 export const TagKind = Object.freeze(KIND);
 export const TagVariant = Object.freeze(VARIANT);
@@ -42,15 +40,15 @@ export type TagProps = {
   /** Defines tags look. Set it to one of VARIANT[key] values. Defaults to VARIANT.light */
   variant?: TagVariant;
   /** Component or String value for label of tag. Default is empty string. */
-  children?: ReactNode;
+  children?: React.ReactNode;
   /** The color theme to be applied to a Tag. Default is `KIND.primary`. */
   color?: string;
   /** Text to display in native OS tooltip on long hover. */
   title?: string;
   /** onClick handler for the action button element. */
-  onActionClick?: (e: Event, children?: ReactNode) => unknown;
+  onActionClick?: (e: Event, children?: React.ReactNode) => unknown;
   /** keydown handler for the action button element. */
-  onActionKeyDown?: (e: Event, children?: ReactNode) => unknown;
+  onActionKeyDown?: (e: Event, children?: React.ReactNode) => unknown;
   /** onClick handler for the tag. Passing an onClick handler also makes the tag clickable. */
   onClick?: null | ((event: Event) => unknown);
   /** onkeydown handler for the tag. */

@@ -8,11 +8,12 @@ import type {
   Item,
   ArrayItems,
   GroupedItems,
+  GetRequiredItemPropsFn,
   Items,
   MenuProps,
   StatefulContainerProps,
+  StateReducerFn,
 } from './types';
-import { GetRequiredItemPropsFn, StateReducerFn } from './types';
 
 export { default as StatefulMenu } from './stateful-menu';
 export { default as StatefulContainer } from './stateful-container';

@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import { TimePicker } from 'baseui/timepicker';
 import { SIZE } from 'baseui/input';
 import { PropTypes } from 'react-view';
-import { TConfig } from '../types';
+import type { TConfig } from '../types';
 import inputConfig from './input';
 import selectConfig from './select';
 import { startOfDay } from 'date-fns';

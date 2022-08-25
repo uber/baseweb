@@ -14,7 +14,7 @@ import {
   LABEL_ENHANCER_POSITIONS,
 } from 'baseui/map-marker';
 import { PropTypes } from 'react-view';
-import { TConfig } from '../types';
+import type { TConfig } from '../types';
 import { Check, Upload, Search } from 'baseui/icon';
 
 export const theme = [];

@@ -7,9 +7,10 @@ LICENSE file in the root directory of this source tree.
 
 import * as t from '@babel/types';
 import traverse from '@babel/traverse';
-import { Theme } from 'baseui';
+import type { Theme } from 'baseui';
 
-import { TProvider, getAstJsxElement } from 'react-view';
+import type { TProvider } from 'react-view';
+import { getAstJsxElement } from 'react-view';
 
 export const getThemeFromContext = (theme: Theme, themeConfig: string[]) => {
   const componentThemeObj: { [key: string]: string } = {};

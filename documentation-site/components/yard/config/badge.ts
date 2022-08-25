@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import { Badge, HIERARCHY, SHAPE, COLOR, PLACEMENT } from 'baseui/badge';
 import { Skeleton } from 'baseui/skeleton';
 import { PropTypes } from 'react-view';
-import { TConfig } from '../types';
+import type { TConfig } from '../types';
 
 const BadgeConfig: TConfig = {
   componentName: 'Badge',

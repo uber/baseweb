@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 import { Breadcrumbs } from 'baseui/breadcrumbs';
 import { StyledLink } from 'baseui/link';
 import { PropTypes } from 'react-view';
-import { TConfig } from '../types';
+import type { TConfig } from '../types';
 import iconConfig from './icon';
 
 const BreadcrumbsConfig: TConfig = {

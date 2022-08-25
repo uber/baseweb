@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 import { AppNavBar, setItemActive } from 'baseui/app-nav-bar';
 import { ChevronDown, Delete, Overflow, Upload } from 'baseui/icon';
 import { PropTypes } from 'react-view';
-import { TConfig } from '../types';
+import type { TConfig } from '../types';
 
 const NavigationBarConfig: TConfig = {
   componentName: 'AppNavBar',

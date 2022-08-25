@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import pick from 'just-pick';
 import { Checkbox, STYLE_TYPE, LABEL_PLACEMENT } from 'baseui/checkbox';
 import { PropTypes } from 'react-view';
-import { TConfig } from '../types';
+import type { TConfig } from '../types';
 import { changeHandlers } from './common/common';
 
 const CheckboxConfig: TConfig = {

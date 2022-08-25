@@ -9,7 +9,7 @@ import pick from 'just-pick';
 
 import { Input, ADJOINED, SIZE } from 'baseui/input';
 import { PropTypes } from 'react-view';
-import { TConfig } from '../types';
+import type { TConfig } from '../types';
 
 import { changeHandlers } from './common/common';
 
