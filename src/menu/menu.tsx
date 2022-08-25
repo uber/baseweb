@@ -7,7 +7,12 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { LocaleContext } from '../locale';
 // Components
-import { StyledList, StyledEmptyState, StyledOptgroupHeader } from './styled-components';
+import {
+  StyledList,
+  StyledEmptyState,
+  StyledOptgroupHeader,
+  StyledMenuDivider,
+} from './styled-components';
 import OptionList from './option-list';
 import { getOverrides } from '../helpers/overrides';
 // Types
@@ -52,6 +57,7 @@ export default function Menu(props: StatelessMenuProps) {
     overrides.OptgroupHeader,
     StyledOptgroupHeader
   );
+  const [MenuDivider, menuDividerProps] = getOverrides(overrides.MenuDivider, StyledMenuDivider);
 
   const groupedItems = Array.isArray(props.items) ? { __ungrouped: props.items } : props.items;
   const optgroups = Object.keys(groupedItems);
@@ -69,6 +75,10 @@ export default function Menu(props: StatelessMenuProps) {
         itemIndex = itemIndex + 1;
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { getRequiredItemProps = (item, index) => ({} as RenderItemProps) } = props;
+
+        if (item.divider === true) {
+          return <MenuDivider {...menuDividerProps} />;
+        }
 
         const {
           disabled,

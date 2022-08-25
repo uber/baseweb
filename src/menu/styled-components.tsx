@@ -232,3 +232,17 @@ export const StyledProfileBody = styled<'p', StyledProps>('p', ({ $theme }) => (
   marginRight: 0,
 }));
 StyledProfileBody.displayName = 'StyledProfileBody';
+
+export const StyledMenuDivider = styled<'li', StyledProps>('li', ({ $theme }) => ({
+  color: $theme.colors.contentPrimary,
+  borderBottomWidth: $theme.borders.border300.borderWidth,
+  borderBottomStyle: $theme.borders.border300.borderStyle,
+  borderBottomColor: $theme.borders.border300.borderColor,
+  marginTop: $theme.sizing.scale100,
+  marginBottom: $theme.sizing.scale100,
+  marginLeft: $theme.sizing.scale500,
+  marginRight: $theme.sizing.scale500,
+  listStyle: 'none',
+  height: 0,
+}));
+StyledProfileBody.displayName = 'StyledMenuDivider';
