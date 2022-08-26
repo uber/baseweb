@@ -14,7 +14,7 @@ import {
   StyledParagraphContainer,
 } from './styled-components';
 import { Button as DefaultButton, SHAPE, SIZE } from '../button';
-import { useStyletron } from '../styles/index.js';
+import { useStyletron } from '../styles/index';
 import { ThemeProvider, LightTheme } from '../';
 import { getBackgroundColorType } from './utils';
 import { colors } from '../tokens';

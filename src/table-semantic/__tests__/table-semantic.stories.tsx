@@ -11,6 +11,7 @@ import { Scenario as TableSemanticCompose } from './table-semantic-compose.scena
 import { Scenario as TableSemanticDefault } from './table-semantic.scenario';
 import { Scenario as TableSemanticDivider } from './table-semantic-divider.scenario';
 import { Scenario as TableSemanticSize } from './table-semantic-size.scenario';
+import { Scenario as TableSemanticSpaciousSort } from './table-semantic-spacious-sort.scenario';
 import { Scenario as TableSemanticBuilderSize } from './table-semantic-builder-size.scenario';
 import { Scenario as TableSemanticBuilderDivider } from './table-semantic-builder-divider.scenario';
 
@@ -20,5 +21,6 @@ export const Compose = () => <TableSemanticCompose />;
 export const TableSemantic = () => <TableSemanticDefault />;
 export const Divider = () => <TableSemanticDivider />;
 export const Size = () => <TableSemanticSize />;
+export const SpaciousSort = () => <TableSemanticSpaciousSort />;
 export const BuilderSize = () => <TableSemanticBuilderSize />;
 export const BuilderDivider = () => <TableSemanticBuilderDivider />;
