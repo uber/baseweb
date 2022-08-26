@@ -10,6 +10,7 @@ import { Scenario as DataTableBatchAction } from './data-table-batch-action.scen
 import { Scenario as DataTableCategoricalColumn } from './data-table-categorical-column.scenario';
 import { Scenario as DataTableCellIndices } from './data-table-cell-indices.scenario';
 import { Scenario as DataTableCollectionOfObjects } from './data-table-collection-of-objects.scenario';
+import { Scenario as DataTableColumnWidthResize } from './data-table-column-width-resize.scenario';
 import { Scenario as DataTableColumnsNotSortable } from './data-table-columns-not-sortable.scenario';
 import { Scenario as DataTableColumns } from './data-table-columns.scenario';
 import { Scenario as DataTableDatetimeColumn } from './data-table-datetime-column.scenario';
@@ -41,6 +42,7 @@ export const BatchAction = () => <DataTableBatchAction />;
 export const CategoricalColumn = () => <DataTableCategoricalColumn />;
 export const CellIndices = () => <DataTableCellIndices />;
 export const CollectionOfObjects = () => <DataTableCollectionOfObjects />;
+export const ColumnWidthResize = () => <DataTableColumnWidthResize />;
 export const ColumnsNotSortable = () => <DataTableColumnsNotSortable />;
 export const Columns = () => <DataTableColumns />;
 export const DatetimeColumn = () => <DataTableDatetimeColumn />;

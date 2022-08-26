@@ -24,7 +24,7 @@ function MeasureColumn({ sampleIndexes, column, columnIndex, rows, isSelectable,
         onLayout(columnIndex, ref.current.getBoundingClientRect());
       }
     }
-  }, []);
+  }, [onLayout]);
 
   return (
     <div
@@ -115,7 +115,7 @@ export default function MeasureColumnWidths({
 
   const widthMap = React.useMemo(() => {
     return new Map();
-  }, []);
+  }, [rows]);
 
   const sampleSize = rows.length < MAX_SAMPLE_SIZE ? rows.length : MAX_SAMPLE_SIZE;
   const finishedMeasurementCount = (sampleSize + 1) * columns.length;
@@ -149,7 +149,7 @@ export default function MeasureColumnWidths({
         onWidthsChange(Array.from(widthMap.values()));
       }
     },
-    [columns, finishedMeasurementCount, onWidthsChange]
+    [columns, rows, finishedMeasurementCount, onWidthsChange]
   );
 
   const hiddenStyle = css({
