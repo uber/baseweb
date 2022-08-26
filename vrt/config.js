@@ -152,7 +152,10 @@ const config = {
         behavior: async (page) => {
           const button = page.locator('text="make strings long"');
           await button.click(button);
-          await page.locator(`text="${'a'.repeat(40)}"`).waitFor();
+          await page
+            .locator(`text="${'a'.repeat(40)}"`)
+            .first()
+            .waitFor();
         },
       },
     ],
