@@ -79,6 +79,7 @@ export const StyledArtworkContainer = styled<'div', StyledArtworkContainerProps>
       return {
         alignItems: 'center',
         display: 'flex',
+        flexShrink: 0,
         paddingLeft: $theme.sizing.scale600,
         paddingRight: $theme.sizing.scale600,
       };
@@ -87,6 +88,7 @@ export const StyledArtworkContainer = styled<'div', StyledArtworkContainerProps>
     return {
       alignItems: 'center',
       display: 'flex',
+      flexShrink: 0,
       justifyContent: 'center',
       width: $theme.sizing.scale1600,
     };
