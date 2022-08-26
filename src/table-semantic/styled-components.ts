@@ -107,7 +107,6 @@ export const StyledTableHeadCell = styled<'th', StyledTableHeadCellProps>(
       backgroundColor: $theme.colors.tableHeadBackgroundColor,
       color: $theme.colors.contentPrimary,
       textAlign: $theme.direction === 'rtl' || $isNumeric ? 'right' : 'left',
-      verticalAlign: 'top',
       whiteSpace: 'nowrap',
       zIndex: 1,
 
