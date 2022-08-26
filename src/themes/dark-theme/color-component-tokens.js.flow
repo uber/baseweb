@@ -63,7 +63,7 @@ export default (themePrimitives: ColorTokensT = colorTokens): ComponentColorToke
   buttonDisabledSpinnerBackground: themePrimitives.mono400,
 
   // Breadcrumbs
-  breadcrumbsText: themePrimitives.mono100,
+  breadcrumbsText: themePrimitives.white,
   breadcrumbsSeparatorFill: themePrimitives.mono200,
 
   // Datepicker
