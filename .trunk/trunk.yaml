@@ -6,6 +6,9 @@ plugins:
       uri: https://github.com/trunk-io/plugins
 cli:
   version: 0.16.1-beta.7
+merge:
+  statuses:
+    - buildkite/baseweb-pr
 lint:
   enabled:
     - eslint@8.23.0
