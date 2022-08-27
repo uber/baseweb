@@ -124,3 +124,7 @@ When send a pull request, please make sure that you have one of the [following l
 We use a number of environment variables for our build process. Anything used by Buildkite should be stored with our secrets (ask a team member if you need access) and forwarded to the appropriate service in `docker-compose.yml`. Anything needed to build the documentation site should be added to Vercel.
 
 For local development the only environment variables you may need to set up are for the documentation site's Figma based pages (/guidelines). If you are working on code for those pages you will want to create a `.env` file locally and populate `FIGMA_AUTH_TOKEN` as well as `FIGMA_FILE_ID`. You can then use `yarn documentation:dev:watch:env` to automatically load those variables in development.
+
+## Merging
+
+This fork uses Trunk Merge to merge pull requests: docs.trunk.io/docs/merge
