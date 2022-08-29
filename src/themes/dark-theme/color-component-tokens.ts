@@ -60,7 +60,7 @@ export default (themePrimitives: ColorTokens = colorTokens): ComponentColorToken
   buttonDisabledSpinnerBackground: themePrimitives.mono400,
 
   // Breadcrumbs
-  breadcrumbsText: themePrimitives.mono100,
+  breadcrumbsText: themePrimitives.white,
 
   breadcrumbsSeparatorFill: themePrimitives.mono200,
 
