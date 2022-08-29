@@ -140,17 +140,13 @@ class BaseInput<T extends HTMLInputElement | HTMLTextAreaElement> extends React.
   };
 
   onFocus = (e: FocusEvent<T>) => {
-    if (!this.props.readOnly) {
-      this.setState({ isFocused: true });
-      this.props.onFocus(e);
-    }
+    this.setState({ isFocused: true });
+    this.props.onFocus(e);
   };
 
   onBlur = (e: FocusEvent<T>) => {
-    if (!this.props.readOnly) {
-      this.setState({ isFocused: false });
-      this.props.onBlur(e);
-    }
+    this.setState({ isFocused: false });
+    this.props.onBlur(e);
   };
 
   getInputType() {
