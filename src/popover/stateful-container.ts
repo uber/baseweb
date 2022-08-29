@@ -19,6 +19,7 @@ import type {
   StateChangeType,
   StateReducer,
 } from './types';
+import { isFocusVisible } from '../utils/focusVisible';
 
 const defaultStateReducer: StateReducer = (type, nextState) => nextState;
 
@@ -77,7 +78,9 @@ class StatefulContainer extends React.Component<StatefulPopoverContainerProps, S
     if (this.props.onFocus) {
       this.props.onFocus(e);
     }
-    this.open();
+    if (isFocusVisible(e)) {
+      this.open();
+    }
   };
 
   onMouseEnter = (e: React.MouseEvent) => {
