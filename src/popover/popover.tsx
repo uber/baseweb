@@ -309,6 +309,7 @@ class PopoverInner extends React.Component<PopoverProps, PopoverPrivateState> {
       bodyProps.id = popoverId;
     } else if (this.isAccessibilityTypeTooltip()) {
       bodyProps.id = popoverId;
+      bodyProps.role = 'tooltip';
     }
     if (this.isHoverTrigger()) {
       bodyProps.onMouseEnter = this.onPopoverMouseEnter;
