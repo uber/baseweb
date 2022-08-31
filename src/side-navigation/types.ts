@@ -42,7 +42,7 @@ export type NavigationProps = {
     Is called on the nav item render to test if the item is currently selected.
     If returns true the item will be rendered as an active one
     */
-  activePredicate: ((item: Item, activeItemId: string) => boolean) | undefined | null;
+  activePredicate?: ((item: Item, activeItemId: string) => boolean) | null;
   /** List of navigation items */
   items: Item[];
   /** Used as a performance optimization if many nav items are rendered. Function provided to
@@ -52,9 +52,9 @@ export type NavigationProps = {
   /** onChange handler that is called when a nav item is selected */
   onChange?: (a: { item: Item; event: Event | KeyboardEvent }) => unknown;
   /** Overrides for the internal elements and components */
-  overrides: NavigationOverrides;
+  overrides?: NavigationOverrides;
   /** Optional transform function that is called for each Item */
-  mapItem: ((item: Item) => Item) | undefined | null;
+  mapItem?: ((item: Item) => Item) | null;
 };
 
 export type Item = {
