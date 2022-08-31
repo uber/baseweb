@@ -216,7 +216,7 @@
     "mockdate": "^3.0.5",
     "polished": "^3.2.0",
     "popper.js": "^1.16.0",
-    "react-dropzone": "^10.1.18",
+    "react-dropzone": "9.0.0",
     "react-focus-lock": "^2.7.1",
     "react-input-mask": "^2.0.4",
     "react-is": "^16.8.6",
