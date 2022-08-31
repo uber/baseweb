@@ -42,7 +42,13 @@ export const StyledBarContainer = styled<'div', StyleProps>('div', (props) => {
 
 StyledBarContainer.displayName = 'StyledBarContainer';
 
-export const StyledBar = styled<'div', StyleProps>('div', (props) => {
+export const StyledBar = styled<
+  'div',
+  {
+    $size: Size;
+    $steps?: number;
+  }
+>('div', (props) => {
   const { $theme, $size, $steps } = props;
   const { colors, sizing, borders } = $theme;
   const borderRadius = borders.useRoundedCorners ? sizing.scale0 : 0;
