@@ -578,6 +578,13 @@ const outlines = [
     ],
   },
   {
+    file: 'src/button-timed/types.ts',
+    definitions: [
+      { name: 'ButtonTimedProps', lineStart: 10, children: [] },
+      { name: 'ButtonTimedOverrides', lineStart: 15, children: [] },
+    ],
+  },
+  {
     file: 'src/card/types.ts',
     definitions: [
       {
