@@ -23,7 +23,7 @@ const formatTime = (totalSeconds) => {
 };
 
 const ButtonTimed = (props: ButtonTimedProps) => {
-  const { time, onClick, children, overrides = {}, ...restProps } = props;
+  const { time, onClick: onClickProp, disabled, children, overrides = {}, ...restProps } = props;
   const {
     BaseButtonTimed: BaseButtonTimedOverride,
     TimerContainer: TimerContainerOverride,
@@ -40,7 +40,7 @@ const ButtonTimed = (props: ButtonTimedProps) => {
       }
     }, 1000);
     if (secondsRemaining === 0) {
-      onClick();
+      onClickProp();
     }
     return () => clearInterval(interval);
   }, [secondsRemaining]);
@@ -54,23 +54,32 @@ const ButtonTimed = (props: ButtonTimedProps) => {
     StyledTimerContainer
   );
 
+  const onClick = () => {
+    setSecondsRemaining(0);
+  };
+
   return (
     <Button
       {...restProps}
-      overrides={{
-        BaseButton: {
-          component: BaseButtonTimed,
-          props: {
-            $duration: time,
-            ...baseButtonTimedProps,
-          },
-        },
-        ...buttonOverrides,
-      }}
+      overrides={
+        secondsRemaining > 0
+          ? {
+              BaseButton: {
+                component: BaseButtonTimed,
+                props: {
+                  $duration: time,
+                  ...baseButtonTimedProps,
+                },
+              },
+              ...buttonOverrides,
+            }
+          : {}
+      }
       onClick={onClick}
       size={SIZE.large}
       kind={KIND.primary}
       shape={SHAPE.default}
+      disabled={disabled || secondsRemaining === 0}
     >
       {children}
       <TimerContainer {...timerContainerProps}>{`(${formatTime(
