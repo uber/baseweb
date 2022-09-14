@@ -7,6 +7,11 @@ LICENSE file in the root directory of this source tree.
 import type { ButtonProps, ButtonOverrides } from '../button';
 import type { Override } from '../helpers/overrides';
 
+export type ButtonTimedOverrides = Omit<ButtonOverrides, 'BaseButton'> & {
+  BaseButtonTimed?: Override;
+  TimerContainer?: Override;
+};
+
 export type ButtonTimedProps = Omit<
   ButtonProps,
   'kind' | 'shape' | 'size' | 'onClick' | 'overrides'
@@ -14,9 +19,4 @@ export type ButtonTimedProps = Omit<
   time: number;
   onClick: (a?: React.SyntheticEvent<HTMLButtonElement>) => unknown;
   overrides?: ButtonTimedOverrides;
-};
-
-export type ButtonTimedOverrides = Omit<ButtonOverrides, 'BaseButton'> & {
-  BaseButtonTimed?: Override;
-  TimerContainer?: Override;
 };
