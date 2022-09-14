@@ -23,7 +23,7 @@ const formatTime = (totalSeconds) => {
 };
 
 const ButtonTimed = (props: ButtonTimedProps) => {
-  const { time, onClick, children, overrides, ...restProps } = props;
+  const { time, onClick, children, overrides = {}, ...restProps } = props;
   const {
     BaseButtonTimed: BaseButtonTimedOverride,
     TimerContainer: TimerContainerOverride,
