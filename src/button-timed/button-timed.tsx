@@ -61,7 +61,7 @@ const ButtonTimed = (props: ButtonTimedProps) => {
         BaseButton: {
           component: BaseButtonTimed,
           props: {
-            $duration: time / 10,
+            $duration: time,
             ...baseButtonTimedProps,
           },
         },
