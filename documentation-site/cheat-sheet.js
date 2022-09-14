@@ -580,8 +580,8 @@ const outlines = [
   {
     file: 'src/button-timed/types.ts',
     definitions: [
-      { name: 'ButtonTimedProps', lineStart: 10, children: [] },
-      { name: 'ButtonTimedOverrides', lineStart: 15, children: [] },
+      { name: 'ButtonTimedOverrides', lineStart: 10, children: [] },
+      { name: 'ButtonTimedProps', lineStart: 15, children: [] },
     ],
   },
   {
