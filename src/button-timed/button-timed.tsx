@@ -61,20 +61,16 @@ const ButtonTimed = (props: ButtonTimedProps) => {
   return (
     <Button
       {...restProps}
-      overrides={
-        secondsRemaining > 0
-          ? {
-              BaseButton: {
-                component: BaseButtonTimed,
-                props: {
-                  $duration: time,
-                  ...baseButtonTimedProps,
-                },
-              },
-              ...buttonOverrides,
-            }
-          : {}
-      }
+      overrides={{
+        BaseButton: {
+          component: BaseButtonTimed,
+          props: {
+            $duration: time,
+            ...baseButtonTimedProps,
+          },
+        },
+        ...buttonOverrides,
+      }}
       onClick={onClick}
       size={SIZE.large}
       kind={KIND.primary}

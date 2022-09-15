@@ -12,25 +12,29 @@ export const BaseButtonTimed = withStyle<typeof StyledBaseButton, { $duration: n
   StyledBaseButton,
   ({ $theme, $duration }) => ({
     position: 'relative',
-    ':after': {
-      animationDuration: `${$duration}s`,
-      animationName: {
-        from: {
-          transform: 'translateX(0%)',
-        },
-        to: {
-          transform: 'translateX(100%)',
-        },
-      },
-      animationTimingFunction: 'linear',
-      display: 'inline-block',
-      content: '""',
-      width: '100%',
-      height: '100%',
-      zIndex: '1',
-      position: 'absolute',
-      backgroundColor: hexToRgba($theme.colors.backgroundPrimary, '0.2'),
-    },
+    ...($duration > 0
+      ? {
+          ':after': {
+            animationDuration: `${$duration}s`,
+            animationName: {
+              from: {
+                transform: 'translateX(0%)',
+              },
+              to: {
+                transform: 'translateX(100%)',
+              },
+            },
+            animationTimingFunction: 'linear',
+            display: 'inline-block',
+            content: '""',
+            width: '100%',
+            height: '100%',
+            zIndex: '1',
+            position: 'absolute',
+            backgroundColor: hexToRgba($theme.colors.backgroundPrimary, '0.2'),
+          },
+        }
+      : {}),
   })
 );
 
