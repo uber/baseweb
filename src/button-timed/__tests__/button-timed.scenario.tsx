@@ -16,7 +16,11 @@ export function Scenario() {
   return (
     <div>
       <div>
-        <ButtonTimed onClick={() => setTime1(true)} time={10}>
+        <ButtonTimed
+          onClick={() => setTime1(true)}
+          time={10}
+          overrides={{ BaseButtonTimed: { props: { 'data-id': 'first' } } }}
+        >
           Countdown
         </ButtonTimed>
         {time1 && <span style={{ marginLeft: '20px', color: 'red' }}>Time!</span>}

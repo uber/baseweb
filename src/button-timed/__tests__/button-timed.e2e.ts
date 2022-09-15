@@ -15,4 +15,14 @@ test.describe('button-timed', () => {
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
+
+  test('zeroes out countdown timer and disables button on click', async ({ page }) => {
+    const firstBtn = '[data-id="first"]';
+
+    await mount(page, 'button-timed--button-timed');
+    await page.waitForSelector(firstBtn);
+    await page.click(firstBtn);
+    await expect(page.locator(`${firstBtn} span`)).toHaveText('(0:00)');
+    await expect(page.locator(firstBtn)).toBeDisabled();
+  });
 });
