@@ -89,6 +89,7 @@ export type RowActionT = {|
 
 type ImperativeMethodsT = {|
   getRows: () => RowT[],
+  clearSelection: () => mixed,
 |};
 export type ControlRefT = {
   current: ImperativeMethodsT | null,
