@@ -24,7 +24,9 @@ function useDuplicateColumnTitleWarning(columns: ColumnOptions[]) {
 
 export const StatefulContainer: React.FC<StatefulContainerProps> = (props) => {
   useDuplicateColumnTitleWarning(props.columns);
-  const [sortIndex, setSortIndex] = React.useState(props.initialSortIndex || -1);
+  const [sortIndex, setSortIndex] = React.useState(
+    typeof props.initialSortIndex === 'number' ? props.initialSortIndex : -1
+  );
   const [sortDirection, setSortDirection] = React.useState(props.initialSortDirection);
   const [filters, setFilters] = React.useState(props.initialFilters || new Map());
   const [textQuery, setTextQuery] = React.useState('');
