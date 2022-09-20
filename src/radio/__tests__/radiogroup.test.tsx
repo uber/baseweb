@@ -5,6 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
+import { act } from 'react-dom/test-utils';
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
@@ -98,7 +99,9 @@ describe('radio-group focus and a11y management', () => {
     const two = getByDisplayValue('2');
     const three = getByDisplayValue('3');
 
-    userEvent.tab();
+    act(() => {
+      userEvent.tab();
+    });
 
     expect(one).not.toHaveFocus();
     expect(two).not.toHaveFocus();
@@ -126,7 +129,9 @@ describe('radio-group focus and a11y management', () => {
     expect(two).toHaveAttribute('tabindex', '-1');
     expect(three).toHaveAttribute('tabindex', '-1');
 
-    userEvent.tab();
+    act(() => {
+      userEvent.tab();
+    });
 
     expect(one).toHaveFocus();
     expect(two).not.toHaveFocus();
