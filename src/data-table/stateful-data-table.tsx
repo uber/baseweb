@@ -194,7 +194,7 @@ export function StatefulDataTable(props: StatefulDataTableProps) {
         <React.Fragment>
           <div className={css({ height: `${headlineHeight}px` })}>
             <div ref={headlineRef}>
-              {!selectedRowIds.size && (
+              {(!selectedRowIds.size || props.submitActions?.length) && (
                 <div
                   className={css({
                     alignItems: 'end',
@@ -304,10 +304,56 @@ export function StatefulDataTable(props: StatefulDataTableProps) {
               selectedRowIds={selectedRowIds}
               sortDirection={sortDirection}
               sortIndex={sortIndex}
+              submitActions={props.submitActions}
               textQuery={textQuery}
               controlRef={props.controlRef}
             />
           </div>
+          {props.submitActions && (
+            <div
+              className={css({
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'flex-end',
+                gap: theme.sizing.scale300,
+                paddingTop: theme.sizing.scale300,
+                paddingBottom: theme.sizing.scale300,
+              })}
+            >
+              {props.submitActions.map((action) => {
+                function onClick(event) {
+                  action.onClick({
+                    clearSelection: onSelectNone,
+                    event,
+                    selection: props.rows.filter((r) => selectedRowIds.has(r.id)),
+                  });
+                }
+
+                if (action.renderIcon) {
+                  const Icon = action.renderIcon;
+                  return (
+                    <Button
+                      key={action.label}
+                      overrides={{
+                        BaseButton: { props: { 'aria-label': action.label } },
+                      }}
+                      onClick={onClick}
+                      kind={BUTTON_KINDS.tertiary}
+                      shape={BUTTON_SHAPES.round}
+                    >
+                      <Icon size={24} />
+                    </Button>
+                  );
+                }
+
+                return (
+                  <Button key={action.label} onClick={onClick}>
+                    {action.label}
+                  </Button>
+                );
+              })}
+            </div>
+          )}
         </React.Fragment>
       )}
     </StatefulContainer>

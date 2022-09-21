@@ -127,6 +127,7 @@ export type StatefulDataTableProps = {
   rowHeight?: number;
   rowHighlightIndex?: number;
   searchable?: boolean;
+  submitActions?: BatchAction[];
   controlRef?: ControlRef;
 };
 

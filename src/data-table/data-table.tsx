@@ -654,6 +654,7 @@ export function DataTable({
   selectedRowIds,
   sortIndex,
   sortDirection,
+  submitActions,
   textQuery = '',
   controlRef,
 }: DataTableProps) {
@@ -851,7 +852,8 @@ export function DataTable({
     resetAfterColumnIndex(0);
   }, [normalizedWidths]);
 
-  const isSelectable = batchActions ? !!batchActions.length : false;
+  const isSelectable =
+    (batchActions && !!batchActions.length) || (submitActions && !!submitActions.length);
   const isSelectedAll = React.useMemo(() => {
     if (!selectedRowIds) {
       return false;

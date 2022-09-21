@@ -11,20 +11,20 @@ import { getTable, getCellContentsAtColumnIndex, matchArrayElements } from './ut
 
 const COLUMN_COUNT = 2;
 
-function getCheckboxes(parent) {
+export function getCheckboxes(parent) {
   return parent.$$('label[data-baseweb="checkbox"]');
 }
 
-async function clickCheckboxAtRowIndex(parent, index) {
+export async function clickCheckboxAtRowIndex(parent, index) {
   const checkboxes = await getCheckboxes(parent);
   await checkboxes[index].click();
 }
 
-function wait(ms) {
+export function wait(ms) {
   return new Promise((res) => setTimeout(res, ms));
 }
 
-async function getCheckboxValues(element) {
+export async function getCheckboxValues(element) {
   await wait(50); // briefly wait to give table state chance to update
   return element.$$eval('label[data-baseweb="checkbox"] input', (elements) =>
     elements.map((el) => String(el.checked))
