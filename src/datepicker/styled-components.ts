@@ -502,6 +502,7 @@ export const StyledDay = styled<'div', SharedStyleProps>('div', (props) => {
     // a z-index used on its' children doesn't
     // interfere with anything outside the component
     transform: 'scale(1)',
+    ...($isFocusVisible ? { zIndex: 1 } : {}),
     ...getDayStyles(code, props.$theme),
     // :after pseudo element defines the selected
     // or highlighted day's circle styles
