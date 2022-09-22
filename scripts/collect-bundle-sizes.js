@@ -69,6 +69,7 @@ async function downloadMasterBundleSizeData() {
 
   const buildsResponse = await bkfetch(`${BK_BASEWEB_URL}/builds?branch=master`);
   if (buildsResponse.status !== 200) {
+    console.error(await buildsResponse.text());
     throw new Error('failed to list buildkite builds');
   }
   const builds = await buildsResponse.json();
