@@ -839,12 +839,15 @@ export function DataTable({
           }
         }
         result.push(gridProps.width - sum(result) - scrollbarWidth);
-        resetAfterColumnIndex(0);
         return result;
       }
     }
     return resizedWidths;
   }, [gridRef, measuredWidths, resizeDeltas, browserScrollbarWidth, rows.length, columns]);
+
+  React.useEffect(() => {
+    resetAfterColumnIndex(0);
+  }, [normalizedWidths]);
 
   const isSelectable = batchActions ? !!batchActions.length : false;
   const isSelectedAll = React.useMemo(() => {
