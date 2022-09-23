@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import { useStyletron, type ThemeT } from '../styles/index.js';
-import { getOverrides } from '../helpers/overrides.js';
+import { useStyletron } from '../styles';
+import { getOverrides } from '../helpers/overrides';
 import {
   FLOATING_ROUTE_MARKER_STATES,
   FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS,
@@ -17,15 +17,15 @@ import {
   PINHEAD_TYPES,
   PINHEAD_SIZES_SHAPES,
   PINHEAD_DIMENSIONS,
-} from './constants.js';
+} from './constants';
 
 import {
   StyledFloatingRouteMarkerRoot,
   StyledContentItem,
   StyledLabelContent,
   StyledLabel,
-} from './styled-components.js';
-import type { FixedMarkerPropsT, KindT } from './types.js';
+} from './styled-components';
+import type { FloatingRouteMarkerProps } from './types';
 
 const POINTERS = {
   [FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.topLeft]: {
@@ -97,7 +97,7 @@ const FloatingRouteMarker = ({
   overrides = {},
   selected = false,
   anchor,
-}: FixedMarkerPropsT) => {
+}: FloatingRouteMarkerProps) => {
   const [, theme] = useStyletron();
 
   const backgroundColor = selected

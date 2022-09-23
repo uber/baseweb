@@ -32,6 +32,7 @@ import type {
 export { default as FixedMarker } from './fixed-marker';
 export { default as FloatingMarker } from './floating-marker';
 export { default as LocationPuck } from './location-puck';
+export { default as FloatingRouteMarker } from './floating-route-marker';
 
 export {
   FLOATING_MARKER_ANCHOR_POSITIONS,

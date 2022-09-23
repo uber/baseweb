@@ -7,19 +7,19 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import { FloatingRouteMarker } from '../index.js';
-import { FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS } from '../constants.js';
-import TileGrid from './tile-grid.js';
-import { Checkbox, LABEL_PLACEMENT } from '../../checkbox/index.js';
-import { Input } from '../../input/index.js';
-import Upload from '../../icon/upload.js';
-import ChevronRight from '../../icon/chevron-right.js';
+import { FloatingRouteMarker } from '..';
+import { FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS } from '../constants';
+import TileGrid from './tile-grid';
+import { Checkbox, LABEL_PLACEMENT } from '../../checkbox/index';
+import { Input } from '../../input/index';
+import Upload from '../../icon/upload';
+import ChevronRight from '../../icon/chevron-right';
 
-import { Select } from '../../select/index.js';
+import { Select } from '../../select';
 import ReactMapGL, { Marker } from 'react-map-gl';
-import { Button } from '../../button/index.js';
-import { useStyletron } from '../../styles/index.js';
-import { getMapStyle } from './map-style.js';
+import { Button } from '../../button';
+import { useStyletron } from '../../styles';
+import { getMapStyle } from './map-style';
 
 const uberHq = {
   latitude: 37.768495131168336,

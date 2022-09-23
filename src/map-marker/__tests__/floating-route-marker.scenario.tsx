@@ -7,17 +7,13 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import { FloatingRouteMarker } from '../index.js';
-import {
-  FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS,
-  FLOATING_ROUTE_MARKER_STATES,
-} from '../constants.js';
-import TileGrid from './tile-grid.js';
-import { Checkbox, LABEL_PLACEMENT } from '../../checkbox/index.js';
-import { Input } from '../../input/index.js';
-import Search from '../../icon/search.js';
-import ChevronRight from '../../icon/chevron-right.js';
-import { Select } from '../../select/index.js';
+import { FloatingRouteMarker } from '..';
+import { FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS, FLOATING_ROUTE_MARKER_STATES } from '../constants';
+import TileGrid from './tile-grid';
+import { Checkbox, LABEL_PLACEMENT } from '../../checkbox';
+import { Input } from '../../input';
+import Search from '../../icon/search';
+import ChevronRight from '../../icon/chevron-right';
 
 const floatingRouteMarkerStates = [
   {

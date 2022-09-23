@@ -392,6 +392,58 @@ export const StyledContentItem = styled<
 
 StyledContentItem.displayName = 'StyledContentItem';
 
+export const StyledFloatingRouteMarkerRoot = styled<
+  'div',
+  {
+    $height: number;
+    $background: string;
+    $gridTemplateColumns: string;
+  }
+>('div', ({ $theme, $height, $background, $gridTemplateColumns }) => {
+  return {
+    position: 'absolute',
+    backgroundColor: $background,
+    height: `${$height}px`,
+    display: 'grid',
+    gridTemplateColumns: $gridTemplateColumns,
+    gap: '8px',
+    boxShadow: $theme.lighting.shadow600,
+    whiteSpace: 'nowrap',
+    borderRadius: `${8}px`,
+    padding: `${4}px ${8}px`,
+    transition: `${$theme.animation.timing300} ${$theme.animation.easeOutCurve} all`,
+  };
+});
+StyledFloatingRouteMarkerRoot.displayName = 'StyledFloatingRouteMarkerRoot';
+
+export const StyledLabelContent = styled<
+  'div',
+  {
+    $color: string;
+    $height: number;
+    $size: PinHeadSizeT;
+  }
+>('div', ({ $theme, $color, $height, $size }) => {
+  return {
+    ...$theme.typography[LABEL_SIZES[$size]],
+    display: 'flex',
+    flexDirection: 'column',
+  };
+});
+StyledLabelContent.displayName = 'StyledLabelContent';
+
+export const StyledLabel = styled<
+  'div',
+  {
+    $color: string;
+  }
+>('div', ({ $theme, $color }) => {
+  return {
+    color: $color,
+  };
+});
+StyledLabel.displayName = 'StyledLabel';
+
 export const LocationPuckContainer = styled<'div', {}>('div', () => {
   return {
     position: 'relative',
