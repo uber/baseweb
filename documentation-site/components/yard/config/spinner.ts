@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 import { Spinner } from 'baseui/spinner';
 import { PropTypes } from 'react-view';
-import { TConfig } from '../types';
+import type { TConfig } from '../types';
 
 const SpinnerConfig: TConfig = {
   componentName: 'Spinner',

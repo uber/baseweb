@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import { Slider } from 'baseui/slider';
 import { PropTypes } from 'react-view';
-import { TConfig } from '../types';
+import type { TConfig } from '../types';
 
 const SliderConfig: TConfig = {
   componentName: 'Slider',

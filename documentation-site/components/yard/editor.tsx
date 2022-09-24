@@ -10,7 +10,8 @@ import SimpleEditor from 'react-simple-code-editor';
 import Highlight, { Prism } from 'prism-react-renderer';
 import { useStyletron } from 'baseui';
 
-import { lightTheme, useValueDebounce, TTransformToken, TEditorProps } from 'react-view';
+import type { TTransformToken, TEditorProps } from 'react-view';
+import { lightTheme, useValueDebounce } from 'react-view';
 import darkTheme from './dark-theme';
 
 const highlightCode = (

@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import { HintDot, COLOR } from 'baseui/badge';
 import { PropTypes } from 'react-view';
-import { TConfig } from '../types';
+import type { TConfig } from '../types';
 
 const HintDotConfig: TConfig = {
   componentName: 'HintDot',

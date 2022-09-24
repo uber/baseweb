@@ -15,7 +15,8 @@ import { Select, SIZE } from 'baseui/select';
 import { StatefulTooltip } from 'baseui/tooltip';
 
 import Editor from './editor';
-import { assertUnreachable, useValueDebounce, PropTypes, Error, TPropValue } from 'react-view';
+import type { TPropValue } from 'react-view';
+import { assertUnreachable, useValueDebounce, PropTypes, Error } from 'react-view';
 
 const getTooltip = (description: string, type: string, name: string) => (
   <span>

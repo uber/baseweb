@@ -38,7 +38,8 @@ StyledListItem.displayName = 'StyledListItem';
 
 export const StyledSeparator = styled('div', ({ $theme }) => {
   return {
-    display: 'inline-block',
+    display: 'inline-flex',
+    alignItems: 'center',
     color: $theme.colors.breadcrumbsSeparatorFill,
     marginLeft: $theme.sizing.scale300,
     marginRight: $theme.sizing.scale300,

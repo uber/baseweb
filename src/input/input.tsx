@@ -37,21 +37,17 @@ class Input extends React.Component<InputProps, InternalState> {
    * customers shouldn't have to manage themselves, such as input's focus state.
    */
   state = {
-    isFocused: (this.props.autoFocus && !this.props.readOnly) || false,
+    isFocused: this.props.autoFocus || false,
   };
 
   onFocus = (e: FocusEvent<HTMLInputElement>) => {
-    if (!this.props.readOnly) {
-      this.setState({ isFocused: true });
-      this.props.onFocus(e);
-    }
+    this.setState({ isFocused: true });
+    this.props.onFocus(e);
   };
 
   onBlur = (e: FocusEvent<HTMLInputElement>) => {
-    if (!this.props.readOnly) {
-      this.setState({ isFocused: false });
-      this.props.onBlur(e);
-    }
+    this.setState({ isFocused: false });
+    this.props.onBlur(e);
   };
 
   render() {

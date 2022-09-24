@@ -20,14 +20,17 @@ const exec = util.promisify(require('child_process').exec);
 async function main() {
   try {
     const tmpDir = path.join(__dirname, 'tmp');
-    // $FlowFixMe - flow is not aware of recursive option
-    await fs.promises.rmdir(tmpDir, { recursive: true });
-    await fs.promises.mkdir(tmpDir);
+    try {
+      await fs.promises.mkdir(tmpDir);
+      // $FlowFixMe - flow is not aware of recursive option
+      await fs.promises.rmdir(tmpDir, { recursive: true });
+      await fs.promises.mkdir(tmpDir);
+    } catch (e) {}
 
     const src = `https://www.iana.org/time-zones/repository/tzdata-latest.tar.gz`;
     await exec(`curl -L ${src} | gzip -dc | tar -xf - --directory ${tmpDir}`);
 
-    const zoneTabPath = path.join(tmpDir, 'zone1970.tab');
+    const zoneTabPath = path.join(tmpDir, 'zone.tab');
     const content = await fs.promises.readFile(zoneTabPath, 'utf-8');
     const lines = content.split('\n');
 

@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 import omit from 'just-omit';
 import { Textarea, SIZE } from 'baseui/textarea';
 import { PropTypes } from 'react-view';
-import { TConfig } from '../types';
+import type { TConfig } from '../types';
 import { theme, inputProps } from './input';
 
 const TextareaConfig: TConfig = {

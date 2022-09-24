@@ -8,13 +8,13 @@ import * as React from 'react';
 import { render, fireEvent, getAllByRole, getByText } from '@testing-library/react';
 
 import { TestBaseProvider } from '../../test/test-utils';
+import type { ControlRef } from '../index';
 import {
   StatefulDataTable,
   BooleanColumn,
   CategoricalColumn,
   NumericalColumn,
   StringColumn,
-  ControlRef,
 } from '../index';
 
 // NOTE: data-table waits for container dimension measurements before rendering. Jsdom only

@@ -4,13 +4,11 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import * as React from 'react';
+import type * as React from 'react';
 
-import { SIZE, SHAPE, KIND } from '../button';
+import type { SIZE, SHAPE, KIND } from '../button';
 import type { Override } from '../helpers/overrides';
-import { MODE, STATE_CHANGE_TYPE } from './constants';
-
-import type { SyntheticEvent } from 'react';
+import type { MODE, STATE_CHANGE_TYPE } from './constants';
 
 // button-group
 export type ButtonGroupProps = {
@@ -83,4 +81,4 @@ export type StateReducer = (
 ) => State;
 
 // general
-type ClickHandler = (event: SyntheticEvent<HTMLButtonElement>, index: number) => unknown;
+type ClickHandler = (event: React.SyntheticEvent<HTMLButtonElement>, index: number) => unknown;

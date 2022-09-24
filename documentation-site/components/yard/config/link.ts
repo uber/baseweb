@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 import { StyledLink } from 'baseui/link';
 import { PropTypes } from 'react-view';
-import { TConfig } from '../types';
+import type { TConfig } from '../types';
 
 const LinkConfig: TConfig = {
   componentName: 'StyledLink',

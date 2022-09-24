@@ -8,8 +8,12 @@ LICENSE file in the root directory of this source tree.
 import type { ElementHandle, Page } from '@playwright/test';
 import { expect } from '@playwright/test';
 
-import axeCore from 'axe-core';
+// eslint auto-fixes these two imports into a single line, but then tsc complains
+// eslint-disable-next-line import/no-duplicates
+import type axeCore from 'axe-core';
+// eslint-disable-next-line import/no-duplicates
 import type { AxeResults, Rule } from 'axe-core';
+
 import queryString from 'query-string';
 import { printReceived } from 'jest-matcher-utils';
 import { resolve } from 'path';

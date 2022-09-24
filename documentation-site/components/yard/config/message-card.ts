@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import { MessageCard, BACKGROUND_COLOR_TYPE, IMAGE_LAYOUT, BUTTON_KIND } from 'baseui/message-card';
 import { PropTypes } from 'react-view';
-import { TConfig } from '../types';
+import type { TConfig } from '../types';
 
 const MessageCardConfig: TConfig = {
   componentName: 'MessageCard',

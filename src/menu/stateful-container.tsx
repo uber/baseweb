@@ -13,14 +13,12 @@ import type {
   StatefulContainerProps,
   StatefulContainerState,
   GetRequiredItemPropsFn,
+  RenderItemProps,
   RenderProps,
   StateReducerFn,
   Item,
 } from './types';
 import { useUIDSeed } from 'react-uid';
-
-import type { MouseEvent } from 'react';
-import { RenderItemProps } from './types';
 
 const DEFAULT_PROPS = {
   // keeping it in defaultProps to satisfy Flow
@@ -349,7 +347,7 @@ class MenuStatefulContainerInner extends React.Component<
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  handleMouseLeave = (event: MouseEvent<HTMLElement>) => {};
+  handleMouseLeave = (event: React.MouseEvent<HTMLElement>) => {};
 
   getRequiredItemProps: GetRequiredItemPropsFn = (item, index) => {
     let itemRef = this.refList[index];
@@ -382,7 +380,7 @@ class MenuStatefulContainerInner extends React.Component<
     } as RenderItemProps;
   };
 
-  focusMenu = (event: FocusEvent | MouseEvent | KeyboardEvent) => {
+  focusMenu = (event: FocusEvent | React.MouseEvent | KeyboardEvent) => {
     const rootRef = this.props.rootRef ? this.props.rootRef : this.rootRef;
 
     if (

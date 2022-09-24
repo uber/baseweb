@@ -8,7 +8,7 @@ import { NotificationCircle, COLOR, PLACEMENT } from 'baseui/badge';
 import { Skeleton } from 'baseui/skeleton';
 import { Check } from 'baseui/icon';
 import { PropTypes } from 'react-view';
-import { TConfig } from '../types';
+import type { TConfig } from '../types';
 
 const NotificationCircleConfig: TConfig = {
   componentName: 'NotificationCircle',

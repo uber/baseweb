@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 import { LocationPuck, LOCATION_PUCK_TYPES, LOCATION_PUCK_SIZES } from 'baseui/map-marker';
 import { PropTypes } from 'react-view';
-import { TConfig } from '../types';
+import type { TConfig } from '../types';
 
 export const theme = [];
 

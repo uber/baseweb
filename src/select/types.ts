@@ -4,13 +4,11 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import * as React from 'react';
+import type * as React from 'react';
 
 import type { Override } from '../helpers/overrides';
-import { STATE_CHANGE_TYPE, SIZE, TYPE } from './constants';
+import type { STATE_CHANGE_TYPE, SIZE, TYPE } from './constants';
 import type { OnItemSelectFn } from '../menu';
-
-import type { ReactNode, SyntheticEvent, ChangeEvent } from 'react';
 
 export type ChangeAction = keyof typeof STATE_CHANGE_TYPE;
 export type Size = keyof typeof SIZE;
@@ -169,8 +167,8 @@ export type SelectProps = {
   onBlurResetsInput?: boolean;
   /** change handler of the select to be called when a value is changed. */
   onChange?: (params: OnChangeParams) => unknown;
-  onFocus?: (e: SyntheticEvent<HTMLElement>) => unknown;
-  onInputChange?: (e: ChangeEvent<HTMLInputElement>) => unknown;
+  onFocus?: (e: React.SyntheticEvent<HTMLElement>) => unknown;
+  onInputChange?: (e: React.ChangeEvent<HTMLInputElement>) => unknown;
   /** Defines if the input value is reset to an empty string when dropdown is closed. */
   onCloseResetsInput?: boolean;
   /** Defines if the input value is reset to an empty string when a selection is made. */
@@ -229,7 +227,7 @@ export type StateReducer = (stateType: string, nextState: State, currentState: S
 
 export type StatefulContainerProps = {
   overrides: SelectOverrides;
-  children: (a: SelectProps) => ReactNode;
+  children: (a: SelectProps) => React.ReactNode;
   initialState: State;
   stateReducer: StateReducer;
   onChange: (params: OnChangeParams) => unknown;

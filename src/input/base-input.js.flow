@@ -137,17 +137,13 @@ class BaseInput<T: HTMLInputElement | HTMLTextAreaElement> extends React.Compone
   };
 
   onFocus = (e: SyntheticFocusEvent<T>) => {
-    if (!this.props.readOnly) {
-      this.setState({ isFocused: true });
-      this.props.onFocus(e);
-    }
+    this.setState({ isFocused: true });
+    this.props.onFocus(e);
   };
 
   onBlur = (e: SyntheticFocusEvent<T>) => {
-    if (!this.props.readOnly) {
-      this.setState({ isFocused: false });
-      this.props.onBlur(e);
-    }
+    this.setState({ isFocused: false });
+    this.props.onBlur(e);
   };
 
   getInputType() {

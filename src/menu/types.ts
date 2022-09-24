@@ -4,11 +4,9 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import * as React from 'react';
+import type * as React from 'react';
 import type { Override } from '../helpers/overrides';
-import { STATE_CHANGE_TYPES, OPTION_LIST_SIZE } from './constants';
-
-import type { SyntheticEvent, FocusEvent, MouseEvent } from 'react';
+import type { STATE_CHANGE_TYPES, OPTION_LIST_SIZE } from './constants';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type Item = any;
@@ -40,7 +38,7 @@ export type RootRef = {
 
 export type OnItemSelectFn = (a: {
   item: Item;
-  event?: SyntheticEvent<HTMLElement> | KeyboardEvent;
+  event?: React.SyntheticEvent<HTMLElement> | KeyboardEvent;
 }) => unknown;
 
 export type ProfileOverrides = {
@@ -61,8 +59,8 @@ export type RenderItemProps = {
   isFocused?: boolean;
   // indicates when the item is visually focused
   isHighlighted?: boolean;
-  onClick?: (event: MouseEvent<HTMLElement>) => void;
-  onMouseEnter?: (event: MouseEvent<HTMLElement>) => void;
+  onClick?: (event: React.MouseEvent<HTMLElement>) => void;
+  onMouseEnter?: (event: React.MouseEvent<HTMLElement>) => void;
   resetMenu?: () => void;
 };
 
@@ -155,6 +153,7 @@ export type MenuOverrides = {
   Option?: Override;
   OptgroupHeader?: Override;
   ListItem?: Override;
+  MenuDivider?: Override;
 };
 export type MenuProps = {
   overrides?: MenuOverrides;
@@ -182,18 +181,18 @@ export type SharedStatelessProps = {
   'aria-label'?: string;
   getRequiredItemProps?: GetRequiredItemPropsFn;
   isFocused?: boolean;
-  handleMouseLeave?: (event: MouseEvent<HTMLElement>) => unknown;
+  handleMouseLeave?: (event: React.MouseEvent<HTMLElement>) => unknown;
   /** Index of highlighted menu item. */
   highlightedIndex?: number;
   /** List of menu items. */
   items: Items;
   /** Message to be displayed if no menu items are passed in. */
   noResultsMsg?: React.ReactNode;
-  onBlur?: (event: FocusEvent<HTMLElement>) => unknown;
-  onFocus?: (event: FocusEvent<HTMLElement>) => unknown;
+  onBlur?: (event: React.FocusEvent<HTMLElement>) => unknown;
+  onFocus?: (event: React.FocusEvent<HTMLElement>) => unknown;
   /** Ref for the menu container element. Used to capture key events for navigation */
   rootRef?: RootRef;
-  focusMenu?: (event: FocusEvent | MouseEvent | KeyboardEvent) => unknown;
+  focusMenu?: (event: React.FocusEvent | React.MouseEvent | KeyboardEvent) => unknown;
   unfocusMenu?: () => unknown;
   handleKeyDown?: (event: KeyboardEvent) => unknown;
 };
@@ -249,11 +248,11 @@ export type OptionListProps = {
   getItemLabel: GetItemLabelFn;
   /** Used to render a sub menu at this menu item. You'll often render another menu from this function. */
   getChildMenu?: (item: Item) => React.ReactNode;
-  onClick?: (event: MouseEvent) => unknown;
+  onClick?: (event: React.MouseEvent) => unknown;
   /** Callback used to change highlighted index in stateful menu. */
-  onMouseDown?: (event: MouseEvent) => unknown;
+  onMouseDown?: (event: React.MouseEvent) => unknown;
   /** Callback used to change highlighted index in stateful menu. */
-  onMouseEnter?: (event: MouseEvent) => unknown;
+  onMouseEnter?: (event: React.MouseEvent) => unknown;
   /** Renders UI in defined scale. */
   size?: keyof typeof OPTION_LIST_SIZE;
   overrides?: {

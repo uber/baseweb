@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import { Button, KIND, SIZE, SHAPE } from 'baseui/button';
 import { PropTypes } from 'react-view';
-import { TConfig } from '../types';
+import type { TConfig } from '../types';
 
 const ButtonConfig: TConfig = {
   componentName: 'Button',
