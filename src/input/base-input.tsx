@@ -286,8 +286,6 @@ class BaseInput<T extends HTMLInputElement | HTMLTextAreaElement> extends React.
 
   render() {
     const {
-      value,
-      type,
       overrides: {
         InputContainer: InputContainerOverride,
         Input: InputOverride,
@@ -356,9 +354,7 @@ class BaseInput<T extends HTMLInputElement | HTMLTextAreaElement> extends React.
           rows={this.props.type === CUSTOM_INPUT_TYPE.textarea ? this.props.rows : null}
           {...sharedProps}
           {...inputProps}
-        >
-          {type === CUSTOM_INPUT_TYPE.textarea ? value : null}
-        </Input>
+        />
         {this.renderClear()}
         {this.renderMaskToggle()}
         <After {...sharedProps} {...afterProps} />
