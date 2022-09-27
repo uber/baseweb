@@ -838,12 +838,15 @@ export function DataTable({
           }
         }
         result.push(gridProps.width - sum(result) - scrollbarWidth);
-        resetAfterColumnIndex(0);
         return result;
       }
     }
     return resizedWidths;
   }, [gridRef, measuredWidths, resizeDeltas, browserScrollbarWidth, rows.length, columns]);
+
+  React.useEffect(() => {
+    resetAfterColumnIndex(0);
+  }, [normalizedWidths]);
 
   const isSelectable = batchActions ? !!batchActions.length : false;
   const isSelectedAll = React.useMemo(() => {
@@ -1011,7 +1014,7 @@ export function DataTable({
           >
             <VariableSizeGrid
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              ref={setGridRef as any}
+              ref={(node) => setGridRef(node)}
               overscanRowCount={10}
               overscanColumnCount={5}
               innerElementType={InnerTableElement}
