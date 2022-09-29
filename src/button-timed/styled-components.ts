@@ -8,17 +8,21 @@ import { styled, withStyle } from '../styles/index';
 import { StyledBaseButton } from '../button';
 import { hexToRgb as hexToRgba } from '../styles/util';
 
-export const BaseButtonTimed = withStyle<typeof StyledBaseButton, { $duration: number }>(
-  StyledBaseButton,
-  ({ $theme, $duration }) => ({
+export const BaseButtonTimed = withStyle<
+  typeof StyledBaseButton,
+  { $initialTime: number; $timeElapsed: number }
+>(StyledBaseButton, ({ $theme, $initialTime, $timeElapsed }) => {
+  const completionPercentage = ($timeElapsed / $initialTime) * 100;
+  const timeLeft = $initialTime - $timeElapsed;
+  return {
     position: 'relative',
-    ...($duration > 0
+    ...($initialTime > 0
       ? {
           ':after': {
-            animationDuration: `${$duration}s`,
+            animationDuration: `${timeLeft}s`,
             animationName: {
               from: {
-                transform: 'translateX(0%)',
+                transform: `translateX(${completionPercentage}%)`,
               },
               to: {
                 transform: 'translateX(100%)',
@@ -35,10 +39,10 @@ export const BaseButtonTimed = withStyle<typeof StyledBaseButton, { $duration: n
           },
         }
       : {}),
-  })
-);
+  };
+});
 
 export const TimerContainer = styled<'span', {}>('span', {
-  // minWidth to ensure button width stays consistent as time changes
+  // minWidth to ensure button width stays consistent as timeRemaining changes
   minWidth: '53px',
 });

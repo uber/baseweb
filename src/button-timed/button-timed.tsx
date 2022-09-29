@@ -22,28 +22,20 @@ const formatTime = (totalSeconds) => {
   return `${minutes}:${padTo2Digits(seconds)}`;
 };
 
-const ButtonTimed = (props: ButtonTimedProps) => {
-  const { time, onClick: onClickProp, disabled, children, overrides = {}, ...restProps } = props;
+const ButtonTimed = ({
+  initialTime,
+  timeRemaining,
+  onClick,
+  disabled,
+  children,
+  overrides = {},
+  ...restProps
+}: ButtonTimedProps) => {
   const {
     BaseButtonTimed: BaseButtonTimedOverride,
     TimerContainer: TimerContainerOverride,
     ...buttonOverrides
   } = overrides;
-
-  const [secondsRemaining, setSecondsRemaining] = React.useState<number>(time);
-
-  React.useEffect(() => {
-    let interval = null;
-    interval = setInterval(() => {
-      if (secondsRemaining > 0) {
-        setSecondsRemaining((seconds) => seconds - 1);
-      }
-    }, 1000);
-    if (secondsRemaining === 0) {
-      onClickProp();
-    }
-    return () => clearInterval(interval);
-  }, [secondsRemaining]);
 
   const [BaseButtonTimed, baseButtonTimedProps] = getOverrides(
     BaseButtonTimedOverride,
@@ -54,10 +46,6 @@ const ButtonTimed = (props: ButtonTimedProps) => {
     StyledTimerContainer
   );
 
-  const onClick = () => {
-    setSecondsRemaining(0);
-  };
-
   return (
     <Button
       {...restProps}
@@ -65,7 +53,8 @@ const ButtonTimed = (props: ButtonTimedProps) => {
         BaseButton: {
           component: BaseButtonTimed,
           props: {
-            $duration: time,
+            $initialTime: initialTime,
+            $timeElapsed: initialTime - timeRemaining,
             ...baseButtonTimedProps,
           },
         },
@@ -75,12 +64,10 @@ const ButtonTimed = (props: ButtonTimedProps) => {
       size={SIZE.large}
       kind={KIND.primary}
       shape={SHAPE.default}
-      disabled={disabled || secondsRemaining === 0}
+      disabled={disabled || timeRemaining === 0}
     >
       {children}
-      <TimerContainer {...timerContainerProps}>{`(${formatTime(
-        secondsRemaining
-      )})`}</TimerContainer>
+      <TimerContainer {...timerContainerProps}>{`(${formatTime(timeRemaining)})`}</TimerContainer>
     </Button>
   );
 };

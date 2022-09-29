@@ -6,45 +6,76 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { ButtonTimed } from '..';
+import { ButtonTimed as ButtonTimedBase } from '..';
+
+const ButtonTimed = (props) => {
+  const { initialTime, onClick: onClickProp, children } = props;
+  const [timeRemaining, setTimeRemaining] = React.useState<number>(initialTime);
+
+  React.useEffect(() => {
+    let interval = null;
+    interval = setInterval(() => {
+      if (timeRemaining > 0) {
+        setTimeRemaining((seconds) => seconds - 1);
+      }
+    }, 1000);
+    if (timeRemaining === 0) {
+      onClickProp();
+    }
+    return () => clearInterval(interval);
+  }, [timeRemaining]);
+
+  const onClick = () => {
+    setTimeRemaining(0);
+    onClickProp();
+  };
+
+  return (
+    <ButtonTimedBase
+      {...props}
+      onClick={onClick}
+      timeRemaining={timeRemaining}
+      overrides={{ BaseButtonTimed: { props: { 'data-id': 'first' } } }}
+    >
+      {children}
+    </ButtonTimedBase>
+  );
+};
 
 export function Scenario() {
-  const [time1, setTime1] = React.useState(false);
-  const [time2, setTime2] = React.useState(false);
-  const [time3, setTime3] = React.useState(false);
-  const [time4, setTime4] = React.useState(false);
+  const [finished1, setFinished1] = React.useState(false);
+  const [finished2, setFinished2] = React.useState(false);
+  const [finished3, setFinished3] = React.useState(false);
+  const [finished4, setFinished4] = React.useState(false);
+
   return (
     <div>
       <div>
-        <ButtonTimed
-          onClick={() => setTime1(true)}
-          time={10}
-          overrides={{ BaseButtonTimed: { props: { 'data-id': 'first' } } }}
-        >
+        <ButtonTimed onClick={() => setFinished1(true)} initialTime={10}>
           Countdown
         </ButtonTimed>
-        {time1 && <span style={{ marginLeft: '20px', color: 'red' }}>Time!</span>}
+        {finished1 && <span style={{ marginLeft: '20px', color: 'red' }}>Time!</span>}
       </div>
 
       <div>
-        <ButtonTimed onClick={() => setTime2(true)} time={18}>
+        <ButtonTimed onClick={() => setFinished2(true)} initialTime={18}>
           Countdown
         </ButtonTimed>
-        {time2 && <span style={{ marginLeft: '20px', color: 'blue' }}>Time!</span>}
+        {finished2 && <span style={{ marginLeft: '20px', color: 'blue' }}>Time!</span>}
       </div>
 
       <div>
-        <ButtonTimed onClick={() => setTime3(true)} time={35}>
+        <ButtonTimed onClick={() => setFinished3(true)} initialTime={35}>
           Countdown
         </ButtonTimed>
-        {time3 && <span style={{ marginLeft: '20px', color: 'gold' }}>Time!</span>}
+        {finished3 && <span style={{ marginLeft: '20px', color: 'gold' }}>Time!</span>}
       </div>
 
       <div>
-        <ButtonTimed onClick={() => setTime4(true)} time={60}>
+        <ButtonTimed onClick={() => setFinished4(true)} initialTime={60}>
           Countdown
         </ButtonTimed>
-        {time4 && <span style={{ marginLeft: '20px', color: 'green' }}>Time!</span>}
+        {finished4 && <span style={{ marginLeft: '20px', color: 'green' }}>Time!</span>}
       </div>
     </div>
   );

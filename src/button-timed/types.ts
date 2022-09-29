@@ -16,7 +16,8 @@ export type ButtonTimedProps = Omit<
   ButtonProps,
   'kind' | 'shape' | 'size' | 'onClick' | 'overrides'
 > & {
-  time: number;
+  initialTime: number;
+  timeRemaining: number;
   onClick: (a?: React.SyntheticEvent<HTMLButtonElement>) => unknown;
   overrides?: ButtonTimedOverrides;
 };
