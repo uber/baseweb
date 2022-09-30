@@ -35,7 +35,7 @@ const ButtonTimed = (props) => {
       {...props}
       onClick={onClick}
       timeRemaining={timeRemaining}
-      overrides={{ BaseButtonTimed: { props: { 'data-id': 'first' } } }}
+      overrides={{ BaseButton: { props: { 'data-id': 'first' } } }}
     >
       {children}
     </ButtonTimedBase>

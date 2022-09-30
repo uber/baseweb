@@ -11,7 +11,7 @@ import {
   BaseButtonTimed as StyledBaseButtonTimed,
   TimerContainer as StyledTimerContainer,
 } from './styled-components';
-import { getOverrides } from '../helpers/overrides';
+import { getOverrides, mergeOverrides } from '../helpers/overrides';
 
 function padTo2Digits(num) {
   return num.toString().padStart(2, '0');
@@ -31,35 +31,30 @@ const ButtonTimed = ({
   overrides = {},
   ...restProps
 }: ButtonTimedProps) => {
-  const {
-    BaseButtonTimed: BaseButtonTimedOverride,
-    TimerContainer: TimerContainerOverride,
-    ...buttonOverrides
-  } = overrides;
+  const { TimerContainer: TimerContainerOverride, ...buttonOverrides } = overrides;
 
-  const [BaseButtonTimed, baseButtonTimedProps] = getOverrides(
-    BaseButtonTimedOverride,
-    StyledBaseButtonTimed
-  );
   const [TimerContainer, timerContainerProps] = getOverrides(
     TimerContainerOverride,
     StyledTimerContainer
   );
 
+  const buttonMergedOverrides = mergeOverrides(
+    {
+      BaseButton: {
+        component: StyledBaseButtonTimed,
+        props: {
+          $initialTime: initialTime,
+          $timeElapsed: initialTime - timeRemaining,
+        },
+      },
+    },
+    buttonOverrides
+  );
+
   return (
     <Button
       {...restProps}
-      overrides={{
-        BaseButton: {
-          component: BaseButtonTimed,
-          props: {
-            $initialTime: initialTime,
-            $timeElapsed: initialTime - timeRemaining,
-            ...baseButtonTimedProps,
-          },
-        },
-        ...buttonOverrides,
-      }}
+      overrides={buttonMergedOverrides}
       onClick={onClick}
       size={SIZE.large}
       kind={KIND.primary}

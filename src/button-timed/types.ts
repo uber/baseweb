@@ -7,8 +7,7 @@ LICENSE file in the root directory of this source tree.
 import type { ButtonProps, ButtonOverrides } from '../button';
 import type { Override } from '../helpers/overrides';
 
-export type ButtonTimedOverrides = Omit<ButtonOverrides, 'BaseButton'> & {
-  BaseButtonTimed?: Override;
+export type ButtonTimedOverrides = ButtonOverrides & {
   TimerContainer?: Override;
 };
 
