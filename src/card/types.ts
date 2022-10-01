@@ -40,7 +40,7 @@ export type CardProps = {
   /** Content to be rendered within the Card body. */
   readonly children?: ReactNode;
   /** Function that takes Card props and returns a boolean that represents if a thumbnail will be rendered. */
-  readonly hasThumbnail: (a: { readonly thumbnail?: string }) => boolean;
+  readonly hasThumbnail?: (a: { readonly thumbnail?: string }) => boolean;
   /** Image to be positioned at the top of the Card. Can be a string representing the img src or an object with img attrs */
   readonly headerImage?: string | ImageProps;
   readonly overrides: CardOverrides;
