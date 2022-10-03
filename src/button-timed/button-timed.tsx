@@ -21,6 +21,28 @@ const formatTime = (totalSeconds) => {
   const seconds = totalSeconds % 60;
   return `${minutes}:${padTo2Digits(seconds)}`;
 };
+function usePrevious(value) {
+  const ref = React.useRef();
+  React.useEffect(() => {
+    ref.current = value;
+  });
+  return ref.current;
+}
+function useInterval(callback, delay) {
+  const intervalRef = React.useRef(null);
+  const savedCallback = React.useRef(callback);
+  React.useEffect(() => {
+    savedCallback.current = callback;
+  }, [callback]);
+  React.useEffect(() => {
+    const tick = () => savedCallback.current();
+    if (typeof delay === 'number') {
+      intervalRef.current = window.setInterval(tick, delay);
+      return () => window.clearInterval(intervalRef.current);
+    }
+  }, [delay]);
+  return intervalRef;
+}
 
 const ButtonTimed = ({
   initialTime,
@@ -31,8 +53,20 @@ const ButtonTimed = ({
   overrides = {},
   ...restProps
 }: ButtonTimedProps) => {
-  const { TimerContainer: TimerContainerOverride, ...buttonOverrides } = overrides;
+  const [paused, setPaused] = React.useState<boolean>(false);
+  const prevTimeRemaining = usePrevious(timeRemaining);
 
+  useInterval(() => {
+    if (!paused && timeRemaining === prevTimeRemaining) {
+      setPaused(true);
+    }
+  }, 1000);
+
+  if (paused && timeRemaining !== prevTimeRemaining) {
+    setPaused(false);
+  }
+
+  const { TimerContainer: TimerContainerOverride, ...buttonOverrides } = overrides;
   const [TimerContainer, timerContainerProps] = getOverrides(
     TimerContainerOverride,
     StyledTimerContainer
@@ -45,6 +79,11 @@ const ButtonTimed = ({
         props: {
           $initialTime: initialTime,
           $timeElapsed: initialTime - timeRemaining,
+        },
+        style: {
+          ':after': {
+            animationPlayState: paused ? 'paused' : 'running',
+          },
         },
       },
     },
