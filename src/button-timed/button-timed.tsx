@@ -12,16 +12,8 @@ import {
   TimerContainer as StyledTimerContainer,
 } from './styled-components';
 import { usePaused } from './use-paused';
+import { formatTime } from './utils';
 import { getOverrides, mergeOverrides } from '../helpers/overrides';
-
-function padTo2Digits(num) {
-  return num.toString().padStart(2, '0');
-}
-const formatTime = (totalSeconds) => {
-  const minutes = Math.floor(totalSeconds / 60);
-  const seconds = totalSeconds % 60;
-  return `${minutes}:${padTo2Digits(seconds)}`;
-};
 
 const ButtonTimed = ({
   initialTime,
