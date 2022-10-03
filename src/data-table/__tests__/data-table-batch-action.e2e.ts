@@ -7,28 +7,9 @@ LICENSE file in the root directory of this source tree.
 
 import { expect, test } from '@playwright/test';
 import { mount, analyzeAccessibility } from '../../test/integration';
-import { getTableLocator, getCellContentsAtColumnIndex, matchArrayElements } from './utilities';
+import { getTableLocator, getCellContentsAtColumnIndex } from './utilities';
 
 const COLUMN_COUNT = 2;
-
-function getCheckboxes(parent) {
-  return parent.locator('label[data-baseweb="checkbox"]');
-}
-
-async function clickCheckboxAtRowIndex(parent, index) {
-  const checkboxes = await getCheckboxes(parent);
-  await checkboxes.nth(index).click();
-}
-
-async function getCheckboxValues(parent) {
-  const checkboxes = parent.locator('label[data-baseweb="checkbox"] input');
-
-  // briefly wait to give table state chance to update
-  await new Promise((res) => setTimeout(res, 50));
-  return element.$$eval('label[data-baseweb="checkbox"] input', (elements) =>
-    elements.map((el) => String(el.checked))
-  );
-}
 
 test.describe('data-table batch-actions', () => {
   test('passes basic a11y tests', async ({ page }) => {

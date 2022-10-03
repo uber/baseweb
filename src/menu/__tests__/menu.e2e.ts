@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 
 import { expect, test } from '@playwright/test';
-import { mount, analyzeAccessibility, isSameNode } from '../../test/integration';
+import { mount, analyzeAccessibility } from '../../test/integration';
 
 test.describe('menu', () => {
   test('passes basic a11y tests', async ({ page }) => {

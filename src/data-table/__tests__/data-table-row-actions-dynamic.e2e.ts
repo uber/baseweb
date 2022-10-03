@@ -8,8 +8,6 @@ LICENSE file in the root directory of this source tree.
 import { expect, test } from '@playwright/test';
 import { mount } from '../../test/integration';
 
-const COLUMN_COUNT = 2;
-
 test.describe('data-table-row-actions-dynamic', () => {
   test('renders provided row action buttons', async ({ page }) => {
     await mount(page, 'data-table--row-actions-dynamic');
