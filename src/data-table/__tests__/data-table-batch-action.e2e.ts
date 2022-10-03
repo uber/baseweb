@@ -7,25 +7,24 @@ LICENSE file in the root directory of this source tree.
 
 import { expect, test } from '@playwright/test';
 import { mount, analyzeAccessibility } from '../../test/integration';
-import { getTable, getCellContentsAtColumnIndex, matchArrayElements } from './utilities';
+import { getTableLocator, getCellContentsAtColumnIndex, matchArrayElements } from './utilities';
 
 const COLUMN_COUNT = 2;
 
 function getCheckboxes(parent) {
-  return parent.$$('label[data-baseweb="checkbox"]');
+  return parent.locator('label[data-baseweb="checkbox"]');
 }
 
 async function clickCheckboxAtRowIndex(parent, index) {
   const checkboxes = await getCheckboxes(parent);
-  await checkboxes[index].click();
+  await checkboxes.nth(index).click();
 }
 
-function wait(ms) {
-  return new Promise((res) => setTimeout(res, ms));
-}
+async function getCheckboxValues(parent) {
+  const checkboxes = parent.locator('label[data-baseweb="checkbox"] input');
 
-async function getCheckboxValues(element) {
-  await wait(50); // briefly wait to give table state chance to update
+  // briefly wait to give table state chance to update
+  await new Promise((res) => setTimeout(res, 50));
   return element.$$eval('label[data-baseweb="checkbox"] input', (elements) =>
     elements.map((el) => String(el.checked))
   );
@@ -43,122 +42,155 @@ test.describe('data-table batch-actions', () => {
 
   test('renders checkboxes if batch actions are provided', async ({ page }) => {
     await mount(page, 'data-table--batch-action');
-    const table = await getTable(page);
-    const checkboxes = await getCheckboxes(table);
-    expect(checkboxes.length).toBe(6);
+    const table = await getTableLocator(page);
+    const checkboxes = table.locator('label[data-baseweb="checkbox"]');
+    expect(checkboxes).toHaveCount(6);
   });
 
   test('checks row on selection', async ({ page }) => {
     await mount(page, 'data-table--batch-action');
-    const table = await getTable(page);
-    await clickCheckboxAtRowIndex(table, 1);
-    const actual = await getCheckboxValues(table);
-    const expected = ['true', 'true', 'false', 'false', 'false', 'false'];
-    expect(matchArrayElements(actual, expected)).toBe(true);
+    const table = await getTableLocator(page);
+    const checkboxes = table.locator('label[data-baseweb="checkbox"]');
+    await checkboxes.nth(1).click();
+    await expect(checkboxes.nth(0)).toBeChecked();
+    await expect(checkboxes.nth(1)).toBeChecked();
+    await expect(checkboxes.nth(2)).not.toBeChecked();
+    await expect(checkboxes.nth(3)).not.toBeChecked();
+    await expect(checkboxes.nth(4)).not.toBeChecked();
+    await expect(checkboxes.nth(5)).not.toBeChecked();
   });
 
   test('unchecks row on second selection', async ({ page }) => {
     await mount(page, 'data-table--batch-action');
-    const table = await getTable(page);
-    await clickCheckboxAtRowIndex(table, 1);
-    await clickCheckboxAtRowIndex(table, 1);
-    const actual = await getCheckboxValues(table);
-    const expected = ['false', 'false', 'false', 'false', 'false', 'false'];
-    expect(matchArrayElements(actual, expected)).toBe(true);
+    const table = await getTableLocator(page);
+    const checkboxes = table.locator('label[data-baseweb="checkbox"]');
+    await checkboxes.nth(1).click();
+    await checkboxes.nth(1).click();
+    await expect(checkboxes.nth(0)).not.toBeChecked();
+    await expect(checkboxes.nth(1)).not.toBeChecked();
+    await expect(checkboxes.nth(2)).not.toBeChecked();
+    await expect(checkboxes.nth(3)).not.toBeChecked();
+    await expect(checkboxes.nth(4)).not.toBeChecked();
+    await expect(checkboxes.nth(5)).not.toBeChecked();
   });
 
   test('checks all rows on header selection', async ({ page }) => {
     await mount(page, 'data-table--batch-action');
-    const table = await getTable(page);
-    await clickCheckboxAtRowIndex(table, 0);
-    const actual = await getCheckboxValues(table);
-    const expected = ['true', 'true', 'true', 'true', 'true', 'true'];
-    expect(matchArrayElements(actual, expected)).toBe(true);
+    const table = await getTableLocator(page);
+    const checkboxes = table.locator('label[data-baseweb="checkbox"]');
+    await checkboxes.nth(0).click();
+    await expect(checkboxes.nth(0)).toBeChecked();
+    await expect(checkboxes.nth(1)).toBeChecked();
+    await expect(checkboxes.nth(2)).toBeChecked();
+    await expect(checkboxes.nth(3)).toBeChecked();
+    await expect(checkboxes.nth(4)).toBeChecked();
+    await expect(checkboxes.nth(5)).toBeChecked();
   });
 
   test('unchecks all rows on second header selection', async ({ page }) => {
     await mount(page, 'data-table--batch-action');
-    const table = await getTable(page);
-    await clickCheckboxAtRowIndex(table, 0);
-    await clickCheckboxAtRowIndex(table, 0);
-    const actual = await getCheckboxValues(table);
-    const expected = ['false', 'false', 'false', 'false', 'false', 'false'];
-    expect(matchArrayElements(actual, expected)).toBe(true);
+    const table = await getTableLocator(page);
+    const checkboxes = table.locator('label[data-baseweb="checkbox"]');
+    await checkboxes.nth(0).click();
+    await checkboxes.nth(0).click();
+    await expect(checkboxes.nth(0)).not.toBeChecked();
+    await expect(checkboxes.nth(1)).not.toBeChecked();
+    await expect(checkboxes.nth(2)).not.toBeChecked();
+    await expect(checkboxes.nth(3)).not.toBeChecked();
+    await expect(checkboxes.nth(4)).not.toBeChecked();
+    await expect(checkboxes.nth(5)).not.toBeChecked();
   });
 
   test('unchecks all after row select, then header selection', async ({ page }) => {
     await mount(page, 'data-table--batch-action');
-    const table = await getTable(page);
-    await clickCheckboxAtRowIndex(table, 1);
-    await clickCheckboxAtRowIndex(table, 0);
-    const actual = await getCheckboxValues(table);
-    const expected = ['false', 'false', 'false', 'false', 'false', 'false'];
-    expect(matchArrayElements(actual, expected)).toBe(true);
+    const table = await getTableLocator(page);
+    const checkboxes = table.locator('label[data-baseweb="checkbox"]');
+    await checkboxes.nth(1).click();
+    await checkboxes.nth(0).click();
+    await expect(checkboxes.nth(0)).not.toBeChecked();
+    await expect(checkboxes.nth(1)).not.toBeChecked();
+    await expect(checkboxes.nth(2)).not.toBeChecked();
+    await expect(checkboxes.nth(3)).not.toBeChecked();
+    await expect(checkboxes.nth(4)).not.toBeChecked();
+    await expect(checkboxes.nth(5)).not.toBeChecked();
   });
 
   test('does not check header if no rows in table', async ({ page }) => {
     await mount(page, 'data-table--batch-action');
-    const table = await getTable(page);
-    await clickCheckboxAtRowIndex(table, 0);
+    const table = await getTableLocator(page);
+    const checkboxes = table.locator('label[data-baseweb="checkbox"]');
+    await checkboxes.nth(0).click();
 
-    const button = await page.$('button[aria-label="Approve"]');
+    const button = page.locator('button[aria-label="Approve"]');
     await button.click();
 
-    const actual = await getCheckboxValues(table);
-    const expected = ['false'];
-    expect(matchArrayElements(actual, expected)).toBe(true);
+    await expect(checkboxes).toHaveCount(1);
+    await expect(checkboxes.nth(0)).not.toBeChecked();
   });
 
   test('calls onSelectionChange on selection changes', async ({ page }) => {
     await mount(page, 'data-table--batch-action');
-    const table = await getTable(page);
-    await clickCheckboxAtRowIndex(table, 1);
-    await clickCheckboxAtRowIndex(table, 2);
-    await clickCheckboxAtRowIndex(table, 3);
-    const count = await page.$eval('#selection-change-count', (el) => el.textContent);
-    expect(count).toBe('selection change count: 3');
+    const table = await getTableLocator(page);
+    const checkboxes = table.locator('label[data-baseweb="checkbox"]');
+    await checkboxes.nth(1).click();
+    await checkboxes.nth(2).click();
+    await checkboxes.nth(3).click();
+    const count = page.locator('#selection-change-count');
+    await expect(count).toHaveText('selection change count: 3');
   });
 
   test('avoids sort on header check', async ({ page }) => {
     const index = 0;
     await mount(page, 'data-table--batch-action');
-    const table = await getTable(page);
+    const table = await getTableLocator(page);
+    const checkboxes = table.locator('label[data-baseweb="checkbox"]');
 
     const before = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
-    expect(matchArrayElements(before, ['1', '2', '3', '4', '5'])).toBe(true);
+    expect(before).toEqual(['1', '2', '3', '4', '5']);
 
-    await clickCheckboxAtRowIndex(table, 0);
+    await checkboxes.nth(0).click();
     const after = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
-    expect(matchArrayElements(after, ['1', '2', '3', '4', '5'])).toBe(true);
+    expect(after).toEqual(['1', '2', '3', '4', '5']);
   });
 
   test('calls batch action onClick with selected rows', async ({ page }) => {
     await mount(page, 'data-table--batch-action');
-    const table = await getTable(page);
-    await clickCheckboxAtRowIndex(table, 1);
+    const table = await getTableLocator(page);
+    const checkboxes = table.locator('label[data-baseweb="checkbox"]');
+    await checkboxes.nth(1).click();
 
-    const button = await page.$('button[aria-label="Approve"]');
+    const button = page.locator('button[aria-label="Approve"]');
     await button.click();
 
-    const actual = await getCheckboxValues(table);
-    const expected = ['false', 'false', 'false', 'false', 'false'];
-    expect(matchArrayElements(actual, expected)).toBe(true);
+    expect(checkboxes).toHaveCount(5);
+    await expect(checkboxes.nth(0)).not.toBeChecked();
+    await expect(checkboxes.nth(1)).not.toBeChecked();
+    await expect(checkboxes.nth(2)).not.toBeChecked();
+    await expect(checkboxes.nth(3)).not.toBeChecked();
+    await expect(checkboxes.nth(4)).not.toBeChecked();
   });
 
   test('batch action clearSelection clears selected rows', async ({ page }) => {
     await mount(page, 'data-table--batch-action');
-    const table = await getTable(page);
-    await clickCheckboxAtRowIndex(table, 1);
+    const table = await getTableLocator(page);
+    const checkboxes = table.locator('label[data-baseweb="checkbox"]');
+    await checkboxes.nth(1).click();
 
-    const beforeActual = await getCheckboxValues(table);
-    const beforeExpected = ['true', 'true', 'false', 'false', 'false', 'false'];
-    expect(matchArrayElements(beforeActual, beforeExpected)).toBe(true);
+    await expect(checkboxes.nth(0)).toBeChecked();
+    await expect(checkboxes.nth(1)).toBeChecked();
+    await expect(checkboxes.nth(2)).not.toBeChecked();
+    await expect(checkboxes.nth(3)).not.toBeChecked();
+    await expect(checkboxes.nth(4)).not.toBeChecked();
+    await expect(checkboxes.nth(5)).not.toBeChecked();
 
-    const button = await page.$('button[aria-label="Flag"]');
+    const button = page.locator('button[aria-label="Flag"]');
     await button.click();
 
-    const afterActual = await getCheckboxValues(table);
-    const afterExpected = ['false', 'false', 'false', 'false', 'false', 'false'];
-    expect(matchArrayElements(afterActual, afterExpected)).toBe(true);
+    await expect(checkboxes.nth(0)).not.toBeChecked();
+    await expect(checkboxes.nth(1)).not.toBeChecked();
+    await expect(checkboxes.nth(2)).not.toBeChecked();
+    await expect(checkboxes.nth(3)).not.toBeChecked();
+    await expect(checkboxes.nth(4)).not.toBeChecked();
+    await expect(checkboxes.nth(5)).not.toBeChecked();
   });
 });
