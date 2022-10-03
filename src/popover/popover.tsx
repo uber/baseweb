@@ -237,7 +237,7 @@ class PopoverInner extends React.Component<PopoverProps, PopoverPrivateState> {
     if (!popper || popper === target || (target instanceof Node && popper.contains(target))) {
       return;
     }
-    if (!anchor || anchor === target || (target instanceof Node && popper.contains(target))) {
+    if (!anchor || anchor === target || (target instanceof Node && anchor.contains(target))) {
       return;
     }
     if (this.props.onClickOutside) {
