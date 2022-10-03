@@ -110,18 +110,18 @@ export type CoreSemanticColorTokens = {
   contentInverseTertiary: string;
   // Border
   borderOpaque: string;
-  borderTransparent: string | undefined | null;
+  borderTransparent?: string;
   borderSelected: string;
   borderInverseOpaque: string;
-  borderInverseTransparent: string | undefined | null;
+  borderInverseTransparent?: string;
   borderInverseSelected: string;
 };
 export type CoreExtensionSemanticColorTokens = {
   // Backgrounds
   backgroundStateDisabled: string;
-  backgroundOverlayDark: string | undefined | null;
-  backgroundOverlayLight: string | undefined | null;
-  backgroundOverlayArt: string | undefined | null;
+  backgroundOverlayDark?: string;
+  backgroundOverlayLight?: string;
+  backgroundOverlayArt?: string;
   backgroundAccent: string;
   backgroundNegative: string;
   backgroundWarning: string;
