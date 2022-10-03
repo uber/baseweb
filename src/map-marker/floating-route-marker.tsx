@@ -8,13 +8,12 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { useStyletron } from '../styles';
 import { getOverrides } from '../helpers/overrides';
+import { LabelSmall, LabelMedium } from 'src/typography';
 import {
-  FLOATING_ROUTE_MARKER_STATES,
   FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS,
   FLOATING_ROUTE_MARKER_POINTER_TYPE_WRAPPER_SIZES,
   FLOATING_ROUTE_MARKER_POINTER_TYPES,
-  FLOATING_ROUTE_MARKER_POINTER_POSITIONS,
-  PINHEAD_TYPES,
+  FLOATING_ROUTE_MARKER_POINTER_TRANSFORMS,
   PINHEAD_SIZES_SHAPES,
   PINHEAD_DIMENSIONS,
 } from './constants';
@@ -22,51 +21,42 @@ import {
 import {
   StyledFloatingRouteMarkerRoot,
   StyledContentItem,
-  StyledLabelContent,
-  StyledLabel,
+  StyledFloatingRouteMarkerPointer,
 } from './styled-components';
 import type { FloatingRouteMarkerProps } from './types';
 
 const POINTERS = {
   [FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.topLeft]: {
     type: FLOATING_ROUTE_MARKER_POINTER_TYPES.diagonal,
-    content: ({ background }) => <path d="M0 0L24 8L8 24L0 0Z" fill={background} />,
+    path: 'M0 0L24 8L8 24L0 0Z',
   },
   [FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.topRight]: {
     type: FLOATING_ROUTE_MARKER_POINTER_TYPES.diagonal,
-    content: ({ background }) => <path d="M24 0L0 8L16 24L24 0Z" fill={background} />,
+    path: 'M24 0L0 8L16 24L24 0Z',
   },
   [FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.topCenter]: {
-    type: FLOATING_ROUTE_MARKER_POINTER_TYPES.standard,
-    content: ({ background }) => (
-      <path d="M9.50131 10L0.5 0.998535L18.5 0.996582L9.50131 10Z" fill={background} />
-    ),
+    type: FLOATING_ROUTE_MARKER_POINTER_TYPES.vertical,
+    path: 'M9.49928 0L0.499411 9L18.5006 9L9.49928 0Z',
   },
   [FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.bottomLeft]: {
     type: FLOATING_ROUTE_MARKER_POINTER_TYPES.diagonal,
-    content: ({ background }) => <path d="M0 24L24 16L8 0L0 24Z" fill={background} />,
+    path: 'M0 24L24 16L8 0L0 24Z',
   },
   [FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.bottomRight]: {
     type: FLOATING_ROUTE_MARKER_POINTER_TYPES.diagonal,
-    content: ({ background }) => <path d="M24 24L0 16L16 0L24 24Z" fill={background} />,
+    path: 'M24 24L0 16L16 0L24 24Z',
   },
   [FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.bottomCenter]: {
-    type: FLOATING_ROUTE_MARKER_POINTER_TYPES.standard,
-    content: ({ background }) => (
-      <path d="M9.50131 10L0.5 0.998535L18.5 0.996582L9.50131 10Z" fill={background} />
-    ),
+    type: FLOATING_ROUTE_MARKER_POINTER_TYPES.vertical,
+    path: 'M9.50131 10L0.5 0.998535L18.5 0.996582L9.50131 10Z',
   },
   [FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.leftCenter]: {
-    type: FLOATING_ROUTE_MARKER_POINTER_TYPES.standard,
-    content: ({ background }) => (
-      <path d="M9.50131 10L0.5 0.998535L18.5 0.996582L9.50131 10Z" fill={background} />
-    ),
+    type: FLOATING_ROUTE_MARKER_POINTER_TYPES.horizontal,
+    path: 'M0 9L8.99988 0L8.99988 18L0 9Z',
   },
   [FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.rightCenter]: {
-    type: FLOATING_ROUTE_MARKER_POINTER_TYPES.standard,
-    content: ({ background }) => (
-      <path d="M9.50131 10L0.5 0.998535L18.5 0.996582L9.50131 10Z" fill={background} />
-    ),
+    type: FLOATING_ROUTE_MARKER_POINTER_TYPES.horizontal,
+    path: 'M10 9L0.99762 0L0.998596 18L10 9Z',
   },
 };
 
@@ -78,7 +68,7 @@ const Pointer = ({ background, position }) => {
     <svg
       className={css({
         position: 'absolute',
-        ...FLOATING_ROUTE_MARKER_POINTER_POSITIONS[position],
+        // ...FLOATING_ROUTE_MARKER_POINTER_POSITIONS[position],
         filter: `drop-shadow(${theme.lighting.shadow600})`,
       })}
       {...FLOATING_ROUTE_MARKER_POINTER_TYPE_WRAPPER_SIZES[POINTERS[position].type]}
@@ -96,9 +86,9 @@ const FloatingRouteMarker = ({
   endEnhancer: EndEnhancer,
   overrides = {},
   selected = false,
-  anchor,
+  anchorPosition,
 }: FloatingRouteMarkerProps) => {
-  const [, theme] = useStyletron();
+  const [css, theme] = useStyletron();
 
   const backgroundColor = selected
     ? theme.colors.backgroundInversePrimary
@@ -112,13 +102,10 @@ const FloatingRouteMarker = ({
 
   const [ContentItem, contentItemProps] = getOverrides(overrides.ContentItem, StyledContentItem);
 
-  const [LabelContent, labelContentProps] = getOverrides(
-    overrides.LabelContent,
-    StyledLabelContent
-  );
+  const [PrimaryLabel, primaryLabelProps] = getOverrides(overrides.PrimaryLabel, LabelMedium);
+  const [SecondaryLabel, secondaryLabelProps] = getOverrides(overrides.SecondaryLabel, LabelSmall);
 
-  const [PrimaryLabel, primaryLabelProps] = getOverrides(overrides.PrimaryLabel, StyledLabel);
-  const [SecondaryLabel, secondaryLabelProps] = getOverrides(overrides.SecondaryLabel, StyledLabel);
+  const [Pointer, pointerProps] = getOverrides(overrides.Pointer, StyledFloatingRouteMarkerPointer);
 
   const height = 28;
   const size = PINHEAD_SIZES_SHAPES.medium;
@@ -139,22 +126,35 @@ const FloatingRouteMarker = ({
         </ContentItem>
       )}
       {label && (
-        <LabelContent $color={color} $size={size} {...labelContentProps}>
+        <div
+          className={css({
+            display: 'flex',
+            flexDirection: 'column',
+          })}
+        >
           <PrimaryLabel $color={color} {...primaryLabelProps}>
             {label}
           </PrimaryLabel>
           <SecondaryLabel $color={secondaryLabelColor} {...secondaryLabelProps}>
             {secondaryLabel}
           </SecondaryLabel>
-        </LabelContent>
+        </div>
       )}
       {EndEnhancer && (
         <ContentItem $color={color} $size={size} {...contentItemProps}>
           <EndEnhancer size={icon} />
         </ContentItem>
       )}
+      <Pointer
+        {...pointerProps}
+        $position={anchorPosition}
+        xmlns="http://www.w3.org/2000/svg"
+        {...FLOATING_ROUTE_MARKER_POINTER_TYPE_WRAPPER_SIZES[POINTERS[anchorPosition].type]}
+      >
+        <path d={POINTERS[anchorPosition].path} fill={'red'} />
+      </Pointer>
 
-      {anchor && <Pointer background={backgroundColor} position={anchor} />}
+      {/* {anchorPosition && <Pointer background={backgroundColor} position={anchorPosition} />} */}
     </Root>
   );
 };

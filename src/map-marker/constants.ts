@@ -239,15 +239,15 @@ export const EARNER_LOCATION_PUCK_CORE_SCALES = Object.freeze({
 export const FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS = {
   topLeft: 'top-left',
   topRight: 'top-right',
-  topCenter: 'top-center',
   bottomLeft: 'bottom-left',
   bottomRight: 'bottom-right',
+  topCenter: 'top-center',
   bottomCenter: 'bottom-center',
   leftCenter: 'left-center',
   rightCenter: 'right-center',
 };
 
-export const FLOATING_ROUTE_MARKER_POINTER_POSITIONS = {
+export const FLOATING_ROUTE_MARKER_POINTER_TRANSFORMS = {
   [FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.topLeft]: {
     transform: `translate(-33.33%, -33.33%)`,
   },
@@ -255,10 +255,7 @@ export const FLOATING_ROUTE_MARKER_POINTER_POSITIONS = {
     right: 0,
     transform: `translate(33.33%, -33.33%)`,
   },
-  [FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.topCenter]: {
-    right: '50%',
-    transform: `translate(50%, -100%) rotate(180deg)`,
-  },
+
   [FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.bottomLeft]: {
     transform: `translate(-33.33%, 33.33%)`,
     bottom: 0,
@@ -268,6 +265,10 @@ export const FLOATING_ROUTE_MARKER_POINTER_POSITIONS = {
     transform: `translate(33.33%, 33.33%)`,
     bottom: 0,
   },
+  [FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.topCenter]: {
+    right: '50%',
+    transform: `translate(50%, -100%) rotate(180deg)`,
+  },
   [FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.bottomCenter]: {
     bottom: 0,
     right: '50%',
@@ -275,19 +276,20 @@ export const FLOATING_ROUTE_MARKER_POINTER_POSITIONS = {
   },
   [FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.leftCenter]: {
     top: '50%',
-    transform: `translate(0%, -50%) rotate(90deg)`,
+    // left: 0,
+    transform: `translate(-100%, -50%)`,
   },
   [FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.rightCenter]: {
     left: '100%',
     top: '50%',
-    transform: `translate(0%, -50%) rotate(270deg)`,
-    transformOrigin: 'center',
+    transform: `translate(0%, -50%)`,
   },
 };
 
 export const FLOATING_ROUTE_MARKER_POINTER_TYPES = {
   diagonal: 'diagonal',
-  standard: 'standard',
+  horizontal: 'horizontal',
+  vertical: 'vertical',
 };
 
 export const FLOATING_ROUTE_MARKER_POINTER_TYPE_WRAPPER_SIZES = {
@@ -296,9 +298,14 @@ export const FLOATING_ROUTE_MARKER_POINTER_TYPE_WRAPPER_SIZES = {
     width: '24',
     viewBox: '0 0 24 24',
   },
-  [FLOATING_ROUTE_MARKER_POINTER_TYPES.standard]: {
-    height: '10',
+  [FLOATING_ROUTE_MARKER_POINTER_TYPES.vertical]: {
+    height: '9',
     width: '18',
-    viewBox: '0 0 18 10',
+    viewBox: '0 0 9 10',
+  },
+  [FLOATING_ROUTE_MARKER_POINTER_TYPES.horizontal]: {
+    height: '18',
+    width: '9',
+    viewBox: '0 0 9 18',
   },
 };

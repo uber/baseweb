@@ -44,7 +44,7 @@ export function Scenario() {
             key={x}
             label={label}
             secondaryLabel={secondaryLabel}
-            anchor={position}
+            anchorPosition={position}
             selected={selected}
             startEnhancer={
               startEnhancer

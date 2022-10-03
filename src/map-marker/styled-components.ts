@@ -10,6 +10,7 @@ import {
   FLOATING_MARKER_ANCHOR_POSITIONS,
   LABEL_SIZES,
   EARNER_LOCATION_PUCK_CORE_SCALES,
+  FLOATING_ROUTE_MARKER_POINTER_TRANSFORMS,
 } from './constants';
 
 import type {
@@ -19,6 +20,7 @@ import type {
   BadgePosition,
   PinHeadSize,
   LocationPuckSize,
+  FloatingRouteMarkerAnchorPosition,
 } from './types';
 import type { StyleObject } from 'styletron-react';
 
@@ -416,22 +418,6 @@ export const StyledFloatingRouteMarkerRoot = styled<
 });
 StyledFloatingRouteMarkerRoot.displayName = 'StyledFloatingRouteMarkerRoot';
 
-export const StyledLabelContent = styled<
-  'div',
-  {
-    $color: string;
-    $height: number;
-    $size: PinHeadSizeT;
-  }
->('div', ({ $theme, $color, $height, $size }) => {
-  return {
-    ...$theme.typography[LABEL_SIZES[$size]],
-    display: 'flex',
-    flexDirection: 'column',
-  };
-});
-StyledLabelContent.displayName = 'StyledLabelContent';
-
 export const StyledLabel = styled<
   'div',
   {
@@ -511,3 +497,18 @@ export const StyledEarnerLocationPuckCore = styled<
 });
 
 StyledEarnerLocationPuckCore.displayName = 'StyledEarnerLocationPuckCore';
+
+export const StyledFloatingRouteMarkerPointer = styled<
+  'svg',
+  {
+    $position: FloatingRouteMarkerAnchorPosition;
+  }
+>('svg', ({ $theme, $position }) => {
+  return {
+    position: 'absolute',
+    ...FLOATING_ROUTE_MARKER_POINTER_TRANSFORMS[$position],
+    filter: `drop-shadow(${$theme.lighting.shadow600})`,
+  };
+});
+
+StyledFloatingRouteMarkerPointer.displayName = 'StyledFloatingRouteMarkerPointer ';
