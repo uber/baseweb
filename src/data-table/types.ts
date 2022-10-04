@@ -89,6 +89,7 @@ export type RowAction = {
 
 export type ImperativeMethods = {
   getRows: () => Row[];
+  clearSelection: () => void;
 };
 
 export type ControlRef = {

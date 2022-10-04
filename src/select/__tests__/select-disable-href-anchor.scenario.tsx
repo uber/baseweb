@@ -16,9 +16,9 @@ export function Scenario() {
     <StatefulSelect
       startOpen
       options={[
-        { id: 'a', label: 'hey!', href: 'https://baseui.design' },
-        { id: 'b', label: 'are you listening?', href: 'https://baseui.design' },
-        { id: 'c', label: 'look at me!', href: 'https://baseui.design' },
+        { id: 'a', label: 'hey!', href: 'https://baseweb.design' },
+        { id: 'b', label: 'are you listening?', href: 'https://baseweb.design' },
+        { id: 'c', label: 'look at me!', href: 'https://baseweb.design' },
       ]}
     />
   );

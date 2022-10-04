@@ -13,11 +13,8 @@ export function getTable(page: Page) {
   return page.$('div[data-baseweb="data-table"]');
 }
 
-export function getHeaderCellAtIndex(page: Page, index: number) {
-  return page.$(
-    // plus one to convert to one indexed item
-    `${TABLE_ROOT} > div > div:nth-child(${index + 1})`
-  );
+export function getTableLocator(page: Page) {
+  return page.locator('div[data-baseweb="data-table"]');
 }
 
 export function getCellsAtColumnIndex(page: Page, columnCount: number, index: number) {
@@ -38,25 +35,15 @@ export function getCellsAtColumnIndex(page: Page, columnCount: number, index: nu
 
 export async function getCellContentsAtColumnIndex(page: Page, columnCount: number, index: number) {
   const elements = await getCellsAtColumnIndex(page, columnCount, index);
-
-  function getTextContentFromElements(page, elements) {
-    return Promise.all(
-      elements.map((element) => {
-        return page.evaluate((e) => e.textContent, element);
-      })
-    );
-  }
-
-  return getTextContentFromElements(page, elements.filter(Boolean));
-}
-
-export function getActionButtonByLabel(parent: Page, label: string) {
-  return parent.$(`button[alt="${label}"]`);
+  return Promise.all(elements.filter(Boolean).map((element) => element.textContent()));
 }
 
 export async function sortColumnAtIndex(page: Page, index: number) {
-  const headerCell = await getHeaderCellAtIndex(page, index);
-  const sortButton = await headerCell.$('div[role="button"]');
+  const headerCell = page.locator(
+    // plus one to convert to one indexed item
+    `${TABLE_ROOT} > div > div:nth-child(${index + 1})`
+  );
+  const sortButton = headerCell.locator('div[role="button"]');
   return sortButton.click();
 }
 

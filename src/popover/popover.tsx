@@ -73,7 +73,7 @@ class PopoverInner extends React.Component<PopoverProps, PopoverPrivateState> {
         console.warn(
           `[baseui][Popover] ref has not been passed to the Popper's anchor element.
               See how to pass the ref to an anchor element in the Popover example
-              http://baseui.design/components/popover#anchor-ref-handling-example`
+              https://baseweb.design/components/popover/#anchor-ref-handling-example`
         );
       }
     }
@@ -237,7 +237,7 @@ class PopoverInner extends React.Component<PopoverProps, PopoverPrivateState> {
     if (!popper || popper === target || (target instanceof Node && popper.contains(target))) {
       return;
     }
-    if (!anchor || anchor === target || (target instanceof Node && popper.contains(target))) {
+    if (!anchor || anchor === target || (target instanceof Node && anchor.contains(target))) {
       return;
     }
     if (this.props.onClickOutside) {

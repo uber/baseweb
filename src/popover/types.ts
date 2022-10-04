@@ -81,7 +81,7 @@ export type BasePopoverProps = {
   onMouseLeaveDelay?: number;
   overrides?: PopoverOverrides;
   /** How to position the popover relative to the target. */
-  placement: TetherPlacement;
+  placement?: TetherPlacement;
   /** Popper options override
    * https://github.com/popperjs/popper.js/blob/v1.x/docs/_includes/popper-documentation.md
    */
@@ -96,7 +96,7 @@ export type BasePopoverProps = {
   /** Whether or not to show the arrow pointing from the popover to the trigger. */
   showArrow?: boolean;
   /** Whether to toggle the popover when trigger is clicked or hovered. */
-  triggerType: TriggerType;
+  triggerType?: TriggerType;
   /** Margin of the popover */
   popoverMargin?: number;
 };
@@ -126,9 +126,9 @@ export type StatefulPopoverProps = BasePopoverProps & {
   /** Content to render within the popover when it's shown. */
   content: React.ReactNode | StatefulContentRenderProp;
   /** Whether to hide the popover when the user clicks anywhere outside the trigger/popover. */
-  dismissOnClickOutside: boolean;
+  dismissOnClickOutside?: boolean;
   /** Whether to hide the popover when the user presses the escape key. */
-  dismissOnEsc: boolean;
+  dismissOnEsc?: boolean;
   /** Initial state populated into the component */
   initialState?: State;
   /** Event handler when popover is hidden. */

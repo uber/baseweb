@@ -14,6 +14,7 @@ import Negative from 'examples/progress-bar/negative.js';
 import WithLabel from 'examples/progress-bar/with-label.js';
 import CustomLabel from 'examples/progress-bar/custom-label.js';
 import Customization from 'examples/progress-bar/overrides.js';
+import Steps from 'examples/progress-bar/steps.js';
 import ProgressBarRounded from 'examples/progress-bar/rounded.js';
 
 import { ProgressBar } from 'baseui/progress-bar';
@@ -58,6 +59,14 @@ Indicates a wait time for actions - either within an experience flow or loading 
 
 <Example title="Progress bar with Overrides" path="progress-bar/overrides.js">
   <Customization />
+</Example>
+
+## Stepped Progress Bar
+
+There is a stepped version of the progress bar. This is useful when an action requires a determinate amount of steps or stages to complete. Each step is a waiting indicator progressing by system action or human interaction.
+
+<Example title="Steps" path="progress-bar/steps.js">
+  <Steps />
 </Example>
 
 ## Progress bar rounded

@@ -7,28 +7,23 @@ LICENSE file in the root directory of this source tree.
 
 import { expect, test } from '@playwright/test';
 import { mount } from '../../test/integration';
-import { getActionButtonByLabel } from './utilities';
 
 test.describe('data-table-row-actions-dynamic', () => {
   test('renders provided row action buttons', async ({ page }) => {
     await mount(page, 'data-table--row-actions-dynamic');
 
-    // hover first row
-    await page.mouse.move(150, 175);
+    const stable = page.locator('button[title="stable-action-icon"]');
+    const dynamic = page.locator('button[title="dynamic-action-icon"]');
 
-    const a = await getActionButtonByLabel(page, 'stable-action-icon');
-    expect(a).toBeTruthy();
+    expect(stable).toBeHidden();
+    expect(dynamic).toBeHidden();
 
-    const b = await getActionButtonByLabel(page, 'dynamic-action-icon');
-    expect(b).toBeFalsy();
+    await page.locator('text=1').first().hover();
+    expect(stable).toBeVisible();
+    expect(dynamic).toBeHidden();
 
-    // hover second row
-    await page.mouse.move(150, 215);
-
-    const c = await getActionButtonByLabel(page, 'stable-action-icon');
-    expect(c).toBeTruthy();
-
-    const d = await getActionButtonByLabel(page, 'dynamic-action-icon');
-    expect(d).toBeTruthy();
+    await page.locator('text=2').first().hover();
+    expect(stable).toBeVisible();
+    expect(dynamic).toBeVisible();
   });
 });
