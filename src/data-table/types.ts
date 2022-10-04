@@ -122,6 +122,8 @@ export type StatefulDataTableProps = {
   onIncludedRowsChange?: (rows: Row[]) => void;
   onRowHighlightChange?: (rowIndex: number, row: Row) => void;
   onSelectionChange?: (a: Row[]) => unknown;
+  onSort?: (columnIndex: number, sortDirection: SortDirections) => void;
+  onTextQueryChange?: (textQuery: string) => void;
   resizableColumnWidths?: boolean;
   rows: Row[];
   rowActions?: RowAction[] | ((a: Row) => RowAction[]);

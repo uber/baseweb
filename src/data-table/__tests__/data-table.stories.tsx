@@ -33,6 +33,7 @@ import { Scenario as DataTableRowActions } from './data-table-row-actions.scenar
 import { Scenario as DataTableRowActionsButton } from './data-table-row-actions-button.scenario';
 import { Scenario as DataTableRowActionsDynamic } from './data-table-row-actions-dynamic.scenario';
 import { Scenario as DataTableRowHeight } from './data-table-row-height.scenario';
+import { Scenario as DataTableStatefulCallback } from './data-table-stateful-callback.scenario';
 import { Scenario as DataTableTextSearch } from './data-table-text-search.scenario';
 import { Scenario as DataTableDefault } from './data-table.scenario';
 import { Scenario as DataTableRtl } from './data-table-rtl.scenario';
@@ -66,6 +67,7 @@ export const RowActions = () => <DataTableRowActions />;
 export const RowActionsButton = () => <DataTableRowActionsButton />;
 export const RowActionsDynamic = () => <DataTableRowActionsDynamic />;
 export const RowHeight = () => <DataTableRowHeight />;
+export const StatefulCallback = () => <DataTableStatefulCallback />;
 export const TextSearch = () => <DataTableTextSearch />;
 export const DataTable = () => <DataTableDefault />;
 export const TestRtl = () => <DataTableRtl />;
