@@ -14,7 +14,7 @@ export type SkeletonOverrides = {
 export type SkeletonProps = {
   overrides?: SkeletonOverrides;
   /** Defines the number of row element in a skeleton */
-  rows: number;
+  rows?: number;
   /** Defines if the skeleton has an animation default is false*/
   animation: boolean;
   /** Defines the height of the skeleton container*/
