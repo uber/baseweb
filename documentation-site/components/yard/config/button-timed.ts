@@ -51,7 +51,7 @@ const ButtonTimedConfig: TConfig = {
       type: PropTypes.Function,
       description: `Function called when time runs out or button is clicked.`,
     },
-    time: {
+    initialTime: {
       value: 15,
       type: PropTypes.Number,
       description: `Number of seconds before onClick is automatically invoked`,
@@ -61,33 +61,39 @@ const ButtonTimedConfig: TConfig = {
       placeholder: '() => <span>🦊</span>',
       type: PropTypes.Function,
       description: `A component rendered at the start of the button.`,
+      hidden: true,
     },
     endEnhancer: {
       value: undefined,
       placeholder: '<i>world!</i>',
       type: PropTypes.Function,
       description: `A component rendered at the end of the button.`,
+      hidden: true,
     },
     disabled: {
       value: false,
       type: PropTypes.Boolean,
       description: 'Indicates that the button is disabled',
+      hidden: true,
     },
     colors: {
       value: undefined,
       defaultValue: '{backgroundColor: "#03703c", color: "white"}',
       type: PropTypes.Object,
       description: 'Lets you customize the background and text color.',
+      hidden: true,
     },
     isLoading: {
       value: false,
       type: PropTypes.Boolean,
       description: 'Show loading button style and spinner.',
+      hidden: true,
     },
     isSelected: {
       value: false,
       type: PropTypes.Boolean,
       description: 'Indicates that the button is selected.',
+      hidden: true,
     },
     overrides: {
       value: undefined,

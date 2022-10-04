@@ -5,9 +5,12 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
+import Example from '../../components/example';
 import Exports from '../../components/exports';
 import Layout from '../../components/layout';
 import SEO from '../../components/meta-seo';
+
+import Paused from 'examples/button-timed/paused.js';
 
 import { ButtonTimed } from 'baseui/button';
 import * as ButtonTimedExports from 'baseui/button-timed';
@@ -32,5 +35,13 @@ Timed buttons are a variation of our primary rectangular buttons. Unlike like st
 ## When to use
 
 Timed buttons should be used sparingly for offers or autoconfirming non-critical decisions. They should be used only on primary actions to focus attention and reduce cognitive load. They should not be used for actions that are critical or require more decision-making time.
+
+## Examples
+
+<Example title="Deferred initialization" path="button-timed/paused.js">
+  <Paused />
+</Example>
+
+Use the `pause` prop to declaratively start and pause the countdown timer.
 
 <Exports component={ButtonTimedExports} title="Button Timed exports" path="baseui/button-timed" />

@@ -581,7 +581,7 @@ const outlines = [
     file: 'src/button-timed/types.ts',
     definitions: [
       { name: 'ButtonTimedOverrides', lineStart: 10, children: [] },
-      { name: 'ButtonTimedProps', lineStart: 15, children: [] },
+      { name: 'ButtonTimedProps', lineStart: 14, children: [] },
     ],
   },
   {
@@ -1405,14 +1405,10 @@ const outlines = [
     definitions: [
       {
         name: 'HeaderNavigationOverrides',
-        lineStart: 9,
-        children: [{ name: 'Root', lineStart: 10 }],
+        lineStart: 10,
+        children: [{ name: 'Root', lineStart: 11 }],
       },
-      {
-        name: 'HeaderNavigationProps',
-        lineStart: 13,
-        children: [{ name: 'overrides', lineStart: 14 }],
-      },
+      { name: 'HeaderNavigationProps', lineStart: 14, children: [] },
     ],
   },
   {
