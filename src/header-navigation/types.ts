@@ -10,6 +10,6 @@ export type HeaderNavigationOverrides = {
   Root?: Override;
 };
 
-export type HeaderNavigationProps = {
+export type HeaderNavigationProps = React.PropsWithChildren<{
   overrides: HeaderNavigationOverrides;
-};
+}>;
