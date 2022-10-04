@@ -574,8 +574,6 @@ const InnerTableElement = React.forwardRef<
               const RowActionIcon = rowAction.renderIcon;
               return (
                 <Button
-                  // @ts-expect-error todo(flow->ts): alt on button?
-                  alt={rowAction.label}
                   key={rowAction.label}
                   onClick={(event) =>
                     rowAction.onClick({
@@ -586,6 +584,7 @@ const InnerTableElement = React.forwardRef<
                   size={BUTTON_SIZES.compact}
                   kind={BUTTON_KINDS.tertiary}
                   shape={BUTTON_SHAPES.round}
+                  title={rowAction.label}
                   overrides={{
                     BaseButton: {
                       style: {
@@ -806,8 +805,6 @@ export function DataTable({
     return result;
   }, [sortedIndices, filteredIndices, onIncludedRowsChange, allRows]);
 
-  React.useImperativeHandle(controlRef, () => ({ getRows: () => rows }), [rows]);
-
   const [browserScrollbarWidth, setBrowserScrollbarWidth] = React.useState(0);
   const normalizedWidths = React.useMemo(() => {
     const resizedWidths = measuredWidths.map((w, i) => Math.floor(w) + Math.floor(resizeDeltas[i]));
@@ -899,6 +896,15 @@ export function DataTable({
       }
     },
     [onSort]
+  );
+
+  React.useImperativeHandle(
+    controlRef,
+    () => ({
+      clearSelection: handleSelectNone,
+      getRows: () => rows,
+    }),
+    [handleSelectNone, rows]
   );
 
   const [columnHighlightIndex, setColumnHighlightIndex] = React.useState(-1);

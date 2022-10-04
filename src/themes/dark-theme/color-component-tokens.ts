@@ -25,8 +25,7 @@ export default (themePrimitives: ColorTokens = colorTokens): ComponentColorToken
   bannerActionHighWarning: themePrimitives.warning600,
 
   // Buttons
-  buttonPrimaryFill: themePrimitives.primary,
-
+  buttonPrimaryFill: themePrimitives.primaryA,
   buttonPrimaryText: themePrimitives.black,
   buttonPrimaryHover: themePrimitives.primary100,
   buttonPrimaryActive: themePrimitives.primary200,

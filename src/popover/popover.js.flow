@@ -79,7 +79,7 @@ class PopoverInner extends React.Component<PopoverPropsT, PopoverPrivateStateT> 
         console.warn(
           `[baseui][Popover] ref has not been passed to the Popper's anchor element.
               See how to pass the ref to an anchor element in the Popover example
-              http://baseui.design/components/popover#anchor-ref-handling-example`
+              https://baseweb.design/components/popover/#anchor-ref-handling-example`
         );
       }
     }
@@ -115,7 +115,7 @@ class PopoverInner extends React.Component<PopoverPropsT, PopoverPrivateStateT> 
       isAnimating: false,
       arrowOffset: { left: 0, top: 0 },
       popoverOffset: { left: 0, top: 0 },
-      placement: props.placement,
+      placement: props.placement || PLACEMENT.auto,
       isMounted: false,
       isLayerMounted: false,
       autoFocusAfterPositioning: false,
@@ -328,7 +328,7 @@ class PopoverInner extends React.Component<PopoverPropsT, PopoverPrivateStateT> 
 
   getSharedProps(): $Diff<SharedStylePropsArgT, { children?: React.Node }> {
     const { isOpen, showArrow, popoverMargin = POPOVER_MARGIN } = this.props;
-    const { isAnimating, arrowOffset, popoverOffset, placement } = this.state;
+    const { isAnimating, arrowOffset, popoverOffset, placement = PLACEMENT.auto } = this.state;
     return {
       $showArrow: !!showArrow,
       $arrowOffset: arrowOffset,
