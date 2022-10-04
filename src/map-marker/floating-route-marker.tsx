@@ -60,24 +60,24 @@ const POINTERS = {
   },
 };
 
-const Pointer = ({ background, position }) => {
-  const [css, theme] = useStyletron();
-  console.log(background);
-  const PointerAnchor = POINTERS[position].content;
-  return (
-    <svg
-      className={css({
-        position: 'absolute',
-        // ...FLOATING_ROUTE_MARKER_POINTER_POSITIONS[position],
-        filter: `drop-shadow(${theme.lighting.shadow600})`,
-      })}
-      {...FLOATING_ROUTE_MARKER_POINTER_TYPE_WRAPPER_SIZES[POINTERS[position].type]}
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <PointerAnchor background={background} />
-    </svg>
-  );
-};
+// const Pointer = ({ background, position }) => {
+//   const [css, theme] = useStyletron();
+//   console.log(background);
+//   const PointerAnchor = POINTERS[position].content;
+//   return (
+//     <svg
+//       className={css({
+//         position: 'absolute',
+//         // ...FLOATING_ROUTE_MARKER_POINTER_POSITIONS[position],
+//         filter: `drop-shadow(${theme.lighting.shadow600})`,
+//       })}
+//       {...FLOATING_ROUTE_MARKER_POINTER_TYPE_WRAPPER_SIZES[POINTERS[position].type]}
+//       xmlns="http://www.w3.org/2000/svg"
+//     >
+//       <PointerAnchor background={background} />
+//     </svg>
+//   );
+// };
 
 const FloatingRouteMarker = ({
   label,
@@ -146,12 +146,12 @@ const FloatingRouteMarker = ({
         </ContentItem>
       )}
       <Pointer
-        {...pointerProps}
         $position={anchorPosition}
         xmlns="http://www.w3.org/2000/svg"
         {...FLOATING_ROUTE_MARKER_POINTER_TYPE_WRAPPER_SIZES[POINTERS[anchorPosition].type]}
+        {...pointerProps}
       >
-        <path d={POINTERS[anchorPosition].path} fill={'red'} />
+        <path d={POINTERS[anchorPosition].path} fill={backgroundColor} />
       </Pointer>
 
       {/* {anchorPosition && <Pointer background={backgroundColor} position={anchorPosition} />} */}
