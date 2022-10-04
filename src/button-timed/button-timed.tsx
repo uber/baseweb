@@ -64,7 +64,14 @@ const ButtonTimed = (props: ButtonTimedProps) => {
         },
       },
     },
-    buttonOverrides
+    {
+      Root: buttonOverrides.Root || {},
+      BaseButton: buttonOverrides.BaseButton,
+      StartEnhancer: buttonOverrides.StartEnhancer || {},
+      EndEnhancer: buttonOverrides.EndEnhancer || {},
+      LoadingSpinnerContainer: buttonOverrides.LoadingSpinnerContainer || {},
+      LoadingSpinner: buttonOverrides.LoadingSpinner || {},
+    }
   );
 
   return (
