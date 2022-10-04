@@ -6,44 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { ButtonTimed as ButtonTimedBase } from '..';
+import { ButtonTimed } from '..';
 import { Button, KIND } from '../../button';
-
-const ButtonTimed = (props) => {
-  const { initialTime, onClick: onClickProp, children, paused, ...restProps } = props;
-  const [timeRemaining, setTimeRemaining] = React.useState<number>(initialTime);
-
-  React.useEffect(() => {
-    const interval = setInterval(() => {
-      if (timeRemaining > 0 && !paused) {
-        setTimeRemaining((seconds) => seconds - 1);
-      }
-    }, 1000);
-    if (timeRemaining === 0) {
-      onClickProp();
-    }
-    return () => clearInterval(interval);
-  }, [timeRemaining, paused]);
-
-  const onClick = () => {
-    setTimeRemaining(0);
-    onClickProp();
-  };
-
-  return (
-    <ButtonTimedBase
-      {...restProps}
-      initialTime={initialTime}
-      onClick={onClick}
-      timeRemaining={timeRemaining}
-      overrides={{
-        BaseButton: { props: { 'data-id': 'first' } },
-      }}
-    >
-      {children}
-    </ButtonTimedBase>
-  );
-};
 
 export function Scenario() {
   const [finished1, setFinished1] = React.useState(false);
@@ -51,12 +15,12 @@ export function Scenario() {
   const [finished3, setFinished3] = React.useState(false);
   const [finished4, setFinished4] = React.useState(false);
 
-  const [paused, setPaused] = React.useState(false);
+  const [paused, setPaused] = React.useState(true);
 
   return (
     <div>
       <Button kind={KIND.secondary} onClick={() => setPaused(!paused)}>
-        Pause
+        {paused ? 'Run' : 'Pause'}
       </Button>
 
       <div>

@@ -11,20 +11,37 @@ import {
   BaseButtonTimed as StyledBaseButtonTimed,
   TimerContainer as StyledTimerContainer,
 } from './styled-components';
-import { usePaused } from './use-paused';
 import { formatTime } from './utils';
 import { getOverrides, mergeOverrides } from '../helpers/overrides';
 
-const ButtonTimed = ({
-  initialTime,
-  timeRemaining,
-  onClick,
-  disabled,
-  children,
-  overrides = {},
-  ...restProps
-}: ButtonTimedProps) => {
-  const paused = usePaused(timeRemaining);
+const ButtonTimed = (props: ButtonTimedProps) => {
+  const {
+    initialTime,
+    paused = false,
+    onClick: onClickProp,
+    disabled,
+    children,
+    overrides = {},
+    ...restProps
+  } = props;
+  const [timeRemaining, setTimeRemaining] = React.useState<number>(initialTime);
+
+  React.useEffect(() => {
+    const timerId = setTimeout(() => {
+      if (timeRemaining > 0 && !paused) {
+        setTimeRemaining((seconds) => seconds - 1);
+      }
+    }, 1000);
+    if (timeRemaining === 0) {
+      onClickProp();
+    }
+    return () => clearTimeout(timerId);
+  }, [timeRemaining, paused]);
+
+  const onClick = () => {
+    setTimeRemaining(0);
+    onClickProp();
+  };
 
   const { TimerContainer: TimerContainerOverride, ...buttonOverrides } = overrides;
   const [TimerContainer, timerContainerProps] = getOverrides(
