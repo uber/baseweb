@@ -44,7 +44,7 @@ function Card(props: CardsPropsT) {
   const {
     action,
     children,
-    hasThumbnail,
+    hasThumbnail: hasThumbnailProp = hasThumbnail,
     headerImage,
     thumbnail: thumbnailSrc,
     title,

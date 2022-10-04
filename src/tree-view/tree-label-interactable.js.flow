@@ -12,6 +12,8 @@ import type { OverrideT } from '../helpers/overrides.js';
 
 const TreeLabelInteractable: React$ComponentType<{
   overrides?: { LabelInteractable: OverrideT },
+  /** Content to be rendered in the TreeLabelInteractable. */
+  children?: React$Node,
 }> = ({ overrides = {}, ...props }) => {
   const LabelInteractable = getOverride(overrides.LabelInteractable) || StyledLabelInteractable;
   return (
