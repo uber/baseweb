@@ -36,7 +36,7 @@ class Skeleton extends React.Component<SkeletonPropsT> {
               <Row
                 $animation={this.props.animation}
                 key={index}
-                $isLastRow={index === this.props.rows - 1}
+                $isLastRow={index === (typeof this.props.rows !== 'undefined' ? this.props.rows : 0) - 1}
                 {...rowProps}
               ></Row>
             ))}
