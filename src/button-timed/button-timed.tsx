@@ -16,7 +16,7 @@ import { getOverrides, mergeOverrides } from '../helpers/overrides';
 
 const ButtonTimed = (props: ButtonTimedProps) => {
   const {
-    initialTime,
+    initialTime, // in seconds
     paused = false,
     onClick: onClickProp,
     disabled,
@@ -24,14 +24,14 @@ const ButtonTimed = (props: ButtonTimedProps) => {
     overrides = {},
     ...restProps
   } = props;
-  const [timeRemaining, setTimeRemaining] = React.useState<number>(initialTime);
+  const [timeRemaining, setTimeRemaining] = React.useState<number>(initialTime * 1000);
 
   React.useEffect(() => {
     const timerId = setTimeout(() => {
       if (timeRemaining > 0 && !paused) {
-        setTimeRemaining((seconds) => seconds - 1);
+        setTimeRemaining((seconds) => seconds - 100);
       }
-    }, 1000);
+    }, 100);
     if (timeRemaining === 0) {
       onClickProp();
     }
@@ -55,7 +55,7 @@ const ButtonTimed = (props: ButtonTimedProps) => {
         component: StyledBaseButtonTimed,
         props: {
           $initialTime: initialTime,
-          $timeElapsed: initialTime - timeRemaining,
+          $timeElapsed: (initialTime * 1000 - timeRemaining) / 1000,
         },
         style: {
           ':after': {
