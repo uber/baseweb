@@ -89,6 +89,7 @@ export type RowActionT = {|
 
 type ImperativeMethodsT = {|
   getRows: () => RowT[],
+  clearSelection: () => mixed,
 |};
 export type ControlRefT = {
   current: ImperativeMethodsT | null,
@@ -110,6 +111,7 @@ export type StatefulDataTablePropsT = {|
   onIncludedRowsChange?: (rows: RowT[]) => void,
   onRowHighlightChange?: (rowIndex: number, row: RowT) => void,
   onSelectionChange?: (RowT[]) => mixed,
+  onSort?: (columnIndex: number, sortDirection: SortDirectionsT) => void,
   resizableColumnWidths?: boolean,
   rows: RowT[],
   rowActions?: RowActionT[] | ((RowT) => RowActionT[]),
