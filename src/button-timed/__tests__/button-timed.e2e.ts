@@ -22,7 +22,19 @@ test.describe('button-timed', () => {
     await mount(page, 'button-timed--button-timed');
     await page.waitForSelector(firstBtn);
     await page.click(firstBtn);
-    await expect(page.locator(`${firstBtn} span`)).toHaveText('(0:00)');
-    await expect(page.locator(firstBtn)).toBeDisabled();
+    expect(page.locator(`${firstBtn} span`)).toHaveText('(0:00)');
+    expect(page.locator(firstBtn)).toBeDisabled();
+  });
+
+  test('pause controls whether the countdown timer runs', async ({ page }) => {
+    const firstBtn = '[data-testid="first"]';
+
+    await mount(page, 'button-timed--button-timed');
+    await page.waitForSelector(firstBtn);
+    expect(page.locator(`${firstBtn} span`)).toHaveText('(0:02)');
+
+    await page.locator('text=Run').click();
+    await page.waitForTimeout(1300);
+    expect(page.locator(`${firstBtn} span`)).toHaveText('(0:01)');
   });
 });

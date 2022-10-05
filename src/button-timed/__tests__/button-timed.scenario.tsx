@@ -26,7 +26,7 @@ export function Scenario() {
       <div>
         <ButtonTimed
           onClick={() => setFinished1(true)}
-          initialTime={10}
+          initialTime={2}
           paused={paused}
           overrides={{
             BaseButton: { props: { 'data-testid': 'first' } },
@@ -38,21 +38,21 @@ export function Scenario() {
       </div>
 
       <div>
-        <ButtonTimed onClick={() => setFinished2(true)} initialTime={18} paused={paused}>
+        <ButtonTimed onClick={() => setFinished2(true)} initialTime={10} paused={paused}>
           Countdown
         </ButtonTimed>
         {finished2 && <span style={{ marginLeft: '20px', color: 'blue' }}>Time!</span>}
       </div>
 
       <div>
-        <ButtonTimed onClick={() => setFinished3(true)} initialTime={35} paused={paused}>
+        <ButtonTimed onClick={() => setFinished3(true)} initialTime={30} paused={paused}>
           Countdown
         </ButtonTimed>
         {finished3 && <span style={{ marginLeft: '20px', color: 'gold' }}>Time!</span>}
       </div>
 
       <div>
-        <ButtonTimed onClick={() => setFinished4(true)} initialTime={60} paused={paused}>
+        <ButtonTimed onClick={() => setFinished4(true)} initialTime={75} paused={paused}>
           Countdown
         </ButtonTimed>
         {finished4 && <span style={{ marginLeft: '20px', color: 'green' }}>Time!</span>}
