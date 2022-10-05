@@ -22,9 +22,9 @@ export type OverridesT = {
 
 export type ButtonTimedPropsT = {
   initialTime: number,
-  timeRemaining: number,
   onClick: (a?: SyntheticEvent<HTMLButtonElement>) => mixed,
   overrides?: OverridesT,
+  paused?: boolean,
   children?: React$Node,
   colors?: CustomColorsT,
   disabled?: boolean,
