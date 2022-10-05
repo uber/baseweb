@@ -17,7 +17,7 @@ test.describe('button-timed', () => {
   });
 
   test('zeroes out countdown timer and disables button on click', async ({ page }) => {
-    const firstBtn = '[data-id="first"]';
+    const firstBtn = '[data-testid="first"]';
 
     await mount(page, 'button-timed--button-timed');
     await page.waitForSelector(firstBtn);

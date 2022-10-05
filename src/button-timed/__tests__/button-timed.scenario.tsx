@@ -29,7 +29,7 @@ export function Scenario() {
           initialTime={10}
           paused={paused}
           overrides={{
-            BaseButton: { props: { 'data-id': 'first' } },
+            BaseButton: { props: { 'data-testid': 'first' } },
           }}
         >
           Countdown
