@@ -10,17 +10,16 @@ import { render, getByTestId, act } from '@testing-library/react';
 
 import { ButtonTimed } from '..';
 
-jest.useFakeTimers();
-jest.spyOn(global, 'setTimeout');
-
 describe('ButtonTimed Component', () => {
-  test('onClick called when time runs out', async () => {
-    const onClick = jest.fn();
-    render(<ButtonTimed initialTime={1} onClick={onClick} />);
-    await act(async () => {
-      jest.advanceTimersByTime(2200);
+  beforeEach(() => {
+    jest.useFakeTimers();
+  });
+
+  afterEach(() => {
+    act(() => {
+      jest.runOnlyPendingTimers();
     });
-    expect(onClick).toHaveBeenCalledTimes(1);
+    jest.useRealTimers();
   });
 
   test('timeRemaining pauses correctly', async () => {
@@ -51,9 +50,18 @@ describe('ButtonTimed Component', () => {
         content
       </ButtonTimed>
     );
-    await act(async () => {
+    act(() => {
       jest.advanceTimersByTime(1300);
     });
     expect(getByTestId(container, 'timer-container').textContent).toBe('(0:02)');
+  });
+
+  test('onClick called when time runs out', async () => {
+    const onClick = jest.fn();
+    render(<ButtonTimed initialTime={1} onClick={onClick} />);
+    act(() => {
+      jest.advanceTimersByTime(1300);
+    });
+    expect(onClick).toHaveBeenCalledTimes(1);
   });
 });
