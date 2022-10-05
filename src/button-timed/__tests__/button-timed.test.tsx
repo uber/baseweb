@@ -10,12 +10,15 @@ import { render, getByTestId, act } from '@testing-library/react';
 
 import { ButtonTimed } from '..';
 
+jest.useFakeTimers();
+jest.spyOn(global, 'setTimeout');
+
 describe('ButtonTimed Component', () => {
   test('onClick called when time runs out', async () => {
     const onClick = jest.fn();
     render(<ButtonTimed initialTime={1} onClick={onClick} />);
     await act(async () => {
-      await new Promise((r) => setTimeout(r, 2000));
+      jest.advanceTimersByTime(2200);
     });
     expect(onClick).toHaveBeenCalledTimes(1);
   });
@@ -49,7 +52,7 @@ describe('ButtonTimed Component', () => {
       </ButtonTimed>
     );
     await act(async () => {
-      await new Promise((r) => setTimeout(r, 1300));
+      jest.advanceTimersByTime(1300);
     });
     expect(getByTestId(container, 'timer-container').textContent).toBe('(0:02)');
   });
