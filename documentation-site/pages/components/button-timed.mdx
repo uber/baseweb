@@ -1,0 +1,47 @@
+<!--
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import Exports from '../../components/exports';
+import Layout from '../../components/layout';
+import SEO from '../../components/meta-seo';
+
+import Paused from 'examples/button-timed/paused.js';
+
+import { ButtonTimed } from 'baseui/button';
+import * as ButtonTimedExports from 'baseui/button-timed';
+import ArrowRight from 'baseui/icon/arrow-right';
+
+import Yard from '../../components/yard/index';
+import buttonTimedYardConfig from '../../components/yard/config/button-timed';
+
+<SEO
+  description="Buttons provide allow users to process actions or navigate an experience. Timed buttons auto-advance the user after a finite amount of time (usually few seconds)."
+  keywords="button, auto-advance, timed button, react button, react cta, react call to action"
+/>
+
+export default Layout;
+
+# Button
+
+<Yard placeholderHeight={52} {...buttonTimedYardConfig} />
+
+Timed buttons are a variation of our primary rectangular buttons. Unlike like standard buttons, timed buttons auto-advance the user (i.e. invoke the onClick function) after a finite amount of time (usually few seconds).
+
+## When to use
+
+Timed buttons should be used sparingly for offers or autoconfirming non-critical decisions. They should be used only on primary actions to focus attention and reduce cognitive load. They should not be used for actions that are critical or require more decision-making time.
+
+## Examples
+
+<Example title="Deferred initialization" path="button-timed/paused.js">
+  <Paused />
+</Example>
+
+Use the `pause` prop to declaratively start and pause the countdown timer.
+
+<Exports component={ButtonTimedExports} title="Button Timed exports" path="baseui/button-timed" />
