@@ -7,24 +7,20 @@ LICENSE file in the root directory of this source tree.
 
 import { expect, test } from '@playwright/test';
 import { mount } from '../../test/integration';
+import { TABLE_ROOT } from './utilities';
 
 test.describe('data-table-rtl', () => {
   test('renders column cells in RTL order', async ({ page }) => {
     await mount(page, 'data-table--test-rtl', 'light', true);
-    // Row 1, cell1 should be rendered to the right
-    const cell1x1 = await page.$('[data-baseweb="data-table"] > div:nth-child(2)');
-    expect(await cell1x1.evaluate((node) => node.style.right)).toBe('0px');
+    const cell1x1 = page.locator(`${TABLE_ROOT} > div:nth-child(2)`);
+    await expect(cell1x1).toHaveCSS('right', '0px');
   });
 
   test('action row in RTL order', async ({ page }) => {
     await mount(page, 'data-table--test-rtl', 'light', true);
-    // Row 1, cell1
-    const cell1x1 = await page.$('[data-baseweb="data-table"] > div:nth-child(2)');
-    // Hover on Cell1x1
+    const cell1x1 = page.locator(`${TABLE_ROOT} > div:nth-child(2)`);
     await cell1x1.hover();
-    const actionRow = await page.$('[data-baseweb="data-table"] > div:last-child');
-    //Action row should be in RTL order
-    expect(await actionRow.evaluate((node) => node.style.right)).toBe('initial');
-    expect(await actionRow.evaluate((node) => node.style.left)).toBe('0px');
+    const actionRow = page.locator(`${TABLE_ROOT} > div:last-child`);
+    await expect(actionRow).toHaveCSS('left', '0px');
   });
 });

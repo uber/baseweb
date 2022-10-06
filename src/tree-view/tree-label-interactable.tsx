@@ -9,13 +9,15 @@ import { StyledLabelInteractable } from './styled-components';
 import { getOverride } from '../helpers/overrides';
 import type { Override } from '../helpers/overrides';
 
-import type { ComponentType } from 'react';
+import type { ComponentType, PropsWithChildren } from 'react';
 
-const TreeLabelInteractable: ComponentType<{
-  overrides?: {
-    LabelInteractable: Override;
-  };
-}> = ({ overrides = {}, ...props }) => {
+const TreeLabelInteractable: PropsWithChildren<
+  ComponentType<{
+    overrides?: {
+      LabelInteractable: Override;
+    };
+  }>
+> = ({ overrides = {}, ...props }) => {
   const LabelInteractable = getOverride(overrides.LabelInteractable) || StyledLabelInteractable;
   return (
     // $FlowExpectedError[cannot-spread-inexact]

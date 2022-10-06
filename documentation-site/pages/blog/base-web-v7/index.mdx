@@ -1,6 +1,6 @@
 import Layout from '../../../components/layout';
-import {Table} from 'baseui/table';
-import {BlogImage, Demo, Meta} from '../../../components/blog';
+import { Table } from 'baseui/table';
+import { BlogImage, Demo, Meta } from '../../../components/blog';
 import metadata from './metadata.json';
 
 export default Layout;
@@ -63,12 +63,12 @@ type PropsT = {$active: boolean};
 ### Better type checks
 
 ```javascript
-type PropsT = {$active: boolean};
+type PropsT = { $active: boolean };
 const MyStyledComponent =
   styled <
   PropsT >
   ('div',
-  props => {
+  (props) => {
     console.log(props.$notReal); // is now a flow error
     return {
       backgroundColor: props.$active
@@ -337,11 +337,11 @@ Removes `StyledRadio` and `StyledRadioMark` overrides and components.
 
 ### Migrating the `Radio` component
 
-`StyledRadio`: Update your code to use the `Radio` component instead. See examples at https://baseui.design/components/radio/.
+`StyledRadio`: Update your code to use the `Radio` component instead. See examples at https://baseweb.design/components/radio/.
 
 `StyledRadioMark`: Update your code to use the `StyledRadioInner` and `StyledRadioOuter` instead. If you
 are using the `StyledRadio` component, replace that with the `Radio` component and this warning
-should go away. See examples at https://baseui.design/components/radio/.
+should go away. See examples at https://baseweb.design/components/radio/.
 
 ```diff
 <Radio
@@ -467,10 +467,7 @@ Here is a mapping of which components each theme variable affects:
 <Table
   columns={['Variable', 'Components']}
   data={[
-    [
-      'useRoundedCorners',
-      'Checkbox, Datepicker (Range), Progress Bar, Slider, Tag',
-    ],
+    ['useRoundedCorners', 'Checkbox, Datepicker (Range), Progress Bar, Slider, Tag'],
     ['buttonBorderRadius', 'Button, ButtonGroup'],
     ['inputBorderRadius', 'Input, Select, Textarea'],
     ['popoverBorderRadius', 'Popover, Menu, Tooltip'],

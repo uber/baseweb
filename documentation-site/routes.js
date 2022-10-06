@@ -72,6 +72,10 @@ const routes = [
             itemId: '/components/button-group',
           },
           {
+            title: 'Button Timed',
+            itemId: '/components/button-timed',
+          },
+          {
             title: 'Checkbox',
             itemId: '/components/checkbox',
           },

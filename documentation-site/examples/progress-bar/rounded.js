@@ -4,38 +4,37 @@ import {Button} from 'baseui/button';
 import {ProgressBarRounded} from 'baseui/progress-bar';
 import {useStyletron} from 'baseui';
 
-export default function Example() {
-  const [css] = useStyletron();
-  // Mimic some loading
-  const [progress, setProgress] = React.useState(0);
-  const tracker = React.useRef(0);
+// https://overreacted.io/making-setinterval-declarative-with-react-hooks/
+function useInterval(callback: () => void, delay: number | null) {
+  const savedCallback = React.useRef(() => {});
+
+  // Remember the latest callback.
   React.useEffect(() => {
-    tracker.current = progress;
-  }, [progress]);
-  return (
-    <div className={css({display: 'flex'})}>
-      <Button
-        kind="secondary"
-        size="compact"
-        shape="pill"
-        onClick={() => {
-          if (tracker.current >= 1) {
-            setProgress(0);
-            return;
-          }
-          function tick() {
-            setProgress(p => p + Math.random() * 0.33);
-            if (tracker.current < 1) {
-              setTimeout(tick, Math.random() * 1000);
-            }
-          }
-          tick();
-        }}
-      >
-        {progress >= 1 ? 'Reset' : 'Load'}
-      </Button>
-      <div className={css({width: '10px'})} />
-      <ProgressBarRounded progress={progress} />
-    </div>
-  );
+    savedCallback.current = callback;
+  }, [callback]);
+
+  // Set up the interval.
+  React.useEffect(() => {
+    function tick() {
+      savedCallback.current();
+    }
+    if (delay !== null) {
+      let id = setInterval(tick, delay);
+      return () => clearInterval(id);
+    }
+  }, [delay]);
+}
+
+export default function Example() {
+  const [progress, setProgress] = React.useState(0);
+
+  useInterval(() => {
+    if (progress < 1) {
+      setProgress(progress + 0.1);
+    } else {
+      setProgress(0);
+    }
+  }, 1000);
+
+  return <ProgressBarRounded progress={progress} />;
 }

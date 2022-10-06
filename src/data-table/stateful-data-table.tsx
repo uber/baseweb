@@ -168,6 +168,8 @@ export function StatefulDataTable(props: StatefulDataTableProps) {
       onIncludedRowsChange={props.onIncludedRowsChange}
       onRowHighlightChange={props.onRowHighlightChange}
       onSelectionChange={props.onSelectionChange}
+      onSort={props.onSort}
+      onTextQueryChange={props.onTextQueryChange}
       resizableColumnWidths={props.resizableColumnWidths}
       rows={props.rows}
       rowActions={props.rowActions}

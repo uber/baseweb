@@ -22,35 +22,49 @@ function useDuplicateColumnTitleWarning(columns: ColumnOptions[]) {
   }, [columns]);
 }
 
-function useSortParameters(initialSortIndex = -1, initialSortDirection = null) {
-  const [sortIndex, setSortIndex] = React.useState(initialSortIndex);
-  const [sortDirection, setSortDirection] = React.useState(initialSortDirection);
+export const StatefulContainer: React.FC<StatefulContainerProps> = (props) => {
+  useDuplicateColumnTitleWarning(props.columns);
+  const [sortIndex, setSortIndex] = React.useState(
+    typeof props.initialSortIndex === 'number' ? props.initialSortIndex : -1
+  );
+  const [sortDirection, setSortDirection] = React.useState(props.initialSortDirection);
+  const [filters, setFilters] = React.useState(props.initialFilters || new Map());
+  const [textQuery, setTextQuery] = React.useState('');
+  const [selectedRowIds, setSelectedRowIds] = React.useState<Set<string | number>>(
+    props.initialSelectedRowIds || new Set()
+  );
 
   function handleSort(columnIndex) {
+    let nextSortIndex;
+    let nextSortDirection;
+
     if (columnIndex === sortIndex) {
       if (sortDirection === SORT_DIRECTIONS.DESC) {
-        setSortIndex(-1);
-        setSortDirection(SORT_DIRECTIONS.ASC);
+        nextSortIndex = -1;
+        nextSortDirection = SORT_DIRECTIONS.ASC;
       } else {
-        setSortDirection(SORT_DIRECTIONS.DESC);
+        nextSortIndex = columnIndex;
+        nextSortDirection = SORT_DIRECTIONS.DESC;
       }
     } else {
-      setSortIndex(columnIndex);
-      setSortDirection(SORT_DIRECTIONS.ASC);
+      nextSortIndex = columnIndex;
+      nextSortDirection = SORT_DIRECTIONS.ASC;
+    }
+
+    setSortIndex(nextSortIndex);
+    setSortDirection(nextSortDirection);
+
+    if (props.onSort) {
+      props.onSort(nextSortIndex, nextSortDirection);
     }
   }
 
-  return [sortIndex, sortDirection, handleSort];
-}
-
-export const StatefulContainer: React.FC<StatefulContainerProps> = (props) => {
-  useDuplicateColumnTitleWarning(props.columns);
-  const [sortIndex, sortDirection, handleSort] = useSortParameters(
-    props.initialSortIndex,
-    props.initialSortDirection
-  );
-  const [filters, setFilters] = React.useState(props.initialFilters || new Map());
-  const [textQuery, setTextQuery] = React.useState('');
+  function handleTextQueryChange(nextTextQuery) {
+    setTextQuery(nextTextQuery);
+    if (props.onTextQueryChange) {
+      props.onTextQueryChange(nextTextQuery);
+    }
+  }
 
   function handleFilterAdd(title, filterParams) {
     filters.set(title, filterParams);
@@ -67,9 +81,6 @@ export const StatefulContainer: React.FC<StatefulContainerProps> = (props) => {
     setFilters(new Map(filters));
   }
 
-  const [selectedRowIds, setSelectedRowIds] = React.useState<Set<string | number>>(
-    props.initialSelectedRowIds || new Set()
-  );
   function handleSelectChange(next) {
     setSelectedRowIds(next);
 
@@ -122,7 +133,7 @@ export const StatefulContainer: React.FC<StatefulContainerProps> = (props) => {
     onSelectNone: handleSelectNone,
     onSelectOne: handleSelectOne,
     onSort: handleSort,
-    onTextQueryChange: setTextQuery,
+    onTextQueryChange: handleTextQueryChange,
     resizableColumnWidths: Boolean(props.resizableColumnWidths),
     rowHighlightIndex: props.rowHighlightIndex,
     selectedRowIds,

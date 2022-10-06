@@ -810,8 +810,6 @@ export function DataTable({
     return result;
   }, [sortedIndices, filteredIndices, onIncludedRowsChange, allRows]);
 
-  React.useImperativeHandle(controlRef, () => ({ getRows: () => rows }), [rows]);
-
   const [browserScrollbarWidth, setBrowserScrollbarWidth] = React.useState(0);
   const normalizedWidths = React.useMemo(() => {
     const resizedWidths = measuredWidths.map((w, i) => Math.floor(w) + Math.floor(resizeDeltas[i]));
@@ -901,6 +899,8 @@ export function DataTable({
     },
     [onSort]
   );
+
+  React.useImperativeHandle(controlRef, () => ({ getRows: () => rows, clearSelection: handleSelectNone }), [handleSelectNone, rows]);
 
   const [columnHighlightIndex, setColumnHighlightIndex] = React.useState(-1);
   const [rowHighlightIndex, setRowHighlightIndex] = React.useState(-1);
