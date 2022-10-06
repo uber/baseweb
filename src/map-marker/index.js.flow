@@ -22,6 +22,7 @@ export {
   LOCATION_PUCK_SIZES,
   LOCATION_PUCK_TYPES,
   PINHEAD_DIMENSIONS,
+  FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS,
 } from './constants.js';
 
 export type * from './types.js';

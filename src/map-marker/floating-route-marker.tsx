@@ -8,106 +8,54 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { useStyletron } from '../styles';
 import { getOverrides } from '../helpers/overrides';
-import { LabelSmall, LabelMedium } from 'src/typography';
+import { LabelSmall, LabelMedium } from '../typography';
 import {
   FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS,
   FLOATING_ROUTE_MARKER_POINTER_TYPE_WRAPPER_SIZES,
-  FLOATING_ROUTE_MARKER_POINTER_TYPES,
-  FLOATING_ROUTE_MARKER_POINTER_TRANSFORMS,
+  FLOATING_ROUTE_MARKER_POINTERS,
   PINHEAD_SIZES_SHAPES,
   PINHEAD_DIMENSIONS,
 } from './constants';
-
 import {
   StyledFloatingRouteMarkerRoot,
   StyledContentItem,
+  StyledFloatingRouteMarkerPointerContainer,
   StyledFloatingRouteMarkerPointer,
 } from './styled-components';
 import type { FloatingRouteMarkerProps } from './types';
-
-const POINTERS = {
-  [FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.topLeft]: {
-    type: FLOATING_ROUTE_MARKER_POINTER_TYPES.diagonal,
-    path: 'M0 0L24 8L8 24L0 0Z',
-  },
-  [FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.topRight]: {
-    type: FLOATING_ROUTE_MARKER_POINTER_TYPES.diagonal,
-    path: 'M24 0L0 8L16 24L24 0Z',
-  },
-  [FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.topCenter]: {
-    type: FLOATING_ROUTE_MARKER_POINTER_TYPES.vertical,
-    path: 'M9.49928 0L0.499411 9L18.5006 9L9.49928 0Z',
-  },
-  [FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.bottomLeft]: {
-    type: FLOATING_ROUTE_MARKER_POINTER_TYPES.diagonal,
-    path: 'M0 24L24 16L8 0L0 24Z',
-  },
-  [FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.bottomRight]: {
-    type: FLOATING_ROUTE_MARKER_POINTER_TYPES.diagonal,
-    path: 'M24 24L0 16L16 0L24 24Z',
-  },
-  [FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.bottomCenter]: {
-    type: FLOATING_ROUTE_MARKER_POINTER_TYPES.vertical,
-    path: 'M9.50131 10L0.5 0.998535L18.5 0.996582L9.50131 10Z',
-  },
-  [FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.leftCenter]: {
-    type: FLOATING_ROUTE_MARKER_POINTER_TYPES.horizontal,
-    path: 'M0 9L8.99988 0L8.99988 18L0 9Z',
-  },
-  [FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.rightCenter]: {
-    type: FLOATING_ROUTE_MARKER_POINTER_TYPES.horizontal,
-    path: 'M10 9L0.99762 0L0.998596 18L10 9Z',
-  },
-};
-
-// const Pointer = ({ background, position }) => {
-//   const [css, theme] = useStyletron();
-//   console.log(background);
-//   const PointerAnchor = POINTERS[position].content;
-//   return (
-//     <svg
-//       className={css({
-//         position: 'absolute',
-//         // ...FLOATING_ROUTE_MARKER_POINTER_POSITIONS[position],
-//         filter: `drop-shadow(${theme.lighting.shadow600})`,
-//       })}
-//       {...FLOATING_ROUTE_MARKER_POINTER_TYPE_WRAPPER_SIZES[POINTERS[position].type]}
-//       xmlns="http://www.w3.org/2000/svg"
-//     >
-//       <PointerAnchor background={background} />
-//     </svg>
-//   );
-// };
 
 const FloatingRouteMarker = ({
   label,
   secondaryLabel,
   startEnhancer: StartEnhancer = null,
   endEnhancer: EndEnhancer,
-  overrides = {},
   selected = false,
-  anchorPosition,
+  anchorPosition = FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.topLeft,
+  overrides = {},
 }: FloatingRouteMarkerProps) => {
   const [css, theme] = useStyletron();
 
   const backgroundColor = selected
     ? theme.colors.backgroundInversePrimary
     : theme.colors.backgroundPrimary;
-
   const color = selected ? theme.colors.contentInversePrimary : theme.colors.contentPrimary;
   const secondaryLabelColor = selected
     ? theme.colors.contentInverseSecondary
     : theme.colors.contentSecondary;
+
   const [Root, rootProps] = getOverrides(overrides.Root, StyledFloatingRouteMarkerRoot);
-
-  const [ContentItem, contentItemProps] = getOverrides(overrides.ContentItem, StyledContentItem);
-
-  const [PrimaryLabel, primaryLabelProps] = getOverrides(overrides.PrimaryLabel, LabelMedium);
+  const [IconContainer, iconContainerProps] = getOverrides(
+    overrides.IconContainer,
+    StyledContentItem
+  );
+  const [PrimaryLabel, primaryLabelProps] = getOverrides(overrides.Label, LabelMedium);
   const [SecondaryLabel, secondaryLabelProps] = getOverrides(overrides.SecondaryLabel, LabelSmall);
-
   const [Pointer, pointerProps] = getOverrides(overrides.Pointer, StyledFloatingRouteMarkerPointer);
+  const [PointerContainer, pointerContainerProps] = getOverrides(
+    overrides.PointerContainer,
+    StyledFloatingRouteMarkerPointerContainer
+  );
 
-  const height = 28;
   const size = PINHEAD_SIZES_SHAPES.medium;
   const { icon } = PINHEAD_DIMENSIONS[size];
   const activeElements = [label, StartEnhancer, EndEnhancer].filter((x) => x);
@@ -121,9 +69,9 @@ const FloatingRouteMarker = ({
       $gridTemplateColumns={gridTemplateColumns}
     >
       {StartEnhancer && (
-        <ContentItem $color={color} $size={size} {...contentItemProps}>
+        <IconContainer $color={color} $size={size} {...iconContainerProps}>
           <StartEnhancer size={icon} />
-        </ContentItem>
+        </IconContainer>
       )}
       {label && (
         <div
@@ -141,20 +89,24 @@ const FloatingRouteMarker = ({
         </div>
       )}
       {EndEnhancer && (
-        <ContentItem $color={color} $size={size} {...contentItemProps}>
+        <IconContainer $color={color} $size={size} {...iconContainerProps}>
           <EndEnhancer size={icon} />
-        </ContentItem>
+        </IconContainer>
       )}
-      <Pointer
+      <PointerContainer
         $position={anchorPosition}
         xmlns="http://www.w3.org/2000/svg"
-        {...FLOATING_ROUTE_MARKER_POINTER_TYPE_WRAPPER_SIZES[POINTERS[anchorPosition].type]}
-        {...pointerProps}
+        {...FLOATING_ROUTE_MARKER_POINTER_TYPE_WRAPPER_SIZES[
+          FLOATING_ROUTE_MARKER_POINTERS[anchorPosition].type
+        ]}
+        {...pointerContainerProps}
       >
-        <path d={POINTERS[anchorPosition].path} fill={backgroundColor} />
-      </Pointer>
-
-      {/* {anchorPosition && <Pointer background={backgroundColor} position={anchorPosition} />} */}
+        <Pointer
+          d={FLOATING_ROUTE_MARKER_POINTERS[anchorPosition].path}
+          $background={backgroundColor}
+          {...pointerProps}
+        />
+      </PointerContainer>
     </Root>
   );
 };

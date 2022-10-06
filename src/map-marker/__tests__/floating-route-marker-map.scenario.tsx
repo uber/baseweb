@@ -42,6 +42,8 @@ export function Scenario() {
   const [startEnhancer, setStartEnhancer] = React.useState(true);
   const [endEnhancer, setEndEnhancer] = React.useState(false);
 
+  const [selected, setSelected] = React.useState(false);
+
   const [floatingRouteMarkerAnchorPosition, setFloatingRouteMarkerAnchorPosition] = React.useState([
     floatingRouteMarkerAnchorPositions[0],
   ]);
@@ -59,10 +61,11 @@ export function Scenario() {
 
   const mapStyle = getMapStyle(locations, { showPointDebug });
 
+  console.log(mapStyle);
   return (
     <>
       <TileGrid
-        cols={7}
+        cols={8}
         customizerOptions={[
           <Input
             value={label}
@@ -78,6 +81,14 @@ export function Scenario() {
             clearOnEscape
             key="secondary label"
           />,
+          <Checkbox
+            checked={selected}
+            onChange={(e) => setSelected(e.target.checked)}
+            labelPlacement={LABEL_PLACEMENT.right}
+            key="selected"
+          >
+            Selected
+          </Checkbox>,
           <Checkbox
             checked={startEnhancer}
             onChange={(e) => setStartEnhancer(e.target.checked)}
@@ -100,6 +111,7 @@ export function Scenario() {
             placeholder="Select an anchor position"
             onChange={(params) => setFloatingRouteMarkerAnchorPosition(params.value)}
             key="anchor-position"
+            clearable={false}
           />,
           <Button onClick={() => setLocations([])} key="clear-markers">
             Clear markers
@@ -129,7 +141,7 @@ export function Scenario() {
                 overrides={{
                   Root: {
                     style: () => ({
-                      transform: `translate(-50%, -50%)`,
+                      // transform: `translate(-50%, -50%)`,
                     }),
                   },
                 }}
@@ -149,8 +161,8 @@ export function Scenario() {
                       }
                     : undefined
                 }
-                // $FlowFixMe Mismatch between general type and enum
-                anchor={floatingRouteMarkerAnchorPosition[0].id}
+                anchorPosition={floatingRouteMarkerAnchorPosition[0].id}
+                selected={selected}
               />
             </Marker>
           ))}

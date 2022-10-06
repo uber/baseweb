@@ -247,6 +247,47 @@ export const FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS = {
   rightCenter: 'right-center',
 };
 
+export const FLOATING_ROUTE_MARKER_POINTER_TYPES = {
+  diagonal: 'diagonal',
+  horizontal: 'horizontal',
+  vertical: 'vertical',
+};
+
+export const FLOATING_ROUTE_MARKER_POINTERS = {
+  [FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.topLeft]: {
+    type: FLOATING_ROUTE_MARKER_POINTER_TYPES.diagonal,
+    path: 'M0 0L24 8L8 24L0 0Z',
+  },
+  [FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.topRight]: {
+    type: FLOATING_ROUTE_MARKER_POINTER_TYPES.diagonal,
+    path: 'M24 0L0 8L16 24L24 0Z',
+  },
+  [FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.topCenter]: {
+    type: FLOATING_ROUTE_MARKER_POINTER_TYPES.vertical,
+    path: 'M8.49928 0L0.499411 8L16.5006 8L8.49928 0Z',
+  },
+  [FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.bottomLeft]: {
+    type: FLOATING_ROUTE_MARKER_POINTER_TYPES.diagonal,
+    path: 'M0 24L24 16L8 0L0 24Z',
+  },
+  [FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.bottomRight]: {
+    type: FLOATING_ROUTE_MARKER_POINTER_TYPES.diagonal,
+    path: 'M24 24L0 16L16 0L24 24Z',
+  },
+  [FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.bottomCenter]: {
+    type: FLOATING_ROUTE_MARKER_POINTER_TYPES.vertical,
+    path: 'M8.00133 8L16.0012 0H0L8.00133 8Z',
+  },
+  [FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.leftCenter]: {
+    type: FLOATING_ROUTE_MARKER_POINTER_TYPES.horizontal,
+    path: 'M0.000610352 8.00059L8.00061 16.0005L8.00061 -0.000732422L0.000610352 8.00059Z',
+  },
+  [FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.rightCenter]: {
+    type: FLOATING_ROUTE_MARKER_POINTER_TYPES.horizontal,
+    path: 'M8.00061 7.99916L0.000610352 -0.000711441L0.000610352 16.0005L8.00061 7.99916Z',
+  },
+};
+
 export const FLOATING_ROUTE_MARKER_POINTER_TRANSFORMS = {
   [FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.topLeft]: {
     transform: `translate(-33.33%, -33.33%)`,
@@ -267,7 +308,7 @@ export const FLOATING_ROUTE_MARKER_POINTER_TRANSFORMS = {
   },
   [FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.topCenter]: {
     right: '50%',
-    transform: `translate(50%, -100%) rotate(180deg)`,
+    transform: `translate(50%, -100%)`,
   },
   [FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.bottomCenter]: {
     bottom: 0,
@@ -276,7 +317,6 @@ export const FLOATING_ROUTE_MARKER_POINTER_TRANSFORMS = {
   },
   [FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.leftCenter]: {
     top: '50%',
-    // left: 0,
     transform: `translate(-100%, -50%)`,
   },
   [FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.rightCenter]: {
@@ -286,12 +326,6 @@ export const FLOATING_ROUTE_MARKER_POINTER_TRANSFORMS = {
   },
 };
 
-export const FLOATING_ROUTE_MARKER_POINTER_TYPES = {
-  diagonal: 'diagonal',
-  horizontal: 'horizontal',
-  vertical: 'vertical',
-};
-
 export const FLOATING_ROUTE_MARKER_POINTER_TYPE_WRAPPER_SIZES = {
   [FLOATING_ROUTE_MARKER_POINTER_TYPES.diagonal]: {
     height: '24',
@@ -299,13 +333,13 @@ export const FLOATING_ROUTE_MARKER_POINTER_TYPE_WRAPPER_SIZES = {
     viewBox: '0 0 24 24',
   },
   [FLOATING_ROUTE_MARKER_POINTER_TYPES.vertical]: {
-    height: '9',
-    width: '18',
-    viewBox: '0 0 9 10',
+    height: '8',
+    width: '17',
+    viewBox: '0 0 17 8',
   },
   [FLOATING_ROUTE_MARKER_POINTER_TYPES.horizontal]: {
-    height: '18',
-    width: '9',
-    viewBox: '0 0 9 18',
+    height: '16',
+    width: '8',
+    viewBox: '0 0 8 16',
   },
 };

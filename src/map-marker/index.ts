@@ -46,6 +46,7 @@ export {
   PINHEAD_DIMENSIONS,
   LOCATION_PUCK_SIZES,
   LOCATION_PUCK_TYPES,
+  FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS,
 } from './constants';
 
 export * from './types';

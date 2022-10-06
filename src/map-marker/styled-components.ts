@@ -409,7 +409,7 @@ export const StyledFloatingRouteMarkerRoot = styled<
     display: 'grid',
     gridTemplateColumns: $gridTemplateColumns,
     gap: '8px',
-    boxShadow: $theme.lighting.shadow600,
+    filter: `drop-shadow(${$theme.lighting.shadow600})`,
     whiteSpace: 'nowrap',
     borderRadius: `${8}px`,
     padding: `${4}px ${8}px`,
@@ -423,7 +423,7 @@ export const StyledLabel = styled<
   {
     $color: string;
   }
->('div', ({ $theme, $color }) => {
+>('div', ({ $color }) => {
   return {
     color: $color,
   };
@@ -498,17 +498,30 @@ export const StyledEarnerLocationPuckCore = styled<
 
 StyledEarnerLocationPuckCore.displayName = 'StyledEarnerLocationPuckCore';
 
-export const StyledFloatingRouteMarkerPointer = styled<
+export const StyledFloatingRouteMarkerPointerContainer = styled<
   'svg',
   {
     $position: FloatingRouteMarkerAnchorPosition;
   }
->('svg', ({ $theme, $position }) => {
+>('svg', ({ $position }) => {
   return {
     position: 'absolute',
     ...FLOATING_ROUTE_MARKER_POINTER_TRANSFORMS[$position],
-    filter: `drop-shadow(${$theme.lighting.shadow600})`,
   };
 });
 
-StyledFloatingRouteMarkerPointer.displayName = 'StyledFloatingRouteMarkerPointer ';
+StyledFloatingRouteMarkerPointerContainer.displayName = 'StyledFloatingRouteMarkerPointerContainer';
+
+export const StyledFloatingRouteMarkerPointer = styled<
+  'path',
+  {
+    $background: string;
+  }
+>('path', ({ $theme, $background }) => {
+  return {
+    transition: `${$theme.animation.timing300} ${$theme.animation.easeOutCurve} all`,
+    fill: $background,
+  };
+});
+
+StyledFloatingRouteMarkerPointer.displayName = 'StyledFloatingRouteMarkerPointer';

@@ -1,22 +1,26 @@
 import { FloatingRouteMarker, FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS } from 'baseui/map-marker';
 import { PropTypes } from 'react-view';
 import { TConfig } from '../types';
-
-const floatingRouteMarkerPropsType = require('!!extract-react-types-loader!../../../../src/map-marker/floating-route-marker.js');
+import { Upload, ChevronRight } from 'baseui/icon';
 
 export const theme = [];
 
 export const floatingRouteMarkerProps = {
   label: {
-    value: 'Uber HQ',
+    value: '9 min',
     type: PropTypes.String,
-    description: 'Text to display inside of the marker.',
+    description: 'Primary label to display inside of the marker.',
   },
-  anchor: {
-    value: 'FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.bottomLeft',
+  secondaryLabel: {
+    value: '$4 toll',
+    type: PropTypes.String,
+    description: 'Secondary label to display inside of the marker.',
+  },
+  anchorPosition: {
+    value: 'FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.topLeft',
     enumName: 'FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS',
     type: PropTypes.Enum,
-    defaultValue: 'FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.bottomLeft',
+    defaultValue: 'FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.topLeft',
     options: FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS,
     description: 'Position to render the anchor (pointer) around the marker.',
     imports: {
@@ -26,16 +30,21 @@ export const floatingRouteMarkerProps = {
     },
   },
   startEnhancer: {
-    value: undefined,
-    placeholder: '() => <span>$</span>',
+    value: '({size}) => <Upload size={size}/>',
+    placeholder: '({size}) => <Upload size={size}/>',
     type: PropTypes.Function,
-    description: 'Icon or element to render in the leading slot (before the label).',
+    description: 'Icon or element to render in the leading slot.',
   },
   endEnhancer: {
     value: undefined,
-    placeholder: '() => <span>?</span>',
+    placeholder: '({size}) => <ChevronRight size={size}/>',
     type: PropTypes.Function,
-    description: 'Icon or element to render in the trailing slot (after the label).',
+    description: 'Icon or element to render in the trailing slot.',
+  },
+  selected: {
+    value: false,
+    type: PropTypes.Boolean,
+    description: 'Boolean as to whether the marker is in a selected or unselected state.',
   },
 };
 
@@ -49,6 +58,8 @@ const FloatingRouteMarkerConfig: TConfig = {
   scope: {
     FloatingRouteMarker,
     FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS,
+    Upload,
+    ChevronRight,
   },
   theme,
   props: {
@@ -58,13 +69,10 @@ const FloatingRouteMarkerConfig: TConfig = {
       type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
       custom: {
-        names: ['Root'],
+        names: ['Root', 'Label', 'SecondaryLabel', 'IconContainer', 'PointerContainer', 'Pointer'],
         sharedProps: {},
       },
     },
-  },
-  mapTokensToProps: {
-    FloatingMarker: floatingRouteMarkerPropsType,
   },
 };
 

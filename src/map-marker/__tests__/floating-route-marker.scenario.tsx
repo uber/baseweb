@@ -15,17 +15,6 @@ import { Input } from '../../input';
 import Search from '../../icon/search';
 import ChevronRight from '../../icon/chevron-right';
 
-const floatingRouteMarkerStates = [
-  {
-    label: 'true',
-    id: true,
-  },
-  {
-    label: 'false',
-    id: false,
-  },
-];
-
 export function Scenario() {
   const [label, setLabel] = React.useState('13 min');
   const [secondaryLabel, setSecondaryLabel] = React.useState('Cheaper');
