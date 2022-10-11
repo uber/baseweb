@@ -1,4 +1,3 @@
-// @flow
 import * as React from 'react';
 import {
   FloatingRouteMarker,
@@ -6,7 +5,7 @@ import {
 } from 'baseui/map-marker';
 import {styled} from 'baseui';
 
-const Container = styled<{}>('div', () => ({
+const Container = styled('div', () => ({
   height: `${128}px`,
   display: 'flex',
   alignItems: 'center',
@@ -34,7 +33,7 @@ export default function Example() {
   return (
     <Container>
       <FloatingRouteMarker
-        label={`${anchors[index]}`}
+        label={anchors[index]}
         secondaryLabel="I change every 3 sec"
         anchorPosition={anchors[index]}
       />

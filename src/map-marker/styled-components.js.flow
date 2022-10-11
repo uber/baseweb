@@ -306,6 +306,8 @@ export const StyledContentItem = styled<{
 
     height: `${$height}px`,
     color: $color,
+
+    //$FlowFixMe
     ...($height && {
       lineHeight: `${$height}px`,
     }),

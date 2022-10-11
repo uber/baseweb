@@ -1933,7 +1933,7 @@ const outlines = [
       { name: 'Kind', lineStart: 43, children: [] },
       { name: 'LocationPuckSize', lineStart: 45, children: [] },
       { name: 'LocationPuckType', lineStart: 46, children: [] },
-      { name: 'FloatingRouteMarkerAnchorPosition', lineStart: 48, children: [] },
+      { name: 'FloatingRouteMarkerAnchorPositions', lineStart: 48, children: [] },
       {
         name: 'FixedMarkerOverrides',
         lineStart: 51,

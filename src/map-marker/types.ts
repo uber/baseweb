@@ -45,7 +45,7 @@ export type Kind = typeof KIND[keyof typeof KIND];
 export type LocationPuckSize = typeof LOCATION_PUCK_SIZES[keyof typeof LOCATION_PUCK_SIZES];
 export type LocationPuckType = typeof LOCATION_PUCK_TYPES[keyof typeof LOCATION_PUCK_TYPES];
 
-export type FloatingRouteMarkerAnchorPosition =
+export type FloatingRouteMarkerAnchorPositions =
   typeof FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS[keyof typeof FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS];
 
 export type FixedMarkerOverrides = {
@@ -223,7 +223,7 @@ export type FloatingRouteMarkerProps = {
   endEnhancer?: React.ComponentType<{
     size: number;
   }>;
-  anchorPosition: FloatingRouteMarkerAnchorPosition;
+  anchorPosition?: FloatingRouteMarkerAnchorPositions;
   overrides?: FloatingRouteMarkerOverrides;
   selected?: boolean;
 };

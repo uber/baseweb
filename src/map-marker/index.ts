@@ -25,6 +25,8 @@ import type {
   FixedMarkerProps,
   FloatingMarkerOverrides,
   FloatingMarkerProps,
+  FloatingRouteMarkerAnchorPositions,
+  FloatingRouteMarkerOverrides,
   PinHeadProps,
   DragShadowProps,
 } from './types';

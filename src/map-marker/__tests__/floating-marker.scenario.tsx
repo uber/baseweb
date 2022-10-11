@@ -28,12 +28,15 @@ const floatingMarkerAnchorTypes = Object.keys(FLOATING_MARKER_ANCHOR_TYPES)
   }));
 
 export function Scenario() {
-  const [label, setLabel] = React.useState('13 min');
-
+  const [label, setLabel] = React.useState('Uber HQ');
   const [startEnhancer, setStartEnhancer] = React.useState(true);
   const [endEnhancer, setEndEnhancer] = React.useState(false);
-  const markers = [];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [floatingMarkerAnchorType, setFloatingMarkerAnchorType] = React.useState<any>([
+    floatingMarkerAnchorTypes[0],
+  ]);
 
+  const markers = [];
   Object.keys(FLOATING_MARKER_SIZES)
     .map((key) => FLOATING_MARKER_SIZES[key])
     .forEach((size: FloatingMarkerSize, i: number) => {

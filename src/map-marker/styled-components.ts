@@ -20,7 +20,7 @@ import type {
   BadgePosition,
   PinHeadSize,
   LocationPuckSize,
-  FloatingRouteMarkerAnchorPosition,
+  FloatingRouteMarkerAnchorPositions,
 } from './types';
 import type { StyleObject } from 'styletron-react';
 
@@ -501,7 +501,7 @@ StyledEarnerLocationPuckCore.displayName = 'StyledEarnerLocationPuckCore';
 export const StyledFloatingRouteMarkerPointerContainer = styled<
   'svg',
   {
-    $position: FloatingRouteMarkerAnchorPosition;
+    $position: FloatingRouteMarkerAnchorPositions;
   }
 >('svg', ({ $position }) => {
   return {

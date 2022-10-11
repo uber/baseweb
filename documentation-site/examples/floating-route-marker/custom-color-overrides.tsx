@@ -1,16 +1,15 @@
-// @flow
 import * as React from 'react';
 import {FloatingRouteMarker} from 'baseui/map-marker';
 import {styled} from 'baseui';
 
-const Container = styled<{}>('div', () => ({
+const Container = styled('div', () => ({
   height: `${128}px`,
   display: 'grid',
   gridTemplateColumns: '1fr 1fr',
   padding: `${16}px`,
 }));
 
-const Cell = styled<{}>('div', () => ({
+const Cell = styled('div', () => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',

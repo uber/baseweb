@@ -37,22 +37,23 @@ export default Layout;
   }}
 />
 
-A floating route map marker is used to annoate a route line on a map.
+A floating route map marker is used to annotate a route line or other polyline on a map.
 
 ## When to use
 
-Use a floating route marker when showcasing a polyline such as a route. For example, a floating route marker may be used to annotate a group of different routes before starting navigation.
+Use a floating route marker when showcasing a polyline such as a route. For example, a floating route marker may be used to annotate a choice of different routes before starting navigation.
 
 ## Guidelines
 
 ### General
 
-- The anchor of a floating route marker anchor is placed on the diagonal edges of the marker or the horizontal and vertical center edges of the marker.
+- The pointer (anchor) of a floating route marker anchor is placed on either the diagonal edges, the horizontal centers, or the vertical centers of the marker.
 - A floating route marker without a label can only have one icon. Do not use both a `startEnhancer` and an `endEnhancer` if there is no label.
+- The floating route marker has two different states: selected and unselected. The unselected (default) state has a light background with dark text, while the selected state has a dark background with light text. Use the selected state when a the user has tapped or selected the map marker (or its corresponding polyline).
 
 ## Examples
 
-<Example title="Basic usage with label" path="floating-marker/basic.js">
+<Example title="Basic usage with label" path="floating-route-marker/basic.js">
   <FloatingMarkerContainer>
     <Basic />
   </FloatingMarkerContainer>
@@ -60,7 +61,7 @@ Use a floating route marker when showcasing a polyline such as a route. For exam
 
 A floating route map marker with only a label.
 
-<Example title="Basic usage with label" path="floating-marker/secondary-label.js">
+<Example title="Primary and secondary labels" path="floating-route-marker/secondary-label.js">
   <FloatingMarkerContainer>
     <SecondaryLabel />
   </FloatingMarkerContainer>
@@ -68,39 +69,38 @@ A floating route map marker with only a label.
 
 A floating route map marker with a primary label and a secondary label.
 
-<Example
-  title="Basic usage with start and end enhancers"
-  path="floating-route-marker/start-end-enhancer.js"
->
+<Example title="Start and end enhancers" path="floating-route-marker/start-end-enhancer.js">
   <FloatingMarkerContainer>
     <StartEndEnhacer />
   </FloatingMarkerContainer>
 </Example>
 
-A floating map marker with both a start and end enhancers.
+A floating route map marker with both a start and end enhancer.
 
 <Example title="Custom color overrides" path="floating-route-marker/custom-color-overrides.js">
-  <FloatingMarkerContainer>
-    <CustomColorOverrides />
-  </FloatingMarkerContainer>
+  <CustomColorOverrides />
 </Example>
 
-A floating map marker with custom overrides to modify the colors. Both the selected and unselected states have custom overrides
+A floating route map marker with custom overrides to modify the colors. Both the selected and unselected states have custom overrides.
+
+To customize the color of the pointer, use the property `fill` instead of `backgroundColor` on the `Pointer` override. This is because the pointer is an SVG element.
 
 <Example
   title="Changing pointer positions"
   path="floating-route-marker/changing-pointer-positions.js"
 >
-  <ChangingPointerPositions />
+  <FloatingMarkerContainer>
+    <ChangingPointerPositions />
+  </FloatingMarkerContainer>
 </Example>
 
-A floating map marker rendered inside of a [react-map-gl](https://visgl.github.io/react-map-gl/) view. In order to use a floating map marker in react-map-gl, wrap the floating marker with a [`<Marker/>`](https://visgl.github.io/react-map-gl/docs/api-reference/marker) component. In order to properly center the marker on the intended position, translate the marker using an override on the `Root`.
+A floating route marker that cycles through the different pointer positions every three seconds.
 
 <Example title="Usage with react-map-gl" path="floating-route-marker/react-map-gl.js">
   <ReactMapGL />
 </Example>
 
-A floating map marker rendered inside of a [react-map-gl](https://visgl.github.io/react-map-gl/) view. In order to use a floating map marker in react-map-gl, wrap the floating marker with a [`<Marker/>`](https://visgl.github.io/react-map-gl/docs/api-reference/marker) component. In order to properly center the marker on the intended position, translate the marker using an override on the `Root`.
+A floating route map marker rendered inside of a [react-map-gl](https://visgl.github.io/react-map-gl/) view. In order to use a floating route map marker in react-map-gl, wrap the floating marker with a [`<Marker/>`](https://visgl.github.io/react-map-gl/docs/api-reference/marker) component. In order to properly center the marker on the intended position, translate the marker using an override on the `Root`.
 
 <Exports
   component={FloatingRouteMarkerExports}

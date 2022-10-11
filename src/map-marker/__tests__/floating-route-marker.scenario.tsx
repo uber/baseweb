@@ -14,6 +14,7 @@ import { Checkbox, LABEL_PLACEMENT } from '../../checkbox';
 import { Input } from '../../input';
 import Search from '../../icon/search';
 import ChevronRight from '../../icon/chevron-right';
+import type { FloatingRouteMarkerAnchorPositions } from '../types';
 
 export function Scenario() {
   const [label, setLabel] = React.useState('13 min');
@@ -25,7 +26,7 @@ export function Scenario() {
   const markers = [];
   Object.keys(FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS)
     .map((key) => FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS[key])
-    .forEach((position: AnchorPositionsT, x: number) => {
+    .forEach((position: FloatingRouteMarkerAnchorPositions, x: number) => {
       markers.push({
         id: `floating / ${position}`,
         content: (

@@ -1,7 +1,15 @@
+/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+
 import { FloatingRouteMarker, FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS } from 'baseui/map-marker';
+import Upload from 'baseui/icon/upload';
+import ChevronRight from 'baseui/icon/chevron-right';
 import { PropTypes } from 'react-view';
-import { TConfig } from '../types';
-import { Upload, ChevronRight } from 'baseui/icon';
+import type { TConfig } from '../types';
 
 export const theme = [];
 

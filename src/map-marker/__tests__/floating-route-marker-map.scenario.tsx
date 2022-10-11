@@ -33,7 +33,7 @@ const floatingRouteMarkerAnchorPositions = Object.keys(FLOATING_ROUTE_MARKER_ANC
     id: x,
   }));
 
-const defaultLocation = [uberHq.longitude, uberHq.latitude];
+const defaultLocation = [uberHq.longitude, uberHq.latitude] as [number, number];
 
 export function Scenario() {
   const [label, setLabel] = React.useState('13 min');
@@ -44,6 +44,7 @@ export function Scenario() {
 
   const [selected, setSelected] = React.useState(false);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [floatingRouteMarkerAnchorPosition, setFloatingRouteMarkerAnchorPosition] = React.useState([
     floatingRouteMarkerAnchorPositions[0],
   ]);
@@ -61,7 +62,6 @@ export function Scenario() {
 
   const mapStyle = getMapStyle(locations, { showPointDebug });
 
-  console.log(mapStyle);
   return (
     <>
       <TileGrid
