@@ -189,3 +189,26 @@ export type EarnerLocationPuckPropsT = {
   size: LocationPuckSizeT,
   overrides?: LocationPuckOverridesT,
 };
+
+export type FloatingRouteMarkerOverrides = {
+  Root?: Override,
+  PointerContainer?: Override,
+  Pointer?: Override,
+  Label?: Override,
+  SecondaryLabel?: Override,
+  IconContainer?: Override,
+};
+
+export type FloatingRouteMarkerProps = {
+  label?: React.ReactNode,
+  secondaryLabel?: React.ReactNode,
+  startEnhancer?: React.ComponentType<{
+    size: number,
+  }>,
+  endEnhancer?: React.ComponentType<{
+    size: number,
+  }>,
+  anchorPosition: FloatingRouteMarkerAnchorPosition,
+  overrides?: FloatingRouteMarkerOverrides,
+  selected?: boolean,
+};

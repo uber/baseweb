@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import { FloatingRouteMarker } from '..';
-import { FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS, FLOATING_ROUTE_MARKER_STATES } from '../constants';
+import { FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS } from '../constants';
 import TileGrid from './tile-grid';
 import { Checkbox, LABEL_PLACEMENT } from '../../checkbox';
 import { Input } from '../../input';
@@ -56,7 +56,7 @@ export function Scenario() {
 
   return (
     <TileGrid
-      cols={5}
+      cols={4}
       customizerOptions={[
         <Input
           value={label}

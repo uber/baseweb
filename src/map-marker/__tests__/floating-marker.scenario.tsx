@@ -29,16 +29,11 @@ const floatingMarkerAnchorTypes = Object.keys(FLOATING_MARKER_ANCHOR_TYPES)
 
 export function Scenario() {
   const [label, setLabel] = React.useState('13 min');
-  const [secondaryLabel, setSecondaryLabel] = React.useState('Cheaper');
 
   const [startEnhancer, setStartEnhancer] = React.useState(true);
   const [endEnhancer, setEndEnhancer] = React.useState(false);
-
-  const [floatingRouteMarkerAnchorPosition, setFloatingRouteMarkerAnchorPosition] = React.useState([
-    floatingRouteMarkerAnchorPositions[0],
-  ]);
-
   const markers = [];
+
   Object.keys(FLOATING_MARKER_SIZES)
     .map((key) => FLOATING_MARKER_SIZES[key])
     .forEach((size: FloatingMarkerSize, i: number) => {

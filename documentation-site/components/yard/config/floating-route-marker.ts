@@ -69,7 +69,7 @@ const FloatingRouteMarkerConfig: TConfig = {
       type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
       custom: {
-        names: ['Root', 'Label', 'SecondaryLabel', 'IconContainer', 'PointerContainer', 'Pointer'],
+        names: ['Root', 'Label', 'SecondaryLabel', 'IconContainer', 'Pointer', 'PointerContainer'],
         sharedProps: {},
       },
     },

@@ -28,7 +28,7 @@ const FloatingRouteMarker = ({
   label,
   secondaryLabel,
   startEnhancer: StartEnhancer = null,
-  endEnhancer: EndEnhancer,
+  endEnhancer: EndEnhancer = null,
   selected = false,
   anchorPosition = FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.topLeft,
   overrides = {},

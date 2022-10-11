@@ -13,6 +13,13 @@ import FloatingMarkerContainer from '../../components/floating-marker-container'
 import Yard from '../../components/yard/index';
 import floatingRouteMarkerYardConfig from '../../components/yard/config/floating-route-marker';
 
+import Basic from 'examples/floating-route-marker/basic.js';
+import SecondaryLabel from 'examples/floating-route-marker/secondary-label.js';
+import StartEndEnhacer from 'examples/floating-route-marker/start-end-enhancer.js';
+import CustomColorOverrides from 'examples/floating-route-marker/custom-color-overrides.js';
+import ChangingPointerPositions from 'examples/floating-route-marker/changing-pointer-positions.js';
+import ReactMapGL from 'examples/floating-route-marker/react-map-gl.js';
+
 import * as FloatingRouteMarkerExports from 'baseui/map-marker';
 
 export default Layout;
@@ -34,26 +41,66 @@ A floating route map marker is used to annoate a route line on a map.
 
 ## When to use
 
-Use a floating route marker when showcasing a polyline such as a route. For example, a floating route marker may be used to annotate a choice between multiple routes during navigation.
+Use a floating route marker when showcasing a polyline such as a route. For example, a floating route marker may be used to annotate a group of different routes before starting navigation.
 
 ## Guidelines
 
 ### General
 
-- The anchor of a floating route marker anchor can live on the diagonal edges of the marker or the horizontal and vertical center edges of the marker.
+- The anchor of a floating route marker anchor is placed on the diagonal edges of the marker or the horizontal and vertical center edges of the marker.
 - A floating route marker without a label can only have one icon. Do not use both a `startEnhancer` and an `endEnhancer` if there is no label.
 
 ## Examples
 
-<!--
-{/\* <Example title="Basic usage with label" path="floating-marker/basic.js">
-
+<Example title="Basic usage with label" path="floating-marker/basic.js">
   <FloatingMarkerContainer>
     <Basic />
   </FloatingMarkerContainer>
-</Example> */} -->
+</Example>
 
-A floating map marker with only a label. Default size is medium.
+A floating route map marker with only a label.
+
+<Example title="Basic usage with label" path="floating-marker/secondary-label.js">
+  <FloatingMarkerContainer>
+    <SecondaryLabel />
+  </FloatingMarkerContainer>
+</Example>
+
+A floating route map marker with a primary label and a secondary label.
+
+<Example
+  title="Basic usage with start and end enhancers"
+  path="floating-route-marker/start-end-enhancer.js"
+>
+  <FloatingMarkerContainer>
+    <StartEndEnhacer />
+  </FloatingMarkerContainer>
+</Example>
+
+A floating map marker with both a start and end enhancers.
+
+<Example title="Custom color overrides" path="floating-route-marker/custom-color-overrides.js">
+  <FloatingMarkerContainer>
+    <CustomColorOverrides />
+  </FloatingMarkerContainer>
+</Example>
+
+A floating map marker with custom overrides to modify the colors. Both the selected and unselected states have custom overrides
+
+<Example
+  title="Changing pointer positions"
+  path="floating-route-marker/changing-pointer-positions.js"
+>
+  <ChangingPointerPositions />
+</Example>
+
+A floating map marker rendered inside of a [react-map-gl](https://visgl.github.io/react-map-gl/) view. In order to use a floating map marker in react-map-gl, wrap the floating marker with a [`<Marker/>`](https://visgl.github.io/react-map-gl/docs/api-reference/marker) component. In order to properly center the marker on the intended position, translate the marker using an override on the `Root`.
+
+<Example title="Usage with react-map-gl" path="floating-route-marker/react-map-gl.js">
+  <ReactMapGL />
+</Example>
+
+A floating map marker rendered inside of a [react-map-gl](https://visgl.github.io/react-map-gl/) view. In order to use a floating map marker in react-map-gl, wrap the floating marker with a [`<Marker/>`](https://visgl.github.io/react-map-gl/docs/api-reference/marker) component. In order to properly center the marker on the intended position, translate the marker using an override on the `Root`.
 
 <Exports
   component={FloatingRouteMarkerExports}
