@@ -41,8 +41,10 @@ export const StyledBaseButtonTimed = withStyle<
       : {}),
   };
 });
+StyledBaseButtonTimed.displayName = 'StyledBaseButtonTimed';
 
 export const StyledTimerContainer = styled<'span', {}>('span', {
   // minWidth to ensure button width stays consistent as timeRemaining changes
   minWidth: '53px',
 });
+StyledTimerContainer.displayName = 'StyledTimerContainer';
