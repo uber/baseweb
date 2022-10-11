@@ -51,3 +51,4 @@ export const StyledDivider = styled<'hr', DividerProps>('hr', (props) => {
     borderLeftStyle: 'none',
   };
 });
+StyledDivider.displayName = 'StyledDivider';
