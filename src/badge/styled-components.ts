@@ -183,6 +183,7 @@ export const StyledRoot = styled<'div', {}>('div', () => {
     lineHeight: 'initial',
   };
 });
+StyledRoot.displayName = 'StyledRoot';
 
 const TOP_PLACEMENTS = [
   PLACEMENT.topLeft,
@@ -257,6 +258,7 @@ export const StyledPositioner = styled<
     lineHeight: 'initial',
   };
 });
+StyledPositioner.displayName = 'StyledPositioner';
 
 export const StyledBadge = styled<
   'div',
@@ -292,6 +294,7 @@ export const StyledBadge = styled<
     };
   }
 );
+StyledBadge.displayName = 'StyledBadge';
 
 export const StyledNotificationCircle = styled<
   'div',
@@ -312,6 +315,7 @@ export const StyledNotificationCircle = styled<
     ...$theme.typography.LabelXSmall,
   };
 });
+StyledNotificationCircle.displayName = 'StyledNotificationCircle';
 
 export const StyledHintDot = styled<
   'div',
@@ -331,3 +335,4 @@ export const StyledHintDot = styled<
     ...getColorStyles({ $theme, $hierarchy: HIERARCHY.primary, $color }),
   };
 });
+StyledHintDot.displayName = 'StyledHintDot';
