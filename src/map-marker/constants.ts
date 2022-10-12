@@ -236,24 +236,24 @@ export const EARNER_LOCATION_PUCK_CORE_SCALES = Object.freeze({
   [LOCATION_PUCK_SIZES.large]: '100%',
 } as const);
 
-export const FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS = {
+export const FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS = Object.freeze({
   topLeft: 'top-left',
-  topRight: 'top-right',
-  bottomLeft: 'bottom-left',
-  bottomRight: 'bottom-right',
   topCenter: 'top-center',
-  bottomCenter: 'bottom-center',
-  leftCenter: 'left-center',
+  topRight: 'top-right',
   rightCenter: 'right-center',
-};
+  bottomRight: 'bottom-right',
+  bottomCenter: 'bottom-center',
+  bottomLeft: 'bottom-left',
+  leftCenter: 'left-center',
+} as const);
 
-export const FLOATING_ROUTE_MARKER_POINTER_TYPES = {
+export const FLOATING_ROUTE_MARKER_POINTER_TYPES = Object.freeze({
   diagonal: 'diagonal',
   horizontal: 'horizontal',
   vertical: 'vertical',
-};
+} as const);
 
-export const FLOATING_ROUTE_MARKER_POINTERS = {
+export const FLOATING_ROUTE_MARKER_POINTERS = Object.freeze({
   [FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.topLeft]: {
     type: FLOATING_ROUTE_MARKER_POINTER_TYPES.diagonal,
     path: 'M0 0L24 8L8 24L0 0Z',
@@ -286,9 +286,9 @@ export const FLOATING_ROUTE_MARKER_POINTERS = {
     type: FLOATING_ROUTE_MARKER_POINTER_TYPES.horizontal,
     path: 'M8.00061 7.99916L0.000610352 -0.000711441L0.000610352 16.0005L8.00061 7.99916Z',
   },
-};
+} as const);
 
-export const FLOATING_ROUTE_MARKER_POINTER_TRANSFORMS = {
+export const FLOATING_ROUTE_MARKER_POINTER_TRANSFORMS = Object.freeze({
   [FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.topLeft]: {
     transform: `translate(-33.33%, -33.33%)`,
   },
@@ -324,9 +324,9 @@ export const FLOATING_ROUTE_MARKER_POINTER_TRANSFORMS = {
     top: '50%',
     transform: `translate(0%, -50%)`,
   },
-};
+} as const);
 
-export const FLOATING_ROUTE_MARKER_POINTER_TYPE_WRAPPER_SIZES = {
+export const FLOATING_ROUTE_MARKER_POINTER_TYPE_WRAPPER_SIZES = Object.freeze({
   [FLOATING_ROUTE_MARKER_POINTER_TYPES.diagonal]: {
     height: '24',
     width: '24',
@@ -342,4 +342,4 @@ export const FLOATING_ROUTE_MARKER_POINTER_TYPE_WRAPPER_SIZES = {
     width: '8',
     viewBox: '0 0 8 16',
   },
-};
+} as const);

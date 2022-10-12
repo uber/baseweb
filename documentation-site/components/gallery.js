@@ -232,12 +232,12 @@ const COMPONENTS = {
       Component: thumbnails.SvgFloatingMarker,
     },
     {
-      href: '/components/location-puck',
-      Component: thumbnails.SvgLocationPuck,
-    },
-    {
       href: '/components/floating-route-marker',
       Component: thumbnails.SvgFloatingRouteMarker,
+    },
+    {
+      href: '/components/location-puck',
+      Component: thumbnails.SvgLocationPuck,
     },
   ],
   Utility: [

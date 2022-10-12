@@ -14,12 +14,11 @@ import { Checkbox, LABEL_PLACEMENT } from '../../checkbox/index';
 import { Input } from '../../input/index';
 import Upload from '../../icon/upload';
 import ChevronRight from '../../icon/chevron-right';
-
 import { Select } from '../../select';
-import ReactMapGL, { Marker } from 'react-map-gl';
 import { Button } from '../../button';
 import { useStyletron } from '../../styles';
 import { getMapStyle } from './map-style';
+import ReactMapGL, { Marker } from 'react-map-gl';
 
 const uberHq = {
   latitude: 37.768495131168336,
@@ -36,30 +35,22 @@ const floatingRouteMarkerAnchorPositions = Object.keys(FLOATING_ROUTE_MARKER_ANC
 const defaultLocation = [uberHq.longitude, uberHq.latitude] as [number, number];
 
 export function Scenario() {
+  const [css, theme] = useStyletron();
   const [label, setLabel] = React.useState('13 min');
   const [secondaryLabel, setSecondaryLabel] = React.useState('Cheaper');
-
   const [startEnhancer, setStartEnhancer] = React.useState(true);
   const [endEnhancer, setEndEnhancer] = React.useState(false);
-
   const [selected, setSelected] = React.useState(false);
-
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [floatingRouteMarkerAnchorPosition, setFloatingRouteMarkerAnchorPosition] = React.useState([
     floatingRouteMarkerAnchorPositions[0],
   ]);
-
   const [locations, setLocations] = React.useState([defaultLocation]);
-
   const [showPointDebug, setShowPointDebug] = React.useState(true);
-
   const [viewport, setViewport] = React.useState({
     ...uberHq,
     zoom: 14,
   });
-
-  const [css, theme] = useStyletron();
-
   const mapStyle = getMapStyle(locations, { showPointDebug });
 
   return (

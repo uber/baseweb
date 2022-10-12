@@ -238,7 +238,7 @@ export const EARNER_LOCATION_PUCK_CORE_SCALES = Object.freeze({
   [LOCATION_PUCK_SIZES.large]: '100%',
 });
 
-export const FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS = {
+export const FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS = Object.freeze({
   topLeft: 'top-left',
   topRight: 'top-right',
   topCenter: 'top-center',
@@ -247,9 +247,9 @@ export const FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS = {
   bottomCenter: 'bottom-center',
   leftCenter: 'left-center',
   rightCenter: 'right-center',
-};
+});
 
-export const FLOATING_ROUTE_MARKER_POINTER_POSITIONS = {
+export const FLOATING_ROUTE_MARKER_POINTER_POSITIONS = Object.freeze({
   [FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.topLeft]: {
     transform: `translate(-33.33%, -33.33%)`,
   },
@@ -285,14 +285,14 @@ export const FLOATING_ROUTE_MARKER_POINTER_POSITIONS = {
     transform: `translate(0%, -50%) rotate(270deg)`,
     transformOrigin: 'center',
   },
-};
+});
 
-export const FLOATING_ROUTE_MARKER_POINTER_TYPES = {
+export const FLOATING_ROUTE_MARKER_POINTER_TYPES = Object.freeze({
   diagonal: 'diagonal',
   standard: 'standard',
-};
+});
 
-export const FLOATING_ROUTE_MARKER_POINTER_TYPE_WRAPPER_SIZES = {
+export const FLOATING_ROUTE_MARKER_POINTER_TYPE_WRAPPER_SIZES = Object.freeze({
   [FLOATING_ROUTE_MARKER_POINTER_TYPES.diagonal]: {
     height: '24',
     width: '24',
@@ -303,4 +303,4 @@ export const FLOATING_ROUTE_MARKER_POINTER_TYPE_WRAPPER_SIZES = {
     width: '18',
     viewBox: '0 0 18 10',
   },
-};
+});

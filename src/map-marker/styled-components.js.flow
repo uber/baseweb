@@ -299,15 +299,13 @@ export const StyledContentItem = styled<{
   $size: PinHeadSizeT,
 }>('div', ({ $theme, $color, $height, $size }) => {
   return {
-    //$FlowFixMe
     ...$theme.typography[LABEL_SIZES[$size]],
     display: 'flex',
     alignItems: 'center',
     textAlign: 'center',
     height: `${$height}px`,
     color: $color,
-    //$FlowFixMe
-    ...($height && {
+    ...($height > 0 && {
       lineHeight: `${$height}px`,
     }),
   };
