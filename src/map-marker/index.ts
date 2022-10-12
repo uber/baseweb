@@ -96,3 +96,7 @@ export type FloatingMarkerPropsT = FloatingMarkerProps;
 export type PinHeadPropsT = PinHeadProps;
 /** @deprecated use DragShadowProps instead. To be removed in future versions.*/
 export type DragShadowPropsT = DragShadowProps;
+/** @deprecated use FloatingRouteMarkerAnchorPositions instead. To be removed in future versions.*/
+export type FloatingRouteMarkerAnchorPositionsT = FloatingRouteMarkerAnchorPositions;
+/** @deprecated use FloatingRouteMarkerOverrides instead. To be removed in future versions.*/
+export type FloatingRouteMarkerOverridesT = FloatingRouteMarkerOverrides;

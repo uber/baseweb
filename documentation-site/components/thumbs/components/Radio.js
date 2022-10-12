@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 /* THIS FILE IS AUTO-GENERATED. DO NOT MODIFY. */
 
 import React from 'react';
+
 export default function SvgRadio(props) {
   return (
     <svg width={232} height={145} fill="none" {...props}>
