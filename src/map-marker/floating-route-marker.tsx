@@ -64,9 +64,9 @@ const FloatingRouteMarker = ({
   return (
     <Root
       data-baseweb="floating-route-map-marker"
-      {...rootProps}
       $background={backgroundColor}
       $gridTemplateColumns={gridTemplateColumns}
+      {...rootProps}
     >
       {StartEnhancer && (
         <IconContainer $color={color} $size={size} {...iconContainerProps}>

@@ -7,11 +7,6 @@ import {
 import ReactMapGL, {Marker, Source, Layer} from 'react-map-gl';
 import {useStyletron} from 'baseui';
 
-const uberHq = {
-  latitude: 37.768495131168336,
-  longitude: -122.38856031220648,
-};
-
 function calculateMidpoint([[x1, y1], [x2, y2]]) {
   return [(x1 + x2) / 2, (y1 + y2) / 2];
 }
@@ -34,7 +29,7 @@ const geojson = {
 };
 
 export default function Example() {
-  const [css, theme] = useStyletron();
+  const [, theme] = useStyletron();
 
   const midpoint = calculateMidpoint(
     geojson.features[0].geometry.coordinates,
