@@ -14,6 +14,7 @@ const config: PlaywrightTestConfig = {
   ...base,
   testDir: 'vrt',
   testMatch: ['tests.vrt.js'],
+  workers: 10,
 };
 
 export default config;
