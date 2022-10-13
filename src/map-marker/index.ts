@@ -51,6 +51,8 @@ export {
   FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS,
 } from './constants';
 
+export { calculateFloatingRouteMarkerOffsets } from './calculate-offsets';
+
 export * from './types';
 /** @deprecated use AnchorPositions instead. To be removed in future versions.*/
 export type AnchorPositionsT = AnchorPositions;

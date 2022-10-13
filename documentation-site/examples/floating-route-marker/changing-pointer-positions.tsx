@@ -2,14 +2,19 @@ import * as React from 'react';
 import {
   FloatingRouteMarker,
   FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS,
+  calculateFloatingRouteMarkerOffsets,
 } from 'baseui/map-marker';
 import {styled} from 'baseui';
 
-const Container = styled('div', () => ({
-  height: `${128}px`,
+const Container = styled<{}>('div', () => ({
+  height: `${200}px`,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+}));
+
+const Center = styled<{}>('div', () => ({
+  position: 'absolute',
 }));
 
 const anchors = Object.values(
@@ -32,11 +37,22 @@ export default function Example() {
 
   return (
     <Container>
-      <FloatingRouteMarker
-        label={anchors[index]}
-        secondaryLabel="I change every 3 sec"
-        anchorPosition={anchors[index]}
-      />
+      <Center>
+        <FloatingRouteMarker
+          label={`${anchors[index]}`}
+          secondaryLabel="I change every 3 sec"
+          anchorPosition={anchors[index]}
+          overrides={{
+            Root: {
+              style: () => ({
+                transform: calculateFloatingRouteMarkerOffsets(
+                  anchors[index],
+                ),
+              }),
+            },
+          }}
+        />
+      </Center>
     </Container>
   );
 }

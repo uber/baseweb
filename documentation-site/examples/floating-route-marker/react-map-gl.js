@@ -3,6 +3,7 @@ import * as React from 'react';
 import {
   FloatingRouteMarker,
   FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS,
+  calculateFloatingRouteMarkerOffsets,
 } from 'baseui/map-marker';
 import ReactMapGL, {Marker, Source, Layer} from 'react-map-gl';
 import {useStyletron} from 'baseui';
@@ -34,7 +35,6 @@ export default function Example() {
   const midpoint = calculateMidpoint(
     geojson.features[0].geometry.coordinates,
   );
-  console.log(midpoint);
   const [viewport, setViewport] = React.useState({
     longitude: midpoint[0],
     latitude: midpoint[1],
@@ -71,7 +71,9 @@ export default function Example() {
           overrides={{
             Root: {
               style: () => ({
-                // transform: `translate(-50%, -50%)`,
+                transform: calculateFloatingRouteMarkerOffsets(
+                  FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.bottomLeft,
+                ),
               }),
             },
           }}

@@ -19,6 +19,7 @@ import { Button } from '../../button';
 import { useStyletron } from '../../styles';
 import { getMapStyle } from './map-style';
 import ReactMapGL, { Marker } from 'react-map-gl';
+import { calculateFloatingRouteMarkerOffsets } from '../calculate-offsets';
 
 const uberHq = {
   latitude: 37.768495131168336,
@@ -132,7 +133,9 @@ export function Scenario() {
                 overrides={{
                   Root: {
                     style: () => ({
-                      // transform: `translate(-50%, -50%)`,
+                      transform: calculateFloatingRouteMarkerOffsets(
+                        floatingRouteMarkerAnchorPosition[0].id
+                      ),
                     }),
                   },
                 }}
