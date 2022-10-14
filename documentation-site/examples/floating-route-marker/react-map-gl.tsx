@@ -63,7 +63,7 @@ export default function Example() {
       </Source>
       <Marker longitude={midpoint[0]} latitude={midpoint[1]}>
         <FloatingRouteMarker
-          label="Fastest route"
+          label="El Morro Path"
           anchorPosition={
             FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.bottomLeft
           }
