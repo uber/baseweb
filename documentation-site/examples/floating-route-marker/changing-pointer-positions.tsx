@@ -17,9 +17,16 @@ const Center = styled<{}>('div', () => ({
   position: 'absolute',
 }));
 
-const anchors = Object.values(
-  FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS,
-);
+const anchors = [
+  FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.topLeft,
+  FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.topCenter,
+  FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.topRight,
+  FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.rightCenter,
+  FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.bottomRight,
+  FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.bottomCenter,
+  FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.bottomLeft,
+  FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.leftCenter,
+];
 
 export default function Example() {
   const [index, setIndex] = React.useState(0);

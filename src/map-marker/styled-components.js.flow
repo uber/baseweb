@@ -298,16 +298,17 @@ export const StyledContentItem = styled<{
   $height: number,
   $size: PinHeadSizeT,
 }>('div', ({ $theme, $color, $height, $size }) => {
+  const { fontFamily, fontSize, fontWeight, lineHeight } = $theme.typography[LABEL_SIZES[$size]];
   return {
-    ...$theme.typography[LABEL_SIZES[$size]],
+    fontFamily,
+    fontSize,
+    fontWeight,
+    lineHeight: $height ? `${$height}px` : lineHeight,
     display: 'flex',
     alignItems: 'center',
     textAlign: 'center',
     height: `${$height}px`,
     color: $color,
-    ...($height > 0 && {
-      lineHeight: `${$height}px`,
-    }),
   };
 });
 

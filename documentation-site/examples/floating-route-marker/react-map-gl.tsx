@@ -72,6 +72,7 @@ export default function Example() {
               style: () => ({
                 transform: calculateFloatingRouteMarkerOffsets(
                   FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.bottomLeft,
+                  4,
                 ),
               }),
             },

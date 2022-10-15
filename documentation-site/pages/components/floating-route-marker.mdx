@@ -51,9 +51,30 @@ Use a floating route marker when showcasing a polyline such as a route. For exam
 - A floating route marker without a label can only have one icon. Do not use both a `startEnhancer` and an `endEnhancer` if there is no label.
 - The floating route marker has two different states: selected and unselected. The unselected (default) state has a light background with dark text, while the selected state has a dark background with light text. Use the selected state when a the user has tapped or selected the map marker (or its corresponding polyline).
 
+## Helper function for positioning the marker on a map
+
+A helper function `calculateFloatingRouteMarkerOffsets` is available to easily position the marker in the proper geographical position within a map. The second parameter adds an additional pixel offset to the marker.
+
+```jsx
+<FloatingRouteMarker
+  label="Fastest route"
+  anchorPosition={FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.bottomLeft}
+  overrides={{
+    Root: {
+      style: {
+        transform: calculateFloatingRouteMarkerOffsets(
+          FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.bottomLeft,
+          4
+        ),
+      },
+    },
+  }}
+/>
+```
+
 ## Examples
 
-<Example title="Basic usage with label" path="floating-route-marker/basic.js">
+<Example title="Basic usage" path="floating-route-marker/basic.js">
   <FloatingMarkerContainer>
     <Basic />
   </FloatingMarkerContainer>
@@ -99,6 +120,8 @@ A floating route marker that cycles through the different pointer positions ever
 </Example>
 
 A floating route map marker rendered inside of a [react-map-gl](https://visgl.github.io/react-map-gl/) view. In order to use a floating route map marker in react-map-gl, wrap the floating marker with a [`<Marker/>`](https://visgl.github.io/react-map-gl/docs/api-reference/marker) component. In order to properly center the marker on the intended position, translate the marker using an override on the `Root`.
+
+A helper function `calculateFloatingRouteMarkerOffsets` is available to help position the marker in the proper geographical position within a map. Use this helper function inside of the `style` transform within the `Root` override.
 
 <Exports
   component={FloatingRouteMarkerExports}

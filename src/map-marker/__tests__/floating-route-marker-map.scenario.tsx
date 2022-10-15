@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import { FloatingRouteMarker } from '..';
+import { calculateFloatingRouteMarkerOffsets } from '../calculate-offsets';
 import { FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS } from '../constants';
 import TileGrid from './tile-grid';
 import { Checkbox, LABEL_PLACEMENT } from '../../checkbox/index';
@@ -19,7 +20,7 @@ import { Button } from '../../button';
 import { useStyletron } from '../../styles';
 import { getMapStyle } from './map-style';
 import ReactMapGL, { Marker } from 'react-map-gl';
-import { calculateFloatingRouteMarkerOffsets } from '../calculate-offsets';
+import { Slider } from 'src/slider';
 
 const uberHq = {
   latitude: 37.768495131168336,
@@ -42,6 +43,7 @@ export function Scenario() {
   const [startEnhancer, setStartEnhancer] = React.useState(true);
   const [endEnhancer, setEndEnhancer] = React.useState(false);
   const [selected, setSelected] = React.useState(false);
+  const [offset, setOffset] = React.useState([0]);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [floatingRouteMarkerAnchorPosition, setFloatingRouteMarkerAnchorPosition] = React.useState([
     floatingRouteMarkerAnchorPositions[0],
@@ -101,9 +103,9 @@ export function Scenario() {
             options={floatingRouteMarkerAnchorPositions}
             value={floatingRouteMarkerAnchorPosition}
             placeholder="Select an anchor position"
+            // @ts-ignore
             onChange={(params) => setFloatingRouteMarkerAnchorPosition(params.value)}
             key="anchor-position"
-            clearable={false}
           />,
           <Button onClick={() => setLocations([])} key="clear-markers">
             Clear markers
@@ -116,6 +118,13 @@ export function Scenario() {
           >
             Show point debug
           </Checkbox>,
+          <Slider
+            value={offset}
+            min={0}
+            max={100}
+            onChange={({ value }) => setOffset(value)}
+            key="offset-amount"
+          />,
         ]}
       />
       <div className={css({ backgroundColor: theme.colors.backgroundLightAccent })}>
@@ -134,7 +143,8 @@ export function Scenario() {
                   Root: {
                     style: () => ({
                       transform: calculateFloatingRouteMarkerOffsets(
-                        floatingRouteMarkerAnchorPosition[0].id
+                        floatingRouteMarkerAnchorPosition[0].id,
+                        offset[0]
                       ),
                     }),
                   },
