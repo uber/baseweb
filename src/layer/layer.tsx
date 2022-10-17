@@ -28,7 +28,8 @@ class LayerComponent extends React.Component<LayerComponentProps, LayerState> {
   static contextType: typeof LayersContext = LayersContext;
 
   state = { container: null };
-  declare context: React.ContextType<typeof LayersContext>;
+  // todo: update babel config to use declare keyword instead
+  context: React.ContextType<typeof LayersContext> = undefined;
 
   componentDidMount() {
     this.context.addEscapeHandler(this.onEscape);
