@@ -23,6 +23,7 @@ type Props = {
   overrides?: {
     ChildMenuPopover?: Override;
   };
+  children: React.ReactNode;
 };
 
 const MaybeChildMenu: React.FC<Props> = (props): React.ReactElement => {

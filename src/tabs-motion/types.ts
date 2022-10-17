@@ -57,7 +57,7 @@ export type TabsProps = {
   overrides?: TabsOverrides;
   renderAll?: boolean;
   uid?: string;
-  endEnhancer?: React.ReactNode;
+  endEnhancer?: React.ReactNode | React.ComponentType;
 };
 
 export type StatefulTabsProps = {

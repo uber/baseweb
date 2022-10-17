@@ -30,16 +30,16 @@ export type LayersManagerState = {
 export type LayersContextProps = {
   host?: HTMLElement | null;
   zIndex?: number;
-  addEscapeHandler: (a: () => unknown) => void;
-  removeEscapeHandler: (a: () => unknown) => void;
-  addKeyDownHandler: (a: () => unknown) => void;
-  removeKeyDownHandler: (a: () => unknown) => void;
-  addKeyUpHandler: (a: () => unknown) => void;
-  removeKeyUpHandler: (a: () => unknown) => void;
-  addKeyPressHandler: (a: () => unknown) => void;
-  removeKeyPressHandler: (a: () => unknown) => void;
-  addDocClickHandler: (a: () => unknown) => void;
-  removeDocClickHandler: (a: () => unknown) => void;
+  addEscapeHandler: (handler: () => unknown) => void;
+  removeEscapeHandler: (handler: () => unknown) => void;
+  addKeyDownHandler: (handler: (event: KeyboardEvent) => unknown) => void;
+  removeKeyDownHandler: (handler: (event: KeyboardEvent) => unknown) => void;
+  addKeyUpHandler: (handler: (event: KeyboardEvent) => unknown) => void;
+  removeKeyUpHandler: (handler: (event: KeyboardEvent) => unknown) => void;
+  addKeyPressHandler: (handler: (event: KeyboardEvent) => unknown) => void;
+  removeKeyPressHandler: (handler: (event: KeyboardEvent) => unknown) => void;
+  addDocClickHandler: (handler: (event: MouseEvent) => unknown) => void;
+  removeDocClickHandler: (handler: (event: MouseEvent) => unknown) => void;
 };
 
 /** Layer */

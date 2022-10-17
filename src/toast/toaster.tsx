@@ -169,7 +169,7 @@ export class ToasterContainer extends React.Component<
       >
         {({ dismiss }) => {
           this.dismissHandlers[key] = dismiss;
-          return children;
+          return children as React.ReactNode;
         }}
       </Toast>
     );
