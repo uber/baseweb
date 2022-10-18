@@ -15,6 +15,7 @@ import {
 } from '@testing-library/react';
 
 import { FileUploader } from '..';
+import userEvent from '@testing-library/user-event';
 
 describe('FileUploader', () => {
   it('applies expected accessibility attributes to button', () => {
@@ -108,5 +109,15 @@ describe('FileUploader', () => {
       <FileUploader progressMessage="uploading..." errorMessage={message} />
     );
     getByText(container, message);
+  });
+
+  it('should be clicked Once', async () => {
+    const onClick = jest.fn();
+    const { container } = render(<FileUploader />);
+    const input = container.querySelector('input');
+    if (input) input.onclick = onClick;
+    const button = container.querySelector('button');
+    if (button) userEvent.click(button);
+    expect(onClick).toHaveBeenCalledTimes(1);
   });
 });
