@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 import { getOverrides } from '../helpers/overrides';
-import { Button, KIND } from '../button';
+import { Button, KIND, SHAPE } from '../button';
 import {
   StyledRoot,
   StyledNavContainer,
@@ -14,29 +14,35 @@ import {
   StyledAdditionalButtonsContainer,
 } from './styled-components';
 import { TYPE } from './constants';
+import { useStyletron } from '../styles/index';
 import type { MobileHeaderProps } from './types';
 
-const DefaultIconButton = ({ children, ...restProps }) => (
-  <Button
-    kind={KIND.tertiary}
-    overrides={{
-      BaseButton: {
-        style: {
-          height: '48px',
-          width: '48px',
-          paddingTop: 0,
-          paddingBottom: 0,
-          paddingLeft: 0,
-          paddingRight: 0,
-          marginRight: '8px',
+const DefaultIconButton = ({ children, type, ...restProps }) => {
+  const [, theme] = useStyletron();
+  return (
+    <Button
+      kind={KIND.tertiary}
+      shape={SHAPE.pill}
+      overrides={{
+        BaseButton: {
+          style: {
+            height: '48px',
+            width: '48px',
+            paddingTop: 0,
+            paddingBottom: 0,
+            paddingLeft: 0,
+            paddingRight: 0,
+            marginRight: '8px',
+            ...(type === TYPE.floating ? { backgroundColor: theme.colors.backgroundPrimary } : {}),
+          },
         },
-      },
-    }}
-    {...restProps}
-  >
-    {children}
-  </Button>
-);
+      }}
+      {...restProps}
+    >
+      {children}
+    </Button>
+  );
+};
 
 export function MobileHeader({
   overrides = {},
@@ -67,23 +73,36 @@ export function MobileHeader({
   const { icon: NavButtonIcon, onClick: navButtonOnClick, ariaLabel: navButtonLabel } = navButton;
 
   return (
-    <Root {...rootProps} $expanded={expanded}>
+    <Root {...rootProps} $type={type} $expanded={expanded}>
       <NavContainer $type={type} {...navContainerProps}>
-        <IconButton onClick={navButtonOnClick} aria-label={navButtonLabel} {...iconButtonProps}>
+        <IconButton
+          onClick={navButtonOnClick}
+          aria-label={navButtonLabel}
+          type={type}
+          {...iconButtonProps}
+        >
           <NavButtonIcon size={32} />
         </IconButton>
       </NavContainer>
 
-      <Title $type={type} {...titleProps}>
-        {title}
-      </Title>
+      {type === TYPE.fixed && (
+        <Title $type={type} $expanded={expanded} {...titleProps}>
+          {title}
+        </Title>
+      )}
 
       {additionalButtons.length > 0 && (
         <AdditionalButtonsContainer {...additionalButtonsContainerProps}>
           {additionalButtons.map((button, idx) => {
             const { icon: Icon, onClick, ariaLabel } = button;
             return (
-              <IconButton onClick={onClick} aria-label={ariaLabel} {...iconButtonProps} key={idx}>
+              <IconButton
+                onClick={onClick}
+                aria-label={ariaLabel}
+                type={type}
+                {...iconButtonProps}
+                key={idx}
+              >
                 <Icon size={32} />
               </IconButton>
             );
