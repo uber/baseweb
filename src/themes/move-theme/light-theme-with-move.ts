@@ -20,5 +20,5 @@ export const LightThemeMove: Theme = deepMerge({}, LightTheme, {
   // in `moveTypography`. For it we'll get the typography value built
   // with a custom font using `getTypography` helper and extend the result
   // value with the customized set of fonts that reference a secondary font
-  typography: deepMerge(getTypography(moveFontTokens), moveTypography),
+  typography: deepMerge({}, getTypography(moveFontTokens), moveTypography),
 });

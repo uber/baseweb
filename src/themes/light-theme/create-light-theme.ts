@@ -56,5 +56,5 @@ export default function createLightTheme(
     },
   };
 
-  return deepMerge(theme, overrides);
+  return deepMerge({}, theme, overrides);
 }

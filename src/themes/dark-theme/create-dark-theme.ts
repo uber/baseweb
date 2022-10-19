@@ -56,5 +56,5 @@ export default function createDarkTheme(
     },
   };
 
-  return deepMerge(theme, overrides);
+  return deepMerge({}, theme, overrides);
 }
