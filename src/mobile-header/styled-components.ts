@@ -11,10 +11,9 @@ import type { Type } from './types';
 export const StyledRoot = styled<'div', { $type: Type }>('div', ({ $theme, $type }) => ({
   position: 'sticky',
   top: '0',
-  boxSizing: 'border-box', // TODO: do you need this?
   width: '100%',
   display: 'grid',
-  gridTemplateColumns: 'auto auto auto',
+  gridTemplateColumns: 'auto 1fr auto',
   ...($type === TYPE.floating
     ? { backgroundColor: 'transparent' }
     : { backgroundColor: $theme.colors.backgroundPrimary }),
@@ -32,6 +31,7 @@ export const StyledNavContainer = styled<'div', { $hasTextContent: boolean; $typ
 );
 StyledNavContainer.displayName = 'StyledNavContainer';
 
+// TODO: this name is cumbersome
 export const StyledAdditionalButtonsContainer = styled<'div', {}>('div', ({}) => ({
   display: 'flex',
   justifyContent: 'flex-end',
@@ -39,11 +39,11 @@ export const StyledAdditionalButtonsContainer = styled<'div', {}>('div', ({}) =>
 }));
 StyledAdditionalButtonsContainer.displayName = 'StyledAdditionalButtonsContainer';
 
+// TODO: should this be StyledTitleContainer?
 export const StyledTitle = styled<'div', { $expanded: boolean }>(
   'div',
   ({ $theme, $expanded = false }) => ({
-    display: 'flex',
-    alignItems: 'center',
+    alignSelf: 'center',
     ...($expanded ? $theme.typography.DisplayXSmall : $theme.typography.LabelLarge),
     ...($expanded
       ? {
@@ -52,7 +52,7 @@ export const StyledTitle = styled<'div', { $expanded: boolean }>(
           paddingLeft: '16px',
         }
       : {}),
-    // truncate long titles // TODO: this doesn't work 🤔
+    // truncate long titles
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
     overflow: 'hidden',
