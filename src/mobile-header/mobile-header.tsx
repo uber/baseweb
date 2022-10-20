@@ -17,24 +17,42 @@ import { TYPE } from './constants';
 import { useStyletron } from '../styles/index';
 import type { MobileHeaderProps } from './types';
 
-const DefaultIconButton = ({ children, type, ...restProps }) => {
+const renderButtonContent = (content) => {
+  if (typeof content === 'string') {
+    return content;
+  }
+  const Icon = content;
+  return <Icon size={32} />;
+};
+
+const DefaultHeaderButton = ({ children, type, ...restProps }) => {
   const [, theme] = useStyletron();
+  const isFloating = type === TYPE.floating;
+  const hasTextContent = typeof children === 'string';
+  const shouldHaveRightMargin = isFloating || !hasTextContent;
+
+  const style = {
+    ...(!hasTextContent
+      ? {
+          height: '48px',
+          width: '48px',
+          paddingTop: 0,
+          paddingBottom: 0,
+          paddingLeft: 0,
+          paddingRight: 0,
+        }
+      : {}),
+    ...(shouldHaveRightMargin ? { marginRight: '8px' } : {}),
+    ...(isFloating ? { backgroundColor: theme.colors.backgroundPrimary } : {}),
+  };
+
   return (
     <Button
       kind={KIND.tertiary}
       shape={SHAPE.pill}
       overrides={{
         BaseButton: {
-          style: {
-            height: '48px',
-            width: '48px',
-            paddingTop: 0,
-            paddingBottom: 0,
-            paddingLeft: 0,
-            paddingRight: 0,
-            marginRight: '8px',
-            ...(type === TYPE.floating ? { backgroundColor: theme.colors.backgroundPrimary } : {}),
-          },
+          style,
         },
       }}
       {...restProps}
@@ -58,7 +76,7 @@ export function MobileHeader({
     overrides.NavContainer,
     StyledNavContainer
   );
-  const [IconButton, iconButtonProps] = getOverrides(overrides.IconButton, DefaultIconButton);
+  const [HeaderButton, iconButtonProps] = getOverrides(overrides.HeaderButton, DefaultHeaderButton);
   const [AdditionalButtonsContainer, additionalButtonsContainerProps] = getOverrides(
     overrides.AdditionalButtonsContainer,
     StyledAdditionalButtonsContainer
@@ -70,19 +88,21 @@ export function MobileHeader({
     );
   }
 
-  const { icon: NavButtonIcon, onClick: navButtonOnClick, ariaLabel: navButtonLabel } = navButton;
-
   return (
     <Root {...rootProps} $type={type} $expanded={expanded}>
-      <NavContainer $type={type} {...navContainerProps}>
-        <IconButton
-          onClick={navButtonOnClick}
-          aria-label={navButtonLabel}
+      <NavContainer
+        $type={type}
+        $hasTextContent={typeof navButton.content === 'string'}
+        {...navContainerProps}
+      >
+        <HeaderButton
+          onClick={navButton.onClick}
+          aria-label={navButton.ariaLabel}
           type={type}
           {...iconButtonProps}
         >
-          <NavButtonIcon size={32} />
-        </IconButton>
+          {renderButtonContent(navButton.content)}
+        </HeaderButton>
       </NavContainer>
 
       {type === TYPE.fixed && (
@@ -94,17 +114,17 @@ export function MobileHeader({
       {additionalButtons.length > 0 && (
         <AdditionalButtonsContainer {...additionalButtonsContainerProps}>
           {additionalButtons.map((button, idx) => {
-            const { icon: Icon, onClick, ariaLabel } = button;
+            const { content, onClick, ariaLabel } = button;
             return (
-              <IconButton
+              <HeaderButton
                 onClick={onClick}
                 aria-label={ariaLabel}
                 type={type}
                 {...iconButtonProps}
                 key={idx}
               >
-                <Icon size={32} />
-              </IconButton>
+                {renderButtonContent(content)}
+              </HeaderButton>
             );
           })}
         </AdditionalButtonsContainer>

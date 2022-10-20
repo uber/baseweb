@@ -21,9 +21,15 @@ export const StyledRoot = styled<'div', { $type: Type }>('div', ({ $theme, $type
 }));
 StyledRoot.displayName = 'StyledRoot';
 
-export const StyledNavContainer = styled<'div', {}>('div', ({}) => ({
-  paddingLeft: '8px',
-}));
+export const StyledNavContainer = styled<'div', { $hasTextContent: boolean; $type: Type }>(
+  'div',
+  ({ $hasTextContent, $type }) =>
+    $hasTextContent && $type === TYPE.fixed
+      ? {}
+      : {
+          paddingLeft: '8px',
+        }
+);
 StyledNavContainer.displayName = 'StyledNavContainer';
 
 export const StyledAdditionalButtonsContainer = styled<'div', {}>('div', ({}) => ({
@@ -44,7 +50,6 @@ export const StyledTitle = styled<'div', { $expanded: boolean }>(
           gridColumn: '1 / 4',
           gridRow: 2,
           paddingLeft: '16px',
-          marginTop: '8px',
         }
       : {}),
     // truncate long titles // TODO: this doesn't work 🤔

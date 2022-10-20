@@ -14,11 +14,21 @@ export type MobileHeaderOverrides = {
   Root?: Override;
   Title?: Override;
   NavContainer?: Override;
-  IconButton?: Override;
+  HeaderButton?: Override;
   AdditionalButtonsContainer?: Override;
 };
 
-export type IconButton = { icon: React.ElementType; onClick: () => void; ariaLabel: string };
+export type IconButton =
+  | {
+      content: React.ElementType;
+      onClick: () => void;
+      ariaLabel: string;
+    }
+  | {
+      content: string;
+      onClick: () => void;
+      ariaLabel?: string;
+    };
 
 export type MobileHeaderProps = {
   title?: string;

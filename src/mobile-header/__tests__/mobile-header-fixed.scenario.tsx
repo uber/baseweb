@@ -25,18 +25,18 @@ export function Scenario() {
             title="Header title"
             expanded={expanded}
             navButton={{
-              icon: ArrowLeft,
+              content: ArrowLeft,
               onClick: () => console.log('Nav Button Click'),
               ariaLabel: 'Go back',
             }}
             additionalButtons={[
               {
-                icon: Check,
+                content: Check,
                 onClick: () => console.log('Check Button Click'),
                 ariaLabel: 'Confirm entries',
               },
               {
-                icon: Plus,
+                content: Plus,
                 onClick: () => console.log('Plus Button Click'),
                 ariaLabel: 'Add a new entry',
               },
@@ -77,18 +77,18 @@ export function Scenario() {
             title="Excessively long title that truncates"
             expanded={expanded}
             navButton={{
-              icon: Delete,
+              content: Delete,
               onClick: () => console.log('Nav Button Click'),
               ariaLabel: 'Go back',
             }}
             additionalButtons={[
               {
-                icon: Check,
+                content: Check,
                 onClick: () => console.log('Check Button Click'),
                 ariaLabel: 'Confirm entries',
               },
               {
-                icon: Plus,
+                content: Plus,
                 onClick: () => console.log('Plus Button Click'),
                 ariaLabel: 'Add a new entry',
               },
@@ -126,18 +126,16 @@ export function Scenario() {
 
         <Iphone6>
           <MobileHeader
-            title="Excessively long title that truncates"
+            title="Text buttons"
             expanded={expanded}
             navButton={{
-              icon: Delete,
-              onClick: () => console.log('Nav Button Click'),
-              ariaLabel: 'Go back',
+              content: 'Action',
+              onClick: () => console.log('Nav Acction Click'),
             }}
             additionalButtons={[
               {
-                icon: Check,
-                onClick: () => console.log('Check Button Click'),
-                ariaLabel: 'Confirm entries',
+                content: 'Action',
+                onClick: () => console.log('Action Click'),
               },
             ]}
           />
