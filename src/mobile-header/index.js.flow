@@ -1,0 +1,52 @@
+/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+// @flow
+import * as React from 'react';
+import type { OverrideT } from '../helpers/overrides.js';
+import { type StyletronComponent } from 'styletron-react';
+
+declare export var TYPE: {
+  fixed: 'fixed',
+  floating: 'floating',
+};
+
+export type TypeT = $Values<typeof TYPE>;
+
+export type MobileHeaderOverridesT = {
+  Root?: OverrideT,
+  Title?: OverrideT,
+  NavContainer?: OverrideT,
+  HeaderButton?: OverrideT,
+  AdditionalButtonContainer?: OverrideT,
+};
+
+export type IconButtonT =
+  | {
+      content: React.ElementType,
+      onClick: () => void,
+      ariaLabel: string,
+    }
+  | { content: React.ElementType, onClick: () => void, ariaLabel: string };
+
+export type MobileHeaderPropsT = {
+  title?: string,
+  expanded?: boolean,
+  navButton: IconButtonT,
+  additionalButtons?: IconButtonT[],
+  type?: TypeT,
+  overrides?: MobileHeaderOverrides,
+};
+
+declare export var StyledRoot: StyletronComponent<'div', { $type: TypeT }>;
+declare export var StyledNavContainer: StyletronComponent<
+  'div',
+  { $hasTextContent: boolean, $type: TypeT }
+>;
+declare export var StyledAdditionalButtonsContainer: StyletronComponent<'div', {}>;
+declare export var StyledTitle: StyletronComponent<'div', { $expanded: boolean }>;
+
+declare export var MobileHeader: React.ComponentType<MobileHeaderPropsT>;
