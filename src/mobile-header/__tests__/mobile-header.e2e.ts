@@ -9,9 +9,15 @@ import { expect, test } from '@playwright/test';
 import { mount, analyzeAccessibility } from '../../test/integration';
 
 test.describe('mobile-header', () => {
-  test('passes basic a11y tests', async ({ page }) => {
-    await mount(page, 'mobile-header--mobile-header');
-    // await page.waitForSelector('button');
+  test('fixed header passes basic a11y tests', async ({ page }) => {
+    await mount(page, 'mobile-header--fixed');
+    await page.waitForSelector('button');
+    const accessibilityReport = await analyzeAccessibility(page);
+    expect(accessibilityReport).toHaveNoAccessibilityIssues();
+  });
+
+  test('floating header passes basic a11y tests', async ({ page }) => {
+    await mount(page, 'mobile-header--floating');
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
