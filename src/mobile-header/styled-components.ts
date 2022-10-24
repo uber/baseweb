@@ -9,13 +9,11 @@ import { TYPE } from './constants';
 import type { Type } from './types';
 
 export const StyledRoot = styled<'div', { $type: Type }>('div', ({ $theme, $type }) => ({
-  position: 'sticky',
-  top: '0',
   width: '100%',
   display: 'grid',
   gridTemplateColumns: 'auto 1fr auto',
   ...($type === TYPE.floating
-    ? { backgroundColor: 'transparent' }
+    ? { backgroundColor: 'transparent', pointerEvents: 'none' }
     : { backgroundColor: $theme.colors.backgroundPrimary }),
 }));
 StyledRoot.displayName = 'StyledRoot';
@@ -24,9 +22,10 @@ export const StyledNavContainer = styled<'div', { $hasTextContent: boolean; $typ
   'div',
   ({ $hasTextContent, $type }) =>
     $hasTextContent && $type === TYPE.fixed
-      ? {}
+      ? { pointerEvents: 'auto' }
       : {
           paddingLeft: '8px',
+          pointerEvents: 'auto',
         }
 );
 StyledNavContainer.displayName = 'StyledNavContainer';
@@ -36,6 +35,7 @@ export const StyledAdditionalButtonsContainer = styled<'div', {}>('div', ({}) =>
   display: 'flex',
   justifyContent: 'flex-end',
   gridColumn: '3 / 4',
+  pointerEvents: 'auto',
 }));
 StyledAdditionalButtonsContainer.displayName = 'StyledAdditionalButtonsContainer';
 

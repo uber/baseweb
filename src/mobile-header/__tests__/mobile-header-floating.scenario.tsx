@@ -7,35 +7,103 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import { MobileHeader } from '..';
+import { styled } from '../../styles';
 import { ArrowLeft, Plus, Check, Menu } from '../../icon';
-import { Iphone6 } from './styled-components';
+import map from './map-san-francisco.png';
+
+const StyledIphone6 = styled('div', {
+  width: '375px',
+  height: '667px',
+  border: '1px solid #ECECEC',
+  borderRadius: '12px',
+  backgroundColor: '#ECECEC',
+  overflow: 'auto',
+  position: 'relative',
+});
+
+const StyledHeaderContainer = styled('div', {
+  width: '100%',
+  position: 'absolute',
+  pointerEvents: 'none',
+});
+
+const StyledBody = styled('div', { height: '100%', width: '100%', overflowY: 'auto' });
 
 export function Scenario() {
   return (
     <div style={{ display: 'flex', gap: '20px' }}>
-      <Iphone6>
-        <MobileHeader
-          type="floating"
-          navButton={{
-            content: ArrowLeft,
-            onClick: () => console.log('Nav Button Click'),
-            ariaLabel: 'Go back',
-          }}
-          additionalButtons={[
-            {
-              content: Check,
-              onClick: () => console.log('Check Button Click'),
-              ariaLabel: 'Confirm entries',
-            },
-            {
-              content: Plus,
-              onClick: () => console.log('Plus Button Click'),
-              ariaLabel: 'Add a new entry',
-            },
-          ]}
-        />
+      <StyledIphone6>
+        <StyledHeaderContainer>
+          <MobileHeader
+            type="floating"
+            navButton={{
+              content: ArrowLeft,
+              onClick: () => console.log('Nav Button Click'),
+              ariaLabel: 'Go back',
+            }}
+            additionalButtons={[
+              {
+                content: Check,
+                onClick: () => console.log('Check Button Click'),
+                ariaLabel: 'Confirm entries',
+              },
+              {
+                content: Plus,
+                onClick: () => console.log('Plus Button Click'),
+                ariaLabel: 'Add a new entry',
+              },
+            ]}
+          />
+        </StyledHeaderContainer>
+        <StyledBody>
+          <img src={map} alt="map of San Francisco" />
+        </StyledBody>
+      </StyledIphone6>
 
-        <div style={{ padding: '12px', height: '900px' }}>
+      <StyledIphone6>
+        <StyledHeaderContainer>
+          <MobileHeader
+            type="floating"
+            navButton={{
+              content: Menu,
+              onClick: () => console.log('Nav Button Click'),
+              ariaLabel: 'Go back',
+            }}
+            additionalButtons={[
+              {
+                content: '$25.18',
+                onClick: () => console.log('Money Button Click'),
+                ariaLabel: 'Confirm entries',
+              },
+            ]}
+          />
+        </StyledHeaderContainer>
+
+        <StyledBody>
+          <img src={map} alt="map of San Francisco" />
+        </StyledBody>
+      </StyledIphone6>
+
+      <StyledIphone6>
+        <StyledHeaderContainer>
+          <MobileHeader
+            type="floating"
+            navButton={{
+              content: 'Action',
+              onClick: () => console.log('Nav Button Click'),
+              ariaLabel: 'Go back',
+            }}
+            additionalButtons={[
+              {
+                content: 'Action',
+                onClick: () => console.log('Money Button Click'),
+                ariaLabel: 'Confirm entries',
+              },
+            ]}
+          />
+        </StyledHeaderContainer>
+
+        <StyledBody>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
             incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
@@ -62,35 +130,6 @@ export function Scenario() {
             Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
             mollit anim id est laborum.
           </p>
-        </div>
-      </Iphone6>
-
-      <Iphone6>
-        <MobileHeader
-          type="floating"
-          navButton={{
-            content: Menu,
-            onClick: () => console.log('Nav Button Click'),
-            ariaLabel: 'Go back',
-          }}
-          additionalButtons={[
-            {
-              content: '$25.18',
-              onClick: () => console.log('Money Button Click'),
-              ariaLabel: 'Confirm entries',
-            },
-          ]}
-        />
-
-        <div style={{ padding: '12px', height: '900px' }}>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.
-          </p>
 
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -109,55 +148,8 @@ export function Scenario() {
             Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
             mollit anim id est laborum.
           </p>
-        </div>
-      </Iphone6>
-
-      <Iphone6>
-        <MobileHeader
-          type="floating"
-          navButton={{
-            content: 'Action',
-            onClick: () => console.log('Nav Button Click'),
-            ariaLabel: 'Go back',
-          }}
-          additionalButtons={[
-            {
-              content: '$25.18',
-              onClick: () => console.log('Money Button Click'),
-              ariaLabel: 'Confirm entries',
-            },
-          ]}
-        />
-
-        <div style={{ padding: '12px', height: '900px' }}>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.
-          </p>
-
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.
-          </p>
-
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.
-          </p>
-        </div>
-      </Iphone6>
+        </StyledBody>
+      </StyledIphone6>
     </div>
   );
 }
