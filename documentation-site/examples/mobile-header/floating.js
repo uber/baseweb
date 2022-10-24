@@ -36,7 +36,7 @@ export default function Example() {
             onClick: () => console.log('Nav Button Click'),
             ariaLabel: 'Go back',
           }}
-          additionalButtons={[
+          actionButtons={[
             {
               content: Check,
               onClick: () => console.log('Check Button Click'),

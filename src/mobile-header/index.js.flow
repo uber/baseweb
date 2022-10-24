@@ -36,7 +36,7 @@ export type MobileHeaderPropsT = {
   title?: string,
   expanded?: boolean,
   navButton: IconButtonT,
-  additionalButtons?: IconButtonT[],
+  actionButtons?: IconButtonT[],
   type?: TypeT,
   overrides?: MobileHeaderOverrides,
 };
@@ -46,7 +46,7 @@ declare export var StyledNavContainer: StyletronComponent<
   'div',
   { $hasTextContent: boolean, $type: TypeT }
 >;
-declare export var StyledAdditionalButtonsContainer: StyletronComponent<'div', {}>;
+declare export var StyledActionButtonsContainer: StyletronComponent<'div', {}>;
 declare export var StyledTitle: StyletronComponent<'div', { $expanded: boolean }>;
 
 declare export var MobileHeader: React.ComponentType<MobileHeaderPropsT>;

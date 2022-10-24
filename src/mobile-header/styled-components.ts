@@ -31,13 +31,13 @@ export const StyledNavContainer = styled<'div', { $hasTextContent: boolean; $typ
 StyledNavContainer.displayName = 'StyledNavContainer';
 
 // TODO: this name is cumbersome
-export const StyledAdditionalButtonsContainer = styled<'div', {}>('div', ({}) => ({
+export const StyledActionButtonsContainer = styled<'div', {}>('div', ({}) => ({
   display: 'flex',
   justifyContent: 'flex-end',
   gridColumn: '3 / 4',
   pointerEvents: 'auto',
 }));
-StyledAdditionalButtonsContainer.displayName = 'StyledAdditionalButtonsContainer';
+StyledActionButtonsContainer.displayName = 'StyledActionButtonsContainer';
 
 // TODO: should this be StyledTitleContainer?
 export const StyledTitle = styled<'div', { $expanded: boolean }>(

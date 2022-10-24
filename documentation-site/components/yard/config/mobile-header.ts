@@ -47,7 +47,7 @@ const MobileHeaderConfig: TConfig = {
       description:
         'Determines the content (can be an icon or a string), onClick, and ariaLabel for the nav button',
     },
-    additionalButtons: {
+    actionButtons: {
       value:
         '[{content: Plus, onClick: () => alert("plus button click"), ariaLabel: "Add another entry"}, {content: Check, onClick: () => alert("check button click"), ariaLabel: "Approve entries"}]',
       type: PropTypes.Array,
@@ -72,7 +72,7 @@ const MobileHeaderConfig: TConfig = {
       type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
       custom: {
-        names: ['Root', 'Title', 'NavContainer', 'HeaderButton', 'AdditionalButtonsContainer'],
+        names: ['Root', 'Title', 'NavContainer', 'HeaderButton', 'ActionButtonsContainer'],
         sharedProps: {},
       },
     },

@@ -40,7 +40,7 @@ export function Scenario() {
               onClick: () => console.log('Nav Button Click'),
               ariaLabel: 'Go back',
             }}
-            additionalButtons={[
+            actionButtons={[
               {
                 content: Check,
                 onClick: () => console.log('Check Button Click'),
@@ -110,7 +110,7 @@ export function Scenario() {
               onClick: () => console.log('Nav Button Click'),
               ariaLabel: 'Go back',
             }}
-            additionalButtons={[
+            actionButtons={[
               {
                 content: Check,
                 onClick: () => console.log('Check Button Click'),
@@ -179,7 +179,7 @@ export function Scenario() {
               content: 'Action',
               onClick: () => console.log('Nav Acction Click'),
             }}
-            additionalButtons={[
+            actionButtons={[
               {
                 content: 'Action',
                 onClick: () => console.log('Action Click'),

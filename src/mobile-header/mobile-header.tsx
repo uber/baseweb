@@ -11,7 +11,7 @@ import {
   StyledRoot,
   StyledNavContainer,
   StyledTitle,
-  StyledAdditionalButtonsContainer,
+  StyledActionButtonsContainer,
 } from './styled-components';
 import { TYPE } from './constants';
 import { useStyletron } from '../styles/index';
@@ -66,7 +66,7 @@ export function MobileHeader({
   overrides = {},
   title,
   navButton,
-  additionalButtons = [],
+  actionButtons = [],
   type = TYPE.fixed,
   expanded = false,
 }: MobileHeaderProps) {
@@ -77,14 +77,14 @@ export function MobileHeader({
     StyledNavContainer
   );
   const [HeaderButton, iconButtonProps] = getOverrides(overrides.HeaderButton, DefaultHeaderButton);
-  const [AdditionalButtonsContainer, additionalButtonsContainerProps] = getOverrides(
-    overrides.AdditionalButtonsContainer,
-    StyledAdditionalButtonsContainer
+  const [ActionButtonsContainer, actionButtonsContainerProps] = getOverrides(
+    overrides.ActionButtonsContainer,
+    StyledActionButtonsContainer
   );
 
-  if (additionalButtons.length > 2 && __DEV__) {
+  if (actionButtons.length > 2 && __DEV__) {
     console.warn(
-      `MobileHeader can only render two additional buttons. Received ${additionalButtons.length}`
+      `MobileHeader can only render two additional buttons. Received ${actionButtons.length}`
     );
   }
 
@@ -111,9 +111,9 @@ export function MobileHeader({
         </Title>
       )}
 
-      {additionalButtons.length > 0 && (
-        <AdditionalButtonsContainer {...additionalButtonsContainerProps}>
-          {additionalButtons.map((button, idx) => {
+      {actionButtons.length > 0 && (
+        <ActionButtonsContainer {...actionButtonsContainerProps}>
+          {actionButtons.map((button, idx) => {
             const { content, onClick, ariaLabel } = button;
             return (
               <HeaderButton
@@ -127,7 +127,7 @@ export function MobileHeader({
               </HeaderButton>
             );
           })}
-        </AdditionalButtonsContainer>
+        </ActionButtonsContainer>
       )}
     </Root>
   );

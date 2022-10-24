@@ -15,7 +15,7 @@ export type MobileHeaderOverrides = {
   Title?: Override;
   NavContainer?: Override;
   HeaderButton?: Override;
-  AdditionalButtonsContainer?: Override;
+  ActionButtonsContainer?: Override;
 };
 
 export type IconButton =
@@ -34,7 +34,7 @@ export type MobileHeaderProps = {
   title?: string;
   expanded?: boolean;
   navButton: IconButton;
-  additionalButtons?: [IconButton?, IconButton?];
+  actionButtons?: [IconButton?, IconButton?];
   type?: Type;
   overrides?: MobileHeaderOverrides;
 };
