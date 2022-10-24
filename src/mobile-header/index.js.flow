@@ -30,7 +30,7 @@ export type IconButtonT =
       onClick: () => void,
       ariaLabel: string,
     }
-  | { content: React.ElementType, onClick: () => void, ariaLabel: string };
+  | { content: string, onClick: () => void, ariaLabel?: string };
 
 export type MobileHeaderPropsT = {
   title?: string,
