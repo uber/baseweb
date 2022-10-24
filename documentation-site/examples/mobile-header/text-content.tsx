@@ -45,6 +45,7 @@ export default function Example() {
             height: '100%',
             overflow: 'auto',
           }}
+          tabIndex={0}
         >
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit,

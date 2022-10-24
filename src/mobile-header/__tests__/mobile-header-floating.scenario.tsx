@@ -27,7 +27,7 @@ const StyledHeaderContainer = styled('div', {
   pointerEvents: 'none',
 });
 
-const StyledBody = styled('div', { height: '100%', width: '100%', overflowY: 'auto' });
+const StyledBody = styled('div', { height: '100%', width: '100%', overflow: 'auto' });
 
 export function Scenario() {
   return (
@@ -55,7 +55,7 @@ export function Scenario() {
             ]}
           />
         </StyledHeaderContainer>
-        <StyledBody>
+        <StyledBody tabIndex={0}>
           <img src={map} alt="map of San Francisco" />
         </StyledBody>
       </StyledIphone6>
@@ -79,7 +79,7 @@ export function Scenario() {
           />
         </StyledHeaderContainer>
 
-        <StyledBody>
+        <StyledBody tabIndex={0}>
           <img src={map} alt="map of San Francisco" />
         </StyledBody>
       </StyledIphone6>
@@ -103,7 +103,7 @@ export function Scenario() {
           />
         </StyledHeaderContainer>
 
-        <StyledBody>
+        <StyledBody tabIndex={0}>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
             incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud

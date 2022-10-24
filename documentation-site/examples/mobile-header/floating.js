@@ -52,6 +52,7 @@ export default function Example() {
       </div>
       <div
         style={{height: '100%', width: '100%', overflowY: 'auto'}}
+        tabIndex={0}
       >
         <img src={map} />
       </div>
