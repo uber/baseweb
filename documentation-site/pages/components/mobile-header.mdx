@@ -24,22 +24,31 @@ export default Layout;
 
 <Yard placeholderHeight={52} {...mobileHeaderYardConfig} />
 
-The mobile header sits directly below the status bar and above all content on the screen. It allows users to move through flows and sets the context for content on the screen.
+The mobile header sits directly below the status bar and above all content on the screen.
+It allows users to move through flows and sets the context for content on the screen.
 
-There are two types of headers, one that is fixed to the top of the screen with an opaque background and one that floats over maps and images.
+## Fixed vs Floating
 
-The fixed header consists of three parts: a title, a navigation button, and a set of up to two additional buttons. It also has two states: an expanded state and a collapsed state.
+There are two types of headers: one that is fixed to the top of the screen with an opaque
+background and one that floats over maps and images.
 
-The floating header does not include a title, and there is not expanded state.
+The fixed header consists of three parts: a title, a navigation button, and a set of up to two
+additional buttons. It also has two states: an expanded state and a collapsed state.
+
+The floating header does not include a title, and there is no expanded state. The area between
+the buttons is accessible to touch feedback, which frees up more space to interact with and view
+areas on a map or photo.
 
 ## Examples
 
-<Example title="Floating" path="mobile-header/floating.js">
+<Example title="Floating header" path="mobile-header/floating.js">
   <FloatingMobileHeader />
 </Example>
 
-<Example title="Text content" path="mobile-header/text-content.js">
+<Example title="Buttons with text content" path="mobile-header/text-content.js">
   <TextContentMobileHeader />
 </Example>
+
+The content of the navigation and action buttons can be icons or text.
 
 <Exports component={MobileHeaderExports} title="MobileHeader exports" path="baseui/mobile-header" />

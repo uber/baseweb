@@ -28,18 +28,25 @@ const MobileHeaderConfig: TConfig = {
   },
   theme: [],
   props: {
+    type: {
+      value: undefined,
+      defaultValue: undefined,
+      options: TYPE,
+      enumName: 'TYPE',
+      type: PropTypes.Enum,
+      description: 'Determines whether header if fixed or floating',
+      imports: {
+        'baseui/mobile-header': {
+          named: ['TYPE'],
+        },
+      },
+    },
     title: {
       value: 'Header title',
       type: PropTypes.String,
       description: 'Title to be displayed in MobileHeader. Ignored when using the floating type.',
     },
-    expanded: {
-      value: false,
-      type: PropTypes.Boolean,
-      description:
-        'Determines whether MobileHeader is expanded. Ignored when using the floating type.',
-      defaultValue: false,
-    },
+
     navButton: {
       value:
         '{content: ArrowLeft, onClick: () => alert("nav button click"), ariaLabel: "Go back to the previous screen"}',
@@ -54,18 +61,12 @@ const MobileHeaderConfig: TConfig = {
       description:
         'Determines the content (can be an icon or a string), onClick, and ariaLabel for the up to two additional buttons opposite the nav button.',
     },
-    type: {
-      value: undefined,
-      defaultValue: undefined,
-      options: TYPE,
-      enumName: 'TYPE',
-      type: PropTypes.Enum,
-      description: 'Determines whether header if fixed or floating',
-      imports: {
-        'baseui/mobile-header': {
-          named: ['TYPE'],
-        },
-      },
+    expanded: {
+      value: false,
+      type: PropTypes.Boolean,
+      description:
+        'Determines whether MobileHeader is expanded. Ignored when using the floating type.',
+      defaultValue: false,
     },
     overrides: {
       value: undefined,
