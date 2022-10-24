@@ -29,7 +29,11 @@ const DefaultHeaderButton = ({ children, type, ...restProps }) => {
   const [, theme] = useStyletron();
   const isFloating = type === TYPE.floating;
   const hasTextContent = typeof children === 'string';
-  const shouldHaveRightMargin = isFloating || !hasTextContent;
+  const shouldHaveTrailingMargin = isFloating || !hasTextContent;
+  const trailingMargin =
+    theme.direction === 'rtl'
+      ? { marginLeft: theme.sizing.scale300 }
+      : { marginRight: theme.sizing.scale300 };
 
   const style = {
     ...(!hasTextContent
@@ -42,7 +46,7 @@ const DefaultHeaderButton = ({ children, type, ...restProps }) => {
           paddingRight: 0,
         }
       : {}),
-    ...(shouldHaveRightMargin ? { marginRight: '8px' } : {}),
+    ...(shouldHaveTrailingMargin ? trailingMargin : {}),
     ...(isFloating ? { backgroundColor: theme.colors.backgroundPrimary } : {}),
   };
 

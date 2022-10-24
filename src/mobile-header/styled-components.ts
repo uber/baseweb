@@ -20,17 +20,20 @@ StyledRoot.displayName = 'StyledRoot';
 
 export const StyledNavContainer = styled<'div', { $hasTextContent: boolean; $type: Type }>(
   'div',
-  ({ $hasTextContent, $type }) =>
-    $hasTextContent && $type === TYPE.fixed
-      ? { pointerEvents: 'auto' }
-      : {
-          paddingLeft: '8px',
-          pointerEvents: 'auto',
-        }
+  ({ $hasTextContent, $type, $theme }) => {
+    const floatingPadding =
+      $theme.direction === 'rtl'
+        ? { paddingRight: $theme.sizing.scale300 }
+        : { paddingLeft: $theme.sizing.scale300 };
+
+    return {
+      pointerEvents: 'auto',
+      ...($hasTextContent && $type === TYPE.fixed ? {} : floatingPadding),
+    };
+  }
 );
 StyledNavContainer.displayName = 'StyledNavContainer';
 
-// TODO: this name is cumbersome
 export const StyledActionButtonsContainer = styled<'div', {}>('div', ({}) => ({
   display: 'flex',
   justifyContent: 'flex-end',
@@ -39,17 +42,17 @@ export const StyledActionButtonsContainer = styled<'div', {}>('div', ({}) => ({
 }));
 StyledActionButtonsContainer.displayName = 'StyledActionButtonsContainer';
 
-// TODO: should this be StyledTitleContainer?
 export const StyledTitle = styled<'div', { $expanded: boolean }>(
   'div',
   ({ $theme, $expanded = false }) => ({
     alignSelf: 'center',
+    justifyContent: 'flex-start',
     ...($expanded ? $theme.typography.DisplayXSmall : $theme.typography.LabelLarge),
     ...($expanded
       ? {
           gridColumn: '1 / 4',
           gridRow: 2,
-          paddingLeft: '16px',
+          paddingLeft: $theme.sizing.scale600,
         }
       : {}),
     // truncate long titles
