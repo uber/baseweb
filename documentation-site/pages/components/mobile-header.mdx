@@ -1,0 +1,45 @@
+<!--
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import Exports from '../../components/exports';
+import Layout from '../../components/layout';
+
+import FloatingMobileHeader from 'examples/mobile-header/floating.js';
+import TextContentMobileHeader from 'examples/mobile-header/text-content.js';
+
+import { MobileHeader, TYPE } from 'baseui/mobile-header';
+import * as MobileHeaderExports from 'baseui/mobile-header';
+
+import Yard from '../../components/yard/index';
+import mobileHeaderYardConfig from '../../components/yard/config/mobile-header';
+
+export default Layout;
+
+# Mobile Header
+
+<Yard placeholderHeight={52} {...mobileHeaderYardConfig} />
+
+The mobile header sits directly below the status bar and above all content on the screen. It allows users to move through flows and sets the context for content on the screen.
+
+There are two types of headers, one that is fixed to the top of the screen with an opaque background and one that floats over maps and images.
+
+The fixed header consists of three parts: a title, a navigation button, and a set of up to two additional buttons. It also has two states: an expanded state and a collapsed state.
+
+The floating header does not include a title, and there is not expanded state.
+
+## Examples
+
+<Example title="Floating" path="mobile-header/floating.js">
+  <FloatingMobileHeader />
+</Example>
+
+<Example title="Text content" path="mobile-header/text-content.js">
+  <TextContentMobileHeader />
+</Example>
+
+<Exports component={MobileHeaderExports} title="MobileHeader exports" path="baseui/mobile-header" />
