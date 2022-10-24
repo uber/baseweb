@@ -5,7 +5,7 @@ import {MobileHeader, TYPE} from 'baseui/mobile-header';
 import ArrowLeft from 'baseui/icon/arrow-left';
 import Plus from 'baseui/icon/plus';
 import Check from 'baseui/icon/check';
-import map from './images/map-san-francisco.png';
+import map from './map-san-francisco.png';
 import {useStyletron} from 'baseui';
 
 export default function Example() {
@@ -17,30 +17,42 @@ export default function Example() {
         width: '375px',
         height: '667px',
         border: '1px solid #ECECEC',
-        overflow: 'scroll',
+        borderRadius: '12px',
+        overflow: 'auto',
+        position: 'relative',
       })}
     >
-      <MobileHeader
-        type={TYPE.floating}
-        navButton={{
-          content: ArrowLeft,
-          onClick: () => console.log('Nav Button Click'),
-          ariaLabel: 'Go back',
-        }}
-        additionalButtons={[
-          {
-            content: Check,
-            onClick: () => console.log('Check Button Click'),
-            ariaLabel: 'Confirm entries',
-          },
-          {
-            content: Plus,
-            onClick: () => console.log('Plus Button Click'),
-            ariaLabel: 'Add a new entry',
-          },
-        ]}
-      />
-      <div style={{padding: '12px', height: '900px'}}>
+      <div
+        className={css({
+          width: '100%',
+          position: 'absolute',
+          pointerEvents: 'none',
+        })}
+      >
+        <MobileHeader
+          type={TYPE.floating}
+          navButton={{
+            content: ArrowLeft,
+            onClick: () => console.log('Nav Button Click'),
+            ariaLabel: 'Go back',
+          }}
+          additionalButtons={[
+            {
+              content: Check,
+              onClick: () => console.log('Check Button Click'),
+              ariaLabel: 'Confirm entries',
+            },
+            {
+              content: Plus,
+              onClick: () => console.log('Plus Button Click'),
+              ariaLabel: 'Add a new entry',
+            },
+          ]}
+        />
+      </div>
+      <div
+        style={{height: '100%', width: '100%', overflowY: 'auto'}}
+      >
         <img src={map} />
       </div>
     </div>
