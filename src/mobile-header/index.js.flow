@@ -26,7 +26,7 @@ export type MobileHeaderOverridesT = {
 
 export type IconButtonT =
   | {
-      content: React.ElementType,
+      content: React.ComponentType<{ size: string | number }>,
       onClick: () => void,
       ariaLabel: string,
     }
@@ -38,7 +38,7 @@ export type MobileHeaderPropsT = {
   navButton: IconButtonT,
   actionButtons?: IconButtonT[],
   type?: TypeT,
-  overrides?: MobileHeaderOverrides,
+  overrides?: MobileHeaderOverridesT,
 };
 
 declare export var StyledRoot: StyletronComponent<'div', { $type: TypeT }>;

@@ -4,11 +4,10 @@ import {MobileHeader, TYPE} from 'baseui/mobile-header';
 import ArrowLeft from 'baseui/icon/arrow-left';
 import Plus from 'baseui/icon/plus';
 import Check from 'baseui/icon/check';
-import map from './map-san-francisco.png';
+import map from './images/map-san-francisco.jpg';
 import {useStyletron} from 'baseui';
 
 export default function Example() {
-  const [expanded, setExpanded] = React.useState(false);
   const [css] = useStyletron();
   return (
     <div
