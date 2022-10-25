@@ -6,7 +6,7 @@ import {Button} from 'baseui/button';
 import {useStyletron} from 'baseui';
 
 export default function Example() {
-  const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = React.useState(true);
   const [css] = useStyletron();
   return (
     <div>
