@@ -10,6 +10,7 @@ import {
   FLOATING_MARKER_ANCHOR_POSITIONS,
   LABEL_SIZES,
   EARNER_LOCATION_PUCK_CORE_SCALES,
+  PINHEAD_SIZES_SHAPES,
 } from './constants';
 
 import type {
@@ -371,7 +372,7 @@ export const RelativeContainer = styled('div', () => {
 
 RelativeContainer.displayName = 'RelativeContainer';
 
-export const StyledContentItem = styled<
+export const StyledEnhancerSlot = styled<
   'div',
   {
     $color: string;
@@ -390,7 +391,42 @@ export const StyledContentItem = styled<
   };
 });
 
-StyledContentItem.displayName = 'StyledContentItem';
+StyledEnhancerSlot.displayName = 'StyledEnhancerSlot';
+
+export const StyledLabelSlot = styled<
+  'div',
+  {
+    $color: string;
+    $height: number;
+    $size: PinHeadSize;
+  }
+>('div', () => {
+  return {
+    display: 'flex',
+    justifyContent: 'center',
+    flexDirection: 'column',
+  };
+});
+
+StyledLabelSlot.displayName = 'StyledLabelSlot';
+
+export const StyledLabel = styled<
+  'div',
+  { $size: PinHeadSize; $renderSecondaryLabel: boolean; $color: String }
+>('div', ({ $theme, $size, $renderSecondaryLabel, $color }) => {
+  const pinheadSizeOrder = Object.values(PINHEAD_SIZES_SHAPES);
+  let labelSizeIndex = pinheadSizeOrder.findIndex((x) => $size === x);
+  if ($renderSecondaryLabel) {
+    labelSizeIndex--;
+  }
+  const typographyStyle = LABEL_SIZES[pinheadSizeOrder[labelSizeIndex]];
+  return {
+    ...$theme.typography[typographyStyle],
+    color: $color,
+  };
+});
+
+StyledLabel.displayName = 'StyledLabel';
 
 export const LocationPuckContainer = styled<'div', {}>('div', () => {
   return {

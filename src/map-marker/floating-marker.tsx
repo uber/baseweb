@@ -36,6 +36,7 @@ function getAnchorPinHeadSize(anchorType) {
 
 const FloatingMarker = ({
   label,
+  secondaryLabel,
   size = PINHEAD_SIZES_SHAPES.medium,
   anchor = FLOATING_MARKER_ANCHOR_POSITIONS.bottomLeft,
   endEnhancer,
@@ -78,6 +79,7 @@ const FloatingMarker = ({
           background={backgroundPrimary}
           type={PINHEAD_TYPES.floating}
           label={label}
+          secondaryLabel={secondaryLabel}
           startEnhancer={startEnhancer}
           endEnhancer={endEnhancer}
           overrides={overrides}

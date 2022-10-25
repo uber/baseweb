@@ -22,6 +22,11 @@ export const floatingMarkerProps = {
     type: PropTypes.String,
     description: 'Text to display inside of the marker.',
   },
+  secondaryLabel: {
+    value: undefined,
+    type: PropTypes.String,
+    description: 'Secondary text to display inside of the marker.',
+  },
   anchor: {
     value: 'FLOATING_MARKER_ANCHOR_POSITIONS.bottomLeft',
     enumName: 'FLOATING_MARKER_ANCHOR_POSITIONS',
@@ -101,7 +106,10 @@ const FloatingMarkerConfig: TConfig = {
           'InnerAnchor',
           'OuterAnchor',
           'PinHead',
-          'PinHeadContent',
+          'LabelSlot',
+          'Label',
+          'SecondaryLabel',
+          'EnhancerSlot',
           'PinHeadContainer',
           'AnchorContainer',
         ],

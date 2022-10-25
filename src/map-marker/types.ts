@@ -48,8 +48,12 @@ export type FixedMarkerOverrides = {
   InnerAnchor?: Override;
   OuterAnchor?: Override;
   PinHead?: Override;
-  PinHeadContent?: Override;
+  LabelSlot?: Override;
+  Label?: Override;
+  SecondaryLabel?: Override;
+  EnhancerSlot?: Override;
   PinHeadContainer?: Override;
+  AnchorContainer?: Override;
   Needle?: Override;
   DragShadow?: Override;
   DragShadowContainer?: Override;
@@ -120,7 +124,10 @@ export type FloatingMarkerOverrides = {
   InnerAnchor?: Override;
   OuterAnchor?: Override;
   PinHead?: Override;
-  PinHeadContent?: Override;
+  LabelSlot?: Override;
+  Label?: Override;
+  SecondaryLabel?: Override;
+  EnhancerSlot?: Override;
   PinHeadContainer?: Override;
   AnchorContainer?: Override;
   Needle?: Override;
@@ -134,6 +141,7 @@ export type FloatingMarkerOverrides = {
 
 export type FloatingMarkerProps = {
   label?: React.ReactNode;
+  secondaryLabel?: React.ReactNode;
   anchor?: AnchorPositions;
   endEnhancer?: React.ComponentType<{
     size: number;
@@ -149,6 +157,7 @@ export type FloatingMarkerProps = {
 export type PinHeadProps = {
   size?: PinHeadSize;
   label?: React.ReactNode;
+  secondaryLabel?: React.ReactNode;
   endEnhancer?: React.ComponentType<{
     size: number;
   }>;
