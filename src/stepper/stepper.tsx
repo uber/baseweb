@@ -22,12 +22,12 @@ const DefaultButton = ({ children, ...restProps }) => {
 };
 
 export function Stepper({
-  count,
+  value,
   disabled = false,
   overrides = {},
-  setCount,
-  minCount = 0,
-  maxCount,
+  setValue,
+  minValue = 0,
+  maxValue,
 }: StepperProps) {
   const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
   const [Input, inputProps] = getOverrides(overrides.Input, DefaultInput);
@@ -49,9 +49,9 @@ export function Stepper({
   );
 
   const handleInputChange = (e) => {
-    const newCount = Number(e.target.value);
-    if (!isNaN(newCount) && (!maxCount || newCount <= maxCount) && newCount >= minCount) {
-      setCount(newCount);
+    const newValue = Number(e.target.value);
+    if (!isNaN(newValue) && (!maxValue || newValue <= maxValue) && newValue >= minValue) {
+      setValue(newValue);
     }
   };
 
@@ -60,14 +60,14 @@ export function Stepper({
   return (
     <Root {...rootProps}>
       <DecrementButton
-        onClick={() => setCount(count - 1)}
-        disabled={disabled || count <= minCount}
+        onClick={() => setValue(value - 1)}
+        disabled={disabled || value <= minValue}
         {...decrementButtonProps}
       >
         <DecrementButtonIcon {...decrementButtonIconProps} />
       </DecrementButton>
       <Input
-        value={count}
+        value={value}
         onChange={handleInputChange}
         disabled={disabled}
         overrides={{
@@ -96,8 +96,8 @@ export function Stepper({
         {...inputProps}
       />
       <IncrementButton
-        onClick={() => setCount(count + 1)}
-        disabled={disabled || count >= maxCount}
+        onClick={() => setValue(value + 1)}
+        disabled={disabled || value >= maxValue}
         {...incrementButtonProps}
       >
         <IncrementButtonIcon {...incrementButtonIconProps} />

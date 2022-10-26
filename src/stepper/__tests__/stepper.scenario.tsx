@@ -9,12 +9,12 @@ import * as React from 'react';
 import { Stepper } from '..';
 
 export function Scenario() {
-  const [count, setCount] = React.useState(0);
+  const [value, setValue] = React.useState(0);
 
   return (
     <div>
-      <Stepper count={count} setCount={setCount} />
-      <Stepper count={0} disabled={true} setCount={setCount} />
+      <Stepper value={value} setValue={setValue} />
+      <Stepper value={0} disabled={true} setValue={setValue} />
     </div>
   );
 }

@@ -17,10 +17,10 @@ export type MobileHeaderOverrides = {
 };
 
 export type StepperProps = {
-  count: number;
-  setCount: (newCount: number) => void;
-  minCount?: number;
-  maxCount?: number;
+  value: number;
+  setValue: (newValue: number) => void;
+  minValue?: number;
+  maxValue?: number;
   disabled?: boolean;
   overrides?: MobileHeaderOverrides;
 };
