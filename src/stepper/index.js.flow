@@ -9,44 +9,24 @@ import * as React from 'react';
 import type { OverrideT } from '../helpers/overrides.js';
 import { type StyletronComponent } from 'styletron-react';
 
-declare export var TYPE: {
-  fixed: 'fixed',
-  floating: 'floating',
-};
-
-export type TypeT = $Values<typeof TYPE>;
-
-export type MobileHeaderOverridesT = {
+export type StepperOverridesT = {
   Root?: OverrideT,
-  Title?: OverrideT,
-  NavContainer?: OverrideT,
-  HeaderButton?: OverrideT,
-  AdditionalButtonContainer?: OverrideT,
+  Input?: OverrideT,
+  DecrementButton?: OverrideT,
+  DecrementButtonIcon?: OverrideT,
+  IncrementButton?: OverrideT,
+  IncrementButtonIcon?: OverrideT,
 };
 
-export type IconButtonT =
-  | {
-      content: React.ComponentType<{ size: string | number }>,
-      onClick: () => void,
-      ariaLabel: string,
-    }
-  | { content: string, onClick: () => void, ariaLabel?: string };
-
-export type MobileHeaderPropsT = {
-  title?: string,
-  expanded?: boolean,
-  navButton: IconButtonT,
-  actionButtons?: IconButtonT[],
-  type?: TypeT,
-  overrides?: MobileHeaderOverridesT,
+export type StepperProps = {
+  value: number,
+  setValue: (newValue: number) => void,
+  minValue?: number,
+  maxValue?: number,
+  disabled?: boolean,
+  overrides?: MobileHeaderOverrides,
 };
 
-declare export var StyledRoot: StyletronComponent<'div', { $type: TypeT }>;
-declare export var StyledNavContainer: StyletronComponent<
-  'div',
-  { $hasTextContent: boolean, $type: TypeT }
->;
-declare export var StyledActionButtonsContainer: StyletronComponent<'div', {}>;
-declare export var StyledTitle: StyletronComponent<'div', { $expanded: boolean }>;
+declare export var StyledRoot: StyletronComponent<'div', {}>;
 
-declare export var MobileHeader: React.ComponentType<MobileHeaderPropsT>;
+declare export var Stepper: React.ComponentType<StepperOverridesT>;
