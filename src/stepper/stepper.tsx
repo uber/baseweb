@@ -62,6 +62,7 @@ export function Stepper({
       <DecrementButton
         onClick={() => setValue(value - 1)}
         disabled={disabled || value <= minValue}
+        aria-label="decrement value"
         {...decrementButtonProps}
       >
         <DecrementButtonIcon {...decrementButtonIconProps} />
@@ -70,6 +71,7 @@ export function Stepper({
         value={value}
         onChange={handleInputChange}
         disabled={disabled}
+        aria-label="value"
         overrides={{
           Root: {
             style: {
@@ -98,6 +100,7 @@ export function Stepper({
       <IncrementButton
         onClick={() => setValue(value + 1)}
         disabled={disabled || value >= maxValue}
+        aria-label="increment value"
         {...incrementButtonProps}
       >
         <IncrementButtonIcon {...incrementButtonIconProps} />
