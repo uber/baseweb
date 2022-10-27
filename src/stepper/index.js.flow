@@ -24,9 +24,9 @@ export type StepperProps = {
   minValue?: number,
   maxValue?: number,
   disabled?: boolean,
-  overrides?: MobileHeaderOverrides,
+  overrides?: StepperOverridesT,
 };
 
 declare export var StyledRoot: StyletronComponent<'div', {}>;
 
-declare export var Stepper: React.ComponentType<StepperOverridesT>;
+declare export var Stepper: React.ComponentType<StepperProps>;
