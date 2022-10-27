@@ -91,4 +91,20 @@ describe('base-input', () => {
     const input = container.querySelector('input');
     expect(input?.getAttribute('autocomplete')).toBe(autocomplete);
   });
+
+  it('calls onClear handler when clearable set to true', () => {
+    const onClear = jest.fn();
+    const { container } = render(<BaseInput clearable onClear={onClear} />);
+    const input = container.querySelector('input');
+    if (input) fireEvent.keyDown(input, { key: 'Escape', code: 'Escape' });
+    expect(onClear).toBeCalledTimes(1);
+  });
+
+  it('not calls onClear handler when clearable not set', () => {
+    const onClear = jest.fn();
+    const { container } = render(<BaseInput onClear={onClear} />);
+    const input = container.querySelector('input');
+    if (input) fireEvent.keyDown(input, { key: 'Escape', code: 'Escape' });
+    expect(onClear).not.toBeCalled();
+  });
 });

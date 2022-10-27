@@ -115,6 +115,8 @@ class BaseInput<T extends HTMLInputElement | HTMLTextAreaElement> extends React.
           nativeInputValueSetter.call(input, '');
           const event = createEvent('input');
           input.dispatchEvent(event);
+          const { onClear } = this.props;
+          if (onClear) onClear(event);
         }
       }
     }
