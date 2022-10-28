@@ -36,18 +36,18 @@ export function Scenario() {
             title="Header title"
             expanded={expanded}
             navButton={{
-              renderIcon: ArrowLeft,
+              renderIcon: ({ size }) => <ArrowLeft size={size} />,
               onClick: () => console.log('Nav Button Click'),
               label: 'Go back',
             }}
             actionButtons={[
               {
-                renderIcon: Check,
+                renderIcon: ({ size }) => <Check size={size} />,
                 onClick: () => console.log('Check Button Click'),
                 label: 'Confirm entries',
               },
               {
-                renderIcon: Plus,
+                renderIcon: ({ size }) => <Plus size={size} />,
                 onClick: () => console.log('Plus Button Click'),
                 label: 'Add a new entry',
               },
@@ -106,18 +106,18 @@ export function Scenario() {
             title="Excessively long title that truncates"
             expanded={expanded}
             navButton={{
-              renderIcon: Delete,
+              renderIcon: ({ size }) => <Delete size={size} />,
               onClick: () => console.log('Nav Button Click'),
               label: 'Go back',
             }}
             actionButtons={[
               {
-                renderIcon: Check,
+                renderIcon: ({ size }) => <Check size={size} />,
                 onClick: () => console.log('Check Button Click'),
                 label: 'Confirm entries',
               },
               {
-                renderIcon: Plus,
+                renderIcon: ({ size }) => <Plus size={size} />,
                 onClick: () => console.log('Plus Button Click'),
                 label: 'Add a new entry',
               },
