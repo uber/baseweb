@@ -30,24 +30,21 @@ export default function Example() {
       >
         <MobileHeader
           type={TYPE.floating}
-          // $FlowFixMe - Could not decide which case to select, since  case 1 [1] may work but if it doesn't  case 2 [2] looks promising too.
           navButton={{
-            content: ArrowLeft,
+            renderIcon: ArrowLeft,
             onClick: () => console.log('Nav Button Click'),
-            ariaLabel: 'Go back',
+            label: 'Go back',
           }}
           actionButtons={[
-            // $FlowFixMe - Could not decide which case to select, since  case 1 [1] may work but if it doesn't  case 2 [2] looks promising too.
             {
-              content: Check,
+              renderIcon: Check,
               onClick: () => console.log('Check Button Click'),
-              ariaLabel: 'Confirm entries',
+              label: 'Confirm entries',
             },
-            // $FlowFixMe - Could not decide which case to select, since  case 1 [1] may work but if it doesn't  case 2 [2] looks promising too.
             {
-              content: Plus,
+              renderIcon: Plus,
               onClick: () => console.log('Plus Button Click'),
-              ariaLabel: 'Add a new entry',
+              label: 'Add a new entry',
             },
           ]}
         />

@@ -49,14 +49,14 @@ const MobileHeaderConfig: TConfig = {
 
     navButton: {
       value:
-        '{content: ArrowLeft, onClick: () => alert("nav button click"), ariaLabel: "Go back to the previous screen"}',
+        '{renderIcon: ArrowLeft, onClick: () => alert("nav button click"), label: "Go back to the previous screen"}',
       type: PropTypes.Object,
       description:
         'Determines the content (can be an icon or a string), onClick, and ariaLabel for the nav button',
     },
     actionButtons: {
       value:
-        '[{content: Plus, onClick: () => alert("plus button click"), ariaLabel: "Add another entry"}, {content: Check, onClick: () => alert("check button click"), ariaLabel: "Approve entries"}]',
+        '[{renderIcon: Plus, onClick: () => alert("plus button click"), label: "Add another entry"}, {renderIcon: Check, onClick: () => alert("check button click"), label: "Approve entries"}]',
       type: PropTypes.Array,
       description:
         'Determines the content (can be an icon or a string), onClick, and ariaLabel for the up to two additional buttons opposite the nav button.',

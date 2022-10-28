@@ -28,14 +28,13 @@ export default function Example() {
           title="Header title"
           expanded={expanded}
           navButton={{
-            content: 'Back',
             onClick: () => console.log('Nav Button Click'),
-            ariaLabel: 'Go back',
+            label: 'Back',
           }}
           actionButtons={[
             {
-              content: 'Action',
               onClick: () => console.log('Check Button Click'),
+              label: 'Action',
             },
           ]}
         />

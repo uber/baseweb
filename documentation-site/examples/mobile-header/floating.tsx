@@ -30,20 +30,20 @@ export default function Example() {
         <MobileHeader
           type={TYPE.floating}
           navButton={{
-            content: ArrowLeft,
+            renderIcon: ArrowLeft,
             onClick: () => console.log('Nav Button Click'),
-            ariaLabel: 'Go back',
+            label: 'Go back',
           }}
           actionButtons={[
             {
-              content: Check,
+              renderIcon: Check,
               onClick: () => console.log('Check Button Click'),
-              ariaLabel: 'Confirm entries',
+              label: 'Confirm entries',
             },
             {
-              content: Plus,
+              renderIcon: Plus,
               onClick: () => console.log('Plus Button Click'),
-              ariaLabel: 'Add a new entry',
+              label: 'Add a new entry',
             },
           ]}
         />

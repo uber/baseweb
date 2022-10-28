@@ -18,17 +18,16 @@ export type MobileHeaderOverrides = {
   ActionButtonsContainer?: Override;
 };
 
-export type IconButton =
-  | {
-      content: React.ElementType;
-      onClick: () => void;
-      ariaLabel: string;
-    }
-  | {
-      content: string;
-      onClick: () => void;
-      ariaLabel?: string;
-    };
+export type IconButton = {
+  renderIcon?: React.ComponentType<
+    {
+      size: number;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } & any
+  >;
+  onClick: () => void;
+  label: string;
+};
 
 export type MobileHeaderProps = {
   title?: string;

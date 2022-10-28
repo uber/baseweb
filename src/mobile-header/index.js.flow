@@ -24,13 +24,11 @@ export type MobileHeaderOverridesT = {
   AdditionalButtonContainer?: OverrideT,
 };
 
-export type IconButtonT =
-  | {
-      content: React.ComponentType<{ size: string | number }>,
-      onClick: () => void,
-      ariaLabel: string,
-    }
-  | { content: string, onClick: () => void, ariaLabel?: string };
+export type IconButtonT = {
+  renderIcon?: React.AbstractComponent<{| size: number |}>,
+  onClick: () => void,
+  label: string,
+};
 
 export type MobileHeaderPropsT = {
   title?: string,

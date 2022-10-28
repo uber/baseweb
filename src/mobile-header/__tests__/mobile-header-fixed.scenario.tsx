@@ -36,20 +36,20 @@ export function Scenario() {
             title="Header title"
             expanded={expanded}
             navButton={{
-              content: ArrowLeft,
+              renderIcon: ArrowLeft,
               onClick: () => console.log('Nav Button Click'),
-              ariaLabel: 'Go back',
+              label: 'Go back',
             }}
             actionButtons={[
               {
-                content: Check,
+                renderIcon: Check,
                 onClick: () => console.log('Check Button Click'),
-                ariaLabel: 'Confirm entries',
+                label: 'Confirm entries',
               },
               {
-                content: Plus,
+                renderIcon: Plus,
                 onClick: () => console.log('Plus Button Click'),
-                ariaLabel: 'Add a new entry',
+                label: 'Add a new entry',
               },
             ]}
           />
@@ -106,20 +106,20 @@ export function Scenario() {
             title="Excessively long title that truncates"
             expanded={expanded}
             navButton={{
-              content: Delete,
+              renderIcon: Delete,
               onClick: () => console.log('Nav Button Click'),
-              ariaLabel: 'Go back',
+              label: 'Go back',
             }}
             actionButtons={[
               {
-                content: Check,
+                renderIcon: Check,
                 onClick: () => console.log('Check Button Click'),
-                ariaLabel: 'Confirm entries',
+                label: 'Confirm entries',
               },
               {
-                content: Plus,
+                renderIcon: Plus,
                 onClick: () => console.log('Plus Button Click'),
-                ariaLabel: 'Add a new entry',
+                label: 'Add a new entry',
               },
             ]}
           />
@@ -176,12 +176,12 @@ export function Scenario() {
             title="Text buttons"
             expanded={expanded}
             navButton={{
-              content: 'Action',
+              label: 'Action',
               onClick: () => console.log('Nav Acction Click'),
             }}
             actionButtons={[
               {
-                content: 'Action',
+                label: 'Action',
                 onClick: () => console.log('Action Click'),
               },
             ]}

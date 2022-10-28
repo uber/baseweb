@@ -37,20 +37,20 @@ export function Scenario() {
           <MobileHeader
             type="floating"
             navButton={{
-              content: ArrowLeft,
+              renderIcon: ArrowLeft,
               onClick: () => console.log('Nav Button Click'),
-              ariaLabel: 'Go back',
+              label: 'Go back',
             }}
             actionButtons={[
               {
-                content: Check,
+                renderIcon: Check,
                 onClick: () => console.log('Check Button Click'),
-                ariaLabel: 'Confirm entries',
+                label: 'Confirm entries',
               },
               {
-                content: Plus,
+                renderIcon: Plus,
                 onClick: () => console.log('Plus Button Click'),
-                ariaLabel: 'Add a new entry',
+                label: 'Add a new entry',
               },
             ]}
           />
@@ -65,15 +65,14 @@ export function Scenario() {
           <MobileHeader
             type="floating"
             navButton={{
-              content: Menu,
+              renderIcon: Menu,
               onClick: () => console.log('Nav Button Click'),
-              ariaLabel: 'Go back',
+              label: 'Open menu',
             }}
             actionButtons={[
               {
-                content: '$25.18',
                 onClick: () => console.log('Money Button Click'),
-                ariaLabel: 'Confirm entries',
+                label: '$25.18',
               },
             ]}
           />
@@ -89,15 +88,13 @@ export function Scenario() {
           <MobileHeader
             type="floating"
             navButton={{
-              content: 'Action',
               onClick: () => console.log('Nav Button Click'),
-              ariaLabel: 'Go back',
+              label: 'label',
             }}
             actionButtons={[
               {
-                content: 'Action',
                 onClick: () => console.log('Money Button Click'),
-                ariaLabel: 'Confirm entries',
+                label: 'Action',
               },
             ]}
           />

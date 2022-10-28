@@ -96,16 +96,16 @@ export function MobileHeader({
     <Root {...rootProps} $type={type} $expanded={expanded}>
       <NavContainer
         $type={type}
-        $hasTextContent={typeof navButton.content === 'string'}
+        $hasTextContent={Boolean(navButton.renderIcon)}
         {...navContainerProps}
       >
         <HeaderButton
           onClick={navButton.onClick}
-          aria-label={navButton.ariaLabel}
           type={type}
+          aria-label={navButton.label}
           {...iconButtonProps}
         >
-          {renderButtonContent(navButton.content)}
+          {renderButtonContent(navButton.renderIcon || navButton.label)}
         </HeaderButton>
       </NavContainer>
 
@@ -118,16 +118,16 @@ export function MobileHeader({
       {actionButtons.length > 0 && (
         <ActionButtonsContainer {...actionButtonsContainerProps}>
           {actionButtons.map((button, idx) => {
-            const { content, onClick, ariaLabel } = button;
+            const { renderIcon, onClick, label } = button;
             return (
               <HeaderButton
                 onClick={onClick}
-                aria-label={ariaLabel}
+                aria-label={label}
                 type={type}
                 {...iconButtonProps}
                 key={idx}
               >
-                {renderButtonContent(content)}
+                {renderButtonContent(renderIcon || label)}
               </HeaderButton>
             );
           })}
