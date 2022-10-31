@@ -89,7 +89,7 @@ export function Scenario() {
             type="floating"
             navButton={{
               onClick: () => console.log('Nav Button Click'),
-              label: 'label',
+              label: 'Go Back',
             }}
             actionButtons={[
               {
