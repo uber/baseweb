@@ -96,7 +96,7 @@ export function MobileHeader({
     <Root {...rootProps} $type={type} $expanded={expanded}>
       <NavContainer
         $type={type}
-        $hasTextContent={Boolean(navButton.renderIcon)}
+        $hasTextContent={!Boolean(navButton.renderIcon)}
         {...navContainerProps}
       >
         <HeaderButton
