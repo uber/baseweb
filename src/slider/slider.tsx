@@ -153,6 +153,7 @@ function Slider({
               $isDragged={isDragged}
               style={{
                 ...props.style,
+                zIndex: 0,
               }}
               {...sharedProps}
               {...thumbProps}
