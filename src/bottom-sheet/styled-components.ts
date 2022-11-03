@@ -37,9 +37,8 @@ export const StyledHeader = styled<'div', { $isDraggable: boolean }>(
   'div',
   ({ $theme, $isDraggable }) => ({
     position: 'relative',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
+    display: 'grid',
+    gridTemplateColumns: 'auto 1fr auto',
     // paddingTop: $isDraggable ? $theme.sizing.scale800 : $theme.sizing.scale300,
     paddingTop: $theme.sizing.scale300,
     paddingRight: $theme.sizing.scale600,
@@ -47,6 +46,13 @@ export const StyledHeader = styled<'div', { $isDraggable: boolean }>(
     paddingLeft: $theme.sizing.scale600,
   })
 );
+
+export const StyledHeaderInner = styled<'div', { $isDraggable: boolean }>('div', ({ $theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  gridColumn: '2 / 3',
+}));
 
 export const StyledContent = styled<'div', {}>('div', ({ $theme }) => ({
   height: '100%',

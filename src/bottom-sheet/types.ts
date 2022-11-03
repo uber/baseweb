@@ -11,11 +11,23 @@ export type BottomSheetOverrides = {
   Root?: Override;
   BottomContainer?: Override;
   Header?: Override;
+  HeaderInner?: Override;
   Title?: Override;
   Description?: Override;
   Divider?: Override;
   Content?: Override;
   Grabber?: Override;
+};
+
+export type IconButton = {
+  renderIcon?: React.ComponentType<
+    {
+      size: number;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } & any
+  >;
+  onClick: () => void;
+  label: string;
 };
 
 export type BottomSheetProps = {
@@ -24,6 +36,8 @@ export type BottomSheetProps = {
   progressBar?: React.ReactNode; // TODO: make this more specific
   content?: React.ReactNode;
   children?: React.ReactNode;
+  leadingAction?: IconButton;
+  trailingAction?: IconButton;
   positions?: string[];
   overrides?: BottomSheetOverrides;
 };
