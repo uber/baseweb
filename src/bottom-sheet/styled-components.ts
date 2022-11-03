@@ -18,7 +18,6 @@ export const StyledBottomContainer = styled<'div', { $position: string | false }
       backgroundColor: $theme.colors.backgroundPrimary,
       borderTopLeftRadius: $theme.borders.radius500,
       borderTopRightRadius: $theme.borders.radius500,
-      overflow: 'hidden',
     };
     return $position
       ? {
@@ -41,7 +40,8 @@ export const StyledHeader = styled<'div', { $isDraggable: boolean }>(
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    paddingTop: $isDraggable ? $theme.sizing.scale800 : $theme.sizing.scale300,
+    // paddingTop: $isDraggable ? $theme.sizing.scale800 : $theme.sizing.scale300,
+    paddingTop: $theme.sizing.scale300,
     paddingRight: $theme.sizing.scale600,
     paddingBottom: $theme.sizing.scale300,
     paddingLeft: $theme.sizing.scale600,
@@ -62,4 +62,45 @@ export const StyledTitle = styled<'div', {}>('div', ({ $theme }) => ({
 export const StyledDescription = styled<'div', {}>('div', ({ $theme }) => ({
   color: $theme.colors.contentSecondary,
   ...$theme.typography.ParagraphMedium,
+}));
+
+export const StyledGrabber = styled<'button', {}>('button', ({ $theme }) => ({
+  // reset button styles
+  '-webkit-appearance': 'none',
+  borderRadius: 0,
+  textAlign: 'inherit',
+  background: 'none',
+  boxShadow: 'none',
+  padding: 0,
+  cursor: 'pointer',
+  border: 'none',
+  color: 'inherit',
+  font: 'inherit',
+  // other styles
+  // position: 'absolute',
+  // top: '-24px',
+  width: `calc(100% + ${$theme.sizing.scale600} + ${$theme.sizing.scale600})`,
+  // paddingTop: '34px',
+  paddingRight: 'auto',
+  paddingBottom: '10px',
+  paddingLeft: 'auto',
+  display: 'flex',
+  justifyContent: 'center',
+  position: 'relative',
+  // interior
+  ':before': {
+    content: '""',
+    position: 'absolute',
+    top: '-34px',
+    height: '34px',
+    width: '100%',
+  },
+  ':after': {
+    content: '""',
+    height: $theme.sizing.scale100,
+    width: $theme.sizing.scale1200,
+    background: $theme.colors.borderOpaque,
+    borderRadius: '100px',
+    margin: '0 auto',
+  },
 }));

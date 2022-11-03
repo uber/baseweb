@@ -15,39 +15,9 @@ import {
   StyledContent,
   StyledTitle,
   StyledDescription,
+  StyledGrabber,
 } from './styled-components';
 import type { BottomSheetProps } from './types';
-
-// TODO: the half that hangs outside the Header is not clickable
-// TODO: add all the a11y stuff to this div indicating it's interactable
-const DefaultGrabber = ({ handleClick }) => {
-  const [css, theme] = useStyletron();
-  return (
-    <div
-      onClick={handleClick}
-      className={css({
-        position: 'absolute',
-        top: '-24px',
-        width: '100%',
-        paddingTop: '34px',
-        paddingRight: 'auto',
-        paddingBottom: '10px',
-        paddingLeft: 'auto',
-        cursor: 'pointer',
-      })}
-    >
-      <div
-        className={css({
-          height: theme.sizing.scale100,
-          width: theme.sizing.scale1200,
-          background: theme.colors.borderOpaque,
-          borderRadius: '100px',
-          margin: '0 auto',
-        })}
-      ></div>
-    </div>
-  );
-};
 
 const renderContent = (content) => {
   return typeof content === 'function' ? content() : content;
@@ -59,6 +29,7 @@ export function BottomSheet({
   description,
   content,
   positions,
+  progressBar,
   children,
 }: BottomSheetProps) {
   const [positionIdx, setPositionIdx] = React.useState(0);
@@ -72,7 +43,7 @@ export function BottomSheet({
   const [Title, titleProps] = getOverrides(overrides.Title, StyledTitle);
   const [Description, descriptionProps] = getOverrides(overrides.Description, StyledDescription);
   const [Content, contentProps] = getOverrides(overrides.Content, StyledContent);
-  const [Grabber, grabberProps] = getOverrides(overrides.Grabber, DefaultGrabber);
+  const [Grabber, grabberProps] = getOverrides(overrides.Grabber, StyledGrabber);
   const [Divider, dividerProps] = getOverrides(overrides.Divider, StyledDivider);
 
   const cyclePosition = () => {
@@ -90,11 +61,15 @@ export function BottomSheet({
       {children}
       <BottomContainer $position={isDraggable && positions[positionIdx]} {...bottomContainerProps}>
         <Header $isDraggable={isDraggable} {...headerProps}>
-          {isDraggable && <Grabber handleClick={cyclePosition} {...grabberProps} />}
+          {isDraggable && <Grabber onClick={cyclePosition} {...grabberProps} />}
           {title && <Title {...titleProps}>{title}</Title>}
           {description && <Description {...descriptionProps}>{description}</Description>}
         </Header>
-        <Divider $size={SIZE.section} {...dividerProps} />
+        {progressBar ? (
+          renderContent(progressBar)
+        ) : (
+          <Divider $size={SIZE.section} {...dividerProps} />
+        )}
         <Content {...contentProps}>{renderContent(content)}</Content>
       </BottomContainer>
     </Root>
