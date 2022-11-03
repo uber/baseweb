@@ -10,6 +10,7 @@ import { useStyletron } from '../styles/index';
 import { StyledDivider, SIZE } from '../divider';
 import {
   StyledRoot,
+  StyledBottomContainer,
   StyledHeader,
   StyledContent,
   StyledTitle,
@@ -48,16 +49,25 @@ const DefaultGrabber = ({ handleClick }) => {
   );
 };
 
+const renderContent = (content) => {
+  return typeof content === 'function' ? content() : content;
+};
+
 export function BottomSheet({
   overrides = {},
   title,
   description,
+  content,
   positions,
   children,
 }: BottomSheetProps) {
   const [positionIdx, setPositionIdx] = React.useState(0);
 
   const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
+  const [BottomContainer, bottomContainerProps] = getOverrides(
+    overrides.BottomContainer,
+    StyledBottomContainer
+  );
   const [Header, headerProps] = getOverrides(overrides.Header, StyledHeader);
   const [Title, titleProps] = getOverrides(overrides.Title, StyledTitle);
   const [Description, descriptionProps] = getOverrides(overrides.Description, StyledDescription);
@@ -76,14 +86,17 @@ export function BottomSheet({
 
   const isDraggable = Boolean(positions); // TODO: deduce this based on props, or make this a prop
   return (
-    <Root $position={isDraggable && positions[positionIdx]} {...rootProps}>
-      <Header $isDraggable={isDraggable} {...headerProps}>
-        {isDraggable && <Grabber handleClick={cyclePosition} {...grabberProps} />}
-        {title && <Title {...titleProps}>{title}</Title>}
-        {description && <Description {...descriptionProps}>{description}</Description>}
-      </Header>
-      <Divider $size={SIZE.section} {...dividerProps} />
-      <Content {...contentProps}>{children}</Content>
+    <Root {...rootProps}>
+      {children}
+      <BottomContainer $position={isDraggable && positions[positionIdx]} {...bottomContainerProps}>
+        <Header $isDraggable={isDraggable} {...headerProps}>
+          {isDraggable && <Grabber handleClick={cyclePosition} {...grabberProps} />}
+          {title && <Title {...titleProps}>{title}</Title>}
+          {description && <Description {...descriptionProps}>{description}</Description>}
+        </Header>
+        <Divider $size={SIZE.section} {...dividerProps} />
+        <Content {...contentProps}>{renderContent(content)}</Content>
+      </BottomContainer>
     </Root>
   );
 }

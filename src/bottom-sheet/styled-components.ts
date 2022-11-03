@@ -6,28 +6,31 @@ LICENSE file in the root directory of this source tree.
 */
 import { styled } from '../styles';
 
-export const StyledRoot = styled<'div', { $position: string | false }>(
+export const StyledRoot = styled<'div', {}>('div', ({}) => {
+  return { display: 'flex', flexDirection: 'column', height: '100%' };
+});
+
+export const StyledBottomContainer = styled<'div', { $position: string | false }>(
   'div',
   ({ $position, $theme }) => {
+    const baseStyle = {
+      flexShrink: 0,
+      backgroundColor: $theme.colors.backgroundPrimary,
+      borderTopLeftRadius: $theme.borders.radius500,
+      borderTopRightRadius: $theme.borders.radius500,
+      overflow: 'hidden',
+    };
     return $position
       ? {
           width: '100%',
-          height: '100%',
-          position: 'absolute',
-          top: $position,
+          height: $position,
+          position: 'relative',
+          // bottom: $position,
           left: 0,
-          overflow: 'hidden',
-          backgroundColor: $theme.colors.backgroundPrimary,
-          borderTopLeftRadius: $theme.borders.radius500,
-          borderTopRightRadius: $theme.borders.radius500,
-          transition: 'top 300ms ease-in',
+          transition: 'height 300ms ease-in',
+          ...baseStyle,
         }
-      : {
-          backgroundColor: $theme.colors.backgroundPrimary,
-          border: '1px solid purple',
-          borderTopLeftRadius: $theme.borders.radius500,
-          borderTopRightRadius: $theme.borders.radius500,
-        };
+      : { ...baseStyle };
   }
 );
 
