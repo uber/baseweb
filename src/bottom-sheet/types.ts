@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import type * as React from 'react';
 import type { Override } from '../helpers/overrides';
+import type { ProgressBarProps } from '../progress-bar';
 
 export type BottomSheetOverrides = {
   Root?: Override;
@@ -33,7 +34,7 @@ export type IconButton = {
 export type BottomSheetProps = {
   title?: string;
   description?: string;
-  progressBar?: React.ReactNode; // TODO: make this more specific
+  progressBar?: ProgressBarProps;
   content?: React.ReactNode;
   children?: React.ReactNode;
   leadingAction?: IconButton;

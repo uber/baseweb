@@ -21,8 +21,8 @@ export function Scenario() {
   return (
     <StyledIphone6>
       <BottomSheet
-        title="Title"
-        description="Description"
+        title="Long titles must truncate after one line etc etc etc"
+        description="Very long descriptions can wrap onto the next line, but must truncate after two lines like this etc etc etc"
         content={
           <div style={{ padding: '0px 12px' }}>
             <p>

@@ -6,9 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 import { getOverrides } from '../helpers/overrides';
-import { useStyletron } from '../styles/index';
-import { StyledDivider, SIZE } from '../divider';
-import { Button, KIND, SHAPE } from '../button';
+import { withStyle } from '../styles/index';
+import { StyledDivider as StyledDividerBase, SIZE as DIVIDER_SIZE } from '../divider';
+import { Button, KIND, SHAPE, SIZE } from '../button';
+import { ProgressBar, SIZE as PROGESS_BAR_SIZE } from '../progress-bar';
 import {
   StyledRoot,
   StyledBottomContainer,
@@ -33,14 +34,16 @@ const renderButtonContent = (content) => {
   return <Icon size={32} />;
 };
 
+const StyledDivider = withStyle(StyledDividerBase, { marginTop: 0, marginBottom: 0 });
+
 const DefaultActionButton = ({ children, ...restProps }) => {
   const hasTextContent = typeof children === 'string';
 
   const style = {
     ...(!hasTextContent
       ? {
-          height: '48px',
-          width: '48px',
+          // height: '48px',
+          // width: '48px',
           paddingTop: 0,
           paddingBottom: 0,
           paddingLeft: 0,
@@ -52,7 +55,7 @@ const DefaultActionButton = ({ children, ...restProps }) => {
   return (
     <Button
       kind={KIND.tertiary}
-      shape={SHAPE.pill}
+      shape={SHAPE.square}
       overrides={{
         BaseButton: {
           style,
@@ -101,22 +104,37 @@ export function BottomSheet({
     }
   };
 
-  const isDraggable = Boolean(positions); // TODO: deduce this based on props, or make this a prop
+  const isDraggable = Boolean(positions);
+  const hasTitle = Boolean(title);
+  const hasDescription = Boolean(description);
+  const hasLeadingAction = Boolean(leadingAction);
+  const hasTrailingAction = Boolean(trailingAction);
+
   return (
     <Root {...rootProps}>
       {children}
       <BottomContainer $position={isDraggable && positions[positionIdx]} {...bottomContainerProps}>
-        <Header $isDraggable={isDraggable} {...headerProps}>
+        <Header
+          $hasLeadingAction={hasLeadingAction}
+          $hasTrailingAction={hasTrailingAction}
+          {...headerProps}
+        >
           {leadingAction && (
             <ActionButton
               onClick={leadingAction.onClick}
               aria-label={leadingAction.label}
+              size={hasTitle ? SIZE.large : SIZE.default}
               {...actionButtonProps}
             >
               {renderButtonContent(leadingAction.renderIcon || leadingAction.label)}
             </ActionButton>
           )}
-          <HeaderInner>
+          <HeaderInner
+            $isDraggable={isDraggable}
+            $hasTitle={hasTitle}
+            $hasDescription={hasDescription}
+            {...headerInnerProps}
+          >
             {isDraggable && <Grabber onClick={cyclePosition} {...grabberProps} />}
             {title && <Title {...titleProps}>{title}</Title>}
             {description && <Description {...descriptionProps}>{description}</Description>}
@@ -125,6 +143,7 @@ export function BottomSheet({
             <ActionButton
               onClick={trailingAction.onClick}
               aria-label={trailingAction.label}
+              size={hasTitle ? SIZE.large : SIZE.default}
               {...actionButtonProps}
             >
               {renderButtonContent(trailingAction.renderIcon || trailingAction.label)}
@@ -132,9 +151,13 @@ export function BottomSheet({
           )}
         </Header>
         {progressBar ? (
-          renderContent(progressBar)
+          <ProgressBar
+            size={PROGESS_BAR_SIZE.small}
+            overrides={{ BarContainer: { style: { marginTop: 0, marginBottom: 0 } } }}
+            {...progressBar}
+          />
         ) : (
-          <Divider $size={SIZE.section} {...dividerProps} />
+          <Divider $size={DIVIDER_SIZE.section} overrides={{}} {...dividerProps} />
         )}
         <Content {...contentProps}>{renderContent(content)}</Content>
       </BottomContainer>

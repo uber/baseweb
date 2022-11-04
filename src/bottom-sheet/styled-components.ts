@@ -14,17 +14,14 @@ export const StyledBottomContainer = styled<'div', { $position: string | false }
   'div',
   ({ $position, $theme }) => {
     const baseStyle = {
-      flexShrink: 0,
-      backgroundColor: $theme.colors.backgroundPrimary,
       borderTopLeftRadius: $theme.borders.radius500,
       borderTopRightRadius: $theme.borders.radius500,
     };
     return $position
       ? {
-          width: '100%',
           height: $position,
+          width: '100%',
           position: 'relative',
-          // bottom: $position,
           left: 0,
           transition: 'height 300ms ease-in',
           ...baseStyle,
@@ -33,26 +30,40 @@ export const StyledBottomContainer = styled<'div', { $position: string | false }
   }
 );
 
-export const StyledHeader = styled<'div', { $isDraggable: boolean }>(
+export const StyledHeader = styled<
   'div',
-  ({ $theme, $isDraggable }) => ({
-    position: 'relative',
-    display: 'grid',
-    gridTemplateColumns: 'auto 1fr auto',
-    // paddingTop: $isDraggable ? $theme.sizing.scale800 : $theme.sizing.scale300,
-    paddingTop: $theme.sizing.scale300,
-    paddingRight: $theme.sizing.scale600,
-    paddingBottom: $theme.sizing.scale300,
-    paddingLeft: $theme.sizing.scale600,
-  })
-);
-
-export const StyledHeaderInner = styled<'div', { $isDraggable: boolean }>('div', ({ $theme }) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  gridColumn: '2 / 3',
+  { $hasLeadingAction: boolean; $hasTrailingAction: boolean }
+>('div', ({ $theme, $hasLeadingAction, $hasTrailingAction }) => ({
+  position: 'relative',
+  display: 'grid',
+  gridTemplateColumns: 'auto 1fr auto',
+  // justifyItems: 'center',
+  paddingTop: $theme.sizing.scale300,
+  paddingRight: $hasTrailingAction ? $theme.sizing.scale300 : $theme.sizing.scale600,
+  paddingBottom: $theme.sizing.scale200,
+  paddingLeft: $hasLeadingAction ? $theme.sizing.scale300 : $theme.sizing.scale600,
 }));
+
+export const StyledHeaderInner = styled<
+  'div',
+  { $isDraggable: boolean; $hasTitle: boolean; $hasDescription: boolean }
+>('div', ({ $theme, $isDraggable, $hasTitle, $hasDescription }) => {
+  // TODO: change this to using $theme
+  let height = $hasTitle && $hasDescription ? 56 : $hasTitle ? 48 : $hasDescription ? 32 : 24;
+  if ($isDraggable) {
+    height += 12;
+  }
+  return {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: `${height}px`,
+    maxWidth: '100%',
+    overflow: 'hidden',
+    gridColumn: '2 / 3',
+  };
+});
 
 export const StyledContent = styled<'div', {}>('div', ({ $theme }) => ({
   height: '100%',
@@ -62,11 +73,25 @@ export const StyledContent = styled<'div', {}>('div', ({ $theme }) => ({
 // TODO: should this be an h1 or similar?
 export const StyledTitle = styled<'div', {}>('div', ({ $theme }) => ({
   color: $theme.colors.contentPrimary,
+  maxWidth: 'inherit',
+  overflow: 'hidden',
+  whiteSpace: 'nowrap',
+  textOverflow: 'ellipsis',
   ...$theme.typography.LabelLarge,
 }));
 
 export const StyledDescription = styled<'div', {}>('div', ({ $theme }) => ({
   color: $theme.colors.contentSecondary,
+  display: '-webkit-box',
+  '-webkit-line-clamp': 2,
+  '-webkit-box-orient': 'vertical',
+  overflow: 'hidden',
+  // maxWidth: 'inherit',
+  // overflow: 'hidden',
+  // // whiteSpace: 'nowrap',
+  // textOverflow: 'ellipsis',
+  // // * setting maxHeight to twice the line height to force truncation after two lines
+  // maxHeight: '48px',
   ...$theme.typography.ParagraphMedium,
 }));
 
@@ -88,7 +113,7 @@ export const StyledGrabber = styled<'button', {}>('button', ({ $theme }) => ({
   width: `calc(100% + ${$theme.sizing.scale600} + ${$theme.sizing.scale600})`,
   // paddingTop: '34px',
   paddingRight: 'auto',
-  paddingBottom: '10px',
+  paddingBottom: '12px',
   paddingLeft: 'auto',
   display: 'flex',
   justifyContent: 'center',
@@ -97,8 +122,8 @@ export const StyledGrabber = styled<'button', {}>('button', ({ $theme }) => ({
   ':before': {
     content: '""',
     position: 'absolute',
-    top: '-34px',
-    height: '34px',
+    top: '-32px',
+    height: '32px',
     width: '100%',
   },
   ':after': {
