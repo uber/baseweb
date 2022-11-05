@@ -30,35 +30,40 @@ export const StyledBottomContainer = styled<'div', { $position: string | false }
   }
 );
 
-export const StyledHeader = styled<
+export const StyledHeader = styled<'div', {}>('div', ({ $theme }) => ({
+  position: 'relative',
+  display: 'flex',
+  flexDirection: 'column',
+  paddingTop: $theme.sizing.scale300,
+}));
+
+export const StyledHeaderGrid = styled<
   'div',
   { $hasLeadingAction: boolean; $hasTrailingAction: boolean }
 >('div', ({ $theme, $hasLeadingAction, $hasTrailingAction }) => ({
-  position: 'relative',
   display: 'grid',
   gridTemplateColumns: 'auto 1fr auto',
-  // justifyItems: 'center',
-  paddingTop: $theme.sizing.scale300,
+  alignItems: 'center',
   paddingRight: $hasTrailingAction ? $theme.sizing.scale300 : $theme.sizing.scale600,
-  paddingBottom: $theme.sizing.scale200,
   paddingLeft: $hasLeadingAction ? $theme.sizing.scale300 : $theme.sizing.scale600,
+  paddingBottom: $theme.sizing.scale200,
 }));
 
 export const StyledHeaderInner = styled<
   'div',
   { $isDraggable: boolean; $hasTitle: boolean; $hasDescription: boolean }
->('div', ({ $theme, $isDraggable, $hasTitle, $hasDescription }) => {
+>('div', ({ $isDraggable, $hasTitle, $hasDescription }) => {
   // TODO: change this to using $theme
   let height = $hasTitle && $hasDescription ? 56 : $hasTitle ? 48 : $hasDescription ? 32 : 24;
   if ($isDraggable) {
-    height += 12;
+    height -= 4;
   }
   return {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    height: `${height}px`,
+    minHeight: `${height}px`,
     maxWidth: '100%',
     overflow: 'hidden',
     gridColumn: '2 / 3',
@@ -110,7 +115,7 @@ export const StyledGrabber = styled<'button', {}>('button', ({ $theme }) => ({
   // other styles
   // position: 'absolute',
   // top: '-24px',
-  width: `calc(100% + ${$theme.sizing.scale600} + ${$theme.sizing.scale600})`,
+  width: '100%',
   // paddingTop: '34px',
   paddingRight: 'auto',
   paddingBottom: '12px',

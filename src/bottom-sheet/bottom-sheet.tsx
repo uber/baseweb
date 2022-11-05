@@ -19,6 +19,7 @@ import {
   StyledTitle,
   StyledDescription,
   StyledGrabber,
+  StyledHeaderGrid,
 } from './styled-components';
 import type { BottomSheetProps } from './types';
 
@@ -34,11 +35,16 @@ const renderButtonContent = (content) => {
   return <Icon size={32} />;
 };
 
-const StyledDivider = withStyle(StyledDividerBase, { marginTop: 0, marginBottom: 0 });
+const StyledDivider = withStyle(StyledDividerBase, {
+  width: '100%',
+  marginTop: 0,
+  marginBottom: 0,
+});
 
 const DefaultActionButton = ({ children, ...restProps }) => {
   const hasTextContent = typeof children === 'string';
 
+  // TODO: clean this up... do you even support text buttons?
   const style = {
     ...(!hasTextContent
       ? {
@@ -52,13 +58,29 @@ const DefaultActionButton = ({ children, ...restProps }) => {
       : {}),
   };
 
+  const extraTapTargetStyle =
+    restProps.size === SIZE.compact
+      ? {
+          ':after': {
+            content: '""',
+            position: 'absolute',
+            height: '48px',
+            width: '48px',
+          },
+          position: 'relative',
+        }
+      : {};
+
   return (
     <Button
       kind={KIND.tertiary}
       shape={SHAPE.square}
       overrides={{
         BaseButton: {
-          style,
+          style: {
+            ...extraTapTargetStyle,
+            ...style,
+          },
         },
       }}
       {...restProps}
@@ -114,51 +136,59 @@ export function BottomSheet({
     <Root {...rootProps}>
       {children}
       <BottomContainer $position={isDraggable && positions[positionIdx]} {...bottomContainerProps}>
-        <Header
-          $hasLeadingAction={hasLeadingAction}
-          $hasTrailingAction={hasTrailingAction}
-          {...headerProps}
-        >
-          {leadingAction && (
-            <ActionButton
-              onClick={leadingAction.onClick}
-              aria-label={leadingAction.label}
-              size={hasTitle ? SIZE.large : SIZE.default}
-              {...actionButtonProps}
-            >
-              {renderButtonContent(leadingAction.renderIcon || leadingAction.label)}
-            </ActionButton>
-          )}
-          <HeaderInner
-            $isDraggable={isDraggable}
-            $hasTitle={hasTitle}
-            $hasDescription={hasDescription}
-            {...headerInnerProps}
-          >
+        {(isDraggable || hasTitle || hasDescription || hasLeadingAction || hasTrailingAction) && (
+          <Header {...headerProps}>
             {isDraggable && <Grabber onClick={cyclePosition} {...grabberProps} />}
-            {title && <Title {...titleProps}>{title}</Title>}
-            {description && <Description {...descriptionProps}>{description}</Description>}
-          </HeaderInner>
-          {trailingAction && (
-            <ActionButton
-              onClick={trailingAction.onClick}
-              aria-label={trailingAction.label}
-              size={hasTitle ? SIZE.large : SIZE.default}
-              {...actionButtonProps}
+
+            <StyledHeaderGrid
+              $hasLeadingAction={hasLeadingAction}
+              $hasTrailingAction={hasTrailingAction}
             >
-              {renderButtonContent(trailingAction.renderIcon || trailingAction.label)}
-            </ActionButton>
-          )}
-        </Header>
-        {progressBar ? (
-          <ProgressBar
-            size={PROGESS_BAR_SIZE.small}
-            overrides={{ BarContainer: { style: { marginTop: 0, marginBottom: 0 } } }}
-            {...progressBar}
-          />
-        ) : (
-          <Divider $size={DIVIDER_SIZE.section} overrides={{}} {...dividerProps} />
+              {leadingAction && (
+                <ActionButton
+                  onClick={leadingAction.onClick}
+                  aria-label={leadingAction.label}
+                  size={hasTitle ? SIZE.default : SIZE.compact}
+                  {...actionButtonProps}
+                >
+                  {renderButtonContent(leadingAction.renderIcon || leadingAction.label)}
+                </ActionButton>
+              )}
+              {(hasTitle || hasDescription) && (
+                <HeaderInner
+                  $isDraggable={isDraggable}
+                  $hasTitle={hasTitle}
+                  $hasDescription={hasDescription}
+                  {...headerInnerProps}
+                >
+                  {title && <Title {...titleProps}>{title}</Title>}
+                  {description && <Description {...descriptionProps}>{description}</Description>}
+                </HeaderInner>
+              )}
+              {trailingAction && (
+                <ActionButton
+                  onClick={trailingAction.onClick}
+                  aria-label={trailingAction.label}
+                  size={hasTitle ? SIZE.default : SIZE.compact}
+                  {...actionButtonProps}
+                >
+                  {renderButtonContent(trailingAction.renderIcon || trailingAction.label)}
+                </ActionButton>
+              )}
+            </StyledHeaderGrid>
+
+            {progressBar ? (
+              <ProgressBar
+                size={PROGESS_BAR_SIZE.small}
+                overrides={{ BarContainer: { style: { marginTop: 0, marginBottom: 0 } } }}
+                {...progressBar}
+              />
+            ) : (
+              <Divider $size={DIVIDER_SIZE.section} {...dividerProps} />
+            )}
+          </Header>
         )}
+
         <Content {...contentProps}>{renderContent(content)}</Content>
       </BottomContainer>
     </Root>

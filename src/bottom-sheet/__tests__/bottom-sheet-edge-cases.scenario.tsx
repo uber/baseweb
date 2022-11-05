@@ -19,31 +19,92 @@ const StyledIphone6 = styled('div', {
 
 export function Scenario() {
   return (
-    <StyledIphone6>
-      <BottomSheet
-        title="Long titles must truncate after one line etc etc etc"
-        description="Very long descriptions can wrap onto the next line, but must truncate after two lines like this etc etc etc"
-        content={
-          <div style={{ padding: '0px 12px' }}>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            </p>
-          </div>
-        }
-      >
-        <div
-          style={{
-            overflow: 'auto',
-            // position: 'absolute',
-            // height: '100%',
-            // width: '100%',
-          }}
+    <div style={{ display: 'flex', gap: '20px' }}>
+      <StyledIphone6>
+        <BottomSheet
+          title="Long titles must truncate after one line etc etc etc"
+          description="Very long descriptions can wrap onto the next line, but must truncate after two lines like this etc etc etc"
+          content={
+            <div style={{ padding: '0px 12px' }}>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </div>
+          }
         >
-          <img src={map} alt="map of San Francisco" />
-        </div>
-      </BottomSheet>
-    </StyledIphone6>
+          <div
+            style={{
+              overflow: 'auto',
+            }}
+          >
+            <img src={map} alt="map of San Francisco" />
+          </div>
+        </BottomSheet>
+      </StyledIphone6>
+
+      <StyledIphone6>
+        <BottomSheet
+          content={
+            <div style={{ padding: '0px 12px' }}>
+              <p>
+                If no header elements are provided, the header is ommited entirely.
+                <br></br>
+                <br></br>
+                Incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </div>
+          }
+        >
+          <div
+            style={{
+              overflow: 'auto',
+            }}
+          >
+            <img src={map} alt="map of San Francisco" />
+          </div>
+        </BottomSheet>
+      </StyledIphone6>
+
+      <StyledIphone6>
+        <BottomSheet
+          positions={['30%', '50%', 'calc(100% - 40px)']}
+          content={
+            <div style={{ padding: '0px 12px' }}>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </div>
+          }
+        >
+          <div
+            style={{
+              overflow: 'auto',
+            }}
+          >
+            <img src={map} alt="map of San Francisco" />
+          </div>
+        </BottomSheet>
+      </StyledIphone6>
+    </div>
   );
 }
