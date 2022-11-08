@@ -15,6 +15,7 @@ const StyledIphone6 = styled('div', {
   height: '667px',
   border: '1px solid #ECECEC',
   borderRadius: '12px',
+  overflow: 'hidden',
 });
 
 export function Scenario() {

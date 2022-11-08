@@ -7,9 +7,9 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { getOverrides } from '../helpers/overrides';
 import { withStyle } from '../styles/index';
-import { StyledDivider as StyledDividerBase, SIZE as DIVIDER_SIZE } from '../divider';
 import { Button, KIND, SHAPE, SIZE } from '../button';
 import { ProgressBar, SIZE as PROGESS_BAR_SIZE } from '../progress-bar';
+import { StyledDivider as StyledDividerBase, SIZE as DIVIDER_SIZE } from '../divider';
 import {
   StyledRoot,
   StyledBottomContainer,
@@ -23,16 +23,14 @@ import {
 } from './styled-components';
 import type { BottomSheetProps } from './types';
 
-const renderContent = (content) => {
-  return typeof content === 'function' ? content() : content;
-};
+const renderContent = (content) => (typeof content === 'function' ? content() : content);
 
-const renderButtonContent = (content) => {
+const renderButtonContent = (content, buttonSize) => {
   if (typeof content === 'string') {
     return content;
   }
   const Icon = content;
-  return <Icon size={32} />;
+  return <Icon size={buttonSize === SIZE.compact ? 22 : 30} />;
 };
 
 const StyledDivider = withStyle(StyledDividerBase, {
@@ -110,6 +108,7 @@ export function BottomSheet({
   );
   const [Header, headerProps] = getOverrides(overrides.Header, StyledHeader);
   const [HeaderInner, headerInnerProps] = getOverrides(overrides.HeaderInner, StyledHeaderInner);
+  const [HeaderGrid, headerGridProps] = getOverrides(overrides.HeaderGrid, StyledHeaderGrid);
   const [Title, titleProps] = getOverrides(overrides.Title, StyledTitle);
   const [Description, descriptionProps] = getOverrides(overrides.Description, StyledDescription);
   const [Content, contentProps] = getOverrides(overrides.Content, StyledContent);
@@ -131,6 +130,7 @@ export function BottomSheet({
   const hasDescription = Boolean(description);
   const hasLeadingAction = Boolean(leadingAction);
   const hasTrailingAction = Boolean(trailingAction);
+  const buttonSize = hasTitle ? SIZE.default : SIZE.compact;
 
   return (
     <Root {...rootProps}>
@@ -140,18 +140,19 @@ export function BottomSheet({
           <Header {...headerProps}>
             {isDraggable && <Grabber onClick={cyclePosition} {...grabberProps} />}
 
-            <StyledHeaderGrid
+            <HeaderGrid
               $hasLeadingAction={hasLeadingAction}
               $hasTrailingAction={hasTrailingAction}
+              {...headerGridProps}
             >
               {leadingAction && (
                 <ActionButton
                   onClick={leadingAction.onClick}
                   aria-label={leadingAction.label}
-                  size={hasTitle ? SIZE.default : SIZE.compact}
+                  size={buttonSize}
                   {...actionButtonProps}
                 >
-                  {renderButtonContent(leadingAction.renderIcon || leadingAction.label)}
+                  {renderButtonContent(leadingAction.renderIcon || leadingAction.label, buttonSize)}
                 </ActionButton>
               )}
               {(hasTitle || hasDescription) && (
@@ -169,13 +170,16 @@ export function BottomSheet({
                 <ActionButton
                   onClick={trailingAction.onClick}
                   aria-label={trailingAction.label}
-                  size={hasTitle ? SIZE.default : SIZE.compact}
+                  size={buttonSize}
                   {...actionButtonProps}
                 >
-                  {renderButtonContent(trailingAction.renderIcon || trailingAction.label)}
+                  {renderButtonContent(
+                    trailingAction.renderIcon || trailingAction.label,
+                    buttonSize
+                  )}
                 </ActionButton>
               )}
-            </StyledHeaderGrid>
+            </HeaderGrid>
 
             {progressBar ? (
               <ProgressBar

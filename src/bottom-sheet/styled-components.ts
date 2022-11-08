@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import { styled } from '../styles';
 
 export const StyledRoot = styled<'div', {}>('div', ({}) => {
-  return { display: 'flex', flexDirection: 'column', height: '100%' };
+  return { display: 'flex', flexDirection: 'column', height: '100%', position: 'relative' };
 });
 
 export const StyledBottomContainer = styled<'div', { $position: string | false }>(
@@ -16,14 +16,16 @@ export const StyledBottomContainer = styled<'div', { $position: string | false }
     const baseStyle = {
       borderTopLeftRadius: $theme.borders.radius500,
       borderTopRightRadius: $theme.borders.radius500,
+      backgroundColor: $theme.colors.backgroundPrimary,
     };
-    return $position
+
+    return $position !== false
       ? {
-          height: $position,
           width: '100%',
-          position: 'relative',
+          position: 'absolute',
+          top: $position,
           left: 0,
-          transition: 'height 300ms ease-in',
+          transition: 'top 300ms ease-in',
           ...baseStyle,
         }
       : { ...baseStyle };
@@ -70,7 +72,7 @@ export const StyledHeaderInner = styled<
   };
 });
 
-export const StyledContent = styled<'div', {}>('div', ({ $theme }) => ({
+export const StyledContent = styled<'div', {}>('div', ({}) => ({
   height: '100%',
   overflow: 'auto',
 }));

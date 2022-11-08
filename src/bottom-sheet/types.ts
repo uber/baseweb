@@ -12,12 +12,13 @@ export type BottomSheetOverrides = {
   Root?: Override;
   BottomContainer?: Override;
   Header?: Override;
+  Grabber?: Override;
+  HeaderGrid?: Override;
   HeaderInner?: Override;
   Title?: Override;
   Description?: Override;
   Divider?: Override;
   Content?: Override;
-  Grabber?: Override;
 };
 
 export type IconButton = {
@@ -32,13 +33,13 @@ export type IconButton = {
 };
 
 export type BottomSheetProps = {
+  positions?: string[];
   title?: string;
   description?: string;
-  progressBar?: ProgressBarProps;
   content?: React.ReactNode;
-  children?: React.ReactNode;
+  progressBar?: ProgressBarProps;
   leadingAction?: IconButton;
   trailingAction?: IconButton;
-  positions?: string[];
+  children?: React.ReactNode;
   overrides?: BottomSheetOverrides;
 };

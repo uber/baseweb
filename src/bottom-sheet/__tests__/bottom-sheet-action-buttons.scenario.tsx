@@ -17,6 +17,7 @@ const StyledIphone6 = styled('div', {
   height: '667px',
   border: '1px solid #ECECEC',
   borderRadius: '12px',
+  overflow: 'hidden',
 });
 
 export function Scenario() {
@@ -60,9 +61,8 @@ export function Scenario() {
             label: 'search',
           }}
           trailingAction={{
-            renderIcon: ({ size }) => <Filter size={size} />,
             onClick: () => console.log('click filter'),
-            label: 'filter',
+            label: 'Filter',
           }}
           content={
             <div style={{ padding: '0px 12px' }}>
@@ -93,9 +93,8 @@ export function Scenario() {
             label: 'search',
           }}
           trailingAction={{
-            renderIcon: ({ size }) => <Filter size={size} />,
-            onClick: () => console.log('click filter'),
-            label: 'filter',
+            onClick: () => console.log('click Go'),
+            label: 'Go',
           }}
           content={
             <div style={{ padding: '0px 12px' }}>
