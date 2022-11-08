@@ -74,7 +74,7 @@ export function Scenario() {
               </p>
             </div>
           }
-          positions={['30%', '50%', 'calc(100% - 40px)']}
+          positions={['70%', '45%', '40px']}
         >
           <div
             style={{
@@ -137,7 +137,7 @@ export function Scenario() {
               </p>
             </div>
           }
-          positions={['30%', '50%', 'calc(100% - 40px)']}
+          positions={['70%', '45%', '40px']}
         >
           <div
             style={{
@@ -200,7 +200,7 @@ export function Scenario() {
               </p>
             </div>
           }
-          positions={['30%', '50%', 'calc(100% - 40px)']}
+          positions={['70%', '45%', '40px']}
         >
           <div
             style={{
