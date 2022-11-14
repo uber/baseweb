@@ -165,6 +165,7 @@ function Trailing({ action, backgroundColor, color, overrides, nested }) {
           onClick={action.onClick}
           size={BUTTON_SIZE.compact}
           shape={BUTTON_SHAPE.pill}
+          overrides={{ BaseButton: { style: { whiteSpace: 'nowrap' } } }}
         >
           {action.label}
         </Button>
