@@ -2331,6 +2331,36 @@ const outlines = [
     ],
   },
   {
+    file: 'src/mobile-header/types.ts',
+    definitions: [
+      { name: 'Type', lineStart: 11, children: [] },
+      {
+        name: 'MobileHeaderOverrides',
+        lineStart: 13,
+        children: [
+          { name: 'Root', lineStart: 14 },
+          { name: 'Title', lineStart: 15 },
+          { name: 'NavContainer', lineStart: 16 },
+          { name: 'HeaderButton', lineStart: 17 },
+          { name: 'AdditionalButtonsContainer', lineStart: 18 },
+        ],
+      },
+      { name: 'IconButton', lineStart: 21, children: [] },
+      {
+        name: 'MobileHeaderProps',
+        lineStart: 33,
+        children: [
+          { name: 'title', lineStart: 34 },
+          { name: 'expanded', lineStart: 35 },
+          { name: 'navButton', lineStart: 36 },
+          { name: 'additionalButtons', lineStart: 37 },
+          { name: 'type', lineStart: 38 },
+          { name: 'overrides', lineStart: 39 },
+        ],
+      },
+    ],
+  },
+  {
     file: 'src/modal/types.ts',
     definitions: [
       { name: 'Size', lineStart: 11, children: [] },
@@ -3849,7 +3879,7 @@ const outlines = [
           { name: 'TabHighlight', lineStart: 21 },
           { name: 'TabBorder', lineStart: 22 },
           { name: 'EndEnhancerContainer', lineStart: 23 },
-          { name: 'StyledTabBar', lineStart: 24 },
+          { name: 'TabBar', lineStart: 24 },
         ],
       },
       {
