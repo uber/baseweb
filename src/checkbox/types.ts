@@ -70,6 +70,8 @@ export type CheckboxProps = {
   autoFocus?: boolean;
   /** Passed to the input element type attribute */
   type?: string;
+  /** Passed to the input element id attribute */
+  id?: string;
   /** Passed to the input element name attribute */
   name?: string;
   /** Passed to the input element value attribute */
