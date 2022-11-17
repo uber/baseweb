@@ -25,6 +25,8 @@ import type {
   FixedMarkerProps,
   FloatingMarkerOverrides,
   FloatingMarkerProps,
+  FloatingRouteMarkerAnchorPositions,
+  FloatingRouteMarkerOverrides,
   PinHeadProps,
   DragShadowProps,
 } from './types';
@@ -32,6 +34,7 @@ import type {
 export { default as FixedMarker } from './fixed-marker';
 export { default as FloatingMarker } from './floating-marker';
 export { default as LocationPuck } from './location-puck';
+export { default as FloatingRouteMarker } from './floating-route-marker';
 
 export {
   FLOATING_MARKER_ANCHOR_POSITIONS,
@@ -45,7 +48,10 @@ export {
   PINHEAD_DIMENSIONS,
   LOCATION_PUCK_SIZES,
   LOCATION_PUCK_TYPES,
+  FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS,
 } from './constants';
+
+export { calculateFloatingRouteMarkerOffsets } from './calculate-offsets';
 
 export * from './types';
 /** @deprecated use AnchorPositions instead. To be removed in future versions.*/
@@ -92,3 +98,7 @@ export type FloatingMarkerPropsT = FloatingMarkerProps;
 export type PinHeadPropsT = PinHeadProps;
 /** @deprecated use DragShadowProps instead. To be removed in future versions.*/
 export type DragShadowPropsT = DragShadowProps;
+/** @deprecated use FloatingRouteMarkerAnchorPositions instead. To be removed in future versions.*/
+export type FloatingRouteMarkerAnchorPositionsT = FloatingRouteMarkerAnchorPositions;
+/** @deprecated use FloatingRouteMarkerOverrides instead. To be removed in future versions.*/
+export type FloatingRouteMarkerOverridesT = FloatingRouteMarkerOverrides;
