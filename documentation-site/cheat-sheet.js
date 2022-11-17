@@ -3861,7 +3861,7 @@ const outlines = [
           { name: 'TabHighlight', lineStart: 21 },
           { name: 'TabBorder', lineStart: 22 },
           { name: 'EndEnhancerContainer', lineStart: 23 },
-          { name: 'StyledTabBar', lineStart: 24 },
+          { name: 'TabBar', lineStart: 24 },
         ],
       },
       {
