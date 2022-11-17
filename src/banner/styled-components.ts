@@ -27,7 +27,7 @@ export const StyledRoot = styled<
     display: 'grid',
     gridColumnGap: $theme.sizing.scale600,
     gridTemplateColumns: 'min-content auto min-content',
-    gridTemplateRows: 'auto min-content',
+    gridTemplateRows: 'auto minmax(0, min-content)',
     marginTop: $theme.sizing.scale600,
     marginRight: $theme.sizing.scale600,
     marginBottom: $theme.sizing.scale600,

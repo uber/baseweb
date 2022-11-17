@@ -184,6 +184,7 @@ export const StyledRoot = styled<{}>('div', () => {
     lineHeight: 'initial',
   };
 });
+StyledRoot.displayName = 'StyledRoot';
 
 const TOP_PLACEMENTS = [
   PLACEMENT.topLeft,
@@ -254,6 +255,7 @@ export const StyledPositioner = styled<{
     lineHeight: 'initial',
   };
 });
+StyledPositioner.displayName = 'StyledPositioner';
 
 export const StyledBadge = styled<{
   $shape?: ShapeT,
@@ -286,6 +288,7 @@ export const StyledBadge = styled<{
     };
   }
 );
+StyledBadge.displayName = 'StyledBadge';
 
 export const StyledNotificationCircle = styled<{
   $color?: ColorT,
@@ -303,6 +306,7 @@ export const StyledNotificationCircle = styled<{
     ...$theme.typography.LabelXSmall,
   };
 });
+StyledNotificationCircle.displayName = 'StyledNotificationCircle';
 
 export const StyledHintDot = styled<{ $color: ColorT, $hidden?: boolean }>(
   'div',
@@ -319,3 +323,4 @@ export const StyledHintDot = styled<{ $color: ColorT, $hidden?: boolean }>(
     };
   }
 );
+StyledHintDot.displayName = 'StyledHintDot';
