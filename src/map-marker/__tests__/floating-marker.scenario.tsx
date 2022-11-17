@@ -17,7 +17,6 @@ import { Input } from '../../input';
 import Upload from '../../icon/upload';
 import Search from '../../icon/search';
 import { Select } from '../../select';
-
 import type { FloatingMarkerSize, AnchorPositions } from '../types';
 
 const floatingMarkerAnchorTypes = Object.keys(FLOATING_MARKER_ANCHOR_TYPES)

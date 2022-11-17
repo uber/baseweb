@@ -356,6 +356,10 @@ const routes = [
             itemId: '/components/floating-marker',
           },
           {
+            title: 'Floating Route Marker',
+            itemId: '/components/floating-route-marker',
+          },
+          {
             title: 'Location Puck',
             itemId: '/components/location-puck',
           },

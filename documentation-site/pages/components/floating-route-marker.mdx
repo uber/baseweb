@@ -1,0 +1,130 @@
+<!--
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import Layout from '../../components/layout';
+import Exports from '../../components/exports';
+import FloatingMarkerContainer from '../../components/floating-marker-container';
+
+import Yard from '../../components/yard/index';
+import floatingRouteMarkerYardConfig from '../../components/yard/config/floating-route-marker';
+
+import Basic from 'examples/floating-route-marker/basic.js';
+import SecondaryLabel from 'examples/floating-route-marker/secondary-label.js';
+import StartEndEnhacer from 'examples/floating-route-marker/start-end-enhancer.js';
+import CustomColorOverrides from 'examples/floating-route-marker/custom-color-overrides.js';
+import ChangingPointerPositions from 'examples/floating-route-marker/changing-pointer-positions.js';
+import ReactMapGL from 'examples/floating-route-marker/react-map-gl.js';
+
+import * as FloatingRouteMarkerExports from 'baseui/map-marker';
+
+export default Layout;
+
+# Floating Route Marker
+
+<Yard
+  {...floatingRouteMarkerYardConfig}
+  compilerStyles={{
+    paddingTop: '64px',
+    paddingBottom: '64px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  }}
+/>
+
+A floating route map marker is used to annotate a route line or other polyline on a map.
+
+## When to use
+
+Use a floating route marker when showcasing a polyline such as a route. For example, a floating route marker may be used to annotate a choice of different routes before starting navigation.
+
+## Guidelines
+
+### General
+
+- The pointer (anchor) of a floating route marker anchor is placed on either the diagonal edges, the horizontal centers, or the vertical centers of the marker.
+- A floating route marker without a label can only have one icon. Do not use both a `startEnhancer` and an `endEnhancer` if there is no label.
+- The floating route marker has two different states: selected and unselected. The unselected (default) state has a light background with dark text, while the selected state has a dark background with light text. Use the selected state when a the user has tapped or selected the map marker (or its corresponding polyline).
+
+## Helper function for positioning the marker on a map
+
+A helper function `calculateFloatingRouteMarkerOffsets` is available to easily position the marker in the proper geographical position within a map. The second parameter adds an additional pixel offset to the marker.
+
+```jsx
+<FloatingRouteMarker
+  label="Fastest route"
+  anchorPosition={FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.bottomLeft}
+  overrides={{
+    Root: {
+      style: {
+        transform: calculateFloatingRouteMarkerOffsets(
+          FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.bottomLeft,
+          4
+        ),
+      },
+    },
+  }}
+/>
+```
+
+## Examples
+
+<Example title="Basic usage" path="floating-route-marker/basic.js">
+  <FloatingMarkerContainer>
+    <Basic />
+  </FloatingMarkerContainer>
+</Example>
+
+A floating route map marker with only a label.
+
+<Example title="Primary and secondary labels" path="floating-route-marker/secondary-label.js">
+  <FloatingMarkerContainer>
+    <SecondaryLabel />
+  </FloatingMarkerContainer>
+</Example>
+
+A floating route map marker with a primary label and a secondary label.
+
+<Example title="Start and end enhancers" path="floating-route-marker/start-end-enhancer.js">
+  <FloatingMarkerContainer>
+    <StartEndEnhacer />
+  </FloatingMarkerContainer>
+</Example>
+
+A floating route map marker with both a start and end enhancer.
+
+<Example title="Custom color overrides" path="floating-route-marker/custom-color-overrides.js">
+  <CustomColorOverrides />
+</Example>
+
+A floating route map marker with custom overrides to modify the colors. Both the selected and unselected states have custom overrides.
+
+To customize the color of the pointer, use the property `fill` instead of `backgroundColor` on the `Pointer` override. This is because the pointer is an SVG element.
+
+<Example
+  title="Changing pointer positions"
+  path="floating-route-marker/changing-pointer-positions.js"
+>
+  <ChangingPointerPositions />
+</Example>
+
+A floating route marker that cycles through the different pointer positions every three seconds.
+
+<Example title="Usage with react-map-gl" path="floating-route-marker/react-map-gl.js">
+  <ReactMapGL />
+</Example>
+
+A floating route map marker rendered inside of a [react-map-gl](https://visgl.github.io/react-map-gl/) view. In order to use a floating route map marker in react-map-gl, wrap the floating marker with a [`<Marker/>`](https://visgl.github.io/react-map-gl/docs/api-reference/marker) component. In order to properly center the marker on the intended position, translate the marker using an override on the `Root`.
+
+A helper function `calculateFloatingRouteMarkerOffsets` is available to help position the marker in the proper geographical position within a map. Use this helper function inside of the `style` transform within the `Root` override.
+
+<Exports
+  component={FloatingRouteMarkerExports}
+  title="Floating Route Marker exports"
+  path="baseui/map-marker"
+/>
