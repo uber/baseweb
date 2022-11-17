@@ -103,6 +103,7 @@ class StatelessCheckbox extends React.Component<CheckboxProps, CheckboxState> {
       error,
       disabled,
       value,
+      id,
       name,
       type,
       checked,
@@ -182,6 +183,7 @@ class StatelessCheckbox extends React.Component<CheckboxProps, CheckboxState> {
         )}
         <Input
           value={value}
+          id={id}
           name={name}
           checked={checked}
           required={required}
