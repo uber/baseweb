@@ -23,7 +23,7 @@ export type TabsOverridesT = {
   TabHighlight?: OverrideT,
   TabBorder?: OverrideT,
   EndEnhancerContainer?: OverrideT,
-  StyledTabBar?: OverrideT,
+  TabBar?: OverrideT,
 };
 
 export type TabOverridesT = {

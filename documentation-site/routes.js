@@ -175,6 +175,10 @@ const routes = [
             itemId: '/components/link',
           },
           {
+            title: 'Mobile Header',
+            itemId: '/components/mobile-header',
+          },
+          {
             title: 'Pagination',
             itemId: '/components/pagination',
           },
@@ -350,6 +354,10 @@ const routes = [
           {
             title: 'Floating Marker',
             itemId: '/components/floating-marker',
+          },
+          {
+            title: 'Floating Route Marker',
+            itemId: '/components/floating-route-marker',
           },
           {
             title: 'Location Puck',

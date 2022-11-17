@@ -1,0 +1,28 @@
+<!--
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Layout from '../../components/layout';
+import Exports from '../../components/exports';
+
+import { Stepper } from 'baseui/stepper';
+import * as StepperExports from 'baseui/stepper';
+
+import Yard from '../../components/yard/index';
+import stepperYardConfig from '../../components/yard/config/stepper';
+
+export default Layout;
+
+# Stepper
+
+<Yard placeholderHeight={52} {...stepperYardConfig} />
+
+The stepper is a simple input component that allows users to increment or decrement a numeric
+value using the provided buttons. Users can also click on the value itself for manual
+adjustment. Stepper works best for fields with small integer values, such as the number of
+riders in a vehicle or the number of items ordered from a menu.
+
+<Exports component={StepperExports} title="Stepper exports" path="baseui/stepper" />

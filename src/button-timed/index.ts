@@ -10,14 +10,11 @@ import {
   StyledLoadingSpinner,
   StyledLoadingSpinnerContainer,
 } from '../button';
-import {
-  BaseButtonTimed as StyledBaseButtonTimed,
-  TimerContainer as StyledTimercontainer,
-} from './styled-components';
+import { StyledBaseButtonTimed, StyledTimerContainer } from './styled-components';
 
 export {
   StyledBaseButtonTimed,
-  StyledTimercontainer,
+  StyledTimerContainer,
   StyledStartEnhancer,
   StyledEndEnhancer,
   StyledLoadingSpinner,

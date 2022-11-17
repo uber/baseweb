@@ -183,7 +183,6 @@ export const StyledRoot = styled<'div', {}>('div', () => {
     lineHeight: 'initial',
   };
 });
-
 StyledRoot.displayName = 'StyledRoot';
 
 const TOP_PLACEMENTS = [
@@ -259,7 +258,6 @@ export const StyledPositioner = styled<
     lineHeight: 'initial',
   };
 });
-
 StyledPositioner.displayName = 'StyledPositioner';
 
 export const StyledBadge = styled<
@@ -296,7 +294,6 @@ export const StyledBadge = styled<
     };
   }
 );
-
 StyledBadge.displayName = 'StyledBadge';
 
 export const StyledNotificationCircle = styled<
@@ -318,7 +315,6 @@ export const StyledNotificationCircle = styled<
     ...$theme.typography.LabelXSmall,
   };
 });
-
 StyledNotificationCircle.displayName = 'StyledNotificationCircle';
 
 export const StyledHintDot = styled<
