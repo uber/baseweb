@@ -7,10 +7,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { Button, SIZE, KIND, SHAPE } from '../button';
 import type { ButtonTimedProps } from './types';
-import {
-  BaseButtonTimed as StyledBaseButtonTimed,
-  TimerContainer as StyledTimerContainer,
-} from './styled-components';
+import { StyledBaseButtonTimed, StyledTimerContainer } from './styled-components';
 import { formatTime } from './utils';
 import { getOverrides, mergeOverrides } from '../helpers/overrides';
 
