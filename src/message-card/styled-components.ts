@@ -79,6 +79,7 @@ export const StyledRoot = styled<
     };
   }
 );
+StyledRoot.displayName = 'StyledRoot';
 
 export const StyledImage = styled<
   'div',
@@ -97,6 +98,7 @@ export const StyledImage = styled<
       : { width: '112px', order: '1' }),
   };
 });
+StyledImage.displayName = 'StyledImage';
 
 export const StyledContentContainer = styled('div', ({ $theme }) => ({
   width: '100%',
@@ -106,12 +108,15 @@ export const StyledContentContainer = styled('div', ({ $theme }) => ({
   paddingBottom: $theme.sizing.scale600,
   paddingLeft: $theme.sizing.scale600,
 }));
+StyledContentContainer.displayName = 'StyledContentContainer';
 
 export const StyledHeadingContainer = styled('div', ({ $theme }) => ({
   ...$theme.typography.HeadingXSmall,
 }));
+StyledHeadingContainer.displayName = 'StyledHeadingContainer';
 
 export const StyledParagraphContainer = styled('div', ({ $theme }) => ({
   ...$theme.typography.ParagraphSmall,
   marginTop: $theme.sizing.scale100,
 }));
+StyledParagraphContainer.displayName = 'StyledParagraphContainer';

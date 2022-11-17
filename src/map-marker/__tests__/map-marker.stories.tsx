@@ -12,6 +12,8 @@ import { Scenario as LocationPuckMapStory } from './location-puck-map.scenario';
 import { Scenario as FloatingMarkerMapStory } from './floating-marker-map.scenario';
 import { Scenario as FixedMarkerMapStory } from './fixed-marker-map.scenario';
 import { Scenario as EatsPickupMarkerStory } from './eats-pickup-marker.scenario';
+import { Scenario as FloatingRouteMarkerStory } from './floating-route-marker.scenario';
+import { Scenario as FloatingRouteMarkerMapStory } from './floating-route-marker-map.scenario';
 
 export const FixedMarker = () => <FixedMarkerStory />;
 export const FloatingMarker = () => <FloatingMarkerStory />;
@@ -20,3 +22,5 @@ export const LocationPuckMap = () => <LocationPuckMapStory />;
 export const FloatingMarkerMap = () => <FloatingMarkerMapStory />;
 export const FixedMarkerMap = () => <FixedMarkerMapStory />;
 export const EatsPickupMarker = () => <EatsPickupMarkerStory />;
+export const FloatingRouteMarker = () => <FloatingRouteMarkerStory />;
+export const FloatingRouteMarkerMap = () => <FloatingRouteMarkerMapStory />;
