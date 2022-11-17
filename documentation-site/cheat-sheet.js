@@ -3603,6 +3603,35 @@ const outlines = [
     ],
   },
   {
+    file: 'src/stepper/types.ts',
+    definitions: [
+      {
+        name: 'MobileHeaderOverrides',
+        lineStart: 10,
+        children: [
+          { name: 'Root', lineStart: 11 },
+          { name: 'Input', lineStart: 12 },
+          { name: 'DecrementButton', lineStart: 13 },
+          { name: 'DecrementButtonIcon', lineStart: 14 },
+          { name: 'IncrementButton', lineStart: 15 },
+          { name: 'IncrementButtonIcon', lineStart: 16 },
+        ],
+      },
+      {
+        name: 'StepperProps',
+        lineStart: 19,
+        children: [
+          { name: 'value', lineStart: 20 },
+          { name: 'setValue', lineStart: 21 },
+          { name: 'minValue', lineStart: 22 },
+          { name: 'maxValue', lineStart: 23 },
+          { name: 'disabled', lineStart: 24 },
+          { name: 'overrides', lineStart: 25 },
+        ],
+      },
+    ],
+  },
+  {
     file: 'src/styles/types.ts',
     definitions: [
       { name: 'Colors', lineStart: 41, children: [] },
