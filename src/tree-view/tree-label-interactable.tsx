@@ -11,8 +11,8 @@ import type { Override } from '../helpers/overrides';
 
 import type { ComponentType, PropsWithChildren } from 'react';
 
-const TreeLabelInteractable: PropsWithChildren<
-  ComponentType<{
+const TreeLabelInteractable: ComponentType<
+  PropsWithChildren<{
     overrides?: {
       LabelInteractable: Override;
     };
