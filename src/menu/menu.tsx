@@ -77,7 +77,7 @@ export default function Menu(props: StatelessMenuProps) {
         const { getRequiredItemProps = (item, index) => ({} as RenderItemProps) } = props;
 
         if (item.divider === true) {
-          return <MenuDivider {...menuDividerProps} />;
+          return <MenuDivider key={itemIndex} {...menuDividerProps} />;
         }
 
         const {
