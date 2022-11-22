@@ -15,6 +15,8 @@ import LargeTopRight from 'examples/floating-marker/large-top-right.js';
 import StartEnhancer from 'examples/floating-marker/start-enhancer.js';
 import SmallNoAnchor from 'examples/floating-marker/small-no-anchor.js';
 import LargeSquareAnchorStartEnhancer from 'examples/floating-marker/large-square-anchor-start-enhancer.js';
+import SecondaryLabel from 'examples/floating-marker/secondary-label.js';
+import SecondaryLabelColor from 'examples/floating-marker/secondary-label-color.js';
 import ReactMapGL from 'examples/floating-marker/react-map-gl.js';
 import { FloatingMarkerSizingTable } from '../../components/map-marker-sizing-table.js';
 
@@ -55,6 +57,12 @@ For more information on the design principles behind the Base map markers, pleas
 - A floating marker may either have no anchor, a square anchor, a circular anchor, or an xx small circular anchor.
 - The anchor of a floating marker can be attached to any of the four corners of the marker.
 - A floating marker without a label can only have one icon. Do not use both a `startEnhancer` and an `endEnhancer` if there is no label.
+
+### Two line labels
+
+- A floating marker may accept a second line with the `secondaryLabel` prop.
+- Only size `large` and `medium` floating markers allow two lines of content.
+- In order to make room for the second line, the font size will drop to one size below. For example, a size `large` marker's font will decrease from `LabelLarge` to `LabelMedium`.
 
 ### Enhancer sizing
 
@@ -109,6 +117,22 @@ A small floating marker without an anchor.
 </Example>
 
 A large floating marker with a square anchor and start enhancer. Because the floating marker is size large, make sure to pass the `size` parameter as prop to ensure the icon receives the proper size.
+
+<Example title="Two labels" path="floating-marker/secondary-label.js">
+  <FloatingMarkerContainer>
+    <SecondaryLabel />
+  </FloatingMarkerContainer>
+</Example>
+
+A floating marker with two labels. Use the prop `secondaryLabel` to add a second line. When using a second line, the font size will decrease to one size below.
+
+<Example title="Two labels with custom color" path="floating-marker/secondary-label-color.js">
+  <FloatingMarkerContainer>
+    <SecondaryLabelColor />
+  </FloatingMarkerContainer>
+</Example>
+
+A floating marker with two labels. The top label's color is customized with an override.
 
 <Example title="Usage with react-map-gl" path="floating-marker/react-map-gl.js">
   <ReactMapGL />

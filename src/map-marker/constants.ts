@@ -18,6 +18,7 @@ export const NEEDLE_HEIGHTS = Object.freeze({
   [NEEDLE_SIZES.tall]: 20,
 } as const);
 
+// Important: keep this sorted by size, as it used to determine label size when a secondary label is used.
 export const PINHEAD_SIZES_SHAPES = Object.freeze({
   xxSmallCircle: 'xx-small-circle',
   xxSmallSquare: 'xx-small-square',
