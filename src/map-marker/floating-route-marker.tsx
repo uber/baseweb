@@ -18,7 +18,7 @@ import {
 } from './constants';
 import {
   StyledFloatingRouteMarkerRoot,
-  StyledContentItem,
+  StyledLabelSlot,
   StyledFloatingRouteMarkerPointerContainer,
   StyledFloatingRouteMarkerPointer,
 } from './styled-components';
@@ -46,7 +46,7 @@ const FloatingRouteMarker = ({
   const [Root, rootProps] = getOverrides(overrides.Root, StyledFloatingRouteMarkerRoot);
   const [IconContainer, iconContainerProps] = getOverrides(
     overrides.IconContainer,
-    StyledContentItem
+    StyledLabelSlot
   );
   const [PrimaryLabel, primaryLabelProps] = getOverrides(overrides.Label, LabelMedium);
   const [SecondaryLabel, secondaryLabelProps] = getOverrides(overrides.SecondaryLabel, LabelSmall);
