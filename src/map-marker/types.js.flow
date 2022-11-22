@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {
   FLOATING_MARKER_ANCHOR_POSITIONS,
+  FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS,
   NEEDLE_SIZES,
   PINHEAD_SIZES_SHAPES,
   FLOATING_MARKER_SIZES,
@@ -42,6 +43,10 @@ export type KindT = $Values<typeof KIND>;
 
 export type LocationPuckSizeT = $Values<typeof LOCATION_PUCK_SIZES>;
 export type LocationPuckTypeT = $Values<typeof LOCATION_PUCK_TYPES>;
+
+export type FloatingRouteMarkerAnchorPositionsT = $Values<
+  typeof FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS
+>;
 
 export type FixedMarkerOverridesT = {
   Root?: OverrideT,
@@ -195,4 +200,27 @@ export type EarnerLocationPuckPropsT = {
   confidenceRadius?: number,
   size: LocationPuckSizeT,
   overrides?: LocationPuckOverridesT,
+};
+
+export type FloatingRouteMarkerOverridesT = {
+  Root?: OverrideT,
+  PointerContainer?: OverrideT,
+  Pointer?: OverrideT,
+  Label?: OverrideT,
+  SecondaryLabel?: OverrideT,
+  IconContainer?: OverrideT,
+};
+
+export type FloatingRouteMarkerPropsT = {
+  label?: React.Node,
+  secondaryLabel?: React.Node,
+  startEnhancer?: React.ComponentType<{
+    size: number,
+  }>,
+  endEnhancer?: React.ComponentType<{
+    size: number,
+  }>,
+  anchorPosition?: FloatingRouteMarkerAnchorPositionsT,
+  overrides?: FloatingRouteMarkerOverridesT,
+  selected?: boolean,
 };

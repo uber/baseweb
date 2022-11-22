@@ -8,7 +8,7 @@ import { styled, withStyle } from '../styles/index';
 import { StyledBaseButton } from '../button';
 import { hexToRgb as hexToRgba } from '../styles/util';
 
-export const BaseButtonTimed = withStyle<
+export const StyledBaseButtonTimed = withStyle<
   typeof StyledBaseButton,
   { $initialTime: number; $timeElapsed: number }
 >(StyledBaseButton, ({ $theme, $initialTime, $timeElapsed }) => {
@@ -41,8 +41,10 @@ export const BaseButtonTimed = withStyle<
       : {}),
   };
 });
+StyledBaseButtonTimed.displayName = 'StyledBaseButtonTimed';
 
-export const TimerContainer = styled<'span', {}>('span', {
+export const StyledTimerContainer = styled<'span', {}>('span', {
   // minWidth to ensure button width stays consistent as timeRemaining changes
   minWidth: '53px',
 });
+StyledTimerContainer.displayName = 'StyledTimerContainer';

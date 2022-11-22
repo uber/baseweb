@@ -46,4 +46,19 @@ describe('Menu Stateless Component', () => {
     const options = getAllByTestId(container, 'option');
     expect(options.length).toBe(2);
   });
+
+  it('renders dividers without react key warning', () => {
+    const original = console.error;
+    console.error = jest.fn();
+    const itemsWithDivider = [{ label: 'item1' }, { divider: true }, { label: 'item2' }];
+    // @ts-expect-error todo(flow->ts)
+    render(<Menu {...getSharedProps()} items={itemsWithDivider} />);
+    expect(console.error).not.toHaveBeenCalledWith(
+      expect.stringContaining('Each child in a list should have a unique "key" prop.'),
+      expect.anything(),
+      expect.anything(),
+      expect.anything()
+    );
+    console.error = original;
+  });
 });

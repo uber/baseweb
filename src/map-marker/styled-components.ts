@@ -11,6 +11,7 @@ import {
   LABEL_SIZES,
   EARNER_LOCATION_PUCK_CORE_SCALES,
   PINHEAD_SIZES_SHAPES,
+  FLOATING_ROUTE_MARKER_POINTER_TRANSFORMS,
 } from './constants';
 
 import type {
@@ -20,6 +21,7 @@ import type {
   BadgePosition,
   PinHeadSize,
   LocationPuckSize,
+  FloatingRouteMarkerAnchorPositions,
 } from './types';
 import type { StyleObject } from 'styletron-react';
 
@@ -428,6 +430,30 @@ export const StyledLabel = styled<
 
 StyledLabel.displayName = 'StyledLabel';
 
+export const StyledFloatingRouteMarkerRoot = styled<
+  'div',
+  {
+    $height: number;
+    $background: string;
+    $gridTemplateColumns: string;
+  }
+>('div', ({ $theme, $height, $background, $gridTemplateColumns }) => {
+  return {
+    position: 'absolute',
+    backgroundColor: $background,
+    height: `${$height}px`,
+    display: 'grid',
+    gridTemplateColumns: $gridTemplateColumns,
+    gap: '8px',
+    filter: `drop-shadow(${$theme.lighting.shadow600})`,
+    whiteSpace: 'nowrap',
+    borderRadius: `${8}px`,
+    padding: `${4}px ${8}px`,
+    transition: `${$theme.animation.timing300} ${$theme.animation.easeOutCurve} all`,
+  };
+});
+StyledFloatingRouteMarkerRoot.displayName = 'StyledFloatingRouteMarkerRoot';
+
 export const LocationPuckContainer = styled<'div', {}>('div', () => {
   return {
     position: 'relative',
@@ -495,3 +521,31 @@ export const StyledEarnerLocationPuckCore = styled<
 });
 
 StyledEarnerLocationPuckCore.displayName = 'StyledEarnerLocationPuckCore';
+
+export const StyledFloatingRouteMarkerPointerContainer = styled<
+  'svg',
+  {
+    $position: FloatingRouteMarkerAnchorPositions;
+  }
+>('svg', ({ $position }) => {
+  return {
+    position: 'absolute',
+    ...FLOATING_ROUTE_MARKER_POINTER_TRANSFORMS[$position],
+  };
+});
+
+StyledFloatingRouteMarkerPointerContainer.displayName = 'StyledFloatingRouteMarkerPointerContainer';
+
+export const StyledFloatingRouteMarkerPointer = styled<
+  'path',
+  {
+    $background: string;
+  }
+>('path', ({ $theme, $background }) => {
+  return {
+    transition: `${$theme.animation.timing300} ${$theme.animation.easeOutCurve} all`,
+    fill: $background,
+  };
+});
+
+StyledFloatingRouteMarkerPointer.displayName = 'StyledFloatingRouteMarkerPointer';

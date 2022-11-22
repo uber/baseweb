@@ -133,6 +133,7 @@ export function Tabs({
     overrides.EndEnhancerContainer,
     StyledEndEnhancerContainer
   );
+  const [TabBar, tabBarProps] = getOverrides(overrides.TabBar, StyledTabBar);
 
   // Count key updates
   // We disable a few things until after first mount:
@@ -238,7 +239,7 @@ export function Tabs({
 
   return (
     <Root {...sharedStylingProps} {...RootProps}>
-      <StyledTabBar $hasEndEnhancer={Boolean(endEnhancer)} $orientation={orientation}>
+      <TabBar $hasEndEnhancer={Boolean(endEnhancer)} $orientation={orientation} {...tabBarProps}>
         <TabList
           data-baseweb="tab-list"
           role="tablist"
@@ -287,7 +288,7 @@ export function Tabs({
               <RenderEnhancer Enhancer={endEnhancer} />
             </EndEnhancerContainer>
           )}
-      </StyledTabBar>
+      </TabBar>
 
       <TabBorder
         data-baseweb="tab-border"

@@ -1,0 +1,32 @@
+/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+// @flow
+import * as React from 'react';
+import type { OverrideT } from '../helpers/overrides.js';
+import { type StyletronComponent } from 'styletron-react';
+
+export type StepperOverridesT = {
+  Root?: OverrideT,
+  Input?: OverrideT,
+  DecrementButton?: OverrideT,
+  DecrementButtonIcon?: OverrideT,
+  IncrementButton?: OverrideT,
+  IncrementButtonIcon?: OverrideT,
+};
+
+export type StepperProps = {
+  value: number,
+  setValue: (newValue: number) => void,
+  minValue?: number,
+  maxValue?: number,
+  disabled?: boolean,
+  overrides?: StepperOverridesT,
+};
+
+declare export var StyledRoot: StyletronComponent<'div', {}>;
+
+declare export var Stepper: React.ComponentType<StepperProps>;

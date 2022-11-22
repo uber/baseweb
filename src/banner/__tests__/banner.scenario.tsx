@@ -51,6 +51,7 @@ export function Scenario() {
             Paragraph text
           </Banner>
         ))}
+        <Banner action={{ label: 'Longer label text', onClick: () => {} }}>Paragraph text</Banner>
       </div>
 
       <div style={{ width: '300px' }}>

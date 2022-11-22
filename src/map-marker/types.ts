@@ -17,6 +17,7 @@ import type {
   KIND,
   LOCATION_PUCK_SIZES,
   LOCATION_PUCK_TYPES,
+  FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS,
 } from './constants';
 import type { Override } from '../helpers/overrides';
 
@@ -43,6 +44,10 @@ export type Kind = typeof KIND[keyof typeof KIND];
 
 export type LocationPuckSize = typeof LOCATION_PUCK_SIZES[keyof typeof LOCATION_PUCK_SIZES];
 export type LocationPuckType = typeof LOCATION_PUCK_TYPES[keyof typeof LOCATION_PUCK_TYPES];
+
+export type FloatingRouteMarkerAnchorPositions =
+  typeof FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS[keyof typeof FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS];
+
 export type FixedMarkerOverrides = {
   Root?: Override;
   InnerAnchor?: Override;
@@ -207,4 +212,27 @@ export type EarnerLocationPuckProps = {
   confidenceRadius?: number;
   size: LocationPuckSize;
   overrides?: LocationPuckOverrides;
+};
+
+export type FloatingRouteMarkerOverrides = {
+  Root?: Override;
+  PointerContainer?: Override;
+  Pointer?: Override;
+  Label?: Override;
+  SecondaryLabel?: Override;
+  IconContainer?: Override;
+};
+
+export type FloatingRouteMarkerProps = {
+  label?: React.ReactNode;
+  secondaryLabel?: React.ReactNode;
+  startEnhancer?: React.ComponentType<{
+    size: number;
+  }>;
+  endEnhancer?: React.ComponentType<{
+    size: number;
+  }>;
+  anchorPosition?: FloatingRouteMarkerAnchorPositions;
+  overrides?: FloatingRouteMarkerOverrides;
+  selected?: boolean;
 };
