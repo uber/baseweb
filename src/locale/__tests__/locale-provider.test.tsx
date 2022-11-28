@@ -9,6 +9,7 @@ import { render } from '@testing-library/react';
 import LocaleProvider, { LocaleContext } from '../index';
 import en_US from '../en_US';
 import tr_TR from '../tr_TR';
+import fa_IR from '../fa_IR';
 
 describe('LocaleProvider', () => {
   const ExpectLocaleComponent = ({ expectedValue }) => {
@@ -41,6 +42,25 @@ describe('LocaleProvider', () => {
           <ExpectLocaleComponent expectedValue={expectedValue} />
         </LocaleProvider>
         <ExpectLocaleComponent expectedValue={tr_TR} />
+      </LocaleProvider>
+    );
+  });
+
+  it('locale provider inherits from parent', () => {
+    expect.assertions(2);
+    const override = { breadcrumbs: { ariaLabel: 'TEST' }, newProperty: { nestedProperty: 'a ' } };
+    const expectedValue = {
+      ...fa_IR,
+      ...override,
+      breadcrumbs: { ...fa_IR.breadcrumbs, ...override.breadcrumbs },
+    };
+
+    render(
+      <LocaleProvider locale={fa_IR}>
+        <LocaleProvider locale={override}>
+          <ExpectLocaleComponent expectedValue={expectedValue} />
+        </LocaleProvider>
+        <ExpectLocaleComponent expectedValue={fa_IR} />
       </LocaleProvider>
     );
   });
