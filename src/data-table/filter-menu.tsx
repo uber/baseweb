@@ -5,17 +5,17 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import React from 'react';
+import { useUIDSeed } from 'react-uid';
 import { Button, SHAPE, SIZE } from '../button';
 import { Filter as FilterIcon } from '../icon';
 import { Input, SIZE as INPUT_SIZE } from '../input';
-import { Popover, PLACEMENT } from '../popover';
+import { PLACEMENT, Popover } from '../popover';
 import { useStyletron } from '../styles';
-import { useUIDSeed } from 'react-uid';
 
+import { LocaleContext } from '../locale';
 import { COLUMNS } from './constants';
 import { matchesQuery } from './text-search';
 import type { ColumnOptions } from './types';
-import { LocaleContext } from '../locale';
 
 import { isFocusVisible } from '../utils/focusVisible';
 
@@ -228,6 +228,8 @@ function FilterMenu(props: Props) {
     setQuery('');
   }, []);
 
+  const filterAddButtonMargin = theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
+
   const filterableColumns = React.useMemo(() => {
     return props.columns.filter((column) => {
       return column.filterable && !props.filters.has(column.title);
@@ -314,7 +316,7 @@ function FilterMenu(props: Props) {
         overrides={{
           BaseButton: {
             style: {
-              marginLeft: theme.sizing.scale500,
+              [filterAddButtonMargin]: theme.sizing.scale500,
               marginBottom: theme.sizing.scale500,
             },
           },
