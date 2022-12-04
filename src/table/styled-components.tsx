@@ -154,6 +154,7 @@ type CellStyledProps = {
   $striped?: boolean;
 };
 
+// @ts-ignore
 const StyledCellElement = styled<'div', CellStyledProps>('div', ({ $theme, $striped }) => {
   return {
     ...$theme.typography.font200,
@@ -184,6 +185,7 @@ export const StyledFilterButton = styled<
     $disabled?: boolean;
     $active?: boolean;
   }
+  // @ts-ignore
 >('button', (props) => {
   function getIconColor() {
     if (props.$disabled) {

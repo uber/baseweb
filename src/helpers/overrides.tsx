@@ -153,6 +153,7 @@ export function mergeOverrides(target: Overrides = {}, source: Overrides = {}): 
   // const allIdentifiers = Object.keys({...target, ...source});
 
   return allIdentifiers.reduce((acc, name) => {
+    // @ts-ignore
     acc[name] = mergeOverride(toObjectOverride(target[name]), toObjectOverride(source[name]));
     return acc;
   }, {});

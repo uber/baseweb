@@ -19,6 +19,7 @@ describe('Tab', () => {
   it('component overrides', () => {
     const overrides = {
       // eslint-disable-next-line react/display-name
+      // @ts-ignore
       Tab: ({ children }) => <span data-testid="mock">{children}</span>,
     };
     const { container } = render(<Tab overrides={overrides}>Title</Tab>);

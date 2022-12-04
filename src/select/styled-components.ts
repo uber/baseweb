@@ -12,6 +12,7 @@ import { Spinner } from '../spinner';
 import type { SharedStylePropsArg } from './types';
 import { ellipsisText } from '../styles/util';
 
+// @ts-ignore
 function getFont(size: keyof typeof SIZE = SIZE.default, typography) {
   return {
     [SIZE.mini]: typography.font100,
@@ -22,7 +23,9 @@ function getFont(size: keyof typeof SIZE = SIZE.default, typography) {
 }
 
 function getBorderRadius(
+  // @ts-ignore
   size,
+  // @ts-ignore
   borders
 ): {
   borderTopLeftRadius: string;
@@ -42,6 +45,7 @@ function getBorderRadius(
   };
 }
 
+// @ts-ignore
 function getControlPadding(props) {
   const {
     $theme,
@@ -57,6 +61,7 @@ function getControlPadding(props) {
   const paddingStartDir: string = $theme.direction === 'rtl' ? 'paddingRight' : 'paddingLeft';
   const paddingEndDir: string = $theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight';
 
+  // @ts-ignore
   return {
     [SIZE.mini]: {
       // `sizing.scale0` based on the multi value component (Tag) top and bottom margin
@@ -111,6 +116,7 @@ export const StyledDropdown = StyledList;
 
 export const StyledDropdownListItem = StyledListItem;
 
+// @ts-ignore
 export const StyledOptionContent = styled<'div', SharedStylePropsArg>('div', (props) => {
   const { $isHighlighted, $selected, $disabled, $theme } = props;
 
@@ -139,11 +145,17 @@ export const StyledRoot = styled<'div', SharedStylePropsArg>('div', (props) => {
 StyledRoot.displayName = 'StyledRoot';
 
 function getControlContainerColors(
+  // @ts-ignore
   $disabled,
+  // @ts-ignore
   $isFocused,
+  // @ts-ignore
   $isPseudoFocused,
+  // @ts-ignore
   $positive,
+  // @ts-ignore
   $error,
+  // @ts-ignore
   colors
 ) {
   if ($disabled) {
@@ -405,6 +417,7 @@ export const StyledIconsContainer = styled<'div', SharedStylePropsArg>(
 
 StyledIconsContainer.displayName = 'StyledIconsContainer';
 
+// @ts-ignore
 function getSvgStyles({ $theme }) {
   return {
     display: 'inline-block',

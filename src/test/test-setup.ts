@@ -9,6 +9,7 @@ LICENSE file in the root directory of this source tree.
 // can have greater certainty that fewer bugs are published.
 // https://github.com/facebook/jest/issues/6121
 
+// @ts-ignore
 function applyErrorDetails(message) {
   return `Failing unit test due to unexpected console.error. Please resolve this in the relevant test.\n\n${
     message instanceof Error ? '${message}' : 'Error: '
@@ -17,16 +18,19 @@ function applyErrorDetails(message) {
 
 let error = console.error;
 console.error = function (message) {
+  // @ts-ignore
   error.apply(console, arguments);
   throw new Error(applyErrorDetails(message));
 };
 
+// @ts-ignore
 function applyWarningDetails(message) {
   return `Failing unit test due to unexpected console.warn. Please mock and assert this in the relevant test.\n\nWarning: ${message}`;
 }
 
 let warn = console.warn;
 console.warn = function (message) {
+  // @ts-ignore
   warn.apply(console, arguments);
   throw new Error(applyWarningDetails(message));
 };

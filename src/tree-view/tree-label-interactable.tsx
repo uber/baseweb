@@ -22,7 +22,9 @@ const TreeLabelInteractable: ComponentType<
   return (
     // $FlowExpectedError[cannot-spread-inexact]
     <LabelInteractable
+      // @ts-ignore
       onClick={(e) => e.stopPropagation()}
+      // @ts-ignore
       onKeyDown={(e) => e.stopPropagation()}
       {...props}
     />

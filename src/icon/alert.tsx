@@ -13,6 +13,7 @@ import { mergeOverride, toObjectOverride } from '../helpers/overrides';
 import Icon from './icon';
 import type { IconProps } from './types';
 
+// @ts-ignore
 function Alert(props: IconProps, ref) {
   const [, theme] = useStyletron();
   const { title = 'Alert', size, color, overrides = {}, ...restProps } = props;

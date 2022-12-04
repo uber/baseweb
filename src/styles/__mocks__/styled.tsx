@@ -26,6 +26,7 @@ type State = {
 };
 
 const MOCK_THEME = createMockTheme(LightTheme);
+// @ts-ignore
 const IDENTITY = (x) => x;
 
 export function useStyletron() {
@@ -73,6 +74,7 @@ export function styled(ElementName: string | React.ComponentType<any>, objOrFn: 
       const { forwardedRef, ...restProps } = this.props;
       return Object.keys(restProps).reduce((acc, key) => {
         if (key[0] !== '$') {
+          // @ts-ignore
           acc[key] = restProps[key];
         }
         return acc;
@@ -99,6 +101,7 @@ export function styled(ElementName: string | React.ComponentType<any>, objOrFn: 
   };
 
   return React.forwardRef<HTMLElement, Props>((props, ref) => (
+    // @ts-ignore
     <MockStyledComponent forwardedRef={ref} {...props} />
   ));
 }

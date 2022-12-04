@@ -26,8 +26,10 @@ import type { FileUploaderProps } from './types';
 
 import type { SyntheticEvent } from 'react';
 
+// @ts-ignore
 function prependStyleProps(styleProps) {
   return Object.keys(styleProps).reduce((nextStyleProps, currentKey) => {
+    // @ts-ignore
     nextStyleProps[`$${currentKey}`] = styleProps[currentKey];
     return nextStyleProps;
   }, {});
@@ -72,9 +74,16 @@ function FileUploader(props: FileUploaderProps) {
 
   const afterFileDrop = !!(props.progressAmount || props.progressMessage || props.errorMessage);
 
+  let accept;
+  if (Array.isArray(props.accept)) {
+    accept = props.accept.join(',');
+  } else if (typeof props.accept === 'string') {
+    accept = props.accept;
+  }
+
   return (
-    // @ts-expect-error todo(flow->ts): dropzone api
-    <Dropzone {...props} disabled={props.disabled || afterFileDrop}>
+    // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
+    <Dropzone {...props} accept={accept} disabled={props.disabled || afterFileDrop}>
       {(renderProps) => {
         const { getRootProps, getInputProps, open, ...styleProps } = renderProps;
 
@@ -95,7 +104,9 @@ function FileUploader(props: FileUploaderProps) {
         return (
           <LocaleContext.Consumer>
             {(locale) => (
+              // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
               <Root data-baseweb="file-uploader" {...prefixedStyledProps} {...rootProps}>
+                {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
                 <FileDragAndDrop
                   {...getRootProps(getRootPropsArgs)}
                   {...prefixedStyledProps}
@@ -103,13 +114,16 @@ function FileUploader(props: FileUploaderProps) {
                 >
                   {!afterFileDrop && (
                     <React.Fragment>
+                      {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
                       <ContentMessage {...prefixedStyledProps} {...contentMessageProps}>
                         {locale.fileuploader.dropFilesToUpload}
                       </ContentMessage>
                       {/* TODO(v11): ContentSeparator potentially can be removed in the next major version */}
+                      {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
                       <ContentSeparator {...prefixedStyledProps} {...contentSeparatorProps}>
                         {locale.fileuploader.or}
                       </ContentSeparator>
+                      {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
                       <ButtonComponent
                         disabled={props.disabled}
                         kind={KIND.secondary}
@@ -119,6 +133,7 @@ function FileUploader(props: FileUploaderProps) {
                         role="button"
                         overrides={{
                           BaseButton: {
+                            // @ts-ignore
                             style: ({ $theme }) => ({
                               marginTop: $theme.sizing.scale500,
                             }),
@@ -141,10 +156,12 @@ function FileUploader(props: FileUploaderProps) {
                        * future. We do not want to flash the spinner in this case.
                        */}
                       {typeof props.progressAmount === 'number' ? (
+                        // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
                         <ProgressBarComponent
                           value={props.progressAmount}
                           overrides={{
                             BarProgress: {
+                              // @ts-ignore
                               style: ({ $theme }) => ({
                                 backgroundColor: props.errorMessage
                                   ? $theme.colors.negative
@@ -155,6 +172,7 @@ function FileUploader(props: FileUploaderProps) {
                           {...progressBarProps}
                         />
                       ) : props.errorMessage ? null : (
+                        // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
                         <SpinnerComponent
                           $size={SPINNER_SIZE.medium}
                           $style={{ marginBottom: theme.sizing.scale300 }}
@@ -162,15 +180,18 @@ function FileUploader(props: FileUploaderProps) {
                         />
                       )}
                       {(props.errorMessage || props.progressMessage) && props.errorMessage ? (
+                        // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
                         <ErrorMessage {...prefixedStyledProps} {...errorMessageProps}>
                           {props.errorMessage}
                         </ErrorMessage>
                       ) : (
+                        // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
                         <ContentMessage {...prefixedStyledProps} {...contentMessageProps}>
                           {props.progressMessage}
                         </ContentMessage>
                       )}
                       {props.errorMessage ? (
+                        // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
                         <RetryButtonComponent
                           kind={KIND.tertiary}
                           onClick={() => {
@@ -184,6 +205,7 @@ function FileUploader(props: FileUploaderProps) {
                           {locale.fileuploader.retry}
                         </RetryButtonComponent>
                       ) : (
+                        // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
                         <CancelButtonComponent
                           kind={KIND.tertiary}
                           onClick={() => {
@@ -192,6 +214,7 @@ function FileUploader(props: FileUploaderProps) {
                           aria-describedby={props['aria-describedby']}
                           overrides={{
                             BaseButton: {
+                              // @ts-ignore
                               style: ({ $theme }) => ({
                                 color: $theme.colors.contentNegative,
                               }),
@@ -205,7 +228,7 @@ function FileUploader(props: FileUploaderProps) {
                     </React.Fragment>
                   )}
                 </FileDragAndDrop>
-
+                {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
                 <HiddenInput
                   aria-invalid={Boolean(props.errorMessage) || null}
                   aria-describedby={props['aria-describedby']}

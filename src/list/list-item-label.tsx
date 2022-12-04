@@ -33,14 +33,17 @@ function ListItemLabel(props: LabelProps) {
 
   if (props.sublist) {
     return (
+      // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
       <LabelSublistContent {...labelSublistContentProps}>{props.children}</LabelSublistContent>
     );
   }
 
   return (
     <div>
+      {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
       <LabelContent {...labelContentProps}>{props.children}</LabelContent>
       {props.description && (
+        // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
         <LabelDescription {...labelDescriptionProps}>{props.description}</LabelDescription>
       )}
     </div>

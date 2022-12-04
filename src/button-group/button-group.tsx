@@ -14,6 +14,7 @@ import { LocaleContext } from '../locale';
 import { StyledRoot } from './styled-components';
 import type { ButtonGroupProps } from './types';
 
+// @ts-ignore
 function isIndexSelected(selected, index) {
   if (!Array.isArray(selected) && typeof selected !== 'number') {
     return false;
@@ -59,6 +60,7 @@ export default class ButtonGroup extends React.Component<ButtonGroupProps> {
     return (
       <LocaleContext.Consumer>
         {(locale) => (
+          // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
           <Root
             aria-label={ariaLabel || locale.buttongroup.ariaLabel}
             data-baseweb="button-group"
@@ -80,6 +82,7 @@ export default class ButtonGroup extends React.Component<ButtonGroupProps> {
                 this.childRefs[index] = React.createRef<HTMLButtonElement>();
               }
               return React.cloneElement(child, {
+                // @ts-ignore
                 disabled: disabled || child.props.disabled,
                 isSelected,
                 ref: isRadio ? this.childRefs[index] : undefined,
@@ -89,6 +92,7 @@ export default class ButtonGroup extends React.Component<ButtonGroupProps> {
                   (isRadio && (!selected || selected === -1) && index === 0)
                     ? 0
                     : -1,
+                // @ts-ignore
                 onKeyDown: (e) => {
                   if (!isRadio) return;
                   const value = Number(selected) ? Number(selected) : 0;
@@ -106,6 +110,7 @@ export default class ButtonGroup extends React.Component<ButtonGroupProps> {
                   }
                 },
                 kind,
+                // @ts-ignore
                 onClick: (event) => {
                   if (disabled) {
                     return;
@@ -123,6 +128,7 @@ export default class ButtonGroup extends React.Component<ButtonGroupProps> {
                 size,
                 overrides: {
                   BaseButton: {
+                    // @ts-ignore
                     style: ({ $theme }) => {
                       // Even though baseui's buttons have square corners, some applications override to
                       // rounded. Maintaining corner radius in this circumstance is ideal to avoid further

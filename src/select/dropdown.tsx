@@ -62,6 +62,7 @@ export default class SelectDropdown extends React.Component<DropdownProps> {
     if (Array.isArray(value)) {
       $selected = !!value.find((selected) => selected && selected[valueKey] === option[valueKey]);
     } else {
+      // @ts-ignore
       $selected = value[valueKey] === option[valueKey];
     }
 
@@ -71,6 +72,7 @@ export default class SelectDropdown extends React.Component<DropdownProps> {
       $isHighlighted: option.isHighlighted,
     };
     return (
+      // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
       <OptionContent
         aria-readonly={option.disabled}
         aria-selected={$selected}
@@ -132,14 +134,17 @@ export default class SelectDropdown extends React.Component<DropdownProps> {
     const highlightedIndex = this.getHighlightedIndex();
     const groupedOptions = groupOptions(options);
     return (
+      // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
       <DropdownContainer
         data-no-focus-lock
         ref={this.props.innerRef}
         {...this.getSharedProps()}
         {...dropdownContainerProps}
       >
+        {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
         <OverriddenStatefulMenu
           noResultsMsg={noResultsMsg}
+          // @ts-ignore
           onActiveDescendantChange={(id) => {
             if (this.props.onActiveDescendantChange) {
               this.props.onActiveDescendantChange(id);

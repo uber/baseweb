@@ -61,6 +61,7 @@ export default function TreeView(props: TreeViewProps) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const elementId = (e.target as any as HTMLLIElement).getAttribute('data-nodeid');
     // this check prevents bubbling
+    // @ts-ignore
     if (elementId !== getId(node) && parseInt(elementId) !== getId(node)) {
       return;
     }
@@ -107,6 +108,7 @@ export default function TreeView(props: TreeViewProps) {
       case '*':
         e.preventDefault();
         getExpandableSiblings(data, selectedNodeId, getId).forEach(
+          // @ts-ignore
           (node) => onToggle && onToggle(node)
         );
         break;
@@ -115,6 +117,7 @@ export default function TreeView(props: TreeViewProps) {
           clearTimeout(timeOutRef.current);
         }
         setTypeAheadChars(typeAheadChars + e.key);
+        // @ts-ignore
         timeOutRef.current = setTimeout(() => {
           setTypeAheadChars('');
         }, 500);

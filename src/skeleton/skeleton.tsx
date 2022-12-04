@@ -21,6 +21,7 @@ class Skeleton extends React.Component<SkeletonProps> {
 
     if (typeof this.props.rows === 'number') {
       return (
+        // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
         <Root
           $height={this.props.height}
           $width={this.props.width}
@@ -32,9 +33,11 @@ class Skeleton extends React.Component<SkeletonProps> {
           {Array(this.props.rows)
             .fill(undefined)
             .map((item, index) => (
+              // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
               <Row
                 $animation={this.props.animation}
                 key={index}
+                // @ts-ignore
                 $isLastRow={index === this.props.rows - 1}
                 {...rowProps}
               ></Row>
@@ -43,6 +46,7 @@ class Skeleton extends React.Component<SkeletonProps> {
       );
     }
     return (
+      // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
       <Root
         $height={this.props.height}
         $width={this.props.width}

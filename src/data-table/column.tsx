@@ -46,12 +46,14 @@ function Column<Value, FilterParams>(
             ...theme.typography.font100,
             boxSizing: 'border-box',
             color: theme.colors.contentPrimary,
+            // @ts-ignore
             display: props.isMeasured ? 'inline-block' : null,
             height: '100%',
             paddingTop: theme.sizing.scale300,
             paddingLeft: theme.sizing.scale500,
             paddingBottom: theme.sizing.scale300,
             paddingRight: theme.sizing.scale500,
+            // @ts-ignore
             width: props.isMeasured ? null : '100%',
           })}
         >
@@ -74,6 +76,7 @@ function Column<Value, FilterParams>(
                 />
               </span>
             )}
+            {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
             <ProvidedCell {...props} />
           </div>
         </div>

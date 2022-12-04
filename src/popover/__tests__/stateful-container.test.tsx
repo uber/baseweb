@@ -209,11 +209,13 @@ describe('StatefulPopoverContainer', () => {
   it('null stateReducer', () => {
     const props = {
       content: jest.fn(),
+      // @ts-ignore
       stateReducer: null,
     };
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const children = jest.fn((arg) => null);
 
+    // @ts-ignore
     render(<StatefulContainer {...props}>{children}</StatefulContainer>);
 
     expect(children.mock.calls[0][0]).toHaveProperty('isOpen', false);

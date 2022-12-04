@@ -16,6 +16,7 @@ const Container = styled<
   {
     $zIndex?: number;
   }
+  // @ts-ignore
 >('div', ({ $zIndex }) => ({
   position: 'absolute',
   top: 0,
@@ -25,8 +26,11 @@ const Container = styled<
 }));
 
 class LayerComponent extends React.Component<LayerComponentProps, LayerState> {
-  static contextType: typeof LayersContext = LayersContext;
+  static contextType = LayersContext;
+  // @ts-ignore
+  context!: React.ContextType<typeof LayersContext>;
 
+  // @ts-ignore
   state = { container: null };
 
   componentDidMount() {
@@ -61,6 +65,7 @@ class LayerComponent extends React.Component<LayerComponentProps, LayerState> {
     }
   }
 
+  // @ts-ignore
   componentDidUpdate(prevProps) {
     const { host, mountNode } = this.props;
     if (mountNode) {
@@ -130,6 +135,7 @@ class LayerComponent extends React.Component<LayerComponentProps, LayerState> {
     }
   };
 
+  // @ts-ignore
   addContainer(host) {
     const { index, mountNode, onMount } = this.props;
     // Do nothing if mountNode is provided
@@ -154,8 +160,10 @@ class LayerComponent extends React.Component<LayerComponentProps, LayerState> {
     const childrenToRender = zIndex ? <Container $zIndex={zIndex}>{children}</Container> : children;
     if (__BROWSER__) {
       if (mountNode) {
+        // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
         return ReactDOM.createPortal(childrenToRender, mountNode);
       } else if (container) {
+        // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
         return ReactDOM.createPortal(childrenToRender, container);
       }
       return null;

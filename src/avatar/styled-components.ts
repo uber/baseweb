@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 import { styled } from '../styles';
 import type { AvatarStyleProps, RootStyleProps, InitialsStyleProps } from './types';
 
+// @ts-ignore
 function getSize(props) {
   const { $size, $theme } = props;
 
@@ -44,6 +45,7 @@ export const Initials = styled<'div', InitialsStyleProps>('div', (props) => ({
 
 Initials.displayName = 'Initials';
 
+// @ts-ignore
 export const Root = styled<'div', RootStyleProps>('div', (props) => {
   const { $didImageFailToLoad } = props;
   const themedSize = getSize(props);

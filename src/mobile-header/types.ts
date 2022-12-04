@@ -1,6 +1,5 @@
 /*
 Copyright (c) Uber Technologies, Inc.
-
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
@@ -32,7 +31,7 @@ export type IconButton = {
 export type MobileHeaderProps = {
   title?: string;
   expanded?: boolean;
-  navButton: IconButton;
+  navButton?: IconButton;
   actionButtons?: [IconButton?, IconButton?];
   type?: Type;
   overrides?: MobileHeaderOverrides;

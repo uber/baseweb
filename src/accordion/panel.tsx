@@ -34,6 +34,7 @@ const Panel = (
     title = '',
     renderAll = false,
   }: PanelProps,
+  // @ts-ignore
   ref
 ) => {
   const [localState, setLocalState] = React.useState<{
@@ -172,7 +173,9 @@ const Panel = (
   return (
     <LocaleContext.Consumer>
       {(locale) => (
+        // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
         <PanelContainer {...sharedProps} {...panelContainerProps}>
+          {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
           <Header
             tabIndex={0}
             role="button"
@@ -188,6 +191,7 @@ const Panel = (
             ref={ref}
           >
             {title}
+            {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
             <ToggleIcon
               viewBox="0 0 24 24"
               title={localState.expanded ? locale.accordion.collapse : locale.accordion.expand}
@@ -195,6 +199,7 @@ const Panel = (
               {...toggleIconProps}
               {...sharedProps}
             >
+              {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
               <ToggleIconGroup {...sharedProps} {...toggleIconGroupProps}>
                 <path
                   fillRule="evenodd"
@@ -209,6 +214,7 @@ const Panel = (
               />
             </ToggleIcon>
           </Header>
+          {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
           <ContentAnimationContainer
             {...sharedProps}
             {...contentAnimationProps}
@@ -219,6 +225,7 @@ const Panel = (
               }
             }}
           >
+            {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
             <Content
               ref={_animateRef}
               {...sharedProps}

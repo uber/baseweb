@@ -31,6 +31,7 @@ const ActionButton = React.forwardRef<any, any>(({ onClick, message, overrides =
     StyledActionButtonContainer
   );
   return (
+    // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
     <ActionButtonContainer {...actionButtonContainerProps}>
       <Button
         ref={ref}
@@ -125,11 +126,14 @@ export default function SnackbarElement({
   React.useEffect(() => {
     if (__BROWSER__) {
       if (focus && actionButtonRef.current) {
+        // @ts-ignore
         prevFocusRef.current = document.activeElement;
+        // @ts-ignore
         actionButtonRef.current.focus();
       }
       return () => {
         if (prevFocusRef.current) {
+          // @ts-ignore
           prevFocusRef.current.focus();
         }
       };
@@ -156,18 +160,24 @@ export default function SnackbarElement({
         </div>
       )}
 
+      {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
       <Root ref={rootRef} {...rootProps}>
+        {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
         <Content {...contentProps}>
           {(Boolean(StartEnhancer) || progress) && (
+            // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
             <StartEnhancerContainer {...startEnhancerContainerProps}>
               {StartEnhancer !== null && StartEnhancer !== undefined ? (
+                // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
                 <StartEnhancer size={24} />
               ) : (
+                // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
                 <Spinner $height={24} $width={24} {...spinnerProps} />
               )}
             </StartEnhancerContainer>
           )}
 
+          {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
           <Message $hasSuffix={Boolean(actionMessage)} {...messageProps}>
             {message}
           </Message>
@@ -183,6 +193,7 @@ export default function SnackbarElement({
         </Content>
 
         {actionMessage && wrapActionButton && (
+          // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
           <WrapActionButtonContainer {...wrapActionButtonContainerProps}>
             <ActionButton
               ref={actionButtonRef}

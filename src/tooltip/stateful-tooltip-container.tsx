@@ -15,6 +15,7 @@ class StatefulContainer extends React.Component<StatefulTooltipContainerProps> {
   };
 
   render() {
+    // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
     return <StatefulPopoverContainer {...this.props} />;
   }
 }

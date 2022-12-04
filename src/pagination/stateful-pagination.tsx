@@ -24,6 +24,7 @@ export default function StatefulPagination({
       stateReducer={stateReducer}
       onPageChange={onPageChange}
     >
+      {/* @ts-ignore */}
       {(renderProps) => <Pagination numPages={numPages} {...renderProps} {...props} />}
     </StatefulContainer>
   );

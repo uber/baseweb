@@ -11,11 +11,13 @@ import { Avatar } from '..';
 
 // manually trigger src load error. jsdom will not fire a load event
 // https://github.com/jsdom/jsdom/issues/1816#issuecomment-310106280
+// @ts-ignore
 function triggerLoadError(container) {
   const img = container.querySelector('img');
   if (img) fireEvent.error(img);
 }
 
+// @ts-ignore
 function triggerLoad(container) {
   const img = container.querySelector('img');
   if (img) fireEvent.load(img);

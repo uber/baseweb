@@ -43,11 +43,13 @@ class Textarea extends React.Component<
 
   onFocus = (e: FocusEvent<HTMLTextAreaElement>) => {
     this.setState({ isFocused: true });
+    // @ts-ignore
     this.props.onFocus(e);
   };
 
   onBlur = (e: FocusEvent<HTMLTextAreaElement>) => {
     this.setState({ isFocused: false });
+    // @ts-ignore
     this.props.onBlur(e);
   };
 
@@ -63,6 +65,7 @@ class Textarea extends React.Component<
     );
 
     return (
+      // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
       <Root
         data-baseweb="textarea"
         $isFocused={this.state.isFocused}

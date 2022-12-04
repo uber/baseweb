@@ -14,6 +14,7 @@ export default function StatefulButtonGroup(props: StatefulButtonGroupProps) {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { children, initialState, ...restProps } = props;
   return (
+    // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
     <StatefulContainer initialState={initialState} {...restProps}>
       {({ ...containerProps }) => <ButtonGroup {...containerProps}>{props.children}</ButtonGroup>}
     </StatefulContainer>

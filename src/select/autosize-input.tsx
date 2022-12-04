@@ -15,6 +15,7 @@ export default class AutosizeInput extends React.Component<
   AutosizeInputProps & Omit<ComponentProps<typeof StyledInput>, keyof AutosizeInputProps>,
   AutosizeInputState
 > {
+  // @ts-ignore
   mounted: boolean;
   sizer: HTMLElement | undefined | null;
 
@@ -71,6 +72,7 @@ export default class AutosizeInput extends React.Component<
     };
     return (
       <React.Fragment>
+        {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
         <Input {...componentInputProps} ref={inputRef} {...inputProps} />
         {/* a hidden helper element to calculate the size of the input */}
         <StyledInputSizer

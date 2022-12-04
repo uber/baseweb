@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { getOverrides } from '../helpers/overrides';
 import { StyledBadge, StyledRoot, StyledPositioner } from './styled-components';
-import type { BadgeProps } from './types';
+import type { BadgeProps, Placement } from './types';
 import { PLACEMENT, ROLE, SHAPE, HIERARCHY } from './constants';
 import { getAnchorFromChildren } from './utils';
 
@@ -29,7 +29,7 @@ const Badge = ({
 
   const anchor = getAnchorFromChildren(children);
 
-  const VALID_RECT_PLACEMENTS = [
+  const VALID_RECT_PLACEMENTS: Placement[] = [
     PLACEMENT.topLeft,
     PLACEMENT.topRight,
     PLACEMENT.bottomRight,
@@ -53,6 +53,7 @@ const Badge = ({
   // If there's no anchor, render the badge inline
   if (!anchor) {
     return (
+      // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
       <Badge $hierarchy={hierarchy} $shape={shape} $color={color} $hidden={hidden} {...badgeProps}>
         {content}
       </Badge>
@@ -60,8 +61,10 @@ const Badge = ({
   }
 
   return (
+    // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
     <Root {...rootProps}>
       {anchor}
+      {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
       <Positioner
         $horizontalOffset={horizontalOffset}
         $verticalOffset={verticalOffset}
@@ -69,6 +72,7 @@ const Badge = ({
         $role={ROLE.badge}
         {...positionerProps}
       >
+        {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
         <Badge
           $hierarchy={hierarchy}
           $shape={shape}

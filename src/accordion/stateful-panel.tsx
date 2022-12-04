@@ -12,6 +12,7 @@ import type { StatefulPanelProps } from './types';
 export default function StatefulPanel(props: StatefulPanelProps) {
   const { children, ...restProps } = props;
   return (
+    // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
     <StatefulContainer {...restProps}>
       {(componentProps) => <Panel {...componentProps}>{children}</Panel>}
     </StatefulContainer>

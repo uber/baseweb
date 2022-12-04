@@ -44,6 +44,7 @@ export const StyledHeadCell = withStyle<
     $sticky?: boolean;
     $isFocusVisible?: boolean;
   }
+  // @ts-ignore
 >(FlexStyledHeadCell, ({ $sticky = true, $isFocusVisible, $theme }) => {
   return {
     backgroundColor: $theme.colors.tableHeadBackgroundColor,
@@ -68,6 +69,7 @@ export const StyledBodyCell = withStyle<
     $gridRow?: string;
     $isFocusVisible?: boolean;
   }
+  // @ts-ignore
 >(FlexStyledBodyCell, (props) => {
   return {
     display: 'block',

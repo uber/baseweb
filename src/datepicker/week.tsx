@@ -17,6 +17,7 @@ import type { WeekProps } from './types';
 export default class Week<T = Date> extends React.Component<WeekProps<T>> {
   static defaultProps = {
     adapter: dateFnsAdapter,
+    // @ts-ignore
     highlightedDate: null,
     onDayClick: () => {},
     onDayFocus: () => {},
@@ -40,8 +41,11 @@ export default class Week<T = Date> extends React.Component<WeekProps<T>> {
       this.props.date || this.dateHelpers.date(),
       this.props.locale
     );
+    // @ts-ignore
     const days = [];
+    // @ts-ignore
     return days.concat(
+      // @ts-ignore
       WEEKDAYS.map((offset: number) => {
         const day = this.dateHelpers.addDays(startOfWeek, offset);
         return (
@@ -86,6 +90,7 @@ export default class Week<T = Date> extends React.Component<WeekProps<T>> {
     const { overrides = {} } = this.props;
     const [Week, weekProps] = getOverrides(overrides.Week, StyledWeek);
     return (
+      // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
       <Week role="row" {...weekProps}>
         {this.renderDays()}
       </Week>

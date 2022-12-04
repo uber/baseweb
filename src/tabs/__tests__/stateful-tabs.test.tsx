@@ -11,6 +11,7 @@ import { StatefulTabs, Tab } from '..';
 import { STATE_CHANGE_TYPE } from '../constants';
 
 describe('StatefulTabs', () => {
+  // @ts-ignore
   const Component = (props) => (
     <StatefulTabs {...props}>
       <Tab title="Tab Link 1">Tab 1 content</Tab>
