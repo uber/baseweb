@@ -22,6 +22,7 @@ import { getOverrides } from '../helpers/overrides';
 import { IMAGE_LAYOUT, BACKGROUND_COLOR_TYPE, BUTTON_KIND } from './constants';
 import type { MessageCardProps } from './types';
 
+// @ts-ignore
 const ButtonAlwaysLightTheme = ({ children, ...restProps }) => (
   <ThemeProvider theme={LightTheme}>
     <DefaultButton {...restProps}>{children}</DefaultButton>

@@ -13,6 +13,7 @@ export default function Value(props: any) {
   const { overrides = {}, ...restProps } = props;
   const [SingleValue, singleValueProps] = getOverrides(overrides.SingleValue, StyledSingleValue);
   return (
+    // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
     <SingleValue {...restProps} {...singleValueProps}>
       {props.children}
     </SingleValue>

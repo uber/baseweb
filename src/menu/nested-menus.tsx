@@ -39,14 +39,17 @@ function isSame(a?: HTMLElement | null, b?: HTMLElement | null) {
 }
 
 export default class NestedMenus extends React.Component<NestedMenuProps, NestedMenuState> {
+  // @ts-ignore
   state = { menus: [], nestedMenuHoverIndex: -1 };
   mountRef = React.createRef() as {
     current: HTMLElement | null;
   };
+  // @ts-ignore
   mouseLeaveTimeoueId = null;
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   handleMenuMouseLeave = (event: MouseEvent) => {
+    // @ts-ignore
     this.mouseLeaveTimeoueId = setTimeout(() => {
       this.setState({ nestedMenuHoverIndex: -1 });
     }, 200);
@@ -54,11 +57,14 @@ export default class NestedMenus extends React.Component<NestedMenuProps, Nested
 
   handleMenuMouseEnter = (event: MouseEvent) => {
     if (__BROWSER__) {
+      // @ts-ignore
       clearTimeout(this.mouseLeaveTimeoueId);
       const index = this.state.menus.findIndex((m) => {
         return (
+          // @ts-ignore
           m.current &&
           event.currentTarget instanceof Node &&
+          // @ts-ignore
           m.current.contains(event.currentTarget)
         );
       });
@@ -85,7 +91,9 @@ export default class NestedMenus extends React.Component<NestedMenuProps, Nested
   removeMenuFromNesting = (ref: NestedMenuRef) => {
     this.setState((state) => {
       for (const r of this.state.menus) {
+        // @ts-ignore
         if (r.current && isSame(r.current, ref.current)) {
+          // @ts-ignore
           const element = r.current;
           element.removeEventListener('mouseenter', this.handleMenuMouseEnter);
           element.removeEventListener('mouseleave', this.handleMenuMouseLeave);
@@ -101,6 +109,7 @@ export default class NestedMenus extends React.Component<NestedMenuProps, Nested
   };
 
   findMenuIndexByRef = (ref: NestedMenuRef) => {
+    // @ts-ignore
     return this.state.menus.findIndex((r) => isSame(r.current, ref.current));
   };
 

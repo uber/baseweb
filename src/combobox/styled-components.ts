@@ -37,7 +37,9 @@ export const StyledListBox = styled<
 StyledListBox.displayName = 'StyledListBox';
 
 function buildStylesForSize(
+  // @ts-ignore
   size,
+  // @ts-ignore
   theme
 ):
   | ({
@@ -84,6 +86,7 @@ export const StyledListItem = styled<
     $isSelected: boolean;
     $size: keyof typeof SIZE;
   }
+  // @ts-ignore
 >('li', ({ $isSelected, $theme, $size }) => {
   return {
     ...buildStylesForSize($size, $theme),

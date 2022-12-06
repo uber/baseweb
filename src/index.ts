@@ -33,6 +33,6 @@ export { getOverrides, mergeOverrides } from './helpers/overrides';
 export type { Primitives } from './themes';
 export type { Theme, ThemeProviderProps } from './styles';
 
-export { type StyledFn, type StyletronWithStyleFn as WithStyleFn } from './styles/styled';
-export { type LocaleProviderProps } from './locale';
-export { type BaseProviderOverrides, type BaseProviderProps } from './helpers/types';
+export type { StyledFn, StyletronWithStyleFn as WithStyleFn } from './styles/styled';
+export type { LocaleProviderProps } from './locale';
+export type { BaseProviderOverrides, BaseProviderProps } from './helpers/types';

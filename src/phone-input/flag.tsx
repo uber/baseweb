@@ -24,6 +24,7 @@ export type FlagProps = {
 export default function Flag(props: FlagProps) {
   const { $iso, iso: oldIsoProp, width = '16px', ...restProps } = props;
   const iso: CountryIso = oldIsoProp || $iso;
+  // @ts-ignore
   const FlagComponent = flags[`Flag${iso.toUpperCase()}`];
   //$FlowExpectedError[cannot-spread-inexact]
   return <FlagComponent width={width} data-iso={iso} {...restProps} />;

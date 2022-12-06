@@ -93,12 +93,14 @@ const PinHead = ({
   ) {
     const round = size === PINHEAD_SIZES_SHAPES.xxSmallCircle;
     return (
+      // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
       <OuterXXSmallAnchor
         $round={round}
         $background={background}
         $size={height}
         {...outerXXSmallAnchorProps}
       >
+        {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
         <InnerXXSmallAnchor
           $color={color}
           $round={round}
@@ -117,12 +119,14 @@ const PinHead = ({
     return (
       <RelativeContainer>
         {badge}
+        {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
         <OuterXSmallAnchor
           $round={round}
           $background={background}
           $size={height}
           {...outerXSmallAnchorProps}
         >
+          {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
           <InnerXSmallAnchor
             $color={color}
             $round={round}
@@ -147,6 +151,7 @@ const PinHead = ({
         overrides={overrides}
       />
       {badge}
+      {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
       <PinHead
         $background={background}
         $height={height}
@@ -156,12 +161,16 @@ const PinHead = ({
         {...pinHeadProps}
       >
         {StartEnhancer && (
+          // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
           <EnhancerSlot $height={height} $color={color} $size={size} {...enhancerSlotProps}>
+            {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
             <StartEnhancer size={icon} />
           </EnhancerSlot>
         )}
         {label && (
+          // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
           <LabelSlot {...labelSlotProps}>
+            {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
             <Label
               $size={size}
               $renderSecondaryLabel={renderSecondaryLabel}
@@ -171,6 +180,7 @@ const PinHead = ({
               {label}
             </Label>
             {renderSecondaryLabel && (
+              // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
               <SecondaryLabel
                 $size={size}
                 $renderSecondaryLabel={renderSecondaryLabel}
@@ -182,9 +192,10 @@ const PinHead = ({
             )}
           </LabelSlot>
         )}
-
         {EndEnhancer && (
+          // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
           <EnhancerSlot $height={height} $color={color} $size={size} {...enhancerSlotProps}>
+            {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
             <EndEnhancer size={icon} />
           </EnhancerSlot>
         )}

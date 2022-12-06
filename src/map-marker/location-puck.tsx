@@ -25,6 +25,7 @@ import {
   StyledEarnerLocationPuckCore,
 } from './styled-components';
 
+// @ts-ignore
 const ConsumerLocationPuckHeading = ({ heading }) => {
   const [css, theme] = useStyletron();
   return (
@@ -76,18 +77,22 @@ const ConsumerLocationPuck = ({
   );
 
   return (
+    // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
     <Root {...rootProps}>
+      {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
       <LocationPuckApproximation
         $color={theme.colors.contentAccent}
         $radius={confidenceRadius}
         {...locationPuckApproximationProps}
       />
+      {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
       <ConsumerLocationPuckCore {...consumerLocationPuckCoreProps} />
       {showHeading && <ConsumerLocationPuckHeading heading={heading} />}
     </Root>
   );
 };
 
+// @ts-ignore
 const EarnerLocationPuckHeading = ({ size, color, heading }) => {
   const [css, theme] = useStyletron();
   return (
@@ -97,6 +102,7 @@ const EarnerLocationPuckHeading = ({ size, color, heading }) => {
         transition: `${theme.animation.timing300} ${theme.animation.easeOutCurve} all`,
       })}
       style={{
+        // @ts-ignore
         transform: `rotate(${heading}deg) scale(${EARNER_LOCATION_PUCK_CORE_SCALES[size]})`,
       }}
       width="72"
@@ -124,23 +130,29 @@ const EarnerLocationPuck = ({
   const [, theme] = useStyletron();
   const color = theme.colors.contentPrimary;
 
+  // @ts-ignore
   const [Root, rootProps] = getOverrides(overrides.Root, LocationPuckContainer);
   const [LocationPuckApproximation, locationPuckApproximationProps] = getOverrides(
+    // @ts-ignore
     overrides.LocationPuckApproximation,
     StyledLocationPuckApproximation
   );
   const [EarnerLocationPuckCore, earnerLocationPuckCoreProps] = getOverrides(
+    // @ts-ignore
     overrides.EarnerLocationPuckCore,
     StyledEarnerLocationPuckCore
   );
 
   return (
+    // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
     <Root {...rootProps}>
+      {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
       <LocationPuckApproximation
         $color={color}
         $radius={confidenceRadius}
         {...locationPuckApproximationProps}
       />
+      {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
       <EarnerLocationPuckCore $color={color} $size={size} {...earnerLocationPuckCoreProps} />
       <EarnerLocationPuckHeading size={size} color={color} heading={heading} />
     </Root>

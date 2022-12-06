@@ -47,8 +47,8 @@ class Drawer extends React.Component<DrawerProps, DrawerState> {
     renderAll: false,
   };
 
-  animateOutTimer: TimeoutID | undefined | null;
-  animateStartTimer: AnimationFrameID | undefined | null;
+  animateOutTimer: ReturnType<typeof setTimeout> | undefined | null;
+  animateStartTimer: ReturnType<typeof requestAnimationFrame> | undefined | null;
   lastFocus: HTMLElement | undefined | null = null;
   lastMountNodeOverflowStyle: string | undefined | null = null;
   _refs: {
@@ -256,13 +256,18 @@ class Drawer extends React.Component<DrawerProps, DrawerState> {
               autoFocus={autoFocus}
               noFocusGuards={true}
             >
+              {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
               <Root data-baseweb="drawer" ref={this.getRef('Root')} {...sharedProps} {...rootProps}>
+                {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
                 <Backdrop onClick={this.onBackdropClick} {...sharedProps} {...backdropProps} />
+                {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
                 <DrawerContainer {...sharedProps} {...drawerContainerProps}>
+                  {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
                   <DrawerBody {...sharedProps} {...drawerBodyProps}>
                     {renderedContent}
                   </DrawerBody>
                   {closeable ? (
+                    // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
                     <Close
                       aria-label={locale.drawer.close}
                       onClick={this.onCloseClick}

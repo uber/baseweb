@@ -36,6 +36,7 @@ export function splitByQuery(text: string, query: string): string[] {
       // suffix
       i === text.length - 1
     ) {
+      // @ts-ignore
       substrings.push(substring);
       substring = '';
     }

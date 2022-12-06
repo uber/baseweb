@@ -90,6 +90,7 @@ const Block: React.FC<
   const [BaseBlock, baseBlockProps] = getOverrides(overrides.Block, StyledBlock);
 
   return (
+    // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
     <BaseBlock
       // coerced to any because because of how react components are typed.
       // cannot guarantee an html element

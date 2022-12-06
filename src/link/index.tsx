@@ -12,6 +12,7 @@ import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible';
 
 import type { SyntheticEvent } from 'react';
 
+// @ts-ignore
 function LinkFocus(props) {
   const [focusVisible, setFocusVisible] = React.useState(false);
   const handleFocus = (event: SyntheticEvent) => {
@@ -34,6 +35,7 @@ export const StyledLink = withWrapper<typeof Link, { animateUnderline?: boolean 
     function StyledLink({ animateUnderline, ...restProps }) {
       return (
         <LinkFocus>
+          {/* @ts-ignore */}
           {(focusProps) => (
             <Styled
               data-baseweb="link"

@@ -14,6 +14,7 @@ import { getPopoverMarginStyles, splitPlacement } from '../popover/utils';
 
 const CLAMP_ARROW_SIZE = 16;
 
+// @ts-ignore
 function dimensions(placement) {
   switch (placement) {
     case PLACEMENT.left:
@@ -27,10 +28,12 @@ function dimensions(placement) {
   }
 }
 
+// @ts-ignore
 function linearGradientDirection(placement) {
   return ['to', ...splitPlacement(placement)].join(' ');
 }
 
+// @ts-ignore
 function conicGradientOrigin(placement) {
   switch (placement) {
     case PLACEMENT.right:
@@ -46,6 +49,7 @@ function conicGradientOrigin(placement) {
   }
 }
 
+// @ts-ignore
 function conicGradientDegStart(placement) {
   switch (placement) {
     case PLACEMENT.right:
@@ -61,6 +65,7 @@ function conicGradientDegStart(placement) {
   }
 }
 
+// @ts-ignore
 function position(offsets, placement, width, height) {
   if (placement === PLACEMENT.top) {
     return {

@@ -34,11 +34,11 @@ class PopoverInner extends React.Component<PopoverProps, PopoverPrivateState> {
   static defaultProps: Partial<PopoverProps> = defaultProps;
 
   /* eslint-disable react/sort-comp */
-  animateInTimer?: TimeoutID | undefined | null;
-  animateOutTimer?: TimeoutID | undefined | null;
-  animateOutCompleteTimer?: TimeoutID | undefined | null;
-  onMouseEnterTimer?: TimeoutID | undefined | null;
-  onMouseLeaveTimer?: TimeoutID | undefined | null;
+  animateInTimer?: ReturnType<typeof setTimeout> | undefined | null;
+  animateOutTimer?: ReturnType<typeof setTimeout> | undefined | null;
+  animateOutCompleteTimer?: ReturnType<typeof setTimeout> | undefined | null;
+  onMouseEnterTimer?: ReturnType<typeof setTimeout> | undefined | null;
+  onMouseLeaveTimer?: ReturnType<typeof setTimeout> | undefined | null;
   anchorRef = React.createRef<HTMLElement>();
   popperRef = React.createRef<HTMLElement>();
   arrowRef = React.createRef<HTMLElement>();
@@ -49,6 +49,7 @@ class PopoverInner extends React.Component<PopoverProps, PopoverPrivateState> {
    * customers shouldn't have to manage themselves, such as positioning and
    * other internal flags for managing animation states.
    */
+  // @ts-ignore
   state = this.getDefaultState(this.props);
 
   componentDidMount() {
@@ -130,6 +131,7 @@ class PopoverInner extends React.Component<PopoverProps, PopoverPrivateState> {
         this.setState({
           isAnimating: false,
           // Reset to ideal placement specified in props
+          // @ts-ignore
           placement: this.props.placement,
         });
       }, this.props.animateOutTime || ANIMATE_OUT_TIME);
@@ -188,6 +190,7 @@ class PopoverInner extends React.Component<PopoverProps, PopoverPrivateState> {
   onPopperUpdate = (normalizedOffsets: NormalizedOffsets, data: PopperDataObject) => {
     const placement = fromPopperPlacement(data.placement) || PLACEMENT.top;
     this.setState({
+      // @ts-ignore
       arrowOffset: normalizedOffsets.arrow,
       popoverOffset: normalizedOffsets.popper,
       placement,
@@ -306,8 +309,10 @@ class PopoverInner extends React.Component<PopoverProps, PopoverPrivateState> {
 
     const popoverId = this.getPopoverIdAttr();
     if (this.isAccessibilityTypeMenu()) {
+      // @ts-ignore
       bodyProps.id = popoverId;
     } else if (this.isAccessibilityTypeTooltip()) {
+      // @ts-ignore
       bodyProps.id = popoverId;
       bodyProps.role = 'tooltip';
     }
@@ -326,6 +331,7 @@ class PopoverInner extends React.Component<PopoverProps, PopoverPrivateState> {
       $showArrow: !!showArrow,
       $arrowOffset: arrowOffset,
       $popoverOffset: popoverOffset,
+      // @ts-ignore
       $placement: placement,
       $isAnimating: isAnimating,
       $animationDuration: this.props.animateOutTime || ANIMATE_OUT_TIME,
@@ -360,6 +366,7 @@ class PopoverInner extends React.Component<PopoverProps, PopoverPrivateState> {
       return React.cloneElement(anchor, anchorProps);
     }
     return (
+      // @ts-ignore
       <span key="popover-anchor" {...anchorProps}>
         {anchor}
       </span>
@@ -430,6 +437,7 @@ class PopoverInner extends React.Component<PopoverProps, PopoverPrivateState> {
             onMount={() => this.setState({ isLayerMounted: true })}
             onUnmount={() => this.setState({ isLayerMounted: false })}
           >
+            {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
             <TetherBehavior
               anchorRef={this.anchorRef.current}
               arrowRef={this.arrowRef.current}
@@ -458,6 +466,7 @@ class PopoverInner extends React.Component<PopoverProps, PopoverPrivateState> {
                   {this.renderPopover(renderedContent)}
                 </FocusLock>
               ) : (
+                // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
                 <MoveFocusInside
                   disabled={!this.props.autoFocus || !this.state.autoFocusAfterPositioning}
                 >

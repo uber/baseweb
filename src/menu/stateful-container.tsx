@@ -34,6 +34,7 @@ const DEFAULT_PROPS = {
   stateReducer: ((changeType, changes) => changes) as StateReducerFn,
   onItemSelect: () => {},
   getRequiredItemProps: () => ({}),
+  // @ts-ignore
   children: () => null,
   // from nested-menus context
   addMenuToNesting: () => {},
@@ -73,6 +74,7 @@ class MenuStatefulContainerInner extends React.Component<
     }
     const optgroups = Object.keys(this.props.items);
     return optgroups.reduce((output, optgroup) => {
+      // @ts-ignore
       return output.concat(this.props.items[optgroup]);
     }, []);
   }
@@ -161,7 +163,7 @@ class MenuStatefulContainerInner extends React.Component<
   //characters input from keyboard, will automatically be clear after some time
   typeAheadChars = '';
   //count time for each continuous keyboard input
-  typeAheadTimeOut: null | TimeoutID = null;
+  typeAheadTimeOut: null | ReturnType<typeof setTimeout> = null;
 
   // Internal set state function that will also invoke stateReducer
 
@@ -202,6 +204,7 @@ class MenuStatefulContainerInner extends React.Component<
         break;
       default:
         if (this.props.typeAhead) {
+          // @ts-ignore
           clearTimeout(this.typeAheadTimeOut);
           this.handleAlphaDown(event);
         }
@@ -255,6 +258,7 @@ class MenuStatefulContainerInner extends React.Component<
     if (this.refList[nextIndex]) {
       scrollItemIntoView(
         this.refList[nextIndex].current,
+        // @ts-ignore
         rootRef.current,
         nextIndex === 0,
         nextIndex === list.length - 1
@@ -311,6 +315,7 @@ class MenuStatefulContainerInner extends React.Component<
     if (this.refList[nextIndex]) {
       scrollItemIntoView(
         this.refList[nextIndex].current,
+        // @ts-ignore
         rootRef.current,
         nextIndex === 0,
         nextIndex === this.getItems().length - 1
@@ -449,6 +454,7 @@ class MenuStatefulContainerInner extends React.Component<
       highlightedIndex: this.state.highlightedIndex,
       isFocused: this.state.isFocused,
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      // @ts-ignore
       handleKeyDown: this.props.keyboardControlNode.current ? (event) => {} : this.onKeyDown,
       focusMenu: this.focusMenu,
       unfocusMenu: this.unfocusMenu,
@@ -458,7 +464,7 @@ class MenuStatefulContainerInner extends React.Component<
 
 // Remove when MenuStatefulContainer is converted to a functional component.
 const MenuStatefulContainer = (props: StatefulContainerProps) => {
-  //$FlowExpectedError[cannot-spread-inexact]
+  // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
   return <MenuStatefulContainerInner uidSeed={useUIDSeed()} {...props} />;
 };
 

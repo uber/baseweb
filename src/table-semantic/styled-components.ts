@@ -11,6 +11,7 @@ import { styled, withStyle, expandBorderStyles } from '../styles';
 import { SIZE, DIVIDER } from './constants';
 import type { Size, Divider } from './types';
 
+// @ts-ignore
 function sizeToCellPadding($theme, $size) {
   if ($size === SIZE.compact) {
     return $theme.sizing.scale500;
@@ -56,6 +57,7 @@ type StyledTableProps = {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
+// @ts-ignore
 export const StyledTable = styled<'table', StyledTableProps>('table', ({ $theme, $width }) => {
   return {
     borderSpacing: '0',
@@ -236,6 +238,7 @@ type StyledTableBodyCellProps = {
 
 export const StyledTableBodyCell = styled<'td', StyledTableBodyCellProps>(
   'td',
+  // @ts-ignore
   ({ $theme, $size, $divider, $isNumeric, $isLastRow, $isSortable }) => {
     const borderDir: string = $theme.direction === 'rtl' ? 'Left' : 'Right';
     const borderVertical = $divider === DIVIDER.vertical || $divider === DIVIDER.grid;

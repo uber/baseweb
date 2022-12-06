@@ -58,6 +58,7 @@ function Options(props: OptionsProps) {
   const inputRef = React.useRef(null);
   React.useEffect(() => {
     if (inputRef.current) {
+      // @ts-ignore
       inputRef.current.focus();
     }
   }, [inputRef.current]);
@@ -164,6 +165,7 @@ function Options(props: OptionsProps) {
               className={css({
                 ...theme.typography.font100,
                 alignItems: 'center',
+                // @ts-ignore
                 backgroundColor: isHighlighted ? theme.colors.menuFillHover : null,
                 cursor: 'pointer',
                 display: 'flex',
@@ -240,6 +242,7 @@ function FilterMenu(props: Props) {
 
   const Filter = React.useMemo(() => {
     if (!activeColumn) return null;
+    // @ts-ignore
     return activeColumn.renderFilter;
   }, [activeColumn]);
 
@@ -249,9 +252,11 @@ function FilterMenu(props: Props) {
     return props.rows.map((row) => props.columns[columnIndex].mapDataToValue(row.data));
   }, [props.columns, props.rows, activeColumn]);
 
+  // @ts-ignore
   function handleKeyDown(event) {
     if (event.keyCode === 13) {
       event.preventDefault();
+      // @ts-ignore
       setActiveColumn(columns[highlightIndex]);
     }
     if (event.keyCode === 38) {
@@ -279,6 +284,7 @@ function FilterMenu(props: Props) {
             <Filter
               data={activeColumnData}
               close={handleClose}
+              // @ts-ignore
               setFilter={(filterParams) => props.onSetFilter(activeColumn.title, filterParams)}
             />
           );
@@ -287,6 +293,7 @@ function FilterMenu(props: Props) {
           <Options
             columns={columns}
             highlightIndex={highlightIndex}
+            // @ts-ignore
             onClick={handleOptionClick}
             onKeyDown={handleKeyDown}
             onMouseEnter={setHighlightIndex}

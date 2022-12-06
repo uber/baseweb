@@ -5,6 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 /* eslint-disable import/extensions */
+// @ts-ignore
 import { es } from 'date-fns/locale/index.js';
 import * as utilsHelpers from '../utils';
 import { formatDate } from '../utils';
@@ -38,6 +39,7 @@ const excludedFromChecks = [
   'isValid',
 ];
 
+// @ts-ignore
 const getHelpersForDateObject = (date) => {
   if (date instanceof Date) {
     return dateHelpers;
@@ -51,21 +53,25 @@ const getHelpersForDateObject = (date) => {
   return dateHelpers;
 };
 
+// @ts-ignore
 const getYearForDate = (date) => {
   const currentHelpers = getHelpersForDateObject(date);
   return currentHelpers.getYear(date);
 };
 
+// @ts-ignore
 const defaultGetComparisonValue = (value) => {
   if (value instanceof Date) {
     return dateHelpers.format(value, 'fullDateTime');
   }
   return value;
 };
+// @ts-ignore
 const isLocale = (val) => {
   return val && val.code && val.match;
 };
 
+// @ts-ignore
 const convertValue = ({ value, convertDate, convertLocale }) => {
   if (Array.isArray(value)) {
     return value.map((childValue) =>
@@ -99,8 +105,11 @@ const adapterVersions = [
   {
     name: 'moment',
     helpers: momentHelpers,
+    // @ts-ignore
     convertDate: (date) => moment(date),
+    // @ts-ignore
     convertLocale: (locale) => locale.code,
+    // @ts-ignore
     getComparisonValue: (value) => {
       if (moment.isMoment(value)) {
         return momentHelpers.format(value, 'fullDateTime', 'en');
@@ -122,6 +131,7 @@ const adapterVersions = [
   // },
 ];
 
+// @ts-ignore
 const getDiffereningAdapterMap = (runAdapter, value) => {
   const comparisonValue = defaultGetComparisonValue(value);
   return adapterVersions.reduce((memo, version) => {
@@ -132,7 +142,9 @@ const getDiffereningAdapterMap = (runAdapter, value) => {
       convertLocale = (value) => value,
       name,
     } = version;
+    // @ts-ignore
     const convertArgs = (args) =>
+      // @ts-ignore
       args.map((arg) => convertValue({ value: arg, convertDate, convertLocale }));
     const currentValue = getComparisonValue(runAdapter(helpers, convertArgs));
     if (currentValue !== comparisonValue) {
@@ -157,12 +169,16 @@ const getDiffereningAdapterMap = (runAdapter, value) => {
 const helpers: DateHelpers<Date> = Object.keys(dateHelpers).reduce((memo, methodName) => {
   return {
     ...memo,
+    // @ts-ignore
     [methodName]: (...args) => {
+      // @ts-ignore
       const dateHelpersReturn = dateHelpers[methodName](...args);
+      // @ts-ignore
       if (!utilsHelpers[methodName] && excludedFromChecks.includes(methodName)) {
         return dateHelpersReturn;
       }
 
+      // @ts-ignore
       const differingAdapterMap = getDiffereningAdapterMap((helpers, convertArgs) => {
         const convertedArgs = convertArgs(args);
         return helpers[methodName](...convertedArgs);
@@ -176,6 +192,7 @@ const helpers: DateHelpers<Date> = Object.keys(dateHelpers).reduce((memo, method
       if (Object.keys(differingAdapterMap).length > 0) {
         const adapterString = Object.keys(differingAdapterMap).reduce((memo, name) => {
           return `${memo}${name}: ${
+            // @ts-ignore
             differingAdapterMap[name]
           } date-fns: ${defaultGetComparisonValue(dateHelpersReturn)}\n`;
         }, '');
@@ -643,6 +660,7 @@ describe('getEffectiveMinDate', () => {
       expect(
         helpers.getEffectiveMinDate({
           minDate,
+          // @ts-ignore
           includeDates: null,
         })
       ).toEqual(minDate);
@@ -678,6 +696,7 @@ describe('getEffectiveMaxDate', () => {
       expect(
         helpers.getEffectiveMaxDate({
           maxDate,
+          // @ts-ignore
           includeDates: null,
         })
       ).toEqual(maxDate);

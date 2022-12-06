@@ -13,6 +13,7 @@ import { mergeOverride, toObjectOverride } from '../helpers/overrides';
 import Icon from './icon';
 import type { IconProps } from './types';
 
+// @ts-ignore
 function TriangleLeft(props: IconProps, ref) {
   const [, theme] = useStyletron();
   const { title = 'Triangle Left', size, color, overrides = {}, ...restProps } = props;

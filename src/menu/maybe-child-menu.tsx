@@ -17,6 +17,7 @@ type Props = {
   getChildMenu: ((item: Item) => React.ReactNode) | undefined | null;
   isOpen: boolean;
   item: Item;
+  ref?: React.RefObject<any>;
   resetParentMenu: () => void;
   renderAll?: boolean;
   onClick?: (event: React.MouseEvent) => unknown;
@@ -25,7 +26,7 @@ type Props = {
   };
 };
 
-const MaybeChildMenu: React.FC<Props> = (props): React.ReactElement => {
+const MaybeChildMenu: React.FC<React.PropsWithChildren<Props>> = (props): React.ReactElement => {
   if (!props.getChildMenu) {
     // @ts-expect-error todo(flow->ts): children should be of type ReactElement or null
     return props.children;
@@ -43,6 +44,7 @@ const MaybeChildMenu: React.FC<Props> = (props): React.ReactElement => {
     <NestedMenuContext.Consumer>
       {(ctx) => {
         return (
+          // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
           <PopoverOverride
             focusLock={false}
             autoFocus={false}

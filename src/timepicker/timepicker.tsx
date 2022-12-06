@@ -29,6 +29,7 @@ class TimePicker<T = Date> extends React.Component<TimePickerProps<T>, TimePicke
   };
   dateHelpers: DateHelpers<T>;
 
+  // @ts-ignore
   state = { steps: [], value: null };
 
   constructor(props: TimePickerProps<T>) {
@@ -102,6 +103,7 @@ class TimePicker<T = Date> extends React.Component<TimePickerProps<T>, TimePicke
 
   secondsToLabel = (seconds: number, format?: '12' | '24') => {
     let [hours, minutes] = this.dateHelpers.secondsToHourMinute(seconds);
+    // @ts-ignore
     const zeroPrefix = (n) => (n < 10 ? `0${n}` : n);
 
     if (format === '12') {
@@ -140,6 +142,7 @@ class TimePicker<T = Date> extends React.Component<TimePickerProps<T>, TimePicke
     let hoursMinutes = [];
     switch (format) {
       case '24': {
+        // @ts-ignore
         hoursMinutes = [{ hours, minutes }];
         break;
       }
@@ -150,13 +153,16 @@ class TimePicker<T = Date> extends React.Component<TimePickerProps<T>, TimePicke
         // if there's no AM/PM, add both AM and PM options
         if (!meridiem) {
           hoursMinutes = [
+            // @ts-ignore
             { hours: twelveHours, minutes },
+            // @ts-ignore
             { hours: twelveHours + 12, minutes },
           ];
         } else {
           const twentyFourHours =
             meridiem.toLowerCase()[0] === 'a' ? twelveHours : twelveHours + 12;
 
+          // @ts-ignore
           hoursMinutes = [{ hours: twentyFourHours, minutes }];
         }
         break;
@@ -257,6 +263,7 @@ class TimePicker<T = Date> extends React.Component<TimePickerProps<T>, TimePicke
 
     const options = [];
     for (let i = timeWindow.start; i < timeWindow.end; i += step) {
+      // @ts-ignore
       options.push(i);
     }
     return options;
@@ -309,6 +316,7 @@ class TimePicker<T = Date> extends React.Component<TimePickerProps<T>, TimePicke
               : locale.datepicker.timePickerAriaLabel24Hour;
 
           return (
+            // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
             <OverriddenSelect
               aria-label={ariaLabel}
               disabled={this.props.disabled}

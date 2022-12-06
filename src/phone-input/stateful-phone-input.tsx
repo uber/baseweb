@@ -14,6 +14,7 @@ StatefulPhoneInput.defaultProps = defaultProps;
 
 export default function StatefulPhoneInput(props: StatefulPhoneInputProps) {
   return (
+    // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
     <StatefulPhoneInputContainer {...props}>
       {(childrenProps: PhoneInputProps) => <PhoneInput {...childrenProps} />}
     </StatefulPhoneInputContainer>

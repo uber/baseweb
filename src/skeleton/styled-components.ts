@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 import { styled } from '../styles';
 import type { StyleObject } from 'styletron-standard';
 
+// @ts-ignore
 function getAnimationColor(props) {
   const { $theme } = props;
   return `linear-gradient(135deg,

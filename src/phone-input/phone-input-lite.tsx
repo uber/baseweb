@@ -43,6 +43,7 @@ export default function PhoneInputLite(props: PhoneInputLiteProps) {
 
   const baseDialCodeOverride = {
     component: StyledDialCode,
+    // @ts-ignore
     style: ({ $theme: { direction, sizing } }) => {
       const marginDir: string = direction === 'rtl' ? 'marginRight' : 'marginLeft';
       return {
@@ -58,6 +59,7 @@ export default function PhoneInputLite(props: PhoneInputLiteProps) {
 
   const baseOverrides = {
     Input: {
+      // @ts-ignore
       style: ({ $theme: { direction, sizing } }) => {
         const paddingDir: string = direction === 'rtl' ? 'paddingRight' : 'paddingLeft';
         return {
@@ -71,6 +73,7 @@ export default function PhoneInputLite(props: PhoneInputLiteProps) {
   const [Input, inputProps] = getOverrides(overrides.Input, DefaultInput);
   inputProps.overrides = mergeOverrides(baseOverrides, inputProps.overrides);
   return (
+    // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
     <Root {...rootProps} data-baseweb="phone-input">
       <CountryPicker
         country={country}
@@ -86,6 +89,7 @@ export default function PhoneInputLite(props: PhoneInputLiteProps) {
         required={required}
         size={size}
       />
+      {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
       <Input
         aria-label={ariaLabel}
         aria-labelledby={ariaLabelledBy}

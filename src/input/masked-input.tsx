@@ -5,6 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
+// @ts-ignore
 import InputMask from 'react-input-mask';
 
 import Input from './input';
@@ -48,6 +49,7 @@ const MaskOverride = React.forwardRef<HTMLInputElement, MaskedInputProps>(
         readOnly={readOnly}
         {...restProps}
       >
+        {/* @ts-ignore */}
         {(props) => (
           <StyledInput
             ref={ref}

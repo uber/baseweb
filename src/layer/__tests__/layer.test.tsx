@@ -31,6 +31,7 @@ describe('Layer', () => {
       const ref = React.useRef();
       return (
         <TestBaseProvider>
+          {/* @ts-ignore */}
           <div data-testid="mount-node" ref={ref} />
           <Layer onMount={() => setMounted(true)} mountNode={ref.current ? ref.current : undefined}>
             {content}

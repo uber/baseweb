@@ -64,7 +64,6 @@ function OptionProfile(props: OptionProfileProps, ref: React.RefObject<any>) {
 
   return (
     <MaybeChildMenu
-      // @ts-expect-error todo(flow->ts)
       ref={ref}
       getChildMenu={getChildMenu}
       isOpen={!!$isHighlighted}
@@ -73,20 +72,28 @@ function OptionProfile(props: OptionProfileProps, ref: React.RefObject<any>) {
       renderAll={renderAll}
       overrides={overrides}
     >
+      {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
       <ListItemProfile {...restProps} {...listItemProfileProps}>
+        {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
         <ProfileImgContainer {...profileImgContainerProps}>
           {ItemImg &&
             (typeof ItemImg === 'string' ? (
               // Render img src string wrapped with image component
+              // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
               <ProfileImg src={ItemImg} alt={getProfileItemImgText(item)} {...profileImgProps} />
             ) : (
               // Or just render the entire component user specified
+              // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
               <ItemImg {...profileImgProps} />
             ))}
         </ProfileImgContainer>
+        {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
         <ProfileLabelsContainer {...profileLabelsContainerProps}>
+          {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
           {title && <ProfileTitle {...profileTitleProps}>{title}</ProfileTitle>}
+          {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
           {subtitle && <ProfileSubtitle {...profileSubtitleProps}>{subtitle}</ProfileSubtitle>}
+          {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
           {body && <ProfileBody {...profileBodyProps}>{body}</ProfileBody>}
         </ProfileLabelsContainer>
       </ListItemProfile>
@@ -94,6 +101,7 @@ function OptionProfile(props: OptionProfileProps, ref: React.RefObject<any>) {
   );
 }
 
+// @ts-ignore
 const forwarded = React.forwardRef<HTMLElement, OptionProfileProps>(OptionProfile);
 forwarded.displayName = 'OptionProfile';
 

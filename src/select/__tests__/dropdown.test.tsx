@@ -55,6 +55,7 @@ describe('SelectDropdown', function () {
     function TestCase() {
       const ref: React.Ref<HTMLElement> = React.createRef<HTMLElement>();
       const props = {
+        // @ts-ignore
         value: [],
         valueKey: 'id',
         labelKey: 'label',

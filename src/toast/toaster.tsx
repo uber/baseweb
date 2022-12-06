@@ -43,6 +43,7 @@ export class ToasterContainer extends React.Component<
 
   state = {
     isMounted: false,
+    // @ts-ignore
     toasts: [],
   };
 
@@ -66,8 +67,11 @@ export class ToasterContainer extends React.Component<
 
   // @ts-expect-error todo(flow->ts): default value does not look correct and also probably do is never used
   show = (props: ToastProps = {}): React.Key => {
+    // @ts-ignore
     if (this.state.toasts.map((t) => t.key).includes(props.key)) {
+      // @ts-ignore
       this.update(props.key, props);
+      // @ts-ignore
       return props.key;
     }
     const toastProps = this.getToastProps(props);
@@ -89,7 +93,8 @@ export class ToasterContainer extends React.Component<
             }),
             key,
             ...(this.props.resetAutoHideTimerOnUpdate
-              ? { __updated: (+toast.__updated || 0) + 1 }
+              ? // @ts-ignore
+                { __updated: (+toast.__updated || 0) + 1 }
               : {}),
           };
           return updatedToastProps;
@@ -103,13 +108,16 @@ export class ToasterContainer extends React.Component<
   };
 
   dismiss = (key: React.Key) => {
+    // @ts-ignore
     if (this.dismissHandlers[key]) {
+      // @ts-ignore
       this.dismissHandlers[key]();
     }
   };
 
   clearAll = () => {
     Object.keys(this.dismissHandlers).forEach((key) => {
+      // @ts-ignore
       this.dismissHandlers[key]();
     });
   };
@@ -119,6 +127,7 @@ export class ToasterContainer extends React.Component<
   };
 
   internalOnClose = (key: React.Key) => {
+    // @ts-ignore
     delete this.dismissHandlers[key];
     this.setState(({ toasts }) => ({
       toasts: toasts.filter((t) => {
@@ -142,8 +151,11 @@ export class ToasterContainer extends React.Component<
     const { onClose, children, key, ...restProps } = toastProps;
 
     const {
+      // @ts-ignore
       ToastBody: BodyOverride,
+      // @ts-ignore
       ToastCloseIcon: CloseIconOverride,
+      // @ts-ignore
       ToastInnerContainer: InnerContainerOverride,
     } = this.props.overrides;
     const globalToastOverrides = mergeOverrides(
@@ -167,7 +179,9 @@ export class ToasterContainer extends React.Component<
         key={key}
         onClose={this.getOnCloseHandler(key, onClose)}
       >
+        {/* @ts-ignore */}
         {({ dismiss }) => {
+          // @ts-ignore
           this.dismissHandlers[key] = dismiss;
           return children;
         }}
@@ -185,6 +199,7 @@ export class ToasterContainer extends React.Component<
   render() {
     const sharedProps = this.getSharedProps();
 
+    // @ts-ignore
     const { Root: RootOverride } = this.props.overrides;
     const [Root, rootProps] = getOverrides(RootOverride, StyledRoot);
 
@@ -194,10 +209,12 @@ export class ToasterContainer extends React.Component<
     // to the oldest at the end
     // eslint-disable-next-line for-direction
     for (let i = toastsLength - 1; i >= 0; i--) {
+      // @ts-ignore
       toastsToRender.push(this.renderToast(this.state.toasts[i]));
     }
 
     const root = (
+      // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
       <Root data-baseweb="toaster" {...sharedProps} {...rootProps}>
         {toastsToRender}
       </Root>
@@ -239,20 +256,25 @@ const toaster = {
     }
   },
   info: function (children: React.ReactNode, props: ToastPropsShape = {}): React.Key {
+    // @ts-ignore
     return this.show(children, { ...props, kind: KIND.info });
   },
   positive: function (children: React.ReactNode, props: ToastPropsShape = {}): React.Key {
+    // @ts-ignore
     return this.show(children, { ...props, kind: KIND.positive });
   },
   warning: function (children: React.ReactNode, props: ToastPropsShape = {}): React.Key {
+    // @ts-ignore
     return this.show(children, { ...props, kind: KIND.warning });
   },
   negative: function (children: React.ReactNode, props: ToastPropsShape = {}): React.Key {
+    // @ts-ignore
     return this.show(children, { ...props, kind: KIND.negative });
   },
   update: function (key: React.Key, props: Partial<ToastProps>): void {
     const toasterInstance = this.getRef();
     if (toasterInstance) {
+      // @ts-ignore
       toasterInstance.update(key, props);
     } else if (__DEV__) {
       // eslint-disable-next-line no-console
@@ -262,6 +284,7 @@ const toaster = {
   clear: function (key?: React.Key | undefined | null): void {
     const toasterInstance = this.getRef();
     if (toasterInstance) {
+      // @ts-ignore
       toasterInstance.clear(key);
     } else if (__DEV__) {
       // eslint-disable-next-line no-console

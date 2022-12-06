@@ -36,6 +36,7 @@ export default class TableBuilder<T> extends React.Component<
   }
 > {
   static defaultProps = {
+    // @ts-ignore
     data: [],
     loadingMessage: 'Loading...',
   };
@@ -133,6 +134,7 @@ export default class TableBuilder<T> extends React.Component<
       // @ts-expect-error todo(flow->ts): limit children to be only react elements
       .map((child) => child.props);
 
+    // @ts-ignore
     function renderHeader(col, colIndex, isFocusVisible) {
       const colOverrides = col.overrides || {};
 
@@ -168,12 +170,14 @@ export default class TableBuilder<T> extends React.Component<
 
       switch (col.id === sortColumn && sortOrder) {
         case 'ASC':
+          // @ts-ignore
           sortIcon = (
             <SortAscIcon size="16px" aria-hidden={true} role="presentation" {...sortAscIconProps} />
           );
           sortLabel = 'ascending sorting';
           break;
         case 'DESC':
+          // @ts-ignore
           sortIcon = (
             <SortDescIcon
               size="16px"
@@ -185,6 +189,7 @@ export default class TableBuilder<T> extends React.Component<
           sortLabel = 'descending sorting';
           break;
         default:
+          // @ts-ignore
           sortIcon = (
             <SortNoneIcon
               size="16px"
@@ -223,6 +228,7 @@ export default class TableBuilder<T> extends React.Component<
       );
     }
 
+    // @ts-ignore
     function renderCell(col, colIndex, row, rowIndex, lastRowindex) {
       const colOverrides = col.overrides || {};
 

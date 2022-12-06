@@ -52,6 +52,7 @@ export default class Calendar<T = Date> extends React.Component<
     orientation: ORIENTATION.horizontal,
     overrides: {},
     peekNextMonth: false,
+    // @ts-ignore
     adapter: dateFnsAdapter,
     value: null,
     trapTabbing: false,
@@ -59,18 +60,23 @@ export default class Calendar<T = Date> extends React.Component<
 
   dateHelpers: DateHelpers<T>;
 
+  // @ts-ignore
   calendar: HTMLElement;
 
   constructor(props: CalendarProps<T>) {
     super(props);
 
     const { highlightedDate, value, adapter } = this.props;
+    // @ts-ignore
     this.dateHelpers = new DateHelpers(adapter);
     const dateInView = this.getDateInView();
+    // @ts-ignore
     let time = [];
     if (Array.isArray(value)) {
+      // @ts-ignore
       time = [...value];
     } else if (value) {
+      // @ts-ignore
       time = [value];
     }
     this.state = {
@@ -83,6 +89,7 @@ export default class Calendar<T = Date> extends React.Component<
       date: dateInView,
       quickSelectId: null,
       rootElement: null,
+      // @ts-ignore
       time,
     };
   }
@@ -145,7 +152,9 @@ export default class Calendar<T = Date> extends React.Component<
 
   getDateInView: () => T = () => {
     const { highlightedDate, value } = this.props;
+    // @ts-ignore
     const minDate = this.dateHelpers.getEffectiveMinDate(this.props);
+    // @ts-ignore
     const maxDate = this.dateHelpers.getEffectiveMaxDate(this.props);
     const current = this.dateHelpers.date();
     const initialDate = this.getSingleDate(value) || highlightedDate;
@@ -432,10 +441,13 @@ export default class Calendar<T = Date> extends React.Component<
       const monthSubComponents = [];
       const monthDate = this.dateHelpers.addMonths(this.state.date, i);
       const monthKey = `month-${i}`;
+      // @ts-ignore
       monthSubComponents.push(this.renderCalendarHeader(monthDate, i));
       monthSubComponents.push(
+        // @ts-ignore
         <CalendarContainer
           key={monthKey}
+          // @ts-ignore
           ref={(calendar) => {
             this.calendar = calendar;
           }}
@@ -476,9 +488,11 @@ export default class Calendar<T = Date> extends React.Component<
           />
         </CalendarContainer>
       );
+      // @ts-ignore
       monthList.push(<div key={`month-component-${i}`}>{monthSubComponents}</div>);
     }
     return (
+      // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
       <MonthContainer $orientation={orientation} {...monthContainerProps}>
         {monthList}
       </MonthContainer>
@@ -502,8 +516,11 @@ export default class Calendar<T = Date> extends React.Component<
     const [TimeSelect, timeSelectProps] = getOverrides(overrides.TimeSelect, TimePicker);
 
     return (
+      // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
       <TimeSelectContainer {...timeSelectContainerProps}>
+        {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
         <TimeSelectFormControl label={label} {...timeSelectFormControlProps}>
+          {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
           <TimeSelect
             value={value ? this.dateHelpers.date(value) : value}
             onChange={onChange}
@@ -545,14 +562,18 @@ export default class Calendar<T = Date> extends React.Component<
     return (
       <LocaleContext.Consumer>
         {(locale) => (
+          // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
           <QuickSelectContainer {...quickSelectContainerProps}>
+            {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
             <QuickSelectFormControl
               label={locale.datepicker.quickSelectLabel}
               {...quickSelectFormControlProps}
             >
+              {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
               <QuickSelect
                 aria-label={locale.datepicker.quickSelectAriaLabel}
                 labelKey="id"
+                // @ts-ignore
                 onChange={(params) => {
                   if (!params.option) {
                     this.setState({ quickSelectId: null });
@@ -629,16 +650,19 @@ export default class Calendar<T = Date> extends React.Component<
   render() {
     const { overrides = {} } = this.props;
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
+    // @ts-ignore
     const [startDate, endDate] = [].concat(this.props.value);
 
     return (
       <LocaleContext.Consumer>
         {(locale) => (
+          // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
           <Root
             $density={this.props.density}
             data-baseweb="calendar"
             role="application"
             aria-roledescription="datepicker"
+            // @ts-ignore
             ref={(root) => {
               if (root && root instanceof HTMLElement && !this.state.rootElement) {
                 this.setState({
@@ -656,6 +680,7 @@ export default class Calendar<T = Date> extends React.Component<
             {this.props.timeSelectStart &&
               this.renderTimeSelect(
                 startDate,
+                // @ts-ignore
                 (time) => this.handleTimeChange(time, 0),
                 locale.datepicker.timeSelectStartLabel
               )}
@@ -663,6 +688,7 @@ export default class Calendar<T = Date> extends React.Component<
               this.props.range &&
               this.renderTimeSelect(
                 endDate,
+                // @ts-ignore
                 (time) => this.handleTimeChange(time, 1),
                 locale.datepicker.timeSelectEndLabel
               )}

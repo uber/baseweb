@@ -40,6 +40,7 @@ describe('Stateful select', function () {
         ValueContainer: StyledValueContainer,
         Placeholder: StyledPlaceholder,
         SingleValue: StyledSingleValue,
+        // @ts-ignore
         Tag: function TagComponent({ children }) {
           return <div>{children}</div>;
         },

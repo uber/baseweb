@@ -20,6 +20,7 @@ import {
 } from './styled-components';
 import type { HeadingProps } from './types';
 
+// @ts-ignore
 function RenderNode(props) {
   const { component, ...restProps } = props;
   const Component = component;
@@ -35,6 +36,7 @@ function RenderNode(props) {
   return Component;
 }
 
+// @ts-ignore
 function isMaxLinesValid(maxLines) {
   return maxLines === 1 || maxLines === 2;
 }
@@ -76,11 +78,17 @@ const ListHeading = React.forwardRef<HTMLLIElement, HeadingProps>((props: Headin
   }
 
   return (
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    <Root ref={ref as any} {...rootProps}>
+    // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
+    <Root
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      ref={ref as any}
+      {...rootProps}
+    >
+      {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
       <Content {...contentProps}>
         {/* ----- Top Row -------------------------- */}
         <StyledHeadingContentRow>
+          {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
           <HeadingContainer
             $maxLines={isMaxLinesValid(maxLines) ? maxLines : 1}
             {...headingContainerProps}
@@ -89,6 +97,7 @@ const ListHeading = React.forwardRef<HTMLLIElement, HeadingProps>((props: Headin
           </HeadingContainer>
 
           {EndEnhancer && (
+            // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
             <EndEnhancerContainer $isText={isEndEnhancerString} {...endEnhancerContainerProps}>
               <RenderNode component={EndEnhancer} />
             </EndEnhancerContainer>
@@ -98,6 +107,7 @@ const ListHeading = React.forwardRef<HTMLLIElement, HeadingProps>((props: Headin
         {/* ----- Bottom Row ----------------------- */}
         {(Boolean(SubHeading) || EndEnhancerDescription) && (
           <StyledHeadingContentRow>
+            {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
             <SubHeadingContainer
               $maxLines={isMaxLinesValid(maxLines) ? maxLines : 1}
               {...subHeadingContainerProps}
@@ -106,6 +116,7 @@ const ListHeading = React.forwardRef<HTMLLIElement, HeadingProps>((props: Headin
             </SubHeadingContainer>
 
             {Boolean(EndEnhancerDescription) && isEndEnhancerString && (
+              // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
               <EndEnhancerDescriptionContainer {...endEnhancerDescriptionContainerProps}>
                 <RenderNode component={EndEnhancerDescription} />
               </EndEnhancerDescriptionContainer>

@@ -17,6 +17,7 @@ const StatefulRadioGroup = function (
 ) {
   const { children, ...restProps } = props;
   return (
+    // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
     <StatefulContainer {...restProps}>
       {(childrenProps: RadioGroupProps) => <RadioGroup {...childrenProps}>{children}</RadioGroup>}
     </StatefulContainer>

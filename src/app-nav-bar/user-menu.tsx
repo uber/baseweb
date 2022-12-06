@@ -33,6 +33,7 @@ const UserMenuListItem = React.forwardRef<any, any>((props, ref) => {
   );
 });
 
+// @ts-ignore
 const svgStyleOverride = ({ $theme }) => ({ paddingLeft: $theme.sizing.scale200 });
 
 export default function UserMenuComponent(
@@ -93,6 +94,7 @@ export default function UserMenuComponent(
       content={({ close }) => (
         <UserMenu
           items={userItems}
+          // @ts-ignore
           onItemSelect={({ item }) => {
             props.onItemSelect(item);
             close();

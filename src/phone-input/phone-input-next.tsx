@@ -48,6 +48,7 @@ export default function PhoneInputNext(props: PhoneInputLiteProps) {
 
   const baseDialCodeOverride = {
     component: StyledDialCode,
+    // @ts-ignore
     style: ({ $theme: { direction, sizing } }) => {
       const marginDir: string = direction === 'rtl' ? 'marginRight' : 'marginLeft';
       return {
@@ -63,6 +64,7 @@ export default function PhoneInputNext(props: PhoneInputLiteProps) {
 
   const baseOverrides = {
     Input: {
+      // @ts-ignore
       style: ({ $theme: { direction, sizing } }) => {
         const paddingDir: string = direction === 'rtl' ? 'paddingRight' : 'paddingLeft';
         return {

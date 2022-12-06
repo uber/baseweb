@@ -25,6 +25,7 @@ export default function Cell({
   const [StyledCell, overrideProps] = getOverrides(overrides.Cell, DefaultStyledCell);
   const gridContext = React.useContext(GridContext);
   return (
+    // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
     <StyledCell
       $align={align}
       // TODO(v11): Remove the four grid props, get them solely from GridContext

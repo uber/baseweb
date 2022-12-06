@@ -30,6 +30,7 @@ function mapSelection<X, Y>(selection: Set<X>, transform: (a: X) => Y): Set<Y> {
   return coercedSelection;
 }
 
+// @ts-ignore
 function BooleanFilter(props) {
   const locale = React.useContext(LocaleContext);
 
@@ -67,6 +68,7 @@ function BooleanFilter(props) {
   );
 }
 
+// @ts-ignore
 function BooleanCell(props) {
   const [css, theme] = useStyletron();
   const locale = React.useContext(LocaleContext);

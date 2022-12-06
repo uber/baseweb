@@ -73,6 +73,7 @@ function Violation(props: ViolationProps) {
   React.useEffect(() => {
     const node = document.querySelector(props.target);
     if (node) {
+      // @ts-ignore
       setAnchor(node);
 
       node.setAttribute('style', `border: solid 1px ${theme.colors.negative300};`);
@@ -100,6 +101,7 @@ function Violation(props: ViolationProps) {
         placement={TETHER_PLACEMENT.bottom}
       >
         <ViolationContainer
+          // @ts-ignore
           ref={setPopper}
           $top={`${offset.top}px` || '0px'}
           $left={`${offset.left}px` || '0px'}
@@ -126,8 +128,10 @@ export default function A11y(props: { children: React.ReactNode }) {
       }
 
       const id = requestIdleCallback(() => {
+        // @ts-ignore
         validateNode(child.current).then(setViolations);
       });
+      // @ts-ignore
       setIdleID(id);
     }
   }, [props.children]);

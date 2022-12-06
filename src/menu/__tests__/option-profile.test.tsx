@@ -20,12 +20,15 @@ const mockItem = {
 function getSharedProps() {
   return {
     item: mockItem,
+    // @ts-ignore
     getProfileItemLabels: ({ title, subtitle, body }) => ({
       title,
       subtitle,
       body,
     }),
+    // @ts-ignore
     getProfileItemImg: (item) => item.imgUrl,
+    // @ts-ignore
     getProfileItemImgText: (item) => item.title,
   };
 }
@@ -46,6 +49,7 @@ describe('Option Profile Stateless Component', () => {
     const props = {
       ...getSharedProps(),
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      // @ts-ignore
       getProfileItemImg: (item) => MockComponent,
     };
     const { container } = render(<OptionProfile {...props} />);

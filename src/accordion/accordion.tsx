@@ -24,6 +24,7 @@ export default class Accordion extends React.Component<AccordionProps, Accordion
     stateReducer: (type, newState) => newState,
   };
 
+  // @ts-ignore
   state = {
     expanded: [],
     ...this.props.initialState,
@@ -128,6 +129,7 @@ export default class Accordion extends React.Component<AccordionProps, Accordion
         renderAll,
         overrides: child.props.overrides || overrides,
         disabled: child.props.disabled || disabled,
+        // @ts-ignore
         onChange: (...args) => this.onPanelChange(key, child.props.onChange, ...args),
       };
       return React.cloneElement(child, props);
@@ -139,6 +141,7 @@ export default class Accordion extends React.Component<AccordionProps, Accordion
     const { Root: RootOverride } = overrides;
     const [Root, rootProps] = getOverrides(RootOverride, StyledRoot);
     return (
+      // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
       <Root
         data-baseweb="accordion"
         $disabled={this.props.disabled}

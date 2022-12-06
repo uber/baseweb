@@ -51,6 +51,7 @@ export default function Grid({
   };
 
   return (
+    // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
     <StyledGridWrapper
       $behavior={behavior}
       $gridMargins={gridMargins != null ? gridMargins : gridStyleValues.$gridMargins}
@@ -58,6 +59,7 @@ export default function Grid({
       $gridUnit={gridUnit != null ? gridUnit : gridStyleValues.$gridUnit}
       {...wrapperProps}
     >
+      {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
       <StyledGrid
         $align={align}
         $behavior={behavior}
@@ -72,6 +74,7 @@ export default function Grid({
             gridColumns,
             gridGaps,
             gridGutters,
+            // @ts-ignore
             gridUnit,
             ...gridContextStyleValues,
           }}

@@ -20,6 +20,7 @@ function RowIndexFilter() {
   return <div>not implemented for row index column</div>;
 }
 
+// @ts-ignore
 function RowIndexCell(props) {
   const [css, theme] = useStyletron();
   return (

@@ -29,9 +29,11 @@ export default class Day<T = Date> extends React.Component<DayProps<T>, DayState
     onMouseLeave: () => {},
     overrides: {},
     peekNextMonth: true,
+    // @ts-ignore
     value: null,
   };
 
+  // @ts-ignore
   dayElm: HTMLElement;
 
   state = {
@@ -88,10 +90,14 @@ export default class Day<T = Date> extends React.Component<DayProps<T>, DayState
       let nextEndDate = null;
 
       if (this.props.selectedInput === INPUT_ROLE.startDate) {
+        // @ts-ignore
         nextStartDate = selectedDate;
+        // @ts-ignore
         nextEndDate = Array.isArray(currentDate) && currentDate[1] ? currentDate[1] : null;
       } else if (this.props.selectedInput === INPUT_ROLE.endDate) {
+        // @ts-ignore
         nextStartDate = Array.isArray(currentDate) && currentDate[0] ? currentDate[0] : null;
+        // @ts-ignore
         nextEndDate = selectedDate;
       }
 
@@ -406,6 +412,7 @@ export default class Day<T = Date> extends React.Component<DayProps<T>, DayState
     const [DayLabel, dayLabelProps] = getOverrides(overrides.DayLabel, StyledDayLabel);
     const dateLabel = this.props.dateLabel && this.props.dateLabel(date);
     return !peekNextMonth && sharedProps.$outsideMonth ? (
+      // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
       <Day
         role="gridcell"
         {...sharedProps}
@@ -417,8 +424,10 @@ export default class Day<T = Date> extends React.Component<DayProps<T>, DayState
       // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
       <LocaleContext.Consumer>
         {(locale: Locale) => (
+          // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
           <Day
             aria-label={this.getAriaLabel(sharedProps, locale)}
+            // @ts-ignore
             ref={(dayElm) => {
               this.dayElm = dayElm;
             }}
@@ -442,6 +451,7 @@ export default class Day<T = Date> extends React.Component<DayProps<T>, DayState
           >
             <div>{this.dateHelpers.getDate(date)}</div>
             {dateLabel ? (
+              // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
               <DayLabel {...sharedProps} {...dayLabelProps}>
                 {dateLabel}
               </DayLabel>

@@ -55,9 +55,11 @@ const FixedMarker = ({
   kind = KIND.default,
   dragging = false,
   overrides = {},
+  // @ts-ignore
   labelEnhancerContent = null,
   labelEnhancerPosition = LABEL_ENHANCER_POSITIONS.bottom,
   badgeEnhancerSize = null,
+  // @ts-ignore
   badgeEnhancerContent = null,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   ...restProps
@@ -102,7 +104,9 @@ const FixedMarker = ({
     enhancers.endEnhancer = endEnhancer;
   }
   return (
+    // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
     <Root data-baseweb="fixed-map-marker" {...rootProps}>
+      {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
       <FixedMarkerDragContainer
         $translateAmount={dragShadowMarginTop + dragShadowHeight}
         $performTranslate={doesPinHeadTransformOnDrag && !dragging}

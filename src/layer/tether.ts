@@ -13,9 +13,12 @@ import type { TetherProps, TetherState, PopperDataObject } from './types';
 
 class Tether extends React.Component<TetherProps, TetherState> {
   static defaultProps = {
+    // @ts-ignore
     anchorRef: null,
+    // @ts-ignore
     onPopperUpdate: () => null,
     placement: TETHER_PLACEMENT.auto,
+    // @ts-ignore
     popperRef: null,
     popperOptions: {},
   };

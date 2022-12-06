@@ -44,7 +44,9 @@ describe('Side navigation', () => {
   });
 
   it('renders titles correctly modified by mapItem', () => {
+    // @ts-ignore
     const Title = ({ item }) => <span>New {item.title}</span>;
+    // @ts-ignore
     const mapItem = (item) => ({
       ...item,
       title: <Title item={item} />,
