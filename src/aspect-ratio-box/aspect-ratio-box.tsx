@@ -10,6 +10,7 @@ import { Block, type StyledBlockProps } from '../block';
 import { mergeOverrides } from '../helpers/overrides';
 import type { AspectRatioBoxProps } from './types';
 
+// @ts-ignore
 const aspectRatioBoxStyle = ({ $aspectRatio }) => ({
   position: 'relative',
   '::before': {

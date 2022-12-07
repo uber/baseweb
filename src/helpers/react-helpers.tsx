@@ -9,10 +9,10 @@ import { isFragment } from 'react-is';
 
 export const flattenFragments = (
   children?: React.ReactNode,
-  ChildWrapper?: React.ComponentType<{}>,
+  ChildWrapper?: React.ComponentType<React.PropsWithChildren<{}>>,
   depth = 0
 ): React.ReactNode[] =>
-  // @ts-expect-error
+  // @ts-ignore
   React.Children.toArray(children).reduce(
     (acc: React.ReactNode[], child: React.ReactNode, i: number): React.ReactNode[] => {
       if (isFragment(child)) {

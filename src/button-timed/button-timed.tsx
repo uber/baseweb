@@ -63,6 +63,7 @@ const ButtonTimed = (props: ButtonTimedProps) => {
     },
     {
       Root: buttonOverrides.Root || {},
+      // @ts-ignore
       BaseButton: buttonOverrides.BaseButton,
       StartEnhancer: buttonOverrides.StartEnhancer || {},
       EndEnhancer: buttonOverrides.EndEnhancer || {},

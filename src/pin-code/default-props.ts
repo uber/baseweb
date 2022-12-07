@@ -8,13 +8,17 @@ import { SIZE } from '../input';
 
 const defaultProps = {
   'aria-label': 'Please enter your pin code',
+  // @ts-ignore
   'aria-labelledby': null,
+  // @ts-ignore
   'aria-describedby': null,
   autoComplete: 'one-time-code',
   autoFocus: false,
   disabled: false,
   error: false,
+  // @ts-ignore
   id: null,
+  // @ts-ignore
   name: null,
   onChange: () => {},
   overrides: {},

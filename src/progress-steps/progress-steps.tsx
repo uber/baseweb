@@ -23,6 +23,7 @@ function ProgressSteps({ overrides = {}, current, children }: ProgressStepsProps
 
     return React.cloneElement(child, {
       isLast: index === numChildren - 1,
+      // @ts-ignore
       isCompleted: index < current,
       isActive,
       step: index + 1,
@@ -35,6 +36,7 @@ function ProgressSteps({ overrides = {}, current, children }: ProgressStepsProps
   });
 
   return (
+    // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
     <Root data-baseweb="progress-steps" {...rootProps}>
       {modifiedChildren}
     </Root>

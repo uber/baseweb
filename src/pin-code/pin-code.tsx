@@ -67,6 +67,7 @@ export default class PinCode extends React.Component<PinCodeProps, State> {
               name={this.props.name}
               onBlur={() => this.setState({ hasFocus: false })}
               onFocus={() => this.setState({ hasFocus: true })}
+              // @ts-ignore
               onChange={(event) => {
                 const eventValue = event.target.value;
                 // in the case of an autocomplete or copy and paste
@@ -107,6 +108,7 @@ export default class PinCode extends React.Component<PinCodeProps, State> {
                   }
                 }
               }}
+              // @ts-ignore
               onKeyDown={(event) => {
                 // if we see a backspace/delete and the input is empty, transfer focus backward
                 if (

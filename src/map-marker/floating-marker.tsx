@@ -22,6 +22,7 @@ import {
   PINHEAD_DIMENSIONS,
 } from './constants';
 
+// @ts-ignore
 function getAnchorPinHeadSize(anchorType) {
   if (anchorType === FLOATING_MARKER_ANCHOR_TYPES.circle) {
     return PINHEAD_SIZES_SHAPES.xSmallCircle;
@@ -63,11 +64,13 @@ const FloatingMarker = ({
   );
 
   return (
+    // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
     <Root
       data-baseweb="floating-map-marker"
       $size={PINHEAD_DIMENSIONS[anchorPinHeadSize].height}
       {...rootProps}
     >
+      {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
       <FloatingMarkerPinHeadContainer
         $anchor={anchor}
         $anchorSize={PINHEAD_DIMENSIONS[anchorPinHeadSize].height}
@@ -86,6 +89,7 @@ const FloatingMarker = ({
         />
       </FloatingMarkerPinHeadContainer>
       {anchor !== FLOATING_MARKER_ANCHOR_POSITIONS.none && (
+        // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
         <FloatingMarkerAnchorContainer {...floatingMarkerAnchorContainerProps}>
           <PinHead
             size={anchorPinHeadSize}

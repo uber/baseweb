@@ -10,6 +10,7 @@ import { Svg as StyledSvg } from './styled-components';
 import omitDollarPrefixedKeys from './omit-dollar-prefixed-keys';
 import type { IconProps } from './types';
 
+// @ts-ignore
 const Icon = (props: IconProps, ref) => {
   const { children, title, size, color, overrides = {}, ...restProps } = props;
   const [Svg, overrideProps] = getOverrides(overrides.Svg, StyledSvg);
@@ -31,6 +32,7 @@ const Icon = (props: IconProps, ref) => {
         ...omitDollarPrefixedKeys(overrideProps),
       };
   return (
+    // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
     <Svg data-baseweb="icon" ref={ref} {...passThroughProps}>
       {title ? <title>{title}</title> : null}
       {children}

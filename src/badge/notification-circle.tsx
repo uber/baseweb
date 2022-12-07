@@ -49,6 +49,7 @@ const NotificationCircle = ({
   // If there's no anchor, render the badge inline
   if (!anchor) {
     return (
+      // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
       <NotificationCircle $color={color} $hidden={hidden} {...NotificationCircleProps}>
         {content}
       </NotificationCircle>
@@ -56,8 +57,10 @@ const NotificationCircle = ({
   }
 
   return (
+    // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
     <Root {...rootProps}>
       {anchor}
+      {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
       <Positioner
         $horizontalOffset={horizontalOffset}
         $verticalOffset={verticalOffset}
@@ -65,6 +68,7 @@ const NotificationCircle = ({
         $role={ROLE.notificationCircle}
         {...positionerProps}
       >
+        {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
         <NotificationCircle {...NotificationCircleProps} $color={color} $hidden={hidden}>
           {content}
         </NotificationCircle>

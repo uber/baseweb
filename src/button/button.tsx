@@ -31,6 +31,7 @@ class Button extends React.Component<
   static defaultProps = defaultProps;
   state = { isFocusVisible: false };
 
+  // @ts-ignore
   internalOnClick = (...args) => {
     const { isLoading, onClick } = this.props;
     if (isLoading) {
@@ -99,6 +100,7 @@ class Button extends React.Component<
       $isFocusVisible: this.state.isFocusVisible,
     };
     return (
+      // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
       <BaseButton
         ref={forwardedRef}
         data-baseweb="button"
@@ -126,7 +128,9 @@ class Button extends React.Component<
             <div style={{ opacity: 0, display: 'flex', height: '0px' }}>
               <ButtonInternals {...this.props} />
             </div>
+            {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
             <LoadingSpinnerContainer {...sharedProps} {...loadingSpinnerContainerProps}>
+              {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
               <LoadingSpinner {...sharedProps} {...loadingSpinnerProps} />
             </LoadingSpinnerContainer>
           </React.Fragment>

@@ -56,6 +56,7 @@ describe('Helpers - Overrides', () => {
   test('toObjectOverride', () => {
     const CustomComponent = getMockComponent();
     expect(toObjectOverride()).toEqual({});
+    // @ts-ignore
     expect(toObjectOverride(null)).toEqual({});
     expect(toObjectOverride(CustomComponent)).toEqual({
       component: CustomComponent,
@@ -215,10 +216,12 @@ describe('Helpers - Overrides', () => {
     const consoleWarn = console.warn;
     console.warn = jest.fn();
 
+    // @ts-ignore
     function DefaultComponent(props) {
       return <div>default {props.count}</div>;
     }
 
+    // @ts-ignore
     function dynamicProps(props) {
       return { count: props.count + 1 };
     }
@@ -238,14 +241,17 @@ describe('Helpers - Overrides', () => {
     const consoleWarn = console.warn;
     console.warn = jest.fn();
 
+    // @ts-ignore
     function DefaultComponent(props) {
       return <div>default {props.count}</div>;
     }
 
+    // @ts-ignore
     function CustomComponent(props) {
       return <div>custom {props.count + 1}</div>;
     }
 
+    // @ts-ignore
     function dynamicProps(props) {
       return { count: props.count + 1 };
     }
@@ -268,14 +274,17 @@ describe('Helpers - Overrides', () => {
     const consoleWarn = console.warn;
     console.warn = jest.fn();
 
+    // @ts-ignore
     function DefaultComponent(props) {
       return <div style={{ backgroundColor: 'red', ...props.$style }}>default {props.count}</div>;
     }
 
+    // @ts-ignore
     function CustomComponent(props) {
       return <div style={props.$style}>custom {props.count + 1}</div>;
     }
 
+    // @ts-ignore
     function dynamicProps(props) {
       return { count: props.count + 1 };
     }

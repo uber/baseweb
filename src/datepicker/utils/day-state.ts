@@ -46,15 +46,15 @@ export default function getDayStateCode(props: SharedStyleProps) {
     $endOfMonth = false,
     $outsideMonth = false,
   } = props;
+  // @ts-ignore
   return `${+$range}${+$disabled}${+(
-    $isHighlighted || $isHovered
+    ($isHighlighted || $isHovered)
+    // @ts-ignore
   )}${+$selected}${+$hasRangeSelected}${+$startDate}${+$endDate}${+$pseudoSelected}${+$hasRangeHighlighted}${+$pseudoHighlighted}${+(
-    $hasRangeHighlighted &&
-    !$pseudoHighlighted &&
-    $hasRangeOnRight
+    ($hasRangeHighlighted && !$pseudoHighlighted && $hasRangeOnRight)
+    // @ts-ignore
   )}${+(
-    $hasRangeHighlighted &&
-    !$pseudoHighlighted &&
-    !$hasRangeOnRight
+    ($hasRangeHighlighted && !$pseudoHighlighted && !$hasRangeOnRight)
+    // @ts-ignore
   )}${+$startOfMonth}${+$endOfMonth}${+$outsideMonth}`;
 }

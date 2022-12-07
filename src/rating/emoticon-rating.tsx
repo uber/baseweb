@@ -52,13 +52,16 @@ class EmoticonRating extends React.Component<EmoticonRatingProps, RatingState> {
 
     const [Emoticon, emoticonProps] = getOverrides(overrides.Item, StyledEmoticon);
     const ratings = [];
+    // @ts-ignore
     const refs = [{ current: null }];
     for (let x = 1; x <= 5; x++) {
       const isFocusable = x === value || (value < 1 && x === 1);
       const starRef = React.createRef<HTMLLIElement>();
+      // @ts-ignore
       refs.push(starRef);
 
       ratings.push(
+        // @ts-ignore
         <Emoticon
           key={x}
           role="radio"
@@ -81,6 +84,7 @@ class EmoticonRating extends React.Component<EmoticonRatingProps, RatingState> {
             }
             this.selectItem(x);
           }}
+          // @ts-ignore
           onKeyDown={(e) => {
             if (readOnly) {
               return;
@@ -90,12 +94,14 @@ class EmoticonRating extends React.Component<EmoticonRatingProps, RatingState> {
               // 5 value comes from non-configurable number of icons
               const prevIndex = value - 1 < 1 ? 5 : value - 1;
               this.selectItem(prevIndex);
+              // @ts-ignore
               refs[prevIndex].current && refs[prevIndex].current.focus();
             }
             if (e.keyCode === ARROW_DOWN || e.keyCode === ARROW_RIGHT) {
               e.preventDefault && e.preventDefault();
               const nextIndex = value + 1 > 5 ? 1 : value + 1;
               this.selectItem(nextIndex);
+              // @ts-ignore
               refs[nextIndex].current && refs[nextIndex].current.focus();
             }
           }}
@@ -123,6 +129,7 @@ class EmoticonRating extends React.Component<EmoticonRatingProps, RatingState> {
       <Root
         data-baseweb="emoticon-rating"
         role="radiogroup"
+        // @ts-ignore
         onBlur={(e) => {
           if (!e.currentTarget.contains(e.relatedTarget)) this.updatePreview(undefined);
         }}

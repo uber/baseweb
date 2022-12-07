@@ -12,12 +12,14 @@ const HOVERED = 1;
 const ACTIVE = 2;
 type State = typeof DEFAULT | typeof HOVERED | typeof ACTIVE;
 
+// @ts-ignore
 function getState(props): State {
   if (props.$isActive) return ACTIVE;
   if (props.$isHovered) return HOVERED;
   return DEFAULT;
 }
 
+// @ts-ignore
 function getOuterColor(props) {
   const {
     $theme: { colors },
@@ -56,6 +58,7 @@ function getOuterColor(props) {
   return null;
 }
 
+// @ts-ignore
 function getInnerColor(props) {
   const { colors } = props.$theme;
 
@@ -88,6 +91,7 @@ function getInnerColor(props) {
   }
 }
 
+// @ts-ignore
 function getLabelPadding(props) {
   const { $labelPlacement = '', $theme } = props;
   let paddingDirection;
@@ -113,6 +117,7 @@ function getLabelPadding(props) {
   };
 }
 
+// @ts-ignore
 function getLabelColor(props) {
   const { $disabled, $theme } = props;
   const { colors } = $theme;
@@ -133,6 +138,7 @@ export const RadioGroupRoot = styled<'div', StyleProps>('div', (props) => {
 
 RadioGroupRoot.displayName = 'RadioGroupRoot';
 
+// @ts-ignore
 export const Root = styled<'label', StyleProps>('label', (props) => {
   const { $disabled, $hasDescription, $labelPlacement, $theme, $align } = props;
   const { sizing } = $theme;

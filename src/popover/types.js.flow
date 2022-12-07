@@ -149,6 +149,7 @@ export type StatefulPopoverContainerPropsT = $Diff<
   StatefulPopoverPropsT,
   { children: React.Node }
 > & {
+  // $FlowFixMe
   children: (props: $Diff<PopoverPropsT, { children: React.Node }>) => React.Node,
 };
 

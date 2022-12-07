@@ -18,6 +18,7 @@ import type { Theme } from './types';
 
 import { ThemeContext } from './theme-provider';
 
+// @ts-ignore
 const wrapper = (StyledComponent) => {
   // eslint-disable-next-line react/display-name
   return React.forwardRef((props, ref) => (
@@ -107,6 +108,7 @@ export function withWrapper<C extends StyletronComponent<any, any>, Props>(
     props: Props & (C extends StyletronComponent<any, infer CP> ? CP : never)
   ) => React.ReactElement
 ): C extends StyletronComponent<infer D, infer P> ? StyletronComponent<D, P & Props> : never {
+  // @ts-ignore
   return styletronWithWrapper(StyledElement, (Styled) => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any,react/display-name
     return React.forwardRef<any, React.ComponentProps<C> & Props>((props, ref) => (

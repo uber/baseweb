@@ -104,6 +104,7 @@ class StatelessList extends React.Component<
               $isFocusVisible: this.state.isFocusVisible,
               $isOutOfBounds: isOutOfBounds,
               $value: value,
+              // @ts-ignore
               $index: index,
             };
             return (
@@ -127,6 +128,7 @@ class StatelessList extends React.Component<
                   {removable && (
                     <CloseHandle
                       {...sharedProps}
+                      // @ts-ignore
                       onClick={(evt) => {
                         evt.preventDefault();
                         onChange &&

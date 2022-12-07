@@ -22,6 +22,7 @@ class StatefulListContainer extends React.Component<StatefulComponentContainerPr
     onChange: () => {},
   };
 
+  // @ts-ignore
   state = {
     items: [],
     ...this.props.initialState,
@@ -40,6 +41,7 @@ class StatefulListContainer extends React.Component<StatefulComponentContainerPr
       newIndex === -1
         ? arrayRemove(this.state.items, oldIndex)
         : arrayMove(this.state.items, oldIndex, newIndex);
+    // @ts-ignore
     this.props.onChange({
       newState: newItemsState,
       oldIndex,
@@ -51,6 +53,7 @@ class StatefulListContainer extends React.Component<StatefulComponentContainerPr
 
   internalSetState(type: StateChangeType, changes: State) {
     const { stateReducer } = this.props;
+    // @ts-ignore
     this.setState((prevState) => stateReducer(type, changes, prevState));
   }
 
@@ -61,6 +64,7 @@ class StatefulListContainer extends React.Component<StatefulComponentContainerPr
     return this.props.children({
       ...restProps,
       items: this.state.items,
+      // @ts-ignore
       onChange: this.onChange,
     });
   }

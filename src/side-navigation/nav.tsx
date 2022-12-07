@@ -21,9 +21,12 @@ export default class SideNav extends React.Component<
 > {
   static defaultProps = {
     activeItemId: '/',
+    // @ts-ignore
     activePredicate: null,
+    // @ts-ignore
     items: [],
     overrides: {},
+    // @ts-ignore
     mapItem: null,
   };
   state = { isFocusVisible: false };
@@ -47,18 +50,23 @@ export default class SideNav extends React.Component<
     const { activeItemId, activePredicate, items, onChange, overrides, mapItem } = this.props;
     const navLevel = 1;
 
+    // @ts-ignore
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
     const [NavItemContainer, itemContainerProps] = getOverrides(
+      // @ts-ignore
       overrides.NavItemContainer,
       StyledNavItemContainer
     );
     const [SubNavContainer, subNavContainerProps] = getOverrides(
+      // @ts-ignore
       overrides.SubNavContainer,
       StyledSubNavContainer
     );
 
+    // @ts-ignore
     const renderNavItem = (item: Item, level: number, index, mapItem?) => {
       if (typeof mapItem === 'function') {
+        // @ts-ignore
         const recMapItem = (item) => {
           let subNav = [];
           if (item.subNav) {

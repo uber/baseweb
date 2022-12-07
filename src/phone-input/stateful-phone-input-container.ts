@@ -31,6 +31,7 @@ export default class StatefulPhoneInputContainer extends React.Component<
     overrides: {},
   };
 
+  // @ts-ignore
   state: State = { text: '', country: COUNTRIES.US, ...this.props.initialState };
 
   internalSetState = (type: StateChange, nextState: Partial<State>) => {
@@ -48,6 +49,7 @@ export default class StatefulPhoneInputContainer extends React.Component<
     this.props.onCountryChange(event);
     if (event.option && event.option.id) {
       this.internalSetState(STATE_CHANGE_TYPE.countryChange, {
+        // @ts-ignore
         country: COUNTRIES[event.option.id],
       });
     }

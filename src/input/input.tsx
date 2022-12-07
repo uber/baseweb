@@ -25,7 +25,9 @@ class Input extends React.Component<InputProps, InternalState> {
     overrides: {},
     required: false,
     size: SIZE.default,
+    // @ts-ignore
     startEnhancer: null,
+    // @ts-ignore
     endEnhancer: null,
     clearable: false,
     type: 'text',
@@ -42,11 +44,13 @@ class Input extends React.Component<InputProps, InternalState> {
 
   onFocus = (e: FocusEvent<HTMLInputElement>) => {
     this.setState({ isFocused: true });
+    // @ts-ignore
     this.props.onFocus(e);
   };
 
   onBlur = (e: FocusEvent<HTMLInputElement>) => {
     this.setState({ isFocused: false });
+    // @ts-ignore
     this.props.onBlur(e);
   };
 
@@ -55,8 +59,11 @@ class Input extends React.Component<InputProps, InternalState> {
       startEnhancer,
       endEnhancer,
       overrides: {
+        // @ts-ignore
         Root: RootOverride,
+        // @ts-ignore
         StartEnhancer: StartEnhancerOverride,
+        // @ts-ignore
         EndEnhancer: EndEnhancerOverride,
         ...restOverrides
       },
@@ -82,6 +89,7 @@ class Input extends React.Component<InputProps, InternalState> {
     }
 
     return (
+      // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
       <Root
         data-baseweb="input"
         {...sharedProps}
@@ -90,6 +98,7 @@ class Input extends React.Component<InputProps, InternalState> {
         $hasIconTrailing={this.props.clearable || this.props.type == 'password'}
       >
         {isEnhancer(startEnhancer) && (
+          // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
           <StartEnhancer
             {...sharedProps}
             {...startEnhancerProps}
@@ -98,6 +107,7 @@ class Input extends React.Component<InputProps, InternalState> {
             {typeof startEnhancer === 'function' ? startEnhancer(sharedProps) : startEnhancer}
           </StartEnhancer>
         )}
+        {/* @ts-ignore */}
         <BaseInput
           {...restProps}
           overrides={restOverrides}
@@ -106,6 +116,7 @@ class Input extends React.Component<InputProps, InternalState> {
           onBlur={this.onBlur}
         />
         {isEnhancer(endEnhancer) && (
+          // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
           <EndEnhancer {...sharedProps} {...endEnhancerProps} $position={ENHANCER_POSITION.end}>
             {typeof endEnhancer === 'function' ? endEnhancer(sharedProps) : endEnhancer}
           </EndEnhancer>
@@ -115,6 +126,7 @@ class Input extends React.Component<InputProps, InternalState> {
   }
 }
 
+// @ts-ignore
 function getAdjoinedProp(startEnhancer, endEnhancer): Adjoined {
   if (isEnhancer(startEnhancer) && isEnhancer(endEnhancer)) {
     return ADJOINED.both;
@@ -126,6 +138,7 @@ function getAdjoinedProp(startEnhancer, endEnhancer): Adjoined {
   return ADJOINED.none;
 }
 
+// @ts-ignore
 function isEnhancer(enhancer): boolean {
   return Boolean(enhancer || enhancer === 0);
 }

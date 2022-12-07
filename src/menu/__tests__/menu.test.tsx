@@ -14,6 +14,7 @@ const mockItems = [{ label: 'item1' }, { label: 'item2' }];
 function getSharedProps() {
   return {
     items: mockItems,
+    // @ts-ignore
     getItemLabel: (item) => item.label,
     rootRef: React.createRef(),
   };

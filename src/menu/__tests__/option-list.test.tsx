@@ -15,6 +15,7 @@ const mockItem = { label: 'item1' };
 function getSharedProps() {
   return {
     item: mockItem,
+    // @ts-ignore
     getItemLabel: (item) => item.label,
   };
 }

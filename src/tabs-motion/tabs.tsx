@@ -36,6 +36,7 @@ const KEYBOARD_ACTION = {
   previous: 'previous',
 } as const;
 
+// @ts-ignore
 const getLayoutParams = (el, orientation) => {
   if (!el) {
     return {
@@ -62,6 +63,7 @@ const getLayoutParams = (el, orientation) => {
   }
 };
 
+// @ts-ignore
 const scrollParentToCentreTarget = (targetNode) => {
   const {
     x: parentX,
@@ -91,6 +93,7 @@ const scrollParentToCentreTarget = (targetNode) => {
   targetNode.parentNode.scroll(target.x, target.y);
 };
 
+// @ts-ignore
 function RenderEnhancer({ Enhancer }) {
   if (typeof Enhancer === 'string') {
     return Enhancer;
@@ -111,6 +114,7 @@ export function Tabs({
   orientation = ORIENTATION.horizontal,
   overrides = {},
   renderAll = false,
+  // @ts-ignore
   uid: customUid = null,
   endEnhancer,
 }: TabsProps) {
@@ -247,7 +251,7 @@ export function Tabs({
           {...sharedStylingProps}
           {...TabListProps}
         >
-          {/*todo(flow->ts): children might be other the ReactElement*/}
+          {/* @ts-ignore */}
           {React.Children.map(children, (child: React.ReactElement, index) => {
             if (!child) return;
             return (
@@ -297,7 +301,7 @@ export function Tabs({
         {...sharedStylingProps}
         {...TabBorderProps}
       />
-      {/*todo(flow->ts): children might be other the ReactElement*/}
+      {/* @ts-ignore */}
       {React.Children.map(children, (child: React.ReactElement, index) => {
         if (!child) return;
         return (
@@ -317,17 +321,29 @@ export function Tabs({
 }
 
 function InternalTab({
+  // @ts-ignore
   childKey,
+  // @ts-ignore
   childIndex,
+  // @ts-ignore
   activeKey,
+  // @ts-ignore
   orientation,
+  // @ts-ignore
   activeTabRef,
+  // @ts-ignore
   updateHighlight,
+  // @ts-ignore
   parseKeyDown,
+  // @ts-ignore
   activateOnFocus,
+  // @ts-ignore
   uid,
+  // @ts-ignore
   disabled,
+  // @ts-ignore
   sharedStylingProps,
+  // @ts-ignore
   onChange,
   ...props
 }) {
@@ -467,6 +483,7 @@ function InternalTab({
       {...sharedStylingProps}
       {...restProps}
       {...TabProps}
+      // @ts-ignore
       onClick={(event) => {
         if (typeof onChange === 'function') onChange({ activeKey: key });
         if (typeof onClick === 'function') onClick(event);
@@ -489,11 +506,17 @@ function InternalTab({
 }
 
 function InternalTabPanel({
+  // @ts-ignore
   childKey,
+  // @ts-ignore
   childIndex,
+  // @ts-ignore
   activeKey,
+  // @ts-ignore
   uid,
+  // @ts-ignore
   sharedStylingProps,
+  // @ts-ignore
   renderAll,
   ...props
 }) {

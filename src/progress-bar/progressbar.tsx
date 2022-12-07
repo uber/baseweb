@@ -88,7 +88,9 @@ class ProgressBar extends React.Component<
       const children = [];
       for (let i = 0; i < steps; i++) {
         children.push(
+          // @ts-ignore
           <Bar key={i} {...sharedProps} {...barProps}>
+            {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
             <BarProgress $index={i} {...sharedProps} {...barProgressProps} />
           </Bar>
         );
@@ -96,7 +98,8 @@ class ProgressBar extends React.Component<
       return children;
     }
     return (
-      // eslint-disable-next-line jsx-a11y/role-supports-aria-props
+      /* eslint-disable jsx-a11y/role-supports-aria-props */
+      // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
       <Root
         ref={forwardedRef}
         data-baseweb="progress-bar"
@@ -111,10 +114,13 @@ class ProgressBar extends React.Component<
         {...sharedProps}
         {...rootProps}
       >
+        {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
         <BarContainer {...sharedProps} {...barContainerProps}>
           {infinite ? (
             <React.Fragment>
+              {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
               <InfiniteBar $isLeft={true} $size={sharedProps.$size} {...infiniteBarProps} />
+              {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
               <InfiniteBar $size={sharedProps.$size} {...infiniteBarProps} />
             </React.Fragment>
           ) : (
@@ -122,16 +128,19 @@ class ProgressBar extends React.Component<
           )}
         </BarContainer>
         {showLabel && (
+          // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
           <Label {...sharedProps} {...labelProps}>
             {getProgressLabel(value, maximumValue, minValue)}
           </Label>
         )}
       </Root>
     );
+    /* eslint-enable jsx-a11y/role-supports-aria-props */
   }
 }
 
 const ForwardedProgressBar = React.forwardRef<HTMLDivElement, Partial<ProgressBarProps>>(
+  // @ts-ignore
   (props: ProgressBarProps, ref) => (
     //$FlowExpectedError[cannot-spread-inexact]
     <ProgressBar forwardedRef={ref} {...props} />

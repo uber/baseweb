@@ -10,6 +10,7 @@ function groupedOptionsToArray(groupedOptions: Optgroups): Value {
   return Object.keys(groupedOptions).reduce((arr, optgroup) => {
     const optgroupOptions = groupedOptions[optgroup];
     return arr.concat(
+      // @ts-ignore
       optgroupOptions.map((option) => {
         return {
           ...option,
@@ -37,6 +38,7 @@ export const expandValue = (value: Option, props: Partial<SelectProps>): Option 
 
   const normalizedOptions = normalizeOptions(props.options);
   for (let i = 0; i < normalizedOptions.length; i++) {
+    // @ts-ignore
     if (String(normalizedOptions[i][props.valueKey]) === String(value[props.valueKey])) {
       return normalizedOptions[i];
     }

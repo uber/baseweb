@@ -18,6 +18,7 @@ import { getOverrides, mergeOverrides } from '../helpers/overrides';
 export function Breadcrumbs(props: BreadcrumbsProps) {
   const { overrides = {}, showTrailingSeparator = false } = props;
   const childrenArray = Children.toArray(props.children);
+  // @ts-ignore
   const childrenWithSeparators = [];
 
   const [Root, baseRootProps] = getOverrides(overrides.Root, StyledRoot);
@@ -34,15 +35,19 @@ export function Breadcrumbs(props: BreadcrumbsProps) {
 
   childrenArray.forEach((child, index) => {
     childrenWithSeparators.push(
+      // @ts-ignore
       <ListItem key={`breadcrumb-item-${index}`} $itemIndex={index} {...baseListItemProps}>
         {child}
         {(showTrailingSeparator || index !== childrenArray.length - 1) && (
+          // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
           <Separator {...baseSeparatorProps} key={`separator-${index}`}>
             <ThemeContext.Consumer>
               {(theme) =>
                 theme.direction === 'rtl' ? (
+                  // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
                   <Left size={16} {...baseIconProps} />
                 ) : (
+                  // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
                   <Right size={16} {...baseIconProps} />
                 )
               }
@@ -56,11 +61,13 @@ export function Breadcrumbs(props: BreadcrumbsProps) {
   return (
     <LocaleContext.Consumer>
       {(locale) => (
+        // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
         <Root
           aria-label={props['aria-label'] || props.ariaLabel || locale.breadcrumbs.ariaLabel}
           data-baseweb="breadcrumbs"
           {...baseRootProps}
         >
+          {/* @ts-ignore */}
           <List {...baseListProps}>{childrenWithSeparators}</List>
         </Root>
       )}

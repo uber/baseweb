@@ -15,6 +15,7 @@ import { getOverrides } from '../helpers/overrides';
 
 import type { ButtonProps } from './types';
 
+// @ts-ignore
 function RenderEnhancer(props) {
   const { Enhancer, ...restProps } = props;
   if (typeof Enhancer === 'string') {
@@ -37,12 +38,14 @@ export default function ButtonInternals(props: ButtonProps) {
   return (
     <React.Fragment>
       {startEnhancer !== null && startEnhancer !== undefined && (
+        // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
         <StartEnhancer {...sharedProps} {...startEnhancerProps}>
           <RenderEnhancer Enhancer={startEnhancer} />
         </StartEnhancer>
       )}
       {children}
       {endEnhancer !== null && endEnhancer !== undefined && (
+        // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
         <EndEnhancer {...sharedProps} {...endEnhancerProps}>
           <RenderEnhancer Enhancer={endEnhancer} />
         </EndEnhancer>

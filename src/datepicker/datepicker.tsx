@@ -30,6 +30,7 @@ export const DEFAULT_DATE_FORMAT = 'yyyy/MM/dd';
 
 const INPUT_DELIMITER = '–';
 
+// @ts-ignore
 const combineSeparatedInputs = (newInputValue, prevCombinedInputValue = '', inputRole) => {
   let inputValue = newInputValue;
   const [prevStartDate = '', prevEndDate = ''] = prevCombinedInputValue.split(
@@ -59,6 +60,7 @@ export default class Datepicker<T = Date> extends React.Component<
 > {
   static defaultProps = {
     'aria-describedby': 'datepicker--screenreader--message--input',
+    // @ts-ignore
     value: null,
     formatString: DEFAULT_DATE_FORMAT,
     adapter: dateFnsAdapter,
@@ -70,6 +72,7 @@ export default class Datepicker<T = Date> extends React.Component<
 
   constructor(props: DatepickerProps<T>) {
     super(props);
+    // @ts-ignore
     this.dateHelpers = new DateHelpers(props.adapter);
     this.state = {
       calendarFocused: false,
@@ -117,6 +120,7 @@ export default class Datepicker<T = Date> extends React.Component<
       if (!nextDate[0] || !nextDate[1]) {
         isOpen = true;
         isPseudoFocused = true;
+        // @ts-ignore
         calendarFocused = null;
       } else if (nextDate[0] && nextDate[1]) {
         const [start, end] = nextDate;
@@ -207,6 +211,7 @@ export default class Datepicker<T = Date> extends React.Component<
     date
   ) => {
     const { displayValueAtRangeIndex, formatDisplayValue, range } = this.props;
+    // @ts-ignore
     const formatString = this.normalizeDashes(this.props.formatString);
 
     if (typeof displayValueAtRangeIndex === 'number') {
@@ -297,6 +302,7 @@ export default class Datepicker<T = Date> extends React.Component<
         : event.currentTarget.value;
 
     const mask = this.getMask();
+    // @ts-ignore
     const formatString = this.normalizeDashes(this.props.formatString);
 
     if (
@@ -312,6 +318,7 @@ export default class Datepicker<T = Date> extends React.Component<
 
     this.setState({ inputValue });
 
+    // @ts-ignore
     const parseDateString = (dateString) => {
       if (formatString === DEFAULT_DATE_FORMAT) {
         return this.dateHelpers.parse(dateString, 'slashDate', this.props.locale);
@@ -347,7 +354,9 @@ export default class Datepicker<T = Date> extends React.Component<
 
       // Prevent early parsing of value.
       // Eg 25.12.2 will be transformed to 25.12.0002 formatted from date to string
+      // @ts-ignore
       if (dateString.replace(/(\s)*/g, '').length < formatString.replace(/(\s)*/g, '').length) {
+        // @ts-ignore
         date = null;
       } else {
         date = parseDateString(dateString);
@@ -460,6 +469,7 @@ export default class Datepicker<T = Date> extends React.Component<
         : this.state.inputValue;
 
     return (
+      // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
       <InputComponent
         aria-disabled={this.props.disabled}
         aria-label={
@@ -477,6 +487,7 @@ export default class Datepicker<T = Date> extends React.Component<
         onFocus={() => this.open(inputRole)}
         onBlur={this.handleInputBlur}
         onKeyDown={this.handleKeyDown}
+        // @ts-ignore
         onChange={(event) => this.handleInputChange(event, inputRole)}
         placeholder={placeholder}
         mask={this.getMask()}
@@ -502,6 +513,7 @@ export default class Datepicker<T = Date> extends React.Component<
       <LocaleContext.Consumer>
         {(locale) => (
           <React.Fragment>
+            {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
             <PopoverComponent
               accessibilityType={ACCESSIBILITY_TYPE.none}
               focusLock={false}
@@ -525,18 +537,22 @@ export default class Datepicker<T = Date> extends React.Component<
               }
               {...popoverProps}
             >
-              {}
+              {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
               <InputWrapper
                 {...inputWrapperProps}
                 $separateRangeInputs={this.props.range && this.props.separateRangeInputs}
               >
                 {this.props.range && this.props.separateRangeInputs ? (
                   <>
+                    {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
                     <StartDate {...startDateProps}>
+                      {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
                       <InputLabel {...inputLabelProps}>{startDateLabel}</InputLabel>
                       {this.renderInputComponent(locale, INPUT_ROLE.startDate)}
                     </StartDate>
+                    {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
                     <EndDate {...endDateProps}>
+                      {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
                       <InputLabel {...inputLabelProps}>{endDateLabel}</InputLabel>
                       {this.renderInputComponent(locale, INPUT_ROLE.endDate)}
                     </EndDate>
@@ -547,6 +563,7 @@ export default class Datepicker<T = Date> extends React.Component<
               </InputWrapper>
             </PopoverComponent>
             <p
+              // @ts-ignore
               id={this.props['aria-describedby']}
               style={{
                 position: 'fixed',

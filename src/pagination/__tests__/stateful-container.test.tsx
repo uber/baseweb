@@ -67,8 +67,10 @@ describe('Pagination StatefulContainer', () => {
   it('internalSetState should still call setState with no stateReducer', () => {
     const props = {
       ...getSharedProps(),
+      // @ts-ignore
       stateReducer: null,
     };
+    // @ts-ignore
     render(<StatefulContainer {...props} />);
     act(() => mockChildrenFn.mock.calls[0][0].onPageChange({ nextPage: 2 }));
     expect(mockChildrenFn.mock.calls[1][0]).toHaveProperty('currentPage', 2);

@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import { SORT_DIRECTIONS } from './constants';
-import type { ColumnOptions, StatefulContainerProps } from './types';
+import type { ColumnOptions, Row, StatefulContainerProps } from './types';
 
 function useDuplicateColumnTitleWarning(columns: ColumnOptions[]) {
   React.useEffect(() => {
@@ -34,6 +34,7 @@ export const StatefulContainer: React.FC<StatefulContainerProps> = (props) => {
     props.initialSelectedRowIds || new Set()
   );
 
+  // @ts-ignore
   function handleSort(columnIndex) {
     let nextSortIndex;
     let nextSortDirection;
@@ -59,6 +60,7 @@ export const StatefulContainer: React.FC<StatefulContainerProps> = (props) => {
     }
   }
 
+  // @ts-ignore
   function handleTextQueryChange(nextTextQuery) {
     setTextQuery(nextTextQuery);
     if (props.onTextQueryChange) {
@@ -66,6 +68,7 @@ export const StatefulContainer: React.FC<StatefulContainerProps> = (props) => {
     }
   }
 
+  // @ts-ignore
   function handleFilterAdd(title, filterParams) {
     filters.set(title, filterParams);
     if (props.onFilterAdd) {
@@ -73,6 +76,7 @@ export const StatefulContainer: React.FC<StatefulContainerProps> = (props) => {
     }
     setFilters(new Map(filters));
   }
+  // @ts-ignore
   function handleFilterRemove(title) {
     filters.delete(title);
     if (props.onFilterRemove) {
@@ -81,6 +85,7 @@ export const StatefulContainer: React.FC<StatefulContainerProps> = (props) => {
     setFilters(new Map(filters));
   }
 
+  // @ts-ignore
   function handleSelectChange(next) {
     setSelectedRowIds(next);
 
@@ -89,13 +94,16 @@ export const StatefulContainer: React.FC<StatefulContainerProps> = (props) => {
       selectionCallback(props.rows.filter((r) => next.has(r.id)));
     }
   }
+  // @ts-ignore
   function handleSelectMany(incomingRows) {
     // only adds rows that are visible in the table
+    // @ts-ignore
     handleSelectChange(new Set([...selectedRowIds, ...incomingRows.map((r) => r.id)]));
   }
   function handleSelectNone() {
     handleSelectChange(new Set());
   }
+  // @ts-ignore
   function handleSelectOne(row) {
     if (selectedRowIds.has(row.id)) {
       selectedRowIds.delete(row.id);
@@ -106,7 +114,7 @@ export const StatefulContainer: React.FC<StatefulContainerProps> = (props) => {
   }
 
   const handleIncludedRowsChange = React.useCallback(
-    (rows) => {
+    (rows: Row[]) => {
       if (props.onIncludedRowsChange) {
         props.onIncludedRowsChange(rows);
       }
@@ -115,7 +123,7 @@ export const StatefulContainer: React.FC<StatefulContainerProps> = (props) => {
   );
 
   const handleRowHighlightChange = React.useCallback(
-    (rowIndex, row) => {
+    (rowIndex: number, row: Row) => {
       if (props.onRowHighlightChange) {
         props.onRowHighlightChange(rowIndex, row);
       }
@@ -138,6 +146,7 @@ export const StatefulContainer: React.FC<StatefulContainerProps> = (props) => {
     rowHighlightIndex: props.rowHighlightIndex,
     selectedRowIds,
     sortIndex,
+    // @ts-ignore
     sortDirection,
     textQuery,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

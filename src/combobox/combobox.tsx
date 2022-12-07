@@ -101,6 +101,7 @@ function Combobox<Option>(props: ComboboxProps<Option>) {
 
   const listboxWidth = React.useMemo(() => {
     if (rootRef.current) {
+      // @ts-ignore
       return `${rootRef.current.clientWidth}px`;
     }
     return null;
@@ -112,6 +113,7 @@ function Combobox<Option>(props: ComboboxProps<Option>) {
     }
   }
 
+  // @ts-ignore
   function handleKeyDown(event) {
     if (event.keyCode === ARROW_DOWN) {
       event.preventDefault();
@@ -158,6 +160,7 @@ function Combobox<Option>(props: ComboboxProps<Option>) {
     }
   }
 
+  // @ts-ignore
   function handleFocus(event) {
     if (!isOpen && options.length) {
       handleOpen();
@@ -165,6 +168,7 @@ function Combobox<Option>(props: ComboboxProps<Option>) {
     if (onFocus) onFocus(event);
   }
 
+  // @ts-ignore
   function handleBlur(event) {
     if (
       listboxRef.current &&
@@ -173,6 +177,7 @@ function Combobox<Option>(props: ComboboxProps<Option>) {
       // EventTarget which is a super type of Node. Passing an EventTarget seems
       // to work fine, assuming the flow type is too strict.
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      // @ts-ignore
       listboxRef.current.contains(event.relatedTarget as any)
     ) {
       return;
@@ -185,6 +190,7 @@ function Combobox<Option>(props: ComboboxProps<Option>) {
 
   function handleInputClick() {
     if (inputRef.current) {
+      // @ts-ignore
       inputRef.current.focus();
     }
 
@@ -193,6 +199,7 @@ function Combobox<Option>(props: ComboboxProps<Option>) {
     }
   }
 
+  // @ts-ignore
   function handleInputChange(event) {
     handleOpen();
     setSelectionIndex(-1);
@@ -200,6 +207,7 @@ function Combobox<Option>(props: ComboboxProps<Option>) {
     setTempValue(event.target.value);
   }
 
+  // @ts-ignore
   function handleInputRef(input) {
     inputRef.current = input;
     if (forwardInputRef) {
@@ -212,6 +220,7 @@ function Combobox<Option>(props: ComboboxProps<Option>) {
     }
   }
 
+  // @ts-ignore
   function handleOptionClick(index) {
     let clickedOption = options[index];
     if (clickedOption) {
@@ -222,6 +231,7 @@ function Combobox<Option>(props: ComboboxProps<Option>) {
       setTempValue(stringified);
 
       if (inputRef.current) {
+        // @ts-ignore
         inputRef.current.focus();
       }
     }

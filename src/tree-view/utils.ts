@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 import type { TreeNodeData, TreeNodeId } from './types';
 
+// @ts-ignore
 const getLastLeafId = (node: TreeNodeData, getId: (a: TreeNodeData) => TreeNodeId) => {
   if (node.isExpanded && node.children && node.children.length) {
     return getLastLeafId(node.children[node.children.length - 1], getId);
@@ -13,6 +14,7 @@ const getLastLeafId = (node: TreeNodeData, getId: (a: TreeNodeData) => TreeNodeI
   return getId(node);
 };
 
+// @ts-ignore
 export const getParentId = (
   nodes: TreeNodeData[],
   nodeId: TreeNodeId,
@@ -23,7 +25,9 @@ export const getParentId = (
     if (getId(nodes[i]) === nodeId) {
       return parentId;
     }
+    // @ts-ignore
     if (nodes[i].isExpanded && nodes[i].children && nodes[i].children.length) {
+      // @ts-ignore
       const foundId = getParentId(nodes[i].children, nodeId, getId(nodes[i]), getId);
       if (foundId) {
         return foundId;
@@ -33,6 +37,7 @@ export const getParentId = (
   return null;
 };
 
+// @ts-ignore
 export const getPrevId = (
   nodes: TreeNodeData[],
   nodeId: TreeNodeId,
@@ -47,7 +52,9 @@ export const getPrevId = (
         return getLastLeafId(nodes[i - 1], getId);
       }
     }
+    // @ts-ignore
     if (nodes[i].isExpanded && nodes[i].children && nodes[i].children.length) {
+      // @ts-ignore
       const foundId = getPrevId(nodes[i].children, nodeId, getId(nodes[i]), getId);
       if (foundId) {
         return foundId;
@@ -57,6 +64,7 @@ export const getPrevId = (
   return null;
 };
 
+// @ts-ignore
 export const getFirstChildId = (
   nodes: TreeNodeData[],
   nodeId: TreeNodeId,
@@ -64,11 +72,15 @@ export const getFirstChildId = (
 ) => {
   for (let i = 0; i < nodes.length; i++) {
     if (getId(nodes[i]) === nodeId) {
+      // @ts-ignore
       if (nodes[i].isExpanded && nodes[i].children && nodes[i].children.length) {
+        // @ts-ignore
         return getId(nodes[i].children[0]);
       }
     }
+    // @ts-ignore
     if (nodes[i].isExpanded && nodes[i].children && nodes[i].children.length) {
+      // @ts-ignore
       const foundId = getFirstChildId(nodes[i].children, nodeId, getId);
       if (foundId) {
         return foundId;
@@ -78,6 +90,7 @@ export const getFirstChildId = (
   return null;
 };
 
+// @ts-ignore
 export const getNextId = (
   nodes: TreeNodeData[],
   nodeId: TreeNodeId,
@@ -86,7 +99,9 @@ export const getNextId = (
 ) => {
   for (let i = 0; i < nodes.length; i++) {
     if (getId(nodes[i]) === nodeId) {
+      // @ts-ignore
       if (nodes[i].isExpanded && nodes[i].children && nodes[i].children.length) {
+        // @ts-ignore
         return getId(nodes[i].children[0]);
       } else if (nodes[i + 1]) {
         return getId(nodes[i + 1]);
@@ -94,8 +109,11 @@ export const getNextId = (
         return closestOmmer;
       }
     }
+    // @ts-ignore
     if (nodes[i].isExpanded && nodes[i].children && nodes[i].children.length) {
+      // @ts-ignore
       const foundId = getNextId(
+        // @ts-ignore
         nodes[i].children,
         nodeId,
         nodes[i + 1] ? getId(nodes[i + 1]) : closestOmmer,
@@ -109,6 +127,7 @@ export const getNextId = (
   return null;
 };
 
+// @ts-ignore
 export const getEndId = (nodes: TreeNodeData[], getId: (a: TreeNodeData) => TreeNodeId) => {
   const endNode = nodes[nodes.length - 1];
   if (endNode.isExpanded && endNode.children && endNode.children.length) {
@@ -117,6 +136,7 @@ export const getEndId = (nodes: TreeNodeData[], getId: (a: TreeNodeData) => Tree
   return getId(endNode);
 };
 
+// @ts-ignore
 export const getExpandableSiblings = (
   nodes: TreeNodeData[],
   nodeId: TreeNodeId,
@@ -126,13 +146,17 @@ export const getExpandableSiblings = (
     if (getId(nodes[i]) === nodeId) {
       const expandableSiblings = [];
       for (let j = 0; j < nodes.length; j++) {
+        // @ts-ignore
         if (!nodes[j].isExpanded && nodes[j].children && nodes[j].children.length) {
+          // @ts-ignore
           expandableSiblings.push(nodes[j]);
         }
       }
       return expandableSiblings;
     }
+    // @ts-ignore
     if (nodes[i].isExpanded && nodes[i].children && nodes[i].children.length) {
+      // @ts-ignore
       const result = getExpandableSiblings(nodes[i].children, nodeId, getId);
       if (result.length) {
         return result;
@@ -171,6 +195,7 @@ export const getCharMatchId = (
   return foundid;
 };
 
+// @ts-ignore
 export const matchString = (
   nodes: TreeNodeData[],
   nodeId: TreeNodeId,
@@ -190,8 +215,11 @@ export const matchString = (
         return getId(nodes[i]);
       }
     }
+    // @ts-ignore
     if (nodes[i].isExpanded && nodes[i].children && nodes[i].children.length) {
+      // @ts-ignore
       const foundId = matchString(
+        // @ts-ignore
         nodes[i].children,
         nodeId,
         chars,

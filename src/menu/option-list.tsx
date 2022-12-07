@@ -43,9 +43,11 @@ function OptionList(
     StyledListItemAnchor
   );
 
+  // @ts-ignore
   const getItem = (item) => {
     if (item.href && renderHrefAsAnchor) {
       return (
+        // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
         <ListItemAnchor $item={item} href={item.href} {...listItemAnchorProps}>
           {getItemLabel(item)}
         </ListItemAnchor>
@@ -67,6 +69,7 @@ function OptionList(
           onClick={onClick}
           overrides={overrides}
         >
+          {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
           <ListItem
             ref={ref}
             aria-label={
@@ -88,6 +91,7 @@ function OptionList(
   );
 }
 
+// @ts-ignore
 function areEqualShallow(a, b) {
   if (!a || !b) return false;
 
@@ -99,6 +103,7 @@ function areEqualShallow(a, b) {
   return true;
 }
 
+// @ts-ignore
 function compare(prevProps, nextProps) {
   return (
     prevProps.$isHighlighted === nextProps.$isHighlighted &&
@@ -112,6 +117,7 @@ function compare(prevProps, nextProps) {
   );
 }
 
+// @ts-ignore
 const forwarded = React.forwardRef<HTMLElement, OptionListProps>(OptionList);
 forwarded.displayName = 'OptionList';
 

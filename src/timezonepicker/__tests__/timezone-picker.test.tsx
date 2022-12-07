@@ -11,6 +11,7 @@ import { TimezonePicker } from '..';
 import { TestBaseProvider } from '../../test/test-utils';
 
 const mockedDate = new Date('2021-01-01T00:00:00Z');
+// @ts-ignore
 const Example = ({ setDate }) => {
   return <TimezonePicker date={mockedDate} onChange={setDate} />;
 };

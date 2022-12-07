@@ -15,6 +15,7 @@ export const getMediaQuery = (breakpoint: number): string =>
 
 export const getMediaQueries = (breakpoints: Breakpoints): string[] =>
   Object.keys(breakpoints)
+    // @ts-ignore
     .map((key) => breakpoints[key])
     .sort((a, b) => a - b)
     .map(getMediaQuery);

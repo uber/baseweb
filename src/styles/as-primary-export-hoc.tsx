@@ -14,8 +14,10 @@ export default function asPrimaryExport(
   return function withStyledPropsHOC(props: {}) {
     const styledProps = Object.keys(props).reduce((acc, key) => {
       if (key[0] === '$' || propsTransformNames.indexOf(key) < 0) {
+        // @ts-ignore
         acc[key] = props[key];
       } else if (propsTransformNames.indexOf(key) >= 0) {
+        // @ts-ignore
         acc['$' + key] = props[key];
       }
       return acc;

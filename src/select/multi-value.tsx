@@ -14,10 +14,12 @@ export default function MultiValue(props: any) {
   // todo(v11): remove the MultiValue override in favor of Tag
   const [MultiValue, tagProps] = getOverrides(overrides.Tag || overrides.MultiValue, Tag);
   return (
+    // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
     <MultiValue
       variant={TAG_VARIANT.solid}
       overrides={{
         Root: {
+          // @ts-ignore
           style: ({ $theme: { sizing } }) => ({
             marginRight: sizing.scale0,
             marginBottom: sizing.scale0,

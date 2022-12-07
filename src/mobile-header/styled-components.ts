@@ -1,6 +1,5 @@
 /*
 Copyright (c) Uber Technologies, Inc.
-
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
@@ -12,6 +11,7 @@ export const StyledRoot = styled<'div', { $type: Type }>('div', ({ $theme, $type
   width: '100%',
   display: 'grid',
   gridTemplateColumns: 'auto 1fr auto',
+  gridTemplateRows: '48px',
   ...($type === TYPE.floating
     ? { backgroundColor: 'transparent', pointerEvents: 'none' }
     : { backgroundColor: $theme.colors.backgroundPrimary }),
@@ -28,6 +28,7 @@ export const StyledNavContainer = styled<'div', { $hasTextContent: boolean; $typ
 
     return {
       pointerEvents: 'auto',
+      minWidth: '48px',
       ...($hasTextContent && $type === TYPE.fixed ? {} : floatingPadding),
     };
   }

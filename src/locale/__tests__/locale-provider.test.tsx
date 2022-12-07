@@ -11,6 +11,7 @@ import en_US from '../en_US';
 import tr_TR from '../tr_TR';
 
 describe('LocaleProvider', () => {
+  // @ts-ignore
   const ExpectLocaleComponent = ({ expectedValue }) => {
     const locale = React.useContext(LocaleContext);
     expect(locale).toEqual(expectedValue);

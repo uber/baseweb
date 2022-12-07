@@ -245,6 +245,7 @@ export const StyledPinHead = styled<
     gap: '8px',
     boxShadow: $theme.lighting.shadow600,
     whiteSpace: 'nowrap',
+    // @ts-ignore
     ...sharedStyles[$type],
     ...($forceCircle && {
       width: `${$height}px`,
@@ -330,6 +331,7 @@ export const StyledStrokedLabel = styled<
 
   return {
     display: 'flex',
+    // @ts-ignore
     ...$theme.typography[LABEL_SIZES[$size]],
     color: $theme.colors.primaryA,
     transition: `${$theme.animation.timing300} ${$theme.animation.easeOutCurve} all`,
@@ -383,6 +385,7 @@ export const StyledEnhancerSlot = styled<
   }
 >('div', ({ $theme, $color, $height, $size }) => {
   return {
+    // @ts-ignore
     ...$theme.typography[LABEL_SIZES[$size]],
     display: 'flex',
     alignItems: 'center',
@@ -392,6 +395,30 @@ export const StyledEnhancerSlot = styled<
     color: $color,
   };
 });
+
+export const StyledFloatingRouteMarkerRoot = styled<
+  'div',
+  {
+    $height: number;
+    $background: string;
+    $gridTemplateColumns: string;
+  }
+>('div', ({ $theme, $height, $background, $gridTemplateColumns }) => {
+  return {
+    position: 'absolute',
+    backgroundColor: $background,
+    height: `${$height}px`,
+    display: 'grid',
+    gridTemplateColumns: $gridTemplateColumns,
+    gap: '8px',
+    filter: `drop-shadow(${$theme.lighting.shadow600})`,
+    whiteSpace: 'nowrap',
+    borderRadius: `${8}px`,
+    padding: `${4}px ${8}px`,
+    transition: `${$theme.animation.timing300} ${$theme.animation.easeOutCurve} all`,
+  };
+});
+StyledFloatingRouteMarkerRoot.displayName = 'StyledFloatingRouteMarkerRoot';
 
 StyledEnhancerSlot.displayName = 'StyledEnhancerSlot';
 
@@ -430,30 +457,6 @@ export const StyledLabel = styled<
 
 StyledLabel.displayName = 'StyledLabel';
 
-export const StyledFloatingRouteMarkerRoot = styled<
-  'div',
-  {
-    $height: number;
-    $background: string;
-    $gridTemplateColumns: string;
-  }
->('div', ({ $theme, $height, $background, $gridTemplateColumns }) => {
-  return {
-    position: 'absolute',
-    backgroundColor: $background,
-    height: `${$height}px`,
-    display: 'grid',
-    gridTemplateColumns: $gridTemplateColumns,
-    gap: '8px',
-    filter: `drop-shadow(${$theme.lighting.shadow600})`,
-    whiteSpace: 'nowrap',
-    borderRadius: `${8}px`,
-    padding: `${4}px ${8}px`,
-    transition: `${$theme.animation.timing300} ${$theme.animation.easeOutCurve} all`,
-  };
-});
-StyledFloatingRouteMarkerRoot.displayName = 'StyledFloatingRouteMarkerRoot';
-
 export const LocationPuckContainer = styled<'div', {}>('div', () => {
   return {
     position: 'relative',
@@ -465,8 +468,12 @@ export const LocationPuckContainer = styled<'div', {}>('div', () => {
 
 LocationPuckContainer.displayName = 'LocationPuckContainer';
 
-export const consumerLocationShadow = { boxShadow: `0px 2px 4px 0px rgba(67, 76, 123, 0.2)` };
-export const earnerLocationShadow = { boxShadow: `0px 3px 5px 0px rgba(67, 76, 123, 0.4)` };
+export const consumerLocationShadow = {
+  boxShadow: `0px 2px 4px 0px rgba(67, 76, 123, 0.2)`,
+};
+export const earnerLocationShadow = {
+  boxShadow: `0px 3px 5px 0px rgba(67, 76, 123, 0.4)`,
+};
 
 export const StyledConsumerLocationPuckCore = styled<'div', {}>('div', ({ $theme }) => {
   return {

@@ -20,6 +20,7 @@ import { isFocusVisible } from '../utils/focusVisible';
 
 import type { ChangeEvent } from 'react';
 
+// @ts-ignore
 const stopPropagation = (e) => e.stopPropagation();
 
 class StatelessCheckbox extends React.Component<CheckboxProps, CheckboxState> {
@@ -52,33 +53,40 @@ class StatelessCheckbox extends React.Component<CheckboxProps, CheckboxState> {
 
   componentDidMount() {
     const { autoFocus, inputRef } = this.props;
+    // @ts-ignore
     if (autoFocus && inputRef.current) {
+      // @ts-ignore
       inputRef.current.focus();
     }
   }
 
   onMouseEnter = (e: ChangeEvent<HTMLInputElement>) => {
     this.setState({ isHovered: true });
+    // @ts-ignore
     this.props.onMouseEnter(e);
   };
 
   onMouseLeave = (e: ChangeEvent<HTMLInputElement>) => {
     this.setState({ isHovered: false, isActive: false });
+    // @ts-ignore
     this.props.onMouseLeave(e);
   };
 
   onMouseDown = (e: ChangeEvent<HTMLInputElement>) => {
     this.setState({ isActive: true });
+    // @ts-ignore
     this.props.onMouseDown(e);
   };
 
   onMouseUp = (e: ChangeEvent<HTMLInputElement>) => {
     this.setState({ isActive: false });
+    // @ts-ignore
     this.props.onMouseUp(e);
   };
 
   onFocus = (e: ChangeEvent<HTMLInputElement>) => {
     this.setState({ isFocused: true });
+    // @ts-ignore
     this.props.onFocus(e);
     if (isFocusVisible(e)) {
       this.setState({ isFocusVisible: true });
@@ -87,6 +95,7 @@ class StatelessCheckbox extends React.Component<CheckboxProps, CheckboxState> {
 
   onBlur = (e: ChangeEvent<HTMLInputElement>) => {
     this.setState({ isFocused: false });
+    // @ts-ignore
     this.props.onBlur(e);
     if (this.state.isFocusVisible !== false) {
       this.setState({ isFocusVisible: false });

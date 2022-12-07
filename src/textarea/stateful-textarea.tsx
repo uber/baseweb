@@ -11,6 +11,7 @@ import type { StatefulTextareaProps, TextareaProps } from './types';
 
 export default function StatefulTextarea(props: StatefulTextareaProps) {
   return (
+    // @ts-ignore
     <StatefulContainer {...props}>
       {(childrenProps) => <Textarea {...(childrenProps as TextareaProps)} />}
     </StatefulContainer>

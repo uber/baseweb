@@ -31,10 +31,12 @@ type FilterParameters = {};
 type AnchorColumn = ColumnOptions<Value, FilterParameters>;
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
+// @ts-ignore
 function AnchorFilter(props) {
   return <div>not implemented for anchor column</div>;
 }
 
+// @ts-ignore
 function AnchorCell(props) {
   const [css] = useStyletron();
   return (

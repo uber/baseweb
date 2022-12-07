@@ -127,13 +127,13 @@ export default class LayersManager extends React.Component<LayersManagerProps, L
     });
   };
 
-  onAddKeyDownHandler = (keyDownHandler: () => unknown) => {
+  onAddKeyDownHandler = (keyDownHandler: (event: KeyboardEvent) => void) => {
     this.setState((prev) => {
       return { keyDownHandlers: [...prev.keyDownHandlers, keyDownHandler] };
     });
   };
 
-  onRemoveKeyDownHandler = (keyDownHandler: () => unknown) => {
+  onRemoveKeyDownHandler = (keyDownHandler: (event: KeyboardEvent) => void) => {
     this.setState((prev) => {
       return {
         keyDownHandlers: prev.keyDownHandlers.filter((handler) => handler !== keyDownHandler),
@@ -141,13 +141,13 @@ export default class LayersManager extends React.Component<LayersManagerProps, L
     });
   };
 
-  onAddKeyUpHandler = (keyUpHandler: () => unknown) => {
+  onAddKeyUpHandler = (keyUpHandler: (event: KeyboardEvent) => void) => {
     this.setState((prev) => {
       return { keyUpHandlers: [...prev.keyUpHandlers, keyUpHandler] };
     });
   };
 
-  onRemoveKeyUpHandler = (keyUpHandler: () => unknown) => {
+  onRemoveKeyUpHandler = (keyUpHandler: (event: KeyboardEvent) => void) => {
     this.setState((prev) => {
       return {
         keyUpHandlers: prev.keyUpHandlers.filter((handler) => handler !== keyUpHandler),
@@ -155,13 +155,13 @@ export default class LayersManager extends React.Component<LayersManagerProps, L
     });
   };
 
-  onAddKeyPressHandler = (keyPressHandler: () => unknown) => {
+  onAddKeyPressHandler = (keyPressHandler: (event: KeyboardEvent) => void) => {
     this.setState((prev) => {
       return { keyPressHandlers: [...prev.keyPressHandlers, keyPressHandler] };
     });
   };
 
-  onRemoveKeyPressHandler = (keyPressHandler: () => unknown) => {
+  onRemoveKeyPressHandler = (keyPressHandler: (event: KeyboardEvent) => void) => {
     this.setState((prev) => {
       return {
         keyPressHandlers: prev.keyPressHandlers.filter((handler) => handler !== keyPressHandler),
@@ -169,13 +169,13 @@ export default class LayersManager extends React.Component<LayersManagerProps, L
     });
   };
 
-  onAddDocClickHandler = (docClickHandler: (event: MouseEvent) => unknown) => {
+  onAddDocClickHandler = (docClickHandler: (event: MouseEvent) => void) => {
     this.setState((prev) => {
       return { docClickHandlers: [...prev.docClickHandlers, docClickHandler] };
     });
   };
 
-  onRemoveDocClickHandler = (docClickHandler: (event: MouseEvent) => unknown) => {
+  onRemoveDocClickHandler = (docClickHandler: (event: MouseEvent) => void) => {
     this.setState((prev) => {
       return {
         docClickHandlers: prev.docClickHandlers.filter((handler) => handler !== docClickHandler),
@@ -221,9 +221,11 @@ export default class LayersManager extends React.Component<LayersManagerProps, L
                 removeDocClickHandler: this.onRemoveDocClickHandler,
               }}
             >
+              {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
               <AppContainer {...appContainerProps} ref={this.containerRef}>
                 {this.props.children}
               </AppContainer>
+              {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
               <LayersContainer {...layersContainerProps} ref={this.host} />
             </Provider>
           );

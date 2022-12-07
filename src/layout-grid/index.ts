@@ -17,6 +17,7 @@ export * from './constants';
 const componentName = 'Layout Grid (baseui/layout-grid)';
 export const Unstable_StyledGrid = DeprecatedHOC(StyledGrid, componentName);
 export const Unstable_StyledCell = DeprecatedHOC(StyledCell, componentName);
+// @ts-ignore
 export const Unstable_Grid = DeprecatedHOC(Grid, componentName);
 export const Unstable_Cell = DeprecatedHOC(Cell, componentName);
 

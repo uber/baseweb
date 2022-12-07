@@ -13,6 +13,7 @@ import type { StatefulPopoverProps } from './types';
 function StatefulPopover(props: StatefulPopoverProps) {
   const { children, ...restProps } = props;
   return (
+    // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
     <StatefulContainer {...restProps}>
       {(popoverProps) => <Popover {...popoverProps}>{children}</Popover>}
     </StatefulContainer>
@@ -30,6 +31,7 @@ StatefulPopover.defaultProps = {
   triggerType: TRIGGER_TYPE.click,
   dismissOnClickOutside: true,
   dismissOnEsc: true,
+  // @ts-ignore
   stateReducer: (_, nextState) => nextState,
   popoverMargin: POPOVER_MARGIN,
 };

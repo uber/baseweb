@@ -53,12 +53,15 @@ class StarRating extends React.Component<StarRatingProps, RatingState> {
     const [Star, starProps] = getOverrides(overrides.Item, StyledStar);
 
     const ratings = [];
+    // @ts-ignore
     const refs = [{ current: null }];
     for (let x = 1; x <= numItems; x++) {
       const isFocusable = x === value || (value < 1 && x === 1);
       const starRef = React.createRef<HTMLLIElement>();
+      // @ts-ignore
       refs.push(starRef);
       ratings.push(
+        // @ts-ignore
         <Star
           key={x}
           role="radio"
@@ -83,6 +86,7 @@ class StarRating extends React.Component<StarRatingProps, RatingState> {
             }
             this.selectItem(x);
           }}
+          // @ts-ignore
           onKeyDown={(e) => {
             if (readOnly) {
               return;
@@ -91,12 +95,14 @@ class StarRating extends React.Component<StarRatingProps, RatingState> {
               e.preventDefault && e.preventDefault();
               const prevIndex = value - 1 < 1 ? numItems : value - 1;
               this.selectItem(prevIndex);
+              // @ts-ignore
               refs[prevIndex].current && refs[prevIndex].current.focus();
             }
             if (e.keyCode === ARROW_DOWN || e.keyCode === ARROW_RIGHT) {
               e.preventDefault && e.preventDefault();
               const nextIndex = value + 1 > numItems ? 1 : value + 1;
               this.selectItem(nextIndex);
+              // @ts-ignore
               refs[nextIndex].current && refs[nextIndex].current.focus();
             }
           }}
@@ -124,6 +130,7 @@ class StarRating extends React.Component<StarRatingProps, RatingState> {
       <Root
         data-baseweb="star-rating"
         role="radiogroup"
+        // @ts-ignore
         onBlur={(e) => {
           if (!e.currentTarget.contains(e.relatedTarget)) this.updatePreview(undefined);
         }}

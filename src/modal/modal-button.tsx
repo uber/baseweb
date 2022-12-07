@@ -12,6 +12,7 @@ import type { ComponentProps } from 'react';
 // ModalButtons should have some margin pre-applied
 const overrides = {
   BaseButton: {
+    // @ts-ignore
     style: ({ $theme }) => {
       const marginInlineEnd: string = $theme.direction !== 'rtl' ? 'marginRight' : 'marginLeft';
       return {

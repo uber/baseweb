@@ -11,6 +11,7 @@ import type { Responsive, StyledGridProps, StyledGridWrapperProps, StyledCellPro
 
 export const StyledGridWrapper = styled<'div', StyledGridWrapperProps>(
   'div',
+  // @ts-ignore
   ({
     $theme,
     $behavior = BEHAVIOR.fixed,
@@ -30,6 +31,7 @@ StyledGridWrapper.displayName = 'StyledGridWrapper';
 
 export const StyledGrid = styled<'div', StyledGridProps>(
   'div',
+  // @ts-ignore
   ({
     $theme,
     $align = null,
@@ -78,6 +80,7 @@ StyledGrid.displayName = 'StyledGrid';
 
 export const StyledCell = styled<'div', StyledCellProps>(
   'div',
+  // @ts-ignore
   ({
     $theme,
     $align = null,

@@ -34,6 +34,7 @@ StyledRoot.displayName = 'StyledRoot';
 
 export const StyledContent = styled<'div', StyledContentProps>(
   'div',
+  // @ts-ignore
   ({ $mLeft, $sublist, $theme }) => {
     return {
       ...expandBorderStyles($theme.borders.border100),

@@ -15,6 +15,7 @@ import { TestBaseProvider } from '../../test/test-utils';
 
 import { DatetimeColumn, DATETIME_OPERATIONS } from '..';
 
+// @ts-ignore
 const padZero = (n) => (n < 10 ? `0${n}` : n);
 
 describe('datetime column', () => {

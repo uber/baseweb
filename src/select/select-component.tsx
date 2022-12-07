@@ -35,14 +35,18 @@ import { expandValue, normalizeOptions } from './utils';
 
 import type { SyntheticEvent, ChangeEvent } from 'react';
 
+// @ts-ignore
 function Noop() {
   return null;
 }
 
+// @ts-ignore
 const isClick = (event) => event.type === 'click';
+// @ts-ignore
 const isLeftClick = (event) =>
   event.button !== null && event.button !== undefined && event.button === 0;
 
+// @ts-ignore
 const containsNode = (parent, child) => {
   if (__BROWSER__) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -75,19 +79,23 @@ class Select extends React.Component<SelectProps, SelectState> {
   dropdown = React.createRef<HTMLElement>();
   input?: HTMLInputElement;
   // dragging is a flag to track whether a mobile device is currently scrolling versus clicking.
+  // @ts-ignore
   dragging: boolean;
   // focusAfterClear is a flag to indicate that the dropdowm menu should open after a selected
   // option has been cleared.
+  // @ts-ignore
   focusAfterClear: boolean;
   // openAfterFocus is a flag to indicate that the dropdown menu should open when the component is
   // focused. Developers have the option to disable initial clicks opening the dropdown menu. If not
   // disabled, clicks will set this flag to true. Upon focusing, look to this to see if the menu should
   // be opened, or only focus.
+  // @ts-ignore
   openAfterFocus: boolean;
   // When an item is selected, it also triggers handleClickOutside and since the selected item is
   // already out of the menu (DOM), it will not recognize it as a subnode and triggers handleBlur
   // that sets isOpen to false. That's a faulty logic causing visible problems when
   // closeOnSelect is false. This flag helps to detect that selection was just made.
+  // @ts-ignore
   justSelected: boolean;
 
   // the select components can accept an array of options or an object where properties are optgroups
@@ -100,7 +108,9 @@ class Select extends React.Component<SelectProps, SelectState> {
     this.options = normalizeOptions(props.options);
   }
 
+  // @ts-ignore
   state = {
+    // @ts-ignore
     activeDescendant: null,
     inputValue: '',
     isFocused: false,
@@ -174,10 +184,12 @@ class Select extends React.Component<SelectProps, SelectState> {
   }
 
   handleSetInputFocus() {
+    // @ts-ignore
     this.input.focus();
   }
 
   handleSetInputBlur() {
+    // @ts-ignore
     this.input.blur();
   }
 
@@ -213,6 +225,7 @@ class Select extends React.Component<SelectProps, SelectState> {
       // CHASE: not sure why this condition is here. I cannot replicate a situation where clicks
       // on provided text break into here.
       if (!this.state.isFocused) {
+        // @ts-ignore
         this.openAfterFocus = this.props.openOnClick;
         this.focus();
       }
@@ -232,6 +245,7 @@ class Select extends React.Component<SelectProps, SelectState> {
     // handler. For example, after an option is selected clicks on the 'clear' icon call here. We
     // should ignore those events. This comes after case where click is on input element, so that
     // those are handled on their own.
+    // @ts-ignore
     if (this.input && isInteractive(event.target, this.input)) {
       return;
     }
@@ -272,6 +286,7 @@ class Select extends React.Component<SelectProps, SelectState> {
       // When clear button is clicked, need to click twice to open control container - https://github.com/uber/baseweb/issues/4285
       // Setting focusAfterClear to false, resolves the issue
       this.focusAfterClear = false;
+      // @ts-ignore
       this.openAfterFocus = this.props.openOnClick;
       this.focus();
     }
@@ -460,10 +475,13 @@ class Select extends React.Component<SelectProps, SelectState> {
     }
   ): React.ReactNode =>
     option.isCreatable
-      ? `${locale.select.create} “${option[this.props.labelKey]}”`
-      : option[this.props.labelKey];
+      ? // @ts-ignore
+        `${locale.select.create} “${option[this.props.labelKey]}”`
+      : // @ts-ignore
+        option[this.props.labelKey];
 
   getValueLabel = ({ option }: { option: Option }): React.ReactNode => {
+    // @ts-ignore
     return option[this.props.labelKey];
   };
 
@@ -528,6 +546,7 @@ class Select extends React.Component<SelectProps, SelectState> {
         },
         () => {
           const valueArray = this.props.value;
+          // @ts-ignore
           if (valueArray.some((i) => i[this.props.valueKey] === item[this.props.valueKey])) {
             this.removeValue(item);
           } else {
@@ -561,6 +580,7 @@ class Select extends React.Component<SelectProps, SelectState> {
     if (!item) {
       return;
     }
+    // @ts-ignore
     const valueLength = this.props.value.length;
     const renderLabel = this.props.getValueLabel || this.getValueLabel;
     const labelForInput = renderLabel({ option: item, index: valueLength - 1 });
@@ -575,6 +595,7 @@ class Select extends React.Component<SelectProps, SelectState> {
   };
 
   popValue = () => {
+    // @ts-ignore
     const valueArray = [...this.props.value];
     const valueLength = valueArray.length;
     if (!valueLength) return;
@@ -587,6 +608,7 @@ class Select extends React.Component<SelectProps, SelectState> {
   removeValue = (item: Option) => {
     const valueArray = [...this.props.value];
     this.setValue(
+      // @ts-ignore
       valueArray.filter((i) => i[this.props.valueKey] !== item[this.props.valueKey]),
       item,
       STATE_CHANGE_TYPE.remove
@@ -627,6 +649,7 @@ class Select extends React.Component<SelectProps, SelectState> {
     );
 
     return (
+      // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
       <LoadingIndicator role="status" {...loadingIndicatorProps}>
         {/* Offscreen content could be defined as styled-component and
           overridable, but I can't think of a good reason for doing so.
@@ -664,8 +687,10 @@ class Select extends React.Component<SelectProps, SelectState> {
       return valueArray.map((value, i) => {
         const disabled = sharedProps.$disabled || value.clearableValue === false;
         return (
+          // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
           <Value
             value={value}
+            // @ts-ignore
             key={`value-${i}-${value[this.props.valueKey]}`}
             removeValue={() => this.removeValue(value)}
             disabled={disabled}
@@ -679,7 +704,9 @@ class Select extends React.Component<SelectProps, SelectState> {
       });
     } else if (this.shouldShowValue()) {
       return (
+        // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
         <Value
+          // @ts-ignore
           value={valueArray[0][this.props.valueKey]}
           disabled={this.props.disabled}
           overrides={{ SingleValue: overrides.SingleValue }}
@@ -699,7 +726,9 @@ class Select extends React.Component<SelectProps, SelectState> {
     );
     const sharedProps = this.getSharedProps();
     const isOpen = this.state.isOpen;
+    // @ts-ignore
     const selected = this.getValueArray(this.props.value)
+      // @ts-ignore
       .map((v) => v[this.props.labelKey])
       .join(', ');
     const selectedLabel = selected.length ? `Selected ${selected}. ` : '';
@@ -707,6 +736,7 @@ class Select extends React.Component<SelectProps, SelectState> {
 
     if (!this.props.searchable) {
       return (
+        // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
         <InputContainer
           aria-activedescendant={this.state.activeDescendant}
           aria-describedby={this.props['aria-describedby']}
@@ -723,6 +753,7 @@ class Select extends React.Component<SelectProps, SelectState> {
           {/* $FlowExpectedError[cannot-spread-inexact] */}
           <input
             aria-hidden
+            // @ts-ignore
             id={this.props.id || null}
             ref={this.handleInputRef}
             style={{
@@ -745,7 +776,9 @@ class Select extends React.Component<SelectProps, SelectState> {
     }
 
     return (
+      // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
       <InputContainer {...sharedProps} {...inputContainerProps}>
+        {/* @ts-ignore */}
         <AutosizeInput
           aria-activedescendant={this.state.activeDescendant}
           aria-autocomplete="list"
@@ -764,6 +797,7 @@ class Select extends React.Component<SelectProps, SelectState> {
           onChange={this.handleInputChange}
           onFocus={this.handleInputFocus}
           overrides={{ Input: overrides.Input }}
+          // @ts-ignore
           required={(this.props.required && !this.props.value.length) || null}
           role="combobox"
           value={this.state.inputValue}
@@ -797,11 +831,13 @@ class Select extends React.Component<SelectProps, SelectState> {
     };
 
     return (
+      // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
       <ClearIcon
         title={ariaLabel}
         aria-label={ariaLabel}
         onClick={this.clearValue}
         role="button"
+        // @ts-ignore
         size={sizes[this.props.size] || sizes[SIZE.default]}
         {...sharedProps}
         {...clearIconProps}
@@ -839,7 +875,9 @@ class Select extends React.Component<SelectProps, SelectState> {
     };
 
     return (
+      // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
       <SelectArrow
+        // @ts-ignore
         size={sizes[this.props.size] || sizes[SIZE.default]}
         title={'open'}
         {...sharedProps}
@@ -861,7 +899,9 @@ class Select extends React.Component<SelectProps, SelectState> {
     const sharedProps = this.getSharedProps();
 
     return (
+      // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
       <SearchIconContainer {...sharedProps} {...searchIconContainerProps}>
+        {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
         <SearchIcon size={16} title={'search'} {...sharedProps} {...searchIconProps} />
       </SearchIconContainer>
     );
@@ -872,23 +912,30 @@ class Select extends React.Component<SelectProps, SelectState> {
     // apply filter function
     if (this.props.filterOptions) {
       this.options = this.props.filterOptions(this.options, filterValue, excludeOptions, {
+        // @ts-ignore
         valueKey: this.props.valueKey,
+        // @ts-ignore
         labelKey: this.props.labelKey,
       });
     }
     // can user create a new option + there's no exact match already
     const filterDoesNotMatchOption = this.props.ignoreCase
-      ? (opt) => opt[this.props.labelKey].toLowerCase() !== filterValue.toLowerCase().trim()
-      : (opt) => opt[this.props.labelKey] !== filterValue.trim();
+      ? // @ts-ignore
+        (opt) => opt[this.props.labelKey].toLowerCase() !== filterValue.toLowerCase().trim()
+      : // @ts-ignore
+        (opt) => opt[this.props.labelKey] !== filterValue.trim();
     if (
       filterValue &&
       this.props.creatable &&
+      // @ts-ignore
       this.options.concat(this.props.value).every(filterDoesNotMatchOption)
     ) {
       // @ts-expect-error todo(flow->ts) this.options is typed as a read-only array
       this.options.push({
         id: filterValue,
+        // @ts-ignore
         [this.props.labelKey]: filterValue,
+        // @ts-ignore
         [this.props.valueKey]: filterValue,
         isCreatable: true,
       });
@@ -927,6 +974,7 @@ class Select extends React.Component<SelectProps, SelectState> {
       $searchable: searchable,
       $size: size,
       $type: type,
+      // @ts-ignore
       $isEmpty: !this.getValueArray(value).length,
     };
   }
@@ -962,6 +1010,7 @@ class Select extends React.Component<SelectProps, SelectState> {
     const [Placeholder, placeholderProps] = getOverrides(overrides.Placeholder, StyledPlaceholder);
     const sharedProps = this.getSharedProps();
 
+    // @ts-ignore
     const valueArray = this.getValueArray(value);
     const options = this.filterOptions(multi && filterOutSelected ? valueArray : null);
     const isOpen = this.state.isOpen;
@@ -978,9 +1027,10 @@ class Select extends React.Component<SelectProps, SelectState> {
 
     return (
       <UIDConsumer>
-        {(listboxId) => (
+        {(listboxId: string) => (
           <LocaleContext.Consumer>
             {(locale) => (
+              // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
               <PopoverOverride
                 // Popover does not provide ability to forward refs through, and if we were to simply
                 // apply the ref to the Root component below it would be overwritten before the popover
@@ -1024,17 +1074,20 @@ class Select extends React.Component<SelectProps, SelectState> {
                     keyboardControlNode: this.anchor,
                   };
 
+                  // @ts-ignore
                   return <SelectDropdown innerRef={this.dropdown} {...dropdownProps} />;
                 }}
                 placement={PLACEMENT.bottom}
                 {...popoverProps}
               >
+                {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
                 <Root
                   onBlur={this.handleBlur}
                   data-baseweb="select"
                   {...sharedProps}
                   {...rootProps}
                 >
+                  {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
                   <ControlContainer
                     onKeyDown={this.handleKeyDown}
                     onClick={this.handleClick}
@@ -1045,10 +1098,12 @@ class Select extends React.Component<SelectProps, SelectState> {
                     {...controlContainerProps}
                   >
                     {type === TYPE.search ? this.renderSearch() : null}
+                    {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
                     <ValueContainer {...sharedProps} {...valueContainerProps}>
                       {this.renderValue(valueArray)}
                       {this.renderInput(listboxId)}
                       {this.shouldShowPlaceholder() ? (
+                        // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
                         <Placeholder {...sharedProps} {...placeholderProps}>
                           {typeof this.props.placeholder !== 'undefined'
                             ? this.props.placeholder
@@ -1056,6 +1111,7 @@ class Select extends React.Component<SelectProps, SelectState> {
                         </Placeholder>
                       ) : null}
                     </ValueContainer>
+                    {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
                     <IconsContainer {...sharedProps} {...iconsContainerProps}>
                       {this.renderLoading()}
                       {this.renderClear()}

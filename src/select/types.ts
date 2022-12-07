@@ -29,6 +29,7 @@ export type Option = Readonly<{
 
 export type Value = ReadonlyArray<Option>;
 export type Optgroups = {
+  // @ts-ignore
   __ungrouped?: Value;
   [x: string]: Value;
 };
