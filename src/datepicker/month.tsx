@@ -125,7 +125,7 @@ export default class CalendarMonth<T = Date> extends React.Component<MonthProps<
   render() {
     const { overrides = {} } = this.props;
     const [Month, monthProps] = getOverrides(overrides.Month, StyledMonth);
-    // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
+
     return <Month {...monthProps}>{this.renderWeeks()}</Month>;
   }
 }

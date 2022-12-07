@@ -256,18 +256,14 @@ class Drawer extends React.Component<DrawerProps, DrawerState> {
               autoFocus={autoFocus}
               noFocusGuards={true}
             >
-              {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
               <Root data-baseweb="drawer" ref={this.getRef('Root')} {...sharedProps} {...rootProps}>
-                {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
                 <Backdrop onClick={this.onBackdropClick} {...sharedProps} {...backdropProps} />
-                {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
+
                 <DrawerContainer {...sharedProps} {...drawerContainerProps}>
-                  {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
                   <DrawerBody {...sharedProps} {...drawerBodyProps}>
                     {renderedContent}
                   </DrawerBody>
                   {closeable ? (
-                    // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
                     <Close
                       aria-label={locale.drawer.close}
                       onClick={this.onCloseClick}

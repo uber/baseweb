@@ -11,7 +11,6 @@ import type { InputProps, StatefulInputProps } from './types';
 
 export default function StatefulInput(props: StatefulInputProps) {
   return (
-    // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
     <StatefulContainer {...props}>
       {(childrenProps: InputProps) => <Input {...childrenProps} />}
     </StatefulContainer>

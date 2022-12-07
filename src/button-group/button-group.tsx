@@ -60,7 +60,6 @@ export default class ButtonGroup extends React.Component<ButtonGroupProps> {
     return (
       <LocaleContext.Consumer>
         {(locale) => (
-          // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
           <Root
             aria-label={ariaLabel || locale.buttongroup.ariaLabel}
             data-baseweb="button-group"

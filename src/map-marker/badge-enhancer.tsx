@@ -55,10 +55,8 @@ const BadgeEnhancer = ({
   );
 
   return (
-    // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
     <BadgeEnhancerRoot $size={badgeEnhancerSize} $position={position} {...badgeEnhancerRootProps}>
       {BadgeEnhancerContent && badgeEnhancerSize !== BADGE_ENHANCER_SIZES.xSmall && (
-        // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
         <BadgeEnhancerContent size={BADGE_ENHANCER_CONTENT_SIZE[badgeEnhancerSize]} />
       )}
     </BadgeEnhancerRoot>

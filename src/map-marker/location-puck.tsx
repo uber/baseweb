@@ -77,15 +77,13 @@ const ConsumerLocationPuck = ({
   );
 
   return (
-    // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
     <Root {...rootProps}>
-      {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
       <LocationPuckApproximation
         $color={theme.colors.contentAccent}
         $radius={confidenceRadius}
         {...locationPuckApproximationProps}
       />
-      {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
+
       <ConsumerLocationPuckCore {...consumerLocationPuckCoreProps} />
       {showHeading && <ConsumerLocationPuckHeading heading={heading} />}
     </Root>
@@ -144,15 +142,13 @@ const EarnerLocationPuck = ({
   );
 
   return (
-    // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
     <Root {...rootProps}>
-      {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
       <LocationPuckApproximation
         $color={color}
         $radius={confidenceRadius}
         {...locationPuckApproximationProps}
       />
-      {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
+
       <EarnerLocationPuckCore $color={color} $size={size} {...earnerLocationPuckCoreProps} />
       <EarnerLocationPuckHeading size={size} color={color} heading={heading} />
     </Root>

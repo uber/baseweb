@@ -59,7 +59,6 @@ class StatelessRadioGroup extends React.Component<RadioGroupProps, StatelessStat
     );
 
     return (
-      // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
       <RadioGroupRoot
         id={this.props.id}
         role="radiogroup"

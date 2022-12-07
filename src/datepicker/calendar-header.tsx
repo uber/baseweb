@@ -287,7 +287,6 @@ export default class CalendarHeader<T = Date> extends React.Component<
       clickHandler = null;
     }
     return (
-      // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
       <PrevButton
         aria-label={locale.datepicker.previousMonth}
         tabIndex={0}
@@ -300,7 +299,6 @@ export default class CalendarHeader<T = Date> extends React.Component<
         {...prevButtonProps}
       >
         {isHidden ? null : (
-          // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
           <PrevButtonIcon
             size={density === DENSITY.high ? 24 : 36}
             overrides={{ Svg: { style: navBtnStyle } }}
@@ -349,7 +347,6 @@ export default class CalendarHeader<T = Date> extends React.Component<
     }
 
     return (
-      // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
       <NextButton
         aria-label={locale.datepicker.nextMonth}
         tabIndex={0}
@@ -362,7 +359,6 @@ export default class CalendarHeader<T = Date> extends React.Component<
         {...nextButtonProps}
       >
         {isHidden ? null : (
-          // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
           <NextButtonIcon
             size={density === DENSITY.high ? 24 : 36}
             overrides={{ Svg: { style: navBtnStyle } }}
@@ -427,7 +423,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
     ) : (
       <>
         {/* Month Selection */}
-        {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
+
         <OverriddenPopover
           placement="bottom"
           autoFocus={true}
@@ -441,7 +437,6 @@ export default class CalendarHeader<T = Date> extends React.Component<
           onClickOutside={() => this.setState({ isMonthDropdownOpen: false })}
           onEsc={() => this.setState({ isMonthDropdownOpen: false })}
           content={() => (
-            // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
             <OverriddenStatefulMenu
               initialState={{
                 highlightedIndex: initialMonthIndex,
@@ -464,7 +459,6 @@ export default class CalendarHeader<T = Date> extends React.Component<
           )}
           {...popoverProps}
         >
-          {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
           <MonthYearSelectButton
             aria-live="polite"
             type="button"
@@ -490,7 +484,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
             {...monthYearSelectButtonProps}
           >
             {monthTitle}
-            {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
+
             <MonthYearSelectIconContainer {...monthYearSelectIconContainerProps}>
               <ChevronDown
                 title=""
@@ -501,7 +495,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
           </MonthYearSelectButton>
         </OverriddenPopover>
         {/* Year Selection */}
-        {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
+
         <OverriddenPopover
           placement="bottom"
           focusLock={true}
@@ -514,7 +508,6 @@ export default class CalendarHeader<T = Date> extends React.Component<
           onClickOutside={() => this.setState({ isYearDropdownOpen: false })}
           onEsc={() => this.setState({ isYearDropdownOpen: false })}
           content={() => (
-            // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
             <OverriddenStatefulMenu
               initialState={{
                 highlightedIndex: initialYearIndex,
@@ -537,7 +530,6 @@ export default class CalendarHeader<T = Date> extends React.Component<
           )}
           {...popoverProps}
         >
-          {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
           <MonthYearSelectButton
             aria-live="polite"
             type="button"
@@ -563,7 +555,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
             {...monthYearSelectButtonProps}
           >
             {yearTitle}
-            {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
+
             <MonthYearSelectIconContainer {...monthYearSelectIconContainerProps}>
               <ChevronDown
                 title=""
@@ -596,7 +588,6 @@ export default class CalendarHeader<T = Date> extends React.Component<
           <LocaleContext.Consumer>
             {(locale) => (
               <>
-                {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
                 <CalendarHeader
                   {...calendarHeaderProps}
                   $density={this.props.density}
@@ -610,12 +601,11 @@ export default class CalendarHeader<T = Date> extends React.Component<
                   {this.renderMonthYearDropdown()}
                   {this.renderNextMonthButton({ locale, theme })}
                 </CalendarHeader>
-                {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
+
                 <MonthHeader role="presentation" {...monthHeaderProps}>
                   {WEEKDAYS.map((offset) => {
                     const day = this.dateHelpers.addDays(startOfWeek, offset);
                     return (
-                      // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
                       <WeekdayHeader
                         key={offset}
                         alt={this.dateHelpers.getWeekdayInLocale(day, this.props.locale)}

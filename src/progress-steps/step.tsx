@@ -42,25 +42,20 @@ function Step({ overrides = {}, isCompleted, isActive, isLast, title, children }
   };
 
   return (
-    // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
     <Root {...sharedProps} {...rootProps}>
-      {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
       <IconContainer {...sharedProps} {...iconContainerProps}>
-        {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
         <Icon {...sharedProps} {...iconProps}>
-          {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
           {isActive && <InnerIcon {...innerIconProps} />}
         </Icon>
       </IconContainer>
-      {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
+
       {!isLast && <Tail {...sharedProps} {...tailProps} />}
-      {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
+
       <Content {...sharedProps} {...contentProps}>
-        {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
         <Title {...sharedProps} {...titleProps}>
           {title}
         </Title>
-        {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
+
         <Description {...descriptionProps}>{isActive && children}</Description>
       </Content>
     </Root>

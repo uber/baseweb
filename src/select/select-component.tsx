@@ -649,7 +649,6 @@ class Select extends React.Component<SelectProps, SelectState> {
     );
 
     return (
-      // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
       <LoadingIndicator role="status" {...loadingIndicatorProps}>
         {/* Offscreen content could be defined as styled-component and
           overridable, but I can't think of a good reason for doing so.
@@ -687,7 +686,6 @@ class Select extends React.Component<SelectProps, SelectState> {
       return valueArray.map((value, i) => {
         const disabled = sharedProps.$disabled || value.clearableValue === false;
         return (
-          // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
           <Value
             value={value}
             // @ts-ignore
@@ -704,7 +702,6 @@ class Select extends React.Component<SelectProps, SelectState> {
       });
     } else if (this.shouldShowValue()) {
       return (
-        // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
         <Value
           // @ts-ignore
           value={valueArray[0][this.props.valueKey]}
@@ -736,7 +733,6 @@ class Select extends React.Component<SelectProps, SelectState> {
 
     if (!this.props.searchable) {
       return (
-        // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
         <InputContainer
           aria-activedescendant={this.state.activeDescendant}
           aria-describedby={this.props['aria-describedby']}
@@ -776,7 +772,6 @@ class Select extends React.Component<SelectProps, SelectState> {
     }
 
     return (
-      // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
       <InputContainer {...sharedProps} {...inputContainerProps}>
         {/* @ts-ignore */}
         <AutosizeInput
@@ -831,7 +826,6 @@ class Select extends React.Component<SelectProps, SelectState> {
     };
 
     return (
-      // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
       <ClearIcon
         title={ariaLabel}
         aria-label={ariaLabel}
@@ -875,7 +869,6 @@ class Select extends React.Component<SelectProps, SelectState> {
     };
 
     return (
-      // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
       <SelectArrow
         // @ts-ignore
         size={sizes[this.props.size] || sizes[SIZE.default]}
@@ -899,9 +892,7 @@ class Select extends React.Component<SelectProps, SelectState> {
     const sharedProps = this.getSharedProps();
 
     return (
-      // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
       <SearchIconContainer {...sharedProps} {...searchIconContainerProps}>
-        {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
         <SearchIcon size={16} title={'search'} {...sharedProps} {...searchIconProps} />
       </SearchIconContainer>
     );
@@ -1030,7 +1021,6 @@ class Select extends React.Component<SelectProps, SelectState> {
         {(listboxId: string) => (
           <LocaleContext.Consumer>
             {(locale) => (
-              // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
               <PopoverOverride
                 // Popover does not provide ability to forward refs through, and if we were to simply
                 // apply the ref to the Root component below it would be overwritten before the popover
@@ -1080,14 +1070,12 @@ class Select extends React.Component<SelectProps, SelectState> {
                 placement={PLACEMENT.bottom}
                 {...popoverProps}
               >
-                {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
                 <Root
                   onBlur={this.handleBlur}
                   data-baseweb="select"
                   {...sharedProps}
                   {...rootProps}
                 >
-                  {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
                   <ControlContainer
                     onKeyDown={this.handleKeyDown}
                     onClick={this.handleClick}
@@ -1098,12 +1086,11 @@ class Select extends React.Component<SelectProps, SelectState> {
                     {...controlContainerProps}
                   >
                     {type === TYPE.search ? this.renderSearch() : null}
-                    {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
+
                     <ValueContainer {...sharedProps} {...valueContainerProps}>
                       {this.renderValue(valueArray)}
                       {this.renderInput(listboxId)}
                       {this.shouldShowPlaceholder() ? (
-                        // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
                         <Placeholder {...sharedProps} {...placeholderProps}>
                           {typeof this.props.placeholder !== 'undefined'
                             ? this.props.placeholder
@@ -1111,7 +1098,7 @@ class Select extends React.Component<SelectProps, SelectState> {
                         </Placeholder>
                       ) : null}
                     </ValueContainer>
-                    {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
+
                     <IconsContainer {...sharedProps} {...iconsContainerProps}>
                       {this.renderLoading()}
                       {this.renderClear()}

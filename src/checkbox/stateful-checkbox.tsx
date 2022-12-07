@@ -14,7 +14,6 @@ import type { StatefulContainerChildProps, StatefulCheckboxProps } from './types
 
 const StatefulCheckbox = function (props: StatefulCheckboxProps) {
   return (
-    // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
     <StatefulContainer {...props}>
       {(childrenProps: StatefulContainerChildProps) => (
         <Checkbox {...childrenProps}>{props.children}</Checkbox>

@@ -215,7 +215,6 @@ class BaseInput<T extends HTMLInputElement | HTMLTextAreaElement> extends React.
       // @ts-ignore
     }[this.props.size];
     return (
-      // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
       <MaskToggleButton
         $size={this.props.size}
         $isFocusVisible={this.state.isFocusVisibleForMaskToggle}
@@ -228,10 +227,8 @@ class BaseInput<T extends HTMLInputElement | HTMLTextAreaElement> extends React.
         onBlur={forkBlur(maskToggleButtonProps, this.handleBlurForMaskToggle)}
       >
         {this.state.isMasked ? (
-          // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
           <MaskToggleShowIcon size={iconSize} title={label} {...maskToggleIconShowProps} />
         ) : (
-          // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
           <MaskToggleHideIcon size={iconSize} title={label} {...maskToggleIconHideProps} />
         )}
       </MaskToggleButton>
@@ -278,13 +275,11 @@ class BaseInput<T extends HTMLInputElement | HTMLTextAreaElement> extends React.
       // @ts-ignore
     }[this.props.size];
     return (
-      // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
       <ClearIconContainer
         $alignTop={this.props.type === CUSTOM_INPUT_TYPE.textarea}
         {...sharedProps}
         {...clearIconContainerProps}
       >
-        {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
         <ClearIcon
           size={iconSize}
           tabIndex={0}
@@ -341,15 +336,13 @@ class BaseInput<T extends HTMLInputElement | HTMLTextAreaElement> extends React.
     const [After, afterProps] = getOverrides(AfterOverride, NullComponent);
 
     return (
-      // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
       <InputContainer
         data-baseweb={this.props['data-baseweb'] || 'base-input'}
         {...sharedProps}
         {...inputContainerProps}
       >
-        {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
         <Before {...sharedProps} {...beforeProps} />
-        {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
+
         <Input
           ref={this.inputRef}
           aria-activedescendant={this.props['aria-activedescendant']}
@@ -390,7 +383,7 @@ class BaseInput<T extends HTMLInputElement | HTMLTextAreaElement> extends React.
         />
         {this.renderClear()}
         {this.renderMaskToggle()}
-        {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
+
         <After {...sharedProps} {...afterProps} />
       </InputContainer>
     );

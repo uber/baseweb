@@ -412,7 +412,6 @@ export default class Day<T = Date> extends React.Component<DayProps<T>, DayState
     const [DayLabel, dayLabelProps] = getOverrides(overrides.DayLabel, StyledDayLabel);
     const dateLabel = this.props.dateLabel && this.props.dateLabel(date);
     return !peekNextMonth && sharedProps.$outsideMonth ? (
-      // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
       <Day
         role="gridcell"
         {...sharedProps}
@@ -424,7 +423,6 @@ export default class Day<T = Date> extends React.Component<DayProps<T>, DayState
       // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
       <LocaleContext.Consumer>
         {(locale: Locale) => (
-          // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
           <Day
             aria-label={this.getAriaLabel(sharedProps, locale)}
             // @ts-ignore
@@ -451,7 +449,6 @@ export default class Day<T = Date> extends React.Component<DayProps<T>, DayState
           >
             <div>{this.dateHelpers.getDate(date)}</div>
             {dateLabel ? (
-              // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
               <DayLabel {...sharedProps} {...dayLabelProps}>
                 {dateLabel}
               </DayLabel>

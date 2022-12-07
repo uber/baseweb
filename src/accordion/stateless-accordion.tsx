@@ -22,7 +22,6 @@ function StatelessAccordion({
   const { Root: RootOverrides, ...PanelOverrides } = overrides;
   const [Root, rootProps] = getOverrides(RootOverrides, StyledRoot);
   return (
-    // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
     <Root data-baseweb="accordion" {...rootProps}>
       {React.Children.map(children, (child, index) => {
         let normalizedChild =

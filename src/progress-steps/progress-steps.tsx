@@ -36,7 +36,6 @@ function ProgressSteps({ overrides = {}, current, children }: ProgressStepsProps
   });
 
   return (
-    // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
     <Root data-baseweb="progress-steps" {...rootProps}>
       {modifiedChildren}
     </Root>

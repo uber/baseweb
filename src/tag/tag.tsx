@@ -130,7 +130,6 @@ const Tag = React.forwardRef<HTMLSpanElement, TagProps>((props, ref) => {
   const StartEnhancer = startEnhancer;
 
   return (
-    // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
     <Root
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ref={ref as any}
@@ -152,19 +151,15 @@ const Tag = React.forwardRef<HTMLSpanElement, TagProps>((props, ref) => {
       {StartEnhancer &&
         // @ts-expect-error todo(flow->ts) it is not expected to be a number
         StartEnhancer !== 0 && (
-          // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
           <StartEnhancerContainer {...startEnhancerContainerProps}>
-            {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
             <StartEnhancer />
           </StartEnhancerContainer>
         )}
 
-      {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
       <Text title={titleText} {...textProps}>
         {children}
       </Text>
       {closeable ? (
-        // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
         <Action
           aria-hidden={true}
           role="presentation"
@@ -172,7 +167,6 @@ const Tag = React.forwardRef<HTMLSpanElement, TagProps>((props, ref) => {
           {...sharedProps}
           {...actionProps}
         >
-          {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
           <ActionIcon size={actionSize} {...actionIconProps} />
         </Action>
       ) : null}

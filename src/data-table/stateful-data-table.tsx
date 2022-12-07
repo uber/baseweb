@@ -268,7 +268,6 @@ export function StatefulDataTable(props: StatefulDataTableProps) {
                           kind={BUTTON_KINDS.tertiary}
                           shape={BUTTON_SHAPES.round}
                         >
-                          {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
                           <Icon size={16} />
                         </Button>
                       );

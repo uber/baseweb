@@ -79,7 +79,6 @@ export default function Menu(props: StatelessMenuProps) {
         const { getRequiredItemProps = (item, index) => ({} as RenderItemProps) } = props;
 
         if (item.divider === true) {
-          // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
           return <MenuDivider key={itemIndex} {...menuDividerProps} />;
         }
 
@@ -92,7 +91,6 @@ export default function Menu(props: StatelessMenuProps) {
         } = getRequiredItemProps(item, itemIndex);
 
         return (
-          // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
           <Option
             renderAll={renderAll}
             key={itemIndex}
@@ -121,7 +119,6 @@ export default function Menu(props: StatelessMenuProps) {
   return (
     <LocaleContext.Consumer>
       {(locale: Locale) => (
-        // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
         <List
           aria-activedescendant={props.activedescendantId || null}
           role="listbox"
@@ -144,7 +141,6 @@ export default function Menu(props: StatelessMenuProps) {
           {...listProps}
         >
           {isEmpty ? (
-            // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
             <EmptyState aria-live="polite" aria-atomic {...emptyStateProps}>
               {props.noResultsMsg || locale.menu.noResultsMsg}
             </EmptyState>

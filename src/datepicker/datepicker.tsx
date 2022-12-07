@@ -469,7 +469,6 @@ export default class Datepicker<T = Date> extends React.Component<
         : this.state.inputValue;
 
     return (
-      // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
       <InputComponent
         aria-disabled={this.props.disabled}
         aria-label={
@@ -513,7 +512,6 @@ export default class Datepicker<T = Date> extends React.Component<
       <LocaleContext.Consumer>
         {(locale) => (
           <React.Fragment>
-            {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
             <PopoverComponent
               accessibilityType={ACCESSIBILITY_TYPE.none}
               focusLock={false}
@@ -537,22 +535,18 @@ export default class Datepicker<T = Date> extends React.Component<
               }
               {...popoverProps}
             >
-              {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
               <InputWrapper
                 {...inputWrapperProps}
                 $separateRangeInputs={this.props.range && this.props.separateRangeInputs}
               >
                 {this.props.range && this.props.separateRangeInputs ? (
                   <>
-                    {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
                     <StartDate {...startDateProps}>
-                      {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
                       <InputLabel {...inputLabelProps}>{startDateLabel}</InputLabel>
                       {this.renderInputComponent(locale, INPUT_ROLE.startDate)}
                     </StartDate>
-                    {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
+
                     <EndDate {...endDateProps}>
-                      {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
                       <InputLabel {...inputLabelProps}>{endDateLabel}</InputLabel>
                       {this.renderInputComponent(locale, INPUT_ROLE.endDate)}
                     </EndDate>

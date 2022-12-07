@@ -117,7 +117,6 @@ class TimezonePicker extends React.Component<TimezonePickerProps, TimezonePicker
     return (
       <LocaleContext.Consumer>
         {(locale) => (
-          // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
           <OverriddenSelect
             aria-label={locale.datepicker.timezonePickerAriaLabel}
             options={options}

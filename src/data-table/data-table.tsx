@@ -114,7 +114,6 @@ function CellPlacement({ columnIndex, rowIndex, data, style }: CellPlacementProp
       style={style}
       onMouseEnter={() => data.onRowMouseEnter(rowIndex, data.rows[rowIndex - 1])}
     >
-      {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
       <Cell
         value={value}
         onSelect={
@@ -579,7 +578,7 @@ const InnerTableElement = React.forwardRef<
             ).map((rowAction) => {
               if (rowAction.renderButton) {
                 const RowActionButton = rowAction.renderButton;
-                // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
+
                 return <RowActionButton />;
               }
 
@@ -609,7 +608,6 @@ const InnerTableElement = React.forwardRef<
                     },
                   }}
                 >
-                  {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
                   <RowActionIcon size={24} />
                 </Button>
               );

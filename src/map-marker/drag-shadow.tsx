@@ -18,14 +18,12 @@ const DragShadow = ({ background, dragging, height, overrides = {} }: DragShadow
   const [DragShadow, dragShadowProps] = getOverrides(overrides.DragShadow, StyledDragShadow);
 
   return (
-    // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
     <DragShadowContainer
       $width={dragShadowWidth}
       $height={height}
       $dragging={dragging}
       {...dragShadowContainerProps}
     >
-      {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
       <DragShadow $width={dragShadowWidth} $background={background} {...dragShadowProps} />
     </DragShadowContainer>
   );

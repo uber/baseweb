@@ -114,7 +114,6 @@ class Radio extends React.Component<RadioProps, RadioState> {
     };
 
     const label = (
-      // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
       <Label {...sharedProps} {...labelProps}>
         {this.props.containsInteractiveElement ? (
           // Prevents the event from bubbling up to the label and moving focus to the radio button
@@ -128,7 +127,6 @@ class Radio extends React.Component<RadioProps, RadioState> {
 
     return (
       <React.Fragment>
-        {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
         <Root
           data-baseweb="radio"
           onMouseEnter={this.onMouseEnter}
@@ -139,12 +137,11 @@ class Radio extends React.Component<RadioProps, RadioState> {
           {...rootProps}
         >
           {isLabelTopLeft(this.props.labelPlacement) && label}
-          {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
+
           <RadioMarkOuter {...sharedProps} {...radioMarkOuterProps}>
-            {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
             <RadioMarkInner {...sharedProps} {...radioMarkInnerProps} />
           </RadioMarkOuter>
-          {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
+
           <Input
             aria-invalid={this.props.error || null}
             checked={this.props.checked}
@@ -168,7 +165,6 @@ class Radio extends React.Component<RadioProps, RadioState> {
         </Root>
 
         {!!this.props.description && (
-          // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
           <Description {...sharedProps} {...descriptionProps}>
             {this.props.description}
           </Description>

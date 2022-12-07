@@ -221,11 +221,10 @@ export default class LayersManager extends React.Component<LayersManagerProps, L
                 removeDocClickHandler: this.onRemoveDocClickHandler,
               }}
             >
-              {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
               <AppContainer {...appContainerProps} ref={this.containerRef}>
                 {this.props.children}
               </AppContainer>
-              {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
+
               <LayersContainer {...layersContainerProps} ref={this.host} />
             </Provider>
           );

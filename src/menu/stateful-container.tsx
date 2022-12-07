@@ -464,7 +464,6 @@ class MenuStatefulContainerInner extends React.Component<
 
 // Remove when MenuStatefulContainer is converted to a functional component.
 const MenuStatefulContainer = (props: StatefulContainerProps) => {
-  // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
   return <MenuStatefulContainerInner uidSeed={useUIDSeed()} {...props} />;
 };
 

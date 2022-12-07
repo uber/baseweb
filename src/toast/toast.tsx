@@ -218,7 +218,6 @@ class Toast extends React.Component<ToastProps, ToastPrivateState> {
     return (
       <LocaleContext.Consumer>
         {(locale) => (
-          // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
           <Body
             role="alert"
             data-baseweb={this.props['data-baseweb'] || 'toast'}
@@ -230,7 +229,6 @@ class Toast extends React.Component<ToastProps, ToastPrivateState> {
             onMouseEnter={this.onMouseEnter}
             onMouseLeave={this.onMouseLeave}
           >
-            {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
             <InnerContainer {...sharedProps} {...innerContainerProps}>
               {typeof children === 'function' ? children({ dismiss: this.dismiss }) : children}
             </InnerContainer>

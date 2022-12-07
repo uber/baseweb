@@ -32,7 +32,6 @@ const Icon = (props: IconProps, ref) => {
         ...omitDollarPrefixedKeys(overrideProps),
       };
   return (
-    // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
     <Svg data-baseweb="icon" ref={ref} {...passThroughProps}>
       {title ? <title>{title}</title> : null}
       {children}

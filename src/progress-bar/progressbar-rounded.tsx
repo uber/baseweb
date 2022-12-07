@@ -98,7 +98,6 @@ function ProgressBarRounded({
   }, [progress]); // We want *only* `progress` to trigger this effect
 
   return (
-    // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
     <Root
       data-baseweb="progressbar-rounded"
       role="progressbar"
@@ -110,11 +109,9 @@ function ProgressBarRounded({
       {...restProps}
       {...rootProps}
     >
-      {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
       <Svg $size={size} {...restProps} {...svgProps}>
-        {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
         <TrackBackground $size={size} {...trackBackgroundProps} />
-        {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
+
         <TrackForeground
           ref={pathRef}
           $size={size}
@@ -124,7 +121,7 @@ function ProgressBarRounded({
           {...trackForegroundProps}
         />
       </Svg>
-      {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
+
       <Text $size={size} {...textProps}>
         {roundTo(Math.min(progress * 100, 100))}%
       </Text>

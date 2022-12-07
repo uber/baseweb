@@ -90,7 +90,6 @@ export default class Week<T = Date> extends React.Component<WeekProps<T>> {
     const { overrides = {} } = this.props;
     const [Week, weekProps] = getOverrides(overrides.Week, StyledWeek);
     return (
-      // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
       <Week role="row" {...weekProps}>
         {this.renderDays()}
       </Week>

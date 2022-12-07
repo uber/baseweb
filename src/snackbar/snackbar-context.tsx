@@ -198,7 +198,6 @@ export default function SnackbarProvider({
 
       {snackbars.length > 0 && containerHeight !== 0 && (
         <Layer>
-          {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
           <PlacementContainer
             $animating={animating}
             $placement={placement}

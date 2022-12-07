@@ -70,7 +70,6 @@ export default class Tabs extends React.Component<TabsProps> {
       };
 
       return (
-        // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
         <TabContent role="tabpanel" {...sharedProps} {...tabContentProps} {...props}>
           {renderAll ? child.props.children : null}
           {isActive && !renderAll ? child.props.children : null}
@@ -96,9 +95,7 @@ export default class Tabs extends React.Component<TabsProps> {
     const [TabBar, tabBarProps] = getOverrides(TabBarOverride, StyledTabBar);
 
     return (
-      // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
       <Root data-baseweb="tabs" {...sharedProps} {...rootProps}>
-        {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
         <TabBar role="tablist" {...sharedProps} {...tabBarProps}>
           {this.getTabs()}
         </TabBar>

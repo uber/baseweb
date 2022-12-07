@@ -40,10 +40,9 @@ const HintDot = ({
     }
   }
   return (
-    // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
     <Root {...rootProps}>
       {anchor}
-      {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
+
       <Positioner
         $horizontalOffset={horizontalOffset}
         $verticalOffset={verticalOffset}
@@ -51,7 +50,6 @@ const HintDot = ({
         $role={ROLE.hintDot}
         {...positionerProps}
       >
-        {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
         <HintDot
           {...hintDotProps}
           $color={color}

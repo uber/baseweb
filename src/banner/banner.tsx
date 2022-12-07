@@ -146,7 +146,6 @@ function Trailing({ action, backgroundColor, color, overrides, nested }) {
 
   if (action.icon) {
     return (
-      // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
       <TrailingIconButton
         aria-label={action.label}
         onClick={action.onClick}
@@ -165,7 +164,6 @@ function Trailing({ action, backgroundColor, color, overrides, nested }) {
 
   if (action.label) {
     return (
-      // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
       <TrailingButtonContainer {...trailingButtonContainerProps}>
         <Button
           colors={{ backgroundColor, color }}
@@ -218,27 +216,22 @@ export function Banner({
   const [Message, messageProps] = getOverrides(overrides.Message, StyledMessage);
 
   return (
-    // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
     <Root
       $backgroundColor={styles.backgroundColor}
       $color={styles.color}
       $nested={nested}
       {...rootProps}
     >
-      {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
       <LeadingContent $includesArtwork={Boolean(artwork)} {...leadingContentProps}>
         <Leading artwork={artwork} />
       </LeadingContent>
 
-      {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
       <MessageContent $actionPosition={actionPosition} {...messageContentProps}>
-        {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
         {Boolean(title) && <Title {...titleProps}>{title}</Title>}
-        {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
+
         {Boolean(children) && <Message {...messageProps}>{children}</Message>}
       </MessageContent>
 
-      {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
       <TrailingContent {...trailingContentProps}>
         <Trailing
           action={action}
@@ -249,7 +242,6 @@ export function Banner({
         />
       </TrailingContent>
 
-      {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
       <BelowContent $actionPosition={actionPosition} {...belowContentProps}>
         <Below
           action={action}

@@ -316,7 +316,6 @@ class TimePicker<T = Date> extends React.Component<TimePickerProps<T>, TimePicke
               : locale.datepicker.timePickerAriaLabel24Hour;
 
           return (
-            // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
             <OverriddenSelect
               aria-label={ariaLabel}
               disabled={this.props.disabled}

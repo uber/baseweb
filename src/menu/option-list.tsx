@@ -47,7 +47,6 @@ function OptionList(
   const getItem = (item) => {
     if (item.href && renderHrefAsAnchor) {
       return (
-        // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
         <ListItemAnchor $item={item} href={item.href} {...listItemAnchorProps}>
           {getItemLabel(item)}
         </ListItemAnchor>
@@ -69,7 +68,6 @@ function OptionList(
           onClick={onClick}
           overrides={overrides}
         >
-          {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
           <ListItem
             ref={ref}
             aria-label={

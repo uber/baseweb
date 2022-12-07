@@ -94,7 +94,6 @@ function Slider({
   const [Mark, markProps] = getOverrides(overrides.Mark, StyledMark);
 
   return (
-    // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
     <Root
       data-baseweb="slider"
       {...sharedProps}
@@ -102,7 +101,6 @@ function Slider({
       onFocus={forkFocus(rootProps, handleFocus)}
       onBlur={forkBlur(rootProps, handleBlur)}
     >
-      {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
       <Range
         step={step}
         min={min}
@@ -113,7 +111,6 @@ function Slider({
         onFinalChange={(value) => onFinalChange({ value })}
         rtl={theme.direction === 'rtl'}
         renderTrack={({ props, children, isDragged }) => (
-          // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
           <Track
             onMouseDown={props.onMouseDown}
             onTouchStart={props.onTouchStart}
@@ -121,7 +118,6 @@ function Slider({
             {...sharedProps}
             {...trackProps}
           >
-            {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
             <InnerTrack
               $isDragged={isDragged}
               ref={props.ref}
@@ -137,7 +133,6 @@ function Slider({
             ? persistentThumb
             : ((!!index && isHovered1) || (!index && isHovered0) || isDragged) && !disabled;
           return (
-            // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
             <Thumb
               {...props}
               onMouseEnter={() => {
@@ -165,7 +160,6 @@ function Slider({
               $isFocusVisible={isFocusVisible && focusedThumbIndex === index}
             >
               {displayLabel && (
-                // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
                 <ThumbValue
                   $thumbIndex={index}
                   $isDragged={isDragged}
@@ -176,7 +170,6 @@ function Slider({
                 </ThumbValue>
               )}
               {displayLabel && (
-                // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
                 <InnerThumb
                   $thumbIndex={index}
                   $isDragged={isDragged}
@@ -191,19 +184,17 @@ function Slider({
           ? {
               // eslint-disable-next-line react/display-name
               renderMark: ({ props, index }) => (
-                // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
                 <Mark $markIndex={index} {...props} {...sharedProps} {...markProps} />
               ),
             }
           : {})}
       />
-      {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
+
       <TickBar {...sharedProps} {...tickBarProps}>
-        {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
         <Tick {...sharedProps} {...tickProps}>
           {valueToLabel(min)}
         </Tick>
-        {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
+
         <Tick {...sharedProps} {...tickProps}>
           {valueToLabel(max)}
         </Tick>

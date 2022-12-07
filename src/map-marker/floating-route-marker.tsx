@@ -61,7 +61,6 @@ const FloatingRouteMarker = ({
   const gridTemplateColumns = activeElements.map(() => 'auto').join(' ');
 
   return (
-    // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
     <Root
       data-baseweb="floating-route-map-marker"
       $background={backgroundColor}
@@ -69,9 +68,7 @@ const FloatingRouteMarker = ({
       {...rootProps}
     >
       {StartEnhancer && (
-        // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
         <IconContainer $color={color} $size={size} {...iconContainerProps}>
-          {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
           <StartEnhancer size={icon} />
         </IconContainer>
       )}
@@ -82,24 +79,21 @@ const FloatingRouteMarker = ({
             flexDirection: 'column',
           })}
         >
-          {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
           <PrimaryLabel $color={color} {...primaryLabelProps}>
             {label}
           </PrimaryLabel>
-          {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
+
           <SecondaryLabel $color={secondaryLabelColor} {...secondaryLabelProps}>
             {secondaryLabel}
           </SecondaryLabel>
         </div>
       )}
       {EndEnhancer && (
-        // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
         <IconContainer $color={color} $size={size} {...iconContainerProps}>
-          {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
           <EndEnhancer size={icon} />
         </IconContainer>
       )}
-      {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
+
       <PointerContainer
         $position={anchorPosition}
         xmlns="http://www.w3.org/2000/svg"
@@ -108,7 +102,6 @@ const FloatingRouteMarker = ({
         ]}
         {...pointerContainerProps}
       >
-        {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
         <Pointer
           d={FLOATING_ROUTE_MARKER_POINTERS[anchorPosition].path}
           $background={backgroundColor}

@@ -437,7 +437,6 @@ class PopoverInner extends React.Component<PopoverProps, PopoverPrivateState> {
             onMount={() => this.setState({ isLayerMounted: true })}
             onUnmount={() => this.setState({ isLayerMounted: false })}
           >
-            {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
             <TetherBehavior
               anchorRef={this.anchorRef.current}
               arrowRef={this.arrowRef.current}
@@ -466,7 +465,6 @@ class PopoverInner extends React.Component<PopoverProps, PopoverPrivateState> {
                   {this.renderPopover(renderedContent)}
                 </FocusLock>
               ) : (
-                // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
                 <MoveFocusInside
                   disabled={!this.props.autoFocus || !this.state.autoFocusAfterPositioning}
                 >

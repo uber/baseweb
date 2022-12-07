@@ -52,7 +52,6 @@ const ListItem = React.forwardRef<HTMLLIElement, ListProps>((props: ListProps, r
   }, [props.artworkSize, props.sublist]);
 
   return (
-    // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
     <Root
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ref={ref as any}
@@ -64,13 +63,11 @@ const ListItem = React.forwardRef<HTMLLIElement, ListProps>((props: ListProps, r
       {...rootProps}
     >
       {Artwork && (
-        // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
         <ArtworkContainer
           $artworkSize={artworkSize}
           $sublist={Boolean(props.sublist)}
           {...artworkContainerProps}
         >
-          {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
           <Artwork
             size={
               typeof artworkSize === 'number'
@@ -80,15 +77,13 @@ const ListItem = React.forwardRef<HTMLLIElement, ListProps>((props: ListProps, r
           />
         </ArtworkContainer>
       )}
-      {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
+
       <Content $mLeft={!Artwork} $sublist={!!props.sublist} {...contentProps}>
         {props.children}
         {EndEnhancer &&
           // @ts-expect-error todo(flow->ts) it is not expected to be a number
           EndEnhancer !== 0 && (
-            // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
             <EndEnhancerContainer {...endEnhancerContainerProps}>
-              {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
               <EndEnhancer />
             </EndEnhancerContainer>
           )}

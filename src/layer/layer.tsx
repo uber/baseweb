@@ -160,10 +160,8 @@ class LayerComponent extends React.Component<LayerComponentProps, LayerState> {
     const childrenToRender = zIndex ? <Container $zIndex={zIndex}>{children}</Container> : children;
     if (__BROWSER__) {
       if (mountNode) {
-        // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
         return ReactDOM.createPortal(childrenToRender, mountNode);
       } else if (container) {
-        // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
         return ReactDOM.createPortal(childrenToRender, container);
       }
       return null;

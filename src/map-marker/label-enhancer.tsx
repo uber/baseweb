@@ -38,14 +38,12 @@ const LabelEnhancer = ({
     StyledStrokedLabel
   );
   return (
-    // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
     <StrokedLabelContainer
       $position={labelEnhancerPosition}
       $labelOffset={needleHeight}
       {...strokedLabelContainerProps}
     >
       <RelativeContainer>
-        {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
         <StrokedLabel $size={size} {...strokedLabelProps}>
           {labelEnhancerContent}
         </StrokedLabel>

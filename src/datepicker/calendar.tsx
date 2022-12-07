@@ -492,7 +492,6 @@ export default class Calendar<T = Date> extends React.Component<
       monthList.push(<div key={`month-component-${i}`}>{monthSubComponents}</div>);
     }
     return (
-      // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
       <MonthContainer $orientation={orientation} {...monthContainerProps}>
         {monthList}
       </MonthContainer>
@@ -516,11 +515,8 @@ export default class Calendar<T = Date> extends React.Component<
     const [TimeSelect, timeSelectProps] = getOverrides(overrides.TimeSelect, TimePicker);
 
     return (
-      // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
       <TimeSelectContainer {...timeSelectContainerProps}>
-        {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
         <TimeSelectFormControl label={label} {...timeSelectFormControlProps}>
-          {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
           <TimeSelect
             value={value ? this.dateHelpers.date(value) : value}
             onChange={onChange}
@@ -562,14 +558,11 @@ export default class Calendar<T = Date> extends React.Component<
     return (
       <LocaleContext.Consumer>
         {(locale) => (
-          // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
           <QuickSelectContainer {...quickSelectContainerProps}>
-            {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
             <QuickSelectFormControl
               label={locale.datepicker.quickSelectLabel}
               {...quickSelectFormControlProps}
             >
-              {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
               <QuickSelect
                 aria-label={locale.datepicker.quickSelectAriaLabel}
                 labelKey="id"
@@ -656,7 +649,6 @@ export default class Calendar<T = Date> extends React.Component<
     return (
       <LocaleContext.Consumer>
         {(locale) => (
-          // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
           <Root
             $density={this.props.density}
             data-baseweb="calendar"

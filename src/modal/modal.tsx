@@ -254,7 +254,6 @@ class Modal extends React.Component<ModalProps, ModalState> {
             returnFocus={returnFocus}
             autoFocus={autoFocus}
           >
-            {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
             <Root
               data-baseweb="modal"
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -262,14 +261,12 @@ class Modal extends React.Component<ModalProps, ModalState> {
               {...sharedProps}
               {...rootProps}
             >
-              {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
               <DialogContainer
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 ref={this.dialogContainerRef as any}
                 {...sharedProps}
                 {...dialogContainerProps}
               >
-                {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
                 <Dialog
                   tabIndex={-1}
                   aria-modal
@@ -280,7 +277,6 @@ class Modal extends React.Component<ModalProps, ModalState> {
                 >
                   {children}
                   {closeable ? (
-                    // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
                     <Close
                       aria-label={locale.modal.close}
                       onClick={this.onCloseClick}

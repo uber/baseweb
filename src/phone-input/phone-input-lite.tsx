@@ -73,7 +73,6 @@ export default function PhoneInputLite(props: PhoneInputLiteProps) {
   const [Input, inputProps] = getOverrides(overrides.Input, DefaultInput);
   inputProps.overrides = mergeOverrides(baseOverrides, inputProps.overrides);
   return (
-    // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
     <Root {...rootProps} data-baseweb="phone-input">
       <CountryPicker
         country={country}
@@ -89,7 +88,7 @@ export default function PhoneInputLite(props: PhoneInputLiteProps) {
         required={required}
         size={size}
       />
-      {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
+
       <Input
         aria-label={ariaLabel}
         aria-labelledby={ariaLabelledBy}

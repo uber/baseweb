@@ -180,7 +180,6 @@ export default function CountryPicker(props: CountrySelectProps) {
   );
 
   return (
-    // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
     <Select
       clearable={false}
       disabled={disabled}
@@ -190,18 +189,16 @@ export default function CountryPicker(props: CountrySelectProps) {
         const iso = option.id;
         return (
           <>
-            {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
             <FlagColumn {...flagColumnProps}>
-              {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
               <FlagContainer $iso={iso} data-iso={iso} {...flagContainerProps}>
                 {iso2FlagEmoji(iso)}
               </FlagContainer>
             </FlagColumn>
-            {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
+
             <NameColumn {...nameColumnProps}>
               {mapIsoToLabel ? mapIsoToLabel(iso) : option.label}
             </NameColumn>
-            {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
+
             <Dialcode {...dialcodeProps}>{option.dialCode}</Dialcode>
           </>
         );
@@ -209,7 +206,6 @@ export default function CountryPicker(props: CountrySelectProps) {
       getValueLabel={(value: { option: Country }) => {
         const iso = value.option.id;
         return (
-          // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
           <FlagContainer $iso={iso} data-iso={iso} {...sharedProps} {...flagContainerProps}>
             {iso2FlagEmoji(iso)}
           </FlagContainer>

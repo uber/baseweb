@@ -89,7 +89,6 @@ class Input extends React.Component<InputProps, InternalState> {
     }
 
     return (
-      // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
       <Root
         data-baseweb="input"
         {...sharedProps}
@@ -98,7 +97,6 @@ class Input extends React.Component<InputProps, InternalState> {
         $hasIconTrailing={this.props.clearable || this.props.type == 'password'}
       >
         {isEnhancer(startEnhancer) && (
-          // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
           <StartEnhancer
             {...sharedProps}
             {...startEnhancerProps}
@@ -116,7 +114,6 @@ class Input extends React.Component<InputProps, InternalState> {
           onBlur={this.onBlur}
         />
         {isEnhancer(endEnhancer) && (
-          // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
           <EndEnhancer {...sharedProps} {...endEnhancerProps} $position={ENHANCER_POSITION.end}>
             {typeof endEnhancer === 'function' ? endEnhancer(sharedProps) : endEnhancer}
           </EndEnhancer>

@@ -65,7 +65,6 @@ export default function Avatar({
   const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
 
   return (
-    // @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete
     <Root
       aria-label={imageLoaded ? null : name}
       role={imageLoaded ? null : 'img'}
@@ -74,10 +73,8 @@ export default function Avatar({
       data-baseweb="avatar"
       {...rootProps}
     >
-      {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
       <Avatar ref={imageRef} alt={name} $imageLoaded={imageLoaded} $size={size} {...avatarProps} />
 
-      {/* @ts-ignore TS2786 error with web-eats-v2, can remove once React 18 migration complete */}
       {!imageLoaded && <Initials {...initialsProps}>{initials || getInitials(name)}</Initials>}
     </Root>
   );
