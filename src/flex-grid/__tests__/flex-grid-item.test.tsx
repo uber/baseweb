@@ -100,6 +100,7 @@ describe('FlexGridItem', () => {
 
   test('getResponsiveValue', () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // @ts-ignore
     const testCases: Array<{ testCase: [any, number]; expected }> = [
       { testCase: [null, 0], expected: null },
       { testCase: [null, 1], expected: null },

@@ -18,6 +18,7 @@ export const NEEDLE_HEIGHTS = Object.freeze({
   [NEEDLE_SIZES.tall]: 20,
 } as const);
 
+// Important: keep this sorted by size, as it used to determine label size when a secondary label is used.
 export const PINHEAD_SIZES_SHAPES = Object.freeze({
   xxSmallCircle: 'xx-small-circle',
   xxSmallSquare: 'xx-small-square',
@@ -106,21 +107,28 @@ export const BADGE_ENHANCER_SIZES = Object.freeze({
 } as const);
 
 const xSmallPinheadBadge = {
+  // @ts-ignore
   [BADGE_ENHANCER_SIZES.none]: null,
   [BADGE_ENHANCER_SIZES.xSmall]: {
     x: -5,
     y: -3,
   },
+  // @ts-ignore
   [BADGE_ENHANCER_SIZES.small]: null,
+  // @ts-ignore
   [BADGE_ENHANCER_SIZES.mediumText]: null,
+  // @ts-ignore
   [BADGE_ENHANCER_SIZES.mediumIcon]: null,
 };
 export const BADGE_ENHANCER_POSITIONS = {
+  // @ts-ignore
   [PINHEAD_SIZES_SHAPES.xxSmallSquare]: null,
+  // @ts-ignore
   [PINHEAD_SIZES_SHAPES.xxSmallCircle]: null,
   [PINHEAD_SIZES_SHAPES.xSmallSquare]: xSmallPinheadBadge,
   [PINHEAD_SIZES_SHAPES.xSmallCircle]: xSmallPinheadBadge,
   [PINHEAD_SIZES_SHAPES.small]: {
+    // @ts-ignore
     [BADGE_ENHANCER_SIZES.none]: null,
     [BADGE_ENHANCER_SIZES.xSmall]: {
       x: -7,
@@ -130,10 +138,13 @@ export const BADGE_ENHANCER_POSITIONS = {
       x: -8,
       y: -8,
     },
+    // @ts-ignore
     [BADGE_ENHANCER_SIZES.mediumText]: null,
+    // @ts-ignore
     [BADGE_ENHANCER_SIZES.mediumIcon]: null,
   },
   [PINHEAD_SIZES_SHAPES.medium]: {
+    // @ts-ignore
     [BADGE_ENHANCER_SIZES.none]: null,
     [BADGE_ENHANCER_SIZES.xSmall]: {
       x: -9,
@@ -153,11 +164,13 @@ export const BADGE_ENHANCER_POSITIONS = {
     },
   },
   [PINHEAD_SIZES_SHAPES.large]: {
+    // @ts-ignore
     [BADGE_ENHANCER_SIZES.none]: null,
     [BADGE_ENHANCER_SIZES.xSmall]: {
       x: -11,
       y: 3,
     },
+    // @ts-ignore
     [BADGE_ENHANCER_SIZES.small]: null,
     [BADGE_ENHANCER_SIZES.mediumText]: {
       x: -14,

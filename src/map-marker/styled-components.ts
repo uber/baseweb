@@ -10,6 +10,7 @@ import {
   FLOATING_MARKER_ANCHOR_POSITIONS,
   LABEL_SIZES,
   EARNER_LOCATION_PUCK_CORE_SCALES,
+  PINHEAD_SIZES_SHAPES,
   FLOATING_ROUTE_MARKER_POINTER_TRANSFORMS,
 } from './constants';
 
@@ -244,6 +245,7 @@ export const StyledPinHead = styled<
     gap: '8px',
     boxShadow: $theme.lighting.shadow600,
     whiteSpace: 'nowrap',
+    // @ts-ignore
     ...sharedStyles[$type],
     ...($forceCircle && {
       width: `${$height}px`,
@@ -329,6 +331,7 @@ export const StyledStrokedLabel = styled<
 
   return {
     display: 'flex',
+    // @ts-ignore
     ...$theme.typography[LABEL_SIZES[$size]],
     color: $theme.colors.primaryA,
     transition: `${$theme.animation.timing300} ${$theme.animation.easeOutCurve} all`,
@@ -373,7 +376,7 @@ export const RelativeContainer = styled('div', () => {
 
 RelativeContainer.displayName = 'RelativeContainer';
 
-export const StyledContentItem = styled<
+export const StyledEnhancerSlot = styled<
   'div',
   {
     $color: string;
@@ -382,6 +385,7 @@ export const StyledContentItem = styled<
   }
 >('div', ({ $theme, $color, $height, $size }) => {
   return {
+    // @ts-ignore
     ...$theme.typography[LABEL_SIZES[$size]],
     display: 'flex',
     alignItems: 'center',
@@ -391,8 +395,6 @@ export const StyledContentItem = styled<
     color: $color,
   };
 });
-
-StyledContentItem.displayName = 'StyledContentItem';
 
 export const StyledFloatingRouteMarkerRoot = styled<
   'div',
@@ -418,16 +420,41 @@ export const StyledFloatingRouteMarkerRoot = styled<
 });
 StyledFloatingRouteMarkerRoot.displayName = 'StyledFloatingRouteMarkerRoot';
 
-export const StyledLabel = styled<
+StyledEnhancerSlot.displayName = 'StyledEnhancerSlot';
+
+export const StyledLabelSlot = styled<
   'div',
   {
     $color: string;
+    $height: number;
+    $size: PinHeadSize;
   }
->('div', ({ $color }) => {
+>('div', () => {
   return {
+    display: 'flex',
+    justifyContent: 'center',
+    flexDirection: 'column',
+  };
+});
+
+StyledLabelSlot.displayName = 'StyledLabelSlot';
+
+export const StyledLabel = styled<
+  'div',
+  { $size: PinHeadSize; $renderSecondaryLabel: boolean; $color: String }
+>('div', ({ $theme, $size, $renderSecondaryLabel, $color }) => {
+  const pinheadSizeOrder = Object.values(PINHEAD_SIZES_SHAPES);
+  let labelSizeIndex = pinheadSizeOrder.findIndex((x) => $size === x);
+  if ($renderSecondaryLabel) {
+    labelSizeIndex--;
+  }
+  const typographyStyle = LABEL_SIZES[pinheadSizeOrder[labelSizeIndex]];
+  return {
+    ...$theme.typography[typographyStyle],
     color: $color,
   };
 });
+
 StyledLabel.displayName = 'StyledLabel';
 
 export const LocationPuckContainer = styled<'div', {}>('div', () => {
@@ -441,8 +468,12 @@ export const LocationPuckContainer = styled<'div', {}>('div', () => {
 
 LocationPuckContainer.displayName = 'LocationPuckContainer';
 
-export const consumerLocationShadow = { boxShadow: `0px 2px 4px 0px rgba(67, 76, 123, 0.2)` };
-export const earnerLocationShadow = { boxShadow: `0px 3px 5px 0px rgba(67, 76, 123, 0.4)` };
+export const consumerLocationShadow = {
+  boxShadow: `0px 2px 4px 0px rgba(67, 76, 123, 0.2)`,
+};
+export const earnerLocationShadow = {
+  boxShadow: `0px 3px 5px 0px rgba(67, 76, 123, 0.4)`,
+};
 
 export const StyledConsumerLocationPuckCore = styled<'div', {}>('div', ({ $theme }) => {
   return {

@@ -30,9 +30,11 @@ export const flexGridItemMediaQueryStyle = ({
   flexGridItemCount: number;
 }) => {
   // 0px needed for calc() to behave properly
+  // @ts-ignore
   const colGap = $theme.sizing[flexGridColumnGap] || flexGridColumnGap || '0px';
   const colGapQuantity = parseFloat(colGap);
   const colGapUnit = colGap.match(/[a-zA-Z]+/)[0];
+  // @ts-ignore
   const rowGap = $theme.sizing[flexGridRowGap] || flexGridRowGap || '0px';
   const rowGapQuantity = parseFloat(rowGap);
   const widthCalc = `(100% - ${(colCount - 1) * colGapQuantity}${colGapUnit}) / ${colCount}`;
@@ -59,11 +61,13 @@ export const flexGridItemMediaQueryStyle = ({
 
 export function getResponsiveValue<T>(responsive?: Responsive<T>, i?: number): T | undefined {
   if (!responsive) {
+    // @ts-ignore
     return null;
   }
   if (!Array.isArray(responsive)) {
     return responsive;
   }
+  // @ts-ignore
   return responsive[i] || responsive[responsive.length - 1];
 }
 
@@ -123,6 +127,7 @@ export const flexGridItemStyle = ({
           getMediaQuery(0)
         : mediaQueries[i - 1];
     if (mediaQuery) {
+      // @ts-ignore
       acc[mediaQuery] = flexGridItemMediaQueryStyle({
         $theme,
         flexGridColumnCount: flexGridColumnCountValue || 1,

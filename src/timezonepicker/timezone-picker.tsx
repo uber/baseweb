@@ -108,6 +108,7 @@ class TimezonePicker extends React.Component<TimezonePickerProps, TimezonePicker
     let options = this.state.timezones;
     if (this.props.mapLabels) {
       options = options.map((option) => {
+        // @ts-ignore
         option.label = this.props.mapLabels(option);
         return option;
       });
@@ -124,6 +125,7 @@ class TimezonePicker extends React.Component<TimezonePickerProps, TimezonePicker
             error={this.props.error}
             positive={this.props.positive}
             size={this.props.size}
+            // @ts-ignore
             onChange={(params) => {
               if (params.type === 'clear') {
                 this.setState({ value: '' });

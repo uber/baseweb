@@ -26,8 +26,10 @@ import type { FileUploaderProps } from './types';
 
 import type { SyntheticEvent } from 'react';
 
+// @ts-ignore
 function prependStyleProps(styleProps) {
   return Object.keys(styleProps).reduce((nextStyleProps, currentKey) => {
+    // @ts-ignore
     nextStyleProps[`$${currentKey}`] = styleProps[currentKey];
     return nextStyleProps;
   }, {});
@@ -72,9 +74,15 @@ function FileUploader(props: FileUploaderProps) {
 
   const afterFileDrop = !!(props.progressAmount || props.progressMessage || props.errorMessage);
 
+  let accept;
+  if (Array.isArray(props.accept)) {
+    accept = props.accept.join(',');
+  } else if (typeof props.accept === 'string') {
+    accept = props.accept;
+  }
+
   return (
-    // @ts-expect-error todo(flow->ts): dropzone api
-    <Dropzone {...props} disabled={props.disabled || afterFileDrop}>
+    <Dropzone {...props} accept={accept} disabled={props.disabled || afterFileDrop}>
       {(renderProps) => {
         const { getRootProps, getInputProps, open, ...styleProps } = renderProps;
 
@@ -107,9 +115,11 @@ function FileUploader(props: FileUploaderProps) {
                         {locale.fileuploader.dropFilesToUpload}
                       </ContentMessage>
                       {/* TODO(v11): ContentSeparator potentially can be removed in the next major version */}
+
                       <ContentSeparator {...prefixedStyledProps} {...contentSeparatorProps}>
                         {locale.fileuploader.or}
                       </ContentSeparator>
+
                       <ButtonComponent
                         disabled={props.disabled}
                         kind={KIND.secondary}
@@ -119,6 +129,7 @@ function FileUploader(props: FileUploaderProps) {
                         role="button"
                         overrides={{
                           BaseButton: {
+                            // @ts-ignore
                             style: ({ $theme }) => ({
                               marginTop: $theme.sizing.scale500,
                             }),
@@ -145,6 +156,7 @@ function FileUploader(props: FileUploaderProps) {
                           value={props.progressAmount}
                           overrides={{
                             BarProgress: {
+                              // @ts-ignore
                               style: ({ $theme }) => ({
                                 backgroundColor: props.errorMessage
                                   ? $theme.colors.negative
@@ -192,6 +204,7 @@ function FileUploader(props: FileUploaderProps) {
                           aria-describedby={props['aria-describedby']}
                           overrides={{
                             BaseButton: {
+                              // @ts-ignore
                               style: ({ $theme }) => ({
                                 color: $theme.colors.contentNegative,
                               }),

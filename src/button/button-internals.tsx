@@ -15,6 +15,7 @@ import { getOverrides } from '../helpers/overrides';
 
 import type { ButtonProps } from './types';
 
+// @ts-ignore
 function RenderEnhancer(props) {
   const { Enhancer, ...restProps } = props;
   if (typeof Enhancer === 'string') {

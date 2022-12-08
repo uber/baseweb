@@ -22,7 +22,7 @@ import { Popover, ACCESSIBILITY_TYPE, TRIGGER_TYPE } from '..';
 import { styled } from '../../styles';
 
 jest.mock('react-uid', () => ({
-  // @ts-expect-error todo(flow->ts)
+  // @ts-ignore
   ...jest.requireActual('react-uid'),
 }));
 const reactuid = require('react-uid');

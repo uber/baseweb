@@ -96,6 +96,7 @@ describe('TreeView Component', () => {
     const { getByText } = render(<TreeView {...getSharedProps()} />);
     const node = getByText('Node 1').parentElement;
     const preventDefault = jest.fn();
+    // @ts-ignore
     fireEvent.keyDown(node, {
       key: 'C',
       ctrlKey: true,
@@ -107,15 +108,22 @@ describe('TreeView Component', () => {
 
   it('TreeLabel override should override default icons as well', () => {
     const CustomTreeLabel = ({
+      // @ts-ignore
       hasChildren,
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      // @ts-ignore
       isSelected,
+      // @ts-ignore
       isExpanded,
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      // @ts-ignore
       isFocusVisible,
+      // @ts-ignore
       label,
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      // @ts-ignore
       overrides,
+      // @ts-ignore
       node,
       ...props
     }) => {

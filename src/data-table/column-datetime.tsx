@@ -71,6 +71,7 @@ const MASK = '99-99-9999 - 99-99-9999';
 const TIME_FORMAT = 'HH:mm ss:SS';
 const FORMAT_STRING = `${DATE_FORMAT} ${TIME_FORMAT}`;
 
+// @ts-ignore
 function sortDates(a, b) {
   return a - b;
 }
@@ -119,10 +120,12 @@ const MONTHS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
 const QUARTERS = [0, 1, 2, 3];
 
+// @ts-ignore
 function Checks(props) {
   const [css, theme] = useStyletron();
   return (
     <div className={css({ maxHeight: '256px', overflowY: 'auto' })}>
+      {/* @ts-ignore */}
       {props.options.map((item) => {
         const checked = props.value.includes(item.id);
         return (
@@ -131,8 +134,10 @@ function Checks(props) {
               checked={checked}
               onChange={() => {
                 if (checked) {
+                  // @ts-ignore
                   props.setValue((prev) => prev.filter((i) => i !== item.id));
                 } else {
+                  // @ts-ignore
                   props.setValue((prev) => [...prev, item.id]);
                 }
               }}
@@ -146,17 +151,24 @@ function Checks(props) {
   );
 }
 
+// @ts-ignore
 function filterParamsToInitialState(input) {
   const output = {
     exclude: false,
     comparatorIndex: 0,
     rangeOperator: RANGE_OPERATIONS[0],
     categoricalOperator: CATEGORICAL_OPERATIONS[0],
+    // @ts-ignore
     rangeDates: [],
+    // @ts-ignore
     years: [],
+    // @ts-ignore
     halves: [],
+    // @ts-ignore
     quarters: [],
+    // @ts-ignore
     months: [],
+    // @ts-ignore
     weekdays: [],
   };
 
@@ -201,6 +213,7 @@ function filterParamsToInitialState(input) {
   return output;
 }
 
+// @ts-ignore
 function DatetimeFilter(props) {
   const [css, theme] = useStyletron();
   const locale = React.useContext(LocaleContext);
@@ -212,7 +225,9 @@ function DatetimeFilter(props) {
   }, [props.data]);
   const presentYears = React.useMemo(() => {
     const dict = {};
+    // @ts-ignore
     props.data.forEach((date) => {
+      // @ts-ignore
       dict[getYear(date)] = true;
     });
     return Object.keys(dict).map((n) => parseInt(n));
@@ -321,6 +336,7 @@ function DatetimeFilter(props) {
           }
 
           if (operatorLocaleLabelKey) {
+            // @ts-ignore
             description = `${locale.datatable[operatorLocaleLabelKey]} - ${description}`;
           }
 
@@ -336,6 +352,7 @@ function DatetimeFilter(props) {
         props.close();
       }}
     >
+      {/* @ts-ignore */}
       <div ref={mountNode}>
         <ButtonGroup
           size={SIZE.compact}
@@ -364,6 +381,7 @@ function DatetimeFilter(props) {
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
               mountNode={mountNode.current as any}
               options={RANGE_OPERATIONS.map((op) => ({
+                // @ts-ignore
                 label: locale.datatable[op.localeLabelKey],
                 id: op.id,
               }))}
@@ -453,6 +471,7 @@ function DatetimeFilter(props) {
               value={categoricalOperator}
               onChange={(params) => setCategoricalOperator(params.value)}
               options={CATEGORICAL_OPERATIONS.map((op) => ({
+                // @ts-ignore
                 label: locale.datatable[op.localeLabelKey],
                 id: op.id,
               }))}
@@ -540,6 +559,7 @@ function DatetimeFilter(props) {
   );
 }
 
+// @ts-ignore
 function DatetimeCell(props) {
   const [css, theme] = useStyletron();
   return (

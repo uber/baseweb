@@ -31,6 +31,7 @@ class Button extends React.Component<
   static defaultProps = defaultProps;
   state = { isFocusVisible: false };
 
+  // @ts-ignore
   internalOnClick = (...args) => {
     const { isLoading, onClick } = this.props;
     if (isLoading) {
@@ -126,6 +127,7 @@ class Button extends React.Component<
             <div style={{ opacity: 0, display: 'flex', height: '0px' }}>
               <ButtonInternals {...this.props} />
             </div>
+
             <LoadingSpinnerContainer {...sharedProps} {...loadingSpinnerContainerProps}>
               <LoadingSpinner {...sharedProps} {...loadingSpinnerProps} />
             </LoadingSpinnerContainer>

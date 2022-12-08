@@ -13,7 +13,9 @@ import {
   StyledOuterXSmallAnchor,
   StyledPinHead,
   RelativeContainer,
-  StyledContentItem,
+  StyledEnhancerSlot,
+  StyledLabelSlot,
+  StyledLabel,
 } from './styled-components';
 import {
   PINHEAD_DIMENSIONS,
@@ -29,6 +31,7 @@ import type { PinHeadProps } from './types';
 const PinHead = ({
   size = PINHEAD_SIZES_SHAPES.medium,
   label = '',
+  secondaryLabel = '',
   startEnhancer: StartEnhancer,
   endEnhancer: EndEnhancer,
   color,
@@ -49,7 +52,13 @@ const PinHead = ({
   const { height, icon } = PINHEAD_DIMENSIONS[size];
 
   const [PinHead, pinHeadProps] = getOverrides(overrides.PinHead, StyledPinHead);
-  const [ContentItem, contentItemProps] = getOverrides(overrides.PinHeadContent, StyledContentItem);
+  const [EnhancerSlot, enhancerSlotProps] = getOverrides(
+    overrides.EnhancerSlot,
+    StyledEnhancerSlot
+  );
+  const [LabelSlot, labelSlotProps] = getOverrides(overrides.LabelSlot, StyledLabelSlot);
+  const [Label, labelProps] = getOverrides(overrides.Label, StyledLabel);
+  const [SecondaryLabel, secondaryLabelProps] = getOverrides(overrides.SecondaryLabel, StyledLabel);
 
   const [InnerXXSmallAnchor, innerXXSmallAnchorProps] = getOverrides(
     overrides.InnerAnchor,
@@ -108,6 +117,7 @@ const PinHead = ({
     return (
       <RelativeContainer>
         {badge}
+
         <OuterXSmallAnchor
           $round={round}
           $background={background}
@@ -125,6 +135,9 @@ const PinHead = ({
     );
   }
 
+  const renderSecondaryLabel =
+    (size === PINHEAD_SIZES_SHAPES.large || size === PINHEAD_SIZES_SHAPES.medium) && secondaryLabel;
+
   return (
     <RelativeContainer>
       <LabelEnhancer
@@ -135,6 +148,7 @@ const PinHead = ({
         overrides={overrides}
       />
       {badge}
+
       <PinHead
         $background={background}
         $height={height}
@@ -144,19 +158,36 @@ const PinHead = ({
         {...pinHeadProps}
       >
         {StartEnhancer && (
-          <ContentItem $height={height} $color={color} $size={size} {...contentItemProps}>
+          <EnhancerSlot $height={height} $color={color} $size={size} {...enhancerSlotProps}>
             <StartEnhancer size={icon} />
-          </ContentItem>
+          </EnhancerSlot>
         )}
         {label && (
-          <ContentItem $height={height} $color={color} $size={size} {...contentItemProps}>
-            {label}
-          </ContentItem>
+          <LabelSlot {...labelSlotProps}>
+            <Label
+              $size={size}
+              $renderSecondaryLabel={renderSecondaryLabel}
+              $color={color}
+              {...labelProps}
+            >
+              {label}
+            </Label>
+            {renderSecondaryLabel && (
+              <SecondaryLabel
+                $size={size}
+                $renderSecondaryLabel={renderSecondaryLabel}
+                $color={color}
+                {...secondaryLabelProps}
+              >
+                {secondaryLabel}
+              </SecondaryLabel>
+            )}
+          </LabelSlot>
         )}
         {EndEnhancer && (
-          <ContentItem $height={height} $color={color} $size={size} {...contentItemProps}>
+          <EnhancerSlot $height={height} $color={color} $size={size} {...enhancerSlotProps}>
             <EndEnhancer size={icon} />
-          </ContentItem>
+          </EnhancerSlot>
         )}
       </PinHead>
     </RelativeContainer>

@@ -20,7 +20,9 @@ function getSizeStyles($size: SizeProp, $anchor: AnchorProp) {
   if ($anchor === ANCHOR.left || $anchor === ANCHOR.right) {
     // If the anchor is horizontal, set the width
     styles.height = SIZE_DIMENSION.full;
+    // @ts-ignore
     if (SIZE[$size]) {
+      // @ts-ignore
       styles.width = SIZE_DIMENSION[$size];
     } else if (typeof $size === 'string') {
       styles.width = $size;
@@ -28,7 +30,9 @@ function getSizeStyles($size: SizeProp, $anchor: AnchorProp) {
   } else {
     // If the anchor is vertical, set the height
     styles.width = SIZE_DIMENSION.full;
+    // @ts-ignore
     if (SIZE[$size]) {
+      // @ts-ignore
       styles.height = SIZE_DIMENSION[$size];
     } else if (typeof $size === 'string') {
       styles.height = $size;
@@ -120,6 +124,7 @@ export const StyledBackdrop = styled<'div', SharedStylePropsArg>('div', (props) 
 
 StyledBackdrop.displayName = 'StyledBackdrop';
 
+// @ts-ignore
 export const StyledDrawerContainer = styled<'div', SharedStylePropsArg>('div', (props) => {
   const { $animating, $isOpen, $isVisible, $theme } = props;
   return {

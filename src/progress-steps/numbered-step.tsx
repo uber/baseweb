@@ -48,13 +48,17 @@ function NumberedStep({
     <Root {...sharedProps} {...rootProps}>
       <Icon {...sharedProps} {...iconProps}>
         {!isCompleted && <span>{step}</span>}
+
         {isCompleted && <CheckIcon size={28} {...checkIconProps} />}
       </Icon>
+
       {!isLast && <Tail {...sharedProps} {...tailProps} />}
+
       <Content {...sharedProps} {...contentProps}>
         <Title {...sharedProps} {...titleProps}>
           {title}
         </Title>
+
         <Description {...descriptionProps}>{isActive && children}</Description>
       </Content>
     </Root>

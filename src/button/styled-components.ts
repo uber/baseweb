@@ -166,6 +166,7 @@ export const LoadingSpinner = styled<'span', SharedStyleProps>(
 
 LoadingSpinner.displayName = 'LoadingSpinner';
 
+// @ts-ignore
 function getLoadingSpinnerColors({ $theme, $kind, $disabled }) {
   if ($disabled) {
     return {
@@ -196,6 +197,7 @@ function getLoadingSpinnerColors({ $theme, $kind, $disabled }) {
   }
 }
 
+// @ts-ignore
 function getBorderRadiiStyles({ $theme, $size, $shape }) {
   let value = $theme.borders.buttonBorderRadius;
 
@@ -221,6 +223,7 @@ function getBorderRadiiStyles({ $theme, $size, $shape }) {
   };
 }
 
+// @ts-ignore
 function getFontStyles({ $theme, $size }): Font {
   switch ($size) {
     case SIZE.mini:
@@ -234,6 +237,7 @@ function getFontStyles({ $theme, $size }): Font {
   }
 }
 
+// @ts-ignore
 function getDisabledStyles({ $theme, $kind, $isSelected, $disabled }) {
   if ($disabled && $isSelected) {
     if ($kind === KIND.primary || $kind === KIND.secondary) {
@@ -255,6 +259,7 @@ function getDisabledStyles({ $theme, $kind, $isSelected, $disabled }) {
   };
 }
 
+// @ts-ignore
 function getPaddingStyles({ $theme, $size, $shape }) {
   const iconShape = $shape === SHAPE.square || $shape === SHAPE.circle || $shape === SHAPE.round;
   switch ($size) {
@@ -307,11 +312,17 @@ type ColorStyles = {
 };
 
 function getColorStyles({
+  // @ts-ignore
   $theme,
+  // @ts-ignore
   $colors,
+  // @ts-ignore
   $isLoading,
+  // @ts-ignore
   $isSelected,
+  // @ts-ignore
   $kind,
+  // @ts-ignore
   $disabled,
 }): ColorStyles {
   if ($colors) {
@@ -393,6 +404,7 @@ function getColorStyles({
   }
 }
 
+// @ts-ignore
 function getShapeStyles({ $shape, $size }): {
   height?: string;
   width?: string;

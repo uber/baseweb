@@ -40,6 +40,7 @@ function StatelessAccordion({
             // Don't bother constructing the wrapper function if no one is listening
             onChange && typeof onChange === 'function'
               ? () => {
+                  // @ts-ignore
                   let next;
                   if (accordion) {
                     if (expanded.includes(key)) {
@@ -54,6 +55,7 @@ function StatelessAccordion({
                       next = [...expanded, key];
                     }
                   }
+                  // @ts-ignore
                   onChange({ key, expanded: next });
                 }
               : onChange,

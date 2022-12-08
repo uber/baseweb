@@ -17,15 +17,20 @@ any {
   for (let i = 0; i < len; i++) {
     obj = sources[i] || {};
     for (let key in obj) {
+      // @ts-ignore
       if (typeof obj[key] !== undefined) {
+        // @ts-ignore
         value = obj[key];
         if (isCloneable(value)) {
+          // @ts-ignore
           target[key] = deepMerge(
             /* eslint-disable-next-line no-mixed-operators */
+            // @ts-ignore
             target[key] || (Array.isArray(value) && []) || {},
             value
           );
         } else {
+          // @ts-ignore
           target[key] = value;
         }
       }

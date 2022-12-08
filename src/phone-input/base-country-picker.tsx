@@ -48,6 +48,7 @@ const DropdownListItem = React.forwardRef<HTMLLIElement, ComponentProps<typeof D
 );
 DropdownListItem.displayName = 'DropdownListItem';
 
+// @ts-ignore
 function DropdownOptionContent(props) {
   return <>{props.children}</>;
 }
@@ -104,6 +105,7 @@ export default function CountryPicker(props: CountrySelectProps) {
     },
     StatefulMenu: {
       props: {
+        // @ts-ignore
         stateReducer: (type, nextState) => {
           const next = {
             ...nextState,
@@ -182,6 +184,7 @@ export default function CountryPicker(props: CountrySelectProps) {
       clearable={false}
       disabled={disabled}
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      // @ts-ignore
       getOptionLabel={({ option, optionState }) => {
         const iso = option.id;
         return (
@@ -191,9 +194,11 @@ export default function CountryPicker(props: CountrySelectProps) {
                 {iso2FlagEmoji(iso)}
               </FlagContainer>
             </FlagColumn>
+
             <NameColumn {...nameColumnProps}>
               {mapIsoToLabel ? mapIsoToLabel(iso) : option.label}
             </NameColumn>
+
             <Dialcode {...dialcodeProps}>{option.dialCode}</Dialcode>
           </>
         );
@@ -208,6 +213,7 @@ export default function CountryPicker(props: CountrySelectProps) {
       }}
       error={error}
       maxDropdownHeight={maxDropdownHeight}
+      // @ts-ignore
       onChange={(event) => {
         if (typeof onCountryChange === 'function') {
           onCountryChange(event);

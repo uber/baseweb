@@ -34,6 +34,7 @@ export const StyledSpinner = styled<'i', SpinnerProps>(
     }[$size];
 
     if (!borderSize) {
+      // @ts-ignore
       borderSize = $theme.sizing[$borderWidth];
       if (!borderSize) {
         // @ts-expect-error todo(flow->ts) avoid mixing string with number
@@ -41,6 +42,7 @@ export const StyledSpinner = styled<'i', SpinnerProps>(
       }
     }
     if (!boxSize) {
+      // @ts-ignore
       boxSize = $theme.sizing[$size];
       if (!boxSize) {
         // @ts-expect-error todo(flow->ts) avoid mixing string with number

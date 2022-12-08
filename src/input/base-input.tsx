@@ -27,6 +27,7 @@ import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible';
 
 import type { SyntheticEvent, FocusEvent } from 'react';
 
+// @ts-ignore
 const NullComponent = () => null;
 
 class BaseInput<T extends HTMLInputElement | HTMLTextAreaElement> extends React.Component<
@@ -34,13 +35,21 @@ class BaseInput<T extends HTMLInputElement | HTMLTextAreaElement> extends React.
   InternalState
 > {
   static defaultProps = {
+    // @ts-ignore
     'aria-activedescendant': null,
+    // @ts-ignore
     'aria-autocomplete': null,
+    // @ts-ignore
     'aria-controls': null,
+    // @ts-ignore
     'aria-errormessage': null,
+    // @ts-ignore
     'aria-haspopup': null,
+    // @ts-ignore
     'aria-label': null,
+    // @ts-ignore
     'aria-labelledby': null,
+    // @ts-ignore
     'aria-describedby': null,
     adjoined: ADJOINED.none,
     autoComplete: 'on',
@@ -60,9 +69,11 @@ class BaseInput<T extends HTMLInputElement | HTMLTextAreaElement> extends React.
     clearable: false,
     clearOnEscape: true,
     overrides: {},
+    // @ts-ignore
     pattern: null,
     placeholder: '',
     required: false,
+    // @ts-ignore
     role: null,
     size: SIZE.default,
     type: 'text',
@@ -86,6 +97,7 @@ class BaseInput<T extends HTMLInputElement | HTMLTextAreaElement> extends React.
         this.inputRef.current.focus();
       }
       if (clearable) {
+        // @ts-ignore
         this.inputRef.current.addEventListener('keydown', this.onInputKeyDown);
       }
     }
@@ -94,6 +106,7 @@ class BaseInput<T extends HTMLInputElement | HTMLTextAreaElement> extends React.
   componentWillUnmount() {
     const { clearable } = this.props;
     if (clearable && this.inputRef.current) {
+      // @ts-ignore
       this.inputRef.current.removeEventListener('keydown', this.onInputKeyDown);
     }
   }
@@ -143,11 +156,13 @@ class BaseInput<T extends HTMLInputElement | HTMLTextAreaElement> extends React.
 
   onFocus = (e: FocusEvent<T>) => {
     this.setState({ isFocused: true });
+    // @ts-ignore
     this.props.onFocus(e);
   };
 
   onBlur = (e: FocusEvent<T>) => {
     this.setState({ isFocused: false });
+    // @ts-ignore
     this.props.onBlur(e);
   };
 
@@ -179,14 +194,17 @@ class BaseInput<T extends HTMLInputElement | HTMLTextAreaElement> extends React.
     if (this.props.type !== 'password') return null;
 
     const [MaskToggleButton, maskToggleButtonProps] = getOverrides(
+      // @ts-ignore
       this.props.overrides.MaskToggleButton,
       StyledMaskToggleButton
     );
     const [MaskToggleShowIcon, maskToggleIconShowProps] = getOverrides(
+      // @ts-ignore
       this.props.overrides.MaskToggleShowIcon,
       Show
     );
     const [MaskToggleHideIcon, maskToggleIconHideProps] = getOverrides(
+      // @ts-ignore
       this.props.overrides.MaskToggleHideIcon,
       Hide
     );
@@ -196,6 +214,7 @@ class BaseInput<T extends HTMLInputElement | HTMLTextAreaElement> extends React.
       [SIZE.compact]: '16px',
       [SIZE.default]: '20px',
       [SIZE.large]: '24px',
+      // @ts-ignore
     }[this.props.size];
     return (
       <MaskToggleButton
@@ -255,6 +274,7 @@ class BaseInput<T extends HTMLInputElement | HTMLTextAreaElement> extends React.
       [SIZE.compact]: '14px',
       [SIZE.default]: '16px',
       [SIZE.large]: '22px',
+      // @ts-ignore
     }[this.props.size];
     return (
       <ClearIconContainer
@@ -268,6 +288,7 @@ class BaseInput<T extends HTMLInputElement | HTMLTextAreaElement> extends React.
           title={ariaLabel}
           aria-label={ariaLabel}
           onClick={this.onClearIconClick}
+          // @ts-ignore
           onKeyDown={(event) => {
             if (event.key && (event.key === 'Enter' || event.key === ' ')) {
               event.preventDefault();
@@ -288,9 +309,13 @@ class BaseInput<T extends HTMLInputElement | HTMLTextAreaElement> extends React.
   render() {
     const {
       overrides: {
+        // @ts-ignore
         InputContainer: InputContainerOverride,
+        // @ts-ignore
         Input: InputOverride,
+        // @ts-ignore
         Before: BeforeOverride,
+        // @ts-ignore
         After: AfterOverride,
       },
     } = this.props;
@@ -319,6 +344,7 @@ class BaseInput<T extends HTMLInputElement | HTMLTextAreaElement> extends React.
         {...inputContainerProps}
       >
         <Before {...sharedProps} {...beforeProps} />
+
         <Input
           ref={this.inputRef}
           aria-activedescendant={this.props['aria-activedescendant']}
@@ -359,6 +385,7 @@ class BaseInput<T extends HTMLInputElement | HTMLTextAreaElement> extends React.
         />
         {this.renderClear()}
         {this.renderMaskToggle()}
+
         <After {...sharedProps} {...afterProps} />
       </InputContainer>
     );

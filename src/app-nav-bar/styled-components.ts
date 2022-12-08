@@ -52,13 +52,16 @@ export const StyledRoot = styled('div', (props) => {
     for (let i = 0; i < breakpoints.length; i++) {
       const margin = $theme.grid.margins[i];
       if (margin == null) {
+        // @ts-ignore
         margins.push($theme.grid.margins[$theme.grid.margins.length - 1]);
       } else {
+        // @ts-ignore
         margins.push(margin);
       }
     }
   } else {
     for (let i = 0; i < breakpoints.length; i++) {
+      // @ts-ignore
       margins.push($theme.grid.margins);
     }
   }

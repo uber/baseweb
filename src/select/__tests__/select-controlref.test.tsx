@@ -82,6 +82,7 @@ describe('setDropdownOpen', function () {
 
     expect(container.querySelectorAll('li').length).toBe(0);
 
+    // @ts-ignore
     function setDropdownOpen(isOpen) {
       act(() => {
         if (controlRef.current !== null && controlRef.current.setDropdownOpen) {

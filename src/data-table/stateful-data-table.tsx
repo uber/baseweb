@@ -41,6 +41,7 @@ function useResizeObserver(
   }, [ref]);
 }
 
+// @ts-ignore
 function QueryInput(props) {
   const [css, theme] = useStyletron();
   const locale = React.useContext(LocaleContext);
@@ -79,15 +80,18 @@ function QueryInput(props) {
   );
 }
 
+// @ts-ignore
 function FilterTag(props) {
   const [, theme] = useStyletron();
   const [isOpen, setIsOpen] = React.useState(false);
+  // @ts-ignore
   const columnIndex = props.columns.findIndex((c) => c.title === props.title);
   const column = props.columns[columnIndex];
   if (!column) {
     return null;
   }
 
+  // @ts-ignore
   const data = props.rows.map((r) => column.mapDataToValue(r.data));
   const Filter = column.renderFilter;
 
@@ -103,6 +107,7 @@ function FilterTag(props) {
           close={() => setIsOpen(false)}
           data={data}
           filterParams={props.filter}
+          // @ts-ignore
           setFilter={(filterParams) => props.onFilterAdd(props.title, filterParams)}
         />
       )}
@@ -242,6 +247,7 @@ export function StatefulDataTable(props: StatefulDataTableProps) {
                   })}
                 >
                   {props.batchActions.map((action) => {
+                    // @ts-ignore
                     function onClick(event) {
                       action.onClick({
                         clearSelection: onSelectNone,

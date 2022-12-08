@@ -13,6 +13,7 @@ import type { StatefulContainerProps, State } from './types';
 import type { SyntheticEvent } from 'react';
 
 // handles the case where selected = 0
+// @ts-ignore
 function isSelectedDefined(selected) {
   return Array.isArray(selected) || typeof selected === 'number';
 }
@@ -28,6 +29,7 @@ function defaultStateReducer(
 
 export default class StatefulContainer extends React.Component<StatefulContainerProps, State> {
   static defaultProps = {
+    // @ts-ignore
     initialState: { selected: [] },
     stateReducer: defaultStateReducer,
   };
@@ -39,6 +41,7 @@ export default class StatefulContainer extends React.Component<StatefulContainer
     const { selected = [] } = initialState;
 
     this.state = {
+      // @ts-ignore
       selected: isSelectedDefined(selected) ? [].concat(selected) : [],
     };
   }

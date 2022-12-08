@@ -29,6 +29,7 @@ class StatefulContainer<T = Date> extends React.Component<Props<T>, ContainerSta
 
   constructor(props: Props<T>) {
     super(props);
+    // @ts-ignore
     const value = props.range ? [] : (null as T | undefined | null);
     this.state = { value, ...props.initialState };
   }
@@ -58,6 +59,7 @@ class StatefulContainer<T = Date> extends React.Component<Props<T>, ContainerSta
 
   internalSetState(type: StateChangeType, changes: ContainerState<T>) {
     const { stateReducer } = this.props;
+    // @ts-ignore
     this.setState((prevState) => stateReducer(type, changes, prevState));
   }
 

@@ -25,10 +25,12 @@ type FilterParameters = {
 type StringColumn = ColumnOptions<string, FilterParameters>;
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
+// @ts-ignore
 function StringFilter(props) {
   return <div>not implemented for string column</div>;
 }
 
+// @ts-ignore
 function StringCell(props) {
   const [css] = useStyletron();
   return (

@@ -83,7 +83,7 @@ export function Scenario() {
                         : theme.colors.backgroundPrimary,
                   },
                 },
-                PinHeadContent: {
+                EnhancerSlot: {
                   style: {
                     color:
                       hoveredLocationIndex === 0 || selectedLocationIndex === 0
@@ -157,7 +157,7 @@ export function Scenario() {
                         : theme.colors.backgroundPrimary,
                   },
                 },
-                PinHeadContent: {
+                EnhancerSlot: {
                   style: {
                     color:
                       hoveredLocationIndex === 2 || selectedLocationIndex === 2

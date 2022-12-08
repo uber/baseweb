@@ -65,19 +65,21 @@ export default function Menu(props: StatelessMenuProps) {
     ([els, itemIndex], optgroup) => {
       if (optgroup !== '__ungrouped') {
         els.push(
+          // @ts-ignore
           <OptgroupHeader key={optgroup} {...optgroupHeaderProps}>
             {optgroup}
           </OptgroupHeader>
         );
       }
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      // @ts-ignore
       const groupItems = groupedItems[optgroup].map((item, index) => {
         itemIndex = itemIndex + 1;
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { getRequiredItemProps = (item, index) => ({} as RenderItemProps) } = props;
 
         if (item.divider === true) {
-          return <MenuDivider {...menuDividerProps} />;
+          return <MenuDivider key={itemIndex} {...menuDividerProps} />;
         }
 
         const {
@@ -111,6 +113,7 @@ export default function Menu(props: StatelessMenuProps) {
     [[], -1]
   );
 
+  // @ts-ignore
   const isEmpty = optgroups.every((optgroup) => !groupedItems[optgroup].length);
 
   return (
@@ -126,6 +129,7 @@ export default function Menu(props: StatelessMenuProps) {
           onMouseOver={focusMenu}
           onFocus={forkFocus({ onFocus: focusMenu }, handleFocus)}
           onBlur={forkBlur({ onBlur: unfocusMenu }, handleBlur)}
+          // @ts-ignore
           onKeyDown={(event) => {
             if (props.isFocused) {
               handleKeyDown(event);

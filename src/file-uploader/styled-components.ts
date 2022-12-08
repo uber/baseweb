@@ -51,6 +51,7 @@ StyledFileDragAndDrop.displayName = 'StyledFileDragAndDrop';
 
 export const StyledContentMessage = styled<'div', StyleProps>(
   'div',
+  // @ts-ignore
   ({ $theme, $afterFileDrop, $isDragActive }) => ({
     ...($afterFileDrop ? $theme.typography.LabelMedium : $theme.typography.LabelSmall),
     color: $afterFileDrop
@@ -67,6 +68,7 @@ StyledContentMessage.displayName = 'StyledContentMessage';
 
 export const StyledContentSeparator = StyledContentMessage;
 
+// @ts-ignore
 export const StyledErrorMessage = styled<'div', StyleProps>('div', (props) => ({
   ...props.$theme.typography.LabelMedium,
   color: props.$theme.colors.negative,

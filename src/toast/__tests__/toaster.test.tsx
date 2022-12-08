@@ -33,6 +33,7 @@ describe('toaster', () => {
   describe('toaster methods', () => {
     it('toaster[show | update | clear]', async () => {
       render(<ToasterContainer />);
+      // @ts-ignore
       let key;
 
       act(() => {
@@ -41,11 +42,13 @@ describe('toaster', () => {
       await findByText(getBody(), 'show');
 
       act(() => {
+        // @ts-ignore
         toaster.update(String(key), { children: 'update' });
       });
       await findByText(getBody(), 'update');
 
       act(() => {
+        // @ts-ignore
         toaster.clear(key);
       });
       await waitForElementToBeRemoved(() => getByText(getBody(), 'update'));

@@ -24,7 +24,9 @@ import type { TableProps } from './types';
 
 export default class Table extends React.Component<TableProps> {
   static defaultProps = {
+    // @ts-ignore
     columns: [],
+    // @ts-ignore
     data: [[]],
     loadingMessage: 'Loading...',
   };

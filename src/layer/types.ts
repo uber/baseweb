@@ -32,14 +32,14 @@ export type LayersContextProps = {
   zIndex?: number;
   addEscapeHandler: (a: () => unknown) => void;
   removeEscapeHandler: (a: () => unknown) => void;
-  addKeyDownHandler: (a: () => unknown) => void;
-  removeKeyDownHandler: (a: () => unknown) => void;
-  addKeyUpHandler: (a: () => unknown) => void;
-  removeKeyUpHandler: (a: () => unknown) => void;
-  addKeyPressHandler: (a: () => unknown) => void;
-  removeKeyPressHandler: (a: () => unknown) => void;
-  addDocClickHandler: (a: () => unknown) => void;
-  removeDocClickHandler: (a: () => unknown) => void;
+  addKeyDownHandler: (a: (event: KeyboardEvent) => void) => void;
+  removeKeyDownHandler: (a: (event: KeyboardEvent) => void) => void;
+  addKeyUpHandler: (a: (event: KeyboardEvent) => void) => void;
+  removeKeyUpHandler: (a: (event: KeyboardEvent) => void) => void;
+  addKeyPressHandler: (a: (event: KeyboardEvent) => void) => void;
+  removeKeyPressHandler: (a: (event: KeyboardEvent) => void) => void;
+  addDocClickHandler: (a: (event: MouseEvent) => void) => void;
+  removeDocClickHandler: (a: (event: MouseEvent) => void) => void;
 };
 
 /** Layer */

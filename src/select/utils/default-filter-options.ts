@@ -6,8 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 import type { Option, Value } from '../types';
 
+// @ts-ignore
 const escapeRegExp = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
+// @ts-ignore
 const isValid = (value) => {
   return typeof value !== 'undefined' && value !== null && value !== '';
 };

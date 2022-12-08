@@ -106,6 +106,7 @@ export const StyledActionButtonContainer = styled('div', ({ $theme }) => {
 
 StyledActionButtonContainer.displayName = 'StyledActionButtonContainer';
 
+// @ts-ignore
 function placementRules(placement): StyleObject {
   switch (placement) {
     case PLACEMENT.topLeft:
@@ -155,6 +156,7 @@ export const StyledPlacementContainer = styled<
     $placement: Placement;
     $translateHeight: number;
   }
+  // @ts-ignore
 >('div', ({ $animating, $placement, $translateHeight, $theme }) => {
   return {
     ...placementRules($placement),

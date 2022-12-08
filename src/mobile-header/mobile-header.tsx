@@ -1,6 +1,5 @@
 /*
 Copyright (c) Uber Technologies, Inc.
-
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
@@ -96,17 +95,19 @@ export function MobileHeader({
     <Root {...rootProps} $type={type} $expanded={expanded}>
       <NavContainer
         $type={type}
-        $hasTextContent={!Boolean(navButton.renderIcon)}
+        $hasTextContent={navButton && !Boolean(navButton.renderIcon)}
         {...navContainerProps}
       >
-        <HeaderButton
-          onClick={navButton.onClick}
-          type={type}
-          aria-label={navButton.label}
-          {...iconButtonProps}
-        >
-          {renderButtonContent(navButton.renderIcon || navButton.label)}
-        </HeaderButton>
+        {navButton && (
+          <HeaderButton
+            onClick={navButton.onClick}
+            type={type}
+            aria-label={navButton.label}
+            {...iconButtonProps}
+          >
+            {renderButtonContent(navButton.renderIcon || navButton.label)}
+          </HeaderButton>
+        )}
       </NavContainer>
 
       {type === TYPE.fixed && (

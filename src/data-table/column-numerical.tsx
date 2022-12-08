@@ -16,6 +16,7 @@ import { COLUMNS, NUMERICAL_FORMATS, MAX_BIN_COUNT, HISTOGRAM_SIZE } from './con
 import FilterShell, { type ExcludeKind } from './filter-shell';
 import type { ColumnOptions, SharedColumnOptions } from './types';
 import { LocaleContext } from '../locale';
+// @ts-ignore
 import { bin, max as maxFunc, extent, scaleLinear, median, bisector } from 'd3';
 import { Slider } from '../slider';
 
@@ -45,6 +46,7 @@ function roundToFixed(value: number, precision: number) {
   return Math.round(value * k) / k;
 }
 
+// @ts-ignore
 function format(value: number, options) {
   if (typeof options.format === 'function') {
     return options.format(value);
@@ -72,18 +74,23 @@ function format(value: number, options) {
   return formatted;
 }
 
+// @ts-ignore
 function validateInput(input) {
   return Boolean(parseFloat(input)) || input === '' || input === '-';
 }
 
+// @ts-ignore
 const bisect = bisector((d) => d.x0);
 
 type HistogramProps = {
+  // @ts-ignore
   data;
   lower: number;
   upper: number;
   isRange: boolean;
+  // @ts-ignore
   exclude;
+  // @ts-ignore
   precision;
 };
 
@@ -108,6 +115,7 @@ const Histogram = React.memo<any>(function Histogram({
       .clamp(true);
 
     const yScale = scaleLinear()
+      // @ts-ignore
       .domain([0, maxFunc(bins, (d) => d.length)])
       .nice()
       .range([HISTOGRAM_SIZE.height, 0]);
@@ -135,6 +143,7 @@ const Histogram = React.memo<any>(function Histogram({
       })}
     >
       <svg {...HISTOGRAM_SIZE}>
+        {/* @ts-ignore */}
         {bins.map((d, index) => {
           const x = xScale(d.x0) + 1;
           const y = yScale(d.length);
@@ -170,6 +179,7 @@ const Histogram = React.memo<any>(function Histogram({
   );
 });
 
+// @ts-ignore
 function NumericalFilter(props) {
   const [css, theme] = useStyletron();
   const locale = React.useContext(LocaleContext);
@@ -445,6 +455,7 @@ function NumericalFilter(props) {
   );
 }
 
+// @ts-ignore
 function NumericalCell(props) {
   const [css, theme] = useStyletron();
   return (
@@ -453,6 +464,7 @@ function NumericalCell(props) {
         ...theme.typography.MonoParagraphXSmall,
         display: 'flex',
         justifyContent: theme.direction !== 'rtl' ? 'flex-end' : 'flex-start',
+        // @ts-ignore
         color: props.highlight(props.value) ? theme.colors.contentNegative : null,
         width: '100%',
       })}

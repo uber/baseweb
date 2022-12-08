@@ -17,7 +17,9 @@ export function getSharedProps<T>(
     $disabled: disabled,
     $error: error,
     $positive: positive,
+    // @ts-ignore
     $adjoined: adjoined,
+    // @ts-ignore
     $size: size,
     $required: required,
     $resize: resize,

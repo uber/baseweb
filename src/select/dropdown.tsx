@@ -62,6 +62,7 @@ export default class SelectDropdown extends React.Component<DropdownProps> {
     if (Array.isArray(value)) {
       $selected = !!value.find((selected) => selected && selected[valueKey] === option[valueKey]);
     } else {
+      // @ts-ignore
       $selected = value[valueKey] === option[valueKey];
     }
 
@@ -140,6 +141,7 @@ export default class SelectDropdown extends React.Component<DropdownProps> {
       >
         <OverriddenStatefulMenu
           noResultsMsg={noResultsMsg}
+          // @ts-ignore
           onActiveDescendantChange={(id) => {
             if (this.props.onActiveDescendantChange) {
               this.props.onActiveDescendantChange(id);

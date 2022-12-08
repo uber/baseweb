@@ -88,6 +88,7 @@ describe('anchor column', () => {
       }),
     });
 
+    // @ts-ignore
     function makeValue(item) {
       return {
         content: item,

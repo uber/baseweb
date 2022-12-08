@@ -162,6 +162,7 @@ export default function MobileMenu(props: AppNavBarProps) {
       >
         <MobileMenu
           items={currentNavItems}
+          // @ts-ignore
           onItemSelect={({ item }) => {
             if (item.PARENT_MENU_ITEM) {
               // Remove current parent item selected to return to
@@ -176,6 +177,7 @@ export default function MobileMenu(props: AppNavBarProps) {
                 setCurrentNavItems(items);
               } else {
                 const newParentItem = {
+                  // @ts-ignore
                   ...updatedAncestorNavItems[updatedAncestorNavItems.length - 1],
                   [PARENT_MENU_ITEM]: true,
                 };
@@ -193,6 +195,7 @@ export default function MobileMenu(props: AppNavBarProps) {
 
             if (item.children && item.children.length) {
               const parentItem = { ...item, [PARENT_MENU_ITEM]: true };
+              // @ts-ignore
               setAncestorNavItems([...ancestorNavItems, item]);
               setCurrentNavItems([parentItem, ...item.children]);
               return;

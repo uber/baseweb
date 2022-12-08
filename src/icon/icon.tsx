@@ -10,6 +10,7 @@ import { Svg as StyledSvg } from './styled-components';
 import omitDollarPrefixedKeys from './omit-dollar-prefixed-keys';
 import type { IconProps } from './types';
 
+// @ts-ignore
 const Icon = (props: IconProps, ref) => {
   const { children, title, size, color, overrides = {}, ...restProps } = props;
   const [Svg, overrideProps] = getOverrides(overrides.Svg, StyledSvg);

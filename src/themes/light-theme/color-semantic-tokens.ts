@@ -36,9 +36,11 @@ export default (
 
     // Border
     borderOpaque: colors.gray200,
+    // @ts-ignore
     borderTransparent: hexToRgba(foundation.primaryA, '0.08'),
     borderSelected: foundation.primaryA,
     borderInverseOpaque: colors.gray700,
+    // @ts-ignore
     borderInverseTransparent: hexToRgba(foundation.primaryB, '0.2'),
     borderInverseSelected: foundation.primaryB,
   };
@@ -46,8 +48,11 @@ export default (
   const coreExtensions: CoreExtensionSemanticColorTokens = {
     // Backgrounds
     backgroundStateDisabled: colors.gray50,
+    // @ts-ignore
     backgroundOverlayDark: hexToRgba(colors.black, '0.3'),
+    // @ts-ignore
     backgroundOverlayLight: hexToRgba(colors.black, '0.08'),
+    // @ts-ignore
     backgroundOverlayArt: hexToRgba(colors.black, '0.00'),
     backgroundAccent: foundation.accent,
     backgroundNegative: foundation.negative,
