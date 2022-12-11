@@ -1,6 +1,5 @@
 /*
 Copyright (c) Uber Technologies, Inc.
-
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
@@ -27,8 +26,8 @@ import type { FloatingRouteMarkerProps } from './types';
 const FloatingRouteMarker = ({
   label,
   secondaryLabel,
-  startEnhancer: StartEnhancer = null,
-  endEnhancer: EndEnhancer = null,
+  startEnhancer: StartEnhancer,
+  endEnhancer: EndEnhancer,
   selected = false,
   anchorPosition = FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS.topLeft,
   overrides = {},
@@ -83,6 +82,7 @@ const FloatingRouteMarker = ({
           <PrimaryLabel $color={color} {...primaryLabelProps}>
             {label}
           </PrimaryLabel>
+
           <SecondaryLabel $color={secondaryLabelColor} {...secondaryLabelProps}>
             {secondaryLabel}
           </SecondaryLabel>
@@ -93,6 +93,7 @@ const FloatingRouteMarker = ({
           <EndEnhancer size={icon} />
         </IconContainer>
       )}
+
       <PointerContainer
         $position={anchorPosition}
         xmlns="http://www.w3.org/2000/svg"

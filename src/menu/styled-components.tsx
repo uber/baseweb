@@ -42,6 +42,7 @@ export const StyledList = styled<'ul', StyledProps>('ul', ({ $theme, $isFocusVis
 
 StyledList.displayName = 'StyledList';
 
+// @ts-ignore
 function getFontColor(props) {
   if (props.$disabled) {
     return props.$theme.colors.menuFontDisabled;
@@ -58,6 +59,7 @@ function getFontColor(props) {
   return props.$theme.colors.menuFontDefault;
 }
 
+// @ts-ignore
 function getBackgroundColor(props) {
   if (props.$disabled) {
     return 'transparent';
@@ -140,6 +142,7 @@ export const StyledListItemElement = styled<'li', StyledProps>('li', (props) => 
 
 StyledListItemElement.displayName = 'StyledListItemElement';
 
+// @ts-ignore
 export const StyledListItem = withWrapper<typeof StyledListItemElement, { item? }>(
   StyledListItemElement,
   (Styled) =>

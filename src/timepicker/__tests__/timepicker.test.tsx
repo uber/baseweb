@@ -24,11 +24,13 @@ describe('TimePicker', () => {
         <div>
           <TimePicker
             value={value}
+            // @ts-ignore
             onChange={setValue}
             nullable
             overrides={overrides}
             placeholder="placeholder"
           />
+          {/* @ts-ignore */}
           <button onClick={() => setValue(null)}>clear</button>
         </div>
       );

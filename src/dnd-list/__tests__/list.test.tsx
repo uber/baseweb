@@ -23,6 +23,7 @@ describe('List', () => {
   });
 
   it('label override', () => {
+    // @ts-ignore
     const CustomLabel = ({ children }) => <span data-testid="label">Child: {children}</span>;
     const overrides = {
       Label: CustomLabel,

@@ -84,7 +84,9 @@ export const StyledClearIcon = styled<
 StyledClearIcon.displayName = 'StyledClearIcon';
 
 function getInputPadding(
+  // @ts-ignore
   size,
+  // @ts-ignore
   sizing
 ): {
   paddingTop: string;
@@ -92,6 +94,7 @@ function getInputPadding(
   paddingLeft: string;
   paddingRight: string;
 } {
+  // @ts-ignore
   return {
     [SIZE.mini]: {
       paddingTop: sizing.scale100,
@@ -121,10 +124,15 @@ function getInputPadding(
 }
 
 function getRootPadding(
+  // @ts-ignore
   adjoined,
+  // @ts-ignore
   size,
+  // @ts-ignore
   sizing,
+  // @ts-ignore
   direction,
+  // @ts-ignore
   hasIconTrailing
 ): {
   paddingLeft: string;
@@ -146,7 +154,9 @@ function getRootPadding(
   };
 }
 
+// @ts-ignore
 function getFont(size, typography): Font {
+  // @ts-ignore
   return {
     [SIZE.mini]: typography.font100,
     [SIZE.compact]: typography.font200,
@@ -156,10 +166,14 @@ function getFont(size, typography): Font {
 }
 
 function getRootColors(
+  // @ts-ignore
   $disabled,
+  // @ts-ignore
   $isFocused,
+  // @ts-ignore
   $error,
   $positive = false,
+  // @ts-ignore
   colors
 ): {
   borderLeftColor: string;
@@ -218,7 +232,9 @@ function getRootColors(
 }
 
 function getRootBorderRadius(
+  // @ts-ignore
   size,
+  // @ts-ignore
   borders
 ): {
   borderTopLeftRadius: string;
@@ -293,7 +309,9 @@ type InputEnhancerStyles = {
   paddingLeft: string;
 };
 
+// @ts-ignore
 function getInputEnhancerPadding($size, sizing): InputEnhancerStyles {
+  // @ts-ignore
   return {
     [SIZE.mini]: {
       paddingRight: sizing.scale400,
@@ -314,6 +332,7 @@ function getInputEnhancerPadding($size, sizing): InputEnhancerStyles {
   }[$size];
 }
 
+// @ts-ignore
 function getInputEnhancerColors($disabled, $isFocused, $error, $positive, colors) {
   if ($disabled) {
     return {
@@ -375,6 +394,7 @@ InputEnhancer.displayName = 'InputEnhancer';
 
 // InputContainer
 
+// @ts-ignore
 function getInputContainerColors($disabled, $isFocused, $error, $positive, colors): StyleObject {
   if ($disabled) {
     return {
@@ -441,6 +461,7 @@ export const InputContainer = styled<'div', SharedProps>('div', getInputContaine
 
 InputContainer.displayName = 'InputContainer';
 
+// @ts-ignore
 function getInputColors($disabled, $isFocused, $error, colors): StyleObject {
   if ($disabled) {
     return {
@@ -496,9 +517,13 @@ export const getInputStyles = (
     maxWidth: '100%',
     cursor: $disabled ? 'not-allowed' : 'text',
     margin: '0',
+    // @ts-ignore
     paddingTop: '0',
+    // @ts-ignore
     paddingBottom: '0',
+    // @ts-ignore
     paddingLeft: '0',
+    // @ts-ignore
     paddingRight: '0',
     ...getFont($size, typography),
     ...getInputPadding($size, sizing),

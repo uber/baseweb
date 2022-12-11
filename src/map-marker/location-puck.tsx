@@ -25,6 +25,7 @@ import {
   StyledEarnerLocationPuckCore,
 } from './styled-components';
 
+// @ts-ignore
 const ConsumerLocationPuckHeading = ({ heading }) => {
   const [css, theme] = useStyletron();
   return (
@@ -82,12 +83,14 @@ const ConsumerLocationPuck = ({
         $radius={confidenceRadius}
         {...locationPuckApproximationProps}
       />
+
       <ConsumerLocationPuckCore {...consumerLocationPuckCoreProps} />
       {showHeading && <ConsumerLocationPuckHeading heading={heading} />}
     </Root>
   );
 };
 
+// @ts-ignore
 const EarnerLocationPuckHeading = ({ size, color, heading }) => {
   const [css, theme] = useStyletron();
   return (
@@ -97,6 +100,7 @@ const EarnerLocationPuckHeading = ({ size, color, heading }) => {
         transition: `${theme.animation.timing300} ${theme.animation.easeOutCurve} all`,
       })}
       style={{
+        // @ts-ignore
         transform: `rotate(${heading}deg) scale(${EARNER_LOCATION_PUCK_CORE_SCALES[size]})`,
       }}
       width="72"
@@ -124,12 +128,15 @@ const EarnerLocationPuck = ({
   const [, theme] = useStyletron();
   const color = theme.colors.contentPrimary;
 
+  // @ts-ignore
   const [Root, rootProps] = getOverrides(overrides.Root, LocationPuckContainer);
   const [LocationPuckApproximation, locationPuckApproximationProps] = getOverrides(
+    // @ts-ignore
     overrides.LocationPuckApproximation,
     StyledLocationPuckApproximation
   );
   const [EarnerLocationPuckCore, earnerLocationPuckCoreProps] = getOverrides(
+    // @ts-ignore
     overrides.EarnerLocationPuckCore,
     StyledEarnerLocationPuckCore
   );
@@ -141,6 +148,7 @@ const EarnerLocationPuck = ({
         $radius={confidenceRadius}
         {...locationPuckApproximationProps}
       />
+
       <EarnerLocationPuckCore $color={color} $size={size} {...earnerLocationPuckCoreProps} />
       <EarnerLocationPuckHeading size={size} color={color} heading={heading} />
     </Root>

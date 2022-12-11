@@ -79,6 +79,7 @@ class StatelessRadioGroup extends React.Component<RadioGroupProps, StatelessStat
           }
           const checked = this.props.value === child.props.value;
           return React.cloneElement(child, {
+            //@ts-ignore
             align: this.props.align,
             autoFocus: this.props.autoFocus,
             checked,

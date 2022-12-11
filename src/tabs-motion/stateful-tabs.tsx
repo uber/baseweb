@@ -15,6 +15,7 @@ const getInitialState = (children: React.ReactNode, initialState?: StatefulTabsS
   if (initialState && initialState.activeKey) {
     return initialState;
   } else {
+    // @ts-ignore
     const firstKey = React.Children.map(
       children,
       // @ts-expect-error todo(flow->ts) child might be not a ReactElement, theoretically including null

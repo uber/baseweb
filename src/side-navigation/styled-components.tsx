@@ -56,6 +56,7 @@ export const StyledNavLink = styled<
 
 StyledNavLink.displayName = 'StyledNavLink';
 
+// @ts-ignore
 export const StyledNavItemElement = styled<'div', SharedProps>('div', (props) => {
   const {
     $active,
@@ -110,6 +111,7 @@ export const StyledNavItemElement = styled<'div', SharedProps>('div', (props) =>
 
 StyledNavItemElement.displayName = 'StyledNavItemElement';
 
+// @ts-ignore
 export const StyledNavItem = withWrapper<typeof StyledNavItemElement, { item? }>(
   StyledNavItemElement,
   (Styled) =>

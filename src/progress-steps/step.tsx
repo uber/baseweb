@@ -48,11 +48,14 @@ function Step({ overrides = {}, isCompleted, isActive, isLast, title, children }
           {isActive && <InnerIcon {...innerIconProps} />}
         </Icon>
       </IconContainer>
+
       {!isLast && <Tail {...sharedProps} {...tailProps} />}
+
       <Content {...sharedProps} {...contentProps}>
         <Title {...sharedProps} {...titleProps}>
           {title}
         </Title>
+
         <Description {...descriptionProps}>{isActive && children}</Description>
       </Content>
     </Root>

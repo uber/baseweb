@@ -12,6 +12,7 @@ import tr_TR from '../tr_TR';
 import fa_IR from '../fa_IR';
 
 describe('LocaleProvider', () => {
+  // @ts-ignore
   const ExpectLocaleComponent = ({ expectedValue }) => {
     const locale = React.useContext(LocaleContext);
     expect(locale).toEqual(expectedValue);

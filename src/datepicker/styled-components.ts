@@ -189,6 +189,7 @@ export const StyledMonthYearSelectIconContainer = styled('span', (props) => {
 
 StyledMonthYearSelectIconContainer.displayName = 'StyledMonthYearSelectIconContainer';
 
+// @ts-ignore
 function getArrowBtnStyle({ $theme, $disabled, $isFocusVisible }): StyleObject {
   return {
     boxSizing: 'border-box',
@@ -247,6 +248,7 @@ export const StyledWeek = styled<'div', SharedStyleProps>('div', (props) => {
 
 StyledWeek.displayName = 'StyledWeek';
 
+// @ts-ignore
 function generateDayStyles(defaultCode: string, defaultStyle) {
   const codeForSM = defaultCode.substr(0, 12) + '1' + defaultCode.substr(12 + 1);
   const codeForEM = defaultCode.substr(0, 13) + '1' + defaultCode.substr(13 + 1);
@@ -258,15 +260,20 @@ function generateDayStyles(defaultCode: string, defaultStyle) {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
+// @ts-ignore
 function getDayStyles(code, { colors }): any {
   const undefinedDayStyle = {
+    // @ts-ignore
     ':before': { content: null },
+    // @ts-ignore
     ':after': { content: null },
   };
   let defaultDayStyle = undefinedDayStyle;
   const disabledDateStyle = {
     color: colors.calendarForegroundDisabled,
+    // @ts-ignore
     ':before': { content: null },
+    // @ts-ignore
     ':after': { content: null },
   };
   const outsideMonthDateStyle = {
@@ -290,6 +297,7 @@ function getDayStyles(code, { colors }): any {
     },
   };
   const highlightedStyle = {
+    // @ts-ignore
     ':before': { content: null },
   };
   const CODE_DISABLED_INDEX = 1;

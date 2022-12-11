@@ -77,6 +77,7 @@ const ListItem = React.forwardRef<HTMLLIElement, ListProps>((props: ListProps, r
           />
         </ArtworkContainer>
       )}
+
       <Content $mLeft={!Artwork} $sublist={!!props.sublist} {...contentProps}>
         {props.children}
         {EndEnhancer &&

@@ -34,6 +34,7 @@ const Panel = (
     title = '',
     renderAll = false,
   }: PanelProps,
+  // @ts-ignore
   ref
 ) => {
   const [localState, setLocalState] = React.useState<{

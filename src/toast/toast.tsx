@@ -37,9 +37,9 @@ class Toast extends React.Component<ToastProps, ToastPrivateState> {
     overrides: {},
   };
 
-  autoHideTimeout: TimeoutID | undefined | null;
-  animateInTimer: TimeoutID | undefined | null;
-  animateOutCompleteTimer: TimeoutID | undefined | null;
+  autoHideTimeout: ReturnType<typeof setTimeout> | undefined | null;
+  animateInTimer: ReturnType<typeof setTimeout> | undefined | null;
+  animateOutCompleteTimer: ReturnType<typeof setTimeout> | undefined | null;
   closeRef:
     | {
         current: SVGSVGElement | undefined | null;
@@ -146,14 +146,18 @@ class Toast extends React.Component<ToastProps, ToastPrivateState> {
 
   onFocus = (e: React.FocusEvent) => {
     if (!this.state.isVisible) return;
+    // @ts-ignore
     clearTimeout(this.autoHideTimeout);
+    // @ts-ignore
     clearTimeout(this.animateOutCompleteTimer);
     typeof this.props.onFocus === 'function' && this.props.onFocus(e);
   };
 
   onMouseEnter = (e: React.MouseEvent) => {
     if (!this.state.isVisible) return;
+    // @ts-ignore
     clearTimeout(this.autoHideTimeout);
+    // @ts-ignore
     clearTimeout(this.animateOutCompleteTimer);
     typeof this.props.onMouseEnter === 'function' && this.props.onMouseEnter(e);
   };
@@ -184,8 +188,11 @@ class Toast extends React.Component<ToastProps, ToastPrivateState> {
     const { children, closeable } = this.props;
     const { isRendered } = this.state;
     const {
+      // @ts-ignore
       Body: BodyOverride,
+      // @ts-ignore
       CloseIcon: CloseIconOverride,
+      // @ts-ignore
       InnerContainer: InnerContainerOverride,
     } = this.props.overrides;
 
@@ -227,6 +234,7 @@ class Toast extends React.Component<ToastProps, ToastPrivateState> {
             </InnerContainer>
             {closeable ? (
               <DeleteIcon
+                // @ts-ignore
                 ref={this.closeRef}
                 role="button"
                 tabIndex={0}

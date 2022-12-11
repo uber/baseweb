@@ -47,8 +47,8 @@ class Drawer extends React.Component<DrawerProps, DrawerState> {
     renderAll: false,
   };
 
-  animateOutTimer: TimeoutID | undefined | null;
-  animateStartTimer: AnimationFrameID | undefined | null;
+  animateOutTimer: ReturnType<typeof setTimeout> | undefined | null;
+  animateStartTimer: ReturnType<typeof requestAnimationFrame> | undefined | null;
   lastFocus: HTMLElement | undefined | null = null;
   lastMountNodeOverflowStyle: string | undefined | null = null;
   _refs: {
@@ -258,6 +258,7 @@ class Drawer extends React.Component<DrawerProps, DrawerState> {
             >
               <Root data-baseweb="drawer" ref={this.getRef('Root')} {...sharedProps} {...rootProps}>
                 <Backdrop onClick={this.onBackdropClick} {...sharedProps} {...backdropProps} />
+
                 <DrawerContainer {...sharedProps} {...drawerContainerProps}>
                   <DrawerBody {...sharedProps} {...drawerBodyProps}>
                     {renderedContent}

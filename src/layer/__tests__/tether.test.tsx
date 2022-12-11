@@ -17,12 +17,14 @@ describe('TetherBehavior', () => {
       const popperRef = React.useRef();
       return (
         <React.Fragment>
+          {/* @ts-ignore */}
           <div ref={anchorRef}>This is anchor</div>
           <TetherBehavior
             anchorRef={anchorRef.current}
             popperRef={popperRef.current}
             onPopperUpdate={onPopperUpdate}
           >
+            {/* @ts-ignore */}
             <div ref={popperRef}>This is popper</div>
           </TetherBehavior>
         </React.Fragment>

@@ -13,6 +13,7 @@ import type { ColumnOptions, Row } from './types';
 import { useRef } from 'react';
 
 // Measures the column header + sampled data
+// @ts-ignore
 function MeasureColumn({ sampleIndexes, column, columnIndex, rows, isSelectable, onLayout }) {
   const [css] = useStyletron();
 
@@ -28,6 +29,7 @@ function MeasureColumn({ sampleIndexes, column, columnIndex, rows, isSelectable,
 
   return (
     <div
+      // @ts-ignore
       ref={ref}
       className={css({
         display: 'flex',
@@ -48,10 +50,12 @@ function MeasureColumn({ sampleIndexes, column, columnIndex, rows, isSelectable,
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         onSort={(i) => {}}
         sortable={column.sortable}
+        // @ts-ignore
         sortDirection={null}
         title={column.title}
         isSelectable={isSelectable}
       />
+      {/* @ts-ignore */}
       {sampleIndexes.map((rowIndex, i) => {
         const Cell = column.renderCell;
         return (
@@ -81,14 +85,17 @@ type MeasureColumnWidthsProps = {
 
 const MAX_SAMPLE_SIZE = 50;
 
+// @ts-ignore
 function generateSampleIndices(inputMin, inputMax, maxSamples) {
   const indices = [];
   const queue = [[inputMin, inputMax]];
 
   while (queue.length > 0) {
+    // @ts-ignore
     const [min, max] = queue.shift();
     if (indices.length < maxSamples) {
       const pivot = Math.floor((min + max) / 2);
+      // @ts-ignore
       indices.push(pivot);
       const left = pivot - 1;
       const right = pivot + 1;
@@ -125,7 +132,7 @@ export default function MeasureColumnWidths({
   }, [columns, rows, widths, sampleSize]);
 
   const handleDimensionsChange = React.useCallback(
-    (columnIndex, dimensions) => {
+    (columnIndex: number, dimensions: { width: number; height: number }) => {
       const nextWidth = Math.min(
         Math.max(
           columns[columnIndex].minWidth || 0,

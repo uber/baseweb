@@ -22,6 +22,7 @@ import type { SyntheticEvent } from 'react';
 
 // Previously, Tag used a hardcoded SVG as its 'close' icon. Replacing it with
 // Delete requires modifying Delete's viewbox to prevent visual regressions.
+// @ts-ignore
 const ModifiedViewBoxDeleteIcon = (props) => <DeleteIcon viewBox="5 5 13.186 13.186" {...props} />;
 
 const Tag = React.forwardRef<HTMLSpanElement, TagProps>((props, ref) => {
@@ -98,6 +99,7 @@ const Tag = React.forwardRef<HTMLSpanElement, TagProps>((props, ref) => {
   const actionHandlers = disabled
     ? {}
     : {
+        // @ts-ignore
         onClick: (event) => {
           // we don't want onClick to be called when the close icon is clicked
           event.stopPropagation();

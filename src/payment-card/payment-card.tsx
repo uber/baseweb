@@ -60,7 +60,9 @@ class PaymentCard extends React.Component<PaymentCardProps> {
     overrides: {},
     required: false,
     size: 'default',
+    // @ts-ignore
     startEnhancer: null,
+    // @ts-ignore
     endEnhancer: null,
   };
 
@@ -100,6 +102,7 @@ class PaymentCard extends React.Component<PaymentCardProps> {
       type = validatedValue.card.type;
     }
 
+    // @ts-ignore
     const getBeforeComponent = (theme) => {
       const iconSize = {
         [SIZE.mini]: theme.sizing.scale600,
@@ -109,6 +112,7 @@ class PaymentCard extends React.Component<PaymentCardProps> {
       };
       return () => (
         <IconWrapper $size={size} {...iconWrapperProps}>
+          {/* @ts-ignore */}
           {React.createElement(CardTypeToComponent[type || 'generic'] || GenericIcon, {
             size: iconSize[size],
           })}
@@ -133,6 +137,7 @@ class PaymentCard extends React.Component<PaymentCardProps> {
               const [position, value] = getCaretPosition(
                 e.target.value,
                 this.props.value ? String(this.props.value) : '',
+                // @ts-ignore
                 e.target.selectionStart
               );
               // @ts-expect-error todo(flow->ts): looks dangerous

@@ -23,6 +23,7 @@ const OPPOSITE_POSITIONS = {
  * left -> right
  */
 export function getOppositePosition(position: string): string {
+  // @ts-ignore
   return OPPOSITE_POSITIONS[position];
 }
 
@@ -50,6 +51,7 @@ export function fromPopperPlacement(placement: string): PopoverPlacement | null 
     .replace(/(top|bottom)-end$/, '$1Right')
     .replace(/(left|right)-start$/, '$1Top')
     .replace(/(left|right)-end$/, '$1Bottom');
+  // @ts-ignore
   return PLACEMENT[popoverPlacement] || null;
 }
 
@@ -123,6 +125,7 @@ export function getArrowPositionStyles(offsets: Offset, placement: PopoverPlacem
 
   const alignmentProperty: string = isVerticalPosition(position) ? 'left' : 'top';
   return {
+    // @ts-ignore
     [alignmentProperty]: `${offsets[alignmentProperty]}px`,
     [oppositePosition]: `-${ARROW_SIZE - 2}px`,
   };

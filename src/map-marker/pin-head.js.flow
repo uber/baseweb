@@ -6,7 +6,6 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-
 import type { PinHeadPropsT } from './types.js';
 declare var PinHead: (props: PinHeadPropsT) => React.Node;
 

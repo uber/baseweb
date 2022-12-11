@@ -64,7 +64,6 @@ function OptionProfile(props: OptionProfileProps, ref: React.RefObject<any>) {
 
   return (
     <MaybeChildMenu
-      // @ts-expect-error todo(flow->ts)
       ref={ref}
       getChildMenu={getChildMenu}
       isOpen={!!$isHighlighted}
@@ -78,15 +77,20 @@ function OptionProfile(props: OptionProfileProps, ref: React.RefObject<any>) {
           {ItemImg &&
             (typeof ItemImg === 'string' ? (
               // Render img src string wrapped with image component
+
               <ProfileImg src={ItemImg} alt={getProfileItemImgText(item)} {...profileImgProps} />
             ) : (
               // Or just render the entire component user specified
+
               <ItemImg {...profileImgProps} />
             ))}
         </ProfileImgContainer>
+
         <ProfileLabelsContainer {...profileLabelsContainerProps}>
           {title && <ProfileTitle {...profileTitleProps}>{title}</ProfileTitle>}
+
           {subtitle && <ProfileSubtitle {...profileSubtitleProps}>{subtitle}</ProfileSubtitle>}
+
           {body && <ProfileBody {...profileBodyProps}>{body}</ProfileBody>}
         </ProfileLabelsContainer>
       </ListItemProfile>
@@ -94,6 +98,7 @@ function OptionProfile(props: OptionProfileProps, ref: React.RefObject<any>) {
   );
 }
 
+// @ts-ignore
 const forwarded = React.forwardRef<HTMLElement, OptionProfileProps>(OptionProfile);
 forwarded.displayName = 'OptionProfile';
 

@@ -15,6 +15,7 @@ export default class AutosizeInput extends React.Component<
   AutosizeInputProps & Omit<ComponentProps<typeof StyledInput>, keyof AutosizeInputProps>,
   AutosizeInputState
 > {
+  // @ts-ignore
   mounted: boolean;
   sizer: HTMLElement | undefined | null;
 

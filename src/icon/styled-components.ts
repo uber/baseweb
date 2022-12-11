@@ -15,12 +15,16 @@ export function getSvgStyles({
   $color,
 }: {
   $theme: Theme;
+  // @ts-ignore
   $size?;
+  // @ts-ignore
   $color?;
 }): StyleObject {
   let size = $theme.sizing.scale600;
   if ($size) {
+    // @ts-ignore
     if ($theme.sizing[$size]) {
+      // @ts-ignore
       size = $theme.sizing[$size];
     } else if (typeof $size === 'number') {
       size = `${$size}px`;
@@ -31,7 +35,9 @@ export function getSvgStyles({
 
   let color = 'currentColor';
   if ($color) {
+    // @ts-ignore
     if ($theme.colors[$color]) {
+      // @ts-ignore
       color = $theme.colors[$color];
     } else {
       color = $color;

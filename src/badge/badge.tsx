@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import { getOverrides } from '../helpers/overrides';
 import { StyledBadge, StyledRoot, StyledPositioner } from './styled-components';
-import type { BadgeProps } from './types';
+import type { BadgeProps, Placement } from './types';
 import { PLACEMENT, ROLE, SHAPE, HIERARCHY } from './constants';
 import { getAnchorFromChildren } from './utils';
 
@@ -29,7 +29,7 @@ const Badge = ({
 
   const anchor = getAnchorFromChildren(children);
 
-  const VALID_RECT_PLACEMENTS = [
+  const VALID_RECT_PLACEMENTS: Placement[] = [
     PLACEMENT.topLeft,
     PLACEMENT.topRight,
     PLACEMENT.bottomRight,
@@ -62,6 +62,7 @@ const Badge = ({
   return (
     <Root {...rootProps}>
       {anchor}
+
       <Positioner
         $horizontalOffset={horizontalOffset}
         $verticalOffset={verticalOffset}

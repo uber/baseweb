@@ -43,11 +43,13 @@ class Textarea extends React.Component<
 
   onFocus = (e: FocusEvent<HTMLTextAreaElement>) => {
     this.setState({ isFocused: true });
+    // @ts-ignore
     this.props.onFocus(e);
   };
 
   onBlur = (e: FocusEvent<HTMLTextAreaElement>) => {
     this.setState({ isFocused: false });
+    // @ts-ignore
     this.props.onBlur(e);
   };
 

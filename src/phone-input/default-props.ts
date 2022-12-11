@@ -8,16 +8,20 @@ import { SIZE, DEFAULT_MAX_DROPDOWN_HEIGHT, DEFAULT_MAX_DROPDOWN_WIDTH } from '.
 
 const defaultProps = {
   'aria-label': 'Please enter a phone number without the country dial code.',
+  // @ts-ignore
   'aria-describedby': null,
+  // @ts-ignore
   'aria-labelledby': null,
   clearable: true,
   focusLock: false,
   country: { label: 'United States', id: 'US', dialCode: '+1' },
   disabled: false,
   error: false,
+  // @ts-ignore
   id: null,
   maxDropdownHeight: DEFAULT_MAX_DROPDOWN_HEIGHT,
   maxDropdownWidth: DEFAULT_MAX_DROPDOWN_WIDTH,
+  // @ts-ignore
   name: null,
   onCountryChange: () => {},
   onTextChange: () => {},

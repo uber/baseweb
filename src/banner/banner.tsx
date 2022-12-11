@@ -22,6 +22,7 @@ import {
 } from './styled-components';
 import type { BannerProps } from './types';
 
+// @ts-ignore
 function low(theme, kind) {
   switch (kind) {
     case KIND.negative:
@@ -55,6 +56,7 @@ function low(theme, kind) {
   }
 }
 
+// @ts-ignore
 function high(theme, kind) {
   switch (kind) {
     case KIND.negative:
@@ -88,6 +90,7 @@ function high(theme, kind) {
   }
 }
 
+// @ts-ignore
 function Leading({ artwork }) {
   const [, theme] = useStyletron();
 
@@ -99,6 +102,7 @@ function Leading({ artwork }) {
   return artwork.icon({ size });
 }
 
+// @ts-ignore
 function Below({ action, backgroundColor, color }) {
   if (!action || action.position !== ACTION_POSITION.below) {
     return null;
@@ -127,6 +131,7 @@ function Below({ action, backgroundColor, color }) {
   return null;
 }
 
+// @ts-ignore
 function Trailing({ action, backgroundColor, color, overrides, nested }) {
   const [, theme] = useStyletron();
 
@@ -223,6 +228,7 @@ export function Banner({
 
       <MessageContent $actionPosition={actionPosition} {...messageContentProps}>
         {Boolean(title) && <Title {...titleProps}>{title}</Title>}
+
         {Boolean(children) && <Message {...messageProps}>{children}</Message>}
       </MessageContent>
 

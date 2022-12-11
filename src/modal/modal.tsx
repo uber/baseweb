@@ -40,8 +40,8 @@ class Modal extends React.Component<ModalProps, ModalState> {
     size: SIZE.default,
   };
 
-  animateOutTimer: TimeoutID | undefined | null;
-  animateStartTimer: AnimationFrameID | undefined | null;
+  animateOutTimer: ReturnType<typeof setTimeout> | undefined | null;
+  animateStartTimer: ReturnType<typeof requestAnimationFrame> | undefined | null;
   dialogContainerRef = React.createRef<HTMLElement>();
   lastFocus: HTMLElement | undefined | null = null;
   lastMountNodeOverflowStyle: string | undefined | null = null;
@@ -195,10 +195,13 @@ class Modal extends React.Component<ModalProps, ModalState> {
   getSharedProps(): Omit<SharedStylePropsArg, 'children'> {
     const { animate, isOpen, size, role, closeable } = this.props;
     return {
+      // @ts-ignore
       $animate: animate,
       $isVisible: this.state.isVisible,
       $isOpen: !!isOpen,
+      // @ts-ignore
       $size: size,
+      // @ts-ignore
       $role: role,
       $closeable: !!closeable,
       $isFocusVisible: this.state.isFocusVisible,
@@ -251,8 +254,13 @@ class Modal extends React.Component<ModalProps, ModalState> {
             returnFocus={returnFocus}
             autoFocus={autoFocus}
           >
-            {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-            <Root data-baseweb="modal" ref={this.rootRef as any} {...sharedProps} {...rootProps}>
+            <Root
+              data-baseweb="modal"
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              ref={this.rootRef as any}
+              {...sharedProps}
+              {...rootProps}
+            >
               <DialogContainer
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 ref={this.dialogContainerRef as any}

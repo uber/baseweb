@@ -113,6 +113,7 @@ StyledCountrySelectDropdownListItemElement.displayName =
 
 export const StyledCountrySelectDropdownListItem = withWrapper<
   typeof StyledCountrySelectDropdownListItemElement,
+  // @ts-ignore
   { item? }
 >(
   StyledCountrySelectDropdownListItemElement,

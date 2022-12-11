@@ -13,6 +13,7 @@ describe('Menu StatefulMenu', () => {
   it('renders with props', () => {
     const props = {
       items: [{ label: 'item1' }, { label: 'item2' }],
+      // @ts-ignore
       getItemLabel: (item) => item.label,
     };
     const { container } = render(<StatefulMenu {...props} />);

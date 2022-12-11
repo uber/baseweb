@@ -189,10 +189,12 @@ function Slider({
             }
           : {})}
       />
+
       <TickBar {...sharedProps} {...tickBarProps}>
         <Tick {...sharedProps} {...tickProps}>
           {valueToLabel(min)}
         </Tick>
+
         <Tick {...sharedProps} {...tickProps}>
           {valueToLabel(max)}
         </Tick>

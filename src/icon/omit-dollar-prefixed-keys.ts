@@ -11,6 +11,7 @@ export default function omitDollarPrefixedKeys(source: { [x: string]: any }) {
 
   for (const key in source) {
     if (key[0] !== '$') {
+      // @ts-ignore
       result[key] = source[key];
     }
   }

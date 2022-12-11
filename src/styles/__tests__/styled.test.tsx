@@ -63,10 +63,12 @@ test('styled can be called with single string argument', () => {
 });
 
 test('styled override prop', () => {
+  // @ts-ignore
   const StyledMockButton = styled<'button', { $color? }>('button', {
     color: 'red',
   });
 
+  // @ts-ignore
   const styleFn = (props) => {
     return { color: props.$color };
   };
@@ -150,6 +152,7 @@ describe('styled flow', () => {
   });
 
   test('it provides expected flow error if base is react component', () => {
+    // @ts-ignore
     function C(props) {
       return <div className={props.className}>test</div>;
     }

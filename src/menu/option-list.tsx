@@ -43,6 +43,7 @@ function OptionList(
     StyledListItemAnchor
   );
 
+  // @ts-ignore
   const getItem = (item) => {
     if (item.href && renderHrefAsAnchor) {
       return (
@@ -88,6 +89,7 @@ function OptionList(
   );
 }
 
+// @ts-ignore
 function areEqualShallow(a, b) {
   if (!a || !b) return false;
 
@@ -99,6 +101,7 @@ function areEqualShallow(a, b) {
   return true;
 }
 
+// @ts-ignore
 function compare(prevProps, nextProps) {
   return (
     prevProps.$isHighlighted === nextProps.$isHighlighted &&
@@ -112,6 +115,7 @@ function compare(prevProps, nextProps) {
   );
 }
 
+// @ts-ignore
 const forwarded = React.forwardRef<HTMLElement, OptionListProps>(OptionList);
 forwarded.displayName = 'OptionList';
 

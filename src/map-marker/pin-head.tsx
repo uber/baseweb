@@ -117,6 +117,7 @@ const PinHead = ({
     return (
       <RelativeContainer>
         {badge}
+
         <OuterXSmallAnchor
           $round={round}
           $background={background}
@@ -147,6 +148,7 @@ const PinHead = ({
         overrides={overrides}
       />
       {badge}
+
       <PinHead
         $background={background}
         $height={height}
@@ -182,7 +184,6 @@ const PinHead = ({
             )}
           </LabelSlot>
         )}
-
         {EndEnhancer && (
           <EnhancerSlot $height={height} $color={color} $size={size} {...enhancerSlotProps}>
             <EndEnhancer size={icon} />

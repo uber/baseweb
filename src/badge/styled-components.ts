@@ -8,6 +8,7 @@ import { styled } from '../styles';
 import type { Placement, Color, Shape, Role, Hierarchy } from './types';
 import { COLOR, SHAPE, ROLE, PLACEMENT, HIERARCHY } from './constants';
 
+// @ts-ignore
 function getColorStyles({ $theme, $hierarchy, $color }): {
   color: string;
   backgroundColor: string;
@@ -59,6 +60,7 @@ function getColorStyles({ $theme, $hierarchy, $color }): {
     },
   };
 
+  // @ts-ignore
   return COLOR_STYLES[$hierarchy][$color];
 }
 
@@ -183,9 +185,10 @@ export const StyledRoot = styled<'div', {}>('div', () => {
     lineHeight: 'initial',
   };
 });
+
 StyledRoot.displayName = 'StyledRoot';
 
-const TOP_PLACEMENTS = [
+const TOP_PLACEMENTS: Placement[] = [
   PLACEMENT.topLeft,
   PLACEMENT.topRight,
   PLACEMENT.topLeftEdge,
@@ -194,7 +197,7 @@ const TOP_PLACEMENTS = [
   PLACEMENT.leftTopEdge,
   PLACEMENT.rightTopEdge,
 ];
-const BOTTOM_PLACEMENTS = [
+const BOTTOM_PLACEMENTS: Placement[] = [
   PLACEMENT.bottomLeft,
   PLACEMENT.bottomRight,
   PLACEMENT.bottomLeftEdge,
@@ -203,7 +206,7 @@ const BOTTOM_PLACEMENTS = [
   PLACEMENT.leftBottomEdge,
   PLACEMENT.rightBottomEdge,
 ];
-const LEFT_PLACEMENTS = [
+const LEFT_PLACEMENTS: Placement[] = [
   PLACEMENT.topLeft,
   PLACEMENT.topLeftEdge,
   PLACEMENT.topEdge,
@@ -213,7 +216,7 @@ const LEFT_PLACEMENTS = [
   PLACEMENT.leftTopEdge,
   PLACEMENT.leftBottomEdge,
 ];
-const RIGHT_PLACEMENTS = [
+const RIGHT_PLACEMENTS: Placement[] = [
   PLACEMENT.topRight,
   PLACEMENT.topRightEdge,
   PLACEMENT.bottomRight,
@@ -258,6 +261,7 @@ export const StyledPositioner = styled<
     lineHeight: 'initial',
   };
 });
+
 StyledPositioner.displayName = 'StyledPositioner';
 
 export const StyledBadge = styled<
@@ -294,6 +298,7 @@ export const StyledBadge = styled<
     };
   }
 );
+
 StyledBadge.displayName = 'StyledBadge';
 
 export const StyledNotificationCircle = styled<
@@ -315,6 +320,7 @@ export const StyledNotificationCircle = styled<
     ...$theme.typography.LabelXSmall,
   };
 });
+
 StyledNotificationCircle.displayName = 'StyledNotificationCircle';
 
 export const StyledHintDot = styled<
@@ -326,6 +332,7 @@ export const StyledHintDot = styled<
 >('div', ({ $theme, $color = COLOR.accent, $hidden }) => {
   return {
     visibility: $hidden ? 'hidden' : 'inherit',
+    // @ts-ignore
     backgroundColor: $theme.colors[$color],
     boxSizing: 'content-box',
     height: '8px',

@@ -11,6 +11,7 @@ import { hexToRgb as hexToRgba } from '../styles/util';
 export const StyledBaseButtonTimed = withStyle<
   typeof StyledBaseButton,
   { $initialTime: number; $timeElapsed: number }
+  // @ts-ignore
 >(StyledBaseButton, ({ $theme, $initialTime, $timeElapsed }) => {
   const completionPercentage = ($timeElapsed / $initialTime) * 100;
   const timeLeft = $initialTime - $timeElapsed;

@@ -23,6 +23,7 @@ function ProgressSteps({ overrides = {}, current, children }: ProgressStepsProps
 
     return React.cloneElement(child, {
       isLast: index === numChildren - 1,
+      // @ts-ignore
       isCompleted: index < current,
       isActive,
       step: index + 1,

@@ -55,9 +55,11 @@ const FixedMarker = ({
   kind = KIND.default,
   dragging = false,
   overrides = {},
+  // @ts-ignore
   labelEnhancerContent = null,
   labelEnhancerPosition = LABEL_ENHANCER_POSITIONS.bottom,
   badgeEnhancerSize = null,
+  // @ts-ignore
   badgeEnhancerContent = null,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   ...restProps

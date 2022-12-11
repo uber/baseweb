@@ -57,6 +57,7 @@ class DateHelpers<T> {
         },
       },
     };
+    // @ts-ignore
     const defaultGetOptions = (instance) => ({
       formats: instance.formats,
       locale: instance.locale,
@@ -76,6 +77,7 @@ class DateHelpers<T> {
     // in e2e tests down the road, we're going to have
     // to figure that out
     const { getOptions = defaultGetOptions, formats } =
+      // @ts-ignore
       adapterMap[className] || adapterMap.DateFnsUtils;
     const options = getOptions(adapter);
     return new UtilsClass(

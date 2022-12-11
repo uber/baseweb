@@ -22,6 +22,7 @@ import {
   PINHEAD_DIMENSIONS,
 } from './constants';
 
+// @ts-ignore
 function getAnchorPinHeadSize(anchorType) {
   if (anchorType === FLOATING_MARKER_ANCHOR_TYPES.circle) {
     return PINHEAD_SIZES_SHAPES.xSmallCircle;

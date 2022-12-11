@@ -23,6 +23,7 @@ describe('Avatar styled Components flow', () => {
   });
 
   test('it provides flow error if we not provide all required props for StyledRoot', () => {
+    // @ts-ignore
     const CustomRoot = (props) => {
       const { children, ...rest } = props;
       // @ts-expect-error missing $didImageFailToLoad prop

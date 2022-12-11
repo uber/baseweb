@@ -125,11 +125,14 @@ export default function SnackbarElement({
   React.useEffect(() => {
     if (__BROWSER__) {
       if (focus && actionButtonRef.current) {
+        // @ts-ignore
         prevFocusRef.current = document.activeElement;
+        // @ts-ignore
         actionButtonRef.current.focus();
       }
       return () => {
         if (prevFocusRef.current) {
+          // @ts-ignore
           prevFocusRef.current.focus();
         }
       };
