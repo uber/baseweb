@@ -21,6 +21,7 @@ export type ShapeT = typeof SHAPE.DEFAULT | typeof SHAPE.ROUND;
 
 export type StyledRootPropsT = {
   $shape: ShapeT,
+  $isTapTarget?: boolean,
 };
 export type StyledArtworkContainerPropsT = {
   $artworkSize: ArtworkSizesT | number,
@@ -47,6 +48,7 @@ export type PropsT = {|
   'aria-label'?: string,
   'aria-selected'?: boolean,
   id?: String,
+  onClick?: (SyntheticEvent<HTMLButtonElement>) => mixed,
   overrides?: OverridesT,
   role?: string,
   sublist?: boolean,

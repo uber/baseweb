@@ -15,20 +15,36 @@ import type {
 import { artworkSizeToValue } from './utils';
 import { SHAPE } from './constants';
 
-export const StyledRoot = styled<'li', StyledRootProps>('li', ({ $theme, $shape }) => {
-  return {
-    alignItems: 'center',
-    backgroundColor: $theme.colors.backgroundPrimary,
-    display: 'flex',
-    listStyleType: 'none',
-    width: '100%',
-    borderTopLeftRadius: $shape === SHAPE.ROUND ? $theme.borders.radius400 : 0,
-    borderTopRightRadius: $shape === SHAPE.ROUND ? $theme.borders.radius400 : 0,
-    borderBottomLeftRadius: $shape === SHAPE.ROUND ? $theme.borders.radius400 : 0,
-    borderBottomRightRadius: $shape === SHAPE.ROUND ? $theme.borders.radius400 : 0,
-    overflow: 'hidden',
-  };
-});
+export const StyledRoot = styled<'li', StyledRootProps>(
+  'li',
+  ({ $theme, $shape, $isTapTarget = false }) => {
+    return {
+      alignItems: 'center',
+      backgroundColor: $theme.colors.backgroundPrimary,
+      display: 'flex',
+      listStyleType: 'none',
+      width: '100%',
+      borderTopLeftRadius: $shape === SHAPE.ROUND ? $theme.borders.radius400 : 0,
+      borderTopRightRadius: $shape === SHAPE.ROUND ? $theme.borders.radius400 : 0,
+      borderBottomLeftRadius: $shape === SHAPE.ROUND ? $theme.borders.radius400 : 0,
+      borderBottomRightRadius: $shape === SHAPE.ROUND ? $theme.borders.radius400 : 0,
+      overflow: 'hidden',
+      ...($isTapTarget
+        ? {
+            // button style reset
+            borderRadius: 0,
+            textAlign: 'inherit',
+            boxShadow: 'none',
+            padding: 0,
+            cursor: 'pointer',
+            border: 'none',
+            color: 'inherit',
+            font: 'inherit',
+          }
+        : {}),
+    };
+  }
+);
 
 StyledRoot.displayName = 'StyledRoot';
 
