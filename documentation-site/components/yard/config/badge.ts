@@ -15,7 +15,7 @@ const BadgeConfig: TConfig = {
     'baseui/badge': {
       named: ['Badge'],
     },
-    'baseui/block': {
+    'baseui/skeleton': {
       named: ['Skeleton'],
     },
   },
