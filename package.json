@@ -157,7 +157,7 @@
     "jscodeshift": "^0.6.4",
     "just-omit": "^1.1.0",
     "just-pick": "^2.1.0",
-    "luxon": "1.21.3",
+    "luxon": "2.5.2",
     "markdownlint-cli": "^0.18.0",
     "mkdirp": "^0.5.1",
     "moment": "^2.24.0",
