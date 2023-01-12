@@ -16,7 +16,7 @@ import {
 import type { AvatarProps } from './types';
 
 // @ts-ignore
-function getInitials(name) {
+export function getInitials(name) {
   const words = name.split(' ');
   // @ts-ignore
   const initials = words.map((word) => word[0]);
