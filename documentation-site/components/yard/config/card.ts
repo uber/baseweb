@@ -67,7 +67,6 @@ const CardConfig: TConfig = {
           'Root',
           'Thumbnail',
           'Title',
-          'Wrapper',
         ],
         sharedProps: {},
       },
