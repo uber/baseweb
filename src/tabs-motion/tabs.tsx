@@ -206,6 +206,7 @@ export function Tabs({
   // TODO(WPT-6473): move to universal keycode aliases
   const [, theme] = useStyletron();
   const parseKeyDown = React.useCallback(
+    /* @ts-ignore todo add event type */
     (event) => {
       if (isHorizontal(orientation)) {
         if (isRTL(theme.direction)) {
