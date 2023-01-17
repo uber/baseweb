@@ -21,6 +21,8 @@ export type ComboboxOverrides = {
 export type ComboboxProps<Option = unknown> = {
   // Controls if the input value will be updated while keyboard navigating. Defaults to true.
   autocomplete?: boolean;
+  /** If true, adds a clear value icon button to the end of the input container. */
+  clearable?: boolean;
   // Disallows text input and listbox opening.
   disabled?: boolean;
   // Proxies value through to Input component.
@@ -39,7 +41,7 @@ export type ComboboxProps<Option = unknown> = {
   name?: string;
   // A ref to access the inner Input component.
   // todo(flow->ts)  <any>
-  inputRef?: React.Ref<HTMLElement>;
+  inputRef?: React.RefObject<HTMLElement>;
   // Called when input loses focus.
   onBlur?: (a: React.ChangeEvent<HTMLInputElement>) => unknown;
   // Called when input value changes or option is selected. If user selects a
