@@ -101,6 +101,7 @@ function FilterTag(props) {
       returnFocus
       key={props.title}
       isOpen={isOpen}
+      onClick={() => setIsOpen(!isOpen)}
       onClickOutside={() => setIsOpen(false)}
       content={() => (
         <Filter
@@ -112,39 +113,36 @@ function FilterTag(props) {
         />
       )}
     >
-      <div>
-        <Tag
-          onClick={() => setIsOpen(!isOpen)}
-          onActionClick={() => props.onFilterRemove(props.title)}
-          overrides={{
-            Root: {
-              style: {
-                borderTopLeftRadius: '36px',
-                borderTopRightRadius: '36px',
-                borderBottomLeftRadius: '36px',
-                borderBottomRightRadius: '36px',
-                height: '36px',
-                marginTop: null,
-                marginBottom: theme.sizing.scale500,
-              },
+      <Tag
+        onActionClick={() => props.onFilterRemove(props.title)}
+        overrides={{
+          Root: {
+            style: {
+              borderTopLeftRadius: '36px',
+              borderTopRightRadius: '36px',
+              borderBottomLeftRadius: '36px',
+              borderBottomRightRadius: '36px',
+              height: '36px',
+              marginTop: null,
+              marginBottom: theme.sizing.scale500,
             },
-            Action: {
-              style: {
-                borderTopRightRadius: '36px',
-                borderBottomRightRadius: '36px',
-                height: '22px',
-              },
+          },
+          Action: {
+            style: {
+              borderTopRightRadius: '36px',
+              borderBottomRightRadius: '36px',
+              height: '22px',
             },
-            Text: {
-              style: {
-                maxWidth: '160px',
-              },
+          },
+          Text: {
+            style: {
+              maxWidth: '160px',
             },
-          }}
-        >
-          {props.title}: {props.filter.description}
-        </Tag>
-      </div>
+          },
+        }}
+      >
+        {props.title}: {props.filter.description}
+      </Tag>
     </Popover>
   );
 }

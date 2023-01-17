@@ -146,6 +146,7 @@ export function CategoricalFilter(props: CategoricalFilterProps) {
     >
       {showQuery && (
         <Input
+          aria-label={locale.datatable.categoricalFilterSearchLabel}
           size={INPUT_SIZE.compact}
           overrides={{ Before: InputBefore }}
           value={query}
