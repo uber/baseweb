@@ -17,6 +17,7 @@ export type DataTableLocale = {
   optionsLabel: string;
   optionsSearch: string;
   optionsEmpty: string;
+  categoricalFilterSearchLabel: string;
   categoricalFilterSelectAll: string;
   categoricalFilterSelectClear: string;
   categoricalFilterEmpty: string;
@@ -40,6 +41,7 @@ export type DataTableLocale = {
   booleanColumnFalseShort: string;
   selectRow: string;
   selectAllRows: string;
+  sortColumn: string;
 };
 
 const locale = {
@@ -56,6 +58,7 @@ const locale = {
   optionsLabel: 'Select column to filter by',
   optionsSearch: 'Search for a column to filter by...',
   optionsEmpty: 'No columns available.',
+  categoricalFilterSearchLabel: 'Search categories',
   categoricalFilterSelectAll: 'Select All',
   categoricalFilterSelectClear: 'Clear',
   categoricalFilterEmpty: 'No categories found',
@@ -79,6 +82,7 @@ const locale = {
   booleanColumnFalseShort: 'F',
   selectRow: 'Select row',
   selectAllRows: 'Select all rows',
+  sortColumn: 'Sort column',
 };
 
 export default locale;

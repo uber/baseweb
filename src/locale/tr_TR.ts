@@ -64,6 +64,7 @@ const tr_TR: Locale = {
     optionsLabel: 'Filtrelenecek sütunu seçin',
     optionsSearch: 'Filtrelemek için bir sütun arayın...',
     optionsEmpty: 'Sütun yok.',
+    categoricalFilterSearchLabel: 'Arama kategorileri',
     categoricalFilterSelectAll: 'Tümünü Seç',
     categoricalFilterSelectClear: 'Temizle',
     categoricalFilterEmpty: 'Kategori bulunamadı',
@@ -87,6 +88,7 @@ const tr_TR: Locale = {
     booleanColumnFalseShort: 'Y',
     selectRow: 'satır seç',
     selectAllRows: 'Tüm satırları seç',
+    sortColumn: 'Sıralama sütunu',
   },
 
   buttongroup: {

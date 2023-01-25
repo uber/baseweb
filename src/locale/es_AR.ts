@@ -64,6 +64,7 @@ const es_AR: Locale = {
     optionsLabel: 'Selecciona una columna para filtrar',
     optionsSearch: 'Busque una columna para filtrar por...',
     optionsEmpty: 'Sin columnas disponibles.',
+    categoricalFilterSearchLabel: 'Buscar categorías',
     categoricalFilterSelectAll: 'Seleccionar Todo',
     categoricalFilterSelectClear: 'Borrar',
     categoricalFilterEmpty: 'No se encontraron categorías',
@@ -87,6 +88,7 @@ const es_AR: Locale = {
     booleanColumnFalseShort: 'F',
     selectRow: 'Seleccionar fila',
     selectAllRows: 'Seleccionar todas las filas',
+    sortColumn: 'Clasificar columna',
   },
 
   buttongroup: {

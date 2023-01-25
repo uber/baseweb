@@ -66,6 +66,10 @@ function Options(props: OptionsProps) {
   const [focusVisible, setFocusVisible] = React.useState(false);
   const seed = useUIDSeed();
   const buiRef = React.useRef(props.columns.map((col) => seed(col)));
+  const activeDescendant = buiRef.current[props.highlightIndex]
+    ? `bui-${buiRef.current[props.highlightIndex]}`
+    : undefined;
+  const optionsLabelId = seed('options-label');
 
   const handleFocus = (event: SyntheticEvent) => {
     if (isFocusVisible(event)) {
@@ -91,6 +95,7 @@ function Options(props: OptionsProps) {
       })}
     >
       <p
+        id={optionsLabelId}
         className={css({
           ...theme.typography.font100,
           marginTop: 'unset',
@@ -138,7 +143,8 @@ function Options(props: OptionsProps) {
         onBlur={handleBlur}
         tabIndex={0}
         role="listbox"
-        aria-activedescendant={`bui-${buiRef.current[props.highlightIndex]}`}
+        aria-activedescendant={activeDescendant}
+        aria-labelledby={optionsLabelId}
         className={css({
           listStyleType: 'none',
           marginBlockStart: 'unset',

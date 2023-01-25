@@ -30,6 +30,7 @@ const ARROW_DOWN = 40;
 function Combobox<Option>(props: ComboboxProps<Option>) {
   const {
     autocomplete = true,
+    clearable = false,
     disabled = false,
     error = false,
     onBlur,
@@ -54,7 +55,8 @@ function Combobox<Option>(props: ComboboxProps<Option>) {
   const [isOpen, setIsOpen] = React.useState(false);
 
   const rootRef = React.useRef(null);
-  const inputRef = React.useRef(null);
+  const defaultInputRef = React.useRef(null);
+  const inputRef = forwardInputRef || defaultInputRef;
   const listboxRef = React.useRef(null);
   const selectedOptionRef = React.useRef(null);
 
@@ -188,7 +190,7 @@ function Combobox<Option>(props: ComboboxProps<Option>) {
     if (onBlur) onBlur(event);
   }
 
-  function handleInputClick() {
+  function handleInputClick(event) {
     if (inputRef.current) {
       // @ts-ignore
       inputRef.current.focus();
@@ -205,19 +207,6 @@ function Combobox<Option>(props: ComboboxProps<Option>) {
     setSelectionIndex(-1);
     onChange(event.target.value, null);
     setTempValue(event.target.value);
-  }
-
-  // @ts-ignore
-  function handleInputRef(input) {
-    inputRef.current = input;
-    if (forwardInputRef) {
-      if (typeof forwardInputRef === 'function') {
-        forwardInputRef(input);
-      } else {
-        // @ts-expect-error todo(flow->ts)
-        forwardInputRef.current = input;
-      }
-    }
   }
 
   // @ts-ignore
@@ -318,9 +307,10 @@ function Combobox<Option>(props: ComboboxProps<Option>) {
           {...inputContainerProps}
         >
           <OverriddenInput
-            inputRef={handleInputRef}
+            inputRef={inputRef}
             aria-activedescendant={isOpen && selectionIndex >= 0 ? activeDescendantId : undefined}
             aria-autocomplete="list"
+            clearable={clearable}
             disabled={disabled}
             error={error}
             name={name}
