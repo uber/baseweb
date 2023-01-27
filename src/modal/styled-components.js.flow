@@ -188,3 +188,7 @@ export const ModalFooter = styled<{}>('div', ({ $theme }) => ({
   paddingBottom: $theme.sizing.scale500,
   textAlign: $theme.direction === 'rtl' ? 'left' : 'right',
 }));
+
+export const Hidden = styled('div', {
+  display: 'none',
+});

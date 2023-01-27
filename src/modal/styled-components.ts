@@ -201,3 +201,8 @@ export const ModalFooter = styled('div', ({ $theme }) => ({
   textAlign: $theme.direction === 'rtl' ? 'left' : 'right',
 }));
 ModalFooter.displayName = 'ModalFooter';
+
+export const Hidden = styled('div', {
+  display: 'none',
+});
+Hidden.displayName = 'Hidden';

@@ -65,6 +65,11 @@ export type ModalPropsT = {
   /** Controls the size of the modal (primarily width).
    * Can be a SIZE constant or css width property value. */
   size: SizePropT,
+  /**
+   * Allows users to render all child content whether a panel is expanded or not
+   * for SEO purposes
+   */
+  renderAll?: boolean;
 };
 
 export type ModalPropsWithoutChildrenT = $Diff<ModalPropsT, { children: ?React.Node }>;

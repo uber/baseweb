@@ -61,6 +61,11 @@ export type ModalProps = {
   /** Controls the size of the modal (primarily width).
    * Can be a SIZE constant or css width property value. */
   size?: SizeProp;
+  /**
+   * Allows users to render all child content whether a modal is open or not
+   * for SEO purposes
+   */
+  renderAll?: boolean;
 };
 
 export type ModalPropsWithoutChildren = Omit<ModalProps, 'children'>;
