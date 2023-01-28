@@ -18,6 +18,7 @@ import {
   Dialog as StyledDialog,
   DialogContainer as StyledDialogContainer,
   Close as StyledClose,
+  Hidden,
 } from './styled-components';
 import { CloseIcon } from './close-icon';
 
@@ -38,6 +39,7 @@ class Modal extends React.Component<ModalProps, ModalState> {
     overrides: {},
     role: ROLE.dialog,
     size: SIZE.default,
+    renderAll: false,
   };
 
   animateOutTimer: ReturnType<typeof setTimeout> | undefined | null;
@@ -223,7 +225,7 @@ class Modal extends React.Component<ModalProps, ModalState> {
     return typeof children === 'function' ? children() : children;
   }
 
-  renderModal() {
+  renderModal(renderedContent: React.ReactNode) {
     const { overrides = {}, closeable, role, autoFocus, focusLock, returnFocus } = this.props;
 
     const {
@@ -242,7 +244,6 @@ class Modal extends React.Component<ModalProps, ModalState> {
     const [Close, closeProps] = getOverrides(CloseOverride, StyledClose);
 
     const sharedProps = this.getSharedProps();
-    const children = this.getChildren();
 
     return (
       <LocaleContext.Consumer>
@@ -275,7 +276,7 @@ class Modal extends React.Component<ModalProps, ModalState> {
                   {...sharedProps}
                   {...dialogProps}
                 >
-                  {children}
+                  {renderedContent}
                   {closeable ? (
                     <Close
                       aria-label={locale.modal.close}
@@ -298,23 +299,28 @@ class Modal extends React.Component<ModalProps, ModalState> {
   }
 
   render() {
-    // Only render modal on the browser (portals aren't supported server-side)
-    if (!this.state.mounted) {
+    // Only render an open and non-renderAll modal on the browser (portals aren't supported server-side)
+    const mountedAndOpen = this.state.mounted && (this.props.isOpen || this.state.isVisible);
+
+    const renderedContent = mountedAndOpen || this.props.renderAll ? this.getChildren() : null;
+
+    if (renderedContent) {
+      if (mountedAndOpen) {
+        return (
+          <Layer
+            onEscape={this.onEscape}
+            onDocumentClick={this.onDocumentClick}
+            mountNode={this.props.mountNode}
+          >
+            {this.renderModal(renderedContent)}
+          </Layer>
+        );
+      } else {
+        return <Hidden>{renderedContent}</Hidden>;
+      }
+    } else {
       return null;
     }
-    // Only render the modal if its isOpen is passed, or isVisible is true (still animating)
-    if (!this.props.isOpen && !this.state.isVisible) {
-      return null;
-    }
-    return (
-      <Layer
-        onEscape={this.onEscape}
-        onDocumentClick={this.onDocumentClick}
-        mountNode={this.props.mountNode}
-      >
-        {this.renderModal()}
-      </Layer>
-    );
   }
 }
 
