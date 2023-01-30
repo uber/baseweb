@@ -1,0 +1,49 @@
+/*
+Copyright (c) Uber Technologies, Inc.
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+// @flow
+import * as React from 'react';
+import type { OverrideT } from '../helpers/overrides.js';
+import { type StyletronComponent } from 'styletron-react';
+
+declare export var SIZE: {
+  large: 'large',
+  medium: 'medium',
+  small: 'small',
+};
+
+declare export var KIND: {
+  default: 'default',
+  backgroundProtection: 'backgroundProtection',
+  inverse: 'inverse',
+  alwaysLight: 'alwaysLight',
+  alwaysDark: 'alwaysDark',
+};
+
+export type SizeT = $Values<typeof SIZE>;
+export type KindT = $Values<typeof KIND>;
+
+export type PageControlOverridesT = {
+  Root?: OverrideT,
+  Dot?: OverrideT,
+};
+
+export type PageControlPropsT = {
+  currentPage: number,
+  numPages: number,
+  onChange: (page: number) => mixed,
+  kind: KindT,
+  disabled?: boolean,
+  ariaLabel?: string,
+  overrides?: PageControlOverridesT,
+};
+
+declare export var StyledRoot: StyletronComponent<'div', { $kind: KindT }>;
+declare export var StyledDot: StyletronComponent<
+  'button',
+  { $kind: KindT, $active: boolean, $size: SizeT, $disabled: boolean, $isVisible: boolean }
+>;
+
+declare export var PageControl: React.ComponentType<PageControlPropsT>;
