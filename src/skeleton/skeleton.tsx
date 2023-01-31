@@ -35,6 +35,7 @@ class Skeleton extends React.Component<SkeletonProps> {
               <Row
                 $animation={this.props.animation}
                 key={index}
+                $rowIndex={index}
                 // @ts-ignore
                 $isLastRow={index === this.props.rows - 1}
                 {...rowProps}

@@ -75,6 +75,7 @@ export const StyledRow = styled<
   {
     $animation?: boolean;
     $isLastRow: boolean;
+    $rowIndex: number;
   }
 >('div', (props) => {
   return {
