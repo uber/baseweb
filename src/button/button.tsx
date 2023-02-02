@@ -140,7 +140,7 @@ class Button extends React.Component<
   }
 }
 
-interface ButtonComponentType {
+export interface ButtonComponentType {
   <C extends React.ElementType = 'button'>(
     props: ButtonProps &
       SharedStyleProps &
