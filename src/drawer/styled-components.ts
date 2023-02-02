@@ -48,33 +48,33 @@ function getAnchorStyles(props: SharedStylePropsArg) {
   switch ($anchor) {
     case right: {
       return {
-        transform: $isVisible ? 'translateX(0)' : `translateX(${sizeStyles.width})`,
-        right: $isVisible ? 0 : `-${sizeStyles.width}`,
+        transform: $isVisible ? 'translateX(0)' : 'translateX(100%)',
+        right: $isVisible ? 0 : '-100%',
         top: 0,
         ...sizeStyles,
       };
     }
     case left: {
       return {
-        transform: $isVisible ? 'translateX(0)' : `translateX(-${sizeStyles.width})`,
-        left: $isVisible ? 0 : `-${sizeStyles.width}`,
+        transform: $isVisible ? 'translateX(0)' : `translateX(-100%)`,
+        left: $isVisible ? 0 : '-100%',
         top: 0,
         ...sizeStyles,
       };
     }
     case bottom: {
       return {
-        transform: $isVisible ? 'translateY(0)' : `translateY(${sizeStyles.height})`,
+        transform: $isVisible ? 'translateY(0)' : 'translateY(100%)',
         left: 0,
-        bottom: $isVisible ? '0' : `-${sizeStyles.height}`,
+        bottom: $isVisible ? '0' : `-100%`,
         ...sizeStyles,
       };
     }
     case top: {
       return {
-        transform: $isVisible ? 'translateY(0)' : `translateY(-${sizeStyles.height})`,
+        transform: $isVisible ? 'translateY(0)' : 'translateY(-100%)',
         left: 0,
-        top: $isVisible ? '0' : `-${sizeStyles.height}`,
+        top: $isVisible ? '0' : '-100%',
         ...sizeStyles,
       };
     }
