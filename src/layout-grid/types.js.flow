@@ -47,6 +47,12 @@ export type SharedGridPropsT = {
   /** Modify the CSS length unit used to measure columns and rows. Defaults to theme value. */
   gridUnit?: CSSLengthUnitT,
 };
+
+export type GridOverridesT = {
+  Grid?: OverrideT,
+  GridWrapper?: OverrideT,
+};
+
 export type GridPropsT = {
   ...SharedGridPropsT,
   /** Control vertical alignment of cells at each breakpoint. */
@@ -62,10 +68,7 @@ export type GridPropsT = {
   /** Style for your grid. The `default` style will pull values from the theme, while other styles have preset values that are unaffected by the theme. **/
   gridStyle?: GridStyle,
   /** Overrides for your grid. */
-  overrides?: {
-    Grid?: OverrideT,
-    GridWrapper?: OverrideT,
-  },
+  overrides?: GridOverridesT,
 };
 
 export type StyledGridWrapperPropsT = {
