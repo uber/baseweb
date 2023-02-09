@@ -64,7 +64,7 @@ export type NumberedStepOverrides = {
 
 export type NumberedStepProps = {
   /** The title of the Step. */
-  title?: string;
+  title?: ReactNode;
   /** Defines if the step is completed. */
   isCompleted?: boolean;
   /** Defines if the step is currently active. */
