@@ -145,7 +145,7 @@ export interface ButtonComponentType {
     props: ButtonProps &
       SharedStyleProps &
       Omit<React.ComponentProps<C>, keyof ButtonProps | keyof SharedStyleProps> & {
-        $as?: C;
+        $as?: C | React.ComponentType<any> | keyof JSX.IntrinsicElements;
       }
   ): JSX.Element;
   displayName?: string;
