@@ -4,7 +4,7 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import { DatePicker, ORIENTATION } from 'baseui/datepicker';
+import { DatePicker, ORIENTATION, RANGED_CALENDAR_BEHAVIOR } from 'baseui/datepicker';
 import { SIZE } from 'baseui/input';
 import { PropTypes } from 'react-view';
 import type { TConfig } from '../types';
@@ -23,7 +23,7 @@ const DatepickerConfig: TConfig = {
       named: ['DatePicker'],
     },
   },
-  scope: { DatePicker, ORIENTATION, SIZE },
+  scope: { DatePicker, ORIENTATION, RANGED_CALENDAR_BEHAVIOR, SIZE },
   theme: [
     'calendarBackground',
     'calendarForeground',
@@ -275,6 +275,21 @@ const DatepickerConfig: TConfig = {
       value: undefined,
       type: PropTypes.Boolean,
       description: 'Defines if 6 rows should always be displayed for all the months.',
+      hidden: true,
+    },
+    rangedCalendarBehavior: {
+      value: 'RANGED_CALENDAR_BEHAVIOR.default',
+      defaultValue: 'RANGED_CALENDAR_BEHAVIOR.default',
+      type: PropTypes.Enum,
+      enumName: 'RANGED_CALENDAR_BEHAVIOR',
+      options: RANGED_CALENDAR_BEHAVIOR,
+      description:
+        'With locked behavior, when a user selects the Start Date input field, they will only be modifying the Start Date, and likewise with the end date. Only relevant with separatedRangeInputs.',
+      imports: {
+        'baseui/datepicker': {
+          named: ['RANGED_CALENDAR_BEHAVIOR'],
+        },
+      },
       hidden: true,
     },
     timeSelectStart: {
