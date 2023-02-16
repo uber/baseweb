@@ -90,6 +90,12 @@ const ComboboxConfig: TConfig = {
       type: PropTypes.Boolean,
       description: 'Controls if keyboard navigation should temporarily update input value.',
     },
+    clearable: {
+      value: false,
+      defaultValue: false,
+      type: PropTypes.Boolean,
+      description: 'Renders a clear icon to clear the input.',
+    },
     disabled: {
       value: false,
       type: PropTypes.Boolean,
