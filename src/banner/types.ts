@@ -24,9 +24,11 @@ export type ActionContent = {
   position?: ActionPosition;
 };
 
+export type ArtworkIcon = (a: { size: string }) => React.ReactNode;
+
 export type ArtworkContent = {
   // Element displayed, usually an icon.
-  icon: (a: { size: string }) => React.ReactNode;
+  icon: ArtworkIcon;
   // Determines artwork size. Icon for graphics with a strong silhouette or badge for more nuance.
   type?: ArtworkType;
 };

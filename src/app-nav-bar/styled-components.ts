@@ -5,10 +5,9 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import { styled, withStyle } from '../styles';
-import { getMediaQueries } from '../helpers/responsive-helpers';
+import { getMediaQueryPageMargins, getMinimumPageMargins } from '../helpers/responsive-helpers';
 import { StyledListItem } from '../menu';
 import { KIND } from './constants';
-import { type StyleObject } from 'styletron-react';
 
 const StyledButton = styled<
   'button',
@@ -45,50 +44,16 @@ StyledButton.displayName = 'StyledButton';
 
 export const StyledRoot = styled('div', (props) => {
   const { $theme } = props;
-  const mediaQueries = getMediaQueries($theme.breakpoints);
-  const breakpoints = Object.values($theme.breakpoints).sort();
-  const margins = [];
-  if (Array.isArray($theme.grid.margins)) {
-    for (let i = 0; i < breakpoints.length; i++) {
-      const margin = $theme.grid.margins[i];
-      if (margin == null) {
-        // @ts-ignore
-        margins.push($theme.grid.margins[$theme.grid.margins.length - 1]);
-      } else {
-        // @ts-ignore
-        margins.push(margin);
-      }
-    }
-  } else {
-    for (let i = 0; i < breakpoints.length; i++) {
-      // @ts-ignore
-      margins.push($theme.grid.margins);
-    }
-  }
-
-  const style: StyleObject = {
+  return {
     ...$theme.typography.font300,
+    ...getMinimumPageMargins($theme.grid.margins),
+    ...getMediaQueryPageMargins($theme),
     boxSizing: 'border-box',
     backgroundColor: $theme.colors.backgroundPrimary,
     borderBottomWidth: '1px',
     borderBottomStyle: 'solid',
     borderBottomColor: `${$theme.colors.borderOpaque}`,
-    paddingInlineStart: margins[0] + 'px',
-    paddingInlineEnd: margins[0] + 'px',
   };
-
-  for (let i = 1; i < mediaQueries.length; i++) {
-    const margin = Array.isArray($theme.grid.margins)
-      ? $theme.grid.margins[i]
-      : $theme.grid.margins;
-
-    style[mediaQueries[i]] = {
-      paddingInlineStart: margin + 'px',
-      paddingInlineEnd: margin + 'px',
-    };
-  }
-
-  return style;
 });
 StyledRoot.displayName = 'StyledRoot';
 
