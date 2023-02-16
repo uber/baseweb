@@ -10,6 +10,12 @@ import { PropTypes } from 'react-view';
 import type { TConfig } from '../types';
 import { changeHandlers } from './common/common';
 
+// removing the legacy `toggle_round` from STYLE_TYPE so it doesn't show up in docs
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const ADJUSTED_STYLE_TYPE = (function ({ toggle_round, ...object }) {
+  return object;
+})(STYLE_TYPE);
+
 const CheckboxConfig: TConfig = {
   componentName: 'Checkbox',
   imports: {
@@ -62,7 +68,7 @@ const CheckboxConfig: TConfig = {
     checkmarkType: {
       value: 'STYLE_TYPE.default',
       defaultValue: 'STYLE_TYPE.default',
-      options: STYLE_TYPE,
+      options: ADJUSTED_STYLE_TYPE,
       type: PropTypes.Enum,
       enumName: 'STYLE_TYPE',
       description: 'Renders component in a toggle state.',
