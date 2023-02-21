@@ -10,6 +10,7 @@ export const StyledRoot = styled<'div', {}>('div', ({ $theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   gap: $theme.sizing.scale300,
+  width: '100%',
   paddingTop: $theme.sizing.scale600,
   paddingRight: $theme.sizing.scale600,
   paddingBottom: $theme.sizing.scale600,
