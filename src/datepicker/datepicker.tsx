@@ -405,7 +405,7 @@ export default class Datepicker<T = Date> extends React.Component<
   handleKeyDown = (event: KeyboardEvent) => {
     if (!this.state.isOpen && event.keyCode === 40) {
       this.open();
-    } else if (this.state.isOpen && event.key === 'ArrowDown') {
+    } else if (this.state.isOpen && (event.key === 'ArrowDown' || event.key === 'Enter')) {
       // next line prevents the page jump on the initial arrowDown
       event.preventDefault();
       this.focusCalendar();
@@ -445,17 +445,21 @@ export default class Datepicker<T = Date> extends React.Component<
     }
   }
 
+  getPlaceholder = () =>
+    this.props.placeholder || this.props.placeholder === ''
+      ? this.props.placeholder
+      : this.props.range && !this.props.separateRangeInputs
+      ? `YYYY/MM/DD ${INPUT_DELIMITER} YYYY/MM/DD`
+      : 'YYYY/MM/DD';
+
   renderInputComponent(locale: Locale, inputRole?: InputRole) {
     const { overrides = {} } = this.props;
 
     const [InputComponent, inputProps] = getOverrides(overrides.Input, MaskedInput);
 
-    const placeholder =
-      this.props.placeholder || this.props.placeholder === ''
-        ? this.props.placeholder
-        : this.props.range && !this.props.separateRangeInputs
-        ? `YYYY/MM/DD ${INPUT_DELIMITER} YYYY/MM/DD`
-        : 'YYYY/MM/DD';
+    const inputLabel =
+      this.props['aria-label'] ||
+      `${this.props.range ? locale.datepicker.ariaLabelRange : locale.datepicker.ariaLabel}`;
 
     const [startDate = '', endDate = ''] = (this.state.inputValue || '').split(
       ` ${INPUT_DELIMITER} `
@@ -471,10 +475,7 @@ export default class Datepicker<T = Date> extends React.Component<
     return (
       <InputComponent
         aria-disabled={this.props.disabled}
-        aria-label={
-          this.props['aria-label'] ||
-          (this.props.range ? locale.datepicker.ariaLabelRange : locale.datepicker.ariaLabel)
-        }
+        aria-label={inputLabel}
         error={this.props.error}
         positive={this.props.positive}
         aria-describedby={this.props['aria-describedby']}
@@ -488,7 +489,7 @@ export default class Datepicker<T = Date> extends React.Component<
         onKeyDown={this.handleKeyDown}
         // @ts-ignore
         onChange={(event) => this.handleInputChange(event, inputRole)}
-        placeholder={placeholder}
+        placeholder={this.getPlaceholder()}
         mask={this.getMask()}
         required={this.props.required}
         clearable={this.props.clearable}
@@ -507,6 +508,12 @@ export default class Datepicker<T = Date> extends React.Component<
     const [StartDate, startDateProps] = getOverrides(overrides.StartDate, StyledStartDate);
     const [EndDate, endDateProps] = getOverrides(overrides.EndDate, StyledEndDate);
     const [InputLabel, inputLabelProps] = getOverrides(overrides.InputLabel, StyledInputLabel);
+
+    const singleDateFormatString = this.props.formatString || DEFAULT_DATE_FORMAT;
+    const formatString: string =
+      this.props.range && !this.props.separateRangeInputs
+        ? `${singleDateFormatString} ${INPUT_DELIMITER} ${singleDateFormatString}`
+        : singleDateFormatString;
 
     return (
       <LocaleContext.Consumer>
@@ -573,7 +580,9 @@ export default class Datepicker<T = Date> extends React.Component<
                 clipPath: 'inset(100%)',
               }}
             >
-              {locale.datepicker.screenReaderMessageInput}
+              {getInterpolatedString(locale.datepicker.screenReaderMessageInput, {
+                formatString: formatString,
+              })}
             </p>
             <p
               aria-live="assertive"
