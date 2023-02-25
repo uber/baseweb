@@ -76,7 +76,7 @@ const PageControl = ({
     return SIZE.small;
   }
 
-  // @ts-expect-error useId does not exist in React 17
+  // @ts-expect-error todo(fix once web-code is fully on React 18) TS2339: Property 'useId' does not exist on type 'typeof React'.
   const name = React.useId();
 
   return (
