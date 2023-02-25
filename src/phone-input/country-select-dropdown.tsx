@@ -92,11 +92,9 @@ function CountrySelectDropdown(
   );
   return (
     <Container ref={forwardedRef} $height={maxDropdownHeight} {...containerProps}>
-      {/* @ts-expect-error todo(fix once web-code is fully on React 18) TS2786: 'AutoSizer' cannot be used as a JSX component */}
       <AutoSizer>
         {({ height, width }) => {
           return (
-            // @ts-expect-error todo(fix once web-code is fully on React 18) TS2786: 'List' cannot be used as a JSX component
             <List
               role="listbox"
               height={height}
