@@ -76,6 +76,7 @@ const PageControl = ({
     return SIZE.small;
   }
 
+  // @ts-expect-error useId does not exist in React 17
   const name = React.useId();
 
   return (
