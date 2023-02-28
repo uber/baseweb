@@ -261,7 +261,7 @@ function generateDayStyles(defaultCode: string, defaultStyle) {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 // @ts-ignore
-function getDayStyles(code, { colors }): any {
+function getDayStyles(code, { colors, direction }): any {
   const undefinedDayStyle = {
     // @ts-ignore
     ':before': { content: null },
@@ -367,7 +367,7 @@ function getDayStyles(code, { colors }): any {
     // range: selected end date
     generateDayStyles('100110100000000', {
       color: colors.calendarDayForegroundSelected,
-      ':before': { left: null, right: '50%' },
+      ':before': { left: null, right: direction === 'rtl' ? '0%' : '50%' },
     }),
     // range: first selected date while a range is highlighted but no second date selected yet
     // highlighted range on the right from the selected
@@ -377,11 +377,11 @@ function getDayStyles(code, { colors }): any {
     // highlighted range on the left from the selected
     generateDayStyles('100100001001000', {
       color: colors.calendarDayForegroundSelected,
-      ':before': { left: null, right: '50%' },
+      ':before': { left: null, right: direction === 'rtl' ? '0%' : '50%' },
     }),
     // range: second date in a range that is highlighted but not selected
     generateDayStyles('101000001010000', {
-      ':before': { left: null, right: '50%' },
+      ':before': { left: null, right: direction === 'rtl' ? '0%' : '50%' },
     }),
     { '101000001001000': {} },
     { '101000001001100': {} },
@@ -423,7 +423,7 @@ function getDayStyles(code, { colors }): any {
     // highlighted end date in a range
     generateDayStyles('101110100000000', {
       color: colors.calendarDayForegroundSelectedHighlighted,
-      ':before': { left: null, right: '50%' },
+      ':before': { left: null, right: direction === 'rtl' ? '0%' : '50%' },
     }),
     // range: pseudo-selected date
     generateDayStyles('101010010000000', {
@@ -458,7 +458,7 @@ export const StyledDay = styled<'div', SharedStyleProps>('div', (props) => {
     $hasLockedBehavior,
     $selectedInput,
     $value,
-    $theme: { colors, typography, sizing },
+    $theme: { colors, typography, sizing, direction },
   } = props;
   const code = getDayStateCode(props);
 
@@ -567,7 +567,7 @@ export const StyledDay = styled<'div', SharedStyleProps>('div', (props) => {
             height: '100%',
             width: '50%',
             top: 0,
-            left: '50%',
+            left: direction === 'rtl' ? '0%' : '50%',
             borderTopWidth: '2px',
             borderBottomWidth: '2px',
             borderLeftWidth: '0',
