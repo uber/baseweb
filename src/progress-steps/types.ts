@@ -41,11 +41,11 @@ export type StepOverrides = {
 export type StepProps = {
   /** The title of the Step. */
   title?: ReactNode;
-  /** Defines if the step is completed. Overriden by ProgressSteps, if used. */
+  /** Defines if the step is completed. Overridden by ProgressSteps, if used. */
   isCompleted?: boolean;
   /** Defines if the step is currently active. */
   isActive?: boolean;
-  /** Defines if the step is the last item displayed. Overriden by ProgressSteps, if used. */
+  /** Defines if the step is the last item displayed. Overridden by ProgressSteps, if used. */
   isLast?: boolean;
   overrides?: StepOverrides;
   children?: ReactNode;
