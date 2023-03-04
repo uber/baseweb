@@ -35,6 +35,12 @@ export default function ButtonInternals(props: ButtonProps) {
   );
   const [EndEnhancer, endEnhancerProps] = getOverrides(overrides.EndEnhancer, StyledEndEnhancer);
   const sharedProps = getSharedProps(props);
+
+  if (props.isLoading) {
+    const hiddenStyle = { opacity: 0, display: 'flex', height: '0px' };
+    return <div style={hiddenStyle}>{children}</div>;
+  }
+
   return (
     <React.Fragment>
       {startEnhancer !== null && startEnhancer !== undefined && (
