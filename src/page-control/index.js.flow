@@ -33,10 +33,10 @@ export type PageControlOverridesT = {
 export type PageControlPropsT = {
   currentPage: number,
   numPages: number,
-  onChange: (page: number) => mixed,
+  onPageChange: (page: number) => mixed,
   kind: KindT,
   disabled?: boolean,
-  ariaLabel?: string,
+  'aria-label'?: string,
   overrides?: PageControlOverridesT,
 };
 

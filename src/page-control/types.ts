@@ -18,9 +18,9 @@ export type PageControlOverrides = {
 export type PageControlProps = {
   currentPage: number;
   numPages: number;
-  onChange: (page: number) => unknown;
+  onPageChange?: (a: { nextPage: number }) => unknown;
   kind?: Kind;
   disabled?: boolean;
-  ariaLabel?: string;
+  'aria-label'?: string;
   overrides?: PageControlOverrides;
 };

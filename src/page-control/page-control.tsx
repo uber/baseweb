@@ -15,10 +15,10 @@ const MAX_DOTS = 5;
 const PageControl = ({
   currentPage,
   numPages,
-  onChange,
+  onPageChange,
   kind = KIND.default,
   disabled = false,
-  ariaLabel,
+  'aria-label': ariaLabel,
   overrides = {},
 }: PageControlProps) => {
   const [Root, RootProps] = getOverrides(overrides.Root, StyledRoot);
@@ -80,23 +80,26 @@ const PageControl = ({
 
   return (
     <Root $kind={kind} role="radiogroup" aria-label={ariaLabel || 'page control'} {...RootProps}>
-      {Array.from({ length: numPages }, (_, i) => (
-        <Dot
-          $active={isActive(i)}
-          $kind={kind}
-          $disabled={disabled}
-          $isVisible={isVisible(i)}
-          $size={getSize(i)}
-          checked={isActive(i)}
-          key={i}
-          aria-label={`page ${i + 1}`}
-          name={name}
-          onChange={() => onChange(i)}
-          tabIndex={isActive(i) ? 0 : -1}
-          type="radio"
-          {...DotProps}
-        />
-      ))}
+      {Array.from({ length: numPages }, (_, i) => {
+        const page = i + 1;
+        return (
+          <Dot
+            $active={isActive(page)}
+            $kind={kind}
+            $disabled={disabled}
+            $isVisible={isVisible(page)}
+            $size={getSize(page)}
+            checked={isActive(page)}
+            key={page}
+            aria-label={`page ${page}`}
+            name={name}
+            onChange={() => onPageChange({ nextPage: page })}
+            tabIndex={isActive(page) ? 0 : -1}
+            type="radio"
+            {...DotProps}
+          />
+        );
+      })}
     </Root>
   );
 };
