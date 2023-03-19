@@ -31,7 +31,6 @@ export type DefaultProps = {
   type: string;
   autoFocus: boolean;
   isIndeterminate: boolean;
-  inputRef: React.RefObject<HTMLInputElement>;
   checkmarkType: StyleType;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => unknown;
   onMouseEnter: (e: React.ChangeEvent<HTMLInputElement>) => unknown;

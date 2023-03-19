@@ -31,7 +31,6 @@ class StatelessCheckbox extends React.Component<CheckboxProps, CheckboxState> {
     disabled: false,
     autoFocus: false,
     isIndeterminate: false,
-    inputRef: React.createRef(),
     error: false,
     type: 'checkbox',
     checkmarkType: STYLE_TYPE.default,
@@ -44,6 +43,8 @@ class StatelessCheckbox extends React.Component<CheckboxProps, CheckboxState> {
     onBlur: () => {},
   };
 
+  inputRef = this.props.inputRef || React.createRef();
+
   state = {
     isFocused: this.props.autoFocus || false,
     isFocusVisible: false,
@@ -52,11 +53,22 @@ class StatelessCheckbox extends React.Component<CheckboxProps, CheckboxState> {
   };
 
   componentDidMount() {
-    const { autoFocus, inputRef } = this.props;
+    const { autoFocus, isIndeterminate } = this.props;
     // @ts-ignore
-    if (autoFocus && inputRef.current) {
+    if (autoFocus && this.inputRef.current) {
       // @ts-ignore
-      inputRef.current.focus();
+      this.inputRef.current.focus();
+    }
+    if (this.inputRef.current) {
+      this.inputRef.current.indeterminate = Boolean(isIndeterminate);
+    }
+  }
+
+  componentDidUpdate(prevProps: CheckboxProps) {
+    const { isIndeterminate } = this.props;
+
+    if (this.inputRef.current && isIndeterminate !== prevProps.isIndeterminate) {
+      this.inputRef.current.indeterminate = Boolean(isIndeterminate);
     }
   }
 
@@ -107,7 +119,6 @@ class StatelessCheckbox extends React.Component<CheckboxProps, CheckboxState> {
       overrides = {},
       onChange,
       labelPlacement = this.props.checkmarkType === STYLE_TYPE.toggle ? 'left' : 'right',
-      inputRef,
       isIndeterminate,
       error,
       disabled,
@@ -204,7 +215,7 @@ class StatelessCheckbox extends React.Component<CheckboxProps, CheckboxState> {
           aria-required={required || null}
           disabled={disabled}
           type={type}
-          ref={inputRef}
+          ref={this.inputRef}
           // Prevent a second click event from firing when label is clicked.
           // See https://github.com/uber/baseweb/issues/3847
           onClick={stopPropagation}
