@@ -13,6 +13,7 @@ import DeprecatedHOC from '../utils/deprecated-component.js';
 
 export { StyledGrid, StyledCell, Grid, Cell };
 export * from './constants.js';
+export type * from './types.js';
 
 const componentName = 'Layout Grid (baseui/layout-grid)';
 export const Unstable_StyledGrid = DeprecatedHOC(StyledGrid, componentName);
