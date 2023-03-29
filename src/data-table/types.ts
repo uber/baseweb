@@ -8,9 +8,9 @@ import type * as React from 'react';
 
 import type { COLUMNS, SORT_DIRECTIONS } from './constants';
 
-export type SortDirections = typeof SORT_DIRECTIONS[keyof typeof SORT_DIRECTIONS];
+export type SortDirections = (typeof SORT_DIRECTIONS)[keyof typeof SORT_DIRECTIONS];
 
-export type Columns = typeof COLUMNS[keyof typeof COLUMNS];
+export type Columns = (typeof COLUMNS)[keyof typeof COLUMNS];
 
 // These options are available on all column kinds. Most have additional
 // unique options depending on the data visualization requirements.

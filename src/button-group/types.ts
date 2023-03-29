@@ -24,7 +24,7 @@ export type ButtonGroupProps = {
    * the value `radio` will cause Buttons to behave like radio buttons,
    * the value `checkbox` will cause Buttons to behave like checkboxes.
    */
-  mode?: typeof MODE[keyof typeof MODE];
+  mode?: (typeof MODE)[keyof typeof MODE];
   /**
    * Called with click events from children. If a child button has its
    * own click handler, the local handler will be called first, then
@@ -38,11 +38,11 @@ export type ButtonGroupProps = {
    */
   selected?: number | Array<number>;
   /** Defines the shape of the buttons in the button group. */
-  shape?: typeof SHAPE[keyof typeof SHAPE];
+  shape?: (typeof SHAPE)[keyof typeof SHAPE];
   /** Defines the size of the buttons in the button group. */
-  size?: typeof SIZE[keyof typeof SIZE];
+  size?: (typeof SIZE)[keyof typeof SIZE];
   /** Defines the `kind` of the buttons in the group */
-  kind?: typeof KIND[keyof typeof KIND];
+  kind?: (typeof KIND)[keyof typeof KIND];
 };
 
 type ButtonGroupOverrides = {
@@ -75,7 +75,7 @@ export type State = {
 };
 
 export type StateReducer = (
-  stateType: typeof STATE_CHANGE_TYPE[keyof typeof STATE_CHANGE_TYPE],
+  stateType: (typeof STATE_CHANGE_TYPE)[keyof typeof STATE_CHANGE_TYPE],
   nextState: State,
   currentState: State
 ) => State;

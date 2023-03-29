@@ -33,7 +33,7 @@ export type CSSLengthUnit =
   | 'vmax'
   | '%';
 
-export type GridStyle = typeof STYLE[keyof typeof STYLE];
+export type GridStyle = (typeof STYLE)[keyof typeof STYLE];
 
 export type SharedGridProps = {
   /** Number of columns at each breakpoint. */

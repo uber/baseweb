@@ -152,8 +152,8 @@ export default function AppNavBar(props: AppNavBarProps) {
   const [DesktopMenu, desktopMenuProps] = getOverrides(overrides.DesktopMenu, StyledDesktopMenu);
 
   let secondaryMenu;
-  let desktopSubNavPosition: typeof POSITION[keyof typeof POSITION] = POSITION.horizontal;
-  let mobileSubNavPosition: typeof POSITION[keyof typeof POSITION] = POSITION.vertical;
+  let desktopSubNavPosition: (typeof POSITION)[keyof typeof POSITION] = POSITION.horizontal;
+  let mobileSubNavPosition: (typeof POSITION)[keyof typeof POSITION] = POSITION.vertical;
 
   return (
     <Root {...rootProps} data-baseweb="app-nav-bar">

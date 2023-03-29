@@ -43,8 +43,8 @@ export type NavItem = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   navExitIcon?: React.ComponentType<any>;
   navPosition?: {
-    desktop?: typeof POSITION[keyof typeof POSITION];
-    mobile?: typeof POSITION[keyof typeof POSITION];
+    desktop?: (typeof POSITION)[keyof typeof POSITION];
+    mobile?: (typeof POSITION)[keyof typeof POSITION];
   };
 };
 

@@ -11,7 +11,7 @@ import type { ORIENTATION, STATE_CHANGE_TYPE } from './constants';
 export type SharedStylePropsArg = {
   $disabled?: boolean;
   $active?: boolean;
-  $orientation?: typeof ORIENTATION[keyof typeof ORIENTATION];
+  $orientation?: (typeof ORIENTATION)[keyof typeof ORIENTATION];
   $isFocusVisible?: boolean;
 };
 
@@ -51,7 +51,7 @@ export type TabsProps = {
   /** Change handler that is called every time a new tab is selected */
   onChange?: OnChangeHandler;
   /** Sets the orientation of the Tab component */
-  orientation?: typeof ORIENTATION[keyof typeof ORIENTATION];
+  orientation?: (typeof ORIENTATION)[keyof typeof ORIENTATION];
   /** Renders all tab content for SEO purposes regardless of tab active state */
   renderAll?: boolean;
   overrides?: TabsOverrides;
@@ -84,5 +84,5 @@ export type TabPanelProps = {
 
 export type TabProps = TabPanelProps & {
   id?: string;
-  $orientation?: typeof ORIENTATION[keyof typeof ORIENTATION];
+  $orientation?: (typeof ORIENTATION)[keyof typeof ORIENTATION];
 };

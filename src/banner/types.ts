@@ -8,10 +8,10 @@ import type * as React from 'react';
 import type { Override } from '../helpers/overrides';
 import type { ACTION_POSITION, ARTWORK_TYPE, HIERARCHY, KIND } from './constants';
 
-export type ActionPosition = typeof ACTION_POSITION[keyof typeof ACTION_POSITION];
-export type ArtworkType = typeof ARTWORK_TYPE[keyof typeof ARTWORK_TYPE];
-export type Hierarchy = typeof HIERARCHY[keyof typeof HIERARCHY];
-export type Kind = typeof KIND[keyof typeof KIND];
+export type ActionPosition = (typeof ACTION_POSITION)[keyof typeof ACTION_POSITION];
+export type ArtworkType = (typeof ARTWORK_TYPE)[keyof typeof ARTWORK_TYPE];
+export type Hierarchy = (typeof HIERARCHY)[keyof typeof HIERARCHY];
+export type Kind = (typeof KIND)[keyof typeof KIND];
 
 export type ActionContent = {
   // Text shown within action button or applied to aria label.

@@ -227,7 +227,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
     return orientation === ORIENTATION.horizontal && monthsShown > 1;
   };
 
-  isHiddenPaginationButton = (direction: typeof DIRECTION[keyof typeof DIRECTION]) => {
+  isHiddenPaginationButton = (direction: (typeof DIRECTION)[keyof typeof DIRECTION]) => {
     const { monthsShown, order } = this.props;
 
     if (!!monthsShown && this.isMultiMonthHorizontal()) {

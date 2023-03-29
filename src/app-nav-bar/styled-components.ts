@@ -121,7 +121,7 @@ export const StyledMainMenuItem = styled<
   {
     $active?: boolean;
     $isFocusVisible: boolean;
-    $kind: typeof KIND[keyof typeof KIND];
+    $kind: (typeof KIND)[keyof typeof KIND];
   }
 >('div', (props) => {
   const {
