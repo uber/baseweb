@@ -580,9 +580,11 @@ export default class Datepicker<T = Date> extends React.Component<
                 clipPath: 'inset(100%)',
               }}
             >
-              {getInterpolatedString(locale.datepicker.screenReaderMessageInput, {
-                formatString: formatString,
-              })}
+              {this.props.formControlCaptionText +
+                ' - ' +
+                getInterpolatedString(locale.datepicker.screenReaderMessageInput, {
+                  formatString: formatString,
+                })}
             </p>
             <p
               aria-live="assertive"

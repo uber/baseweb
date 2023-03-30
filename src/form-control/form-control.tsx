@@ -189,6 +189,7 @@ export default class FormControl extends React.Component<FormControlProps, FormC
                       : sharedProps.$positive === false
                       ? undefined
                       : sharedProps.$positive,
+                  formControlCaptionText: hint,
                 });
               })}
               {(!!caption || !!error || positive) && (

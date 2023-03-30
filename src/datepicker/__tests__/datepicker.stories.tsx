@@ -23,6 +23,7 @@ import { Scenario as DatepickerRangeLockedBehavior } from './datepicker-range-lo
 import { Scenario as DatepickerRangeExcludeDates } from './datepicker-range-exclude-dates.scenario';
 import { Scenario as DatepickerDefault } from './datepicker.scenario';
 import { Scenario as DatepickerTimeScenario } from './datepicker-time.scenario';
+import { Scenario as DatepickerFormControlScenario } from './datepicker-form-control.scenario';
 import { Scenario as DatepickersColorStates } from './datepickers-color-states.scenario';
 import { Scenario as DatepickersComposedRange } from './datepickers-composed-range.scenario';
 import { Scenario as DatepickersComposedSingle } from './datepickers-composed-single.scenario';
@@ -51,6 +52,7 @@ export const RangeLockedBehavior = () => <DatepickerRangeLockedBehavior />;
 export const RangeExcludeDates = () => <DatepickerRangeExcludeDates />;
 export const Datepicker = () => <DatepickerDefault />;
 export const DatepickerTime = () => <DatepickerTimeScenario />;
+export const DatepickerFormControl = () => <DatepickerFormControlScenario />;
 export const OnChangeFlow = () => <DatepickerOnChangeFlow />;
 export const StatefulColorStates = () => <DatepickersColorStates />;
 export const StatefulComposedRange = () => <DatepickersComposedRange />;
