@@ -79,6 +79,7 @@ const BottomNavigation = ({
       title="More"
       icon={Overflow}
       onChange={() => setDisplayOverflow(true)}
+      // @ts-expect-error todo(ts-migration) TS2365 Operator '>' cannot be applied to types 'Key' and 'number'.
       isActive={displayOverflow || activeKey > 4}
       overrides={{ Title: overrides.OverflowTitle, Selector: overrides.OverflowSelector }}
       key={'more'}
