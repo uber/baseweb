@@ -28,7 +28,6 @@ export type DefaultProps = {
   checked: boolean;
   disabled: boolean;
   error: boolean;
-  type: string;
   autoFocus: boolean;
   isIndeterminate: boolean;
   checkmarkType: StyleType;
@@ -67,8 +66,6 @@ export type CheckboxProps = {
   inputRef?: React.RefObject<HTMLInputElement>;
   /** Focus the checkbox on initial render. */
   autoFocus?: boolean;
-  /** Passed to the input element type attribute */
-  type?: string;
   /** Passed to the input element id attribute */
   id?: string;
   /** Passed to the input element name attribute */

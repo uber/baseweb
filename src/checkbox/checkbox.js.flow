@@ -31,7 +31,6 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
     isIndeterminate: false,
     inputRef: React.createRef(),
     error: false,
-    type: 'checkbox',
     checkmarkType: STYLE_TYPE.default,
     onChange: () => {},
     onMouseEnter: () => {},
@@ -103,7 +102,6 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
       disabled,
       value,
       name,
-      type,
       checked,
       children,
       required,
@@ -185,13 +183,12 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
           checked={checked}
           required={required}
           aria-label={this.props['aria-label'] || this.props.ariaLabel}
-          aria-checked={isIndeterminate ? 'mixed' : checked}
           aria-describedby={this.props['aria-describedby']}
           aria-errormessage={this.props['aria-errormessage']}
           aria-invalid={error || null}
           aria-required={required || null}
           disabled={disabled}
-          type={type}
+          type="checkbox"
           ref={inputRef}
           // Prevent a second click event from firing when label is clicked.
           // See https://github.com/uber/baseweb/issues/3847
