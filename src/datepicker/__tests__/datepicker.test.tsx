@@ -157,6 +157,7 @@ describe('Datepicker', () => {
         <TestBaseProvider>
           <Datepicker
             range
+            // @ts-ignore
             onChange={({ date }) => setValue(date)}
             value={value}
             overrides={{

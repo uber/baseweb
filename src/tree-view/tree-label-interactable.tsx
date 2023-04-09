@@ -11,8 +11,8 @@ import type { Override } from '../helpers/overrides';
 
 import type { ComponentType, PropsWithChildren } from 'react';
 
-const TreeLabelInteractable: PropsWithChildren<
-  ComponentType<{
+const TreeLabelInteractable: ComponentType<
+  PropsWithChildren<{
     overrides?: {
       LabelInteractable: Override;
     };
@@ -22,7 +22,9 @@ const TreeLabelInteractable: PropsWithChildren<
   return (
     // $FlowExpectedError[cannot-spread-inexact]
     <LabelInteractable
+      // @ts-ignore
       onClick={(e) => e.stopPropagation()}
+      // @ts-ignore
       onKeyDown={(e) => e.stopPropagation()}
       {...props}
     />

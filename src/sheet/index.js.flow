@@ -1,0 +1,72 @@
+/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+// @flow
+import * as React from 'react';
+import type { OverrideT } from '../helpers/overrides.js';
+import type { ProgressBarPropsT } from '../progress-bar';
+import { type StyletronComponent } from 'styletron-react';
+
+export type SheetOverridesT = {
+  Root?: OverrideT,
+  TopContainer?: OverrideT,
+  Header?: OverrideT,
+  Grabber?: OverrideT,
+  HeaderGrid?: OverrideT,
+  ActionButton?: OverrideT,
+  EmptyDiv?: OverrideT,
+  HeaderTextContainer?: OverrideT,
+  Title?: OverrideT,
+  Description?: OverrideT,
+  Divider?: OverrideT,
+  BottomContainer?: OverrideT,
+  Body?: OverrideT,
+};
+
+export type IconButtonT = {
+  renderIcon?: React.AbstractComponent<{| size: number |}>,
+  onClick: () => void,
+  label: string,
+};
+
+export type SheetPropsT = {
+  draggable?: boolean,
+  topPosition?: string,
+  title?: string,
+  description?: string,
+  content?: React.Node,
+  progressBar?: ProgressBarPropsT,
+  leadingAction?: IconButtonT,
+  trailingAction?: IconButtonT,
+  children?: React.Node,
+  overrides?: SheetOverridesT,
+};
+
+declare export var StyledRoot: StyletronComponent<'div', { $draggable: boolean }>;
+declare export var StyledTopContainer: StyletronComponent<
+  'div',
+  { $draggable: boolean, $topPosition: boolean }
+>;
+declare export var StyledBottomContainer: StyletronComponent<
+  'div',
+  { $draggable: boolean, $topPosition: string }
+>;
+declare export var StyledHeader: StyletronComponent<'div', {}>;
+declare export var StyledHeaderGrid: StyletronComponent<
+  'div',
+  { $hasLeadingAction: boolean, $hasTrailingAction: boolean }
+>;
+declare export var StyledHeaderTextContainer: StyletronComponent<
+  'div',
+  { $draggable: boolean, $hasTitle: boolean, $hasDescription: boolean }
+>;
+declare export var StyledTitle: StyletronComponent<'div', {}>;
+declare export var StyledDescription: StyletronComponent<'div', {}>;
+declare export var StyledGrabber: StyletronComponent<'div', {}>;
+declare export var StyledEmptyDiv: StyletronComponent<'div', {}>;
+declare export var StyledContent: StyletronComponent<'div', {}>;
+
+declare export var Sheet: React.ComponentType<SheetPropsT>;

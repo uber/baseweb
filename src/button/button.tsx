@@ -31,6 +31,7 @@ class Button extends React.Component<
   static defaultProps = defaultProps;
   state = { isFocusVisible: false };
 
+  // @ts-ignore
   internalOnClick = (...args) => {
     const { isLoading, onClick } = this.props;
     if (isLoading) {
@@ -98,20 +99,22 @@ class Button extends React.Component<
       ...getSharedProps(this.props),
       $isFocusVisible: this.state.isFocusVisible,
     };
+    const ariaLoadingElements = isLoading
+      ? {
+          ['aria-label']:
+            typeof this.props.children === 'string'
+              ? `loading ${this.props.children}`
+              : 'content is loading',
+          ['aria-busy']: 'true',
+          ['aria-live']: 'polite',
+        }
+      : {};
+
     return (
       <BaseButton
         ref={forwardedRef}
         data-baseweb="button"
-        {...(isLoading
-          ? {
-              // we want the screenreader to say loading and also the content of child
-              // this seems like the best option even tho the child might not be a string
-              ['aria-label']: `loading ${
-                typeof this.props.children === 'string' ? this.props.children : ''
-              }`,
-              ['aria-busy']: 'true',
-            }
-          : {})}
+        {...ariaLoadingElements}
         {...sharedProps}
         {...restProps}
         {...baseButtonProps}
@@ -123,9 +126,8 @@ class Button extends React.Component<
         {isLoading ? (
           <React.Fragment>
             {/* This is not meant to be overridable by users */}
-            <div style={{ opacity: 0, display: 'flex', height: '0px' }}>
-              <ButtonInternals {...this.props} />
-            </div>
+            <ButtonInternals {...this.props} />
+
             <LoadingSpinnerContainer {...sharedProps} {...loadingSpinnerContainerProps}>
               <LoadingSpinner {...sharedProps} {...loadingSpinnerProps} />
             </LoadingSpinnerContainer>
@@ -138,12 +140,12 @@ class Button extends React.Component<
   }
 }
 
-interface ButtonComponentType {
+export interface ButtonComponentType {
   <C extends React.ElementType = 'button'>(
     props: ButtonProps &
       SharedStyleProps &
       Omit<React.ComponentProps<C>, keyof ButtonProps | keyof SharedStyleProps> & {
-        $as?: C;
+        $as?: C | React.ComponentType<any> | keyof JSX.IntrinsicElements;
       }
   ): JSX.Element;
   displayName?: string;

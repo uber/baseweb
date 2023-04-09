@@ -21,15 +21,18 @@ function buildSimpleWrapper(props = {}) {
   );
 }
 
+// @ts-ignore
 function childAtIndex(container, index) {
   const buttons = container.querySelectorAll('button');
   return buttons[index];
 }
 
+// @ts-ignore
 function clickChildAtIndex(container, index) {
   fireEvent.click(childAtIndex(container, index));
 }
 
+// @ts-ignore
 function expectSelectedValueAtIndex(container, index, value) {
   expect(childAtIndex(container, index).getAttribute('aria-checked')).toBe(value);
 }

@@ -41,6 +41,7 @@ const defaultLocation = [uberHq.longitude, uberHq.latitude] as [number, number];
 
 export function Scenario() {
   const [label, setLabel] = React.useState('Uber HQ');
+  const [secondaryLabel, setSecondaryLabel] = React.useState('');
   const [startEnhancer, setStartEnhancer] = React.useState(true);
   const [endEnhancer, setEndEnhancer] = React.useState(false);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -81,7 +82,13 @@ export function Scenario() {
             clearOnEscape
             key="label"
           />,
-
+          <Input
+            value={secondaryLabel}
+            onChange={(e) => setSecondaryLabel(e.target.value)}
+            placeholder="Secondary Label"
+            clearOnEscape
+            key="secondary-label"
+          />,
           <Checkbox
             checked={startEnhancer}
             onChange={(e) => setStartEnhancer(e.target.checked)}
@@ -149,6 +156,7 @@ export function Scenario() {
                 }}
                 anchorType={floatingMarkerAnchorType[0].id}
                 label={label}
+                secondaryLabel={secondaryLabel}
                 startEnhancer={
                   startEnhancer
                     ? function renderEnhancer({ size }) {

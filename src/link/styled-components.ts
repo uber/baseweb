@@ -12,6 +12,7 @@ export const Link = styled<
     $isAnimateUnderline?: boolean;
     $isFocusVisible?: boolean;
   }
+  // @ts-ignore
 >('a', ({ $theme, $isAnimateUnderline, $isFocusVisible }) => {
   const { colors, typography, animation, direction } = $theme;
 

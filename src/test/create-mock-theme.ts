@@ -43,9 +43,12 @@ export default function createMockTheme(base: {}, prefix = '$theme') {
 
   Object.keys(base).forEach((key) => {
     const path = `${prefix}.${key}`;
+    // @ts-ignore
     if (typeof base[key] === 'object') {
+      // @ts-ignore
       mock[key] = createMockTheme(base[key], path);
     } else {
+      // @ts-ignore
       mock[key] = path;
     }
   });

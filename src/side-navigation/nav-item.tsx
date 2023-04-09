@@ -67,6 +67,7 @@ class NavItem extends React.Component<NavItemProps & SharedProps> {
   }
 }
 
+// @ts-ignore
 function compare(prevProps, nextProps) {
   if (nextProps.itemMemoizationComparator) {
     return nextProps.itemMemoizationComparator(prevProps, nextProps);

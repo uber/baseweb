@@ -20,6 +20,7 @@ import {
 } from './styled-components';
 import type { HeadingProps } from './types';
 
+// @ts-ignore
 function RenderNode(props) {
   const { component, ...restProps } = props;
   const Component = component;
@@ -35,6 +36,7 @@ function RenderNode(props) {
   return Component;
 }
 
+// @ts-ignore
 function isMaxLinesValid(maxLines) {
   return maxLines === 1 || maxLines === 2;
 }
@@ -76,8 +78,11 @@ const ListHeading = React.forwardRef<HTMLLIElement, HeadingProps>((props: Headin
   }
 
   return (
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    <Root ref={ref as any} {...rootProps}>
+    <Root
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      ref={ref as any}
+      {...rootProps}
+    >
       <Content {...contentProps}>
         {/* ----- Top Row -------------------------- */}
         <StyledHeadingContentRow>

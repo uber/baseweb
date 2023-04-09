@@ -44,7 +44,7 @@ NavigationItem.displayName = 'NavigationItem';
 export const NavigationList = styled<
   'ul',
   {
-    $align: typeof ALIGN[keyof typeof ALIGN];
+    $align: (typeof ALIGN)[keyof typeof ALIGN];
   }
 >('ul', (props) => {
   const { $align, $theme } = props;

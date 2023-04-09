@@ -74,12 +74,14 @@ const StyledHighlightLabel = withStyle<
   };
 
   if (!props.$isFirst) {
+    // @ts-ignore
     style.paddingLeft = null;
   }
 
   return style;
 });
 
+// @ts-ignore
 function HighlightCheckboxLabel(props) {
   const { children, ...restProps } = props;
 
@@ -144,6 +146,7 @@ export function CategoricalFilter(props: CategoricalFilterProps) {
     >
       {showQuery && (
         <Input
+          aria-label={locale.datatable.categoricalFilterSearchLabel}
           size={INPUT_SIZE.compact}
           overrides={{ Before: InputBefore }}
           value={query}
@@ -155,6 +158,7 @@ export function CategoricalFilter(props: CategoricalFilterProps) {
       {!query && (
         <div
           style={{
+            // @ts-ignore
             marginTop: showQuery ? theme.sizing.scale600 : null,
           }}
         >
@@ -184,6 +188,7 @@ export function CategoricalFilter(props: CategoricalFilterProps) {
         {Boolean(filteredCategories.length) &&
           filteredCategories.map((category, i) => (
             <div className={checkboxStyles} key={i}>
+              {/* @ts-ignore */}
               <Checkbox
                 checked={selection.has(category)}
                 onChange={() => {
@@ -195,7 +200,7 @@ export function CategoricalFilter(props: CategoricalFilterProps) {
                   setSelection(new Set(selection));
                 }}
                 overrides={{
-                  // @ts-expect-error
+                  // @ts-ignore
                   Label: { component: HighlightCheckboxLabel, props: { query } },
                 }}
               >
@@ -208,6 +213,7 @@ export function CategoricalFilter(props: CategoricalFilterProps) {
   );
 }
 
+// @ts-ignore
 function CategoricalCell(props) {
   const [css] = useStyletron();
   return (

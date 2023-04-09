@@ -17,6 +17,7 @@ interface AspectRatioBoxBodyComponentType<D extends React.ElementType> {
 }
 
 export const AspectRatioBoxBody = (({ position, top, bottom, width, ...restProps }) => (
+  // @ts-expect-error todo(ts-migration) TS2322 Type '{ "data-baseweb": string; position: Responsive<Position>; top: string | 0 | Scale[]; bottom: string | 0 | Scale[]; width: string | Scale[]; } & Omit<...>' is not assignable to type 'IntrinsicAtt...
   <Block
     data-baseweb="aspect-ratio-box-body"
     position={position || 'absolute'}

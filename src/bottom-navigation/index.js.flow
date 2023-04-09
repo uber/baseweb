@@ -1,0 +1,68 @@
+/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+// @flow
+import * as React from 'react';
+import type { OverrideT } from '../helpers/overrides.js';
+import { type StyletronComponent } from 'styletron-react';
+
+export type NavItemOverridesT = {
+  Title?: OverrideT,
+  Selector?: OverrideT,
+  Panel?: OverrideT,
+};
+
+export type BottomNavigationOverridesT = {
+  Root?: OverrideT,
+  SelectorList?: OverrideT,
+  OverflowPanel?: OverrideT,
+  OverflowPanelList?: OverrideT,
+  OverflowTitle?: OverrideT,
+  OverflowSelector?: OverrideT,
+};
+
+export type IconT = React.AbstractComponent<{| size: number |}>;
+
+export type NavItemPropsT = {
+  children?: React.Node,
+  title: string,
+  icon?: IconT,
+  overrides?: NavItemOverridesT,
+};
+
+export type OnChangeT = (params: { activeKey: React.Key }) => void;
+
+export type BottomNavigationPropsT = {
+  children?: React.Node,
+  activeKey?: React.Key,
+  onChange?: OnChangeT,
+  overrides?: BottomNavigationOverridesT,
+};
+
+export type SelectorPropsT = {
+  title: string,
+  icon: IconT,
+  isActive: boolean,
+  onChange: OnChangeT,
+  overrides: NavItemOverridesT,
+};
+
+export type PanelPropsT = {
+  isActive: boolean,
+  overrides: NavItemOverridesT,
+  children: React.Node,
+};
+
+declare export var StyledRoot: StyletronComponent<'div', {}>;
+declare export var StyledTitle: StyletronComponent<'div', { $isActive: boolean }>;
+declare export var StyledSelectorList: StyletronComponent<'div', {}>;
+declare export var StyledSelector: StyletronComponent<'button', {}>;
+declare export var StyledPanel: StyletronComponent<'div', {}>;
+declare export var StyledOverflowPanel: StyletronComponent<'div', {}>;
+declare export var StyledOverflowPanelList: StyletronComponent<'div', {}>;
+
+declare export var NavItem: React.ComponentType<NavItemPropsT>;
+declare export var BottomNavigation: React.ComponentType<BottomNavigationPropsT>;

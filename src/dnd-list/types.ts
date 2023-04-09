@@ -12,7 +12,7 @@ export type State = {
   items: Array<React.ReactNode>;
 };
 
-export type StateChangeType = typeof STATE_CHANGE_TYPE[keyof typeof STATE_CHANGE_TYPE];
+export type StateChangeType = (typeof STATE_CHANGE_TYPE)[keyof typeof STATE_CHANGE_TYPE];
 
 export type StateReducer = (
   stateChangeType: StateChangeType,

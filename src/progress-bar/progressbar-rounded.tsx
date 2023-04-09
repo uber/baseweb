@@ -25,6 +25,7 @@ const defaults = {
   Text: StyledProgressBarRoundedText,
 };
 
+// @ts-ignore
 function roundTo(n, digits?) {
   if (digits === undefined) {
     digits = 0;
@@ -73,11 +74,14 @@ function ProgressBarRounded({
       window.cancelAnimationFrame(animationFrameRef.current);
     }
     let animationDuration = Math.max(1000 * (progress - pathProgress), 250);
+    // @ts-ignore
     let animationTimeStarted;
     function loop(now = 0) {
+      // @ts-ignore
       if (!animationTimeStarted) {
         animationTimeStarted = now;
       }
+      // @ts-ignore
       let animationTimeElapsed = now - animationTimeStarted;
       // Move out of state - might need to reverse calculate the path progress for interruped animations
       let currentPathProgress = Math.min(
@@ -94,7 +98,6 @@ function ProgressBarRounded({
   }, [progress]); // We want *only* `progress` to trigger this effect
 
   return (
-    // $FlowExpectedError[cannot-spread-inexact]
     <Root
       data-baseweb="progressbar-rounded"
       role="progressbar"
@@ -106,11 +109,9 @@ function ProgressBarRounded({
       {...restProps}
       {...rootProps}
     >
-      {/* $FlowExpectedError[cannot-spread-inexact] */}
       <Svg $size={size} {...restProps} {...svgProps}>
-        {/* $FlowExpectedError[cannot-spread-inexact] */}
         <TrackBackground $size={size} {...trackBackgroundProps} />
-        {/* $FlowExpectedError[cannot-spread-inexact] */}
+
         <TrackForeground
           ref={pathRef}
           $size={size}
@@ -120,7 +121,7 @@ function ProgressBarRounded({
           {...trackForegroundProps}
         />
       </Svg>
-      {/* $FlowExpectedError[cannot-spread-inexact] */}
+
       <Text $size={size} {...textProps}>
         {roundTo(Math.min(progress * 100, 100))}%
       </Text>

@@ -11,9 +11,9 @@ import type { ORIENTATION, FILL, STATE_CHANGE_TYPE } from './constants';
 import type { Override } from '../helpers/overrides';
 import type { IconProps } from '../icon';
 
-export type Orientation = typeof ORIENTATION[keyof typeof ORIENTATION];
-export type Fill = typeof FILL[keyof typeof FILL];
-export type StateChange = typeof STATE_CHANGE_TYPE[keyof typeof STATE_CHANGE_TYPE];
+export type Orientation = (typeof ORIENTATION)[keyof typeof ORIENTATION];
+export type Fill = (typeof FILL)[keyof typeof FILL];
+export type StateChange = (typeof STATE_CHANGE_TYPE)[keyof typeof STATE_CHANGE_TYPE];
 
 export type TabsOverrides = {
   Root?: Override;
@@ -21,7 +21,7 @@ export type TabsOverrides = {
   TabHighlight?: Override;
   TabBorder?: Override;
   EndEnhancerContainer?: Override;
-  StyledTabBar?: Override;
+  TabBar?: Override;
 };
 
 export type TabOverrides = {

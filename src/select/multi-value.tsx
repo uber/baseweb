@@ -18,6 +18,7 @@ export default function MultiValue(props: any) {
       variant={TAG_VARIANT.solid}
       overrides={{
         Root: {
+          // @ts-ignore
           style: ({ $theme: { sizing } }) => ({
             marginRight: sizing.scale0,
             marginBottom: sizing.scale0,

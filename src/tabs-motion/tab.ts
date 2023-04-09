@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 import type { TabProps } from './types';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
+// @ts-ignore
 export function Tab(props: TabProps) {
   return null;
 }

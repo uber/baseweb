@@ -11,6 +11,7 @@ import type { Breakpoints } from '../styles';
 import type { StyledBlockProps } from './types';
 
 // styletron will throw when value is undefined. if so, replace with null
+// @ts-ignore
 function constrainToNull(value) {
   if (value === undefined) {
     return null;
@@ -30,6 +31,7 @@ function build(breakpoints: Breakpoints) {
   const mediaQueries = getMediaQueries(breakpoints);
 
   return {
+    // @ts-ignore
     apply: ({ property, transform = (x) => x, value }: ApplyParams) => {
       if (value === null || value === undefined) {
         return;
@@ -39,18 +41,23 @@ function build(breakpoints: Breakpoints) {
         value.forEach((v, index) => {
           // Do not create a media query for the smallest breakpoint.
           if (index === 0) {
+            // @ts-ignore
             styles[property] = constrainToNull(transform(v));
             return;
           }
 
           const mediaQuery = mediaQueries[index - 1];
+          // @ts-ignore
           if (!styles[mediaQuery]) {
+            // @ts-ignore
             styles[mediaQuery] = {};
           }
 
+          // @ts-ignore
           styles[mediaQuery][property] = constrainToNull(transform(v));
         });
       } else {
+        // @ts-ignore
         styles[property] = constrainToNull(transform(value));
       }
     },
@@ -58,6 +65,7 @@ function build(breakpoints: Breakpoints) {
   };
 }
 
+// @ts-ignore
 function getFontValue(obj, key) {
   if (!obj) return;
   return obj[key];
@@ -67,12 +75,14 @@ export const StyledBlock = styled<'div', StyledBlockProps>('div', (props) => {
   const { breakpoints, colors, typography, sizing } = props.$theme;
 
   const get = <O extends object, K extends keyof O>(obj: O, key: K) => obj[key];
+  // @ts-ignore
   const getScale = (size) => sizing[size] || size;
 
   const styles = build(breakpoints);
   styles.apply({
     property: 'color',
     value: get(props, '$color'),
+    // @ts-ignore
     transform: (color) => colors[color] || color,
   });
   styles.apply({
@@ -86,6 +96,7 @@ export const StyledBlock = styled<'div', StyledBlockProps>('div', (props) => {
   styles.apply({
     property: 'backgroundColor',
     value: get(props, '$backgroundColor'),
+    // @ts-ignore
     transform: (backgroundColor) => colors[backgroundColor] || backgroundColor,
   });
   styles.apply({
@@ -111,21 +122,25 @@ export const StyledBlock = styled<'div', StyledBlockProps>('div', (props) => {
   styles.apply({
     property: 'fontFamily',
     value: get(props, '$font'),
+    // @ts-ignore
     transform: (font) => getFontValue(typography[font], 'fontFamily'),
   });
   styles.apply({
     property: 'fontWeight',
     value: get(props, '$font'),
+    // @ts-ignore
     transform: (font) => getFontValue(typography[font], 'fontWeight'),
   });
   styles.apply({
     property: 'fontSize',
     value: get(props, '$font'),
+    // @ts-ignore
     transform: (font) => getFontValue(typography[font], 'fontSize'),
   });
   styles.apply({
     property: 'lineHeight',
     value: get(props, '$font'),
+    // @ts-ignore
     transform: (font) => getFontValue(typography[font], 'lineHeight'),
   });
 
@@ -238,6 +253,7 @@ export const StyledBlock = styled<'div', StyledBlockProps>('div', (props) => {
   styles.apply({
     property: 'overflowX',
     value: get(props, '$overflow'),
+    // @ts-ignore
     transform: (overflow) => {
       if (overflow === 'scrollX') {
         return 'scroll';
@@ -248,6 +264,7 @@ export const StyledBlock = styled<'div', StyledBlockProps>('div', (props) => {
   styles.apply({
     property: 'overflowY',
     value: get(props, '$overflow'),
+    // @ts-ignore
     transform: (overflow) => {
       if (overflow === 'scrollY') {
         return 'scroll';
@@ -258,6 +275,7 @@ export const StyledBlock = styled<'div', StyledBlockProps>('div', (props) => {
   styles.apply({
     property: 'overflow',
     value: get(props, '$overflow'),
+    // @ts-ignore
     transform: (overflow) => {
       if (overflow !== 'scrollX' && overflow !== 'scrollY') {
         return overflow;

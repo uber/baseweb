@@ -58,6 +58,7 @@ const NotificationCircle = ({
   return (
     <Root {...rootProps}>
       {anchor}
+
       <Positioner
         $horizontalOffset={horizontalOffset}
         $verticalOffset={verticalOffset}

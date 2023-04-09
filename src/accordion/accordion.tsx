@@ -24,6 +24,7 @@ export default class Accordion extends React.Component<AccordionProps, Accordion
     stateReducer: (type, newState) => newState,
   };
 
+  // @ts-ignore
   state = {
     expanded: [],
     ...this.props.initialState,
@@ -128,6 +129,7 @@ export default class Accordion extends React.Component<AccordionProps, Accordion
         renderAll,
         overrides: child.props.overrides || overrides,
         disabled: child.props.disabled || disabled,
+        // @ts-ignore
         onChange: (...args) => this.onPanelChange(key, child.props.onChange, ...args),
       };
       return React.cloneElement(child, props);

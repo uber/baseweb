@@ -26,10 +26,12 @@ import {
 import type { AppNavBarProps } from './types';
 import { defaultMapItemToNode, mapItemsActive } from './utils';
 
+// @ts-ignore
 function MainMenuItem(props) {
   const { item, kind = KIND.primary, mapItemToNode, onSelect, overrides = {} } = props;
   const [focusVisible, setFocusVisible] = React.useState(false);
 
+  // @ts-ignore
   function handleFocus(event) {
     if (isFocusVisible(event)) {
       setFocusVisible(true);
@@ -37,6 +39,7 @@ function MainMenuItem(props) {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // @ts-ignore
   function handleBlur(event) {
     if (focusVisible) {
       setFocusVisible(false);
@@ -44,12 +47,14 @@ function MainMenuItem(props) {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // @ts-ignore
   function handleClick(event) {
     if (onSelect) {
       onSelect(item);
     }
   }
 
+  // @ts-ignore
   function handleKeyDown(event) {
     if (event.key === 'Enter' && onSelect) {
       onSelect(item);
@@ -79,6 +84,7 @@ function MainMenuItem(props) {
   );
 }
 
+// @ts-ignore
 function SecondaryMenu(props) {
   const { items = [], mapItemToNode, onSelect, overrides = {} } = props;
 
@@ -93,6 +99,7 @@ function SecondaryMenu(props) {
       aria-label="Secondary navigation"
       {...secondaryMenuContainerProps}
     >
+      {/* @ts-ignore */}
       {items.map((item, index) => (
         // Replace with a menu item renderer
         <MainMenuItem
@@ -145,8 +152,8 @@ export default function AppNavBar(props: AppNavBarProps) {
   const [DesktopMenu, desktopMenuProps] = getOverrides(overrides.DesktopMenu, StyledDesktopMenu);
 
   let secondaryMenu;
-  let desktopSubNavPosition: typeof POSITION[keyof typeof POSITION] = POSITION.horizontal;
-  let mobileSubNavPosition: typeof POSITION[keyof typeof POSITION] = POSITION.vertical;
+  let desktopSubNavPosition: (typeof POSITION)[keyof typeof POSITION] = POSITION.horizontal;
+  let mobileSubNavPosition: (typeof POSITION)[keyof typeof POSITION] = POSITION.vertical;
 
   return (
     <Root {...rootProps} data-baseweb="app-nav-bar">

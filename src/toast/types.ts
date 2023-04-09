@@ -9,9 +9,9 @@ import type * as React from 'react';
 import type { Override } from '../helpers/overrides';
 import type { KIND, PLACEMENT, TYPE } from './constants';
 
-export type KindType = typeof KIND[keyof typeof KIND];
-export type NotificationType = typeof TYPE[keyof typeof TYPE];
-export type PlacementType = typeof PLACEMENT[keyof typeof PLACEMENT];
+export type KindType = (typeof KIND)[keyof typeof KIND];
+export type NotificationType = (typeof TYPE)[keyof typeof TYPE];
+export type PlacementType = (typeof PLACEMENT)[keyof typeof PLACEMENT];
 
 export type SharedStylePropsArg = {
   $closeable: boolean;

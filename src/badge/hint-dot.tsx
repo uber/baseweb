@@ -42,6 +42,7 @@ const HintDot = ({
   return (
     <Root {...rootProps}>
       {anchor}
+
       <Positioner
         $horizontalOffset={horizontalOffset}
         $verticalOffset={verticalOffset}

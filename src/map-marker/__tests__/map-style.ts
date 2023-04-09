@@ -38,7 +38,7 @@ export function getMapStyle(
         source: 'markerPoints',
         type: 'circle',
         paint: {
-          'circle-color': 'transparent',
+          'circle-color': 'red',
         },
         layout: {
           visibility: options.showPointDebug ? 'visible' : 'none',

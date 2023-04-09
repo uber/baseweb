@@ -24,6 +24,7 @@ import {
   ParagraphMedium,
 } from '..';
 
+// @ts-ignore
 function getStyle(element) {
   return JSON.parse(element.getAttribute('test-style') || '');
 }

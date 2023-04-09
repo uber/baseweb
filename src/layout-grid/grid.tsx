@@ -72,6 +72,7 @@ export default function Grid({
             gridColumns,
             gridGaps,
             gridGutters,
+            // @ts-ignore
             gridUnit,
             ...gridContextStyleValues,
           }}

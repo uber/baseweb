@@ -22,6 +22,7 @@ import {
   PINHEAD_DIMENSIONS,
 } from './constants';
 
+// @ts-ignore
 function getAnchorPinHeadSize(anchorType) {
   if (anchorType === FLOATING_MARKER_ANCHOR_TYPES.circle) {
     return PINHEAD_SIZES_SHAPES.xSmallCircle;
@@ -36,6 +37,7 @@ function getAnchorPinHeadSize(anchorType) {
 
 const FloatingMarker = ({
   label,
+  secondaryLabel,
   size = PINHEAD_SIZES_SHAPES.medium,
   anchor = FLOATING_MARKER_ANCHOR_POSITIONS.bottomLeft,
   endEnhancer,
@@ -78,6 +80,7 @@ const FloatingMarker = ({
           background={backgroundPrimary}
           type={PINHEAD_TYPES.floating}
           label={label}
+          secondaryLabel={secondaryLabel}
           startEnhancer={startEnhancer}
           endEnhancer={endEnhancer}
           overrides={overrides}

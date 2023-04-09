@@ -12,6 +12,7 @@ import type { NeedleProps } from './types';
 
 const Needle = ({ size, background, overrides = {} }: NeedleProps) => {
   const [Needle, needleProps] = getOverrides(overrides.Needle, StyledNeedle);
+
   return <Needle $background={background} $height={NEEDLE_HEIGHTS[size]} {...needleProps} />;
 };
 

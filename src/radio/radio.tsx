@@ -20,14 +20,17 @@ import type { RadioProps, RadioState } from './types';
 
 import type { ChangeEvent } from 'react';
 
+// @ts-ignore
 function isLabelTopLeft(labelPlacement) {
   return labelPlacement === 'top' || labelPlacement === 'left';
 }
 
+// @ts-ignore
 function isLabelBottomRight(labelPlacement) {
   return labelPlacement === 'bottom' || labelPlacement === 'right';
 }
 
+// @ts-ignore
 const stopPropagation = (e) => e.stopPropagation();
 
 class Radio extends React.Component<RadioProps, RadioState> {
@@ -134,9 +137,11 @@ class Radio extends React.Component<RadioProps, RadioState> {
           {...rootProps}
         >
           {isLabelTopLeft(this.props.labelPlacement) && label}
+
           <RadioMarkOuter {...sharedProps} {...radioMarkOuterProps}>
             <RadioMarkInner {...sharedProps} {...radioMarkInnerProps} />
           </RadioMarkOuter>
+
           <Input
             aria-invalid={this.props.error || null}
             checked={this.props.checked}

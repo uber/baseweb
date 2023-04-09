@@ -52,6 +52,7 @@ describe('Icon', () => {
 
   // Test that all the icons render
   Object.keys(Icons).forEach((key) => {
+    // @ts-ignore
     const Component = Icons[key];
     test(`renders ${key} icon`, () => {
       const { container } = render(<Component />);

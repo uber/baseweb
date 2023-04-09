@@ -14,6 +14,7 @@ import type * as React from 'react';
 let initialized = false;
 let hadKeyboardEvent = true;
 let hadFocusVisibleRecently = false;
+// @ts-ignore
 let hadFocusVisibleRecentlyTimeout = null;
 
 const inputTypesWhitelist = {
@@ -39,9 +40,11 @@ const inputTypesWhitelist = {
  * @param {Element} node
  * @return {boolean}
  */
+// @ts-ignore
 function focusTriggersKeyboardModality(node) {
   const { type, tagName } = node;
 
+  // @ts-ignore
   if (tagName === 'INPUT' && inputTypesWhitelist[type] && !node.readOnly) {
     return true;
   }
@@ -64,6 +67,7 @@ function focusTriggersKeyboardModality(node) {
  * then the modality is keyboard. Otherwise, the modality is not keyboard.
  * @param {KeyboardEvent} event
  */
+// @ts-ignore
 function handleKeyDown(event) {
   if (event.metaKey || event.altKey || event.ctrlKey) {
     return;
@@ -83,6 +87,7 @@ function handlePointerDown() {
 }
 
 function handleVisibilityChange() {
+  // @ts-ignore
   if (this.visibilityState === 'hidden') {
     // If the tab becomes active again, the browser will handle calling focus
     // on the element (Safari actually calls it twice).
@@ -94,6 +99,7 @@ function handleVisibilityChange() {
   }
 }
 
+// @ts-ignore
 function prepare(doc) {
   doc.addEventListener('keydown', handleKeyDown, true);
   doc.addEventListener('mousedown', handlePointerDown, true);
@@ -102,6 +108,7 @@ function prepare(doc) {
   doc.addEventListener('visibilitychange', handleVisibilityChange, true);
 }
 
+// @ts-ignore
 export function teardown(doc) {
   doc.removeEventListener('keydown', handleKeyDown, true);
   doc.removeEventListener('mousedown', handlePointerDown, true);
@@ -110,6 +117,7 @@ export function teardown(doc) {
   doc.removeEventListener('visibilitychange', handleVisibilityChange, true);
 }
 
+// @ts-ignore
 export function isFocusVisible(event) {
   try {
     return event.target.matches(':focus-visible');
@@ -135,13 +143,16 @@ export function handleBlurVisible() {
   // regular focus change.
   hadFocusVisibleRecently = true;
   if (__BROWSER__) {
+    // @ts-ignore
     window.clearTimeout(hadFocusVisibleRecentlyTimeout);
+    // @ts-ignore
     hadFocusVisibleRecentlyTimeout = window.setTimeout(() => {
       hadFocusVisibleRecently = false;
     }, 100);
   }
 }
 
+// @ts-ignore
 export function initFocusVisible(node) {
   if (!initialized && node != null) {
     initialized = true;

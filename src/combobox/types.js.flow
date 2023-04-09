@@ -16,6 +16,8 @@ export type ReactRefT<T> = { current: null | T } | {| current: null | T |};
 export type PropsT<OptionT = mixed> = {|
   // Controls if the input value will be updated while keyboard navigating. Defaults to true.
   autocomplete?: boolean,
+  /** If true, adds a clear value icon button to the end of the input container. */
+  clearable?: boolean,
   // Disallows text input and listbox opening.
   disabled?: boolean,
   // Proxies value through to Input component.

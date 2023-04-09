@@ -17,39 +17,48 @@ import type {
   KIND,
   LOCATION_PUCK_SIZES,
   LOCATION_PUCK_TYPES,
+  FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS,
 } from './constants';
 import type { Override } from '../helpers/overrides';
 
 export type AnchorPositions =
-  typeof FLOATING_MARKER_ANCHOR_POSITIONS[keyof typeof FLOATING_MARKER_ANCHOR_POSITIONS];
+  (typeof FLOATING_MARKER_ANCHOR_POSITIONS)[keyof typeof FLOATING_MARKER_ANCHOR_POSITIONS];
 
-export type NeedleSize = typeof NEEDLE_SIZES[keyof typeof NEEDLE_SIZES];
+export type NeedleSize = (typeof NEEDLE_SIZES)[keyof typeof NEEDLE_SIZES];
 
-export type PinHead = typeof PINHEAD_TYPES[keyof typeof PINHEAD_TYPES];
+export type PinHead = (typeof PINHEAD_TYPES)[keyof typeof PINHEAD_TYPES];
 
-export type PinHeadSize = typeof PINHEAD_SIZES_SHAPES[keyof typeof PINHEAD_SIZES_SHAPES];
+export type PinHeadSize = (typeof PINHEAD_SIZES_SHAPES)[keyof typeof PINHEAD_SIZES_SHAPES];
 
-export type FloatingMarkerSize = typeof FLOATING_MARKER_SIZES[keyof typeof FLOATING_MARKER_SIZES];
+export type FloatingMarkerSize = (typeof FLOATING_MARKER_SIZES)[keyof typeof FLOATING_MARKER_SIZES];
 
 export type FloatingMarkerAnchorType =
-  typeof FLOATING_MARKER_ANCHOR_TYPES[keyof typeof FLOATING_MARKER_ANCHOR_TYPES];
+  (typeof FLOATING_MARKER_ANCHOR_TYPES)[keyof typeof FLOATING_MARKER_ANCHOR_TYPES];
 
-export type BadgeEnhancerSize = typeof BADGE_ENHANCER_SIZES[keyof typeof BADGE_ENHANCER_SIZES];
+export type BadgeEnhancerSize = (typeof BADGE_ENHANCER_SIZES)[keyof typeof BADGE_ENHANCER_SIZES];
 
 export type LabelEnhancerPosition =
-  typeof LABEL_ENHANCER_POSITIONS[keyof typeof LABEL_ENHANCER_POSITIONS];
+  (typeof LABEL_ENHANCER_POSITIONS)[keyof typeof LABEL_ENHANCER_POSITIONS];
 
-export type Kind = typeof KIND[keyof typeof KIND];
+export type Kind = (typeof KIND)[keyof typeof KIND];
 
-export type LocationPuckSize = typeof LOCATION_PUCK_SIZES[keyof typeof LOCATION_PUCK_SIZES];
-export type LocationPuckType = typeof LOCATION_PUCK_TYPES[keyof typeof LOCATION_PUCK_TYPES];
+export type LocationPuckSize = (typeof LOCATION_PUCK_SIZES)[keyof typeof LOCATION_PUCK_SIZES];
+export type LocationPuckType = (typeof LOCATION_PUCK_TYPES)[keyof typeof LOCATION_PUCK_TYPES];
+
+export type FloatingRouteMarkerAnchorPositions =
+  (typeof FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS)[keyof typeof FLOATING_ROUTE_MARKER_ANCHOR_POSITIONS];
+
 export type FixedMarkerOverrides = {
   Root?: Override;
   InnerAnchor?: Override;
   OuterAnchor?: Override;
   PinHead?: Override;
-  PinHeadContent?: Override;
+  LabelSlot?: Override;
+  Label?: Override;
+  SecondaryLabel?: Override;
+  EnhancerSlot?: Override;
   PinHeadContainer?: Override;
+  AnchorContainer?: Override;
   Needle?: Override;
   DragShadow?: Override;
   DragShadowContainer?: Override;
@@ -120,7 +129,10 @@ export type FloatingMarkerOverrides = {
   InnerAnchor?: Override;
   OuterAnchor?: Override;
   PinHead?: Override;
-  PinHeadContent?: Override;
+  LabelSlot?: Override;
+  Label?: Override;
+  SecondaryLabel?: Override;
+  EnhancerSlot?: Override;
   PinHeadContainer?: Override;
   AnchorContainer?: Override;
   Needle?: Override;
@@ -134,6 +146,7 @@ export type FloatingMarkerOverrides = {
 
 export type FloatingMarkerProps = {
   label?: React.ReactNode;
+  secondaryLabel?: React.ReactNode;
   anchor?: AnchorPositions;
   endEnhancer?: React.ComponentType<{
     size: number;
@@ -149,6 +162,7 @@ export type FloatingMarkerProps = {
 export type PinHeadProps = {
   size?: PinHeadSize;
   label?: React.ReactNode;
+  secondaryLabel?: React.ReactNode;
   endEnhancer?: React.ComponentType<{
     size: number;
   }>;
@@ -198,4 +212,27 @@ export type EarnerLocationPuckProps = {
   confidenceRadius?: number;
   size: LocationPuckSize;
   overrides?: LocationPuckOverrides;
+};
+
+export type FloatingRouteMarkerOverrides = {
+  Root?: Override;
+  PointerContainer?: Override;
+  Pointer?: Override;
+  Label?: Override;
+  SecondaryLabel?: Override;
+  IconContainer?: Override;
+};
+
+export type FloatingRouteMarkerProps = {
+  label?: React.ReactNode;
+  secondaryLabel?: React.ReactNode;
+  startEnhancer?: React.ComponentType<{
+    size: number;
+  }>;
+  endEnhancer?: React.ComponentType<{
+    size: number;
+  }>;
+  anchorPosition?: FloatingRouteMarkerAnchorPositions;
+  overrides?: FloatingRouteMarkerOverrides;
+  selected?: boolean;
 };

@@ -41,6 +41,7 @@ function useResizeObserver(
   }, [ref]);
 }
 
+// @ts-ignore
 function QueryInput(props) {
   const [css, theme] = useStyletron();
   const locale = React.useContext(LocaleContext);
@@ -79,15 +80,18 @@ function QueryInput(props) {
   );
 }
 
+// @ts-ignore
 function FilterTag(props) {
   const [, theme] = useStyletron();
   const [isOpen, setIsOpen] = React.useState(false);
+  // @ts-ignore
   const columnIndex = props.columns.findIndex((c) => c.title === props.title);
   const column = props.columns[columnIndex];
   if (!column) {
     return null;
   }
 
+  // @ts-ignore
   const data = props.rows.map((r) => column.mapDataToValue(r.data));
   const Filter = column.renderFilter;
 
@@ -97,49 +101,48 @@ function FilterTag(props) {
       returnFocus
       key={props.title}
       isOpen={isOpen}
+      onClick={() => setIsOpen(!isOpen)}
       onClickOutside={() => setIsOpen(false)}
       content={() => (
         <Filter
           close={() => setIsOpen(false)}
           data={data}
           filterParams={props.filter}
+          // @ts-ignore
           setFilter={(filterParams) => props.onFilterAdd(props.title, filterParams)}
         />
       )}
     >
-      <div>
-        <Tag
-          onClick={() => setIsOpen(!isOpen)}
-          onActionClick={() => props.onFilterRemove(props.title)}
-          overrides={{
-            Root: {
-              style: {
-                borderTopLeftRadius: '36px',
-                borderTopRightRadius: '36px',
-                borderBottomLeftRadius: '36px',
-                borderBottomRightRadius: '36px',
-                height: '36px',
-                marginTop: null,
-                marginBottom: theme.sizing.scale500,
-              },
+      <Tag
+        onActionClick={() => props.onFilterRemove(props.title)}
+        overrides={{
+          Root: {
+            style: {
+              borderTopLeftRadius: '36px',
+              borderTopRightRadius: '36px',
+              borderBottomLeftRadius: '36px',
+              borderBottomRightRadius: '36px',
+              height: '36px',
+              marginTop: null,
+              marginBottom: theme.sizing.scale500,
             },
-            Action: {
-              style: {
-                borderTopRightRadius: '36px',
-                borderBottomRightRadius: '36px',
-                height: '22px',
-              },
+          },
+          Action: {
+            style: {
+              borderTopRightRadius: '36px',
+              borderBottomRightRadius: '36px',
+              height: '22px',
             },
-            Text: {
-              style: {
-                maxWidth: '160px',
-              },
+          },
+          Text: {
+            style: {
+              maxWidth: '160px',
             },
-          }}
-        >
-          {props.title}: {props.filter.description}
-        </Tag>
-      </div>
+          },
+        }}
+      >
+        {props.title}: {props.filter.description}
+      </Tag>
     </Popover>
   );
 }
@@ -242,6 +245,7 @@ export function StatefulDataTable(props: StatefulDataTableProps) {
                   })}
                 >
                   {props.batchActions.map((action) => {
+                    // @ts-ignore
                     function onClick(event) {
                       action.onClick({
                         clearSelection: onSelectNone,

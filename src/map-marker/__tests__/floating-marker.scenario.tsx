@@ -17,7 +17,6 @@ import { Input } from '../../input';
 import Upload from '../../icon/upload';
 import Search from '../../icon/search';
 import { Select } from '../../select';
-
 import type { FloatingMarkerSize, AnchorPositions } from '../types';
 
 const floatingMarkerAnchorTypes = Object.keys(FLOATING_MARKER_ANCHOR_TYPES)
@@ -29,6 +28,7 @@ const floatingMarkerAnchorTypes = Object.keys(FLOATING_MARKER_ANCHOR_TYPES)
 
 export function Scenario() {
   const [label, setLabel] = React.useState('Uber HQ');
+  const [secondaryLabel, setSecondaryLabel] = React.useState('Pickup');
   const [startEnhancer, setStartEnhancer] = React.useState(true);
   const [endEnhancer, setEndEnhancer] = React.useState(false);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -51,6 +51,7 @@ export function Scenario() {
                 size={size}
                 key={i}
                 label={label}
+                secondaryLabel={secondaryLabel}
                 anchor={position}
                 anchorType={floatingMarkerAnchorType[0].id}
                 startEnhancer={
@@ -83,6 +84,13 @@ export function Scenario() {
           placeholder="Label"
           clearOnEscape
           key="label"
+        />,
+        <Input
+          value={secondaryLabel}
+          onChange={(e) => setSecondaryLabel(e.target.value)}
+          placeholder="Secondary Label"
+          clearOnEscape
+          key="secondary-label"
         />,
 
         <Checkbox

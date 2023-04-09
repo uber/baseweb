@@ -27,6 +27,7 @@ function fallbackHandler() {
   }
 }
 
+// @ts-ignore
 export const SnackbarContext: React.Context<Context> = React.createContext({
   enqueue: fallbackHandler,
   dequeue: fallbackHandler,
@@ -37,6 +38,7 @@ export function useSnackbar() {
   return { enqueue: context.enqueue, dequeue: context.dequeue };
 }
 
+// @ts-ignore
 function usePrevious(value) {
   const ref = React.useRef();
   React.useEffect(() => {
@@ -61,15 +63,19 @@ export default function SnackbarProvider({
   const [containerHeight, setContainerHeight] = React.useState(0);
   const containerRef = React.useRef(null);
 
+  // @ts-ignore
   function enqueue(elementProps, duration = defaultDuration) {
+    // @ts-ignore
     setSnackbars((prev) => {
       return [...prev, { elementProps, duration }];
     });
   }
 
+  // @ts-ignore
   const prevSnackbars = usePrevious(snackbars) || [];
   React.useEffect(() => {
     if (prevSnackbars.length === 0 && snackbars.length >= 1) {
+      // @ts-ignore
       enter(snackbars[0].duration);
     }
   }, [snackbars, prevSnackbars]);
@@ -80,12 +86,14 @@ export default function SnackbarProvider({
     setSnackbars((prev) => {
       const next = prev.slice(1);
       if (next.length > 0) {
+        // @ts-ignore
         enter(next[0].duration);
       }
       return next;
     });
   }
 
+  // @ts-ignore
   function enter(duration) {
     setAnimating(true);
     setTimeout(() => {
@@ -102,25 +110,30 @@ export default function SnackbarProvider({
     }, 1000);
   }
 
+  // @ts-ignore
   function display(duration) {
     if (duration === DURATION.infinite) {
       return;
     }
 
+    // @ts-ignore
     timeoutRef.current = setTimeout(() => {
       exit();
     }, duration);
   }
 
   function handleMouseEnter() {
+    // @ts-ignore
     clearTimeout(timeoutRef.current);
   }
 
+  // @ts-ignore
   function handleMouseLeave(duration) {
     display(duration);
   }
 
   function handleActionClick() {
+    // @ts-ignore
     clearTimeout(timeoutRef.current);
     exit();
   }
@@ -171,9 +184,11 @@ export default function SnackbarProvider({
       >
         {snackbars[0] && (
           <SnackbarElement
+            // @ts-ignore
             {...snackbars[0].elementProps}
             overrides={{
               ...snackbarOverrides,
+              // @ts-ignore
               ...snackbars[0].elementProps.overrides,
             }}
             focus={false}
@@ -192,19 +207,24 @@ export default function SnackbarProvider({
             <div
               role="alert"
               onMouseEnter={handleMouseEnter}
+              // @ts-ignore
               onMouseLeave={() => handleMouseLeave(snackbars[0].duration)}
               className={css({ display: 'inline', pointerEvents: 'all' })}
             >
               <SnackbarElement
+                // @ts-ignore
                 {...snackbars[0].elementProps}
                 actionOnClick={(event) => {
+                  // @ts-ignore
                   if (snackbars[0].elementProps.actionOnClick) {
+                    // @ts-ignore
                     snackbars[0].elementProps.actionOnClick(event);
                   }
                   handleActionClick();
                 }}
                 overrides={{
                   ...snackbarOverrides,
+                  // @ts-ignore
                   ...snackbars[0].elementProps.overrides,
                 }}
               />

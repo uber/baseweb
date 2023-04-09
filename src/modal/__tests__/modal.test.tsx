@@ -118,4 +118,16 @@ describe('Modal', () => {
     fireEvent.click(getByText(container, 'AliceBlue'));
     expect(getByTestId(container, 'selected').textContent).toBe('AliceBlue');
   });
+
+  it('renders all modal content as hidden for seo purposes', () => {
+    const content = 'hello world';
+    const { container } = render(
+      <TestBaseProvider>
+        <Modal isOpen={false} renderAll={true}>
+          <ModalBody>{content}</ModalBody>
+        </Modal>
+      </TestBaseProvider>
+    );
+    getByText(container, content);
+  });
 });

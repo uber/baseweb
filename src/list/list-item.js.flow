@@ -53,15 +53,20 @@ const ListItem = React.forwardRef<PropsT, HTMLLIElement>((props: PropsT, ref) =>
     }
   }, [props.artworkSize, props.sublist]);
 
+  const isTapTarget = Boolean(props.onClick);
+
   return (
     <Root
       // flowlint-next-line unclear-type:off
       ref={(ref: any)}
       $shape={props.shape || SHAPE.DEFAULT}
+      $as={isTapTarget ? 'button' : 'li'}
+      $isTapTarget={isTapTarget}
       aria-label={props['aria-label']}
       aria-selected={props['aria-selected']}
       id={props.id}
       role={props.role}
+      onClick={props.onClick}
       {...rootProps}
     >
       {Artwork && (

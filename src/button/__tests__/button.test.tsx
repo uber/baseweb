@@ -55,4 +55,42 @@ describe('Button Component', () => {
     if (button) fireEvent.click(button);
     expect(onClick.mock.calls.length).toBe(0);
   });
+
+  test('simulate isLoading with google translate does not throw with element child', () => {
+    const { rerender, container } = render(
+      <Button isLoading={false}>
+        <span id="text-content">This is ok</span>
+      </Button>
+    );
+    container.querySelector('#text-content').innerHTML = '<font>This is not ok</font>';
+    expect(() =>
+      rerender(
+        <Button isLoading={true}>
+          <span>This is ok</span>
+        </Button>
+      )
+    ).not.toThrow();
+  });
+
+  test('simulate google translate does not throw with string child', () => {
+    const { rerender, container } = render(<Button>Lorem ipsum</Button>);
+    container.querySelector('button').innerHTML = '<font>Hello world</font>';
+    expect(() => rerender(<Button>Lorem ipsum</Button>)).not.toThrow();
+  });
+
+  test('simulate google translate does not throw with element child', () => {
+    const { rerender, container } = render(
+      <Button>
+        <span id="text-content">This is ok</span>
+      </Button>
+    );
+    container.querySelector('#text-content').innerHTML = '<font>This is not ok</font>';
+    expect(() =>
+      rerender(
+        <Button>
+          <span>This is ok</span>
+        </Button>
+      )
+    ).not.toThrow();
+  });
 });

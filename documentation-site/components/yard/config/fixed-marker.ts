@@ -168,7 +168,9 @@ const FixedMarkerConfig: TConfig = {
         names: [
           'Root',
           'PinHead',
-          'PinHeadContent',
+          'LabelSlot',
+          'Label',
+          'EnhancerSlot',
           'PinHeadContainer',
           'Needle',
           'DragShadow',

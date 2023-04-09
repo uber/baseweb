@@ -10,6 +10,8 @@ import {
   FLOATING_MARKER_ANCHOR_POSITIONS,
   LABEL_SIZES,
   EARNER_LOCATION_PUCK_CORE_SCALES,
+  PINHEAD_SIZES_SHAPES,
+  FLOATING_ROUTE_MARKER_POINTER_TRANSFORMS,
 } from './constants';
 
 import type {
@@ -19,6 +21,7 @@ import type {
   BadgePosition,
   PinHeadSize,
   LocationPuckSize,
+  FloatingRouteMarkerAnchorPositions,
 } from './types';
 import type { StyleObject } from 'styletron-react';
 
@@ -242,6 +245,7 @@ export const StyledPinHead = styled<
     gap: '8px',
     boxShadow: $theme.lighting.shadow600,
     whiteSpace: 'nowrap',
+    // @ts-ignore
     ...sharedStyles[$type],
     ...($forceCircle && {
       width: `${$height}px`,
@@ -327,6 +331,7 @@ export const StyledStrokedLabel = styled<
 
   return {
     display: 'flex',
+    // @ts-ignore
     ...$theme.typography[LABEL_SIZES[$size]],
     color: $theme.colors.primaryA,
     transition: `${$theme.animation.timing300} ${$theme.animation.easeOutCurve} all`,
@@ -371,7 +376,7 @@ export const RelativeContainer = styled('div', () => {
 
 RelativeContainer.displayName = 'RelativeContainer';
 
-export const StyledContentItem = styled<
+export const StyledEnhancerSlot = styled<
   'div',
   {
     $color: string;
@@ -380,6 +385,7 @@ export const StyledContentItem = styled<
   }
 >('div', ({ $theme, $color, $height, $size }) => {
   return {
+    // @ts-ignore
     ...$theme.typography[LABEL_SIZES[$size]],
     display: 'flex',
     alignItems: 'center',
@@ -390,7 +396,66 @@ export const StyledContentItem = styled<
   };
 });
 
-StyledContentItem.displayName = 'StyledContentItem';
+export const StyledFloatingRouteMarkerRoot = styled<
+  'div',
+  {
+    $height: number;
+    $background: string;
+    $gridTemplateColumns: string;
+  }
+>('div', ({ $theme, $height, $background, $gridTemplateColumns }) => {
+  return {
+    position: 'absolute',
+    backgroundColor: $background,
+    height: `${$height}px`,
+    display: 'grid',
+    gridTemplateColumns: $gridTemplateColumns,
+    gap: '8px',
+    filter: `drop-shadow(${$theme.lighting.shadow600})`,
+    whiteSpace: 'nowrap',
+    borderRadius: `${8}px`,
+    padding: `${4}px ${8}px`,
+    transition: `${$theme.animation.timing300} ${$theme.animation.easeOutCurve} all`,
+  };
+});
+StyledFloatingRouteMarkerRoot.displayName = 'StyledFloatingRouteMarkerRoot';
+
+StyledEnhancerSlot.displayName = 'StyledEnhancerSlot';
+
+export const StyledLabelSlot = styled<
+  'div',
+  {
+    $color: string;
+    $height: number;
+    $size: PinHeadSize;
+  }
+>('div', () => {
+  return {
+    display: 'flex',
+    justifyContent: 'center',
+    flexDirection: 'column',
+  };
+});
+
+StyledLabelSlot.displayName = 'StyledLabelSlot';
+
+export const StyledLabel = styled<
+  'div',
+  { $size: PinHeadSize; $renderSecondaryLabel: boolean; $color: String }
+>('div', ({ $theme, $size, $renderSecondaryLabel, $color }) => {
+  const pinheadSizeOrder = Object.values(PINHEAD_SIZES_SHAPES);
+  let labelSizeIndex = pinheadSizeOrder.findIndex((x) => $size === x);
+  if ($renderSecondaryLabel) {
+    labelSizeIndex--;
+  }
+  const typographyStyle = LABEL_SIZES[pinheadSizeOrder[labelSizeIndex]];
+  return {
+    ...$theme.typography[typographyStyle],
+    color: $color,
+  };
+});
+
+StyledLabel.displayName = 'StyledLabel';
 
 export const LocationPuckContainer = styled<'div', {}>('div', () => {
   return {
@@ -403,8 +468,12 @@ export const LocationPuckContainer = styled<'div', {}>('div', () => {
 
 LocationPuckContainer.displayName = 'LocationPuckContainer';
 
-export const consumerLocationShadow = { boxShadow: `0px 2px 4px 0px rgba(67, 76, 123, 0.2)` };
-export const earnerLocationShadow = { boxShadow: `0px 3px 5px 0px rgba(67, 76, 123, 0.4)` };
+export const consumerLocationShadow = {
+  boxShadow: `0px 2px 4px 0px rgba(67, 76, 123, 0.2)`,
+};
+export const earnerLocationShadow = {
+  boxShadow: `0px 3px 5px 0px rgba(67, 76, 123, 0.4)`,
+};
 
 export const StyledConsumerLocationPuckCore = styled<'div', {}>('div', ({ $theme }) => {
   return {
@@ -459,3 +528,31 @@ export const StyledEarnerLocationPuckCore = styled<
 });
 
 StyledEarnerLocationPuckCore.displayName = 'StyledEarnerLocationPuckCore';
+
+export const StyledFloatingRouteMarkerPointerContainer = styled<
+  'svg',
+  {
+    $position: FloatingRouteMarkerAnchorPositions;
+  }
+>('svg', ({ $position }) => {
+  return {
+    position: 'absolute',
+    ...FLOATING_ROUTE_MARKER_POINTER_TRANSFORMS[$position],
+  };
+});
+
+StyledFloatingRouteMarkerPointerContainer.displayName = 'StyledFloatingRouteMarkerPointerContainer';
+
+export const StyledFloatingRouteMarkerPointer = styled<
+  'path',
+  {
+    $background: string;
+  }
+>('path', ({ $theme, $background }) => {
+  return {
+    transition: `${$theme.animation.timing300} ${$theme.animation.easeOutCurve} all`,
+    fill: $background,
+  };
+});
+
+StyledFloatingRouteMarkerPointer.displayName = 'StyledFloatingRouteMarkerPointer';

@@ -12,6 +12,7 @@ const defaultStateReducer: StateReducer = (type, nextState) => nextState;
 class StatefulSelectContainer extends React.Component<StatefulContainerProps, State> {
   static defaultProps = {
     initialState: {
+      // @ts-ignore
       value: [],
     },
     onChange: () => {},

@@ -27,7 +27,7 @@ export const StyledRoot = styled<
     display: 'grid',
     gridColumnGap: $theme.sizing.scale600,
     gridTemplateColumns: 'min-content auto min-content',
-    gridTemplateRows: 'auto min-content',
+    gridTemplateRows: 'auto minmax(0, min-content)',
     marginTop: $theme.sizing.scale600,
     marginRight: $theme.sizing.scale600,
     marginBottom: $theme.sizing.scale600,
@@ -42,6 +42,7 @@ export const StyledLeadingContent = styled<
   {
     $includesArtwork: boolean;
   }
+  // @ts-ignore
 >('div', ({ $theme, $includesArtwork }) => {
   return {
     alignItems: 'center',
@@ -57,6 +58,7 @@ export const StyledMessageContent = styled<
   {
     $actionPosition: ActionPosition;
   }
+  // @ts-ignore
 >('div', ({ $theme, $actionPosition }) => {
   return {
     display: 'flex',
@@ -85,6 +87,7 @@ export const StyledBelowContent = styled<
   {
     $actionPosition: ActionPosition;
   }
+  // @ts-ignore
 >('div', ({ $theme, $actionPosition }) => {
   return {
     gridColumnStart: 2,

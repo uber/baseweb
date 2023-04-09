@@ -23,3 +23,12 @@ export type BaseProviderProps = {
   /** A value of z-index to be set on the layers. */
   zIndex?: number;
 };
+
+export type PageMargins = {
+  paddingInlineStart: string;
+  paddingInlineEnd: string;
+};
+
+export type MediaQueryPageMargins = {
+  [key: string]: PageMargins;
+};

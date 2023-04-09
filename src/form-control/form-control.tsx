@@ -17,6 +17,7 @@ import {
 } from './styled-components';
 import type { FormControlProps, FormControlState, StyleProps } from './types';
 
+// @ts-ignore
 function chooseRenderedHint(caption, error, positive, sharedProps) {
   if (!!error && typeof error !== 'boolean') {
     return typeof error === 'function' ? error(sharedProps) : error;
@@ -36,7 +37,9 @@ function chooseRenderedHint(caption, error, positive, sharedProps) {
 export default class FormControl extends React.Component<FormControlProps, FormControlState> {
   static defaultProps = {
     overrides: {},
+    // @ts-ignore
     label: null,
+    // @ts-ignore
     caption: null,
     disabled: false,
     counter: false,
@@ -45,10 +48,15 @@ export default class FormControl extends React.Component<FormControlProps, FormC
   render() {
     const {
       overrides: {
+        // @ts-ignore
         Label: LabelOverride,
+        // @ts-ignore
         LabelEndEnhancer: LabelEndEnhancerOverride,
+        // @ts-ignore
         LabelContainer: LabelContainerOverride,
+        // @ts-ignore
         Caption: CaptionOverride,
+        // @ts-ignore
         ControlContainer: ControlContainerOverride,
       },
       label,
@@ -152,7 +160,7 @@ export default class FormControl extends React.Component<FormControlProps, FormC
           </LabelContainer>
         )}
         <UIDConsumer>
-          {(captionId) => (
+          {(captionId: string) => (
             <ControlContainer
               data-baseweb="form-control-container"
               {...sharedProps}
@@ -172,10 +180,14 @@ export default class FormControl extends React.Component<FormControlProps, FormC
                   error:
                     typeof onlyChildProps.error !== 'undefined'
                       ? onlyChildProps.error
+                      : sharedProps.$error === false
+                      ? undefined
                       : sharedProps.$error,
                   positive:
                     typeof onlyChildProps.positive !== 'undefined'
                       ? onlyChildProps.positive
+                      : sharedProps.$positive === false
+                      ? undefined
                       : sharedProps.$positive,
                 });
               })}

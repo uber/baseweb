@@ -14,15 +14,24 @@ import type { MonthProps } from './types';
 import { DENSITY } from './constants';
 
 const defaultProps = {
+  // @ts-ignore
   dateLabel: null,
   density: DENSITY.high,
+  // @ts-ignore
   excludeDates: null,
+  // @ts-ignore
   filterDate: null,
+  // @ts-ignore
   highlightDates: null,
+  // @ts-ignore
   includeDates: null,
+  // @ts-ignore
   locale: null,
+  // @ts-ignore
   maxDate: null,
+  // @ts-ignore
   minDate: null,
+  // @ts-ignore
   month: null,
   adapter: dateFnsAdapter,
   onDayClick: () => {},
@@ -32,6 +41,7 @@ const defaultProps = {
   onDayMouseLeave: () => {},
   overrides: {},
   peekNextMonth: false,
+  // @ts-ignore
   value: null,
 };
 
@@ -74,6 +84,7 @@ export default class CalendarMonth<T = Date> extends React.Component<MonthProps<
       (this.props.fixedHeight && this.props.peekNextMonth && i < CALENDAR_MAX_ROWS)
     ) {
       weeks.push(
+        // @ts-ignore
         <Week
           adapter={this.props.adapter}
           date={currentWeekStart}
@@ -114,6 +125,7 @@ export default class CalendarMonth<T = Date> extends React.Component<MonthProps<
   render() {
     const { overrides = {} } = this.props;
     const [Month, monthProps] = getOverrides(overrides.Month, StyledMonth);
+
     return <Month {...monthProps}>{this.renderWeeks()}</Month>;
   }
 }

@@ -20,6 +20,7 @@ import { isFocusVisible } from '../utils/focusVisible';
 
 import type { ChangeEvent } from 'react';
 
+// @ts-ignore
 const stopPropagation = (e) => e.stopPropagation();
 
 class StatelessCheckbox extends React.Component<CheckboxProps, CheckboxState> {
@@ -30,9 +31,7 @@ class StatelessCheckbox extends React.Component<CheckboxProps, CheckboxState> {
     disabled: false,
     autoFocus: false,
     isIndeterminate: false,
-    inputRef: React.createRef(),
     error: false,
-    type: 'checkbox',
     checkmarkType: STYLE_TYPE.default,
     onChange: () => {},
     onMouseEnter: () => {},
@@ -43,6 +42,8 @@ class StatelessCheckbox extends React.Component<CheckboxProps, CheckboxState> {
     onBlur: () => {},
   };
 
+  inputRef = this.props.inputRef || React.createRef();
+
   state = {
     isFocused: this.props.autoFocus || false,
     isFocusVisible: false,
@@ -51,34 +52,52 @@ class StatelessCheckbox extends React.Component<CheckboxProps, CheckboxState> {
   };
 
   componentDidMount() {
-    const { autoFocus, inputRef } = this.props;
-    if (autoFocus && inputRef.current) {
-      inputRef.current.focus();
+    const { autoFocus, isIndeterminate } = this.props;
+    // @ts-ignore
+    if (autoFocus && this.inputRef.current) {
+      // @ts-ignore
+      this.inputRef.current.focus();
+    }
+    if (this.inputRef.current) {
+      this.inputRef.current.indeterminate = Boolean(isIndeterminate);
+    }
+  }
+
+  componentDidUpdate(prevProps: CheckboxProps) {
+    const { isIndeterminate } = this.props;
+
+    if (this.inputRef.current && isIndeterminate !== prevProps.isIndeterminate) {
+      this.inputRef.current.indeterminate = Boolean(isIndeterminate);
     }
   }
 
   onMouseEnter = (e: ChangeEvent<HTMLInputElement>) => {
     this.setState({ isHovered: true });
+    // @ts-ignore
     this.props.onMouseEnter(e);
   };
 
   onMouseLeave = (e: ChangeEvent<HTMLInputElement>) => {
     this.setState({ isHovered: false, isActive: false });
+    // @ts-ignore
     this.props.onMouseLeave(e);
   };
 
   onMouseDown = (e: ChangeEvent<HTMLInputElement>) => {
     this.setState({ isActive: true });
+    // @ts-ignore
     this.props.onMouseDown(e);
   };
 
   onMouseUp = (e: ChangeEvent<HTMLInputElement>) => {
     this.setState({ isActive: false });
+    // @ts-ignore
     this.props.onMouseUp(e);
   };
 
   onFocus = (e: ChangeEvent<HTMLInputElement>) => {
     this.setState({ isFocused: true });
+    // @ts-ignore
     this.props.onFocus(e);
     if (isFocusVisible(e)) {
       this.setState({ isFocusVisible: true });
@@ -87,6 +106,7 @@ class StatelessCheckbox extends React.Component<CheckboxProps, CheckboxState> {
 
   onBlur = (e: ChangeEvent<HTMLInputElement>) => {
     this.setState({ isFocused: false });
+    // @ts-ignore
     this.props.onBlur(e);
     if (this.state.isFocusVisible !== false) {
       this.setState({ isFocusVisible: false });
@@ -98,13 +118,12 @@ class StatelessCheckbox extends React.Component<CheckboxProps, CheckboxState> {
       overrides = {},
       onChange,
       labelPlacement = this.props.checkmarkType === STYLE_TYPE.toggle ? 'left' : 'right',
-      inputRef,
       isIndeterminate,
       error,
       disabled,
       value,
+      id,
       name,
-      type,
       checked,
       children,
       required,
@@ -182,18 +201,18 @@ class StatelessCheckbox extends React.Component<CheckboxProps, CheckboxState> {
         )}
         <Input
           value={value}
+          id={id}
           name={name}
           checked={checked}
           required={required}
           aria-label={this.props['aria-label'] || this.props.ariaLabel}
-          aria-checked={isIndeterminate ? 'mixed' : checked}
           aria-describedby={this.props['aria-describedby']}
           aria-errormessage={this.props['aria-errormessage']}
           aria-invalid={error || null}
           aria-required={required || null}
           disabled={disabled}
-          type={type}
-          ref={inputRef}
+          type="checkbox"
+          ref={this.inputRef}
           // Prevent a second click event from firing when label is clicked.
           // See https://github.com/uber/baseweb/issues/3847
           onClick={stopPropagation}

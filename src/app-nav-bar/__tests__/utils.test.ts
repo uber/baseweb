@@ -32,11 +32,15 @@ describe('setItemActive', () => {
     const nextItems = setItemActive(items, nextActive);
 
     expect(nextItems[0].active).toBe(false);
+    // @ts-ignore
     expect(nextItems[0].children[0].active).toBe(false);
+    // @ts-ignore
     expect(nextItems[0].children[1].active).toBe(false);
 
     expect(nextItems[1].active).toBe(true);
+    // @ts-ignore
     expect(nextItems[1].children[0].active).toBe(false);
+    // @ts-ignore
     expect(nextItems[1].children[1].active).toBe(true);
   });
 
@@ -57,11 +61,15 @@ describe('setItemActive', () => {
     const nextItems = setItemActive(items, nextActive);
 
     expect(nextItems[0].active).toBe(true);
+    // @ts-ignore
     expect(nextItems[0].children[0].active).toBe(true);
+    // @ts-ignore
     expect(nextItems[0].children[1].active).toBe(false);
 
     expect(nextItems[1].active).toBe(false);
+    // @ts-ignore
     expect(nextItems[1].children[0].active).toBe(false);
+    // @ts-ignore
     expect(nextItems[1].children[1].active).toBe(false);
   });
 
@@ -71,6 +79,7 @@ describe('setItemActive', () => {
       { label: 'two', info: { id: 2 } },
     ];
     const nextActive = items[0];
+    // @ts-ignore
     const getId = (item) => (item.info ? item.info.id : item.label);
     const nextItems = setItemActive(items, nextActive, getId);
 

@@ -8,11 +8,11 @@ import type * as React from 'react';
 import type { HIERARCHY, SHAPE, COLOR, PLACEMENT, ROLE } from './constants';
 import type { Override } from '../helpers/overrides';
 
-export type Hierarchy = typeof HIERARCHY[keyof typeof HIERARCHY];
-export type Shape = typeof SHAPE[keyof typeof SHAPE];
-export type Color = typeof COLOR[keyof typeof COLOR];
-export type Placement = typeof PLACEMENT[keyof typeof PLACEMENT];
-export type Role = typeof ROLE[keyof typeof ROLE];
+export type Hierarchy = (typeof HIERARCHY)[keyof typeof HIERARCHY];
+export type Shape = (typeof SHAPE)[keyof typeof SHAPE];
+export type Color = (typeof COLOR)[keyof typeof COLOR];
+export type Placement = (typeof PLACEMENT)[keyof typeof PLACEMENT];
+export type Role = (typeof ROLE)[keyof typeof ROLE];
 
 export type BadgeOverrides = {
   Root?: Override;

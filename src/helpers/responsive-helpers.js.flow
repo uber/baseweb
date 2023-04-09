@@ -6,7 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import type { BreakpointsT } from '../styles/types.js';
+import type { BreakpointsT, ThemeT } from '../styles/types.js';
+import type { ResponsiveT } from '../layout-grid/types.js';
+import type { MediaQueryPageMarginsT, PageMarginsT } from './types.js';
 
 /**
  * Helper function that generates media queries based on breakpoint, e.g.
@@ -20,3 +22,27 @@ export const getMediaQueries = (breakpoints: BreakpointsT): string[] =>
     .map((key) => breakpoints[key])
     .sort((a, b) => a - b)
     .map(getMediaQuery);
+
+export const getMinimumPageMargins = (margins: ResponsiveT<number>): PageMarginsT => {
+  const margin = Array.isArray(margins) ? margins[0] : margins;
+  return {
+    paddingInlineStart: `${margin}px`,
+    paddingInlineEnd: `${margin}px`,
+  };
+};
+
+export const getMediaQueryPageMargins = (theme: ThemeT): MediaQueryPageMarginsT => {
+  const result = {};
+  const mediaQueries = getMediaQueries(theme.breakpoints);
+  for (const [index, query] of mediaQueries.entries()) {
+    // There is no guarantee grid.margins will have enough margins to satisfy
+    // each breakpoint.
+    const margin = Array.isArray(theme.grid.margins)
+      ? // $FlowFixMe Array.at() is not available in flow version
+        theme.grid.margins[index] ?? theme.grid.margins.at(-1)
+      : theme.grid.margins;
+
+    result[query] = { paddingInlineStart: `${margin}px`, paddingInlineEnd: `${margin}px` };
+  }
+  return result;
+};

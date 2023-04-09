@@ -28,6 +28,7 @@ export default function CountryPicker(props: CountrySelectProps) {
   const { overrides } = props;
   const baseSelectOverrides = {
     Root: {
+      // @ts-ignore
       style: ({ $theme: { direction, sizing } }) => {
         const marginDir: string = direction === 'rtl' ? 'marginLeft' : 'marginRight';
         return {
@@ -37,6 +38,7 @@ export default function CountryPicker(props: CountrySelectProps) {
       },
     },
     ControlContainer: {
+      // @ts-ignore
       style: ({ $theme: { direction, sizing }, ...props }) => {
         const sizeToLeftPadding = {
           [SIZE.mini]: '0',
@@ -53,7 +55,9 @@ export default function CountryPicker(props: CountrySelectProps) {
         const padStartDir: string = direction === 'rtl' ? 'paddingRight' : 'paddingLeft';
         const padEndDir: string = direction === 'rtl' ? 'paddingLeft' : 'paddingRight';
         const styleOverride = {
+          // @ts-ignore
           [padStartDir]: sizeToLeftPadding[props.$size || SIZE.default],
+          // @ts-ignore
           [padEndDir]: sizeToRightPadding[props.$size || SIZE.default],
         };
         // do not add positive and error color borders when not focused
@@ -80,6 +84,7 @@ export default function CountryPicker(props: CountrySelectProps) {
 
   const baseOverrides = {
     FlagContainer: {
+      // @ts-ignore
       style: ({ $theme: { direction, sizing }, ...props }) => {
         const sizeToMargin = {
           [SIZE.mini]: sizing.scale200,
@@ -89,11 +94,13 @@ export default function CountryPicker(props: CountrySelectProps) {
         };
         const marginDir: string = direction === 'rtl' ? 'marginLeft' : 'marginRight';
         return {
+          // @ts-ignore
           [marginDir]: sizeToMargin[props.$size || SIZE.default],
         };
       },
     },
     DialCode: {
+      // @ts-ignore
       style: ({ $theme: { direction, sizing } }) => {
         const marginDir: string = direction === 'rtl' ? 'marginRight' : 'marginLeft';
         return {

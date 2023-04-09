@@ -36,6 +36,7 @@ const KEYBOARD_ACTION = {
   previous: 'previous',
 } as const;
 
+// @ts-ignore
 const getLayoutParams = (el, orientation) => {
   if (!el) {
     return {
@@ -62,6 +63,7 @@ const getLayoutParams = (el, orientation) => {
   }
 };
 
+// @ts-ignore
 const scrollParentToCentreTarget = (targetNode) => {
   const {
     x: parentX,
@@ -91,6 +93,7 @@ const scrollParentToCentreTarget = (targetNode) => {
   targetNode.parentNode.scroll(target.x, target.y);
 };
 
+// @ts-ignore
 function RenderEnhancer({ Enhancer }) {
   if (typeof Enhancer === 'string') {
     return Enhancer;
@@ -111,6 +114,7 @@ export function Tabs({
   orientation = ORIENTATION.horizontal,
   overrides = {},
   renderAll = false,
+  // @ts-ignore
   uid: customUid = null,
   endEnhancer,
 }: TabsProps) {
@@ -133,6 +137,7 @@ export function Tabs({
     overrides.EndEnhancerContainer,
     StyledEndEnhancerContainer
   );
+  const [TabBar, tabBarProps] = getOverrides(overrides.TabBar, StyledTabBar);
 
   // Count key updates
   // We disable a few things until after first mount:
@@ -201,7 +206,7 @@ export function Tabs({
   // TODO(WPT-6473): move to universal keycode aliases
   const [, theme] = useStyletron();
   const parseKeyDown = React.useCallback(
-    (event) => {
+    (event: { keyCode: number }) => {
       if (isHorizontal(orientation)) {
         if (isRTL(theme.direction)) {
           switch (event.keyCode) {
@@ -238,7 +243,7 @@ export function Tabs({
 
   return (
     <Root {...sharedStylingProps} {...RootProps}>
-      <StyledTabBar $hasEndEnhancer={Boolean(endEnhancer)} $orientation={orientation}>
+      <TabBar $hasEndEnhancer={Boolean(endEnhancer)} $orientation={orientation} {...tabBarProps}>
         <TabList
           data-baseweb="tab-list"
           role="tablist"
@@ -246,7 +251,7 @@ export function Tabs({
           {...sharedStylingProps}
           {...TabListProps}
         >
-          {/*todo(flow->ts): children might be other the ReactElement*/}
+          {/* @ts-ignore */}
           {React.Children.map(children, (child: React.ReactElement, index) => {
             if (!child) return;
             return (
@@ -287,7 +292,7 @@ export function Tabs({
               <RenderEnhancer Enhancer={endEnhancer} />
             </EndEnhancerContainer>
           )}
-      </StyledTabBar>
+      </TabBar>
 
       <TabBorder
         data-baseweb="tab-border"
@@ -296,7 +301,7 @@ export function Tabs({
         {...sharedStylingProps}
         {...TabBorderProps}
       />
-      {/*todo(flow->ts): children might be other the ReactElement*/}
+      {/* @ts-ignore */}
       {React.Children.map(children, (child: React.ReactElement, index) => {
         if (!child) return;
         return (
@@ -316,17 +321,29 @@ export function Tabs({
 }
 
 function InternalTab({
+  // @ts-ignore
   childKey,
+  // @ts-ignore
   childIndex,
+  // @ts-ignore
   activeKey,
+  // @ts-ignore
   orientation,
+  // @ts-ignore
   activeTabRef,
+  // @ts-ignore
   updateHighlight,
+  // @ts-ignore
   parseKeyDown,
+  // @ts-ignore
   activateOnFocus,
+  // @ts-ignore
   uid,
+  // @ts-ignore
   disabled,
+  // @ts-ignore
   sharedStylingProps,
+  // @ts-ignore
   onChange,
   ...props
 }) {
@@ -466,6 +483,7 @@ function InternalTab({
       {...sharedStylingProps}
       {...restProps}
       {...TabProps}
+      // @ts-ignore
       onClick={(event) => {
         if (typeof onChange === 'function') onChange({ activeKey: key });
         if (typeof onClick === 'function') onClick(event);
@@ -488,11 +506,17 @@ function InternalTab({
 }
 
 function InternalTabPanel({
+  // @ts-ignore
   childKey,
+  // @ts-ignore
   childIndex,
+  // @ts-ignore
   activeKey,
+  // @ts-ignore
   uid,
+  // @ts-ignore
   sharedStylingProps,
+  // @ts-ignore
   renderAll,
   ...props
 }) {

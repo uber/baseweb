@@ -51,15 +51,20 @@ const ListItem = React.forwardRef<HTMLLIElement, ListProps>((props: ListProps, r
     }
   }, [props.artworkSize, props.sublist]);
 
+  const isTapTarget = Boolean(props.onClick);
+
   return (
     <Root
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ref={ref as any}
       $shape={props.shape || SHAPE.DEFAULT}
+      $as={isTapTarget ? 'button' : 'li'}
+      $isTapTarget={isTapTarget}
       aria-label={props['aria-label']}
       aria-selected={props['aria-selected']}
       id={props.id}
       role={props.role}
+      onClick={props.onClick}
       {...rootProps}
     >
       {Artwork && (
@@ -77,6 +82,7 @@ const ListItem = React.forwardRef<HTMLLIElement, ListProps>((props: ListProps, r
           />
         </ArtworkContainer>
       )}
+
       <Content $mLeft={!Artwork} $sublist={!!props.sublist} {...contentProps}>
         {props.children}
         {EndEnhancer &&

@@ -14,7 +14,7 @@ export const TagVariant = Object.freeze(VARIANT);
 export const TagSize = Object.freeze(SIZE);
 
 export type TagKind = keyof typeof TagKind;
-export type TagVariant = typeof TagVariant[keyof typeof TagVariant];
+export type TagVariant = (typeof TagVariant)[keyof typeof TagVariant];
 export type TagSize = keyof typeof TagSize;
 
 export type TagOverrides = {

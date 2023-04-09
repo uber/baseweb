@@ -24,6 +24,7 @@ export function hasThumbnail(props: { readonly thumbnail?: string }) {
   return !!props.thumbnail;
 }
 
+// @ts-ignore
 const SemanticTitle = ({ children, ...restProps }) => {
   const levels = ['', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
 
@@ -71,6 +72,7 @@ function Card(props: CardProps) {
 
   const headerImageProps = typeof headerImage === 'string' ? { src: headerImage } : headerImage;
 
+  // @ts-ignore
   const $hasThumbnail = hasThumbnail(props);
   return (
     <Root data-baseweb="card" {...restProps} {...getOverrideProps(RootOverride)}>

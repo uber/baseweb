@@ -88,6 +88,7 @@ class ProgressBar extends React.Component<
       const children = [];
       for (let i = 0; i < steps; i++) {
         children.push(
+          // @ts-ignore
           <Bar key={i} {...sharedProps} {...barProps}>
             <BarProgress $index={i} {...sharedProps} {...barProgressProps} />
           </Bar>
@@ -96,7 +97,8 @@ class ProgressBar extends React.Component<
       return children;
     }
     return (
-      // eslint-disable-next-line jsx-a11y/role-supports-aria-props
+      /* eslint-disable jsx-a11y/role-supports-aria-props */
+
       <Root
         ref={forwardedRef}
         data-baseweb="progress-bar"
@@ -115,6 +117,7 @@ class ProgressBar extends React.Component<
           {infinite ? (
             <React.Fragment>
               <InfiniteBar $isLeft={true} $size={sharedProps.$size} {...infiniteBarProps} />
+
               <InfiniteBar $size={sharedProps.$size} {...infiniteBarProps} />
             </React.Fragment>
           ) : (
@@ -128,10 +131,12 @@ class ProgressBar extends React.Component<
         )}
       </Root>
     );
+    /* eslint-enable jsx-a11y/role-supports-aria-props */
   }
 }
 
 const ForwardedProgressBar = React.forwardRef<HTMLDivElement, Partial<ProgressBarProps>>(
+  // @ts-ignore
   (props: ProgressBarProps, ref) => (
     //$FlowExpectedError[cannot-spread-inexact]
     <ProgressBar forwardedRef={ref} {...props} />

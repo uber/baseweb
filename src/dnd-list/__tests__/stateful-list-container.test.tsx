@@ -36,8 +36,11 @@ describe('StatefulListContainer', () => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const children = jest.fn((props) => null);
     const event = {
+      // @ts-ignore
       newIndex: undefined,
+      // @ts-ignore
       newState: [undefined],
+      // @ts-ignore
       oldIndex: undefined,
     };
 

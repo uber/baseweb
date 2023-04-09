@@ -9,12 +9,13 @@ import * as React from 'react';
 import { Tabs } from './tabs';
 import { STATE_CHANGE_TYPE } from './constants';
 
-import type { StatefulTabsProps, StatefulTabsState, StatefulTabsReducer } from './types';
+import type { StatefulTabsProps, StatefulTabsState, StatefulTabsReducer, onChange } from './types';
 
 const getInitialState = (children: React.ReactNode, initialState?: StatefulTabsState) => {
   if (initialState && initialState.activeKey) {
     return initialState;
   } else {
+    // @ts-ignore
     const firstKey = React.Children.map(
       children,
       // @ts-expect-error todo(flow->ts) child might be not a ReactElement, theoretically including null
@@ -40,7 +41,7 @@ export function StatefulTabs(props: StatefulTabsProps) {
     ...restProps
   } = props;
   const [state, dispatch] = React.useReducer(stateReducer, getInitialState(children, initialState));
-  const handleChange = React.useCallback((params) => {
+  const handleChange = React.useCallback<onChange>((params) => {
     const { activeKey } = params;
     dispatch({ type: STATE_CHANGE_TYPE.change, payload: activeKey });
     if (typeof onChange === 'function') onChange(params);

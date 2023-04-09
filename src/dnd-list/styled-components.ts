@@ -19,6 +19,7 @@ export const Root = styled<'div', SharedStylePropsArg>('div', ({ $theme }) => {
 Root.displayName = 'Root';
 Root.displayName = 'StyledRoot';
 
+// @ts-ignore
 export const List = styled<'ul', SharedStylePropsArg>('ul', ({ $isDragged }) => {
   return {
     paddingLeft: 0,
@@ -31,6 +32,7 @@ List.displayName = 'StyledList';
 
 export const Item = styled<'li', SharedStylePropsArg>(
   'li',
+  // @ts-ignore
   ({ $isDragged, $isSelected, $theme, $isFocusVisible }) => {
     return {
       ':hover':

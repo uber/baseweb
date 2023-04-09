@@ -18,6 +18,7 @@ import {
   Dialog as StyledDialog,
   DialogContainer as StyledDialogContainer,
   Close as StyledClose,
+  Hidden,
 } from './styled-components';
 import { CloseIcon } from './close-icon';
 
@@ -38,10 +39,11 @@ class Modal extends React.Component<ModalProps, ModalState> {
     overrides: {},
     role: ROLE.dialog,
     size: SIZE.default,
+    renderAll: false,
   };
 
-  animateOutTimer: TimeoutID | undefined | null;
-  animateStartTimer: AnimationFrameID | undefined | null;
+  animateOutTimer: ReturnType<typeof setTimeout> | undefined | null;
+  animateStartTimer: ReturnType<typeof requestAnimationFrame> | undefined | null;
   dialogContainerRef = React.createRef<HTMLElement>();
   lastFocus: HTMLElement | undefined | null = null;
   lastMountNodeOverflowStyle: string | undefined | null = null;
@@ -195,10 +197,13 @@ class Modal extends React.Component<ModalProps, ModalState> {
   getSharedProps(): Omit<SharedStylePropsArg, 'children'> {
     const { animate, isOpen, size, role, closeable } = this.props;
     return {
+      // @ts-ignore
       $animate: animate,
       $isVisible: this.state.isVisible,
       $isOpen: !!isOpen,
+      // @ts-ignore
       $size: size,
+      // @ts-ignore
       $role: role,
       $closeable: !!closeable,
       $isFocusVisible: this.state.isFocusVisible,
@@ -220,7 +225,7 @@ class Modal extends React.Component<ModalProps, ModalState> {
     return typeof children === 'function' ? children() : children;
   }
 
-  renderModal() {
+  renderModal(renderedContent: React.ReactNode) {
     const { overrides = {}, closeable, role, autoFocus, focusLock, returnFocus } = this.props;
 
     const {
@@ -239,7 +244,6 @@ class Modal extends React.Component<ModalProps, ModalState> {
     const [Close, closeProps] = getOverrides(CloseOverride, StyledClose);
 
     const sharedProps = this.getSharedProps();
-    const children = this.getChildren();
 
     return (
       <LocaleContext.Consumer>
@@ -251,8 +255,13 @@ class Modal extends React.Component<ModalProps, ModalState> {
             returnFocus={returnFocus}
             autoFocus={autoFocus}
           >
-            {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-            <Root data-baseweb="modal" ref={this.rootRef as any} {...sharedProps} {...rootProps}>
+            <Root
+              data-baseweb="modal"
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              ref={this.rootRef as any}
+              {...sharedProps}
+              {...rootProps}
+            >
               <DialogContainer
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 ref={this.dialogContainerRef as any}
@@ -267,7 +276,7 @@ class Modal extends React.Component<ModalProps, ModalState> {
                   {...sharedProps}
                   {...dialogProps}
                 >
-                  {children}
+                  {renderedContent}
                   {closeable ? (
                     <Close
                       aria-label={locale.modal.close}
@@ -290,23 +299,28 @@ class Modal extends React.Component<ModalProps, ModalState> {
   }
 
   render() {
-    // Only render modal on the browser (portals aren't supported server-side)
-    if (!this.state.mounted) {
+    // Only render an open and non-renderAll modal on the browser (portals aren't supported server-side)
+    const mountedAndOpen = this.state.mounted && (this.props.isOpen || this.state.isVisible);
+
+    const renderedContent = mountedAndOpen || this.props.renderAll ? this.getChildren() : null;
+
+    if (renderedContent) {
+      if (mountedAndOpen) {
+        return (
+          <Layer
+            onEscape={this.onEscape}
+            onDocumentClick={this.onDocumentClick}
+            mountNode={this.props.mountNode}
+          >
+            {this.renderModal(renderedContent)}
+          </Layer>
+        );
+      } else {
+        return <Hidden>{renderedContent}</Hidden>;
+      }
+    } else {
       return null;
     }
-    // Only render the modal if its isOpen is passed, or isVisible is true (still animating)
-    if (!this.props.isOpen && !this.state.isVisible) {
-      return null;
-    }
-    return (
-      <Layer
-        onEscape={this.onEscape}
-        onDocumentClick={this.onDocumentClick}
-        mountNode={this.props.mountNode}
-      >
-        {this.renderModal()}
-      </Layer>
-    );
   }
 }
 

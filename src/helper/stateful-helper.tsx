@@ -33,6 +33,7 @@ StatefulHelper.defaultProps = {
   triggerType: TRIGGER_TYPE.click,
   dismissOnClickOutside: true,
   dismissOnEsc: true,
+  // @ts-ignore
   stateReducer: (_, nextState) => nextState,
   popoverMargin: POPOVER_MARGIN,
 };

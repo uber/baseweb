@@ -153,6 +153,7 @@ function Slider({
               $isDragged={isDragged}
               style={{
                 ...props.style,
+                zIndex: 'unset',
               }}
               {...sharedProps}
               {...thumbProps}
@@ -188,10 +189,12 @@ function Slider({
             }
           : {})}
       />
+
       <TickBar {...sharedProps} {...tickBarProps}>
         <Tick {...sharedProps} {...tickProps}>
           {valueToLabel(min)}
         </Tick>
+
         <Tick {...sharedProps} {...tickProps}>
           {valueToLabel(max)}
         </Tick>

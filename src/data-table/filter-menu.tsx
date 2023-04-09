@@ -58,6 +58,7 @@ function Options(props: OptionsProps) {
   const inputRef = React.useRef(null);
   React.useEffect(() => {
     if (inputRef.current) {
+      // @ts-ignore
       inputRef.current.focus();
     }
   }, [inputRef.current]);
@@ -65,6 +66,10 @@ function Options(props: OptionsProps) {
   const [focusVisible, setFocusVisible] = React.useState(false);
   const seed = useUIDSeed();
   const buiRef = React.useRef(props.columns.map((col) => seed(col)));
+  const activeDescendant = buiRef.current[props.highlightIndex]
+    ? `bui-${buiRef.current[props.highlightIndex]}`
+    : undefined;
+  const optionsLabelId = seed('options-label');
 
   const handleFocus = (event: SyntheticEvent) => {
     if (isFocusVisible(event)) {
@@ -90,6 +95,7 @@ function Options(props: OptionsProps) {
       })}
     >
       <p
+        id={optionsLabelId}
         className={css({
           ...theme.typography.font100,
           marginTop: 'unset',
@@ -137,7 +143,8 @@ function Options(props: OptionsProps) {
         onBlur={handleBlur}
         tabIndex={0}
         role="listbox"
-        aria-activedescendant={`bui-${buiRef.current[props.highlightIndex]}`}
+        aria-activedescendant={activeDescendant}
+        aria-labelledby={optionsLabelId}
         className={css({
           listStyleType: 'none',
           marginBlockStart: 'unset',
@@ -164,6 +171,7 @@ function Options(props: OptionsProps) {
               className={css({
                 ...theme.typography.font100,
                 alignItems: 'center',
+                // @ts-ignore
                 backgroundColor: isHighlighted ? theme.colors.menuFillHover : null,
                 cursor: 'pointer',
                 display: 'flex',
@@ -240,6 +248,7 @@ function FilterMenu(props: Props) {
 
   const Filter = React.useMemo(() => {
     if (!activeColumn) return null;
+    // @ts-ignore
     return activeColumn.renderFilter;
   }, [activeColumn]);
 
@@ -249,9 +258,11 @@ function FilterMenu(props: Props) {
     return props.rows.map((row) => props.columns[columnIndex].mapDataToValue(row.data));
   }, [props.columns, props.rows, activeColumn]);
 
+  // @ts-ignore
   function handleKeyDown(event) {
     if (event.keyCode === 13) {
       event.preventDefault();
+      // @ts-ignore
       setActiveColumn(columns[highlightIndex]);
     }
     if (event.keyCode === 38) {
@@ -279,6 +290,7 @@ function FilterMenu(props: Props) {
             <Filter
               data={activeColumnData}
               close={handleClose}
+              // @ts-ignore
               setFilter={(filterParams) => props.onSetFilter(activeColumn.title, filterParams)}
             />
           );
@@ -287,6 +299,7 @@ function FilterMenu(props: Props) {
           <Options
             columns={columns}
             highlightIndex={highlightIndex}
+            // @ts-ignore
             onClick={handleOptionClick}
             onKeyDown={handleKeyDown}
             onMouseEnter={setHighlightIndex}

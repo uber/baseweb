@@ -95,11 +95,13 @@ const HeaderCell = React.forwardRef<HTMLDivElement, HeaderCellProps>((props, ref
         </span>
       )}
       <div
+        aria-label={locale.datatable.sortColumn}
         className={css({
           alignItems: 'center',
           backgroundColor: 'transparent',
           border: 'none',
           boxSizing: 'border-box',
+          // @ts-ignore
           cursor: props.sortable ? 'pointer' : null,
           display: 'flex',
           flexGrow: 1,

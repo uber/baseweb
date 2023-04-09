@@ -4,7 +4,9 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
+
 // @flow
+
 import * as React from 'react';
 import type { ThemeT } from '../styles/types.js';
 import type { OverrideT } from '../helpers/overrides.js';
@@ -21,4 +23,13 @@ export type BaseProviderPropsT = {
   theme: ThemeT,
   /** A value of z-index to be set on the layers. */
   zIndex?: number,
+};
+
+export type PageMarginsT = {|
+  paddingInlineStart: string,
+  paddingInlineEnd: string,
+|};
+
+export type MediaQueryPageMarginsT = {
+  [string]: PageMarginsT,
 };

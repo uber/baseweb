@@ -29,9 +29,11 @@ export default class Day<T = Date> extends React.Component<DayProps<T>, DayState
     onMouseLeave: () => {},
     overrides: {},
     peekNextMonth: true,
+    // @ts-ignore
     value: null,
   };
 
+  // @ts-ignore
   dayElm: HTMLElement;
 
   state = {
@@ -88,10 +90,14 @@ export default class Day<T = Date> extends React.Component<DayProps<T>, DayState
       let nextEndDate = null;
 
       if (this.props.selectedInput === INPUT_ROLE.startDate) {
+        // @ts-ignore
         nextStartDate = selectedDate;
+        // @ts-ignore
         nextEndDate = Array.isArray(currentDate) && currentDate[1] ? currentDate[1] : null;
       } else if (this.props.selectedInput === INPUT_ROLE.endDate) {
+        // @ts-ignore
         nextStartDate = Array.isArray(currentDate) && currentDate[0] ? currentDate[0] : null;
+        // @ts-ignore
         nextEndDate = selectedDate;
       }
 
@@ -419,6 +425,7 @@ export default class Day<T = Date> extends React.Component<DayProps<T>, DayState
         {(locale: Locale) => (
           <Day
             aria-label={this.getAriaLabel(sharedProps, locale)}
+            // @ts-ignore
             ref={(dayElm) => {
               this.dayElm = dayElm;
             }}

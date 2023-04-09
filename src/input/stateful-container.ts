@@ -31,10 +31,12 @@ class StatefulContainer<T extends HTMLInputElement | HTMLTextAreaElement> extend
   onChange = (e: ChangeEvent<T>) => {
     const nextState = { value: e.target.value };
     this.internalSetState(STATE_CHANGE_TYPE.change, nextState);
+    // @ts-ignore
     this.props.onChange(e);
   };
 
   internalSetState = (type: StateType, nextState: State) => {
+    // @ts-ignore
     const newState = this.props.stateReducer(type, nextState, this.state);
     this.setState(newState);
   };
@@ -46,6 +48,7 @@ class StatefulContainer<T extends HTMLInputElement | HTMLTextAreaElement> extend
     return children({
       ...restProps,
       ...this.state,
+      // @ts-ignore
       onChange,
     });
   }
