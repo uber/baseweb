@@ -93,7 +93,7 @@ type StyledTableHeadCellProps = {
 
 export const StyledTableHeadCell = styled<'th', StyledTableHeadCellProps>(
   'th',
-  ({ $theme, $size, $divider, $isNumeric }) => {
+  ({ $theme, $size, $divider }) => {
     const borderDir: string = $theme.direction === 'rtl' ? 'Left' : 'Right';
     const borderVertical = $divider === DIVIDER.grid || $divider === DIVIDER.vertical;
     const padding = sizeToCellPadding($theme, $size);
@@ -108,7 +108,7 @@ export const StyledTableHeadCell = styled<'th', StyledTableHeadCellProps>(
       paddingLeft: padding,
       backgroundColor: $theme.colors.tableHeadBackgroundColor,
       color: $theme.colors.contentPrimary,
-      textAlign: $theme.direction === 'rtl' || $isNumeric ? 'right' : 'left',
+      textAlign: $theme.direction === 'rtl' ? 'right' : 'left',
       whiteSpace: 'nowrap',
       zIndex: 1,
 
@@ -140,7 +140,6 @@ export const StyledTableHeadCellSortable = withStyle<
 >(StyledTableHeadCell, ({ $theme, $isFocusVisible }) => {
   return {
     cursor: 'pointer',
-    paddingRight: $theme.sizing.scale1000,
     outline: 'none',
     ':focus': {
       outline: $isFocusVisible ? `3px solid ${$theme.colors.accent}` : 'none',
@@ -162,6 +161,7 @@ export const StyledSortIconContainer = styled('span', ({ $theme }) => {
     top: '50%',
     right: $theme.sizing.scale500,
     transform: 'translateY(-50%)',
+    backgroundColor: 'inherit',
   };
 });
 
@@ -249,7 +249,7 @@ export const StyledTableBodyCell = styled<'td', StyledTableBodyCellProps>(
     return {
       ...$theme.typography.font200,
       paddingTop: padding,
-      paddingRight: !$isSortable ? padding : $theme.sizing.scale1000,
+      paddingRight: padding,
       paddingBottom: padding,
       paddingLeft: padding,
       color: $theme.colors.contentPrimary,
