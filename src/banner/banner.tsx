@@ -214,6 +214,9 @@ export function Banner({
   );
   const [Title, titleProps] = getOverrides(overrides.Title, StyledTitle);
   const [Message, messageProps] = getOverrides(overrides.Message, StyledMessage);
+  const ariaLabel = rootProps.hasOwnProperty('aria-label')
+    ? rootProps['aria-label']
+    : 'this is an announcement banner';
 
   return (
     <Root
@@ -221,6 +224,8 @@ export function Banner({
       $color={styles.color}
       $nested={nested}
       {...rootProps}
+      role="complementary"
+      aria-label={ariaLabel}
     >
       <LeadingContent $includesArtwork={Boolean(artwork)} {...leadingContentProps}>
         <Leading artwork={artwork} />
