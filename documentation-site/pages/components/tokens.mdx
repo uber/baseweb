@@ -10,7 +10,7 @@ import * as TokensExports from 'baseui/tokens';
 
 import Example from '../../components/example';
 import Layout from '../../components/layout';
-import BasicExample from 'examples/tokens/basic.js';
+import BasicExample from 'examples/tokens/basic.tsx';
 import Exports from '../../components/exports';
 
 export default Layout;
@@ -68,7 +68,7 @@ You could employ either of those strategies. However, we think the best way to u
 You can create a custom theme with your choice of color tokens. Here is what that might look like:
 
 ```js
-// myTheme.js
+// myTheme.tsx
 
 import { createTheme, lightThemePrimitives } from 'baseui';
 import { colors } from 'baseui/tokens';
@@ -95,7 +95,7 @@ You could also assign primitive color tokens as overrides on the theme if there 
 Sometimes our default mapping of theme's building primitives to theme properties may differ from your own intentions.
 
 ```js
-// myTheme.js
+// myTheme.tsx
 
 import { createTheme, lightThemePrimitives } from 'baseui';
 import { colors } from 'baseui/tokens';

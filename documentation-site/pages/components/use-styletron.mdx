@@ -8,9 +8,9 @@ LICENSE file in the root directory of this source tree.
 import Example from '../../components/example';
 import Layout from '../../components/layout';
 
-import UseStyletronBasic from 'examples/use-styletron/basic.js';
-import ReuseDefinitions from 'examples/use-styletron/reuse-css-definitions.js';
-import StyledOverrides from 'examples/use-styletron/overrides.js';
+import UseStyletronBasic from 'examples/use-styletron/basic.tsx';
+import ReuseDefinitions from 'examples/use-styletron/reuse-css-definitions.tsx';
+import StyledOverrides from 'examples/use-styletron/overrides.tsx';
 
 export default Layout;
 
@@ -27,7 +27,7 @@ information about how this is used.
 
 This modified version has access to [theme variables](/guides/theming/#theme-properties):
 
-<Example title="Using theme values" path="use-styletron/basic.js">
+<Example title="Using theme values" path="use-styletron/basic.tsx">
   <UseStyletronBasic />
 </Example>
 
@@ -36,10 +36,7 @@ Do you prefer other approaches when styling your components? Feel free to use
 them in parallel to Base Web and Styletron. Styletron adds only `8kB` to your
 bundle and works in isolation.
 
-<Example
-  title="Reuse css definitions"
-  path="use-styletron/reuse-css-definitions.js"
->
+<Example title="Reuse css definitions" path="use-styletron/reuse-css-definitions.tsx">
   <ReuseDefinitions />
 </Example>
 
@@ -51,7 +48,7 @@ further extended with your own custom hooks.
 When you [use overrides](/guides/understanding-overrides/), you also get an access to additional component states, like `$disabled` or `$error`, depending
 on the given component:
 
-<Example title="Overriding subcomponents" path="use-styletron/overrides.js">
+<Example title="Overriding subcomponents" path="use-styletron/overrides.tsx">
   <StyledOverrides />
 </Example>
 

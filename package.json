@@ -185,7 +185,6 @@
     "react-twitter-embed": "^2.0.8",
     "react-view": "^2.3.3",
     "react-vis": "^1.11.6",
-    "remove-flow-types-loader": "^1.1.0",
     "semver": "^6.2.0",
     "shx": "^0.3.2",
     "static-server": "^2.2.1",
@@ -202,6 +201,7 @@
   },
   "dependencies": {
     "@date-io/date-fns": "^2.6.2",
+    "@next/mdx": "^13.3.1",
     "@types/react-virtualized-auto-sizer": "^1.0.0",
     "@types/react-window": "^1.8.1",
     "card-validator": "^6.2.0",

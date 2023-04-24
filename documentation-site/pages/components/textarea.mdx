@@ -9,12 +9,12 @@ import Example from '../../components/example';
 import Layout from '../../components/layout';
 import Exports from '../../components/exports';
 
-import TextareaBasic from 'examples/textarea/basic.js';
-import TextareaStates from 'examples/textarea/states.js';
-import TextareaSizes from 'examples/textarea/sizes.js';
-import TextareaRef from 'examples/textarea/ref.js';
-import TextareaResizable from 'examples/textarea/resizable.js';
-import TextareaStateful from 'examples/textarea/stateful.js';
+import TextareaBasic from 'examples/textarea/basic.tsx';
+import TextareaStates from 'examples/textarea/states.tsx';
+import TextareaSizes from 'examples/textarea/sizes.tsx';
+import TextareaRef from 'examples/textarea/ref.tsx';
+import TextareaResizable from 'examples/textarea/resizable.tsx';
+import TextareaStateful from 'examples/textarea/stateful.tsx';
 
 import { StatefulTextarea as Textarea, SIZE } from 'baseui/textarea';
 import * as TextareaExports from 'baseui/textarea';
@@ -30,29 +30,29 @@ export default Layout;
 
 ## Examples
 
-<Example title="Basic usage" path="textarea/basic.js">
+<Example title="Basic usage" path="textarea/basic.tsx">
   <TextareaBasic />
 </Example>
 
-<Example title="States" path="textarea/states.js">
+<Example title="States" path="textarea/states.tsx">
   <TextareaStates />
 </Example>
 
-<Example title="Sizes" path="textarea/sizes.js">
+<Example title="Sizes" path="textarea/sizes.tsx">
   <TextareaSizes />
 </Example>
 
-<Example title="Allow the user to resize" path="textarea/resizable.js">
+<Example title="Allow the user to resize" path="textarea/resizable.tsx">
   <TextareaResizable />
 </Example>
 
 By default, `Textarea` is not resizeable. However, you can use `overrides` as in the example above to supply minimum and maximum dimensions for the component. This will allow users to resize the `Textarea` within the boundaries you define.
 
-<Example title="Focus and ref" path="textarea/ref.js">
+<Example title="Focus and ref" path="textarea/ref.tsx">
   <TextareaRef />
 </Example>
 
-<Example title="Stateful (uncontrolled) usage" path="textarea/stateful.js">
+<Example title="Stateful (uncontrolled) usage" path="textarea/stateful.tsx">
   <TextareaStateful />
 </Example>
 

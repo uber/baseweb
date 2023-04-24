@@ -14,11 +14,11 @@ import comboboxYardConfig from '../../components/yard/config/combobox';
 
 import * as ComboboxExports from 'baseui/combobox';
 
-import AsyncOptions from 'examples/combobox/async-options.js';
-import FilteredOptions from 'examples/combobox/filtered-options.js';
-import ReplacementNode from 'examples/combobox/replacement-node.js';
-import InputOverrides from 'examples/combobox/input-overrides.js';
-import Focus from 'examples/combobox/focus.js';
+import AsyncOptions from 'examples/combobox/async-options.tsx';
+import FilteredOptions from 'examples/combobox/filtered-options.tsx';
+import ReplacementNode from 'examples/combobox/replacement-node.tsx';
+import InputOverrides from 'examples/combobox/input-overrides.tsx';
+import Focus from 'examples/combobox/focus.tsx';
 
 export default Layout;
 
@@ -35,32 +35,32 @@ where users may enter text that is not included in the list of provided options.
 For search suggestions a combobox will likely want to filter the rendered suggestions based on the user-entered
 text. Use this example as a reference if the options are known to the application.
 
-<Example title="Filtered options" path="combobox/filtered-options.js">
+<Example title="Filtered options" path="combobox/filtered-options.tsx">
   <FilteredOptions />
 </Example>
 
 Applications will often need to fetch suggestions from from a remote API. The example below shows how to make
 asynchronous requests on input change to populate the listbox.
 
-<Example title="Async options" path="combobox/async-options.js">
+<Example title="Async options" path="combobox/async-options.tsx">
   <AsyncOptions />
 </Example>
 
 Your application may want to render some alternative content rather than simply mapping the option to a string.
 Use the `mapOptionToNode` prop to translate the option to a React node.
 
-<Example title="Custom option node" path="combobox/replacement-node.js">
+<Example title="Custom option node" path="combobox/replacement-node.tsx">
   <ReplacementNode />
 </Example>
 
 Props can be provided to the composed [Input](/components/input) through overrides. The example below shows how
 to provide a placeholder, but can be applied to any Input props.
 
-<Example title="Input props" path="combobox/input-overrides.js">
+<Example title="Input props" path="combobox/input-overrides.tsx">
   <InputOverrides />
 </Example>
 
-<Example title="Focus and inputRef" path="combobox/focus.js">
+<Example title="Focus and inputRef" path="combobox/focus.tsx">
   <Focus />
 </Example>
 

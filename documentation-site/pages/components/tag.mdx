@@ -9,17 +9,17 @@ import Example from '../../components/example';
 import Layout from '../../components/layout';
 import Exports from '../../components/exports';
 
-import Basic from 'examples/tag/basic.js';
-import Variants from 'examples/tag/variants.js';
-import Primitive from 'examples/tag/primitive.js';
-import Kinds from 'examples/tag/kinds.js';
-import Size from 'examples/tag/size.js';
-import NonClickable from 'examples/tag/non-clickable.js';
-import Clickable from 'examples/tag/clickable.js';
-import Disabled from 'examples/tag/disabled.js';
-import NonCloseable from 'examples/tag/non-closeable.js';
-import ClickableNonCloseable from 'examples/tag/clickable-non-closeable.js';
-import CustomColor from 'examples/tag/custom-color.js';
+import Basic from 'examples/tag/basic.tsx';
+import Variants from 'examples/tag/variants.tsx';
+import Primitive from 'examples/tag/primitive.tsx';
+import Kinds from 'examples/tag/kinds.tsx';
+import Size from 'examples/tag/size.tsx';
+import NonClickable from 'examples/tag/non-clickable.tsx';
+import Clickable from 'examples/tag/clickable.tsx';
+import Disabled from 'examples/tag/disabled.tsx';
+import NonCloseable from 'examples/tag/non-closeable.tsx';
+import ClickableNonCloseable from 'examples/tag/clickable-non-closeable.tsx';
+import CustomColor from 'examples/tag/custom-color.tsx';
 
 import { Tag } from 'baseui/tag';
 import * as TagExports from 'baseui/tag';
@@ -41,51 +41,51 @@ Compact UI to display a collection of concise information.
 
 ## Examples
 
-<Example title="Tag basic Usage" path="tag/basic.js">
+<Example title="Tag basic Usage" path="tag/basic.tsx">
   <Basic />
 </Example>
 
-<Example title="Semantic KIND values" path="tag/kinds.js">
+<Example title="Semantic KIND values" path="tag/kinds.tsx">
   <Kinds />
 </Example>
 
 You can change the color of the tag by passing a value to the `kind` prop. Here we see the set of "semantic" color options. These will reflect the `negative`, `positive`, etc values that you use in your theme.
 
-<Example title="Primitive KIND values" path="tag/primitive.js">
+<Example title="Primitive KIND values" path="tag/primitive.tsx">
   <Primitive />
 </Example>
 
 In addition to the "semantic" `kind` colors, you can also use "primitive" colors such as `blue` or `green`. Some of these simply alias the "semantic" colors (and therefore your theme), but there are also color-ways not contained in the "semantic" set, such as `orange`, `purple`, and `brown`.
 
-<Example title="Tag Variants Prop Type" path="tag/variants.js">
+<Example title="Tag Variants Prop Type" path="tag/variants.tsx">
   <Variants />
 </Example>
 
-<Example title="Tag sizing" path="tag/size.js">
+<Example title="Tag sizing" path="tag/size.tsx">
   <Size />
 </Example>
 
-<Example title="Tag closeable/non-clickable" path="tag/non-clickable.js">
+<Example title="Tag closeable/non-clickable" path="tag/non-clickable.tsx">
   <NonClickable />
 </Example>
 
-<Example title="Tag closeable/clickable" path="tag/clickable.js">
+<Example title="Tag closeable/clickable" path="tag/clickable.tsx">
   <Clickable />
 </Example>
 
-<Example title="Tag in a disabled state" path="tag/disabled.js">
+<Example title="Tag in a disabled state" path="tag/disabled.tsx">
   <Disabled />
 </Example>
 
-<Example title="Tag non-closeable/non-clickable" path="tag/non-closeable.js">
+<Example title="Tag non-closeable/non-clickable" path="tag/non-closeable.tsx">
   <NonCloseable />
 </Example>
 
-<Example title="Tag non-closeable/clickable" path="tag/clickable-non-closeable.js">
+<Example title="Tag non-closeable/clickable" path="tag/clickable-non-closeable.tsx">
   <ClickableNonCloseable />
 </Example>
 
-<Example title="Tag Custom Color example" path="tag/custom-color.js">
+<Example title="Tag Custom Color example" path="tag/custom-color.tsx">
   <CustomColor />
 </Example>
 

@@ -9,9 +9,9 @@ import Example from '../../components/example';
 import Layout from '../../components/layout';
 import Exports from '../../components/exports';
 
-import ToastNotification from 'examples/toast/toast-notification.js';
-import ToastSameKeyNotification from 'examples/toast/toast-same-key-notification.js';
-import ToastCloseFromOutside from 'examples/toast/toast-close-from-outside.js';
+import ToastNotification from 'examples/toast/toast-notification.tsx';
+import ToastSameKeyNotification from 'examples/toast/toast-same-key-notification.tsx';
+import ToastCloseFromOutside from 'examples/toast/toast-close-from-outside.tsx';
 
 import { Toast } from 'baseui/toast';
 import * as ToastExports from 'baseui/toast';
@@ -48,18 +48,18 @@ If a toast with an identical key already exists, that toast's contents will be u
 
 ## Examples
 
-<Example title="Toast Notification Basic Usage" path="toast/toast-notification.js">
+<Example title="Toast Notification Basic Usage" path="toast/toast-notification.tsx">
   <ToastNotification />
 </Example>
 
 <Example
   title="Toaster Using Key To Update Open Toasts"
-  path="toast/toast-same-key-notification.js"
+  path="toast/toast-same-key-notification.tsx"
 >
   <ToastSameKeyNotification />
 </Example>
 
-<Example title="Toast Being Closed From Outside" path="toast/toast-close-from-outside.js">
+<Example title="Toast Being Closed From Outside" path="toast/toast-close-from-outside.tsx">
   <ToastCloseFromOutside />
 </Example>
 

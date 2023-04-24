@@ -12,17 +12,17 @@ import TableGuideNotification from '../../components/table-guide-notification';
 
 import * as TableExports from 'baseui/table';
 
-import Basic from 'examples/table/basic.js';
-import Cells from 'examples/table/cells.js';
-import Pagination from 'examples/table/pagination.js';
-import FixedWidthColumn from 'examples/table/fixed-width-column.js';
-import VerticalScroll from 'examples/table/vertical-scroll.js';
-import HorizontalScroll from 'examples/table/horizontal-scroll.js';
-import Sortable from 'examples/table/sortable.js';
-import Filter from 'examples/table/filter.js';
-import Graph from 'examples/table/graph.js';
-import Virtual from 'examples/table/virtual.js';
-import VirtualHorizontal from 'examples/table/virtual-horizontal-scroll.js';
+import Basic from 'examples/table/basic.tsx';
+import Cells from 'examples/table/cells.tsx';
+import Pagination from 'examples/table/pagination.tsx';
+import FixedWidthColumn from 'examples/table/fixed-width-column.tsx';
+import VerticalScroll from 'examples/table/vertical-scroll.tsx';
+import HorizontalScroll from 'examples/table/horizontal-scroll.tsx';
+import Sortable from 'examples/table/sortable.tsx';
+import Filter from 'examples/table/filter.tsx';
+import Graph from 'examples/table/graph.tsx';
+import Virtual from 'examples/table/virtual.tsx';
+import VirtualHorizontal from 'examples/table/virtual-horizontal-scroll.tsx';
 
 import Yard from '../../components/yard/index';
 import tableYardConfig from '../../components/yard/config/table';
@@ -43,41 +43,41 @@ components, a visually similar table, but implemented with [css-grid](https://de
 
 ## Examples
 
-<Example title="Table basic usage" path="table/basic.js">
+<Example title="Table basic usage" path="table/basic.tsx">
   <Basic />
 </Example>
 
-<Example title="Table cell examples" path="table/cells.js">
+<Example title="Table cell examples" path="table/cells.tsx">
   <Cells />
 </Example>
 
-<Example title="Table with pagination" path="table/pagination.js">
+<Example title="Table with pagination" path="table/pagination.tsx">
   <Pagination />
 </Example>
 
-<Example title="Table with sorting by a column" path="table/sortable.js">
+<Example title="Table with sorting by a column" path="table/sortable.tsx">
   <Sortable />
 </Example>
 
-<Example title="Table with fixed width column" path="table/fixed-width-column.js">
+<Example title="Table with fixed width column" path="table/fixed-width-column.tsx">
   <FixedWidthColumn />
 </Example>
 
-<Example title="Table with vertical scroll" path="table/vertical-scroll.js">
+<Example title="Table with vertical scroll" path="table/vertical-scroll.tsx">
   <VerticalScroll />
 </Example>
 
-<Example title="Table with horizontal scroll" path="table/horizontal-scroll.js">
+<Example title="Table with horizontal scroll" path="table/horizontal-scroll.tsx">
   <HorizontalScroll />
 </Example>
 
-<Example title="Table with column filtering" path="table/filter.js">
+<Example title="Table with column filtering" path="table/filter.tsx">
   <Filter />
 </Example>
 
 <Example
   title="Using react-vis"
-  path="table/graph.js"
+  path="table/graph.tsx"
   additionalPackages={{ 'react-vis': '1.11.6' }}
 >
   <Graph />
@@ -91,7 +91,7 @@ contain `react-virtualized` internally. You will need to install it yourself.
 
 <Example
   title="Table with virtualized table body"
-  path="table/virtual.js"
+  path="table/virtual.tsx"
   additionalPackages={{ 'react-virtualized': '^9.21.0' }}
 >
   <Virtual />
@@ -99,7 +99,7 @@ contain `react-virtualized` internally. You will need to install it yourself.
 
 <Example
   title="Table with virtualized horizontal scroll"
-  path="table/virtual-horizontal-scroll.js"
+  path="table/virtual-horizontal-scroll.tsx"
   additionalPackages={{ 'react-virtualized': '^9.21.0' }}
 >
   <VirtualHorizontal />

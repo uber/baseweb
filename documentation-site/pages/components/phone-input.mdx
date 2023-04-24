@@ -10,16 +10,16 @@ import Layout from '../../components/layout';
 import { DocLink } from '../../components/markdown-elements';
 import Exports from '../../components/exports';
 
-import { StatefulPhoneInput, COUNTRIES } from 'baseui/phone-input/index.js';
-import * as PhoneInputExports from 'baseui/phone-input/index.js';
-import { Table } from 'baseui/table/index.js';
-import { Block } from 'baseui/block/index.js';
+import { StatefulPhoneInput, COUNTRIES } from 'baseui/phone-input/index';
+import * as PhoneInputExports from 'baseui/phone-input/index';
+import { Table } from 'baseui/table';
+import { Block } from 'baseui/block';
 
-import PhoneInputBasic from 'examples/phone-input/basic.js';
-import PhoneInputUncontrolled from 'examples/phone-input/uncontrolled.js';
-import PhoneInputLocalized from 'examples/phone-input/localized.js';
-import FlagOverrides from 'examples/phone-input/flag-overrides.js';
-import WithNestedOverrides from 'examples/phone-input/nested-overrides.js';
+import PhoneInputBasic from 'examples/phone-input/basic.tsx';
+import PhoneInputUncontrolled from 'examples/phone-input/uncontrolled.tsx';
+import PhoneInputLocalized from 'examples/phone-input/localized.tsx';
+import FlagOverrides from 'examples/phone-input/flag-overrides.tsx';
+import WithNestedOverrides from 'examples/phone-input/nested-overrides.tsx';
 
 import Yard from '../../components/yard/index';
 import phoneInputYardConfig from '../../components/yard/config/phone-input';
@@ -35,28 +35,28 @@ It contains a dropdown which allows the user to choose from a list of countries 
 
 ## Examples
 
-<Example title="Basic usage" path="phone-input/basic.js">
+<Example title="Basic usage" path="phone-input/basic.tsx">
   <PhoneInputBasic />
 </Example>
 
-<Example title="Localized country names" path="phone-input/localized.js">
+<Example title="Localized country names" path="phone-input/localized.tsx">
   <PhoneInputLocalized />
 </Example>
 
 <Example
   title="With flag overrides and virtualized dropdown list"
-  path="phone-input/flag-overrides.js"
+  path="phone-input/flag-overrides.tsx"
 >
   <FlagOverrides />
 </Example>
 
-<Example title="With nested overrides" path="phone-input/nested-overrides.js">
+<Example title="With nested overrides" path="phone-input/nested-overrides.tsx">
   <WithNestedOverrides />
 </Example>
 
 Click [here](/guides/understanding-overrides//#override-nested-components) to learn more about nested overrides.
 
-<Example title="Stateful (uncontrolled) usage" path="phone-input/uncontrolled.js">
+<Example title="Stateful (uncontrolled) usage" path="phone-input/uncontrolled.tsx">
   <PhoneInputUncontrolled />
 </Example>
 

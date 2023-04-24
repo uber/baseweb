@@ -10,17 +10,17 @@ import Exports from '../../components/exports';
 import Layout from '../../components/layout';
 import SEO from '../../components/meta-seo';
 
-import Basic from 'examples/button-group/basic.js';
-import Icon from 'examples/button-group/icon.js';
-import Enhancer from 'examples/button-group/enhancer.js';
-import RadioMode from 'examples/button-group/radio-mode.js';
-import CheckboxMode from 'examples/button-group/checkbox-mode.js';
-import Disabled from 'examples/button-group/disabled.js';
-import DisabledButton from 'examples/button-group/disabled-button.js';
-import Dropdown from 'examples/button-group/dropdown.js';
-import StatefulRadio from 'examples/button-group/stateful-radio.js';
-import StatefulCheckbox from 'examples/button-group/stateful-checkbox.js';
-import Wrappable from 'examples/button-group/wrappable.js';
+import Basic from 'examples/button-group/basic.tsx';
+import Icon from 'examples/button-group/icon.tsx';
+import Enhancer from 'examples/button-group/enhancer.tsx';
+import RadioMode from 'examples/button-group/radio-mode.tsx';
+import CheckboxMode from 'examples/button-group/checkbox-mode.tsx';
+import Disabled from 'examples/button-group/disabled.tsx';
+import DisabledButton from 'examples/button-group/disabled-button.tsx';
+import Dropdown from 'examples/button-group/dropdown.tsx';
+import StatefulRadio from 'examples/button-group/stateful-radio.tsx';
+import StatefulCheckbox from 'examples/button-group/stateful-checkbox.tsx';
+import Wrappable from 'examples/button-group/wrappable.tsx';
 
 import { Button } from 'baseui/button';
 import { ButtonGroup } from 'baseui/button-group';
@@ -49,51 +49,51 @@ Groups a collection of similar actions together.
 
 ## Examples
 
-<Example title="Basic usage" path="button-group/basic.js">
+<Example title="Basic usage" path="button-group/basic.tsx">
   <Basic />
 </Example>
 
-<Example title="With icons" path="button-group/icon.js">
+<Example title="With icons" path="button-group/icon.tsx">
   <Icon />
 </Example>
 
-<Example title="With enhancers" path="button-group/enhancer.js">
+<Example title="With enhancers" path="button-group/enhancer.tsx">
   <Enhancer />
 </Example>
 
-<Example title="Radio mode" path="button-group/radio-mode.js">
+<Example title="Radio mode" path="button-group/radio-mode.tsx">
   <RadioMode />
 </Example>
 
 In `radio` mode, the button group functions similarly to a radio group. Only one button can be "selected" at a time.
 
-<Example title="Checkbox mode" path="button-group/checkbox-mode.js">
+<Example title="Checkbox mode" path="button-group/checkbox-mode.tsx">
   <CheckboxMode />
 </Example>
 
 In `checkbox` mode, the button group functions similarly to a group of checkboxes. Multiple buttons can be "selected" at the same time.
 
-<Example title="Disabled button group" path="button-group/disabled.js">
+<Example title="Disabled button group" path="button-group/disabled.tsx">
   <Disabled />
 </Example>
 
 You can disable the entire button group as in the example above. Or you can disable isolated buttons as in the example below.
 
-<Example title="Single disabled button" path="button-group/disabled-button.js">
+<Example title="Single disabled button" path="button-group/disabled-button.tsx">
   <DisabledButton />
 </Example>
 
-<Example title="With a dropdown" path="button-group/dropdown.js">
+<Example title="With a dropdown" path="button-group/dropdown.tsx">
   <Dropdown />
 </Example>
 
-<Example title="Wrappable button group" path="button-group/wrappable.js">
+<Example title="Wrappable button group" path="button-group/wrappable.tsx">
   <Wrappable />
 </Example>
 
 You can add the override `flex-wrap: wrap` to button group so as to make it wrap on smaller screens as in the example above.
 
-<Example title="Stateful (uncontrolled) with radio mode" path="button-group/stateful-radio.js">
+<Example title="Stateful (uncontrolled) with radio mode" path="button-group/stateful-radio.tsx">
   <StatefulRadio />
 </Example>
 
@@ -101,7 +101,7 @@ As with many of our components, there is also an [uncontrolled](https://reactjs.
 
 <Example
   title="Stateful (uncontrolled) with checkbox mode"
-  path="button-group/stateful-checkbox.js"
+  path="button-group/stateful-checkbox.tsx"
 >
   <StatefulCheckbox />
 </Example>

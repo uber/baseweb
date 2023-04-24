@@ -15,19 +15,19 @@ import Yard from '../../components/yard/index';
 import tabsYardConfig from '../../components/yard/config/tabs-motion';
 import tabYardConfig from '../../components/yard/config/tab-motion';
 
-import BasicExample from 'examples/tabs-motion/basic.js';
-import KeysExample from 'examples/tabs-motion/keys.js';
-import KeyboardActivationExample from 'examples/tabs-motion/keyboard-activation.js';
-import VerticalOrientationExample from 'examples/tabs-motion/vertical-orientation.js';
-import FixedExample from 'examples/tabs-motion/fixed.js';
-import DisabledExample from 'examples/tabs-motion/disabled.js';
-import ArtworkExample from 'examples/tabs-motion/artwork.js';
-import RenderAllExample from 'examples/tabs-motion/renderAll.js';
-import AlignmentExample from 'examples/tabs-motion/alignment.js';
-import RefsExample from 'examples/tabs-motion/refs.js';
-import StatefulExample from 'examples/tabs-motion/stateful.js';
-import TabOverrideExample from 'examples/tabs-motion/tab-override.js';
-import EndEnhancer from 'examples/tabs-motion/enhancer.js';
+import BasicExample from 'examples/tabs-motion/basic.tsx';
+import KeysExample from 'examples/tabs-motion/keys.tsx';
+import KeyboardActivationExample from 'examples/tabs-motion/keyboard-activation.tsx';
+import VerticalOrientationExample from 'examples/tabs-motion/vertical-orientation.tsx';
+import FixedExample from 'examples/tabs-motion/fixed.tsx';
+import DisabledExample from 'examples/tabs-motion/disabled.tsx';
+import ArtworkExample from 'examples/tabs-motion/artwork.tsx';
+import RenderAllExample from 'examples/tabs-motion/renderAll.tsx';
+import AlignmentExample from 'examples/tabs-motion/alignment.tsx';
+import RefsExample from 'examples/tabs-motion/refs.tsx';
+import StatefulExample from 'examples/tabs-motion/stateful.tsx';
+import TabOverrideExample from 'examples/tabs-motion/tab-override.tsx';
+import EndEnhancer from 'examples/tabs-motion/enhancer.tsx';
 
 import * as TabsExports from 'baseui/tabs-motion';
 
@@ -63,37 +63,37 @@ This component implements the latest [WAI-ARIA Tabs specifications](https://www.
 
 ## Examples
 
-<Example title="Basics" path="tabs-motion/basic.js">
+<Example title="Basics" path="tabs-motion/basic.tsx">
   <BasicExample />
 </Example>
 
 A basic, uncontrolled `Tabs` component. Try focusing a Tab and using the directional keys to move focus to other Tabs. Focus will "wrap" once you've reached the start or end of the TabList. To shift focus to the Tab's content, just hit `Tab` at any time.
 
-<Example title="Keys" path="tabs-motion/keys.js">
+<Example title="Keys" path="tabs-motion/keys.tsx">
   <KeysExample />
 </Example>
 
 We use the index of each Tab to provide default keys. You can however, pass in your own keys to each Tab. React keys can be either a string or a number so `1` and `"1"` are both valid. The component will default to numbers if no keys are provided.
 
-<Example title="Keyboard activation" path="tabs-motion/keyboard-activation.js">
+<Example title="Keyboard activation" path="tabs-motion/keyboard-activation.tsx">
   <KeyboardActivationExample />
 </Example>
 
 By default, when a Tab receives focus it will activate the Tab and show the corresponding TabPanel. You can change this by setting `activateOnFocus` to `false`. In the example above, focus a Tab and then use the directional keys to move focus to other Tabs. To activate the Tab you need to press `Enter` or the space bar.
 
-<Example title="End Enhancer" path="tabs-motion/enhancer.js">
+<Example title="End Enhancer" path="tabs-motion/enhancer.tsx">
   <EndEnhancer />
 </Example>
 
 An `endEnhancer` can be used with horizontal orientation. `endEnhancer` is ignored when orientation is vertical.
 
-<Example title="Vertical orientation" path="tabs-motion/vertical-orientation.js">
+<Example title="Vertical orientation" path="tabs-motion/vertical-orientation.tsx">
   <VerticalOrientationExample />
 </Example>
 
 Tabs can be displayed in either a `horizontal` (the default) or `vertical` orientation. The `aria-orientation` attribute will be assigned accordingly. Note, when in the `vertical` orientation, the `Up` and `Down` keys are used to move focus between Tabs. While a Tab is focused, the page's default vertical page scroll is disabled.
 
-<Example title="Fixed fill" path="tabs-motion/fixed.js">
+<Example title="Fixed fill" path="tabs-motion/fixed.tsx">
   <FixedExample />
 </Example>
 
@@ -103,43 +103,43 @@ By default, `fill` is set to `intrinsic`, which means Tabs will take up as much 
 
 In the example above, we set `fill` to `fixed`, which divides the space in the TabList equally between each Tab. With this setting you need to be sure the content of the Tab is short enough to fit.
 
-<Example title="Disabled" path="tabs-motion/disabled.js">
+<Example title="Disabled" path="tabs-motion/disabled.tsx">
   <DisabledExample />
 </Example>
 
 You can disable all of the Tabs (except for the active one) by passing `disabled` to the top-level `Tabs` component. Note, you can also pass `disabled` to individual `Tab` components, which will override the top-level prop.
 
-<Example title="Leading icon" path="tabs-motion/artwork.js">
+<Example title="Leading icon" path="tabs-motion/artwork.tsx">
   <ArtworkExample />
 </Example>
 
 You can use a leading icon for each Tab with the `artwork` prop. Icons from `baseui/icon` will work out-of-the-box, as you can see in the example above. If you want to use a custom icon or component, your component will be rendered with a small margin between it and the Tab title. Your component will receive a `size` and `color` prop too if you want to use them.
 
-<Example title="Rendering & SEO" path="tabs-motion/renderAll.js">
+<Example title="Rendering & SEO" path="tabs-motion/renderAll.tsx">
   <RenderAllExample />
 </Example>
 
 By default, the content within a `TabPanel` will only mount once the corresponding Tab is active. If you want the content of each `TabPanel` to render when the `Tabs` component renders, you can use the `renderAll` prop as in the example above. If you inspect the markup for this example, you will notice that each Tab's content is rendered (though it still isn't visible). This option can be useful for SEO purposes where you might want all of your content to be crawlable.
 
-<Example title="Alignment" path="tabs-motion/alignment.js">
+<Example title="Alignment" path="tabs-motion/alignment.tsx">
   <AlignmentExample />
 </Example>
 
 In this example we align the Tabs and TabPanels with our LayoutGrid component. This allows the TabBorder to expand to fill the viewport. You may want to open this example in CodeSandbox to get a better sense of the visual effect.
 
-<Example title="Refs" path="tabs-motion/refs.js">
+<Example title="Refs" path="tabs-motion/refs.tsx">
   <RefsExample />
 </Example>
 
 You can pass refs to every internal element within the Tabs component using `overrides`. There is one exception however: the button elements rendered by `Tab`. Internally, the Tabs component keeps a ref attached to the active Tab's button element. This is used for the animated highlight. Because we already need to attach this ref internally, we "share" the ref via the `tabRef` prop. If you pass a ref to the `tabRef` you will receive a ref to the underlying button element, even when it is active.
 
-<Example title="Stateful" path="tabs-motion/stateful.js">
+<Example title="Stateful" path="tabs-motion/stateful.tsx">
   <StatefulExample />
 </Example>
 
 If you don't need to control the component yourself you can use the stateful version.
 
-<Example title="Tab Overrides" path="tabs-motion/tab-override.js">
+<Example title="Tab Overrides" path="tabs-motion/tab-override.tsx">
   <TabOverrideExample />
 </Example>
 

@@ -52,9 +52,6 @@ function Example(props: PropsT) {
       const tsCode = await import(
         /* webpackMode: "eager" */ `!!raw-loader!../examples/${path.replace('.js', '.tsx')}`
       );
-      const jsCode = await import(
-        /* webpackMode: "eager" */ `!!raw-loader!remove-flow-types-loader?pretty!../examples/${path}`
-      );
 
       setCode({
         flow: flowCode.default,
