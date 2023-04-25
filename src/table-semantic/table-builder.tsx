@@ -20,7 +20,7 @@ import {
   StyledTableEmptyMessage,
   StyledSortIconContainer,
 } from './styled-components';
-import { getOverrides } from '../helpers/overrides';
+import { getOverrides, mergeConfigurationOverrides } from '../helpers/overrides';
 import Blank from '../icon/blank';
 import ChevronDown from '../icon/chevron-down';
 import ChevronUp from '../icon/chevron-up';
@@ -165,41 +165,34 @@ export default class TableBuilder<T> extends React.Component<
         TableHeadCellSortable
       );
 
-      let sortIcon = null;
-      let sortLabel = 'not sorted';
+      let SortIcon, sortIconProps, sortLabel;
 
       switch (col.id === sortColumn && sortOrder) {
         case 'ASC':
-          // @ts-ignore
-          sortIcon = (
-            <SortAscIcon size="16px" aria-hidden={true} role="presentation" {...sortAscIconProps} />
-          );
+          SortIcon = SortAscIcon;
+          sortIconProps = sortAscIconProps;
           sortLabel = 'ascending sorting';
           break;
         case 'DESC':
-          // @ts-ignore
-          sortIcon = (
-            <SortDescIcon
-              size="16px"
-              aria-hidden={true}
-              role="presentation"
-              {...sortDescIconProps}
-            />
-          );
+          SortIcon = SortDescIcon;
+          sortIconProps = sortDescIconProps;
           sortLabel = 'descending sorting';
           break;
         default:
-          // @ts-ignore
-          sortIcon = (
-            <SortNoneIcon
-              size="16px"
-              aria-hidden={true}
-              role="presentation"
-              {...sortNoneIconProps}
-            />
-          );
+          SortIcon = SortNoneIcon;
+          sortIconProps = sortNoneIconProps;
+          sortLabel = 'not sorted';
           break;
       }
+
+      // add background-color: inherit on container for non-Blank icons
+      const sortIconContainerStyle =
+        SortIcon === Blank
+          ? sortIconContainerProps.$style
+          : mergeConfigurationOverrides(
+              { backgroundColor: 'inherit' },
+              sortIconContainerProps.$style
+            );
 
       return (
         <ColTableHeadCellSortable
@@ -223,7 +216,9 @@ export default class TableBuilder<T> extends React.Component<
           {...colTableHeadCellSortableProps}
         >
           {col.header}
-          <SortIconContainer {...sortIconContainerProps}>{sortIcon}</SortIconContainer>
+          <SortIconContainer {...sortIconContainerProps} $style={sortIconContainerStyle}>
+            <SortIcon size="16px" aria-hidden="true" role="presentation" {...sortIconProps} />
+          </SortIconContainer>
         </ColTableHeadCellSortable>
       );
     }

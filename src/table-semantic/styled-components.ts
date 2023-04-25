@@ -93,7 +93,7 @@ type StyledTableHeadCellProps = {
 
 export const StyledTableHeadCell = styled<'th', StyledTableHeadCellProps>(
   'th',
-  ({ $theme, $size, $divider, $isNumeric }) => {
+  ({ $theme, $size, $divider }) => {
     const borderDir: string = $theme.direction === 'rtl' ? 'Left' : 'Right';
     const borderVertical = $divider === DIVIDER.grid || $divider === DIVIDER.vertical;
     const padding = sizeToCellPadding($theme, $size);
@@ -108,7 +108,7 @@ export const StyledTableHeadCell = styled<'th', StyledTableHeadCellProps>(
       paddingLeft: padding,
       backgroundColor: $theme.colors.tableHeadBackgroundColor,
       color: $theme.colors.contentPrimary,
-      textAlign: $theme.direction === 'rtl' || $isNumeric ? 'right' : 'left',
+      textAlign: $theme.direction === 'rtl' ? 'right' : 'left',
       whiteSpace: 'nowrap',
       zIndex: 1,
 
@@ -140,7 +140,6 @@ export const StyledTableHeadCellSortable = withStyle<
 >(StyledTableHeadCell, ({ $theme, $isFocusVisible }) => {
   return {
     cursor: 'pointer',
-    paddingRight: $theme.sizing.scale1000,
     outline: 'none',
     ':focus': {
       outline: $isFocusVisible ? `3px solid ${$theme.colors.accent}` : 'none',
@@ -239,7 +238,7 @@ type StyledTableBodyCellProps = {
 export const StyledTableBodyCell = styled<'td', StyledTableBodyCellProps>(
   'td',
   // @ts-ignore
-  ({ $theme, $size, $divider, $isNumeric, $isLastRow, $isSortable }) => {
+  ({ $theme, $size, $divider, $isNumeric, $isLastRow }) => {
     const borderDir: string = $theme.direction === 'rtl' ? 'Left' : 'Right';
     const borderVertical = $divider === DIVIDER.vertical || $divider === DIVIDER.grid;
     const borderHorizontal =
@@ -249,7 +248,7 @@ export const StyledTableBodyCell = styled<'td', StyledTableBodyCellProps>(
     return {
       ...$theme.typography.font200,
       paddingTop: padding,
-      paddingRight: !$isSortable ? padding : $theme.sizing.scale1000,
+      paddingRight: padding,
       paddingBottom: padding,
       paddingLeft: padding,
       color: $theme.colors.contentPrimary,
