@@ -63,6 +63,7 @@ export type Icon = {
   ArrowRight?: ComponentType<IconProps>;
   ArrowUp?: ComponentType<IconProps>;
   Blank?: ComponentType<IconProps>;
+  Calendar?: ComponentType<IconProps>;
   CheckIndeterminate?: ComponentType<IconProps>;
   Check?: ComponentType<IconProps>;
   ChevronDown?: ComponentType<IconProps>;
