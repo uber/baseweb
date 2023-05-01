@@ -25,13 +25,38 @@ module.exports = withMDX({
   trailingSlash: true,
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   webpack: (config, { buildId, dev, isServer, defaultLoaders }) => {
+    // Find the rule that handles images (using url-loader by default)
+    const imageRuleIndex = config.module.rules.findIndex(
+      (rule) => rule.test && rule.test.toString().includes('png')
+    );
+
+    if (imageRuleIndex !== -1) {
+      // Exclude image formats from the default rule
+      config.module.rules[imageRuleIndex].exclude = /\.(png|jpe?g|gif|webp|svg)$/i;
+    }
+
     // fix to correctly resolve mjs file exports
     // probably can be removed with next.js update
-    config.module.rules.push({
-      test: /\.mjs$/,
-      include: /node_modules/,
-      type: 'javascript/auto',
-    });
+    config.module.rules.push(
+      {
+        test: /\.mjs$/,
+        include: /node_modules/,
+        type: 'javascript/auto',
+      },
+      {
+        test: /\.(png|jpe?g|gif|webp|svg)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              publicPath: '/_next/static/images/',
+              outputPath: 'static/images/',
+              name: '[name]-[hash].[ext]',
+            },
+          },
+        ],
+      }
+    );
 
     config.resolve.alias.baseui = resolve(__dirname, '../dist');
     config.resolve.alias.examples = resolve(__dirname, 'examples');

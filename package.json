@@ -208,6 +208,7 @@
     "d3": "^6.7.0",
     "date-fns": "^2.6.0",
     "date-fns-tz": "^1.2.2",
+    "file-loader": "^6.2.0",
     "glob": "^7.1.6",
     "just-extend": "^4.0.2",
     "memoize-one": "^5.1.1",
