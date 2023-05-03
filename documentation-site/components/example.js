@@ -42,28 +42,21 @@ function Example(props: PropsT) {
   const [code, setCode] = React.useState({
     js: null,
     ts: null,
-    flow: null,
   });
 
   // Load example code for various languages on initial mount.
   React.useEffect(() => {
     (async () => {
-      const flowCode = await import(/* webpackMode: "eager" */ `!!raw-loader!../examples/${path}`);
-      const tsCode = await import(
-        /* webpackMode: "eager" */ `!!raw-loader!../examples/${path.replace('.js', '.tsx')}`
-      );
+      const tsCode = await import(/* webpackMode: "eager" */ `!!raw-loader!../examples/${path}`);
+      // TODO: fix this
+      // const jsCode = await import(
+      //   /* webpackMode: "eager" */ `!!raw-loader!remove-flow-types-loader?pretty!../examples/${path}`
+      // );
+      const jsCode = { default: 'nothing to see here' };
 
       setCode({
-        flow: flowCode.default,
         ts: tsCode.default,
-        js: jsCode.default
-          // flow-remove-types doesn't remove // from the first line
-          .replace(/^\/\//, '')
-          // remove all instances of <{}>
-          .replace(/<\{.*\}>/g, '')
-          // remove all instances of <any>
-          .replace(/<any>/g, '')
-          .trim(),
+        js: jsCode.default,
       });
     })();
   }, []);
@@ -129,15 +122,6 @@ function Example(props: PropsT) {
             kind={KIND.secondary}
             startEnhancer={() => <CodeIcon />}
             onClick={() => {
-              trackEvent('show_flow_source', title);
-            }}
-          >
-            Flow
-          </Button>
-          <Button
-            kind={KIND.secondary}
-            startEnhancer={() => <CodeIcon />}
-            onClick={() => {
               trackEvent('show_ts_source', title);
             }}
           >
@@ -150,8 +134,7 @@ function Example(props: PropsT) {
         <React.Fragment>
           <Block overflow="scrollX">
             {selectedLanguage === 0 && <Source>{code.js}</Source>}
-            {selectedLanguage === 1 && <Source>{code.flow}</Source>}
-            {selectedLanguage === 2 && <Source>{code.ts}</Source>}
+            {selectedLanguage === 1 && <Source>{code.ts}</Source>}
           </Block>
           <Button kind={KIND.secondary} size={SIZE.compact} onClick={handleOpenExample}>
             Try example on CodeSandbox
