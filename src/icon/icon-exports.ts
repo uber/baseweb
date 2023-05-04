@@ -10,6 +10,7 @@ export { default as ArrowLeft } from './arrow-left';
 export { default as ArrowRight } from './arrow-right';
 export { default as ArrowUp } from './arrow-up';
 export { default as Blank } from './blank';
+export { default as Calendar } from './calendar';
 export { default as CheckIndeterminate } from './check-indeterminate';
 export { default as Check } from './check';
 export { default as ChevronDown } from './chevron-down';
