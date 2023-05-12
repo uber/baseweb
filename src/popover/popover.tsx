@@ -300,7 +300,16 @@ class PopoverInner extends React.Component<PopoverProps, PopoverPrivateState> {
       anchorProps.onFocus = this.props.onFocus;
     } else {
       anchorProps.onClick = this.onAnchorClick;
+
+      // Make it focusable too
+      if (this.props.onBlur) {
+        anchorProps.onBlur = this.props.onBlur;
+      }
+      if (this.props.onFocus) {
+        anchorProps.onFocus = this.props.onFocus;
+      }
     }
+
     return anchorProps;
   }
 
