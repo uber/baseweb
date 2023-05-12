@@ -18,11 +18,10 @@ import { useStyletron } from '../styles/index';
 import { ThemeProvider, LightTheme } from '../';
 import { getBackgroundColorType } from './utils';
 import { colors } from '../tokens';
-import { getOverrides } from '../helpers/overrides';
+import { getOverrides, mergeOverrides } from '../helpers/overrides';
 import { IMAGE_LAYOUT, BACKGROUND_COLOR_TYPE, BUTTON_KIND } from './constants';
 import type { MessageCardProps } from './types';
 
-// @ts-ignore
 const ButtonAlwaysLightTheme = ({ children, ...restProps }) => (
   <ThemeProvider theme={LightTheme}>
     <DefaultButton {...restProps}>{children}</DefaultButton>
@@ -42,23 +41,44 @@ const MessageCard = ({
 }: MessageCardProps) => {
   const { src, layout = IMAGE_LAYOUT.top, backgroundPosition, ariaLabel } = image || {};
 
-  const [Root, RootProps] = getOverrides(overrides.Root, StyledRoot);
+  const [, theme] = useStyletron();
+
+  const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
   const [ContentContainer, ContentContainerProps] = getOverrides(
     overrides.ContentContainer,
     StyledContentContainer
   );
-  const [HeadingContainer, HeadingContainerProps] = getOverrides(
+  const [HeadingContainer, headingContainerProps] = getOverrides(
     overrides.HeadingContainer,
     StyledHeadingContainer
   );
-  const [ParagraphContainer, ParagraphContainerProps] = getOverrides(
+  const [ParagraphContainer, paragraphContainerProps] = getOverrides(
     overrides.ParagraphContainer,
     StyledParagraphContainer
   );
-  const [Image, ImageProps] = getOverrides(overrides.Image, StyledImage);
-  const [Button, ButtonProps] = getOverrides(overrides.Button, ButtonAlwaysLightTheme);
+  const [Image, imageProps] = getOverrides(overrides.Image, StyledImage);
+  const [Button, buttonProps] = getOverrides(overrides.Button, ButtonAlwaysLightTheme);
 
-  const [, theme] = useStyletron();
+  const defaultButtonOverrides = {
+    BaseButton: {
+      style: {
+        textAlign: 'center',
+        pointerEvents: 'none',
+        ...(buttonKind === BUTTON_KIND.tertiary
+          ? {
+              marginTop: theme.sizing.scale100,
+              transform:
+                theme.direction === 'rtl'
+                  ? `translateX(${theme.sizing.scale500})`
+                  : `translateX(-${theme.sizing.scale500})`,
+            }
+          : {
+              marginTop: theme.sizing.scale500,
+            }),
+      },
+    },
+  };
+  buttonProps.overrides = mergeOverrides(defaultButtonOverrides, buttonProps.overrides);
 
   let backgroundColorType = backgroundColorTypeProp || getBackgroundColorType(backgroundColor);
   if (!backgroundColorType) {
@@ -92,7 +112,7 @@ const MessageCard = ({
       $backgroundColor={backgroundColor}
       $backgroundColorType={backgroundColorType}
       $imageLayout={layout}
-      {...RootProps}
+      {...rootProps}
     >
       {image && (
         <Image
@@ -101,13 +121,13 @@ const MessageCard = ({
           $src={src}
           $imageLayout={layout}
           $backgroundPosition={backgroundPosition}
-          {...ImageProps}
+          {...imageProps}
         />
       )}
       <ContentContainer {...ContentContainerProps}>
-        {heading && <HeadingContainer {...HeadingContainerProps}>{heading}</HeadingContainer>}
+        {heading && <HeadingContainer {...headingContainerProps}>{heading}</HeadingContainer>}
         {paragraph && (
-          <ParagraphContainer {...ParagraphContainerProps}>{paragraph}</ParagraphContainer>
+          <ParagraphContainer {...paragraphContainerProps}>{paragraph}</ParagraphContainer>
         )}
         {buttonLabel && (
           <Button
@@ -118,26 +138,7 @@ const MessageCard = ({
             role="none"
             tabIndex={-1}
             colors={buttonColors}
-            overrides={{
-              BaseButton: {
-                style: {
-                  textAlign: 'center',
-                  pointerEvents: 'none',
-                  ...(buttonKind === BUTTON_KIND.tertiary
-                    ? {
-                        marginTop: theme.sizing.scale100,
-                        transform:
-                          theme.direction === 'rtl'
-                            ? `translateX(${theme.sizing.scale500})`
-                            : `translateX(-${theme.sizing.scale500})`,
-                      }
-                    : {
-                        marginTop: theme.sizing.scale500,
-                      }),
-                },
-              },
-            }}
-            {...ButtonProps}
+            {...buttonProps}
           >
             {buttonLabel}
           </Button>
