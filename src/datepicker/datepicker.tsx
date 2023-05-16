@@ -170,6 +170,12 @@ export default class Datepicker<T = Date> extends React.Component<
       }
     }
 
+    // If nextDate is an array but the datepicker is not ranged, we assign
+    // nextDate directly to the Date value to avoid formatting issues
+    if (Array.isArray(nextDate) && !this.props.range) {
+      nextDate = nextDate[0];
+    }
+
     this.setState({
       isOpen,
       isPseudoFocused,
