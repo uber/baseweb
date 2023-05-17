@@ -12,19 +12,19 @@ import Layout from '../../components/layout';
 
 import * as LayoutGridExports from 'baseui/layout-grid';
 
-import BasicExample from 'examples/layout-grid/basic.js';
-import SpanExample from 'examples/layout-grid/span.js';
-import ResponsiveExample from 'examples/layout-grid/responsive.js';
-import HideExample from 'examples/layout-grid/hide.js';
-import SkipExample from 'examples/layout-grid/skip.js';
-import SkipShrinkExample from 'examples/layout-grid/skip-shrink.js';
-import AlignExample from 'examples/layout-grid/align.js';
-import OrderExample from 'examples/layout-grid/order.js';
-import BehaviorExample from 'examples/layout-grid/behavior.js';
-import CustomExample from 'examples/layout-grid/custom.js';
-import UnitExample from 'examples/layout-grid/unit.js';
-import CompactExample from 'examples/layout-grid/compact.js';
-import OverridesExample from 'examples/layout-grid/overrides.js';
+import BasicExample from 'examples/layout-grid/basic.tsx';
+import SpanExample from 'examples/layout-grid/span.tsx';
+import ResponsiveExample from 'examples/layout-grid/responsive.tsx';
+import HideExample from 'examples/layout-grid/hide.tsx';
+import SkipExample from 'examples/layout-grid/skip.tsx';
+import SkipShrinkExample from 'examples/layout-grid/skip-shrink.tsx';
+import AlignExample from 'examples/layout-grid/align.tsx';
+import OrderExample from 'examples/layout-grid/order.tsx';
+import BehaviorExample from 'examples/layout-grid/behavior.tsx';
+import CustomExample from 'examples/layout-grid/custom.tsx';
+import UnitExample from 'examples/layout-grid/unit.tsx';
+import CompactExample from 'examples/layout-grid/compact.tsx';
+import OverridesExample from 'examples/layout-grid/overrides.tsx';
 
 export default Layout;
 
@@ -52,7 +52,7 @@ All of these values are [customizable via your theme](https://baseweb.design/gui
 
 Some examples may require you to open them in CodeSandbox to achieve a wide enough viewport for certain behaviors.
 
-<Example title="Basic" path="layout-grid/basic.js">
+<Example title="Basic" path="layout-grid/basic.tsx">
   <BasicExample />
 </Example>
 
@@ -64,7 +64,7 @@ Any cells that do not fit on a single row will wrap to a new row. The default ga
 
 You can nest grids inside of cells or other elements. The cell widths are calculated as percentages of the parent container. Use caution with this pattern though- the main use case for the grid is to align sections of the page using a consistent layout. Nesting can be an indication of a layout that is too complex and requires some design refactoring.
 
-<Example title="Span" path="layout-grid/span.js">
+<Example title="Span" path="layout-grid/span.tsx">
   <SpanExample />
 </Example>
 
@@ -76,7 +76,7 @@ In the example above, each cell has a span of 2. This causes the excess cells to
 
 Sometimes this wrapping behavior is desirable, but sometimes you want to adapt to different breakpoints by setting spans specific to each breakpoint. The layout grid handles this by exposing "responsive" props.
 
-<Example title="Responsive" path="layout-grid/responsive.js">
+<Example title="Responsive" path="layout-grid/responsive.tsx">
   <ResponsiveExample />
 </Example>
 
@@ -94,13 +94,13 @@ Also note that every `Cell` prop is "responsive". Almost all of the props for `G
 
 Last thing to note: The grid has only one column on viewports smaller than the first breakpoint (`<320px`). Cells will effectively take up the full width of the grid. Most props have no reasonable effect with one column so "responsive" props essentially ignore this range.
 
-<Example title="Hide" path="layout-grid/hide.js">
+<Example title="Hide" path="layout-grid/hide.tsx">
   <HideExample />
 </Example>
 
 In this example we hide the first (`1`) cell on viewports larger than the first breakpoint. Notice how we hide the cell by passing a `0` to `span`. This is useful for responsive layouts where some section may be hidden on a specific breakpoint.
 
-<Example title="Skip" path="layout-grid/skip.js">
+<Example title="Skip" path="layout-grid/skip.tsx">
   <SkipExample />
 </Example>
 
@@ -108,19 +108,19 @@ Another common layout scenario is "offsetting" or "skipping" columns. In this ex
 
 An important detail: `skip` specifies how many columns the left margin of the cell should span. This means that `skip` can wrap cells onto a new line in order to allow enough space for that margin. This leads to one other behavior that you may not expect...
 
-<Example title="Shrink" path="layout-grid/skip-shrink.js">
+<Example title="Shrink" path="layout-grid/skip-shrink.tsx">
   <SkipShrinkExample />
 </Example>
 
 Notice how the cell has a `span` set to fill each breakpoint, but the `skip` of 1 takes precedence and shrinks the cell to fit on one line.
 
-<Example title="Align" path="layout-grid/align.js">
+<Example title="Align" path="layout-grid/align.tsx">
   <AlignExample />
 </Example>
 
 You can horizontally align the cells of the grid with the `align` prop. Note that you can pass `align` to the entire grid or to an individual cell (or both).
 
-<Example title="Order" path="layout-grid/order.js">
+<Example title="Order" path="layout-grid/order.tsx">
   <OrderExample />
 </Example>
 
@@ -130,7 +130,7 @@ This prop is mostly useful when used as a responsive prop. Imagine a card that i
 
 The `order` prop is simply a proxy for the CSS property of the same name. [Click here](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Ordering_Flex_Items) to read more about how `order` works with flexbox.
 
-<Example title="Behavior" path="layout-grid/behavior.js">
+<Example title="Behavior" path="layout-grid/behavior.tsx">
   <BehaviorExample />
 </Example>
 
@@ -142,7 +142,7 @@ A fluid grid essentially ignores any maximum width. The grid will continue to ex
 
 The `behavior` prop is not responsive. This is because, below the maximum width, both `fluid` and `fixed` grids are identical.
 
-<Example title="Custom" path="layout-grid/custom.js">
+<Example title="Custom" path="layout-grid/custom.tsx">
   <CustomExample />
 </Example>
 
@@ -174,7 +174,7 @@ Note how these are defined in a similar fashion to responsive props. Each value 
 
 If you want to customize the breakpoints of the grid, you can do so via the `breakpoints` and `mediaQuery` properties. The grid will always pull breakpoints from the theme and correlate responsive props with those breakpoints.
 
-<Example title="Unit" path="layout-grid/unit.js">
+<Example title="Unit" path="layout-grid/unit.tsx">
   <UnitExample />
 </Example>
 
@@ -199,13 +199,13 @@ The above change will apply to every grid within the theme's subtree. If you wan
 </Grid>
 ```
 
-<Example title="Compact" path="layout-grid/compact.js">
+<Example title="Compact" path="layout-grid/compact.tsx">
   <CompactExample />
 </Example>
 
 If your application has a high density of data or otherwise requires tighter spacing, we provide a compact version of the layout grid, which can be specified with the `gridStyle` prop. This version features smaller gutters and margins, and unlike the default layout grid, it will ignore the grid values provided in your theme. However, you can still override them by manually passing props to `Grid` and `Cell`.
 
-<Example title="Overrides" path="layout-grid/overrides.js">
+<Example title="Overrides" path="layout-grid/overrides.tsx">
   <OverridesExample />
 </Example>
 

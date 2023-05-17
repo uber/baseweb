@@ -11,9 +11,9 @@ import Exports from '../../components/exports';
 
 import * as AspectRatioBoxExports from 'baseui/aspect-ratio-box';
 
-import AspectRatioBoxBasic from 'examples/aspect-ratio-box/basic.js';
-import AspectRatioBoxCalendar from 'examples/aspect-ratio-box/calendar.js';
-import AspectRatioBoxImage from 'examples/aspect-ratio-box/image.js';
+import AspectRatioBoxBasic from 'examples/aspect-ratio-box/basic.tsx';
+import AspectRatioBoxCalendar from 'examples/aspect-ratio-box/calendar.tsx';
+import AspectRatioBoxImage from 'examples/aspect-ratio-box/image.tsx';
 
 export default Layout;
 
@@ -25,19 +25,19 @@ Note: **AspectRatioBox** and **AspectRatioBoxBody** components are both implemen
 
 ## Examples
 
-<Example title="Basic usage" path="aspect-ratio-box/basic.js">
+<Example title="Basic usage" path="aspect-ratio-box/basic.tsx">
   <AspectRatioBoxBasic />
 </Example>
 
 It can be useful to wrap an image component in an **AspectRatioBox**, so content does not reflow as the image loads. This is useful when building UIs for mobile devices, to avoid content moving around as images load on poor network connections.
 
-<Example title="Image in an AspectRatioBox" path="aspect-ratio-box/image.js">
+<Example title="Image in an AspectRatioBox" path="aspect-ratio-box/image.tsx">
   <AspectRatioBoxImage />
 </Example>
 
 You could even build a calendar of square buttons with it, that resizes with the window width!
 
-<Example title="Full-width calendar" path="aspect-ratio-box/calendar.js">
+<Example title="Full-width calendar" path="aspect-ratio-box/calendar.tsx">
   <AspectRatioBoxCalendar />
 </Example>
 

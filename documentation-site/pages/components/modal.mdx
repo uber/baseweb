@@ -9,11 +9,11 @@ import Example from '../../components/example';
 import Layout from '../../components/layout';
 import Exports from '../../components/exports';
 
-import ModalBasic from 'examples/modal/basic.js';
-import ModalAutoFocus from 'examples/modal/autofocus.js';
-import ModalBuriedInteractiveElement from 'examples/modal/buried-interactive-element.js';
-import ModalNested from 'examples/modal/nested.js';
-import ModalSized from 'examples/modal/sized.js';
+import ModalBasic from 'examples/modal/basic.tsx';
+import ModalAutoFocus from 'examples/modal/autofocus.tsx';
+import ModalBuriedInteractiveElement from 'examples/modal/buried-interactive-element.tsx';
+import ModalNested from 'examples/modal/nested.tsx';
+import ModalSized from 'examples/modal/sized.tsx';
 import * as ModalExports from 'baseui/modal';
 
 import Yard from '../../components/yard/index';
@@ -55,11 +55,11 @@ We have built in functionality based on the recommendations for dialogs and moda
 
 ## Examples
 
-<Example title="Modal With Button Trigger" path="modal/basic.js">
+<Example title="Modal With Button Trigger" path="modal/basic.tsx">
   <ModalBasic />
 </Example>
 
-<Example title="Placing initial focus" path="modal/autofocus.js">
+<Example title="Placing initial focus" path="modal/autofocus.tsx">
   <ModalAutoFocus />
 </Example>
 
@@ -67,7 +67,7 @@ The modal will by default focus the first interactive element.
 If you want to focus something further down in the tab order, you can use the `autoFocus` property.
 This might be useful for targeting the most common action in the modal, such as a confirmation button.
 
-<Example title="Setting the size of the modal" path="modal/sized.js">
+<Example title="Setting the size of the modal" path="modal/sized.tsx">
   <ModalSized />
 </Example>
 
@@ -75,7 +75,7 @@ A typical use case for more complex modals is to increase the size of the modal.
 
 <Example
   title="Dealing with a buried interactive element"
-  path="modal/buried-interactive-element.js"
+  path="modal/buried-interactive-element.tsx"
 >
   <ModalBuriedInteractiveElement />
 </Example>
@@ -90,7 +90,7 @@ To use it, wrap a non interactive element at the top of the modal in `FocusOnce`
 This will allow the element to be targeted by `autoFocus`.
 Once the user tabs away, the element will be removed from the tab ordering.
 
-<Example title="Adding nested modals" path="modal/nested.js">
+<Example title="Adding nested modals" path="modal/nested.tsx">
   <ModalNested />
 </Example>
 

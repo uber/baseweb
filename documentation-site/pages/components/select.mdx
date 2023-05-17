@@ -9,24 +9,24 @@ import Example from '../../components/example';
 import Layout from '../../components/layout';
 import Exports from '../../components/exports';
 
-import SelectUncontrolled from 'examples/select/uncontrolled.js';
-import SelectSizes from 'examples/select/sizes.js';
-import SelectControlled from 'examples/select/controlled.js';
-import SelectOverridden from 'examples/select/overridden.js';
-import SelectLabel from 'examples/select/label.js';
-import SelectInModal from 'examples/select/in-modal.js';
-import SelectNative from 'examples/select/native.js';
-import SelectSinglePickSearch from 'examples/select/search-single-pick.js';
-import SelectMultiPickSearch from 'examples/select/search-multi-pick.js';
-import SelectWithManyOptions from 'examples/select/with-many-options.js';
-import SelectCreatable from 'examples/select/creatable.js';
-import SelectCreatableMulti from 'examples/select/creatable-multi.js';
-import SelectOverriddenDropdown from 'examples/select/overridden-dropdown.js';
-import SelectGrouped from 'examples/select/grouped.js';
-import SelectAsyncOptions from 'examples/select/async-options.js';
-import SelectFocus from 'examples/select/focus.js';
-import SelectDropdown from 'examples/select/control-ref-dropdown.js';
-import SelectInputValue from 'examples/select/control-ref-input-value.js';
+import SelectUncontrolled from 'examples/select/uncontrolled.tsx';
+import SelectSizes from 'examples/select/sizes.tsx';
+import SelectControlled from 'examples/select/controlled.tsx';
+import SelectOverridden from 'examples/select/overridden.tsx';
+import SelectLabel from 'examples/select/label.tsx';
+import SelectInModal from 'examples/select/in-modal.tsx';
+import SelectNative from 'examples/select/native.tsx';
+import SelectSinglePickSearch from 'examples/select/search-single-pick.tsx';
+import SelectMultiPickSearch from 'examples/select/search-multi-pick.tsx';
+import SelectWithManyOptions from 'examples/select/with-many-options.tsx';
+import SelectCreatable from 'examples/select/creatable.tsx';
+import SelectCreatableMulti from 'examples/select/creatable-multi.tsx';
+import SelectOverriddenDropdown from 'examples/select/overridden-dropdown.tsx';
+import SelectGrouped from 'examples/select/grouped.tsx';
+import SelectAsyncOptions from 'examples/select/async-options.tsx';
+import SelectFocus from 'examples/select/focus.tsx';
+import SelectDropdown from 'examples/select/control-ref-dropdown.tsx';
+import SelectInputValue from 'examples/select/control-ref-input-value.tsx';
 
 import { StatefulSelect, TYPE } from 'baseui/select';
 import * as SelectExports from 'baseui/select';
@@ -51,7 +51,7 @@ Note: by default, `id` and `label` are default properties that Select components
 
 ## Examples
 
-<Example title="Select basic usage" path="select/controlled.js">
+<Example title="Select basic usage" path="select/controlled.tsx">
   <SelectControlled />
 </Example>
 
@@ -60,84 +60,84 @@ Things to note in the example source code:
 - the `value` is always an `Array` to provide a consistent interface - no matter if you use multi or single selects,
 - you have to call `setState` with the entire object, not just the `id` value.
 
-<Example title="Select as single-pick search" path="select/search-single-pick.js">
+<Example title="Select as single-pick search" path="select/search-single-pick.tsx">
   <SelectSinglePickSearch />
 </Example>
 
 When type is 'search' a magnifying glass icon will be rendered to the input's left and a dropdown
 arrow will not be rendered to the right.
 
-<Example title="Select with custom labels" path="select/label.js">
+<Example title="Select with custom labels" path="select/label.tsx">
   <SelectLabel />
 </Example>
 
-<Example title="Select creatable" path="select/creatable.js">
+<Example title="Select creatable" path="select/creatable.tsx">
   <SelectCreatable />
 </Example>
 
 The creatable select enables users to create new options along with choosing
 existing options.
 
-<Example title="Select as multi-pick search" path="select/search-multi-pick.js">
+<Example title="Select as multi-pick search" path="select/search-multi-pick.tsx">
   <SelectMultiPickSearch />
 </Example>
 
-<Example title="Select creatable multi-pick" path="select/creatable-multi.js">
+<Example title="Select creatable multi-pick" path="select/creatable-multi.tsx">
   <SelectCreatableMulti />
 </Example>
 
-<Example title="Select sizes" path="select/sizes.js">
+<Example title="Select sizes" path="select/sizes.tsx">
   <SelectSizes />
 </Example>
 
-<Example title="Select with grouped options" path="select/grouped.js">
+<Example title="Select with grouped options" path="select/grouped.tsx">
   <SelectGrouped />
 </Example>
 
-<Example title="Select similar to native select" path="select/native.js">
+<Example title="Select similar to native select" path="select/native.tsx">
   <SelectNative />
 </Example>
 
-<Example title="Imperatively control input focus" path="select/focus.js">
+<Example title="Imperatively control input focus" path="select/focus.tsx">
   <SelectFocus />
 </Example>
 
-<Example title="Imperatively control dropdown" path="select/control-ref-dropdown.js">
+<Example title="Imperatively control dropdown" path="select/control-ref-dropdown.tsx">
   <SelectDropdown />
 </Example>
 
-<Example title="Imperatively control input value" path="select/control-ref-input-value.js">
+<Example title="Imperatively control input value" path="select/control-ref-input-value.tsx">
   <SelectInputValue />
 </Example>
 
 The `controlRef` prop gives developers imperative control over internal behavior via the
 following methods: `setInputFocus`, `setInputBlur`, `setDropdownOpen`, and `setInputValue`.
 
-<Example title="Select uncontrolled example" path="select/uncontrolled.js">
+<Example title="Select uncontrolled example" path="select/uncontrolled.tsx">
   <SelectUncontrolled />
 </Example>
 
 <Example
   title="Select with many options"
-  path="select/with-many-options.js"
+  path="select/with-many-options.tsx"
   additionalPackages={{ 'react-window': '^1.8.5' }}
 >
   <SelectWithManyOptions />
 </Example>
 
-<Example title="Select with async options" path="select/async-options.js">
+<Example title="Select with async options" path="select/async-options.tsx">
   <SelectAsyncOptions />
 </Example>
 
-<Example title="Select in a modal dialog" path="select/in-modal.js">
+<Example title="Select in a modal dialog" path="select/in-modal.tsx">
   <SelectInModal />
 </Example>
 
-<Example title="Select with overridden menu" path="select/overridden.js">
+<Example title="Select with overridden menu" path="select/overridden.tsx">
   <SelectOverridden />
 </Example>
 
-<Example title="Select dropdown overrides" path="select/overridden-dropdown.js">
+<Example title="Select dropdown overrides" path="select/overridden-dropdown.tsx">
   <SelectOverriddenDropdown />
 </Example>
 

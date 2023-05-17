@@ -9,15 +9,15 @@ import Example from '../../components/example';
 import Exports from '../../components/exports';
 import Layout from '../../components/layout';
 import SEO from '../../components/meta-seo';
-import BasicAccordion from 'examples/accordion/basic.js';
-import StatefulPanelExample from 'examples/accordion/stateful-panel.js';
-import AccordionSEO from 'examples/accordion/renderpanelcontent.js';
-import CustomPanel from 'examples/accordion/custom.js';
-import StatelessAccordion from 'examples/accordion/stateless.js';
-import CustomTitle from 'examples/accordion/title.js';
+import BasicAccordion from 'examples/accordion/basic.tsx';
+import StatefulPanelExample from 'examples/accordion/stateful-panel.tsx';
+import AccordionSEO from 'examples/accordion/renderpanelcontent.tsx';
+import CustomPanel from 'examples/accordion/custom.tsx';
+import StatelessAccordion from 'examples/accordion/stateless.tsx';
+import CustomTitle from 'examples/accordion/title.tsx';
 
 import * as AccordionExports from 'baseui/accordion';
-import * as PanelExports from 'baseui/accordion/panel.js';
+import * as PanelExports from 'baseui/accordion/panel';
 import { Accordion, Panel } from 'baseui/accordion';
 
 import Yard from '../../components/yard/index';
@@ -46,27 +46,27 @@ Accordions display a list of high-level options that can expand/contract to reve
 
 ## Examples
 
-<Example title="Custom Accordion" path="accordion/custom.js">
+<Example title="Custom Accordion" path="accordion/custom.tsx">
   <CustomPanel />
 </Example>
 
-<Example title="Accordion basic usage" path="accordion/basic.js">
+<Example title="Accordion basic usage" path="accordion/basic.tsx">
   <BasicAccordion />
 </Example>
 
-<Example title="Accordion custom title" path="accordion/title.js">
+<Example title="Accordion custom title" path="accordion/title.tsx">
   <CustomTitle />
 </Example>
 
-<Example title="Accordion SEO Friendly" path="accordion/renderpanelcontent.js">
+<Example title="Accordion SEO Friendly" path="accordion/renderpanelcontent.tsx">
   <AccordionSEO />
 </Example>
 
-<Example title="Using a stateful panel component on it's own" path="accordion/stateful-panel.js">
+<Example title="Using a stateful panel component on it's own" path="accordion/stateful-panel.tsx">
   <StatefulPanelExample />
 </Example>
 
-<Example title="Stateless Accordion" path="accordion/stateless.js">
+<Example title="Stateless Accordion" path="accordion/stateless.tsx">
   <StatelessAccordion />
 </Example>
 

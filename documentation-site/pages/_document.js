@@ -14,16 +14,26 @@ import { styletron } from '../helpers/styletron';
 import { GA_ID } from '../helpers/ga';
 
 export default class MyDocument extends Document {
-  static getInitialProps(props) {
-    const page = props.renderPage((App) => (props) => (
-      <StyletronProvider value={styletron}>
-        <App {...props} />
-      </StyletronProvider>
-    ));
+  static async getInitialProps(context) {
+    const renderPage = () =>
+      context.renderPage({
+        enhanceApp: (App) => (props) =>
+          (
+            <StyletronProvider value={styletron}>
+              <App {...props} />
+            </StyletronProvider>
+          ),
+      });
     const stylesheets = styletron.getStylesheets() || [];
 
     const isProduction = process.env.NODE_ENV === 'production';
-    return { ...page, stylesheets, isProduction };
+
+    const initialProps = await Document.getInitialProps({
+      ...context,
+      renderPage,
+    });
+
+    return { ...initialProps, stylesheets, isProduction };
   }
 
   setGoogleTags() {

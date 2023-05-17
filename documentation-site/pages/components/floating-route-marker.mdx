@@ -13,12 +13,12 @@ import FloatingMarkerContainer from '../../components/floating-marker-container'
 import Yard from '../../components/yard/index';
 import floatingRouteMarkerYardConfig from '../../components/yard/config/floating-route-marker';
 
-import Basic from 'examples/floating-route-marker/basic.js';
-import SecondaryLabel from 'examples/floating-route-marker/secondary-label.js';
-import StartEndEnhacer from 'examples/floating-route-marker/start-end-enhancer.js';
-import CustomColorOverrides from 'examples/floating-route-marker/custom-color-overrides.js';
-import ChangingPointerPositions from 'examples/floating-route-marker/changing-pointer-positions.js';
-import ReactMapGL from 'examples/floating-route-marker/react-map-gl.js';
+import Basic from 'examples/floating-route-marker/basic.tsx';
+import SecondaryLabel from 'examples/floating-route-marker/secondary-label.tsx';
+import StartEndEnhacer from 'examples/floating-route-marker/start-end-enhancer.tsx';
+import CustomColorOverrides from 'examples/floating-route-marker/custom-color-overrides.tsx';
+import ChangingPointerPositions from 'examples/floating-route-marker/changing-pointer-positions.tsx';
+import ReactMapGL from 'examples/floating-route-marker/react-map-gl.tsx';
 
 import * as FloatingRouteMarkerExports from 'baseui/map-marker';
 
@@ -74,7 +74,7 @@ A helper function `calculateFloatingRouteMarkerOffsets` is available to easily p
 
 ## Examples
 
-<Example title="Basic usage" path="floating-route-marker/basic.js">
+<Example title="Basic usage" path="floating-route-marker/basic.tsx">
   <FloatingMarkerContainer>
     <Basic />
   </FloatingMarkerContainer>
@@ -82,7 +82,7 @@ A helper function `calculateFloatingRouteMarkerOffsets` is available to easily p
 
 A floating route map marker with only a label.
 
-<Example title="Primary and secondary labels" path="floating-route-marker/secondary-label.js">
+<Example title="Primary and secondary labels" path="floating-route-marker/secondary-label.tsx">
   <FloatingMarkerContainer>
     <SecondaryLabel />
   </FloatingMarkerContainer>
@@ -90,7 +90,7 @@ A floating route map marker with only a label.
 
 A floating route map marker with a primary label and a secondary label.
 
-<Example title="Start and end enhancers" path="floating-route-marker/start-end-enhancer.js">
+<Example title="Start and end enhancers" path="floating-route-marker/start-end-enhancer.tsx">
   <FloatingMarkerContainer>
     <StartEndEnhacer />
   </FloatingMarkerContainer>
@@ -98,7 +98,7 @@ A floating route map marker with a primary label and a secondary label.
 
 A floating route map marker with both a start and end enhancer.
 
-<Example title="Custom color overrides" path="floating-route-marker/custom-color-overrides.js">
+<Example title="Custom color overrides" path="floating-route-marker/custom-color-overrides.tsx">
   <CustomColorOverrides />
 </Example>
 
@@ -108,14 +108,14 @@ To customize the color of the pointer, use the property `fill` instead of `backg
 
 <Example
   title="Changing pointer positions"
-  path="floating-route-marker/changing-pointer-positions.js"
+  path="floating-route-marker/changing-pointer-positions.tsx"
 >
   <ChangingPointerPositions />
 </Example>
 
 A floating route marker that cycles through the different pointer positions every three seconds.
 
-<Example title="Usage with react-map-gl" path="floating-route-marker/react-map-gl.js">
+<Example title="Usage with react-map-gl" path="floating-route-marker/react-map-gl.tsx">
   <ReactMapGL />
 </Example>
 

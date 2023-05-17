@@ -9,10 +9,10 @@ import Example from '../../components/example';
 import Layout from '../../components/layout';
 import JSON from '../../components/json';
 import en_US from 'baseui/locale/en_US.js';
-import {Notification} from 'baseui/notification';
+import { Notification } from 'baseui/notification';
 
-import LocaleProviderExample from 'examples/internationalization/example.js';
-import DatepickerLocalizationExample from 'examples/datepicker/i18n.js';
+import LocaleProviderExample from 'examples/internationalization/example.tsx';
+import DatepickerLocalizationExample from 'examples/datepicker/i18n.tsx';
 
 export default Layout;
 
@@ -20,9 +20,9 @@ export default Layout;
 
 Base Web publishes a language translation utility called `LocaleProvider` so that strings required
 to display components can be configured to best support website visitors from non-English-speaking
-locations. Please note that some factors of internationalization are not taken care of here, including 
+locations. Please note that some factors of internationalization are not taken care of here, including
 pluralization, currency, and list formatting. If you need that support, check out the
-[Intl](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl) API. 
+[Intl](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl) API.
 Date and time formatting are customized with
 [date-fns internationalization tools](https://date-fns.org/v2.15.0/docs/I18n).
 
