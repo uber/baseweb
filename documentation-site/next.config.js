@@ -47,6 +47,8 @@ module.exports = withMDX({
       ],
     });
 
+    config.optimization.splitChunks.maxSize = 20_000;
+
     config.resolve.alias.baseui = resolve(__dirname, '../dist');
     config.resolve.alias.examples = resolve(__dirname, 'examples');
     // references next polyfills example: https://github.com/zeit/next.js/tree/canary/examples/with-polyfills
