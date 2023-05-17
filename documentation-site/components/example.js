@@ -34,36 +34,21 @@ type PropsT = {
 
 function Example(props: PropsT) {
   const { additionalPackages = {}, path, children, title = null } = props;
-
-  // Which language the example should be displayed in.
-  const [selectedLanguage, setSelectedLanguage] = React.useState(-1);
-
+  const [isOpen, setIsOpen] = React.useState(false);
   // The example code for each of our three supported languages.
-  const [code, setCode] = React.useState({
-    js: null,
-    ts: null,
-  });
+  const [code, setCode] = React.useState(null);
 
   // Load example code for various languages on initial mount.
   React.useEffect(() => {
     (async () => {
       const tsCode = await import(/* webpackMode: "eager" */ `!!raw-loader!../examples/${path}`);
-      // TODO: fix this
-      // const jsCode = await import(
-      //   /* webpackMode: "eager" */ `!!raw-loader!remove-flow-types-loader?pretty!../examples/${path}`
-      // );
-      const jsCode = { default: 'nothing to see here' };
-
-      setCode({
-        ts: tsCode.default,
-        js: jsCode.default,
-      });
+      setCode(tsCode.default);
     })();
   }, []);
 
   async function handleOpenExample() {
-    if (code.js) {
-      const url = await deploy(`Base Web - ${title || 'Example'}`, code.js, additionalPackages);
+    if (code) {
+      const url = await deploy(`Base Web - ${title || 'Example'}`, code, additionalPackages);
       if (url) {
         window.open(url, '_blank');
       }
@@ -97,44 +82,22 @@ function Example(props: PropsT) {
       {children}
 
       <Block paddingTop="scale400">
-        <ButtonGroup
-          mode="radio"
-          size={SIZE.compact}
-          selected={selectedLanguage}
+        <Button
+          kind={KIND.secondary}
+          startEnhancer={() => <CodeIcon />}
           onClick={(event, index) => {
-            if (selectedLanguage !== index) {
-              setSelectedLanguage(index);
-            } else {
-              setSelectedLanguage(-1);
-            }
+            trackEvent('show_ts_source', title);
+            setIsOpen((p) => !p);
           }}
         >
-          <Button
-            kind={KIND.secondary}
-            startEnhancer={() => <CodeIcon />}
-            onClick={() => {
-              trackEvent('show_js_source', title);
-            }}
-          >
-            JS
-          </Button>
-          <Button
-            kind={KIND.secondary}
-            startEnhancer={() => <CodeIcon />}
-            onClick={() => {
-              trackEvent('show_ts_source', title);
-            }}
-          >
-            TS
-          </Button>
-        </ButtonGroup>
+          Code
+        </Button>
       </Block>
 
-      {selectedLanguage > -1 && (
+      {isOpen && (
         <React.Fragment>
-          <Block overflow="scrollX">
-            {selectedLanguage === 0 && <Source>{code.js}</Source>}
-            {selectedLanguage === 1 && <Source>{code.ts}</Source>}
+          <Block>
+            <Source>{code}</Source>
           </Block>
           <Button kind={KIND.secondary} size={SIZE.compact} onClick={handleOpenExample}>
             Try example on CodeSandbox
