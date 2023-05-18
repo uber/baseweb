@@ -11,7 +11,6 @@ import en_US from '../en_US';
 import tr_TR from '../tr_TR';
 
 describe('LocaleProvider', () => {
-  // @ts-ignore
   const ExpectLocaleComponent = ({ expectedValue }) => {
     const locale = React.useContext(LocaleContext);
     expect(locale).toEqual(expectedValue);
@@ -28,13 +27,23 @@ describe('LocaleProvider', () => {
   });
 
   it('locale provider inherits from parent', () => {
-    expect.assertions(2);
-    const override = { breadcrumbs: { ariaLabel: 'TEST' }, newProperty: { nestedProperty: 'a ' } };
+    expect.assertions(4);
+    const overrideKey = 'datepicker';
+    const override = {
+      [overrideKey]: { ariaLabel: 'TEST' },
+      newProperty: { nestedProperty: 'a ' },
+    };
     const expectedValue = {
       ...tr_TR,
       ...override,
-      breadcrumbs: { ...tr_TR.breadcrumbs, ...override.breadcrumbs },
+      [overrideKey]: { ...tr_TR[overrideKey], ...override[overrideKey] },
     };
+
+    // this test passed previously because the overwritten key only had one property
+    // this made it look like the fields were merged when in fact only overwritten
+    const keyLength = (x) => Object.keys(x).length;
+    expect(keyLength(expectedValue[overrideKey])).toBeGreaterThan(2);
+    expect(keyLength(expectedValue[overrideKey])).toBeGreaterThan(keyLength(override[overrideKey]));
 
     render(
       <LocaleProvider locale={tr_TR}>
