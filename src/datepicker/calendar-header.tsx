@@ -482,6 +482,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
               }
             }}
             {...monthYearSelectButtonProps}
+            aria-label={`Month, ${monthTitle}`}
           >
             {monthTitle}
 
@@ -552,6 +553,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
                 this.setState({ isYearDropdownOpen: false });
               }
             }}
+            aria-label={`Year, ${yearTitle}`}
             {...monthYearSelectButtonProps}
           >
             {yearTitle}
@@ -606,13 +608,13 @@ export default class CalendarHeader<T = Date> extends React.Component<
                   {WEEKDAYS.map((offset) => {
                     const day = this.dateHelpers.addDays(startOfWeek, offset);
                     return (
-                      <WeekdayHeader
-                        key={offset}
-                        alt={this.dateHelpers.getWeekdayInLocale(day, this.props.locale)}
-                        {...weekdayHeaderProps}
-                        $density={density}
-                      >
-                        {this.dateHelpers.getWeekdayMinInLocale(day, this.props.locale)}
+                      <WeekdayHeader key={offset} {...weekdayHeaderProps} $density={density}>
+                        <abbr
+                          style={{ textDecoration: 'none' }}
+                          title={this.dateHelpers.getWeekdayInLocale(day, this.props.locale)}
+                        >
+                          {this.dateHelpers.getWeekdayMinInLocale(day, this.props.locale)}
+                        </abbr>
                       </WeekdayHeader>
                     );
                   })}

@@ -66,6 +66,9 @@ export type DatepickerOverridesT = {
   StartDate?: OverrideT,
   EndDate?: OverrideT,
   InputLabel?: OverrideT,
+  ButtonDock?: OverrideT,
+  PrimaryButton?: OverrideT,
+  SecondaryButton?: OverrideT,
 };
 
 export type DayPropsT<T = Date> = {
@@ -209,6 +212,16 @@ export type CalendarPropsT<T = Date> = {
   fixedHeight?: boolean,
   /** Determines whether user clicked startDate or endDate input to trigger calendar open */
   selectedInput?: InputRoleT,
+  /** Primary button on the action dock */
+  primaryButton?: {
+    label: React.Node,
+    onClick: () => mixed,
+  },
+  /** Secondary button on the action dock */
+  secondaryButton?: {
+    label: React.Node,
+    onClick: () => mixed,
+  },
 };
 
 export type HeaderPropsT<T = Date> = CalendarPropsT<T> & {

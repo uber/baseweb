@@ -64,6 +64,9 @@ export type DatepickerOverrides = {
   StartDate?: Override;
   EndDate?: Override;
   InputLabel?: Override;
+  ButtonDock?: Override;
+  PrimaryButton?: Override;
+  SecondaryButton?: Override;
 };
 
 export type DayProps<T = Date> = {
@@ -206,6 +209,16 @@ export type CalendarProps<T = Date> = {
   fixedHeight?: boolean;
   /** Determines whether user clicked startDate or endDate input to trigger calendar open */
   selectedInput?: InputRole;
+  /** Primary button on the action dock */
+  primaryButton?: {
+    label: React.ReactNode;
+    onClick: () => unknown;
+  };
+  /** Secondary button on the action dock */
+  secondaryButton?: {
+    label: React.ReactNode;
+    onClick: () => unknown;
+  };
 };
 
 export type HeaderProps<T = Date> = CalendarProps<T> & {
