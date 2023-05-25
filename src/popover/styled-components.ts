@@ -83,12 +83,30 @@ export function getArrowStyles(
   }
 ): StyleObject {
   const { $arrowOffset, $placement, $theme } = props;
+  let arrowRotation = 0;
+  switch ($placement) {
+    case 'left':
+      arrowRotation = 45;
+      break;
+    case 'top':
+      arrowRotation = 134;
+      break;
+    case 'right':
+      arrowRotation = 225;
+      break;
+    case 'bottom':
+      arrowRotation = 315;
+      break;
+    default:
+      console.error(`Unsupported arrowRotation: ${$placement}`);
+  }
   return {
     backgroundColor: $theme.colors.backgroundTertiary,
     boxShadow: $theme.lighting.shadow600,
+    clipPath: 'polygon(0 0, 100% 0, 100% 100%)',
     width: `${ARROW_WIDTH}px`,
     height: `${ARROW_WIDTH}px`,
-    transform: 'rotate(45deg)',
+    transform: `rotate(${arrowRotation}deg)`,
     position: 'absolute',
     ...getArrowPositionStyles($arrowOffset, $placement),
   };
