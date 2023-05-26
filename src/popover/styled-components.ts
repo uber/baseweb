@@ -85,6 +85,9 @@ export function getArrowStyles(
   const { $arrowOffset, $placement, $theme } = props;
   let arrowRotation = 0;
   switch ($placement) {
+    case 'auto':
+      arrowRotation = 0;
+      break;
     case 'left':
       arrowRotation = 45;
       break;
