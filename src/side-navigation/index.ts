@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 export { default as Navigation } from './nav';
 export { default as NavItem } from './nav-item';
+export * from './side-navigation-next';
 // Styled elements
 export * from './styled-components';
 // Types
