@@ -155,6 +155,9 @@ export type CoreExtensionSemanticColorTokensT = {|
   borderNegative: string,
   borderWarning: string,
   borderPositive: string,
+  borderNegativeLight: string,
+  borderWarningLight: string,
+  borderPositiveLight: string,
 
   // Programs
   safety: string,
