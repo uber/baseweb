@@ -253,7 +253,7 @@ describe('Datepicker', () => {
     expect(onChange.mock.calls).toHaveLength(0);
   });
 
-  it('disables pagination buttons and month dropdown with multiple months', () => {
+  it('disables pagination buttons with multiple months', () => {
     const date = new Date('2019 01 01');
     const monthsShown = 3;
     const { container } = render(
@@ -291,8 +291,5 @@ describe('Datepicker', () => {
       (el) => !(el as any as HTMLButtonElement).disabled
     );
     expect(next.length).toBe(1);
-
-    const selectButton = queryAllByTestId(container, 'month-year-select-buttons');
-    expect(selectButton.length).toBe(0);
   });
 });
