@@ -92,7 +92,7 @@ export function getArrowStyles(
       arrowRotation = 45;
       break;
     case 'top':
-      arrowRotation = 134;
+      arrowRotation = 135;
       break;
     case 'right':
       arrowRotation = 225;
