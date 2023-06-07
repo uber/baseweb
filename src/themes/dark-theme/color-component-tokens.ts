@@ -68,7 +68,7 @@ export default (themePrimitives: ColorTokens = colorTokens): ComponentColorToken
 
   calendarForeground: themePrimitives.white,
   calendarForegroundDisabled: themePrimitives.mono300,
-  calendarHeaderBackground: themePrimitives.primary700,
+  calendarHeaderBackground: themePrimitives.mono800,
   calendarHeaderForeground: themePrimitives.primary,
   calendarHeaderBackgroundActive: themePrimitives.primary600,
   calendarHeaderForegroundDisabled: themePrimitives.primary500,

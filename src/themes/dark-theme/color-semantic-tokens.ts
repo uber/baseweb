@@ -81,6 +81,9 @@ export default (
     borderNegative: colors.red500,
     borderWarning: colors.yellow500,
     borderPositive: colors.green500,
+    borderNegativeLight: colors.red200,
+    borderWarningLight: colors.yellow200,
+    borderPositiveLight: colors.green200,
 
     // Programs
     safety: colors.blue400,
