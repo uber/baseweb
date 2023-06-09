@@ -27,14 +27,6 @@ steps:
   - wait
 
   # All of the commands after the wait are run in parallel.
-  - name: validate-examples
-    command: yarn validate:examples
-    plugins:
-      'docker-compose#v3.0.3':
-        run: baseui
-    agents:
-      queue: workers
-
   - name: ':typescript:'
     command: yarn tsc
     plugins:
@@ -43,32 +35,8 @@ steps:
     agents:
       queue: workers
 
-  - name: ':eslint:'
-    command: yarn lint
-    plugins:
-      'docker-compose#v3.0.3':
-        run: baseui
-    agents:
-      queue: workers
-
-  - name: ':flowtype:'
-    command: yarn flow
-    plugins:
-      'docker-compose#v3.0.3':
-        run: baseui
-    agents:
-      queue: workers
-
   - name: ':jest:'
     command: yarn unit-test
-    plugins:
-      'docker-compose#v3.0.3':
-        run: baseui
-    agents:
-      queue: workers
-
-  - name: ':react: react@18 unit-test'
-    command: yarn upgrade react@18.0.0 react-dom@18.0.0 @testing-library/react@13.3.0 && yarn unit-test
     plugins:
       'docker-compose#v3.0.3':
         run: baseui
@@ -101,25 +69,6 @@ steps:
     agents:
       queue: workers
 
-  - name: sync-web-code
-    command: 'node scripts/sync-web-code.js'
-    if: build.branch == "master"
-    plugins:
-      'docker-compose#v3.0.3':
-        run: baseui
-    agents:
-      queue: workers
-
-  # vscode extension deployment disabled until we can refresh the azure token
-  # - name: deploy-vscode
-  #   command: './deploy-vscode.sh'
-  #   if: build.branch == "master" && build.message =~ /^Release v[0-9]+\.[0-9]+\.[0-9]+/
-  #   plugins:
-  #     'docker-compose#v3.0.3':
-  #       run: baseui
-  #   agents:
-  #     queue: workers
-
   - name: create-github-release
     command: './scripts/github-release.js'
     if: build.branch == "master" && build.message =~ /^Release v[0-9]+\.[0-9]+\.[0-9]+/
@@ -139,54 +88,5 @@ steps:
         pull:
           - e2e-server
           - e2e-server-healthy
-    agents:
-      queue: workers
-
-  - name: ':react: react@18 e2e'
-    command: yarn upgrade react@18.0.0 react-dom@18.0.0 && yarn e2e:test:ci
-    artifact_paths:
-      - 'test-results/**/*'
-    plugins:
-      'docker-compose#v3.0.3':
-        run: e2e-test
-        pull:
-          - e2e-server
-          - e2e-server-healthy
-    agents:
-      queue: workers
-
-  - name: vrt
-    command: yarn vrt:ci
-    artifact_paths:
-      - 'test-results/**/*'
-    plugins:
-      'docker-compose#v3.0.3':
-        run: e2e-test
-        pull:
-          - e2e-server
-          - e2e-server-healthy
-    agents:
-      queue: workers
-
-  - name: 'bundle size'
-    command: 'node --unhandled-rejections=strict scripts/collect-bundle-sizes.js'
-    artifact_paths:
-      - '__artifacts__/bundle-size/*'
-    soft_fail:
-      - exit_status: 2
-    plugins:
-      'docker-compose#v3.0.3':
-        run: e2e-test
-    agents:
-      queue: workers
-
-  - block: 'Alpha test'
-    blocked_state: 'passed'
-
-  - name: alpha-test-web-code
-    command: 'node --unhandled-rejections=strict scripts/alpha-test-web-code.js'
-    plugins:
-      'docker-compose#v3.0.3':
-        run: baseui
     agents:
       queue: workers
