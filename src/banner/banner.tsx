@@ -28,21 +28,21 @@ function low(theme, kind) {
     case KIND.negative:
       return {
         actionBackgroundColor: theme.colors.bannerActionLowNegative,
-        backgroundColor: theme.colors.backgroundLightNegative,
+        backgroundColor: theme.colors.backgroundNegativeLight,
         color: theme.colors.contentPrimary,
       };
 
     case KIND.positive:
       return {
         actionBackgroundColor: theme.colors.bannerActionLowPositive,
-        backgroundColor: theme.colors.backgroundLightPositive,
+        backgroundColor: theme.colors.backgroundPositiveLight,
         color: theme.colors.contentPrimary,
       };
 
     case KIND.warning:
       return {
         actionBackgroundColor: theme.colors.bannerActionLowWarning,
-        backgroundColor: theme.colors.backgroundLightWarning,
+        backgroundColor: theme.colors.backgroundWarningLight,
         color: theme.colors.contentPrimary,
       };
 
@@ -50,7 +50,7 @@ function low(theme, kind) {
     default:
       return {
         actionBackgroundColor: theme.colors.bannerActionLowInfo,
-        backgroundColor: theme.colors.backgroundLightAccent,
+        backgroundColor: theme.colors.backgroundAccentLight,
         color: theme.colors.contentPrimary,
       };
   }

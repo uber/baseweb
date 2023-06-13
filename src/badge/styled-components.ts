@@ -39,7 +39,7 @@ function getColorStyles({ $theme, $hierarchy, $color }): {
     [HIERARCHY.secondary]: {
       [COLOR.accent]: {
         color: $theme.colors.contentAccent,
-        backgroundColor: $theme.colors.backgroundLightAccent,
+        backgroundColor: $theme.colors.backgroundAccentLight,
       },
       [COLOR.primary]: {
         color: $theme.colors.primaryA,
@@ -47,15 +47,15 @@ function getColorStyles({ $theme, $hierarchy, $color }): {
       },
       [COLOR.positive]: {
         color: $theme.colors.contentPositive,
-        backgroundColor: $theme.colors.backgroundLightPositive,
+        backgroundColor: $theme.colors.backgroundPositiveLight,
       },
       [COLOR.negative]: {
         color: $theme.colors.contentNegative,
-        backgroundColor: $theme.colors.backgroundLightNegative,
+        backgroundColor: $theme.colors.backgroundNegativeLight,
       },
       [COLOR.warning]: {
         color: $theme.colors.contentWarning,
-        backgroundColor: $theme.colors.backgroundLightWarning,
+        backgroundColor: $theme.colors.backgroundWarningLight,
       },
     },
   };
