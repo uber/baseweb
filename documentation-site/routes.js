@@ -187,6 +187,10 @@ const routes = [
             itemId: '/components/mobile-header',
           },
           {
+            title: 'Page Control',
+            itemId: '/components/page-control',
+          },
+          {
             title: 'Pagination',
             itemId: '/components/pagination',
           },
