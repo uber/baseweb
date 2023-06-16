@@ -132,10 +132,10 @@ export type CoreExtensionSemanticColorTokensT = {|
   backgroundNegative: string,
   backgroundWarning: string,
   backgroundPositive: string,
-  backgroundLightAccent: string,
-  backgroundLightPositive: string,
-  backgroundLightNegative: string,
-  backgroundLightWarning: string,
+  backgroundAccentLight: string,
+  backgroundPositiveLight: string,
+  backgroundNegativeLight: string,
+  backgroundWarningLight: string,
   backgroundAlwaysDark: string,
   backgroundAlwaysLight: string,
 
@@ -155,6 +155,9 @@ export type CoreExtensionSemanticColorTokensT = {|
   borderNegative: string,
   borderWarning: string,
   borderPositive: string,
+  borderNegativeLight: string,
+  borderWarningLight: string,
+  borderPositiveLight: string,
 
   // Programs
   safety: string,

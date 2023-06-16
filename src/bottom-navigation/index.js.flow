@@ -33,11 +33,11 @@ export type NavItemPropsT = {
   overrides?: NavItemOverridesT,
 };
 
-export type OnChangeT = (params: { activeKey: React.Key }) => void;
+export type OnChangeT = (params: { activeKey: number }) => void;
 
 export type BottomNavigationPropsT = {
   children?: React.Node,
-  activeKey?: React.Key,
+  activeKey?: number,
   onChange?: OnChangeT,
   overrides?: BottomNavigationOverridesT,
 };
