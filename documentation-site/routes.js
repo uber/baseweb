@@ -159,6 +159,10 @@ const routes = [
         title: 'Navigation',
         subNav: [
           {
+            title: 'Bottom Navigation',
+            itemId: '/components/bottom-navigation',
+          },
+          {
             title: 'Breadcrumbs',
             itemId: '/components/breadcrumbs',
           },

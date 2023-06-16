@@ -15,7 +15,7 @@ export const StyledFileDragAndDrop = styled<'div', StyleProps>('div', (props) =>
   return {
     alignItems: 'center',
     backgroundColor: props.$isDragActive
-      ? props.$theme.colors.backgroundLightAccent
+      ? props.$theme.colors.backgroundAccentLight
       : props.$theme.colors.fileUploaderBackgroundColor,
     borderLeftColor: borderColor,
     borderRightColor: borderColor,

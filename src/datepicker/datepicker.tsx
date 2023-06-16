@@ -5,6 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
+import { uid } from 'react-uid';
 
 import { MaskedInput } from '../input';
 import { Popover, PLACEMENT, ACCESSIBILITY_TYPE } from '../popover';
@@ -52,6 +53,7 @@ type DatepickerState = {
   isPseudoFocused: boolean;
   lastActiveElm: HTMLElement | undefined | null;
   inputValue?: string;
+  ariaDescribedby: string | null;
 };
 
 export default class Datepicker<T = Date> extends React.Component<
@@ -59,7 +61,7 @@ export default class Datepicker<T = Date> extends React.Component<
   DatepickerState
 > {
   static defaultProps = {
-    'aria-describedby': 'datepicker--screenreader--message--input',
+    'aria-describedby': null,
     // @ts-ignore
     value: null,
     formatString: DEFAULT_DATE_FORMAT,
@@ -67,7 +69,6 @@ export default class Datepicker<T = Date> extends React.Component<
   };
 
   calendar: HTMLElement | undefined | null;
-
   dateHelpers: DateHelpers<T>;
 
   constructor(props: DatepickerProps<T>) {
@@ -81,7 +82,12 @@ export default class Datepicker<T = Date> extends React.Component<
       isPseudoFocused: false,
       lastActiveElm: null,
       inputValue: this.formatDisplayValue(props.value) || '',
+      ariaDescribedby: null, // we initialize this post-mount to prevent SSR hydration issue
     };
+  }
+
+  componentDidMount() {
+    this.setState({ ariaDescribedby: uid(this) });
   }
 
   handleChange: (a: T | undefined | null | Array<T | undefined | null>) => void = (date) => {
@@ -435,6 +441,14 @@ export default class Datepicker<T = Date> extends React.Component<
     return inputValue.replace(/-/g, INPUT_DELIMITER).replace(/—/g, INPUT_DELIMITER);
   };
 
+  generateAriaDescribedByIds = () => {
+    let idList = this.state.ariaDescribedby;
+    if (this.props['aria-describedby']) {
+      idList = `${this.props['aria-describedby']} ${idList}`;
+    }
+    return idList;
+  };
+
   hasLockedBehavior = () => {
     return (
       this.props.rangedCalendarBehavior === RANGED_CALENDAR_BEHAVIOR.locked &&
@@ -484,7 +498,7 @@ export default class Datepicker<T = Date> extends React.Component<
         aria-label={inputLabel}
         error={this.props.error}
         positive={this.props.positive}
-        aria-describedby={this.props['aria-describedby']}
+        aria-describedby={this.generateAriaDescribedByIds()}
         aria-labelledby={this.props['aria-labelledby']}
         aria-required={this.props.required || null}
         disabled={this.props.disabled}
@@ -571,7 +585,7 @@ export default class Datepicker<T = Date> extends React.Component<
             </PopoverComponent>
             <p
               // @ts-ignore
-              id={this.props['aria-describedby']}
+              id={this.state.ariaDescribedby}
               style={{
                 position: 'fixed',
                 width: '0px',

@@ -55,7 +55,7 @@ StyledEndDate.displayName = 'StyledEndDate';
  */
 export const StyledRoot = styled<'div', SharedStyleProps>('div', (props) => {
   const {
-    $theme: { typography, colors, borders },
+    $theme: { typography, colors, borders, sizing },
   } = props;
   return {
     ...typography.font200,
@@ -67,6 +67,10 @@ export const StyledRoot = styled<'div', SharedStyleProps>('div', (props) => {
     borderBottomRightRadius: borders.surfaceBorderRadius,
     borderBottomLeftRadius: borders.surfaceBorderRadius,
     display: 'inline-block',
+    paddingTop: sizing.scale500,
+    paddingBottom: sizing.scale500,
+    paddingLeft: sizing.scale500,
+    paddingRight: sizing.scale500,
   };
 });
 
@@ -82,23 +86,13 @@ export const StyledMonthContainer = styled<
   return {
     display: 'flex',
     flexDirection: $orientation === ORIENTATION.vertical ? 'column' : 'row',
+    gap: '16px',
   };
 });
 
 StyledMonthContainer.displayName = 'StyledMonthContainer';
 
-export const StyledCalendarContainer = styled<'div', SharedStyleProps>('div', (props) => {
-  const {
-    $theme: { sizing },
-    $density,
-  } = props;
-  return {
-    paddingTop: sizing.scale300,
-    paddingBottom: $density === DENSITY.high ? sizing.scale400 : sizing.scale300,
-    paddingLeft: sizing.scale500,
-    paddingRight: sizing.scale500,
-  };
-});
+export const StyledCalendarContainer = styled<'div', SharedStyleProps>('div', {});
 
 StyledCalendarContainer.displayName = 'StyledCalendarContainer';
 
@@ -121,14 +115,11 @@ export const StyledCalendarHeader = styled<'div', SharedStyleProps>('div', (prop
   } = props;
   return {
     ...($density === DENSITY.high ? typography.LabelMedium : typography.LabelLarge),
+    boxSizing: 'border-box',
     color: colors.calendarHeaderForeground,
-    display: 'flex',
-    justifyContent: 'space-between',
+    display: 'grid',
+    gridTemplateColumns: '1fr auto auto 1fr',
     alignItems: 'center',
-    paddingTop: sizing.scale600,
-    paddingBottom: sizing.scale300,
-    paddingLeft: sizing.scale600,
-    paddingRight: sizing.scale600,
     backgroundColor: colors.calendarHeaderBackground,
     borderTopLeftRadius: borders.surfaceBorderRadius,
     borderTopRightRadius: borders.surfaceBorderRadius,
@@ -137,6 +128,7 @@ export const StyledCalendarHeader = styled<'div', SharedStyleProps>('div', (prop
     // account for the left/right arrow heights
     minHeight:
       $density === DENSITY.high ? `calc(${sizing.scale800} + ${sizing.scale0})` : sizing.scale950,
+    width: $density === DENSITY.high ? '100%' : '392px',
   };
 });
 
@@ -144,9 +136,12 @@ StyledCalendarHeader.displayName = 'StyledCalendarHeader';
 
 export const StyledMonthHeader = styled<'div', SharedStyleProps>('div', (props) => {
   return {
+    display: 'flex',
+    justifyContent: 'space-around',
     color: props.$theme.colors.calendarHeaderForeground,
     backgroundColor: props.$theme.colors.calendarHeaderBackground,
     whiteSpace: 'nowrap',
+    width: '100%',
   };
 });
 
@@ -154,7 +149,7 @@ StyledMonthHeader.displayName = 'StyledMonthHeader';
 
 export const StyledMonthYearSelectButton = styled<'button', SharedStyleProps>('button', (props) => {
   const {
-    $theme: { typography, colors },
+    $theme: { typography, colors, sizing },
     $isFocusVisible,
     $density,
   } = props;
@@ -169,6 +164,11 @@ export const StyledMonthYearSelectButton = styled<'button', SharedStyleProps>('b
     color: colors.calendarHeaderForeground,
     cursor: 'pointer',
     display: 'flex',
+    height: $density === DENSITY.high ? '48px' : '56px',
+    paddingTop: $density === DENSITY.high ? sizing.scale400 : sizing.scale550,
+    paddingBottom: $density === DENSITY.high ? sizing.scale400 : sizing.scale550,
+    paddingLeft: $density === DENSITY.high ? sizing.scale500 : sizing.scale600,
+    paddingRight: $density === DENSITY.high ? sizing.scale500 : sizing.scale600,
     outline: 'none',
     ':focus': {
       boxShadow: $isFocusVisible ? `0 0 0 3px ${colors.accent}` : 'none',
@@ -190,8 +190,15 @@ export const StyledMonthYearSelectIconContainer = styled('span', (props) => {
 StyledMonthYearSelectIconContainer.displayName = 'StyledMonthYearSelectIconContainer';
 
 // @ts-ignore
-function getArrowBtnStyle({ $theme, $disabled, $isFocusVisible }): StyleObject {
+function getArrowBtnStyle({
+  $theme,
+  $disabled,
+  $isFocusVisible,
+  $density,
+  $isTrailing,
+}): StyleObject {
   return {
+    alignItems: 'center',
     boxSizing: 'border-box',
     display: 'flex',
     color: $disabled
@@ -203,10 +210,13 @@ function getArrowBtnStyle({ $theme, $disabled, $isFocusVisible }): StyleObject {
     borderRightWidth: 0,
     borderTopWidth: 0,
     borderBottomWidth: 0,
-    paddingTop: '0',
-    paddingBottom: '0',
-    paddingLeft: '0',
-    paddingRight: '0',
+    height: '48px',
+    justifyContent: 'center',
+    justifySelf: $isTrailing ? 'end' : 'start',
+    paddingTop: $density === DENSITY.high ? '6px' : 0,
+    paddingBottom: $density === DENSITY.high ? '6px' : 0,
+    paddingLeft: $density === DENSITY.high ? '6px' : 0,
+    paddingRight: $density === DENSITY.high ? '6px' : 0,
     marginBottom: 0,
     marginTop: 0,
     outline: 'none',
@@ -215,14 +225,21 @@ function getArrowBtnStyle({ $theme, $disabled, $isFocusVisible }): StyleObject {
       : {
           boxShadow: $isFocusVisible ? `0 0 0 3px ${$theme.colors.accent}` : 'none',
         },
+    width: '48px',
   };
 }
 
-export const StyledPrevButton = styled<'button', SharedStyleProps>('button', getArrowBtnStyle);
+export const StyledPrevButton = styled<'button', SharedStyleProps & { $isTrailing: boolean }>(
+  'button',
+  getArrowBtnStyle
+);
 
 StyledPrevButton.displayName = 'StyledPrevButton';
 
-export const StyledNextButton = styled<'button', SharedStyleProps>('button', getArrowBtnStyle);
+export const StyledNextButton = styled<'button', SharedStyleProps & { $isTrailing: boolean }>(
+  'button',
+  getArrowBtnStyle
+);
 
 StyledNextButton.displayName = 'StyledNextButton';
 
@@ -230,6 +247,7 @@ StyledNextButton.displayName = 'StyledNextButton';
 export const StyledMonth = styled<'div', SharedStyleProps>('div', (props: SharedStyleProps) => {
   return {
     display: 'inline-block',
+    width: '100%',
   };
 });
 
@@ -243,6 +261,8 @@ export const StyledWeek = styled<'div', SharedStyleProps>('div', (props) => {
     whiteSpace: 'nowrap',
     display: 'flex',
     marginBottom: sizing.scale0,
+    justifyContent: 'space-around',
+    width: '100%',
   };
 });
 
@@ -260,7 +280,6 @@ function generateDayStyles(defaultCode: string, defaultStyle) {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-// @ts-ignore
 function getDayStyles(code, { colors }): any {
   const undefinedDayStyle = {
     // @ts-ignore
@@ -465,15 +484,30 @@ export const StyledDay = styled<'div', SharedStyleProps>('div', (props) => {
   let height;
   if ($hasDateLabel) {
     if ($density === DENSITY.high) {
-      height = '60px';
+      height = '64px';
     } else {
-      height = '70px';
+      height = '72px';
     }
   } else {
     if ($density === DENSITY.high) {
-      height = '40px';
+      height = '44px';
     } else {
-      height = '48px';
+      height = '52px';
+    }
+  }
+
+  let circleHeight;
+  if ($hasDateLabel) {
+    if ($density === DENSITY.high) {
+      circleHeight = '60px';
+    } else {
+      circleHeight = '70px';
+    }
+  } else {
+    if ($density === DENSITY.high) {
+      circleHeight = '40px';
+    } else {
+      circleHeight = '48px';
     }
   }
 
@@ -491,10 +525,10 @@ export const StyledDay = styled<'div', SharedStyleProps>('div', (props) => {
     cursor: $disabled || (!$peekNextMonth && $outsideMonth) ? 'default' : 'pointer',
     color: colors.calendarForeground,
     display: 'inline-block',
-    width: $density === DENSITY.high ? '42px' : '50px',
+    width: $density === DENSITY.high ? '52px' : '56px',
     height: height,
     // setting lineHeight equal to the contents height to vertically center the text
-    lineHeight: $density === DENSITY.high ? sizing.scale700 : sizing.scale900,
+    lineHeight: $density === DENSITY.high ? sizing.scale850 : sizing.scale950,
     textAlign: 'center',
     paddingTop: sizing.scale300,
     paddingBottom: sizing.scale300,
@@ -527,11 +561,11 @@ export const StyledDay = styled<'div', SharedStyleProps>('div', (props) => {
         : $pseudoSelected && $isHighlighted
         ? colors.calendarDayBackgroundPseudoSelectedHighlighted
         : colors.calendarBackground,
-      height: $hasDateLabel ? '100%' : $density === DENSITY.high ? '42px' : '50px',
-      width: '100%',
+      height: circleHeight,
+      width: $density === DENSITY.high ? '40px' : '48px',
       position: 'absolute',
-      top: $hasDateLabel ? 0 : '-1px',
-      left: 0,
+      top: '2px',
+      left: $density === DENSITY.high ? '6px' : '4px',
       paddingTop: sizing.scale200,
       paddingBottom: sizing.scale200,
       borderLeftWidth: '2px',
@@ -546,10 +580,10 @@ export const StyledDay = styled<'div', SharedStyleProps>('div', (props) => {
       borderBottomColor: colors.borderSelected,
       borderRightColor: colors.borderSelected,
       borderLeftColor: colors.borderSelected,
-      borderTopLeftRadius: $hasDateLabel ? sizing.scale800 : '100%',
-      borderTopRightRadius: $hasDateLabel ? sizing.scale800 : '100%',
-      borderBottomLeftRadius: $hasDateLabel ? sizing.scale800 : '100%',
-      borderBottomRightRadius: $hasDateLabel ? sizing.scale800 : '100%',
+      borderTopLeftRadius: $hasDateLabel ? sizing.scale850 : '100%',
+      borderTopRightRadius: $hasDateLabel ? sizing.scale850 : '100%',
+      borderBottomLeftRadius: $hasDateLabel ? sizing.scale850 : '100%',
+      borderBottomRightRadius: $hasDateLabel ? sizing.scale850 : '100%',
       ...(getDayStyles(code, props.$theme)[':after'] || {}),
       ...($outsideMonthWithinRange ? { content: null } : {}),
     },
@@ -564,9 +598,9 @@ export const StyledDay = styled<'div', SharedStyleProps>('div', (props) => {
             display: 'inline-block',
             backgroundColor: colors.mono300,
             position: 'absolute',
-            height: '100%',
+            height: circleHeight,
             width: '50%',
-            top: 0,
+            top: '2px',
             left: '50%',
             borderTopWidth: '2px',
             borderBottomWidth: '2px',
@@ -624,8 +658,8 @@ export const StyledWeekdayHeader = styled<'div', SharedStyleProps>('div', (props
     position: 'relative',
     cursor: 'default',
     display: 'inline-block',
-    width: $density === DENSITY.high ? '42px' : '50px',
-    height: $density === DENSITY.high ? '40px' : '48px',
+    width: $density === DENSITY.high ? '44px' : '52px',
+    height: $density === DENSITY.high ? '44px' : '52px',
     textAlign: 'center',
     // setting lineHeight equal to the contents height to vertically center the text
     lineHeight: sizing.scale900,

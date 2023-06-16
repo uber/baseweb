@@ -126,10 +126,10 @@ export type CoreExtensionSemanticColorTokens = {
   backgroundNegative: string;
   backgroundWarning: string;
   backgroundPositive: string;
-  backgroundLightAccent: string;
-  backgroundLightPositive: string;
-  backgroundLightNegative: string;
-  backgroundLightWarning: string;
+  backgroundAccentLight: string;
+  backgroundPositiveLight: string;
+  backgroundNegativeLight: string;
+  backgroundWarningLight: string;
   backgroundAlwaysDark: string;
   backgroundAlwaysLight: string;
   // Content
@@ -147,6 +147,9 @@ export type CoreExtensionSemanticColorTokens = {
   borderNegative: string;
   borderWarning: string;
   borderPositive: string;
+  borderNegativeLight: string;
+  borderWarningLight: string;
+  borderPositiveLight: string;
   // Programs
   safety: string;
   eatsGreen400: string;
@@ -548,27 +551,49 @@ export type Typography = {
 };
 
 export type Sizing = {
+  /** 2px */
   scale0: string;
+  /** 4px */
   scale100: string;
+  /** 6px */
   scale200: string;
+  /** 8px */
   scale300: string;
+  /** 10px */
   scale400: string;
+  /** 12px */
   scale500: string;
+  /** 14px */
   scale550: string;
+  /** 16px */
   scale600: string;
+  /** 18px */
   scale650: string;
+  /** 20px */
   scale700: string;
+  /** 22px */
   scale750: string;
+  /** 24px */
   scale800: string;
+  /** 28px */
   scale850: string;
+  /** 32px */
   scale900: string;
+  /** 36px */
   scale950: string;
+  /** 40px */
   scale1000: string;
+  /** 48px */
   scale1200: string;
+  /** 56px */
   scale1400: string;
+  /** 64px */
   scale1600: string;
+  /** 96px */
   scale2400: string;
+  /** 128px */
   scale3200: string;
+  /** 192px */
   scale4800: string;
 };
 

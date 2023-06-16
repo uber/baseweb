@@ -58,10 +58,10 @@ export default (
     backgroundNegative: foundation.negative,
     backgroundWarning: foundation.warning,
     backgroundPositive: colors.green500,
-    backgroundLightAccent: colors.blue700,
-    backgroundLightPositive: colors.green700,
-    backgroundLightNegative: colors.red700,
-    backgroundLightWarning: colors.yellow700,
+    backgroundAccentLight: colors.blue700,
+    backgroundPositiveLight: colors.green700,
+    backgroundNegativeLight: colors.red700,
+    backgroundWarningLight: colors.yellow700,
     backgroundAlwaysDark: colors.gray900,
     backgroundAlwaysLight: colors.gray100,
 
@@ -81,6 +81,9 @@ export default (
     borderNegative: colors.red500,
     borderWarning: colors.yellow500,
     borderPositive: colors.green500,
+    borderNegativeLight: colors.red200,
+    borderWarningLight: colors.yellow200,
+    borderPositiveLight: colors.green200,
 
     // Programs
     safety: colors.blue400,
