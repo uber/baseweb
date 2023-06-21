@@ -116,6 +116,10 @@ const routes = [
             itemId: '/components/slider',
           },
           {
+            title: 'Stepper',
+            itemId: '/components/stepper',
+          },
+          {
             title: 'Textarea',
             itemId: '/components/textarea',
           },
