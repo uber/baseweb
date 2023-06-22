@@ -95,6 +95,11 @@ const ComboboxConfig: TConfig = {
       type: PropTypes.Boolean,
       description: 'Renders component in disabled state.',
     },
+    clearable: {
+      value: false,
+      type: PropTypes.Boolean,
+      description: 'Adds a clear value icon button to the end of the input container.',
+    },
     id: {
       value: undefined,
       type: PropTypes.String,

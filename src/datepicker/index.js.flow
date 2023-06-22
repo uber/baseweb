@@ -19,7 +19,7 @@ export { default as TimezonePicker } from '../timezonepicker/timezone-picker.js'
 // Util functions
 export { formatDate } from './utils/index.js';
 // Constants
-export { DENSITY, ORIENTATION, STATE_CHANGE_TYPE } from './constants.js';
+export { DENSITY, ORIENTATION, STATE_CHANGE_TYPE, RANGED_CALENDAR_BEHAVIOR } from './constants.js';
 // Styled elements
 export * from './styled-components.js';
 // Flow
