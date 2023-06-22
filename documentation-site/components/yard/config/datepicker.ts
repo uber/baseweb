@@ -23,7 +23,7 @@ const DatepickerConfig: TConfig = {
       named: ['DatePicker'],
     },
   },
-  scope: { DatePicker, ORIENTATION, SIZE },
+  scope: { DatePicker, ORIENTATION, SIZE, RANGED_CALENDAR_BEHAVIOR },
   theme: [
     'calendarBackground',
     'calendarForeground',
@@ -150,6 +150,21 @@ const DatepickerConfig: TConfig = {
       type: PropTypes.Boolean,
       description: 'Defines if a range of dates can be selected.',
     },
+    rangedCalendarBehavior: {
+      value: 'RANGED_CALENDAR_BEHAVIOR.default',
+      defaultValue: 'RANGED_CALENDAR_BEHAVIOR.default',
+      type: PropTypes.Enum,
+      options: RANGED_CALENDAR_BEHAVIOR,
+      enumName: 'RANGED_CALENDAR_BEHAVIOR',
+      description:
+        'Determines whether startDate and endDate should be updated independently of eachother',
+      imports: {
+        'baseui/datepicker': {
+          named: ['RANGED_CALENDAR_BEHAVIOR'],
+        },
+      },
+      hidden: true,
+    },
     separateRangeInputs: {
       value: undefined,
       type: PropTypes.Boolean,
@@ -269,20 +284,6 @@ const DatepickerConfig: TConfig = {
       value: undefined,
       type: PropTypes.Boolean,
       description: 'Defines if dates outside of the range of the current month are displayed.',
-      hidden: true,
-    },
-    rangedCalendarBehavior: {
-      value: 'RANGED_CALENDAR_BEHAVIOR.default',
-      defaultValue: 'RANGED_CALENDAR_BEHAVIOR.default',
-      type: PropTypes.Enum,
-      options: RANGED_CALENDAR_BEHAVIOR,
-      description:
-        'Determines whether startDate and endDate should be updated independently of eachother',
-      imports: {
-        'baseui/datepicker': {
-          named: ['RANGED_CALENDAR_BEHAVIOR'],
-        },
-      },
       hidden: true,
     },
     fixedHeight: {
