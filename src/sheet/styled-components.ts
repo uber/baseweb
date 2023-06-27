@@ -57,6 +57,7 @@ export const StyledBottomContainer = styled<'div', { $draggable: boolean; $topPo
       borderTopLeftRadius: $theme.borders.radius500,
       borderTopRightRadius: $theme.borders.radius500,
       backgroundColor: $theme.colors.backgroundPrimary,
+      boxShadow: $theme.lighting.shallowAbove,
     };
 
     return $draggable
