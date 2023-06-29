@@ -43,7 +43,7 @@ export type CardProps = {
   readonly hasThumbnail?: (a: { readonly thumbnail?: string }) => boolean;
   /** Image to be positioned at the top of the Card. Can be a string representing the img src or an object with img attrs */
   readonly headerImage?: string | ImageProps;
-  readonly overrides: CardOverrides;
+  readonly overrides?: CardOverrides;
   /** Image src that by default is rendered to the side of children content. */
   readonly thumbnail?: string;
   /** Content to render above the body content. */
