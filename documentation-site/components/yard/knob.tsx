@@ -90,7 +90,7 @@ const Knob: React.SFC<{
         <Spacing>
           <Label tooltip={getTooltip(description, type, name)}>{name}</Label>
           <StyledLink
-            href="https://reactjs.org/docs/refs-and-the-dom.html"
+            href="https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom"
             target="_blank"
             $style={{
               fontSize: '14px',
