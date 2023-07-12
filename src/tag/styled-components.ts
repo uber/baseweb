@@ -522,7 +522,9 @@ export const Root = styled<'span', SharedPropsArg>(
           : {
               boxShadow: $isFocusVisible
                 ? `0 0 0 3px ${
-                    $kind === KIND.accent ? $theme.colors.primaryA : $theme.colors.accent
+                    $kind === KIND.accent
+                      ? $theme.colors.backgroundInversePrimary
+                      : $theme.colors.backgroundAccent
                   }`
                 : 'none',
             },

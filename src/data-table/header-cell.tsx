@@ -106,7 +106,7 @@ const HeaderCell = React.forwardRef<HTMLDivElement, HeaderCellProps>((props, ref
           display: 'flex',
           flexGrow: 1,
           height: '100%',
-          outline: focusVisible ? `3px solid ${theme.colors.accent}` : 'none',
+          outline: focusVisible ? `3px solid ${theme.colors.borderAccent}` : 'none',
           outlineOffset: '-3px',
           // paddingLeft: theme.sizing.scale500,
           paddingRight: theme.sizing.scale500,

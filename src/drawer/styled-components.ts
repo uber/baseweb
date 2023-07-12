@@ -8,6 +8,7 @@ import { styled } from '../styles';
 import { SIZE, SIZE_DIMENSION, ANCHOR } from './constants';
 import type { SharedStylePropsArg, SizeProp, AnchorProp } from './types';
 import type { StyleObject } from 'styletron-standard';
+import { colors as colorTokens } from '../tokens';
 
 function getSizeStyles($size: SizeProp, $anchor: AnchorProp) {
   const styles: StyleObject = {
@@ -176,7 +177,7 @@ export const StyledClose = styled<'button', SharedStylePropsArg>('button', (prop
     paddingBottom: 0,
 
     // colors
-    fill: $theme.colors.primary,
+    fill: $theme.colors.contentPrimary,
     transitionProperty: 'fill, border-color',
     transitionDuration: $theme.animation.timing200,
     borderLeftWidth: '1px',
@@ -192,10 +193,10 @@ export const StyledClose = styled<'button', SharedStylePropsArg>('button', (prop
     borderTopColor: 'transparent',
     borderBottomColor: 'transparent',
     ':hover': {
-      fill: $theme.colors.primary600,
+      fill: colorTokens.gray600,
     },
     ':focus': {
-      outline: $isFocusVisible ? `3px solid ${$theme.colors.accent}` : 'none',
+      outline: $isFocusVisible ? `3px solid ${$theme.colors.borderAccent}` : 'none',
     },
 
     // Positioning

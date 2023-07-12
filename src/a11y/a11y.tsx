@@ -51,7 +51,7 @@ const ViolationContainer = styled<
   }
 >('div', ({ $theme, $top, $left }) => {
   return {
-    backgroundColor: $theme.colors.mono100,
+    backgroundColor: $theme.colors.backgroundPrimary,
     boxShadow: $theme.lighting.shadow600,
     position: 'absolute',
     padding: $theme.sizing.scale400,
@@ -76,7 +76,7 @@ function Violation(props: ViolationProps) {
       // @ts-ignore
       setAnchor(node);
 
-      node.setAttribute('style', `border: solid 1px ${theme.colors.negative300};`);
+      node.setAttribute('style', `border: solid 1px ${theme.colors.borderNegative};`);
 
       node.addEventListener('mouseenter', handleMouseEnter);
       node.addEventListener('mouseleave', handleMouseLeave);

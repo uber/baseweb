@@ -166,7 +166,9 @@ const Histogram = React.memo<any>(function Histogram({
           return (
             <rect
               key={`bar-${index}`}
-              fill={included ? theme.colors.primary : theme.colors.mono400}
+              fill={
+                included ? theme.colors.backgroundInversePrimary : theme.colors.backgroundSecondary
+              }
               x={x}
               y={y}
               width={width}
@@ -387,7 +389,7 @@ function NumericalFilter(props) {
                   return {
                     // For range selection we use the color as is, but when selecting the single value,
                     // we don't want the track standing out, so mute its color
-                    background: theme.colors.mono400,
+                    background: theme.colors.backgroundSecondary,
                   };
                 }
               },

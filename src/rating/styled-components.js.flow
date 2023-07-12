@@ -44,10 +44,10 @@ export const StyledStar = styled<StyledRatingItemPropsT>(
     let prePartialStarFill;
 
     if ($isActive) {
-      starStroke = starFill = $theme.colors.warning400;
+      starStroke = starFill = $theme.colors.borderSelected;
     }
     if ($isPartialActive && !$isActive) {
-      prePartialStarStroke = prePartialStarFill = $theme.colors.warning400;
+      prePartialStarStroke = prePartialStarFill = $theme.colors.borderSelected;
     }
 
     const styles = {
@@ -66,7 +66,7 @@ export const StyledStar = styled<StyledRatingItemPropsT>(
       height: `${$size}px`,
       lineHeight: 1,
       transform: $isSelected ? 'scale(1.35)' : null,
-      outline: $isFocusVisible ? `3px solid ${$theme.colors.accent}` : 'none',
+      outline: $isFocusVisible ? `3px solid ${$theme.colors.borderAccent}` : 'none',
       outlineOffset: '2px',
       position: 'relative',
       ':after': {
@@ -106,7 +106,7 @@ export const StyledEmoticon = styled<StyledRatingItemPropsT>(
     let emoticonFill = $theme.colors.ratingInactiveFill;
 
     if ($isActive) {
-      emoticonFill = $theme.colors.warning400;
+      emoticonFill = $theme.colors.backgroundWarning;
     }
 
     const ratingIcons = [
@@ -132,7 +132,7 @@ export const StyledEmoticon = styled<StyledRatingItemPropsT>(
       width: `${$size}px`,
       height: `${$size}px`,
       transform: $isSelected ? 'scale(1.1)' : null,
-      outline: $isFocusVisible ? `3px solid ${$theme.colors.accent}` : 'none',
+      outline: $isFocusVisible ? `3px solid ${$theme.colors.borderAccent}` : 'none',
       outlineOffset: '2px',
       ':after': {
         transition: `all ${$theme.animation.timing400}`,

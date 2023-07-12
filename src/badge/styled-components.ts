@@ -42,7 +42,7 @@ function getColorStyles({ $theme, $hierarchy, $color }): {
         backgroundColor: $theme.colors.backgroundAccentLight,
       },
       [COLOR.primary]: {
-        color: $theme.colors.primaryA,
+        color: $theme.colors.contentPrimary,
         backgroundColor: $theme.colors.backgroundSecondary,
       },
       [COLOR.positive]: {

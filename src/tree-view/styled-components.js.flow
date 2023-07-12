@@ -56,7 +56,7 @@ export const StyledItemContent = styled<{
     ...$theme.typography.font300,
     alignItems: 'center',
     boxSizing: 'border-box',
-    color: $theme.colors.primary,
+    color: $theme.colors.contentPrimary,
     display: 'flex',
     marginTop: 0,
     marginBottom: 0,
@@ -66,10 +66,10 @@ export const StyledItemContent = styled<{
     paddingRight: $theme.sizing.scale200,
     paddingTop: $theme.sizing.scale100,
     paddingBottom: $theme.sizing.scale100,
-    outline: $isSelected && $isFocusVisible ? `3px solid ${$theme.colors.accent}` : 'none',
+    outline: $isSelected && $isFocusVisible ? `3px solid ${$theme.colors.borderAccent}` : 'none',
     outlineOffset: '-3px',
     ':hover': {
-      backgroundColor: $theme.colors.mono300,
+      backgroundColor: $theme.colors.backgroundSecondary,
     },
   };
 });

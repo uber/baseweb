@@ -133,7 +133,7 @@ export const StyledTab = styled<{
       ...$theme.typography.LabelSmall,
     };
     if ($focusVisible) {
-      style.outline = `3px solid ${$theme.colors.accent}`;
+      style.outline = `3px solid ${$theme.colors.borderAccent}`;
     }
     if (isFixed($fill)) {
       style.flexGrow = 1;

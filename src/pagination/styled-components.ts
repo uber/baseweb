@@ -37,7 +37,7 @@ export const StyledDropdownContainer = styled<
 
   return {
     position: 'relative',
-    outline: $isFocusVisible ? `3px solid ${$theme.colors.accent}` : 'none',
+    outline: $isFocusVisible ? `3px solid ${$theme.colors.borderAccent}` : 'none',
     [marginStartDir]: $theme.sizing.scale600,
     [marginEndDir]: $theme.sizing.scale300,
   };

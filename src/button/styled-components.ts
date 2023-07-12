@@ -36,7 +36,7 @@ export const BaseButton = styled<'button', SharedStyleProps>(
     borderRightStyle: 'none',
     borderBottomStyle: 'none',
     outline: 'none',
-    boxShadow: $isFocusVisible ? `inset 0 0 0 3px ${$theme.colors.accent}` : 'none',
+    boxShadow: $isFocusVisible ? `inset 0 0 0 3px ${$theme.colors.borderAccent}` : 'none',
     textDecoration: 'none',
     WebkitAppearance: 'none',
     transitionProperty: 'background',

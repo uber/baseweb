@@ -318,7 +318,7 @@ export const StyledStrokedLabel = styled<
   }
 >('div', ({ $theme, $size }) => {
   const strokeWidth = 1.5;
-  const strokeColor = $theme.colors.backgroundPrimary;
+  const strokeColor = $theme.colors.borderInverseSelected;
 
   const textShadow = `-${strokeWidth}px -${strokeWidth}px 0 ${strokeColor},
     0 -${strokeWidth}px 0 ${strokeColor},
@@ -333,7 +333,7 @@ export const StyledStrokedLabel = styled<
     display: 'flex',
     // @ts-ignore
     ...$theme.typography[LABEL_SIZES[$size]],
-    color: $theme.colors.primaryA,
+    color: $theme.colors.contentPrimary,
     transition: `${$theme.animation.timing300} ${$theme.animation.easeOutCurve} all`,
     textShadow,
     pointerEvents: 'auto',
@@ -356,7 +356,7 @@ export const StyledBadgeEnhancerRoot = styled<
     position: 'absolute',
     ...$theme.typography.LabelSmall,
     backgroundColor: $theme.colors.backgroundAccent,
-    color: $theme.colors.primaryB,
+    color: $theme.colors.contentOnColor,
     boxSizing: 'border-box',
     right: 0,
     transform: `translate(calc(100% + ${x}px), ${y}px)`,

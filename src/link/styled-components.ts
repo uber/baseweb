@@ -44,7 +44,7 @@ export const Link = styled<
       backgroundSize: direction === 'rtl' ? '0% 100%, 100% 100%' : '100% 100%, 100% 100%',
     },
     ':focus': {
-      outline: $isFocusVisible ? `3px solid ${colors.accent}` : 'none',
+      outline: $isFocusVisible ? `3px solid ${colors.borderAccent}` : 'none',
       outlineOffset: '1px',
       textDecoration: 'none',
     },
