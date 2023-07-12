@@ -119,8 +119,7 @@ export type CoreSemanticColorTokens = {
 export type CoreExtensionSemanticColorTokens = {
   // Backgrounds
   backgroundStateDisabled: string;
-  backgroundOverlayDark?: string;
-  backgroundOverlayLight?: string;
+  backgroundOverlay: string;
   backgroundOverlayArt?: string;
   backgroundAccent: string;
   backgroundNegative: string;
@@ -162,7 +161,14 @@ export type CoreExtensionSemanticColorTokens = {
   membership: string;
 };
 
-export type SemanticColorTokens = {} & CoreSemanticColorTokens & CoreExtensionSemanticColorTokens;
+export type DeprecatedSemanticColorTokens = {
+  backgroundOverlayLight: string;
+  backgroundOverlayDark: string;
+};
+
+export type SemanticColorTokens = {} & CoreSemanticColorTokens &
+  CoreExtensionSemanticColorTokens &
+  DeprecatedSemanticColorTokens;
 
 export type ComponentColorTokens = {
   bannerActionLowInfo: string;

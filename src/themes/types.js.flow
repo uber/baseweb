@@ -125,8 +125,7 @@ export type CoreSemanticColorTokensT = {|
 export type CoreExtensionSemanticColorTokensT = {|
   // Backgrounds
   backgroundStateDisabled: string,
-  backgroundOverlayDark: ?string,
-  backgroundOverlayLight: ?string,
+  backgroundOverlay: ?string,
   backgroundOverlayArt: ?string,
   backgroundAccent: string,
   backgroundNegative: string,
@@ -171,9 +170,15 @@ export type CoreExtensionSemanticColorTokensT = {|
   membership: string,
 |};
 
+export type DeprecatedSemanticColorTokensT = {|
+  backgroundOverlayLight: ?string,
+  backgroundOverlayDark: ?string,
+|};
+
 export type SemanticColorTokensT = {|
   ...CoreSemanticColorTokensT,
   ...CoreExtensionSemanticColorTokensT,
+  ...DeprecatedSemanticColorTokensT,
 |};
 
 export type ComponentColorTokensT = {|

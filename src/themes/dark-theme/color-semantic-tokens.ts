@@ -8,6 +8,7 @@ import type {
   ColorTokens,
   CoreSemanticColorTokens,
   CoreExtensionSemanticColorTokens,
+  DeprecatedSemanticColorTokens,
   SemanticColorTokens,
 } from '../types';
 import colorTokens from './color-tokens';
@@ -49,9 +50,7 @@ export default (
     // Backgrounds
     backgroundStateDisabled: colors.gray800,
     // @ts-ignore
-    backgroundOverlayDark: hexToRgba(colors.black, '0.3'),
-    // @ts-ignore
-    backgroundOverlayLight: hexToRgba(colors.black, '0.08'),
+    backgroundOverlay: hexToRgba(colors.black, '0.7'),
     // @ts-ignore
     backgroundOverlayArt: hexToRgba(colors.black, '0.16'),
     backgroundAccent: foundation.accent,
@@ -96,9 +95,14 @@ export default (
     rewardsTier4: colors.gray200,
     membership: colors.yellow600,
   };
+  const deprecated: DeprecatedSemanticColorTokens = {
+    backgroundOverlayLight: coreExtensions.backgroundOverlay,
+    backgroundOverlayDark: coreExtensions.backgroundOverlay,
+  };
 
   return {
     ...core,
     ...coreExtensions,
+    ...deprecated,
   };
 };

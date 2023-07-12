@@ -9,6 +9,7 @@ import type {
   ColorTokensT,
   CoreSemanticColorTokensT,
   CoreExtensionSemanticColorTokensT,
+  DeprecatedSemanticColorTokensT,
   SemanticColorTokensT,
 } from '../types.js';
 import colorTokens from './color-tokens.js';
@@ -47,8 +48,7 @@ export default (
   const coreExtensions: CoreExtensionSemanticColorTokensT = {
     // Backgrounds
     backgroundStateDisabled: colors.gray50,
-    backgroundOverlayDark: hexToRgba(colors.black, '0.3'),
-    backgroundOverlayLight: hexToRgba(colors.black, '0.08'),
+    backgroundOverlay: hexToRgba(colors.black, '0.7'),
     backgroundOverlayArt: hexToRgba(colors.black, '0.00'),
     backgroundAccent: foundation.accent,
     backgroundNegative: foundation.negative,
@@ -92,8 +92,13 @@ export default (
     rewardsTier4: colors.black,
     membership: colors.yellow600,
   };
+  const deprecated: DeprecatedSemanticColorTokensT = {
+    backgroundOverlayLight: coreExtensions.backgroundOverlay,
+    backgroundOverlayDark: coreExtensions.backgroundOverlay,
+  };
   return {
     ...core,
     ...coreExtensions,
+    ...deprecated,
   };
 };
