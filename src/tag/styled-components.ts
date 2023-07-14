@@ -10,7 +10,6 @@ import shade from 'polished/lib/color/shade.js';
 import { styled, type Theme } from '../styles';
 import { KIND, VARIANT, SIZE } from './constants';
 import type { SharedPropsArg } from './types';
-import { colors as colorTokens } from '../tokens';
 
 export function customOnRamp(color?: string, unit?: string) {
   switch (unit) {
@@ -225,26 +224,26 @@ const orangeColorStates = {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   // @ts-ignore
   [COLOR_STATE.disabled]: (theme, color) => ({
-    color: pick(theme, colorTokens.orange200, colorTokens.orange600),
+    color: pick(theme, theme.colors.orange200, theme.colors.orange600),
     // @ts-ignore
     backgroundColor: null,
-    borderColor: pick(theme, colorTokens.orange200, colorTokens.orange700),
+    borderColor: pick(theme, theme.colors.orange200, theme.colors.orange700),
   }),
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   // @ts-ignore
   [COLOR_STATE.solid]: (theme, color) => ({
-    color: colorTokens.white,
-    backgroundColor: pick(theme, colorTokens.orange400, colorTokens.orange500),
+    color: theme.colors.white,
+    backgroundColor: pick(theme, theme.colors.orange400, theme.colors.orange500),
     // @ts-ignore
     borderColor: null,
   }),
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   // @ts-ignore
   [COLOR_STATE.outline]: (theme, color) => ({
-    color: pick(theme, colorTokens.orange400, colorTokens.orange300),
+    color: pick(theme, theme.colors.orange400, theme.colors.orange300),
     // @ts-ignore
     backgroundColor: null,
-    borderColor: pick(theme, colorTokens.orange200, colorTokens.orange500),
+    borderColor: pick(theme, theme.colors.orange200, theme.colors.orange500),
   }),
 };
 
@@ -252,26 +251,26 @@ const purpleColorStates = {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   // @ts-ignore
   [COLOR_STATE.disabled]: (theme, color) => ({
-    color: pick(theme, colorTokens.purple200, colorTokens.purple600),
+    color: pick(theme, theme.colors.purple200, theme.colors.purple600),
     // @ts-ignore
     backgroundColor: null,
-    borderColor: pick(theme, colorTokens.purple200, colorTokens.purple700),
+    borderColor: pick(theme, theme.colors.purple200, theme.colors.purple700),
   }),
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   // @ts-ignore
   [COLOR_STATE.solid]: (theme, color) => ({
-    color: colorTokens.white,
-    backgroundColor: pick(theme, colorTokens.purple400, colorTokens.purple500),
+    color: theme.colors.white,
+    backgroundColor: pick(theme, theme.colors.purple400, theme.colors.purple500),
     // @ts-ignore
     borderColor: null,
   }),
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   // @ts-ignore
   [COLOR_STATE.outline]: (theme, color) => ({
-    color: pick(theme, colorTokens.purple400, colorTokens.purple300),
+    color: pick(theme, theme.colors.purple400, theme.colors.purple300),
     // @ts-ignore
     backgroundColor: null,
-    borderColor: pick(theme, colorTokens.purple200, colorTokens.purple500),
+    borderColor: pick(theme, theme.colors.purple200, theme.colors.purple500),
   }),
 };
 
@@ -279,26 +278,26 @@ const brownColorStates = {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   // @ts-ignore
   [COLOR_STATE.disabled]: (theme, color) => ({
-    color: pick(theme, colorTokens.brown200, colorTokens.brown600),
+    color: pick(theme, theme.colors.brown200, theme.colors.brown600),
     // @ts-ignore
     backgroundColor: null,
-    borderColor: pick(theme, colorTokens.brown200, colorTokens.brown700),
+    borderColor: pick(theme, theme.colors.brown200, theme.colors.brown700),
   }),
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   // @ts-ignore
   [COLOR_STATE.solid]: (theme, color) => ({
-    color: colorTokens.white,
-    backgroundColor: pick(theme, colorTokens.brown400, colorTokens.brown500),
+    color: theme.colors.white,
+    backgroundColor: pick(theme, theme.colors.brown400, theme.colors.brown500),
     // @ts-ignore
     borderColor: null,
   }),
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   // @ts-ignore
   [COLOR_STATE.outline]: (theme, color) => ({
-    color: pick(theme, colorTokens.brown400, colorTokens.brown300),
+    color: pick(theme, theme.colors.brown400, theme.colors.brown300),
     // @ts-ignore
     backgroundColor: null,
-    borderColor: pick(theme, colorTokens.brown200, colorTokens.brown500),
+    borderColor: pick(theme, theme.colors.brown200, theme.colors.brown500),
   }),
 };
 

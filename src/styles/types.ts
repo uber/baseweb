@@ -23,6 +23,7 @@ import type {
   Typography,
   ZIndex,
 } from '../themes';
+import type { ColorTokens as PrimitiveColorTokens } from '../tokens';
 
 export type {
   Animation,
@@ -38,7 +39,10 @@ export type {
   ZIndex,
 };
 
-export type Colors = {} & ColorTokens & ComponentColorTokens & SemanticColorTokens;
+export type Colors = {} & PrimitiveColorTokens &
+  ColorTokens &
+  ComponentColorTokens &
+  SemanticColorTokens;
 
 export type Theme = {
   name: string;

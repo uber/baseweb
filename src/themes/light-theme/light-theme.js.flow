@@ -5,7 +5,8 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import colorTokens from './color-tokens.js';
+import foundationColorTokens from './color-tokens.js';
+import primitiveColorTokens from '../../tokens/colors.js';
 import getSemanticColorTokens from './color-semantic-tokens.js';
 import getComponentColorTokens from './color-component-tokens.js';
 import borders from '../shared/borders.js';
@@ -21,8 +22,10 @@ import type { ThemeT } from '../../styles/types.js';
 
 export const LightTheme: ThemeT = {
   name: 'light-theme',
+  // $FlowFixMe[cannot-spread-inexact]
   colors: {
-    ...colorTokens,
+    ...foundationColorTokens,
+    ...primitiveColorTokens,
     ...getComponentColorTokens(),
     ...getSemanticColorTokens(),
   },

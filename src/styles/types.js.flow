@@ -24,6 +24,7 @@ import type {
   TypographyT,
   ZIndexT,
 } from '../themes/types.js';
+import type { ColorTokensT as PrimitiveColorTokensT } from '../tokens/types.js';
 
 export type {
   AnimationT,
@@ -39,7 +40,9 @@ export type {
   ZIndexT,
 };
 
+// $FlowFixMe[cannot-spread-inexact]
 export type ColorsT = {
+  ...PrimitiveColorTokensT,
   ...ColorTokensT,
   ...ComponentColorTokensT,
   ...SemanticColorTokensT,

@@ -8,7 +8,6 @@ import { styled } from '../styles';
 import { SIZE, SIZE_DIMENSION, ANCHOR } from './constants';
 import type { SharedStylePropsArg, SizeProp, AnchorProp } from './types';
 import type { StyleObject } from 'styletron-standard';
-import { colors as colorTokens } from '../tokens';
 
 function getSizeStyles($size: SizeProp, $anchor: AnchorProp) {
   const styles: StyleObject = {
@@ -193,7 +192,7 @@ export const StyledClose = styled<'button', SharedStylePropsArg>('button', (prop
     borderTopColor: 'transparent',
     borderBottomColor: 'transparent',
     ':hover': {
-      fill: colorTokens.gray600,
+      fill: $theme.colors.gray600,
     },
     ':focus': {
       outline: $isFocusVisible ? `3px solid ${$theme.colors.borderAccent}` : 'none',
