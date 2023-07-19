@@ -12,7 +12,7 @@ const tagHoverBackground = `rgba(255, 255, 255, 0.2)`;
 
 /* ---- Component colors ---- */
 // TODO(#2318) Make it a plain object in the next v11 major version
-// with values taken from `colorTokens`.
+// with values taken from `defaultFoundationColorTokens`.
 // Due to the legacy `createTheme` type the values
 // need to be overrideable through primitives
 export default (

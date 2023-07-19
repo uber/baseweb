@@ -11,13 +11,13 @@ import type {
   DeprecatedSemanticColorTokens,
   SemanticColorTokens,
 } from '../types';
-import colorTokens from './color-tokens';
+import defaultFoundationColorTokens from './color-tokens';
 import { hexToRgb as hexToRgba } from '../../styles/util';
 import colors from '../../tokens/colors';
 
 export default (
   // themePrimitives or foundation colors
-  foundation: ColorTokens = colorTokens
+  foundation: ColorTokens = defaultFoundationColorTokens
 ): SemanticColorTokens => {
   const core: CoreSemanticColorTokens = {
     // Background
