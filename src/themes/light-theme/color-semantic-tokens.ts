@@ -50,7 +50,7 @@ export default (
     // Backgrounds
     backgroundStateDisabled: colors.gray50,
     // @ts-ignore
-    backgroundOverlay: hexToRgba(colors.black, '0.7'),
+    backgroundOverlay: hexToRgba(colors.black, '0.5'),
     // @ts-ignore
     backgroundOverlayArt: hexToRgba(colors.black, '0.00'),
     backgroundAccent: foundation.accent,
