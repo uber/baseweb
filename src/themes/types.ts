@@ -164,6 +164,10 @@ export type CoreExtensionSemanticColorTokens = {
 export type DeprecatedSemanticColorTokens = {
   backgroundOverlayLight: string;
   backgroundOverlayDark: string;
+  backgroundLightAccent: string;
+  backgroundLightPositive: string;
+  backgroundLightWarning: string;
+  backgroundLightNegative: string;
 };
 
 export type SemanticColorTokens = {} & CoreSemanticColorTokens &

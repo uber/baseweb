@@ -95,6 +95,10 @@ export default (
   const deprecated: DeprecatedSemanticColorTokensT = {
     backgroundOverlayLight: coreExtensions.backgroundOverlay,
     backgroundOverlayDark: coreExtensions.backgroundOverlay,
+    backgroundLightAccent: coreExtensions.backgroundAccentLight,
+    backgroundLightPositive: coreExtensions.backgroundPositiveLight,
+    backgroundLightWarning: coreExtensions.backgroundWarningLight,
+    backgroundLightNegative: coreExtensions.backgroundNegativeLight,
   };
   return {
     ...core,
