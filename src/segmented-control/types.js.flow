@@ -1,0 +1,81 @@
+/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+
+// @flow
+
+import * as React from 'react';
+import {FILL, STATE_CHANGE_TYPE} from './constants.js';
+
+import type {OverrideT} from '../helpers/overrides.js';
+import type {IconPropsT} from '../icon/types.js';
+
+export type FillT = $Values<typeof FILL>;
+export type StateChangeT = $Values<typeof STATE_CHANGE_TYPE>;
+
+export type SegmentedControlOverridesT = {
+  Root?: OverrideT,
+  SegmentList?: OverrideT,
+  Active?: OverrideT,
+  SegmentBorder?: OverrideT,
+  EndEnhancerContainer?: OverrideT,
+  SegmentBar?: OverrideT,
+};
+
+export type SegmentOverridesT = {
+  Segment?: OverrideT,
+  ArtworkContainer?: OverrideT,
+  label?: OverrideT,
+  description?: OverrideT,
+};
+
+export type StatefulSegmentedControlStateT = {
+  activeKey: React.Key,
+};
+
+export type StatefulSegmentedControlActionT = {
+  type: StateChangeT,
+  payload: React.Key,
+};
+
+export type StatefulSegmentedControlReducerT = (
+  state: StatefulSegmentedControlStateT,
+  action: StatefulSegmentedControlActionT,
+) => StatefulSegmentedControlStateT;
+
+export type onChangeT = (params: {activeKey: React.Key}) => void;
+
+export type SegmentedControlPropsT = {
+  children: React.Node,
+  activeKey?: React.Key,
+  disabled?: boolean,
+  fill?: FillT,
+  activateOnFocus?: boolean,
+  onChange?: onChangeT,
+  overrides?: SegmentedControlOverridesT,
+  height?: string,
+  uid?: string,
+  width?: string,
+};
+
+export type StatefulSegmentedControlPropsT = {
+  initialState?: StatefulSegmentedControlStateT,
+  stateReducer?: StatefulSegmentedControlReducerT,
+} & SegmentedControlPropsT;
+
+export type SegmentPropsT = {
+  label?: React.Node,
+  description?: React.Node,
+  key?: React.Key,
+  segmentRef?: React.Ref<HTMLButtonElement>,
+  overrides?: SegmentOverridesT,
+  artwork?: React.AbstractComponent<{
+    ...IconPropsT,
+    size: $PropertyType<IconPropsT, 'size'>,
+    color: $PropertyType<IconPropsT, 'color'>,
+  }>,
+  disabled?: boolean,
+};
