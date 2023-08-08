@@ -81,7 +81,7 @@ ToggleIcon.displayName = 'ToggleIcon';
 export const ToggleIconGroup = styled<'g', SharedStylePropsArg>('g', (props) => {
   const { $theme, $expanded } = props;
   return {
-    transform: $expanded ? 'rotate(0)' : 'rotate(-90deg)',
+    transform: $expanded ? 'rotate(-180deg)' : 'rotate(0)',
     transformOrigin: 'center',
     transitionProperty: 'transform',
     transitionDuration: $theme.animation.timing500,

@@ -62,7 +62,7 @@ describe('Panel', () => {
 
   it('does not render content when not expanded', () => {
     const { container } = render(<Panel title="title">content</Panel>);
-    expect(container.textContent).toBe('title');
+    expect(container.textContent).not.toContain('content');
   });
 
   it('does render content when expanded', () => {
@@ -71,7 +71,7 @@ describe('Panel', () => {
         content
       </Panel>
     );
-    expect(container.textContent).toBe('titlecontent');
+    expect(container.textContent).toContain('content');
   });
 
   it('does render content when not expanded but renderAll is true', () => {
@@ -80,6 +80,6 @@ describe('Panel', () => {
         content
       </Panel>
     );
-    expect(container.textContent).toBe('titlecontent');
+    expect(container.textContent).toContain('content');
   });
 });

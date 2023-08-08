@@ -71,9 +71,13 @@ export type Icon = {
   CheckIndeterminate?: ComponentType<IconProps>;
   Check?: ComponentType<IconProps>;
   ChevronDown?: ComponentType<IconProps>;
+  ChevronDownSmall?: ComponentType<IconProps>;
   ChevronUp?: ComponentType<IconProps>;
+  ChevronUpSmall?: ComponentType<IconProps>;
   ChevronLeft?: ComponentType<IconProps>;
+  ChevronLeftSmall?: ComponentType<IconProps>;
   ChevronRight?: ComponentType<IconProps>;
+  ChevronRightSmall?: ComponentType<IconProps>;
   DeleteAlt?: ComponentType<IconProps>;
   Delete?: ComponentType<IconProps>;
   Filter?: ComponentType<IconProps>;
