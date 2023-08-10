@@ -9,7 +9,7 @@ import type { ComponentType } from 'react';
 import type { IconPropsT } from '../icon/types.js';
 
 import type {
-  ColorTokensT,
+  FoundationColorTokensT,
   ComponentColorTokensT,
   SemanticColorTokensT,
   AnimationT,
@@ -24,7 +24,7 @@ import type {
   TypographyT,
   ZIndexT,
 } from '../themes/types.js';
-import type { ColorTokensT as PrimitiveColorTokensT } from '../tokens/types.js';
+import type { PrimitiveColorTokensT } from '../tokens/types.js';
 
 export type {
   AnimationT,
@@ -41,9 +41,9 @@ export type {
 };
 
 // $FlowFixMe[cannot-spread-inexact]
-export type ColorsT = {
+export type ColorTokensT = {
   ...PrimitiveColorTokensT,
-  ...ColorTokensT,
+  ...FoundationColorTokensT,
   ...ComponentColorTokensT,
   ...SemanticColorTokensT,
 };
@@ -53,7 +53,7 @@ export type ThemeT = {|
   animation: AnimationT,
   borders: BordersT,
   breakpoints: BreakpointsT,
-  colors: ColorsT,
+  colors: ColorTokensT,
   direction: 'auto' | 'rtl' | 'ltr',
   grid: GridT,
   icons?: IconT,

@@ -13,7 +13,7 @@ import createLightTheme from './light-theme/create-light-theme';
 import darkThemePrimitives from './dark-theme/primitives';
 import lightThemePrimitives from './light-theme/primitives';
 import type { Primitives } from './types';
-import type { Colors as StyleColors } from '../styles';
+import type { ColorTokens as StyleColors } from '../styles';
 
 export {
   createDarkTheme,

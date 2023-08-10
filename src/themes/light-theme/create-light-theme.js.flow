@@ -20,7 +20,7 @@ import lighting from '../shared/lighting.js';
 import mediaQuery from '../shared/media-query.js';
 import sizing from '../shared/sizing.js';
 
-import type { PrimitivesT, ColorTokensT } from '../types.js';
+import type { PrimitivesT, FoundationColorTokensT } from '../types.js';
 import type { ThemeT } from '../../styles/types.js';
 
 export default function createLightTheme(
@@ -32,7 +32,7 @@ export default function createLightTheme(
   // Extract font tokens and color tokens from primitives
   const { primaryFontFamily, ...customFoundationColorTokens } = primitives;
   // Assemble color tokens by overriding defaults with custom color tokens
-  const colorFoundationTokens: ColorTokensT = {
+  const foundationColorTokens: FoundationColorTokensT = {
     ...defaultFoundationColorTokens,
     ...customFoundationColorTokens,
   };
@@ -43,9 +43,9 @@ export default function createLightTheme(
     // $FlowFixMe[cannot-spread-inexact]
     colors: {
       ...primitiveColorTokens,
-      ...colorFoundationTokens,
-      ...getComponentColorTokens(colorFoundationTokens),
-      ...getSemanticColorTokens(colorFoundationTokens),
+      ...foundationColorTokens,
+      ...getComponentColorTokens(foundationColorTokens),
+      ...getSemanticColorTokens(foundationColorTokens),
     },
     direction: 'auto',
     grid,

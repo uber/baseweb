@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import type {
-  ColorTokens,
+  FoundationColorTokens,
   CoreSemanticColorTokens,
   CoreExtensionSemanticColorTokens,
   DeprecatedSemanticColorTokens,
@@ -17,7 +17,7 @@ import colors from '../../tokens/colors';
 
 export default (
   // themePrimitives or foundation colors
-  foundation: ColorTokens = defaultFoundationColorTokens
+  foundation: FoundationColorTokens = defaultFoundationColorTokens
 ): SemanticColorTokens => {
   const core: CoreSemanticColorTokens = {
     // Background

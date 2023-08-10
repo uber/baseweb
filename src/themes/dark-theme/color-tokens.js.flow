@@ -6,10 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import { colors } from '../../tokens/index.js';
-import type { ColorTokensT } from '../types.js';
+import type { FoundationColorTokensT } from '../types.js';
 
 // color constants
-export const darkColorTokens: ColorTokensT = {
+export const darkColorTokens: FoundationColorTokensT = {
   // Primary Palette
   primaryA: colors.gray200,
   primaryB: colors.gray900,

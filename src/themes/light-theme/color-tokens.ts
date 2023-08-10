@@ -5,10 +5,10 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import { colors } from '../../tokens';
-import type { ColorTokens } from '../types';
+import type { FoundationColorTokens } from '../types';
 
 // color constants
-const lightColorTokens: ColorTokens = {
+const lightColorTokens: FoundationColorTokens = {
   // Primary Palette
   primaryA: colors.black,
   primaryB: colors.white,

@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import defaultFoundationColorTokens from './color-tokens.js';
-import type { ColorTokensT, ComponentColorTokensT } from '../types.js';
+import type { FoundationColorTokensT, ComponentColorTokensT } from '../types.js';
 
 const tagHoverBackground = `rgba(255, 255, 255, 0.2)`;
 
@@ -16,7 +16,7 @@ const tagHoverBackground = `rgba(255, 255, 255, 0.2)`;
 // Due to the legacy `createTheme` type the values
 // need to be overrideable through primitives
 export default (
-  themePrimitives: ColorTokensT = defaultFoundationColorTokens
+  themePrimitives: FoundationColorTokensT = defaultFoundationColorTokens
 ): ComponentColorTokensT => ({
   bannerActionLowInfo: themePrimitives.accent600,
   bannerActionLowNegative: themePrimitives.negative600,

@@ -8,7 +8,7 @@ import type { ComponentType } from 'react';
 import type { IconProps } from '../icon';
 
 import type {
-  ColorTokens,
+  FoundationColorTokens,
   ComponentColorTokens,
   SemanticColorTokens,
   Animation,
@@ -23,7 +23,7 @@ import type {
   Typography,
   ZIndex,
 } from '../themes';
-import type { ColorTokens as PrimitiveColorTokens } from '../tokens';
+import type { PrimitiveColorTokens } from '../tokens';
 
 export type {
   Animation,
@@ -39,8 +39,8 @@ export type {
   ZIndex,
 };
 
-export type Colors = {} & PrimitiveColorTokens &
-  ColorTokens &
+export type ColorTokens = {} & PrimitiveColorTokens &
+  FoundationColorTokens &
   ComponentColorTokens &
   SemanticColorTokens;
 
@@ -49,7 +49,7 @@ export type Theme = {
   animation: Animation;
   borders: Borders;
   breakpoints: Breakpoints;
-  colors: Colors;
+  colors: ColorTokens;
   direction: 'auto' | 'rtl' | 'ltr';
   grid: Grid;
   icons?: Icon;

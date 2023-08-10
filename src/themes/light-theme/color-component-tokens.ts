@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import defaultFoundationColorTokens from './color-tokens';
-import type { ColorTokens, ComponentColorTokens } from '../types';
+import type { FoundationColorTokens, ComponentColorTokens } from '../types';
 
 const tagHoverBackground = `rgba(0, 0, 0, 0.08)`;
 
@@ -15,7 +15,7 @@ const tagHoverBackground = `rgba(0, 0, 0, 0.08)`;
 // Due to the legacy `createTheme` type the value need to be
 // overrideable through primitives (`foundation` )
 export default (
-  themePrimitives: ColorTokens = defaultFoundationColorTokens
+  themePrimitives: FoundationColorTokens = defaultFoundationColorTokens
 ): ComponentColorTokens => ({
   bannerActionLowInfo: themePrimitives.accent100,
   bannerActionLowNegative: themePrimitives.negative100,

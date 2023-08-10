@@ -21,7 +21,7 @@ export type LineStyle =
   | 'ridge'
   | 'solid';
 
-export type ColorTokensT = {
+export type FoundationColorTokensT = {
   // Primary Palette
   primaryA: string,
   primaryB: string,
@@ -535,7 +535,7 @@ export type FontTokensT = {|
 
 // TODO(#2318) Deprecate in the next major version
 export type PrimitivesT = {
-  ...ColorTokensT,
+  ...FoundationColorTokensT,
   ...FontTokensT,
 };
 

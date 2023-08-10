@@ -18,7 +18,7 @@ import lighting from '../shared/lighting';
 import mediaQuery from '../shared/media-query';
 import sizing from '../shared/sizing';
 
-import type { Primitives, ColorTokens } from '../types';
+import type { Primitives, FoundationColorTokens } from '../types';
 import type { Theme } from '../../styles/types';
 
 export default function createDarkTheme(
@@ -30,7 +30,7 @@ export default function createDarkTheme(
   // Extract font tokens and color tokens from primitives
   const { primaryFontFamily, ...customFoundationColorTokens } = primitives;
   // Assemble color tokens by overriding defaults with custom color tokens
-  const foundationColorTokens: ColorTokens = {
+  const foundationColorTokens: FoundationColorTokens = {
     ...defaultFoundationColorTokens,
     ...customFoundationColorTokens,
   };
