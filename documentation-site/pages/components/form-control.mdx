@@ -9,13 +9,13 @@ import Example from '../../components/example';
 import Layout from '../../components/layout';
 import Exports from '../../components/exports';
 
-import InputExample from 'examples/form-control/input.js';
-import TextareaExample from 'examples/form-control/textarea.js';
-import CheckboxExample from 'examples/form-control/checkbox.js';
-import RadioGroupExample from 'examples/form-control/radio-group.js';
-import SelectExample from 'examples/form-control/select.js';
-import ValidationExample from 'examples/form-control/validation.js';
-import Kinds from 'examples/form-control/kinds.js';
+import InputExample from 'examples/form-control/input.tsx';
+import TextareaExample from 'examples/form-control/textarea.tsx';
+import CheckboxExample from 'examples/form-control/checkbox.tsx';
+import RadioGroupExample from 'examples/form-control/radio-group.tsx';
+import SelectExample from 'examples/form-control/select.tsx';
+import ValidationExample from 'examples/form-control/validation.tsx';
+import Kinds from 'examples/form-control/kinds.tsx';
 
 import { FormControl } from 'baseui/form-control';
 import { StatefulInput } from 'baseui/input';
@@ -38,17 +38,17 @@ If that child has an `id` prop, the `label` in the form control will assign the 
 
 ## Examples
 
-<Example title="Input" path="form-control/input.js">
+<Example title="Input" path="form-control/input.tsx">
   <InputExample />
 </Example>
 
-<Example title="Textarea" path="form-control/textarea.js">
+<Example title="Textarea" path="form-control/textarea.tsx">
   <TextareaExample />
 </Example>
 
 <Example
   title="Validation example (with email)"
-  path="form-control/validation.js"
+  path="form-control/validation.tsx"
   additionalPackages={{ 'email-validator': '2.0.4' }}
 >
   <ValidationExample />
@@ -56,23 +56,23 @@ If that child has an `id` prop, the `label` in the form control will assign the 
 
 A common use case for an input on a form is to do some quick client side validation. Here, we are using the validate method from the `email-validator` package to track and update error states for both the form control and input components. This particular example shows the input in the context of a `<form>` element to show how the components' custom error states can compliment the browser's native form validation. The default form behavior is prevented so no network requests are sent on submit.
 
-<Example title="Checkbox" path="form-control/checkbox.js">
+<Example title="Checkbox" path="form-control/checkbox.tsx">
   <CheckboxExample />
 </Example>
 
 Note, for a `Checkbox`, the actual label is the accompanying text on the right side of the checkbox element.
 
-<Example title="RadioGroup" path="form-control/radio-group.js">
+<Example title="RadioGroup" path="form-control/radio-group.tsx">
   <RadioGroupExample />
 </Example>
 
 Note, for a `Radio`/`RadioGroup`, the actual label is the accompanying text on the right side of the radio element.
 
-<Example title="Select" path="form-control/select.js">
+<Example title="Select" path="form-control/select.tsx">
   <SelectExample />
 </Example>
 
-<Example title="States" path="form-control/kinds.js">
+<Example title="States" path="form-control/kinds.tsx">
   <Kinds />
 </Example>
 

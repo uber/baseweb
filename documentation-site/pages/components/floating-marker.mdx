@@ -10,14 +10,14 @@ import Layout from '../../components/layout';
 import Exports from '../../components/exports';
 import FloatingMarkerContainer from '../../components/floating-marker-container';
 
-import Basic from 'examples/floating-marker/basic.js';
-import LargeTopRight from 'examples/floating-marker/large-top-right.js';
-import StartEnhancer from 'examples/floating-marker/start-enhancer.js';
-import SmallNoAnchor from 'examples/floating-marker/small-no-anchor.js';
-import LargeSquareAnchorStartEnhancer from 'examples/floating-marker/large-square-anchor-start-enhancer.js';
-import SecondaryLabel from 'examples/floating-marker/secondary-label.js';
-import SecondaryLabelColor from 'examples/floating-marker/secondary-label-color.js';
-import ReactMapGL from 'examples/floating-marker/react-map-gl.js';
+import Basic from 'examples/floating-marker/basic.tsx';
+import LargeTopRight from 'examples/floating-marker/large-top-right.tsx';
+import StartEnhancer from 'examples/floating-marker/start-enhancer.tsx';
+import SmallNoAnchor from 'examples/floating-marker/small-no-anchor.tsx';
+import LargeSquareAnchorStartEnhancer from 'examples/floating-marker/large-square-anchor-start-enhancer.tsx';
+import SecondaryLabel from 'examples/floating-marker/secondary-label.tsx';
+import SecondaryLabelColor from 'examples/floating-marker/secondary-label-color.tsx';
+import ReactMapGL from 'examples/floating-marker/react-map-gl.tsx';
 import { FloatingMarkerSizingTable } from '../../components/map-marker-sizing-table.js';
 
 import Yard from '../../components/yard/index';
@@ -72,7 +72,7 @@ For more information on the design principles behind the Base map markers, pleas
 
 ## Examples
 
-<Example title="Basic usage with label" path="floating-marker/basic.js">
+<Example title="Basic usage with label" path="floating-marker/basic.tsx">
   <FloatingMarkerContainer>
     <Basic />
   </FloatingMarkerContainer>
@@ -82,7 +82,7 @@ A floating map marker with only a label. Default size is medium.
 
 <Example
   title="Large marker with top right anchor position"
-  path="floating-marker/large-top-right.js"
+  path="floating-marker/large-top-right.tsx"
 >
   <FloatingMarkerContainer>
     <LargeTopRight />
@@ -91,7 +91,7 @@ A floating map marker with only a label. Default size is medium.
 
 A large floating map marker with only a label. Anchor is rendered on the top right of the marker.
 
-<Example title="Start enhancer" path="floating-marker/start-enhancer.js">
+<Example title="Start enhancer" path="floating-marker/start-enhancer.tsx">
   <FloatingMarkerContainer>
     <StartEnhancer />
   </FloatingMarkerContainer>
@@ -99,7 +99,7 @@ A large floating map marker with only a label. Anchor is rendered on the top rig
 
 A floating map marker with a label and start enhancer. Anchor is rendered on the bottom right of the marker.
 
-<Example title="Small marker with no anchor" path="floating-marker/small-no-anchor.js">
+<Example title="Small marker with no anchor" path="floating-marker/small-no-anchor.tsx">
   <FloatingMarkerContainer>
     <SmallNoAnchor />
   </FloatingMarkerContainer>
@@ -109,7 +109,7 @@ A small floating marker without an anchor.
 
 <Example
   title="Large square anchor with start enhancer"
-  path="floating-marker/large-square-anchor-start-enhancer.js"
+  path="floating-marker/large-square-anchor-start-enhancer.tsx"
 >
   <FloatingMarkerContainer>
     <LargeSquareAnchorStartEnhancer />
@@ -118,7 +118,7 @@ A small floating marker without an anchor.
 
 A large floating marker with a square anchor and start enhancer. Because the floating marker is size large, make sure to pass the `size` parameter as prop to ensure the icon receives the proper size.
 
-<Example title="Two labels" path="floating-marker/secondary-label.js">
+<Example title="Two labels" path="floating-marker/secondary-label.tsx">
   <FloatingMarkerContainer>
     <SecondaryLabel />
   </FloatingMarkerContainer>
@@ -126,7 +126,7 @@ A large floating marker with a square anchor and start enhancer. Because the flo
 
 A floating marker with two labels. Use the prop `secondaryLabel` to add a second line. When using a second line, the font size will decrease to one size below.
 
-<Example title="Two labels with custom color" path="floating-marker/secondary-label-color.js">
+<Example title="Two labels with custom color" path="floating-marker/secondary-label-color.tsx">
   <FloatingMarkerContainer>
     <SecondaryLabelColor />
   </FloatingMarkerContainer>
@@ -134,7 +134,7 @@ A floating marker with two labels. Use the prop `secondaryLabel` to add a second
 
 A floating marker with two labels. The top label's color is customized with an override.
 
-<Example title="Usage with react-map-gl" path="floating-marker/react-map-gl.js">
+<Example title="Usage with react-map-gl" path="floating-marker/react-map-gl.tsx">
   <ReactMapGL />
 </Example>
 

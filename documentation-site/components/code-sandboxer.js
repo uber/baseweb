@@ -22,7 +22,7 @@ import {BaseProvider, LightTheme} from 'baseui';
 import { Provider as StyletronProvider } from "styletron-react";
 import { Client as Styletron } from "styletron-engine-atomic";
 
-import Example from "./example.js";
+import Example from "./example";
 
 const engine = new Styletron();
 
@@ -52,8 +52,8 @@ export async function deploy(
       {
         files: {
           'public/index.html': { content: html },
-          'src/index.js': { content: index },
-          'src/example.js': { content: source },
+          'src/index.tsx': { content: index },
+          'src/example.tsx': { content: source },
         },
         //$FlowExpectedError[cannot-spread-indexer]
         deps: {
@@ -67,13 +67,13 @@ export async function deploy(
         },
       },
       {
-        fileName: 'src/example.js',
+        fileName: 'src/example.tsx',
         name: title,
       }
     );
     const { sandboxId } = await sendFilesToCSB(parameters);
     trackEvent('codesandbox_deployed', title);
-    return `https://codesandbox.io/s/${sandboxId}?module=src/example.js`;
+    return `https://codesandbox.io/s/${sandboxId}?module=src/example.tsx`;
   } catch (error) {
     console.error('Failed to deploy code sandbox example:', error);
     trackEvent('codesandbox_deployed_error', title);

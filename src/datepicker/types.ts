@@ -64,6 +64,9 @@ export type DatepickerOverrides = {
   StartDate?: Override;
   EndDate?: Override;
   InputLabel?: Override;
+  ButtonDock?: Override;
+  PrimaryButton?: Override;
+  SecondaryButton?: Override;
 };
 
 export type DayProps<T = Date> = {
@@ -191,7 +194,7 @@ export type CalendarProps<T = Date> = {
   /** Event handler that is called when a selection is made using the quick select menu. */
   onQuickSelectChange?: (option?: QuickSelectOption<T>) => unknown;
   /** Sets the orientation of the calendar when multiple months are displayed */
-  orientation?: typeof ORIENTATION[keyof typeof ORIENTATION];
+  orientation?: (typeof ORIENTATION)[keyof typeof ORIENTATION];
   overrides?: DatepickerOverrides;
   /** Defines if dates outside of the range of the current month are displayed. */
   peekNextMonth?: boolean;
@@ -206,6 +209,16 @@ export type CalendarProps<T = Date> = {
   fixedHeight?: boolean;
   /** Determines whether user clicked startDate or endDate input to trigger calendar open */
   selectedInput?: InputRole;
+  /** Primary button on the action dock */
+  primaryButton?: {
+    label: React.ReactNode;
+    onClick: () => unknown;
+  };
+  /** Secondary button on the action dock */
+  secondaryButton?: {
+    label: React.ReactNode;
+    onClick: () => unknown;
+  };
 };
 
 export type HeaderProps<T = Date> = CalendarProps<T> & {
@@ -290,7 +303,7 @@ export type SharedStyleProps = {
 };
 
 export type StateChangeType =
-  | typeof STATE_CHANGE_TYPE[keyof typeof STATE_CHANGE_TYPE]
+  | (typeof STATE_CHANGE_TYPE)[keyof typeof STATE_CHANGE_TYPE]
   | undefined
   | null;
 
@@ -340,9 +353,9 @@ export type StatefulDatepickerProps<Props, T = Date> = Omit<
   'children'
 >;
 
-export type InputRole = typeof INPUT_ROLE[keyof typeof INPUT_ROLE] | undefined | null;
+export type InputRole = (typeof INPUT_ROLE)[keyof typeof INPUT_ROLE] | undefined | null;
 
 export type RangedCalendarBehavior =
-  | typeof RANGED_CALENDAR_BEHAVIOR[keyof typeof RANGED_CALENDAR_BEHAVIOR]
+  | (typeof RANGED_CALENDAR_BEHAVIOR)[keyof typeof RANGED_CALENDAR_BEHAVIOR]
   | undefined
   | null;

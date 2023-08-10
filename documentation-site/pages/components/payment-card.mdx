@@ -9,10 +9,10 @@ import Example from '../../components/example';
 import Layout from '../../components/layout';
 import Exports from '../../components/exports';
 
-import Controlled from 'examples/payment-card/controlled.js';
-import Uncontrolled from 'examples/payment-card/uncontrolled.js';
-import DefaultValue from 'examples/payment-card/defaultvalue.js';
-import Form from 'examples/payment-card/form.js';
+import Controlled from 'examples/payment-card/controlled.tsx';
+import Uncontrolled from 'examples/payment-card/uncontrolled.tsx';
+import DefaultValue from 'examples/payment-card/defaultvalue.tsx';
+import Form from 'examples/payment-card/form.tsx';
 
 import { StatefulPaymentCard } from 'baseui/payment-card';
 
@@ -53,22 +53,22 @@ This component is based on the [Input](/components/input) component. All of the 
 
 ## Examples
 
-<Example title="Basic usage" path="payment-card/controlled.js">
+<Example title="Basic usage" path="payment-card/controlled.tsx">
   <Controlled />
 </Example>
 
-<Example title="Default value" path="payment-card/defaultvalue.js">
+<Example title="Default value" path="payment-card/defaultvalue.tsx">
   <DefaultValue />
 </Example>
 
-<Example title="Payment form" path="payment-card/form.js">
+<Example title="Payment form" path="payment-card/form.tsx">
   <Form />
 </Example>
 
 If you'd like to add further validations, check out the [card-validator](https://www.npmjs.com/package/card-validator)
 package that Base Web uses under the hood too.
 
-<Example title="Stateful (uncontrolled) usage" path="payment-card/uncontrolled.js">
+<Example title="Stateful (uncontrolled) usage" path="payment-card/uncontrolled.tsx">
   <Uncontrolled />
 </Example>
 

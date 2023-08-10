@@ -51,13 +51,13 @@ export const InnerTrack = styled<'div', StyleProps>('div', (props) => {
       colors:
         $value.length === 1
           ? [
-              $disabled ? colors.borderOpaque : colors.primary,
-              $disabled ? colors.backgroundSecondary : colors.borderOpaque,
+              $disabled ? colors.borderOpaque : colors.borderSelected,
+              $disabled ? colors.borderStateDisabled : colors.borderOpaque,
             ]
           : [
-              $disabled ? colors.backgroundSecondary : colors.borderOpaque,
-              $disabled ? colors.borderOpaque : colors.primary,
-              $disabled ? colors.backgroundSecondary : colors.borderOpaque,
+              $disabled ? colors.borderStateDisabled : colors.borderOpaque,
+              $disabled ? colors.borderOpaque : colors.borderSelected,
+              $disabled ? colors.borderStateDisabled : colors.borderOpaque,
             ],
       min: $min || 0,
       max: $max || 0,
@@ -132,7 +132,7 @@ export const Thumb = styled<'div', StyleProps>('div', (props) => {
       : $theme.colors.sliderHandleFill,
     outline: 'none',
     boxShadow: props.$isFocusVisible
-      ? `0 0 0 3px ${$theme.colors.accent}`
+      ? `0 0 0 3px ${$theme.colors.borderAccent}`
       : '0 1px 4px rgba(0, 0, 0, 0.12)',
     cursor: $disabled ? 'not-allowed' : 'inherit',
   };

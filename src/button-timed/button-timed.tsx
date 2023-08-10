@@ -21,19 +21,30 @@ const ButtonTimed = (props: ButtonTimedProps) => {
     overrides = {},
     ...restProps
   } = props;
+  const [startTime, setStartTime] = React.useState<number>(Date.now());
   const [timeRemaining, setTimeRemaining] = React.useState<number>(initialTime * 1000);
 
   React.useEffect(() => {
-    const timerId = setTimeout(() => {
-      if (timeRemaining > 0 && !paused) {
-        setTimeRemaining((seconds) => seconds - 100);
+    if (!paused) {
+      setStartTime(Date.now() - (initialTime * 1000 - timeRemaining));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [paused, initialTime]);
+
+  React.useEffect(() => {
+    const intervalId = setInterval(() => {
+      if (!paused) {
+        const elapsed = Date.now() - startTime;
+        const remaining = Math.max(initialTime * 1000 - elapsed, 0);
+        setTimeRemaining(remaining);
+        if (remaining === 0) {
+          onClickProp();
+        }
       }
     }, 100);
-    if (timeRemaining === 0) {
-      onClickProp();
-    }
-    return () => clearTimeout(timerId);
-  }, [timeRemaining, paused]);
+
+    return () => clearInterval(intervalId);
+  }, [startTime, paused, onClickProp, initialTime]);
 
   const onClick = () => {
     setTimeRemaining(0);

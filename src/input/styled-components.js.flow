@@ -35,7 +35,7 @@ export const StyledMaskToggleButton = styled<{
     background: 'none',
     paddingLeft: pad,
     paddingRight: pad,
-    outline: $isFocusVisible ? `solid 3px ${$theme.colors.accent}` : 'none',
+    outline: $isFocusVisible ? `solid 3px ${$theme.colors.borderAccent}` : 'none',
     color: $theme.colors.contentPrimary,
   };
 });
@@ -66,7 +66,7 @@ export const StyledClearIcon = styled<typeof DeleteAlt, { $isFocusVisible: boole
   DeleteAlt,
   ({ $theme, $isFocusVisible }) => ({
     cursor: 'pointer',
-    outline: $isFocusVisible ? `solid 3px ${$theme.colors.accent}` : 'none',
+    outline: $isFocusVisible ? `solid 3px ${$theme.colors.borderAccent}` : 'none',
   })
 );
 

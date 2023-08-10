@@ -9,7 +9,7 @@ import type { Override } from '../helpers/overrides';
 import { STATE_CHANGE_TYPE } from './constants';
 
 const stateChangeType = Object.freeze(STATE_CHANGE_TYPE);
-export type StateType = typeof stateChangeType[keyof typeof stateChangeType];
+export type StateType = (typeof stateChangeType)[keyof typeof stateChangeType];
 
 export type State = {
   activeItemId?: string;

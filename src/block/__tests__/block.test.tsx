@@ -12,17 +12,17 @@ import Block from '../block';
 
 describe('Block', () => {
   it('renders themed backgroundColor if provided', () => {
-    const { container } = render(<Block backgroundColor="primary200">test</Block>);
+    const { container } = render(<Block backgroundColor="backgroundTertiary">test</Block>);
     const testStyle = container.querySelector('div')?.getAttribute('test-style');
     const style = JSON.parse(testStyle || '');
-    expect(style.backgroundColor).toBe('$theme.colors.primary200');
+    expect(style.backgroundColor).toBe('$theme.colors.backgroundTertiary');
   });
 
   it('renders themed color if provided', () => {
-    const { container } = render(<Block color="primary200">test</Block>);
+    const { container } = render(<Block color="backgroundTertiary">test</Block>);
     const testStyle = container.querySelector('div')?.getAttribute('test-style');
     const style = JSON.parse(testStyle || '');
-    expect(style.color).toBe('$theme.colors.primary200');
+    expect(style.color).toBe('$theme.colors.backgroundTertiary');
   });
 
   describe('Overflow', () => {

@@ -6,18 +6,19 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import type {
-  ColorTokensT,
+  FoundationColorTokensT,
   CoreSemanticColorTokensT,
   CoreExtensionSemanticColorTokensT,
+  DeprecatedSemanticColorTokensT,
   SemanticColorTokensT,
 } from '../types.js';
-import colorTokens from './color-tokens.js';
+import defaultFoundationColorTokens from './color-tokens.js';
 import { hexToRgb as hexToRgba } from '../../styles/util.js';
 import colors from '../../tokens/colors.js';
 
 export default (
   // themePrimitives or foundation colors
-  foundation: ColorTokensT = colorTokens
+  foundation: FoundationColorTokensT = defaultFoundationColorTokens
 ): SemanticColorTokensT => {
   const core: CoreSemanticColorTokensT = {
     // Background
@@ -47,17 +48,16 @@ export default (
   const coreExtensions: CoreExtensionSemanticColorTokensT = {
     // Backgrounds
     backgroundStateDisabled: colors.gray50,
-    backgroundOverlayDark: hexToRgba(colors.black, '0.3'),
-    backgroundOverlayLight: hexToRgba(colors.black, '0.08'),
+    backgroundOverlay: hexToRgba(colors.black, '0.5'),
     backgroundOverlayArt: hexToRgba(colors.black, '0.00'),
     backgroundAccent: foundation.accent,
     backgroundNegative: foundation.negative,
     backgroundWarning: foundation.warning,
     backgroundPositive: colors.green400,
-    backgroundLightAccent: colors.blue50,
-    backgroundLightNegative: colors.red50,
-    backgroundLightWarning: colors.yellow50,
-    backgroundLightPositive: colors.green50,
+    backgroundAccentLight: colors.blue50,
+    backgroundNegativeLight: colors.red50,
+    backgroundWarningLight: colors.yellow50,
+    backgroundPositiveLight: colors.green50,
     backgroundAlwaysDark: colors.black,
     backgroundAlwaysLight: colors.white,
 
@@ -77,6 +77,9 @@ export default (
     borderNegative: colors.red200,
     borderWarning: colors.yellow200,
     borderPositive: colors.green200,
+    borderNegativeLight: colors.red200,
+    borderWarningLight: colors.yellow200,
+    borderPositiveLight: colors.green200,
 
     // Programs
     safety: colors.blue400,
@@ -89,8 +92,17 @@ export default (
     rewardsTier4: colors.black,
     membership: colors.yellow600,
   };
+  const deprecated: DeprecatedSemanticColorTokensT = {
+    backgroundOverlayLight: coreExtensions.backgroundOverlay,
+    backgroundOverlayDark: coreExtensions.backgroundOverlay,
+    backgroundLightAccent: coreExtensions.backgroundAccentLight,
+    backgroundLightPositive: coreExtensions.backgroundPositiveLight,
+    backgroundLightWarning: coreExtensions.backgroundWarningLight,
+    backgroundLightNegative: coreExtensions.backgroundNegativeLight,
+  };
   return {
     ...core,
     ...coreExtensions,
+    ...deprecated,
   };
 };

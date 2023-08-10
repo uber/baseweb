@@ -15,7 +15,7 @@ export const StyledFileDragAndDrop = styled<'div', StyleProps>('div', (props) =>
   return {
     alignItems: 'center',
     backgroundColor: props.$isDragActive
-      ? props.$theme.colors.backgroundLightAccent
+      ? props.$theme.colors.backgroundAccentLight
       : props.$theme.colors.fileUploaderBackgroundColor,
     borderLeftColor: borderColor,
     borderRightColor: borderColor,
@@ -71,7 +71,7 @@ export const StyledContentSeparator = StyledContentMessage;
 // @ts-ignore
 export const StyledErrorMessage = styled<'div', StyleProps>('div', (props) => ({
   ...props.$theme.typography.LabelMedium,
-  color: props.$theme.colors.negative,
+  color: props.$theme.colors.contentNegative,
   marginTop: props.$afterFileDrop ? props.$theme.sizing.scale100 : null,
   marginBottom: props.$afterFileDrop ? props.$theme.sizing.scale100 : null,
 }));

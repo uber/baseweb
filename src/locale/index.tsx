@@ -26,8 +26,9 @@ import type { ToastLocale as ToastLocaleAlias } from '../toast';
 
 export const LocaleContext: React.Context<Locale> = React.createContext(en_US);
 
+type DeepPartial<T> = { [P in keyof T]?: DeepPartial<T[P]> };
 export type LocaleProviderProps = {
-  locale: Partial<Locale>;
+  locale: DeepPartial<Locale>;
   children: React.ReactNode | undefined | null;
 };
 
@@ -36,7 +37,9 @@ const LocaleProvider: React.FC<LocaleProviderProps> = (props) => {
   const parentLocale = React.useContext(LocaleContext) ?? {};
 
   return (
-    <LocaleContext.Provider value={extend({}, en_US, parentLocale, locale)}>
+    // this is poorly documented but specifying true enforces that the object is deeply extended
+    // https://www.npmjs.com/package/just-extend
+    <LocaleContext.Provider value={extend(true, {}, en_US, parentLocale, locale)}>
       {children}
     </LocaleContext.Provider>
   );

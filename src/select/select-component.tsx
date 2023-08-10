@@ -379,7 +379,7 @@ class Select extends React.Component<SelectProps, SelectState> {
     if (this.props.disabled) return;
     switch (event.keyCode) {
       case 8: // backspace
-        if (!this.state.inputValue && this.props.backspaceRemoves) {
+        if (!this.state.inputValue && this.props.clearable && this.props.backspaceRemoves) {
           event.preventDefault();
           this.backspaceValue();
         }

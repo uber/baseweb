@@ -9,10 +9,10 @@ import Example from '../../components/example';
 import Exports from '../../components/exports';
 import Layout from '../../components/layout';
 
-import ColorMessageCard from 'examples/message-card/color.js';
-import CustomColorMessageCard from 'examples/message-card/custom-color.js';
-import LayoutMessageCard from 'examples/message-card/layout.js';
-import PositioningMessageCard from 'examples/message-card/positioning.js';
+import ColorMessageCard from 'examples/message-card/color.tsx';
+import CustomColorMessageCard from 'examples/message-card/custom-color.tsx';
+import LayoutMessageCard from 'examples/message-card/layout.tsx';
+import PositioningMessageCard from 'examples/message-card/positioning.tsx';
 
 import { MessageCard, IMAGE_LAYOUT, BACKGROUND_COLOR_TYPE, BUTTON_KIND } from 'baseui/message-card';
 import * as MessageCardExports from 'baseui/message-card';
@@ -44,7 +44,7 @@ Not recommended for:
 
 ## Examples
 
-<Example title="Color" path="message-card/color.js">
+<Example title="Color" path="message-card/color.tsx">
   <ColorMessageCard />
 </Example>
 
@@ -54,19 +54,19 @@ To ensure text is always legible, MessageCard determines the appropriate text co
 
 Unlike UI components that “flip” in dark mode, cards with rich illustrations can’t simply be “flipped”. The result often looks more like a photo negative. Instead of flipping colors in dark mode, MessageCard uses an overlay to dim the background color and image so the colors don’t vibrate too much in a dark environment. Note that the overlay is below the text layer to ensure accessible contrast ratios.
 
-<Example title="Custom color" path="message-card/custom-color.js">
+<Example title="Custom color" path="message-card/custom-color.tsx">
   <CustomColorMessageCard />
 </Example>
 
 When using a color outside of the Base Web primitive color pallete, use the `backgroundColorType` prop to indicate whether the color is light or dark. MessageCard will determine the appropriate font color accordingly.
 
-<Example title="Layout" path="message-card/layout.js">
+<Example title="Layout" path="message-card/layout.tsx">
   <LayoutMessageCard />
 </Example>
 
 Images can either be placed at the top of the card or at the trailing end. For cards with trailing images, the image container width is fixed to a default size of 112. The height of the image will depend on the amount of content placed inside the card.
 
-<Example title="Adjusting the image position" path="message-card/positioning.js">
+<Example title="Adjusting the image position" path="message-card/positioning.tsx">
   <PositioningMessageCard />
 </Example>
 

@@ -158,7 +158,7 @@ export const Body = styled<'div', SharedStylePropsArg>(
       paddingLeft: $theme.sizing.scale600,
       marginTop: $theme.sizing.scale300,
       marginBottom: $theme.sizing.scale300,
-      backgroundColor: getBackgroundColor($kind, $type, $theme) || $theme.colors.accent,
+      backgroundColor: getBackgroundColor($kind, $type, $theme) || $theme.colors.backgroundAccent,
       borderTopLeftRadius: $theme.borders.radius400,
       borderTopRightRadius: $theme.borders.radius400,
       borderBottomRightRadius: $theme.borders.radius400,
@@ -199,7 +199,7 @@ export const CloseIconSvg = styled<
     cursor: 'pointer',
     width: $size || '16px',
     flexShrink: 0,
-    outline: $isFocusVisible ? `3px solid ${$theme.colors.accent}` : 'none',
+    outline: $isFocusVisible ? `3px solid ${$theme.colors.borderAccent}` : 'none',
   })
 );
 CloseIconSvg.displayName = 'CloseIconSvg';

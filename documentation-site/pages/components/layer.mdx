@@ -11,9 +11,9 @@ import Exports from '../../components/exports';
 
 import * as LayerExports from 'baseui/layer';
 
-import LayerBasic from 'examples/layer/basic.js';
-import LayerZIndex from 'examples/layer/layer-z-index.js';
-import TetherBasic from 'examples/layer/basic-tether.js';
+import LayerBasic from 'examples/layer/basic.tsx';
+import LayerZIndex from 'examples/layer/layer-z-index.tsx';
+import TetherBasic from 'examples/layer/basic-tether.tsx';
 
 export default Layout;
 
@@ -54,7 +54,7 @@ in order to handle the rendering into a container. If no `LayersManager` is adde
 the content will be added to the `body`. With layers there is no need for `z-index`
 css property usage as layers completely rely on the stacking context.
 
-<Example title="Layer basic usage" path="layer/basic.js">
+<Example title="Layer basic usage" path="layer/basic.tsx">
   <LayerBasic />
 </Example>
 
@@ -81,7 +81,7 @@ is build in a less structured way you'd need to pass a `zIndex` value that is eq
 greater than the highest `z-index` value of all top level stacking contexts in your application
 (**note it may be not the highest `z-index` value across your application**).
 
-<Example title="Layers with z-index" path="layer/layer-z-index.js">
+<Example title="Layers with z-index" path="layer/layer-z-index.tsx">
   <LayerZIndex />
 </Example>
 
@@ -89,7 +89,7 @@ greater than the highest `z-index` value of all top level stacking contexts in y
 
 `Tether` component provides a behavior where its content positioned relatively to a provided anchor element. Popover component is a good example of the `Tether` component usage.
 
-<Example title="Tether basic usage" path="layer/basic-tether.js">
+<Example title="Tether basic usage" path="layer/basic-tether.tsx">
   <TetherBasic />
 </Example>
 

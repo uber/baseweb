@@ -23,6 +23,8 @@ import DateHelpers from './utils/date-helpers';
 import { getOverrides, mergeOverrides } from '../helpers/overrides';
 import type { CalendarProps, CalendarInternalState } from './types';
 import { DENSITY, ORIENTATION } from './constants';
+import { Button, KIND } from '../button';
+import { ButtonDock } from '../button-dock';
 
 export default class Calendar<T = Date> extends React.Component<
   CalendarProps<T>,
@@ -640,6 +642,58 @@ export default class Calendar<T = Date> extends React.Component<
     );
   };
 
+  renderActionBar = () => {
+    const { overrides = {}, primaryButton, secondaryButton } = this.props;
+    const [ButtonDockComponent, buttonDockProps] = getOverrides(overrides.ButtonDock, ButtonDock);
+    const [PrimaryButtonComponent, primaryButtonProps] = getOverrides(
+      overrides.PrimaryButton,
+      Button
+    );
+    const [SecondaryButtonComponent, secondaryButtonProps] = getOverrides(
+      overrides.SecondaryButton,
+      Button
+    );
+
+    const primaryButtonComponent =
+      primaryButton != null ? (
+        <PrimaryButtonComponent onClick={() => primaryButton.onClick()} {...primaryButtonProps}>
+          {primaryButton.label}
+        </PrimaryButtonComponent>
+      ) : null;
+    const secondaryButtonComponent =
+      secondaryButton != null ? (
+        <SecondaryButtonComponent
+          onClick={() => secondaryButton.onClick()}
+          kind={KIND.tertiary}
+          {...secondaryButtonProps}
+        >
+          {secondaryButton.label}
+        </SecondaryButtonComponent>
+      ) : null;
+
+    if (primaryButtonComponent || secondaryButtonComponent) {
+      return (
+        <ButtonDockComponent
+          primaryAction={primaryButtonComponent}
+          dismissiveAction={secondaryButtonComponent}
+          overrides={mergeOverrides(
+            {
+              ActionSubContainer: {
+                style: {
+                  flexDirection: 'row-reverse',
+                },
+              },
+            },
+            buttonDockProps.overrides
+          )}
+          {...buttonDockProps}
+        />
+      );
+    }
+
+    return null;
+  };
+
   render() {
     const { overrides = {} } = this.props;
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
@@ -653,7 +707,7 @@ export default class Calendar<T = Date> extends React.Component<
             $density={this.props.density}
             data-baseweb="calendar"
             role="application"
-            aria-roledescription="datepicker"
+            aria-roledescription="date picker"
             // @ts-ignore
             ref={(root) => {
               if (root && root instanceof HTMLElement && !this.state.rootElement) {
@@ -685,6 +739,7 @@ export default class Calendar<T = Date> extends React.Component<
                 locale.datepicker.timeSelectEndLabel
               )}
             {this.renderQuickSelect()}
+            {this.renderActionBar()}
           </Root>
         )}
       </LocaleContext.Consumer>

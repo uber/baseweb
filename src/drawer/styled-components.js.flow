@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 import { styled } from '../styles/index.js';
 import { SIZE, SIZE_DIMENSION, ANCHOR } from './constants.js';
 import type { SharedStylePropsArgT, SizePropT, AnchorPropT } from './types.js';
+import { colors as colorTokens } from '../tokens/index.js';
 
 function getSizeStyles($size: SizePropT, $anchor: AnchorPropT) {
   const styles = {
@@ -162,7 +163,7 @@ export const StyledClose = styled<SharedStylePropsArgT>('button', (props) => {
     paddingBottom: 0,
 
     // colors
-    fill: $theme.colors.primary,
+    fill: $theme.colors.contentPrimary,
     transitionProperty: 'fill, border-color',
     transitionDuration: $theme.animation.timing200,
     borderLeftWidth: '1px',
@@ -178,10 +179,10 @@ export const StyledClose = styled<SharedStylePropsArgT>('button', (props) => {
     borderTopColor: 'transparent',
     borderBottomColor: 'transparent',
     ':hover': {
-      fill: $theme.colors.primary600,
+      fill: colorTokens.gray600,
     },
     ':focus': {
-      outline: $isFocusVisible ? `3px solid ${$theme.colors.accent}` : 'none',
+      outline: $isFocusVisible ? `3px solid ${$theme.colors.borderAccent}` : 'none',
     },
 
     // Positioning

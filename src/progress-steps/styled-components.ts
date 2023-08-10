@@ -77,11 +77,11 @@ StyledIconContainer.displayName = 'StyledIconContainer';
 export const StyledIcon = styled<'div', StyleProps>(
   'div',
   ({ $theme, $isActive, $isCompleted }) => {
-    let currentColor = $theme.colors.mono400;
+    let currentColor = $theme.colors.contentTertiary;
     let size = $theme.sizing.scale300;
 
     if ($isCompleted) {
-      currentColor = $theme.colors.primary;
+      currentColor = $theme.colors.contentPrimary;
     } else if ($isActive) {
       currentColor = $theme.colors.progressStepsActiveFill;
     }
@@ -138,9 +138,9 @@ StyledContent.displayName = 'StyledContent';
 export const StyledContentTitle = styled<'div', StyleProps>(
   'div',
   ({ $theme, $isActive, $isCompleted }) => {
-    let color = $theme.colors.primary400;
+    let color = $theme.colors.contentTertiary;
     if ($isCompleted) {
-      color = $theme.colors.contentSecondary;
+      color = $theme.colors.contentPrimary;
     } else if ($isActive) {
       color = $theme.colors.contentPrimary;
     }
@@ -160,7 +160,7 @@ StyledContentTitle.displayName = 'StyledContentTitle';
 export const StyledContentTail = styled<'div', StyleProps>(
   'div',
   ({ $theme, $isCompleted, $isActive }) => {
-    let currentColor = $theme.colors.mono400;
+    let currentColor = $theme.colors.borderOpaque;
     let size = $theme.sizing.scale500;
     let font = $theme.typography.LabelMedium;
     let titlePad = $theme.sizing.scale800;
@@ -170,7 +170,7 @@ export const StyledContentTail = styled<'div', StyleProps>(
     }
 
     if ($isCompleted) {
-      currentColor = $theme.colors.primary;
+      currentColor = $theme.colors.borderSelected;
     }
 
     const dir: string = $theme.direction === 'rtl' ? 'right' : 'left';
@@ -212,8 +212,8 @@ StyledNumberStep.displayName = 'StyledNumberStep';
 export const StyledNumberIcon = styled<'div', StyleProps>(
   'div',
   ({ $theme, $isActive, $isCompleted }) => {
-    let backgroundColor = $theme.colors.mono400;
-    let color = $theme.colors.contentStateDisabled;
+    let backgroundColor = $theme.colors.backgroundTertiary;
+    let color = $theme.colors.contentPrimary;
     let size = $theme.sizing.scale950;
     let font = $theme.typography.ParagraphMedium;
     let marginLeft = $theme.sizing.scale550;
@@ -258,13 +258,13 @@ StyledNumberIcon.displayName = 'StyledNumberIcon';
 export const StyledNumberContentTail = styled<'div', StyleProps>(
   'div',
   ({ $theme, $isCompleted }) => {
-    let currentColor = $theme.colors.mono300;
+    let currentColor = $theme.colors.backgroundTertiary;
     let size = $theme.sizing.scale950;
     let titleFont = $theme.typography.LabelMedium;
     let titlePad = $theme.sizing.scale800;
 
     if ($isCompleted) {
-      currentColor = $theme.colors.primary;
+      currentColor = $theme.colors.contentPrimary;
     }
     const marginTop = `calc(${titlePad} + ${size} + (${titleFont.lineHeight} - ${size}) / 2)`;
     const dir: string = $theme.direction === 'rtl' ? 'right' : 'left';

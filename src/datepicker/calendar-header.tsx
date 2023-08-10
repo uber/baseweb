@@ -49,6 +49,19 @@ const DIRECTION = {
   PREVIOUS: 'previous',
 } as const;
 
+// When multiple calendar months are rendered, the month selection dropdown
+// must account for which of the rendered calendar months it corresponds with
+function adjustForCalendarOrder(monthId, year, order) {
+  let adjustedMonth = Number(monthId) - order;
+  let adjustedYear = year;
+
+  if (adjustedMonth < 0) {
+    adjustedMonth = 11;
+    adjustedYear = adjustedYear - 1;
+  }
+  return { adjustedMonthId: adjustedMonth.toString(), adjustedYear: adjustedYear };
+}
+
 // @ts-ignore
 function idToYearMonth(id) {
   return id.split('-').map(Number);
@@ -227,7 +240,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
     return orientation === ORIENTATION.horizontal && monthsShown > 1;
   };
 
-  isHiddenPaginationButton = (direction: typeof DIRECTION[keyof typeof DIRECTION]) => {
+  isHiddenPaginationButton = (direction: (typeof DIRECTION)[keyof typeof DIRECTION]) => {
     const { monthsShown, order } = this.props;
 
     if (!!monthsShown && this.isMultiMonthHorizontal()) {
@@ -296,6 +309,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
         type="button"
         $disabled={isDisabled}
         $order={this.props.order}
+        $density={this.props.density}
         {...prevButtonProps}
       >
         {isHidden ? null : (
@@ -356,6 +370,8 @@ export default class CalendarHeader<T = Date> extends React.Component<
         $disabled={isDisabled}
         $isFocusVisible={this.state.isFocusVisible}
         $order={this.props.order}
+        $density={this.props.density}
+        $isTrailing={true}
         {...nextButtonProps}
       >
         {isHidden ? null : (
@@ -382,6 +398,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
     const date = this.getDateProp();
     const month = this.dateHelpers.getMonth(date);
     const year = this.dateHelpers.getYear(date);
+    const order = this.props.order;
 
     const { locale, overrides = {}, density } = this.props;
     const [MonthYearSelectButton, monthYearSelectButtonProps] = getOverrides(
@@ -418,9 +435,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
     )}`;
     const yearTitle = `${this.dateHelpers.getYear(date)}`;
 
-    return this.isMultiMonthHorizontal() ? (
-      <div>{`${monthTitle} ${yearTitle}`}</div>
-    ) : (
+    return (
       <>
         {/* Month Selection */}
 
@@ -446,10 +461,14 @@ export default class CalendarHeader<T = Date> extends React.Component<
               // @ts-ignore
               onItemSelect={({ item, event }) => {
                 event.preventDefault();
-                const month = idToYearMonth(item.id);
-                const updatedDate = this.dateHelpers.set(date, {
+                const { adjustedMonthId, adjustedYear } = adjustForCalendarOrder(
+                  item.id,
                   year,
-                  month,
+                  order
+                );
+                const updatedDate = this.dateHelpers.set(date, {
+                  year: adjustedYear,
+                  month: idToYearMonth(adjustedMonthId),
                 });
                 this.props.onMonthChange && this.props.onMonthChange({ date: updatedDate });
                 this.setState({ isMonthDropdownOpen: false });
@@ -482,6 +501,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
               }
             }}
             {...monthYearSelectButtonProps}
+            aria-label={`Month, ${monthTitle}`}
           >
             {monthTitle}
 
@@ -552,6 +572,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
                 this.setState({ isYearDropdownOpen: false });
               }
             }}
+            aria-label={`Year, ${yearTitle}`}
             {...monthYearSelectButtonProps}
           >
             {yearTitle}
@@ -606,13 +627,13 @@ export default class CalendarHeader<T = Date> extends React.Component<
                   {WEEKDAYS.map((offset) => {
                     const day = this.dateHelpers.addDays(startOfWeek, offset);
                     return (
-                      <WeekdayHeader
-                        key={offset}
-                        alt={this.dateHelpers.getWeekdayInLocale(day, this.props.locale)}
-                        {...weekdayHeaderProps}
-                        $density={density}
-                      >
-                        {this.dateHelpers.getWeekdayMinInLocale(day, this.props.locale)}
+                      <WeekdayHeader key={offset} {...weekdayHeaderProps} $density={density}>
+                        <abbr
+                          style={{ textDecoration: 'none' }}
+                          title={this.dateHelpers.getWeekdayInLocale(day, this.props.locale)}
+                        >
+                          {this.dateHelpers.getWeekdayMinInLocale(day, this.props.locale)}
+                        </abbr>
                       </WeekdayHeader>
                     );
                   })}

@@ -31,7 +31,7 @@ export const PanelContainer = styled<'li', SharedStylePropsArg>('li', (props) =>
     width: '100%',
     borderBottomWidth: '1px',
     borderBottomStyle: 'solid',
-    borderBottomColor: $expanded ? colors.mono500 : colors.mono400,
+    borderBottomColor: colors.borderOpaque,
   };
 });
 PanelContainer.displayName = 'PanelContainer';
@@ -57,11 +57,11 @@ export const Header = styled<'div', SharedStylePropsArg>('div', (props) => {
     marginRight: 0,
     display: 'flex',
     alignItems: 'center',
-    outline: $isFocusVisible ? `3px solid ${colors.accent}` : 'none',
+    outline: $isFocusVisible ? `3px solid ${colors.borderAccent}` : 'none',
     outlineOffset: '-3px',
     justifyContent: 'space-between',
     ':hover': {
-      color: colors.primary,
+      color: colors.contentPrimary,
     },
   };
 });
@@ -81,7 +81,7 @@ ToggleIcon.displayName = 'ToggleIcon';
 export const ToggleIconGroup = styled<'g', SharedStylePropsArg>('g', (props) => {
   const { $theme, $expanded } = props;
   return {
-    transform: $expanded ? 'rotate(0)' : 'rotate(-90deg)',
+    transform: $expanded ? 'rotate(-180deg)' : 'rotate(0)',
     transformOrigin: 'center',
     transitionProperty: 'transform',
     transitionDuration: $theme.animation.timing500,

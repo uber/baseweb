@@ -10,7 +10,7 @@ import type { SharedStyleProps } from './types';
 export const Root = styled<'button', SharedStyleProps>('button', (props) => {
   const { $prop, $theme } = props;
   return {
-    color: $prop ? $theme.colors.accent : $theme.colors.positive400,
+    color: $prop ? $theme.colors.accent : $theme.colors.positive,
     cursor: 'pointer',
   };
 });

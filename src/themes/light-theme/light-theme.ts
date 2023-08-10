@@ -4,7 +4,8 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import colorTokens from './color-tokens';
+import foundationColorTokens from './color-tokens';
+import primitiveColorTokens from '../../tokens/colors';
 import getSemanticColorTokens from './color-semantic-tokens';
 import getComponentColorTokens from './color-component-tokens';
 import borders from '../shared/borders';
@@ -21,7 +22,8 @@ import type { Theme } from '../../styles/types';
 export const LightTheme: Theme = {
   name: 'light-theme',
   colors: {
-    ...colorTokens,
+    ...foundationColorTokens,
+    ...primitiveColorTokens,
     ...getComponentColorTokens(),
     ...getSemanticColorTokens(),
   },

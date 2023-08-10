@@ -9,18 +9,18 @@ import Example from '../../components/example';
 import Layout from '../../components/layout';
 import Exports from '../../components/exports';
 
-import BasicControlled from 'examples/input/basic-controlled.js';
-import Sizes from 'examples/input/sizes.js';
-import AvailableStates from 'examples/input/available-states.js';
-import Enhancers from 'examples/input/enhancers.js';
-import Mask from 'examples/input/mask.js';
-import Customization from 'examples/input/overrides.js';
-import Focus from 'examples/input/focus.js';
-import WithTags from 'examples/input/with-tags.js';
-import Clearable from 'examples/input/clearable.js';
-import Password from 'examples/input/password.js';
-import BasicUncontrolled from 'examples/input/basic-uncontrolled.js';
-import WithSelect from 'examples/input/with-select.js';
+import BasicControlled from 'examples/input/basic-controlled.tsx';
+import Sizes from 'examples/input/sizes.tsx';
+import AvailableStates from 'examples/input/available-states.tsx';
+import Enhancers from 'examples/input/enhancers.tsx';
+import Mask from 'examples/input/mask.tsx';
+import Customization from 'examples/input/overrides.tsx';
+import Focus from 'examples/input/focus.tsx';
+import WithTags from 'examples/input/with-tags.tsx';
+import Clearable from 'examples/input/clearable.tsx';
+import Password from 'examples/input/password.tsx';
+import BasicUncontrolled from 'examples/input/basic-uncontrolled.tsx';
+import WithSelect from 'examples/input/with-select.tsx';
 
 import { StatefulInput } from 'baseui/input';
 import * as InputExports from 'baseui/input';
@@ -42,23 +42,23 @@ An input enables a person to type in text information.
 
 ## Examples
 
-<Example title="Basic usage" path="input/basic-controlled.js">
+<Example title="Basic usage" path="input/basic-controlled.tsx">
   <BasicControlled />
 </Example>
 
-<Example title="States" path="input/available-states.js">
+<Example title="States" path="input/available-states.tsx">
   <AvailableStates />
 </Example>
 
-<Example title="Sizes" path="input/sizes.js">
+<Example title="Sizes" path="input/sizes.tsx">
   <Sizes />
 </Example>
 
-<Example title="Enhancers" path="input/enhancers.js">
+<Example title="Enhancers" path="input/enhancers.tsx">
   <Enhancers />
 </Example>
 
-<Example title="MaskedInput" path="input/mask.js">
+<Example title="MaskedInput" path="input/mask.tsx">
   <Mask />
 </Example>
 
@@ -66,14 +66,14 @@ Masking an input can lead to accessibility problems. Screen-readers will read ou
 
 Consider if you can format the value of the input on a blur event, rather than on change events. This still gives users visual feedback but also provides a much smoother experience for someone using a screenreader.
 
-<Example title="Clearable" path="input/clearable.js">
+<Example title="Clearable" path="input/clearable.tsx">
   <Clearable />
 </Example>
 
 When `clearable` is true, clicking the clear icon on the right will clear the input's current value. By default, pressing the Escape key also clears the input, but this can be disabled by setting the `clearOnEscape` prop to false.
 Other input components such as [`Textarea`](/components/textarea), [`PhoneInput`](/components/phone-input), and [`PaymentCard`](/components/payment-card) also respect the `clearable` property.
 
-<Example title="Input for passwords" path="input/password.js">
+<Example title="Input for passwords" path="input/password.tsx">
   <Password />
 </Example>
 
@@ -108,25 +108,25 @@ You can also use `overrides` to customize the icons used in the toggle:
 
 Note, if all you want to do is change the icons, you could [update your theme](/guides/theming/#customizing-icons) instead.
 
-<Example title="Overrides usage" path="input/overrides.js">
+<Example title="Overrides usage" path="input/overrides.tsx">
   <Customization />
 </Example>
 
-<Example title="Focus and ref" path="input/focus.js">
+<Example title="Focus and ref" path="input/focus.tsx">
   <Focus />
 </Example>
 
-<Example title="Create/Delete Tags" path="input/with-tags.js">
+<Example title="Create/Delete Tags" path="input/with-tags.tsx">
   <WithTags />
 </Example>
 
 In the example above we use `overrides` to add "tag" functionality to our input. Type a phrase and press enter to create a new tag. Use backspace to remove tags.
 
-<Example title="Combined with a Select component" path="input/with-select.js">
+<Example title="Combined with a Select component" path="input/with-select.tsx">
   <WithSelect />
 </Example>
 
-<Example title="Stateful (uncontrolled) usage" path="input/basic-uncontrolled.js">
+<Example title="Stateful (uncontrolled) usage" path="input/basic-uncontrolled.tsx">
   <BasicUncontrolled />
 </Example>
 

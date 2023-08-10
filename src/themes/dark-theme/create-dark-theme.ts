@@ -8,7 +8,8 @@ import animation from '../shared/animation';
 import borders from './borders';
 import breakpoints from '../shared/breakpoints';
 import deepMerge from '../../utils/deep-merge';
-import defaultColorTokens from './color-tokens';
+import defaultFoundationColorTokens from './color-tokens';
+import { colors as primitiveColorTokens } from '../../tokens';
 import getComponentColorTokens from './color-component-tokens';
 import getSemanticColorTokens from './color-semantic-tokens';
 import getTypography from '../shared/typography';
@@ -17,7 +18,7 @@ import lighting from '../shared/lighting';
 import mediaQuery from '../shared/media-query';
 import sizing from '../shared/sizing';
 
-import type { Primitives, ColorTokens } from '../types';
+import type { Primitives, FoundationColorTokens } from '../types';
 import type { Theme } from '../../styles/types';
 
 export default function createDarkTheme(
@@ -27,20 +28,21 @@ export default function createDarkTheme(
   overrides?: {}
 ): Theme {
   // Extract font tokens and color tokens from primitives
-  const { primaryFontFamily, ...customColorTokens } = primitives;
+  const { primaryFontFamily, ...customFoundationColorTokens } = primitives;
   // Assemble color tokens by overriding defaults with custom color tokens
-  const colorTokens: ColorTokens = {
-    ...defaultColorTokens,
-    ...customColorTokens,
+  const foundationColorTokens: FoundationColorTokens = {
+    ...defaultFoundationColorTokens,
+    ...customFoundationColorTokens,
   };
   const theme = {
     animation,
     borders,
     breakpoints,
     colors: {
-      ...colorTokens,
-      ...getComponentColorTokens(colorTokens),
-      ...getSemanticColorTokens(colorTokens),
+      ...primitiveColorTokens,
+      ...foundationColorTokens,
+      ...getComponentColorTokens(foundationColorTokens),
+      ...getSemanticColorTokens(foundationColorTokens),
     },
     direction: 'auto',
     grid,

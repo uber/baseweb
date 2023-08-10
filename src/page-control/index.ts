@@ -5,5 +5,5 @@ LICENSE file in the root directory of this source tree.
 */
 export { default as PageControl } from './page-control';
 export * from './styled-components';
-export * from './constants';
+export { KIND } from './constants';
 export * from './types';

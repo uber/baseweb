@@ -9,23 +9,23 @@ import Example from '../../components/example';
 import Layout from '../../components/layout';
 import Exports from '../../components/exports';
 
-import DatepickerBasic from 'examples/datepicker/basic.js';
-import DatepickerInPopover from 'examples/datepicker/in-popover.js';
-import DatepickerQuickSelect from 'examples/datepicker/quick-select.js';
-import DatepickerTimeSelect from 'examples/datepicker/calendar-time-select.js';
-import DatepickerMultipleMonths from 'examples/datepicker/calendar-multiple-months.js';
-import DatepickerMultipleMonthsWithLabel from 'examples/datepicker/calendar-multiple-months-with-label.js';
-import RangeDatepickerSeparateInputs from 'examples/datepicker/range-picker-with-separate-inputs.js';
-import DatepickerI18n from 'examples/datepicker/i18n.js';
-import DatepickerWithOverrides from 'examples/datepicker/with-overrides.js';
-import ComposedRangePickers from 'examples/datepicker/composed-range-pickers.js';
-import ComposedSinglePickers from 'examples/datepicker/composed-single-pickers.js';
-import DatepickersColorStates from 'examples/datepicker/datepickers-color-states.js';
-import DatepickerTimezone from 'examples/datepicker/datepicker-with-timezone.js';
-import NestedOverride from 'examples/datepicker/nested-override.js';
-import NestedOverridePropMerge from 'examples/datepicker/with-callback-overrides.js';
-import DatepickerWithMask from 'examples/datepicker/with-mask.js';
-import DatepickerNullMask from 'examples/datepicker/null-mask.js';
+import DatepickerBasic from 'examples/datepicker/basic.tsx';
+import DatepickerInPopover from 'examples/datepicker/in-popover.tsx';
+import DatepickerQuickSelect from 'examples/datepicker/quick-select.tsx';
+import DatepickerTimeSelect from 'examples/datepicker/calendar-time-select.tsx';
+import DatepickerMultipleMonths from 'examples/datepicker/calendar-multiple-months.tsx';
+import DatepickerMultipleMonthsWithLabel from 'examples/datepicker/calendar-multiple-months-with-label.tsx';
+import RangeDatepickerSeparateInputs from 'examples/datepicker/range-picker-with-separate-inputs.tsx';
+import DatepickerI18n from 'examples/datepicker/i18n.tsx';
+import DatepickerWithOverrides from 'examples/datepicker/with-overrides.tsx';
+import ComposedRangePickers from 'examples/datepicker/composed-range-pickers.tsx';
+import ComposedSinglePickers from 'examples/datepicker/composed-single-pickers.tsx';
+import DatepickersColorStates from 'examples/datepicker/datepickers-color-states.tsx';
+import DatepickerTimezone from 'examples/datepicker/datepicker-with-timezone.tsx';
+import NestedOverride from 'examples/datepicker/nested-override.tsx';
+import NestedOverridePropMerge from 'examples/datepicker/with-callback-overrides.tsx';
+import DatepickerWithMask from 'examples/datepicker/with-mask.tsx';
+import DatepickerNullMask from 'examples/datepicker/null-mask.tsx';
 
 import { StatefulCalendar } from 'baseui/datepicker';
 import * as DatepickerExports from 'baseui/datepicker';
@@ -51,19 +51,19 @@ A simple and reusable component to work with or select a date or a range of date
 
 ## Examples
 
-<Example title="Datepicker basic usage" path="datepicker/basic.js">
+<Example title="Datepicker basic usage" path="datepicker/basic.tsx">
   <DatepickerBasic />
 </Example>
 
-<Example title="Datepicker in a popover" path="datepicker/in-popover.js">
+<Example title="Datepicker in a popover" path="datepicker/in-popover.tsx">
   <DatepickerInPopover />
 </Example>
 
-<Example title="Datepicker with quick select actions" path="datepicker/quick-select.js">
+<Example title="Datepicker with quick select actions" path="datepicker/quick-select.tsx">
   <DatepickerQuickSelect />
 </Example>
 
-<Example title="Datepicker with localization" path="datepicker/i18n.js">
+<Example title="Datepicker with localization" path="datepicker/i18n.tsx">
   <DatepickerI18n />
 </Example>
 
@@ -71,64 +71,64 @@ The `formatString` property supports all the patterns supported by [date-fns' fo
 For example, if someone wants to change it to Australian format, one has to simply pass the `formatString={'d/MM/YYYY'}` as the props.
 Please note, that some of the options require you to pass in the `locale` object too, just as shown in this example.
 
-<Example title="Datepicker with overrides" path="datepicker/with-overrides.js">
+<Example title="Datepicker with overrides" path="datepicker/with-overrides.tsx">
   <DatepickerWithOverrides />
 </Example>
 
-<Example title="Datepicker with custom mask" path="datepicker/with-mask.js">
+<Example title="Datepicker with custom mask" path="datepicker/with-mask.tsx">
   <DatepickerWithMask />
 </Example>
 
 When using a custom mask `formatString` prop should be also set to match the mask format.
 
-<Example title="Datepicker with no mask" path="datepicker/null-mask.js">
+<Example title="Datepicker with no mask" path="datepicker/null-mask.tsx">
   <DatepickerNullMask />
 </Example>
 
 Some date formats will operate better without a restrictive input mask. You can disable that feature by applying `null` to the mask prop.
 
-<Example title="Calendar with time select actions" path="datepicker/calendar-time-select.js">
+<Example title="Calendar with time select actions" path="datepicker/calendar-time-select.tsx">
   <DatepickerTimeSelect />
 </Example>
 
-<Example title="Calendar with multiple months" path="datepicker/calendar-multiple-months.js">
+<Example title="Calendar with multiple months" path="datepicker/calendar-multiple-months.tsx">
   <DatepickerMultipleMonths />
 </Example>
 
 <Example
   title="Calendar with multiple months and labels"
-  path="datepicker/calendar-multiple-months-with-label.js"
+  path="datepicker/calendar-multiple-months-with-label.tsx"
 >
   <DatepickerMultipleMonthsWithLabel />
 </Example>
 
 <Example
   title="Range Datepicker with Separate Inputs"
-  path="datepicker/range-picker-with-separate-inputs.js"
+  path="datepicker/range-picker-with-separate-inputs.tsx"
 >
   <RangeDatepickerSeparateInputs />
 </Example>
 
-<Example title="Composed single pickers" path="datepicker/composed-single-pickers.js">
+<Example title="Composed single pickers" path="datepicker/composed-single-pickers.tsx">
   <ComposedSinglePickers />
 </Example>
 
-<Example title="Composed range pickers" path="datepicker/composed-range-pickers.js">
+<Example title="Composed range pickers" path="datepicker/composed-range-pickers.tsx">
   <ComposedRangePickers />
 </Example>
 
-<Example title="Datepicker states" path="datepicker/datepickers-color-states.js">
+<Example title="Datepicker states" path="datepicker/datepickers-color-states.tsx">
   <DatepickersColorStates />
 </Example>
 
-<Example title="Datepicker with timezone selection" path="datepicker/datepicker-with-timezone.js">
+<Example title="Datepicker with timezone selection" path="datepicker/datepicker-with-timezone.tsx">
   This example works for most use-cases, however certain edge-cases are not handled here. If this
-  data is mission critical for your systems, consider using Moment.js, and pass the date object from
-  Moment.js to the datepicker.
+  data is mission critical for your systems, consider using Moment.tsx, and pass the date object
+  from Moment.tsx to the datepicker.
   <DatepickerTimezone />
 </Example>
 
-<Example title="Overriding a nested component" path="datepicker/nested-override.js">
+<Example title="Overriding a nested component" path="datepicker/nested-override.tsx">
   <NestedOverride />
 </Example>
 
@@ -136,7 +136,7 @@ In this example we use a [nested override](/guides/understanding-overrides/#over
 
 <Example
   title="Overriding and watching nested component callback"
-  path="datepicker/with-callback-overrides.js"
+  path="datepicker/with-callback-overrides.tsx"
 >
   <NestedOverridePropMerge />
 </Example>

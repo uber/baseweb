@@ -11,11 +11,11 @@ import Exports from '../../components/exports';
 import Yard from '../../components/yard/index';
 import locationPuckYardConfig from '../../components/yard/config/location-puck';
 
-import ConsumerLocationPuck from 'examples/location-puck/consumer.js';
-import ConsumerLocationPuckConfidence from 'examples/location-puck/consumer-confidence.js';
-import ConsumerLocationPuckNoHeading from 'examples/location-puck/consumer-no-heading.js';
-import EarnerLocationPuck from 'examples/location-puck/earner.js';
-import ReactMapGL from 'examples/location-puck/react-map-gl.js';
+import ConsumerLocationPuck from 'examples/location-puck/consumer.tsx';
+import ConsumerLocationPuckConfidence from 'examples/location-puck/consumer-confidence.tsx';
+import ConsumerLocationPuckNoHeading from 'examples/location-puck/consumer-no-heading.tsx';
+import EarnerLocationPuck from 'examples/location-puck/earner.tsx';
+import ReactMapGL from 'examples/location-puck/react-map-gl.tsx';
 import FloatingMarkerContainer from '../../components/floating-marker-container';
 
 import * as LocationPuckExports from 'baseui/map-marker';
@@ -51,7 +51,7 @@ The `earner` location puck should generally be used in navigation-based applicat
 
 ## Examples
 
-<Example title="Consumer location puck" path="location-puck/consumer.js">
+<Example title="Consumer location puck" path="location-puck/consumer.tsx">
   <FloatingMarkerContainer>
     <ConsumerLocationPuck />
   </FloatingMarkerContainer>
@@ -61,7 +61,7 @@ A consumer location puck.
 
 <Example
   title="Consumer location puck with confidence level"
-  path="location-puck/consumer-confidence.js"
+  path="location-puck/consumer-confidence.tsx"
 >
   <FloatingMarkerContainer>
     <ConsumerLocationPuckConfidence />
@@ -72,7 +72,7 @@ A consumer location puck with a manually set confidence level.
 
 <Example
   title="Consumer location puck with no heading indicator"
-  path="location-puck/consumer-no-heading.js"
+  path="location-puck/consumer-no-heading.tsx"
 >
   <FloatingMarkerContainer>
     <ConsumerLocationPuckNoHeading />
@@ -81,7 +81,7 @@ A consumer location puck with a manually set confidence level.
 
 A consumer location puck with no heading indicator. For desktop situations in which no heading is available.
 
-<Example title="Earner location puck" path="location-puck/earner.js">
+<Example title="Earner location puck" path="location-puck/earner.tsx">
   <FloatingMarkerContainer>
     <EarnerLocationPuck />
   </FloatingMarkerContainer>
@@ -89,7 +89,7 @@ A consumer location puck with no heading indicator. For desktop situations in wh
 
 An earner location puck.
 
-<Example title="Usage with react-map-gl" path="location-puck/react-map-gl.js">
+<Example title="Usage with react-map-gl" path="location-puck/react-map-gl.tsx">
   <ReactMapGL />
 </Example>
 

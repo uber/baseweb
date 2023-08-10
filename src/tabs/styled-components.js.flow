@@ -38,11 +38,11 @@ export const Tab = styled<SharedStylePropsArgT>('div', (props) => {
     paddingRight: sizing.scale300,
     marginLeft: sizing.scale200,
     marginRight: sizing.scale200,
-    outline: $isFocusVisible ? `3px solid ${colors.accent}` : 'none',
+    outline: $isFocusVisible ? `3px solid ${colors.borderAccent}` : 'none',
     outlineOffset: '-3px',
     borderBottom:
       $orientation === ORIENTATION.horizontal && $active && !$isFocusVisible
-        ? `2px solid ${colors.primary}`
+        ? `2px solid ${colors.borderSelected}`
         : '2px solid transparent',
     display: 'inline-block',
   };
@@ -50,10 +50,10 @@ export const Tab = styled<SharedStylePropsArgT>('div', (props) => {
     style = {
       ...style,
       ':focus': {
-        color: colors.primary,
+        color: colors.contentPrimary,
       },
       ':hover': {
-        color: colors.primary,
+        color: colors.contentPrimary,
       },
     };
   }

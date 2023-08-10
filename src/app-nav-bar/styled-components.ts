@@ -35,7 +35,7 @@ const StyledButton = styled<
   marginTop: 0,
   marginRight: 0,
   marginBottom: 0,
-  outline: $isFocusVisible ? `3px solid ${$theme.colors.accent}` : 'none',
+  outline: $isFocusVisible ? `3px solid ${$theme.colors.borderAccent}` : 'none',
   outlineOffset: '-3px',
   WebkitAppearance: 'none',
   cursor: 'pointer',
@@ -79,7 +79,7 @@ StyledSpacing.displayName = 'StyledSpacing';
 
 export const StyledAppName = styled('div', ({ $theme }) => ({
   ...$theme.typography.font550,
-  color: $theme.colors.primary,
+  color: $theme.colors.contentPrimary,
   textDecoration: 'none',
   [$theme.mediaQuery.medium]: {
     ...$theme.typography.font650,
@@ -121,7 +121,7 @@ export const StyledMainMenuItem = styled<
   {
     $active?: boolean;
     $isFocusVisible: boolean;
-    $kind: typeof KIND[keyof typeof KIND];
+    $kind: (typeof KIND)[keyof typeof KIND];
   }
 >('div', (props) => {
   const {
@@ -139,11 +139,11 @@ export const StyledMainMenuItem = styled<
     marginRight: sizing.scale700,
     paddingTop: $kind === KIND.secondary ? sizing.scale750 : '0',
     paddingBottom: $kind === KIND.secondary ? sizing.scale750 : '0',
-    outline: $isFocusVisible ? `3px solid ${colors.accent}` : 'none',
+    outline: $isFocusVisible ? `3px solid ${colors.borderAccent}` : 'none',
     outlineOffset: '-3px',
     borderBottomWidth: '2px',
     borderBottomStyle: 'solid',
-    borderBottomColor: $active && !$isFocusVisible ? colors.primary : 'transparent',
+    borderBottomColor: $active && !$isFocusVisible ? colors.borderSelected : 'transparent',
     cursor: $active ? 'default' : 'pointer',
     whiteSpace: $kind === KIND.secondary ? 'nowrap' : 'initial',
     ':first-child': {
@@ -153,7 +153,7 @@ export const StyledMainMenuItem = styled<
       ...(direction === 'rtl' ? { marginLeft: '0' } : { marginRight: '0' }),
     },
     ':hover': {
-      color: colors.primary,
+      color: colors.contentPrimary,
     },
   };
 });

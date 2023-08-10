@@ -46,16 +46,16 @@ export const Item = styled<'li', SharedStylePropsArg>(
               borderBottomStyle: 'solid',
               borderLeftStyle: 'solid',
               borderRightStyle: 'solid',
-              borderTopColor: $theme.colors.primary,
-              borderBottomColor: $theme.colors.primary,
-              borderLeftColor: $theme.colors.primary,
-              borderRightColor: $theme.colors.primary,
+              borderTopColor: $theme.colors.borderSelected,
+              borderBottomColor: $theme.colors.borderSelected,
+              borderLeftColor: $theme.colors.borderSelected,
+              borderRightColor: $theme.colors.borderSelected,
             }
           : {},
       ':focus': {
         outline:
           $isFocusVisible && !$isDragged && !$isSelected
-            ? `3px solid ${$theme.colors.accent}`
+            ? `3px solid ${$theme.colors.borderAccent}`
             : 'none',
         outlineOffset: '-3px',
       },
@@ -79,10 +79,10 @@ export const Item = styled<'li', SharedStylePropsArg>(
       borderBottomStyle: 'solid',
       borderLeftStyle: 'solid',
       borderRightStyle: 'solid',
-      borderTopColor: $isDragged || $isSelected ? $theme.colors.primary : 'transparent',
-      borderBottomColor: $isDragged || $isSelected ? $theme.colors.primary : 'transparent',
-      borderLeftColor: $isDragged || $isSelected ? $theme.colors.primary : 'transparent',
-      borderRightColor: $isDragged || $isSelected ? $theme.colors.primary : 'transparent',
+      borderTopColor: $isDragged || $isSelected ? $theme.colors.borderSelected : 'transparent',
+      borderBottomColor: $isDragged || $isSelected ? $theme.colors.borderSelected : 'transparent',
+      borderLeftColor: $isDragged || $isSelected ? $theme.colors.borderSelected : 'transparent',
+      borderRightColor: $isDragged || $isSelected ? $theme.colors.borderSelected : 'transparent',
     };
   }
 );
@@ -123,7 +123,7 @@ export const CloseHandle = styled<'button', SharedStylePropsArg>(
       display: 'flex',
       alignItems: 'center',
       ':focus': {
-        outline: $isFocusVisible ? `3px solid ${$theme.colors.accent}` : 'none',
+        outline: $isFocusVisible ? `3px solid ${$theme.colors.borderAccent}` : 'none',
       },
     };
   }

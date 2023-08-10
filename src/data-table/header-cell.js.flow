@@ -74,7 +74,7 @@ const HeaderCell = React.forwardRef<HeaderCellPropsT, HTMLDivElement>((props, re
         paddingRight: theme.sizing.scale500,
         flexWrap: 'nowrap',
         whiteSpace: 'nowrap',
-        outline: focusVisible ? `3px solid ${theme.colors.accent}` : 'none',
+        outline: focusVisible ? `3px solid ${theme.colors.borderAccent}` : 'none',
         outlineOffset: '-3px',
       })}
       onMouseEnter={props.onMouseEnter}

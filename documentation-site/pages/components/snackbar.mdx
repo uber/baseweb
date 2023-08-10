@@ -9,10 +9,10 @@ import Example from '../../components/example';
 import Layout from '../../components/layout';
 import Exports from '../../components/exports';
 
-import LineLengths from 'examples/snackbar/line-lengths.js';
-import InfiniteDuration from 'examples/snackbar/infinite-duration.js';
-import Placement from 'examples/snackbar/placement.js';
-import ActionButtonUsage from 'examples/snackbar/action-button-usage.js';
+import LineLengths from 'examples/snackbar/line-lengths.tsx';
+import InfiniteDuration from 'examples/snackbar/infinite-duration.tsx';
+import Placement from 'examples/snackbar/placement.tsx';
+import ActionButtonUsage from 'examples/snackbar/action-button-usage.tsx';
 
 import * as SnackbarExports from 'baseui/snackbar';
 
@@ -38,7 +38,7 @@ A snackbar will render at most three lines before truncating the text. Depending
 count, it's recommended to change the display duration so that users can fully read the text
 before exiting. By default, it will choose the shortest duration.
 
-<Example title="Line lengths" path="snackbar/line-lengths.js">
+<Example title="Line lengths" path="snackbar/line-lengths.tsx">
   <LineLengths />
 </Example>
 
@@ -46,7 +46,7 @@ In some circumstances, you will want to not auto-hide the snackbar and wait unti
 completes. The example below shows `DURATION.inifinite` usage, how to manually dequeue a
 snackbar, as well as demonstrates the `progress` flag that will render a spinner element.
 
-<Example title="Infinite duration" path="snackbar/infinite-duration.js">
+<Example title="Infinite duration" path="snackbar/infinite-duration.tsx">
   <InfiniteDuration />
 </Example>
 
@@ -54,7 +54,7 @@ Snackbar elements can be positioned in various places on the page, but defaults 
 top-center. Snackbars should be placed in a consistent location throughout the application.
 To facilitate consistent placement, this is only configurable from the `SnackbarProvider`.
 
-<Example title="Placement" path="snackbar/placement.js">
+<Example title="Placement" path="snackbar/placement.tsx">
   <Placement />
 </Example>
 
@@ -62,7 +62,7 @@ Snackbars can also offer the ability to perform a single action. Appropriate use
 his button include: canceling, undoing, retrying, or linking to related content. Avoid
 using the button to dismiss the snackbar since it will time out on its own.
 
-<Example title="Action button usage" path="snackbar/action-button-usage.js">
+<Example title="Action button usage" path="snackbar/action-button-usage.tsx">
   <ActionButtonUsage />
 </Example>
 

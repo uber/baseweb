@@ -60,7 +60,7 @@ export const StyledBar = styled<
     borderTopRightRadius: borderRadius,
     borderBottomRightRadius: borderRadius,
     borderBottomLeftRadius: borderRadius,
-    backgroundColor: hexToRgb(colors.progressbarTrackFill, '0.16'),
+    backgroundColor: colors.backgroundTertiary,
     height: getBarHeight($size),
     flex: 1,
     overflow: 'hidden',
@@ -142,7 +142,7 @@ export const StyledBarProgress = styled<'div', StyleProps>('div', (props) => {
     borderTopRightRadius: borderRadius,
     borderBottomRightRadius: borderRadius,
     borderBottomLeftRadius: borderRadius,
-    backgroundColor: colors.accent,
+    backgroundColor: colors.backgroundAccent,
     height: '100%',
     width: '100%',
     transform: 'translateX(-102%)',
@@ -177,8 +177,8 @@ export const StyledInfiniteBar = styled<
     backgroundRepeat: 'no-repeat',
     backgroundPositionX: $isLeft ? '-50%' : '150%',
     backgroundImage: `linear-gradient(${$isLeft ? '90' : '270'}deg, transparent 0%, ${
-      colors.accent
-    } 25%, ${colors.accent} 75%, transparent 100%)`,
+      colors.backgroundAccent
+    } 25%, ${colors.backgroundAccent} 75%, transparent 100%)`,
     animationName: $isLeft
       ? {
           '0%': {

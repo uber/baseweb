@@ -21,7 +21,7 @@ export type LineStyle =
   | 'ridge'
   | 'solid';
 
-export type ColorTokensT = {
+export type FoundationColorTokensT = {
   // Primary Palette
   primaryA: string,
   primaryB: string,
@@ -125,17 +125,16 @@ export type CoreSemanticColorTokensT = {|
 export type CoreExtensionSemanticColorTokensT = {|
   // Backgrounds
   backgroundStateDisabled: string,
-  backgroundOverlayDark: ?string,
-  backgroundOverlayLight: ?string,
+  backgroundOverlay: ?string,
   backgroundOverlayArt: ?string,
   backgroundAccent: string,
   backgroundNegative: string,
   backgroundWarning: string,
   backgroundPositive: string,
-  backgroundLightAccent: string,
-  backgroundLightPositive: string,
-  backgroundLightNegative: string,
-  backgroundLightWarning: string,
+  backgroundAccentLight: string,
+  backgroundPositiveLight: string,
+  backgroundNegativeLight: string,
+  backgroundWarningLight: string,
   backgroundAlwaysDark: string,
   backgroundAlwaysLight: string,
 
@@ -155,6 +154,9 @@ export type CoreExtensionSemanticColorTokensT = {|
   borderNegative: string,
   borderWarning: string,
   borderPositive: string,
+  borderNegativeLight: string,
+  borderWarningLight: string,
+  borderPositiveLight: string,
 
   // Programs
   safety: string,
@@ -168,9 +170,19 @@ export type CoreExtensionSemanticColorTokensT = {|
   membership: string,
 |};
 
+export type DeprecatedSemanticColorTokensT = {|
+  backgroundOverlayLight: ?string,
+  backgroundOverlayDark: ?string,
+  backgroundLightAccent: ?string,
+  backgroundLightPositive: ?string,
+  backgroundLightWarning: ?string,
+  backgroundLightNegative: ?string,
+|};
+
 export type SemanticColorTokensT = {|
   ...CoreSemanticColorTokensT,
   ...CoreExtensionSemanticColorTokensT,
+  ...DeprecatedSemanticColorTokensT,
 |};
 
 export type ComponentColorTokensT = {|
@@ -523,7 +535,7 @@ export type FontTokensT = {|
 
 // TODO(#2318) Deprecate in the next major version
 export type PrimitivesT = {
-  ...ColorTokensT,
+  ...FoundationColorTokensT,
   ...FontTokensT,
 };
 

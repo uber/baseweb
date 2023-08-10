@@ -9,11 +9,12 @@ import Example from '../../components/example';
 import Layout from '../../components/layout';
 import Exports from '../../components/exports';
 
-import Basic from 'examples/list/basic.js';
-import ArtworkSizes from 'examples/list/artwork-sizes.js';
-import Enhancers from 'examples/list/enhancers.js';
-import Sublist from 'examples/list/sublist.js';
-import MenuAdapter from 'examples/list/menu-adapter.js';
+import Basic from 'examples/list/basic.tsx';
+import ArtworkSizes from 'examples/list/artwork-sizes.tsx';
+import Enhancers from 'examples/list/enhancers.tsx';
+import Sublist from 'examples/list/sublist.tsx';
+import MenuAdapter from 'examples/list/menu-adapter.tsx';
+import TapTarget from 'examples/list/tap-target.tsx';
 
 import { Button } from 'baseui/button';
 import Search from 'baseui/icon/search';
@@ -45,24 +46,30 @@ If your app renders hundreds of `ListItem`s at a time, it may be desirable to av
 
 ## Examples
 
-<Example title="Basic usage" path="list/basic.js">
+<Example title="Basic usage" path="list/basic.tsx">
   <Basic />
 </Example>
 
-<Example title="Artwork sizes" path="list/artwork-sizes.js">
+<Example title="Artwork sizes" path="list/artwork-sizes.tsx">
   <ArtworkSizes />
 </Example>
 
-<Example title="End enhancers" path="list/enhancers.js">
+<Example title="End enhancers" path="list/enhancers.tsx">
   <Enhancers />
 </Example>
 
-<Example title="Sublist" path="list/sublist.js">
+<Example title="Sublist" path="list/sublist.tsx">
   <Sublist />
 </Example>
 
-<Example title="Usage with Menu" path="list/menu-adapter.js">
+<Example title="Usage with Menu" path="list/menu-adapter.tsx">
   <MenuAdapter />
 </Example>
+
+<Example title="Full surface tap target" path="list/tap-target.tsx">
+  <TapTarget />
+</Example>
+
+When the `onClick` prop is supplied, the entire surface of the list item becomes a tap target. This is often useful for narrow viewports and containers.
 
 <Exports component={ListExports} title="List exports" path="baseui/list" />

@@ -19,7 +19,7 @@ function isSelectedDefined(selected) {
 }
 
 function defaultStateReducer(
-  type: typeof STATE_CHANGE_TYPE[keyof typeof STATE_CHANGE_TYPE],
+  type: (typeof STATE_CHANGE_TYPE)[keyof typeof STATE_CHANGE_TYPE],
   nextState: State,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   currentState: State

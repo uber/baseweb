@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-// overriding node_modules/resize-observer-polyfill/src/index.d.ts because of incorrect DOMRectReadOnly definition in original file
+// overriding node_modules/resize-observer-polyfill/lib/index.d.ts because of incorrect DOMRectReadOnly definition in original file
 
 declare global {
   interface DOMRectReadOnly {

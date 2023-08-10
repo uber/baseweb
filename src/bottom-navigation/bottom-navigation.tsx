@@ -23,7 +23,7 @@ import type { BottomNavigationProps } from './types';
 const MAX_SELECTORS = 5;
 
 const BottomNavigation = ({
-  activeKey = '0',
+  activeKey = 0,
   onChange,
   children,
   overrides = {},
@@ -109,9 +109,9 @@ const BottomNavigation = ({
         <OverflowPanel {...OverflowPanelProps}>
           <MobileHeader title="More" expanded />
           <OverflowPanelList {...OverflowPanelListProps}>
-            {navItems.slice(MAX_SELECTORS).map((navItem: React.ReactElement, overflowIdx) => {
+            {navItems.slice(MAX_SELECTORS - 1).map((navItem: React.ReactElement, overflowIdx) => {
               const { icon: Icon, title } = navItem.props;
-              const idx = overflowIdx + MAX_SELECTORS;
+              const idx = overflowIdx + MAX_SELECTORS - 1;
               return (
                 <ListItem
                   artwork={(props) => <Icon {...props} />}

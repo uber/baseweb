@@ -15,10 +15,10 @@ const MAX_DOTS = 5;
 const PageControl = ({
   currentPage,
   numPages,
-  onChange,
+  onPageChange,
   kind = KIND.default,
   disabled = false,
-  ariaLabel,
+  'aria-label': ariaLabel,
   overrides = {},
 }: PageControlProps) => {
   const [Root, RootProps] = getOverrides(overrides.Root, StyledRoot);
@@ -26,51 +26,51 @@ const PageControl = ({
 
   const isOverflow = numPages > MAX_DOTS;
 
-  function isActive(i: number) {
-    return i === currentPage;
+  function isActive(page: number) {
+    return page === currentPage;
   }
 
-  function isVisible(i: number) {
+  function isVisible(page: number) {
     if (!isOverflow) return true;
     // if current page is one of first three pages, first five page dots are visible
-    if (currentPage < 3) {
-      return i < 5;
+    if (currentPage <= 3) {
+      return page <= 5;
     }
     // if current page is one of last three pages, last five page dots are visible
-    if (numPages - currentPage < 4) {
-      return i > numPages - 6;
+    if (numPages - currentPage < 3) {
+      return page > numPages - 5;
     }
     // otherwise, page must be within 2 of the current page for dot to be visible
-    return i >= currentPage - 2 && i <= currentPage + 2;
+    return page >= currentPage - 2 && page <= currentPage + 2;
   }
 
-  function getSize(i: number) {
+  function getSize(page: number) {
     if (!isOverflow) return SIZE.large;
 
-    if (currentPage < 3) {
-      if (i < 3) {
+    if (currentPage <= 3) {
+      if (page <= 3) {
         return SIZE.large;
       }
-      if (i === 3) {
+      if (page === 4) {
         return SIZE.medium;
       }
       return SIZE.small;
     }
 
-    if (numPages - currentPage < 4) {
-      if (i > numPages - 4) {
+    if (numPages - currentPage < 3) {
+      if (page > numPages - 3) {
         return SIZE.large;
       }
-      if (i === numPages - 4) {
+      if (page === numPages - 3) {
         return SIZE.medium;
       }
       return SIZE.small;
     }
 
-    if (i >= currentPage - 1 && i <= currentPage + 1) {
+    if (page >= currentPage - 1 && page <= currentPage + 1) {
       return SIZE.large;
     }
-    if (i === currentPage - 2 || i === currentPage + 2) {
+    if (page === currentPage - 2 || page === currentPage + 2) {
       return SIZE.medium;
     }
     return SIZE.small;
@@ -80,23 +80,26 @@ const PageControl = ({
 
   return (
     <Root $kind={kind} role="radiogroup" aria-label={ariaLabel || 'page control'} {...RootProps}>
-      {Array.from({ length: numPages }, (_, i) => (
-        <Dot
-          $active={isActive(i)}
-          $kind={kind}
-          $disabled={disabled}
-          $isVisible={isVisible(i)}
-          $size={getSize(i)}
-          checked={isActive(i)}
-          key={i}
-          aria-label={`page ${i + 1}`}
-          name={name}
-          onChange={() => onChange(i)}
-          tabIndex={isActive(i) ? 0 : -1}
-          type="radio"
-          {...DotProps}
-        />
-      ))}
+      {Array.from({ length: numPages }, (_, i) => {
+        const page = i + 1;
+        return (
+          <Dot
+            $active={isActive(page)}
+            $kind={kind}
+            $disabled={disabled}
+            $isVisible={isVisible(page)}
+            $size={getSize(page)}
+            checked={isActive(page)}
+            key={page}
+            aria-label={`page ${page}`}
+            name={name}
+            onChange={() => onPageChange({ nextPage: page })}
+            tabIndex={isActive(page) ? 0 : -1}
+            type="radio"
+            {...DotProps}
+          />
+        );
+      })}
     </Root>
   );
 };

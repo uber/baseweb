@@ -179,6 +179,7 @@ export function CategoricalFilter(props: CategoricalFilterProps) {
           maxHeight: '256px',
           overflowY: 'auto',
           marginTop: theme.sizing.scale600,
+          position: 'relative',
         })}
       >
         {!filteredCategories.length && (

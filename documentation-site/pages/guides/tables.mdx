@@ -8,10 +8,10 @@ LICENSE file in the root directory of this source tree.
 import Example from '../../components/example';
 import Layout from '../../components/layout';
 
-import TableSemantic from 'examples/table-semantic/basic.js';
-import DataTable from 'examples/data-table/batch-action.js';
-import TableGrid from 'examples/table-grid/cell-span.js';
-import Table from 'examples/table/basic.js';
+import TableSemantic from 'examples/table-semantic/basic.tsx';
+import DataTable from 'examples/data-table/batch-action.tsx';
+import TableGrid from 'examples/table-grid/cell-span.tsx';
+import Table from 'examples/table/basic.tsx';
 
 export default Layout;
 
@@ -26,7 +26,7 @@ row/column spans, and will dynamically size column widths based on content. It w
 when displaying a smaller number of rows or is paginated. It includes sorting and row selection features
 as well.
 
-<Example title="Table Semantic" path="table-semantic/basic.js">
+<Example title="Table Semantic" path="table-semantic/basic.tsx">
   <TableSemantic />
 </Example>
 
@@ -36,7 +36,7 @@ This component does not support overrides like other Base Web components and req
 strict column schemas. Unlike other options it does not support cell/column spans or dynamic row heights.
 Think of this as something closer to Excel rather than a standard table.
 
-<Example title="Data Table" path="data-table/batch-action.js">
+<Example title="Data Table" path="data-table/batch-action.tsx">
   <DataTable />
 </Example>
 
@@ -47,7 +47,7 @@ First is the [`table-grid`](/components/table-grid). This table utilizes `css-gr
 for layout which some developers prefer over the semantic table element. It will require a custom
 accessibility solution, but supports some alternative row/column spans.
 
-<Example title="Table Grid" path="table-grid/cell-span.js">
+<Example title="Table Grid" path="table-grid/cell-span.tsx">
   <TableGrid />
 </Example>
 
@@ -56,6 +56,6 @@ rows' is required and your application needs to support browsers without `css-gr
 targeting newer browsers, `table-grid` is better, but even then it doesn't have great accessibility support.
 Please have good reason to use these last two table components.
 
-<Example title="Table" path="table/basic.js">
+<Example title="Table" path="table/basic.tsx">
   <Table />
 </Example>

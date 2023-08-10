@@ -13,9 +13,9 @@ import Exports from '../../components/exports';
 
 import * as BlockExports from 'baseui/block';
 
-import Basic from 'examples/block/basic.js';
-import Responsive from 'examples/block/responsive.js';
-import Override from 'examples/block/override.js';
+import Basic from 'examples/block/basic.tsx';
+import Responsive from 'examples/block/responsive.tsx';
+import Override from 'examples/block/override.tsx';
 
 export default Layout;
 
@@ -37,7 +37,7 @@ styled elements (see [Bootstrap](https://getbootstrap.com/docs/4.1/utilities/siz
 
 The move to CSS-in-JS sort of eliminates these classes in favor of encapsulating styles within components. This is a generally a good thing because it promotes reusability, however the reality is that there are dozens or hundreds of different layout/spacing/typography combinations in any app, and there's not always a clear semantic meaning or potential for reuse. In practice you end up just defining and naming a bunch of things at the top of the file:
 
-<Example title="Block basic Usage" path="block/basic.js">
+<Example title="Block basic Usage" path="block/basic.tsx">
   <Basic />
 </Example>
 
@@ -73,11 +73,11 @@ margin-top: 10px;
 
 ## Examples
 
-<Example title="Responsive Properties" path="block/responsive.js">
+<Example title="Responsive Properties" path="block/responsive.tsx">
   <Responsive />
 </Example>
 
-<Example title="Overrides" path="block/override.js">
+<Example title="Overrides" path="block/override.tsx">
   <Override />
 </Example>
 

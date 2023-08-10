@@ -11,11 +11,11 @@ import Exports from '../../components/exports';
 
 import * as FlexGridExports from 'baseui/flex-grid';
 
-import Basic from 'examples/flex-grid/basic.js';
-import UnequalNarrow from 'examples/flex-grid/unequal-narrow.js';
-import UnequalWide from 'examples/flex-grid/unequal-wide.js';
-import Responsive from 'examples/flex-grid/responsive.js';
-import Missing from 'examples/flex-grid/missing.js';
+import Basic from 'examples/flex-grid/basic.tsx';
+import UnequalNarrow from 'examples/flex-grid/unequal-narrow.tsx';
+import UnequalWide from 'examples/flex-grid/unequal-wide.tsx';
+import Responsive from 'examples/flex-grid/responsive.tsx';
+import Missing from 'examples/flex-grid/missing.tsx';
 
 export default Layout;
 
@@ -29,23 +29,23 @@ Note: **FlexGrid** must contain **FlexGridItem** components as children in order
 
 ## Examples
 
-<Example title="FlexGrid basic usage" path="flex-grid/basic.js">
+<Example title="FlexGrid basic usage" path="flex-grid/basic.tsx">
   <Basic />
 </Example>
 
-<Example title="FlexGrid unequal (narrow) widths" path="flex-grid/unequal-narrow.js">
+<Example title="FlexGrid unequal (narrow) widths" path="flex-grid/unequal-narrow.tsx">
   <UnequalNarrow />
 </Example>
 
 It is possible to achieve unequal-width items using **Block** style overrides.
 
-<Example title="FlexGrid unequal (wide) widths" path="flex-grid/unequal-wide.js">
+<Example title="FlexGrid unequal (wide) widths" path="flex-grid/unequal-wide.tsx">
   <UnequalWide />
 </Example>
 
 Also, keep in mind that the margins won’t be set properly unless you have the correct number of items in each row. In this example, we add a hidden element after the wide element so that the last item in the first row has a margin-right of zero.
 
-<Example title="FlexGrid missing items" path="flex-grid/missing.js">
+<Example title="FlexGrid missing items" path="flex-grid/missing.tsx">
   <Missing />
 </Example>
 
@@ -55,7 +55,7 @@ Also, keep in mind that the margins won’t be set properly unless you have the 
 
 **FlexGrid**, like **Block**, accepts props as either a single value or an array of values. See [Block](/components/block) for more details.
 
-<Example title="FlexGrid responsive usage" path="flex-grid/responsive.js">
+<Example title="FlexGrid responsive usage" path="flex-grid/responsive.tsx">
   <Responsive />
 </Example>
 

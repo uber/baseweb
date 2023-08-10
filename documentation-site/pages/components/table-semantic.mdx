@@ -12,15 +12,15 @@ import TableGuideNotification from '../../components/table-guide-notification';
 
 import * as TableSemanticExports from 'baseui/table-semantic';
 
-import Basic from 'examples/table-semantic/basic.js';
-import Cells from 'examples/table-semantic/cells.js';
-import Scroll from 'examples/table-semantic/scroll.js';
-import Builder from 'examples/table-semantic/builder.js';
-import Sortable from 'examples/table-semantic/sortable.js';
-import Toggleable from 'examples/table-semantic/toggleable.js';
-import Alternating from 'examples/table-semantic/alternating.js';
-import Span from 'examples/table-semantic/span.js';
-import EmptyMessage from 'examples/table-semantic/empty-message.js';
+import Basic from 'examples/table-semantic/basic.tsx';
+import Cells from 'examples/table-semantic/cells.tsx';
+import Scroll from 'examples/table-semantic/scroll.tsx';
+import Builder from 'examples/table-semantic/builder.tsx';
+import Sortable from 'examples/table-semantic/sortable.tsx';
+import Toggleable from 'examples/table-semantic/toggleable.tsx';
+import Alternating from 'examples/table-semantic/alternating.tsx';
+import Span from 'examples/table-semantic/span.tsx';
+import EmptyMessage from 'examples/table-semantic/empty-message.tsx';
 
 import Yard from '../../components/yard/index';
 import tableYardConfig from '../../components/yard/config/table-semantic';
@@ -44,42 +44,57 @@ For larger amounts of information, browser rendering performance can suffer and
 you should use the virtualized scrolling features of the div-based
 [table](/components/table) or [table-grid](/components/table-grid) components.
 
+## Table vs. TableBuilder
+
+If you want to pass some data in and let the component take care of rendering,
+**Table** is the right component. If you want control over how each cell is
+rendered, use **TableBuilder** along with **TableBuilderColumn**.
+
+When using **TableBuilder**, you pass data in the same as you would with
+**Table**, then you define how each cell (and it's header) should be rendered
+by adding a **TableBuilderColumn** for each column. Each **TableBuilderColumn**
+takes exactly one child, and that child is a function which a row of data as
+input, and outputs a React Node which represents the cell for that column/row
+pair. See the [table-builder](#table-builder) example below for a basic example,
+and the following table-builder examples for more complex cases, including
+customizing the column header.
+
 ## Examples
 
-<Example title="Table basic usage" path="table-semantic/basic.js">
+<Example title="Table basic usage" path="table-semantic/basic.tsx">
   <Basic />
 </Example>
 
-<Example title="Common cell examples" path="table-semantic/cells.js">
-  <Cells />
-</Example>
-
-<Example title="Table with scrolling contents" path="table-semantic/scroll.js">
+<Example title="Table with scrolling contents" path="table-semantic/scroll.tsx">
   <Scroll />
 </Example>
 
-<Example title="Table Builder" path="table-semantic/builder.js">
+<Example title="Table with empty message" path="table-semantic/empty-message.tsx">
+  <EmptyMessage />
+</Example>
+
+<Example title="Table Builder" path="table-semantic/builder.tsx">
   <Builder />
 </Example>
 
-<Example title="Table Builder with sorting" path="table-semantic/sortable.js">
+<Example title="Table Builder with sorting" path="table-semantic/sortable.tsx">
   <Sortable />
 </Example>
 
-<Example title="Table Builder with toggles" path="table-semantic/toggleable.js">
+<Example title="Table Builder with toggles" path="table-semantic/toggleable.tsx">
   <Toggleable />
 </Example>
 
-<Example title="Table Builder with alternating rows" path="table-semantic/alternating.js">
+<Example title="Table Builder with alternating rows" path="table-semantic/alternating.tsx">
   <Alternating />
 </Example>
 
-<Example title="Table custom with merged cells" path="table-semantic/span.js">
-  <Span />
+<Example title="Common cell examples" path="table-semantic/cells.tsx">
+  <Cells />
 </Example>
 
-<Example title="Table with empty message" path="table-semantic/empty-message.js">
-  <EmptyMessage />
+<Example title="Table custom with merged cells" path="table-semantic/span.tsx">
+  <Span />
 </Example>
 
 <Exports

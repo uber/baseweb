@@ -11,6 +11,7 @@ export { default as ArrowLeft } from './arrow-left.js';
 export { default as ArrowRight } from './arrow-right.js';
 export { default as ArrowUp } from './arrow-up.js';
 export { default as Blank } from './blank.js';
+export { default as Calendar } from './calendar.js';
 export { default as CheckIndeterminate } from './check-indeterminate.js';
 export { default as Check } from './check.js';
 export { default as ChevronDown } from './chevron-down.js';

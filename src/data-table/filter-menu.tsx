@@ -89,7 +89,7 @@ function Options(props: OptionsProps) {
       className={css({
         backgroundColor: theme.colors.menuFill,
         minWidth: '320px',
-        outline: focusVisible ? `3px solid ${theme.colors.accent}` : 'none',
+        outline: focusVisible ? `3px solid ${theme.colors.borderAccent}` : 'none',
         paddingTop: theme.sizing.scale600,
         paddingBottom: theme.sizing.scale600,
       })}
