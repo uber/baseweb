@@ -32,7 +32,10 @@ export const StyledRoot = styled<'li', StyledRootProps>(
       ...($isTapTarget
         ? {
             // button style reset
-            borderRadius: 0,
+            borderTopLeftRadius: 0,
+            borderTopRightRadius: 0,
+            borderBottomLeftRadius: 0,
+            borderBottomRightRadius: 0,
             textAlign: 'inherit',
             boxShadow: 'none',
             padding: 0,
