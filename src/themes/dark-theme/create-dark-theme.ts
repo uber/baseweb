@@ -12,7 +12,7 @@ import defaultFoundationColorTokens from './color-tokens';
 import { colors as primitiveColorTokens } from '../../tokens';
 import getComponentColorTokens from './color-component-tokens';
 import getSemanticColorTokens from './color-semantic-tokens';
-import getTypography from '../shared/typography';
+import typography from '../shared/typography';
 import grid from '../shared/grid';
 import lighting from '../shared/lighting';
 import mediaQuery from '../shared/media-query';
@@ -49,8 +49,7 @@ export default function createDarkTheme(
     lighting,
     mediaQuery,
     sizing,
-    // If primaryFontFamily is not provided, we use our default font tokens
-    typography: primaryFontFamily ? getTypography({ primaryFontFamily }) : getTypography(),
+    typography,
     // TODO(#2318) Remove in v11, the next major version.
     // Do not use.
     zIndex: {

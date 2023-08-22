@@ -14,7 +14,7 @@ import defaultFoundationColorTokens from './color-tokens.js';
 import primitiveColorTokens from '../../tokens/colors.js';
 import getComponentColorTokens from './color-component-tokens.js';
 import getSemanticColorTokens from './color-semantic-tokens.js';
-import getTypography from '../shared/typography.js';
+import typography from '../shared/typography.js';
 import grid from '../shared/grid.js';
 import lighting from '../shared/lighting.js';
 import mediaQuery from '../shared/media-query.js';
@@ -52,8 +52,7 @@ export default function createDarkTheme(
     lighting,
     mediaQuery,
     sizing,
-    // If primaryFontFamily is not provided, we use our default font tokens
-    typography: primaryFontFamily ? getTypography({ primaryFontFamily }) : getTypography(),
+    typography,
     // TODO(#2318) Remove in v11, the next major version.
     // Do not use.
     zIndex: {

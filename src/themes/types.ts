@@ -492,6 +492,8 @@ export type ComponentColorTokens = {
 
 export type FontTokens = {
   primaryFontFamily: string;
+  secondaryFontFamily: string;
+  monoFontFamily: string;
 };
 
 // TODO(#2318) Deprecate in the next major version

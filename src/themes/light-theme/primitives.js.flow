@@ -6,14 +6,14 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import defaultFoundationColorTokens from './color-tokens.js';
-import { defaultFontTokens } from '../shared/typography.js';
+import { fontTokens } from '../shared/typography.js';
 import type { PrimitivesT } from '../types.js';
 
 // We don't use this ourselves. We provide it for backward compatibility.
 // People may have used it to create their own custom theme.
 const primitives: PrimitivesT = {
   ...defaultFoundationColorTokens,
-  ...defaultFontTokens,
+  ...fontTokens,
 };
 
 export default primitives;

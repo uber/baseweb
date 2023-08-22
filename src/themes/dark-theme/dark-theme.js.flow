@@ -11,7 +11,7 @@ import getSemanticColorTokens from './color-semantic-tokens.js';
 import getComponentColorTokens from './color-component-tokens.js';
 import borders from './borders.js';
 import lighting from '../shared/lighting.js';
-import getTypography from '../shared/typography.js';
+import typography from '../shared/typography.js';
 import animation from '../shared/animation.js';
 import breakpoints from '../shared/breakpoints.js';
 import grid from '../shared/grid.js';
@@ -37,7 +37,7 @@ export const DarkTheme: ThemeT = {
   lighting,
   mediaQuery,
   sizing,
-  typography: getTypography(),
+  typography,
   // TODO(#2318) Remove it in the next v11 major version.
   // Do not use.
   zIndex: {
