@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 import { styled } from '../styles/index';
 
 export const StyledRoot = styled<'div', {}>('div', ({ $theme }) => ({
+  boxSizing: 'border-box',
   display: 'flex',
   flexDirection: 'column',
   gap: $theme.sizing.scale300,
