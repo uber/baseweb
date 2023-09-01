@@ -10,7 +10,7 @@ import * as React from 'react';
 import { MaskedInput } from '../input/index.js';
 import { Popover, PLACEMENT } from '../popover/index.js';
 import Calendar from './calendar.js';
-import { getOverrides } from '../helpers/overrides.js';
+import { getOverrides, mergeOverrides } from '../helpers/overrides.js';
 import getInterpolatedString from '../helpers/i18n-interpolation.js';
 import { LocaleContext } from '../locale/index.js';
 import {
@@ -24,6 +24,9 @@ import DateHelpers from './utils/date-helpers.js';
 import dateFnsAdapter from './utils/date-fns-adapter.js';
 import type { LocaleT } from '../locale/types.js';
 import { INPUT_ROLE, RANGED_CALENDAR_BEHAVIOR } from './constants.js';
+import { Button, KIND, SIZE } from '../button';
+import { ChevronDown, Calendar as CalendarIcon } from '../icon';
+import { colors } from '../tokens';
 
 export const DEFAULT_DATE_FORMAT = 'yyyy/MM/dd';
 
@@ -238,7 +241,7 @@ export default class Datepicker<T = Date> extends React.Component<DatepickerProp
       {
         isOpen: true,
         isPseudoFocused: true,
-        calendarFocused: false,
+        calendarFocused: true,
         selectedInput: inputRole,
       },
       this.props.onOpen
@@ -473,15 +476,44 @@ export default class Datepicker<T = Date> extends React.Component<DatepickerProp
         disabled={this.props.disabled}
         size={this.props.size}
         value={value}
-        onFocus={() => this.open(inputRole)}
-        onBlur={this.handleInputBlur}
-        onKeyDown={this.handleKeyDown}
         onChange={(event) => this.handleInputChange(event, inputRole)}
         placeholder={placeholder}
         mask={this.getMask()}
         required={this.props.required}
         clearable={this.props.clearable}
         {...inputProps}
+      />
+    );
+  }
+
+  renderCalendarButton() {
+    const { overrides = {} } = this.props;
+
+    const [ButtonComponent, buttonProps] = getOverrides(overrides.CalendarButton, Button);
+
+    return (
+      <ButtonComponent
+        aria-describedby={this.props['aria-describedby']}
+        aria-labelledby={this.props['aria-labelledby']}
+        startEnhancer={() => <CalendarIcon />}
+        endEnhancer={() => <ChevronDown />}
+        kind={KIND.tertiary}
+        size={SIZE.compact}
+        onClick={this.open}
+        onBlur={this.handleInputBlur}
+        onKeyDown={this.handleKeyDown}
+        overrides={mergeOverrides(
+          {
+            BaseButton: {
+              style: {
+                border: '3px solid',
+                borderColor: colors.black
+              },
+            },
+          },
+          buttonProps.overrides
+        )}
+        {...buttonProps}
       />
     );
   }
@@ -519,11 +551,25 @@ export default class Datepicker<T = Date> extends React.Component<DatepickerProp
                   onChange={this.onCalendarSelect}
                   selectedInput={this.state.selectedInput}
                   hasLockedBehavior={this.hasLockedBehavior()}
+                  primaryButton={{
+                    label: 'Done',
+                    onClick: this.close,
+                  }}
+                  secondaryButton={{
+                    label: 'Cancel',
+                    onClick: this.close,
+                  }}
                 />
               }
               {...popoverProps}
             >
-              {}
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  gap: '8px',
+                }}
+              >
               <InputWrapper
                 {...inputWrapperProps}
                 $separateRangeInputs={this.props.range && this.props.separateRangeInputs}
@@ -543,6 +589,8 @@ export default class Datepicker<T = Date> extends React.Component<DatepickerProp
                   <>{this.renderInputComponent(locale)}</>
                 )}
               </InputWrapper>
+              {this.renderCalendarButton()}
+              </div>
             </PopoverComponent>
             <p
               id={this.props['aria-describedby']}
