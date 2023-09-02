@@ -14,10 +14,6 @@ import {
   queryByTestId,
   queryAllByTestId,
   getByText,
-  findByTestId,
-  findAllByTestId,
-  waitFor,
-  queryByText,
 } from '@testing-library/react';
 
 import { TestBaseProvider } from '../../test/test-utils';
@@ -33,27 +29,37 @@ describe('Datepicker', () => {
     MockDate.reset();
   });
 
-  it('opens calendar modal on button press', async () => {
+  it('opens calendar on down arrow press', () => {
     const { container } = render(
       <TestBaseProvider>
-        <Datepicker
-          overrides={{
-            CalendarContainer: { props: { 'data-testid': 'calendar' } },
-            CalendarButton: {
-              props: { 'data-testid': 'calendar-button' },
-            },
-          }}
-        />
+        <Datepicker overrides={{ CalendarContainer: { props: { 'data-testid': 'calendar' } } }} />
       </TestBaseProvider>
     );
 
     const before = queryByTestId(container, 'calendar');
     expect(before).toBeNull();
 
-    const calendarButton = getByTestId(container, 'calendar-button');
-    fireEvent.click(calendarButton);
+    const input = container.querySelector('input');
+    if (input) fireEvent.keyDown(input, { keyCode: 40 });
 
-    const after = await findByTestId(container, 'calendar');
+    const after = queryByTestId(container, 'calendar');
+    expect(after).not.toBeNull();
+  });
+
+  it('opens calendar on input focus', () => {
+    const { container } = render(
+      <TestBaseProvider>
+        <Datepicker overrides={{ CalendarContainer: { props: { 'data-testid': 'calendar' } } }} />
+      </TestBaseProvider>
+    );
+
+    const before = queryByTestId(container, 'calendar');
+    expect(before).toBeNull();
+
+    const input = container.querySelector('input');
+    if (input) fireEvent.focus(input);
+
+    const after = queryByTestId(container, 'calendar');
     expect(after).not.toBeNull();
   });
 
@@ -77,20 +83,19 @@ describe('Datepicker', () => {
           onChange={onChange}
           value={null}
           overrides={{
+            Input: {
+              props: { overrides: { Input: { props: { 'data-testid': 'input' } } } },
+            },
             MonthYearSelectButton: {
               props: { 'data-testid': 'month-year-select-buttons' },
             },
             CalendarContainer: { props: { 'data-testid': 'calendar' } },
-            CalendarButton: {
-              props: { 'data-testid': 'calendar-button' },
-            },
           }}
         />
       </TestBaseProvider>
     );
 
-    const calendarButton = getByTestId(container, 'calendar-button');
-    fireEvent.click(calendarButton);
+    fireEvent.focus(getByTestId(container, 'input'));
     const [month, year] = getAllByTestId(container, 'month-year-select-buttons');
     fireEvent.click(month);
     fireEvent.click(getByText(month, 'November'));
@@ -98,10 +103,10 @@ describe('Datepicker', () => {
     fireEvent.click(getByText(container, '2019'));
     fireEvent.click(getByText(container, '1'));
 
-    expect(onChange.mock.calls[0][0].date).toEqual(new Date('2019/11/1'));
+    expect(onChange.mock.calls[1][0].date).toEqual(new Date('2019/11/1'));
   });
 
-  it('does not close calendar if single date from range is selected', async () => {
+  it('does not close calendar if single date from range is selected', () => {
     const onChange = jest.fn();
     const { container } = render(
       <TestBaseProvider>
@@ -110,45 +115,42 @@ describe('Datepicker', () => {
           onChange={onChange}
           value={[]}
           overrides={{
+            Input: {
+              props: { overrides: { Input: { props: { 'data-testid': 'input' } } } },
+            },
             MonthYearSelectButton: {
               props: { 'data-testid': 'month-year-select-buttons' },
             },
             CalendarContainer: { props: { 'data-testid': 'calendar' } },
-            CalendarButton: {
-              props: { 'data-testid': 'calendar-button' },
-            },
           }}
         />
       </TestBaseProvider>
     );
 
-    const calendarButton = getByTestId(container, 'calendar-button');
-    fireEvent.click(calendarButton);
+    const input = getByTestId(container, 'input');
+    fireEvent.focus(input);
 
-    const before = await findByTestId(container, 'calendar');
+    const before = queryByTestId(container, 'calendar');
     expect(before).not.toBeNull();
 
     const [month, year] = getAllByTestId(container, 'month-year-select-buttons');
 
-    await waitFor(() => {
-      fireEvent.click(month);
-      const november = queryByText(month, 'November');
-      fireEvent.click(november);
-      fireEvent.click(year);
-      fireEvent.click(getByText(container, '2019'));
-    });
+    fireEvent.click(month);
+    fireEvent.click(getByText(month, 'November'));
+    fireEvent.click(year);
+    fireEvent.click(getByText(container, '2019'));
 
     const day = getByText(container, '1');
     fireEvent.click(day);
 
-    expect(onChange.mock.calls[0][0].date.length).toBe(1);
-    expect(onChange.mock.calls[0][0].date[0]).toEqual(new Date('2019/11/1'));
+    expect(onChange.mock.calls[1][0].date.length).toBe(1);
+    expect(onChange.mock.calls[1][0].date[0]).toEqual(new Date('2019/11/1'));
 
     const after = queryByTestId(container, 'calendar');
     expect(after).not.toBeNull();
   });
 
-  it('closes calendar if both dates from range are selected', async () => {
+  it('closes calendar if both dates from range are selected', () => {
     function TestCase() {
       const [value, setValue] = React.useState([]);
       return (
@@ -159,13 +161,13 @@ describe('Datepicker', () => {
             onChange={({ date }) => setValue(date)}
             value={value}
             overrides={{
+              Input: {
+                props: { overrides: { Input: { props: { 'data-testid': 'input' } } } },
+              },
               MonthYearSelectButton: {
                 props: { 'data-testid': 'month-year-select-buttons' },
               },
               CalendarContainer: { props: { 'data-testid': 'calendar' } },
-              CalendarButton: {
-                props: { 'data-testid': 'calendar-button' },
-              },
             }}
           />
         </TestBaseProvider>
@@ -174,10 +176,10 @@ describe('Datepicker', () => {
 
     const { container } = render(<TestCase />);
 
-    const calendarButton = getByTestId(container, 'calendar-button');
-    fireEvent.click(calendarButton);
+    const input = getByTestId(container, 'input');
+    fireEvent.focus(input);
 
-    const before = await findByTestId(container, 'calendar');
+    const before = queryByTestId(container, 'calendar');
     expect(before).not.toBeNull();
 
     const [month, year] = getAllByTestId(container, 'month-year-select-buttons');
@@ -219,20 +221,20 @@ describe('Datepicker', () => {
 
   it('converts hyphen to en dashes', () => {
     const date = new Date('2019 01 01');
-    const mask = '99/99/9999 - 99/99/9999';
+    const mask = '9999/99/99 - 9999/99/99';
     const value = [date, addDays(date, 3)];
     const { container } = render(<Datepicker mask={mask} value={value} />);
     const input = container.querySelector('input');
-    expect(input?.value).toBe('20/19/0101 – 20/19/0104');
+    expect(input?.value).toBe('2019/01/01 – 2019/01/04');
   });
 
   it('converts em dash to en dashes', () => {
     const date = new Date('2019 01 01');
-    const mask = '99/99/9999 — 99/99/9999';
+    const mask = '9999/99/99 — 9999/99/99';
     const value = [date, addDays(date, 3)];
     const { container } = render(<Datepicker mask={mask} value={value} />);
     const input = container.querySelector('input');
-    expect(input?.value).toBe('20/19/0101 – 20/19/0104');
+    expect(input?.value).toBe('2019/01/01 – 2019/01/04');
   });
 
   it('handles space replacement correctly in formatString', () => {
@@ -251,7 +253,7 @@ describe('Datepicker', () => {
     expect(onChange.mock.calls).toHaveLength(0);
   });
 
-  it('disables pagination buttons with multiple months', async () => {
+  it('disables pagination buttons with multiple months', () => {
     const date = new Date('2019 01 01');
     const monthsShown = 3;
     const { container } = render(
@@ -267,18 +269,15 @@ describe('Datepicker', () => {
             MonthYearSelectButton: {
               props: { 'data-testid': 'month-year-select-buttons' },
             },
-            CalendarButton: {
-              props: { 'data-testid': 'calendar-button' },
-            },
           }}
         />
       </TestBaseProvider>
     );
 
-    const calendarButton = getByTestId(container, 'calendar-button');
-    fireEvent.click(calendarButton);
+    const input = container.querySelector('input');
+    if (input) fireEvent.focus(input);
 
-    const calendar = await findAllByTestId(container, 'calendar');
+    const calendar = queryAllByTestId(container, 'calendar');
     expect(calendar.length).toBe(monthsShown);
 
     const prev = queryAllByTestId(container, 'prev-button').filter(

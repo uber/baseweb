@@ -10,7 +10,7 @@ import { uid } from 'react-uid';
 import { MaskedInput } from '../input';
 import { Popover, PLACEMENT, ACCESSIBILITY_TYPE } from '../popover';
 import Calendar from './calendar';
-import { getOverrides, mergeOverrides } from '../helpers/overrides';
+import { getOverrides } from '../helpers/overrides';
 import getInterpolatedString from '../helpers/i18n-interpolation';
 import { LocaleContext } from '../locale';
 import {
@@ -26,9 +26,6 @@ import type { Locale } from '../locale';
 import { INPUT_ROLE, RANGED_CALENDAR_BEHAVIOR } from './constants';
 
 import type { ChangeEvent } from 'react';
-import { Button, KIND, SIZE } from '../button';
-import { ChevronDown, Calendar as CalendarIcon } from '../icon';
-import { colors } from '../tokens';
 
 export const DEFAULT_DATE_FORMAT = 'yyyy/MM/dd';
 
@@ -259,7 +256,7 @@ export default class Datepicker<T = Date> extends React.Component<
       {
         isOpen: true,
         isPseudoFocused: true,
-        calendarFocused: true,
+        calendarFocused: false,
         selectedInput: inputRole,
       },
       this.props.onOpen
@@ -507,6 +504,9 @@ export default class Datepicker<T = Date> extends React.Component<
         disabled={this.props.disabled}
         size={this.props.size}
         value={value}
+        onFocus={() => this.open(inputRole)}
+        onBlur={this.handleInputBlur}
+        onKeyDown={this.handleKeyDown}
         // @ts-ignore
         onChange={(event) => this.handleInputChange(event, inputRole)}
         placeholder={this.getPlaceholder()}
@@ -514,38 +514,6 @@ export default class Datepicker<T = Date> extends React.Component<
         required={this.props.required}
         clearable={this.props.clearable}
         {...inputProps}
-      />
-    );
-  }
-
-  renderCalendarButton() {
-    const { overrides = {} } = this.props;
-
-    const [ButtonComponent, buttonProps] = getOverrides(overrides.CalendarButton, Button);
-
-    return (
-      <ButtonComponent
-        aria-describedby={this.props['aria-describedby']}
-        aria-labelledby={this.props['aria-labelledby']}
-        startEnhancer={() => <CalendarIcon />}
-        endEnhancer={() => <ChevronDown />}
-        kind={KIND.tertiary}
-        size={SIZE.compact}
-        onClick={this.open}
-        onBlur={this.handleInputBlur}
-        onKeyDown={this.handleKeyDown}
-        overrides={mergeOverrides(
-          {
-            BaseButton: {
-              style: {
-                border: '3px solid',
-                borderColor: colors.black,
-              },
-            },
-          },
-          buttonProps.overrides
-        )}
-        {...buttonProps}
       />
     );
   }
@@ -590,47 +558,30 @@ export default class Datepicker<T = Date> extends React.Component<
                   onChange={this.onCalendarSelect}
                   selectedInput={this.state.selectedInput}
                   hasLockedBehavior={this.hasLockedBehavior()}
-                  primaryButton={{
-                    label: 'Done',
-                    onClick: this.close,
-                  }}
-                  secondaryButton={{
-                    label: 'Cancel',
-                    onClick: this.close,
-                  }}
                 />
               }
               {...popoverProps}
             >
-              <div
-                style={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  gap: '8px',
-                }}
+              <InputWrapper
+                {...inputWrapperProps}
+                $separateRangeInputs={this.props.range && this.props.separateRangeInputs}
               >
-                <InputWrapper
-                  {...inputWrapperProps}
-                  $separateRangeInputs={this.props.range && this.props.separateRangeInputs}
-                >
-                  {this.props.range && this.props.separateRangeInputs ? (
-                    <>
-                      <StartDate {...startDateProps}>
-                        <InputLabel {...inputLabelProps}>{startDateLabel}</InputLabel>
-                        {this.renderInputComponent(locale, INPUT_ROLE.startDate)}
-                      </StartDate>
+                {this.props.range && this.props.separateRangeInputs ? (
+                  <>
+                    <StartDate {...startDateProps}>
+                      <InputLabel {...inputLabelProps}>{startDateLabel}</InputLabel>
+                      {this.renderInputComponent(locale, INPUT_ROLE.startDate)}
+                    </StartDate>
 
-                      <EndDate {...endDateProps}>
-                        <InputLabel {...inputLabelProps}>{endDateLabel}</InputLabel>
-                        {this.renderInputComponent(locale, INPUT_ROLE.endDate)}
-                      </EndDate>
-                    </>
-                  ) : (
-                    <>{this.renderInputComponent(locale)}</>
-                  )}
-                </InputWrapper>
-                {this.renderCalendarButton()}
-              </div>
+                    <EndDate {...endDateProps}>
+                      <InputLabel {...inputLabelProps}>{endDateLabel}</InputLabel>
+                      {this.renderInputComponent(locale, INPUT_ROLE.endDate)}
+                    </EndDate>
+                  </>
+                ) : (
+                  <>{this.renderInputComponent(locale)}</>
+                )}
+              </InputWrapper>
             </PopoverComponent>
             <p
               // @ts-ignore

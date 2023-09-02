@@ -69,7 +69,6 @@ export type DatepickerOverridesT = {
   ButtonDock?: OverrideT,
   PrimaryButton?: OverrideT,
   SecondaryButton?: OverrideT,
-  CalendarButton?: OverrideT,
 };
 
 export type DayPropsT<T = Date> = {

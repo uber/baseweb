@@ -683,11 +683,6 @@ export default class Calendar<T = Date> extends React.Component<
                   flexDirection: 'row-reverse',
                 },
               },
-              Root: {
-                style: {
-                  width: '90%',
-                },
-              },
             },
             buttonDockProps.overrides
           )}
