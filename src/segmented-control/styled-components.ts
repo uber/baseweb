@@ -30,6 +30,7 @@ export const StyledRoot = styled<
     overflow: 'hidden',
     height: $height,
     width: $width,
+    margin: $theme.sizing.scale100,
   };
   if (isIntrinsic($fill)) {
     style['::-webkit-scrollbar'] = { display: 'none' };
@@ -66,8 +67,6 @@ export const StyledSegment = styled<
     $fill?: Fill;
     $focusVisible?: boolean;
     $isActive?: boolean;
-    $hasArtwork?: boolean;
-    $hasLabel?: boolean;
   }
 >(
   'button',
@@ -77,8 +76,6 @@ export const StyledSegment = styled<
     $focusVisible = false,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     $isActive = false,
-    $hasArtwork = false,
-    $hasLabel = true,
   }) => {
     const style: StyleObject = {
       cursor: 'pointer',
@@ -90,10 +87,8 @@ export const StyledSegment = styled<
       marginBottom: '0',
       boxSizing: 'border-box',
       display: 'grid',
-      gridAutoRows: 'auto',
-      gridTemplateColumns: 'repeat(2, auto)',
       alignItems: 'center',
-      paddingInline: $theme.sizing.scale600,
+      paddingInline: $theme.sizing.scale500,
       paddingBlock: $theme.sizing.scale300,
       borderLeftWidth: 0,
       borderTopWidth: 0,
@@ -132,20 +127,14 @@ export const StyledSegment = styled<
       style.flexGrow = 1;
       style.flexBasis = 0;
     }
-    if ($hasArtwork === true && $hasLabel === true) {
-      style.gridColumnGap = $theme.sizing.scale300;
-    }
     return style;
   }
 );
 
 StyledSegment.displayName = 'StyledSegment';
 
-export const StyledArtworkContainer = styled<
-  'div',
-  {}
+export const StyledArtworkContainer = styled<'div', {}>('div', () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
->('div', ({}) => {
   const style: StyleObject = {
     display: 'flex',
     height: '16px',
@@ -209,29 +198,57 @@ export const StyledSegmentPanel = styled<
 });
 StyledSegmentPanel.displayName = 'StyledSegmentPanel';
 
-export const StyledLabel = styled<'div', { $hasArtwork: boolean }>(
-  'div',
-  ({ $theme, $hasArtwork }) => {
-    const style: StyleObject = {
-      ...$theme.typography.LabelSmall,
-      overflow: 'hidden',
-      whiteSpace: 'nowrap',
-      textOverflow: 'ellipsis',
-    };
-    if (!$hasArtwork) {
-      style.gridColumn = '1 / 3';
-    }
-    return style;
-  }
-);
+export const StyledLabel = styled<'div', { $hasArtwork: boolean }>('div', ({ $theme }) => {
+  const style: StyleObject = {
+    ...$theme.typography.LabelSmall,
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
+    position: 'relative',
+  };
+  return style;
+});
 
 export const StyledDescription = styled<'div', {}>('div', ({ $theme }) => ({
   ...$theme.typography.ParagraphXSmall,
   padding: 0,
   margin: 0,
-  gridColumn: '1 / 3',
-  gridRow: '2 / 3',
   overflow: 'hidden',
   whiteSpace: 'nowrap',
   textOverflow: 'ellipsis',
+  position: 'relative',
+}));
+
+export const StyledLabelBlock = styled<'div', {}>('div', ({ $theme }) => ({
+  display: 'flex',
+  gridGap: $theme.sizing.scale100,
+  alignItems: 'center',
+  position: 'relative',
+  justifyContent: 'center',
+  overflow: 'hidden',
+}));
+
+export const StyledBadge = styled<'div', {}>('div', ({ $theme }) => ({
+  ...$theme.typography.ParagraphXSmall,
+  width: '16px',
+  height: '16px',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  borderRadius: '50%',
+  backgroundColor: $theme.colors.accent,
+  color: $theme.colors.white,
+}));
+
+export const StyledBadgeHint = styled<'div', {}>('div', ({ $theme }) => ({
+  width: '8px',
+  height: '8px',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  borderRadius: '50%',
+  backgroundColor: $theme.colors.accent,
+  color: $theme.colors.accent,
+  alignSelf: 'start',
+  marginLeft: '-2px',
 }));

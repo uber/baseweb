@@ -25,9 +25,12 @@ export type SegmentedControlOverrides = {
 
 export type SegmentOverrides = {
   Segment?: Override;
+  LabelBlock?: Override;
   ArtworkContainer?: Override;
-  label?: Override;
-  description?: Override;
+  Label?: Override;
+  Badge?: Override;
+  BadgeHint?: Override;
+  Description?: Override;
 };
 
 export type StatefulSegmentedControlState = {
@@ -67,6 +70,8 @@ export type StatefulSegmentedControlProps = {
 export type SegmentProps = {
   label?: React.ReactNode;
   description?: React.ReactNode;
+  badge?: React.ReactNode;
+  badgeHint?: boolean;
   key?: React.Key;
   segmentRef?: React.Ref<HTMLButtonElement>;
   overrides?: SegmentOverrides;

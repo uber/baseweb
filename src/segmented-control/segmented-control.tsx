@@ -21,6 +21,9 @@ import {
   StyledSegmentList,
   StyledLabel,
   StyledDescription,
+  StyledLabelBlock,
+  StyledBadge,
+  StyledBadgeHint,
 } from './styled-components';
 import { getSegmentId, isRTL } from './utils';
 
@@ -253,6 +256,8 @@ function InternalSegment({
     onClick,
     label,
     description,
+    badge,
+    badgeHint,
     ...restProps
   } = props;
 
@@ -299,10 +304,17 @@ function InternalSegment({
   const {
     Segment: SegmentOverrides,
     ArtworkContainer: ArtworkContainerOverrides,
+    LabelBlock: LabelBlockContainerOverrides,
     Label: LabelOverrides,
     Description: DescriptionOverrides,
+    Badge: BadgeOverrides,
+    BadgeHint: BadgeHintOverrides,
   } = overrides;
   const [Segment, SegmentProps] = getOverrides(SegmentOverrides, StyledSegment);
+  const [LabelBlockContainer, LabelBlockContainerProps] = getOverrides(
+    LabelBlockContainerOverrides,
+    StyledLabelBlock
+  );
   const [ArtworkContainer, ArtworkContainerProps] = getOverrides(
     ArtworkContainerOverrides,
     StyledArtworkContainer
@@ -311,6 +323,11 @@ function InternalSegment({
   const [DescriptionContainer, DescriptionContainerProps] = getOverrides(
     DescriptionOverrides,
     StyledDescription
+  );
+  const [BadgeContainer, BadgeContainerProps] = getOverrides(BadgeOverrides, StyledBadge);
+  const [BadgeHintContainer, BadgeHintContainerProps] = getOverrides(
+    BadgeHintOverrides,
+    StyledBadgeHint
   );
 
   // Keyboard focus styling
@@ -401,20 +418,20 @@ function InternalSegment({
       onFocus={forkFocus({ ...restProps, ...SegmentProps }, handleFocus)}
       onBlur={forkBlur({ ...restProps, ...SegmentProps }, handleBlur)}
     >
-      {Artwork ? (
-        <ArtworkContainer
-          data-baseweb="artwork-container"
-          {...sharedStylingProps}
-          {...ArtworkContainerProps}
-        >
-          <Artwork size={20} color="contentPrimary" />
-        </ArtworkContainer>
-      ) : null}
-      {label ? (
-        <LabelContainer $hasArtwork={!!Artwork} {...LabelContainerProps}>
-          {label ? label : key}
-        </LabelContainer>
-      ) : null}
+      <LabelBlockContainer {...LabelBlockContainerProps}>
+        {!!Artwork && (
+          <ArtworkContainer
+            data-baseweb="artwork-container"
+            {...sharedStylingProps}
+            {...ArtworkContainerProps}
+          >
+            <Artwork size={20} color="contentPrimary" />
+          </ArtworkContainer>
+        )}
+        {!!label && <LabelContainer {...LabelContainerProps}>{label ? label : key}</LabelContainer>}
+        {!!badge && <BadgeContainer {...BadgeContainerProps}>{badge}</BadgeContainer>}
+        {badgeHint && <BadgeHintContainer {...BadgeHintContainerProps} />}
+      </LabelBlockContainer>
       {description ? (
         <DescriptionContainer {...DescriptionOverrides} {...DescriptionContainerProps}>
           {description}
