@@ -359,6 +359,10 @@ const routes = [
             itemId: "/components/card",
           },
           {
+            title: "Dialog",
+            itemId: "/components/dialog",
+          },
+          {
             title: "Drawer",
             itemId: "/components/drawer",
           },
