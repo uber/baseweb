@@ -780,7 +780,6 @@ class Select extends React.Component<SelectProps, SelectState> {
           aria-controls={this.state.isOpen ? listboxId : null}
           aria-describedby={this.props['aria-describedby']}
           aria-errormessage={this.props['aria-errormessage']}
-          aria-disabled={this.props.disabled || null}
           aria-expanded={isOpen}
           aria-haspopup="listbox"
           aria-label={label}
