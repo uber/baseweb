@@ -53,6 +53,25 @@ const ListItem = React.forwardRef<HTMLLIElement, ListProps>((props: ListProps, r
 
   const isTapTarget = Boolean(props.onClick);
 
+  const getMainTextFromChild = (child: React.ReactNode | React.ReactNode[] | string) => {
+    if (typeof child === 'string') {
+      return child;
+    } else if (React.isValidElement(child)) {
+      return getMainTextFromChild(child.props.children);
+    } else {
+      return 'List item';
+    }
+  };
+
+  const listItemName =
+    React.Children.count(props.children) === 0
+      ? ['List item']
+      : React.Children.map(props.children, (child) => {
+          return getMainTextFromChild(child);
+        });
+
+  const ariaLabel = props.hasOwnProperty('aria-label') ? props['aria-label'] : listItemName[0];
+
   return (
     <Root
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -60,7 +79,7 @@ const ListItem = React.forwardRef<HTMLLIElement, ListProps>((props: ListProps, r
       $shape={props.shape || SHAPE.DEFAULT}
       $as={isTapTarget ? 'button' : 'li'}
       $isTapTarget={isTapTarget}
-      aria-label={props['aria-label']}
+      aria-label={props.role !== 'presentation' ? ariaLabel : null}
       aria-selected={props['aria-selected']}
       id={props.id}
       role={props.role}
