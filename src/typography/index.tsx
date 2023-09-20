@@ -60,7 +60,7 @@ export const HeadingXXLarge = React.forwardRef((props, ref) => (
     color={props.color || 'contentPrimary'}
     ref={ref}
   />
-)) as BlockComponentType<'div'>;
+)) as BlockComponentType<'h1'>;
 HeadingXXLarge.displayName = 'HeadingXXLarge';
 
 export const HeadingXLarge = React.forwardRef((props, ref) => (
@@ -84,7 +84,7 @@ export const HeadingLarge = React.forwardRef((props, ref) => (
     color={props.color || 'contentPrimary'}
     ref={ref}
   />
-)) as BlockComponentType<'div'>;
+)) as BlockComponentType<'h3'>;
 HeadingLarge.displayName = 'HeadingLarge';
 
 export const HeadingMedium = React.forwardRef((props, ref) => (
