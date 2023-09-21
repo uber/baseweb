@@ -50,6 +50,8 @@ export const StyledRoot = styled<
     maxWidth: `calc(100% - 2 * ${wideViewportGutter})`,
     borderRadius: $theme.borders.radius500,
     boxShadow: $theme.lighting.shallowBelow,
+    backgroundColor: $theme.colors.backgroundPrimary,
+    color: $theme.colors.contentPrimary,
     overflow: 'hidden',
     border: 'none',
     width: DIALOG_WIDTHS[$size],

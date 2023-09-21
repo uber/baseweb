@@ -13,7 +13,7 @@ import { ButtonDock } from '../button-dock';
 import { Button, KIND, SHAPE } from '../button';
 import { Delete } from '../icon';
 import { StyledHeading, StyledBody, StyledRoot, StyledScrollContainer } from './styled-components';
-import { CLOSE_KIND, PLACEMENT, SIZE } from './constants';
+import { PLACEMENT, SIZE } from './constants';
 import type { DialogProps, Artwork } from './types';
 
 function renderArtwork(artwork: Artwork): ReactNode {
@@ -26,7 +26,7 @@ function renderArtwork(artwork: Artwork): ReactNode {
   return null;
 }
 
-const DefaultCloseButton = (props) => {
+const DefaultDismissButton = (props) => {
   const overrides = {
     BaseButton: {
       style: {
@@ -64,8 +64,8 @@ const Dialog = ({
   artwork,
   buttonDock,
   children,
-  closeKind = CLOSE_KIND.closeableWithButton,
-  handleClose,
+  handleDismiss,
+  showDismissButton = true,
   hasOverlay = true,
   heading,
   isOpen,
@@ -82,7 +82,10 @@ const Dialog = ({
   const [Heading, headingProps] = getOverrides(overrides.Heading, StyledHeading);
   const [Body, bodyProps] = getOverrides(overrides.Body, StyledBody);
   const [ButtonDock, buttonDockProps] = getOverrides(overrides.ButtonDock, DefaultButtonDock);
-  const [CloseButton, closeButtonProps] = getOverrides(overrides.CloseButton, DefaultCloseButton);
+  const [DismissButton, dismissButtonProps] = getOverrides(
+    overrides.DismissButton,
+    DefaultDismissButton
+  );
 
   const dialogRef = React.useRef(null);
 
@@ -100,13 +103,13 @@ const Dialog = ({
 
   function handleOutsideClick(e) {
     if (!dialogRef.current.contains(e.target) || e.target.nodeName === 'DIALOG') {
-      handleClose();
+      handleDismiss();
     }
   }
 
   function handleEscapeKey(e) {
     if (e.key === 'Escape') {
-      handleClose();
+      handleDismiss();
     }
   }
 
@@ -132,8 +135,8 @@ const Dialog = ({
 
   return (
     <Root ref={dialogRef} $isOpen={isOpen} $size={size} $placement={placement} {...rootProps}>
-      {closeKind === CLOSE_KIND.closeableWithButton && (
-        <CloseButton onClick={() => handleClose()} {...closeButtonProps} />
+      {handleDismiss && showDismissButton && (
+        <DismissButton onClick={() => handleDismiss()} {...dismissButtonProps} />
       )}
 
       <ScrollContainer {...scrollContainerProps} tabIndex={0}>

@@ -27,24 +27,17 @@ declare export var PLACEMENT: {
   bottomRight: 'bottomRight',
 };
 
-declare export var CLOSE_KIND: {
-  notCloseable: 'notCloseable',
-  closeable: 'closeable',
-  closeableWithButton: 'closeableWithButton',
-};
-
 export type DialogOverridesT = {
   Root?: OverrideT,
   ScrollContainer?: OverrideT,
   Heading?: OverrideT,
   Body?: OverrideT,
   ButtonDock?: OverrideT,
-  CloseButton?: OverrideT,
+  DismissButton?: OverrideT,
 };
 
 export type SizeT = $Values<typeof SIZE>;
 export type PlacementT = $Values<typeof PLACEMENT>;
-export type CloseKindT = $Values<typeof CLOSE_KIND>;
 //flowlint-next-line unclear-type:off
 export type ArtworkT = React.Element<any> | React.ComponentType<{}>;
 
@@ -52,8 +45,8 @@ export type DialogPropsT = {
   artwork?: ArtworkT,
   buttonDock?: ButtonDockPropsT,
   children?: React.Node,
-  closeKind?: CloseKindT,
-  handleClose?: () => void,
+  handleDismiss?: () => void,
+  showDismissButton?: boolean,
   hasOverlay?: boolean,
   heading: string,
   isOpen: boolean,

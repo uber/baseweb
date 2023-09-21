@@ -20,9 +20,3 @@ export const PLACEMENT = Object.freeze({
   bottomCenter: 'bottomCenter',
   bottomRight: 'bottomRight',
 } as const);
-
-export const CLOSE_KIND = Object.freeze({
-  notCloseable: 'notCloseable',
-  closeable: 'closeable',
-  closeableWithButton: 'closeableWithButton',
-} as const);
