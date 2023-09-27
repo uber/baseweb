@@ -23,6 +23,7 @@ const getInitialState = (
   if (initialState && initialState.activeKey) {
     return initialState;
   } else {
+    // @ts-expect-error todo(ts-migration) TS2533 Object is possibly 'null' or 'undefined'.
     const firstKey = React.Children.map(
       children,
       // @ts-expect-error todo(flow->ts) child might be not a ReactElement, theoretically including null

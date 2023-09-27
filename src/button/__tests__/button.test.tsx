@@ -62,6 +62,7 @@ describe('Button Component', () => {
         <span id="text-content">This is ok</span>
       </Button>
     );
+    // @ts-expect-error todo(ts-migration) TS2531 Object is possibly 'null'.
     container.querySelector('#text-content').innerHTML = '<font>This is not ok</font>';
     expect(() =>
       rerender(
@@ -74,6 +75,7 @@ describe('Button Component', () => {
 
   test('simulate google translate does not throw with string child', () => {
     const { rerender, container } = render(<Button>Lorem ipsum</Button>);
+    // @ts-expect-error todo(ts-migration) TS2531 Object is possibly 'null'.
     container.querySelector('button').innerHTML = '<font>Hello world</font>';
     expect(() => rerender(<Button>Lorem ipsum</Button>)).not.toThrow();
   });
@@ -84,6 +86,7 @@ describe('Button Component', () => {
         <span id="text-content">This is ok</span>
       </Button>
     );
+    // @ts-expect-error todo(ts-migration) TS2531 Object is possibly 'null'.
     container.querySelector('#text-content').innerHTML = '<font>This is not ok</font>';
     expect(() =>
       rerender(

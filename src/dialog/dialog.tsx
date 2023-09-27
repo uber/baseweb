@@ -92,23 +92,29 @@ const Dialog = ({
   React.useEffect(() => {
     if (isOpen) {
       if (hasOverlay) {
+        // @ts-expect-error todo(ts-migration) TS18047 'dialogRef.current' is possibly 'null'.
         dialogRef.current.showModal();
       } else {
+        // @ts-expect-error todo(ts-migration) TS18047 'dialogRef.current' is possibly 'null'.
         dialogRef.current.show();
       }
     } else {
+      // @ts-expect-error todo(ts-migration) TS18047 'dialogRef.current' is possibly 'null'.
       dialogRef.current.close();
     }
   }, [isOpen, hasOverlay]);
 
   function handleOutsideClick(e) {
+    // @ts-expect-error todo(ts-migration) TS18047 'dialogRef.current' is possibly 'null'.
     if (!dialogRef.current.contains(e.target) || e.target.nodeName === 'DIALOG') {
+      // @ts-expect-error todo(ts-migration) TS2722 Cannot invoke an object which is possibly 'undefined'.
       handleDismiss();
     }
   }
 
   function handleEscapeKey(e) {
     if (e.key === 'Escape') {
+      // @ts-expect-error todo(ts-migration) TS2722 Cannot invoke an object which is possibly 'undefined'.
       handleDismiss();
     }
   }
@@ -140,6 +146,7 @@ const Dialog = ({
       )}
 
       <ScrollContainer {...scrollContainerProps} tabIndex={0}>
+        {/* @ts-expect-error todo(ts-migration) TS2345 Argument of type 'Artwork | undefined' is not assignable to parameter of type 'Artwork'. */}
         {renderArtwork(artwork)}
         <Heading $numHeadingLines={numHeadingLines} {...headingProps}>
           {heading}

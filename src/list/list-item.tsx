@@ -70,6 +70,7 @@ const ListItem = React.forwardRef<HTMLLIElement, ListProps>((props: ListProps, r
           return getMainTextFromChild(child);
         });
 
+  // @ts-expect-error todo(ts-migration) TS18049 'listItemName' is possibly 'null' or 'undefined'.
   const ariaLabel = props.hasOwnProperty('aria-label') ? props['aria-label'] : listItemName[0];
 
   return (
