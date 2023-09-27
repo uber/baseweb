@@ -58,7 +58,7 @@ export const StyledTitle = styled<'div', { $isActive: boolean }>(
 StyledTitle.displayName = 'StyledTitle';
 
 export const StyledSelector = styled<'button', {}>('button', ({ $theme }) => ({
-  '@container nav-item-list (min-width: 600px)': {
+  '@container nav-item-list (inline-size > 600px)': {
     flexDirection: 'row',
     gap: $theme.sizing.scale500,
   },
