@@ -1,0 +1,56 @@
+!--
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import Layout from '../../components/layout';
+import Exports from '../../components/exports';
+
+import Basic from 'examples/segmented-control/basic.tsx';
+import Badge from 'examples/segmented-control/badge.tsx';
+import BadgeHint from 'examples/segmented-control/badge-hint.tsx';
+import Disabled from 'examples/segmented-control/disabled.tsx';
+
+import * as SegmentedControlExports from 'baseui/segmented-control';
+
+import Yard from '../../components/yard/index';
+import segmentedControlYardConfig from '../../components/yard/config/segmented-control';
+
+export default Layout;
+
+# Segmented Control
+
+<Yard placeholderHeight={122} {...segmentedControlYardConfig} />
+
+A segmented control is a linear set of two or more options with one segment selected at a time. A segmented control allows users to input, filter, change the presentation, or browse content in a view.
+
+## When to use
+
+Use a segmented control to allow users to make a single choice from up to 5 options. Segmented controls provide closely related options that allow users to input, filter, change the presentation, or browse content within a view.
+
+## Examples
+
+<Example title="Basic usage" path="segmented-control/basic.tsx">
+  <Basic />
+</Example>
+
+<Example title="Disabled segmented-control" path="segmented-control/disabled.tsx">
+  <Disabled />
+</Example>
+
+<Example title="Badge" path="segmented-control/badge.tsx">
+  <Badge />
+</Example>
+
+<Example title="Badge hint" path="segmented-control/badge-hint.tsx">
+  <BadgeHint />
+</Example>
+
+<Exports
+  component={SegmentedControlExports}
+  title="SegementedControl exports"
+  path="baseui/segmented-control"
+/>
