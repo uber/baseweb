@@ -24,3 +24,11 @@ export const PLACEMENT = Object.freeze({
   bottom: 'bottom',
   bottomLeft: 'bottomLeft',
 } as const);
+
+export const TOAST_ROLE = Object.freeze({
+  alert: 'alert',
+  alertdialog: 'alertdialog',
+  dialog: 'dialog',
+  status: 'status',
+  log: 'log',
+} as const);
