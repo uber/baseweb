@@ -29,9 +29,9 @@ describe('withWrapper', () => {
     const StyledComponent = withWrapper(
       StyledComponentElement,
       (Styled) =>
-        function (props) {
+        (function(props) {
           return <Styled data-testid="test" aria-label="something useful" {...props} />;
-        }
+        })
     );
     const ExtendedStyledComponent = withStyle(StyledComponent, { color: 'red' });
     const TestComponent = withStyletronProvider(
