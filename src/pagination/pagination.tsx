@@ -101,7 +101,7 @@ export default class Pagination extends React.PureComponent<
   };
 
   render() {
-    const { overrides = {}, currentPage, labels, numPages, size } = this.props;
+    const { overrides = {}, currentPage, labels, numPages, size, isLoading = false } = this.props;
 
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
     const [MaxLabel, maxLabelProps] = getOverrides(overrides.MaxLabel, StyledMaxLabel);
@@ -179,7 +179,7 @@ export default class Pagination extends React.PureComponent<
                     locale,
                     'previous page. current page'
                   )}
-                  disabled={currentPage <= 1}
+                  disabled={isLoading || currentPage <= 1}
                   onClick={this.onPrevClick}
                   startEnhancer={() => {
                     return theme.direction === 'rtl' ? (
@@ -228,7 +228,7 @@ export default class Pagination extends React.PureComponent<
                 </MaxLabel>
                 <Button
                   aria-label={this.constructAriaWayfinderLabel(locale, 'next page. current page')}
-                  disabled={currentPage >= numPages}
+                  disabled={isLoading || currentPage >= numPages}
                   onClick={this.onNextClick}
                   endEnhancer={() => {
                     return theme.direction === 'rtl' ? (
