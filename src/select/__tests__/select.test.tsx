@@ -60,6 +60,35 @@ describe('Select component', function () {
     });
   });
 
+  it('removes selected tag on backspace', function () {
+    const { container } = render(
+      <TestBaseProvider>
+        <Select {...props} value={[item]} />
+      </TestBaseProvider>
+    );
+
+    const input = container.querySelector('input');
+    if (input) fireEvent.keyDown(input, { keyCode: 8 });
+    expect(props.onChange).toHaveBeenCalled();
+    expect(props.onChange.mock.calls[0][0]).toEqual({
+      type: STATE_CHANGE_TYPE.remove,
+      option: item,
+      value: [],
+    });
+  });
+
+  it('does not remove selected tag on backspace if clearable=false', function () {
+    const { container } = render(
+      <TestBaseProvider>
+        <Select {...props} value={[item]} clearable={false} />
+      </TestBaseProvider>
+    );
+
+    const input = container.querySelector('input');
+    if (input) fireEvent.keyDown(input, { keyCode: 8 });
+    expect(props.onChange).not.toHaveBeenCalled();
+  });
+
   it('select flow allows custom keys in options objects', function () {
     const options = [
       { id: 'AliceBlue', color: '#F0F8FF' },

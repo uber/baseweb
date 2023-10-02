@@ -74,7 +74,8 @@ const PopoverConfig: TConfig = {
       options: TRIGGER_TYPE,
       enumName: 'TRIGGER_TYPE',
       type: PropTypes.Enum,
-      description: 'Controls how to position the popover relative to the target.',
+      description:
+        'Controls whether to toggle the popover when trigger is clicked, hovered, or focused.',
       imports: {
         'baseui/popover': {
           named: ['TRIGGER_TYPE'],

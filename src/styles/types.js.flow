@@ -9,7 +9,7 @@ import type { ComponentType } from 'react';
 import type { IconPropsT } from '../icon/types.js';
 
 import type {
-  ColorTokensT,
+  FoundationColorTokensT,
   ComponentColorTokensT,
   SemanticColorTokensT,
   AnimationT,
@@ -24,6 +24,7 @@ import type {
   TypographyT,
   ZIndexT,
 } from '../themes/types.js';
+import type { PrimitiveColorTokensT } from '../tokens/types.js';
 
 export type {
   AnimationT,
@@ -39,8 +40,10 @@ export type {
   ZIndexT,
 };
 
-export type ColorsT = {
-  ...ColorTokensT,
+// $FlowFixMe[cannot-spread-inexact]
+export type ColorTokensT = {
+  ...PrimitiveColorTokensT,
+  ...FoundationColorTokensT,
   ...ComponentColorTokensT,
   ...SemanticColorTokensT,
 };
@@ -50,7 +53,7 @@ export type ThemeT = {|
   animation: AnimationT,
   borders: BordersT,
   breakpoints: BreakpointsT,
-  colors: ColorsT,
+  colors: ColorTokensT,
   direction: 'auto' | 'rtl' | 'ltr',
   grid: GridT,
   icons?: IconT,
@@ -78,9 +81,13 @@ export type IconT = {
   CheckIndeterminate?: ComponentType<IconPropsT>,
   Check?: ComponentType<IconPropsT>,
   ChevronDown?: ComponentType<IconPropsT>,
+  ChevronDownSmall?: ComponentType<IconPropsT>,
   ChevronUp?: ComponentType<IconPropsT>,
+  ChevronUpSmall?: ComponentType<IconPropsT>,
   ChevronLeft?: ComponentType<IconPropsT>,
+  ChevronLeftSmall?: ComponentType<IconPropsT>,
   ChevronRight?: ComponentType<IconPropsT>,
+  ChevronRightSmall?: ComponentType<IconPropsT>,
   DeleteAlt?: ComponentType<IconPropsT>,
   Delete?: ComponentType<IconPropsT>,
   Filter?: ComponentType<IconPropsT>,

@@ -259,7 +259,7 @@ export const StyledStrokedLabel = styled<{
   return {
     display: 'flex',
     ...$theme.typography[LABEL_SIZES[$size]],
-    color: $theme.colors.primaryA,
+    color: $theme.colors.contentPrimary,
     transition: `${$theme.animation.timing300} ${$theme.animation.easeOutCurve} all`,
     textShadow,
     pointerEvents: 'auto',
@@ -277,7 +277,7 @@ export const StyledBadgeEnhancerRoot = styled<{
     position: 'absolute',
     ...$theme.typography.LabelSmall,
     backgroundColor: $theme.colors.backgroundAccent,
-    color: $theme.colors.primaryB,
+    color: $theme.colors.contentOnColor,
     boxSizing: 'border-box',
     right: 0,
     transform: `translate(calc(100% + ${x}px), ${y}px)`,

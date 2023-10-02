@@ -142,7 +142,7 @@ export const StyledTableHeadCellSortable = withStyle<
     cursor: 'pointer',
     outline: 'none',
     ':focus': {
-      outline: $isFocusVisible ? `3px solid ${$theme.colors.accent}` : 'none',
+      outline: $isFocusVisible ? `3px solid ${$theme.colors.borderAccent}` : 'none',
       outlineOffset: '-3px',
     },
     ':hover': {

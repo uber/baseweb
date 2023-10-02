@@ -49,11 +49,11 @@ export type PanelProps = {
   children: React.ReactNode;
 };
 
-export type OnChange = (params: { activeKey: React.Key }) => void;
+export type OnChange = (params: { activeKey: number }) => void;
 
 export interface BottomNavigationProps {
   children?: React.ReactNode;
-  activeKey?: React.Key;
+  activeKey?: number;
   onChange?: OnChange;
   overrides?: BottomNavigationOverrides;
 }

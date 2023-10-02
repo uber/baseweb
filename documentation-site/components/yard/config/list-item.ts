@@ -70,6 +70,12 @@ const ListItemConfig: TConfig = {
       type: PropTypes.ReactNode,
       description: 'Right-hand content to render in the list item.',
     },
+    onClick: {
+      value: undefined,
+      placeholder: '() => alert("click")',
+      type: PropTypes.Function,
+      description: `Function called when list item is clicked. The entire surface of the list item becomes a tap target when this prop is supplied.`,
+    },
     sublist: {
       value: false,
       type: PropTypes.Boolean,

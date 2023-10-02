@@ -35,7 +35,7 @@ export const StyledList = styled<'ul', StyledProps>('ul', ({ $theme, $isFocusVis
     boxShadow: $theme.lighting.shadow600,
     overflow: 'auto',
     ':focus': {
-      outline: $isFocusVisible ? `3px solid ${$theme.colors.accent}` : 'none',
+      outline: $isFocusVisible ? `3px solid ${$theme.colors.borderAccent}` : 'none',
     },
   };
 });

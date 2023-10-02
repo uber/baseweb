@@ -75,7 +75,7 @@ const BadgeConfig: TConfig = {
         'Defines badge look by purpose. Set it to one of HIERARCHY[key] values. Defaults to HIERARCHY.primary.',
       imports: {
         'baseui/badge': {
-          named: ['HIEARCHY'],
+          named: ['HIERARCHY'],
         },
       },
     },

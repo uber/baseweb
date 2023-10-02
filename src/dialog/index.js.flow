@@ -1,0 +1,71 @@
+/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+// @flow
+import * as React from 'react';
+import type { OverrideT } from '../helpers/overrides.js';
+import type { ButtonDockPropsT } from '../button-dock';
+import { type StyletronComponent } from 'styletron-react';
+
+declare export var SIZE: {
+  xSmall: 'xSmall',
+  small: 'small',
+  medium: 'medium',
+  large: 'large',
+};
+
+declare export var PLACEMENT: {
+  center: 'center',
+  topLeft: 'topLeft',
+  topCenter: 'topCenter',
+  topRight: 'topRight',
+  bottomLeft: 'bottomLeft',
+  bottomCenter: 'bottomCenter',
+  bottomRight: 'bottomRight',
+};
+
+export type DialogOverridesT = {
+  Root?: OverrideT,
+  ScrollContainer?: OverrideT,
+  Heading?: OverrideT,
+  Body?: OverrideT,
+  ButtonDock?: OverrideT,
+  DismissButton?: OverrideT,
+};
+
+export type SizeT = $Values<typeof SIZE>;
+export type PlacementT = $Values<typeof PLACEMENT>;
+//flowlint-next-line unclear-type:off
+export type ArtworkT = React.Element<any> | React.ComponentType<{}>;
+
+export type DialogPropsT = {
+  artwork?: ArtworkT,
+  buttonDock?: ButtonDockPropsT,
+  children?: React.Node,
+  handleDismiss?: () => void,
+  showDismissButton?: boolean,
+  hasOverlay?: boolean,
+  heading: string,
+  isOpen: boolean,
+  numHeadingLines?: number,
+  overrides?: DialogOverridesT,
+  placement?: PlacementT,
+  size?: SizeT,
+};
+
+declare export var StyledRoot: StyletronComponent<
+  'dialog',
+  {
+    $size: SizeT,
+    $placement: PlacementT,
+    $isOpen: boolean,
+  }
+>;
+declare export var StyledScrollContainer: StyletronComponent<'div', {}>;
+declare export var StyledHeading: StyletronComponent<'div', { $numHeadingLines: number }>;
+declare export var StyledBody: StyletronComponent<'div', {}>;
+
+declare export var Dialog: React.ComponentType<DialogPropsT>;

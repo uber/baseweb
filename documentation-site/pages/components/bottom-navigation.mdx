@@ -1,0 +1,44 @@
+<!--
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import Layout from '../../components/layout';
+import Exports from '../../components/exports';
+
+import Overflow from 'examples/bottom-navigation/overflow.tsx';
+
+import { BottomNavigation } from 'baseui/bottom-navigation';
+import * as BottomNavigationExports from 'baseui/bottom-navigation';
+
+import Yard from '../../components/yard/index';
+import bottomNavigationYardConfig from '../../components/yard/config/bottom-navigation';
+
+export default Layout;
+
+# Bottom Navigation
+
+<Yard placeholderHeight={24} {...bottomNavigationYardConfig} />
+
+The bottom navigation component offers global, persistent navigation throughout an app. The bar is always visible and within reach, making it easy and quick to move from one section to another with a single tap.
+
+## When to use
+
+Use bottom navigation when users need to quickly move between a small number of global, high-level categories. The bottom navigation contains 3 to 5 equally sized tabs used to switch to different sections of your app. When more than five pages are supplied, pages 5+ will be grouped into an overflow tab.
+
+Tapping on an inactive tab will make that tab active. Tapping on a tab that’s already active will scroll the content back to the top of the section. As users navigate from one section to another, prior interactions in previous tabs are maintained, including the scroll position.
+
+## Examples
+
+<Example title="Bottom Navigation Overflow example" path="bottom-navigation/overflow.tsx">
+  <Overflow />
+</Example>
+
+<Exports
+  component={BottomNavigationExports}
+  title="Bottom Navigation exports"
+  path="baseui/bottom-navigation"
+/>

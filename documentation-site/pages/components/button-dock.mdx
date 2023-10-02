@@ -1,0 +1,45 @@
+<!--
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import Exports from '../../components/exports';
+import Layout from '../../components/layout';
+import SEO from '../../components/meta-seo';
+
+import Basic from 'examples/button-dock/basic';
+
+import { ButtonDock } from 'baseui/button';
+import * as ButtonDockExports from 'baseui/button-dock';
+
+import Yard from '../../components/yard/index';
+import buttonDockYardConfig from '../../components/yard/config/button-dock';
+
+export default Layout;
+
+# ButtonDock
+
+<Yard placeholderHeight={52} {...buttonDockYardConfig} />
+
+This component acts as a container for up to 4 buttons and an optional accessory item. All are optional.
+
+## When to use
+
+Use Button Dock to keep one or more buttons visible on screen at all times. This allows users to quickly decide and act at any moment without having to scroll to the very end of a page.
+
+This component is designed to be used with large rectangular buttons. Sliding and Timed buttons can also be used.
+
+## Breakpoints
+
+There are 2 variants of Button Dock component: Normal and Wide. The wide version will render for screens wider than 600px.
+
+## Examples
+
+<Example title="Basic" path="button-dock/basic.tsx">
+  <Basic />
+</Example>
+
+<Exports component={ButtonDockExports} title="Button Dock exports" path="baseui/button-dock" />

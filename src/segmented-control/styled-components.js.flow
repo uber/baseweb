@@ -1,0 +1,218 @@
+/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+
+// @flow
+
+import { styled } from '../styles/index.js';
+import { FILL } from './constants.js';
+import { isIntrinsic, isFixed } from './utils.js';
+
+import type { StyleObject } from 'styletron-standard';
+import type { FillT } from './types.js';
+
+export const StyledRoot = styled<{
+  $fill?: FillT,
+  $height?: string,
+  $width?: string,
+}>('div', ({ $theme, $fill = FILL.intrinsic, $height = 'fit-content', $width = 'fit-content' }) => {
+  const { sizing } = $theme;
+  const style: StyleObject = {
+    backgroundColor: $theme.colors.backgroundTertiary,
+    borderRadius: $theme.sizing.scale500,
+    boxSizing: 'border-box',
+    isolation: 'isolate',
+    padding: $theme.sizing.scale100,
+    position: 'relative',
+    overflow: 'hidden',
+    height: $height,
+    width: $width,
+  };
+  if (isIntrinsic($fill)) {
+    style['::-webkit-scrollbar'] = { display: 'none' };
+    // $FlowFixMe: property missing in StyleObject
+    style['-ms-overflow-style'] = 'none';
+    style.scrollbarWidth = 'none';
+  }
+  return style;
+});
+
+StyledRoot.displayName = 'StyledRoot';
+
+export const StyledSegmentList = styled<{}>('div', ({ $theme }) => {
+  const style: StyleObject = {
+    backgroundColor: $theme.colors.backgroundTertiary,
+    boxSizing: 'border-box',
+    display: 'flex',
+    height: '100%',
+    justifyContent: 'space-evenly',
+    position: 'relative',
+    width: '100%',
+    zIndex: -2,
+    flexDirection: 'row',
+    overflow: 'hidden',
+    marginRight: '40px',
+  };
+  return style;
+});
+
+StyledSegmentList.displayName = 'StyledSegmentList';
+
+export const StyledSegment = styled<{
+  $fill?: FillT,
+  $focusVisible?: boolean,
+  $isActive?: boolean,
+  $hasArtwork?: boolean,
+  $hasLabel?: boolean,
+}>(
+  'button',
+  ({
+    $theme,
+    $fill = FILL.intrinsic,
+    $focusVisible = false,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    $isActive = false,
+    $hasArtwork = false,
+    $hasLabel = true,
+  }) => {
+    const style: StyleObject = {
+      cursor: 'pointer',
+      WebkitAppearance: 'none',
+      marginLeft: '0',
+      marginRight: '0',
+      marginTop: '0',
+      marginBottom: '0',
+      boxSizing: 'border-box',
+      display: 'grid',
+      gridAutoRows: 'auto',
+      gridTemplateColumns: 'repeat(2, auto)',
+      alignItems: 'center',
+      paddingInline: $theme.sizing.scale600,
+      paddingBlock: $theme.sizing.scale300,
+      borderLeftWidth: 0,
+      borderTopWidth: 0,
+      borderRightWidth: 0,
+      borderBottomWidth: 0,
+      borderRadius: $theme.sizing.scale300,
+      color: $theme.colors.contentPrimary,
+      backgroundColor: 'transparent',
+      flexGrow: 1,
+      transitionProperty: 'box-shadow',
+      transitionDuration: $theme.animation.timing200,
+      transitionTimingFunction: $theme.animation.linearCurve,
+      outline: 'none',
+      outlineOffset: '-3px',
+      justifyContent: 'center',
+      overflow: 'hidden',
+      ':hover': {
+        boxShadow: $isActive ? 'none' : $theme.lighting.overlay100,
+        zIndex: $isActive ? 'none' : -2,
+      },
+      ':disabled': {
+        cursor: 'not-allowed',
+        color: $theme.colors.contentStateDisabled,
+        ':hover': {
+          boxShadow: 'none',
+        },
+      },
+      ':disabled:hover': {
+        background: 'none',
+      },
+    };
+    if ($focusVisible) {
+      style.outline = `3px solid ${$theme.colors.accent}`;
+    }
+    if (isFixed($fill)) {
+      style.flexGrow = 1;
+      style.flexBasis = 0;
+    }
+    if ($hasArtwork === true && $hasLabel === true) {
+      style.gridColumnGap = $theme.sizing.scale300;
+    }
+    return style;
+  }
+);
+
+StyledSegment.displayName = 'StyledSegment';
+
+export const StyledArtworkContainer = styled<{}>('div', ({}) => {
+  const style: StyleObject = {
+    display: 'flex',
+  };
+  return style;
+});
+
+StyledArtworkContainer.displayName = 'StyledArtworkContainer';
+
+export const StyledActive = styled<{
+  $length?: number,
+  $distance?: number,
+  $animate?: boolean,
+}>('div', ({ $theme, $length = 0, $distance = 0, $animate = false }) => {
+  const style: StyleObject = {
+    position: 'absolute',
+    borderRadius: $theme.sizing.scale300,
+    boxSizing: 'border-box',
+    height: '100%',
+    width: '100%',
+    border: `${$theme.sizing.scale0} solid ${$theme.colors.primary}`,
+    backgroundColor: $theme.colors.backgroundPrimary,
+    zIndex: -1,
+  };
+  style.bottom = '0px';
+  style.left = '0px';
+  style.width = `${$length}px`;
+  style.transform = `translateX(${$distance}px)`;
+  if ($animate) {
+    style.transitionProperty = 'all';
+    style.transitionDuration = $theme.animation.timing400;
+    style.transitionTimingFunction = $theme.animation.easeInOutQuinticCurve;
+  }
+  return style;
+});
+
+StyledActive.displayName = 'StyledActive';
+
+export const StyledSegmentPanel = styled<{
+  $pad: boolean,
+}>('div', ({ $theme, $pad = true }) => {
+  const style: StyleObject = {
+    flexGrow: 1,
+    outline: 'none',
+  };
+  if ($pad) {
+    style.paddingTop = $theme.sizing.scale600;
+    style.paddingRight = $theme.sizing.scale600;
+    style.paddingBottom = $theme.sizing.scale600;
+    style.paddingLeft = $theme.sizing.scale600;
+  }
+  return style;
+});
+StyledSegmentPanel.displayName = 'StyledSegmentPanel';
+
+export const StyledLabel = styled<{ $hasArtwork: boolean }>('div', ({ $theme, $hasArtwork }) => {
+  const style: StyleObject = {
+    ...$theme.typography.LabelSmall,
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
+  };
+  if (!$hasArtwork) {
+    style.gridColumn = '1 / 3';
+  }
+  return style;
+});
+
+export const StyledDescription = styled<{}>('div', ({ $theme }) => ({
+  ...$theme.typography.ParagraphXSmall,
+  padding: 0,
+  margin: 0,
+  gridColumn: '1 / 3',
+  gridRow: '2 / 3',
+  overflow: 'hidden',
+  whiteSpace: 'nowrap',
+  textOverflow: 'ellipsis',
+}));

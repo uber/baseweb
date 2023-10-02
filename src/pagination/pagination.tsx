@@ -125,7 +125,7 @@ export default class Pagination extends React.PureComponent<
             : $isOpen
             ? $theme.colors.buttonTertiaryHover
             : $error
-            ? $theme.colors.negative50
+            ? $theme.colors.backgroundLightNegative
             : $theme.colors.buttonTertiaryFill,
           ':hover': {
             backgroundColor: $theme.colors.buttonTertiaryHover,
@@ -193,6 +193,7 @@ export default class Pagination extends React.PureComponent<
                     BaseButton: overrides.PrevButton,
                   }}
                   size={size}
+                  type="button"
                 >
                   {labels && labels.prevButton ? labels.prevButton : locale.pagination.prev}
                 </Button>
@@ -241,6 +242,7 @@ export default class Pagination extends React.PureComponent<
                     BaseButton: overrides.NextButton,
                   }}
                   size={size}
+                  type="button"
                 >
                   {labels && labels.nextButton ? labels.nextButton : locale.pagination.next}
                 </Button>

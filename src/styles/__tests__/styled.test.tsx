@@ -29,9 +29,9 @@ describe('withWrapper', () => {
     const StyledComponent = withWrapper(
       StyledComponentElement,
       (Styled) =>
-        function (props) {
+        (function(props) {
           return <Styled data-testid="test" aria-label="something useful" {...props} />;
-        }
+        })
     );
     const ExtendedStyledComponent = withStyle(StyledComponent, { color: 'red' });
     const TestComponent = withStyletronProvider(
@@ -44,7 +44,7 @@ describe('withWrapper', () => {
 
 test('styled', () => {
   const StyledMockButton = styled('button', ({ $theme }) => ({
-    backgroundColor: $theme.colors.primary400,
+    backgroundColor: $theme.colors.backgroundInversePrimary,
   }));
 
   const TestComponent = withStyletronProvider(
@@ -53,7 +53,7 @@ test('styled', () => {
   const { container, debug } = render(<TestComponent />);
   const button = getByTestId(container, 'test-button');
   const style = getComputedStyle(button);
-  expect(style.backgroundColor).toBe('rgb(175, 175, 175)');
+  expect(style.backgroundColor).toBe('rgb(0, 0, 0)');
 });
 
 test('styled can be called with single string argument', () => {
@@ -138,7 +138,7 @@ describe('styled flow', () => {
 
   test('it provides flow error if accessing property not defined in default theme type', () => {
     const a = styled('div', (props) => {
-      console.log(props.$theme.colors.primary400);
+      console.log(props.$theme.colors.backgroundInversePrimary);
       // @ts-expect-error
       console.log(props.$theme.colors.primary9000);
       return { color: 'blue' };
@@ -233,14 +233,14 @@ describe('withStyle flow', () => {
 
   test('it provides flow error if accessing property not defined in default theme type', () => {
     const a = styled('div', (props) => {
-      console.log(props.$theme.colors.primary400);
+      console.log(props.$theme.colors.backgroundInversePrimary);
       // @ts-expect-error
       console.log(props.$theme.colors.primary9000);
       return { color: 'blue' };
     });
 
     const b = withStyle<typeof a, {}>(a, (props) => {
-      console.log(props.$theme.colors.primary400);
+      console.log(props.$theme.colors.backgroundInversePrimary);
       // @ts-expect-error
       console.log(props.$theme.colors.primary9000);
       return { color: 'green' };
@@ -322,7 +322,7 @@ describe('useStyletron flow', () => {
       return (
         <div
           className={css({
-            color: theme.colors.primary400,
+            color: theme.colors.backgroundInversePrimary,
             // @ts-expect-error
             backgroundColor: theme.colors.primary9000,
           })}

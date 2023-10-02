@@ -5,18 +5,19 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import type {
-  ColorTokens,
+  FoundationColorTokens,
   CoreSemanticColorTokens,
   CoreExtensionSemanticColorTokens,
+  DeprecatedSemanticColorTokens,
   SemanticColorTokens,
 } from '../types';
-import colorTokens from './color-tokens';
+import defaultFoundationColorTokens from './color-tokens';
 import { hexToRgb as hexToRgba } from '../../styles/util';
 import colors from '../../tokens/colors';
 
 export default (
   // themePrimitives or foundation colors
-  foundation: ColorTokens = colorTokens
+  foundation: FoundationColorTokens = defaultFoundationColorTokens
 ): SemanticColorTokens => {
   const core: CoreSemanticColorTokens = {
     // Background
@@ -49,19 +50,17 @@ export default (
     // Backgrounds
     backgroundStateDisabled: colors.gray50,
     // @ts-ignore
-    backgroundOverlayDark: hexToRgba(colors.black, '0.3'),
-    // @ts-ignore
-    backgroundOverlayLight: hexToRgba(colors.black, '0.08'),
+    backgroundOverlay: hexToRgba(colors.black, '0.5'),
     // @ts-ignore
     backgroundOverlayArt: hexToRgba(colors.black, '0.00'),
     backgroundAccent: foundation.accent,
     backgroundNegative: foundation.negative,
     backgroundWarning: foundation.warning,
     backgroundPositive: colors.green400,
-    backgroundLightAccent: colors.blue50,
-    backgroundLightNegative: colors.red50,
-    backgroundLightWarning: colors.yellow50,
-    backgroundLightPositive: colors.green50,
+    backgroundAccentLight: colors.blue50,
+    backgroundNegativeLight: colors.red50,
+    backgroundWarningLight: colors.yellow50,
+    backgroundPositiveLight: colors.green50,
     backgroundAlwaysDark: colors.black,
     backgroundAlwaysLight: colors.white,
 
@@ -96,8 +95,17 @@ export default (
     rewardsTier4: colors.black,
     membership: colors.yellow600,
   };
+  const deprecated: DeprecatedSemanticColorTokens = {
+    backgroundOverlayLight: coreExtensions.backgroundOverlay,
+    backgroundOverlayDark: coreExtensions.backgroundOverlay,
+    backgroundLightAccent: coreExtensions.backgroundAccentLight,
+    backgroundLightPositive: coreExtensions.backgroundPositiveLight,
+    backgroundLightWarning: coreExtensions.backgroundWarningLight,
+    backgroundLightNegative: coreExtensions.backgroundNegativeLight,
+  };
   return {
     ...core,
     ...coreExtensions,
+    ...deprecated,
   };
 };

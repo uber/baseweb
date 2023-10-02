@@ -109,7 +109,7 @@ function getBackgroundColor(props) {
 function getLabelColor(props) {
   const { $disabled, $theme } = props;
   const { colors } = $theme;
-  return $disabled ? colors.contentSecondary : colors.contentPrimary;
+  return $disabled ? colors.contentStateDisabled : colors.contentPrimary;
 }
 
 export const Root = styled<'label', SharedStyleProps>('label', (props) => {
@@ -177,7 +177,7 @@ export const Checkmark = styled<'span', SharedStyleProps>('span', (props) => {
     borderTopRightRadius: borderRadius,
     borderBottomRightRadius: borderRadius,
     borderBottomLeftRadius: borderRadius,
-    outline: $isFocusVisible && $checked ? `3px solid ${$theme.colors.accent}` : 'none',
+    outline: $isFocusVisible && $checked ? `3px solid ${$theme.colors.borderAccent}` : 'none',
     display: 'inline-block',
     verticalAlign: 'middle',
     backgroundImage: $isIndeterminate
@@ -243,7 +243,7 @@ export const Toggle = styled<'div', SharedStyleProps>('div', (props) => {
     borderBottomRightRadius: '50%',
     borderBottomLeftRadius: '50%',
     boxShadow: props.$isFocusVisible
-      ? `0 0 0 3px ${props.$theme.colors.accent}`
+      ? `0 0 0 3px ${props.$theme.colors.borderAccent}`
       : props.$isHovered && !props.$disabled
       ? props.$theme.lighting.shadow500
       : props.$theme.lighting.shadow400,

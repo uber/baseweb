@@ -379,7 +379,7 @@ class Select extends React.Component<SelectProps, SelectState> {
     if (this.props.disabled) return;
     switch (event.keyCode) {
       case 8: // backspace
-        if (!this.state.inputValue && this.props.backspaceRemoves) {
+        if (!this.state.inputValue && this.props.clearable && this.props.backspaceRemoves) {
           event.preventDefault();
           this.backspaceValue();
         }
@@ -780,7 +780,6 @@ class Select extends React.Component<SelectProps, SelectState> {
           aria-controls={this.state.isOpen ? listboxId : null}
           aria-describedby={this.props['aria-describedby']}
           aria-errormessage={this.props['aria-errormessage']}
-          aria-disabled={this.props.disabled || null}
           aria-expanded={isOpen}
           aria-haspopup="listbox"
           aria-label={label}

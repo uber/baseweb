@@ -4,7 +4,7 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import { DatePicker, ORIENTATION } from 'baseui/datepicker';
+import { DatePicker, ORIENTATION, RANGED_CALENDAR_BEHAVIOR } from 'baseui/datepicker';
 import { SIZE } from 'baseui/input';
 import { PropTypes } from 'react-view';
 import type { TConfig } from '../types';
@@ -23,7 +23,7 @@ const DatepickerConfig: TConfig = {
       named: ['DatePicker'],
     },
   },
-  scope: { DatePicker, ORIENTATION, SIZE },
+  scope: { DatePicker, ORIENTATION, SIZE, RANGED_CALENDAR_BEHAVIOR },
   theme: [
     'calendarBackground',
     'calendarForeground',
@@ -149,6 +149,21 @@ const DatepickerConfig: TConfig = {
       value: undefined,
       type: PropTypes.Boolean,
       description: 'Defines if a range of dates can be selected.',
+    },
+    rangedCalendarBehavior: {
+      value: 'RANGED_CALENDAR_BEHAVIOR.default',
+      defaultValue: 'RANGED_CALENDAR_BEHAVIOR.default',
+      type: PropTypes.Enum,
+      options: RANGED_CALENDAR_BEHAVIOR,
+      enumName: 'RANGED_CALENDAR_BEHAVIOR',
+      description:
+        'Determines whether startDate and endDate should be updated independently of eachother',
+      imports: {
+        'baseui/datepicker': {
+          named: ['RANGED_CALENDAR_BEHAVIOR'],
+        },
+      },
+      hidden: true,
     },
     separateRangeInputs: {
       value: undefined,

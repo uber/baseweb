@@ -167,10 +167,11 @@ export const RadioMarkInner = styled<'div', StyleProps>('div', (props) => {
     borderTopRightRadius: '50%',
     borderBottomRightRadius: '50%',
     borderBottomLeftRadius: '50%',
-    height: props.$checked ? sizing.scale200 : sizing.scale550,
+    height: '100%',
     transitionDuration: animation.timing200,
     transitionTimingFunction: animation.easeOutCurve,
-    width: props.$checked ? sizing.scale200 : sizing.scale550,
+    width: '100%',
+    transform: props.$checked ? 'scale(.3)' : 'scale(.7)',
   };
 });
 
@@ -187,7 +188,9 @@ export const RadioMarkOuter = styled<'div', StyleProps>('div', (props) => {
     borderBottomRightRadius: '50%',
     borderBottomLeftRadius: '50%',
     boxShadow:
-      props.$isFocusVisible && props.$checked ? `0 0 0 3px ${props.$theme.colors.accent}` : 'none',
+      props.$isFocusVisible && props.$checked
+        ? `0 0 0 3px ${props.$theme.colors.borderAccent}`
+        : 'none',
     display: 'flex',
     height: sizing.scale700,
     justifyContent: 'center',

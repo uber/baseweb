@@ -15,6 +15,6 @@ export const StyledDivider = withWrapper(
   StyledDividerElement,
   (StyledComponent) =>
     function StyledDivider(props) {
-      return <StyledComponent aria-hidden="true" {...props} />;
+      return <StyledComponent aria-hidden="true" role="separator" {...props} />;
     }
 );

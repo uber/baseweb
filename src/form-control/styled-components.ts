@@ -45,9 +45,9 @@ export const LabelEndEnhancer = styled<'span', StyleProps>(
     flex: 0,
     width: '100%',
     color: $counterError
-      ? colors.negative400
+      ? colors.contentNegative
       : $disabled
-      ? colors.contentSecondary
+      ? colors.contentStateDisabled
       : colors.contentPrimary,
   })
 );
@@ -61,11 +61,11 @@ export const Caption = styled<'div', StyleProps>('div', (props) => {
     $theme: { colors, sizing, typography },
   } = props;
 
-  let fontColor = colors.contentSecondary;
+  let fontColor = colors.contentTertiary;
   if ($error) {
-    fontColor = colors.negative400;
+    fontColor = colors.contentNegative;
   } else if ($positive) {
-    fontColor = colors.positive400;
+    fontColor = colors.contentPositive;
   }
 
   return {

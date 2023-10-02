@@ -32,7 +32,7 @@ export default function Example() {
   ]);
 
   const sortedData = useMemo(() => {
-    return data.slice().sort((a: any, b: any) => {
+    return data.slice().sort((a: Row, b: Row) => {
       const left = sortAsc ? a : b;
       const right = sortAsc ? b : a;
       const leftValue = String(left[sortColumn]);

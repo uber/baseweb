@@ -180,7 +180,7 @@ export const RadioMarkOuter = styled<StylePropsT>('div', (props) => {
     borderBottomRightRadius: '50%',
     borderBottomLeftRadius: '50%',
     boxShadow:
-      props.$isFocusVisible && props.$checked ? `0 0 0 3px ${props.$theme.colors.accent}` : 'none',
+      props.$isFocusVisible && props.$checked ? `0 0 0 3px ${props.$theme.colors.borderAccent}` : 'none',
     display: 'flex',
     height: sizing.scale700,
     justifyContent: 'center',

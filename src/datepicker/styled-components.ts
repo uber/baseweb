@@ -171,7 +171,7 @@ export const StyledMonthYearSelectButton = styled<'button', SharedStyleProps>('b
     paddingRight: $density === DENSITY.high ? sizing.scale500 : sizing.scale600,
     outline: 'none',
     ':focus': {
-      boxShadow: $isFocusVisible ? `0 0 0 3px ${colors.accent}` : 'none',
+      boxShadow: $isFocusVisible ? `0 0 0 3px ${colors.borderAccent}` : 'none',
     },
   };
 });
@@ -223,7 +223,7 @@ function getArrowBtnStyle({
     ':focus': $disabled
       ? {}
       : {
-          boxShadow: $isFocusVisible ? `0 0 0 3px ${$theme.colors.accent}` : 'none',
+          boxShadow: $isFocusVisible ? `0 0 0 3px ${$theme.colors.borderAccent}` : 'none',
         },
     width: '48px',
   };
@@ -554,7 +554,7 @@ export const StyledDay = styled<'div', SharedStyleProps>('div', (props) => {
       display: 'inline-block',
       boxShadow:
         $isFocusVisible && (!$outsideMonth || $peekNextMonth)
-          ? `0 0 0 3px ${colors.accent}`
+          ? `0 0 0 3px ${colors.borderAccent}`
           : 'none',
       backgroundColor: $selected
         ? colors.calendarDayBackgroundSelectedHighlighted
@@ -596,7 +596,7 @@ export const StyledDay = styled<'div', SharedStyleProps>('div', (props) => {
             content: '""',
             boxSizing: 'border-box',
             display: 'inline-block',
-            backgroundColor: colors.mono300,
+            backgroundColor: colors.backgroundTertiary,
             position: 'absolute',
             height: circleHeight,
             width: '50%',
@@ -617,7 +617,7 @@ export const StyledDay = styled<'div', SharedStyleProps>('div', (props) => {
             ...(getDayStyles(code, props.$theme)[':before'] || {}),
             ...($outsideMonthWithinRange
               ? {
-                  backgroundColor: colors.mono300,
+                  backgroundColor: colors.backgroundTertiary,
                   left: '0',
                   width: '100%',
                   content: '""',

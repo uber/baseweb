@@ -4,17 +4,19 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import colorTokens from './color-tokens';
-import type { ColorTokens, ComponentColorTokens } from '../types';
+import defaultFoundationColorTokens from './color-tokens';
+import type { FoundationColorTokens, ComponentColorTokens } from '../types';
 
 const tagHoverBackground = `rgba(255, 255, 255, 0.2)`;
 
 /* ---- Component colors ---- */
 // TODO(#2318) Make it a plain object in the next v11 major version
-// with values taken from `colorTokens`.
+// with values taken from `defaultFoundationColorTokens`.
 // Due to the legacy `createTheme` type the values
 // need to be overrideable through primitives
-export default (themePrimitives: ColorTokens = colorTokens): ComponentColorTokens => ({
+export default (
+  themePrimitives: FoundationColorTokens = defaultFoundationColorTokens
+): ComponentColorTokens => ({
   bannerActionLowInfo: themePrimitives.accent600,
   bannerActionLowNegative: themePrimitives.negative600,
   bannerActionLowPositive: themePrimitives.positive600,

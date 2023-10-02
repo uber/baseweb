@@ -44,7 +44,7 @@ export const StyledNavLink = styled<
   textDecoration: 'none',
   ':focus > div': $isFocusVisible
     ? {
-        outline: `3px solid ${$theme.colors.accent}`,
+        outline: `3px solid ${$theme.colors.borderAccent}`,
         outlineOffset: '-3px',
         borderLeftColor: 'transparent',
         borderTopColor: 'transparent',
@@ -77,12 +77,12 @@ export const StyledNavItemElement = styled<'div', SharedProps>('div', (props) =>
   const paddingSuffixDir: string = $theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight';
 
   let cursor = $selectable ? 'pointer' : 'default';
-  let color = $active ? colors.primary : null;
-  let hoverColor = $selectable ? colors.primary : null;
+  let color = $active ? colors.contentPrimary : null;
+  let hoverColor = $selectable ? colors.contentPrimary : null;
 
   if ($disabled) {
     cursor = 'not-allowed';
-    color = colors.contentSecondary;
+    color = colors.contentStateDisabled;
     hoverColor = null;
   }
 
@@ -92,7 +92,7 @@ export const StyledNavItemElement = styled<'div', SharedProps>('div', (props) =>
     boxSizing: 'border-box',
     [borderWidthDir]: '4px',
     [borderStyleDir]: 'solid',
-    [borderColorDir]: $active ? colors.primary : 'transparent',
+    [borderColorDir]: $active ? colors.borderSelected : 'transparent',
     color,
     cursor,
 
@@ -104,7 +104,7 @@ export const StyledNavItemElement = styled<'div', SharedProps>('div', (props) =>
       color: hoverColor,
     },
     ':focus': {
-      color: $selectable ? colors.primary : null,
+      color: $selectable ? colors.borderSelected : null,
     },
   };
 });

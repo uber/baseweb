@@ -25,6 +25,7 @@ StyledRoot.displayName = 'StyledRoot';
 export const StyledDot = styled<
   'input',
   { $active: boolean; $kind: Kind; $size: Size; $disabled: boolean; $isVisible: boolean }
+  // @ts-expect-error todo(ts-migration) TS2345 Argument of type '({ $active, $kind, $size, $disabled, $isVisible, $theme }: Omit<{ $active: boolean; $kind: "default" | "backgroundProtection" | "inverse" | "alwaysLight" | "alwaysDark"; $size: "smal...
 >('input', ({ $active, $kind, $size, $disabled, $isVisible, $theme }) => {
   const sizes = {
     [SIZE.large]: {

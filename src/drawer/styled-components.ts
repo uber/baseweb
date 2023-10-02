@@ -176,7 +176,7 @@ export const StyledClose = styled<'button', SharedStylePropsArg>('button', (prop
     paddingBottom: 0,
 
     // colors
-    fill: $theme.colors.primary,
+    fill: $theme.colors.contentPrimary,
     transitionProperty: 'fill, border-color',
     transitionDuration: $theme.animation.timing200,
     borderLeftWidth: '1px',
@@ -192,10 +192,10 @@ export const StyledClose = styled<'button', SharedStylePropsArg>('button', (prop
     borderTopColor: 'transparent',
     borderBottomColor: 'transparent',
     ':hover': {
-      fill: $theme.colors.primary600,
+      fill: $theme.colors.gray600,
     },
     ':focus': {
-      outline: $isFocusVisible ? `3px solid ${$theme.colors.accent}` : 'none',
+      outline: $isFocusVisible ? `3px solid ${$theme.colors.borderAccent}` : 'none',
     },
 
     // Positioning

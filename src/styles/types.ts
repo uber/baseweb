@@ -8,7 +8,7 @@ import type { ComponentType } from 'react';
 import type { IconProps } from '../icon';
 
 import type {
-  ColorTokens,
+  FoundationColorTokens,
   ComponentColorTokens,
   SemanticColorTokens,
   Animation,
@@ -23,6 +23,7 @@ import type {
   Typography,
   ZIndex,
 } from '../themes';
+import type { PrimitiveColorTokens } from '../tokens';
 
 export type {
   Animation,
@@ -38,14 +39,17 @@ export type {
   ZIndex,
 };
 
-export type Colors = {} & ColorTokens & ComponentColorTokens & SemanticColorTokens;
+export type ColorTokens = {} & PrimitiveColorTokens &
+  FoundationColorTokens &
+  ComponentColorTokens &
+  SemanticColorTokens;
 
 export type Theme = {
   name: string;
   animation: Animation;
   borders: Borders;
   breakpoints: Breakpoints;
-  colors: Colors;
+  colors: ColorTokens;
   direction: 'auto' | 'rtl' | 'ltr';
   grid: Grid;
   icons?: Icon;
@@ -67,9 +71,13 @@ export type Icon = {
   CheckIndeterminate?: ComponentType<IconProps>;
   Check?: ComponentType<IconProps>;
   ChevronDown?: ComponentType<IconProps>;
+  ChevronDownSmall?: ComponentType<IconProps>;
   ChevronUp?: ComponentType<IconProps>;
+  ChevronUpSmall?: ComponentType<IconProps>;
   ChevronLeft?: ComponentType<IconProps>;
+  ChevronLeftSmall?: ComponentType<IconProps>;
   ChevronRight?: ComponentType<IconProps>;
+  ChevronRightSmall?: ComponentType<IconProps>;
   DeleteAlt?: ComponentType<IconProps>;
   Delete?: ComponentType<IconProps>;
   Filter?: ComponentType<IconProps>;

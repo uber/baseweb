@@ -145,7 +145,7 @@ export const Close = styled<'button', SharedStylePropsArg>('button', (props) => 
       color: $theme.colors.modalCloseColorHover,
     },
     ':focus': {
-      outline: $isFocusVisible ? `3px solid ${$theme.colors.accent}` : 'none',
+      outline: $isFocusVisible ? `3px solid ${$theme.colors.borderAccent}` : 'none',
     },
 
     // Positioning

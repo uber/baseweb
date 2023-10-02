@@ -171,7 +171,7 @@ export const Checkmark = styled<SharedStylePropsT>('span', (props) => {
     borderTopRightRadius: borderRadius,
     borderBottomRightRadius: borderRadius,
     borderBottomLeftRadius: borderRadius,
-    outline: $isFocusVisible && $checked ? `3px solid ${$theme.colors.accent}` : 'none',
+    outline: $isFocusVisible && $checked ? `3px solid ${$theme.colors.borderAccent}` : 'none',
     display: 'inline-block',
     verticalAlign: 'middle',
     backgroundImage: $isIndeterminate
@@ -230,7 +230,7 @@ export const Toggle = styled<SharedStylePropsT>('div', (props) => {
     borderBottomRightRadius: '50%',
     borderBottomLeftRadius: '50%',
     boxShadow: props.$isFocusVisible
-      ? `0 0 0 3px ${props.$theme.colors.accent}`
+      ? `0 0 0 3px ${props.$theme.colors.borderAccent}`
       : props.$isHovered && !props.$disabled
       ? props.$theme.lighting.shadow500
       : props.$theme.lighting.shadow400,

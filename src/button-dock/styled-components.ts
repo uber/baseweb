@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 import { styled } from '../styles/index';
 
 export const StyledRoot = styled<'div', {}>('div', ({ $theme }) => ({
+  boxSizing: 'border-box',
   display: 'flex',
   flexDirection: 'column',
   gap: $theme.sizing.scale300,
@@ -24,7 +25,7 @@ export const StyledActionContainer = styled<'div', {}>('div', ({ $theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   gap: $theme.sizing.scale300,
-  '@container root (min-width: 600px)': {
+  '@container root (inline-size > 600px)': {
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
@@ -37,7 +38,7 @@ export const StyledActionSubContainer = styled<'div', { $reverseWhenWide }>(
     display: 'flex',
     flexDirection: 'column',
     gap: $theme.sizing.scale300,
-    '@container root (min-width: 600px)': {
+    '@container root (inline-size > 600px)': {
       flexDirection: $reverseWhenWide ? 'row-reverse' : 'row',
     },
   })
