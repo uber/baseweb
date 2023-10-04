@@ -10,7 +10,12 @@ import { getOverrides } from '../helpers/overrides';
 import { StyledProgressSteps } from './styled-components';
 import type { ProgressStepsProps, StepProps } from './types';
 
-function ProgressSteps({ overrides = {}, current, children }: ProgressStepsProps) {
+function ProgressSteps({
+  overrides = {},
+  current,
+  alwaysShowDescription = false,
+  children,
+}: ProgressStepsProps) {
   const [Root, rootProps] = getOverrides(overrides.Root, StyledProgressSteps);
   const numChildren = React.Children.count(children);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -26,6 +31,10 @@ function ProgressSteps({ overrides = {}, current, children }: ProgressStepsProps
       // @ts-ignore
       isCompleted: index < current,
       isActive,
+      alwaysShowDescription:
+        child.props.alwaysShowDescription === undefined
+          ? alwaysShowDescription
+          : child.props.alwaysShowDescription,
       step: index + 1,
       overrides: {
         ...overrides,
