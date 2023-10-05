@@ -12,6 +12,7 @@ import {
   getByText,
   queryByRole,
   queryByTestId,
+  queryAllByRole,
 } from '@testing-library/react';
 
 import { FileUploader } from '..';
@@ -60,7 +61,8 @@ describe('FileUploader', () => {
 
   it('does not render progress bar if progressAmount not provided', () => {
     const { container } = render(<FileUploader progressMessage="uploading..." />);
-    expect(queryByRole(container, 'progressbar')).toBeNull();
+    //will render indeterminate spinner with role progress bar instead
+    expect(queryAllByRole(container, 'progressbar')).toHaveLength(1);
   });
 
   it('renders error message if errorMessage provided', () => {
