@@ -276,6 +276,7 @@ class Modal extends React.Component<ModalProps, ModalState> {
                   {...sharedProps}
                   {...dialogProps}
                 >
+                  {renderedContent}
                   {closeable ? (
                     <Close
                       aria-label={locale.modal.close}
@@ -288,7 +289,6 @@ class Modal extends React.Component<ModalProps, ModalState> {
                       <CloseIcon />
                     </Close>
                   ) : null}
-                  {renderedContent}
                 </Dialog>
               </DialogContainer>
             </Root>
