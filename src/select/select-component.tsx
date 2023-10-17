@@ -739,6 +739,7 @@ class Select extends React.Component<SelectProps, SelectState> {
           aria-errormessage={this.props['aria-errormessage']}
           aria-disabled={this.props.disabled}
           aria-labelledby={this.props['aria-labelledby']}
+          aria-label={label}
           aria-owns={this.state.isOpen ? listboxId : null}
           aria-required={this.props.required || null}
           onFocus={this.handleInputFocus}
