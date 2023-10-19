@@ -67,6 +67,8 @@ export type DatepickerOverrides = {
   ButtonDock?: Override;
   PrimaryButton?: Override;
   SecondaryButton?: Override;
+  CalendarSelect?: Override;
+  Combobox?: Override;
 };
 
 export type DayProps<T = Date> = {
