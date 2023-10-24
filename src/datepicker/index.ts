@@ -10,6 +10,7 @@ export { default as StatefulContainer } from './stateful-container';
 export { default as Calendar } from './calendar';
 export { default as StatefulCalendar } from './stateful-calendar';
 export { default as Datepicker, default as DatePicker } from './datepicker';
+export { default as Datepicker_DO_NOT_USE } from './datepicker_DO_NOT_USE';
 export {
   default as StatefulDatepicker,
   default as StatefulDatePicker,

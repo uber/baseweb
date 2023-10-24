@@ -39,10 +39,10 @@ export type {
   ZIndex,
 };
 
-export type ColorTokens = {} & PrimitiveColorTokens &
+export type ColorTokens = PrimitiveColorTokens &
   FoundationColorTokens &
   ComponentColorTokens &
-  SemanticColorTokens;
+  SemanticColorTokens & { [key in string]: string };
 
 export type Theme = {
   name: string;
@@ -60,38 +60,54 @@ export type Theme = {
   zIndex: ZIndex;
 };
 
+type ForwardedSVG = React.ForwardRefExoticComponent<
+  Omit<React.SVGProps<SVGSVGElement> & IconProps, 'ref'> & React.RefAttributes<SVGSVGElement>
+>;
+
 export type Icon = {
-  Alert?: ComponentType<IconProps>;
-  ArrowDown?: ComponentType<IconProps>;
-  ArrowLeft?: ComponentType<IconProps>;
-  ArrowRight?: ComponentType<IconProps>;
-  ArrowUp?: ComponentType<IconProps>;
-  Blank?: ComponentType<IconProps>;
-  Calendar?: ComponentType<IconProps>;
-  CheckIndeterminate?: ComponentType<IconProps>;
-  Check?: ComponentType<IconProps>;
-  ChevronDown?: ComponentType<IconProps>;
-  ChevronDownSmall?: ComponentType<IconProps>;
-  ChevronUp?: ComponentType<IconProps>;
-  ChevronUpSmall?: ComponentType<IconProps>;
-  ChevronLeft?: ComponentType<IconProps>;
-  ChevronLeftSmall?: ComponentType<IconProps>;
-  ChevronRight?: ComponentType<IconProps>;
-  ChevronRightSmall?: ComponentType<IconProps>;
-  DeleteAlt?: ComponentType<IconProps>;
-  Delete?: ComponentType<IconProps>;
-  Filter?: ComponentType<IconProps>;
-  Grab?: ComponentType<IconProps>;
-  Hide?: ComponentType<IconProps>;
-  Menu?: ComponentType<IconProps>;
-  Overflow?: ComponentType<IconProps>;
-  Plus?: ComponentType<IconProps>;
-  Search?: ComponentType<IconProps>;
-  Show?: ComponentType<IconProps>;
-  Spinner?: ComponentType<IconProps>;
-  TriangleDown?: ComponentType<IconProps>;
-  TriangleLeft?: ComponentType<IconProps>;
-  TriangleRight?: ComponentType<IconProps>;
-  TriangleUp?: ComponentType<IconProps>;
-  Upload?: ComponentType<IconProps>;
+  Alert?: ComponentType<IconProps> | ForwardedSVG;
+  ArrowDown?: ComponentType<IconProps> | ForwardedSVG;
+  ArrowLeft?: ComponentType<IconProps> | ForwardedSVG;
+  ArrowRight?: ComponentType<IconProps> | ForwardedSVG;
+  ArrowUp?: ComponentType<IconProps> | ForwardedSVG;
+  Blank?: ComponentType<IconProps> | ForwardedSVG;
+  Calendar?: ComponentType<IconProps> | ForwardedSVG;
+  CheckIndeterminate?: ComponentType<IconProps> | ForwardedSVG;
+  Check?: ComponentType<IconProps> | ForwardedSVG;
+  ChevronDown?: ComponentType<IconProps> | ForwardedSVG;
+  ChevronDownSmall?: ComponentType<IconProps> | ForwardedSVG;
+  ChevronUp?: ComponentType<IconProps> | ForwardedSVG;
+  ChevronUpSmall?: ComponentType<IconProps> | ForwardedSVG;
+  ChevronLeft?: ComponentType<IconProps> | ForwardedSVG;
+  ChevronLeftSmall?: ComponentType<IconProps> | ForwardedSVG;
+  ChevronRight?: ComponentType<IconProps> | ForwardedSVG;
+  ChevronRightSmall?: ComponentType<IconProps> | ForwardedSVG;
+  DeleteAlt?: ComponentType<IconProps> | ForwardedSVG;
+  Delete?: ComponentType<IconProps> | ForwardedSVG;
+  Filter?: ComponentType<IconProps> | ForwardedSVG;
+  Grab?: ComponentType<IconProps> | ForwardedSVG;
+  Hide?: ComponentType<IconProps> | ForwardedSVG;
+  Menu?: ComponentType<IconProps> | ForwardedSVG;
+  Overflow?: ComponentType<IconProps> | ForwardedSVG;
+  Plus?: ComponentType<IconProps> | ForwardedSVG;
+  Search?: ComponentType<IconProps> | ForwardedSVG;
+  Show?: ComponentType<IconProps> | ForwardedSVG;
+  Spinner?: ComponentType<IconProps> | ForwardedSVG;
+  TriangleDown?: ComponentType<IconProps> | ForwardedSVG;
+  TriangleLeft?: ComponentType<IconProps> | ForwardedSVG;
+  TriangleRight?: ComponentType<IconProps> | ForwardedSVG;
+  TriangleUp?: ComponentType<IconProps> | ForwardedSVG;
+  Upload?: ComponentType<IconProps> | ForwardedSVG;
 };
+
+export type DeepPartial<T> = {
+  [P in keyof T]?: T[P] extends (infer R)[]
+    ? DeepPartial<R>[]
+    : T[P] extends object
+    ? DeepPartial<T[P]>
+    : T[P];
+};
+
+export type MakeExtendable<T extends object> = {
+  [K in keyof T]: T[K] extends object ? MakeExtendable<T[K]> : T[K];
+} & { [k: string]: any };

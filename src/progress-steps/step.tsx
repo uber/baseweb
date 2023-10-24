@@ -20,7 +20,15 @@ import {
 
 import type { StepProps } from './types';
 
-function Step({ overrides = {}, isCompleted, isActive, isLast, title, children }: StepProps) {
+function Step({
+  overrides = {},
+  isCompleted,
+  isActive,
+  isLast,
+  title,
+  alwaysShowDescription,
+  children,
+}: StepProps) {
   const [Root, rootProps] = getOverrides(overrides.Root, StyledStep);
   const [IconContainer, iconContainerProps] = getOverrides(
     overrides.IconContainer,
@@ -56,7 +64,9 @@ function Step({ overrides = {}, isCompleted, isActive, isLast, title, children }
           {title}
         </Title>
 
-        <Description {...descriptionProps}>{isActive && children}</Description>
+        <Description {...descriptionProps}>
+          {(isActive || alwaysShowDescription) && children}
+        </Description>
       </Content>
     </Root>
   );
