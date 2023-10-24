@@ -46,8 +46,8 @@ export const StyledRoot = styled<
 
   return {
     position: 'fixed',
-    maxHeight: `calc(100vh - 2 * ${wideViewportGutter})`,
-    maxWidth: `calc(100% - 2 * ${wideViewportGutter})`,
+    maxHeight: `calc(100vh - (2 * ${wideViewportGutter}))`,
+    maxWidth: `calc(100% - (2 * ${wideViewportGutter}))`,
     borderRadius: $theme.borders.radius500,
     boxShadow: $theme.lighting.shallowBelow,
     backgroundColor: $theme.colors.backgroundPrimary,
@@ -57,7 +57,8 @@ export const StyledRoot = styled<
     width: DIALOG_WIDTHS[$size],
     ...getPlacementStyles($placement, wideViewportGutter),
     '@media (max-width: 599px)': {
-      width: `calc(100% - 2 * ${narrowViewportGutter})`,
+      width: `calc(100% - (2 * ${narrowViewportGutter}))`,
+      maxWidth: 'none',
       ...getPlacementStyles(PLACEMENT.bottomCenter, narrowViewportGutter),
     },
     '::backdrop': {
