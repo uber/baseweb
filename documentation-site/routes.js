@@ -108,6 +108,10 @@ const routes = [
             itemId: '/components/pin-code',
           },
           {
+            title: 'Segmented Control',
+            itemId: '/components/segmented-control',
+          },
+          {
             title: 'Radio',
             itemId: '/components/radio',
           },
