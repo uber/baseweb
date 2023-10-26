@@ -219,6 +219,7 @@ export const StyledBlock = styled<'div', StyledBlockProps>('div', (props) => {
     value: get(props, '$justifyItems'),
   });
   styles.apply({ property: 'justifySelf', value: get(props, '$justifySelf') });
+  styles.apply({ property: 'order', value: get(props, '$order') });
   styles.apply({ property: 'position', value: get(props, '$position') });
   styles.apply({
     property: 'width',

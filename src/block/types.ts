@@ -196,6 +196,7 @@ type JustifySelf =
   | 'inherit'
   | 'initial'
   | 'unset';
+type Order = number | string;
 type Position = 'static' | 'absolute' | 'relative' | 'fixed' | 'sticky';
 type Overflow =
   | 'visible'
@@ -300,6 +301,8 @@ export type BlockProps<T extends React.ElementType = React.ElementType> = {
   justifyItems?: Responsive<JustifyItems>;
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/justify-self */
   justifySelf?: Responsive<JustifySelf>;
+  /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/order */
+  order?: Responsive<Order>;
   position?: Responsive<Position>;
   width?: Responsive<Scale>;
   minWidth?: Responsive<Scale>;
@@ -373,6 +376,7 @@ export type StyledBlockProps = {
   $justifyContent?: Responsive<JustifyContent>;
   $justifyItems?: Responsive<JustifyItems>;
   $justifySelf?: Responsive<JustifySelf>;
+  $order?: Responsive<Order>;
   $position?: Responsive<Position>;
   $width?: Responsive<Scale>;
   $minWidth?: Responsive<Scale>;
