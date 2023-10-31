@@ -13,7 +13,8 @@ import {
   StyledHeadingContainer,
   StyledParagraphContainer,
 } from './styled-components';
-import { Button as DefaultButton, SHAPE, SIZE } from '../button';
+import { Button as DefaultButton, SHAPE, SIZE, KIND } from '../button';
+import Delete from '../icon/delete';
 import { useStyletron } from '../styles/index';
 import { ThemeProvider, LightTheme } from '../';
 import { getBackgroundColorType } from './utils';
@@ -28,6 +29,12 @@ const ButtonAlwaysLightTheme = ({ children, ...restProps }) => (
   </ThemeProvider>
 );
 
+const DefaultDismissButton = (props) => (
+  <DefaultButton size={SIZE.compact} shape={SHAPE.circle} kind={KIND.secondary} {...props}>
+    <Delete size={32} />
+  </DefaultButton>
+);
+
 const MessageCard = ({
   backgroundColor = colors.white,
   backgroundColorType: backgroundColorTypeProp,
@@ -36,6 +43,7 @@ const MessageCard = ({
   heading,
   image,
   onClick,
+  onDismiss,
   overrides = {},
   paragraph,
 }: MessageCardProps) => {
@@ -57,13 +65,17 @@ const MessageCard = ({
     StyledParagraphContainer
   );
   const [Image, imageProps] = getOverrides(overrides.Image, StyledImage);
-  const [Button, buttonProps] = getOverrides(overrides.Button, ButtonAlwaysLightTheme);
+  const [ActionButton, actionButtonProps] = getOverrides(overrides.Button, ButtonAlwaysLightTheme);
+  const [DismissButton, dismissButtonProps] = getOverrides(
+    overrides.DismissButton,
+    DefaultDismissButton
+  );
 
-  const defaultButtonOverrides = {
+  const defaultActionButtonOverrides = {
     BaseButton: {
       style: {
         textAlign: 'center',
-        pointerEvents: 'none',
+        ...(onDismiss ? {} : { pointerEvents: 'none' }),
         ...(buttonKind === BUTTON_KIND.tertiary
           ? {
               marginTop: theme.sizing.scale100,
@@ -78,7 +90,31 @@ const MessageCard = ({
       },
     },
   };
-  buttonProps.overrides = mergeOverrides(defaultButtonOverrides, buttonProps.overrides);
+  actionButtonProps.overrides = mergeOverrides(
+    defaultActionButtonOverrides,
+    actionButtonProps.overrides
+  );
+
+  const defaultDismissButtonOverrides = {
+    BaseButton: {
+      style: {
+        position: 'absolute',
+        top: theme.sizing.scale200,
+        right: theme.sizing.scale200,
+        // using a pseudo-element to acheive a 48px tap target
+        ':after': {
+          content: '""',
+          position: 'absolute',
+          height: '48px',
+          width: '48px',
+        },
+      },
+    },
+  };
+  dismissButtonProps.overrides = mergeOverrides(
+    defaultDismissButtonOverrides,
+    dismissButtonProps.overrides
+  );
 
   let backgroundColorType = backgroundColorTypeProp || getBackgroundColorType(backgroundColor);
   if (!backgroundColorType) {
@@ -108,12 +144,14 @@ const MessageCard = ({
 
   return (
     <Root
-      onClick={onClick}
+      {...(onDismiss ? { $as: 'div' } : { onClick })}
       $backgroundColor={backgroundColor}
       $backgroundColorType={backgroundColorType}
       $imageLayout={layout}
+      $isClickable={!onDismiss}
       {...rootProps}
     >
+      {onDismiss && <DismissButton onClick={onDismiss} {...dismissButtonProps} />}
       {image && (
         <Image
           role="img"
@@ -130,18 +168,16 @@ const MessageCard = ({
           <ParagraphContainer {...paragraphContainerProps}>{paragraph}</ParagraphContainer>
         )}
         {buttonLabel && (
-          <Button
-            $as="div"
+          <ActionButton
+            {...(onDismiss ? { onClick } : { $as: 'div', tabIndex: -1, role: 'none' })}
             kind={buttonKind}
             shape={SHAPE.pill}
             size={SIZE.compact}
-            role="none"
-            tabIndex={-1}
             colors={buttonColors}
-            {...buttonProps}
+            {...actionButtonProps}
           >
             {buttonLabel}
-          </Button>
+          </ActionButton>
         )}
       </ContentContainer>
     </Root>

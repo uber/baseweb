@@ -14,11 +14,13 @@ export type MessageCardOverrides = {
   HeadingContainer?: Override;
   ParagraphContainer?: Override;
   Button?: Override;
+  DismissButton?: Override;
   Image?: Override;
 };
 
-export interface MessageCardProps {
+export type MessageCardProps = {
   onClick: (a: SyntheticEvent<HTMLButtonElement>) => unknown;
+  onDismiss?: (a: SyntheticEvent<HTMLButtonElement>) => unknown;
   heading?: React.ReactNode;
   paragraph?: React.ReactNode;
   buttonLabel?: React.ReactNode;
@@ -32,4 +34,4 @@ export interface MessageCardProps {
     ariaLabel: string;
   };
   overrides?: MessageCardOverrides;
-}
+};
