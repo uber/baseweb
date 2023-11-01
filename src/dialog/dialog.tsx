@@ -104,15 +104,18 @@ const Dialog = ({
   }, [isOpen, hasOverlay]);
 
   // prevents background scrolling when the dialog is open and has an overlay
+  const originalOverflowRef = React.useRef<string>(document.body.style.overflow);
   React.useEffect(() => {
-    const originalStyle = document.body.style.cssText;
+    const originalOverflow = originalOverflowRef.current;
+
     if (isOpen && hasOverlay) {
       document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.cssText = originalStyle;
+      document.body.style.overflow = originalOverflow;
     }
+
     return () => {
-      document.body.style.cssText = originalStyle;
+      document.body.style.overflow = originalOverflow;
     };
   }, [isOpen, hasOverlay]);
 
