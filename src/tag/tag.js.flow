@@ -41,6 +41,7 @@ const Tag = React.forwardRef<PropsT, HTMLSpanElement>((props, ref) => {
     startEnhancer,
     title,
     variant = VARIANT.light,
+    contentMaxWidth,
   } = props;
   const [focusVisible, setFocusVisible] = React.useState(false);
 
@@ -141,6 +142,7 @@ const Tag = React.forwardRef<PropsT, HTMLSpanElement>((props, ref) => {
       {...rootProps}
       onFocus={forkFocus(rootProps, handleFocus)}
       onBlur={forkBlur(rootProps, handleBlur)}
+      $contentMaxWidth={contentMaxWidth}
     >
       {StartEnhancer && StartEnhancer !== 0 && (
         <StartEnhancerContainer {...startEnhancerContainerProps}>
@@ -148,7 +150,7 @@ const Tag = React.forwardRef<PropsT, HTMLSpanElement>((props, ref) => {
         </StartEnhancerContainer>
       )}
 
-      <Text title={titleText} {...textProps}>
+      <Text $contentMaxWidth={contentMaxWidth} title={titleText} {...textProps}>
         {children}
       </Text>
       {closeable ? (

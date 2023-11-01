@@ -56,6 +56,7 @@ export type TagProps = {
   /** Determines the size of the Tag. */
   size?: TagSize;
   startEnhancer?: React.ComponentType<{}>;
+  contentMaxWidth?: string | null;
 };
 
 export type SharedPropsArg = {
@@ -70,4 +71,5 @@ export type SharedPropsArg = {
   $variant?: string;
   $isFocusVisible?: boolean;
   $size?: string;
+  $contentMaxWidth?: string | null;
 };
