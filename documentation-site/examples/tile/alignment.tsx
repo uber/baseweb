@@ -6,7 +6,7 @@ export default function Example() {
   return (
     <Tile
       tileKind={TILE_KIND.action}
-      leadingContent={() => <Upload color="white" size={48} />}
+      leadingContent={() => <Upload size={48} />}
       label="Mixed"
       headerAlignment={ALIGNMENT.center}
       bodyAlignment={ALIGNMENT.right}

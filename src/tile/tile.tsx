@@ -94,12 +94,12 @@ const Tile = React.forwardRef(
             $alignment={headerAlignment}
           >
             {LeadingContent && (
-              <LeadingContentContainer {...leadingContentContainerProps}>
+              <LeadingContentContainer {...leadingContentContainerProps} $disabled={disabled}>
                 <LeadingContent />
               </LeadingContentContainer>
             )}
             {TrailingContent && (
-              <TrailingContentContainer {...trailingContentContainerProps}>
+              <TrailingContentContainer {...trailingContentContainerProps} $disabled={disabled}>
                 <TrailingContent />
               </TrailingContentContainer>
             )}
