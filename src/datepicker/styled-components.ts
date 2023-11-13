@@ -675,3 +675,22 @@ export const StyledWeekdayHeader = styled<'div', SharedStyleProps>('div', (props
   };
 });
 StyledWeekdayHeader.displayName = 'StyledWeekdayHeader';
+
+export const StyledInputContainer = styled<
+  'div',
+  {
+    $separateRangeInputs: boolean;
+  } & SharedStyleProps
+>('div', (props) => {
+  const { $theme, $separateRangeInputs } = props;
+
+  return {
+    width: '100%',
+    ...($separateRangeInputs ? { display: 'flex', justifyContent: 'center' } : {}),
+    backgroundColor: $theme.colors.backgroundPrimary,
+    outline: 'none',
+    paddingInlineStart: 'unset',
+  };
+});
+
+StyledInputContainer.displayName = 'StyledInputContainer';
