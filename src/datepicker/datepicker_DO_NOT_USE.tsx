@@ -11,13 +11,13 @@ import { MaskedInput } from '../input';
 import { Popover, PLACEMENT, ACCESSIBILITY_TYPE } from '../popover';
 import Calendar from './calendar';
 import { getOverrides, mergeOverrides } from '../helpers/overrides';
-import getInterpolatedString from '../helpers/i18n-interpolation';
 import { LocaleContext } from '../locale';
 import {
   StyledInputWrapper,
   StyledInputLabel,
   StyledStartDate,
   StyledEndDate,
+  StyledInputContainer,
 } from './styled-components';
 import type { DatepickerProps, InputRole } from './types';
 import DateHelpers from './utils/date-helpers';
@@ -28,7 +28,6 @@ import { INPUT_ROLE, RANGED_CALENDAR_BEHAVIOR } from './constants';
 import type { ChangeEvent } from 'react';
 import { Select } from '../select';
 import { Calendar as CalendarIcon } from '../icon';
-import { Combobox } from '../combobox';
 
 export const DEFAULT_DATE_FORMAT = 'yyyy/MM/dd';
 
@@ -73,6 +72,7 @@ export default class Datepicker_DO_NOT_USE<T = Date> extends React.Component<
 
   calendar: HTMLElement | undefined | null;
   dateHelpers: DateHelpers<T>;
+  calendarID: string;
 
   constructor(props: DatepickerProps<T>) {
     super(props);
@@ -87,6 +87,8 @@ export default class Datepicker_DO_NOT_USE<T = Date> extends React.Component<
       inputValue: this.formatDisplayValue(props.value) || '',
       ariaDescribedby: null, // we initialize this post-mount to prevent SSR hydration issue
     };
+
+    this.calendarID = `${uid(this)}-calendar`;
   }
 
   componentDidMount() {
@@ -310,10 +312,10 @@ export default class Datepicker_DO_NOT_USE<T = Date> extends React.Component<
     return '9999/99/99';
   };
 
-  handleInputChange = (value: string, inputRole?: InputRole) => {
+  handleInputChange = (event: ChangeEvent<HTMLInputElement>, inputRole?: InputRole) => {
     const inputValue = this.props.range
-      ? combineSeparatedInputs(value, this.state.inputValue, inputRole)
-      : value;
+      ? combineSeparatedInputs(event.currentTarget.value, this.state.inputValue, inputRole)
+      : event.currentTarget.value;
 
     const mask = this.getMask();
     // @ts-ignore
@@ -416,13 +418,18 @@ export default class Datepicker_DO_NOT_USE<T = Date> extends React.Component<
   };
 
   handleKeyDown = (event: KeyboardEvent, inputRole?: InputRole) => {
-    if (!this.state.isOpen && event.keyCode === 40) {
+    const keyEvents = new Set();
+    keyEvents.add('ArrowDown');
+    keyEvents.add('Space');
+    keyEvents.add('Enter');
+
+    if (!this.state.isOpen && keyEvents.has(event.code)) {
       this.open(inputRole);
-    } else if (this.state.isOpen && (event.key === 'ArrowDown' || event.key === 'Enter')) {
+    } else if (this.state.isOpen && keyEvents.has(event.code)) {
       // next line prevents the page jump on the initial arrowDown
       event.preventDefault();
       this.focusCalendar();
-    } else if (this.state.isOpen && event.keyCode === 9) {
+    } else if (this.state.isOpen && event.code === 'Tab') {
       this.close();
     }
   };
@@ -471,10 +478,14 @@ export default class Datepicker_DO_NOT_USE<T = Date> extends React.Component<
       ? `YYYY/MM/DD ${INPUT_DELIMITER} YYYY/MM/DD`
       : 'YYYY/MM/DD';
 
-  renderComboBoxComponent(locale: Locale, inputRole?: InputRole) {
+  renderInputComponent(locale: Locale, inputRole?: InputRole) {
     const { overrides = {} } = this.props;
 
-    const [ComboboxComponent, comboboxProps] = getOverrides(overrides.Combobox, Combobox);
+    const [InputContainer, inputContainerProps] = getOverrides(
+      overrides.InputContainer,
+      StyledInputContainer
+    );
+    const [InputComponent, inputProps] = getOverrides(overrides.Input, MaskedInput);
 
     const inputLabel =
       this.props['aria-label'] ||
@@ -492,35 +503,34 @@ export default class Datepicker_DO_NOT_USE<T = Date> extends React.Component<
         : this.state.inputValue;
 
     return (
-      <ComboboxComponent
-        autocomplete={false}
-        aria-disabled={this.props.disabled}
-        aria-label={inputLabel}
-        aria-live="polite"
-        error={this.props.error}
-        positive={this.props.positive}
-        aria-required={this.props.required || null}
-        disabled={this.props.disabled}
-        size={this.props.size}
-        value={value}
-        onChange={(value) => this.handleInputChange(value, inputRole)}
-        clearable={this.props.clearable}
-        overrides={{
-          Input: {
-            props: {
-              placeholder: this.getPlaceholder(),
-              mask: this.getMask(),
-              required: this.props.required,
-              onKeyDown: (event) => this.handleKeyDown(event, inputRole),
-            },
-          },
-        }}
-        openOnClick={false}
-        // these next two options not used but required for combobox
-        options={[]}
-        mapOptionToString={() => ''}
-        {...comboboxProps}
-      />
+      <InputContainer
+        role="combobox"
+        aria-expanded={this.state.isOpen}
+        aria-haspopup={'dialog'}
+        aria-controls={this.calendarID}
+        {...inputContainerProps}
+      >
+        <InputComponent
+          aria-disabled={this.props.disabled}
+          aria-label={inputLabel}
+          error={this.props.error}
+          positive={this.props.positive}
+          aria-describedby={this.generateAriaDescribedByIds()}
+          aria-labelledby={this.props['aria-labelledby']}
+          aria-required={this.props.required || null}
+          disabled={this.props.disabled}
+          size={this.props.size}
+          value={value}
+          onBlur={this.handleInputBlur}
+          onKeyDown={(event) => this.handleKeyDown(event, inputRole)}
+          onChange={(event) => this.handleInputChange(event, inputRole)}
+          placeholder={this.getPlaceholder()}
+          mask={this.getMask()}
+          required={this.props.required}
+          clearable={this.props.clearable}
+          {...inputProps}
+        />
+      </InputContainer>
     );
   }
 
@@ -537,9 +547,8 @@ export default class Datepicker_DO_NOT_USE<T = Date> extends React.Component<
         aria-describedby={this.props['aria-describedby']}
         aria-labelledby={this.props['aria-labelledby']}
         onBlur={this.handleInputBlur}
-        deleteRemoves={true}
         size={this.props.size}
-        openOnClick={false}
+        searchable={false}
         placeholder={<CalendarIcon />}
         overrides={mergeOverrides(
           {
@@ -552,6 +561,15 @@ export default class Datepicker_DO_NOT_USE<T = Date> extends React.Component<
               props: {
                 onKeyDown: this.handleKeyDown,
                 onClick: this.open,
+              },
+              style: ({ $theme }) => {
+                return {
+                  cursor: 'pointer',
+                  borderColor:
+                    this.state.calendarFocused || this.state.isPseudoFocused
+                      ? $theme.colors.borderSelected
+                      : $theme.colors.inputBorder,
+                };
               },
             },
           },
@@ -597,7 +615,6 @@ export default class Datepicker_DO_NOT_USE<T = Date> extends React.Component<
                   autoFocusCalendar={this.state.calendarFocused}
                   trapTabbing={true}
                   value={this.props.value}
-                  {...this.props}
                   onChange={this.onCalendarSelect}
                   selectedInput={this.state.selectedInput}
                   hasLockedBehavior={this.hasLockedBehavior()}
@@ -609,6 +626,8 @@ export default class Datepicker_DO_NOT_USE<T = Date> extends React.Component<
                     label: 'Cancel',
                     onClick: this.close,
                   }}
+                  id={this.calendarID}
+                  {...this.props}
                 />
               }
               {...popoverProps}
@@ -625,18 +644,18 @@ export default class Datepicker_DO_NOT_USE<T = Date> extends React.Component<
                     <>
                       <StartDate {...startDateProps}>
                         <InputLabel {...inputLabelProps}>{startDateLabel}</InputLabel>
-                        {this.renderComboBoxComponent(locale, INPUT_ROLE.startDate)}
+                        {this.renderInputComponent(locale, INPUT_ROLE.startDate)}
                       </StartDate>
 
                       <EndDate {...endDateProps}>
                         <InputLabel {...inputLabelProps}>{endDateLabel}</InputLabel>
-                        {this.renderComboBoxComponent(locale, INPUT_ROLE.endDate)}
+                        {this.renderInputComponent(locale, INPUT_ROLE.endDate)}
                       </EndDate>
                     </>
                   ) : (
                     <>
                       <InputLabel {...inputLabelProps}>{startDateLabel}</InputLabel>
-                      {this.renderComboBoxComponent(locale)}
+                      {this.renderInputComponent(locale)}
                     </>
                   )}
                 </InputWrapper>
