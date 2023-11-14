@@ -39,11 +39,11 @@ export function Stepper({
     CheckIndeterminate
   );
   const [IncrementButton, incrementButtonProps] = getOverrides(
-    overrides.DecrementButton,
+    overrides.IncrementButton,
     DefaultButton
   );
   const [IncrementButtonIcon, incrementButtonIconProps] = getOverrides(
-    overrides.DecrementButtonIcon,
+    overrides.IncrementButtonIcon,
     Plus
   );
 
