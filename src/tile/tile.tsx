@@ -70,7 +70,8 @@ const Tile = React.forwardRef(
         </LabelContainer>
       );
     } else if (label) {
-      Label = label;
+      const LabelComponent = label;
+      Label = <LabelComponent />;
     }
 
     const renderTopContainer = shouldRenderHeaderContainer(leadingContent, trailingContent);
@@ -94,12 +95,12 @@ const Tile = React.forwardRef(
             $alignment={headerAlignment}
           >
             {LeadingContent && (
-              <LeadingContentContainer {...leadingContentContainerProps}>
+              <LeadingContentContainer {...leadingContentContainerProps} $disabled={disabled}>
                 <LeadingContent />
               </LeadingContentContainer>
             )}
             {TrailingContent && (
-              <TrailingContentContainer {...trailingContentContainerProps}>
+              <TrailingContentContainer {...trailingContentContainerProps} $disabled={disabled}>
                 <TrailingContent />
               </TrailingContentContainer>
             )}

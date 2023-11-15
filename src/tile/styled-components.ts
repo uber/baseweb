@@ -59,14 +59,23 @@ export const StyledHeaderContainer = styled<
   marginBottom: '16px',
 }));
 
-export const StyledLeadingContentContainer = styled('div', ({ $theme }) => ({
-  marginRight: $theme.sizing.scale300,
-  ':last-child': {
-    marginRight: '0px',
-  },
-}));
+export const StyledLeadingContentContainer = styled<'div', { $disabled: boolean }>(
+  'div',
+  ({ $theme, $disabled }) => ({
+    marginRight: $theme.sizing.scale300,
+    color: $disabled ? $theme.colors.contentStateDisabled : $theme.colors.contentPrimary,
+    ':last-child': {
+      marginRight: '0px',
+    },
+  })
+);
 
-export const StyledTrailingContentContainer = styled('div', () => ({}));
+export const StyledTrailingContentContainer = styled<'div', { $disabled: boolean }>(
+  'div',
+  ({ $theme, $disabled }) => ({
+    color: $disabled ? $theme.colors.contentStateDisabled : $theme.colors.contentPrimary,
+  })
+);
 
 export const StyledBodyContainer = styled<'div', { $alignment?: keyof typeof ALIGNMENT }>(
   'div',
