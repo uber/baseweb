@@ -48,7 +48,7 @@ const TileConfig: TConfig = {
     },
     leadingContent: {
       type: PropTypes.ReactNode,
-      value: '() => <Search size={36} color="white" />',
+      value: '() => <Search size={36} />',
       description: 'Determines the leading content to render in the tile',
       imports: {
         'baseui/icon/search': { named: ['Search'] },
@@ -56,7 +56,7 @@ const TileConfig: TConfig = {
     },
     trailingContent: {
       type: PropTypes.ReactNode,
-      value: '() => <ChevronRight size={36} color="white" />',
+      value: '() => <ChevronRight size={36} />',
       description: 'Determines the trailing content to render in the tile',
       imports: {
         'baseui/icon/chevron-right': { named: ['ChevronRight'] },
