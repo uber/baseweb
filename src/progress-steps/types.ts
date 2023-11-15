@@ -7,6 +7,9 @@ LICENSE file in the root directory of this source tree.
 
 import type { ReactNode } from 'react';
 import type { Override } from '../helpers/overrides';
+import type { ORIENTATION } from './constants';
+
+export type Orientation = keyof typeof ORIENTATION;
 
 export type ProgressStepsOverrides = {
   Root?: Override;
@@ -27,6 +30,7 @@ export type ProgressStepsProps = {
   current?: number;
   /** when true, the description of a step will continue to be displayed even after the step is completed. */
   alwaysShowDescription?: boolean;
+  orientation?: Orientation;
 };
 
 export type StepOverrides = {
@@ -53,6 +57,7 @@ export type StepProps = {
   alwaysShowDescription?: boolean;
   overrides?: StepOverrides;
   children?: ReactNode;
+  orientation?: Orientation;
 };
 
 export type NumberedStepOverrides = {
@@ -81,10 +86,12 @@ export type NumberedStepProps = {
   children?: ReactNode;
   /** The number displayed as the step number */
   step?: ReactNode;
+  orientation?: Orientation;
 };
 
 export type StyleProps = {
   $isActive?: boolean;
   $isCompleted?: boolean;
   $disabled?: boolean;
+  $orientation?: Orientation;
 };

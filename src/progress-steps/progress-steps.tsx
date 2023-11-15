@@ -9,11 +9,13 @@ import * as React from 'react';
 import { getOverrides } from '../helpers/overrides';
 import { StyledProgressSteps } from './styled-components';
 import type { ProgressStepsProps, StepProps } from './types';
+import { ORIENTATION } from './constants';
 
 function ProgressSteps({
   overrides = {},
   current,
   alwaysShowDescription = false,
+  orientation = ORIENTATION.vertical,
   children,
 }: ProgressStepsProps) {
   const [Root, rootProps] = getOverrides(overrides.Root, StyledProgressSteps);
@@ -36,6 +38,7 @@ function ProgressSteps({
           ? alwaysShowDescription
           : child.props.alwaysShowDescription,
       step: index + 1,
+      orientation,
       overrides: {
         ...overrides,
         Root: overrides.StepRoot,
@@ -45,7 +48,7 @@ function ProgressSteps({
   });
 
   return (
-    <Root data-baseweb="progress-steps" {...rootProps}>
+    <Root data-baseweb="progress-steps" $orientation={orientation} {...rootProps}>
       {modifiedChildren}
     </Root>
   );
