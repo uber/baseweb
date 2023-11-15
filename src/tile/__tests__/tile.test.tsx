@@ -6,12 +6,12 @@ LICENSE file in the root directory of this source tree.
 */
 
 import * as React from 'react';
-import { render, fireEvent, getByText } from '@testing-library/react';
+import { render, fireEvent, getByText, screen } from '@testing-library/react';
 import { ArrowRight } from '../../icon';
-
 import { Tile, TILE_KIND, StyledParagraph } from '..';
+import '@testing-library/jest-dom/extend-expect';
 
-describe('Tile Ciomponent', () => {
+describe('Tile Component', () => {
   it('basic render', () => {
     const { container } = render(
       <Tile tileKind={TILE_KIND.action} label="Label">
@@ -19,8 +19,8 @@ describe('Tile Ciomponent', () => {
       </Tile>
     );
 
-    getByText(container, 'Label');
-    getByText(container, 'Paragraph');
+    expect(getByText(container, 'Label')).toBeInTheDocument();
+    expect(getByText(container, 'Paragraph')).toBeInTheDocument();
   });
 
   it('renders leading content', () => {
@@ -30,7 +30,7 @@ describe('Tile Ciomponent', () => {
       </Tile>
     );
 
-    getByText(container, 'Arrow Right');
+    expect(getByText(container, 'Arrow Right')).toBeInTheDocument();
   });
 
   it('renders trailing content', () => {
@@ -40,7 +40,7 @@ describe('Tile Ciomponent', () => {
       </Tile>
     );
 
-    getByText(container, 'Arrow Right');
+    expect(getByText(container, 'Arrow Right')).toBeInTheDocument();
   });
 
   it('renders with style overrides', () => {
@@ -71,5 +71,29 @@ describe('Tile Ciomponent', () => {
     const button = container.querySelector('button');
     if (button) fireEvent.click(button);
     expect(onClick).toHaveBeenCalledTimes(1);
+  });
+
+  it('renders children appropriately', () => {
+    const { container } = render(
+      <Tile tileKind={TILE_KIND.action} label="Label">
+        Paragraph
+      </Tile>
+    );
+
+    expect(getByText(container, 'Paragraph')).toBeInTheDocument();
+  });
+
+  it('should render a Label that is not a string', () => {
+    const LabelComponent = () => {
+      return (
+        <div>
+          <p>Not a string</p>
+        </div>
+      );
+    };
+    const { container } = render(<Tile tileKind={TILE_KIND.action} label={LabelComponent} />);
+
+    expect(getByText(container, 'Not a string')).toBeInTheDocument();
+    screen.debug();
   });
 });

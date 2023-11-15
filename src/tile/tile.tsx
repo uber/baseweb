@@ -70,7 +70,8 @@ const Tile = React.forwardRef(
         </LabelContainer>
       );
     } else if (label) {
-      Label = label;
+      const LabelComponent = label;
+      Label = <LabelComponent />;
     }
 
     const renderTopContainer = shouldRenderHeaderContainer(leadingContent, trailingContent);
