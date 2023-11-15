@@ -18,12 +18,14 @@ import {
 import Check from '../icon/check';
 
 import type { NumberedStepProps } from './types';
+import { ORIENTATION } from './constants';
 
 function NumberedStep({
   overrides = {},
   isCompleted,
   isActive,
   isLast,
+  orientation = ORIENTATION.vertical,
   title,
   step,
   alwaysShowDescription,
@@ -43,28 +45,37 @@ function NumberedStep({
   const sharedProps = {
     $isCompleted: isCompleted,
     $isActive: isActive,
+    $orientation: orientation,
   };
 
   return (
-    <Root {...sharedProps} {...rootProps}>
-      <Icon {...sharedProps} {...iconProps}>
-        {!isCompleted && <span>{step}</span>}
+    <>
+      <Root {...sharedProps} {...rootProps}>
+        <Icon {...sharedProps} {...iconProps}>
+          {!isCompleted && <span>{step}</span>}
 
-        {isCompleted && <CheckIcon size={28} {...checkIconProps} />}
-      </Icon>
+          {isCompleted && <CheckIcon size={28} {...checkIconProps} />}
+        </Icon>
 
-      {!isLast && <Tail {...sharedProps} {...tailProps} />}
+        {!isLast && orientation === ORIENTATION.vertical && (
+          <Tail {...sharedProps} {...tailProps} />
+        )}
 
-      <Content {...sharedProps} {...contentProps}>
-        <Title {...sharedProps} {...titleProps}>
-          {title}
-        </Title>
+        <Content {...sharedProps} {...contentProps}>
+          <Title {...sharedProps} {...titleProps}>
+            {title}
+          </Title>
 
-        <Description {...descriptionProps}>
-          {(isActive || alwaysShowDescription) && children}
-        </Description>
-      </Content>
-    </Root>
+          <Description {...descriptionProps}>
+            {(isActive || alwaysShowDescription) && children}
+          </Description>
+        </Content>
+      </Root>
+
+      {!isLast && orientation === ORIENTATION.horizontal && (
+        <Tail {...sharedProps} {...tailProps} aria-hidden="true" />
+      )}
+    </>
   );
 }
 
