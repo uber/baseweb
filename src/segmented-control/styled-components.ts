@@ -107,7 +107,6 @@ export const StyledSegment = styled<
       overflow: 'hidden',
       ':hover': {
         boxShadow: $isActive ? 'none' : $theme.lighting.overlay100,
-        zIndex: $isActive ? 'none' : -2,
       },
       ':disabled': {
         cursor: 'not-allowed',

@@ -20,9 +20,6 @@ export type SegmentedControlOverridesT = {
   Root?: OverrideT,
   SegmentList?: OverrideT,
   Active?: OverrideT,
-  SegmentBorder?: OverrideT,
-  EndEnhancerContainer?: OverrideT,
-  SegmentBar?: OverrideT,
 };
 
 export type SegmentOverridesT = {
