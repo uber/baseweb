@@ -10,9 +10,9 @@ import type { DividerProps } from './types';
 
 export const StyledDivider = styled<'hr', DividerProps>('hr', (props) => {
   const { $theme, $size = SIZE.section } = props;
-  if ($size === SIZE.cell) {
+  if ($size === SIZE.module) {
     return {
-      borderTopWidth: '1px',
+      borderTopWidth: $theme.sizing.scale100,
       borderTopColor: $theme.colors.borderOpaque,
       borderTopStyle: 'solid',
       // base styles
@@ -24,22 +24,8 @@ export const StyledDivider = styled<'hr', DividerProps>('hr', (props) => {
       borderLeftStyle: 'none',
     };
   }
-  if ($size === SIZE.module) {
-    return {
-      borderTopWidth: '8px',
-      borderTopColor: $theme.colors.backgroundTertiary,
-      borderTopStyle: 'solid',
-      // base styles
-      borderRightWidth: 0,
-      borderBottomWidth: 0,
-      borderLeftWidth: 0,
-      borderRightStyle: 'none',
-      borderBottomStyle: 'none',
-      borderLeftStyle: 'none',
-    };
-  }
   return {
-    borderTopWidth: '2px',
+    borderTopWidth: '1px',
     borderTopColor: $theme.colors.borderOpaque,
     borderTopStyle: 'solid',
     // base styles

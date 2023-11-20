@@ -21,7 +21,7 @@ export const StyledRoot = styled<
   }
 >('div', ({ $theme, $fill = FILL.intrinsic, $height = 'fit-content', $width = 'fit-content' }) => {
   const style: StyleObject = {
-    backgroundColor: $theme.colors.backgroundTertiary,
+    backgroundColor: $theme.colors.backgroundSecondary,
     borderRadius: $theme.sizing.scale500,
     boxSizing: 'border-box',
     isolation: 'isolate',
@@ -30,7 +30,6 @@ export const StyledRoot = styled<
     overflow: 'hidden',
     height: $height,
     width: $width,
-    margin: $theme.sizing.scale100,
   };
   if (isIntrinsic($fill)) {
     style['::-webkit-scrollbar'] = { display: 'none' };
@@ -44,7 +43,7 @@ StyledRoot.displayName = 'StyledRoot';
 
 export const StyledSegmentList = styled<'div', {}>('div', ({ $theme }) => {
   const style: StyleObject = {
-    backgroundColor: $theme.colors.backgroundTertiary,
+    backgroundColor: $theme.colors.backgroundSecondary,
     boxSizing: 'border-box',
     display: 'flex',
     height: '100%',
@@ -95,10 +94,10 @@ export const StyledSegment = styled<
       borderRightWidth: 0,
       borderBottomWidth: 0,
       borderRadius: $theme.sizing.scale300,
-      color: $theme.colors.contentPrimary,
+      color: $isActive ? $theme.colors.contentPrimary : $theme.colors.contentTertiary,
       backgroundColor: 'transparent',
       flexGrow: 1,
-      transitionProperty: 'box-shadow',
+      transitionProperty: 'box-shadow, color',
       transitionDuration: $theme.animation.timing200,
       transitionTimingFunction: $theme.animation.linearCurve,
       outline: 'none',
@@ -136,8 +135,8 @@ export const StyledArtworkContainer = styled<'div', {}>('div', () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const style: StyleObject = {
     display: 'flex',
-    height: '16px',
-    width: '16px',
+    height: '14px',
+    width: '14px',
     alignItems: 'center',
   };
   return style;

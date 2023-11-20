@@ -186,6 +186,7 @@ StyledHeadingContent.displayName = 'StyledHeadingContent';
 
 export const StyledHeadingContentRow = styled('div', {
   display: 'flex',
+  alignItems: 'baseline',
   justifyContent: 'space-between',
   width: '100%',
 });
