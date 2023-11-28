@@ -33,12 +33,10 @@ function ChevronLeftSmall(props: IconProps, ref) {
       overrides={{ Svg: SvgOverride }}
       {...restProps}
     >
-      <rect width="24" height="24" fill="white" />
       <path
         fillRule="evenodd"
         clipRule="evenodd"
         d="M8.93937 10.9394C8.35358 11.5251 8.35358 12.4749 8.93937 13.0607L12.9394 17.0607C13.5252 17.6465 14.4749 17.6465 15.0607 17.0607C15.6465 16.4749 15.6465 15.5251 15.0607 14.9393L12.1213 12L15.0607 9.06066C15.6465 8.47487 15.6465 7.52512 15.0607 6.93934C14.4749 6.35355 13.5252 6.35355 12.9394 6.93934L8.93937 10.9394Z"
-        fill="black"
       />
     </Icon>
   );

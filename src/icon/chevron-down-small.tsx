@@ -33,12 +33,10 @@ function ChevronDownSmall(props: IconProps, ref) {
       overrides={{ Svg: SvgOverride }}
       {...restProps}
     >
-      <rect width="24" height="24" fill="white" />
       <path
         fillRule="evenodd"
         clipRule="evenodd"
         d="M10.9394 15.5607C11.5252 16.1464 12.4749 16.1464 13.0607 15.5607L17.0607 11.5607C17.6465 10.9749 17.6465 10.0251 17.0607 9.43934C16.4749 8.85355 15.5252 8.85355 14.9394 9.43934L12 12.3787L9.06069 9.43934C8.4749 8.85355 7.52515 8.85355 6.93937 9.43934C6.35358 10.0251 6.35358 10.9749 6.93937 11.5607L10.9394 15.5607Z"
-        fill="black"
       />
     </Icon>
   );
