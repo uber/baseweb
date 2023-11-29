@@ -22,5 +22,5 @@ export type SkeletonProps = {
   /** Defines the width of the skeleton container*/
   width?: string;
   /** Determines whether rows expand in height to fill vertical space */
-  dynamicRowHeight?: boolean;
+  autoSizeRows?: boolean;
 };

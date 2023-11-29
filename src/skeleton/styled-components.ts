@@ -76,7 +76,7 @@ export const StyledRow = styled<
     $animation?: boolean;
     $isLastRow: boolean;
     $rowIndex: number;
-    $dynamicRowHeight?: boolean;
+    $autoSizeRows?: boolean;
   }
 >('div', (props) => {
   return {
@@ -85,7 +85,7 @@ export const StyledRow = styled<
       : { backgroundColor: props.$theme.colors.backgroundTertiary }),
     width: '100%',
     flexBasis: '15px',
-    flexGrow: props.$dynamicRowHeight ? 1 : 0,
+    flexGrow: props.$autoSizeRows ? 1 : 0,
     marginBottom: props.$isLastRow ? '0px' : '10px',
   };
 });
