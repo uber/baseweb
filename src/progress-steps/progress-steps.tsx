@@ -27,12 +27,15 @@ function ProgressSteps({
     const childOverrides = child.props.overrides || {};
 
     const isActive = child.props.isActive !== undefined ? child.props.isActive : index === current;
+    const isRightBeforeActive =
+      typeof current === 'number' && !isNaN(current) && index === current - 1;
 
     return React.cloneElement(child, {
       isLast: index === numChildren - 1,
       // @ts-ignore
       isCompleted: index < current,
       isActive,
+      isRightBeforeActive,
       alwaysShowDescription:
         child.props.alwaysShowDescription === undefined
           ? alwaysShowDescription

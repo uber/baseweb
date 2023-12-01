@@ -78,6 +78,7 @@ export type NumberedStepProps = {
   isCompleted?: boolean;
   /** Defines if the step is currently active. */
   isActive?: boolean;
+  isRightBeforeActive?: boolean;
   /** Defines if the step is the last item displayed. */
   isLast?: boolean;
   /** when true, the step's description will continue to be displayed even after the step is completed. */
@@ -91,6 +92,7 @@ export type NumberedStepProps = {
 
 export type StyleProps = {
   $isActive?: boolean;
+  $isRightBeforeActive?: boolean;
   $isCompleted?: boolean;
   $disabled?: boolean;
   $orientation?: Orientation;

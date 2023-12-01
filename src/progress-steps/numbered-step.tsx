@@ -24,6 +24,7 @@ function NumberedStep({
   overrides = {},
   isCompleted,
   isActive,
+  isRightBeforeActive,
   isLast,
   orientation = ORIENTATION.vertical,
   title,
@@ -45,6 +46,7 @@ function NumberedStep({
   const sharedProps = {
     $isCompleted: isCompleted,
     $isActive: isActive,
+    $isRightBeforeActive: isRightBeforeActive,
     $orientation: orientation,
   };
 
@@ -54,7 +56,7 @@ function NumberedStep({
         <Icon {...sharedProps} {...iconProps}>
           {!isCompleted && <span>{step}</span>}
 
-          {isCompleted && <CheckIcon size={28} {...checkIconProps} />}
+          {isCompleted && <CheckIcon size={30} {...checkIconProps} />}
         </Icon>
 
         {!isLast && orientation === ORIENTATION.vertical && (

@@ -275,8 +275,8 @@ export const StyledNumberIcon = styled<'div', StyleProps>(
   ({ $theme, $isActive, $isCompleted, $orientation }) => {
     let backgroundColor = $theme.colors.backgroundTertiary;
     let color = $theme.colors.contentPrimary;
-    const size = $theme.sizing.scale950;
-    const font = $theme.typography.ParagraphMedium;
+    const size = $theme.sizing.scale1200;
+    const font = $theme.typography.ParagraphLarge;
 
     if ($isCompleted) {
       color = $theme.colors.progressStepsCompletedText;
@@ -289,14 +289,14 @@ export const StyledNumberIcon = styled<'div', StyleProps>(
     const getOrientationStyles = (orientation) => {
       if (orientation === ORIENTATION.horizontal) {
         return {
-          marginLeft: '42px',
+          marginLeft: '36px',
         };
       } else {
         let titlePad = $theme.sizing.scale800;
         let titleFont = $theme.typography.LabelMedium;
 
         return {
-          marginLeft: $theme.sizing.scale550,
+          marginLeft: $theme.sizing.scale300,
           marginRight: $theme.sizing.scale550,
           marginTop: `calc(${titlePad} + (${titleFont.lineHeight} - ${size}) / 2)`,
         };
@@ -319,6 +319,22 @@ export const StyledNumberIcon = styled<'div', StyleProps>(
       justifyContent: 'center',
       alignItems: 'center',
       ...font,
+      ...($isActive
+        ? {
+            position: 'relative',
+            '::before': {
+              content: '""',
+              position: 'absolute',
+              top: '-4px', // Offset for the gap and ring thickness
+              left: '-4px', // Offset for the gap and ring thickness
+              width: `calc(100% + 8px)`, // 8px larger to account for the gap and ring
+              height: `calc(100% + 8px)`, // 8px larger to account for the gap and ring
+              borderRadius: '50%',
+              border: '2px solid ' + backgroundColor, // Ring thickness and color
+              boxSizing: 'border-box', // Ensures border is included in the dimensions
+            },
+          }
+        : {}),
     };
   }
 );
@@ -327,7 +343,7 @@ StyledNumberIcon.displayName = 'StyledNumberIcon';
 
 export const StyledNumberContentTail = styled<'div', StyleProps>(
   'div',
-  ({ $theme, $isCompleted, $orientation }) => {
+  ({ $theme, $isCompleted, $orientation, $isActive, $isRightBeforeActive }) => {
     const getOrientationStyles = (orientation) => {
       const dir: string = $theme.direction === 'rtl' ? 'right' : 'left';
 
@@ -335,9 +351,9 @@ export const StyledNumberContentTail = styled<'div', StyleProps>(
       if (orientation === ORIENTATION.horizontal) {
         return {
           position: 'relative',
-          top: '17px',
-          marginLeft: '-42px',
-          marginRight: '-42px',
+          top: '23px',
+          marginLeft: $isActive ? '-32px' : '-36px',
+          marginRight: $isRightBeforeActive ? '-32px' : '-36px',
           height: $theme.sizing.scale0,
           width: '100%',
         } as const;
@@ -352,8 +368,10 @@ export const StyledNumberContentTail = styled<'div', StyleProps>(
       return {
         position: 'absolute',
         [dir]: '31px',
-        top: 0,
-        height: `calc(100% - ${$theme.sizing.scale500})`,
+        top: $isActive ? '10px' : '6px',
+        height: `calc(100% - ${
+          $isActive || $isRightBeforeActive ? $theme.sizing.scale900 : $theme.sizing.scale850
+        })`,
         paddingBottom: 0,
         marginTop,
         width: $theme.sizing.scale0,
