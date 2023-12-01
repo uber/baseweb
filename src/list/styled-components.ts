@@ -117,6 +117,15 @@ export const StyledArtworkContainer = styled<'div', StyledArtworkContainerProps>
 
 StyledArtworkContainer.displayName = 'StyledArtworkContainer';
 
+export const StyledLabelRoot = styled('div', ({ $theme }) => {
+  return {
+    paddingTop: $theme.sizing.scale500,
+    paddingBottom: $theme.sizing.scale500,
+  };
+});
+
+StyledLabelRoot.displayName = 'StyledLabelRoot';
+
 export const StyledLabelContent = styled('p', ({ $theme }) => {
   return {
     ...$theme.typography.LabelMedium,
