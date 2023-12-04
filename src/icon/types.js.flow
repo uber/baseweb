@@ -28,6 +28,6 @@ export type IconPropsT = {
   /** Color of icon, will be used as svg fill */
   color?: ColorT,
   /** Allows you to set the SVG `<title>` label, which is used for accessibility */
-  title?: string,
+  title?: string | null,
   overrides?: OverridesT,
 };

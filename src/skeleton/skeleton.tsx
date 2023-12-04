@@ -38,6 +38,7 @@ class Skeleton extends React.Component<SkeletonProps> {
                 $rowIndex={index}
                 // @ts-ignore
                 $isLastRow={index === this.props.rows - 1}
+                $autoSizeRows={this.props.autoSizeRows}
                 {...rowProps}
               ></Row>
             ))}

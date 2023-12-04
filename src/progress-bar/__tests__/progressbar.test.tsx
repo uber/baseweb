@@ -22,4 +22,19 @@ describe('Stateless progress bar', function () {
     );
     getByText(container, label);
   });
+
+  it('should have step aria-label', () => {
+    const { container } = render(<ProgressBar value={75} steps={4} />);
+    getByRole(container, 'progressbar', { name: 'Step 3 of 4' });
+  });
+
+  it('should have loading aria-label if indeterminate', () => {
+    const { container } = render(<ProgressBar infinite steps={3} />);
+    getByRole(container, 'progressbar', { name: 'Loading' });
+  });
+
+  it('should have passed in aria-label', () => {
+    const { container } = render(<ProgressBar aria-label="test" steps={2} />);
+    getByRole(container, 'progressbar', { name: 'test' });
+  });
 });

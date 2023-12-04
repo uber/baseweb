@@ -57,6 +57,7 @@ const Block: React.FC<
   justifyContent,
   justifyItems,
   justifySelf,
+  order,
   position,
   width,
   minWidth,
@@ -133,6 +134,7 @@ const Block: React.FC<
       $justifyContent={justifyContent}
       $justifyItems={justifyItems}
       $justifySelf={justifySelf}
+      $order={order}
       $position={position}
       $width={width}
       $minWidth={minWidth}

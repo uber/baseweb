@@ -9,6 +9,7 @@ import React from 'react';
 import { getOverrides } from '../helpers/overrides';
 
 import {
+  StyledLabelRoot,
   StyledLabelContent,
   StyledLabelDescription,
   StyledLabelSublistContent,
@@ -22,6 +23,7 @@ function ListItemLabel(props: LabelProps) {
     overrides.LabelSublistContent,
     StyledLabelSublistContent
   );
+  const [LabelRoot, labelRootProps] = getOverrides(overrides.LabelRoot, StyledLabelRoot);
   const [LabelContent, labelContentProps] = getOverrides(
     overrides.LabelContent,
     StyledLabelContent
@@ -38,12 +40,12 @@ function ListItemLabel(props: LabelProps) {
   }
 
   return (
-    <div>
+    <LabelRoot {...labelRootProps}>
       <LabelContent {...labelContentProps}>{props.children}</LabelContent>
       {props.description && (
         <LabelDescription {...labelDescriptionProps}>{props.description}</LabelDescription>
       )}
-    </div>
+    </LabelRoot>
   );
 }
 

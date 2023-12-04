@@ -27,6 +27,8 @@ export type ProgressStepsPropsT = {
   children?: Node,
   /** Defines the current active step index. */
   current: number,
+  /** when true, the description of a step will continue to be displayed even after the step is completed. */
+  alwaysShowDescription?: boolean,
 };
 
 export type StepOverridesT = {
@@ -49,6 +51,8 @@ export type StepPropsT = {
   isActive?: boolean,
   /** Defines if the step is the last item displayed. Overriden by ProgressSteps, if used. */
   isLast: boolean,
+  /** when true, the step's description will continue to be displayed even after the step is completed. */
+  alwaysShowDescription?: boolean,
   overrides?: StepOverridesT,
   children?: Node,
 };
@@ -73,6 +77,8 @@ export type NumberedStepPropsT = {
   isActive?: boolean,
   /** Defines if the step is the last item displayed. */
   isLast: boolean,
+  /** when true, the step's description will continue to be displayed even after the step is completed. */
+  alwaysShowDescription?: boolean,
   overrides?: NumberedStepOverridesT,
   children?: Node,
   /** The number displayed as the step number */

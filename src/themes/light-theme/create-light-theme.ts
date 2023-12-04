@@ -8,6 +8,7 @@ import animation from '../shared/animation';
 import borders from '../shared/borders';
 import breakpoints from '../shared/breakpoints';
 import deepMerge from '../../utils/deep-merge';
+import { getFoundationColorTokenOverrides } from '../utils';
 import defaultFoundationColorTokens from './color-tokens';
 import { colors as primitiveColorTokens } from '../../tokens';
 import getComponentColorTokens from './color-component-tokens';
@@ -18,22 +19,18 @@ import lighting from '../shared/lighting';
 import mediaQuery from '../shared/media-query';
 import sizing from '../shared/sizing';
 
-import type { Primitives, FoundationColorTokens } from '../types';
-import type { Theme } from '../../styles/types';
+import type { Theme, MakeExtendable, DeepPartial } from '../../styles/types';
 
-export default function createLightTheme(
-  // Used to derive typography and color theme properties
-  primitives: Partial<Primitives> = {},
-  // Used to override default theme property values derived from primitives
-  overrides?: {}
-): Theme {
-  // Extract font tokens and color tokens from primitives
-  const { primaryFontFamily, ...customColorTokens } = primitives;
-  // Assemble color tokens by overriding defaults with custom color tokens
-  const foundationColorTokens: FoundationColorTokens = {
+export default function createLightTheme<
+  OverridesT extends DeepPartial<MakeExtendable<Theme>> = {}
+>(overrides?: OverridesT): Theme & OverridesT {
+  const foundationColorTokens = {
     ...defaultFoundationColorTokens,
-    ...customColorTokens,
+    ...getFoundationColorTokenOverrides(overrides?.colors),
   };
+  const semanticColorTokens = getSemanticColorTokens(foundationColorTokens);
+  const componentColorTokens = getComponentColorTokens(foundationColorTokens);
+
   const theme = {
     animation,
     borders,
@@ -41,8 +38,8 @@ export default function createLightTheme(
     colors: {
       ...primitiveColorTokens,
       ...foundationColorTokens,
-      ...getComponentColorTokens(foundationColorTokens),
-      ...getSemanticColorTokens(foundationColorTokens),
+      ...semanticColorTokens,
+      ...componentColorTokens,
     },
     direction: 'auto',
     grid,

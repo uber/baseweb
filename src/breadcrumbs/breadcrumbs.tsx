@@ -39,7 +39,7 @@ export function Breadcrumbs(props: BreadcrumbsProps) {
       <ListItem key={`breadcrumb-item-${index}`} $itemIndex={index} {...baseListItemProps}>
         {child}
         {(showTrailingSeparator || index !== childrenArray.length - 1) && (
-          <Separator {...baseSeparatorProps} key={`separator-${index}`}>
+          <Separator {...baseSeparatorProps} aria-hidden={true} key={`separator-${index}`}>
             <ThemeContext.Consumer>
               {(theme) =>
                 theme.direction === 'rtl' ? (

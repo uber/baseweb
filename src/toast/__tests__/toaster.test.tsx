@@ -113,4 +113,22 @@ describe('toaster', () => {
       expect(queryByText(getBody(), 'info')).toBeNull();
     });
   });
+
+  it('mounts container children only once', () => {
+    let mounts = 0;
+    const TestComponent = () => {
+      React.useEffect(() => {
+        mounts += 1;
+      }, []);
+      return <span data-testid="test-child">test</span>;
+    };
+    render(
+      <ToasterContainer overrides={{ Root: { props: { 'data-testid': 'root' } } }}>
+        <TestComponent />
+      </ToasterContainer>
+    );
+    getByTestId(getBody(), 'root');
+    getByTestId(getBody(), 'test-child');
+    expect(mounts).toBe(1);
+  });
 });

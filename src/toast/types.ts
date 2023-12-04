@@ -7,11 +7,12 @@ LICENSE file in the root directory of this source tree.
 import type * as React from 'react';
 
 import type { Override } from '../helpers/overrides';
-import type { KIND, PLACEMENT, TYPE } from './constants';
+import type { KIND, PLACEMENT, TYPE, TOAST_ROLE } from './constants';
 
 export type KindType = (typeof KIND)[keyof typeof KIND];
 export type NotificationType = (typeof TYPE)[keyof typeof TYPE];
 export type PlacementType = (typeof PLACEMENT)[keyof typeof PLACEMENT];
+export type ToastRoleType = (typeof TOAST_ROLE)[keyof typeof TOAST_ROLE];
 
 export type SharedStylePropsArg = {
   $closeable: boolean;
@@ -78,6 +79,7 @@ export type ToastProps = {
   onMouseEnter?: (e: React.MouseEvent) => unknown;
   onMouseLeave?: (e: React.MouseEvent) => unknown;
   overrides?: ToastOverrides;
+  role?: ToastRoleType;
 };
 
 export type ToastPropsShape = Partial<Omit<ToastProps, 'children'>>;

@@ -48,12 +48,13 @@ export const StyledTitle = styled<'div', { $expanded: boolean }>(
   ({ $theme, $expanded = false }) => ({
     alignSelf: 'center',
     justifyContent: 'flex-start',
-    ...($expanded ? $theme.typography.DisplayXSmall : $theme.typography.LabelLarge),
+    ...($expanded ? $theme.typography.HeadingLarge : $theme.typography.LabelLarge),
     ...($expanded
       ? {
           gridColumn: '1 / 4',
           gridRow: 2,
           paddingLeft: $theme.sizing.scale600,
+          paddingBottom: $theme.sizing.scale100,
         }
       : {}),
     // truncate long titles

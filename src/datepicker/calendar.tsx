@@ -706,8 +706,9 @@ export default class Calendar<T = Date> extends React.Component<
           <Root
             $density={this.props.density}
             data-baseweb="calendar"
-            role="application"
+            role="dialog"
             aria-roledescription="date picker"
+            id={this.props.id}
             // @ts-ignore
             ref={(root) => {
               if (root && root instanceof HTMLElement && !this.state.rootElement) {

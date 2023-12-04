@@ -66,7 +66,7 @@ export const StyledSelector = styled<'button', {}>('button', ({ $theme }) => ({
   justifyContent: 'center',
   alignItems: 'center',
   flexDirection: 'column',
-  gap: $theme.sizing.scale0,
+  gap: $theme.sizing.scale100,
   // button style reset
   borderRadius: 0,
   textAlign: 'inherit',

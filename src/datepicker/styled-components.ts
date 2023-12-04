@@ -62,10 +62,10 @@ export const StyledRoot = styled<'div', SharedStyleProps>('div', (props) => {
     color: colors.calendarForeground,
     backgroundColor: colors.calendarBackground,
     textAlign: 'center',
-    borderTopLeftRadius: borders.surfaceBorderRadius,
-    borderTopRightRadius: borders.surfaceBorderRadius,
-    borderBottomRightRadius: borders.surfaceBorderRadius,
-    borderBottomLeftRadius: borders.surfaceBorderRadius,
+    borderTopLeftRadius: borders.radius400,
+    borderTopRightRadius: borders.radius400,
+    borderBottomRightRadius: borders.radius400,
+    borderBottomLeftRadius: borders.radius400,
     display: 'inline-block',
     paddingTop: sizing.scale500,
     paddingBottom: sizing.scale500,
@@ -675,3 +675,22 @@ export const StyledWeekdayHeader = styled<'div', SharedStyleProps>('div', (props
   };
 });
 StyledWeekdayHeader.displayName = 'StyledWeekdayHeader';
+
+export const StyledInputContainer = styled<
+  'div',
+  {
+    $separateRangeInputs: boolean;
+  } & SharedStyleProps
+>('div', (props) => {
+  const { $theme, $separateRangeInputs } = props;
+
+  return {
+    width: '100%',
+    ...($separateRangeInputs ? { display: 'flex', justifyContent: 'center' } : {}),
+    backgroundColor: $theme.colors.backgroundPrimary,
+    outline: 'none',
+    paddingInlineStart: 'unset',
+  };
+});
+
+StyledInputContainer.displayName = 'StyledInputContainer';

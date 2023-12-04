@@ -22,7 +22,15 @@ import {
 
 import type { StepPropsT } from './types.js';
 
-function Step({ overrides = {}, isCompleted, isActive, isLast, title, children }: StepPropsT) {
+function Step({
+  overrides = {},
+  isCompleted,
+  isActive,
+  isLast,
+  title,
+  alwaysShowDescription,
+  children,
+}: StepPropsT) {
   const [Root, rootProps] = getOverrides(overrides.Root, StyledStep);
   const [IconContainer, iconContainerProps] = getOverrides(
     overrides.IconContainer,
@@ -55,7 +63,9 @@ function Step({ overrides = {}, isCompleted, isActive, isLast, title, children }
         <Title {...sharedProps} {...titleProps}>
           {title}
         </Title>
-        <Description {...descriptionProps}>{isActive && children}</Description>
+        <Description {...descriptionProps}>
+          {(isActive || alwaysShowDescription) && children}
+        </Description>
       </Content>
     </Root>
   );

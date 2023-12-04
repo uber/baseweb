@@ -75,4 +75,3 @@ export const StyledSpinner = styled<'i', SpinnerProps>(
     };
   }
 );
-StyledSpinner.displayName = 'StyledSpinner';

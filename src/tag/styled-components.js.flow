@@ -306,13 +306,14 @@ export const StartEnhancerContainer = styled<SharedPropsArgT>(
 export const Text = styled<SharedPropsArgT>(
   'span',
   (props: SharedPropsArgT & { $theme: ThemeT }) => {
-    const { $theme } = props;
+    const { $theme, $contentMaxWidth } = props;
 
     return {
       overflow: 'hidden',
       whiteSpace: 'nowrap',
       textOverflow: 'ellipsis',
-      maxWidth: props.$theme.sizing.scale3200,
+      maxWidth:
+        $contentMaxWidth === null ? 'auto' : $contentMaxWidth || props.$theme.sizing.scale3200,
       order: $theme.direction === 'rtl' ? 1 : 0,
     };
   }
@@ -331,6 +332,7 @@ export const Root = styled<SharedPropsArgT>(
       $isFocusVisible,
       $color,
       $size = SIZE.small,
+      $contentMaxWidth,
     } = props;
     const borderRadius = $theme.borders.tagBorderRadius;
     const paddingMagnitude = {
@@ -377,6 +379,7 @@ export const Root = styled<SharedPropsArgT>(
         [SIZE.large]: '40px',
       }[$size],
       justifyContent: 'space-between',
+      maxWith: $contentMaxWidth === null ? '100%' : 'auto',
       marginTop: '5px',
       marginBottom: '5px',
       marginLeft: '5px',
@@ -403,8 +406,8 @@ export const Root = styled<SharedPropsArgT>(
               boxShadow: $isFocusVisible
                 ? `0 0 0 3px ${
                     $kind === KIND.accent
-                    ? $theme.colors.backgroundInversePrimary
-                    : $theme.colors.backgroundAccent
+                      ? $theme.colors.backgroundInversePrimary
+                      : $theme.colors.backgroundAccent
                   }`
                 : 'none',
             },

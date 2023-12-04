@@ -19,8 +19,18 @@ import {
 } from './styled-components';
 
 import type { StepProps } from './types';
+import { ORIENTATION } from './constants';
 
-function Step({ overrides = {}, isCompleted, isActive, isLast, title, children }: StepProps) {
+function Step({
+  overrides = {},
+  isCompleted,
+  isActive,
+  isLast,
+  orientation = ORIENTATION.vertical,
+  title,
+  alwaysShowDescription,
+  children,
+}: StepProps) {
   const [Root, rootProps] = getOverrides(overrides.Root, StyledStep);
   const [IconContainer, iconContainerProps] = getOverrides(
     overrides.IconContainer,
@@ -39,26 +49,37 @@ function Step({ overrides = {}, isCompleted, isActive, isLast, title, children }
   const sharedProps = {
     $isCompleted: isCompleted,
     $isActive: isActive,
+    $orientation: orientation,
   };
 
   return (
-    <Root {...sharedProps} {...rootProps}>
-      <IconContainer {...sharedProps} {...iconContainerProps}>
-        <Icon {...sharedProps} {...iconProps}>
-          {isActive && <InnerIcon {...innerIconProps} />}
-        </Icon>
-      </IconContainer>
+    <>
+      <Root {...sharedProps} {...rootProps}>
+        <IconContainer {...sharedProps} {...iconContainerProps}>
+          <Icon {...sharedProps} {...iconProps}>
+            {isActive && <InnerIcon {...innerIconProps} />}
+          </Icon>
+        </IconContainer>
 
-      {!isLast && <Tail {...sharedProps} {...tailProps} />}
+        {!isLast && orientation === ORIENTATION.vertical && (
+          <Tail {...sharedProps} {...tailProps} />
+        )}
 
-      <Content {...sharedProps} {...contentProps}>
-        <Title {...sharedProps} {...titleProps}>
-          {title}
-        </Title>
+        <Content {...sharedProps} {...contentProps}>
+          <Title {...sharedProps} {...titleProps}>
+            {title}
+          </Title>
 
-        <Description {...descriptionProps}>{isActive && children}</Description>
-      </Content>
-    </Root>
+          <Description {...descriptionProps}>
+            {(isActive || alwaysShowDescription) && children}
+          </Description>
+        </Content>
+      </Root>
+
+      {!isLast && orientation === ORIENTATION.horizontal && (
+        <Tail {...sharedProps} {...tailProps} aria-hidden="true" />
+      )}
+    </>
   );
 }
 

@@ -59,6 +59,7 @@ export type LabelPropsT = {|
   description?: React.Node,
   sublist?: boolean,
   overrides?: {|
+    LabelRoot?: OverrideT,
     LabelContent?: OverrideT,
     LabelDescription?: OverrideT,
     LabelSublistContent?: OverrideT,

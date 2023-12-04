@@ -18,14 +18,18 @@ import {
 import Check from '../icon/check';
 
 import type { NumberedStepProps } from './types';
+import { ORIENTATION } from './constants';
 
 function NumberedStep({
   overrides = {},
   isCompleted,
   isActive,
+  isRightBeforeActive,
   isLast,
+  orientation = ORIENTATION.vertical,
   title,
   step,
+  alwaysShowDescription,
   children,
 }: NumberedStepProps) {
   const [Root, rootProps] = getOverrides(overrides.Root, StyledNumberStep);
@@ -42,26 +46,38 @@ function NumberedStep({
   const sharedProps = {
     $isCompleted: isCompleted,
     $isActive: isActive,
+    $isRightBeforeActive: isRightBeforeActive,
+    $orientation: orientation,
   };
 
   return (
-    <Root {...sharedProps} {...rootProps}>
-      <Icon {...sharedProps} {...iconProps}>
-        {!isCompleted && <span>{step}</span>}
+    <>
+      <Root {...sharedProps} {...rootProps}>
+        <Icon {...sharedProps} {...iconProps}>
+          {!isCompleted && <span>{step}</span>}
 
-        {isCompleted && <CheckIcon size={28} {...checkIconProps} />}
-      </Icon>
+          {isCompleted && <CheckIcon size={30} {...checkIconProps} />}
+        </Icon>
 
-      {!isLast && <Tail {...sharedProps} {...tailProps} />}
+        {!isLast && orientation === ORIENTATION.vertical && (
+          <Tail {...sharedProps} {...tailProps} />
+        )}
 
-      <Content {...sharedProps} {...contentProps}>
-        <Title {...sharedProps} {...titleProps}>
-          {title}
-        </Title>
+        <Content {...sharedProps} {...contentProps}>
+          <Title {...sharedProps} {...titleProps}>
+            {title}
+          </Title>
 
-        <Description {...descriptionProps}>{isActive && children}</Description>
-      </Content>
-    </Root>
+          <Description {...descriptionProps}>
+            {(isActive || alwaysShowDescription) && children}
+          </Description>
+        </Content>
+      </Root>
+
+      {!isLast && orientation === ORIENTATION.horizontal && (
+        <Tail {...sharedProps} {...tailProps} aria-hidden="true" />
+      )}
+    </>
   );
 }
 

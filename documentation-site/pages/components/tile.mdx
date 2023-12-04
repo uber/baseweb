@@ -1,0 +1,77 @@
+<!--
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import Exports from '../../components/exports';
+import Layout from '../../components/layout';
+
+import SingleSelect from 'examples/tile/single-select.tsx';
+import SelectionNoTrailingContent from 'examples/tile/selection-no-trailing-content.tsx';
+import MultiSelectBatch from 'examples/tile/multi-select-batch.tsx';
+import MultiSelectLive from 'examples/tile/multi-select-live.tsx';
+import Action from 'examples/tile/action.tsx';
+import Alignment from 'examples/tile/alignment.tsx';
+
+import Yard from '../../components/yard/index';
+import tileConfig from '../../components/yard/config/tile';
+
+export default Layout;
+
+# Tile
+
+<Yard placeholderHeight={52} {...tileConfig} />
+
+A tile is a button-like component that may contain additional controls for selection patterns. The elements inside a tile are stacked in a way that lends themselves to a tile shape which can be square or rectangular, depending on the layout.
+
+The behavior of a tile will dictate its appearance. A tile is, at minimum, made of a container and a label. The top content of the tile contains leading and trailing elements stacked side by side. Below, the bottom content supports a label and up to 2 additional paragraphs.
+
+Leading content is typically artwork, and trailing content is typically a control.
+
+# When to use
+
+- Allow users to make a single selection from a group of choices
+- Allow users to make multiple selections from a group of choices
+- Allow users to take an action, similar to a button
+- Allow users to navigate to a new destination or drill down into more options
+
+# Examples
+
+## Action
+
+The Tile component may be used as a button, prompting users to take an action.
+
+<Example title="Action prompt" path="tile/action.tsx">
+  <Action />
+</Example>
+
+## Selection
+
+The Tile component may be used within a TileGroup component in order to prompt users to make a selection. The "kind" prop of the TileGroup determines the trailing content rendered in the Tile.
+
+<Example title="Multi select with checkbox" path="tile/multi-select-batch.tsx">
+  <MultiSelectBatch />
+</Example>
+
+<Example title="Multi select with toggle" path="tile/multi-select-live.tsx">
+  <MultiSelectLive />
+</Example>
+
+<Example title="Single select" path="tile/single-select.tsx">
+  <SingleSelect />
+</Example>
+
+<Example title="No trailing content" path="tile/selection-no-trailing-content.tsx">
+  <SelectionNoTrailingContent />
+</Example>
+
+## Alignment
+
+The alignment of the top content and bottom content can be controlled by the "headerAlignment" and "bodyAlignment" props respectively. When no trailing content is included, the top content can be either left aligned (default), center aligned, or right aligned.
+
+<Example title="Mixed alignment" path="tile/alignment.tsx">
+  <Alignment />
+</Example>

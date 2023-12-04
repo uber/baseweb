@@ -28,6 +28,7 @@ function NumberedStep({
   isLast,
   title,
   step,
+  alwaysShowDescription,
   children,
 }: NumberedStepPropsT) {
   const [Root, rootProps] = getOverrides(overrides.Root, StyledNumberStep);
@@ -57,7 +58,9 @@ function NumberedStep({
         <Title {...sharedProps} {...titleProps}>
           {title}
         </Title>
-        <Description {...descriptionProps}>{isActive && children}</Description>
+        <Description {...descriptionProps}>
+          {(isActive || alwaysShowDescription) && children}
+        </Description>
       </Content>
     </Root>
   );

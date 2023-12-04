@@ -30,6 +30,7 @@ const Tag = React.forwardRef<HTMLSpanElement, TagProps>((props, ref) => {
     children,
     closeable = true,
     color,
+    contentMaxWidth,
     size = SIZE.small,
     disabled = false,
     isFocused = false,
@@ -147,6 +148,7 @@ const Tag = React.forwardRef<HTMLSpanElement, TagProps>((props, ref) => {
       {...rootProps}
       onFocus={forkFocus(rootProps, handleFocus)}
       onBlur={forkBlur(rootProps, handleBlur)}
+      $contentMaxWidth={contentMaxWidth}
     >
       {StartEnhancer &&
         // @ts-expect-error todo(flow->ts) it is not expected to be a number
@@ -156,7 +158,7 @@ const Tag = React.forwardRef<HTMLSpanElement, TagProps>((props, ref) => {
           </StartEnhancerContainer>
         )}
 
-      <Text title={titleText} {...textProps}>
+      <Text $contentMaxWidth={contentMaxWidth} title={titleText} {...textProps}>
         {children}
       </Text>
       {closeable ? (

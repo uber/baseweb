@@ -26,7 +26,7 @@ class ProgressBar extends React.Component<
 > {
   static defaultProps = {
     getProgressLabel: (value: number, maxValue: number, minValue: number) =>
-      `${Math.round(((value - minValue) / (maxValue - minValue)) * 100)}% Loaded`,
+      `${Math.round(((value - minValue) / (maxValue - minValue)) * 100)}% Complete`,
     infinite: false,
     overrides: {},
     showLabel: false,
@@ -63,7 +63,15 @@ class ProgressBar extends React.Component<
       forwardedRef,
       ...restProps
     } = this.props;
-    const ariaLabel = this.props['aria-label'] || this.props.ariaLabel;
+    const propsAriaLabel = this.props['aria-label'] || this.props.ariaLabel;
+    const progressLabel = getProgressLabel(value, maxValue, minValue);
+    const stepsLabel = getStepProgressLabel(value, maxValue, minValue, steps);
+    const ariaLabel =
+      propsAriaLabel || this.props.infinite
+        ? 'Loading'
+        : this.props.steps > 1
+        ? stepsLabel
+        : progressLabel;
     // fallback on successValue (and it's default) if maxValue is not set by user
     const maximumValue = maxValue !== 100 ? maxValue : successValue;
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
@@ -96,6 +104,14 @@ class ProgressBar extends React.Component<
       }
       return children;
     }
+    function getStepProgressLabel(
+      value: number,
+      maxValue: number,
+      minValue: number,
+      steps: number
+    ) {
+      return `Step ${Math.ceil(((value - minValue) / (maxValue - minValue)) * steps)} of ${steps}`;
+    }
     return (
       /* eslint-disable jsx-a11y/role-supports-aria-props */
 
@@ -103,7 +119,7 @@ class ProgressBar extends React.Component<
         ref={forwardedRef}
         data-baseweb="progress-bar"
         role="progressbar"
-        aria-label={ariaLabel || getProgressLabel(value, maximumValue, minValue)}
+        aria-label={ariaLabel}
         aria-valuenow={infinite ? null : value}
         aria-valuemin={infinite ? null : minValue}
         aria-valuemax={infinite ? null : maximumValue}

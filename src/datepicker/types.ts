@@ -67,6 +67,8 @@ export type DatepickerOverrides = {
   ButtonDock?: Override;
   PrimaryButton?: Override;
   SecondaryButton?: Override;
+  CalendarSelect?: Override;
+  InputContainer?: Override;
 };
 
 export type DayProps<T = Date> = {
@@ -219,6 +221,8 @@ export type CalendarProps<T = Date> = {
     label: React.ReactNode;
     onClick: () => unknown;
   };
+  // id for the calendar container
+  id?: string;
 };
 
 export type HeaderProps<T = Date> = CalendarProps<T> & {

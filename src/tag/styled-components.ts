@@ -418,13 +418,14 @@ export const Text = styled<'span', SharedPropsArg>(
       $theme: Theme;
     }
   ) => {
-    const { $theme } = props;
+    const { $theme, $contentMaxWidth } = props;
 
     return {
       overflow: 'hidden',
       whiteSpace: 'nowrap',
       textOverflow: 'ellipsis',
-      maxWidth: props.$theme.sizing.scale3200,
+      maxWidth:
+        $contentMaxWidth === null ? 'auto' : $contentMaxWidth || props.$theme.sizing.scale3200,
       order: $theme.direction === 'rtl' ? 1 : 0,
     };
   }
@@ -449,6 +450,7 @@ export const Root = styled<'span', SharedPropsArg>(
       $isFocusVisible,
       $color,
       $size = SIZE.small,
+      $contentMaxWidth,
     } = props;
     const borderRadius = $theme.borders.tagBorderRadius;
     const paddingMagnitude = {
@@ -496,6 +498,7 @@ export const Root = styled<'span', SharedPropsArg>(
         [SIZE.large]: '40px',
       }[$size],
       justifyContent: 'space-between',
+      maxWith: $contentMaxWidth === null ? '100%' : 'auto',
       marginTop: '5px',
       marginBottom: '5px',
       marginLeft: '5px',

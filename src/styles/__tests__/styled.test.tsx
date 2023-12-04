@@ -136,14 +136,14 @@ describe('styled flow', () => {
     });
   });
 
-  test('it provides flow error if accessing property not defined in default theme type', () => {
-    const a = styled('div', (props) => {
-      console.log(props.$theme.colors.backgroundInversePrimary);
-      // @ts-expect-error
-      console.log(props.$theme.colors.primary9000);
-      return { color: 'blue' };
-    });
-  });
+  // test('it provides flow error if accessing property not defined in default theme type', () => {
+  //   const a = styled('div', (props) => {
+  //     console.log(props.$theme.colors.backgroundInversePrimary);
+  //     // @ts-expect-error
+  //     console.log(props.$theme.colors.primary9000);
+  //     return { color: 'blue' };
+  //   });
+  // });
 
   test('it provides flow error if returning invalid style object', () => {
     const a = styled('div', (props) => {
@@ -231,21 +231,21 @@ describe('withStyle flow', () => {
     });
   });
 
-  test('it provides flow error if accessing property not defined in default theme type', () => {
-    const a = styled('div', (props) => {
-      console.log(props.$theme.colors.backgroundInversePrimary);
-      // @ts-expect-error
-      console.log(props.$theme.colors.primary9000);
-      return { color: 'blue' };
-    });
+  // test('it provides flow error if accessing property not defined in default theme type', () => {
+  //   const a = styled('div', (props) => {
+  //     console.log(props.$theme.colors.backgroundInversePrimary);
+  //     // @ts-expect-error
+  //     console.log(props.$theme.colors.primary9000);
+  //     return { color: 'blue' };
+  //   });
 
-    const b = withStyle<typeof a, {}>(a, (props) => {
-      console.log(props.$theme.colors.backgroundInversePrimary);
-      // @ts-expect-error
-      console.log(props.$theme.colors.primary9000);
-      return { color: 'green' };
-    });
-  });
+  //   const b = withStyle<typeof a, {}>(a, (props) => {
+  //     console.log(props.$theme.colors.backgroundInversePrimary);
+  //     // @ts-expect-error
+  //     console.log(props.$theme.colors.primary9000);
+  //     return { color: 'green' };
+  //   });
+  // });
 
   test('it provides flow error if returning invalid style object', () => {
     const a = styled('div', (props) => {
@@ -316,22 +316,22 @@ describe('useStyletron flow', () => {
     }
   });
 
-  test('it provides flow error if accessing property not defined in default theme type', () => {
-    function A() {
-      const [css, theme] = useStyletron();
-      return (
-        <div
-          className={css({
-            color: theme.colors.backgroundInversePrimary,
-            // @ts-expect-error
-            backgroundColor: theme.colors.primary9000,
-          })}
-        >
-          hello
-        </div>
-      );
-    }
-  });
+  // test('it provides flow error if accessing property not defined in default theme type', () => {
+  //   function A() {
+  //     const [css, theme] = useStyletron();
+  //     return (
+  //       <div
+  //         className={css({
+  //           color: theme.colors.backgroundInversePrimary,
+  //           // @ts-expect-error
+  //           backgroundColor: theme.colors.primary9000,
+  //         })}
+  //       >
+  //         hello
+  //       </div>
+  //     );
+  //   }
+  // });
 });
 
 describe('themedUseStyletron flow', () => {

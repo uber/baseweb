@@ -26,6 +26,6 @@ export type IconProps = React.SVGAttributes<SVGElement> & {
   /** Color of icon, will be used as svg fill */
   color?: Color;
   /** Allows you to set the SVG `<title>` label, which is used for accessibility */
-  title?: string;
+  title?: string | null;
   overrides?: IconOverrides;
 } & StyledComponentArgs;

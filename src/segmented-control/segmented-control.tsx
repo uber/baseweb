@@ -214,6 +214,7 @@ export function SegmentedControl({
               disabled={disabled}
               sharedStylingProps={sharedStylingProps}
               onChange={onChange}
+              setKeyUpdated={setKeyUpdated}
               {...child.props}
             />
           );
@@ -246,6 +247,7 @@ function InternalSegment({
   disabled,
   sharedStylingProps,
   onChange,
+  setKeyUpdated,
   ...props
 }) {
   const key = childKey || String(childIndex);
@@ -288,6 +290,7 @@ function InternalSegment({
             segmentLayoutParamsAfterResize.length !== segmentLayoutParams.current.length ||
             segmentLayoutParamsAfterResize.distance !== segmentLayoutParams.current.distance
           ) {
+            setKeyUpdated(1);
             updateHighlight();
           }
         }

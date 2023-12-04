@@ -57,6 +57,7 @@ export type ListProps = {
 };
 
 export type LabelOverrides = {
+  LabelRoot?: Override;
   LabelContent?: Override;
   LabelDescription?: Override;
   LabelSublistContent?: Override;

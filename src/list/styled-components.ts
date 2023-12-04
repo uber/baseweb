@@ -117,6 +117,15 @@ export const StyledArtworkContainer = styled<'div', StyledArtworkContainerProps>
 
 StyledArtworkContainer.displayName = 'StyledArtworkContainer';
 
+export const StyledLabelRoot = styled('div', ({ $theme }) => {
+  return {
+    paddingTop: $theme.sizing.scale500,
+    paddingBottom: $theme.sizing.scale500,
+  };
+});
+
+StyledLabelRoot.displayName = 'StyledLabelRoot';
+
 export const StyledLabelContent = styled('p', ({ $theme }) => {
   return {
     ...$theme.typography.LabelMedium,
@@ -186,6 +195,7 @@ StyledHeadingContent.displayName = 'StyledHeadingContent';
 
 export const StyledHeadingContentRow = styled('div', {
   display: 'flex',
+  alignItems: 'baseline',
   justifyContent: 'space-between',
   width: '100%',
 });
@@ -196,7 +206,7 @@ export const StyledHeadingMainHeading = styled<'p', StyledHeadingHeadingProps>(
   'p',
   ({ $maxLines = 1, $theme }) => {
     return {
-      ...$theme.typography.HeadingSmall,
+      ...$theme.typography.HeadingXSmall,
       color: $theme.colors.contentPrimary,
       marginTop: 0,
       marginBottom: 0,
@@ -215,8 +225,8 @@ export const StyledHeadingSubHeading = styled<'p', StyledHeadingHeadingProps>(
   'p',
   ({ $maxLines = 1, $theme }) => {
     return {
-      ...$theme.typography.ParagraphLarge,
-      color: $theme.colors.contentPrimary,
+      ...$theme.typography.ParagraphMedium,
+      color: $theme.colors.contentSecondary,
       marginTop: 0,
       marginBottom: 0,
       marginRight: $theme.sizing.scale600,
@@ -247,7 +257,8 @@ export const StyledHeadingEndEnhancerContainer = styled<
 StyledHeadingEndEnhancerContainer.displayName = 'StyledHeadingEndEnhancerContainer';
 
 export const StyledHeadingEndEnhancerDescriptionContainer = styled('p', ({ $theme }) => ({
-  ...$theme.typography.ParagraphMedium,
+  ...$theme.typography.ParagraphSmall,
+  color: $theme.colors.contentSecondary,
   marginTop: 0,
   marginBottom: 0,
   display: 'flex',

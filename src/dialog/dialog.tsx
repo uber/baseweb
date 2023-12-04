@@ -16,7 +16,7 @@ import { StyledHeading, StyledBody, StyledRoot, StyledScrollContainer } from './
 import { PLACEMENT, SIZE } from './constants';
 import type { DialogProps, Artwork } from './types';
 
-function renderArtwork(artwork: Artwork): ReactNode {
+function renderArtwork(artwork?: Artwork): ReactNode {
   if (isValidElement(artwork)) {
     return artwork;
   } else if (typeof artwork === 'function') {
@@ -87,34 +87,48 @@ const Dialog = ({
     DefaultDismissButton
   );
 
-  const dialogRef = React.useRef(null);
+  const dialogRef = React.useRef<HTMLDialogElement>(null);
 
+  // controls the dialog's open/close state
   React.useEffect(() => {
     if (isOpen) {
       if (hasOverlay) {
-        // @ts-expect-error todo(ts-migration) TS18047 'dialogRef.current' is possibly 'null'.
-        dialogRef.current.showModal();
+        dialogRef.current?.showModal();
+        document.body.style.overflow = 'hidden';
       } else {
-        // @ts-expect-error todo(ts-migration) TS18047 'dialogRef.current' is possibly 'null'.
-        dialogRef.current.show();
+        dialogRef.current?.show();
       }
     } else {
-      // @ts-expect-error todo(ts-migration) TS18047 'dialogRef.current' is possibly 'null'.
-      dialogRef.current.close();
+      dialogRef.current?.close();
     }
   }, [isOpen, hasOverlay]);
 
+  // prevents background scrolling when the dialog is open and has an overlay
+  const originalOverflowRef = React.useRef<string>(document.body.style.overflow);
+  React.useEffect(() => {
+    const originalOverflow = originalOverflowRef.current;
+
+    if (isOpen && hasOverlay) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = originalOverflow;
+    }
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, [isOpen, hasOverlay]);
+
   function handleOutsideClick(e) {
-    // @ts-expect-error todo(ts-migration) TS18047 'dialogRef.current' is possibly 'null'.
-    if (!dialogRef.current.contains(e.target) || e.target.nodeName === 'DIALOG') {
-      // @ts-expect-error todo(ts-migration) TS2722 Cannot invoke an object which is possibly 'undefined'.
+    if (!handleDismiss) return;
+    if (!dialogRef.current?.contains(e.target) || e.target.nodeName === 'DIALOG') {
       handleDismiss();
     }
   }
 
   function handleEscapeKey(e) {
+    if (!handleDismiss) return;
     if (e.key === 'Escape') {
-      // @ts-expect-error todo(ts-migration) TS2722 Cannot invoke an object which is possibly 'undefined'.
       handleDismiss();
     }
   }
@@ -146,7 +160,6 @@ const Dialog = ({
       )}
 
       <ScrollContainer {...scrollContainerProps} tabIndex={0}>
-        {/* @ts-expect-error todo(ts-migration) TS2345 Argument of type 'Artwork | undefined' is not assignable to parameter of type 'Artwork'. */}
         {renderArtwork(artwork)}
         <Heading $numHeadingLines={numHeadingLines} {...headingProps}>
           {heading}

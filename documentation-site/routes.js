@@ -108,6 +108,10 @@ const routes = [
             itemId: '/components/pin-code',
           },
           {
+            title: 'Segmented Control',
+            itemId: '/components/segmented-control',
+          },
+          {
             title: 'Radio',
             itemId: '/components/radio',
           },
@@ -262,6 +266,10 @@ const routes = [
           {
             title: 'Tag',
             itemId: '/components/tag',
+          },
+          {
+            title: 'Tile',
+            itemId: '/components/tile',
           },
           {
             title: 'Tree View',

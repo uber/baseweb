@@ -185,7 +185,8 @@ class Toast extends React.Component<ToastProps, ToastPrivateState> {
   }
 
   render() {
-    const { children, closeable } = this.props;
+    const { children, closeable, autoFocus } = this.props;
+    const isAlertDialog = closeable && autoFocus;
     const { isRendered } = this.state;
     const {
       // @ts-ignore
@@ -211,18 +212,32 @@ class Toast extends React.Component<ToastProps, ToastPrivateState> {
     );
 
     const sharedProps = this.getSharedProps();
-
     if (!isRendered) {
       return null;
     }
+    // Default role is alert unless given a role in props or the toast has an autofocus close button
+    const role = this.props.hasOwnProperty('role')
+      ? this.props.role
+      : isAlertDialog
+      ? 'alertdialog'
+      : 'alert';
+
+    const ariaLive =
+      (!this.props.hasOwnProperty('role') && isAlertDialog) || this.props.role == 'alertdialog'
+        ? 'assertive'
+        : this.props.role == 'alert' || !this.props.hasOwnProperty('role')
+        ? undefined // adding both aria-live and role="alert" causes double speaking issues
+        : 'polite';
     return (
       <LocaleContext.Consumer>
         {(locale) => (
           <Body
-            role="alert"
+            role={role}
             data-baseweb={this.props['data-baseweb'] || 'toast'}
             {...sharedProps}
             {...bodyProps}
+            aria-atomic={true}
+            aria-live={ariaLive}
             // the properties below have to go after overrides
             onBlur={this.onBlur}
             onFocus={this.onFocus}
@@ -236,8 +251,9 @@ class Toast extends React.Component<ToastProps, ToastPrivateState> {
               <DeleteIcon
                 // @ts-ignore
                 ref={this.closeRef}
+                aria-hidden={true}
                 role="button"
-                tabIndex={0}
+                tabIndex={-1}
                 $isFocusVisible={this.state.isFocusVisible}
                 onClick={this.dismiss}
                 onKeyPress={(event) => {
