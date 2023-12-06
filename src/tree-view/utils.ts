@@ -177,7 +177,7 @@ export const toggleIsExpanded = (
       newNode.isExpanded = !newNode.isExpanded;
     }
     if (newNode.children && newNode.children.length) {
-      newNode.children = toggleIsExpanded(newNode.children, toggledNode);
+      newNode.children = toggleIsExpanded(newNode.children, toggledNode, getId);
     }
     return newNode;
   });
