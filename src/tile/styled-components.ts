@@ -28,9 +28,9 @@ export const StyledTileRoot = styled<
   minWidth: '163.5px',
   textDecoration: 'none',
   WebkitAppearance: 'none',
-  transitionProperty: 'background',
-  transitionDuration: $theme.animation.timing200,
-  transitionTimingFunction: $theme.animation.linearCurve,
+  transitionProperty: 'background, box-shadow',
+  transitionDuration: `${$theme.animation.timing200}, ${$theme.animation.timing500}`,
+  transitionTimingFunction: `${$theme.animation.linearCurve}, ${$theme.animation.easeOutQuinticCurve}`,
   cursor: 'pointer',
   ':disabled': {
     cursor: 'not-allowed',
