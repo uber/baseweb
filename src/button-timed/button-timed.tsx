@@ -21,21 +21,23 @@ const ButtonTimed = (props: ButtonTimedProps) => {
     overrides = {},
     ...restProps
   } = props;
+
+  const initialTimeMs = initialTime * 1000;
   const [startTime, setStartTime] = React.useState<number>(Date.now());
-  const [timeRemaining, setTimeRemaining] = React.useState<number>(initialTime * 1000);
+  const [timeRemaining, setTimeRemaining] = React.useState<number>(initialTimeMs);
 
   React.useEffect(() => {
     if (!paused) {
-      setStartTime(Date.now() - (initialTime * 1000 - timeRemaining));
+      setStartTime(Date.now() - (initialTimeMs - timeRemaining));
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [paused, initialTime]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- don't re-run this effect when timeRemaining changes
+  }, [paused, initialTimeMs]);
 
   React.useEffect(() => {
     const intervalId = setInterval(() => {
-      if (!paused) {
+      if (!paused && timeRemaining > 0) {
         const elapsed = Date.now() - startTime;
-        const remaining = Math.max(initialTime * 1000 - elapsed, 0);
+        const remaining = Math.max(initialTimeMs - elapsed, 0);
         setTimeRemaining(remaining);
         if (remaining === 0) {
           onClickProp();
@@ -44,7 +46,7 @@ const ButtonTimed = (props: ButtonTimedProps) => {
     }, 100);
 
     return () => clearInterval(intervalId);
-  }, [startTime, paused, onClickProp, initialTime]);
+  }, [startTime, paused, onClickProp, initialTimeMs, timeRemaining]);
 
   const onClick = () => {
     setTimeRemaining(0);

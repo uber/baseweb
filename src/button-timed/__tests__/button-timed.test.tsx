@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { render, act } from '@testing-library/react';
+import { render, act, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { ButtonTimed } from '..';
 
@@ -38,5 +38,20 @@ describe('<ButtonTimed />', () => {
 
     act(() => jest.advanceTimersByTime(5000));
     expect(onClickProp).toHaveBeenCalledTimes(1);
+  });
+
+  it('should keep time remaining at 0 after button is clicked', () => {
+    const { getByText } = render(<ButtonTimed initialTime={10} onClick={onClickProp} />);
+    act(() => jest.advanceTimersByTime(5000));
+    expect(getByText('(0:05)')).toBeInTheDocument();
+
+    const button = getByText('(0:05)').closest('button');
+    if (button) {
+      act(() => fireEvent.click(button));
+    }
+
+    expect(getByText('(0:00)')).toBeInTheDocument();
+    act(() => jest.advanceTimersByTime(1000));
+    expect(getByText('(0:00)')).toBeInTheDocument();
   });
 });
