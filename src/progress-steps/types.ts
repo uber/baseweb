@@ -51,6 +51,8 @@ export type StepProps = {
   isCompleted?: boolean;
   /** Defines if the step is currently active. */
   isActive?: boolean;
+  isCurrent?: boolean;
+  isRightBeforeActive?: boolean;
   /** Defines if the step is the last item displayed. Overriden by ProgressSteps, if used. */
   isLast?: boolean;
   /** when true, the step's description will continue to be displayed even after the step is completed. */
@@ -76,8 +78,11 @@ export type NumberedStepProps = {
   title?: ReactNode;
   /** Defines if the step is completed. */
   isCompleted?: boolean;
+  /** Defines if the step is the next one to be completed. */
+  isCurrent?: boolean;
   /** Defines if the step is currently active. */
   isActive?: boolean;
+  /** Defines if the step immediately precedes the active step. */
   isRightBeforeActive?: boolean;
   /** Defines if the step is the last item displayed. */
   isLast?: boolean;
@@ -93,6 +98,7 @@ export type NumberedStepProps = {
 export type StyleProps = {
   $isActive?: boolean;
   $isRightBeforeActive?: boolean;
+  $isCurrent?: boolean;
   $isCompleted?: boolean;
   $disabled?: boolean;
   $orientation?: Orientation;

@@ -174,11 +174,11 @@ StyledContent.displayName = 'StyledContent';
 
 export const StyledContentTitle = styled<'div', StyleProps>(
   'div',
-  ({ $theme, $isActive, $isCompleted, $orientation }) => {
+  ({ $theme, $isCurrent, $isCompleted, $orientation }) => {
     let color = $theme.colors.contentTertiary;
     if ($isCompleted) {
       color = $theme.colors.contentPrimary;
-    } else if ($isActive) {
+    } else if ($isCurrent) {
       color = $theme.colors.contentPrimary;
     }
     let font = $theme.typography.LabelMedium;
@@ -272,7 +272,7 @@ StyledNumberStep.displayName = 'StyledNumberStep';
 
 export const StyledNumberIcon = styled<'div', StyleProps>(
   'div',
-  ({ $theme, $isActive, $isCompleted, $orientation }) => {
+  ({ $theme, $isActive, $isCurrent, $isCompleted, $orientation }) => {
     let backgroundColor = $theme.colors.backgroundTertiary;
     let color = $theme.colors.contentPrimary;
     const size = $theme.sizing.scale1200;
@@ -281,7 +281,7 @@ export const StyledNumberIcon = styled<'div', StyleProps>(
     if ($isCompleted) {
       color = $theme.colors.progressStepsCompletedText;
       backgroundColor = $theme.colors.progressStepsCompletedFill;
-    } else if ($isActive) {
+    } else if ($isCurrent) {
       color = $theme.colors.progressStepsActiveText;
       backgroundColor = $theme.colors.progressStepsActiveFill;
     }
@@ -325,13 +325,13 @@ export const StyledNumberIcon = styled<'div', StyleProps>(
             '::before': {
               content: '""',
               position: 'absolute',
-              top: '-4px', // Offset for the gap and ring thickness
-              left: '-4px', // Offset for the gap and ring thickness
-              width: `calc(100% + 8px)`, // 8px larger to account for the gap and ring
-              height: `calc(100% + 8px)`, // 8px larger to account for the gap and ring
+              top: '-4px',
+              left: '-4px',
+              width: `calc(100% + 8px)`,
+              height: `calc(100% + 8px)`,
               borderRadius: '50%',
-              border: '2px solid ' + backgroundColor, // Ring thickness and color
-              boxSizing: 'border-box', // Ensures border is included in the dimensions
+              border: `2px solid ${$theme.colors.progressStepsActiveFill}`,
+              boxSizing: 'border-box',
             },
           }
         : {}),

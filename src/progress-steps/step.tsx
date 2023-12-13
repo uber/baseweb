@@ -24,8 +24,10 @@ import { ORIENTATION } from './constants';
 function Step({
   overrides = {},
   isCompleted,
+  isCurrent,
   isActive,
-  isLast,
+  isRightBeforeActive,
+  isLast = false,
   orientation = ORIENTATION.vertical,
   title,
   alwaysShowDescription,
@@ -48,7 +50,9 @@ function Step({
 
   const sharedProps = {
     $isCompleted: isCompleted,
+    $isCurrent: isCurrent,
     $isActive: isActive,
+    $isRightBeforeActive: isRightBeforeActive,
     $orientation: orientation,
   };
 
@@ -82,10 +86,5 @@ function Step({
     </>
   );
 }
-
-Step.defaultProps = {
-  isCompleted: false,
-  isLast: false,
-};
 
 export default Step;
