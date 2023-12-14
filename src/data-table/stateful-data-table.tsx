@@ -157,6 +157,7 @@ export function StatefulDataTable(props: StatefulDataTableProps) {
 
   const filterable = props.filterable === undefined ? true : props.filterable;
   const searchable = props.searchable === undefined ? true : props.searchable;
+  const selectable = props.selectable === undefined ? false : props.selectable;
 
   return (
     <StatefulContainer
@@ -199,7 +200,7 @@ export function StatefulDataTable(props: StatefulDataTableProps) {
         <React.Fragment>
           <div className={css({ height: `${headlineHeight}px` })}>
             <div ref={headlineRef}>
-              {!selectedRowIds.size && (
+              {(selectable || !selectedRowIds.size) && (
                 <div
                   className={css({
                     alignItems: 'end',
@@ -289,6 +290,7 @@ export function StatefulDataTable(props: StatefulDataTableProps) {
 
           <div style={{ width: '100%', height: `calc(100% - ${headlineHeight}px)` }}>
             <DataTable
+              selectable={selectable}
               batchActions={props.batchActions}
               columns={props.columns}
               emptyMessage={props.emptyMessage}

@@ -647,6 +647,7 @@ function MeasureScrollbarWidth(props) {
 }
 
 export function DataTable({
+  selectable,
   batchActions,
   columns,
   filters,
@@ -870,7 +871,7 @@ export function DataTable({
     resetAfterColumnIndex(0);
   }, [normalizedWidths]);
 
-  const isSelectable = batchActions ? !!batchActions.length : false;
+  const isSelectable = (batchActions ? !!batchActions.length : false) || !!selectable;
   const isSelectedAll = React.useMemo(() => {
     if (!selectedRowIds) {
       return false;

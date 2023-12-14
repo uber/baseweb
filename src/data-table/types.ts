@@ -97,6 +97,7 @@ export type ControlRef = {
 };
 
 export type StatefulDataTableProps = {
+  selectable?: boolean;
   batchActions?: BatchAction[];
   columns: ColumnOptions[];
   emptyMessage?: string | React.ComponentType<{}>;
@@ -134,6 +135,7 @@ export type StatefulDataTableProps = {
 };
 
 export type DataTableProps = {
+  selectable?: boolean;
   emptyMessage?: string | React.ComponentType<{}>;
   filters?: Map<
     string,
