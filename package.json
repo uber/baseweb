@@ -14,8 +14,11 @@
   "module": "./esm/index.js",
   "repository": "uber/baseweb",
   "scripts": {
-    "dev": "next dev documentation-site",
-    "build": "NODE_OPTIONS=--max_old_space_size=8192 next build documentation-site",
+    "dev:docs": "next dev documentation-site",
+    "dev:ladle": "ladle serve",
+    "build:docs": "next build documentation-site",
+    "build:ladle": "ladle build",
+    "build": "ladle build && next build documentation-site && mv build public/ladle",
     "prepare": "husky install"
   },
   "dependencies": {
