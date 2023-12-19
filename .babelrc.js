@@ -22,11 +22,11 @@ if (process.env.BABEL_ENV === "es") {
 module.exports = {
   presets: [
     ...defaultPresets,
-    "@babel/preset-react",
+    "@babel/react",
     "@babel/preset-typescript",
   ],
   plugins: [
-    "./babel/transform-cup-globals.js",
+    "./publish/transform-cup-globals.js",
     [
       "babel-plugin-transform-styletron-display-name",
       { importSources: "any" },
@@ -45,8 +45,8 @@ module.exports = {
   ],
   env: {
     test: {
-      plugins: [["./babel/transform-cup-globals.js"]],
+      plugins: [["./publish/transform-cup-globals.js"]],
     },
   },
-  ignore: ["./babel/transform-cup-globals.js"],
+  ignore: ["./publish/transform-cup-globals.js"],
 };

@@ -4,9 +4,10 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-
 import * as t from "@babel/types";
+// @ts-ignore
 import template from "@babel/template";
+// @ts-ignore
 import generate from "@babel/generator";
 import { formatCode, parse } from "react-view";
 

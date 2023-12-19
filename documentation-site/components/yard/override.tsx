@@ -69,11 +69,6 @@ const SharedPropsTooltip: React.FC<{
         </React.Fragment>
       );
     } else {
-      if (process.env.WEBSITE_ENV !== "production") {
-        console.warn(
-          `Could not find a tooltip description for "${name}". Is this prop included in the yard configuration?`,
-        );
-      }
       return "-";
     }
   };
@@ -113,7 +108,12 @@ const Override: React.FC<TProps> = ({
   const isLightTheme = theme.name.startsWith("light-theme");
   const code = overridesObj[overrideKey] ? overridesObj[overrideKey].style : "";
   return (
-    <div className={css({ paddingRight: "10px", paddingBottom: "16px" })}>
+    <div
+      className={css({
+        paddingRight: "10px",
+        paddingBottom: "16px",
+      })}
+    >
       <Editor
         onChange={(newCode) => {
           set({
