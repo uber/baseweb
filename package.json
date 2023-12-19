@@ -17,7 +17,8 @@
     "build:cjs": "cross-env NODE_ENV=production BABEL_ENV=cjs babel ./src --out-dir ./dist --extensions '.ts,.tsx,.js' --ignore **.test.*,**/__tests__/**,**/e2e.*,**/template-component/**,**/test/**",
     "dev": "next dev documentation-site",
     "build": "NODE_OPTIONS=--max_old_space_size=8192 next build documentation-site",
-    "export": "next export documentation-site -o public"
+    "export": "next export documentation-site -o public",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@date-io/date-fns": "^2.13.1",
@@ -77,10 +78,13 @@
     "codesandboxer": "^1.0.3",
     "cross-env": "^7.0.3",
     "email-validator": "^2.0.4",
+    "husky": "^8.0.0",
     "just-omit": "^1.1.0",
     "just-pick": "^2.1.0",
+    "lint-staged": "^15.1.0",
     "next": "^12.3.1",
     "next-images": "^1.6.2",
+    "prettier": "^3.1.1",
     "prism-react-renderer": "^1.0.1",
     "raw-loader": "^4.0.2",
     "react-codesandboxer": "^3.1.5",
