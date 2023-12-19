@@ -8,7 +8,7 @@ export default function Example() {
   return (
     <Accordion>
         <Panel title="Accordion panel 1">{content}</Panel>
-      <Panel title="Accordion panel 2">{content}</Panel>
+          <Panel title="Accordion panel 2">{content}</Panel>
       <Panel title="Accordion panel 3">{content}</Panel>
     </Accordion>
   );
