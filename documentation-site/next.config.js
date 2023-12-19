@@ -29,53 +29,46 @@ module.exports = withMDX({
   },
   webpack: (config, { buildId, dev, isServer, defaultLoaders }) => {
     // Exclude image formats from next-image-loader
-    const imageRuleIndex = config.module.rules.findIndex(
-      (rule) => rule.loader === "next-image-loader",
-    );
-    if (imageRuleIndex !== -1) {
-      config.module.rules[imageRuleIndex].exclude =
-        /\.(png|jpe?g|gif|webp|svg)$/i;
-    }
+    // const imageRuleIndex = config.module.rules.findIndex(
+    //   (rule) => rule.loader === "next-image-loader",
+    // );
+    // if (imageRuleIndex !== -1) {
+    //   config.module.rules[imageRuleIndex].exclude =
+    //     /\.(png|jpe?g|gif|webp|svg)$/i;
+    // }
 
-    config.module.rules.push({
-      test: /\.(png|jpe?g|gif|webp|svg)$/i,
-      use: [
-        {
-          loader: "file-loader",
-          options: {
-            publicPath: "/_next/static/images/",
-            outputPath: "static/images/",
-            name: "[name]-[hash].[ext]",
-          },
-        },
-      ],
-    });
+    // config.module.rules.push({
+    //   test: /\.(png|jpe?g|gif|webp|svg)$/i,
+    //   use: [
+    //     {
+    //       loader: "raw-loader",
+    //       options: {
+    //         publicPath: "/_next/static/images/",
+    //         outputPath: "static/images/",
+    //         name: "[name]-[hash].[ext]",
+    //       },
+    //     },
+    //   ],
+    // });
 
-    config.optimization.splitChunks.maxSize = 20_000;
-
-    config.resolve.alias.baseui = resolve(__dirname, "../dist");
-    config.resolve.alias.examples = resolve(__dirname, "examples");
-    // references next polyfills example: https://github.com/zeit/next.js/tree/canary/examples/with-polyfills
-    const originalEntry = config.entry;
+    //   // config.optimization.splitChunks.maxSize = 20_000;
+    //   // config.resolve.alias.baseui = resolve(__dirname, "../dist");
+    //   // config.resolve.alias.examples = resolve(__dirname, "examples");
+    //   // // references next polyfills example: https://github.com/zeit/next.js/tree/canary/examples/with-polyfills
+    //   // const originalEntry = config.entry;
     config.resolve.fallback = { fs: false };
-    config.entry = async () => {
-      const entries = await originalEntry();
+    //   // config.entry = async () => {
+    //   //   const entries = await originalEntry();
+    //   //   if (
+    //   //     entries["main.js"] &&
+    //   //     !entries["main.js"].includes("./helpers/polyfills.js")
+    //   //   ) {
+    //   //     entries["main.js"].unshift("./helpers/polyfills.js");
+    //   //   }
 
-      if (
-        entries["main.js"] &&
-        !entries["main.js"].includes("./helpers/polyfills.js")
-      ) {
-        entries["main.js"].unshift("./helpers/polyfills.js");
-      }
-
-      return entries;
-    };
-
-    if (dev) {
-      config.devtool = "inline-source-map";
-    }
+    //   //   return entries;
+    //   // };
 
     return config;
   },
-  pageExtensions: ["js", "jsx", "mdx"],
 });

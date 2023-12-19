@@ -35,13 +35,11 @@ const NestedTooltip: React.FC<{ name: string; nestedName: string }> = ({
             interactive playground and see the resulting code bellow.
           </p>
           <p>
-            <Link href="/guides/understanding-overrides#override-nested-components">
-              <a
-                className={css({ color: theme.colors.primaryB })}
-                href="/guides/understanding-overrides#override-nested-components"
-              >
-                Learn more about nested overrides.
-              </a>
+            <Link
+              href="/guides/understanding-overrides#override-nested-components"
+              className={css({ color: theme.colors.primaryB })}
+            >
+              Learn more about nested overrides.
             </Link>
           </p>
         </div>

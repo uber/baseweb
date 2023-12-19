@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from "react";
 import Link from "next/link";
+import Image from 'next/image';
 import { themedUseStyletron as useStyletron } from "../pages/_app";
 import Menu from "baseui/icon/menu";
 import DarkLogo from "../images/base-web.svg";
@@ -61,28 +62,28 @@ export default function HeaderNavigation({
         })}
       >
         {/* Base Web Logo */}
-        <Link href="/">
+        <Link
+          href="/"
+          className={css({
+            display: "flex",
+            marginLeft:
+              theme.direction === "rtl" ? theme.sizing.scale400 : "none",
+            marginRight:
+              theme.direction === "rtl" ? "none" : theme.sizing.scale400,
+            ":focus": {
+              outline: `3px solid ${theme.colors.accent}`,
+              outlineOffset: "5px",
+            },
+          })}>
           {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-          <a
-            className={css({
-              display: "flex",
-              marginLeft:
-                theme.direction === "rtl" ? theme.sizing.scale400 : "none",
-              marginRight:
-                theme.direction === "rtl" ? "none" : theme.sizing.scale400,
-              ":focus": {
-                outline: `3px solid ${theme.colors.accent}`,
-                outlineOffset: "5px",
-              },
-            })}
-          >
-            <img
-              src={theme.name.startsWith("dark") ? LightLogo : DarkLogo}
-              alt="Base Web"
-              height="40px"
-              width="97px"
-            />
-          </a>
+
+          <Image
+            src={theme.name.startsWith("dark") ? LightLogo : DarkLogo}
+            alt="Base Web"
+            height={40}
+            width={97}
+          />
+
         </Link>
         {/* Version Selector */}
         <div
@@ -96,7 +97,7 @@ export default function HeaderNavigation({
           <VersionSelector />
         </div>
         {/* Link to blog */}
-        <Link href="/blog" passHref>
+        <Link href="/blog" passHref legacyBehavior>
           <Button
             $as="a"
             size={SIZE.compact}
@@ -116,7 +117,7 @@ export default function HeaderNavigation({
           </Button>
         </Link>
         {/* Link to component gallery */}
-        <Link href="/components" passHref>
+        <Link href="/components" passHref legacyBehavior>
           <Button
             $as="a"
             size={SIZE.compact}

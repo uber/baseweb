@@ -71,7 +71,7 @@ const Index = () => {
               }}
             >
               <StyledAction>
-                <Link href={p.path}>
+                <Link href={p.path} legacyBehavior>
                   <Button
                     kind={KIND.secondary}
                     $as="a"

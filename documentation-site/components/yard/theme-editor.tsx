@@ -141,7 +141,7 @@ const ThemeEditor: React.FC<ThemeEditorProps> = ({
       >
         Do you want to change {componentName} colors globally? You can customize
         the theme through ThemeProvider and set your own colors.{" "}
-        <Link href="/guides/theming/#a-custom-theme">
+        <Link href="/guides/theming/#a-custom-theme" legacyBehavior>
           <StyledLink href="/guides/theming/#a-custom-theme">
             Learn more
           </StyledLink>

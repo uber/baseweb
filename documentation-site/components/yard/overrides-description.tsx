@@ -19,7 +19,7 @@ const OverridesDescription: React.FC<{ componentName: string }> = ({
   >
     Additionally, you can fully customize any part of the {componentName}{" "}
     component through the overrides prop (
-    <Link href="/guides/understanding-overrides">
+    <Link href="/guides/understanding-overrides" legacyBehavior>
       <StyledLink href="/guides/understanding-overrides">learn more</StyledLink>
     </Link>
     ). Try to update different <b>style overrides</b> in the explorer bellow:

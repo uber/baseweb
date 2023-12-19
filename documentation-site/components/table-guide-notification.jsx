@@ -19,7 +19,7 @@ export default function UnstableWarning() {
     >
       <>
         View the{" "}
-        <Link href="/guides/tables">
+        <Link href="/guides/tables" legacyBehavior>
           <StyledLink href="/guides/tables">table guide</StyledLink>
         </Link>{" "}
         to see which Base Web table is best suited for your application.

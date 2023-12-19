@@ -49,7 +49,7 @@ const CustomNavItem = ({
 
 const CustomNavLink = (props) => {
   return props.href ? (
-    <Link href={props.href}>
+    <Link href={props.href} legacyBehavior>
       <StyledNavLink {...props} />
     </Link>
   ) : (

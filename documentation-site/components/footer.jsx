@@ -83,7 +83,7 @@ function Footer() {
         >
           Changelog
         </StyledLink>
-        <Link href="/blog">
+        <Link href="/blog" legacyBehavior>
           <StyledLink href="/blog">Blog</StyledLink>
         </Link>
       </Block>

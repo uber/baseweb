@@ -24,7 +24,7 @@ export default function UnstableWarning() {
         publish unstable components so that feedback can be presented before
         {/* eslint-disable-next-line react/no-unescaped-entities */}
         aligning on a consistent design. Please see baseui's{" "}
-        <Link href="/discover-more/versioning-policy">
+        <Link href="/discover-more/versioning-policy" legacyBehavior>
           <StyledLink href="/discover-more/versioning-policy">
             versioning policy
           </StyledLink>
