@@ -13,6 +13,10 @@ const withMDX = require("@next/mdx")({
 /** @type {import('next').NextConfig} */
 module.exports = withMDX({
   output: "export",
+  distDir: "../public",
+  images: {
+    unoptimized: true,
+  },
   typescript: {
     ignoreBuildErrors: true,
   },
@@ -21,6 +25,7 @@ module.exports = withMDX({
   experimental: {
     esmExternals: "loose",
     externalDir: true,
+    webpackBuildWorker: true,
   },
   webpack: (config, { dev, isServer, webpack }) => {
     // workaround for react-view and babel
