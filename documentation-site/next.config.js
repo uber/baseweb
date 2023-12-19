@@ -30,6 +30,7 @@ module.exports = withMDX({
   webpack: (config, { dev, isServer, webpack }) => {
     // workaround for react-view and babel
     config.resolve.fallback = { fs: false };
+    config.optimization.splitChunks.maxSize = 20000;
     config.plugins.push(
       new webpack.DefinePlugin({
         __DEV__: dev,
