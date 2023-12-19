@@ -7,29 +7,38 @@ LICENSE file in the root directory of this source tree.
 
 /* eslint-env browser */
 
-import * as React from 'react';
+import * as React from "react";
 
-import ChevronDown from 'baseui/icon/chevron-down';
-import { StatefulPopover, PLACEMENT as PopoverPlacement } from 'baseui/popover';
-import { StatefulMenu, NestedMenus } from 'baseui/menu';
-import { Button, KIND } from 'baseui/button';
+import ChevronDown from "baseui/icon/chevron-down";
+import {
+  StatefulPopover,
+  PLACEMENT as PopoverPlacement,
+} from "baseui/popover";
+import { StatefulMenu, NestedMenus } from "baseui/menu";
+import { Button, KIND } from "baseui/button";
 
-import { version } from '../../package.json';
+import pkg from "../../package.json";
 
-const currentMajor = parseInt(version.split('.')[0], 10);
-const majors = [...Array(8).keys()].map((i) => i + currentMajor - 8);
+const { version } = pkg;
+
+const currentMajor = parseInt(version.split(".")[0], 10);
+const majors = [...Array(8).keys()].map(
+  (i) => i + currentMajor - 8
+);
 const majorVersions = majors.reverse().map((version) => ({
   label: `v${version}`,
 }));
 
-const majorVersionsToDisplay = majorVersions.map((version) => {
-  const { label } = version;
+const majorVersionsToDisplay = majorVersions.map(
+  (version) => {
+    const { label } = version;
 
-  return {
-    label,
-    originalVersionNumber: label,
-  };
-});
+    return {
+      label,
+      originalVersionNumber: label,
+    };
+  }
+);
 const VersionSelector = () => {
   return (
     <StatefulPopover
@@ -42,13 +51,15 @@ const VersionSelector = () => {
           <StatefulMenu
             items={majorVersionsToDisplay}
             onItemSelect={({ item }) => {
-              window.open(`https://${item.label}.baseweb.design`);
+              window.open(
+                `https://${item.label}.baseweb.design`
+              );
               close();
             }}
             overrides={{
               List: {
                 style: {
-                  width: '100px',
+                  width: "100px",
                 },
               },
             }}
@@ -56,7 +67,11 @@ const VersionSelector = () => {
         </NestedMenus>
       )}
     >
-      <Button size="compact" kind={KIND.tertiary} endEnhancer={() => <ChevronDown size={20} />}>
+      <Button
+        size="compact"
+        kind={KIND.tertiary}
+        endEnhancer={() => <ChevronDown size={20} />}
+      >
         v{version}
       </Button>
     </StatefulPopover>
