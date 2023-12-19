@@ -10,7 +10,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from "react";
 
 import Head from "next/head";
-import Img from "next/image";
+import Img from "next/legacy/image";
 import { Block } from "baseui/block";
 import { StyledLink } from "baseui/link";
 import Code from "./code";
