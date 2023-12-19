@@ -18,7 +18,7 @@
     "dev:ladle": "ladle serve",
     "build:docs": "next build documentation-site",
     "build:ladle": "ladle build",
-    "build": "ladle build && next build documentation-site && mv build public/ladle",
+    "build": "ladle build && next build documentation-site && mkdir -p public && mv build public/ladle && cp -r documentation-site/out/* public",
     "prepare": "husky install"
   },
   "dependencies": {

@@ -34,7 +34,7 @@ const CustomStyledNavItem = withStyle(
             : $theme.typography.font250),
         }
       : {}),
-  }),
+  })
 );
 
 const removeSlash = (path) => path && path.replace(/\/$/, "");

@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from "react";
 import { Block } from "baseui/block";
+import { useRouter } from "next/router";
 import { Button, KIND, SIZE } from "baseui/button";
 import TableOfContents from "./table-of-contents";
 import { themedStyled } from "../pages/_app";
@@ -79,131 +80,110 @@ const ContentWrapper = themedStyled(
   })
 );
 
-class Layout extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      sidebarOpen: false,
-    };
+const Layout = ({
+  toggleTheme,
+  toggleDirection,
+  children,
+  hideSideNavigation,
+  maxContentWidth,
+}) => {
+  const [sidebarOpen, setSidebarOpen] = React.useState(false);
+  const router = useRouter();
+  let path = router.pathname || "";
+
+  // strip the query string
+  path = path.split("?")[0];
+
+  if (path && path.endsWith("/")) {
+    path = path.slice(0, -1);
   }
-  render() {
-    const { sidebarOpen } = this.state;
-    const { toggleTheme, toggleDirection, children } =
-      this.props;
-    let { path = "" } = this.props;
 
-    // strip the query string
-    path = path.split("?")[0];
-
-    if (path && path.endsWith("/")) {
-      path = path.slice(0, -1);
-    }
-
-    const route = findByPath(Routes, path);
-    let isGitHubEditDisabled;
-    let githubUrl;
-    if (!path || !route) {
-      isGitHubEditDisabled = true;
+  const route = findByPath(Routes, path);
+  let isGitHubEditDisabled;
+  let githubUrl;
+  if (!path || !route) {
+    isGitHubEditDisabled = true;
+  } else {
+    isGitHubEditDisabled = route.isGitHubEditDisabled;
+    if (route.components) {
+      githubUrl = `${GH_URL}${path}/index.mdx`;
     } else {
-      isGitHubEditDisabled = route.isGitHubEditDisabled;
-      if (route.components) {
-        githubUrl = `${GH_URL}${path}/index.mdx`;
-      } else {
-        githubUrl = `${GH_URL}${path}.mdx`;
-      }
+      githubUrl = `${GH_URL}${path}.mdx`;
     }
-
-    return (
-      <DirectionContext.Consumer>
-        {(direction) => (
-          <React.Fragment>
-            <SkipToContent />
-            <HeaderNavigation
-              toggleSidebar={() =>
-                this.setState((prevState) => ({
-                  sidebarOpen: !prevState.sidebarOpen,
-                }))
-              }
-              toggleTheme={toggleTheme}
-              toggleDirection={toggleDirection}
-            />
-            <Block
-              backgroundColor="backgroundPrimary"
-              color="contentPrimary"
-              marginTop="scale300"
-              display="flex"
-              paddingTop="scale400"
-              justifyContent="center"
-            >
-              <SidebarWrapper
-                aria-label="primary"
-                $isOpen={sidebarOpen}
-                $hideSideNavigation={
-                  !!this.props.hideSideNavigation
-                }
-                onClick={() =>
-                  sidebarOpen &&
-                  this.setState({ sidebarOpen: false })
-                }
-              >
-                <Sidebar path={path} />
-              </SidebarWrapper>
-              <ContentWrapper
-                id="docSearch-content"
-                role="main"
-                tabIndex="-1"
-                $isSidebarOpen={sidebarOpen}
-                $maxWidth={this.props.maxContentWidth}
-              >
-                {isGitHubEditDisabled ? null : (
-                  <Block
-                    display={["none", "block"]}
-                    position="absolute"
-                    top="-10px"
-                    overrides={{
-                      Block: {
-                        style: {
-                          [direction === "rtl"
-                            ? "left"
-                            : "right"]: 0,
-                          [direction === "rtl"
-                            ? "right"
-                            : "left"]: "auto",
-                        },
-                      },
-                    }}
-                  >
-                    <Button
-                      startEnhancer={() => (
-                        <PencilIcon
-                          size={16}
-                          color="#666666"
-                        />
-                      )}
-                      $as="a"
-                      href={githubUrl}
-                      target="_blank"
-                      size={SIZE.compact}
-                      kind={KIND.tertiary}
-                    >
-                      Edit this page
-                    </Button>
-                  </Block>
-                )}
-                {children}
-              </ContentWrapper>
-              <TOCWrapper>
-                <TableOfContents
-                  content={React.Children.toArray(children)}
-                />
-              </TOCWrapper>
-            </Block>
-            <Footer />
-          </React.Fragment>
-        )}
-      </DirectionContext.Consumer>
-    );
   }
-}
+
+  return (
+    <DirectionContext.Consumer>
+      {(direction) => (
+        <React.Fragment>
+          <SkipToContent />
+          <HeaderNavigation
+            toggleSidebar={() => setSidebarOpen(!sidebarOpen)}
+            toggleTheme={toggleTheme}
+            toggleDirection={toggleDirection}
+          />
+          <Block
+            backgroundColor="backgroundPrimary"
+            color="contentPrimary"
+            marginTop="scale300"
+            display="flex"
+            paddingTop="scale400"
+            justifyContent="center"
+          >
+            <SidebarWrapper
+              aria-label="primary"
+              $isOpen={sidebarOpen}
+              $hideSideNavigation={!!hideSideNavigation}
+              onClick={() => sidebarOpen && setSidebarOpen(false)}
+            >
+              <Sidebar path={path} />
+            </SidebarWrapper>
+            <ContentWrapper
+              id="docSearch-content"
+              role="main"
+              tabIndex="-1"
+              $isSidebarOpen={sidebarOpen}
+              $maxWidth={maxContentWidth}
+            >
+              {isGitHubEditDisabled ? null : (
+                <Block
+                  display={["none", "block"]}
+                  position="absolute"
+                  top="-10px"
+                  overrides={{
+                    Block: {
+                      style: {
+                        [direction === "rtl" ? "left" : "right"]: 0,
+                        [direction === "rtl" ? "right" : "left"]: "auto",
+                      },
+                    },
+                  }}
+                >
+                  <Button
+                    startEnhancer={() => (
+                      <PencilIcon size={16} color="#666666" />
+                    )}
+                    $as="a"
+                    href={githubUrl}
+                    target="_blank"
+                    size={SIZE.compact}
+                    kind={KIND.tertiary}
+                  >
+                    Edit this page
+                  </Button>
+                </Block>
+              )}
+              {children}
+            </ContentWrapper>
+            <TOCWrapper>
+              <TableOfContents content={React.Children.toArray(children)} />
+            </TOCWrapper>
+          </Block>
+          <Footer />
+        </React.Fragment>
+      )}
+    </DirectionContext.Consumer>
+  );
+};
 
 export default Layout;

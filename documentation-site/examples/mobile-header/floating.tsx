@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Image from 'next/image';
 import {MobileHeader, TYPE} from 'baseui/mobile-header';
 import ArrowLeft from 'baseui/icon/arrow-left';
 
@@ -53,13 +52,12 @@ export default function Example() {
         style={{height: '100%', width: '100%', overflowY: 'auto'}}
         tabIndex={0}
       >
-        <Image
-          sizes="100vw"
+        <img
           style={{
             width: '100%',
             height: 'auto',
           }}
-          src={map}
+          src={map.src}
           alt="SF map"
         />
       </div>

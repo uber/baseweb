@@ -6,36 +6,25 @@ LICENSE file in the root directory of this source tree.
 */
 
 import * as React from "react";
-import Image from "next/image";
 import { Block } from "baseui/block";
 import Head from "next/head";
 import { H1 } from "./markdown-elements";
 import { themedStyled } from "../pages/_app";
 
-export const Caption = themedStyled(
-  "figcaption",
-  ({ $theme }) => ({
-    color: $theme.colors.contentSecondary,
-    fontFamily: $theme.typography.font100.fontFamily,
-    fontSize: $theme.sizing.scale500,
-    fontWeight: 300,
-    textAlign: "center",
-    padding: "4px 4px 0 0",
-  })
-);
+export const Caption = themedStyled("figcaption", ({ $theme }) => ({
+  color: $theme.colors.contentSecondary,
+  fontFamily: $theme.typography.font100.fontFamily,
+  fontSize: $theme.sizing.scale500,
+  fontWeight: 300,
+  textAlign: "center",
+  padding: "4px 4px 0 0",
+}));
 
-export const BlogImage = ({
-  full,
-  alt,
-  caption,
-  src,
-  style,
-}) => (
+export const BlogImage = ({ full, alt, caption, src, style }) => (
   <figure style={{ margin: 0 }}>
-    <Image
-      src={src}
+    <img
+      src={src.src}
       alt={alt}
-      sizes="100vw"
       style={{
         width: "100%",
         height: "auto",
@@ -98,11 +87,7 @@ export const Meta = ({
 }) => (
   <React.Fragment>
     <Head>
-      <meta
-        property="og:title"
-        content={title}
-        name="title"
-      />
+      <meta property="og:title" content={title} name="title" />
       <meta property="og:type" content="article" />
       <meta
         property="og:description"
@@ -110,17 +95,9 @@ export const Meta = ({
         key="description"
         name="description"
       />
-      <meta
-        property="article:author"
-        content={author}
-        name="author"
-      />
+      <meta property="article:author" content={author} name="author" />
       {keyWords.map((kw) => (
-        <meta
-          property="article:tag"
-          content={kw}
-          key={`article:tag:${kw}`}
-        />
+        <meta property="article:tag" content={kw} key={`article:tag:${kw}`} />
       ))}
       <meta
         property="article:published_time"
@@ -129,16 +106,10 @@ export const Meta = ({
       <meta property="og:image" content={coverImage} />
       {/* Best practice to specify these, but will usually work regardless. Ideal dimensions are 1200x630. */}
       {coverImageWidth ? (
-        <meta
-          property="og:image:width"
-          content={coverImageWidth}
-        />
+        <meta property="og:image:width" content={coverImageWidth} />
       ) : null}
       {coverImageHeight ? (
-        <meta
-          property="og:image:height"
-          content={coverImageHeight}
-        />
+        <meta property="og:image:height" content={coverImageHeight} />
       ) : null}
     </Head>
     <Block
@@ -157,8 +128,7 @@ export const Meta = ({
           Block: {
             style: ({ $theme }) => ({
               color: $theme.colors.contentSecondary,
-              fontFamily:
-                $theme.typography.font100.fontFamily,
+              fontFamily: $theme.typography.font100.fontFamily,
               margin: `${$theme.sizing.scale400} 0`,
             }),
           },
