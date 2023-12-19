@@ -1,6 +1,6 @@
 {
-  "documentation-site/*.{js,ts,tsx,css,scss,postcss,md,mdx,json}": [
-    "prettier --write --plugin-search-dir=.",
-    "prettier --check --plugin-search-dir=."
+  "documentation-site/**/*.{js,ts,tsx,css,scss,postcss,md,mdx,json}": [
+    "prettier --write",
+    "prettier --check"
   ]
 }
