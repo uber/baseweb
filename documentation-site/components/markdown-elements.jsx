@@ -33,14 +33,9 @@ const getText = (children) => {
   return label;
 };
 
-export const cleanAnchor = (anchor) =>
-  slugify(getText(anchor));
+export const cleanAnchor = (anchor) => slugify(getText(anchor));
 
-export const Heading = ({
-  element,
-  fontType,
-  children,
-}) => {
+export const Heading = ({ element, fontType, children }) => {
   const [hoverRef, isHovered] = useHover();
   const slug = cleanAnchor(children);
   return (
@@ -54,11 +49,7 @@ export const Heading = ({
     >
       <React.Fragment>
         {children}{" "}
-        <Anchor
-          isVisible={isHovered}
-          slug={slug}
-          element={element}
-        />
+        <Anchor isVisible={isHovered} slug={slug} element={element} />
       </React.Fragment>
     </Block>
   );
@@ -76,29 +67,24 @@ export const Paragraph = (props) => (
   </Block>
 );
 
-export const UnorderedList = (props) => (
-  <ul>{props.children}</ul>
-);
+export const UnorderedList = (props) => <ul>{props.children}</ul>;
 
-export const InlineCode = themedStyled(
-  "code",
-  ({ $theme }) => {
-    return {
-      ...$theme.typography.MonoParagraphMedium,
-      backgroundColor: "rgba(27, 31, 35, 0.05)",
-      borderTopLeftRadius: "3px",
-      borderTopRightRadius: "3px",
-      borderBottomRightRadius: "3px",
-      borderBottomLeftRadius: "3px",
-      fontSize: "85%",
-      marginLeft: 0,
-      marginRight: 0,
-      marginTop: 0,
-      marginBottom: 0,
-      padding: "0.2em 0.4em",
-    };
-  }
-);
+export const InlineCode = themedStyled("code", ({ $theme }) => {
+  return {
+    ...$theme.typography.MonoParagraphMedium,
+    backgroundColor: "rgba(27, 31, 35, 0.05)",
+    borderTopLeftRadius: "3px",
+    borderTopRightRadius: "3px",
+    borderBottomRightRadius: "3px",
+    borderBottomLeftRadius: "3px",
+    fontSize: "85%",
+    marginLeft: 0,
+    marginRight: 0,
+    marginTop: 0,
+    marginBottom: 0,
+    padding: "0.2em 0.4em",
+  };
+});
 
 const Blockquote = themedStyled("blockquote", {
   backgroundColor: "rgba(27, 31, 35, 0.03)",
@@ -116,8 +102,7 @@ const Blockquote = themedStyled("blockquote", {
 export const DocLink = ({ children, href }) => {
   const parts = href.split("#");
   const internal =
-    (parts[0] === "" && parts[1] !== "") ||
-    !href.includes("http");
+    (parts[0] === "" && parts[1] !== "") || !href.includes("http");
   if (internal) {
     return (
       <Link href={href}>
@@ -136,9 +121,7 @@ export const H1 = ({ children }) => (
   <React.Fragment>
     <Head>
       <title key="title">
-        {process.env.NODE_ENV !== "production"
-          ? "[DEV] "
-          : ""}
+        {process.env.NODE_ENV !== "production" ? "[DEV] " : ""}
         Base Web - {children}
       </title>
     </Head>
@@ -149,11 +132,7 @@ export const H1 = ({ children }) => (
 );
 
 export const H2 = ({ children }) => (
-  <Heading
-    element="h2"
-    fontType="font650"
-    marginTop="scale1000"
-  >
+  <Heading element="h2" fontType="font650" marginTop="scale1000">
     {children}
   </Heading>
 );
@@ -184,14 +163,7 @@ export const H6 = ({ children }) => (
 
 export const Image = ({ alt, src, height, width }) => {
   if (height || width) {
-    return (
-      <Img
-        src={src}
-        alt={alt}
-        height={height}
-        width={width}
-      />
-    );
+    return <Img src={src} alt={alt} height={height} width={width} />;
   } else {
     return <Img src={src} alt={alt} layout="fill" />;
   }
@@ -209,11 +181,7 @@ export default {
   li: ListItem,
   p: Paragraph,
   ul: UnorderedList,
-  inlineCode: ({ children }) => (
-    <InlineCode>{children}</InlineCode>
-  ),
-  blockquote: ({ children }) => (
-    <Blockquote>{children}</Blockquote>
-  ),
+  inlineCode: ({ children }) => <InlineCode>{children}</InlineCode>,
+  blockquote: ({ children }) => <Blockquote>{children}</Blockquote>,
   a: DocLink,
 };

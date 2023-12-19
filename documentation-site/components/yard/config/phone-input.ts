@@ -5,11 +5,11 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-import { PhoneInput, COUNTRIES, SIZE } from 'baseui/phone-input';
-import { PropTypes } from 'react-view';
-import type { TConfig } from '../types';
-import selectConfig from './select';
-import inputConfig, { theme } from './input';
+import { PhoneInput, COUNTRIES, SIZE } from "baseui/phone-input";
+import { PropTypes } from "react-view";
+import type { TConfig } from "../types";
+import selectConfig from "./select";
+import inputConfig, { theme } from "./input";
 
 const countriesEnum: { [key: string]: string } = {};
 Object.values(COUNTRIES).forEach((country) => {
@@ -17,10 +17,10 @@ Object.values(COUNTRIES).forEach((country) => {
 });
 
 const PhoneInputConfig: TConfig = {
-  componentName: 'PhoneInput',
+  componentName: "PhoneInput",
   imports: {
-    'baseui/phone-input': {
-      named: ['PhoneInput'],
+    "baseui/phone-input": {
+      named: ["PhoneInput"],
     },
   },
   scope: {
@@ -34,82 +34,82 @@ const PhoneInputConfig: TConfig = {
       value: undefined,
       options: countriesEnum,
       type: PropTypes.Enum,
-      enumName: 'COUNTRIES',
-      description: 'Input value attribute.',
+      enumName: "COUNTRIES",
+      description: "Input value attribute.",
       stateful: true,
       imports: {
-        'baseui/phone-input': {
-          named: ['COUNTRIES'],
+        "baseui/phone-input": {
+          named: ["COUNTRIES"],
         },
       },
     },
     onCountryChange: {
-      value: '({option}) => setCountry(option)',
+      value: "({option}) => setCountry(option)",
       type: PropTypes.Function,
-      description: 'Called when country value is changed.',
+      description: "Called when country value is changed.",
       propHook: {
         what: '"COUNTRIES." + option.id',
-        into: 'country',
+        into: "country",
       },
     },
     text: {
-      value: '',
+      value: "",
       type: PropTypes.String,
-      description: 'Text value attribute.',
+      description: "Text value attribute.",
       stateful: true,
     },
     onTextChange: {
-      value: 'e => setText(e.currentTarget.value)',
+      value: "e => setText(e.currentTarget.value)",
       type: PropTypes.Function,
-      description: 'Called when text value is changed.',
+      description: "Called when text value is changed.",
       propHook: {
-        what: 'e.currentTarget.value',
-        into: 'text',
+        what: "e.currentTarget.value",
+        into: "text",
       },
     },
     disabled: {
       value: false,
       type: PropTypes.Boolean,
-      description: 'Renders component in disabled state.',
+      description: "Renders component in disabled state.",
     },
     error: {
       value: false,
       type: PropTypes.Boolean,
-      description: 'Renders component in error state.',
+      description: "Renders component in error state.",
     },
     positive: {
       value: false,
       type: PropTypes.Boolean,
-      description: 'Renders component in positive state.',
+      description: "Renders component in positive state.",
     },
     size: {
       value: undefined,
       options: SIZE,
       type: PropTypes.Enum,
-      description: 'Renders component in provided size.',
+      description: "Renders component in provided size.",
       imports: {
-        'baseui/phone-input': {
-          named: ['SIZE'],
+        "baseui/phone-input": {
+          named: ["SIZE"],
         },
       },
     },
     maxDropdownHeight: {
       value: undefined,
       type: PropTypes.String,
-      description: 'Sets the max height of the country select dropdown.',
+      description: "Sets the max height of the country select dropdown.",
       hidden: true,
     },
     maxDropdownWidth: {
       value: undefined,
       type: PropTypes.String,
-      description: 'Sets the max width of the country select dropdown.',
+      description: "Sets the max width of the country select dropdown.",
       hidden: true,
     },
     mapIsoToLabel: {
       value: undefined,
       type: PropTypes.Function,
       description:
-        'Function for mapping ISO codes to country names. Useful for localization of the country select dropdown.',
+        "Function for mapping ISO codes to country names. Useful for localization of the country select dropdown.",
       hidden: true,
     },
     id: {
@@ -120,30 +120,30 @@ const PhoneInputConfig: TConfig = {
       hidden: true,
     },
     placeholder: {
-      value: '',
+      value: "",
       type: PropTypes.String,
       description: "Input's placeholder.",
     },
     clearable: {
       value: false,
       type: PropTypes.Boolean,
-      description: 'Adds clear icon to the input.',
+      description: "Adds clear icon to the input.",
     },
     overrides: {
       value: undefined,
       type: PropTypes.Custom,
-      description: 'Lets you customize all aspects of the component.',
+      description: "Lets you customize all aspects of the component.",
       custom: {
         names: [
-          { ...selectConfig, componentName: 'CountrySelect' },
-          'CountrySelectContainer',
-          'CountrySelectDropdown',
-          'CountrySelectDropdownDialcodeColumn',
-          'CountrySelectDropdownFlagColumn',
-          'CountrySelectDropdownListItem',
-          'CountrySelectDropdownNameColumn',
-          'DialCode',
-          'FlagContainer',
+          { ...selectConfig, componentName: "CountrySelect" },
+          "CountrySelectContainer",
+          "CountrySelectDropdown",
+          "CountrySelectDropdownDialcodeColumn",
+          "CountrySelectDropdownFlagColumn",
+          "CountrySelectDropdownListItem",
+          "CountrySelectDropdownNameColumn",
+          "DialCode",
+          "FlagContainer",
           inputConfig,
         ],
         sharedProps: {},

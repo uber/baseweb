@@ -5,17 +5,17 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-import omit from 'just-omit';
-import { PinCode, SIZE } from 'baseui/pin-code';
-import { PropTypes } from 'react-view';
-import type { TConfig } from '../types';
-import inputConfig, { theme, inputProps } from './input';
+import omit from "just-omit";
+import { PinCode, SIZE } from "baseui/pin-code";
+import { PropTypes } from "react-view";
+import type { TConfig } from "../types";
+import inputConfig, { theme, inputProps } from "./input";
 
 const PincodeConfig: TConfig = {
-  componentName: 'PinCode',
+  componentName: "PinCode",
   imports: {
-    'baseui/pin-code': {
-      named: ['PinCode'],
+    "baseui/pin-code": {
+      named: ["PinCode"],
     },
   },
   scope: {
@@ -27,21 +27,21 @@ const PincodeConfig: TConfig = {
     values: {
       value: `["", "", "", ""]`,
       type: PropTypes.Array,
-      description: 'PinCode value attribute.',
+      description: "PinCode value attribute.",
       stateful: true,
     },
     onChange: {
-      value: '({ values }) => setValues(values)',
+      value: "({ values }) => setValues(values)",
       type: PropTypes.Function,
-      description: 'Called when input value is changed.',
+      description: "Called when input value is changed.",
       propHook: {
         what: `JSON.stringify(values).split('",').join('", ')`,
-        into: 'values',
+        into: "values",
       },
     },
-    'aria-label': inputProps['aria-label'],
-    'aria-labelledby': inputProps['aria-labelledby'],
-    'aria-describedby': inputProps['aria-describedby'],
+    "aria-label": inputProps["aria-label"],
+    "aria-labelledby": inputProps["aria-labelledby"],
+    "aria-describedby": inputProps["aria-describedby"],
     autoComplete: inputProps.autoComplete,
     disabled: inputProps.disabled,
     error: inputProps.error,
@@ -53,20 +53,20 @@ const PincodeConfig: TConfig = {
     mask: {
       value: false,
       type: PropTypes.Boolean,
-      description: 'Masks the pin code',
+      description: "Masks the pin code",
     },
     placeholder: {
       value: undefined,
-      placeholder: 'x',
+      placeholder: "x",
       type: PropTypes.String,
-      description: 'Displayed when the pin code is not entered yet.',
+      description: "Displayed when the pin code is not entered yet.",
     },
     overrides: {
       value: undefined,
       type: PropTypes.Custom,
-      description: 'Lets you customize all aspects of the component.',
+      description: "Lets you customize all aspects of the component.",
       custom: {
-        names: ['Root', inputConfig],
+        names: ["Root", inputConfig],
         sharedProps: {},
       },
     },

@@ -8,7 +8,7 @@ export default function Example() {
     <Button
       disabled
       overrides={{
-        BaseButton: props => {
+        BaseButton: (props) => {
           return (
             <button
               disabled={props.disabled}

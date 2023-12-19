@@ -35,12 +35,7 @@ export const Value = styled("div", ({ $theme }) => {
   };
 });
 
-export function Property({
-  name,
-  concern,
-  renderPreview,
-  renderValue,
-}) {
+export function Property({ name, concern, renderPreview, renderValue }) {
   const [css, theme] = useStyletron();
   return (
     <div
@@ -48,9 +43,7 @@ export function Property({
         marginBottom: theme.sizing.scale800,
       })}
     >
-      <Title
-        $style={{ marginBottom: theme.sizing.scale200 }}
-      >
+      <Title $style={{ marginBottom: theme.sizing.scale200 }}>
         <SubTitle>theme.{concern}.</SubTitle>
         {name}
       </Title>
@@ -83,17 +76,10 @@ export function PropertyCompareTheme({
         return (
           <div className={css({ display: "flex" })}>
             <div className={css({ flexBasis: "50%" })}>
-              <Swatch
-                renderBox={renderBox}
-                previewTheme={LightTheme}
-                left
-              />
+              <Swatch renderBox={renderBox} previewTheme={LightTheme} left />
             </div>
             <div className={css({ flexBasis: "50%" })}>
-              <Swatch
-                renderBox={renderBox}
-                previewTheme={DarkTheme}
-              />
+              <Swatch renderBox={renderBox} previewTheme={DarkTheme} />
             </div>
           </div>
         );
@@ -102,14 +88,10 @@ export function PropertyCompareTheme({
         return (
           <div className={css({ display: "flex" })}>
             <div className={css({ flexBasis: "50%" })}>
-              <Value>
-                {renderValue({ previewTheme: LightTheme })}
-              </Value>
+              <Value>{renderValue({ previewTheme: LightTheme })}</Value>
             </div>
             <div className={css({ flexBasis: "50%" })}>
-              <Value>
-                {renderValue({ previewTheme: DarkTheme })}
-              </Value>
+              <Value>{renderValue({ previewTheme: DarkTheme })}</Value>
             </div>
           </div>
         );
@@ -123,8 +105,7 @@ function Swatch({ renderBox, previewTheme, left = false }) {
   return (
     <div
       className={css({
-        backgroundColor:
-          previewTheme.colors.backgroundPrimary,
+        backgroundColor: previewTheme.colors.backgroundPrimary,
         paddingTop: theme.sizing.scale800,
         paddingBottom: theme.sizing.scale800,
         display: "flex",

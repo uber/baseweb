@@ -5,21 +5,21 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
-import Example from '../../components/example';
-import Layout from '../../components/layout';
-import Exports from '../../components/exports';
+import Example from "../../components/example";
+import Layout from "../../components/layout";
+import Exports from "../../components/exports";
 
-import Basic from 'examples/dnd-list/basic.tsx';
-import Stateless from 'examples/dnd-list/stateless.tsx';
-import Removable from 'examples/dnd-list/removable.tsx';
-import VaryingHeights from 'examples/dnd-list/varyingHeights.tsx';
-import CustomDragHandle from 'examples/dnd-list/customDragHandle.tsx';
-import OverrideLabel from 'examples/dnd-list/overrideLabel.tsx';
+import Basic from "examples/dnd-list/basic.tsx";
+import Stateless from "examples/dnd-list/stateless.tsx";
+import Removable from "examples/dnd-list/removable.tsx";
+import VaryingHeights from "examples/dnd-list/varyingHeights.tsx";
+import CustomDragHandle from "examples/dnd-list/customDragHandle.tsx";
+import OverrideLabel from "examples/dnd-list/overrideLabel.tsx";
 
-import { StatefulList } from 'baseui/dnd-list';
-import * as ListExports from 'baseui/dnd-list';
-import Yard from '../../components/yard/index';
-import dndListYardConfig from '../../components/yard/config/dnd-list';
+import { StatefulList } from "baseui/dnd-list";
+import * as ListExports from "baseui/dnd-list";
+import Yard from "../../components/yard/index";
+import dndListYardConfig from "../../components/yard/config/dnd-list";
 
 export default Layout;
 
@@ -53,20 +53,36 @@ This component also supports iOS and Android browsers and screen readers.
   <Basic />
 </Example>
 
-<Example title="Drag and Drop with removable items" path="dnd-list/removable.tsx">
+<Example
+  title="Drag and Drop with removable items"
+  path="dnd-list/removable.tsx"
+>
   <Removable />
 </Example>
 
-<Example title="Drag and Drop with varying heights" path="dnd-list/varyingHeights.tsx">
+<Example
+  title="Drag and Drop with varying heights"
+  path="dnd-list/varyingHeights.tsx"
+>
   <VaryingHeights />
 </Example>
 
-<Example title="Drag and Drop with custom drag handle" path="dnd-list/customDragHandle.tsx">
+<Example
+  title="Drag and Drop with custom drag handle"
+  path="dnd-list/customDragHandle.tsx"
+>
   <CustomDragHandle />
 </Example>
 
-<Example title="Drag and Drop with label override" path="dnd-list/overrideLabel.tsx">
+<Example
+  title="Drag and Drop with label override"
+  path="dnd-list/overrideLabel.tsx"
+>
   <OverrideLabel />
 </Example>
 
-<Exports component={ListExports} title="Dnd List exports" path="baseui/dnd-list" />
+<Exports
+  component={ListExports}
+  title="Dnd List exports"
+  path="baseui/dnd-list"
+/>

@@ -4,19 +4,19 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import { Badge, HIERARCHY, SHAPE, COLOR, PLACEMENT } from 'baseui/badge';
-import { Skeleton } from 'baseui/skeleton';
-import { PropTypes } from 'react-view';
-import type { TConfig } from '../types';
+import { Badge, HIERARCHY, SHAPE, COLOR, PLACEMENT } from "baseui/badge";
+import { Skeleton } from "baseui/skeleton";
+import { PropTypes } from "react-view";
+import type { TConfig } from "../types";
 
 const BadgeConfig: TConfig = {
-  componentName: 'Badge',
+  componentName: "Badge",
   imports: {
-    'baseui/badge': {
-      named: ['Badge'],
+    "baseui/badge": {
+      named: ["Badge"],
     },
-    'baseui/block': {
-      named: ['Skeleton'],
+    "baseui/block": {
+      named: ["Skeleton"],
     },
   },
   scope: {
@@ -42,12 +42,12 @@ const BadgeConfig: TConfig = {
     horizontalOffset: {
       value: undefined,
       type: PropTypes.String,
-      description: 'Overrides the default horizontal position.',
+      description: "Overrides the default horizontal position.",
     },
     verticalOffset: {
       value: undefined,
       type: PropTypes.String,
-      description: 'Overrides the default vertical position.',
+      description: "Overrides the default vertical position.",
     },
     hidden: {
       value: false,
@@ -55,62 +55,63 @@ const BadgeConfig: TConfig = {
       description: `Sets visibility to "hidden".`,
     },
     placement: {
-      value: 'PLACEMENT.topRight',
-      defaultValue: 'PLACEMENT.topRight',
+      value: "PLACEMENT.topRight",
+      defaultValue: "PLACEMENT.topRight",
       options: PLACEMENT,
       type: PropTypes.Enum,
-      description: 'Determines the placement of the badge relative to the anchor',
+      description:
+        "Determines the placement of the badge relative to the anchor",
       imports: {
-        'baseui/badge': {
-          named: ['PLACEMENT'],
+        "baseui/badge": {
+          named: ["PLACEMENT"],
         },
       },
     },
     hierarchy: {
-      value: 'HIERARCHY.primary',
-      defaultValue: 'HIERARCHY.primary',
+      value: "HIERARCHY.primary",
+      defaultValue: "HIERARCHY.primary",
       options: HIERARCHY,
       type: PropTypes.Enum,
       description:
-        'Defines badge look by purpose. Set it to one of HIERARCHY[key] values. Defaults to HIERARCHY.primary.',
+        "Defines badge look by purpose. Set it to one of HIERARCHY[key] values. Defaults to HIERARCHY.primary.",
       imports: {
-        'baseui/badge': {
-          named: ['HIERARCHY'],
+        "baseui/badge": {
+          named: ["HIERARCHY"],
         },
       },
     },
     shape: {
-      value: 'SHAPE.rectangle',
-      defaultValue: 'SHAPE.rectangle',
+      value: "SHAPE.rectangle",
+      defaultValue: "SHAPE.rectangle",
       options: SHAPE,
       type: PropTypes.Enum,
       description:
-        'Defines badge shape. Set it to one of SHAPE[key] values. Defaults to SHAPE.rectangle.',
+        "Defines badge shape. Set it to one of SHAPE[key] values. Defaults to SHAPE.rectangle.",
       imports: {
-        'baseui/badge': {
-          named: ['SHAPE'],
+        "baseui/badge": {
+          named: ["SHAPE"],
         },
       },
     },
     color: {
-      value: 'COLOR.accent',
-      defaultValue: 'COLOR.accent',
+      value: "COLOR.accent",
+      defaultValue: "COLOR.accent",
       options: COLOR,
       type: PropTypes.Enum,
       description:
-        'Defines badge color. Set it to one of COLOR[key] values. Defaults to COLOR.accent.',
+        "Defines badge color. Set it to one of COLOR[key] values. Defaults to COLOR.accent.",
       imports: {
-        'baseui/badge': {
-          named: ['COLOR'],
+        "baseui/badge": {
+          named: ["COLOR"],
         },
       },
     },
     overrides: {
       value: undefined,
       type: PropTypes.Custom,
-      description: 'Lets you customize all aspects of the component.',
+      description: "Lets you customize all aspects of the component.",
       custom: {
-        names: ['Root', 'Badge', 'Positioner'],
+        names: ["Root", "Badge", "Positioner"],
         sharedProps: [],
       },
     },

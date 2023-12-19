@@ -5,31 +5,31 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
-import { Notification, KIND } from 'baseui/notification';
+import { Notification, KIND } from "baseui/notification";
 
-import Example from '../../components/example';
-import Layout from '../../components/layout';
-import Exports from '../../components/exports';
+import Example from "../../components/example";
+import Layout from "../../components/layout";
+import Exports from "../../components/exports";
 
-import Yard from '../../components/yard/index';
-import tabsYardConfig from '../../components/yard/config/tabs-motion';
-import tabYardConfig from '../../components/yard/config/tab-motion';
+import Yard from "../../components/yard/index";
+import tabsYardConfig from "../../components/yard/config/tabs-motion";
+import tabYardConfig from "../../components/yard/config/tab-motion";
 
-import BasicExample from 'examples/tabs-motion/basic.tsx';
-import KeysExample from 'examples/tabs-motion/keys.tsx';
-import KeyboardActivationExample from 'examples/tabs-motion/keyboard-activation.tsx';
-import VerticalOrientationExample from 'examples/tabs-motion/vertical-orientation.tsx';
-import FixedExample from 'examples/tabs-motion/fixed.tsx';
-import DisabledExample from 'examples/tabs-motion/disabled.tsx';
-import ArtworkExample from 'examples/tabs-motion/artwork.tsx';
-import RenderAllExample from 'examples/tabs-motion/renderAll.tsx';
-import AlignmentExample from 'examples/tabs-motion/alignment.tsx';
-import RefsExample from 'examples/tabs-motion/refs.tsx';
-import StatefulExample from 'examples/tabs-motion/stateful.tsx';
-import TabOverrideExample from 'examples/tabs-motion/tab-override.tsx';
-import EndEnhancer from 'examples/tabs-motion/enhancer.tsx';
+import BasicExample from "examples/tabs-motion/basic.tsx";
+import KeysExample from "examples/tabs-motion/keys.tsx";
+import KeyboardActivationExample from "examples/tabs-motion/keyboard-activation.tsx";
+import VerticalOrientationExample from "examples/tabs-motion/vertical-orientation.tsx";
+import FixedExample from "examples/tabs-motion/fixed.tsx";
+import DisabledExample from "examples/tabs-motion/disabled.tsx";
+import ArtworkExample from "examples/tabs-motion/artwork.tsx";
+import RenderAllExample from "examples/tabs-motion/renderAll.tsx";
+import AlignmentExample from "examples/tabs-motion/alignment.tsx";
+import RefsExample from "examples/tabs-motion/refs.tsx";
+import StatefulExample from "examples/tabs-motion/stateful.tsx";
+import TabOverrideExample from "examples/tabs-motion/tab-override.tsx";
+import EndEnhancer from "examples/tabs-motion/enhancer.tsx";
 
-import * as TabsExports from 'baseui/tabs-motion';
+import * as TabsExports from "baseui/tabs-motion";
 
 export default Layout;
 
@@ -39,7 +39,7 @@ Tabs are a navigational element that allows users to easily move between groups 
 
 <Yard
   placeholderHeight={100}
-  compilerStyles={{ width: '100%', marginBottom: '1rem' }}
+  compilerStyles={{ width: "100%", marginBottom: "1rem" }}
   {...tabsYardConfig}
 />
 
@@ -87,7 +87,10 @@ By default, when a Tab receives focus it will activate the Tab and show the corr
 
 An `endEnhancer` can be used with horizontal orientation. `endEnhancer` is ignored when orientation is vertical.
 
-<Example title="Vertical orientation" path="tabs-motion/vertical-orientation.tsx">
+<Example
+  title="Vertical orientation"
+  path="tabs-motion/vertical-orientation.tsx"
+>
   <VerticalOrientationExample />
 </Example>
 

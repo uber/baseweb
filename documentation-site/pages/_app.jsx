@@ -38,15 +38,14 @@ const breakpoints = {
 
 const ResponsiveTheme = Object.keys(breakpoints).reduce(
   (acc, key) => {
-    acc.mediaQuery[
-      key
-    ] = `@media screen and (min-width: ${breakpoints[key]}px)`;
+    acc.mediaQuery[key] =
+      `@media screen and (min-width: ${breakpoints[key]}px)`;
     return acc;
   },
   {
     breakpoints,
     mediaQuery: {},
-  }
+  },
 );
 
 const themes = {
@@ -58,8 +57,7 @@ const themes = {
 
 export const themedStyled = createThemedStyled();
 export const themedWithStyle = createThemedWithStyle();
-export const themedUseStyletron =
-  createThemedUseStyletron();
+export const themedUseStyletron = createThemedUseStyletron();
 
 const DARK_MEDIA_QUERY = "(prefers-color-scheme: dark)";
 const LIGHT_MEDIA_QUERY = "(prefers-color-scheme: light)";
@@ -80,8 +78,7 @@ export default class MyApp extends App {
       direction: "ltr",
       themeSet: false,
     };
-    this.mediaQueryListener =
-      this.mediaQueryListener.bind(this);
+    this.mediaQueryListener = this.mediaQueryListener.bind(this);
   }
 
   static async getInitialProps({ Component, ctx }) {
@@ -100,10 +97,7 @@ export default class MyApp extends App {
       const mmDark = window.matchMedia(DARK_MEDIA_QUERY);
       const mmLight = window.matchMedia(LIGHT_MEDIA_QUERY);
       // if no theme is set in localStorage, set theme based on user's OS preference
-      if (
-        !this.getThemeStyle() &&
-        mmDark.media === DARK_MEDIA_QUERY
-      ) {
+      if (!this.getThemeStyle() && mmDark.media === DARK_MEDIA_QUERY) {
         const theme = mmDark.matches ? "dark" : "light";
         localStorage.setItem("docs-theme", theme);
       }
@@ -169,8 +163,7 @@ export default class MyApp extends App {
     }
 
     config.font = fontToSet || presetFont || config.font;
-    config.theme =
-      themeToSet || presetTheme || config.theme;
+    config.theme = themeToSet || presetTheme || config.theme;
 
     const themeName =
       config.theme === "dark"
@@ -178,8 +171,8 @@ export default class MyApp extends App {
           ? "DarkThemeMove"
           : "DarkTheme"
         : config.font === "move"
-        ? "LightThemeMove"
-        : "LightTheme";
+          ? "LightThemeMove"
+          : "LightTheme";
 
     this.setState({
       themeSet: true,
@@ -234,27 +227,18 @@ export default class MyApp extends App {
     return (
       <React.Fragment>
         <Head>
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1"
-          />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
         </Head>
         <StyletronProvider value={styletron}>
           <BaseProvider theme={this.state.theme}>
             <Block {...blockProps}>
-              <DirectionContext.Provider
-                value={this.state.direction}
-              >
+              <DirectionContext.Provider value={this.state.direction}>
                 {this.state.themeSet && (
                   <Component
                     {...pageProps}
                     path={path}
-                    toggleTheme={this.toggleTheme.bind(
-                      this
-                    )}
-                    toggleDirection={this.toggleDirection.bind(
-                      this
-                    )}
+                    toggleTheme={this.toggleTheme.bind(this)}
+                    toggleDirection={this.toggleDirection.bind(this)}
                   />
                 )}
               </DirectionContext.Provider>

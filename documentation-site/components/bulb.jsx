@@ -4,17 +4,17 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-//      
+//
 
-import * as React from 'react';
+import * as React from "react";
 
-              
-               
-                
-  
-
-const Bulb = (props       ) => (
-  <svg width={props.size} height={props.size} viewBox="0 0 24 24" aria-hidden="true">
+const Bulb = (props) => (
+  <svg
+    width={props.size}
+    height={props.size}
+    viewBox="0 0 24 24"
+    aria-hidden="true"
+  >
     <g
       transform="matrix(
       1 0

@@ -42,7 +42,7 @@ ReactDOM.render(
 export async function deploy(
   title /*: string */,
   source /*: string */,
-  additionalDependencies /*: ?{[string]: string} */
+  additionalDependencies /*: ?{[string]: string} */,
 ) /*: Promise<?string> */ {
   try {
     const { devDependencies } = packageJson;
@@ -57,10 +57,8 @@ export async function deploy(
           baseui: "latest",
           react: "latest",
           "react-dom": "latest",
-          "styletron-engine-atomic":
-            devDependencies["styletron-engine-atomic"],
-          "styletron-react":
-            devDependencies["styletron-react"],
+          "styletron-engine-atomic": devDependencies["styletron-engine-atomic"],
+          "styletron-react": devDependencies["styletron-react"],
           "react-scripts": "latest",
           ...additionalDependencies,
         },
@@ -68,16 +66,13 @@ export async function deploy(
       {
         fileName: "src/example.tsx",
         name: title,
-      }
+      },
     );
     const { sandboxId } = await sendFilesToCSB(parameters);
     trackEvent("codesandbox_deployed", title);
     return `https://codesandbox.io/s/${sandboxId}?module=src/example.tsx`;
   } catch (error) {
-    console.error(
-      "Failed to deploy code sandbox example:",
-      error
-    );
+    console.error("Failed to deploy code sandbox example:", error);
     trackEvent("codesandbox_deployed_error", title);
     return null;
   }

@@ -11,7 +11,7 @@ export default function Example() {
     >
       <RadioGroup
         value={value}
-        onChange={event => setValue(event.currentTarget.value)}
+        onChange={(event) => setValue(event.currentTarget.value)}
       >
         <Radio value="red">Red</Radio>
         <Radio value="green">Green</Radio>

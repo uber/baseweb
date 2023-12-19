@@ -37,9 +37,10 @@ export default function Example() {
   return (
     <ProgressBar
       value={value}
-      getProgressLabel={value =>
-        `${(MAX_MB_VALUE / 100) *
-          value}mb out of ${MAX_MB_VALUE}mb downloaded`
+      getProgressLabel={(value) =>
+        `${
+          (MAX_MB_VALUE / 100) * value
+        }mb out of ${MAX_MB_VALUE}mb downloaded`
       }
       showLabel
     />

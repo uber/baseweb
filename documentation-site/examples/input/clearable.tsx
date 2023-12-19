@@ -6,7 +6,7 @@ export default function Example() {
   return (
     <Input
       value={value}
-      onChange={event => setValue(event.currentTarget.value)}
+      onChange={(event) => setValue(event.currentTarget.value)}
       clearable
     />
   );

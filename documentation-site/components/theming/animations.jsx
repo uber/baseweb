@@ -89,8 +89,7 @@ export function Timing({ name }) {
       renderPreview={() => (
         <div
           className={css({
-            backgroundColor:
-              theme.colors.contentInverseSecondary,
+            backgroundColor: theme.colors.contentInverseSecondary,
           })}
         >
           <div
@@ -121,8 +120,7 @@ export function Easing({ name }) {
       renderPreview={() => (
         <div
           className={css({
-            backgroundColor:
-              theme.colors.contentInverseSecondary,
+            backgroundColor: theme.colors.contentInverseSecondary,
           })}
         >
           <div
@@ -131,8 +129,7 @@ export function Easing({ name }) {
               animationDuration: "1s",
               animationDirection: "alternate",
               animationIterationCount: "infinite",
-              animationTimingFunction:
-                theme.animation[name],
+              animationTimingFunction: theme.animation[name],
               height: theme.sizing.scale100,
               backgroundColor: theme.colors.contentPrimary,
             })}

@@ -5,15 +5,15 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-import * as React from 'react';
-import { Block } from 'baseui/block';
-import Link from 'next/link';
-import { Card, StyledBody, StyledAction, StyledTitle } from 'baseui/card';
-import { Button, KIND } from 'baseui/button';
-import { themedStyled } from '../pages/_app';
-import posts from '../posts';
+import * as React from "react";
+import { Block } from "baseui/block";
+import Link from "next/link";
+import { Card, StyledBody, StyledAction, StyledTitle } from "baseui/card";
+import { Button, KIND } from "baseui/button";
+import { themedStyled } from "../pages/_app";
+import posts from "../posts";
 
-const MetaData = themedStyled('h2', ({ $theme }) => ({
+const MetaData = themedStyled("h2", ({ $theme }) => ({
   color: $theme.colors.contentSecondary,
   fontFamily: $theme.typography.font100.fontFamily,
   fontSize: $theme.sizing.scale500,
@@ -33,9 +33,9 @@ const Index = () => {
       overrides={{
         Block: {
           style: ({ $theme }) => ({
-            justifyContent: 'center',
+            justifyContent: "center",
             [$theme.mediaQuery.small]: {
-              justifyContent: 'flex-start',
+              justifyContent: "flex-start",
             },
           }),
         },
@@ -53,19 +53,19 @@ const Index = () => {
               overrides={{
                 Root: {
                   style: {
-                    boxSizing: 'border-box',
-                    marginBottom: '10px',
-                    marginRight: '10px',
+                    boxSizing: "border-box",
+                    marginBottom: "10px",
+                    marginRight: "10px",
                     marginTop: 0,
-                    width: '275px',
+                    width: "275px",
                   },
                 },
                 HeaderImage: {
                   style: {
-                    boxSizing: 'border-box',
-                    height: '220px',
-                    width: '100%',
-                    objectFit: 'cover',
+                    boxSizing: "border-box",
+                    height: "220px",
+                    width: "100%",
+                    objectFit: "cover",
                   },
                 },
               }}
@@ -79,7 +79,7 @@ const Index = () => {
                     href={p.path}
                     overrides={{
                       BaseButton: {
-                        style: { boxSizing: 'border-box', width: '100%' },
+                        style: { boxSizing: "border-box", width: "100%" },
                       },
                     }}
                   >
@@ -87,7 +87,7 @@ const Index = () => {
                   </Button>
                 </Link>
               </StyledAction>
-              <StyledTitle $style={{ marginTop: '1em' }}>{p.title}</StyledTitle>
+              <StyledTitle $style={{ marginTop: "1em" }}>{p.title}</StyledTitle>
               <MetaData>{`${p.author} - ${p.date}`}</MetaData>
               <StyledBody />
             </Card>

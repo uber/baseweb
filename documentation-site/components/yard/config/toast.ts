@@ -4,23 +4,23 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import { toaster, ToasterContainer, PLACEMENT } from 'baseui/toast';
-import { Button, SIZE } from 'baseui/button';
-import { Block } from 'baseui/block';
-import { PropTypes } from 'react-view';
-import type { TConfig } from '../types';
+import { toaster, ToasterContainer, PLACEMENT } from "baseui/toast";
+import { Button, SIZE } from "baseui/button";
+import { Block } from "baseui/block";
+import { PropTypes } from "react-view";
+import type { TConfig } from "../types";
 
 const toastConfig: TConfig = {
-  componentName: 'ToasterContainer',
+  componentName: "ToasterContainer",
   imports: {
-    'baseui/toast': {
-      named: ['toaster', 'ToasterContainer'],
+    "baseui/toast": {
+      named: ["toaster", "ToasterContainer"],
     },
-    'baseui/button': {
-      named: ['Button', 'SIZE'],
+    "baseui/button": {
+      named: ["Button", "SIZE"],
     },
-    'baseui/block': {
-      named: ['Block'],
+    "baseui/block": {
+      named: ["Block"],
     },
   },
   scope: {
@@ -32,22 +32,22 @@ const toastConfig: TConfig = {
     Block,
   },
   theme: [
-    'toastInfoBackground',
-    'toastPositiveBackground',
-    'toastWarningBackground',
-    'toastNegativeBackground',
-    'toastText',
+    "toastInfoBackground",
+    "toastPositiveBackground",
+    "toastWarningBackground",
+    "toastNegativeBackground",
+    "toastText",
   ],
   props: {
     placement: {
-      value: 'PLACEMENT.top',
-      defaultValue: 'PLACEMENT.top',
+      value: "PLACEMENT.top",
+      defaultValue: "PLACEMENT.top",
       options: PLACEMENT,
       type: PropTypes.Enum,
       description: `Defines notifications placement.`,
       imports: {
-        'baseui/toast': {
-          named: ['PLACEMENT'],
+        "baseui/toast": {
+          named: ["PLACEMENT"],
         },
       },
     },
@@ -80,8 +80,8 @@ const toastConfig: TConfig = {
         the body element but not children.`,
     },
     autoHideDuration: {
-      value: '0',
-      defaultValue: '0',
+      value: "0",
+      defaultValue: "0",
       type: PropTypes.Number,
       description: `The number of milliseconds to wait before automatically dismissing a
         notification. This behavior is disabled when the value is set to 0.`,
@@ -103,13 +103,13 @@ const toastConfig: TConfig = {
     overrides: {
       value: undefined,
       type: PropTypes.Custom,
-      description: 'Lets you customize all aspects of the component.',
+      description: "Lets you customize all aspects of the component.",
       custom: {
-        names: ['Root', 'ToastBody', 'ToastInnerContainer', 'ToastCloseIcon'],
+        names: ["Root", "ToastBody", "ToastInnerContainer", "ToastCloseIcon"],
         sharedProps: {
           $kind: {
             type: PropTypes.Enum,
-            description: 'Defines the type of notification.',
+            description: "Defines the type of notification.",
           },
           $closeable: {
             type: PropTypes.Boolean,

@@ -5,14 +5,16 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-import * as t from '@babel/types';
-import template from '@babel/template';
-import generate from '@babel/generator';
-import { formatCode, parse } from 'react-view';
+import * as t from "@babel/types";
+import template from "@babel/template";
+import generate from "@babel/generator";
+import { formatCode, parse } from "react-view";
 
 export type TCustomPropFields = {
   names: string[];
-  sharedProps: { [key: string]: string | { type: string; description: string } };
+  sharedProps: {
+    [key: string]: string | { type: string; description: string };
+  };
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -23,23 +25,26 @@ const parseOverridesInner = (overrides: any, acc: any) => {
     const overrideProps = override.value.properties;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     overrideProps.forEach((prop: any) => {
-      if (prop.key.name === 'style') {
+      if (prop.key.name === "style") {
         acc[overrideName] = {
           style: formatCode(generate(prop.value).code),
           active: true,
         };
       }
       // looking for 'props' key
-      if (prop.key.name === 'props') {
+      if (prop.key.name === "props") {
         // looking for 'overrides' key
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         prop.value.properties.forEach((subprop: any) => {
-          if (subprop.key.name === 'overrides') {
+          if (subprop.key.name === "overrides") {
             acc[overrideName] = {
               nestedValue: {},
               active: true,
             };
-            parseOverridesInner(subprop.value.properties, acc[overrideName].nestedValue);
+            parseOverridesInner(
+              subprop.value.properties,
+              acc[overrideName].nestedValue,
+            );
           }
         });
       }
@@ -66,7 +71,7 @@ type TGenerateValue = {
 
 const generateOverrides = (value: TGenerateValue) => {
   const activeValues = Object.entries(value).filter(
-    ([, val]) => val.active && (val.style || val.nestedValue)
+    ([, val]) => val.active && (val.style || val.nestedValue),
   );
   if (activeValues.length === 0) return null;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -80,22 +85,27 @@ const generateOverrides = (value: TGenerateValue) => {
         t.identifier(key),
         t.objectExpression([
           t.objectProperty(
-            t.identifier('props'),
+            t.identifier("props"),
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            t.objectExpression([t.objectProperty(t.identifier('overrides'), nestedOverride as any)])
+            t.objectExpression([
+              t.objectProperty(
+                t.identifier("overrides"),
+                nestedOverride as any,
+              ),
+            ]),
           ),
-        ])
+        ]),
       );
     }
     return t.objectProperty(
       t.identifier(key),
       t.objectExpression([
         t.objectProperty(
-          t.identifier('style'),
+          t.identifier("style"),
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          template.expression(val.style as string)({}) as any
+          template.expression(val.style as string)({}) as any,
         ),
-      ])
+      ]),
     );
   });
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

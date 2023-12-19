@@ -12,7 +12,7 @@ export default function Example() {
     <React.Fragment>
       <Checkbox
         checked={checkboxes[0]}
-        onChange={e => {
+        onChange={(e) => {
           const nextCheckboxes = [...checkboxes];
           nextCheckboxes[0] = e.currentTarget.checked;
           setCheckboxes(nextCheckboxes);
@@ -30,7 +30,7 @@ export default function Example() {
       >
         <Checkbox
           checked={checkboxes[1]}
-          onChange={e => {
+          onChange={(e) => {
             const nextCheckboxes = [...checkboxes];
             nextCheckboxes[1] = e.currentTarget.checked;
             setCheckboxes(nextCheckboxes);
@@ -41,7 +41,7 @@ export default function Example() {
         </Checkbox>
         <Checkbox
           checked={checkboxes[2]}
-          onChange={e => {
+          onChange={(e) => {
             const nextCheckboxes = [...checkboxes];
             nextCheckboxes[2] = e.currentTarget.checked;
             setCheckboxes(nextCheckboxes);
@@ -53,7 +53,7 @@ export default function Example() {
       </div>
       <Checkbox
         checked={checkboxes[3]}
-        onChange={e => {
+        onChange={(e) => {
           const nextCheckboxes = [...checkboxes];
           nextCheckboxes[3] = e.currentTarget.checked;
           setCheckboxes(nextCheckboxes);

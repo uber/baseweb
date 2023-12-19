@@ -60,7 +60,7 @@ const SidebarWrapper = themedStyled(
       display: $hideSideNavigation ? "none" : "block",
       maxWidth: "16em",
     },
-  })
+  }),
 );
 
 const ContentWrapper = themedStyled(
@@ -78,7 +78,7 @@ const ContentWrapper = themedStyled(
       display: "block",
       maxWidth: $maxWidth ? $maxWidth : "40em",
     },
-  })
+  }),
 );
 
 class Layout extends React.Component {
@@ -90,8 +90,7 @@ class Layout extends React.Component {
   }
   render() {
     const { sidebarOpen } = this.state;
-    const { toggleTheme, toggleDirection, children } =
-      this.props;
+    const { toggleTheme, toggleDirection, children } = this.props;
     let { path = "" } = this.props;
 
     // strip the query string
@@ -140,12 +139,9 @@ class Layout extends React.Component {
               <SidebarWrapper
                 aria-label="primary"
                 $isOpen={sidebarOpen}
-                $hideSideNavigation={
-                  !!this.props.hideSideNavigation
-                }
+                $hideSideNavigation={!!this.props.hideSideNavigation}
                 onClick={() =>
-                  sidebarOpen &&
-                  this.setState({ sidebarOpen: false })
+                  sidebarOpen && this.setState({ sidebarOpen: false })
                 }
               >
                 <Sidebar path={path} />
@@ -165,22 +161,15 @@ class Layout extends React.Component {
                     overrides={{
                       Block: {
                         style: {
-                          [direction === "rtl"
-                            ? "left"
-                            : "right"]: 0,
-                          [direction === "rtl"
-                            ? "right"
-                            : "left"]: "auto",
+                          [direction === "rtl" ? "left" : "right"]: 0,
+                          [direction === "rtl" ? "right" : "left"]: "auto",
                         },
                       },
                     }}
                   >
                     <Button
                       startEnhancer={() => (
-                        <PencilIcon
-                          size={16}
-                          color="#666666"
-                        />
+                        <PencilIcon size={16} color="#666666" />
                       )}
                       $as="a"
                       href={githubUrl}
@@ -197,9 +186,7 @@ class Layout extends React.Component {
                 </MDXProvider>
               </ContentWrapper>
               <TOCWrapper>
-                <TableOfContents
-                  content={React.Children.toArray(children)}
-                />
+                <TableOfContents content={React.Children.toArray(children)} />
               </TOCWrapper>
             </Block>
             <Footer />

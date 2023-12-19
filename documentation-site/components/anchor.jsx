@@ -5,26 +5,26 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-import * as React from 'react';
+import * as React from "react";
 
-import { themedStyled } from '../pages/_app';
+import { themedStyled } from "../pages/_app";
 
-const Wrapper = themedStyled('a', ({ $isVisible, $theme }) => ({
-  visibility: $isVisible ? 'visible' : 'hidden',
+const Wrapper = themedStyled("a", ({ $isVisible, $theme }) => ({
+  visibility: $isVisible ? "visible" : "hidden",
   color: $theme.colors.primary,
-  ':focus': {
+  ":focus": {
     outline: `3px solid ${$theme.colors.accent}`,
-    outlineOffset: '1px',
+    outlineOffset: "1px",
   },
 }));
 
 const elementToSize = (element) => {
   switch (element) {
-    case 'h1':
+    case "h1":
       return 22;
-    case 'h2':
+    case "h2":
       return 18;
-    case 'h3':
+    case "h3":
       return 16;
     default:
       return 14;

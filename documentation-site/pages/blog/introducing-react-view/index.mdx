@@ -1,11 +1,11 @@
-import metadata from './metadata.json';
-import LiveEditor from './live-editor';
-import Layout from '../../../components/layout';
-import Yard from '../../../components/yard/index';
-import {BlogImage, Meta, Caption} from '../../../components/blog';
+import metadata from "./metadata.json";
+import LiveEditor from "./live-editor";
+import Layout from "../../../components/layout";
+import Yard from "../../../components/yard/index";
+import { BlogImage, Meta, Caption } from "../../../components/blog";
 
-import {View, PropTypes} from 'react-view';
-import {Button, SIZE} from 'baseui/button';
+import { View, PropTypes } from "react-view";
+import { Button, SIZE } from "baseui/button";
 
 export default Layout;
 
@@ -22,43 +22,43 @@ The example below demonstrates the basic features of React View:
 - The source code editor. The source code is automatically generated based on the initial configuration and playground state. The source code is also editable.
 - Some additional actions. For example, you can format the code with Prettier or reset the playground state.
 
-<div style={{margin: '2em 0.5em'}}>
+<div style={{ margin: "2em 0.5em" }}>
   <Yard
     componentName="Button"
     placeholderHeight={56}
     theme={[]}
     props={{
       children: {
-        value: 'Hello',
+        value: "Hello",
         type: PropTypes.ReactNode,
-        description: 'Visible label.',
+        description: "Visible label.",
       },
       size: {
-        value: 'SIZE.default',
-        defaultValue: 'SIZE.default',
+        value: "SIZE.default",
+        defaultValue: "SIZE.default",
         options: SIZE,
         type: PropTypes.Enum,
-        description: 'Defines the size of the button.',
+        description: "Defines the size of the button.",
         imports: {
-          'baseui/button': {
-            named: ['SIZE'],
+          "baseui/button": {
+            named: ["SIZE"],
           },
         },
       },
       onClick: {
         value: '() => alert("click")',
         type: PropTypes.Function,
-        description: 'Function called when button is clicked.',
+        description: "Function called when button is clicked.",
       },
       disabled: {
         value: false,
         type: PropTypes.Boolean,
-        description: 'Indicates that the button is disabled',
+        description: "Indicates that the button is disabled",
       },
       overrides: {
         value: undefined,
         type: PropTypes.Custom,
-        description: 'Lets you customize all aspects of the component.',
+        description: "Lets you customize all aspects of the component.",
         custom: {
           names: [],
           sharedProps: {},
@@ -70,8 +70,8 @@ The example below demonstrates the basic features of React View:
       SIZE,
     }}
     imports={{
-      'baseui/button': {
-        named: ['Button'],
+      "baseui/button": {
+        named: ["Button"],
       },
     }}
   />
@@ -93,7 +93,7 @@ Our team is responsible for this website and the entire Base Web component libra
   src="https://user-images.githubusercontent.com/1387913/69685208-785d8d80-1070-11ea-82bf-81bd6b7f28ee.png"
   alt="UI Platform team's workload"
   caption="UI Platform team's workload"
-  style={{maxWidth: '400px'}}
+  style={{ maxWidth: "400px" }}
 />
 
 **And that's a good thing**. If you don’t spend a lot of time helping other developers, it means that nobody uses your tools. We went from 0 to 500 applications at Uber in a single year! That translates into about 1000 developers. There are over 50 components, hundreds of props and endless possibilities. Is there a way to reduce the burden of support?
@@ -115,35 +115,35 @@ There are three main ways of using React View:
 ### All-in-one Playground
 
 ```tsx
-import {View, PropTypes} from 'react-view';
-import {Button} from 'baseui/button';
+import { View, PropTypes } from "react-view";
+import { Button } from "baseui/button";
 
 export default () => (
   <View
     componentName="Button"
     props={{
       children: {
-        value: 'Hello',
+        value: "Hello",
         type: PropTypes.ReactNode,
-        description: 'Visible label.',
+        description: "Visible label.",
       },
       onClick: {
         value: '() => alert("click")',
         type: PropTypes.Function,
-        description: 'Function called when button is clicked.',
+        description: "Function called when button is clicked.",
       },
       disabled: {
         value: false,
         type: PropTypes.Boolean,
-        description: 'Indicates that the button is disabled',
+        description: "Indicates that the button is disabled",
       },
     }}
     scope={{
       Button,
     }}
     imports={{
-      'baseui/button': {
-        named: ['Button'],
+      "baseui/button": {
+        named: ["Button"],
       },
     }}
   />
@@ -157,8 +157,8 @@ This is a basic example demonstrating the all-in-one `View` component. You need 
 **Bring your own UI**. The View component is a tiny wrapper around the `useView` hook. If you want to customize and have more control, you can use the `useView` hook directly. You can still re-use our default UI components or create your own:
 
 ```tsx
-import * as React from 'react';
-import {Button} from 'baseui/button';
+import * as React from "react";
+import { Button } from "baseui/button";
 
 import {
   useView,
@@ -169,34 +169,34 @@ import {
   ActionButtons,
   Placeholder,
   PropTypes,
-} from 'react-view';
+} from "react-view";
 
 export default () => {
   const params = useView({
-    componentName: 'Button',
+    componentName: "Button",
     props: {
       children: {
-        value: 'Hello',
+        value: "Hello",
         type: PropTypes.ReactNode,
-        description: 'Visible label.',
+        description: "Visible label.",
       },
       onClick: {
         value: '() => alert("click")',
         type: PropTypes.Function,
-        description: 'Function called when button is clicked.',
+        description: "Function called when button is clicked.",
       },
       disabled: {
         value: false,
         type: PropTypes.Boolean,
-        description: 'Indicates that the button is disabled',
+        description: "Indicates that the button is disabled",
       },
     },
     scope: {
       Button,
     },
     imports: {
-      'baseui/button': {
-        named: ['Button'],
+      "baseui/button": {
+        named: ["Button"],
       },
     },
   });
@@ -232,8 +232,8 @@ If you don't need the code generation or props documentation, you can also use R
 ### Usage
 
 ```tsx
-import {useView, Compiler, Editor, Error} from 'react-view';
-import presetTypescript from '@babel/preset-typescript';
+import { useView, Compiler, Editor, Error } from "react-view";
+import presetTypescript from "@babel/preset-typescript";
 
 export default () => {
   const params = useView({

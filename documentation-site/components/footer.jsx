@@ -4,15 +4,19 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-//      
+//
 
-import React from 'react';
-import { Block } from 'baseui/block';
-import Link from 'next/link';
-import { themedStyled } from '../pages/_app';
+import React from "react";
+import { Block } from "baseui/block";
+import Link from "next/link";
+import { themedStyled } from "../pages/_app";
 
 const UberLogo = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 926.906 321.777" width="4em">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 926.906 321.777"
+    width="4em"
+  >
     <g fill="currentColor">
       <path d="M53.328,229.809c3.917,10.395,9.34,19.283,16.27,26.664c6.93,7.382,15.14,13.031,24.63,16.948 c9.491,3.917,19.81,5.875,30.958,5.875c10.847,0,21.015-2.034,30.506-6.102s17.776-9.792,24.856-17.173 c7.08-7.382,12.579-16.194,16.496-26.438c3.917-10.244,5.875-21.692,5.875-34.347V0h47.453v316.354h-47.001v-29.376 c-10.545,11.147-22.974,19.734-37.285,25.761c-14.312,6.025-29.752,9.038-46.323,9.038c-16.873,0-32.615-2.938-47.228-8.813 c-14.612-5.875-27.267-14.235-37.962-25.082S15.441,264.006,9.265,248.79C3.088,233.575,0,216.628,0,197.947V0h47.453v195.236 C47.453,207.891,49.411,219.414,53.328,229.809z" />
       <path d="M332.168,0v115.243c10.545-10.545,22.748-18.905,36.607-25.082s28.924-9.265,45.193-9.265 c16.873,0,32.689,3.163,47.453,9.49c14.763,6.327,27.567,14.914,38.414,25.761s19.434,23.651,25.761,38.414 c6.327,14.764,9.49,30.431,9.49,47.002c0,16.57-3.163,32.162-9.49,46.774c-6.327,14.613-14.914,27.343-25.761,38.188 c-10.847,10.847-23.651,19.434-38.414,25.761c-14.764,6.327-30.581,9.49-47.453,9.49c-16.27,0-31.409-3.088-45.419-9.265 c-14.01-6.176-26.288-14.537-36.833-25.082v28.924h-45.193V0H332.168z M337.365,232.746c4.067,9.642,9.717,18.078,16.948,25.309 c7.231,7.231,15.667,12.956,25.308,17.174c9.642,4.218,20.036,6.327,31.184,6.327c10.847,0,21.09-2.109,30.731-6.327 s18.001-9.942,25.083-17.174c7.08-7.23,12.729-15.667,16.947-25.309c4.218-9.641,6.327-20.035,6.327-31.183 c0-11.148-2.109-21.618-6.327-31.41s-9.867-18.303-16.947-25.534c-7.081-7.23-15.441-12.88-25.083-16.947 s-19.885-6.102-30.731-6.102c-10.846,0-21.09,2.034-30.731,6.102s-18.077,9.717-25.309,16.947 c-7.23,7.231-12.955,15.742-17.173,25.534c-4.218,9.792-6.327,20.262-6.327,31.41C331.264,212.711,333.298,223.105,337.365,232.746 z" />
@@ -22,38 +26,38 @@ const UberLogo = () => (
   </svg>
 );
 
-const StyledFooter = themedStyled    (
-  'footer',
+const StyledFooter = themedStyled(
+  "footer",
   ({ $theme: { typography, sizing, colors, name } }) => ({
     ...typography.font300,
-    position: 'sticky',
+    position: "sticky",
     bottom: 0,
     color: colors.contentPrimary,
     backgroundColor: colors.backgroundSecondary,
-    width: '100%',
+    width: "100%",
     marginTop: sizing.scale1400,
     paddingTop: sizing.scale1600,
     paddingBottom: sizing.scale1600,
-    textAlign: 'center',
-  })
+    textAlign: "center",
+  }),
 );
 
-const StyledLink = themedStyled('a', ({ $theme }) => ({
-  textDecoration: 'none',
+const StyledLink = themedStyled("a", ({ $theme }) => ({
+  textDecoration: "none",
   color: $theme.colors.contentPrimary,
-  display: 'inline-block',
-  cursor: 'pointer',
-  marginLeft: '32px',
-  ':first-child': {
-    marginLeft: '0',
+  display: "inline-block",
+  cursor: "pointer",
+  marginLeft: "32px",
+  ":first-child": {
+    marginLeft: "0",
   },
-  ':focus': {
+  ":focus": {
     outline: `3px solid ${$theme.colors.accent}`,
-    outlineOffset: '3px',
+    outlineOffset: "3px",
   },
-  ':hover': {
+  ":hover": {
     color: $theme.colors.primary,
-    textDecoration: 'none',
+    textDecoration: "none",
   },
 }));
 
@@ -73,7 +77,10 @@ function Footer() {
         >
           Slack Chat room
         </StyledLink>
-        <StyledLink href="https://github.com/uber/baseweb/releases" target="_blank">
+        <StyledLink
+          href="https://github.com/uber/baseweb/releases"
+          target="_blank"
+        >
           Changelog
         </StyledLink>
         <Link href="/blog">

@@ -20,7 +20,7 @@ function SelectAtStart(props: any) {
         />
       </div>
       <Input
-        onChange={e => props.onInputChange(e.currentTarget.value)}
+        onChange={(e) => props.onInputChange(e.currentTarget.value)}
         value={props.inputValue}
       />
     </div>
@@ -32,7 +32,7 @@ function SelectAtEnd(props: any) {
   return (
     <div className={css({display: 'flex'})}>
       <Input
-        onChange={e => props.onInputChange(e.currentTarget.value)}
+        onChange={(e) => props.onInputChange(e.currentTarget.value)}
         value={props.inputValue}
         id={props.id}
       />

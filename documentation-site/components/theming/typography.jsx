@@ -17,9 +17,7 @@ export function Type({ name }) {
       name={name}
       concern="typography"
       renderPreview={() => (
-        <div className={css({ ...theme.typography[name] })}>
-          Example
-        </div>
+        <div className={css({ ...theme.typography[name] })}>Example</div>
       )}
       renderValue={() => (
         <pre

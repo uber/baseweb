@@ -5,29 +5,29 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
-import Example from '../../components/example';
-import Layout from '../../components/layout';
-import Exports from '../../components/exports';
+import Example from "../../components/example";
+import Layout from "../../components/layout";
+import Exports from "../../components/exports";
 
-import Stateless from 'examples/popover/stateless.tsx';
-import StatefulClick from 'examples/popover/stateful-click.tsx';
-import Link from 'examples/popover/link.tsx';
-import StatefulHover from 'examples/popover/stateful-hover.tsx';
-import Placements from 'examples/popover/placements.tsx';
-import WithArrow from 'examples/popover/with-arrow.tsx';
-import Dismiss from 'examples/popover/dismiss.tsx';
-import Clipping from 'examples/popover/clipping.tsx';
-import Customization from 'examples/popover/overrides.tsx';
-import AnchorRefHandling from 'examples/popover/ref-handling.tsx';
-import SSRRenderAll from 'examples/popover/ssr-render-all.tsx';
+import Stateless from "examples/popover/stateless.tsx";
+import StatefulClick from "examples/popover/stateful-click.tsx";
+import Link from "examples/popover/link.tsx";
+import StatefulHover from "examples/popover/stateful-hover.tsx";
+import Placements from "examples/popover/placements.tsx";
+import WithArrow from "examples/popover/with-arrow.tsx";
+import Dismiss from "examples/popover/dismiss.tsx";
+import Clipping from "examples/popover/clipping.tsx";
+import Customization from "examples/popover/overrides.tsx";
+import AnchorRefHandling from "examples/popover/ref-handling.tsx";
+import SSRRenderAll from "examples/popover/ssr-render-all.tsx";
 
-import { Popover, PLACEMENT } from 'baseui/popover';
-import * as PopoverExports from 'baseui/popover';
-import { Block } from 'baseui/block';
-import { ParagraphSmall, LabelSmall } from 'baseui/typography';
+import { Popover, PLACEMENT } from "baseui/popover";
+import * as PopoverExports from "baseui/popover";
+import { Block } from "baseui/block";
+import { ParagraphSmall, LabelSmall } from "baseui/typography";
 
-import Yard from '../../components/yard/index';
-import popoverYardConfig from '../../components/yard/config/popover';
+import Yard from "../../components/yard/index";
+import popoverYardConfig from "../../components/yard/config/popover";
 
 export default Layout;
 
@@ -107,4 +107,8 @@ directly to Popover's contents, as this will cause unexpected behavior.
   <SSRRenderAll />
 </Example>
 
-<Exports component={PopoverExports} title="Popover exports" path="baseui/popover" />
+<Exports
+  component={PopoverExports}
+  title="Popover exports"
+  path="baseui/popover"
+/>

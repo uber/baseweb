@@ -169,13 +169,11 @@ const tagYardConfig = {
       value: {
         Text: {
           active: true,
-          style:
-            "({ $theme }) => ({\n  color: $theme.colors.accent,\n})",
+          style: "({ $theme }) => ({\n  color: $theme.colors.accent,\n})",
         },
       },
       type: PropTypes.Custom,
-      description:
-        "Lets you customize all aspects of the component.",
+      description: "Lets you customize all aspects of the component.",
       custom: {
         names: ["Root", "Action", "ActionIcon", "Text"],
         sharedProps: {
@@ -202,13 +200,7 @@ const tagYardConfig = {
 };
 
 function LiveEditorTag() {
-  return (
-    <Yard
-      placeholderHeight={34}
-      {...tagYardConfig}
-      initialTab="1"
-    />
-  );
+  return <Yard placeholderHeight={34} {...tagYardConfig} initialTab="1" />;
 }
 
 export default LiveEditorTag;

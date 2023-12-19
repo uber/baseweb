@@ -5,9 +5,9 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-import { Navigation } from 'baseui/side-navigation';
-import { PropTypes } from 'react-view';
-import type { TConfig } from '../types';
+import { Navigation } from "baseui/side-navigation";
+import { PropTypes } from "react-view";
+import type { TConfig } from "../types";
 
 const items = `[
   {
@@ -38,10 +38,10 @@ const items = `[
 ]`;
 
 const SideNavigationConfig: TConfig = {
-  componentName: 'Navigation',
+  componentName: "Navigation",
   imports: {
-    'baseui/side-navigation': {
-      named: ['Navigation'],
+    "baseui/side-navigation": {
+      named: ["Navigation"],
     },
   },
   scope: { Navigation },
@@ -50,52 +50,58 @@ const SideNavigationConfig: TConfig = {
     items: {
       value: items,
       type: PropTypes.Array,
-      description: 'Navigation items to render.',
+      description: "Navigation items to render.",
     },
     activeItemId: {
-      value: '#primary',
+      value: "#primary",
       type: PropTypes.String,
-      description: 'Currently selected item id.',
+      description: "Currently selected item id.",
       stateful: true,
     },
     onChange: {
-      value: '({item}) => setActiveItemId(item.itemId)',
+      value: "({item}) => setActiveItemId(item.itemId)",
       type: PropTypes.Function,
-      description: 'Called when item is clicked.',
+      description: "Called when item is clicked.",
       propHook: {
-        what: 'item.itemId',
-        into: 'activeItemId',
+        what: "item.itemId",
+        into: "activeItemId",
       },
     },
     activePredicate: {
       value: undefined,
       type: PropTypes.Function,
       description:
-        'Is called on the nav item render to test if the item is currently selected. If returns true, the item will be rendered as an active.',
+        "Is called on the nav item render to test if the item is currently selected. If returns true, the item will be rendered as an active.",
     },
     mapItem: {
       value: undefined,
       type: PropTypes.Function,
-      description: 'Optional transform function that is called for each Item.',
+      description: "Optional transform function that is called for each Item.",
     },
     overrides: {
       value: undefined,
       type: PropTypes.Custom,
-      description: 'Lets you customize all aspects of the component.',
+      description: "Lets you customize all aspects of the component.",
       custom: {
-        names: ['Root', 'NavItemContainer', 'NavLink', 'NavItem', 'SubNavContainer'],
+        names: [
+          "Root",
+          "NavItemContainer",
+          "NavLink",
+          "NavItem",
+          "SubNavContainer",
+        ],
         sharedProps: {
           $active: {
             type: PropTypes.Boolean,
-            description: 'True if nav item is active.',
+            description: "True if nav item is active.",
           },
           $level: {
             type: PropTypes.Number,
-            description: 'Indicates the nav item nesting level.',
+            description: "Indicates the nav item nesting level.",
           },
           $selectable: {
             type: PropTypes.Boolean,
-            description: 'True if the nav item is selectable.',
+            description: "True if the nav item is selectable.",
           },
         },
       },

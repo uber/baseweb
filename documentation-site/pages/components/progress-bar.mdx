@@ -5,23 +5,23 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
-import Example from '../../components/example';
-import Layout from '../../components/layout';
-import Exports from '../../components/exports';
+import Example from "../../components/example";
+import Layout from "../../components/layout";
+import Exports from "../../components/exports";
 
-import Basic from 'examples/progress-bar/basic.tsx';
-import Negative from 'examples/progress-bar/negative.tsx';
-import WithLabel from 'examples/progress-bar/with-label.tsx';
-import CustomLabel from 'examples/progress-bar/custom-label.tsx';
-import Customization from 'examples/progress-bar/overrides.tsx';
-import Steps from 'examples/progress-bar/steps.tsx';
-import ProgressBarRounded from 'examples/progress-bar/rounded.tsx';
+import Basic from "examples/progress-bar/basic.tsx";
+import Negative from "examples/progress-bar/negative.tsx";
+import WithLabel from "examples/progress-bar/with-label.tsx";
+import CustomLabel from "examples/progress-bar/custom-label.tsx";
+import Customization from "examples/progress-bar/overrides.tsx";
+import Steps from "examples/progress-bar/steps.tsx";
+import ProgressBarRounded from "examples/progress-bar/rounded.tsx";
 
-import { ProgressBar } from 'baseui/progress-bar';
-import * as ProgressBarExports from 'baseui/progress-bar';
+import { ProgressBar } from "baseui/progress-bar";
+import * as ProgressBarExports from "baseui/progress-bar";
 
-import Yard from '../../components/yard/index';
-import progressBarYardConfig from '../../components/yard/config/progress-bar';
+import Yard from "../../components/yard/index";
+import progressBarYardConfig from "../../components/yard/config/progress-bar";
 
 export default Layout;
 
@@ -45,15 +45,24 @@ Indicates a wait time for actions - either within an experience flow or loading 
   <Basic />
 </Example>
 
-<Example title="Progress bar with Negative Color" path="progress-bar/negative.tsx">
+<Example
+  title="Progress bar with Negative Color"
+  path="progress-bar/negative.tsx"
+>
   <Negative />
 </Example>
 
-<Example title="Progress bar with Visible Label" path="progress-bar/with-label.tsx">
+<Example
+  title="Progress bar with Visible Label"
+  path="progress-bar/with-label.tsx"
+>
   <WithLabel />
 </Example>
 
-<Example title="Progress bar with Custom Label" path="progress-bar/custom-label.tsx">
+<Example
+  title="Progress bar with Custom Label"
+  path="progress-bar/custom-label.tsx"
+>
   <CustomLabel />
 </Example>
 
@@ -77,4 +86,8 @@ There also is a rounded version of the progress bar
   <ProgressBarRounded />
 </Example>
 
-<Exports component={ProgressBarExports} title="Progress Bar exports" path="baseui/progress-bar" />
+<Exports
+  component={ProgressBarExports}
+  title="Progress Bar exports"
+  path="baseui/progress-bar"
+/>

@@ -5,20 +5,20 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
-import Example from '../../components/example';
-import Exports from '../../components/exports';
-import Layout from '../../components/layout';
-import SEO from '../../components/meta-seo';
+import Example from "../../components/example";
+import Exports from "../../components/exports";
+import Layout from "../../components/layout";
+import SEO from "../../components/meta-seo";
 
-import BasicBreadcrumbs from 'examples/breadcrumbs/basic.tsx';
-import PseudoBreadcrumbs from 'examples/breadcrumbs/pseudo.tsx';
+import BasicBreadcrumbs from "examples/breadcrumbs/basic.tsx";
+import PseudoBreadcrumbs from "examples/breadcrumbs/pseudo.tsx";
 
-import { Breadcrumbs } from 'baseui/breadcrumbs';
-import * as BreadcrumbsExports from 'baseui/breadcrumbs';
-import { StyledLink as Link } from 'baseui/link';
+import { Breadcrumbs } from "baseui/breadcrumbs";
+import * as BreadcrumbsExports from "baseui/breadcrumbs";
+import { StyledLink as Link } from "baseui/link";
 
-import Yard from '../../components/yard/index';
-import breadcrumbsYardConfig from '../../components/yard/config/breadcrumbs';
+import Yard from "../../components/yard/index";
+import breadcrumbsYardConfig from "../../components/yard/config/breadcrumbs";
 
 <SEO
   description="The Breadcrumbs component is a secondary navigation scheme that reveals the user’s location in an application."
@@ -40,10 +40,17 @@ the user’s location in an application.
   <BasicBreadcrumbs />
 </Example>
 
-<Example title="Breadcrumbs with pseudo separators" path="breadcrumbs/pseudo.tsx">
+<Example
+  title="Breadcrumbs with pseudo separators"
+  path="breadcrumbs/pseudo.tsx"
+>
   <PseudoBreadcrumbs />
 </Example>
 
 This is the recommended approach where SEO/Accessibility is important.
 
-<Exports component={BreadcrumbsExports} title="Breadcrumbs exports" path="baseui/breadcrumbs" />
+<Exports
+  component={BreadcrumbsExports}
+  title="Breadcrumbs exports"
+  path="baseui/breadcrumbs"
+/>

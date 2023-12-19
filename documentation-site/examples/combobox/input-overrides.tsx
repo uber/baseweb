@@ -23,7 +23,7 @@ function Example() {
         <Combobox
           value={value}
           onChange={setValue}
-          mapOptionToString={o => o.label}
+          mapOptionToString={(o) => o.label}
           options={options}
           name="input-overrides"
           overrides={{

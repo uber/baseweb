@@ -5,29 +5,29 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
-import Example from '../../components/example';
-import Layout from '../../components/layout';
-import Exports from '../../components/exports';
+import Example from "../../components/example";
+import Layout from "../../components/layout";
+import Exports from "../../components/exports";
 
-import PinCodeBasic from 'examples/pin-code/basic.tsx';
-import PinCodeLength from 'examples/pin-code/length.tsx';
-import PinCodeIdAndName from 'examples/pin-code/id-and-name.tsx';
-import PinCodeStates from 'examples/pin-code/states.tsx';
-import PinCodeSizes from 'examples/pin-code/size.tsx';
-import PinCodePlaceholder from 'examples/pin-code/placeholder.tsx';
-import PinCodeNoTab from 'examples/pin-code/no-tab.tsx';
-import PinCodeAutofocus from 'examples/pin-code/autofocus.tsx';
-import PinCodeCompletion from 'examples/pin-code/completion.tsx';
-import PinCodeOverride from 'examples/pin-code/override.tsx';
-import PinCodeEvent from 'examples/pin-code/event.tsx';
-import PinCodeStateful from 'examples/pin-code/stateful.tsx';
-import PinCodeMask from 'examples/pin-code/mask.tsx';
+import PinCodeBasic from "examples/pin-code/basic.tsx";
+import PinCodeLength from "examples/pin-code/length.tsx";
+import PinCodeIdAndName from "examples/pin-code/id-and-name.tsx";
+import PinCodeStates from "examples/pin-code/states.tsx";
+import PinCodeSizes from "examples/pin-code/size.tsx";
+import PinCodePlaceholder from "examples/pin-code/placeholder.tsx";
+import PinCodeNoTab from "examples/pin-code/no-tab.tsx";
+import PinCodeAutofocus from "examples/pin-code/autofocus.tsx";
+import PinCodeCompletion from "examples/pin-code/completion.tsx";
+import PinCodeOverride from "examples/pin-code/override.tsx";
+import PinCodeEvent from "examples/pin-code/event.tsx";
+import PinCodeStateful from "examples/pin-code/stateful.tsx";
+import PinCodeMask from "examples/pin-code/mask.tsx";
 
-import * as PinCodeExports from 'baseui/pin-code/index';
-import { StatefulPinCode } from 'baseui/pin-code/index';
+import * as PinCodeExports from "baseui/pin-code/index";
+import { StatefulPinCode } from "baseui/pin-code/index";
 
-import Yard from '../../components/yard/index';
-import pinYardConfig from '../../components/yard/config/pin-code';
+import Yard from "../../components/yard/index";
+import pinYardConfig from "../../components/yard/config/pin-code";
 
 export default Layout;
 
@@ -156,4 +156,8 @@ If things seem promising, `PinCode` will call `onChange` will all of the values 
 
 As with many of our components, there is also an [uncontrolled](https://reactjs.org/docs/uncontrolled-components.html) version, `StatefulPinCode`, which manages its own state. The default code length for this component is four, but you can change that by passing in an array of a different length to `initialState`.
 
-<Exports component={PinCodeExports} title="Pin Code exports" path="baseui/pin-code" />
+<Exports
+  component={PinCodeExports}
+  title="Pin Code exports"
+  path="baseui/pin-code"
+/>

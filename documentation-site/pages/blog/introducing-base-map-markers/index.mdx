@@ -3,11 +3,7 @@ import Layout from "../../../components/layout";
 import Yard from "../../../components/yard/index";
 import FloatingMarkerContainer from "../../../components/floating-marker-container";
 
-import {
-  BlogImage,
-  Meta,
-  Caption,
-} from "../../../components/blog";
+import { BlogImage, Meta, Caption } from "../../../components/blog";
 import { View, PropTypes } from "react-view";
 import { Button, SIZE } from "baseui/button";
 import Example from "../../../components/example";
@@ -22,10 +18,7 @@ export default Layout;
 
 <Meta data={metadata} />
 
-<BlogImage
-  src={coverImg}
-  alt="cover image of the base map markers"
-/>
+<BlogImage src={coverImg} alt="cover image of the base map markers" />
 
 We're happy to share that the Base map markers have landed in Base Web! These map markers have been an integral part of our products and our design system at Uber and we're excited to release this component to the open-source community.
 
@@ -85,10 +78,7 @@ The map marker components are normal React components that can be rendered on th
 
 The recommended SDK for working with these markers is [react-map-gl](https://visgl.github.io/react-map-gl/). react-map-gl is a library to interact with Mapbox GL JS while using React. However, you are welcome to use any maps SDK of your choice with the map markers.
 
-<Example
-  title="Usage with react-map-gl"
-  path="floating-marker/react-map-gl.js"
->
+<Example title="Usage with react-map-gl" path="floating-marker/react-map-gl.js">
   <ReactMapGL />
 </Example>
 

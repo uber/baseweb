@@ -70,7 +70,7 @@ function mapOptionToString(option: OptionT): string {
 
 function fetchOptions(searchTerm: string, callback: any) {
   setTimeout(() => {
-    const options = asyncOptions.filter(option => {
+    const options = asyncOptions.filter((option) => {
       const optionAsString = mapOptionToString(option);
       return optionAsString
         .toLowerCase()

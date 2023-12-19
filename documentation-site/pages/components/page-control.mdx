@@ -5,17 +5,17 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
-import Example from '../../components/example';
-import Layout from '../../components/layout';
-import Exports from '../../components/exports';
+import Example from "../../components/example";
+import Layout from "../../components/layout";
+import Exports from "../../components/exports";
 
-import { PageControl } from 'baseui/page-control';
-import * as PageControlExports from 'baseui/page-control';
+import { PageControl } from "baseui/page-control";
+import * as PageControlExports from "baseui/page-control";
 
-import Yard from '../../components/yard/index';
-import pageControlYardConfig from '../../components/yard/config/page-control';
+import Yard from "../../components/yard/index";
+import pageControlYardConfig from "../../components/yard/config/page-control";
 
-import Overflow from 'examples/page-control/overflow.tsx';
+import Overflow from "examples/page-control/overflow.tsx";
 
 export default Layout;
 
@@ -33,4 +33,8 @@ Page controls are a series of small indicator dots representing the available pa
 
 A maximum of five page dots will render at a time. When there are more than 5 pages, the dots will be clipped, and the indicator size will shrink on both sides to suggest more pages are available.
 
-<Exports component={PageControlExports} title="PageControl exports" path="baseui/page-control" />
+<Exports
+  component={PageControlExports}
+  title="PageControl exports"
+  path="baseui/page-control"
+/>

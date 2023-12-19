@@ -28,10 +28,7 @@ function LiveEditor({ initialCode }) {
           fontFamily: `system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif`,
         }}
       >
-        <Compiler
-          {...params.compilerProps}
-          presets={[presetTypescript]}
-        />
+        <Compiler {...params.compilerProps} presets={[presetTypescript]} />
       </div>
       <Editor {...params.editorProps} language="tsx" />
       <Error {...params.errorProps} />

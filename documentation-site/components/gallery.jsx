@@ -5,276 +5,276 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-//      
+//
 
-import React from 'react';
-import { H2 } from '../components/markdown-elements';
-import { useStyletron, expandBorderStyles } from 'baseui/styles';
+import React from "react";
+import { H2 } from "../components/markdown-elements";
+import { useStyletron, expandBorderStyles } from "baseui/styles";
 
-import * as thumbnails from '../components/thumbs';
+import * as thumbnails from "../components/thumbs";
 
 const COMPONENTS = {
   Inputs: [
     {
-      href: '/components/button',
+      href: "/components/button",
       Component: thumbnails.SvgButton,
     },
     {
-      href: '/components/button-group',
+      href: "/components/button-group",
       Component: thumbnails.SvgButtonGroup,
     },
     {
-      href: '/components/checkbox',
+      href: "/components/checkbox",
       Component: thumbnails.SvgCheckbox,
     },
     {
-      href: '/components/form-control',
+      href: "/components/form-control",
       Component: thumbnails.SvgFormControl,
     },
     {
-      href: '/components/input',
+      href: "/components/input",
       Component: thumbnails.SvgInput,
     },
     {
-      href: '/components/payment-card',
+      href: "/components/payment-card",
       Component: thumbnails.SvgPaymentCard,
     },
     {
-      href: '/components/phone-input',
+      href: "/components/phone-input",
       Component: thumbnails.SvgPhoneInput,
     },
     {
-      href: '/components/pin-code',
+      href: "/components/pin-code",
       Component: thumbnails.SvgPinCode,
     },
     {
-      href: '/components/radio',
+      href: "/components/radio",
       Component: thumbnails.SvgRadio,
     },
     {
-      href: '/components/slider',
+      href: "/components/slider",
       Component: thumbnails.SvgSlider,
     },
     {
-      href: '/components/textarea',
+      href: "/components/textarea",
       Component: thumbnails.SvgTextarea,
     },
   ],
   Pickers: [
     {
-      href: '/components/file-uploader',
+      href: "/components/file-uploader",
       Component: thumbnails.SvgFileUploader,
     },
     {
-      href: '/components/menu',
+      href: "/components/menu",
       Component: thumbnails.SvgMenu,
     },
     {
-      href: '/components/rating',
+      href: "/components/rating",
       Component: thumbnails.SvgRating,
     },
     {
-      href: '/components/select',
+      href: "/components/select",
       Component: thumbnails.SvgSelect,
     },
   ],
-  'Date & Time': [
+  "Date & Time": [
     {
-      href: '/components/datepicker',
+      href: "/components/datepicker",
       Component: thumbnails.SvgDatepicker,
     },
     {
-      href: '/components/time-picker',
+      href: "/components/time-picker",
       Component: thumbnails.SvgSelect,
     },
     {
-      href: '/components/timezone-picker',
+      href: "/components/timezone-picker",
       Component: thumbnails.SvgSelect,
     },
   ],
   Navigation: [
     {
-      href: '/components/breadcrumbs',
+      href: "/components/breadcrumbs",
       Component: thumbnails.SvgBreadcrumbs,
     },
     {
-      href: '/components/header-navigation',
+      href: "/components/header-navigation",
       Component: thumbnails.SvgHeaderNavigation,
     },
     {
-      href: '/components/link',
+      href: "/components/link",
       Component: thumbnails.SvgLink,
     },
     {
-      href: '/components/pagination',
+      href: "/components/pagination",
       Component: thumbnails.SvgPagination,
     },
     {
-      href: '/components/side-nav',
+      href: "/components/side-nav",
       Component: thumbnails.SvgSideNavigation,
     },
     {
-      href: '/components/tabs',
+      href: "/components/tabs",
       Component: thumbnails.SvgTabs,
     },
   ],
   Content: [
     {
-      href: '/components/accordion',
+      href: "/components/accordion",
       Component: thumbnails.SvgAccordion,
     },
     {
-      href: '/components/avatar',
+      href: "/components/avatar",
       Component: thumbnails.SvgAvatar,
     },
     {
-      href: '/components/dnd-list',
+      href: "/components/dnd-list",
       Component: thumbnails.SvgDndList,
     },
     {
-      href: '/components/layout-grid',
+      href: "/components/layout-grid",
       Component: thumbnails.SvgLayoutGrid,
     },
     {
-      href: '/components/heading',
+      href: "/components/heading",
       Component: thumbnails.SvgHeading,
     },
     {
-      href: '/components/icon',
+      href: "/components/icon",
       Component: thumbnails.SvgIcon,
     },
     {
-      href: '/components/list',
+      href: "/components/list",
       Component: thumbnails.SvgList,
     },
     {
-      href: '/components/tag',
+      href: "/components/tag",
       Component: thumbnails.SvgTag,
     },
     {
-      href: '/components/tree-view',
+      href: "/components/tree-view",
       Component: thumbnails.SvgTreeView,
     },
     {
-      href: '/components/typography',
+      href: "/components/typography",
       Component: thumbnails.SvgTypography,
     },
   ],
   Tables: [
     {
-      href: '/components/table',
+      href: "/components/table",
       Component: thumbnails.SvgTable,
     },
     {
-      href: '/components/data-table',
+      href: "/components/data-table",
       Component: thumbnails.SvgDataTable,
     },
     {
-      href: '/components/table-grid',
+      href: "/components/table-grid",
       Component: thumbnails.SvgTableGrid,
     },
     {
-      href: '/components/table-semantic',
+      href: "/components/table-semantic",
       Component: thumbnails.SvgTableSemantic,
     },
   ],
   Feedback: [
     {
-      href: '/components/notification',
+      href: "/components/notification",
       Component: thumbnails.SvgNotification,
     },
     {
-      href: '/components/progress-bar',
+      href: "/components/progress-bar",
       Component: thumbnails.SvgProgressBar,
     },
     {
-      href: '/components/progress-steps',
+      href: "/components/progress-steps",
       Component: thumbnails.SvgProgressSteps,
     },
     {
-      href: '/components/spinner',
+      href: "/components/spinner",
       Component: thumbnails.SvgSpinner,
     },
     {
-      href: '/components/toast',
+      href: "/components/toast",
       Component: thumbnails.SvgToast,
     },
   ],
   Surfaces: [
     {
-      href: '/components/card',
+      href: "/components/card",
       Component: thumbnails.SvgCard,
     },
     {
-      href: '/components/drawer',
+      href: "/components/drawer",
       Component: thumbnails.SvgDrawer,
     },
     {
-      href: '/components/modal',
+      href: "/components/modal",
       Component: thumbnails.SvgModal,
     },
     {
-      href: '/components/popover',
+      href: "/components/popover",
       Component: thumbnails.SvgPopover,
     },
     {
-      href: '/components/tooltip',
+      href: "/components/tooltip",
       Component: thumbnails.SvgTooltip,
     },
   ],
-  'Map Marker': [
+  "Map Marker": [
     {
-      href: '/components/fixed-marker',
+      href: "/components/fixed-marker",
       Component: thumbnails.SvgFixedMarker,
     },
     {
-      href: '/components/floating-marker',
+      href: "/components/floating-marker",
       Component: thumbnails.SvgFloatingMarker,
     },
     {
-      href: '/components/floating-route-marker',
+      href: "/components/floating-route-marker",
       Component: thumbnails.SvgFloatingRouteMarker,
     },
     {
-      href: '/components/location-puck',
+      href: "/components/location-puck",
       Component: thumbnails.SvgLocationPuck,
     },
   ],
   Utility: [
     {
-      href: '/components/aspect-ratio-box',
+      href: "/components/aspect-ratio-box",
       Component: thumbnails.SvgAspectRatioBox,
     },
     {
-      href: '/components/base-provider',
+      href: "/components/base-provider",
       Component: thumbnails.SvgBaseProvider,
     },
     {
-      href: '/components/block',
+      href: "/components/block",
       Component: thumbnails.SvgBlock,
     },
     {
-      href: '/components/flex-grid',
+      href: "/components/flex-grid",
       Component: thumbnails.SvgFlexGrid,
     },
     {
-      href: '/components/layer',
+      href: "/components/layer",
       Component: thumbnails.SvgLayer,
     },
     {
-      href: '/components/use-styletron',
+      href: "/components/use-styletron",
       Component: thumbnails.SvgUseStyletron,
     },
     {
-      href: '/components/styled',
+      href: "/components/styled",
       Component: thumbnails.SvgStyled,
     },
     {
-      href: '/components/tokens',
+      href: "/components/tokens",
       Component: thumbnails.SvgTokens,
     },
     {
-      href: '/components/unstable-a11y',
+      href: "/components/unstable-a11y",
       Component: thumbnails.SvgUnstableA11y,
     },
   ],
@@ -291,38 +291,38 @@ function Thumbnail({ children, href }) {
         borderRightColor: theme.colors.borderOpaque,
         borderTopColor: theme.colors.borderOpaque,
         borderBottomColor: theme.colors.borderOpaque,
-        display: 'flex',
-        flexDirection: 'column',
+        display: "flex",
+        flexDirection: "column",
         marginRight: theme.sizing.scale800,
         marginBottom: theme.sizing.scale800,
-        textDecoration: 'none',
-        transitionProperty: 'all',
+        textDecoration: "none",
+        transitionProperty: "all",
         transitionDuration: theme.animation.timing200,
         transitionTimingFunction: theme.animation.easeInOutCurve,
-        ':hover': {
-          borderLeftWidth: '1px',
-          borderRightWidth: '1px',
-          borderTopWidth: '1px',
-          borderBottomWidth: '1px',
-          borderLeftStyle: 'solid',
-          borderTopStyle: 'solid',
-          borderRightStyle: 'solid',
-          borderBottomStyle: 'solid',
+        ":hover": {
+          borderLeftWidth: "1px",
+          borderRightWidth: "1px",
+          borderTopWidth: "1px",
+          borderBottomWidth: "1px",
+          borderLeftStyle: "solid",
+          borderTopStyle: "solid",
+          borderRightStyle: "solid",
+          borderBottomStyle: "solid",
           borderLeftColor: `${theme.colors.borderSelected}`,
           borderTopColor: `${theme.colors.borderSelected}`,
           borderRightColor: `${theme.colors.borderSelected}`,
           borderBottomColor: `${theme.colors.borderSelected}`,
         },
-        ':focus': {
-          outline: 'none',
-          borderLeftWidth: '1px',
-          borderRightWidth: '1px',
-          borderTopWidth: '1px',
-          borderBottomWidth: '1px',
-          borderLeftStyle: 'solid',
-          borderTopStyle: 'solid',
-          borderRightStyle: 'solid',
-          borderBottomStyle: 'solid',
+        ":focus": {
+          outline: "none",
+          borderLeftWidth: "1px",
+          borderRightWidth: "1px",
+          borderTopWidth: "1px",
+          borderBottomWidth: "1px",
+          borderLeftStyle: "solid",
+          borderTopStyle: "solid",
+          borderRightStyle: "solid",
+          borderBottomStyle: "solid",
           borderLeftColor: `${theme.colors.borderSelected}`,
           borderTopColor: `${theme.colors.borderSelected}`,
           borderRightColor: `${theme.colors.borderSelected}`,
@@ -348,7 +348,7 @@ function Thumbnail({ children, href }) {
           paddingRight: theme.sizing.scale500,
         })}
       >
-        {'baseui/' + href.split('/')[2]}
+        {"baseui/" + href.split("/")[2]}
       </div>
       <div
         className={css({
@@ -363,7 +363,7 @@ function Thumbnail({ children, href }) {
 
 function Section({ category }) {
   const [css, theme] = useStyletron();
-  const colors = theme.name.includes('light-theme')
+  const colors = theme.name.includes("light-theme")
     ? [theme.colors.mono200, theme.colors.mono400, theme.colors.mono600]
     : [theme.colors.mono700, theme.colors.mono500, theme.colors.mono300];
   return (
@@ -371,8 +371,8 @@ function Section({ category }) {
       <H2>{category}</H2>
       <div
         className={css({
-          display: 'flex',
-          flexWrap: 'wrap',
+          display: "flex",
+          flexWrap: "wrap",
           marginTop: theme.sizing.scale800,
         })}
       >

@@ -2,9 +2,8 @@ import * as React from 'react';
 import {Tabs, Tab} from 'baseui/tabs-motion';
 
 export default function Example() {
-  const [activeKey, setActiveKey] = React.useState<React.Key>(
-    'first',
-  );
+  const [activeKey, setActiveKey] =
+    React.useState<React.Key>('first');
   return (
     <Tabs
       activeKey={activeKey}

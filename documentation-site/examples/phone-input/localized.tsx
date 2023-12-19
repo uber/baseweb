@@ -15,13 +15,13 @@ export default function Example() {
     <PhoneInput
       text={text}
       country={country}
-      onTextChange={event => {
+      onTextChange={(event) => {
         setText(event.currentTarget.value);
       }}
       onCountryChange={(event: any) => {
         setCountry(event.option);
       }}
-      mapIsoToLabel={iso => iso2FlagEmoji(iso)}
+      mapIsoToLabel={(iso) => iso2FlagEmoji(iso)}
     />
   );
 }

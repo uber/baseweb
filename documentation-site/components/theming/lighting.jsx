@@ -24,9 +24,7 @@ export function Lighting({ name }) {
           })}
         ></div>
       )}
-      renderValue={({ previewTheme }) =>
-        previewTheme.lighting[name]
-      }
+      renderValue={({ previewTheme }) => previewTheme.lighting[name]}
     />
   );
 }

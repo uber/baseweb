@@ -42,7 +42,7 @@ export default function Example() {
           <Search
             {...options}
             type={TYPE.search}
-            getOptionLabel={props =>
+            getOptionLabel={(props) =>
               props.option && props.option.id
                 ? props.option.id
                 : null

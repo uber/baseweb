@@ -5,27 +5,32 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-import * as React from 'react';
-import { useStyletron } from 'baseui';
-import { StatefulTooltip } from 'baseui/tooltip';
-import { Button, KIND, SIZE } from 'baseui/button';
-import { ButtonGroup } from 'baseui/button-group';
-import Editor from './editor';
-import { toggleOverrideSharedProps } from './ast';
+import * as React from "react";
+import { useStyletron } from "baseui";
+import { StatefulTooltip } from "baseui/tooltip";
+import { Button, KIND, SIZE } from "baseui/button";
+import { ButtonGroup } from "baseui/button-group";
+import Editor from "./editor";
+import { toggleOverrideSharedProps } from "./ast";
 
-import { formatCode } from 'react-view';
+import { formatCode } from "react-view";
 
-export const getHighlightStyles = (isLightTheme: boolean, sharedProps: string[]) =>
-  formatCode(`({ $theme, ${sharedProps.join(',')} }) => ({
+export const getHighlightStyles = (
+  isLightTheme: boolean,
+  sharedProps: string[],
+) =>
+  formatCode(`({ $theme, ${sharedProps.join(",")} }) => ({
     outline: \`\${${
-      isLightTheme ? '$theme.colors.warning200' : '$theme.colors.warning600'
+      isLightTheme ? "$theme.colors.warning200" : "$theme.colors.warning600"
     }} solid\`,
-    backgroundColor: ${isLightTheme ? '$theme.colors.warning200' : '$theme.colors.warning600'},
+    backgroundColor: ${
+      isLightTheme ? "$theme.colors.warning200" : "$theme.colors.warning600"
+    },
     })
   `);
 
 const getEmptyStyles = (sharedProps: string[]) =>
-  formatCode(`({ $theme, ${sharedProps.join(',')} }) => ({})
+  formatCode(`({ $theme, ${sharedProps.join(",")} }) => ({})
 `);
 
 type TProps = {
@@ -49,8 +54,11 @@ const SharedPropsTooltip: React.FC<{
   const sharedProps = Object.keys(componentConfig.overrides.custom.sharedProps);
   const getDescription = (name: string) => {
     let metaObj: { type: string; description: string } | undefined;
-    if (typeof componentConfig.overrides.custom.sharedProps[name] === 'string') {
-      metaObj = componentConfig[componentConfig.overrides.custom.sharedProps[name]];
+    if (
+      typeof componentConfig.overrides.custom.sharedProps[name] === "string"
+    ) {
+      metaObj =
+        componentConfig[componentConfig.overrides.custom.sharedProps[name]];
     } else {
       metaObj = componentConfig.overrides.custom.sharedProps[name];
     }
@@ -61,12 +69,12 @@ const SharedPropsTooltip: React.FC<{
         </React.Fragment>
       );
     } else {
-      if (process.env.WEBSITE_ENV !== 'production') {
+      if (process.env.WEBSITE_ENV !== "production") {
         console.warn(
-          `Could not find a tooltip description for "${name}". Is this prop included in the yard configuration?`
+          `Could not find a tooltip description for "${name}". Is this prop included in the yard configuration?`,
         );
       }
-      return '-';
+      return "-";
     }
   };
   return (
@@ -102,10 +110,10 @@ const Override: React.FC<TProps> = ({
   set,
 }) => {
   const [css, theme] = useStyletron();
-  const isLightTheme = theme.name.startsWith('light-theme');
-  const code = overridesObj[overrideKey] ? overridesObj[overrideKey].style : '';
+  const isLightTheme = theme.name.startsWith("light-theme");
+  const code = overridesObj[overrideKey] ? overridesObj[overrideKey].style : "";
   return (
-    <div className={css({ paddingRight: '10px', paddingBottom: '16px' })}>
+    <div className={css({ paddingRight: "10px", paddingBottom: "16px" })}>
       <Editor
         onChange={(newCode) => {
           set({
@@ -122,9 +130,10 @@ const Override: React.FC<TProps> = ({
           Root: {
             style: ({ $theme }) => ({
               marginTop: $theme.sizing.scale300,
-              [`@media screen and (max-width: ${$theme.breakpoints.medium}px)`]: {
-                flexWrap: 'wrap',
-              },
+              [`@media screen and (max-width: ${$theme.breakpoints.medium}px)`]:
+                {
+                  flexWrap: "wrap",
+                },
             }),
           },
         }}
@@ -149,8 +158,8 @@ const Override: React.FC<TProps> = ({
             const newCode = formatCode(
               toggleOverrideSharedProps(
                 overrides.value[overrideKey].style,
-                Object.keys(overrides.custom.sharedProps)
-              )
+                Object.keys(overrides.custom.sharedProps),
+              ),
             );
             set({
               ...overrides.value,

@@ -1,9 +1,5 @@
 import Layout from "../../../components/layout";
-import {
-  BlogImage,
-  Demo,
-  Meta,
-} from "../../../components/blog";
+import { BlogImage, Demo, Meta } from "../../../components/blog";
 import metadata from "./metadata.json";
 
 export default Layout;
@@ -154,13 +150,7 @@ import { useStyletron } from "baseui";
 
 function ComponentA() {
   const [css, theme] = useStyletron();
-  return (
-    <div
-      className={css({ color: theme.colors.primary400 })}
-    >
-      test
-    </div>
-  );
+  return <div className={css({ color: theme.colors.primary400 })}>test</div>;
 }
 ```
 

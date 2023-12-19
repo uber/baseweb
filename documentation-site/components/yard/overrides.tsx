@@ -5,13 +5,13 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-import * as React from 'react';
-import { StatelessAccordion as Accordion, Panel } from 'baseui/accordion';
-import { useStyletron } from 'baseui';
-import type { TConfig } from './types';
-import NestedTooltip from './nested-tooltip';
+import * as React from "react";
+import { StatelessAccordion as Accordion, Panel } from "baseui/accordion";
+import { useStyletron } from "baseui";
+import type { TConfig } from "./types";
+import NestedTooltip from "./nested-tooltip";
 
-import Override, { getHighlightStyles } from './override';
+import Override, { getHighlightStyles } from "./override";
 
 type TOverridesProps = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -32,7 +32,7 @@ const Overrides: React.FC<TOverridesProps> = ({
   isNested,
 }) => {
   const [, theme] = useStyletron();
-  const isLightTheme = theme.name.startsWith('light-theme');
+  const isLightTheme = theme.name.startsWith("light-theme");
   if (
     !overrides ||
     !overrides.custom ||
@@ -53,7 +53,7 @@ const Overrides: React.FC<TOverridesProps> = ({
   } = {};
 
   overrides.custom.names.forEach((key: string | TConfig) => {
-    const stringKey = typeof key === 'string' ? key : key.componentName;
+    const stringKey = typeof key === "string" ? key : key.componentName;
     if (overrides.value && overrides.value[stringKey]) {
       overridesObj[stringKey] = overrides.value[stringKey];
     } else {
@@ -61,7 +61,7 @@ const Overrides: React.FC<TOverridesProps> = ({
         style: null,
       };
     }
-    overridesObj[stringKey].nested = typeof key === 'string' ? undefined : key;
+    overridesObj[stringKey].nested = typeof key === "string" ? undefined : key;
   });
 
   const getNewState = (expanded: (string | number)[]) => {
@@ -115,26 +115,26 @@ const Overrides: React.FC<TOverridesProps> = ({
         overrides={{
           Root: {
             style: {
-              marginLeft: isNested ? '8px' : '0px',
-              width: 'auto',
+              marginLeft: isNested ? "8px" : "0px",
+              width: "auto",
             },
           },
           Header: {
             style: {
-              paddingTop: '8px',
-              paddingBottom: '8px',
-              paddingLeft: '8px',
-              paddingRight: '8px',
-              fontSize: '16px',
+              paddingTop: "8px",
+              paddingBottom: "8px",
+              paddingLeft: "8px",
+              paddingRight: "8px",
+              fontSize: "16px",
               borderBottomWidth: 0,
             },
           },
           Content: {
             style: {
-              backgroundColor: 'transparent',
+              backgroundColor: "transparent",
               paddingTop: 0,
               paddingBottom: 0,
-              paddingLeft: '8px',
+              paddingLeft: "8px",
               paddingRight: 0,
               borderBottomWidth: 0,
             },
@@ -153,7 +153,10 @@ const Overrides: React.FC<TOverridesProps> = ({
                 <span>
                   {overrideKey}
                   {nested ? (
-                    <NestedTooltip name={componentName} nestedName={nested.componentName} />
+                    <NestedTooltip
+                      name={componentName}
+                      nestedName={nested.componentName}
+                    />
                   ) : null}
                 </span>
               }
@@ -176,11 +179,13 @@ const Overrides: React.FC<TOverridesProps> = ({
                         ...getNewState(expanded as string[]),
                         [overrideKey]: {
                           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                          active: Object.entries(propValue).some(([, val]: any) => val.active),
+                          active: Object.entries(propValue).some(
+                            ([, val]: any) => val.active,
+                          ),
                           nestedValue: propValue,
                         },
                       },
-                      'overrides'
+                      "overrides",
                     );
                   }}
                   isNested

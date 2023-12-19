@@ -5,15 +5,15 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-import { List, arrayMove, arrayRemove } from 'baseui/dnd-list';
-import { PropTypes } from 'react-view';
-import type { TConfig } from '../types';
+import { List, arrayMove, arrayRemove } from "baseui/dnd-list";
+import { PropTypes } from "react-view";
+import type { TConfig } from "../types";
 
 const dndListConfig: TConfig = {
-  componentName: 'List',
+  componentName: "List",
   imports: {
-    'baseui/dnd-list': {
-      named: ['List', 'arrayMove', 'arrayRemove'],
+    "baseui/dnd-list": {
+      named: ["List", "arrayMove", "arrayRemove"],
     },
   },
   scope: { List, arrayMove, arrayRemove },
@@ -22,63 +22,65 @@ const dndListConfig: TConfig = {
     items: {
       value: `['Item 1', 'Item 2', 'Item 3']`,
       type: PropTypes.Array,
-      description: 'The total number of items to display.',
+      description: "The total number of items to display.",
       stateful: true,
     },
     removable: {
       value: undefined,
       type: PropTypes.Boolean,
-      description: 'Indicates if items can be removed from the list.',
+      description: "Indicates if items can be removed from the list.",
     },
     onChange: {
       value: `({oldIndex, newIndex}) =>
         setItems(newIndex === -1 ?
           arrayRemove(items, oldIndex) :
           arrayMove(items, oldIndex, newIndex))`,
-      placeholder: '({oldIdx, newIdx}) => {}',
+      placeholder: "({oldIdx, newIdx}) => {}",
       type: PropTypes.Function,
-      description: 'MovableLists onChange handler.',
+      description: "MovableLists onChange handler.",
       propHook: {
-        what: 'JSON.stringify(newIndex === -1 ? arrayRemove(items, oldIndex) : arrayMove(items, oldIndex, newIndex))',
-        into: 'items',
+        what: "JSON.stringify(newIndex === -1 ? arrayRemove(items, oldIndex) : arrayMove(items, oldIndex, newIndex))",
+        into: "items",
       },
     },
     removableByMove: {
       value: undefined,
       type: PropTypes.Boolean,
-      description: 'Indicates if items can be removed from the list by dnd outside of the list.',
+      description:
+        "Indicates if items can be removed from the list by dnd outside of the list.",
     },
     overrides: {
       value: undefined,
       type: PropTypes.Custom,
-      description: 'Lets you customize all aspects of the component.',
+      description: "Lets you customize all aspects of the component.",
       custom: {
-        names: ['Root', 'List', 'Item', 'DragHandle', 'CloseHandle', 'Label'],
+        names: ["Root", "List", "Item", "DragHandle", "CloseHandle", "Label"],
         sharedProps: {
           $isDragged: {
             type: PropTypes.Boolean,
-            description: 'Indicates if the item is being dragged.',
+            description: "Indicates if the item is being dragged.",
           },
           $isSelected: {
             type: PropTypes.Boolean,
-            description: 'Indicates if the item is selected.',
+            description: "Indicates if the item is selected.",
           },
           $isRemovable: {
             type: PropTypes.Boolean,
-            description: 'Indicates if the item can be removed from the list.',
+            description: "Indicates if the item can be removed from the list.",
           },
           $isRemovableByMove: {
             type: PropTypes.Boolean,
             description:
-              'Indicates if the item can be removed from the list by dnd outside of the list.',
+              "Indicates if the item can be removed from the list by dnd outside of the list.",
           },
           $isOutOfBounds: {
             type: PropTypes.Boolean,
-            description: 'Indicates if the item is being out of the list boundaries.',
+            description:
+              "Indicates if the item is being out of the list boundaries.",
           },
           $value: {
             type: PropTypes.Array,
-            description: 'The array of items passed into the list.',
+            description: "The array of items passed into the list.",
           },
         },
       },

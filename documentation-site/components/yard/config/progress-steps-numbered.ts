@@ -5,12 +5,12 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-import { ProgressSteps, NumberedStep } from 'baseui/progress-steps';
-import { Button } from 'baseui/button';
-import { PropTypes } from 'react-view';
-import type { TConfig } from '../types';
+import { ProgressSteps, NumberedStep } from "baseui/progress-steps";
+import { Button } from "baseui/button";
+import { PropTypes } from "react-view";
+import type { TConfig } from "../types";
 
-import ProgressStepsConfig from './progress-steps';
+import ProgressStepsConfig from "./progress-steps";
 
 const ProgressStepsNumberedConfig: TConfig = {
   ...ProgressStepsConfig,
@@ -34,8 +34,8 @@ const ProgressStepsNumberedConfig: TConfig = {
       type: PropTypes.ReactNode,
       description: `An array of Tab components.`,
       imports: {
-        'baseui/progress-steps': { named: ['NumberedStep'] },
-        'baseui/button': { named: ['Button'] },
+        "baseui/progress-steps": { named: ["NumberedStep"] },
+        "baseui/button": { named: ["Button"] },
       },
       propHook: ProgressStepsConfig.props.children.propHook,
     },

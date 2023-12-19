@@ -1,5 +1,5 @@
-import { withStyle } from 'baseui';
-import { Block } from 'baseui/block';
+import { withStyle } from "baseui";
+import { Block } from "baseui/block";
 import {
   Table,
   StyledTable,
@@ -8,11 +8,11 @@ import {
   StyledBody,
   StyledRow,
   StyledCell,
-} from 'baseui/table';
+} from "baseui/table";
 
-import metadata from './metadata.json';
-import Layout from '../../../components/layout';
-import { BlogImage, Meta, Caption } from '../../../components/blog';
+import metadata from "./metadata.json";
+import Layout from "../../../components/layout";
+import { BlogImage, Meta, Caption } from "../../../components/blog";
 
 export default Layout;
 
@@ -49,8 +49,8 @@ If you use our default colors and you want to use blue as the `primary` color st
 ```js
 // myTheme.js
 
-import { createTheme, lightThemePrimitives } from 'baseui/themes';
-import { colors } from 'baseui/tokens';
+import { createTheme, lightThemePrimitives } from "baseui/themes";
+import { colors } from "baseui/tokens";
 
 const myThemePrimitives = {
   ...lightThemePrimitives,
@@ -77,12 +77,12 @@ If you use custom colors in your theme, **v9** will change _how_ your colors are
 ```js
 // myTheme.js
 
-import { createTheme } from 'baseui/themes';
+import { createTheme } from "baseui/themes";
 
 const myTokens = {
   // define various brand colors here...
   colors: {
-    neonPink400: '#FF69B4',
+    neonPink400: "#FF69B4",
   },
 };
 
@@ -114,7 +114,7 @@ In summary, use the `primitives` object to assign semantic meaning to your proje
 ```js
 // myTheme.js
 
-import { createTheme } from 'baseui/themes';
+import { createTheme } from "baseui/themes";
 
 const myTokens = {
   // define various brand colors here...
@@ -271,18 +271,18 @@ The base color primitives for both the default light and dark theme have been ad
   </StyledHead>
   <StyledBody>
     {[
-      ['primary50', '#F6F6F6'],
-      ['primary100', '#EEEEEE'],
-      ['primary200', '#E2E2E2'],
-      ['primary300', '#CBCBCB'],
-      ['primary400', '#AFAFAF'],
-      ['primary500', '#757575'],
-      ['primary600', '#545454'],
-      ['primary700', '#333333'],
+      ["primary50", "#F6F6F6"],
+      ["primary100", "#EEEEEE"],
+      ["primary200", "#E2E2E2"],
+      ["primary300", "#CBCBCB"],
+      ["primary400", "#AFAFAF"],
+      ["primary500", "#757575"],
+      ["primary600", "#545454"],
+      ["primary700", "#333333"],
     ].map((row, index) => {
       const StyledColorCellNew = withStyle(StyledCell, {
         backgroundColor: row[1],
-        color: index > 4 ? '#FFF' : '#000',
+        color: index > 4 ? "#FFF" : "#000",
       });
       return (
         <StyledRow key={index}>
@@ -304,22 +304,22 @@ The base color primitives for both the default light and dark theme have been ad
   </StyledHead>
   <StyledBody>
     {[
-      ['accent50', '#EDF3FE', '#EEF3FE'],
-      ['accent100', '#D2E0FC', '#D4E2FC'],
-      ['accent200', '#9CBCF8', '#A0BFF9'],
-      ['accent300', '#548BF4', '#5B91F4'],
-      ['accent400', '#276EF1', '#276EF1'],
-      ['accent500', '#174EB6', '#1E54B7'],
-      ['accent600', '#123D90', '#174291'],
-      ['accent700', '#0C2960', '#102C60'],
+      ["accent50", "#EDF3FE", "#EEF3FE"],
+      ["accent100", "#D2E0FC", "#D4E2FC"],
+      ["accent200", "#9CBCF8", "#A0BFF9"],
+      ["accent300", "#548BF4", "#5B91F4"],
+      ["accent400", "#276EF1", "#276EF1"],
+      ["accent500", "#174EB6", "#1E54B7"],
+      ["accent600", "#123D90", "#174291"],
+      ["accent700", "#0C2960", "#102C60"],
     ].map((row, index) => {
       const StyledColorCellOld = withStyle(StyledCell, {
         backgroundColor: row[1],
-        color: index > 2 ? '#EDF3FE' : '#0C2960',
+        color: index > 2 ? "#EDF3FE" : "#0C2960",
       });
       const StyledColorCellNew = withStyle(StyledCell, {
         backgroundColor: row[2],
-        color: index > 2 ? '#EEF3FE' : '#102C60',
+        color: index > 2 ? "#EEF3FE" : "#102C60",
       });
       return (
         <StyledRow key={index}>
@@ -342,22 +342,22 @@ The base color primitives for both the default light and dark theme have been ad
   </StyledHead>
   <StyledBody>
     {[
-      ['negative50', '#FDF0EF', '#FDF0EF'],
-      ['negative100', '#FADBD7', '#FADBD7'],
-      ['negative200', '#F4AFA7', '#F4AFA7'],
-      ['negative300', '#EB7567', '#EB7567'],
-      ['negative400', '#E54937', '#D44333'],
-      ['negative500', '#AE372A', '#AE372A'],
-      ['negative600', '#892C21', '#892C21'],
-      ['negative700', '#5C1D16', '#5C1D16'],
+      ["negative50", "#FDF0EF", "#FDF0EF"],
+      ["negative100", "#FADBD7", "#FADBD7"],
+      ["negative200", "#F4AFA7", "#F4AFA7"],
+      ["negative300", "#EB7567", "#EB7567"],
+      ["negative400", "#E54937", "#D44333"],
+      ["negative500", "#AE372A", "#AE372A"],
+      ["negative600", "#892C21", "#892C21"],
+      ["negative700", "#5C1D16", "#5C1D16"],
     ].map((row, index) => {
       const StyledColorCellOld = withStyle(StyledCell, {
         backgroundColor: row[1],
-        color: index > 2 ? '#FDF0EF' : '#5C1D16',
+        color: index > 2 ? "#FDF0EF" : "#5C1D16",
       });
       const StyledColorCellNew = withStyle(StyledCell, {
         backgroundColor: row[2],
-        color: index > 2 ? '#FDF0EF' : '#5C1D16',
+        color: index > 2 ? "#FDF0EF" : "#5C1D16",
       });
       return (
         <StyledRow key={index}>
@@ -380,22 +380,22 @@ The base color primitives for both the default light and dark theme have been ad
   </StyledHead>
   <StyledBody>
     {[
-      ['positive50', '#EBF8F2', '#F0F9F4'],
-      ['positive100', '#CDEDDE', '#DAF0E3'],
-      ['positive200', '#88D3B0', '#AEDDC2'],
-      ['positive300', '#43B982', '#73C496'],
-      ['positive400', '#07A35A', '#3AA76D'],
-      ['positive500', '#057C44', '#368759'],
-      ['positive600', '#046236', '#2B6B46'],
-      ['positive700', '#034124', '#1C472F'],
+      ["positive50", "#EBF8F2", "#F0F9F4"],
+      ["positive100", "#CDEDDE", "#DAF0E3"],
+      ["positive200", "#88D3B0", "#AEDDC2"],
+      ["positive300", "#43B982", "#73C496"],
+      ["positive400", "#07A35A", "#3AA76D"],
+      ["positive500", "#057C44", "#368759"],
+      ["positive600", "#046236", "#2B6B46"],
+      ["positive700", "#034124", "#1C472F"],
     ].map((row, index) => {
       const StyledColorCellOld = withStyle(StyledCell, {
         backgroundColor: row[1],
-        color: index > 2 ? '#EBF8F2' : '#034124',
+        color: index > 2 ? "#EBF8F2" : "#034124",
       });
       const StyledColorCellNew = withStyle(StyledCell, {
         backgroundColor: row[2],
-        color: index > 2 ? '#F0F9F4' : '#1C472F',
+        color: index > 2 ? "#F0F9F4" : "#1C472F",
       });
       return (
         <StyledRow key={index}>
@@ -418,22 +418,22 @@ The base color primitives for both the default light and dark theme have been ad
   </StyledHead>
   <StyledBody>
     {[
-      ['warning50', '#FEF3EC', '#FEF3EF'],
-      ['warning100', '#FBE2CF', '#FBE2D6'],
-      ['warning200', '#F6BA8B', '#F7BFA5'],
-      ['warning300', '#F19248', '#F19164'],
-      ['warning400', '#ED6F0E', '#ED6E33'],
-      ['warning500', '#B4540B', '#B45427'],
-      ['warning600', '#8E4308', '#8E421F'],
-      ['warning700', '#5F2C06', '#5F2C14'],
+      ["warning50", "#FEF3EC", "#FEF3EF"],
+      ["warning100", "#FBE2CF", "#FBE2D6"],
+      ["warning200", "#F6BA8B", "#F7BFA5"],
+      ["warning300", "#F19248", "#F19164"],
+      ["warning400", "#ED6F0E", "#ED6E33"],
+      ["warning500", "#B4540B", "#B45427"],
+      ["warning600", "#8E4308", "#8E421F"],
+      ["warning700", "#5F2C06", "#5F2C14"],
     ].map((row, index) => {
       const StyledColorCellOld = withStyle(StyledCell, {
         backgroundColor: row[1],
-        color: index > 2 ? '#FEF3EC' : '#5F2C06',
+        color: index > 2 ? "#FEF3EC" : "#5F2C06",
       });
       const StyledColorCellNew = withStyle(StyledCell, {
         backgroundColor: row[2],
-        color: index > 2 ? '#FEF3EF' : '#5F2C14',
+        color: index > 2 ? "#FEF3EF" : "#5F2C14",
       });
       return (
         <StyledRow key={index}>
@@ -458,24 +458,24 @@ The changes in most of the colors are quite subtle, but the gray (mono) palette 
   </StyledHead>
   <StyledBody>
     {[
-      ['mono100', '#FFFFFF', '#FFFFFF'],
-      ['mono200', '#F7F7F7', '#F6F6F6'],
-      ['mono300', '#F0F0F0', '#EEEEEE'],
-      ['mono400', '#E5E5E5', '#E2E2E2'],
-      ['mono500', '#CCCCCC', '#CBCBCB'],
-      ['mono600', '#B3B3B3', '#AFAFAF'],
-      ['mono700', '#999999', '#757575'],
-      ['mono800', '#666666', '#545454'],
-      ['mono900', '#333333', '#333333'],
-      ['mono1000', '#000000', '#000000'],
+      ["mono100", "#FFFFFF", "#FFFFFF"],
+      ["mono200", "#F7F7F7", "#F6F6F6"],
+      ["mono300", "#F0F0F0", "#EEEEEE"],
+      ["mono400", "#E5E5E5", "#E2E2E2"],
+      ["mono500", "#CCCCCC", "#CBCBCB"],
+      ["mono600", "#B3B3B3", "#AFAFAF"],
+      ["mono700", "#999999", "#757575"],
+      ["mono800", "#666666", "#545454"],
+      ["mono900", "#333333", "#333333"],
+      ["mono1000", "#000000", "#000000"],
     ].map((row, index) => {
       const StyledColorCellOld = withStyle(StyledCell, {
         backgroundColor: row[1],
-        color: index > 6 ? 'white' : 'black',
+        color: index > 6 ? "white" : "black",
       });
       const StyledColorCellNew = withStyle(StyledCell, {
         backgroundColor: row[2],
-        color: index > 5 ? 'white' : 'black',
+        color: index > 5 ? "white" : "black",
       });
       return (
         <StyledRow key={index}>
@@ -498,24 +498,24 @@ The changes in most of the colors are quite subtle, but the gray (mono) palette 
   </StyledHead>
   <StyledBody>
     {[
-      ['mono100', '#CCCCCC', '#CBCBCB'],
-      ['mono200', '#999999', '#AFAFAF'],
-      ['mono300', '#7A7A7A', '#757575'],
-      ['mono400', '#5C5C5C', '#545454'],
-      ['mono500', '#3D3D3D', '#333333'],
-      ['mono600', '#292929', '#292929'],
-      ['mono700', '#1F1F1F', '#1F1F1F'],
-      ['mono800', '#141414', '#141414'],
-      ['mono900', '#111111', '#111111'],
-      ['mono1000', '#000000', '#000000'],
+      ["mono100", "#CCCCCC", "#CBCBCB"],
+      ["mono200", "#999999", "#AFAFAF"],
+      ["mono300", "#7A7A7A", "#757575"],
+      ["mono400", "#5C5C5C", "#545454"],
+      ["mono500", "#3D3D3D", "#333333"],
+      ["mono600", "#292929", "#292929"],
+      ["mono700", "#1F1F1F", "#1F1F1F"],
+      ["mono800", "#141414", "#141414"],
+      ["mono900", "#111111", "#111111"],
+      ["mono1000", "#000000", "#000000"],
     ].map((row, index) => {
       const StyledColorCellOld = withStyle(StyledCell, {
         backgroundColor: row[1],
-        color: index > 1 ? 'white' : 'black',
+        color: index > 1 ? "white" : "black",
       });
       const StyledColorCellNew = withStyle(StyledCell, {
         backgroundColor: row[2],
-        color: index > 1 ? 'white' : 'black',
+        color: index > 1 ? "white" : "black",
       });
       return (
         <StyledRow key={index}>
@@ -533,7 +533,7 @@ The changes in most of the colors are quite subtle, but the gray (mono) palette 
 You can access any of Base Web's colors on the `colors` object exported by `baseui/tokens`. You can read more this new module [here](/components/tokens).
 
 ```js
-import { colors } from 'baseui/tokens';
+import { colors } from "baseui/tokens";
 
 const theme = {
   primary: colors.blue400,
@@ -563,7 +563,7 @@ All of Base Web's components have been updated to adjust to the new scale such t
 Here is the mapping of **v8** to **v9** typography values that we used in updating our components:
 
 <Table
-  columns={['Old', 'New']}
+  columns={["Old", "New"]}
   data={[
     [`font100`, `font100`],
     [`font200`, `font100`],
@@ -589,13 +589,13 @@ Here is an example of updating direct uses of font theme variables in source cod
 ```jsx
 // old
 // font300 used to return 14px/20px/400
-const StyledFoo = styled('div', (props) => ({
+const StyledFoo = styled("div", (props) => ({
   ...props.$theme.typography.font300,
 }));
 
 // new
 // font200 now returns 14px/20px/400
-const StyledFoo = styled('div', (props) => ({
+const StyledFoo = styled("div", (props) => ({
   ...props.$theme.typography.font200,
 }));
 ```
@@ -617,7 +617,7 @@ Note, all of this can be done automatically with our new [codemod](#codemod).
 The following is a comparison of the old and new typographic values:
 
 <Table
-  columns={['Old', 'Value', 'New', 'Value']}
+  columns={["Old", "Value", "New", "Value"]}
   data={[
     [`font100`, `11px/16px/400`, `font100`, `12px/20px/400`],
     [`-`, `-`, `font150`, `12px/20px/500`],
@@ -656,7 +656,7 @@ You can see from this table that the new scale is not entirely equivalent to the
 All of the `baseui/typography` components have been updated according to the new typography ramps. Each typography theme value now maps one-to-one with a typography component.
 
 <Table
-  columns={['Component', 'Font', 'Value']}
+  columns={["Component", "Font", "Value"]}
   data={[
     [`Display1`, `font1450`, `96px/112px/500`],
     [`Display2`, `font1350`, `52px/64px/500`],
@@ -688,13 +688,13 @@ There are a few important changes to note:
 For reference, here is a mapping of **v8** to **v9** components:
 
 <Table
-  columns={['Old', 'New', 'Note']}
+  columns={["Old", "New", "Note"]}
   data={[
-    ['Display', 'Display1', 'Aliased'],
-    ['Label1', 'Label3', ''],
-    ['Paragraph1', 'Paragraph3', ''],
-    ['Caption1', 'Paragraph4', 'Aliased'],
-    ['Caption2', 'Label4', 'Aliased'],
+    ["Display", "Display1", "Aliased"],
+    ["Label1", "Label3", ""],
+    ["Paragraph1", "Paragraph3", ""],
+    ["Caption1", "Paragraph4", "Aliased"],
+    ["Caption2", "Label4", "Aliased"],
   ]}
 />
 
@@ -703,7 +703,7 @@ For reference, here is a mapping of **v8** to **v9** components:
 These values are used for body text: `Label`, and `Paragraph`.
 
 <Table
-  columns={['Name', 'Value']}
+  columns={["Name", "Value"]}
   data={[
     [`font100`, `12px/20px/400`],
     [`font150`, `12px/20px/500`],
@@ -722,7 +722,7 @@ These values are used for body text: `Label`, and `Paragraph`.
 These values are used for various headers: `H1`, `H2`, etc.
 
 <Table
-  columns={['Name', 'Value']}
+  columns={["Name", "Value"]}
   data={[
     [`font550`, `20px/28px/500`],
     [`font650`, `24px/32px/500`],
@@ -739,7 +739,7 @@ These values are used for various headers: `H1`, `H2`, etc.
 These values are used for special headers, usually in association with marketing material. Internally, we assign these properties to a different `font-family`. This gives your app a little visual variety.
 
 <Table
-  columns={['Name', 'Value']}
+  columns={["Name", "Value"]}
   data={[
     [`font1150`, `36px/44px/500`],
     [`font1250`, `44px/52px/500`],
@@ -780,6 +780,6 @@ Thanks for using `baseui`!
 ---
 
 <Caption>
-  Feel free to reach out to us on our Slack channel or through a GitHub issue if you think something
-  is missing from this migration guide.
+  Feel free to reach out to us on our Slack channel or through a GitHub issue if
+  you think something is missing from this migration guide.
 </Caption>

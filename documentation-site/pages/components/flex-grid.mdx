@@ -5,17 +5,17 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
-import Example from '../../components/example';
-import Layout from '../../components/layout';
-import Exports from '../../components/exports';
+import Example from "../../components/example";
+import Layout from "../../components/layout";
+import Exports from "../../components/exports";
 
-import * as FlexGridExports from 'baseui/flex-grid';
+import * as FlexGridExports from "baseui/flex-grid";
 
-import Basic from 'examples/flex-grid/basic.tsx';
-import UnequalNarrow from 'examples/flex-grid/unequal-narrow.tsx';
-import UnequalWide from 'examples/flex-grid/unequal-wide.tsx';
-import Responsive from 'examples/flex-grid/responsive.tsx';
-import Missing from 'examples/flex-grid/missing.tsx';
+import Basic from "examples/flex-grid/basic.tsx";
+import UnequalNarrow from "examples/flex-grid/unequal-narrow.tsx";
+import UnequalWide from "examples/flex-grid/unequal-wide.tsx";
+import Responsive from "examples/flex-grid/responsive.tsx";
+import Missing from "examples/flex-grid/missing.tsx";
 
 export default Layout;
 
@@ -33,13 +33,19 @@ Note: **FlexGrid** must contain **FlexGridItem** components as children in order
   <Basic />
 </Example>
 
-<Example title="FlexGrid unequal (narrow) widths" path="flex-grid/unequal-narrow.tsx">
+<Example
+  title="FlexGrid unequal (narrow) widths"
+  path="flex-grid/unequal-narrow.tsx"
+>
   <UnequalNarrow />
 </Example>
 
 It is possible to achieve unequal-width items using **Block** style overrides.
 
-<Example title="FlexGrid unequal (wide) widths" path="flex-grid/unequal-wide.tsx">
+<Example
+  title="FlexGrid unequal (wide) widths"
+  path="flex-grid/unequal-wide.tsx"
+>
   <UnequalWide />
 </Example>
 
@@ -59,4 +65,8 @@ Also, keep in mind that the margins won’t be set properly unless you have the 
   <Responsive />
 </Example>
 
-<Exports component={FlexGridExports} title="FlexGrid exports" path="baseui/flex-grid" />
+<Exports
+  component={FlexGridExports}
+  title="FlexGrid exports"
+  path="baseui/flex-grid"
+/>

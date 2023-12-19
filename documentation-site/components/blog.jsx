@@ -5,31 +5,31 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-import * as React from 'react';
-import { Block } from 'baseui/block';
-import Head from 'next/head';
-import { H1 } from './markdown-elements';
-import { themedStyled } from '../pages/_app';
+import * as React from "react";
+import { Block } from "baseui/block";
+import Head from "next/head";
+import { H1 } from "./markdown-elements";
+import { themedStyled } from "../pages/_app";
 
-const Image = themedStyled('img', (props) => ({
-  display: 'block',
-  margin: '0 auto',
-  maxWidth: '100%',
-  objectFit: 'cover',
-  width: props.$full ? '100%' : 'auto',
+const Image = themedStyled("img", (props) => ({
+  display: "block",
+  margin: "0 auto",
+  maxWidth: "100%",
+  objectFit: "cover",
+  width: props.$full ? "100%" : "auto",
 }));
 
 export const Caption =
   themedStyled <
   {} >
-  ('figcaption',
+  ("figcaption",
   ({ $theme }) => ({
     color: $theme.colors.contentSecondary,
     fontFamily: $theme.typography.font100.fontFamily,
     fontSize: $theme.sizing.scale500,
     fontWeight: 300,
-    textAlign: 'center',
-    padding: '4px 4px 0 0',
+    textAlign: "center",
+    padding: "4px 4px 0 0",
   }));
 
 export const BlogImage = ({ full, alt, caption, src, style }) => (
@@ -39,41 +39,41 @@ export const BlogImage = ({ full, alt, caption, src, style }) => (
   </figure>
 );
 
-export const Demo = themedStyled('iframe', {
+export const Demo = themedStyled("iframe", {
   borderLeftWidth: 0,
   borderRightWidth: 0,
   borderTopWidth: 0,
   borderBottomWidth: 0,
-  borderTopLeftRadius: '4px',
-  borderTopRightRadius: '4px',
-  borderBottomRightRadius: '4px',
-  borderBottomLeftRadius: '4px',
-  height: '500px',
-  overflow: 'hidden',
-  width: '100%',
+  borderTopLeftRadius: "4px",
+  borderTopRightRadius: "4px",
+  borderBottomRightRadius: "4px",
+  borderBottomLeftRadius: "4px",
+  height: "500px",
+  overflow: "hidden",
+  width: "100%",
 });
 
-const Tagline = themedStyled('span', ({ $theme }) => ({
+const Tagline = themedStyled("span", ({ $theme }) => ({
   color: $theme.colors.contentSecondary,
   fontFamily: $theme.typography.font100.fontFamily,
   fontSize: $theme.sizing.scale800,
   fontWeight: 300,
 }));
 
-const AuthorLink = themedStyled('a', ({ $theme }) => ({
+const AuthorLink = themedStyled("a", ({ $theme }) => ({
   color: $theme.colors.contentSecondary,
   fontFamily: $theme.typography.font100.fontFamily,
-  ':hover': {
+  ":hover": {
     color: $theme.colors.contentPrimary,
   },
-  ':focus': {
+  ":focus": {
     outline: `3px solid ${$theme.colors.accent}`,
-    textDecoration: 'none',
-    outlineOffset: '2px',
+    textDecoration: "none",
+    outlineOffset: "2px",
   },
 }));
 
-const ArticleDate = themedStyled('span', ({ $theme }) => ({
+const ArticleDate = themedStyled("span", ({ $theme }) => ({
   color: $theme.colors.contentSecondary,
 }));
 
@@ -94,16 +94,28 @@ export const Meta = ({
     <Head>
       <meta property="og:title" content={title} name="title" />
       <meta property="og:type" content="article" />
-      <meta property="og:description" content={tagline} key="description" name="description" />
+      <meta
+        property="og:description"
+        content={tagline}
+        key="description"
+        name="description"
+      />
       <meta property="article:author" content={author} name="author" />
       {keyWords.map((kw) => (
         <meta property="article:tag" content={kw} key={`article:tag:${kw}`} />
       ))}
-      <meta property="article:published_time" content={new Date(date).toISOString()} />
+      <meta
+        property="article:published_time"
+        content={new Date(date).toISOString()}
+      />
       <meta property="og:image" content={coverImage} />
       {/* Best practice to specify these, but will usually work regardless. Ideal dimensions are 1200x630. */}
-      {coverImageWidth ? <meta property="og:image:width" content={coverImageWidth} /> : null}
-      {coverImageHeight ? <meta property="og:image:height" content={coverImageHeight} /> : null}
+      {coverImageWidth ? (
+        <meta property="og:image:width" content={coverImageWidth} />
+      ) : null}
+      {coverImageHeight ? (
+        <meta property="og:image:height" content={coverImageHeight} />
+      ) : null}
     </Head>
     <Block
       overrides={{
@@ -128,13 +140,13 @@ export const Meta = ({
         }}
       >
         <AuthorLink
-          $as={authorLink ? 'a' : 'span'}
+          $as={authorLink ? "a" : "span"}
           rel="noopener noreferrer"
           target="_blank"
-          href={authorLink ? authorLink : '/'}
+          href={authorLink ? authorLink : "/"}
         >
           {author}
-        </AuthorLink>{' '}
+        </AuthorLink>{" "}
         <ArticleDate> - {date}</ArticleDate>
       </Block>
     </Block>

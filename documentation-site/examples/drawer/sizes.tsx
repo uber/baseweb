@@ -15,7 +15,7 @@ export default function Example() {
 
   return (
     <React.Fragment>
-      {Object.keys(SIZE).map(eachSize => (
+      {Object.keys(SIZE).map((eachSize) => (
         <React.Fragment>
           <Button
             onClick={() => setIsOpen({...isOpen, [eachSize]: true})}

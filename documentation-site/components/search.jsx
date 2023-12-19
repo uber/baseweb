@@ -48,15 +48,12 @@ const PlainInput = themedStyled("input", ({ $theme }) => ({
   },
 }));
 
-const SearchContainer = themedStyled(
-  "div",
-  ({ $theme }) => ({
-    display: "flex",
-    alignItems: "center",
-    backgroundColor: $theme.colors.inputEnhancerFill,
-    position: "relative",
-  })
-);
+const SearchContainer = themedStyled("div", ({ $theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  backgroundColor: $theme.colors.inputEnhancerFill,
+  position: "relative",
+}));
 
 const IconWrapper = themedStyled("div", ({ $theme }) => ({
   position: "absolute",
@@ -83,9 +80,7 @@ class DocSearch extends React.Component {
       });
     } else {
       // eslint-disable-next-line no-console
-      console.warn(
-        "Search has failed to load and now is being disabled"
-      );
+      console.warn("Search has failed to load and now is being disabled");
       this.setState({ enabled: false });
     }
   }
@@ -112,9 +107,7 @@ class DocSearch extends React.Component {
             type="search"
             placeholder="Search documentation"
             aria-label="Search documentation"
-            onChange={(e) =>
-              trackEvent("algolia_search", e.target.value)
-            }
+            onChange={(e) => trackEvent("algolia_search", e.target.value)}
           />
         </SearchContainer>
       </React.Fragment>

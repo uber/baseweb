@@ -20,18 +20,12 @@ import { H3 } from "./markdown-elements";
 import { deploy } from "../components/code-sandboxer.jsx";
 
 function Source(props) {
-  if (!props.children || typeof props.children !== "string")
-    return null;
+  if (!props.children || typeof props.children !== "string") return null;
   return <Code>{props.children}</Code>;
 }
 
 function Example(props) {
-  const {
-    additionalPackages = {},
-    path,
-    children,
-    title = null,
-  } = props;
+  const { additionalPackages = {}, path, children, title = null } = props;
   const [isOpen, setIsOpen] = React.useState(false);
   // The example code for each of our three supported languages.
   const [code, setCode] = React.useState(null);
@@ -42,7 +36,7 @@ function Example(props) {
       const tsCode = await import(
         /* webpackMode: "eager" */ `!!raw-loader!../examples/${path.replace(
           ".js",
-          ".tsx"
+          ".tsx",
         )}`
       );
       setCode(tsCode.default);
@@ -54,7 +48,7 @@ function Example(props) {
       const url = await deploy(
         `Base Web - ${title || "Example"}`,
         code,
-        additionalPackages
+        additionalPackages,
       );
       if (url) {
         window.open(url, "_blank");

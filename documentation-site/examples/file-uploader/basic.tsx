@@ -53,11 +53,8 @@ function useFakeProgress(): [number, () => void, () => void] {
 }
 
 export default function Example() {
-  const [
-    progressAmount,
-    startFakeProgress,
-    stopFakeProgress,
-  ] = useFakeProgress();
+  const [progressAmount, startFakeProgress, stopFakeProgress] =
+    useFakeProgress();
 
   return (
     <FileUploader

@@ -6,12 +6,19 @@ LICENSE file in the root directory of this source tree.
 */
 /* THIS FILE IS AUTO-GENERATED. DO NOT MODIFY. */
 
-import React from 'react';
+import React from "react";
 
 export default function SvgFixedMarker(props) {
   return (
     <svg width={232} height={145} fill="none" {...props}>
-      <rect x={80} y={55} width={72.486} height={25.274} rx={12.637} fill={props.colors[1]} />
+      <rect
+        x={80}
+        y={55}
+        width={72.486}
+        height={25.274}
+        rx={12.637}
+        fill={props.colors[1]}
+      />
       <path fill={props.colors[2]} d="M86.318 64.637h43v6h-43z" />
       <g clipPath="url(#fixed-marker_svg__clip0)">
         <path
@@ -27,7 +34,11 @@ export default function SvgFixedMarker(props) {
       />
       <defs>
         <clipPath id="fixed-marker_svg__clip0">
-          <path fill="#fff" transform="translate(133.531 61.318)" d="M0 0h12.637v12.637H0z" />
+          <path
+            fill="#fff"
+            transform="translate(133.531 61.318)"
+            d="M0 0h12.637v12.637H0z"
+          />
         </clipPath>
       </defs>
     </svg>

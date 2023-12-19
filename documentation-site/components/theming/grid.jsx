@@ -27,16 +27,8 @@ export function Grid() {
         concern="grid"
         renderValue={() => `['16px', '36px', '64px']`}
       />
-      <Property
-        name="gaps"
-        concern="grid"
-        renderValue={() => "0"}
-      />
-      <Property
-        name="maxWidth"
-        concern="grid"
-        renderValue={() => "1280px"}
-      />
+      <Property name="gaps" concern="grid" renderValue={() => "0"} />
+      <Property name="maxWidth" concern="grid" renderValue={() => "1280px"} />
     </React.Fragment>
   );
 }

@@ -73,7 +73,7 @@ function Example() {
   }
 
   const filteredOptions = React.useMemo(() => {
-    return options.filter(option => {
+    return options.filter((option) => {
       const optionAsString = mapOptionToString(option);
       return optionAsString
         .toLowerCase()

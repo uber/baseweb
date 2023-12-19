@@ -4,11 +4,14 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-//      
-import React from 'react';
-import { FloatingMarker, FLOATING_MARKER_ANCHOR_POSITIONS } from 'baseui/map-marker';
-import { LabelSmall } from 'baseui/typography';
-import { useStyletron } from 'baseui';
+//
+import React from "react";
+import {
+  FloatingMarker,
+  FLOATING_MARKER_ANCHOR_POSITIONS,
+} from "baseui/map-marker";
+import { LabelSmall } from "baseui/typography";
+import { useStyletron } from "baseui";
 
 const anchors = [
   FLOATING_MARKER_ANCHOR_POSITIONS.topLeft,
@@ -35,17 +38,17 @@ const AnchorPositionExample = () => {
   return (
     <div
       className={css({
-        height: '160px',
-        width: '100%',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        position: 'relative',
+        height: "160px",
+        width: "100%",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        position: "relative",
       })}
     >
       <LabelSmall
         className={css({
-          position: 'absolute',
+          position: "absolute",
           bottom: 0,
           left: 0,
         })}

@@ -6,7 +6,7 @@ export default function Example() {
   return (
     <RadioGroup
       name="basic usage"
-      onChange={e => setValue(e.target.value)}
+      onChange={(e) => setValue(e.target.value)}
       value={value}
     >
       <Radio value="1">First</Radio>

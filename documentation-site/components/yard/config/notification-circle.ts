@@ -4,20 +4,20 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import { NotificationCircle, COLOR, PLACEMENT } from 'baseui/badge';
-import { Skeleton } from 'baseui/skeleton';
-import { Check } from 'baseui/icon';
-import { PropTypes } from 'react-view';
-import type { TConfig } from '../types';
+import { NotificationCircle, COLOR, PLACEMENT } from "baseui/badge";
+import { Skeleton } from "baseui/skeleton";
+import { Check } from "baseui/icon";
+import { PropTypes } from "react-view";
+import type { TConfig } from "../types";
 
 const NotificationCircleConfig: TConfig = {
-  componentName: 'NotificationCircle',
+  componentName: "NotificationCircle",
   imports: {
-    'baseui/badge': {
-      named: ['NotificationCircle'],
+    "baseui/badge": {
+      named: ["NotificationCircle"],
     },
-    'baseui/block': {
-      named: ['Skeleton'],
+    "baseui/block": {
+      named: ["Skeleton"],
     },
   },
   scope: {
@@ -42,12 +42,12 @@ const NotificationCircleConfig: TConfig = {
     horizontalOffset: {
       value: undefined,
       type: PropTypes.String,
-      description: 'Overrides the default horizontal position.',
+      description: "Overrides the default horizontal position.",
     },
     verticalOffset: {
       value: undefined,
       type: PropTypes.String,
-      description: 'Overrides the default vertical position.',
+      description: "Overrides the default vertical position.",
     },
     hidden: {
       value: false,
@@ -55,43 +55,44 @@ const NotificationCircleConfig: TConfig = {
       description: `Sets visibility to "hidden".`,
     },
     placement: {
-      value: 'PLACEMENT.topRight',
-      defaultValue: 'PLACEMENT.topRight',
+      value: "PLACEMENT.topRight",
+      defaultValue: "PLACEMENT.topRight",
       options: {
         [PLACEMENT.topLeft]: [PLACEMENT.topLeft],
         [PLACEMENT.topRight]: [PLACEMENT.topRight],
       },
       type: PropTypes.Enum,
-      description: 'Determines the placement of the badge relative to the anchor',
+      description:
+        "Determines the placement of the badge relative to the anchor",
       imports: {
-        'baseui/badge': {
-          named: ['PLACEMENT'],
+        "baseui/badge": {
+          named: ["PLACEMENT"],
         },
       },
     },
     color: {
-      value: 'COLOR.accent',
-      defaultValue: 'COLOR.accent',
+      value: "COLOR.accent",
+      defaultValue: "COLOR.accent",
       options: COLOR,
       type: PropTypes.Enum,
       description:
-        'Defines badge color. Set it to one of COLOR[key] values. Defaults to COLOR.accent.',
+        "Defines badge color. Set it to one of COLOR[key] values. Defaults to COLOR.accent.",
       imports: {
-        'baseui/badge': {
-          named: ['COLOR'],
+        "baseui/badge": {
+          named: ["COLOR"],
         },
       },
     },
     overrides: {
       value: undefined,
       type: PropTypes.Custom,
-      description: 'Lets you customize all aspects of the component.',
+      description: "Lets you customize all aspects of the component.",
       custom: {
-        names: ['Root', 'Badge', 'Positioner'],
+        names: ["Root", "Badge", "Positioner"],
         sharedProps: {
-          $hierarchy: 'hierarchy',
-          $shape: 'shape',
-          $color: 'color',
+          $hierarchy: "hierarchy",
+          $shape: "shape",
+          $color: "color",
         },
       },
     },

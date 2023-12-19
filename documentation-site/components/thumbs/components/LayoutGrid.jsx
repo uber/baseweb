@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 /* THIS FILE IS AUTO-GENERATED. DO NOT MODIFY. */
 
-import React from 'react';
+import React from "react";
 
 export default function SvgLayoutGrid(props) {
   return (

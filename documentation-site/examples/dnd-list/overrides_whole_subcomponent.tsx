@@ -13,7 +13,7 @@ export default class Example extends React.Component<
       <List
         items={this.state.items}
         onChange={({oldIndex, newIndex}) =>
-          this.setState(prevState => ({
+          this.setState((prevState) => ({
             items: arrayMove(prevState.items, oldIndex, newIndex),
           }))
         }
@@ -24,7 +24,7 @@ export default class Example extends React.Component<
                 {$value}{' '}
                 <button
                   onClick={() =>
-                    this.setState(prevState => ({
+                    this.setState((prevState) => ({
                       items: prevState.items.concat([
                         `${
                           typeof $value === 'string' ? $value : ''

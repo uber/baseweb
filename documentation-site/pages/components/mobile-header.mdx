@@ -5,18 +5,18 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
-import Example from '../../components/example';
-import Exports from '../../components/exports';
-import Layout from '../../components/layout';
+import Example from "../../components/example";
+import Exports from "../../components/exports";
+import Layout from "../../components/layout";
 
-import FloatingMobileHeader from 'examples/mobile-header/floating.tsx';
-import TextContentMobileHeader from 'examples/mobile-header/text-content.tsx';
+import FloatingMobileHeader from "examples/mobile-header/floating.tsx";
+import TextContentMobileHeader from "examples/mobile-header/text-content.tsx";
 
-import { MobileHeader, TYPE } from 'baseui/mobile-header';
-import * as MobileHeaderExports from 'baseui/mobile-header';
+import { MobileHeader, TYPE } from "baseui/mobile-header";
+import * as MobileHeaderExports from "baseui/mobile-header";
 
-import Yard from '../../components/yard/index';
-import mobileHeaderYardConfig from '../../components/yard/config/mobile-header';
+import Yard from "../../components/yard/index";
+import mobileHeaderYardConfig from "../../components/yard/config/mobile-header";
 
 export default Layout;
 
@@ -45,10 +45,17 @@ areas on a map or photo.
   <FloatingMobileHeader />
 </Example>
 
-<Example title="Buttons with text content" path="mobile-header/text-content.tsx">
+<Example
+  title="Buttons with text content"
+  path="mobile-header/text-content.tsx"
+>
   <TextContentMobileHeader />
 </Example>
 
 The content of the navigation and action buttons can be icons or text.
 
-<Exports component={MobileHeaderExports} title="MobileHeader exports" path="baseui/mobile-header" />
+<Exports
+  component={MobileHeaderExports}
+  title="MobileHeader exports"
+  path="baseui/mobile-header"
+/>

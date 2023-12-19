@@ -5,17 +5,17 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
-import Example from '../../components/example';
-import Layout from '../../components/layout';
-import Exports from '../../components/exports';
+import Example from "../../components/example";
+import Layout from "../../components/layout";
+import Exports from "../../components/exports";
 
-import * as DrawerExports from 'baseui/drawer';
-import Anchors from 'examples/drawer/anchors.tsx';
-import Sizes from 'examples/drawer/sizes.tsx';
-import SSRRenderAll from 'examples/drawer/ssr-render-all.tsx';
+import * as DrawerExports from "baseui/drawer";
+import Anchors from "examples/drawer/anchors.tsx";
+import Sizes from "examples/drawer/sizes.tsx";
+import SSRRenderAll from "examples/drawer/ssr-render-all.tsx";
 
-import Yard from '../../components/yard/index';
-import drawerYardConfig from '../../components/yard/config/drawer';
+import Yard from "../../components/yard/index";
+import drawerYardConfig from "../../components/yard/config/drawer";
 
 export default Layout;
 
@@ -31,7 +31,10 @@ export default Layout;
   <Sizes />
 </Example>
 
-<Example title="Drawer with renderAll for SSR / SEO" path="drawer/ssr-render-all.tsx">
+<Example
+  title="Drawer with renderAll for SSR / SEO"
+  path="drawer/ssr-render-all.tsx"
+>
   <SSRRenderAll />
 </Example>
 
@@ -46,4 +49,8 @@ We have built in functionality based on the recommendations for dialogs and draw
 - Background is not be scrollable while drawer is open (position: fixed).
 - Upon closing, focus should return to element that triggered drawer.
 
-<Exports component={DrawerExports} title="Drawer exports" path="baseui/drawer" />
+<Exports
+  component={DrawerExports}
+  title="Drawer exports"
+  path="baseui/drawer"
+/>

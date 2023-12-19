@@ -6,12 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 
 import * as React from "react";
-import Document, {
-  Head,
-  Html,
-  Main,
-  NextScript,
-} from "next/document";
+import Document, { Head, Html, Main, NextScript } from "next/document";
 import { Provider as StyletronProvider } from "styletron-react";
 
 import Favicons from "../components/meta-favicons";
@@ -22,17 +17,15 @@ export default class MyDocument extends Document {
   static async getInitialProps(context) {
     const renderPage = () =>
       context.renderPage({
-        enhanceApp: (App) => (props) =>
-          (
-            <StyletronProvider value={styletron}>
-              <App {...props} />
-            </StyletronProvider>
-          ),
+        enhanceApp: (App) => (props) => (
+          <StyletronProvider value={styletron}>
+            <App {...props} />
+          </StyletronProvider>
+        ),
       });
     const stylesheets = styletron.getStylesheets() || [];
 
-    const isProduction =
-      process.env.NODE_ENV === "production";
+    const isProduction = process.env.NODE_ENV === "production";
 
     const initialProps = await Document.getInitialProps({
       ...context,
@@ -123,12 +116,8 @@ export default class MyDocument extends Document {
                 async
                 src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
               />
-              <script
-                dangerouslySetInnerHTML={this.setGoogleTags()}
-              />
-              <script
-                dangerouslySetInnerHTML={this.initDelighted()}
-              />
+              <script dangerouslySetInnerHTML={this.setGoogleTags()} />
+              <script dangerouslySetInnerHTML={this.initDelighted()} />
             </React.Fragment>
           )}
         </body>

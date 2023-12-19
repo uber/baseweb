@@ -5,14 +5,14 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-import * as React from 'react';
-import { Block } from 'baseui/block';
-import { Radio, RadioGroup } from 'baseui/radio';
-import { DocLink } from './markdown-elements';
-import { trackEvent } from '../helpers/ga';
+import * as React from "react";
+import { Block } from "baseui/block";
+import { Radio, RadioGroup } from "baseui/radio";
+import { DocLink } from "./markdown-elements";
+import { trackEvent } from "../helpers/ga";
 
-const isStyledExport = (exportName) => exportName.startsWith('Styled');
-const getOverrideName = (exportName) => exportName.replace('Styled', '');
+const isStyledExport = (exportName) => exportName.startsWith("Styled");
+const getOverrideName = (exportName) => exportName.replace("Styled", "");
 const getOverrides = (component, blacklisted, whitelisted) => {
   if (whitelisted) return whitelisted.sort();
   return component
@@ -29,19 +29,29 @@ class Overrides extends React.Component {
     super(props);
     this.state = {
       // select the first export by default
-      highlighted: getOverrides(props.component, props.blacklisted, props.whitelisted)[0],
+      highlighted: getOverrides(
+        props.component,
+        props.blacklisted,
+        props.whitelisted,
+      )[0],
     };
   }
   render() {
     const { component, renderExample, name } = this.props;
-    const overrides = getOverrides(component, this.props.blacklisted, this.props.whitelisted);
+    const overrides = getOverrides(
+      component,
+      this.props.blacklisted,
+      this.props.whitelisted,
+    );
     return (
       <React.Fragment>
         <Block as="p" font="font300">
-          Additionally, you can <DocLink href="/guides/theming">fully customize</DocLink> any part
-          of the <strong>{name}</strong> through the <strong>overrides</strong> prop. The {name}{' '}
-          consists of multiple subcomponents that are listed below and you can override each one of
-          them. To help you identify the names of these subcomponents,{' '}
+          Additionally, you can{" "}
+          <DocLink href="/guides/theming">fully customize</DocLink> any part of
+          the <strong>{name}</strong> through the <strong>overrides</strong>{" "}
+          prop. The {name} consists of multiple subcomponents that are listed
+          below and you can override each one of them. To help you identify the
+          names of these subcomponents,{" "}
           <strong>you can highlight them through this selector:</strong>
         </Block>
         <RadioGroup
@@ -49,7 +59,7 @@ class Overrides extends React.Component {
           value={this.state.highlighted}
           onChange={(e) => {
             this.setState({ highlighted: e.target.value });
-            trackEvent('overrides_inspector', `${name}:${e.target.value}`);
+            trackEvent("overrides_inspector", `${name}:${e.target.value}`);
           }}
         >
           {overrides.map((override) => (
@@ -63,7 +73,7 @@ class Overrides extends React.Component {
             overrides: {
               [this.state.highlighted]: {
                 style: ({ $theme }) =>
-                  $theme.name.startsWith('dark')
+                  $theme.name.startsWith("dark")
                     ? {
                         outline: `2px solid ${$theme.colors.warning600}`,
                         backgroundColor: $theme.colors.warning600,
@@ -77,8 +87,8 @@ class Overrides extends React.Component {
           })}
         </Block>
         <Block as="p" font="font300" marginTop="scale900">
-          <b>Note:</b> You should always use longhand CSS properties. Mixing shorthands and
-          longhands will lead into{' '}
+          <b>Note:</b> You should always use longhand CSS properties. Mixing
+          shorthands and longhands will lead into{" "}
           <DocLink href="https://www.styletron.org/concepts/#shorthand-and-longhand-properties">
             strange behaviors
           </DocLink>

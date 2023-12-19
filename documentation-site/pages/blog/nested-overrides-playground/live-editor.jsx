@@ -46,8 +46,7 @@ const selectYardConfig = {
     multi: {
       value: true,
       type: PropTypes.Boolean,
-      description:
-        "Defines if multiple options can be selected.",
+      description: "Defines if multiple options can be selected.",
     },
     placeholder: {
       value: "Select color",
@@ -80,8 +79,7 @@ const selectYardConfig = {
         },
       },
       type: PropTypes.Custom,
-      description:
-        "Lets you customize all aspects of the component.",
+      description: "Lets you customize all aspects of the component.",
       custom: {
         names: [
           "Root",
@@ -93,8 +91,7 @@ const selectYardConfig = {
         sharedProps: {
           $isFocused: {
             type: PropTypes.Boolean,
-            description:
-              "Indicates the control's current focus state.",
+            description: "Indicates the control's current focus state.",
           },
           $isOpen: {
             type: PropTypes.Boolean,
@@ -108,13 +105,7 @@ const selectYardConfig = {
 };
 
 function LiveEditor() {
-  return (
-    <Yard
-      placeholderHeight={48}
-      {...selectYardConfig}
-      initialTab="1"
-    />
-  );
+  return <Yard placeholderHeight={48} {...selectYardConfig} initialTab="1" />;
 }
 
 export default LiveEditor;

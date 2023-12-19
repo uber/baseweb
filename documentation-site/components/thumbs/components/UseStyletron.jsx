@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 /* THIS FILE IS AUTO-GENERATED. DO NOT MODIFY. */
 
-import React from 'react';
+import React from "react";
 
 export default function SvgUseStyletron(props) {
   return (
@@ -15,7 +15,10 @@ export default function SvgUseStyletron(props) {
         fill={props.colors[0]}
         d="M122.912 98.122l.034-14-14-.034-.034 14zM104.912 80.034l.034-14-14-.034-.034 14z"
       />
-      <path fill={props.colors[1]} d="M122.956 80.122l.034-14-14-.034-.034 14z" />
+      <path
+        fill={props.colors[1]}
+        d="M122.956 80.122l.034-14-14-.034-.034 14z"
+      />
       <path
         fill={props.colors[2]}
         d="M123 62.122l.034-14-14-.034-.034 14zM140.912 80.034l.034-14-14-.034-.034 14z"
@@ -25,7 +28,10 @@ export default function SvgUseStyletron(props) {
         fill={props.colors[1]}
         d="M105 62.078l.034-14-14-.034-.034 14zM140.912 98.165l.034-14-14-.034-.034 14z"
       />
-      <path fill={props.colors[2]} d="M158.912 98.21l.034-14-14-.035-.034 14z" />
+      <path
+        fill={props.colors[2]}
+        d="M158.912 98.21l.034-14-14-.035-.034 14z"
+      />
     </svg>
   );
 }

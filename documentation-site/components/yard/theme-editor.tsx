@@ -5,14 +5,14 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-import * as React from 'react';
-import { useValueDebounce } from 'react-view';
-import { Input, SIZE } from 'baseui/input';
-import { useStyletron } from 'baseui';
-import Link from 'next/link';
-import { StyledLink } from 'baseui/link';
-import { ParagraphXSmall } from 'baseui/typography';
-import { getActiveTheme, getThemeDiff } from './provider';
+import * as React from "react";
+import { useValueDebounce } from "react-view";
+import { Input, SIZE } from "baseui/input";
+import { useStyletron } from "baseui";
+import Link from "next/link";
+import { StyledLink } from "baseui/link";
+import { ParagraphXSmall } from "baseui/typography";
+import { getActiveTheme, getThemeDiff } from "./provider";
 
 type ThemeEditorProps = {
   componentName: string;
@@ -40,14 +40,14 @@ const ColorInput: React.FC<{
   return (
     <label
       className={css({
-        display: 'flex',
-        alignItems: 'center',
+        display: "flex",
+        alignItems: "center",
       })}
     >
       <div
         className={css({
-          width: '4px',
-          height: '36px',
+          width: "4px",
+          height: "36px",
           backgroundColor: color,
         })}
       ></div>
@@ -57,7 +57,7 @@ const ColorInput: React.FC<{
         placeholder={themeInit[themeKey]}
         value={color}
         onChange={(e) => setColor((e.target as HTMLInputElement).value)}
-        overrides={{ Root: { style: { width: '100px' } } }}
+        overrides={{ Root: { style: { width: "100px" } } }}
       />
       <div
         title={themeKey}
@@ -66,10 +66,10 @@ const ColorInput: React.FC<{
           ...($theme.typography.font100 as any),
           color: $theme.colors.contentPrimary,
           marginLeft: $theme.sizing.scale300,
-          maxWidth: '150px',
-          whiteSpace: 'nowrap',
-          overflow: 'hidden',
-          textOverflow: 'ellipsis',
+          maxWidth: "150px",
+          whiteSpace: "nowrap",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
         })}
       >
         {themeKey}
@@ -78,12 +78,17 @@ const ColorInput: React.FC<{
   );
 };
 
-const Column: React.FC<ColumnProps> = ({ themeKeys, themeInit, theme, set }) => {
+const Column: React.FC<ColumnProps> = ({
+  themeKeys,
+  themeInit,
+  theme,
+  set,
+}) => {
   const [css] = useStyletron();
   return (
     <div
       className={css({
-        flexBasis: '50%',
+        flexBasis: "50%",
       })}
     >
       {themeKeys.map((key) => {
@@ -98,7 +103,7 @@ const Column: React.FC<ColumnProps> = ({ themeKeys, themeInit, theme, set }) => 
                   ...theme,
                   [key]: color,
                 },
-                themeInit
+                themeInit,
               );
               set(Object.keys(diff).length > 0 ? diff : undefined);
             }}
@@ -110,36 +115,61 @@ const Column: React.FC<ColumnProps> = ({ themeKeys, themeInit, theme, set }) => 
   );
 };
 
-const ThemeEditor: React.FC<ThemeEditorProps> = ({ theme, themeInit, set, componentName }) => {
+const ThemeEditor: React.FC<ThemeEditorProps> = ({
+  theme,
+  themeInit,
+  set,
+  componentName,
+}) => {
   const [css, currentTheme] = useStyletron();
   const activeTheme = getActiveTheme(theme, themeInit);
   const themeKeys = Object.keys(activeTheme);
 
-  const midPoint = themeKeys.length % 2 === 0 ? themeKeys.length / 2 : themeKeys.length / 2 + 1;
+  const midPoint =
+    themeKeys.length % 2 === 0
+      ? themeKeys.length / 2
+      : themeKeys.length / 2 + 1;
   const firstThemeKeys = themeKeys.slice(0, midPoint);
   const secondThemeKeys = themeKeys.slice(midPoint);
 
   return (
     <React.Fragment>
-      <ParagraphXSmall marginLeft="scale200" marginRight="scale200" marginBottom="scale400">
-        Do you want to change {componentName} colors globally? You can customize the theme through
-        ThemeProvider and set your own colors.{' '}
+      <ParagraphXSmall
+        marginLeft="scale200"
+        marginRight="scale200"
+        marginBottom="scale400"
+      >
+        Do you want to change {componentName} colors globally? You can customize
+        the theme through ThemeProvider and set your own colors.{" "}
         <Link href="/guides/theming/#a-custom-theme">
-          <StyledLink href="/guides/theming/#a-custom-theme">Learn more</StyledLink>
+          <StyledLink href="/guides/theming/#a-custom-theme">
+            Learn more
+          </StyledLink>
         </Link>
         . Try different values:
       </ParagraphXSmall>
       <div
         className={css({
-          display: 'flex',
-          flexDirection: 'row',
-          [`@media screen and (max-width: ${currentTheme.breakpoints.medium}px)`]: {
-            flexWrap: 'wrap',
-          },
+          display: "flex",
+          flexDirection: "row",
+          [`@media screen and (max-width: ${currentTheme.breakpoints.medium}px)`]:
+            {
+              flexWrap: "wrap",
+            },
         })}
       >
-        <Column themeKeys={firstThemeKeys} theme={activeTheme} themeInit={themeInit} set={set} />
-        <Column themeKeys={secondThemeKeys} theme={activeTheme} themeInit={themeInit} set={set} />
+        <Column
+          themeKeys={firstThemeKeys}
+          theme={activeTheme}
+          themeInit={themeInit}
+          set={set}
+        />
+        <Column
+          themeKeys={secondThemeKeys}
+          theme={activeTheme}
+          themeInit={themeInit}
+          set={set}
+        />
       </div>
     </React.Fragment>
   );

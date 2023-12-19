@@ -58,10 +58,10 @@ export default function Example() {
                   backgroundColor: $disabled
                     ? $theme.colors.buttonDisabledFill
                     : $isFocused || $isPseudoFocused
-                    ? $theme.colors.buttonSecondaryHover
-                    : $error
-                    ? $theme.colors.negative50
-                    : $theme.colors.buttonSecondaryFill,
+                      ? $theme.colors.buttonSecondaryHover
+                      : $error
+                        ? $theme.colors.negative50
+                        : $theme.colors.buttonSecondaryFill,
                 }),
               },
               SingleValue: {

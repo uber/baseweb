@@ -5,22 +5,22 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
-import Example from '../../components/example';
-import Layout from '../../components/layout';
-import Exports from '../../components/exports';
+import Example from "../../components/example";
+import Layout from "../../components/layout";
+import Exports from "../../components/exports";
 
-import TextareaBasic from 'examples/textarea/basic.tsx';
-import TextareaStates from 'examples/textarea/states.tsx';
-import TextareaSizes from 'examples/textarea/sizes.tsx';
-import TextareaRef from 'examples/textarea/ref.tsx';
-import TextareaResizable from 'examples/textarea/resizable.tsx';
-import TextareaStateful from 'examples/textarea/stateful.tsx';
+import TextareaBasic from "examples/textarea/basic.tsx";
+import TextareaStates from "examples/textarea/states.tsx";
+import TextareaSizes from "examples/textarea/sizes.tsx";
+import TextareaRef from "examples/textarea/ref.tsx";
+import TextareaResizable from "examples/textarea/resizable.tsx";
+import TextareaStateful from "examples/textarea/stateful.tsx";
 
-import { StatefulTextarea as Textarea, SIZE } from 'baseui/textarea';
-import * as TextareaExports from 'baseui/textarea';
+import { StatefulTextarea as Textarea, SIZE } from "baseui/textarea";
+import * as TextareaExports from "baseui/textarea";
 
-import Yard from '../../components/yard/index';
-import textareaYardConfig from '../../components/yard/config/textarea';
+import Yard from "../../components/yard/index";
+import textareaYardConfig from "../../components/yard/config/textarea";
 
 export default Layout;
 
@@ -58,4 +58,8 @@ By default, `Textarea` is not resizeable. However, you can use `overrides` as in
 
 As with many of our components, there is also an [uncontrolled](https://reactjs.org/docs/uncontrolled-components.html) version, `StatefulTextarea`, which manages its own state.
 
-<Exports component={TextareaExports} title="Textarea exports" path="baseui/textarea" />
+<Exports
+  component={TextareaExports}
+  title="Textarea exports"
+  path="baseui/textarea"
+/>

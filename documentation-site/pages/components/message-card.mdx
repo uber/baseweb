@@ -5,20 +5,25 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
-import Example from '../../components/example';
-import Exports from '../../components/exports';
-import Layout from '../../components/layout';
+import Example from "../../components/example";
+import Exports from "../../components/exports";
+import Layout from "../../components/layout";
 
-import ColorMessageCard from 'examples/message-card/color.tsx';
-import CustomColorMessageCard from 'examples/message-card/custom-color.tsx';
-import LayoutMessageCard from 'examples/message-card/layout.tsx';
-import PositioningMessageCard from 'examples/message-card/positioning.tsx';
+import ColorMessageCard from "examples/message-card/color.tsx";
+import CustomColorMessageCard from "examples/message-card/custom-color.tsx";
+import LayoutMessageCard from "examples/message-card/layout.tsx";
+import PositioningMessageCard from "examples/message-card/positioning.tsx";
 
-import { MessageCard, IMAGE_LAYOUT, BACKGROUND_COLOR_TYPE, BUTTON_KIND } from 'baseui/message-card';
-import * as MessageCardExports from 'baseui/message-card';
+import {
+  MessageCard,
+  IMAGE_LAYOUT,
+  BACKGROUND_COLOR_TYPE,
+  BUTTON_KIND,
+} from "baseui/message-card";
+import * as MessageCardExports from "baseui/message-card";
 
-import Yard from '../../components/yard/index';
-import messageCardYardConfig from '../../components/yard/config/message-card';
+import Yard from "../../components/yard/index";
+import messageCardYardConfig from "../../components/yard/config/message-card";
 
 export default Layout;
 
@@ -66,10 +71,17 @@ When using a color outside of the Base Web primitive color pallete, use the `bac
 
 Images can either be placed at the top of the card or at the trailing end. For cards with trailing images, the image container width is fixed to a default size of 112. The height of the image will depend on the amount of content placed inside the card.
 
-<Example title="Adjusting the image position" path="message-card/positioning.tsx">
+<Example
+  title="Adjusting the image position"
+  path="message-card/positioning.tsx"
+>
   <PositioningMessageCard />
 </Example>
 
 Use the `backgroundPosition` property of the `image` prop to adjust the position of the image.
 
-<Exports component={MessageCardExports} title="MessageCard exports" path="baseui/message-card" />
+<Exports
+  component={MessageCardExports}
+  title="MessageCard exports"
+  path="baseui/message-card"
+/>

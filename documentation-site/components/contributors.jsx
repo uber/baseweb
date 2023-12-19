@@ -4,23 +4,16 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-//      
+//
 
-import * as React from 'react';
-import { Avatar } from 'baseui/avatar';
-import { Block } from 'baseui/block';
-import { H2 } from './markdown-elements';
+import * as React from "react";
+import { Avatar } from "baseui/avatar";
+import { Block } from "baseui/block";
+import { H2 } from "./markdown-elements";
 
-                    
-                     
-                   
-                
-                       
-  
+const isUser = (user) => user.type === "User";
 
-const isUser = (user) => user.type === 'User';
-
-function Contributors(props                                 ) {
+function Contributors(props) {
   if (!props.contributors.length) {
     return null;
   }
@@ -42,12 +35,12 @@ function Contributors(props                                 ) {
             overrides={{
               Block: {
                 style: ({ $theme }) => ({
-                  ':focus > div > img': {
+                  ":focus > div > img": {
                     boxShadow: `0 0 0 3px ${$theme.colors.accent}`,
-                    outline: 'none',
+                    outline: "none",
                   },
-                  ':focus': {
-                    outline: 'none',
+                  ":focus": {
+                    outline: "none",
                   },
                 }),
               },
@@ -62,11 +55,11 @@ function Contributors(props                                 ) {
                 Root: {
                   style: ({ $theme }) => ({
                     margin: $theme.sizing.scale100,
-                    transitionProperty: 'all',
+                    transitionProperty: "all",
                     transitionDuration: $theme.animation.timing200,
                     transitionTimingFunction: $theme.animation.easeInOutCurve,
-                    ':hover': {
-                      transform: 'scale(1.2)',
+                    ":hover": {
+                      transform: "scale(1.2)",
                     },
                   }),
                 },

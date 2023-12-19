@@ -5,33 +5,33 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
-import Example from '../../components/example';
-import Layout from '../../components/layout';
-import Exports from '../../components/exports';
+import Example from "../../components/example";
+import Layout from "../../components/layout";
+import Exports from "../../components/exports";
 
-import DatepickerBasic from 'examples/datepicker/basic.tsx';
-import DatepickerInPopover from 'examples/datepicker/in-popover.tsx';
-import DatepickerQuickSelect from 'examples/datepicker/quick-select.tsx';
-import DatepickerTimeSelect from 'examples/datepicker/calendar-time-select.tsx';
-import DatepickerMultipleMonths from 'examples/datepicker/calendar-multiple-months.tsx';
-import DatepickerMultipleMonthsWithLabel from 'examples/datepicker/calendar-multiple-months-with-label.tsx';
-import RangeDatepickerSeparateInputs from 'examples/datepicker/range-picker-with-separate-inputs.tsx';
-import DatepickerI18n from 'examples/datepicker/i18n.tsx';
-import DatepickerWithOverrides from 'examples/datepicker/with-overrides.tsx';
-import ComposedRangePickers from 'examples/datepicker/composed-range-pickers.tsx';
-import ComposedSinglePickers from 'examples/datepicker/composed-single-pickers.tsx';
-import DatepickersColorStates from 'examples/datepicker/datepickers-color-states.tsx';
-import DatepickerTimezone from 'examples/datepicker/datepicker-with-timezone.tsx';
-import NestedOverride from 'examples/datepicker/nested-override.tsx';
-import NestedOverridePropMerge from 'examples/datepicker/with-callback-overrides.tsx';
-import DatepickerWithMask from 'examples/datepicker/with-mask.tsx';
-import DatepickerNullMask from 'examples/datepicker/null-mask.tsx';
+import DatepickerBasic from "examples/datepicker/basic.tsx";
+import DatepickerInPopover from "examples/datepicker/in-popover.tsx";
+import DatepickerQuickSelect from "examples/datepicker/quick-select.tsx";
+import DatepickerTimeSelect from "examples/datepicker/calendar-time-select.tsx";
+import DatepickerMultipleMonths from "examples/datepicker/calendar-multiple-months.tsx";
+import DatepickerMultipleMonthsWithLabel from "examples/datepicker/calendar-multiple-months-with-label.tsx";
+import RangeDatepickerSeparateInputs from "examples/datepicker/range-picker-with-separate-inputs.tsx";
+import DatepickerI18n from "examples/datepicker/i18n.tsx";
+import DatepickerWithOverrides from "examples/datepicker/with-overrides.tsx";
+import ComposedRangePickers from "examples/datepicker/composed-range-pickers.tsx";
+import ComposedSinglePickers from "examples/datepicker/composed-single-pickers.tsx";
+import DatepickersColorStates from "examples/datepicker/datepickers-color-states.tsx";
+import DatepickerTimezone from "examples/datepicker/datepicker-with-timezone.tsx";
+import NestedOverride from "examples/datepicker/nested-override.tsx";
+import NestedOverridePropMerge from "examples/datepicker/with-callback-overrides.tsx";
+import DatepickerWithMask from "examples/datepicker/with-mask.tsx";
+import DatepickerNullMask from "examples/datepicker/null-mask.tsx";
 
-import { StatefulCalendar } from 'baseui/datepicker';
-import * as DatepickerExports from 'baseui/datepicker';
+import { StatefulCalendar } from "baseui/datepicker";
+import * as DatepickerExports from "baseui/datepicker";
 
-import Yard from '../../components/yard/index';
-import datepickerConfig from '../../components/yard/config/datepicker';
+import Yard from "../../components/yard/index";
+import datepickerConfig from "../../components/yard/config/datepicker";
 
 export default Layout;
 
@@ -59,7 +59,10 @@ A simple and reusable component to work with or select a date or a range of date
   <DatepickerInPopover />
 </Example>
 
-<Example title="Datepicker with quick select actions" path="datepicker/quick-select.tsx">
+<Example
+  title="Datepicker with quick select actions"
+  path="datepicker/quick-select.tsx"
+>
   <DatepickerQuickSelect />
 </Example>
 
@@ -87,11 +90,17 @@ When using a custom mask `formatString` prop should be also set to match the mas
 
 Some date formats will operate better without a restrictive input mask. You can disable that feature by applying `null` to the mask prop.
 
-<Example title="Calendar with time select actions" path="datepicker/calendar-time-select.tsx">
+<Example
+  title="Calendar with time select actions"
+  path="datepicker/calendar-time-select.tsx"
+>
   <DatepickerTimeSelect />
 </Example>
 
-<Example title="Calendar with multiple months" path="datepicker/calendar-multiple-months.tsx">
+<Example
+  title="Calendar with multiple months"
+  path="datepicker/calendar-multiple-months.tsx"
+>
   <DatepickerMultipleMonths />
 </Example>
 
@@ -109,26 +118,41 @@ Some date formats will operate better without a restrictive input mask. You can 
   <RangeDatepickerSeparateInputs />
 </Example>
 
-<Example title="Composed single pickers" path="datepicker/composed-single-pickers.tsx">
+<Example
+  title="Composed single pickers"
+  path="datepicker/composed-single-pickers.tsx"
+>
   <ComposedSinglePickers />
 </Example>
 
-<Example title="Composed range pickers" path="datepicker/composed-range-pickers.tsx">
+<Example
+  title="Composed range pickers"
+  path="datepicker/composed-range-pickers.tsx"
+>
   <ComposedRangePickers />
 </Example>
 
-<Example title="Datepicker states" path="datepicker/datepickers-color-states.tsx">
+<Example
+  title="Datepicker states"
+  path="datepicker/datepickers-color-states.tsx"
+>
   <DatepickersColorStates />
 </Example>
 
-<Example title="Datepicker with timezone selection" path="datepicker/datepicker-with-timezone.tsx">
-  This example works for most use-cases, however certain edge-cases are not handled here. If this
-  data is mission critical for your systems, consider using Moment.tsx, and pass the date object
-  from Moment.tsx to the datepicker.
+<Example
+  title="Datepicker with timezone selection"
+  path="datepicker/datepicker-with-timezone.tsx"
+>
+  This example works for most use-cases, however certain edge-cases are not
+  handled here. If this data is mission critical for your systems, consider
+  using Moment.tsx, and pass the date object from Moment.tsx to the datepicker.
   <DatepickerTimezone />
 </Example>
 
-<Example title="Overriding a nested component" path="datepicker/nested-override.tsx">
+<Example
+  title="Overriding a nested component"
+  path="datepicker/nested-override.tsx"
+>
   <NestedOverride />
 </Example>
 
@@ -143,4 +167,8 @@ In this example we use a [nested override](/guides/understanding-overrides/#over
 
 Here we use the most flexible and complex [override by component replacement](/guides/understanding-overrides/#override-the-entire-subcomponent) where we wrap a components onChange handler to subscribe to the datepicker event when a quick selection is picked.
 
-<Exports component={DatepickerExports} title="Datepicker exports" path="baseui/datepicker" />
+<Exports
+  component={DatepickerExports}
+  title="Datepicker exports"
+  path="baseui/datepicker"
+/>

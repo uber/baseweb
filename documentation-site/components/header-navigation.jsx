@@ -24,8 +24,7 @@ import { Button, KIND, SIZE, SHAPE } from "baseui/button";
 // Breakpoint for un-wrapping the search bar from under the links and toggles.
 const WRAP_SEARCH = 715;
 
-const mq = (breakpoint) =>
-  `@media screen and (min-width: ${breakpoint}px)`;
+const mq = (breakpoint) => `@media screen and (min-width: ${breakpoint}px)`;
 
 export default function HeaderNavigation({
   toggleSidebar,
@@ -54,10 +53,8 @@ export default function HeaderNavigation({
       {/* Logo & Links  */}
       <div
         className={css({
-          marginLeft:
-            theme.direction === "rtl" ? "auto" : "none",
-          marginRight:
-            theme.direction === "rtl" ? "none" : "auto",
+          marginLeft: theme.direction === "rtl" ? "auto" : "none",
+          marginRight: theme.direction === "rtl" ? "none" : "auto",
           display: "flex",
           alignItems: "center",
           order: 1,
@@ -70,13 +67,9 @@ export default function HeaderNavigation({
             className={css({
               display: "flex",
               marginLeft:
-                theme.direction === "rtl"
-                  ? theme.sizing.scale400
-                  : "none",
+                theme.direction === "rtl" ? theme.sizing.scale400 : "none",
               marginRight:
-                theme.direction === "rtl"
-                  ? "none"
-                  : theme.sizing.scale400,
+                theme.direction === "rtl" ? "none" : theme.sizing.scale400,
               ":focus": {
                 outline: `3px solid ${theme.colors.accent}`,
                 outlineOffset: "5px",
@@ -84,11 +77,7 @@ export default function HeaderNavigation({
             })}
           >
             <img
-              src={
-                theme.name.startsWith("dark")
-                  ? LightLogo
-                  : DarkLogo
-              }
+              src={theme.name.startsWith("dark") ? LightLogo : DarkLogo}
               alt="Base Web"
               height="40px"
               width="97px"
@@ -159,13 +148,9 @@ export default function HeaderNavigation({
             order: 2,
             marginTop: "0",
             marginLeft:
-              theme.direction === "rtl"
-                ? theme.sizing.scale400
-                : "none",
+              theme.direction === "rtl" ? theme.sizing.scale400 : "none",
             marginRight:
-              theme.direction === "rtl"
-                ? "none"
-                : theme.sizing.scale400,
+              theme.direction === "rtl" ? "none" : theme.sizing.scale400,
           },
         })}
       >
@@ -204,10 +189,7 @@ export default function HeaderNavigation({
             },
           }}
         >
-          <SlackLogo
-            size={24}
-            color={theme.colors.contentPrimary}
-          />
+          <SlackLogo size={24} color={theme.colors.contentPrimary} />
         </Button>
 
         {/* GitHub */}
@@ -231,10 +213,7 @@ export default function HeaderNavigation({
             },
           }}
         >
-          <GithubLogo
-            size={24}
-            color={theme.colors.contentPrimary}
-          />
+          <GithubLogo size={24} color={theme.colors.contentPrimary} />
         </Button>
 
         {/* Direction Toggle */}
@@ -256,15 +235,9 @@ export default function HeaderNavigation({
           }}
         >
           {theme.direction === "rtl" ? (
-            <AlignLeftIcon
-              size={24}
-              color={theme.colors.contentPrimary}
-            />
+            <AlignLeftIcon size={24} color={theme.colors.contentPrimary} />
           ) : (
-            <AlignRightIcon
-              size={24}
-              color={theme.colors.contentPrimary}
-            />
+            <AlignRightIcon size={24} color={theme.colors.contentPrimary} />
           )}
         </Button>
 
@@ -283,10 +256,7 @@ export default function HeaderNavigation({
             },
           }}
         >
-          <Bulb
-            size={24}
-            color={theme.colors.contentPrimary}
-          />
+          <Bulb size={24} color={theme.colors.contentPrimary} />
         </Button>
 
         {/* Nav Toggle */}
@@ -307,10 +277,7 @@ export default function HeaderNavigation({
             },
           }}
         >
-          <Menu
-            size={24}
-            color={theme.colors.contentPrimary}
-          />
+          <Menu size={24} color={theme.colors.contentPrimary} />
         </Button>
       </div>
     </header>

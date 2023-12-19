@@ -9,14 +9,8 @@ import { Notification } from "baseui/notification";
 import Layout from "../../components/layout";
 import Example from "../../components/example";
 import IconOverrides from "examples/theme/icon-overrides.tsx";
-import {
-  Timing,
-  Easing,
-} from "../../components/theming/animations.jsx";
-import {
-  Border,
-  Radius,
-} from "../../components/theming/borders.jsx";
+import { Timing, Easing } from "../../components/theming/animations.jsx";
+import { Border, Radius } from "../../components/theming/borders.jsx";
 import { Breakpoint } from "../../components/theming/breakpoints.jsx";
 import { Color } from "../../components/theming/colors.jsx";
 import { Grid } from "../../components/theming/grid.jsx";
@@ -72,11 +66,10 @@ The theme object itself is nothing special—just an object with specific proper
     },
   }}
 >
-  Make sure to reference the Flow/TypesScript definitions
-  when customizing your theme object. Base Web components
-  assume certain properties are on the theme object at
-  run-time. A missing property on the theme object can lead
-  to a runtime error.
+  Make sure to reference the Flow/TypesScript definitions when customizing your
+  theme object. Base Web components assume certain properties are on the theme
+  object at run-time. A missing property on the theme object can lead to a
+  runtime error.
 </Notification>
 
 ### Default themes
@@ -103,11 +96,7 @@ If you want to allow for toggling between the 2 themes at
 
 ```js
 import React from "react";
-import {
-  LightTheme,
-  DarkTheme,
-  ThemeProvider,
-} from "baseui";
+import { LightTheme, DarkTheme, ThemeProvider } from "baseui";
 import { Button } from "baseui/button";
 
 const THEME = {
@@ -118,14 +107,10 @@ const THEME = {
 export default function App() {
   const [theme, setTheme] = React.useState(THEME.light);
   return (
-    <ThemeProvider
-      theme={theme === THEME.light ? LightTheme : DarkTheme}
-    >
+    <ThemeProvider theme={theme === THEME.light ? LightTheme : DarkTheme}>
       <Button
         onClick={() =>
-          setTheme(
-            theme === THEME.light ? THEME.dark : THEME.light
-          )
+          setTheme(theme === THEME.light ? THEME.dark : THEME.light)
         }
       >
         Toggle light/dark theme!
@@ -380,10 +365,7 @@ The example below overrides the `ChevronLeft` icon with the `ArrowLeft` icon, ma
 
 All the icons that can be found on the Icon component page can be overridden using this technique.
 
-<Example
-  title="Pagination icon overrides"
-  path="theme/icon-overrides.tsx"
->
+<Example title="Pagination icon overrides" path="theme/icon-overrides.tsx">
   <IconOverrides />
 </Example>
 
@@ -399,8 +381,8 @@ All the icons that can be found on the Icon component page can be overridden usi
     },
   }}
 >
-  Extending the theme is an advanced pattern. See if you can
-  configure the default theme first before extending it.
+  Extending the theme is an advanced pattern. See if you can configure the
+  default theme first before extending it.
 </Notification>
 
 There may be a scenario where you want to extend our default theme. We do not recommend removing theme properties, as this may lead to a runtime error when a component references a missing property. _Adding_ new properties, though is perfectly acceptable.
@@ -459,11 +441,7 @@ import { themedUseStyletron as useStyletron } from "path/to/my-style-utils.jsx";
 
 function Foo() {
   const [css, theme] = useStyletron();
-  return (
-    <div className={css({ color: theme.customColor })}>
-      Okay
-    </div>
-  );
+  return <div className={css({ color: theme.customColor })}>Okay</div>;
 }
 ```
 
@@ -487,14 +465,11 @@ Whenever Base Web exports a [Styletron](https://www.styletron.org/) styled compo
 import { withStyle } from "baseui";
 import { StyledBaseButton } from "baseui/button";
 
-const MyButton = withStyle(
-  StyledBaseButton,
-  ({ $theme }) => {
-    return {
-      color: $theme.colors.accent,
-    };
-  }
-);
+const MyButton = withStyle(StyledBaseButton, ({ $theme }) => {
+  return {
+    color: $theme.colors.accent,
+  };
+});
 ```
 
 Notice how the second parameter is a function that is passed an object with a `$theme` property. This property provides a reference to your theme object.

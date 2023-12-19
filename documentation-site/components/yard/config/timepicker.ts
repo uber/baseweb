@@ -4,18 +4,18 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import { TimePicker } from 'baseui/timepicker';
-import { SIZE } from 'baseui/input';
-import { PropTypes } from 'react-view';
-import type { TConfig } from '../types';
-import inputConfig from './input';
-import selectConfig from './select';
-import { startOfDay } from 'date-fns';
+import { TimePicker } from "baseui/timepicker";
+import { SIZE } from "baseui/input";
+import { PropTypes } from "react-view";
+import type { TConfig } from "../types";
+import inputConfig from "./input";
+import selectConfig from "./select";
+import { startOfDay } from "date-fns";
 
 const TimepickerConfig: TConfig = {
-  componentName: 'TimePicker',
+  componentName: "TimePicker",
   imports: {
-    'baseui/timepicker': { named: ['TimePicker'] },
+    "baseui/timepicker": { named: ["TimePicker"] },
   },
   scope: {
     TimePicker,
@@ -27,16 +27,16 @@ const TimepickerConfig: TConfig = {
       value: new Date().toISOString(),
       type: PropTypes.Date,
       description:
-        'Optional value that can be provided to fully control the component. If not provided, TimePicker will manage state internally and default to the closest step to new Date().',
+        "Optional value that can be provided to fully control the component. If not provided, TimePicker will manage state internally and default to the closest step to new Date().",
       stateful: true,
     },
     onChange: {
-      value: 'date => setValue(date)',
+      value: "date => setValue(date)",
       type: PropTypes.Function,
-      description: 'Callback for when time selection changes.',
+      description: "Callback for when time selection changes.",
       propHook: {
-        what: 'date.toISOString()',
-        into: 'value',
+        what: "date.toISOString()",
+        into: "value",
       },
     },
     size: inputConfig.props.size,
@@ -59,25 +59,26 @@ const TimepickerConfig: TConfig = {
     format: {
       value: undefined,
       type: PropTypes.String,
-      placeholder: '12',
+      placeholder: "12",
       description:
-        '12 or 24. Render options in AM/PM format or 24 hour format. Defaults to 12 hour.',
+        "12 or 24. Render options in AM/PM format or 24 hour format. Defaults to 12 hour.",
     },
     step: {
       value: undefined,
       type: PropTypes.Number,
-      placeholder: '900',
-      description: 'Amount of seconds between each option time. Defaults to 900 (15 minutes).',
+      placeholder: "900",
+      description:
+        "Amount of seconds between each option time. Defaults to 900 (15 minutes).",
     },
     minTime: {
       value: startOfDay(new Date()).toISOString(),
       type: PropTypes.Date,
-      description: 'Earliest time to show on the time picker (ex. 09:30).',
+      description: "Earliest time to show on the time picker (ex. 09:30).",
     },
     maxTime: {
       value: undefined,
       type: PropTypes.Date,
-      description: 'Latest time to show on the time picker (ex. 18:30).',
+      description: "Latest time to show on the time picker (ex. 18:30).",
     },
     error: inputConfig.props.error,
     positive: inputConfig.props.positive,
@@ -94,7 +95,7 @@ options will clamp to the date start and date end.
     overrides: {
       value: undefined,
       type: PropTypes.Custom,
-      description: 'Lets you customize all aspects of the component.',
+      description: "Lets you customize all aspects of the component.",
       custom: {
         names: [selectConfig],
         sharedProps: {},

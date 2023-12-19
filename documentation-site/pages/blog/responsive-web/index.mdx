@@ -1,9 +1,5 @@
 import Layout from "../../../components/layout";
-import {
-  BlogImage,
-  Meta,
-  Caption,
-} from "../../../components/blog";
+import { BlogImage, Meta, Caption } from "../../../components/blog";
 import { Block } from "baseui/block";
 import { StatefulInput } from "baseui/input";
 import { StatefulSelect } from "baseui/select";
@@ -76,15 +72,14 @@ const breakpoints = {
 
 const ResponsiveTheme = Object.keys(breakpoints).reduce(
   (acc, key) => {
-    acc.mediaQuery[
-      key
-    ] = `@media screen and (min-width: ${breakpoints[key]}px)`;
+    acc.mediaQuery[key] =
+      `@media screen and (min-width: ${breakpoints[key]}px)`;
     return acc;
   },
   {
     breakpoints,
     mediaQuery: {},
-  }
+  },
 );
 
 export const MyTheme = {
@@ -181,14 +176,10 @@ We can also take advantage of these responsive properties to completely hide a B
 
 ```js
 // TabLink appears only on mobile
-const TabLink = (props) => (
-  <Block display={["block", "none"]} {...props} />
-);
+const TabLink = (props) => <Block display={["block", "none"]} {...props} />;
 
 // NavLink appears only on desktop
-const NavLink = (props) => (
-  <Block display={["none", "block"]} {...props} />
-);
+const NavLink = (props) => <Block display={["none", "block"]} {...props} />;
 ```
 
 <BlogImage
@@ -204,11 +195,7 @@ Another handy tool for building responsive UIs is the [FlexGrid](/components/fle
 ```js
 // Example usage
 const Filters = () => (
-  <FlexGrid
-    columnCount={[2, 1]}
-    columnGap="scale300"
-    rowGap="scale800"
-  >
+  <FlexGrid columnCount={[2, 1]} columnGap="scale300" rowGap="scale800">
     <FlexGridItem>All Shipments</FlexGridItem>
     <FlexGridItem>In Progress</FlexGridItem>
     <FlexGridItem>Upcoming</FlexGridItem>
@@ -217,11 +204,7 @@ const Filters = () => (
 );
 
 const Locations = ({ Pickup, Dropoff }) => (
-  <FlexGrid
-    columnCount={[1, 2]}
-    columnGap="scale300"
-    rowGap="scale300"
-  >
+  <FlexGrid columnCount={[1, 2]} columnGap="scale300" rowGap="scale300">
     <FlexGridItem>
       <Pickup />
     </FlexGridItem>

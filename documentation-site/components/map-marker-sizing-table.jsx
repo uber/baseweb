@@ -15,20 +15,14 @@ import {
 import { InlineCode } from "./markdown-elements";
 
 export const FixedMarkerSizingTable = () => {
-  const PinheadShapeKeys = Object.keys(
-    PINHEAD_SIZES_SHAPES
-  );
+  const PinheadShapeKeys = Object.keys(PINHEAD_SIZES_SHAPES);
   const columns = ["PINHEAD_SIZE_SHAPE", "Enhancer size"];
   const data = [
-    ...PinheadShapeKeys.filter((x) =>
-      x.includes("xSmall")
-    ).map((key, i) => [
+    ...PinheadShapeKeys.filter((x) => x.includes("xSmall")).map((key, i) => [
       <InlineCode key={i}>{key}</InlineCode>,
       `n/a, enhancer cannot be provided on this shape/size`,
     ]),
-    ...PinheadShapeKeys.filter(
-      (x) => !x.includes("xSmall")
-    ).map((key, i) => [
+    ...PinheadShapeKeys.filter((x) => !x.includes("xSmall")).map((key, i) => [
       <InlineCode key={i}>{key}</InlineCode>,
       `${PINHEAD_DIMENSIONS[key].icon}px`,
     ]),
@@ -37,9 +31,7 @@ export const FixedMarkerSizingTable = () => {
 };
 
 export const FloatingMarkerSizingTable = () => {
-  const floatingMarkerKeys = Object.keys(
-    FLOATING_MARKER_SIZES
-  );
+  const floatingMarkerKeys = Object.keys(FLOATING_MARKER_SIZES);
   const columns = ["FLOATING_MARKER_SIZE", "Enhancer size"];
   const data = floatingMarkerKeys.map((key, i) => [
     <InlineCode key={i}>{key}</InlineCode>,

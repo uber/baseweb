@@ -5,12 +5,12 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
-import Yard from '../../components/yard/index';
-import linkConfig from '../../components/yard/config/link';
-import Layout from '../../components/layout';
-import Exports from '../../components/exports';
+import Yard from "../../components/yard/index";
+import linkConfig from "../../components/yard/config/link";
+import Layout from "../../components/layout";
+import Exports from "../../components/exports";
 
-import * as LinkExports from 'baseui/link';
+import * as LinkExports from "baseui/link";
 
 export default Layout;
 
@@ -18,7 +18,12 @@ export default Layout;
 
 <Yard placeholderHeight={20} {...linkConfig} />
 
-<Exports component={LinkExports} title="Link exports" path="baseui/link" cheatsheet={false} />
+<Exports
+  component={LinkExports}
+  title="Link exports"
+  path="baseui/link"
+  cheatsheet={false}
+/>
 
 Your application may need to draw more attention to some links on the page.
 Apply the `animateUnderline` prop to the component if the link is a call-to-action or initiates a UX flow.

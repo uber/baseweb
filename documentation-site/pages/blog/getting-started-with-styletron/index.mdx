@@ -1,6 +1,6 @@
-import Layout from '../../../components/layout';
-import {BlogImage, Demo, Meta} from '../../../components/blog';
-import metadata from './metadata.json';
+import Layout from "../../../components/layout";
+import { BlogImage, Demo, Meta } from "../../../components/blog";
+import metadata from "./metadata.json";
 
 export default Layout;
 
@@ -9,7 +9,7 @@ export default Layout;
 <BlogImage
   full
   caption="Photo by Craig Sybert on Unsplash"
-  style={{marginTop: '20px'}}
+  style={{ marginTop: "20px" }}
   src="https://images.unsplash.com/photo-1533915828531-55b274d98dc5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
 />
 
@@ -20,10 +20,10 @@ Styletron is a toolkit for component-oriented styling comprising of CSS in JS fl
 It's exactly that. Defining your styling within JavaScript. The major benefit being that we can abstract styling to the component level.
 
 ```js
-const Button = styled('button', {
-  background: '#276EF1',
-  color: '#FFFFFF',
-  cursor: 'pointer',
+const Button = styled("button", {
+  background: "#276EF1",
+  color: "#FFFFFF",
+  cursor: "pointer",
 });
 ```
 
@@ -68,10 +68,10 @@ Let's go through some features with an example. The "Hello World" of components 
 ### The basic Button
 
 ```js
-const Button = styled('button', {
-  background: '#276EF1',
-  color: '#FFFFFF',
-  cursor: 'pointer',
+const Button = styled("button", {
+  background: "#276EF1",
+  color: "#FFFFFF",
+  cursor: "pointer",
 });
 ```
 
@@ -85,7 +85,7 @@ How about something like this.
 
 <BlogImage
   auto
-  src={'/images/blog/getting-started-with-styletron/fancy-button.gif'}
+  src={"/images/blog/getting-started-with-styletron/fancy-button.gif"}
 />
 
 ### Creating a fancier Button
@@ -93,18 +93,18 @@ How about something like this.
 Let's start by styling the foundation for our `Button`. Nothing special happening here.
 
 ```js
-const Button = styled('button', {
-  background: 'transparent',
-  border: '4px solid #276EF1',
-  borderTopLeftRadius: '4px',
-  borderTopRightRadius: '4px',
-  borderBottomRightRadius: '4px',
-  borderBottomLeftRadius: '4px',
-  color: '#276EF1',
-  cursor: 'pointer',
-  fontWeight: 'bold',
-  padding: '8px 16px',
-  position: 'relative',
+const Button = styled("button", {
+  background: "transparent",
+  border: "4px solid #276EF1",
+  borderTopLeftRadius: "4px",
+  borderTopRightRadius: "4px",
+  borderBottomRightRadius: "4px",
+  borderBottomLeftRadius: "4px",
+  color: "#276EF1",
+  cursor: "pointer",
+  fontWeight: "bold",
+  padding: "8px 16px",
+  position: "relative",
 });
 ```
 
@@ -113,27 +113,27 @@ The trick to our solution is to use a `clip-path` on our `Button`'s `:after` pse
 We want to copy the `Button` styling onto the `:after` element and use the `content` property for the text. Hardcoding that `content` property won't do though.
 
 ```js
-const Button = styled('button', {
-  background: 'transparent',
-  border: '4px solid #276EF1',
-  borderTopLeftRadius: '4px',
-  borderTopRightRadius: '4px',
-  borderBottomRightRadius: '4px',
-  borderBottomLeftRadius: '4px',
-  color: '#276EF1',
-  cursor: 'pointer',
-  fontWeight: 'bold',
-  padding: '8px 16px',
-  position: 'relative',
-  ':after': {
-    background: '#276EF1',
+const Button = styled("button", {
+  background: "transparent",
+  border: "4px solid #276EF1",
+  borderTopLeftRadius: "4px",
+  borderTopRightRadius: "4px",
+  borderBottomRightRadius: "4px",
+  borderBottomLeftRadius: "4px",
+  color: "#276EF1",
+  cursor: "pointer",
+  fontWeight: "bold",
+  padding: "8px 16px",
+  position: "relative",
+  ":after": {
+    background: "#276EF1",
     bottom: 0,
-    color: '#FFFFFF',
+    color: "#FFFFFF",
     content: '"Click Me!"',
-    fontWeight: 'bold',
+    fontWeight: "bold",
     left: 0,
-    padding: '8px 16px',
-    position: 'absolute',
+    padding: "8px 16px",
+    position: "absolute",
     right: 0,
     top: 0,
   },
@@ -144,9 +144,9 @@ Fortunately, the second argument to our styled function can also be a function. 
 That means we can use `props.children` for the content prop.
 
 ```js
-const Button = styled('button', props => ({
+const Button = styled("button", (props) => ({
   // Other omitted styles
-  ':after': {
+  ":after": {
     content: `"${props.children}"`,
   },
 }));
@@ -180,16 +180,16 @@ const Button = styled('button', props => ({
 Let's create that `clip-path` for our fancy effect.
 
 ```js
-const Button = styled('button', props => ({
+const Button = styled("button", (props) => ({
   ...buttonStyles,
-  ':after': {
+  ":after": {
     ...buttonStyles,
     // Other omitted styles here
-    clipPath: 'polygon(-25% -5%, -25% -5%, -5% 105%, -25% 105%)',
-    transition: 'clip-path .25s ease',
+    clipPath: "polygon(-25% -5%, -25% -5%, -5% 105%, -25% 105%)",
+    transition: "clip-path .25s ease",
   },
-  ':hover:after': {
-    clipPath: 'polygon(-25% -5%, 105% -5%, 125% 105%, -25% 105%)',
+  ":hover:after": {
+    clipPath: "polygon(-25% -5%, 105% -5%, 125% 105%, -25% 105%)",
   },
 }));
 ```
@@ -205,26 +205,28 @@ Most buttons come in a variety of colors, think Bootstrap etc. We can do this wi
 To use themes with Styletron, we create a new `styled` function using React Context.
 
 ```js
-import React, {createContext} from 'react';
-import {createStyled} from 'styletron-react';
-import {driver, getInitialStyle} from 'styletron-standard';
+import React, { createContext } from "react";
+import { createStyled } from "styletron-react";
+import { driver, getInitialStyle } from "styletron-standard";
 
-const {Consumer, Provider} = createContext();
+const { Consumer, Provider } = createContext();
 
 const THEME = {
   colors: {
-    PRIMARY: '#276EF1',
-    SECONDARY: '#95A5A6',
+    PRIMARY: "#276EF1",
+    SECONDARY: "#95A5A6",
     // Other colors
   },
 };
 
-const ThemeProvider = ({children}) => (
+const ThemeProvider = ({ children }) => (
   <Provider value={THEME}>{children}</Provider>
 );
 
-const wrapper = StyledComponent => props => (
-  <Consumer>{theme => <StyledComponent {...props} $theme={theme} />}</Consumer>
+const wrapper = (StyledComponent) => (props) => (
+  <Consumer>
+    {(theme) => <StyledComponent {...props} $theme={theme} />}
+  </Consumer>
 );
 
 const styled = createStyled({
@@ -242,8 +244,8 @@ This isn't what we always want. React will throw warnings for DOM props it doesn
 We can extend our styles by creating functions that will grab the correct color for a `Button` based on props.
 
 ```js
-const getButtonColor = props => {
-  const {colors} = props.$theme;
+const getButtonColor = (props) => {
+  const { colors } = props.$theme;
   let color = colors.PRIMARY;
   if (props.$primary) color = colors.PRIMARY;
   if (props.$secondary) color = colors.SECONDARY;
@@ -254,16 +256,16 @@ const getButtonColor = props => {
 Integrating the functions like so.
 
 ```js
-const Button = styled('button', props => {
+const Button = styled("button", (props) => {
   const color = getButtonColor(props);
   const styles = getButtonStyles(color);
   return {
     ...styles,
-    ':after': {
+    ":after": {
       ...styles,
       ...otherStyles,
     },
-    ':hover:after': {
+    ":hover:after": {
       ...hoverStyles,
     },
   };

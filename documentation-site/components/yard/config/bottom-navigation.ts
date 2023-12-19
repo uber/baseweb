@@ -4,18 +4,18 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import { BottomNavigation, NavItem } from 'baseui/bottom-navigation';
-import Calendar from 'baseui/icon/calendar';
-import Show from 'baseui/icon/show';
-import Search from 'baseui/icon/search';
-import { PropTypes } from 'react-view';
-import type { TConfig } from '../types';
+import { BottomNavigation, NavItem } from "baseui/bottom-navigation";
+import Calendar from "baseui/icon/calendar";
+import Show from "baseui/icon/show";
+import Search from "baseui/icon/search";
+import { PropTypes } from "react-view";
+import type { TConfig } from "../types";
 
 const BottomNavigationConfig: TConfig = {
-  componentName: 'BottomNavigation',
+  componentName: "BottomNavigation",
   imports: {
-    'baseui/bottom-navigation': {
-      named: ['BottomNavigation'],
+    "baseui/bottom-navigation": {
+      named: ["BottomNavigation"],
     },
   },
   scope: {
@@ -30,7 +30,7 @@ const BottomNavigationConfig: TConfig = {
     activeKey: {
       value: 0,
       type: PropTypes.Number,
-      description: 'Key of the NavItem to be selected.',
+      description: "Key of the NavItem to be selected.",
       stateful: true,
     },
     children: {
@@ -49,30 +49,30 @@ const BottomNavigationConfig: TConfig = {
       type: PropTypes.ReactNode,
       description: `An array of NavItem components.`,
       imports: {
-        'baseui/bottom-navigation': { named: ['NavItem'] },
+        "baseui/bottom-navigation": { named: ["NavItem"] },
       },
     },
     onChange: {
-      value: '({ activeKey }) => {\n  setActiveKey(activeKey);\n}',
+      value: "({ activeKey }) => {\n  setActiveKey(activeKey);\n}",
       type: PropTypes.Function,
       description: `Change handler that is called every time a new nav item is selected.`,
       propHook: {
-        what: 'activeKey',
-        into: 'activeKey',
+        what: "activeKey",
+        into: "activeKey",
       },
     },
     overrides: {
       value: undefined,
       type: PropTypes.Custom,
-      description: 'Lets you customize all aspects of the component.',
+      description: "Lets you customize all aspects of the component.",
       custom: {
         names: [
-          'Root',
-          'SelectorList',
-          'OverflowPanel',
-          'OverflowPanelList',
-          'OverflowTitle',
-          'OverflowSelector',
+          "Root",
+          "SelectorList",
+          "OverflowPanel",
+          "OverflowPanelList",
+          "OverflowTitle",
+          "OverflowSelector",
         ],
         sharedProps: {},
       },

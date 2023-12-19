@@ -33,9 +33,7 @@ function CheatSheet() {
 
   React.useEffect(() => {
     if (query.component) {
-      const element = document.getElementById(
-        query.component
-      );
+      const element = document.getElementById(query.component);
       if (element) {
         setTimeout((el) => el.scrollIntoView(), 0, element);
       }
@@ -53,12 +51,7 @@ function CheatSheet() {
               <StyledLink
                 target="_blank"
                 href={buildHref(outline.file)}
-                onClick={() =>
-                  trackEvent(
-                    "cheat_sheet_click",
-                    componentName
-                  )
-                }
+                onClick={() => trackEvent("cheat_sheet_click", componentName)}
               >
                 {componentName}
               </StyledLink>
@@ -81,14 +74,11 @@ function CheatSheet() {
                   >
                     <StyledLink
                       target="_blank"
-                      href={buildHref(
-                        outline.file,
-                        t.lineStart
-                      )}
+                      href={buildHref(outline.file, t.lineStart)}
                       onClick={() =>
                         trackEvent(
                           "cheat_sheet_click",
-                          `${componentName}_${t.name}`
+                          `${componentName}_${t.name}`,
                         )
                       }
                     >
@@ -106,14 +96,11 @@ function CheatSheet() {
                     >
                       <StyledLink
                         target="_blank"
-                        href={buildHref(
-                          outline.file,
-                          c.lineStart
-                        )}
+                        href={buildHref(outline.file, c.lineStart)}
                         onClick={() =>
                           trackEvent(
                             "cheat_sheet_click",
-                            `${componentName}_${t.name}_${c.name}`
+                            `${componentName}_${t.name}_${c.name}`,
                           )
                         }
                       >

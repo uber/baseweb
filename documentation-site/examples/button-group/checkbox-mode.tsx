@@ -12,7 +12,7 @@ export default function Example() {
         if (!selected.includes(index)) {
           setSelected([...selected, index]);
         } else {
-          setSelected(selected.filter(value => value !== index));
+          setSelected(selected.filter((value) => value !== index));
         }
       }}
     >

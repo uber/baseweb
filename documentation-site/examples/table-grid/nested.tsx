@@ -137,7 +137,7 @@ function Tasks(props: {tasks: any[]}) {
           <StyledHeadCell $sticky={false}>Last Run</StyledHeadCell>
           <StyledHeadCell $sticky={false}>Details</StyledHeadCell>
         </div>
-        {props.tasks.map(task => {
+        {props.tasks.map((task) => {
           return (
             <div role="row" className={css({display: 'contents'})}>
               <StyledBodyCell>{task[0]}</StyledBodyCell>

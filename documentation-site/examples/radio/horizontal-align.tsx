@@ -7,7 +7,7 @@ export default function Example() {
     <RadioGroup
       align="horizontal"
       name="horizontal"
-      onChange={e => setValue(e.target.value)}
+      onChange={(e) => setValue(e.target.value)}
       value={value}
     >
       <Radio value="1">First</Radio>

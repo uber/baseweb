@@ -1,16 +1,11 @@
 /* eslint-disable */
 // this is a font awesome Icon
 // license https://fontawesome.com/license
-//      
+//
 
-import * as React from 'react';
+import * as React from "react";
 
-              
-               
-                
-  
-
-const AlignLeft = (props       ) => (
+const AlignLeft = (props) => (
   <svg
     width={props.size}
     height={props.size}

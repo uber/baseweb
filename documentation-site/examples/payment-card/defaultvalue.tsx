@@ -5,7 +5,7 @@ export default function Example() {
   const [value, setValue] = React.useState('4111111111111111');
   return (
     <PaymentCard
-      onChange={event =>
+      onChange={(event) =>
         setValue((event.target as HTMLInputElement).value)
       }
       placeholder="Please enter your credit card number..."

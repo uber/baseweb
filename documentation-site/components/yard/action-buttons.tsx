@@ -28,20 +28,10 @@ const ActionButtons: React.FC<{
   code: string;
   componentName: string;
   importsConfig: TImportsConfig;
-}> = ({
-  formatCode,
-  copyCode,
-  reset,
-  code,
-  componentName,
-  importsConfig,
-}) => {
+}> = ({ formatCode, copyCode, reset, code, componentName, importsConfig }) => {
   const [, theme] = useStyletron();
   async function handleOpenExample() {
-    const url = await deploy(
-      `Base Web - ${componentName}`,
-      code
-    );
+    const url = await deploy(`Base Web - ${componentName}`, code);
     if (url) {
       window.open(url, "_blank");
     }
@@ -67,10 +57,7 @@ const ActionButtons: React.FC<{
           Format
         </Button>
         <Button kind={KIND.tertiary} onClick={copyCode}>
-          <MdContentCopy
-            style={{ paddingRight: theme.sizing.scale100 }}
-          />{" "}
-          Copy
+          <MdContentCopy style={{ paddingRight: theme.sizing.scale100 }} /> Copy
         </Button>
         <Button
           kind={KIND.tertiary}
@@ -78,9 +65,7 @@ const ActionButtons: React.FC<{
             reset();
           }}
         >
-          <MdRotateRight
-            style={{ paddingRight: theme.sizing.scale100 }}
-          />{" "}
+          <MdRotateRight style={{ paddingRight: theme.sizing.scale100 }} />{" "}
           Reset
         </Button>
         <Button
@@ -99,9 +84,7 @@ const ActionButtons: React.FC<{
             },
           }}
           // @ts-ignore
-          href={`/cheat-sheet#${Object.keys(
-            importsConfig
-          )[0]
+          href={`/cheat-sheet#${Object.keys(importsConfig)[0]
             .split("/")[1]
             .toLowerCase()}`}
           kind={KIND.tertiary}

@@ -4,16 +4,16 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import { ButtonGroup, MODE, SIZE, SHAPE } from 'baseui/button-group';
-import { Button } from 'baseui/button';
-import { PropTypes } from 'react-view';
-import type { TConfig } from '../types';
+import { ButtonGroup, MODE, SIZE, SHAPE } from "baseui/button-group";
+import { Button } from "baseui/button";
+import { PropTypes } from "react-view";
+import type { TConfig } from "../types";
 
 const ButtonGroupConfig: TConfig = {
-  componentName: 'ButtonGroup',
+  componentName: "ButtonGroup",
   imports: {
-    'baseui/button-group': {
-      named: ['ButtonGroup'],
+    "baseui/button-group": {
+      named: ["ButtonGroup"],
     },
   },
   scope: {
@@ -24,46 +24,47 @@ const ButtonGroupConfig: TConfig = {
     SHAPE,
   },
   theme: [
-    'buttonPrimaryFill',
-    'buttonPrimaryText',
-    'buttonPrimaryHover',
-    'buttonPrimaryActive',
-    'buttonSecondaryFill',
-    'buttonSecondaryText',
-    'buttonSecondaryHover',
-    'buttonSecondaryActive',
-    'buttonTertiaryFill',
-    'buttonTertiaryText',
-    'buttonTertiaryHover',
-    'buttonTertiaryActive',
-    'buttonTertiarySelectedFill',
-    'buttonTertiarySelectedText',
-    'buttonMinimalFill',
-    'buttonMinimalText',
-    'buttonMinimalHover',
-    'buttonMinimalActive',
-    'buttonDisabledFill',
-    'buttonDisabledText',
-    'buttonPrimarySelectedFill',
-    'buttonPrimarySelectedText',
-    'buttonSecondarySelectedFill',
-    'buttonSecondarySelectedText',
+    "buttonPrimaryFill",
+    "buttonPrimaryText",
+    "buttonPrimaryHover",
+    "buttonPrimaryActive",
+    "buttonSecondaryFill",
+    "buttonSecondaryText",
+    "buttonSecondaryHover",
+    "buttonSecondaryActive",
+    "buttonTertiaryFill",
+    "buttonTertiaryText",
+    "buttonTertiaryHover",
+    "buttonTertiaryActive",
+    "buttonTertiarySelectedFill",
+    "buttonTertiarySelectedText",
+    "buttonMinimalFill",
+    "buttonMinimalText",
+    "buttonMinimalHover",
+    "buttonMinimalActive",
+    "buttonDisabledFill",
+    "buttonDisabledText",
+    "buttonPrimarySelectedFill",
+    "buttonPrimarySelectedText",
+    "buttonSecondarySelectedFill",
+    "buttonSecondarySelectedText",
   ],
   props: {
     children: {
-      value: '<Button>One</Button>\n<Button>Two</Button>\n<Button>Three</Button>',
+      value:
+        "<Button>One</Button>\n<Button>Two</Button>\n<Button>Three</Button>",
       type: PropTypes.ReactNode,
-      description: 'Buttons within the group',
+      description: "Buttons within the group",
       imports: {
-        'baseui/button': {
-          named: ['Button'],
+        "baseui/button": {
+          named: ["Button"],
         },
       },
     },
-    'aria-label': {
+    "aria-label": {
       value: undefined,
       type: PropTypes.String,
-      description: 'Aria-label attribute',
+      description: "Aria-label attribute",
       hidden: true,
     },
     onClick: {
@@ -75,43 +76,43 @@ const ButtonGroupConfig: TConfig = {
     selected: {
       value: undefined,
       type: PropTypes.Array,
-      description: 'Defines which buttons are selected',
+      description: "Defines which buttons are selected",
       hidden: true,
     },
     size: {
-      value: 'SIZE.default',
-      defaultValue: 'SIZE.default',
+      value: "SIZE.default",
+      defaultValue: "SIZE.default",
       options: SIZE,
       type: PropTypes.Enum,
-      description: 'Defines the size of the button.',
+      description: "Defines the size of the button.",
       imports: {
-        'baseui/button-group': {
-          named: ['SIZE'],
+        "baseui/button-group": {
+          named: ["SIZE"],
         },
       },
     },
     shape: {
-      value: 'SHAPE.default',
-      defaultValue: 'SHAPE.default',
+      value: "SHAPE.default",
+      defaultValue: "SHAPE.default",
       options: SHAPE,
       type: PropTypes.Enum,
-      description: 'Defines the shape of the button in the button group.',
+      description: "Defines the shape of the button in the button group.",
       imports: {
-        'baseui/button-group': {
-          named: ['SHAPE'],
+        "baseui/button-group": {
+          named: ["SHAPE"],
         },
       },
     },
     mode: {
-      value: 'MODE.checkbox',
-      defaultValue: 'MODE.checkbox',
+      value: "MODE.checkbox",
+      defaultValue: "MODE.checkbox",
       options: MODE,
       type: PropTypes.Enum,
       description:
-        'Changes keyboard shortcuts and role attributes. The actual onClick update implementation is up to you.',
+        "Changes keyboard shortcuts and role attributes. The actual onClick update implementation is up to you.",
       imports: {
-        'baseui/button-group': {
-          named: ['MODE'],
+        "baseui/button-group": {
+          named: ["MODE"],
         },
       },
       hidden: true,
@@ -119,14 +120,14 @@ const ButtonGroupConfig: TConfig = {
     disabled: {
       value: false,
       type: PropTypes.Boolean,
-      description: 'Indicates that the button group is disabled',
+      description: "Indicates that the button group is disabled",
     },
     overrides: {
       value: undefined,
       type: PropTypes.Custom,
-      description: 'Lets you customize all aspects of the component.',
+      description: "Lets you customize all aspects of the component.",
       custom: {
-        names: ['Root'],
+        names: ["Root"],
         sharedProps: {},
       },
     },

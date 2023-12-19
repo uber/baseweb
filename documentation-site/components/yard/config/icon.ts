@@ -5,15 +5,15 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-import { ArrowUp } from 'baseui/icon';
-import { PropTypes } from 'react-view';
-import type { TConfig } from '../types';
+import { ArrowUp } from "baseui/icon";
+import { PropTypes } from "react-view";
+import type { TConfig } from "../types";
 
 const IconConfig: TConfig = {
-  componentName: 'ArrowUp',
+  componentName: "ArrowUp",
   imports: {
-    'baseui/icon': {
-      named: ['ArrowUp'],
+    "baseui/icon": {
+      named: ["ArrowUp"],
     },
   },
   scope: { ArrowUp },
@@ -23,27 +23,28 @@ const IconConfig: TConfig = {
       value: 64,
       type: PropTypes.Number,
       description:
-        'Size of element, will be passed to the svg width/height style. Can also be a value included in.',
+        "Size of element, will be passed to the svg width/height style. Can also be a value included in.",
     },
     color: {
       value: undefined,
       type: PropTypes.String,
-      description: 'Color of icon, will be used as svg fill.',
+      description: "Color of icon, will be used as svg fill.",
     },
     title: {
       value: undefined,
       type: PropTypes.String,
-      description: 'Allows you to set the SVG <title> label, which is used for accessibility.',
+      description:
+        "Allows you to set the SVG <title> label, which is used for accessibility.",
     },
     overrides: {
       value: undefined,
       type: PropTypes.Custom,
-      description: 'Lets you customize all aspects of the component.',
+      description: "Lets you customize all aspects of the component.",
       custom: {
-        names: ['Svg'],
+        names: ["Svg"],
         sharedProps: {
-          $size: 'size',
-          $color: 'color',
+          $size: "size",
+          $color: "color",
         },
       },
     },

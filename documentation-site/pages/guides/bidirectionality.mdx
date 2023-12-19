@@ -5,8 +5,8 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
-import Layout from '../../components/layout';
-import {Notification} from 'baseui/notification';
+import Layout from "../../components/layout";
+import { Notification } from "baseui/notification";
 
 export default Layout;
 
@@ -14,7 +14,7 @@ export default Layout;
 
 <Notification
   overrides={{
-    Body: {style: {width: 'auto'}},
+    Body: { style: { width: "auto" } },
   }}
 >
   In this guide, you'll learn how to set up Base Web for right to left
@@ -39,17 +39,17 @@ Add the `dir` attribute to the `body` of your application:
 You have to change the `direction` property in the Base Web theme:
 
 ```javascript
-import {Client as Styletron} from 'styletron-engine-atomic';
-import {Provider as StyletronProvider} from 'styletron-react';
-import {LightTheme, BaseProvider} from 'baseui';
-import {StatefulInput} from 'baseui/input';
+import { Client as Styletron } from "styletron-engine-atomic";
+import { Provider as StyletronProvider } from "styletron-react";
+import { LightTheme, BaseProvider } from "baseui";
+import { StatefulInput } from "baseui/input";
 
 const engine = new Styletron();
 
 export default function Hello() {
   return (
     <StyletronProvider value={engine}>
-      <BaseProvider theme={{...LightTheme, direction: 'rtl'}}>
+      <BaseProvider theme={{ ...LightTheme, direction: "rtl" }}>
         <StatefulInput />
       </BaseProvider>
     </StyletronProvider>

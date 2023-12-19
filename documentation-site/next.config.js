@@ -27,13 +27,10 @@ module.exports = withMDX({
   experimental: {
     esmExternals: "loose",
   },
-  webpack: (
-    config,
-    { buildId, dev, isServer, defaultLoaders }
-  ) => {
+  webpack: (config, { buildId, dev, isServer, defaultLoaders }) => {
     // Exclude image formats from next-image-loader
     const imageRuleIndex = config.module.rules.findIndex(
-      (rule) => rule.loader === "next-image-loader"
+      (rule) => rule.loader === "next-image-loader",
     );
     if (imageRuleIndex !== -1) {
       config.module.rules[imageRuleIndex].exclude =
@@ -56,14 +53,8 @@ module.exports = withMDX({
 
     config.optimization.splitChunks.maxSize = 20_000;
 
-    config.resolve.alias.baseui = resolve(
-      __dirname,
-      "../dist"
-    );
-    config.resolve.alias.examples = resolve(
-      __dirname,
-      "examples"
-    );
+    config.resolve.alias.baseui = resolve(__dirname, "../dist");
+    config.resolve.alias.examples = resolve(__dirname, "examples");
     // references next polyfills example: https://github.com/zeit/next.js/tree/canary/examples/with-polyfills
     const originalEntry = config.entry;
     config.resolve.fallback = { fs: false };
@@ -72,13 +63,9 @@ module.exports = withMDX({
 
       if (
         entries["main.js"] &&
-        !entries["main.js"].includes(
-          "./helpers/polyfills.js"
-        )
+        !entries["main.js"].includes("./helpers/polyfills.js")
       ) {
-        entries["main.js"].unshift(
-          "./helpers/polyfills.js"
-        );
+        entries["main.js"].unshift("./helpers/polyfills.js");
       }
 
       return entries;

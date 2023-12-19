@@ -14,7 +14,7 @@ export default function Example() {
       ]}
       labelKey="id"
       valueKey="color"
-      onChange={event => console.log(event)}
+      onChange={(event) => console.log(event)}
     />
   );
 }

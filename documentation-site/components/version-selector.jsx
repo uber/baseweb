@@ -10,10 +10,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from "react";
 
 import ChevronDown from "baseui/icon/chevron-down";
-import {
-  StatefulPopover,
-  PLACEMENT as PopoverPlacement,
-} from "baseui/popover";
+import { StatefulPopover, PLACEMENT as PopoverPlacement } from "baseui/popover";
 import { StatefulMenu, NestedMenus } from "baseui/menu";
 import { Button, KIND } from "baseui/button";
 
@@ -22,23 +19,19 @@ import pkg from "../../package.json";
 const { version } = pkg;
 
 const currentMajor = parseInt(version.split(".")[0], 10);
-const majors = [...Array(8).keys()].map(
-  (i) => i + currentMajor - 8
-);
+const majors = [...Array(8).keys()].map((i) => i + currentMajor - 8);
 const majorVersions = majors.reverse().map((version) => ({
   label: `v${version}`,
 }));
 
-const majorVersionsToDisplay = majorVersions.map(
-  (version) => {
-    const { label } = version;
+const majorVersionsToDisplay = majorVersions.map((version) => {
+  const { label } = version;
 
-    return {
-      label,
-      originalVersionNumber: label,
-    };
-  }
-);
+  return {
+    label,
+    originalVersionNumber: label,
+  };
+});
 const VersionSelector = () => {
   return (
     <StatefulPopover
@@ -51,9 +44,7 @@ const VersionSelector = () => {
           <StatefulMenu
             items={majorVersionsToDisplay}
             onItemSelect={({ item }) => {
-              window.open(
-                `https://${item.label}.baseweb.design`
-              );
+              window.open(`https://${item.label}.baseweb.design`);
               close();
             }}
             overrides={{

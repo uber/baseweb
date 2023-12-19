@@ -1,7 +1,7 @@
-import Layout from '../../../components/layout';
-import { Table } from 'baseui/table';
-import { BlogImage, Demo, Meta } from '../../../components/blog';
-import metadata from './metadata.json';
+import Layout from "../../../components/layout";
+import { Table } from "baseui/table";
+import { BlogImage, Demo, Meta } from "../../../components/blog";
+import metadata from "./metadata.json";
 
 export default Layout;
 
@@ -465,12 +465,15 @@ Components that were unchanged in `v7` will still respect the `useRoundedCorners
 Here is a mapping of which components each theme variable affects:
 
 <Table
-  columns={['Variable', 'Components']}
+  columns={["Variable", "Components"]}
   data={[
-    ['useRoundedCorners', 'Checkbox, Datepicker (Range), Progress Bar, Slider, Tag'],
-    ['buttonBorderRadius', 'Button, ButtonGroup'],
-    ['inputBorderRadius', 'Input, Select, Textarea'],
-    ['popoverBorderRadius', 'Popover, Menu, Tooltip'],
-    ['surfaceBorderRadius', 'Card, Datepicker, Modal, Toast, Notification'],
+    [
+      "useRoundedCorners",
+      "Checkbox, Datepicker (Range), Progress Bar, Slider, Tag",
+    ],
+    ["buttonBorderRadius", "Button, ButtonGroup"],
+    ["inputBorderRadius", "Input, Select, Textarea"],
+    ["popoverBorderRadius", "Popover, Menu, Tooltip"],
+    ["surfaceBorderRadius", "Card, Datepicker, Modal, Toast, Notification"],
   ]}
 />

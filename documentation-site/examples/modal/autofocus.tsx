@@ -13,7 +13,7 @@ export default function Example() {
   const [isOpen, setOpen] = React.useState(false);
   return (
     <React.Fragment>
-      <Button onClick={() => setOpen(s => !s)}>Open Modal</Button>
+      <Button onClick={() => setOpen((s) => !s)}>Open Modal</Button>
       <Modal onClose={() => setOpen(false)} isOpen={isOpen}>
         <FocusOnce>
           <ModalHeader>Some Header</ModalHeader>

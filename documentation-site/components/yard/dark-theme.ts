@@ -7,71 +7,71 @@ LICENSE file in the root directory of this source tree.
 
 const theme = {
   plain: {
-    color: '#d4d4d4',
-    backgroundColor: '#292929',
-    fontSize: '14px',
+    color: "#d4d4d4",
+    backgroundColor: "#292929",
+    fontSize: "14px",
     fontFamily: `Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace`,
     margin: 0,
   },
   styles: [
     {
-      types: ['prolog'],
+      types: ["prolog"],
       style: {
-        color: 'rgb(0, 0, 128)',
+        color: "rgb(0, 0, 128)",
       },
     },
     {
-      types: ['comment'],
+      types: ["comment"],
       style: {
-        color: 'rgb(106, 153, 85)',
+        color: "rgb(106, 153, 85)",
       },
     },
     {
-      types: ['builtin', 'tag', 'changed', 'punctuation', 'keyword'],
+      types: ["builtin", "tag", "changed", "punctuation", "keyword"],
       style: {
-        color: 'rgb(86, 156, 214)',
+        color: "rgb(86, 156, 214)",
       },
     },
     {
-      types: ['number', 'inserted'],
+      types: ["number", "inserted"],
       style: {
-        color: 'rgb(181, 206, 168)',
+        color: "rgb(181, 206, 168)",
       },
     },
     {
-      types: ['constant'],
+      types: ["constant"],
       style: {
-        color: 'rgb(100, 102, 149)',
+        color: "rgb(100, 102, 149)",
       },
     },
     {
-      types: ['attr-name', 'variable'],
+      types: ["attr-name", "variable"],
       style: {
-        color: 'rgb(156, 220, 254)',
+        color: "rgb(156, 220, 254)",
       },
     },
     {
-      types: ['deleted', 'string'],
+      types: ["deleted", "string"],
       style: {
-        color: 'rgb(206, 145, 120)',
+        color: "rgb(206, 145, 120)",
       },
     },
     {
-      types: ['operator'],
+      types: ["operator"],
       style: {
-        color: 'rgb(212, 212, 212)',
+        color: "rgb(212, 212, 212)",
       },
     },
     {
-      types: ['function'],
+      types: ["function"],
       style: {
-        color: 'rgb(220, 220, 170)',
+        color: "rgb(220, 220, 170)",
       },
     },
     {
-      types: ['char'],
+      types: ["char"],
       style: {
-        color: 'rgb(209, 105, 105)',
+        color: "rgb(209, 105, 105)",
       },
     },
   ],

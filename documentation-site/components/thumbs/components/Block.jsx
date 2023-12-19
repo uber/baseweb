@@ -6,13 +6,17 @@ LICENSE file in the root directory of this source tree.
 */
 /* THIS FILE IS AUTO-GENERATED. DO NOT MODIFY. */
 
-import React from 'react';
+import React from "react";
 
 export default function SvgBlock(props) {
   return (
     <svg width={232} height={145} fill="none" {...props}>
       <path fill={props.colors[2]} d="M92 64h50v39H92z" />
-      <path fill={props.colors[0]} stroke={props.colors[1]} d="M89.5 61.5h50v39h-50z" />
+      <path
+        fill={props.colors[0]}
+        stroke={props.colors[1]}
+        d="M89.5 61.5h50v39h-50z"
+      />
       <path
         fill={props.colors[2]}
         d="M93 67h43v4H93zM93 73h43v4H93zM93 79h43v4H93zM93 85h43v4H93zM93 91h13v4H93z"

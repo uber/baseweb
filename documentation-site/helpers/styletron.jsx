@@ -7,15 +7,11 @@ LICENSE file in the root directory of this source tree.
 
 /* global document */
 
-import {
-  Client,
-  Server,
-} from "styletron-engine-monolithic";
+import { Client, Server } from "styletron-engine-monolithic";
 
 export const isServer = typeof window === "undefined";
 
-const getHydrate = () =>
-  document.getElementsByClassName("_styletron_hydrate_");
+const getHydrate = () => document.getElementsByClassName("_styletron_hydrate_");
 
 export const styletron = isServer
   ? new Server()
